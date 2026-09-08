@@ -16,7 +16,19 @@
 
 ## 提示词
 
-使用 **[prompt.txt](./prompt.txt)**，搭配参考图片开始尝试。
+使用 **[prompt.txt](./prompt.txt)**，搭配参考图片生成契约格式的分层 SVG。
+
+推荐在 Chat 的 Pro 模式中同时提供：
+
+- 原图
+- [prompt.txt](./prompt.txt)
+- [validate.py](./validate.py)
+
+这样模型可以在一次任务中完成绘制，并运行验证器检查结构。生成后也可以手动验证：
+
+```bash
+python3 validate.py path/to/result.svg
+```
 
 [prompts/](./prompts/) 预留用于收集社区优化版本、局部精修提示词及特定风格实验。欢迎直接使用、修改和调优。
 
@@ -43,6 +55,7 @@
 ```text
 AstraLayering/
 ├── prompt.txt             # 通用分层提示词
+├── validate.py           # SVG 契约验证器
 ├── prompts/               # 提示词变体与风格实验（预留）
 ├── demos/                 # 分层 SVG + 原图，按作者组织
 │   └── wu-tian807/
