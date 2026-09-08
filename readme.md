@@ -20,14 +20,23 @@
 
 [prompts/](./prompts/) 预留用于收集社区优化版本、局部精修提示词及特定风格实验。欢迎直接使用、修改和调优。
 
-## 可交互 Demos
+## 查看 Demos
 
-- [Miku 公式服](./demos/wu-tian807/miku公式服.html)
-- [Miku 深海少女服装](./demos/wu-tian807/miku深海少女服装.html)
+1. 用浏览器打开 **[loading/workbench.html](./loading/workbench.html)**（静态页面，无需服务）。
+2. 选择或拖入 `demos/` 下的 `.svg`；可选加载同目录的原图（`.png` / `.jpg`）做对照。
 
-下载对应 HTML 后用浏览器打开，体验图层显隐与遮挡补全。上述链接指向仓库文件，并非在线运行页面。
+当前示例（`demos/wu-tian807/`）：
 
-更多作品见 **[demos/](./demos/)**，也欢迎提交自己的可玩 HTML。
+| 文件 | 说明 |
+|---|---|
+| [miku公式服.svg](./demos/wu-tian807/miku公式服.svg) | 契约格式分层 SVG（76 层） |
+| [miku公式服.jpg](./demos/wu-tian807/miku公式服.jpg) | 原图（对照用） |
+| [miku深海少女服装.svg](./demos/wu-tian807/miku深海少女服装.svg) | 契约格式分层 SVG（78 层） |
+| [miku深海少女服装.png](./demos/wu-tian807/miku深海少女服装.png) | 原图（对照用） |
+
+图层契约见 **[loading/layer-contract.md](./loading/layer-contract.md)**，最小结构示例见 **[loading/examples.md](./loading/examples.md)**。
+
+更多作品见 **[demos/](./demos/)**，欢迎提交自己的分层 SVG。
 
 ## 目录结构
 
@@ -35,11 +44,17 @@
 AstraLayering/
 ├── prompt.txt             # 通用分层提示词
 ├── prompts/               # 提示词变体与风格实验（预留）
-├── demos/                 # 可交互 HTML 示例，按作者组织
+├── demos/                 # 分层 SVG + 原图，按作者组织
 │   └── wu-tian807/
-│       ├── miku公式服.html
-│       └── miku深海少女服装.html
-├── loading/               # 分层数据格式与加载方案探索（预留）
+│       ├── miku公式服.svg          # 分层结果
+│       ├── miku公式服.jpg          # 原图
+│       ├── miku深海少女服装.svg
+│       └── miku深海少女服装.png    # 原图
+├── loading/
+│   ├── workbench.html     # 静态图层工作台
+│   ├── layer-contract.md  # 图层分层契约
+│   ├── examples.md        # 契约最小示例
+│   └── convert_to_contract.py
 └── readme.md
 ```
 
@@ -47,10 +62,10 @@ AstraLayering/
 
 欢迎通过 **[Issues](https://github.com/wu-tian807/AstraLayering/issues)** 分享思路、问题与实验结果，或通过 **[Pull Requests](https://github.com/wu-tian807/AstraLayering/pulls)** 提交改进。贡献不限于提示词：
 
-- **可玩 HTML Demos**：将自己的作品放入 `demos/<GitHub 用户名>/`，分享分层、局部编辑或交互实验。
+- **分层 SVG Demos**：将自己的作品放入 `demos/<GitHub 用户名>/`，优先符合 `loading/layer-contract.md`，可用 `workbench.html` 检查。
 - **提示词优化**：改进临摹质量、组件组织、Bottom-Up 分层稳定性、遮挡补全或局部精修方法。
 - **特定风格测试**：探索不同画风、角色类型与复杂度下的提示词，并分享效果对比和失败案例。
-- **分层数据格式与加载**：参考已有 Live2D / 2D 模型的 Rigging 格式，讨论适合 HTML / SVG 的标准化分层数据表示与加载约定，相关探索放入 `loading/`。
+- **分层数据格式与加载**：讨论适合 SVG 的分层约定与校验，相关探索放入 `loading/`。
 - **动画绑定探索**：尝试网格形变、连续参数控制、自动或半自动 Rigging，以及与 Live2D 或其他 2D 动画系统的衔接。
 
 提交实验时，建议附上所用模型、提示词、参考图来源及已知问题，方便其他人复现与继续改进。请确保分享的素材具有相应使用权限。
