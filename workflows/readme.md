@@ -14,6 +14,8 @@
 
 色块图只说明当前可见部分的归属。它不补全隐藏形体，颜色也不代表深度；应先确认与基础角色彩图一致，再交给 SVG 阶段。
 
+本次验证的角色参考链路：[原始输入](../outputs/references/original-input.jpg) → [前置0：平涂输出](../outputs/references/flat-color-output.jpg) → [前置2：基础连体服角色](../outputs/references/base-character.png) → [前置3：部件色块图](../outputs/references/part-colors.jpg)。前置1另行提供服装款式；主流程阶段1、阶段2以换装后的基础角色彩图为形状依据。
+
 ## 主流程
 
 | 阶段 | 当前工作与交付 | 状态 |
