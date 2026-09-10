@@ -1,0 +1,669 @@
+{
+  "character": {
+    "bytes": 9462436,
+    "root": {
+      "data-art-revision": "algorithm-vtracer-layered-1",
+      "width": "1024",
+      "height": "1536",
+      "viewBox": "0 0 3072 4608",
+      "role": "img",
+      "aria-labelledby": "trace-title trace-desc"
+    },
+    "element_counts": {
+      "svg": 1,
+      "title": 1,
+      "desc": 1,
+      "g": 10,
+      "path": 4207
+    },
+    "top_groups": [
+      {
+        "attrs": {
+          "id": "tone-240"
+        },
+        "paths": 252
+      },
+      {
+        "attrs": {
+          "id": "tone-216"
+        },
+        "paths": 186
+      },
+      {
+        "attrs": {
+          "id": "tone-192"
+        },
+        "paths": 208
+      },
+      {
+        "attrs": {
+          "id": "tone-168"
+        },
+        "paths": 184
+      },
+      {
+        "attrs": {
+          "id": "tone-144"
+        },
+        "paths": 285
+      },
+      {
+        "attrs": {
+          "id": "tone-120"
+        },
+        "paths": 409
+      },
+      {
+        "attrs": {
+          "id": "tone-96"
+        },
+        "paths": 576
+      },
+      {
+        "attrs": {
+          "id": "tone-72"
+        },
+        "paths": 691
+      },
+      {
+        "attrs": {
+          "id": "tone-48"
+        },
+        "paths": 706
+      },
+      {
+        "attrs": {
+          "id": "tone-24"
+        },
+        "paths": 710
+      }
+    ],
+    "fills": [
+      [
+        "#000000",
+        710
+      ],
+      [
+        "#242424",
+        706
+      ],
+      [
+        "#3c3c3c",
+        691
+      ],
+      [
+        "#545454",
+        576
+      ],
+      [
+        "#6c6c6c",
+        409
+      ],
+      [
+        "#848484",
+        285
+      ],
+      [
+        "#e4e4e4",
+        252
+      ],
+      [
+        "#b4b4b4",
+        208
+      ],
+      [
+        "#cccccc",
+        186
+      ],
+      [
+        "#9c9c9c",
+        184
+      ]
+    ],
+    "strokes": [
+      [
+        "(none/inherited)",
+        4207
+      ]
+    ],
+    "path_commands": 212782,
+    "largest_path_commands": [
+      31250,
+      23638,
+      21480,
+      19693,
+      17799
+    ],
+    "moveto_commands": 9318,
+    "path_attribute_samples": [
+      {
+        "fill": "#e4e4e4",
+        "transform": "translate(1480.4921875,13.83203125)"
+      },
+      {
+        "fill": "#e4e4e4",
+        "transform": "translate(1105,274)"
+      },
+      {
+        "fill": "#e4e4e4",
+        "transform": "translate(1569,279)"
+      },
+      {
+        "fill": "#e4e4e4",
+        "transform": "translate(1715,281)"
+      },
+      {
+        "fill": "#e4e4e4",
+        "transform": "translate(1450,282)"
+      }
+    ],
+    "drawable_steps": 0
+  },
+  "structure": {
+    "bytes": 53332,
+    "root": {
+      "id": "structure",
+      "width": "1024",
+      "height": "1536",
+      "viewBox": "0 0 1024 1536",
+      "version": "1.1",
+      "role": "img",
+      "aria-labelledby": "art-title art-desc",
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      "shape-rendering": "geometricPrecision"
+    },
+    "element_counts": {
+      "svg": 1,
+      "title": 40,
+      "desc": 40,
+      "defs": 1,
+      "clipPath": 2,
+      "path": 152,
+      "style": 1,
+      "metadata": 1,
+      "g": 39
+    },
+    "top_groups": [
+      {
+        "attrs": {
+          "id": "paper",
+          "data-order": "1",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "01 背景"
+        },
+        "paths": 1
+      },
+      {
+        "attrs": {
+          "id": "tail-sl-outer",
+          "data-order": "2",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "02 左马尾 · 最后方细束"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "tail-sr-outer",
+          "data-order": "3",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "03 右马尾 · 最后方细束"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "tail-sl-rear",
+          "data-order": "4",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "04 左马尾 · 后方宽发片"
+        },
+        "paths": 3
+      },
+      {
+        "attrs": {
+          "id": "tail-sr-rear-upper",
+          "data-order": "5",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "05 右马尾 · 内侧后发上片"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "tail-sr-rear-lower",
+          "data-order": "6",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "06 右马尾 · 内侧后发下片"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "tail-sl-far-tip",
+          "data-order": "7",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "07 左马尾 · 后方卷尖"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "tail-sr-far-tip",
+          "data-order": "8",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "08 右马尾 · 后方卷尖"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "tail-sl-main",
+          "data-order": "9",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "09 左马尾 · 主下垂发体"
+        },
+        "paths": 3
+      },
+      {
+        "attrs": {
+          "id": "tail-sr-main",
+          "data-order": "10",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "10 右马尾 · 主下垂发体"
+        },
+        "paths": 3
+      },
+      {
+        "attrs": {
+          "id": "tail-sl-front-curl",
+          "data-order": "11",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "11 左马尾 · 前方回卷发片"
+        },
+        "paths": 4
+      },
+      {
+        "attrs": {
+          "id": "tail-sr-front-curl",
+          "data-order": "12",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "12 右马尾 · 前方回卷发片"
+        },
+        "paths": 4
+      },
+      {
+        "attrs": {
+          "id": "hair-back-complete",
+          "data-order": "13",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "13 完整后发头壳"
+        },
+        "paths": 3
+      },
+      {
+        "attrs": {
+          "id": "leg-sr-complete",
+          "data-order": "14",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "14 画面右腿与足"
+        },
+        "paths": 13
+      },
+      {
+        "attrs": {
+          "id": "leg-sl-complete",
+          "data-order": "15",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "15 画面左腿与足"
+        },
+        "paths": 12
+      },
+      {
+        "attrs": {
+          "id": "arm-sr-complete",
+          "data-order": "16",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "16 画面右弯臂"
+        },
+        "paths": 4
+      },
+      {
+        "attrs": {
+          "id": "arm-sl-complete",
+          "data-order": "17",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "17 画面左抬臂"
+        },
+        "paths": 4
+      },
+      {
+        "attrs": {
+          "id": "body-torso-neck-complete",
+          "data-order": "18",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "18 完整躯干与颈部底体"
+        },
+        "paths": 7
+      },
+      {
+        "attrs": {
+          "id": "swimsuit-complete",
+          "data-order": "19",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "19 完整连体泳装"
+        },
+        "paths": 6
+      },
+      {
+        "attrs": {
+          "id": "hand-sr-hip-complete",
+          "data-order": "20",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "20 叉腰手 · 掌体、手指与指甲"
+        },
+        "paths": 7
+      },
+      {
+        "attrs": {
+          "id": "ear-sl-complete",
+          "data-order": "21",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "21 完整左耳"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "ear-sr-complete",
+          "data-order": "22",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "22 完整右耳"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "face-complete",
+          "data-order": "23",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "23 完整头面底形"
+        },
+        "paths": 4
+      },
+      {
+        "attrs": {
+          "id": "face-nose-mouth",
+          "data-order": "24",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "24 鼻口结构"
+        },
+        "paths": 4
+      },
+      {
+        "attrs": {
+          "id": "brow-sl-complete",
+          "data-order": "25",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "25 完整左眉"
+        },
+        "paths": 1
+      },
+      {
+        "attrs": {
+          "id": "brow-sr-complete",
+          "data-order": "26",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "26 完整右眉"
+        },
+        "paths": 1
+      },
+      {
+        "attrs": {
+          "id": "eye-sl-complete",
+          "data-order": "27",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "27 完整左眼"
+        },
+        "paths": 9
+      },
+      {
+        "attrs": {
+          "id": "eye-sr-complete",
+          "data-order": "28",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "28 完整右眼"
+        },
+        "paths": 9
+      },
+      {
+        "attrs": {
+          "id": "headgear-sl-ear",
+          "data-order": "29",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "29 左耳侧组件"
+        },
+        "paths": 3
+      },
+      {
+        "attrs": {
+          "id": "headgear-sr-ear",
+          "data-order": "30",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "30 右耳侧组件"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "headgear-sl-frame",
+          "data-order": "31",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "31 左折线发饰"
+        },
+        "paths": 3
+      },
+      {
+        "attrs": {
+          "id": "headgear-sr-frame",
+          "data-order": "32",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "32 右折线发饰"
+        },
+        "paths": 3
+      },
+      {
+        "attrs": {
+          "id": "sidelock-sl",
+          "data-order": "33",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "33 左前侧鬓发"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "sidelock-sr",
+          "data-order": "34",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "34 右前侧鬓发"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "fringe-sl-outer",
+          "data-order": "35",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "35 左外侧刘海"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "fringe-sr-sweep",
+          "data-order": "36",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "36 右侧弧形刘海"
+        },
+        "paths": 3
+      },
+      {
+        "attrs": {
+          "id": "fringe-center-sl",
+          "data-order": "37",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "37 中央偏左尖刘海"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "fringe-center-sr",
+          "data-order": "38",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "38 中央偏右尖刘海"
+        },
+        "paths": 2
+      },
+      {
+        "attrs": {
+          "id": "hand-sl-v-complete",
+          "data-order": "39",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "39 最上层 V 手势"
+        },
+        "paths": 8
+      }
+    ],
+    "fills": [
+      [
+        "none",
+        80
+      ],
+      [
+        "#f6f8f9",
+        22
+      ],
+      [
+        "#ffffff",
+        15
+      ],
+      [
+        "#f4f6f7",
+        10
+      ],
+      [
+        "#f1f4f5",
+        6
+      ],
+      [
+        "#f9fafb",
+        4
+      ],
+      [
+        "(inherited)",
+        2
+      ],
+      [
+        "#e3eaed",
+        2
+      ],
+      [
+        "#edf2f4",
+        2
+      ],
+      [
+        "#a3b1ba",
+        2
+      ],
+      [
+        "#626b78",
+        2
+      ],
+      [
+        "#e8edf0",
+        2
+      ]
+    ],
+    "strokes": [
+      [
+        "#645d65",
+        51
+      ],
+      [
+        "#5d7480",
+        31
+      ],
+      [
+        "#9aabb5",
+        30
+      ],
+      [
+        "#5b6976",
+        12
+      ],
+      [
+        "#576372",
+        11
+      ],
+      [
+        "(none/inherited)",
+        7
+      ],
+      [
+        "#666c7b",
+        4
+      ],
+      [
+        "#667a83",
+        2
+      ],
+      [
+        "#8d9fa9",
+        2
+      ],
+      [
+        "#c4cfd4",
+        2
+      ]
+    ],
+    "path_commands": 865,
+    "largest_path_commands": [
+      25,
+      24,
+      22,
+      20,
+      20
+    ],
+    "moveto_commands": 172,
+    "path_attribute_samples": [
+      {},
+      {},
+      {
+        "id": "paper-surface",
+        "data-step": "1",
+        "data-role": "surface",
+        "fill": "#ffffff"
+      },
+      {
+        "id": "tail-sl-outer-p002",
+        "data-step": "2",
+        "data-role": "surface",
+        "fill": "#f6f8f9",
+        "stroke": "#5d7480",
+        "stroke-width": "2.05"
+      },
+      {
+        "id": "tail-sl-outer-p003",
+        "data-step": "3",
+        "data-role": "surface",
+        "fill": "#f6f8f9",
+        "stroke": "#5d7480",
+        "stroke-width": "2.05"
+      }
+    ],
+    "drawable_steps": 150
+  }
+}

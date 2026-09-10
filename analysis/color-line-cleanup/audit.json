@@ -1,0 +1,28 @@
+{
+  "size": [
+    1024,
+    1536
+  ],
+  "source_body_median_rgb": [
+    214.0,
+    214.0,
+    214.0
+  ],
+  "magenta_core_pixels": 2315,
+  "green_discard_pixels": 0,
+  "edited_pixels": 164389,
+  "line_strength": 0.26,
+  "outside_edit_mask_bit_identical": true,
+  "remaining_magenta_pixels_in_body": 0,
+  "flat_region_channel_spread": [
+    0,
+    0,
+    0
+  ],
+  "geometry": "Original marker geometry and unmarked dark lines retained; no anatomy redrawn.",
+  "limitations": [
+    "Suit segmentation uses this image's neutral gray palette and a front-facing region of interest.",
+    "Marker edge opacity is estimated because generated colors are not exact palette mixtures.",
+    "Pixels hidden by opaque markers cannot be exactly recovered; the marked area uses the flat base."
+  ]
+}

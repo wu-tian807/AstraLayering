@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<title>SVG 预览器交互检查</title>
+<style>body{font:14px system-ui;margin:16px;background:#edf1f4;color:#17242f}button{padding:10px;margin-right:8px}iframe{display:block;border:1px solid #aab8c0;width:100%;height:calc(100vh - 110px);margin-top:12px}#results{white-space:pre-wrap;line-height:1.6;max-height:120px;overflow:auto}</style>
+<button id="run">运行交互检查</button><button id="sample">加载 Suzuran 样本</button><button id="fixture">加载测试图形</button><button id="mobile">手机宽度</button><button id="desktop">桌面宽度</button>
+<pre id="results" role="status">等待运行</pre>
+<iframe id="app" src="../../loading/svg-preview.html" title="待测 SVG 预览器"></iframe>
+<script>
+const app=document.getElementById('app'),results=document.getElementById('results');
+const source=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="300" height="200" viewBox="0 0 300 200">
+<defs><linearGradient id="gradient"><stop stop-color="#abd"/></linearGradient><clipPath id="clip"><g id="resource-only"><rect width="300" height="200"/></g></clipPath><symbol id="symbol"><circle r="5" cx="5" cy="5" fill="#eaa"/></symbol></defs>
+<style>.initially-hidden{display:none!important}</style>
+<rect id="background" width="300" height="200" fill="#eef3f7"/>
+<g id="rear" data-name="后发"><rect id="rear-fill" x="50" y="10" width="130" height="100" fill="url(#gradient)"/><g id="strands" data-name="后发细丝"><path d="M70 20V95" stroke="#587" fill="none"/></g></g>
+<g id="face" inkscape:label="脸部"><title>Face title</title><ellipse id="skin" cx="130" cy="70" rx="35" ry="45" fill="#fbc"/></g>
+<g id="source-hidden" class="initially-hidden"><rect x="170" y="30" width="30" height="30" fill="#25a"/></g>
+<g id="loose" data-name="待分块"><rect id="piece-A" x="10" y="135" width="30" height="30" fill="#ca7"/><rect id="piece-B" x="210" y="135" width="30" height="30" fill="#7ba"/><path id="piece-A-detail" d="M15 140H35V155" fill="none" stroke="#633" stroke-width="2"/></g>
+<g id="transformed"><rect id="transform-A" width="12" height="12" transform="translate(265 150) rotate(20)" fill="#aa7"/><rect id="transform-B" width="12" height="12" transform="translate(270 185)" fill="#a77"/></g>
+<path id="compound" d="M4 180h10v10H4z M100 180h10v10h-10z" fill="#667"/>
+<use id="symbol-instance" href="#symbol" x="250" y="40"/>
+</svg>`;
+const $=id=>app.contentDocument.getElementById(id);
+const art=()=>$('artFrame').contentDocument.querySelector('[data-camera]').firstElementChild;
+const css=node=>$('artFrame').contentWindow.getComputedStyle(node);
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function until(fn,label){for(let i=0;i<100;i++){if(fn())return;await delay(40);}throw new Error('等待超时：'+label);}
+function assert(ok,label){if(!ok)throw new Error(label);results.textContent+='✓ '+label+'\n';}
+async function load(text,name){const input=$('fileInput'),transfer=new app.contentWindow.DataTransfer();transfer.items.add(new app.contentWindow.File([text],name,{type:'image/svg+xml'}));input.files=transfer.files;input.dispatchEvent(new app.contentWindow.Event('change',{bubbles:true}));await until(()=>$('fileName').textContent===name,name);await delay(80);}
+function row(name){return [...$('layerTree').querySelectorAll('.layer-item')].find(el=>el.querySelector(':scope > .layer-row .layer-name').textContent===name);}
+function toggle(name,on){const check=row(name).querySelector(':scope > .layer-row input');if(check.checked!==on)check.click();}
+function expand(){ $('expandLayers').click(); }
+function setOrder(value){$('layerOrder').value=value;$('layerOrder').dispatchEvent(new app.contentWindow.Event('change',{bubbles:true}));}
+async function spatial(on){if($('spatialLayers').checked!==on)$('spatialLayers').click();await until(()=>!$('spatialLayers').disabled,'空间分块');await delay(40);}
+function clearSearch(){$('layerSearch').value='';$('layerSearch').dispatchEvent(new app.contentWindow.Event('input',{bubbles:true}));}
+document.getElementById('mobile').onclick=()=>app.style.width='375px';
+document.getElementById('desktop').onclick=()=>app.style.width='100%';
+document.getElementById('fixture').onclick=()=>load(source,'layers-fixture.svg');
+document.getElementById('sample').onclick=async()=>{const text=await(await fetch('../suzuran-analysis/source.svg')).text();await load(text,'suzuran.svg');results.textContent='已加载真实样本';};
+document.getElementById('run').onclick=async()=>{
+ results.textContent='';document.getElementById('run').disabled=true;
+ try{
+  await load(source,'layers-fixture.svg');expand();
+  assert(row('后发')&&row('后发细丝')&&row('脸部'),'读取嵌套分组、data-name 与 Inkscape 名称');
+  assert(row('background')&&row('compound')&&row('symbol-instance'),'未分组图形、复合路径和 use 都可独立控制');
+  assert(!row('resource-only')&&!row('gradient')&&!row('symbol'),'资源定义不会混入绘画层');
+  const originalOrder=[...art().children].map(el=>el.id).join('|');
+  const root=row('画布'),frontNames=[...root.querySelector(':scope > ul').children].map(el=>el.querySelector(':scope > .layer-row .layer-name').textContent);
+  assert(frontNames[0]==='symbol-instance'&&frontNames.at(-1)==='background','默认列表从前景到背景');
+  setOrder('back');
+  const backNames=[...row('画布').querySelector(':scope > ul').children].map(el=>el.querySelector(':scope > .layer-row .layer-name').textContent);
+  assert(backNames[0]==='background'&&backNames.at(-1)==='symbol-instance','支持从底到顶查看');
+  assert(originalOrder===[...art().children].map(el=>el.id).join('|'),'切换列表顺序不移动 SVG 元素');
+  toggle('后发细丝',false);toggle('后发',false);
+  assert(css(art().querySelector('#rear')).display==='none','父组显隐作用于实际 SVG');
+  assert(!row('后发细丝').querySelector(':scope > .layer-row input').checked&&row('rear-fill').classList.contains('layer-blocked'),'父组关闭时保留子项开关，并标明父级影响');
+  toggle('后发',true);
+  assert(css(art().querySelector('#strands')).display==='none'&&css(art().querySelector('#rear-fill')).display!=='none','恢复父组不会重置已隐藏子项');
+  assert(!row('source-hidden').querySelector(':scope > .layer-row input').checked,'识别源文件 CSS 隐藏');
+  toggle('source-hidden',true);assert(css(art().querySelector('#source-hidden')).display!=='none','可以显示被源文件 important 样式隐藏的层');
+  $('restoreLayers').click();assert(css(art().querySelector('#source-hidden')).display==='none'&&!art().querySelector('#rear').hasAttribute('style'),'恢复原始样式，不留下显隐补丁');
+  $('hideAllLayers').click();assert(css(art()).display==='none','全部隐藏');
+  $('showAllLayers').click();assert(css(art()).display!=='none'&&css(art().querySelector('#source-hidden')).display!=='none','全部显示包含原始隐藏层');
+  $('restoreLayers').click();await delay(180);
+  const beforeThumb=$('thumbnail').src;toggle('后发',false);await until(()=>$('thumbnail').src!==beforeThumb,'缩略图同步');
+  const thumb=new DOMParser().parseFromString(await(await fetch($('thumbnail').src)).text(),'image/svg+xml');
+  assert(thumb.querySelector('#rear').style.display==='none','导航缩略图同步图层显隐');
+  $('restoreLayers').click();await spatial(true);expand();
+  const blocks=[...row('待分块').querySelector(':scope > ul').children];
+  assert(blocks.length===2&&blocks.every(el=>el.dataset.kind==='spatial'),'分离的同级图形识别为两个空间图块');
+  const leftBlock=blocks.find(el=>el.textContent.includes('piece-A'));
+  assert(leftBlock.textContent.includes('piece-A-detail'),'相交的色面和细节归入同一块');
+  setOrder('front');assert(row('待分块').querySelector(':scope > ul').firstElementChild.textContent.includes('piece-A-detail'),'交错图块按最前成员排列，并保留成员绘制序号');setOrder('back');
+  [...row('待分块').querySelector(':scope > ul').children].find(el=>el.textContent.includes('piece-A')).querySelector(':scope > .layer-row input').click();
+  assert(css(art().querySelector('#piece-A')).display==='none'&&css(art().querySelector('#piece-A-detail')).display==='none'&&css(art().querySelector('#piece-B')).display!=='none','虚拟图块共同显隐，其他块不受影响');
+  assert([...art().querySelector('#loose').children].map(el=>el.id).join('|')==='piece-A|piece-B|piece-A-detail','交错绘制的图块成员保持原始叠放次序');
+  assert(row('transformed').querySelector(':scope > ul').children.length===2,'空间分块考虑元素变换');
+  assert(row('compound').querySelector(':scope > .layer-row .layer-tag').textContent==='<path>','复合路径不被错误拆成独立图形');
+  await spatial(false);expand();assert(!row('piece-A').querySelector(':scope > .layer-row input').checked,'退出空间视图保留图形显隐状态');
+  toggle('待分块',false);const hiddenStyle=art().querySelector('#loose').getAttribute('style');await spatial(true);expand();
+  assert(row('待分块').querySelector(':scope > ul').children.length===2&&art().querySelector('#loose').getAttribute('style')===hiddenStyle&&css(art().querySelector('#piece-A')).display==='none','隐藏状态下分块结果稳定，测量后精确恢复父子显隐');
+  await spatial(false);
+  $('restoreLayers').click();$('layerSearch').value='piece-A';$('layerSearch').dispatchEvent(new app.contentWindow.Event('input',{bubbles:true}));
+  assert(row('piece-A')&&row('待分块')&&!row('piece-B'),'搜索保留匹配项的祖先，排除无关图形');
+  clearSearch();expand();
+  const target=row('后发'),beforeCamera=$('artFrame').contentDocument.querySelector('[data-camera]').getAttribute('viewBox');target.focus();target.dispatchEvent(new app.contentWindow.KeyboardEvent('keydown',{key:' ',bubbles:true,cancelable:true}));
+  assert(css(art().querySelector('#rear')).display==='none'&&$('artFrame').contentDocument.querySelector('[data-camera]').getAttribute('viewBox')===beforeCamera,'树内空格切换显隐，不触发画布操作');
+  const second='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 60"><rect width="80" height="60" fill="#aaa"/><path d="M0 0L80 60" stroke="#333"/></svg>';
+  await load(second,'plain.svg');
+  assert($('layerCount').textContent.startsWith('0 个分组 · 2 个图形')&&!$('spatialLayers').checked&&$('layerSearch').value===''&&!row('后发'),'加载新文件清除旧树与分块状态，支持无分组 SVG');
+  const input=$('fileInput'),transfer=new app.contentWindow.DataTransfer();transfer.items.add(new app.contentWindow.File(['<svg>'],'broken.svg',{type:'image/svg+xml'}));input.files=transfer.files;input.dispatchEvent(new app.contentWindow.Event('change',{bubbles:true}));await delay(150);
+  assert($('fileName').textContent==='plain.svg'&&$('toast').textContent.includes('无法解析'),'损坏文件不会破坏当前预览');
+  await load(source,'layers-fixture.svg');
+  results.textContent+='\n全部交互检查通过。';
+ }catch(error){results.textContent+='\n失败：'+error.stack;}
+ document.getElementById('run').disabled=false;
+};
+</script>
+</html>

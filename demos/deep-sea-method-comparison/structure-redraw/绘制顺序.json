@@ -1,0 +1,4168 @@
+{
+  "layers": [
+    {
+      "id": "background",
+      "name": "白色背景",
+      "category": "背景",
+      "rank": 0
+    },
+    {
+      "id": "train-l-outer",
+      "name": "左后摆 · 外侧长绸带",
+      "category": "后摆 / 衣片",
+      "rank": 1
+    },
+    {
+      "id": "train-l-main",
+      "name": "左后摆 · 内侧垂落长绸带",
+      "category": "后摆 / 衣片",
+      "rank": 2
+    },
+    {
+      "id": "train-r-outer",
+      "name": "右后摆 · 外侧长绸带",
+      "category": "后摆 / 衣片",
+      "rank": 3
+    },
+    {
+      "id": "train-r-main",
+      "name": "右后摆 · 内侧翻转长绸带",
+      "category": "后摆 / 衣片",
+      "rank": 4
+    },
+    {
+      "id": "hair-l-top-leaf",
+      "name": "左马尾 · 顶端飘发",
+      "category": "后发 / 独立卷束",
+      "rank": 5
+    },
+    {
+      "id": "hair-l-top-loop",
+      "name": "左马尾 · 上方回环",
+      "category": "后发 / 独立卷束",
+      "rank": 6
+    },
+    {
+      "id": "hair-l-high-loop",
+      "name": "左马尾 · 高位内卷",
+      "category": "后发 / 独立卷束",
+      "rank": 7
+    },
+    {
+      "id": "hair-l-inner-loop",
+      "name": "左马尾 · 根部后侧卷束",
+      "category": "后发 / 独立卷束",
+      "rank": 8
+    },
+    {
+      "id": "hair-l-upper-fine-loop",
+      "name": "左马尾 · 上部细回环",
+      "category": "后发 / 独立卷束",
+      "rank": 9
+    },
+    {
+      "id": "hair-l-inner-low-loop",
+      "name": "左马尾 · 内侧长回卷",
+      "category": "后发 / 独立卷束",
+      "rank": 10
+    },
+    {
+      "id": "hair-l-small-inner-tip",
+      "name": "左马尾 · 内侧下卷梢",
+      "category": "后发 / 独立卷束",
+      "rank": 11
+    },
+    {
+      "id": "hair-l-air-outer",
+      "name": "左马尾 · 外缘细发",
+      "category": "后发 / 独立卷束",
+      "rank": 12
+    },
+    {
+      "id": "hair-l-back-upper-wave",
+      "name": "左马尾 · 上部后翻发束",
+      "category": "后发 / 独立卷束",
+      "rank": 13
+    },
+    {
+      "id": "hair-l-back-low-ring",
+      "name": "左马尾 · 后侧下回环",
+      "category": "后发 / 独立卷束",
+      "rank": 14
+    },
+    {
+      "id": "hair-l-outer-cascade",
+      "name": "左马尾 · 外侧垂卷",
+      "category": "后发 / 独立卷束",
+      "rank": 15
+    },
+    {
+      "id": "hair-l-middle-back-loop",
+      "name": "左马尾 · 中段后回环",
+      "category": "后发 / 独立卷束",
+      "rank": 16
+    },
+    {
+      "id": "hair-l-long-under-tip",
+      "name": "左马尾 · 长卷后侧细梢",
+      "category": "后发 / 独立卷束",
+      "rank": 17
+    },
+    {
+      "id": "hair-l-lower-back-ring",
+      "name": "左马尾 · 下段后环",
+      "category": "后发 / 独立卷束",
+      "rank": 18
+    },
+    {
+      "id": "hair-l-small-bottom-loop",
+      "name": "左马尾 · 末端细回卷",
+      "category": "后发 / 独立卷束",
+      "rank": 19
+    },
+    {
+      "id": "hair-l-final-wisp",
+      "name": "左马尾 · 最下细发梢",
+      "category": "后发 / 独立卷束",
+      "rank": 20
+    },
+    {
+      "id": "hair-l-upper-wide-loop",
+      "name": "左马尾 · 上中段后回卷",
+      "category": "后发 / 独立卷束",
+      "rank": 21
+    },
+    {
+      "id": "hair-l-mid-narrow-loop",
+      "name": "左马尾 · 中段细穿插",
+      "category": "后发 / 独立卷束",
+      "rank": 22
+    },
+    {
+      "id": "hair-l-mid-inner-loop",
+      "name": "左马尾 · 内侧横回卷",
+      "category": "后发 / 独立卷束",
+      "rank": 23
+    },
+    {
+      "id": "hair-l-main",
+      "name": "左马尾 · 主垂发束",
+      "category": "后发 / 独立卷束",
+      "rank": 24
+    },
+    {
+      "id": "hair-l-high-sweep",
+      "name": "左马尾 · 横向飘束",
+      "category": "后发 / 独立卷束",
+      "rank": 25
+    },
+    {
+      "id": "hair-l-central-s",
+      "name": "左马尾 · 前侧大 S 卷",
+      "category": "后发 / 独立卷束",
+      "rank": 26
+    },
+    {
+      "id": "hair-l-cross-mid",
+      "name": "左马尾 · 中段横穿细束",
+      "category": "后发 / 独立卷束",
+      "rank": 27
+    },
+    {
+      "id": "hair-l-front-coil",
+      "name": "左马尾 · 前侧螺旋卷",
+      "category": "后发 / 独立卷束",
+      "rank": 28
+    },
+    {
+      "id": "hair-l-bottom-return",
+      "name": "左马尾 · 下端回旋细束",
+      "category": "后发 / 独立卷束",
+      "rank": 29
+    },
+    {
+      "id": "hair-l-bottom-tip",
+      "name": "左马尾 · 最下卷尖",
+      "category": "后发 / 独立卷束",
+      "rank": 30
+    },
+    {
+      "id": "hair-r-high-loop",
+      "name": "右马尾 · 顶部后回环",
+      "category": "后发 / 独立卷束",
+      "rank": 31
+    },
+    {
+      "id": "hair-r-root-back-loop",
+      "name": "右马尾 · 根部内卷",
+      "category": "后发 / 独立卷束",
+      "rank": 32
+    },
+    {
+      "id": "hair-r-air-upper",
+      "name": "右马尾 · 上外缘游丝",
+      "category": "后发 / 独立卷束",
+      "rank": 33
+    },
+    {
+      "id": "hair-r-inner-back",
+      "name": "右马尾 · 内侧后垂卷",
+      "category": "后发 / 独立卷束",
+      "rank": 34
+    },
+    {
+      "id": "hair-r-inner-low-loop",
+      "name": "右马尾 · 内侧低位回卷",
+      "category": "后发 / 独立卷束",
+      "rank": 35
+    },
+    {
+      "id": "hair-r-far-upper-loop",
+      "name": "右马尾 · 外上方细回环",
+      "category": "后发 / 独立卷束",
+      "rank": 36
+    },
+    {
+      "id": "hair-r-mid-back-loop",
+      "name": "右马尾 · 中段外回环",
+      "category": "后发 / 独立卷束",
+      "rank": 37
+    },
+    {
+      "id": "hair-r-back-small-loop",
+      "name": "右马尾 · 中下后回环",
+      "category": "后发 / 独立卷束",
+      "rank": 38
+    },
+    {
+      "id": "hair-r-mid-fine-return",
+      "name": "右马尾 · 中段细回环",
+      "category": "后发 / 独立卷束",
+      "rank": 39
+    },
+    {
+      "id": "hair-r-low-inner-loop",
+      "name": "右马尾 · 下部内回环",
+      "category": "后发 / 独立卷束",
+      "rank": 40
+    },
+    {
+      "id": "hair-r-bottom-back-loop",
+      "name": "右马尾 · 下端后回环",
+      "category": "后发 / 独立卷束",
+      "rank": 41
+    },
+    {
+      "id": "hair-r-low-wisp",
+      "name": "右马尾 · 下端细弧",
+      "category": "后发 / 独立卷束",
+      "rank": 42
+    },
+    {
+      "id": "hair-r-last-tip",
+      "name": "右马尾 · 最下细卷尖",
+      "category": "后发 / 独立卷束",
+      "rank": 43
+    },
+    {
+      "id": "hair-r-main",
+      "name": "右马尾 · 主垂发束",
+      "category": "后发 / 独立卷束",
+      "rank": 44
+    },
+    {
+      "id": "hair-r-inner-main-lock",
+      "name": "右马尾 · 内侧弧形发束",
+      "category": "后发 / 独立卷束",
+      "rank": 45
+    },
+    {
+      "id": "hair-r-pointed-lock",
+      "name": "右马尾 · 外侧长尖束",
+      "category": "后发 / 独立卷束",
+      "rank": 46
+    },
+    {
+      "id": "hair-r-cross-fine",
+      "name": "右马尾 · 中上横飘细束",
+      "category": "后发 / 独立卷束",
+      "rank": 47
+    },
+    {
+      "id": "hair-r-large-s",
+      "name": "右马尾 · 外侧大 S 卷",
+      "category": "后发 / 独立卷束",
+      "rank": 48
+    },
+    {
+      "id": "hair-r-middle-sweep",
+      "name": "右马尾 · 中段外飘束",
+      "category": "后发 / 独立卷束",
+      "rank": 49
+    },
+    {
+      "id": "hair-r-lower-cascade",
+      "name": "右马尾 · 下段前垂卷",
+      "category": "后发 / 独立卷束",
+      "rank": 50
+    },
+    {
+      "id": "hair-r-inner-bottom-ring",
+      "name": "右马尾 · 下段内回环",
+      "category": "后发 / 独立卷束",
+      "rank": 51
+    },
+    {
+      "id": "hair-r-front-bottom-coil",
+      "name": "右马尾 · 最前下卷",
+      "category": "后发 / 独立卷束",
+      "rank": 52
+    },
+    {
+      "id": "leg-l",
+      "name": "左腿 · 完整腿足",
+      "category": "身体",
+      "rank": 53
+    },
+    {
+      "id": "leg-r",
+      "name": "右腿 · 完整腿足",
+      "category": "身体",
+      "rank": 54
+    },
+    {
+      "id": "foot-lines-l",
+      "name": "左脚 · 趾部线条",
+      "category": "身体 / 细线",
+      "rank": 55
+    },
+    {
+      "id": "foot-lines-r",
+      "name": "右脚 · 趾部线条",
+      "category": "身体 / 细线",
+      "rank": 56
+    },
+    {
+      "id": "toenails-l",
+      "name": "左脚趾甲",
+      "category": "指甲",
+      "rank": 57
+    },
+    {
+      "id": "toenails-r",
+      "name": "右脚趾甲",
+      "category": "指甲",
+      "rank": 58
+    },
+    {
+      "id": "torso",
+      "name": "躯干 · 完整基础形",
+      "category": "身体",
+      "rank": 59
+    },
+    {
+      "id": "upperarm-l",
+      "name": "左上臂",
+      "category": "身体",
+      "rank": 60
+    },
+    {
+      "id": "upperarm-r",
+      "name": "右上臂",
+      "category": "身体",
+      "rank": 61
+    },
+    {
+      "id": "forearm-l",
+      "name": "左前臂",
+      "category": "身体",
+      "rank": 62
+    },
+    {
+      "id": "forearm-r",
+      "name": "右前臂",
+      "category": "身体",
+      "rank": 63
+    },
+    {
+      "id": "hand-l",
+      "name": "左手 · 掌与手指",
+      "category": "身体",
+      "rank": 64
+    },
+    {
+      "id": "hand-r",
+      "name": "右手 · 掌与手指",
+      "category": "身体",
+      "rank": 65
+    },
+    {
+      "id": "nails-l",
+      "name": "左手指甲",
+      "category": "指甲",
+      "rank": 66
+    },
+    {
+      "id": "nails-r",
+      "name": "右手指甲",
+      "category": "指甲",
+      "rank": 67
+    },
+    {
+      "id": "neck",
+      "name": "颈部",
+      "category": "身体",
+      "rank": 68
+    },
+    {
+      "id": "body-structure",
+      "name": "锁骨与胸部结构线",
+      "category": "身体 / 细线",
+      "rank": 69
+    },
+    {
+      "id": "waist-bow-l",
+      "name": "左腰结 · 后折片",
+      "category": "礼服 / 衣片",
+      "rank": 70
+    },
+    {
+      "id": "dress-main",
+      "name": "礼服 · 束腰与前裙完整衣片",
+      "category": "礼服 / 衣片",
+      "rank": 71
+    },
+    {
+      "id": "dress-keyhole",
+      "name": "胸前菱形开口",
+      "category": "礼服 / 开口",
+      "rank": 72
+    },
+    {
+      "id": "dress-left-ruffle",
+      "name": "前裙 · 左侧翻边",
+      "category": "礼服 / 衣片",
+      "rank": 73
+    },
+    {
+      "id": "dress-right-ruffle",
+      "name": "前裙 · 右侧翻边",
+      "category": "礼服 / 衣片",
+      "rank": 74
+    },
+    {
+      "id": "dress-center-fold",
+      "name": "前裙 · 中央垂褶",
+      "category": "礼服 / 衣片",
+      "rank": 75
+    },
+    {
+      "id": "dress-structural-folds",
+      "name": "礼服 · 定向褶皱线",
+      "category": "礼服 / 结构线",
+      "rank": 76
+    },
+    {
+      "id": "strap-l",
+      "name": "左挂颈肩带",
+      "category": "礼服 / 肩带",
+      "rank": 77
+    },
+    {
+      "id": "strap-r",
+      "name": "右挂颈肩带",
+      "category": "礼服 / 肩带",
+      "rank": 78
+    },
+    {
+      "id": "cup-l",
+      "name": "礼服 · 左上衣片",
+      "category": "礼服 / 衣片",
+      "rank": 79
+    },
+    {
+      "id": "cup-r",
+      "name": "礼服 · 右上衣片",
+      "category": "礼服 / 衣片",
+      "rank": 80
+    },
+    {
+      "id": "clasp",
+      "name": "胸前连接扣",
+      "category": "礼服 / 配件",
+      "rank": 81
+    },
+    {
+      "id": "waist-knot",
+      "name": "右腰 · 收褶结",
+      "category": "礼服 / 配件",
+      "rank": 82
+    },
+    {
+      "id": "choker",
+      "name": "颈圈",
+      "category": "礼服 / 配件",
+      "rank": 83
+    },
+    {
+      "id": "hair-back",
+      "name": "后脑 · 完整底发",
+      "category": "后发",
+      "rank": 84
+    },
+    {
+      "id": "ear-l",
+      "name": "左耳",
+      "category": "五官",
+      "rank": 85
+    },
+    {
+      "id": "ear-r",
+      "name": "右耳",
+      "category": "五官",
+      "rank": 86
+    },
+    {
+      "id": "face",
+      "name": "脸部 · 完整轮廓",
+      "category": "身体 / 脸",
+      "rank": 87
+    },
+    {
+      "id": "brow-l",
+      "name": "左眉毛",
+      "category": "五官 / 眉",
+      "rank": 88
+    },
+    {
+      "id": "brow-r",
+      "name": "右眉毛",
+      "category": "五官 / 眉",
+      "rank": 89
+    },
+    {
+      "id": "eye-white-l",
+      "name": "左眼白",
+      "category": "五官 / 眼",
+      "rank": 90
+    },
+    {
+      "id": "eye-white-r",
+      "name": "右眼白",
+      "category": "五官 / 眼",
+      "rank": 91
+    },
+    {
+      "id": "iris-l",
+      "name": "左虹膜",
+      "category": "五官 / 虹膜",
+      "rank": 92
+    },
+    {
+      "id": "iris-r",
+      "name": "右虹膜",
+      "category": "五官 / 虹膜",
+      "rank": 93
+    },
+    {
+      "id": "pupil-l",
+      "name": "左瞳孔",
+      "category": "五官 / 瞳孔",
+      "rank": 94
+    },
+    {
+      "id": "pupil-r",
+      "name": "右瞳孔",
+      "category": "五官 / 瞳孔",
+      "rank": 95
+    },
+    {
+      "id": "highlight-l",
+      "name": "左眼高光",
+      "category": "五官 / 高光",
+      "rank": 96
+    },
+    {
+      "id": "highlight-r",
+      "name": "右眼高光",
+      "category": "五官 / 高光",
+      "rank": 97
+    },
+    {
+      "id": "eyelid-l",
+      "name": "左上眼睑",
+      "category": "五官 / 眼睑",
+      "rank": 98
+    },
+    {
+      "id": "eyelid-r",
+      "name": "右上眼睑",
+      "category": "五官 / 眼睑",
+      "rank": 99
+    },
+    {
+      "id": "lashes-l",
+      "name": "左上睫毛",
+      "category": "五官 / 睫毛",
+      "rank": 100
+    },
+    {
+      "id": "lashes-r",
+      "name": "右上睫毛",
+      "category": "五官 / 睫毛",
+      "rank": 101
+    },
+    {
+      "id": "lower-lids",
+      "name": "下眼睑与短睫毛",
+      "category": "五官 / 细线",
+      "rank": 102
+    },
+    {
+      "id": "nose",
+      "name": "鼻部细线",
+      "category": "五官",
+      "rank": 103
+    },
+    {
+      "id": "mouth",
+      "name": "嘴 · 轻闭合笑线",
+      "category": "五官",
+      "rank": 104
+    },
+    {
+      "id": "sidelock-l",
+      "name": "左侧鬓发",
+      "category": "前发 / 独立发束",
+      "rank": 105
+    },
+    {
+      "id": "sidelock-r",
+      "name": "右侧鬓发",
+      "category": "前发 / 独立发束",
+      "rank": 106
+    },
+    {
+      "id": "fringe-outer-l",
+      "name": "刘海 · 左外层",
+      "category": "前发 / 独立发束",
+      "rank": 107
+    },
+    {
+      "id": "fringe-outer-r",
+      "name": "刘海 · 右外层",
+      "category": "前发 / 独立发束",
+      "rank": 108
+    },
+    {
+      "id": "fringe-left",
+      "name": "刘海 · 左长束",
+      "category": "前发 / 独立发束",
+      "rank": 109
+    },
+    {
+      "id": "fringe-center-left",
+      "name": "刘海 · 左细束",
+      "category": "前发 / 独立发束",
+      "rank": 110
+    },
+    {
+      "id": "fringe-center",
+      "name": "刘海 · 中央束",
+      "category": "前发 / 独立发束",
+      "rank": 111
+    },
+    {
+      "id": "fringe-inner-r",
+      "name": "刘海 · 右中束",
+      "category": "前发 / 独立发束",
+      "rank": 112
+    },
+    {
+      "id": "fringe-long-r",
+      "name": "刘海 · 右长束",
+      "category": "前发 / 独立发束",
+      "rank": 113
+    },
+    {
+      "id": "fringe-sweep",
+      "name": "刘海 · 顶部弧形束",
+      "category": "前发 / 独立发束",
+      "rank": 114
+    },
+    {
+      "id": "crown-wisps",
+      "name": "头顶游丝",
+      "category": "前发 / 细线",
+      "rank": 115
+    },
+    {
+      "id": "feather-l-slim",
+      "name": "左发饰 · 蓝色细羽",
+      "category": "发饰",
+      "rank": 116
+    },
+    {
+      "id": "feather-l-outer",
+      "name": "左发饰 · 外羽",
+      "category": "发饰",
+      "rank": 117
+    },
+    {
+      "id": "feather-l-tall",
+      "name": "左发饰 · 长羽",
+      "category": "发饰",
+      "rank": 118
+    },
+    {
+      "id": "feather-l-inner",
+      "name": "左发饰 · 内羽",
+      "category": "发饰",
+      "rank": 119
+    },
+    {
+      "id": "feather-r-slim",
+      "name": "右发饰 · 蓝色细羽",
+      "category": "发饰",
+      "rank": 120
+    },
+    {
+      "id": "feather-r-inner",
+      "name": "右发饰 · 内羽",
+      "category": "发饰",
+      "rank": 121
+    },
+    {
+      "id": "feather-r-tall",
+      "name": "右发饰 · 长羽",
+      "category": "发饰",
+      "rank": 122
+    },
+    {
+      "id": "feather-r-outer",
+      "name": "右发饰 · 外羽",
+      "category": "发饰",
+      "rank": 123
+    },
+    {
+      "id": "tie-l",
+      "name": "左扎发结",
+      "category": "发饰",
+      "rank": 124
+    },
+    {
+      "id": "tie-r",
+      "name": "右扎发结",
+      "category": "发饰",
+      "rank": 125
+    }
+  ],
+  "events": [
+    {
+      "step": 1,
+      "action": "draw-path",
+      "target": "background-p01",
+      "layer": "background"
+    },
+    {
+      "step": 2,
+      "action": "draw-path",
+      "target": "train-l-outer-p01",
+      "layer": "train-l-outer"
+    },
+    {
+      "step": 3,
+      "action": "draw-path",
+      "target": "train-l-outer-p02",
+      "layer": "train-l-outer"
+    },
+    {
+      "step": 4,
+      "action": "draw-path",
+      "target": "train-l-outer-p03",
+      "layer": "train-l-outer"
+    },
+    {
+      "step": 5,
+      "action": "draw-path",
+      "target": "train-l-outer-p04",
+      "layer": "train-l-outer"
+    },
+    {
+      "step": 6,
+      "action": "draw-path",
+      "target": "train-l-main-p01",
+      "layer": "train-l-main"
+    },
+    {
+      "step": 7,
+      "action": "draw-path",
+      "target": "train-l-main-p02",
+      "layer": "train-l-main"
+    },
+    {
+      "step": 8,
+      "action": "draw-path",
+      "target": "train-l-main-p03",
+      "layer": "train-l-main"
+    },
+    {
+      "step": 9,
+      "action": "draw-path",
+      "target": "train-l-main-p04",
+      "layer": "train-l-main"
+    },
+    {
+      "step": 10,
+      "action": "draw-path",
+      "target": "train-r-outer-p01",
+      "layer": "train-r-outer"
+    },
+    {
+      "step": 11,
+      "action": "draw-path",
+      "target": "train-r-outer-p02",
+      "layer": "train-r-outer"
+    },
+    {
+      "step": 12,
+      "action": "draw-path",
+      "target": "train-r-outer-p03",
+      "layer": "train-r-outer"
+    },
+    {
+      "step": 13,
+      "action": "draw-path",
+      "target": "train-r-main-p01",
+      "layer": "train-r-main"
+    },
+    {
+      "step": 14,
+      "action": "draw-path",
+      "target": "train-r-main-p02",
+      "layer": "train-r-main"
+    },
+    {
+      "step": 15,
+      "action": "draw-path",
+      "target": "train-r-main-p03",
+      "layer": "train-r-main"
+    },
+    {
+      "step": 16,
+      "action": "draw-path",
+      "target": "train-r-main-p04",
+      "layer": "train-r-main"
+    },
+    {
+      "step": 17,
+      "action": "draw-path",
+      "target": "hair-l-top-leaf-p01",
+      "layer": "hair-l-top-leaf"
+    },
+    {
+      "step": 18,
+      "action": "draw-path",
+      "target": "hair-l-top-loop-p01",
+      "layer": "hair-l-top-loop"
+    },
+    {
+      "step": 19,
+      "action": "draw-path",
+      "target": "hair-l-high-loop-p01",
+      "layer": "hair-l-high-loop"
+    },
+    {
+      "step": 20,
+      "action": "draw-path",
+      "target": "hair-l-inner-loop-p01",
+      "layer": "hair-l-inner-loop"
+    },
+    {
+      "step": 21,
+      "action": "draw-path",
+      "target": "hair-l-upper-fine-loop-p01",
+      "layer": "hair-l-upper-fine-loop"
+    },
+    {
+      "step": 22,
+      "action": "draw-path",
+      "target": "hair-l-inner-low-loop-p01",
+      "layer": "hair-l-inner-low-loop"
+    },
+    {
+      "step": 23,
+      "action": "draw-path",
+      "target": "hair-l-small-inner-tip-p01",
+      "layer": "hair-l-small-inner-tip"
+    },
+    {
+      "step": 24,
+      "action": "draw-path",
+      "target": "hair-l-air-outer-p01",
+      "layer": "hair-l-air-outer"
+    },
+    {
+      "step": 25,
+      "action": "draw-path",
+      "target": "hair-l-back-upper-wave-p01",
+      "layer": "hair-l-back-upper-wave"
+    },
+    {
+      "step": 26,
+      "action": "draw-path",
+      "target": "hair-l-back-low-ring-p01",
+      "layer": "hair-l-back-low-ring"
+    },
+    {
+      "step": 27,
+      "action": "draw-path",
+      "target": "hair-l-outer-cascade-p01",
+      "layer": "hair-l-outer-cascade"
+    },
+    {
+      "step": 28,
+      "action": "draw-path",
+      "target": "hair-l-middle-back-loop-p01",
+      "layer": "hair-l-middle-back-loop"
+    },
+    {
+      "step": 29,
+      "action": "draw-path",
+      "target": "hair-l-long-under-tip-p01",
+      "layer": "hair-l-long-under-tip"
+    },
+    {
+      "step": 30,
+      "action": "draw-path",
+      "target": "hair-l-lower-back-ring-p01",
+      "layer": "hair-l-lower-back-ring"
+    },
+    {
+      "step": 31,
+      "action": "draw-path",
+      "target": "hair-l-small-bottom-loop-p01",
+      "layer": "hair-l-small-bottom-loop"
+    },
+    {
+      "step": 32,
+      "action": "draw-path",
+      "target": "hair-l-final-wisp-p01",
+      "layer": "hair-l-final-wisp"
+    },
+    {
+      "step": 33,
+      "action": "draw-path",
+      "target": "hair-l-upper-wide-loop-p01",
+      "layer": "hair-l-upper-wide-loop"
+    },
+    {
+      "step": 34,
+      "action": "draw-path",
+      "target": "hair-l-mid-narrow-loop-p01",
+      "layer": "hair-l-mid-narrow-loop"
+    },
+    {
+      "step": 35,
+      "action": "draw-path",
+      "target": "hair-l-mid-inner-loop-p01",
+      "layer": "hair-l-mid-inner-loop"
+    },
+    {
+      "step": 36,
+      "action": "draw-path",
+      "target": "hair-l-main-p01",
+      "layer": "hair-l-main"
+    },
+    {
+      "step": 37,
+      "action": "draw-path",
+      "target": "hair-l-main-p02",
+      "layer": "hair-l-main"
+    },
+    {
+      "step": 38,
+      "action": "draw-path",
+      "target": "hair-l-main-p03",
+      "layer": "hair-l-main"
+    },
+    {
+      "step": 39,
+      "action": "draw-path",
+      "target": "hair-l-main-p04",
+      "layer": "hair-l-main"
+    },
+    {
+      "step": 40,
+      "action": "draw-path",
+      "target": "hair-l-main-p05",
+      "layer": "hair-l-main"
+    },
+    {
+      "step": 41,
+      "action": "draw-path",
+      "target": "hair-l-high-sweep-p01",
+      "layer": "hair-l-high-sweep"
+    },
+    {
+      "step": 42,
+      "action": "draw-path",
+      "target": "hair-l-high-sweep-p02",
+      "layer": "hair-l-high-sweep"
+    },
+    {
+      "step": 43,
+      "action": "draw-path",
+      "target": "hair-l-central-s-p01",
+      "layer": "hair-l-central-s"
+    },
+    {
+      "step": 44,
+      "action": "draw-path",
+      "target": "hair-l-central-s-p02",
+      "layer": "hair-l-central-s"
+    },
+    {
+      "step": 45,
+      "action": "draw-path",
+      "target": "hair-l-cross-mid-p01",
+      "layer": "hair-l-cross-mid"
+    },
+    {
+      "step": 46,
+      "action": "draw-path",
+      "target": "hair-l-front-coil-p01",
+      "layer": "hair-l-front-coil"
+    },
+    {
+      "step": 47,
+      "action": "draw-path",
+      "target": "hair-l-front-coil-p02",
+      "layer": "hair-l-front-coil"
+    },
+    {
+      "step": 48,
+      "action": "draw-path",
+      "target": "hair-l-bottom-return-p01",
+      "layer": "hair-l-bottom-return"
+    },
+    {
+      "step": 49,
+      "action": "draw-path",
+      "target": "hair-l-bottom-tip-p01",
+      "layer": "hair-l-bottom-tip"
+    },
+    {
+      "step": 50,
+      "action": "draw-path",
+      "target": "hair-r-high-loop-p01",
+      "layer": "hair-r-high-loop"
+    },
+    {
+      "step": 51,
+      "action": "draw-path",
+      "target": "hair-r-root-back-loop-p01",
+      "layer": "hair-r-root-back-loop"
+    },
+    {
+      "step": 52,
+      "action": "draw-path",
+      "target": "hair-r-air-upper-p01",
+      "layer": "hair-r-air-upper"
+    },
+    {
+      "step": 53,
+      "action": "draw-path",
+      "target": "hair-r-inner-back-p01",
+      "layer": "hair-r-inner-back"
+    },
+    {
+      "step": 54,
+      "action": "draw-path",
+      "target": "hair-r-inner-low-loop-p01",
+      "layer": "hair-r-inner-low-loop"
+    },
+    {
+      "step": 55,
+      "action": "draw-path",
+      "target": "hair-r-far-upper-loop-p01",
+      "layer": "hair-r-far-upper-loop"
+    },
+    {
+      "step": 56,
+      "action": "draw-path",
+      "target": "hair-r-mid-back-loop-p01",
+      "layer": "hair-r-mid-back-loop"
+    },
+    {
+      "step": 57,
+      "action": "draw-path",
+      "target": "hair-r-back-small-loop-p01",
+      "layer": "hair-r-back-small-loop"
+    },
+    {
+      "step": 58,
+      "action": "draw-path",
+      "target": "hair-r-mid-fine-return-p01",
+      "layer": "hair-r-mid-fine-return"
+    },
+    {
+      "step": 59,
+      "action": "draw-path",
+      "target": "hair-r-low-inner-loop-p01",
+      "layer": "hair-r-low-inner-loop"
+    },
+    {
+      "step": 60,
+      "action": "draw-path",
+      "target": "hair-r-bottom-back-loop-p01",
+      "layer": "hair-r-bottom-back-loop"
+    },
+    {
+      "step": 61,
+      "action": "draw-path",
+      "target": "hair-r-low-wisp-p01",
+      "layer": "hair-r-low-wisp"
+    },
+    {
+      "step": 62,
+      "action": "draw-path",
+      "target": "hair-r-last-tip-p01",
+      "layer": "hair-r-last-tip"
+    },
+    {
+      "step": 63,
+      "action": "draw-path",
+      "target": "hair-r-main-p01",
+      "layer": "hair-r-main"
+    },
+    {
+      "step": 64,
+      "action": "draw-path",
+      "target": "hair-r-main-p02",
+      "layer": "hair-r-main"
+    },
+    {
+      "step": 65,
+      "action": "draw-path",
+      "target": "hair-r-main-p03",
+      "layer": "hair-r-main"
+    },
+    {
+      "step": 66,
+      "action": "draw-path",
+      "target": "hair-r-main-p04",
+      "layer": "hair-r-main"
+    },
+    {
+      "step": 67,
+      "action": "draw-path",
+      "target": "hair-r-main-p05",
+      "layer": "hair-r-main"
+    },
+    {
+      "step": 68,
+      "action": "draw-path",
+      "target": "hair-r-inner-main-lock-p01",
+      "layer": "hair-r-inner-main-lock"
+    },
+    {
+      "step": 69,
+      "action": "draw-path",
+      "target": "hair-r-inner-main-lock-p02",
+      "layer": "hair-r-inner-main-lock"
+    },
+    {
+      "step": 70,
+      "action": "draw-path",
+      "target": "hair-r-pointed-lock-p01",
+      "layer": "hair-r-pointed-lock"
+    },
+    {
+      "step": 71,
+      "action": "draw-path",
+      "target": "hair-r-pointed-lock-p02",
+      "layer": "hair-r-pointed-lock"
+    },
+    {
+      "step": 72,
+      "action": "draw-path",
+      "target": "hair-r-cross-fine-p01",
+      "layer": "hair-r-cross-fine"
+    },
+    {
+      "step": 73,
+      "action": "draw-path",
+      "target": "hair-r-large-s-p01",
+      "layer": "hair-r-large-s"
+    },
+    {
+      "step": 74,
+      "action": "draw-path",
+      "target": "hair-r-large-s-p02",
+      "layer": "hair-r-large-s"
+    },
+    {
+      "step": 75,
+      "action": "draw-path",
+      "target": "hair-r-middle-sweep-p01",
+      "layer": "hair-r-middle-sweep"
+    },
+    {
+      "step": 76,
+      "action": "draw-path",
+      "target": "hair-r-middle-sweep-p02",
+      "layer": "hair-r-middle-sweep"
+    },
+    {
+      "step": 77,
+      "action": "draw-path",
+      "target": "hair-r-middle-sweep-p03",
+      "layer": "hair-r-middle-sweep"
+    },
+    {
+      "step": 78,
+      "action": "draw-path",
+      "target": "hair-r-lower-cascade-p01",
+      "layer": "hair-r-lower-cascade"
+    },
+    {
+      "step": 79,
+      "action": "draw-path",
+      "target": "hair-r-lower-cascade-p02",
+      "layer": "hair-r-lower-cascade"
+    },
+    {
+      "step": 80,
+      "action": "draw-path",
+      "target": "hair-r-inner-bottom-ring-p01",
+      "layer": "hair-r-inner-bottom-ring"
+    },
+    {
+      "step": 81,
+      "action": "draw-path",
+      "target": "hair-r-front-bottom-coil-p01",
+      "layer": "hair-r-front-bottom-coil"
+    },
+    {
+      "step": 82,
+      "action": "draw-path",
+      "target": "hair-r-front-bottom-coil-p02",
+      "layer": "hair-r-front-bottom-coil"
+    },
+    {
+      "step": 83,
+      "action": "draw-path",
+      "target": "leg-l-p01",
+      "layer": "leg-l"
+    },
+    {
+      "step": 84,
+      "action": "draw-path",
+      "target": "leg-l-p02",
+      "layer": "leg-l"
+    },
+    {
+      "step": 85,
+      "action": "draw-path",
+      "target": "leg-l-p03",
+      "layer": "leg-l"
+    },
+    {
+      "step": 86,
+      "action": "draw-path",
+      "target": "leg-r-p01",
+      "layer": "leg-r"
+    },
+    {
+      "step": 87,
+      "action": "draw-path",
+      "target": "leg-r-p02",
+      "layer": "leg-r"
+    },
+    {
+      "step": 88,
+      "action": "draw-path",
+      "target": "leg-r-p03",
+      "layer": "leg-r"
+    },
+    {
+      "step": 89,
+      "action": "draw-path",
+      "target": "foot-lines-l-p01",
+      "layer": "foot-lines-l"
+    },
+    {
+      "step": 90,
+      "action": "draw-path",
+      "target": "foot-lines-r-p01",
+      "layer": "foot-lines-r"
+    },
+    {
+      "step": 91,
+      "action": "draw-path",
+      "target": "toenails-l-p01",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 92,
+      "action": "draw-path",
+      "target": "toenails-l-p02",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 93,
+      "action": "draw-path",
+      "target": "toenails-l-p03",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 94,
+      "action": "draw-path",
+      "target": "toenails-l-p04",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 95,
+      "action": "draw-path",
+      "target": "toenails-l-p05",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 96,
+      "action": "draw-path",
+      "target": "toenails-l-p06",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 97,
+      "action": "draw-path",
+      "target": "toenails-l-p07",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 98,
+      "action": "draw-path",
+      "target": "toenails-l-p08",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 99,
+      "action": "draw-path",
+      "target": "toenails-l-p09",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 100,
+      "action": "draw-path",
+      "target": "toenails-l-p10",
+      "layer": "toenails-l"
+    },
+    {
+      "step": 101,
+      "action": "draw-path",
+      "target": "toenails-r-p01",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 102,
+      "action": "draw-path",
+      "target": "toenails-r-p02",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 103,
+      "action": "draw-path",
+      "target": "toenails-r-p03",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 104,
+      "action": "draw-path",
+      "target": "toenails-r-p04",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 105,
+      "action": "draw-path",
+      "target": "toenails-r-p05",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 106,
+      "action": "draw-path",
+      "target": "toenails-r-p06",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 107,
+      "action": "draw-path",
+      "target": "toenails-r-p07",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 108,
+      "action": "draw-path",
+      "target": "toenails-r-p08",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 109,
+      "action": "draw-path",
+      "target": "toenails-r-p09",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 110,
+      "action": "draw-path",
+      "target": "toenails-r-p10",
+      "layer": "toenails-r"
+    },
+    {
+      "step": 111,
+      "action": "draw-path",
+      "target": "torso-p01",
+      "layer": "torso"
+    },
+    {
+      "step": 112,
+      "action": "draw-path",
+      "target": "upperarm-l-p01",
+      "layer": "upperarm-l"
+    },
+    {
+      "step": 113,
+      "action": "draw-path",
+      "target": "upperarm-l-p02",
+      "layer": "upperarm-l"
+    },
+    {
+      "step": 114,
+      "action": "draw-path",
+      "target": "upperarm-r-p01",
+      "layer": "upperarm-r"
+    },
+    {
+      "step": 115,
+      "action": "draw-path",
+      "target": "upperarm-r-p02",
+      "layer": "upperarm-r"
+    },
+    {
+      "step": 116,
+      "action": "draw-path",
+      "target": "forearm-l-p01",
+      "layer": "forearm-l"
+    },
+    {
+      "step": 117,
+      "action": "draw-path",
+      "target": "forearm-l-p02",
+      "layer": "forearm-l"
+    },
+    {
+      "step": 118,
+      "action": "draw-path",
+      "target": "forearm-r-p01",
+      "layer": "forearm-r"
+    },
+    {
+      "step": 119,
+      "action": "draw-path",
+      "target": "forearm-r-p02",
+      "layer": "forearm-r"
+    },
+    {
+      "step": 120,
+      "action": "draw-path",
+      "target": "hand-l-p01",
+      "layer": "hand-l"
+    },
+    {
+      "step": 121,
+      "action": "draw-path",
+      "target": "hand-l-p02",
+      "layer": "hand-l"
+    },
+    {
+      "step": 122,
+      "action": "draw-path",
+      "target": "hand-l-p03",
+      "layer": "hand-l"
+    },
+    {
+      "step": 123,
+      "action": "draw-path",
+      "target": "hand-r-p01",
+      "layer": "hand-r"
+    },
+    {
+      "step": 124,
+      "action": "draw-path",
+      "target": "hand-r-p02",
+      "layer": "hand-r"
+    },
+    {
+      "step": 125,
+      "action": "draw-path",
+      "target": "hand-r-p03",
+      "layer": "hand-r"
+    },
+    {
+      "step": 126,
+      "action": "draw-path",
+      "target": "nails-l-p01",
+      "layer": "nails-l"
+    },
+    {
+      "step": 127,
+      "action": "draw-path",
+      "target": "nails-l-p02",
+      "layer": "nails-l"
+    },
+    {
+      "step": 128,
+      "action": "draw-path",
+      "target": "nails-l-p03",
+      "layer": "nails-l"
+    },
+    {
+      "step": 129,
+      "action": "draw-path",
+      "target": "nails-l-p04",
+      "layer": "nails-l"
+    },
+    {
+      "step": 130,
+      "action": "draw-path",
+      "target": "nails-r-p01",
+      "layer": "nails-r"
+    },
+    {
+      "step": 131,
+      "action": "draw-path",
+      "target": "nails-r-p02",
+      "layer": "nails-r"
+    },
+    {
+      "step": 132,
+      "action": "draw-path",
+      "target": "nails-r-p03",
+      "layer": "nails-r"
+    },
+    {
+      "step": 133,
+      "action": "draw-path",
+      "target": "nails-r-p04",
+      "layer": "nails-r"
+    },
+    {
+      "step": 134,
+      "action": "draw-path",
+      "target": "nails-r-p05",
+      "layer": "nails-r"
+    },
+    {
+      "step": 135,
+      "action": "draw-path",
+      "target": "neck-p01",
+      "layer": "neck"
+    },
+    {
+      "step": 136,
+      "action": "draw-path",
+      "target": "neck-p02",
+      "layer": "neck"
+    },
+    {
+      "step": 137,
+      "action": "draw-path",
+      "target": "neck-p03",
+      "layer": "neck"
+    },
+    {
+      "step": 138,
+      "action": "draw-path",
+      "target": "body-structure-p01",
+      "layer": "body-structure"
+    },
+    {
+      "step": 139,
+      "action": "draw-path",
+      "target": "body-structure-p02",
+      "layer": "body-structure"
+    },
+    {
+      "step": 140,
+      "action": "draw-path",
+      "target": "waist-bow-l-p01",
+      "layer": "waist-bow-l"
+    },
+    {
+      "step": 141,
+      "action": "draw-path",
+      "target": "waist-bow-l-p02",
+      "layer": "waist-bow-l"
+    },
+    {
+      "step": 142,
+      "action": "draw-path",
+      "target": "dress-main-p01",
+      "layer": "dress-main"
+    },
+    {
+      "step": 143,
+      "action": "draw-path",
+      "target": "dress-keyhole-p01",
+      "layer": "dress-keyhole"
+    },
+    {
+      "step": 144,
+      "action": "draw-path",
+      "target": "dress-left-ruffle-p01",
+      "layer": "dress-left-ruffle"
+    },
+    {
+      "step": 145,
+      "action": "draw-path",
+      "target": "dress-left-ruffle-p02",
+      "layer": "dress-left-ruffle"
+    },
+    {
+      "step": 146,
+      "action": "draw-path",
+      "target": "dress-left-ruffle-p03",
+      "layer": "dress-left-ruffle"
+    },
+    {
+      "step": 147,
+      "action": "draw-path",
+      "target": "dress-right-ruffle-p01",
+      "layer": "dress-right-ruffle"
+    },
+    {
+      "step": 148,
+      "action": "draw-path",
+      "target": "dress-right-ruffle-p02",
+      "layer": "dress-right-ruffle"
+    },
+    {
+      "step": 149,
+      "action": "draw-path",
+      "target": "dress-right-ruffle-p03",
+      "layer": "dress-right-ruffle"
+    },
+    {
+      "step": 150,
+      "action": "draw-path",
+      "target": "dress-center-fold-p01",
+      "layer": "dress-center-fold"
+    },
+    {
+      "step": 151,
+      "action": "draw-path",
+      "target": "dress-center-fold-p02",
+      "layer": "dress-center-fold"
+    },
+    {
+      "step": 152,
+      "action": "draw-path",
+      "target": "dress-structural-folds-p01",
+      "layer": "dress-structural-folds"
+    },
+    {
+      "step": 153,
+      "action": "draw-path",
+      "target": "dress-structural-folds-p02",
+      "layer": "dress-structural-folds"
+    },
+    {
+      "step": 154,
+      "action": "draw-path",
+      "target": "dress-structural-folds-p03",
+      "layer": "dress-structural-folds"
+    },
+    {
+      "step": 155,
+      "action": "draw-path",
+      "target": "dress-structural-folds-p04",
+      "layer": "dress-structural-folds"
+    },
+    {
+      "step": 156,
+      "action": "draw-path",
+      "target": "strap-l-p01",
+      "layer": "strap-l"
+    },
+    {
+      "step": 157,
+      "action": "draw-path",
+      "target": "strap-r-p01",
+      "layer": "strap-r"
+    },
+    {
+      "step": 158,
+      "action": "draw-path",
+      "target": "cup-l-p01",
+      "layer": "cup-l"
+    },
+    {
+      "step": 159,
+      "action": "draw-path",
+      "target": "cup-l-p02",
+      "layer": "cup-l"
+    },
+    {
+      "step": 160,
+      "action": "draw-path",
+      "target": "cup-r-p01",
+      "layer": "cup-r"
+    },
+    {
+      "step": 161,
+      "action": "draw-path",
+      "target": "cup-r-p02",
+      "layer": "cup-r"
+    },
+    {
+      "step": 162,
+      "action": "draw-path",
+      "target": "clasp-p01",
+      "layer": "clasp"
+    },
+    {
+      "step": 163,
+      "action": "draw-path",
+      "target": "waist-knot-p01",
+      "layer": "waist-knot"
+    },
+    {
+      "step": 164,
+      "action": "draw-path",
+      "target": "waist-knot-p02",
+      "layer": "waist-knot"
+    },
+    {
+      "step": 165,
+      "action": "draw-path",
+      "target": "choker-p01",
+      "layer": "choker"
+    },
+    {
+      "step": 166,
+      "action": "draw-path",
+      "target": "choker-p02",
+      "layer": "choker"
+    },
+    {
+      "step": 167,
+      "action": "draw-path",
+      "target": "hair-back-p01",
+      "layer": "hair-back"
+    },
+    {
+      "step": 168,
+      "action": "draw-path",
+      "target": "ear-l-p01",
+      "layer": "ear-l"
+    },
+    {
+      "step": 169,
+      "action": "draw-path",
+      "target": "ear-l-p02",
+      "layer": "ear-l"
+    },
+    {
+      "step": 170,
+      "action": "draw-path",
+      "target": "ear-l-p03",
+      "layer": "ear-l"
+    },
+    {
+      "step": 171,
+      "action": "draw-path",
+      "target": "ear-r-p01",
+      "layer": "ear-r"
+    },
+    {
+      "step": 172,
+      "action": "draw-path",
+      "target": "ear-r-p02",
+      "layer": "ear-r"
+    },
+    {
+      "step": 173,
+      "action": "draw-path",
+      "target": "ear-r-p03",
+      "layer": "ear-r"
+    },
+    {
+      "step": 174,
+      "action": "draw-path",
+      "target": "face-p01",
+      "layer": "face"
+    },
+    {
+      "step": 175,
+      "action": "draw-path",
+      "target": "face-p02",
+      "layer": "face"
+    },
+    {
+      "step": 176,
+      "action": "draw-path",
+      "target": "face-p03",
+      "layer": "face"
+    },
+    {
+      "step": 177,
+      "action": "draw-path",
+      "target": "brow-l-p01",
+      "layer": "brow-l"
+    },
+    {
+      "step": 178,
+      "action": "draw-path",
+      "target": "brow-r-p01",
+      "layer": "brow-r"
+    },
+    {
+      "step": 179,
+      "action": "draw-path",
+      "target": "eye-white-l-p01",
+      "layer": "eye-white-l"
+    },
+    {
+      "step": 180,
+      "action": "draw-path",
+      "target": "eye-white-l-p02",
+      "layer": "eye-white-l"
+    },
+    {
+      "step": 181,
+      "action": "draw-path",
+      "target": "eye-white-r-p01",
+      "layer": "eye-white-r"
+    },
+    {
+      "step": 182,
+      "action": "draw-path",
+      "target": "eye-white-r-p02",
+      "layer": "eye-white-r"
+    },
+    {
+      "step": 183,
+      "action": "draw-path",
+      "target": "iris-l-p01",
+      "layer": "iris-l"
+    },
+    {
+      "step": 184,
+      "action": "draw-path",
+      "target": "iris-l-p02",
+      "layer": "iris-l"
+    },
+    {
+      "step": 185,
+      "action": "draw-path",
+      "target": "iris-l-p03",
+      "layer": "iris-l"
+    },
+    {
+      "step": 186,
+      "action": "draw-path",
+      "target": "iris-l-p04",
+      "layer": "iris-l"
+    },
+    {
+      "step": 187,
+      "action": "draw-path",
+      "target": "iris-l-p05",
+      "layer": "iris-l"
+    },
+    {
+      "step": 188,
+      "action": "draw-path",
+      "target": "iris-l-p06",
+      "layer": "iris-l"
+    },
+    {
+      "step": 189,
+      "action": "draw-path",
+      "target": "iris-r-p01",
+      "layer": "iris-r"
+    },
+    {
+      "step": 190,
+      "action": "draw-path",
+      "target": "iris-r-p02",
+      "layer": "iris-r"
+    },
+    {
+      "step": 191,
+      "action": "draw-path",
+      "target": "iris-r-p03",
+      "layer": "iris-r"
+    },
+    {
+      "step": 192,
+      "action": "draw-path",
+      "target": "iris-r-p04",
+      "layer": "iris-r"
+    },
+    {
+      "step": 193,
+      "action": "draw-path",
+      "target": "iris-r-p05",
+      "layer": "iris-r"
+    },
+    {
+      "step": 194,
+      "action": "draw-path",
+      "target": "iris-r-p06",
+      "layer": "iris-r"
+    },
+    {
+      "step": 195,
+      "action": "draw-path",
+      "target": "pupil-l-p01",
+      "layer": "pupil-l"
+    },
+    {
+      "step": 196,
+      "action": "draw-path",
+      "target": "pupil-l-p02",
+      "layer": "pupil-l"
+    },
+    {
+      "step": 197,
+      "action": "draw-path",
+      "target": "pupil-r-p01",
+      "layer": "pupil-r"
+    },
+    {
+      "step": 198,
+      "action": "draw-path",
+      "target": "pupil-r-p02",
+      "layer": "pupil-r"
+    },
+    {
+      "step": 199,
+      "action": "draw-path",
+      "target": "highlight-l-p01",
+      "layer": "highlight-l"
+    },
+    {
+      "step": 200,
+      "action": "draw-path",
+      "target": "highlight-l-p02",
+      "layer": "highlight-l"
+    },
+    {
+      "step": 201,
+      "action": "draw-path",
+      "target": "highlight-l-p03",
+      "layer": "highlight-l"
+    },
+    {
+      "step": 202,
+      "action": "draw-path",
+      "target": "highlight-l-p04",
+      "layer": "highlight-l"
+    },
+    {
+      "step": 203,
+      "action": "draw-path",
+      "target": "highlight-r-p01",
+      "layer": "highlight-r"
+    },
+    {
+      "step": 204,
+      "action": "draw-path",
+      "target": "highlight-r-p02",
+      "layer": "highlight-r"
+    },
+    {
+      "step": 205,
+      "action": "draw-path",
+      "target": "highlight-r-p03",
+      "layer": "highlight-r"
+    },
+    {
+      "step": 206,
+      "action": "draw-path",
+      "target": "highlight-r-p04",
+      "layer": "highlight-r"
+    },
+    {
+      "step": 207,
+      "action": "draw-path",
+      "target": "eyelid-l-p01",
+      "layer": "eyelid-l"
+    },
+    {
+      "step": 208,
+      "action": "draw-path",
+      "target": "eyelid-l-p02",
+      "layer": "eyelid-l"
+    },
+    {
+      "step": 209,
+      "action": "draw-path",
+      "target": "eyelid-r-p01",
+      "layer": "eyelid-r"
+    },
+    {
+      "step": 210,
+      "action": "draw-path",
+      "target": "eyelid-r-p02",
+      "layer": "eyelid-r"
+    },
+    {
+      "step": 211,
+      "action": "draw-path",
+      "target": "lashes-l-p01",
+      "layer": "lashes-l"
+    },
+    {
+      "step": 212,
+      "action": "draw-path",
+      "target": "lashes-l-p02",
+      "layer": "lashes-l"
+    },
+    {
+      "step": 213,
+      "action": "draw-path",
+      "target": "lashes-l-p03",
+      "layer": "lashes-l"
+    },
+    {
+      "step": 214,
+      "action": "draw-path",
+      "target": "lashes-r-p01",
+      "layer": "lashes-r"
+    },
+    {
+      "step": 215,
+      "action": "draw-path",
+      "target": "lashes-r-p02",
+      "layer": "lashes-r"
+    },
+    {
+      "step": 216,
+      "action": "draw-path",
+      "target": "lashes-r-p03",
+      "layer": "lashes-r"
+    },
+    {
+      "step": 217,
+      "action": "draw-path",
+      "target": "lower-lids-p01",
+      "layer": "lower-lids"
+    },
+    {
+      "step": 218,
+      "action": "draw-path",
+      "target": "lower-lids-p02",
+      "layer": "lower-lids"
+    },
+    {
+      "step": 219,
+      "action": "draw-path",
+      "target": "lower-lids-p03",
+      "layer": "lower-lids"
+    },
+    {
+      "step": 220,
+      "action": "draw-path",
+      "target": "lower-lids-p04",
+      "layer": "lower-lids"
+    },
+    {
+      "step": 221,
+      "action": "draw-path",
+      "target": "nose-p01",
+      "layer": "nose"
+    },
+    {
+      "step": 222,
+      "action": "draw-path",
+      "target": "mouth-p01",
+      "layer": "mouth"
+    },
+    {
+      "step": 223,
+      "action": "draw-path",
+      "target": "mouth-p02",
+      "layer": "mouth"
+    },
+    {
+      "step": 224,
+      "action": "draw-path",
+      "target": "mouth-p03",
+      "layer": "mouth"
+    },
+    {
+      "step": 225,
+      "action": "draw-path",
+      "target": "mouth-p04",
+      "layer": "mouth"
+    },
+    {
+      "step": 226,
+      "action": "draw-path",
+      "target": "sidelock-l-p01",
+      "layer": "sidelock-l"
+    },
+    {
+      "step": 227,
+      "action": "draw-path",
+      "target": "sidelock-l-p02",
+      "layer": "sidelock-l"
+    },
+    {
+      "step": 228,
+      "action": "draw-path",
+      "target": "sidelock-r-p01",
+      "layer": "sidelock-r"
+    },
+    {
+      "step": 229,
+      "action": "draw-path",
+      "target": "fringe-outer-l-p01",
+      "layer": "fringe-outer-l"
+    },
+    {
+      "step": 230,
+      "action": "draw-path",
+      "target": "fringe-outer-l-p02",
+      "layer": "fringe-outer-l"
+    },
+    {
+      "step": 231,
+      "action": "draw-path",
+      "target": "fringe-outer-r-p01",
+      "layer": "fringe-outer-r"
+    },
+    {
+      "step": 232,
+      "action": "draw-path",
+      "target": "fringe-outer-r-p02",
+      "layer": "fringe-outer-r"
+    },
+    {
+      "step": 233,
+      "action": "draw-path",
+      "target": "fringe-outer-r-p03",
+      "layer": "fringe-outer-r"
+    },
+    {
+      "step": 234,
+      "action": "draw-path",
+      "target": "fringe-left-p01",
+      "layer": "fringe-left"
+    },
+    {
+      "step": 235,
+      "action": "draw-path",
+      "target": "fringe-left-p02",
+      "layer": "fringe-left"
+    },
+    {
+      "step": 236,
+      "action": "draw-path",
+      "target": "fringe-center-left-p01",
+      "layer": "fringe-center-left"
+    },
+    {
+      "step": 237,
+      "action": "draw-path",
+      "target": "fringe-center-p01",
+      "layer": "fringe-center"
+    },
+    {
+      "step": 238,
+      "action": "draw-path",
+      "target": "fringe-center-p02",
+      "layer": "fringe-center"
+    },
+    {
+      "step": 239,
+      "action": "draw-path",
+      "target": "fringe-inner-r-p01",
+      "layer": "fringe-inner-r"
+    },
+    {
+      "step": 240,
+      "action": "draw-path",
+      "target": "fringe-long-r-p01",
+      "layer": "fringe-long-r"
+    },
+    {
+      "step": 241,
+      "action": "draw-path",
+      "target": "fringe-long-r-p02",
+      "layer": "fringe-long-r"
+    },
+    {
+      "step": 242,
+      "action": "draw-path",
+      "target": "fringe-sweep-p01",
+      "layer": "fringe-sweep"
+    },
+    {
+      "step": 243,
+      "action": "draw-path",
+      "target": "fringe-sweep-p02",
+      "layer": "fringe-sweep"
+    },
+    {
+      "step": 244,
+      "action": "draw-path",
+      "target": "crown-wisps-p01",
+      "layer": "crown-wisps"
+    },
+    {
+      "step": 245,
+      "action": "draw-path",
+      "target": "crown-wisps-p02",
+      "layer": "crown-wisps"
+    },
+    {
+      "step": 246,
+      "action": "draw-path",
+      "target": "crown-wisps-p03",
+      "layer": "crown-wisps"
+    },
+    {
+      "step": 247,
+      "action": "draw-path",
+      "target": "feather-l-slim-p01",
+      "layer": "feather-l-slim"
+    },
+    {
+      "step": 248,
+      "action": "draw-path",
+      "target": "feather-l-outer-p01",
+      "layer": "feather-l-outer"
+    },
+    {
+      "step": 249,
+      "action": "draw-path",
+      "target": "feather-l-outer-p02",
+      "layer": "feather-l-outer"
+    },
+    {
+      "step": 250,
+      "action": "draw-path",
+      "target": "feather-l-tall-p01",
+      "layer": "feather-l-tall"
+    },
+    {
+      "step": 251,
+      "action": "draw-path",
+      "target": "feather-l-tall-p02",
+      "layer": "feather-l-tall"
+    },
+    {
+      "step": 252,
+      "action": "draw-path",
+      "target": "feather-l-inner-p01",
+      "layer": "feather-l-inner"
+    },
+    {
+      "step": 253,
+      "action": "draw-path",
+      "target": "feather-r-slim-p01",
+      "layer": "feather-r-slim"
+    },
+    {
+      "step": 254,
+      "action": "draw-path",
+      "target": "feather-r-inner-p01",
+      "layer": "feather-r-inner"
+    },
+    {
+      "step": 255,
+      "action": "draw-path",
+      "target": "feather-r-tall-p01",
+      "layer": "feather-r-tall"
+    },
+    {
+      "step": 256,
+      "action": "draw-path",
+      "target": "feather-r-tall-p02",
+      "layer": "feather-r-tall"
+    },
+    {
+      "step": 257,
+      "action": "draw-path",
+      "target": "feather-r-outer-p01",
+      "layer": "feather-r-outer"
+    },
+    {
+      "step": 258,
+      "action": "draw-path",
+      "target": "feather-r-outer-p02",
+      "layer": "feather-r-outer"
+    },
+    {
+      "step": 259,
+      "action": "draw-path",
+      "target": "tie-l-p01",
+      "layer": "tie-l"
+    },
+    {
+      "step": 260,
+      "action": "draw-path",
+      "target": "tie-l-p02",
+      "layer": "tie-l"
+    },
+    {
+      "step": 261,
+      "action": "draw-path",
+      "target": "tie-r-p01",
+      "layer": "tie-r"
+    },
+    {
+      "step": 262,
+      "action": "draw-path",
+      "target": "tie-r-p02",
+      "layer": "tie-r"
+    },
+    {
+      "step": 263,
+      "action": "fill-path",
+      "target": "background-p01",
+      "layer": "background",
+      "fill": "#fefefe"
+    },
+    {
+      "step": 264,
+      "action": "fill-path",
+      "target": "train-l-outer-p01",
+      "layer": "train-l-outer",
+      "fill": "#20242d"
+    },
+    {
+      "step": 265,
+      "action": "fill-path",
+      "target": "train-l-outer-p02",
+      "layer": "train-l-outer",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 266,
+      "action": "fill-path",
+      "target": "train-l-outer-p03",
+      "layer": "train-l-outer",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 267,
+      "action": "retain-outline",
+      "target": "train-l-outer-p04",
+      "layer": "train-l-outer",
+      "fill": "none"
+    },
+    {
+      "step": 268,
+      "action": "fill-path",
+      "target": "train-l-main-p01",
+      "layer": "train-l-main",
+      "fill": "#20242d"
+    },
+    {
+      "step": 269,
+      "action": "fill-path",
+      "target": "train-l-main-p02",
+      "layer": "train-l-main",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 270,
+      "action": "fill-path",
+      "target": "train-l-main-p03",
+      "layer": "train-l-main",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 271,
+      "action": "retain-outline",
+      "target": "train-l-main-p04",
+      "layer": "train-l-main",
+      "fill": "none"
+    },
+    {
+      "step": 272,
+      "action": "fill-path",
+      "target": "train-r-outer-p01",
+      "layer": "train-r-outer",
+      "fill": "#20242d"
+    },
+    {
+      "step": 273,
+      "action": "fill-path",
+      "target": "train-r-outer-p02",
+      "layer": "train-r-outer",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 274,
+      "action": "retain-outline",
+      "target": "train-r-outer-p03",
+      "layer": "train-r-outer",
+      "fill": "none"
+    },
+    {
+      "step": 275,
+      "action": "fill-path",
+      "target": "train-r-main-p01",
+      "layer": "train-r-main",
+      "fill": "#20242d"
+    },
+    {
+      "step": 276,
+      "action": "fill-path",
+      "target": "train-r-main-p02",
+      "layer": "train-r-main",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 277,
+      "action": "fill-path",
+      "target": "train-r-main-p03",
+      "layer": "train-r-main",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 278,
+      "action": "retain-outline",
+      "target": "train-r-main-p04",
+      "layer": "train-r-main",
+      "fill": "none"
+    },
+    {
+      "step": 279,
+      "action": "fill-path",
+      "target": "hair-l-top-leaf-p01",
+      "layer": "hair-l-top-leaf",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 280,
+      "action": "fill-path",
+      "target": "hair-l-top-loop-p01",
+      "layer": "hair-l-top-loop",
+      "fill": "#45afed"
+    },
+    {
+      "step": 281,
+      "action": "fill-path",
+      "target": "hair-l-high-loop-p01",
+      "layer": "hair-l-high-loop",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 282,
+      "action": "fill-path",
+      "target": "hair-l-inner-loop-p01",
+      "layer": "hair-l-inner-loop",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 283,
+      "action": "fill-path",
+      "target": "hair-l-upper-fine-loop-p01",
+      "layer": "hair-l-upper-fine-loop",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 284,
+      "action": "fill-path",
+      "target": "hair-l-inner-low-loop-p01",
+      "layer": "hair-l-inner-low-loop",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 285,
+      "action": "fill-path",
+      "target": "hair-l-small-inner-tip-p01",
+      "layer": "hair-l-small-inner-tip",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 286,
+      "action": "fill-path",
+      "target": "hair-l-air-outer-p01",
+      "layer": "hair-l-air-outer",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 287,
+      "action": "fill-path",
+      "target": "hair-l-back-upper-wave-p01",
+      "layer": "hair-l-back-upper-wave",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 288,
+      "action": "fill-path",
+      "target": "hair-l-back-low-ring-p01",
+      "layer": "hair-l-back-low-ring",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 289,
+      "action": "fill-path",
+      "target": "hair-l-outer-cascade-p01",
+      "layer": "hair-l-outer-cascade",
+      "fill": "#45afed"
+    },
+    {
+      "step": 290,
+      "action": "fill-path",
+      "target": "hair-l-middle-back-loop-p01",
+      "layer": "hair-l-middle-back-loop",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 291,
+      "action": "fill-path",
+      "target": "hair-l-long-under-tip-p01",
+      "layer": "hair-l-long-under-tip",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 292,
+      "action": "fill-path",
+      "target": "hair-l-lower-back-ring-p01",
+      "layer": "hair-l-lower-back-ring",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 293,
+      "action": "fill-path",
+      "target": "hair-l-small-bottom-loop-p01",
+      "layer": "hair-l-small-bottom-loop",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 294,
+      "action": "fill-path",
+      "target": "hair-l-final-wisp-p01",
+      "layer": "hair-l-final-wisp",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 295,
+      "action": "fill-path",
+      "target": "hair-l-upper-wide-loop-p01",
+      "layer": "hair-l-upper-wide-loop",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 296,
+      "action": "fill-path",
+      "target": "hair-l-mid-narrow-loop-p01",
+      "layer": "hair-l-mid-narrow-loop",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 297,
+      "action": "fill-path",
+      "target": "hair-l-mid-inner-loop-p01",
+      "layer": "hair-l-mid-inner-loop",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 298,
+      "action": "fill-path",
+      "target": "hair-l-main-p01",
+      "layer": "hair-l-main",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 299,
+      "action": "retain-outline",
+      "target": "hair-l-main-p02",
+      "layer": "hair-l-main",
+      "fill": "none"
+    },
+    {
+      "step": 300,
+      "action": "retain-outline",
+      "target": "hair-l-main-p03",
+      "layer": "hair-l-main",
+      "fill": "none"
+    },
+    {
+      "step": 301,
+      "action": "retain-outline",
+      "target": "hair-l-main-p04",
+      "layer": "hair-l-main",
+      "fill": "none"
+    },
+    {
+      "step": 302,
+      "action": "retain-outline",
+      "target": "hair-l-main-p05",
+      "layer": "hair-l-main",
+      "fill": "none"
+    },
+    {
+      "step": 303,
+      "action": "fill-path",
+      "target": "hair-l-high-sweep-p01",
+      "layer": "hair-l-high-sweep",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 304,
+      "action": "retain-outline",
+      "target": "hair-l-high-sweep-p02",
+      "layer": "hair-l-high-sweep",
+      "fill": "none"
+    },
+    {
+      "step": 305,
+      "action": "fill-path",
+      "target": "hair-l-central-s-p01",
+      "layer": "hair-l-central-s",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 306,
+      "action": "retain-outline",
+      "target": "hair-l-central-s-p02",
+      "layer": "hair-l-central-s",
+      "fill": "none"
+    },
+    {
+      "step": 307,
+      "action": "fill-path",
+      "target": "hair-l-cross-mid-p01",
+      "layer": "hair-l-cross-mid",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 308,
+      "action": "fill-path",
+      "target": "hair-l-front-coil-p01",
+      "layer": "hair-l-front-coil",
+      "fill": "#45afed"
+    },
+    {
+      "step": 309,
+      "action": "retain-outline",
+      "target": "hair-l-front-coil-p02",
+      "layer": "hair-l-front-coil",
+      "fill": "none"
+    },
+    {
+      "step": 310,
+      "action": "fill-path",
+      "target": "hair-l-bottom-return-p01",
+      "layer": "hair-l-bottom-return",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 311,
+      "action": "fill-path",
+      "target": "hair-l-bottom-tip-p01",
+      "layer": "hair-l-bottom-tip",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 312,
+      "action": "fill-path",
+      "target": "hair-r-high-loop-p01",
+      "layer": "hair-r-high-loop",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 313,
+      "action": "fill-path",
+      "target": "hair-r-root-back-loop-p01",
+      "layer": "hair-r-root-back-loop",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 314,
+      "action": "fill-path",
+      "target": "hair-r-air-upper-p01",
+      "layer": "hair-r-air-upper",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 315,
+      "action": "fill-path",
+      "target": "hair-r-inner-back-p01",
+      "layer": "hair-r-inner-back",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 316,
+      "action": "fill-path",
+      "target": "hair-r-inner-low-loop-p01",
+      "layer": "hair-r-inner-low-loop",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 317,
+      "action": "fill-path",
+      "target": "hair-r-far-upper-loop-p01",
+      "layer": "hair-r-far-upper-loop",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 318,
+      "action": "fill-path",
+      "target": "hair-r-mid-back-loop-p01",
+      "layer": "hair-r-mid-back-loop",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 319,
+      "action": "fill-path",
+      "target": "hair-r-back-small-loop-p01",
+      "layer": "hair-r-back-small-loop",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 320,
+      "action": "fill-path",
+      "target": "hair-r-mid-fine-return-p01",
+      "layer": "hair-r-mid-fine-return",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 321,
+      "action": "fill-path",
+      "target": "hair-r-low-inner-loop-p01",
+      "layer": "hair-r-low-inner-loop",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 322,
+      "action": "fill-path",
+      "target": "hair-r-bottom-back-loop-p01",
+      "layer": "hair-r-bottom-back-loop",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 323,
+      "action": "fill-path",
+      "target": "hair-r-low-wisp-p01",
+      "layer": "hair-r-low-wisp",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 324,
+      "action": "fill-path",
+      "target": "hair-r-last-tip-p01",
+      "layer": "hair-r-last-tip",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 325,
+      "action": "fill-path",
+      "target": "hair-r-main-p01",
+      "layer": "hair-r-main",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 326,
+      "action": "retain-outline",
+      "target": "hair-r-main-p02",
+      "layer": "hair-r-main",
+      "fill": "none"
+    },
+    {
+      "step": 327,
+      "action": "retain-outline",
+      "target": "hair-r-main-p03",
+      "layer": "hair-r-main",
+      "fill": "none"
+    },
+    {
+      "step": 328,
+      "action": "retain-outline",
+      "target": "hair-r-main-p04",
+      "layer": "hair-r-main",
+      "fill": "none"
+    },
+    {
+      "step": 329,
+      "action": "retain-outline",
+      "target": "hair-r-main-p05",
+      "layer": "hair-r-main",
+      "fill": "none"
+    },
+    {
+      "step": 330,
+      "action": "fill-path",
+      "target": "hair-r-inner-main-lock-p01",
+      "layer": "hair-r-inner-main-lock",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 331,
+      "action": "retain-outline",
+      "target": "hair-r-inner-main-lock-p02",
+      "layer": "hair-r-inner-main-lock",
+      "fill": "none"
+    },
+    {
+      "step": 332,
+      "action": "fill-path",
+      "target": "hair-r-pointed-lock-p01",
+      "layer": "hair-r-pointed-lock",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 333,
+      "action": "retain-outline",
+      "target": "hair-r-pointed-lock-p02",
+      "layer": "hair-r-pointed-lock",
+      "fill": "none"
+    },
+    {
+      "step": 334,
+      "action": "fill-path",
+      "target": "hair-r-cross-fine-p01",
+      "layer": "hair-r-cross-fine",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 335,
+      "action": "fill-path",
+      "target": "hair-r-large-s-p01",
+      "layer": "hair-r-large-s",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 336,
+      "action": "retain-outline",
+      "target": "hair-r-large-s-p02",
+      "layer": "hair-r-large-s",
+      "fill": "none"
+    },
+    {
+      "step": 337,
+      "action": "fill-path",
+      "target": "hair-r-middle-sweep-p01",
+      "layer": "hair-r-middle-sweep",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 338,
+      "action": "retain-outline",
+      "target": "hair-r-middle-sweep-p02",
+      "layer": "hair-r-middle-sweep",
+      "fill": "none"
+    },
+    {
+      "step": 339,
+      "action": "retain-outline",
+      "target": "hair-r-middle-sweep-p03",
+      "layer": "hair-r-middle-sweep",
+      "fill": "none"
+    },
+    {
+      "step": 340,
+      "action": "fill-path",
+      "target": "hair-r-lower-cascade-p01",
+      "layer": "hair-r-lower-cascade",
+      "fill": "#45afed"
+    },
+    {
+      "step": 341,
+      "action": "retain-outline",
+      "target": "hair-r-lower-cascade-p02",
+      "layer": "hair-r-lower-cascade",
+      "fill": "none"
+    },
+    {
+      "step": 342,
+      "action": "fill-path",
+      "target": "hair-r-inner-bottom-ring-p01",
+      "layer": "hair-r-inner-bottom-ring",
+      "fill": "#3fa5e4"
+    },
+    {
+      "step": 343,
+      "action": "fill-path",
+      "target": "hair-r-front-bottom-coil-p01",
+      "layer": "hair-r-front-bottom-coil",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 344,
+      "action": "retain-outline",
+      "target": "hair-r-front-bottom-coil-p02",
+      "layer": "hair-r-front-bottom-coil",
+      "fill": "none"
+    },
+    {
+      "step": 345,
+      "action": "fill-path",
+      "target": "leg-l-p01",
+      "layer": "leg-l",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 346,
+      "action": "fill-path",
+      "target": "leg-l-p02",
+      "layer": "leg-l",
+      "fill": "#fde8e4"
+    },
+    {
+      "step": 347,
+      "action": "retain-outline",
+      "target": "leg-l-p03",
+      "layer": "leg-l",
+      "fill": "none"
+    },
+    {
+      "step": 348,
+      "action": "fill-path",
+      "target": "leg-r-p01",
+      "layer": "leg-r",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 349,
+      "action": "fill-path",
+      "target": "leg-r-p02",
+      "layer": "leg-r",
+      "fill": "#fde8e4"
+    },
+    {
+      "step": 350,
+      "action": "retain-outline",
+      "target": "leg-r-p03",
+      "layer": "leg-r",
+      "fill": "none"
+    },
+    {
+      "step": 351,
+      "action": "retain-outline",
+      "target": "foot-lines-l-p01",
+      "layer": "foot-lines-l",
+      "fill": "none"
+    },
+    {
+      "step": 352,
+      "action": "retain-outline",
+      "target": "foot-lines-r-p01",
+      "layer": "foot-lines-r",
+      "fill": "none"
+    },
+    {
+      "step": 353,
+      "action": "fill-path",
+      "target": "toenails-l-p01",
+      "layer": "toenails-l",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 354,
+      "action": "retain-outline",
+      "target": "toenails-l-p02",
+      "layer": "toenails-l",
+      "fill": "none"
+    },
+    {
+      "step": 355,
+      "action": "fill-path",
+      "target": "toenails-l-p03",
+      "layer": "toenails-l",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 356,
+      "action": "retain-outline",
+      "target": "toenails-l-p04",
+      "layer": "toenails-l",
+      "fill": "none"
+    },
+    {
+      "step": 357,
+      "action": "fill-path",
+      "target": "toenails-l-p05",
+      "layer": "toenails-l",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 358,
+      "action": "retain-outline",
+      "target": "toenails-l-p06",
+      "layer": "toenails-l",
+      "fill": "none"
+    },
+    {
+      "step": 359,
+      "action": "fill-path",
+      "target": "toenails-l-p07",
+      "layer": "toenails-l",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 360,
+      "action": "retain-outline",
+      "target": "toenails-l-p08",
+      "layer": "toenails-l",
+      "fill": "none"
+    },
+    {
+      "step": 361,
+      "action": "fill-path",
+      "target": "toenails-l-p09",
+      "layer": "toenails-l",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 362,
+      "action": "retain-outline",
+      "target": "toenails-l-p10",
+      "layer": "toenails-l",
+      "fill": "none"
+    },
+    {
+      "step": 363,
+      "action": "fill-path",
+      "target": "toenails-r-p01",
+      "layer": "toenails-r",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 364,
+      "action": "retain-outline",
+      "target": "toenails-r-p02",
+      "layer": "toenails-r",
+      "fill": "none"
+    },
+    {
+      "step": 365,
+      "action": "fill-path",
+      "target": "toenails-r-p03",
+      "layer": "toenails-r",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 366,
+      "action": "retain-outline",
+      "target": "toenails-r-p04",
+      "layer": "toenails-r",
+      "fill": "none"
+    },
+    {
+      "step": 367,
+      "action": "fill-path",
+      "target": "toenails-r-p05",
+      "layer": "toenails-r",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 368,
+      "action": "retain-outline",
+      "target": "toenails-r-p06",
+      "layer": "toenails-r",
+      "fill": "none"
+    },
+    {
+      "step": 369,
+      "action": "fill-path",
+      "target": "toenails-r-p07",
+      "layer": "toenails-r",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 370,
+      "action": "retain-outline",
+      "target": "toenails-r-p08",
+      "layer": "toenails-r",
+      "fill": "none"
+    },
+    {
+      "step": 371,
+      "action": "fill-path",
+      "target": "toenails-r-p09",
+      "layer": "toenails-r",
+      "fill": "#318bd3"
+    },
+    {
+      "step": 372,
+      "action": "retain-outline",
+      "target": "toenails-r-p10",
+      "layer": "toenails-r",
+      "fill": "none"
+    },
+    {
+      "step": 373,
+      "action": "fill-path",
+      "target": "torso-p01",
+      "layer": "torso",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 374,
+      "action": "fill-path",
+      "target": "upperarm-l-p01",
+      "layer": "upperarm-l",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 375,
+      "action": "retain-outline",
+      "target": "upperarm-l-p02",
+      "layer": "upperarm-l",
+      "fill": "none"
+    },
+    {
+      "step": 376,
+      "action": "fill-path",
+      "target": "upperarm-r-p01",
+      "layer": "upperarm-r",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 377,
+      "action": "retain-outline",
+      "target": "upperarm-r-p02",
+      "layer": "upperarm-r",
+      "fill": "none"
+    },
+    {
+      "step": 378,
+      "action": "fill-path",
+      "target": "forearm-l-p01",
+      "layer": "forearm-l",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 379,
+      "action": "retain-outline",
+      "target": "forearm-l-p02",
+      "layer": "forearm-l",
+      "fill": "none"
+    },
+    {
+      "step": 380,
+      "action": "fill-path",
+      "target": "forearm-r-p01",
+      "layer": "forearm-r",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 381,
+      "action": "retain-outline",
+      "target": "forearm-r-p02",
+      "layer": "forearm-r",
+      "fill": "none"
+    },
+    {
+      "step": 382,
+      "action": "fill-path",
+      "target": "hand-l-p01",
+      "layer": "hand-l",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 383,
+      "action": "retain-outline",
+      "target": "hand-l-p02",
+      "layer": "hand-l",
+      "fill": "none"
+    },
+    {
+      "step": 384,
+      "action": "retain-outline",
+      "target": "hand-l-p03",
+      "layer": "hand-l",
+      "fill": "none"
+    },
+    {
+      "step": 385,
+      "action": "fill-path",
+      "target": "hand-r-p01",
+      "layer": "hand-r",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 386,
+      "action": "retain-outline",
+      "target": "hand-r-p02",
+      "layer": "hand-r",
+      "fill": "none"
+    },
+    {
+      "step": 387,
+      "action": "retain-outline",
+      "target": "hand-r-p03",
+      "layer": "hand-r",
+      "fill": "none"
+    },
+    {
+      "step": 388,
+      "action": "fill-path",
+      "target": "nails-l-p01",
+      "layer": "nails-l",
+      "fill": "#258ad0"
+    },
+    {
+      "step": 389,
+      "action": "fill-path",
+      "target": "nails-l-p02",
+      "layer": "nails-l",
+      "fill": "#258ad0"
+    },
+    {
+      "step": 390,
+      "action": "fill-path",
+      "target": "nails-l-p03",
+      "layer": "nails-l",
+      "fill": "#258ad0"
+    },
+    {
+      "step": 391,
+      "action": "fill-path",
+      "target": "nails-l-p04",
+      "layer": "nails-l",
+      "fill": "#258ad0"
+    },
+    {
+      "step": 392,
+      "action": "fill-path",
+      "target": "nails-r-p01",
+      "layer": "nails-r",
+      "fill": "#258ad0"
+    },
+    {
+      "step": 393,
+      "action": "fill-path",
+      "target": "nails-r-p02",
+      "layer": "nails-r",
+      "fill": "#258ad0"
+    },
+    {
+      "step": 394,
+      "action": "fill-path",
+      "target": "nails-r-p03",
+      "layer": "nails-r",
+      "fill": "#258ad0"
+    },
+    {
+      "step": 395,
+      "action": "fill-path",
+      "target": "nails-r-p04",
+      "layer": "nails-r",
+      "fill": "#258ad0"
+    },
+    {
+      "step": 396,
+      "action": "fill-path",
+      "target": "nails-r-p05",
+      "layer": "nails-r",
+      "fill": "#258ad0"
+    },
+    {
+      "step": 397,
+      "action": "fill-path",
+      "target": "neck-p01",
+      "layer": "neck",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 398,
+      "action": "retain-outline",
+      "target": "neck-p02",
+      "layer": "neck",
+      "fill": "none"
+    },
+    {
+      "step": 399,
+      "action": "retain-outline",
+      "target": "neck-p03",
+      "layer": "neck",
+      "fill": "none"
+    },
+    {
+      "step": 400,
+      "action": "retain-outline",
+      "target": "body-structure-p01",
+      "layer": "body-structure",
+      "fill": "none"
+    },
+    {
+      "step": 401,
+      "action": "retain-outline",
+      "target": "body-structure-p02",
+      "layer": "body-structure",
+      "fill": "none"
+    },
+    {
+      "step": 402,
+      "action": "fill-path",
+      "target": "waist-bow-l-p01",
+      "layer": "waist-bow-l",
+      "fill": "#20242d"
+    },
+    {
+      "step": 403,
+      "action": "fill-path",
+      "target": "waist-bow-l-p02",
+      "layer": "waist-bow-l",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 404,
+      "action": "fill-path",
+      "target": "dress-main-p01",
+      "layer": "dress-main",
+      "fill": "#20242d"
+    },
+    {
+      "step": 405,
+      "action": "fill-path",
+      "target": "dress-keyhole-p01",
+      "layer": "dress-keyhole",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 406,
+      "action": "fill-path",
+      "target": "dress-left-ruffle-p01",
+      "layer": "dress-left-ruffle",
+      "fill": "#20242d"
+    },
+    {
+      "step": 407,
+      "action": "fill-path",
+      "target": "dress-left-ruffle-p02",
+      "layer": "dress-left-ruffle",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 408,
+      "action": "retain-outline",
+      "target": "dress-left-ruffle-p03",
+      "layer": "dress-left-ruffle",
+      "fill": "none"
+    },
+    {
+      "step": 409,
+      "action": "fill-path",
+      "target": "dress-right-ruffle-p01",
+      "layer": "dress-right-ruffle",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 410,
+      "action": "fill-path",
+      "target": "dress-right-ruffle-p02",
+      "layer": "dress-right-ruffle",
+      "fill": "#20242d"
+    },
+    {
+      "step": 411,
+      "action": "fill-path",
+      "target": "dress-right-ruffle-p03",
+      "layer": "dress-right-ruffle",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 412,
+      "action": "fill-path",
+      "target": "dress-center-fold-p01",
+      "layer": "dress-center-fold",
+      "fill": "#20242d"
+    },
+    {
+      "step": 413,
+      "action": "fill-path",
+      "target": "dress-center-fold-p02",
+      "layer": "dress-center-fold",
+      "fill": "#358fe1"
+    },
+    {
+      "step": 414,
+      "action": "retain-outline",
+      "target": "dress-structural-folds-p01",
+      "layer": "dress-structural-folds",
+      "fill": "none"
+    },
+    {
+      "step": 415,
+      "action": "retain-outline",
+      "target": "dress-structural-folds-p02",
+      "layer": "dress-structural-folds",
+      "fill": "none"
+    },
+    {
+      "step": 416,
+      "action": "retain-outline",
+      "target": "dress-structural-folds-p03",
+      "layer": "dress-structural-folds",
+      "fill": "none"
+    },
+    {
+      "step": 417,
+      "action": "retain-outline",
+      "target": "dress-structural-folds-p04",
+      "layer": "dress-structural-folds",
+      "fill": "none"
+    },
+    {
+      "step": 418,
+      "action": "fill-path",
+      "target": "strap-l-p01",
+      "layer": "strap-l",
+      "fill": "#151c24"
+    },
+    {
+      "step": 419,
+      "action": "fill-path",
+      "target": "strap-r-p01",
+      "layer": "strap-r",
+      "fill": "#151c24"
+    },
+    {
+      "step": 420,
+      "action": "fill-path",
+      "target": "cup-l-p01",
+      "layer": "cup-l",
+      "fill": "#20242d"
+    },
+    {
+      "step": 421,
+      "action": "retain-outline",
+      "target": "cup-l-p02",
+      "layer": "cup-l",
+      "fill": "none"
+    },
+    {
+      "step": 422,
+      "action": "fill-path",
+      "target": "cup-r-p01",
+      "layer": "cup-r",
+      "fill": "#20242d"
+    },
+    {
+      "step": 423,
+      "action": "retain-outline",
+      "target": "cup-r-p02",
+      "layer": "cup-r",
+      "fill": "none"
+    },
+    {
+      "step": 424,
+      "action": "fill-path",
+      "target": "clasp-p01",
+      "layer": "clasp",
+      "fill": "#171c24"
+    },
+    {
+      "step": 425,
+      "action": "fill-path",
+      "target": "waist-knot-p01",
+      "layer": "waist-knot",
+      "fill": "#1a2029"
+    },
+    {
+      "step": 426,
+      "action": "retain-outline",
+      "target": "waist-knot-p02",
+      "layer": "waist-knot",
+      "fill": "none"
+    },
+    {
+      "step": 427,
+      "action": "fill-path",
+      "target": "choker-p01",
+      "layer": "choker",
+      "fill": "#171e25"
+    },
+    {
+      "step": 428,
+      "action": "retain-outline",
+      "target": "choker-p02",
+      "layer": "choker",
+      "fill": "none"
+    },
+    {
+      "step": 429,
+      "action": "fill-path",
+      "target": "hair-back-p01",
+      "layer": "hair-back",
+      "fill": "#45afed"
+    },
+    {
+      "step": 430,
+      "action": "fill-path",
+      "target": "ear-l-p01",
+      "layer": "ear-l",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 431,
+      "action": "retain-outline",
+      "target": "ear-l-p02",
+      "layer": "ear-l",
+      "fill": "none"
+    },
+    {
+      "step": 432,
+      "action": "retain-outline",
+      "target": "ear-l-p03",
+      "layer": "ear-l",
+      "fill": "none"
+    },
+    {
+      "step": 433,
+      "action": "fill-path",
+      "target": "ear-r-p01",
+      "layer": "ear-r",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 434,
+      "action": "retain-outline",
+      "target": "ear-r-p02",
+      "layer": "ear-r",
+      "fill": "none"
+    },
+    {
+      "step": 435,
+      "action": "retain-outline",
+      "target": "ear-r-p03",
+      "layer": "ear-r",
+      "fill": "none"
+    },
+    {
+      "step": 436,
+      "action": "fill-path",
+      "target": "face-p01",
+      "layer": "face",
+      "fill": "#fcf1ed"
+    },
+    {
+      "step": 437,
+      "action": "fill-path",
+      "target": "face-p02",
+      "layer": "face",
+      "fill": "#f5c8cf"
+    },
+    {
+      "step": 438,
+      "action": "fill-path",
+      "target": "face-p03",
+      "layer": "face",
+      "fill": "#f5c8cf"
+    },
+    {
+      "step": 439,
+      "action": "fill-path",
+      "target": "brow-l-p01",
+      "layer": "brow-l",
+      "fill": "#5a879d"
+    },
+    {
+      "step": 440,
+      "action": "fill-path",
+      "target": "brow-r-p01",
+      "layer": "brow-r",
+      "fill": "#5a879d"
+    },
+    {
+      "step": 441,
+      "action": "fill-path",
+      "target": "eye-white-l-p01",
+      "layer": "eye-white-l",
+      "fill": "#fffdf9"
+    },
+    {
+      "step": 442,
+      "action": "fill-path",
+      "target": "eye-white-l-p02",
+      "layer": "eye-white-l",
+      "fill": "#d7d7e5"
+    },
+    {
+      "step": 443,
+      "action": "fill-path",
+      "target": "eye-white-r-p01",
+      "layer": "eye-white-r",
+      "fill": "#fffdf9"
+    },
+    {
+      "step": 444,
+      "action": "fill-path",
+      "target": "eye-white-r-p02",
+      "layer": "eye-white-r",
+      "fill": "#d6d6e4"
+    },
+    {
+      "step": 445,
+      "action": "fill-path",
+      "target": "iris-l-p01",
+      "layer": "iris-l",
+      "fill": "#55b9cd"
+    },
+    {
+      "step": 446,
+      "action": "fill-path",
+      "target": "iris-l-p02",
+      "layer": "iris-l",
+      "fill": "#304580"
+    },
+    {
+      "step": 447,
+      "action": "fill-path",
+      "target": "iris-l-p03",
+      "layer": "iris-l",
+      "fill": "#455e9d"
+    },
+    {
+      "step": 448,
+      "action": "fill-path",
+      "target": "iris-l-p04",
+      "layer": "iris-l",
+      "fill": "#3d64a0"
+    },
+    {
+      "step": 449,
+      "action": "fill-path",
+      "target": "iris-l-p05",
+      "layer": "iris-l",
+      "fill": "#91dcd1"
+    },
+    {
+      "step": 450,
+      "action": "fill-path",
+      "target": "iris-l-p06",
+      "layer": "iris-l",
+      "fill": "#d1ebc8"
+    },
+    {
+      "step": 451,
+      "action": "fill-path",
+      "target": "iris-r-p01",
+      "layer": "iris-r",
+      "fill": "#57bccb"
+    },
+    {
+      "step": 452,
+      "action": "fill-path",
+      "target": "iris-r-p02",
+      "layer": "iris-r",
+      "fill": "#30447e"
+    },
+    {
+      "step": 453,
+      "action": "fill-path",
+      "target": "iris-r-p03",
+      "layer": "iris-r",
+      "fill": "#445c9b"
+    },
+    {
+      "step": 454,
+      "action": "fill-path",
+      "target": "iris-r-p04",
+      "layer": "iris-r",
+      "fill": "#3e65a0"
+    },
+    {
+      "step": 455,
+      "action": "fill-path",
+      "target": "iris-r-p05",
+      "layer": "iris-r",
+      "fill": "#94ddd0"
+    },
+    {
+      "step": 456,
+      "action": "fill-path",
+      "target": "iris-r-p06",
+      "layer": "iris-r",
+      "fill": "#d1ebc7"
+    },
+    {
+      "step": 457,
+      "action": "fill-path",
+      "target": "pupil-l-p01",
+      "layer": "pupil-l",
+      "fill": "#1d3155"
+    },
+    {
+      "step": 458,
+      "action": "fill-path",
+      "target": "pupil-l-p02",
+      "layer": "pupil-l",
+      "fill": "#244a67"
+    },
+    {
+      "step": 459,
+      "action": "fill-path",
+      "target": "pupil-r-p01",
+      "layer": "pupil-r",
+      "fill": "#1c3154"
+    },
+    {
+      "step": 460,
+      "action": "fill-path",
+      "target": "pupil-r-p02",
+      "layer": "pupil-r",
+      "fill": "#234b64"
+    },
+    {
+      "step": 461,
+      "action": "fill-path",
+      "target": "highlight-l-p01",
+      "layer": "highlight-l",
+      "fill": "#fffefb"
+    },
+    {
+      "step": 462,
+      "action": "fill-path",
+      "target": "highlight-l-p02",
+      "layer": "highlight-l",
+      "fill": "#d2edff"
+    },
+    {
+      "step": 463,
+      "action": "fill-path",
+      "target": "highlight-l-p03",
+      "layer": "highlight-l",
+      "fill": "#aaccf1"
+    },
+    {
+      "step": 464,
+      "action": "fill-path",
+      "target": "highlight-l-p04",
+      "layer": "highlight-l",
+      "fill": "#dbfff0"
+    },
+    {
+      "step": 465,
+      "action": "fill-path",
+      "target": "highlight-r-p01",
+      "layer": "highlight-r",
+      "fill": "#fffefb"
+    },
+    {
+      "step": 466,
+      "action": "fill-path",
+      "target": "highlight-r-p02",
+      "layer": "highlight-r",
+      "fill": "#bedafa"
+    },
+    {
+      "step": 467,
+      "action": "fill-path",
+      "target": "highlight-r-p03",
+      "layer": "highlight-r",
+      "fill": "#a8ccf0"
+    },
+    {
+      "step": 468,
+      "action": "fill-path",
+      "target": "highlight-r-p04",
+      "layer": "highlight-r",
+      "fill": "#ddfff1"
+    },
+    {
+      "step": 469,
+      "action": "fill-path",
+      "target": "eyelid-l-p01",
+      "layer": "eyelid-l",
+      "fill": "#e3cbd2"
+    },
+    {
+      "step": 470,
+      "action": "retain-outline",
+      "target": "eyelid-l-p02",
+      "layer": "eyelid-l",
+      "fill": "none"
+    },
+    {
+      "step": 471,
+      "action": "fill-path",
+      "target": "eyelid-r-p01",
+      "layer": "eyelid-r",
+      "fill": "#e2cbd1"
+    },
+    {
+      "step": 472,
+      "action": "retain-outline",
+      "target": "eyelid-r-p02",
+      "layer": "eyelid-r",
+      "fill": "none"
+    },
+    {
+      "step": 473,
+      "action": "fill-path",
+      "target": "lashes-l-p01",
+      "layer": "lashes-l",
+      "fill": "#261f32"
+    },
+    {
+      "step": 474,
+      "action": "fill-path",
+      "target": "lashes-l-p02",
+      "layer": "lashes-l",
+      "fill": "#261f32"
+    },
+    {
+      "step": 475,
+      "action": "fill-path",
+      "target": "lashes-l-p03",
+      "layer": "lashes-l",
+      "fill": "#261f32"
+    },
+    {
+      "step": 476,
+      "action": "fill-path",
+      "target": "lashes-r-p01",
+      "layer": "lashes-r",
+      "fill": "#261f32"
+    },
+    {
+      "step": 477,
+      "action": "fill-path",
+      "target": "lashes-r-p02",
+      "layer": "lashes-r",
+      "fill": "#261f32"
+    },
+    {
+      "step": 478,
+      "action": "fill-path",
+      "target": "lashes-r-p03",
+      "layer": "lashes-r",
+      "fill": "#261f32"
+    },
+    {
+      "step": 479,
+      "action": "fill-path",
+      "target": "lower-lids-p01",
+      "layer": "lower-lids",
+      "fill": "#e2bdc8"
+    },
+    {
+      "step": 480,
+      "action": "fill-path",
+      "target": "lower-lids-p02",
+      "layer": "lower-lids",
+      "fill": "#e2bdc8"
+    },
+    {
+      "step": 481,
+      "action": "retain-outline",
+      "target": "lower-lids-p03",
+      "layer": "lower-lids",
+      "fill": "none"
+    },
+    {
+      "step": 482,
+      "action": "retain-outline",
+      "target": "lower-lids-p04",
+      "layer": "lower-lids",
+      "fill": "none"
+    },
+    {
+      "step": 483,
+      "action": "fill-path",
+      "target": "nose-p01",
+      "layer": "nose",
+      "fill": "#bda3a8"
+    },
+    {
+      "step": 484,
+      "action": "fill-path",
+      "target": "mouth-p01",
+      "layer": "mouth",
+      "fill": "#987c87"
+    },
+    {
+      "step": 485,
+      "action": "fill-path",
+      "target": "mouth-p02",
+      "layer": "mouth",
+      "fill": "#987c87"
+    },
+    {
+      "step": 486,
+      "action": "retain-outline",
+      "target": "mouth-p03",
+      "layer": "mouth",
+      "fill": "none"
+    },
+    {
+      "step": 487,
+      "action": "retain-outline",
+      "target": "mouth-p04",
+      "layer": "mouth",
+      "fill": "none"
+    },
+    {
+      "step": 488,
+      "action": "fill-path",
+      "target": "sidelock-l-p01",
+      "layer": "sidelock-l",
+      "fill": "#45afed"
+    },
+    {
+      "step": 489,
+      "action": "retain-outline",
+      "target": "sidelock-l-p02",
+      "layer": "sidelock-l",
+      "fill": "none"
+    },
+    {
+      "step": 490,
+      "action": "fill-path",
+      "target": "sidelock-r-p01",
+      "layer": "sidelock-r",
+      "fill": "#45afed"
+    },
+    {
+      "step": 491,
+      "action": "fill-path",
+      "target": "fringe-outer-l-p01",
+      "layer": "fringe-outer-l",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 492,
+      "action": "retain-outline",
+      "target": "fringe-outer-l-p02",
+      "layer": "fringe-outer-l",
+      "fill": "none"
+    },
+    {
+      "step": 493,
+      "action": "fill-path",
+      "target": "fringe-outer-r-p01",
+      "layer": "fringe-outer-r",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 494,
+      "action": "retain-outline",
+      "target": "fringe-outer-r-p02",
+      "layer": "fringe-outer-r",
+      "fill": "none"
+    },
+    {
+      "step": 495,
+      "action": "retain-outline",
+      "target": "fringe-outer-r-p03",
+      "layer": "fringe-outer-r",
+      "fill": "none"
+    },
+    {
+      "step": 496,
+      "action": "fill-path",
+      "target": "fringe-left-p01",
+      "layer": "fringe-left",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 497,
+      "action": "retain-outline",
+      "target": "fringe-left-p02",
+      "layer": "fringe-left",
+      "fill": "none"
+    },
+    {
+      "step": 498,
+      "action": "fill-path",
+      "target": "fringe-center-left-p01",
+      "layer": "fringe-center-left",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 499,
+      "action": "fill-path",
+      "target": "fringe-center-p01",
+      "layer": "fringe-center",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 500,
+      "action": "retain-outline",
+      "target": "fringe-center-p02",
+      "layer": "fringe-center",
+      "fill": "none"
+    },
+    {
+      "step": 501,
+      "action": "fill-path",
+      "target": "fringe-inner-r-p01",
+      "layer": "fringe-inner-r",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 502,
+      "action": "fill-path",
+      "target": "fringe-long-r-p01",
+      "layer": "fringe-long-r",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 503,
+      "action": "retain-outline",
+      "target": "fringe-long-r-p02",
+      "layer": "fringe-long-r",
+      "fill": "none"
+    },
+    {
+      "step": 504,
+      "action": "fill-path",
+      "target": "fringe-sweep-p01",
+      "layer": "fringe-sweep",
+      "fill": "#49b1f0"
+    },
+    {
+      "step": 505,
+      "action": "retain-outline",
+      "target": "fringe-sweep-p02",
+      "layer": "fringe-sweep",
+      "fill": "none"
+    },
+    {
+      "step": 506,
+      "action": "retain-outline",
+      "target": "crown-wisps-p01",
+      "layer": "crown-wisps",
+      "fill": "none"
+    },
+    {
+      "step": 507,
+      "action": "retain-outline",
+      "target": "crown-wisps-p02",
+      "layer": "crown-wisps",
+      "fill": "none"
+    },
+    {
+      "step": 508,
+      "action": "retain-outline",
+      "target": "crown-wisps-p03",
+      "layer": "crown-wisps",
+      "fill": "none"
+    },
+    {
+      "step": 509,
+      "action": "fill-path",
+      "target": "feather-l-slim-p01",
+      "layer": "feather-l-slim",
+      "fill": "#328dc7"
+    },
+    {
+      "step": 510,
+      "action": "fill-path",
+      "target": "feather-l-outer-p01",
+      "layer": "feather-l-outer",
+      "fill": "#1b232a"
+    },
+    {
+      "step": 511,
+      "action": "retain-outline",
+      "target": "feather-l-outer-p02",
+      "layer": "feather-l-outer",
+      "fill": "none"
+    },
+    {
+      "step": 512,
+      "action": "fill-path",
+      "target": "feather-l-tall-p01",
+      "layer": "feather-l-tall",
+      "fill": "#1b232a"
+    },
+    {
+      "step": 513,
+      "action": "retain-outline",
+      "target": "feather-l-tall-p02",
+      "layer": "feather-l-tall",
+      "fill": "none"
+    },
+    {
+      "step": 514,
+      "action": "fill-path",
+      "target": "feather-l-inner-p01",
+      "layer": "feather-l-inner",
+      "fill": "#1b232a"
+    },
+    {
+      "step": 515,
+      "action": "fill-path",
+      "target": "feather-r-slim-p01",
+      "layer": "feather-r-slim",
+      "fill": "#328dc7"
+    },
+    {
+      "step": 516,
+      "action": "fill-path",
+      "target": "feather-r-inner-p01",
+      "layer": "feather-r-inner",
+      "fill": "#1b232a"
+    },
+    {
+      "step": 517,
+      "action": "fill-path",
+      "target": "feather-r-tall-p01",
+      "layer": "feather-r-tall",
+      "fill": "#1b232a"
+    },
+    {
+      "step": 518,
+      "action": "retain-outline",
+      "target": "feather-r-tall-p02",
+      "layer": "feather-r-tall",
+      "fill": "none"
+    },
+    {
+      "step": 519,
+      "action": "fill-path",
+      "target": "feather-r-outer-p01",
+      "layer": "feather-r-outer",
+      "fill": "#1b232a"
+    },
+    {
+      "step": 520,
+      "action": "retain-outline",
+      "target": "feather-r-outer-p02",
+      "layer": "feather-r-outer",
+      "fill": "none"
+    },
+    {
+      "step": 521,
+      "action": "fill-path",
+      "target": "tie-l-p01",
+      "layer": "tie-l",
+      "fill": "#19262d"
+    },
+    {
+      "step": 522,
+      "action": "retain-outline",
+      "target": "tie-l-p02",
+      "layer": "tie-l",
+      "fill": "none"
+    },
+    {
+      "step": 523,
+      "action": "fill-path",
+      "target": "tie-r-p01",
+      "layer": "tie-r",
+      "fill": "#19262d"
+    },
+    {
+      "step": 524,
+      "action": "retain-outline",
+      "target": "tie-r-p02",
+      "layer": "tie-r",
+      "fill": "none"
+    }
+  ]
+}

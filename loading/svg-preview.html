@@ -18,6 +18,14 @@
 .workspace{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:0;position:relative}.workspace.layers-closed{grid-template-columns:minmax(0,1fr)}.layer-panel{min-height:0;min-width:0;display:flex;flex-direction:column;background:#1b2027;border-left:1px solid var(--line);z-index:4}.layer-head{padding:14px 14px 12px;border-bottom:1px solid var(--line)}.layer-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:3px}.layer-heading h2{font-size:13px;font-weight:600;margin:0}.layer-count{font-size:10px;color:var(--muted);line-height:1.7;font-variant-numeric:tabular-nums}.layer-search,.layer-order{font:inherit;background:#14191f;color:#dce6eb;border:1px solid var(--line);border-radius:6px;min-width:0}.layer-search{width:100%;padding:8px 10px;margin-top:12px}.layer-search::placeholder{color:#86949f}.layer-options{display:flex;align-items:center;gap:8px;margin-top:9px}.layer-order{padding:6px;flex:1;width:0;font-size:11px}.layer-options button{font-size:11px;padding:6px}.layer-spatial{display:flex;align-items:center;gap:8px;font-size:11px;color:#c0cdd6;margin-top:12px;cursor:pointer}.layer-spatial input,.layer-visible{accent-color:var(--accent);width:15px;height:15px;flex:none;margin:0;cursor:pointer}.layer-actions{display:flex;gap:3px;margin-top:10px}.layer-actions button{flex:1;font-size:11px;padding:6px 3px;border-color:#343e47}.layer-tree{list-style:none;margin:0;padding:7px 0;overflow:auto;flex:1;min-height:0;scrollbar-width:thin;scrollbar-color:#465461 transparent}.layer-tree ul{list-style:none;padding:0;margin:0}.layer-item{outline:none}.layer-row{display:flex;align-items:center;gap:6px;padding:6px 10px 6px var(--indent);min-height:39px;border-bottom:1px solid #ffffff04}.layer-row:hover{background:#ffffff07}.layer-item:focus-visible>.layer-row{outline:1px solid var(--accent);outline-offset:-2px;background:#9ee0e20c}.layer-disclosure{width:20px;height:26px;padding:0;flex:none;font-size:13px;color:#a8b8c3}.layer-disclosure-spacer{width:20px;flex:none}.layer-label{min-width:0;flex:1}.layer-name{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.5}.layer-detail{display:flex;gap:5px;align-items:center;color:#8195a4;font-size:10px;line-height:1.5;min-width:0}.layer-tag{color:#9ac3ce;flex:none}.layer-rank{font-variant-numeric:tabular-nums;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.layer-off>.layer-row .layer-label{opacity:.45}.layer-blocked>.layer-row .layer-name{color:#91a0ac}.layer-state{font-size:9px;color:#a8b1bb;flex:none}.layer-item[data-kind="spatial"]>.layer-row .layer-tag{color:#d4b888}.layer-empty{margin:0;padding:24px 18px;color:#94a6b4;line-height:1.9;font-size:12px}.layer-foot{border-top:1px solid var(--line);padding:10px 14px;color:#8da1af;font-size:10px;line-height:1.7}.layer-notice{color:#c7b68d;margin-top:4px}.layer-order:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media(max-width:1000px){.workspace{grid-template-columns:minmax(0,1fr) 280px}.layers-label{display:none}.layer-head{padding:11px}.navigator{width:108px}.nav-body{height:125px}}
 @media(max-width:700px){.workspace{grid-template-columns:minmax(0,1fr)}.layer-panel{position:absolute;inset:0 0 0 auto;width:min(320px,90%);box-shadow:-12px 0 30px #0004}.header-actions #fullscreen{display:none}.layer-row{min-height:44px}.layer-disclosure{height:32px}.layer-options button,.layer-actions button{min-height:34px}}
+.canvas-workspace{min-width:0;min-height:0;display:flex;flex-direction:column}.canvas-workspace>.stage{flex:1}
+.compare-bar{flex:none;padding:12px 18px;background:#1b2027;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}.reference-info{flex:1 1 220px;min-width:0}.reference-name{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.reference-name b{font-size:10px;color:var(--accent);margin-right:8px}.reference-meta{font-size:10px;color:var(--muted);line-height:1.7;margin-top:4px}.compare-file-actions{display:flex;gap:4px}.compare-file-actions button{font-size:11px;border-color:var(--line);padding:6px 9px}.compare-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;width:100%}.compare-modes{display:flex;gap:3px;padding:3px;background:#11171c;border:1px solid var(--line);border-radius:9px}.compare-modes button{font-size:11px;padding:7px 10px}.compare-adjust{display:flex;align-items:center;gap:9px;font-size:11px;color:#c1cfd7}.compare-adjust input{width:110px;accent-color:var(--accent);cursor:pointer}.compare-adjust output{min-width:32px;color:var(--accent);font-variant-numeric:tabular-nums}.compare-lock{font-size:10px;color:#8fa8b1;margin-left:auto}
+.reference-view{position:absolute;inset:0;overflow:hidden;pointer-events:none}.reference-view svg{display:block;width:100%;height:100%;overflow:hidden}.compare-labels{position:absolute;inset:0;pointer-events:none;user-select:none}.compare-badge{position:absolute;top:17px;padding:5px 9px;background:#20252be8;color:#dbe6ec;border:1px solid #70838c66;border-radius:5px;font-size:10px;letter-spacing:.4px}.compare-badge:first-child{left:16px}.compare-badge:last-child{right:16px;color:#b6ece8}.pane-divider{position:absolute;top:0;bottom:0;left:50%;width:1px;background:#73868b66;pointer-events:none}
+.wipe-divider{position:absolute;top:0;bottom:0;width:32px;transform:translateX(-50%);z-index:2;cursor:ew-resize;touch-action:none;outline:none}.wipe-divider:before{content:"";position:absolute;left:15px;top:0;bottom:0;width:2px;background:#d1ffff;box-shadow:0 0 0 1px #25434d66}.wipe-grip{position:absolute;top:50%;left:0;width:32px;height:44px;transform:translateY(-50%);border:1px solid #b6eeec;border-radius:9px;display:grid;place-items:center;background:#23414b;color:#d5ffff;font-size:16px;box-shadow:0 2px 10px #102c3d44}.wipe-divider:focus-visible .wipe-grip,.wipe-divider:hover .wipe-grip{outline:2px solid var(--accent);outline-offset:3px;background:#315866}
+.stage[data-compare="side"] .art-frame{width:50%}.stage[data-compare="side"] .reference-view{left:50%}.stage[data-compare="side"] .compare-badge:last-child{left:calc(50% + 16px);right:auto}.stage[data-compare="side"] .art-frame{clip-path:none}.stage[data-compare="swipe"] .art-frame{clip-path:inset(0 calc(100% - var(--wipe,50%)) 0 0)}.stage[data-compare="swipe"] .reference-view{clip-path:inset(0 0 0 var(--wipe,50%))}.stage[data-compare="overlay"] .reference-view{opacity:var(--reference-opacity,.5)}
+.stage.comparing .canvas-meta{display:none}.stage.comparing .top-tools{top:auto;bottom:84px;left:16px;right:auto}.stage.comparing .navigator,.stage.comparing .nav-restore{bottom:84px}
+@media(max-width:1000px){.reference-open-label{display:none}.compare-bar{padding:10px 12px}.compare-lock{margin-left:0}.compare-adjust input{width:90px}}
+@media(max-width:620px){.compare-bar{padding:9px 10px;gap:8px}.reference-info{flex-basis:150px}.compare-controls{gap:8px}.compare-modes{width:100%}.compare-modes button{flex:1;padding:7px 5px;font-size:10px}.compare-lock{margin-left:auto;font-size:9px}.compare-adjust input{width:95px}.compare-badge{top:12px}.compare-badge:first-child{left:10px}.stage[data-compare="side"] .compare-badge:last-child{left:calc(50% + 10px)}.stage.comparing .top-tools{left:10px;bottom:70px}.header-actions #openReference{padding:8px}.reference-meta{font-size:9px}}
 </style>
 </head>
 <body>
@@ -27,17 +35,34 @@
   <div class="file-info"><div id="fileName" class="file-name">尚未打开 SVG</div><div id="fileMeta" class="file-meta">选择文件或拖入画布</div></div>
   <div class="header-actions">
    <button id="open" class="primary" title="打开 SVG · Ctrl / ⌘ + O"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19V6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v2M3 19l3-8h16l-3 8H3Z"/></svg><span class="open-label">打开 SVG</span></button>
+   <button id="openReference" disabled aria-label="导入参考图" title="导入参考图 · PNG / JPG / JPEG"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18M3 16l5-5 4 5m3-8h3m-1.5-1.5v3"/></svg><span class="reference-open-label">导入参考图</span></button>
    <button id="toggleLayers" aria-label="图层面板" aria-controls="layerPanel" aria-expanded="true" aria-pressed="true" title="显示或隐藏图层面板"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4"/></svg><span class="layers-label">图层</span></button>
    <span class="separator"></span>
    <button id="fullscreen" class="icon-only" aria-label="全屏" title="全屏"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
    <button id="help" class="icon-only" aria-label="操作说明" title="操作说明 · ?"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.2 2.1c-1.3.8-1.7 1.2-1.7 2.5M12 17h.01"/></svg></button>
   </div>
   <input id="fileInput" type="file" accept=".svg,image/svg+xml" hidden>
+  <input id="referenceInput" type="file" accept=".png,.jpg,.jpeg,image/png,image/jpeg" hidden>
  </header>
  <div id="workspace" class="workspace">
- <main id="stage" class="stage" data-background="gray" aria-label="SVG 预览区域">
+ <section class="canvas-workspace" aria-label="预览工作台">
+ <div id="compareBar" class="compare-bar" hidden>
+  <div class="reference-info"><div class="reference-name"><b>参考图</b><span id="referenceName"></span></div><div id="referenceMeta" class="reference-meta"></div></div>
+  <div class="compare-file-actions"><button id="replaceReference">更换图片</button><button id="removeReference">移除</button></div>
+  <div class="compare-controls">
+   <div class="compare-modes" role="group" aria-label="对比模式"><button data-compare-mode="none" aria-pressed="false">仅 SVG</button><button data-compare-mode="side" aria-pressed="true">左右对比</button><button data-compare-mode="overlay" aria-pressed="false">透明叠加</button><button data-compare-mode="swipe" aria-pressed="false">滑动对比</button></div>
+   <label id="opacityControl" class="compare-adjust" hidden>参考图不透明度<input id="opacityInput" type="range" min="0" max="100" value="50" aria-label="参考图不透明度，0 为完全透明，100 为完全显示"><output id="opacityValue" for="opacityInput">50%</output></label>
+   <label id="wipeControl" class="compare-adjust" hidden>分割位置<input id="wipeInput" type="range" min="0" max="100" value="50" aria-label="分割位置"><output id="wipeValue" for="wipeInput">50%</output></label>
+   <span class="compare-lock">等比对齐 · 缩放 / 平移同步</span>
+  </div>
+ </div>
+ <main id="stage" class="stage" data-background="gray" data-compare="none" aria-label="SVG 预览区域">
   <iframe id="artFrame" class="art-frame" title="SVG 矢量画布" sandbox="allow-same-origin" tabindex="-1"></iframe>
+  <div id="referenceView" class="reference-view" hidden><svg id="referenceCanvas" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" role="img" aria-label="参考图片画布"><image id="referenceImage" x="0" y="0" preserveAspectRatio="xMidYMid meet"/></svg></div>
   <div id="interaction" class="interaction empty" tabindex="0" role="application" aria-label="可缩放 SVG 画布。滚轮缩放，拖动平移，F 适应窗口，B 框选放大。"></div>
+  <div id="compareLabels" class="compare-labels" hidden><span class="compare-badge">SVG · 矢量</span><span id="referenceBadge" class="compare-badge">参考图</span></div>
+  <div id="paneDivider" class="pane-divider" hidden></div>
+  <div id="wipeDivider" class="wipe-divider" role="slider" tabindex="0" aria-label="拖动分割轴，左侧 SVG，右侧参考图" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" hidden><span class="wipe-grip" aria-hidden="true">↔</span></div>
   <div id="canvasMeta" class="canvas-meta" hidden><b>SVG / 矢量画布</b><br><span id="canvasCaption">移动到细节上，滚动放大</span></div>
   <div class="top-tools"><div class="backgrounds floating" role="group" aria-label="画布背景"><button class="swatch" data-bg="checker" aria-label="棋盘格背景" title="棋盘格" aria-pressed="false"></button><button class="swatch" data-bg="gray" aria-label="浅灰背景" title="浅灰" aria-pressed="true"></button><button class="swatch" data-bg="dark" aria-label="深色背景" title="深色" aria-pressed="false"></button><button class="swatch" data-bg="white" aria-label="白色背景" title="白色" aria-pressed="false"></button></div></div>
   <div id="selection" class="selection" hidden><span>松开放大</span></div>
@@ -56,6 +81,7 @@
   <div id="emptyState" class="empty-state"><div class="empty-card"><svg class="empty-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M22 10H12a2 2 0 0 0-2 2v10m32-12h10a2 2 0 0 1 2 2v10M10 42v10a2 2 0 0 0 2 2h10m32-12v10a2 2 0 0 1-2 2H42M22 40l10-17 10 17M26 34h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h1>拖入 SVG，开始预览</h1><p>滚轮缩放 · 拖动平移 · 框选查看细节<br>支持普通 SVG，无需分层信息</p><button id="emptyOpen" class="primary">选择 SVG 文件</button></div></div>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
  </main>
+ </section>
  <aside id="layerPanel" class="layer-panel" aria-label="原生 SVG 图层">
   <div class="layer-head">
    <div class="layer-heading"><h2>原生图层</h2><button id="closeLayers" class="icon-only" aria-label="关闭图层面板" title="关闭图层面板">×</button></div>
@@ -72,8 +98,8 @@
  </div>
  <footer class="statusbar"><div><span class="desktop-hint" id="hint">滚轮缩放 · 拖动平移 · 双击放大</span><span class="touch-hint" hidden>双指缩放 · 单指拖动</span></div><div class="right"><span class="local-note"><span class="status-light"></span>文件在本地处理</span><button id="reset" disabled>重置视图</button></div></footer>
 </div>
-<div id="dropMask" class="drop-mask" hidden><div><strong>松开，预览 SVG</strong><p>支持普通 SVG，无需分层信息</p></div></div>
-<dialog id="helpDialog" class="help" aria-labelledby="helpTitle"><div class="help-header"><h2 id="helpTitle">把细节放大看</h2><button id="closeHelp" class="icon-only" aria-label="关闭操作说明"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12m0-12L6 18"/></svg></button></div><p>将鼠标放在想看的细节上滚动，缩放会围绕该位置进行。也可以拖出选区，直接放大到那一部分。</p><div class="shortcuts"><span>放大 / 缩小</span><kbd>滚轮 · + / −</kbd><span>平移</span><kbd>拖动 · 方向键</kbd><span>适应窗口 / 实际大小</span><kbd>F 或 0 / 1</kbd><span>框选放大 / 取消</span><kbd>B / Esc</kbd><span>打开 SVG</span><kbd>Ctrl / ⌘ + O</kbd></div><p>触控设备支持双指捏合缩放。点击右下角导航，可快速回到作品的任意位置。缩放框支持直接输入比例，例如 <b>10000</b> 或 <b>1e6</b>。</p><p>图层面板直接读取 SVG 的嵌套结构。勾选控制显隐，箭头展开分组；列表顺序切换不会改变画面叠放。资源定义不会列为绘画层。空间分块按图形包围盒推测，只建立临时控制分组；交叠部件和同一条复合路径仍需手工分组。</p><p class="footnote">不设固定缩放倍率上限。SVG 会随视图重新绘制；极端倍率受浏览器坐标精度限制。SVG 内嵌的位图仍保留其原有分辨率。</p></dialog>
+<div id="dropMask" class="drop-mask" hidden><div><strong>松开，导入画布</strong><p>SVG 预览 · PNG / JPG / JPEG 对比图<br>可同时拖入一份 SVG 和一张参考图</p></div></div>
+<dialog id="helpDialog" class="help" aria-labelledby="helpTitle"><div class="help-header"><h2 id="helpTitle">把细节放大看</h2><button id="closeHelp" class="icon-only" aria-label="关闭操作说明"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12m0-12L6 18"/></svg></button></div><p>将鼠标放在想看的细节上滚动，缩放会围绕该位置进行。也可以拖出选区，直接放大到那一部分。</p><div class="shortcuts"><span>放大 / 缩小</span><kbd>滚轮 · + / −</kbd><span>平移</span><kbd>拖动 · 方向键</kbd><span>适应窗口 / 实际大小</span><kbd>F 或 0 / 1</kbd><span>框选放大 / 取消</span><kbd>B / Esc</kbd><span>打开 SVG</span><kbd>Ctrl / ⌘ + O</kbd></div><p>触控设备支持双指捏合缩放。点击右下角导航，可快速回到作品的任意位置。缩放框支持直接输入比例，例如 <b>10000</b> 或 <b>1e6</b>。</p><p>图层面板直接读取 SVG 的嵌套结构。勾选控制显隐，箭头展开分组；列表顺序切换不会改变画面叠放。资源定义不会列为绘画层。空间分块按图形包围盒推测，只建立临时控制分组；交叠部件和同一条复合路径仍需手工分组。</p><p>打开 SVG 后，可导入或拖入 PNG、JPG 或 JPEG 参考图。左右对比、透明叠加和滑动对比共用缩放与平移；切换模式保留当前倍率和中心。参考图等比居中适配 SVG 画布，比例不同时保留留白。叠加模式可调参考图不透明度；滑动模式可拖动分割轴，聚焦轴后用方向键微调，Home / End 移到两端。更换 SVG 时保留参考图并重新适配。</p><p class="footnote">不设固定缩放倍率上限。SVG 会随视图重新绘制；极端倍率受浏览器坐标精度限制。SVG 内嵌的位图仍保留其原有分辨率。</p></dialog>
 <script>
 'use strict';
 (() => {
@@ -81,6 +107,7 @@
  const stage=$('stage'), hit=$('interaction'), frame=$('artFrame');
  const camera={cx:0,cy:0,upp:1,fit:true};
  let model=null, outer=null, thumbnailURL=null, loadTicket=0, raf=0, timer=0;
+ let reference=null, referenceTicket=0, compareMode='none', wipePosition=50, wipeDrag=null;
  let size={w:1,h:1}, tool='pan', space=false, drag=null, selection=null, pinch=null, lastTap=null;
  const pointers=new Map();
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
@@ -91,7 +118,9 @@
  const tagNames={g:'未命名分组',svg:'嵌套画布',a:'链接分组',switch:'条件分组',path:'路径',rect:'矩形',circle:'圆形',ellipse:'椭圆',line:'线段',polyline:'折线',polygon:'多边形',text:'文字',image:'图片',use:'引用图形',foreignObject:'嵌入内容'};
 
  function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(timer);timer=setTimeout(()=>$('toast').hidden=true,3400);}
- function local(event){const r=hit.getBoundingClientRect();return {x:event.clientX-r.left,y:event.clientY-r.top};}
+ // Both panes use the same camera. Keep the gesture's starting pane while
+ // captured, including both fingers of a pinch across the separator.
+ function local(event){const r=hit.getBoundingClientRect(),x=event.clientX-r.left,pane=compareMode==='side'?(pointers.get(event.pointerId)?.pane??pointers.values().next().value?.pane??(x>=size.w?size.w:0)):0;return {x:x-pane,y:event.clientY-r.top,pane};}
  function world(point){return {x:camera.cx+(point.x-size.w/2)*camera.upp,y:camera.cy+(point.y-size.h/2)*camera.upp};}
  function center(){return {x:size.w/2,y:size.h/2};}
  function formatZoom(){const p=100/camera.upp;if(p>=1e8||p<.001)return p.toExponential(3).replace(/\.?(0+)e/,'e');return new Intl.NumberFormat('en-US',{maximumFractionDigits:p<1?4:1}).format(p);}
@@ -102,10 +131,76 @@
  function fit(){if(!model)return;const pad=Math.min(40,size.w*.07,size.h*.06),bottom=Math.min(90,size.h*.2),upp=Math.max(model.w/Math.max(1,size.w-pad*2),model.h/Math.max(1,size.h-pad-bottom));commit(model.w/2,model.h/2+(bottom-pad)/2*upp,upp,true);}
  function actual(){if(model)commit(camera.cx,camera.cy,1);}
  function schedule(){if(!raf)raf=requestAnimationFrame(paint);}
- function paint(){raf=0;if(!outer||!model)return;const w=size.w*camera.upp,h=size.h*camera.upp;outer.setAttribute('viewBox',`${camera.cx-w/2} ${camera.cy-h/2} ${w} ${h}`);if(document.activeElement!==$('zoomInput'))$('zoomInput').value=formatZoom();paintNavigator();}
+ function paint(){raf=0;if(!outer||!model)return;const w=size.w*camera.upp,h=size.h*camera.upp,viewBox=`${camera.cx-w/2} ${camera.cy-h/2} ${w} ${h}`;outer.setAttribute('viewBox',viewBox);$('referenceCanvas').setAttribute('viewBox',viewBox);if(document.activeElement!==$('zoomInput'))$('zoomInput').value=formatZoom();paintNavigator();}
  function paintNavigator(){if(!model||$('navigator').hidden)return;const box=$('navBody'),w=box.clientWidth,h=box.clientHeight;if(!w||!h)return;const k=Math.min(w/model.w,h/model.h),ox=(w-model.w*k)/2,oy=(h-model.h*k)/2;Object.assign($('thumbnail').style,{left:ox+'px',top:oy+'px',width:model.w*k+'px',height:model.h*k+'px'});const x1=clamp(camera.cx-size.w*camera.upp/2,0,model.w),y1=clamp(camera.cy-size.h*camera.upp/2,0,model.h),x2=clamp(camera.cx+size.w*camera.upp/2,0,model.w),y2=clamp(camera.cy+size.h*camera.upp/2,0,model.h);$('navView').hidden=x2<=x1||y2<=y1;Object.assign($('navView').style,{left:ox+x1*k+'px',top:oy+y1*k+'px',width:Math.max(2,(x2-x1)*k)+'px',height:Math.max(2,(y2-y1)*k)+'px'});$('navDot').hidden=camera.cx<0||camera.cx>model.w||camera.cy<0||camera.cy>model.h;Object.assign($('navDot').style,{left:ox+clamp(camera.cx,0,model.w)*k+'px',top:oy+clamp(camera.cy,0,model.h)*k+'px'});}
  function setTool(next){tool=next;hit.classList.toggle('selecting',next==='box'&&!space);$('box').setAttribute('aria-pressed',String(next==='box'));$('hint').textContent=next==='box'?'拖出选区放大 · 空格临时平移 · Esc 取消':'滚轮缩放 · 拖动平移 · 双击放大';}
  function cancelGesture(){drag=null;selection=null;pinch=null;const ids=[...pointers.keys()];pointers.clear();for(const id of ids)if(hit.hasPointerCapture(id))hit.releasePointerCapture(id);$('selection').hidden=true;hit.classList.remove('dragging');}
+
+ function measureStage(){size={w:Math.max(1,stage.clientWidth/(compareMode==='side'?2:1)),h:Math.max(1,stage.clientHeight)};}
+ function updateReferenceInfo(){
+  if(!reference||!model)return;
+  $('referenceName').textContent=reference.name;$('referenceName').title=reference.name;
+  const scale=Math.min(model.w/reference.w,model.h/reference.h),different=Math.abs(reference.w/reference.h-model.w/model.h)>1e-6;
+  $('referenceMeta').textContent=`${reference.w} × ${reference.h} · 等比居中适配 SVG${different?' · 比例不同，保留留白':''}`;
+  $('referenceMeta').title=`参考图映射到 SVG 画布的固定比例：${Number((scale*100).toPrecision(6))}%；缩放时两张图同步变化。`;
+  $('referenceImage').setAttribute('width',String(model.w));$('referenceImage').setAttribute('height',String(model.h));
+ }
+ function setCompareMode(next,refit=false){
+  cancelGesture();cancelWipe();compareMode=reference&&model?next:'none';
+  stage.dataset.compare=compareMode;stage.classList.toggle('comparing',compareMode!=='none');
+  $('compareBar').hidden=!reference;$('referenceView').hidden=compareMode==='none';$('compareLabels').hidden=compareMode==='none';
+  $('paneDivider').hidden=compareMode!=='side';$('wipeDivider').hidden=compareMode!=='swipe';
+  $('opacityControl').hidden=compareMode!=='overlay';$('wipeControl').hidden=compareMode!=='swipe';
+  document.querySelectorAll('[data-compare-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.compareMode===compareMode)));
+  updateReferenceInfo();updateOpacity();measureStage();
+  if(refit)fit();else{camera.fit=false;schedule();}
+ }
+ async function readReference(file){
+  if(!file)return false;if(!model){toast('请先打开 SVG，再导入参考图。');return false;}
+  const ticket=++referenceTicket;let url=null;
+  try{
+   const bytes=new Uint8Array(await file.slice(0,8).arrayBuffer());
+   const format=[137,80,78,71,13,10,26,10].every((value,index)=>bytes[index]===value)?'PNG':bytes[0]===255&&bytes[1]===216&&bytes[2]===255?'JPG':null;
+   if(!format)throw new Error('请选择有效的 PNG、JPG 或 JPEG 图片。');
+   if(ticket!==referenceTicket)return false;
+   url=URL.createObjectURL(file);const image=new Image();image.src=url;await image.decode();
+   if(ticket!==referenceTicket)return false;
+   if(!image.naturalWidth||!image.naturalHeight)throw new Error('参考图片尺寸无效。');
+   const previous=reference;reference={name:file.name,format,w:image.naturalWidth,h:image.naturalHeight,url};url=null;
+   $('referenceImage').setAttribute('href',reference.url);
+   if(previous)URL.revokeObjectURL(previous.url);
+   setCompareMode(previous?compareMode:'side',!previous&&camera.fit);
+   return true;
+  }catch(error){if(ticket===referenceTicket)toast(error.name==='EncodingError'?'无法解码参考图，请检查图片是否完整。':error.message);return false;}
+  finally{if(url)URL.revokeObjectURL(url);}
+ }
+ for(const id of ['openReference','replaceReference'])$(id).addEventListener('click',()=>$('referenceInput').click());
+ $('referenceInput').addEventListener('change',async event=>{const file=event.target.files[0];event.target.value='';await readReference(file);});
+ $('removeReference').addEventListener('click',()=>{
+  ++referenceTicket;const previous=reference;reference=null;$('referenceImage').removeAttribute('href');
+  if(previous)URL.revokeObjectURL(previous.url);setCompareMode('none',camera.fit);$('openReference').focus({preventScroll:true});
+ });
+ document.querySelectorAll('[data-compare-mode]').forEach(button=>button.addEventListener('click',()=>setCompareMode(button.dataset.compareMode)));
+ function updateOpacity(){const value=Number($('opacityInput').value);stage.style.setProperty('--reference-opacity',String(value/100));$('opacityValue').value=value+'%';$('referenceBadge').textContent=compareMode==='overlay'?`${reference.format} · ${value}% 叠加`:`${reference?.format||'图片'} · 参考图`;}
+ $('opacityInput').addEventListener('input',updateOpacity);
+ function setWipe(value){
+  wipePosition=clamp(value,0,100);stage.style.setProperty('--wipe',wipePosition+'%');$('wipeDivider').style.left=wipePosition+'%';
+  const rounded=Math.round(wipePosition);$('wipeInput').value=String(rounded);$('wipeValue').value=rounded+'%';
+  $('wipeDivider').setAttribute('aria-valuenow',String(rounded));$('wipeDivider').setAttribute('aria-valuetext',`左侧 SVG ${rounded}%，右侧参考图 ${100-rounded}%`);
+ }
+ function cancelWipe(){const id=wipeDrag;wipeDrag=null;if(id!==null&&$('wipeDivider').hasPointerCapture(id))$('wipeDivider').releasePointerCapture(id);}
+ function moveWipe(event){const box=stage.getBoundingClientRect();setWipe((event.clientX-box.left)/box.width*100);}
+ $('wipeInput').addEventListener('input',event=>setWipe(Number(event.target.value)));
+ $('wipeDivider').addEventListener('pointerdown',event=>{if(event.button!==0||wipeDrag!==null)return;event.preventDefault();cancelGesture();wipeDrag=event.pointerId;event.currentTarget.focus({preventScroll:true});event.currentTarget.setPointerCapture(event.pointerId);moveWipe(event);});
+ $('wipeDivider').addEventListener('pointermove',event=>{if(event.pointerId===wipeDrag)moveWipe(event);});
+ for(const type of ['pointerup','pointercancel','lostpointercapture'])$('wipeDivider').addEventListener(type,event=>{if(event.pointerId===wipeDrag)cancelWipe();});
+ $('wipeDivider').addEventListener('keydown',event=>{
+  const delta=event.shiftKey?10:1;let value=wipePosition;
+  if(event.key==='ArrowLeft'||event.key==='ArrowDown')value-=delta;else if(event.key==='ArrowRight'||event.key==='ArrowUp')value+=delta;
+  else if(event.key==='Home')value=0;else if(event.key==='End')value=100;else return;
+  event.preventDefault();event.stopPropagation();setWipe(value);
+ });
+ setWipe(50);
 
  // The tree is a view of the existing DOM. Never move artwork nodes or include
  // resource subtrees (defs, masks, clip paths, symbols, filters, etc.).
@@ -321,9 +416,9 @@
   const firstLoad=!model,doc=frame.contentDocument,cameraSvg=doc.createElementNS(NS,'svg');cameraSvg.setAttribute('data-camera','');cameraSvg.setAttribute('width','100%');cameraSvg.setAttribute('height','100%');cameraSvg.setAttribute('preserveAspectRatio','none');cameraSvg.style.setProperty('overflow','hidden','important');
   artwork=doc.importNode(parsed.svg,true);artwork.setAttribute('x','0');artwork.setAttribute('y','0');artwork.setAttribute('width',String(parsed.w));artwork.setAttribute('height',String(parsed.h));artwork.style.setProperty('width',parsed.w+'px','important');artwork.style.setProperty('height',parsed.h+'px','important');artwork.style.setProperty('overflow','hidden','important');cameraSvg.append(artwork);doc.body.replaceChildren(cameraSvg);outer=cameraSvg;model=parsed;cancelGesture();setTool('pan');
   clearTimeout(thumbnailTimer);buildLayers(artwork);refreshThumbnail();
-  $('fileName').textContent=name;$('fileName').title=name;$('fileMeta').textContent=`${Number(parsed.w.toPrecision(7))} × ${Number(parsed.h.toPrecision(7))} · ${byteSize(parsed.bytes)}`;$('emptyState').hidden=true;$('canvasMeta').hidden=false;hit.classList.remove('empty');document.querySelectorAll('.dock button,.dock input,#reset').forEach(control=>control.disabled=false);if(firstLoad)$('navigator').hidden=false;document.title=name+' · SVG 预览器';fit();return true;
+  $('fileName').textContent=name;$('fileName').title=name;$('fileMeta').textContent=`${Number(parsed.w.toPrecision(7))} × ${Number(parsed.h.toPrecision(7))} · ${byteSize(parsed.bytes)}`;$('emptyState').hidden=true;$('canvasMeta').hidden=false;hit.classList.remove('empty');document.querySelectorAll('.dock button,.dock input,#reset').forEach(control=>control.disabled=false);if(firstLoad)$('navigator').hidden=false;document.title=name+' · SVG 预览器';$('openReference').disabled=false;setCompareMode(compareMode,true);return true;
  }
- async function readFile(file){if(!file)return;if(!/\.svg$/i.test(file.name)&&file.type!=='image/svg+xml'){toast('请选择 .svg 文件。');return;}const ticket=++loadTicket;try{await load(await file.text(),file.name,ticket);}catch(error){if(ticket===loadTicket)toast('无法读取文件：'+error.message);}}
+ async function readFile(file){if(!file)return false;if(!/\.svg$/i.test(file.name)&&file.type!=='image/svg+xml'){toast('请选择 .svg 文件。');return false;}const ticket=++loadTicket;try{return await load(await file.text(),file.name,ticket);}catch(error){if(ticket===loadTicket)toast('无法读取文件：'+error.message);return false;}}
  for(const id of ['open','emptyOpen'])$(id).addEventListener('click',()=>$('fileInput').click());$('fileInput').addEventListener('change',async e=>{await readFile(e.target.files[0]);e.target.value='';});
  $('zoomIn').addEventListener('click',()=>zoomAt(1.5));$('zoomOut').addEventListener('click',()=>zoomAt(1/1.5));$('fit').addEventListener('click',fit);$('reset').addEventListener('click',()=>{cancelGesture();setTool('pan');fit();});$('actual').addEventListener('click',actual);$('box').addEventListener('click',()=>{cancelGesture();setTool(tool==='box'?'pan':'box');});
  let zoomEdited=false;$('zoomInput').addEventListener('focus',e=>{zoomEdited=false;e.target.select();});$('zoomInput').addEventListener('input',()=>zoomEdited=true);
@@ -335,20 +430,26 @@
  hit.addEventListener('dblclick',e=>{e.preventDefault();if(tool==='pan')zoomAt(e.shiftKey?.5:2,local(e));});
  function pinchState(){const a=[...pointers.values()];return a.length<2?null:{mid:{x:(a[0].x+a[1].x)/2,y:(a[0].y+a[1].y)/2},distance:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)};}
  hit.addEventListener('pointerdown',e=>{if(!model||![0,1].includes(e.button))return;e.preventDefault();hit.focus({preventScroll:true});const pt=local(e);pointers.set(e.pointerId,pt);hit.setPointerCapture(e.pointerId);if(pointers.size>1){selection=null;$('selection').hidden=true;drag=null;pinch=pinchState();return;}drag={id:e.pointerId,last:pt,start:pt,moved:false,touch:e.pointerType==='touch'};if(tool==='box'&&!space&&e.button!==1){selection={start:pt,end:pt};$('selection').hidden=false;paintSelection();}else hit.classList.add('dragging');});
- function paintSelection(){if(!selection)return;const a=selection.start,b=selection.end;Object.assign($('selection').style,{left:Math.min(a.x,b.x)+'px',top:Math.min(a.y,b.y)+'px',width:Math.abs(b.x-a.x)+'px',height:Math.abs(b.y-a.y)+'px'});}
- hit.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;const pt=local(e);pointers.set(e.pointerId,pt);if(pointers.size>1){const next=pinchState();if(pinch&&pinch.distance>1&&next.distance>1)zoomAt(next.distance/pinch.distance,pinch.mid,next.mid);pinch=next;return;}if(!drag)return;if(Math.hypot(pt.x-drag.start.x,pt.y-drag.start.y)>3)drag.moved=true;if(selection){selection.end=pt;paintSelection();}else commit(camera.cx-(pt.x-drag.last.x)*camera.upp,camera.cy-(pt.y-drag.last.y)*camera.upp,camera.upp);drag.last=pt;});
+ function paintSelection(){if(!selection)return;const a=selection.start,b=selection.end;Object.assign($('selection').style,{left:((a.pane||0)+Math.min(a.x,b.x))+'px',top:Math.min(a.y,b.y)+'px',width:Math.abs(b.x-a.x)+'px',height:Math.abs(b.y-a.y)+'px'});}
+ hit.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;const pt=local(e);pointers.set(e.pointerId,pt);if(pointers.size>1){const next=pinchState();if(pinch&&pinch.distance>1&&next.distance>1)zoomAt(next.distance/pinch.distance,pinch.mid,next.mid);pinch=next;return;}if(!drag)return;if(Math.hypot(pt.x-drag.start.x,pt.y-drag.start.y)>3)drag.moved=true;if(selection){selection.end={...pt,x:clamp(pt.x,0,size.w),y:clamp(pt.y,0,size.h)};paintSelection();}else commit(camera.cx-(pt.x-drag.last.x)*camera.upp,camera.cy-(pt.y-drag.last.y)*camera.upp,camera.upp);drag.last=pt;});
  function pointerEnd(e){if(!pointers.has(e.pointerId))return;const wasPinch=!!pinch;pointers.delete(e.pointerId);if(pointers.size){const [id,pt]=[...pointers.entries()][0];drag={id,last:pt,start:pt,moved:true,touch:true};pinch=null;return;}if(selection&&e.type==='pointerup'){const a=world(selection.start),b=world(selection.end);if(Math.abs(selection.end.x-selection.start.x)>5&&Math.abs(selection.end.y-selection.start.y)>5)focusRect(Math.min(a.x,b.x),Math.min(a.y,b.y),Math.abs(a.x-b.x),Math.abs(a.y-b.y),24);setTool('pan');}else if(drag?.touch&&!drag.moved&&!wasPinch&&e.type==='pointerup'){const now=performance.now(),pt=local(e);if(lastTap&&now-lastTap.time<280&&Math.hypot(pt.x-lastTap.x,pt.y-lastTap.y)<24){zoomAt(2,pt);lastTap=null;}else lastTap={...pt,time:now};}cancelGesture();}
  hit.addEventListener('pointerup',pointerEnd);hit.addEventListener('pointercancel',pointerEnd);hit.addEventListener('lostpointercapture',e=>{if(pointers.has(e.pointerId))pointerEnd(e);});hit.addEventListener('contextmenu',e=>e.preventDefault());
  let navDrag=null;function navMove(e){if(!model)return;const r=$('navBody').getBoundingClientRect(),k=Math.min(r.width/model.w,r.height/model.h),ox=(r.width-model.w*k)/2,oy=(r.height-model.h*k)/2;commit(clamp((e.clientX-r.left-ox)/k,0,model.w),clamp((e.clientY-r.top-oy)/k,0,model.h),camera.upp);}
  $('navBody').addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();navDrag=e.pointerId;e.currentTarget.setPointerCapture(e.pointerId);navMove(e);});$('navBody').addEventListener('pointermove',e=>{if(navDrag===e.pointerId)navMove(e);});for(const event of ['pointerup','pointercancel','lostpointercapture'])$('navBody').addEventListener(event,()=>navDrag=null);
  $('hideNavigator').addEventListener('click',()=>{$('navigator').hidden=true;$('showNavigator').hidden=false;});$('showNavigator').addEventListener('click',()=>{$('navigator').hidden=false;$('showNavigator').hidden=true;paintNavigator();});
- let dropDepth=0;document.addEventListener('dragenter',e=>{if(e.dataTransfer?.types.includes('Files')){e.preventDefault();dropDepth++;$('dropMask').hidden=false;}});document.addEventListener('dragover',e=>{if(e.dataTransfer?.types.includes('Files')){e.preventDefault();e.dataTransfer.dropEffect='copy';}});document.addEventListener('dragleave',()=>{dropDepth=Math.max(0,dropDepth-1);if(!dropDepth)$('dropMask').hidden=true;});document.addEventListener('drop',e=>{e.preventDefault();dropDepth=0;$('dropMask').hidden=true;const files=[...e.dataTransfer.files],file=files.find(f=>/\.svg$/i.test(f.name)||f.type==='image/svg+xml');if(file)readFile(file);else if(files.length)toast('请拖入 .svg 文件。');});
+ let dropDepth=0;document.addEventListener('dragenter',e=>{if(e.dataTransfer?.types.includes('Files')){e.preventDefault();dropDepth++;$('dropMask').hidden=false;}});document.addEventListener('dragover',e=>{if(e.dataTransfer?.types.includes('Files')){e.preventDefault();e.dataTransfer.dropEffect='copy';}});document.addEventListener('dragleave',()=>{dropDepth=Math.max(0,dropDepth-1);if(!dropDepth)$('dropMask').hidden=true;});document.addEventListener('drop',async e=>{
+  e.preventDefault();dropDepth=0;$('dropMask').hidden=true;
+  const files=[...e.dataTransfer.files],svg=files.find(f=>/\.svg$/i.test(f.name)||f.type==='image/svg+xml'),referenceFile=files.find(f=>/\.(png|jpe?g)$/i.test(f.name)||['image/png','image/jpeg'].includes(f.type));
+  if(svg&&!await readFile(svg))return;
+  if(referenceFile)await readReference(referenceFile);
+  if(files.length&&!svg&&!referenceFile)toast('请拖入 SVG、PNG、JPG 或 JPEG 文件。');
+ });
  $('help').addEventListener('click',()=>$('helpDialog').showModal());$('closeHelp').addEventListener('click',()=>$('helpDialog').close());$('helpDialog').addEventListener('click',e=>{if(e.target===$('helpDialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
  if(!document.fullscreenEnabled)$('fullscreen').hidden=true;$('fullscreen').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{toast('当前窗口无法进入全屏。');}});
  document.addEventListener('keydown',e=>{if($('helpDialog').open||e.target.closest('input,textarea,select,[contenteditable="true"]'))return;const key=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&key==='o'){e.preventDefault();$('fileInput').click();return;}if(e.ctrlKey||e.metaKey||e.altKey)return;if(e.target.closest('#layerPanel,button,a')){if(key==='escape'&&e.target.closest('#layerPanel'))setLayerPanel(false);return;}if(key===' '){e.preventDefault();space=true;hit.classList.remove('selecting');}else if(key==='+'||key==='='){e.preventDefault();zoomAt(1.5);}else if(key==='-'||key==='_'){e.preventDefault();zoomAt(1/1.5);}else if(key==='f'||key==='0'){e.preventDefault();fit();}else if(key==='1'){e.preventDefault();actual();}else if(key==='b'&&model){e.preventDefault();cancelGesture();setTool(tool==='box'?'pan':'box');}else if(key==='escape'){cancelGesture();setTool('pan');}else if(key==='?')$('helpDialog').showModal();else if(key.startsWith('arrow')&&model){e.preventDefault();const n=(e.shiftKey?150:50)*camera.upp;commit(camera.cx+(key==='arrowright'?n:key==='arrowleft'?-n:0),camera.cy+(key==='arrowdown'?n:key==='arrowup'?-n:0),camera.upp);}});
- document.addEventListener('keyup',e=>{if(e.key===' '){space=false;hit.classList.toggle('selecting',tool==='box');}});window.addEventListener('blur',()=>{space=false;cancelGesture();hit.classList.toggle('selecting',tool==='box');});
- new ResizeObserver(()=>{size={w:Math.max(1,stage.clientWidth),h:Math.max(1,stage.clientHeight)};if(model&&camera.fit)fit();else schedule();}).observe(stage);
- window.addEventListener('beforeunload',()=>{if(thumbnailURL)URL.revokeObjectURL(thumbnailURL);});
+ document.addEventListener('keyup',e=>{if(e.key===' '){space=false;hit.classList.toggle('selecting',tool==='box');}});window.addEventListener('blur',()=>{space=false;cancelGesture();cancelWipe();hit.classList.toggle('selecting',tool==='box');});
+ new ResizeObserver(()=>{cancelGesture();cancelWipe();measureStage();if(model&&camera.fit)fit();else schedule();}).observe(stage);
+ window.addEventListener('beforeunload',()=>{if(thumbnailURL)URL.revokeObjectURL(thumbnailURL);if(reference)URL.revokeObjectURL(reference.url);});
 })();
 </script>
 </body>

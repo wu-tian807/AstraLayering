@@ -1,0 +1,22 @@
+# Local system and Python caches.
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Tracing caches and trial renders stay local; retain the reconstruction seeds.
+/demos/deep-sea-method-comparison/pixel-trace/work/*
+!/demos/deep-sea-method-comparison/pixel-trace/work/part-seeds.json
+/demos/deep-sea-method-comparison/structure-redraw/work/
+
+# These generated HTML files embed another full copy of the SVG and reference.
+# Recreate them with the preview scripts, or use loading/svg-preview.html.
+/demos/deep-sea-method-comparison/*/绘制过程.html
+
+# Regenerable display variants from the archived analysis script.
+/analysis/suzuran-analysis/annotated.svg
+/analysis/suzuran-analysis/original.svg
+/analysis/suzuran-analysis/original.html
+/analysis/suzuran-analysis/no-hair-strokes.svg
+/analysis/suzuran-analysis/no-hair-strokes.html
+/analysis/suzuran-analysis/heavy-hair-strokes.svg
+/analysis/suzuran-analysis/heavy-hair-strokes.html

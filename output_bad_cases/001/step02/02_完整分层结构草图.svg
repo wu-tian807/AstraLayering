@@ -1,0 +1,535 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="structure" width="1024" height="1536" viewBox="0 0 1024 1536" version="1.1" role="img" aria-labelledby="art-title art-desc" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+  <title id="art-title">双马尾角色 · 第二步结构草图</title>
+  <desc id="art-desc">按参考图手工规划贝塞尔轮廓。SVG 的绘制组和路径以实际 DOM 顺序从下层到上层排列，data-order 是组顺序，data-step 是全局路径顺序，均从 1 开始。surface 路径闭合且保留遮挡下的完整几何，白色或浅灰填充仅用于草图遮挡，可直接替换 fill。完整脸、后发头壳、马尾根部、肢体连接均未按可见区域裁断。不包含参考位图。将根元素 class 设为 xray（或浏览器打开 SVG#structure）可检查所有完整底形。guide 是可删除的结构流向线。耳朵及隐藏连接是保守推断，不能视为原图的可见事实。</desc>
+  <defs>
+    <clipPath id="clip-eye-sl" clipPathUnits="userSpaceOnUse">
+      <path d="M449 203 C460 193 478 192 493 198 C498 203 496 209 490 214 C477 222 460 217 449 203 Z" />
+    </clipPath>
+    <clipPath id="clip-eye-sr" clipPathUnits="userSpaceOnUse">
+      <path d="M535 192 C547 178 562 174 579 179 C578 190 570 197 558 199 C548 201 540 197 535 192 Z" />
+    </clipPath>
+  </defs>
+  <style>
+          svg.xray [data-role="surface"], svg:target [data-role="surface"] {
+            fill: #ffffff !important; fill-opacity: .045 !important;
+            stroke: #8999a3 !important; stroke-width: 1.15 !important;
+          }
+          svg.xray [data-role="guide"], svg:target [data-role="guide"] { opacity:.8; }
+          svg.xray [data-role="contour"], svg:target [data-role="contour"] { opacity:.32; }
+        </style>
+  <metadata id="drawing-notes">{
+  "stage": "structure sketch",
+  "units": "reference pixels",
+  "screen_left": "sl",
+  "screen_right": "sr",
+  "drawing_order": "SVG document order, back to front",
+  "layers": [
+    {
+      "id": "paper",
+      "label": "背景",
+      "order": 1
+    },
+    {
+      "id": "tail-sl-outer",
+      "label": "左马尾 · 最后方细束",
+      "order": 2
+    },
+    {
+      "id": "tail-sr-outer",
+      "label": "右马尾 · 最后方细束",
+      "order": 3
+    },
+    {
+      "id": "tail-sl-rear",
+      "label": "左马尾 · 后方宽发片",
+      "order": 4
+    },
+    {
+      "id": "tail-sr-rear-upper",
+      "label": "右马尾 · 内侧后发上片",
+      "order": 5
+    },
+    {
+      "id": "tail-sr-rear-lower",
+      "label": "右马尾 · 内侧后发下片",
+      "order": 6
+    },
+    {
+      "id": "tail-sl-far-tip",
+      "label": "左马尾 · 后方卷尖",
+      "order": 7
+    },
+    {
+      "id": "tail-sr-far-tip",
+      "label": "右马尾 · 后方卷尖",
+      "order": 8
+    },
+    {
+      "id": "tail-sl-main",
+      "label": "左马尾 · 主下垂发体",
+      "order": 9
+    },
+    {
+      "id": "tail-sr-main",
+      "label": "右马尾 · 主下垂发体",
+      "order": 10
+    },
+    {
+      "id": "tail-sl-front-curl",
+      "label": "左马尾 · 前方回卷发片",
+      "order": 11
+    },
+    {
+      "id": "tail-sr-front-curl",
+      "label": "右马尾 · 前方回卷发片",
+      "order": 12
+    },
+    {
+      "id": "hair-back-complete",
+      "label": "完整后发头壳",
+      "order": 13
+    },
+    {
+      "id": "leg-sr-complete",
+      "label": "画面右腿与足",
+      "order": 14
+    },
+    {
+      "id": "leg-sl-complete",
+      "label": "画面左腿与足",
+      "order": 15
+    },
+    {
+      "id": "arm-sr-complete",
+      "label": "画面右弯臂",
+      "order": 16
+    },
+    {
+      "id": "arm-sl-complete",
+      "label": "画面左抬臂",
+      "order": 17
+    },
+    {
+      "id": "body-torso-neck-complete",
+      "label": "完整躯干与颈部底体",
+      "order": 18
+    },
+    {
+      "id": "swimsuit-complete",
+      "label": "完整连体泳装",
+      "order": 19
+    },
+    {
+      "id": "hand-sr-hip-complete",
+      "label": "叉腰手 · 掌体、手指与指甲",
+      "order": 20
+    },
+    {
+      "id": "ear-sl-complete",
+      "label": "完整左耳",
+      "order": 21
+    },
+    {
+      "id": "ear-sr-complete",
+      "label": "完整右耳",
+      "order": 22
+    },
+    {
+      "id": "face-complete",
+      "label": "完整头面底形",
+      "order": 23
+    },
+    {
+      "id": "face-nose-mouth",
+      "label": "鼻口结构",
+      "order": 24
+    },
+    {
+      "id": "brow-sl-complete",
+      "label": "完整左眉",
+      "order": 25
+    },
+    {
+      "id": "brow-sr-complete",
+      "label": "完整右眉",
+      "order": 26
+    },
+    {
+      "id": "eye-sl-complete",
+      "label": "完整左眼",
+      "order": 27
+    },
+    {
+      "id": "eye-sr-complete",
+      "label": "完整右眼",
+      "order": 28
+    },
+    {
+      "id": "headgear-sl-ear",
+      "label": "左耳侧组件",
+      "order": 29
+    },
+    {
+      "id": "headgear-sr-ear",
+      "label": "右耳侧组件",
+      "order": 30
+    },
+    {
+      "id": "headgear-sl-frame",
+      "label": "左折线发饰",
+      "order": 31
+    },
+    {
+      "id": "headgear-sr-frame",
+      "label": "右折线发饰",
+      "order": 32
+    },
+    {
+      "id": "sidelock-sl",
+      "label": "左前侧鬓发",
+      "order": 33
+    },
+    {
+      "id": "sidelock-sr",
+      "label": "右前侧鬓发",
+      "order": 34
+    },
+    {
+      "id": "fringe-sl-outer",
+      "label": "左外侧刘海",
+      "order": 35
+    },
+    {
+      "id": "fringe-sr-sweep",
+      "label": "右侧弧形刘海",
+      "order": 36
+    },
+    {
+      "id": "fringe-center-sl",
+      "label": "中央偏左尖刘海",
+      "order": 37
+    },
+    {
+      "id": "fringe-center-sr",
+      "label": "中央偏右尖刘海",
+      "order": 38
+    },
+    {
+      "id": "hand-sl-v-complete",
+      "label": "最上层 V 手势",
+      "order": 39
+    }
+  ],
+  "drawable_path_count": 150,
+  "fill_rule": "Each surface is a complete closed component; no subtractive occlusion masks.",
+  "replay": "Show successive groups by data-order, or successive paths by data-step. Resource paths do not count.",
+  "guide_lines": "Non-fillable construction strokes may be hidden independently."
+}</metadata>
+  <g id="paper" data-order="1" inkscape:groupmode="layer" inkscape:label="01 背景">
+    <title>背景</title>
+    <desc>独立白色背景；隐藏本组即可检查透明间隙。</desc>
+    <path id="paper-surface" data-step="1" data-role="surface" d="M0 0 H1024 V1536 H0 Z" fill="#ffffff" />
+  </g>
+  <g id="tail-sl-outer" data-order="2" inkscape:groupmode="layer" inkscape:label="02 左马尾 · 最后方细束">
+    <title>左马尾 · 最后方细束</title>
+    <desc>每条细束均为从上游到尖端的完整闭合带，未按人体轮廓裁断。</desc>
+    <path id="tail-sl-outer-p002" data-step="2" data-role="surface" d="M394 90 C370 119 350 226 313 332 C274 441 224 534 167 606 C117 670 67 716 55 751 C37 793 61 832 91 842 L102 829 C82 817 68 795 76 761 C86 720 144 665 193 600 C256 516 300 425 335 328 C369 235 407 150 410 97 C408 77 400 75 394 90 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sl-outer-p003" data-step="3" data-role="surface" d="M360 173 C319 391 251 570 157 735 C108 820 44 897 29 946 C12 1003 24 1079 69 1114 L79 1100 C44 1064 29 1016 41 972 C62 913 119 849 171 765 C267 608 360 357 389 179 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+  </g>
+  <g id="tail-sr-outer" data-order="3" inkscape:groupmode="layer" inkscape:label="03 右马尾 · 最后方细束">
+    <title>右马尾 · 最后方细束</title>
+    <desc>完整上游连接和两条外侧回环；白色开口由真实路径间隙形成。</desc>
+    <path id="tail-sr-outer-p004" data-step="4" data-role="surface" d="M646 89 C675 195 738 363 800 489 C859 610 927 699 940 765 C945 793 938 816 924 829 L938 849 C958 821 962 786 949 745 C929 681 874 588 822 479 C758 345 693 177 664 91 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sr-outer-p005" data-step="5" data-role="surface" d="M786 550 C849 673 924 799 964 886 C1002 967 1013 1048 976 1094 L950 1118 C983 1068 988 1024 969 959 C946 883 909 814 865 743 C829 681 802 613 778 553 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+  </g>
+  <g id="tail-sl-rear" data-order="4" inkscape:groupmode="layer" inkscape:label="04 左马尾 · 后方宽发片">
+    <title>左马尾 · 后方宽发片</title>
+    <desc>发根、左臂后方和主发片后方的连续形体均已补足。</desc>
+    <path id="tail-sl-rear-p006" data-step="6" data-role="surface" d="M395 73 C366 76 346 151 335 237 C308 388 247 566 198 729 C161 850 146 973 161 1057 C164 1085 169 1104 180 1114 C202 1096 229 1059 243 1022 C261 984 255 923 248 880 C245 856 247 836 251 821 C271 689 324 540 371 396 C414 260 449 130 421 86 C413 75 403 68 395 73 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sl-rear-p007" data-step="7" data-role="guide" d="M397 93 C382 254 310 463 257 653 C209 831 184 960 192 1053" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+    <path id="tail-sl-rear-p008" data-step="8" data-role="detail" d="M251 821 C231 875 222 909 206 930" fill="none" stroke="#5d7480" stroke-width="1.0" opacity="0.62" />
+  </g>
+  <g id="tail-sr-rear-upper" data-order="5" inkscape:groupmode="layer" inkscape:label="05 右马尾 · 内侧后发上片">
+    <title>右马尾 · 内侧后发上片</title>
+    <desc>下端朝左卷入，补全被右臂、躯干与右腿覆盖的发片。</desc>
+    <path id="tail-sr-rear-upper-p009" data-step="9" data-role="surface" d="M642 47 C614 40 610 87 621 160 C638 265 672 417 710 563 C745 699 778 831 771 899 C766 946 736 988 687 1000 C722 1016 765 974 784 944 C823 879 815 800 792 713 C752 560 701 333 680 149 C674 87 663 42 642 47 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sr-rear-upper-p010" data-step="10" data-role="guide" d="M646 79 C664 309 732 541 776 764 C797 879 764 955 713 991" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="tail-sr-rear-lower" data-order="6" inkscape:groupmode="layer" inkscape:label="06 右马尾 · 内侧后发下片">
+    <title>右马尾 · 内侧后发下片</title>
+    <desc>上游延伸到发根附近；腿前遮挡处未截断。</desc>
+    <path id="tail-sr-rear-lower-p011" data-step="11" data-role="surface" d="M648 108 C672 285 733 607 773 783 C791 868 807 983 771 1044 C757 1067 738 1083 726 1084 C766 1094 805 1053 824 1005 C861 907 828 747 793 605 C748 426 701 243 669 107 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sr-rear-lower-p012" data-step="12" data-role="guide" d="M714 461 C753 650 814 846 803 964 C799 1017 772 1066 744 1081" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="tail-sl-far-tip" data-order="7" inkscape:groupmode="layer" inkscape:label="07 左马尾 · 后方卷尖">
+    <title>左马尾 · 后方卷尖</title>
+    <desc>隐藏上段延续到上游发束内；粉紫色尖端本步仅标结构分区。</desc>
+    <path id="tail-sl-far-tip-p013" data-step="13" data-role="surface" d="M369 169 C334 441 188 748 112 1028 C96 1111 116 1173 161 1204 C190 1226 215 1229 229 1213 C243 1235 218 1241 188 1228 C133 1217 98 1184 80 1140 C55 1072 86 958 122 850 C192 638 314 347 348 167 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sl-far-tip-p014" data-step="14" data-role="detail" d="M152 1207 C178 1225 210 1235 229 1224" fill="none" stroke="#5d7480" stroke-width="0.9" opacity="0.55" />
+  </g>
+  <g id="tail-sr-far-tip" data-order="8" inkscape:groupmode="layer" inkscape:label="08 右马尾 · 后方卷尖">
+    <title>右马尾 · 后方卷尖</title>
+    <desc>蓝紫尾尖对应的完整窄束，上端藏于主发束内。</desc>
+    <path id="tail-sr-far-tip-p015" data-step="15" data-role="surface" d="M670 143 C722 352 804 567 842 659 C911 799 969 937 973 1073 C976 1152 946 1223 902 1245 C890 1250 879 1250 874 1237 C898 1248 922 1190 931 1157 C951 1069 931 972 899 884 C850 738 728 396 649 145 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sr-far-tip-p016" data-step="16" data-role="detail" d="M901 1234 C924 1220 946 1183 957 1150" fill="none" stroke="#5d7480" stroke-width="0.9" opacity="0.5" />
+  </g>
+  <g id="tail-sl-main" data-order="9" inkscape:groupmode="layer" inkscape:label="09 左马尾 · 主下垂发体">
+    <title>左马尾 · 主下垂发体</title>
+    <desc>闭合大发片有完整发根、宽度与长曲线；包含身体后方全部形体。</desc>
+    <path id="tail-sl-main-p017" data-step="17" data-role="surface" d="M395 73 C363 75 350 149 331 249 C310 371 273 503 233 623 C201 718 138 841 106 881 C86 917 72 967 66 1015 C53 1091 66 1181 105 1231 C122 1254 137 1253 150 1243 C126 1248 112 1223 111 1196 C107 1154 131 1102 149 1053 C184 951 214 862 235 780 C274 637 321 518 360 396 C399 268 424 168 421 108 C419 76 407 66 395 73 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sl-main-p018" data-step="18" data-role="guide" d="M398 98 C374 289 302 514 242 694 C204 802 129 970 98 1080 C81 1163 109 1228 138 1243" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+    <path id="tail-sl-main-p019" data-step="19" data-role="detail" d="M311 475 C283 590 236 718 200 803" fill="none" stroke="#5d7480" stroke-width="1.05" opacity="0.63" />
+  </g>
+  <g id="tail-sr-main" data-order="10" inkscape:groupmode="layer" inkscape:label="10 右马尾 · 主下垂发体">
+    <title>右马尾 · 主下垂发体</title>
+    <desc>向右展开的大曲面；从根部到多个下游卷片自然搭接。</desc>
+    <path id="tail-sr-main-p020" data-step="20" data-role="surface" d="M644 45 C670 41 678 116 696 183 C737 347 803 522 865 660 C916 775 963 877 975 977 C986 1075 952 1171 899 1210 C853 1242 804 1231 791 1197 C807 1216 830 1219 848 1209 C888 1189 910 1132 914 1075 C921 987 897 895 862 822 C816 724 779 626 738 516 C682 354 638 214 624 116 C620 73 627 48 644 45 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sr-main-p021" data-step="21" data-role="guide" d="M648 67 C693 310 798 573 880 790 C953 970 957 1127 867 1206" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+    <path id="tail-sr-main-p022" data-step="22" data-role="detail" d="M793 721 C838 836 883 947 876 1025" fill="none" stroke="#5d7480" stroke-width="1.05" opacity="0.6" />
+  </g>
+  <g id="tail-sl-front-curl" data-order="11" inkscape:groupmode="layer" inkscape:label="11 左马尾 · 前方回卷发片">
+    <title>左马尾 · 前方回卷发片</title>
+    <desc>沿自然交叉拆出的前片；隐藏接头与后方发体重叠，保留两层回卷尖。</desc>
+    <path id="tail-sl-front-curl-p023" data-step="23" data-role="surface" d="M139 1002 C167 1111 252 1200 312 1194 C321 1193 326 1189 327 1184 C333 1208 303 1214 276 1205 C224 1199 177 1169 145 1136 C122 1108 110 1079 108 1054 C106 1036 114 1015 139 1002 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sl-front-curl-p024" data-step="24" data-role="detail" d="M155 1116 C200 1171 270 1211 319 1199" fill="none" stroke="#5d7480" stroke-width="1.0" opacity="0.55" />
+    <path id="tail-sl-front-curl-p025" data-step="25" data-role="surface" d="M398 86 C395 159 374 230 352 283 C329 417 257 613 191 771 C170 831 157 898 157 954 C155 1037 179 1108 240 1139 C275 1157 314 1156 319 1137 C330 1164 290 1182 259 1177 C210 1176 170 1153 134 1118 C87 1074 64 1037 66 985 C71 914 117 816 164 718 C231 554 291 391 329 277 C353 214 372 142 391 87 C393 84 396 83 398 86 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sl-front-curl-p026" data-step="26" data-role="guide" d="M318 429 C271 588 182 789 132 917 C105 1006 148 1128 236 1161 C271 1173 306 1162 316 1150" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="tail-sr-front-curl" data-order="12" inkscape:groupmode="layer" inkscape:label="12 右马尾 · 前方回卷发片">
+    <title>右马尾 · 前方回卷发片</title>
+    <desc>大卷片在后方主束之前、全部人体之后；回卷开口保留透明。</desc>
+    <path id="tail-sr-front-curl-p027" data-step="27" data-role="surface" d="M908 847 C929 908 927 957 916 1008 C909 1053 883 1092 843 1106 C817 1117 797 1101 817 1077 C795 1085 791 1118 832 1114 C880 1111 917 1067 929 1018 C947 944 933 890 920 845 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sr-front-curl-p028" data-step="28" data-role="detail" d="M927 1018 C921 1068 875 1107 833 1110" fill="none" stroke="#5d7480" stroke-width="1.0" opacity="0.5" />
+    <path id="tail-sr-front-curl-p029" data-step="29" data-role="surface" d="M646 82 C660 120 680 192 697 240 C733 417 786 559 846 696 C905 835 940 922 933 1000 C929 1066 898 1124 853 1148 C817 1170 782 1169 778 1141 C760 1162 796 1194 827 1197 C882 1206 936 1160 962 1101 C994 1020 977 912 935 815 C887 702 830 602 791 491 C750 377 740 296 715 237 C689 164 665 116 650 84 C647 79 641 83 646 82 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="tail-sr-front-curl-p030" data-step="30" data-role="guide" d="M771 506 C834 707 936 890 943 1005 C948 1110 855 1194 789 1165" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="hair-back-complete" data-order="13" inkscape:groupmode="layer" inkscape:label="13 完整后发头壳">
+    <title>完整后发头壳</title>
+    <desc>完整实心发体，覆盖隐藏的头頂、额后、脸后与耳后区域；无脸形挖洞。</desc>
+    <path id="complete-back-hair-surface" data-step="31" data-role="surface" d="M500 35 C467 29 440 49 417 77 C396 105 387 143 394 183 C398 218 409 250 428 268 L423 246 C438 267 453 282 472 283 L459 263 C484 280 509 283 532 277 C551 279 574 264 589 246 L582 273 C604 251 616 221 619 186 C630 149 622 106 607 78 C585 45 545 23 515 33 C509 35 503 37 500 35 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="hair-back-complete-p032" data-step="32" data-role="guide" d="M503 47 C448 72 414 125 418 185 C419 221 434 254 456 269" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+    <path id="hair-back-complete-p033" data-step="33" data-role="guide" d="M516 45 C568 58 605 99 607 153 C609 198 588 245 561 262" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="leg-sr-complete" data-order="14" inkscape:groupmode="layer" inkscape:label="14 画面右腿与足">
+    <title>画面右腿与足</title>
+    <desc>整条腿从泳装内的髋部连接到脚趾，隐藏上端保留闭合体积。</desc>
+    <path id="complete-leg-sr-surface" data-step="34" data-role="surface" d="M548 610 C580 591 608 598 618 620 C640 674 649 748 655 830 C660 909 658 957 682 1007 C706 1055 724 1070 738 1125 C758 1197 768 1269 791 1324 C798 1336 790 1350 798 1368 C804 1396 817 1435 825 1456 C829 1467 829 1478 823 1483 C819 1487 817 1483 815 1480 C815 1491 806 1494 802 1488 C801 1497 791 1499 787 1490 C784 1500 776 1500 772 1493 C762 1499 757 1489 756 1479 C751 1460 758 1434 756 1408 C755 1379 752 1363 746 1351 C742 1342 746 1328 742 1311 C736 1284 722 1247 708 1210 C685 1154 663 1091 633 1046 C606 1007 601 977 588 942 C565 884 540 827 526 768 C513 724 509 690 515 656 C521 636 537 616 548 610 Z" fill="#ffffff" stroke="#645d65" stroke-width="2.05" />
+    <path id="leg-sr-complete-p035" data-step="35" data-role="guide" d="M580 658 C607 769 621 881 645 983" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="10 10" />
+    <path id="leg-sr-complete-p036" data-step="36" data-role="guide" d="M649 1025 C705 1131 743 1254 770 1329" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="10 10" />
+    <path id="leg-sr-complete-p037" data-step="37" data-role="guide" d="M770 1367 C781 1412 790 1450 791 1474" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="7 9" />
+    <path id="leg-sr-complete-p038" data-step="38" data-role="detail" d="M624 980 C630 1000 638 1012 646 1023" fill="none" stroke="#645d65" stroke-width="1.05" opacity="0.6" />
+    <path id="leg-sr-complete-p039" data-step="39" data-role="detail" d="M652 988 C654 1001 658 1009 663 1017" fill="none" stroke="#645d65" stroke-width="1.0" opacity="0.52" />
+    <path id="leg-sr-complete-p040" data-step="40" data-role="detail" d="M748 1331 C748 1340 752 1349 755 1355" fill="none" stroke="#645d65" stroke-width="1.0" opacity="0.62" />
+    <path id="leg-sr-complete-p041" data-step="41" data-role="detail" d="M776 1465 C780 1474 780 1488 776 1493 M789 1465 C794 1476 795 1484 792 1490 M803 1462 C808 1474 809 1483 806 1486 M814 1460 C820 1471 819 1477 819 1481" fill="none" stroke="#645d65" stroke-width="1.05" />
+    <path id="leg-sr-complete-p042" data-step="42" data-role="nail" d="M760.7 1486 C760.7 1483.51 763.521 1481.5 767 1481.5 C770.479 1481.5 773.3 1483.51 773.3 1486 C773.3 1488.49 770.479 1490.5 767 1490.5 C763.521 1490.5 760.7 1488.49 760.7 1486 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+    <path id="leg-sr-complete-p043" data-step="43" data-role="nail" d="M775.7 1490 C775.7 1488.07 777.625 1486.5 780 1486.5 C782.375 1486.5 784.3 1488.07 784.3 1490 C784.3 1491.93 782.375 1493.5 780 1493.5 C777.625 1493.5 775.7 1491.93 775.7 1490 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+    <path id="leg-sr-complete-p044" data-step="44" data-role="nail" d="M788.9 1489 C788.9 1486.96 790.736 1485.3 793 1485.3 C795.264 1485.3 797.1 1486.96 797.1 1489 C797.1 1491.04 795.264 1492.7 793 1492.7 C790.736 1492.7 788.9 1491.04 788.9 1489 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+    <path id="leg-sr-complete-p045" data-step="45" data-role="nail" d="M804.6 1484 C804.6 1481.9 806.122 1480.2 808 1480.2 C809.878 1480.2 811.4 1481.9 811.4 1484 C811.4 1486.1 809.878 1487.8 808 1487.8 C806.122 1487.8 804.6 1486.1 804.6 1484 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+    <path id="leg-sr-complete-p046" data-step="46" data-role="nail" d="M817.5 1478 C817.5 1476.18 818.619 1474.7 820 1474.7 C821.381 1474.7 822.5 1476.18 822.5 1478 C822.5 1479.82 821.381 1481.3 820 1481.3 C818.619 1481.3 817.5 1479.82 817.5 1478 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+  </g>
+  <g id="leg-sl-complete" data-order="15" inkscape:groupmode="layer" inkscape:label="15 画面左腿与足">
+    <title>画面左腿与足</title>
+    <desc>完整腿形保留泳装下面的连接，脚与趾甲属于本肢体的内部结构。</desc>
+    <path id="complete-leg-sl-surface" data-step="47" data-role="surface" d="M425 599 C453 606 480 645 482 704 C482 779 465 849 452 910 C443 950 452 972 441 1008 C430 1043 428 1110 422 1174 C415 1236 417 1279 431 1324 C436 1338 430 1350 433 1361 C435 1390 441 1429 449 1454 C452 1465 450 1478 446 1487 C442 1494 433 1494 429 1487 C425 1496 417 1497 413 1490 C409 1496 402 1496 399 1489 C394 1494 387 1492 386 1486 C379 1489 376 1483 377 1475 C371 1468 377 1446 379 1428 C381 1402 384 1376 385 1360 C381 1344 383 1333 386 1320 C388 1300 377 1262 365 1216 C351 1164 344 1123 355 1077 C366 1039 375 1000 377 970 C378 936 374 904 369 869 C361 806 354 755 362 703 C368 658 389 612 403 595 C410 589 420 592 425 599 Z" fill="#ffffff" stroke="#645d65" stroke-width="2.05" />
+    <path id="leg-sl-complete-p048" data-step="48" data-role="guide" d="M426 661 C432 767 421 876 412 971" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="10 10" />
+    <path id="leg-sl-complete-p049" data-step="49" data-role="guide" d="M408 1017 C391 1112 396 1245 406 1323" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="10 10" />
+    <path id="leg-sl-complete-p050" data-step="50" data-role="guide" d="M407 1369 C409 1414 414 1450 416 1474" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="7 9" />
+    <path id="leg-sl-complete-p051" data-step="51" data-role="detail" d="M399 975 C395 990 399 1003 403 1011 M436 976 C433 991 428 1001 423 1008" fill="none" stroke="#645d65" stroke-width="1.05" opacity="0.6" />
+    <path id="leg-sl-complete-p052" data-step="52" data-role="detail" d="M387 1335 C388 1345 391 1351 390 1362" fill="none" stroke="#645d65" stroke-width="1.05" opacity="0.65" />
+    <path id="leg-sl-complete-p053" data-step="53" data-role="detail" d="M388 1460 C386 1471 387 1480 389 1486 M399 1464 C397 1474 398 1483 401 1489 M412 1465 C411 1475 412 1485 414 1490 M428 1463 C426 1472 427 1483 430 1487" fill="none" stroke="#645d65" stroke-width="1.05" />
+    <path id="leg-sl-complete-p054" data-step="54" data-role="nail" d="M383 1480 C383 1478.34 384.343 1477 386 1477 C387.657 1477 389 1478.34 389 1480 C389 1481.66 387.657 1483 386 1483 C384.343 1483 383 1481.66 383 1480 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+    <path id="leg-sl-complete-p055" data-step="55" data-role="nail" d="M393.3 1484 C393.3 1482.29 394.957 1480.9 397 1480.9 C399.043 1480.9 400.7 1482.29 400.7 1484 C400.7 1485.71 399.043 1487.1 397 1487.1 C394.957 1487.1 393.3 1485.71 393.3 1484 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+    <path id="leg-sl-complete-p056" data-step="56" data-role="nail" d="M403.9 1486 C403.9 1484.23 405.736 1482.8 408 1482.8 C410.264 1482.8 412.1 1484.23 412.1 1486 C412.1 1487.77 410.264 1489.2 408 1489.2 C405.736 1489.2 403.9 1487.77 403.9 1486 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+    <path id="leg-sl-complete-p057" data-step="57" data-role="nail" d="M416.2 1486 C416.2 1484.01 418.349 1482.4 421 1482.4 C423.651 1482.4 425.8 1484.01 425.8 1486 C425.8 1487.99 423.651 1489.6 421 1489.6 C418.349 1489.6 416.2 1487.99 416.2 1486 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+    <path id="leg-sl-complete-p058" data-step="58" data-role="nail" d="M431.6 1483 C431.6 1480.46 434.465 1478.4 438 1478.4 C441.535 1478.4 444.4 1480.46 444.4 1483 C444.4 1485.54 441.535 1487.6 438 1487.6 C434.465 1487.6 431.6 1485.54 431.6 1483 Z" fill="#f4f6f7" stroke="#645d65" stroke-width="0.9" />
+  </g>
+  <g id="arm-sr-complete" data-order="16" inkscape:groupmode="layer" inkscape:label="16 画面右弯臂">
+    <title>画面右弯臂</title>
+    <desc>肩、上臂、肘、前臂和隐藏腕端连续；手另置于泳装上方。</desc>
+    <path id="arm-sr-complete-p059" data-step="59" data-role="surface" d="M593 321 C617 317 635 325 650 350 C668 377 690 410 717 447 C733 469 748 491 760 503 C765 510 760 519 754 526 C731 553 705 575 678 598 C660 612 645 625 632 629 C622 630 613 620 612 609 C611 599 620 590 632 580 C662 552 683 525 704 502 C682 477 659 447 638 420 L617 395 C607 379 594 374 586 355 C580 342 584 327 593 321 Z" fill="#ffffff" stroke="#645d65" stroke-width="2.05" />
+    <path id="arm-sr-complete-p060" data-step="60" data-role="guide" d="M615 349 C659 407 698 465 733 508 C705 543 670 577 635 606" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="8 10" />
+    <path id="arm-sr-complete-p061" data-step="61" data-role="detail" d="M704 502 C711 496 720 494 728 495" fill="none" stroke="#645d65" stroke-width="1.1" opacity="0.65" />
+    <path id="arm-sr-complete-p062" data-step="62" data-role="detail" d="M612 382 C616 390 618 396 618 402" fill="none" stroke="#645d65" stroke-width="1.0" opacity="0.55" />
+  </g>
+  <g id="arm-sl-complete" data-order="17" inkscape:groupmode="layer" inkscape:label="17 画面左抬臂">
+    <title>画面左抬臂</title>
+    <desc>肩和腕端已补足，前臂完整延伸到 V 手掌之下。</desc>
+    <path id="arm-sl-complete-p063" data-step="63" data-role="surface" d="M461 312 C444 301 430 299 408 305 C373 317 330 315 285 315 C295 290 319 259 342 240 C351 232 354 216 345 210 C335 204 326 215 316 227 C287 254 256 274 239 295 C226 309 216 322 211 331 C203 344 221 353 242 357 C296 366 359 365 410 368 C423 369 430 376 434 389 C450 384 461 360 467 340 C470 326 468 319 461 312 Z" fill="#ffffff" stroke="#645d65" stroke-width="2.05" />
+    <path id="arm-sl-complete-p064" data-step="64" data-role="guide" d="M338 230 C301 265 264 296 238 327 C296 342 370 338 437 337" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="8 10" />
+    <path id="arm-sl-complete-p065" data-step="65" data-role="detail" d="M258 333 C272 328 278 321 285 315" fill="none" stroke="#645d65" stroke-width="1.05" opacity="0.6" />
+    <path id="arm-sl-complete-p066" data-step="66" data-role="detail" d="M425 354 C432 364 434 375 434 384" fill="none" stroke="#645d65" stroke-width="1.05" opacity="0.65" />
+  </g>
+  <g id="body-torso-neck-complete" data-order="18" inkscape:groupmode="layer" inkscape:label="18 完整躯干与颈部底体">
+    <title>完整躯干与颈部底体</title>
+    <desc>从颈顶到肩腰髋的中性连续体块；衣物下仅保留连接轮廓，不添加不可见细节。</desc>
+    <path id="complete-torso-neck-surface" data-step="67" data-role="surface" d="M440 303 C464 308 487 313 503 304 C510 297 505 272 505 252 C520 248 543 245 556 249 C553 270 552 294 558 304 C573 315 592 324 610 324 C622 339 622 365 613 390 C604 422 600 453 591 488 C580 515 580 529 588 557 C600 592 611 620 618 650 C616 674 598 690 575 703 C549 715 524 720 503 715 C481 722 465 714 444 700 C423 685 405 665 399 644 C397 624 399 603 409 584 C424 560 439 539 443 524 C451 507 443 480 440 455 C438 430 431 407 432 386 C438 364 443 333 440 303 Z" fill="#ffffff" />
+    <path id="body-torso-neck-complete-p068" data-step="68" data-role="contour" d="M440 303 C464 308 487 313 503 304 C510 297 505 272 505 252" fill="none" stroke="#645d65" stroke-width="2.05" />
+    <path id="body-torso-neck-complete-p069" data-step="69" data-role="contour" d="M556 249 C553 270 552 294 558 304 C573 315 592 324 610 324" fill="none" stroke="#645d65" stroke-width="2.05" />
+    <path id="body-torso-neck-complete-p070" data-step="70" data-role="detail" d="M478 318 C493 321 513 322 522 333 M539 333 C551 325 566 328 580 325" fill="none" stroke="#645d65" stroke-width="1.1" opacity="0.72" />
+    <path id="body-torso-neck-complete-p071" data-step="71" data-role="guide" d="M530 289 C528 337 527 378 522 422 C517 468 513 517 511 562" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="6 9" />
+    <path id="body-torso-neck-complete-p072" data-step="72" data-role="guide" d="M454 348 C483 359 551 371 597 358" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+    <path id="body-torso-neck-complete-p073" data-step="73" data-role="guide" d="M419 599 C459 619 555 628 601 607" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="swimsuit-complete" data-order="19" inkscape:groupmode="layer" inkscape:label="19 完整连体泳装">
+    <title>完整连体泳装</title>
+    <desc>肩带、衣身和被叉腰手遮住的右侧边为连续闭合形；后续直接替换底形 fill。</desc>
+    <path id="complete-swimsuit-surface" data-step="74" data-role="surface" d="M471 309 L480 312 C470 339 474 360 492 372 C517 388 552 383 572 369 C586 357 584 338 583 319 L595 322 C596 351 603 382 611 398 C620 421 606 450 600 474 C594 496 580 518 583 532 C584 551 591 573 599 594 C574 610 552 637 531 672 C521 689 516 704 503 710 C496 707 491 706 484 710 C474 681 462 654 443 632 C427 614 411 602 400 598 C411 574 430 550 442 531 C449 521 443 500 442 480 C438 451 430 427 433 407 C436 386 451 367 458 343 Z" fill="#fafbfc" stroke="#666c7b" stroke-width="2.05" />
+    <path id="swimsuit-complete-p075" data-step="75" data-role="detail" d="M458 400 C456 445 471 484 471 520 C470 556 455 596 451 639" fill="none" stroke="#666c7b" stroke-width="1.0" opacity="0.56" />
+    <path id="swimsuit-complete-p076" data-step="76" data-role="detail" d="M590 414 C587 452 566 491 559 536 C554 564 558 599 552 638" fill="none" stroke="#666c7b" stroke-width="1.0" opacity="0.56" />
+    <path id="swimsuit-complete-p077" data-step="77" data-role="detail" d="M402 594 C425 608 454 635 470 663 M599 590 C577 605 560 622 545 646" fill="none" stroke="#666c7b" stroke-width="0.95" opacity="0.5" />
+    <path id="swimsuit-complete-p078" data-step="78" data-role="guide" d="M448 429 C482 441 553 450 601 433" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="5 10" />
+    <path id="swimsuit-complete-p079" data-step="79" data-role="guide" d="M449 510 C478 522 550 528 584 515" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="5 10" />
+  </g>
+  <g id="hand-sr-hip-complete" data-order="20" inkscape:groupmode="layer" inkscape:label="20 叉腰手 · 掌体、手指与指甲">
+    <title>叉腰手 · 掌体、手指与指甲</title>
+    <desc>完整手掌接到腕端；指根相连，手下面的泳装和髋部底形保持完整。</desc>
+    <path id="complete-hip-hand-surface" data-step="80" data-role="surface" d="M627 588 C617 583 615 576 609 574 C604 570 603 562 598 558 C596 555 591 555 588 558 L573 568 C568 571 568 575 572 577 C575 579 580 575 584 572 L588 570 L592 581 C581 588 575 598 568 608 C564 613 566 617 571 614 L591 597 C584 606 577 615 575 620 C572 624 575 627 579 624 L598 607 C591 615 585 621 584 625 C582 629 587 630 591 627 L609 615 C615 620 618 628 626 629 C632 630 641 621 644 615 C643 607 635 595 627 588 Z" fill="#ffffff" stroke="#645d65" stroke-width="2.05" />
+    <path id="hand-sr-hip-complete-p081" data-step="81" data-role="detail" d="M592 581 C598 578 603 575 609 574 M591 597 C598 592 605 588 612 587 M598 607 C604 602 610 599 617 599 M609 615 C613 612 618 611 622 613" fill="none" stroke="#645d65" stroke-width="1.3" />
+    <path id="hand-sr-hip-complete-p082" data-step="82" data-role="detail" d="M620 603 C624 610 627 615 632 617" fill="none" stroke="#645d65" stroke-width="1.0" opacity="0.6" />
+    <path id="hand-sr-hip-complete-p083" data-step="83" data-role="nail" d="M574 569 L580 566 L584 570 L576 575 Q571 577 572 573 Z" fill="#f1f4f5" stroke="#645d65" stroke-width="0.8" />
+    <path id="hand-sr-hip-complete-p084" data-step="84" data-role="nail" d="M567 609 L571 604 L575 606 L571 613 Q566 617 567 609 Z" fill="#f1f4f5" stroke="#645d65" stroke-width="0.8" />
+    <path id="hand-sr-hip-complete-p085" data-step="85" data-role="nail" d="M576 618 L580 614 L584 616 L579 624 Q574 626 576 618 Z" fill="#f1f4f5" stroke="#645d65" stroke-width="0.8" />
+    <path id="hand-sr-hip-complete-p086" data-step="86" data-role="nail" d="M586 623 L591 619 L594 621 L590 627 Q584 629 586 623 Z" fill="#f1f4f5" stroke="#645d65" stroke-width="0.8" />
+  </g>
+  <g id="ear-sl-complete" data-order="21" inkscape:groupmode="layer" inkscape:label="21 完整左耳">
+    <title>完整左耳</title>
+    <desc>依据头部倾斜保守补全，原图大部分被耳饰及鬓发遮挡。</desc>
+    <path id="ear-sl-complete-p087" data-step="87" data-role="surface" d="M444 194 C433 190 429 198 434 213 C436 225 442 238 450 238 C457 234 456 220 451 205 C449 199 448 195 444 194 Z" fill="#ffffff" stroke="#645d65" stroke-width="2.05" />
+    <path id="ear-sl-complete-p088" data-step="88" data-role="detail" d="M441 203 C435 199 437 216 446 225 M440 214 C446 209 447 220 447 224" fill="none" stroke="#645d65" stroke-width="1.0" opacity="0.7" />
+  </g>
+  <g id="ear-sr-complete" data-order="22" inkscape:groupmode="layer" inkscape:label="22 完整右耳">
+    <title>完整右耳</title>
+    <desc>被前发和耳侧组件覆盖的耳廓，作为隐藏结构保留。</desc>
+    <path id="ear-sr-complete-p089" data-step="89" data-role="surface" d="M591 185 C598 177 607 183 605 196 C603 212 598 227 590 231 C581 232 579 221 583 207 C585 197 586 190 591 185 Z" fill="#ffffff" stroke="#645d65" stroke-width="2.05" />
+    <path id="ear-sr-complete-p090" data-step="90" data-role="detail" d="M598 191 C603 190 600 207 590 218 M595 201 C588 199 589 211 589 215" fill="none" stroke="#645d65" stroke-width="1.0" opacity="0.7" />
+  </g>
+  <g id="face-complete" data-order="23" inkscape:groupmode="layer" inkscape:label="23 完整头面底形">
+    <title>完整头面底形</title>
+    <desc>从隐藏头顶、额头、太阳穴到面颊下颌连续闭合，未沿刘海切成可见碎片。</desc>
+    <path id="complete-face-surface" data-step="91" data-role="surface" d="M514 62 C472 59 442 85 434 125 C426 165 435 205 451 236 C466 258 493 271 529 279 C550 266 574 247 585 224 C599 193 608 151 599 115 C590 78 554 60 514 62 Z" fill="#ffffff" stroke="#645d65" stroke-width="2.1" />
+    <path id="face-complete-p092" data-step="92" data-role="guide" d="M501 87 C504 140 514 191 522 225 C526 246 528 261 529 273" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="4 9" />
+    <path id="face-complete-p093" data-step="93" data-role="guide" d="M442 213 C478 205 545 191 590 181" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="4 8" />
+    <path id="face-complete-p094" data-step="94" data-role="guide" d="M447 147 C481 141 550 128 590 128" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" stroke-dasharray="4 9" />
+  </g>
+  <g id="face-nose-mouth" data-order="24" inkscape:groupmode="layer" inkscape:label="24 鼻口结构">
+    <title>鼻口结构</title>
+    <desc>保持小鼻部和略向画面右上抬起的微笑。</desc>
+    <path id="face-nose-mouth-p095" data-step="95" data-role="detail" d="M520 224 C518 226 519 228 521 228" fill="none" stroke="#645d65" stroke-width="0.9" opacity="0.62" />
+    <path id="face-nose-mouth-p096" data-step="96" data-role="detail" d="M509 244 C516 250 531 247 540 239" fill="none" stroke="#645d65" stroke-width="1.5" />
+    <path id="face-nose-mouth-p097" data-step="97" data-role="detail" d="M538 240 L541 237" fill="none" stroke="#645d65" stroke-width="1.35" />
+    <path id="face-nose-mouth-p098" data-step="98" data-role="detail" d="M515 253 C520 255 527 254 531 252" fill="none" stroke="#645d65" stroke-width="0.75" opacity="0.4" />
+  </g>
+  <g id="brow-sl-complete" data-order="25" inkscape:groupmode="layer" inkscape:label="25 完整左眉">
+    <title>完整左眉</title>
+    <desc>隐藏在前发后面的内外延伸段也完整存在。</desc>
+    <path id="brow-sl-complete-p099" data-step="99" data-role="surface" d="M453 168 C462 160 478 160 491 167 L497 174 C484 167 468 164 454 172 Z" fill="#e3eaed" stroke="#667a83" stroke-width="0.8" />
+  </g>
+  <g id="brow-sr-complete" data-order="26" inkscape:groupmode="layer" inkscape:label="26 完整右眉">
+    <title>完整右眉</title>
+    <desc>单独绘制倾斜眉形，未镜像左眉。</desc>
+    <path id="brow-sr-complete-p100" data-step="100" data-role="surface" d="M521 165 C532 154 547 149 561 148 L565 151 C548 151 534 158 523 168 Z" fill="#e3eaed" stroke="#667a83" stroke-width="0.8" />
+  </g>
+  <g id="eye-sl-complete" data-order="27" inkscape:groupmode="layer" inkscape:label="27 完整左眼">
+    <title>完整左眼</title>
+    <desc>闭合眼裂；完整椭圆虹膜及瞳孔保留在眼睑之下，只做本眼内部裁剪。</desc>
+    <path id="complete-eye-sl-aperture" data-step="101" data-role="surface" d="M449 203 C460 193 478 192 493 198 C498 203 496 209 490 214 C477 222 460 217 449 203 Z" fill="#ffffff" stroke="#5b6976" stroke-width="1.0" />
+    <path id="eye-sl-complete-p102" data-step="102" data-role="iris" d="M465.5 202.5 C465.5 193.663 471.768 186.5 479.5 186.5 C487.232 186.5 493.5 193.663 493.5 202.5 C493.5 211.337 487.232 218.5 479.5 218.5 C471.768 218.5 465.5 211.337 465.5 202.5 Z" fill="#edf2f4" stroke="#5b6976" stroke-width="1.1" clip-path="url(#clip-eye-sl)" />
+    <path id="eye-sl-complete-p103" data-step="103" data-role="pupil" d="M476.7 204 C476.7 200.3 478.401 197.3 480.5 197.3 C482.599 197.3 484.3 200.3 484.3 204 C484.3 207.7 482.599 210.7 480.5 210.7 C478.401 210.7 476.7 207.7 476.7 204 Z" fill="#a3b1ba" stroke="#5b6976" stroke-width="0.8" clip-path="url(#clip-eye-sl)" />
+    <path id="eye-sl-complete-p104" data-step="104" data-role="detail" d="M468 205 C470 213 476 216 484 214" fill="none" stroke="#8d9fa9" stroke-width="1.0" clip-path="url(#clip-eye-sl)" />
+    <path id="eye-sl-complete-p105" data-step="105" data-role="highlight" d="M471.9 199 C471.9 197.675 473.288 196.6 475 196.6 C476.712 196.6 478.1 197.675 478.1 199 C478.1 200.325 476.712 201.4 475 201.4 C473.288 201.4 471.9 200.325 471.9 199 Z" fill="#ffffff" stroke="#c4cfd4" stroke-width="0.55" clip-path="url(#clip-eye-sl)" />
+    <path id="eye-sl-complete-p106" data-step="106" data-role="eyelash" d="M446 205 C451 198 456 195 461 192 L464 194 C475 191 487 192 495 197 L499 202 C485 197 469 197 460 202 C458 205 457 208 459 211 Z" fill="#626b78" />
+    <path id="eye-sl-complete-p107" data-step="107" data-role="detail" d="M450 200 L445 196 M456 196 L453 192" fill="none" stroke="#5b6976" stroke-width="1.2" />
+    <path id="eye-sl-complete-p108" data-step="108" data-role="detail" d="M464 216 C472 220 484 219 491 215" fill="none" stroke="#5b6976" stroke-width="0.9" opacity="0.63" />
+    <path id="eye-sl-complete-p109" data-step="109" data-role="detail" d="M459 187 C470 184 483 185 493 190" fill="none" stroke="#5b6976" stroke-width="0.85" opacity="0.5" />
+  </g>
+  <g id="eye-sr-complete" data-order="28" inkscape:groupmode="layer" inkscape:label="28 完整右眼">
+    <title>完整右眼</title>
+    <desc>较高的眼位与独立眼型；虹膜在上睑后保持完整。</desc>
+    <path id="complete-eye-sr-aperture" data-step="110" data-role="surface" d="M535 192 C547 178 562 174 579 179 C578 190 570 197 558 199 C548 201 540 197 535 192 Z" fill="#ffffff" stroke="#5b6976" stroke-width="1.0" />
+    <path id="eye-sr-complete-p111" data-step="111" data-role="iris" d="M545 185 C545 175.611 551.044 168 558.5 168 C565.956 168 572 175.611 572 185 C572 194.389 565.956 202 558.5 202 C551.044 202 545 194.389 545 185 Z" fill="#edf2f4" stroke="#5b6976" stroke-width="1.1" clip-path="url(#clip-eye-sr)" />
+    <path id="eye-sr-complete-p112" data-step="112" data-role="pupil" d="M555 187.5 C555 183.744 556.657 180.7 558.7 180.7 C560.743 180.7 562.4 183.744 562.4 187.5 C562.4 191.256 560.743 194.3 558.7 194.3 C556.657 194.3 555 191.256 555 187.5 Z" fill="#a3b1ba" stroke="#5b6976" stroke-width="0.8" clip-path="url(#clip-eye-sr)" />
+    <path id="eye-sr-complete-p113" data-step="113" data-role="detail" d="M548 190 C551 196 559 199 566 192" fill="none" stroke="#8d9fa9" stroke-width="1.0" clip-path="url(#clip-eye-sr)" />
+    <path id="eye-sr-complete-p114" data-step="114" data-role="highlight" d="M550 182 C550 180.619 551.343 179.5 553 179.5 C554.657 179.5 556 180.619 556 182 C556 183.381 554.657 184.5 553 184.5 C551.343 184.5 550 183.381 550 182 Z" fill="#ffffff" stroke="#c4cfd4" stroke-width="0.55" clip-path="url(#clip-eye-sr)" />
+    <path id="eye-sr-complete-p115" data-step="115" data-role="eyelash" d="M532 195 C539 184 549 178 560 174 C568 171 575 171 580 174 L585 177 L581 182 C570 176 554 180 543 187 Z" fill="#626b78" />
+    <path id="eye-sr-complete-p116" data-step="116" data-role="detail" d="M577 176 L583 172 M577 181 L581 178" fill="none" stroke="#5b6976" stroke-width="1.3" />
+    <path id="eye-sr-complete-p117" data-step="117" data-role="detail" d="M543 198 C554 203 566 198 572 194" fill="none" stroke="#5b6976" stroke-width="0.9" opacity="0.6" />
+    <path id="eye-sr-complete-p118" data-step="118" data-role="detail" d="M537 179 C547 174 557 170 567 169" fill="none" stroke="#5b6976" stroke-width="0.85" opacity="0.5" />
+  </g>
+  <g id="headgear-sl-ear" data-order="29" inkscape:groupmode="layer" inkscape:label="29 左耳侧组件">
+    <title>左耳侧组件</title>
+    <desc>向鬓发与脸侧内部延伸的完整壳体。</desc>
+    <path id="headgear-sl-ear-p119" data-step="119" data-role="surface" d="M433 202 L446 196 L477 261 L462 269 L451 257 Z" fill="#e8edf0" stroke="#576372" stroke-width="1.6" />
+    <path id="headgear-sl-ear-p120" data-step="120" data-role="surface" d="M440 208 L445 205 L469 258 L462 261 Z" fill="#f9fafb" stroke="#576372" stroke-width="0.85" />
+    <path id="headgear-sl-ear-p121" data-step="121" data-role="detail" d="M448 225 L458 247" fill="none" stroke="#576372" stroke-width="0.8" opacity="0.6" />
+  </g>
+  <g id="headgear-sr-ear" data-order="30" inkscape:groupmode="layer" inkscape:label="30 右耳侧组件">
+    <title>右耳侧组件</title>
+    <desc>隐藏于右鬓发下的完整耳侧附件。</desc>
+    <path id="headgear-sr-ear-p122" data-step="122" data-role="surface" d="M589 177 L607 181 L601 236 L582 247 L576 235 Z" fill="#e8edf0" stroke="#576372" stroke-width="1.6" />
+    <path id="headgear-sr-ear-p123" data-step="123" data-role="surface" d="M593 186 L600 187 L594 232 L586 237 Z" fill="#f9fafb" stroke="#576372" stroke-width="0.85" />
+  </g>
+  <g id="headgear-sl-frame" data-order="31" inkscape:groupmode="layer" inkscape:label="31 左折线发饰">
+    <title>左折线发饰</title>
+    <desc>沿可见厚度补全内侧连接；刘海随后从上面覆盖。</desc>
+    <path id="headgear-sl-frame-p124" data-step="124" data-role="surface" d="M424 40 L437 40 L451 65 L411 172 L386 134 Z" fill="#e3e9ed" stroke="#576372" stroke-width="1.8" />
+    <path id="headgear-sl-frame-p125" data-step="125" data-role="surface" d="M427 45 L433 46 L398 133 L411 154 L406 161 L393 135 Z" fill="#f9fafb" stroke="#576372" stroke-width="0.85" />
+    <path id="headgear-sl-frame-p126" data-step="126" data-role="detail" d="M437 40 L401 133 L414 158" fill="none" stroke="#576372" stroke-width="0.85" opacity="0.5" />
+  </g>
+  <g id="headgear-sr-frame" data-order="32" inkscape:groupmode="layer" inkscape:label="32 右折线发饰">
+    <title>右折线发饰</title>
+    <desc>较高的右发饰与独立倾斜方向；下端连接保留在前发下方。</desc>
+    <path id="headgear-sr-frame-p127" data-step="127" data-role="surface" d="M573 27 L587 21 L644 97 L622 178 L605 177 L625 102 Z" fill="#e3e9ed" stroke="#576372" stroke-width="1.8" />
+    <path id="headgear-sr-frame-p128" data-step="128" data-role="surface" d="M580 29 L585 27 L635 99 L614 166 L617 143 L629 102 Z" fill="#f9fafb" stroke="#576372" stroke-width="0.85" />
+    <path id="headgear-sr-frame-p129" data-step="129" data-role="detail" d="M573 27 L631 103 L611 171" fill="none" stroke="#576372" stroke-width="0.85" opacity="0.5" />
+  </g>
+  <g id="sidelock-sl" data-order="33" inkscape:groupmode="layer" inkscape:label="33 左前侧鬓发">
+    <title>左前侧鬓发</title>
+    <desc>补足刘海和手指后方的完整上段。</desc>
+    <path id="sidelock-sl-p130" data-step="130" data-role="surface" d="M448 67 C424 86 401 124 406 175 C408 211 414 246 430 269 L421 237 C433 263 450 275 467 283 C452 266 447 245 442 214 C438 184 446 136 465 98 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="sidelock-sl-p131" data-step="131" data-role="detail" d="M418 189 C419 220 430 253 444 266" fill="none" stroke="#5d7480" stroke-width="1.05" opacity="0.65" />
+  </g>
+  <g id="sidelock-sr" data-order="34" inkscape:groupmode="layer" inkscape:label="34 右前侧鬓发">
+    <title>右前侧鬓发</title>
+    <desc>后方耳饰上面的细长鬓发；完整根部在上层刘海下。</desc>
+    <path id="sidelock-sr-p132" data-step="132" data-role="surface" d="M576 58 C611 76 625 131 621 205 C617 236 601 261 582 273 C593 249 591 222 590 200 C579 171 562 131 560 88 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="sidelock-sr-p133" data-step="133" data-role="guide" d="M589 97 C609 157 612 223 591 259" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="fringe-sl-outer" data-order="35" inkscape:groupmode="layer" inkscape:label="35 左外侧刘海">
+    <title>左外侧刘海</title>
+    <desc>被 V 手指压住的发面完整连续，未沿手指边界裁切。</desc>
+    <path id="fringe-sl-outer-p134" data-step="134" data-role="surface" d="M487 42 C464 44 443 62 427 92 C410 118 400 151 401 180 C401 210 407 230 419 243 L416 222 C423 246 433 260 446 266 C431 240 438 208 449 174 C460 143 467 126 476 117 C469 87 477 59 500 42 C496 39 492 40 487 42 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="fringe-sl-outer-p135" data-step="135" data-role="guide" d="M468 64 C437 103 419 159 418 209" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="fringe-sr-sweep" data-order="36" inkscape:groupmode="layer" inkscape:label="36 右侧弧形刘海">
+    <title>右侧弧形刘海</title>
+    <desc>从头顶到外眼角与侧面尖端的完整发片。</desc>
+    <path id="fringe-sr-sweep-p136" data-step="136" data-role="surface" d="M508 36 C545 30 579 47 608 75 C623 103 620 150 609 185 C606 213 597 240 582 267 C590 235 589 211 585 191 L583 175 C564 175 541 147 524 124 C515 105 514 80 527 57 C519 47 515 39 508 36 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="fringe-sr-sweep-p137" data-step="137" data-role="guide" d="M535 51 C572 64 597 109 600 157 C604 191 597 227 590 245" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+    <path id="fringe-sr-sweep-p138" data-step="138" data-role="detail" d="M524 124 C540 147 562 173 579 175" fill="none" stroke="#5d7480" stroke-width="1.0" opacity="0.62" />
+  </g>
+  <g id="fringe-center-sl" data-order="37" inkscape:groupmode="layer" inkscape:label="37 中央偏左尖刘海">
+    <title>中央偏左尖刘海</title>
+    <desc>完整发根和尖端；在右中央束下面自然重叠。</desc>
+    <path id="fringe-center-sl-p139" data-step="139" data-role="surface" d="M493 47 C478 67 472 93 478 120 C484 152 497 184 514 199 C502 175 498 154 496 129 C489 100 493 76 508 48 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="fringe-center-sl-p140" data-step="140" data-role="guide" d="M490 78 C484 116 496 165 509 185" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="fringe-center-sr" data-order="38" inkscape:groupmode="layer" inkscape:label="38 中央偏右尖刘海">
+    <title>中央偏右尖刘海</title>
+    <desc>完整根部位于头顶，末端落在双眼之间，保留两束尖端差异。</desc>
+    <path id="fringe-center-sr-p141" data-step="141" data-role="surface" d="M508 38 C534 47 539 58 532 72 C525 90 522 105 521 114 C522 139 527 172 527 201 C512 188 506 167 501 146 C493 121 487 101 487 83 C487 58 500 39 508 38 Z" fill="#f6f8f9" stroke="#5d7480" stroke-width="2.05" />
+    <path id="fringe-center-sr-p142" data-step="142" data-role="guide" d="M507 57 C501 88 509 136 517 166" fill="none" stroke="#9aabb5" stroke-width="0.95" opacity="0.58" />
+  </g>
+  <g id="hand-sl-v-complete" data-order="39" inkscape:groupmode="layer" inkscape:label="39 最上层 V 手势">
+    <title>最上层 V 手势</title>
+    <desc>完整掌体、屈指与两根展开手指，最后覆盖前发。腕端与抬臂自然重叠。</desc>
+    <path id="complete-v-hand-surface" data-step="143" data-role="surface" d="M330 235 C321 230 317 224 320 215 C325 200 337 181 349 174 C356 169 362 170 365 176 C374 171 381 174 381 179 C382 184 378 190 373 195 L426 166 C433 162 440 160 442 164 C443 166 437 171 432 174 L386 206 C382 209 381 212 385 214 L438 226 C446 228 452 232 452 235 C449 239 439 235 432 235 L379 227 C374 230 372 237 366 240 C355 244 344 241 336 237 Z" fill="#ffffff" />
+    <path id="hand-sl-v-complete-p144" data-step="144" data-role="contour" d="M320 221 C320 210 337 182 349 174 C356 169 362 170 365 176 C374 171 381 174 381 179 C382 184 378 190 373 195 L426 166 C433 162 440 160 442 164 C443 166 437 171 432 174 L386 206 C382 209 381 212 385 214 L438 226 C446 228 452 232 452 235 C449 239 439 235 432 235 L379 227 C374 230 372 237 366 240 C355 244 344 241 336 237" fill="none" stroke="#645d65" stroke-width="2.0" />
+    <path id="hand-sl-v-complete-p145" data-step="145" data-role="detail" d="M349 174 C352 181 359 184 365 176 M350 183 C342 192 345 198 352 201 M376 178 C371 184 365 188 357 191" fill="none" stroke="#645d65" stroke-width="1.15" />
+    <path id="hand-sl-v-complete-p146" data-step="146" data-role="detail" d="M352 190 C350 195 354 201 359 205 C365 211 367 219 363 225" fill="none" stroke="#645d65" stroke-width="1.25" />
+    <path id="hand-sl-v-complete-p147" data-step="147" data-role="detail" d="M365 200 C368 204 370 208 370 214 M340 222 C346 230 356 232 362 228" fill="none" stroke="#645d65" stroke-width="1.05" opacity="0.7" />
+    <path id="hand-sl-v-complete-p148" data-step="148" data-role="detail" d="M393 182 L401 178 M405 226 L414 229" fill="none" stroke="#645d65" stroke-width="0.85" opacity="0.5" />
+    <path id="hand-sl-v-complete-p149" data-step="149" data-role="nail" d="M348 191 C349 188 352 189 354 193 L356 198 C354 201 351 199 349 197 Z" fill="#f1f4f5" stroke="#645d65" stroke-width="0.8" />
+    <path id="hand-sl-v-complete-p150" data-step="150" data-role="nail" d="M356 204 C358 202 360 204 361 208 L362 211 C360 214 357 210 356 207 Z" fill="#f1f4f5" stroke="#645d65" stroke-width="0.8" />
+  </g>
+</svg>

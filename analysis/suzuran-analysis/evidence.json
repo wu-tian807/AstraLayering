@@ -1,0 +1,625 @@
+{
+  "source": "source.svg",
+  "viewBox": "0 0 1458 1056",
+  "element_counts": {
+    "svg": 1,
+    "title": 1,
+    "desc": 1,
+    "defs": 1,
+    "linearGradient": 200,
+    "stop": 998,
+    "radialGradient": 10,
+    "filter": 18,
+    "feGaussianBlur": 18,
+    "clipPath": 14,
+    "path": 3019,
+    "mask": 5,
+    "rect": 5,
+    "feTurbulence": 1,
+    "feDisplacementMap": 1,
+    "g": 112,
+    "ellipse": 139
+  },
+  "drawable_path_count": 2998,
+  "paint_counts_all_graphics": {
+    "fill_only": 2635,
+    "stroke_only": 470,
+    "fill_and_stroke": 32
+  },
+  "explicit_and_inherited_stroke_width": {
+    "min": 0.48,
+    "max": 5.2,
+    "median": 1.15
+  },
+  "experiment_stroked_hair_elements": 261,
+  "top_level_order": [
+    "background",
+    "rear-crown",
+    "left-ear",
+    "back-locks",
+    "right-ear",
+    "left-rear-fur",
+    "right-fluffy-tail",
+    "neck-and-clothing",
+    "face-contact-underpainting-v6",
+    "face",
+    "left-side-locks",
+    "eye-and-fringe-contact-v6",
+    "bangs",
+    "final-cornea-rims-v9",
+    "fringe-filaments-v10",
+    "left-forelock-contact-v11",
+    "maid-headband",
+    "left-forelock",
+    "right-side-ruffle",
+    "right-foreground-locks",
+    "sunlit-finishing"
+  ],
+  "groups": [
+    {
+      "id": "illustration",
+      "path_count": 2998,
+      "source_line": 391
+    },
+    {
+      "id": "background",
+      "path_count": 1748,
+      "source_line": 392
+    },
+    {
+      "id": "distant-leaves",
+      "path_count": 0,
+      "source_line": 394
+    },
+    {
+      "id": "meadow-brushwork",
+      "path_count": 1745,
+      "source_line": 478
+    },
+    {
+      "id": "top-canopy-retouch",
+      "path_count": 1,
+      "source_line": 2224
+    },
+    {
+      "id": "rear-crown",
+      "path_count": 32,
+      "source_line": 2266
+    },
+    {
+      "id": "crown-hand-painted-v36",
+      "path_count": 29,
+      "source_line": 2268
+    },
+    {
+      "id": "crown-scattered-light-v43",
+      "path_count": 1,
+      "source_line": 2273
+    },
+    {
+      "id": "crown-ivory-root-v47",
+      "path_count": 2,
+      "source_line": 2294
+    },
+    {
+      "id": "left-ear",
+      "path_count": 98,
+      "source_line": 2298
+    },
+    {
+      "id": "left-ear-painterly-interior-v31",
+      "path_count": 92,
+      "source_line": 2299
+    },
+    {
+      "id": "left-ear-main-tufts-v31",
+      "path_count": 52,
+      "source_line": 2308
+    },
+    {
+      "id": "left-ear-volume-correction-v32",
+      "path_count": 9,
+      "source_line": 2363
+    },
+    {
+      "id": "left-ear-root-curtain-v32",
+      "path_count": 20,
+      "source_line": 2372
+    },
+    {
+      "id": "back-locks",
+      "path_count": 19,
+      "source_line": 2399
+    },
+    {
+      "id": "right-tied-lock-v33",
+      "path_count": 5,
+      "source_line": 2414
+    },
+    {
+      "id": "right-ear",
+      "path_count": 110,
+      "source_line": 2421
+    },
+    {
+      "id": "right-ear-painted-interior-v30",
+      "path_count": 96,
+      "source_line": 2422
+    },
+    {
+      "id": "right-ear-soft-core-v31",
+      "path_count": 3,
+      "source_line": 2447
+    },
+    {
+      "id": "right-ear-secondary-paint-v31",
+      "path_count": 25,
+      "source_line": 2472
+    },
+    {
+      "id": "right-ear-volumetric-paint-v32",
+      "path_count": 21,
+      "source_line": 2498
+    },
+    {
+      "id": "right-ear-prism-v30",
+      "path_count": 4,
+      "source_line": 2524
+    },
+    {
+      "id": "left-rear-fur",
+      "path_count": 10,
+      "source_line": 2535
+    },
+    {
+      "id": "right-fluffy-tail",
+      "path_count": 44,
+      "source_line": 2547
+    },
+    {
+      "id": "tail-hand-painted-planes-v35",
+      "path_count": 40,
+      "source_line": 2548
+    },
+    {
+      "id": "tail-translucent-cover-v36",
+      "path_count": 3,
+      "source_line": 2585
+    },
+    {
+      "id": "neck-and-clothing",
+      "path_count": 30,
+      "source_line": 2593
+    },
+    {
+      "id": "neck-ruffle-refinement-v20",
+      "path_count": 23,
+      "source_line": 2601
+    },
+    {
+      "id": "face-contact-underpainting-v6",
+      "path_count": 16,
+      "source_line": 2627
+    },
+    {
+      "id": "rear-face-framing-strands-v8",
+      "path_count": 6,
+      "source_line": 2627
+    },
+    {
+      "id": "face",
+      "path_count": 218,
+      "source_line": 2627
+    },
+    {
+      "id": "face-tones-v6",
+      "path_count": 5,
+      "source_line": 2627
+    },
+    {
+      "id": "sclera-and-lid-shadows-v6",
+      "path_count": 4,
+      "source_line": 2628
+    },
+    {
+      "id": "left-eye-v6",
+      "path_count": 82,
+      "source_line": 2628
+    },
+    {
+      "id": "left-iris-paint-v6",
+      "path_count": 76,
+      "source_line": 2628
+    },
+    {
+      "id": "iris-left-pigment-v12",
+      "path_count": 6,
+      "source_line": 2628
+    },
+    {
+      "id": "iris-brush-glaze-left-v14",
+      "path_count": 9,
+      "source_line": 2635
+    },
+    {
+      "id": "left-iris-finish-v23",
+      "path_count": 11,
+      "source_line": 2653
+    },
+    {
+      "id": "right-eye-v6",
+      "path_count": 64,
+      "source_line": 2656
+    },
+    {
+      "id": "right-iris-paint-v6",
+      "path_count": 58,
+      "source_line": 2656
+    },
+    {
+      "id": "iris-right-pigment-v12",
+      "path_count": 4,
+      "source_line": 2656
+    },
+    {
+      "id": "iris-brush-glaze-right-v14",
+      "path_count": 7,
+      "source_line": 2661
+    },
+    {
+      "id": "right-iris-finish-v23",
+      "path_count": 9,
+      "source_line": 2679
+    },
+    {
+      "id": "lower-lids-v6",
+      "path_count": 9,
+      "source_line": 2681
+    },
+    {
+      "id": "cheek-hatching-v6",
+      "path_count": 36,
+      "source_line": 2681
+    },
+    {
+      "id": "nose-v6",
+      "path_count": 2,
+      "source_line": 2681
+    },
+    {
+      "id": "mouth-v6",
+      "path_count": 6,
+      "source_line": 2681
+    },
+    {
+      "id": "corneal-edge-transitions-v7",
+      "path_count": 3,
+      "source_line": 2681
+    },
+    {
+      "id": "final-face-ink-v8",
+      "path_count": 2,
+      "source_line": 2681
+    },
+    {
+      "id": "left-side-locks",
+      "path_count": 73,
+      "source_line": 2681
+    },
+    {
+      "id": "left-side-curved-shading-v27",
+      "path_count": 17,
+      "source_line": 2682
+    },
+    {
+      "id": "left-ruffle-cast-v27",
+      "path_count": 1,
+      "source_line": 2726
+    },
+    {
+      "id": "side-seam-corrections-v28",
+      "path_count": 3,
+      "source_line": 2727
+    },
+    {
+      "id": "eye-and-fringe-contact-v6",
+      "path_count": 13,
+      "source_line": 2756
+    },
+    {
+      "id": "bangs",
+      "path_count": 177,
+      "source_line": 2758
+    },
+    {
+      "id": "fringe-foundation-v10",
+      "path_count": 14,
+      "source_line": 2760
+    },
+    {
+      "id": "outer-right-fringe-v13",
+      "path_count": 6,
+      "source_line": 2767
+    },
+    {
+      "id": "left-fringe-plates-v10",
+      "path_count": 19,
+      "source_line": 2775
+    },
+    {
+      "id": "left-fringe-plates-v10-transmitted-light-38",
+      "path_count": 2,
+      "source_line": 2786
+    },
+    {
+      "id": "left-tapered-lock-v10",
+      "path_count": 13,
+      "source_line": 2794
+    },
+    {
+      "id": "left-tapered-lock-v10-transmitted-light-38",
+      "path_count": 1,
+      "source_line": 2802
+    },
+    {
+      "id": "central-fringe-volume-v10",
+      "path_count": 25,
+      "source_line": 2808
+    },
+    {
+      "id": "central-fringe-volume-v10-transmitted-light-38",
+      "path_count": 2,
+      "source_line": 2816
+    },
+    {
+      "id": "center-underlapping-tip-v11",
+      "path_count": 3,
+      "source_line": 2824
+    },
+    {
+      "id": "right-fringe-plates-v10",
+      "path_count": 22,
+      "source_line": 2833
+    },
+    {
+      "id": "right-fringe-plates-v10-transmitted-light-38",
+      "path_count": 1,
+      "source_line": 2842
+    },
+    {
+      "id": "fringe-painted-ribbons-v13",
+      "path_count": 26,
+      "source_line": 2856
+    },
+    {
+      "id": "fringe-curved-planes-v22",
+      "path_count": 11,
+      "source_line": 2883
+    },
+    {
+      "id": "fringe-light-volume-v38",
+      "path_count": 8,
+      "source_line": 2883
+    },
+    {
+      "id": "root-cast-and-sunspots-v10",
+      "path_count": 18,
+      "source_line": 2883
+    },
+    {
+      "id": "fringe-thin-plane-depth-v44",
+      "path_count": 5,
+      "source_line": 2903
+    },
+    {
+      "id": "central-open-slit-v22",
+      "path_count": 1,
+      "source_line": 2903
+    },
+    {
+      "id": "central-fine-front-lock-v22",
+      "path_count": 13,
+      "source_line": 2903
+    },
+    {
+      "id": "ruffle-contact-cast-v26",
+      "path_count": 2,
+      "source_line": 2903
+    },
+    {
+      "id": "final-cornea-rims-v9",
+      "path_count": 2,
+      "source_line": 2906
+    },
+    {
+      "id": "fringe-filaments-v10",
+      "path_count": 77,
+      "source_line": 2906
+    },
+    {
+      "id": "lash-hair-shadows-v13",
+      "path_count": 8,
+      "source_line": 2929
+    },
+    {
+      "id": "temple-and-lash-contact-v15",
+      "path_count": 3,
+      "source_line": 2938
+    },
+    {
+      "id": "eyelash-and-tip-depth-v16",
+      "path_count": 12,
+      "source_line": 2942
+    },
+    {
+      "id": "ochre-contact-flick-v23",
+      "path_count": 4,
+      "source_line": 2951
+    },
+    {
+      "id": "left-overlapping-pointed-ends-v22",
+      "path_count": 5,
+      "source_line": 2956
+    },
+    {
+      "id": "eyelid-overlap-fibres-v23",
+      "path_count": 9,
+      "source_line": 2956
+    },
+    {
+      "id": "eyelid-refinement-v34",
+      "path_count": 11,
+      "source_line": 2956
+    },
+    {
+      "id": "left-forelock-contact-v11",
+      "path_count": 9,
+      "source_line": 2968
+    },
+    {
+      "id": "maid-headband",
+      "path_count": 54,
+      "source_line": 2978
+    },
+    {
+      "id": "left-forelock",
+      "path_count": 94,
+      "source_line": 3032
+    },
+    {
+      "id": "left-luminous-body-v40",
+      "path_count": 3,
+      "source_line": 3032
+    },
+    {
+      "id": "left-side-final-glaze-v25",
+      "path_count": 4,
+      "source_line": 3032
+    },
+    {
+      "id": "fine-cheek-wisps-v7",
+      "path_count": 8,
+      "source_line": 3041
+    },
+    {
+      "id": "continuous-forelock-sheen-v25",
+      "path_count": 3,
+      "source_line": 3044
+    },
+    {
+      "id": "left-sunlit-filaments-v40",
+      "path_count": 17,
+      "source_line": 3044
+    },
+    {
+      "id": "left-tapered-refraction-v41",
+      "path_count": 3,
+      "source_line": 3044
+    },
+    {
+      "id": "left-return-volume-v42",
+      "path_count": 2,
+      "source_line": 3044
+    },
+    {
+      "id": "left-peripheral-airlight-v43",
+      "path_count": 1,
+      "source_line": 3044
+    },
+    {
+      "id": "right-side-ruffle",
+      "path_count": 8,
+      "source_line": 3044
+    },
+    {
+      "id": "right-foreground-locks",
+      "path_count": 160,
+      "source_line": 3052
+    },
+    {
+      "id": "right-white-sheets-v29",
+      "path_count": 34,
+      "source_line": 3066
+    },
+    {
+      "id": "right-white-bridge-v30",
+      "path_count": 3,
+      "source_line": 3073
+    },
+    {
+      "id": "white-wave-curved-planes-v29",
+      "path_count": 8,
+      "source_line": 3088
+    },
+    {
+      "id": "right-wave-contour-retouch",
+      "path_count": 3,
+      "source_line": 3119
+    },
+    {
+      "id": "cheek-side-flow-blend-v16",
+      "path_count": 51,
+      "source_line": 3124
+    },
+    {
+      "id": "right-flowing-locks-v14",
+      "path_count": 51,
+      "source_line": 3124
+    },
+    {
+      "id": "face-reflected-pink-on-hair-v16",
+      "path_count": 4,
+      "source_line": 3138
+    },
+    {
+      "id": "right-hair-volume-fields-v25",
+      "path_count": 16,
+      "source_line": 3143
+    },
+    {
+      "id": "right-wave-brush-veils-v15",
+      "path_count": 7,
+      "source_line": 3154
+    },
+    {
+      "id": "right-long-silk-paint-v39",
+      "path_count": 15,
+      "source_line": 3162
+    },
+    {
+      "id": "right-outer-turn-v41",
+      "path_count": 4,
+      "source_line": 3162
+    },
+    {
+      "id": "right-continuous-amber-fold-v42",
+      "path_count": 7,
+      "source_line": 3162
+    },
+    {
+      "id": "right-rosy-rim-v44",
+      "path_count": 1,
+      "source_line": 3162
+    },
+    {
+      "id": "continuous-transmitted-face-v46",
+      "path_count": 12,
+      "source_line": 3162
+    },
+    {
+      "id": "fine-curled-outline-v48",
+      "path_count": 2,
+      "source_line": 3162
+    },
+    {
+      "id": "sunlit-finishing",
+      "path_count": 6,
+      "source_line": 3163
+    }
+  ],
+  "notes": [
+    "Counts include definitions unless specified as drawable.",
+    "Version suffixes are labels, not an authenticated edit history.",
+    "The display experiments preserve filled ink and shadow shapes."
+  ]
+}
