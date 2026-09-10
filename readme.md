@@ -12,20 +12,24 @@
 
 每层应是独立的语义组件，并补全被遮挡的区域，而不是先画完整图片，再拆分可见区域。
 
-目前的实验中，绘制质量与严格分层仍较难兼顾。项目处于早期探索阶段，生成结果需要检查与调整，尚不是成熟的自动 Live2D 制作工具。
+**当前正在建设新版绘制流程与提示词。** 我们开始以 SVG 原生 `<g>` 分组和绘制顺序组织部件，结合部件内部的线稿、上色与精修阶段，探索如何兼顾画面质量和可编辑性。完整部件与遮挡补全仍是制作目标，项目尚处于实验阶段。
 
 ## 提示词
 
-使用 **[prompt.txt](./prompt.txt)**，搭配参考图片开始尝试。
+**[prompt.txt](./prompt.txt) 已是较早的实验版本，仅保留供参考，尚未同步当前思路。** 新版提示词与工作流正在建设中，后续会逐步更新。
 
 [prompts/](./prompts/) 预留用于收集社区优化版本、局部精修提示词及特定风格实验。欢迎直接使用、修改和调优。
 
 ## 查看 Demos
 
-### 自由缩放预览
+### 原生 SVG 预览与图层检查
 
-用浏览器打开 **[loading/svg-preview.html](./loading/svg-preview.html)**，再选择或拖入 `.svg` 即可离线预览。页面从空画布开始，支持普通 SVG，无需分层信息。
+用浏览器打开 **[loading/svg-preview.html](./loading/svg-preview.html)**，再选择或拖入 `.svg` 即可离线预览。
 
+预览入口已统一为新版 Preview，替代旧工作台。它直接读取 SVG 自带的 `<g>` 嵌套与绘制顺序，无需额外的 manifest 或固定图层契约，让普通 SVG 也能自然地展示层级、分组和控制显隐。
+
+- 图层树支持展开、搜索、逐项显隐，以及全部显示、全部隐藏和恢复原始状态；列表可切换前景优先或从底到顶查看。
+- 勾选“识别独立图块”，可按空间关系估计分块并控制显隐，保留原始 SVG 的叠放顺序。空间分块不等于语义部件识别，重叠部件和复合路径仍需人工判断。
 - 滚轮围绕鼠标位置缩放，按住拖动平移；触屏支持双指捏合。
 - 点击“框选放大”或按 `B`，拖出选区查看细节。
 - 缩放框支持输入百分比或科学计数法，例如 `10000`、`1e6`；不设固定倍率上限，极端倍率受浏览器坐标精度限制。
@@ -38,10 +42,7 @@
 
 临摹示例：**[深海少女服装 · Astra 临摹](./demos/wu-tian807/miku深海少女服装_astra临摹.svg)**，1024 × 1536，透明背景，包含头脸精修。以贝塞尔路径、渐变和矢量细节绘制，未进行语义分层，可导入上述预览器查看。
 
-### 分层检查
-
-1. 用浏览器打开 **[loading/workbench.html](./loading/workbench.html)**（静态页面，无需服务）。
-2. 选择或拖入 `demos/` 下的 `.svg`；可选加载同目录的原图（`.png` / `.jpg`）做对照。
+### 示例文件
 
 当前示例（`demos/wu-tian807/`）：
 
@@ -52,7 +53,7 @@
 | [miku深海少女服装.svg](./demos/wu-tian807/miku深海少女服装.svg) | 契约格式分层 SVG（78 层） |
 | [miku深海少女服装.png](./demos/wu-tian807/miku深海少女服装.png) | 原图（对照用） |
 
-图层契约见 **[loading/layer-contract.md](./loading/layer-contract.md)**，最小结构示例见 **[loading/examples.md](./loading/examples.md)**。
+早期的 **[图层契约](./loading/layer-contract.md)** 和 **[结构示例](./loading/examples.md)** 仍保留供实验参考，不是新版预览器的导入要求。
 
 更多作品见 **[demos/](./demos/)**，欢迎提交自己的分层 SVG。
 
@@ -60,7 +61,7 @@
 
 ```text
 AstraLayering/
-├── prompt.txt             # 通用分层提示词
+├── prompt.txt             # 早期提示词，仅供参考；新版建设中
 ├── prompts/               # 提示词变体与风格实验（预留）
 ├── demos/                 # 分层 SVG + 原图，按作者组织
 │   └── wu-tian807/
@@ -70,10 +71,9 @@ AstraLayering/
 │       ├── miku深海少女服装_astra临摹.svg # 临摹结果（未分层）
 │       └── miku深海少女服装.png    # 原图
 ├── loading/
-│   ├── svg-preview.html   # 可离线打开的自由缩放预览器
-│   ├── workbench.html     # 静态图层工作台
-│   ├── layer-contract.md  # 图层分层契约
-│   ├── examples.md        # 契约最小示例
+│   ├── svg-preview.html   # 原生 SVG 层级、显隐、空间分块与缩放预览
+│   ├── layer-contract.md  # 早期图层契约（参考）
+│   ├── examples.md        # 早期契约示例（参考）
 │   └── convert_to_contract.py
 └── readme.md
 ```
@@ -82,7 +82,7 @@ AstraLayering/
 
 欢迎通过 **[Issues](https://github.com/wu-tian807/AstraLayering/issues)** 分享思路、问题与实验结果，或通过 **[Pull Requests](https://github.com/wu-tian807/AstraLayering/pulls)** 提交改进。贡献不限于提示词：
 
-- **分层 SVG Demos**：将自己的作品放入 `demos/<GitHub 用户名>/`，优先符合 `loading/layer-contract.md`，可用 `workbench.html` 检查。
+- **分层 SVG Demos**：将自己的作品放入 `demos/<GitHub 用户名>/`，使用原生 `<g>` 清晰组织部件，可用 `svg-preview.html` 检查层级与显隐。
 - **提示词优化**：改进临摹质量、组件组织、Bottom-Up 分层稳定性、遮挡补全或局部精修方法。
 - **特定风格测试**：探索不同画风、角色类型与复杂度下的提示词，并分享效果对比和失败案例。
 - **分层数据格式与加载**：讨论适合 SVG 的分层约定与校验，相关探索放入 `loading/`。

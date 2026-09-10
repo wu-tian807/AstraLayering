@@ -15,6 +15,9 @@
 @media(max-width:900px){.header{padding:0 14px;gap:14px}.file-info{padding-left:14px}.navigator{width:118px}.nav-body{height:137px}.statusbar .right .local-note{display:none}.dock{bottom:18px}.dock .text-label{display:none}.navigator{bottom:18px}.header-actions .open-label{display:none}.header-actions .primary{width:36px;padding:8px}.canvas-meta{left:16px}}
 @media(max-width:620px){.app{grid-template-rows:60px minmax(0,1fr) 30px}.brand small{display:none}.brand-name{font-size:12px;letter-spacing:.5px}.brand-mark{width:22px}.brand{gap:6px}.header{gap:9px;padding:0 10px}.file-info{padding-left:9px}.file-name{font-size:10px}.file-meta{font-size:9px}.header-actions{gap:2px}.header-actions .separator{display:none}.header-actions #fullscreen{display:none}.navigator{display:none}.nav-restore{display:none!important}.dock{bottom:15px;gap:1px;padding:5px}.dock button{padding:7px;height:32px}.zoom-field input{width:72px}.dock .separator{margin:0 2px}.top-tools{right:12px;top:12px;gap:6px}.canvas-meta{display:none}.backgrounds{padding:10px;gap:8px}.statusbar{padding:0 10px;font-size:9px}.statusbar .desktop-hint{display:none}.statusbar .touch-hint{display:inline!important}.statusbar .right{gap:5px}.help{padding:19px}.help h2{font-size:16px}}
 @media(prefers-reduced-motion:no-preference){button{transition:background .12s,color .12s}}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:0;position:relative}.workspace.layers-closed{grid-template-columns:minmax(0,1fr)}.layer-panel{min-height:0;min-width:0;display:flex;flex-direction:column;background:#1b2027;border-left:1px solid var(--line);z-index:4}.layer-head{padding:14px 14px 12px;border-bottom:1px solid var(--line)}.layer-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:3px}.layer-heading h2{font-size:13px;font-weight:600;margin:0}.layer-count{font-size:10px;color:var(--muted);line-height:1.7;font-variant-numeric:tabular-nums}.layer-search,.layer-order{font:inherit;background:#14191f;color:#dce6eb;border:1px solid var(--line);border-radius:6px;min-width:0}.layer-search{width:100%;padding:8px 10px;margin-top:12px}.layer-search::placeholder{color:#86949f}.layer-options{display:flex;align-items:center;gap:8px;margin-top:9px}.layer-order{padding:6px;flex:1;width:0;font-size:11px}.layer-options button{font-size:11px;padding:6px}.layer-spatial{display:flex;align-items:center;gap:8px;font-size:11px;color:#c0cdd6;margin-top:12px;cursor:pointer}.layer-spatial input,.layer-visible{accent-color:var(--accent);width:15px;height:15px;flex:none;margin:0;cursor:pointer}.layer-actions{display:flex;gap:3px;margin-top:10px}.layer-actions button{flex:1;font-size:11px;padding:6px 3px;border-color:#343e47}.layer-tree{list-style:none;margin:0;padding:7px 0;overflow:auto;flex:1;min-height:0;scrollbar-width:thin;scrollbar-color:#465461 transparent}.layer-tree ul{list-style:none;padding:0;margin:0}.layer-item{outline:none}.layer-row{display:flex;align-items:center;gap:6px;padding:6px 10px 6px var(--indent);min-height:39px;border-bottom:1px solid #ffffff04}.layer-row:hover{background:#ffffff07}.layer-item:focus-visible>.layer-row{outline:1px solid var(--accent);outline-offset:-2px;background:#9ee0e20c}.layer-disclosure{width:20px;height:26px;padding:0;flex:none;font-size:13px;color:#a8b8c3}.layer-disclosure-spacer{width:20px;flex:none}.layer-label{min-width:0;flex:1}.layer-name{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.5}.layer-detail{display:flex;gap:5px;align-items:center;color:#8195a4;font-size:10px;line-height:1.5;min-width:0}.layer-tag{color:#9ac3ce;flex:none}.layer-rank{font-variant-numeric:tabular-nums;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.layer-off>.layer-row .layer-label{opacity:.45}.layer-blocked>.layer-row .layer-name{color:#91a0ac}.layer-state{font-size:9px;color:#a8b1bb;flex:none}.layer-item[data-kind="spatial"]>.layer-row .layer-tag{color:#d4b888}.layer-empty{margin:0;padding:24px 18px;color:#94a6b4;line-height:1.9;font-size:12px}.layer-foot{border-top:1px solid var(--line);padding:10px 14px;color:#8da1af;font-size:10px;line-height:1.7}.layer-notice{color:#c7b68d;margin-top:4px}.layer-order:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:1000px){.workspace{grid-template-columns:minmax(0,1fr) 280px}.layers-label{display:none}.layer-head{padding:11px}.navigator{width:108px}.nav-body{height:125px}}
+@media(max-width:700px){.workspace{grid-template-columns:minmax(0,1fr)}.layer-panel{position:absolute;inset:0 0 0 auto;width:min(320px,90%);box-shadow:-12px 0 30px #0004}.header-actions #fullscreen{display:none}.layer-row{min-height:44px}.layer-disclosure{height:32px}.layer-options button,.layer-actions button{min-height:34px}}
 </style>
 </head>
 <body>
@@ -24,12 +27,14 @@
   <div class="file-info"><div id="fileName" class="file-name">尚未打开 SVG</div><div id="fileMeta" class="file-meta">选择文件或拖入画布</div></div>
   <div class="header-actions">
    <button id="open" class="primary" title="打开 SVG · Ctrl / ⌘ + O"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19V6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v2M3 19l3-8h16l-3 8H3Z"/></svg><span class="open-label">打开 SVG</span></button>
+   <button id="toggleLayers" aria-label="图层面板" aria-controls="layerPanel" aria-expanded="true" aria-pressed="true" title="显示或隐藏图层面板"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4"/></svg><span class="layers-label">图层</span></button>
    <span class="separator"></span>
    <button id="fullscreen" class="icon-only" aria-label="全屏" title="全屏"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
    <button id="help" class="icon-only" aria-label="操作说明" title="操作说明 · ?"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.2 2.1c-1.3.8-1.7 1.2-1.7 2.5M12 17h.01"/></svg></button>
   </div>
   <input id="fileInput" type="file" accept=".svg,image/svg+xml" hidden>
  </header>
+ <div id="workspace" class="workspace">
  <main id="stage" class="stage" data-background="gray" aria-label="SVG 预览区域">
   <iframe id="artFrame" class="art-frame" title="SVG 矢量画布" sandbox="allow-same-origin" tabindex="-1"></iframe>
   <div id="interaction" class="interaction empty" tabindex="0" role="application" aria-label="可缩放 SVG 画布。滚轮缩放，拖动平移，F 适应窗口，B 框选放大。"></div>
@@ -51,10 +56,24 @@
   <div id="emptyState" class="empty-state"><div class="empty-card"><svg class="empty-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M22 10H12a2 2 0 0 0-2 2v10m32-12h10a2 2 0 0 1 2 2v10M10 42v10a2 2 0 0 0 2 2h10m32-12v10a2 2 0 0 1-2 2H42M22 40l10-17 10 17M26 34h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h1>拖入 SVG，开始预览</h1><p>滚轮缩放 · 拖动平移 · 框选查看细节<br>支持普通 SVG，无需分层信息</p><button id="emptyOpen" class="primary">选择 SVG 文件</button></div></div>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
  </main>
+ <aside id="layerPanel" class="layer-panel" aria-label="原生 SVG 图层">
+  <div class="layer-head">
+   <div class="layer-heading"><h2>原生图层</h2><button id="closeLayers" class="icon-only" aria-label="关闭图层面板" title="关闭图层面板">×</button></div>
+   <div id="layerCount" class="layer-count" role="status">读取 SVG 中的分组与图形</div>
+   <input id="layerSearch" class="layer-search" type="search" placeholder="搜索名称、ID 或元素类型" aria-label="搜索 SVG 图层" disabled>
+   <div class="layer-options"><select id="layerOrder" class="layer-order" aria-label="图层列表顺序" disabled><option value="front">前景在上 · 顶 → 底</option><option value="back">绘制顺序 · 底 → 顶</option></select><button id="expandLayers" disabled>展开全部</button><button id="collapseLayers" disabled>收起</button></div>
+   <label class="layer-spatial"><input id="spatialLayers" type="checkbox" disabled>识别独立图块 <span class="layer-count">空间估计</span></label>
+   <div class="layer-actions"><button id="showAllLayers" disabled>全部显示</button><button id="hideAllLayers" disabled>全部隐藏</button><button id="restoreLayers" disabled>恢复原始</button></div>
+  </div>
+  <p id="layerEmpty" class="layer-empty">打开任意 SVG，即可查看嵌套分组和绘制顺序。无需额外的图层清单。</p>
+  <ul id="layerTree" class="layer-tree" role="tree" aria-label="SVG 层级结构" hidden></ul>
+  <div class="layer-foot"><div id="layerOrderNote">前景在上；序号对应同级元素在 SVG 中的绘制顺序。</div><div>父组显隐会影响子项，子项开关独立保留。</div><div id="spatialNote" class="layer-notice" hidden>按相邻图形的包围盒估计分块；原始分组、路径和叠放顺序保持完整。</div></div>
+ </aside>
+ </div>
  <footer class="statusbar"><div><span class="desktop-hint" id="hint">滚轮缩放 · 拖动平移 · 双击放大</span><span class="touch-hint" hidden>双指缩放 · 单指拖动</span></div><div class="right"><span class="local-note"><span class="status-light"></span>文件在本地处理</span><button id="reset" disabled>重置视图</button></div></footer>
 </div>
 <div id="dropMask" class="drop-mask" hidden><div><strong>松开，预览 SVG</strong><p>支持普通 SVG，无需分层信息</p></div></div>
-<dialog id="helpDialog" class="help" aria-labelledby="helpTitle"><div class="help-header"><h2 id="helpTitle">把细节放大看</h2><button id="closeHelp" class="icon-only" aria-label="关闭操作说明"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12m0-12L6 18"/></svg></button></div><p>将鼠标放在想看的细节上滚动，缩放会围绕该位置进行。也可以拖出选区，直接放大到那一部分。</p><div class="shortcuts"><span>放大 / 缩小</span><kbd>滚轮 · + / −</kbd><span>平移</span><kbd>拖动 · 方向键</kbd><span>适应窗口 / 实际大小</span><kbd>F 或 0 / 1</kbd><span>框选放大 / 取消</span><kbd>B / Esc</kbd><span>打开 SVG</span><kbd>Ctrl / ⌘ + O</kbd></div><p>触控设备支持双指捏合缩放。点击右下角导航，可快速回到作品的任意位置。缩放框支持直接输入比例，例如 <b>10000</b> 或 <b>1e6</b>。</p><p class="footnote">不设固定缩放倍率上限。SVG 会随视图重新绘制；极端倍率受浏览器坐标精度限制。SVG 内嵌的位图仍保留其原有分辨率。</p></dialog>
+<dialog id="helpDialog" class="help" aria-labelledby="helpTitle"><div class="help-header"><h2 id="helpTitle">把细节放大看</h2><button id="closeHelp" class="icon-only" aria-label="关闭操作说明"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12m0-12L6 18"/></svg></button></div><p>将鼠标放在想看的细节上滚动，缩放会围绕该位置进行。也可以拖出选区，直接放大到那一部分。</p><div class="shortcuts"><span>放大 / 缩小</span><kbd>滚轮 · + / −</kbd><span>平移</span><kbd>拖动 · 方向键</kbd><span>适应窗口 / 实际大小</span><kbd>F 或 0 / 1</kbd><span>框选放大 / 取消</span><kbd>B / Esc</kbd><span>打开 SVG</span><kbd>Ctrl / ⌘ + O</kbd></div><p>触控设备支持双指捏合缩放。点击右下角导航，可快速回到作品的任意位置。缩放框支持直接输入比例，例如 <b>10000</b> 或 <b>1e6</b>。</p><p>图层面板直接读取 SVG 的嵌套结构。勾选控制显隐，箭头展开分组；列表顺序切换不会改变画面叠放。资源定义不会列为绘画层。空间分块按图形包围盒推测，只建立临时控制分组；交叠部件和同一条复合路径仍需手工分组。</p><p class="footnote">不设固定缩放倍率上限。SVG 会随视图重新绘制；极端倍率受浏览器坐标精度限制。SVG 内嵌的位图仍保留其原有分辨率。</p></dialog>
 <script>
 'use strict';
 (() => {
@@ -65,6 +84,11 @@
  let size={w:1,h:1}, tool='pan', space=false, drag=null, selection=null, pinch=null, lastTap=null;
  const pointers=new Map();
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+ let artwork=null, layerRoot=null, nativeLayers=[], layerLookup=new Map(), expandedLayers=new Set();
+ let spatialChildren=null, thumbnailTimer=0, focusedLayer='native-0';
+ const containers=new Set(['svg','g','a','switch']);
+ const graphics=new Set(['path','rect','circle','ellipse','line','polyline','polygon','text','image','use','foreignObject']);
+ const tagNames={g:'未命名分组',svg:'嵌套画布',a:'链接分组',switch:'条件分组',path:'路径',rect:'矩形',circle:'圆形',ellipse:'椭圆',line:'线段',polyline:'折线',polygon:'多边形',text:'文字',image:'图片',use:'引用图形',foreignObject:'嵌入内容'};
 
  function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(timer);timer=setTimeout(()=>$('toast').hidden=true,3400);}
  function local(event){const r=hit.getBoundingClientRect();return {x:event.clientX-r.left,y:event.clientY-r.top};}
@@ -83,6 +107,204 @@
  function setTool(next){tool=next;hit.classList.toggle('selecting',next==='box'&&!space);$('box').setAttribute('aria-pressed',String(next==='box'));$('hint').textContent=next==='box'?'拖出选区放大 · 空格临时平移 · Esc 取消':'滚轮缩放 · 拖动平移 · 双击放大';}
  function cancelGesture(){drag=null;selection=null;pinch=null;const ids=[...pointers.keys()];pointers.clear();for(const id of ids)if(hit.hasPointerCapture(id))hit.releasePointerCapture(id);$('selection').hidden=true;hit.classList.remove('dragging');}
 
+ // The tree is a view of the existing DOM. Never move artwork nodes or include
+ // resource subtrees (defs, masks, clip paths, symbols, filters, etc.).
+ function buildLayers(svg){
+  nativeLayers=[];layerLookup=new Map();spatialChildren=null;expandedLayers=new Set();focusedLayer='native-0';
+  function visit(element,parent,index){
+   const tag=element.localName;
+   if(element.namespaceURI!==NS||(!containers.has(tag)&&!graphics.has(tag)))return null;
+   const title=[...element.children].find(child=>child.localName==='title')?.textContent.trim();
+   const label=element.getAttribute('data-name')||element.getAttributeNS('http://www.inkscape.org/namespaces/inkscape','label')||element.getAttribute('aria-label')||title||element.id;
+   const node={key:'native-'+nativeLayers.length,kind:'native',element,tag,parent,index,children:[],mode:null,
+    originalStyle:element.getAttribute('style'),name:parent?(label||tagNames[tag]||tag):'画布',
+    order:parent?(parent.parent?parent.order+'.':'')+(index+1):'画布',isContainer:containers.has(tag)};
+   nativeLayers.push(node);layerLookup.set(node.key,node);
+   if(node.isContainer)for(const child of element.children){const next=visit(child,node,node.children.length);if(next)node.children.push(next);}
+   return node;
+  }
+  layerRoot=visit(svg,null,0);expandedLayers.add(layerRoot.key);
+  if(layerRoot.children.length===1&&layerRoot.children[0].isContainer)expandedLayers.add(layerRoot.children[0].key);
+  $('layerSearch').value='';$('spatialLayers').checked=false;$('spatialNote').hidden=true;
+  document.querySelectorAll('.layer-head input,.layer-head select,.layer-head button').forEach(control=>control.disabled=false);
+  renderLayers();
+ }
+ function childrenOf(node){return spatialChildren?.get(node.key)||node.children;}
+ function orderedChildren(node){
+  const front=$('layerOrder').value==='front';
+  const rank=child=>child.kind==='spatial'?(front?Math.max(...child.children.map(member=>member.index)):Math.min(...child.children.map(member=>member.index))):child.index;
+  return [...childrenOf(node)].sort((a,b)=>front?rank(b)-rank(a):rank(a)-rank(b));
+ }
+ function restoreStyle(node){if(node.originalStyle===null)node.element.removeAttribute('style');else node.element.setAttribute('style',node.originalStyle);}
+ function changeLayer(node,visible){
+  if(node.kind==='spatial'){node.children.forEach(child=>changeLayer(child,visible));return;}
+  restoreStyle(node);node.mode=visible?'show':'hide';
+  node.element.style.setProperty('display',visible?'inline':'none','important');
+  if(visible)node.element.style.setProperty('visibility','visible','important');
+ }
+ function readLayerStates(){
+  const view=frame.contentWindow;
+  for(const node of nativeLayers){
+   const style=view.getComputedStyle(node.element),parent=node.parent?.state;
+   const checked=node.mode==='show'||(node.mode!=='hide'&&style.display!=='none'&&(style.visibility==='visible'||(parent&&parent.visibility!=='visible')));
+   const displayBlocked=!!parent?.displayBlocked||style.display==='none';
+   node.state={checked,indeterminate:false,displayBlocked,visibility:style.visibility,hidden:displayBlocked||style.visibility!=='visible'};
+  }
+  if(spatialChildren)for(const node of layerLookup.values())if(node.kind==='spatial'){
+   const count=node.children.filter(child=>child.state.checked).length;
+   node.state={checked:count===node.children.length,indeterminate:count>0&&count<node.children.length,hidden:node.children.every(child=>child.state.hidden)};
+  }
+ }
+ function element(tag,className,text){const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el;}
+ function renderLayers(){
+  if(!layerRoot)return;
+  const tree=$('layerTree'),scrollTop=tree.scrollTop,active=document.activeElement;
+  const focusItem=active.closest?.('.layer-item'),focusKey=focusItem?.dataset.key,focusAction=active.dataset?.action;
+  readLayerStates();
+  const query=$('layerSearch').value.trim().toLocaleLowerCase(),matches=new Map();
+  function match(node){const own=[node.name,node.tag,node.element?.id,node.order].join(' ').toLocaleLowerCase().includes(query);const child=childrenOf(node).map(match).some(Boolean);matches.set(node.key,own||child);return own||child;}
+  if(query)match(layerRoot);
+  function row(node,depth,position,total){
+   const children=orderedChildren(node).filter(child=>!query||matches.get(child.key));
+   const open=children.length>0&&(expandedLayers.has(node.key)||!!query);
+   const item=element('li','layer-item');item.dataset.key=node.key;item.dataset.kind=node.kind;
+   item.setAttribute('role','treeitem');item.setAttribute('aria-level',String(depth+1));item.setAttribute('aria-posinset',String(position));item.setAttribute('aria-setsize',String(total));
+   item.tabIndex=node.key===focusedLayer?0:-1;item.setAttribute('aria-label',node.name+'，'+node.order);
+   if(children.length)item.setAttribute('aria-expanded',String(open));
+   item.classList.toggle('layer-off',!node.state.checked&&!node.state.indeterminate);
+   item.classList.toggle('layer-blocked',node.state.checked&&node.state.hidden);
+   const content=element('div','layer-row');content.style.setProperty('--indent',(8+Math.min(depth,8)*13)+'px');
+   if(children.length){
+    const button=element('button','layer-disclosure',open?'▾':'▸');button.type='button';button.dataset.action='expand';button.setAttribute('aria-label',(open?'收起 ':'展开 ')+node.name);button.setAttribute('aria-expanded',String(open));content.append(button);
+   }else content.append(element('span','layer-disclosure-spacer'));
+   const check=element('input','layer-visible');check.type='checkbox';check.dataset.action='visible';check.checked=node.state.checked;check.indeterminate=node.state.indeterminate;
+   check.setAttribute('aria-label','显示 '+node.name+'（'+node.order+'）');check.title='本项开关；隐藏父组不会重置子项开关';content.append(check);
+   const label=element('div','layer-label'),name=element('div','layer-name',node.name),detail=element('div','layer-detail');
+   const type=node.kind==='spatial'?'空间图块':node.parent?'<'+node.tag+'>':'<svg>';
+   detail.append(element('span','layer-tag',type),element('span','layer-rank',node.parent?'#'+node.order:'根节点'));
+   if(node.children.length)detail.append(element('span','layer-state',node.children.length+' 项'));
+   label.append(name,detail);label.title=node.name+(node.element?.id?'\nID: '+node.element.id:'')+'\n'+(node.kind==='spatial'?'临时控制分组；同级绘制序号：'+node.order:'原始绘制位置：'+node.order);content.append(label);
+   if(node.state.hidden){const state=node.state.checked?'父级 / 样式隐藏':node.mode===null?'原始隐藏':'已隐藏';content.append(element('span','layer-state',state));}
+   item.append(content);
+   if(open){const group=element('ul');group.setAttribute('role','group');children.forEach((child,index)=>group.append(row(child,depth+1,index+1,children.length)));item.append(group);}
+   return item;
+  }
+  const hasMatch=!query||matches.get(layerRoot.key);
+  tree.replaceChildren(...(hasMatch?[row(layerRoot,0,1,1)]:[]));tree.hidden=!hasMatch;
+  $('layerEmpty').hidden=hasMatch;$('layerEmpty').textContent=hasMatch?'':'没有匹配的分组或图形。';
+  if(hasMatch&&!tree.querySelector('[tabindex="0"]')){const first=tree.querySelector('.layer-item');first.tabIndex=0;focusedLayer=first.dataset.key;}
+  const groups=nativeLayers.filter(node=>node.tag==='g').length,shapes=nativeLayers.filter(node=>!node.isContainer).length;
+  const blocks=spatialChildren?[...layerLookup.values()].filter(node=>node.kind==='spatial').length:0;
+  $('layerCount').textContent=`${groups} 个分组 · ${shapes} 个图形`+(spatialChildren?` · ${blocks} 个候选图块`:'');
+  tree.scrollTop=scrollTop;
+  if(focusKey){const item=tree.querySelector('[data-key="'+focusKey+'"]');if(item)(focusAction?item.querySelector('[data-action="'+focusAction+'"]'):item).focus({preventScroll:true});}
+ }
+ function refreshThumbnail(){
+  clearTimeout(thumbnailTimer);if(!artwork)return;
+  const thumb=artwork.cloneNode(true),url=URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(thumb)],{type:'image/svg+xml'})),previous=thumbnailURL;
+  thumbnailURL=url;$('thumbnail').src=url;if(previous)URL.revokeObjectURL(previous);paintNavigator();
+ }
+ function layersChanged(){renderLayers();clearTimeout(thumbnailTimer);thumbnailTimer=setTimeout(refreshThumbnail,120);}
+ function setLayerPanel(open){
+  $('layerPanel').hidden=!open;$('workspace').classList.toggle('layers-closed',!open);
+  $('toggleLayers').setAttribute('aria-expanded',String(open));$('toggleLayers').setAttribute('aria-pressed',String(open));
+  if(!open&&$('layerPanel').contains(document.activeElement))$('toggleLayers').focus();
+ }
+ $('toggleLayers').addEventListener('click',()=>setLayerPanel($('layerPanel').hidden));$('closeLayers').addEventListener('click',()=>setLayerPanel(false));
+ if(matchMedia('(max-width:700px)').matches)setLayerPanel(false);
+ $('layerTree').addEventListener('click',event=>{
+  const item=event.target.closest('.layer-item');if(!item)return;
+  focusedLayer=item.dataset.key;
+  if(event.target.closest('[data-action="expand"]')){if(expandedLayers.has(focusedLayer))expandedLayers.delete(focusedLayer);else expandedLayers.add(focusedLayer);renderLayers();}
+  else if(!event.target.closest('input')){for(const el of $('layerTree').querySelectorAll('.layer-item'))el.tabIndex=el===item?0:-1;item.focus({preventScroll:true});}
+ });
+ $('layerTree').addEventListener('change',event=>{if(event.target.dataset.action!=='visible')return;const node=layerLookup.get(event.target.closest('.layer-item').dataset.key);changeLayer(node,event.target.checked);layersChanged();});
+ $('layerTree').addEventListener('keydown',event=>{
+  if(event.target.closest('input,button'))return;
+  const items=[...$('layerTree').querySelectorAll('.layer-item')],index=items.indexOf(event.target),node=layerLookup.get(event.target.dataset.key);if(!node)return;
+  let target=null;const key=event.key;
+  if(key==='ArrowDown')target=items[Math.min(items.length-1,index+1)];else if(key==='ArrowUp')target=items[Math.max(0,index-1)];else if(key==='Home')target=items[0];else if(key==='End')target=items.at(-1);
+  else if(key==='ArrowRight'&&childrenOf(node).length){if(event.target.getAttribute('aria-expanded')!=='true'){expandedLayers.add(node.key);renderLayers();}else target=items[index+1];}
+  else if(key==='ArrowLeft'){if(expandedLayers.has(node.key)&&childrenOf(node).length){expandedLayers.delete(node.key);renderLayers();}else target=event.target.parentElement.closest('.layer-item');}
+  else if(key===' '||key==='Enter'){changeLayer(node,!node.state.checked);layersChanged();}else return;
+  event.preventDefault();event.stopPropagation();
+  if(target){for(const item of items)item.tabIndex=item===target?0:-1;focusedLayer=target.dataset.key;target.focus();}
+ });
+ $('layerSearch').addEventListener('input',renderLayers);
+ $('layerOrder').addEventListener('change',()=>{$('layerOrderNote').textContent=$('layerOrder').value==='front'?'前景在上；序号对应同级元素在 SVG 中的绘制顺序。':'从底到顶展示；只改变列表顺序，不改变 SVG 叠放。';renderLayers();});
+ $('expandLayers').addEventListener('click',()=>{for(const node of layerLookup.values())if(childrenOf(node).length)expandedLayers.add(node.key);renderLayers();});
+ $('collapseLayers').addEventListener('click',()=>{expandedLayers=new Set([layerRoot.key]);renderLayers();});
+ $('showAllLayers').addEventListener('click',()=>{nativeLayers.forEach(node=>changeLayer(node,true));layersChanged();});
+ $('hideAllLayers').addEventListener('click',()=>{nativeLayers.forEach(node=>changeLayer(node,false));layersChanged();});
+ $('restoreLayers').addEventListener('click',()=>{nativeLayers.forEach(node=>{restoreStyle(node);node.mode=null;});layersChanged();});
+
+ // Space-based blocks are only virtual controls over siblings. Connected
+ // components may interleave in paint order, so members retain their original
+ // DOM locations and the panel explicitly lists their original order numbers.
+ function identifySpatialBlocks(){
+  // display:none has no reliable geometry in all SVG engines. Reveal only
+  // those nodes synchronously for measurement, then restore the exact styles
+  // before the browser can paint. The user's visibility state stays intact.
+  const hiddenStyles=nativeLayers.filter(node=>frame.contentWindow.getComputedStyle(node.element).display==='none').map(node=>({element:node.element,style:node.element.getAttribute('style')}));
+  hiddenStyles.forEach(({element})=>element.style.setProperty('display','inline','important'));
+  try{
+  const result=new Map(),bounds=new Map();
+  const inverse=artwork.getCTM()?.inverse(),vb=artwork.viewBox.baseVal;
+  const tolerance=Math.max(vb.width||model.w,vb.height||model.h)*.001;
+  function boundsOf(node){
+   if(bounds.has(node.key))return bounds.get(node.key);
+   let box=null;
+   try{
+    const local=node.element.getBBox(),ctm=node.element.getCTM();
+    if(inverse&&ctm&&[local.x,local.y,local.width,local.height].every(Number.isFinite)){
+     const matrix=inverse.multiply(ctm),style=frame.contentWindow.getComputedStyle(node.element);
+     const stroke=style.stroke!=='none'?(parseFloat(style.strokeWidth)||0)/2:0;
+     const points=[[local.x-stroke,local.y-stroke],[local.x+local.width+stroke,local.y-stroke],[local.x-stroke,local.y+local.height+stroke],[local.x+local.width+stroke,local.y+local.height+stroke]].map(([x,y])=>({x:matrix.a*x+matrix.c*y+matrix.e,y:matrix.b*x+matrix.d*y+matrix.f}));
+     if(points.every(p=>Number.isFinite(p.x)&&Number.isFinite(p.y))&&(local.width>0||local.height>0))box={left:Math.min(...points.map(p=>p.x)),right:Math.max(...points.map(p=>p.x)),top:Math.min(...points.map(p=>p.y)),bottom:Math.max(...points.map(p=>p.y))};
+    }
+   }catch{}
+   bounds.set(node.key,box);return box;
+  }
+  function split(run,parent,runIndex){
+   if(run.length<2)return run;
+   const links=run.map((_,index)=>index),entries=run.map((node,index)=>({node,index,box:boundsOf(node)})).filter(entry=>entry.box).sort((a,b)=>a.box.left-b.box.left);
+   function find(index){while(links[index]!==index){links[index]=links[links[index]];index=links[index];}return index;}
+   let active=[];
+   for(const entry of entries){
+    active=active.filter(other=>other.box.right+tolerance>=entry.box.left);
+    for(const other of active)if(other.box.bottom+tolerance>=entry.box.top&&entry.box.bottom+tolerance>=other.box.top){const a=find(entry.index),b=find(other.index);if(a!==b)links[a]=b;}
+    active.push(entry);
+   }
+   const components=new Map();run.forEach((node,index)=>{const key=find(index);if(!components.has(key))components.set(key,[]);components.get(key).push(node);});
+   if(components.size===1)return run;
+   return [...components.values()].sort((a,b)=>a[0].index-b[0].index).map((members,index)=>{
+    const node={key:'space-'+parent.key+'-'+runIndex+'-'+index,kind:'spatial',tag:'block',name:'独立图块 '+(index+1),parent,children:members,isContainer:true,order:members.map(member=>member.order).join(', '),mode:null};
+    layerLookup.set(node.key,node);return node;
+   });
+  }
+  for(const parent of nativeLayers){
+   if(!parent.children.length)continue;
+   const children=[];let run=[],runIndex=0;
+   const flush=()=>{children.push(...split(run,parent,runIndex++));run=[];};
+   for(const child of parent.children){if(child.isContainer){flush();children.push(child);}else run.push(child);}
+   flush();result.set(parent.key,children);
+  }
+  return result;
+  }finally{hiddenStyles.forEach(({element,style})=>{if(style===null)element.removeAttribute('style');else element.setAttribute('style',style);});}
+ }
+ $('spatialLayers').addEventListener('change',()=>{
+  const control=$('spatialLayers'),sourceArtwork=artwork;
+  for(const [key,node]of layerLookup)if(node.kind==='spatial')layerLookup.delete(key);
+  if(!control.checked){spatialChildren=null;$('spatialNote').hidden=true;renderLayers();return;}
+  control.disabled=true;$('layerCount').textContent='正在识别空间图块…';
+  requestAnimationFrame(()=>{
+   if(sourceArtwork!==artwork){control.disabled=false;return;}
+   try{spatialChildren=identifySpatialBlocks();$('spatialNote').hidden=false;}
+   catch{control.checked=false;spatialChildren=null;toast('暂时无法测量图形，已保留原生层级。');}
+   control.disabled=false;renderLayers();
+  });
+ });
+
  function lengthPx(raw){if(!raw)return null;const m=String(raw).trim().match(/^([+]?\d*\.?\d+(?:e[+-]?\d+)?)\s*(px|pt|pc|mm|cm|in|q)?$/i);if(!m)return null;const factor={px:1,pt:96/72,pc:16,mm:96/25.4,cm:96/2.54,in:96,q:96/101.6};const n=Number(m[1])*(factor[(m[2]||'px').toLowerCase()]);return Number.isFinite(n)&&n>0?n:null;}
  function parse(text,name){let doc=new DOMParser().parseFromString(text,'image/svg+xml');if(doc.querySelector('parsererror'))throw new Error('无法解析 SVG，请检查文件是否完整。');let svg=doc.documentElement;if(svg.localName!=='svg'||(svg.namespaceURI&&svg.namespaceURI!==NS))throw new Error('请选择有效的 SVG 文件。');if(!svg.namespaceURI){svg.setAttribute('xmlns',NS);doc=new DOMParser().parseFromString(new XMLSerializer().serializeToString(svg),'image/svg+xml');svg=doc.documentElement;}
   // The artwork also lives in a script-disabled, network-restricted frame.
@@ -97,8 +319,8 @@
  const frameReady=new Promise(resolve=>{frame.addEventListener('load',resolve,{once:true});frame.srcdoc='<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'none\'; connect-src \'none\'; img-src data: blob:; style-src \'unsafe-inline\'; font-src data:; base-uri \'none\'; form-action \'none\'"><style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:transparent}body>svg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:block!important;transform:none!important;pointer-events:none!important}</style></head><body></body></html>';});
  async function load(text,name,ticket){if(ticket!==loadTicket)return false;let parsed;try{parsed=parse(text,name);}catch(error){toast(error.message);return false;}await frameReady;if(ticket!==loadTicket)return false;
   const firstLoad=!model,doc=frame.contentDocument,cameraSvg=doc.createElementNS(NS,'svg');cameraSvg.setAttribute('data-camera','');cameraSvg.setAttribute('width','100%');cameraSvg.setAttribute('height','100%');cameraSvg.setAttribute('preserveAspectRatio','none');cameraSvg.style.setProperty('overflow','hidden','important');
-  const artwork=doc.importNode(parsed.svg,true);artwork.setAttribute('x','0');artwork.setAttribute('y','0');artwork.setAttribute('width',String(parsed.w));artwork.setAttribute('height',String(parsed.h));artwork.style.setProperty('width',parsed.w+'px','important');artwork.style.setProperty('height',parsed.h+'px','important');artwork.style.setProperty('overflow','hidden','important');cameraSvg.append(artwork);doc.body.replaceChildren(cameraSvg);outer=cameraSvg;model=parsed;cancelGesture();setTool('pan');
-  const thumb=parsed.svg.cloneNode(true);thumb.setAttribute('width',String(parsed.w));thumb.setAttribute('height',String(parsed.h));const url=URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(thumb)],{type:'image/svg+xml'})),previous=thumbnailURL;thumbnailURL=url;$('thumbnail').src=url;if(previous)URL.revokeObjectURL(previous);
+  artwork=doc.importNode(parsed.svg,true);artwork.setAttribute('x','0');artwork.setAttribute('y','0');artwork.setAttribute('width',String(parsed.w));artwork.setAttribute('height',String(parsed.h));artwork.style.setProperty('width',parsed.w+'px','important');artwork.style.setProperty('height',parsed.h+'px','important');artwork.style.setProperty('overflow','hidden','important');cameraSvg.append(artwork);doc.body.replaceChildren(cameraSvg);outer=cameraSvg;model=parsed;cancelGesture();setTool('pan');
+  clearTimeout(thumbnailTimer);buildLayers(artwork);refreshThumbnail();
   $('fileName').textContent=name;$('fileName').title=name;$('fileMeta').textContent=`${Number(parsed.w.toPrecision(7))} × ${Number(parsed.h.toPrecision(7))} · ${byteSize(parsed.bytes)}`;$('emptyState').hidden=true;$('canvasMeta').hidden=false;hit.classList.remove('empty');document.querySelectorAll('.dock button,.dock input,#reset').forEach(control=>control.disabled=false);if(firstLoad)$('navigator').hidden=false;document.title=name+' · SVG 预览器';fit();return true;
  }
  async function readFile(file){if(!file)return;if(!/\.svg$/i.test(file.name)&&file.type!=='image/svg+xml'){toast('请选择 .svg 文件。');return;}const ticket=++loadTicket;try{await load(await file.text(),file.name,ticket);}catch(error){if(ticket===loadTicket)toast('无法读取文件：'+error.message);}}
@@ -123,7 +345,7 @@
  let dropDepth=0;document.addEventListener('dragenter',e=>{if(e.dataTransfer?.types.includes('Files')){e.preventDefault();dropDepth++;$('dropMask').hidden=false;}});document.addEventListener('dragover',e=>{if(e.dataTransfer?.types.includes('Files')){e.preventDefault();e.dataTransfer.dropEffect='copy';}});document.addEventListener('dragleave',()=>{dropDepth=Math.max(0,dropDepth-1);if(!dropDepth)$('dropMask').hidden=true;});document.addEventListener('drop',e=>{e.preventDefault();dropDepth=0;$('dropMask').hidden=true;const files=[...e.dataTransfer.files],file=files.find(f=>/\.svg$/i.test(f.name)||f.type==='image/svg+xml');if(file)readFile(file);else if(files.length)toast('请拖入 .svg 文件。');});
  $('help').addEventListener('click',()=>$('helpDialog').showModal());$('closeHelp').addEventListener('click',()=>$('helpDialog').close());$('helpDialog').addEventListener('click',e=>{if(e.target===$('helpDialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
  if(!document.fullscreenEnabled)$('fullscreen').hidden=true;$('fullscreen').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{toast('当前窗口无法进入全屏。');}});
- document.addEventListener('keydown',e=>{if($('helpDialog').open||e.target.closest('input,textarea,select,[contenteditable="true"]'))return;const key=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&key==='o'){e.preventDefault();$('fileInput').click();return;}if(e.ctrlKey||e.metaKey||e.altKey)return;if(key===' '){e.preventDefault();space=true;hit.classList.remove('selecting');}else if(key==='+'||key==='='){e.preventDefault();zoomAt(1.5);}else if(key==='-'||key==='_'){e.preventDefault();zoomAt(1/1.5);}else if(key==='f'||key==='0'){e.preventDefault();fit();}else if(key==='1'){e.preventDefault();actual();}else if(key==='b'&&model){e.preventDefault();cancelGesture();setTool(tool==='box'?'pan':'box');}else if(key==='escape'){cancelGesture();setTool('pan');}else if(key==='?')$('helpDialog').showModal();else if(key.startsWith('arrow')&&model){e.preventDefault();const n=(e.shiftKey?150:50)*camera.upp;commit(camera.cx+(key==='arrowright'?n:key==='arrowleft'?-n:0),camera.cy+(key==='arrowdown'?n:key==='arrowup'?-n:0),camera.upp);}});
+ document.addEventListener('keydown',e=>{if($('helpDialog').open||e.target.closest('input,textarea,select,[contenteditable="true"]'))return;const key=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&key==='o'){e.preventDefault();$('fileInput').click();return;}if(e.ctrlKey||e.metaKey||e.altKey)return;if(e.target.closest('#layerPanel,button,a')){if(key==='escape'&&e.target.closest('#layerPanel'))setLayerPanel(false);return;}if(key===' '){e.preventDefault();space=true;hit.classList.remove('selecting');}else if(key==='+'||key==='='){e.preventDefault();zoomAt(1.5);}else if(key==='-'||key==='_'){e.preventDefault();zoomAt(1/1.5);}else if(key==='f'||key==='0'){e.preventDefault();fit();}else if(key==='1'){e.preventDefault();actual();}else if(key==='b'&&model){e.preventDefault();cancelGesture();setTool(tool==='box'?'pan':'box');}else if(key==='escape'){cancelGesture();setTool('pan');}else if(key==='?')$('helpDialog').showModal();else if(key.startsWith('arrow')&&model){e.preventDefault();const n=(e.shiftKey?150:50)*camera.upp;commit(camera.cx+(key==='arrowright'?n:key==='arrowleft'?-n:0),camera.cy+(key==='arrowdown'?n:key==='arrowup'?-n:0),camera.upp);}});
  document.addEventListener('keyup',e=>{if(e.key===' '){space=false;hit.classList.toggle('selecting',tool==='box');}});window.addEventListener('blur',()=>{space=false;cancelGesture();hit.classList.toggle('selecting',tool==='box');});
  new ResizeObserver(()=>{size={w:Math.max(1,stage.clientWidth),h:Math.max(1,stage.clientHeight)};if(model&&camera.fit)fit();else schedule();}).observe(stage);
  window.addEventListener('beforeunload',()=>{if(thumbnailURL)URL.revokeObjectURL(thumbnailURL);});
