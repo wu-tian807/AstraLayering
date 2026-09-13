@@ -1,0 +1,692 @@
+{
+  "baseline": {
+    "file": "character_baseline.svg",
+    "bytes": 8231053,
+    "gzip_bytes_level9": 3256465,
+    "sha256": "368307a22f70bd7665e21453b8de9bb6f6ab29fdeb4c0a7bb3505e4e0767fed2",
+    "root_attributes": {
+      "width": "1024",
+      "height": "1536",
+      "viewBox": "0 0 1024 1536",
+      "data-art-revision": "linework-taper-native-02",
+      "data-status": "work-in-progress-linework"
+    },
+    "title": "全身线稿：圆形部件约束实验",
+    "description": null,
+    "elements_including_definitions": {
+      "svg": 1,
+      "title": 1,
+      "defs": 1,
+      "g": 78,
+      "path": 230,
+      "radialGradient": 14,
+      "stop": 91,
+      "clipPath": 30,
+      "circle": 42,
+      "mask": 3,
+      "rect": 4,
+      "ellipse": 4,
+      "linearGradient": 2,
+      "use": 7
+    },
+    "commands_including_definitions": {
+      "M": 23374,
+      "C": 154937,
+      "Z": 23374,
+      "L": 1670,
+      "A": 1744
+    },
+    "path_d_bytes": 8192572,
+    "path_subpaths": 23374,
+    "subpaths_per_path": {
+      "min": 1.0,
+      "p05": 1.0,
+      "median": 6.0,
+      "p95": 538.9999999999997,
+      "max": 1430.0
+    },
+    "cubic_segments_per_path": {
+      "min": 0.0,
+      "p05": 0.0,
+      "median": 102.0,
+      "p95": 3865.69999999999,
+      "max": 9015.0
+    },
+    "top_level_groups": [
+      {
+        "id": "violet-hair",
+        "children": 1,
+        "attributes": {
+          "id": "violet-hair",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "外层头发与耳部",
+          "mask": "url(#outside-round-boundaries)"
+        }
+      },
+      {
+        "id": "pink-hair",
+        "children": 1,
+        "attributes": {
+          "id": "pink-hair",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "内层头发",
+          "mask": "url(#outside-round-boundaries)"
+        }
+      },
+      {
+        "id": "blue-cloth",
+        "children": 1,
+        "attributes": {
+          "id": "blue-cloth",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "浅色衣料",
+          "mask": "url(#outside-round-boundaries)"
+        }
+      },
+      {
+        "id": "teal-cape",
+        "children": 1,
+        "attributes": {
+          "id": "teal-cape",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "披肩",
+          "mask": "url(#outside-round-boundaries)"
+        }
+      },
+      {
+        "id": "gold-details",
+        "children": 1,
+        "attributes": {
+          "id": "gold-details",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "金属与挂饰",
+          "mask": "url(#outside-round-boundaries)"
+        }
+      },
+      {
+        "id": "brown-lines",
+        "children": 1,
+        "attributes": {
+          "id": "brown-lines",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "脸部与手部",
+          "mask": "url(#outside-round-boundaries)"
+        }
+      },
+      {
+        "id": "purple-cloth",
+        "children": 1,
+        "attributes": {
+          "id": "purple-cloth",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "内裙与靴部",
+          "mask": "url(#outside-round-boundaries)"
+        }
+      },
+      {
+        "id": "round-parts",
+        "children": 14,
+        "attributes": {
+          "id": "round-parts",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "圆形扣件与挂珠"
+        }
+      },
+      {
+        "id": "iris-spline-layer",
+        "children": 2,
+        "attributes": {
+          "id": "iris-spline-layer",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "虹膜细线"
+        }
+      },
+      {
+        "id": "crown-scene-layer",
+        "children": 1,
+        "attributes": {
+          "id": "crown-scene-layer",
+          "{http://www.inkscape.org/namespaces/inkscape}groupmode": "layer",
+          "{http://www.inkscape.org/namespaces/inkscape}label": "头顶与背景联合笔画"
+        }
+      }
+    ],
+    "paint_of_non_def_elements_without_use_expansion": {
+      "fill": 184
+    },
+    "duplicate_ids": [],
+    "coverage_paths": [
+      {
+        "id": "violet-hair-coverage-0",
+        "opacity": "0.05475440",
+        "subpaths": 409
+      },
+      {
+        "id": "violet-hair-coverage-1",
+        "opacity": "0.11075298",
+        "subpaths": 267
+      },
+      {
+        "id": "violet-hair-coverage-2",
+        "opacity": "0.15756088",
+        "subpaths": 202
+      },
+      {
+        "id": "violet-hair-coverage-3",
+        "opacity": "0.28342581",
+        "subpaths": 191
+      },
+      {
+        "id": "violet-hair-coverage-4",
+        "opacity": "0.42593303",
+        "subpaths": 177
+      },
+      {
+        "id": "violet-hair-coverage-5",
+        "opacity": "0.64883292",
+        "subpaths": 299
+      },
+      {
+        "id": "violet-hair-coverage-6",
+        "opacity": "0.92644948",
+        "subpaths": 140
+      },
+      {
+        "id": "violet-hair-coverage-7",
+        "opacity": "0.99996817",
+        "subpaths": 96
+      },
+      {
+        "id": "pink-hair-coverage-0",
+        "opacity": "0.05475440",
+        "subpaths": 308
+      },
+      {
+        "id": "pink-hair-coverage-1",
+        "opacity": "0.11075298",
+        "subpaths": 223
+      },
+      {
+        "id": "pink-hair-coverage-2",
+        "opacity": "0.15756088",
+        "subpaths": 204
+      },
+      {
+        "id": "pink-hair-coverage-3",
+        "opacity": "0.28342581",
+        "subpaths": 203
+      },
+      {
+        "id": "pink-hair-coverage-4",
+        "opacity": "0.42593303",
+        "subpaths": 207
+      },
+      {
+        "id": "pink-hair-coverage-5",
+        "opacity": "0.64883292",
+        "subpaths": 192
+      },
+      {
+        "id": "pink-hair-coverage-6",
+        "opacity": "0.92644948",
+        "subpaths": 111
+      },
+      {
+        "id": "pink-hair-coverage-7",
+        "opacity": "0.99996817",
+        "subpaths": 40
+      },
+      {
+        "id": "blue-cloth-coverage-0",
+        "opacity": "0.05475440",
+        "subpaths": 233
+      },
+      {
+        "id": "blue-cloth-coverage-1",
+        "opacity": "0.11075298",
+        "subpaths": 148
+      },
+      {
+        "id": "blue-cloth-coverage-2",
+        "opacity": "0.15756088",
+        "subpaths": 280
+      },
+      {
+        "id": "blue-cloth-coverage-3",
+        "opacity": "0.28342581",
+        "subpaths": 139
+      },
+      {
+        "id": "blue-cloth-coverage-4",
+        "opacity": "0.42593303",
+        "subpaths": 131
+      },
+      {
+        "id": "blue-cloth-coverage-5",
+        "opacity": "0.64883292",
+        "subpaths": 98
+      },
+      {
+        "id": "blue-cloth-coverage-6",
+        "opacity": "0.92644948",
+        "subpaths": 138
+      },
+      {
+        "id": "blue-cloth-coverage-7",
+        "opacity": "0.99996817",
+        "subpaths": 350
+      },
+      {
+        "id": "teal-cape-coverage-0",
+        "opacity": "0.05475440",
+        "subpaths": 224
+      },
+      {
+        "id": "teal-cape-coverage-1",
+        "opacity": "0.11075298",
+        "subpaths": 162
+      },
+      {
+        "id": "teal-cape-coverage-2",
+        "opacity": "0.15756088",
+        "subpaths": 150
+      },
+      {
+        "id": "teal-cape-coverage-3",
+        "opacity": "0.28342581",
+        "subpaths": 138
+      },
+      {
+        "id": "teal-cape-coverage-4",
+        "opacity": "0.42593303",
+        "subpaths": 127
+      },
+      {
+        "id": "teal-cape-coverage-5",
+        "opacity": "0.64883292",
+        "subpaths": 137
+      },
+      {
+        "id": "teal-cape-coverage-6",
+        "opacity": "0.92644948",
+        "subpaths": 75
+      },
+      {
+        "id": "teal-cape-coverage-7",
+        "opacity": "0.99996817",
+        "subpaths": 88
+      },
+      {
+        "id": "gold-details-coverage-0",
+        "opacity": "0.05475440",
+        "subpaths": 1430
+      },
+      {
+        "id": "gold-details-coverage-1",
+        "opacity": "0.11075298",
+        "subpaths": 1103
+      },
+      {
+        "id": "gold-details-coverage-2",
+        "opacity": "0.15756088",
+        "subpaths": 1094
+      },
+      {
+        "id": "gold-details-coverage-3",
+        "opacity": "0.28342581",
+        "subpaths": 903
+      },
+      {
+        "id": "gold-details-coverage-4",
+        "opacity": "0.42593303",
+        "subpaths": 1024
+      },
+      {
+        "id": "gold-details-coverage-5",
+        "opacity": "0.64883292",
+        "subpaths": 1267
+      },
+      {
+        "id": "gold-details-coverage-6",
+        "opacity": "0.92644948",
+        "subpaths": 1112
+      },
+      {
+        "id": "gold-details-coverage-7",
+        "opacity": "0.99996817",
+        "subpaths": 573
+      },
+      {
+        "id": "brown-lines-coverage-0",
+        "opacity": "0.05475440",
+        "subpaths": 731
+      },
+      {
+        "id": "brown-lines-coverage-1",
+        "opacity": "0.11075298",
+        "subpaths": 559
+      },
+      {
+        "id": "brown-lines-coverage-2",
+        "opacity": "0.15756088",
+        "subpaths": 548
+      },
+      {
+        "id": "brown-lines-coverage-3",
+        "opacity": "0.28342581",
+        "subpaths": 528
+      },
+      {
+        "id": "brown-lines-coverage-4",
+        "opacity": "0.42593303",
+        "subpaths": 506
+      },
+      {
+        "id": "brown-lines-coverage-5",
+        "opacity": "0.64883292",
+        "subpaths": 472
+      },
+      {
+        "id": "brown-lines-coverage-6",
+        "opacity": "0.92644948",
+        "subpaths": 419
+      },
+      {
+        "id": "brown-lines-coverage-7",
+        "opacity": "0.99996817",
+        "subpaths": 683
+      },
+      {
+        "id": "purple-cloth-coverage-0",
+        "opacity": "0.05475440",
+        "subpaths": 430
+      },
+      {
+        "id": "purple-cloth-coverage-1",
+        "opacity": "0.11075298",
+        "subpaths": 316
+      },
+      {
+        "id": "purple-cloth-coverage-2",
+        "opacity": "0.15756088",
+        "subpaths": 338
+      },
+      {
+        "id": "purple-cloth-coverage-3",
+        "opacity": "0.28342581",
+        "subpaths": 358
+      },
+      {
+        "id": "purple-cloth-coverage-4",
+        "opacity": "0.42593303",
+        "subpaths": 362
+      },
+      {
+        "id": "purple-cloth-coverage-5",
+        "opacity": "0.64883292",
+        "subpaths": 350
+      },
+      {
+        "id": "purple-cloth-coverage-6",
+        "opacity": "0.92644948",
+        "subpaths": 336
+      },
+      {
+        "id": "purple-cloth-coverage-7",
+        "opacity": "0.99996817",
+        "subpaths": 446
+      }
+    ]
+  },
+  "physics-band": {
+    "file": "character-physics-band.svg",
+    "bytes": 2268017,
+    "gzip_bytes_level9": 855098,
+    "sha256": "26d445740f15a5216b788c46152ec10b8c7ee3461ef555e496a60a0be5e779a9",
+    "root_attributes": {
+      "width": "1024",
+      "height": "1536",
+      "viewBox": "0 0 1024 1536"
+    },
+    "title": "整图线稿 · 弹性带物理约束实验",
+    "description": "Whole original image; shared-node elastic ribbon optimization. Experimental branch; no raster images or region patching. Bending 0.4, width target 0.80. Initialization differs from earlier cropped pilot.",
+    "elements_including_definitions": {
+      "svg": 1,
+      "title": 1,
+      "desc": 1,
+      "rect": 1,
+      "g": 1,
+      "path": 3302,
+      "circle": 3055
+    },
+    "commands_including_definitions": {
+      "M": 3302,
+      "C": 37687,
+      "L": 3302,
+      "Z": 3302
+    },
+    "path_d_bytes": 1940660,
+    "path_subpaths": 3302,
+    "subpaths_per_path": {
+      "min": 1.0,
+      "p05": 1.0,
+      "median": 1.0,
+      "p95": 1.0,
+      "max": 1.0
+    },
+    "cubic_segments_per_path": {
+      "min": 2.0,
+      "p05": 2.0,
+      "median": 7.0,
+      "p95": 33.94999999999982,
+      "max": 210.0
+    },
+    "top_level_groups": [
+      {
+        "id": "elastic-linework",
+        "children": 6357,
+        "attributes": {
+          "id": "elastic-linework",
+          "opacity": "0.7785046"
+        }
+      }
+    ],
+    "paint_of_non_def_elements_without_use_expansion": {
+      "fill": 6358
+    },
+    "duplicate_ids": [],
+    "coverage_paths": []
+  },
+  "band_geometry": {
+    "all_band_command_structure": "M C+ L C+ Z",
+    "band_count": 3302,
+    "circle_count": 3055,
+    "endpoint_count": 6604,
+    "nearest_circle_distance_svg_units": {
+      "min": 0.0,
+      "p05": 5.3851648149660526e-05,
+      "median": 0.00025238858921281833,
+      "p95": 0.0004753945729295764,
+      "max": 0.0006585590330304426
+    },
+    "circle_radius_vs_half_endpoint_width_error": {
+      "min": 2.831068712794149e-15,
+      "p05": 9.376457166185294e-06,
+      "median": 0.000137337021956091,
+      "p95": 0.00038935825161221497,
+      "max": 0.000606544457756153
+    },
+    "endpoint_width_svg_units": {
+      "min": 0.20788458336299506,
+      "p05": 0.39999999999997726,
+      "median": 1.6422378022574042,
+      "p95": 2.906022709576,
+      "max": 8.089388172167295
+    },
+    "circle_radius_svg_units": {
+      "min": 0.1,
+      "p05": 0.1998,
+      "median": 0.66751,
+      "p95": 1.3442589999999996,
+      "max": 4.04439
+    },
+    "node_degree_histogram": {
+      "0": 144,
+      "1": 1093,
+      "2": 27,
+      "3": 1713,
+      "4": 73,
+      "5": 4,
+      "6": 1
+    },
+    "first_child_type": "path",
+    "last_child_type": "circle",
+    "all_bands_precede_all_circles": true,
+    "selected_bands": [
+      {
+        "id": "band-0",
+        "side_cubics": [
+          10,
+          10
+        ],
+        "endpoints": [
+          [
+            494.8885,
+            8.347000000000001
+          ],
+          [
+            477.65049999999997,
+            21.8275
+          ]
+        ],
+        "endpoint_widths": [
+          0.3950658173013705,
+          1.6187062735406745
+        ],
+        "circle_indices": [
+          0,
+          1
+        ],
+        "circle_distance": [
+          0.00038600518131271856,
+          0.0004280186911944975
+        ],
+        "radius_error": [
+          2.7091349314750657e-05,
+          0.00015686322966268484
+        ]
+      },
+      {
+        "id": "band-371",
+        "side_cubics": [
+          19,
+          20
+        ],
+        "endpoints": [
+          [
+            549.1155,
+            201.767
+          ],
+          [
+            542.973,
+            234.3165
+          ]
+        ],
+        "endpoint_widths": [
+          5.533903595112619,
+          1.4786321381600782
+        ],
+        "circle_indices": [
+          379,
+          563
+        ],
+        "circle_distance": [
+          0.0002657066051062155,
+          0.00020615528130633851
+        ],
+        "radius_error": [
+          2.8202443690616974e-05,
+          0.0002660690800391219
+        ]
+      },
+      {
+        "id": "band-665",
+        "side_cubics": [
+          14,
+          9
+        ],
+        "endpoints": [
+          [
+            443.5855,
+            253.53500000000003
+          ],
+          [
+            474.90700000000004,
+            278.049
+          ]
+        ],
+        "endpoint_widths": [
+          2.085959970852756,
+          2.321957794620731
+        ],
+        "circle_indices": [
+          659,
+          780
+        ],
+        "circle_distance": [
+          0.00035805027582728376,
+          0.00022090722030064424
+        ],
+        "radius_error": [
+          3.001457362206139e-05,
+          0.0003211026896345892
+        ]
+      },
+      {
+        "id": "band-738",
+        "side_cubics": [
+          14,
+          18
+        ],
+        "endpoints": [
+          [
+            523.368,
+            271.37300000000005
+          ],
+          [
+            474.90700000000004,
+            278.049
+          ]
+        ],
+        "endpoint_widths": [
+          2.3857384600999194,
+          2.322086131046817
+        ],
+        "circle_indices": [
+          743,
+          780
+        ],
+        "circle_distance": [
+          0.00022561028351888247,
+          0.00022090722030064424
+        ],
+        "radius_error": [
+          0.00019923004995980875,
+          0.00025693447659147495
+        ]
+      }
+    ],
+    "scope": "Endpoint widths are geometric end-cap widths, not a measured continuous pen-pressure profile."
+  },
+  "reduction": {
+    "file_bytes_percent": 72.44560325392146,
+    "cubic_segments_percent": 75.67591989001981
+  },
+  "notes": [
+    "Counts include definitions. They are not the number of artist pen strokes or semantic parts.",
+    "No source raster, generator code, paper citation, or optimization history was supplied.",
+    "Metadata descriptions are source self-reports, not independently verified process records.",
+    "Crops are rerendered vectors at the indicated scale, not enlarged PNG pixels.",
+    "resvg is used for both SVGs; Skia SVGDOM omitted baseline masked geometry and is unsuitable here."
+  ]
+}

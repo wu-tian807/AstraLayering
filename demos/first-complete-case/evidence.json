@@ -1,0 +1,578 @@
+{
+  "source": "outputs/step05-base-character/05-2_局部色彩与材质.svg",
+  "reference": "outputs/case1_miku/references/base-character.png",
+  "source_sha256": "88b7b01fe5d24957c1997fbcca6e7d2a80661476a2273cbfb0894e5e3c2c59e9",
+  "logical_entities": 31,
+  "drawing_groups": 36,
+  "internal_subparts": 29,
+  "semantic_nodes": [
+    {
+      "id": "hair-left-orbit-back",
+      "title": "左马尾 · 外绕长束后段",
+      "part": "hair.left.orbit",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-left-orbit-front",
+      "title": "左马尾 · 外绕长束前段",
+      "part": "hair.left.orbit",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-left-lower-tail",
+      "title": "左马尾 · 下垂后梢完整束",
+      "part": "hair.left.lower-tail",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-left-back-body",
+      "title": "左马尾 · 内侧完整发体",
+      "part": "hair.left.back-body",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-left-return",
+      "title": "左马尾 · 内侧回卷束",
+      "part": "hair.left.return",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-left-sweep-lower",
+      "title": "左马尾 · 前侧主束下端分叉",
+      "part": "hair.left.sweep",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-left-sweep",
+      "title": "左马尾 · 前侧主束与回梢",
+      "part": "hair.left.sweep",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-orbit-back",
+      "title": "右马尾 · 外绕长束后段",
+      "part": "hair.right.orbit",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-back-body",
+      "title": "右马尾 · 后侧完整发体",
+      "part": "hair.right.back-body",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-inner-return",
+      "title": "右马尾 · 内侧回卷主束",
+      "part": "hair.right.inner-return",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-inner-fork",
+      "title": "右马尾 · 内侧下垂分束",
+      "part": "hair.right.inner-fork",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-orbit-front",
+      "title": "右马尾 · 外绕长束前段",
+      "part": "hair.right.orbit",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-bottom-curl",
+      "title": "右马尾 · 下端长回梢",
+      "part": "hair.right.bottom-curl",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-front-sweep",
+      "title": "右马尾 · 前侧回卷主束",
+      "part": "hair.right.front-sweep",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-crossing-ribbon",
+      "title": "右马尾 · 斜穿回环束",
+      "part": "hair.right.crossing",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-bottom-curl-front",
+      "title": "右马尾 · 下端长回梢前段",
+      "part": "hair.right.bottom-curl",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-back-head",
+      "title": "后脑发体与耳后短梢",
+      "part": "hair.back-head",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "body-neck-torso-pelvis",
+      "title": "颈、躯干与骨盆 · 连续身体底形",
+      "part": "body.torso",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "body-left-leg",
+      "title": "左腿连足 · 完整髋根",
+      "part": "body.leg.left",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "foot-left-nail-big",
+      "title": "左足 · 拇趾甲片",
+      "part": "body.leg.left",
+      "parent": "body-left-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "foot-left-nail-second",
+      "title": "左足 · 第二趾甲片",
+      "part": "body.leg.left",
+      "parent": "body-left-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "foot-left-nail-third",
+      "title": "左足 · 第三趾甲片",
+      "part": "body.leg.left",
+      "parent": "body-left-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "foot-left-nail-fourth",
+      "title": "左足 · 第四趾甲片",
+      "part": "body.leg.left",
+      "parent": "body-left-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "foot-left-nail-little",
+      "title": "左足 · 小趾甲片",
+      "part": "body.leg.left",
+      "parent": "body-left-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "body-right-leg",
+      "title": "右腿连足 · 完整髋根",
+      "part": "body.leg.right",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "foot-right-nail-big",
+      "title": "右足 · 拇趾甲片",
+      "part": "body.leg.right",
+      "parent": "body-right-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "foot-right-nail-second",
+      "title": "右足 · 第二趾甲片",
+      "part": "body.leg.right",
+      "parent": "body-right-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "foot-right-nail-third",
+      "title": "右足 · 第三趾甲片",
+      "part": "body.leg.right",
+      "parent": "body-right-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "foot-right-nail-fourth",
+      "title": "右足 · 第四趾甲片",
+      "part": "body.leg.right",
+      "parent": "body-right-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "foot-right-nail-little",
+      "title": "右足 · 小趾甲片",
+      "part": "body.leg.right",
+      "parent": "body-right-leg",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "body-left-arm",
+      "title": "左臂 · 肩至腕完整底形",
+      "part": "body.arm.left",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "body-right-arm",
+      "title": "右臂 · 肩至腕完整底形",
+      "part": "body.arm.right",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "garment-base",
+      "title": "基础无袖连体服 · 完整衣片",
+      "part": "garment.base",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "body-left-ear",
+      "title": "左耳 · 简化完整耳廓",
+      "part": "body.ear.left",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "body-right-ear",
+      "title": "右耳 · 简化完整耳廓",
+      "part": "body.ear.right",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "body-head-face",
+      "title": "头脸 · 完整颅形、额头与侧脸",
+      "part": "body.head",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "face-brow-left",
+      "title": "画面左眉 · 完整眉形",
+      "part": "body.head",
+      "parent": "body-head-face",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "face-brow-right",
+      "title": "画面右眉 · 完整眉形",
+      "part": "body.head",
+      "parent": "body-head-face",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "face-eye-left",
+      "title": "画面左眼 · 眼睑、虹膜与瞳孔",
+      "part": "body.head",
+      "parent": "body-head-face",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "face-eye-left-iris",
+      "title": "画面左眼 · 完整虹膜",
+      "part": "body.head",
+      "parent": "face-eye-left",
+      "depth": 2,
+      "top": false
+    },
+    {
+      "id": "face-eye-left-pupil",
+      "title": "画面左眼 · 完整瞳孔",
+      "part": "body.head",
+      "parent": "face-eye-left",
+      "depth": 2,
+      "top": false
+    },
+    {
+      "id": "face-eye-left-eyelids",
+      "title": "画面左眼 · 完整上下眼睑组织",
+      "part": "body.head",
+      "parent": "face-eye-left",
+      "depth": 2,
+      "top": false
+    },
+    {
+      "id": "face-eye-right",
+      "title": "画面右眼 · 眼睑、虹膜与瞳孔",
+      "part": "body.head",
+      "parent": "body-head-face",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "face-eye-right-iris",
+      "title": "画面右眼 · 完整虹膜",
+      "part": "body.head",
+      "parent": "face-eye-right",
+      "depth": 2,
+      "top": false
+    },
+    {
+      "id": "face-eye-right-pupil",
+      "title": "画面右眼 · 完整瞳孔",
+      "part": "body.head",
+      "parent": "face-eye-right",
+      "depth": 2,
+      "top": false
+    },
+    {
+      "id": "face-eye-right-eyelids",
+      "title": "画面右眼 · 完整上下眼睑组织",
+      "part": "body.head",
+      "parent": "face-eye-right",
+      "depth": 2,
+      "top": false
+    },
+    {
+      "id": "face-nose",
+      "title": "鼻 · 鼻尖短转折",
+      "part": "body.head",
+      "parent": "body-head-face",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "face-mouth",
+      "title": "口 · 轻微微笑",
+      "part": "body.head",
+      "parent": "body-head-face",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "accessory-left-temple",
+      "title": "左耳侧配件 · 独立底形",
+      "part": "accessory.temple.left",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "accessory-right-temple",
+      "title": "右耳侧配件 · 独立底形",
+      "part": "accessory.temple.right",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "accessory-left-root",
+      "title": "左侧几何发饰 · 完整折角",
+      "part": "accessory.root.left",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "accessory-right-root",
+      "title": "右侧几何发饰 · 完整折角",
+      "part": "accessory.root.right",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-left-fringe-back",
+      "title": "左侧前发 · 后侧分梢",
+      "part": "hair.fringe.left",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-right-fringe",
+      "title": "右侧贴脸发束 · 完整发根",
+      "part": "hair.fringe.right",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-left-fringe-front",
+      "title": "左侧前发 · 贴脸主体",
+      "part": "hair.fringe.left",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hair-main-bangs",
+      "title": "前额主刘海 · 连续发根与尖梢",
+      "part": "hair.fringe.center",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "body-left-hand",
+      "title": "左手 · 脸旁 V 手势",
+      "part": "body.hand.left",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hand-left-nail-little",
+      "title": "左手 · 折起小指甲片",
+      "part": "body.hand.left",
+      "parent": "body-left-hand",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "hand-left-nail-ring",
+      "title": "左手 · 折起无名指甲片",
+      "part": "body.hand.left",
+      "parent": "body-left-hand",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "hand-left-nail-thumb",
+      "title": "左手 · 遮挡中露出的拇指甲片",
+      "part": "body.hand.left",
+      "parent": "body-left-hand",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "body-right-hand",
+      "title": "右手 · 叉腰完整手形",
+      "part": "body.hand.right",
+      "parent": null,
+      "depth": 0,
+      "top": true
+    },
+    {
+      "id": "hand-right-nail-thumb",
+      "title": "右手 · 拇指甲片",
+      "part": "body.hand.right",
+      "parent": "body-right-hand",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "hand-right-nail-index",
+      "title": "右手 · 食指甲片",
+      "part": "body.hand.right",
+      "parent": "body-right-hand",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "hand-right-nail-middle",
+      "title": "右手 · 中指甲片",
+      "part": "body.hand.right",
+      "parent": "body-right-hand",
+      "depth": 1,
+      "top": false
+    },
+    {
+      "id": "hand-right-nail-ring",
+      "title": "右手 · 无名指甲片",
+      "part": "body.hand.right",
+      "parent": "body-right-hand",
+      "depth": 1,
+      "top": false
+    }
+  ],
+  "independently_rendered": [
+    "hair-left-orbit-back",
+    "hair-left-orbit-front",
+    "hair-left-lower-tail",
+    "hair-left-back-body",
+    "hair-left-return",
+    "hair-left-sweep-lower",
+    "hair-left-sweep",
+    "hair-right-orbit-back",
+    "hair-right-back-body",
+    "hair-right-inner-return",
+    "hair-right-inner-fork",
+    "hair-right-orbit-front",
+    "hair-right-bottom-curl",
+    "hair-right-front-sweep",
+    "hair-right-crossing-ribbon",
+    "hair-right-bottom-curl-front",
+    "hair-back-head",
+    "body-neck-torso-pelvis",
+    "body-left-leg",
+    "body-right-leg",
+    "body-left-arm",
+    "body-right-arm",
+    "garment-base",
+    "body-left-ear",
+    "body-right-ear",
+    "body-head-face",
+    "accessory-left-temple",
+    "accessory-right-temple",
+    "accessory-left-root",
+    "accessory-right-root",
+    "hair-left-fringe-back",
+    "hair-right-fringe",
+    "hair-left-fringe-front",
+    "hair-main-bangs",
+    "body-left-hand",
+    "body-right-hand"
+  ],
+  "each_main_group_has_base": true,
+  "isolated_view_cast_shadows": "Disabled only in isolated display copies; self shading and appearance retained.",
+  "isolated_cast_groups": [
+    "s051-body-neck-torso-pelvis-cast",
+    "s051-body-left-leg-cast",
+    "s051-body-right-leg-cast",
+    "s051-garment-base-cast",
+    "s051-body-head-face-cast"
+  ],
+  "scope": "Current-pose complete base shapes. Full semantic tree, excluding paint and resource groups."
+}

@@ -1,0 +1,462 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" version="1.1" role="img" aria-labelledby="document-title document-description">
+  <title id="document-title">03-1 主轮廓 · 基础角色</title>
+  <desc id="document-description">阶段3 step1。直接重构阶段2完整部件副本，保留1024×1536画布、原具名部件、唯一id与data-part归属。各部件先完整不透明白色底形，后所属深色主轮廓墨线，按修正的真实遮挡顺序由后到前叠放；跨层调整已在对应部件desc说明。墨线与实体分开，肩腕髋根及跨层人工封口不描黑线；自然隐藏轮廓保存在真实路径中。无位图、遮罩、白色补丁、五官、内部发线、指内线、衣褶及正式配色。</desc>
+  <g id="background" data-part="background" data-kind="background" data-role="background">
+    <title>背景 · 纯白</title>
+    <path id="background-shape-1" fill="#ffffff" d="M0 0H1024V1536H0Z"/>
+  </g>
+  <g id="hair-left-orbit-back" data-part="hair.left.orbit" data-kind="hair">
+    <title>左马尾 · 外绕长束后段</title>
+    <desc>验证修订：补齐圆弧发根和后段回端的自然外缘；同归属前后分段的截口保持无墨线，白色实体按原层序搭接。</desc>
+    <g id="hair-left-orbit-back-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左马尾 · 外绕长束后段 · 完整白色底形</title>
+      <path id="hair-left-orbit-back-shape-1" d="M387 73 C367 78 351 136 336 195 C309 305 268 411 213 505 C170 580 111 642 73 702 C45 745 39 787 63 819 C73 832 85 841 99 846 C118 854 128 857 137 854 C111 846 89 830 79 803 C63 762 82 713 112 672 C169 596 222 523 267 435 C322 328 363 202 394 119 C402 97 399 81 387 73Z" data-role="solid"/>
+    </g>
+    <g id="hair-left-orbit-back-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>左马尾 · 外绕长束后段 · 主轮廓墨线</title>
+      <path id="hair-left-orbit-back-contour-1" d="M387 73 C367 78 351 136 336 195 C309 305 268 411 213 505 C170 580 111 642 73 702 C45 745 39 787 63 819 C73 832 85 841 99 846 C118 854 128 857 137 854"/>
+      <path id="hair-left-orbit-back-contour-2" d="M137 854 C111 846 89 830 79 803 C63 762 82 713 112 672 C169 596 222 523 267 435 C322 328 363 202 394 119 C402 97 399 81 387 73"/>
+    </g>
+  </g>
+  <g id="hair-left-orbit-front" data-part="hair.left.orbit" data-kind="hair">
+    <title>左马尾 · 外绕长束前段</title>
+    <desc>验证修订：补齐下端弧形收尖的自然墨线；上端跨层截口不描黑，前后同归属分段按原DOM顺序搭接并由完整主束覆盖。</desc>
+    <g id="hair-left-orbit-front-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左马尾 · 外绕长束前段 · 完整白色底形</title>
+      <path id="hair-left-orbit-front-shape-1" d="M122 807 C101 831 72 871 50 918 C29 962 19 1002 25 1038 C22 1067 44 1094 66 1109 C86 1124 111 1130 134 1127 C106 1119 79 1097 61 1073 C45 1051 35 1028 36 1006 C37 969 72 925 98 890 C112 871 126 851 140 835Z" data-role="solid"/>
+    </g>
+    <g id="hair-left-orbit-front-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>左马尾 · 外绕长束前段 · 主轮廓墨线</title>
+      <path id="hair-left-orbit-front-contour-1" d="M122 807 C101 831 72 871 50 918 C29 962 19 1002 25 1038 C22 1067 44 1094 66 1109 C86 1124 111 1130 134 1127"/>
+      <path id="hair-left-orbit-front-contour-2" d="M134 1127 C106 1119 79 1097 61 1073 C45 1051 35 1028 36 1006 C37 969 72 925 98 890 C112 871 126 851 140 835"/>
+    </g>
+  </g>
+  <g id="hair-left-lower-tail" data-part="hair.left.lower-tail" data-kind="hair">
+    <title>左马尾 · 下垂后梢完整束</title>
+    <desc>验证修订：补齐发根至下梢右側自然外缘；仅将藏在前主束下的上根轻微内收，白色底形与墨线同步。已有外露轮廓、下段发体及回梢保留。</desc>
+    <g id="hair-left-lower-tail-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左马尾 · 下垂后梢完整束 · 完整白色底形</title>
+      <path id="hair-left-lower-tail-shape-1" d="M389 74 C406 81 410 138 403 205 C390 328 359 459 324 563 C294 653 250 736 212 805 C174 871 151 925 149 976 C147 1026 159 1074 180 1111 C163 1134 139 1149 141 1170 C143 1194 166 1212 195 1219 C214 1225 229 1220 231 1212 C240 1224 225 1235 210 1234 C169 1232 125 1201 104 1169 C106 1200 119 1244 144 1246 C146 1246 147 1245 149 1243 C137 1256 115 1247 99 1231 C72 1204 63 1157 63 1111 C61 1053 77 987 95 918 C108 866 119 827 144 785 C198 695 228 604 255 505 C284 399 309 296 333 193 C348 128 365 72 389 74Z" data-role="solid"/>
+    </g>
+    <g id="hair-left-lower-tail-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>左马尾 · 下垂后梢完整束 · 主轮廓墨线</title>
+      <path id="hair-left-lower-tail-contour-1" d="M389 74 C365 72 348 128 333 193 C309 296 284 399 255 505 C228 604 198 695 144 785 C119 827 108 866 95 918 C77 987 61 1053 63 1111 C63 1157 72 1204 99 1231 C115 1247 137 1256 149 1243 C147 1245 146 1246 144 1246 C119 1244 106 1200 104 1169"/>
+      <path id="hair-left-lower-tail-contour-2" d="M180 1111 C163 1134 139 1149 141 1170 C143 1194 166 1212 195 1219 C214 1225 229 1220 231 1212 C240 1224 225 1235 210 1234 C169 1232 125 1201 104 1169"/>
+    <path id="hair-left-lower-tail-contour-3" d="M389 74 C406 81 410 138 403 205 C390 328 359 459 324 563 C294 653 250 736 212 805 C174 871 151 925 149 976 C147 1026 159 1074 180 1111"/></g>
+  </g>
+  <g id="hair-left-back-body" data-part="hair.left.back-body" data-kind="hair">
+    <title>左马尾 · 内侧完整发体</title>
+    <desc>后侧主发体完整根部与中下段重新拟合；保留主束旁真实狭长空隙。</desc>
+    <g id="hair-left-back-body-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左马尾 · 内侧完整发体 · 完整白色底形</title>
+      <path id="hair-left-back-body-shape-1" d="M393 81 C414 95 416 139 412 185 C402 301 381 426 358 523 C337 614 304 704 270 754 C255 781 249 819 248 854 C247 897 253 935 254 947 C248 983 221 1037 194 1065  C184 1081 176 1100 179 1116 C176 1098 167 1070 167 1046 C178 1023 172 992 166 969 C161 939 171 905 180 881 C192 853 213 827 233 801 C243 787 253 777 263 764 C296 698 325 610 345 526 C371 421 391 299 396 184 C399 132 397 96 393 81Z" data-role="solid"/>
+    </g>
+    <g id="hair-left-back-body-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>左马尾 · 内侧完整发体 · 主轮廓墨线</title>
+      <path id="hair-left-back-body-contour-1" d="M393 81 C414 95 416 139 412 185 C402 301 381 426 358 523 C337 614 304 704 270 754 C255 781 249 819 248 854 C247 897 253 935 254 947 C248 983 221 1037 194 1065  C184 1081 176 1100 179 1116 C176 1098 167 1070 167 1046 C178 1023 172 992 166 969 C161 939 171 905 180 881 C192 853 213 827 233 801 C243 787 253 777 263 764 C296 698 325 610 345 526 C371 421 391 299 396 184 C399 132 397 96 393 81Z"/>
+    </g>
+  </g>
+  <g id="hair-left-return" data-part="hair.left.return" data-kind="hair">
+    <title>左马尾 · 内侧回卷束</title>
+    <desc>上段完整底形沿后发外包络连续覆盖；下回弧从真实分叉处分离，消除近邻平行重复边。</desc>
+    <g id="hair-left-return-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左马尾 · 内侧回卷束 · 完整白色底形</title>
+      <path id="hair-left-return-shape-1" d="M393 81 C414 95 416 139 412 185 C402 301 381 426 358 523 C337 614 304 704 270 754 C255 781 249 819 248 854 C247 897 253 935 254 947 C260 982 267 1022 259 1053 C251 1083 233 1105 205 1114 C194 1118 184 1120 177 1117 L177 1103 C213 1096 235 1070 243 1039 C252 1003 243 965 240 928 C236 878 241 834 253 795 C281 702 318 583 343 463 C370 331 384 205 383 113Z" data-role="solid"/>
+    </g>
+    <g id="hair-left-return-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>左马尾 · 内侧回卷束 · 主轮廓墨线</title>
+      <path id="hair-left-return-contour-1" d="M393 81 C414 95 416 139 412 185 C402 301 381 426 358 523 C337 614 304 704 270 754 C255 781 249 819 248 854 C247 897 253 935 254 947 C260 982 267 1022 259 1053 C251 1083 233 1105 205 1114 C194 1118 184 1120 177 1117"/>
+      <path id="hair-left-return-contour-2" d="M177 1103 C213 1096 235 1070 243 1039 C252 1003 243 965 240 928 C236 878 241 834 253 795 C281 702 318 583 343 463 C370 331 384 205 383 113"/>
+    </g>
+  </g>
+  <g id="hair-left-sweep-lower" data-part="hair.left.sweep" data-kind="hair">
+    <title>左马尾 · 前侧主束下端分叉</title>
+    <desc>同归属下分叉移到前侧主束之前绘制，完整分叉根部藏于主束内；仅自然外缘有墨线。</desc>
+    <g id="hair-left-sweep-lower-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左马尾 · 前侧主束下端分叉 · 完整白色底形</title>
+      <path id="hair-left-sweep-lower-shape-1" d="M144 1012 C161 1064 186 1117 224 1154 C254 1182 297 1209 321 1190 C324 1188 326 1185 328 1182 C330 1197 312 1206 294 1208 C258 1211 222 1195 192 1173 C158 1147 130 1114 116 1080 C108 1058 120 1034 144 1012Z" data-role="solid"/>
+    </g>
+    <g id="hair-left-sweep-lower-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>左马尾 · 前侧主束下端分叉 · 主轮廓墨线</title>
+      <path id="hair-left-sweep-lower-contour-1" d="M144.0000 1012.0000 C161.0000 1064.0000 186.0000 1117.0000 224.0000 1154.0000 C254.0000 1182.0000 297.0000 1209.0000 321.0000 1190.0000 C324.0000 1188.0000 326.0000 1185.0000 328.0000 1182.0000 C330.0000 1197.0000 312.0000 1206.0000 294.0000 1208.0000 C258.0000 1211.0000 222.0000 1195.0000 192.0000 1173.0000 C168.4380 1154.9820 147.7575 1133.6023 132.6210 1110.8576" stroke-linecap="butt"/>
+      <path id="hair-left-sweep-lower-contour-1-end-taper" d="M116.0000 1080.0000 C120.2461 1090.4638 125.2888 1101.1463 132.0174 1111.2593 L133.2245 1110.4560 C126.5422 1100.4172 120.3499 1090.4122 116.0000 1080.0000Z" data-role="ink-band" fill="#34343e" stroke="none"/>
+    </g>
+  </g>
+  <g id="hair-left-sweep" data-part="hair.left.sweep" data-kind="hair">
+    <title>左马尾 · 前侧主束与回梢</title>
+    <desc>主束上段贴合原完整后束的外包络，消除平行重复边。原V形束间开口与完整臂下发体保留；细绕环由外绕前段承担，下分叉置于本束后。 前束的完整上根拓展至已有真实外包络，省略由分组制造的发根内界。</desc>
+    <g id="hair-left-sweep-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左马尾 · 前侧主束与回梢 · 完整白色底形</title>
+      <path id="hair-left-sweep-shape-1" d="M389 71 C365 68 348 127 333 193 C309 296 284 399 255 505 C234 576 201 659 166 720 C131 780 91 835 65 895 C68 899 73 906 76 910 C94 889 114 866 131 852 C116 901 112 948 120 995 C130 1059 157 1110 193 1145 C230 1182 274 1188 306 1165 C317 1157 324 1146 319 1136 C319 1150 294 1153 267 1144 C216 1127 184 1083 179 1026 C176 985 173 943 178 902 C179 878 187 857 196 840 C209 818 230 790 252 780 C260 771 265 762 270 754 C304 704 337 614 358 523 C381 426 402 301 412 185 C416 139 411 85 389 71Z" data-role="solid"/>
+    </g>
+    <g id="hair-left-sweep-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>左马尾 · 前侧主束与回梢 · 主轮廓墨线</title>
+      <path id="hair-left-sweep-contour-1" d="M389 71 C365 68 348 127 333 193 C309 296 284 399 255 505 C234 576 201 659 166 720 C131 780 91 835 65 895"/>
+      <path id="hair-left-sweep-contour-2" d="M120.9829 892.8776 C114.6995 927.4140 114.2480 961.2070 120.0000 995.0000 C130.0000 1059.0000 157.0000 1110.0000 193.0000 1145.0000 C230.0000 1182.0000 274.0000 1188.0000 306.0000 1165.0000 C317.0000 1157.0000 324.0000 1146.0000 319.0000 1136.0000 C319.0000 1150.0000 294.0000 1153.0000 267.0000 1144.0000 C216.0000 1127.0000 184.0000 1083.0000 179.0000 1026.0000 C176.0000 985.0000 173.0000 943.0000 178.0000 902.0000 C179.0000 878.0000 187.0000 857.0000 196.0000 840.0000 C209.0000 818.0000 230.0000 790.0000 252.0000 780.0000 C260.0000 771.0000 265.0000 762.0000 270.0000 754.0000 C304.0000 704.0000 337.0000 614.0000 358.0000 523.0000 C381.0000 426.0000 402.0000 301.0000 412.0000 185.0000 C416.0000 139.0000 411.0000 85.0000 389.0000 72.0000" stroke-linecap="butt"/>
+      <path id="hair-left-sweep-contour-2-start-taper" d="M131.0000 852.0000 C126.7289 865.7541 122.7312 879.2213 120.2696 892.7478 L121.6962 893.0074 C124.1460 879.5388 126.8411 865.7839 131.0000 852.0000Z" data-role="ink-band" fill="#34343e" stroke="none"/>
+    </g>
+  </g>
+  <g id="hair-right-orbit-back" data-part="hair.right.orbit" data-kind="hair">
+    <title>右马尾 · 外绕长束后段</title>
+    <desc>验证修订：补齐圆弧发根的自然墨线；外绕长弧保留，下端跨层截口不描黑。</desc>
+    <g id="hair-right-orbit-back-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右马尾 · 外绕长束后段 · 完整白色底形</title>
+      <path id="hair-right-orbit-back-shape-1" d="M638 53 C658 67 681 144 708 214 C752 330 812 442 871 547 C918 631 947 703 943 756 C942 795 930 821 914 834 L920 850 C947 832 959 804 957 767 C955 704 927 635 885 557 C829 454 781 363 741 271 C700 177 679 85 655 53 C649 47 643 47 638 53Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-orbit-back-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>右马尾 · 外绕长束后段 · 主轮廓墨线</title>
+      <path id="hair-right-orbit-back-contour-1" d="M638 53 C658 67 681 144 708 214 C752 330 812 442 871 547 C918 631 947 703 943 756 C942 795 930 821 914 834"/>
+      <path id="hair-right-orbit-back-contour-2" d="M920 850 C947 832 959 804 957 767 C955 704 927 635 885 557 C829 454 781 363 741 271 C700 177 679 85 655 53 C649 47 643 47 638 53"/>
+    </g>
+  </g>
+  <g id="hair-right-back-body" data-part="hair.right.back-body" data-kind="hair">
+    <title>右马尾 · 后侧完整发体</title>
+    <desc>验证修订：补齐后梢的外回弧、自然尖端与内回弧墨线。仅把隐藏回弧与尖端微调至前回梢实体内部，同步更新底形；保留上中段及发体厚度，避免近邻双边。</desc>
+    <g id="hair-right-back-body-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右马尾 · 后侧完整发体 · 完整白色底形</title>
+      <path id="hair-right-back-body-shape-1" d="M625 53 C638 39 651 43 662 62 C676 86 685 125 693 159 C716 255 744 338 778 425 C818 529 860 647 891 740 C903 777 906 806 916 832 C941 896 958 942 965 993 C973 1050 971 1096 947 1144 C931 1175 901 1193 866 1193 C830 1194 801 1181 785 1158 C777 1148 774 1141 777 1136 C779 1149 791 1160 808 1160 C837 1160 862 1148 877 1133 C898 1110 895 1073 880 1046 C867 1012 847 984 837 949 C826 911 819 872 807 829 C797 790 790 755 778 714 C742 599 706 505 682 409 C658 318 642 230 630 155 C621 103 619 72 625 53Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-back-body-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>右马尾 · 后侧完整发体 · 主轮廓墨线</title>
+      <path id="hair-right-back-body-contour-1" d="M625 53 C638 39 651 43 662 62 C676 86 685 125 693 159 C716 255 744 338 778 425 C818 529 860 647 891 740 C903 777 906 806 916 832 C941 896 958 942 965 993 C973 1050 971 1096 947 1144 C931 1175 901 1193 866 1193 C830 1194 801 1181 785 1158 C777 1148 774 1141 777 1136 C779 1149 791 1160 808 1160 C837 1160 862 1148 877 1133"/>
+      <path id="hair-right-back-body-contour-2" d="M877 1133 C898 1110 895 1073 880 1046 C867 1012 847 984 837 949 C826 911 819 872 807 829 C797 790 790 755 778 714 C742 599 706 505 682 409 C658 318 642 230 630 155 C621 103 619 72 625 53"/>
+    </g>
+  </g>
+  <g id="hair-right-inner-return" data-part="hair.right.inner-return" data-kind="hair">
+    <title>右马尾 · 内侧回卷主束</title>
+    <desc>内侧尖梢和腿旁负形按彩图顺滑校准，膝后结构完整。 末梢及分叉端点沿用阶段2已确认位置，避免顺曲线时缩窄束体。</desc>
+    <g id="hair-right-inner-return-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右马尾 · 内侧回卷主束 · 完整白色底形</title>
+      <path id="hair-right-inner-return-shape-1" d="M631 62 C651 99 654 162 668 226 C687 320 714 426 744 523 C773 616 808 700 812 785 C816 873 792 949 752 982 C732 999 706 1008 684 1002 C718 993 741 959 756 917 C779 855 777 795 767 741 C753 670 724 612 707 555 C681 471 660 379 648 296 C635 214 614 111 620 79Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-inner-return-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>右马尾 · 内侧回卷主束 · 主轮廓墨线</title>
+      <path id="hair-right-inner-return-contour-1" d="M631 62 C651 99 654 162 668 226 C687 320 714 426 744 523 C773 616 808 700 812 785 C816 873 792 949 752 982 C732 999 706 1008 684 1002 C718 993 741 959 756 917 C779 855 777 795 767 741 C753 670 724 612 707 555 C681 471 660 379 648 296 C635 214 614 111 620 79"/>
+    </g>
+  </g>
+  <g id="hair-right-inner-fork" data-part="hair.right.inner-fork" data-kind="hair">
+    <title>右马尾 · 内侧下垂分束</title>
+    <desc>保留根部至下垂分束的完整延续与内侧分叉开口。 末梢及分叉端点沿用阶段2已确认位置，避免顺曲线时缩窄束体。</desc>
+    <g id="hair-right-inner-fork-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右马尾 · 内侧下垂分束 · 完整白色底形</title>
+      <path id="hair-right-inner-fork-shape-1" d="M641 80 C663 130 680 239 699 318 C728 438 766 547 802 640 C833 721 854 785 853 858 C853 939 844 1007 807 1049 C789 1072 768 1090 728 1088 L716 1079 C751 1061 775 1021 787 972 C802 914 795 852 783 798 C764 714 731 635 711 552 C685 447 664 351 647 263 C632 184 619 112 629 82Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-inner-fork-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>右马尾 · 内侧下垂分束 · 主轮廓墨线</title>
+      <path id="hair-right-inner-fork-contour-1" d="M641 80 C663 130 680 239 699 318 C728 438 766 547 802 640 C833 721 854 785 853 858 C853 939 844 1007 807 1049 C789 1072 768 1090 728 1088 L716 1079 C751 1061 775 1021 787 972 C802 914 795 852 783 798 C764 714 731 635 711 552 C685 447 664 351 647 263 C632 184 619 112 629 82"/>
+    </g>
+  </g>
+  <g id="hair-right-orbit-front" data-part="hair.right.orbit" data-kind="hair">
+    <title>右马尾 · 外绕长束前段</title>
+    <desc>保留真实环内空隙；前后同束的分段接合不描黑线。 斜穿束覆盖本段根部；调整本段至斜穿束之前，避免人为接头暴露。</desc>
+    <g id="hair-right-orbit-front-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右马尾 · 外绕长束前段 · 完整白色底形</title>
+      <path id="hair-right-orbit-front-shape-1" d="M924 816 C951 845 973 888 988 935 C1002 979 1007 1020 995 1058 C988 1081 975 1099 957 1113 C935 1133 907 1160 889 1178 C902 1148 924 1120 948 1098 C970 1084 985 1062 990 1036 C998 993 980 946 959 903 C946 877 933 853 914 828Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-orbit-front-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>右马尾 · 外绕长束前段 · 主轮廓墨线</title>
+      <path id="hair-right-orbit-front-contour-1" d="M924 816 C951 845 973 888 988 935 C1002 979 1007 1020 995 1058 C988 1081 975 1099 957 1113 C935 1133 907 1160 889 1178"/>
+      <path id="hair-right-orbit-front-contour-2" d="M889 1178 C902 1148 924 1120 948 1098 C970 1084 985 1062 990 1036 C998 993 980 946 959 903 C946 877 933 853 914 828"/>
+    </g>
+  </g>
+  <g id="hair-right-bottom-curl" data-part="hair.right.bottom-curl" data-kind="hair">
+    <title>右马尾 · 下端长回梢</title>
+    <desc>验证修订：原后段的自然外缘从完整分束根部连续描至三个回梢，恢复上段缺墨；下段前景分段沿用hair.right.bottom-curl，只有跨层截口不描线。</desc>
+    <g id="hair-right-bottom-curl-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右马尾 · 下端长回梢 · 完整白色底形</title>
+      <path id="hair-right-bottom-curl-shape-1" d="M848 735 C875 789 901 850 913 908 C927 978 923 1045 899 1092 C876 1134 840 1159 809 1156 C791 1154 776 1143 778 1127 C766 1135 772 1149 786 1165 C806 1187 835 1199 865 1196 C843 1212 821 1222 805 1214 C797 1210 793 1203 793 1197 C785 1204 793 1219 807 1225 C839 1239 887 1217 919 1180 C915 1210 896 1247 878 1237 C876 1236 875 1235 874 1234 C874 1245 883 1251 895 1248 C926 1240 947 1203 961 1160 C975 1116 977 1063 968 1007 C958 944 935 880 909 830 C885 785 866 753 848 735Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-bottom-curl-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>右马尾 · 下端长回梢 · 主轮廓墨线</title>
+      <path id="hair-right-bottom-curl-contour-1" d="M913 908 C927 978 923 1045 899 1092 C876 1134 840 1159 809 1156 C791 1154 776 1143 778 1127 C766 1135 772 1149 786 1165 C806 1187 835 1199 865 1196 C843 1212 821 1222 805 1214 C797 1210 793 1203 793 1197 C785 1204 793 1219 807 1225 C839 1239 887 1217 919 1180 C915 1210 896 1247 878 1237 C876 1236 875 1235 874 1234 C874 1245 883 1251 895 1248 C926 1240 947 1203 961 1160 C975 1116 977 1063 968 1007 C958 944 935 880 909 830" stroke-linecap="butt"/>
+      <path id="hair-right-bottom-curl-contour-1-start-taper" d="M848 735 C875 789 901 850 913 908" data-role="ink-path"/>
+      <path id="hair-right-bottom-curl-contour-1-end-taper" d="M909 830 C885 785 866 753 848 735" data-role="ink-path"/>
+    </g>
+  </g>
+  <g id="hair-right-front-sweep" data-part="hair.right.front-sweep" data-kind="hair">
+    <title>右马尾 · 前侧回卷主束</title>
+    <desc>验证修订：完整前卷束移至下端长回梢后段之后、斜穿束之前，正确遮住后梢根部；原前景下端回梢分段继续在本束前方，路径及尖端不变。</desc>
+    <g id="hair-right-front-sweep-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右马尾 · 前侧回卷主束 · 完整白色底形</title>
+      <path id="hair-right-front-sweep-shape-1" d="M638 49 C655 54 667 104 678 151 C707 270 755 410 814 552 C855 651 888 737 908 806 C930 866 948 921 957 966 C966 1017 962 1063 928 1093 C905 1111 879 1115 855 1112 C836 1117 817 1113 811 1102 C805 1091 811 1079 821 1078 C813 1084 815 1095 823 1100 C836 1108 855 1097 870 1086 C897 1065 906 1023 908 979 C911 917 894 862 866 811 C840 764 810 724 785 683 C739 607 705 514 679 420 C651 320 633 221 622 148 C615 103 620 63 638 49Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-front-sweep-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>右马尾 · 前侧回卷主束 · 主轮廓墨线</title>
+      <path id="hair-right-front-sweep-contour-1" d="M638 49 C655 54 667 104 678 151 C707 270 755 410 814 552 C855 651 888 737 908 806 C930 866 948 921 957 966 C966 1017 962 1063 928 1093 C905 1111 879 1115 855 1112 C836 1117 817 1113 811 1102 C805 1091 811 1079 821 1078 C813 1084 815 1095 823 1100 C836 1108 855 1097 870 1086 C897 1065 906 1023 908 979 C911 917 894 862 866 811 C840 764 810 724 785 683 C739 607 705 514 679 420 C651 320 633 221 622 148 C615 103 620 63 638 49"/>
+    </g>
+  </g>
+  <g id="hair-right-crossing-ribbon" data-part="hair.right.crossing" data-kind="hair">
+    <title>右马尾 · 斜穿回环束</title>
+    <desc>验证修订：补回隐藏上段的自然墨线，并同步把上段完整底形延至已有主束外包络，由实体覆盖后束近邻边。保持斜穿段和下端真实搭接；下端短截口不描黑。</desc>
+    <g id="hair-right-crossing-ribbon-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右马尾 · 斜穿回环束 · 完整白色底形</title>
+      <path id="hair-right-crossing-ribbon-shape-1" d="M625 53 C638 39 651 43 662 62 C676 86 685 125 693 159 C716 255 744 338 778 425 C818 529 860 647 891 740 C901 771 918 786 937 807 C963 839 979 881 986 923 C992 959 976 992 959 1014 C953 1022 947 1029 941 1034 L935 1019 C957 995 971 966 965 937 C962 907 953 881 940 859 C932 846 921 833 912 823 C881 789 852 753 825 712 C764 620 711 514 679 420 C651 320 633 221 622 148 C616 111 620 81 625 53Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-crossing-ribbon-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>右马尾 · 斜穿回环束 · 主轮廓墨线</title>
+      <path id="hair-right-crossing-ribbon-contour-1" d="M625 53 C638 39 651 43 662 62 C676 86 685 125 693 159 C716 255 744 338 778 425 C818 529 860 647 891 740 C901 771 918 786 937 807 C963 839 979 881 986 923 C992 959 976 992 959 1014 C953 1022 947 1029 941 1034"/>
+      <path id="hair-right-crossing-ribbon-contour-2" d="M935 1019 C957 995 971 966 965 937 C962 907 953 881 940 859 C932 846 921 833 912 823 C881 789 852 753 825 712 C764 620 711 514 679 420 C651 320 633 221 622 148 C616 111 620 81 625 53"/>
+    </g>
+  </g>
+  <g id="hair-right-bottom-curl-front" data-part="hair.right.bottom-curl" data-kind="hair">
+    <title>右马尾 · 下端长回梢前段</title>
+    <desc>验证修订：同归属前段的完整底形向上延至原自然收笔处，避免跨层墨线突然起笔；前段保留局部渐细收笔。完整根部与整段自然墨线均保存在后段，由前卷束真实覆盖；分段截口不描黑。</desc>
+    <g id="hair-right-bottom-curl-front-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>下端回梢前段 · 白色底形</title>
+      <path id="hair-right-bottom-curl-front-shape-1" d="M913 908 C927 978 923 1045 899 1092 C876 1134 840 1159 809 1156 C791 1154 776 1143 778 1127 C766 1135 772 1149 786 1165 C806 1187 835 1199 865 1196 C843 1212 821 1222 805 1214 C797 1210 793 1203 793 1197 C785 1204 793 1219 807 1225 C839 1239 887 1217 919 1180 C915 1210 896 1247 878 1237 C876 1236 875 1235 874 1234 C874 1245 883 1251 895 1248 C926 1240 947 1203 961 1160 C975 1116 977 1063 968 1007  C964.8500 987.1550 960.4101 967.2108 954.9928 947.6362Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-bottom-curl-front-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>下端回梢前段 · 主轮廓墨线</title>
+      <path id="hair-right-bottom-curl-front-contour-1" d="M919.2441 949.7083 C924.5840 1004.1260 918.1760 1054.4470 899.0000 1092.0000 C876 1134 840 1159 809 1156 C791 1154 776 1143 778 1127 C766 1135 772 1149 786 1165 C806 1187 835 1199 865 1196 C843 1212 821 1222 805 1214 C797 1210 793 1203 793 1197 C785 1204 793 1219 807 1225 C839 1239 887 1217 919 1180 C915 1210 896 1247 878 1237 C876 1236 875 1235 874 1234 C874 1245 883 1251 895 1248 C926 1240 947 1203 961 1160 C975 1116 977 1063 968 1007  C964.8500 987.1550 960.4101 967.2108 954.9928 947.6362" stroke-linecap="butt"/>
+    <path id="hair-right-bottom-curl-front-entry-taper" d="M913 908 C915.7568 922.0795 917.1821 936.1142 918.5226 949.7791 L919.9656 949.6375 C918.6195 935.9234 915.8712 922.0605 913 908Z" data-role="ink-band" fill="#34343e" stroke="none"/></g>
+  </g>
+  <g id="hair-back-head" data-part="hair.back-head" data-kind="hair">
+    <title>后脑发体与耳后短梢</title>
+    <desc>验证修订：后脑两侧、全部耳后短梢和下缘均保留完整底形及所属自然墨线；仅微调藏于前发下的短梢侧缘，使其位于真实前景实体内，避免露出重复短边。发顶外弧、原分组与叠放保留。</desc>
+    <g id="hair-back-head-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>后脑发体与耳后短梢 · 完整白色底形</title>
+      <path id="hair-back-head-shape-1" d="M405 135 C413 86 450 40 491 35 C504 35 511 30 526 31 C566 30 599 59 615 97 C624 117 626 141 623 166 C622 192 617 213 612 225 C612 214 610 205 607 198 C603 231 593 251 584 264 C591 247 592 229 588 215 C573 237 550 261 526 268 C504 270 481 258 462 238 C459 251 460 266 468 274 C460 269 452 252 448 238 L446 232 C443 249 445 258 443 265 C437 251 432 235 431 219 C423 227 419 240 423 254 C418 242 411 222 408 204 C402 181 400 155 405 135Z" data-role="solid"/>
+    </g>
+    <g id="hair-back-head-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>后脑发体与耳后短梢 · 主轮廓墨线</title>
+      <path id="hair-back-head-contour-1" d="M405 135 C413 86 450 40 491 35 C504 35 511 30 526 31 C566 30 599 59 615 97 C624 117 626 141 623 166 C622 192 617 213 612 225 C612 214 610 205 607 198 C603 231 593 251 584 264 C591 247 592 229 588 215 C573 237 550 261 526 268 C504 270 481 258 462 238 C459 251 460 266 468 274 C460 269 452 252 448 238 L446 232 C443 249 445 258 443 265 C437 251 432 235 431 219 C423 227 419 240 423 254 C418 242 411 222 408 204 C402 181 400 155 405 135Z"/>
+    </g>
+  </g>
+  <g id="body-neck-torso-pelvis" data-part="body.torso" data-kind="body">
+    <title>颈、躯干与骨盆 · 连续身体底形</title>
+    <desc>颈肩、腰和骨盆连通重构；肩根、髋根为完整重叠底形，墨线只记自然外缘。</desc>
+    <g id="body-neck-torso-pelvis-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>颈、躯干与骨盆 · 连续身体底形 · 完整白色底形</title>
+      <path id="body-neck-torso-pelvis-shape-1" d="M503 246 C519 251 538 250 554 242 C553 260 553 278 554 288 C554 303 558 307 571 314 C584 321 600 325 614 328 C628 338 632 359 626 382 C621 405 607 433 600 458 C592 484 584 507 585 525 C585 549 597 575 605 599 C613 622 617 640 617 653 C590 663 568 683 543 703 C529 709 516 716 505 716 C496 720 486 719 477 715 C470 709 467 700 464 692 C442 671 422 645 403 634 C393 628 386 627 380 630 C384 607 394 583 412 563 C428 545 440 529 443 515 C446 499 440 477 435 459 C429 439 424 418 425 402 C424 383 415 369 405 360 C405 337 421 309 442 301 C466 305 487 308 499 300 C506 295 506 286 506 277Z" data-role="solid"/>
+    </g>
+    <g id="body-neck-torso-pelvis-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+      <title>颈、躯干与骨盆 · 连续身体底形 · 主轮廓墨线</title>
+      <path id="body-neck-torso-pelvis-contour-1" d="M503 246 C505 258 506 269 506 277 C506 286 506 295 499 300 C487 308 466 305 442 301"/>
+      <path id="body-neck-torso-pelvis-contour-2" d="M554 242 C553 260 553 278 554 288 C554 303 558 307 571 314 C584 321 600 325 614 328"/>
+      <path id="body-neck-torso-pelvis-contour-3" d="M425 402 C424 418 429 439 435 459 C440 477 446 499 443 515 C440 529 428 545 412 563 C394 583 384 607 380 630"/>
+      <path id="body-neck-torso-pelvis-contour-4" d="M626 382 C621 405 607 433 600 458 C592 484 584 507 585 525 C585 549 597 575 605 599 C613 622 617 640 617 653"/>
+      <path id="body-neck-torso-pelvis-contour-5" d="M477 715 C486 719 496 720 505 716"/>
+    </g>
+  </g>
+  <g id="body-left-leg" data-part="body.leg.left" data-kind="body">
+    <title>左腿连足 · 完整髋根</title>
+    <desc>膝踝长弧、足尖外形重新顺接；闭合髋底与骨盆搭接，髋根封口不描线。</desc>
+    <g id="body-left-leg-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左腿连足 · 完整髋根 · 完整白色底形</title>
+      <path id="body-left-leg-shape-1" d="M420 554 C450 553 475 581 480 618 C485 652 479 690 477 719 C477 772 467 830 460 878 C453 923 450 953 450 974 C451 1002 440 1021 435 1044 C430 1067 434 1092 430 1125 C424 1183 415 1244 416 1281 C416 1306 423 1319 428 1334 C432 1345 426 1351 429 1366 C433 1394 440 1421 451 1443 C457 1455 453 1464 456 1476 C459 1487 455 1492 446 1492 C439 1492 434 1489 434 1484 C434 1490 431 1493 426 1493 C421 1493 418 1491 418 1486 C418 1490 415 1493 410 1492 C405 1492 403 1489 402 1484 C401 1489 397 1489 393 1486 C390 1485 389 1482 388 1478 C384 1480 379 1474 378 1468 C373 1461 372 1455 372 1446 C372 1421 378 1382 378 1356 C377 1346 371 1342 373 1331 C375 1318 378 1307 377 1294 C375 1255 362 1201 355 1160 C349 1128 348 1101 354 1075 C359 1050 367 1027 373 1006 C380 983 381 963 378 937 C375 907 369 866 362 820 C354 766 347 724 352 687 C356 652 367 620 385 595 C397 573 407 559 420 554Z" data-role="solid"/>
+    </g>
+    <g id="body-left-leg-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+      <title>左腿连足 · 完整髋根 · 主轮廓墨线</title>
+      <path id="body-left-leg-contour-1" d="M477 715 L477 719 C477 772 467 830 460 878 C453 923 450 953 450 974 C451 1002 440 1021 435 1044 C430 1067 434 1092 430 1125 C424 1183 415 1244 416 1281 C416 1306 423 1319 428 1334 C432 1345 426 1351 429 1366 C433 1394 440 1421 451 1443 C457 1455 453 1464 456 1476 C459 1487 455 1492 446 1492 C439 1492 434 1489 434 1484 C434 1490 431 1493 426 1493 C421 1493 418 1491 418 1486 C418 1490 415 1493 410 1492 C405 1492 403 1489 402 1484 C401 1489 397 1489 393 1486 C390 1485 389 1482 388 1478 C384 1480 379 1474 378 1468 C373 1461 372 1455 372 1446 C372 1421 378 1382 378 1356 C377 1346 371 1342 373 1331 C375 1318 378 1307 377 1294 C375 1255 362 1201 355 1160 C349 1128 348 1101 354 1075 C359 1050 367 1027 373 1006 C380 983 381 963 378 937 C375 907 369 866 362 820 C354 766 347 724 352 687 C356 652 367 620 385 595 C397 573 407 559 420 554"/>
+    </g>
+  </g>
+  <g id="body-right-leg" data-part="body.leg.right" data-kind="body">
+    <title>右腿连足 · 完整髋根</title>
+    <desc>重构髋至足的长曲线及趾尖外轮廓；不描趾缝、膝线或髋根封口。</desc>
+    <g id="body-right-leg-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右腿连足 · 完整髋根 · 完整白色底形</title>
+      <path id="body-right-leg-shape-1" d="M548 565 C579 562 604 593 613 625 C621 660 637 716 645 763 C654 817 658 879 667 937 C674 973 681 993 696 1016 C711 1039 725 1063 734 1087 C747 1125 751 1156 759 1193 C767 1231 772 1268 781 1294 C787 1311 796 1319 797 1333 C797 1343 795 1351 798 1361 C804 1391 807 1421 812 1443 C815 1457 810 1470 806 1476 C803 1480 799 1482 796 1479 C796 1484 792 1487 788 1487 C786 1487 784 1486 784 1483 C784 1489 780 1491 776 1491 C772 1491 769 1489 769 1486 C768 1492 764 1493 760 1492 C756 1492 754 1489 754 1486 C752 1492 744 1493 739 1490 C732 1487 734 1475 733 1467 C730 1453 735 1439 738 1421 C743 1397 746 1376 746 1356 C743 1345 739 1337 740 1324 C742 1307 737 1289 732 1275 C714 1232 689 1188 672 1144 C654 1101 647 1069 631 1040 C619 1020 609 1009 605 987 C596 948 578 899 556 854 C540 813 526 775 515 741 C509 726 503 706 501 688 C501 650 512 591 548 565Z" data-role="solid"/>
+    </g>
+    <g id="body-right-leg-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+      <title>右腿连足 · 完整髋根 · 主轮廓墨线</title>
+      <path id="body-right-leg-contour-1" d="M613 625 C621 660 637 716 645 763 C654 817 658 879 667 937 C674 973 681 993 696 1016 C711 1039 725 1063 734 1087 C747 1125 751 1156 759 1193 C767 1231 772 1268 781 1294 C787 1311 796 1319 797 1333 C797 1343 795 1351 798 1361 C804 1391 807 1421 812 1443 C815 1457 810 1470 806 1476 C803 1480 799 1482 796 1479 C796 1484 792 1487 788 1487 C786 1487 784 1486 784 1483 C784 1489 780 1491 776 1491 C772 1491 769 1489 769 1486 C768 1492 764 1493 760 1492 C756 1492 754 1489 754 1486 C752 1492 744 1493 739 1490 C732 1487 734 1475 733 1467 C730 1453 735 1439 738 1421 C743 1397 746 1376 746 1356 C743 1345 739 1337 740 1324 C742 1307 737 1289 732 1275 C714 1232 689 1188 672 1144 C654 1101 647 1069 631 1040 C619 1020 609 1009 605 987 C596 948 578 899 556 854 C540 813 526 775 515 741 C511 732 508 723 505 716"/>
+    </g>
+  </g>
+  <g id="body-left-arm" data-part="body.arm.left" data-kind="body">
+    <title>左臂 · 肩至腕完整底形</title>
+    <desc>肩根和腕根完整延入相邻实体；仅保留臂两侧自然轮廓，无黑色封口。</desc>
+    <g id="body-left-arm-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左臂 · 肩至腕完整底形 · 完整白色底形</title>
+      <path id="body-left-arm-shape-1" d="M312 210 C286 234 260 253 234 272 C211 288 202 308 185 334 C178 344 186 354 200 358 C229 366 250 367 281 365 C318 363 359 365 389 363 C410 362 417 372 425 402 C440 375 455 335 459 302 C445 296 435 292 421 294 C387 298 357 308 327 310 C309 312 290 313 273 312 C288 286 310 264 334 243 C344 234 343 224 333 217Z" data-role="solid"/>
+    </g>
+    <g id="body-left-arm-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+      <title>左臂 · 肩至腕完整底形 · 主轮廓墨线</title>
+      <path id="body-left-arm-contour-1" d="M312 210 C286 234 260 253 234 272 C211 288 202 308 185 334 C178 344 186 354 200 358 C229 366 250 367 281 365 C318 363 359 365 389 363 C410 362 417 372 425 402"/>
+      <path id="body-left-arm-contour-2" d="M459 302 C445 296 435 292 421 294 C387 298 357 308 327 310 C309 312 290 313 273 312 C288 286 310 264 334 243"/>
+    </g>
+  </g>
+  <g id="body-right-arm" data-part="body.arm.right" data-kind="body">
+    <title>右臂 · 肩至腕完整底形</title>
+    <desc>外肘转角自然保留；腕部深入掌底，手下前臂和肩端完整，无截口墨线。</desc>
+    <g id="body-right-arm-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右臂 · 肩至腕完整底形 · 完整白色底形</title>
+      <path id="body-right-arm-shape-1" d="M602 325 C624 324 639 329 652 346 C670 369 694 408 717 440 C741 473 759 497 765 511 C770 520 755 539 741 555 C719 580 681 611 650 630 C639 639 628 636 619 625 C611 614 619 602 635 594 C665 576 690 546 707 513 C686 486 664 460 645 436 C633 420 626 413 619 409 C609 416 601 414 596 403 C586 381 589 346 602 325Z" data-role="solid"/>
+    </g>
+    <g id="body-right-arm-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+      <title>右臂 · 肩至腕完整底形 · 主轮廓墨线</title>
+      <path id="body-right-arm-contour-1" d="M602 325 C624 324 639 329 652 346 C670 369 694 408 717 440 C741 473 759 497 765 511 C770 520 755 539 741 555 C719 580 681 611 650 630"/>
+      <path id="body-right-arm-contour-2" d="M635 594 C665 576 690 546 707 513 C686 486 664 460 645 436 C633 420 626 413 619 409"/>
+    </g>
+  </g>
+  <g id="garment-base" data-part="garment.base" data-kind="garment">
+    <title>基础无袖连体服 · 完整衣片</title>
+    <desc>衣领、袖缘和腿口的单一衣片重新拟合；腰侧及腿口在手下连续，底形与主衣缘完全一致。</desc>
+    <g id="garment-base-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>基础无袖连体服 · 完整衣片 · 完整白色底形</title>
+      <path id="garment-base-shape-1" d="M457 301 C462 303 468 304 474 305 C474 329 478 350 492 363 C506 377 528 381 549 378 C572 375 587 365 586 341 L585 321 C591 323 597 324 602 325 C605 352 608 378 615 397 C622 414 620 435 614 449 C610 459 604 465 601 479 C595 496 585 511 585 526 C585 545 592 565 598 582 C608 598 615 613 616 628 C599 622 583 635 568 650 C550 668 536 689 521 704 C508 717 500 720 489 717 C476 714 471 699 462 681 C449 655 437 630 422 612 C410 598 398 591 389 596 C387 597 385 599 383 602 C393 578 410 557 428 539 C440 526 446 516 444 502 C441 476 434 455 429 435 C423 418 423 406 427 391 C432 375 441 363 447 345 C452 329 455 313 457 301Z" data-role="solid"/>
+    </g>
+    <g id="garment-base-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>基础无袖连体服 · 完整衣片 · 主轮廓墨线</title>
+      <path id="garment-base-contour-1" d="M457 301 C462 303 468 304 474 305 C474 329 478 350 492 363 C506 377 528 381 549 378 C572 375 587 365 586 341 L585 321 C591 323 597 324 602 325 C605 352 608 378 615 397 C622 414 620 435 614 449 C610 459 604 465 601 479 C595 496 585 511 585 526 C585 545 592 565 598 582 C608 598 615 613 616 628 C599 622 583 635 568 650 C550 668 536 689 521 704 C508 717 500 720 489 717 C476 714 471 699 462 681 C449 655 437 630 422 612 C410 598 398 591 389 596 C387 597 385 599 383 602 C393 578 410 557 428 539 C440 526 446 516 444 502 C441 476 434 455 429 435 C423 418 423 406 427 391 C432 375 441 363 447 345 C452 329 455 313 457 301Z"/>
+    </g>
+  </g>
+  <g id="body-left-ear" data-part="body.ear.left" data-kind="body">
+    <title>左耳 · 简化完整耳廓</title>
+    <desc>完整耳廓藏于头发和耳侧配件下；本步不画耳内结构。</desc>
+    <g id="body-left-ear-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左耳 · 简化完整耳廓 · 完整白色底形</title>
+      <path id="body-left-ear-shape-1" d="M445 181 C436 177 430 186 431 198 C431 211 438 227 447 226 C455 224 456 210 453 198 C451 189 449 184 445 181Z" data-role="solid"/>
+    </g>
+    <g id="body-left-ear-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <title>左耳 · 简化完整耳廓 · 主轮廓墨线</title>
+      <path id="body-left-ear-contour-1" d="M445 181 C436 177 430 186 431 198 C431 211 438 227 447 226 C455 224 456 210 453 198 C451 189 449 184 445 181Z"/>
+    </g>
+  </g>
+  <g id="body-right-ear" data-part="body.ear.right" data-kind="body">
+    <title>右耳 · 简化完整耳廓</title>
+    <desc>完整耳廓独立存放，主轮廓不与头发焊接。</desc>
+    <g id="body-right-ear-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右耳 · 简化完整耳廓 · 完整白色底形</title>
+      <path id="body-right-ear-shape-1" d="M589 174 C599 168 605 180 603 193 C601 208 596 220 588 219 C581 216 580 202 582 189 C583 181 585 177 589 174Z" data-role="solid"/>
+    </g>
+    <g id="body-right-ear-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <title>右耳 · 简化完整耳廓 · 主轮廓墨线</title>
+      <path id="body-right-ear-contour-1" d="M589 174 C599 168 605 180 603 193 C601 208 596 220 588 219 C581 216 580 202 582 189 C583 181 585 177 589 174Z"/>
+    </g>
+  </g>
+  <g id="body-head-face" data-part="body.head" data-kind="body">
+    <title>头脸 · 完整颅形、额头与侧脸</title>
+    <desc>以彩图校准两颊、下颌与下巴的连续轮廓；颅顶及额头完整补通，无五官。</desc>
+    <g id="body-head-face-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>头脸 · 完整颅形、额头与侧脸 · 完整白色底形</title>
+      <path id="body-head-face-shape-1" d="M508 53 C540 49 570 64 584 91 C597 117 601 149 598 178 C596 203 588 224 573 241 C560 255 545 267 529 277 C516 274 497 269 482 263 C462 255 450 239 444 218 C436 192 432 169 435 143 C437 111 445 85 462 70 C475 59 491 55 508 53Z" data-role="solid"/>
+    </g>
+    <g id="body-head-face-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+      <title>头脸 · 完整颅形、额头与侧脸 · 主轮廓墨线</title>
+      <path id="body-head-face-contour-1" d="M508 53 C540 49 570 64 584 91 C597 117 601 149 598 178 C596 203 588 224 573 241 C560 255 545 267 529 277 C516 274 497 269 482 263 C462 255 450 239 444 218 C436 192 432 169 435 143 C437 111 445 85 462 70 C475 59 491 55 508 53Z"/>
+    </g>
+  </g>
+  <g id="accessory-left-temple" data-part="accessory.temple.left" data-kind="accessory">
+    <title>左耳侧配件 · 独立底形</title>
+    <desc>耳侧配件保留完整外壳和隐藏上缘，仅画外缘。</desc>
+    <g id="accessory-left-temple-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左耳侧配件 · 独立底形 · 完整白色底形</title>
+      <path id="accessory-left-temple-shape-1" d="M421 179 C432 176 443 181 449 193 L474 250 C476 256 466 263 457 263 C445 261 437 249 430 234 C422 216 417 193 421 179Z" data-role="solid"/>
+    </g>
+    <g id="accessory-left-temple-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <title>左耳侧配件 · 独立底形 · 主轮廓墨线</title>
+      <path id="accessory-left-temple-contour-1" d="M421 179 C432 176 443 181 449 193 L474 250 C476 256 466 263 457 263 C445 261 437 249 430 234 C422 216 417 193 421 179Z"/>
+    </g>
+  </g>
+  <g id="accessory-right-temple" data-part="accessory.temple.right" data-kind="accessory">
+    <title>右耳侧配件 · 独立底形</title>
+    <desc>耳侧配件隐藏上缘连续，仅保留实体外轮廓。</desc>
+    <g id="accessory-right-temple-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右耳侧配件 · 独立底形 · 完整白色底形</title>
+      <path id="accessory-right-temple-shape-1" d="M589 169 C601 166 612 174 616 186 C620 199 615 222 609 233 C602 240 590 243 579 237 C574 233 578 216 583 199Z" data-role="solid"/>
+    </g>
+    <g id="accessory-right-temple-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <title>右耳侧配件 · 独立底形 · 主轮廓墨线</title>
+      <path id="accessory-right-temple-contour-1" d="M589 169 C601 166 612 174 616 186 C620 199 615 222 609 233 C602 240 590 243 579 237 C574 233 578 216 583 199Z"/>
+    </g>
+  </g>
+  <g id="accessory-left-root" data-part="accessory.root.left" data-kind="accessory">
+    <title>左侧几何发饰 · 完整折角</title>
+    <desc>保留几何折角，重建外轮廓；本步不绘内部装饰条。</desc>
+    <g id="accessory-left-root-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左侧几何发饰 · 完整折角 · 完整白色底形</title>
+      <path id="accessory-left-root-shape-1" d="M424 39 L440 41 L451 63 L412 133 L431 168 L411 182 L386 134Z" data-role="solid"/>
+    </g>
+    <g id="accessory-left-root-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <title>左侧几何发饰 · 完整折角 · 主轮廓墨线</title>
+      <path id="accessory-left-root-contour-1" d="M424 39 L440 41 L451 63 L412 133 L431 168 L411 182 L386 134Z"/>
+    </g>
+  </g>
+  <g id="accessory-right-root" data-part="accessory.root.right" data-kind="accessory">
+    <title>右侧几何发饰 · 完整折角</title>
+    <desc>发饰外折角按彩图校准，隐藏内角完整；装饰条留待后续。</desc>
+    <g id="accessory-right-root-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右侧几何发饰 · 完整折角 · 完整白色底形</title>
+      <path id="accessory-right-root-shape-1" d="M573 27 L590 21 L643 97 L624 167 L607 178 L619 102 L570 46Z" data-role="solid"/>
+    </g>
+    <g id="accessory-right-root-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <title>右侧几何发饰 · 完整折角 · 主轮廓墨线</title>
+      <path id="accessory-right-root-contour-1" d="M573 27 L590 21 L643 97 L624 167 L607 178 L619 102 L570 46Z"/>
+    </g>
+  </g>
+  <g id="hair-left-fringe-back" data-part="hair.fringe.left" data-kind="hair">
+    <title>左侧前发 · 后侧分梢</title>
+    <desc>验证修订：恢复从发根到两处发尖、尖间凹谷及回到根部的自然外缘墨线；根部短直截口不描黑。与贴脸主体沿用hair.fringe.left归属，完整白面按原层序遮挡。</desc>
+    <g id="hair-left-fringe-back-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左侧前发 · 后侧分梢 · 完整白色底形</title>
+      <path id="hair-left-fringe-back-shape-1" d="M463 74 C440 79 424 97 415 121 C404 149 402 177 407 205 C410 233 417 256 429 272 C424 254 421 236 423 218 C428 245 436 267 450 279 C443 259 441 238 443 217 C455 183 466 130 478 91Z" data-role="solid"/>
+    </g>
+    <g id="hair-left-fringe-back-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>左侧前发 · 后侧分梢 · 主轮廓墨线</title>
+      <path id="hair-left-fringe-back-contour-1" d="M463 74 C440 79 424 97 415 121 C404 149 402 177 407 205 C410 233 417 256 429 272 C424 254 421 236 423 218 C428 245 436 267 450 279 C443 259 441 238 443 217 C455 183 466 130 478 91"/>
+    </g>
+  </g>
+  <g id="hair-right-fringe" data-part="hair.fringe.right" data-kind="hair">
+    <title>右侧贴脸发束 · 完整发根</title>
+    <desc>验证修订：补齐右侧贴脸束的隐藏发根自然墨线；三处尖梢、脸侧负形和完整底形保留。</desc>
+    <g id="hair-right-fringe-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右侧贴脸发束 · 完整发根 · 完整白色底形</title>
+      <path id="hair-right-fringe-shape-1" d="M532 41 C565 42 595 73 610 104 C621 126 624 145 623 166 C623 195 618 230 605 251 C611 231 613 211 613 196 C606 235 593 263 577 275 C585 257 589 237 589 216 C583 228 578 234 571 239 C583 216 589 189 587 166 C584 137 574 111 560 91 C547 71 537 53 532 41Z" data-role="solid"/>
+    </g>
+    <g id="hair-right-fringe-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>右侧贴脸发束 · 完整发根 · 主轮廓墨线</title>
+      <path id="hair-right-fringe-contour-1" d="M532 41 C565 42 595 73 610 104 C621 126 624 145 623 166 C623 195 618 230 605 251 C611 231 613 211 613 196 C606 235 593 263 577 275 C585 257 589 237 589 216 C583 228 578 234 571 239 C583 216 589 189 587 166 C584 137 574 111 560 91 C547 71 537 53 532 41Z"/>
+    </g>
+  </g>
+  <g id="hair-left-fringe-front" data-part="hair.fringe.left" data-kind="hair">
+    <title>左侧前发 · 贴脸主体</title>
+    <desc>验证修订：恢复掌下、束根及尖间凹谷的完整自然轮廓墨线；白色底形与原分层保留，前额刘海及手掌以真实实体覆盖。</desc>
+    <g id="hair-left-fringe-front-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左侧前发 · 贴脸主体 · 完整白色底形</title>
+      <path id="hair-left-fringe-front-shape-1" d="M473 69 C450 76 434 93 423 119 C412 143 408 163 412 182 C415 209 423 232 436 250 C431 234 431 219 434 203 C440 233 450 261 466 276 C470 280 473 281 476 277 C463 268 455 247 451 227 C445 211 446 193 451 172 C460 138 477 94 473 69Z" data-role="solid"/>
+    </g>
+    <g id="hair-left-fringe-front-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>左侧前发 · 贴脸主体 · 主轮廓墨线</title>
+      <path id="hair-left-fringe-front-contour-1" d="M473 69 C450 76 434 93 423 119 C412 143 408 163 412 182 C415 209 423 232 436 250 C431 234 431 219 434 203 C440 233 450 261 466 276 C470 280 473 281 476 277 C463 268 455 247 451 227 C445 211 446 193 451 172 C460 138 477 94 473 69Z"/>
+    </g>
+  </g>
+  <g id="hair-main-bangs" data-part="hair.fringe.center" data-kind="hair">
+    <title>前额主刘海 · 连续发根与尖梢</title>
+    <desc>验证修订：左侧完整刘海底形延入手后真实发根搭接区，以前景实体遮住下层完整自然墨线。发顶外弧和主刘海尖梢保留；侧向接合边为分组截口，不画额外内部接缝。</desc>
+    <g id="hair-main-bangs-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>前额主刘海 · 连续发根与尖梢 · 完整白色底形</title>
+      <path id="hair-main-bangs-shape-1" d="M447 209 C453 177 466 148 474 121 C476 154 492 184 510 201 C502 186 498 174 495 159 C505 179 517 192 526 198 C525 177 523 147 521 116 C538 145 558 168 587 180 C596 180 612 175 623 166 C626 141 624 117 615 97 C599 59 566 30 526 31 C511 30 504 35 491 35 C450 40 413 86 405 135 C400 157 402 184 407 205 C408 214 410 224 413 232 C424 235 436 237 448 234 C447 225 445 216 447 209Z" data-role="solid"/>
+    </g>
+    <g id="hair-main-bangs-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+      <title>前额主刘海 · 连续发根与尖梢 · 主轮廓墨线</title>
+      <path id="hair-main-bangs-contour-1" d="M413 232 C410 224 408 214 407 205 C402 184 400 157 405 135 C413 86 450 40 491 35 C504 35 511 30 526 31 C566 30 599 59 615 97 C624 117 626 141 623 166"/>
+      <path id="hair-main-bangs-contour-2" d="M447 209 C453 177 466 148 474 121 C476 154 492 184 510 201 C502 186 498 174 495 159 C505 179 517 192 526 198 C525 177 523 147 521 116 C538 145 558 168 587 180"/>
+    </g>
+  </g>
+  <g id="body-left-hand" data-part="body.hand.left" data-kind="body">
+    <title>左手 · 脸旁 V 手势</title>
+    <desc>V手势的指尖和指缝按彩图重新拟合。掌腕封口省略，保留折指外缘；无指节或甲片线。</desc>
+    <g id="body-left-hand-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>左手 · 脸旁 V 手势 · 完整白色底形</title>
+      <path id="body-left-hand-shape-1" d="M309 213 C313 202 319 195 328 188 C337 181 345 173 352 171 C359 169 364 171 366 178 C372 174 378 174 380 180 C382 185 379 191 376 195 C392 184 414 171 432 164 C437 162 441 161 442 164 C443 167 438 170 433 174 C418 184 401 195 389 204 C385 207 382 210 386 213 C390 216 406 217 419 220 C431 223 444 226 450 231 C453 233 453 235 449 236 C444 237 435 235 427 234 C414 232 400 230 387 229 C380 228 375 231 373 235 C374 231 381 230 386 233 C390 235 392 238 389 239 C385 240 379 237 374 239 C369 240 368 244 362 244 L344 244 C332 244 325 240 322 234Z" data-role="solid"/>
+    </g>
+    <g id="body-left-hand-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round">
+      <title>左手 · 脸旁 V 手势 · 主轮廓墨线</title>
+      <path id="body-left-hand-contour-1" d="M309 213 C313 202 319 195 328 188 C337 181 345 173 352 171 C359 169 364 171 366 178 C372 174 378 174 380 180 C382 185 379 191 376 195 C392 184 414 171 432 164 C437 162 441 161 442 164 C443 167 438 170 433 174 C418 184 401 195 389 204 C385 207 382 210 386 213 C390 216 406 217 419 220 C431 223 444 226 450 231 C453 233 453 235 449 236 C444 237 435 235 427 234 C414 232 400 230 387 229 C380 228 375 231 373 235"/>
+      <path id="body-left-hand-contour-2" d="M373 235 C374 231 381 230 386 233 C390 235 392 238 389 239 C385 240 379 237 374 239 C369 240 368 244 362 244 L344 244 C340 244 337 244 334 243"/>
+    </g>
+  </g>
+  <g id="body-right-hand" data-part="body.hand.right" data-kind="body">
+    <title>右手 · 叉腰完整手形</title>
+    <desc>重构拇指弯曲、三指尖和真实指间开口；掌腕连接不画封口，衣片在手下完整。</desc>
+    <g id="body-right-hand-base" data-role="base" fill="#ffffff" stroke="none">
+      <title>右手 · 叉腰完整手形 · 完整白色底形</title>
+      <path id="body-right-hand-shape-1" d="M650 613 C642 603 630 591 621 582 C619 576 616 574 611 574 C605 571 603 563 599 560 C595 557 589 561 583 564 C577 567 573 571 571 576 C570 580 574 581 579 578 C584 576 589 573 593 572 C594 576 596 579 599 581 C589 581 585 585 581 591 L570 608 C567 612 568 615 572 615 C576 615 582 608 586 604 C581 610 575 614 577 618 C579 622 584 619 589 615 L599 608 C594 613 585 619 588 623 C590 627 596 623 602 620 C607 618 611 616 615 619 C621 628 630 637 639 635 C643 634 647 632 650 630Z" data-role="solid"/>
+    </g>
+    <g id="body-right-hand-ink" data-role="ink" fill="none" stroke="#34343e" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round">
+      <title>右手 · 叉腰完整手形 · 主轮廓墨线</title>
+      <path id="body-right-hand-contour-1" d="M635 594 C630 591 625 586 621 582 C619 576 616 574 611 574 C605 571 603 563 599 560 C595 557 589 561 583 564 C577 567 573 571 571 576 C570 580 574 581 579 578 C584 576 589 573 593 572 C594 576 596 579 599 581 C589 581 585 585 581 591 L570 608 C567 612 568 615 572 615 C576 615 582 608 586 604 C581 610 575 614 577 618 C579 622 584 619 589 615 L599 608 C594 613 585 619 588 623 C590 627 596 623 602 620 C607 618 611 616 615 619 C621 628 630 637 639 635 C643 634 647 632 650 630"/>
+    </g>
+  </g>
+</svg>
