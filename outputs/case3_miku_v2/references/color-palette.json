@@ -1,0 +1,228 @@
+{
+  "source": "/Users/wutian/Desktop/coding/AstraLayering/outputs/case1_miku/references/base-character.png",
+  "source_sha256": "ae9d5a254d9a5c8acebb3748bccf010ae11730699ac71d53b4c77d111c1913fc",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "method": "Nearest real opaque source pixel to the per-channel patch median; center-nearest tie break.",
+  "interpretation": "Observed colors; semantic roles are supplied by the caller, not inferred by this program.",
+  "samples": [
+    {
+      "name": "头发／头顶浅色",
+      "x": 540,
+      "y": 90,
+      "radius": 4,
+      "role": "candidate",
+      "id": "01",
+      "rgb": [
+        130,
+        227,
+        232
+      ],
+      "hex": "#82E3E8",
+      "actual_pixel": [
+        540,
+        89
+      ]
+    },
+    {
+      "name": "头发／长发浅色",
+      "x": 210,
+      "y": 850,
+      "radius": 4,
+      "role": "candidate",
+      "id": "02",
+      "rgb": [
+        126,
+        225,
+        232
+      ],
+      "hex": "#7EE1E8",
+      "actual_pixel": [
+        210,
+        850
+      ]
+    },
+    {
+      "name": "皮肤／手臂",
+      "x": 300,
+      "y": 330,
+      "radius": 4,
+      "role": "candidate",
+      "id": "03",
+      "rgb": [
+        254,
+        238,
+        230
+      ],
+      "hex": "#FEEEE6",
+      "actual_pixel": [
+        300,
+        330
+      ]
+    },
+    {
+      "name": "皮肤／脸部",
+      "x": 525,
+      "y": 255,
+      "radius": 4,
+      "role": "candidate",
+      "id": "04",
+      "rgb": [
+        254,
+        237,
+        228
+      ],
+      "hex": "#FEEDE4",
+      "actual_pixel": [
+        526,
+        257
+      ]
+    },
+    {
+      "name": "衣服／浅色区",
+      "x": 510,
+      "y": 470,
+      "radius": 4,
+      "role": "candidate",
+      "id": "05",
+      "rgb": [
+        242,
+        245,
+        250
+      ],
+      "hex": "#F2F5FA",
+      "actual_pixel": [
+        512,
+        470
+      ]
+    },
+    {
+      "name": "发饰／深色面",
+      "x": 426,
+      "y": 73,
+      "radius": 1,
+      "role": "candidate",
+      "id": "06",
+      "rgb": [
+        66,
+        64,
+        89
+      ],
+      "hex": "#424059",
+      "actual_pixel": [
+        426,
+        73
+      ]
+    },
+    {
+      "name": "发饰／粉色带",
+      "x": 420,
+      "y": 70,
+      "radius": 1,
+      "role": "candidate",
+      "id": "07",
+      "rgb": [
+        240,
+        55,
+        157
+      ],
+      "hex": "#F0379D",
+      "actual_pixel": [
+        420,
+        69
+      ]
+    },
+    {
+      "name": "指甲／青色",
+      "x": 577,
+      "y": 573,
+      "radius": 1,
+      "role": "candidate",
+      "id": "08",
+      "rgb": [
+        82,
+        226,
+        238
+      ],
+      "hex": "#52E2EE",
+      "actual_pixel": [
+        577,
+        572
+      ]
+    },
+    {
+      "name": "虹膜／下部色",
+      "x": 560,
+      "y": 191,
+      "radius": 1,
+      "role": "candidate",
+      "id": "09",
+      "rgb": [
+        101,
+        224,
+        234
+      ],
+      "hex": "#65E0EA",
+      "actual_pixel": [
+        561,
+        192
+      ]
+    },
+    {
+      "name": "头发／暗面",
+      "x": 270,
+      "y": 600,
+      "radius": 4,
+      "role": "comparison",
+      "id": "10",
+      "rgb": [
+        36,
+        201,
+        223
+      ],
+      "hex": "#24C9DF",
+      "actual_pixel": [
+        268,
+        600
+      ]
+    },
+    {
+      "name": "皮肤／颈部阴影",
+      "x": 520,
+      "y": 292,
+      "radius": 4,
+      "role": "comparison",
+      "id": "11",
+      "rgb": [
+        253,
+        206,
+        190
+      ],
+      "hex": "#FDCEBE",
+      "actual_pixel": [
+        521,
+        291
+      ]
+    },
+    {
+      "name": "虹膜／上部色",
+      "x": 565,
+      "y": 181,
+      "radius": 1,
+      "role": "comparison",
+      "id": "12",
+      "rgb": [
+        16,
+        166,
+        203
+      ],
+      "hex": "#10A6CB",
+      "actual_pixel": [
+        566,
+        182
+      ]
+    }
+  ]
+}

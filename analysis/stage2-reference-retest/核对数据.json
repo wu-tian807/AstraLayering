@@ -1,0 +1,45 @@
+{
+  "files": {
+    "old": {
+      "path": "outputs/case1_miku/step02-base-character/02_完整部件与遮挡.svg",
+      "sha256": "d5f924a63b8f2cf37180ba5db39f218f67602d7acc2dfe7ca0d8db24789ca9aa"
+    },
+    "new": {
+      "path": "outputs/step02-base-character/02_完整部件与遮挡.svg",
+      "sha256": "e8f293002336fa009043343aadb69a97ca2eb03a5e64422d6ef2e943e40a4a75",
+      "path_is_historical": true,
+      "status": "原同名文件被第二次复测覆盖；本目录保留首次候选对照图，不将case3的不同版本误标为该源文件。"
+    }
+  },
+  "right_accessory_inner_edge_midpoints": [
+    {
+      "point": [
+        578.5,
+        49.0
+      ],
+      "inside_outer": true
+    },
+    {
+      "point": [
+        598.5,
+        82.0
+      ],
+      "inside_outer": false
+    },
+    {
+      "point": [
+        622.0,
+        107.0
+      ],
+      "inside_outer": true
+    },
+    {
+      "point": [
+        602.0,
+        74.0
+      ],
+      "inside_outer": true
+    }
+  ],
+  "notes": "Diagnostic color changes and thin boundary outlines are applied only to temporary SVG copies. Source SVGs are unchanged."
+}

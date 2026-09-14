@@ -1,0 +1,93 @@
+{
+  "reference": "outputs/case1_miku/references/base-character.png",
+  "source": "outputs/case1_miku/step05-base-character/05-2_局部色彩与材质.svg",
+  "source_sha256": "88b7b01fe5d24957c1997fbcca6e7d2a80661476a2273cbfb0894e5e3c2c59e9",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "method": "Native-size SVG render; 9x9 componentwise median RGB at identical canvas coordinates; not screenshot sampling.",
+  "interpretation": "Rendered appearance includes shading and material layers. A location can change tone because a color band moved; these are not estimates of intrinsic hair albedo.",
+  "samples": [
+    {
+      "point": "A",
+      "region": "头顶亮面",
+      "center": [
+        540,
+        90
+      ],
+      "reference_rgb": [
+        130,
+        227,
+        232
+      ],
+      "svg_rgb": [
+        130,
+        223,
+        229
+      ],
+      "reference_hex": "#82E3E8",
+      "svg_hex": "#82DFE5"
+    },
+    {
+      "point": "B",
+      "region": "左长发暗面",
+      "center": [
+        270,
+        600
+      ],
+      "reference_rgb": [
+        36,
+        201,
+        223
+      ],
+      "svg_rgb": [
+        18,
+        186,
+        210
+      ],
+      "reference_hex": "#24C9DF",
+      "svg_hex": "#12BAD2"
+    },
+    {
+      "point": "C",
+      "region": "左长发浅色区",
+      "center": [
+        200,
+        850
+      ],
+      "reference_rgb": [
+        130,
+        228,
+        233
+      ],
+      "svg_rgb": [
+        124,
+        222,
+        228
+      ],
+      "reference_hex": "#82E4E9",
+      "svg_hex": "#7CDEE4"
+    },
+    {
+      "point": "D",
+      "region": "左下回卷",
+      "center": [
+        185,
+        1060
+      ],
+      "reference_rgb": [
+        22,
+        194,
+        219
+      ],
+      "svg_rgb": [
+        103,
+        215,
+        224
+      ],
+      "reference_hex": "#16C2DB",
+      "svg_hex": "#67D7E0"
+    }
+  ]
+}

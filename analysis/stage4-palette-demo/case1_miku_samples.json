@@ -1,0 +1,86 @@
+[
+  {
+    "name": "头发／头顶浅色",
+    "x": 540,
+    "y": 90,
+    "radius": 4,
+    "role": "candidate"
+  },
+  {
+    "name": "头发／长发浅色",
+    "x": 210,
+    "y": 850,
+    "radius": 4,
+    "role": "candidate"
+  },
+  {
+    "name": "皮肤／手臂",
+    "x": 300,
+    "y": 330,
+    "radius": 4,
+    "role": "candidate"
+  },
+  {
+    "name": "皮肤／脸部",
+    "x": 525,
+    "y": 255,
+    "radius": 4,
+    "role": "candidate"
+  },
+  {
+    "name": "衣服／浅色区",
+    "x": 510,
+    "y": 470,
+    "radius": 4,
+    "role": "candidate"
+  },
+  {
+    "name": "发饰／深色面",
+    "x": 426,
+    "y": 73,
+    "radius": 1,
+    "role": "candidate"
+  },
+  {
+    "name": "发饰／粉色带",
+    "x": 420,
+    "y": 70,
+    "radius": 1,
+    "role": "candidate"
+  },
+  {
+    "name": "指甲／青色",
+    "x": 577,
+    "y": 573,
+    "radius": 1,
+    "role": "candidate"
+  },
+  {
+    "name": "虹膜／下部色",
+    "x": 560,
+    "y": 191,
+    "radius": 1,
+    "role": "candidate"
+  },
+  {
+    "name": "头发／暗面",
+    "x": 270,
+    "y": 600,
+    "radius": 4,
+    "role": "comparison"
+  },
+  {
+    "name": "皮肤／颈部阴影",
+    "x": 520,
+    "y": 292,
+    "radius": 4,
+    "role": "comparison"
+  },
+  {
+    "name": "虹膜／上部色",
+    "x": 565,
+    "y": 181,
+    "radius": 1,
+    "role": "comparison"
+  }
+]

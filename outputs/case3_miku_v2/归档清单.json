@@ -1,0 +1,96 @@
+{
+  "date": "2026-09-14",
+  "case": "case3_miku_v2",
+  "stage_status": "阶段2—4有产物，阶段5尚未重跑；保留已发现的造型问题。",
+  "notes": [
+    "SVG、PNG和取色JSON保持原字节内容。SVG desc中的旧任务路径保留为生成时记录。",
+    "色盘JSON的source保留生成时case1_miku彩图位置；本案例base-character.png为该图的相同副本。",
+    "本案例阶段2与第二次复测快照相同；不表示它由回退后的现行提示词重新生成。"
+  ],
+  "files": [
+    {
+      "path": "outputs/case3_miku_v2/step02-base-character/02_完整部件与遮挡.svg",
+      "previous_path": "outputs/step02-base-character/02_完整部件与遮挡.svg",
+      "sha256": "c38238865e8d66402b87d740cba70f2d44b61456b5b1916d4dea3dba03a0c5ae",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/step02-base-character/02_结构检查.png",
+      "previous_path": "outputs/step02-base-character/02_结构检查.png",
+      "sha256": "bcb167a4ab418bbab126149b2338df20671b7803d24058c5c264645d1f9b9bd8",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/step03-base-character/03-1_主轮廓.svg",
+      "previous_path": "outputs/step03-base-character/03-1_主轮廓.svg",
+      "sha256": "a8d9eb52b04a576b468effffe690e5e80fc8b9ae5f2bd2f44d7328ffeeab9d9e",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/step03-base-character/03-1_轮廓检查.png",
+      "previous_path": "outputs/step03-base-character/03-1_轮廓检查.png",
+      "sha256": "e82c19a08c9e671be81506ea04a08d4ef370c19baf0a26b27412aa3727d323f7",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/step03-base-character/03-2_内部结构线.svg",
+      "previous_path": "outputs/step03-base-character/03-2_内部结构线.svg",
+      "sha256": "018dc910917d25fade50cfb9e9b7f0c3e44bba1aa9c5ddc6dac8f851ba11c834",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/step03-base-character/03-2_结构线检查.png",
+      "previous_path": "outputs/step03-base-character/03-2_结构线检查.png",
+      "sha256": "9a5554790581b0ffa5c44fb97486d388a48bfd6278ea9329f5c5630fce90fd08",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/step03-base-character/03_完整分层线稿.svg",
+      "previous_path": "outputs/step03-base-character/03_完整分层线稿.svg",
+      "sha256": "7b6604b7d642e6da28d89388c1783b01fab96b0e82e3d3f2c36104c0851978a5",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/step03-base-character/03_线稿检查.png",
+      "previous_path": "outputs/step03-base-character/03_线稿检查.png",
+      "sha256": "9d482bc3315f3a083d2ec35613cabfb214e2479d95f175790e5af7c0d11d8314",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/step04-base-character/04_填色检查.png",
+      "previous_path": "outputs/step04-base-character/04_填色检查.png",
+      "sha256": "6c8991aa79b5a036118a1c71b8824d5ece09d4a1a3d1274e5e63699964e3fdf9",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/step04-base-character/04_完整分层平涂.svg",
+      "previous_path": "outputs/step04-base-character/04_完整分层平涂.svg",
+      "sha256": "bc95282cb1efbddc43ca93b11dd7496bc40ec1d89402e8917ba0f9d169b8c4db",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/references/outline.jpg",
+      "previous_path": "outputs/case1_miku/references/outline.jpg",
+      "sha256": "7be2cd32034f115fc849e2177a5904a8cb6b52dfd42b76574b633114a53ed7c8",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/references/color-palette.png",
+      "previous_path": "outputs/case1_miku/references/color-palette.png",
+      "sha256": "71d47470f71a2df32a4f5ef486a7d19bb5b2fddb699462138130c00011b3f3d7",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/references/color-palette.json",
+      "previous_path": "outputs/case1_miku/references/color-palette.json",
+      "sha256": "ef8d98e213878fc3114c180ee27248b8667252992a005359f613602d8b186594",
+      "action": "move"
+    },
+    {
+      "path": "outputs/case3_miku_v2/references/base-character.png",
+      "previous_path": "outputs/case1_miku/references/base-character.png",
+      "sha256": "ae9d5a254d9a5c8acebb3748bccf010ae11730699ac71d53b4c77d111c1913fc",
+      "action": "copy"
+    }
+  ]
+}

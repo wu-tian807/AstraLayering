@@ -6,7 +6,11 @@
 
 | 目录 | 用途与入口 |
 | --- | --- |
-| [stage5-final-review](./stage5-final-review/) | [阶段5终稿差异与流程链路分析](./stage5-final-review/2026-09-13_阶段5终稿差异与流程链路分析.md)：实际终稿与参考的10组对照、阶段2—5几何继承、独立保留性核验，以及阶段6的原职责和继续投入价值 |
+| [case3-miku-v2-review](./case3-miku-v2-review/) | [本轮尝试与下一轮计划](./case3-miku-v2-review/readme.md)：已到阶段4，线稿与色盘的实际反馈，脸型／眼白问题追溯，阶段3五步拆分与阶段5待验证项 |
+| [stage4-palette-demo](./stage4-palette-demo/) | [程序取色样例](./stage4-palette-demo/readme.md)：底色候选、明暗对照、来源局部与准确色值；已用于case3阶段4，用户反馈配色帮助明显 |
+| [stage2-reference-retest](./stage2-reference-retest/) | [首次候选复核](./stage2-reference-retest/2026-09-13_新旧阶段2头发与发卡复核.md)与[新提示词第二次复测](./stage2-reference-retest/第二次复测/复核.md)：头部、马尾、发卡同坐标对照，记录改善、回退和脸型基准 |
+| [part-color-review](./part-color-review/) | [首次优化复测](./part-color-review/2026-09-13_首次优化复测.md)：加长版提示词、用户实际结果与头发分区回退记录；后续精简版仍有部件逻辑不稳定的问题 |
+| [stage5-final-review](./stage5-final-review/) | [阶段5终稿差异与流程链路分析](./stage5-final-review/2026-09-13_阶段5终稿差异与流程链路分析.md)：9项具体问题、4张用户原截图、头发实际取色与对应阶段；此前10组对照、几何继承和独立核验保留在[历史详细复核](./stage5-final-review/历史详细复核.md) |
 | [base-character-fidelity-review](./base-character-fidelity-review/) | [局部贴合问题记录](./base-character-fidelity-review/局部贴合问题记录.md)：阶段4平涂复核、手部／耳机／鬓发的既有偏差，以及补五官后需连带复核相邻部件的改进方向；含参考、阶段3与阶段4的局部对照 |
 | [suzuran-analysis](./suzuran-analysis/) | [绘画策略分析](./suzuran-analysis/绘画策略分析.md)、[源 SVG](./suzuran-analysis/source.svg)、统计脚本与证据；其中的通用提示词保留为历史讨论材料 |
 | [physics-band-analysis](./physics-band-analysis/) | [线稿方法分析](./physics-band-analysis/线稿方法分析.md)：比较 baseline 的覆盖度轮廓与 physics-band 的共享节点线带，包含原文件、矢量放大图、接点与填色实验，以及阶段3、阶段4的适配判断 |

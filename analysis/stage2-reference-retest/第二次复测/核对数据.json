@@ -1,0 +1,10 @@
+{
+  "current_sha256": "c38238865e8d66402b87d740cba70f2d44b61456b5b1916d4dea3dba03a0c5ae",
+  "previous_sha256_record": "e8f293002336fa009043343aadb69a97ca2eb03a5e64422d6ef2e943e40a4a75",
+  "previous_evidence": "上轮实际渲染及只改检查色的SVG诊断副本，非完整原文件恢复",
+  "groups": 46,
+  "logical_parts": 38,
+  "face_path_reused": false,
+  "reference_pixels_match_case1": true,
+  "source_unchanged_during_review": true
+}

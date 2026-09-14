@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536"><g id="body-head-face" data-part="body-head-face" data-kind="body" fill="#ffe5d8">
+    <title>完整头脸／颅顶、额头与侧脸</title>
+    <desc>额头和颅顶完整补到前发下；两侧脸缘按彩图下颌续接。下颌覆盖颈上端；本步不绘五官。</desc>
+    <path id="body-head-face-shape-1" d="M 498 62 C 528 54 555 62 576 82 C 595 102 604 131 601 158 C 599 183 594 212 582 232 C 570 251 548 267 530 277 C 511 274 486 266 472 256 C 455 242 445 222 439 201 C 432 181 431 156 437 131 C 444 98 466 73 498 62 Z" fill="#ffe5d8" />
+  </g>
+  </svg>

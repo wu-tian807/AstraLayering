@@ -26,9 +26,11 @@
 
 ## 当前进度与后续方向
 
+2026-09-14：第二轮Miku试验已归档到[case3_miku_v2](./outputs/case3_miku_v2/readme.md)，完成到阶段4。线稿参考带来一定改善，程序色盘对基础配色的帮助得到用户肯定；脸型偏大、眼白偏少仍待修正。阶段5尚未重跑，阶段3拆成五步的需求已记录、尚未实施，见[本轮迭代记录](./analysis/case3-miku-v2-review/readme.md)。
+
 阶段1—5已完成首例实操，阶段5的独立审查、返修与复验已经运行，首次完整彩图成果已经形成。阶段6的最终线色与边缘收尾已评估，尚未正式制定或执行。
 
-剩余问题按具体错误追溯：耳机占位对应阶段2／3；头发放大后的色带、光泽和边缘需分别判断阶段5表现与早期曲线的影响。完整结果作为后续迭代的对照保留，问题与证据统一记录在[开发进度](./workflows/开发进度.md)和[analysis复核](./analysis/stage5-final-review/2026-09-13_阶段5终稿差异与流程链路分析.md#current-assessment)。
+整体形体保持较好，剩余问题按具体错误追溯：耳机和发卡构造对应阶段2／3，发线、睫毛及手足衣缘接线主要对应阶段3，虹膜分层、头发配色与投影关系对应阶段5。完整结果作为后续迭代的对照保留，问题、用户原始截图与实际取色见[开发进度](./workflows/开发进度.md)和[终稿复核](./analysis/stage5-final-review/2026-09-13_阶段5终稿差异与流程链路分析.md#current-assessment)。
 
 - **更高的人物还原度控制**：更准确保留脸、手、配件、发束与相邻部件的空间关系。
 - **更好的色彩还原**：改善底色、明暗、局部光泽和软硬边，让整图与放大观看都更接近参考。
@@ -43,7 +45,7 @@
 | --- | --- |
 | [workflows](./workflows/readme.md) | 现行工作流、图片前置步骤、各阶段提示词与输入说明 |
 | [开发进度](./workflows/开发进度.md) | 首次完整生成里程碑、问题到阶段的映射、分析引用与未来方向 |
-| [outputs](./outputs/readme.md) | 按案例集中保存参考、规划、各阶段SVG及检查图；首例位于`case1_miku` |
+| [outputs](./outputs/readme.md) | 按案例保存参考、规划、SVG及检查图；包含首例`case1_miku`、`case2`和复测`case3_miku_v2` |
 | [demos](./demos/readme.md) | 首例成果展示与历史画法对比 |
 | [analysis](./analysis/readme.md) | 当前不足的证据与链路分析，Suzuran／physics-band方法研究 |
 | [output_bad_cases](./output_bad_cases/readme.md) | 失败案例；[001](./output_bad_cases/001/readme.md)记录早期同时处理分组与线稿的问题 |

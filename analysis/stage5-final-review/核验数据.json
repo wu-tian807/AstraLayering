@@ -27,7 +27,7 @@
       }
     },
     "s31": {
-      "path": "outputs/step03-base-character/03-1_主轮廓.svg",
+      "path": "outputs/case1_miku/step03-base-character/03-1_主轮廓.svg",
       "sha256": "d3c53c4fe3f50ad01f5ab1657406885fe5379887eaa6f75cc726103f43e5b241",
       "bytes": 57412,
       "tags": {
@@ -50,10 +50,11 @@
         "version": "1.1",
         "role": "img",
         "aria-labelledby": "document-title document-description"
-      }
+      },
+      "pathAtOriginalAudit": "outputs/step03-base-character/03-1_主轮廓.svg"
     },
     "s32": {
-      "path": "outputs/step03-base-character/03-2_内部结构线.svg",
+      "path": "outputs/case1_miku/step03-base-character/03-2_内部结构线.svg",
       "sha256": "a6980201b1236ff52f09ca65e0359f5f91ed69e437dc2adae72748e87f947a00",
       "bytes": 183010,
       "tags": {
@@ -80,10 +81,11 @@
         "data-source-sha256": "d3c53c4fe3f50ad01f5ab1657406885fe5379887eaa6f75cc726103f43e5b241",
         "data-reference-sha256": "30d278d1bc9b39559e67da0e397668d7676993f3a660f7edc69cc2590b1efb4e",
         "data-independent-review-input-sha256": "796d3a235455a0ce2e60a742524ca6ac93be712b044d95cea53fa2984ef33bb3"
-      }
+      },
+      "pathAtOriginalAudit": "outputs/step03-base-character/03-2_内部结构线.svg"
     },
     "s3": {
-      "path": "outputs/step03-base-character/03_完整分层线稿.svg",
+      "path": "outputs/case1_miku/step03-base-character/03_完整分层线稿.svg",
       "sha256": "1d8c1a1b84e73258c8da61376e5d4dcd2dca6061a475255f81a7189c2100f41b",
       "bytes": 220908,
       "tags": {
@@ -110,10 +112,11 @@
         "data-source-sha256": "a6980201b1236ff52f09ca65e0359f5f91ed69e437dc2adae72748e87f947a00",
         "data-reference-sha256": "30d278d1bc9b39559e67da0e397668d7676993f3a660f7edc69cc2590b1efb4e",
         "data-stage": "03-3"
-      }
+      },
+      "pathAtOriginalAudit": "outputs/step03-base-character/03_完整分层线稿.svg"
     },
     "s4": {
-      "path": "outputs/step04-base-character/04_完整分层平涂.svg",
+      "path": "outputs/case1_miku/step04-base-character/04_完整分层平涂.svg",
       "sha256": "fdf7e13c2d94353cfe17899f26a84b7dd0e05f9875eb19280aed2f2e4e5c61aa",
       "bytes": 237484,
       "tags": {
@@ -141,10 +144,11 @@
         "data-reference-sha256": "30d278d1bc9b39559e67da0e397668d7676993f3a660f7edc69cc2590b1efb4e",
         "data-stage": "04",
         "data-source-file": "03_完整分层线稿.svg"
-      }
+      },
+      "pathAtOriginalAudit": "outputs/step04-base-character/04_完整分层平涂.svg"
     },
     "s51": {
-      "path": "outputs/step05-base-character/05-1_大明暗与体积.svg",
+      "path": "outputs/case1_miku/step05-base-character/05-1_大明暗与体积.svg",
       "sha256": "b33f932b1d9958a58d44cb4c8ed3981f82336b17f29017982e06b7dd0348e25f",
       "bytes": 376050,
       "tags": {
@@ -177,10 +181,11 @@
         "data-reference-sha256": "30d278d1bc9b39559e67da0e397668d7676993f3a660f7edc69cc2590b1efb4e",
         "data-stage": "05-1",
         "data-source-file": "04_完整分层平涂.svg"
-      }
+      },
+      "pathAtOriginalAudit": "outputs/step05-base-character/05-1_大明暗与体积.svg"
     },
     "s52": {
-      "path": "outputs/step05-base-character/05-2_局部色彩与材质.svg",
+      "path": "outputs/case1_miku/step05-base-character/05-2_局部色彩与材质.svg",
       "sha256": "88b7b01fe5d24957c1997fbcca6e7d2a80661476a2273cbfb0894e5e3c2c59e9",
       "bytes": 507108,
       "tags": {
@@ -214,7 +219,8 @@
         "data-reference-sha256": "30d278d1bc9b39559e67da0e397668d7676993f3a660f7edc69cc2590b1efb4e",
         "data-stage": "05-1",
         "data-source-file": "04_完整分层平涂.svg"
-      }
+      },
+      "pathAtOriginalAudit": "outputs/step05-base-character/05-2_局部色彩与材质.svg"
     }
   },
   "stageChanges": {
