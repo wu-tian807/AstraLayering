@@ -1,0 +1,199 @@
+{
+  "date": "2026-09-17",
+  "case": "miku_v3",
+  "stage_status": "阶段1—5已生成；阶段3为新五步，阶段5两步均有产物。头脸改善已复核，局部线质与材质仍有差异。",
+  "reference_canvas": [
+    1037,
+    1517
+  ],
+  "notes": [
+    "26份参考与阶段产物原样移动；SVG、PNG、规划及色盘JSON不改写。",
+    "保留文件中的生成时来源路径和元数据；这次归档不代表这些外部路径现在仍有效。",
+    "本轮基础彩图与case3_miku_v2不同；跨版本评价分别对照各自原图，不报告统一像素得分。",
+    "最终SVG的metadata记录独立审查不可用；已有产物不等于完成了提示词要求的独立审查。"
+  ],
+  "files": [
+    {
+      "path": "outputs/miku_v3/references/base-character.png",
+      "previous_path": "outputs/references/base-character.png",
+      "sha256": "af2066f3cb9ef8add26645d90c93bebdbd0937c214c77fac335d5213be5affd3",
+      "bytes": 1978333,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/references/color-palette.json",
+      "previous_path": "outputs/references/color-palette.json",
+      "sha256": "5232b8479a29307a6cf0948cbf4ff349e14ddb8870a63d5520cbbccc20939318",
+      "bytes": 3545,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/references/color-palette.png",
+      "previous_path": "outputs/references/color-palette.png",
+      "sha256": "729b59c90d1683f69f60004a39f43d5a5e1f9ec704f083f870143bc5a42824ee",
+      "bytes": 449885,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/references/flat-color.png",
+      "previous_path": "outputs/references/flat-color.png",
+      "sha256": "520b08fa4ba3287ed0bd4ec0f03afe6e5a3ad28c1881bcd3c24f026e9fb455bf",
+      "bytes": 1407520,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/references/original-input.jpg",
+      "previous_path": "outputs/references/original-input.jpg",
+      "sha256": "99384d58754d2318a58037ad0d03c21d87ffad42d13c00f4e06fdeba675a5372",
+      "bytes": 129475,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/references/outline.png",
+      "previous_path": "outputs/references/outline.png",
+      "sha256": "b0359a4613b30c45543d5732cfdf33115ef244230d77e67a418cedff1a2abfe7",
+      "bytes": 1083962,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/references/part-colors.png",
+      "previous_path": "outputs/references/part-colors.png",
+      "sha256": "c692f5d9f7a147ab77dd1889e0827561d9bab0f374d522e885b6bbc9dab2e85b",
+      "bytes": 1691462,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step01-base-character/01_基础角色与补全范围.md",
+      "previous_path": "outputs/step01-base-character/01_基础角色与补全范围.md",
+      "sha256": "cc237e44aa3c7f15ffa690120088ad23bca2d13c1c822317aa6d44d70b618aab",
+      "bytes": 5406,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step02-base-character/02_完整部件与遮挡.svg",
+      "previous_path": "outputs/step02-base-character/02_完整部件与遮挡.svg",
+      "sha256": "a288af5c1cdb9e1fa119621707ac76599c32566c2031492854dde82186b13d25",
+      "bytes": 29329,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step02-base-character/02_结构检查.png",
+      "previous_path": "outputs/step02-base-character/02_结构检查.png",
+      "sha256": "fee21acce8588fbf9f95e0b079ebe624a6fda5f8ba4460b58ef700ee358e16b4",
+      "bytes": 2285163,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03-1_头型与发型.svg",
+      "previous_path": "outputs/step03-base-character/03-1_头型与发型.svg",
+      "sha256": "449aa2ec893f8ffdb4ff6af3aa0ac185968e3d93b2a004dfefa43dc767afe405",
+      "bytes": 54670,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03-1_头型检查.png",
+      "previous_path": "outputs/step03-base-character/03-1_头型检查.png",
+      "sha256": "969156e478dd62c1d9227def83aa150a3a13985d0e6c00ad78efff4871fda2ed",
+      "bytes": 6919512,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03-2_面部与表情.svg",
+      "previous_path": "outputs/step03-base-character/03-2_面部与表情.svg",
+      "sha256": "bb3cbe5e1495f0abd3e0095961a3b1467a10152473f71b6006e135ab804909cf",
+      "bytes": 67157,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03-2_面部检查.png",
+      "previous_path": "outputs/step03-base-character/03-2_面部检查.png",
+      "sha256": "5a2257a1b54e82358e2bfcbfd4745ee2ef7e3bcfed483bf721819bec25ec090e",
+      "bytes": 3389256,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03-3_其余主轮廓.svg",
+      "previous_path": "outputs/step03-base-character/03-3_其余主轮廓.svg",
+      "sha256": "788c48b62483a550672621c36122695457fb88fc4f09474d9e60834a284cb315",
+      "bytes": 83018,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03-3_轮廓检查.png",
+      "previous_path": "outputs/step03-base-character/03-3_轮廓检查.png",
+      "sha256": "65a628a389e5411752ae35d5689e6b30545d14fd679d1293de051fa36fc10341",
+      "bytes": 3953087,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03-4_其余内部结构线.svg",
+      "previous_path": "outputs/step03-base-character/03-4_其余内部结构线.svg",
+      "sha256": "6fa2123278746c8f09e5ed99c9436a5d4a1bdb7ceae12277c648bbd2c7c49e98",
+      "bytes": 110676,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03-4_结构线检查.png",
+      "previous_path": "outputs/step03-base-character/03-4_结构线检查.png",
+      "sha256": "9658aabb8068a907f6a821c685e350b50650e07cf745f61e5f0589612aa3f836",
+      "bytes": 4595380,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03_完整分层线稿.svg",
+      "previous_path": "outputs/step03-base-character/03_完整分层线稿.svg",
+      "sha256": "84958dcf76b625821eb051077c40dd2f74921b9a0bdb61c0e9188000c00bdda4",
+      "bytes": 373498,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step03-base-character/03_线稿检查.png",
+      "previous_path": "outputs/step03-base-character/03_线稿检查.png",
+      "sha256": "b136db3c382ebfcd55abf1fafe64dcac6048d34e9e614a7caed9cc82d1c50350",
+      "bytes": 3513000,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step04-base-character/04_填色检查.png",
+      "previous_path": "outputs/step04-base-character/04_填色检查.png",
+      "sha256": "feeffc0d8137c77f5b3a7935c1b6a97e0d6849e76b442f735a3bc4b7343452a6",
+      "bytes": 2073612,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step04-base-character/04_完整分层平涂.svg",
+      "previous_path": "outputs/step04-base-character/04_完整分层平涂.svg",
+      "sha256": "71611be6b4f0a22d35e0f86db5e73b0e8a7bc944357532c53d61e7ce56b2f155",
+      "bytes": 381968,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step05-base-character/05-1_大明暗与体积.svg",
+      "previous_path": "outputs/step05-base-character/05-1_大明暗与体积.svg",
+      "sha256": "021b6ef2326bd5b4385e6e5604028fbdf01c162846b45be626933b4d8d80fba8",
+      "bytes": 583468,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step05-base-character/05-1_明暗检查.png",
+      "previous_path": "outputs/step05-base-character/05-1_明暗检查.png",
+      "sha256": "a7b8f7c659ec344bac25d5980d856746bd05db67c593a2e0b05d43a272d9f063",
+      "bytes": 3663224,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step05-base-character/05-2_局部色彩与材质.svg",
+      "previous_path": "outputs/step05-base-character/05-2_局部色彩与材质.svg",
+      "sha256": "7f6f92ff054bae4eb51aab63204b17e8aacbacbf81a7f8a908a1310a9c6826de",
+      "bytes": 743302,
+      "action": "move"
+    },
+    {
+      "path": "outputs/miku_v3/step05-base-character/05-2_细节与材质检查.png",
+      "previous_path": "outputs/step05-base-character/05-2_细节与材质检查.png",
+      "sha256": "68d74cf57a5ad34b67b62daf3407703c5716a6ae90ccfcf8a2529e5fcbb833a8",
+      "bytes": 7639120,
+      "action": "move"
+    }
+  ]
+}

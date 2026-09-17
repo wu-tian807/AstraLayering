@@ -11,8 +11,11 @@
 | case1_miku | 首次完整生成，阶段1—5产物保留 | 下方首例记录与[完整展示](../demos/first-complete-case/readme.md) |
 | case2 | 已有参考和阶段1—2产物，本次一并归档 | [案例说明](./case2/readme.md) |
 | case3_miku_v2 | 线稿参考与色盘复测，已到阶段4；阶段5待跑，头脸几何仍需修正 | [产物与参考](./case3_miku_v2/readme.md)、[尝试与问题记录](../analysis/case3-miku-v2-review/readme.md) |
+| miku_v3 | 阶段1—5已生成，采用阶段3五步；脸型与头型明显改善，局部线条和材质待改进 | [产物与参考](./miku_v3/readme.md)、[本轮复核](../analysis/miku-v3-review/readme.md) |
 
 2026-09-14：原根目录下的`step02-base-character`、`step03-base-character`和`step04-base-character`已移入`case3_miku_v2`。本轮新增的线稿和色盘也归入该案例，首例正式产物保持原样。
+
+2026-09-17：最新根目录`references`和阶段1—5目录已原样移入`miku_v3`，共26份文件，哈希核对一致。线稿增加独立审查及增加检查投入仅作候选记录，未改执行流程。
 
 ## 首例验证：基础连体服角色
 

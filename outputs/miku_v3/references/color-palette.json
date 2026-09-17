@@ -1,0 +1,210 @@
+{
+  "source": "/mnt/data/FB7D4BAB-7C17-48E3-8D34-3C837FB79FDC(2).jpeg",
+  "source_sha256": "03577df3c541af23209e4bc9c098ee49e7e89d3e5b927952bd228e5febd93f3f",
+  "canvas": [
+    1037,
+    1517
+  ],
+  "method": "Nearest real opaque source pixel to the per-channel patch median; center-nearest tie break.",
+  "interpretation": "Observed colors; semantic roles are supplied by the caller, not inferred by this program.",
+  "samples": [
+    {
+      "name": "头发主青",
+      "x": 713,
+      "y": 411,
+      "radius": 4,
+      "role": "candidate",
+      "id": "01",
+      "rgb": [
+        37,
+        204,
+        238
+      ],
+      "hex": "#25CCEE",
+      "actual_pixel": [
+        713,
+        411
+      ]
+    },
+    {
+      "name": "肤色底色",
+      "x": 430,
+      "y": 820,
+      "radius": 5,
+      "role": "candidate",
+      "id": "02",
+      "rgb": [
+        254,
+        237,
+        229
+      ],
+      "hex": "#FEEDE5",
+      "actual_pixel": [
+        430,
+        820
+      ]
+    },
+    {
+      "name": "连体服冷白",
+      "x": 520,
+      "y": 500,
+      "radius": 5,
+      "role": "candidate",
+      "id": "03",
+      "rgb": [
+        238,
+        241,
+        248
+      ],
+      "hex": "#EEF1F8",
+      "actual_pixel": [
+        520,
+        499
+      ]
+    },
+    {
+      "name": "眼睛青色",
+      "x": 563,
+      "y": 190,
+      "radius": 1,
+      "role": "candidate",
+      "id": "04",
+      "rgb": [
+        83,
+        225,
+        239
+      ],
+      "hex": "#53E1EF",
+      "actual_pixel": [
+        563,
+        189
+      ]
+    },
+    {
+      "name": "发饰洋红",
+      "x": 597,
+      "y": 42,
+      "radius": 1,
+      "role": "candidate",
+      "id": "05",
+      "rgb": [
+        248,
+        77,
+        181
+      ],
+      "hex": "#F84DB5",
+      "actual_pixel": [
+        598,
+        42
+      ]
+    },
+    {
+      "name": "发饰深紫",
+      "x": 621,
+      "y": 88,
+      "radius": 1,
+      "role": "candidate",
+      "id": "06",
+      "rgb": [
+        68,
+        69,
+        99
+      ],
+      "hex": "#444563",
+      "actual_pixel": [
+        621,
+        88
+      ]
+    },
+    {
+      "name": "指甲青",
+      "x": 570,
+      "y": 538,
+      "radius": 0,
+      "role": "candidate",
+      "id": "07",
+      "rgb": [
+        103,
+        219,
+        232
+      ],
+      "hex": "#67DBE8",
+      "actual_pixel": [
+        570,
+        538
+      ]
+    },
+    {
+      "name": "头发浅亮对照",
+      "x": 684,
+      "y": 236,
+      "radius": 3,
+      "role": "comparison",
+      "id": "08",
+      "rgb": [
+        153,
+        228,
+        233
+      ],
+      "hex": "#99E4E9",
+      "actual_pixel": [
+        685,
+        236
+      ]
+    },
+    {
+      "name": "肤色暖阴影",
+      "x": 420,
+      "y": 950,
+      "radius": 5,
+      "role": "comparison",
+      "id": "09",
+      "rgb": [
+        254,
+        220,
+        211
+      ],
+      "hex": "#FEDCD3",
+      "actual_pixel": [
+        420,
+        950
+      ]
+    },
+    {
+      "name": "连体服阴影",
+      "x": 470,
+      "y": 420,
+      "radius": 4,
+      "role": "comparison",
+      "id": "10",
+      "rgb": [
+        227,
+        231,
+        242
+      ],
+      "hex": "#E3E7F2",
+      "actual_pixel": [
+        470,
+        420
+      ]
+    },
+    {
+      "name": "面部红润",
+      "x": 565,
+      "y": 218,
+      "radius": 3,
+      "role": "comparison",
+      "id": "11",
+      "rgb": [
+        253,
+        226,
+        217
+      ],
+      "hex": "#FDE2D9",
+      "actual_pixel": [
+        564,
+        218
+      ]
+    }
+  ]
+}

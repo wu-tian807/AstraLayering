@@ -6,6 +6,7 @@
 
 | 目录 | 用途与入口 |
 | --- | --- |
+| [miku-v3-review](./miku-v3-review/) | [最新完整结果复核](./miku-v3-review/readme.md)：阶段1—5归档，脸缘与头型改善的同坐标证据，眼睑、手足及材质遗留问题；线稿独立审查与工作投入仅记录、未实施 |
 | [case3-miku-v2-review](./case3-miku-v2-review/) | [本轮尝试与下一轮计划](./case3-miku-v2-review/readme.md)：已到阶段4，线稿与色盘的实际反馈，脸型／眼白问题追溯，阶段3五步拆分与阶段5待验证项 |
 | [stage4-palette-demo](./stage4-palette-demo/) | [程序取色样例](./stage4-palette-demo/readme.md)：底色候选、明暗对照、来源局部与准确色值；已用于case3阶段4，用户反馈配色帮助明显 |
 | [stage2-reference-retest](./stage2-reference-retest/) | [首次候选复核](./stage2-reference-retest/2026-09-13_新旧阶段2头发与发卡复核.md)与[新提示词第二次复测](./stage2-reference-retest/第二次复测/复核.md)：头部、马尾、发卡同坐标对照，记录改善、回退和脸型基准 |

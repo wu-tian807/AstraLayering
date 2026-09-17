@@ -1,0 +1,38 @@
+[
+  {
+    "name": "step1",
+    "source": "outputs/step02-base-character/02-1_可见部件.svg",
+    "sha256": "60a713bda90c9b6e2b4f917c5e6ee914e3d40a2ec59901f94dd2babe7a6bc66a",
+    "bytes": 358161,
+    "groups": 31,
+    "logical_parts_including_background": 31,
+    "L": 12038,
+    "C": 0,
+    "Q": 4424,
+    "subpath_M": 56
+  },
+  {
+    "name": "step2",
+    "source": "outputs/step02-base-character/02_完整部件与遮挡.svg",
+    "sha256": "1eeff7fa408aaa0a38f53dc0dad10926cd5dd92bb4e16c13bdb4dc2291f5c33d",
+    "bytes": 1091496,
+    "groups": 37,
+    "logical_parts_including_background": 31,
+    "L": 53029,
+    "C": 0,
+    "Q": 0,
+    "subpath_M": 45
+  },
+  {
+    "name": "case1",
+    "source": "outputs/case1_miku/step02-base-character/02_完整部件与遮挡.svg",
+    "sha256": "d5f924a63b8f2cf37180ba5db39f218f67602d7acc2dfe7ca0d8db24789ca9aa",
+    "bytes": 24099,
+    "groups": 36,
+    "logical_parts_including_background": 32,
+    "L": 32,
+    "C": 432,
+    "Q": 0,
+    "subpath_M": 36
+  }
+]

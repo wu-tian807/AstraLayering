@@ -20,6 +20,6 @@
 
 归档时将原`outputs/step02-base-character`、`step03-base-character`、`step04-base-character`及本轮新增的线稿、色盘统一移入这里。产物内容未改写，旧任务路径和色盘生成时的来源记录保留；逐文件来源与SHA-256见[归档清单](./归档清单.json)。
 
-本次实际改动、改善与待解决项见[迭代记录](../../analysis/case3-miku-v2-review/readme.md)。现行阶段3仍为三个step，新的五步拆分尚未实施。
+本次实际改动、改善与待解决项见[迭代记录](../../analysis/case3-miku-v2-review/readme.md)。本案例使用旧三步流程；后续[阶段3五步](../../workflows/3.建立可用线稿/readme.md)已在[miku_v3](../miku_v3/readme.md)完成实际生成，未覆盖本案例产物。
 
 使用现有[SVG预览器](../../loading/svg-preview.html)加载本案例SVG与参考图即可比较。返回[案例索引](../readme.md)。
