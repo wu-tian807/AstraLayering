@@ -2,7 +2,7 @@
 
 这里保存从旧 `outputs/` 移出的分析和独立实验。它们可为流程设计提供依据，但不是当前主工作流的阶段产物，也不自动构成验收标准。
 
-当前已形成首次完整生成结果。整体评价与剩余误差见[阶段5终稿复核](./stage5-final-review/2026-09-13_阶段5终稿差异与流程链路分析.md#current-assessment)；按具体错误定位阶段的工作清单统一放在[开发进度](../workflows/开发进度.md)。耳机占位等早期误差与头发放大后的局部绘制问题分别追溯，不由问题数量推断整体还原度低。
+当前已形成首次完整生成结果。整体评价与剩余误差见[阶段5终稿复核](./stage5-final-review/2026-09-13_阶段5终稿差异与流程链路分析.md#current-assessment)；按具体错误定位阶段的工作清单统一放在[开发进度](../.agents/skills/svg-layering/workflows/开发进度.md)。耳机占位等早期误差与头发放大后的局部绘制问题分别追溯，不由问题数量推断整体还原度低。
 
 | 目录 | 用途与入口 |
 | --- | --- |
@@ -22,4 +22,4 @@ SVG 显示实验只是对既有图形的显隐或描边调整，不能据此还�
 
 检查页需要同源访问 iframe。可在仓库根目录运行 `python3 -m http.server 8000`，然后打开 `http://localhost:8000/analysis/svg-preview-tests/checks.html`，点击“运行交互检查”。
 
-返回 [主工作流](../workflows/readme.md) 或 [当前验证区](../outputs/readme.md)。
+返回 [主工作流](../.agents/skills/svg-layering/workflows/readme.md) 或 [当前验证区](../outputs/readme.md)。

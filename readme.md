@@ -2,9 +2,38 @@
 
 利用AI将角色参考重绘成**可编辑、可分层、具备遮挡补全的SVG**，为人物还原、服装替换和后续2D动画探索提供部件基础。
 
-仓库包含按阶段执行的提示词、输入输出样例、效果复核和本地SVG预览器。当前已走通从基础角色彩图到完整分层彩图的阶段1—5流程。
+主要入口是 **`svg-layering` 自动化skill**：提供角色图和目标，由总控依次调度参考准备、SVG绘制、独立审查与返修。各节点的提示词、模型配置、素材和工具统一收在skill内的 `workflows/` 资料包中。
 
-[工作流与提示词](./workflows/readme.md) · [最新案例 Miku v3](./outputs/miku_v3/readme.md) · [效果复核](./analysis/miku-v3-review/readme.md) · [开发进度](./workflows/开发进度.md) · [SVG预览器](./loading/svg-preview.html)
+[使用skill](#使用svg-layering) · [调度规则](./.agents/skills/svg-layering/SKILL.md) · [最新案例 Miku v3](./outputs/miku_v3/readme.md) · [开发进度](./.agents/skills/svg-layering/workflows/开发进度.md) · [SVG预览器](./loading/svg-preview.html)
+
+## 使用svg-layering
+
+在Codex中打开本仓库，调用 `$svg-layering`，提供实际图片、执行目标和工作根目录。例如，将下列路径替换为自己的路径：
+
+```text
+使用 $svg-layering，从前置开始，完成到阶段4平涂。
+原角色图：/绝对路径/角色.png
+工作根目录：/绝对路径/本轮输出
+服装采用已有的基础连体服。
+```
+
+要生成完整彩图，将目标改为“完成到阶段5”。续跑时说明起点并提供已有案例目录及对应素材，例如：
+
+```text
+使用 $svg-layering，从阶段3继续，完成到阶段5。
+工作根目录：/绝对路径/已有案例
+使用该目录中本轮已完成的参考图、规划和阶段2结果。
+```
+
+总控按[流程表](./.agents/skills/svg-layering/references/流程.md)准备或复用前置素材，再顺序派发绘制任务。在阶段2、阶段3 step2、阶段4及阶段5 step1完成后，调用独立reviewer；需要返修时交回原worker，复验通过后继续。
+
+每轮产物统一写入工作根目录，包含 `references/`、`reference-palette/` 和各 `stepXX-base-character/`。未指定根目录时，默认创建 `outputs/run-YYYYMMDD-HHMMSS/`。总控向子agent传递实际输入和提示词路径，使用者只需提供本轮素材与目标。
+
+**模型配置：** 各节点从 `.model` 文件名读取模型。当前前置语言任务使用 `gpt-5.6-sol`／`xhigh`，SVG绘制与审查使用 `gpt-6-astra`／`xhigh`；生图指定 `image2.5`，需要可确认该模型的生图入口，也可提供对应的已生成图片继续。
+
+skill位于 [.agents/skills/svg-layering/](./.agents/skills/svg-layering/)，其中 `SKILL.md`定义通用调度规则，`references/流程.md`定义顺序与输入输出，`workflows/`保存各节点资料。提示词和工具只在这份资料包中维护。
+
+已有案例已走通阶段1—5；新skill的自动调度与review循环仍待完整实跑验证。
 
 ## 最新结果：Miku v3
 
@@ -24,7 +53,7 @@
 
 ## 工作流
 
-先准备基础角色彩图、部件色块参考和线稿参考，基础色盘可供上色阶段使用。随后逐阶段提供提示词和实际输入文件，每轮得到可继续编辑的产物。
+skill先准备基础角色彩图、部件色块参考、线稿参考和基础色盘，再按下列阶段生成可继续编辑的产物。
 
 | 阶段 | 主要工作 | 产物 |
 | --- | --- | --- |
@@ -36,7 +65,7 @@
 
 彩图决定可见造型与遮挡，色块图辅助分件，线稿辅助辨认轮廓。通过同坐标并排、透明叠加和部件独显，分别检查参考贴合与分层完整性。
 
-各阶段输入、输出和执行提示词见[工作流说明](./workflows/readme.md)。阶段6的线色与边缘收尾仍为候选，尚未制定或执行。
+各阶段输入、输出和执行提示词见[工作流说明](./.agents/skills/svg-layering/workflows/readme.md)。阶段6的线色与边缘收尾仍为候选，尚未制定或执行。
 
 ## 完整部件与遮挡补全
 
@@ -48,11 +77,9 @@ SVG按实体部件组织，保留当前姿态所需的隐藏底形：例如发�
 
 [首例完整展示](./demos/first-complete-case/readme.md) · [部件树长图](./demos/first-complete-case/parts-tree-full.png) · [独显示例大图](./demos/first-complete-case/isolated-parts.png)
 
-## 开始使用
+## 查看与对比结果
 
-1. 从[工作流入口](./workflows/readme.md)选择前置或阶段，提供提示词及要求的实际图片、规划或SVG文件。`.placeholder`只说明输入，不是参考素材。
-2. 使用同一版基础角色参考逐步推进；完成一轮后检查实际渲染，将该轮SVG交给下一轮。
-3. 下载或克隆仓库后，用浏览器打开[loading/svg-preview.html](./loading/svg-preview.html)，拖入SVG与对应彩图，检查整体、局部贴合和图层显隐。预览器可离线使用，无需构建或启动服务。
+用浏览器打开[loading/svg-preview.html](./loading/svg-preview.html)，拖入生成的SVG与对应彩图，检查整体、局部贴合和图层显隐。预览器可离线使用，无需构建或启动服务。
 
 <details>
 <summary>SVG预览器功能与常用操作</summary>
@@ -79,9 +106,9 @@ SVG按实体部件组织，保留当前姿态所需的隐藏底形：例如发�
 
 目前验证的是静态分层彩图。自动换装、动画绑定和跨角色稳定性仍需进一步验证；独立审查是否执行按各案例记录，v3终稿注明该轮独立审查不可用。
 
-绘制与审查由[svg-layering skill](./.agents/skills/svg-layering/SKILL.md)顺序调度，提供[各节点审查工具](./workflows/orchestrator/readme.md#工具与证据)；新流程尚未重跑角色。
+绘制与审查由[svg-layering skill](./.agents/skills/svg-layering/SKILL.md)顺序调度，提供[各节点审查工具](./.agents/skills/svg-layering/workflows/orchestrator/readme.md#工具与证据)；新流程尚未重跑角色。
 
-详细问题、证据与阶段定位见[开发进度](./workflows/开发进度.md)和[最新复核](./analysis/miku-v3-review/readme.md)。
+详细问题、证据与阶段定位见[开发进度](./.agents/skills/svg-layering/workflows/开发进度.md)和[最新复核](./analysis/miku-v3-review/readme.md)。
 
 ## 案例与仓库导航
 
@@ -94,7 +121,8 @@ SVG按实体部件组织，保留当前姿态所需的隐藏底形：例如发�
 
 | 入口 | 内容 |
 | --- | --- |
-| [workflows](./workflows/readme.md) | 现行工作流、图片前置步骤、各阶段提示词与输入说明 |
+| [svg-layering skill](./.agents/skills/svg-layering/SKILL.md) | 自动调度入口、模型读取、素材交接与审查返修规则 |
+| [skill内的workflows](./.agents/skills/svg-layering/workflows/readme.md) | 节点资料包：参考准备、绘制与审查提示词、输入说明和工具 |
 | [outputs](./outputs/readme.md) | 各案例的原始参考、逐阶段SVG、检查图和归档记录 |
 | [analysis](./analysis/readme.md) | 实际差异与原因追溯、失败复盘、Suzuran／physics-band画法研究 |
 | [demos](./demos/readme.md) | 完整部件展示、深海少女等历史示例与画法对比 |
@@ -103,7 +131,7 @@ SVG按实体部件组织，保留当前姿态所需的隐藏底形：例如发�
 <details>
 <summary>历史提示词与格式</summary>
 
-[prompt.txt](./prompt.txt)仅保留作历史参考；当前提示词统一放在[workflows](./workflows/readme.md)。[图层契约](./loading/layer-contract.md)和[契约示例](./loading/examples.md)用于阅读早期Demos，不是现行流程要求。当前预览器直接读取SVG原生层级。
+[prompt.txt](./prompt.txt)仅保留作历史参考；当前提示词统一放在[workflows](./.agents/skills/svg-layering/workflows/readme.md)。[图层契约](./loading/layer-contract.md)和[契约示例](./loading/examples.md)用于阅读早期Demos，不是现行流程要求。当前预览器直接读取SVG原生层级。
 
 </details>
 

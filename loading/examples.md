@@ -1,6 +1,6 @@
 # 契约示例
 
-> 历史格式，已停止用于主工作流；仅供理解早期示例。现行流程使用 SVG 原生分组与绘制顺序，见 [workflows](../workflows/readme.md)。
+> 历史格式，已停止用于主工作流；仅供理解早期示例。现行流程使用 SVG 原生分组与绘制顺序，见 [workflows](../.agents/skills/svg-layering/workflows/readme.md)。
 
 对照 `layer-contract.md` 看的最小示例。3 层：背景、躯干、左臂。
 路径数据是简化过的几何图形，不是真实角色画法，只用来演示结构骨架。

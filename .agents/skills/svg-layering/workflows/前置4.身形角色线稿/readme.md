@@ -12,8 +12,8 @@
 
 ## 实测记录
 
-状态：用户已生成线稿，反馈比色块图稳定。case3已接入并完成阶段3，用户反馈有一定改善，头脸还原仍不足；见[复测记录](../../analysis/case3-miku-v2-review/readme.md)与[本次线稿](../../outputs/case3_miku_v2/references/outline.jpg)。
+状态：用户已生成线稿，反馈比色块图稳定。case3已接入并完成阶段3，用户反馈有一定改善，头脸还原仍不足；见[复测记录](../../../../../analysis/case3-miku-v2-review/readme.md)与[本次线稿](../../../../../outputs/case3_miku_v2/references/outline.jpg)。
 
 2026-09-15：阶段2接入现有线稿并加强叠加校准后，用户反馈头发与发卡改善；实际对照仍见局部脸缘偏差，阶段2已进一步收紧面部曲线检查，新增要求待实测。本轮同时调整了参考与检查，尚不能单独归因于线稿。
 
-2026-09-17：[miku_v3](../../outputs/miku_v3/readme.md)已完成阶段2重跑和阶段3新五步，并推进到阶段5；头脸改善的证据见[本轮复核](../../analysis/miku-v3-review/readme.md)。
+2026-09-17：[miku_v3](../../../../../outputs/miku_v3/readme.md)已完成阶段2重跑和阶段3新五步，并推进到阶段5；头脸改善的证据见[本轮复核](../../../../../analysis/miku-v3-review/readme.md)。

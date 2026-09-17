@@ -64,4 +64,4 @@ v2采用另一张1024×1536彩图，不能直接叠在v3上计算还原度。跨
 
 26份输入和产物原样移入`outputs/miku_v3`，逐文件SHA-256保持一致，旧案例未覆盖。9份SVG均可解析，未发现重复ID或嵌入位图，实际渲染已用于上述对照。这些结构检查不替代视觉验收，也不证明全部隐藏补全和动画适用性。
 
-[归档文件与清单](../../outputs/miku_v3/readme.md) · [开发进度](../../workflows/开发进度.md) · [现有SVG预览器](../../loading/svg-preview.html)
+[归档文件与清单](../../outputs/miku_v3/readme.md) · [开发进度](../../.agents/skills/svg-layering/workflows/开发进度.md) · [现有SVG预览器](../../loading/svg-preview.html)

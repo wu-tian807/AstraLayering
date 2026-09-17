@@ -1,8 +1,8 @@
 # 当前主工作流验证区
 
-`outputs/` 只保存当前主工作流的分阶段实操结果、对应输入和验收状态。它用于验证 [workflows](../workflows/readme.md) 的提示词是否能稳定推进，不是最终成品画廊。
+`outputs/` 只保存当前主工作流的分阶段实操结果、对应输入和验收状态。它用于验证 [workflows](../.agents/skills/svg-layering/workflows/readme.md) 的提示词是否能稳定推进，不是最终成品画廊。
 
-**首个完整生成结果已完成：阶段1—5已有产物，阶段5终稿已完成制作与独立审查返修复验。** 展示见[左右对比与完整部件树](../demos/first-complete-case/readme.md)，后续问题与方向统一记录在[开发进度](../workflows/开发进度.md)。阶段6尚未制定或执行。
+**首个完整生成结果已完成：阶段1—5已有产物，阶段5终稿已完成制作与独立审查返修复验。** 展示见[左右对比与完整部件树](../demos/first-complete-case/readme.md)，后续问题与方向统一记录在[开发进度](../.agents/skills/svg-layering/workflows/开发进度.md)。阶段6尚未制定或执行。
 
 ## 案例索引
 
@@ -33,7 +33,7 @@
 
 四格检查图从同一份 SVG 渲染，分别查看整体、身体、完整头脸与发束拆件。后续结果仍需同时核对合成外观与独立部件，不能只凭 SVG 语法有效就宣布通过。
 
-本次运行环境、模型强度与阶段耗时记录在 [工作流 README](../workflows/readme.md)。
+本次运行环境、模型强度与阶段耗时记录在 [工作流 README](../.agents/skills/svg-layering/workflows/readme.md)。
 
 ## 线稿、平涂与彩图验证
 

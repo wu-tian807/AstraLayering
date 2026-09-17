@@ -1,6 +1,6 @@
 # svg-layering 调度入口
 
-使用 [svg-layering SKILL.md](../../.agents/skills/svg-layering/SKILL.md)。通用模型文件名解析、提示词读取、子agent调用与返修规则统一保存在skill；[流程表](../../.agents/skills/svg-layering/references/流程.md)列出前置0—5、主阶段1—5及review的实际顺序和输入输出。
+使用 [svg-layering SKILL.md](../../SKILL.md)。通用模型文件名解析、提示词读取、子agent调用与返修规则统一保存在skill；[流程表](../../references/流程.md)列出前置0—5、主阶段1—5及review的实际顺序和输入输出。
 
 各执行目录的 `.model` 文件名指定模型；前置语言任务使用Sol-xhigh，主流程及review使用Astra-xhigh，前置0—4的生图使用image2.5。调度者按文件名填写调用参数。
 

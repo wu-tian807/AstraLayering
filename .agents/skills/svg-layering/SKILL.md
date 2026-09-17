@@ -48,6 +48,6 @@ description: 按顺序调度角色参考图准备、部件补全、SVG线稿、�
 
 前置0—4直接使用节点生图提示词。执行前按生图标记确认入口的实际模型；能够确认使用指定模型后执行生成，无法确认时报告缺少可用入口，并请求用户提供对应结果或接入支持该模型的入口。前置5由语言模型选择取样区域后运行程序提取色盘。
 
-本skill的[workflows](workflows/)链接到仓库原目录，提示词、素材和review工具只有一份源。独立复制skill时须同时将该目录解引用复制为实体资料；历史案例链接仅用于仓库内追溯。执行时资料包按只读使用，产物写入工作根目录，review证据单独保存。
+本skill的[workflows](workflows/)包含节点提示词、输入说明、参考素材、模型标记和review工具。完整复制skill目录即可携带执行资料；历史案例链接用于仓库内追溯。执行时资料包按只读使用，产物写入工作根目录，review证据单独保存。
 
 格式依据：[Codex Skills](https://learn.chatgpt.com/docs/build-skills)；子agent模型设置依据：[Subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents)。

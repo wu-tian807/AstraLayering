@@ -1,6 +1,6 @@
 # 首次完整生成：基础连体服角色
 
-本例已从基础角色参考走通阶段1—5，生成第一份完整分层彩图SVG。整图形体保持较好；局部线稿、配件构造、虹膜分层和头发配色仍有差异，具体证据与改进阶段见[开发进度](../../workflows/开发进度.md)与[终稿复核](../../analysis/stage5-final-review/2026-09-13_阶段5终稿差异与流程链路分析.md)。
+本例已从基础角色参考走通阶段1—5，生成第一份完整分层彩图SVG。整图形体保持较好；局部线稿、配件构造、虹膜分层和头发配色仍有差异，具体证据与改进阶段见[开发进度](../../.agents/skills/svg-layering/workflows/开发进度.md)与[终稿复核](../../analysis/stage5-final-review/2026-09-13_阶段5终稿差异与流程链路分析.md)。
 
 ## 参考与生成结果
 
@@ -36,4 +36,4 @@
 
 在仓库根目录运行`python3 demos/first-complete-case/build.py`可重新生成本页素材。依赖Pillow、Node.js和sharp；中文字体默认使用macOS黑体，可用`ASTRA_DISPLAY_FONT`指定本机字体文件。动图为部件树的滚动展示，不代表角色已完成动画绑定。
 
-返回[项目首页](../../readme.md)、[工作流](../../workflows/readme.md)或[案例索引](../readme.md)。
+返回[项目首页](../../readme.md)、[工作流](../../.agents/skills/svg-layering/workflows/readme.md)或[案例索引](../readme.md)。

@@ -2,7 +2,7 @@
 
 模型看图选择取色区域，程序读取实际像素并生成色盘；没有调用生图模型。
 
-通用工具与执行入口已整理到[前置5：基础配色色盘](../../workflows/前置5.基础配色色盘/readme.md)。本目录保留Miku样例的取样记录。
+通用工具与执行入口已整理到[前置5：基础配色色盘](../../.agents/skills/svg-layering/workflows/前置5.基础配色色盘/readme.md)。本目录保留Miku样例的取样记录。
 
 [查看色盘](../../outputs/case3_miku_v2/references/color-palette.png) · [准确色值与坐标](../../outputs/case3_miku_v2/references/color-palette.json)
 
@@ -13,7 +13,7 @@
 复现本例，在仓库根目录执行（需要Pillow、numpy）：
 
 ```sh
-python3 workflows/前置5.基础配色色盘/提取色盘.py \
+python3 .agents/skills/svg-layering/workflows/前置5.基础配色色盘/提取色盘.py \
   outputs/case3_miku_v2/references/base-character.png \
   analysis/stage4-palette-demo/case1_miku_samples.json \
   outputs/case3_miku_v2/references/color-palette.png

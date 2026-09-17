@@ -23,7 +23,7 @@ worker负责绘制、自查和返修，总控调用独立[review](./review/提�
 
 ## 实测记录
 
-- [miku_v3](../../outputs/miku_v3/readme.md)完成阶段2重跑并推进至阶段5。同一彩图上的对照确认左脸颊外鼓明显收回，后续阶段3继续校准；见[脸缘叠加与本轮复核](../../analysis/miku-v3-review/readme.md)。
-- [2026-09-15两步试验复核](../../analysis/stage2-visible-shape-review/2026-09-15_两步复测.md)：记录可见片段与隐藏补全分步试验的问题。
-- [早期参考复测](../../analysis/stage2-reference-retest/第二次复测/复核.md)：记录头发结构回退及参考使用问题。
+- [miku_v3](../../../../../outputs/miku_v3/readme.md)完成阶段2重跑并推进至阶段5。同一彩图上的对照确认左脸颊外鼓明显收回，后续阶段3继续校准；见[脸缘叠加与本轮复核](../../../../../analysis/miku-v3-review/readme.md)。
+- [2026-09-15两步试验复核](../../../../../analysis/stage2-visible-shape-review/2026-09-15_两步复测.md)：记录可见片段与隐藏补全分步试验的问题。
+- [早期参考复测](../../../../../analysis/stage2-reference-retest/第二次复测/复核.md)：记录头发结构回退及参考使用问题。
 - 2026-09-17配置独立review入口；该组织方式尚待完整生成验证。
