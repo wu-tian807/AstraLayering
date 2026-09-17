@@ -1,6 +1,6 @@
 # 阶段5 step1：大明暗与体积审查
 
-入口：[提示词.txt](./提示词.txt)。本目录包含本次审查所需脚本及其依赖文件，可以整体交给reviewer；无需到其他阶段或公共工具目录查找。
+入口：[提示词.txt](./提示词.txt)。审查工具及依赖均在本目录。
 
 比较彩图、平涂与明暗稿；合看相邻表面，关闭明暗验证平涂保留。
 
@@ -14,25 +14,25 @@
 
 ## 使用
 
-进入本review目录运行。以下输入路径需替换为本轮实际文件，输出写入审查目录：
+在本轮工作根目录运行。以下脚本路径替换为本review目录内的实际绝对路径，输入与证据目录使用本轮交接的路径：
 
 ```sh
-python3 inspect_svg.py "/路径/05-1_大明暗与体积.svg" --output /tmp/review/structure.json
-python3 render.py "/路径/05-1_大明暗与体积.svg" /tmp/review/full.png --background white
-python3 compare.py "/路径/base-character.png" "/路径/05-1_大明暗与体积.svg" /tmp/review/reference
+python3 "/资料路径/review/inspect_svg.py" "/路径/05-1_大明暗与体积.svg" --output review-evidence/structure.json
+python3 "/资料路径/review/render.py" "/路径/05-1_大明暗与体积.svg" review-evidence/full.png --background white
+python3 "/资料路径/review/compare.py" "/路径/base-character.png" "/路径/05-1_大明暗与体积.svg" review-evidence/reference
 ```
 
 定位相对本轮输入的变化：
 
 ```sh
-python3 inspect_svg.py "/路径/05-1_大明暗与体积.svg" --baseline "/路径/04_完整分层平涂.svg" --output /tmp/review/changes.json
+python3 "/资料路径/review/inspect_svg.py" "/路径/05-1_大明暗与体积.svg" --baseline "/路径/04_完整分层平涂.svg" --output review-evidence/changes.json
 ```
 
 验证关闭明暗后的平涂：
 
 ```sh
-python3 render.py "/路径/05-1_大明暗与体积.svg" /tmp/review/flat.png --hide-stage 05-1 --background white
-python3 compare.py "/路径/04_完整分层平涂.svg" /tmp/review/flat.png /tmp/review/restore
+python3 "/资料路径/review/render.py" "/路径/05-1_大明暗与体积.svg" review-evidence/flat.png --hide-stage 05-1 --background white
+python3 "/资料路径/review/compare.py" "/路径/04_完整分层平涂.svg" review-evidence/flat.png review-evidence/restore
 ```
 
 - 局部对照：render和compare均可加`--crop X Y W H --scale 2`，坐标为原画布像素；SVG先原生放大再裁切。compare使用同一裁切框，不分别适配人物包围框。

@@ -79,6 +79,8 @@ SVG按实体部件组织，保留当前姿态所需的隐藏底形：例如发�
 
 目前验证的是静态分层彩图。自动换装、动画绑定和跨角色稳定性仍需进一步验证；独立审查是否执行按各案例记录，v3终稿注明该轮独立审查不可用。
 
+绘制与审查由[svg-layering skill](./.agents/skills/svg-layering/SKILL.md)顺序调度，提供[各节点审查工具](./workflows/orchestrator/readme.md#工具与证据)；新流程尚未重跑角色。
+
 详细问题、证据与阶段定位见[开发进度](./workflows/开发进度.md)和[最新复核](./analysis/miku-v3-review/readme.md)。
 
 ## 案例与仓库导航

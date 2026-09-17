@@ -1,0 +1,4 @@
+interface:
+  display_name: "svg-layering"
+  short_description: "按指定模型顺序执行角色前置图、分层 SVG 绘制与独立审查"
+  default_prompt: "使用 $svg-layering，按配置准备前置参考并依次完成角色分层 SVG，复用原绘制会话处理审查反馈。"

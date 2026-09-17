@@ -1,2 +1,2 @@
-可选输入：前置5「基础配色色盘」从本次参考彩图生成的color-palette.png，可附color-palette.json。
+可选输入：从本次参考彩图提取的color-palette.png，可附color-palette.json。
 色盘需包含取色位置和局部原图，区分底色候选与明暗对照。它辅助选色，不替代原彩图。
