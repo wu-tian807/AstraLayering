@@ -2,7 +2,7 @@
 
 使用[执行提示词](./生成提示词.txt)，输入基础彩图、部件色块图、已有的前置4线稿和阶段1规划，单轮绘制完整分层SVG与结构检查图。
 
-worker负责绘制、自查和返修，总控调用独立[review](./review/提示词.txt)核对造型、完整底形与组合遮挡；返修复用同一个worker，reviewer默认复用。见[总控规则](../orchestrator/readme.md)与[本节点工具](./review/readme.md)。
+worker负责绘制、自查和返修，总控调用独立[review](./review/提示词.txt)核对造型、完整底形与组合遮挡；返修复用同一个worker，reviewer默认复用。见[总控规则](../../SKILL.md)与[本节点工具](./review/readme.md)。
 
 ## 本轮输入与核对重点
 
