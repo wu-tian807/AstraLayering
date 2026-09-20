@@ -4,7 +4,33 @@
 
 主要入口是 **`svg-layering` 自动化skill**：提供角色图和目标，由总控依次调度参考准备、SVG绘制、独立审查与返修。各节点的提示词、模型配置、素材和工具统一收在skill内的 `workflows/` 资料包中。
 
-[使用skill](#使用svg-layering) · [调度规则](./.agents/skills/svg-layering/SKILL.md) · [最新案例 Milly v1](./outputs/milly_v1/readme.md) · [开发进度](./.agents/skills/svg-layering/workflows/开发进度.md) · [SVG预览器](./loading/svg-preview.html)
+[效果展示](#效果展示) · [使用skill](#使用svg-layering) · [运行投入](#运行时间与额度) · [调度规则](./.agents/skills/svg-layering/SKILL.md) · [开发进度](./.agents/skills/svg-layering/workflows/开发进度.md) · [SVG预览器](./loading/svg-preview.html)
+
+## 效果展示
+
+每组左侧为本轮基础角色彩图，右侧为阶段5最终SVG的实际渲染。点击图片可查看大图。
+
+### Milly v1
+
+自动调度完成参考准备、阶段1—5及四个节点的独立review。整体姿态和主要轮廓保持较好，眼部层次与肤色细节已补上；头发线质、光泽及手足局部仍有差异。
+
+[![Milly v1基础角色彩图与最终分层SVG](./demos/milly-complete-case/reference-vs-svg.png)](./demos/milly-complete-case/reference-vs-svg.png)
+
+[查看终稿SVG](./outputs/milly_v1/step05-base-character/05-2_局部色彩与材质.svg) · [查看目标彩图](./outputs/milly_v1/references/base-character.png) · [阶段产物与审查记录](./outputs/milly_v1/readme.md)
+
+### Miku v3
+
+已完成阶段1—5，重点改进脸型、头型和发束包脸关系，阶段3实际采用了头型、面部、其余轮廓、内部线、全局精修五步流程。
+
+[![Miku v3基础角色彩图与最终分层SVG](./analysis/miku-v3-review/01_整图对照.png)](./analysis/miku-v3-review/01_整图对照.png)
+
+[查看终稿SVG](./outputs/miku_v3/step05-base-character/05-2_局部色彩与材质.svg) · [查看目标彩图](./outputs/miku_v3/references/base-character.png) · [全部参考与阶段产物](./outputs/miku_v3/readme.md)
+
+同坐标复核确认：上一轮左脸颊的外鼓明显收回，头顶、刘海和鬓发与脸的关系更贴近参考；校准后的脸型在后续上色中保持。下图依次为原彩图、阶段3线稿、阶段4平涂和阶段5终稿。
+
+[![Miku v3头部从线稿到最终着色的对照](./analysis/miku-v3-review/02_头部阶段对照.png)](./analysis/miku-v3-review/02_头部阶段对照.png)
+
+眼睑与睫毛、手足线条以及头发色带和光泽仍有差异。具体证据见[本轮复核](./analysis/miku-v3-review/readme.md)；v3与v2采用不同基础彩图，跨轮评价分别以各自原图为准。
 
 ## 使用svg-layering
 
@@ -33,29 +59,17 @@
 
 skill位于 [.agents/skills/svg-layering/](./.agents/skills/svg-layering/)，其中 `SKILL.md`定义通用调度规则，`references/流程.md`定义顺序与输入输出，`workflows/`保存各节点资料。提示词和工具只在这份资料包中维护。
 
-自动调度与四个指定节点的review循环已在Milly完成一轮实跑。用户记录完整运行约**2小时50分钟**，消耗**Pro5x约10%额度、约5kw token**；这是单次估算，后续运行投入仍会随角色与返修情况变化。
+## 运行时间与额度
 
-## 最新结果：Milly v1
+以Milly完整运行至阶段5的一次实跑为参考：
 
-2026-09-20归档，包含前置参考、阶段1—5及独立review证据。整体姿态和主要轮廓保持较好，眼部层次与肤色细节已补上；头发线质、光泽及手足局部仍有差异。
+| 项目 | 估算 |
+| --- | --- |
+| 完整运行耗时 | 约2小时50分钟 |
+| 额度消耗 | Pro5x约10%额度 |
+| Token消耗 | 约5kw token |
 
-[查看终稿SVG](./outputs/milly_v1/step05-base-character/05-2_局部色彩与材质.svg) · [查看目标彩图](./outputs/milly_v1/references/base-character.png) · [阶段产物、审查与运行记录](./outputs/milly_v1/readme.md)
-
-## Miku v3：头脸改进对照
-
-**2026-09-17：阶段1—5产物已完整归档。** 本轮重点改进脸型、头型和发束包脸关系，阶段3实际采用了头型、面部、其余轮廓、内部线、全局精修五步流程。
-
-左：本轮基础角色彩图。右：阶段5最终SVG的实际渲染。两者使用相同画布与比例，点击查看大图。
-
-[![Miku v3基础角色彩图与最终分层SVG](./analysis/miku-v3-review/01_整图对照.png)](./analysis/miku-v3-review/01_整图对照.png)
-
-[查看终稿SVG](./outputs/miku_v3/step05-base-character/05-2_局部色彩与材质.svg) · [查看目标彩图](./outputs/miku_v3/references/base-character.png) · [全部参考与阶段产物](./outputs/miku_v3/readme.md)
-
-同坐标复核确认：上一轮左脸颊的外鼓明显收回，头顶、刘海和鬓发与脸的关系更贴近参考；校准后的脸型在后续上色中保持。下图依次为原彩图、阶段3线稿、阶段4平涂和阶段5终稿。
-
-[![Miku v3头部从线稿到最终着色的对照](./analysis/miku-v3-review/02_头部阶段对照.png)](./analysis/miku-v3-review/02_头部阶段对照.png)
-
-眼睑与睫毛、手足线条以及头发色带和光泽仍有差异。具体证据见[本轮复核](./analysis/miku-v3-review/readme.md)；v3与v2采用不同基础彩图，跨轮评价分别以各自原图为准。
+这些是本轮用户实测估算，额度周期与token统计口径未细分；实际投入会随角色复杂度、模型配置和返修次数变化。
 
 ## 工作流
 
