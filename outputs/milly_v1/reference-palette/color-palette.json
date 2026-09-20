@@ -1,0 +1,246 @@
+{
+  "source": "/Users/wutian/Desktop/coding/AstraLayering/working/references/base-character.png",
+  "source_sha256": "c5335b1fee621bac4e56f2777eb74a98c046fd719a3fd266e51a24e058438c3a",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "method": "Nearest real opaque source pixel to the per-channel patch median; center-nearest tie break.",
+  "interpretation": "Observed colors; semantic roles are supplied by the caller, not inferred by this program.",
+  "samples": [
+    {
+      "name": "头发橙基色",
+      "x": 510,
+      "y": 97,
+      "radius": 3,
+      "role": "candidate",
+      "id": "01",
+      "rgb": [
+        248,
+        160,
+        92
+      ],
+      "hex": "#F8A05C",
+      "actual_pixel": [
+        510,
+        97
+      ]
+    },
+    {
+      "name": "肤色基色",
+      "x": 450,
+      "y": 900,
+      "radius": 5,
+      "role": "candidate",
+      "id": "02",
+      "rgb": [
+        254,
+        235,
+        226
+      ],
+      "hex": "#FEEBE2",
+      "actual_pixel": [
+        450,
+        900
+      ]
+    },
+    {
+      "name": "泳装浅蓝白",
+      "x": 512,
+      "y": 480,
+      "radius": 5,
+      "role": "candidate",
+      "id": "03",
+      "rgb": [
+        244,
+        245,
+        250
+      ],
+      "hex": "#F4F5FA",
+      "actual_pixel": [
+        511,
+        480
+      ]
+    },
+    {
+      "name": "虹膜暖棕",
+      "x": 463,
+      "y": 226,
+      "radius": 2,
+      "role": "candidate",
+      "id": "04",
+      "rgb": [
+        169,
+        121,
+        102
+      ],
+      "hex": "#A97966",
+      "actual_pixel": [
+        461,
+        225
+      ]
+    },
+    {
+      "name": "发夹深蓝灰",
+      "x": 580,
+      "y": 150,
+      "radius": 1,
+      "role": "candidate",
+      "id": "05",
+      "rgb": [
+        76,
+        75,
+        79
+      ],
+      "hex": "#4C4B4F",
+      "actual_pixel": [
+        581,
+        151
+      ]
+    },
+    {
+      "name": "唇色粉",
+      "x": 505,
+      "y": 267,
+      "radius": 1,
+      "role": "candidate",
+      "id": "06",
+      "rgb": [
+        236,
+        166,
+        151
+      ],
+      "hex": "#ECA697",
+      "actual_pixel": [
+        505,
+        267
+      ]
+    },
+    {
+      "name": "头发亮部",
+      "x": 500,
+      "y": 61,
+      "radius": 2,
+      "role": "comparison",
+      "id": "07",
+      "rgb": [
+        248,
+        167,
+        103
+      ],
+      "hex": "#F8A767",
+      "actual_pixel": [
+        501,
+        62
+      ]
+    },
+    {
+      "name": "头发暗部",
+      "x": 396,
+      "y": 246,
+      "radius": 4,
+      "role": "comparison",
+      "id": "08",
+      "rgb": [
+        229,
+        116,
+        76
+      ],
+      "hex": "#E5744C",
+      "actual_pixel": [
+        394,
+        250
+      ]
+    },
+    {
+      "name": "肤色面部亮部",
+      "x": 514,
+      "y": 240,
+      "radius": 3,
+      "role": "comparison",
+      "id": "09",
+      "rgb": [
+        254,
+        236,
+        227
+      ],
+      "hex": "#FEECE3",
+      "actual_pixel": [
+        514,
+        239
+      ]
+    },
+    {
+      "name": "肤色膝部暖暗",
+      "x": 436,
+      "y": 1059,
+      "radius": 4,
+      "role": "comparison",
+      "id": "10",
+      "rgb": [
+        250,
+        221,
+        211
+      ],
+      "hex": "#FADDD3",
+      "actual_pixel": [
+        437,
+        1058
+      ]
+    },
+    {
+      "name": "泳装缝线灰",
+      "x": 580,
+      "y": 440,
+      "radius": 0,
+      "role": "comparison",
+      "id": "11",
+      "rgb": [
+        202,
+        202,
+        211
+      ],
+      "hex": "#CACAD3",
+      "actual_pixel": [
+        580,
+        440
+      ]
+    },
+    {
+      "name": "泳装侧面阴影",
+      "x": 438,
+      "y": 560,
+      "radius": 3,
+      "role": "comparison",
+      "id": "12",
+      "rgb": [
+        231,
+        233,
+        242
+      ],
+      "hex": "#E7E9F2",
+      "actual_pixel": [
+        439,
+        559
+      ]
+    },
+    {
+      "name": "虹膜暗部",
+      "x": 462,
+      "y": 219,
+      "radius": 1,
+      "role": "comparison",
+      "id": "13",
+      "rgb": [
+        102,
+        65,
+        52
+      ],
+      "hex": "#664134",
+      "actual_pixel": [
+        462,
+        219
+      ]
+    }
+  ]
+}

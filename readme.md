@@ -4,7 +4,7 @@
 
 主要入口是 **`svg-layering` 自动化skill**：提供角色图和目标，由总控依次调度参考准备、SVG绘制、独立审查与返修。各节点的提示词、模型配置、素材和工具统一收在skill内的 `workflows/` 资料包中。
 
-[使用skill](#使用svg-layering) · [调度规则](./.agents/skills/svg-layering/SKILL.md) · [最新案例 Miku v3](./outputs/miku_v3/readme.md) · [开发进度](./.agents/skills/svg-layering/workflows/开发进度.md) · [SVG预览器](./loading/svg-preview.html)
+[使用skill](#使用svg-layering) · [调度规则](./.agents/skills/svg-layering/SKILL.md) · [最新案例 Milly v1](./outputs/milly_v1/readme.md) · [开发进度](./.agents/skills/svg-layering/workflows/开发进度.md) · [SVG预览器](./loading/svg-preview.html)
 
 ## 使用svg-layering
 
@@ -27,15 +27,21 @@
 
 总控按[流程表](./.agents/skills/svg-layering/references/流程.md)准备或复用前置素材，再顺序派发绘制任务。在阶段2、阶段3 step2、阶段4及阶段5 step1完成后，调用独立reviewer；需要返修时交回原worker，复验通过后继续。
 
-每轮产物统一写入工作根目录，包含 `references/`、`reference-palette/` 和各 `stepXX-base-character/`。未指定根目录时，默认创建 `outputs/run-YYYYMMDD-HHMMSS/`。总控向子agent传递实际输入和提示词路径，使用者只需提供本轮素材与目标。
+每轮产物统一写入工作根目录，包含 `references/`、`reference-palette/` 和各 `stepXX-base-character/`。缺少参考图或绝对输出路径时，总控会先询问，信息齐备后开始调度。总控向子agent传递实际输入和节点提示词路径。
 
 **模型配置：** 各节点从 `.model` 文件名读取模型。当前前置语言任务使用 `gpt-5.6-sol`／`xhigh`，SVG绘制与审查使用 `gpt-6-astra`／`xhigh`；生图指定 `image2.5`，需要可确认该模型的生图入口，也可提供对应的已生成图片继续。
 
 skill位于 [.agents/skills/svg-layering/](./.agents/skills/svg-layering/)，其中 `SKILL.md`定义通用调度规则，`references/流程.md`定义顺序与输入输出，`workflows/`保存各节点资料。提示词和工具只在这份资料包中维护。
 
-已有案例已走通阶段1—5；新skill的自动调度与review循环仍待完整实跑验证。
+自动调度与四个指定节点的review循环已在Milly完成一轮实跑。用户记录完整运行约**2小时50分钟**，消耗**Pro5x约10%额度、约5kw token**；这是单次估算，后续运行投入仍会随角色与返修情况变化。
 
-## 最新结果：Miku v3
+## 最新结果：Milly v1
+
+2026-09-20归档，包含前置参考、阶段1—5及独立review证据。整体姿态和主要轮廓保持较好，眼部层次与肤色细节已补上；头发线质、光泽及手足局部仍有差异。
+
+[查看终稿SVG](./outputs/milly_v1/step05-base-character/05-2_局部色彩与材质.svg) · [查看目标彩图](./outputs/milly_v1/references/base-character.png) · [阶段产物、审查与运行记录](./outputs/milly_v1/readme.md)
+
+## Miku v3：头脸改进对照
 
 **2026-09-17：阶段1—5产物已完整归档。** 本轮重点改进脸型、头型和发束包脸关系，阶段3实际采用了头型、面部、其余轮廓、内部线、全局精修五步流程。
 
@@ -99,14 +105,14 @@ SVG按实体部件组织，保留当前姿态所需的隐藏底形：例如发�
 
 | 方向 | 下一步关注 |
 | --- | --- |
-| 人物还原与线条质量 | 保留已改善的头脸，继续校准眼睑睫毛、手足及局部接线；已将头部独立review安排在阶段3 step2后，待新一轮生成验证 |
+| 人物还原与线条质量 | 保留已改善的头脸，继续校准眼睑睫毛、手足及局部接线；阶段3 step2后的头部独立review已在Milly实跑 |
 | 色彩与材质还原 | 改善头发色带、亮斑范围、皮肤与服装的软硬过渡，并核对投影显隐关系 |
 | 衣服自由更替 | 基于完整身体与独立衣片，探索服装适配、遮挡及换装后的明暗更新 |
 | 2D动画 | 在 [rigging](./rigging/readme.md) 里做初步的模型能力与建模尝试，尚未接入主流程 |
 
 目前验证的是静态分层彩图。自动换装、动画绑定和跨角色稳定性仍需进一步验证；独立审查是否执行按各案例记录，v3终稿注明该轮独立审查不可用。
 
-绘制与审查由[svg-layering skill](./.agents/skills/svg-layering/SKILL.md)顺序调度，工具随各[审查节点](./.agents/skills/svg-layering/references/流程.md#再运行主流程)的review目录提供；新流程尚未重跑角色。
+绘制与审查由[svg-layering skill](./.agents/skills/svg-layering/SKILL.md)顺序调度，工具随各[审查节点](./.agents/skills/svg-layering/references/流程.md#再运行主流程)的review目录提供；完整实跑记录见[Milly v1](./outputs/milly_v1/readme.md)。
 
 详细问题、证据与阶段定位见[开发进度](./.agents/skills/svg-layering/workflows/开发进度.md)和[最新复核](./analysis/miku-v3-review/readme.md)。
 
@@ -114,7 +120,8 @@ SVG按实体部件组织，保留当前姿态所需的隐藏底形：例如发�
 
 | 案例 | 验证范围 |
 | --- | --- |
-| [Miku v3](./outputs/miku_v3/readme.md) | 最新完整阶段1—5；头脸校准、阶段3五步与最终彩图 |
+| [Milly v1](./outputs/milly_v1/readme.md) | 自动调度完整流程、四个指定review节点及本轮运行投入 |
+| [Miku v3](./outputs/miku_v3/readme.md) | 完整阶段1—5；头脸校准、阶段3五步与最终彩图 |
 | [Miku v2](./outputs/case3_miku_v2/readme.md) | 到阶段4；线稿参考、程序色盘及旧版头脸问题 |
 | [首次完整Miku](./demos/first-complete-case/readme.md) | 阶段1—5首例、部件树与独显展示 |
 | [case2](./outputs/case2/readme.md) | 另一角色的参考与阶段1—2产物 |

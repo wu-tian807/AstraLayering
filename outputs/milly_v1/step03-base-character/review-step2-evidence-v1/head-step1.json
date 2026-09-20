@@ -1,0 +1,58 @@
+{
+  "inputs": [
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/03-1_头型与发型.svg",
+      "sha256": "79ae192c422806b7c59daf33545d28c79cd082e9c097c26b2d9872b378fb7104"
+    },
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/03-2_面部与表情.svg",
+      "sha256": "904427adaa5b7cbf19f22451d9bbe7765f5525f042b1cbc7e6b3917a11e3bc28"
+    }
+  ],
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBoxes": [
+    [
+      0.0,
+      0.0,
+      1024.0,
+      1536.0
+    ],
+    [
+      0.0,
+      0.0,
+      1024.0,
+      1536.0
+    ]
+  ],
+  "crop_xywh": [
+    340,
+    20,
+    330,
+    320
+  ],
+  "scale": 3,
+  "background": "white",
+  "candidate_alpha": 0.5,
+  "diff_gain": 4,
+  "difference_bbox_in_output_crop_pixels": [
+    289,
+    468,
+    701,
+    770
+  ],
+  "identical_render": false,
+  "side_order": [
+    "reference",
+    "candidate"
+  ],
+  "outputs": {
+    "side": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/head-step1-side.png",
+    "overlay": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/head-step1-overlay.png",
+    "diff": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/head-step1-diff.png",
+    "manifest": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/head-step1.json"
+  },
+  "note": "Pixel differences locate changes; they are not a visual quality verdict. Equal dimensions do not establish reference identity."
+}

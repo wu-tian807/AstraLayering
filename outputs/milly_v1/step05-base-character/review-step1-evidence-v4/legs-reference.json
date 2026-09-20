@@ -1,0 +1,53 @@
+{
+  "inputs": [
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/references/base-character.png",
+      "sha256": "c5335b1fee621bac4e56f2777eb74a98c046fd719a3fd266e51a24e058438c3a"
+    },
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/05-1_大明暗与体积.svg",
+      "sha256": "01482524473c40cb1964cc81837dc7c91417fdf41b0699f932af1b378d7b6f2c"
+    }
+  ],
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBoxes": [
+    null,
+    [
+      0.0,
+      0.0,
+      1024.0,
+      1536.0
+    ]
+  ],
+  "crop_xywh": [
+    348,
+    648,
+    324,
+    836
+  ],
+  "scale": 2,
+  "background": "white",
+  "candidate_alpha": 0.5,
+  "diff_gain": 4,
+  "difference_bbox_in_output_crop_pixels": [
+    0,
+    0,
+    648,
+    1672
+  ],
+  "identical_render": false,
+  "side_order": [
+    "reference",
+    "candidate"
+  ],
+  "outputs": {
+    "side": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/review-step1-evidence-v4/legs-reference-side.png",
+    "overlay": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/review-step1-evidence-v4/legs-reference-overlay.png",
+    "diff": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/review-step1-evidence-v4/legs-reference-diff.png",
+    "manifest": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/review-step1-evidence-v4/legs-reference.json"
+  },
+  "note": "Pixel differences locate changes; they are not a visual quality verdict. Equal dimensions do not establish reference identity."
+}

@@ -1,0 +1,53 @@
+{
+  "inputs": [
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/references/base-character.png",
+      "sha256": "c5335b1fee621bac4e56f2777eb74a98c046fd719a3fd266e51a24e058438c3a"
+    },
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/step02-base-character/02_完整部件与遮挡.svg",
+      "sha256": "09a7a515e65680c7fde32e83d19daa8d39630fa00bb8aa02154c2e1c6d111ba8"
+    }
+  ],
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBoxes": [
+    null,
+    [
+      0.0,
+      0.0,
+      1024.0,
+      1536.0
+    ]
+  ],
+  "crop_xywh": [
+    340,
+    1310,
+    340,
+    180
+  ],
+  "scale": 3,
+  "background": "white",
+  "candidate_alpha": 0.5,
+  "diff_gain": 4,
+  "difference_bbox_in_output_crop_pixels": [
+    0,
+    0,
+    1020,
+    540
+  ],
+  "identical_render": false,
+  "side_order": [
+    "reference",
+    "candidate"
+  ],
+  "outputs": {
+    "side": "/Users/wutian/Desktop/coding/AstraLayering/working/step02-base-character/review-evidence-v1/feet-side.png",
+    "overlay": "/Users/wutian/Desktop/coding/AstraLayering/working/step02-base-character/review-evidence-v1/feet-overlay.png",
+    "diff": "/Users/wutian/Desktop/coding/AstraLayering/working/step02-base-character/review-evidence-v1/feet-diff.png",
+    "manifest": "/Users/wutian/Desktop/coding/AstraLayering/working/step02-base-character/review-evidence-v1/feet.json"
+  },
+  "note": "Pixel differences locate changes; they are not a visual quality verdict. Equal dimensions do not establish reference identity."
+}

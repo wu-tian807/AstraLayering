@@ -1,0 +1,53 @@
+{
+  "inputs": [
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/references/base-character.png",
+      "sha256": "c5335b1fee621bac4e56f2777eb74a98c046fd719a3fd266e51a24e058438c3a"
+    },
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/03-2_面部与表情.svg",
+      "sha256": "904427adaa5b7cbf19f22451d9bbe7765f5525f042b1cbc7e6b3917a11e3bc28"
+    }
+  ],
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBoxes": [
+    null,
+    [
+      0.0,
+      0.0,
+      1024.0,
+      1536.0
+    ]
+  ],
+  "crop_xywh": [
+    385,
+    217,
+    65,
+    68
+  ],
+  "scale": 6,
+  "background": "white",
+  "candidate_alpha": 0.5,
+  "diff_gain": 4,
+  "difference_bbox_in_output_crop_pixels": [
+    0,
+    0,
+    390,
+    408
+  ],
+  "identical_render": false,
+  "side_order": [
+    "reference",
+    "candidate"
+  ],
+  "outputs": {
+    "side": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/hair-curl-left-side.png",
+    "overlay": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/hair-curl-left-overlay.png",
+    "diff": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/hair-curl-left-diff.png",
+    "manifest": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/hair-curl-left.json"
+  },
+  "note": "Pixel differences locate changes; they are not a visual quality verdict. Equal dimensions do not establish reference identity."
+}

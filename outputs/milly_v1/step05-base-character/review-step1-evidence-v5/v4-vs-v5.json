@@ -1,0 +1,48 @@
+{
+  "inputs": [
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/review-step1-evidence-v4/full.png",
+      "sha256": "9f659f9a04c8ef2a8c2164840ca24e3eb759fc386e0ce926d4da7832c878aa54"
+    },
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/05-1_大明暗与体积.svg",
+      "sha256": "b996c8edc05bc9845932dc54f25239ce773d9dfc5c1aa9957cb25f832527f519"
+    }
+  ],
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBoxes": [
+    null,
+    [
+      0.0,
+      0.0,
+      1024.0,
+      1536.0
+    ]
+  ],
+  "crop_xywh": null,
+  "scale": 1,
+  "background": "white",
+  "candidate_alpha": 0.5,
+  "diff_gain": 4,
+  "difference_bbox_in_output_crop_pixels": [
+    391,
+    1314,
+    628,
+    1416
+  ],
+  "identical_render": false,
+  "side_order": [
+    "reference",
+    "candidate"
+  ],
+  "outputs": {
+    "side": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/review-step1-evidence-v5/v4-vs-v5-side.png",
+    "overlay": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/review-step1-evidence-v5/v4-vs-v5-overlay.png",
+    "diff": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/review-step1-evidence-v5/v4-vs-v5-diff.png",
+    "manifest": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/review-step1-evidence-v5/v4-vs-v5.json"
+  },
+  "note": "Pixel differences locate changes; they are not a visual quality verdict. Equal dimensions do not establish reference identity."
+}

@@ -1,0 +1,19 @@
+{
+  "candidate": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/03-2_面部与表情.svg",
+  "candidate_sha256": "904427adaa5b7cbf19f22451d9bbe7765f5525f042b1cbc7e6b3917a11e3bc28",
+  "purpose": "Differentiate the actually visible sclera, iris, and eyelids after original compositing. Geometry, order, and strokes are unchanged.",
+  "fills": {
+    "head-face-shape": "#f9d8cf",
+    "eye-left-sclera-shape": "#bce8f4",
+    "eye-left-iris-shape": "#ad7755",
+    "eye-left-eyelid-upper-shape": "#f9d8cf",
+    "eye-left-eyelid-lower-shape": "#f9d8cf",
+    "eye-left-highlight-main": "#ffffff",
+    "eye-right-sclera-shape": "#bce8f4",
+    "eye-right-iris-shape": "#ad7755",
+    "eye-right-eyelid-upper-shape": "#f9d8cf",
+    "eye-right-eyelid-lower-shape": "#f9d8cf",
+    "eye-right-highlight-main": "#ffffff",
+    "eye-left-highlight-small": "#ffffff"
+  }
+}

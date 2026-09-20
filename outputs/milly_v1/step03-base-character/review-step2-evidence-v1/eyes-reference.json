@@ -1,0 +1,53 @@
+{
+  "inputs": [
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/references/base-character.png",
+      "sha256": "c5335b1fee621bac4e56f2777eb74a98c046fd719a3fd266e51a24e058438c3a"
+    },
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/eye-occlusion-diagnostic.svg",
+      "sha256": "6b4b33e4b964916828b1edb6e42cdf45827bd7cfd3a5c98154e3a0edfd35acf8"
+    }
+  ],
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBoxes": [
+    null,
+    [
+      0.0,
+      0.0,
+      1024.0,
+      1536.0
+    ]
+  ],
+  "crop_xywh": [
+    428,
+    194,
+    154,
+    55
+  ],
+  "scale": 6,
+  "background": "white",
+  "candidate_alpha": 0.5,
+  "diff_gain": 4,
+  "difference_bbox_in_output_crop_pixels": [
+    0,
+    0,
+    924,
+    330
+  ],
+  "identical_render": false,
+  "side_order": [
+    "reference",
+    "candidate"
+  ],
+  "outputs": {
+    "side": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/eyes-reference-side.png",
+    "overlay": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/eyes-reference-overlay.png",
+    "diff": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/eyes-reference-diff.png",
+    "manifest": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/review-step2-evidence-v1/eyes-reference.json"
+  },
+  "note": "Pixel differences locate changes; they are not a visual quality verdict. Equal dimensions do not establish reference identity."
+}

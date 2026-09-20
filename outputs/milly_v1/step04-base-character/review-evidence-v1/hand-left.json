@@ -1,0 +1,53 @@
+{
+  "inputs": [
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/references/base-character.png",
+      "sha256": "c5335b1fee621bac4e56f2777eb74a98c046fd719a3fd266e51a24e058438c3a"
+    },
+    {
+      "path": "/Users/wutian/Desktop/coding/AstraLayering/working/step04-base-character/04_完整分层平涂.svg",
+      "sha256": "d67da72064de035d2c965bd2d8e7d05828dd788be6509d2fd05d871c29d5b630"
+    }
+  ],
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBoxes": [
+    null,
+    [
+      0.0,
+      0.0,
+      1024.0,
+      1536.0
+    ]
+  ],
+  "crop_xywh": [
+    275,
+    720,
+    85,
+    145
+  ],
+  "scale": 4,
+  "background": "white",
+  "candidate_alpha": 0.5,
+  "diff_gain": 4,
+  "difference_bbox_in_output_crop_pixels": [
+    0,
+    0,
+    340,
+    580
+  ],
+  "identical_render": false,
+  "side_order": [
+    "reference",
+    "candidate"
+  ],
+  "outputs": {
+    "side": "/Users/wutian/Desktop/coding/AstraLayering/working/step04-base-character/review-evidence-v1/hand-left-side.png",
+    "overlay": "/Users/wutian/Desktop/coding/AstraLayering/working/step04-base-character/review-evidence-v1/hand-left-overlay.png",
+    "diff": "/Users/wutian/Desktop/coding/AstraLayering/working/step04-base-character/review-evidence-v1/hand-left-diff.png",
+    "manifest": "/Users/wutian/Desktop/coding/AstraLayering/working/step04-base-character/review-evidence-v1/hand-left.json"
+  },
+  "note": "Pixel differences locate changes; they are not a visual quality verdict. Equal dimensions do not establish reference identity."
+}

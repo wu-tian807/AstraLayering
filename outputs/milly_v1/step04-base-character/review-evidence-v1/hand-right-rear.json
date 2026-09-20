@@ -1,0 +1,35 @@
+{
+  "source": "/Users/wutian/Desktop/coding/AstraLayering/working/step04-base-character/04_完整分层平涂.svg",
+  "sha256": "d67da72064de035d2c965bd2d8e7d05828dd788be6509d2fd05d871c29d5b630",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBox": [
+    0.0,
+    0.0,
+    1024.0,
+    1536.0
+  ],
+  "settings": {
+    "source": "step04-base-character/04_完整分层平涂.svg",
+    "output": "step04-base-character/review-evidence-v1/hand-right-rear.png",
+    "scale": 5,
+    "crop": [
+      675,
+      755,
+      50,
+      90
+    ],
+    "background": "#e6e8eb",
+    "id": [
+      "hand-right-fingers-rear"
+    ],
+    "part": [],
+    "hide_id": [],
+    "hide_part": [],
+    "hide_role": [],
+    "hide_stage": [],
+    "manifest": "step04-base-character/review-evidence-v1/hand-right-rear.json"
+  }
+}

@@ -1,0 +1,390 @@
+{
+  "source": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/03-2_面部与表情.svg",
+  "sha256": "904427adaa5b7cbf19f22451d9bbe7765f5525f042b1cbc7e6b3917a11e3bc28",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBox": [
+    0.0,
+    0.0,
+    1024.0,
+    1536.0
+  ],
+  "element_counts": {
+    "svg": 1,
+    "title": 36,
+    "desc": 22,
+    "g": 35,
+    "path": 74
+  },
+  "duplicate_ids": [],
+  "missing_local_references": [],
+  "external_or_data_references": [],
+  "image_elements": 0,
+  "script_elements": 0,
+  "groups": [
+    {
+      "id": "hair-back",
+      "part": "hair-back",
+      "title": "后发完整发体",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "body-core",
+      "part": "body-core",
+      "title": "颈部、躯干与骨盆连续底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "leg-left",
+      "part": "leg-left",
+      "title": "左腿与左足完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "leg-right",
+      "part": "leg-right",
+      "title": "右腿与右足完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "arm-left",
+      "part": "arm-left",
+      "title": "左手臂完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "arm-right",
+      "part": "arm-right",
+      "title": "右手臂完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-left-fingers-rear",
+      "part": "hand-left",
+      "title": "左手后侧弯指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-left-main",
+      "part": "hand-left",
+      "title": "左手掌与前侧拇指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-right-fingers-rear",
+      "part": "hand-right",
+      "title": "右手后侧弯指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-right-main",
+      "part": "hand-right",
+      "title": "右手掌与前侧拇指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "bodysuit",
+      "part": "bodysuit",
+      "title": "基础连体服",
+      "role": "clothing",
+      "stage": null
+    },
+    {
+      "id": "ear-left",
+      "part": "ear-left",
+      "title": "左耳完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "ear-right",
+      "part": "ear-right",
+      "title": "右耳完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "head-face",
+      "part": "head-face",
+      "title": "头脸完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "head-face-features",
+      "part": "head-face",
+      "title": "面部五官",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "eye-left",
+      "part": "head-face",
+      "title": "画面左眼",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-left-sclera",
+      "part": "head-face",
+      "title": "左眼完整眼白",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-left-iris",
+      "part": "head-face",
+      "title": "左眼完整虹膜",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-left-pupil",
+      "part": "head-face",
+      "title": "左眼瞳孔与留白反光",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-left-eyelid",
+      "part": "head-face",
+      "title": "左眼完整上下眼睑与睫毛",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-right",
+      "part": "head-face",
+      "title": "画面右眼",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-right-sclera",
+      "part": "head-face",
+      "title": "右眼完整眼白",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-right-iris",
+      "part": "head-face",
+      "title": "右眼完整虹膜",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-right-pupil",
+      "part": "head-face",
+      "title": "右眼瞳孔与留白反光",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-right-eyelid",
+      "part": "head-face",
+      "title": "右眼完整上下眼睑与睫毛",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "nose",
+      "part": "head-face",
+      "title": "鼻尖短线",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "mouth",
+      "part": "head-face",
+      "title": "张口微笑",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "hair-cowlick",
+      "part": "hair-cowlick",
+      "title": "环状翘发",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "hair-left",
+      "part": "hair-left",
+      "title": "左侧发与左侧顶发",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "hair-right",
+      "part": "hair-right",
+      "title": "右侧发与右侧顶发",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "hair-bangs",
+      "part": "hair-bangs",
+      "title": "前额刘海完整底形",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "hair-clips",
+      "part": "hair-clips",
+      "title": "右额双横发夹",
+      "role": "accessory",
+      "stage": null
+    },
+    {
+      "id": "head-face-brows-front",
+      "part": "head-face",
+      "title": "头脸跨刘海的眉线",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "eyebrow-left",
+      "part": "head-face",
+      "title": "画面左眉",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eyebrow-right",
+      "part": "head-face",
+      "title": "画面右眉",
+      "role": null,
+      "stage": null
+    }
+  ],
+  "roles": {
+    "hair": 5,
+    "body": 14,
+    "clothing": 1,
+    "accessory": 1
+  },
+  "stages": {
+    "line-art-face": 1
+  },
+  "note": "Static XML inventory only; does not validate path geometry, visual quality, CSS cascade or hidden completeness.",
+  "comparison": {
+    "baseline": "/Users/wutian/Desktop/coding/AstraLayering/working/step03-base-character/03-1_头型与发型.svg",
+    "baseline_sha256": "79ae192c422806b7c59daf33545d28c79cd082e9c097c26b2d9872b378fb7104",
+    "canvas_changed": false,
+    "added_ids": [
+      "eye-left",
+      "eye-left-eyelid",
+      "eye-left-eyelid-lower-shape",
+      "eye-left-eyelid-upper-shape",
+      "eye-left-highlight-main",
+      "eye-left-highlight-small",
+      "eye-left-iris",
+      "eye-left-iris-contour",
+      "eye-left-iris-inner",
+      "eye-left-iris-shape",
+      "eye-left-lash-ink",
+      "eye-left-lid-crease",
+      "eye-left-lower-lid-ink",
+      "eye-left-pupil",
+      "eye-left-pupil-ink",
+      "eye-left-sclera",
+      "eye-left-sclera-shape",
+      "eye-right",
+      "eye-right-eyelid",
+      "eye-right-eyelid-lower-shape",
+      "eye-right-eyelid-upper-shape",
+      "eye-right-highlight-main",
+      "eye-right-iris",
+      "eye-right-iris-contour",
+      "eye-right-iris-inner",
+      "eye-right-iris-shape",
+      "eye-right-lash-ink",
+      "eye-right-lid-crease",
+      "eye-right-lower-lid-ink",
+      "eye-right-pupil",
+      "eye-right-pupil-ink",
+      "eye-right-sclera",
+      "eye-right-sclera-shape",
+      "eyebrow-left",
+      "eyebrow-left-ink",
+      "eyebrow-right",
+      "eyebrow-right-ink",
+      "head-face-brows-front",
+      "head-face-features",
+      "mouth",
+      "mouth-inner-corners-ink",
+      "mouth-opening-contour",
+      "mouth-opening-shape",
+      "mouth-teeth-lower-edge",
+      "mouth-upper-teeth-shape",
+      "nose",
+      "nose-tip-ink"
+    ],
+    "removed_ids": [],
+    "changed_elements": [
+      {
+        "id": "character-structure",
+        "attributes": {
+          "data-stage": {
+            "before": "line-art-head",
+            "after": "line-art-face"
+          }
+        }
+      },
+      {
+        "id": "hair-bangs",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/19",
+          "after": "#character-structure/20"
+        }
+      },
+      {
+        "id": "hair-clips",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/20",
+          "after": "#character-structure/21"
+        }
+      },
+      {
+        "id": "hair-cowlick",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/16",
+          "after": "#character-structure/17"
+        }
+      },
+      {
+        "id": "hair-left",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/17",
+          "after": "#character-structure/18"
+        }
+      },
+      {
+        "id": "hair-right",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/18",
+          "after": "#character-structure/19"
+        }
+      }
+    ],
+    "limitation": "ID-based comparison does not enumerate changes to unnamed nodes. Use rendered comparison too."
+  }
+}

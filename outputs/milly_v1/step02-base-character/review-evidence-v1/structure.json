@@ -1,0 +1,171 @@
+{
+  "source": "/Users/wutian/Desktop/coding/AstraLayering/working/step02-base-character/02_完整部件与遮挡.svg",
+  "sha256": "09a7a515e65680c7fde32e83d19daa8d39630fa00bb8aa02154c2e1c6d111ba8",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBox": [
+    0.0,
+    0.0,
+    1024.0,
+    1536.0
+  ],
+  "element_counts": {
+    "svg": 1,
+    "title": 20,
+    "desc": 20,
+    "g": 19,
+    "path": 24
+  },
+  "duplicate_ids": [],
+  "missing_local_references": [],
+  "external_or_data_references": [],
+  "image_elements": 0,
+  "script_elements": 0,
+  "groups": [
+    {
+      "id": "hair-back",
+      "part": "hair-back",
+      "title": "后发完整发体",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "body-core",
+      "part": "body-core",
+      "title": "颈部、躯干与骨盆连续底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "leg-left",
+      "part": "leg-left",
+      "title": "左腿与左足完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "leg-right",
+      "part": "leg-right",
+      "title": "右腿与右足完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "arm-left",
+      "part": "arm-left",
+      "title": "左手臂完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "arm-right",
+      "part": "arm-right",
+      "title": "右手臂完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-left-fingers-rear",
+      "part": "hand-left",
+      "title": "左手后侧弯指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-left-main",
+      "part": "hand-left",
+      "title": "左手掌与前侧拇指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-right-fingers-rear",
+      "part": "hand-right",
+      "title": "右手后侧弯指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-right-main",
+      "part": "hand-right",
+      "title": "右手掌与前侧拇指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "bodysuit",
+      "part": "bodysuit",
+      "title": "基础连体服",
+      "role": "clothing",
+      "stage": null
+    },
+    {
+      "id": "ear-left",
+      "part": "ear-left",
+      "title": "左耳完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "ear-right",
+      "part": "ear-right",
+      "title": "右耳完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "head-face",
+      "part": "head-face",
+      "title": "头脸完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hair-cowlick",
+      "part": "hair-cowlick",
+      "title": "环状翘发",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "hair-left",
+      "part": "hair-left",
+      "title": "左侧发与左侧顶发",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "hair-right",
+      "part": "hair-right",
+      "title": "右侧发与右侧顶发",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "hair-bangs",
+      "part": "hair-bangs",
+      "title": "前额刘海完整底形",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "hair-clips",
+      "part": "hair-clips",
+      "title": "右额双横发夹",
+      "role": "accessory",
+      "stage": null
+    }
+  ],
+  "roles": {
+    "hair": 5,
+    "body": 12,
+    "clothing": 1,
+    "accessory": 1
+  },
+  "stages": {
+    "structure": 1
+  },
+  "note": "Static XML inventory only; does not validate path geometry, visual quality, CSS cascade or hidden completeness."
+}

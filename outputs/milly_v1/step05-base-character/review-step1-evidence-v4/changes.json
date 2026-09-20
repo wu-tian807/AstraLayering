@@ -1,0 +1,1692 @@
+{
+  "source": "/Users/wutian/Desktop/coding/AstraLayering/working/step05-base-character/05-1_大明暗与体积.svg",
+  "sha256": "01482524473c40cb1964cc81837dc7c91417fdf41b0699f932af1b378d7b6f2c",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "viewBox": [
+    0.0,
+    0.0,
+    1024.0,
+    1536.0
+  ],
+  "element_counts": {
+    "svg": 1,
+    "defs": 1,
+    "filter": 3,
+    "feGaussianBlur": 3,
+    "clipPath": 26,
+    "path": 247,
+    "linearGradient": 47,
+    "stop": 212,
+    "radialGradient": 27,
+    "title": 89,
+    "desc": 44,
+    "g": 88,
+    "rect": 1,
+    "metadata": 1
+  },
+  "duplicate_ids": [],
+  "missing_local_references": [],
+  "external_or_data_references": [],
+  "image_elements": 0,
+  "script_elements": 0,
+  "groups": [
+    {
+      "id": "background",
+      "part": "background",
+      "title": "独立白色背景",
+      "role": "background",
+      "stage": null
+    },
+    {
+      "id": "hair-back",
+      "part": "hair-back",
+      "title": "后发完整发体",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "s51-hair-back-shape-self",
+      "part": "hair-back",
+      "title": "后发自身亮暗：发根至内卷铜橙暗面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "body-core",
+      "part": "body-core",
+      "title": "颈部、躯干与骨盆连续底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-body-core-shape-self",
+      "part": "body-core",
+      "title": "躯干自身明暗：颈侧与锁骨的柔和体积",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "s51-body-core-shape-cast",
+      "part": "body-core",
+      "title": "下颌投向颈部的接触阴影",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "leg-left",
+      "part": "leg-left",
+      "title": "左腿与左足完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-leg-left-shape-self",
+      "part": "leg-left",
+      "title": "左腿自身明暗：大腿、膝与小腿连续转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "s51-leg-left-shape-cast",
+      "part": "leg-left",
+      "title": "左腿衣口投影",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "toe-left-1-nail",
+      "part": "leg-left",
+      "title": "左足大趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "toe-left-2-nail",
+      "part": "leg-left",
+      "title": "左足第二趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "toe-left-3-nail",
+      "part": "leg-left",
+      "title": "左足第三趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "toe-left-4-nail",
+      "part": "leg-left",
+      "title": "左足第四趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "toe-left-5-nail",
+      "part": "leg-left",
+      "title": "左足小趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "leg-right",
+      "part": "leg-right",
+      "title": "右腿与右足完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-leg-right-shape-self",
+      "part": "leg-right",
+      "title": "右腿自身明暗：大腿、膝与小腿连续转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "s51-leg-right-shape-cast",
+      "part": "leg-right",
+      "title": "右腿衣口投影",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "toe-right-1-nail",
+      "part": "leg-right",
+      "title": "右足大趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "toe-right-2-nail",
+      "part": "leg-right",
+      "title": "右足第二趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "toe-right-3-nail",
+      "part": "leg-right",
+      "title": "右足第三趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "toe-right-4-nail",
+      "part": "leg-right",
+      "title": "右足第四趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "toe-right-5-nail",
+      "part": "leg-right",
+      "title": "右足小趾甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "arm-left",
+      "part": "arm-left",
+      "title": "左手臂完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-arm-left-shape-self",
+      "part": "arm-left",
+      "title": "左臂自身柔光：腕部连续转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "arm-right",
+      "part": "arm-right",
+      "title": "右手臂完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-arm-right-shape-self",
+      "part": "arm-right",
+      "title": "右臂自身柔光：腕部连续转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hand-left-fingers-rear",
+      "part": "hand-left",
+      "title": "左手后侧弯指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-left-finger-upper-part",
+      "part": "hand-left",
+      "title": "left手upper弯指完整底形与自然轮廓",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "s51-hand-left-finger-upper-self",
+      "part": "hand-left",
+      "title": "左手弯指自身转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hand-left-finger-middle-part",
+      "part": "hand-left",
+      "title": "left手middle弯指完整底形与自然轮廓",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "s51-hand-left-finger-middle-self",
+      "part": "hand-left",
+      "title": "左手弯指自身转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hand-left-finger-lower-part",
+      "part": "hand-left",
+      "title": "left手lower弯指完整底形与自然轮廓",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "s51-hand-left-finger-lower-self",
+      "part": "hand-left",
+      "title": "左手弯指自身转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hand-left-curled-nail",
+      "part": "hand-left",
+      "title": "左手外露弯指甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "hand-left-main",
+      "part": "hand-left",
+      "title": "左手掌与前侧拇指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-hand-left-main-shape-self",
+      "part": "hand-left",
+      "title": "左手自身柔光：腕部连续转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hand-left-thumb-nail",
+      "part": "hand-left",
+      "title": "左手拇指甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "hand-left-outer-finger-nail",
+      "part": "hand-left",
+      "title": "左手外侧指尖甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "hand-right-fingers-rear",
+      "part": "hand-right",
+      "title": "右手后侧弯指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "hand-right-finger-upper-part",
+      "part": "hand-right",
+      "title": "right手upper弯指完整底形与自然轮廓",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "s51-hand-right-finger-upper-self",
+      "part": "hand-right",
+      "title": "右手弯指自身转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hand-right-finger-middle-part",
+      "part": "hand-right",
+      "title": "right手middle弯指完整底形与自然轮廓",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "s51-hand-right-finger-middle-self",
+      "part": "hand-right",
+      "title": "右手弯指自身转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hand-right-finger-lower-part",
+      "part": "hand-right",
+      "title": "right手lower弯指完整底形与自然轮廓",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "s51-hand-right-finger-lower-self",
+      "part": "hand-right",
+      "title": "右手弯指自身转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hand-right-curled-nail",
+      "part": "hand-right",
+      "title": "右手外露弯指甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "hand-right-main",
+      "part": "hand-right",
+      "title": "右手掌与前侧拇指",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-hand-right-main-shape-self",
+      "part": "hand-right",
+      "title": "右手自身柔光：腕部连续转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hand-right-thumb-nail",
+      "part": "hand-right",
+      "title": "右手拇指甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "hand-right-outer-finger-nail",
+      "part": "hand-right",
+      "title": "右手外侧指尖甲片",
+      "role": "nail",
+      "stage": null
+    },
+    {
+      "id": "bodysuit",
+      "part": "bodysuit",
+      "title": "基础连体服",
+      "role": "clothing",
+      "stage": null
+    },
+    {
+      "id": "s51-bodysuit-shape-self",
+      "part": "bodysuit",
+      "title": "浅色衣料自身明暗：胸腰与侧片体积",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "ear-left",
+      "part": "ear-left",
+      "title": "左耳完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-ear-left-shape-self",
+      "part": "ear-left",
+      "title": "左耳自身暖色转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "ear-right",
+      "part": "ear-right",
+      "title": "右耳完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-ear-right-shape-self",
+      "part": "ear-right",
+      "title": "右耳自身暖色转面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "head-face",
+      "part": "head-face",
+      "title": "头脸完整底形",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "s51-head-face-shape-self",
+      "part": "head-face",
+      "title": "面部自身柔和受光：中央明亮留白",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "s51-head-face-shape-cast",
+      "part": "head-face",
+      "title": "刘海与侧发在面部的投影",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "head-face-features",
+      "part": "head-face",
+      "title": "面部五官",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "eye-left",
+      "part": "head-face",
+      "title": "画面左眼",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-left-sclera",
+      "part": "head-face",
+      "title": "左眼完整眼白",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-left-iris",
+      "part": "head-face",
+      "title": "左眼完整虹膜",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-left-pupil",
+      "part": "head-face",
+      "title": "左眼瞳孔与暂存反光路径",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-left-eyelid",
+      "part": "head-face",
+      "title": "左眼完整上下眼睑与睫毛",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "s51-eye-left-eyelid-upper-shape-self",
+      "part": "head-face",
+      "title": "左眼睑与面部受光衔接",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "s51-eye-left-eyelid-lower-shape-self",
+      "part": "head-face",
+      "title": "左眼睑与面部受光衔接",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "eye-right",
+      "part": "head-face",
+      "title": "画面右眼",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-right-sclera",
+      "part": "head-face",
+      "title": "右眼完整眼白",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-right-iris",
+      "part": "head-face",
+      "title": "右眼完整虹膜",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-right-pupil",
+      "part": "head-face",
+      "title": "右眼瞳孔与暂存反光路径",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eye-right-eyelid",
+      "part": "head-face",
+      "title": "右眼完整上下眼睑与睫毛",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "s51-eye-right-eyelid-upper-shape-self",
+      "part": "head-face",
+      "title": "右眼睑与面部受光衔接",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "s51-eye-right-eyelid-lower-shape-self",
+      "part": "head-face",
+      "title": "右眼睑与面部受光衔接",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "nose",
+      "part": "head-face",
+      "title": "鼻尖短线",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "mouth",
+      "part": "head-face",
+      "title": "张口微笑",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "hair-cowlick",
+      "part": "hair-cowlick",
+      "title": "环状翘发",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "s51-hair-cowlick-shape-self",
+      "part": "hair-cowlick",
+      "title": "翘发自身亮暗：上缘受光与回折",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hair-left",
+      "part": "hair-left",
+      "title": "左侧发与左侧顶发",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "s51-hair-left-shape-self",
+      "part": "hair-left",
+      "title": "左侧发自身明暗：受光外弧与内卷暗面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hair-right",
+      "part": "hair-right",
+      "title": "右侧发与右侧顶发",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "s51-hair-right-shape-self",
+      "part": "hair-right",
+      "title": "右侧发自身明暗：受光长弧与卷曲体积",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hair-bangs",
+      "part": "hair-bangs",
+      "title": "前额刘海完整底形",
+      "role": "hair",
+      "stage": null
+    },
+    {
+      "id": "s51-hair-bangs-shape-self",
+      "part": "hair-bangs",
+      "title": "刘海自身明暗：各发束的纵向转面与明亮大面",
+      "role": "shading",
+      "stage": "05-1"
+    },
+    {
+      "id": "hair-clips",
+      "part": "hair-clips",
+      "title": "右额双横发夹",
+      "role": "accessory",
+      "stage": null
+    },
+    {
+      "id": "head-face-brows-front",
+      "part": "head-face",
+      "title": "头脸跨刘海的眉线",
+      "role": "body",
+      "stage": null
+    },
+    {
+      "id": "eyebrow-left",
+      "part": "head-face",
+      "title": "画面左眉",
+      "role": null,
+      "stage": null
+    },
+    {
+      "id": "eyebrow-right",
+      "part": "head-face",
+      "title": "画面右眉",
+      "role": null,
+      "stage": null
+    }
+  ],
+  "roles": {
+    "background": 1,
+    "hair": 5,
+    "shading": 30,
+    "body": 14,
+    "nail": 16,
+    "clothing": 1,
+    "accessory": 1
+  },
+  "stages": {
+    "flat-color-final": 1,
+    "05-1": 30,
+    "reserved-highlight": 3
+  },
+  "note": "Static XML inventory only; does not validate path geometry, visual quality, CSS cascade or hidden completeness.",
+  "comparison": {
+    "baseline": "/Users/wutian/Desktop/coding/AstraLayering/working/step04-base-character/04_完整分层平涂.svg",
+    "baseline_sha256": "d67da72064de035d2c965bd2d8e7d05828dd788be6509d2fd05d871c29d5b630",
+    "canvas_changed": false,
+    "added_ids": [
+      "s51-arm-left-shape-self",
+      "s51-arm-right-shape-self",
+      "s51-bangs-center-left",
+      "s51-bangs-center-right",
+      "s51-bangs-left-turn",
+      "s51-bangs-litmass",
+      "s51-bangs-right-turn",
+      "s51-bangs-sweep-fold",
+      "s51-body-core-shape-cast",
+      "s51-body-core-shape-self",
+      "s51-bodysuit-shape-self",
+      "s51-chest-lit",
+      "s51-chin-shadow",
+      "s51-clip-arm-left-shape",
+      "s51-clip-arm-right-shape",
+      "s51-clip-body-core-shape",
+      "s51-clip-bodysuit-shape",
+      "s51-clip-ear-left-shape",
+      "s51-clip-ear-right-shape",
+      "s51-clip-eye-left-eyelid-lower-shape",
+      "s51-clip-eye-left-eyelid-upper-shape",
+      "s51-clip-eye-right-eyelid-lower-shape",
+      "s51-clip-eye-right-eyelid-upper-shape",
+      "s51-clip-hair-back-shape",
+      "s51-clip-hair-bangs-shape",
+      "s51-clip-hair-cowlick-shape",
+      "s51-clip-hair-left-shape",
+      "s51-clip-hair-right-shape",
+      "s51-clip-hand-left-finger-lower",
+      "s51-clip-hand-left-finger-middle",
+      "s51-clip-hand-left-finger-upper",
+      "s51-clip-hand-left-main-shape",
+      "s51-clip-hand-right-finger-lower",
+      "s51-clip-hand-right-finger-middle",
+      "s51-clip-hand-right-finger-upper",
+      "s51-clip-hand-right-main-shape",
+      "s51-clip-head-face-shape",
+      "s51-clip-leg-left-shape",
+      "s51-clip-leg-right-shape",
+      "s51-cowlick-turn",
+      "s51-ear-left-shape-self",
+      "s51-ear-right-shape-self",
+      "s51-eye-left-eyelid-lower-shape-self",
+      "s51-eye-left-eyelid-upper-shape-self",
+      "s51-eye-right-eyelid-lower-shape-self",
+      "s51-eye-right-eyelid-upper-shape-self",
+      "s51-face-left-haircast",
+      "s51-face-light",
+      "s51-face-right-haircast",
+      "s51-hair-back-depth",
+      "s51-hair-back-shape-self",
+      "s51-hair-bangs-shape-self",
+      "s51-hair-cowlick-shape-self",
+      "s51-hair-left-ambient",
+      "s51-hair-left-curlturn",
+      "s51-hair-left-innerfold",
+      "s51-hair-left-litbend",
+      "s51-hair-left-longturn",
+      "s51-hair-left-shape-self",
+      "s51-hair-right-ambient",
+      "s51-hair-right-curlturn",
+      "s51-hair-right-litbend",
+      "s51-hair-right-longturn",
+      "s51-hair-right-outerfold",
+      "s51-hair-right-shape-self",
+      "s51-hair-soft",
+      "s51-hand-left-finger-lower-self",
+      "s51-hand-left-finger-middle-self",
+      "s51-hand-left-finger-upper-self",
+      "s51-hand-left-main-shape-self",
+      "s51-hand-right-finger-lower-self",
+      "s51-hand-right-finger-middle-self",
+      "s51-hand-right-finger-upper-self",
+      "s51-hand-right-main-shape-self",
+      "s51-head-face-shape-cast",
+      "s51-head-face-shape-self",
+      "s51-left-ankle-turn",
+      "s51-left-arm-innerturn",
+      "s51-left-arm-lit",
+      "s51-left-armpit-turn",
+      "s51-left-calf-turn",
+      "s51-left-ear-turn",
+      "s51-left-foot-light",
+      "s51-left-garment-contact",
+      "s51-left-hand-innerturn",
+      "s51-left-hand-plane",
+      "s51-left-inner-thigh",
+      "s51-left-knee-plane",
+      "s51-left-lower-finger",
+      "s51-left-lower-lidlight",
+      "s51-left-middle-finger",
+      "s51-left-outer-thigh",
+      "s51-left-shin-light",
+      "s51-left-thigh-light",
+      "s51-left-upper-finger",
+      "s51-left-upper-lidlight",
+      "s51-leg-left-shape-cast",
+      "s51-leg-left-shape-self",
+      "s51-leg-right-shape-cast",
+      "s51-leg-right-shape-self",
+      "s51-metadata",
+      "s51-neck-side",
+      "s51-rear-left-curl",
+      "s51-rear-left-hidden-turn",
+      "s51-rear-right-curl",
+      "s51-rear-right-hidden-turn",
+      "s51-resources",
+      "s51-right-ankle-turn",
+      "s51-right-arm-innerturn",
+      "s51-right-arm-lit",
+      "s51-right-armpit-turn",
+      "s51-right-calf-turn",
+      "s51-right-ear-turn",
+      "s51-right-foot-light",
+      "s51-right-garment-contact",
+      "s51-right-hand-innerturn",
+      "s51-right-hand-plane",
+      "s51-right-inner-thigh",
+      "s51-right-knee-plane",
+      "s51-right-lower-finger",
+      "s51-right-lower-lidlight",
+      "s51-right-middle-finger",
+      "s51-right-outer-thigh",
+      "s51-right-shin-light",
+      "s51-right-thigh-light",
+      "s51-right-upper-finger",
+      "s51-right-upper-lidlight",
+      "s51-skin-soft",
+      "s51-soft",
+      "s51-suit-crotch-volume",
+      "s51-suit-front-light",
+      "s51-suit-left-litturn",
+      "s51-suit-left-turn",
+      "s51-suit-right-litturn",
+      "s51-suit-right-turn",
+      "s51-surface-001",
+      "s51-surface-002",
+      "s51-surface-003",
+      "s51-surface-004",
+      "s51-surface-005",
+      "s51-surface-006",
+      "s51-surface-007",
+      "s51-surface-008",
+      "s51-surface-009",
+      "s51-surface-010",
+      "s51-surface-011",
+      "s51-surface-012",
+      "s51-surface-013",
+      "s51-surface-014",
+      "s51-surface-015",
+      "s51-surface-016",
+      "s51-surface-017",
+      "s51-surface-018",
+      "s51-surface-019",
+      "s51-surface-020",
+      "s51-surface-021",
+      "s51-surface-022",
+      "s51-surface-023",
+      "s51-surface-024",
+      "s51-surface-025",
+      "s51-surface-026",
+      "s51-surface-027",
+      "s51-surface-028",
+      "s51-surface-029",
+      "s51-surface-030",
+      "s51-surface-031",
+      "s51-surface-032",
+      "s51-surface-033",
+      "s51-surface-034",
+      "s51-surface-035",
+      "s51-surface-036",
+      "s51-surface-037",
+      "s51-surface-038",
+      "s51-surface-039",
+      "s51-surface-040",
+      "s51-surface-041",
+      "s51-surface-042",
+      "s51-surface-043",
+      "s51-surface-044",
+      "s51-surface-045",
+      "s51-surface-046",
+      "s51-surface-047",
+      "s51-surface-048",
+      "s51-surface-049",
+      "s51-surface-050",
+      "s51-surface-051",
+      "s51-surface-052",
+      "s51-surface-053",
+      "s51-surface-054",
+      "s51-surface-055",
+      "s51-surface-056",
+      "s51-surface-057",
+      "s51-surface-058",
+      "s51-surface-059",
+      "s51-surface-060",
+      "s51-surface-061",
+      "s51-surface-062",
+      "s51-surface-063",
+      "s51-surface-064",
+      "s51-surface-065",
+      "s51-surface-066",
+      "s51-surface-067",
+      "s51-surface-068",
+      "s51-surface-069",
+      "s51-surface-070",
+      "s51-surface-071",
+      "s51-surface-072",
+      "s51-surface-073",
+      "s51-surface-074",
+      "s51-surface-075",
+      "s51-surface-076",
+      "s51-surface-077",
+      "s51-surface-078"
+    ],
+    "removed_ids": [],
+    "changed_elements": [
+      {
+        "id": "arm-left",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/7",
+          "after": "#character-structure/8"
+        }
+      },
+      {
+        "id": "arm-left-elbow-turn-ink",
+        "attributes": {},
+        "location": {
+          "before": "#arm-left/5",
+          "after": "#arm-left/6"
+        }
+      },
+      {
+        "id": "arm-left-inner-contour",
+        "attributes": {},
+        "location": {
+          "before": "#arm-left/4",
+          "after": "#arm-left/5"
+        }
+      },
+      {
+        "id": "arm-left-outer-contour",
+        "attributes": {},
+        "location": {
+          "before": "#arm-left/3",
+          "after": "#arm-left/4"
+        }
+      },
+      {
+        "id": "arm-right",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/8",
+          "after": "#character-structure/9"
+        }
+      },
+      {
+        "id": "arm-right-elbow-turn-ink",
+        "attributes": {},
+        "location": {
+          "before": "#arm-right/5",
+          "after": "#arm-right/6"
+        }
+      },
+      {
+        "id": "arm-right-inner-contour",
+        "attributes": {},
+        "location": {
+          "before": "#arm-right/4",
+          "after": "#arm-right/5"
+        }
+      },
+      {
+        "id": "arm-right-outer-contour",
+        "attributes": {},
+        "location": {
+          "before": "#arm-right/3",
+          "after": "#arm-right/4"
+        }
+      },
+      {
+        "id": "background",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/2",
+          "after": "#character-structure/3"
+        }
+      },
+      {
+        "id": "body-clavicle-left-ink",
+        "attributes": {},
+        "location": {
+          "before": "#body-core/4",
+          "after": "#body-core/6"
+        }
+      },
+      {
+        "id": "body-clavicle-right-ink",
+        "attributes": {},
+        "location": {
+          "before": "#body-core/5",
+          "after": "#body-core/7"
+        }
+      },
+      {
+        "id": "body-core",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/4",
+          "after": "#character-structure/5"
+        }
+      },
+      {
+        "id": "body-core-contour",
+        "attributes": {},
+        "location": {
+          "before": "#body-core/3",
+          "after": "#body-core/5"
+        }
+      },
+      {
+        "id": "bodysuit",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/13",
+          "after": "#character-structure/14"
+        }
+      },
+      {
+        "id": "bodysuit-armhole-left-binding",
+        "attributes": {},
+        "location": {
+          "before": "#bodysuit/5",
+          "after": "#bodysuit/6"
+        }
+      },
+      {
+        "id": "bodysuit-armhole-right-binding",
+        "attributes": {},
+        "location": {
+          "before": "#bodysuit/6",
+          "after": "#bodysuit/7"
+        }
+      },
+      {
+        "id": "bodysuit-contour",
+        "attributes": {},
+        "location": {
+          "before": "#bodysuit/3",
+          "after": "#bodysuit/4"
+        }
+      },
+      {
+        "id": "bodysuit-leg-left-binding",
+        "attributes": {},
+        "location": {
+          "before": "#bodysuit/7",
+          "after": "#bodysuit/8"
+        }
+      },
+      {
+        "id": "bodysuit-leg-right-binding",
+        "attributes": {},
+        "location": {
+          "before": "#bodysuit/8",
+          "after": "#bodysuit/9"
+        }
+      },
+      {
+        "id": "bodysuit-neckline-binding",
+        "attributes": {},
+        "location": {
+          "before": "#bodysuit/4",
+          "after": "#bodysuit/5"
+        }
+      },
+      {
+        "id": "bodysuit-panel-left-seam",
+        "attributes": {},
+        "location": {
+          "before": "#bodysuit/9",
+          "after": "#bodysuit/10"
+        }
+      },
+      {
+        "id": "bodysuit-panel-right-seam",
+        "attributes": {},
+        "location": {
+          "before": "#bodysuit/10",
+          "after": "#bodysuit/11"
+        }
+      },
+      {
+        "id": "ear-left",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/14",
+          "after": "#character-structure/15"
+        }
+      },
+      {
+        "id": "ear-left-contour",
+        "attributes": {},
+        "location": {
+          "before": "#ear-left/3",
+          "after": "#ear-left/4"
+        }
+      },
+      {
+        "id": "ear-left-fold",
+        "attributes": {},
+        "location": {
+          "before": "#ear-left/4",
+          "after": "#ear-left/5"
+        }
+      },
+      {
+        "id": "ear-right",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/15",
+          "after": "#character-structure/16"
+        }
+      },
+      {
+        "id": "ear-right-contour",
+        "attributes": {},
+        "location": {
+          "before": "#ear-right/3",
+          "after": "#ear-right/4"
+        }
+      },
+      {
+        "id": "ear-right-fold",
+        "attributes": {},
+        "location": {
+          "before": "#ear-right/4",
+          "after": "#ear-right/5"
+        }
+      },
+      {
+        "id": "eye-left-eyelid-lower-shape",
+        "attributes": {},
+        "location": {
+          "before": "#eye-left-eyelid/2",
+          "after": "#eye-left-eyelid/3"
+        }
+      },
+      {
+        "id": "eye-left-lash-ink",
+        "attributes": {},
+        "location": {
+          "before": "#eye-left-eyelid/3",
+          "after": "#eye-left-eyelid/5"
+        }
+      },
+      {
+        "id": "eye-left-lid-crease",
+        "attributes": {},
+        "location": {
+          "before": "#eye-left-eyelid/4",
+          "after": "#eye-left-eyelid/6"
+        }
+      },
+      {
+        "id": "eye-left-lower-lid-ink",
+        "attributes": {},
+        "location": {
+          "before": "#eye-left-eyelid/5",
+          "after": "#eye-left-eyelid/7"
+        }
+      },
+      {
+        "id": "eye-right-eyelid-lower-shape",
+        "attributes": {},
+        "location": {
+          "before": "#eye-right-eyelid/2",
+          "after": "#eye-right-eyelid/3"
+        }
+      },
+      {
+        "id": "eye-right-lash-ink",
+        "attributes": {},
+        "location": {
+          "before": "#eye-right-eyelid/3",
+          "after": "#eye-right-eyelid/5"
+        }
+      },
+      {
+        "id": "eye-right-lid-crease",
+        "attributes": {},
+        "location": {
+          "before": "#eye-right-eyelid/4",
+          "after": "#eye-right-eyelid/6"
+        }
+      },
+      {
+        "id": "eye-right-lower-lid-ink",
+        "attributes": {},
+        "location": {
+          "before": "#eye-right-eyelid/5",
+          "after": "#eye-right-eyelid/7"
+        }
+      },
+      {
+        "id": "hair-back",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/3",
+          "after": "#character-structure/4"
+        }
+      },
+      {
+        "id": "hair-back-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hair-back/3",
+          "after": "#hair-back/4"
+        }
+      },
+      {
+        "id": "hair-back-locks",
+        "attributes": {},
+        "location": {
+          "before": "#hair-back/4",
+          "after": "#hair-back/5"
+        }
+      },
+      {
+        "id": "hair-bangs",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/21",
+          "after": "#character-structure/22"
+        }
+      },
+      {
+        "id": "hair-bangs-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hair-bangs/3",
+          "after": "#hair-bangs/4"
+        }
+      },
+      {
+        "id": "hair-bangs-flow",
+        "attributes": {},
+        "location": {
+          "before": "#hair-bangs/5",
+          "after": "#hair-bangs/6"
+        }
+      },
+      {
+        "id": "hair-bangs-swept-lock",
+        "attributes": {},
+        "location": {
+          "before": "#hair-bangs/4",
+          "after": "#hair-bangs/5"
+        }
+      },
+      {
+        "id": "hair-clips",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/22",
+          "after": "#character-structure/23"
+        }
+      },
+      {
+        "id": "hair-cowlick",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/18",
+          "after": "#character-structure/19"
+        }
+      },
+      {
+        "id": "hair-cowlick-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hair-cowlick/3",
+          "after": "#hair-cowlick/4"
+        }
+      },
+      {
+        "id": "hair-left",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/19",
+          "after": "#character-structure/20"
+        }
+      },
+      {
+        "id": "hair-left-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hair-left/3",
+          "after": "#hair-left/4"
+        }
+      },
+      {
+        "id": "hair-left-front-lock",
+        "attributes": {},
+        "location": {
+          "before": "#hair-left/4",
+          "after": "#hair-left/5"
+        }
+      },
+      {
+        "id": "hair-left-inner-locks",
+        "attributes": {},
+        "location": {
+          "before": "#hair-left/5",
+          "after": "#hair-left/6"
+        }
+      },
+      {
+        "id": "hair-right",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/20",
+          "after": "#character-structure/21"
+        }
+      },
+      {
+        "id": "hair-right-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hair-right/3",
+          "after": "#hair-right/4"
+        }
+      },
+      {
+        "id": "hair-right-front-lock",
+        "attributes": {},
+        "location": {
+          "before": "#hair-right/4",
+          "after": "#hair-right/5"
+        }
+      },
+      {
+        "id": "hair-right-inner-locks",
+        "attributes": {},
+        "location": {
+          "before": "#hair-right/5",
+          "after": "#hair-right/6"
+        }
+      },
+      {
+        "id": "hand-left-curled-nail",
+        "attributes": {},
+        "location": {
+          "before": "#hand-left-finger-lower-part/3",
+          "after": "#hand-left-finger-lower-part/4"
+        }
+      },
+      {
+        "id": "hand-left-finger-lower-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hand-left-finger-lower-part/2",
+          "after": "#hand-left-finger-lower-part/3"
+        }
+      },
+      {
+        "id": "hand-left-finger-middle-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hand-left-finger-middle-part/2",
+          "after": "#hand-left-finger-middle-part/3"
+        }
+      },
+      {
+        "id": "hand-left-finger-upper-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hand-left-finger-upper-part/2",
+          "after": "#hand-left-finger-upper-part/3"
+        }
+      },
+      {
+        "id": "hand-left-fingers-rear",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/9",
+          "after": "#character-structure/10"
+        }
+      },
+      {
+        "id": "hand-left-main",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/10",
+          "after": "#character-structure/11"
+        }
+      },
+      {
+        "id": "hand-left-main-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hand-left-main/3",
+          "after": "#hand-left-main/4"
+        }
+      },
+      {
+        "id": "hand-left-outer-finger-nail",
+        "attributes": {},
+        "location": {
+          "before": "#hand-left-main/6",
+          "after": "#hand-left-main/7"
+        }
+      },
+      {
+        "id": "hand-left-thumb-nail",
+        "attributes": {},
+        "location": {
+          "before": "#hand-left-main/5",
+          "after": "#hand-left-main/6"
+        }
+      },
+      {
+        "id": "hand-left-thumb-root-crease",
+        "attributes": {},
+        "location": {
+          "before": "#hand-left-main/4",
+          "after": "#hand-left-main/5"
+        }
+      },
+      {
+        "id": "hand-left-upper-finger-fold",
+        "attributes": {},
+        "location": {
+          "before": "#hand-left-finger-upper-part/3",
+          "after": "#hand-left-finger-upper-part/4"
+        }
+      },
+      {
+        "id": "hand-right-curled-nail",
+        "attributes": {},
+        "location": {
+          "before": "#hand-right-finger-lower-part/3",
+          "after": "#hand-right-finger-lower-part/4"
+        }
+      },
+      {
+        "id": "hand-right-finger-lower-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hand-right-finger-lower-part/2",
+          "after": "#hand-right-finger-lower-part/3"
+        }
+      },
+      {
+        "id": "hand-right-finger-middle-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hand-right-finger-middle-part/2",
+          "after": "#hand-right-finger-middle-part/3"
+        }
+      },
+      {
+        "id": "hand-right-finger-upper-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hand-right-finger-upper-part/2",
+          "after": "#hand-right-finger-upper-part/3"
+        }
+      },
+      {
+        "id": "hand-right-fingers-rear",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/11",
+          "after": "#character-structure/12"
+        }
+      },
+      {
+        "id": "hand-right-main",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/12",
+          "after": "#character-structure/13"
+        }
+      },
+      {
+        "id": "hand-right-main-contour",
+        "attributes": {},
+        "location": {
+          "before": "#hand-right-main/3",
+          "after": "#hand-right-main/4"
+        }
+      },
+      {
+        "id": "hand-right-outer-finger-nail",
+        "attributes": {},
+        "location": {
+          "before": "#hand-right-main/6",
+          "after": "#hand-right-main/7"
+        }
+      },
+      {
+        "id": "hand-right-thumb-nail",
+        "attributes": {},
+        "location": {
+          "before": "#hand-right-main/5",
+          "after": "#hand-right-main/6"
+        }
+      },
+      {
+        "id": "hand-right-thumb-root-crease",
+        "attributes": {},
+        "location": {
+          "before": "#hand-right-main/4",
+          "after": "#hand-right-main/5"
+        }
+      },
+      {
+        "id": "hand-right-upper-finger-fold",
+        "attributes": {},
+        "location": {
+          "before": "#hand-right-finger-upper-part/3",
+          "after": "#hand-right-finger-upper-part/4"
+        }
+      },
+      {
+        "id": "head-face",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/16",
+          "after": "#character-structure/17"
+        }
+      },
+      {
+        "id": "head-face-brows-front",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/23",
+          "after": "#character-structure/24"
+        }
+      },
+      {
+        "id": "head-face-contour",
+        "attributes": {},
+        "location": {
+          "before": "#head-face/3",
+          "after": "#head-face/5"
+        }
+      },
+      {
+        "id": "head-face-features",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/17",
+          "after": "#character-structure/18"
+        }
+      },
+      {
+        "id": "leg-left",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/5",
+          "after": "#character-structure/6"
+        }
+      },
+      {
+        "id": "leg-left-contour",
+        "attributes": {},
+        "location": {
+          "before": "#leg-left/3",
+          "after": "#leg-left/5"
+        }
+      },
+      {
+        "id": "leg-left-knee-inner-turn",
+        "attributes": {},
+        "location": {
+          "before": "#leg-left/6",
+          "after": "#leg-left/8"
+        }
+      },
+      {
+        "id": "leg-left-knee-outer-turn",
+        "attributes": {},
+        "location": {
+          "before": "#leg-left/5",
+          "after": "#leg-left/7"
+        }
+      },
+      {
+        "id": "leg-left-toe-boundaries",
+        "attributes": {},
+        "location": {
+          "before": "#leg-left/4",
+          "after": "#leg-left/6"
+        }
+      },
+      {
+        "id": "leg-right",
+        "attributes": {},
+        "location": {
+          "before": "#character-structure/6",
+          "after": "#character-structure/7"
+        }
+      },
+      {
+        "id": "leg-right-contour",
+        "attributes": {},
+        "location": {
+          "before": "#leg-right/3",
+          "after": "#leg-right/5"
+        }
+      },
+      {
+        "id": "leg-right-knee-inner-turn",
+        "attributes": {},
+        "location": {
+          "before": "#leg-right/5",
+          "after": "#leg-right/7"
+        }
+      },
+      {
+        "id": "leg-right-knee-outer-turn",
+        "attributes": {},
+        "location": {
+          "before": "#leg-right/6",
+          "after": "#leg-right/8"
+        }
+      },
+      {
+        "id": "leg-right-toe-boundaries",
+        "attributes": {},
+        "location": {
+          "before": "#leg-right/4",
+          "after": "#leg-right/6"
+        }
+      },
+      {
+        "id": "toe-left-1-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-left/7",
+          "after": "#leg-left/9"
+        }
+      },
+      {
+        "id": "toe-left-2-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-left/8",
+          "after": "#leg-left/10"
+        }
+      },
+      {
+        "id": "toe-left-3-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-left/9",
+          "after": "#leg-left/11"
+        }
+      },
+      {
+        "id": "toe-left-4-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-left/10",
+          "after": "#leg-left/12"
+        }
+      },
+      {
+        "id": "toe-left-5-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-left/11",
+          "after": "#leg-left/13"
+        }
+      },
+      {
+        "id": "toe-right-1-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-right/7",
+          "after": "#leg-right/9"
+        }
+      },
+      {
+        "id": "toe-right-2-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-right/8",
+          "after": "#leg-right/10"
+        }
+      },
+      {
+        "id": "toe-right-3-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-right/9",
+          "after": "#leg-right/11"
+        }
+      },
+      {
+        "id": "toe-right-4-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-right/10",
+          "after": "#leg-right/12"
+        }
+      },
+      {
+        "id": "toe-right-5-nail",
+        "attributes": {},
+        "location": {
+          "before": "#leg-right/11",
+          "after": "#leg-right/13"
+        }
+      }
+    ],
+    "limitation": "ID-based comparison does not enumerate changes to unnamed nodes. Use rendered comparison too."
+  }
+}

@@ -1,0 +1,1630 @@
+{
+  "archived_on": "2026-09-20",
+  "source_root": "/Users/wutian/Desktop/coding/AstraLayering/working",
+  "archive_root": "outputs/milly_v1",
+  "file_count": 324,
+  "total_bytes": 76632709,
+  "method": "Original files moved without content changes; SHA-256 verified before and after move.",
+  "files": [
+    {
+      "path": "reference-palette/color-palette.json",
+      "bytes": 4154,
+      "sha256": "4f4d09b77c1468657955d4dd118d5a74813fad9f35d406c3cf8f18b2ad1b95a5"
+    },
+    {
+      "path": "reference-palette/color-palette.png",
+      "bytes": 403804,
+      "sha256": "99684171f54274f0c41274a378cbf2ec1734e626d84e7e15357d2c811d3fc008"
+    },
+    {
+      "path": "references/base-character.png",
+      "bytes": 1088898,
+      "sha256": "c5335b1fee621bac4e56f2777eb74a98c046fd719a3fd266e51a24e058438c3a"
+    },
+    {
+      "path": "references/flat-color-output.png",
+      "bytes": 1285598,
+      "sha256": "b678bda72a16fbeabe0c18a4f89c02243a1225ec7661899cc1e6328ad8c4d58c"
+    },
+    {
+      "path": "references/line-art.png",
+      "bytes": 935456,
+      "sha256": "c39d5ccbe79e765a7a5f7c58c1d575776b76edd7fe452bc0afb85b8de0bef624"
+    },
+    {
+      "path": "references/part-colors.png",
+      "bytes": 1255514,
+      "sha256": "320cf7d60cb7922816b8a61053858566584e1f535530517dce033aacb3a387a9"
+    },
+    {
+      "path": "step01-base-character/01_基础角色与补全范围.md",
+      "bytes": 5028,
+      "sha256": "e0a903d142abf56364449635e346fd53b2a8200f06f0be0d5ba7fef3670f9372"
+    },
+    {
+      "path": "step02-base-character/02_完整部件与遮挡.svg",
+      "bytes": 13327,
+      "sha256": "697687bf73ddbf1a4fe0610fa54ea7c8d8fb22b459444a26899c60906114483b"
+    },
+    {
+      "path": "step02-base-character/02_结构检查.png",
+      "bytes": 819910,
+      "sha256": "0dc55993447d6dd7546fff8a5467a3e430c82baf81b5f39470f6615a46e339fa"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/arms.png",
+      "bytes": 22733,
+      "sha256": "992e233aafa55f1b32bc76ea208e21efa5aee377ba65b8f2f0f5cc2ac19220e1"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/body-core.png",
+      "bytes": 15896,
+      "sha256": "d19767aed45976db7cd599b1a9507a758a37f10b7082cec8451e7eaf2e4deb26"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/body-no-clothing.png",
+      "bytes": 46983,
+      "sha256": "feae52e8a9ea7f3f7877b8604316b969634b6135f55a507acec4ec15de6928a8"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/cowlick-contact-diff.png",
+      "bytes": 199740,
+      "sha256": "db53c34ca358999c85fa94471726d8f542bd48ebf062e4ff9ad7f30e2cca184e"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/cowlick-contact-overlay.png",
+      "bytes": 164602,
+      "sha256": "6cfacba65d3b1515108fdcf571c9a093f41f058d76a3685f4e1cc828a1ca15fb"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/cowlick-contact-side.png",
+      "bytes": 239650,
+      "sha256": "167d593e2ab62f965c12add42fbaccc263ed89b4bbce34180fabe1e75fa957af"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/cowlick-contact.json",
+      "bytes": 1559,
+      "sha256": "6c60b9d39518ee5f7b93c2c3ca76c5ec49258e183d8339d538ee2f5b4cfe5ea3"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/cowlick-without-left-hair.png",
+      "bytes": 29029,
+      "sha256": "f2a87ff98313d4492a3067c4a815fd7d6921d6503c1743d1f78ade56fe2fbac4"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/feet-diff.png",
+      "bytes": 121392,
+      "sha256": "02ea52bfe3af6495027052aa48754d4923dd0d64b7de5aea62844fc3d606f401"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/feet-overlay.png",
+      "bytes": 111781,
+      "sha256": "81704ee5fb2f6daf8d780c9d1a6a87dd398a1cafae6c39138edcefc077a4b9df"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/feet-side.png",
+      "bytes": 164927,
+      "sha256": "8540e3a8d8c5388de78f90ee7f01155b9a58e1f7b83588b72a9da93bb40eb0c9"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/feet.json",
+      "bytes": 1518,
+      "sha256": "709c6ed4340608e639a2469e7763561d71f498b1ee16bc91a4bf8dad2a1f5157"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/full.png",
+      "bytes": 64533,
+      "sha256": "2fb5712d30a476cc31ab8576d527ca9509daf5e1b4aa305044207bdba9016436"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/hair-back.png",
+      "bytes": 16267,
+      "sha256": "abe62bbea1be79f831e302bd654aa5de0aaaa5e15cbd9804f063ff73199d2dba"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/hair-bangs.png",
+      "bytes": 12741,
+      "sha256": "42206bf3da0992e1b0b5a20879e305edabdac8b7cfc11705d430476146f13364"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/hair-cowlick.png",
+      "bytes": 8387,
+      "sha256": "b11dc4926124dfa2da10163e46078d9d9ea869921b2a6d486d72a885c6600cb9"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/hair-left.png",
+      "bytes": 14795,
+      "sha256": "622ab70535432ea7b16abd95ed013ffaa94bca9643098f2939bb85caaa38ba95"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/hair-right.png",
+      "bytes": 13626,
+      "sha256": "ddc65b8a12f31345e8d4a80eabeba7987e305041aaca8436bad7ca43e0cd3dfd"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/head-base.png",
+      "bytes": 16242,
+      "sha256": "b07409cfa2cb120262e2dfa064cb266cb7b1a622f8d51a1010523fad70e4a0ea"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/head-diff.png",
+      "bytes": 485961,
+      "sha256": "ade318f7920d7d8eaed0707aaf03d438de20ecaa6a9d7f32c6231f8852fdf488"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/head-overlay.png",
+      "bytes": 447319,
+      "sha256": "090ec867e4ecd770084573e3746db1b07b26201ceffcf90ff1b31df4e587811c"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/head-side.png",
+      "bytes": 632708,
+      "sha256": "ae96ad17b4a828cea6c3f87d917257587068640444cafc4591bab3048b5e8b73"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/head.json",
+      "bytes": 1516,
+      "sha256": "3ec1a9429ba302e1e2d6b8be6509eafd7fc2a11603d176fd1b1e21d4c49b6070"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/left-hand-diff.png",
+      "bytes": 80536,
+      "sha256": "410b6aaff3b876d587a4b19974194efd4c1b485c375aa2381e3927e753446123"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/left-hand-main.png",
+      "bytes": 9870,
+      "sha256": "8c73c348bf1bd2f76f9f94cb1f194e2c0b5003ed23ffb6921a508116b9d924d1"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/left-hand-overlay.png",
+      "bytes": 74263,
+      "sha256": "fd148570316cadee00afa8652915c0128f4ca44c8bc203b6a30ea9990af90d8d"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/left-hand-rear.png",
+      "bytes": 5299,
+      "sha256": "971a9b8f251ae32f05b0321269bd061dfc7eee97c764277fa3e2e5c5b80310af"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/left-hand-side.png",
+      "bytes": 109605,
+      "sha256": "62b2c221fdc09721bb5a075225e2258f2d69893c9a7416de25f310e7fe463e01"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/left-hand.json",
+      "bytes": 1535,
+      "sha256": "dacf58f50e4d9c158e55bf9d6d4f4b935adbd2d409f896df41fa01b6cbc64605"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/legs-diff.png",
+      "bytes": 183188,
+      "sha256": "7110320863d33c97aece8a9c980abd94e9ede47f79971f8c276519df22aefa43"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/legs-isolated.png",
+      "bytes": 17359,
+      "sha256": "7c7369e0b806638344389a9c6f21548183cc9d5beb6c62aeec3a0739373ad1a7"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/legs-overlay.png",
+      "bytes": 161572,
+      "sha256": "c41d70cc297f7bf9169cb3a05d02bd572a0a456f4ac5727e146d6f072e584908"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/legs-side.png",
+      "bytes": 248370,
+      "sha256": "1bc2d0c3d6e712753f836b70db4fb358e2d1ca12b1d756038797047da91ebc3f"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/legs.json",
+      "bytes": 1517,
+      "sha256": "6b30c022cf921573aeab24b4413d8ed282224df4f7930a0aa7e759604294ed5d"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/reference-diff.png",
+      "bytes": 799157,
+      "sha256": "1872da15b254d0cfc44e0612508006e5a46ea4c903502ebfd0f51e5f6ee639a2"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/reference-overlay.png",
+      "bytes": 655084,
+      "sha256": "bff944e666eaccb7e8f252bdf7abf54cca6f58844d6ae4c17dfcd40799c7f390"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/reference-side.png",
+      "bytes": 968673,
+      "sha256": "1e398f5211f8cb57ea133345afeb1e30258fb456a504b4d2a3a9187fce38fa74"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/reference.json",
+      "bytes": 1502,
+      "sha256": "4c03610785d4684382e0c6b9777fc98087b2a5a6d3fe7a398c41de55810fa482"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/review.md",
+      "bytes": 5075,
+      "sha256": "6b3cc4232bff4963b668ebef51138538501880a6124009c847dfc6ddd120181f"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/right-hand-diff.png",
+      "bytes": 73181,
+      "sha256": "f29a077444d46dcf94c27b47adeb47d2d4b0b55d79bd151715fa08bd9745842c"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/right-hand-main.png",
+      "bytes": 10709,
+      "sha256": "249f190255575a4b424d7323b72be46476abc1662859d14d4cacc571f8c30931"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/right-hand-overlay.png",
+      "bytes": 75726,
+      "sha256": "d9595f462588adb906a38e625cff6ec5b2638ac8c63fbee04bb9e5c0a4c031e5"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/right-hand-rear.png",
+      "bytes": 5813,
+      "sha256": "b10aecc0f732fe9510b1d587622d886026c4d8cd33e58ec63da6904ea2afacaa"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/right-hand-side.png",
+      "bytes": 111276,
+      "sha256": "114856ec5c58c1390070c33e152c55a6112265f29f8140a4ea510f920cb5bf93"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/right-hand.json",
+      "bytes": 1539,
+      "sha256": "62f83eb73d9fbaf25fad44ac0f10e9dbcda2308f75f034740140c9de7daff92c"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/structure.json",
+      "bytes": 3662,
+      "sha256": "4cf64bf20f29fda89725084c01379196e6f9d86ce7831f8dae542ef9b4126090"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/suit.png",
+      "bytes": 17284,
+      "sha256": "11469853ec86864f562c7306a61a02c40dfffcddcfa2e6cffffa483234352972"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/torso-diff.png",
+      "bytes": 256071,
+      "sha256": "03a719a4e57f21c3e99904abcecd2f0e4d52cb867d4cfac7d56cc0cf160963fa"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/torso-overlay.png",
+      "bytes": 239803,
+      "sha256": "015fe9222075337b98de6267ed0a9b3a7bbf2e07f228d4778aa10e2ba1eabec1"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/torso-side.png",
+      "bytes": 357631,
+      "sha256": "e5c16740232454dc3bdd21fb2544288f7da7da27782b8c6676f212621c606043"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v1/torso.json",
+      "bytes": 1520,
+      "sha256": "e4a36eb696f109c77973a5d252db560f11883ffbaf9304bceb17ce11d4ed6be4"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/cowlick-contact-diff.png",
+      "bytes": 200101,
+      "sha256": "fd9641e25b8bfa109b6fddc5e5e314b06c86d43d08bf373380339fd572f8fd48"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/cowlick-contact-overlay.png",
+      "bytes": 163870,
+      "sha256": "4d701a0f64b54529df998b495d98c38e38100036730998c337c4d36ac228b2f6"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/cowlick-contact-side.png",
+      "bytes": 241079,
+      "sha256": "d18504b4c6319e0c5f909ed04059e4954ae09f1a9b8265e076a2f9bdbb815644"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/cowlick-contact.json",
+      "bytes": 1559,
+      "sha256": "747b0f3910541ff98fbed706bf1da81003894ddbff197f922c0c6a5925af3222"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/cowlick-without-left-hair.png",
+      "bytes": 29273,
+      "sha256": "17ff4eb4c2c3a3ea9206237af9f78f79ea5092afd8cdba943173f691f2a82a1e"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/full.png",
+      "bytes": 64775,
+      "sha256": "ed1b38ed9676f645a58b049c0c3f581986be4a72862624bc2a6e52a75b433591"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/hair-back.png",
+      "bytes": 16377,
+      "sha256": "35a5dd039bbae2e46ce2811cc4536200bd35b61d4a94d987b9e2bcb20f6a7067"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/hair-left.png",
+      "bytes": 14953,
+      "sha256": "ea6169b09d65b1c7f61226ef058ec54284536036edd5da3ef1d7adbc88ceb01e"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/head-diff.png",
+      "bytes": 486222,
+      "sha256": "dba11b86c96310242e70128df6c6088c4f209e85ac7de00f02d5730918dc5dca"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/head-overlay.png",
+      "bytes": 446379,
+      "sha256": "6af8c99832afbeded28ec5d81209dda3621dda22259096bc3672295ba3f5d89c"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/head-side.png",
+      "bytes": 633633,
+      "sha256": "ee3d8c340b9763a6b8e5398a1351817800038237ec7e16d2952b4c303586527a"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/head.json",
+      "bytes": 1516,
+      "sha256": "ded5a12b8b282e6b08825da535c913321101bcd4ba94410823f89f28e2d1948a"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/reference-diff.png",
+      "bytes": 799282,
+      "sha256": "e99c4c1681f7b2640fc00bc88649aaa65c47c3f3c8c8e1a54a5db9f0b0dbc661"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/reference-overlay.png",
+      "bytes": 654663,
+      "sha256": "938e596d2ad950cecb6032eae0e80d3a959662bf8077ee504408acbb09e54a8d"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/reference-side.png",
+      "bytes": 968933,
+      "sha256": "8f47905762738dc711d2b938cc252b51ff5ec631a46be39321357ec069d1d7cd"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/reference.json",
+      "bytes": 1502,
+      "sha256": "5dd036a8012d6047e4d1a3b6d19c64a4f703f4e3ee6fb869ffb7934cc77d2f78"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/review.md",
+      "bytes": 2900,
+      "sha256": "62c8d2ecdfbd6917f4c7ffbbd698180037302f04c57fe509b031c442da8d0817"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/structure.json",
+      "bytes": 3662,
+      "sha256": "1c93c25bbf5b2f1fe2fa8d9ec04d0fa66b570ef674f623135a99dafc7d3ba4ae"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/v1-to-v2-diff.png",
+      "bytes": 6479,
+      "sha256": "3efd812959db04c51bff88c62908b7ba79b9aa16e61e942d24bcf9c467178c1f"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/v1-to-v2-overlay.png",
+      "bytes": 65475,
+      "sha256": "65ec9bb8d77ed7b4abad09b67920d8ef34543e550a95c04f068eb5b6356aab6c"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/v1-to-v2-side.png",
+      "bytes": 83059,
+      "sha256": "50e4493d7e8a25ea84b93925be7af60caa4cfd738d7dc7481e95930d6c365692"
+    },
+    {
+      "path": "step02-base-character/review-evidence-v2/v1-to-v2.json",
+      "bytes": 1519,
+      "sha256": "f6c0660c81afc682dcd87c7b81675883e8369b87580fb0337ce9e69af6989f4b"
+    },
+    {
+      "path": "step03-base-character/03-1_头型与发型.svg",
+      "bytes": 20919,
+      "sha256": "79ae192c422806b7c59daf33545d28c79cd082e9c097c26b2d9872b378fb7104"
+    },
+    {
+      "path": "step03-base-character/03-1_头型检查.png",
+      "bytes": 1929407,
+      "sha256": "4d1c9350ab9b0a6fcdac755da9ec18fde1cddd6ad639db193eb49fc58f53cf50"
+    },
+    {
+      "path": "step03-base-character/03-2_面部与表情.svg",
+      "bytes": 29624,
+      "sha256": "26c5e70ef297c5b4dc44ef51079f7fd82d596445d5be9e1a9c6fbb2d4e6f58c4"
+    },
+    {
+      "path": "step03-base-character/03-2_面部检查.png",
+      "bytes": 2891938,
+      "sha256": "f4e42333b5c105e589db62d3fd285a1979f6742177bd662a6573b9eb834d26fa"
+    },
+    {
+      "path": "step03-base-character/03-3_其余主轮廓.svg",
+      "bytes": 46079,
+      "sha256": "60c8a39db2c8fc46f80ca316f2642d3ef5914773273ee46808001e3213a2ddd0"
+    },
+    {
+      "path": "step03-base-character/03-3_轮廓检查.png",
+      "bytes": 2472944,
+      "sha256": "ebce5a99753ba4251d8be76f684131d41d2b54f4ea5e689cab1c6c605666885e"
+    },
+    {
+      "path": "step03-base-character/03-4_其余内部结构线.svg",
+      "bytes": 58557,
+      "sha256": "90531203b962dff36ee16d7a4a68ecdbd645b701da8ff9372bd9923f3f5fc82c"
+    },
+    {
+      "path": "step03-base-character/03-4_结构线检查.png",
+      "bytes": 3333603,
+      "sha256": "77f16a81448216122c195939087080430e3f14d6640c3e2285b01de9b5fdbef3"
+    },
+    {
+      "path": "step03-base-character/03_完整分层线稿.svg",
+      "bytes": 112628,
+      "sha256": "cabbe49bfa1edc9032d9e40886392e02029d1ad015c94779dbf342ae431f94c8"
+    },
+    {
+      "path": "step03-base-character/03_线稿检查.png",
+      "bytes": 4141399,
+      "sha256": "55132123e600bd07caf924d71616c13a32109337d81f4671de3e2b98955e9893"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/eye-occlusion-diagnostic.json",
+      "bytes": 881,
+      "sha256": "6d555bf7af249a5e303853c38ee1c81f1c053fb75e9b837c0ef7edf5d8dd511d"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/eye-occlusion-diagnostic.png",
+      "bytes": 60401,
+      "sha256": "00ee5cff22fa8d1b504ece7ffa666b5478da5f9e5e01a776d63e0c4c85a5af14"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/eye-occlusion-diagnostic.svg",
+      "bytes": 29873,
+      "sha256": "6b4b33e4b964916828b1edb6e42cdf45827bd7cfd3a5c98154e3a0edfd35acf8"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/eyes-complete-under-lids.png",
+      "bytes": 29373,
+      "sha256": "b2c70a816cdc2f3a98e19829ab72b867cbee1486fc487002b707bbbe9efa85a2"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/eyes-reference-diff.png",
+      "bytes": 210439,
+      "sha256": "24b79380ceab3ef56d7c0ddaff48de7a061c3ec44989b6a13c1b8bc6c7eb2dfe"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/eyes-reference-overlay.png",
+      "bytes": 195600,
+      "sha256": "d6a720a0a6e68a9c3abbae738bd493c6fa72e41a705b1923573c771841fee4b6"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/eyes-reference-side.png",
+      "bytes": 289295,
+      "sha256": "aa50860548926128183e64b7e45bb681a86aca77ebd7d7e0dc8cb79ea400dd2c"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/eyes-reference.json",
+      "bytes": 1604,
+      "sha256": "719a362d8be3bacf035f62ef565455cab3b1a165877a1d70271da423f1201c46"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/face-neutral.png",
+      "bytes": 52453,
+      "sha256": "4f2beda5d39175f5e7558c1619335f3d04a596bcbe8ac096de0fa404f980ec5a"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/full-step1-diff.png",
+      "bytes": 7602,
+      "sha256": "d558d10b5892fb344832f58e3bf2c03c1b584481a61c048b4a466c352463bc6e"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/full-step1-overlay.png",
+      "bytes": 99789,
+      "sha256": "779316c8872021118fb6852936f6640c7e06db110bd5c92bbbcc861c24ebd193"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/full-step1-side.png",
+      "bytes": 118666,
+      "sha256": "c9cc9c93c34ad39863904d14f99b8e8ac4eca70a884abb23bcc6f7305f8f3d19"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/full-step1.json",
+      "bytes": 1597,
+      "sha256": "5f9a7ff5fb94ba4dca7f337f8332bb3388484d24baf8aeb61eb801296ffe431b"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/full.png",
+      "bytes": 100123,
+      "sha256": "31a481c823e4fe24b2168efd85d61abee5204e5464a5eb74f82adc08d5b51c57"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/hair-curl-left-diff.png",
+      "bytes": 92173,
+      "sha256": "7e8d1f7e29c65b9e4a76e6a7f270f11204201156aa2fe703b3c204b083b9f35a"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/hair-curl-left-overlay.png",
+      "bytes": 119191,
+      "sha256": "09144df00f74a1c09e6aee142ad36f07477d8ee1c5a7b6970960749c89a8a288"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/hair-curl-left-side.png",
+      "bytes": 168102,
+      "sha256": "d8879d4dde0236d664178434398a1f650e12b33205b21f19707a0f67a36ff232"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/hair-curl-left.json",
+      "bytes": 1574,
+      "sha256": "c6be6f3d5b8398e06b01e51152889020e19ef6eec984faedb0dbdbfd95bb29af"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/hair-curl-right-diff.png",
+      "bytes": 85590,
+      "sha256": "5bbd17da3f1d1f747bc582136c0bdb515da6378e2d83e1408585f80e7978dd13"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/hair-curl-right-overlay.png",
+      "bytes": 113103,
+      "sha256": "2b9aaca5286f798872b874d85ea02bbdec77b4f5dc0a16102f49137a2713f4a0"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/hair-curl-right-side.png",
+      "bytes": 163315,
+      "sha256": "7b98e64687e77f5705302d63a2b34af8721d698dcc7c86a0d9790e8b53593dfb"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/hair-curl-right.json",
+      "bytes": 1578,
+      "sha256": "19d2a11d83d4a8c3694ad8c1c26929d92af66965cb5871e1a2c7d9587e1e1e39"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-line-art-diff.png",
+      "bytes": 507751,
+      "sha256": "79cf506fad823a295ecbeecab1fd155be1f9e3e0127d2719d9d99cf1bd3d0da7"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-line-art-overlay.png",
+      "bytes": 589560,
+      "sha256": "c6567f17c8e97ef445d2bc41ded1fb28ded45b0d157a457b4ea38a05cb488662"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-line-art-side.png",
+      "bytes": 876391,
+      "sha256": "08b52537a861a65f521186f04aba5b3ca17def0f552a0dea846a7b59402bc5e5"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-line-art.json",
+      "bytes": 1565,
+      "sha256": "5988065699446fdc7fc3ab49d50137a410c57014bf38182465795738294aa622"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-neutral.png",
+      "bytes": 208633,
+      "sha256": "f86fde6d57782d1652ccc5e5003843498fc9af49461b0529f4beb85c0a41da6e"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-reference-diff.png",
+      "bytes": 462313,
+      "sha256": "0c6123a115a76988deaaca528d0c47d2426aa8b21514a62c9c423856b8cf86fe"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-reference-overlay.png",
+      "bytes": 545529,
+      "sha256": "b1e18bb4d67d96367c263dd6b5d4e0e14543d3b73cf5d4d7914f69c7eb6e4b18"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-reference-side.png",
+      "bytes": 809012,
+      "sha256": "183bdfac3ed97f6cfdea56ad78a71be00dce5fe4a2bedcfb82077c478afa2423"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-reference.json",
+      "bytes": 1575,
+      "sha256": "e695a6bb9d2ff2e4a39e037fc803e85384f823a63d20a8b0afd709acbe9eea4f"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-step1-diff.png",
+      "bytes": 12595,
+      "sha256": "caaad09b7c6297270af0f37c21a1dd3d0a4f336c00aa50e6e8b5b2a91c900123"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-step1-overlay.png",
+      "bytes": 207271,
+      "sha256": "55ec30138faae7d026b0960ec598513f2040650e3660b39eb14e0a708500dc2f"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-step1-side.png",
+      "bytes": 236641,
+      "sha256": "7cd6228cdf2d2329eca1c08d7b2ff9d3ebad6b83bc450cc012d76266bad8b4ef"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/head-step1.json",
+      "bytes": 1632,
+      "sha256": "be45cfaee38dec029e745376c6bf1977d08d3c28c0df411863b52002dc27d8c8"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/make-diagnostics.py",
+      "bytes": 1575,
+      "sha256": "e2cdd491528e4b964e172d3e356caa5dd47102f0f1e95b8dbac0a77426d3d567"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/parts-clips-cowlick.png",
+      "bytes": 29342,
+      "sha256": "f26906182ddea20ea8cd201e0fb2e4b17ce9ae513948112a91f873b9c79a543d"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/parts-hair-back.png",
+      "bytes": 60293,
+      "sha256": "75766906e5dfe00ec65515343b7c42fc6345189910f6fdafe2cb9efa4f941dc2"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/parts-hair-bangs.png",
+      "bytes": 47281,
+      "sha256": "c5e298a5e7c865f3ce5ada8d4c3c57a853efbb130e124c76168698bd137aff8e"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/parts-hair-left.png",
+      "bytes": 64068,
+      "sha256": "0250a1f7438e0fa87b4e3a851ee762a820a7fcf5965c44876759096d3a221f5d"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/parts-hair-right.png",
+      "bytes": 62449,
+      "sha256": "a0fa54d0981aeef4d6dba1cec44c099a89da7f7ff3955c0bc8262594c28f78eb"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/reference-diff.png",
+      "bytes": 790640,
+      "sha256": "012773697d3f1f167e5400f6e433f5d1699b02765e28388cbf325648ac0debff"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/reference-overlay.png",
+      "bytes": 668789,
+      "sha256": "c7fd3f1849f8338b5d14c675f3c1cfc7b2a7bb4628876ad10a82eaf09eee2318"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/reference-side.png",
+      "bytes": 1007349,
+      "sha256": "01079dfe0f1993237c0631c5c1e80cbd586f0bf0d599dfbd9f311723728f209b"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/reference.json",
+      "bytes": 1522,
+      "sha256": "4c0c16ed77ac2fa82ded9fa1a7526799a9a77eddfd06a4b508f2817ba7b220d7"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/review-report.md",
+      "bytes": 4877,
+      "sha256": "6d59f235a03f11af548a172ed4a66e2a1d283bdd6e7d5dd256ac522771beaf61"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v1/structure-changes.json",
+      "bytes": 8978,
+      "sha256": "e2ce9682e8cde484d9c366637d8302392fd013a561202101deb7903a1d5e3039"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/full.png",
+      "bytes": 100014,
+      "sha256": "e8c5a8c34fa765314b0a4aa96abb9c8d6e07e18d908aa80257013f38f1144b93"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/hair-curl-right-diff.png",
+      "bytes": 84586,
+      "sha256": "43d0498f47897947d0401727f23e885a7a6b1b64e86c7a96ae2e91d01a10228e"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/hair-curl-right-overlay.png",
+      "bytes": 112488,
+      "sha256": "10938387c454b66e421988c1921b78fe4567c755f9b263f4a08ac0a4eb9faa1a"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/hair-curl-right-side.png",
+      "bytes": 162686,
+      "sha256": "7dd458ac18520062769f35635129640029822a1a5c1d3f2bf2640c0caa261960"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/hair-curl-right.json",
+      "bytes": 1578,
+      "sha256": "8837b4c88654965a4cb929643e6b5f58fb8946fc8ba00a2a5f47e6e5cd226c8c"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/head-reference-diff.png",
+      "bytes": 462004,
+      "sha256": "0db90399584ccbfb90ec71f4a990cddd5f4fe876fe794dacb6dbc4c350496e13"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/head-reference-overlay.png",
+      "bytes": 545308,
+      "sha256": "6e0f101855e23ea9c609ad784f44d586e477e89654c5de9d8bc1d32efb3a498b"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/head-reference-side.png",
+      "bytes": 808674,
+      "sha256": "64a29b64754479adaa0acefcd922a507e5519facaea3a3b11e0541163d5ac462"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/head-reference.json",
+      "bytes": 1575,
+      "sha256": "d285245271be7f30d4ab654ed6de3866b16324a7965a94e870c48014b0c69b7c"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/parts-hair-right.png",
+      "bytes": 62013,
+      "sha256": "e0fbbb6d8cf39bd8e79f7381b42048fdb77909a87935f1ede0e6f1ece194d02b"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/review-report.md",
+      "bytes": 2584,
+      "sha256": "9fe932c3b8258a160b51c0f05f5d33bb13c1fc05652d94d64ab598f421e1793d"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/structure-changes.json",
+      "bytes": 9679,
+      "sha256": "4e1a154a38ec33ed4c01c409224e15e89e4499015bb2602a05671a5f37464ebd"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/v1-v2-full-diff.png",
+      "bytes": 5451,
+      "sha256": "07784e13574132f58dd2a05b5e4917d77ceb6f90a5fc303dce8d4d60951a3d82"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/v1-v2-full-overlay.png",
+      "bytes": 100139,
+      "sha256": "c5c275eef61417c98521d3fbd88e61244e0fa8fb27dfe9a544b2dcd11c6c394f"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/v1-v2-full-side.png",
+      "bytes": 119055,
+      "sha256": "eace8b45772111016415f47ced603d8244e5fa4ce9e4a7b6ea09fb83d9c9ec16"
+    },
+    {
+      "path": "step03-base-character/review-step2-evidence-v2/v1-v2-full.json",
+      "bytes": 1554,
+      "sha256": "07c70ae8963f59e560616f7881ab7e200f7d5ae716c15cadf5fe8141349359b4"
+    },
+    {
+      "path": "step04-base-character/04_填色检查.png",
+      "bytes": 1247946,
+      "sha256": "53c56601114de9b60a9ef6566c56f2880a74fc8528c64febdda8b5d6f1b6db3f"
+    },
+    {
+      "path": "step04-base-character/04_完整分层平涂.svg",
+      "bytes": 115108,
+      "sha256": "d67da72064de035d2c965bd2d8e7d05828dd788be6509d2fd05d871c29d5b630"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/baseline-head-diff.png",
+      "bytes": 130144,
+      "sha256": "2850961ee5a340a8a1eaf4301f1937ecc487be9cb4028366a90e305e35da148a"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/baseline-head-overlay.png",
+      "bytes": 209823,
+      "sha256": "139a88a11e07fe2be7453b9b00dd86eb5ed22732ec33853b65343de1407a2495"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/baseline-head-side.png",
+      "bytes": 398702,
+      "sha256": "cb0904ad9b421ea7db1112675eaf68d3f3b3761dad8af8278e272afc6dd901d9"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/baseline-head.json",
+      "bytes": 1620,
+      "sha256": "c7308dee96e27398c2800f596d359f6eb378a33b5bb63b5bd5f2b7d8357be3ef"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/body-uncovered.json",
+      "bytes": 839,
+      "sha256": "460582612c6541b33494b468bbaf1d45249717aca4a1c40ad423f2b89fffd1f2"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/body-uncovered.png",
+      "bytes": 87873,
+      "sha256": "a5cefd9b1277ae13058af655b17c1850b3622943b5199b90e856de45c5418a83"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/brows-only.json",
+      "bytes": 786,
+      "sha256": "be6bfa414fee06dda45eb813afb9fc82b5e700894b418519a7953c52164385c3"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/brows-only.png",
+      "bytes": 4051,
+      "sha256": "75ece1ba6ef75c0d77530259938b083cd68c1e4643fb0526015f1bf91c4592bf"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/eye-left-inner.json",
+      "bytes": 834,
+      "sha256": "e52f45c380aa04167be35eea9f6632a04d15349f0ba89c08029a650b7c10e00e"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/eye-left-inner.png",
+      "bytes": 15146,
+      "sha256": "9fccd8606728084548b4539da54bbf22a4ec04e9abe682f842f5e76311cdecfb"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/eye-left-lids.json",
+      "bytes": 785,
+      "sha256": "690f696d5f5fecbab9167f69bd5e6033f0dcf00dc7b4d0829c14d614e453ac69"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/eye-left-lids.png",
+      "bytes": 14508,
+      "sha256": "15a5aad95d9caddd97662810fc6f1f2db02bbf808781efb3c402b9902d170d0e"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/eye-right-inner.json",
+      "bytes": 839,
+      "sha256": "4ada58bc433df5145784acfa8dcc66ee17ff4c2b16d221e06317469e8d2fb90a"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/eye-right-inner.png",
+      "bytes": 15543,
+      "sha256": "478874c6a86d09ad0b3d941016235c99821258a67ce4b667848f2eb6a3e518ff"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/eye-right-lids.json",
+      "bytes": 788,
+      "sha256": "f12edcbef3903627cfe490a143faebb74575e2f5413bdb8b3a0c5e4053c77db2"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/eye-right-lids.png",
+      "bytes": 14716,
+      "sha256": "2dfb669e6235afac1e48ffeafb505bd9d766c063df56dd0ea19e1d67cc25f3cb"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/face-without-brows.json",
+      "bytes": 818,
+      "sha256": "e6d472904a718e6b284375def525cf069b4ef199e97f6258c1ca07c6156445c5"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/face-without-brows.png",
+      "bytes": 46465,
+      "sha256": "a15a5c68dc9d5bbcd548435aa4c6b0df92f60e68d6dc6f961c7d6ea3556ab766"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/feet-diff.png",
+      "bytes": 118858,
+      "sha256": "76c4cc3534ba1ab855e5766021c5db8c35a8bf747a2a4fa9c2a07204fcc662f9"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/feet-overlay.png",
+      "bytes": 107999,
+      "sha256": "3fa23b0683d0e991d2b5625196ea4ea08fe5f7d8fd9d3fecaada3fd0076de049"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/feet-side.png",
+      "bytes": 164381,
+      "sha256": "cf92d95414ab778b3566a8a12ddb40c0927d6c5b9663903bd24047a18ae34a61"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/feet.json",
+      "bytes": 1514,
+      "sha256": "3c23a9b17f1edd2c244c7b6746d3d5af2a06cf4f0e6cb03df2c2cdf661778446"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/full-no-background.json",
+      "bytes": 792,
+      "sha256": "38d11c0d645e6c1ca1f802a575d4dedb8d1178b1b241696bfc546443a0d31e12"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/full-no-background.png",
+      "bytes": 137889,
+      "sha256": "7c5be7820cfb824efbc3559508006d4e338f59f1c452bbdd0fa94a47def43045"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/full.png",
+      "bytes": 147085,
+      "sha256": "b84659a658205f84e1d7cac60885be78b49281e5fb82580d0ccb4de33f2c7287"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-left-diff.png",
+      "bytes": 80689,
+      "sha256": "0131de68bd75dacdb38f5b64516bde0c0f84e705b59fd9854f8be222b2fe694f"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-left-main.json",
+      "bytes": 787,
+      "sha256": "7880ded3d5fef33bbd0c18ebb120d21ad3e73e780b6ff27043b71b4f0ec405f0"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-left-main.png",
+      "bytes": 22481,
+      "sha256": "28d1ce801d43d039947d5db390b72363df8a5419133b9f65b2908cd42f4e1e0a"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-left-overlay.png",
+      "bytes": 78208,
+      "sha256": "56e4ad30bd6728a3c1cdbe96566d64edacd729a8df2bdec0f82e88dd96e91068"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-left-rear.json",
+      "bytes": 795,
+      "sha256": "7ad583ed80bb8b52ec3e3448846f8a2010f33272a2b65e68854c645a94617b11"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-left-rear.png",
+      "bytes": 17224,
+      "sha256": "2d52a69499f6b3d6a4b2bb94401d2ce8926727c472449b3f218b100fd9ee1a3c"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-left-side.png",
+      "bytes": 121360,
+      "sha256": "ed8dce0ed22770de20271811cb0d88d7eb9214a047ed4cc83d16bcb19ea85bb3"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-left.json",
+      "bytes": 1532,
+      "sha256": "7598873ccfd8a49618b53cc46c0f67b28303491f32d3e69f4d7fad38e95b1dc3"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-right-diff.png",
+      "bytes": 77897,
+      "sha256": "72915df34c793aa18bf9fb84d567a396e03ba167b741212d48cbb8d478d132c5"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-right-main.json",
+      "bytes": 790,
+      "sha256": "5a3fc3432f197a27c502f3be4231f688b86e892d1703b9319739a36c1d07c253"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-right-main.png",
+      "bytes": 22280,
+      "sha256": "d0a6c21fa0426108040e8fe87784c8d1414647b661f306df064e5c26195ce89c"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-right-overlay.png",
+      "bytes": 76072,
+      "sha256": "1f4435d838ff7547a3b62814a69abaaaf6d155f0b0ca286e148bc8e2caf2b2f5"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-right-rear.json",
+      "bytes": 797,
+      "sha256": "f0ab16f9ccf5996a8a0dc289e1985556158e940be3df4955483c83e65ecadb64"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-right-rear.png",
+      "bytes": 15779,
+      "sha256": "4241219dad84f0866edeb56fcd8d69b00ecb93937a759caafca30f830f8dddac"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-right-side.png",
+      "bytes": 117292,
+      "sha256": "dca26eeef0ad6459756de1aacbd373f5d4ac89a34b0beeb5eefd0b61b2738ee2"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/hand-right.json",
+      "bytes": 1536,
+      "sha256": "90749273042352e48fe790b99a39f9e912c6f1e0141ae05e499243086dfd24b0"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/head-diff.png",
+      "bytes": 576961,
+      "sha256": "d235fc078357ef9519bb70642c48989e6d1bf350ba7c75f403040b9994b167e6"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/head-overlay.png",
+      "bytes": 509401,
+      "sha256": "24b23c56afcaeae374a3caad59f49af3a537a4bc657ac7d367a13557a7b1f1e4"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/head-side.png",
+      "bytes": 767649,
+      "sha256": "7bfae7d0311be2c0e065e227deef02844e1194395ed47ca5b6e0d61c68f89eb2"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/head-without-face.json",
+      "bytes": 808,
+      "sha256": "2dd7bb0380f25fa8adbe93e35e87149f7ca536d45776e085c53ea35996144a1d"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/head-without-face.png",
+      "bytes": 179275,
+      "sha256": "6e9a8e729297bad9690a652c7028581454c7b0d3e936296fee41ea9d6ee0bfff"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/head.json",
+      "bytes": 1512,
+      "sha256": "edab5460da23cc8816d60ad781b8b910f95650200a3a6a2c6672ca3b8f7f6d22"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-arm-left.json",
+      "bytes": 780,
+      "sha256": "17b37724e5dab89122af7be553432e02d6a24d4e932e3e62636dc6ee8eeb2bd4"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-arm-left.png",
+      "bytes": 22324,
+      "sha256": "93b45821f5c8f7309d7befac29d697a3b337422fcb2ea7811f3a9035276b8576"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-arm-right.json",
+      "bytes": 783,
+      "sha256": "6cf38312f0555f1ddc5f60b5fb46444d8fd634d2a9a8521a2e952152f50e8c86"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-arm-right.png",
+      "bytes": 22005,
+      "sha256": "060a5dc03d53006d9540c47ab1a854a19cc8263cce303cb688e14bbfe6bc71ec"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-body-core.json",
+      "bytes": 783,
+      "sha256": "444ddec9789a17c2952d4e0949952440182a4d3d527a55177fae1f7e31105644"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-body-core.png",
+      "bytes": 32782,
+      "sha256": "8414f6a1c906c3552ee2847f58961372ab4eb0b5964d2cb67a440a86e6824627"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-bodysuit.json",
+      "bytes": 780,
+      "sha256": "e882efa92d3ea5d928c0a5476ca6fd054170f5eeede698fc16d4e2823b8f9a3e"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-bodysuit.png",
+      "bytes": 57989,
+      "sha256": "f94530bb61d243a8de96d2c53e128fe45cab3ee81c664285f73c653220dcca01"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-ear-left.json",
+      "bytes": 778,
+      "sha256": "464b43fa2a15e9dfe8af7f113199d50b39988ac683b5493a8b54685852c86d3e"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-ear-left.png",
+      "bytes": 11578,
+      "sha256": "eb9c38df03166b8ec7511eecf3a6e120d0924b49b6645c0f29a6c5a05b709afa"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-ear-right.json",
+      "bytes": 781,
+      "sha256": "e2904571f957169dae9773d80f25b0cf80772a000b0168dffb8f1f73f9569bf3"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-ear-right.png",
+      "bytes": 11462,
+      "sha256": "32ce1e70ad37a53cf839d3eeeb212e4830b204ab48ffb35efd345dbebecf7da8"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-back.json",
+      "bytes": 782,
+      "sha256": "65b365e01c4580e6e66c55506adcf67ee9623a3f5c354a3d134550f05641f745"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-back.png",
+      "bytes": 35843,
+      "sha256": "b1569df459595fcbcb3cfe95960210f4d3a2d8c3f608dd3ccf9d409d244a40de"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-bangs.json",
+      "bytes": 785,
+      "sha256": "7dafa29d1aa80bcf9a379ac9f481774a091f6033249df0c1b7acfa7423ee5903"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-bangs.png",
+      "bytes": 40540,
+      "sha256": "7d962fa82f393662bd83a6e5071ea4e81e2a1b919a406ed01553c43daf554ef6"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-clips.json",
+      "bytes": 784,
+      "sha256": "47cb9f31727a4e336d3f88c0167ff25b6dd2063019f08a6d3b3141341eb2a48f"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-clips.png",
+      "bytes": 7920,
+      "sha256": "9af49a3727b00cdbbb2ab2c0f04e988c1515fb92105db3cfa9bc3668408d1be7"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-cowlick.json",
+      "bytes": 791,
+      "sha256": "353a8276e51ea4965b286e2ca622c052a31810de0654a37be45b694d28ca4459"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-cowlick.png",
+      "bytes": 24858,
+      "sha256": "889d5ca83d544d1bf88aea91228c0ab30f5be4f5664840b7b08dd55992f2db8f"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-left.json",
+      "bytes": 782,
+      "sha256": "60ff3271f143be8a28f9d02e969aa4b7881364908ffd81e55c2bda9ff6ad7029"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-left.png",
+      "bytes": 38268,
+      "sha256": "6fa69e8ab5ad60d5286bd910967b29abbfe1a53732c3f4846d7fd12c1a26f41a"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-right.json",
+      "bytes": 785,
+      "sha256": "8bbabcde4ccf42193161464a009b1225acc8386586dcbc9607befb2265090709"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hair-right.png",
+      "bytes": 36598,
+      "sha256": "0c3a0ed78a98db86b9d3f590a77b0451330e8c286d4dee4e9120c4736e32348d"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hand-left.json",
+      "bytes": 782,
+      "sha256": "b4b587fc44404a48daaae1d94f78fd0bfa4760acc64e9be4c6854a42e7b292ca"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hand-left.png",
+      "bytes": 29959,
+      "sha256": "0e8aa88b3cdfb47c223650a6f88c3ad6312431f881c97bc4459d89b2f76a0d4a"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hand-right.json",
+      "bytes": 785,
+      "sha256": "2f2c7c4f4644111d57e26a0f8c5c4c6b7dc8614e78bb0d5bbdd8f31fe44c3dbc"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-hand-right.png",
+      "bytes": 29349,
+      "sha256": "21b54701f035da7ee43f2f160ea8907b277f5d98028fce3c491e9e8d79502081"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-head-face.json",
+      "bytes": 782,
+      "sha256": "cebb120e6f2e6b82b539ab3257c15e115c838921538a4cc9a5e098d436931991"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-head-face.png",
+      "bytes": 48742,
+      "sha256": "a460362a0f89c5b479ba62a6d6a302e80cec96a779785e9c38c8df01fbc59902"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-leg-left.json",
+      "bytes": 780,
+      "sha256": "afc558afc49d6cfd386896e1aea065853be82ee6500b0f804ed6eeeb79959ca9"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-leg-left.png",
+      "bytes": 18699,
+      "sha256": "4fd249242bb7826fe9b1c924c3a544b7f0b4fe4a3bc89a12ce36485df31ce80c"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-leg-right.json",
+      "bytes": 783,
+      "sha256": "5332089a26ed34bebe72ecac5f5bf47ae1e5d995ec142d427ab6674cdba075e3"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/part-leg-right.png",
+      "bytes": 19395,
+      "sha256": "efe06551789a611f0e4c60c5c3f5d137cfb824151d6fe08666bbf298eb016d54"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/reference-diff.png",
+      "bytes": 859293,
+      "sha256": "f47f274d00502a6b8b6771a473c483dbefff981e72780b8e3b5fec47bea327d5"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/reference-overlay.png",
+      "bytes": 684258,
+      "sha256": "cb00e8d97029fca8cd5c6de61d68c5860b0e96c044b44bc79035541e8c53f6d8"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/reference-side.png",
+      "bytes": 1057677,
+      "sha256": "bdc4ba2c13497b4899a11ea6deeff11ac09d155b0fc2bf6544fb2e4d3aaedff2"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/reference.json",
+      "bytes": 1499,
+      "sha256": "62db8e39ff1a993af6cdafdf775cf9813565ad03fdf4f54f0802e6144af6fd6b"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/review-report.md",
+      "bytes": 5320,
+      "sha256": "ace47cb8834a64c604816a9be2e9e4c6bf06449f2750063e37899cea48d671a7"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/structure-changes.json",
+      "bytes": 28068,
+      "sha256": "e0a2ec2220d4707718b3756c99b6273ab679611e9001533674f4644731206105"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/torso-diff.png",
+      "bytes": 300951,
+      "sha256": "5ad961f5b24ea1083a252946044102f60bcf1c802f493fd1e9f2a31f1d9e7363"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/torso-overlay.png",
+      "bytes": 258329,
+      "sha256": "8d132cf9cc9f89e1ae1cfc743f212c4ea96d236e747e126ea0bab55205ad5bb7"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/torso-side.png",
+      "bytes": 409505,
+      "sha256": "c1f213f3717b8d89ee623803197dd4315eaf403ed5bce27382c3a6b1aa9f9d35"
+    },
+    {
+      "path": "step04-base-character/review-evidence-v1/torso.json",
+      "bytes": 1517,
+      "sha256": "8c23bfeb6fcc59626c085c2142c02241a1c032b72406ee777b1c69983866a4be"
+    },
+    {
+      "path": "step05-base-character/05-1_大明暗与体积.svg",
+      "bytes": 207064,
+      "sha256": "b996c8edc05bc9845932dc54f25239ce773d9dfc5c1aa9957cb25f832527f519"
+    },
+    {
+      "path": "step05-base-character/05-1_明暗检查.png",
+      "bytes": 2916331,
+      "sha256": "fe5ae17086c5400e4e6db8201b0349c70c949e0201e517c6c31e5df996c14ae1"
+    },
+    {
+      "path": "step05-base-character/05-2_局部色彩与材质.svg",
+      "bytes": 258257,
+      "sha256": "a03c0624c18ed710e6c5641edb5b7d215a6352767acd62cad3384eaeb54dab2e"
+    },
+    {
+      "path": "step05-base-character/05-2_细节与材质检查.png",
+      "bytes": 3991495,
+      "sha256": "259a8a38be10a761ed2b6bbc4a9611905574a46c18bf0fabdca2c51ab4c4c84d"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles-added-diff.png",
+      "bytes": 49726,
+      "sha256": "3f502aff70540865854892585e010afb1c48a12bb8a6a62222b3a3ccbc80946c"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles-added-overlay.png",
+      "bytes": 67277,
+      "sha256": "0d96d89ff8c1d799122a7e5b8513646b9b32e4600e2098ac751cf3790867ab70"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles-added-side.png",
+      "bytes": 109673,
+      "sha256": "7ca7b27ab48c331396558a5d7065a57ecd753bd163548223f047fb4ee42362f7"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles-added.json",
+      "bytes": 1644,
+      "sha256": "0110846f33066a17f68512024c2fdec5d1fa8029e64517687af39776e7563e85"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles-reference-diff.png",
+      "bytes": 206882,
+      "sha256": "6a51d57c41a17c6255c86f70fc4b853fb21670fc47f0d952f55a5c6df22eb3f4"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles-reference-overlay.png",
+      "bytes": 175900,
+      "sha256": "783a8ee297d61ef73659d49e0aba77c8da442ff159642e881ba31a3849110393"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles-reference-side.png",
+      "bytes": 259306,
+      "sha256": "fd1ac3e71ff7ff3cf907a4a2bde34da58eb697ff844e7ea19bb40c62ae04d579"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles-reference.json",
+      "bytes": 1588,
+      "sha256": "f2a56f2b871d7f52670352bd027c99b6ec826c98e118bf14bc8bd5663088194b"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles-without-new-bands.png",
+      "bytes": 83102,
+      "sha256": "0df28fe3c4876a1134fc765fe9dca115b747185657c4010bc56fd56fa0aeaed3"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/ankles.png",
+      "bytes": 87981,
+      "sha256": "c0d9e6568f219d428fc5843ffea7a7041a33d2a6b53c8ee808af6656e4fa34bb"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/arms-alone.png",
+      "bytes": 74173,
+      "sha256": "79fcd4c3a0a9c6bb53df2630bd61dad9464bbd07227890ccb0452e65c8498390"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/arms-hands.png",
+      "bytes": 99534,
+      "sha256": "296793cd7b1d1e3cf790256c8db098794b8975adbabab9302b57fb2e5177e232"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/body-isolated.png",
+      "bytes": 57623,
+      "sha256": "3259ed6e6b4e35836211cd35fbf61585ae4875b4d6a1241beda66f95fbb1e87b"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/body-no-cast.png",
+      "bytes": 55646,
+      "sha256": "28a26711a676201b6fe5f7e5451947888c01a81647b0b7ec65a0a1b0ee03af92"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/body-reference-diff.png",
+      "bytes": 440865,
+      "sha256": "bb63e2f9a0ac9fdf9d3f3d0a036e28ed4addd9b62534a53863cbf0bb00c8757d"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/body-reference-overlay.png",
+      "bytes": 370593,
+      "sha256": "bf91cf4cba1154bca54d083b3b77fe70ffe4bf90686b86c6030c5200a6f85162"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/body-reference-side.png",
+      "bytes": 595303,
+      "sha256": "fdb8b5aa69c8b07e7d9c6ad3e3077f7714ea43a71d7c884fd68ec2ab9ea923db"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/body-reference.json",
+      "bytes": 1579,
+      "sha256": "4946c1bf3557fc50398c35677cfe0df16b0a833ab473874e1d4fa1dcbff3078e"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/cast-only.png",
+      "bytes": 32214,
+      "sha256": "b8637d15341758f0116a1d398dd9fb0f35ac0e9f6e5ce4c2586d668f1b0f41dc"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/changes.json",
+      "bytes": 41824,
+      "sha256": "01ca7757e91cd67a3964e7cad8f81795b31c74ff021ec48ddce5791aca59ae62"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/face-no-cast.png",
+      "bytes": 77037,
+      "sha256": "293331e29228f682d81f3a0e4d4532be43dd4629949a2beb246e26d05fde6eb0"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/face-parts.png",
+      "bytes": 84985,
+      "sha256": "db31b76147e9c630f2fccffdd0749dda77d3c8aa802659c499bef1293a849848"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/flat-vs-shaded-diff.png",
+      "bytes": 149617,
+      "sha256": "7b6d54cc38bb896727463bcd90ae8e6086d337eae1fa85b62e6368c6e9870f0b"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/flat-vs-shaded-overlay.png",
+      "bytes": 219190,
+      "sha256": "7a683501bb60de39ae70f38662701862428f2e7f45494281a44c67979be162cb"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/flat-vs-shaded-side.png",
+      "bytes": 346405,
+      "sha256": "e6c102193f3d5da6c7e4e61e636b7d44d7d7196805f8ddd000c81b01a855fb1a"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/flat-vs-shaded.json",
+      "bytes": 1617,
+      "sha256": "abb2970e105266b958e8b9bec2fa823715b34f2328105e69bed4c59fd098116e"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/flat.png",
+      "bytes": 147085,
+      "sha256": "b84659a658205f84e1d7cac60885be78b49281e5fb82580d0ccb4de33f2c7287"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/full.png",
+      "bytes": 254113,
+      "sha256": "9f659f9a04c8ef2a8c2164840ca24e3eb759fc386e0ce926d4da7832c878aa54"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/hair-back.png",
+      "bytes": 75181,
+      "sha256": "908241ca0a2f5b1b3670350c393d71ba4544d680e3fa87f85196a5b29420954f"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/hair-parts.png",
+      "bytes": 253022,
+      "sha256": "efcdc4bff1c335e9b2ec1a709ee6cb563dad5c30259286906fdecc411aaeed7b"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/hair-sides.png",
+      "bytes": 161674,
+      "sha256": "289d5d30b1de9ea3f3ae603ebba100db6065ce9cc703fa1c185e2f19cb59743a"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/hands-main.png",
+      "bytes": 44089,
+      "sha256": "c1b94bf4af0b9f9b1ed9ff21c3e64e8660bcbe5bbd5d5c77784cc4afda60fe16"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/hands-rear.png",
+      "bytes": 21236,
+      "sha256": "191135f5ca2c99e0fd943b996d0c1f9ceacdcf57af376291977e7a807eebc11b"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/hands.png",
+      "bytes": 56070,
+      "sha256": "2649de6a4bb6101c9468da7926912d1a29ff3133b71b9a9d9733db5bd558d987"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/head-reference-diff.png",
+      "bytes": 704620,
+      "sha256": "3ebdd69f722226a616f56c38558c75afec929a93c4630c234dc72368edf8f360"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/head-reference-overlay.png",
+      "bytes": 611046,
+      "sha256": "619942b6fb71ef054c33dbd06653eab632b6846565067fab059553c57355a284"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/head-reference-side.png",
+      "bytes": 952115,
+      "sha256": "8ebb4b759bce904ec75f41219ca7bc4a42fb991807277a71a3a9e41c4483f44a"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/head-reference.json",
+      "bytes": 1579,
+      "sha256": "e61a03944b98fde9727d97658a5fc142b8389bcf75cf299ffcb2eddbb8b3d634"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/legs-isolated.png",
+      "bytes": 248905,
+      "sha256": "ea31a0115cd5ffd12edc3e611cbefb3df23f1360c17a3057733f4a43635f2c91"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/legs-no-cast.png",
+      "bytes": 237405,
+      "sha256": "f0ca0ddb14fb307cf89e53bca4941db2ca639b242a61a3b3cf13d740d2ad03a2"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/legs-reference-diff.png",
+      "bytes": 506652,
+      "sha256": "9ad49b6ebfd93dc88134e8c9e2c2e423dce3d74086a76e5c63d9fe6724570b2d"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/legs-reference-overlay.png",
+      "bytes": 423494,
+      "sha256": "2513d8f9242c01834b1a35b989f3aa81591910c75b60de8f579a404d03820593"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/legs-reference-side.png",
+      "bytes": 642642,
+      "sha256": "486a1f180c3623ac03c000d3a8e50ec2cf883a0c141328498947730c70df5aa2"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/legs-reference.json",
+      "bytes": 1580,
+      "sha256": "51bf330570b56c45d3651dbf47e3cfac78f14e7d94f1b42ca82e0c5fa408c019"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/no-cast.png",
+      "bytes": 252351,
+      "sha256": "b5181c4b48ae25eb6ed88de86f2fdc634d4f55bfb29f48392f748a9165bb8ced"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/reference-diff.png",
+      "bytes": 906406,
+      "sha256": "fa67c0ea000db21ff7e5dc51cff4ca2ae76413fa51279ab37ba2410c73d9ad06"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/reference-overlay.png",
+      "bytes": 716789,
+      "sha256": "c5128a2329a630d8ea4f651627e4523cf892e0f5f3daf24794b4abb3abbfe4f6"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/reference-side.png",
+      "bytes": 1153870,
+      "sha256": "0c2896c33793f83ba0a6cac15b21f9dae7a85f642bdaef7d217b2b40ffb75562"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/reference.json",
+      "bytes": 1525,
+      "sha256": "ab68f0fff2f3ec0da862c798482700696f233bee29d8c3de9b9bfa80402f46b1"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/restore-diff.png",
+      "bytes": 4654,
+      "sha256": "d975e14dab30fe98ad4959ccb02d18a47d24fb0f1d2021207dbc2b4aef519d95"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/restore-overlay.png",
+      "bytes": 147085,
+      "sha256": "b84659a658205f84e1d7cac60885be78b49281e5fb82580d0ccb4de33f2c7287"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/restore-side.png",
+      "bytes": 168533,
+      "sha256": "22f2c17895d06cd12dfa9d88fc5b6ebbf6b90e6d498d740a5fd0dd8fe70d718c"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/restore.json",
+      "bytes": 1506,
+      "sha256": "6d11fdd165314069f01c735b73af47b33a4054d1bb479afce07684cd66fcfc00"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/review.md",
+      "bytes": 5261,
+      "sha256": "04780e19d6b6516976982c1b40dd84d7e7aa5d56381297e7420c15850f021479"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v4/suit-isolated.png",
+      "bytes": 103786,
+      "sha256": "9e94cdf142a6f6092794348d277c5e888f95fb6498a9253ed77367ece175b736"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/ankles-reference-diff.png",
+      "bytes": 208183,
+      "sha256": "27afd84fb60c252a5b3ba3b4687df7f04cb54f1d6121fba3403da9c1f44418fd"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/ankles-reference-overlay.png",
+      "bytes": 175747,
+      "sha256": "5986129d2098f08bee532d8eda532a4826109c95d0e8f85039c6c1046bc46480"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/ankles-reference-side.png",
+      "bytes": 266026,
+      "sha256": "75071fd9fed6e47b5ff9f2c83a256831c2e38700e3e00ed06c42706fa09a58f9"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/ankles-reference.json",
+      "bytes": 1588,
+      "sha256": "4bf843d6af36179caa2f30a6d8ac9148a0ec6f0a4cbe72c23e881ad46a5cc947"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/changes.json",
+      "bytes": 41824,
+      "sha256": "a0b31c200c050f1fa9f47e129c40d5c0390008834d1162efe9bb866cb8986070"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/flat.png",
+      "bytes": 147085,
+      "sha256": "b84659a658205f84e1d7cac60885be78b49281e5fb82580d0ccb4de33f2c7287"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/full.png",
+      "bytes": 255021,
+      "sha256": "9736b148865a0cf97176ac011cb353b3336203bf269ff77369ae2e41570f4cfb"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/legs-isolated.png",
+      "bytes": 252275,
+      "sha256": "ea2a858127be75bfa349b81d040c3794a05e14e7809c4250424443effd3a0773"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/restore-diff.png",
+      "bytes": 4654,
+      "sha256": "d975e14dab30fe98ad4959ccb02d18a47d24fb0f1d2021207dbc2b4aef519d95"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/restore-overlay.png",
+      "bytes": 147085,
+      "sha256": "b84659a658205f84e1d7cac60885be78b49281e5fb82580d0ccb4de33f2c7287"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/restore-side.png",
+      "bytes": 168533,
+      "sha256": "22f2c17895d06cd12dfa9d88fc5b6ebbf6b90e6d498d740a5fd0dd8fe70d718c"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/restore.json",
+      "bytes": 1506,
+      "sha256": "706be9f48671cb5ca5df6c5ddfd607b8a3256c86cb232a3689ac1799ee3e325d"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/review.md",
+      "bytes": 2742,
+      "sha256": "13af6873100f8cdd55313e0f2c3e20cc86c8f96db5949feb857e0d1a8adc93bc"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/v4-vs-v5-diff.png",
+      "bytes": 9085,
+      "sha256": "a6ae1a237d758e95dd603eede3f58b8d6e749cdee837a6a3b45b0556ad1ecaed"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/v4-vs-v5-overlay.png",
+      "bytes": 255277,
+      "sha256": "4a6c185b0fa49c9f9cc7f66bb59603c3ff784b21369214e8869c185897f3f20b"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/v4-vs-v5-side.png",
+      "bytes": 284747,
+      "sha256": "80600a1af910c51c563656c33364ce558910da47c77cd52226e1a8cde9206183"
+    },
+    {
+      "path": "step05-base-character/review-step1-evidence-v5/v4-vs-v5.json",
+      "bytes": 1551,
+      "sha256": "8a425b43aa85f1ad108a6fd477f46d8df3291add3b337033ba2cfe6b70c9bb85"
+    }
+  ]
+}
