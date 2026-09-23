@@ -1,0 +1,42 @@
+{
+  "windAndPhysics": {
+    "calm": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+    "windy": "178b823f2065fd1ee6ba04ea15d890ec5aa38ad68e92d25ecddf19c92cd47008",
+    "stopped": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+    "windChanges": true,
+    "physicsChanges": true
+  },
+  "paintNeutral": {
+    "gradient": "<radialGradient id=\"s52-face-cheek-right\" gradientUnits=\"userSpaceOnUse\" cx=\"556\" cy=\"244\" r=\"29\" gradientTransform=\"translate(0 244) scale(1 0.6551724137931034) translate(0 -244)\">\n          <stop offset=\"0\" stop-color=\"#E99C8D\" stop-opacity=\"0.27\"></stop>\n          <stop offset=\"0.4\" stop-color=\"#E99C8D\" stop-opacity=\"0.16740000000000002\"></stop>\n          <stop offset=\"0.75\" stop-color=\"#E99C8D\" stop-opacity=\"0.048600000000000004\"></stop>\n          <stop offset=\"1\" stop-color=\"#E99C8D\" stop-opacity=\"0\"></stop>\n        </radialGradient>",
+    "shape": [
+      "<path id=\"s52-face-cheek-right-surface\" fill=\"url(#s52-face-cheek-right)\" stroke=\"none\" d=\"M 585.00 244.00 C 585.00 254.49 572.02 263.00 556.00 263.00 C 539.98 263.00 527.00 254.49 527.00 244.00 C 527.00 233.51 539.98 225.00 556.00 225.00 C 572.02 225.00 585.00 233.51 585.00 244.00 Z \"></path>"
+    ],
+    "irisGradient": "<linearGradient id=\"s52-right-iris-value\" gradientUnits=\"userSpaceOnUse\" x1=\"0\" y1=\"207\" x2=\"0\" y2=\"238\">\n              <stop offset=\"0\" stop-color=\"#38231D\" stop-opacity=\"1\"></stop>\n              <stop offset=\"0.25\" stop-color=\"#59382C\" stop-opacity=\"0.97\"></stop>\n              <stop offset=\"0.47\" stop-color=\"#8D604C\" stop-opacity=\"0.96\"></stop>\n              <stop offset=\"0.7\" stop-color=\"#B78B74\" stop-opacity=\"0.96\"></stop>\n              <stop offset=\"1\" stop-color=\"#D8AD98\" stop-opacity=\"0.98\"></stop>\n            </linearGradient>"
+  },
+  "paintExtreme": {
+    "gradient": "<radialGradient id=\"s52-face-cheek-right\" gradientUnits=\"userSpaceOnUse\" cx=\"556\" cy=\"244\" r=\"29\" gradientTransform=\"translate(0 244) scale(1 0.6551724137931034) translate(0 -244)\">\n          <stop offset=\"0\" stop-color=\"#E99C8D\" stop-opacity=\"0.27\"></stop>\n          <stop offset=\"0.4\" stop-color=\"#E99C8D\" stop-opacity=\"0.16740000000000002\"></stop>\n          <stop offset=\"0.75\" stop-color=\"#E99C8D\" stop-opacity=\"0.048600000000000004\"></stop>\n          <stop offset=\"1\" stop-color=\"#E99C8D\" stop-opacity=\"0\"></stop>\n        </radialGradient>",
+    "shape": [
+      "<path id=\"s52-face-cheek-right-surface\" fill=\"url(#s52-face-cheek-right)\" stroke=\"none\" d=\"M 606.80 275.19 C 603.33 284.24 589.69 286.44 576.60 280.23 C 563.50 274.01 555.91 261.74 559.38 252.69 C 562.74 243.58 576.10 241.26 589.20 247.47 C 602.29 253.68 610.15 266.09 606.80 275.19 Z \"></path>"
+    ],
+    "irisGradient": "<linearGradient id=\"s52-right-iris-value\" gradientUnits=\"userSpaceOnUse\" x1=\"0\" y1=\"207\" x2=\"0\" y2=\"238\">\n              <stop offset=\"0\" stop-color=\"#38231D\" stop-opacity=\"1\"></stop>\n              <stop offset=\"0.25\" stop-color=\"#59382C\" stop-opacity=\"0.97\"></stop>\n              <stop offset=\"0.47\" stop-color=\"#8D604C\" stop-opacity=\"0.96\"></stop>\n              <stop offset=\"0.7\" stop-color=\"#B78B74\" stop-opacity=\"0.96\"></stop>\n              <stop offset=\"1\" stop-color=\"#D8AD98\" stop-opacity=\"0.98\"></stop>\n            </linearGradient>"
+  },
+  "seek": {
+    "state": {
+      "mode": "motion",
+      "playing": false,
+      "time": 15,
+      "showSkirt": false,
+      "view": "portrait"
+    },
+    "headX": 0
+  },
+  "video": {
+    "duration": 30.079667,
+    "width": 1920,
+    "height": 1080,
+    "readyState": 4,
+    "error": null
+  },
+  "newMasks": [],
+  "castGroups": 0
+}

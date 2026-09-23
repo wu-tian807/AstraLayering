@@ -1,0 +1,543 @@
+{
+  "errors": [],
+  "definitions": [
+    [
+      "eyeLOpen",
+      "左眼开闭",
+      0,
+      1,
+      1,
+      "face"
+    ],
+    [
+      "eyeROpen",
+      "右眼开闭",
+      0,
+      1,
+      1,
+      "face"
+    ],
+    [
+      "eyeLSmile",
+      "左眼微笑",
+      0,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "eyeRSmile",
+      "右眼微笑",
+      0,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "gazeX",
+      "视线左右",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "gazeY",
+      "视线上下",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "pupil",
+      "眼珠缩放",
+      0.6,
+      1.4,
+      1,
+      "face"
+    ],
+    [
+      "highlight",
+      "眼部高光",
+      0,
+      1,
+      1,
+      "face"
+    ],
+    [
+      "mouthOpen",
+      "嘴巴开闭",
+      0,
+      1,
+      0.45,
+      "face"
+    ],
+    [
+      "mouthForm",
+      "嘴巴变形",
+      -1,
+      1,
+      0.3,
+      "face"
+    ],
+    [
+      "browLY",
+      "左眉上下",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browLX",
+      "左眉左右",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browLForm",
+      "左眉变形",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browLAngle",
+      "左眉角度",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browRY",
+      "右眉上下",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browRX",
+      "右眉左右",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browRForm",
+      "右眉变形",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browRAngle",
+      "右眉角度",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "headX",
+      "头部 X · 左右转头",
+      -30,
+      30,
+      0,
+      "head"
+    ],
+    [
+      "headY",
+      "头部 Y · 俯仰",
+      -30,
+      30,
+      0,
+      "head"
+    ],
+    [
+      "headZ",
+      "头部 Z · 侧倾",
+      -30,
+      30,
+      0,
+      "head"
+    ],
+    [
+      "hairBangs",
+      "刘海摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "hairLeft",
+      "左侧发摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "hairRight",
+      "右侧发摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "hairBack",
+      "后发摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "cowlick",
+      "呆毛摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "wind",
+      "风力",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "physics",
+      "物理强度",
+      0,
+      1,
+      1,
+      "head"
+    ],
+    [
+      "bodyX",
+      "身体 X · 左右转身",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "bodyY",
+      "身体 Y · 俯仰",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "bodyZ",
+      "身体 Z · 摆动",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "breath",
+      "呼吸",
+      0,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "armL",
+      "左大臂转",
+      -30,
+      30,
+      0,
+      "body"
+    ],
+    [
+      "elbowL",
+      "左小臂转",
+      -30,
+      30,
+      0,
+      "body"
+    ],
+    [
+      "wristL",
+      "左手转",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "handL",
+      "左手变形",
+      -1,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "armR",
+      "右大臂转",
+      -30,
+      30,
+      0,
+      "body"
+    ],
+    [
+      "elbowR",
+      "右小臂转",
+      -30,
+      30,
+      0,
+      "body"
+    ],
+    [
+      "wristR",
+      "右手转",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "handR",
+      "右手变形",
+      -1,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "skirt1",
+      "裙子物理 1 · 横摆",
+      -1,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "skirt2",
+      "裙子物理 2 · 扭转",
+      -1,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "skirt3",
+      "裙子物理 3 · 开合",
+      -1,
+      1,
+      0,
+      "body"
+    ]
+  ],
+  "controls": [],
+  "screens": [
+    {
+      "name": "neutral",
+      "params": {},
+      "view": "face"
+    },
+    {
+      "name": "head-x-minus",
+      "params": {
+        "headX": -30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-x-plus",
+      "params": {
+        "headX": 30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-y-minus",
+      "params": {
+        "headY": -30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-y-plus",
+      "params": {
+        "headY": 30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-z-minus",
+      "params": {
+        "headZ": -30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-z-plus",
+      "params": {
+        "headZ": 30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-all-minus",
+      "params": {
+        "headX": -30,
+        "headY": -30,
+        "headZ": -30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-all-plus",
+      "params": {
+        "headX": 30,
+        "headY": 30,
+        "headZ": 30
+      },
+      "view": "face"
+    },
+    {
+      "name": "closed-left",
+      "params": {
+        "eyeLOpen": 0
+      },
+      "view": "face"
+    },
+    {
+      "name": "closed-right",
+      "params": {
+        "eyeROpen": 0
+      },
+      "view": "face"
+    },
+    {
+      "name": "closed-smile",
+      "params": {
+        "eyeLOpen": 0,
+        "eyeROpen": 0,
+        "eyeLSmile": 1,
+        "eyeRSmile": 1
+      },
+      "view": "face"
+    },
+    {
+      "name": "mouth-wide",
+      "params": {
+        "mouthOpen": 1,
+        "mouthForm": 1
+      },
+      "view": "face"
+    },
+    {
+      "name": "hair-plus",
+      "params": {
+        "hairBangs": 1,
+        "hairLeft": 1,
+        "hairRight": 1,
+        "hairBack": 1,
+        "cowlick": 1
+      },
+      "view": "face"
+    },
+    {
+      "name": "hair-minus",
+      "params": {
+        "hairBangs": -1,
+        "hairLeft": -1,
+        "hairRight": -1,
+        "hairBack": -1,
+        "cowlick": -1
+      },
+      "view": "face"
+    },
+    {
+      "name": "garment-minus",
+      "params": {
+        "bodyX": -10
+      },
+      "view": "portrait"
+    },
+    {
+      "name": "garment-plus",
+      "params": {
+        "bodyX": 10
+      },
+      "view": "portrait"
+    },
+    {
+      "name": "mobile-390",
+      "params": {},
+      "view": "portrait"
+    },
+    {
+      "name": "mobile-320",
+      "params": {},
+      "view": "portrait"
+    }
+  ],
+  "mobile390": {
+    "viewport": 390,
+    "width": 390,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 68,
+      "top": 0,
+      "right": 390,
+      "bottom": 68,
+      "left": 0
+    },
+    "brand": {
+      "x": 10,
+      "y": 16,
+      "width": 212.171875,
+      "height": 35,
+      "top": 16,
+      "right": 222.171875,
+      "bottom": 51,
+      "left": 10
+    }
+  },
+  "mobile320": {
+    "viewport": 320,
+    "width": 320,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 320,
+      "height": 68,
+      "top": 0,
+      "right": 320,
+      "bottom": 68,
+      "left": 0
+    },
+    "brand": {
+      "x": 10,
+      "y": 17.5,
+      "width": 192.265625,
+      "height": 32,
+      "top": 17.5,
+      "right": 202.265625,
+      "bottom": 49.5,
+      "left": 10
+    }
+  }
+}

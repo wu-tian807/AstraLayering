@@ -1,0 +1,261 @@
+{
+  "parameters": [
+    {
+      "key": "eyeLOpen",
+      "changedChannels": 15305,
+      "meanAbsoluteChange": 0.8264022837042352,
+      "pass": true
+    },
+    {
+      "key": "eyeROpen",
+      "changedChannels": 16076,
+      "meanAbsoluteChange": 0.8941563289763618,
+      "pass": true
+    },
+    {
+      "key": "eyeLSmile",
+      "changedChannels": 2556,
+      "meanAbsoluteChange": 0.09404729101132485,
+      "pass": true
+    },
+    {
+      "key": "eyeRSmile",
+      "changedChannels": 2573,
+      "meanAbsoluteChange": 0.08977580375712635,
+      "pass": true
+    },
+    {
+      "key": "gazeX",
+      "changedChannels": 17861,
+      "meanAbsoluteChange": 1.030444691197026,
+      "pass": true
+    },
+    {
+      "key": "gazeY",
+      "changedChannels": 16971,
+      "meanAbsoluteChange": 0.7092969643066631,
+      "pass": true
+    },
+    {
+      "key": "pupil",
+      "changedChannels": 19388,
+      "meanAbsoluteChange": 0.9463017577938501,
+      "pass": true
+    },
+    {
+      "key": "highlight",
+      "changedChannels": 738,
+      "meanAbsoluteChange": 0.05045256666639385,
+      "pass": true
+    },
+    {
+      "key": "mouthOpen",
+      "changedChannels": 8864,
+      "meanAbsoluteChange": 0.4708102912195792,
+      "pass": true
+    },
+    {
+      "key": "mouthForm",
+      "changedChannels": 1355,
+      "meanAbsoluteChange": 0.06414096908287158,
+      "pass": true
+    },
+    {
+      "key": "browLY",
+      "changedChannels": 1467,
+      "meanAbsoluteChange": 0.04786712100667778,
+      "pass": true
+    },
+    {
+      "key": "browLX",
+      "changedChannels": 1105,
+      "meanAbsoluteChange": 0.032564520192030495,
+      "pass": true
+    },
+    {
+      "key": "browLForm",
+      "changedChannels": 1418,
+      "meanAbsoluteChange": 0.04149399290843994,
+      "pass": true
+    },
+    {
+      "key": "browLAngle",
+      "changedChannels": 1227,
+      "meanAbsoluteChange": 0.0353195703594979,
+      "pass": true
+    },
+    {
+      "key": "browRY",
+      "changedChannels": 1627,
+      "meanAbsoluteChange": 0.04517936699778195,
+      "pass": true
+    },
+    {
+      "key": "browRX",
+      "changedChannels": 1257,
+      "meanAbsoluteChange": 0.03362443468953281,
+      "pass": true
+    },
+    {
+      "key": "browRForm",
+      "changedChannels": 1603,
+      "meanAbsoluteChange": 0.04437499602134198,
+      "pass": true
+    },
+    {
+      "key": "browRAngle",
+      "changedChannels": 1371,
+      "meanAbsoluteChange": 0.03716339416360424,
+      "pass": true
+    },
+    {
+      "key": "headX",
+      "changedChannels": 336332,
+      "meanAbsoluteChange": 15.455784150299605,
+      "pass": true
+    },
+    {
+      "key": "headY",
+      "changedChannels": 319802,
+      "meanAbsoluteChange": 14.091757857508568,
+      "pass": true
+    },
+    {
+      "key": "headZ",
+      "changedChannels": 612975,
+      "meanAbsoluteChange": 31.42221564417429,
+      "pass": true
+    },
+    {
+      "key": "wind",
+      "changedChannels": 229360,
+      "meanAbsoluteChange": 9.782304656985113,
+      "pass": true
+    },
+    {
+      "key": "physics",
+      "changedChannels": 224820,
+      "meanAbsoluteChange": 9.543833443826351,
+      "pass": true
+    },
+    {
+      "key": "bodyX",
+      "changedChannels": 46125,
+      "meanAbsoluteChange": 1.6559538457481104,
+      "pass": true
+    },
+    {
+      "key": "bodyY",
+      "changedChannels": 24074,
+      "meanAbsoluteChange": 0.7809410003664913,
+      "pass": true
+    },
+    {
+      "key": "bodyZ",
+      "changedChannels": 95905,
+      "meanAbsoluteChange": 3.657234746279841,
+      "pass": true
+    },
+    {
+      "key": "breath",
+      "changedChannels": 25904,
+      "meanAbsoluteChange": 0.8497431378379927,
+      "pass": true
+    },
+    {
+      "key": "armL",
+      "changedChannels": 14629,
+      "meanAbsoluteChange": 0.3677339473653099,
+      "pass": true
+    },
+    {
+      "key": "elbowL",
+      "changedChannels": 8766,
+      "meanAbsoluteChange": 0.21894123135600851,
+      "pass": true
+    },
+    {
+      "key": "wristL",
+      "changedChannels": 2539,
+      "meanAbsoluteChange": 0.0807235610217012,
+      "pass": true
+    },
+    {
+      "key": "handL",
+      "changedChannels": 1744,
+      "meanAbsoluteChange": 0.059456156097986844,
+      "pass": true
+    },
+    {
+      "key": "armR",
+      "changedChannels": 16779,
+      "meanAbsoluteChange": 0.3816692539311415,
+      "pass": true
+    },
+    {
+      "key": "elbowR",
+      "changedChannels": 9224,
+      "meanAbsoluteChange": 0.23045614973213402,
+      "pass": true
+    },
+    {
+      "key": "wristR",
+      "changedChannels": 2606,
+      "meanAbsoluteChange": 0.08564391056158645,
+      "pass": true
+    },
+    {
+      "key": "handR",
+      "changedChannels": 1771,
+      "meanAbsoluteChange": 0.06233443098824409,
+      "pass": true
+    },
+    {
+      "key": "skirt1",
+      "changedChannels": 26907,
+      "meanAbsoluteChange": 0.9067561705575669,
+      "pass": true
+    },
+    {
+      "key": "skirt2",
+      "changedChannels": 28349,
+      "meanAbsoluteChange": 0.6961596628644338,
+      "pass": true
+    },
+    {
+      "key": "skirt3",
+      "changedChannels": 23101,
+      "meanAbsoluteChange": 0.6530605656333068,
+      "pass": true
+    }
+  ],
+  "ui": {
+    "x": 22,
+    "mode": "manual",
+    "playing": false
+  },
+  "skirtToggle": true,
+  "imported": {
+    "x": 22,
+    "skirt": 0.8
+  },
+  "video": {
+    "readyState": 4,
+    "duration": 30.079667
+  },
+  "scrub": {
+    "mode": "motion",
+    "playing": false,
+    "time": 18,
+    "showSkirt": true,
+    "view": "portrait",
+    "version": 2
+  },
+  "duplicateIds": [],
+  "mobile": {
+    "width": 390,
+    "scrollWidth": 390
+  },
+  "standalone": true,
+  "errors": []
+}

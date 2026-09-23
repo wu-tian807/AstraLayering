@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-09-20T05:08:16.104Z",
+  "files": {
+    "index.html": "415bd9af8d3b59831090cebe752444bd53d6b4bb2545e0dd9647bb19d92a68d5",
+    "milly-animation.svg": "b5bd030c5382b4b8b3029359734a6e20deb1ae4d99f50eb8d9940d363c208a67",
+    "rig.js": "905285a0fa8cd929b609e9864e435c7cab289dc7c9c812c8d13a9cadfe6bc94c",
+    "build.py": "af42c50d2f31f352129924b62c09cedbb315eb39a309bcbbddbc03841637841e",
+    "motion-tracks.json": "a73e5a9b79af8b95ce137013c2252b1ad864205744c4b316f2593b4049174ea4",
+    "rig-manifest.json": "3a7dac675a91b42b5c5a1e9cc8bbb756d5fc6b43805ed3460c7c4aabf98faaac"
+  }
+}

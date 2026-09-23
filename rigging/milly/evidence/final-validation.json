@@ -1,0 +1,18 @@
+{
+  "htmlSHA256": "dc0aa38a79fc333f2235e80387bc30582dfa72143ccbc13db39a0ef4da33c220",
+  "svgSHA256": "b5bd030c5382b4b8b3029359734a6e20deb1ae4d99f50eb8d9940d363c208a67",
+  "measuredFPS": 58.21985395834622,
+  "noInvalidGeometry": true,
+  "consoleErrors": [],
+  "parameterCount": 43,
+  "poses": [
+    "head-plus",
+    "head-minus",
+    "garment-plus",
+    "garment-minus",
+    "closed",
+    "wink",
+    "wind"
+  ],
+  "followupTo": "validation.json: all 43 visible-control tests and roundtrip/UI checks passed; this run verifies subsequent garment edge and nose depth corrections."
+}

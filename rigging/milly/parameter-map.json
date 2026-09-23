@@ -1,0 +1,346 @@
+[
+  {
+    "id": "eyeLOpen",
+    "name": "左眼开闭",
+    "min": 0,
+    "max": 1,
+    "default": 1,
+    "group": "face"
+  },
+  {
+    "id": "eyeROpen",
+    "name": "右眼开闭",
+    "min": 0,
+    "max": 1,
+    "default": 1,
+    "group": "face"
+  },
+  {
+    "id": "eyeLSmile",
+    "name": "左眼微笑",
+    "min": 0,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "eyeRSmile",
+    "name": "右眼微笑",
+    "min": 0,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "gazeX",
+    "name": "视线左右",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "gazeY",
+    "name": "视线上下",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "pupil",
+    "name": "眼珠缩放",
+    "min": 0.6,
+    "max": 1.4,
+    "default": 1,
+    "group": "face"
+  },
+  {
+    "id": "highlight",
+    "name": "眼部高光",
+    "min": 0,
+    "max": 1,
+    "default": 1,
+    "group": "face"
+  },
+  {
+    "id": "mouthOpen",
+    "name": "嘴巴开闭",
+    "min": 0,
+    "max": 1,
+    "default": 0.45,
+    "group": "face"
+  },
+  {
+    "id": "mouthForm",
+    "name": "嘴巴变形",
+    "min": -1,
+    "max": 1,
+    "default": 0.3,
+    "group": "face"
+  },
+  {
+    "id": "browLY",
+    "name": "左眉上下",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "browLX",
+    "name": "左眉左右",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "browLForm",
+    "name": "左眉变形",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "browLAngle",
+    "name": "左眉角度",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "browRY",
+    "name": "右眉上下",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "browRX",
+    "name": "右眉左右",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "browRForm",
+    "name": "右眉变形",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "browRAngle",
+    "name": "右眉角度",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "face"
+  },
+  {
+    "id": "headX",
+    "name": "头部 X · 左右转头",
+    "min": -30,
+    "max": 30,
+    "default": 0,
+    "group": "head"
+  },
+  {
+    "id": "headY",
+    "name": "头部 Y · 俯仰",
+    "min": -30,
+    "max": 30,
+    "default": 0,
+    "group": "head"
+  },
+  {
+    "id": "headZ",
+    "name": "头部 Z · 侧倾",
+    "min": -30,
+    "max": 30,
+    "default": 0,
+    "group": "head"
+  },
+  {
+    "id": "hairBangs",
+    "name": "刘海摆动",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "head"
+  },
+  {
+    "id": "hairLeft",
+    "name": "左侧发摆动",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "head"
+  },
+  {
+    "id": "hairRight",
+    "name": "右侧发摆动",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "head"
+  },
+  {
+    "id": "hairBack",
+    "name": "后发摆动",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "head"
+  },
+  {
+    "id": "cowlick",
+    "name": "呆毛摆动",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "head"
+  },
+  {
+    "id": "wind",
+    "name": "风力",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "head"
+  },
+  {
+    "id": "physics",
+    "name": "物理强度",
+    "min": 0,
+    "max": 1,
+    "default": 1,
+    "group": "head"
+  },
+  {
+    "id": "bodyX",
+    "name": "身体 X · 左右转身",
+    "min": -10,
+    "max": 10,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "bodyY",
+    "name": "身体 Y · 俯仰",
+    "min": -10,
+    "max": 10,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "bodyZ",
+    "name": "身体 Z · 摆动",
+    "min": -10,
+    "max": 10,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "breath",
+    "name": "呼吸",
+    "min": 0,
+    "max": 1,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "armL",
+    "name": "左大臂转",
+    "min": -30,
+    "max": 30,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "elbowL",
+    "name": "左小臂转",
+    "min": -30,
+    "max": 30,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "wristL",
+    "name": "左手转",
+    "min": -10,
+    "max": 10,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "handL",
+    "name": "左手变形",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "armR",
+    "name": "右大臂转",
+    "min": -30,
+    "max": 30,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "elbowR",
+    "name": "右小臂转",
+    "min": -30,
+    "max": 30,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "wristR",
+    "name": "右手转",
+    "min": -10,
+    "max": 10,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "handR",
+    "name": "右手变形",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "skirt1",
+    "name": "裙子物理 1 · 横摆",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "skirt2",
+    "name": "裙子物理 2 · 扭转",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "body"
+  },
+  {
+    "id": "skirt3",
+    "name": "裙子物理 3 · 开合",
+    "min": -1,
+    "max": 1,
+    "default": 0,
+    "group": "body"
+  }
+]

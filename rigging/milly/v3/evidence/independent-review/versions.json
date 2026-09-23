@@ -1,0 +1,26 @@
+{
+  "time": "2026-09-20T14:35:15.332262",
+  "source": "/Users/wutian/Desktop/coding/AstraLayering/rigging/milly/v3",
+  "files": {
+    "index.html": {
+      "sha256": "5f89a5ea8d0425ca9490632fcc406045e3596367e9455c4662ea8b159efe3f9b",
+      "bytes": 555957
+    },
+    "rig.js": {
+      "sha256": "b29b1c5d71eb9b080215167840f53de5139d3d46bcfbf09d4969b7e0ee59d6cb",
+      "bytes": 35663
+    },
+    "build.py": {
+      "sha256": "b23ed5891c5fd423aadb11a0fbe72bea20da956dd754edda2542b573dac266ca",
+      "bytes": 13080
+    },
+    "milly-animation.svg": {
+      "sha256": "61fda051b2df6cba5faed60bd02af459e33d0d7bbd428097f9ce292000860aad",
+      "bytes": 426579
+    },
+    "rig-manifest.json": {
+      "sha256": "2e070c18e3f1640dd491d036bfd27ef0ef1848265ea9b2c705cf86edbd41d228",
+      "bytes": 6058
+    }
+  }
+}

@@ -1,0 +1,11 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const {chromium}=require('/Users/wutian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const root='/Users/wutian/Desktop/coding/AstraLayering/rigging/milly',out=path.join(root,'evidence/independent-review/v3');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+(async()=>{
+fs.mkdirSync(out,{recursive:true});const versions={checkedAt:new Date().toISOString(),files:{}};for(const f of ['index.html','milly-animation.svg','rig.js','build.py','motion-tracks.json','rig-manifest.json']){const b=fs.readFileSync(path.join(root,f));versions.files[f]=sha(b);fs.writeFileSync(path.join(out,'reviewed-'+f),b)}fs.writeFileSync(path.join(out,'versions.json'),JSON.stringify(versions,null,2));
+const browser=await chromium.launch({headless:true,executablePath:'/Users/wutian/Library/Caches/ms-playwright/chromium-1234/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing'});const page=await browser.newPage({viewport:{width:1440,height:1000}});await page.route('http://127.0.0.1:8765/',r=>r.fulfill({status:200,contentType:'text/html',body:fs.readFileSync(path.join(out,'reviewed-index.html'))}));await page.goto('http://127.0.0.1:8765/');await page.waitForFunction(()=>window.MillyRig);
+const results={errors:[],poses:[]};page.on('pageerror',e=>results.errors.push(e.message));
+for(const [name,params] of [['neutral',{}],['x-plus',{headX:30}],['x-minus',{headX:-30}],['all-plus',{headX:30,headY:30,headZ:30}],['all-minus',{headX:-30,headY:-30,headZ:-30}]]){await page.evaluate(p=>{MillyRig.reset();MillyRig.set({physics:0,...p});MillyRig.showView('face')},params);await page.locator('#stage').screenshot({path:path.join(out,name+'.png')});const centers=await page.evaluate(()=>Object.fromEntries(['nose-tip-ink','s52-nose-soft-light-surface','s52-face-nose-warm-surface'].map(id=>{const b=document.getElementById(id).getBBox();return[id,{x:b.x+b.width/2,y:b.y+b.height/2}]})));results.poses.push({name,params,centers});}
+fs.writeFileSync(path.join(out,'checks.json'),JSON.stringify(results,null,2));await browser.close();console.log(JSON.stringify({versions,results},null,2));
+})().catch(e=>{console.error(e);process.exit(1)});

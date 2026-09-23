@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "entry": "index.html",
+  "sha256": "613e7201c087f6761336c2651f3fcdb55978ebf58b1443ca0cf01309f1f5cbe4",
+  "v1Preserved": true,
+  "parameterCount": 40,
+  "physicsChecks": true,
+  "interactionErrors": [],
+  "independentReview": "Final candidate passed targeted arm occlusion re-review; prior face, physics, body-follow and UI checks retained."
+}

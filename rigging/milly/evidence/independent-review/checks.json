@@ -1,0 +1,1806 @@
+{
+  "errors": [],
+  "definitions": [
+    [
+      "eyeLOpen",
+      "左眼开闭",
+      0,
+      1,
+      1,
+      "face"
+    ],
+    [
+      "eyeROpen",
+      "右眼开闭",
+      0,
+      1,
+      1,
+      "face"
+    ],
+    [
+      "eyeLSmile",
+      "左眼微笑",
+      0,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "eyeRSmile",
+      "右眼微笑",
+      0,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "gazeX",
+      "视线左右",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "gazeY",
+      "视线上下",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "pupil",
+      "瞳孔大小",
+      0.6,
+      1.4,
+      1,
+      "face"
+    ],
+    [
+      "highlight",
+      "眼部高光",
+      0,
+      1,
+      1,
+      "face"
+    ],
+    [
+      "mouthOpen",
+      "嘴巴开闭",
+      0,
+      1,
+      0.45,
+      "face"
+    ],
+    [
+      "mouthForm",
+      "嘴巴变形",
+      -1,
+      1,
+      0.3,
+      "face"
+    ],
+    [
+      "browLY",
+      "左眉上下",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browLX",
+      "左眉左右",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browLForm",
+      "左眉变形",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browLAngle",
+      "左眉角度",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browRY",
+      "右眉上下",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browRX",
+      "右眉左右",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browRForm",
+      "右眉变形",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "browRAngle",
+      "右眉角度",
+      -1,
+      1,
+      0,
+      "face"
+    ],
+    [
+      "headX",
+      "头部 X · 左右转头",
+      -30,
+      30,
+      0,
+      "head"
+    ],
+    [
+      "headY",
+      "头部 Y · 俯仰",
+      -30,
+      30,
+      0,
+      "head"
+    ],
+    [
+      "headZ",
+      "头部 Z · 侧倾",
+      -30,
+      30,
+      0,
+      "head"
+    ],
+    [
+      "hairBangs",
+      "刘海摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "hairLeft",
+      "左侧发摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "hairRight",
+      "右侧发摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "hairBack",
+      "后发摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "cowlick",
+      "呆毛摆动",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "wind",
+      "风力",
+      -1,
+      1,
+      0,
+      "head"
+    ],
+    [
+      "physics",
+      "物理强度",
+      0,
+      1,
+      1,
+      "head"
+    ],
+    [
+      "bodyX",
+      "身体 X · 左右转身",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "bodyY",
+      "身体 Y · 俯仰",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "bodyZ",
+      "身体 Z · 摆动",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "breath",
+      "呼吸",
+      0,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "armL",
+      "左大臂转",
+      -30,
+      30,
+      0,
+      "body"
+    ],
+    [
+      "elbowL",
+      "左小臂转",
+      -30,
+      30,
+      0,
+      "body"
+    ],
+    [
+      "wristL",
+      "左手转",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "handL",
+      "左手变形",
+      -1,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "armR",
+      "右大臂转",
+      -30,
+      30,
+      0,
+      "body"
+    ],
+    [
+      "elbowR",
+      "右小臂转",
+      -30,
+      30,
+      0,
+      "body"
+    ],
+    [
+      "wristR",
+      "右手转",
+      -10,
+      10,
+      0,
+      "body"
+    ],
+    [
+      "handR",
+      "右手变形",
+      -1,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "skirt1",
+      "裙子物理 1 · 横摆",
+      -1,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "skirt2",
+      "裙子物理 2 · 扭转",
+      -1,
+      1,
+      0,
+      "body"
+    ],
+    [
+      "skirt3",
+      "裙子物理 3 · 开合",
+      -1,
+      1,
+      0,
+      "body"
+    ]
+  ],
+  "trackKeys": [
+    "browLY",
+    "browLX",
+    "browLForm",
+    "browLAngle",
+    "headX",
+    "headY",
+    "headZ",
+    "eyeLOpen",
+    "eyeROpen",
+    "eyeLSmile",
+    "eyeRSmile",
+    "breath",
+    "mouthOpen",
+    "mouthForm",
+    "armL",
+    "elbowL",
+    "wristL",
+    "handL",
+    "bodyX",
+    "bodyY",
+    "bodyZ",
+    "skirt1",
+    "skirt2",
+    "skirt3"
+  ],
+  "parameters": [
+    {
+      "key": "eyeLOpen",
+      "label": "左眼开闭",
+      "endpoints": [
+        {
+          "value": 0,
+          "actual": 0,
+          "mode": "manual",
+          "geometryHash": "2cdc70f3a7896511d17dc83de0f1f570877765baa6beb98508275da175c6e994",
+          "htmlHash": "8c903b6b9201568cd6fac492b2e3245a2ce56e216778f8074c2012ba91f1ed89",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "eyeROpen",
+      "label": "右眼开闭",
+      "endpoints": [
+        {
+          "value": 0,
+          "actual": 0,
+          "mode": "manual",
+          "geometryHash": "582bd0e46e11ba53e9c947217c0f2892001b7ecb58937055503a822c8e9bdc78",
+          "htmlHash": "815cb665e2e779c2b48defba3ad0e13bf1c612e7272c0c8cc73601c261b28722",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "eyeLSmile",
+      "label": "左眼微笑",
+      "endpoints": [
+        {
+          "value": 0,
+          "actual": 0,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "ed5f6946cfc2ec9584d6c8064efdea465f85e91bb8a6e6bdac2a039ff8c0159f",
+          "htmlHash": "f8e9be3bdecb6152f5ab4d8ad3f4263b73ec197bca277e07c8176a202ecfae90",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "eyeRSmile",
+      "label": "右眼微笑",
+      "endpoints": [
+        {
+          "value": 0,
+          "actual": 0,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "dfa80ee995398607aefc3d3dabb15cf8f239dd6c42836e563097350e72d584f0",
+          "htmlHash": "2a80057e012ca16f33ae69f343d43bbe948b2adca38ebbbf451210af26de64f4",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "gazeX",
+      "label": "视线左右",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "737a2f50e99b9ec74ed6860c54933a1f24d9ae4c9dfdbf832509d1d8cefb442c",
+          "htmlHash": "5b320cd5cf3b6f9bc56756ecb75e5205dd7e951d1d4e48ecfcffb63ebd1df783",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "62e69eee89ce479c72a19240e4fd47f399fe5bcc0b569212f591c354e3dda1d3",
+          "htmlHash": "75b1f7c104fdef6c28501fbf533c1e26e96d32e1da3508bbefcbe715f24f7ab5",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "gazeY",
+      "label": "视线上下",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "65cd1fda4bb338a2cb88540362a3767f71c1bf1fbb874b71c6d345f476b25c1c",
+          "htmlHash": "441e24aec51d2f9c40df20303128f73fe19f219200ca78bf8827b2da0eb825da",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "62fd3772ffb7a71f252ff4a5679c69465dfed9877cd5f28f4e70bd25585104ab",
+          "htmlHash": "f26ceb97e371ab33b95aa76fd64f1808b9376f34021158eb5493eec412b8a780",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "pupil",
+      "label": "瞳孔大小",
+      "endpoints": [
+        {
+          "value": 0.6,
+          "actual": 0.6,
+          "mode": "manual",
+          "geometryHash": "a0c06375f75ee6599eb02f534eef2461a03671d941ceac138169b0bf5df3b5ac",
+          "htmlHash": "ecd42352119d1f9eac888bd5048e215094348c7aa6f4bbdd74fed9261ed2b698",
+          "nonFinite": []
+        },
+        {
+          "value": 1.4,
+          "actual": 1.4,
+          "mode": "manual",
+          "geometryHash": "9a13ddabd2582d7333d9a5cdfd0ab79333afa915359e95ee5bb49c62cba9fc05",
+          "htmlHash": "519c50900f06a45765a17bb9e9afeb11de36311741c95f271970dd827ec517b6",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "highlight",
+      "label": "眼部高光",
+      "endpoints": [
+        {
+          "value": 0,
+          "actual": 0,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "b0a9bc3df560c31204fc369bd4e7c2254a146ae40ce06706d1661ebad1aa8c3d",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": false,
+      "renderChanges": true
+    },
+    {
+      "key": "mouthOpen",
+      "label": "嘴巴开闭",
+      "endpoints": [
+        {
+          "value": 0,
+          "actual": 0,
+          "mode": "manual",
+          "geometryHash": "0382ac0e5198af366829695c88f4c1f63e62d534a08caee2668ddd8eea756e27",
+          "htmlHash": "9b451e4e4d35baced0b071b71b7c67c0ba2f358efd5320a6066de318740bb91b",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "a8ff4bee526f2f5f274987c0f3f8347053443148f609b6c0d18b444eff3b67b4",
+          "htmlHash": "c6aee8bf5d9a20f15f6481ec3bddbb4a8794004546b567601923301e1ef15128",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "mouthForm",
+      "label": "嘴巴变形",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "697a44c2f4ed9a00ca8bccadccc8a54036e65b5f3adb30c84cd56baadde849d0",
+          "htmlHash": "228ab65cd4f0c33461f13cfeb42aee02dacc38f5af06d2e845b60795b4b17a15",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "60e99b39428745a5ecfc52f0e5ca0a1f6f8b7cebda0e905554762679acc68fb4",
+          "htmlHash": "34fc6d6c0c38fd64e1a2114ade742fe5b14c508e62e09b5f178dd78fc2aa0c29",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "browLY",
+      "label": "左眉上下",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "5aa4ea96f0a3af55a31db1a0781ac727342e6f1c148eb3d376104fa7074e7763",
+          "htmlHash": "49bfad616e6724c710e50f5559372a8768bf21e217784334f2065de318dfcce6",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "a0eebeb9aa795cbb3e7a159e0309b583a5e44b6282c40f275deadfbbef4968a3",
+          "htmlHash": "3aece3ba2a11f8976a12dfc0e952ddf93d7a9a88ec4cbe51b2b26c3fa64451fe",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "browLX",
+      "label": "左眉左右",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "5290b39be1396077577501506d437842b6aa0afab166d00d5eaa8487a8f5e88a",
+          "htmlHash": "84a09a1877cfb3454cb70dee1babcd977ff47e6043da33081557cb847bbd5245",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "091d59b78e41607943c400cbc000061fc020e09c85f2bea278f41baf99fea4b8",
+          "htmlHash": "4fcc135db3856a72a6f88dd4789a6d041fa80fd4bbce479e987e039f72b00ebc",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "browLForm",
+      "label": "左眉变形",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "88652b8566cce77ccdd48091037c74eae5a1f8631d04483df1b276d9ddabf8a8",
+          "htmlHash": "3099e351e835597deeca59d47351571b8b138e41ed6b64f2aaea52d2c45875e2",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "70e85303c47d372a2ddb3d742abab122f58f061ab09948f9e25422d0c827737e",
+          "htmlHash": "780a370d4e1ebb015b109a2c3d01eec690d57047c4731d88b44723bccaaa616a",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "browLAngle",
+      "label": "左眉角度",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "33261b67bfa20d3a3c7009fdf88e82ce8e9d1e1db6eb3912a3b6579c6fb71b10",
+          "htmlHash": "cd1365d87e8f0c4628e7d18b61efb3b539462deb6d17f4d8d83aa22efad414da",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "6c51042d28978e47524498769b18898b815204eac51acbb1075c060a215b4aa4",
+          "htmlHash": "507d3a7034549b108f65fe31cd4547658e177de5dc4c0b9ed66c521cc9a4ddf0",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "browRY",
+      "label": "右眉上下",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "878db3a01a617195d1b59521179cb0a6aa7a1621ac7340d3dac4c83762484641",
+          "htmlHash": "ea69ba86a6e42db0c9a0eec48990c83aed31b2baf942242efca7e46d8cdf53a3",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "5926d6b4e166873bcbab7d9f8d60128b08e41363bea4189ec6bda889f988cacb",
+          "htmlHash": "842cd404817ca471e5fd4c2e72938d81bdbe2d9302f5e67bf21c6ae94a33d412",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "browRX",
+      "label": "右眉左右",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "1885f1a6e5952f23a25862d6e063ca58a644695954a04de5fefa4239974bbd8d",
+          "htmlHash": "0e467f2eb9a468695d87182470e2ee9f7e9d411842dcc7837289b506c92ca128",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "dfed7cc024a645c4da8af6a6ee04c7a6c282748049f3635137a861661eb638de",
+          "htmlHash": "a72ac475786210089ec02e497ce8aa870745ded8d9e7b95b4575b042958158e0",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "browRForm",
+      "label": "右眉变形",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "cd305501328c99b9237c78d95d19e12045beaa250ad7655bab8aac3b22a88500",
+          "htmlHash": "869a1d276edba480c818861dd280fb0c9627435a9592977d69a4fdeccb3f102a",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "44ca96b7fc90d0a43116a661d41d6b36d3ff8315d25c24174021dd4287fa8855",
+          "htmlHash": "987a3b13e0633fc64faa75d5d16cda9315e3e897acbc4cc954b7aaf464f077b1",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "browRAngle",
+      "label": "右眉角度",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "a5a4794dc445dd4bb437ce97c9a28d4c4eae3f8cbc00213b567f17945e93f439",
+          "htmlHash": "1a18752861ff5779e4879854255d0f847241630cac14c298e2b835ce46d580de",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "f97b6fce0f5c381e805f4d22b6da76afcf8aeddd53ea75db161caefc1a9187bf",
+          "htmlHash": "b3203791df51338d771b5b79758b6e6436f457e56fb99ecd9fb71b61c00f50f0",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "headX",
+      "label": "头部 X · 左右转头",
+      "endpoints": [
+        {
+          "value": -30,
+          "actual": -30,
+          "mode": "manual",
+          "geometryHash": "57d589fdaa30daa054a3972ec05e5f4a5de56619de5956b79d6ae79a7d346842",
+          "htmlHash": "805984942ab57b72cad76ee9220dd4f0fe1768d18153c4f69eda1fa35eb8f136",
+          "nonFinite": []
+        },
+        {
+          "value": 30,
+          "actual": 30,
+          "mode": "manual",
+          "geometryHash": "52f36e83197f73e544faaf5d345f1f0a85854c29b805b1aa524037bd7ebe522d",
+          "htmlHash": "40b26327d8da62e269c82a407547201e994f344cc094abf63c58b81d94b29f0c",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "headY",
+      "label": "头部 Y · 俯仰",
+      "endpoints": [
+        {
+          "value": -30,
+          "actual": -30,
+          "mode": "manual",
+          "geometryHash": "58d4650c4c245d888c45e19f6f4b8b75791e23204ed27845ccf81691907f4c4b",
+          "htmlHash": "360a69ea5f02af0403bba8a69c4230a85a933ae5d7069545efd21f47ecae491e",
+          "nonFinite": []
+        },
+        {
+          "value": 30,
+          "actual": 30,
+          "mode": "manual",
+          "geometryHash": "c6859cdf8702286231b782f951b0aa80c8be3b3179cab39b28bade356030f567",
+          "htmlHash": "4ce245a7038dabccdb02a3935a0a24845b5840eb9965f1a671d061f1f5ce9549",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "headZ",
+      "label": "头部 Z · 侧倾",
+      "endpoints": [
+        {
+          "value": -30,
+          "actual": -30,
+          "mode": "manual",
+          "geometryHash": "e39611ea551a1f36045faf6fc1dc72f5896016156d8d78726a68cfc1b51a3ca9",
+          "htmlHash": "e46a41b1deb664fc9ec3edef328ade700b524068b3a59981aa22bf7d65947030",
+          "nonFinite": []
+        },
+        {
+          "value": 30,
+          "actual": 30,
+          "mode": "manual",
+          "geometryHash": "309c9adf5164f122fda8c75de6c6707effe11733bbb708f7d0a13e17432017c5",
+          "htmlHash": "650a67af50fd9d072296c33c0501ed91bef512e51977754c611caf580a732f12",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "hairBangs",
+      "label": "刘海摆动",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "a641f13e96161db0b117bb63efadd1f3918adc7a02cfa9bda78647c1170cc6b5",
+          "htmlHash": "2b3e8b49e98e00111ed082f9779e629765cd7768b1fc7be2369ea1a2ba777e23",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "bd9b164b80955fcfd4728c44835ae13f6c02a0145a4f784a251d22e3660206f3",
+          "htmlHash": "8e1854929df463570354242186bdebebf7edbe1d4214fbb3c7d995936971d419",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "hairLeft",
+      "label": "左侧发摆动",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "763280a48d0ec9e1cb434f3763399ff22dd7df958b4299853cb66d1a469b769a",
+          "htmlHash": "dbd80ec06f46a22d83ae01e92f39c772a3316b7d97c8e16d91c8613b859ef40d",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "d860695bdb6e6517fdcb2e7b2ea22dbebc81fb913ffb5ef06335febef2c643b9",
+          "htmlHash": "3a8099a994d1ca5a2bfa30a6eac4bb29b898343ee91700b6587bb01955af2e71",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "hairRight",
+      "label": "右侧发摆动",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "64eb27bdf1bae42499a5cda3ed518a5c1115abf86771c86b978b352ac6e17eed",
+          "htmlHash": "bfd2a7c9b82038e82ddd88ea15fdf46f9deee86c8e77532950b851a8c93c48a5",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "a70925ea31d06ed78350112c62bb2a953702a91ffa3a4702244dfb47e24b195a",
+          "htmlHash": "409d1fdea9532eaffa974fd6aa0b6d64fa0a8d65ea25c4499b8e36882ed22fca",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "hairBack",
+      "label": "后发摆动",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "7d8b8c3d9a9b22dde6581980ad62f5caf719829ada42259f6ee07df957fad9c2",
+          "htmlHash": "190140eb048e510857117b9e8b14034141f984f207aa8b02ef0bd18fa3dbf93c",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "e2ecd20d34ac74cd0de0dd6c964b82af84d68b2bbca4799443dc0ae7bd1c8df1",
+          "htmlHash": "01a846f696f4b60cee567c0c98619690200abd21096454754b5130005c2fa039",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "cowlick",
+      "label": "呆毛摆动",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "0bf3072b1b75685c947e3b9e164d7ba39f6e498cd109f608ed2f1573529393a1",
+          "htmlHash": "f871e59fb3f92a089813d05c96b5c84c4f56aedce5e72cdb60dfd6fbbf3a3942",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "244873d125fb1c7d1d7bdba824428b181965378ab8b3c5277328ad08f06c6f0c",
+          "htmlHash": "00a6066d3e485456bca3453366a8f33bd864a7c158dcc3dc3555a70d5e58d934",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "wind",
+      "label": "风力",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": false,
+      "renderChanges": false
+    },
+    {
+      "key": "physics",
+      "label": "物理强度",
+      "endpoints": [
+        {
+          "value": 0,
+          "actual": 0,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": false,
+      "renderChanges": false
+    },
+    {
+      "key": "bodyX",
+      "label": "身体 X · 左右转身",
+      "endpoints": [
+        {
+          "value": -10,
+          "actual": -10,
+          "mode": "manual",
+          "geometryHash": "e6f5361d222436f27140b0ac5c4242d2297f31d4154de5906a0c31c6e083c09f",
+          "htmlHash": "4435812c99d6af2233144ac153f677b303c83f625e93c98418034bf3c9574547",
+          "nonFinite": []
+        },
+        {
+          "value": 10,
+          "actual": 10,
+          "mode": "manual",
+          "geometryHash": "0973593d13bd32a963b5c82b7f2871ba359e5c34ab435fa30c15eb7e47cc9ab6",
+          "htmlHash": "887a62e5add0c915f4d0522a69be3d1218c1499412d95a49196bb613c095582b",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "bodyY",
+      "label": "身体 Y · 俯仰",
+      "endpoints": [
+        {
+          "value": -10,
+          "actual": -10,
+          "mode": "manual",
+          "geometryHash": "d24c317408ebbdc19daca320d6a181fcdb5d8912e2f10d28b3dc93d193ddd59a",
+          "htmlHash": "fd24156bfaed73037576c6454f7a314e88faf4ee424bd7adad1c14c5130b8e46",
+          "nonFinite": []
+        },
+        {
+          "value": 10,
+          "actual": 10,
+          "mode": "manual",
+          "geometryHash": "4ea9c2f038f415d0b62649591f5b947289c45f5b99c214ac16eed787848e76ac",
+          "htmlHash": "fea82ed51dd7a9263d2c804c8fb73a00571e04170f7ab8fc9a11ecc86afd4516",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "bodyZ",
+      "label": "身体 Z · 摆动",
+      "endpoints": [
+        {
+          "value": -10,
+          "actual": -10,
+          "mode": "manual",
+          "geometryHash": "a8657c809700e0f324861f1a9c690a6ff7198f04be3ef9fcd7bffa6961f59a3a",
+          "htmlHash": "b523345a4f9b090658aef66b4d4b3bdfb1889ba59377e576ea325803f649aaf6",
+          "nonFinite": []
+        },
+        {
+          "value": 10,
+          "actual": 10,
+          "mode": "manual",
+          "geometryHash": "88393ef1f4b835c94ed58f1dcf66e6a7a5c9ffee9e94448f46e7eef2f85592a7",
+          "htmlHash": "e9afc05fadc2963dfc64297025d634b5df3df5a4b17105c23103726f9ac58529",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "breath",
+      "label": "呼吸",
+      "endpoints": [
+        {
+          "value": 0,
+          "actual": 0,
+          "mode": "manual",
+          "geometryHash": "c3717d75047cb2858d00fc64846a41937509c26c513a1e79dc885ddca94e5351",
+          "htmlHash": "0f58a0b3cbfdf99fe92a97fc95b8a6d9f40520b9f883c8ec89a5de4b2e21821b",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "f6b1e93184a6ec6b1b19e28727045a639bbef762f21568629ee3be48def9bd08",
+          "htmlHash": "85e7cf792c2c73090ae998266cc6aa8a60d8ddbb663f9b3a100fd1244cd49dfc",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "armL",
+      "label": "左大臂转",
+      "endpoints": [
+        {
+          "value": -30,
+          "actual": -30,
+          "mode": "manual",
+          "geometryHash": "a7137471ae3f66758a77ee8f442d417e2d8abaa824fc47efe79c073ab147eabf",
+          "htmlHash": "288370003bc39aef05a7de65b23095505ce26f13cf4da786ed3d224cf3324dbd",
+          "nonFinite": []
+        },
+        {
+          "value": 30,
+          "actual": 30,
+          "mode": "manual",
+          "geometryHash": "769def649aa197586693379f8658d3487f372b35f05edbc0337e01e3993102c7",
+          "htmlHash": "fae6f4ac810baafc050e7e15a84a5f92cac58fe217d0a2f80556420a97e3bd1f",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "elbowL",
+      "label": "左小臂转",
+      "endpoints": [
+        {
+          "value": -30,
+          "actual": -30,
+          "mode": "manual",
+          "geometryHash": "9a4744c6aac61d56f1db2ed70467ce3cf22ddf6a4c86af324fff668413df92c0",
+          "htmlHash": "22a0528bd4f9d7cd9dda4874cc56be4957e82ef82e2fee3417b809a8edcbebfb",
+          "nonFinite": []
+        },
+        {
+          "value": 30,
+          "actual": 30,
+          "mode": "manual",
+          "geometryHash": "6cf2c76e59f5d44b763fc3e66d8da719a8bac8f29d1c163003c066b829cc022e",
+          "htmlHash": "55a93ea5e0b52d7547e07bd36c3cd233d02f41a1f9b8761a1d0cc7d8098c069a",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "wristL",
+      "label": "左手转",
+      "endpoints": [
+        {
+          "value": -10,
+          "actual": -10,
+          "mode": "manual",
+          "geometryHash": "bbfc3602c8f595b3bbf7c2d976853bdba3a6553c0573e2a7bee96e961e036de0",
+          "htmlHash": "d6fd26d99714eccddc4858343dd60eb9532329ae47aa09b40609ad2e9fb87ef6",
+          "nonFinite": []
+        },
+        {
+          "value": 10,
+          "actual": 10,
+          "mode": "manual",
+          "geometryHash": "8ca9bed3899d4b7a08ddc7c46c4b166739ce772187963a511869b6f6f0289aab",
+          "htmlHash": "c755ac2836bcd915dc9e0ef15743e64e02f67143d839e7e4713163017cfa97fa",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "handL",
+      "label": "左手变形",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "1c519b175025a46ff73ba7c1ef638224c8d481509261c685df0a9d549bb7fee9",
+          "htmlHash": "590fe6c7dbb99c6db226e2df8562f2801e06c64ffa95b74d731c6e7c50680101",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "3c4ad72f353255dfa1fda3aad1f8fc3fc2047bd3530a47ea36a10778d4a8e6e4",
+          "htmlHash": "5af76843d46b1b3ff7663d3be4df6d25522855a69169e57d7b8a018dd6d83199",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "armR",
+      "label": "右大臂转",
+      "endpoints": [
+        {
+          "value": -30,
+          "actual": -30,
+          "mode": "manual",
+          "geometryHash": "fa70be8eed0ed75ef8d4a7913173a78a32b0f0c0bb74482cf1b003e71be0b1cd",
+          "htmlHash": "d3a7ebd33c1bad795e3d51909c4199275515e226250054a15d430ff5b02f505b",
+          "nonFinite": []
+        },
+        {
+          "value": 30,
+          "actual": 30,
+          "mode": "manual",
+          "geometryHash": "00356f9aaf8f31956e487bb6c902cb20d0907d12726b9f0d102c964692aeeca6",
+          "htmlHash": "2ab3f28e7d03010f53da4d9c59e45b3e6e3822e12212d6e45594d66d755c2d82",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "elbowR",
+      "label": "右小臂转",
+      "endpoints": [
+        {
+          "value": -30,
+          "actual": -30,
+          "mode": "manual",
+          "geometryHash": "56364643130654987b853b98f19ba0a6beefa4390498bcd36b57b9c10767784c",
+          "htmlHash": "f9ab9a4cd4bb3a6c2ec1d935d95bea24b790f4fe41483efa4936b1ddc7e900c2",
+          "nonFinite": []
+        },
+        {
+          "value": 30,
+          "actual": 30,
+          "mode": "manual",
+          "geometryHash": "30eca5f6ef31e6033dc26b8c2302ec69d006139f1dabd7d2392bc528e6981f6c",
+          "htmlHash": "e0a259da533a5086c4f096d5a4c83acfe5f260567f6da8df65de16107d438ee6",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "wristR",
+      "label": "右手转",
+      "endpoints": [
+        {
+          "value": -10,
+          "actual": -10,
+          "mode": "manual",
+          "geometryHash": "8b062bf467278621c97bc25d5242a92e5b16e170a7d3d8d7d69285574cb745f2",
+          "htmlHash": "69ba3296d76fc954e674acc4f407aedd5d16493486a54c8f6d27c286da3b6edf",
+          "nonFinite": []
+        },
+        {
+          "value": 10,
+          "actual": 10,
+          "mode": "manual",
+          "geometryHash": "f5c8ef0ae3fabfe77382ac6807d50ff048964246ddcb0af26f60d8084a3b2fbb",
+          "htmlHash": "b83b7e6c41071adb9e362e14a70226ab00cb2f42e541d382503fb9afa9d7fd52",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "handR",
+      "label": "右手变形",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "c87bfc6fd7cb97c17ac544aa392191293142d78cc46471ec8cd9932109e4b0ca",
+          "htmlHash": "fabcc21e4a1da3aa6132af42d7bb04ea66809c6aecf5c34db8137aec815811bd",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "d1c611c1443c9fcb3deca0f46ab6cc3a3c9586218f45ed15be06c3cabc53e85b",
+          "htmlHash": "2841aa2964a6c2e911063b4ae9e1989017c1a428a2b67be9e27eefffa4252458",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "skirt1",
+      "label": "裙子物理 1 · 横摆",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "428ac1d2116a027192178b6b33683a50272def0d730c5bb0f85f23ce3ef494d5",
+          "htmlHash": "d8b38db9977401f32f3f060b653be86bb21e088c26c080181b1b619885675d52",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "870fa45c67bedd03e42e55bb0bb35aca788e48dda07041914c5e7a5949c22c6a",
+          "htmlHash": "f75ec671667eb557b3b8112fb44d3cc1fbf2a777f9f65250d003c1f93b2b6dfc",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "skirt2",
+      "label": "裙子物理 2 · 扭转",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "a79a6aaa65184c8afcf83684aeae089429074756ff58202f0671a834e4c2acb5",
+          "htmlHash": "9f7a47e8b1f95ec96ce39a7cfc2c1460d46cea80e43b7b3c053142e3c2c23179",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "3dc1a100adec29b624116d8e40c0fcf8e0ce70bb1563eb7cd3288aabf993327a",
+          "htmlHash": "c66e81f385db9e0239c5f6cb63c4bf2edb0ac92ecd3b99455fc3844e86eea414",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    },
+    {
+      "key": "skirt3",
+      "label": "裙子物理 3 · 开合",
+      "endpoints": [
+        {
+          "value": -1,
+          "actual": -1,
+          "mode": "manual",
+          "geometryHash": "9a9dc71adf1f90c110f730de51e3ebfa2138ea2fe99dc372267e663538d8053f",
+          "htmlHash": "0a3fcf0d70ce3fcdb2518ff2828878d39d6cddb35c16f575dfae98f83d3bdf64",
+          "nonFinite": []
+        },
+        {
+          "value": 1,
+          "actual": 1,
+          "mode": "manual",
+          "geometryHash": "6cc2e03199e132dee7cf142a893a36d04750892a82acd889d61a9ce918113e13",
+          "htmlHash": "1298738cab0015c7ecde3bd99a5c8b78fc922beea8f3a5f803277a6b362d7b9b",
+          "nonFinite": []
+        }
+      ],
+      "geometryChanges": true,
+      "renderChanges": true
+    }
+  ],
+  "screens": [
+    {
+      "name": "neutral-ui",
+      "params": {},
+      "view": "portrait"
+    },
+    {
+      "name": "neutral",
+      "params": {},
+      "view": "face"
+    },
+    {
+      "name": "head-x-minus",
+      "params": {
+        "headX": -30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-x-plus",
+      "params": {
+        "headX": 30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-y-minus",
+      "params": {
+        "headY": -30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-y-plus",
+      "params": {
+        "headY": 30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-z-minus",
+      "params": {
+        "headZ": -30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-z-plus",
+      "params": {
+        "headZ": 30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-all-minus",
+      "params": {
+        "headX": -30,
+        "headY": -30,
+        "headZ": -30
+      },
+      "view": "face"
+    },
+    {
+      "name": "head-all-plus",
+      "params": {
+        "headX": 30,
+        "headY": 30,
+        "headZ": 30
+      },
+      "view": "face"
+    },
+    {
+      "name": "close-character-left",
+      "params": {
+        "eyeLOpen": 0
+      },
+      "view": "face"
+    },
+    {
+      "name": "close-character-right",
+      "params": {
+        "eyeROpen": 0
+      },
+      "view": "face"
+    },
+    {
+      "name": "close-both-smile",
+      "params": {
+        "eyeLOpen": 0,
+        "eyeROpen": 0,
+        "eyeLSmile": 1,
+        "eyeRSmile": 1
+      },
+      "view": "face"
+    },
+    {
+      "name": "mouth-closed",
+      "params": {
+        "mouthOpen": 0,
+        "mouthForm": 0
+      },
+      "view": "face"
+    },
+    {
+      "name": "mouth-open-wide",
+      "params": {
+        "mouthOpen": 1,
+        "mouthForm": 1
+      },
+      "view": "face"
+    },
+    {
+      "name": "mouth-open-round",
+      "params": {
+        "mouthOpen": 1,
+        "mouthForm": -1
+      },
+      "view": "face"
+    },
+    {
+      "name": "hair-plus",
+      "params": {
+        "hairBangs": 1,
+        "hairLeft": 1,
+        "hairRight": 1,
+        "hairBack": 1,
+        "cowlick": 1
+      },
+      "view": "face"
+    },
+    {
+      "name": "hair-minus",
+      "params": {
+        "hairBangs": -1,
+        "hairLeft": -1,
+        "hairRight": -1,
+        "hairBack": -1,
+        "cowlick": -1
+      },
+      "view": "face"
+    },
+    {
+      "name": "body-x-minus",
+      "params": {
+        "bodyX": -10
+      },
+      "view": "full"
+    },
+    {
+      "name": "body-x-plus",
+      "params": {
+        "bodyX": 10
+      },
+      "view": "full"
+    },
+    {
+      "name": "body-all-plus",
+      "params": {
+        "bodyX": 10,
+        "bodyY": 10,
+        "bodyZ": 10
+      },
+      "view": "full"
+    },
+    {
+      "name": "arms-extreme",
+      "params": {
+        "armL": 30,
+        "armR": 30,
+        "elbowL": 30,
+        "elbowR": 30,
+        "wristL": 10,
+        "wristR": 10,
+        "handL": 1,
+        "handR": 1
+      },
+      "view": "full"
+    },
+    {
+      "name": "back-only-neutral",
+      "params": {},
+      "view": "portrait"
+    },
+    {
+      "name": "back-only-plus",
+      "params": {
+        "bodyX": 10
+      },
+      "view": "portrait"
+    },
+    {
+      "name": "mobile-390",
+      "params": {},
+      "view": "portrait"
+    },
+    {
+      "name": "mobile-320",
+      "params": {},
+      "view": "portrait"
+    }
+  ],
+  "mobile390": {
+    "viewport": 390,
+    "documentWidth": 390,
+    "bodyWidth": 390,
+    "elements": [
+      {
+        "selector": "HEADER.",
+        "rect": {
+          "x": 0,
+          "y": -488,
+          "w": 390,
+          "h": 68,
+          "right": 390
+        }
+      },
+      {
+        "selector": "DIV.brand",
+        "rect": {
+          "x": 15,
+          "y": -481,
+          "w": 254.875,
+          "h": 53,
+          "right": 269.875
+        }
+      },
+      {
+        "selector": "DIV.header-right",
+        "rect": {
+          "x": 269.875,
+          "y": -480.5,
+          "w": 105.125,
+          "h": 52,
+          "right": 375
+        }
+      },
+      {
+        "selector": "MAIN.",
+        "rect": {
+          "x": 0,
+          "y": -420,
+          "w": 390,
+          "h": 1330,
+          "right": 390
+        }
+      },
+      {
+        "selector": "SECTION.workspace",
+        "rect": {
+          "x": 0,
+          "y": -420,
+          "w": 390,
+          "h": 660,
+          "right": 390
+        }
+      },
+      {
+        "selector": "DIV.canvas-wrap",
+        "rect": {
+          "x": 16,
+          "y": -351,
+          "w": 358,
+          "h": 469,
+          "right": 374
+        }
+      },
+      {
+        "selector": "DIV.playback",
+        "rect": {
+          "x": 16,
+          "y": 132,
+          "w": 358,
+          "h": 92,
+          "right": 374
+        }
+      },
+      {
+        "selector": "DIV.transport",
+        "rect": {
+          "x": 34,
+          "y": 148,
+          "w": 322,
+          "h": 36,
+          "right": 356
+        }
+      },
+      {
+        "selector": "ASIDE.right-panel",
+        "rect": {
+          "x": 0,
+          "y": 240,
+          "w": 390,
+          "h": 670,
+          "right": 390
+        }
+      }
+    ],
+    "controlWorks": true
+  },
+  "mobile320": {
+    "viewport": 320,
+    "documentWidth": 320,
+    "bodyWidth": 320,
+    "elements": [
+      {
+        "selector": "HEADER.",
+        "rect": {
+          "x": 0,
+          "y": -488,
+          "w": 320,
+          "h": 68,
+          "right": 320
+        }
+      },
+      {
+        "selector": "DIV.brand",
+        "rect": {
+          "x": 15,
+          "y": -492,
+          "w": 205.3125,
+          "h": 75,
+          "right": 220.3125
+        }
+      },
+      {
+        "selector": "DIV.header-right",
+        "rect": {
+          "x": 220.3125,
+          "y": -481.5,
+          "w": 84.6875,
+          "h": 54,
+          "right": 305
+        }
+      },
+      {
+        "selector": "MAIN.",
+        "rect": {
+          "x": 0,
+          "y": -420,
+          "w": 320,
+          "h": 1330,
+          "right": 320
+        }
+      },
+      {
+        "selector": "SECTION.workspace",
+        "rect": {
+          "x": 0,
+          "y": -420,
+          "w": 320,
+          "h": 660,
+          "right": 320
+        }
+      },
+      {
+        "selector": "DIV.canvas-wrap",
+        "rect": {
+          "x": 16,
+          "y": -351,
+          "w": 288,
+          "h": 469,
+          "right": 304
+        }
+      },
+      {
+        "selector": "DIV.playback",
+        "rect": {
+          "x": 16,
+          "y": 132,
+          "w": 288,
+          "h": 92,
+          "right": 304
+        }
+      },
+      {
+        "selector": "DIV.transport",
+        "rect": {
+          "x": 34,
+          "y": 148,
+          "w": 252,
+          "h": 36,
+          "right": 286
+        }
+      },
+      {
+        "selector": "ASIDE.right-panel",
+        "rect": {
+          "x": 0,
+          "y": 240,
+          "w": 320,
+          "h": 670,
+          "right": 320
+        }
+      }
+    ],
+    "controlWorks": true
+  }
+}

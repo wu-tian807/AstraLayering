@@ -1,0 +1,584 @@
+{
+  "poses": [
+    [
+      "threshold-before",
+      {
+        "armL": 7,
+        "armR": 7,
+        "elbowL": 15,
+        "elbowR": 15
+      }
+    ],
+    [
+      "threshold-after",
+      {
+        "armL": 7.1,
+        "armR": 7.1,
+        "elbowL": 15,
+        "elbowR": 15
+      }
+    ],
+    [
+      "neutral-turn-before",
+      {
+        "bodyX": 0.99
+      }
+    ],
+    [
+      "neutral-turn-after",
+      {
+        "bodyX": 1.01
+      }
+    ],
+    [
+      "combo-shoulder",
+      {
+        "headX": 30,
+        "headY": 30,
+        "headZ": 30,
+        "bodyX": 10,
+        "bodyY": 10
+      }
+    ],
+    [
+      "arms-open",
+      {
+        "armL": -15,
+        "armR": -15,
+        "elbowL": -15,
+        "elbowR": -15
+      }
+    ],
+    [
+      "arms-front-left",
+      {
+        "armL": -30,
+        "elbowL": -30,
+        "bodyX": 10
+      }
+    ],
+    [
+      "front-bend",
+      {
+        "armL": -7,
+        "armR": -7,
+        "elbowL": 30,
+        "elbowR": 30
+      }
+    ],
+    [
+      "arms-back",
+      {
+        "armL": 30,
+        "armR": 30,
+        "elbowL": 30,
+        "elbowR": 30
+      }
+    ],
+    [
+      "one-back",
+      {
+        "armL": 25,
+        "elbowL": 30,
+        "armR": -10,
+        "elbowR": -10,
+        "bodyX": 10
+      }
+    ],
+    [
+      "tuck-10",
+      {
+        "armL": 10,
+        "armR": 10,
+        "elbowL": 25,
+        "elbowR": 25
+      }
+    ],
+    [
+      "tuck-12",
+      {
+        "armL": 12,
+        "armR": 12,
+        "elbowL": 25,
+        "elbowR": 25
+      }
+    ],
+    [
+      "tuck-14",
+      {
+        "armL": 14,
+        "armR": 14,
+        "elbowL": 25,
+        "elbowR": 25
+      }
+    ],
+    [
+      "tuck-16",
+      {
+        "armL": 16,
+        "armR": 16,
+        "elbowL": 25,
+        "elbowR": 25
+      }
+    ],
+    [
+      "tuck-18",
+      {
+        "armL": 18,
+        "armR": 18,
+        "elbowL": 25,
+        "elbowR": 25
+      }
+    ],
+    [
+      "tuck-20",
+      {
+        "armL": 20,
+        "armR": 20,
+        "elbowL": 25,
+        "elbowR": 25
+      }
+    ],
+    [
+      "tuck-22",
+      {
+        "armL": 22,
+        "armR": 22,
+        "elbowL": 25,
+        "elbowR": 25
+      }
+    ],
+    [
+      "tuck-25",
+      {
+        "armL": 25,
+        "armR": 25,
+        "elbowL": 25,
+        "elbowR": 25
+      }
+    ]
+  ],
+  "snapshots": [
+    {
+      "time": 12.599999952316466,
+      "p": {
+        "eyeLOpen": 1,
+        "eyeROpen": 1,
+        "eyeLSmile": 0,
+        "eyeRSmile": 0,
+        "gazeX": 0,
+        "gazeY": 0,
+        "pupil": 1,
+        "highlight": 1,
+        "mouthOpen": 0.3,
+        "mouthForm": 0.3,
+        "browLY": 0,
+        "browLX": 0,
+        "browLForm": 0,
+        "browLAngle": 0,
+        "browRY": 0,
+        "browRX": 0,
+        "browRForm": 0,
+        "browRAngle": 0,
+        "headX": 0,
+        "headY": 0,
+        "headZ": 0,
+        "hairStiffness": 0.48,
+        "hairDamping": 0.48,
+        "wind": 0,
+        "physics": 0,
+        "bodyX": 0,
+        "bodyY": 0,
+        "bodyZ": 0,
+        "breath": 0,
+        "armL": 16.1764662851456,
+        "elbowL": 25,
+        "wristL": 0,
+        "handL": 0,
+        "armR": 16.1764662851456,
+        "elbowR": 25,
+        "wristR": 0,
+        "handR": 0,
+        "skirt1": 0,
+        "skirt2": 0,
+        "skirt3": 0
+      }
+    },
+    {
+      "time": 62.4999999523161,
+      "p": {
+        "eyeLOpen": 1,
+        "eyeROpen": 1,
+        "eyeLSmile": 0,
+        "eyeRSmile": 0,
+        "gazeX": 0,
+        "gazeY": 0,
+        "pupil": 1,
+        "highlight": 1,
+        "mouthOpen": 0.3,
+        "mouthForm": 0.3,
+        "browLY": 0,
+        "browLX": 0,
+        "browLForm": 0,
+        "browLAngle": 0,
+        "browRY": 0,
+        "browRX": 0,
+        "browRForm": 0,
+        "browRAngle": 0,
+        "headX": 0,
+        "headY": 0,
+        "headZ": 0,
+        "hairStiffness": 0.48,
+        "hairDamping": 0.48,
+        "wind": 0,
+        "physics": 0,
+        "bodyX": 0,
+        "bodyY": 0,
+        "bodyZ": 0,
+        "breath": 0,
+        "armL": 20.387719418985256,
+        "elbowL": 25,
+        "wristL": 0,
+        "handL": 0,
+        "armR": 20.387719418985256,
+        "elbowR": 25,
+        "wristR": 0,
+        "handR": 0,
+        "skirt1": 0,
+        "skirt2": 0,
+        "skirt3": 0
+      }
+    },
+    {
+      "time": 112.59999995231647,
+      "p": {
+        "eyeLOpen": 1,
+        "eyeROpen": 1,
+        "eyeLSmile": 0,
+        "eyeRSmile": 0,
+        "gazeX": 0,
+        "gazeY": 0,
+        "pupil": 1,
+        "highlight": 1,
+        "mouthOpen": 0.3,
+        "mouthForm": 0.3,
+        "browLY": 0,
+        "browLX": 0,
+        "browLForm": 0,
+        "browLAngle": 0,
+        "browRY": 0,
+        "browRX": 0,
+        "browRForm": 0,
+        "browRAngle": 0,
+        "headX": 0,
+        "headY": 0,
+        "headZ": 0,
+        "hairStiffness": 0.48,
+        "hairDamping": 0.48,
+        "wind": 0,
+        "physics": 0,
+        "bodyX": 0,
+        "bodyY": 0,
+        "bodyZ": 0,
+        "breath": 0,
+        "armL": 22.595306535794666,
+        "elbowL": 25,
+        "wristL": 0,
+        "handL": 0,
+        "armR": 22.595306535794666,
+        "elbowR": 25,
+        "wristR": 0,
+        "handR": 0,
+        "skirt1": 0,
+        "skirt2": 0,
+        "skirt3": 0
+      }
+    },
+    {
+      "time": 162.59999995231647,
+      "p": {
+        "eyeLOpen": 1,
+        "eyeROpen": 1,
+        "eyeLSmile": 0,
+        "eyeRSmile": 0,
+        "gazeX": 0,
+        "gazeY": 0,
+        "pupil": 1,
+        "highlight": 1,
+        "mouthOpen": 0.3,
+        "mouthForm": 0.3,
+        "browLY": 0,
+        "browLX": 0,
+        "browLForm": 0,
+        "browLAngle": 0,
+        "browRY": 0,
+        "browRX": 0,
+        "browRForm": 0,
+        "browRAngle": 0,
+        "headX": 0,
+        "headY": 0,
+        "headZ": 0,
+        "hairStiffness": 0.48,
+        "hairDamping": 0.48,
+        "wind": 0,
+        "physics": 0,
+        "bodyX": 0,
+        "bodyY": 0,
+        "bodyZ": 0,
+        "breath": 0,
+        "armL": 23.744639932606788,
+        "elbowL": 25,
+        "wristL": 0,
+        "handL": 0,
+        "armR": 23.744639932606788,
+        "elbowR": 25,
+        "wristR": 0,
+        "handR": 0,
+        "skirt1": 0,
+        "skirt2": 0,
+        "skirt3": 0
+      }
+    },
+    {
+      "time": 212.59999995231647,
+      "p": {
+        "eyeLOpen": 1,
+        "eyeROpen": 1,
+        "eyeLSmile": 0,
+        "eyeRSmile": 0,
+        "gazeX": 0,
+        "gazeY": 0,
+        "pupil": 1,
+        "highlight": 1,
+        "mouthOpen": 0.3,
+        "mouthForm": 0.3,
+        "browLY": 0,
+        "browLX": 0,
+        "browLForm": 0,
+        "browLAngle": 0,
+        "browRY": 0,
+        "browRX": 0,
+        "browRForm": 0,
+        "browRAngle": 0,
+        "headX": 0,
+        "headY": 0,
+        "headZ": 0,
+        "hairStiffness": 0.48,
+        "hairDamping": 0.48,
+        "wind": 0,
+        "physics": 0,
+        "bodyX": 0,
+        "bodyY": 0,
+        "bodyZ": 0,
+        "breath": 0,
+        "armL": 24.34464457850295,
+        "elbowL": 25,
+        "wristL": 0,
+        "handL": 0,
+        "armR": 24.34464457850295,
+        "elbowR": 25,
+        "wristR": 0,
+        "handR": 0,
+        "skirt1": 0,
+        "skirt2": 0,
+        "skirt3": 0
+      }
+    },
+    {
+      "time": 312.4999999523161,
+      "p": {
+        "eyeLOpen": 1,
+        "eyeROpen": 1,
+        "eyeLSmile": 0,
+        "eyeRSmile": 0,
+        "gazeX": 0,
+        "gazeY": 0,
+        "pupil": 1,
+        "highlight": 1,
+        "mouthOpen": 0.3,
+        "mouthForm": 0.3,
+        "browLY": 0,
+        "browLX": 0,
+        "browLForm": 0,
+        "browLAngle": 0,
+        "browRY": 0,
+        "browRX": 0,
+        "browRForm": 0,
+        "browRAngle": 0,
+        "headX": 0,
+        "headY": 0,
+        "headZ": 0,
+        "hairStiffness": 0.48,
+        "hairDamping": 0.48,
+        "wind": 0,
+        "physics": 0,
+        "bodyX": 0,
+        "bodyY": 0,
+        "bodyZ": 0,
+        "breath": 0,
+        "armL": 24.82116247417352,
+        "elbowL": 25,
+        "wristL": 0,
+        "handL": 0,
+        "armR": 24.82116247417352,
+        "elbowR": 25,
+        "wristR": 0,
+        "handR": 0,
+        "skirt1": 0,
+        "skirt2": 0,
+        "skirt3": 0
+      }
+    },
+    {
+      "time": 462.59999995231647,
+      "p": {
+        "eyeLOpen": 1,
+        "eyeROpen": 1,
+        "eyeLSmile": 0,
+        "eyeRSmile": 0,
+        "gazeX": 0,
+        "gazeY": 0,
+        "pupil": 1,
+        "highlight": 1,
+        "mouthOpen": 0.3,
+        "mouthForm": 0.3,
+        "browLY": 0,
+        "browLX": 0,
+        "browLForm": 0,
+        "browLAngle": 0,
+        "browRY": 0,
+        "browRX": 0,
+        "browRForm": 0,
+        "browRAngle": 0,
+        "headX": 0,
+        "headY": 0,
+        "headZ": 0,
+        "hairStiffness": 0.48,
+        "hairDamping": 0.48,
+        "wind": 0,
+        "physics": 0,
+        "bodyX": 0,
+        "bodyY": 0,
+        "bodyZ": 0,
+        "breath": 0,
+        "armL": 24.97458911268323,
+        "elbowL": 25,
+        "wristL": 0,
+        "handL": 0,
+        "armR": 24.97458911268323,
+        "elbowR": 25,
+        "wristR": 0,
+        "handR": 0,
+        "skirt1": 0,
+        "skirt2": 0,
+        "skirt3": 0
+      }
+    },
+    {
+      "time": 712.5999999523165,
+      "p": {
+        "eyeLOpen": 1,
+        "eyeROpen": 1,
+        "eyeLSmile": 0,
+        "eyeRSmile": 0,
+        "gazeX": 0,
+        "gazeY": 0,
+        "pupil": 1,
+        "highlight": 1,
+        "mouthOpen": 0.3,
+        "mouthForm": 0.3,
+        "browLY": 0,
+        "browLX": 0,
+        "browLForm": 0,
+        "browLAngle": 0,
+        "browRY": 0,
+        "browRX": 0,
+        "browRForm": 0,
+        "browRAngle": 0,
+        "headX": 0,
+        "headY": 0,
+        "headZ": 0,
+        "hairStiffness": 0.48,
+        "hairDamping": 0.48,
+        "wind": 0,
+        "physics": 0,
+        "bodyX": 0,
+        "bodyY": 0,
+        "bodyZ": 0,
+        "breath": 0,
+        "armL": 24.99901471297399,
+        "elbowL": 25,
+        "wristL": 0,
+        "handL": 0,
+        "armR": 24.99901471297399,
+        "elbowR": 25,
+        "wristR": 0,
+        "handR": 0,
+        "skirt1": 0,
+        "skirt2": 0,
+        "skirt3": 0
+      }
+    },
+    {
+      "time": 1012.4999999523161,
+      "p": {
+        "eyeLOpen": 1,
+        "eyeROpen": 1,
+        "eyeLSmile": 0,
+        "eyeRSmile": 0,
+        "gazeX": 0,
+        "gazeY": 0,
+        "pupil": 1,
+        "highlight": 1,
+        "mouthOpen": 0.3,
+        "mouthForm": 0.3,
+        "browLY": 0,
+        "browLX": 0,
+        "browLForm": 0,
+        "browLAngle": 0,
+        "browRY": 0,
+        "browRX": 0,
+        "browRForm": 0,
+        "browRAngle": 0,
+        "headX": 0,
+        "headY": 0,
+        "headZ": 0,
+        "hairStiffness": 0.48,
+        "hairDamping": 0.48,
+        "wind": 0,
+        "physics": 0,
+        "bodyX": 0,
+        "bodyY": 0,
+        "bodyZ": 0,
+        "breath": 0,
+        "armL": 24.99998002996309,
+        "elbowL": 25,
+        "wristL": 0,
+        "handL": 0,
+        "armR": 24.99998002996309,
+        "elbowR": 25,
+        "wristR": 0,
+        "handR": 0,
+        "skirt1": 0,
+        "skirt2": 0,
+        "skirt3": 0
+      }
+    }
+  ],
+  "errors": [],
+  "perf": {
+    "fps": 59.99999999999997,
+    "state": {
+      "mode": "motion",
+      "playing": true,
+      "time": 2.2167000000000003,
+      "showSkirt": false,
+      "view": "portrait",
+      "version": 2
+    }
+  },
+  "follow": {
+    "color": "rgb(242, 242, 242)",
+    "background": "rgba(75, 69, 63, 0.98)"
+  }
+}

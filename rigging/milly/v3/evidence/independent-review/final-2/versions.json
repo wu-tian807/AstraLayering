@@ -1,0 +1,21 @@
+{
+  "time": "2026-09-20T14:44:26.219543",
+  "files": {
+    "index.html": {
+      "sha256": "73793ae5b40ac65c31edadd981a90da9cc90e280ad53bf838f30308ca71c2f6f",
+      "bytes": 556516
+    },
+    "rig.js": {
+      "sha256": "d649458b7a6da3d483ee60c5bed241bf006b65940a3785397f4442bb6d1f3ff9",
+      "bytes": 36222
+    },
+    "build.py": {
+      "sha256": "b23ed5891c5fd423aadb11a0fbe72bea20da956dd754edda2542b573dac266ca",
+      "bytes": 13080
+    },
+    "milly-animation.svg": {
+      "sha256": "61fda051b2df6cba5faed60bd02af459e33d0d7bbd428097f9ce292000860aad",
+      "bytes": 426579
+    }
+  }
+}

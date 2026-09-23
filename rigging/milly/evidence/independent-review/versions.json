@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-09-20T05:02:57.482Z",
+  "files": {
+    "index.html": "202c9d2718361e0b27cc1718812cf39eb28b87705d71efc2e830463446ebbb85",
+    "milly-animation.svg": "d607b5aef69ef85ab7efa4b270013fe343f29c3f755a7a83aea43842769f2c57",
+    "rig.js": "8ef06185dcf041fc10b1c8ac659aea66e528411e24f885b50283951db10e168e",
+    "build.py": "ce6338a9f3aa3083505788aae164cfb67e16c2ff807ada4052d5de5273b8a2b4",
+    "motion-tracks.json": "a73e5a9b79af8b95ce137013c2252b1ad864205744c4b316f2593b4049174ea4",
+    "rig-manifest.json": "3a7dac675a91b42b5c5a1e9cc8bbb756d5fc6b43805ed3460c7c4aabf98faaac",
+    "step05-base-character/05-2_局部色彩与材质.svg": "a03c0624c18ed710e6c5641edb5b7d215a6352767acd62cad3384eaeb54dab2e",
+    "references/base-character.png": "c5335b1fee621bac4e56f2777eb74a98c046fd719a3fd266e51a24e058438c3a",
+    "references/line-art.png": "c39d5ccbe79e765a7a5f7c58c1d575776b76edd7fe452bc0afb85b8de0bef624",
+    "step03-base-character/03-1_头型与发型.svg": "79ae192c422806b7c59daf33545d28c79cd082e9c097c26b2d9872b378fb7104"
+  }
+}

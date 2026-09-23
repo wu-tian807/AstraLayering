@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sha256": "73793ae5b40ac65c31edadd981a90da9cc90e280ad53bf838f30308ca71c2f6f",
+  "v2Preserved": true,
+  "parameters": 40,
+  "visualControlsPass": true,
+  "physicsPass": true,
+  "errors": []
+}

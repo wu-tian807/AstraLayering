@@ -1,0 +1,311 @@
+{
+  "source": "/Users/wutian/Desktop/coding/AstraLayering/outputs/milly_v1/step05-base-character/05-2_局部色彩与材质.svg",
+  "sourceSHA256": "a03c0624c18ed710e6c5641edb5b7d215a6352767acd62cad3384eaeb54dab2e",
+  "parts": [
+    {
+      "id": "rig-hair-bangs-1",
+      "source": "hair-bangs",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-bangs-2",
+      "source": "hair-bangs",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-bangs-3",
+      "source": "hair-bangs",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-bangs-4",
+      "source": "hair-bangs",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-bangs-5",
+      "source": "hair-bangs",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-bangs-6",
+      "source": "hair-bangs",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-bangs-7",
+      "source": "hair-bangs",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-left-1",
+      "source": "hair-left",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-left-2",
+      "source": "hair-left",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-left-3",
+      "source": "hair-left",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-right-1",
+      "source": "hair-right",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-right-2",
+      "source": "hair-right",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-right-3",
+      "source": "hair-right",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-back-1",
+      "source": "hair-back",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-back-2",
+      "source": "hair-back",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-back-3",
+      "source": "hair-back",
+      "type": "overlapping vector hair strand",
+      "pivot": [
+        505,
+        80
+      ]
+    },
+    {
+      "id": "rig-hair-back-1",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-back-2",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-back-3",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-crown",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-garment-back",
+      "domain": "garment-back"
+    },
+    {
+      "id": "body-core",
+      "domain": "body"
+    },
+    {
+      "id": "rig-skirt-back",
+      "domain": "skirt-back"
+    },
+    {
+      "id": "leg-left",
+      "domain": "legs"
+    },
+    {
+      "id": "leg-right",
+      "domain": "legs"
+    },
+    {
+      "id": "arm-left",
+      "domain": "limb-left"
+    },
+    {
+      "id": "arm-right",
+      "domain": "limb-right"
+    },
+    {
+      "id": "hand-left-fingers-rear",
+      "domain": "limb-left"
+    },
+    {
+      "id": "hand-left-main",
+      "domain": "limb-left"
+    },
+    {
+      "id": "hand-right-fingers-rear",
+      "domain": "limb-right"
+    },
+    {
+      "id": "hand-right-main",
+      "domain": "limb-right"
+    },
+    {
+      "id": "rig-garment-side-left",
+      "domain": "garment-side-left"
+    },
+    {
+      "id": "rig-garment-side-right",
+      "domain": "garment-side-right"
+    },
+    {
+      "id": "bodysuit",
+      "domain": "garment-front"
+    },
+    {
+      "id": "rig-skirt-front",
+      "domain": "skirt-front"
+    },
+    {
+      "id": "ear-left",
+      "domain": "ear-left"
+    },
+    {
+      "id": "ear-right",
+      "domain": "ear-right"
+    },
+    {
+      "id": "head-face",
+      "domain": "face"
+    },
+    {
+      "id": "head-face-features",
+      "domain": "features"
+    },
+    {
+      "id": "hair-cowlick",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-left-1",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-left-2",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-left-3",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-right-1",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-right-2",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-right-3",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-underlap",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-bangs-1",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-bangs-2",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-bangs-3",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-bangs-4",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-bangs-5",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-bangs-6",
+      "domain": "hair"
+    },
+    {
+      "id": "rig-hair-bangs-7",
+      "domain": "hair"
+    },
+    {
+      "id": "hair-clips",
+      "domain": "hair"
+    },
+    {
+      "id": "head-face-brows-front",
+      "domain": "features"
+    }
+  ],
+  "note": "Left/right source IDs are screen-side; UI uses character-side, as in the tutorial. Skirt is an optional newly drawn test accessory."
+}

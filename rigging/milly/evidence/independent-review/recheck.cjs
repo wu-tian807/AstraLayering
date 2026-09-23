@@ -1,0 +1,24 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const deps='/Users/wutian/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/';
+const {chromium}=require(deps+'playwright'),{PNG}=require(deps+'pngjs');
+const root='/Users/wutian/Desktop/coding/AstraLayering/rigging/milly',out=path.join(root,'evidence/independent-review/v2');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+function diff(a,b){const p=PNG.sync.read(a),q=PNG.sync.read(b);let n=0,sum=0,x1=p.width,y1=p.height,x2=0,y2=0;for(let y=0;y<p.height;y++)for(let x=0;x<p.width;x++){const i=(y*p.width+x)*4;let d=0;for(let c=0;c<3;c++)d+=Math.abs(p.data[i+c]-q.data[i+c]);if(d>6){n++;sum+=d;x1=Math.min(x1,x);y1=Math.min(y1,y);x2=Math.max(x2,x);y2=Math.max(y2,y)}}return{pixels:n,changedBounds:n?[x1,y1,x2,y2]:null,meanChange:n?sum/n:0};}
+(async()=>{
+fs.mkdirSync(out,{recursive:true});const versions={checkedAt:new Date().toISOString(),files:{}};
+for(const f of ['index.html','milly-animation.svg','rig.js','build.py','motion-tracks.json','rig-manifest.json']){const b=fs.readFileSync(path.join(root,f));versions.files[f]=sha(b);fs.writeFileSync(path.join(out,'reviewed-'+f),b)}fs.writeFileSync(path.join(out,'versions.json'),JSON.stringify(versions,null,2));
+const browser=await chromium.launch({headless:true,executablePath:'/Users/wutian/Library/Caches/ms-playwright/chromium-1234/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing'});
+const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.route('http://127.0.0.1:8765/',r=>r.fulfill({status:200,contentType:'text/html',body:fs.readFileSync(path.join(out,'reviewed-index.html'))}));await page.goto('http://127.0.0.1:8765/');await page.waitForFunction(()=>window.MillyRig);
+const defs=await page.evaluate(()=>MillyRig.definitions),results={errors,definitions:defs,controls:[],screens:[]};
+async function pose(name,params={},view='face',full=false){await page.evaluate(({params,view})=>{MillyRig.reset();MillyRig.setOutfit(false);MillyRig.set({physics:0,...params});MillyRig.showView(view)}, {params,view});await page.waitForTimeout(30);await (full?page:page.locator('#stage')).screenshot({path:path.join(out,name+'.png')});results.screens.push({name,params,view});}
+if(process.env.REVIEW_FULL_CONTROLS==='1')for(const d of defs){
+await page.locator(`[data-tab="${d[5]}"]`).click();await page.evaluate(d=>{MillyRig.reset();MillyRig.setOutfit(false);MillyRig.set({physics:d[0]==='wind'?1:0,wind:d[0]==='physics'?1:0});MillyRig.showView(d[5]==='body'?'full':'face')},d);
+const buffers=[],states=[];for(const v of [d[2],d[3]]){await page.locator('#range-'+d[0]).evaluate((e,v)=>{e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}))},v);await page.waitForTimeout(['wind','physics'].includes(d[0])?700:20);buffers.push(await page.locator('#stage').screenshot({path:path.join(out,'control-'+d[0]+'-'+v+'.png')}));states.push(await page.evaluate(k=>({value:MillyRig.parameters[k],mode:MillyRig.state.mode}),d[0]));}
+results.controls.push({key:d[0],label:d[1],states,...diff(...buffers)});
+}
+for(const [name,p]of[['neutral',{}],['head-x-minus',{headX:-30}],['head-x-plus',{headX:30}],['head-y-minus',{headY:-30}],['head-y-plus',{headY:30}],['head-z-minus',{headZ:-30}],['head-z-plus',{headZ:30}],['head-all-minus',{headX:-30,headY:-30,headZ:-30}],['head-all-plus',{headX:30,headY:30,headZ:30}],['closed-left',{eyeLOpen:0}],['closed-right',{eyeROpen:0}],['closed-smile',{eyeLOpen:0,eyeROpen:0,eyeLSmile:1,eyeRSmile:1}],['mouth-wide',{mouthOpen:1,mouthForm:1}],['hair-plus',{hairBangs:1,hairLeft:1,hairRight:1,hairBack:1,cowlick:1}],['hair-minus',{hairBangs:-1,hairLeft:-1,hairRight:-1,hairBack:-1,cowlick:-1}]])await pose(name,p);
+await pose('garment-minus',{bodyX:-10},'portrait');await pose('garment-plus',{bodyX:10},'portrait');
+for(const width of [390,320]){await page.setViewportSize({width,height:844});await page.locator('[data-tab="face"]').click();await page.evaluate(()=>scrollTo(0,0));await pose('mobile-'+width,{},'portrait',true);await page.screenshot({path:path.join(out,'mobile-'+width+'-full.png'),fullPage:true});results['mobile'+width]=await page.evaluate(()=>({viewport:innerWidth,width:document.documentElement.scrollWidth,header:document.querySelector('header').getBoundingClientRect().toJSON(),brand:document.querySelector('.brand').getBoundingClientRect().toJSON()}));}
+fs.writeFileSync(path.join(out,'checks.json'),JSON.stringify(results,null,2));await browser.close();console.log(JSON.stringify({versions,unseenControls:results.controls.filter(c=>!c.pixels),counts:results.controls.map(c=>[c.key,c.pixels]),mobile390:results.mobile390,mobile320:results.mobile320,errors},null,2));
+})().catch(e=>{console.error(e);process.exit(1)});
