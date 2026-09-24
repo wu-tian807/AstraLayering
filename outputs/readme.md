@@ -2,12 +2,17 @@
 
 `outputs/` 只保存当前主工作流的分阶段实操结果、对应输入和验收状态。它用于验证 [workflows](../.agents/skills/svg-layering/workflows/readme.md) 的提示词是否能稳定推进，不是最终成品画廊。
 
+`jianma` 系列用于验证新的 [Live2D 分层工作流](../workflows/readme.md)，与原有阶段1—5案例分别记录。
+
 **首个完整生成结果已完成：阶段1—5已有产物，阶段5终稿已完成制作与独立审查返修复验。** 展示见[左右对比与完整部件树](../demos/first-complete-case/readme.md)，后续问题与方向统一记录在[开发进度](../.agents/skills/svg-layering/workflows/开发进度.md)。阶段6尚未制定或执行。
 
 ## 案例索引
 
 | 案例 | 当前状态 | 入口 |
 | --- | --- | --- |
+| jianma_v4 | 独立部件色块分层与审查完成，face 六项细化已跑通；其余专项待接入 | [运行记录](./jianma_v4/运行记录.md)、[最新 SVG](./jianma_v4/refinement/groups/face/6.投影与高光效果/character.svg)、[预览](./jianma_v4/refinement/groups/face/6.投影与高光效果/preview.png) |
+| jianma_v2 | 早期按 kind 绘制试验，保留线稿失败稿、色块返修与审查证据 | [运行记录](./jianma_v2/运行记录.md) |
+| jianma_v1 | 参考改绘、连体服替换与语义部件识别首轮试验 | [运行记录](./jianma_v1/运行记录.md) |
 | milly_v1 | 自动调度完成参考准备与阶段1—5，四个指定独立review节点均有通过记录 | [产物与审查记录](./milly_v1/readme.md) |
 | case1_miku | 首次完整生成，阶段1—5产物保留 | 下方首例记录与[完整展示](../demos/first-complete-case/readme.md) |
 | case2 | 已有参考和阶段1—2产物，本次一并归档 | [案例说明](./case2/readme.md) |

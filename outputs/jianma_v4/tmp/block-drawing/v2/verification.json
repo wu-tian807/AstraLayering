@@ -1,0 +1,19 @@
+{
+  "parts": 46,
+  "groups": 50,
+  "changed_groups": [
+    "foot_right",
+    "foot_left",
+    "hand_right",
+    "hand_left",
+    "headdress_center",
+    "earring_right",
+    "earring_left",
+    "foot_chain_right",
+    "foot_chain_left"
+  ],
+  "unchanged_groups": 41,
+  "posterior_ankle_and_branch_groups_unchanged": true,
+  "svg_sha256": "38683eeead1b34c6eeff446db9cb14b8cb5d966c93b17d6064762da84a8e5d98",
+  "png_sha256": "a6fc8cf701cd3becc8a305f7be31204dafe049f0adbe3f1bb8efaafd3ae60a59"
+}

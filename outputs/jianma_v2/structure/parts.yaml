@@ -1,0 +1,197 @@
+subject: character
+parts:
+  - id: face_base
+    name: 头脸底形
+    kind: face
+    visibility: visible
+    separate_for: 承载五官并随头部转动；发际与两侧鬓发覆盖其边缘。
+  - id: eye_left
+    name: 角色左眼（画面右）
+    kind: eyes
+    visibility: visible
+    separate_for: 完整眼部单独眨眼和转动视线；眼内细节留给眼部专项。
+  - id: eye_right
+    name: 角色右眼（画面左）
+    kind: eyes
+    visibility: visible
+    separate_for: 完整眼部单独眨眼和转动视线；眼内细节留给眼部专项。
+  - id: mouth
+    name: 闭合嘴部
+    kind: mouth
+    visibility: visible
+    separate_for: 独立开合及表情变化；当前图中为微笑闭嘴。
+  - id: brow_left
+    name: 角色左眉（画面右）
+    kind: face
+    visibility: visible
+    separate_for: 位于左眼上方，独立抬压。
+  - id: brow_right
+    name: 角色右眉（画面左）
+    kind: face
+    visibility: visible
+    separate_for: 位于右眼上方，独立抬压。
+  - id: nose
+    name: 鼻子
+    kind: face
+    visibility: visible
+    separate_for: 保持鼻尖和鼻梁的面部位置，随头部形变。
+  - id: ear_left
+    name: 角色左耳（画面右）
+    kind: face
+    visibility: hidden_needed
+    separate_for: 被鬓发基本遮住，需补全耳根以连接左耳坠并适应转头。
+  - id: ear_right
+    name: 角色右耳（画面左）
+    kind: face
+    visibility: hidden_needed
+    separate_for: 被鬓发基本遮住，需补全耳根以连接右耳坠并适应转头。
+  - id: hair_front
+    name: 头顶轮廓与中分前发
+    kind: hair
+    visibility: visible
+    separate_for: 承担头顶、额前及两侧前额发片轮廓，覆盖脸部发际；后接顶部盘发。
+  - id: hair_side_left
+    name: 角色左侧鬓发（画面右）
+    kind: hair
+    visibility: visible
+    separate_for: 从脸侧经耳前垂向肩前，区别于身体后方的长发，可独立摆动。
+  - id: hair_side_right
+    name: 角色右侧鬓发（画面左）
+    kind: hair
+    visibility: visible
+    separate_for: 从脸侧经耳前垂向肩前，区别于身体后方的长发，可独立摆动。
+  - id: hair_back_left
+    name: 角色左侧后部长发（画面右）
+    kind: hair
+    visibility: visible
+    separate_for: 从后脑沿肩后延至小腿旁，包含同侧外展发尾，置于手臂和躯干后方并独立摆动。
+  - id: hair_back_right
+    name: 角色右侧后部长发（画面左）
+    kind: hair
+    visibility: visible
+    separate_for: 从后脑沿肩后延至小腿旁，包含同侧外展发尾，置于手臂和躯干后方并独立摆动。
+  - id: hair_updo
+    name: 顶部放射状盘发
+    kind: hair
+    visibility: visible
+    separate_for: 位于中分前发之后、冠饰中央宝石之后，保持高耸轮廓并随头部运动。
+  - id: neck
+    name: 脖子
+    kind: body
+    visibility: visible
+    separate_for: 连接头部和肩胸，保留俯仰及转头所需的颈部形状。
+  - id: torso
+    name: 躯干
+    kind: body
+    visibility: visible
+    separate_for: 肩胸和锁骨区域露出；连体服下补全胸腹与腰部以连接脖子、双肩和骨盆。
+  - id: bodysuit
+    name: 白色无袖连体服
+    kind: body
+    visibility: visible
+    separate_for: 独立于人体的整件衣物；保留肩带、领口和两侧腿口边界，随躯干及骨盆形变。
+  - id: pelvis
+    name: 骨盆
+    kind: lower_body
+    visibility: hidden_needed
+    separate_for: 被连体服遮住，补全腰胯根部以连接左右髋关节。
+  - id: thigh_left
+    name: 角色左大腿（画面右）
+    kind: lower_body
+    visibility: visible
+    separate_for: 从连体服左腿口下方连接左髋，在膝部接左小腿，可独立抬腿。
+  - id: thigh_right
+    name: 角色右大腿（画面左）
+    kind: lower_body
+    visibility: visible
+    separate_for: 从连体服右腿口下方连接右髋，在膝部接右小腿，可独立抬腿。
+  - id: calf_left
+    name: 角色左小腿（画面右）
+    kind: lower_body
+    visibility: visible
+    separate_for: 经左膝接大腿、经左踝接脚，可独立屈膝。
+  - id: calf_right
+    name: 角色右小腿（画面左）
+    kind: lower_body
+    visibility: visible
+    separate_for: 经右膝接大腿、经右踝接脚，可独立屈膝。
+  - id: foot_left
+    name: 角色左脚（画面右）
+    kind: lower_body
+    visibility: visible
+    separate_for: 经左踝连接小腿，可独立转动；左脚饰链覆盖脚背。
+  - id: foot_right
+    name: 角色右脚（画面左）
+    kind: lower_body
+    visibility: visible
+    separate_for: 经右踝连接小腿，可独立转动；右脚饰链覆盖脚背。
+  - id: upper_arm_left
+    name: 角色左大臂（画面右）
+    kind: arms
+    visibility: visible
+    separate_for: 接左肩、左肘，独立抬臂；上缘位于长发前方。
+  - id: upper_arm_right
+    name: 角色右大臂（画面左）
+    kind: arms
+    visibility: visible
+    separate_for: 接右肩、右肘，独立抬臂；上缘位于长发前方。
+  - id: forearm_left
+    name: 角色左小臂（画面右）
+    kind: arms
+    visibility: visible
+    separate_for: 经左肘与大臂相接、经左腕与手相接，可独立屈肘。
+  - id: forearm_right
+    name: 角色右小臂（画面左）
+    kind: arms
+    visibility: visible
+    separate_for: 经右肘与大臂相接、经右腕与手相接，可独立屈肘。
+  - id: hand_left
+    name: 角色左手（画面右）
+    kind: arms
+    visibility: visible
+    separate_for: 经左腕连接小臂，整体独立转腕和变化手势；手指细拆留给手部专项。
+  - id: hand_right
+    name: 角色右手（画面左）
+    kind: arms
+    visibility: visible
+    separate_for: 经右腕连接小臂，整体独立转腕和变化手势；手指细拆留给手部专项。
+  - id: crown
+    name: 顶部环拱与双侧枝状冠饰
+    kind: physics_details
+    visibility: visible
+    separate_for: 包含中央蓝色宝石和银色叶形底座；环拱绕过盘发后方，双侧枝状部分固定在头顶，整体保持刚性。
+  - id: forehead_drop
+    name: 中央额前蓝色垂珠
+    kind: physics_details
+    visibility: visible
+    separate_for: 从冠饰中央沿前发中缝垂至眉心上方，可相对冠饰轻摆并与前发穿插。
+  - id: crown_tassel_left
+    name: 冠饰左侧长垂饰（画面右）
+    kind: physics_details
+    visibility: visible
+    separate_for: 自左侧枝状冠饰末端经蓝珠和菱形金属件悬下，长蓝色带状部分独立摆动；位于长发外侧。
+  - id: crown_tassel_right
+    name: 冠饰右侧长垂饰（画面左）
+    kind: physics_details
+    visibility: visible
+    separate_for: 自右侧枝状冠饰末端经蓝珠和菱形金属件悬下，长蓝色带状部分独立摆动；位于长发外侧。
+  - id: earring_left
+    name: 角色左耳坠（画面右）
+    kind: physics_details
+    visibility: visible
+    separate_for: 挂在左耳并从鬓发间露出，可独立轻摆。
+  - id: earring_right
+    name: 角色右耳坠（画面左）
+    kind: physics_details
+    visibility: visible
+    separate_for: 挂在右耳并从鬓发间露出，可独立轻摆。
+  - id: foot_chain_left
+    name: 角色左脚踝及脚背饰链（画面右）
+    kind: physics_details
+    visibility: visible
+    separate_for: 一件环绕左踝并延至脚背和趾根的珠链，随左脚运动并覆盖脚面。
+  - id: foot_chain_right
+    name: 角色右脚踝及脚背饰链（画面左）
+    kind: physics_details
+    visibility: visible
+    separate_for: 一件环绕右踝并延至脚背和趾根的珠链，随右脚运动并覆盖脚面。

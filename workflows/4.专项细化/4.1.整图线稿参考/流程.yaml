@@ -1,0 +1,7 @@
+id: line_art_reference
+inputs:
+  reference: nodes.base_subject.image
+outputs:
+  image: references/line-art.png
+imagegen:
+  prompt: 生成提示词.txt

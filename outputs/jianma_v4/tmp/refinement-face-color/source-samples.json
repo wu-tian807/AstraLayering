@@ -1,0 +1,310 @@
+[
+  {
+    "name": "forehead_l",
+    "x": 428,
+    "y": 164,
+    "rgb": [
+      253,
+      244,
+      243
+    ],
+    "hex": "#FDF4F3"
+  },
+  {
+    "name": "forehead_r",
+    "x": 461,
+    "y": 164,
+    "rgb": [
+      254,
+      248,
+      246
+    ],
+    "hex": "#FEF8F6"
+  },
+  {
+    "name": "forehead_middle",
+    "x": 444,
+    "y": 182,
+    "rgb": [
+      254,
+      246,
+      245
+    ],
+    "hex": "#FEF6F5"
+  },
+  {
+    "name": "midface_l",
+    "x": 431,
+    "y": 215,
+    "rgb": [
+      252,
+      238,
+      236
+    ],
+    "hex": "#FCEEEC"
+  },
+  {
+    "name": "midface_r",
+    "x": 456,
+    "y": 215,
+    "rgb": [
+      252,
+      239,
+      237
+    ],
+    "hex": "#FCEFED"
+  },
+  {
+    "name": "cheek_l_peak",
+    "x": 409,
+    "y": 218,
+    "rgb": [
+      249,
+      221,
+      219
+    ],
+    "hex": "#F9DDDB"
+  },
+  {
+    "name": "cheek_r_peak",
+    "x": 480,
+    "y": 216,
+    "rgb": [
+      250,
+      227,
+      225
+    ],
+    "hex": "#FAE3E1"
+  },
+  {
+    "name": "cheek_l_inner",
+    "x": 421,
+    "y": 222,
+    "rgb": [
+      253,
+      238,
+      236
+    ],
+    "hex": "#FDEEEC"
+  },
+  {
+    "name": "cheek_r_inner",
+    "x": 469,
+    "y": 222,
+    "rgb": [
+      252,
+      238,
+      236
+    ],
+    "hex": "#FCEEEC"
+  },
+  {
+    "name": "jaw_l_skin",
+    "x": 411,
+    "y": 242,
+    "rgb": [
+      249,
+      237,
+      236
+    ],
+    "hex": "#F9EDEC"
+  },
+  {
+    "name": "jaw_r_skin",
+    "x": 477,
+    "y": 242,
+    "rgb": [
+      249,
+      245,
+      244
+    ],
+    "hex": "#F9F5F4"
+  },
+  {
+    "name": "chin_middle",
+    "x": 444,
+    "y": 262,
+    "rgb": [
+      253,
+      241,
+      239
+    ],
+    "hex": "#FDF1EF"
+  },
+  {
+    "name": "nose_bridge",
+    "x": 444,
+    "y": 219,
+    "rgb": [
+      252,
+      235,
+      233
+    ],
+    "hex": "#FCEBE9"
+  },
+  {
+    "name": "nose_tip_highlight",
+    "x": 442,
+    "y": 224,
+    "rgb": [
+      253,
+      239,
+      237
+    ],
+    "hex": "#FDEFED"
+  },
+  {
+    "name": "nose_tip_warm",
+    "x": 444,
+    "y": 230,
+    "rgb": [
+      246,
+      221,
+      219
+    ],
+    "hex": "#F6DDDB"
+  },
+  {
+    "name": "nose_under",
+    "x": 444,
+    "y": 233,
+    "rgb": [
+      248,
+      228,
+      225
+    ],
+    "hex": "#F8E4E1"
+  },
+  {
+    "name": "nostril_l",
+    "x": 440,
+    "y": 229,
+    "rgb": [
+      236,
+      207,
+      205
+    ],
+    "hex": "#ECCFCD"
+  },
+  {
+    "name": "nostril_r",
+    "x": 447,
+    "y": 228,
+    "rgb": [
+      248,
+      224,
+      222
+    ],
+    "hex": "#F8E0DE"
+  },
+  {
+    "name": "brow_l",
+    "x": 420,
+    "y": 184,
+    "rgb": [
+      180,
+      168,
+      181
+    ],
+    "hex": "#B4A8B5"
+  },
+  {
+    "name": "brow_l_outer",
+    "x": 410,
+    "y": 183,
+    "rgb": [
+      169,
+      153,
+      168
+    ],
+    "hex": "#A999A8"
+  },
+  {
+    "name": "brow_r",
+    "x": 470,
+    "y": 184,
+    "rgb": [
+      172,
+      170,
+      182
+    ],
+    "hex": "#ACAAB6"
+  },
+  {
+    "name": "brow_r_inner",
+    "x": 459,
+    "y": 187,
+    "rgb": [
+      192,
+      177,
+      184
+    ],
+    "hex": "#C0B1B8"
+  },
+  {
+    "name": "ear_lobe_screen_l",
+    "x": 396,
+    "y": 219,
+    "rgb": [
+      197,
+      172,
+      174
+    ],
+    "hex": "#C5ACAE"
+  },
+  {
+    "name": "ear_lobe_screen_r",
+    "x": 489,
+    "y": 220,
+    "rgb": [
+      168,
+      138,
+      141
+    ],
+    "hex": "#A88A8D"
+  },
+  {
+    "name": "hair_shadow_forehead_l",
+    "x": 415,
+    "y": 165,
+    "rgb": [
+      205,
+      193,
+      195
+    ],
+    "hex": "#CDC1C3"
+  },
+  {
+    "name": "hair_shadow_forehead_r",
+    "x": 475,
+    "y": 168,
+    "rgb": [
+      218,
+      217,
+      233
+    ],
+    "hex": "#DAD9E9"
+  },
+  {
+    "name": "hair_shadow_cheek_l",
+    "x": 400,
+    "y": 215,
+    "rgb": [
+      228,
+      198,
+      199
+    ],
+    "hex": "#E4C6C7"
+  },
+  {
+    "name": "hair_shadow_cheek_r",
+    "x": 488,
+    "y": 217,
+    "rgb": [
+      182,
+      153,
+      158
+    ],
+    "hex": "#B6999E"
+  }
+]

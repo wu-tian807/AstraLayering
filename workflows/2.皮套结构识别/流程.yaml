@@ -1,0 +1,6 @@
+id: part_inventory
+worker: part_planning
+inputs:
+  reference: nodes.base_subject.image
+outputs:
+  parts: structure/parts.yaml

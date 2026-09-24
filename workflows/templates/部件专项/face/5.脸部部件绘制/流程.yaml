@@ -1,0 +1,13 @@
+id: face_parts_drawing
+worker: refinement_drawing
+inputs:
+  reference: inputs.reference
+  line_art: inputs.line_art
+  parts: inputs.parts
+  svg: inputs.svg
+  palette_image: refinement/groups/{group.id}/1.脸部色盘/palette.png
+  palette_json: refinement/groups/{group.id}/1.脸部色盘/palette.json
+outputs:
+  svg: refinement/groups/{group.id}/5.脸部部件绘制/character.svg
+  preview: refinement/groups/{group.id}/5.脸部部件绘制/preview.png
+  notes: refinement/groups/{group.id}/5.脸部部件绘制/说明.md

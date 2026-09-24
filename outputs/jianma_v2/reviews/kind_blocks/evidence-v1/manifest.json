@@ -1,0 +1,127 @@
+{
+  "candidate": "reviews/kind_blocks/candidate-v1.svg",
+  "version": "candidate-v1",
+  "sha256": "8dee89bed2f112b84a659cdca6b247b7175cd8c76fd0d39b766592f39d6c0431",
+  "reference_dimensions": [
+    941,
+    1672
+  ],
+  "canvas": {
+    "width": "941",
+    "height": "1672",
+    "viewBox": "0 0 941 1672",
+    "version": "1.1"
+  },
+  "kinds": [
+    "arms",
+    "body",
+    "eyes",
+    "face",
+    "hair",
+    "lower_body",
+    "mouth",
+    "physics_details"
+  ],
+  "groups": [
+    {
+      "id": "hair-back",
+      "kind": "hair",
+      "paths": [
+        "hair_back_right",
+        "hair_back_left"
+      ]
+    },
+    {
+      "id": "hair-updo",
+      "kind": "hair",
+      "paths": [
+        "hair_updo"
+      ]
+    },
+    {
+      "id": "crown-back",
+      "kind": "physics_details",
+      "paths": [
+        "crown",
+        "crown_center_frame"
+      ]
+    },
+    {
+      "id": "crown-tassels",
+      "kind": "physics_details",
+      "paths": [
+        "crown_tassel_right",
+        "crown_tassel_left"
+      ]
+    },
+    {
+      "id": "lower-body",
+      "kind": "lower_body",
+      "paths": [
+        "pelvis",
+        "leg_right",
+        "leg_left"
+      ]
+    },
+    {
+      "id": "arms",
+      "kind": "arms",
+      "paths": [
+        "arm_hand_right",
+        "arm_hand_left"
+      ]
+    },
+    {
+      "id": "body",
+      "kind": "body",
+      "paths": [
+        "neck_torso",
+        "bodysuit"
+      ]
+    },
+    {
+      "id": "face",
+      "kind": "face",
+      "paths": [
+        "face_base",
+        "ear_right",
+        "ear_left"
+      ]
+    },
+    {
+      "id": "hair-front",
+      "kind": "hair",
+      "paths": [
+        "hair_front",
+        "hair_side_right",
+        "hair_side_left"
+      ]
+    },
+    {
+      "id": "eyes",
+      "kind": "eyes",
+      "paths": [
+        "eye_right",
+        "eye_left"
+      ]
+    },
+    {
+      "id": "mouth",
+      "kind": "mouth",
+      "paths": [
+        "mouth_shape"
+      ]
+    },
+    {
+      "id": "ornaments-front",
+      "kind": "physics_details",
+      "paths": [
+        "forehead_drop",
+        "earring_right",
+        "earring_left",
+        "foot_chain_right",
+        "foot_chain_left"
+      ]
+    }
+  ]
+}

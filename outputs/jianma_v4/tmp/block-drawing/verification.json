@@ -1,0 +1,466 @@
+{
+  "part_count": 46,
+  "group_count": 50,
+  "parts": [
+    {
+      "part": "blush_left",
+      "bbox": [
+        461,
+        206,
+        487,
+        217
+      ],
+      "groups": 1
+    },
+    {
+      "part": "blush_right",
+      "bbox": [
+        401,
+        206,
+        426,
+        217
+      ],
+      "groups": 1
+    },
+    {
+      "part": "bodysuit",
+      "bbox": [
+        335,
+        326,
+        558,
+        768
+      ],
+      "groups": 1
+    },
+    {
+      "part": "brow_left",
+      "bbox": [
+        454,
+        181,
+        481,
+        188
+      ],
+      "groups": 1
+    },
+    {
+      "part": "brow_right",
+      "bbox": [
+        407,
+        181,
+        434,
+        188
+      ],
+      "groups": 1
+    },
+    {
+      "part": "calf_left",
+      "bbox": [
+        445,
+        1060,
+        529,
+        1508
+      ],
+      "groups": 1
+    },
+    {
+      "part": "calf_right",
+      "bbox": [
+        363,
+        1059,
+        448,
+        1509
+      ],
+      "groups": 1
+    },
+    {
+      "part": "ear_left",
+      "bbox": [
+        486,
+        205,
+        505,
+        233
+      ],
+      "groups": 1
+    },
+    {
+      "part": "ear_right",
+      "bbox": [
+        383,
+        205,
+        402,
+        233
+      ],
+      "groups": 1
+    },
+    {
+      "part": "earring_left",
+      "bbox": [
+        488,
+        222,
+        505,
+        318
+      ],
+      "groups": 1
+    },
+    {
+      "part": "earring_right",
+      "bbox": [
+        389,
+        222,
+        399,
+        277
+      ],
+      "groups": 1
+    },
+    {
+      "part": "eye_left",
+      "bbox": [
+        456,
+        191,
+        488,
+        205
+      ],
+      "groups": 1
+    },
+    {
+      "part": "eye_right",
+      "bbox": [
+        400,
+        191,
+        431,
+        205
+      ],
+      "groups": 1
+    },
+    {
+      "part": "face_base",
+      "bbox": [
+        387,
+        102,
+        501,
+        270
+      ],
+      "groups": 1
+    },
+    {
+      "part": "foot_chain_left",
+      "bbox": [
+        446,
+        1463,
+        503,
+        1580
+      ],
+      "groups": 2
+    },
+    {
+      "part": "foot_chain_right",
+      "bbox": [
+        384,
+        1461,
+        442,
+        1580
+      ],
+      "groups": 2
+    },
+    {
+      "part": "foot_left",
+      "bbox": [
+        448,
+        1473,
+        519,
+        1635
+      ],
+      "groups": 1
+    },
+    {
+      "part": "foot_right",
+      "bbox": [
+        368,
+        1470,
+        440,
+        1635
+      ],
+      "groups": 1
+    },
+    {
+      "part": "forearm_left",
+      "bbox": [
+        561,
+        551,
+        661,
+        782
+      ],
+      "groups": 1
+    },
+    {
+      "part": "forearm_right",
+      "bbox": [
+        225,
+        552,
+        332,
+        782
+      ],
+      "groups": 1
+    },
+    {
+      "part": "forehead_jewel",
+      "bbox": [
+        431,
+        127,
+        455,
+        176
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hair_back_left",
+      "bbox": [
+        463,
+        161,
+        932,
+        1437
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hair_back_right",
+      "bbox": [
+        9,
+        158,
+        427,
+        1430
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hair_bun",
+      "bbox": [
+        403,
+        25,
+        478,
+        94
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hair_crown",
+      "bbox": [
+        366,
+        90,
+        520,
+        225
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hair_front_left",
+      "bbox": [
+        443,
+        125,
+        516,
+        216
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hair_front_right",
+      "bbox": [
+        370,
+        124,
+        445,
+        216
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hair_side_left",
+      "bbox": [
+        477,
+        158,
+        530,
+        409
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hair_side_right",
+      "bbox": [
+        357,
+        158,
+        411,
+        409
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hand_left",
+      "bbox": [
+        623,
+        747,
+        674,
+        878
+      ],
+      "groups": 1
+    },
+    {
+      "part": "hand_right",
+      "bbox": [
+        209,
+        747,
+        258,
+        878
+      ],
+      "groups": 1
+    },
+    {
+      "part": "headdress_branch_left",
+      "bbox": [
+        481,
+        32,
+        579,
+        127
+      ],
+      "groups": 2
+    },
+    {
+      "part": "headdress_branch_right",
+      "bbox": [
+        310,
+        34,
+        402,
+        128
+      ],
+      "groups": 2
+    },
+    {
+      "part": "headdress_center",
+      "bbox": [
+        398,
+        46,
+        485,
+        94
+      ],
+      "groups": 1
+    },
+    {
+      "part": "headdress_halo",
+      "bbox": [
+        376,
+        10,
+        507,
+        60
+      ],
+      "groups": 1
+    },
+    {
+      "part": "mouth",
+      "bbox": [
+        430,
+        240,
+        458,
+        248
+      ],
+      "groups": 1
+    },
+    {
+      "part": "neck",
+      "bbox": [
+        377,
+        239,
+        514,
+        350
+      ],
+      "groups": 1
+    },
+    {
+      "part": "nose",
+      "bbox": [
+        440,
+        225,
+        448,
+        231
+      ],
+      "groups": 1
+    },
+    {
+      "part": "pelvis",
+      "bbox": [
+        326,
+        546,
+        564,
+        781
+      ],
+      "groups": 1
+    },
+    {
+      "part": "streamer_left",
+      "bbox": [
+        548,
+        108,
+        802,
+        841
+      ],
+      "groups": 1
+    },
+    {
+      "part": "streamer_right",
+      "bbox": [
+        124,
+        108,
+        338,
+        764
+      ],
+      "groups": 1
+    },
+    {
+      "part": "thigh_left",
+      "bbox": [
+        443,
+        627,
+        585,
+        1112
+      ],
+      "groups": 1
+    },
+    {
+      "part": "thigh_right",
+      "bbox": [
+        306,
+        626,
+        449,
+        1122
+      ],
+      "groups": 1
+    },
+    {
+      "part": "torso",
+      "bbox": [
+        318,
+        305,
+        572,
+        717
+      ],
+      "groups": 1
+    },
+    {
+      "part": "upper_arm_left",
+      "bbox": [
+        525,
+        332,
+        607,
+        595
+      ],
+      "groups": 1
+    },
+    {
+      "part": "upper_arm_right",
+      "bbox": [
+        283,
+        332,
+        364,
+        594
+      ],
+      "groups": 1
+    }
+  ]
+}

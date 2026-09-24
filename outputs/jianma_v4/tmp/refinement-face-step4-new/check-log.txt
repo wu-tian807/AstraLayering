@@ -1,0 +1,19 @@
+{
+  "input": "refinement/groups/face/3.关联部件校准/character.svg",
+  "input_sha256": "92acb1b6b4a60f66340f225c8a1dbb75c6f9bb670fa466a9e8336b30e16ee77f",
+  "output_sha256": "2e4d985553cd0bc0c757c20021442e6204b723dd929b68c55d52c84d80fce10f",
+  "changed_parts": [
+    "face_base"
+  ],
+  "other_part_groups_exact_equal": true,
+  "original_shape_element_exact_equal": true,
+  "original_contour_group_exact_equal": true,
+  "original_contour_gradient_exact_equal": true,
+  "top_level_group_ids_and_order_equal": true,
+  "root_attributes_equal": true,
+  "unique_ids": true,
+  "part_count": 46,
+  "new_effect_groups": [],
+  "new_filters": 0,
+  "note": "Only the specified step-3 SVG, current palette and color reference were read as artwork inputs; no historical step-4 output was loaded or copied."
+}

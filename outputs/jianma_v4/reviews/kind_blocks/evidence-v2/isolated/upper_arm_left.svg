@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="941" height="1672" viewBox="0 0 941 1672">
+<ns0:title>剑妈 · 46 个独立部件色块分层稿</ns0:title>
+<ns0:desc>原图坐标系。各具名组以 data-part 对应 parts.yaml，纯色无描线；隐藏底形保存于路径自身，背景透明。</ns0:desc>
+<ns0:g id="upper_arm_left" data-part="upper_arm_left" data-kind="arms" fill="#F0D27E"><ns0:title>角色左大臂（画面右）</ns0:title><ns0:path d="M 539,332 C 564,333 578,344 583,363 C 589,386 584,410 586,436 C 588,480 590,520 598,553 C 602,568 606,579 607,587 C 595,597 575,596 563,587 C 556,562 556,540 551,518 C 547,495 543,470 544,447 C 547,425 543,403 535,388 C 525,365 519,339 539,332 Z" fill-rule="evenodd" /></ns0:g>
+</ns0:svg>

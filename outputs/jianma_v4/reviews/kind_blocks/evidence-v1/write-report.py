@@ -1,0 +1,141 @@
+from pathlib import Path
+import json
+E=Path('reviews/kind_blocks/evidence-v1');check=json.loads((E/'structure-check.json').read_text());rows=[]
+notes={
+'face_base':('通过','发际后头脸补全；下颌与耳根组合连续。','face'),
+'eye_left':('通过','整眼独显，内外眼角与开口范围基本对应；眼内细分不计入。','eyes'),
+'eye_right':('通过','整眼独显，内外眼角与开口范围基本对应；眼内细分不计入。','eyes'),
+'mouth':('通过','闭嘴宽度、唇峰与下唇外缘基本对应。','face'),
+'brow_left':('通过','独立眉形、位置及眉尾方向成立。','face'),
+'brow_right':('通过','独立眉形、位置及眉尾方向成立。','face'),
+'nose':('通过','独立简化鼻尖，位置对应；立体明暗不计入。','face'),
+'ear_left':('通过','耳根有完整底形，与脸侧重叠，恢复侧发后遮挡成立。','head'),
+'ear_right':('通过','耳根有完整底形，与脸侧重叠，恢复侧发后遮挡成立。','head'),
+'blush_left':('通过','独立眼下色块，范围合理。','face'),
+'blush_right':('通过','独立眼下色块，范围合理。','face'),
+'hair_crown':('通过','头顶发面独显，前发恢复后连续；主要头顶外缘对应。','head'),
+'hair_bun':('通过','发髻底形独立，头冠后的下缘有延续；头冠问题另列。','head'),
+'hair_front_left':('通过','独立前额发片，自中分到眼外侧连续；覆盖层次成立。','head'),
+'hair_front_right':('通过','独立前额发片，自中分到眼外侧连续；覆盖层次成立。','head'),
+'hair_side_left':('通过','发根至胸前连续，耳旁外卷和下部狭孔仍存在。','earring_left'),
+'hair_side_right':('通过','发根至胸前连续，耳旁外卷和下部狭孔仍存在。','earring_right'),
+'hair_back_left':('通过','肩臂后方底形补全；主体与主要外卷合看，主要空隙和落地末梢成立。','hair_right_mid'),
+'hair_back_right':('通过','肩臂后方底形补全；主体与主要外卷合看，主要空隙和落地末梢成立。','hair_left_mid'),
+'neck':('通过','下颌后、侧发后的颈底延续，接到肩胸；未见断口。','neck_join'),
+'torso':('通过','衣下胸腹腰有整块底形，肩根、颈根与腰胯均连接。','shoulders'),
+'bodysuit':('通过','整件衣片独立；两肩带、领口、高开衩腿口及裆部存在。','torso_hips'),
+'pelvis':('通过','衣下腰胯为完整独立底形，与躯干、大腿重叠连续。','torso_hips'),
+'thigh_left':('通过','髋根被覆盖部分有补全，膝端可独显；外轮廓大体对应。','full'),
+'thigh_right':('通过','髋根被覆盖部分有补全，膝端可独显；外轮廓大体对应。','full'),
+'calf_left':('通过','膝端与踝端有补全，恢复大腿、脚后连接连续。','feet'),
+'calf_right':('通过','膝端与踝端有补全，恢复大腿、脚后连接连续。','feet'),
+'foot_left':('需返修 K01','踝底连接成立；五趾外轮廓被改成四瓣。','toes'),
+'foot_right':('需返修 K01','踝底连接成立；五趾外轮廓被改成四瓣。','toes'),
+'upper_arm_left':('通过','肩根补全，外轮廓到肘连续，与躯干有重叠。','shoulders'),
+'upper_arm_right':('通过','肩根补全，外轮廓到肘连续，与躯干有重叠。','shoulders'),
+'forearm_left':('通过','肘腕隐段完整，恢复组合后无断口。','hands'),
+'forearm_right':('通过','肘腕隐段完整，恢复组合后无断口。','hands'),
+'hand_left':('需返修 K02','腕底连接成立；相邻弯曲指端合并。','hand_left'),
+'hand_right':('需返修 K02','腕底连接成立；相邻弯曲指端合并。','hand_right'),
+'headdress_halo':('通过','独立弧环，环内空隙和两侧枝饰遮挡关系成立。','head'),
+'headdress_branch_left':('通过','两分段独显及合看；枝杈开口保留，与发面穿插成立。','head'),
+'headdress_branch_right':('通过','两分段独显及合看；枝杈开口保留，与发面穿插成立。','head'),
+'headdress_center':('需返修 K04','独立对象存在；上方镂空框及相邻叶片外缘被实心尖块替代。','crown'),
+'forehead_jewel':('通过','额饰与小坠完整，位于中分前发之上。','head'),
+'streamer_left':('通过','带头珠饰至末梢连续，整体轨迹与长发的前后关系成立。','hair_right_upper'),
+'streamer_right':('通过','带头珠饰至末梢连续，整体轨迹与长发的前后关系成立。','hair_left_upper'),
+'earring_left':('需返修 K05','整件独立且长垂链存在；可见长链环孔洞被填实。','earring_left'),
+'earring_right':('需返修 K05','整件独立且短坠位置对应；宝石下方链环孔洞被填实。','earring_right'),
+'foot_chain_left':('需返修 K03','两分段合看有踝后弧；脚背中央纵链和末端小连接缺失。','anklets'),
+'foot_chain_right':('需返修 K03','两分段合看有踝后弧；脚背中央纵链和末端小连接缺失。','anklets'),
+}
+for i,p in enumerate(check['parts'],1):
+ key=p['part'];status,note,comp=notes[key];rows.append(f"| {i} | `{key}` | {len(p['groups'])} | {status} | {note} | [独显](evidence-v1/isolated/{key}.png) · [对照](evidence-v1/compare/{comp}/comparison.png) |")
+report='''# 色块分层稿独立审查
+
+**结论：需返修。**
+
+- 候选版本：v1。
+- 候选：`reviews/kind_blocks/candidates/character-v1.svg`。
+- SHA-256：`c09f51d366c5fcba6a68c38945c383b8417ab3fc9602080bd6298be131fb730e`。
+- 参考：`references/base-subject.png`；部件依据：`structure/parts.yaml`。
+- 画布及坐标：941 × 1672，未做对齐变换；下述坐标均为原图坐标，左右按部件清单的角色侧别。
+- 审查依据：指定 review/提示词.txt。本次从不可变候选快照重新渲染，未以绘制者自查代替复核，未修改候选。
+
+## 分项结论
+
+| 项目 | 结论 | 依据 |
+|---|---|---|
+| 形状还原 | **需返修** | 身高、身体外缘及主要长发总体对应；双足少一段趾端、双手短弯指端并合、头冠外缘简化过度，见 K01、K02、K04。 |
+| 遮挡与空隙 | **需返修** | 主要发束间空隙、领口及腿口成立；足链缺失连接、头冠与耳坠的实有孔洞被填实，见 K03–K05。 |
+| 底形分层 | **通过（独立对象及隐藏底形检查）** | 46 个 data-part 均非空，50 个具名组；没有遗漏或合并为同 kind 的大组。隐藏衣服、头发和配件后，颈肩、腰胯、肩肘腕及髋膝踝底形可连续显示。服装独显为整件衣片，头脸、后发及主要发片均可独显和恢复。此项通过不抵销上述可见形状与孔洞问题。 |
+
+现有彩图和部件清单足以判断以下问题，结论不属于“待核对”。隐藏形状仅按当前视角作合理连续性审查，不能从单张彩图验证不可见区域的唯一真实形状。
+
+## 必须返修的问题
+
+### K01 · 双脚五趾外缘被压成四瓣
+
+- data-part：`foot_left`、`foot_right`，各自唯一 path 的趾端外轮廓。
+- 位置：画面左脚约 x=368–439、y=1590–1635；画面右脚约 x=448–519、y=1590–1635。
+- 实际差异：参考两脚都能辨认五个趾端及相邻趾谷；候选每脚只有四个外凸瓣，中间趾端合并。边界叠加可见候选外缘跨过参考中的趾谷。这是足部末端形状与数量变化，不能留到趾甲或内部拆分阶段。
+- 修复要求：仍维持每脚一个 data-part，恢复参考可见的五趾外缘、宽度与趾谷；保留已有踝部隐藏补全。
+- 证据：[同坐标趾端对照](evidence-v1/compare/toes/comparison.png)、[透明叠加](evidence-v1/compare/toes/blend.png)、[独显](evidence-v1/feet-isolated.png)。裁切 (358,1570,170,74)，放大 6 倍。
+
+### K02 · 双手相邻短弯指端合并
+
+- data-part：`hand_left`、`hand_right`，各自唯一 path 的拇指下方弯曲指端。
+- 位置：画面左手约 x=235–258、y=839–863；画面右手约 x=625–648、y=839–863。
+- 实际差异：参考在拇指下方有上下错开的短弯指端和细小凹口；候选将相邻两段并为一枚宽、尖的横向指瓣，失去上面一段指端的外轮廓。其余较长指端也被拉成尖瓣。掌指间有保留空隙，但不能据此认定整手外形正确。
+- 修复要求：恢复参考能看到的指端数量、错位关系、圆钝转折和外缘凹口，仍保持整手为一件；不要求此阶段拆出独立指节。
+- 证据：[画面左手同坐标对照](evidence-v1/compare/hand_right/comparison.png)、[其透明叠加](evidence-v1/compare/hand_right/blend.png)、[画面右手同坐标对照](evidence-v1/compare/hand_left/comparison.png)、[其透明叠加](evidence-v1/compare/hand_left/blend.png)。裁切分别 (200,785,65,98)、(620,785,65,98)，均放大 6 倍。
+
+### K03 · 双足链缺少脚背中央纵链，末端坠件悬空
+
+- data-part：`foot_chain_left`、`foot_chain_right`；前段同名组内第一个 path。
+- 位置：画面左脚约 x=409–412、y=1527–1569；画面右脚约 x=478–480、y=1526–1569。
+- 实际差异：参考的上方踝链坠端有细纵链沿脚背连到下方 V 形链中点；候选在 y≈1527 后终止，约 35 像素纵向连接缺失。下方 V 链与末端水滴之间还有一段空断。跨层合看可确认后半踝弧存在，但它没有补上这些前方连接。
+- 修复要求：在同一足链部件内补回纵链及下方坠件连接，核对恢复到脚面后的可见走向；保留踝后弧。
+- 证据：[同坐标足链对照](evidence-v1/compare/anklets/comparison.png)、[透明叠加](evidence-v1/compare/anklets/blend.png)、[两足链独显](evidence-v1/foot-chains-isolated.png)、[前后分段独显](evidence-v1/segments/contact.png)。对照裁切 (380,1460,130,128)，放大 4 倍。
+
+### K04 · 中央头冠的镂空框被替换为实心尖块
+
+- data-part：`headdress_center`，唯一 path。
+- 位置：约 x=415–471、y=49–83；并影响左右花叶顶部的凹凸轮廓。
+- 实际差异：参考宝石上方是线框结构，框内能看到后方发髻；候选独显是一整块实心尖形，既未保留框内开口，也没有保留框的侧向外缘。相邻叶片的高低层次被并成大瓣。该差异在独显和组合下都存在，与材质、颜色和内部宝石拆分无关。
+- 修复要求：把金属框、中央宝石和花叶保留在同一独立头冠部件内，恢复真实外缘与镂空，使后面的完整发髻透出。
+- 证据：[同坐标参考／头冠独显／部件边界叠加](evidence-v1/crown-isolated-comparison.png)、[完整组合对照](evidence-v1/compare/crown/comparison.png)、[组合透明叠加](evidence-v1/compare/crown/blend.png)。裁切 (390,43,100,58)，独显对照放大 6 倍。
+
+### K05 · 耳坠的可见链环开口被填实
+
+- data-part：`earring_left`、`earring_right`，各自唯一 path。
+- 位置：画面右长耳坠约 x=491–500、y=249–286；画面左短耳坠约 x=391–398、y=248–263。
+- 实际差异：参考在宝石下方保留可以透出后发的细长链环，画面右侧的两个长环尤其清楚；候选用实心菱形和连续实心条代替，独显均没有对应开口。它们是整件耳饰的实际孔洞，不要求内部拆出不同 data-part，也应在当前底形中保留。
+- 修复要求：保留整体耳坠长度和现有归属，恢复可见链环外缘与开口，避免将环孔和宝石高光混为一谈。
+- 证据：[画面右耳坠同坐标对照](evidence-v1/compare/earring_left/comparison.png)、[透明叠加](evidence-v1/compare/earring_left/blend.png)、[画面左耳坠同坐标对照](evidence-v1/compare/earring_right/comparison.png)、[透明叠加](evidence-v1/compare/earring_right/blend.png)。裁切分别 (478,215,43,120)、(368,215,46,120)，均放大 6 倍。
+
+## 46 个部件逐项核对
+
+下表每行均查看了该 data-part 的完整独显、隐藏延续及邻接组合；跨层部件把所有同名段合并查看，并另看了每一分段。表内“通过”仅指本阶段未发现需要独立列项的明显问题。独显 PNG 保留原始画布和坐标，透明背景；可配合白底组合图查看。色差、眼内细分、指节拆分、细发丝、材质和明暗均未作为返修理由。
+
+| 序号 | data-part | 组数 | 结论 | 独显、隐藏与组合核对 | 证据 |
+|---|---|---:|---|---|---|
+'''+ '\n'.join(rows)+'''
+
+## 组合与底形证据
+
+- [整图同坐标对照](evidence-v1/compare/full/comparison.png)、[整图透明叠加](evidence-v1/compare/full/blend.png)。所有 compare 目录中的 comparison.png 均按“彩图／候选／可见色界叠加”从左到右排列，blend.png 为 40% 候选透明叠加。
+- [纯身体底形](evidence-v1/combinations/body_only-white.png)：隐藏衣服、头发及所有饰物；另看 [颈肩](evidence-v1/combinations/body-neck-shoulders.png)、[腰胯](evidence-v1/combinations/body-waist-hips.png)、[肘](evidence-v1/combinations/body-elbows.png)、[腕](evidence-v1/combinations/body-wrists.png)、[膝](evidence-v1/combinations/body-knees.png)、[踝](evidence-v1/combinations/body-ankles.png)。连接连续，肩和髋底形不是仅截取可见区域。
+- [整件衣片独显](evidence-v1/combinations/garment_only-white.png)、[身体与衣服恢复](evidence-v1/combinations/body_garment-white.png)：领口、两肩带、腰侧、腿口及裆部存在；无封住领口或腿口的情况。
+- [全部头发独显](evidence-v1/combinations/hair_only-white.png)、[头脸与头发恢复](evidence-v1/combinations/head_hair-white.png)：头顶、前发、侧发、长后发各自可控制；肩臂后的后发连续，主卷发空隙存在。未见应平顺边缘出现连续碎凹凸或大量描摹碎片。
+- [全部配件独显](evidence-v1/combinations/accessories_only-white.png)、[8 个跨层分段总览](evidence-v1/segments/contact.png)。两个枝饰各前后两段；两个足链各前后两段。已分别检查，再恢复组合，未仅凭“分组数量正确”认定通过。
+- 逐件索引：[1–12](evidence-v1/contact-1.png)、[13–24](evidence-v1/contact-2.png)、[25–36](evidence-v1/contact-3.png)、[37–46](evidence-v1/contact-4.png)；小图只作导航，细节结论来自上面的同坐标放大及完整独显。
+- [结构核验](evidence-v1/structure-check.json)：46/46 非空，50 组，缺漏 0，额外部件 0；无嵌入图、clipPath 或 mask。审查前后 SHA-256 一致。
+
+## 复验范围
+
+修复 K01–K05 后，复验双足及足链邻接、双手及腕部、头冠与发髻/头顶发面、左右耳坠与侧发。复验仍须以新候选快照重新渲染，并记录新版本与 SHA-256。此报告不授权跳过剩余复验。
+'''
+Path('reviews/kind_blocks/审查.md').write_text(report)
+(E/'issue-index.json').write_text(json.dumps({'candidate_version':'v1','sha256':check['sha256'],'verdict':'需返修','issues':[{'id':'K01','parts':['foot_left','foot_right']},{'id':'K02','parts':['hand_left','hand_right']},{'id':'K03','parts':['foot_chain_left','foot_chain_right']},{'id':'K04','parts':['headdress_center']},{'id':'K05','parts':['earring_left','earring_right']}]},ensure_ascii=False,indent=2))
+print('Report saved; 46 part rows, 5 issues.')

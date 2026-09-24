@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="941" height="1672" viewBox="0 0 941 1672" version="1.1">
+  <title>&#21073;&#22920; &#183; kind &#22823;&#31867;&#36718;&#24275;&#20998;&#23618;&#31295;</title>
+  <desc>&#19982;&#35282;&#33394;&#24425;&#22270;&#21516;&#22352;&#26631;&#65292;941&#215;1672&#12290;8 &#20010; kind&#65292;&#25353;&#36974;&#25377;&#27425;&#24207;&#20998;&#32452;&#12290;&#25163;&#24037;&#38381;&#21512;&#36125;&#22622;&#23572;&#24213;&#24418;&#20026;&#32431;&#30333;&#22635;&#20805;&#65292;&#22806;&#36718;&#24275;&#20026;&#29420;&#31435;&#28145;&#33394;&#25551;&#36793;&#65307;&#21518;&#21457;&#12289;&#32819;&#26681;&#12289;&#32937;&#33218;&#12289;&#39048;&#33016;&#19982;&#39592;&#30406;&#22343;&#26377;&#36830;&#32493;&#34917;&#20840;&#12290;&#26080;&#23884;&#20837;&#20301;&#22270;&#12289;&#33945;&#29256;&#25110;&#20687;&#32032;&#20999;&#29255;&#12290;</desc>
+  <g id="face" data-kind="face" inkscape:groupmode="layer" inkscape:label="&#33080;&#37096; &#183; &#23436;&#25972;&#22836;&#33080;&#19982;&#32819;&#26681;">
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-023" d="M397 199 C389 190 380 197 380 208 C380 220 386 232 393 234 C399 232 400 216 397 199 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M397 199 C389 190 380 197 380 208 C380 220 386 232 393 234 C399 232 400 216 397 199 Z"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-024" d="M488 198 C494 189 504 197 505 207 C505 219 499 232 492 234 C486 231 484 214 488 198 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M488 198 C494 189 504 197 505 207 C505 219 499 232 492 234 C486 231 484 214 488 198 Z"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-025" d="M442 114 C412 114 393 136 391 167 C389 191 393 222 402 240 C411 253 427 267 439 270 C446 272 452 267 461 261 C476 250 487 236 491 218 C496 196 495 170 490 153 C483 128 463 114 442 114 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M394 200 C393 218 397 230 403 242 C411 254 428 267 439 270 C446 272 452 267 461 261 C476 250 487 236 491 218 L492 200"/>
+    </g>
+  </g>
+  <g id="face-marks" data-kind="face" inkscape:groupmode="layer" inkscape:label="&#33080;&#37096; &#183; &#30473;&#40763;&#23450;&#20301;">
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M409 185 C417 184 425 185 432 188 M456 188 C463 185 470 184 477 185 M439 230 L440 231 M447 231 L448 230" stroke-width="1.1"/>
+    </g>
+  </g>
+  </svg>

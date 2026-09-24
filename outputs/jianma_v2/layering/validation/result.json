@@ -1,0 +1,178 @@
+{
+  "current": {
+    "file": "outputs/jianma_v2/layering/character.svg",
+    "groups": [
+      [
+        "hair-back",
+        "hair"
+      ],
+      [
+        "physics_details-rear",
+        "physics_details"
+      ],
+      [
+        "physics_details-tassels",
+        "physics_details"
+      ],
+      [
+        "lower_body",
+        "lower_body"
+      ],
+      [
+        "arms",
+        "arms"
+      ],
+      [
+        "body",
+        "body"
+      ],
+      [
+        "face",
+        "face"
+      ],
+      [
+        "hair-updo",
+        "hair"
+      ],
+      [
+        "hair-front",
+        "hair"
+      ],
+      [
+        "eyes",
+        "eyes"
+      ],
+      [
+        "mouth",
+        "mouth"
+      ],
+      [
+        "face-marks",
+        "face"
+      ],
+      [
+        "physics_details-crown",
+        "physics_details"
+      ],
+      [
+        "physics_details-front",
+        "physics_details"
+      ]
+    ],
+    "kinds": [
+      "arms",
+      "body",
+      "eyes",
+      "face",
+      "hair",
+      "lower_body",
+      "mouth",
+      "physics_details"
+    ],
+    "bytes": 50119,
+    "embedded_images": 0,
+    "canvas_corner_alpha": 0,
+    "face_under": {
+      "eyes": {
+        "tested_pixels": 382,
+        "opaque_face_coverage": 1.0
+      },
+      "mouth": {
+        "tested_pixels": 94,
+        "opaque_face_coverage": 1.0
+      }
+    },
+    "commands": {
+      "M": 179,
+      "C": 1023,
+      "Z": 129,
+      "L": 103,
+      "a": 32
+    },
+    "closed_base_paths": 64,
+    "sha256": "64111e763a6e2d372ffa2795c66e7c41cf51c10b80d64c0ddb9d6cd7673a4bf0",
+    "worker": "gpt-6-astra / xhigh; /root/jianma_v2_kind_contours",
+    "drawing_prompt_sha256": "853530a8d75c51e02e1da46b2081e340b7169f562fdb61f6a80039e409277988",
+    "overlap_pixels": {
+      "face / hair": 9119,
+      "face / eyes": 382,
+      "body / arms": 2314,
+      "body / lower_body": 25215,
+      "hair / arms": 32583
+    }
+  },
+  "previous": {
+    "file": "outputs/jianma_v2/line-art/character.svg",
+    "groups": [
+      [
+        "hair_back",
+        "hair"
+      ],
+      [
+        "physics_back",
+        "physics_details"
+      ],
+      [
+        "lower_body",
+        "lower_body"
+      ],
+      [
+        "arms",
+        "arms"
+      ],
+      [
+        "body",
+        "body"
+      ],
+      [
+        "face",
+        "face"
+      ],
+      [
+        "hair_front",
+        "hair"
+      ],
+      [
+        "eyes",
+        "eyes"
+      ],
+      [
+        "mouth",
+        "mouth"
+      ],
+      [
+        "physics_front",
+        "physics_details"
+      ]
+    ],
+    "kinds": [
+      "arms",
+      "body",
+      "eyes",
+      "face",
+      "hair",
+      "lower_body",
+      "mouth",
+      "physics_details"
+    ],
+    "bytes": 1806784,
+    "embedded_images": 0,
+    "canvas_corner_alpha": 0,
+    "face_under": {
+      "eyes": {
+        "tested_pixels": 633,
+        "opaque_face_coverage": 0.12164296998420221
+      },
+      "mouth": {
+        "tested_pixels": 96,
+        "opaque_face_coverage": 0.17708333333333334
+      }
+    },
+    "commands": {
+      "M": 3433,
+      "C": 41234,
+      "Z": 3433,
+      "L": 101
+    }
+  }
+}

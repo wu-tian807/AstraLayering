@@ -1,0 +1,8 @@
+id: face_palette
+worker: face_palette
+inputs:
+  reference: inputs.reference
+  parts: inputs.parts
+outputs:
+  palette_image: refinement/groups/{group.id}/1.脸部色盘/palette.png
+  palette_json: refinement/groups/{group.id}/1.脸部色盘/palette.json

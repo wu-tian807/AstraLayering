@@ -1,0 +1,16 @@
+id: refine_groups
+inputs:
+  reference: nodes.base_subject.image
+  line_art: nodes.line_art_reference.image
+  parts: nodes.part_inventory.parts
+  svg: nodes.kind_layers.svg
+foreach:
+  from: inputs.parts
+  items: parts
+  group_by: kind
+  as: group
+  per_part: [generic]
+  priority: [face]
+  mode: serial
+  run: ../../templates/部件专项/{group.kind}/
+  carry: [svg]

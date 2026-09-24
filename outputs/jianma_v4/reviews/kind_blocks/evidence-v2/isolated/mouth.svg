@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="941" height="1672" viewBox="0 0 941 1672">
+<ns0:title>剑妈 · 46 个独立部件色块分层稿</ns0:title>
+<ns0:desc>原图坐标系。各具名组以 data-part 对应 parts.yaml，纯色无描线；隐藏底形保存于路径自身，背景透明。</ns0:desc>
+<ns0:g id="mouth" data-part="mouth" data-kind="mouth" fill="#B85674"><ns0:title>闭合的嘴部区域</ns0:title><ns0:path d="M 430,243 C 435,243 438,240 442,241 C 444,242 445,242 447,241 C 451,241 455,244 458,243 C 455,246 452,246 449,247 C 445,249 440,248 437,246 C 434,246 431,245 430,243 Z" fill-rule="evenodd" /></ns0:g>
+</ns0:svg>

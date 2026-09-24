@@ -1,0 +1,17 @@
+id: character_reference
+inputs:
+  original: inputs.original
+  simplified:
+    from: inputs.simplified
+    required: false
+
+if: options.simplify == false
+then:
+  outputs:
+    image: inputs.original
+else:
+  outputs:
+    image: references/simplified-character.png
+  imagegen:
+    when: simplified 未提供
+    prompt: 生成提示词.txt

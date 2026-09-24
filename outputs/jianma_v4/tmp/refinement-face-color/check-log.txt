@@ -1,0 +1,43 @@
+{
+  "input_sha256": "92acb1b6b4a60f66340f225c8a1dbb75c6f9bb670fa466a9e8336b30e16ee77f",
+  "output_sha256": "20492d4cacbfc3b0ba99989c4c74def5cf7837bb2aa78c6155c4b97d24e1df93",
+  "changed_original_parts": [
+    "face_base",
+    "ear_right",
+    "ear_left",
+    "blush_right",
+    "blush_left",
+    "brow_right",
+    "brow_left",
+    "nose"
+  ],
+  "new_effect_groups": [
+    "face_cast_shadows"
+  ],
+  "preserved_original_paths": {
+    "face_base": true,
+    "eye_left": true,
+    "eye_right": true,
+    "mouth": true,
+    "brow_left": true,
+    "brow_right": true,
+    "nose": true,
+    "ear_left": true,
+    "ear_right": true
+  },
+  "face_base_shape_exact": true,
+  "face_contour_exact": true,
+  "existing_ids_preserved": true,
+  "unique_ids": true,
+  "part_count": 46,
+  "shadow_receivers": [
+    "face_base"
+  ],
+  "shadow_sources": [
+    "hair_front_right",
+    "hair_front_left",
+    "hair_side_right",
+    "hair_side_left",
+    "forehead_jewel"
+  ]
+}

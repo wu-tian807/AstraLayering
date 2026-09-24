@@ -1,0 +1,22 @@
+{
+  "parts": 46,
+  "canvas": [
+    941,
+    1672
+  ],
+  "svg_groups": 50,
+  "files": {
+    "options.yaml": "1e78364260fb60817e33a6d883f92f7824680ee34301ef994b18f940a528c31e",
+    "references/original.png": "7368fd8fcc68df71d15422398d91f5fbbaaa311e0b97fbe40795873394689cfd",
+    "references/submitted-original.jpg": "6f2f612380c54e8e44e14c9a42c10c052bca50bb733845bd60ffefb791858cc3",
+    "references/base-garment.jpg": "0b59e76c1d7fefd7d1468bb76871cb2ef532d608ad7b81acebb136b413019732",
+    "references/base-subject.png": "7448a2575ec8619e43cd8ee9565ab35035272dd4702cd4b2ae58db4d748d34c3",
+    "references/kind-groups.png": "c1fa684b8156ed20538f76a971db12d2d478deee0816c8329b7ad38883901b08",
+    "references/base-subject.prompt.txt": "b399be2403c2dd09ded01236394a3164a9ca62267e41615eab8439069bad5c0f",
+    "references/kind-groups.prompt.txt": "ad401c159fd1524f046d8c970b6b11968bfcc3de656b2278433c4bdac172cf67",
+    "structure/parts.yaml": "8fb9d63e2d1d1ee32e4e5f0ca9d6d511bdee132a07a0a401d5e7060cd9df54cd",
+    "block-layers/character.svg": "38683eeead1b34c6eeff446db9cb14b8cb5d966c93b17d6064762da84a8e5d98",
+    "block-layers/preview.png": "a6fc8cf701cd3becc8a305f7be31204dafe049f0adbe3f1bb8efaafd3ae60a59",
+    "reviews/kind_blocks/审查.md": "8b5f09d8f5d0eb5d4d48dca86582594cc8dceaae36cfedf5ea42d66425a4b021"
+  }
+}

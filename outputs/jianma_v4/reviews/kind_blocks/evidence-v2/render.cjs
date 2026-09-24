@@ -1,0 +1,1 @@
+const fs=require('fs'); const {Resvg}=require(process.cwd()+'/tmp/block-drawing/runtime/node_modules/@resvg/resvg-js'); for (const j of JSON.parse(fs.readFileSync(process.argv[2]))) { const r=new Resvg(fs.readFileSync(j.input)); fs.writeFileSync(j.output,r.render().asPng()); }

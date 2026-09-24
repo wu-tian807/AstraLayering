@@ -1,0 +1,10 @@
+id: face_effects
+worker: refinement_drawing
+inputs:
+  reference: inputs.reference
+  parts: inputs.parts
+  svg: inputs.svg
+outputs:
+  svg: refinement/groups/{group.id}/6.投影与高光效果/character.svg
+  preview: refinement/groups/{group.id}/6.投影与高光效果/preview.png
+  notes: refinement/groups/{group.id}/6.投影与高光效果/说明.md

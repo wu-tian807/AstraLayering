@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="941" height="1672" viewBox="0 0 941 1672">
+<ns0:title>剑妈 · 46 个独立部件色块分层稿</ns0:title>
+<ns0:desc>原图坐标系。各具名组以 data-part 对应 parts.yaml，纯色无描线；隐藏底形保存于路径自身，背景透明。</ns0:desc>
+<ns0:g id="hair_front_right" data-part="hair_front_right" data-kind="hair" fill="#88CBAF"><ns0:title>角色右侧前额发片（画面左）</ns0:title><ns0:path d="M 444,137 C 439,128 432,124 424,125 C 411,125 401,136 394,149 C 386,164 382,184 374,195 C 370,200 369,206 374,211 C 378,217 385,217 390,213 C 400,203 405,183 412,166 C 417,153 422,147 429,146 C 434,145 439,149 443,153 C 444,148 445,142 444,137 Z" fill-rule="evenodd" /></ns0:g>
+</ns0:svg>

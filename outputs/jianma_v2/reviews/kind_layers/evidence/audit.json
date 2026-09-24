@@ -1,0 +1,27 @@
+{
+  "version": "candidate-v1",
+  "sha256": "64111e763a6e2d372ffa2795c66e7c41cf51c10b80d64c0ddb9d6cd7673a4bf0",
+  "reference_canvas": [
+    941,
+    1672
+  ],
+  "candidate_canvas": [
+    941,
+    1672
+  ],
+  "top_level_groups": 14,
+  "kinds": {
+    "hair": 3,
+    "physics_details": 4,
+    "lower_body": 1,
+    "arms": 1,
+    "body": 1,
+    "face": 2,
+    "eyes": 1,
+    "mouth": 1
+  },
+  "base_paths": 64,
+  "embedded_images": 0,
+  "masks": 0,
+  "clips": 0
+}

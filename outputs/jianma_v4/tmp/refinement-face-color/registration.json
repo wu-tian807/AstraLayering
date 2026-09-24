@@ -1,0 +1,24 @@
+{
+  "canvas": [
+    941,
+    1672
+  ],
+  "transform": "identity; no local alignment",
+  "face_crop": [
+    390,
+    148,
+    109,
+    126
+  ],
+  "face_scale": 8,
+  "head_crop": [
+    355,
+    120,
+    176,
+    190
+  ],
+  "head_scale": 5,
+  "overlay_alpha": 0.5,
+  "source": "references/base-subject.png",
+  "output": "refinement/groups/face/old-1.4/character.svg"
+}

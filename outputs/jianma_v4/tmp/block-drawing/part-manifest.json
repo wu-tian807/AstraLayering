@@ -1,0 +1,284 @@
+{
+  "canvas": [
+    941,
+    1672
+  ],
+  "parts": {
+    "face_base": {
+      "name": "头脸底形",
+      "kind": "face",
+      "groups": 1,
+      "fill": "#F6C59B"
+    },
+    "eye_left": {
+      "name": "角色左眼（画面右）",
+      "kind": "eyes",
+      "groups": 1,
+      "fill": "#347CB3"
+    },
+    "eye_right": {
+      "name": "角色右眼（画面左）",
+      "kind": "eyes",
+      "groups": 1,
+      "fill": "#31578E"
+    },
+    "mouth": {
+      "name": "闭合的嘴部区域",
+      "kind": "mouth",
+      "groups": 1,
+      "fill": "#B85674"
+    },
+    "brow_left": {
+      "name": "角色左眉（画面右）",
+      "kind": "face",
+      "groups": 1,
+      "fill": "#886156"
+    },
+    "brow_right": {
+      "name": "角色右眉（画面左）",
+      "kind": "face",
+      "groups": 1,
+      "fill": "#6D5048"
+    },
+    "nose": {
+      "name": "鼻子",
+      "kind": "face",
+      "groups": 1,
+      "fill": "#D68867"
+    },
+    "ear_left": {
+      "name": "角色左耳（画面右）",
+      "kind": "face",
+      "groups": 1,
+      "fill": "#D9AA7B"
+    },
+    "ear_right": {
+      "name": "角色右耳（画面左）",
+      "kind": "face",
+      "groups": 1,
+      "fill": "#E4B179"
+    },
+    "blush_left": {
+      "name": "角色左脸颊淡红晕（画面右）",
+      "kind": "face",
+      "groups": 1,
+      "fill": "#EA9D91"
+    },
+    "blush_right": {
+      "name": "角色右脸颊淡红晕（画面左）",
+      "kind": "face",
+      "groups": 1,
+      "fill": "#EFACA0"
+    },
+    "hair_crown": {
+      "name": "头顶中分的盘起发面",
+      "kind": "hair",
+      "groups": 1,
+      "fill": "#ABABC9"
+    },
+    "hair_bun": {
+      "name": "头顶后方的高发髻",
+      "kind": "hair",
+      "groups": 1,
+      "fill": "#E6B849"
+    },
+    "hair_front_left": {
+      "name": "角色左侧前额发片（画面右）",
+      "kind": "hair",
+      "groups": 1,
+      "fill": "#D4A2D5"
+    },
+    "hair_front_right": {
+      "name": "角色右侧前额发片（画面左）",
+      "kind": "hair",
+      "groups": 1,
+      "fill": "#88CBAF"
+    },
+    "hair_side_left": {
+      "name": "角色左侧脸旁发束（画面右）",
+      "kind": "hair",
+      "groups": 1,
+      "fill": "#A580D2"
+    },
+    "hair_side_right": {
+      "name": "角色右侧脸旁发束（画面左）",
+      "kind": "hair",
+      "groups": 1,
+      "fill": "#57B9C9"
+    },
+    "hair_back_left": {
+      "name": "角色左侧落地长后发（画面右）",
+      "kind": "hair",
+      "groups": 1,
+      "fill": "#B4ACED"
+    },
+    "hair_back_right": {
+      "name": "角色右侧落地长后发（画面左）",
+      "kind": "hair",
+      "groups": 1,
+      "fill": "#8CAEE8"
+    },
+    "neck": {
+      "name": "脖颈",
+      "kind": "body",
+      "groups": 1,
+      "fill": "#EDD08A"
+    },
+    "torso": {
+      "name": "胸腹与腰部基础体块",
+      "kind": "body",
+      "groups": 1,
+      "fill": "#F3DBA0"
+    },
+    "bodysuit": {
+      "name": "白色无袖连体服",
+      "kind": "clothing",
+      "groups": 1,
+      "fill": "#A2D6F5"
+    },
+    "pelvis": {
+      "name": "骨盆与腰胯基础体块",
+      "kind": "lower_body",
+      "groups": 1,
+      "fill": "#E6AB9D"
+    },
+    "thigh_left": {
+      "name": "角色左大腿（画面右）",
+      "kind": "lower_body",
+      "groups": 1,
+      "fill": "#F0B27B"
+    },
+    "thigh_right": {
+      "name": "角色右大腿（画面左）",
+      "kind": "lower_body",
+      "groups": 1,
+      "fill": "#EC9CA8"
+    },
+    "calf_left": {
+      "name": "角色左小腿（画面右）",
+      "kind": "lower_body",
+      "groups": 1,
+      "fill": "#F2D58F"
+    },
+    "calf_right": {
+      "name": "角色右小腿（画面左）",
+      "kind": "lower_body",
+      "groups": 1,
+      "fill": "#DD9CD3"
+    },
+    "foot_left": {
+      "name": "角色左脚（画面右）",
+      "kind": "lower_body",
+      "groups": 1,
+      "fill": "#E9BB60"
+    },
+    "foot_right": {
+      "name": "角色右脚（画面左）",
+      "kind": "lower_body",
+      "groups": 1,
+      "fill": "#D376AB"
+    },
+    "upper_arm_left": {
+      "name": "角色左大臂（画面右）",
+      "kind": "arms",
+      "groups": 1,
+      "fill": "#F0D27E"
+    },
+    "upper_arm_right": {
+      "name": "角色右大臂（画面左）",
+      "kind": "arms",
+      "groups": 1,
+      "fill": "#B2DD92"
+    },
+    "forearm_left": {
+      "name": "角色左小臂（画面右）",
+      "kind": "arms",
+      "groups": 1,
+      "fill": "#C5A2E8"
+    },
+    "forearm_right": {
+      "name": "角色右小臂（画面左）",
+      "kind": "arms",
+      "groups": 1,
+      "fill": "#87C7A0"
+    },
+    "hand_left": {
+      "name": "角色左手（画面右）",
+      "kind": "arms",
+      "groups": 1,
+      "fill": "#9779C7"
+    },
+    "hand_right": {
+      "name": "角色右手（画面左）",
+      "kind": "arms",
+      "groups": 1,
+      "fill": "#6CAC79"
+    },
+    "headdress_halo": {
+      "name": "发髻后方的细弧形头环",
+      "kind": "physics_details",
+      "groups": 1,
+      "fill": "#C9A856"
+    },
+    "headdress_branch_left": {
+      "name": "角色左侧枝角形头饰（画面右）",
+      "kind": "physics_details",
+      "groups": 2,
+      "fill": "#72AC83"
+    },
+    "headdress_branch_right": {
+      "name": "角色右侧枝角形头饰（画面左）",
+      "kind": "physics_details",
+      "groups": 2,
+      "fill": "#C58485"
+    },
+    "headdress_center": {
+      "name": "高发髻前的蓝宝石花叶头冠",
+      "kind": "physics_details",
+      "groups": 1,
+      "fill": "#C3863D"
+    },
+    "forehead_jewel": {
+      "name": "中分发际的蓝宝石额饰",
+      "kind": "physics_details",
+      "groups": 1,
+      "fill": "#438CC3"
+    },
+    "streamer_left": {
+      "name": "角色左侧头饰长飘带（画面右）",
+      "kind": "physics_details",
+      "groups": 1,
+      "fill": "#72C9EA"
+    },
+    "streamer_right": {
+      "name": "角色右侧头饰长飘带（画面左）",
+      "kind": "physics_details",
+      "groups": 1,
+      "fill": "#75D9DE"
+    },
+    "earring_left": {
+      "name": "角色左侧蓝宝石长耳坠（画面右）",
+      "kind": "physics_details",
+      "groups": 1,
+      "fill": "#27688D"
+    },
+    "earring_right": {
+      "name": "角色右侧蓝宝石长耳坠（画面左）",
+      "kind": "physics_details",
+      "groups": 1,
+      "fill": "#286F98"
+    },
+    "foot_chain_left": {
+      "name": "角色左脚蓝珠足链（画面右）",
+      "kind": "physics_details",
+      "groups": 2,
+      "fill": "#3C96AD"
+    },
+    "foot_chain_right": {
+      "name": "角色右脚蓝珠足链（画面左）",
+      "kind": "physics_details",
+      "groups": 2,
+      "fill": "#437FC0"
+    }
+  }
+}

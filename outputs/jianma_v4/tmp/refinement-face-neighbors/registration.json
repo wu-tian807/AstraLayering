@@ -1,0 +1,26 @@
+{
+  "canvas": [
+    941,
+    1672
+  ],
+  "transform": "identity; no local alignment",
+  "head_crop": [
+    355,
+    120,
+    176,
+    225
+  ],
+  "head_display_scale": 4,
+  "face_crop": [
+    390,
+    175,
+    111,
+    78
+  ],
+  "face_display_scale": 8,
+  "overlay_alpha": 0.5,
+  "preview": "white background rendered from the final saved SVG",
+  "reference": "references/base-subject.png",
+  "input": "refinement/groups/face/2.脸型校准与绘制/character.svg",
+  "output": "refinement/groups/face/3.关联部件校准/character.svg"
+}

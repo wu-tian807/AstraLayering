@@ -1,0 +1,101 @@
+{
+  "input_sha256": "fd4ea60cc57831818d7cd1f0d663e9bcc18cb2c4a1d6698f458a1b9654dfbe43",
+  "output_sha256": "92acb1b6b4a60f66340f225c8a1dbb75c6f9bb670fa466a9e8336b30e16ee77f",
+  "changed": [
+    {
+      "part": "eye_right",
+      "kind": "eyes"
+    },
+    {
+      "part": "eye_left",
+      "kind": "eyes"
+    },
+    {
+      "part": "brow_right",
+      "kind": "face"
+    },
+    {
+      "part": "brow_left",
+      "kind": "face"
+    },
+    {
+      "part": "nose",
+      "kind": "face"
+    },
+    {
+      "part": "mouth",
+      "kind": "mouth"
+    },
+    {
+      "part": "forehead_jewel",
+      "kind": "physics_details"
+    },
+    {
+      "part": "earring_right",
+      "kind": "physics_details"
+    }
+  ],
+  "face_base_exact_xml_equal": true,
+  "face_contour_gradient_exact_xml_equal": true,
+  "all_top_level_group_attributes_equal": true,
+  "all_top_level_ids_order_equal": true,
+  "root_attributes_equal": true,
+  "part_count": 46,
+  "unchanged_top_level_groups": [
+    "hair_back_right",
+    "hair_back_left",
+    "headdress_halo",
+    "hair_bun",
+    "headdress_branch_right",
+    "headdress_branch_left",
+    "streamer_right",
+    "streamer_left",
+    "pelvis",
+    "torso",
+    "foot_chain_right_2",
+    "foot_chain_left_2",
+    "thigh_right",
+    "thigh_left",
+    "calf_right",
+    "calf_left",
+    "foot_right",
+    "foot_left",
+    "upper_arm_right",
+    "upper_arm_left",
+    "forearm_right",
+    "forearm_left",
+    "neck",
+    "bodysuit",
+    "face_base",
+    "ear_right",
+    "ear_left",
+    "blush_right",
+    "blush_left",
+    "hair_crown",
+    "hair_side_right",
+    "hair_side_left",
+    "hair_front_right",
+    "hair_front_left",
+    "hand_right",
+    "hand_left",
+    "headdress_branch_right_2",
+    "headdress_branch_left_2",
+    "headdress_center",
+    "earring_left",
+    "foot_chain_right",
+    "foot_chain_left"
+  ],
+  "all_ids_unique": true,
+  "render_difference_bbox": [
+    392,
+    126,
+    487,
+    277
+  ],
+  "preview_dimensions": [
+    941,
+    1672
+  ],
+  "unchanged_part_count": 38,
+  "face_base_render_identical": true
+}

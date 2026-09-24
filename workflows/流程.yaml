@@ -1,0 +1,14 @@
+inputs:
+  original:
+    type: image
+    required: true
+    description: 用户提供的原始角色图
+  simplified:
+    type: image
+    required: false
+    description: 用户已准备的、适合结构识别与分层重绘的角色参考图
+
+options:
+  simplify:
+    type: boolean
+    description: 是否需要画法适配或消除结构辨认障碍；结构清楚的插画优先直接使用，材质透明与待替换服装的复杂度不单独触发改绘

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" width="941" height="1672" viewBox="0 0 941 1672" version="1.1">
+  <title>剑妈 · kind 色块分层稿</title>
+  <desc>原彩图同坐标 941×1672。8 类标记色；闭合可编辑贝塞尔底形，透明背景，无描边。保留实际开口与各类前后遮挡，补全头形、颈胸、肩臂、骨盆与后发。</desc>
+  <g data-kind="hair" fill="#359CDC" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="头发 · 后部长发完整底形" id="hair-back">
+    </g>
+  <g data-kind="hair" fill="#359CDC" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="头发 · 盘发" id="hair-updo">
+    </g>
+  <g data-kind="physics_details" fill="#EAC52E" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="饰物 · 冠环与枝饰" id="crown-back">
+    </g>
+  <g data-kind="physics_details" fill="#EAC52E" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="饰物 · 冠侧长垂饰" id="crown-tassels">
+    </g>
+  <g data-kind="lower_body" fill="#59C48D" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="下身 · 骨盆与双腿双脚" id="lower-body">
+    </g>
+  <g data-kind="arms" fill="#F49A48" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="双臂与手 · 完整底形" id="arms">
+    </g>
+  <g data-kind="body" fill="#A385D8" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="身体 · 连续颈胸与连体服" id="body">
+    </g>
+  <g data-kind="face" fill="#F38394" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="头脸 · 完整头形与耳根" id="face">
+    </g>
+  <g data-kind="hair" fill="#359CDC" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="头发 · 前发与鬓发" id="hair-front">
+    </g>
+  <g data-kind="eyes" fill="#3452AC" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="眼睛 · 完整可见眼形" id="eyes">
+    </g>
+  <g data-kind="mouth" fill="#CE315E" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="嘴部 · 闭合嘴形" id="mouth">
+    </g>
+  <g data-kind="physics_details" fill="#EAC52E" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="饰物 · 额坠、耳坠与脚链" id="ornaments-front">
+    <path data-role="base" id="earring_left" d="M501.15,305.91C500.88,305.22 501.13,303.86 501.52,303.84C501.97,303.83 502.12,305.68 501.70,306.10C501.46,306.34 501.29,306.28 501.15,305.91ZM500.17,300.95C499.84,300.10 500.14,291.83 500.50,291.83C500.95,291.83 501.13,300.67 500.69,301.11C500.47,301.33 500.29,301.28 500.17,300.95ZM499.22,289.11C498.63,288.52 498.99,279.00 499.60,279.00C500.59,279.00 501.00,279.71 501.01,281.48C501.02,282.41 501.24,283.54 501.50,284.00C502.23,285.28 502.10,286.20 501.00,287.45C500.45,288.08 500.00,288.76 500.00,288.96C500.00,289.37 499.57,289.46 499.22,289.11ZM498.22,278.44C497.68,277.90 497.99,272.75 498.61,271.98C499.31,271.12 499.99,271.34 500.01,272.44C500.02,272.84 500.24,273.54 500.50,274.00C501.25,275.32 501.10,276.21 500.00,277.00C499.45,277.39 499.00,277.93 499.00,278.19C499.00,278.69 498.60,278.82 498.22,278.44ZM497.21,270.10C497.10,269.98 497.00,268.68 496.99,267.19C496.98,265.36 496.82,264.29 496.49,263.85C496.22,263.50 496.00,262.63 496.00,261.92C496.00,261.22 495.77,260.29 495.49,259.86C494.74,258.72 494.93,253.72 495.73,253.21C498.36,251.56 500.19,255.65 498.39,259.17C496.91,262.06 496.73,263.11 497.51,264.15C498.39,265.31 498.10,270.99 497.21,270.10ZM488.40,261.60C487.89,261.09 487.89,259.91 488.40,259.40C488.96,258.84 491.17,258.90 491.65,259.48C492.74,260.80 489.63,262.83 488.40,261.60ZM494.21,251.10C493.88,250.77 493.96,247.33 494.30,247.33C494.74,247.33 495.00,248.22 495.00,249.67C495.00,250.92 494.65,251.54 494.21,251.10ZM492.84,246.25C488.98,240.77 489.02,240.92 490.55,237.98C491.83,235.50 491.83,235.50 492.00,228.67C492.16,221.93 492.72,219.23 492.93,224.14C493.02,226.15 493.16,226.60 494.02,227.57C495.36,229.10 495.43,231.77 494.17,233.27C493.08,234.57 493.05,234.47 495.17,236.70C497.52,239.16 497.55,239.91 495.50,244.01C493.89,247.21 493.65,247.41 492.84,246.25Z" />
+    </g>
+</svg>

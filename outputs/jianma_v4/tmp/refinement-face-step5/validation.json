@@ -1,0 +1,49 @@
+{
+  "input_sha256": "2e4d985553cd0bc0c757c20021442e6204b723dd929b68c55d52c84d80fce10f",
+  "output_sha256": "9bbb6f8a09ec4f7bca11a250b046250878f13a45d11ce775052f0daddbbad27b",
+  "edited_parts": [
+    "ear_right",
+    "ear_left",
+    "blush_right",
+    "blush_left",
+    "brow_right",
+    "brow_left",
+    "nose"
+  ],
+  "edited_kinds": [
+    "face"
+  ],
+  "unchanged_top_groups": 43,
+  "total_top_groups": 50,
+  "total_parts": 46,
+  "face_base_exactly_preserved": true,
+  "prior_defs_exactly_preserved": true,
+  "unique_ids": 106,
+  "all_url_refs_resolved": true,
+  "ear_layer_order": "ear_right, ear_left before face_base; all other relative order preserved",
+  "initial_visibility_restored": true,
+  "render_difference_bbox_xyxy": [
+    388,
+    181,
+    500,
+    238
+  ],
+  "render_changed_pixels": 2099,
+  "render_change_outside_head_roi": 0,
+  "isolated_face_pixels_identical": true,
+  "clipped_parts_pixels_outside_face": {
+    "blush_right": 0,
+    "blush_left": 0,
+    "nose": 0
+  },
+  "transparent_svg_canvas_corner_alpha": 0,
+  "preview_size": [
+    941,
+    1672
+  ],
+  "preview_corner_rgb": [
+    255,
+    255,
+    255
+  ]
+}

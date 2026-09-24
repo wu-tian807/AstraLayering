@@ -1,0 +1,8 @@
+id: kind_reference
+inputs:
+  reference: nodes.base_subject.image
+  parts: nodes.part_inventory.parts
+outputs:
+  image: references/kind-groups.png
+imagegen:
+  prompt: 生成提示词.txt

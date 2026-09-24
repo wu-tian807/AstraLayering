@@ -2,6 +2,10 @@
 .DS_Store
 __pycache__/
 *.py[cod]
+.options.yaml.lock
+
+# Reinstall JavaScript dependencies from the saved package manifests.
+node_modules/
 
 # Tracing caches and trial renders stay local; retain the reconstruction seeds.
 /demos/deep-sea-method-comparison/pixel-trace/work/*

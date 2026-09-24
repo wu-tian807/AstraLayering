@@ -1,0 +1,13 @@
+{
+  "candidate_version": "v2",
+  "sha256": "38683eeead1b34c6eeff446db9cb14b8cb5d966c93b17d6064762da84a8e5d98",
+  "verdict": "通过",
+  "closed_issues": [
+    "K01",
+    "K02",
+    "K03",
+    "K04",
+    "K05"
+  ],
+  "open_issues": []
+}

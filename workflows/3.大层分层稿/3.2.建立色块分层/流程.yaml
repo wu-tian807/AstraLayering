@@ -1,0 +1,17 @@
+id: kind_layers
+worker: kind_block_drawing
+inputs:
+  reference: nodes.base_subject.image
+  parts: nodes.part_inventory.parts
+  kind_reference: nodes.kind_reference.image
+outputs:
+  svg: block-layers/character.svg
+  preview: block-layers/preview.png
+review:
+  run: review/
+  inputs:
+    reference: nodes.base_subject.image
+    parts: nodes.part_inventory.parts
+    candidate: self.svg
+  outputs:
+    report: reviews/kind_blocks/审查.md

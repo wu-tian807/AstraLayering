@@ -1,0 +1,16 @@
+id: base_subject
+inputs:
+  reference: nodes.character_reference.image
+
+if: reference 含可换装的人形角色
+then:
+  inputs:
+    outfit:
+      asset: 可复用结果.jpg
+  outputs:
+    image: references/base-subject.png
+  imagegen:
+    prompt: 生成提示词.txt
+else:
+  outputs:
+    image: inputs.reference

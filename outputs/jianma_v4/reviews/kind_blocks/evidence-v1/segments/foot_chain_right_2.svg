@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="941" height="1672" viewBox="0 0 941 1672">
+<ns0:title>剑妈 · 46 个独立部件色块分层稿</ns0:title>
+<ns0:desc>原图坐标系。各具名组以 data-part 对应 parts.yaml，纯色无描线；隐藏底形保存于路径自身，背景透明。</ns0:desc>
+<ns0:g id="foot_chain_right_2" data-part="foot_chain_right" data-kind="physics_details" fill="#437FC0"><ns0:title>角色右脚蓝珠足链（画面左） · 踝后隐藏弧</ns0:title><ns0:path d="M 392,1471 C 401,1458 430,1458 441,1471 L 440,1473 C 428,1462 404,1462 393,1473 Z" fill-rule="evenodd" /></ns0:g>
+</ns0:svg>

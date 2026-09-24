@@ -1,0 +1,646 @@
+[
+  {
+    "name": "forehead_l",
+    "x": 428,
+    "y": 164,
+    "rgb": [
+      253,
+      244,
+      243
+    ],
+    "hex": "#FDF4F3",
+    "render_rgb": [
+      253,
+      246,
+      245
+    ],
+    "render_hex": "#FDF6F5",
+    "delta_rgb": [
+      0,
+      2,
+      2
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "forehead_r",
+    "x": 461,
+    "y": 164,
+    "rgb": [
+      254,
+      248,
+      246
+    ],
+    "hex": "#FEF8F6",
+    "render_rgb": [
+      254,
+      248,
+      247
+    ],
+    "render_hex": "#FEF8F7",
+    "delta_rgb": [
+      0,
+      0,
+      1
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "forehead_middle",
+    "x": 444,
+    "y": 182,
+    "rgb": [
+      254,
+      246,
+      245
+    ],
+    "hex": "#FEF6F5",
+    "render_rgb": [
+      254,
+      246,
+      245
+    ],
+    "render_hex": "#FEF6F5",
+    "delta_rgb": [
+      0,
+      0,
+      0
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "midface_l",
+    "x": 431,
+    "y": 215,
+    "rgb": [
+      252,
+      238,
+      236
+    ],
+    "hex": "#FCEEEC",
+    "render_rgb": [
+      252,
+      238,
+      237
+    ],
+    "render_hex": "#FCEEED",
+    "delta_rgb": [
+      0,
+      0,
+      1
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "midface_r",
+    "x": 456,
+    "y": 215,
+    "rgb": [
+      252,
+      239,
+      237
+    ],
+    "hex": "#FCEFED",
+    "render_rgb": [
+      252,
+      238,
+      237
+    ],
+    "render_hex": "#FCEEED",
+    "delta_rgb": [
+      0,
+      -1,
+      0
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "cheek_l_peak",
+    "x": 409,
+    "y": 218,
+    "rgb": [
+      249,
+      221,
+      219
+    ],
+    "hex": "#F9DDDB",
+    "render_rgb": [
+      248,
+      221,
+      219
+    ],
+    "render_hex": "#F8DDDB",
+    "delta_rgb": [
+      -1,
+      0,
+      0
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "cheek_r_peak",
+    "x": 480,
+    "y": 216,
+    "rgb": [
+      250,
+      227,
+      225
+    ],
+    "hex": "#FAE3E1",
+    "render_rgb": [
+      250,
+      226,
+      225
+    ],
+    "render_hex": "#FAE2E1",
+    "delta_rgb": [
+      0,
+      -1,
+      0
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "cheek_l_inner",
+    "x": 421,
+    "y": 222,
+    "rgb": [
+      253,
+      238,
+      236
+    ],
+    "hex": "#FDEEEC",
+    "render_rgb": [
+      252,
+      238,
+      237
+    ],
+    "render_hex": "#FCEEED",
+    "delta_rgb": [
+      -1,
+      0,
+      1
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "cheek_r_inner",
+    "x": 469,
+    "y": 222,
+    "rgb": [
+      252,
+      238,
+      236
+    ],
+    "hex": "#FCEEEC",
+    "render_rgb": [
+      252,
+      236,
+      234
+    ],
+    "render_hex": "#FCECEA",
+    "delta_rgb": [
+      0,
+      -2,
+      -2
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "jaw_l_skin",
+    "x": 411,
+    "y": 242,
+    "rgb": [
+      249,
+      237,
+      236
+    ],
+    "hex": "#F9EDEC",
+    "render_rgb": [
+      250,
+      240,
+      239
+    ],
+    "render_hex": "#FAF0EF",
+    "delta_rgb": [
+      1,
+      3,
+      3
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "jaw_r_skin",
+    "x": 477,
+    "y": 242,
+    "rgb": [
+      249,
+      245,
+      244
+    ],
+    "hex": "#F9F5F4",
+    "render_rgb": [
+      253,
+      244,
+      243
+    ],
+    "render_hex": "#FDF4F3",
+    "delta_rgb": [
+      4,
+      -1,
+      -1
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "chin_middle",
+    "x": 444,
+    "y": 262,
+    "rgb": [
+      253,
+      241,
+      239
+    ],
+    "hex": "#FDF1EF",
+    "render_rgb": [
+      252,
+      241,
+      240
+    ],
+    "render_hex": "#FCF1F0",
+    "delta_rgb": [
+      -1,
+      0,
+      1
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "nose_bridge",
+    "x": 444,
+    "y": 219,
+    "rgb": [
+      252,
+      235,
+      233
+    ],
+    "hex": "#FCEBE9",
+    "render_rgb": [
+      252,
+      235,
+      233
+    ],
+    "render_hex": "#FCEBE9",
+    "delta_rgb": [
+      0,
+      0,
+      0
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "nose_tip_highlight",
+    "x": 442,
+    "y": 224,
+    "rgb": [
+      253,
+      239,
+      237
+    ],
+    "hex": "#FDEFED",
+    "render_rgb": [
+      251,
+      237,
+      236
+    ],
+    "render_hex": "#FBEDEC",
+    "delta_rgb": [
+      -2,
+      -2,
+      -1
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "nose_tip_warm",
+    "x": 444,
+    "y": 230,
+    "rgb": [
+      246,
+      221,
+      219
+    ],
+    "hex": "#F6DDDB",
+    "render_rgb": [
+      246,
+      223,
+      219
+    ],
+    "render_hex": "#F6DFDB",
+    "delta_rgb": [
+      0,
+      2,
+      0
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "nose_under",
+    "x": 444,
+    "y": 233,
+    "rgb": [
+      248,
+      228,
+      225
+    ],
+    "hex": "#F8E4E1",
+    "render_rgb": [
+      249,
+      229,
+      226
+    ],
+    "render_hex": "#F9E5E2",
+    "delta_rgb": [
+      1,
+      1,
+      1
+    ],
+    "probe_class": "clean-skin"
+  },
+  {
+    "name": "nostril_l",
+    "x": 440,
+    "y": 229,
+    "rgb": [
+      236,
+      207,
+      205
+    ],
+    "hex": "#ECCFCD",
+    "render_rgb": [
+      239,
+      216,
+      212
+    ],
+    "render_hex": "#EFD8D4",
+    "delta_rgb": [
+      3,
+      9,
+      7
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "nostril_r",
+    "x": 447,
+    "y": 228,
+    "rgb": [
+      248,
+      224,
+      222
+    ],
+    "hex": "#F8E0DE",
+    "render_rgb": [
+      241,
+      219,
+      216
+    ],
+    "render_hex": "#F1DBD8",
+    "delta_rgb": [
+      -7,
+      -5,
+      -6
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "brow_l",
+    "x": 420,
+    "y": 184,
+    "rgb": [
+      180,
+      168,
+      181
+    ],
+    "hex": "#B4A8B5",
+    "render_rgb": [
+      179,
+      167,
+      178
+    ],
+    "render_hex": "#B3A7B2",
+    "delta_rgb": [
+      -1,
+      -1,
+      -3
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "brow_l_outer",
+    "x": 410,
+    "y": 183,
+    "rgb": [
+      169,
+      153,
+      168
+    ],
+    "hex": "#A999A8",
+    "render_rgb": [
+      162,
+      151,
+      165
+    ],
+    "render_hex": "#A297A5",
+    "delta_rgb": [
+      -7,
+      -2,
+      -3
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "brow_r",
+    "x": 470,
+    "y": 184,
+    "rgb": [
+      172,
+      170,
+      182
+    ],
+    "hex": "#ACAAB6",
+    "render_rgb": [
+      170,
+      168,
+      184
+    ],
+    "render_hex": "#AAA8B8",
+    "delta_rgb": [
+      -2,
+      -2,
+      2
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "brow_r_inner",
+    "x": 459,
+    "y": 187,
+    "rgb": [
+      192,
+      177,
+      184
+    ],
+    "hex": "#C0B1B8",
+    "render_rgb": [
+      252,
+      239,
+      238
+    ],
+    "render_hex": "#FCEFEE",
+    "delta_rgb": [
+      60,
+      62,
+      54
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "ear_lobe_screen_l",
+    "x": 396,
+    "y": 219,
+    "rgb": [
+      197,
+      172,
+      174
+    ],
+    "hex": "#C5ACAE",
+    "render_rgb": [
+      87,
+      185,
+      201
+    ],
+    "render_hex": "#57B9C9",
+    "delta_rgb": [
+      -110,
+      13,
+      27
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "ear_lobe_screen_r",
+    "x": 489,
+    "y": 220,
+    "rgb": [
+      168,
+      138,
+      141
+    ],
+    "hex": "#A88A8D",
+    "render_rgb": [
+      171,
+      142,
+      206
+    ],
+    "render_hex": "#AB8ECE",
+    "delta_rgb": [
+      3,
+      4,
+      65
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "hair_shadow_forehead_l",
+    "x": 415,
+    "y": 165,
+    "rgb": [
+      205,
+      193,
+      195
+    ],
+    "hex": "#CDC1C3",
+    "render_rgb": [
+      222,
+      196,
+      197
+    ],
+    "render_hex": "#DEC4C5",
+    "delta_rgb": [
+      17,
+      3,
+      2
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "hair_shadow_forehead_r",
+    "x": 475,
+    "y": 168,
+    "rgb": [
+      218,
+      217,
+      233
+    ],
+    "hex": "#DAD9E9",
+    "render_rgb": [
+      220,
+      189,
+      200
+    ],
+    "render_hex": "#DCBDC8",
+    "delta_rgb": [
+      2,
+      -28,
+      -33
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "hair_shadow_cheek_l",
+    "x": 400,
+    "y": 215,
+    "rgb": [
+      228,
+      198,
+      199
+    ],
+    "hex": "#E4C6C7",
+    "render_rgb": [
+      235,
+      210,
+      211
+    ],
+    "render_hex": "#EBD2D3",
+    "delta_rgb": [
+      7,
+      12,
+      12
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  },
+  {
+    "name": "hair_shadow_cheek_r",
+    "x": 488,
+    "y": 217,
+    "rgb": [
+      182,
+      153,
+      158
+    ],
+    "hex": "#B6999E",
+    "render_rgb": [
+      202,
+      163,
+      181
+    ],
+    "render_hex": "#CAA3B5",
+    "delta_rgb": [
+      20,
+      10,
+      23
+    ],
+    "probe_class": "fine-detail-or-occlusion; not a color-fit score"
+  }
+]

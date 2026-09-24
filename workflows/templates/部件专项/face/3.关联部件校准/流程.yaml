@@ -1,0 +1,11 @@
+id: face_neighbors
+worker: refinement_drawing
+inputs:
+  reference: inputs.reference
+  line_art: inputs.line_art
+  parts: inputs.parts
+  svg: inputs.svg
+outputs:
+  svg: refinement/groups/{group.id}/3.关联部件校准/character.svg
+  preview: refinement/groups/{group.id}/3.关联部件校准/preview.png
+  notes: refinement/groups/{group.id}/3.关联部件校准/说明.md

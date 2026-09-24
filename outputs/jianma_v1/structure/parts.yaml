@@ -1,0 +1,197 @@
+subject: character
+parts:
+  - id: face_base
+    name: 头脸底形
+    kind: face
+    visibility: visible
+    separate_for: 承载五官，随头部整体转动。
+  - id: eye_left
+    name: 左眼完整眼部
+    kind: eyes
+    visibility: visible
+    separate_for: 独立眨眼和视线变化；左为角色自身左侧。
+  - id: eye_right
+    name: 右眼完整眼部
+    kind: eyes
+    visibility: visible
+    separate_for: 独立眨眼和视线变化；右为角色自身右侧。
+  - id: mouth
+    name: 闭合嘴部
+    kind: mouth
+    visibility: visible
+    separate_for: 独立开合及表情变化。
+  - id: brow_left
+    name: 左眉
+    kind: face
+    visibility: visible
+    separate_for: 随左眼表情独立抬压。
+  - id: brow_right
+    name: 右眉
+    kind: face
+    visibility: visible
+    separate_for: 随右眼表情独立抬压。
+  - id: nose
+    name: 鼻子
+    kind: face
+    visibility: visible
+    separate_for: 随面部转动保持独立形状。
+  - id: ear_left
+    name: 左耳
+    kind: face
+    visibility: visible
+    separate_for: 部分受侧发遮挡，需保留耳根及耳环连接处。
+  - id: ear_right
+    name: 右耳
+    kind: face
+    visibility: visible
+    separate_for: 部分受侧发遮挡，需保留耳根及耳环连接处。
+  - id: hair_front
+    name: 头顶与中分前发
+    kind: hair
+    visibility: visible
+    separate_for: 承担头顶和额前轮廓；位于脸前、发髻前。
+  - id: hair_side_left
+    name: 左侧垂发
+    kind: hair
+    visibility: visible
+    separate_for: 从鬓角垂向肩旁，可随头部独立摆动；部分跨过耳部。
+  - id: hair_side_right
+    name: 右侧垂发
+    kind: hair
+    visibility: visible
+    separate_for: 从鬓角垂向肩旁，可随头部独立摆动；部分跨过耳部。
+  - id: hair_back_left
+    name: 左侧后部长发
+    kind: hair
+    visibility: visible
+    separate_for: 自后脑延伸至腿旁，需独立摆动并保持在躯干及手臂后方。
+  - id: hair_back_right
+    name: 右侧后部长发
+    kind: hair
+    visibility: visible
+    separate_for: 自后脑延伸至腿旁，需独立摆动并保持在躯干及手臂后方。
+  - id: hair_bun
+    name: 顶部发髻
+    kind: hair
+    visibility: visible
+    separate_for: 独立保持高耸轮廓；被冠饰环绕，接于头顶后部。
+  - id: neck
+    name: 脖子
+    kind: body
+    visibility: visible
+    separate_for: 连接头部与躯干，保留转头和俯仰所需形状。
+  - id: torso
+    name: 躯干
+    kind: body
+    visibility: visible
+    separate_for: 肩胸上缘可见，连体服下的躯干需补全以连接腰、肩和脖子。
+  - id: swimsuit
+    name: 白色连体服
+    kind: body
+    visibility: visible
+    separate_for: 作为独立于身体的整件服装，随躯干及骨盆形变并保持开口边界。
+  - id: pelvis
+    name: 骨盆
+    kind: lower_body
+    visibility: hidden_needed
+    separate_for: 被连体服遮住；补全腰胯根部以连接左右髋关节。
+  - id: thigh_left
+    name: 左大腿
+    kind: lower_body
+    visibility: visible
+    separate_for: 从连体服腿口下方接左髋，独立完成抬腿和转髋。
+  - id: thigh_right
+    name: 右大腿
+    kind: lower_body
+    visibility: visible
+    separate_for: 从连体服腿口下方接右髋，独立完成抬腿和转髋。
+  - id: calf_left
+    name: 左小腿
+    kind: lower_body
+    visibility: visible
+    separate_for: 经左膝连接大腿，独立屈膝并接脚踝。
+  - id: calf_right
+    name: 右小腿
+    kind: lower_body
+    visibility: visible
+    separate_for: 经右膝连接大腿，独立屈膝并接脚踝。
+  - id: foot_left
+    name: 左脚
+    kind: lower_body
+    visibility: visible
+    separate_for: 经左踝连接小腿，独立转动；脚背饰链覆盖其上。
+  - id: foot_right
+    name: 右脚
+    kind: lower_body
+    visibility: visible
+    separate_for: 经右踝连接小腿，独立转动；脚背饰链覆盖其上。
+  - id: upper_arm_left
+    name: 左大臂
+    kind: arms
+    visibility: visible
+    separate_for: 接左肩，独立抬臂并与小臂在肘部相连。
+  - id: upper_arm_right
+    name: 右大臂
+    kind: arms
+    visibility: visible
+    separate_for: 接右肩，独立抬臂并与小臂在肘部相连。
+  - id: forearm_left
+    name: 左小臂
+    kind: arms
+    visibility: visible
+    separate_for: 接左肘和左腕，独立屈肘。
+  - id: forearm_right
+    name: 右小臂
+    kind: arms
+    visibility: visible
+    separate_for: 接右肘和右腕，独立屈肘。
+  - id: hand_left
+    name: 左手
+    kind: arms
+    visibility: visible
+    separate_for: 经左腕连接小臂，独立转腕及切换手势。
+  - id: hand_right
+    name: 右手
+    kind: arms
+    visibility: visible
+    separate_for: 经右腕连接小臂，独立转腕及切换手势。
+  - id: headpiece
+    name: 环拱与双侧枝状冠饰
+    kind: physics_details
+    visibility: visible
+    separate_for: 作为整体刚性发饰固定在发髻周围；拱环在发髻后，侧枝从两旁伸出。
+  - id: forehead_ornament
+    name: 中央额饰珠链
+    kind: physics_details
+    visibility: visible
+    separate_for: 自冠饰中央沿中分发缝垂至额前，可独立轻摆并与前发穿插。
+  - id: headpiece_tassel_left
+    name: 左侧长垂饰
+    kind: physics_details
+    visibility: visible
+    separate_for: 自左侧冠枝悬下，可独立摆动；位于左侧头发外侧。
+  - id: headpiece_tassel_right
+    name: 右侧长垂饰
+    kind: physics_details
+    visibility: visible
+    separate_for: 自右侧冠枝悬下，可独立摆动；位于右侧头发外侧。
+  - id: earring_left
+    name: 左耳坠
+    kind: physics_details
+    visibility: visible
+    separate_for: 挂在左耳，独立摆动；局部被侧发遮挡。
+  - id: earring_right
+    name: 右耳坠
+    kind: physics_details
+    visibility: visible
+    separate_for: 挂在右耳，独立摆动；局部被侧发遮挡。
+  - id: foot_jewelry_left
+    name: 左脚踝与脚背饰链
+    kind: physics_details
+    visibility: visible
+    separate_for: 环绕左踝、覆于脚背并延至趾根，随脚踝和脚部运动。
+  - id: foot_jewelry_right
+    name: 右脚踝与脚背饰链
+    kind: physics_details
+    visibility: visible
+    separate_for: 环绕右踝、覆于脚背并延至趾根，随脚踝和脚部运动。

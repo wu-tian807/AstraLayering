@@ -1,0 +1,145 @@
+{
+  "group_id": "face",
+  "carry_input_sha256": "9bbb6f8a09ec4f7bca11a250b046250878f13a45d11ce775052f0daddbbad27b",
+  "output_svg_sha256": "1a5eb02f574ff0cc50e2f7662a30e2d52c08c50e87f67853928b091efe899c25",
+  "original_entity_groups_unchanged": 50,
+  "original_entity_group_order_unchanged": true,
+  "parts_before": 46,
+  "parts_after": 46,
+  "effect_groups": 9,
+  "cast_shadow_groups": 7,
+  "highlight_groups": 2,
+  "unique_ids": 142,
+  "all_url_references_resolved": true,
+  "old_definitions_unchanged": true,
+  "effects": [
+    {
+      "id": "fx_hair_side_right_on_ear",
+      "type": "cast-shadow",
+      "source": "hair_side_right",
+      "target": "ear_right",
+      "clip": "face6_surface_ear_right",
+      "editable_path_ids": [
+        "fx_hair_side_right_ear_editable_path"
+      ],
+      "pixels_outside_target_surface": 0,
+      "visible_combined_changed_pixels": 32
+    },
+    {
+      "id": "fx_hair_side_left_on_ear",
+      "type": "cast-shadow",
+      "source": "hair_side_left",
+      "target": "ear_left",
+      "clip": "face6_surface_ear_left",
+      "editable_path_ids": [
+        "fx_hair_side_left_ear_editable_path"
+      ],
+      "pixels_outside_target_surface": 0,
+      "visible_combined_changed_pixels": 29
+    },
+    {
+      "id": "fx_hair_front_right_on_face",
+      "type": "cast-shadow",
+      "source": "hair_front_right",
+      "target": "face_base",
+      "clip": "face6_surface_face_base",
+      "editable_path_ids": [
+        "fx_hair_front_right_editable_path"
+      ],
+      "pixels_outside_target_surface": 0,
+      "visible_combined_changed_pixels": 363
+    },
+    {
+      "id": "fx_hair_front_left_on_face",
+      "type": "cast-shadow",
+      "source": "hair_front_left",
+      "target": "face_base",
+      "clip": "face6_surface_face_base",
+      "editable_path_ids": [
+        "fx_hair_front_left_editable_path"
+      ],
+      "pixels_outside_target_surface": 0,
+      "visible_combined_changed_pixels": 364
+    },
+    {
+      "id": "fx_hair_side_right_on_face",
+      "type": "cast-shadow",
+      "source": "hair_side_right",
+      "target": "face_base",
+      "clip": "face6_surface_face_base",
+      "editable_path_ids": [
+        "fx_hair_side_right_face_editable_path"
+      ],
+      "pixels_outside_target_surface": 0,
+      "visible_combined_changed_pixels": 125
+    },
+    {
+      "id": "fx_hair_side_left_on_face",
+      "type": "cast-shadow",
+      "source": "hair_side_left",
+      "target": "face_base",
+      "clip": "face6_surface_face_base",
+      "editable_path_ids": [
+        "fx_hair_side_left_face_editable_path"
+      ],
+      "pixels_outside_target_surface": 0,
+      "visible_combined_changed_pixels": 130
+    },
+    {
+      "id": "fx_forehead_jewel_on_face",
+      "type": "cast-shadow",
+      "source": "forehead_jewel",
+      "target": "face_base",
+      "clip": "face6_surface_face_base",
+      "editable_path_ids": [
+        "fx_forehead_jewel_editable_path"
+      ],
+      "pixels_outside_target_surface": 0,
+      "visible_combined_changed_pixels": 51
+    },
+    {
+      "id": "fx_face_edge_reflection",
+      "type": "highlight",
+      "source": null,
+      "target": "face_base",
+      "clip": "face6_surface_face_base",
+      "editable_path_ids": [
+        "fx_face_edge_reflection_editable_path"
+      ],
+      "pixels_outside_target_surface": 0,
+      "visible_combined_changed_pixels": 301
+    },
+    {
+      "id": "fx_nose_tip_highlight",
+      "type": "highlight",
+      "source": null,
+      "target": "nose",
+      "clip": "face6_surface_nose",
+      "editable_path_ids": [
+        "fx_nose_tip_highlight_editable_path"
+      ],
+      "pixels_outside_target_surface": 0,
+      "visible_combined_changed_pixels": 8
+    }
+  ],
+  "all_effects_off_exactly_equals_carry_rgba": true,
+  "clean_face_exactly_equals_carry_rgba": true,
+  "difference_bbox_xyxy": [
+    391,
+    152,
+    497,
+    269
+  ],
+  "difference_pixels": 1229,
+  "difference_outside_head": 0,
+  "preview_size": [
+    941,
+    1672
+  ],
+  "svg_canvas_corner_alpha": 0,
+  "preview_corner_rgb": [
+    255,
+    255,
+    255
+  ]
+}

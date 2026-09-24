@@ -1,0 +1,10 @@
+id: reference_decision
+worker: reference_prep
+inputs:
+  original: inputs.original
+  simplified:
+    from: inputs.simplified
+    required: false
+
+run: .
+writes_options: [simplify]

@@ -1,0 +1,11 @@
+[
+  {"name":"额头中央净肤", "x":430, "y":176, "radius":2, "role":"skin"},
+  {"name":"眉间下方净肤", "x":444, "y":210, "radius":2, "role":"skin"},
+  {"name":"下巴正面净肤", "x":442, "y":256, "radius":2, "role":"skin"},
+  {"name":"画面左侧下颌线", "x":416, "y":252, "radius":0, "role":"contour"},
+  {"name":"画面右侧下颌线", "x":473, "y":250, "radius":0, "role":"contour"},
+  {"name":"下巴边缘细线", "x":443, "y":269, "radius":0, "role":"contour"},
+  {"name":"画面左脸颊淡红晕", "x":415, "y":214, "radius":2, "role":"comparison"},
+  {"name":"画面右脸颊淡红晕", "x":472, "y":214, "radius":2, "role":"comparison"},
+  {"name":"鼻尖暖影", "x":444, "y":229, "radius":1, "role":"comparison"}
+]

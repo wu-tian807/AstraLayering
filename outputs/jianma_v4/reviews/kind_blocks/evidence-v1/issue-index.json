@@ -1,0 +1,41 @@
+{
+  "candidate_version": "v1",
+  "sha256": "c09f51d366c5fcba6a68c38945c383b8417ab3fc9602080bd6298be131fb730e",
+  "verdict": "需返修",
+  "issues": [
+    {
+      "id": "K01",
+      "parts": [
+        "foot_left",
+        "foot_right"
+      ]
+    },
+    {
+      "id": "K02",
+      "parts": [
+        "hand_left",
+        "hand_right"
+      ]
+    },
+    {
+      "id": "K03",
+      "parts": [
+        "foot_chain_left",
+        "foot_chain_right"
+      ]
+    },
+    {
+      "id": "K04",
+      "parts": [
+        "headdress_center"
+      ]
+    },
+    {
+      "id": "K05",
+      "parts": [
+        "earring_left",
+        "earring_right"
+      ]
+    }
+  ]
+}

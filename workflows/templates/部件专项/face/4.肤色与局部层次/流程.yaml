@@ -1,0 +1,12 @@
+id: face_coloring
+worker: refinement_drawing
+inputs:
+  reference: inputs.reference
+  parts: inputs.parts
+  svg: inputs.svg
+  palette_image: refinement/groups/{group.id}/1.脸部色盘/palette.png
+  palette_json: refinement/groups/{group.id}/1.脸部色盘/palette.json
+outputs:
+  svg: refinement/groups/{group.id}/4.肤色与局部层次/character.svg
+  preview: refinement/groups/{group.id}/4.肤色与局部层次/preview.png
+  notes: refinement/groups/{group.id}/4.肤色与局部层次/说明.md

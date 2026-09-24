@@ -1,0 +1,159 @@
+{
+  "canvas": [
+    941,
+    1672
+  ],
+  "head_crop": [
+    355,
+    120,
+    176,
+    190
+  ],
+  "same_scale": 5,
+  "transform": "identity; no local alignment",
+  "manual_landmarks": [
+    {
+      "side": "left",
+      "source_row": 220,
+      "approx_source_center_x": 399.8,
+      "curve_x": 399.808,
+      "delta_x": 0.008
+    },
+    {
+      "side": "left",
+      "source_row": 225,
+      "approx_source_center_x": 401.1,
+      "curve_x": 401.11,
+      "delta_x": 0.01
+    },
+    {
+      "side": "left",
+      "source_row": 230,
+      "approx_source_center_x": 402.8,
+      "curve_x": 402.711,
+      "delta_x": -0.089
+    },
+    {
+      "side": "left",
+      "source_row": 235,
+      "approx_source_center_x": 404.6,
+      "curve_x": 404.757,
+      "delta_x": 0.157
+    },
+    {
+      "side": "left",
+      "source_row": 240,
+      "approx_source_center_x": 407.5,
+      "curve_x": 407.394,
+      "delta_x": -0.106
+    },
+    {
+      "side": "left",
+      "source_row": 245,
+      "approx_source_center_x": 410.8,
+      "curve_x": 410.769,
+      "delta_x": -0.031
+    },
+    {
+      "side": "left",
+      "source_row": 250,
+      "approx_source_center_x": 415.2,
+      "curve_x": 414.887,
+      "delta_x": -0.313
+    },
+    {
+      "side": "left",
+      "source_row": 255,
+      "approx_source_center_x": 420.6,
+      "curve_x": 419.826,
+      "delta_x": -0.774
+    },
+    {
+      "side": "left",
+      "source_row": 260,
+      "approx_source_center_x": 426.6,
+      "curve_x": 425.963,
+      "delta_x": -0.637
+    },
+    {
+      "side": "left",
+      "source_row": 265,
+      "approx_source_center_x": 433.1,
+      "curve_x": 433.768,
+      "delta_x": 0.668
+    },
+    {
+      "side": "right",
+      "source_row": 220,
+      "approx_source_center_x": 488.1,
+      "curve_x": 488.203,
+      "delta_x": 0.103
+    },
+    {
+      "side": "right",
+      "source_row": 225,
+      "approx_source_center_x": 486.4,
+      "curve_x": 486.921,
+      "delta_x": 0.521
+    },
+    {
+      "side": "right",
+      "source_row": 230,
+      "approx_source_center_x": 485.2,
+      "curve_x": 485.297,
+      "delta_x": 0.097
+    },
+    {
+      "side": "right",
+      "source_row": 235,
+      "approx_source_center_x": 483.2,
+      "curve_x": 483.224,
+      "delta_x": 0.024
+    },
+    {
+      "side": "right",
+      "source_row": 240,
+      "approx_source_center_x": 480.6,
+      "curve_x": 480.579,
+      "delta_x": -0.021
+    },
+    {
+      "side": "right",
+      "source_row": 245,
+      "approx_source_center_x": 477.2,
+      "curve_x": 477.172,
+      "delta_x": -0.028
+    },
+    {
+      "side": "right",
+      "source_row": 250,
+      "approx_source_center_x": 472.8,
+      "curve_x": 472.817,
+      "delta_x": 0.017
+    },
+    {
+      "side": "right",
+      "source_row": 255,
+      "approx_source_center_x": 467.1,
+      "curve_x": 467.599,
+      "delta_x": 0.499
+    },
+    {
+      "side": "right",
+      "source_row": 260,
+      "approx_source_center_x": 460.9,
+      "curve_x": 461.605,
+      "delta_x": 0.705
+    },
+    {
+      "side": "right",
+      "source_row": 265,
+      "approx_source_center_x": 454.5,
+      "curve_x": 454.887,
+      "delta_x": 0.387
+    }
+  ],
+  "mean_absolute_horizontal_delta": 0.26,
+  "max_absolute_horizontal_delta": 0.774,
+  "interpretation": "Manual contour-center checks from the 1x color reference. Approximate within source antialiasing; these do not measure all facial anatomy."
+}

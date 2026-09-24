@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" width="941" height="1672" viewBox="0 0 941 1672" version="1.1">
+  <title>剑妈 · kind 色块分层稿</title>
+  <desc>原彩图同坐标 941×1672。8 类标记色；闭合可编辑贝塞尔底形，透明背景，无描边。保留实际开口与各类前后遮挡，补全头形、颈胸、肩臂、骨盆与后发。 第二候选局部返修：连续耳坠及中空链环、两侧胸前鬓发、趾端外缘。</desc>
+  <g data-kind="hair" fill="#359CDC" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="头发 · 后部长发完整底形" id="hair-back">
+    </g>
+  <g data-kind="hair" fill="#359CDC" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="头发 · 盘发" id="hair-updo">
+    </g>
+  <g data-kind="physics_details" fill="#EAC52E" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="饰物 · 冠环与枝饰" id="crown-back">
+    </g>
+  <g data-kind="physics_details" fill="#EAC52E" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="饰物 · 冠侧长垂饰" id="crown-tassels">
+    </g>
+  <g data-kind="lower_body" fill="#59C48D" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="下身 · 骨盆与双腿双脚" id="lower-body">
+    </g>
+  <g data-kind="arms" fill="#F49A48" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="双臂与手 · 完整底形" id="arms">
+    </g>
+  <g data-kind="body" fill="#A385D8" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="身体 · 连续颈胸与连体服" id="body">
+    </g>
+  <g data-kind="face" fill="#F38394" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="头脸 · 完整头形与耳根" id="face">
+    </g>
+  <g data-kind="hair" fill="#359CDC" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="头发 · 前发与鬓发" id="hair-front">
+    </g>
+  <g data-kind="eyes" fill="#3452AC" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="眼睛 · 完整可见眼形" id="eyes">
+    </g>
+  <g data-kind="mouth" fill="#CE315E" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="嘴部 · 闭合嘴形" id="mouth">
+    </g>
+  <g data-kind="physics_details" fill="#EAC52E" stroke="none" fill-rule="evenodd" ns1:groupmode="layer" ns1:label="饰物 · 额坠、耳坠与脚链" id="ornaments-front">
+    <path data-role="base" id="earring_left" d="M492.7 232.917C493.866 231.572 493.815 228.477 492.236 227.299Q491.938 224.932 492.1 222.5L491 222.4Q490.841 224.786 491.125 227.109C488.723 227.896 488.944 232.476 490.9 233.5C490.959 233.514 491.016 233.525 491.073 233.533L491.164 234.936C489.873 236.31 488.438 238.423 488 240Q489.455 243.364 492.645 246.315C492.447 249.17 492.785 254.148 493.9 257.4L494.11 257.442C494.394 258.658 494.985 259.624 495.711 260.066C495.98 262.748 496.331 266.58 497.333 269.788C496.817 271.468 497.111 274.235 497.6 277.1Q497.959 278.043 498.5 278.421L498.635 279.536C498.033 280.666 498.441 284.255 498.7 286.5Q499.03 288.15 499.926 288.754C499.036 292.499 499.345 298.256 500.1 302.5Q500.5 305.8 501.6 306.7Q503.3 304.5 503.1 301.8C503.1 297.863 502.823 292.174 502.004 288.717Q502.909 288.122 502.7 286.8L502.2 281.1Q502.031 280.084 501.431 279.587Q501.084 279.301 500.594 279.187L500.341 278.233C501.729 276.342 501.064 270.334 500.4 269.1Q499.702 268.228 498.776 268.269C498.374 265.32 497.948 262.852 497.68 259.947C499.788 258.468 499.282 253.186 497.8 252.1Q497 251.6 496.3 251.6C495.431 251.632 494.79 251.996 494.353 252.555C494.044 250.111 494.002 247.883 494 246.034Q496.149 243.254 497.1 240.4Q495.481 237.673 492.7 235.237L492.7 232.917ZM495.6 257C495.1 255.6 495.2 253.6 496.4 253.4C497.4 253.4 497.9 255.3 497.7 256.9C497.5 258.4 496.4 259 495.6 257ZM497.7 266.6Q497.4 264.4 497 261.6L497.7 262L497.7 266.6ZM499 276.8C498.5 275.7 498.1 272.1 498.8 270.2Q499.7 270.7 499.8 273.7Q500 276.2 499 276.8ZM500.9 290.4C500.4 294.2 500.7 298 501.1 301.6L501.5 303.9Q502.1 301.1 501.8 297.3Q501.7 292.9 500.9 290.4Z" fill-rule="evenodd" />
+    </g>
+</svg>

@@ -1,0 +1,138 @@
+[
+  {
+    "name": "forehead_skin",
+    "x": 430,
+    "y": 176,
+    "source_rgb": [
+      254,
+      245,
+      243
+    ],
+    "source_hex": "#FEF5F3",
+    "render_rgb": [
+      253,
+      245,
+      243
+    ],
+    "render_hex": "#FDF5F3"
+  },
+  {
+    "name": "forehead_right_skin",
+    "x": 461,
+    "y": 164,
+    "source_rgb": [
+      254,
+      248,
+      246
+    ],
+    "source_hex": "#FEF8F6",
+    "render_rgb": [
+      253,
+      248,
+      246
+    ],
+    "render_hex": "#FDF8F6"
+  },
+  {
+    "name": "midface_skin",
+    "x": 444,
+    "y": 210,
+    "source_rgb": [
+      252,
+      237,
+      235
+    ],
+    "source_hex": "#FCEDEB",
+    "render_rgb": [
+      252,
+      237,
+      235
+    ],
+    "render_hex": "#FCEDEB"
+  },
+  {
+    "name": "midface_left_skin",
+    "x": 431,
+    "y": 215,
+    "source_rgb": [
+      252,
+      238,
+      236
+    ],
+    "source_hex": "#FCEEEC",
+    "render_rgb": [
+      252,
+      238,
+      236
+    ],
+    "render_hex": "#FCEEEC"
+  },
+  {
+    "name": "midface_right_skin",
+    "x": 456,
+    "y": 215,
+    "source_rgb": [
+      252,
+      239,
+      237
+    ],
+    "source_hex": "#FCEFED",
+    "render_rgb": [
+      252,
+      238,
+      236
+    ],
+    "render_hex": "#FCEEEC"
+  },
+  {
+    "name": "lower_left_skin",
+    "x": 414,
+    "y": 243,
+    "source_rgb": [
+      252,
+      237,
+      234
+    ],
+    "source_hex": "#FCEDEA",
+    "render_rgb": [
+      253,
+      245,
+      243
+    ],
+    "render_hex": "#FDF5F3"
+  },
+  {
+    "name": "lower_right_skin",
+    "x": 474,
+    "y": 242,
+    "source_rgb": [
+      252,
+      242,
+      240
+    ],
+    "source_hex": "#FCF2F0",
+    "render_rgb": [
+      253,
+      245,
+      243
+    ],
+    "render_hex": "#FDF5F3"
+  },
+  {
+    "name": "chin_skin",
+    "x": 442,
+    "y": 256,
+    "source_rgb": [
+      253,
+      244,
+      244
+    ],
+    "source_hex": "#FDF4F4",
+    "render_rgb": [
+      253,
+      244,
+      243
+    ],
+    "render_hex": "#FDF4F3"
+  }
+]

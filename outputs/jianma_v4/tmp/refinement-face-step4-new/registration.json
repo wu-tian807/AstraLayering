@@ -1,0 +1,28 @@
+{
+  "canvas": [
+    941,
+    1672
+  ],
+  "face_crop": [
+    390,
+    148,
+    109,
+    126
+  ],
+  "face_scale": 8,
+  "head_crop": [
+    355,
+    120,
+    176,
+    190
+  ],
+  "head_scale": 5,
+  "overlay_alpha": 0.5,
+  "transform": "identity; no local translation or fitting",
+  "artwork_inputs": [
+    "references/base-subject.png",
+    "refinement/groups/face/3.关联部件校准/character.svg",
+    "refinement/groups/face/1.脸部色盘/palette.png",
+    "refinement/groups/face/1.脸部色盘/palette.json"
+  ]
+}

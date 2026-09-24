@@ -1,0 +1,18 @@
+{
+  "groups": 12,
+  "paths": 28,
+  "unique_ids": 28,
+  "all_subpaths_closed": true,
+  "unsupported_or_embedded": [],
+  "overlap_pixels": {
+    "hair & face": 13473,
+    "hair & body": 47408,
+    "hair & arms": 42651,
+    "hair & lower_body": 2736,
+    "face & body": 2143,
+    "arms & body": 2948,
+    "body & lower_body": 25354,
+    "physics_details & hair": 2753,
+    "physics_details & lower_body": 1196
+  }
+}

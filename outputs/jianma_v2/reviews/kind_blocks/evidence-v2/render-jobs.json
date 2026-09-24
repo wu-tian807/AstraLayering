@@ -1,0 +1,54 @@
+[
+  {
+    "source": "reviews/kind_blocks/candidate-v2.svg",
+    "output": "reviews/kind_blocks/evidence-v2/candidate-render.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/isolated-arms.svg",
+    "output": "reviews/kind_blocks/evidence-v2/isolated-arms.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/isolated-body.svg",
+    "output": "reviews/kind_blocks/evidence-v2/isolated-body.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/isolated-eyes.svg",
+    "output": "reviews/kind_blocks/evidence-v2/isolated-eyes.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/isolated-face.svg",
+    "output": "reviews/kind_blocks/evidence-v2/isolated-face.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/isolated-hair.svg",
+    "output": "reviews/kind_blocks/evidence-v2/isolated-hair.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/isolated-lower_body.svg",
+    "output": "reviews/kind_blocks/evidence-v2/isolated-lower_body.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/isolated-mouth.svg",
+    "output": "reviews/kind_blocks/evidence-v2/isolated-mouth.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/isolated-physics_details.svg",
+    "output": "reviews/kind_blocks/evidence-v2/isolated-physics_details.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/no-front-hair-ornaments.svg",
+    "output": "reviews/kind_blocks/evidence-v2/no-front-hair-ornaments.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/rear-hair-only.svg",
+    "output": "reviews/kind_blocks/evidence-v2/rear-hair-only.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/head-base-only.svg",
+    "output": "reviews/kind_blocks/evidence-v2/head-base-only.png"
+  },
+  {
+    "source": "reviews/kind_blocks/evidence-v2/variants/body-arms-lower.svg",
+    "output": "reviews/kind_blocks/evidence-v2/body-arms-lower.png"
+  }
+]

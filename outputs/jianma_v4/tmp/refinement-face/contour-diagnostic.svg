@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="941" height="1672" viewBox="0 0 941 1672">
+<defs><linearGradient id="face_contour_color" gradientUnits="userSpaceOnUse" x1="398.5" y1="0" x2="489" y2="0"><stop offset="0" stop-color="#8C7379" /><stop offset="0.15" stop-color="#694E57" /><stop offset="0.35" stop-color="#8F747A" /><stop offset="0.51" stop-color="#BD9C9E" /><stop offset="0.65" stop-color="#93777E" /><stop offset="0.86" stop-color="#503E4E" /><stop offset="1" stop-color="#8B717B" /></linearGradient></defs>
+<g fill="none" stroke="#ed258d" stroke-width="0.6" stroke-linecap="round"><path d="M 398.5,214.8 C 400.82,225.13 403.05,235.47 411,245.8 C 416.88,253.44 424.5,261 438.1,267.8 C 441.3,269.4 443,269.7 445.6,269.6 C 448.2,269.6 450.2,268.7 452.6,267.1 C 460,262 469.2,255 475.8,247.2 C 483.4,238.2 486.9,227.6 489,216.7" /></g></svg>

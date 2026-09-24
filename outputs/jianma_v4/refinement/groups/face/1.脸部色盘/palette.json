@@ -1,0 +1,174 @@
+{
+  "source": "/Users/wutian/Desktop/coding/AstraLayering/outputs/jianma_v4/references/base-subject.png",
+  "source_sha256": "7448a2575ec8619e43cd8ee9565ab35035272dd4702cd4b2ae58db4d748d34c3",
+  "canvas": [
+    941,
+    1672
+  ],
+  "method": "Nearest real opaque source pixel to the per-channel patch median; center-nearest tie break.",
+  "interpretation": "Observed colors; semantic roles are supplied by the caller, not inferred by this program.",
+  "samples": [
+    {
+      "name": "额头中央净肤",
+      "x": 430,
+      "y": 176,
+      "radius": 2,
+      "role": "skin",
+      "id": "01",
+      "rgb": [
+        253,
+        245,
+        243
+      ],
+      "hex": "#FDF5F3",
+      "actual_pixel": [
+        431,
+        174
+      ]
+    },
+    {
+      "name": "眉间下方净肤",
+      "x": 444,
+      "y": 210,
+      "radius": 2,
+      "role": "skin",
+      "id": "02",
+      "rgb": [
+        252,
+        237,
+        235
+      ],
+      "hex": "#FCEDEB",
+      "actual_pixel": [
+        444,
+        210
+      ]
+    },
+    {
+      "name": "下巴正面净肤",
+      "x": 442,
+      "y": 256,
+      "radius": 2,
+      "role": "skin",
+      "id": "03",
+      "rgb": [
+        253,
+        244,
+        243
+      ],
+      "hex": "#FDF4F3",
+      "actual_pixel": [
+        443,
+        256
+      ]
+    },
+    {
+      "name": "画面左侧下颌线",
+      "x": 416,
+      "y": 252,
+      "radius": 0,
+      "role": "contour",
+      "id": "04",
+      "rgb": [
+        105,
+        78,
+        87
+      ],
+      "hex": "#694E57",
+      "actual_pixel": [
+        416,
+        252
+      ]
+    },
+    {
+      "name": "画面右侧下颌线",
+      "x": 473,
+      "y": 250,
+      "radius": 0,
+      "role": "contour",
+      "id": "05",
+      "rgb": [
+        80,
+        62,
+        78
+      ],
+      "hex": "#503E4E",
+      "actual_pixel": [
+        473,
+        250
+      ]
+    },
+    {
+      "name": "下巴边缘细线",
+      "x": 443,
+      "y": 269,
+      "radius": 0,
+      "role": "contour",
+      "id": "06",
+      "rgb": [
+        189,
+        156,
+        158
+      ],
+      "hex": "#BD9C9E",
+      "actual_pixel": [
+        443,
+        269
+      ]
+    },
+    {
+      "name": "画面左脸颊淡红晕",
+      "x": 415,
+      "y": 214,
+      "radius": 2,
+      "role": "comparison",
+      "id": "07",
+      "rgb": [
+        252,
+        231,
+        230
+      ],
+      "hex": "#FCE7E6",
+      "actual_pixel": [
+        416,
+        216
+      ]
+    },
+    {
+      "name": "画面右脸颊淡红晕",
+      "x": 472,
+      "y": 214,
+      "radius": 2,
+      "role": "comparison",
+      "id": "08",
+      "rgb": [
+        252,
+        231,
+        229
+      ],
+      "hex": "#FCE7E5",
+      "actual_pixel": [
+        471,
+        212
+      ]
+    },
+    {
+      "name": "鼻尖暖影",
+      "x": 444,
+      "y": 229,
+      "radius": 1,
+      "role": "comparison",
+      "id": "09",
+      "rgb": [
+        248,
+        223,
+        220
+      ],
+      "hex": "#F8DFDC",
+      "actual_pixel": [
+        443,
+        229
+      ]
+    }
+  ]
+}

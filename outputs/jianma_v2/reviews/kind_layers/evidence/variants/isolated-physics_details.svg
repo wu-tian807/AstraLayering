@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="941" height="1672" viewBox="0 0 941 1672" version="1.1">
+  <title>&#21073;&#22920; &#183; kind &#22823;&#31867;&#36718;&#24275;&#20998;&#23618;&#31295;</title>
+  <desc>&#19982;&#35282;&#33394;&#24425;&#22270;&#21516;&#22352;&#26631;&#65292;941&#215;1672&#12290;8 &#20010; kind&#65292;&#25353;&#36974;&#25377;&#27425;&#24207;&#20998;&#32452;&#12290;&#25163;&#24037;&#38381;&#21512;&#36125;&#22622;&#23572;&#24213;&#24418;&#20026;&#32431;&#30333;&#22635;&#20805;&#65292;&#22806;&#36718;&#24275;&#20026;&#29420;&#31435;&#28145;&#33394;&#25551;&#36793;&#65307;&#21518;&#21457;&#12289;&#32819;&#26681;&#12289;&#32937;&#33218;&#12289;&#39048;&#33016;&#19982;&#39592;&#30406;&#22343;&#26377;&#36830;&#32493;&#34917;&#20840;&#12290;&#26080;&#23884;&#20837;&#20301;&#22270;&#12289;&#33945;&#29256;&#25110;&#20687;&#32032;&#20999;&#29255;&#12290;</desc>
+  <g id="physics_details-rear" data-kind="physics_details" inkscape:groupmode="layer" inkscape:label="&#39280;&#29289; &#183; &#20896;&#29615;&#21518;&#23618;">
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-016" d="M368 66 C370 58 381 54 383 45 C386 27 414 11 440 11 C467 10 493 24 502 45 C506 53 516 55 518 62 C519 68 514 74 511 78 L506 75 C510 68 513 65 509 61 C495 55 498 44 487 34 C475 22 458 16 441 16 C417 16 396 28 389 43 C386 55 378 59 374 63 C371 68 378 74 378 83 L372 84 C372 78 365 74 368 66 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M368 66 C370 58 381 54 383 45 C386 27 414 11 440 11 C467 10 493 24 502 45 C506 53 516 55 518 62 C519 68 514 74 511 78 L506 75 C510 68 513 65 509 61 C495 55 498 44 487 34 C475 22 458 16 441 16 C417 16 396 28 389 43 C386 55 378 59 374 63 C371 68 378 74 378 83 L372 84 C372 78 365 74 368 66 Z" stroke-width="1.2"/>
+    </g>
+  </g>
+  <g id="physics_details-tassels" data-kind="physics_details" inkscape:groupmode="layer" inkscape:label="&#39280;&#29289; &#183; &#20896;&#20391;&#38271;&#22402;&#39280;">
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-017" d="M321 166 C317 230 311 284 300 332 C285 401 267 451 242 499 C221 539 202 564 194 592 C203 575 219 558 231 542 C264 502 285 453 303 399 C326 330 333 251 337 169 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M321 166 C317 230 311 284 300 332 C285 401 267 451 242 499 C221 539 202 564 194 592 C203 575 219 558 231 542 C264 502 285 453 303 399 C326 330 333 251 337 169 Z" stroke-width="1.2"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-018" d="M548 165 C554 239 562 299 579 363 C595 428 617 479 646 526 C663 551 675 569 680 578 C667 551 658 527 645 501 C617 444 600 388 585 324 C574 273 567 219 564 165 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M548 165 C554 239 562 299 579 363 C595 428 617 479 646 526 C663 551 675 569 680 578 C667 551 658 527 645 501 C617 444 600 388 585 324 C574 273 567 219 564 165 Z" stroke-width="1.2"/>
+    </g>
+  </g>
+  <g id="physics_details-crown" data-kind="physics_details" inkscape:groupmode="layer" inkscape:label="&#39280;&#29289; &#183; &#20896;&#26525;&#19982;&#39069;&#22368;">
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-033" d="M393 106 C386 101 379 98 380 93 C381 88 371 87 371 81 C372 75 363 71 359 63 C357 66 361 74 365 78 C362 84 365 94 371 96 C377 98 380 101 378 108 C376 115 371 113 367 108 C361 98 353 100 355 91 C356 85 351 79 346 76 C348 84 353 88 351 96 C344 94 339 90 331 91 C321 92 315 83 310 82 C311 86 318 91 320 97 C322 101 328 100 330 104 C332 108 327 111 323 108 C326 116 334 117 338 111 C343 106 351 106 357 110 C362 113 362 120 369 121 C377 125 384 117 387 111 L393 112 Z M337 98 C344 98 349 100 354 104 C346 102 341 103 337 106 C340 103 341 101 337 98 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M393 106 C386 101 379 98 380 93 C381 88 371 87 371 81 C372 75 363 71 359 63 C357 66 361 74 365 78 C362 84 365 94 371 96 C377 98 380 101 378 108 C376 115 371 113 367 108 C361 98 353 100 355 91 C356 85 351 79 346 76 C348 84 353 88 351 96 C344 94 339 90 331 91 C321 92 315 83 310 82 C311 86 318 91 320 97 C322 101 328 100 330 104 C332 108 327 111 323 108 C326 116 334 117 338 111 C343 106 351 106 357 110 C362 113 362 120 369 121 C377 125 384 117 387 111 L393 112 Z M337 98 C344 98 349 100 354 104 C346 102 341 103 337 106 C340 103 341 101 337 98 Z" stroke-width="1.15"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-034" d="M491 106 C498 101 505 98 504 93 C503 88 513 87 513 81 C512 75 521 71 525 63 C527 66 523 74 519 78 C522 84 519 94 513 96 C507 98 504 101 506 108 C508 115 513 113 517 108 C523 98 531 100 529 91 C528 85 533 79 538 76 C536 84 531 88 533 96 C540 94 545 90 553 91 C563 92 573 85 579 82 C578 86 570 92 568 97 C566 101 560 100 558 104 C556 108 561 111 565 108 C562 116 554 117 550 111 C545 106 537 106 531 110 C526 113 526 120 519 121 C511 125 504 117 501 111 L491 112 Z M551 98 C544 98 539 100 534 104 C542 102 547 103 551 106 C548 103 547 101 551 98 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M491 106 C498 101 505 98 504 93 C503 88 513 87 513 81 C512 75 521 71 525 63 C527 66 523 74 519 78 C522 84 519 94 513 96 C507 98 504 101 506 108 C508 115 513 113 517 108 C523 98 531 100 529 91 C528 85 533 79 538 76 C536 84 531 88 533 96 C540 94 545 90 553 91 C563 92 573 85 579 82 C578 86 570 92 568 97 C566 101 560 100 558 104 C556 108 561 111 565 108 C562 116 554 117 550 111 C545 106 537 106 531 110 C526 113 526 120 519 121 C511 125 504 117 501 111 L491 112 Z M551 98 C544 98 539 100 534 104 C542 102 547 103 551 106 C548 103 547 101 551 98 Z" stroke-width="1.15"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-035" d="M412 95 C405 91 401 85 399 75 L411 81 C412 72 416 65 422 59 C429 52 436 51 442 49 C449 54 455 56 461 63 C465 70 469 76 470 80 L485 73 C483 83 479 91 472 94 C455 90 430 90 412 95 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M412 95 C405 91 401 85 399 75 L411 81 C412 72 416 65 422 59 C429 52 436 51 442 49 C449 54 455 56 461 63 C465 70 469 76 470 80 L485 73 C483 83 479 91 472 94 C455 90 430 90 412 95 Z" stroke-width="1.1"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-036" d="M430 91 C430 82 435 73 442 63 C450 73 455 83 454 91 C446 96 437 96 430 91 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M430 91 C430 82 435 73 442 63 C450 73 455 83 454 91 C446 96 437 96 430 91 Z" stroke-width="1.1"/>
+      <path d="M442 65 L442 91 M413 82 C419 82 426 86 431 92 M471 81 C466 82 459 86 454 92" stroke-width="0.8"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-037" d="M442 137 C440 144 436 148 430 152 C434 155 439 157 442 162 C446 157 450 156 455 152 C449 148 446 143 442 137 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M442 137 C440 144 436 148 430 152 C434 155 439 157 442 162 C446 157 450 156 455 152 C449 148 446 143 442 137 Z" stroke-width="1"/>
+      <path d="M442 162 L443 168" stroke-width="0.9"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-038" d="M443 166 C440 170 440 173 443 176 C446 173 446 170 443 166 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M443 166 C440 170 440 173 443 176 C446 173 446 170 443 166 Z" stroke-width="0.9"/>
+      <path d="M331 114 L331 125" stroke-width="1"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-039" d="M329 122a2 3 0 1 0 4 0a2 3 0 1 0 -4 0Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M329 122a2 3 0 1 0 4 0a2 3 0 1 0 -4 0Z"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-040" d="M331 127 C324 132 324 136 331 140 C338 136 338 132 331 127 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M331 127 C324 132 324 136 331 140 C338 136 338 132 331 127 Z" stroke-width="1"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-041" d="M326.9 144a4.1 4.3 0 1 0 8.2 0a4.1 4.3 0 1 0 -8.2 0Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M326.9 144a4.1 4.3 0 1 0 8.2 0a4.1 4.3 0 1 0 -8.2 0Z"/>
+      <path d="M331 148 L331 157" stroke-width="0.9"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-042" d="M331 154 C328 160 326 164 321 168 L327 183 L337 168 C334 163 332 160 331 154 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M331 154 C328 160 326 164 321 168 L327 183 L337 168 C334 163 332 160 331 154 Z" stroke-width="1"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-043" d="M330 161 L326 169 L330 174 L333 168 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M330 161 L326 169 L330 174 L333 168 Z" stroke-width="0.8"/>
+      <path d="M555 114 L555 125" stroke-width="1"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-044" d="M553 122a2 3 0 1 0 4 0a2 3 0 1 0 -4 0Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M553 122a2 3 0 1 0 4 0a2 3 0 1 0 -4 0Z"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-045" d="M555 127 C548 132 548 136 555 140 C562 136 562 132 555 127 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M555 127 C548 132 548 136 555 140 C562 136 562 132 555 127 Z" stroke-width="1"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-046" d="M550.9 144a4.1 4.3 0 1 0 8.2 0a4.1 4.3 0 1 0 -8.2 0Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M550.9 144a4.1 4.3 0 1 0 8.2 0a4.1 4.3 0 1 0 -8.2 0Z"/>
+      <path d="M555 148 L555 157" stroke-width="0.9"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-047" d="M555 154 C552 160 550 164 545 168 L551 183 L561 168 C558 163 556 160 555 154 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M555 154 C552 160 550 164 545 168 L551 183 L561 168 C558 163 556 160 555 154 Z" stroke-width="1"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-048" d="M554 161 L550 169 L554 174 L557 168 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M554 161 L550 169 L554 174 L557 168 Z" stroke-width="0.8"/>
+    </g>
+  </g>
+  <g id="physics_details-front" data-kind="physics_details" inkscape:groupmode="layer" inkscape:label="&#39280;&#29289; &#183; &#32819;&#22368;&#19982;&#36275;&#38142;">
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-049" d="M393 227a2 3 0 1 0 4 0a2 3 0 1 0 -4 0Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M393 227a2 3 0 1 0 4 0a2 3 0 1 0 -4 0Z"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-050" d="M395 231 L391.2 238 L395 246 L399 238 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M395 231 L391.2 238 L395 246 L399 238 Z" stroke-width="0.9"/>
+      <path d="M395 246 L395 257" stroke-width="0.8"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-051" d="M392.8 259a2.2 3 0 1 0 4.4 0a2.2 3 0 1 0 -4.4 0Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M392.8 259a2.2 3 0 1 0 4.4 0a2.2 3 0 1 0 -4.4 0Z"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-052" d="M395 263 C393 274 391 284 395 288 C399 284 397 274 395 263 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M395 263 C393 274 391 284 395 288 C399 284 397 274 395 263 Z" stroke-width="0.8"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-053" d="M490 227a2 3 0 1 0 4 0a2 3 0 1 0 -4 0Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M490 227a2 3 0 1 0 4 0a2 3 0 1 0 -4 0Z"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-054" d="M492 231 L488.2 238 L492 246 L496 238 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M492 231 L488.2 238 L492 246 L496 238 Z" stroke-width="0.9"/>
+      <path d="M492 246 L492 257" stroke-width="0.8"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-055" d="M489.8 259a2.2 3 0 1 0 4.4 0a2.2 3 0 1 0 -4.4 0Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M489.8 259a2.2 3 0 1 0 4.4 0a2.2 3 0 1 0 -4.4 0Z"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-056" d="M492 263 C490 274 488 284 492 288 C496 284 494 274 492 263 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M492 263 C490 274 488 284 492 288 C496 284 494 274 492 263 Z" stroke-width="0.8"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-057" d="M380 1500 C384 1514 395 1524 401 1537 C407 1522 418 1516 423 1503 L422 1508 C417 1521 407 1526 402 1540 L400 1540 C394 1527 384 1517 380 1505 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M380 1500 C384 1514 395 1524 401 1537 C407 1522 418 1516 423 1503 L422 1508 C417 1521 407 1526 402 1540 L400 1540 C394 1527 384 1517 380 1505 Z" stroke-width="0.65"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-058" d="M401 1537 L397 1543 L401 1549 L405 1543 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M401 1537 L397 1543 L401 1549 L405 1543 Z" stroke-width="0.85"/>
+      <path d="M401 1549 C402 1560 402 1575 402 1587" stroke-width="0.85"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-059" d="M376 1561 C379 1574 387 1580 402 1587 C410 1574 419 1572 424 1560 L424 1564 C418 1575 411 1578 403 1590 C389 1584 378 1577 375 1566 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M376 1561 C379 1574 387 1580 402 1587 C410 1574 419 1572 424 1560 L424 1564 C418 1575 411 1578 403 1590 C389 1584 378 1577 375 1566 Z" stroke-width="0.65"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-060" d="M402 1586 L399 1591 L402 1597 L405 1592 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M402 1586 L399 1591 L402 1597 L405 1592 Z" stroke-width="0.8"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-061" d="M459 1500 C463 1514 474 1524 480 1537 C486 1522 497 1516 502 1503 L501 1508 C496 1521 486 1526 481 1540 L479 1540 C473 1527 463 1517 459 1505 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M459 1500 C463 1514 474 1524 480 1537 C486 1522 497 1516 502 1503 L501 1508 C496 1521 486 1526 481 1540 L479 1540 C473 1527 463 1517 459 1505 Z" stroke-width="0.65"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-062" d="M480 1537 L476 1543 L480 1549 L484 1543 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M480 1537 L476 1543 L480 1549 L484 1543 Z" stroke-width="0.85"/>
+      <path d="M480 1549 C481 1560 481 1575 481 1587" stroke-width="0.85"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-063" d="M455 1561 C458 1574 466 1580 481 1587 C489 1574 498 1572 503 1560 L503 1564 C497 1575 490 1578 482 1590 C468 1584 457 1577 454 1566 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M455 1561 C458 1574 466 1580 481 1587 C489 1574 498 1572 503 1560 L503 1564 C497 1575 490 1578 482 1590 C468 1584 457 1577 454 1566 Z" stroke-width="0.65"/>
+    </g>
+    <g data-role="base" fill="#ffffff" stroke="none" fill-rule="evenodd">
+      <path id="base-064" d="M481 1586 L478 1591 L481 1597 L484 1592 Z"/>
+    </g>
+    <g data-role="contour" fill="none" stroke="#45454b" stroke-width="1.30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M481 1586 L478 1591 L481 1597 L484 1592 Z" stroke-width="0.8"/>
+    </g>
+  </g>
+</svg>
