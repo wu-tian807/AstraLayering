@@ -1,0 +1,2 @@
+# Keep the delivered options bytes consistent with its SHA-256 manifest.
+outputs/jianma_v4/options.json text eol=lf

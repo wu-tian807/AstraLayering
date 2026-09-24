@@ -3,6 +3,7 @@
 __pycache__/
 *.py[cod]
 .options.yaml.lock
+.options.json.lock
 
 # Reinstall JavaScript dependencies from the saved package manifests.
 node_modules/

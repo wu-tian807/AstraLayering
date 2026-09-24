@@ -22,7 +22,7 @@ ref=Image.open(root/'references/base-subject.png')
 out=Image.open(preview)
 assert ref.size==out.size, (ref.size,out.size)
 assert tree.getroot().get('viewBox').replace(',',' ').split()==['0','0',str(ref.width),str(ref.height)]
-files=['options.yaml','references/original.png','references/submitted-original.jpg','references/base-garment.jpg','references/base-subject.png','references/kind-groups.png','references/base-subject.prompt.txt','references/kind-groups.prompt.txt','structure/parts.yaml','block-layers/character.svg','block-layers/preview.png','reviews/kind_blocks/审查.md']
+files=['options.json','references/original.png','references/submitted-original.jpg','references/base-garment.jpg','references/base-subject.png','references/kind-groups.png','references/base-subject.prompt.txt','references/kind-groups.prompt.txt','structure/parts.yaml','block-layers/character.svg','block-layers/preview.png','reviews/kind_blocks/审查.md']
 manifest={'parts':len(expected),'canvas':list(ref.size),'svg_groups':sum(x.tag.rsplit('}',1)[-1]=='g' for x in tree.iter()),'files':{p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in files}}
 (root/'delivery-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(manifest,ensure_ascii=False,indent=2))

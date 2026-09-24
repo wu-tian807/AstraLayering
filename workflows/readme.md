@@ -8,7 +8,7 @@
 
 新流程采用 [Workflow 文档 DSL](docs/workflow-dsl.md)：从 `1` 统一编号，通过 `1.1` 等子编号展开步骤，同编号的 `parallel` 节点表示并行批次；节点内的 `流程.yaml` 说明输入来源、可选分支、输出与 review。提示词继续作为各 worker 的独立任务资料。
 
-运行选项由负责判断的 agent 使用[选项工具](tools/readme.md)写入本轮工作根目录的 `options.yaml`；总控读取后调度。当前 `simplify` 决定使用原图，还是使用用户提供或按需改绘的角色参考；结构清楚的插画优先直接使用，存在明确的画法适配需求或结构辨认障碍时才改绘。两条分支均向后续提供 `character_reference.image`。
+运行选项由负责判断的 agent 核对根流程声明后，使用 Python 标准库实现的[选项工具](tools/readme.md) `options.py`，写入本轮工作根目录的平级 `options.json`；总控读取并核对类型后调度。当前 `simplify` 决定使用原图，还是使用用户提供或按需改绘的角色参考；结构清楚的插画优先直接使用，存在明确的画法适配需求或结构辨认障碍时才改绘。两条分支均向后续提供 `character_reference.image`。
 
 可换装角色在 1.3 使用内置简化连体服；图中没有适用角色时，角色参考直接交给第 2 步的通用物件拆分逻辑。1.1 由 `reference_prep` worker 判断选项；1.2 与 1.3 若需生图，由总控直接调用 imagegen。第 2 步由 `part_planning` worker 识别独立部件并标记制作组，输出部件清单。[拆分规划](docs/拆分规划.md)说明三个层次的边界、教程依据与通用物件的处理方式。
 
