@@ -1,0 +1,3078 @@
+{
+  "schema_version": "0.3.0",
+  "document_type": "boundary_recipe",
+  "character_id": "jianlai_jianma",
+  "source_sha256": "5bce80aa35a0331f34f1905d03886d0a4c2318ab623b8420a5e52561a5a5cae9",
+  "parameters": {
+    "eye.right.open": {
+      "type": "number",
+      "label": "右眼睛开合",
+      "min": 0,
+      "max": 1,
+      "default": 1
+    },
+    "eye.right.curve": {
+      "type": "number",
+      "label": "右眼睛曲率",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    },
+    "brow.right.height": {
+      "type": "number",
+      "label": "右眉毛高度",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    },
+    "brow.right.angle": {
+      "type": "number",
+      "label": "右眉毛倾斜",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    },
+    "brow.right.curve": {
+      "type": "number",
+      "label": "右眉毛曲率",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    },
+    "eye.left.open": {
+      "type": "number",
+      "label": "左眼睛开合",
+      "min": 0,
+      "max": 1,
+      "default": 1
+    },
+    "eye.left.curve": {
+      "type": "number",
+      "label": "左眼睛曲率",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    },
+    "brow.left.height": {
+      "type": "number",
+      "label": "左眉毛高度",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    },
+    "brow.left.angle": {
+      "type": "number",
+      "label": "左眉毛倾斜",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    },
+    "brow.left.curve": {
+      "type": "number",
+      "label": "左眉毛曲率",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    },
+    "mouth.open": {
+      "type": "number",
+      "label": "嘴巴开合",
+      "min": 0,
+      "max": 1,
+      "default": 0
+    },
+    "mouth.form": {
+      "type": "number",
+      "label": "嘴型收展",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    }
+  },
+  "regions": [
+    {
+      "id": "eye.right",
+      "space": "eye_right",
+      "axes": [
+        {
+          "parameter": "eye.right.open",
+          "keys": [
+            0,
+            1
+          ]
+        },
+        {
+          "parameter": "eye.right.curve",
+          "keys": [
+            -1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source": {
+        "kind": "aperture",
+        "path": "eye_right_aperture_shape",
+        "x": [
+          406.05,
+          431.48
+        ]
+      },
+      "bounds": [
+        394,
+        185,
+        443,
+        217
+      ],
+      "keyforms": [
+        {
+          "at": [
+            0,
+            -1
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              206.0
+            ],
+            [
+              423.8,
+              205.2
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              206.0
+            ],
+            [
+              423.8,
+              205.2
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            0
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              202.9
+            ],
+            [
+              423.8,
+              203.0
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              202.9
+            ],
+            [
+              423.8,
+              203.0
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            1
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              195.3
+            ],
+            [
+              423.8,
+              196.0
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              195.3
+            ],
+            [
+              423.8,
+              196.0
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            -1
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              197.0
+            ],
+            [
+              423.8,
+              197.6
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              206.7
+            ],
+            [
+              423.8,
+              205.8
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            0
+          ],
+          "identity": true
+        },
+        {
+          "at": [
+            1,
+            1
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              193.6
+            ],
+            [
+              423.8,
+              195.1
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              200.0
+            ],
+            [
+              423.8,
+              200.6
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "selector": "#eye_right_aperture_shape, #eye44_right_exclude_eye_right_aperture_shape",
+          "role": "aperture"
+        },
+        {
+          "selector": "#eye_right_upper_eyelid path, #eye_right_upper_lashes path, #eye44_right_exclude_eye_right_upper_lid_ink, #eye44_right_exclude_eye_right_upper_lash_sweep, #eye44_right_exclude_eye_right_upper_lash_outer_taper",
+          "role": "upper"
+        },
+        {
+          "selector": "#eye_right_lower_eyelid path, #eye_right_lower_lashes path, #eye44_right_exclude_eye_right_lower_lid_rim, #eye44_right_exclude_eye_right_lower_lash_outer_root",
+          "role": "lower"
+        },
+        {
+          "selector": "#eye_right_surround_skin path, #eye_right_upper_fold",
+          "role": "surface"
+        },
+        {
+          "selector": "#eye5_right_upper_cast_complete",
+          "role": "surface_upper"
+        },
+        {
+          "selector": "#eye5_right_lower_cast_complete",
+          "role": "surface_lower"
+        }
+      ],
+      "paints": [
+        {
+          "svg_id": "eye44_right_socket_warm_color",
+          "role": "surface",
+          "anchor": [
+            424.3,
+            190.4
+          ]
+        },
+        {
+          "svg_id": "eye44_right_upper_volume_color",
+          "role": "surface",
+          "anchor": [
+            417.2,
+            193.05
+          ]
+        },
+        {
+          "svg_id": "eye44_right_upper_outer_color",
+          "role": "surface",
+          "anchor": [
+            410.25,
+            192.6
+          ]
+        },
+        {
+          "svg_id": "eye44_right_upper_inner_color",
+          "role": "surface",
+          "anchor": [
+            426.05,
+            195
+          ]
+        },
+        {
+          "svg_id": "eye44_right_upper_plane_color",
+          "role": "surface",
+          "anchor": [
+            415.9,
+            188.65
+          ]
+        },
+        {
+          "svg_id": "eye44_right_outer_corner_color",
+          "role": "surface",
+          "anchor": [
+            406.8,
+            204.1
+          ]
+        },
+        {
+          "svg_id": "eye44_right_lower_volume_color",
+          "role": "surface",
+          "anchor": [
+            417,
+            205
+          ]
+        },
+        {
+          "svg_id": "eye44_right_lower_transition_color",
+          "role": "surface",
+          "anchor": [
+            412,
+            206.25
+          ]
+        },
+        {
+          "svg_id": "eye44_right_lower_plane_color",
+          "role": "surface",
+          "anchor": [
+            421.25,
+            208.6
+          ]
+        },
+        {
+          "svg_id": "eye44_right_inner_corner_color",
+          "role": "surface",
+          "anchor": [
+            432.55,
+            201.55
+          ]
+        },
+        {
+          "svg_id": "eye44_right_inner_bridge_color",
+          "role": "surface",
+          "anchor": [
+            434.4,
+            204.1
+          ]
+        },
+        {
+          "svg_id": "eye44_right_lower_volume_fade_color",
+          "role": "surface",
+          "anchor": [
+            417,
+            205
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brow.right",
+      "space": "brow_right",
+      "axes": [
+        {
+          "parameter": "brow.right.height",
+          "keys": [
+            -1,
+            0,
+            1
+          ]
+        },
+        {
+          "parameter": "brow.right.angle",
+          "keys": [
+            -1,
+            0,
+            1
+          ]
+        },
+        {
+          "parameter": "brow.right.curve",
+          "keys": [
+            -1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source": {
+        "kind": "curve",
+        "path": "brow_right_complete_shape",
+        "x": [
+          402.9,
+          434.2
+        ]
+      },
+      "bounds": [
+        397,
+        174,
+        440,
+        196
+      ],
+      "keyforms": [
+        {
+          "at": [
+            -1,
+            -1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              1.2
+            ],
+            [
+              413.333333,
+              4.6
+            ],
+            [
+              423.766667,
+              6.6
+            ],
+            [
+              434.2,
+              5.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            -1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              1.2
+            ],
+            [
+              413.333333,
+              2.2
+            ],
+            [
+              423.766667,
+              4.2
+            ],
+            [
+              434.2,
+              5.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            -1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              1.2
+            ],
+            [
+              413.333333,
+              -0.8
+            ],
+            [
+              423.766667,
+              1.2
+            ],
+            [
+              434.2,
+              5.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            0,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              3
+            ],
+            [
+              413.333333,
+              5.4
+            ],
+            [
+              423.766667,
+              5.4
+            ],
+            [
+              434.2,
+              3
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            0,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              3
+            ],
+            [
+              413.333333,
+              3
+            ],
+            [
+              423.766667,
+              3
+            ],
+            [
+              434.2,
+              3
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            0,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              3
+            ],
+            [
+              413.333333,
+              0
+            ],
+            [
+              423.766667,
+              0
+            ],
+            [
+              434.2,
+              3
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              4.8
+            ],
+            [
+              413.333333,
+              6.2
+            ],
+            [
+              423.766667,
+              4.2
+            ],
+            [
+              434.2,
+              0.3
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              4.8
+            ],
+            [
+              413.333333,
+              3.8
+            ],
+            [
+              423.766667,
+              1.8
+            ],
+            [
+              434.2,
+              0.3
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              4.8
+            ],
+            [
+              413.333333,
+              0.8
+            ],
+            [
+              423.766667,
+              -1.2
+            ],
+            [
+              434.2,
+              0.3
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            -1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -1.8
+            ],
+            [
+              413.333333,
+              1.6
+            ],
+            [
+              423.766667,
+              3.6
+            ],
+            [
+              434.2,
+              2.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            -1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -1.8
+            ],
+            [
+              413.333333,
+              -0.8
+            ],
+            [
+              423.766667,
+              1.2
+            ],
+            [
+              434.2,
+              2.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            -1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -1.8
+            ],
+            [
+              413.333333,
+              -3.8
+            ],
+            [
+              423.766667,
+              -1.8
+            ],
+            [
+              434.2,
+              2.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            0,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              0
+            ],
+            [
+              413.333333,
+              2.4
+            ],
+            [
+              423.766667,
+              2.4
+            ],
+            [
+              434.2,
+              0
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            0,
+            0
+          ],
+          "identity": true
+        },
+        {
+          "at": [
+            0,
+            0,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              0
+            ],
+            [
+              413.333333,
+              -3
+            ],
+            [
+              423.766667,
+              -3
+            ],
+            [
+              434.2,
+              0
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              1.8
+            ],
+            [
+              413.333333,
+              3.2
+            ],
+            [
+              423.766667,
+              1.2
+            ],
+            [
+              434.2,
+              -2.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              1.8
+            ],
+            [
+              413.333333,
+              0.8
+            ],
+            [
+              423.766667,
+              -1.2
+            ],
+            [
+              434.2,
+              -2.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              1.8
+            ],
+            [
+              413.333333,
+              -2.2
+            ],
+            [
+              423.766667,
+              -4.2
+            ],
+            [
+              434.2,
+              -2.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            -1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -5.8
+            ],
+            [
+              413.333333,
+              -2.4
+            ],
+            [
+              423.766667,
+              -0.4
+            ],
+            [
+              434.2,
+              -1.3
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            -1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -5.8
+            ],
+            [
+              413.333333,
+              -4.8
+            ],
+            [
+              423.766667,
+              -2.8
+            ],
+            [
+              434.2,
+              -1.3
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            -1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -5.8
+            ],
+            [
+              413.333333,
+              -7.8
+            ],
+            [
+              423.766667,
+              -5.8
+            ],
+            [
+              434.2,
+              -1.3
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            0,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -4
+            ],
+            [
+              413.333333,
+              -1.6
+            ],
+            [
+              423.766667,
+              -1.6
+            ],
+            [
+              434.2,
+              -4
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            0,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -4
+            ],
+            [
+              413.333333,
+              -4
+            ],
+            [
+              423.766667,
+              -4
+            ],
+            [
+              434.2,
+              -4
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            0,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -4
+            ],
+            [
+              413.333333,
+              -7
+            ],
+            [
+              423.766667,
+              -7
+            ],
+            [
+              434.2,
+              -4
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -2.2
+            ],
+            [
+              413.333333,
+              -0.8
+            ],
+            [
+              423.766667,
+              -2.8
+            ],
+            [
+              434.2,
+              -6.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -2.2
+            ],
+            [
+              413.333333,
+              -3.2
+            ],
+            [
+              423.766667,
+              -5.2
+            ],
+            [
+              434.2,
+              -6.7
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              402.9,
+              -2.2
+            ],
+            [
+              413.333333,
+              -6.2
+            ],
+            [
+              423.766667,
+              -8.2
+            ],
+            [
+              434.2,
+              -6.7
+            ]
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "selector": "#brow_right_complete_shape",
+          "role": "curve"
+        }
+      ],
+      "paints": [
+        {
+          "svg_id": "face5_brow_right_color",
+          "role": "curve",
+          "anchor": [
+            418.54999999999995,
+            184.5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eye.left",
+      "space": "eye_left",
+      "axes": [
+        {
+          "parameter": "eye.left.open",
+          "keys": [
+            0,
+            1
+          ]
+        },
+        {
+          "parameter": "eye.left.curve",
+          "keys": [
+            -1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source": {
+        "kind": "aperture",
+        "path": "eye_left_aperture_shape",
+        "x": [
+          406.05,
+          431.48
+        ]
+      },
+      "bounds": [
+        394,
+        185,
+        443,
+        217
+      ],
+      "keyforms": [
+        {
+          "at": [
+            0,
+            -1
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              206.0
+            ],
+            [
+              423.8,
+              205.2
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              206.0
+            ],
+            [
+              423.8,
+              205.2
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            0
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              202.9
+            ],
+            [
+              423.8,
+              203.0
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              202.9
+            ],
+            [
+              423.8,
+              203.0
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            1
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              195.3
+            ],
+            [
+              423.8,
+              196.0
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              195.3
+            ],
+            [
+              423.8,
+              196.0
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            -1
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              197.0
+            ],
+            [
+              423.8,
+              197.6
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              206.7
+            ],
+            [
+              423.8,
+              205.8
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            0
+          ],
+          "identity": true
+        },
+        {
+          "at": [
+            1,
+            1
+          ],
+          "upper": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              193.6
+            ],
+            [
+              423.8,
+              195.1
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ],
+          "lower": [
+            [
+              406.05,
+              197.15
+            ],
+            [
+              411.7,
+              200.0
+            ],
+            [
+              423.8,
+              200.6
+            ],
+            [
+              431.48,
+              201.79
+            ]
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "selector": "#eye_left_aperture_shape, #eye44_left_exclude_eye_left_aperture_shape",
+          "role": "aperture"
+        },
+        {
+          "selector": "#eye_left_upper_eyelid path, #eye_left_upper_lashes path, #eye44_left_exclude_eye_left_upper_lid_ink, #eye44_left_exclude_eye_left_upper_lash_sweep, #eye44_left_exclude_eye_left_upper_lash_outer_taper",
+          "role": "upper"
+        },
+        {
+          "selector": "#eye_left_lower_eyelid path, #eye_left_lower_lashes path, #eye44_left_exclude_eye_left_lower_lid_rim, #eye44_left_exclude_eye_left_lower_lash_outer_root",
+          "role": "lower"
+        },
+        {
+          "selector": "#eye_left_surround_skin path, #eye_left_upper_fold",
+          "role": "surface"
+        },
+        {
+          "selector": "#eye5_left_upper_cast_complete",
+          "role": "surface_upper"
+        },
+        {
+          "selector": "#eye5_left_lower_cast_complete",
+          "role": "surface_lower"
+        }
+      ],
+      "paints": [
+        {
+          "svg_id": "eye44_left_socket_warm_color",
+          "role": "surface",
+          "anchor": [
+            424.3,
+            190.4
+          ]
+        },
+        {
+          "svg_id": "eye44_left_upper_volume_color",
+          "role": "surface",
+          "anchor": [
+            417.2,
+            193.05
+          ]
+        },
+        {
+          "svg_id": "eye44_left_upper_outer_color",
+          "role": "surface",
+          "anchor": [
+            410.25,
+            192.6
+          ]
+        },
+        {
+          "svg_id": "eye44_left_upper_inner_color",
+          "role": "surface",
+          "anchor": [
+            426.05,
+            195
+          ]
+        },
+        {
+          "svg_id": "eye44_left_upper_plane_color",
+          "role": "surface",
+          "anchor": [
+            415.9,
+            188.65
+          ]
+        },
+        {
+          "svg_id": "eye44_left_outer_corner_color",
+          "role": "surface",
+          "anchor": [
+            406.8,
+            204.1
+          ]
+        },
+        {
+          "svg_id": "eye44_left_lower_volume_color",
+          "role": "surface",
+          "anchor": [
+            417,
+            205
+          ]
+        },
+        {
+          "svg_id": "eye44_left_lower_transition_color",
+          "role": "surface",
+          "anchor": [
+            412,
+            206.25
+          ]
+        },
+        {
+          "svg_id": "eye44_left_lower_plane_color",
+          "role": "surface",
+          "anchor": [
+            421.25,
+            208.6
+          ]
+        },
+        {
+          "svg_id": "eye44_left_inner_corner_color",
+          "role": "surface",
+          "anchor": [
+            432.55,
+            201.55
+          ]
+        },
+        {
+          "svg_id": "eye44_left_inner_bridge_color",
+          "role": "surface",
+          "anchor": [
+            434.4,
+            204.1
+          ]
+        },
+        {
+          "svg_id": "eye44_left_lower_volume_fade_color",
+          "role": "surface",
+          "anchor": [
+            417,
+            205
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brow.left",
+      "space": "brow_left",
+      "axes": [
+        {
+          "parameter": "brow.left.height",
+          "keys": [
+            -1,
+            0,
+            1
+          ]
+        },
+        {
+          "parameter": "brow.left.angle",
+          "keys": [
+            -1,
+            0,
+            1
+          ]
+        },
+        {
+          "parameter": "brow.left.curve",
+          "keys": [
+            -1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source": {
+        "kind": "curve",
+        "path": "brow_left_complete_shape",
+        "x": [
+          454.1,
+          485.6
+        ]
+      },
+      "bounds": [
+        448,
+        174,
+        492,
+        196
+      ],
+      "keyforms": [
+        {
+          "at": [
+            -1,
+            -1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              5.7
+            ],
+            [
+              464.6,
+              6.6
+            ],
+            [
+              475.1,
+              4.6
+            ],
+            [
+              485.6,
+              1.2
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            -1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              5.7
+            ],
+            [
+              464.6,
+              4.2
+            ],
+            [
+              475.1,
+              2.2
+            ],
+            [
+              485.6,
+              1.2
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            -1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              5.7
+            ],
+            [
+              464.6,
+              1.2
+            ],
+            [
+              475.1,
+              -0.8
+            ],
+            [
+              485.6,
+              1.2
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            0,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              3
+            ],
+            [
+              464.6,
+              5.4
+            ],
+            [
+              475.1,
+              5.4
+            ],
+            [
+              485.6,
+              3
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            0,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              3
+            ],
+            [
+              464.6,
+              3
+            ],
+            [
+              475.1,
+              3
+            ],
+            [
+              485.6,
+              3
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            0,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              3
+            ],
+            [
+              464.6,
+              0
+            ],
+            [
+              475.1,
+              0
+            ],
+            [
+              485.6,
+              3
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              0.3
+            ],
+            [
+              464.6,
+              4.2
+            ],
+            [
+              475.1,
+              6.2
+            ],
+            [
+              485.6,
+              4.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              0.3
+            ],
+            [
+              464.6,
+              1.8
+            ],
+            [
+              475.1,
+              3.8
+            ],
+            [
+              485.6,
+              4.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            -1,
+            1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              0.3
+            ],
+            [
+              464.6,
+              -1.2
+            ],
+            [
+              475.1,
+              0.8
+            ],
+            [
+              485.6,
+              4.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            -1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              2.7
+            ],
+            [
+              464.6,
+              3.6
+            ],
+            [
+              475.1,
+              1.6
+            ],
+            [
+              485.6,
+              -1.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            -1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              2.7
+            ],
+            [
+              464.6,
+              1.2
+            ],
+            [
+              475.1,
+              -0.8
+            ],
+            [
+              485.6,
+              -1.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            -1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              2.7
+            ],
+            [
+              464.6,
+              -1.8
+            ],
+            [
+              475.1,
+              -3.8
+            ],
+            [
+              485.6,
+              -1.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            0,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              0
+            ],
+            [
+              464.6,
+              2.4
+            ],
+            [
+              475.1,
+              2.4
+            ],
+            [
+              485.6,
+              0
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            0,
+            0
+          ],
+          "identity": true
+        },
+        {
+          "at": [
+            0,
+            0,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              0
+            ],
+            [
+              464.6,
+              -3
+            ],
+            [
+              475.1,
+              -3
+            ],
+            [
+              485.6,
+              0
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -2.7
+            ],
+            [
+              464.6,
+              1.2
+            ],
+            [
+              475.1,
+              3.2
+            ],
+            [
+              485.6,
+              1.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -2.7
+            ],
+            [
+              464.6,
+              -1.2
+            ],
+            [
+              475.1,
+              0.8
+            ],
+            [
+              485.6,
+              1.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -2.7
+            ],
+            [
+              464.6,
+              -4.2
+            ],
+            [
+              475.1,
+              -2.2
+            ],
+            [
+              485.6,
+              1.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            -1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -1.3
+            ],
+            [
+              464.6,
+              -0.4
+            ],
+            [
+              475.1,
+              -2.4
+            ],
+            [
+              485.6,
+              -5.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            -1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -1.3
+            ],
+            [
+              464.6,
+              -2.8
+            ],
+            [
+              475.1,
+              -4.8
+            ],
+            [
+              485.6,
+              -5.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            -1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -1.3
+            ],
+            [
+              464.6,
+              -5.8
+            ],
+            [
+              475.1,
+              -7.8
+            ],
+            [
+              485.6,
+              -5.8
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            0,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -4
+            ],
+            [
+              464.6,
+              -1.6
+            ],
+            [
+              475.1,
+              -1.6
+            ],
+            [
+              485.6,
+              -4
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            0,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -4
+            ],
+            [
+              464.6,
+              -4
+            ],
+            [
+              475.1,
+              -4
+            ],
+            [
+              485.6,
+              -4
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            0,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -4
+            ],
+            [
+              464.6,
+              -7
+            ],
+            [
+              475.1,
+              -7
+            ],
+            [
+              485.6,
+              -4
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            1,
+            -1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -6.7
+            ],
+            [
+              464.6,
+              -2.8
+            ],
+            [
+              475.1,
+              -0.8
+            ],
+            [
+              485.6,
+              -2.2
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            1,
+            0
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -6.7
+            ],
+            [
+              464.6,
+              -5.2
+            ],
+            [
+              475.1,
+              -3.2
+            ],
+            [
+              485.6,
+              -2.2
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            1,
+            1
+          ],
+          "curve_mode": "offset",
+          "curve": [
+            [
+              454.1,
+              -6.7
+            ],
+            [
+              464.6,
+              -8.2
+            ],
+            [
+              475.1,
+              -6.2
+            ],
+            [
+              485.6,
+              -2.2
+            ]
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "selector": "#brow_left_complete_shape",
+          "role": "curve"
+        }
+      ],
+      "paints": [
+        {
+          "svg_id": "face5_brow_left_color",
+          "role": "curve",
+          "anchor": [
+            469.85,
+            184.5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mouth",
+      "space": "mouth",
+      "axes": [
+        {
+          "parameter": "mouth.open",
+          "keys": [
+            0,
+            1
+          ]
+        },
+        {
+          "parameter": "mouth.form",
+          "keys": [
+            -1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source": {
+        "kind": "seam",
+        "path": "mouth_upper_line_shape",
+        "aperture": "mouth_inside_complete_shape",
+        "x": [
+          430.6,
+          456.78
+        ]
+      },
+      "bounds": [
+        421,
+        229,
+        467,
+        275
+      ],
+      "keyforms": [
+        {
+          "at": [
+            0,
+            -1
+          ],
+          "upper": [
+            [
+              432.6,
+              245.2
+            ],
+            [
+              437.7,
+              241.1
+            ],
+            [
+              449.7,
+              241.1
+            ],
+            [
+              454.78,
+              245.2
+            ]
+          ],
+          "lower": [
+            [
+              432.6,
+              245.2
+            ],
+            [
+              437.7,
+              241.1
+            ],
+            [
+              449.7,
+              241.1
+            ],
+            [
+              454.78,
+              245.2
+            ]
+          ]
+        },
+        {
+          "at": [
+            0,
+            0
+          ],
+          "identity": true
+        },
+        {
+          "at": [
+            0,
+            1
+          ],
+          "upper": [
+            [
+              428.1,
+              241.1
+            ],
+            [
+              437.3,
+              245.4
+            ],
+            [
+              450.1,
+              245.4
+            ],
+            [
+              459.28,
+              241.1
+            ]
+          ],
+          "lower": [
+            [
+              428.1,
+              241.1
+            ],
+            [
+              437.3,
+              245.4
+            ],
+            [
+              450.1,
+              245.4
+            ],
+            [
+              459.28,
+              241.1
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            -1
+          ],
+          "upper": [
+            [
+              434.1,
+              245.3
+            ],
+            [
+              434.1,
+              234.4
+            ],
+            [
+              453.3,
+              234.4
+            ],
+            [
+              453.3,
+              245.3
+            ]
+          ],
+          "lower": [
+            [
+              434.1,
+              245.3
+            ],
+            [
+              434.1,
+              260.8
+            ],
+            [
+              453.3,
+              260.8
+            ],
+            [
+              453.3,
+              245.3
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            0
+          ],
+          "upper": [
+            [
+              431.1,
+              243.1
+            ],
+            [
+              435.8,
+              235.6
+            ],
+            [
+              451.6,
+              235.6
+            ],
+            [
+              456.3,
+              243.1
+            ]
+          ],
+          "lower": [
+            [
+              431.1,
+              243.1
+            ],
+            [
+              435.8,
+              260.0
+            ],
+            [
+              451.6,
+              260.0
+            ],
+            [
+              456.3,
+              243.1
+            ]
+          ]
+        },
+        {
+          "at": [
+            1,
+            1
+          ],
+          "upper": [
+            [
+              427.5,
+              241.0
+            ],
+            [
+              433.0,
+              237.0
+            ],
+            [
+              454.4,
+              237.0
+            ],
+            [
+              459.9,
+              241.0
+            ]
+          ],
+          "lower": [
+            [
+              427.5,
+              241.0
+            ],
+            [
+              433.0,
+              257.4
+            ],
+            [
+              454.4,
+              257.4
+            ],
+            [
+              459.9,
+              241.0
+            ]
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "selector": "#mouth_inside_complete_shape, #mouth_inside_clip_geometry",
+          "role": "aperture"
+        },
+        {
+          "selector": "#mouth_upper_lip_color path, #mouth_upper_line path, #mouth_upper_inner_edge_color_shape, #mouth3_upper_lip_surface path",
+          "role": "upper"
+        },
+        {
+          "selector": "#mouth_lower_lip_color path, #mouth_lower_line path, #mouth3_lower_lip_surface path",
+          "role": "lower"
+        },
+        {
+          "selector": "#mouth_upper_skin_complete_shape, #mouth3_upper_skin_surface path",
+          "role": "surface_upper"
+        },
+        {
+          "selector": "#mouth_lower_skin_complete_shape, #mouth3_lower_skin_surface path, #fx_mouth_lower_on_skin_complete_shape",
+          "role": "surface_lower"
+        },
+        {
+          "selector": "#mouth_upper_skin_warmth",
+          "role": "surface_upper",
+          "mode": "translate"
+        },
+        {
+          "selector": "#mouth_lower_skin_warmth",
+          "role": "surface_lower",
+          "mode": "translate"
+        },
+        {
+          "selector": "#mouth_teeth_upper_complete_shape",
+          "role": "rigid_upper",
+          "mode": "translate",
+          "key_offsets": [
+            {
+              "at": [
+                0,
+                -1
+              ],
+              "offset": [
+                0,
+                -9
+              ]
+            },
+            {
+              "at": [
+                0,
+                0
+              ],
+              "offset": [
+                0,
+                -9
+              ]
+            },
+            {
+              "at": [
+                0,
+                1
+              ],
+              "offset": [
+                0,
+                -9
+              ]
+            },
+            {
+              "at": [
+                1,
+                -1
+              ],
+              "offset": [
+                0,
+                -6
+              ]
+            },
+            {
+              "at": [
+                1,
+                0
+              ],
+              "offset": [
+                0,
+                -6
+              ]
+            },
+            {
+              "at": [
+                1,
+                1
+              ],
+              "offset": [
+                0,
+                -6
+              ]
+            }
+          ]
+        },
+        {
+          "selector": "#mouth_teeth_lower_complete_shape",
+          "role": "rigid_lower",
+          "mode": "translate",
+          "key_offsets": [
+            {
+              "at": [
+                0,
+                -1
+              ],
+              "offset": [
+                0,
+                6
+              ]
+            },
+            {
+              "at": [
+                0,
+                0
+              ],
+              "offset": [
+                0,
+                6
+              ]
+            },
+            {
+              "at": [
+                0,
+                1
+              ],
+              "offset": [
+                0,
+                6
+              ]
+            },
+            {
+              "at": [
+                1,
+                -1
+              ],
+              "offset": [
+                0,
+                4
+              ]
+            },
+            {
+              "at": [
+                1,
+                0
+              ],
+              "offset": [
+                0,
+                4
+              ]
+            },
+            {
+              "at": [
+                1,
+                1
+              ],
+              "offset": [
+                0,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "selector": "#mouth_tongue_complete_shape",
+          "role": "rigid_lower",
+          "mode": "translate",
+          "key_offsets": [
+            {
+              "at": [
+                0,
+                -1
+              ],
+              "offset": [
+                0,
+                11
+              ]
+            },
+            {
+              "at": [
+                0,
+                0
+              ],
+              "offset": [
+                0,
+                11
+              ]
+            },
+            {
+              "at": [
+                0,
+                1
+              ],
+              "offset": [
+                0,
+                11
+              ]
+            },
+            {
+              "at": [
+                1,
+                -1
+              ],
+              "offset": [
+                0,
+                6
+              ]
+            },
+            {
+              "at": [
+                1,
+                0
+              ],
+              "offset": [
+                0,
+                6
+              ]
+            },
+            {
+              "at": [
+                1,
+                1
+              ],
+              "offset": [
+                0,
+                6
+              ]
+            }
+          ]
+        }
+      ],
+      "paints": [
+        {
+          "svg_id": "mouth3_upper_lip_color",
+          "role": "upper",
+          "anchor": [
+            443.9,
+            241.5
+          ]
+        },
+        {
+          "svg_id": "mouth3_upper_right_volume",
+          "role": "upper",
+          "anchor": [
+            448.5,
+            241.1
+          ]
+        },
+        {
+          "svg_id": "mouth3_lower_lip_color",
+          "role": "lower",
+          "anchor": [
+            444,
+            246
+          ]
+        },
+        {
+          "svg_id": "mouth3_lower_left_volume",
+          "role": "lower",
+          "anchor": [
+            437,
+            245.1
+          ]
+        },
+        {
+          "svg_id": "mouth3_upper_skin_warmth",
+          "role": "surface_upper",
+          "anchor": [
+            443.9,
+            235.4
+          ]
+        },
+        {
+          "svg_id": "mouth3_lower_skin_warmth",
+          "role": "surface_lower",
+          "anchor": [
+            444,
+            254.6
+          ]
+        },
+        {
+          "svg_id": "mouth3_lower_cast_color",
+          "role": "surface_lower",
+          "anchor": [
+            444,
+            250.3
+          ]
+        },
+        {
+          "svg_id": "mouth3_lower_light_color",
+          "role": "lower",
+          "anchor": [
+            444,
+            246.45
+          ]
+        },
+        {
+          "svg_id": "mouth3_cavity_color",
+          "role": "aperture",
+          "anchor": [
+            443.8,
+            250.2
+          ]
+        },
+        {
+          "svg_id": "mouth3_upper_teeth_color",
+          "role": "rigid_upper",
+          "anchor": [
+            444,
+            238
+          ]
+        },
+        {
+          "svg_id": "mouth3_lower_teeth_color",
+          "role": "rigid_lower",
+          "anchor": [
+            444,
+            252
+          ]
+        },
+        {
+          "svg_id": "mouth3_tongue_color",
+          "role": "rigid_lower",
+          "anchor": [
+            443.8,
+            251.5
+          ]
+        },
+        {
+          "svg_id": "mouth3_skin_fade_top",
+          "role": "surface_upper",
+          "anchor": [
+            444,
+            233.2
+          ]
+        },
+        {
+          "svg_id": "mouth3_skin_fade_bottom",
+          "role": "surface_lower",
+          "anchor": [
+            444,
+            257.9
+          ]
+        },
+        {
+          "svg_id": "mouth3_lower_lip_side_alpha",
+          "role": "lower",
+          "anchor": [
+            444,
+            246
+          ]
+        },
+        {
+          "svg_id": "mouth3_contact_side_alpha",
+          "role": "upper",
+          "anchor": [
+            444,
+            243.15
+          ]
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "svg_id": "mouth3_lip_soft",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_lower_lip_soft",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_line_soft",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_seam_soft",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_shadow_soft",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_light_soft",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_lower_lip_side_fade",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_contact_side_fade",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_skin_outer_fade",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_lower_lip_side_fade",
+      "element_index": 0,
+      "tag": "rect",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_contact_side_fade",
+      "element_index": 0,
+      "tag": "rect",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    },
+    {
+      "svg_id": "mouth3_skin_outer_fade",
+      "element_index": 0,
+      "tag": "rect",
+      "attributes": {
+        "x": 421,
+        "y": 229,
+        "width": 46,
+        "height": 46
+      }
+    }
+  ],
+  "subdivisions": 4,
+  "capability_profile": "basic-face-v1"
+}

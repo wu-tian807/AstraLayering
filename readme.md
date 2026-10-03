@@ -2,7 +2,7 @@
 
 利用 AI 将角色参考重绘成**可编辑、可分层、具备遮挡补全的 SVG**，为人物还原、服装替换和后续 2D 动画提供部件基础。
 
-当前有两个正式技能：**`live2d-layering` 制作人物素体，`live2d-clothing` 制作可替换衣装**；它们各自按节点配置调度绘制，通用执行规则放在 SKILL.md，具体步骤和制作要求放在对应节点。
+当前有三个技能：**`live2d-layering` 制作人物素体，`live2d-clothing` 制作可替换衣装，`live2d-expressions` 绑定标准基础面部参数**；它们各自按节点配置调度绘制，通用执行规则放在 SKILL.md，具体步骤和制作要求放在对应节点。
 
 人物分层技能的初始分组已改为 `group` 树，第 3 步按最底层 group 绘制和检查色稿；第 4 步及后续接口仍待迁移。
 
@@ -22,7 +22,7 @@
 
 ### 历史流程成果
 
-以下 Milly 与 Miku 案例保留其原始结果和阶段记录，图中左侧为该轮基础角色彩图，右侧为旧流程阶段 5 的 SVG 渲染；当前调用入口统一使用上面的两个新技能。
+以下 Milly 与 Miku 案例保留其原始结果和阶段记录，图中左侧为该轮基础角色彩图，右侧为旧流程阶段 5 的 SVG 渲染；当前调用入口统一使用当前对应技能。
 
 ### Milly v1
 
@@ -73,6 +73,18 @@
 
 衣装最终交付 `final/character.svg`、`clothing.svg`、`clothing-index.json`、预览和对照图；独立衣装需按索引穿插到素体各层之间，不能直接当作一张置顶图片。
 
+### 3. 给已有 SVG 绑定基础面部参数
+
+```text
+使用 $live2d-expressions，保持原 SVG 不变，完成标准基础表情参数绑定。
+原 SVG：/绝对路径/完整角色.svg
+输出目录：/绝对路径/表情输出
+```
+
+模型设计参数边界关键形，程序编译连续插值。`basic-face-v1` 包含双眼开合与曲率、双眉高度/角度/曲率、嘴部开合与嘴型，共 12 轴；闭眼时曲率仍能调整。不生成情绪预设，不重画原 SVG，不需要用户手调最大张口或眼睑控制点。
+
+[技能与安装依赖](./.agents/skills/live2d-expressions/SKILL.md) · [边界 JSON 契约](./.agents/skills/live2d-expressions/docs/boundary-rig.md) · [独立参数预览](./.agents/skills/live2d-expressions/tools/preview/boundary-preview.html)。数值通过后仍须逐图和连续调参审查；不承诺任意角色自动获得相同美术质量。
+
 ### 续跑、环境与维护
 
 续跑时使用对应技能，提供原输出目录并说明继续位置，例如：
@@ -83,7 +95,7 @@
 
 总控根据本轮实际产物、运行记录和当前节点配置接续；模型及推理强度读取各节点 `.model`，独立审查只按配置触发。技能使用语言子 agent 和生图工具，图像生成能力需在运行环境中可用。
 
-两个技能各自携带通用 `tools/`；单步骤工具位于该编号步骤的 `tools/`。复制技能时携带对应技能目录即可。运行工具使用 Python、Pillow、Node.js 与 sharp；流程配置校验需要 PyYAML。
+各技能自行携带所需 `tools/`；单步骤工具位于该编号步骤的 `tools/`。复制技能时携带对应技能目录即可。运行工具使用 Python、Pillow、Node.js 与 sharp；流程配置校验需要 PyYAML。
 
 `SKILL.md` 仅放通用规则；节点的 `流程.yaml`、提示词、模型标记维护具体制作方法。根目录原 `workflows/` 和 `workflow_clothing/` 已分别迁入两个技能，不保留另一份执行副本；旧 `svg-layering` 已移至 [archive/svg-layering](./archive/svg-layering/SKILL.md)，不再注册为技能。
 
@@ -93,6 +105,7 @@
 | --- | --- | --- |
 | [live2d-layering](./.agents/skills/live2d-layering/SKILL.md) | 参考准备 → 结构识别 → 大层分层 → 按组细化与素体整理 | 具备完整底形、连接面及独立效果的人物素体 |
 | [live2d-clothing](./.agents/skills/live2d-clothing/SKILL.md) | 结构与穿戴分析 → 按需补全参考 → 分批线稿及集中结构审查 → 色盘 → 分批着色与导出 | 可替换衣装与完整穿戴稿 |
+| [live2d-expressions](./.agents/skills/live2d-expressions/SKILL.md) | 盘点 → 标准参数规划 → 原稿准备 → 边界创作 → 编译与扫描 → 独立审查 | 原 SVG、作者配方、连续可调 controls 与便携预览 |
 
 当前生效的人物分层技能恢复为工具归位后的旧流程。[新流程建设稿](./workflow-next/live2d-layering/readme.md)放在仓库根目录，1—3 步和树游标已建立，第 4 步专项模板仍待迁移。独立衣装由衣装技能制作。
 
@@ -100,7 +113,7 @@
 
 ## 运行时间与额度
 
-以下为**旧流程 Milly 案例**的一次用户实测估算，不代表两个新技能的耗时：
+以下为**旧流程 Milly 案例**的一次用户实测估算，不代表当前技能的耗时：
 
 | 项目 | 历史估算 |
 | --- | --- |

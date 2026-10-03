@@ -1,0 +1,238 @@
+schema_version: 0.2.0
+document_type: expression_workflow
+id: boundary_svg_expressions
+description: 'Standard basic-face-v1 facial boundary authoring: twelve effective eye, brow and mouth axes; deterministic same-topology
+  interpolation.'
+inputs:
+  base_svg:
+    type: file
+    required: true
+    description: 完整分层角色 SVG，只读；不得覆盖来源或从旧任务猜测输入。
+  reference:
+    type: file
+    required: false
+    description: 原画或明确的脸部风格参考；缺省使用源 SVG 的实际渲染。
+  requirements:
+    type: text
+    required: false
+    description: 已确定的参数能力与可达范围；本阶段不制作情绪预设、离散替换或附件。
+models:
+  author:
+    model: gpt-6-sol
+    reasoning_effort: xhigh
+  reviewer:
+    model: gpt-6-sol
+    reasoning_effort: xhigh
+resources:
+  inspect_tool: 1.inspect/tools/inspect-svg.cjs
+  build_tool: 5.build-rig/tools/build-rig.cjs
+  scan_tool: 6.scan-boundaries/tools/scan-boundaries.cjs
+  common_tool: tools/tool-common.cjs
+  rig_contract: docs/boundary-rig.md
+  recipe_schema: contracts/boundary-recipe.schema.json
+  controls_schema: contracts/boundary-rig.schema.json
+  preview_html: tools/preview/boundary-preview.html
+  preview_js: tools/preview/boundary-preview.js
+  scope_schema: contracts/scope.schema.json
+  preparation_schema: contracts/preparation.schema.json
+  review_schema: contracts/review.schema.json
+  scope_prompt: 2.scope/prompt.md
+  prepare_prompt: 3.prepare/prompt.md
+  delivery_prompt: 8.deliver/prompt.md
+  boundary_runtime_js: tools/preview/svg-boundary-runtime.js
+  boundary_compiler_js: 5.build-rig/tools/boundary-compiler.js
+  boundary_prompt: 4.author-boundaries/prompt.md
+  boundary_review_prompt: 7.review-boundaries/prompt.md
+  source_tool: tools/svg-source.cjs
+  geometry_js: tools/svg-geometry.js
+  capability_contract: docs/basic-face-v1.md
+tasks:
+  inspect:
+    kind: tool
+    retry: {max_rounds: 1}
+    needs: []
+    inputs:
+      common_tool: {resource: common_tool}
+      svg: {input: base_svg}
+      source_tool: {resource: source_tool}
+      geometry_js: {resource: geometry_js}
+    outputs:
+      inspection:
+        path: source/inspection
+        type: directory
+        required_files: [inventory.json, baseline.png]
+        description: inventory.json 与 baseline.png；真实节点/裁剪/变换的盘点和原稿渲染。
+    command:
+      runtime: node
+      entry: inspect_tool
+      args: [--svg, {input: svg}, --out, {output: inspection, path: inventory.json}]
+  scope:
+    kind: agent
+    retry: {max_rounds: 1}
+    model: author
+    session: expression_planner
+    prompt: scope_prompt
+    needs: [inspect]
+    inputs:
+      svg: {input: base_svg}
+      inventory: {artifact: inspect.inspection, path: inventory.json}
+      baseline: {artifact: inspect.inspection, path: baseline.png}
+      reference: {input: reference}
+      requirements: {input: requirements}
+      rig_contract: {resource: rig_contract}
+      output_schema: {resource: scope_schema}
+      capability_contract: {resource: capability_contract}
+    outputs:
+      specification:
+        path: authoring/specification.json
+        type: file
+        checks: [{schema: scope_schema, capability_profile: basic-face-v1}]
+  prepare:
+    kind: agent
+    retry: {max_rounds: 1}
+    model: author
+    session: expression_material_author
+    prompt: prepare_prompt
+    needs: [scope]
+    inputs:
+      svg: {input: base_svg}
+      inventory: {artifact: inspect.inspection, path: inventory.json}
+      baseline: {artifact: inspect.inspection, path: baseline.png}
+      specification: {artifact: scope.specification}
+      reference: {input: reference}
+      output_schema: {resource: preparation_schema}
+    outputs:
+      prepared:
+        path: authoring/prepared
+        type: directory
+        required_files: [character.svg, source.svg, preparation-report.json, before.png, after.png]
+        description: character.svg、source.svg、preparation-report.json、before.png、after.png；原稿恒等复制；禁止修改任何部件、层级或隐藏素材。
+        checks: [{path: preparation-report.json, schema: preparation_schema}]
+  author_boundaries:
+    kind: agent
+    retry: {max_rounds: 1}
+    model: author
+    session: expression_boundary_author
+    prompt: boundary_prompt
+    needs: [prepare]
+    inputs:
+      svg: {artifact: prepare.prepared, path: character.svg}
+      preparation: {artifact: prepare.prepared, path: preparation-report.json}
+      specification: {artifact: scope.specification}
+      rig_contract: {resource: rig_contract}
+      recipe_schema: {resource: recipe_schema}
+      inventory: {artifact: inspect.inspection, path: inventory.json}
+      baseline: {artifact: inspect.inspection, path: baseline.png}
+      capability_contract: {resource: capability_contract}
+    outputs:
+      recipe:
+        path: authoring/boundary.recipe.json
+        type: file
+        checks: [{schema: recipe_schema, capability_profile: basic-face-v1}]
+  build_rig:
+    kind: tool
+    retry: {max_rounds: 1}
+    needs: [author_boundaries]
+    inputs:
+      common_tool: {resource: common_tool}
+      svg: {artifact: prepare.prepared, path: character.svg}
+      recipe: {artifact: author_boundaries.recipe}
+      recipe_schema: {resource: recipe_schema}
+      boundary_runtime_js: {resource: boundary_runtime_js}
+      boundary_compiler_js: {resource: boundary_compiler_js}
+      source_tool: {resource: source_tool}
+      geometry_js: {resource: geometry_js}
+      controls_schema: {resource: controls_schema}
+    outputs:
+      compiled:
+        path: compiled/rig
+        type: directory
+        required_files: [character.svg, controls.json, build-report.json]
+        checks: [{path: controls.json, schema: controls_schema, capability_profile: basic-face-v1}]
+    command:
+      runtime: node
+      entry: build_tool
+      args: [--svg, {input: svg}, --recipe, {input: recipe}, --out-dir, {output: compiled}]
+    repair: {max_rounds: 2, targets: [author_boundaries]}
+  scan_boundaries:
+    kind: tool
+    retry: {max_rounds: 1}
+    needs: [build_rig]
+    inputs:
+      common_tool: {resource: common_tool}
+      svg: {artifact: build_rig.compiled, path: character.svg}
+      rig: {artifact: build_rig.compiled, path: controls.json}
+      boundary_runtime_js: {resource: boundary_runtime_js}
+      source_tool: {resource: source_tool}
+      geometry_js: {resource: geometry_js}
+      controls_schema: {resource: controls_schema}
+    outputs:
+      evidence:
+        path: evidence/boundaries
+        type: directory
+        required_files: [report.json, contact-sheet.png]
+        description: 真实PNG与动态case清单；完整基本参数网格、逐轴及闭眼曲率非零几何证据，工具通过只代表可开始独立视觉审查。
+    command:
+      runtime: node
+      entry: scan_tool
+      args: [check, --svg, {input: svg}, --rig, {input: rig}, --out-dir, {output: evidence}]
+    repair: {max_rounds: 2, targets: [author_boundaries]}
+  review_boundaries:
+    kind: review
+    retry: {max_rounds: 1}
+    model: reviewer
+    session: expression_visual_reviewer
+    prompt: boundary_review_prompt
+    needs: [scan_boundaries]
+    inputs:
+      source: {input: base_svg}
+      baseline: {artifact: inspect.inspection, path: baseline.png}
+      specification: {artifact: scope.specification}
+      preparation: {artifact: prepare.prepared}
+      recipe: {artifact: author_boundaries.recipe}
+      compiled: {artifact: build_rig.compiled}
+      evidence: {artifact: scan_boundaries.evidence}
+      preview: {resource: preview_html}
+      report_schema: {resource: review_schema}
+      scan_report: {artifact: scan_boundaries.evidence, path: report.json}
+      controls: {artifact: build_rig.compiled, path: controls.json}
+      capability_contract: {resource: capability_contract}
+    outputs:
+      report:
+        path: reviews/boundaries.json
+        type: file
+        checks: [{schema: review_schema}]
+    report: report
+    repair: {max_rounds: 2, targets: [author_boundaries]}
+    coverage:
+      report_input: scan_report
+      capability_profile: basic-face-v1
+      controls_input: controls
+  deliver:
+    kind: agent
+    retry: {max_rounds: 1}
+    model: author
+    session: expression_delivery
+    prompt: delivery_prompt
+    needs: [review_boundaries]
+    inputs:
+      source: {input: base_svg}
+      preparation: {artifact: prepare.prepared}
+      compiled: {artifact: build_rig.compiled}
+      evidence: {artifact: scan_boundaries.evidence}
+      review: {artifact: review_boundaries.report}
+      preview_html: {resource: preview_html}
+      preview_js: {resource: preview_js}
+      recipe: {artifact: author_boundaries.recipe}
+      rig_contract: {resource: rig_contract}
+      boundary_runtime_js: {resource: boundary_runtime_js}
+      capability_contract: {resource: capability_contract}
+    outputs:
+      final:
+        path: final
+        type: directory
+        required_files: [character.svg, controls.json, authoring/source.svg, authoring/prepared.svg, authoring/rig.recipe.json,
+          preview/boundary-preview.html, preview/boundary-preview.js, preview/svg-boundary-runtime.js, evidence/review.json,
+          acceptance.md, manifest.json]
+        description: 原字节SVG、边界作者配方、可调controls JSON、无预设共用预览、逐case审查证据。
+        checks: [{path: controls.json, schema: controls_schema, capability_profile: basic-face-v1}]

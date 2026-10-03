@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+<!-- Synthetic contract fixture; not a finished character or animation preview. -->
+<defs>
+ <path id="eye_aperture" d="M 20 30 C 30 12 50 12 60 30 C 50 40 45 42 40 42 C 35 42 25 40 20 30 Z"/>
+ <clipPath id="eye_clip"><use href="#eye_aperture"/></clipPath>
+</defs>
+<g id="head">
+ <use href="#eye_aperture" fill="#ffffff"/>
+ <g id="eye_contents" clip-path="url(#eye_clip)">
+  <g id="iris_normal"><circle cx="40" cy="30" r="13" fill="#66a4ca"/></g>
+  <g id="iris_glow" opacity="0"><circle cx="40" cy="30" r="13" fill="#91e8bb"/></g>
+  <g id="star_presence" opacity="0"><g id="star_motion"><path d="M 40 19 L 43 27 L 51 30 L 43 33 L 40 41 L 37 33 L 29 30 L 37 27 Z" fill="#fff7a0"/></g></g>
+ </g>
+ <path id="mouth_contour" d="M 30 74 C 40 74 60 74 70 74 C 60 74 40 74 30 74 Z" fill="#9a5c6a"/>
+ <g id="tear_origin"><g id="tear_presence" opacity="0"><g id="tear_motion" opacity="0"><path d="M 0 0 C 8 10 5 16 0 16 C -5 16 -8 10 0 0 Z" fill="#9ddcf0"/></g></g></g>
+ <g id="mark_origin"><g id="mark_motion" opacity="0"><path d="M -2 -12 L 2 -12 L 1 -2 L -1 -2 Z M -1 1 L 1 1 L 1 3 L -1 3 Z" fill="#dd7084"/></g></g>
+</g></svg>

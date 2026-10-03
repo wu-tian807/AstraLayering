@@ -1,0 +1,1181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://astralayering.local/schema/boundary-rig-0.3.json",
+  "title": "Astra SVG compiled boundary rig 0.3",
+  "$comment": "JSON Schema constrains shape; runtime/compiler additionally verify axes/keyform products and path command arities. No executable code, expressions, presets or attachments are part of this document.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "character_id",
+    "svg",
+    "source",
+    "parameters",
+    "regions",
+    "bindings",
+    "focus"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.3.0"
+    },
+    "document_type": {
+      "const": "boundary_rig"
+    },
+    "character_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]*$"
+    },
+    "svg": {
+      "const": "character.svg"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "svg_sha256",
+        "recipe_sha256",
+        "generator"
+      ],
+      "properties": {
+        "svg_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "recipe_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "generator": {
+          "const": "boundary-keyforms-v1"
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.-]*$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/parameter"
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/region"
+      },
+      "minItems": 1
+    },
+    "bindings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/binding"
+      },
+      "minItems": 1
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/resource"
+      },
+      "minItems": 0
+    },
+    "focus": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "capability_profile": {
+      "const": "basic-face-v1",
+      "description": "Optional for generic/legacy partial rigs; mandatory for the standard facial workflow."
+    }
+  },
+  "$defs": {
+    "parameter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "label",
+        "min",
+        "max",
+        "default"
+      ],
+      "properties": {
+        "type": {
+          "const": "number"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "default": {
+          "type": "number"
+        }
+      }
+    },
+    "axes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "parameter",
+          "keys"
+        ],
+        "properties": {
+          "parameter": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]*$"
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 3
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "svg_id",
+        "attributes"
+      ],
+      "properties": {
+        "svg_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "element_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tag": {
+          "const": "rect"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "height": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "minProperties": 1
+        }
+      },
+      "dependentRequired": {
+        "element_index": [
+          "tag"
+        ],
+        "tag": [
+          "element_index"
+        ]
+      }
+    },
+    "target": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "svg_id"
+          ],
+          "properties": {
+            "svg_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "svg_id",
+            "path_index"
+          ],
+          "properties": {
+            "svg_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "path_index": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "svg_id",
+            "element_index",
+            "tag"
+          ],
+          "properties": {
+            "svg_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "element_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "tag": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9]*$"
+            }
+          }
+        }
+      ]
+    },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "axes",
+        "space",
+        "bounds"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "axes": {
+          "$ref": "#/$defs/axes"
+        },
+        "space": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bounds": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      }
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "region",
+        "target",
+        "role",
+        "property",
+        "rest",
+        "keyforms",
+        "default_source_passthrough",
+        "source_value"
+      ],
+      "properties": {
+        "region": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "target": {
+          "$ref": "#/$defs/target"
+        },
+        "role": {
+          "enum": [
+            "aperture",
+            "upper",
+            "lower",
+            "surface",
+            "surface_upper",
+            "surface_lower",
+            "rigid_upper",
+            "rigid_lower",
+            "curve"
+          ]
+        },
+        "property": {
+          "enum": [
+            "d",
+            "transform",
+            "gradientTransform"
+          ]
+        },
+        "rest": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 1
+        },
+        "keyforms": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 1
+          },
+          "minItems": 2
+        },
+        "default_source_passthrough": {
+          "type": "boolean"
+        },
+        "source_value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "M",
+              "L",
+              "C",
+              "Q",
+              "Z"
+            ]
+          },
+          "minItems": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "property": {
+                "const": "d"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "commands"
+            ],
+            "properties": {
+              "source_value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "rest": {
+                "minItems": 2
+              },
+              "keyforms": {
+                "items": {
+                  "minItems": 2
+                }
+              }
+            }
+          },
+          "else": {
+            "not": {
+              "required": [
+                "commands"
+              ]
+            },
+            "properties": {
+              "rest": {
+                "minItems": 6,
+                "maxItems": 6
+              },
+              "keyforms": {
+                "items": {
+                  "minItems": 6,
+                  "maxItems": 6
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "basic_face_v1": {
+      "properties": {
+        "parameters": {
+          "required": [
+            "eye.left.open",
+            "eye.left.curve",
+            "eye.right.open",
+            "eye.right.curve",
+            "brow.left.height",
+            "brow.left.angle",
+            "brow.left.curve",
+            "brow.right.height",
+            "brow.right.angle",
+            "brow.right.curve",
+            "mouth.open",
+            "mouth.form"
+          ],
+          "properties": {
+            "eye.left.open": {
+              "properties": {
+                "min": {
+                  "const": 0
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 1
+                }
+              }
+            },
+            "eye.left.curve": {
+              "properties": {
+                "min": {
+                  "const": -1
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            },
+            "eye.right.open": {
+              "properties": {
+                "min": {
+                  "const": 0
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 1
+                }
+              }
+            },
+            "eye.right.curve": {
+              "properties": {
+                "min": {
+                  "const": -1
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            },
+            "brow.left.height": {
+              "properties": {
+                "min": {
+                  "const": -1
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            },
+            "brow.left.angle": {
+              "properties": {
+                "min": {
+                  "const": -1
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            },
+            "brow.left.curve": {
+              "properties": {
+                "min": {
+                  "const": -1
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            },
+            "brow.right.height": {
+              "properties": {
+                "min": {
+                  "const": -1
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            },
+            "brow.right.angle": {
+              "properties": {
+                "min": {
+                  "const": -1
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            },
+            "brow.right.curve": {
+              "properties": {
+                "min": {
+                  "const": -1
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            },
+            "mouth.open": {
+              "properties": {
+                "min": {
+                  "const": 0
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            },
+            "mouth.form": {
+              "properties": {
+                "min": {
+                  "const": -1
+                },
+                "max": {
+                  "const": 1
+                },
+                "default": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        },
+        "regions": {
+          "allOf": [
+            {
+              "contains": {
+                "required": [
+                  "axes"
+                ],
+                "properties": {
+                  "axes": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "allOf": [
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "eye.left.open"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      },
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "eye.left.curve"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": -1,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": -1
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      }
+                    ]
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "required": [
+                  "axes"
+                ],
+                "properties": {
+                  "axes": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "allOf": [
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "eye.right.open"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      },
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "eye.right.curve"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": -1,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": -1
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      }
+                    ]
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "required": [
+                  "axes"
+                ],
+                "properties": {
+                  "axes": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "allOf": [
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "brow.left.height"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": -1,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": -1
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      },
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "brow.left.angle"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": -1,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": -1
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      },
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "brow.left.curve"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": -1,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": -1
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      }
+                    ]
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "required": [
+                  "axes"
+                ],
+                "properties": {
+                  "axes": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "allOf": [
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "brow.right.height"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": -1,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": -1
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      },
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "brow.right.angle"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": -1,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": -1
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      },
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "brow.right.curve"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": -1,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": -1
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      }
+                    ]
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "required": [
+                  "axes"
+                ],
+                "properties": {
+                  "axes": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "allOf": [
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "mouth.open"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      },
+                      {
+                        "contains": {
+                          "required": [
+                            "parameter",
+                            "keys"
+                          ],
+                          "properties": {
+                            "parameter": {
+                              "const": "mouth.form"
+                            },
+                            "keys": {
+                              "items": {
+                                "type": "number",
+                                "minimum": -1,
+                                "maximum": 1
+                              },
+                              "allOf": [
+                                {
+                                  "contains": {
+                                    "const": -1
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 0
+                                  }
+                                },
+                                {
+                                  "contains": {
+                                    "const": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "minContains": 1,
+                        "maxContains": 1
+                      }
+                    ]
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "capability_profile"
+        ],
+        "properties": {
+          "capability_profile": {
+            "const": "basic-face-v1"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/basic_face_v1"
+      }
+    }
+  ]
+}

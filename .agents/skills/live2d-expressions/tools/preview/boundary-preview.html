@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SVG 参数边界预览</title>
+<style>
+:root{color-scheme:dark;font:14px/1.5 system-ui,sans-serif;background:#171b23;color:#e6e9ef}*{box-sizing:border-box}body{margin:0;height:100vh;display:flex;flex-direction:column}header{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid #39414e}h1{font-size:17px;margin:0 12px 0 0}button,.file{border:1px solid #566276;border-radius:6px;background:#293342;color:inherit;padding:6px 10px;cursor:pointer;font:inherit}button:hover,.file:hover{background:#364459}button:disabled{opacity:.45;cursor:default}.file input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.file:focus-within{outline:2px solid #8cbcff}main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0;flex:1}.viewport{position:relative;min-width:0;min-height:0;background:#dce1e7}.canvas{height:100%;width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center}.canvas>svg{display:block;width:100%;height:100%}.empty{padding:24px;color:#384251;text-align:center}.view-actions{position:absolute;left:12px;bottom:12px;display:flex;gap:8px}aside{padding:16px;overflow:auto;border-left:1px solid #39414e}h2{font-size:15px;margin:0 0 12px}.control{padding:12px 0;border-bottom:1px solid #39414e}.control-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.control-head output{font-variant-numeric:tabular-nums;color:#a6d0ff}.control input{width:100%;margin:12px 0 4px;accent-color:#8cbcff}.ticks{display:flex;justify-content:space-between;gap:8px}.ticks button{padding:3px 6px;font-size:12px;background:transparent;border-color:#424c5d}.id{color:#a0acbb;font-size:12px;word-break:break-all}.hint{font-size:12px;color:#a0acbb;margin:14px 0}#status{margin:0;padding:9px 16px;border-top:1px solid #39414e;min-height:40px;white-space:pre-wrap}#status.error{color:#ffb4b4}@media(max-width:760px){main{grid-template-columns:1fr;grid-template-rows:minmax(250px,1fr) minmax(170px,.7fr)}aside{border-left:0;border-top:1px solid #39414e}header{gap:8px}h1{width:100%}}
+</style>
+</head>
+<body>
+<header>
+<h1>SVG 参数边界预览</h1>
+<label class="file">选择原 SVG<input id="svgFile" type="file" accept=".svg,image/svg+xml"></label>
+<label class="file">选择控制 JSON<input id="rigFile" type="file" accept=".json,application/json"></label>
+<button id="reset" disabled>全部复位</button>
+</header>
+<main>
+<section class="viewport" aria-label="角色预览">
+<div id="canvas" class="canvas"><p class="empty">选择原 SVG 和编译后的 controls.json，查看参数边界与连续变化。</p></div>
+<div class="view-actions"><button id="face" disabled>面部</button><button id="full" disabled>全身</button></div>
+</section>
+<aside><h2>可调参数</h2><div id="parameters"></div><p class="hint">滑动连续调整；点击最小、原值或最大检查边界。这里不保存或同步游戏存档。</p></aside>
+</main>
+<p id="status" role="status">等待选择 SVG 和控制 JSON。</p>
+<script src="svg-boundary-runtime.js"></script>
+<script src="boundary-preview.js"></script>
+</body>
+</html>

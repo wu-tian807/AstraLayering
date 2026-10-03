@@ -1,0 +1,12 @@
+{
+  "name": "astra-live2d-expressions-tools",
+  "private": true,
+  "type": "commonjs",
+  "description": "Local SVG rig compilation and browser evidence tools",
+  "dependencies": {
+    "playwright": "^1.55.0"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.cjs ../1.inspect/tools/tests/*.test.cjs ../5.build-rig/tools/tests/*.test.cjs ../6.scan-boundaries/tools/tests/*.test.cjs"
+  }
+}
