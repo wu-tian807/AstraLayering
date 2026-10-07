@@ -1,0 +1,50 @@
+[
+  {
+    "part": "upper_arm",
+    "source": "arms_arm_right_upper_arm_contour_outer",
+    "samples": 311,
+    "pressure_range": [
+      0.36,
+      0.55
+    ],
+    "simulate_pressure": false,
+    "streamline": 0,
+    "version": "1.2.0"
+  },
+  {
+    "part": "upper_arm",
+    "source": "arms_arm_right_upper_arm_contour_inner",
+    "samples": 208,
+    "pressure_range": [
+      0.3096,
+      0.4729967067935958
+    ],
+    "simulate_pressure": false,
+    "streamline": 0,
+    "version": "1.2.0"
+  },
+  {
+    "part": "forearm",
+    "source": "arms_arm_right_forearm_contour_outer",
+    "samples": 298,
+    "pressure_range": [
+      0.36,
+      0.5499981398481456
+    ],
+    "simulate_pressure": false,
+    "streamline": 0,
+    "version": "1.2.0"
+  },
+  {
+    "part": "forearm",
+    "source": "arms_arm_right_forearm_contour_inner",
+    "samples": 307,
+    "pressure_range": [
+      0.3096000000011881,
+      0.47300000000000003
+    ],
+    "simulate_pressure": false,
+    "streamline": 0,
+    "version": "1.2.0"
+  }
+]

@@ -1,0 +1,137 @@
+{
+  "scope": "Bounded n8 ancestor guide repair; retained existing successful direct scalp_cap route",
+  "status": "retain_previous_success_after_independent_repair_pass",
+  "not_a_node_rerun": true,
+  "current_only_direct_part": "head/front_hair/scalp_cap",
+  "guide_subtree_before_after_equal": true,
+  "guide_part_sha256": "3e6e2c208a9816b060415ad9e894c22c5cf2173f719670be5b0194234a650395",
+  "artwork_part_sha256": "ae62741e676ebe86636efaafe4a61683e9b006a56a77229cecfa0aace4b9d3e1",
+  "unmodified_standard_outputs": {
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb"
+  },
+  "baseline": "validation/ancestor-repair-front-hair-20261006/suspension.json",
+  "baseline_dispatch_done": "validation/ancestor-repair-front-hair-20261006/dispatch-before.json",
+  "original_node_workers": {
+    "group_completion": "/root/group_front_hair",
+    "group_child_layers": "/root/group_front_hair",
+    "part_motion_completion": "/root/group_front_hair_motion_recovery",
+    "part_contours": "/root/group_front_hair_motion_recovery",
+    "part_structure": "/root/group_front_hair_motion_recovery",
+    "part_tone_boundaries": "/root/group_front_hair_motion_recovery",
+    "part_detail_lines": "/root/group_front_hair_motion_recovery",
+    "part_brush_lines": "/root/group_front_hair_motion_recovery",
+    "part_base_colors": "/root/group_front_hair_motion_recovery",
+    "part_volume": "/root/group_front_hair_motion_recovery",
+    "part_color_transitions": "/root/group_front_hair_motion_recovery",
+    "part_local_shading": "/root/group_front_hair_motion_recovery",
+    "cast_shadow_relations": "/root/group_front_hair_motion_recovery",
+    "cast_shadow_artwork": "/root/group_front_hair_motion_recovery",
+    "part_highlights": "/root/group_front_hair_motion_recovery",
+    "part_rendered": "/root/group_front_hair_final_recovery"
+  },
+  "configs": [
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/2.直属拆分与色块/2.3.运动露出补齐/流程.yaml",
+      "sha256": "be2d99f6a9723ee4f0ee8545d2d379c114229e8bb2a661bc58053a24fa748bb2",
+      "id": "part_motion_completion",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/3.geometry/3.1.外轮廓与接界/流程.yaml",
+      "sha256": "ed41633428964fa7baeeb3c6a7a21b57d3a7e64185914505f382fc149a5ce29d",
+      "id": "part_contours",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/3.geometry/3.2.内部结构线/流程.yaml",
+      "sha256": "308cac85d08a8b33a89bb7de5251a12cabf18b39b93600a0a5bf8df8210ce426",
+      "id": "part_structure",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/3.geometry/3.3.明暗范围线/流程.yaml",
+      "sha256": "721bcc2a7750b9d0855faacbd291ca7b6d17834a6bc91e5bb60a9a3e50eb913e",
+      "id": "part_tone_boundaries",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/3.geometry/3.4.细节与纹理线/流程.yaml",
+      "sha256": "69d1dc17d3d09d093a7a3a765b467ef0a6553492cc322a47f231981567613021",
+      "id": "part_detail_lines",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/3.geometry/3.5.画笔重绘/流程.yaml",
+      "sha256": "9d49ac7a762798efab4b82b16759ed45deabe3b1cac28540723dbf0555ed3f9d",
+      "id": "part_brush_lines",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.1.基色与材质分区/流程.yaml",
+      "sha256": "af793bf969a8cf04b5c4e206268751eba064be041548698dc0e3c07e84bff4f9",
+      "id": "part_base_colors",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.2.大明暗与体积/流程.yaml",
+      "sha256": "2edd7fffc9bba08dd57d902ca2526efc463cd3646524525bd931edf5de94ea6f",
+      "id": "part_volume",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.3.过渡色与局部色/流程.yaml",
+      "sha256": "4c6cc580daeaf84fbe00893cf88801cc8bceb0cbeb3e7cb0235648fe48c648fe",
+      "id": "part_color_transitions",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.4.局部暗部细化/流程.yaml",
+      "sha256": "c80d40a64381aead948a7a440cdc8d69edb4739a8ce13d84b72489c2a8291d8b",
+      "id": "part_local_shading",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/流程.yaml",
+      "sha256": "bafddb64716c1ea42d7886a90bf6733f285151f70321f4ca3b851576748f3662",
+      "id": "cast_shadow_relations",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/流程.yaml",
+      "sha256": "65258a0da2012b840f866362aed94365d0a568d4008e8936a4039f4cb5256b9c",
+      "id": "cast_shadow_artwork",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.6.高光与反光/流程.yaml",
+      "sha256": "187d41042a41c06f353384e57288ac5fbc780754769fc6fe9a568d5746e38980",
+      "id": "part_highlights",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    },
+    {
+      "config": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.7.线色融合与材质细化/流程.yaml",
+      "sha256": "c7bf50f1336025943cf7d299571d4e8cb3bf914bbc162a04cf5a1c4267c018a7",
+      "id": "part_rendered",
+      "selected_branch": "then",
+      "decision": "retain_previous_success_without_rerun"
+    }
+  ],
+  "carry_rule": "Retain latest standard guide and artwork; never restore old full snapshots. Original route was done at baseline and the only authored direct part, full artwork/preview and rendering bytes are unchanged. n25 draft remains unpublished. This verification is not a new production claim or final composite acceptance.",
+  "independent_review": "reviews/review-ledger/head/front_hair/003/report.md",
+  "current_guide_sha256": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083"
+}

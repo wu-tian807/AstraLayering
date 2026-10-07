@@ -1,0 +1,36 @@
+{
+  "status": "pass",
+  "group_path": "head/front_hair/fringe_left",
+  "parent_svg": "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.2.直属轮廓色块/revision-02/input/groups.before.svg",
+  "parent_ids": [
+    "group-head-front-hair-fringe-left"
+  ],
+  "candidate_svg": "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.2.直属轮廓色块/revision-02/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "part",
+      "path": "head/front_hair/fringe_left/broad_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-fringe-left-broad-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/fringe_left/fine_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-fringe-left-fine-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

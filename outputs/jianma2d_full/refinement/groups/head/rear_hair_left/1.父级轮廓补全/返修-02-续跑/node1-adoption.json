@@ -1,0 +1,23 @@
+{
+  "node": "group_completion",
+  "logical_identity": "group:head/rear_hair_left",
+  "actual_worker": "/root/rear_left_repair",
+  "status": "success",
+  "guide_sha256": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+  "adopted_parent_matches_viewed_proposal": true,
+  "guide_modified": false,
+  "preview_reused_sha256": "4e1045e8ab6d36c7718e2b6a242d92ad07a97de1f60ce4833bd4410fab1d2523",
+  "head_bounds_reused": "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+  "head_bounds_status": "pass, all 12 children 0 outside samples",
+  "independent_upstream_review": "reviews/group_child_layers/head/local-repair-20261006/final-verdict.json",
+  "actual_viewed": [
+    "refinement/groups/head/rear_hair_left/1.父级轮廓补全/返修-02-续跑/04-adopted-parent.png",
+    "reviews/group_child_layers/head/local-repair-20261006/00-full-blend.png"
+  ],
+  "localized_views_reused": [
+    "01-notch-base-8x.png",
+    "02-notch-line-8x.png",
+    "03-lower-loop-base-4x.png"
+  ],
+  "no_state_or_tree_mutation": true
+}

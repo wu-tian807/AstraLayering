@@ -1,0 +1,116 @@
+{
+  "worker_id": "/root/workflow_runner/split_anklet_left",
+  "logical_worker": "group_split:legs/right_anklet",
+  "actor_context": "按 root 已授权有限 actor 池续用既有 splitter；未参与 right_anklet 绘制，不宣称全新上下文。",
+  "target": "n21",
+  "node": "group_split",
+  "configuration": "已重读 stage4、本节点 YAML、prompt 及 gpt-6-sol-xhigh.model；继续使用已批准的模型替代。",
+  "visual_inspection": {
+    "file": "evidence/reference-isolation.png",
+    "tool": "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "isolation_id": "group-legs-right-anklet",
+    "crop": [
+      437,
+      1587,
+      76,
+      92
+    ],
+    "scale": 6,
+    "viewed": true
+  },
+  "observations": [
+    "右侧两端挂点右高左低；中央圆扣向画面右伸出的弯曲扣尾完整归链圈，不漏删或混同小坠。",
+    "前后链需穿插脚部，链节与硬扣件运动不同；主坠吊环和硬质宝石也需不同运动，二者分别保留 group。",
+    "右侧主宝石略偏斜且双肩高度不同，小坠在画面右下方；保留这些实际差异。",
+    "后回链只作为脚部后方已有补全形体归属，不推断后侧固定链节数或新增装饰。"
+  ],
+  "guide_path_ownership": {
+    "ankle_chain": [
+      "legs-right-anklet-rear-return",
+      "legs-right-anklet-connector-01",
+      "legs-right-anklet-connector-02",
+      "legs-right-anklet-connector-03",
+      "legs-right-anklet-connector-04",
+      "legs-right-anklet-connector-05",
+      "legs-right-anklet-connector-06",
+      "legs-right-anklet-connector-07",
+      "legs-right-anklet-connector-08",
+      "legs-right-anklet-connector-09",
+      "legs-right-anklet-connector-10",
+      "legs-right-anklet-anchor-1",
+      "legs-right-anklet-anchor-2",
+      "legs-right-anklet-link-01",
+      "legs-right-anklet-link-02",
+      "legs-right-anklet-link-03",
+      "legs-right-anklet-link-04",
+      "legs-right-anklet-link-05",
+      "legs-right-anklet-link-06",
+      "legs-right-anklet-link-07",
+      "legs-right-anklet-link-08",
+      "legs-right-anklet-clasp-tail",
+      "legs-right-anklet-clasp"
+    ],
+    "gem_pendant": [
+      "legs-right-anklet-clasp-to-bail",
+      "legs-right-anklet-bail",
+      "legs-right-anklet-bail-to-gem",
+      "legs-right-anklet-pendant"
+    ],
+    "small_charm": [
+      "legs-right-anklet-small-charm"
+    ]
+  },
+  "coverage": {
+    "parent_paths": 28,
+    "assigned_once": 28,
+    "unassigned": [],
+    "duplicated": []
+  },
+  "mirror_pairs": {
+    "added": [
+      {
+        "name": "anklet_chain_pair",
+        "members": [
+          "legs/right_anklet/ankle_chain",
+          "legs/left_anklet/ankle_chain"
+        ]
+      },
+      {
+        "name": "anklet_gem_pendant_pair",
+        "members": [
+          "legs/left_anklet/gem_pendant",
+          "legs/right_anklet/gem_pendant"
+        ]
+      }
+    ],
+    "ordering_reason": "链圈以可辨认扣尾更完整的右侧在前；主悬坠两侧均有完整吊接与宝石，同等完整时沿用已有左侧在前。关联不要求强制几何镜像。已有 paired_anklets 不重复登记；part 不登记镜像 group 关联。"
+  },
+  "validation": {
+    "argv": [
+      "python3",
+      "../../workflow-next/live2d-layering/tools/groups.py",
+      "check-children",
+      "--groups",
+      "structure/groups.json",
+      "--group-path",
+      "legs/right_anklet",
+      "--patch",
+      "refinement/groups/legs/right_anklet/2.直属拆分与色块/2.1.直属结构拆分/children.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "readonly_sha256": {
+    "structure/groups.json": "c6338fada83c35c5b77b74a339313d728cc018c16795fdbeae3b584b326c482a",
+    "structure/groups.dispatch.json": "57450b703a0de9da5863b758727d1da1cfdbc33d8eb9d88aa7897e1e2a0221a8",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "060b6bb1551f636bbf1415b2561a9bf5bdffbe22e3a95c02aab40ac7a54b24e4",
+    "block-layers/preview.png": "3019e8be08b75691b7ab78362bb925d62c28d47ca9e7c0fb2c4f02d3f1f4ef37",
+    "refinement/character.svg": "b4a54d1de7f9dd59209f66b845ec8aa7b745d60ade0dd5176ca5bb36a87289fb",
+    "refinement/preview.png": "980255d806b5578207cd11e68352a5ab59be98f1da0fb4ff8969326fdbc062e3"
+  },
+  "readonly_inputs_unchanged": true,
+  "children_sha256": "234240f0d8111216eb014820f5aef3f4d1c557de8bdc286bc02a7dac860a6692",
+  "status": "checked-awaiting-runner-expand-and-checkpoint"
+}

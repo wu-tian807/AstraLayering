@@ -1,0 +1,50 @@
+{
+  "target": "n23",
+  "node": "group_child_layers",
+  "logical_worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "node_resources_read": [
+    "流程.yaml",
+    "提示词.txt",
+    "gpt-6-astra-xhigh.model"
+  ],
+  "actual_views": [
+    "evidence/input-isolation.png",
+    "evidence/children-isolation.png (initial candidate)",
+    "evidence/inspection-montage.png (final candidate, with reference edge and full blend)"
+  ],
+  "observations": [
+    "左眼按本侧较低较圆轮廓单独构造，非右眼直接镜像；上睫毛带与画面左外端尖角在白发后连续。",
+    "sclera完整覆盖眼白、虹膜后底面及上下睑/发丝后余量，无中央孔洞。",
+    "iris上弧完整延至239.05，底部保留本侧较低轮廓，未切成当前眼裂；不画瞳孔、纹理或角膜高光。",
+    "lower_eyelid为单闭合连续带，鼻侧以原直线与底弧精确交点衔接；隐藏下外弧沿父曲线原样，未内收，不存在两片之间细缝。",
+    "upper_eyelid保留原上边界、外端尖角和独立睑褶；首次鼻侧隐藏闭合端1采样越界已向内收回，原可见眼角由upper-rim完整保留，默认复查全部0越界。"
+  ],
+  "parent_and_others_preserved": true,
+  "same_candidate_and_standard_guide": true,
+  "same_svg_white_preview": true,
+  "bounds": {
+    "head/face/eye_left/upper_eyelid": 0,
+    "head/face/eye_left/iris": 0,
+    "head/face/eye_left/sclera": 0,
+    "head/face/eye_left/lower_eyelid": 0
+  },
+  "bounds_defaults": {
+    "scale": 4,
+    "alpha_threshold": 128
+  },
+  "rendering_and_artwork_unchanged": true,
+  "independent_highlight_deferred": true,
+  "pending": [
+    "2.2独立review",
+    "后续2.3与Geometry/Rendering",
+    "上睑及虹膜子group的内部拆分",
+    "最终眼睑/面皮/发丝裁切恢复参考可见眼裂"
+  ],
+  "unresolved_current_geometry_issues": [],
+  "frozen": true,
+  "checkpoint_called": false,
+  "complete_next_reopen_called": false,
+  "status": "frozen-awaiting-independent-review"
+}

@@ -1,0 +1,99 @@
+{
+  "worker_id": "/root/workflow_runner/split_anklet_left",
+  "logical_worker": "group_split:head/face/eye_left",
+  "actor_context": "按已授权有限 actor 池续用既有 splitter，未参与本组绘制；保留真实 actor 名称，不宣称全新上下文。",
+  "target": "n23",
+  "node": "group_split",
+  "configuration": "已重读本节点 YAML/prompt/gpt-6-sol-xhigh.model，采用已批准的模型替代；沿用已读 SKILL/DSL 与 4.6 光学亮部规则。",
+  "visual_inspection": {
+    "file": "evidence/reference-isolation.png",
+    "tool": "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "isolation_id": "group-head-face-eye-left",
+    "crop": [
+      374,
+      230,
+      56,
+      40
+    ],
+    "scale": 8,
+    "viewed": true
+  },
+  "observations": [
+    "左眼眼裂比右侧低且更圆，画面左外眼角被交叉白发遮挡；睫毛根部和眼球底面仍属完整连续眼部。",
+    "虹膜位于本側较低位置，中央深色瞳孔可见下端收尖；上睑皮肤/褶皱/睫毛与虹膜/瞳孔分别保留后续内部活动层级。",
+    "下睑为细而连续的弧，外角有短色深边；没有可辨认独立下睫毛簇，不额外发明活动实体。",
+    "参考左上方主白反光是光学亮部，作为后续独立 highlight 渲染层，不列 part。",
+    "新增父级上下及发丝后底面是遮挡余量，最终由眼睑/面皮及原有发丝恢复实际开口和遮挡。"
+  ],
+  "direct_children": {
+    "groups": [
+      "upper_eyelid",
+      "iris"
+    ],
+    "parts": [
+      "sclera",
+      "lower_eyelid"
+    ]
+  },
+  "parent_extent_ownership": {
+    "head-face-eye-left-lid-fold": "全范围归 upper_eyelid 的上睑褶皱组件。",
+    "head-face-eye-left-eye-envelope": "上缘和画面左外端睫毛归 upper_eyelid，下弧与两眼角下缘归 lower_eyelid；内部由 sclera 连续底面与 iris 视线组件覆盖。",
+    "head-face-eye-left-occluded-ocular-bed": "连续底面归 sclera；虹膜在睑后及外侧发丝后的本体延续归 iris；边缘由上下睑遮挡搭接。"
+  },
+  "coverage_note": "三个父路径是未拆内部的范围集合，按眼部完整实体及遮挡重叠分配。本步不改几何，不用路径计数冒充子件轮廓验收。",
+  "rendering_obligations": [
+    {
+      "name": "corneal_highlight",
+      "type": "highlight",
+      "stage": "4.6.高光与反光",
+      "intent": "保留本侧虹膜左上白色主反光，按正式实体树与 rendering 规则注册独立 id/owner/follow/clip_to；不铸造物理 part，不改变当前 rendering。"
+    }
+  ],
+  "mirror_pairs": {
+    "added": [
+      {
+        "name": "eye_upper_eyelid_pair",
+        "members": [
+          "head/face/eye_right/upper_eyelid",
+          "head/face/eye_left/upper_eyelid"
+        ]
+      },
+      {
+        "name": "eye_iris_pair",
+        "members": [
+          "head/face/eye_right/iris",
+          "head/face/eye_left/iris"
+        ]
+      }
+    ],
+    "ordering_reason": "右眼外形及内部结构更完整，两对均将已存在的右侧 group 列前；只关联结构，不替换左眼实际轮廓。已有 face_eye_pair 不重复。"
+  },
+  "validation": {
+    "argv": [
+      "python3",
+      "../../workflow-next/live2d-layering/tools/groups.py",
+      "check-children",
+      "--groups",
+      "structure/groups.json",
+      "--group-path",
+      "head/face/eye_left",
+      "--patch",
+      "refinement/groups/head/face/eye_left/2.直属拆分与色块/2.1.直属结构拆分/children.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "readonly_sha256": {
+    "structure/groups.json": "4548e37adec40af7897cb42f56d367512f3ce44df545f47331d026f44bb30ec6",
+    "structure/groups.dispatch.json": "4328b9b705db1d60571a366153fa2a5b8f8da74d324e431b324371fde1c66352",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "f5df8b148e3fedc78ade302e4cc1e17b072467b8a865ecef994e5f544e236a0b",
+    "block-layers/preview.png": "480591e8ba441d9ca5991b76d4d4c4818124532a1d109edd5b74b3b237584de9",
+    "refinement/character.svg": "880596f427d02af4ce9fea47916b40ebc295a18ccd1e783900eba72cd2198b42",
+    "refinement/preview.png": "6575bd40cde8a97b88df6b942edae4d1306ce4c8913f4965efd5a01024adeb03"
+  },
+  "readonly_inputs_unchanged": true,
+  "children_sha256": "4daf2a02e421c1d48da007e47d87b7f24790dc65607dd49f65454882b19de589",
+  "status": "checked-awaiting-runner-expand-and-checkpoint"
+}

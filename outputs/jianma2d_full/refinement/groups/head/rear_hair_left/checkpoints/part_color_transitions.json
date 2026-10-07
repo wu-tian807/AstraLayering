@@ -1,0 +1,15 @@
+{
+  "node": "part_color_transitions",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "沿发流补灰蓝/灰紫过渡，逐件及相邻组合实看；低强度色变保留既有大明暗，无新增硬边与关系。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.3.过渡色与局部色/parts.svg": "1819679353e07fe852cab7a5909d7da8ddfa2f014c175b311893f553ea9416bf",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.3.过渡色与局部色/root.png": "79a477508737578175067cc8146be4324ec6179d89eeacb6430f64b9bbad2d86",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.3.过渡色与局部色/tail.png": "a1621ed7aab0b1ea384f93a3e5aee8cac5888746751acf6f31c76e2a51eded17",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.3.过渡色与局部色/context.png": "3063a83776125ca519c508f547916b33f960324b7b574b694682c5825aa4a0a8",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.3.过渡色与局部色/说明.md": "793572c35864f4e47ee3442c76397fc706e1a7d4d7d49037e418b082f5d11ed7"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "ef24618cc725b00579fbcea28acdf2506f914046d97ad11b1cceb76b2ecf1718"
+}

@@ -1,0 +1,33 @@
+{
+  "actor": "/root",
+  "group": "head/front_hair/fringe_left",
+  "node": "part_rendered",
+  "status": "pass_local_hair_recovery",
+  "candidate": "refinement/character.svg",
+  "candidate_sha256": "4ef9f2e651653e0a40ce545d46d6845a2b7229847cb2d10c90e6bb49e7ba8c6d",
+  "svg_modified": false,
+  "actual_new_views": {
+    "broad-material.png": "5db94b2674bde1e9eabbbeb3794b9c3c0b83083eab7cca87e9dc4ca894b3e20f",
+    "fine-material.png": "74b47ee3913b9cda60cdcd48cedb86fae5d564db190dafd2906928347301ba55",
+    "head-junctions.png": "81ac6f8d03739eb7140375c6ab38f87d15c0633b59735f2907e4577d89d909a8"
+  },
+  "report": "收尾复核.md",
+  "report_sha256": "1a112dd6ba092c6fc74fdacafb363c37bb01a5ad920ff3ee13b309805cebba6f",
+  "reused_checks": {
+    "candidate_sha256_match": true,
+    "containment_outside_samples": [
+      0,
+      0
+    ],
+    "rendering_complete": false,
+    "rendering_relations": 25,
+    "source": "refinement/groups/head/front_hair/fringe_left/stages/part_rendered/final-checks.json"
+  },
+  "prior_actor_error_preserved": "refinement/groups/head/front_hair/fringe_left/runtime-failure-20261007.json",
+  "limitations": [
+    "Only ordinary individual hair and head-local junction inspection",
+    "Full composition and all final obligations remain stage 5",
+    "Old actor image claims are not attributed to recovery actor"
+  ],
+  "timestamp": "2026-10-06T16:16:40.953561+00:00"
+}

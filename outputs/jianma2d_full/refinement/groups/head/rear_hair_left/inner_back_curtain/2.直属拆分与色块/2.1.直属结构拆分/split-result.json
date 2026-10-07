@@ -1,0 +1,63 @@
+{
+  "node": "group_split",
+  "active_target": "n29",
+  "group_path": "head/rear_hair_left/inner_back_curtain",
+  "logical_worker": "group_split:head/rear_hair_left/inner_back_curtain",
+  "actual_actor": "/root/jianma_runner_recovery/split_n29",
+  "model": "gpt-6-astra",
+  "reasoning": "xhigh",
+  "children_path": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/children.json",
+  "children_sha256": "dd4b2b535af4aa1b999cf94aa99f5509603f091883856c247c3240d6a91b1980",
+  "new_groups": [],
+  "new_parts": [
+    "nape_back_sheet",
+    "inner_side_lock"
+  ],
+  "new_mirror_pairs": [],
+  "input_hashes_unchanged": {
+    "block-layers/groups.svg": "c43bd301488eb4c5eb772a2f018cc70db0dc269ae96bec4f096618cf29feee4c",
+    "structure/groups.json": "249e85dd7dd3c18fc795a2c4b166d5f5a1062495050dfd6036be6e2030d1bbe4",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  },
+  "native_check_children": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/check-children.json",
+  "views_actually_opened": [
+    {
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/01-full-isolated-reference.png",
+      "sha256": "8fba121b4732fc29997d2df710ebc90b76876a009dccc84e7d13e52a535c705f",
+      "size": [
+        760,
+        1223
+      ],
+      "render_tool": "svg_preview.py",
+      "actually_opened_by": "/root/jianma_runner_recovery/split_n29",
+      "view_tool": "view_image",
+      "detail": "original"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/02-upper-mid-reference.png",
+      "sha256": "99ea930e4d93634e6dc6dfcc7ca5a3c2a9ce72f83b9df50ea94cdf092e0aaac6",
+      "size": [
+        1200,
+        958
+      ],
+      "render_tool": "svg_preview.py",
+      "actually_opened_by": "/root/jianma_runner_recovery/split_n29",
+      "view_tool": "view_image",
+      "detail": "original"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/03-waist-lower-reference.png",
+      "sha256": "3521003ed4d13d1f08133dd012583572af5678a2b7c1ed247f925536aead9223",
+      "size": [
+        700,
+        818
+      ],
+      "render_tool": "svg_preview.py",
+      "actually_opened_by": "/root/jianma_runner_recovery/split_n29",
+      "view_tool": "view_image",
+      "detail": "original"
+    }
+  ],
+  "observations": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/逐处观察.md",
+  "handoff": "Ready for controller expand; worker has not expanded or checkpointed. Structural observation only, no child-geometry visual approval."
+}

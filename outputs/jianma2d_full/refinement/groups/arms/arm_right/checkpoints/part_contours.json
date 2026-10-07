@@ -1,0 +1,15 @@
+{
+  "node": "part_contours",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "2part闭合底形和6条外缘/接界曲线完成；彩参/线参同坐标独显实看，肩内根与肘腕圆帽仅辅助虚线，逐线desc说明显影和露出。",
+  "evidence": [
+    "views/part_contours.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_contours"
+  },
+  "artwork_sha256": "00bbc44cbaca08e3af28e05f75b52dc4526d0e0b0106013a99a0e9cdef7e65ba"
+}

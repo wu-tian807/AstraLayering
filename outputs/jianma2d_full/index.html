@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>剑妈 · 分层人物</title>
+<style>
+  :root { color-scheme: light; font-family: system-ui, sans-serif; color: #26354b; background: #f0f3f8; }
+  body { max-width: 1160px; margin: auto; padding: 28px 20px; }
+  header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; }
+  h1 { font-size: 25px; margin: 0 0 8px; } p { margin: 0; line-height: 1.6; }
+  nav { display: flex; flex-wrap: wrap; gap: 14px; margin: 20px 0; }
+  a { color: #325f97; text-underline-offset: 3px; }
+  main { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  figure { margin: 0; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 3px 18px #182c4510; }
+  figcaption { padding: 12px 16px; border-bottom: 1px solid #e8ecf3; font-size: 14px; }
+  img, object { display: block; width: 100%; aspect-ratio: 895 / 1758; object-fit: contain; }
+  footer { margin-top: 18px; color: #647287; font-size: 13px; line-height: 1.7; }
+  @media (max-width: 580px) { body { padding: 20px 10px; } main { gap: 8px; } figcaption { padding: 10px; } }
+</style>
+<header>
+  <div><h1>剑妈 · 分层人物</h1><p id="progress">正在读取制作进度…</p></div>
+  <a href="references/original.png">查看原始角色图</a>
+</header>
+<nav aria-label="作品文件">
+  <a href="refinement/character.svg">打开 SVG</a>
+  <a href="refinement/character.svg" download>下载 SVG</a>
+  <a href="refinement/preview.png">PNG 预览</a>
+  <a href="structure/groups.json">部件树</a>
+  <a href="structure/rendering.json">渲染关系</a>
+  <a href="layers.html">分层检查器</a>
+  <a href="review-n30.html">第 30 组待人工查看</a>
+</nav>
+<main>
+  <figure><figcaption>本轮角色参考</figcaption><img src="references/base-subject.png" alt="银白长发、蓝眼与银蓝冠饰的剑妈角色参考"></figure>
+  <figure><figcaption>当前可编辑分层稿</figcaption><object data="refinement/character.svg" type="image/svg+xml" aria-label="剑妈当前分层 SVG"><a href="refinement/character.svg">打开分层稿</a></object></figure>
+</main>
+<footer>分层检查器会自动载入本次 SVG、部件树、渲染关系和参考图，支持逐层独显与参考对照。当前页面展示静态素材，动画绑定由后续流程处理。</footer>
+<script>
+  let lastState = '';
+  async function updateProgress() {
+    try {
+      const response = await fetch('structure/groups.dispatch.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('读取制作进度失败');
+      const state = await response.json();
+      const rows = Object.entries(state.nodes);
+      const done = rows.filter(([, node]) => node.status === 'done').length;
+      const active = rows.find(([, node]) => node.id === state.active?.target)?.[0];
+      let delivery = null;
+      let label = `${done} / ${rows.length} 组已完成`;
+      if (active) label += ` · 当前分组 ${active}`;
+      else if (done < rows.length) label += ' · 正在准备下一组';
+      else label += ' · 最终组合与交付检查中';
+      if (done === rows.length && !active) {
+        const deliveryResponse = await fetch('delivery.json', { cache: 'no-store' });
+        if (deliveryResponse.ok) delivery = await deliveryResponse.json();
+        if (delivery?.status === 'complete') {
+          label = `${done} / ${rows.length} 组 · 分层绘制与最终组合已完成`;
+        }
+      }
+      document.getElementById('progress').textContent = label;
+      const currentState = JSON.stringify([state, delivery?.status, delivery?.artifacts_sha256?.artwork]);
+      if (lastState && currentState !== lastState) {
+        document.querySelector('object').data = `refinement/character.svg?v=${Date.now()}`;
+      }
+      lastState = currentState;
+    } catch {
+      document.getElementById('progress').textContent = '制作进度见运行记录；下方展示当前保存的分层稿。';
+    }
+  }
+  updateProgress();
+  setInterval(updateProgress, 30000);
+</script>
+</html>

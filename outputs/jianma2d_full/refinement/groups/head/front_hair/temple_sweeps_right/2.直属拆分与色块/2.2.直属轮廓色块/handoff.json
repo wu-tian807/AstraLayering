@@ -1,0 +1,15 @@
+{
+  "actor": "/root/workflow_runner",
+  "group": "head/front_hair/temple_sweeps_right",
+  "candidate_sha256": "6b2593a0770f9ada194fad48648d2914d9b33f96f9792c1fbfacd75e5f5125bf",
+  "default_bounds": "pass",
+  "outside_samples": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "other_guide_byte_identical": true,
+  "status": "awaiting-independent-root-review"
+}

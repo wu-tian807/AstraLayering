@@ -1,0 +1,47 @@
+{
+  "status": "pass",
+  "group_path": "arms/arm_right",
+  "parent_svg": "tmp/arm-right-node2-2/input-guide.svg",
+  "parent_ids": [
+    "group-arms-arm_right"
+  ],
+  "candidate_svg": "tmp/arm-right-node2-2/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "arms/arm_right/hand",
+      "status": "pass",
+      "ids": [
+        "group-arms-arm_right-hand"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "arms/arm_right/upper_arm",
+      "status": "pass",
+      "ids": [
+        "part-arms-arm_right-upper_arm"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "arms/arm_right/forearm",
+      "status": "pass",
+      "ids": [
+        "part-arms-arm_right-forearm"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

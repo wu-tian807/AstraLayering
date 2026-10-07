@@ -1,0 +1,82 @@
+{
+  "target": "n30",
+  "node": "group_split",
+  "group_path": "head/rear_hair_left/outer_back_curtain",
+  "logical_worker": "group_split:head/rear_hair_left/outer_back_curtain",
+  "actual_actor": "/root/jianma_runner_recovery/split_n30",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "status": "complete",
+  "children": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/children.json",
+  "groups": [
+    "inner_forked_lock"
+  ],
+  "parts": [
+    "upper_loop_lock",
+    "lower_loop_lock",
+    "outward_curl_lock",
+    "sweeping_long_lock",
+    "pointed_long_lock"
+  ],
+  "new_mirror_pairs": [],
+  "check_report": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/native-check-children.json",
+  "check_status": "pass",
+  "actual_viewed_image_count": 7,
+  "observations": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/逐处观察与拆分说明.md",
+  "actor_record": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/actor-record.json",
+  "protected_inputs": {
+    "block-layers/groups.svg": {
+      "before": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+      "after": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+      "unchanged": true
+    },
+    "structure/groups.json": {
+      "before": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+      "after": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+      "unchanged": true
+    },
+    "refinement/character.svg": {
+      "before": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+      "after": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+      "unchanged": true
+    },
+    "structure/rendering.json": {
+      "before": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+      "after": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+      "unchanged": true
+    },
+    "structure/groups.dispatch.json": {
+      "before": "11d471e23a10e3ae0d4b5daef0b37347412653a298308130207310ce3c1d9891",
+      "after": "11d471e23a10e3ae0d4b5daef0b37347412653a298308130207310ce3c1d9891",
+      "unchanged": true
+    },
+    "references/base-subject.png": {
+      "before": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+      "after": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+      "unchanged": true
+    }
+  },
+  "written_scope": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分",
+  "new_evidence_has_no_local_workspace_prefix": true,
+  "output_sha256": {
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/01-full-isolated.png": "ba178ff230636aff2ce962708fd1433caa7fbd305f4ae64bb86f94d6278d7d16",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/02-ear-root.png": "6abb834f09762905302231790ddba7d01d15dcfadd6ad39c875ad05d3bc1b4da",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/03-shoulder-continuation.png": "32fdcf768f2887031de3d64f2be8f019ee15ceb437e80c6ebdcca8f6e085105b",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/04-loop-pair.png": "e384993856981c3754ec22e78547b519364cf80e1396a218ec86cda12ee540f2",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/05-lower-forks.png": "57897590d21037de36689ad4f9d3b8179ec78003964e5150f031f132e553d370",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/06-inner-continuation.png": "2e4e0a68e53901cd38992ca7cf101f7d5c03d37687e1eeb5f1e2984139257b65",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/actor-record.json": "a4483d0b185c34fc1307eb6207837aa9cd05ae036de13f5d7f7979f2d14c3def",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/children.json": "b69b25021f96a885d5720242a17d487b6b61d7c7d250c09dbb368cf22e983f17",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/input-manifest.json": "03af16f639f9352647967cda27ac9fd15b2a9b4637fbb8b9638e9e1c85ac2ed5",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/native-check-children.json": "1ac7e6ebd50137677df213e44edda33a994a12f4387ce52437c050a35c4fe70f",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/preview-commands.json": "699687f6f6fe78bbf8b1feef2d200fdcec1fe75885a4c6c71bd20adce2a14bb0",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/逐处观察与拆分说明.md": "5d013ee3032cafe7cf60c983d25936fe161dcc79e7988855002488e14b0f9e06"
+  },
+  "stopped_before": [
+    "expand",
+    "checkpoint",
+    "complete",
+    "next"
+  ],
+  "completed_at": "2026-10-07T05:35:33.563484+00:00"
+}

@@ -1,0 +1,60 @@
+{
+  "original_sha256": "5c5437a26e5ea99f3ae74002bf88e91c725c2bac5eb5d77a6f62c4d5732eead2",
+  "proposal_sha256": "1d7031da9945ae7f60c2fb57fb6087877b4d550af494ad3d84003ae1cb7dac60",
+  "replace_in_parent_id": "head-hair-left",
+  "same_rear_child_id": "head-rear-left-main",
+  "old": "C 165 1381 188 1354 209 1328 C 201 1364 204 1400 212 1428",
+  "new": "C 165 1381 178 1354 196 1325 C 193 1359 198 1400 212 1428",
+  "start": [
+    159,
+    1412
+  ],
+  "end": [
+    212,
+    1428
+  ],
+  "head_not_modified": true,
+  "guide_not_published": true,
+  "scope_control_hull": [
+    159,
+    1325,
+    53,
+    103
+  ],
+  "new_right_wall_samples": [
+    {
+      "y": 1340,
+      "new_x": 195.2059
+    },
+    {
+      "y": 1350,
+      "new_x": 195.2263
+    },
+    {
+      "y": 1360,
+      "new_x": 195.6647
+    },
+    {
+      "y": 1375,
+      "new_x": 197.1101
+    },
+    {
+      "y": 1400,
+      "new_x": 201.8465
+    }
+  ],
+  "actual_viewed": [
+    {
+      "path": "01-notch-base-8x.png",
+      "sha256": "bdf1bf38b73e16de5e63647866373edf9b7b3fe1807adec01f690ba9ee20e544"
+    },
+    {
+      "path": "02-notch-line-8x.png",
+      "sha256": "3f878369810b8b8c755fb2cc6b9f60f5186ad8f027f539be1aefff9ec8122caa"
+    },
+    {
+      "path": "03-lower-loop-base-4x.png",
+      "sha256": "c43e2762d5b4fad3914d7872248be91318e94ccb31fd5adea1b620f96c635261"
+    }
+  ]
+}

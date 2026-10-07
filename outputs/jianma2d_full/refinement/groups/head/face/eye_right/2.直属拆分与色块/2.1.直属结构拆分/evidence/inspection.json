@@ -1,0 +1,103 @@
+{
+  "worker_id": "/root/workflow_runner/split_anklet_left",
+  "logical_worker": "group_split:head/face/eye_right",
+  "actor_context": "按 root 已授权有限 actor 池续用既有 splitter；未参与本眼绘制，不宣称全新上下文。",
+  "target": "n22",
+  "node": "group_split",
+  "configuration": "已重读 SKILL、DSL、stage4、本节点 YAML/prompt/model；gpt-6-sol-xhigh.model 继续采用已批准的替代。",
+  "visual_inspection": {
+    "file": "evidence/reference-isolation.png",
+    "tool": "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "isolation_id": "group-head-face-eye-right",
+    "crop": [
+      443,
+      225,
+      60,
+      42
+    ],
+    "scale": 8,
+    "viewed": true
+  },
+  "observations": [
+    "右眼能辨认粗上睫毛带、外端睫毛、上方弧形睑褶与细下睑；白色发丝经过外眼角但不属于本组。",
+    "蓝色虹膜中央有深色瞳孔，左上有单一明显白色主反光；虹膜视线与瞳孔缩放保留实体层级，主反光的独立跟随/显隐/裁切交后续 highlight 渲染层。",
+    "上睑内部皮肤、睫毛与褶皱变形不同，虹膜与瞳孔缩放不同，均保留 group；连续眼白和细下睑可分别统一控制。",
+    "父级新增上下弧是遮挡余量；可见眼裂由眼睑恢复，不能把独显父轮廓直接涂成更大的睁眼。"
+  ],
+  "direct_children": {
+    "groups": [
+      "upper_eyelid",
+      "iris"
+    ],
+    "parts": [
+      "sclera",
+      "lower_eyelid"
+    ]
+  },
+  "parent_extent_ownership": {
+    "head-face-eye-right-lid-fold": "全部归 upper_eyelid 的上睑褶皱组件。",
+    "head-face-eye-right-eye-envelope": "上睑边缘与外端睫毛归 upper_eyelid；下缘归 lower_eyelid；眼裂内部由完整 sclera 作底、iris 覆盖虹膜和瞳孔范围。主角膜反光是后续亮部效果，不占物理实体节点。",
+    "head-face-eye-right-occluded-ocular-bed": "连续眼球底面归 sclera，虹膜上方/下方的同一隐蔽延续归 iris；上下边缘由对应眼睑遮挡搭接。"
+  },
+  "coverage_note": "父 SVG 三条路径是未分内构的组合范围，不是三个物理实体。按完整眼部实体划分；底面与前景允许遮挡重叠。本步没有绘制子件几何，也不以路径计数声称轮廓验收完成。",
+  "mirror_pairs": "已有 face_eye_pair 保留；eye_left 尚无对应同层子 group，本轮不新增、也不预造镜像成员。",
+  "validation": {
+    "argv": [
+      "python3",
+      "../../workflow-next/live2d-layering/tools/groups.py",
+      "check-children",
+      "--groups",
+      "structure/groups.json",
+      "--group-path",
+      "head/face/eye_right",
+      "--patch",
+      "refinement/groups/head/face/eye_right/2.直属拆分与色块/2.1.直属结构拆分/children.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "readonly_sha256": {
+    "structure/groups.json": "7908ee0389ed4f737e113b6bf76d17740d24c7775a65c64d45813c773e152f51",
+    "structure/groups.dispatch.json": "149d98c790916a61fbffc8e61006316b360fc68437ec0620d370b60acbf2eebe",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "89c381dd3fd998019fa9a9d25c74630a86a78abb8911900b0ad14bea6eabae23",
+    "block-layers/preview.png": "a9569f8b3b1e4f72616b3e16e98c59ef2d8e8589d871caa5ea997f0e3c48a548",
+    "refinement/character.svg": "b0387e6409daa389e24893b09461803330fa86a2036fe1d0e3c1a0e910e945de",
+    "refinement/preview.png": "13ff744e1985dfce97ba90710fe32b73381aa0458d28777a1ea1ee24765eb3eb"
+  },
+  "readonly_inputs_unchanged": true,
+  "children_sha256": "2a02aa4f346c874a38dc87eb75011e37d7177fcbf1536449acdbc16d0aec4590",
+  "status": "corrected-checked-awaiting-runner-expand-and-checkpoint",
+  "rendering_obligations": [
+    {
+      "name": "corneal_highlight",
+      "type": "highlight",
+      "stage": "4.6.高光与反光",
+      "reference_extent": [
+        462,
+        243,
+        3,
+        2
+      ],
+      "intent": "保留虹膜左上方短而略倾斜的主白色角膜反光，以独立渲染层处理跟随、透明度、显隐和眼睑裁切；具体 id/owner/follow/clip_to 随后按正式实体树与 rendering 规则注册。本次不修改 rendering 文件。"
+    }
+  ],
+  "correction_history": [
+    {
+      "previous_children_sha256": "633005528b2108c0c3f499d8eda16f2dd6bbb8c74158b1089d6116e7159b8f54",
+      "previous_classification": {
+        "kind": "part",
+        "node": {
+          "name": "corneal_highlight",
+          "note": "虹膜画面左上方可辨认的那一处白色主角膜反光，约 x462–465、y243–245；保留参考的短而略倾斜的亮斑外形。它可相对虹膜/瞳孔分别调整位置、透明度和显隐，并随眼睑闭合被遮挡，可作为单一 part 统一控制。只持有这处主反光，虹膜底部浅蓝过渡、细碎纹理和上睑投影仍属对应表面绘制，不扩展成装饰星光或新增眼内实体。"
+        }
+      },
+      "correction": "移除 corneal_highlight 物理 part；此前只凭独立移动/透明/显隐作实体分类，证据不足。实际参考支持光学反光，没有不同于光学反射的物理实体依据。",
+      "rule_path": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.6.高光与反光/提示词.txt",
+      "rule_quote": "确需独立跟随或裁切的反光、发光等效果，可用 type 为 reflection、highlight 或 glow 的独立渲染层",
+      "reused_visual_evidence": "evidence/reference-isolation.png，输入及几何未变，未重做实看图。",
+      "previous_validation_exit_code": 0
+    }
+  ]
+}

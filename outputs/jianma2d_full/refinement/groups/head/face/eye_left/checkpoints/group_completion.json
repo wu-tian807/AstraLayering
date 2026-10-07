@@ -1,0 +1,20 @@
+{
+  "target": "n23",
+  "node": "group_completion",
+  "logical_worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "guide_sha256": "f5df8b148e3fedc78ade302e4cc1e17b072467b8a865ecef994e5f544e236a0b",
+  "preview_sha256": "480591e8ba441d9ca5991b76d4d4c4818124532a1d109edd5b74b3b237584de9",
+  "artwork_sha256_unchanged": "880596f427d02af4ce9fea47916b40ebc295a18ccd1e783900eba72cd2198b42",
+  "evidence": [
+    "1.父级轮廓补全/evidence/inspection-montage.png",
+    "1.父级轮廓补全/evidence/parent-containment.json",
+    "1.父级轮廓补全/evidence/checks.json"
+  ],
+  "native_checkpoint": {
+    "action": "checkpointed",
+    "pointer": "group_completion"
+  },
+  "complete_next_reopen_called": false
+}

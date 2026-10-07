@@ -1,0 +1,111 @@
+{
+  "actual_actor": "/root/jianma_runner_recovery/maker_n30",
+  "previous_node_actual_view_count": 15,
+  "current_node_actual_view_count": 25,
+  "cumulative_actual_view_count": 40,
+  "images": [
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r1-01-full-blend.png",
+      "sha256": "15b159fa6f12e133cf7bdf176b734c2a45ee80eeb3c7a363bd1db9da1e37e1e9"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r1-02-upper_loop_lock.png",
+      "sha256": "57a80f2442ef302085b251aaef01b415ed90ad7e997c790ccef5004d7ee48b10"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r1-03-lower_loop_lock.png",
+      "sha256": "2f0c0f93e3993356b07b1a260f360f04dd335f51ccabb364fa8548a95c702e09"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r1-04-inner_forked_lock.png",
+      "sha256": "04d2901700c6f536f70e37518d005c0dbb1996488455bd8f19b5c7c8d3a4baa1"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r1-05-pointed_long_lock.png",
+      "sha256": "4255d7ac767bfc40249be26acbdeb799bb639c64e2bf64ca32efef9cea6c3608"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r1-06-sweeping_long_lock.png",
+      "sha256": "6c2cfbd3c9f7878904f2859562365bcd8ebf8c16f35e6818eade6633ba342ff7"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r1-07-outward_curl_lock.png",
+      "sha256": "232bc01563c9fbd61c87ec4730f1149d4937c20542736e40875d1a1eb2ce371c"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r1-bounds-contact-sheet.png",
+      "sha256": "89b852024e346237412250fa95e3870704351208c6763046b87ea596bee5d572"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-01-full-blend.png",
+      "sha256": "0e41222918a9144456c167422b606c4711a42106b5b1e0d2c7c105adfa5ff8cd"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-02-upper_loop_lock.png",
+      "sha256": "783a34e52eb84b216a704b553d059ebee0d493343eb919fa4bc5a4bdc3970673"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-04-inner_forked_lock.png",
+      "sha256": "211a1ee879e98c9eb4e064b9264e41659c2efe6612af97175e5f79bc7457908a"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-05-pointed_long_lock.png",
+      "sha256": "1366e92dccfe0b98ed274a78e73c33ae393378754fe6df70a3d28131d8140329"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-06-sweeping_long_lock.png",
+      "sha256": "d96724903fc66776b095c435fb76b0192e149cca780b341c7638a71971e39fc1"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-07-outward_curl_lock.png",
+      "sha256": "0a57fc6dda35248b25007f6934801f889da252b7ae72a87b0c882f71e25ee20c"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-08-children-no-parent.png",
+      "sha256": "5b685708b59e0bff99ecbd0408167e3496eee963778047d8bf1d5503edcd8ee6"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-09-opening-fit-8x.png",
+      "sha256": "8e9337b712705c33e453d0853a70438db781dc2ed829f17963e99980d1e309a1"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-14-loop-junctions-4x.png",
+      "sha256": "78f36d774d0db069c1b638ffb8d85f5b9a0e59b7eb04c5b2aedd8d7e74920195"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-fit-contact-sheet-8x.png",
+      "sha256": "739a6f758f9c485f0e5f4f4502d6a35733810bb15c1d48c21f1bf8b43ae36d76"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-root-contact-sheet-4x.png",
+      "sha256": "3667e892755e741b146fde742c7e0ccf95f064b4b8029cd4ec013155c0b07800"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/final-15-open-forks-4x.png",
+      "sha256": "edd0363bb6eb2a47f4d650c9cced491ab8ea6449f592ab0ef0a845acf2ca7ace"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r5-01-full-blend.png",
+      "sha256": "9ad1c1d4fccfded27bcfee472c666073a4be6192b7799d9c8914631c7ddebe9c"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r5-02-lower-loop.png",
+      "sha256": "cd598b2a9da077bf09cf07f6d56cdf785c7c42d67c3114e97be380461c3a97f1"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r5-03-no-parent.png",
+      "sha256": "e9a90347d1ecdb312964c174d63fa44527a253370fd3e52572696f12baa785e0"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r5-04-loop-junctions-4x.png",
+      "sha256": "40a982014bb9fba9e8eeda153d7079a0d69c37c4d771683aacc9174eb786435a"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r6-final-contact-sheet.png",
+      "sha256": "d0b02fa6ce06e25941d5ab4870dfc06573b21121e158660c048f1bf56ac02e6e"
+    }
+  ],
+  "observations": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/逐处观察.md",
+  "contact_sheet_panels_at_original_resolution": true,
+  "preview_not_opened_again": "Native white preview pixels equal the actual-viewed r6 full-blend candidate cell, which is included at original size in actual-viewed r6-final-contact-sheet.png."
+}

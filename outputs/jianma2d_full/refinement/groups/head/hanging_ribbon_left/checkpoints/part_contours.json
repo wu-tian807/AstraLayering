@@ -1,0 +1,7 @@
+{
+  "node": "part_contours",
+  "worker": "/root/workflow_runner/ribbon_left",
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "c6e87f59ab9eec6905d72228622c070c00a8d96ccf71a9f07994f3d1510978e6",
+  "note": "带身闭合底形与4条轮廓已建立，逐条desc注明显影/留白；同坐标彩参和线参4×实际查看，孔洞、根接、外缘与尖尾一致。"
+}

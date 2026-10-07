@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_rendered",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "已逐part及真实face组合复核完整Rendering Stack。灰接界融合为暖唇色；发现并以现有唇色搭接修正浅色细缝，原Geometry/笔触不变。薄唇、浅下唇、两端暗部、窄软反光和隐藏内侧完整；原生结构check通过，25关系不变。全图face/neck顺序仍留第5步。",
+  "artwork_sha256": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_rendered.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_rendered"
+  }
+}

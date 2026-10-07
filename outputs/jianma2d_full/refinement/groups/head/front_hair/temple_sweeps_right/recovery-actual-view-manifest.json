@@ -1,0 +1,86 @@
+{
+  "actor": "/root/jianma_runner_recovery",
+  "scope": "Only actually viewed new recovery images; prior actor and root review views are not attributed here",
+  "image_count": 16,
+  "nodes": {
+    "part_tone_boundaries": {
+      "candidate_sha256": "6584c7777fe46d96172ed026041bb7c6ef52a11ab9b2e44a6581b169bb108b6e",
+      "actual_views": {
+        "inspection.png": "d967115dfdad0b361db58a8501404249c62cea28ee2c4d86954ac32e5440a484",
+        "line-reference.png": "7a700951a9276bf0b92ddb2ab46da774d582fc2a2cc3aa175d12a94562515c0e"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_tone_boundaries/appearance-review.md"
+    },
+    "part_detail_lines": {
+      "candidate_sha256": "fabcc9df1b698dfbc2c703df738855b1f3411eba0cf132cd459b36d349930ae9",
+      "actual_views": {
+        "inspection.png": "e8e6148e22877ccdd2fe2f64a7c9469dbd5cab962b9b95b6de0d8538229c2b16",
+        "line-reference.png": "f9c85bb42a718a872e676b980b09556bc6d2037ee44d0275e4496d202b4df523"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_detail_lines/appearance-review.md"
+    },
+    "part_brush_lines": {
+      "candidate_sha256": "36df63ce3e6563039f674e19bdf5b813147424339026afdb626e691a1aad9359",
+      "actual_views": {
+        "inspection.png": "315e9f1b8ddf71b8a4b32b1b42b325378b2ec1e1d7c89ba057b16289f1f3b417",
+        "gap-8x.png": "faa2a62ee3e1c7d3e444c047d21885e3687ce9cf4d547be58fcbdab01effd5c1"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_brush_lines/appearance-review.md"
+    },
+    "part_base_colors": {
+      "candidate_sha256": "9adb8c6308c0943ce3edfbfc2a2a02f950df0eb990982665ed07c00cd6fdfad5",
+      "actual_views": {
+        "inspection.png": "83c6c17a341126812b051d9e73e313ed299c394851e7a4eb324b108d8f9289f8"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_base_colors/appearance-review.md"
+    },
+    "part_volume": {
+      "candidate_sha256": "856209cf023a5d7387288a3a70ffdae23ce7c7bc1d89fa4e40ef4f34e1edfffd",
+      "actual_views": {
+        "inspection.png": "9307dd98e4b1da29dee7e084ae75b80d1c32aa02dbb663b75d738032e765d138"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_volume/appearance-review.md"
+    },
+    "part_color_transitions": {
+      "candidate_sha256": "39c9d0984d9659c5f1f04656b48793699d877d3ff9ea3c57cfc80440d10a94e8",
+      "actual_views": {
+        "inspection.png": "58ad95e4ec2634f548172db942ff4b97167d10b0c975902fce441e29848f7af1"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_color_transitions/appearance-review.md"
+    },
+    "part_local_shading": {
+      "candidate_sha256": "39619a21930668bf3f5db871a2e1c82ed8473377ce3549cfb7f68253e07be32d",
+      "actual_views": {
+        "inspection.png": "bcff87759a762f137b27f5d6983ff96aa1cb9781fd9637aed6ab8c489786d78b"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_local_shading/appearance-review.md"
+    },
+    "cast_shadow_artwork": {
+      "candidate_sha256": "0e26c69324936074d5964c4e606c2de914888385e7af95e660505173db984891",
+      "actual_views": {
+        "raw-effects.png": "7c7460baa87c5ff89b331b8933f4137200a47abf04506f19ba405c44774a9d7e",
+        "raw-combination.png": "01ecf4b28ed09f9ee7ca3840a60dcc1935e4066b0bb47daa5615fe5c7ef79e6a"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/cast_shadow_artwork/appearance-review.md"
+    },
+    "part_highlights": {
+      "candidate_sha256": "abac3be41c98d3e8dd7b697bd06c2171fed6d396f56fdbc99e6232631101f0b4",
+      "actual_views": {
+        "inspection.png": "2fec56a25a72990d8720a5e58a8592852291a9d555624c09bf1f25d8f83f9d28"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_highlights/appearance-review.md"
+    },
+    "part_rendered": {
+      "candidate_sha256": "8d6cd65eae22919af940111560c8de0041bf76a0689499014c01f252e94568e6",
+      "actual_views": {
+        "inspection.png": "74ce7c37ae20703517bb98bcfbff96ef3b69e9684cf7bcd02a364b0b6c30c7d4",
+        "gap-8x.png": "7acaa59c76aeefa4a7b6e662baf35ba25fe3e3002b4c2bf6ae5ca8566c12ef24",
+        "neighbor-surfaces.png": "b1fded928f65da076335ba1c5c16e25b99c916404f4ff9094bed22686b071bfa"
+      },
+      "observations": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_rendered/appearance-review.md"
+    }
+  },
+  "reused_node": {
+    "cast_shadow_relations": "Same candidate bytes as part_local_shading; its actual reference/part views reused, documented in appearance-review.md. No new image claimed."
+  }
+}

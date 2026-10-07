@@ -1,0 +1,11 @@
+{
+  "time": "2026-10-06T08:01:00.126061+00:00",
+  "old_actor": "/root/rear_left_repair",
+  "new_actor": "/root/workflow_runner/rear_left_finish",
+  "reason": "Actual platform error: Exceeded maximum number of images (50) allowed in request. Fresh no-history session resumes only remaining nodes.",
+  "last_success": "cast_shadow_artwork",
+  "pending_node": "part_highlights",
+  "current_artwork_is_uncheckpointed_4_6_draft": true,
+  "draft_artwork_sha256": "813d66bdeb5df4f2afb3f04bde303b4fd99c27c4cf55232b0d25fe8cc4f1c617",
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9"
+}

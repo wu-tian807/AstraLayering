@@ -1,0 +1,15 @@
+{
+  "node": "part_volume",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "大腿斜向漫亮、小腿前亮与内外侧柔转面已铺设；两part采用相同坐标光场使圆膝重叠连续，组合中髋部接色留4.7局部融合。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_volume.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_volume"
+  },
+  "artwork_sha256": "d30cf7e71950f858940c38247708ffd74b16ce6f7902dcccb976a823b7941be3"
+}

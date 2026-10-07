@@ -1,0 +1,9 @@
+{
+  "node": "cast_shadow_relations",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29_render",
+  "artwork_sha256": "402142107b405a4626caf3f2a3a5fdb128db69aabd86b7c5b1bedf4ed957dad8",
+  "guide_sha256": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+  "rendering_sha256": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+  "actor_images_total": 15,
+  "manual_observation": "实际观察.md"
+}

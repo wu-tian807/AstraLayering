@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_rendered",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实际看图复核全部色层、完整独显及邻近参考：银白中心、蓝下转面和细银蓝外缘相合；几何/压力/辅助线保留。原生21层结构检查与所有既有ID完整性通过；链/主坠/足部接界待各自group及后置，未冒称全局组合通过。",
+  "evidence": [
+    "views/part_rendered.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_rendered"
+  },
+  "artwork_sha256": "b4a54d1de7f9dd59209f66b845ec8aa7b745d60ade0dd5176ca5bb36a87289fb"
+}

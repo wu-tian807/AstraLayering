@@ -1,0 +1,20 @@
+{
+  "node": "part_motion_completion",
+  "branch": "then: current group has two direct parts",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29",
+  "logical_worker": "group:head/rear_hair_left/inner_back_curtain",
+  "inputs": {
+    "block-layers/groups.svg": "5ef71923ba49f927c35822b518b8bc650998d1c4603c5dde2def75adc15ed5bb",
+    "structure/groups.json": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+    "refinement/character.svg": "8d6cd65eae22919af940111560c8de0041bf76a0689499014c01f252e94568e6",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  },
+  "changed": "nape_back_sheet hidden edge only",
+  "side_lock_changed": false,
+  "example_images_actually_opened": [
+    "milly-collar-wrist.png",
+    "milly-sleeve-shoe.png"
+  ],
+  "movement_assumption": "Small relative sway: up to roughly 8px around waist, tapering at attached root and lower nape termination; local -8px waist diagnostic is illustrative, not an authored animation."
+}

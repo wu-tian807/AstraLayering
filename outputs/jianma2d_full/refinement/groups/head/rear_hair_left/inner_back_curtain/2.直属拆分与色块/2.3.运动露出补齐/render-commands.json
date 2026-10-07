@@ -1,0 +1,134 @@
+[
+  {
+    "name": "check-children",
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/groups.py",
+      "check-children",
+      "--groups",
+      "structure/groups.json",
+      "--group-path",
+      "head/rear_hair_left/inner_back_curtain",
+      "--patch",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/children.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "bounds",
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_containment.py",
+      "--parent-svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/input-groups.svg",
+      "--candidate",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/candidate-groups.svg",
+      "--groups",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/merged-groups.json",
+      "--group-path",
+      "head/rear_hair_left/inner_back_curtain",
+      "--out",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"pass\", \"report\": \"refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json\", \"failed\": []}\n",
+    "stderr": ""
+  },
+  {
+    "name": "01-shoulder-before-after-4x",
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/candidate-groups.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/01-shoulder-before-after-4x.png",
+      "--only",
+      "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet",
+      "--reference",
+      "references/base-subject.png",
+      "--compare",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/before-nape-only.svg",
+      "--edge-overlay",
+      "--crop",
+      "320",
+      "355",
+      "90",
+      "240",
+      "--scale",
+      "4",
+      "--columns",
+      "3"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/01-shoulder-before-after-4x.png\n",
+    "stderr": ""
+  },
+  {
+    "name": "02-lower-before-after-4x",
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/candidate-groups.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/02-lower-before-after-4x.png",
+      "--only",
+      "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet",
+      "--reference",
+      "references/base-subject.png",
+      "--compare",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/before-nape-only.svg",
+      "--edge-overlay",
+      "--crop",
+      "310",
+      "1010",
+      "140",
+      "270",
+      "--scale",
+      "4",
+      "--columns",
+      "3"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/02-lower-before-after-4x.png\n",
+    "stderr": ""
+  },
+  {
+    "name": "03-waist-sway-before-after-4x",
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/after-waist-sway.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/03-waist-sway-before-after-4x.png",
+      "--reference",
+      "references/base-subject.png",
+      "--compare",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/before-waist-sway.svg",
+      "--crop",
+      "270",
+      "720",
+      "180",
+      "180",
+      "--scale",
+      "4",
+      "--columns",
+      "3"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/03-waist-sway-before-after-4x.png\n",
+    "stderr": ""
+  },
+  {
+    "name": "white-preview",
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/candidate-groups.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/candidate-white-preview.png",
+      "--background",
+      "white"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/candidate-white-preview.png\n",
+    "stderr": ""
+  }
+]

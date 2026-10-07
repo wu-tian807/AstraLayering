@@ -17,6 +17,100 @@
         "head/front_hair"
       ],
       "status": "pending_stage5"
+    },
+    {
+      "id": "earring_right_front_visibility",
+      "source": "refinement/groups/head/4.7-local-finish/报告.md",
+      "kind": "draw_order",
+      "observation": "Current actual combination shows the right crystal partly hidden by the face-framing hair, while the reference shows the pale cyan left highlight and blue right/lower facet of the full hanging crystal. Isolated complete earring is intact.",
+      "final_requirement": "At stage 5, keep the ear attachment behind the appropriate ear surface while placing the exposed silver stem, complete crystal and lower silver drop in front of the right face-framing hair as supported by the reference. Inspect the final actual SVG at x483 y258 w21 h61 and in the full head after receiver masks; preserve geometry and motion margin.",
+      "paths": [
+        "head/earring_right",
+        "head/face/ear_right",
+        "head/face_framing_hair_right"
+      ],
+      "status": "pending_stage5"
+    },
+    {
+      "id": "right_leg_hip_join_review_coverage",
+      "source": "refinement/groups/legs/right_leg/runtime-failure-20261006.json",
+      "kind": "visual_coverage",
+      "observation": "The original maker encountered an image-processing policy error after its recorded part_highlights success; exact rejected call is unavailable. Remaining node is resumed only with ordinary non-sensitive independent leg and knee/ankle views. Do not infer a final pelvis/hip composite PASS from that limited check.",
+      "final_requirement": "At stage 5, resolve the right thigh and pelvis visible join color/relative shading against reference using a permitted ordinary review path. Record actual coverage and any remaining limitation; never retry or disguise a rejected image to bypass safeguards.",
+      "paths": [
+        "legs/right_leg/thigh",
+        "pelvis/pelvis_body"
+      ],
+      "status": "pending_stage5"
+    },
+    {
+      "id": "right_eye_final_aperture_and_effects",
+      "source": "refinement/groups/head/face/eye_right/4.rendering stack/4.7.线色融合与材质细化/",
+      "paths": [
+        "head/face/eye_right/sclera",
+        "head/face/eye_right/lower_eyelid",
+        "head/face/eye_right/upper_eyelid",
+        "head/face/eye_right/iris"
+      ],
+      "observation": "n22 complete eye bed and lower lid are rendered; temporary composite still shows a thin hidden lower sclera rim and uncropped cast-shadow allowance until upper lid n46 and iris n47 exist.",
+      "final_requirement": "Restore reference visible eye aperture with completed upper eyelid/skin, preserve full hidden eye bed, and apply receivers to eye_right_upper_lid_cast_shadow and eye_right_corneal_highlight. Iris stage must reuse existing corneal highlight, not duplicate it. Inspect actual final eye and full head.",
+      "status": "pending_stage5"
+    },
+    {
+      "id": "left_eye_final_aperture_and_effects",
+      "source": "refinement/groups/head/face/eye_left/",
+      "paths": [
+        "head/face/eye_left/sclera",
+        "head/face/eye_left/lower_eyelid",
+        "head/face/eye_left/upper_eyelid",
+        "head/face/eye_left/iris"
+      ],
+      "observation": "n23 complete eye bed/lower lid and raw effects are rendered; upper lid n48/iris n49 plus crossed hair/face occlusion remain to be completed. White-bed highlight visibility is temporary.",
+      "final_requirement": "Restore reference eye aperture with completed upper eyelid/skin and crossed hair, retain hidden full surfaces, apply final receivers to eye_left_upper_lid_cast_shadow and eye_left_corneal_highlight. Iris stage must reuse these effects instead of duplicating. Inspect actual final eye/head.",
+      "status": "pending_stage5"
+    },
+    {
+      "id": "left_fringe_eyeline_negative_space",
+      "source": "reviews/group_child_layers/head/front_hair/local-repair-20261006/审查.md",
+      "paths": [
+        "head/front_hair/fringe_left/broad_lock",
+        "head/front_hair/fringe_left/fine_lock"
+      ],
+      "requirement": "After n25 linework/effects and final eyelid/hair order, preserve the continuous narrow skin gap between broad/fine locks near x397–409,y205–253. Neither final brush outlines/shadows nor ancestor surfaces may fill this reference-visible gap. Inspect with final head closeup.",
+      "status": "pending_stage5"
+    },
+    {
+      "id": "right_fringe_eyeline_negative_space",
+      "source": "reviews/group_child_layers/head/front_hair/fringe_right/审查.md",
+      "paths": [
+        "head/front_hair/fringe_right/broad_lock",
+        "head/front_hair/fringe_right/fine_lock"
+      ],
+      "requirement": "Keep the reference-visible narrow skin gap between broad and fine right fringe from brow-tail level through outer eye toward the fine tip. Preserve root overlap, individual tips and the right side-specific slant; final brush lines/shadows and ancestor shapes must not fill the gap. Inspect final head closeup.",
+      "status": "pending_stage5"
+    },
+    {
+      "id": "left_temple_ear_negative_spaces",
+      "source": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/审查.md",
+      "paths": [
+        "head/front_hair/temple_sweeps_left/lower_temple_lock",
+        "head/front_hair/temple_sweeps_left/ear_lock"
+      ],
+      "requirement": "After final linework, scalp backing and head draw order, preserve the reference skin windows near (370,247) and (363,258). In n27 independent 2.2 review both holes were actually visible without the parent guide. Final raw shadows, brush rims and ancestor surfaces must not fill them. Inspect actual completed head and same local 8x view.",
+      "status": "pending_stage5"
+    },
+    {
+      "id": "right_temple_receiver_and_inner_rim",
+      "source": "refinement/groups/head/front_hair/temple_sweeps_right/completion-result.json",
+      "paths": [
+        "head/front_hair/temple_sweeps_right/ear_lock",
+        "head/front_hair/temple_sweeps_right/lower_temple_lock",
+        "head/front_hair/temple_sweeps_right/middle_temple_lock",
+        "head/front_hair/temple_sweeps_right/upper_temple_lock",
+        "head/front_hair/temple_sweeps_right/crown_sweeps"
+      ],
+      "requirement": "Apply receiver masks to four right_temple_*_cast_shadow raw effects without shrinking raw source shapes; resolve upper shadow follow to the actual crown_sweeps last short sheet after n51. Preserve continuous right inner rim (no left-style holes), front-fringe root occlusion and long side-hair overlap. Inspect actual final right head and the local 8x edge; raw source overhang shown at4.5 is not final visible shadow.",
+      "status": "pending_stage5"
     }
   ]
 }

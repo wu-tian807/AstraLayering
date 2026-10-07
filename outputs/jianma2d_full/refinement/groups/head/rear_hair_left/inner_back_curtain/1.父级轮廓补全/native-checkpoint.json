@@ -1,0 +1,16 @@
+{
+  "argv": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/4.专项细化/tools/group_cursor.py",
+    "--file",
+    "structure/groups.json",
+    "--state",
+    "structure/groups.dispatch.json",
+    "checkpoint",
+    "--pointer",
+    "group_completion"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"action\": \"checkpointed\", \"pointer\": \"group_completion\"}\n",
+  "stderr": ""
+}

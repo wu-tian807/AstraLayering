@@ -1,0 +1,7 @@
+{
+  "actor": "/root/workflow_runner/arm_right",
+  "node": "part_base_colors",
+  "artwork_sha256": "3c03ac2bbc0e26732a9a3e1c489dfb23af14eaa22cf80df052e45ee99e8fd74e",
+  "viewed": "inspection.png and gap-8x.png when generated",
+  "exit_code": 0
+}

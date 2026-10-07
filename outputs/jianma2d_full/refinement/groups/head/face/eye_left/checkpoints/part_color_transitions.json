@@ -1,0 +1,17 @@
+{
+  "target": "n23",
+  "node": "part_color_transitions",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看本侧鼻角低饱和暖色、下睑薄暖带及左脸颊同参数局部色；隐藏下睑衔接自然，原完整几何与23条渲染关系未改。",
+  "evidence": [
+    "views/part_color_transitions.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_color_transitions"
+  },
+  "artwork_sha256": "82930cdbf53e43ba44010a954f13ed6dafdd178f9cf1acd20ec6a9391fa1a1d5",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc"
+}

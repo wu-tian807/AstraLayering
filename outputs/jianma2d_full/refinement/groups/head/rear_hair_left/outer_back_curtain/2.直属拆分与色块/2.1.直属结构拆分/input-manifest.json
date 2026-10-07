@@ -1,0 +1,29 @@
+{
+  "target": "n30",
+  "node": "group_split",
+  "group_path": "head/rear_hair_left/outer_back_curtain",
+  "logical_worker": "group_split:head/rear_hair_left/outer_back_curtain",
+  "actual_actor": "/root/jianma_runner_recovery/split_n30",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "model_substitution": "gpt-6-sol-xhigh node -> gpt-6-astra xhigh; explicitly authorized by user per controller handoff",
+  "input_hashes": {
+    "block-layers/groups.svg": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+    "structure/groups.json": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+    "refinement/character.svg": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "structure/groups.dispatch.json": "11d471e23a10e3ae0d4b5daef0b37347412653a298308130207310ce3c1d9891",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  },
+  "resource_hashes": {
+    "../../workflow-next/live2d-layering/SKILL.md": "165b5253821a253c6adc8be126bc92ac2bd3054af09722995a05f73fb0b5cede",
+    "../../workflow-next/live2d-layering/流程.yaml": "d3b086d97b6f4de761f9e94d0973175f1a138d028dc47d108774ad8833bb6556",
+    "../../workflow-next/live2d-layering/templates/部件专项/generic/2.直属拆分与色块/2.1.直属结构拆分/流程.yaml": "2c2b38d3401f4cf7fb8421c6ab0a6b8343500c704b09f2b747e7f5e027c1c347",
+    "../../workflow-next/live2d-layering/templates/部件专项/generic/2.直属拆分与色块/2.1.直属结构拆分/提示词.txt": "e1f2a40dffe3c9f0159168400f7bd986631e6381c4c01e0fcbe01ecebc50c8f8",
+    "../../workflow-next/live2d-layering/templates/部件专项/generic/2.直属拆分与色块/2.1.直属结构拆分/gpt-6-sol-xhigh.model": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "existing_direct_children": {
+    "groups": [],
+    "parts": []
+  }
+}

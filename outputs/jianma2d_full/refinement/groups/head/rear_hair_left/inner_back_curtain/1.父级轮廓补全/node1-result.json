@@ -1,0 +1,84 @@
+{
+  "target": "n29",
+  "logical_worker": "group:head/rear_hair_left/inner_back_curtain",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29",
+  "node": "group_completion",
+  "status": "pass_current_group",
+  "geometry_changed": false,
+  "guide_equal_to_input": true,
+  "actual_viewed_images": [
+    "01-current-isolated.png",
+    "02-current-full-blend.png",
+    "03-root-ear-4x.png",
+    "04-root-ear-line-4x.png",
+    "05-shoulder-bend-4x.png",
+    "06-waist-bend-4x.png",
+    "07-hidden-lower-join-4x.png",
+    "08-inner-tip-4x.png"
+  ],
+  "actual_viewed_image_count": 8,
+  "scoped_containment": {
+    "kind": "group",
+    "path": "head/rear_hair_left/inner_back_curtain",
+    "status": "pass",
+    "ids": [
+      "group-head-rear-hair-left-inner-back-curtain"
+    ],
+    "outside_samples": 0,
+    "outside_area_px2": 0.0,
+    "outside_bbox": null
+  },
+  "aggregate_containment_status": "fail",
+  "unresolved_sibling_risk": {
+    "kind": "group",
+    "path": "head/rear_hair_left/outer_back_curtain",
+    "status": "fail",
+    "ids": [
+      "group-head-rear-hair-left-outer-back-curtain"
+    ],
+    "outside_samples": 3,
+    "outside_area_px2": 0.1875,
+    "outside_bbox": [
+      178.75,
+      725.25,
+      36.5,
+      216.75
+    ],
+    "diagnostic": "refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/parent-containment-images/02-outside.png",
+    "diagnostic_crop": [
+      170.75,
+      717.25,
+      52.5,
+      232.75
+    ]
+  },
+  "input_hashes": {
+    "block-layers/groups.svg": "c43bd301488eb4c5eb772a2f018cc70db0dc269ae96bec4f096618cf29feee4c",
+    "refinement/character.svg": "8d6cd65eae22919af940111560c8de0041bf76a0689499014c01f252e94568e6",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "structure/groups.json": "249e85dd7dd3c18fc795a2c4b166d5f5a1062495050dfd6036be6e2030d1bbe4",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4"
+  },
+  "output_hashes": {
+    "block-layers/groups.svg": "c43bd301488eb4c5eb772a2f018cc70db0dc269ae96bec4f096618cf29feee4c",
+    "refinement/character.svg": "8d6cd65eae22919af940111560c8de0041bf76a0689499014c01f252e94568e6",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "structure/groups.json": "249e85dd7dd3c18fc795a2c4b166d5f5a1062495050dfd6036be6e2030d1bbe4",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+    "block-layers/preview.png": "77827545a1e4f47be41c71ee721fce94f0f922e6e2fc95de126ff52796b1815d"
+  },
+  "previous_preview_sha256": "5627a22546bf0f7fa999eef54dc3ff7f2206a24946140064958af37bc2a7d529",
+  "generated_preview_sha256": "77827545a1e4f47be41c71ee721fce94f0f922e6e2fc95de126ff52796b1815d",
+  "preview_replaced": true,
+  "reference_geometry_inferred_regions": "Head/neck/body/leg occluded continuity retained from accepted parent; no new geometry",
+  "completed_at": "2026-10-06T18:17:56.608590+00:00",
+  "native_checkpoint": "group_completion",
+  "dispatch_active": {
+    "target": "n29",
+    "route": "generic",
+    "pointer": "group_completion"
+  },
+  "white_preview_matches_viewed_candidate_cell": true
+}

@@ -1,0 +1,10 @@
+{
+  "parent_raw_and_other_svg_bytes_unchanged": true,
+  "new_direct_parts": [
+    "mouth_interior",
+    "lower_lip",
+    "upper_lip"
+  ],
+  "duplicate_ids": false,
+  "candidate_sha256": "fe6bcc3329de414e2afcfb169b5b035bd020505fe3d2f09c10d71eb8c588e7f5"
+}

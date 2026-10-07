@@ -1,0 +1,12 @@
+{
+  "action": "expanded",
+  "target": "n29",
+  "group": "head/rear_hair_left/inner_back_curtain",
+  "added_parts": [
+    "nape_back_sheet",
+    "inner_side_lock"
+  ],
+  "added_groups": [],
+  "children_sha256": "dd4b2b535af4aa1b999cf94aa99f5509603f091883856c247c3240d6a91b1980",
+  "orchestrator": "/root/jianma_runner_recovery"
+}

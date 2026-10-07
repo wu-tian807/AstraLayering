@@ -1,0 +1,13 @@
+{
+  "node": "group_completion",
+  "group_path": "head/face/mouth",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "only_current_group_changed": true,
+  "original_visible_path_unchanged": true,
+  "added_path": "head-face-mouth-occluded-oral-bed",
+  "candidate_sha256": "d1e617ed3edfe6339a0c261fa6146289d4dc80a8c9dc30c40d83317c162f7da8",
+  "baseline_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc",
+  "scope": "Hidden inner mouth/overlap allowance only; current closed-lip envelope preserved."
+}

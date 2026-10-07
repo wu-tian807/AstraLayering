@@ -1,0 +1,16 @@
+{
+  "argv": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/rendering.py",
+    "check",
+    "--groups",
+    "structure/groups.json",
+    "--rendering",
+    "structure/rendering.json",
+    "--svg",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/candidate.svg"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"pass\", \"layers\": 33, \"complete\": false, \"scope\": \"Names, tree paths, SVG references and receiver mask structure only\"}\n",
+  "stderr": ""
+}

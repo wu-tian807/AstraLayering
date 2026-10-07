@@ -1,0 +1,15 @@
+{
+  "node": "part_volume",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "两部件自身亮暗体积已画，独显和相邻part组合实看；后脑同面渐变无接缝，尾束保留单束连续光向，未混入外来投影。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.2.大明暗与体积/parts.svg": "e8b46a8d281ec3a503a8bc05b04b12924e6aa7bed1528fa8ee93d8f33f17d420",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.2.大明暗与体积/root.png": "e5dfd731955a522286b794a00ba3650d4ce0165c639bdc99189af70fefd6f7d4",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.2.大明暗与体积/tail.png": "d90f23fbf3c7985cb9cd147c5c0e5b4a8e93f94a656bc07c233f385496671eae",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.2.大明暗与体积/context.png": "5d4cf4c9f26ea1a3b49924e459228f9583066f7d2e9f081d39e04484846e70cb",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.2.大明暗与体积/说明.md": "9a9e98550b957ca53e8c238961a7ce309084ae3f4fd1ee57da83c3ab87d32fa6"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "26b9336d09eafbe8a73fb6b80a3ad622e7ac674652bb27bf9adca50152f096af"
+}

@@ -1,0 +1,15 @@
+{
+  "node": "part_color_transitions",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "髋膝踝微暖、小腿外側极淡冷色按参考加入，渐隐不成色斑，保持大形体和同坐标膝部衔接。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_color_transitions.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_color_transitions"
+  },
+  "artwork_sha256": "73af61d3e7ebd86eb54d98a76557d01ccd34982ffbfe7974d86c62d4372d2a00"
+}

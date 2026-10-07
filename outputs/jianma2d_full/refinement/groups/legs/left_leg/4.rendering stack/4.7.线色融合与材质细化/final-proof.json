@@ -1,0 +1,16 @@
+{
+  "artwork_sha256": "ca574ede72f49ba3ea6a93628bf48dddb8afeaa08039e1ec29a7a8b4c915a02b",
+  "guide_sha256": "2ba1567e051aeb4abef1840d24c44d2c26cc07d2180e055168d004ae2f06cb75",
+  "rendering_sha256": "c0159f667ad7019605f8af14a9227fb4b8eba10b072f79f17fdeeb9a4fc40983",
+  "tree_sha256": "ccbcd46c2f83e73fd4b05a2b70837cd19b51e9642d5531df4ac93fc4161a3c5b",
+  "guide_geometry_unchanged": true,
+  "surface_geometry_matches_guide": true,
+  "rendering_layers": 21,
+  "active": {
+    "target": "n18",
+    "route": "generic",
+    "pointer": "part_rendered"
+  },
+  "worker_id": "/root/workflow_runner/leg_left",
+  "unresolved_in_scope": []
+}

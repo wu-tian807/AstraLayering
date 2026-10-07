@@ -1,0 +1,13 @@
+{
+  "target": "n22",
+  "node": "group_completion",
+  "logical_worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "guide_sha256": "89c381dd3fd998019fa9a9d25c74630a86a78abb8911900b0ad14bea6eabae23",
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "group_completion"
+  },
+  "evidence": "1.父级轮廓补全/evidence/inspection-montage.png"
+}

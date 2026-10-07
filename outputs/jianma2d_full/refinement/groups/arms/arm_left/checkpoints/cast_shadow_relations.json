@@ -1,0 +1,16 @@
+{
+  "node": "cast_shadow_relations",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "读取2part明暗desc并对照4×参考，登记1个主前发在上臂的独立投影；owner当前upper_arm，follow主发束，原生merge通过，SVG保持不变。",
+  "evidence": [
+    "views/shadow-reference.png",
+    "4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/layers.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_relations"
+  },
+  "artwork_sha256": "18dd0a4506924e27b262d7e0a31529c5a26734c0f559b39ab86db9641cc9ac31"
+}

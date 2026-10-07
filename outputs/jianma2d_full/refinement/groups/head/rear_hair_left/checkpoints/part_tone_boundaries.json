@@ -1,0 +1,14 @@
+{
+  "node": "part_tone_boundaries",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "6条光暗范围已画并逐件彩参实看；自身转面与脸/左右腿外来投影分别标注，明确色面接管与柔边宽度。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/3.geometry/3.3.明暗范围线/parts.svg": "02bec26e5c9e04a3bfc850f04f4093ecb76e797d4de54ee1d4e375956ecdc9d0",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.3.明暗范围线/root.png": "8f0cd16e9fe0e526fd1476300a31fbe94b0f3be483fe96f9b826f0ba57aab18c",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.3.明暗范围线/tail.png": "36f9c1750f8a23c02cfe3319f1bfc7c53cd858ea6e63d69bfaed8fe78a129614",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.3.明暗范围线/说明.md": "e19386839cc96a950d20adf72387e5bdaff45f0b20f767224fb09248d1a2f818"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "d611016ea94d6cf943885b53e4c4af44aa0e97d4a2033b2649c3c4276ac9e4d2"
+}

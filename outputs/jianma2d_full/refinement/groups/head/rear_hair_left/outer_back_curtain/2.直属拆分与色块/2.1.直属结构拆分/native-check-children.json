@@ -1,0 +1,19 @@
+{
+  "tool": "native groups.py check-children",
+  "argv": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/groups.py",
+    "check-children",
+    "--groups",
+    "structure/groups.json",
+    "--group-path",
+    "head/rear_hair_left/outer_back_curtain",
+    "--patch",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/children.json"
+  ],
+  "status": "pass",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "validation_scope": "Structure format, sibling uniqueness, one-level additions and mirror associations only; no new child geometry exists at node 2.1."
+}

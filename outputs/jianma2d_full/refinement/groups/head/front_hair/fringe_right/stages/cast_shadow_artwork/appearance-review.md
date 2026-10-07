@@ -1,0 +1,1 @@
+4.5.2 已读 YAML、then 分支、提示词与 Astra xhigh 标记。当前scope没有owned投影，故没有待绘制/独显的新投影；既有25个raw效果仍属原所有者，不修改、不复制。候选与4.4及4.5.1逐字一致，复用本人已实际看过的4.4两片独显与组合。未把复用写成新图检；仅运行当前登记和SVG对应关系的原生check，仍 complete=false，receiver与跨组叠层留给stage5。

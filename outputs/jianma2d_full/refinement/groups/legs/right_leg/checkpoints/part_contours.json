@@ -1,0 +1,15 @@
+{
+  "node": "part_contours",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "完整闭合皮肤面沿用批准色块，可见长缘对应彩参和同坐标线参；圆髋根、膝踝端留白，不描封口线。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_contours.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_contours"
+  },
+  "artwork_sha256": "22199c042016cffa4bd956440df416185e503bd09674bb832bba10cb938231f7"
+}

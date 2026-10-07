@@ -1,0 +1,26 @@
+{
+  "input_guide_sha256": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+  "historical_children_sha256": "4b7179f7b86559b499efcb8213760934949e75f1a5194fb5e647ef6ac4e02ddf",
+  "candidate_sha256": "a85a4204cd039e292828afa5b78ca1153bfb955a1d1b15e448c59c5e8b06ce41",
+  "inserted_containers": [
+    "group-head-rear-hair-left-inner-back-curtain",
+    "group-head-rear-hair-left-outer-back-curtain",
+    "part-head-rear-hair-left-occipital-root",
+    "part-head-rear-hair-left-central-back-tail"
+  ],
+  "changed_child": "group-head-rear-hair-left-outer-back-curtain",
+  "changed_curves": [
+    "C 165 1381 188 1354 209 1328 C 201 1364 204 1400 212 1428",
+    "C 165 1381 178 1354 196 1325 C 193 1359 198 1400 212 1428"
+  ],
+  "other_three_children_byte_identical_to_historical": true,
+  "remove_four_inserted_scopes_restores_latest_full_guide_bytes": true,
+  "protected_sha256": {
+    "structure/groups.json": "047eff70159a0a476c0b313d0eda3e411b127285f3330097598a45de47721b8b",
+    "structure/rendering.json": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb",
+    "refinement/character.svg": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4"
+  },
+  "preparation_failure": "Initial raw extraction expected id as first attribute and exited1 before writing SVG; corrected extractor handles xmlns before id."
+}

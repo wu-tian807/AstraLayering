@@ -1,0 +1,7 @@
+{
+  "actor": "/root/workflow_runner",
+  "node": "part_contours",
+  "artwork_sha256": "c1326fd696f42121d98a7b268cddadc0b43294d12b27efc7452f3a89f9d93cd0",
+  "viewed": "Actual views and observations recorded in appearance-review.md; no automatic visual verdict",
+  "exit_code": 0
+}

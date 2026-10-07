@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "group": "head/rear_hair_left/outer_back_curtain",
+      "node": "n30",
+      "source": "refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/parent-containment.json",
+      "reported_by": "/root/jianma_runner_recovery/maker_n29",
+      "observation": "Default4x/128 parent scan finds unchanged outer_back_curtain has3 outside samples (0.1875px²), bbox[178.75,725.25,36.5,216.75]; n29 itself has0. Aggregate report failure remains preserved.",
+      "required": "At n30 group_completion actually inspect exact locations and geometry, distinguish current outline error from numerical raster boundary; do not change tolerance or silently erase report. Parent enlargement requires orchestrator reopen.",
+      "status": "addressed_n30_node1_with_preserved_native_fail",
+      "resolution": {
+        "node1_result": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/node1-result.json",
+        "native_auxiliary_result": "fail_3_samples_preserved",
+        "guide_geometry_changed": false,
+        "actual_geometry_basis": "Exact shared boundary curves plus actual local observations; node1 prompt-based acceptance authorized by root, no bounds output gate in node1 YAML.",
+        "scope": "Node1 only. Native default n30 child bounds separately pass for all6 in frozen node2.2 candidate."
+      }
+    }
+  ]
+}

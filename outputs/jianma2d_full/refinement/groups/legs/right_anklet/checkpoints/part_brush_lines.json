@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "part_brush_lines",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已用perfect-freehand1.2.0按本侧两条曲线161点显式压力实现细笔触，保留源曲线及元数据；实看参考、线稿和独显，色界辅助线隐藏；同SVG白底预览。",
+  "evidence": [
+    "views/part_brush_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_brush_lines"
+  },
+  "artwork_sha256": "5554027b712c2825ddda81528d7d4e49ba13e99e7f903dec7a287d0f86bfedf6"
+}

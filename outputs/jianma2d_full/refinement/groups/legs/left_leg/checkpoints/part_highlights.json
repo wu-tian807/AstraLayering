@@ -1,0 +1,16 @@
+{
+  "node": "part_highlights",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "按实际大腿局部与膝亮点完成细长柔亮条、前膝小点和胫前反光；逐件/骨盆组合实看，完整表面连续，无新增独立关系。",
+  "evidence": [
+    "views/part_highlights.png",
+    "tmp/leg-left-thigh-light-reference.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_highlights"
+  },
+  "artwork_sha256": "39892d06d26be5c30da946d8236048a6f01f9bb4e0a525ed636fd20d2412e820"
+}

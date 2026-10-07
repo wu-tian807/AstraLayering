@@ -1,0 +1,16 @@
+{
+  "subject": "character",
+  "groups": [
+    {
+      "name": "legs",
+      "groups": [
+        {
+          "name": "right_leg",
+          "groups": [],
+          "note": "画面右侧从大腿根经膝、小腿、踝至整只脚和脚趾的连续身体形体；与左腿分别活动，内部大腿、小腿与脚需在膝和踝处独立运动，故保留为待下层拆分的 group。独显稿 leg-right 的完整范围归此组；白色临时连体服不归入。"
+        }
+      ],
+      "parts": []
+    }
+  ]
+}

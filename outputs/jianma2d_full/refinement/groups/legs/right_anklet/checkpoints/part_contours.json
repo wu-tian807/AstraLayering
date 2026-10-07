@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "part_contours",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实际查看本侧参考和同坐标线稿，保留右侧水滴完整闭合轮廓，两个外缘曲线含显影/起收说明，无孔洞或多余悬挂线。",
+  "evidence": [
+    "views/part_contours.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_contours"
+  },
+  "artwork_sha256": "18839b9686c2738fd37ba879040d273f2a7ef5e8dbe770f9de6f94e32d50d5af"
+}

@@ -1,0 +1,15 @@
+{
+  "worker_id": "/root/workflow_runner/arm_left",
+  "node": "group_child_layers",
+  "active": {
+    "target": "n16",
+    "route": "generic",
+    "pointer": "group_split"
+  },
+  "sha256": {
+    "block-layers/groups.svg": "f81db239c0250347e6560b63c7bc730ce773828d3771a5bdf1859f1574ed57aa",
+    "refinement/character.svg": "c293d7a768b2538d1763af91f41b4b0c66e94a938081ced4ebd9d6534ee7c2a9",
+    "structure/rendering.json": "cc9e2bae8a8c7f294ae5d07f9021ae801b50e2467a2b8e9d26e5e15726b4a1cf",
+    "structure/groups.json": "c72522c30522bd8510043323c7453698df51de7cba25391fb8d863d515ffdc58"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "node": "part_brush_lines",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "4条perfect-freehand1.2.0显式压力笔触完成；2part与相邻躯干/左臂/前发合板实看，起收尖和圆帽留白落实，原辅助曲线隐藏保留，白底预览同源。",
+  "evidence": [
+    "views/part_brush_lines.png",
+    "work/brush-provenance.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_brush_lines"
+  },
+  "artwork_sha256": "04a4cccd5a61caf60af2c8df3b10fd4cf8426bb65b1cb51e615ecd7a5699c007"
+}

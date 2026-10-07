@@ -1,0 +1,115 @@
+{
+  "node": "group_child_layers",
+  "target": "n19",
+  "group_path": "legs/right_leg",
+  "review_identity": "group_child_layers:legs/right_leg:review",
+  "reviewer": "/root/workflow_runner/review_leg_right",
+  "review_model_config": "gpt-6-astra-xhigh.model",
+  "reviewed_at": "2026-10-06T11:17:07.462504+00:00",
+  "verdict": "pass",
+  "inputs": {
+    "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/work/candidate.svg": "31d6376981a329cfe663f5404077d5ed6bc6509a99a0b97a36b2299a1721149a",
+    "structure/groups.json": "be6db61a380157497e3fefcf0f277416b9e797bb5bbe3f9b1339134c2f385ff1",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json": "8bc42b2bcb47b0401b4df7637b6da3e936060e79917de44f4ec7ebdef1dcaeef"
+  },
+  "input_tree_and_bounds_match_freeze": true,
+  "evidence": [
+    {
+      "path": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/full-mix.png",
+      "sha256": "610d48f4179be3964b1c1be38531b5f2e4a4257d53a8566bfba1bde37b6e05cc",
+      "reused": true,
+      "personally_viewed": true
+    },
+    {
+      "path": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/foot.png",
+      "sha256": "732132e1093dc3790142ec4e4e5953ed52ac38dc7b2ac0285c9af9262ea5e283",
+      "reused": true,
+      "personally_viewed": true
+    },
+    {
+      "path": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/thigh.png",
+      "sha256": "4d5c77cdad03f6c3dff30a1599265d903d250e4894137b53af53473b771bff25",
+      "reused": true,
+      "personally_viewed": true
+    },
+    {
+      "path": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/lower-leg.png",
+      "sha256": "f65396a117df9d8f3bed24bf0862b251c75bbd00c6d5e142016f9ef243b462b9",
+      "reused": true,
+      "personally_viewed": true
+    },
+    {
+      "path": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/connections.png",
+      "sha256": "753dfeaaf8ef9070fda71fb40735699f73c1b0041959018f0cb91843f3113302",
+      "reused": true,
+      "personally_viewed": true
+    }
+  ],
+  "components": [
+    {
+      "path": "legs/right_leg/foot",
+      "id": "group-legs-right_leg-foot",
+      "image": "foot.png",
+      "crop_xywh": [
+        438,
+        1535,
+        87,
+        184
+      ],
+      "scale": 4,
+      "edge_overlay": true,
+      "bounds": "pass",
+      "visual": "pass"
+    },
+    {
+      "path": "legs/right_leg/thigh",
+      "id": "part-legs-right_leg-thigh",
+      "image": "thigh.png",
+      "crop_xywh": [
+        430,
+        640,
+        160,
+        555
+      ],
+      "scale": 4,
+      "edge_overlay": true,
+      "bounds": "pass",
+      "visual": "pass"
+    },
+    {
+      "path": "legs/right_leg/lower_leg",
+      "id": "part-legs-right_leg-lower_leg",
+      "image": "lower-leg.png",
+      "crop_xywh": [
+        434,
+        1095,
+        106,
+        530
+      ],
+      "scale": 4,
+      "edge_overlay": true,
+      "bounds": "pass",
+      "visual": "pass"
+    }
+  ],
+  "connections": {
+    "image": "connections.png",
+    "knee_crop_xywh": [
+      433,
+      1085,
+      105,
+      143
+    ],
+    "ankle_crop_xywh": [
+      433,
+      1530,
+      105,
+      115
+    ],
+    "scale": 4,
+    "visual": "pass"
+  },
+  "report": "reviews/group_child_layers/legs/right_leg/审查.md",
+  "scope": "direct child silhouettes and neutral-pose connections only; later motion-fill, material detailing and final visibility are not accepted by this report"
+}

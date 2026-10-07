@@ -1,0 +1,15 @@
+{
+  "node": "part_color_transitions",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "髋膝踝薄暖和小腿侧面轻微冷色完成；逐件/骨盆组合实看，低强度软过渡保留大明暗，完整隐藏同面连续。",
+  "evidence": [
+    "views/part_color_transitions.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_color_transitions"
+  },
+  "artwork_sha256": "ab3bb0b08b235e33ed2d96d947468b9103753d9a6fb7908c9690311f3034d8c7"
+}

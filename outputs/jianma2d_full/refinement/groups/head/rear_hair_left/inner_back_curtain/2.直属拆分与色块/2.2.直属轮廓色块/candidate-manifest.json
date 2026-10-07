@@ -1,0 +1,122 @@
+{
+  "node": "group_child_layers",
+  "target": "n29",
+  "status": "self_checked_frozen_for_independent_review",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29",
+  "logical_worker": "group:head/rear_hair_left/inner_back_curtain",
+  "model": "gpt-6-astra",
+  "reasoning": "xhigh",
+  "candidate": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-groups.svg",
+  "candidate_sha256": "5ef71923ba49f927c35822b518b8bc650998d1c4603c5dde2def75adc15ed5bb",
+  "guide_sha256": "5ef71923ba49f927c35822b518b8bc650998d1c4603c5dde2def75adc15ed5bb",
+  "guide_equals_candidate": true,
+  "preview_sha256": "2b049930727794afc78c849ce11171a6502066628722e8b2e71f0dbba1b2865f",
+  "added_part_bindings": [
+    "head/rear_hair_left/inner_back_curtain/nape_back_sheet",
+    "head/rear_hair_left/inner_back_curtain/inner_side_lock"
+  ],
+  "all_prior_guide_bytes_preserved_after_removing_inserted_children": true,
+  "parent_changed": false,
+  "artwork_changed": false,
+  "rendering_changed": false,
+  "structure_changed": false,
+  "preserved_hashes": {
+    "structure/groups.json": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+    "refinement/character.svg": "8d6cd65eae22919af940111560c8de0041bf76a0689499014c01f252e94568e6",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4"
+  },
+  "bounds_report": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+  "bounds_report_sha256": "abe1a018b2c591d3d8c13e51c61f1c7f287c844074867b28885f76e78cdfa747",
+  "bounds_status": "pass",
+  "bounds_results": [
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/inner_back_curtain/nape_back_sheet",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/inner_back_curtain/inner_side_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-inner-back-curtain-inner-side-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ],
+  "first_candidate_sha256": "149af7cfabe8be378a40cb3834fe670c8ad4deb2a8a9d926fd464b1b1d4ed5b3",
+  "self_fix": "Occluded nape top cap moved 1px inward; added side overlap removed below y1154 to keep accepted complete free tip. Original failed report retained.",
+  "actual_final_views": [
+    {
+      "path": "01-full-blend.png",
+      "sha256": "945b9dc161fd92893c2c0093edae737c57a815b9e9495a2edd5e8e519a7fd18f",
+      "detail": "original"
+    },
+    {
+      "path": "02-two-part-overview.png",
+      "sha256": "c27e4cedcb5b70764eb770c09c70e679da44921469a783db0cec544c15c81220",
+      "detail": "original"
+    },
+    {
+      "path": "03-nape-root-ear-4x.png",
+      "sha256": "7aa4da5eeea3e6fff2096554e0a30f04834ff34ce08cdc9efb038ec56df7081f",
+      "detail": "original"
+    },
+    {
+      "path": "04-side-root-shoulder-4x.png",
+      "sha256": "dcd67e5ed0f08c206e4d5383b704dbb3a8da04eda0d9d763294d7431ee5a2eee",
+      "detail": "original"
+    },
+    {
+      "path": "05-nape-shoulder-waist-4x.png",
+      "sha256": "edc12d814728756d259dc83c25627cdcc27f1221a9c41e2a4ea37d4552941420",
+      "detail": "original"
+    },
+    {
+      "path": "06-side-mid-sweep-4x.png",
+      "sha256": "e366c507aa024fcd67ecd29bffbc80898013fc8497bb3045e3655d4d828d864b",
+      "detail": "original"
+    },
+    {
+      "path": "07-nape-hidden-end-4x.png",
+      "sha256": "10f5f58e2bd55522ded2849ee952de924d8c5291b85f72a81acca89d3b7ed4e5",
+      "detail": "original"
+    },
+    {
+      "path": "08-side-lower-tip-4x.png",
+      "sha256": "5d6ee5ecef28b8ae9df0d3e0fe2490a1a44643d050c66580f92a5e9d52162e70",
+      "detail": "original"
+    },
+    {
+      "path": "09-root-connection-4x.png",
+      "sha256": "3d5230bb5cf41341d9aaf4544fbbb098fefc17298e86d7771ea520fc11a76454",
+      "detail": "original"
+    },
+    {
+      "path": "10-lower-connection-4x.png",
+      "sha256": "c80e1a34db153058ec8051cc8b1ddc1a574ad8f136959113803dbd24de28b01b",
+      "detail": "original"
+    },
+    {
+      "path": "11-side-shoulder-4x.png",
+      "sha256": "52fa2af5da52193da0fbc0405aba28b8b900a68e5e5312d122bc4300b01b1acf",
+      "detail": "original"
+    }
+  ],
+  "actual_images_this_node": 13,
+  "actual_actor_images_total": 21,
+  "reused_node1_images": 8,
+  "dispatch_pointer_left_at": "group_split",
+  "independent_review_performed": false,
+  "frozen_at": "2026-10-06T18:32:16.206511+00:00"
+}

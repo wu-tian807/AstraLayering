@@ -1,0 +1,95 @@
+[
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/nape_back_sheet-complete.png",
+      "--only",
+      "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "285",
+      "245",
+      "170",
+      "1035",
+      "--scale",
+      "2",
+      "--columns",
+      "3"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/nape_back_sheet-complete.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/inner_side_lock-complete.png",
+      "--only",
+      "part-head-rear-hair-left-inner-back-curtain-inner-side-lock",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "270",
+      "245",
+      "125",
+      "1190",
+      "--scale",
+      "2",
+      "--columns",
+      "3"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/inner_side_lock-complete.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/neighbor-surfaces.png",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "280",
+      "250",
+      "205",
+      "1190",
+      "--scale",
+      "2",
+      "--columns",
+      "3",
+      "--only",
+      "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet",
+      "--only",
+      "part-head-rear-hair-left-inner-back-curtain-inner-side-lock",
+      "--only",
+      "head_rear_hair_left_occipital_root",
+      "--only",
+      "head_face_framing_hair_left_main_long_lock",
+      "--only",
+      "head_rear_hair_left_central_back_tail"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/neighbor-surfaces.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/final-preview.png",
+      "--background",
+      "white"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/final-preview.png\n",
+    "stderr": ""
+  }
+]

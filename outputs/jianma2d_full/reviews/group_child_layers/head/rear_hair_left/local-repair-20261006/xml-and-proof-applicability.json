@@ -1,0 +1,281 @@
+{
+  "logical_identity": "group_child_layers:head/rear_hair_left:review",
+  "recovery_worker": "/root/workflow_runner/review_rear_left",
+  "method": "Focused repair recheck with current XML correspondence; previous independent proof and visual judgments retained, not recomputed or attributed to the recovery worker.",
+  "hashes": {
+    "candidate": "a85a4204cd039e292828afa5b78ca1153bfb955a1d1b15e448c59c5e8b06ce41",
+    "frozen_candidate": "a85a4204cd039e292828afa5b78ca1153bfb955a1d1b15e448c59c5e8b06ce41",
+    "input_parent": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+    "historical_candidate": "4b7179f7b86559b499efcb8213760934949e75f1a5194fb5e647ef6ac4e02ddf",
+    "bounds": "d6e08fdc849943794d0a1f4902f6916fac59a4f2fc43c60912f13a21b535e62e",
+    "groups": "047eff70159a0a476c0b313d0eda3e411b127285f3330097598a45de47721b8b",
+    "base_reference": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "line_reference": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+    "rendering": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb",
+    "character": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2",
+    "old_proof": "680d5903ee6efc9bc0a5125ce9c35a5a41573f09bee61feb88563f930cb4a738",
+    "coverage_proof": "9f5ca4bf28dfaf8183f20a290aee95b18ad9c6863af6141bfa07aef0cfb10ef6"
+  },
+  "components": [
+    {
+      "id": "group-head-rear-hair-left-inner-back-curtain",
+      "historical_fragment_sha256": "ede1e9439552474aa2a5fab8f44aaaa43b19b78a99aebc1f0163775584567678",
+      "current_fragment_sha256": "ede1e9439552474aa2a5fab8f44aaaa43b19b78a99aebc1f0163775584567678",
+      "byte_identical": true,
+      "only_expected_two_curves_changed": null
+    },
+    {
+      "id": "group-head-rear-hair-left-outer-back-curtain",
+      "historical_fragment_sha256": "a401d8f6f0bb3de73a565733cc97b60b8981fdefc75874a3336c867c25e9d4ca",
+      "current_fragment_sha256": "f826801c1c31710b6a63f2ee7ca0a3d0f72c75cb4f6b94dc81eac3af6f45c693",
+      "byte_identical": false,
+      "only_expected_two_curves_changed": true
+    },
+    {
+      "id": "part-head-rear-hair-left-occipital-root",
+      "historical_fragment_sha256": "4202148ac5879bbcba93736a6754685d1b12d0bb98b2808bc18681730748f459",
+      "current_fragment_sha256": "4202148ac5879bbcba93736a6754685d1b12d0bb98b2808bc18681730748f459",
+      "byte_identical": true,
+      "only_expected_two_curves_changed": null
+    },
+    {
+      "id": "part-head-rear-hair-left-central-back-tail",
+      "historical_fragment_sha256": "58b60e650986084eb62691d54c0bdeb4353d606b7a7156a95ac8b320a75039cd",
+      "current_fragment_sha256": "58b60e650986084eb62691d54c0bdeb4353d606b7a7156a95ac8b320a75039cd",
+      "byte_identical": true,
+      "only_expected_two_curves_changed": null
+    }
+  ],
+  "current_outside_scopes_equal_frozen_input": true,
+  "parent_unchanged_from_formally_repaired_input": true,
+  "historical_parent_only_two_curves_changed": true,
+  "root_attributes_container_ancestry_fill_clip_and_styles_preserved": true,
+  "changes": [
+    {
+      "scope": "parent",
+      "changed_segment_indices": [
+        21,
+        22
+      ],
+      "old_and_new_control_hull_y": [
+        1325.0,
+        1428.0
+      ]
+    },
+    {
+      "scope": "outer",
+      "changed_segment_indices": [
+        21,
+        22
+      ],
+      "old_and_new_control_hull_y": [
+        1325.0,
+        1428.0
+      ]
+    }
+  ],
+  "raw_status": "fail",
+  "raw_counts": [
+    0,
+    3,
+    0,
+    0
+  ],
+  "raw_proof_applicability": [
+    {
+      "sample": {
+        "x": 178.75,
+        "y": 725.25,
+        "parent_alpha": 127,
+        "child_alpha": 128
+      },
+      "parent_segment": 6,
+      "child_segment": 6,
+      "complete_segment_in_current_xml": true,
+      "points_in_traversal_order": [
+        [
+          184.0,
+          709.0
+        ],
+        [
+          170.0,
+          746.0
+        ],
+        [
+          173.0,
+          780.0
+        ],
+        [
+          192.0,
+          818.0
+        ]
+      ],
+      "old_left_membership": [
+        false,
+        false
+      ],
+      "old_right_membership": [
+        true,
+        true
+      ],
+      "prior_other_boundary_distance_lower_bound": 17.142626062392626,
+      "reuse_reason": "Only changed segments are within y=1325..1428 in old and current curves; all boundaries and fill/clip/style semantics at this horizontal slice are unchanged."
+    },
+    {
+      "sample": {
+        "x": 215.0,
+        "y": 757.75,
+        "parent_alpha": 127,
+        "child_alpha": 128
+      },
+      "parent_segment": 51,
+      "child_segment": 47,
+      "complete_segment_in_current_xml": true,
+      "points_in_traversal_order": [
+        [
+          194.0,
+          811.0
+        ],
+        [
+          210.0,
+          776.0
+        ],
+        [
+          223.0,
+          737.0
+        ],
+        [
+          235.0,
+          693.0
+        ]
+      ],
+      "old_left_membership": [
+        false,
+        false
+      ],
+      "old_right_membership": [
+        true,
+        true
+      ],
+      "prior_other_boundary_distance_lower_bound": 23.09849567551,
+      "reuse_reason": "Only changed segments are within y=1325..1428 in old and current curves; all boundaries and fill/clip/style semantics at this horizontal slice are unchanged."
+    },
+    {
+      "sample": {
+        "x": 210.5,
+        "y": 941.75,
+        "parent_alpha": 127,
+        "child_alpha": 128
+      },
+      "parent_segment": 55,
+      "child_segment": 51,
+      "complete_segment_in_current_xml": true,
+      "points_in_traversal_order": [
+        [
+          202.0,
+          975.0
+        ],
+        [
+          207.0,
+          958.0
+        ],
+        [
+          211.0,
+          944.0
+        ],
+        [
+          212.0,
+          932.0
+        ]
+      ],
+      "old_left_membership": [
+        false,
+        false
+      ],
+      "old_right_membership": [
+        true,
+        true
+      ],
+      "prior_other_boundary_distance_lower_bound": 9.959257586183755,
+      "reuse_reason": "Only changed segments are within y=1325..1428 in old and current curves; all boundaries and fill/clip/style semantics at this horizontal slice are unchanged."
+    }
+  ],
+  "coverage_proof_applicability": [
+    {
+      "sample_center": [
+        317.125,
+        417.125
+      ],
+      "complete_boundaries_still_match_current_xml": true,
+      "prior_partition_memberships": [
+        {
+          "x": 315.6218102537729,
+          "parent": false,
+          "outer_or_inner": false
+        },
+        {
+          "x": 317.1218102537729,
+          "parent": true,
+          "outer_or_inner": true
+        },
+        {
+          "x": 318.625,
+          "parent": true,
+          "outer_or_inner": true
+        }
+      ],
+      "reuse_reason": "All current relevant paths and fill semantics match old proof, except two curves whose whole control hull is below y=1325; neither curve can cross this horizontal slice."
+    },
+    {
+      "sample_center": [
+        318.875,
+        1278.875
+      ],
+      "complete_boundaries_still_match_current_xml": true,
+      "prior_partition_memberships": [
+        {
+          "x": 317.31794191228494,
+          "parent": true,
+          "outer_or_inner": true
+        },
+        {
+          "x": 318.81794191228494,
+          "parent": false,
+          "outer_or_inner": false
+        },
+        {
+          "x": 318.8783764899476,
+          "parent": false,
+          "outer_or_inner": false
+        },
+        {
+          "x": 320.3783764899476,
+          "parent": true,
+          "outer_or_inner": true
+        }
+      ],
+      "reuse_reason": "All current relevant paths and fill semantics match old proof, except two curves whose whole control hull is below y=1325; neither curve can cross this horizontal slice."
+    }
+  ],
+  "coverage_without_parent": {
+    "missing_count": 2,
+    "extra_count": 105,
+    "missing_samples": [
+      {
+        "x": 317.0,
+        "y": 417.0,
+        "parent_alpha": 128,
+        "child_alpha": 127
+      },
+      {
+        "x": 318.75,
+        "y": 1278.75,
+        "parent_alpha": 129,
+        "child_alpha": 124
+      }
+    ]
+  },
+  "coverage_statistics_source": "Fresh maker raster evidence bound to the exact current candidate; not independently rerun in this focused recheck.",
+  "limitation": "Exact correspondence reuses prior local proof only; this is not a new full-plane numerical proof and does not rewrite tool RAW FAIL.",
+  "check_preparation_note": "First run stopped before evidence output due to a manually specified segment-index off-by-one. Actual parsed before/after segments were inspected; corrected zero-based indices are 21 and 22. No input was changed."
+}

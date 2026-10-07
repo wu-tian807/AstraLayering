@@ -1,0 +1,15 @@
+{
+  "node": "part_contours",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "2part完整闭合底形和6条外缘/隐藏接界完成，逐件彩参/线参同坐标实看；髋膝踝圆端仅辅助虚线，无新增孔或横切缝。",
+  "evidence": [
+    "views/part_contours.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_contours"
+  },
+  "artwork_sha256": "f644e9610ceebd9adf617b49f626bf00748c6c91a5ec017de7fcf61330afc10d"
+}

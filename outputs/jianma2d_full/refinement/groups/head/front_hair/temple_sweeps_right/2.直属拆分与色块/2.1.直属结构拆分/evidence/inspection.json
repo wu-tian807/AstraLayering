@@ -1,0 +1,87 @@
+{
+  "worker_id": "/root/workflow_runner/split_anklet_left",
+  "logical_worker": "group_split:head/front_hair/temple_sweeps_right",
+  "actor_context": "沿用已授权现存 splitter actor，与本组 maker /root/workflow_runner 分离，未绘制本组，不声称新上下文。",
+  "target": "n28",
+  "node": "group_split",
+  "configuration": {
+    "read": "本节点流程.yaml、提示词.txt、gpt-6-sol-xhigh.model 及 node1 补全说明",
+    "model_override": "用户既有授权改用 gpt-6-astra xhigh，不新开会话。"
+  },
+  "visual_inspection": {
+    "file": "evidence/reference-isolation.png",
+    "tool": "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "isolation_id": "group-head-front-hair-temple-sweeps-right",
+    "crop": [
+      432,
+      118,
+      101,
+      173
+    ],
+    "scale": 4,
+    "viewed": true
+  },
+  "observations": [
+    "右冠側短片扇保留多片转向/搭叠关系，以 crown_sweeps group 继续细拆；不根据内部色线的条数预先枚举短片。",
+    "下方依次可辨认三层较长回卷片与最下贴耳回卷片，各为一片连续完整形体，分别以 part 控制转动与遮挡。",
+    "右侧外弧更紧、主要片端朝向及最低收尖位置不同于左侧；按本侧参照确定完整根段和回卷轮廓，不机械镜像。",
+    "右侧耳前内缘连续，没有左侧约 (370,247)/(363,258) 那样的两处露肤孔，不复制负形或额外打孔。",
+    "同面高光、暗条与细纹留给后续绘制，不铸成独立发片。"
+  ],
+  "direct_children": {
+    "groups": [
+      "crown_sweeps"
+    ],
+    "parts": [
+      "upper_temple_lock",
+      "middle_temple_lock",
+      "lower_temple_lock",
+      "ear_lock"
+    ]
+  },
+  "parent_extent_ownership": {
+    "head-front-hair-temple-sweeps-right-shape": "上部根冠及短片扇归 crown_sweeps；其下三层连续回卷片依次归 upper_temple_lock、middle_temple_lock、lower_temple_lock；最下耳侧内收片及 (499,279) 尖端归 ear_lock。各完整根部可搭叠，右側内缘保持无孔连续形体。"
+  },
+  "coverage_note": "只定义一层完整发片归属，不修改输入几何；每个 part 都包含自身根段与片端，不能用按 y 坐标水平切条的方式代替。子轮廓精确绘制留 2.2。",
+  "mirror_pairs": {
+    "added": [
+      {
+        "name": "temple_crown_sweeps_pair",
+        "members": [
+          "head/front_hair/temple_sweeps_left/crown_sweeps",
+          "head/front_hair/temple_sweeps_right/crown_sweeps"
+        ]
+      }
+    ],
+    "ordering_reason": "左 crown_sweeps 已有完整范围定义，本轮右侧同源上冠组具有对应根冠/短片层叠结构；两侧上冠范围均完整，未发现右侧更完整的依据，沿用已有父配对的左侧在前。仅关联结构，右侧曲率及无孔特征保留。"
+  },
+  "validation": {
+    "argv": [
+      "python3",
+      "../../workflow-next/live2d-layering/tools/groups.py",
+      "check-children",
+      "--groups",
+      "structure/groups.json",
+      "--group-path",
+      "head/front_hair/temple_sweeps_right",
+      "--patch",
+      "refinement/groups/head/front_hair/temple_sweeps_right/2.直属拆分与色块/2.1.直属结构拆分/children.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "readonly_sha256": {
+    "structure/groups.json": "200aeaa1deb1fe6dd109a6d4f24081c8a5c022c64bc6f7df3910eb98fa1cd2e0",
+    "structure/groups.dispatch.json": "a9fc162fc178cc009267f9b9f2bc034ff95c84756d320f42f95f3c1958671246",
+    "structure/rendering.json": "f3687c347e20198b69cd7c0463999c2858edebf8b7c74d3c3ebe3a6424578f2d",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "edbbbaf389939a2dc5adbd3e2f41bd5d9251019f3db5aa116cf766ea7add6460",
+    "block-layers/preview.png": "b96b1ea38404a3e89592b1b508b045eae39d941c8c9d2e5d6156860747f1e1e1",
+    "refinement/character.svg": "f8b34d0abcb600bc31af422f12438858648380d018d08e2e3462415404ee8fad",
+    "refinement/preview.png": "318ea0e25fb6e5cf753a5dd1fcd964044338d6fa6eb406c5066196af12cf6869"
+  },
+  "readonly_inputs_unchanged": true,
+  "children_sha256": "8572c8af3b03ea35abbbc3bc692e0cacd90f38abd13eb784e950cc03592fd94c",
+  "status": "checked-awaiting-runner-expand-and-checkpoint"
+}

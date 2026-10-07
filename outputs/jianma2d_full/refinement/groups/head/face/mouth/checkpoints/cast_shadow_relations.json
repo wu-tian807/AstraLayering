@@ -1,0 +1,21 @@
+{
+  "target": "n24",
+  "node": "cast_shadow_relations",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "复核三part明暗：嘴角为自身转面，闭口接界非独立阴影；无可确认外来投影。空shadow清单，原SVG和25条关系逐字保留，原生结构check通过；复用未变的4.4实际对照。",
+  "artwork_sha256": "7b898878ee58ab786ffecc30a63f888896de34deaa9acdfe81986c621cad17a4",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_local_shading.png",
+    "4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/structure-check.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_relations"
+  }
+}

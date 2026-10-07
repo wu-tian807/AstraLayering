@@ -1,0 +1,12 @@
+{
+  "logical_worker": "group:head/front_hair",
+  "actual_actor": "/root/workflow_runner/arm_right",
+  "role": "local repair successor; original n8 authorship and history retained",
+  "reads": {
+    "../../workflow-next/live2d-layering/templates/部件专项/generic/1.父级轮廓补全/流程.yaml": "915fa04454f2fbfefed1b7e9b177631784e489dad078f45bf36e3fd17bd94868",
+    "../../workflow-next/live2d-layering/templates/部件专项/generic/1.父级轮廓补全/提示词.txt": "bca8abaed2156fb428ef2221e3a93e0528094c1ae1efcb425dd70dad83b30689",
+    "../../workflow-next/live2d-layering/templates/部件专项/generic/1.父级轮廓补全/gpt-6-astra-xhigh.model": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "validation/ancestor-repair-front-hair-20261006/suspension.json": "68c5621842ed2ac6aa920d9fe2ce4b4c3a6dafec4f08a0072b0d8ccd5ef26b6c",
+    "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.2.直属轮廓色块/父范围待修说明.md": "0504fede454265cbf55c7b76788f2ca0c45891140f11ae23735e9fa025d4fd94"
+  }
+}

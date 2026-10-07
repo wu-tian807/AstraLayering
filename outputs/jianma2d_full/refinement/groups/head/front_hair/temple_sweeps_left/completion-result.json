@@ -1,0 +1,17 @@
+{
+  "actor": "/root/workflow_runner",
+  "group": "head/front_hair/temple_sweeps_left",
+  "artwork_sha256": "f8b34d0abcb600bc31af422f12438858648380d018d08e2e3462415404ee8fad",
+  "guide_sha256": "edbbbaf389939a2dc5adbd3e2f41bd5d9251019f3db5aa116cf766ea7add6460",
+  "rendering_sha256": "f3687c347e20198b69cd7c0463999c2858edebf8b7c74d3c3ebe3a6424578f2d",
+  "preview_sha256": "318ea0e25fb6e5cf753a5dd1fcd964044338d6fa6eb406c5066196af12cf6869",
+  "other_artwork_byte_identical": true,
+  "physical_geometry_equals_approved_guide": true,
+  "independent_layers_total": 29,
+  "stage5_obligations": [
+    "Preserve two ear-side skin negative spaces",
+    "Resolve crown_sweeps group follow after n50",
+    "Bind four full raw shadows to exact receivers and keep them behind casters; raw currently retains out-of-receiver allowance",
+    "Place temple roots behind frontal hair without root-cut lines"
+  ]
+}

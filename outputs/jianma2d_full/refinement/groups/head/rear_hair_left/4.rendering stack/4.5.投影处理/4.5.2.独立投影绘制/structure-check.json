@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "layers": 17,
+  "complete": false,
+  "scope": "Names, tree paths, SVG references and receiver mask structure only",
+  "diagnostic_apply": {
+    "layers": 3,
+    "masked": 3,
+    "production_unbound": true
+  }
+}

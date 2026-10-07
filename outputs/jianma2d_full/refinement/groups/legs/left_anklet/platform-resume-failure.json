@@ -1,0 +1,39 @@
+{
+  "time": "2026-10-06T11:54:47.735268+00:00",
+  "active_target": "n20",
+  "last_success": "group_split",
+  "pending_node": "group_child_layers",
+  "original_maker": "/root/workflow_runner/anklet_left",
+  "failed_calls": [
+    {
+      "tool": "collaboration.followup_task",
+      "target": "anklet_left",
+      "attempts": 3,
+      "error": "agent thread limit reached"
+    },
+    {
+      "tool": "collaboration.spawn_agent",
+      "task_name": "anklet_left_resume",
+      "model": "gpt-6-astra",
+      "reasoning_effort": "xhigh",
+      "fork_turns": "none",
+      "error": "agent thread limit reached"
+    }
+  ],
+  "live_at_failure": {
+    "/root": "running",
+    "/root/workflow_runner": "running",
+    "/root/workflow_runner/arm_right": "completed",
+    "/root/workflow_runner/split_anklet_left": "completed"
+  },
+  "preservation": "All successful node1 and split authors/artifacts/checkpoints retained. No replacement maker was created by failed spawn; no 2.2 work has run. Root notified for platform coordination.",
+  "resolution": {
+    "actual_actor": "/root/workflow_runner/arm_right",
+    "logical_identity": "group:legs/left_anklet",
+    "fresh_context": false,
+    "authorized_by": "root",
+    "independent_reviewer": "/root",
+    "preserved_node1_author": "/root/workflow_runner/anklet_left",
+    "preserved_split_author": "/root/workflow_runner/split_anklet_left"
+  }
+}

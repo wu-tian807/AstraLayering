@@ -1,0 +1,21 @@
+{
+  "command": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/groups.py",
+    "check-children",
+    "--groups",
+    "structure/groups.json",
+    "--group-path",
+    "head/rear_hair_left/inner_back_curtain",
+    "--patch",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/children.json"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "observed_in": "exec_command chunk d71c1c",
+  "children_sha256": "dd4b2b535af4aa1b999cf94aa99f5509603f091883856c247c3240d6a91b1980",
+  "groups_sha256": "249e85dd7dd3c18fc795a2c4b166d5f5a1062495050dfd6036be6e2030d1bbe4",
+  "checked_at": "2026-10-06T18:22:53.771527+00:00",
+  "result": "pass"
+}

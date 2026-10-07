@@ -1,0 +1,94 @@
+{
+  "actor": "/root/workflow_runner/arm_right",
+  "logical_worker": "group:head/front_hair/fringe_left",
+  "candidate_sha256": "4ef9f2e651653e0a40ce545d46d6845a2b7229847cb2d10c90e6bb49e7ba8c6d",
+  "native_pointer_before_accept": {
+    "target": "n25",
+    "route": "generic",
+    "pointer": "part_highlights"
+  },
+  "protected": {
+    "block-layers/groups.svg": {
+      "sha256": "57d287ca92f5c2604317c4f9328f19cc629a7f988a96de880f6508e847ccb206",
+      "unchanged": true
+    },
+    "structure/groups.json": {
+      "sha256": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+      "unchanged": true
+    },
+    "structure/rendering.json": {
+      "sha256": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+      "unchanged": true
+    }
+  },
+  "baseline_artwork_sha256": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+  "removing_own_marker_section_restores_baseline_byte_for_byte": true,
+  "geometry": {
+    "broad_lock": {
+      "source_base_clip_alpha_equal_approved_guide_d": true,
+      "guide_d_sha256": "85b6341db493b6d6d1d535842e9ff1289053a3e9234f2ccd0e5b7cc891bc3573",
+      "pressure_shapes_preserved_from_3_5": 5,
+      "source_curves_hidden_editable": true,
+      "self_alpha_not_receiver_mask": true
+    },
+    "fine_lock": {
+      "source_base_clip_alpha_equal_approved_guide_d": true,
+      "guide_d_sha256": "3c737710c0eb6b1b6984dd609f9967de6529be25791522214f2aa186ca725e05",
+      "pressure_shapes_preserved_from_3_5": 2,
+      "source_curves_hidden_editable": true,
+      "self_alpha_not_receiver_mask": true
+    }
+  },
+  "relations_count": 25,
+  "own_relations": 0,
+  "all_existing_raw_groups_byte_identical": {
+    "neck_neck_skin_jaw_cast_shadow": "0eed04337e01f8d53e5a355762ac4bb1b5b4b70c7290de9a20d1713d3245d0ef",
+    "body_torso_skin_hair_cast_left": "a08f49e849e049a5fd8d547d6e8ceee5dc87249efb645b6d43a6a9bd16828ea1",
+    "body_torso_skin_hair_cast_right": "264059e5e3cf1c0b9f00d2d18214f651f5745d5b0e99b672d66f4e3d76c271f1",
+    "head_face_face_skin_hair_cast_left": "75856827f87f6a46dc546597008ce1d7fed2061ed26d364c60d092bd538f7c34",
+    "head_face_ear_left_hair_cast_left": "d7298249d348047de56184a9fb5c12819fa6d1f125abbc0ba5f303b4ccc29c7d",
+    "head_face_face_skin_hair_cast_right": "759b6ba3e73337ee2412a6b038d97ac283500cd1661ae5ad0db001813dce7407",
+    "head_face_ear_right_hair_cast_right": "8b58cb4dd17d736225acf9288077b413e89c8ea673c9dea8cdd5017496ad327b",
+    "head_front_hair_scalp_cap_crown_cast_shadow": "69022d320e0a01eaa744a0782b1b0edc71a61ab3dbeb4a89f0699d292fef093b",
+    "head_front_hair_scalp_cap_fringe_left_cast_shadow": "91cb29b1bf63eacc6e511e45bc9123217eca02b008e99c6ed365bca6669e5210",
+    "head_front_hair_scalp_cap_fringe_right_cast_shadow": "ec59b0ddb60cdc8eece1d875560f97c68a6f8629d121d6113d4c87141e97d21b",
+    "head_face_framing_hair_left_main_long_lock_front_hair_cast_shadow": "3e7b981c22407a4f725bdaf22719b58322d87b0c6e7cf77667aa4eae69796d0f",
+    "head_face_framing_hair_right_main_long_lock_front_hair_cast_shadow": "4c5bb1ac1ad03398ee60948405463700f60a26ca24d1c230db5546ee75a9b387",
+    "head_rear_hair_right_occipital_root_face_cast_shadow": "df6f77a307618fda721407e3c4933a0f28d0f43b5debf57f1c70a9913b1ad1b9",
+    "head_crown_center_crest_front_hair_shadow": "d8d750edc4a61fe61e27892b77fdde985346d8db8550db77c66fb9208a8532c1",
+    "head_rear_hair_left_occipital_root_face_cast_shadow": "80f1a71ee76c225b24292f062f9908733792b66e0050fb2780c679374e6c7589",
+    "head_rear_hair_left_central_back_tail_left_leg_cast_shadow": "b4e59bbde0212ebdb7e46f9c9da614b7c2298239bcfbd8ad4d06d705e7b75803",
+    "head_rear_hair_left_central_back_tail_right_leg_cast_shadow": "3e23415c2c76dd65e44bce173cce873e236000021b3f870a36473b687a52892c",
+    "head_hanging_ribbon_left_ribbon_strip_hanger_cast_shadow": "49451716ad67709c6345b7b939de49d11ce8236812e64e344afbafed64b93a57",
+    "head_hanging_ribbon_right_ribbon_strip_hanger_cast_shadow": "0a3a323559af81c85a0160d60106c985bc03ae16ea02edd5ea6e3615643a7b4a",
+    "arms_arm_left_upper_arm_hair_cast_shadow": "74efb283661bc94e93e00ce2250b3abde11d89df396b88d779da83ba7f2b0d95",
+    "arms_arm_right_upper_arm_hair_cast_shadow": "f8ed0db5a547f076dd7e3af8fc4236c1752a68cf17eb9327985c3655a7bcac9f",
+    "eye_right_upper_lid_cast_shadow": "54c4feb790226f4589fca29a48342f9ac268ab33b0e822d35cc378228734aeea",
+    "eye_right_corneal_highlight": "992e43ccc80d9e638fab7c5371509bff422724c311e9c76ee3c47335c357dd69",
+    "eye_left_upper_lid_cast_shadow": "1e68a638c213445585ef445ffa24795d239adbb2641f0f1670ef6ac87b268f59",
+    "eye_left_corneal_highlight": "2c7b45c800201a764ab5564dcc5585b2dc29bfd47b0a3b151eefcd0ddc64cf8a"
+  },
+  "failed_2_2_trial_preserved": true,
+  "containment": {
+    "scale": 4,
+    "alpha_threshold": 128,
+    "both_parts_outside_samples": 0
+  },
+  "rendering_check_scope": {
+    "status": "pass",
+    "layers": 25,
+    "complete": false,
+    "scope": "Names, tree paths, SVG references and receiver mask structure only"
+  },
+  "actually_viewed_images": {
+    "inspection.png": "a2dd9973f12154cf221d0449197c77eb3d41cc4a8cf093d4b7c43da300b6fa9c",
+    "gap-8x.png": "ff887dc0048c87628fd25639cd9ffc4802fbc1311f70194a62584e4c2170d4e0",
+    "adjacent.png": "fbfd756e2c567bd9e13126ff72ef68ceaf0f67ba5659174ea3c8a63fbe5ade57",
+    "adjacent-gap-8x.png": "9124e5f13318d4b3eef409ab8583b728db835ac01165f052f8a383f3f8600ac4"
+  },
+  "stage_5_pending": [
+    "receiver masks",
+    "detailed follow targets",
+    "cross-group stacking"
+  ]
+}

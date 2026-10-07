@@ -1,0 +1,15 @@
+{
+  "node": "part_local_shading",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "2条后脑浅沟与1条尾尖自身转面已细化，逐件和组合实看；柔面未压黑、无外来投影混入。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.4.局部暗部细化/parts.svg": "c197ebb214e8dc28036874647bfe38d2369acc32471336e8d3c65aab5f430be7",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.4.局部暗部细化/root.png": "25091f7c1b70fafa11314661fb1c5f3c940a4fac54686639d3285226e09a9e6b",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.4.局部暗部细化/tail.png": "483f29af60457714ddff431f1ebb9f0121312b4b8a0bf5b49f14956c50fc8c4b",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.4.局部暗部细化/context.png": "42d9eede1a77ec5459a19377ebf55e62db0e67ea0f2ae1619487f07dc4ef901a",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.4.局部暗部细化/说明.md": "fe82314e0ad0a396702dffc7347223b97ec105b91ce5455472655660e6b438fb"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "f76a9f1b82c114cd993b9f30b3f523163c51013a1b3787ab3c61d586fab6f570"
+}

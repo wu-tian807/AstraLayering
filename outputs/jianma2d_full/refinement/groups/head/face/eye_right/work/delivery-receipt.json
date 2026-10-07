@@ -1,0 +1,22 @@
+{
+  "artwork_sha256": "880596f427d02af4ce9fea47916b40ebc295a18ccd1e783900eba72cd2198b42",
+  "preview_sha256": "6575bd40cde8a97b88df6b942edae4d1306ce4c8913f4965efd5a01024adeb03",
+  "same_svg_rendered": true,
+  "rendering_sha256": "17c422f5624fd3bcd0ff1fb260fd08c997f550dd3efa322836ba268d90328a19",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab",
+  "state": {
+    "target": "n22",
+    "route": "generic",
+    "pointer": "part_rendered"
+  },
+  "last_successful_node": "part_rendered",
+  "complete_next_reopen_called": false,
+  "actual_view": "views/part_rendered.png",
+  "scope": [
+    "head/face/eye_right/sclera",
+    "head/face/eye_right/lower_eyelid"
+  ],
+  "worker_id": "/root/workflow_runner/arm_right",
+  "worker": "group:head/face/eye_right",
+  "new_independent_context": false
+}

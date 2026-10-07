@@ -1,0 +1,227 @@
+{
+  "scope": "Native visual evidence preparation only; awaiting actual independent visual review",
+  "group": "head/front_hair",
+  "inputs": {
+    "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+    "structure/groups.json": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde"
+  },
+  "children": [
+    {
+      "path": "head/front_hair/fringe_left",
+      "id": "group-head-front-hair-fringe-left",
+      "kind": "group",
+      "name": "fringe_left"
+    },
+    {
+      "path": "head/front_hair/fringe_right",
+      "id": "group-head-front-hair-fringe-right",
+      "kind": "group",
+      "name": "fringe_right"
+    },
+    {
+      "path": "head/front_hair/temple_sweeps_left",
+      "id": "group-head-front-hair-temple-sweeps-left",
+      "kind": "group",
+      "name": "temple_sweeps_left"
+    },
+    {
+      "path": "head/front_hair/temple_sweeps_right",
+      "id": "group-head-front-hair-temple-sweeps-right",
+      "kind": "group",
+      "name": "temple_sweeps_right"
+    },
+    {
+      "path": "head/front_hair/scalp_cap",
+      "id": "part-head-front-hair-scalp-cap",
+      "kind": "part",
+      "name": "scalp_cap"
+    }
+  ],
+  "crop": [
+    335,
+    108,
+    205,
+    185
+  ],
+  "scale": 4,
+  "commands": [
+    {
+      "name": "full",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/full.png",
+        "--reference",
+        "references/base-subject.png"
+      ],
+      "returncode": 0,
+      "reused": "Existing native full render from same readonly candidate; local crop invocation was corrected from float text to integer arguments."
+    },
+    {
+      "name": "fringe_left",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/fringe_left.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "group-head-front-hair-fringe-left",
+        "--crop",
+        "335",
+        "108",
+        "205",
+        "185",
+        "--scale",
+        "4",
+        "--edge-overlay"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/fringe_left.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "fringe_right",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/fringe_right.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "group-head-front-hair-fringe-right",
+        "--crop",
+        "335",
+        "108",
+        "205",
+        "185",
+        "--scale",
+        "4",
+        "--edge-overlay"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/fringe_right.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "temple_sweeps_left",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/temple_sweeps_left.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "group-head-front-hair-temple-sweeps-left",
+        "--crop",
+        "335",
+        "108",
+        "205",
+        "185",
+        "--scale",
+        "4",
+        "--edge-overlay"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/temple_sweeps_left.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "temple_sweeps_right",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/temple_sweeps_right.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "group-head-front-hair-temple-sweeps-right",
+        "--crop",
+        "335",
+        "108",
+        "205",
+        "185",
+        "--scale",
+        "4",
+        "--edge-overlay"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/temple_sweeps_right.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "scalp_cap",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/scalp_cap.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "part-head-front-hair-scalp-cap",
+        "--crop",
+        "335",
+        "108",
+        "205",
+        "185",
+        "--scale",
+        "4",
+        "--edge-overlay"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/scalp_cap.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "connections",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/connections.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "group-head-front-hair-fringe-left",
+        "--only",
+        "group-head-front-hair-fringe-right",
+        "--only",
+        "group-head-front-hair-temple-sweeps-left",
+        "--only",
+        "group-head-front-hair-temple-sweeps-right",
+        "--only",
+        "part-head-front-hair-scalp-cap",
+        "--crop",
+        "335",
+        "108",
+        "205",
+        "185",
+        "--scale",
+        "4",
+        "--edge-overlay"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/connections.png\n",
+      "stderr": ""
+    }
+  ],
+  "contact_sheet": "Native boards pasted at original size without resampling",
+  "image_hashes": {
+    "scalp_cap.png": "bef5f44fa242fd238cf2597f29d62a84722d48a43d0ad31e18f5b848bf9e9422",
+    "component-review-board.png": "31e4243a6f4cf60c04e1e78d58dd09fa96ddc48802693f1c356e91bfea2dae50",
+    "temple_sweeps_right.png": "901aebe2d8608ad1d5ded8abd3a5932b4d0b6ceb2875be822697125689e40c1e",
+    "connections.png": "94beaf23608346c3393f4bbf9eb19c57aa2099bef964058d1117186a67a5f942",
+    "fringe_right.png": "8054a267003135291ddeba24b8e3139d84676602fc035f2a02e8fca411aa96b5",
+    "fringe_left.png": "14f16ae33d40fbf07cf7137b8e27c79a6e0254fcf99078ce9b95d446da6e7631",
+    "temple_sweeps_left.png": "b01cf6c3c25d7eea077fc5928b31ca658922abd6ed577138f27b1bb255414e18",
+    "full.png": "5631e477b1e5fcc7456ef2c56fdb6625ee2fb8296eb8031f0bdcd19b98ece82b"
+  }
+}

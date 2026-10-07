@@ -1,0 +1,18 @@
+{
+  "target": "n23",
+  "node": "group_child_layers",
+  "logical_worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "model_config": "gpt-6-astra-xhigh.model",
+  "input_sha256": {
+    "block-layers/groups.svg": "f5df8b148e3fedc78ade302e4cc1e17b072467b8a865ecef994e5f544e236a0b",
+    "block-layers/preview.png": "480591e8ba441d9ca5991b76d4d4c4818124532a1d109edd5b74b3b237584de9",
+    "structure/groups.json": "680de05caadfa0294a2b6c4f286911fbebac423d79c3036d34752df182b7929d",
+    "structure/groups.dispatch.json": "2c09655f23ada913cbeff63cdf48b1e6c7656c7124ffc0a9e60a50f6bbc66158",
+    "structure/rendering.json": "17c422f5624fd3bcd0ff1fb260fd08c997f550dd3efa322836ba268d90328a19",
+    "refinement/character.svg": "880596f427d02af4ce9fea47916b40ebc295a18ccd1e783900eba72cd2198b42",
+    "refinement/preview.png": "6575bd40cde8a97b88df6b942edae4d1306ce4c8913f4965efd5a01024adeb03",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  }
+}

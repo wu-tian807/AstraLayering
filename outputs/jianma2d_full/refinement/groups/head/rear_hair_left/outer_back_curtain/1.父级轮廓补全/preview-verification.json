@@ -1,0 +1,21 @@
+{
+  "native_white_preview_command": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-groups.svg",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/14-current-white-preview.png",
+    "--background",
+    "white"
+  ],
+  "preview_matches_actually_viewed_candidate_cell": true,
+  "actual_viewed_board": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/02-before-full-blend.png",
+  "candidate_cell_bbox": [
+    895,
+    28,
+    1790,
+    1786
+  ],
+  "guide_sha256": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+  "previous_preview_sha256": "d57665f8d5d09a60ee698902a454576e810c403b7a9bb77d444538cd63c8d279",
+  "output_preview_sha256": "d57665f8d5d09a60ee698902a454576e810c403b7a9bb77d444538cd63c8d279"
+}

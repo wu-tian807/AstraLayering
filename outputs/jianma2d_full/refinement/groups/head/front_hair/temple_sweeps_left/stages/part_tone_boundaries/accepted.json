@@ -1,0 +1,7 @@
+{
+  "actor": "/root/workflow_runner",
+  "node": "part_tone_boundaries",
+  "artwork_sha256": "2154b94d13e2580bd1218bedb9b92086702f4ebe38c1e43c99971fd19caade0a",
+  "viewed": "Actual views and observations recorded in appearance-review.md; no automatic visual verdict",
+  "exit_code": 0
+}

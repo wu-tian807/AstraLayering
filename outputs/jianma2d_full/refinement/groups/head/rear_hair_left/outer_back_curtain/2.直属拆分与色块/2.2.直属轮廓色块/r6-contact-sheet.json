@@ -1,0 +1,29 @@
+{
+  "panels": [
+    {
+      "file": "r6-full-blend.png",
+      "offset": [
+        0,
+        24
+      ],
+      "size": [
+        2685,
+        1786
+      ],
+      "scale": 1
+    },
+    {
+      "file": "r6-junction-8x.png",
+      "offset": [
+        2685,
+        24
+      ],
+      "size": [
+        768,
+        1116
+      ],
+      "scale": 1
+    }
+  ],
+  "resized": false
+}

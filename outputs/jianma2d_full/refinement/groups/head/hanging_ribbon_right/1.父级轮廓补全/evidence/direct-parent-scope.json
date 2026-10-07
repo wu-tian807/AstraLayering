@@ -1,0 +1,14 @@
+{
+  "subject": "character",
+  "groups": [
+    {
+      "name": "head",
+      "groups": [
+        {
+          "name": "hanging_ribbon_right",
+          "groups": []
+        }
+      ]
+    }
+  ]
+}

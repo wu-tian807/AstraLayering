@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "cast_shadow_artwork",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "本scope无独立投影，实看本侧独显和参考后沿用原画；原生rendering check通过既有21层结构，未把后置组合标为完成。",
+  "evidence": [
+    "views/cast_shadow_artwork.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_artwork"
+  },
+  "artwork_sha256": "5fe2423dd9d5efa9ee11441d22f26353d5cfb552c9874bd4efe5bda07d89fdc2"
+}

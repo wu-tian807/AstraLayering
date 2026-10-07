@@ -1,0 +1,16 @@
+{
+  "node": "part_tone_boundaries",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "8条自身转面、膝前浅凹、胫前受光及踝收束范围完成，2part彩参/线参实看；膝亮点局部校准，软边与完整隐藏同面延续写明，临时衣影排除。",
+  "evidence": [
+    "views/part_tone_boundaries.png",
+    "views/part_tone_boundaries-knee.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_tone_boundaries"
+  },
+  "artwork_sha256": "abd00b67f77af14159d592ad4f9769c8635169d2c876d44dd70bbed6f04f99a9"
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/svg_containment.py",
+    "--parent-svg",
+    "refinement/groups/head/front_hair/local-repair-20261006/2.2/revision-02/input/groups.before.svg",
+    "--candidate",
+    "refinement/groups/head/front_hair/local-repair-20261006/2.2/revision-02/candidate.svg",
+    "--groups",
+    "structure/groups.json",
+    "--group-path",
+    "head/front_hair",
+    "--out",
+    "refinement/groups/head/front_hair/local-repair-20261006/2.2/revision-02/轮廓检查.json"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"pass\", \"report\": \"refinement/groups/head/front_hair/local-repair-20261006/2.2/revision-02/轮廓检查.json\", \"failed\": []}\n",
+  "stderr": ""
+}

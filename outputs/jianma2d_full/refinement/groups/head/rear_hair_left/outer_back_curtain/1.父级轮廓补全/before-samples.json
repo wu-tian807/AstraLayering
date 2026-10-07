@@ -1,0 +1,48 @@
+{
+  "region": [
+    104,
+    197,
+    354,
+    1314
+  ],
+  "scale": 4,
+  "alpha_threshold": 128,
+  "samples": [
+    {
+      "pixel_top_left": [
+        178.75,
+        725.25
+      ],
+      "pixel_center": [
+        178.875,
+        725.375
+      ],
+      "parent_alpha": 127,
+      "child_alpha": 128
+    },
+    {
+      "pixel_top_left": [
+        215.0,
+        757.75
+      ],
+      "pixel_center": [
+        215.125,
+        757.875
+      ],
+      "parent_alpha": 127,
+      "child_alpha": 128
+    },
+    {
+      "pixel_top_left": [
+        210.5,
+        941.75
+      ],
+      "pixel_center": [
+        210.625,
+        941.875
+      ],
+      "parent_alpha": 127,
+      "child_alpha": 128
+    }
+  ]
+}

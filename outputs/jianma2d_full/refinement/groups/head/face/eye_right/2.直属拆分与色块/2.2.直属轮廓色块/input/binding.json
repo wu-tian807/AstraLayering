@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "group_child_layers",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "logical_worker": "group:head/face/eye_right",
+  "new_independent_context": false,
+  "input_sha256": {
+    "block-layers/groups.svg": "89c381dd3fd998019fa9a9d25c74630a86a78abb8911900b0ad14bea6eabae23",
+    "block-layers/preview.png": "a9569f8b3b1e4f72616b3e16e98c59ef2d8e8589d871caa5ea997f0e3c48a548",
+    "structure/groups.json": "4548e37adec40af7897cb42f56d367512f3ce44df545f47331d026f44bb30ec6",
+    "structure/groups.dispatch.json": "c23f668e679f4f3cd00737ec5e74d2e12ca30c21e7da6071d26240a0bea13616",
+    "structure/rendering.json": "c0159f667ad7019605f8af14a9227fb4b8eba10b072f79f17fdeeb9a4fc40983",
+    "refinement/character.svg": "b0387e6409daa389e24893b09461803330fa86a2036fe1d0e3c1a0e910e945de",
+    "refinement/preview.png": "13ff744e1985dfce97ba90710fe32b73381aa0458d28777a1ea1ee24765eb3eb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  }
+}

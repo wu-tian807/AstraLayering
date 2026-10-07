@@ -1,0 +1,235 @@
+[
+  {
+    "path": "head/rear_hair_left/outer_back_curtain/inner_forked_lock",
+    "samples": [
+      {
+        "xy": [
+          195.5,
+          807.25
+        ],
+        "parent_alpha": 127,
+        "child_alpha": 128
+      },
+      {
+        "xy": [
+          326.5,
+          1251.5
+        ],
+        "parent_alpha": 127,
+        "child_alpha": 128
+      }
+    ]
+  },
+  {
+    "path": "head/rear_hair_left/outer_back_curtain/upper_loop_lock",
+    "samples": [
+      {
+        "xy": [
+          315.75,
+          477.75
+        ],
+        "parent_alpha": 120,
+        "child_alpha": 183
+      },
+      {
+        "xy": [
+          315.75,
+          478.0
+        ],
+        "parent_alpha": 82,
+        "child_alpha": 163
+      },
+      {
+        "xy": [
+          315.75,
+          478.25
+        ],
+        "parent_alpha": 43,
+        "child_alpha": 142
+      },
+      {
+        "xy": [
+          315.5,
+          479.75
+        ],
+        "parent_alpha": 106,
+        "child_alpha": 255
+      },
+      {
+        "xy": [
+          315.5,
+          480.0
+        ],
+        "parent_alpha": 75,
+        "child_alpha": 249
+      },
+      {
+        "xy": [
+          315.5,
+          480.25
+        ],
+        "parent_alpha": 46,
+        "child_alpha": 225
+      },
+      {
+        "xy": [
+          315.5,
+          480.5
+        ],
+        "parent_alpha": 21,
+        "child_alpha": 201
+      },
+      {
+        "xy": [
+          315.5,
+          480.75
+        ],
+        "parent_alpha": 3,
+        "child_alpha": 177
+      },
+      {
+        "xy": [
+          315.5,
+          481.0
+        ],
+        "parent_alpha": 0,
+        "child_alpha": 153
+      },
+      {
+        "xy": [
+          315.5,
+          481.25
+        ],
+        "parent_alpha": 0,
+        "child_alpha": 129
+      },
+      {
+        "xy": [
+          315.25,
+          482.5
+        ],
+        "parent_alpha": 115,
+        "child_alpha": 254
+      },
+      {
+        "xy": [
+          315.25,
+          482.75
+        ],
+        "parent_alpha": 101,
+        "child_alpha": 231
+      },
+      {
+        "xy": [
+          315.25,
+          483.0
+        ],
+        "parent_alpha": 86,
+        "child_alpha": 202
+      },
+      {
+        "xy": [
+          315.25,
+          483.25
+        ],
+        "parent_alpha": 72,
+        "child_alpha": 173
+      },
+      {
+        "xy": [
+          315.25,
+          483.5
+        ],
+        "parent_alpha": 57,
+        "child_alpha": 143
+      }
+    ]
+  },
+  {
+    "path": "head/rear_hair_left/outer_back_curtain/outward_curl_lock",
+    "samples": [
+      {
+        "xy": [
+          195.5,
+          807.25
+        ],
+        "parent_alpha": 127,
+        "child_alpha": 128
+      }
+    ]
+  },
+  {
+    "path": "head/rear_hair_left/outer_back_curtain/sweeping_long_lock",
+    "samples": [
+      {
+        "xy": [
+          195.5,
+          807.25
+        ],
+        "parent_alpha": 127,
+        "child_alpha": 128
+      }
+    ]
+  },
+  {
+    "path": "head/rear_hair_left/outer_back_curtain/pointed_long_lock",
+    "samples": [
+      {
+        "xy": [
+          195.5,
+          807.25
+        ],
+        "parent_alpha": 127,
+        "child_alpha": 128
+      },
+      {
+        "xy": [
+          234.75,
+          1452.0
+        ],
+        "parent_alpha": 119,
+        "child_alpha": 128
+      },
+      {
+        "xy": [
+          231.0,
+          1454.75
+        ],
+        "parent_alpha": 121,
+        "child_alpha": 128
+      },
+      {
+        "xy": [
+          225.0,
+          1459.0
+        ],
+        "parent_alpha": 121,
+        "child_alpha": 128
+      },
+      {
+        "xy": [
+          216.75,
+          1464.5
+        ],
+        "parent_alpha": 127,
+        "child_alpha": 136
+      },
+      {
+        "xy": [
+          203.75,
+          1472.25
+        ],
+        "parent_alpha": 125,
+        "child_alpha": 136
+      },
+      {
+        "xy": [
+          174.25,
+          1484.75
+        ],
+        "parent_alpha": 119,
+        "child_alpha": 128
+      }
+    ]
+  }
+]

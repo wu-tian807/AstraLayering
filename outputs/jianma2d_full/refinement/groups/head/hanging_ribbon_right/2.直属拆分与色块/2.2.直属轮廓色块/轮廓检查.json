@@ -1,0 +1,36 @@
+{
+  "status": "pass",
+  "group_path": "head/hanging_ribbon_right",
+  "parent_svg": "refinement/groups/head/hanging_ribbon_right/2.直属拆分与色块/2.2.直属轮廓色块/input-guide.svg",
+  "parent_ids": [
+    "group-head-hanging-ribbon-right"
+  ],
+  "candidate_svg": "refinement/groups/head/hanging_ribbon_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/hanging_ribbon_right/jeweled_hanger",
+      "status": "pass",
+      "ids": [
+        "group-head-hanging-ribbon-right-jeweled-hanger"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/hanging_ribbon_right/ribbon_strip",
+      "status": "pass",
+      "ids": [
+        "part-head-hanging-ribbon-right-ribbon-strip"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

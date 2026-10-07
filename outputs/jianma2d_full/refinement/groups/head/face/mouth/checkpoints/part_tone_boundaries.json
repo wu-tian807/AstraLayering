@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_tone_boundaries",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "已实看三part明暗辅助线与彩参/线稿：上唇两端自身转暗，唇峰窄反光，下唇浅柔反光和唇皮过渡；隐藏内侧不分臆测结构。所有辅助分区最终交色面，不画成硬线。",
+  "artwork_sha256": "73deb643de6f7142cb3a775da9118b26ff68a83df911ab5f86fcce559e9d3e57",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_tone_boundaries.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_tone_boundaries"
+  }
+}

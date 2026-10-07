@@ -1,0 +1,61 @@
+{
+  "worker": "/root/head_finish",
+  "logical_worker": "group:head",
+  "node": "part_rendered",
+  "views": [
+    {
+      "path": "refinement/groups/head/4.7-local-finish/bun-before.png",
+      "sha256": "75b3827de4432d87a5775a21e9179cc88a866133f2c968b7a4a3b0dfc5543587",
+      "actually_opened": true,
+      "scope": "input part + same-coordinate reference"
+    },
+    {
+      "path": "refinement/groups/head/4.7-local-finish/left-before.png",
+      "sha256": "494cd4a47b018594fe11562df1259a5b85e31fa0f86d09563452fb91788ac73c",
+      "actually_opened": true,
+      "scope": "input part + same-coordinate reference"
+    },
+    {
+      "path": "refinement/groups/head/4.7-local-finish/right-before.png",
+      "sha256": "32ac6f472e7d67d4b7590d4ae91fc006ec7977cb50fae8807b9fc45f041d4707",
+      "actually_opened": true,
+      "scope": "input part + same-coordinate reference"
+    },
+    {
+      "path": "refinement/groups/head/4.7-local-finish/head-context-before.png",
+      "sha256": "c5124abb6f95bfe3b3ba800068ec2db3523bd5cbd1639854eed901a9da2cbdcf",
+      "actually_opened": true,
+      "scope": "input full head + reference"
+    },
+    {
+      "path": "refinement/groups/head/4.7-local-finish/bun-after.png",
+      "sha256": "b20f5ba72a6b747c23bce6373e6228aa159695fc152590027468f89f234b39c0",
+      "actually_opened": true,
+      "scope": "final complete bun + hidden root + reference"
+    },
+    {
+      "path": "refinement/groups/head/4.7-local-finish/left-after.png",
+      "sha256": "cc57d150ae5b8f7da086b0de223b35d9d72c54a85a6d58b1ea5254faecf25794",
+      "actually_opened": true,
+      "scope": "final complete left earring + hidden stem + reference"
+    },
+    {
+      "path": "refinement/groups/head/4.7-local-finish/right-after.png",
+      "sha256": "5f182070f487ee10ede2b62cbd68b110a0476ee684d57c97e2421c76332f96be",
+      "actually_opened": true,
+      "scope": "final complete right earring + hidden stem + reference"
+    },
+    {
+      "path": "refinement/groups/head/4.7-local-finish/head-context-after.png",
+      "sha256": "3d073fbc9b3b182dd4ef013951a7c4fd96261cc70667b1ad4ad46c068d13b08e",
+      "actually_opened": true,
+      "scope": "final current combination + reference, not final stage 5"
+    },
+    {
+      "path": "refinement/groups/head/4.7-local-finish/preview.png",
+      "sha256": "8752bbaf20e2e94da662475f3cac8741c093c41d08250e6eead0186e1ed098b3",
+      "actually_opened": true,
+      "scope": "whole current artwork, other unfinished parts remain"
+    }
+  ]
+}

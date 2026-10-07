@@ -1,0 +1,16 @@
+{
+  "existing_path_d_changes_since3_5": [],
+  "original_artwork_restored_by_removing_own_marker": true,
+  "all_prior_rendering_relations_preserved": true,
+  "rendering_layer_count": 33,
+  "guide_sha256": "c43bd301488eb4c5eb772a2f018cc70db0dc269ae96bec4f096618cf29feee4c",
+  "tree_sha256": "249e85dd7dd3c18fc795a2c4b166d5f5a1062495050dfd6036be6e2030d1bbe4",
+  "source_and_pressure_paths_preserved": true,
+  "containment_reused": "2.3 default4x/128 zero outside; same approved D used for base and clip, no geometry changes",
+  "native_rendering_check": {
+    "status": "pass",
+    "layers": 33,
+    "complete": false,
+    "scope": "Names, tree paths, SVG references and receiver mask structure only"
+  }
+}

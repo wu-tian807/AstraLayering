@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "logical_worker": "group_child_layers:legs/right_anklet:review",
+  "actual_worker": "/root",
+  "independent_of_candidate_author": true,
+  "candidate_hashes": {
+    "refinement/groups/legs/right_anklet/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg": "100f8eb91bfc18bb73c4ee6e1d78306a730e5a18eb7863f781c23cf2a5711739",
+    "block-layers/groups.svg": "100f8eb91bfc18bb73c4ee6e1d78306a730e5a18eb7863f781c23cf2a5711739"
+  },
+  "bounds_outside_samples": [
+    0,
+    0,
+    0
+  ],
+  "images_actually_viewed": {
+    "full.png": "894008396dffd87bed2ce077dc817d4f19f97abc115453daacc8ee785a7e40d6",
+    "component-review-board.png": "879d6a538b4aa472f40f41e4f046a9fe7a450132d0fa736d95b3ab4a3b42df9b"
+  },
+  "contact_sheet": "Four native 8x boards pasted at original size without resampling; components recorded separately immediately after their inspection.",
+  "report": "reviews/group_child_layers/legs/right_anklet/审查.md"
+}

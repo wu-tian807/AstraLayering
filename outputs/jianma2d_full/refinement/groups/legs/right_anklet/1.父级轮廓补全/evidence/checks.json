@@ -1,0 +1,28 @@
+{
+  "worker_id": "/root/workflow_runner/arm_right",
+  "logical_worker": "group:legs/right_anklet",
+  "new_independent_context": false,
+  "target": "n21",
+  "node": "group_completion",
+  "crop": [
+    437,
+    1587,
+    76,
+    92
+  ],
+  "scale": 4,
+  "unchanged_existing_paths": 27,
+  "added_path_ids": [
+    "legs-right-anklet-rear-return"
+  ],
+  "other_svg_bytes_unchanged": true,
+  "parent_mask_outside_pixels": 0,
+  "baseline_parent_mask_outside_pixels": 0,
+  "new_rear_return_outside_parent_pixels": 0,
+  "rear_return_raster_bbox_at_crop_scale_4": [
+    54,
+    48,
+    246,
+    114
+  ]
+}

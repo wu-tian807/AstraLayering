@@ -1,0 +1,13 @@
+{
+  "node": "cast_shadow_relations",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "读取2part明暗说明并依已实看彩参登记3个独立投影；原生merge校验通过，SVG与树不变，owner均为本组直属part。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/layers.json": "73b7672d382a2c9f8ba8f1007ce694ccac01d8449d3a81023f1f75545ee29ad7",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/说明.md": "f781418095c7f3bd55db3a8f481aa34657714f7675dd1517f5234c1c76fe6219",
+    "structure/rendering.json": "76b87199fccf07e45db0195cbfd41569cb085c9ae5265e58490675729db9c5f7"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "f76a9f1b82c114cd993b9f30b3f523163c51013a1b3787ab3c61d586fab6f570"
+}

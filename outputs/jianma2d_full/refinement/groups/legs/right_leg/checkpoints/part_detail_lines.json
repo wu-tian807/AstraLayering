@@ -1,0 +1,15 @@
+{
+  "node": "part_detail_lines",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "光洁皮肤无额外纹理；经当前独显和彩/线参核对，沿用已有结构和明暗导引，未添加纹身或多余皱线。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_detail_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_detail_lines"
+  },
+  "artwork_sha256": "e0a24d7d5d9d0b677b494dff59e1095910248ce1149cd02c301ccb823edc24bb"
+}

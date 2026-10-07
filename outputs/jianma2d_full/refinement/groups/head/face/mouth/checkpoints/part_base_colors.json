@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_base_colors",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "已实看三part基色及实际脸部组合：上唇暖粉、下唇浅桃粉，搭接面为肤色、内侧为遮挡玫瑰褐。颜色分区/闭口覆盖对应参考；内侧与搭接同边缘的细AA边留待同一面部光场与体积过渡消除，不作最终显影通过。25条原关系未改。",
+  "artwork_sha256": "d2263d88f80ba0b88b10653ca63f535f33db5cdd9ecb116df5ada71ae72ccab2",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_base_colors.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_base_colors"
+  }
+}

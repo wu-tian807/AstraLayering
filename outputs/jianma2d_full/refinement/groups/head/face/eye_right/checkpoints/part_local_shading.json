@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "part_local_shading",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看下睑外角轻微暖暗与中央轻线；眼白不再叠凹槽或深暗。表面暗部和后续上睑投影分离，未加重隐藏外弧。",
+  "evidence": [
+    "views/part_local_shading.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_local_shading"
+  },
+  "artwork_sha256": "9d2bf5df0ae2820c60977ed6f0ec609f693b0be59b720ebec3b20f70d8690882",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

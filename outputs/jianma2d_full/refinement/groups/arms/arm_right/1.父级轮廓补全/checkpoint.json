@@ -1,0 +1,20 @@
+{
+  "node": "group_completion",
+  "target": "n17",
+  "group_path": "arms/arm_right",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "timestamp": "2026-10-06T09:51:49.032761+00:00",
+  "status": "success",
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "group_completion"
+  },
+  "active": {
+    "target": "n17",
+    "route": "generic",
+    "pointer": "group_completion"
+  },
+  "geometry_changed": false,
+  "note": "refinement/groups/arms/arm_right/1.父级轮廓补全/补全说明.md"
+}

@@ -1,0 +1,16 @@
+{
+  "status": "pass",
+  "existing_geometry_elements_unchanged": 876,
+  "editable_source_curve_groups_unchanged": 3,
+  "other_part_subtrees_unchanged": 19,
+  "independent_layer_subtrees_unchanged": 14,
+  "rendering_registry_bytes_unchanged": true,
+  "groups_guide_reference_unchanged": true,
+  "added_elements": "6 part-local line-color gradients with descriptions; no geometry or raster nodes",
+  "rendering_check": {
+    "status": "pass",
+    "layers": 14,
+    "complete": false,
+    "scope": "Names, tree paths, SVG references and receiver mask structure only"
+  }
+}

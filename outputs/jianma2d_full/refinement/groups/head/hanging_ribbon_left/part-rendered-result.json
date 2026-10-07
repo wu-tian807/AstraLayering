@@ -1,0 +1,29 @@
+{
+  "group": "head/hanging_ribbon_left",
+  "target": "n14",
+  "pointer": "part_rendered",
+  "worker": "/root/workflow_runner/ribbon_left",
+  "direct_parts_completed": [
+    "head/hanging_ribbon_left/ribbon_strip"
+  ],
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "eb4662d4a0b46c898eabf4f0fb93f71cfc05512b7f10f380e5a28db9de92b4b5",
+  "rendering_sha256": "6e64ac31114d783658eecdf47564923372cddacacd31b826cbef55708b0e4ea7",
+  "preview_sha256": "b43ddd5ee9c0c934272a18e1026ceb6410ba8332572052cb6d65b1ce5feaedcf",
+  "native_rendering_check": {
+    "status": "pass",
+    "layers": 18,
+    "scope": "Names, tree paths, SVG references; final receiver binding belongs to stage 5"
+  },
+  "new_raw_effects": [
+    "head_hanging_ribbon_left_ribbon_strip_hanger_cast_shadow"
+  ],
+  "evidence": [
+    "4.rendering stack/4.7.线色融合与材质细化/combination.png",
+    "4.rendering stack/4.7.线色融合与材质细化/root.png",
+    "4.rendering stack/4.7.线色融合与材质细化/说明.md"
+  ],
+  "unresolved_current_part": [],
+  "pending_child_group": "head/hanging_ribbon_left/jeweled_hanger",
+  "complete_or_next_called": false
+}

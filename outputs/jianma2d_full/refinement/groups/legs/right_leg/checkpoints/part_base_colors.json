@@ -1,0 +1,15 @@
+{
+  "node": "part_base_colors",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "彩参复核为光洁浅桃粉皮肤，与左腿同基色#FDEBE6，隐藏圆端完整铺色，保留压力笔触；已有rendering关系沿用。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_base_colors.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_base_colors"
+  },
+  "artwork_sha256": "536b41a1f6d89f59bcb55dbe79fa5380586c319bcde33b136a91c6e051c1e6d3"
+}

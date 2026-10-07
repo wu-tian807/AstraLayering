@@ -1,0 +1,52 @@
+{
+  "raw_status": "fail",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "outer_raw_samples": [
+    {
+      "x": 178.75,
+      "y": 725.25,
+      "parent_alpha": 127,
+      "child_alpha": 128
+    },
+    {
+      "x": 215.0,
+      "y": 757.75,
+      "parent_alpha": 127,
+      "child_alpha": 128
+    },
+    {
+      "x": 210.5,
+      "y": 941.75,
+      "parent_alpha": 127,
+      "child_alpha": 128
+    }
+  ],
+  "same_complete_segments_in_current_parent_and_child": [
+    "184 709 C 170 746 173 780 192 818",
+    "194 811 C 210 776 223 737 235 693",
+    "202 975 C 207 958 211 944 212 932"
+  ],
+  "previous_independent_geometry_reused": "reviews/group_child_layers/head/rear_hair_left/independent-geometry-and-aa.json",
+  "previous_independent_local_verdict": "PASS for same complete curves and same filling side at these three points; raw FAIL retained",
+  "current_visual_notch_fix_distinct_from_these_AA_points": true,
+  "coverage_without_parent": {
+    "missing_count": 2,
+    "extra_count": 105,
+    "missing_samples": [
+      {
+        "x": 317.0,
+        "y": 417.0,
+        "parent_alpha": 128,
+        "child_alpha": 127
+      },
+      {
+        "x": 318.75,
+        "y": 1278.75,
+        "parent_alpha": 129,
+        "child_alpha": 124
+      }
+    ]
+  },
+  "no_tolerance_change_no_new_clip_no_geometry_inset": true
+}

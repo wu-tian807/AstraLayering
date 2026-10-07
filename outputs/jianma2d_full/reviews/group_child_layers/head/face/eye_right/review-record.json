@@ -1,0 +1,22 @@
+{
+  "status": "pass",
+  "logical_worker": "group_child_layers:head/face/eye_right:review",
+  "actual_worker": "/root",
+  "independent_of_candidate_author": true,
+  "candidate_hashes": {
+    "refinement/groups/head/face/eye_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg": "ca13c0de8f336f7063f199ab86764886fa33e5927caa6e63341767e092f23aaa",
+    "block-layers/groups.svg": "ca13c0de8f336f7063f199ab86764886fa33e5927caa6e63341767e092f23aaa"
+  },
+  "bounds_outside_samples": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "images_actually_viewed": {
+    "full.png": "0549a77f934e48af2c818159d338f783ee9414e6c6883e8f11ca820d61cdc98c",
+    "component-review-board.png": "eb06e1051d373f3f204fa625ae9fedaa79fc8b8b5c4b488be48706109a3be507"
+  },
+  "contact_sheet": "Four native 8x per-child boards plus no-parent connection board, pasted without resampling; each component recorded after its inspection.",
+  "report": "reviews/group_child_layers/head/face/eye_right/审查.md"
+}

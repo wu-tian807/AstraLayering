@@ -1,0 +1,94 @@
+{
+  "status": "in_progress",
+  "purpose": "Draft PR progress snapshot requested by user; not final workflow acceptance",
+  "upstream_revision": "47fb50d",
+  "completed_groups": 28,
+  "total_groups": 51,
+  "active": {
+    "target": "n29",
+    "route": "generic",
+    "pointer": "part_highlights",
+    "group": "head/rear_hair_left/inner_back_curtain",
+    "last_successful_step": "4.6 高光与反光"
+  },
+  "artifacts": {
+    "artwork": {
+      "path": "refinement/character.svg",
+      "sha256": "d14a7c67e5f37d3b3bd03bf57d83592680846e12c0b792aaaf2a0bc94f301195"
+    },
+    "preview": {
+      "path": "refinement/preview.png",
+      "sha256": "474421dc2f57bc137c09542bec4969aafabb6c9ec49ec3efd5a3ca9e65154835"
+    },
+    "groups": {
+      "path": "structure/groups.json",
+      "sha256": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04"
+    },
+    "rendering": {
+      "path": "structure/rendering.json",
+      "sha256": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d"
+    },
+    "guide": {
+      "path": "block-layers/groups.svg",
+      "sha256": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a"
+    }
+  },
+  "snapshot_checks": {
+    "frozen_review_integrity": {
+      "status": "pass",
+      "entries": 50,
+      "files": 100
+    },
+    "svg_xml_parse": "pass",
+    "preview_render": {
+      "status": "pass",
+      "source_sha256": "d14a7c67e5f37d3b3bd03bf57d83592680846e12c0b792aaaf2a0bc94f301195",
+      "output_sha256": "474421dc2f57bc137c09542bec4969aafabb6c9ec49ec3efd5a3ca9e65154835",
+      "command": ".runtime/svg-preview/python/bin/python ../../workflow-next/live2d-layering/tools/svg_preview.py refinement/character.svg refinement/preview.png --background white",
+      "visual_review_repeated": false
+    },
+    "diff_check": {
+      "status": "warnings_retained",
+      "scope": "git diff --cached --check for progress PR",
+      "exit_code": 2,
+      "finding_count": 484,
+      "by_type": {
+        "trailing whitespace.": 480,
+        "new blank line at EOF.": 4
+      },
+      "affected_files": 141,
+      "reason": "Native SVG snapshots and historical review/source records retain their original whitespace so recorded artifact hashes remain valid. No conflict marker finding. This is not a clean full diff-check result.",
+      "new_entrypoint_and_verifier_diff_check": "pass",
+      "new_entrypoint_and_verifier_paths": [
+        "README.md",
+        "index.html",
+        "layers.html",
+        "review-n29.html",
+        "delivery.json",
+        "verify-delivery.py",
+        "validation/progress-pr-snapshot.json",
+        "validation/evidence-portability.json"
+      ],
+      "raw_log_local": ".runtime/progress-pr-diff-check.txt"
+    }
+  },
+  "unaccepted_candidate": {
+    "status": "awaiting_human_visual_review",
+    "scope": "n29 4.7 root color continuity only; no final composite acceptance",
+    "candidate": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/candidate.svg",
+    "candidate_sha256": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+    "before": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/revision-001-before-root-match/neighbor-surfaces.png",
+    "before_sha256": "7d4869afca3a6cb2a2877706a6b22524e6f1a35315944cc78ed772601f01cfd5",
+    "after": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/neighbor-surfaces.png",
+    "after_sha256": "32e0629259cf6f44871219b5ef49531f663b28538c5857a3d43ad92d9bb0d28a",
+    "note": "No image tool retry. Native state remains part_highlights until actual review."
+  },
+  "remaining": [
+    "n29 4.7 actual visual conclusion",
+    "n30 onward serial refinement",
+    "stage5 rendering composite and every effect/receiver visual check",
+    "final workflow structure and browser acceptance"
+  ],
+  "model_override": "User approved gpt-6-astra xhigh for unavailable gpt-6-sol",
+  "image_generation": "Original reference stages reused; local forgeax-imagegen verified available earlier. No new image generation in this continuation."
+}

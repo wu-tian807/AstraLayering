@@ -1,0 +1,17 @@
+{
+  "target": "n23",
+  "node": "part_volume",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看本侧眼白外角轻冷、鼻侧轻暖、中央明亮的转面；下睑沿整脸同坐标光场上色。未增球珠环暗、重复投影或隐藏外弧描线。",
+  "evidence": [
+    "views/part_volume.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_volume"
+  },
+  "artwork_sha256": "cc9e2d662fabb60911f2e1e4400fba04fd68c624c02a312355f44cd0db919dfd",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc"
+}

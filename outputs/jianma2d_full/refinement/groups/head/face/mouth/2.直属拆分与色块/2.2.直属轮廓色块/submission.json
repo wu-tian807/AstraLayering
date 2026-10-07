@@ -1,0 +1,16 @@
+{
+  "status": "awaiting_independent_review",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "candidate_sha256": "fe6bcc3329de414e2afcfb169b5b035bd020505fe3d2f09c10d71eb8c588e7f5",
+  "guide_sha256": "fe6bcc3329de414e2afcfb169b5b035bd020505fe3d2f09c10d71eb8c588e7f5",
+  "bounds_outside_samples": [
+    0,
+    0,
+    0
+  ],
+  "views_actually_inspected": [
+    "evidence/whole-blend.png",
+    "evidence/inspection-montage.png"
+  ]
+}

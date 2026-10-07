@@ -1,0 +1,64 @@
+{
+  "target": "n24",
+  "node": "group_child_layers_review",
+  "logical_worker": "group_child_layers:head/face/mouth:review",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "maker": "/root",
+  "splitter": "/root/workflow_runner/split_anklet_left",
+  "reviewer_did_not_make_n24": true,
+  "candidate_sha256": "fe6bcc3329de414e2afcfb169b5b035bd020505fe3d2f09c10d71eb8c588e7f5",
+  "status": "pass",
+  "parts": [
+    {
+      "path": "head/face/mouth/upper_lip",
+      "id": "part-head-face-mouth-upper-lip",
+      "status": "pass",
+      "outside_samples": 0,
+      "view_rows": [
+        1,
+        5,
+        4
+      ]
+    },
+    {
+      "path": "head/face/mouth/lower_lip",
+      "id": "part-head-face-mouth-lower-lip",
+      "status": "pass",
+      "outside_samples": 0,
+      "view_rows": [
+        2,
+        6,
+        4
+      ]
+    },
+    {
+      "path": "head/face/mouth/mouth_interior",
+      "id": "part-head-face-mouth-mouth-interior",
+      "status": "pass",
+      "outside_samples": 0,
+      "view_rows": [
+        3,
+        4
+      ]
+    }
+  ],
+  "actual_view_files": [
+    "refinement/groups/head/face/mouth/2.直属拆分与色块/2.2.直属轮廓色块/evidence/inspection-montage.png",
+    "refinement/groups/head/face/mouth/2.直属拆分与色块/2.2.直属轮廓色块/evidence/whole-blend.png"
+  ],
+  "view_file_sha256": {
+    "refinement/groups/head/face/mouth/2.直属拆分与色块/2.2.直属轮廓色块/evidence/inspection-montage.png": "a2b2aa6aaf345b72f8801e8af131fffdcbcfde47aba9b5a41d3567ffcc85a380",
+    "refinement/groups/head/face/mouth/2.直属拆分与色块/2.2.直属轮廓色块/evidence/whole-blend.png": "9bafc3ddf31ef4802e82e69b962329e8b9ea6a10d6726946ce1cd586a217e31d"
+  },
+  "bounds_reused_without_rerun": true,
+  "reference_fit_reviewed_separately_from_bounds": true,
+  "readonly_inputs_unchanged": true,
+  "checkpoint_called": false,
+  "complete_next_reopen_called": false,
+  "limits": [
+    "Hidden overlap arcs are not final visible thick lips.",
+    "Mouth interior is a conservative hidden bed, not a validated open-mouth anatomy.",
+    "Rendering colours, final masks/stack and motion exposure belong to later nodes."
+  ]
+}

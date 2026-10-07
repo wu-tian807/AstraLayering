@@ -1,0 +1,17 @@
+{
+  "node": "part_rendered",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "按参考减弱过白亮面/偏重肘窝，4条笔触融合肤色渐变；完整2part及原生apply相邻组合实看，肩根/肘腕无封口线，前发冷暖接界明确；原容器/19关系保留，20层check通过，白底预览同源。",
+  "evidence": [
+    "views/part_rendered-readable.png",
+    "views/final-rendering-check.json",
+    "4.rendering stack/4.7.线色融合与材质细化/说明.md"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_rendered"
+  },
+  "artwork_sha256": "af8b27d13baa97b01961d320e8993cc43f218fd1f7ce3362d5122fc0daafcd8f"
+}

@@ -1,0 +1,135 @@
+{
+  "scope": "Native visual evidence preparation only; awaiting actual independent visual review",
+  "group": "head/front_hair/fringe_right",
+  "inputs": {
+    "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+    "structure/groups.json": "8230e59764cd31df53bde422a4b2b1b9f0d46e0b760b04ec001db768c886ffea",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea"
+  },
+  "children": [
+    {
+      "path": "head/front_hair/fringe_right/broad_lock",
+      "id": "part-head-front-hair-fringe-right-broad-lock",
+      "kind": "part",
+      "name": "broad_lock"
+    },
+    {
+      "path": "head/front_hair/fringe_right/fine_lock",
+      "id": "part-head-front-hair-fringe-right-fine-lock",
+      "kind": "part",
+      "name": "fine_lock"
+    }
+  ],
+  "crop": [
+    425,
+    138,
+    86,
+    151
+  ],
+  "scale": 4,
+  "commands": [
+    {
+      "name": "full",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/fringe_right/evidence/full.png",
+        "--reference",
+        "references/base-subject.png"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/fringe_right/evidence/full.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "broad_lock",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/fringe_right/evidence/broad_lock.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "part-head-front-hair-fringe-right-broad-lock",
+        "--crop",
+        "425",
+        "138",
+        "86",
+        "151",
+        "--scale",
+        "4",
+        "--edge-overlay",
+        "--columns",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/fringe_right/evidence/broad_lock.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "fine_lock",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/fringe_right/evidence/fine_lock.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "part-head-front-hair-fringe-right-fine-lock",
+        "--crop",
+        "425",
+        "138",
+        "86",
+        "151",
+        "--scale",
+        "4",
+        "--edge-overlay",
+        "--columns",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/fringe_right/evidence/fine_lock.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "connections",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/fringe_right/evidence/connections.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "part-head-front-hair-fringe-right-broad-lock",
+        "--only",
+        "part-head-front-hair-fringe-right-fine-lock",
+        "--crop",
+        "425",
+        "138",
+        "86",
+        "151",
+        "--scale",
+        "4",
+        "--edge-overlay",
+        "--columns",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/fringe_right/evidence/connections.png\n",
+      "stderr": ""
+    }
+  ],
+  "contact_sheet": "Native boards pasted at original size without resampling",
+  "image_hashes": {
+    "broad_lock.png": "1e744232a3b0231ce2570e05b3273b708e00983794bf5ad1242fafaffdddbef8",
+    "component-review-board.png": "65004552591dddfba2848a5c0f6c46fbb8fba853b52b33524dcf445303a38d8a",
+    "connections.png": "343e6513c27919446b04ab2d1124548ab0bb1a97bf7ca86d77c4fe816602e09f",
+    "fine_lock.png": "8d4cae7dd3ad7c26df5c6a141068a244c2e3591931a778d524928c6668b540dd",
+    "full.png": "a6925bb78ce38fcfc4db15e7c6c2d973d200eca97949013522d27aca5f805c9c"
+  }
+}

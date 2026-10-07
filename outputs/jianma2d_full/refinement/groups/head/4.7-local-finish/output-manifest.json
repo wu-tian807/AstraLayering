@@ -1,0 +1,32 @@
+{
+  "node": "part_rendered",
+  "worker": "/root/head_finish",
+  "logical_worker": "group:head",
+  "status": "pass_current_node_with_deferred_composition",
+  "direct_parts": [
+    "head/topknot_bun",
+    "head/earring_left",
+    "head/earring_right"
+  ],
+  "outputs": {
+    "refinement/character.svg": {
+      "path": "refinement/character.svg",
+      "sha256": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2"
+    },
+    "structure/rendering.json": {
+      "path": "structure/rendering.json",
+      "sha256": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb"
+    },
+    "refinement/preview.png": {
+      "path": "refinement/preview.png",
+      "sha256": "8752bbaf20e2e94da662475f3cac8741c093c41d08250e6eead0186e1ed098b3"
+    }
+  },
+  "verification": "protection-check.json",
+  "visual_evidence": "view-record.json",
+  "local_unresolved": [],
+  "deferred": [
+    "validation/final-composite-obligations.json#earring_right_front_visibility"
+  ],
+  "preview_python": ".runtime/svg-preview/python/bin/python"
+}

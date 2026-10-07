@@ -1,0 +1,7 @@
+{
+  "node": "cast_shadow_relations",
+  "worker": "/root/workflow_runner/ribbon_left",
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "6c374dda90562cdd1e2d79ad4a1bb27732a55100287caa6ec099a7d14a540523",
+  "note": "读取带身明暗desc并依据8×参考登记1个下挂环接触投影；owner为当前带身、follow为jeweled_hanger，原生merge通过，SVG不变。"
+}

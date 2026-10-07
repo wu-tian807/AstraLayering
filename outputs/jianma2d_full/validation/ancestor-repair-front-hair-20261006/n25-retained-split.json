@@ -1,0 +1,10 @@
+{
+  "node": "group_split",
+  "decision": "retain_actual_pre_suspension_independent_split",
+  "same_complete_tree": true,
+  "split_patch": "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.1.直属结构拆分/children.json",
+  "split_patch_sha256": "3cdf007103ee5ff947c6bfce330fc2693d3b07aa68b40352a16b8f6df7a0d649",
+  "original_worker_id": "/root/workflow_runner/split_anklet_left",
+  "not_rerun": true,
+  "no_expand": true
+}

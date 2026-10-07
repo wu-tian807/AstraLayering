@@ -1,0 +1,15 @@
+{
+  "node": "part_volume",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "右前外侧受光、内侧转暗与肘窝自身浅凹已完成；2part和相邻组合实看，同世界坐标光场跨肘连续，隐藏圆端不封口，外来投影留独立层。",
+  "evidence": [
+    "views/part_volume.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_volume"
+  },
+  "artwork_sha256": "e679c6ce0c808e9cf805a10312132094670ee7fabe46e7b141628c0301b5742e"
+}

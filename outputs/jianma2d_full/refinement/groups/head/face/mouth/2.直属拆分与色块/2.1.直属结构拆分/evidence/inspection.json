@@ -1,0 +1,75 @@
+{
+  "worker_id": "/root/workflow_runner/split_anklet_left",
+  "logical_worker": "group_split:head/face/mouth",
+  "actor_context": "按已授权有限 actor 池续用既有 splitter；未参与本组绘制，与本组 maker /root 分离，不宣称全新上下文。",
+  "target": "n24",
+  "node": "group_split",
+  "configuration": "已重读本节点 YAML/prompt/gpt-6-sol-xhigh.model，继续采用已批准的模型替代；已读本组 node1 说明。",
+  "visual_inspection": {
+    "file": "evidence/reference-isolation.png",
+    "tool": "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "isolation_id": "group-head-face-mouth",
+    "crop": [
+      421,
+      283,
+      37,
+      26
+    ],
+    "scale": 8,
+    "viewed": true
+  },
+  "observations": [
+    "参考为闭口，上唇唇峰略偏左，左右嘴角轻微不等高；下唇浅而柔和，不能机械对称或加厚。",
+    "上下唇分别变形，唇后连续内侧则独立保持遮挡；每个已辨认面自身无需继续细拆，故新增三个 part、没有空泛的 group。",
+    "闭口参考未露牙齿、舌头或其他腔内实体；mouth_interior 仅承接父级已补的连续内側范围，不据此发明内部器官。",
+    "唇缝是两唇接界，唇影/纹理/高光是后续绘制内容，都不额外铸造物理 part。",
+    "父底形上下只比原可见唇轮廓多约 1–2 px，必须在闭口时被唇面/面皮遮挡，不能直接显露为张口或厚唇。"
+  ],
+  "direct_children": {
+    "groups": [],
+    "parts": [
+      "upper_lip",
+      "lower_lip",
+      "mouth_interior"
+    ]
+  },
+  "parent_extent_ownership": {
+    "head-face-mouth-closed-lips-envelope": "上唇唇峰/上缘与上唇面归 upper_lip；接界以下浅色唇面/下缘归 lower_lip；嘴角为二者连续搭接范围，不另列角部物件。",
+    "head-face-mouth-occluded-oral-bed": "连续唇后内侧归 mouth_interior，上下隐藏边缘由相应唇面/面皮覆盖；上唇和下唇分别持有自身连续遮挡搭接余量。"
+  },
+  "coverage_note": "按完整唇面与内侧面划分父级范围，遮挡允许重叠；本步只定义结构归属，未绘制子件或声明张口形态验收。",
+  "deferred_work": [
+    "2.3 判断和补齐轻微开合实际会露出的内侧边界，不推断牙舌。",
+    "纹理、唇影和反光交对应 rendering 步骤；唇缝随两唇接界表达。",
+    "沿用 node1 已记录的第 5 步面部/嘴部相对 neck 的组合层序义务，本步不移动其他组。"
+  ],
+  "mirror_pairs": "当前为单一口部，无两个可对应的同层独立 group，本轮不新增镜像关联。",
+  "validation": {
+    "argv": [
+      "python3",
+      "../../workflow-next/live2d-layering/tools/groups.py",
+      "check-children",
+      "--groups",
+      "structure/groups.json",
+      "--group-path",
+      "head/face/mouth",
+      "--patch",
+      "refinement/groups/head/face/mouth/2.直属拆分与色块/2.1.直属结构拆分/children.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "readonly_sha256": {
+    "structure/groups.json": "680de05caadfa0294a2b6c4f286911fbebac423d79c3036d34752df182b7929d",
+    "structure/groups.dispatch.json": "d7c3e3d0c729e68c7f6a4390023602cb5fac88432acd373a794fd30214306fdf",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "d1e617ed3edfe6339a0c261fa6146289d4dc80a8c9dc30c40d83317c162f7da8",
+    "block-layers/preview.png": "d928f6d3e68e54b1c73eb5e77b5b72294d2bf3a20bb84dd698ec342f02c78f6f",
+    "refinement/character.svg": "8c895eb7bb77237efb9490f7001788f867df13c3b43d1b734be28245d4d2190a",
+    "refinement/preview.png": "f04856b1e7f864d424a8b65369828430505538b1d2dbc255e14541b4ca06717e"
+  },
+  "readonly_inputs_unchanged": true,
+  "children_sha256": "4301b0f90ad8c4c72fad1b1414cff80de722b2f7e6f90b058d80534a1a5b0c31",
+  "status": "checked-awaiting-runner-expand-and-checkpoint"
+}

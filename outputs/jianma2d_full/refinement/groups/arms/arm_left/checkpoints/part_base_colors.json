@@ -1,0 +1,15 @@
+{
+  "node": "part_base_colors",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "按当前彩参重判浅桃粉光洁肌肤基色；2part独显与躯干/前发组合实看，完整隐藏面同材质，无袖口腕带分区，rendering沿用。",
+  "evidence": [
+    "views/part_base_colors.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_base_colors"
+  },
+  "artwork_sha256": "29af76dab47cee80e77e4c15b814fde0e09649583c22de0a08fa1a3ab847d546"
+}

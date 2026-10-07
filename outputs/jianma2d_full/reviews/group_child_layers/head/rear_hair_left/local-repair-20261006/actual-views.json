@@ -1,0 +1,77 @@
+{
+  "candidate_sha256": "a85a4204cd039e292828afa5b78ca1153bfb955a1d1b15e448c59c5e8b06ce41",
+  "views": [
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/local-repair-20261006/00-current-whole-blend.png",
+      "sha256": "83586f99cf53e9b8de918a667a6bd983e9318b48b9611066e7dc20e1fc65b9ae",
+      "size": [
+        2685,
+        1786
+      ],
+      "crop": null,
+      "scale": 1,
+      "reference": "references/base-subject.png",
+      "mode": "current full composite",
+      "actually_opened_with_view_image": true,
+      "newly_rendered_from_current_candidate": true
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/local-repair-20261006/01-current-notch-base.png",
+      "sha256": "8bfcdcb52cc631d8ef3e3ab1de05fa523e61dfcafd8a37c1019e0f861e22a247",
+      "size": [
+        792,
+        1676
+      ],
+      "crop": [
+        172,
+        1310,
+        66,
+        135
+      ],
+      "scale": 6,
+      "reference": "references/base-subject.png",
+      "mode": "only outer curtain, edge overlay",
+      "actually_opened_with_view_image": true,
+      "newly_rendered_from_current_candidate": true
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/local-repair-20261006/02-current-notch-line.png",
+      "sha256": "7a1283918af11c54ab34fa9eecfaac7ddf01809b5f15dcc4321b74ed318750f0",
+      "size": [
+        792,
+        1676
+      ],
+      "crop": [
+        172,
+        1310,
+        66,
+        135
+      ],
+      "scale": 6,
+      "reference": "references/line-reference.png",
+      "mode": "only outer curtain, same-coordinate reference crop, edge overlay",
+      "actually_opened_with_view_image": true,
+      "newly_rendered_from_current_candidate": true
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/local-repair-20261006/03-current-lower-connections.png",
+      "sha256": "5380d818eff966566c07f0caef93ca7835d01c76d025eec4a7fb0b747cda90e0",
+      "size": [
+        1500,
+        1646
+      ],
+      "crop": [
+        120,
+        1260,
+        250,
+        265
+      ],
+      "scale": 3,
+      "reference": "references/base-subject.png",
+      "mode": "four children only, no parent, edge overlay",
+      "actually_opened_with_view_image": true,
+      "newly_rendered_from_current_candidate": true
+    }
+  ],
+  "prior_visual_reviews_reused_by_exact_geometry_correspondence": "Original canonical review; no claim of reopening its full image set in this recovery review."
+}

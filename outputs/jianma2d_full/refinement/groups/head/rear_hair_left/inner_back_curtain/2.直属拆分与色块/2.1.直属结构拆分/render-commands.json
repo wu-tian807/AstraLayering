@@ -1,0 +1,75 @@
+[
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "block-layers/groups.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/01-full-isolated-reference.png",
+      "--only",
+      "group-head-rear-hair-left-inner-back-curtain",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "270",
+      "245",
+      "190",
+      "1195",
+      "--edge-overlay",
+      "--columns",
+      "4"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/01-full-isolated-reference.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "block-layers/groups.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/02-upper-mid-reference.png",
+      "--only",
+      "group-head-rear-hair-left-inner-back-curtain",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "300",
+      "250",
+      "150",
+      "465",
+      "--scale",
+      "2",
+      "--edge-overlay",
+      "--columns",
+      "4"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/02-upper-mid-reference.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "block-layers/groups.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/03-waist-lower-reference.png",
+      "--only",
+      "group-head-rear-hair-left-inner-back-curtain",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "275",
+      "650",
+      "175",
+      "790",
+      "--scale",
+      "1",
+      "--edge-overlay",
+      "--columns",
+      "4"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/03-waist-lower-reference.png\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "target": "n23",
+  "node": "part_highlights",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看两part、临时组合和slate底完整raw高光；初稿亮斑偏高，按本侧参考收窄后再次实看。独立highlight逻辑归sclera、随iris并待裁切；下睑为轻柔肤面反光。原23条关系保留，新总数25，原生结构检查通过。",
+  "evidence": [
+    "views/part_highlights.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_highlights"
+  },
+  "artwork_sha256": "83fc00039faccdc4ae0840b80e5a524ca2d2211e9f17b849f915803003bbb99f",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc",
+  "rendering_sha256": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+  "patch": "4.rendering stack/4.6.高光与反光/layers.json",
+  "glint_refinement": "4.rendering stack/4.6.高光与反光/glint-refinement.json",
+  "structural_check": "work/highlight-check.json"
+}

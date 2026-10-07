@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_local_shading",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看独显及组合参考，左下转折微弱加深，不造沟槽/孔洞；首次预览因新增gradient/path同名ID被拒，已将gradient加_field后原生预览成功。",
+  "evidence": [
+    "views/part_local_shading.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_local_shading"
+  },
+  "artwork_sha256": "274a62c9685a9472ba3bfba11fa94e5f7b3dd5ac7e2c4b766cc9f585029eabff"
+}

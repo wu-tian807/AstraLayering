@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "part_detail_lines",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已重新渲染并实看；按参考密度沿用光滑表面，无血丝、皮纹或额外下睫毛；新增desc明确无必要纹理线的依据。",
+  "evidence": [
+    "views/part_detail_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_detail_lines"
+  },
+  "artwork_sha256": "0a4e2be02ecd1cd387f2f57f15e88cd0a4c30e9e825d0aa29e2a3545d75828f4",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

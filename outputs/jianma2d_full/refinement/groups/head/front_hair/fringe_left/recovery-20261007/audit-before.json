@@ -1,0 +1,40 @@
+{
+  "scope": "Text/XML-only audit before any recovery visual inspection",
+  "recovery_actor": "/root",
+  "node": "part_rendered",
+  "group": "head/front_hair/fringe_left",
+  "error": "Image processing blocked due to content policy violation",
+  "exact_rejected_view": "unknown; no old image has been reopened by recovery actor",
+  "hashes_before": {
+    "block-layers/groups.svg": "57d287ca92f5c2604317c4f9328f19cc629a7f988a96de880f6508e847ccb206",
+    "structure/groups.json": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+    "structure/groups.dispatch.json": "962c9e0c4e24f87711f6417c5557471ba2bbfbf90fa11669076f0acb358fb628",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "refinement/character.svg": "4ef9f2e651653e0a40ce545d46d6845a2b7229847cb2d10c90e6bb49e7ba8c6d",
+    "refinement/preview.png": "40c70ab3ef4622bdb6a4721680a55f742aa9d56ce77e9a9195e63bf5d853ea6f",
+    "refinement/groups/head/front_hair/fringe_left/stages/part_highlights/candidate.svg": "aa79803c744436983241ffb1b48db0c5590c32fbc9878680d6a79f23f16ffcfe",
+    "refinement/groups/head/front_hair/fringe_left/stages/part_rendered/candidate.svg": "4ef9f2e651653e0a40ce545d46d6845a2b7229847cb2d10c90e6bb49e7ba8c6d",
+    "refinement/groups/head/front_hair/fringe_left/work/artwork.before.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b"
+  },
+  "standard_is_pending_draft": true,
+  "changed_existing_path_d_vs_last_success": [],
+  "all_non_n25_svg_text_unchanged": true,
+  "added_ids_vs_last_success": [
+    "n25_broad_lock_final_line_tint",
+    "n25_broad_lock_final_notes",
+    "n25_fine_lock_final_line_tint",
+    "n25_fine_lock_final_notes"
+  ],
+  "removed_ids_vs_last_success": [],
+  "permitted_task_scope": "Ordinary individual hair parts and local head junctions required by4.7; no whole-body image review in this recovery. Final stage5 full composition remains required.",
+  "latest_native_pointer_at_audit": {
+    "target": "n25",
+    "route": "generic",
+    "pointer": "part_rendered"
+  },
+  "last_actor_return_without_reported_error": {
+    "pointer": "part_highlights",
+    "artwork_sha256": "aa79803c744436983241ffb1b48db0c5590c32fbc9878680d6a79f23f16ffcfe"
+  },
+  "late_checkpoint_note": "The pending4.7 checkpoint and final records appeared after the initial runner observation; native pointer=part_rendered is preserved. Actor returned an image-policy error with unknown rejected view; recovery does not treat that return as clean completion."
+}

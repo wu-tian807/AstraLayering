@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check structural completeness of the final artifact set; visual review is separate."""
 import collections
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -21,6 +22,39 @@ def walk(nodes, prefix=''):
         for part in node.get('parts', []):
             parts.add(path + '/' + part['name'])
         walk(node.get('groups', []), path)
+
+
+def check_frozen_reviews(ledger):
+    """Verify immutable evidence, including retained unsuccessful review rounds."""
+    checked_entries = 0
+    checked_files = 0
+    for group_path, entries in ledger.get('groups', {}).items():
+        for index, entry in enumerate(entries, 1):
+            context = {'group': group_path, 'review_round': index}
+            if (entry.get('worker') != f'group_child_layers:{group_path}:review'
+                    or not entry.get('worker_id')):
+                issues.append({**context, 'invalid_review_identity': True})
+            for kind in ('report', 'candidate'):
+                relative = entry.get('frozen_' + kind)
+                expected = entry.get(kind + '_sha256', '')
+                if not isinstance(relative, str) or not isinstance(expected, str):
+                    issues.append({**context, 'invalid_frozen_evidence': kind})
+                    continue
+                path = ROOT / relative
+                if (Path(relative).is_absolute() or not path.resolve().is_relative_to(ROOT)
+                        or not re.fullmatch(r'[0-9a-f]{64}', expected)):
+                    issues.append({**context, 'invalid_frozen_evidence': kind})
+                    continue
+                if not path.is_file():
+                    issues.append({**context, 'missing_frozen_evidence': relative})
+                    continue
+                actual = hashlib.sha256(path.read_bytes()).hexdigest()
+                checked_files += 1
+                if actual != expected:
+                    issues.append({**context, 'changed_frozen_evidence': relative,
+                                   'expected_sha256': expected, 'actual_sha256': actual})
+            checked_entries += 1
+    return {'entries': checked_entries, 'files': checked_files}
 
 
 def check_svg(path, expected_parts, expected_groups, allow_nested_bindings=False):
@@ -105,6 +139,7 @@ try:
     if unfinished:
         issues.append({'unfinished_groups': unfinished})
     ledger = json.loads((ROOT / 'structure/review-ledger.json').read_text(encoding='utf-8'))
+    frozen_reviews = check_frozen_reviews(ledger)
     unreviewed = sorted(path for path in groups
                         if not ledger.get('groups', {}).get(path)
                         or ledger['groups'][path][-1]['status'] != 'pass')
@@ -113,8 +148,9 @@ try:
     guide = check_svg(ROOT / 'block-layers/groups.svg', parts, groups, allow_nested_bindings=True)
     artwork = check_svg(ROOT / 'refinement/character.svg', parts, set())
     report = {'status': 'pass' if not issues else 'fail',
-              'scope': 'structure, bindings, ids, local references and dispatch completion; artistic accuracy is separately reviewed',
+              'scope': 'structure, bindings, ids, local references, frozen review hashes and dispatch completion; artistic accuracy is separately reviewed',
               'physical_groups': len(groups), 'physical_parts': len(parts),
+              'frozen_reviews': frozen_reviews,
               'guide': guide, 'artwork': artwork, 'issues': issues}
 except (KeyError, OSError, ValueError, ET.ParseError) as exc:
     report = {'status': 'error', 'error': str(exc)}

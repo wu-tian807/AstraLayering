@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "part_color_transitions",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看参考、完整独显及邻近关系，增加微弱前中偏左青蓝过渡，保持本侧大明暗，无肤色斑或额外材质线。",
+  "evidence": [
+    "views/part_color_transitions.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_color_transitions"
+  },
+  "artwork_sha256": "265805ad0df3ef0b261ca41c5cf23aa1271f2221945f66434f937174fc8bb59d"
+}

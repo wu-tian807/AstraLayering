@@ -1,0 +1,17 @@
+{
+  "node": "part_highlights",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/workflow_runner/rear_left_finish",
+  "draft_author": "/root/rear_left_repair",
+  "note": "实际复核原作者4.6草稿并采用：两后脑柔亮带和尾束亮脊方向、柔边、渐隐符合参考；两part独显及相邻组合均已实看，规范化XML与当前稿一致，原生17层check通过。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.6.高光与反光/parts.svg": "02537264821969a158a4dd288e071af6bcaccfe6812c39422edac8800f1607f6",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.6.高光与反光/root.png": "3241a615027c7f7893f87b342ac333799ac748167ed0ec9459b749ba73175161",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.6.高光与反光/tail.png": "e8412613f46b07a864184fd9c010fb33ac8f761e159dd67d3a664a08b1c4f370",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.6.高光与反光/context.png": "806bd1c491a6533ac0cd59f3ddc477e6b78ade7ca5db1f03d5991ca5e7db5d41",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.6.高光与反光/说明.md": "e908d3ab9215172ff2e78446f5dac53c70e8f0e42a2fae85b0bd4fd869f18a3e"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "813d66bdeb5df4f2afb3f04bde303b4fd99c27c4cf55232b0d25fe8cc4f1c617",
+  "rendering_sha256": "76b87199fccf07e45db0195cbfd41569cb085c9ae5265e58490675729db9c5f7"
+}

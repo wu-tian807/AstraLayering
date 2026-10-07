@@ -1,0 +1,13 @@
+{
+  "argv": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/candidate.svg",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/preview-white.png",
+    "--background",
+    "white"
+  ],
+  "exit_code": 0,
+  "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/preview-white.png\n",
+  "stderr": ""
+}

@@ -1,0 +1,79 @@
+[
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "block-layers/groups.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-evidence-1.png",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "335",
+      "245",
+      "100",
+      "160",
+      "--scale",
+      "4",
+      "--columns",
+      "4",
+      "--edge-overlay",
+      "--only",
+      "part-head-front-hair-fringe-left-broad-lock",
+      "--only",
+      "part-head-front-hair-fringe-left-fine-lock"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-evidence-1.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "block-layers/groups.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-evidence-2.png",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "335",
+      "245",
+      "100",
+      "160",
+      "--scale",
+      "4",
+      "--columns",
+      "4",
+      "--edge-overlay",
+      "--only",
+      "part-head-face-framing-hair-left-main-long-lock",
+      "--only",
+      "part-head-rear-hair-left-occipital-root"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-evidence-2.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-evidence-3.png",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "335",
+      "245",
+      "100",
+      "160",
+      "--scale",
+      "4",
+      "--columns",
+      "4",
+      "--edge-overlay"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-evidence-3.png\n",
+    "stderr": ""
+  }
+]

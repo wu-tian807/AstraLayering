@@ -1,0 +1,27 @@
+{
+  "worker_id": "/root/workflow_runner/anklet_left",
+  "logical_worker": "group:legs/left_anklet",
+  "target": "n20",
+  "node": "group_completion",
+  "status": "checked-and-promoted-awaiting-independent-2.1",
+  "sha256": {
+    "block-layers/groups.svg": "8423bf9f5b4ab0c4cc063824a1df119080fed580e532563600dce684779cb266",
+    "block-layers/preview.png": "5fba20a400a10c0d27769d2a858b6bd15e16d5d1cf81a25e9add6cb769ad72cf",
+    "structure/groups.json": "be6db61a380157497e3fefcf0f277416b9e797bb5bbe3f9b1339134c2f385ff1",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "refinement/groups/legs/left_anklet/1.父级轮廓补全/evidence/after-local.png": "df334c3bbe8a1dfb20816fbfe007eee3b7114e57a71fde1d083263a857476c8c",
+    "refinement/groups/legs/left_anklet/1.父级轮廓补全/evidence/before-after.png": "78421a05afb66ff52f5c5b65bffd8b058f7f2274db6b019e073c24ec0cbb2f74",
+    "refinement/groups/legs/left_anklet/1.父级轮廓补全/evidence/before-local.png": "28beb13c20c6b947bdf2cc5bf396b70bc85549fd123edac2dd7f5c435f49a797",
+    "refinement/groups/legs/left_anklet/1.父级轮廓补全/evidence/checks.json": "cc1a30befdf35968e2b92459173459b7f2355a6219fd6b19b483bb9533e6497b",
+    "refinement/groups/legs/left_anklet/1.父级轮廓补全/evidence/parent-range.png": "071dd8befd2f9a7552829df3628b797ae34e3b4c8ee169328de47c5ea17756bc",
+    "refinement/groups/legs/left_anklet/1.父级轮廓补全/evidence/whole-blend.png": "69a61727f406f5b2502734064c4baa65fba985db19ff09a9af940eaf69245e55",
+    "structure/groups.dispatch.json": "90e089473537f2c5fd19ede23f603a1607ad4bac3543e8c095bcd7de12de235e",
+    "refinement/groups/legs/left_anklet/1.父级轮廓补全/补全说明.md": "f1281694e4ce7ec788ea8940cb187b792aa218ab2e8751c3a537808263415b87",
+    "refinement/groups/legs/left_anklet/运行记录.md": "98ffc1f4c279049c6512f7abe498b307ed38f40a7d925e767c6131cc57f1c52e"
+  },
+  "checkpoint": {
+    "target": "n20",
+    "route": "generic",
+    "pointer": "group_completion"
+  }
+}

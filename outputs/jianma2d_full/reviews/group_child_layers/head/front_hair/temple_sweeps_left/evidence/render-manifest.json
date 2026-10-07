@@ -1,0 +1,240 @@
+{
+  "scope": "Native visual evidence preparation only; awaiting actual independent visual review",
+  "group": "head/front_hair/temple_sweeps_left",
+  "inputs": {
+    "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275",
+    "structure/groups.json": "200aeaa1deb1fe6dd109a6d4f24081c8a5c022c64bc6f7df3910eb98fa1cd2e0",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275"
+  },
+  "children": [
+    {
+      "path": "head/front_hair/temple_sweeps_left/crown_sweeps",
+      "id": "group-head-front-hair-temple-sweeps-left-crown-sweeps",
+      "kind": "group",
+      "name": "crown_sweeps"
+    },
+    {
+      "path": "head/front_hair/temple_sweeps_left/upper_temple_lock",
+      "id": "part-head-front-hair-temple-sweeps-left-upper-temple-lock",
+      "kind": "part",
+      "name": "upper_temple_lock"
+    },
+    {
+      "path": "head/front_hair/temple_sweeps_left/middle_temple_lock",
+      "id": "part-head-front-hair-temple-sweeps-left-middle-temple-lock",
+      "kind": "part",
+      "name": "middle_temple_lock"
+    },
+    {
+      "path": "head/front_hair/temple_sweeps_left/lower_temple_lock",
+      "id": "part-head-front-hair-temple-sweeps-left-lower-temple-lock",
+      "kind": "part",
+      "name": "lower_temple_lock"
+    },
+    {
+      "path": "head/front_hair/temple_sweeps_left/ear_lock",
+      "id": "part-head-front-hair-temple-sweeps-left-ear-lock",
+      "kind": "part",
+      "name": "ear_lock"
+    }
+  ],
+  "crop": [
+    338,
+    120,
+    100,
+    170
+  ],
+  "scale": 4,
+  "commands": [
+    {
+      "name": "full",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/full.png",
+        "--reference",
+        "references/base-subject.png"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/full.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "crown_sweeps",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/crown_sweeps.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "group-head-front-hair-temple-sweeps-left-crown-sweeps",
+        "--crop",
+        "338",
+        "120",
+        "100",
+        "170",
+        "--scale",
+        "4",
+        "--edge-overlay",
+        "--columns",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/crown_sweeps.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "upper_temple_lock",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/upper_temple_lock.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "part-head-front-hair-temple-sweeps-left-upper-temple-lock",
+        "--crop",
+        "338",
+        "120",
+        "100",
+        "170",
+        "--scale",
+        "4",
+        "--edge-overlay",
+        "--columns",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/upper_temple_lock.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "middle_temple_lock",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/middle_temple_lock.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "part-head-front-hair-temple-sweeps-left-middle-temple-lock",
+        "--crop",
+        "338",
+        "120",
+        "100",
+        "170",
+        "--scale",
+        "4",
+        "--edge-overlay",
+        "--columns",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/middle_temple_lock.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "lower_temple_lock",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/lower_temple_lock.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "part-head-front-hair-temple-sweeps-left-lower-temple-lock",
+        "--crop",
+        "338",
+        "120",
+        "100",
+        "170",
+        "--scale",
+        "4",
+        "--edge-overlay",
+        "--columns",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/lower_temple_lock.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "ear_lock",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/ear_lock.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "part-head-front-hair-temple-sweeps-left-ear-lock",
+        "--crop",
+        "338",
+        "120",
+        "100",
+        "170",
+        "--scale",
+        "4",
+        "--edge-overlay",
+        "--columns",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/ear_lock.png\n",
+      "stderr": ""
+    },
+    {
+      "name": "connections",
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+        "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/connections.png",
+        "--reference",
+        "references/base-subject.png",
+        "--only",
+        "group-head-front-hair-temple-sweeps-left-crown-sweeps",
+        "--only",
+        "part-head-front-hair-temple-sweeps-left-upper-temple-lock",
+        "--only",
+        "part-head-front-hair-temple-sweeps-left-middle-temple-lock",
+        "--only",
+        "part-head-front-hair-temple-sweeps-left-lower-temple-lock",
+        "--only",
+        "part-head-front-hair-temple-sweeps-left-ear-lock",
+        "--crop",
+        "338",
+        "120",
+        "100",
+        "170",
+        "--scale",
+        "4",
+        "--edge-overlay",
+        "--columns",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/connections.png\n",
+      "stderr": ""
+    }
+  ],
+  "contact_sheet": "Native boards pasted at original size without resampling",
+  "image_hashes": {
+    "upper_temple_lock.png": "cfb4554e6ae52565a0c4b983f51c836ee861f6da118da48aa4fa51f1df359080",
+    "lower_temple_lock.png": "8569e045261fe0a337734a44310faf4d25668d3d0db7239ece7de0db8056ccb7",
+    "component-review-board.png": "dea391ca7aa775324f73c4604b735c7eb4ed4bac279af6d5cd0aa26117f50eb1",
+    "connections.png": "bfec845ecc2afa4829721ca8c781775e97622f9ac6cd79565ef3b5512dbdc573",
+    "ear_lock.png": "f7b2ac10f04b82bd2e12375045669d54e37b3fb16358b9bdcf5247610c7729c6",
+    "crown_sweeps.png": "de1cc0b5b83cfd08e8cb0ea54993a559ed5daaa7a5bc65d1b2b5e854770cccb3",
+    "full.png": "808fd60da85b0f11662171672c8e24d59d4651b2151b9131d34090eb502639cb",
+    "middle_temple_lock.png": "eef3bd3a169de9ca7a6164bcf0dd89364674769349e3b7102be5950e453bea2d"
+  }
+}

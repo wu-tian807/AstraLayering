@@ -1,0 +1,7 @@
+{
+  "node": "cast_shadow_artwork",
+  "worker": "/root/workflow_runner/ribbon_right",
+  "guide_sha256": "f81db239c0250347e6560b63c7bc730ce773828d3771a5bdf1859f1574ed57aa",
+  "artwork_sha256": "33cb2e341536126e927a0c4d168d5647a2c2cefddffc8fc182e4853d78db6caf",
+  "note": "1个独立挂环raw短影已画，完整影独显及原生apply后的带顶组合8×实看；19层原生check通过，正式raw保持未绑定receiver，原其他层保留。"
+}

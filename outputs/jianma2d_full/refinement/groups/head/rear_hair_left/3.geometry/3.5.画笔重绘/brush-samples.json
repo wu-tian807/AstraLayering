@@ -1,0 +1,110 @@
+[
+  {
+    "source": "head_rear_hair_left_occipital_root_source_outer_contact",
+    "points": 233,
+    "outline_points": 465,
+    "size": 0.8,
+    "taper_px": 10,
+    "pressure_minmax": [
+      0.18,
+      0.8299929926892078
+    ],
+    "source_sha256": "76ea36d5b30e41a248eabe36773a8df7ee3be6ab35113c96639594ef8e2b94e9"
+  },
+  {
+    "source": "head_rear_hair_left_occipital_root_source_ear_opening",
+    "points": 118,
+    "outline_points": 258,
+    "size": 0.65,
+    "taper_px": 6.275039766243053,
+    "pressure_minmax": [
+      0.18,
+      0.8299986422493757
+    ],
+    "source_sha256": "e0bb19c9deec0d343dc3e5a2b01f1f7682f28e9cf8aea34aa5edbd18e4aed004"
+  },
+  {
+    "source": "head_rear_hair_left_occipital_root_source_root_groove",
+    "points": 304,
+    "outline_points": 607,
+    "size": 0.65,
+    "taper_px": 13,
+    "pressure_minmax": [
+      0.18,
+      0.8299994418734888
+    ],
+    "source_sha256": "6854425e8bab8bfcd9c6d2e191cdd3c7971d4612521f8831450638d29d95b36c"
+  },
+  {
+    "source": "head_rear_hair_left_occipital_root_source_neck_fan",
+    "points": 294,
+    "outline_points": 589,
+    "size": 0.5,
+    "taper_px": 13,
+    "pressure_minmax": [
+      0.18,
+      0.8299983388183181
+    ],
+    "source_sha256": "f2719f439f66c83e8978df7c80bb214da8b4ad7e19435fa20c32b4adcd779b01"
+  },
+  {
+    "source": "head_rear_hair_left_occipital_root_source_outer_fiber",
+    "points": 189,
+    "outline_points": 379,
+    "size": 0.35,
+    "taper_px": 10.268536830207784,
+    "pressure_minmax": [
+      0.18,
+      0.8299961607354436
+    ],
+    "source_sha256": "d8d8473fb8cf39eca17aee5e4243bf3f975a38a573d7551adefa52e3efa8d545"
+  },
+  {
+    "source": "head_rear_hair_left_occipital_root_source_inner_fiber",
+    "points": 187,
+    "outline_points": 375,
+    "size": 0.35,
+    "taper_px": 10.13663537147037,
+    "pressure_minmax": [
+      0.18,
+      0.8299972340221675
+    ],
+    "source_sha256": "2f627d234c8db996905a1eeeaa511c9ac7655b58340a391a703f3681a982ee67"
+  },
+  {
+    "source": "head_rear_hair_left_central_back_tail_source_tail_left",
+    "points": 915,
+    "outline_points": 1825,
+    "size": 0.75,
+    "taper_px": 10,
+    "pressure_minmax": [
+      0.18,
+      0.8299996331004273
+    ],
+    "source_sha256": "fa7971cdc23169f31118bdb396c526d6bce478f347b05e133c1fa87909db7869"
+  },
+  {
+    "source": "head_rear_hair_left_central_back_tail_source_tail_right",
+    "points": 910,
+    "outline_points": 1817,
+    "size": 0.7,
+    "taper_px": 10,
+    "pressure_minmax": [
+      0.18,
+      0.8299999884381069
+    ],
+    "source_sha256": "c122c91ffe1b360090c6bcba7a0861301226fe5373b4abe0827d4cb4c366ecfe"
+  },
+  {
+    "source": "head_rear_hair_left_central_back_tail_source_tip_fiber",
+    "points": 186,
+    "outline_points": 373,
+    "size": 0.35,
+    "taper_px": 10.109265810534552,
+    "pressure_minmax": [
+      0.18,
+      0.8299965312112347
+    ],
+    "source_sha256": "c1e135168e3301a6815546de68f133b075917fb5ba812045249818375c642096"
+  }
+]

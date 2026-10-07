@@ -1,0 +1,26 @@
+{
+  "node": "group_child_layers",
+  "target": "n17",
+  "group_path": "arms/arm_right",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "timestamp": "2026-10-06T09:59:44.336811+00:00",
+  "status": "frozen_awaiting_independent_review",
+  "candidate_sha256": "b8a53f8741fbe4037020992a414be5aae253433dce163ffa891eb256479ebd08",
+  "outside_samples": [
+    0,
+    0,
+    0
+  ],
+  "active": {
+    "target": "n17",
+    "route": "generic",
+    "pointer": "group_split"
+  },
+  "preserved_existing_ids": 267,
+  "evidence": [
+    "arm-parts-board.png",
+    "hand-connections-board.png"
+  ],
+  "note": "refinement/groups/arms/arm_right/2.直属拆分与色块/2.2.直属轮廓色块/绘制说明.md"
+}

@@ -1,0 +1,15 @@
+{
+  "node": "part_highlights",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "肩前柔亮斑与沿上臂/前臂外侧的低强度反光完成；逐件及原生apply相邻组合实看，亮部随皮肤完整延续，未新增独立关系。",
+  "evidence": [
+    "views/part_highlights.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_highlights"
+  },
+  "artwork_sha256": "e5cb8e0f13fc22f0b3cfff0745682120eef0705d77e65a6dd63bdbecbb8083a1"
+}

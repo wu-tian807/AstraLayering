@@ -1,0 +1,16 @@
+{
+  "node": "cast_shadow_artwork",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "1个完整主前发raw投影已画，独显4×源影及原生apply相邻组合实看；20层结构check通过，正式影源保持未绑定receiver，原19层保留。",
+  "evidence": [
+    "views/cast-shadow-raw.png",
+    "views/cast_shadow_artwork.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_artwork"
+  },
+  "artwork_sha256": "4a11c2d36aeb97abff5540f953315a9570f6264937e8da0a98f0ab7dd2cf1b64"
+}

@@ -1,0 +1,19 @@
+{
+  "target": "n23",
+  "node": "cast_shadow_relations",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看本侧上睑下窄软灰区后登记独立shadow，逻辑owner=sclera，follow=upper_eyelid，clip_to=sclera；SVG保留。原23条关系深比较一致，native merge新增至24。",
+  "evidence": [
+    "views/cast_shadow_relations.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_relations"
+  },
+  "artwork_sha256": "970fbc582839ea60853289b1482bf02da9917aa6be7cef1bff34200bb3ba22bb",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc",
+  "rendering_sha256": "4c9384c2aed269d4bfe0e499144743bf204652d113c26ebdaf9194d4d0f675ad",
+  "patch": "4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/layers.json"
+}

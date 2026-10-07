@@ -1,0 +1,13 @@
+{
+  "actor": "/root/workflow_runner",
+  "guide_before_sha256": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275",
+  "guide_after_sha256": "edbbbaf389939a2dc5adbd3e2f41bd5d9251019f3db5aa116cf766ea7add6460",
+  "change": "Only non-paint desc text appended to four direct parts; all geometry and rendering attributes identical",
+  "bounds_original": "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+  "bounds_raw_copy_sha256": "de40718f17a953f44c4ee8de1a303d0898765a750521a2f573b7d72faa027d54",
+  "preview_reused_sha256": "b96b1ea38404a3e89592b1b508b045eae39d941c8c9d2e5d6156860747f1e1e1",
+  "actual_examples_opened": [
+    "milly-collar-wrist.png",
+    "milly-sleeve-shoe.png"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "node": "part_structure",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "膝两侧转面、胫前轴向和踝侧收束按右侧参考建线，全部标为柔明暗导引；无硬膝缝或贯穿胫骨线。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_structure.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_structure"
+  },
+  "artwork_sha256": "c65b918a3ee0449f2c4c78d419cc643ade4547586458b23664635055a6310404"
+}

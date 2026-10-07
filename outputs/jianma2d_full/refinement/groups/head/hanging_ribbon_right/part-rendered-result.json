@@ -1,0 +1,21 @@
+{
+  "target": "n15",
+  "group_path": "head/hanging_ribbon_right",
+  "pointer": "part_rendered",
+  "worker": "/root/workflow_runner/ribbon_right",
+  "artwork_sha256": "c293d7a768b2538d1763af91f41b4b0c66e94a938081ced4ebd9d6534ee7c2a9",
+  "guide_sha256": "f81db239c0250347e6560b63c7bc730ce773828d3771a5bdf1859f1574ed57aa",
+  "rendering_sha256": "cc9e2bae8a8c7f294ae5d07f9021ae801b50e2467a2b8e9d26e5e15726b4a1cf",
+  "preview_sha256": "8778ac2ba58c6db5bcc735c68bea8a1d1a144a6532057e2b4360095b2cfdafe9",
+  "native_rendering_check": {
+    "status": "pass",
+    "layers": 19,
+    "complete": false
+  },
+  "old_artwork_byte_preserved": true,
+  "old_rendering_layers_preserved": 18,
+  "geometry_preserved_in_final": true,
+  "unresolved": [],
+  "evidence": "refinement/groups/head/hanging_ribbon_right/4.rendering stack/4.7.线色融合与材质细化/view.png",
+  "handoff": "当前直属带身已完成；jeweled_hanger后续独立调度，receiver最终裁切与全局顺序留第5步；未complete/next。"
+}

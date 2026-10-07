@@ -1,0 +1,15 @@
+[
+  ".runtime/svg-preview/python/bin/python",
+  "../../workflow-next/live2d-layering/tools/rendering.py",
+  "merge",
+  "--groups",
+  "structure/groups.json",
+  "--rendering",
+  "structure/rendering.json",
+  "--scope",
+  "head/front_hair/temple_sweeps_right",
+  "--patch",
+  "refinement/groups/head/front_hair/temple_sweeps_right/stages/cast_shadow_relations/relationships.json",
+  "--out",
+  "structure/rendering.json"
+]

@@ -1,0 +1,23 @@
+{
+  "status": "failed",
+  "candidate_sha256": "12720ece25671ed06319d4bb8a08557a748ba8883df4c6d3c2b4e2bb2d04cca2",
+  "outside_samples": [
+    0,
+    9,
+    0,
+    0,
+    1
+  ],
+  "actually_viewed": [
+    "evidence/full.png",
+    "evidence/crown-sweeps.png",
+    "evidence/upper-temple-lock.png",
+    "evidence/middle-temple-lock.png",
+    "evidence/lower-temple-lock.png",
+    "evidence/ear-lock.png",
+    "evidence/gaps.png",
+    "轮廓检查-images/02-outside.png",
+    "轮廓检查-images/05-outside.png"
+  ],
+  "notes": "Initial complete sheet trial; genuine upper hidden-root tip overshoot and small samples on reused split Béziers. Preserve raw report without changing its verdict. All real visible gaps remain open."
+}

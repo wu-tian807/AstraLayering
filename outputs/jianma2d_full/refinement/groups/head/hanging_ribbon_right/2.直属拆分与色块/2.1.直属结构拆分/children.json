@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "jeweled_hanger",
+      "groups": [],
+      "note": "冠翼下方至垂带尖顶的完整悬挂饰链，约 x559.8–575、y135.6–183.5：含上端两枚相接链环、菱形蓝宝石、其下圆腹尖底的蓝色小坠和穿接带顶的下链环。链环可相对转动，硬质宝石与连接链段的活动不同，下一层继续拆；保留全部环孔及冠翼、宝石、带顶处的真实搭接，不含冠翼本体。"
+    }
+  ],
+  "parts": [
+    {
+      "name": "ribbon_strip",
+      "note": "从约 (567.65,180.45) 的穿环尖顶，经约 (556,195) 与 (576,194) 的双肩，向右下连续弯至 (607,545) 尖梢的整条柔软蓝色垂带；保留带顶泪滴孔、完整双缘和肩臂及后发遮挡下的连续带面。自身是一条可统一弯曲控制的柔性带面；银白 V 纹、滴焰纹、小亮点、亮边和纵向明暗均为表面绘制，不另建物理节点。与 jeweled_hanger 下环仅在真实穿挂处搭接；尖梢以下细暗线属于后方头发。"
+    }
+  ],
+  "mirror_pairs": [
+    {
+      "name": "hanging_ribbon_jeweled_hanger_pair",
+      "members": [
+        "head/hanging_ribbon_left/jeweled_hanger",
+        "head/hanging_ribbon_right/jeweled_hanger"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "target": "n30",
+  "node": "group_completion",
+  "logical_worker": "group:head/rear_hair_left/outer_back_curtain",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n30",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "status": "pass_actual_geometry_with_documented_raster_fail",
+  "geometry_changed": false,
+  "guide_equal_to_input": true,
+  "actual_viewed_images": [
+    "references/base-subject.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/01-before-isolated.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/02-before-full-blend.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/before-containment-images/02-outside.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/03-before-ear-root-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/04-before-ear-line-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/05-before-loop-upper-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/06-before-loop-lower-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/07-before-bottom-branches-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/08-r1-upper-before-after-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/09-r1-lower-before-after-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/10-r2-upper-before-after-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/11-r2-lower-before-after-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/12-input-shoulder-hidden-4x.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/13-input-lower-hidden-4x.png"
+  ],
+  "actual_viewed_image_count": 15,
+  "visual_observations": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/逐处观察.md",
+  "completion_note": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/补全说明.md",
+  "input_hashes": {
+    "block-layers/groups.svg": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+    "refinement/character.svg": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "structure/groups.json": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+    "block-layers/preview.png": "d57665f8d5d09a60ee698902a454576e810c403b7a9bb77d444538cd63c8d279"
+  },
+  "output_hashes": {
+    "block-layers/groups.svg": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+    "refinement/character.svg": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "structure/groups.json": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+    "block-layers/preview.png": "d57665f8d5d09a60ee698902a454576e810c403b7a9bb77d444538cd63c8d279"
+  },
+  "default_native_containment": {
+    "status": "fail",
+    "report": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/before-containment.json",
+    "scale": 4,
+    "alpha_threshold": 128,
+    "outside_samples": 3,
+    "outside_area_px2": 0.1875,
+    "outside_bbox": [
+      178.75,
+      725.25,
+      36.5,
+      216.75
+    ],
+    "exact_samples": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/before-samples.json"
+  },
+  "continuous_boundary_evidence": {
+    "shared_outer_prefix_and_holes_identical": true,
+    "proof": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/raster-diagnosis.json",
+    "visible_geometry_observation": "Ear root, shoulder and leg occluded continuations, two actual holes, loop junctions and lower fork tips retained and actually viewed; no actual contour protrusion at the three shared-curve samples.",
+    "raster_backend_specific_rounding_branch": "not located"
+  },
+  "experiments_not_adopted": [
+    {
+      "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-r1-winding.svg",
+      "sha256": "0e06989b545ba310e03bc46a2277c5f44504f868fccbaeb53b53d0a2b6bc3152",
+      "proof": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/equivalence-proof-r1.json",
+      "native_report": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r1-containment.json",
+      "native_status": "fail"
+    },
+    {
+      "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-r2-subdivided.svg",
+      "sha256": "cda25ec3aec3d4a5ecda823be35a7cfd4c3e140105650aa896df25ad4e649a6f",
+      "proof": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/equivalence-proof-r2.json",
+      "native_report": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r2-containment.json",
+      "native_status": "fail"
+    }
+  ],
+  "controller_node1_rule_interpretation": "Root reread node1 YAML/prompt, found no bounds_tool/bounds_check output or forced zero-sample gate, and authorized original-guide completion based on exact shared curves and actual local visual verification while retaining default FAIL. This supersedes earlier stop-before-checkpoint direction. Does not waive node2.2 child checks.",
+  "native_checkpoint": "group_completion",
+  "dispatch_active_before": {
+    "target": "n30",
+    "route": "generic",
+    "pointer": null
+  },
+  "previous_n29_failure_evidence": {
+    "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/parent-containment.json",
+    "sha256": "91a0fcc3bcf0f066810dea4c4859e54d3675cb303264ba9572865f770d42d217"
+  },
+  "preview_matches_actually_viewed_candidate_cell": true,
+  "handoff": "Stop after group_completion for independent node2.1 splitter. No expand/complete/next.",
+  "dispatch_active": {
+    "target": "n30",
+    "route": "generic",
+    "pointer": "group_completion"
+  },
+  "completed_at": "2026-10-07T05:29:36.230741+00:00"
+}

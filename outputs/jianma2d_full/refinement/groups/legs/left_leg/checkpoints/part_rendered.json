@@ -1,0 +1,17 @@
+{
+  "node": "part_rendered",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "完整2part按参考完成暖灰线色融合；逐件与4×髋膝组合实看，修正当前大腿上端色场以消除骨盆接界色阶，膝同面连续、圆端无横缝。guide几何/树/21关系与其他内容保留，原生check通过。",
+  "evidence": [
+    "views/part_rendered.png",
+    "views/part_rendered-hip-final.png",
+    "views/part_rendered-joins.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_rendered"
+  },
+  "artwork_sha256": "ca574ede72f49ba3ea6a93628bf48dddb8afeaa08039e1ec29a7a8b4c915a02b"
+}

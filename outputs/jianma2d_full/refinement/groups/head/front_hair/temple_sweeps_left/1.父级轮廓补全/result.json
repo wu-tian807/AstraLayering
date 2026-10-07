@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "actor": "/root/workflow_runner",
+  "guide_sha256": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+  "candidate_equals_input": true,
+  "actual_new_view": {
+    "local.png": "72fdc6f2ef936fd7458da4fb68d3cd53f171e96bee5fae8f9390a9a9bb0492d2"
+  },
+  "reused_actual_full_view": {
+    "file": "full.png",
+    "sha256": "a6925bb78ce38fcfc4db15e7c6c2d973d200eca97949013522d27aca5f805c9c",
+    "original": "reviews/group_child_layers/head/front_hair/fringe_right/evidence/full.png",
+    "same_svg_sha256": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+    "previously_viewed_by": "/root/workflow_runner"
+  },
+  "unchanged_inputs": {
+    "block-layers/groups.svg": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+    "structure/groups.json": "8230e59764cd31df53bde422a4b2b1b9f0d46e0b760b04ec001db768c886ffea",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "refinement/character.svg": "dc81a34677dee89440a2ea622a5589b46180581e2429cb0d856653f551eb4299",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  },
+  "preview_sha256": "d5b5a99dabe0f8c5b66b57f7bc4f186f2a8c74ff7d402a02e73a0291e6e4f91d",
+  "preview_reused": true,
+  "geometry_changes": []
+}

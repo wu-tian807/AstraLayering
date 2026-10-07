@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "part_structure",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已实看同坐标参考、线稿和完整独显；仅设浅右侧转面辅助曲线，后续软色面接管，无深缝、孔洞或额外切面。",
+  "evidence": [
+    "views/part_structure.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_structure"
+  },
+  "artwork_sha256": "04a72a33c3653a688a34aa4f2570d60319600e2e1b478bbfd416722ef23e2ff7"
+}

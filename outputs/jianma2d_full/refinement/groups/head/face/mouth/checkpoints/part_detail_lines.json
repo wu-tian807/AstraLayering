@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_detail_lines",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "按参考低细节密度沿用光滑唇面与既有接界/明暗曲线，无可辨竖唇纹、毛孔、装饰或口腔纹理。仅补说明，复用几何相同的3.3实际三part对照。",
+  "artwork_sha256": "cd57f548ef1e4a805bf626ff507a4a276f5454a537b4944cad86d31aa23d993a",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_tone_boundaries.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_detail_lines"
+  }
+}

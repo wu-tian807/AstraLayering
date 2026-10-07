@@ -1,0 +1,19 @@
+{
+  "status": "pass",
+  "logical_worker": "group_child_layers:head/front_hair/fringe_left:review",
+  "actual_worker": "/root",
+  "independent_of_candidate_author": true,
+  "candidate_sha256": "57d287ca92f5c2604317c4f9328f19cc629a7f988a96de880f6508e847ccb206",
+  "candidate_and_guide_unchanged_at_return": true,
+  "default_bounds_outside_samples": [
+    0,
+    0
+  ],
+  "images_actually_viewed": {
+    "full.png": "64e137b584999b443e77f8fddc83bfd591e5be815f5c599543eb709e92d6096e",
+    "component-review-board.png": "578738e8d3362c3e0f63b979b20881334617c7e476bc122540c935448423b28c"
+  },
+  "native_contact_sheet": "Two individually isolated 4x child boards plus no-parent connection board, pasted at original size without resampling; inspected and recorded component by component.",
+  "path_identity_check": "independent-path-check.json",
+  "report": "reviews/group_child_layers/head/front_hair/fringe_left/审查.md"
+}

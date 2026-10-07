@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "scope": "4.7 text-only check of pre-existing shape attributes and raw effects; added self-surface color field is explicitly listed and remains visually unaccepted",
+  "existing_shape_attribute_changes": [],
+  "new_ids": [
+    {
+      "id": "n29_nape_back_sheet_root_same_material_connection",
+      "tag": "path",
+      "role": "self-surface-tone"
+    },
+    {
+      "id": "n29_nape_root_connection",
+      "tag": "linearGradient",
+      "role": null
+    },
+    {
+      "id": "n29_nape_root_connection_soft",
+      "tag": "filter",
+      "role": null
+    }
+  ],
+  "raw_effects_unchanged": 33,
+  "physical_parts": 57,
+  "visual_status": "awaiting actual human review",
+  "strict_stage5_check": "text-audit-preservation.json intentionally reports geometry_changes for the newly added 4.7 material patch; it has not been waived or rewritten as a stage5 pass"
+}

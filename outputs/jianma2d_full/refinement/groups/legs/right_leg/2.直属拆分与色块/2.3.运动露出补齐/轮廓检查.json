@@ -1,0 +1,47 @@
+{
+  "status": "pass",
+  "group_path": "legs/right_leg",
+  "parent_svg": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.3.运动露出补齐/work/input-guide.svg",
+  "parent_ids": [
+    "group-legs-right-leg"
+  ],
+  "candidate_svg": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.3.运动露出补齐/work/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "legs/right_leg/foot",
+      "status": "pass",
+      "ids": [
+        "group-legs-right_leg-foot"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "legs/right_leg/thigh",
+      "status": "pass",
+      "ids": [
+        "part-legs-right_leg-thigh"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "legs/right_leg/lower_leg",
+      "status": "pass",
+      "ids": [
+        "part-legs-right_leg-lower_leg"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

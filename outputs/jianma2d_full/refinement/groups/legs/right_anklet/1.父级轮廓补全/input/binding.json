@@ -1,0 +1,18 @@
+{
+  "worker_id": "/root/workflow_runner/arm_right",
+  "logical_worker": "group:legs/right_anklet",
+  "new_independent_context": false,
+  "target": "n21",
+  "node": "group_completion",
+  "group_path": "legs/right_anklet",
+  "model_config": "gpt-6-astra-xhigh.model",
+  "input_sha256": {
+    "block-layers/groups.svg": "5159998e2fa1819364b1b2ff6dba3711a3284b4eef7bb13fc4d49c28a8675227",
+    "block-layers/preview.png": "a8773b0bd49c599e1425867c60195eccef549d2449810882b3bbc8ac07af17d0",
+    "structure/groups.json": "c6338fada83c35c5b77b74a339313d728cc018c16795fdbeae3b584b326c482a",
+    "structure/groups.dispatch.json": "7842f6b78944b1ad73791ea481e4c3f22e7d42576f68be642031b30e8f6d0a5b",
+    "structure/rendering.json": "c0159f667ad7019605f8af14a9227fb4b8eba10b072f79f17fdeeb9a4fc40983",
+    "refinement/character.svg": "b4a54d1de7f9dd59209f66b845ec8aa7b745d60ade0dd5176ca5bb36a87289fb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  }
+}

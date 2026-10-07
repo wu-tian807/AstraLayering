@@ -1,0 +1,15 @@
+{
+  "node": "part_brush_lines",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "perfect-freehand1.2.0四条显式压力笔触已完成，逐件及相邻躯干/前发合板实看；原曲线隐藏保留，圆帽不描线，白底正式预览同源更新。",
+  "evidence": [
+    "views/part_brush_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_brush_lines"
+  },
+  "artwork_sha256": "c5e2bd09d678bfd3fff2f08455b97e8a4d43115693510b28a8cf3184169a8f4e"
+}

@@ -1,0 +1,65 @@
+{
+  "parent_paths": 28,
+  "assigned_once": 28,
+  "children": [
+    {
+      "name": "ankle_chain",
+      "kind": "group",
+      "id": "group-legs-right-anklet-ankle-chain",
+      "paths": 23,
+      "color": "#62B6A4"
+    },
+    {
+      "name": "gem_pendant",
+      "kind": "group",
+      "id": "group-legs-right-anklet-gem-pendant",
+      "paths": 4,
+      "color": "#A193D2"
+    },
+    {
+      "name": "small_charm",
+      "kind": "part",
+      "id": "part-legs-right-anklet-small-charm",
+      "paths": 1,
+      "color": "#E58D97"
+    }
+  ],
+  "geometry_and_holes_exactly_preserved": true,
+  "parent_and_all_previous_svg_bytes_preserved": true,
+  "ownership": {
+    "ankle_chain": [
+      "legs-right-anklet-rear-return",
+      "legs-right-anklet-connector-01",
+      "legs-right-anklet-connector-02",
+      "legs-right-anklet-connector-03",
+      "legs-right-anklet-connector-04",
+      "legs-right-anklet-connector-05",
+      "legs-right-anklet-connector-06",
+      "legs-right-anklet-connector-07",
+      "legs-right-anklet-connector-08",
+      "legs-right-anklet-connector-09",
+      "legs-right-anklet-connector-10",
+      "legs-right-anklet-anchor-1",
+      "legs-right-anklet-anchor-2",
+      "legs-right-anklet-link-01",
+      "legs-right-anklet-link-02",
+      "legs-right-anklet-link-03",
+      "legs-right-anklet-link-04",
+      "legs-right-anklet-link-05",
+      "legs-right-anklet-link-06",
+      "legs-right-anklet-link-07",
+      "legs-right-anklet-link-08",
+      "legs-right-anklet-clasp-tail",
+      "legs-right-anklet-clasp"
+    ],
+    "gem_pendant": [
+      "legs-right-anklet-clasp-to-bail",
+      "legs-right-anklet-bail",
+      "legs-right-anklet-bail-to-gem",
+      "legs-right-anklet-pendant"
+    ],
+    "small_charm": [
+      "legs-right-anklet-small-charm"
+    ]
+  }
+}

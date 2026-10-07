@@ -1,0 +1,36 @@
+{
+  "status": "pass",
+  "group_path": "arms",
+  "parent_svg": "tmp/arm-right-node1/input-guide.svg",
+  "parent_ids": [
+    "group-arms"
+  ],
+  "candidate_svg": "tmp/arm-right-node1/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "arms/arm_left",
+      "status": "pass",
+      "ids": [
+        "group-arms-arm_left"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "arms/arm_right",
+      "status": "pass",
+      "ids": [
+        "group-arms-arm_right"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

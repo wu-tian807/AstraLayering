@@ -1,0 +1,7 @@
+{
+  "node": "part_detail_lines",
+  "worker": "/root/workflow_runner/ribbon_left",
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "880f68d5ab342d08b3948cf29db67f933ded3f0240688be87c644273ec717cff",
+  "note": "顶部V纹、滴焰色面边界与小斜亮点已绘制；彩参/线参同坐标8×实看，主带面留白，细节密度及成稿线/色面去向清晰。"
+}

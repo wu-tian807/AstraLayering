@@ -1,0 +1,17 @@
+{
+  "target": "n23",
+  "node": "part_detail_lines",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已实看两part与本侧线稿，按参考低细节密度沿用光滑表面；不把交叉白发、虹膜纹理、瞳孔或反光画入当前part。",
+  "evidence": [
+    "views/part_detail_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_detail_lines"
+  },
+  "artwork_sha256": "5fd580e0b5fd30383a7c9053730cc59116df87a3152037c935363c192458734f",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc"
+}

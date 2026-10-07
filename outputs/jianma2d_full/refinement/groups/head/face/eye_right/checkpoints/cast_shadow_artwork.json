@@ -1,0 +1,19 @@
+{
+  "target": "n22",
+  "node": "cast_shadow_artwork",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已实看完整raw投影独显、参考混合及临时组合；软灰下缘贴上睑下方，上侧和两角保留裁切余量。shadow位于眼白上、下睑下；native rendering check PASS（仅结构，complete=false）。",
+  "evidence": [
+    "views/cast_shadow_artwork.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_artwork"
+  },
+  "artwork_sha256": "eb6764f3ee9ac34f96159e5a6a46558c1bcc78bf59bface63411fffabf2e7b8d",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab",
+  "rendering_sha256": "0e2886a5f0d52e27127bbcffd1e7a949202508580b68444a8d1cd537defefa14",
+  "structural_check": "work/cast-shadow-check.json"
+}

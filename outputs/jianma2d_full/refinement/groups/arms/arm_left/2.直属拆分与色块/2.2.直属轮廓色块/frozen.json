@@ -1,0 +1,22 @@
+{
+  "node": "group_child_layers",
+  "target": "n16",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "status": "awaiting_independent_review",
+  "candidate": "candidate.svg",
+  "sha256": "7c4abe5b63c660dbc69ca6c2e3211e9ca5cc72ded9db04c57bf61d2bfeec57d0",
+  "bounds": {
+    "arms/arm_left/hand": 0,
+    "arms/arm_left/upper_arm": 0,
+    "arms/arm_left/forearm": 0
+  },
+  "artwork_sha256": "c293d7a768b2538d1763af91f41b4b0c66e94a938081ced4ebd9d6534ee7c2a9",
+  "rendering_sha256": "cc9e2bae8a8c7f294ae5d07f9021ae801b50e2467a2b8e9d26e5e15726b4a1cf",
+  "viewed": [
+    "upper-arm.png",
+    "forearm.png",
+    "hand.png",
+    "connections-no-parent.png",
+    "whole-mix.png"
+  ]
+}

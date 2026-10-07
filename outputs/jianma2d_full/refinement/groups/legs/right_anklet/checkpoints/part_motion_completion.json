@@ -1,0 +1,17 @@
+{
+  "target": "n21",
+  "node": "part_motion_completion",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实际打开两组Milly示例并查看本侧前后/参考/独显；小坠四周已可见，动作不需要后壁或新增表面。空patch校验及默认三个孩子bounds通过，guide只更新本part说明。",
+  "evidence": [
+    "refinement/groups/legs/right_anklet/2.直属拆分与色块/2.3.运动露出补齐/evidence/inspection-montage.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_motion_completion"
+  },
+  "artwork_sha256": "b4a54d1de7f9dd59209f66b845ec8aa7b745d60ade0dd5176ca5bb36a87289fb",
+  "guide_sha256": "2608f00e35d232cd155b3fbb552b3606c94d72a31a8009bdba84d315562fad6f"
+}

@@ -1,0 +1,20 @@
+{
+  "target": "n22",
+  "node": "part_highlights",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看两part、完整raw高光、slate底独显与同坐标参考。主角膜亮斑为独立highlight，逻辑归sclera、随iris并待其裁切；下睑保留克制肤面反光。23条关系检查PASS，旧21条深比较不变。局部预览最初scale=20被原生CLI拒绝，改为允许的8后成功，非图像容量错误。",
+  "evidence": [
+    "views/part_highlights.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_highlights"
+  },
+  "artwork_sha256": "aa8919df0c830005f4a2df7091c66074cbfcf037a93123bbc706ea4e7881a364",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab",
+  "rendering_sha256": "17c422f5624fd3bcd0ff1fb260fd08c997f550dd3efa322836ba268d90328a19",
+  "patch": "4.rendering stack/4.6.高光与反光/layers.json",
+  "structural_check": "work/highlight-check.json"
+}

@@ -1,0 +1,15 @@
+{
+  "node": "part_structure",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "肩内转面、纵向肘窝及腕内浅收束4条结构线完成；2part彩参/线参实看，隐藏同面连续，全部由柔色面接管，不造横切关节缝。",
+  "evidence": [
+    "views/part_structure.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_structure"
+  },
+  "artwork_sha256": "457223f6debe6c7524609a89677edb64c75edc9e6c310912b973a751f0124a77"
+}

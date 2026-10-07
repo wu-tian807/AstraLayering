@@ -160,6 +160,19 @@
         "candidate_sha256": "dc53125f3eab4c6f0e3fe016146df7bffeca8903368ea0508cc28f05691e749b",
         "frozen_report": "reviews/review-ledger/head/006/report.md",
         "frozen_candidate": "reviews/review-ledger/head/006/candidate.svg"
+      },
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head:review",
+        "worker_id": "/root/workflow_runner/review_head_notch",
+        "sequence": "local-20261006-head-notch",
+        "report": "reviews/review-ledger/head/007/report.md",
+        "candidate": "reviews/review-ledger/head/007/candidate.svg",
+        "report_sha256": "7c9c4c96c439d60a145fb84acb58d4fa8b7a35830f5a226ef84061bdf164b439",
+        "candidate_sha256": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+        "frozen_report": "reviews/review-ledger/head/007/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/007/candidate.svg",
+        "scope": "Bounded notch and connected outline re-review; retained unaffected previous PASS conclusions and completed downstream carry."
       }
     ],
     "arms": [
@@ -252,6 +265,30 @@
         "candidate_sha256": "ffafca59ebecf9ea35d64405ca355315d9c62a968fc22e6eef874d94d3dc28f0",
         "frozen_report": "reviews/review-ledger/head/front_hair/001/report.md",
         "frozen_candidate": "reviews/review-ledger/head/front_hair/001/candidate.svg"
+      },
+      {
+        "status": "revise",
+        "worker": "group_child_layers:head/front_hair:review",
+        "worker_id": "/root",
+        "sequence": "local-n8-fringe-left-repair",
+        "report": "reviews/review-ledger/head/front_hair/002/report.md",
+        "candidate": "reviews/review-ledger/head/front_hair/002/candidate.svg",
+        "report_sha256": "df8d5826a449114dffcab0b0bd9e847666dba3d4b3780f98d31b0ee8f2e18453",
+        "candidate_sha256": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+        "frozen_report": "reviews/review-ledger/head/front_hair/002/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/front_hair/002/candidate.svg"
+      },
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/front_hair:review",
+        "worker_id": "/root",
+        "sequence": "local-n8-fringe-left-repair-02",
+        "report": "reviews/review-ledger/head/front_hair/003/report.md",
+        "candidate": "reviews/review-ledger/head/front_hair/003/candidate.svg",
+        "report_sha256": "455b66ca0af3e8a16adab9917a3271458d55174e214f42e6223e79c18783b622",
+        "candidate_sha256": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083",
+        "frozen_report": "reviews/review-ledger/head/front_hair/003/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/front_hair/003/candidate.svg"
       }
     ],
     "head/face": [
@@ -384,6 +421,250 @@
         "candidate_sha256": "4b7179f7b86559b499efcb8213760934949e75f1a5194fb5e647ef6ac4e02ddf",
         "frozen_report": "reviews/review-ledger/head/rear_hair_left/001/report.md",
         "frozen_candidate": "reviews/review-ledger/head/rear_hair_left/001/candidate.svg"
+      },
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/rear_hair_left:review",
+        "worker_id": "/root/workflow_runner/review_rear_left",
+        "sequence": "local-20261006-rear-left-notch",
+        "report": "reviews/review-ledger/head/rear_hair_left/002/report.md",
+        "candidate": "reviews/review-ledger/head/rear_hair_left/002/candidate.svg",
+        "report_sha256": "2a45190cb2790342c8342e12fff4a997013f255e605af0b0d59feff7af4981b9",
+        "candidate_sha256": "a85a4204cd039e292828afa5b78ca1153bfb955a1d1b15e448c59c5e8b06ce41",
+        "frozen_report": "reviews/review-ledger/head/rear_hair_left/002/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/rear_hair_left/002/candidate.svg",
+        "raw_bounds_status": "fail",
+        "raw_outside_samples": [
+          0,
+          3,
+          0,
+          0
+        ],
+        "scope": "Repaired visible notch and connections PASS; current XML confirms existing independent coincident-curve AA proof applicability to all remaining raw sites."
+      }
+    ],
+    "head/hanging_ribbon_left": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/hanging_ribbon_left:review",
+        "worker_id": "/root/workflow_runner/review_ribbon_left",
+        "sequence": "local-20261006-n14",
+        "report": "reviews/review-ledger/head/hanging_ribbon_left/001/report.md",
+        "candidate": "reviews/review-ledger/head/hanging_ribbon_left/001/candidate.svg",
+        "report_sha256": "8e6584f3f959b9b192d12c4e0c35437cd05096a2e22482d4fc9ecaa4001700ad",
+        "candidate_sha256": "33890c4a3642c0ea793e857f5da66531432b9c655c676f7f040227ee7ce0e2e7",
+        "frozen_report": "reviews/review-ledger/head/hanging_ribbon_left/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/hanging_ribbon_left/001/candidate.svg"
+      }
+    ],
+    "head/hanging_ribbon_right": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/hanging_ribbon_right:review",
+        "worker_id": "/root/workflow_runner/review_ribbon_right",
+        "sequence": "local-20261006-n15",
+        "report": "reviews/review-ledger/head/hanging_ribbon_right/001/report.md",
+        "candidate": "reviews/review-ledger/head/hanging_ribbon_right/001/candidate.svg",
+        "report_sha256": "0fd4e6d584b8065d905e8e774e673d542a2a67fcccbd7837e0232f530014eb23",
+        "candidate_sha256": "1c50de4e9a0431dd26a6eaa33f0886fab653b35a65d28fd794e114adad7fb5db",
+        "frozen_report": "reviews/review-ledger/head/hanging_ribbon_right/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/hanging_ribbon_right/001/candidate.svg"
+      }
+    ],
+    "arms/arm_left": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:arms/arm_left:review",
+        "worker_id": "/root/workflow_runner/review_arm_left",
+        "sequence": "local-20261006-n16",
+        "report": "reviews/review-ledger/arms/arm_left/001/report.md",
+        "candidate": "reviews/review-ledger/arms/arm_left/001/candidate.svg",
+        "report_sha256": "9532ff9b7ff151a7cd1822d080af3c1f9425ecb26f3bff74e9b5953a6fcedac5",
+        "candidate_sha256": "7c4abe5b63c660dbc69ca6c2e3211e9ca5cc72ded9db04c57bf61d2bfeec57d0",
+        "frozen_report": "reviews/review-ledger/arms/arm_left/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/arms/arm_left/001/candidate.svg"
+      }
+    ],
+    "arms/arm_right": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:arms/arm_right:review",
+        "worker_id": "/root/workflow_runner/review_arm_right",
+        "sequence": "local-20261006-n17",
+        "report": "reviews/review-ledger/arms/arm_right/001/report.md",
+        "candidate": "reviews/review-ledger/arms/arm_right/001/candidate.svg",
+        "report_sha256": "103817ab63829d0908f752323bb96279f62fc2c8db5fcb963a8d35d30a54a1a1",
+        "candidate_sha256": "b8a53f8741fbe4037020992a414be5aae253433dce163ffa891eb256479ebd08",
+        "frozen_report": "reviews/review-ledger/arms/arm_right/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/arms/arm_right/001/candidate.svg"
+      }
+    ],
+    "legs/left_leg": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:legs/left_leg:review",
+        "worker_id": "/root/workflow_runner/review_leg_left",
+        "sequence": "local-n18",
+        "report": "reviews/review-ledger/legs/left_leg/001/report.md",
+        "candidate": "reviews/review-ledger/legs/left_leg/001/candidate.svg",
+        "report_sha256": "a74bf0df7a99808332559f39841cbf364a12382700a6b7cf43010675e23a30ff",
+        "candidate_sha256": "2c3816f90295592ba802725684e1e8ce213e98fc5b43a6d0ae9e1be2aa28ce3d",
+        "frozen_report": "reviews/review-ledger/legs/left_leg/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/legs/left_leg/001/candidate.svg"
+      }
+    ],
+    "legs/right_leg": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:legs/right_leg:review",
+        "worker_id": "/root/workflow_runner/review_leg_right",
+        "sequence": "local-n19",
+        "report": "reviews/review-ledger/legs/right_leg/001/report.md",
+        "candidate": "reviews/review-ledger/legs/right_leg/001/candidate.svg",
+        "report_sha256": "5ed2fd3948b824fc62a4abd8275c2ccc3364413f3c928df7a7e6c5bd30157717",
+        "candidate_sha256": "31d6376981a329cfe663f5404077d5ed6bc6509a99a0b97a36b2299a1721149a",
+        "frozen_report": "reviews/review-ledger/legs/right_leg/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/legs/right_leg/001/candidate.svg"
+      }
+    ],
+    "legs/left_anklet": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:legs/left_anklet:review",
+        "worker_id": "/root",
+        "sequence": "local-n20",
+        "report": "reviews/review-ledger/legs/left_anklet/001/report.md",
+        "candidate": "reviews/review-ledger/legs/left_anklet/001/candidate.svg",
+        "report_sha256": "d070c85d0b5f33633664a6a9fd2ad3af0c1bad319c749cb6131753430c28b405",
+        "candidate_sha256": "606e9a96427ea3c358d39102360a4fe4c55f0102a6fb833ef87df17a187d65f9",
+        "frozen_report": "reviews/review-ledger/legs/left_anklet/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/legs/left_anklet/001/candidate.svg"
+      }
+    ],
+    "legs/right_anklet": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:legs/right_anklet:review",
+        "worker_id": "/root",
+        "sequence": "local-n21",
+        "report": "reviews/review-ledger/legs/right_anklet/001/report.md",
+        "candidate": "reviews/review-ledger/legs/right_anklet/001/candidate.svg",
+        "report_sha256": "a3d476b2a0ca0f09e1bf94430c5c1b0eff98fcd31db285f523a13bf25c604a51",
+        "candidate_sha256": "100f8eb91bfc18bb73c4ee6e1d78306a730e5a18eb7863f781c23cf2a5711739",
+        "frozen_report": "reviews/review-ledger/legs/right_anklet/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/legs/right_anklet/001/candidate.svg"
+      }
+    ],
+    "head/face/eye_right": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/face/eye_right:review",
+        "worker_id": "/root",
+        "sequence": "local-n22",
+        "report": "reviews/review-ledger/head/face/eye_right/001/report.md",
+        "candidate": "reviews/review-ledger/head/face/eye_right/001/candidate.svg",
+        "report_sha256": "89621e33c5bb7d85c74e3e4a05eda4bc9a968cfd219286a587bef599ae0689ef",
+        "candidate_sha256": "ca13c0de8f336f7063f199ab86764886fa33e5927caa6e63341767e092f23aaa",
+        "frozen_report": "reviews/review-ledger/head/face/eye_right/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/face/eye_right/001/candidate.svg"
+      }
+    ],
+    "head/face/eye_left": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/face/eye_left:review",
+        "worker_id": "/root",
+        "sequence": "local-n23",
+        "report": "reviews/review-ledger/head/face/eye_left/001/report.md",
+        "candidate": "reviews/review-ledger/head/face/eye_left/001/candidate.svg",
+        "report_sha256": "03f01094298d63d1e1ea6b844a74c03db9386daabcb03a0a4ca35e6071f815c2",
+        "candidate_sha256": "70b30798fc82215007f77b8e9b9c3d2ad04db8d386abccf772187a47b061ffee",
+        "frozen_report": "reviews/review-ledger/head/face/eye_left/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/face/eye_left/001/candidate.svg"
+      }
+    ],
+    "head/face/mouth": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/face/mouth:review",
+        "worker_id": "/root/workflow_runner/arm_right",
+        "sequence": "local-n24",
+        "report": "reviews/review-ledger/head/face/mouth/001/report.md",
+        "candidate": "reviews/review-ledger/head/face/mouth/001/candidate.svg",
+        "report_sha256": "5a33d79a6e00049d40a789c6bfbaf71d05ecc63e5c72fa4f4835d1ab2199dd75",
+        "candidate_sha256": "fe6bcc3329de414e2afcfb169b5b035bd020505fe3d2f09c10d71eb8c588e7f5",
+        "frozen_report": "reviews/review-ledger/head/face/mouth/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/face/mouth/001/candidate.svg"
+      }
+    ],
+    "head/front_hair/fringe_left": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/front_hair/fringe_left:review",
+        "worker_id": "/root",
+        "sequence": "local-n25-after-ancestor-repair",
+        "report": "reviews/review-ledger/head/front_hair/fringe_left/001/report.md",
+        "candidate": "reviews/review-ledger/head/front_hair/fringe_left/001/candidate.svg",
+        "report_sha256": "ecb8dcfa034093520bdc8f2679d8583fb211ed765310839a0b9a77b7d285caf1",
+        "candidate_sha256": "57d287ca92f5c2604317c4f9328f19cc629a7f988a96de880f6508e847ccb206",
+        "frozen_report": "reviews/review-ledger/head/front_hair/fringe_left/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/front_hair/fringe_left/001/candidate.svg"
+      }
+    ],
+    "head/front_hair/fringe_right": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/front_hair/fringe_right:review",
+        "worker_id": "/root/workflow_runner",
+        "sequence": "local-n26",
+        "report": "reviews/review-ledger/head/front_hair/fringe_right/001/report.md",
+        "candidate": "reviews/review-ledger/head/front_hair/fringe_right/001/candidate.svg",
+        "report_sha256": "4c9e1ad62b865a4f0eb663a9fddbb2ca55eda7a25a9b51b155ba41d5fa1c57ea",
+        "candidate_sha256": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+        "frozen_report": "reviews/review-ledger/head/front_hair/fringe_right/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/front_hair/fringe_right/001/candidate.svg"
+      }
+    ],
+    "head/front_hair/temple_sweeps_left": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/front_hair/temple_sweeps_left:review",
+        "worker_id": "/root",
+        "sequence": "local-n27",
+        "report": "reviews/review-ledger/head/front_hair/temple_sweeps_left/001/report.md",
+        "candidate": "reviews/review-ledger/head/front_hair/temple_sweeps_left/001/candidate.svg",
+        "report_sha256": "55751950b1e8150ad4995d7597332519946e0bf37ed67f74aded57917e1a409f",
+        "candidate_sha256": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275",
+        "frozen_report": "reviews/review-ledger/head/front_hair/temple_sweeps_left/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/front_hair/temple_sweeps_left/001/candidate.svg"
+      }
+    ],
+    "head/front_hair/temple_sweeps_right": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/front_hair/temple_sweeps_right:review",
+        "worker_id": "/root",
+        "sequence": "local-n28",
+        "report": "reviews/review-ledger/head/front_hair/temple_sweeps_right/001/report.md",
+        "candidate": "reviews/review-ledger/head/front_hair/temple_sweeps_right/001/candidate.svg",
+        "report_sha256": "3265a6af3b4faaff250a132652aba984540883c004f1fdd9c03ee4db40efca6f",
+        "candidate_sha256": "6b2593a0770f9ada194fad48648d2914d9b33f96f9792c1fbfacd75e5f5125bf",
+        "frozen_report": "reviews/review-ledger/head/front_hair/temple_sweeps_right/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/front_hair/temple_sweeps_right/001/candidate.svg"
+      }
+    ],
+    "head/rear_hair_left/inner_back_curtain": [
+      {
+        "status": "pass",
+        "worker": "group_child_layers:head/rear_hair_left/inner_back_curtain:review",
+        "worker_id": "/root/review_n29",
+        "sequence": "local-n29",
+        "report": "reviews/review-ledger/head/rear_hair_left/inner_back_curtain/001/report.md",
+        "candidate": "reviews/review-ledger/head/rear_hair_left/inner_back_curtain/001/candidate.svg",
+        "report_sha256": "a84662222db3720f7a2a00faef812e83be0cfe09c8d9da339c3cba8528a51e68",
+        "candidate_sha256": "5ef71923ba49f927c35822b518b8bc650998d1c4603c5dde2def75adc15ed5bb",
+        "frozen_report": "reviews/review-ledger/head/rear_hair_left/inner_back_curtain/001/report.md",
+        "frozen_candidate": "reviews/review-ledger/head/rear_hair_left/inner_back_curtain/001/candidate.svg"
       }
     ]
   }

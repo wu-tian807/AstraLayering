@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "group_path": "legs",
+  "parent_svg": "refinement/groups/legs/right_leg/1.父级轮廓补全/work/input-guide.svg",
+  "parent_ids": [
+    "group-legs",
+    "guide-legs-parent"
+  ],
+  "candidate_svg": "refinement/groups/legs/right_leg/1.父级轮廓补全/work/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "legs/right_leg",
+      "status": "pass",
+      "ids": [
+        "group-legs-right-leg"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "actor": "/root",
+  "status": "awaiting_independent_review",
+  "candidate_sha256": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+  "guide_sha256": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+  "parent_input_sha256": "57d287ca92f5c2604317c4f9328f19cc629a7f988a96de880f6508e847ccb206",
+  "non_n26_guide_byte_identical": true,
+  "actually_viewed": {
+    "children.png": "4daac4c2cb2a6108d8231e3e91dfb6d86d15f33bc64fc85a565d7401f45d0b1d",
+    "gap-8x.png": "8bf7f14c0f7318f9573b547e59e963e3b7ed1b6fad9102d0cca7fba9d562f064",
+    "full.png": "a6925bb78ce38fcfc4db15e7c6c2d973d200eca97949013522d27aca5f805c9c"
+  },
+  "default_containment_outside_samples": [
+    0,
+    0
+  ],
+  "historical_failed_trial_preserved": "trial-01",
+  "physical_geometry_clipped_to_parent": false
+}

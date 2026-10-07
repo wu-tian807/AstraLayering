@@ -1,0 +1,44 @@
+{
+  "layers": [
+    {
+      "id": "left_temple_upper_temple_lock_cast_shadow",
+      "type": "shadow",
+      "owner": "head/front_hair/temple_sweeps_left/upper_temple_lock",
+      "follow": "head/front_hair/temple_sweeps_left/crown_sweeps",
+      "clip_to": [
+        "head/front_hair/temple_sweeps_left/upper_temple_lock"
+      ],
+      "note": "参考中 crown_sweeps 下缘向 upper_temple_lock 投下冷灰短带；两片会相对转动，因此保留独立完整raw。owner为当前受影直属part，follow为实际遮光对象。crown_sweeps当前仍是group，待n50完成后第5步按实际短扫片细化follow。原始投影向受影面外延续运动余量，此处不装receiver mask；第5步合成必须保持耳侧两处真孔开放。"
+    },
+    {
+      "id": "left_temple_middle_temple_lock_cast_shadow",
+      "type": "shadow",
+      "owner": "head/front_hair/temple_sweeps_left/middle_temple_lock",
+      "follow": "head/front_hair/temple_sweeps_left/upper_temple_lock",
+      "clip_to": [
+        "head/front_hair/temple_sweeps_left/middle_temple_lock"
+      ],
+      "note": "参考中 upper_temple_lock 下缘向 middle_temple_lock 投下冷灰短带；两片会相对转动，因此保留独立完整raw。owner为当前受影直属part，follow为实际遮光对象。原始投影向受影面外延续运动余量，此处不装receiver mask；第5步合成必须保持耳侧两处真孔开放。"
+    },
+    {
+      "id": "left_temple_lower_temple_lock_cast_shadow",
+      "type": "shadow",
+      "owner": "head/front_hair/temple_sweeps_left/lower_temple_lock",
+      "follow": "head/front_hair/temple_sweeps_left/middle_temple_lock",
+      "clip_to": [
+        "head/front_hair/temple_sweeps_left/lower_temple_lock"
+      ],
+      "note": "参考中 middle_temple_lock 下缘向 lower_temple_lock 投下冷灰短带；两片会相对转动，因此保留独立完整raw。owner为当前受影直属part，follow为实际遮光对象。原始投影向受影面外延续运动余量，此处不装receiver mask；第5步合成必须保持耳侧两处真孔开放。"
+    },
+    {
+      "id": "left_temple_ear_lock_cast_shadow",
+      "type": "shadow",
+      "owner": "head/front_hair/temple_sweeps_left/ear_lock",
+      "follow": "head/front_hair/temple_sweeps_left/lower_temple_lock",
+      "clip_to": [
+        "head/front_hair/temple_sweeps_left/ear_lock"
+      ],
+      "note": "参考中 lower_temple_lock 下缘向 ear_lock 投下冷灰短带；两片会相对转动，因此保留独立完整raw。owner为当前受影直属part，follow为实际遮光对象。原始投影向受影面外延续运动余量，此处不装receiver mask；第5步合成必须保持耳侧两处真孔开放。"
+    }
+  ]
+}

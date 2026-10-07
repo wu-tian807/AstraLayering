@@ -1,0 +1,8 @@
+{
+  "actor": "/root",
+  "artwork_sha256": "0cfbcbb5eeb5440b5306e29f69b023a62149b07d95630bed3a4c8511a9b6569e",
+  "rendering_sha256": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+  "layers": 25,
+  "new_owned_layers": 0,
+  "actual_reference_coverage_reused": "../part_local_shading/inspection.png; exact same artwork"
+}

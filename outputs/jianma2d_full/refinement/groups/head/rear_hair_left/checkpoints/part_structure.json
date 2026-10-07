@@ -1,0 +1,14 @@
+{
+  "node": "part_structure",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "两条后脑顺发沟及中央尾束轴向转面参考已画并逐件看图，明确尾束无劈叉、轴线成稿不保留。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/3.geometry/3.2.内部结构线/parts.svg": "ba55f548c360ab619c206e14433ba244ec3fe8332d0ce16344fdee7a3bab5b40",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.2.内部结构线/root.png": "f7d1545d50df6cc21e40ff852011be7e28dcbe0e56e40de5d94fdbe656a4b54f",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.2.内部结构线/tail.png": "71bfc2e5011cf567ae204eb6ab8ea2b8ece57be4b6e36d9c90a8dcf0faf38c2a",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.2.内部结构线/说明.md": "8f779969e26fa1d746cf6c67869bf61910039284bf8d7709b8b48eb7316cc624"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "669122ddf31419114837967c80e295f082309aa9f3514e62d6becbf40ff83a7c"
+}

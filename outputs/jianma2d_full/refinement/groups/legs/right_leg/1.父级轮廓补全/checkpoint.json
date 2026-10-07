@@ -1,0 +1,24 @@
+{
+  "node": "group_completion",
+  "target": "n19",
+  "group_path": "legs/right_leg",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "timestamp": "2026-10-06T11:05:56.362632+00:00",
+  "status": "success",
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "group_completion"
+  },
+  "active": {
+    "target": "n19",
+    "route": "generic",
+    "pointer": "group_completion"
+  },
+  "geometry_changed": false,
+  "guide_sha256": "2ba1567e051aeb4abef1840d24c44d2c26cc07d2180e055168d004ae2f06cb75",
+  "group_sha256": "9e5a0499ad306263107edaa778424b9e0a5d813dbfcc76525e034f3c988efca1",
+  "preview_sha256": "57acaffea929e7d908bfcaa820402cb80800ed0d86e7afe3b5abeda16a549226",
+  "containment": "pass; outside_samples=0",
+  "note": "refinement/groups/legs/right_leg/1.父级轮廓补全/补全说明.md"
+}

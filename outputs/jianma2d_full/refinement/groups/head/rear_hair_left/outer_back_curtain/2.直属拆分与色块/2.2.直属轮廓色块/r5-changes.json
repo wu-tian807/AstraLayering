@@ -1,0 +1,14 @@
+{
+  "component": "lower_loop_lock",
+  "only_changed_segment": {
+    "start": [
+      212,
+      812
+    ],
+    "before": "C 207 821 199 830 192 818",
+    "after": "C 205 813 197 812 192 818"
+  },
+  "observed_problem": "Actual no-parent4x view reveals a small unfilled triangular seam between the two loop join and front diagonal sheets. Existing parent filled this area.",
+  "design_correction": "Raise the lower-loop hidden upper rejoining surface to overlap the front sheets beneath the upper loop exit. Keep both root endpoint and visible outer-arc endpoint unchanged; do not fill either true hole.",
+  "evidence_before": "final-14-loop-junctions-4x.png"
+}

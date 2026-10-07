@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "part_volume",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看眼白两端克制转面，无球珠式环暗；下睑接入相邻脸部相同暖肤光场。两眼白闭合面共享同一渐变无内部色缝；外来投影未烘入。",
+  "evidence": [
+    "views/part_volume.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_volume"
+  },
+  "artwork_sha256": "0fe0332d22e315e12dfb0603bf23b5da95eedc6650419f85e89965c08fde2929",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

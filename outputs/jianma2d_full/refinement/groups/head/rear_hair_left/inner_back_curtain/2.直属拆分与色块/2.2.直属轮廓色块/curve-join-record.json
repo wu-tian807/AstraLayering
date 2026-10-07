@@ -1,0 +1,16 @@
+{
+  "nape_strategy": "One continuous nape-to-back outline follows outer union; author neck and hidden paths are not separate objects. Exact cubic subdivision retains the visible neck/back outer curves; the fully occluded upper attachment cap is inset 1 px within the parent envelope.",
+  "neck_back_join": [
+    375.30729149875265,
+    374.80714501414417
+  ],
+  "upper_union_join": [
+    395.78527568802195,
+    291.0540208147124
+  ],
+  "side_lock_strategy": "Whole root-to-tip strip; accepted outer edge and free tip retained, occluded inner edge extended up to 4 px inside nape, returning to the original edge by y1154 and keeping the entire y1154–1423 lower edge unchanged; no horizontal slicing.",
+  "parts": [
+    "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet",
+    "part-head-rear-hair-left-inner-back-curtain-inner-side-lock"
+  ]
+}

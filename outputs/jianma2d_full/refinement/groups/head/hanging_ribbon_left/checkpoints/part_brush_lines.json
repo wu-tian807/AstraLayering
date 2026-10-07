@@ -1,0 +1,7 @@
+{
+  "node": "part_brush_lines",
+  "worker": "/root/workflow_runner/ribbon_left",
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "083446c0047f3d4b47341c59a5add1b17bb602182f1964a9919fe6eef4b92f3d",
+  "note": "4条真实perfect-freehand压力笔触已完成并4×实看，顶部留白、孔边断笔和首尾收尖落实；辅助曲线隐藏保留，正式白底预览同源更新。"
+}

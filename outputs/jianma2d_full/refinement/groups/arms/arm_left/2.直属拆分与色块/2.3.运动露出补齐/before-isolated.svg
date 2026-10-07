@@ -1,0 +1,9 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="895" height="1758" viewBox="0 0 895 1758" version="1.1"><ns0:g id="part-arms-arm_left-upper_arm" data-part-path="arms/arm_left/upper_arm" fill="#E99296" stroke="none">
+    <ns0:desc>完整肩根与上臂；下端在肘下平滑收圆，与前臂完整根部搭接。</ns0:desc>
+    <ns0:path id="arm-left-upper_arm-silhouette" d="M 334 380 C 322 380 313 383 307 393 C 299 407 297 426 296 447 C 294 488 293 528 288 568 C 286 594 280 615 272 635 C 269 663 321 668 325.4 640 C 327.83 621.33 327.57 602.67 330 584 C 334 559 341 540 343 519 C 345 499 350 477 356 456 C 362 436 369 417 365 402 C 361 388 349 380 334 380 Z" fill-rule="evenodd" stroke="none" />
+  </ns0:g>
+  <ns0:g id="part-arms-arm_left-forearm" data-part-path="arms/arm_left/forearm" fill="#79BCA4" stroke="none">
+    <ns0:desc>肘上平滑完整根部及连续前臂；腕端圆弧收入手根，不横切断开。</ns0:desc>
+    <ns0:path id="arm-left-forearm-silhouette" d="M 288 568 C 286 594 280 615 272 635 C 261 665 253 700 246 737 C 239 767 232 795 228 815 C 227.6666666667 820.6666666667 227 826.3333333333 226.0740740741 831.8888888889 C 223.2222222222 849 263 851 257 835 C 256.4 833.4 256 831.8 256 830 C 256 813.33 265.65 796.67 272.4 780 C 283.2 753.33 298.03 726.67 308.7 700 C 316.7 680 322.8 660 325.4 640 C 327.83 621.33 327.57 602.67 330 584 C 333.645 556 289.5 548.5 288 568 Z" fill-rule="evenodd" stroke="none" />
+  </ns0:g>
+  </ns0:svg>

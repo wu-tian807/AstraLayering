@@ -1,0 +1,69 @@
+{
+  "node": "group_child_layers",
+  "worker": "group:head/rear_hair_left",
+  "actual_worker": "/root/rear_left_repair",
+  "status": "frozen_for_independent_review",
+  "candidate_sha256": "a85a4204cd039e292828afa5b78ca1153bfb955a1d1b15e448c59c5e8b06ce41",
+  "preview_sha256": "b4ed37649a3089358b3f5d184101161ec9ecf3a2e28291cbdb828209f5b062b5",
+  "raw_bounds_sha256": "d6e08fdc849943794d0a1f4902f6916fac59a4f2fc43c60912f13a21b535e62e",
+  "bounds": {
+    "raw_status": "fail",
+    "exit_code": 1,
+    "scale": 4,
+    "alpha_threshold": 128,
+    "outside_samples_by_child": [
+      0,
+      3,
+      0,
+      0
+    ],
+    "new_raw_points": 0,
+    "existing_three_same_curve_AA_points_reused": true
+  },
+  "parent_and_all_existing_sibling_containers_unchanged": true,
+  "all_protected_files_unchanged": true,
+  "actual_viewed": [
+    {
+      "path": "refinement/groups/head/rear_hair_left/2.直属拆分与色块/2.2.直属轮廓色块/返修-01-local-notch/01-notch-base.png",
+      "sha256": "89b0901bac618078656d73580552396e557105c9c1c9ccfa8b617bc7c009ccd1",
+      "reuse": false
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/2.直属拆分与色块/2.2.直属轮廓色块/返修-01-local-notch/02-four-children.png",
+      "sha256": "bc8fc3420c17c5ad1d93d89f5b44e361ea6d17c1991b72694a258e4975edc237",
+      "reuse": false
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/2.直属拆分与色块/2.2.直属轮廓色块/返修-01-local-notch/03-whole-blend.png",
+      "sha256": "83586f99cf53e9b8de918a667a6bd983e9318b48b9611066e7dc20e1fc65b9ae",
+      "reuse": false
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/16-children-root.png",
+      "sha256": "f0190f313315720c28574bcfbb3086578b97606a34984f98b7bdcede2383bbbb",
+      "reuse": true
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/18-children-tip-join.png",
+      "sha256": "d492e4daba55e7ba979abf321f0be03ca278d48065b885f487712c0a5d492526",
+      "reuse": true
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/19-aa-site-1.png",
+      "sha256": "786b589e223ed023125beeeaad26a31ba0134f2c68b5a47740519d73bd99d5d7",
+      "reuse": true
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/20-aa-site-2.png",
+      "sha256": "a944b4244d4ea59e7338b26de3c617674417c4921c3ceca334868aca51721991",
+      "reuse": true
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/21-aa-site-3.png",
+      "sha256": "f56315752e064e0eecf1c0e6c26401d11f035a0cf5e0ff099f882bf94812c370",
+      "reuse": true
+    }
+  ],
+  "no_state_tree_or_formal_artwork_mutation": true,
+  "ready_for_independent_review": true
+}

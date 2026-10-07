@@ -1,0 +1,159 @@
+{
+  "target": "n30",
+  "node": "group_child_layers",
+  "logical_worker": "group:head/rear_hair_left/outer_back_curtain",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n30",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "status": "maker_frozen_pending_independent_review",
+  "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-groups.svg",
+  "candidate_sha256": "4da747b49621ec49eec03cbdeeac09a0563c0c4527afc57e24a3b4442a781679",
+  "checked_source": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r6.svg",
+  "checked_source_sha256": "4da747b49621ec49eec03cbdeeac09a0563c0c4527afc57e24a3b4442a781679",
+  "bounds_check": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+  "bounds_check_sha256": "aeff7c31b78b5de257f6ab2b43aa4cf640ee976af46dbfbe42a5b5b2b268476d",
+  "bounds_report_is_unmodified_native_r6_copy": true,
+  "default_bounds": {
+    "scale": 4,
+    "alpha_threshold": 128,
+    "status": "pass",
+    "children": 6,
+    "outside_samples": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "preview": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-preview.png",
+  "preview_sha256": "9d87b3f02a45778218b409b596e3c48dc546e52eafc9cf0bd00ef18232317510",
+  "preview_matches_actual_viewed_candidate_cell": true,
+  "children_only": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-children-only.svg",
+  "children_only_sha256": "4c048dd267b3276b6eb4f0d32664f152a61868f5e53574e18b363ecf60fa9160",
+  "input_hashes": {
+    "block-layers/groups.svg": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+    "block-layers/preview.png": "d57665f8d5d09a60ee698902a454576e810c403b7a9bb77d444538cd63c8d279",
+    "refinement/character.svg": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "structure/groups.json": "b0af101f7d81f43db9e67615f1d9ac3446e6483222465849657b0d4f88674080",
+    "structure/groups.dispatch.json": "2781ca8fd845c6d8ed0e380fd2f2d9cbc8157d9e53c34060e673977c174483b2",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4"
+  },
+  "output_hashes": {
+    "block-layers/groups.svg": "4da747b49621ec49eec03cbdeeac09a0563c0c4527afc57e24a3b4442a781679",
+    "block-layers/preview.png": "9d87b3f02a45778218b409b596e3c48dc546e52eafc9cf0bd00ef18232317510",
+    "refinement/character.svg": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "structure/groups.json": "b0af101f7d81f43db9e67615f1d9ac3446e6483222465849657b0d4f88674080",
+    "structure/groups.dispatch.json": "2781ca8fd845c6d8ed0e380fd2f2d9cbc8157d9e53c34060e673977c174483b2"
+  },
+  "bindings": [
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-upper-loop-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/upper_loop_lock",
+      "fill": "#B9BC69",
+      "subtree_sha256": "83adac1cab86d416e4d2f58f569c56e2a2e7a790568da955e21bfefd92e02324"
+    },
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-lower-loop-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/lower_loop_lock",
+      "fill": "#D78694",
+      "subtree_sha256": "18af03c37e53dcf327ae28272db3a27a4888f1cc08bfc6c39a0a723638392aec"
+    },
+    {
+      "id": "group-head-rear-hair-left-outer-back-curtain-inner-forked-lock",
+      "kind": "group",
+      "path": "head/rear_hair_left/outer_back_curtain/inner_forked_lock",
+      "fill": "#C08ECD",
+      "subtree_sha256": "686ae3ade983e98dc830e9a32bfce14709d4de8d5c6e3ecfa02f445ea8726872"
+    },
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-pointed-long-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/pointed_long_lock",
+      "fill": "#7E9DE1",
+      "subtree_sha256": "c07baea1119ac7fe933846131f1d0f05c13df9b874e50f9e6f84301e340b1db4"
+    },
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-sweeping-long-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/sweeping_long_lock",
+      "fill": "#74C5A8",
+      "subtree_sha256": "b19db274705c33ca95663877a13a67482ed1042d34594849189958abd9d21be7"
+    },
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-outward-curl-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/outward_curl_lock",
+      "fill": "#EFA863",
+      "subtree_sha256": "d3b65111d87649b40e0c5124331be7810662f47d2dcb0eaef149e82f446668f4"
+    }
+  ],
+  "protection": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/protection.json",
+  "actual_views": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/actual-views.json",
+  "current_node_actual_view_count": 25,
+  "cumulative_actual_view_count": 40,
+  "maker_visual_review": "Actual component, whole blend, no-parent, 4x and8x inspections completed; r6 observed rejoining surface closes the gap while true holes remain open. Ready for independent review.",
+  "independent_review": "not_performed",
+  "native_checkpoint": "not_called",
+  "dispatch_active": {
+    "target": "n30",
+    "route": "generic",
+    "pointer": "group_split"
+  },
+  "historical_candidates": [
+    {
+      "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r1.svg",
+      "sha256": "a8cf02358bbe33e245047fa780d66609f9bd0d30ce3644e342b0febea5acc78d",
+      "native_bounds": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r1-bounds.json",
+      "native_bounds_status": "fail",
+      "adopted": false
+    },
+    {
+      "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r2.svg",
+      "sha256": "79b320bbf0990313cd4fb0d5aeb4e8be69cff276e78f8d9c7e823c9af4954133",
+      "native_bounds": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r2-bounds.json",
+      "native_bounds_status": "fail",
+      "adopted": false
+    },
+    {
+      "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r3.svg",
+      "sha256": "eb89bc09320aa72e07b94231f08e5bdbb69ab330bdabbe1ef81fea53610a000b",
+      "native_bounds": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r3-bounds.json",
+      "native_bounds_status": "fail",
+      "adopted": false
+    },
+    {
+      "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r4.svg",
+      "sha256": "fd8844fa409a03980306ffec03e97d6c2130a15192cd69f74454537f9e89634a",
+      "native_bounds": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r4-bounds.json",
+      "native_bounds_status": "pass",
+      "adopted": false
+    },
+    {
+      "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r5.svg",
+      "sha256": "0212b87472174ccfd5d9aadee2b2630ba1059253a3c210f0ae5b389153b925c0",
+      "native_bounds": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r5-bounds.json",
+      "native_bounds_status": "pass",
+      "adopted": false
+    },
+    {
+      "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r6.svg",
+      "sha256": "4da747b49621ec49eec03cbdeeac09a0563c0c4527afc57e24a3b4442a781679",
+      "native_bounds": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r6-bounds.json",
+      "native_bounds_status": "pass",
+      "adopted": true
+    }
+  ],
+  "remaining_obligations": [
+    "Independent2.2 review must actually inspect the frozen candidate",
+    "If revisions or2.3 are required, root assigns a new no-history maker because this actor reached40 actual images",
+    "No2.2 checkpoint,2.3,Geometry orRendering work by this actor"
+  ],
+  "frozen_at": "2026-10-07T05:59:52.252697+00:00"
+}

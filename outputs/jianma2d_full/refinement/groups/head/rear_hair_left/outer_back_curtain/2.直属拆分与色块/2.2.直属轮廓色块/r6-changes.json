@@ -1,0 +1,14 @@
+{
+  "component": "lower_loop_lock",
+  "only_changed_segment": {
+    "start": [
+      212,
+      812
+    ],
+    "before": "C 205 813 197 812 192 818",
+    "after": "C 205 810 199 810 194 811 C 193.6 812 192.8 815 192 818"
+  },
+  "observation": "r5 actual4x no-parent view still has a small wedge below the true upper-hole tip. r5 is not accepted despite default bounds PASS.",
+  "correction": "Bring lower-loop rejoining face to actual hole-bottom anchor194,811, then slightly overlap the upper loop inside the parent using an inner cubic toward192,818. Preserve both real holes and external parent anchors.",
+  "before_view": "r5-04-loop-junctions-4x.png"
+}

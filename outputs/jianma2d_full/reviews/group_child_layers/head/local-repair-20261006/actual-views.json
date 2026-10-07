@@ -1,0 +1,426 @@
+{
+  "reviewer": "/root/workflow_runner/review_head_notch",
+  "viewed": [
+    {
+      "file": "00-full-blend.png",
+      "only": [],
+      "crop": [
+        0,
+        0,
+        895,
+        1758
+      ],
+      "scale": 1,
+      "reference": "references/base-subject.png",
+      "explicit_same_coordinate_reference_crop": false,
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "block-layers/groups.svg",
+        "reviews/group_child_layers/head/local-repair-20261006/00-full-blend.png",
+        "--reference",
+        "references/base-subject.png",
+        "--edge-overlay",
+        "--blend",
+        "0.35",
+        "--columns",
+        "2",
+        "--crop",
+        "0",
+        "0",
+        "895",
+        "1758",
+        "--scale",
+        "1"
+      ],
+      "sha256": "4caaf2957a44c73848426874da1b2661ff559ea5e6b6ed7d99fdef8d38623e0e",
+      "dimensions": [
+        1790,
+        3572
+      ]
+    },
+    {
+      "file": "05-rear-left-upper.png",
+      "only": [
+        "group-head-rear-hair-left"
+      ],
+      "crop": [
+        275,
+        185,
+        205,
+        435
+      ],
+      "scale": 2,
+      "reference": "references/base-subject.png",
+      "explicit_same_coordinate_reference_crop": false,
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "block-layers/groups.svg",
+        "reviews/group_child_layers/head/local-repair-20261006/05-rear-left-upper.png",
+        "--reference",
+        "references/base-subject.png",
+        "--edge-overlay",
+        "--blend",
+        "0.35",
+        "--columns",
+        "2",
+        "--crop",
+        "275",
+        "185",
+        "205",
+        "435",
+        "--scale",
+        "2",
+        "--only",
+        "group-head-rear-hair-left"
+      ],
+      "sha256": "7b2b43753ed23519ae9bfc8ac55170e0a4d5d2697a59ff3f3e1e64232f897ab6",
+      "dimensions": [
+        820,
+        1796
+      ]
+    },
+    {
+      "file": "05-rear-left-middle.png",
+      "only": [
+        "group-head-rear-hair-left"
+      ],
+      "crop": [
+        150,
+        585,
+        325,
+        515
+      ],
+      "scale": 2,
+      "reference": "references/base-subject.png",
+      "explicit_same_coordinate_reference_crop": false,
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "block-layers/groups.svg",
+        "reviews/group_child_layers/head/local-repair-20261006/05-rear-left-middle.png",
+        "--reference",
+        "references/base-subject.png",
+        "--edge-overlay",
+        "--blend",
+        "0.35",
+        "--columns",
+        "2",
+        "--crop",
+        "150",
+        "585",
+        "325",
+        "515",
+        "--scale",
+        "2",
+        "--only",
+        "group-head-rear-hair-left"
+      ],
+      "sha256": "0db51cfb8b80abde5f4ead434a507a8c7e4ef8b5428011010222b57a9a3b04f6",
+      "dimensions": [
+        1300,
+        2116
+      ]
+    },
+    {
+      "file": "05-rear-left-lower.png",
+      "only": [
+        "group-head-rear-hair-left"
+      ],
+      "crop": [
+        98,
+        1060,
+        365,
+        475
+      ],
+      "scale": 2,
+      "reference": "references/base-subject.png",
+      "explicit_same_coordinate_reference_crop": false,
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "block-layers/groups.svg",
+        "reviews/group_child_layers/head/local-repair-20261006/05-rear-left-lower.png",
+        "--reference",
+        "references/base-subject.png",
+        "--edge-overlay",
+        "--blend",
+        "0.35",
+        "--columns",
+        "2",
+        "--crop",
+        "98",
+        "1060",
+        "365",
+        "475",
+        "--scale",
+        "2",
+        "--only",
+        "group-head-rear-hair-left"
+      ],
+      "sha256": "cad6d9aee4cc40ae0e581e87dced5e75fd7c97f49137add94982057e489aaa81",
+      "dimensions": [
+        1460,
+        1956
+      ]
+    },
+    {
+      "file": "05-notch-base.png",
+      "only": [
+        "group-head-rear-hair-left"
+      ],
+      "crop": [
+        130,
+        1288,
+        115,
+        182
+      ],
+      "scale": 5,
+      "reference": "references/base-subject.png",
+      "explicit_same_coordinate_reference_crop": false,
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "block-layers/groups.svg",
+        "reviews/group_child_layers/head/local-repair-20261006/05-notch-base.png",
+        "--reference",
+        "references/base-subject.png",
+        "--edge-overlay",
+        "--blend",
+        "0.35",
+        "--columns",
+        "2",
+        "--crop",
+        "130",
+        "1288",
+        "115",
+        "182",
+        "--scale",
+        "5",
+        "--only",
+        "group-head-rear-hair-left"
+      ],
+      "sha256": "83b5181fe619b838e8ae90b4dff5419553b28151467f9c1e871a99883eb98b29",
+      "dimensions": [
+        1150,
+        1876
+      ]
+    },
+    {
+      "file": "05-notch-line.png",
+      "only": [
+        "group-head-rear-hair-left"
+      ],
+      "crop": [
+        130,
+        1288,
+        115,
+        182
+      ],
+      "scale": 5,
+      "reference": "references/line-reference.png",
+      "explicit_same_coordinate_reference_crop": true,
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "block-layers/groups.svg",
+        "reviews/group_child_layers/head/local-repair-20261006/05-notch-line.png",
+        "--reference",
+        "references/line-reference.png",
+        "--edge-overlay",
+        "--blend",
+        "0.35",
+        "--columns",
+        "2",
+        "--crop",
+        "130",
+        "1288",
+        "115",
+        "182",
+        "--scale",
+        "5",
+        "--reference-crop",
+        "130",
+        "1288",
+        "115",
+        "182",
+        "--only",
+        "group-head-rear-hair-left"
+      ],
+      "sha256": "c0f2dcd8e4085085543b8081a4b4eebd4ee91570610004e407bf6be60c6b2189",
+      "dimensions": [
+        1150,
+        1876
+      ]
+    },
+    {
+      "file": "05-children-lower-loop.png",
+      "only": [
+        "group-head-face",
+        "group-head-front-hair",
+        "group-head-face-framing-hair-left",
+        "group-head-face-framing-hair-right",
+        "group-head-rear-hair-left",
+        "group-head-rear-hair-right",
+        "group-head-crown",
+        "group-head-hanging-ribbon-left",
+        "group-head-hanging-ribbon-right",
+        "part-head-topknot-bun",
+        "part-head-earring-left",
+        "part-head-earring-right"
+      ],
+      "crop": [
+        98,
+        1070,
+        270,
+        465
+      ],
+      "scale": 2,
+      "reference": "references/base-subject.png",
+      "explicit_same_coordinate_reference_crop": false,
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "block-layers/groups.svg",
+        "reviews/group_child_layers/head/local-repair-20261006/05-children-lower-loop.png",
+        "--reference",
+        "references/base-subject.png",
+        "--edge-overlay",
+        "--blend",
+        "0.35",
+        "--columns",
+        "2",
+        "--crop",
+        "98",
+        "1070",
+        "270",
+        "465",
+        "--scale",
+        "2",
+        "--only",
+        "group-head-face",
+        "--only",
+        "group-head-front-hair",
+        "--only",
+        "group-head-face-framing-hair-left",
+        "--only",
+        "group-head-face-framing-hair-right",
+        "--only",
+        "group-head-rear-hair-left",
+        "--only",
+        "group-head-rear-hair-right",
+        "--only",
+        "group-head-crown",
+        "--only",
+        "group-head-hanging-ribbon-left",
+        "--only",
+        "group-head-hanging-ribbon-right",
+        "--only",
+        "part-head-topknot-bun",
+        "--only",
+        "part-head-earring-left",
+        "--only",
+        "part-head-earring-right"
+      ],
+      "sha256": "1335159a595cc16e4483ab47ee801a2c9dd498b2194123706ffb9ff2f5409bc2",
+      "dimensions": [
+        1080,
+        1916
+      ]
+    },
+    {
+      "file": "14-left-ear-links.png",
+      "only": [
+        "group-head-face",
+        "group-head-front-hair",
+        "group-head-face-framing-hair-left",
+        "group-head-face-framing-hair-right",
+        "group-head-rear-hair-left",
+        "group-head-rear-hair-right",
+        "group-head-crown",
+        "group-head-hanging-ribbon-left",
+        "group-head-hanging-ribbon-right",
+        "part-head-topknot-bun",
+        "part-head-earring-left",
+        "part-head-earring-right"
+      ],
+      "crop": [
+        332,
+        245,
+        69,
+        122
+      ],
+      "scale": 5,
+      "reference": "references/base-subject.png",
+      "explicit_same_coordinate_reference_crop": false,
+      "argv": [
+        ".runtime/svg-preview/python/bin/python",
+        "../../workflow-next/live2d-layering/tools/svg_preview.py",
+        "block-layers/groups.svg",
+        "reviews/group_child_layers/head/local-repair-20261006/14-left-ear-links.png",
+        "--reference",
+        "references/base-subject.png",
+        "--edge-overlay",
+        "--blend",
+        "0.35",
+        "--columns",
+        "2",
+        "--crop",
+        "332",
+        "245",
+        "69",
+        "122",
+        "--scale",
+        "5",
+        "--only",
+        "group-head-face",
+        "--only",
+        "group-head-front-hair",
+        "--only",
+        "group-head-face-framing-hair-left",
+        "--only",
+        "group-head-face-framing-hair-right",
+        "--only",
+        "group-head-rear-hair-left",
+        "--only",
+        "group-head-rear-hair-right",
+        "--only",
+        "group-head-crown",
+        "--only",
+        "group-head-hanging-ribbon-left",
+        "--only",
+        "group-head-hanging-ribbon-right",
+        "--only",
+        "part-head-topknot-bun",
+        "--only",
+        "part-head-earring-left",
+        "--only",
+        "part-head-earring-right"
+      ],
+      "sha256": "8f6d287d694e42a75469dace8040396df86efa5e9372ee5299948b4a5f94e132",
+      "dimensions": [
+        690,
+        1276
+      ]
+    }
+  ],
+  "unused_generated_images_discarded": [
+    "00-children-head.png",
+    "01-face.png",
+    "02-front-hair.png",
+    "03-framing-left.png",
+    "04-framing-right.png",
+    "06-rear-right-upper.png",
+    "06-rear-right-middle.png",
+    "06-rear-right-lower.png",
+    "07-crown.png",
+    "08-ribbon-left.png",
+    "09-ribbon-right.png",
+    "10-bun.png",
+    "11-earring-left.png",
+    "12-earring-right.png",
+    "13-crown-links.png",
+    "15-right-ear-links.png"
+  ]
+}

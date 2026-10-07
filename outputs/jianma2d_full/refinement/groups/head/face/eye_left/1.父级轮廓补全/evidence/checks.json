@@ -1,0 +1,16 @@
+{
+  "target": "n23",
+  "node": "group_completion",
+  "logical_worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "existing_paths_unchanged": 2,
+  "other_svg_bytes_unchanged": true,
+  "added_path": "head-face-eye-left-occluded-ocular-bed",
+  "outside_samples": 0,
+  "default_scale": 4,
+  "alpha_threshold": 128,
+  "parent_scope": "head/face",
+  "parent_expanded": false,
+  "direct_mirror_used": false
+}

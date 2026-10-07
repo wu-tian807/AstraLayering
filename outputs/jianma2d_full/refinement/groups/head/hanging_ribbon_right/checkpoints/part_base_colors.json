@@ -1,0 +1,7 @@
+{
+  "node": "part_base_colors",
+  "worker": "/root/workflow_runner/ribbon_right",
+  "guide_sha256": "f81db239c0250347e6560b63c7bc730ce773828d3771a5bdf1859f1574ed57aa",
+  "artwork_sha256": "c0db71dc13d5da5ff068d18f46fcbbec2b4f2d1791af93d80b1e5fa5f5efab79",
+  "note": "按右侧彩参重新确认淡蓝丝带与银蓝表面纹样基色，完整隐藏接头同材质；带身独显和已绘相邻银发/皮肤组合实看，沿用原rendering关系。"
+}

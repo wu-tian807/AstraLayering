@@ -1,0 +1,19 @@
+{
+  "argv": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/svg_containment.py",
+    "--parent-svg",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/input-groups.svg",
+    "--candidate",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-r2-subdivided.svg",
+    "--groups",
+    "structure/groups.json",
+    "--group-path",
+    "head/rear_hair_left",
+    "--out",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r2-containment.json"
+  ],
+  "exit_code": 1,
+  "stdout": "{\"status\": \"fail\", \"report\": \"refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r2-containment.json\", \"failed\": [\"head/rear_hair_left/outer_back_curtain\"]}\n",
+  "stderr": ""
+}

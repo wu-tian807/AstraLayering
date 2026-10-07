@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "part_base_colors",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看暖白眼白、淡肤色下睑及相邻face临时组合；基色完整覆盖隐藏面。21条rendering记录逐字保留。临时组合仍暴露完整眼白余量，最终由眼睑/face遮挡恢复眼裂。",
+  "evidence": [
+    "views/part_base_colors.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_base_colors"
+  },
+  "artwork_sha256": "3f9e6398d7a0e0dc4bc7c591e44b785558beff00f834cc0f3f6008bc50c48069",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

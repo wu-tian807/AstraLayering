@@ -1,0 +1,60 @@
+{
+  "status": "fail",
+  "group_path": "head/rear_hair_left/inner_back_curtain",
+  "parent_svg": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/input-groups.svg",
+  "parent_ids": [
+    "group-head-rear-hair-left-inner-back-curtain"
+  ],
+  "candidate_svg": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-groups.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/inner_back_curtain/nape_back_sheet",
+      "status": "fail",
+      "ids": [
+        "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet"
+      ],
+      "outside_samples": 3,
+      "outside_area_px2": 0.1875,
+      "outside_bbox": [
+        374.0,
+        265.5,
+        60.75,
+        37.5
+      ],
+      "diagnostic": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查-images/01-outside.png",
+      "diagnostic_crop": [
+        366.0,
+        261.0,
+        76.75,
+        50.0
+      ]
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/inner_back_curtain/inner_side_lock",
+      "status": "fail",
+      "ids": [
+        "part-head-rear-hair-left-inner-back-curtain-inner-side-lock"
+      ],
+      "outside_samples": 60,
+      "outside_area_px2": 3.75,
+      "outside_bbox": [
+        358.0,
+        1251.5,
+        1.25,
+        11.0
+      ],
+      "diagnostic": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查-images/02-outside.png",
+      "diagnostic_crop": [
+        350.0,
+        1243.5,
+        17.25,
+        27.0
+      ]
+    }
+  ]
+}

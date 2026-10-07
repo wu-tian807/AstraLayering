@@ -1,0 +1,7 @@
+{
+  "node": "part_brush_lines",
+  "worker": "/root/workflow_runner/ribbon_right",
+  "guide_sha256": "f81db239c0250347e6560b63c7bc730ce773828d3771a5bdf1859f1574ed57aa",
+  "artwork_sha256": "fb311e0b035a11e16296ee134509254c1b5e3536075f8b55ea416cf0b55a81fa",
+  "note": "4条真实perfect-freehand1.2.0显式压力笔触完成，3×全带及8×根部实看；根顶留白、孔顶断笔、双缘和尾端收尖落实，辅助曲线隐藏保留。"
+}

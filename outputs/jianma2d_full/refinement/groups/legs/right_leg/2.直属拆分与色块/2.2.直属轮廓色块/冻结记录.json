@@ -1,0 +1,84 @@
+{
+  "node": "group_child_layers",
+  "target": "n19",
+  "group_path": "legs/right_leg",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "model": "gpt-6-astra",
+  "reasoning": "xhigh",
+  "status": "awaiting_independent_review",
+  "timestamp": "2026-10-06T11:14:03.079653+00:00",
+  "candidate": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/work/candidate.svg",
+  "candidate_sha256": "31d6376981a329cfe663f5404077d5ed6bc6509a99a0b97a36b2299a1721149a",
+  "parent_input": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/work/input-guide.svg",
+  "parent_input_sha256": "2ba1567e051aeb4abef1840d24c44d2c26cc07d2180e055168d004ae2f06cb75",
+  "tree_input": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/work/input-groups.json",
+  "tree_sha256": "be6db61a380157497e3fefcf0f277416b9e797bb5bbe3f9b1339134c2f385ff1",
+  "standard_guide": "block-layers/groups.svg",
+  "standard_guide_sha256": "31d6376981a329cfe663f5404077d5ed6bc6509a99a0b97a36b2299a1721149a",
+  "standard_preview": "block-layers/preview.png",
+  "standard_preview_sha256": "7c25dda9d7dda218aa768182b48f99df7674acd7c40daa2b4bf8eb44fbbd55e0",
+  "raw_bounds_report": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+  "raw_bounds_report_sha256": "8bc42b2bcb47b0401b4df7637b6da3e936060e79917de44f4ec7ebdef1dcaeef",
+  "bounds_units": "xywh in original viewport pixels; alpha>=128 at scale 4",
+  "children": [
+    {
+      "path": "legs/right_leg/thigh",
+      "kind": "part",
+      "ids": [
+        "part-legs-right_leg-thigh"
+      ],
+      "bounds_xywh": [
+        439.75,
+        658.0,
+        138.25,
+        524.0
+      ],
+      "svg_element_sha256": "70d59ffff646773d5576a246151610eb9b207736417d48a56b660f404942a8ee"
+    },
+    {
+      "path": "legs/right_leg/lower_leg",
+      "kind": "part",
+      "ids": [
+        "part-legs-right_leg-lower_leg"
+      ],
+      "bounds_xywh": [
+        441.75,
+        1108.0,
+        89.25,
+        508.0
+      ],
+      "svg_element_sha256": "16e7d1e6e1e91a569cf3dc80a7b151fa1b73aecfc24fbd542de800047b3153d9"
+    },
+    {
+      "path": "legs/right_leg/foot",
+      "kind": "group",
+      "ids": [
+        "group-legs-right_leg-foot"
+      ],
+      "bounds_xywh": [
+        442.0,
+        1545.0,
+        74.25,
+        161.5
+      ],
+      "svg_element_sha256": "928891eef4820571419a8de759923344cc6f8e286543fd0801d58ef3d39c931a"
+    }
+  ],
+  "union_missing_samples": 0,
+  "union_outside_samples": 0,
+  "parent_and_preexisting_nodes_byte_preserved": true,
+  "other_inputs_unchanged": true,
+  "active_pointer_unchanged": {
+    "target": "n19",
+    "route": "generic",
+    "pointer": "group_split"
+  },
+  "actually_viewed": [
+    "full-mix.png",
+    "thigh.png",
+    "lower-leg.png",
+    "foot.png",
+    "connections.png"
+  ]
+}

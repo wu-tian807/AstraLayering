@@ -1,0 +1,18 @@
+{
+  "target": "n23",
+  "node": "part_motion_completion",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看两张Milly示例、两part独显及前后参考对照。沿用左眼连续底面、下睑单带与发丝后搭接；当前正常运动余量充足，不需新part。空清单校验和默认四孩子bounds均通过，仅desc变化。",
+  "evidence": [
+    "2.直属拆分与色块/2.3.运动露出补齐/evidence/inspection-montage.png",
+    "2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_motion_completion"
+  },
+  "artwork_sha256": "880596f427d02af4ce9fea47916b40ebc295a18ccd1e783900eba72cd2198b42",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc"
+}

@@ -1,0 +1,12 @@
+{
+  "node": "part_local_shading",
+  "branch": "then: two direct parts",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29_render",
+  "model": "gpt-6-astra",
+  "reasoning": "xhigh",
+  "input_artwork_sha256": "a1dbe42cc9c158e8bb48b0d7edb7497eb9907d6b6b00b96a3f1d9bb936428032",
+  "guide_sha256": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+  "groups_sha256": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+  "candidate_sha256": "402142107b405a4626caf3f2a3a5fdb128db69aabd86b7c5b1bedf4ed957dad8",
+  "output": "refinement/character.svg"
+}

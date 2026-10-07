@@ -1,0 +1,24 @@
+{
+  "status": "warnings_retained",
+  "scope": "git diff --cached --check for progress PR",
+  "exit_code": 2,
+  "finding_count": 484,
+  "by_type": {
+    "trailing whitespace.": 480,
+    "new blank line at EOF.": 4
+  },
+  "affected_files": 141,
+  "reason": "Native SVG snapshots and historical review/source records retain their original whitespace so recorded artifact hashes remain valid. No conflict marker finding. This is not a clean full diff-check result.",
+  "new_entrypoint_and_verifier_diff_check": "pass",
+  "new_entrypoint_and_verifier_paths": [
+    "README.md",
+    "index.html",
+    "layers.html",
+    "review-n29.html",
+    "delivery.json",
+    "verify-delivery.py",
+    "validation/progress-pr-snapshot.json",
+    "validation/evidence-portability.json"
+  ],
+  "raw_log_local": ".runtime/progress-pr-diff-check.txt"
+}

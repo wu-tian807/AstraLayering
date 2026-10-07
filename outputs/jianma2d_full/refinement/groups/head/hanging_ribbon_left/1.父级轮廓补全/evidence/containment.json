@@ -1,0 +1,25 @@
+{
+  "status": "pass",
+  "group_path": "head",
+  "parent_svg": "block-layers/groups.svg",
+  "parent_ids": [
+    "group-head"
+  ],
+  "candidate_svg": "refinement/groups/head/hanging_ribbon_left/1.父级轮廓补全/evidence/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/hanging_ribbon_left",
+      "status": "pass",
+      "ids": [
+        "group-head-hanging-ribbon-left"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "target": "n23",
+  "node": "part_motion_completion",
+  "logical_worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "model_config": "gpt-6-astra-xhigh.model",
+  "guide_sha256": "70b30798fc82215007f77b8e9b9c3d2ad04db8d386abccf772187a47b061ffee",
+  "artwork_sha256": "880596f427d02af4ce9fea47916b40ebc295a18ccd1e783900eba72cd2198b42",
+  "rendering_sha256": "17c422f5624fd3bcd0ff1fb260fd08c997f550dd3efa322836ba268d90328a19"
+}

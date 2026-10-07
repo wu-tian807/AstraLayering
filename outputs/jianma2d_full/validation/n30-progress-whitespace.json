@@ -1,0 +1,15 @@
+{
+  "status": "native_and_evidence_whitespace_preserved",
+  "command": "git diff --cached --check",
+  "exit_code": 2,
+  "findings": 138,
+  "examples": [
+    "outputs/jianma2d_full/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-groups.svg:63: trailing whitespace.",
+    "outputs/jianma2d_full/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-groups.svg:111: trailing whitespace.",
+    "outputs/jianma2d_full/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-groups.svg:114: trailing whitespace.",
+    "outputs/jianma2d_full/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-groups.svg:122: trailing whitespace.",
+    "outputs/jianma2d_full/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-groups.svg:125: trailing whitespace."
+  ],
+  "policy": "Do not rewrite frozen/native SVG or already recorded independent evidence bytes merely to normalize whitespace. New root entrypoint/documentation diff checks passed.",
+  "not_claimed": "full diff-check clean"
+}

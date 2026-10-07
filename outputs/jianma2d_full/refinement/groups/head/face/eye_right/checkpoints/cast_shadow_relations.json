@@ -1,0 +1,19 @@
+{
+  "target": "n22",
+  "node": "cast_shadow_relations",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看参考上睫毛下的窄软灰区，登记上睑→眼白独立投影；未改变SVG，不把睫毛黑色或虹膜暗蓝算作投影。原21条关系深比较一致，native merge新增为22条。",
+  "evidence": [
+    "views/cast_shadow_relations.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_relations"
+  },
+  "artwork_sha256": "9d2bf5df0ae2820c60977ed6f0ec609f693b0be59b720ebec3b20f70d8690882",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab",
+  "rendering_sha256": "0e2886a5f0d52e27127bbcffd1e7a949202508580b68444a8d1cd537defefa14",
+  "patch": "4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/layers.json"
+}

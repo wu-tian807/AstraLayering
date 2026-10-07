@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "parts": [
+    {
+      "part": "head/face/mouth/upper_lip",
+      "guide_paths_preserved": 2
+    },
+    {
+      "part": "head/face/mouth/lower_lip",
+      "guide_paths_preserved": 2
+    },
+    {
+      "part": "head/face/mouth/mouth_interior",
+      "guide_paths_preserved": 1
+    }
+  ],
+  "source_and_brush_paths_preserved_from_geometry": 20,
+  "guide_unchanged_from_2_3": true,
+  "groups_unchanged": true,
+  "rendering_layers": 25,
+  "new_independent_layers": 0,
+  "embedded_images": 0,
+  "scope": "Current mouth geometry and references; global stage5 completion not implied."
+}

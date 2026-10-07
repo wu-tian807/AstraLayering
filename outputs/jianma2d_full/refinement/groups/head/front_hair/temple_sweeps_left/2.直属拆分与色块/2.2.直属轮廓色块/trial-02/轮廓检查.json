@@ -1,0 +1,81 @@
+{
+  "status": "fail",
+  "group_path": "head/front_hair/temple_sweeps_left",
+  "parent_svg": "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/input.svg",
+  "parent_ids": [
+    "group-head-front-hair-temple-sweeps-left"
+  ],
+  "candidate_svg": "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/front_hair/temple_sweeps_left/crown_sweeps",
+      "status": "pass",
+      "ids": [
+        "group-head-front-hair-temple-sweeps-left-crown-sweeps"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/temple_sweeps_left/upper_temple_lock",
+      "status": "fail",
+      "ids": [
+        "part-head-front-hair-temple-sweeps-left-upper-temple-lock"
+      ],
+      "outside_samples": 3,
+      "outside_area_px2": 0.1875,
+      "outside_bbox": [
+        346.5,
+        186.5,
+        3.25,
+        26.75
+      ],
+      "diagnostic": "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查-images/02-outside.png",
+      "diagnostic_crop": [
+        343.0,
+        178.5,
+        14.75,
+        42.75
+      ]
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/temple_sweeps_left/middle_temple_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-temple-sweeps-left-middle-temple-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/temple_sweeps_left/lower_temple_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-temple-sweeps-left-lower-temple-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/temple_sweeps_left/ear_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-temple-sweeps-left-ear-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

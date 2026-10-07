@@ -1,0 +1,411 @@
+{
+  "scope": "Portable exports of JSON evidence for completed steps and explicitly unaccepted n29/n30 candidates; frozen SVG candidates and ledger reports are unchanged.",
+  "operation": "Replace machine-specific repository/working-directory prefixes with paths relative to outputs/jianma2d_full. Measurements, conclusions, hashes, image bytes and non-path arguments are unchanged.",
+  "originals": "Original bytes preserved locally under ignored .runtime/evidence-portability/originals; original SHA-256 values recorded below.",
+  "entries": [
+    {
+      "file": "refinement/groups/arms/arm_left/1.父级轮廓补全/containment.json",
+      "original_sha256": "566303c3bcf3b806fda44a2c37057978a66ec92efd5af9e3ac0d1972790411ad",
+      "portable_sha256": "8ec97f686ab92cd9d7605882582285ad64714f8edd4a89e9405b9951075916d7",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/arms/arm_left/1.父级轮廓补全/containment.json"
+    },
+    {
+      "file": "refinement/groups/arms/arm_left/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+      "original_sha256": "8aa55d564d9175b673f82f050e2f480d890bf9df961f9b6cef3a8e95709aa377",
+      "portable_sha256": "e4525f181bad4b08008177b86e34af1bccd02aa2f9ce41fc61127631f07df842",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/arms/arm_left/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json"
+    },
+    {
+      "file": "refinement/groups/arms/arm_left/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json",
+      "original_sha256": "f17f151c61f1926c41582a75a19efc060e9c0f4c77adb167765ab8e8755af5fe",
+      "portable_sha256": "40ecdbc29444249dc7944a226964ac4805f29070e0939fe86828f6bacce389bb",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/arms/arm_left/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json"
+    },
+    {
+      "file": "refinement/groups/arms/arm_right/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json",
+      "original_sha256": "e7593133612ad8c70d38df7584883f29c35217f06f6d1f859c86f2e7b7e2c500",
+      "portable_sha256": "a2b267486f3305a20403ae25d877eeb42966e1dedb7265cb6834659fc7eefed8",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/arms/arm_right/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json"
+    },
+    {
+      "file": "refinement/groups/legs/left_anklet/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json",
+      "original_sha256": "9b1bf286cec2a4f312807b296736917db119fdee2136e192b75b6e3fc5736eb6",
+      "portable_sha256": "f57cc183bda90cf501e3c5f2d59cb15ca319528bf1400d53868400250fa3a360",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/legs/left_anklet/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json"
+    },
+    {
+      "file": "refinement/groups/legs/right_anklet/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+      "original_sha256": "52491758407dcd5609625adf29ec1473ba66f6ae6084af3cbdcd33e162b40a33",
+      "portable_sha256": "fd9b49081dd6327d601e26f4c53be9371f40edfb711f0c53fc6f04e9a8463c89",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/legs/right_anklet/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json"
+    },
+    {
+      "file": "reviews/group_child_layers/head/local-repair-20261006/actual-views.json",
+      "original_sha256": "2170085c99ce3d8e81020afd30519eec0d842247a27e141b3d669181e1d4f388",
+      "portable_sha256": "c45805eb8897ad414f9f1b5eea6d407a987345d752cd9613a685b25bb267bd10",
+      "original_local_copy": ".runtime/evidence-portability/originals/reviews/group_child_layers/head/local-repair-20261006/actual-views.json"
+    },
+    {
+      "file": "reviews/group_child_layers/head/local-repair-20261006/render-manifest.json",
+      "original_sha256": "2d2d35401f646bc97f3771941fc6bcf3064054037d304b5fa22c37436f279297",
+      "portable_sha256": "0e07d2f9db0983d075915b4c1e9b6ecd3619d9590a87de9586ff8f94f376c395",
+      "original_local_copy": ".runtime/evidence-portability/originals/reviews/group_child_layers/head/local-repair-20261006/render-manifest.json"
+    },
+    {
+      "file": "reviews/group_child_layers/head/rear_hair_left/local-repair-20261006/render-commands.json",
+      "original_sha256": "9640a25c2ee9481f2f7cabd14db2d44c253c57d1a2008921f154013f1f73b6ad",
+      "portable_sha256": "ab94545c7283f6e856245b63d63a12653cbb5c4885651d7b7e24eb465d69b261",
+      "original_local_copy": ".runtime/evidence-portability/originals/reviews/group_child_layers/head/rear_hair_left/local-repair-20261006/render-commands.json"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.1.外轮廓与接界/native-checkpoint.json",
+      "original_sha256": "5b156f55fdb6100f2f6516e267ce88024e353287646af1f561c39e70e6ec6f0c",
+      "portable_sha256": "ab75bf61d6db9d74cc6337609a5c542dcc95a98f5ea309aa55a78a7ea7c010b5",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.1.外轮廓与接界/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.1.外轮廓与接界/render-commands.json",
+      "original_sha256": "0f0e6f006be283f5460aac1c6e91f21d2ce30c0f59747110ae67a866ead68fde",
+      "portable_sha256": "7a8f6a03f24fff8ec5e42f5d515c08fdd4d8633f50c3613bff774f5f42aa8540",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.1.外轮廓与接界/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.2.内部结构线/native-checkpoint.json",
+      "original_sha256": "2c04c103a8bbe3fa52a0ada6a81ab128cfdfdcd486403f0b7092c6b4fcfa4293",
+      "portable_sha256": "2f3f514e195ed77aac38d00b87e1a3d926328ecc69837429ed2322b9b8a491f4",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.2.内部结构线/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.2.内部结构线/render-commands.json",
+      "original_sha256": "87c7cfbb353768fb2fc8c59a59cb421abdeaaee486ff88c67e65826425444a19",
+      "portable_sha256": "5cb01ffa729bc6d5abdb95653b79ad85b3597d4e5995731072894023d2d5b98d",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.2.内部结构线/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.3.明暗范围线/native-checkpoint.json",
+      "original_sha256": "b82c9d1d19aca1972f4e2d68c94d87ac1e11ed1a0c73c5739be0a94d07ad31fc",
+      "portable_sha256": "fd0cc108f72f12a60ef225923e28418486d0cde5bf6ce5450af237bf5f24c838",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.3.明暗范围线/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.3.明暗范围线/render-commands.json",
+      "original_sha256": "378de0f9e26cbd1d73c766998e296231da7d33e96018e47cb5d5d6291b68da0e",
+      "portable_sha256": "4272eb1de1cfff63cf3e673630c01ce47141400b257e6118d0bd78496fe7028c",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.3.明暗范围线/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.4.细节与纹理线/native-checkpoint.json",
+      "original_sha256": "5a4a2ad4cf7b133522097b01be2d861b95d0d068130499792121527a54f874c0",
+      "portable_sha256": "5c1333661de3dc7d9868c5d24f818f67b8d226ccb00014f087b7f785a50fb291",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.4.细节与纹理线/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.4.细节与纹理线/render-commands.json",
+      "original_sha256": "b34a22556dc1be88f5686fd68186b703ce8dcfd5b24f48e0dd6690f033a372dc",
+      "portable_sha256": "e5e14351f12150fcebae5faeede258254dc4854bad77fdb2e931aeb009b8e1bb",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.4.细节与纹理线/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/native-checkpoint.json",
+      "original_sha256": "a4588e67939b91ebcd267a7f4cee6f66f97967090bade4c8e9a49e6142dd4049",
+      "portable_sha256": "a94377f8cbf6bb45ffdf9a70c68b279350575f451107356be926c8f04c06fbd8",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/render-commands.json",
+      "original_sha256": "525534d81be8945d564c1407b8a793b8e6ba274b3e5223c104484f1fa9ee1ca5",
+      "portable_sha256": "af44d663565e891b3dbfe52c94e94b6fadfe6bbdd4efd16ff04e41f36e478866",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/preview-command.json",
+      "original_sha256": "bf0818d345219eee06776b599239f0bc5c5e0e82c3fa33fc050adb2b98a3d16d",
+      "portable_sha256": "741c70cbd4b315e9b8c880dbc57b1d2a07599e3dd0506d20a2f67c694c055680",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/preview-command.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/render-commands.json",
+      "original_sha256": "b64bce9b5a516cbdd0f2d75945a7fdc3bd901fe38ebba380867cdde909398886",
+      "portable_sha256": "bdce17cfd986c96505b1225ff03f239fe0df218fb1a6b880392c5e931ecbea82",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/full-surface-commands.json",
+      "original_sha256": "cc470310c881f53d927a91197dcef0d5dd15ebe24255b5d8716a66ee07484a56",
+      "portable_sha256": "857b6a40eb15d8d4acb9c21f1b601cf58619b2d8f33b78f8ff25140e6bcb312f",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/full-surface-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/combination-commands.json",
+      "original_sha256": "f64fe8f848785f6771d5660c5130cf5dd30d2301cbce66091d1abbeca163eb2e",
+      "portable_sha256": "020540d7cd589bf07339467227940ba11a324047d160bb97b56f9fa2b3e31bc1",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/combination-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/native-checkpoint.json",
+      "original_sha256": "d90617d69234ea732771133494a60464f7488768f2f1781d7c4a11cafbd625e4",
+      "portable_sha256": "f5b0fc21c82d9ae7f5c5dbf986b919b87bba3ca47623d9b7ca11b5aa501c480a",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/render-commands.json",
+      "original_sha256": "a2019ea3c1d4bc96a3d8029a233947ff4052961c7e32e04028019640414fe0ae",
+      "portable_sha256": "24fc6ea6b3dd0082da225833057eb0f6aec394948c1a480d1c71f1122b8f4812",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/combination-commands.json",
+      "original_sha256": "536f52047c3886ffdff7d3008fb7fabdd8de9ca1c9b29336af50995d2ca96919",
+      "portable_sha256": "0ae5a4b0a800428cbf3b2461727e45f76ddd721b105c383aeb5e9a219cff328e",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/combination-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/native-checkpoint.json",
+      "original_sha256": "7d4f921c7b29db952075514b570bf6ca5d8b86fc469cb7a1c2c2aea2cf9b80d1",
+      "portable_sha256": "d258fbe2bc8bdd58bc675ef34e3a542f7c60b87b7528d080f2c52c987ad08e56",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-commands.json",
+      "original_sha256": "09d143653ae4748cb396f178ba973f192f088e210374757f324c78fd629c4098",
+      "portable_sha256": "5b04d7f8668acadc89f763f8f4588fd461d9cd1c14d808c17ba338f86ad63d26",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/native-check.json",
+      "original_sha256": "810ff8e314ad057ae6f7fce574b68167c48d662a4b76d9d81478cd64e3a907b4",
+      "portable_sha256": "60564ce7ea4489d9a1b4834e705779bf52aa4f8a1f4d2eaaeed8fb1a4519834f",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/native-check.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/render-commands.json",
+      "original_sha256": "322b51b5ba1127b63a6d252afaf53ee343fadb6c470b4971d5ea9bb95a477fad",
+      "portable_sha256": "11dbab6ccf8c882f316a8d43be6ecd62dafaea612ca4677c30649695f3bfa6c5",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/native-merge.json",
+      "original_sha256": "5d138c0b62c470ef6b503ecbb53a0901e8e32178fb2bd3bb86cc4cbe192b3385",
+      "portable_sha256": "3699f3b69f3841bf8b762f41db47950794b0844eb8527b1e3ae2e8d1846a45eb",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/native-merge.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/native-checkpoint.json",
+      "original_sha256": "63e770a433481b8eeb45a827cdcce0898daf94f1b52cbf0283a1bfbe6bc926e7",
+      "portable_sha256": "81dbf6efbf65e51d0a29caf89e5bb3bf081d7cdabb2f753100b9e2f20d557b38",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/native-check.json",
+      "original_sha256": "d2c8253a59323dab38d726ba107004f13a97cd06b572032cf582683ef4db58f0",
+      "portable_sha256": "441fe81d29686a32313d20788a27b31815854508b4f1b68f9e5f09e309b4c3b1",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/native-check.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.1.基色与材质分区/native-checkpoint.json",
+      "original_sha256": "4d5e1d1962b55ea8c50dfe3d3e07475d18da9e459e62fd44ddb3a3b5f86ee1e7",
+      "portable_sha256": "e3f8cefd859e580bcc6328e2bddc130b21670357049b206a56bf3ab73450f586",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.1.基色与材质分区/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.1.基色与材质分区/render-commands.json",
+      "original_sha256": "73e60f94e72550bff05f0cc393ab7f05680ad0babd50981a8ffd7d826a85c20f",
+      "portable_sha256": "32c0d3f2a40419c6d2d174c3054a0cec086c8c462c8308a7052fecd315392b34",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.1.基色与材质分区/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.1.基色与材质分区/combination-commands.json",
+      "original_sha256": "fd4b62aa309e5edd4391790d1a6991a446182124684e0d04e1a4f2dcf5cffbbc",
+      "portable_sha256": "9feaa06ad351fcd4bd91c0c647099c340ac115f9725398800940f9d59ec2d520",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.1.基色与材质分区/combination-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/native-checkpoint.json",
+      "original_sha256": "1b6f387ba304a303c3e74d22e6d126d0295006f01abe06b5b2b59f2fcd929541",
+      "portable_sha256": "e209d0f5922bcc17e71990d36c3a1f67958e5d84fda34953745816f712c9db5c",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/render-commands.json",
+      "original_sha256": "0c6e04d0133284ede0120f71d66952cd70a9e0516ba5cdcb7101382a0acfcfd2",
+      "portable_sha256": "cecef620c3074dfd9310a6090013fefb5aa5800e194658e8ee0b225d39657bb6",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/combination-commands.json",
+      "original_sha256": "abc53f2da0fbbef3a742c79886640285a1c011e05308c2840697cdfc61e0061d",
+      "portable_sha256": "145c46ba8d472c61c473fd082581be0bd60bc7392c5c295844d5c0ae4deb63df",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/combination-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/native-checkpoint.json",
+      "original_sha256": "48d132bd412935a06d0d6f11e73da344efb8c94621679d769ea33bd6e2446f92",
+      "portable_sha256": "80ea39bfcd7991e388ac3886012652a97cb83978ce90af4441b94f837c218151",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/render-commands.json",
+      "original_sha256": "7f39322ae66d1c00fa8cda24bd04241d627a8a33b74b235f64a20efaef6c79de",
+      "portable_sha256": "eb2b750ad3fe7dee98d255d4071d00318c6b7d44bd9b0c69995ad8978be025c2",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/combination-commands.json",
+      "original_sha256": "313cc3b06e205a572dc73fbb62dfc43058ee80f45f4f4eebef2525203e8ced3d",
+      "portable_sha256": "0b760731bae0a7eca1835151926bc3e3009b64daa4d045dabf7ed12f42763615",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/combination-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/native-checkpoint.json",
+      "original_sha256": "2e24ec7834f82e66d40b9ae020dc78a2b938065432df3ded643a2333c11f5d68",
+      "portable_sha256": "db0e212986bc8e067f7b102202f2260e7467c089eb1c79972bf9fe3edf716901",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/render-commands.json",
+      "original_sha256": "725d783e6bc76f3c28b088bdd2b0c841ab7524c37691952cf159674605315264",
+      "portable_sha256": "fa2b452cbc8121375b5102aab179719571ad4119103057490d1bf08c190014b2",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/combination-commands.json",
+      "original_sha256": "1a567e8322045f9ce12b2c34deeade3ba469018cb430ddd03e3d476f827b14b3",
+      "portable_sha256": "667b5efaa23bace61b4952deffc38f09f771b7f8cb94987706e89b4bbcc68fb9",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/combination-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/native-checkpoint.json",
+      "original_sha256": "2e8cab386c804e8b3b15e64feabd18573a321381730627fb250a4f859b5311d8",
+      "portable_sha256": "5f995a8b446437f1040bb0c96fbf79e414b6e5c0c89b255ecc7659b575d2a66f",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/render-commands.json",
+      "original_sha256": "0aa617737b7f54bcc5bbb58a6ceff055856b1cad453e0b64a7c76e0a8e6829cb",
+      "portable_sha256": "4f1dcd1508322cbab09216df8f9d95e8b9882b17c2c68d37fa5c0af29cca0bc4",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/node1-result.json",
+      "original_sha256": "3f8553478dcb3152ab00bb591098aa3f5a3ac38faad20d310a1bb6f0589a3e3e",
+      "portable_sha256": "6471e2076857fd3b3609fe14ac33d353565c7d70ac3553b3da83822f714a7d96",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/node1-result.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/parent-containment.json",
+      "original_sha256": "6942427e376713ea9b311cdacdf43e6df3f9e7c9a0506a93436485fac0b9f9ef",
+      "portable_sha256": "91a0fcc3bcf0f066810dea4c4859e54d3675cb303264ba9572865f770d42d217",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/parent-containment.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/render-commands.json",
+      "original_sha256": "7db630cb58283f949b176c8bb33f7e220027904cdecd17384d91b5d36781af37",
+      "portable_sha256": "2635df42e740ca96828dc4cf5a9170a8538d12f25d3799652b21a4682588f800",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/native-checkpoint.json",
+      "original_sha256": "029a6800cbeff214e0bfbf8a072e85835d527bdccb27e77f03dcc5ed91d1b0d0",
+      "portable_sha256": "9a845649095db5d111612923645cd4fff6b5291055056ea0b5f202a4e0606ad3",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/native-checkpoint.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/render-commands.json",
+      "original_sha256": "013d9243c72d8fdcd348a483f03136e84671be13b61925e2e80d0460966a54a6",
+      "portable_sha256": "44099a0990836601d4654d42c6e28c1a11b4cd4837681d8ee415cd4ac89ac9c8",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/render-commands.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json",
+      "original_sha256": "eccb9d5f03545ccb0372dc618411eb57be8806f77f3b0735138f160eeeb9a174",
+      "portable_sha256": "a0417a0659f46bb784df2a45c8507527f9aaa11fe1ac6b4de0899ea642c626c5",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json",
+      "batch": "progress-pr-20261007"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/before-containment.json",
+      "original_sha256": "5445faca3b9f3ce15ada8b4de3422f6d0b83a588c9cf2f2052ce70dfc1032050",
+      "portable_sha256": "6a9946f265a2024d1701dbf02d710160f65f26a2023fb4ca063f829099ac51f2",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/before-containment.json"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/diagnostic-render-commands.json",
+      "original_sha256": "ca7ee226f97a26bb47bc1562b6c532c7bfe9435f126e71b4d3ea74babd9d8d52",
+      "portable_sha256": "30bc3c13857129aad56ca72abb631d108a3d3a88f8f073d0c432b1c2857688a2",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/diagnostic-render-commands.json"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/input-render-commands.json",
+      "original_sha256": "d2a09259d3318c8fdc7be00d4b2239ca712118cf7a7348fdf59ff1d7932fbbcb",
+      "portable_sha256": "aad8c7f0dd3587bd43fb3e8b7577565da7256f9b41a3f23e8002dac04b3dd1bf",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/input-render-commands.json"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r1-command.json",
+      "original_sha256": "a6a8e03a3ed0fb9f946bf11bafb5056eec2649a7dec7aa20bb60779f92f55eb1",
+      "portable_sha256": "1b5a19083cd3c701bb19f9e78844c1a40a1dcfe9c1260ff89e6d6234a72b54df",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r1-command.json"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r1-containment.json",
+      "original_sha256": "b5e1df134d5c792af9c4358b3a0c16be3edbeb7adc793784fcbeb1576b769c32",
+      "portable_sha256": "56fa981c40c9fd4c42088f78df08ac6249042262bc42648fe998bf189133b187",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r1-containment.json"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r2-command.json",
+      "original_sha256": "e6a485db2a91a86345b4c2c658e754c0ec382f542f694355b9d8992acfffefc1",
+      "portable_sha256": "674141c602b654e61ce54a64d28cd1b586e8e9bcd7d54fbc391c915bba4dd8b1",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r2-command.json"
+    },
+    {
+      "file": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r2-containment.json",
+      "original_sha256": "c27397c84bf24884d792a36988184e318aad4d25bc5b17f685572df56b7912d3",
+      "portable_sha256": "a07f3bbd5f2af9716b5c0f4812fc7455271c9d33a80887da27fa0247ac82f485",
+      "original_local_copy": ".runtime/evidence-portability/originals/refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r2-containment.json"
+    }
+  ]
+}

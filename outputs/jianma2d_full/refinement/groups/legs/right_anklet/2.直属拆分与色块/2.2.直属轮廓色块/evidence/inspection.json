@@ -1,0 +1,26 @@
+{
+  "target": "n21",
+  "node": "group_child_layers",
+  "status": "frozen-awaiting-independent-review",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "logical_worker": "group:legs/right_anklet",
+  "new_independent_context": false,
+  "viewed": [
+    "evidence/inspection-montage.png"
+  ],
+  "observations": [
+    "右高左低挂环、完整前后链、右伸扣尾同属链圈；23条原形保持。",
+    "主坠的4条路径接续中央圆扣，窄吊环孔透明，左右肩高差与偏斜尖端保持。",
+    "小坠1条完整水滴轮廓保持，独立间隙未填，未增添可见悬挂线。",
+    "三孩子全部同坐标覆盖父形体，颜色区分；后回链归于足部后方的最终合成约束仍有效。"
+  ],
+  "geometry_exact_copy": true,
+  "parent_raw_and_other_svg_preserved": true,
+  "bounds": {
+    "legs/right_anklet/ankle_chain": 0,
+    "legs/right_anklet/gem_pendant": 0,
+    "legs/right_anklet/small_charm": 0
+  },
+  "state_unchanged_at": "group_split",
+  "no_checkpoint": true
+}

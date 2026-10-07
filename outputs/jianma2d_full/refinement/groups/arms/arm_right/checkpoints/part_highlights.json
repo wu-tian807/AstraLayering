@@ -1,0 +1,15 @@
+{
+  "node": "part_highlights",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "按右侧彩参完成外肩小柔亮斑和沿臂薄反光；2part及原生apply相邻组合实看，亮部随完整表面连续，未新增关系。",
+  "evidence": [
+    "views/part_highlights.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_highlights"
+  },
+  "artwork_sha256": "8807498697d0103032f84846c1cfd7221fee7d42cf2f6d4665291a4c079eda3f"
+}

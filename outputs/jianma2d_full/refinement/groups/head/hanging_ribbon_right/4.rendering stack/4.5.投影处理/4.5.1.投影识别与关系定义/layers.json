@@ -1,0 +1,14 @@
+{
+  "layers": [
+    {
+      "id": "head_hanging_ribbon_right_ribbon_strip_hanger_cast_shadow",
+      "type": "shadow",
+      "owner": "head/hanging_ribbon_right/ribbon_strip",
+      "follow": "head/hanging_ribbon_right/jeweled_hanger",
+      "clip_to": [
+        "head/hanging_ribbon_right/ribbon_strip"
+      ],
+      "note": "右下链环在带顶右下约x565.8–570/y180.8–185的短接触投影；挂环与柔带可相对转摆，故独立跟随jeweled_hanger。该组后续拆分后第5步可细化follow。仅完整raw短影和自身软边，本阶段不绑定receiver；顶孔最终由带面实际alpha排除。"
+    }
+  ]
+}

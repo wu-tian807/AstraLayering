@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>剑妈 · 分层检查</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; height: 100dvh; display: flex; flex-direction: column; color: #26354b; background: #f0f3f8; font: 14px system-ui, sans-serif; }
+  header { padding: 10px 16px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  a { color: #325f97; }
+  iframe { flex: 1; width: 100%; min-height: 0; border: 0; }
+</style>
+<header><a href="./">返回作品</a><span id="status" role="status">正在载入本次分层文件…</span><a href="../../loading/svg-preview.html">手动载入文件</a></header>
+<iframe id="inspector" title="剑妈分层图像检查器"></iframe>
+<script>
+  const inspector = document.getElementById('inspector');
+  const status = document.getElementById('status');
+  const sources = [
+    ['fileInput', 'refinement/character.svg', 'image/svg+xml'],
+    ['groupFile', 'structure/groups.json', 'application/json'],
+    ['renderingFile', 'structure/rendering.json', 'application/json'],
+    ['referenceInput', 'references/base-subject.png', 'image/png'],
+  ];
+  function waitFor(doc, predicate) {
+    if (predicate()) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const observer = new MutationObserver(() => {
+        if (!predicate()) return;
+        clearTimeout(timeout);
+        observer.disconnect();
+        resolve();
+      });
+      const timeout = setTimeout(() => {
+        observer.disconnect();
+        reject(new Error('检查器载入超时，请刷新或手动载入文件'));
+      }, 30000);
+      observer.observe(doc.body, { subtree: true, childList: true, attributes: true, characterData: true });
+    });
+  }
+  inspector.addEventListener('load', async () => {
+    try {
+      const doc = inspector.contentDocument;
+      const win = inspector.contentWindow;
+      const files = await Promise.all(sources.map(async ([id, path, type]) => {
+        const response = await fetch(path, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`无法读取 ${path}（${response.status}）`);
+        return [id, new win.File([await response.blob()], path.split('/').pop(), { type })];
+      }));
+      function loadFile([id, file]) {
+        const transfer = new win.DataTransfer();
+        transfer.items.add(file);
+        const input = doc.getElementById(id);
+        if (!input) throw new Error('检查器的文件入口不可用，请手动载入');
+        input.files = transfer.files;
+        input.dispatchEvent(new win.Event('change', { bubbles: true }));
+      }
+      loadFile(files[0]);
+      await waitFor(doc, () => !doc.getElementById('openReference').disabled);
+      files.slice(1).forEach(loadFile);
+      await waitFor(doc, () =>
+        doc.getElementById('importGroups').textContent === '更换 groups.json' &&
+        doc.getElementById('importRendering').textContent === '更换 rendering.json' &&
+        doc.getElementById('referenceName').textContent === 'base-subject.png');
+      const referenceView = doc.getElementById('expression1');
+      referenceView.value = 'B';
+      referenceView.dispatchEvent(new win.Event('change', { bubbles: true }));
+      status.textContent = '已载入当前分层稿、部件树、渲染关系和参考图';
+    } catch (error) {
+      status.textContent = error.message;
+    }
+  }, { once: true });
+  inspector.src = '../../loading/svg-preview.html';
+</script>
+</html>

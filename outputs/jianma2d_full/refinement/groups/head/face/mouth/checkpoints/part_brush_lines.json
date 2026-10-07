@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_brush_lines",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "已实看真实perfect_freehand1.2.0笔触；301个沿弧长显式压力点，嘴角略深、中央轻、两端收尖，单条上唇接界线。隐藏外弧和色区辅助线全部隐藏；源曲线/压力样本保留。",
+  "artwork_sha256": "5a209569e014b1f2d01ceedd3ae2e235cde2fe921430b339308a42e238d3a861",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_brush_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_brush_lines"
+  }
+}

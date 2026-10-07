@@ -1,0 +1,113 @@
+{
+  "status": "pass",
+  "group_path": "head/face",
+  "parent_svg": "refinement/groups/head/face/mouth/1.父级轮廓补全/input/guide.svg",
+  "parent_ids": [
+    "group-head-face"
+  ],
+  "candidate_svg": "refinement/groups/head/face/mouth/1.父级轮廓补全/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/face/eye_right",
+      "status": "pass",
+      "ids": [
+        "group-head-face-eye-right"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "head/face/eye_left",
+      "status": "pass",
+      "ids": [
+        "group-head-face-eye-left"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "head/face/mouth",
+      "status": "pass",
+      "ids": [
+        "group-head-face-mouth"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/face_skin",
+      "status": "pass",
+      "ids": [
+        "part-head-face-face-skin"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/ear_left",
+      "status": "pass",
+      "ids": [
+        "part-head-face-ear-left"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/ear_right",
+      "status": "pass",
+      "ids": [
+        "part-head-face-ear-right"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/eyebrow_left",
+      "status": "pass",
+      "ids": [
+        "part-head-face-eyebrow-left"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/eyebrow_right",
+      "status": "pass",
+      "ids": [
+        "part-head-face-eyebrow-right"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/nose",
+      "status": "pass",
+      "ids": [
+        "part-head-face-nose"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

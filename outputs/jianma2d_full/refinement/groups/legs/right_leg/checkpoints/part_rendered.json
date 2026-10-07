@@ -1,0 +1,29 @@
+{
+  "node": "part_rendered",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right_finish",
+  "model": "gpt-6-astra",
+  "reasoning": "xhigh",
+  "note": "两part暖棕粉渐变线色融合，膝亮点按4×参考收拢；完整大腿/小腿独显及普通腿部、膝、踝局部已实看。髋—骨盆组合未覆盖，踝—足最终接色待足组，均明记后续责任；不宣称全角色/全接界通过。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_rendered-thigh-only.png",
+    "refinement/groups/legs/right_leg/views/part_rendered-lower-leg.png",
+    "refinement/groups/legs/right_leg/views/part_rendered-thigh-reference.png",
+    "refinement/groups/legs/right_leg/views/part_rendered-knee-composite.png",
+    "refinement/groups/legs/right_leg/views/part_rendered-ankle-guide-composite.png"
+  ],
+  "proof": "refinement/groups/legs/right_leg/4.rendering stack/4.7.线色融合与材质细化/proof.json",
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_rendered"
+  },
+  "input_artwork_sha256": "f80b96281f8c12e7d3ebd0b8df0226ed1baed19d6402eaa78d404b50dbf0310c",
+  "artwork_sha256": "00e1641b47bb4c13b46b4af4d711608cee1d88409678de90b056286c223aef7c",
+  "visual_coverage_status": "scoped_pass_with_unreviewed_composites",
+  "unreviewed_composites": [
+    "Hip-pelvis composite not visually inspected; must be resolved by later final composite review.",
+    "Foot group remains pending and unmodified; any ankle comparison against its guide is geometry-only."
+  ],
+  "timestamp": "2026-10-06T11:41:39.970653+00:00"
+}

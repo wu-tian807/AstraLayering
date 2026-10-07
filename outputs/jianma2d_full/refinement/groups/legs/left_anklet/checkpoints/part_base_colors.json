@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_base_colors",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "重新核对冷银蓝材质并覆盖完整基色；实看独显和邻近参考关系，链、主坠、足部仍待各自group，既有rendering表沿用。",
+  "evidence": [
+    "views/part_base_colors.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_base_colors"
+  },
+  "artwork_sha256": "e0f1e6f965a52da47143efa7054b36ee9c912857bfd2d3b180b193ad64bbf697"
+}

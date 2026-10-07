@@ -1,0 +1,19 @@
+{
+  "command": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/svg_containment.py",
+    "--parent-svg",
+    "refinement/groups/head/front_hair/local-repair-20261006/1/input/groups.before.svg",
+    "--candidate",
+    "refinement/groups/head/front_hair/local-repair-20261006/1/candidate.svg",
+    "--groups",
+    "structure/groups.json",
+    "--group-path",
+    "head",
+    "--out",
+    "refinement/groups/head/front_hair/local-repair-20261006/1/evidence/bounds-raw.json"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"pass\", \"report\": \"refinement/groups/head/front_hair/local-repair-20261006/1/evidence/bounds-raw.json\", \"failed\": []}\n",
+  "stderr": ""
+}

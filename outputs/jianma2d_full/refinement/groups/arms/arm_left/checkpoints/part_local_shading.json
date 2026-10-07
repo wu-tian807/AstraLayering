@@ -1,0 +1,15 @@
+{
+  "node": "part_local_shading",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "纵向肘窝浅凹及腕内窄转暗细化完成，逐件/组合实看；同步减弱宽凹暗避免叠黑，软边渐隐，不画圆帽横缝或混入外来投影。",
+  "evidence": [
+    "views/part_local_shading.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_local_shading"
+  },
+  "artwork_sha256": "18dd0a4506924e27b262d7e0a31529c5a26734c0f559b39ab86db9641cc9ac31"
+}

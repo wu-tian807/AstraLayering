@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_contours",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "完整闭合色面和两条外缘曲线完成，彩参/线参同坐标8×实看，无内孔、无新增挂接线；逐线记录显影、粗细与收尖。",
+  "evidence": [
+    "views/part_contours.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_contours"
+  },
+  "artwork_sha256": "e595967acd2cf4b2fa98870611bd52164f23db9ece2fd674860d8c8561384ae0"
+}

@@ -1,0 +1,15 @@
+{
+  "node": "part_motion_completion",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "两张Milly示例与2part前后/参考合板已实看；肩根、圆肘根和腕端已有完整运动余量，保留几何仅补desc；空清单及默认包含检查通过。",
+  "evidence": [
+    "2.直属拆分与色块/2.3.运动露出补齐/motion-board.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_motion_completion"
+  },
+  "artwork_sha256": "af8b27d13baa97b01961d320e8993cc43f218fd1f7ce3362d5122fc0daafcd8f"
+}

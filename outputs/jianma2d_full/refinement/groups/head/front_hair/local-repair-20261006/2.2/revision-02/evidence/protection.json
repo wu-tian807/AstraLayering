@@ -1,0 +1,59 @@
+{
+  "status": "revision-02-frozen-awaiting-same-independent-reviewer",
+  "maker": "/root/workflow_runner/arm_right",
+  "candidate_and_standard_sha256": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083",
+  "previous_frozen_candidate_sha256": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+  "protected_nodes_identical_sha256": {
+    "group-head-front-hair": "625cdd622a1c2d8f9320eb8c0f43f8665b73e6032ba97424e62239397e7487cd",
+    "group-head-front-hair-fringe-right": "b7d394e38d2a6bedf050d593938a15426d04dbbbff35212600007cc852b5fabb",
+    "group-head-front-hair-temple-sweeps-left": "da417f3b8bfd8fb55d0e9d11fe0f419d4de99ac719f2d671b1bac7e0678eaf12",
+    "group-head-front-hair-temple-sweeps-right": "cf19157e332f018b8e6a140984e2caead0193eed14057f6432e5dec5d24931ff",
+    "part-head-front-hair-scalp-cap": "3e6e2c208a9816b060415ad9e894c22c5cf2173f719670be5b0194234a650395",
+    "head-front-hair-fringe-left-fine-lock-carrier": "8a530458fdbba00f851949a80878a3dbd72db256bbd855cbf22d7c18bbe246f5"
+  },
+  "only_one_d_changed": true,
+  "fine_lock_outer_edge_and_tip_unchanged": true,
+  "n25_parts_unpublished": true,
+  "before_sha256": {
+    "block-layers/groups.svg": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+    "block-layers/preview.png": "b4c3327f1b8cf9bd4c12f87c5f0180762431c35c9e9ce927003aa4bb84f9e64e",
+    "structure/groups.json": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+    "structure/groups.dispatch.json": "ec196d1091a2bc4012356ee6dfcc66628b7806f2d42d07413b90c96c712934af",
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+    "refinement/groups/head/front_hair/local-repair-20261006/2.2/轮廓检查.json": "a5e4cc65dc036bb135621e7f4b16f6d140ac2decec72bb7a6de9fb87a4fd5e7e"
+  },
+  "after_sha256": {
+    "block-layers/groups.svg": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083",
+    "block-layers/preview.png": "a772cbb7620b18fdd8e3b123f388e617fd9b34c99e6ae6a6db2ef4f53326f9c4",
+    "structure/groups.json": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+    "structure/groups.dispatch.json": "ec196d1091a2bc4012356ee6dfcc66628b7806f2d42d07413b90c96c712934af",
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "refinement/groups/head/front_hair/local-repair-20261006/2.2/candidate.svg": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+    "refinement/groups/head/front_hair/local-repair-20261006/2.2/轮廓检查.json": "a5e4cc65dc036bb135621e7f4b16f6d140ac2decec72bb7a6de9fb87a4fd5e7e"
+  },
+  "bounds": {
+    "head/front_hair/fringe_left": 0,
+    "head/front_hair/fringe_right": 0,
+    "head/front_hair/temple_sweeps_left": 0,
+    "head/front_hair/temple_sweeps_right": 0,
+    "head/front_hair/scalp_cap": 0
+  },
+  "actual_view_files": [
+    "reviews/group_child_layers/head/front_hair/local-repair-20261006/evidence/fine-tip-connections-8x.png",
+    "evidence/fine-isolated-8x.png",
+    "evidence/connections-no-parent-8x.png"
+  ],
+  "checkpoint_called": false,
+  "active": {
+    "target": "n8",
+    "route": "generic",
+    "pointer": "group_split"
+  }
+}

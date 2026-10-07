@@ -1,0 +1,20 @@
+{
+  "target": "n22",
+  "node": "part_rendered",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "本轮sclera/lower_eyelid完整Rendering Stack已实看，暖细下睑线、干净眼白与低对比转面符合两直属part参考。原58个根级元素payload/order完整保留，旧21关系不变，新增shadow/highlight为23条。全部物理树、guide几何、精确part表面保持；最终组合未完成项详见appearance-review，尤其上睑/虹膜缺失、隐藏下弧白细缘和raw投影未裁切。",
+  "evidence": [
+    "views/part_rendered.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_rendered"
+  },
+  "artwork_sha256": "880596f427d02af4ce9fea47916b40ebc295a18ccd1e783900eba72cd2198b42",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab",
+  "rendering_sha256": "17c422f5624fd3bcd0ff1fb260fd08c997f550dd3efa322836ba268d90328a19",
+  "integrity": "work/final-integrity.json",
+  "appearance": "4.rendering stack/4.7.线色融合与材质细化/appearance-review.json"
+}

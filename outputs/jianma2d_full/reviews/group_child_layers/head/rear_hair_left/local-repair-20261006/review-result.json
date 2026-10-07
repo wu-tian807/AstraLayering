@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-06",
+  "written_at": "2026-10-06T15:38:56.724946+08:00",
+  "logical_identity": "group_child_layers:head/rear_hair_left:review",
+  "recovery_worker": "/root/workflow_runner/review_rear_left",
+  "historical_attribution_preserved": true,
+  "historical_candidate_sha256": "4b7179f7b86559b499efcb8213760934949e75f1a5194fb5e647ef6ac4e02ddf",
+  "candidate_sha256": "a85a4204cd039e292828afa5b78ca1153bfb955a1d1b15e448c59c5e8b06ce41",
+  "scope": "head/rear_hair_left direct groups and parts; focused repair and affected lower connections; unchanged approved scopes retained by exact XML correspondence",
+  "verdict": "pass",
+  "visual_and_connections": "pass",
+  "components": [
+    {
+      "path": "head/rear_hair_left/inner_back_curtain",
+      "container_id": "group-head-rear-hair-left-inner-back-curtain",
+      "verdict": "pass",
+      "basis": "prior approved review retained after byte-identical fragment verification; current lower connection image also examined"
+    },
+    {
+      "path": "head/rear_hair_left/outer_back_curtain",
+      "container_id": "group-head-rear-hair-left-outer-back-curtain",
+      "verdict": "pass",
+      "basis": "current repair images and inherited unchanged contour review"
+    },
+    {
+      "path": "head/rear_hair_left/occipital_root",
+      "container_id": "part-head-rear-hair-left-occipital-root",
+      "verdict": "pass",
+      "basis": "prior approved review retained after byte-identical fragment verification"
+    },
+    {
+      "path": "head/rear_hair_left/central_back_tail",
+      "container_id": "part-head-rear-hair-left-central-back-tail",
+      "verdict": "pass",
+      "basis": "prior approved review retained after byte-identical fragment verification"
+    }
+  ],
+  "raw_bounds": {
+    "status": "fail",
+    "scale": 4,
+    "alpha_threshold": 128,
+    "counts": [
+      0,
+      3,
+      0,
+      0
+    ],
+    "sha256": "d6e08fdc849943794d0a1f4902f6916fac59a4f2fc43c60912f13a21b535e62e",
+    "rewritten": false
+  },
+  "scoped_geometric_bounds_assessment": "pass: three raw sites are unchanged complete common boundaries with same fill side and unchanged nearby geometry; prior independent proof applies",
+  "coverage_without_parent": {
+    "missing_count": 2,
+    "extra_count": 105,
+    "missing_samples": [
+      {
+        "x": 317.0,
+        "y": 417.0,
+        "parent_alpha": 128,
+        "child_alpha": 127
+      },
+      {
+        "x": 318.75,
+        "y": 1278.75,
+        "parent_alpha": 129,
+        "child_alpha": 124
+      }
+    ]
+  },
+  "coverage_source_and_limit": "Fresh maker raster statistics reused on exact candidate; two old missing-point local proofs verified against current XML. No fresh full-plane proof or threshold relaxation.",
+  "repair": {
+    "old_apex": [
+      209,
+      1328
+    ],
+    "new_apex": [
+      196,
+      1325
+    ],
+    "reference_apex_approximate": [
+      196,
+      1325
+    ],
+    "lower_connection_endpoint": [
+      212,
+      1428
+    ],
+    "current_visual_confirmation": [
+      "01-current-notch-base.png",
+      "02-current-notch-line.png",
+      "03-current-lower-connections.png"
+    ]
+  },
+  "open_repair_items": [],
+  "actual_views": "actual-views.json",
+  "proof_applicability": "xml-and-proof-applicability.json",
+  "canonical_report": "reviews/group_child_layers/head/rear_hair_left/审查.md",
+  "original_report_sha256": "7ac3b949cdf171b97d6989c51b6cca2f42ce9b1538347b74df9c71b12c9f3ae2",
+  "original_report_byte_count": 11822,
+  "canonical_report_sha256": "2a45190cb2790342c8342e12fff4a997013f255e605af0b0d59feff7af4981b9",
+  "canonical_old_history_retained_as_exact_prefix": true,
+  "read_only_inputs_before_after_equal": true,
+  "input_hashes_after": {
+    "candidate": "a85a4204cd039e292828afa5b78ca1153bfb955a1d1b15e448c59c5e8b06ce41",
+    "frozen_candidate": "a85a4204cd039e292828afa5b78ca1153bfb955a1d1b15e448c59c5e8b06ce41",
+    "input_parent": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+    "historical_candidate": "4b7179f7b86559b499efcb8213760934949e75f1a5194fb5e647ef6ac4e02ddf",
+    "bounds": "d6e08fdc849943794d0a1f4902f6916fac59a4f2fc43c60912f13a21b535e62e",
+    "groups": "047eff70159a0a476c0b313d0eda3e411b127285f3330097598a45de47721b8b",
+    "base_reference": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "line_reference": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+    "rendering": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb",
+    "character": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2",
+    "old_proof": "680d5903ee6efc9bc0a5125ce9c35a5a41573f09bee61feb88563f930cb4a738",
+    "coverage_proof": "9f5ca4bf28dfaf8183f20a290aee95b18ad9c6863af6141bfa07aef0cfb10ef6"
+  },
+  "workflow_state_modified": false,
+  "checkpoint_complete_publish_performed": false,
+  "limitations": [
+    "RAW tool status remains FAIL; review PASS distinguishes exact common-boundary anti-aliasing from true overflow.",
+    "Focused recheck; exact unchanged scopes retain previous independent visual judgments.",
+    "No new full-plane numerical proof, no rerun of fresh maker bounds and union raster data."
+  ],
+  "check_preparation_note": "First run stopped before evidence output due to a manually specified segment-index off-by-one. Actual parsed before/after segments were inspected; corrected zero-based indices are 21 and 22. No input was changed."
+}

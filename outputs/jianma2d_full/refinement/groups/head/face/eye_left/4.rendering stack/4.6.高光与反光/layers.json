@@ -1,0 +1,24 @@
+{
+  "layers": [
+    {
+      "id": "eye_left_upper_lid_cast_shadow",
+      "type": "shadow",
+      "owner": "head/face/eye_left/sclera",
+      "follow": "head/face/eye_left/upper_eyelid",
+      "clip_to": [
+        "head/face/eye_left/sclera"
+      ],
+      "note": "左眼上睑在眼白上沿形成的窄软灰投影；独立随上睑运动，受影眼白相对活动。与粗黑睫毛、蓝虹膜暗缘及交叉白发本体分开，不另叠来源不清的发丝暗斑。upper_eyelid目前为n48未拆group，后置绑定到最终上睑part；完整raw保留角部运动余量，第5步裁切到sclera并置于上睑下。未来上睑制作者复用此id。"
+    },
+    {
+      "id": "eye_left_corneal_highlight",
+      "type": "highlight",
+      "owner": "head/face/eye_left/sclera",
+      "follow": "head/face/eye_left/iris",
+      "clip_to": [
+        "head/face/eye_left/iris"
+      ],
+      "note": "本侧左上主角膜白亮斑，约x398.6–402.3、y246.6–248.2，短不对称圆角形、右下略收尖；不是物理part。逻辑owner=sclera，随iris视线运动，iris目前为n49未拆group，后置绑定其实际已绘表面并受眼睑/发丝遮挡。保留完整raw；未来虹膜制作者复用本id，勿复制右眼或重复反光。"
+    }
+  ]
+}

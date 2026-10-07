@@ -1,0 +1,47 @@
+{
+  "status": "pass",
+  "group_path": "legs/left_leg",
+  "parent_svg": "tmp/leg-left-node22/input-guide.svg",
+  "parent_ids": [
+    "group-legs-left-leg"
+  ],
+  "candidate_svg": "tmp/leg-left-node22/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "legs/left_leg/foot",
+      "status": "pass",
+      "ids": [
+        "group-legs-left_leg-foot"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "legs/left_leg/thigh",
+      "status": "pass",
+      "ids": [
+        "part-legs-left_leg-thigh"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "legs/left_leg/lower_leg",
+      "status": "pass",
+      "ids": [
+        "part-legs-left_leg-lower_leg"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

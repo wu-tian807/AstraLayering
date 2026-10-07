@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "part_detail_lines",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已实看当前本侧参考/同坐标线稿，无支持额外纹理或刻纹的细节，保留既有内容和留白。",
+  "evidence": [
+    "views/part_detail_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_detail_lines"
+  },
+  "artwork_sha256": "99422e578e1a7aebf40d97158635ab95271a5a3da9b71835387646c570a3842e"
+}

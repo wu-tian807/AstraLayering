@@ -1,0 +1,20 @@
+{
+  "command": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/4.专项细化/tools/group_cursor.py",
+    "--file",
+    "structure/groups.json",
+    "--state",
+    "structure/groups.dispatch.json",
+    "expand",
+    "--parent",
+    "n29",
+    "--patch",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/children.json"
+  ],
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "usage: group_cursor.py [-h] --file FILE --state STATE\n                       {init,next,expand,checkpoint,complete,reopen} ...\ngroup_cursor.py: error: patch must add nodes through declared child edges\n",
+  "tree_and_dispatch_unchanged": true,
+  "resolution": "Native expand rejects empty patches (group_cursor.py226-242). Current YAML explicitly says empty list preserves tree; check-children already passed. Empty patch is therefore passthrough, not a successful expand. No source tool modified."
+}

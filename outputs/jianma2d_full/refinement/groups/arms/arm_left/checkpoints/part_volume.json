@@ -1,0 +1,15 @@
+{
+  "node": "part_volume",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "前左受光、右内转暗和肘窝自身体积完成；2part独显与相邻组合实看，共用同坐标光场跨肘连续，圆端无封口明暗，外来投影未混入。",
+  "evidence": [
+    "views/part_volume.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_volume"
+  },
+  "artwork_sha256": "df765b2980c5973425692d925cb430328875074c725d1aecfae7d5abd352cf7a"
+}

@@ -1,0 +1,34 @@
+{
+  "layers": [
+    {
+      "id": "head_rear_hair_left_occipital_root_face_cast_shadow",
+      "type": "shadow",
+      "owner": "head/rear_hair_left/occipital_root",
+      "follow": "head/face/face_skin",
+      "clip_to": [
+        "head/rear_hair_left/occipital_root"
+      ],
+      "note": "脸/下颌投在后脑耳后发面，接触处较深而远端柔化，现有face_skin是具体遮光part；根面自身转暗与发丝沟继续留在自身，不重复计算。投影保留受影面之外原始余量，后置绑定。"
+    },
+    {
+      "id": "head_rear_hair_left_central_back_tail_left_leg_cast_shadow",
+      "type": "shadow",
+      "owner": "head/rear_hair_left/central_back_tail",
+      "follow": "legs/left_leg",
+      "clip_to": [
+        "head/rear_hair_left/central_back_tail"
+      ],
+      "note": "画面左腿内侧遮光落在中央尾束左侧窄带；随左腿相对尾束运动。left_leg目前是尚待调度的group，沿用完整现存路径，后置绑定可细化具体腿part。完整原始投影向左侧超出发束以支持相对位移。"
+    },
+    {
+      "id": "head_rear_hair_left_central_back_tail_right_leg_cast_shadow",
+      "type": "shadow",
+      "owner": "head/rear_hair_left/central_back_tail",
+      "follow": "legs/right_leg",
+      "clip_to": [
+        "head/rear_hair_left/central_back_tail"
+      ],
+      "note": "画面右腿内侧在中央尾束右侧形成浅蓝灰投影，右腿相对尾束运动；具体part尚未拆出，follow当前实际right_leg组。保留原始右侧余量，不把阴影焊入尾束或原位裁掉。"
+    }
+  ]
+}

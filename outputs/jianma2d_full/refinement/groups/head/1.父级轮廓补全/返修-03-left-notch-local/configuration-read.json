@@ -1,0 +1,10 @@
+{
+  "node": "group_completion",
+  "worker": "group:head",
+  "actual_author": "/root/head_finish",
+  "files": {
+    "workflow-next/live2d-layering/templates/部件专项/generic/1.父级轮廓补全/流程.yaml": "915fa04454f2fbfefed1b7e9b177631784e489dad078f45bf36e3fd17bd94868",
+    "workflow-next/live2d-layering/templates/部件专项/generic/1.父级轮廓补全/gpt-6-astra-xhigh.model": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "workflow-next/live2d-layering/templates/部件专项/generic/1.父级轮廓补全/提示词.txt": "bca8abaed2156fb428ef2221e3a93e0528094c1ae1efcb425dd70dad83b30689"
+  }
+}

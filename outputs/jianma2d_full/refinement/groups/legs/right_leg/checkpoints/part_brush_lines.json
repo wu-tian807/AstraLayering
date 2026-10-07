@@ -1,0 +1,16 @@
+{
+  "node": "part_brush_lines",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "四条本侧外缘以perfect-freehand1.2.0密采样显式压力重绘，内缘减压、两端渐尖；原始曲线/明暗导引隐藏保留，圆接头不加硬封口。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_brush_lines.png",
+    "refinement/groups/legs/right_leg/work/brush-provenance.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_brush_lines"
+  },
+  "artwork_sha256": "5642f6b4a481dae197787d0e8eb8134f849c7115c89f07eb3f3a7e9657cb2eeb"
+}

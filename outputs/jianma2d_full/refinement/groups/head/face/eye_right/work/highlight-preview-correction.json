@@ -1,0 +1,5 @@
+{
+  "initial_error": "svg_preview scale=20 outside native allowed 1..8, exit 2; not image capacity error",
+  "correction": "native scale=8, tile enlarged only for montage",
+  "final_exit": 0
+}

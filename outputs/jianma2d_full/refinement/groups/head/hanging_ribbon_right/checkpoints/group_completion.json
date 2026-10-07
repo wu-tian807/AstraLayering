@@ -1,0 +1,7 @@
+{
+  "node": "group_completion",
+  "worker": "/root/workflow_runner/ribbon_right",
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "eb4662d4a0b46c898eabf4f0fb93f71cfc05512b7f10f380e5a28db9de92b4b5",
+  "note": "当前父轮廓保留；全图与局部参考已实看，根接/环孔/隐藏连续面/尖尾完整，直接父4×包含0越界。"
+}

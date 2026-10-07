@@ -1,0 +1,14 @@
+{
+  "layers": [
+    {
+      "id": "arms_arm_left_upper_arm_hair_cast_shadow",
+      "type": "shadow",
+      "owner": "arms/arm_left/upper_arm",
+      "follow": "head/face_framing_hair_left/main_long_lock",
+      "clip_to": [
+        "arms/arm_left/upper_arm"
+      ],
+      "note": "左前发主束遮光，投在上臂内侧约x328–355/y438–548，依据4×彩参右侧窄暖暗和明暗desc；发束可相对上臂摆动，独立raw源影，后置receiver绑定。前臂无可确认外来投影，不把肘窝和腕凹登记成投影。"
+    }
+  ]
+}

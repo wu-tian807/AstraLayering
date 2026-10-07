@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "part_contours",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看两part独显、参考混合及同坐标线稿。完整闭合面逐路径复用guide；眼白不挖虹膜洞，下睑可见接触线仅前三段C，隐藏外弧仅诊断线。上睑/虹膜未绘。",
+  "evidence": [
+    "views/part_contours.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_contours"
+  },
+  "artwork_sha256": "785b0277e35b01c884be3678d6971ffc9050e73272cf64b4d717b45952bf0d01",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

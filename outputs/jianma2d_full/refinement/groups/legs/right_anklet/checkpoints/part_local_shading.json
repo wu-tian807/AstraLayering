@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "part_local_shading",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已实看本侧暗部和完整独显，下蓝与浅右转面已足，参考无凹槽/接缝/孔洞，沿用现有暗部避免重复叠黑。",
+  "evidence": [
+    "views/part_local_shading.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_local_shading"
+  },
+  "artwork_sha256": "5fe2423dd9d5efa9ee11441d22f26353d5cfb552c9874bd4efe5bda07d89fdc2"
+}

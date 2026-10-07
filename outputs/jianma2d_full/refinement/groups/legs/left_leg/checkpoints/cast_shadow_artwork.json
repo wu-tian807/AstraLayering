@@ -1,0 +1,16 @@
+{
+  "node": "cast_shadow_artwork",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "本组独立投影owner清单为空，保留全部完整源形；逐件/骨盆组合实看，21层原生check通过，SVG与rendering未改。",
+  "evidence": [
+    "views/cast_shadow_artwork.png",
+    "4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/rendering-check.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_artwork"
+  },
+  "artwork_sha256": "bd24873bfe07e1d33bd9736ff26bb7639f986d8ef0c8119bdf5f278e51fd9d7d"
+}

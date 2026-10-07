@@ -1,0 +1,44 @@
+{
+  "layers": [
+    {
+      "id": "right_temple_upper_temple_lock_cast_shadow",
+      "type": "shadow",
+      "owner": "head/front_hair/temple_sweeps_right/upper_temple_lock",
+      "follow": "head/front_hair/temple_sweeps_right/crown_sweeps",
+      "clip_to": [
+        "head/front_hair/temple_sweeps_right/upper_temple_lock"
+      ],
+      "note": "右侧参考中crown_sweeps下缘向upper_temple_lock投下冷灰接触带；两片可相对运动，因此独立完整raw。owner为当前直属受影part，follow为实际遮光片，clip_to为完整受影part。crown_sweeps仍是组n51；完成后第5步按实际末端短扫片细化follow。源影保留轮廓外运动余量，此阶段不装receiver mask；右内沿连续，不添加左侧耳孔。"
+    },
+    {
+      "id": "right_temple_middle_temple_lock_cast_shadow",
+      "type": "shadow",
+      "owner": "head/front_hair/temple_sweeps_right/middle_temple_lock",
+      "follow": "head/front_hair/temple_sweeps_right/upper_temple_lock",
+      "clip_to": [
+        "head/front_hair/temple_sweeps_right/middle_temple_lock"
+      ],
+      "note": "右侧参考中upper_temple_lock下缘向middle_temple_lock投下冷灰接触带；两片可相对运动，因此独立完整raw。owner为当前直属受影part，follow为实际遮光片，clip_to为完整受影part。源影保留轮廓外运动余量，此阶段不装receiver mask；右内沿连续，不添加左侧耳孔。"
+    },
+    {
+      "id": "right_temple_lower_temple_lock_cast_shadow",
+      "type": "shadow",
+      "owner": "head/front_hair/temple_sweeps_right/lower_temple_lock",
+      "follow": "head/front_hair/temple_sweeps_right/middle_temple_lock",
+      "clip_to": [
+        "head/front_hair/temple_sweeps_right/lower_temple_lock"
+      ],
+      "note": "右侧参考中middle_temple_lock下缘向lower_temple_lock投下冷灰接触带；两片可相对运动，因此独立完整raw。owner为当前直属受影part，follow为实际遮光片，clip_to为完整受影part。源影保留轮廓外运动余量，此阶段不装receiver mask；右内沿连续，不添加左侧耳孔。"
+    },
+    {
+      "id": "right_temple_ear_lock_cast_shadow",
+      "type": "shadow",
+      "owner": "head/front_hair/temple_sweeps_right/ear_lock",
+      "follow": "head/front_hair/temple_sweeps_right/lower_temple_lock",
+      "clip_to": [
+        "head/front_hair/temple_sweeps_right/ear_lock"
+      ],
+      "note": "右侧参考中lower_temple_lock下缘向ear_lock投下冷灰接触带；两片可相对运动，因此独立完整raw。owner为当前直属受影part，follow为实际遮光片，clip_to为完整受影part。源影保留轮廓外运动余量，此阶段不装receiver mask；右内沿连续，不添加左侧耳孔。"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "status": "fail",
+  "group_path": "head/rear_hair_left",
+  "parent_svg": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/input-groups.svg",
+  "parent_ids": [
+    "group-head-rear-hair-left"
+  ],
+  "candidate_svg": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/candidate-r1-winding.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/rear_hair_left/inner_back_curtain",
+      "status": "pass",
+      "ids": [
+        "group-head-rear-hair-left-inner-back-curtain"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "head/rear_hair_left/outer_back_curtain",
+      "status": "fail",
+      "ids": [
+        "group-head-rear-hair-left-outer-back-curtain"
+      ],
+      "outside_samples": 3,
+      "outside_area_px2": 0.1875,
+      "outside_bbox": [
+        178.75,
+        725.25,
+        36.5,
+        216.75
+      ],
+      "diagnostic": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/r1-containment-images/02-outside.png",
+      "diagnostic_crop": [
+        170.75,
+        717.25,
+        52.5,
+        232.75
+      ]
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/occipital_root",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-occipital-root"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/central_back_tail",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-central-back-tail"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

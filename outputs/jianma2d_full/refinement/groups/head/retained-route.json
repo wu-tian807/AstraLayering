@@ -1,0 +1,394 @@
+{
+  "purpose": "Retained head route verification after bounded ancestor guide notch correction",
+  "worker": "/root/head_finish",
+  "logical_worker": "group:head",
+  "status": "eligible_for_native_carry_after_independent_2.2_pass",
+  "execution": "file, hash, subtree and current YAML branch inspection only; no drawing, render, motion test, node rerun, checkpoint or dispatch mutation",
+  "effective_carry": {
+    "block-layers/groups.svg": {
+      "path": "block-layers/groups.svg",
+      "sha256": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1"
+    },
+    "block-layers/preview.png": {
+      "path": "block-layers/preview.png",
+      "sha256": "4e1045e8ab6d36c7718e2b6a242d92ad07a97de1f60ce4833bd4410fab1d2523"
+    },
+    "refinement/character.svg": {
+      "path": "refinement/character.svg",
+      "sha256": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2"
+    },
+    "structure/rendering.json": {
+      "path": "structure/rendering.json",
+      "sha256": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb"
+    },
+    "refinement/preview.png": {
+      "path": "refinement/preview.png",
+      "sha256": "8752bbaf20e2e94da662475f3cac8741c093c41d08250e6eead0186e1ed098b3"
+    }
+  },
+  "carry_rule": "Keep these latest combined outputs. Archived node snapshots below prove provenance; do not replace the latest artwork or guide with older full snapshots. Retain original production identities; this report is verification only.",
+  "shared_basis": {
+    "guide_change": "Exactly two named path substrings at control hull [159,1325,53,103], confirmed by 2.2 result-and-protection.json. Head direct parts occupy the head/ear region and have exactly unchanged subtrees.",
+    "pre_notch_baseline": "refinement/groups/head/1.父级轮廓补全/返修-03-left-notch-local/input-manifest.json",
+    "unchanged_full_artwork_sha256": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2",
+    "unchanged_full_rendering_sha256": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb",
+    "direct_part_hash_method": "SHA256 of xml.etree.ElementTree serialized data-part-path subtree; compared byte-for-byte with the same parser",
+    "direct_part_hashes": {
+      "head/topknot_bun": {
+        "guide_current_equals_motion_and_pre_notch": "3e219c99ad10d68e0cadd69b66c354b8c0f54b3c5b95854fd52e2d8422ecf896",
+        "artwork_current_equals_successful_4.7": "be403951dc44e8f7ec86c5ce5c1b14d7d9aed9e963af58607af73a7fc3fd87af",
+        "artwork_all_3.1_through_4.6_equals_4.7_input": "9895185ea5b725a28cbdf8749669c288539c58cd949d609bf684dea1e6b033a5"
+      },
+      "head/earring_left": {
+        "guide_current_equals_motion_and_pre_notch": "e66b902c311495f17eaee7528f78350894f3c5e8100ab0ff87d47a880b99bb4f",
+        "artwork_current_equals_successful_4.7": "8d65a6f7578f789079e243f1f19d1328824e95519395c6cef1159a8adc8f108c",
+        "artwork_all_3.1_through_4.6_equals_4.7_input": "a7c4a67fe0aff504944da5e0a9dd5c7ad8daafd3c657114ca80c83bc0f19c616"
+      },
+      "head/earring_right": {
+        "guide_current_equals_motion_and_pre_notch": "75e4268ad31d091b217ec744e85b3701f72b8003204305379778112cabec7cc5",
+        "artwork_current_equals_successful_4.7": "2565169c5736b3921f8f527e040ca42eac75072d133b1b4d2f990ba37e744967",
+        "artwork_all_3.1_through_4.6_equals_4.7_input": "718a54bdc44e79927e8afccbd61de81851b96ed54faf1b7cf5d60b766679ede1"
+      }
+    },
+    "latest_bounds": {
+      "path": "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+      "sha256": "794cbd3a6d5c3e15b554b909cfe0e5193aa7cab1fcae0f67d7571392046c316c"
+    },
+    "bound_result": "12/12 pass, outside_samples=0; already executed for local 2.2, not rerun here",
+    "geometry_preservation_proof": "refinement/groups/head/4.7-local-finish/protection-check.json",
+    "composite_obligations": "validation/final-composite-obligations.json remains pending stage 5; retained local route does not certify final composition"
+  },
+  "nodes": [
+    {
+      "node": "part_motion_completion",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/2.直属拆分与色块/2.3.运动露出补齐/流程.yaml",
+        "sha256": "be2d99f6a9723ee4f0ee8545d2d379c114229e8bb2a661bc58053a24fa748bb2",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/2.直属拆分与色块/2.3.运动露出补齐/candidate.svg",
+          "sha256": "dc53125f3eab4c6f0e3fe016146df7bffeca8903368ea0508cc28f05691e749b"
+        },
+        {
+          "path": "refinement/groups/head/2.直属拆分与色块/2.3.运动露出补齐/candidate.preview.png",
+          "sha256": "684a181c9e446f27e4dc7daf9790a42e0a5d1ab3e8c9e6d1c55e7deec209b22e"
+        },
+        {
+          "path": "refinement/groups/head/2.直属拆分与色块/2.3.运动露出补齐/children.json",
+          "sha256": "c89c4cba063c9e6a5caef1e1f66daa7339d6cc179ef1d81cd4b4771826a34c95"
+        },
+        {
+          "path": "refinement/groups/head/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json",
+          "sha256": "bd133051a48ddfd6e2e5c2e132d92d4da27d60d5926a3e1ee8dec1c6dffff94e"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_ear_gap_recovery",
+      "prior_record": "refinement/groups/head/2.直属拆分与色块/2.3.运动露出补齐/交付记录.json",
+      "revalidation_basis": "All 3 current guide part subtrees are byte-identical to the actual motion candidate and pre-notch guide. Existing children patch is empty; no expansion needed. New parent/child guide is carried rather than old full guide. Current 2.2 bounds cover all 12 head children with 0 outside samples."
+    },
+    {
+      "node": "part_contours",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/3.geometry/3.1.外轮廓与接界/流程.yaml",
+        "sha256": "ed41633428964fa7baeeb3c6a7a21b57d3a7e64185914505f382fc149a5ce29d",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_contours/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_ear_gap_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_contours/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_structure",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/3.geometry/3.2.内部结构线/流程.yaml",
+        "sha256": "308cac85d08a8b33a89bb7de5251a12cabf18b39b93600a0a5bf8df8210ce426",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_structure/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_ear_gap_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_structure/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_tone_boundaries",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/3.geometry/3.3.明暗范围线/流程.yaml",
+        "sha256": "721bcc2a7750b9d0855faacbd291ca7b6d17834a6bc91e5bb60a9a3e50eb913e",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_tone_boundaries/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_ear_gap_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_tone_boundaries/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_detail_lines",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/3.geometry/3.4.细节与纹理线/流程.yaml",
+        "sha256": "69d1dc17d3d09d093a7a3a765b467ef0a6553492cc322a47f231981567613021",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_detail_lines/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_ear_gap_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_detail_lines/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_brush_lines",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/3.geometry/3.5.画笔重绘/流程.yaml",
+        "sha256": "9d49ac7a762798efab4b82b16759ed45deabe3b1cac28540723dbf0555ed3f9d",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_brush_lines/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        },
+        {
+          "path": "refinement/groups/head/checkpoints/part_brush_lines/preview.png",
+          "sha256": "9da11b7a80e5053d364fcdd95a15b6b44fdc78583a8d3be92a8f555c701bc19b"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_ear_gap_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_brush_lines/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_base_colors",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/4.rendering stack/4.1.基色与材质分区/流程.yaml",
+        "sha256": "af793bf969a8cf04b5c4e206268751eba064be041548698dc0e3c07e84bff4f9",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_base_colors/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        },
+        {
+          "path": "refinement/groups/head/checkpoints/part_base_colors/rendering.json",
+          "sha256": "2161a993a2b5d1dfc38da4cc998cccacbb61f1aaa6a6e00ecacb425f80a5f48e"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_ear_gap_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_base_colors/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_volume",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/4.rendering stack/4.2.大明暗与体积/流程.yaml",
+        "sha256": "2edd7fffc9bba08dd57d902ca2526efc463cd3646524525bd931edf5de94ea6f",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_volume/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        },
+        {
+          "path": "refinement/groups/head/checkpoints/part_volume/rendering.json",
+          "sha256": "2161a993a2b5d1dfc38da4cc998cccacbb61f1aaa6a6e00ecacb425f80a5f48e"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_ear_gap_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_volume/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_color_transitions",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/4.rendering stack/4.3.过渡色与局部色/流程.yaml",
+        "sha256": "4c6cc580daeaf84fbe00893cf88801cc8bceb0cbeb3e7cb0235648fe48c648fe",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_color_transitions/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        },
+        {
+          "path": "refinement/groups/head/checkpoints/part_color_transitions/rendering.json",
+          "sha256": "2161a993a2b5d1dfc38da4cc998cccacbb61f1aaa6a6e00ecacb425f80a5f48e"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_ear_gap_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_color_transitions/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_local_shading",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/4.rendering stack/4.4.局部暗部细化/流程.yaml",
+        "sha256": "c80d40a64381aead948a7a440cdc8d69edb4739a8ce13d84b72489c2a8291d8b",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_local_shading/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        },
+        {
+          "path": "refinement/groups/head/checkpoints/part_local_shading/rendering.json",
+          "sha256": "2161a993a2b5d1dfc38da4cc998cccacbb61f1aaa6a6e00ecacb425f80a5f48e"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_shading_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_local_shading/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "cast_shadow_relations",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/流程.yaml",
+        "sha256": "bafddb64716c1ea42d7886a90bf6733f285151f70321f4ca3b851576748f3662",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/cast_shadow_relations/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        },
+        {
+          "path": "refinement/groups/head/checkpoints/cast_shadow_relations/rendering.json",
+          "sha256": "2161a993a2b5d1dfc38da4cc998cccacbb61f1aaa6a6e00ecacb425f80a5f48e"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_shading_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/cast_shadow_relations/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "cast_shadow_artwork",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/流程.yaml",
+        "sha256": "65258a0da2012b840f866362aed94365d0a568d4008e8936a4039f4cb5256b9c",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/cast_shadow_artwork/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        },
+        {
+          "path": "refinement/groups/head/checkpoints/cast_shadow_artwork/rendering.json",
+          "sha256": "2161a993a2b5d1dfc38da4cc998cccacbb61f1aaa6a6e00ecacb425f80a5f48e"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_shading_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/cast_shadow_artwork/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_highlights",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/4.rendering stack/4.6.高光与反光/流程.yaml",
+        "sha256": "187d41042a41c06f353384e57288ac5fbc780754769fc6fe9a568d5746e38980",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/checkpoints/part_highlights/character.svg",
+          "sha256": "2990a1dadcc3cef4195b79459e4e6383214e50616d86e1f74ee46448784bcdc9"
+        },
+        {
+          "path": "refinement/groups/head/checkpoints/part_highlights/rendering.json",
+          "sha256": "2161a993a2b5d1dfc38da4cc998cccacbb61f1aaa6a6e00ecacb425f80a5f48e"
+        }
+      ],
+      "original_production": "/root/group_head_motion_recovery",
+      "prior_verifier": "/root/group_head_shading_recovery",
+      "prior_record": "refinement/groups/head/checkpoints/part_highlights/自检记录.json",
+      "revalidation_basis": "Actual archived output hashes match their successful records; all 3 part subtrees exactly match the local 4.7 input. Subsequent 4.7 made the documented color-only finish; its successful final output remains effective. The notch correction did not change direct-part guide subtrees, artwork, rendering, references, or tree."
+    },
+    {
+      "node": "part_rendered",
+      "config": {
+        "skill_relative": "templates/部件专项/generic/4.rendering stack/4.7.线色融合与材质细化/流程.yaml",
+        "sha256": "c7bf50f1336025943cf7d299571d4e8cb3bf914bbc162a04cf5a1c4267c018a7",
+        "selected_branch": "then",
+        "condition": "head currently has the same 3 direct parts"
+      },
+      "decision": "retain_successful_output; no node rerun",
+      "actual_retained_outputs": [
+        {
+          "path": "refinement/groups/head/4.7-local-finish/candidate.svg",
+          "sha256": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2"
+        },
+        {
+          "path": "structure/rendering.json",
+          "sha256": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb"
+        },
+        {
+          "path": "refinement/groups/head/4.7-local-finish/preview.png",
+          "sha256": "8752bbaf20e2e94da662475f3cac8741c093c41d08250e6eead0186e1ed098b3"
+        }
+      ],
+      "original_production": "/root/head_finish",
+      "prior_record": "refinement/groups/head/4.7-local-finish/output-manifest.json",
+      "revalidation_basis": "Current artwork and preview exactly match the successful local 4.7 output manifest, and rendering bytes also match. All three final part subtree hashes match that candidate. The later guide-notch correction changed no artwork or rendering bytes."
+    }
+  ]
+}

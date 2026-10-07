@@ -1,0 +1,17 @@
+{
+  "target": "n23",
+  "node": "part_brush_lines",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看实际perfect_freehand 1.2.0笔触，321个沿弧长显式压力采样；本侧外角短段更深、中央轻细、鼻侧提前收尖，隐藏下弧无墨线。源曲线和压力记录完整保留。",
+  "evidence": [
+    "views/part_brush_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_brush_lines"
+  },
+  "artwork_sha256": "7838d159eef135331a31d2221898bf186485ab8d22f4e10ed84152a831ff4cda",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc"
+}

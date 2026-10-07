@@ -1,0 +1,17 @@
+{
+  "logical_worker": "group_split:head/rear_hair_left/inner_back_curtain",
+  "actual_actor": "/root/jianma_runner_recovery/split_n29",
+  "model": "gpt-6-astra",
+  "reasoning": "xhigh",
+  "configured_model": "gpt-6-sol-xhigh",
+  "model_substitution": "User-authorized replacement of unavailable gpt-6-sol by gpt-6-astra xhigh",
+  "node": "group_split",
+  "active_target": "n29",
+  "started_at": "2026-10-06T18:19:50.770734+00:00",
+  "inputs": {
+    "block-layers/groups.svg": "c43bd301488eb4c5eb772a2f018cc70db0dc269ae96bec4f096618cf29feee4c",
+    "structure/groups.json": "249e85dd7dd3c18fc795a2c4b166d5f5a1062495050dfd6036be6e2030d1bbe4",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  },
+  "scope": "Only immediate children list, native preview evidence and validation; no shared input mutation."
+}

@@ -1,0 +1,17 @@
+{
+  "node": "part_rendered",
+  "status": "pass_via_actual_user_confirmation",
+  "author_actor": "/root/jianma_runner_recovery/maker_n29_render",
+  "acceptance_executor": "/root/jianma_runner_recovery",
+  "visual_reviewer": "user",
+  "manual_approval": "validation/manual-n29-review.json",
+  "manual_observation": "人工验收.md",
+  "reused_unchanged_surface_observation": "实际观察.md",
+  "new_model_visual_views": 0,
+  "artwork_sha256": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+  "guide_sha256": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+  "rendering_sha256": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+  "preview_sha256": "5eb44ff0fce3577f8b5c8a4c9d8440b3d832a2e54556ce291ff0914c62d7eacd",
+  "actual_actor": "/root/jianma_runner_recovery",
+  "actor_role": "file-only acceptance executor, no new image review"
+}

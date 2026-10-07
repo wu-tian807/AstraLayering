@@ -1,0 +1,7 @@
+{
+  "initial_failure": "upper_eyelid one default outside sample at [419,250,.25,.25]",
+  "cause": "straight hidden overlap closure slightly exceeded the curved parent nasal boundary",
+  "correction": "hidden overlap endpoint moved inward to [418.7,250.05]; original visible upper-rim and parent raw paths unchanged",
+  "lower_hidden_edge_inset_px": 0,
+  "default_recheck": "pass"
+}

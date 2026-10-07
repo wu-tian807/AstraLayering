@@ -1,0 +1,19 @@
+{
+  "target": "n23",
+  "node": "cast_shadow_artwork",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看完整raw投影、参考混合及临时脸部组合；按本侧较低睫毛下缘绘窄软灰影，角部余量未裁切。置于眼白上/下睑下，native rendering结构检查PASS，complete=false。",
+  "evidence": [
+    "views/cast_shadow_artwork.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_artwork"
+  },
+  "artwork_sha256": "88284e97e8c70bd329f249cd84e9207a71cf448b97db4d367ce73e06f0a8b576",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc",
+  "rendering_sha256": "4c9384c2aed269d4bfe0e499144743bf204652d113c26ebdaf9194d4d0f675ad",
+  "structural_check": "work/cast-shadow-check.json"
+}

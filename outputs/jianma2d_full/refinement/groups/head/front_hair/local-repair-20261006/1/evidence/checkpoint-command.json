@@ -1,0 +1,21 @@
+{
+  "command": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/4.专项细化/tools/group_cursor.py",
+    "--file",
+    "structure/groups.json",
+    "--state",
+    "structure/groups.dispatch.json",
+    "checkpoint",
+    "--pointer",
+    "group_completion"
+  ],
+  "exit_code": 0,
+  "active_after": {
+    "target": "n8",
+    "route": "generic",
+    "pointer": "group_completion"
+  },
+  "n25_status": "pending",
+  "state_sha256_after": "b0bd43e085b5f23fb1f4cc63094d5cd5319434f473ca3b7e0d19ac53a8eb36fc"
+}

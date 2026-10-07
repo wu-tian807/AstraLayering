@@ -1,0 +1,7 @@
+{
+  "node": "cast_shadow_relations",
+  "worker": "/root/workflow_runner/ribbon_right",
+  "guide_sha256": "f81db239c0250347e6560b63c7bc730ce773828d3771a5bdf1859f1574ed57aa",
+  "artwork_sha256": "acb63df12dad37ce8fa860ba1a65744961aa8a4d30ff0de9e5cfffd4ada07caf",
+  "note": "读明暗desc并对照8×参考识别1个下挂环短接触影；仅当前part新增关系，原生merge通过，原18层和SVG保留。"
+}

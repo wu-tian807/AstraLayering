@@ -1,0 +1,47 @@
+{
+  "status": "pass",
+  "group_path": "legs/left_anklet",
+  "parent_svg": "refinement/groups/legs/left_anklet/2.直属拆分与色块/2.3.运动露出补齐/input-guide.svg",
+  "parent_ids": [
+    "group-legs-left-anklet"
+  ],
+  "candidate_svg": "refinement/groups/legs/left_anklet/2.直属拆分与色块/2.3.运动露出补齐/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "legs/left_anklet/ankle_chain",
+      "status": "pass",
+      "ids": [
+        "group-legs-left-anklet-ankle-chain"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "legs/left_anklet/gem_pendant",
+      "status": "pass",
+      "ids": [
+        "group-legs-left-anklet-gem-pendant"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "legs/left_anklet/small_charm",
+      "status": "pass",
+      "ids": [
+        "part-legs-left-anklet-small-charm"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "reference_observations": {
+    "sclera": "Pale warm white inner wedge, cool grey outer corner; no veins or continuous dark scleral outline. Blue and black iris/pupil are separate future content.",
+    "lower_eyelid": "Fine muted warm brown contact rim, light lower centre, outer corner deeper; underlying pale rose skin blends into cheek, no second lower-lid crease.",
+    "highlight": "Short tilted white corneal glint near x462–465 y243–245, kept independently."
+  },
+  "adjustments": [
+    "Neutral diagnostic ink replaced by warm low contrast gradient, existing pressure/taper retained.",
+    "Matching face skin volume and cheek field preserve the hidden overlap colour.",
+    "Sclera and lower lid retain exact complete approved surfaces."
+  ],
+  "pending_composition": [
+    "Upper eyelid n46 and iris n47 are not authored here; complete eye likeness is not claimed.",
+    "Upper hidden ocular bed is temporarily exposed above the intended aperture.",
+    "Approved lower hidden overlap is inset by 0.08px; current unmasked combination exposes a hairline of underlying sclera around the hidden lower arc. Final eye/face occlusion must cover it without changing calibrated visible rim.",
+    "Raw shadow corner allowance currently extends onto temporary skin context; stage 5 must mask to sclera and place below completed eyelid.",
+    "Corneal glint currently sits over pale temporary eye base; after n47 use existing highlight layer, clip to actual iris parts and apply eyelid occlusion; do not duplicate."
+  ],
+  "worker_id": "/root/workflow_runner/arm_right",
+  "worker": "group:head/face/eye_right",
+  "new_independent_context": false
+}

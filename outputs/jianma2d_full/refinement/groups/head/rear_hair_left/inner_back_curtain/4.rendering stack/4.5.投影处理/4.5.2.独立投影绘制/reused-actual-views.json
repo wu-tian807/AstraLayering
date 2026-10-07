@@ -1,0 +1,38 @@
+[
+  {
+    "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/nape_back_sheet-sheet.png",
+    "sha256": "98899a4d1c99e4758d3aed831cdd26018ccd1e38251a7dea03c64d0ae7c921ac",
+    "actual_seen_by": "/root/jianma_runner_recovery/maker_n29_render",
+    "reuse_reason": "same complete candidate SHA and same reference; this node changes no pixels"
+  },
+  {
+    "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/inner_side_lock-sheet.png",
+    "sha256": "a1701c1947d0014b9e6af4483a7403ea0e947021a6a1f0a324fedde23f77d628",
+    "actual_seen_by": "/root/jianma_runner_recovery/maker_n29_render",
+    "reuse_reason": "same complete candidate SHA and same reference; this node changes no pixels"
+  },
+  {
+    "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/combination-sheet.png",
+    "sha256": "c40fba7186240184a26f84ea69ccfe9c6d622d2a5bdc8b46df73f132597f52dd",
+    "actual_seen_by": "/root/jianma_runner_recovery/maker_n29_render",
+    "reuse_reason": "same complete candidate SHA and same reference; this node changes no pixels"
+  },
+  {
+    "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/nape_back_sheet-sheet.png",
+    "sha256": "1d80e56285fb507617942aff5e0110958768936ea653969e5fd09bc5ce3032f7",
+    "actual_seen_by": "/root/jianma_runner_recovery/maker_n29_render",
+    "reuse_reason": "same complete candidate SHA and same reference; this node changes no pixels"
+  },
+  {
+    "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/inner_side_lock-sheet.png",
+    "sha256": "6481a8b900d653c910440fb2b0f782644cb0076cc3b8110dc55992f358ddaea3",
+    "actual_seen_by": "/root/jianma_runner_recovery/maker_n29_render",
+    "reuse_reason": "same complete candidate SHA and same reference; this node changes no pixels"
+  },
+  {
+    "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-evidence-sheet.png",
+    "sha256": "76ffaab44579f3f51ce0a924db5233c52525f455cb8532171ff85d1777117e49",
+    "actual_seen_by": "/root/jianma_runner_recovery/maker_n29_render",
+    "reuse_reason": "same complete candidate SHA and same reference; this node changes no pixels"
+  }
+]

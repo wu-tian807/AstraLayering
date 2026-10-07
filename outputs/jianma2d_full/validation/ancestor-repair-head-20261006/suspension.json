@@ -1,0 +1,20 @@
+{
+  "time": "2026-10-06T07:11:25.740860+00:00",
+  "reason": "Repair two reference-misaligned curves of done ancestor head before rear-left child can continue. Serial cursor has no suspend command. Explicit non-completion suspension preserves child and pointer; not a success checkpoint.",
+  "suspended": {
+    "target": "n11",
+    "route": "generic",
+    "pointer": null
+  },
+  "path": "head/rear_hair_left",
+  "prior_status": "active",
+  "next_status": "pending",
+  "guide_sha256": "5c5437a26e5ea99f3ae74002bf88e91c725c2bac5eb5d77a6f62c4d5732eead2",
+  "artwork_sha256": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2",
+  "resolution": {
+    "time": "2026-10-06T07:26:33.383687+00:00",
+    "ancestor_status": "done_after_local_independent_pass_and_validated_carry",
+    "resumed_target": "n11",
+    "resumed_pointer": null
+  }
+}

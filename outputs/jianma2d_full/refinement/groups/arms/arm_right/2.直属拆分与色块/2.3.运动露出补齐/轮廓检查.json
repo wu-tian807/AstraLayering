@@ -1,0 +1,47 @@
+{
+  "status": "pass",
+  "group_path": "arms/arm_right",
+  "parent_svg": "refinement/groups/arms/arm_right/2.直属拆分与色块/2.3.运动露出补齐/input-guide.svg",
+  "parent_ids": [
+    "group-arms-arm_right"
+  ],
+  "candidate_svg": "refinement/groups/arms/arm_right/2.直属拆分与色块/2.3.运动露出补齐/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "arms/arm_right/hand",
+      "status": "pass",
+      "ids": [
+        "group-arms-arm_right-hand"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "arms/arm_right/upper_arm",
+      "status": "pass",
+      "ids": [
+        "part-arms-arm_right-upper_arm"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "arms/arm_right/forearm",
+      "status": "pass",
+      "ids": [
+        "part-arms-arm_right-forearm"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

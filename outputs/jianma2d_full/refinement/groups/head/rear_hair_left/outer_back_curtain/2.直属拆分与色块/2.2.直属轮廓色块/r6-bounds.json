@@ -1,0 +1,80 @@
+{
+  "status": "pass",
+  "group_path": "head/rear_hair_left/outer_back_curtain",
+  "parent_svg": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/input-groups.svg",
+  "parent_ids": [
+    "group-head-rear-hair-left-outer-back-curtain"
+  ],
+  "candidate_svg": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r6.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/rear_hair_left/outer_back_curtain/inner_forked_lock",
+      "status": "pass",
+      "ids": [
+        "group-head-rear-hair-left-outer-back-curtain-inner-forked-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/upper_loop_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-outer-back-curtain-upper-loop-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/lower_loop_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-outer-back-curtain-lower-loop-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/outward_curl_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-outer-back-curtain-outward-curl-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/sweeping_long_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-outer-back-curtain-sweeping-long-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/pointed_long_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-outer-back-curtain-pointed-long-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "node": "part_tone_boundaries",
+  "worker": "/root/workflow_runner/ribbon_right",
+  "guide_sha256": "f81db239c0250347e6560b63c7bc730ce773828d3771a5bdf1859f1574ed57aa",
+  "artwork_sha256": "ea9142df7bc952b192514809721e49283973cccb2098731aa73d9985f57db2c9",
+  "note": "4条明暗范围已画并彩参/线参实看；自身转面/反光与下挂环短接触投影分别标明，隐藏同面延续、软边宽度和成稿色面去向已写desc。"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "path": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.4.局部暗部细化/流程.yaml",
+    "sha256": "c80d40a64381aead948a7a440cdc8d69edb4739a8ce13d84b72489c2a8291d8b"
+  },
+  {
+    "path": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.4.局部暗部细化/提示词.txt",
+    "sha256": "7fa776e153db628c9e64a7c09c995cf942612c573d7994c0e08393cb89bce93f"
+  },
+  {
+    "path": "../../workflow-next/live2d-layering/templates/部件专项/generic/4.rendering stack/4.4.局部暗部细化/gpt-6-astra-xhigh.model",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

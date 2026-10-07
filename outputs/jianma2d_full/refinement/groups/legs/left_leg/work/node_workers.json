@@ -1,0 +1,16 @@
+{
+  "part_motion_completion": "/root/workflow_runner/leg_left",
+  "part_contours": "/root/workflow_runner/leg_left",
+  "part_structure": "/root/workflow_runner/leg_left",
+  "part_tone_boundaries": "/root/workflow_runner/leg_left",
+  "part_detail_lines": "/root/workflow_runner/leg_left",
+  "part_brush_lines": "/root/workflow_runner/leg_left",
+  "part_base_colors": "/root/workflow_runner/leg_left",
+  "part_volume": "/root/workflow_runner/leg_left",
+  "part_color_transitions": "/root/workflow_runner/leg_left",
+  "part_local_shading": "/root/workflow_runner/leg_left",
+  "cast_shadow_relations": "/root/workflow_runner/leg_left",
+  "cast_shadow_artwork": "/root/workflow_runner/leg_left",
+  "part_highlights": "/root/workflow_runner/leg_left",
+  "part_rendered": "/root/workflow_runner/leg_left"
+}

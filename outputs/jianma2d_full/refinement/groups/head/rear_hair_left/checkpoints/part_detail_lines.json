@@ -1,0 +1,14 @@
+{
+  "node": "part_detail_lines",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "增加3条低密度发丝方向细节并逐件看图；后脑宽面留白，尾尖不增加劈叉，粗细与端部渐隐已写desc。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/3.geometry/3.4.细节与纹理线/parts.svg": "a083e0e111e85ee9bb59d57dca2a2290ba9bf18de162d88b18b772c5f16ca307",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.4.细节与纹理线/root.png": "9a36c1816d1f37fd8c2adf74c11b9c65d128adda663c6bb254a4dcf2c7e2fdcb",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.4.细节与纹理线/tail.png": "a1c07e8694929cafc8142097ff71a145a361e5393e36ee90eeb0d5a2c6433b30",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.4.细节与纹理线/说明.md": "3f5dbf07b4b1d58e4631556e79cf4fe9f9d7b1de0d847826d41e4886dd846484"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "047d8c9d04d20b499e57dc5301758f1ad6f57a17237dd67db9707566ce65f38d"
+}

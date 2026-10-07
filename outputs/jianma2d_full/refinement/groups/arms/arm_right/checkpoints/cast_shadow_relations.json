@@ -1,0 +1,16 @@
+{
+  "node": "cast_shadow_relations",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "逐件读取明暗desc并对照6×实际发边，登记1个右前发在上臂的独立窄影；当前upper_arm归属、跟随主发束，原生merge通过，原20关系与SVG保留。",
+  "evidence": [
+    "views/shadow-relation-crop.png",
+    "work/shadow-relations-patch.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_relations"
+  },
+  "artwork_sha256": "446b7f2968d54919983a1fb16e4a3ff67436937c4d4627ba9f43587a52e28fb7"
+}

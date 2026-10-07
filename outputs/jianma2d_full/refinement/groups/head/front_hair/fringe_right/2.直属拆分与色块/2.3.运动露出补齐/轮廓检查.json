@@ -1,0 +1,36 @@
+{
+  "status": "pass",
+  "group_path": "head/front_hair/fringe_right",
+  "parent_svg": "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.3.运动露出补齐/input.svg",
+  "parent_ids": [
+    "group-head-front-hair-fringe-right"
+  ],
+  "candidate_svg": "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.3.运动露出补齐/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "part",
+      "path": "head/front_hair/fringe_right/broad_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-fringe-right-broad-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/fringe_right/fine_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-fringe-right-fine-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

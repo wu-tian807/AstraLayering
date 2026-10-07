@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "logical_worker": "group_child_layers:legs/left_anklet:review",
+  "actual_worker": "/root",
+  "independent_of_candidate_author": true,
+  "candidate_hashes": {
+    "block-layers/groups.svg": "606e9a96427ea3c358d39102360a4fe4c55f0102a6fb833ef87df17a187d65f9",
+    "refinement/groups/legs/left_anklet/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg": "606e9a96427ea3c358d39102360a4fe4c55f0102a6fb833ef87df17a187d65f9",
+    "refinement/groups/legs/left_anklet/work/2.2/candidate.svg": "606e9a96427ea3c358d39102360a4fe4c55f0102a6fb833ef87df17a187d65f9"
+  },
+  "bounds_outside_samples": [
+    0,
+    0,
+    0
+  ],
+  "images_actually_viewed": {
+    "ankle-chain.png": "7b15d53ebebf6e3683a1a5762f6d806eea2f2c919c0fe3621a3f1a9d9aeca1e6",
+    "connections.png": "38149075ee1b2d71055dd111652198c60f5b00bf1ab6f929434897839bbcdf51",
+    "full.png": "55edc058940a3348bf997f50aa7efc76cfb515cabeee735e2ec6a1cfabcb4fe6",
+    "gem-pendant.png": "0d339ac72d5ebf646382acb88b0bd376f342e58cae51531ba2606c72efd2954d",
+    "small-charm.png": "302aaeed1fe3775db1c29a16e2c903547b2e44b4d314e0836e1012e826fc8bee"
+  },
+  "report": "reviews/group_child_layers/legs/left_anklet/审查.md"
+}

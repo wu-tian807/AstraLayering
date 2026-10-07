@@ -1,0 +1,15 @@
+{
+  "node": "part_color_transitions",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "肩肘腕薄暖及前臂微冷局部色已完成；逐件/相邻组合实看，低强度软过渡保留大明暗，隐藏同面和重叠处连续。",
+  "evidence": [
+    "views/part_color_transitions.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_color_transitions"
+  },
+  "artwork_sha256": "1284e6b8313d746651865322cd7a193489b31c62e01a83eef6fb2e083f54dd90"
+}

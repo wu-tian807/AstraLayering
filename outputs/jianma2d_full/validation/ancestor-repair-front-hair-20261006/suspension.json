@@ -1,0 +1,38 @@
+{
+  "time": "2026-10-06T15:02:51.371255+00:00",
+  "reason": "Reference-aligned n25 fine_lock crosses both fringe_left and completed n8 front_hair envelopes. Native cursor has no suspend; explicit non-completion suspension before native ancestor reopen, following existing audited head repair pattern.",
+  "suspended": {
+    "target": "n25",
+    "route": "generic",
+    "pointer": "group_split"
+  },
+  "path": "head/front_hair/fringe_left",
+  "prior_status": "active",
+  "next_status": "pending",
+  "standard_sha256": {
+    "block-layers/groups.svg": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+    "block-layers/preview.png": "d928f6d3e68e54b1c73eb5e77b5b72294d2bf3a20bb84dd698ec342f02c78f6f",
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb"
+  },
+  "failed_trial": "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.2.直属轮廓色块/evidence/candidate.trial1.svg",
+  "failed_trial_sha256": "62cece6a2bc64ecee0bf88f80a439aee5b25338e45e7bc196ca34f0fb5544892",
+  "raw_bounds": "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.2.直属轮廓色块/evidence/bounds-raw.trial1.json",
+  "raw_outside_samples": [
+    0,
+    1246
+  ],
+  "raw_fine_outside_area_px2": 77.875,
+  "unpublished": true,
+  "not_a_success_checkpoint": true,
+  "preservation": "n25 approved split and actual author bindings stay unchanged; no completion for n25; all failed evidence retained.",
+  "resolution": {
+    "time": "2026-10-06T15:29:22.375707+00:00",
+    "ancestor_status": "done_after_actual_local_repair_independent_pass_and_validated_prior_route",
+    "ancestor_final_guide_sha256": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083",
+    "resumed_target": "n25",
+    "resumed_pointer": null,
+    "next_requirement": "Revalidate n25 group_completion from corrected parent, retain exact same independent split, then rebuild child candidate against corrected broad boundary. No n25 completion was recorded."
+  }
+}

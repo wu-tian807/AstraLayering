@@ -1,0 +1,24 @@
+{
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "candidate_sha256": "2c3816f90295592ba802725684e1e8ce213e98fc5b43a6d0ae9e1be2aa28ce3d",
+  "input_sha256": {
+    "block-layers/groups.svg": "f1b983918610217a9529bb35085b926734d766184ed5e3b7d9a90898bf7c9fa0",
+    "refinement/character.svg": "bd61036957922ea8fa64f8abfa8a5b7f1843372ef8e57726912e20528c3d2521",
+    "structure/rendering.json": "c0159f667ad7019605f8af14a9227fb4b8eba10b072f79f17fdeeb9a4fc40983",
+    "structure/groups.json": "ccbcd46c2f83e73fd4b05a2b70837cd19b51e9642d5531df4ac93fc4161a3c5b"
+  },
+  "existing_content_preserved_verbatim": true,
+  "new_ids": [
+    "part-legs-left_leg-thigh",
+    "part-legs-left_leg-lower_leg",
+    "group-legs-left_leg-foot"
+  ],
+  "bounds_outside_samples": [
+    0,
+    0,
+    0
+  ],
+  "state_pointer": "group_split",
+  "checkpoint_group_child_layers": false
+}

@@ -1,0 +1,1 @@
+首次原生预览拒绝同名wrapper/path的base/source_boundary ID。未发布/未checkpoint；已为path分别使用base_shape/boundary_curve唯一ID后重新生成。未改几何或工具校验。

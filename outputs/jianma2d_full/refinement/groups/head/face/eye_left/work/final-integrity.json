@@ -1,0 +1,27 @@
+{
+  "status": "pass",
+  "old_artwork_root_count": 62,
+  "old_artwork_ids_payload_order_preserved": true,
+  "old_rendering_records_preserved": 23,
+  "new_layer_count": 2,
+  "physical_tree_unchanged": true,
+  "guide_non_desc_geometry_unchanged": true,
+  "two_part_surface_and_clip_paths_exactly_match_guide": true,
+  "all_auxiliary_source_curves_hidden": true,
+  "unique_svg_ids": 1757,
+  "rendering_structural_check": {
+    "status": "pass",
+    "layers": 25,
+    "complete": false,
+    "scope": "Names, tree paths, SVG references and receiver mask structure only"
+  },
+  "candidate_sha256": "8c895eb7bb77237efb9490f7001788f867df13c3b43d1b734be28245d4d2190a",
+  "rendering_sha256": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+  "groups_sha256": "680de05caadfa0294a2b6c4f286911fbebac423d79c3036d34752df182b7929d",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc",
+  "reference_sha256": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+  "line_reference_sha256": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "worker": "group:head/face/eye_left",
+  "new_independent_context": false
+}

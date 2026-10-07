@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_structure",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "复用仍匹配当前几何的3.1同坐标彩参/线稿和三part独显，补充结构用途：唇峰及闭口转面由已有曲线承载；无独立竖唇纹、第二道唇缝或可辨牙舌，不新增臆测折线。仅desc变化。",
+  "artwork_sha256": "2abbc0db5bfe0c33bd45d8473563d48418bd9ae1e99df7c2af296cb0b0540e30",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_contours.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_structure"
+  }
+}

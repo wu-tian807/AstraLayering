@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_detail_lines",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已实看参考、同坐标线稿和独显；微小银蓝饰物无可辨刻纹/孔洞，沿用形体与辅助边界，无附加细节。",
+  "evidence": [
+    "views/part_detail_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_detail_lines"
+  },
+  "artwork_sha256": "56924d8107675f3f5c1b0492947c1f61377413261e2eae5aab510639810e85f8"
+}

@@ -1,0 +1,15 @@
+{
+  "node": "part_motion_completion",
+  "target": "n16",
+  "worker": "group:arms/arm_left",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "note": "两张Milly示例与2part前后参考已实看；完整肩根、圆肘根和腕端可承接正常抬转，保留几何仅补desc，空清单及默认包含检查通过。",
+  "evidence": [
+    "2.直属拆分与色块/2.3.运动露出补齐/motion.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_motion_completion"
+  },
+  "artwork_sha256": "c293d7a768b2538d1763af91f41b4b0c66e94a938081ced4ebd9d6534ee7c2a9"
+}

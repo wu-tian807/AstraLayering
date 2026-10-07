@@ -1,0 +1,21 @@
+{
+  "representation": "Explicit opposite-winding holes with nonzero fill",
+  "outer_path_unchanged": true,
+  "holes_exact_bezier_reversal": true,
+  "control_point_values_unchanged": true,
+  "original_signed_areas_32_samples": [
+    -135940.48086357117,
+    -236.68867015838623,
+    -2550.3533897399902,
+    -2274.4845094680786
+  ],
+  "output_signed_areas_32_samples": [
+    -135940.48086357117,
+    236.68867015838623,
+    2550.3533897399902,
+    2274.4845094680786
+  ],
+  "new_parent_clip": false,
+  "retained_existing_ear_opening_clip": true,
+  "geometry_identity": "B(P0,P1,P2,P3,t) = B(P3,P2,P1,P0,1-t); closed-subpath winding is reversed, shape is unchanged."
+}

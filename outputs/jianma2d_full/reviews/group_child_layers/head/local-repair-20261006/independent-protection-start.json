@@ -1,0 +1,201 @@
+{
+  "reviewer": "/root/workflow_runner/review_head_notch",
+  "logical_identity": "group_child_layers:head:review",
+  "date": "2026-10-06",
+  "historical_reviewer_reused": false,
+  "protected_sha256": {
+    "block-layers/groups.svg": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+    "structure/groups.json": "047eff70159a0a476c0b313d0eda3e411b127285f3330097598a45de47721b8b",
+    "structure/rendering.json": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb",
+    "refinement/character.svg": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+    "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/返修-03-left-notch-local/candidate.svg": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+    "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/返修-03-left-notch-local/input-parent.svg": "335040c16d70e45b7c5d9d65544a2b93a2bc996da6af80ba6abba6340ef73fc6",
+    "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/返修-03-left-notch-local/result-and-protection.json": "0d9844669ba570a1201653fe76bf71594b8107b7eaed5820895a28dee21b8d57",
+    "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json": "794cbd3a6d5c3e15b554b909cfe0e5193aa7cab1fcae0f67d7571392046c316c"
+  },
+  "node2_input_parent_matches_except_one_d": true,
+  "candidate_equals_maker_candidate": true,
+  "exact_reverse_id_scoped_path_restores_node2_input": true,
+  "parent_head_subtree_equal": true,
+  "changed_attributes": [
+    {
+      "id": "head-rear-left-main",
+      "before": {
+        "id": "head-rear-left-main",
+        "d": "M 371 264 C 359 280 349 297 344 313 C 339 325 340 336 345 347 C 337 362 329 381 321 405 C 309 441 301 479 290 509 C 279 541 261 571 244 599 C 222 635 199 671 184 709 C 170 746 173 780 192 818 C 178 850 168 881 165 911 C 161 944 169 968 187 990 C 181 1023 169 1059 153 1087 C 132 1124 113 1156 107 1189 C 103 1214 105 1246 118 1260 C 123 1266 131 1271 140 1272 C 123 1268 116 1254 118 1234 C 119 1210 130 1186 144 1164 L 162 1137 C 159 1179 164 1223 179 1254 C 164 1285 147 1313 137 1343 C 126 1374 130 1407 146 1433 C 154 1446 164 1452 177 1455 C 159 1447 154 1432 159 1412 C 165 1381 188 1354 209 1328 C 201 1364 204 1400 212 1428 C 192 1457 170 1485 147 1487 C 176 1492 213 1469 239 1449 C 238 1477 244 1499 264 1510 C 250 1498 245 1483 248 1469 C 255 1476 264 1480 273 1480 C 261 1476 256 1467 255 1458 C 263 1420 281 1384 296 1348 C 305 1326 313 1300 319 1278 C 313 1322 315 1367 324 1393 C 331 1410 344 1421 360 1423 C 339 1414 335 1391 341 1360 C 350 1321 358 1297 358 1264 C 359 1226 369 1195 370 1154 C 374 1122 371 1080 358 1041 C 340 981 319 921 310 873 C 305 820 312 761 334 704 C 337 677 359 641 370 621 L 371 608 C 364 578 354 548 347 533 C 332 514 326 495 330 477 C 335 454 353 434 366 413 C 381 382 383 346 385 304 C 385 287 380 273 371 264 Z M 358 284 C 350 301 342 317 343 330 C 343 334 344 337 345 340 C 350 321 355 302 358 284 Z M 264 618 C 248 650 226 684 207 720 C 187 758 180 787 194 811 C 210 776 223 737 235 693 C 243 664 254 636 264 618 Z M 207 846 C 190 875 181 900 183 925 C 184 944 190 961 202 975 C 207 958 211 944 212 932 C 207 905 205 875 207 846 Z",
+        "stroke": "none",
+        "fill-rule": "evenodd"
+      },
+      "after": {
+        "id": "head-rear-left-main",
+        "d": "M 371 264 C 359 280 349 297 344 313 C 339 325 340 336 345 347 C 337 362 329 381 321 405 C 309 441 301 479 290 509 C 279 541 261 571 244 599 C 222 635 199 671 184 709 C 170 746 173 780 192 818 C 178 850 168 881 165 911 C 161 944 169 968 187 990 C 181 1023 169 1059 153 1087 C 132 1124 113 1156 107 1189 C 103 1214 105 1246 118 1260 C 123 1266 131 1271 140 1272 C 123 1268 116 1254 118 1234 C 119 1210 130 1186 144 1164 L 162 1137 C 159 1179 164 1223 179 1254 C 164 1285 147 1313 137 1343 C 126 1374 130 1407 146 1433 C 154 1446 164 1452 177 1455 C 159 1447 154 1432 159 1412 C 165 1381 178 1354 196 1325 C 193 1359 198 1400 212 1428 C 192 1457 170 1485 147 1487 C 176 1492 213 1469 239 1449 C 238 1477 244 1499 264 1510 C 250 1498 245 1483 248 1469 C 255 1476 264 1480 273 1480 C 261 1476 256 1467 255 1458 C 263 1420 281 1384 296 1348 C 305 1326 313 1300 319 1278 C 313 1322 315 1367 324 1393 C 331 1410 344 1421 360 1423 C 339 1414 335 1391 341 1360 C 350 1321 358 1297 358 1264 C 359 1226 369 1195 370 1154 C 374 1122 371 1080 358 1041 C 340 981 319 921 310 873 C 305 820 312 761 334 704 C 337 677 359 641 370 621 L 371 608 C 364 578 354 548 347 533 C 332 514 326 495 330 477 C 335 454 353 434 366 413 C 381 382 383 346 385 304 C 385 287 380 273 371 264 Z M 358 284 C 350 301 342 317 343 330 C 343 334 344 337 345 340 C 350 321 355 302 358 284 Z M 264 618 C 248 650 226 684 207 720 C 187 758 180 787 194 811 C 210 776 223 737 235 693 C 243 664 254 636 264 618 Z M 207 846 C 190 875 181 900 183 925 C 184 944 190 961 202 975 C 207 958 211 944 212 932 C 207 905 205 875 207 846 Z",
+        "stroke": "none",
+        "fill-rule": "evenodd"
+      }
+    }
+  ],
+  "children": [
+    {
+      "path": "head/face",
+      "kind": "group",
+      "container_ids": [
+        "group-head-face"
+      ],
+      "shape_ids": [
+        "head-face-hidden-forehead-temples",
+        "head-face-skin",
+        "head-face-left-ear-completion"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/front_hair",
+      "kind": "group",
+      "container_ids": [
+        "group-head-front-hair"
+      ],
+      "shape_ids": [
+        "head-front-hair-cap"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/face_framing_hair_left",
+      "kind": "group",
+      "container_ids": [
+        "group-head-face-framing-hair-left"
+      ],
+      "shape_ids": [
+        "head-framing-left-main",
+        "head-framing-left-loop",
+        "head-framing-left-chest-loop"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/face_framing_hair_right",
+      "kind": "group",
+      "container_ids": [
+        "group-head-face-framing-hair-right"
+      ],
+      "shape_ids": [
+        "head-framing-right-main",
+        "head-framing-right-loop",
+        "head-framing-right-chest-loop"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/rear_hair_left",
+      "kind": "group",
+      "container_ids": [
+        "group-head-rear-hair-left"
+      ],
+      "shape_ids": [
+        "r1s1_head-rear-left-ear-opening-geometry",
+        "head-rear-left-main",
+        "head-rear-left-neck",
+        "head-rear-left-central-tail",
+        "head-rear-left-root",
+        "head-rear-left-hidden"
+      ],
+      "same_as_input_parent": false
+    },
+    {
+      "path": "head/rear_hair_right",
+      "kind": "group",
+      "container_ids": [
+        "group-head-rear-hair-right"
+      ],
+      "shape_ids": [
+        "head-rear-right-main",
+        "head-rear-right-neck",
+        "head-rear-right-root",
+        "head-rear-right-hidden"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/crown",
+      "kind": "group",
+      "container_ids": [
+        "group-head-crown"
+      ],
+      "shape_ids": [
+        "head-crown-hidden-anchor-left",
+        "head-crown-hidden-anchor-right",
+        "head-crown-hidden-anchor-center",
+        "head-child-crown-arch",
+        "head-child-crown-left",
+        "head-child-crown-right",
+        "head-child-crown-left-scroll",
+        "head-child-crown-right-scroll",
+        "head-child-crown-jewel",
+        "head-crown-mid-chain",
+        "head-crown-mid-gems"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/hanging_ribbon_left",
+      "kind": "group",
+      "container_ids": [
+        "group-head-hanging-ribbon-left"
+      ],
+      "shape_ids": [
+        "head-child-ribbon-left",
+        "head-child-chain-left"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/hanging_ribbon_right",
+      "kind": "group",
+      "container_ids": [
+        "group-head-hanging-ribbon-right"
+      ],
+      "shape_ids": [
+        "head-child-ribbon-right",
+        "head-child-chain-right"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/topknot_bun",
+      "kind": "part",
+      "container_ids": [
+        "part-head-topknot-bun"
+      ],
+      "shape_ids": [
+        "head-child-topknot-bun"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/earring_left",
+      "kind": "part",
+      "container_ids": [
+        "part-head-earring-left"
+      ],
+      "shape_ids": [
+        "head-earring-left-chain",
+        "head-earring-left-jewel"
+      ],
+      "same_as_input_parent": true
+    },
+    {
+      "path": "head/earring_right",
+      "kind": "part",
+      "container_ids": [
+        "part-head-earring-right"
+      ],
+      "shape_ids": [
+        "head-earring-right-chain",
+        "head-earring-right-jewel"
+      ],
+      "same_as_input_parent": true
+    }
+  ]
+}

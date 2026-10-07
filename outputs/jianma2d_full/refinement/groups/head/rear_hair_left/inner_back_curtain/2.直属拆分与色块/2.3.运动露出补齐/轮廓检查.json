@@ -1,0 +1,36 @@
+{
+  "status": "pass",
+  "group_path": "head/rear_hair_left/inner_back_curtain",
+  "parent_svg": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/input-groups.svg",
+  "parent_ids": [
+    "group-head-rear-hair-left-inner-back-curtain"
+  ],
+  "candidate_svg": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.3.运动露出补齐/candidate-groups.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/inner_back_curtain/nape_back_sheet",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/inner_back_curtain/inner_side_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-inner-back-curtain-inner-side-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

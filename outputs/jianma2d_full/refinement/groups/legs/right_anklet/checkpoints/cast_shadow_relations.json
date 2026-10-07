@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "cast_shadow_relations",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "逐条重读说明并实看本侧参考，无可确认独立投影来源；本轮layers为空，SVG与既有21条rendering关系保持。",
+  "evidence": [
+    "views/cast_shadow_relations.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_relations"
+  },
+  "artwork_sha256": "5fe2423dd9d5efa9ee11441d22f26353d5cfb552c9874bd4efe5bda07d89fdc2"
+}

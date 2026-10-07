@@ -1,0 +1,16 @@
+{
+  "status": "failed_actor_turn",
+  "error": "stream disconnected before completion: Image processing blocked due to content policy violation.",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "first_failure": "after successful part_highlights checkpoint; exact triggering tool call unavailable",
+  "text_only_diagnostic_followup": "same platform failure before a response",
+  "last_recorded_success": "part_highlights",
+  "pending": "part_rendered",
+  "artwork_sha256": "f80b96281f8c12e7d3ebd0b8df0226ed1baed19d6402eaa78d404b50dbf0310c",
+  "last_evidence_files": [
+    "refinement/groups/legs/right_leg/views/part_highlights.png",
+    "refinement/groups/legs/right_leg/views/part_highlights-context.png"
+  ],
+  "handling": "Do not retry rejected old images or disguise content; resume only remaining work in fresh actor with ordinary safe part-only views, state any visual coverage limits honestly.",
+  "timestamp": "2026-10-06T11:35:37.096376+00:00"
+}

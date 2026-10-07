@@ -1,0 +1,84 @@
+[
+  {
+    "id": "r1s1_head_topknot_bun_outline_color",
+    "attribute": "stop-color",
+    "before": [
+      "#979FBC",
+      "#929DBB",
+      "#8895B4"
+    ],
+    "after": [
+      "#9296B3",
+      "#9296B4",
+      "#99A3BE"
+    ]
+  },
+  {
+    "id": "r1s1_head_topknot_bun_strand_line_color",
+    "attribute": "stop-color",
+    "before": [
+      "#A7AFC8",
+      "#A8AFC8",
+      "#8F9AB9"
+    ],
+    "after": [
+      "#9BA3BF",
+      "#9DA6C0",
+      "#9CA6C0"
+    ]
+  },
+  {
+    "id": "head_earring_left_contour_0_brush_0",
+    "attribute": "fill",
+    "before": "#9FAFC7",
+    "after": "url(#finish47_head_earring_left_silver_edge)"
+  },
+  {
+    "id": "head_earring_left_contour_0_brush_1",
+    "attribute": "fill",
+    "before": "#9FAFC7",
+    "after": "url(#finish47_head_earring_left_silver_edge)"
+  },
+  {
+    "id": "head_earring_left_contour_0_brush_2",
+    "attribute": "fill",
+    "before": "#9FAFC7",
+    "after": "url(#finish47_head_earring_left_silver_edge)"
+  },
+  {
+    "id": "head_earring_left_contour_1_brush_0",
+    "attribute": "fill",
+    "before": "#7DA4BD",
+    "after": "url(#finish47_head_earring_left_crystal_edge)"
+  },
+  {
+    "id": "head_earring_left_facet_ridge_brush_0",
+    "attribute": "fill",
+    "before": "#B2DBE8",
+    "after": "url(#finish47_head_earring_left_facet_line)"
+  },
+  {
+    "id": "head_earring_right_contour_0_brush_0",
+    "attribute": "fill",
+    "before": "#9FAFC7",
+    "after": "url(#finish47_head_earring_right_silver_edge)"
+  },
+  {
+    "id": "head_earring_right_contour_0_brush_1",
+    "attribute": "fill",
+    "before": "#9FAFC7",
+    "after": "url(#finish47_head_earring_right_silver_edge)"
+  },
+  {
+    "id": "head_earring_right_contour_1_brush_0",
+    "attribute": "fill",
+    "before": "#7DA4BD",
+    "after": "url(#finish47_head_earring_right_crystal_edge)"
+  },
+  {
+    "id": "head_earring_right_facet_ridge_brush_0",
+    "attribute": "fill",
+    "before": "#B2DBE8",
+    "after": "url(#finish47_head_earring_right_facet_line)"
+  }
+]

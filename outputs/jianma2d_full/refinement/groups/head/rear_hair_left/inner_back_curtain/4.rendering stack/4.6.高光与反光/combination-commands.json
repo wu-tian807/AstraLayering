@@ -1,0 +1,68 @@
+[
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/combination-1.png",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "310",
+      "270",
+      "160",
+      "180",
+      "--scale",
+      "4",
+      "--columns",
+      "3"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/combination-1.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/combination-2.png",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "275",
+      "610",
+      "150",
+      "220",
+      "--scale",
+      "4",
+      "--columns",
+      "3"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/combination-2.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/combination-3.png",
+      "--reference",
+      "references/base-subject.png",
+      "--crop",
+      "300",
+      "1210",
+      "160",
+      "230",
+      "--scale",
+      "4",
+      "--columns",
+      "3"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/combination-3.png\n",
+    "stderr": ""
+  }
+]

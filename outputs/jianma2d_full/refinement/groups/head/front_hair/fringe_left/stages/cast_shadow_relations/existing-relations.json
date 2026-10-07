@@ -1,0 +1,56 @@
+{
+  "reused_other_owners": [
+    {
+      "id": "head_face_face_skin_hair_cast_left",
+      "type": "shadow",
+      "owner": "head/face/face_skin",
+      "follow": "head/front_hair",
+      "clip_to": [
+        "head/face/face_skin"
+      ],
+      "note": "通过当前批准guide的三发组实际上下文确认，颞侧和上耳的遮光主体属于head/front_hair，侧框脸下垂组位于耳下，不是此处遮光物。owner为当前受影part，clip_to保持同一完整part；head/front_hair尚无具体直属发束part，后置第5步按后续拆分细化follow。原始投影保留受影面外余量，不在本阶段绑定receiver蒙版。"
+    },
+    {
+      "id": "head_face_ear_left_hair_cast_left",
+      "type": "shadow",
+      "owner": "head/face/ear_left",
+      "follow": "head/front_hair",
+      "clip_to": [
+        "head/face/ear_left"
+      ],
+      "note": "通过当前批准guide的三发组实际上下文确认，颞侧和上耳的遮光主体属于head/front_hair，侧框脸下垂组位于耳下，不是此处遮光物。owner为当前受影part，clip_to保持同一完整part；head/front_hair尚无具体直属发束part，后置第5步按后续拆分细化follow。原始投影保留受影面外余量，不在本阶段绑定receiver蒙版。"
+    },
+    {
+      "id": "head_front_hair_scalp_cap_fringe_left_cast_shadow",
+      "type": "shadow",
+      "owner": "head/front_hair/scalp_cap",
+      "follow": "head/front_hair/fringe_left",
+      "clip_to": [
+        "head/front_hair/scalp_cap"
+      ],
+      "note": "Left broad front lock casts a narrow soft shadow along its curved root onto the continuous scalp backing. Existing caster is a group with no parts yet; provisional group follow must resolve later. Full raw caster shadow retains motion allowance; final receiver masking belongs to stage 5."
+    },
+    {
+      "id": "head_face_framing_hair_left_main_long_lock_front_hair_cast_shadow",
+      "type": "shadow",
+      "owner": "head/face_framing_hair_left/main_long_lock",
+      "follow": "head/front_hair",
+      "clip_to": [
+        "head/face_framing_hair_left/main_long_lock"
+      ],
+      "note": "前额发覆盖当前主束宽根，投影下缘从(369,283)往(385,262)渐入；主束能相对前额发弯摆，须独立跟随。front_hair当前只有group，待其具体part绘成后由后置绑定确认follow；receiver已是当前main_long_lock。原body管理的鬓发对肩胸投影沿用已有层，不重复登记。保留完整raw与软边，第5步绑定receiver。"
+    },
+    {
+      "id": "head_crown_center_crest_front_hair_shadow",
+      "type": "shadow",
+      "owner": "head/crown/center_crest",
+      "follow": "head/crown/center_crest",
+      "clip_to": [
+        "head/front_hair"
+      ],
+      "note": "中央蓝冠饰可见左右固定瓣下缘投在前发顶部的窄接触影，约x399-474,y119-126；中心背根藏在前发后，不作为前景投影物。前发当前仅group，最终第5步绑定其已完成part。raw保留动作余量，当前不创建receiver mask。"
+    }
+  ],
+  "rendering_sha256": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+  "new_or_updated_layers": []
+}

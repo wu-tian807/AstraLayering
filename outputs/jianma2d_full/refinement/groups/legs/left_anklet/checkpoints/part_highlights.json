@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_highlights",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看独显及邻近参考，中央略上银白反光按已留辅助范围实现，软过渡接下蓝暗部；亮区为完整不透明表面，不是孔洞，沿用既有rendering关系。",
+  "evidence": [
+    "views/part_highlights.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_highlights"
+  },
+  "artwork_sha256": "9c300e63b358e170033e73e5550938e93f8aeb760c0d25ac5a9fd17338b5673d"
+}

@@ -1,0 +1,14 @@
+{
+  "layers": [
+    {
+      "id": "eye_left_upper_lid_cast_shadow",
+      "type": "shadow",
+      "owner": "head/face/eye_left/sclera",
+      "follow": "head/face/eye_left/upper_eyelid",
+      "clip_to": [
+        "head/face/eye_left/sclera"
+      ],
+      "note": "左眼上睑在眼白上沿形成的窄软灰投影；独立随上睑运动，受影眼白相对活动。与粗黑睫毛、蓝虹膜暗缘及交叉白发本体分开，不另叠来源不清的发丝暗斑。upper_eyelid目前为n48未拆group，后置绑定到最终上睑part；完整raw保留角部运动余量，第5步裁切到sclera并置于上睑下。未来上睑制作者复用此id。"
+    }
+  ]
+}

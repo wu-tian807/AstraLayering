@@ -1,0 +1,28 @@
+{
+  "status": "failed_actor_turn_after_saved_part_rendered_checkpoint",
+  "error": "stream disconnected before completion: Image processing blocked due to content policy violation.",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "triggering_image_or_tool_call": "unavailable; not inferred from neighboring files",
+  "last_error_free_reported_pointer": "part_highlights",
+  "last_error_free_reported_candidate": "refinement/groups/head/front_hair/fringe_left/stages/part_highlights/candidate.svg",
+  "last_error_free_reported_candidate_sha256": "aa79803c744436983241ffb1b48db0c5590c32fbc9878680d6a79f23f16ffcfe",
+  "saved_native_pointer_at_audit": {
+    "target": "n25",
+    "route": "generic",
+    "pointer": "part_rendered"
+  },
+  "saved_part_rendered_candidate": "refinement/groups/head/front_hair/fringe_left/stages/part_rendered/candidate.svg",
+  "saved_part_rendered_candidate_sha256": "4ef9f2e651653e0a40ce545d46d6845a2b7229847cb2d10c90e6bb49e7ba8c6d",
+  "published_standard_artwork_sha256": "4ef9f2e651653e0a40ce545d46d6845a2b7229847cb2d10c90e6bb49e7ba8c6d",
+  "saved_records": {
+    "checkpoint.json": "4a5ce2088b61bd28505deef68dc87ff4babad9d63659f298cb8b5cde34b4acb1",
+    "accepted.json": "b3c482030b8945e1dc809fb68a5d7c9289e58fa682af6c637e6bbca040333f53",
+    "delivery.json": "92f5d174e93f70cbcf98875c89562db808edb0fb14f46e8db2e157bd3039ea08",
+    "final-checks.json": "e969195635929dc8ecd25b4e2ebdae3a050d3bc1e03f3a8fedbff8a2e868f0a8",
+    "说明.md": "2a662b66b53d51b51c4bf0f554bf0b2b07257707105b60ee4923852c3285083d"
+  },
+  "provenance_limitation": "The saved part_rendered files claim viewed images and a successful checkpoint. They are preserved verbatim, but the actor ended in a platform image-processing error. This audit does not determine which image or call was rejected and does not assert error-free completion. Native complete has not been called.",
+  "handling": "Preserve draft, saved checkpoint and historical claims; do not retry old unknown rejected images or resume failing actor. Root audits exact draft with ordinary non-sensitive independent hair parts and head-only context as needed; record actual additional coverage separately. Any full composition coverage remains stage 5.",
+  "recovery_actor": "/root",
+  "timestamp": "2026-10-06T16:11:49.580548+00:00"
+}

@@ -1,0 +1,57 @@
+{
+  "target": "n25",
+  "maker": "/root/workflow_runner/arm_right",
+  "node": "group_completion",
+  "action": "verify approved corrected parent and reuse matching actual visual/bounds evidence",
+  "guide_sha256": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083",
+  "protected_standard_sha256": {
+    "block-layers/groups.svg": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083",
+    "block-layers/preview.png": "a772cbb7620b18fdd8e3b123f388e617fd9b34c99e6ae6a6db2ef4f53326f9c4",
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "structure/groups.json": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353"
+  },
+  "group_paths": {
+    "head-front-hair-fringe-left-shape": "M 436 194 C 429 190 423 187 416 192 C 412 194.4 406 201.8 402.5 214.5 C 399.8 227 395 240 388.5 253.2 C 382.7 264.2 375.2 276.1 370 282 C 363 278 365 269 369 258 C 372 249 377 239 380 226 C 383 211 382 194 389 180 C 393 165 400 151 410 151 C 421 151 431 164 436 176 Z",
+    "head-front-hair-fringe-left-fine-lock-carrier": "M 407.5 197.5 C 409.5 195.5 411.5 194.2 413.4 193.8 C 410.8 200.1 408.5 208.8 406.1 216.9 C 403.8 224.0 401.6 233.0 398.5 240.7 C 396.6 245.4 394.7 250.0 392.6 253 C 393.8 248.8 395.6 244.1 396.8 240.1 C 399.4 231.9 401.5 223.0 403.7 215.9 C 405.7 209.1 406.4 200.1 407.5 197.5 Z"
+  },
+  "reused_bounds": {
+    "kind": "group",
+    "path": "head/front_hair/fringe_left",
+    "status": "pass",
+    "ids": [
+      "group-head-front-hair-fringe-left"
+    ],
+    "outside_samples": 0,
+    "outside_area_px2": 0.0,
+    "outside_bbox": null
+  },
+  "reused_review": "reviews/group_child_layers/head/front_hair/local-repair-20261006/审查.md#revision-02",
+  "new_drawing": false,
+  "rerendered": false,
+  "bounds_rerun": false,
+  "checkpoint_command": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/4.专项细化/tools/group_cursor.py",
+    "--file",
+    "structure/groups.json",
+    "--state",
+    "structure/groups.dispatch.json",
+    "checkpoint",
+    "--pointer",
+    "group_completion"
+  ],
+  "checkpoint_exit_code": 0,
+  "active_after": {
+    "target": "n25",
+    "route": "generic",
+    "pointer": "group_completion"
+  },
+  "did_not_call": [
+    "complete",
+    "next",
+    "reopen"
+  ]
+}

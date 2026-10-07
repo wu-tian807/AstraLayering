@@ -1,0 +1,123 @@
+{
+  "node": "part_rendered",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right_finish",
+  "input_sha256": "f80b96281f8c12e7d3ebd0b8df0226ed1baed19d6402eaa78d404b50dbf0310c",
+  "candidate_sha256": "00e1641b47bb4c13b46b4af4d711608cee1d88409678de90b056286c223aef7c",
+  "all_existing_path_d_unchanged": true,
+  "non_current_artwork_byte_identical": true,
+  "pressure_brush_geometry_and_opacity_unchanged": true,
+  "base_volume_transitions_local_shading_unchanged": true,
+  "highlight_refinement": {
+    "gradient": "knee_glint in both parts",
+    "before": "translate(474.2 1134) rotate(6) scale(4.5 7.2)",
+    "after": "translate(474.2 1134) rotate(6) scale(3.6 6.5)",
+    "reason": "4x reference comparison: old bright spot was wider and more diffuse than reference"
+  },
+  "protected_inputs": {
+    "block-layers/groups.svg": "ef3982399bd32157e0ea1e668264df006ba91b371119d1068db365f44e57f549",
+    "structure/groups.json": "be6db61a380157497e3fefcf0f277416b9e797bb5bbe3f9b1339134c2f385ff1",
+    "structure/rendering.json": "c0159f667ad7019605f8af14a9227fb4b8eba10b072f79f17fdeeb9a4fc40983",
+    "refinement/groups/legs/right_leg/checkpoints/cast_shadow_artwork.json": "4656f6d3666519721e964ffca68e09753a094c2ae5fd23ea28a4c3e48b402571",
+    "refinement/groups/legs/right_leg/checkpoints/cast_shadow_relations.json": "7bad349083a994adf0abd968760767beb3f6d20ae34a55e42bcbdd9c3d2613c6",
+    "refinement/groups/legs/right_leg/checkpoints/part_base_colors.json": "515be98ad6dbec2f113180bb7788d2221708df1bc1d8f34b5a001c28fdd7a337",
+    "refinement/groups/legs/right_leg/checkpoints/part_brush_lines.json": "9fa06142587f2b45e7dc1193691c3e1b6ae9f8379011913bf2557ead38e1031a",
+    "refinement/groups/legs/right_leg/checkpoints/part_color_transitions.json": "6afc947334bd60c9126dfe4d80f373d8407fc9df7f6362ffcba8652d04f6cd97",
+    "refinement/groups/legs/right_leg/checkpoints/part_contours.json": "7e1c1b53f5c914eb24a15e42f1b4054222d6cfc1dceec610aeea4b4ad6ab9d62",
+    "refinement/groups/legs/right_leg/checkpoints/part_detail_lines.json": "281ab5aed3b12599a5a70951a5321d59107d4f68cebaa1dfc97cf62e50aa30fc",
+    "refinement/groups/legs/right_leg/checkpoints/part_highlights.json": "f8365a53aac15108a7d0885f671962c5611d42503d22750c5dc851cdd4264c38",
+    "refinement/groups/legs/right_leg/checkpoints/part_local_shading.json": "bc207a2b62dbc7a985a98340718d4959d5abe060c51c2e87f4546579126d5439",
+    "refinement/groups/legs/right_leg/checkpoints/part_motion_completion.json": "5ab487d54afbb5987fa0df97943835b6b023f7d26b6504b82815083ad200d411",
+    "refinement/groups/legs/right_leg/checkpoints/part_structure.json": "5ec3954abc1073ade2170d3951c10771a06d23e9cee0978e72b21e2eedb9c400",
+    "refinement/groups/legs/right_leg/checkpoints/part_tone_boundaries.json": "33a3328ddea194c330cc8dbb40cb0ca252ffa7878ac9e13a8f77f85b43a786f2",
+    "refinement/groups/legs/right_leg/checkpoints/part_volume.json": "13def02f21ac621e860a8f5e811a733dfe6bc51054990821592d431b490ef546"
+  },
+  "material_decision": "Smooth skin: no invented texture; local colors verified against ordinary leg crops; four pressure-brush fills use skin-family gradients, and the knee glint is narrowed to match the reference density.",
+  "limits": [
+    "Hip-pelvis composite not visually inspected; must be resolved by later final composite review.",
+    "Foot group remains pending and unmodified; any ankle comparison against its guide is geometry-only."
+  ],
+  "output_sha256": "00e1641b47bb4c13b46b4af4d711608cee1d88409678de90b056286c223aef7c",
+  "visual_coverage_status": "scoped_pass_with_unreviewed_composites",
+  "visual_evidence": [
+    {
+      "file": "refinement/groups/legs/right_leg/views/part_rendered-thigh-only.png",
+      "crop": [
+        432,
+        644,
+        155,
+        548
+      ],
+      "scale": 2,
+      "scope": "entire isolated thigh including full rounded upper and knee ends; no pelvis or reference upper segment",
+      "sha256": "2e6dd1d826705c7de365262f34364d0139b3dfb9904e07cfbbaabf241e07406d",
+      "actually_viewed": true
+    },
+    {
+      "file": "refinement/groups/legs/right_leg/views/part_rendered-lower-leg.png",
+      "crop": [
+        434,
+        1097,
+        105,
+        529
+      ],
+      "scale": 2,
+      "scope": "entire isolated lower_leg against ordinary lower-leg reference; full round knee and ankle ends",
+      "sha256": "324d0663751b5649f659c8ed3a8af14a6feeb6782461b54e75d0c11ed128c18d",
+      "actually_viewed": true
+    },
+    {
+      "file": "refinement/groups/legs/right_leg/views/part_rendered-thigh-reference.png",
+      "crop": [
+        440,
+        895,
+        125,
+        280
+      ],
+      "scale": 3,
+      "scope": "ordinary lower-thigh / knee reference and current thigh",
+      "sha256": "a8d9f1e954d9f0aa952d6afd8b4eb7aceac0a142927e35603db3816d14913392",
+      "actually_viewed": true
+    },
+    {
+      "file": "refinement/groups/legs/right_leg/views/part_rendered-knee-composite.png",
+      "crop": [
+        428,
+        1080,
+        108,
+        145
+      ],
+      "scale": 4,
+      "scope": "thigh + lower_leg only; final reduced glint re-viewed, continuous skin color, no internal cut seam",
+      "sha256": "bf28def83a66595bab6fd3600ac8659d4677c90f64d4d357c9ae78f87ff07020",
+      "actually_viewed": true
+    },
+    {
+      "file": "refinement/groups/legs/right_leg/views/part_rendered-ankle-guide-composite.png",
+      "crop": [
+        438,
+        1515,
+        75,
+        130
+      ],
+      "scale": 4,
+      "scope": "lower_leg + unchanged purple foot guide, geometry overlap only; foot skin rendering pending",
+      "source_note": "Rendered before the knee-only highlight refinement; its distant field does not affect this ankle crop.",
+      "sha256": "a85bc277c808897b9e61074517c03e851e34994f8d7f1d5f6ec1cd3c634537cc",
+      "actually_viewed": true
+    }
+  ],
+  "preview": "refinement/preview.png",
+  "preview_visually_reviewed": false,
+  "notes": [
+    "No original rejected montage/context image was loaded or retried.",
+    "Ordinary independent leg images processed normally; no new image policy failure.",
+    "Not a whole-character or final-composite approval."
+  ],
+  "timestamp": "2026-10-06T11:41:07.119256+00:00",
+  "preview_sha256": "b36966069046167181fa3c30d14366468cc19cc3b946c24f121315366ba393f5",
+  "checkpoint_result": {
+    "action": "checkpointed",
+    "pointer": "part_rendered"
+  }
+}

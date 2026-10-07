@@ -1,0 +1,17 @@
+{
+  "target": "n23",
+  "node": "part_structure",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看后沿用本侧接触线；光滑眼白无内部实体折线，外角深色仍属同一下睑，不新增下睫毛或第二道眼袋折痕。",
+  "evidence": [
+    "views/part_structure.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_structure"
+  },
+  "artwork_sha256": "4f9e65d195befc4ae1ec5d8a7f4846acbac51d7141222c709d66bce5c451c1bc",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc"
+}

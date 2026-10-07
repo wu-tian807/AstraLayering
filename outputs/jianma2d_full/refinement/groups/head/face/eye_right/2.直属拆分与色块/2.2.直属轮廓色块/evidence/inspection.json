@@ -1,0 +1,30 @@
+{
+  "target": "n22",
+  "node": "group_child_layers",
+  "status": "frozen-awaiting-independent-review",
+  "logical_worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "viewed": [
+    "evidence/input-isolation.png",
+    "evidence/inspection-montage.png"
+  ],
+  "observations": [
+    "完整眼白在虹膜后连续，包含父级上下睑后底面；不拆左右白色楔面。",
+    "虹膜完整上弧保留在上睑后，只绘整组轮廓，未绘瞳孔或内部正式纹理。",
+    "上睑组保留原外端睫毛轮廓及睑褶，覆盖父级上方余量；参考睫毛下缘限定当前可见上眼裂。",
+    "下睑修正为单条连续闭合带，沿原参考下眼缘及父底面交点拼接；隐藏下弧内收0.08px保持默认包含，实看无细缝。",
+    "角膜主高光留后续独立highlight层，未添加物理part或修改rendering。"
+  ],
+  "parent_raw_and_other_svg_bytes_preserved": true,
+  "bounds": {
+    "head/face/eye_right/upper_eyelid": 0,
+    "head/face/eye_right/iris": 0,
+    "head/face/eye_right/sclera": 0,
+    "head/face/eye_right/lower_eyelid": 0
+  },
+  "revision_note": "下睑首次拼接过薄；补条后发现细缝，最终改成原两条父边界交点分割得到的单闭合带。默认范围修正过程保存在rim-first-bounds.json及lower-union-first-bounds.json，未调整检查阈值。",
+  "state_unchanged_at": "group_split",
+  "no_checkpoint": true,
+  "unresolved_current_geometry": []
+}

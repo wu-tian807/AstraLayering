@@ -1,0 +1,49 @@
+{
+  "node": "part_motion_completion",
+  "status": "complete",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29",
+  "branch": "then: current group has two direct parts",
+  "children": "children.json",
+  "children_sha256": "41ab7030e470360d46cb684e7ac9daee0ef459b82bdca71243ba10284210a1cf",
+  "new_parts": 0,
+  "geometry_changed": [
+    "nape_back_sheet hidden backing +4px"
+  ],
+  "guide_sha256": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+  "preview_sha256": "d57665f8d5d09a60ee698902a454576e810c403b7a9bb77d444538cd63c8d279",
+  "artwork_sha256": "8d6cd65eae22919af940111560c8de0041bf76a0689499014c01f252e94568e6",
+  "rendering_sha256": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+  "groups_sha256": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+  "bounds_status": "pass",
+  "bounds_results": [
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/inner_back_curtain/nape_back_sheet",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/rear_hair_left/inner_back_curtain/inner_side_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-rear-hair-left-inner-back-curtain-inner-side-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ],
+  "all_other_root_guide_containers_unchanged": true,
+  "rest_composite_pixels_equal_to_approved_2_2": true,
+  "actual_views_this_node": 5,
+  "actual_actor_images_total": 26,
+  "checkpoint_written": true,
+  "input_guide_sha256": "5ef71923ba49f927c35822b518b8bc650998d1c4603c5dde2def75adc15ed5bb",
+  "empty_patch_handling": "Controller attempted native expand; tool rejected empty patch with exit2, original error preserved. YAML empty-list pass-through leaves tree unchanged; no successful expand claimed."
+}

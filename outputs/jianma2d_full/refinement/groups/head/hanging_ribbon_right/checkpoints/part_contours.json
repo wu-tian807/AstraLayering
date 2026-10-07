@@ -1,0 +1,7 @@
+{
+  "node": "part_contours",
+  "worker": "/root/workflow_runner/ribbon_right",
+  "guide_sha256": "f81db239c0250347e6560b63c7bc730ce773828d3771a5bdf1859f1574ed57aa",
+  "artwork_sha256": "d9076c7294ea89cc5a50077b93094937a78f7ef4240b90ff41c3e2e366f87267",
+  "note": "闭合底形和4条外轮廓/接界线已建立；同坐标彩参、线参3×实看，孔洞、根接、双缘及单尖一致，逐线desc说明显影、收笔与隐藏露出。"
+}

@@ -1,0 +1,48 @@
+{
+  "status": "fail",
+  "group_path": "head/front_hair/fringe_right",
+  "parent_svg": "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.2.直属轮廓色块/input.svg",
+  "parent_ids": [
+    "group-head-front-hair-fringe-right"
+  ],
+  "candidate_svg": "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "part",
+      "path": "head/front_hair/fringe_right/broad_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-fringe-right-broad-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/fringe_right/fine_lock",
+      "status": "fail",
+      "ids": [
+        "part-head-front-hair-fringe-right-fine-lock"
+      ],
+      "outside_samples": 151,
+      "outside_area_px2": 9.4375,
+      "outside_bbox": [
+        465.75,
+        207.5,
+        7.5,
+        17.0
+      ],
+      "diagnostic": "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查-images/02-outside.png",
+      "diagnostic_crop": [
+        457.75,
+        199.5,
+        23.5,
+        33.0
+      ]
+    }
+  ]
+}

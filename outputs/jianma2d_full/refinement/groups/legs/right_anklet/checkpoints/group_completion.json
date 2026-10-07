@@ -1,0 +1,13 @@
+{
+  "target": "n21",
+  "node": "group_completion",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "group_completion"
+  },
+  "guide_sha256": "060b6bb1551f636bbf1415b2561a9bf5bdffbe22e3a95c02aab40ac7a54b24e4",
+  "evidence": "1.父级轮廓补全/evidence/inspection-montage.png"
+}

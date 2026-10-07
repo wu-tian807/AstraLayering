@@ -1,0 +1,7 @@
+{
+  "worker_id": "/root/workflow_runner/leg_right",
+  "rendering_sha256": "c0159f667ad7019605f8af14a9227fb4b8eba10b072f79f17fdeeb9a4fc40983",
+  "artwork_sha256": "c9f7d19c8e530b0e1b5fbe989b7578b5c640a618185a46d323fea5b047886b78",
+  "existing_relations_preserved": true,
+  "own_layers": []
+}

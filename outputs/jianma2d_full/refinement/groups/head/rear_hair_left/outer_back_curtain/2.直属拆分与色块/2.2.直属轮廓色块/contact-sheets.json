@@ -1,0 +1,62 @@
+[
+  {
+    "contact_sheet": "final-fit-contact-sheet-8x.png",
+    "panels": [
+      {
+        "image": "final-10-inner-return-fit-8x.png",
+        "offset": [
+          0,
+          24
+        ],
+        "size": [
+          480,
+          504
+        ],
+        "scale": 1
+      },
+      {
+        "image": "final-11-pointed-fit-8x.png",
+        "offset": [
+          480,
+          24
+        ],
+        "size": [
+          2496,
+          888
+        ],
+        "scale": 1
+      }
+    ],
+    "resized": false
+  },
+  {
+    "contact_sheet": "final-root-contact-sheet-4x.png",
+    "panels": [
+      {
+        "image": "final-12-upper-root-repair-4x.png",
+        "offset": [
+          0,
+          24
+        ],
+        "size": [
+          804,
+          1216
+        ],
+        "scale": 1
+      },
+      {
+        "image": "final-13-sweeping-root-repair-4x.png",
+        "offset": [
+          804,
+          24
+        ],
+        "size": [
+          996,
+          1456
+        ],
+        "scale": 1
+      }
+    ],
+    "resized": false
+  }
+]

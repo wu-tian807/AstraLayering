@@ -1,0 +1,36 @@
+{
+  "worker_id": "/root/workflow_runner/leg_right",
+  "inputs": {
+    "block-layers/groups.svg": "2ba1567e051aeb4abef1840d24c44d2c26cc07d2180e055168d004ae2f06cb75",
+    "refinement/character.svg": "ca574ede72f49ba3ea6a93628bf48dddb8afeaa08039e1ec29a7a8b4c915a02b",
+    "structure/rendering.json": "c0159f667ad7019605f8af14a9227fb4b8eba10b072f79f17fdeeb9a4fc40983",
+    "structure/groups.json": "ccbcd46c2f83e73fd4b05a2b70837cd19b51e9642d5531df4ac93fc4161a3c5b",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  },
+  "svg_viewport": [
+    895,
+    1758
+  ],
+  "reference_size": [
+    895,
+    1758
+  ],
+  "geometry_changed": false,
+  "protected_inputs_unchanged": true,
+  "guide_sha256": "2ba1567e051aeb4abef1840d24c44d2c26cc07d2180e055168d004ae2f06cb75",
+  "group_sha256": "9e5a0499ad306263107edaa778424b9e0a5d813dbfcc76525e034f3c988efca1",
+  "viewed_montages": [
+    "full.png",
+    "hip-knee.png",
+    "shin-foot.png",
+    "foot-before-after.png"
+  ],
+  "output_sha256": {
+    "full.png": "98cd916a25f7dd3ea46d0ae0aa037c2e44b30bf8fa2a74ec693ab3d2a6f848fb",
+    "hip-knee.png": "244c8b22a986a2e1c973a6fad37467273e1bb604fbe4d2591f15cf329baeed88",
+    "shin-foot.png": "61820067ebb2cf61ea2f8af52ab00288f9de97da5c847f90ace1379cebb53239",
+    "foot-before-after.png": "f0b4c01491716dea629f7b304d782a5045ae840902403ebc61b61af786e7798b",
+    "containment.json": "1fee555278a4d86d5549f694d83476195679a40699971894b8825057d52db0b4"
+  },
+  "preview_sha256": "57acaffea929e7d908bfcaa820402cb80800ed0d86e7afe3b5abeda16a549226"
+}

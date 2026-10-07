@@ -1,0 +1,41 @@
+{
+  "actor": "/root",
+  "group": "head/front_hair/fringe_right",
+  "candidate_sha256": "dc81a34677dee89440a2ea622a5589b46180581e2429cb0d856653f551eb4299",
+  "guide_sha256": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+  "tree_sha256": "8230e59764cd31df53bde422a4b2b1b9f0d46e0b760b04ec001db768c886ffea",
+  "rendering_sha256": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+  "removing_own_marker_section_restores_baseline_byte_for_byte": true,
+  "changed_existing_path_d_since_3_5": [],
+  "source_and_all_9_pressure_paths_preserved": true,
+  "containment_reused": {
+    "source": "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json",
+    "scale": 4,
+    "alpha_threshold": 128,
+    "outside_samples": [
+      0,
+      0
+    ],
+    "reason": "Complete base, clip and self-alpha paths retain exact approved guide d"
+  },
+  "actual_view_hashes": {
+    "inspection.png": "1ed63c4a23df3987cb326cba68b21f1f92a1edfa1648e399038c5c98d7daa4fa",
+    "gap-8x.png": "6f0e54c4d0695965153c793f8c96e4e7a92b6d57f5f77dd6e39001ab4439ad66",
+    "adjacent.png": "72b53bcc7703779024def60ec4bc9bb863fede3ee1301a2caca54f0a2ac20c50"
+  },
+  "final_stage_5_pending": [
+    "receiver masks",
+    "detailed follow targets",
+    "cross-group stacking",
+    "eyes and crown",
+    "right fringe eye-side skin gap"
+  ],
+  "native_rendering_check": {
+    "status": "pass",
+    "layers": 25,
+    "complete": false,
+    "scope": "Names, tree paths, SVG references and receiver mask structure only"
+  },
+  "preview_sha256": "84d066bf20193cfcde9a3abc7d5dba396d7636fb076e61086548ed4824d2d2de",
+  "preview_source_sha256": "dc81a34677dee89440a2ea622a5589b46180581e2429cb0d856653f551eb4299"
+}

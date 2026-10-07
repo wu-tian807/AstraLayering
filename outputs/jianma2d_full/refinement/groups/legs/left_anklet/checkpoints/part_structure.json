@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_structure",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "小银蓝坠前面/右薄侧面的浅转面辅助曲线完成；彩参/线参实看，最终软色面接管，不增关节、孔洞或刻纹。",
+  "evidence": [
+    "views/part_structure.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_structure"
+  },
+  "artwork_sha256": "bb693b55070df216fc77b5f1555e786df6f18bd7b8686bbac2c7fd2c8c9940d6"
+}

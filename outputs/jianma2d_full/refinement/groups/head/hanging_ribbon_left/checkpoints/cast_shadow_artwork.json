@@ -1,0 +1,7 @@
+{
+  "node": "cast_shadow_artwork",
+  "worker": "/root/workflow_runner/ribbon_left",
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "ce1a3fd19f37088f2667cc33eb03c837e2c3bbb82ee49889110d6802e6c00317",
+  "note": "1个独立挂环raw投影已画；完整影独显及原生apply后孔边组合均实看，18层原生check通过，正式raw无receiver绑定。"
+}

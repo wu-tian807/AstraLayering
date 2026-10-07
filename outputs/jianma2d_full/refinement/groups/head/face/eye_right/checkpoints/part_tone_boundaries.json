@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "part_tone_boundaries",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看并建立眼白两眼角低对比转面、下睑暖接触缘与肤色搭接区；上睑外来阴影单独标记，禁止与睫毛或虹膜暗色混合。全部辅助线最终由色面接管。",
+  "evidence": [
+    "views/part_tone_boundaries.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_tone_boundaries"
+  },
+  "artwork_sha256": "139f116e16d0ecc85c9be23e838b2a196179c32c18afc81af2e0aec6cf57785d",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

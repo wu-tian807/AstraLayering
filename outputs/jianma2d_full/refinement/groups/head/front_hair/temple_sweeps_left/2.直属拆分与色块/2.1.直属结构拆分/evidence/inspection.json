@@ -1,0 +1,89 @@
+{
+  "worker_id": "/root/workflow_runner/split_anklet_left",
+  "logical_worker": "group_split:head/front_hair/temple_sweeps_left",
+  "actor_context": "复用已授权现存 actor，独立于 maker /root/workflow_runner；不宣称 fresh context，未参与本组绘制。",
+  "target": "n27",
+  "node": "group_split",
+  "configuration": {
+    "read": "本节点流程.yaml、提示词.txt、gpt-6-sol-xhigh.model 及 node1 补全说明",
+    "model_override": "用户已授权 gpt-6-astra xhigh 替代 Sol xhigh。"
+  },
+  "visual_inspection": {
+    "board": "evidence/reference-isolation.png",
+    "tool": "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "isolation_id": "group-head-front-hair-temple-sweeps-left",
+    "crop": [
+      337,
+      116,
+      100,
+      179
+    ],
+    "scale": 4,
+    "viewed": true,
+    "detail": {
+      "file": "evidence/layer-detail.png",
+      "source": "references/base-subject.png",
+      "crop": [
+        340,
+        157,
+        67,
+        128
+      ],
+      "scale": 8,
+      "sampling": "nearest",
+      "viewed": true,
+      "purpose": "核对中下部回卷边缘和两处露肤孔，区分搭叠边界与同面明暗条；仅参考像素放大，未绘制替代形体。"
+    }
+  },
+  "observations": [
+    "冠侧上根到短扫片形成贴头发扇，内部仍有层叠片端及不同转向，保留 crown_sweeps group 后续细拆，不以明暗线数量直接决定短发片数量。",
+    "其下可辨认连续的上、中、下三层较长回卷发片，以及最低贴耳回卷片；各自有完整从根段到弧底/片端的连续形体，分别以 part 控制搭叠和转动。",
+    "每条较长片内部的亮带、体积暗面与细线同属一个发面，不进一步铸造新发片；根部可被刘海和上层片遮挡但需完整保留。",
+    "约 (370,247) 和 (363,258) 的负形是真实露肤范围，属于相邻发片之间的空隙，不列背景 part，不得被任何子片或隐藏补片填实。"
+  ],
+  "direct_children": {
+    "groups": [
+      "crown_sweeps"
+    ],
+    "parts": [
+      "upper_temple_lock",
+      "middle_temple_lock",
+      "lower_temple_lock",
+      "ear_lock"
+    ]
+  },
+  "parent_extent_ownership": {
+    "head-front-hair-temple-sweeps-left-shape": "上部根冠和短扫发扇归 crown_sweeps；向耳部排列的三层较长回卷发片依次归 upper_temple_lock、middle_temple_lock、lower_temple_lock；最下贴耳回卷与 (370,282) 收束端归 ear_lock。原两条孔洞子路径继续为空，具体边界由 lower_temple_lock、ear_lock 与相邻片共同避让。"
+  },
+  "coverage_note": "按完整搭叠发片分配父范围，根部允许重叠，不使用水平切片代替完整发片；本步未修改几何，子片轮廓及负空间复核留后续 2.2。",
+  "mirror_pairs": "已有 front_hair_temple_sweeps_pair 保留；右側未建立对应 crown_sweeps 同层 group，本轮无新增镜像关联。",
+  "validation": {
+    "argv": [
+      "python3",
+      "../../workflow-next/live2d-layering/tools/groups.py",
+      "check-children",
+      "--groups",
+      "structure/groups.json",
+      "--group-path",
+      "head/front_hair/temple_sweeps_left",
+      "--patch",
+      "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.1.直属结构拆分/children.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "readonly_sha256": {
+    "structure/groups.json": "8230e59764cd31df53bde422a4b2b1b9f0d46e0b760b04ec001db768c886ffea",
+    "structure/groups.dispatch.json": "30c6bed19af733bca0297c39ed58f12efb994c61f27ce44f7745422e358080a0",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+    "block-layers/preview.png": "d5b5a99dabe0f8c5b66b57f7bc4f186f2a8c74ff7d402a02e73a0291e6e4f91d",
+    "refinement/character.svg": "dc81a34677dee89440a2ea622a5589b46180581e2429cb0d856653f551eb4299",
+    "refinement/preview.png": "84d066bf20193cfcde9a3abc7d5dba396d7636fb076e61086548ed4824d2d2de"
+  },
+  "readonly_inputs_unchanged": true,
+  "children_sha256": "f2973ba631eaf979dfa53fdfec48b05dea06829f95291f68e3413c89b8232981",
+  "status": "checked-awaiting-runner-expand-and-checkpoint"
+}

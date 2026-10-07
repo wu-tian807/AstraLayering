@@ -1,0 +1,107 @@
+{
+  "worker_id": "/root/workflow_runner/split_anklet_left",
+  "logical_worker": "group_split:legs/left_anklet",
+  "target": "n20",
+  "node": "group_split",
+  "scope": "仅 2.1 直属结构拆分；未写入树、标准 SVG、游标或 root 交付文件",
+  "model_configuration": "gpt-6-sol-xhigh.model（文件为空，模型/强度由文件名声明；替代 Astra xhigh 已由总控传达用户授权）",
+  "visual_inspection": {
+    "file": "evidence/reference-isolation.png",
+    "tool": "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "isolation_id": "group-legs-left-anklet",
+    "crop": [
+      369,
+      1586,
+      78,
+      95
+    ],
+    "scale": 6,
+    "viewed": true,
+    "observations": [
+      "参考与真实独显均可辨认绕踝链圈、中央长宝石悬坠和侧边小悬饰。",
+      "链圈包含父级补全的后侧细回链；后侧回链属于链圈，正式层次应在脚部之后。",
+      "中央吊接组件与硬质宝石需要不同转动；小悬饰未见可继续分开的活动实体。"
+    ]
+  },
+  "direct_children": {
+    "groups": [
+      "ankle_chain",
+      "gem_pendant"
+    ],
+    "parts": [
+      "small_charm"
+    ]
+  },
+  "guide_path_ownership": {
+    "ankle_chain": [
+      "legs-left-anklet-rear-return",
+      "legs-left-anklet-connector-01",
+      "legs-left-anklet-connector-02",
+      "legs-left-anklet-connector-03",
+      "legs-left-anklet-connector-04",
+      "legs-left-anklet-connector-05",
+      "legs-left-anklet-connector-06",
+      "legs-left-anklet-connector-07",
+      "legs-left-anklet-connector-08",
+      "legs-left-anklet-connector-09",
+      "legs-left-anklet-connector-10",
+      "legs-left-anklet-anchor-1",
+      "legs-left-anklet-anchor-2",
+      "legs-left-anklet-link-01",
+      "legs-left-anklet-link-02",
+      "legs-left-anklet-link-03",
+      "legs-left-anklet-link-04",
+      "legs-left-anklet-link-05",
+      "legs-left-anklet-link-06",
+      "legs-left-anklet-link-07",
+      "legs-left-anklet-link-08",
+      "legs-left-anklet-clasp"
+    ],
+    "gem_pendant": [
+      "legs-left-anklet-clasp-to-bail",
+      "legs-left-anklet-bail",
+      "legs-left-anklet-bail-to-gem",
+      "legs-left-anklet-pendant"
+    ],
+    "small_charm": [
+      "legs-left-anklet-small-charm"
+    ]
+  },
+  "coverage": {
+    "parent_paths": 27,
+    "assigned_once": 27,
+    "unassigned": [],
+    "duplicated": [],
+    "geometric_validation": "本步只定义归属；复用已完成父级形体，不修改几何。"
+  },
+  "mirror_pairs": "沿用已有 paired_anklets。当前 right_anklet 尚无同层直属 group，故本轮无可登记的新增镜像对，不重复父级记录。",
+  "readonly_sha256_before": {
+    "structure/groups.json": "be6db61a380157497e3fefcf0f277416b9e797bb5bbe3f9b1339134c2f385ff1",
+    "structure/groups.dispatch.json": "90e089473537f2c5fd19ede23f603a1607ad4bac3543e8c095bcd7de12de235e",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "8423bf9f5b4ab0c4cc063824a1df119080fed580e532563600dce684779cb266",
+    "block-layers/preview.png": "5fba20a400a10c0d27769d2a858b6bd15e16d5d1cf81a25e9add6cb769ad72cf",
+    "refinement/character.svg": "00e1641b47bb4c13b46b4af4d711608cee1d88409678de90b056286c223aef7c",
+    "refinement/preview.png": "b36966069046167181fa3c30d14366468cc19cc3b946c24f121315366ba393f5"
+  },
+  "children_sha256": "1ec885a310bc36466cc123f012129fc0076e2bbf2cf78b734a4cd0d68aff3e9e",
+  "readonly_sha256_after": {
+    "structure/groups.json": "be6db61a380157497e3fefcf0f277416b9e797bb5bbe3f9b1339134c2f385ff1",
+    "structure/groups.dispatch.json": "90e089473537f2c5fd19ede23f603a1607ad4bac3543e8c095bcd7de12de235e",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "8423bf9f5b4ab0c4cc063824a1df119080fed580e532563600dce684779cb266",
+    "block-layers/preview.png": "5fba20a400a10c0d27769d2a858b6bd15e16d5d1cf81a25e9add6cb769ad72cf",
+    "refinement/character.svg": "00e1641b47bb4c13b46b4af4d711608cee1d88409678de90b056286c223aef7c",
+    "refinement/preview.png": "b36966069046167181fa3c30d14366468cc19cc3b946c24f121315366ba393f5"
+  },
+  "readonly_inputs_unchanged": true,
+  "validation": {
+    "tool": "../../workflow-next/live2d-layering/tools/groups.py",
+    "command": "check-children",
+    "groups": "structure/groups.json",
+    "group_path": "legs/left_anklet",
+    "patch": "refinement/groups/legs/left_anklet/2.直属拆分与色块/2.1.直属结构拆分/children.json",
+    "exit_code": 0
+  },
+  "status": "checked-awaiting-runner-expand-and-checkpoint"
+}

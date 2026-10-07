@@ -1,0 +1,39 @@
+{
+  "status": "pass",
+  "group_path": "head/front_hair/temple_sweeps_left",
+  "reviewer": "/root",
+  "maker": "/root/workflow_runner",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "candidate": "refinement/groups/head/front_hair/temple_sweeps_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+  "candidate_sha256": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275",
+  "guide_sha256": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275",
+  "report": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/审查.md",
+  "report_sha256": "55751950b1e8150ad4995d7597332519946e0bf37ed67f74aded57917e1a409f",
+  "bounds": {
+    "scale": 4,
+    "alpha_threshold": 128,
+    "outside_samples": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "actual_views": {
+    "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/upper_temple_lock.png": "cfb4554e6ae52565a0c4b983f51c836ee861f6da118da48aa4fa51f1df359080",
+    "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/lower_temple_lock.png": "8569e045261fe0a337734a44310faf4d25668d3d0db7239ece7de0db8056ccb7",
+    "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/upper-edge-8x.png": "e8662f0fc39980fd33ecd25ed7f908033fcd5b2db51ae0d4905599a2b953ad53",
+    "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/connections.png": "bfec845ecc2afa4829721ca8c781775e97622f9ac6cd79565ef3b5512dbdc573",
+    "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/ear_lock.png": "f7b2ac10f04b82bd2e12375045669d54e37b3fb16358b9bdcf5247610c7729c6",
+    "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/holes-8x.png": "f7ed389883ca84d6e94d0b3f8de80bcd7826a63bc006f03ef93a9786fa762fa3",
+    "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/crown_sweeps.png": "de1cc0b5b83cfd08e8cb0ea54993a559ed5daaa7a5bc65d1b2b5e854770cccb3",
+    "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/full.png": "808fd60da85b0f11662171672c8e24d59d4651b2151b9131d34090eb502639cb",
+    "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/middle_temple_lock.png": "eef3bd3a169de9ca7a6164bcf0dd89364674769349e3b7102be5950e453bea2d"
+  },
+  "limitations": [
+    "2.2 independent contour review only; final material and stage5 composition pending"
+  ],
+  "svg_modified": false
+}

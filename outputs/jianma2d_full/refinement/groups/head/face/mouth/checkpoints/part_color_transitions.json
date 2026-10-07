@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_color_transitions",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "已实看淡暖唇峰、浅桃下唇及隐藏内侧连续局部色；过渡保持低强度，未改变闭口接界/大明暗，也未重新出现隐藏外弧。",
+  "artwork_sha256": "2aada6b7a43abe58921d20f000b78cca51cbae8fbbc89b0d5d74aeccfba5fce2",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_color_transitions.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_color_transitions"
+  }
+}

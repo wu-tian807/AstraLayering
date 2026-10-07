@@ -1,0 +1,14 @@
+{
+  "layers": [
+    {
+      "id": "arms_arm_right_upper_arm_hair_cast_shadow",
+      "type": "shadow",
+      "owner": "arms/arm_right/upper_arm",
+      "follow": "head/face_framing_hair_right/main_long_lock",
+      "clip_to": [
+        "arms/arm_right/upper_arm"
+      ],
+      "note": "右前发主束落在上臂内侧约x534–561/y428–540的短窄投影；依据6×彩参、实际发束边缘与明暗desc确认，外侧浅软，近接触稍深。发束可相对上臂摆动，保留独立完整raw源影，后置receiver绑定；前臂的肘窝和腕凹均属自身明暗。"
+    }
+  ]
+}

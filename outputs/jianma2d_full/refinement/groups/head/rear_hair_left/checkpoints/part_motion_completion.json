@@ -1,0 +1,15 @@
+{
+  "node": "part_motion_completion",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "两张Milly示例与root/tail前后参考图均实际查看；原隐藏发根与连续尾束覆盖正常转动轻摆，无新形状，空patch通过。仅追加desc，复用几何未变的已审范围与白底预览。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/2.直属拆分与色块/2.3.运动露出补齐/children.json": "c89c4cba063c9e6a5caef1e1f66daa7339d6cc179ef1d81cd4b4771826a34c95",
+    "refinement/groups/head/rear_hair_left/2.直属拆分与色块/2.3.运动露出补齐/补齐说明.md": "7d301ce111b855656e70b2015e84a132de73c308b5302b3ffc1b663ed2c13512",
+    "refinement/groups/head/rear_hair_left/2.直属拆分与色块/2.3.运动露出补齐/root.png": "52d82f9d189c58548288e16546c3aafb6755d03be89cdceb13828a6d5e879a49",
+    "refinement/groups/head/rear_hair_left/2.直属拆分与色块/2.3.运动露出补齐/tail.png": "838e4167f8586fe805eb80a0b617139ee657129b9e4b2dcea7277a6e8e0ff523",
+    "refinement/groups/head/rear_hair_left/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json": "d6e08fdc849943794d0a1f4902f6916fac59a4f2fc43c60912f13a21b535e62e"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2"
+}

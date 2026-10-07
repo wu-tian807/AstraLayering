@@ -1,0 +1,33 @@
+{
+  "status": "awaiting_independent_review",
+  "actor": "/root/workflow_runner",
+  "candidate_sha256": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275",
+  "guide_sha256": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275",
+  "input_sha256": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+  "non_n27_guide_byte_identical": true,
+  "actual_latest_views": {
+    "upper-revision.png": "11af76535ecd38f74c6b560d7349c932c05d0bf4866c2f8ebc5d2c3e126612cf",
+    "ear-lock.png": "8ad7e50ebd46ba5b211fc337b5f4fe6b186bde1dd2c55a5d46182d11b6e28c6e",
+    "gaps.png": "b581bb5cbd9e77fa6c8979383206735dda0039db950f2ef86b06e73d106708d8",
+    "full.png": "808fd60da85b0f11662171672c8e24d59d4651b2151b9131d34090eb502639cb"
+  },
+  "reused_actual_views_with_identical_image_bytes": {
+    "crown-sweeps.png": "a05149eff40ab53e9aead1e8010173822664211bc348ea79f329b67a094120d7",
+    "middle-temple-lock.png": "366b96457cb7b7fe8435b1877eb257e8b6231d98069e2313f24490f4ed147df9",
+    "lower-temple-lock.png": "1a96ba2737d6fcc1281bbd920a09d340cd324c1b75586e078ce9b61a82bda24c"
+  },
+  "default_containment_outside_samples": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "failed_trials_preserved": [
+    "trial-01",
+    "trial-02"
+  ],
+  "clipping_used": false,
+  "preview_sha256": "b96b1ea38404a3e89592b1b508b045eae39d941c8c9d2e5d6156860747f1e1e1",
+  "preview_source_sha256": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275"
+}

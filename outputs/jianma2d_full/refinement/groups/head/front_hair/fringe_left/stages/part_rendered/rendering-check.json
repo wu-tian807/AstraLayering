@@ -1,0 +1,16 @@
+{
+  "command": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/rendering.py",
+    "check",
+    "--groups",
+    "structure/groups.json",
+    "--rendering",
+    "structure/rendering.json",
+    "--svg",
+    "refinement/groups/head/front_hair/fringe_left/stages/part_rendered/candidate.svg"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"pass\", \"layers\": 25, \"complete\": false, \"scope\": \"Names, tree paths, SVG references and receiver mask structure only\"}\n",
+  "stderr": ""
+}

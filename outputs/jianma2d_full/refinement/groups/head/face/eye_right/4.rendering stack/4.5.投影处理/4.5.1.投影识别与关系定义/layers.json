@@ -1,0 +1,14 @@
+{
+  "layers": [
+    {
+      "id": "eye_right_upper_lid_cast_shadow",
+      "type": "shadow",
+      "owner": "head/face/eye_right/sclera",
+      "follow": "head/face/eye_right/upper_eyelid",
+      "clip_to": [
+        "head/face/eye_right/sclera"
+      ],
+      "note": "上睑在眼白上沿形成的狭窄软灰投影，眼睑与眼球相对运动需独立控制。与黑色上睫毛实体及虹膜固有暗蓝分开；当前仅作用于sclera，不跨画未完成iris。upper_eyelid具体part尚待n46拆分，后置绑定时解析到已绘制上睑。保留完整raw运动余量，第5步按受影part裁切及恢复眼裂。"
+    }
+  ]
+}

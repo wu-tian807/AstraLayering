@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-10-06T18:05:00.754050+00:00",
+  "logical_worker": "group:head/front_hair/temple_sweeps_right",
+  "old_actor": "/root/workflow_runner",
+  "new_actor": "/root/jianma_runner_recovery",
+  "failure_report": "Parent reports single-request image capacity exceeded (50 images); text-only resume gave same capacity error. Not a content-policy rejection. Exact raw platform error not held by recovery actor. Old actor not resumed.",
+  "native_pointer": "part_structure",
+  "successful_sha256": "4f8ec217f7ad7701de3c572f32c77b7fe255858e4802aa1ca9b506c37139d3fe",
+  "pending_node": "part_tone_boundaries",
+  "pending_candidate_sha256": "6584c7777fe46d96172ed026041bb7c6ef52a11ab9b2e44a6581b169bb108b6e",
+  "guide_sha256": "c43bd301488eb4c5eb772a2f018cc70db0dc269ae96bec4f096618cf29feee4c",
+  "review_reuse": "n28 frozen001 independent2.2 PASS by /root retained; new actor does not claim those views",
+  "model": "gpt-6-astra",
+  "reasoning": "xhigh",
+  "scope": "Resume n28 then serial current route/complete/next; no edits to input/upstream or root-owned delivery files"
+}

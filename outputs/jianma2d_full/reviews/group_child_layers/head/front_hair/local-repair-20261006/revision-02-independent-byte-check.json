@@ -1,0 +1,8 @@
+{
+  "method": "Replacing the single revised d string with the prior d recovers the complete prior SVG bytes exactly.",
+  "single_changed_path_id": "head-front-hair-fringe-left-shape",
+  "all_other_svg_bytes_unchanged": true,
+  "previous_candidate_sha256": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+  "candidate_sha256": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083",
+  "standard_guide_sha256": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083"
+}

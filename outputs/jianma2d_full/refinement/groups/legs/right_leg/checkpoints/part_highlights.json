@@ -1,0 +1,15 @@
+{
+  "node": "part_highlights",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "膝前小亮点按实看定位474.2,1134，补本侧大腿斜向柔光、胫前薄反射和踝部低强度亮点，均属皮肤表面。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_highlights.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_highlights"
+  },
+  "artwork_sha256": "f80b96281f8c12e7d3ebd0b8df0226ed1baed19d6402eaa78d404b50dbf0310c"
+}

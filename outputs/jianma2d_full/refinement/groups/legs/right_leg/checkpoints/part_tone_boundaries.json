@@ -1,0 +1,15 @@
+{
+  "node": "part_tone_boundaries",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "大腿正面漫亮、内外侧柔转面、膝前小亮点及胫前亮带、踝侧暗部按参考界定；均为同面明暗辅助，非最终墨线。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_tone_boundaries.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_tone_boundaries"
+  },
+  "artwork_sha256": "5bea6130d8d96555027f523126e8c21b0f1463c36a81e2325448c5a36951e0fd"
+}

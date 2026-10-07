@@ -1,0 +1,17 @@
+{
+  "target": "n23",
+  "node": "part_base_colors",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看本侧暖白眼球面和淡肤下睑，与相邻face临时组合核对。隐藏余量完整铺色，旧23条渲染关系逐字保留；上睑/虹膜和发丝遮挡仍未组合。",
+  "evidence": [
+    "views/part_base_colors.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_base_colors"
+  },
+  "artwork_sha256": "56717e9600a8ff4c0cab691716210c6df7a36a1798d656aca422480f49bbe67f",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc"
+}

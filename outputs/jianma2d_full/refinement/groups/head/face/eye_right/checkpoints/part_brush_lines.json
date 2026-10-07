@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "part_brush_lines",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实际perfect_freehand 1.2.0重绘下睑接触线，301个显式压力点、双端收尖、中央轻外角稍重；诊断和色区线隐藏，眼白无虚构描边。实看独显/参考后通过。",
+  "evidence": [
+    "views/part_brush_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_brush_lines"
+  },
+  "artwork_sha256": "9c7993b7e18e48b1f762798b6d163a7322910b411c2d02ecab8d9efa738f1035",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

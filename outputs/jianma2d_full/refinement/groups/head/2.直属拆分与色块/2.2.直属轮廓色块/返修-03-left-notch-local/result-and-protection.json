@@ -1,0 +1,47 @@
+{
+  "node": "group_child_layers",
+  "worker": "group:head",
+  "actual_author": "/root/head_finish",
+  "status": "ready_for_independent_review",
+  "changed_path_ids": [
+    "head-hair-left (node 1)",
+    "head-rear-left-main (node 2.2)"
+  ],
+  "exact_reverse_substitution_restores_original_guide": true,
+  "node2_frozen_parent_subtree_unchanged": true,
+  "other_children_and_resources_unchanged": true,
+  "protected_sha256": {
+    "structure/groups.json": "047eff70159a0a476c0b313d0eda3e411b127285f3330097598a45de47721b8b",
+    "refinement/character.svg": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2",
+    "structure/rendering.json": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4"
+  },
+  "bounds": {
+    "status": "pass",
+    "scale": 4,
+    "affected_group": "head",
+    "all_direct_children": 12,
+    "outside_samples": 0,
+    "waivers": []
+  },
+  "outputs": {
+    "guide_svg": {
+      "path": "block-layers/groups.svg",
+      "sha256": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1"
+    },
+    "preview": {
+      "path": "block-layers/preview.png",
+      "sha256": "4e1045e8ab6d36c7718e2b6a242d92ad07a97de1f60ce4833bd4410fab1d2523"
+    },
+    "bounds_check": {
+      "path": "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+      "sha256": "794cbd3a6d5c3e15b554b909cfe0e5193aa7cab1fcae0f67d7571392046c316c"
+    }
+  },
+  "actual_viewed": [
+    "01-child-notch.png",
+    "02-whole-blend.png"
+  ],
+  "pending": "Independent group_child_layers:head:review; no checkpoint/complete by maker"
+}

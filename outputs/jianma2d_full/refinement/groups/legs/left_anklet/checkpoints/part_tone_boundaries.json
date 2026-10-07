@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_tone_boundaries",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "标出中央银白反光和下缘蓝色转面，局部彩参/线参实看；区域闭合与软边明确，不把亮心作孔或把自身暗色作投影。",
+  "evidence": [
+    "views/part_tone_boundaries.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_tone_boundaries"
+  },
+  "artwork_sha256": "39849e321b04dc8f393061aa4993de6c2d88ee759f0c9f21f6c274759219e63e"
+}

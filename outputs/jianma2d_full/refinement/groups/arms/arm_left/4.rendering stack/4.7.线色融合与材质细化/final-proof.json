@@ -1,0 +1,12 @@
+{
+  "node": "part_rendered",
+  "worker_id": "/root/workflow_runner/arm_left",
+  "artwork_sha256": "af8b27d13baa97b01961d320e8993cc43f218fd1f7ce3362d5122fc0daafcd8f",
+  "unchanged_original_root_containers": 46,
+  "original_independent_layers_preserved": 19,
+  "independent_layers_total": 20,
+  "direct_part_outlines_equal_guide": true,
+  "final_comparison": "views/part_rendered-readable.png",
+  "raw_shadow": "views/cast-shadow-raw.png",
+  "open_own_part_issues": []
+}

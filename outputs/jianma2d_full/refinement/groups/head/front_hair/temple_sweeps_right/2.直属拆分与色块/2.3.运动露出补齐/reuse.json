@@ -1,0 +1,14 @@
+{
+  "source_bounds": "refinement/groups/head/front_hair/temple_sweeps_right/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+  "visual_tree_unchanged": true,
+  "candidate_sha256": "c43bd301488eb4c5eb772a2f018cc70db0dc269ae96bec4f096618cf29feee4c",
+  "only_desc_added_to": [
+    "upper_temple_lock",
+    "middle_temple_lock",
+    "lower_temple_lock",
+    "ear_lock"
+  ],
+  "new_parts": 0,
+  "bounds_reused": true,
+  "preview_reused": true
+}

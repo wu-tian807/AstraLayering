@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="895" height="1758" viewBox="0 0 895 1758" version="1.1"><title>初始六组可见轮廓色块</title>
+  <desc>Hand-drawn closed Bézier silhouettes in reference pixel coordinates. Six editable component groups. No embedded images. Crown and hair negative spaces preserved. Temporary garment is not a separate component.</desc>
+  <g id="group-head-hanging-ribbon-right" data-group-path="head/hanging_ribbon_right" fill="#72A974" stroke="none">
+    <path id="head-child-ribbon-right" d="M 567.65 180.45 L 576 194 C 579 268 584 351 590 417 C 593 466 599 509 607 545 C 594 522 585 490 580 451 C 568 367 562 276 556 195 L 556.6 194 L 566.29 181.3 C 566.35 181.5 566.42 181.68 566.5 181.8 C 567.0 181.2 567.38 180.83 567.65 180.45 Z M 567.2 183.7 C 565.3 185.0 565.2 187.1 567.2 189.0 C 569.2 187.4 569.5 185.0 567.2 183.7 Z" stroke="none" fill-rule="evenodd" />
+    <path id="head-child-chain-right" d="M 567.2 135.6 C 570.0 137.4 570.1 141.2 567.3 144.0 C 564.1 141.8 564.1 138.0 567.2 135.6 Z M 567.2 143.7 C 568.3 146.3 570.0 149.5 569.1 152.1 L 565.0 152.1 C 564.0 149.6 565.9 146.2 567.2 143.7 Z M 567.1 151.2 L 575.0 159.8 L 567.1 167.8 L 559.8 160.0 Z M 567.1 167.3 C 571.7 167.7 572.3 171.8 569.0 175.3 L 567.2 177.2 L 565.0 175.4 C 561.5 172.4 562.6 168.0 567.1 167.3 Z M 567.0 174.8 C 569.5 177.0 569.4 180.6 568.0 183.0 L 565.9 183.5 C 564.6 180.7 565.1 177.0 567.0 174.8 Z M 567.2 138.1 C 565.8 139.3 566.0 140.9 567.3 142.0 C 568.7 140.9 568.7 139.3 567.2 138.1 Z M 567.1 147.0 C 566.3 148.1 566.0 149.6 566.2 150.6 L 568.0 150.6 C 568.3 149.3 567.9 147.9 567.1 147.0 Z M 567.1 177.5 C 566.2 179.0 566.1 180.5 566.5 181.8 C 567.8 180.2 567.8 179.0 567.1 177.5 Z" stroke="none" />
+  </g>
+  </svg>

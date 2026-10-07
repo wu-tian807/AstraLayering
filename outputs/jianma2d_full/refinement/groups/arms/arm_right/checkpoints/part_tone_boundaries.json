@@ -1,0 +1,15 @@
+{
+  "node": "part_tone_boundaries",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "7条明暗范围已画并逐件对照彩参/线参；自身转面、肘窝和柔亮与右前发外来投影分开，软边宽度及完整隐藏面延续写明。",
+  "evidence": [
+    "views/part_tone_boundaries.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_tone_boundaries"
+  },
+  "artwork_sha256": "eeeed0938d29033ba0565d404dc968dcbd627013d0845fc3d3f8c3ab28106125"
+}

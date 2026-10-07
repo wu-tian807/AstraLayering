@@ -1,0 +1,58 @@
+{
+  "status": "pass",
+  "group_path": "head/face/eye_left",
+  "parent_svg": "refinement/groups/head/face/eye_left/2.直属拆分与色块/2.3.运动露出补齐/input/guide.svg",
+  "parent_ids": [
+    "group-head-face-eye-left"
+  ],
+  "candidate_svg": "refinement/groups/head/face/eye_left/2.直属拆分与色块/2.3.运动露出补齐/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/face/eye_left/upper_eyelid",
+      "status": "pass",
+      "ids": [
+        "group-head-face-eye-left-upper-eyelid"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "head/face/eye_left/iris",
+      "status": "pass",
+      "ids": [
+        "group-head-face-eye-left-iris"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/eye_left/sclera",
+      "status": "pass",
+      "ids": [
+        "part-head-face-eye-left-sclera"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/eye_left/lower_eyelid",
+      "status": "pass",
+      "ids": [
+        "part-head-face-eye-left-lower-eyelid"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

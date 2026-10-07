@@ -1,0 +1,18 @@
+{
+  "node": "cast_shadow_artwork",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "3个独立raw投影已画，逐个独显与原生apply诊断组合5张图实际查看；17层原生结构check通过，正式raw仍完整未绑定receiver。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/raw-and-parts.svg": "4f8008e51ef2e523a5926bad8e28d334c57b0ac625d475f115dd0dfc78cf4124",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/raw-0.png": "0d44c2adf2a6e33f45e4069d39358a3bb39fb5c6aa9875783d137630c1aabb91",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/raw-1.png": "da646ee091221e37aabd945b9fcb8e7e2f9b5cf059bac991e018e8b1c8e129e5",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/raw-2.png": "8373ab149ce5d9f583a4c3f261283b2b13a6e47491a59b656e09d3dfcd3dc575",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/root.png": "6c4334fcd9b339a7917d3c45f3074b3a7f5cdd6ba324dc501ee6e15d82f1e757",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/tail.png": "49a5d794c4787e08cda4f4ff385fa4781d6709f805059a77efe84d41192dea24",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/structure-check.json": "272b26581cb01b020d9f10e7db168355094d393d85b64973c3fa56f3aa8dc6dd",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/说明.md": "58b91104297edbf540463893f7cfc90ecb3f3188655d70c79d2b3ed1165c16d0"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "b12b5d704dc7eb21d6fdb191285305e35ceeca23850a1e321fb3282c5144018c"
+}

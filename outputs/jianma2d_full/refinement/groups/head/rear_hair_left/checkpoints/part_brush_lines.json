@@ -1,0 +1,16 @@
+{
+  "node": "part_brush_lines",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "9条实际perfect-freehand压力笔触完成并逐件实看；辅助线隐藏保留，重叠面clip断线已用相同实填轮廓alpha union修复，白底正式预览已更新。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/3.geometry/3.5.画笔重绘/parts.svg": "3e873f2cd817c7e3e057570266b9d9a8b6e7c42705ae6ae939fe733d4cb625a4",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.5.画笔重绘/root.png": "f66177cb5cc1689c1eff34ac38e28deb42b69f8feb09b54954db70dede42ad2c",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.5.画笔重绘/tail.png": "72c6ac781a5c28c6f1a5817cb411833ef80fc1cb30bcbba4b4eae026863856fe",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.5.画笔重绘/brush-samples.json": "994a13b2a07b855c24b749f7dfda6e5c06f82aba6f714c7c835a5455b25b14a7",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.5.画笔重绘/说明.md": "28c9d4cf232ee66f77366a9a269ebee98c60de4ff4f61438281f8eae838da7d4",
+    "refinement/preview.png": "13f48e2810f1dae3e29c1595d26fb5a19f4fe5e67f110d4ce062115ad1a9b4a6"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "9bdd8530a8794076f8e36ef8914504d824e4a59a825aaad26e1726616c5466c1"
+}

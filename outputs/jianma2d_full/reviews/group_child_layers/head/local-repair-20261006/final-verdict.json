@@ -1,0 +1,211 @@
+{
+  "overall": "pass",
+  "logical_identity": "group_child_layers:head:review",
+  "reviewer": "/root/workflow_runner/review_head_notch",
+  "candidate_sha256": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+  "report": "reviews/group_child_layers/head/审查.md",
+  "evidence_dir": "reviews/group_child_layers/head/local-repair-20261006",
+  "actual_view_count": 8,
+  "children": [
+    {
+      "path": "head/face",
+      "container": "group-head-face",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-face",
+        "head-face-skin",
+        "head-face-left-ear-completion"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [
+        "head-face-hidden-forehead-temples"
+      ],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/front_hair",
+      "container": "group-head-front-hair",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-front-hair",
+        "head-front-hair-cap"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/face_framing_hair_left",
+      "container": "group-head-face-framing-hair-left",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-face-framing-hair-left",
+        "head-framing-left-main",
+        "head-framing-left-loop",
+        "head-framing-left-chest-loop"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/face_framing_hair_right",
+      "container": "group-head-face-framing-hair-right",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-face-framing-hair-right",
+        "head-framing-right-main",
+        "head-framing-right-loop",
+        "head-framing-right-chest-loop"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/rear_hair_left",
+      "container": "group-head-rear-hair-left",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-rear-hair-left",
+        "r1s1_head-rear-left-ear-opening-clip",
+        "r1s1_head-rear-left-ear-opening-geometry",
+        "head-rear-left-neck",
+        "head-rear-left-central-tail",
+        "head-rear-left-root",
+        "head-rear-left-hidden"
+      ],
+      "changed_ids": [
+        "head-rear-left-main"
+      ],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "new_visual_review"
+    },
+    {
+      "path": "head/rear_hair_right",
+      "container": "group-head-rear-hair-right",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-rear-hair-right",
+        "head-rear-right-main",
+        "head-rear-right-neck",
+        "head-rear-right-root",
+        "head-rear-right-hidden"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/crown",
+      "container": "group-head-crown",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-crown",
+        "head-child-crown-arch",
+        "head-child-crown-left",
+        "head-child-crown-right",
+        "head-child-crown-left-scroll",
+        "head-child-crown-right-scroll",
+        "head-child-crown-jewel",
+        "head-crown-mid-chain",
+        "head-crown-mid-gems"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [
+        "head-crown-hidden-anchor-center",
+        "head-crown-hidden-anchor-left",
+        "head-crown-hidden-anchor-right"
+      ],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/hanging_ribbon_left",
+      "container": "group-head-hanging-ribbon-left",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-hanging-ribbon-left",
+        "head-child-ribbon-left",
+        "head-child-chain-left"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/hanging_ribbon_right",
+      "container": "group-head-hanging-ribbon-right",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-hanging-ribbon-right",
+        "head-child-ribbon-right",
+        "head-child-chain-right"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/topknot_bun",
+      "container": "part-head-topknot-bun",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "part-head-topknot-bun",
+        "head-child-topknot-bun"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/earring_left",
+      "container": "part-head-earring-left",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "part-head-earring-left",
+        "head-earring-left-chain",
+        "head-earring-left-jewel"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/earring_right",
+      "container": "part-head-earring-right",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "part-head-earring-right",
+        "head-earring-right-chain",
+        "head-earring-right-jewel"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    }
+  ],
+  "bounds_reused": {
+    "path": "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json",
+    "sha256": "794cbd3a6d5c3e15b554b909cfe0e5193aa7cab1fcae0f67d7571392046c316c",
+    "scale": 4,
+    "alpha_threshold": 128,
+    "all_direct_children": 12,
+    "outside_samples": 0,
+    "rerun": false
+  },
+  "all_protected_inputs_unchanged": true,
+  "protected_sha256": {
+    "block-layers/groups.svg": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+    "structure/groups.json": "047eff70159a0a476c0b313d0eda3e411b127285f3330097598a45de47721b8b",
+    "structure/rendering.json": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb",
+    "refinement/character.svg": "add39e9423d05d0ae706658141110c1ff5894567726ad1b029fe2c4fe23ecbe2",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+    "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/返修-03-left-notch-local/candidate.svg": "8063d357dfa2398bb808f7ce9ae3dd0e3949f89cb157ab675cc31a389944b7a1",
+    "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/返修-03-left-notch-local/input-parent.svg": "335040c16d70e45b7c5d9d65544a2b93a2bc996da6af80ba6abba6340ef73fc6",
+    "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/返修-03-left-notch-local/result-and-protection.json": "0d9844669ba570a1201653fe76bf71594b8107b7eaed5820895a28dee21b8d57",
+    "refinement/groups/head/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查.json": "794cbd3a6d5c3e15b554b909cfe0e5193aa7cab1fcae0f67d7571392046c316c"
+  },
+  "historical_report_prefix_preserved": true,
+  "no_checkpoint_or_state_mutation": true
+}

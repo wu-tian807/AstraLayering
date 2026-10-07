@@ -1,0 +1,15 @@
+{
+  "node": "part_detail_lines",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "逐件彩参/线参确认光洁皮肤无需额外纹理；膝亮斑、浅凹及踝起伏沿用既有定位，隐藏同面保持同样低密度。",
+  "evidence": [
+    "views/part_detail_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_detail_lines"
+  },
+  "artwork_sha256": "ceaa87f8719f9b1f4b5df40323f5ebbd5f34a6642fe3e8dd007587b584e22df4"
+}

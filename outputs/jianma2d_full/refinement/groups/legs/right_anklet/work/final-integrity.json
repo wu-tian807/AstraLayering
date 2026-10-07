@@ -1,0 +1,16 @@
+{
+  "status": "pass",
+  "prior_ids_unchanged": 1636,
+  "prior_id_order_unchanged": true,
+  "groups_and_references_unchanged": true,
+  "rendering_byte_identical": true,
+  "guide_matches_2_3": true,
+  "approved_surface_geometry_preserved": true,
+  "native_rendering_check": {
+    "status": "pass",
+    "layers": 21,
+    "complete": false,
+    "scope": "Names, tree paths, SVG references and receiver mask structure only"
+  },
+  "candidate_sha256": "b0387e6409daa389e24893b09461803330fa86a2036fe1d0e3c1a0e910e945de"
+}

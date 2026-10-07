@@ -1,0 +1,93 @@
+{
+  "status": "fail",
+  "group_path": "head/front_hair/temple_sweeps_right",
+  "parent_svg": "refinement/groups/head/front_hair/temple_sweeps_right/2.直属拆分与色块/2.2.直属轮廓色块/input.svg",
+  "parent_ids": [
+    "group-head-front-hair-temple-sweeps-right"
+  ],
+  "candidate_svg": "refinement/groups/head/front_hair/temple_sweeps_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/front_hair/temple_sweeps_right/crown_sweeps",
+      "status": "fail",
+      "ids": [
+        "group-head-front-hair-temple-sweeps-right-crown-sweeps"
+      ],
+      "outside_samples": 196,
+      "outside_area_px2": 12.25,
+      "outside_bbox": [
+        440.0,
+        166.25,
+        13.0,
+        8.75
+      ],
+      "diagnostic": "refinement/groups/head/front_hair/temple_sweeps_right/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查-images/01-outside.png",
+      "diagnostic_crop": [
+        439.0,
+        158.25,
+        22.0,
+        24.75
+      ]
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/temple_sweeps_right/upper_temple_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-temple-sweeps-right-upper-temple-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/temple_sweeps_right/middle_temple_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-temple-sweeps-right-middle-temple-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/temple_sweeps_right/lower_temple_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-temple-sweeps-right-lower-temple-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/temple_sweeps_right/ear_lock",
+      "status": "fail",
+      "ids": [
+        "part-head-front-hair-temple-sweeps-right-ear-lock"
+      ],
+      "outside_samples": 1,
+      "outside_area_px2": 0.0625,
+      "outside_bbox": [
+        523.25,
+        237.75,
+        0.25,
+        0.25
+      ],
+      "diagnostic": "refinement/groups/head/front_hair/temple_sweeps_right/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查-images/05-outside.png",
+      "diagnostic_crop": [
+        515.25,
+        229.75,
+        10.75,
+        16.25
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "part_rendered",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "本侧全栈实际看图：水滴外缘、上灰蓝/中银白偏青/下集中蓝色与参考对应；线色融入本材质，几何和压力源保留。既有所有ID与21层关系完整性通过；链、主坠、足部接界组合待各自group与后置，未冒称全局完成。",
+  "evidence": [
+    "views/part_rendered.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_rendered"
+  },
+  "artwork_sha256": "b0387e6409daa389e24893b09461803330fa86a2036fe1d0e3c1a0e910e945de"
+}

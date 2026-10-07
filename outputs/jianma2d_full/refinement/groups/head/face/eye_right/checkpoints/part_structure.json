@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "part_structure",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "逐part实看后沿用contact_rim结构；光滑眼白与参考下睑无额外折痕，不造血丝、第二下眼袋线或虹膜结构。已记录明确的复用依据。",
+  "evidence": [
+    "views/part_structure.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_structure"
+  },
+  "artwork_sha256": "8b2da765289c5943a1ae14b84acb8fe4d45996e921b4459e2e3e118353d6a4c7",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

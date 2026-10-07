@@ -1,0 +1,22 @@
+{
+  "node": "part_motion_completion",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "status": "pass",
+  "geometry_unchanged": true,
+  "new_parts": [],
+  "bounds_outside_samples": [
+    0,
+    0,
+    0
+  ],
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "evidence": [
+    "2.直属拆分与色块/2.3.运动露出补齐/evidence/motion-examples.png",
+    "2.直属拆分与色块/2.3.运动露出补齐/evidence/motion-review-board.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_motion_completion"
+  }
+}

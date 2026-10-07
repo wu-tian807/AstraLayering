@@ -1,0 +1,7 @@
+{
+  "node": "part_structure",
+  "worker": "/root/workflow_runner/ribbon_right",
+  "guide_sha256": "f81db239c0250347e6560b63c7bc730ce773828d3771a5bdf1859f1574ed57aa",
+  "artwork_sha256": "82c810913d91486621eece23cedcc66ee9c10ca68c493735538ed388eb2ca958",
+  "note": "左右薄边转面和孔下右偏短收束已画，彩参/线参同坐标实看；遮挡同面结构连续，成稿由色面接管，无中心缝和分叉。"
+}

@@ -1,0 +1,17 @@
+{
+  "target": "n22",
+  "node": "part_color_transitions",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看眼白内角低对比暖色、下睑0.5–1px柔和暖接触带与同参数脸颊局部色；过渡连续，未改变闭合几何或添加第二道折线。",
+  "evidence": [
+    "views/part_color_transitions.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_color_transitions"
+  },
+  "artwork_sha256": "e7842d7128bf70753e3a3e96aca208f337c3546a0883b5bb3c754e5da62c1d9e",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

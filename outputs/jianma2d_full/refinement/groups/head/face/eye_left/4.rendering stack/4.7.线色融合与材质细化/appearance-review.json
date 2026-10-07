@@ -1,0 +1,27 @@
+{
+  "reference_observations": {
+    "sclera": "Pale warm white, slightly cool temporal turn, very light nasal wedge; no blood vessels, dark full-circle outline or spherical bead highlight.",
+    "lower_eyelid": "Low rounded contact arc, short deeper warm brown temporal segment under crossing hair; central lower rim light, nasal tip fine; skin below blends into warm cheek.",
+    "corneal_reflection": "Reference peak concentrated on row247 near x399–401; short soft white optical shape with asymmetric lower edge, unlike a tall spot."
+  },
+  "changes": [
+    "Eye white shares one continuous colour field over both full approved closed surfaces.",
+    "Lower lid uses face light field and left cheek field, plus a thin warm contact band; hidden outside boundary receives no ink.",
+    "Pressure contour retains stronger short outer edge but neutral ink is replaced by low contrast warm gradient.",
+    "Primary optical highlight was reduced after comparison; raw shape and relationship remain independent."
+  ],
+  "pending_composition": [
+    "Upper eyelid n48 and iris n49 have no internal artwork in this task; full-eye likeness is not claimed.",
+    "The upper hidden ocular bed is still exposed in temporary combination; final upper lid must restore actual aperture.",
+    "The temporal notch and full outer-lid overlap remain exposed until crossing hair and eye/face occlusion are combined; do not treat them as final visible eye outline.",
+    "Raw upper-lid shadow extends beyond sclera at corners and must receive a sclera mask and final placement under upper lid.",
+    "Glint is hard to see on the temporary white base; n49 must reuse existing eye_left_corneal_highlight and bind actual iris receivers, with eyelid/hair occlusion."
+  ],
+  "scope": [
+    "head/face/eye_left/sclera",
+    "head/face/eye_left/lower_eyelid"
+  ],
+  "worker_id": "/root/workflow_runner/arm_right",
+  "logical_worker": "group:head/face/eye_left",
+  "new_independent_context": false
+}

@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_volume",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "已实看完整三part及实际face组合。唇/内侧隐藏边沿用同坐标面部光场与下颏暖色，口腔中心保持连续玫瑰褐深度；外围仅在隐藏搭接内柔和过渡，已消除4.1暗AA环。可见上唇暖粉转面、下唇淡入肤色，无厚唇外弧或物理几何改动。",
+  "artwork_sha256": "8a54998d31914a9508de7610f97955fd59eaaeebcca0824cbb4301f33f5163f0",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_volume.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_volume"
+  }
+}

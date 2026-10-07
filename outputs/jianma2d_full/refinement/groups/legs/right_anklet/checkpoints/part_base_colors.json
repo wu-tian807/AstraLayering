@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "part_base_colors",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "按本侧参考重判冷银蓝材质并铺完整基色；实际查看独显及邻近参考，保留本侧形体，无新增材料分割或关系。",
+  "evidence": [
+    "views/part_base_colors.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_base_colors"
+  },
+  "artwork_sha256": "1851cefbeeba2a0404942fa29c6cfc963f29c3d8b42531a19e07cba843cc0c0f"
+}

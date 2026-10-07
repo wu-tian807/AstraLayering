@@ -1,0 +1,17 @@
+{
+  "target": "n23",
+  "node": "part_tone_boundaries",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看后定位本侧两眼角转面、细暖睑缘和肤色搭接；上睑窄投影单独标记，交叉发丝处不确定的额外暗部不重复铸层。所有色区辅助线最终隐藏。",
+  "evidence": [
+    "views/part_tone_boundaries.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_tone_boundaries"
+  },
+  "artwork_sha256": "4930e0964c3854d8ea6de662f97e755ee98a5a29131ffccd5dd698cb37bee353",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc"
+}

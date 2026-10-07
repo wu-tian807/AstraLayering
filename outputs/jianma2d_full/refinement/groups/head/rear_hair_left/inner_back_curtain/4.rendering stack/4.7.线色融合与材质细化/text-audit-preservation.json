@@ -1,0 +1,219 @@
+{
+  "status": "fail",
+  "scope": "original physical geometry and complete raw effect subtrees only; style repairs listed for separate visual approval",
+  "inputs": {
+    "refinement/character.svg": "d14a7c67e5f37d3b3bd03bf57d83592680846e12c0b792aaaf2a0bc94f301195",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/candidate.svg": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d"
+  },
+  "physical_parts": 57,
+  "missing_parts": [],
+  "added_parts": [],
+  "geometry_changes": [
+    "head/rear_hair_left/inner_back_curtain/nape_back_sheet"
+  ],
+  "physical_style_or_metadata_changes": [
+    "head/rear_hair_left/inner_back_curtain/inner_side_lock"
+  ],
+  "raw_effects": [
+    {
+      "id": "neck_neck_skin_jaw_cast_shadow",
+      "source_canonical_sha256": "aee8271944169a2346880fc08d2dad428f5dfa4c21ff6cd98e66ddd855974c25",
+      "candidate_canonical_sha256": "aee8271944169a2346880fc08d2dad428f5dfa4c21ff6cd98e66ddd855974c25",
+      "unchanged": true
+    },
+    {
+      "id": "body_torso_skin_hair_cast_left",
+      "source_canonical_sha256": "43dbab5071465eac79cbd6aff72065728c2b4d6b1d531ea207ba5ed074812b7e",
+      "candidate_canonical_sha256": "43dbab5071465eac79cbd6aff72065728c2b4d6b1d531ea207ba5ed074812b7e",
+      "unchanged": true
+    },
+    {
+      "id": "body_torso_skin_hair_cast_right",
+      "source_canonical_sha256": "1c79523bafa8681c1c6b79231d45cc945ba25901fcf77d4922f16a6c6d346264",
+      "candidate_canonical_sha256": "1c79523bafa8681c1c6b79231d45cc945ba25901fcf77d4922f16a6c6d346264",
+      "unchanged": true
+    },
+    {
+      "id": "head_face_face_skin_hair_cast_left",
+      "source_canonical_sha256": "a8255c894625958379392346cba631d8aa0a6963efe69118f8aad3e04c520a50",
+      "candidate_canonical_sha256": "a8255c894625958379392346cba631d8aa0a6963efe69118f8aad3e04c520a50",
+      "unchanged": true
+    },
+    {
+      "id": "head_face_ear_left_hair_cast_left",
+      "source_canonical_sha256": "29cb9118e462ad1ed40f5aa9024d1e15d99e6fd42f5f7477f2bcda7846fec55b",
+      "candidate_canonical_sha256": "29cb9118e462ad1ed40f5aa9024d1e15d99e6fd42f5f7477f2bcda7846fec55b",
+      "unchanged": true
+    },
+    {
+      "id": "head_face_face_skin_hair_cast_right",
+      "source_canonical_sha256": "eeabafbc0db2b601bff248c11b51afa8368513886dc5229e58ad9019aeaf6d75",
+      "candidate_canonical_sha256": "eeabafbc0db2b601bff248c11b51afa8368513886dc5229e58ad9019aeaf6d75",
+      "unchanged": true
+    },
+    {
+      "id": "head_face_ear_right_hair_cast_right",
+      "source_canonical_sha256": "19043da152fdd09cced743127ede1b2c7b3ff70379d2e721c2c46c17844762ac",
+      "candidate_canonical_sha256": "19043da152fdd09cced743127ede1b2c7b3ff70379d2e721c2c46c17844762ac",
+      "unchanged": true
+    },
+    {
+      "id": "head_front_hair_scalp_cap_crown_cast_shadow",
+      "source_canonical_sha256": "cf6abfea9d9bec9f28205440278457a413d161c211fdea870cde41bd12ac476c",
+      "candidate_canonical_sha256": "cf6abfea9d9bec9f28205440278457a413d161c211fdea870cde41bd12ac476c",
+      "unchanged": true
+    },
+    {
+      "id": "head_front_hair_scalp_cap_fringe_left_cast_shadow",
+      "source_canonical_sha256": "a9c8c46828eab3243a70c7576a5037fdb6837fc5d26c4104d9efcc91e27bd137",
+      "candidate_canonical_sha256": "a9c8c46828eab3243a70c7576a5037fdb6837fc5d26c4104d9efcc91e27bd137",
+      "unchanged": true
+    },
+    {
+      "id": "head_front_hair_scalp_cap_fringe_right_cast_shadow",
+      "source_canonical_sha256": "ba339c7f6047e8cd5a6517b4d16364d4de88ffe5a8912985c52184222957ab5b",
+      "candidate_canonical_sha256": "ba339c7f6047e8cd5a6517b4d16364d4de88ffe5a8912985c52184222957ab5b",
+      "unchanged": true
+    },
+    {
+      "id": "head_face_framing_hair_left_main_long_lock_front_hair_cast_shadow",
+      "source_canonical_sha256": "b3afd123642f797feb63ba77c02fb82c3fbfbd44e276e6548e7078d6a7a2f913",
+      "candidate_canonical_sha256": "b3afd123642f797feb63ba77c02fb82c3fbfbd44e276e6548e7078d6a7a2f913",
+      "unchanged": true
+    },
+    {
+      "id": "head_face_framing_hair_right_main_long_lock_front_hair_cast_shadow",
+      "source_canonical_sha256": "027f785865a62ca1cbb65d8c7e92177980e6f93279a64bc17ba1a804c18083f9",
+      "candidate_canonical_sha256": "027f785865a62ca1cbb65d8c7e92177980e6f93279a64bc17ba1a804c18083f9",
+      "unchanged": true
+    },
+    {
+      "id": "head_rear_hair_right_occipital_root_face_cast_shadow",
+      "source_canonical_sha256": "dabefb57f48fff5e4f1f950a4daf933b676f69135739acad13f7e9456817e4a0",
+      "candidate_canonical_sha256": "dabefb57f48fff5e4f1f950a4daf933b676f69135739acad13f7e9456817e4a0",
+      "unchanged": true
+    },
+    {
+      "id": "head_crown_center_crest_front_hair_shadow",
+      "source_canonical_sha256": "6dcf30102ee8da163d03ad6ebb6f3e23d1484e5353cd6a252d94842f4462ff5e",
+      "candidate_canonical_sha256": "6dcf30102ee8da163d03ad6ebb6f3e23d1484e5353cd6a252d94842f4462ff5e",
+      "unchanged": true
+    },
+    {
+      "id": "head_rear_hair_left_occipital_root_face_cast_shadow",
+      "source_canonical_sha256": "a42e08fac5dc769856070a66c8142810783758c223b295ee9f84426084ea1a15",
+      "candidate_canonical_sha256": "a42e08fac5dc769856070a66c8142810783758c223b295ee9f84426084ea1a15",
+      "unchanged": true
+    },
+    {
+      "id": "head_rear_hair_left_central_back_tail_left_leg_cast_shadow",
+      "source_canonical_sha256": "3c4fab269d0e6e2e4305524c67fdc05496d07bd2041622993bda5ccdda07a3eb",
+      "candidate_canonical_sha256": "3c4fab269d0e6e2e4305524c67fdc05496d07bd2041622993bda5ccdda07a3eb",
+      "unchanged": true
+    },
+    {
+      "id": "head_rear_hair_left_central_back_tail_right_leg_cast_shadow",
+      "source_canonical_sha256": "d72e9f2c7655401537a9147d51499f8b7b23b8a4a5431838e2e07845a29b61bb",
+      "candidate_canonical_sha256": "d72e9f2c7655401537a9147d51499f8b7b23b8a4a5431838e2e07845a29b61bb",
+      "unchanged": true
+    },
+    {
+      "id": "head_hanging_ribbon_left_ribbon_strip_hanger_cast_shadow",
+      "source_canonical_sha256": "b84f0e6bfbfc4088622e246f46544e88010890a2571b91a665689c91a44d6715",
+      "candidate_canonical_sha256": "b84f0e6bfbfc4088622e246f46544e88010890a2571b91a665689c91a44d6715",
+      "unchanged": true
+    },
+    {
+      "id": "head_hanging_ribbon_right_ribbon_strip_hanger_cast_shadow",
+      "source_canonical_sha256": "f0880370c5410d5892bd21b5743c0872f38b42ac9882ac977a76df5f8870404c",
+      "candidate_canonical_sha256": "f0880370c5410d5892bd21b5743c0872f38b42ac9882ac977a76df5f8870404c",
+      "unchanged": true
+    },
+    {
+      "id": "arms_arm_left_upper_arm_hair_cast_shadow",
+      "source_canonical_sha256": "4bf9ad2a04d6d573799a434039399ad198ed2cffe7ce28c6f624a06b9d5bdbfc",
+      "candidate_canonical_sha256": "4bf9ad2a04d6d573799a434039399ad198ed2cffe7ce28c6f624a06b9d5bdbfc",
+      "unchanged": true
+    },
+    {
+      "id": "arms_arm_right_upper_arm_hair_cast_shadow",
+      "source_canonical_sha256": "91644c9fcb513a320f2839930b15e98cc36c0818e6c0c2354190c82c3eb7f028",
+      "candidate_canonical_sha256": "91644c9fcb513a320f2839930b15e98cc36c0818e6c0c2354190c82c3eb7f028",
+      "unchanged": true
+    },
+    {
+      "id": "eye_right_upper_lid_cast_shadow",
+      "source_canonical_sha256": "471f7005daca156c10fa9bbf6ea2e83ab14b3bc2636c3c42cb9ea1d0570cd39f",
+      "candidate_canonical_sha256": "471f7005daca156c10fa9bbf6ea2e83ab14b3bc2636c3c42cb9ea1d0570cd39f",
+      "unchanged": true
+    },
+    {
+      "id": "eye_right_corneal_highlight",
+      "source_canonical_sha256": "ecd7622e9aba52830e643d042f04ee390b529018beba3046713f4c0505a960f9",
+      "candidate_canonical_sha256": "ecd7622e9aba52830e643d042f04ee390b529018beba3046713f4c0505a960f9",
+      "unchanged": true
+    },
+    {
+      "id": "eye_left_upper_lid_cast_shadow",
+      "source_canonical_sha256": "8eea99c62db8824dc210aa97c72a6f1bf8544910cee8e428a32d973cd5318213",
+      "candidate_canonical_sha256": "8eea99c62db8824dc210aa97c72a6f1bf8544910cee8e428a32d973cd5318213",
+      "unchanged": true
+    },
+    {
+      "id": "eye_left_corneal_highlight",
+      "source_canonical_sha256": "9dbb460b7afc5381f9652aaf2f628eb1e8de46ff8ba825e0e0c03344884ba6e5",
+      "candidate_canonical_sha256": "9dbb460b7afc5381f9652aaf2f628eb1e8de46ff8ba825e0e0c03344884ba6e5",
+      "unchanged": true
+    },
+    {
+      "id": "left_temple_upper_temple_lock_cast_shadow",
+      "source_canonical_sha256": "b330895a0caf7a74fd405e3ca91258fe35275b1822a0f292b3bac971d4dfa4ec",
+      "candidate_canonical_sha256": "b330895a0caf7a74fd405e3ca91258fe35275b1822a0f292b3bac971d4dfa4ec",
+      "unchanged": true
+    },
+    {
+      "id": "left_temple_middle_temple_lock_cast_shadow",
+      "source_canonical_sha256": "7e5db5a5cca453c202a823a8dea15c0d2440e77a4fca9d1d42e6e76abda5dda1",
+      "candidate_canonical_sha256": "7e5db5a5cca453c202a823a8dea15c0d2440e77a4fca9d1d42e6e76abda5dda1",
+      "unchanged": true
+    },
+    {
+      "id": "left_temple_lower_temple_lock_cast_shadow",
+      "source_canonical_sha256": "251c4648f99c99f0c004a19a2325566d6a7d23c4db1d72f6bca156e2fc47154d",
+      "candidate_canonical_sha256": "251c4648f99c99f0c004a19a2325566d6a7d23c4db1d72f6bca156e2fc47154d",
+      "unchanged": true
+    },
+    {
+      "id": "left_temple_ear_lock_cast_shadow",
+      "source_canonical_sha256": "8e5f577de93d14e7bdb48e05f6a2aa15dc570f4fa21eabe2bce29d146fd05e1d",
+      "candidate_canonical_sha256": "8e5f577de93d14e7bdb48e05f6a2aa15dc570f4fa21eabe2bce29d146fd05e1d",
+      "unchanged": true
+    },
+    {
+      "id": "right_temple_upper_temple_lock_cast_shadow",
+      "source_canonical_sha256": "85fcc11beb0056c8ef0d12496ae562897070de78fc8741702646cec4bd8430d0",
+      "candidate_canonical_sha256": "85fcc11beb0056c8ef0d12496ae562897070de78fc8741702646cec4bd8430d0",
+      "unchanged": true
+    },
+    {
+      "id": "right_temple_middle_temple_lock_cast_shadow",
+      "source_canonical_sha256": "35e62497088446445b6480d2760ee2ff1a0aa6beda3a84d6c03280d002294ff4",
+      "candidate_canonical_sha256": "35e62497088446445b6480d2760ee2ff1a0aa6beda3a84d6c03280d002294ff4",
+      "unchanged": true
+    },
+    {
+      "id": "right_temple_lower_temple_lock_cast_shadow",
+      "source_canonical_sha256": "36641e67cc1c4ae9f4a6132d20a7752200df338d6018633269f8fd1432e5551f",
+      "candidate_canonical_sha256": "36641e67cc1c4ae9f4a6132d20a7752200df338d6018633269f8fd1432e5551f",
+      "unchanged": true
+    },
+    {
+      "id": "right_temple_ear_lock_cast_shadow",
+      "source_canonical_sha256": "1ed00634ff0ed2a061f9d57c400e52ec68275a2a919fca848f94f64d606f30fc",
+      "candidate_canonical_sha256": "1ed00634ff0ed2a061f9d57c400e52ec68275a2a919fca848f94f64d606f30fc",
+      "unchanged": true
+    }
+  ],
+  "raw_issues": []
+}

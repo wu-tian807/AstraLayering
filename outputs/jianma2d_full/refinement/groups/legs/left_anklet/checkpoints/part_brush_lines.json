@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_brush_lines",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已按原两条外轮廓密集采样显式压力，perfect-freehand 1.2.0 实现闭合填色笔触和细尖起收；实看独显/线稿，内辅助线隐藏保留；同SVG白底预览。",
+  "evidence": [
+    "views/part_brush_lines.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_brush_lines"
+  },
+  "artwork_sha256": "bcee79782dde1d6aa17a0f5f40771b006e25015e8968c93fb489f23a6855142e"
+}

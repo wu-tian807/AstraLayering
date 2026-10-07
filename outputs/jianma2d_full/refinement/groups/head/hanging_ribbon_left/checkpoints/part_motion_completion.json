@@ -1,0 +1,7 @@
+{
+  "node": "part_motion_completion",
+  "worker": "/root/workflow_runner/ribbon_left",
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "79532e737135f4b9e8e3e53c6762a063f1ca2721f44d6871e8aa684e159c24ef",
+  "note": "两张Milly示例与带身前后参考均实看；保留已有完整同面和穿挂余量，仅补desc，空清单校验及4×包含检查通过。"
+}

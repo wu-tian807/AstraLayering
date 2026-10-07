@@ -16,12 +16,27 @@
   "routes": {
     "group": []
   },
-  "next_id": 36,
+  "next_id": 53,
   "nodes": {
     "head": {
       "id": "n1",
       "kind": "group",
-      "status": "active"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/crown",
+        "head/earring_left",
+        "head/earring_right",
+        "head/face",
+        "head/face_framing_hair_left",
+        "head/face_framing_hair_right",
+        "head/front_hair",
+        "head/hanging_ribbon_left",
+        "head/hanging_ribbon_right",
+        "head/rear_hair_left",
+        "head/rear_hair_right",
+        "head/topknot_bun"
+      ]
     },
     "neck": {
       "id": "n2",
@@ -127,7 +142,14 @@
     "head/rear_hair_left": {
       "id": "n11",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/rear_hair_left/central_back_tail",
+        "head/rear_hair_left/inner_back_curtain",
+        "head/rear_hair_left/occipital_root",
+        "head/rear_hair_left/outer_back_curtain"
+      ]
     },
     "head/rear_hair_right": {
       "id": "n12",
@@ -156,87 +178,184 @@
     "head/hanging_ribbon_left": {
       "id": "n14",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/hanging_ribbon_left/jeweled_hanger",
+        "head/hanging_ribbon_left/ribbon_strip"
+      ]
     },
     "head/hanging_ribbon_right": {
       "id": "n15",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/hanging_ribbon_right/jeweled_hanger",
+        "head/hanging_ribbon_right/ribbon_strip"
+      ]
     },
     "arms/arm_left": {
       "id": "n16",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "arms/arm_left/forearm",
+        "arms/arm_left/hand",
+        "arms/arm_left/upper_arm"
+      ]
     },
     "arms/arm_right": {
       "id": "n17",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "arms/arm_right/forearm",
+        "arms/arm_right/hand",
+        "arms/arm_right/upper_arm"
+      ]
     },
     "legs/left_leg": {
       "id": "n18",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "legs/left_leg/foot",
+        "legs/left_leg/lower_leg",
+        "legs/left_leg/thigh"
+      ]
     },
     "legs/right_leg": {
       "id": "n19",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "legs/right_leg/foot",
+        "legs/right_leg/lower_leg",
+        "legs/right_leg/thigh"
+      ]
     },
     "legs/left_anklet": {
       "id": "n20",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "legs/left_anklet/ankle_chain",
+        "legs/left_anklet/gem_pendant",
+        "legs/left_anklet/small_charm"
+      ]
     },
     "legs/right_anklet": {
       "id": "n21",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "legs/right_anklet/ankle_chain",
+        "legs/right_anklet/gem_pendant",
+        "legs/right_anklet/small_charm"
+      ]
     },
     "head/face/eye_right": {
       "id": "n22",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/face/eye_right/iris",
+        "head/face/eye_right/lower_eyelid",
+        "head/face/eye_right/sclera",
+        "head/face/eye_right/upper_eyelid"
+      ]
     },
     "head/face/eye_left": {
       "id": "n23",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/face/eye_left/iris",
+        "head/face/eye_left/lower_eyelid",
+        "head/face/eye_left/sclera",
+        "head/face/eye_left/upper_eyelid"
+      ]
     },
     "head/face/mouth": {
       "id": "n24",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/face/mouth/lower_lip",
+        "head/face/mouth/mouth_interior",
+        "head/face/mouth/upper_lip"
+      ]
     },
     "head/front_hair/fringe_left": {
       "id": "n25",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/front_hair/fringe_left/broad_lock",
+        "head/front_hair/fringe_left/fine_lock"
+      ]
     },
     "head/front_hair/fringe_right": {
       "id": "n26",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/front_hair/fringe_right/broad_lock",
+        "head/front_hair/fringe_right/fine_lock"
+      ]
     },
     "head/front_hair/temple_sweeps_left": {
       "id": "n27",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/front_hair/temple_sweeps_left/crown_sweeps",
+        "head/front_hair/temple_sweeps_left/ear_lock",
+        "head/front_hair/temple_sweeps_left/lower_temple_lock",
+        "head/front_hair/temple_sweeps_left/middle_temple_lock",
+        "head/front_hair/temple_sweeps_left/upper_temple_lock"
+      ]
     },
     "head/front_hair/temple_sweeps_right": {
       "id": "n28",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/front_hair/temple_sweeps_right/crown_sweeps",
+        "head/front_hair/temple_sweeps_right/ear_lock",
+        "head/front_hair/temple_sweeps_right/lower_temple_lock",
+        "head/front_hair/temple_sweeps_right/middle_temple_lock",
+        "head/front_hair/temple_sweeps_right/upper_temple_lock"
+      ]
     },
     "head/rear_hair_left/inner_back_curtain": {
       "id": "n29",
       "kind": "group",
-      "status": "pending"
+      "status": "done",
+      "completed_by": "generic",
+      "completed_children": [
+        "head/rear_hair_left/inner_back_curtain/inner_side_lock",
+        "head/rear_hair_left/inner_back_curtain/nape_back_sheet"
+      ]
     },
     "head/rear_hair_left/outer_back_curtain": {
       "id": "n30",
       "kind": "group",
-      "status": "pending"
+      "status": "active"
     },
     "head/rear_hair_right/inner_back_curtain": {
       "id": "n31",
@@ -262,11 +381,96 @@
       "id": "n35",
       "kind": "group",
       "status": "pending"
+    },
+    "head/hanging_ribbon_left/jeweled_hanger": {
+      "id": "n36",
+      "kind": "group",
+      "status": "pending"
+    },
+    "head/hanging_ribbon_right/jeweled_hanger": {
+      "id": "n37",
+      "kind": "group",
+      "status": "pending"
+    },
+    "arms/arm_left/hand": {
+      "id": "n38",
+      "kind": "group",
+      "status": "pending"
+    },
+    "arms/arm_right/hand": {
+      "id": "n39",
+      "kind": "group",
+      "status": "pending"
+    },
+    "legs/left_leg/foot": {
+      "id": "n40",
+      "kind": "group",
+      "status": "pending"
+    },
+    "legs/right_leg/foot": {
+      "id": "n41",
+      "kind": "group",
+      "status": "pending"
+    },
+    "legs/left_anklet/ankle_chain": {
+      "id": "n42",
+      "kind": "group",
+      "status": "pending"
+    },
+    "legs/left_anklet/gem_pendant": {
+      "id": "n43",
+      "kind": "group",
+      "status": "pending"
+    },
+    "legs/right_anklet/ankle_chain": {
+      "id": "n44",
+      "kind": "group",
+      "status": "pending"
+    },
+    "legs/right_anklet/gem_pendant": {
+      "id": "n45",
+      "kind": "group",
+      "status": "pending"
+    },
+    "head/face/eye_right/upper_eyelid": {
+      "id": "n46",
+      "kind": "group",
+      "status": "pending"
+    },
+    "head/face/eye_right/iris": {
+      "id": "n47",
+      "kind": "group",
+      "status": "pending"
+    },
+    "head/face/eye_left/upper_eyelid": {
+      "id": "n48",
+      "kind": "group",
+      "status": "pending"
+    },
+    "head/face/eye_left/iris": {
+      "id": "n49",
+      "kind": "group",
+      "status": "pending"
+    },
+    "head/front_hair/temple_sweeps_left/crown_sweeps": {
+      "id": "n50",
+      "kind": "group",
+      "status": "pending"
+    },
+    "head/front_hair/temple_sweeps_right/crown_sweeps": {
+      "id": "n51",
+      "kind": "group",
+      "status": "pending"
+    },
+    "head/rear_hair_left/outer_back_curtain/inner_forked_lock": {
+      "id": "n52",
+      "kind": "group",
+      "status": "pending"
     }
   },
   "active": {
-    "target": "n1",
+    "target": "n30",
     "route": "generic",
-    "pointer": "part_highlights"
+    "pointer": "group_split"
   }
 }

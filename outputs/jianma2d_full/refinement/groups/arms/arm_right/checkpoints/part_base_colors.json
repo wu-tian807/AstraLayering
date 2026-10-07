@@ -1,0 +1,15 @@
+{
+  "node": "part_base_colors",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "按右侧彩参重新确认浅暖桃粉光洁肌肤基色，2part与躯干/左臂/前发组合实看；隐藏根端同材质、无衣袖腕带分区，rendering沿用。",
+  "evidence": [
+    "views/part_base_colors.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_base_colors"
+  },
+  "artwork_sha256": "a5e0d7f421aacc47deebde0d82c30beefc489d428f96fa74039bdc5992e13f53"
+}

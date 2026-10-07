@@ -1,0 +1,14 @@
+[
+  {
+    "path": "../../workflow-next/live2d-layering/templates/部件专项/generic/3.geometry/3.3.明暗范围线/流程.yaml",
+    "sha256": "721bcc2a7750b9d0855faacbd291ca7b6d17834a6bc91e5bb60a9a3e50eb913e"
+  },
+  {
+    "path": "../../workflow-next/live2d-layering/templates/部件专项/generic/3.geometry/3.3.明暗范围线/提示词.txt",
+    "sha256": "bfa994f6d52ad8489203518fdf54990508bb0ddd147e3e7e176103f3cd2b6292"
+  },
+  {
+    "path": "../../workflow-next/live2d-layering/templates/部件专项/generic/3.geometry/3.3.明暗范围线/gpt-6-astra-xhigh.model",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

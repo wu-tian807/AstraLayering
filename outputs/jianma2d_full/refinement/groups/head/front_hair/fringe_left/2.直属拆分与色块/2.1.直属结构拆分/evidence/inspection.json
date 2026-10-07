@@ -1,0 +1,68 @@
+{
+  "worker_id": "/root/workflow_runner/split_anklet_left",
+  "logical_worker": "group_split:head/front_hair/fringe_left",
+  "actor_context": "按已授权有限 actor 池续用既有 splitter，未参与本组绘制；保留实际 actor 身份，不宣称全新上下文。",
+  "target": "n25",
+  "node": "group_split",
+  "configuration": "已重读本节点 YAML/prompt/gpt-6-sol-xhigh.model 与本组 node1 说明，继续采用已批准的模型替代。",
+  "visual_inspection": {
+    "file": "evidence/reference-isolation.png",
+    "tool": "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "isolation_id": "group-head-front-hair-fringe-left",
+    "crop": [
+      350,
+      138,
+      102,
+      154
+    ],
+    "scale": 4,
+    "viewed": true
+  },
+  "observations": [
+    "主束具有完整根部上弧、沿眼侧连续渐窄的宽面和颊侧长尖；前缘另有窄细束贴近眉眼，具有自己的外缘和收尖。",
+    "宽片与窄束可分别弯曲/摆动；每一束自身连续，没有明确需要继续分开的活动分叉或附件，因此两者分别为 part。",
+    "宽发面内部亮条与阴影线属于表面明暗，没有独立自由端，不凭这些线无限新增发束。",
+    "眼侧细束与宽片间狭窄肤色缝需按真实参考留空；(370,282) 长尖完整归宽片，不被细束重复占有。",
+    "根部维持 node1 已验证的完整搭接；邻组 temple_sweeps_left 的耳旁负形与发束不纳入当前结构。"
+  ],
+  "direct_children": {
+    "groups": [],
+    "parts": [
+      "broad_lock",
+      "fine_lock"
+    ]
+  },
+  "parent_extent_ownership": {
+    "head-front-hair-fringe-left-shape": "主外廓、根部上弧、宽发面与颊侧长尖归 broad_lock；贴眼侧前缘的窄细本体、独立尖端及其根部搭接归 fine_lock。两束可在根部重叠，眼侧参考可见的窄缝属于背景负空间，不另列实体。"
+  },
+  "coverage_note": "父单路径是两束联合包络；本步定义完整实体范围与负空间边界归属，不修改几何。后续 2.2 按参考分绘两束，不将父色块每个填充像素强制解释为头发实体。",
+  "mirror_pairs": "已有 front_hair_fringe_pair 保留；右侧 fringe 尚未有直属对应节点，且本轮新增均为 part，不新增 group 镜像关联。",
+  "validation": {
+    "argv": [
+      "python3",
+      "../../workflow-next/live2d-layering/tools/groups.py",
+      "check-children",
+      "--groups",
+      "structure/groups.json",
+      "--group-path",
+      "head/front_hair/fringe_left",
+      "--patch",
+      "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.1.直属结构拆分/children.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "readonly_sha256": {
+    "structure/groups.json": "bebb2688f7b76379837a15d42ab96f7d4c87eadb4daf205685fe484cebce82a4",
+    "structure/groups.dispatch.json": "91fcea4d93ff33f859a3e958f5e63eec2d50ecd32fe9ed9957488169fae86337",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "block-layers/groups.svg": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+    "block-layers/preview.png": "d928f6d3e68e54b1c73eb5e77b5b72294d2bf3a20bb84dd698ec342f02c78f6f",
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f"
+  },
+  "readonly_inputs_unchanged": true,
+  "children_sha256": "3cdf007103ee5ff947c6bfce330fc2693d3b07aa68b40352a16b8f6df7a0d649",
+  "status": "checked-awaiting-runner-expand-and-checkpoint"
+}

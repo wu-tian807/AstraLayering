@@ -1,0 +1,14 @@
+{
+  "node": "part_contours",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "2直属part与5条轮廓来源已建立，逐件同坐标线参考图实看；耳孔透明，隐藏闭合与最终留白分开描述，其他正式part字节保留。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/3.geometry/3.1.外轮廓与接界/parts.svg": "4c9a8b738d7c373284ca898338e2e490d2a727b51e4252b620da183dd9d6eca4",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.1.外轮廓与接界/root.png": "88c5a6754ebdda3838a1ccef4eb6e8f974b3a206900daa6ccd9abd1a7c208141",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.1.外轮廓与接界/tail.png": "302d388eb1981c95c020f6052402e7ef13ca774f81ab255622c1f3e91a61eea3",
+    "refinement/groups/head/rear_hair_left/3.geometry/3.1.外轮廓与接界/说明.md": "30cf09ef6aaa2dc60af012bb6fb961e640350ca3dd95c5dea7bbdc8e66f8338e"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "2fa3706ae5dbb2587e44c90728618ae999fd5f17e377e37bb872e083f4852afc"
+}

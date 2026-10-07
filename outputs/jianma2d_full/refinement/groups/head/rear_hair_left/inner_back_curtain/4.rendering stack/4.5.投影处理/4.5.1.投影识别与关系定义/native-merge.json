@@ -1,0 +1,20 @@
+{
+  "argv": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/rendering.py",
+    "merge",
+    "--groups",
+    "structure/groups.json",
+    "--rendering",
+    "structure/rendering.json",
+    "--scope",
+    "head/rear_hair_left/inner_back_curtain",
+    "--patch",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/layers.patch.json",
+    "--out",
+    "structure/rendering.json"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"layers\": 33}\n",
+  "stderr": ""
+}

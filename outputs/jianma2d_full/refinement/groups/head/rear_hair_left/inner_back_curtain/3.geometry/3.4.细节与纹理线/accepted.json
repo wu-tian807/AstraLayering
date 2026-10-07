@@ -1,0 +1,9 @@
+{
+  "node": "part_detail_lines",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29",
+  "artwork_sha256": "361053eefdee452389870f3e8f908678afdfaa9880d76d07c1698e7a2cf58300",
+  "guide_sha256": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+  "rendering_sha256": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+  "actor_images_total": 34,
+  "manual_observation": "实际观察.md"
+}

@@ -1,0 +1,18 @@
+{
+  "target": "n22",
+  "node": "part_motion_completion",
+  "worker": "group:head/face/eye_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看Milly两示例与两part前后、独显、同坐标参考叠加。沿用完整眼白与单闭合下睑带，隐藏余量足够正常运动；空清单通过，四直属组件默认bounds均通过。仅desc更改，几何不变。",
+  "evidence": [
+    "2.直属拆分与色块/2.3.运动露出补齐/evidence/inspection-montage.png",
+    "2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_motion_completion"
+  },
+  "artwork_sha256": "b0387e6409daa389e24893b09461803330fa86a2036fe1d0e3c1a0e910e945de",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab"
+}

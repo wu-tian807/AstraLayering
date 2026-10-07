@@ -1,0 +1,7 @@
+{
+  "status": "pass",
+  "layers": 21,
+  "complete": false,
+  "scope": "Names, tree paths, SVG references and receiver mask structure only",
+  "artwork_sha256": "00e1641b47bb4c13b46b4af4d711608cee1d88409678de90b056286c223aef7c"
+}

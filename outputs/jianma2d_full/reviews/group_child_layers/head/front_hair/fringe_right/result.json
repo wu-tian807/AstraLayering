@@ -1,0 +1,35 @@
+{
+  "status": "pass",
+  "actor": "/root/workflow_runner",
+  "candidate_sha256": "040978bcced53a5d5941b1cee2f011cb4cd22ce82b227c1c3c0d0157b97b19ea",
+  "report_sha256": "4c9e1ad62b865a4f0eb663a9fddbb2ca55eda7a25a9b51b155ba41d5fa1c57ea",
+  "actually_viewed": {
+    "full.png": "a6925bb78ce38fcfc4db15e7c6c2d973d200eca97949013522d27aca5f805c9c",
+    "broad_lock.png": "1e744232a3b0231ce2570e05b3273b708e00983794bf5ad1242fafaffdddbef8",
+    "fine_lock.png": "8d4cae7dd3ad7c26df5c6a141068a244c2e3591931a778d524928c6668b540dd",
+    "gap-8x.png": "c5cfcba8e5e47d84d278fb321581ef3a1164f1dfb7a5f8dd6986e98f34b2f6be"
+  },
+  "inputs_unchanged": true,
+  "gap_command": [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "refinement/groups/head/front_hair/fringe_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+    "reviews/group_child_layers/head/front_hair/fringe_right/evidence/gap-8x.png",
+    "--reference",
+    "references/base-subject.png",
+    "--only",
+    "part-head-front-hair-fringe-right-broad-lock",
+    "--only",
+    "part-head-front-hair-fringe-right-fine-lock",
+    "--crop",
+    "460",
+    "192",
+    "42",
+    "79",
+    "--scale",
+    "8",
+    "--edge-overlay",
+    "--columns",
+    "4"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "node": "group_child_layers",
+  "worker": "group:head",
+  "actual_author": "/root/head_finish",
+  "files": {
+    "workflow-next/live2d-layering/templates/部件专项/generic/2.直属拆分与色块/2.2.直属轮廓色块/流程.yaml": "f59c7288fe7323a916eedbbf685c738ac8d309f046bd89da164f8d87901f2f6e",
+    "workflow-next/live2d-layering/templates/部件专项/generic/2.直属拆分与色块/2.2.直属轮廓色块/gpt-6-astra-xhigh.model": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workflow-next/live2d-layering/templates/部件专项/generic/2.直属拆分与色块/2.2.直属轮廓色块/提示词.txt": "ba632b522d6094e6627da3cfcc75d2e8ef56c6f9a79cfc18847146eb70ba84c5"
+  }
+}

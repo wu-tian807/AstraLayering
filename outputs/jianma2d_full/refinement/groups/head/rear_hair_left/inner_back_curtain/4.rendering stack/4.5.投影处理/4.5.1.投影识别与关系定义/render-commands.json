@@ -1,0 +1,52 @@
+[
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/nape_back_sheet-1.png",
+      "--only",
+      "part-head-rear-hair-left-inner-back-curtain-nape-back-sheet",
+      "--reference",
+      "references/base-subject.png",
+      "--edge-overlay",
+      "--crop",
+      "340",
+      "250",
+      "85",
+      "145",
+      "--scale",
+      "4",
+      "--columns",
+      "4"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/nape_back_sheet-1.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/candidate.svg",
+      "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/inner_side_lock-1.png",
+      "--only",
+      "part-head-rear-hair-left-inner-back-curtain-inner-side-lock",
+      "--reference",
+      "references/base-subject.png",
+      "--edge-overlay",
+      "--crop",
+      "340",
+      "250",
+      "85",
+      "145",
+      "--scale",
+      "4",
+      "--columns",
+      "4"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/inner_side_lock-1.png\n",
+    "stderr": ""
+  }
+]

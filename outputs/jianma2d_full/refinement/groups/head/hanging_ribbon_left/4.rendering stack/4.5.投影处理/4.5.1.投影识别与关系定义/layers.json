@@ -1,0 +1,14 @@
+{
+  "layers": [
+    {
+      "id": "head_hanging_ribbon_left_ribbon_strip_hanger_cast_shadow",
+      "type": "shadow",
+      "owner": "head/hanging_ribbon_left/ribbon_strip",
+      "follow": "head/hanging_ribbon_left/jeweled_hanger",
+      "clip_to": [
+        "head/hanging_ribbon_left/ribbon_strip"
+      ],
+      "note": "下链环在蓝色带顶右下约x302–306/y180–185留下短接触投影，链环与柔带可相对摆动。遮光物尚为jeweled_hanger group，后续其内部拆分后第5步可细化follow。仅完整raw短影与自身软边；本阶段不绑定receiver，顶孔最终由实际带面alpha裁切。"
+    }
+  ]
+}

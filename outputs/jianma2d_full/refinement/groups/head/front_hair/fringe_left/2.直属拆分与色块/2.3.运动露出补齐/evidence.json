@@ -1,0 +1,24 @@
+{
+  "actual_actor": "/root/workflow_runner/arm_right",
+  "empty_patch_validation": {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/groups.py",
+      "check-children",
+      "--groups",
+      "structure/groups.json",
+      "--group-path",
+      "head/front_hair/fringe_left",
+      "--patch",
+      "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.3.运动露出补齐/children.json"
+    ],
+    "exit_code": 0
+  },
+  "guide_sha256": "57d287ca92f5c2604317c4f9328f19cc629a7f988a96de880f6508e847ccb206",
+  "bounds_reused_from": "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.2.直属轮廓色块/revision-02/轮廓检查.json",
+  "geometry_changed": false,
+  "examples_actually_viewed": [
+    "milly-collar-wrist.png",
+    "milly-sleeve-shoe.png"
+  ]
+}

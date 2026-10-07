@@ -1,0 +1,17 @@
+{
+  "node": "part_rendered",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "完整2part按右侧参考完成暖灰线色融合；逐件及躯干/左臂/前发原生apply组合实看，暖肤与冷发分离、肩肘腕同面无封口线；原内容/20关系保留，21层check通过，白底预览同源。",
+  "evidence": [
+    "views/part_rendered.png",
+    "views/final-rendering-check.json",
+    "4.rendering stack/4.7.线色融合与材质细化/绘制说明.md"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_rendered"
+  },
+  "artwork_sha256": "bd61036957922ea8fa64f8abfa8a5b7f1843372ef8e57726912e20528c3d2521"
+}

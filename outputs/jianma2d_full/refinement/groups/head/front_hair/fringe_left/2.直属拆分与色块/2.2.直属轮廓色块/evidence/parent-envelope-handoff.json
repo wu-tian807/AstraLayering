@@ -1,0 +1,69 @@
+{
+  "status": "needs-parent-envelope-repair",
+  "target": "n25",
+  "node": "group_child_layers",
+  "maker": "/root/workflow_runner/arm_right",
+  "candidate_sha256": "62cece6a2bc64ecee0bf88f80a439aee5b25338e45e7bc196ca34f0fb5544892",
+  "frozen_candidate": "evidence/candidate.trial1.svg",
+  "raw_bounds": "evidence/bounds-raw.trial1.json",
+  "results": [
+    {
+      "kind": "part",
+      "path": "head/front_hair/fringe_left/broad_lock",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-fringe-left-broad-lock"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/fringe_left/fine_lock",
+      "status": "fail",
+      "ids": [
+        "part-head-front-hair-fringe-left-fine-lock"
+      ],
+      "outside_samples": 1246,
+      "outside_area_px2": 77.875,
+      "outside_bbox": [
+        392.75,
+        194.75,
+        20.25,
+        57.75
+      ],
+      "diagnostic": "refinement/groups/head/front_hair/fringe_left/2.直属拆分与色块/2.2.直属轮廓色块/evidence/bounds-raw.trial1-images/02-outside.png",
+      "diagnostic_crop": [
+        384.75,
+        186.75,
+        36.25,
+        73.75
+      ]
+    }
+  ],
+  "inputs_unchanged_at_handoff": {
+    "block-layers/groups.svg": true,
+    "block-layers/preview.png": true,
+    "structure/groups.json": true,
+    "structure/groups.dispatch.json": true,
+    "refinement/character.svg": true,
+    "structure/rendering.json": true,
+    "references/base-subject.png": true
+  },
+  "actually_viewed": [
+    "evidence/input-eye-side.png",
+    "evidence/eye-side-coordinate-diagnostic.png",
+    "evidence/trial-broad.png",
+    "evidence/trial-fine.png",
+    "evidence/trial-connection.png",
+    "evidence/bounds-raw.trial1-images/02-outside.png"
+  ],
+  "standard_outputs_published": false,
+  "checkpoint_called": false,
+  "parent_paths_for_owner_review": [
+    "head/front_hair/fringe_left",
+    "head/front_hair"
+  ],
+  "request": "Keep both child contours as editable trial and inspect the true fine-lock edge. The current two ancestor envelopes share the inner segment and exclude this narrow visible strand. Parent owner must correct the valid envelope before rerunning bounds; no clipping or leftward squeezing is applied."
+}

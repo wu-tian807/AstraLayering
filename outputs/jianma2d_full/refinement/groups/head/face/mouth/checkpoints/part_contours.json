@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_contours",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "已实看三个完整part、彩参与同坐标线稿；闭合面逐路径沿用guide，唇峰/嘴角/共享接界对齐。隐藏外弧与内侧底面仅作辅助边界，口腔不是挖空孔。",
+  "artwork_sha256": "4de1d53b8de3adb94757d9aee4961eb6325e46dc9ea9ea0e9d450bdfd4dd0abf",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_contours.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_contours"
+  }
+}

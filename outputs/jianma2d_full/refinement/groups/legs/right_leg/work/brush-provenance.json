@@ -1,0 +1,50 @@
+[
+  {
+    "part": "thigh",
+    "source": "legs_right_leg_thigh_contour_outer",
+    "samples": 500,
+    "pressure_range": [
+      0.39,
+      0.5599994104025553
+    ],
+    "simulate_pressure": false,
+    "streamline": 0,
+    "version": "1.2.0"
+  },
+  {
+    "part": "thigh",
+    "source": "legs_right_leg_thigh_contour_inner",
+    "samples": 373,
+    "pressure_range": [
+      0.33540000000000003,
+      0.48160000000000003
+    ],
+    "simulate_pressure": false,
+    "streamline": 0,
+    "version": "1.2.0"
+  },
+  {
+    "part": "lower_leg",
+    "source": "legs_right_leg_lower_leg_contour_outer",
+    "samples": 493,
+    "pressure_range": [
+      0.39,
+      0.56
+    ],
+    "simulate_pressure": false,
+    "streamline": 0,
+    "version": "1.2.0"
+  },
+  {
+    "part": "lower_leg",
+    "source": "legs_right_leg_lower_leg_contour_inner",
+    "samples": 501,
+    "pressure_range": [
+      0.33540000000000003,
+      0.48160000000000003
+    ],
+    "simulate_pressure": false,
+    "streamline": 0,
+    "version": "1.2.0"
+  }
+]

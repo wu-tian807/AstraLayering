@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_motion_completion",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "Milly两示例与小坠前后/彩参实看；四周完整可见、轻摆无缺面，保留几何仅说明露出依据。空清单check-children与默认bounds通过。",
+  "evidence": [
+    "2.直属拆分与色块/2.3.运动露出补齐/motion-examples-board.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_motion_completion"
+  },
+  "artwork_sha256": "00e1641b47bb4c13b46b4af4d711608cee1d88409678de90b056286c223aef7c"
+}

@@ -1,0 +1,7 @@
+{
+  "node": "part_base_colors",
+  "worker": "/root/workflow_runner/ribbon_left",
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "4fe8e1c403e5c9947360cc191bf9d763442120a780cf362853bcbb63c8202c86",
+  "note": "按彩参重判并铺淡蓝丝带与银蓝纹样基色；带身独显及相邻银发/皮肤组合实看，完整隐藏面同色连续，rendering关系沿用。"
+}

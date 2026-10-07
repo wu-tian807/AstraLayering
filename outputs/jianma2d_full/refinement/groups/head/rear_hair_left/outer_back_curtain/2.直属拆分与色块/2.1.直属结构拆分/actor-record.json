@@ -1,0 +1,24 @@
+{
+  "logical_worker": "group_split:head/rear_hair_left/outer_back_curtain",
+  "actual_actor": "/root/jianma_runner_recovery/split_n30",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "model_substitution": "gpt-6-sol-xhigh node -> gpt-6-astra xhigh; explicitly authorized by user per controller handoff",
+  "maker_actor": "/root/jianma_runner_recovery/maker_n30",
+  "actor_distinct_from_maker": true,
+  "scope": "node 2.1 only",
+  "actual_view_tool": "view_image",
+  "actual_view_detail": "original",
+  "actual_viewed_images": [
+    "references/base-subject.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/01-full-isolated.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/02-ear-root.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/03-shoulder-continuation.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/04-loop-pair.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/05-lower-forks.png",
+    "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/06-inner-continuation.png"
+  ],
+  "actual_viewed_image_count": 7,
+  "visual_observations": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.1.直属结构拆分/逐处观察与拆分说明.md",
+  "recorded_at": "2026-10-07T05:35:09.915210+00:00"
+}

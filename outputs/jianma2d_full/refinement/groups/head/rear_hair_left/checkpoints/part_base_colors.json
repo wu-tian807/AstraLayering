@@ -1,0 +1,16 @@
+{
+  "node": "part_base_colors",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/rear_left_repair",
+  "note": "按彩参重判并铺后脑/尾束冷银灰基色，逐件与已绘相邻part组合实看；两闭合根面无缝、耳孔透明，原rendering表沿用。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.1.基色与材质分区/parts.svg": "71b5fe3604b1d37f60727e20e5824fec9e6ba60aa70348c24f6cee16bb5f1a5e",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.1.基色与材质分区/root.png": "0397777d533adf443a6c69a5e043b835862276086bcd5688d709a8a8ef6e2d21",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.1.基色与材质分区/tail.png": "62273463783ee219e91fb4ff0903ae08cc0670440d0a4ba33fc9892be0891730",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.1.基色与材质分区/context.png": "5ab570cfd52db4b9e3e464d11a9971dd3f473a9c959203c3da9ca855a34d4bf0",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.1.基色与材质分区/说明.md": "b374ff0112631c124404a94ced7a889f01f00a251ee4f81addb60610caf471e2",
+    "structure/rendering.json": "4407184f0edaccc585b5f3118bbd7697cd588da81b3014e4c309b33e6e5490bb"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "f43d687bcee91979812ed435c3635c1fb2b2af24a78b3694913990e576483797"
+}

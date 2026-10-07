@@ -1,0 +1,10 @@
+{
+  "broad_lock": {
+    "physical_id": "part-head-front-hair-fringe-left-broad-lock",
+    "complete_path_identical_to_approved_parent_subshape": true
+  },
+  "fine_lock": {
+    "physical_id": "part-head-front-hair-fringe-left-fine-lock",
+    "complete_path_identical_to_approved_parent_subshape": true
+  }
+}

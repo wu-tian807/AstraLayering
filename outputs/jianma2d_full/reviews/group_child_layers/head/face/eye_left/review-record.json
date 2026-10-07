@@ -1,0 +1,22 @@
+{
+  "status": "pass",
+  "logical_worker": "group_child_layers:head/face/eye_left:review",
+  "actual_worker": "/root",
+  "independent_of_candidate_author": true,
+  "candidate_hashes": {
+    "refinement/groups/head/face/eye_left/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg": "70b30798fc82215007f77b8e9b9c3d2ad04db8d386abccf772187a47b061ffee",
+    "block-layers/groups.svg": "70b30798fc82215007f77b8e9b9c3d2ad04db8d386abccf772187a47b061ffee"
+  },
+  "bounds_outside_samples": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "images_actually_viewed": {
+    "full.png": "9bafc3ddf31ef4802e82e69b962329e8b9ea6a10d6726946ce1cd586a217e31d",
+    "component-review-board.png": "ffc35f14e8aef63722ee4400d5a57f3d9196e29302c41de8335ec956bf0e7ced"
+  },
+  "contact_sheet": "Four native 8x per-child boards plus no-parent connections, pasted without resampling; each row inspected and immediately recorded.",
+  "report": "reviews/group_child_layers/head/face/eye_left/审查.md"
+}

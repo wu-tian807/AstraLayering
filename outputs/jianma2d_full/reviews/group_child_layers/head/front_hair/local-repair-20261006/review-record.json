@@ -1,0 +1,45 @@
+{
+  "status": "pass",
+  "logical_worker": "group_child_layers:head/front_hair:review",
+  "actual_worker": "/root",
+  "independent_of_candidate_author": true,
+  "candidate_sha256": "e2fe15ff4a4bc308bff092c679503651f9e0f345b4ce7d1d284e5cf3ae024083",
+  "candidate_unchanged_at_return": true,
+  "default_bounds_outside_samples": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "images_actually_viewed": {
+    "full.png": "5631e477b1e5fcc7456ef2c56fdb6625ee2fb8296eb8031f0bdcd19b98ece82b",
+    "fringe_left.png": "14f16ae33d40fbf07cf7137b8e27c79a6e0254fcf99078ce9b95d446da6e7631",
+    "fringe_right.png": "8054a267003135291ddeba24b8e3139d84676602fc035f2a02e8fca411aa96b5",
+    "temple_sweeps_left.png": "b01cf6c3c25d7eea077fc5928b31ca658922abd6ed577138f27b1bb255414e18",
+    "temple_sweeps_right.png": "901aebe2d8608ad1d5ded8abd3a5932b4d0b6ceb2875be822697125689e40c1e",
+    "scalp_cap.png": "bef5f44fa242fd238cf2597f29d62a84722d48a43d0ad31e18f5b848bf9e9422",
+    "connections.png": "94beaf23608346c3393f4bbf9eb19c57aa2099bef964058d1117186a67a5f942",
+    "fine-tip-connections-8x.png": "b73c6084c87a9224c27c8edf7d00ecc39795a67e2890d2668c7c8cafa75f834e",
+    "revision-02-fringe-left-8x.png": "37b2d90988c5e4215b277ad95ea5ac2f06c5ee7d21a185e515383c012429e63b",
+    "revision-02-connections-8x.png": "71a80ed7fd8afabe0adc692b69f3764830372d2615fd47335a5a311325d475b2"
+  },
+  "report": "reviews/group_child_layers/head/front_hair/local-repair-20261006/审查.md",
+  "previous_review": {
+    "status": "revise",
+    "candidate_sha256": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+    "record": "review-record.revise-01.json"
+  },
+  "resolved_issue": {
+    "path": "head/front_hair/fringe_left",
+    "id": "group-head-front-hair-fringe-left",
+    "region": [
+      397,
+      205,
+      12,
+      31
+    ],
+    "description": "Upper/middle visible skin separation between broad lock and fine lock remains filled; only the lower short triangle is open. Preserve fine-lock outer contour and correct broad-lock eye-side visible edge."
+  },
+  "revision_verification": "Actual native 8x affected component and no-parent connection views; all remaining SVG bytes exactly unchanged, prior direct-child reviews reused."
+}

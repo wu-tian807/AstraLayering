@@ -1,0 +1,66 @@
+{
+  "all_previous_id_nodes_unchanged": true,
+  "previous_id_count": 417,
+  "added_direct_bindings": [
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-upper-loop-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/upper_loop_lock",
+      "fill": "#B9BC69",
+      "subtree_sha256": "83adac1cab86d416e4d2f58f569c56e2a2e7a790568da955e21bfefd92e02324"
+    },
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-lower-loop-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/lower_loop_lock",
+      "fill": "#D78694",
+      "subtree_sha256": "18af03c37e53dcf327ae28272db3a27a4888f1cc08bfc6c39a0a723638392aec"
+    },
+    {
+      "id": "group-head-rear-hair-left-outer-back-curtain-inner-forked-lock",
+      "kind": "group",
+      "path": "head/rear_hair_left/outer_back_curtain/inner_forked_lock",
+      "fill": "#C08ECD",
+      "subtree_sha256": "686ae3ade983e98dc830e9a32bfce14709d4de8d5c6e3ecfa02f445ea8726872"
+    },
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-pointed-long-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/pointed_long_lock",
+      "fill": "#7E9DE1",
+      "subtree_sha256": "c07baea1119ac7fe933846131f1d0f05c13df9b874e50f9e6f84301e340b1db4"
+    },
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-sweeping-long-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/sweeping_long_lock",
+      "fill": "#74C5A8",
+      "subtree_sha256": "b19db274705c33ca95663877a13a67482ed1042d34594849189958abd9d21be7"
+    },
+    {
+      "id": "part-head-rear-hair-left-outer-back-curtain-outward-curl-lock",
+      "kind": "part",
+      "path": "head/rear_hair_left/outer_back_curtain/outward_curl_lock",
+      "fill": "#EFA863",
+      "subtree_sha256": "d3b65111d87649b40e0c5124331be7810662f47d2dcb0eaef149e82f446668f4"
+    }
+  ],
+  "all_ids_unique": true,
+  "parent_container_unchanged": true,
+  "five_children_unchanged_since_r4": [
+    "part-head-rear-hair-left-outer-back-curtain-upper-loop-lock",
+    "group-head-rear-hair-left-outer-back-curtain-inner-forked-lock",
+    "part-head-rear-hair-left-outer-back-curtain-pointed-long-lock",
+    "part-head-rear-hair-left-outer-back-curtain-sweeping-long-lock",
+    "part-head-rear-hair-left-outer-back-curtain-outward-curl-lock"
+  ],
+  "only_late_changed_child": "lower_loop_lock",
+  "protected_hashes": {
+    "refinement/character.svg": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "structure/groups.json": "b0af101f7d81f43db9e67615f1d9ac3446e6483222465849657b0d4f88674080",
+    "structure/groups.dispatch.json": "2781ca8fd845c6d8ed0e380fd2f2d9cbc8157d9e53c34060e673977c174483b2",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4"
+  }
+}

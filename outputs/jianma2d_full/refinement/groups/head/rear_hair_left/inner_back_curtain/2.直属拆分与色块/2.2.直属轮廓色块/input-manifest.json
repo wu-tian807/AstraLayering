@@ -1,0 +1,20 @@
+{
+  "node": "group_child_layers",
+  "target": "n29",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29",
+  "logical_worker": "group:head/rear_hair_left/inner_back_curtain",
+  "model": "gpt-6-astra",
+  "reasoning": "xhigh",
+  "input_hashes": {
+    "block-layers/groups.svg": "c43bd301488eb4c5eb772a2f018cc70db0dc269ae96bec4f096618cf29feee4c",
+    "block-layers/preview.png": "77827545a1e4f47be41c71ee721fce94f0f922e6e2fc95de126ff52796b1815d",
+    "structure/groups.json": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+    "refinement/character.svg": "8d6cd65eae22919af940111560c8de0041bf76a0689499014c01f252e94568e6",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4"
+  },
+  "split_children_sha256": "dd4b2b535af4aa1b999cf94aa99f5509603f091883856c247c3240d6a91b1980",
+  "started_at": "2026-10-06T18:26:53.266921+00:00",
+  "reuse": "Node1 eight reference/parent boards remain geometrically valid because complete input guide and references have identical hashes; new child evidence will be viewed separately."
+}

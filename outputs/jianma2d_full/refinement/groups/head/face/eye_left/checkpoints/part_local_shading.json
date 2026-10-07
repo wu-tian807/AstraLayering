@@ -1,0 +1,17 @@
+{
+  "target": "n23",
+  "node": "part_local_shading",
+  "worker": "group:head/face/eye_left",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看外角短暖褐深度与轻薄中央下睑；眼白未添加无依据凹槽或发丝重影，局部暗部均留在自身part内。",
+  "evidence": [
+    "views/part_local_shading.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_local_shading"
+  },
+  "artwork_sha256": "970fbc582839ea60853289b1482bf02da9917aa6be7cef1bff34200bb3ba22bb",
+  "guide_sha256": "fc8bed09e60681afcd6ad806220c49cad721f93501f40730d3d35d2411d2cefc"
+}

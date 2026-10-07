@@ -1,0 +1,8 @@
+{
+  "approved_guide_sha256": "0c483165b8996e744f331d937f220b3a272b6ced35c9124b15770f1f1bd65275",
+  "current_guide_sha256": "edbbbaf389939a2dc5adbd3e2f41bd5d9251019f3db5aa116cf766ea7add6460",
+  "same_visual_tree_after_desc_and_whitespace_removal": true,
+  "actual_viewed_image": "reviews/group_child_layers/head/front_hair/temple_sweeps_left/evidence/full.png",
+  "image_sha256": "808fd60da85b0f11662171672c8e24d59d4651b2151b9131d34090eb502639cb",
+  "actor": "/root/workflow_runner"
+}

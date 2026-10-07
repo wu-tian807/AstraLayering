@@ -1,0 +1,16 @@
+{
+  "node": "part_motion_completion",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "两张Milly示例及2part前后/参考已实看；髋根、圆膝根和踝端已有完整活动余量，仅补desc，空清单与默认范围检查通过。",
+  "evidence": [
+    "2.直属拆分与色块/2.3.运动露出补齐/motion-board.png",
+    "tmp/leg-left-motion-examples.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_motion_completion"
+  },
+  "artwork_sha256": "bd61036957922ea8fa64f8abfa8a5b7f1843372ef8e57726912e20528c3d2521"
+}

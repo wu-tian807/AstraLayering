@@ -1,0 +1,74 @@
+{
+  "status": "pass_files_and_delivery_only",
+  "created_at": "2026-10-07T06:14:58.311428+00:00",
+  "progress": {
+    "done": 29,
+    "groups": 52,
+    "active": {
+      "target": "n30",
+      "route": "generic",
+      "pointer": "group_split"
+    }
+  },
+  "candidate_sha256": "4da747b49621ec49eec03cbdeeac09a0563c0c4527afc57e24a3b4442a781679",
+  "actual_view_records_verified": 16,
+  "human_review_status": "pending",
+  "existing_frozen_ledger": "unchanged from previously verified50 entries/100 files",
+  "http_checks": [
+    {
+      "path": "index.html",
+      "http_status": 200,
+      "sha256": "07d09a77e9dbf9a969ea656a4f1723738c84535b0540819da63452db699f39a5"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-children-only.svg",
+      "http_status": 200,
+      "sha256": "4c048dd267b3276b6eb4f0d32664f152a61868f5e53574e18b363ecf60fa9160"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-groups.svg",
+      "http_status": 200,
+      "sha256": "4da747b49621ec49eec03cbdeeac09a0563c0c4527afc57e24a3b4442a781679"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r6-full-blend.png",
+      "http_status": 200,
+      "sha256": "a7ae6299f66e0d6791fa8e349adceb79d42ac2afe6de07845a14ff67c105a84e"
+    },
+    {
+      "path": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r6-junction-8x.png",
+      "http_status": 200,
+      "sha256": "708e1732af04142acaee8f0be9994ba122b49ad261a00cd59fa6b538f74e8a4a"
+    },
+    {
+      "path": "review-n30.html",
+      "http_status": 200,
+      "sha256": "f295a422830738761d336f02e6f9e3fee5c8870152203b926d70be6aae41440e"
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/审查.md",
+      "http_status": 200,
+      "sha256": "523e72f355d48873460a2ece5294d2e56fb2209638b52f5caf71d4956ef51f01"
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/evidence/17-pointed-full.png",
+      "http_status": 200,
+      "sha256": "95eebc3f0700537b39402b1081cca506523f64a36a9f1b15f4f40d12e88d5cfb"
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/evidence/18-pointed-root.png",
+      "http_status": 200,
+      "sha256": "b16370bbcb22551c0666fe0dafa411395c8d88213a4e11ec50359089babe01ee"
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/evidence/19-pointed-tip-8x.png",
+      "http_status": 200,
+      "sha256": "b6106932c4a8bb2e384b775f6194df86ce0b46c3e369e74f0d9ae7c4011810c7"
+    }
+  ],
+  "limitations": [
+    "No new model image views or final visual acceptance",
+    "n30 2.2 has not checkpointed",
+    "All later groups and stage5 remain unfinished"
+  ]
+}

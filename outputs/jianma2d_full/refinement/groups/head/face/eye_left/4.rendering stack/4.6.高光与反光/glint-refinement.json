@@ -1,0 +1,19 @@
+{
+  "reason": "Initial glint visibly too tall relative to narrow reference peak",
+  "before_bounds_approx": [
+    398.5,
+    246.2,
+    4.1,
+    2.6
+  ],
+  "after_bounds_approx": [
+    398.6,
+    246.6,
+    3.7,
+    1.6
+  ],
+  "reference_peak": "bright pixels row247 with soft lower contrast row246/248",
+  "changed": "only own independent glint shape and relation note",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false
+}

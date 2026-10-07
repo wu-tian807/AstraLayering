@@ -1,0 +1,16 @@
+{
+  "node": "part_brush_lines",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "4条perfect-freehand1.2.0显式压力笔触完成；逐件/骨盆相邻组合实看，起收尖与圆端留白落实，原曲线隐藏保留，白底预览同源。",
+  "evidence": [
+    "views/part_brush_lines.png",
+    "work/brush-provenance.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_brush_lines"
+  },
+  "artwork_sha256": "a6f586b29302445f2d0acf3a647c56279bbc0ec84393395e8f9491aff592c2af"
+}

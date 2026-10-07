@@ -1,0 +1,58 @@
+{
+  "status": "maker-checked-frozen-awaiting-independent-review",
+  "target": "n8",
+  "node": "group_child_layers",
+  "maker": "/root/workflow_runner/arm_right",
+  "original_n8_authorship_retained": true,
+  "candidate_and_standard_sha256": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+  "preview_sha256": "b4c3327f1b8cf9bd4c12f87c5f0180762431c35c9e9ce927003aa4bb84f9e64e",
+  "removed_only_added_child_path_recovers_input_bytes": true,
+  "matching_parent_child_carrier_path_d": true,
+  "n25_child_parts_unpublished": true,
+  "protected_svg_nodes_identical_sha256": {
+    "group-head-front-hair": "625cdd622a1c2d8f9320eb8c0f43f8665b73e6032ba97424e62239397e7487cd",
+    "group-head-front-hair-fringe-right": "b7d394e38d2a6bedf050d593938a15426d04dbbbff35212600007cc852b5fabb",
+    "group-head-front-hair-temple-sweeps-left": "da417f3b8bfd8fb55d0e9d11fe0f419d4de99ac719f2d671b1bac7e0678eaf12",
+    "group-head-front-hair-temple-sweeps-right": "cf19157e332f018b8e6a140984e2caead0193eed14057f6432e5dec5d24931ff",
+    "part-head-front-hair-scalp-cap": "3e6e2c208a9816b060415ad9e894c22c5cf2173f719670be5b0194234a650395"
+  },
+  "before_sha256": {
+    "block-layers/groups.svg": "10a876b30db98ebf7637232fee6f5b538618f6356cf94ad0a265887e511416a2",
+    "block-layers/preview.png": "4ba9a2ed11e3129aaca96419f6f2fd3c0ec001055cc8d78e252070d2d9b90a5e",
+    "structure/groups.json": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+    "structure/groups.dispatch.json": "ec196d1091a2bc4012356ee6dfcc66628b7806f2d42d07413b90c96c712934af",
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  },
+  "after_sha256": {
+    "block-layers/groups.svg": "afa048e315e4621589d3dcee0190c5ff34334c1a375293e4d83557fe4e90ffde",
+    "block-layers/preview.png": "b4c3327f1b8cf9bd4c12f87c5f0180762431c35c9e9ce927003aa4bb84f9e64e",
+    "structure/groups.json": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+    "structure/groups.dispatch.json": "ec196d1091a2bc4012356ee6dfcc66628b7806f2d42d07413b90c96c712934af",
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  },
+  "raw_bounds": "轮廓检查.json",
+  "outside_samples": {
+    "head/front_hair/fringe_left": 0,
+    "head/front_hair/fringe_right": 0,
+    "head/front_hair/temple_sweeps_left": 0,
+    "head/front_hair/temple_sweeps_right": 0,
+    "head/front_hair/scalp_cap": 0
+  },
+  "actual_views": [
+    "evidence/fringe-left-reference.png",
+    "evidence/local-parent-child-reference.png",
+    "evidence/full-blend.png"
+  ],
+  "checkpoint_called": false,
+  "active_unchanged": {
+    "target": "n8",
+    "route": "generic",
+    "pointer": "group_split"
+  }
+}

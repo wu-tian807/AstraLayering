@@ -1,0 +1,16 @@
+{
+  "node": "cast_shadow_relations",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "逐part检查无本轮独立投影；临时衣物不登记，已有右腿投中央尾束关系及原始影源全部沿用。空layers经原生merge验证，标准关系未改。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/cast_shadow_relations.png",
+    "refinement/groups/legs/right_leg/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/proof.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_relations"
+  },
+  "artwork_sha256": "c9f7d19c8e530b0e1b5fbe989b7578b5c640a618185a46d323fea5b047886b78"
+}

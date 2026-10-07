@@ -1,0 +1,41 @@
+{
+  "timestamp": "2026-10-06T19:19:05.534828+00:00",
+  "actor": "/root/jianma_runner_recovery/maker_n29_render",
+  "logical_worker": "group:head/rear_hair_left/inner_back_curtain",
+  "actual_error": "Agent errored: stream disconnected before completion: Image processing blocked due to content policy violation.",
+  "last_native_active": {
+    "target": "n29",
+    "route": "generic",
+    "pointer": "part_highlights"
+  },
+  "last_successful_artwork_sha256": "d14a7c67e5f37d3b3bd03bf57d83592680846e12c0b792aaaf2a0bc94f301195",
+  "uncheckpointed_candidate": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/candidate.svg",
+  "uncheckpointed_candidate_sha256": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+  "exact_failed_view": "unknown; no image-processing call detail returned to orchestrator",
+  "actions": "Read-only filesystem/hash audit only; do not resume errored actor or retry/re-encode a rejected image. Root notified. No unreviewed candidate promoted.",
+  "known_last_visual_note": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/实际观察.md",
+  "first_revision": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/revision-001-before-root-match",
+  "trace_audit_by": "/root",
+  "trace_meta_actor_confirmed": true,
+  "successful_processing_without_written_acceptance": {
+    "time_utc": "2026-10-06T19:16:00Z",
+    "call_id": "call_duZdNDaTQwUkhdsf6OuyQmmh",
+    "files": [
+      "nape_back_sheet-complete.png",
+      "neighbor-surfaces.png"
+    ],
+    "status": "Root reports tool call followed by model reasoning and another call; no written acceptance. Not promoted."
+  },
+  "failed_batch": {
+    "time_utc": "2026-10-06T19:16:20Z",
+    "call_id": "call_MN3vtYtwgP6tvLyyVvXvANlW",
+    "files": [
+      "nape_back_sheet-sheet.png",
+      "inner_side_lock-sheet.png",
+      "combination-sheet.png",
+      "final-preview.png"
+    ],
+    "status": "Policy failure directly after batch; specific triggering image unknown. All four unaccepted; no retries."
+  },
+  "resolution_pending": "Root preparing local human review page; only actual user confirmation can support next decision. No fresh actor or new crop retry of rejected inspection; native pointer and formal artwork remain4.6."
+}

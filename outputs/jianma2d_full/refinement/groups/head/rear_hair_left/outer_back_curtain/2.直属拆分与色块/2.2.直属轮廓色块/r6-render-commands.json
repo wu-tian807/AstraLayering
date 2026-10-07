@@ -1,0 +1,58 @@
+[
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r6.svg",
+      "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r6-full-blend.png",
+      "--reference",
+      "references/base-subject.png",
+      "--blend",
+      "0.5",
+      "--columns",
+      "3"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r6-full-blend.png\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      ".runtime/svg-preview/python/bin/python",
+      "../../workflow-next/live2d-layering/tools/svg_preview.py",
+      "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-r6.svg",
+      "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r6-junction-8x.png",
+      "--only",
+      "part-head-rear-hair-left-outer-back-curtain-upper-loop-lock",
+      "--only",
+      "part-head-rear-hair-left-outer-back-curtain-lower-loop-lock",
+      "--only",
+      "group-head-rear-hair-left-outer-back-curtain-inner-forked-lock",
+      "--only",
+      "part-head-rear-hair-left-outer-back-curtain-pointed-long-lock",
+      "--only",
+      "part-head-rear-hair-left-outer-back-curtain-sweeping-long-lock",
+      "--only",
+      "part-head-rear-hair-left-outer-back-curtain-outward-curl-lock",
+      "--reference",
+      "references/base-subject.png",
+      "--compare",
+      "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r5-children-only.svg",
+      "--crop",
+      "185",
+      "796",
+      "32",
+      "43",
+      "--scale",
+      "8",
+      "--edge-overlay",
+      "--columns",
+      "3",
+      "--part",
+      "part-head-rear-hair-left-outer-back-curtain-lower-loop-lock"
+    ],
+    "exit_code": 0,
+    "stdout": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/r6-junction-8x.png\n",
+    "stderr": ""
+  }
+]

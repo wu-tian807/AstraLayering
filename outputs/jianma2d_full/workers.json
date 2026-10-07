@@ -375,7 +375,7 @@
     ]
   },
   "group:head": {
-    "worker_id": "/root/group_head_shading_recovery",
+    "worker_id": "/root/head_finish",
     "model": "gpt-6-astra",
     "reasoning": "xhigh",
     "retired_worker_ids": [
@@ -424,8 +424,8 @@
       }
     ],
     "node_workers": {
-      "group_completion": "/root/group_head_ear_gap_recovery",
-      "group_child_layers": "/root/group_head_ear_gap_recovery",
+      "group_completion": "/root/head_finish",
+      "group_child_layers": "/root/head_finish",
       "part_motion_completion": "/root/group_head_ear_gap_recovery",
       "part_rendered": "/root/group_head_motion_recovery",
       "part_contours": "/root/group_head_ear_gap_recovery",
@@ -499,6 +499,13 @@
         "last_check_time": "2026-10-05T21:17:21.405297+00:00",
         "same_session_resume_outcome": "No ACK or new artifact after explicit resumed node1 at21:14 plus more than2minutes; interrupted/stop-only followup/immediateinterrupt at21:17; historical actor retired.",
         "new_sequence_expected_binding": "unbound; no source binding rewrite required"
+      },
+      {
+        "time": "2026-10-06T07:02:14.917652+00:00",
+        "old_actor": "/root/group_head_shading_recovery",
+        "new_actor": "/root/head_finish",
+        "node": "part_rendered",
+        "reason": "New local session; previous-machine workers are not live in this runtime. Resume only after saved part_highlights."
       }
     ],
     "ancestor_recovery_actors": [
@@ -510,7 +517,7 @@
         "reason": "Audited retired original session; new sequence has no source binding, historical R1 producers retained."
       }
     ],
-    "selected_node": "group_completion.crown_parent_range_supplement"
+    "selected_node": "group_child_layers"
   },
   "group_split:neck": {
     "worker_id": "/root/group_split_neck",
@@ -768,7 +775,7 @@
     "reasoning": "xhigh"
   },
   "group_child_layers:head:review": {
-    "worker_id": "/root/review_head_crown_wedge_recovery",
+    "worker_id": "/root/workflow_runner/review_head_notch",
     "model": "gpt-6-astra",
     "reasoning": "xhigh",
     "recovery_handoffs": [
@@ -787,6 +794,14 @@
     ],
     "retired_worker_ids": [
       "/root/review_head_children"
+    ],
+    "session_recoveries": [
+      {
+        "time": "2026-10-06T07:17:47.100485+00:00",
+        "old_actor": "/root/review_head_crown_wedge_recovery",
+        "new_actor": "/root/workflow_runner/review_head_notch",
+        "reason": "Prior-machine reviewer unavailable in this session; independent current head local correction review."
+      }
     ]
   },
   "group:arms": {
@@ -1081,16 +1096,16 @@
     "resume_reason": "User 继续; ordinaryUsageAllowed true after quota error; same actual worker id and current incomplete node retained."
   },
   "group:head/front_hair": {
-    "worker_id": "/root/group_front_hair_final_recovery",
+    "worker_id": "/root/workflow_runner/arm_right",
     "model": "gpt-6-astra",
     "reasoning": "xhigh",
     "sequence": "r2s2",
     "target": "n8",
-    "selected_node": "part_rendered",
+    "selected_node": "part_rendered.retained",
     "dispatched_at": "2026-10-05T19:53:22.192270+00:00",
     "node_workers": {
-      "group_completion": "/root/group_front_hair",
-      "group_child_layers": "/root/group_front_hair",
+      "group_completion": "/root/workflow_runner/arm_right",
+      "group_child_layers": "/root/workflow_runner/arm_right",
       "part_motion_completion": "/root/group_front_hair_motion_recovery",
       "part_contours": "/root/group_front_hair_motion_recovery",
       "part_structure": "/root/group_front_hair_motion_recovery",
@@ -1128,7 +1143,39 @@
       }
     ],
     "resumed_at": "2026-10-05T19:59:45.268543+00:00",
-    "resume_reason": "User 继续; ordinaryUsageAllowed true after quota error; same actual worker id and current incomplete node retained."
+    "resume_reason": "User 继续; ordinaryUsageAllowed true after quota error; same actual worker id and current incomplete node retained.",
+    "session_recoveries": [
+      {
+        "time": "2026-10-06T15:03:26.712725+00:00",
+        "old_actor": "/root/group_front_hair_final_recovery",
+        "new_actor": "/root/workflow_runner/arm_right",
+        "reason": "Bounded local ancestor repair after actual n25 fine_lock reference/bounds failure. Prior maker unavailable under platform thread limit; existing actor pool explicitly authorized by root. Original node authors and successful outputs retained.",
+        "pending_node": "group_completion",
+        "node_scope": [
+          "group_completion",
+          "group_child_layers"
+        ],
+        "prior_node_workers": {
+          "group_completion": "/root/group_front_hair",
+          "group_child_layers": "/root/group_front_hair",
+          "part_motion_completion": "/root/group_front_hair_motion_recovery",
+          "part_contours": "/root/group_front_hair_motion_recovery",
+          "part_structure": "/root/group_front_hair_motion_recovery",
+          "part_tone_boundaries": "/root/group_front_hair_motion_recovery",
+          "part_detail_lines": "/root/group_front_hair_motion_recovery",
+          "part_brush_lines": "/root/group_front_hair_motion_recovery",
+          "part_base_colors": "/root/group_front_hair_motion_recovery",
+          "part_volume": "/root/group_front_hair_motion_recovery",
+          "part_color_transitions": "/root/group_front_hair_motion_recovery",
+          "part_local_shading": "/root/group_front_hair_motion_recovery",
+          "cast_shadow_relations": "/root/group_front_hair_motion_recovery",
+          "cast_shadow_artwork": "/root/group_front_hair_motion_recovery",
+          "part_highlights": "/root/group_front_hair_motion_recovery",
+          "part_rendered": "/root/group_front_hair_final_recovery"
+        },
+        "audit": "validation/ancestor-repair-front-hair-20261006/suspension.json"
+      }
+    ]
   },
   "group_split:head/face": {
     "worker_id": "/root/group_split_face",
@@ -1155,13 +1202,21 @@
     }
   },
   "group_child_layers:head/front_hair:review": {
-    "worker_id": "/root/review_front_hair_children",
+    "worker_id": "/root",
     "model": "gpt-6-astra",
     "reasoning": "xhigh",
     "sequence": "r2s2",
     "target": "n8",
     "selected_node": "group_child_layers_review",
-    "dispatched_at": "2026-10-05T19:24:45.189380+00:00"
+    "dispatched_at": "2026-10-05T19:24:45.189380+00:00",
+    "session_recoveries": [
+      {
+        "time": "2026-10-06T15:10:32.750799+00:00",
+        "old_actor": "/root/review_front_hair_children",
+        "new_actor": "/root",
+        "reason": "Independent local ancestor repair review; root did not draw n8 repair. Old review reports and ledger retained."
+      }
+    ]
   },
   "group_child_layers:head/face:review": {
     "worker_id": "/root/review_face_children",
@@ -1402,12 +1457,47 @@
     }
   },
   "group:head/rear_hair_left": {
-    "worker_id": "/root/group_rear_left",
+    "worker_id": "/root/workflow_runner/rear_left_finish",
     "model": "gpt-6-astra",
     "reasoning": "xhigh",
     "node_workers": {
-      "group_completion": "/root/group_rear_left"
-    }
+      "group_completion": "/root/rear_left_repair",
+      "group_child_layers": "/root/rear_left_repair",
+      "part_motion_completion": "/root/rear_left_repair",
+      "part_contours": "/root/rear_left_repair",
+      "part_structure": "/root/rear_left_repair",
+      "part_tone_boundaries": "/root/rear_left_repair",
+      "part_detail_lines": "/root/rear_left_repair",
+      "part_brush_lines": "/root/rear_left_repair",
+      "part_base_colors": "/root/rear_left_repair",
+      "part_volume": "/root/rear_left_repair",
+      "part_color_transitions": "/root/rear_left_repair",
+      "part_local_shading": "/root/rear_left_repair",
+      "cast_shadow_relations": "/root/rear_left_repair",
+      "cast_shadow_artwork": "/root/rear_left_repair",
+      "part_highlights": "/root/workflow_runner/rear_left_finish",
+      "part_rendered": "/root/workflow_runner/rear_left_finish"
+    },
+    "session_recoveries": [
+      {
+        "time": "2026-10-06T07:09:04.634149+00:00",
+        "old_actor": "/root/group_rear_left",
+        "new_actor": "/root/rear_left_repair",
+        "reason": "Recover existing parent and child repair in new local session."
+      },
+      {
+        "time": "2026-10-06T08:01:00.126061+00:00",
+        "old_actor": "/root/rear_left_repair",
+        "new_actor": "/root/workflow_runner/rear_left_finish",
+        "reason": "Actual platform error: Exceeded maximum number of images (50) allowed in request. Fresh no-history session resumes only remaining nodes.",
+        "last_success": "cast_shadow_artwork",
+        "pending_node": "part_highlights",
+        "current_artwork_is_uncheckpointed_4_6_draft": true,
+        "draft_artwork_sha256": "813d66bdeb5df4f2afb3f04bde303b4fd99c27c4cf55232b0d25fe8cc4f1c617",
+        "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9"
+      }
+    ],
+    "selected_node": "part_rendered"
   },
   "group_split:head/rear_hair_left": {
     "worker_id": "/root/group_split_rear_left",
@@ -1416,5 +1506,810 @@
     "node_workers": {
       "group_split": "/root/group_split_rear_left"
     }
+  },
+  "group_child_layers:head/rear_hair_left:review": {
+    "session_recoveries": [
+      {
+        "time": "2026-10-06T07:33:34.002781+00:00",
+        "old_actor": "/root/review_rear_left_children",
+        "new_actor": "/root/workflow_runner/review_rear_left",
+        "reason": "Prior-machine reviewer unavailable; focused independent re-review of repaired notch with retained exact AA proof."
+      }
+    ],
+    "worker_id": "/root/workflow_runner/review_rear_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh"
+  },
+  "group:head/hanging_ribbon_left": {
+    "worker_id": "/root/workflow_runner/ribbon_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner/ribbon_left",
+      "group_child_layers": "/root/workflow_runner/ribbon_left",
+      "part_motion_completion": "/root/workflow_runner/ribbon_left",
+      "part_contours": "/root/workflow_runner/ribbon_left",
+      "part_structure": "/root/workflow_runner/ribbon_left",
+      "part_tone_boundaries": "/root/workflow_runner/ribbon_left",
+      "part_detail_lines": "/root/workflow_runner/ribbon_left",
+      "part_brush_lines": "/root/workflow_runner/ribbon_left",
+      "part_base_colors": "/root/workflow_runner/ribbon_left",
+      "part_volume": "/root/workflow_runner/ribbon_left",
+      "part_color_transitions": "/root/workflow_runner/ribbon_left",
+      "part_local_shading": "/root/workflow_runner/ribbon_left",
+      "cast_shadow_relations": "/root/workflow_runner/ribbon_left",
+      "cast_shadow_artwork": "/root/workflow_runner/ribbon_left",
+      "part_highlights": "/root/workflow_runner/ribbon_left",
+      "part_rendered": "/root/workflow_runner/ribbon_left"
+    }
+  },
+  "group_split:head/hanging_ribbon_left": {
+    "worker_id": "/root/workflow_runner/split_ribbon_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization in this session",
+    "selected_node": "group_split",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_ribbon_left"
+    }
+  },
+  "group_child_layers:head/hanging_ribbon_left:review": {
+    "worker_id": "/root/workflow_runner/review_ribbon_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh"
+  },
+  "group:head/hanging_ribbon_right": {
+    "worker_id": "/root/workflow_runner/ribbon_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner/ribbon_right",
+      "group_child_layers": "/root/workflow_runner/ribbon_right",
+      "part_motion_completion": "/root/workflow_runner/ribbon_right",
+      "part_contours": "/root/workflow_runner/ribbon_right",
+      "part_structure": "/root/workflow_runner/ribbon_right",
+      "part_tone_boundaries": "/root/workflow_runner/ribbon_right",
+      "part_detail_lines": "/root/workflow_runner/ribbon_right",
+      "part_brush_lines": "/root/workflow_runner/ribbon_right",
+      "part_base_colors": "/root/workflow_runner/ribbon_right",
+      "part_volume": "/root/workflow_runner/ribbon_right",
+      "part_color_transitions": "/root/workflow_runner/ribbon_right",
+      "part_local_shading": "/root/workflow_runner/ribbon_right",
+      "cast_shadow_relations": "/root/workflow_runner/ribbon_right",
+      "cast_shadow_artwork": "/root/workflow_runner/ribbon_right",
+      "part_highlights": "/root/workflow_runner/ribbon_right",
+      "part_rendered": "/root/workflow_runner/ribbon_right"
+    }
+  },
+  "group_split:head/hanging_ribbon_right": {
+    "worker_id": "/root/workflow_runner/split_ribbon_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_ribbon_right"
+    }
+  },
+  "group_child_layers:head/hanging_ribbon_right:review": {
+    "worker_id": "/root/workflow_runner/review_ribbon_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh"
+  },
+  "group:arms/arm_left": {
+    "worker_id": "/root/workflow_runner/arm_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "node_workers": {
+      "part_color_transitions": "/root/workflow_runner/arm_left",
+      "part_base_colors": "/root/workflow_runner/arm_left",
+      "part_brush_lines": "/root/workflow_runner/arm_left",
+      "part_highlights": "/root/workflow_runner/arm_left",
+      "part_local_shading": "/root/workflow_runner/arm_left",
+      "cast_shadow_artwork": "/root/workflow_runner/arm_left",
+      "part_motion_completion": "/root/workflow_runner/arm_left",
+      "part_volume": "/root/workflow_runner/arm_left",
+      "part_rendered": "/root/workflow_runner/arm_left",
+      "part_detail_lines": "/root/workflow_runner/arm_left",
+      "part_tone_boundaries": "/root/workflow_runner/arm_left",
+      "cast_shadow_relations": "/root/workflow_runner/arm_left",
+      "part_structure": "/root/workflow_runner/arm_left",
+      "part_contours": "/root/workflow_runner/arm_left"
+    }
+  },
+  "group_split:arms/arm_left": {
+    "worker_id": "/root/workflow_runner/split_arm_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_arm_left"
+    }
+  },
+  "group_child_layers:arms/arm_left:review": {
+    "worker_id": "/root/workflow_runner/review_arm_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh"
+  },
+  "group:arms/arm_right": {
+    "worker_id": "/root/workflow_runner/arm_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "node_workers": {
+      "part_color_transitions": "/root/workflow_runner/arm_right",
+      "part_base_colors": "/root/workflow_runner/arm_right",
+      "part_brush_lines": "/root/workflow_runner/arm_right",
+      "part_highlights": "/root/workflow_runner/arm_right",
+      "part_local_shading": "/root/workflow_runner/arm_right",
+      "cast_shadow_artwork": "/root/workflow_runner/arm_right",
+      "part_motion_completion": "/root/workflow_runner/arm_right",
+      "part_volume": "/root/workflow_runner/arm_right",
+      "part_rendered": "/root/workflow_runner/arm_right",
+      "part_detail_lines": "/root/workflow_runner/arm_right",
+      "part_tone_boundaries": "/root/workflow_runner/arm_right",
+      "cast_shadow_relations": "/root/workflow_runner/arm_right",
+      "part_structure": "/root/workflow_runner/arm_right",
+      "part_contours": "/root/workflow_runner/arm_right"
+    }
+  },
+  "group_split:arms/arm_right": {
+    "worker_id": "/root/workflow_runner/split_arm_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_arm_right"
+    }
+  },
+  "group_child_layers:arms/arm_right:review": {
+    "worker_id": "/root/workflow_runner/review_arm_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh"
+  },
+  "group:legs/left_leg": {
+    "worker_id": "/root/workflow_runner/leg_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "node_workers": {
+      "part_color_transitions": "/root/workflow_runner/leg_left",
+      "part_base_colors": "/root/workflow_runner/leg_left",
+      "part_brush_lines": "/root/workflow_runner/leg_left",
+      "part_highlights": "/root/workflow_runner/leg_left",
+      "part_local_shading": "/root/workflow_runner/leg_left",
+      "cast_shadow_artwork": "/root/workflow_runner/leg_left",
+      "part_motion_completion": "/root/workflow_runner/leg_left",
+      "part_volume": "/root/workflow_runner/leg_left",
+      "part_rendered": "/root/workflow_runner/leg_left",
+      "part_detail_lines": "/root/workflow_runner/leg_left",
+      "part_tone_boundaries": "/root/workflow_runner/leg_left",
+      "cast_shadow_relations": "/root/workflow_runner/leg_left",
+      "part_structure": "/root/workflow_runner/leg_left",
+      "part_contours": "/root/workflow_runner/leg_left"
+    }
+  },
+  "group_split:legs/left_leg": {
+    "worker_id": "/root/workflow_runner/split_leg_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_leg_left"
+    }
+  },
+  "group_child_layers:legs/left_leg:review": {
+    "worker_id": "/root/workflow_runner/review_leg_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh"
+  },
+  "group:legs/right_leg": {
+    "worker_id": "/root/workflow_runner/leg_right_finish",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner/leg_right",
+      "part_color_transitions": "/root/workflow_runner/leg_right",
+      "part_base_colors": "/root/workflow_runner/leg_right",
+      "part_brush_lines": "/root/workflow_runner/leg_right",
+      "part_highlights": "/root/workflow_runner/leg_right",
+      "part_local_shading": "/root/workflow_runner/leg_right",
+      "cast_shadow_artwork": "/root/workflow_runner/leg_right",
+      "part_motion_completion": "/root/workflow_runner/leg_right",
+      "part_volume": "/root/workflow_runner/leg_right",
+      "part_detail_lines": "/root/workflow_runner/leg_right",
+      "part_tone_boundaries": "/root/workflow_runner/leg_right",
+      "cast_shadow_relations": "/root/workflow_runner/leg_right",
+      "part_structure": "/root/workflow_runner/leg_right",
+      "part_contours": "/root/workflow_runner/leg_right",
+      "part_rendered": "/root/workflow_runner/leg_right_finish"
+    },
+    "session_recoveries": [
+      {
+        "time": "2026-10-06T11:36:05.997662+00:00",
+        "old_actor": "/root/workflow_runner/leg_right",
+        "new_actor": "/root/workflow_runner/leg_right_finish",
+        "reason": "Actual content-policy image processing error; same actor text-only diagnostic also blocked. No rejected image is retried. Fresh actor performs remaining node with ordinary non-sensitive part-only views, preserving any unreviewed composite limits.",
+        "last_success": "part_highlights",
+        "pending_node": "part_rendered",
+        "audit": "refinement/groups/legs/right_leg/runtime-failure-20261006.json"
+      }
+    ]
+  },
+  "group_split:legs/right_leg": {
+    "worker_id": "/root/workflow_runner/split_leg_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_leg_right"
+    }
+  },
+  "group_child_layers:legs/right_leg:review": {
+    "worker_id": "/root/workflow_runner/review_leg_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh"
+  },
+  "group:legs/left_anklet": {
+    "worker_id": "/root/workflow_runner/arm_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner/anklet_left",
+      "part_color_transitions": "/root/workflow_runner/arm_right",
+      "part_base_colors": "/root/workflow_runner/arm_right",
+      "part_brush_lines": "/root/workflow_runner/arm_right",
+      "part_highlights": "/root/workflow_runner/arm_right",
+      "part_local_shading": "/root/workflow_runner/arm_right",
+      "cast_shadow_artwork": "/root/workflow_runner/arm_right",
+      "part_motion_completion": "/root/workflow_runner/arm_right",
+      "part_volume": "/root/workflow_runner/arm_right",
+      "part_rendered": "/root/workflow_runner/arm_right",
+      "part_detail_lines": "/root/workflow_runner/arm_right",
+      "part_tone_boundaries": "/root/workflow_runner/arm_right",
+      "cast_shadow_relations": "/root/workflow_runner/arm_right",
+      "part_structure": "/root/workflow_runner/arm_right",
+      "part_contours": "/root/workflow_runner/arm_right"
+    },
+    "session_recoveries": [
+      {
+        "time": "2026-10-06T11:56:17.224729+00:00",
+        "old_actor": "/root/workflow_runner/anklet_left",
+        "new_actor": "/root/workflow_runner/arm_right",
+        "reason": "Platform thread limit rejects rehydrating prior maker and new spawn. Root authorized a bounded live actor pool; reuse existing arm_right actor for n20 from unexecuted 2.2. This is NOT a fresh independent context. Independent split already done by split_anklet_left, independent review to be done by root, which did not draw candidate.",
+        "last_success": "group_split",
+        "pending_node": "group_child_layers",
+        "audit": "refinement/groups/legs/left_anklet/platform-resume-failure.json",
+        "new_context": false
+      }
+    ]
+  },
+  "group_split:legs/left_anklet": {
+    "worker_id": "/root/workflow_runner/split_anklet_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_anklet_left"
+    }
+  },
+  "group_child_layers:legs/left_anklet:review": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "context": "Existing root actor independently reviews; did not draw n20 candidate. Bounded actor pool after platform thread-limit failure."
+  },
+  "group:legs/right_anklet": {
+    "worker_id": "/root/workflow_runner/arm_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "context": "Existing actor reused under root-authorized bounded pool after native platform thread-limit failures; not a fresh context. Split and review remain separate actors for this group.",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner/arm_right",
+      "part_color_transitions": "/root/workflow_runner/arm_right",
+      "part_base_colors": "/root/workflow_runner/arm_right",
+      "part_brush_lines": "/root/workflow_runner/arm_right",
+      "part_highlights": "/root/workflow_runner/arm_right",
+      "part_local_shading": "/root/workflow_runner/arm_right",
+      "cast_shadow_artwork": "/root/workflow_runner/arm_right",
+      "part_motion_completion": "/root/workflow_runner/arm_right",
+      "part_volume": "/root/workflow_runner/arm_right",
+      "part_rendered": "/root/workflow_runner/arm_right",
+      "part_detail_lines": "/root/workflow_runner/arm_right",
+      "part_tone_boundaries": "/root/workflow_runner/arm_right",
+      "cast_shadow_relations": "/root/workflow_runner/arm_right",
+      "part_structure": "/root/workflow_runner/arm_right",
+      "part_contours": "/root/workflow_runner/arm_right"
+    }
+  },
+  "group_split:legs/right_anklet": {
+    "worker_id": "/root/workflow_runner/split_anklet_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "context": "Existing splitter actor reused under root-authorized bounded pool; independent from n21 maker.",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_anklet_left"
+    }
+  },
+  "group_child_layers:legs/right_anklet:review": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "context": "Existing root actor independently reviews; did not draw n21 candidate. Bounded actor pool after platform thread-limit failure."
+  },
+  "group:head/face/eye_right": {
+    "worker_id": "/root/workflow_runner/arm_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "context": "Existing actor reused under root-authorized bounded pool after platform thread-limit failure; not a fresh context. Split/review remain independent actors for this group.",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner/arm_right",
+      "part_color_transitions": "/root/workflow_runner/arm_right",
+      "part_base_colors": "/root/workflow_runner/arm_right",
+      "part_brush_lines": "/root/workflow_runner/arm_right",
+      "part_highlights": "/root/workflow_runner/arm_right",
+      "part_local_shading": "/root/workflow_runner/arm_right",
+      "cast_shadow_artwork": "/root/workflow_runner/arm_right",
+      "part_motion_completion": "/root/workflow_runner/arm_right",
+      "part_volume": "/root/workflow_runner/arm_right",
+      "part_rendered": "/root/workflow_runner/arm_right",
+      "part_detail_lines": "/root/workflow_runner/arm_right",
+      "part_tone_boundaries": "/root/workflow_runner/arm_right",
+      "cast_shadow_relations": "/root/workflow_runner/arm_right",
+      "part_structure": "/root/workflow_runner/arm_right",
+      "part_contours": "/root/workflow_runner/arm_right"
+    }
+  },
+  "group_split:head/face/eye_right": {
+    "worker_id": "/root/workflow_runner/split_anklet_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "context": "Existing independent splitter actor; root-authorized bounded pool after platform thread-limit failure.",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_anklet_left"
+    }
+  },
+  "group_child_layers:head/face/eye_right:review": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "context": "Existing root actor independently reviews; did not draw n22 candidate. Bounded actor pool."
+  },
+  "group:head/face/eye_left": {
+    "worker_id": "/root/workflow_runner/arm_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "context": "Existing actor reused under root-authorized bounded pool; not a fresh context. Independent split/review retained.",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner/arm_right",
+      "part_color_transitions": "/root/workflow_runner/arm_right",
+      "part_base_colors": "/root/workflow_runner/arm_right",
+      "part_brush_lines": "/root/workflow_runner/arm_right",
+      "part_highlights": "/root/workflow_runner/arm_right",
+      "part_local_shading": "/root/workflow_runner/arm_right",
+      "cast_shadow_artwork": "/root/workflow_runner/arm_right",
+      "part_motion_completion": "/root/workflow_runner/arm_right",
+      "part_volume": "/root/workflow_runner/arm_right",
+      "part_rendered": "/root/workflow_runner/arm_right",
+      "part_detail_lines": "/root/workflow_runner/arm_right",
+      "part_tone_boundaries": "/root/workflow_runner/arm_right",
+      "cast_shadow_relations": "/root/workflow_runner/arm_right",
+      "part_structure": "/root/workflow_runner/arm_right",
+      "part_contours": "/root/workflow_runner/arm_right"
+    }
+  },
+  "group_split:head/face/eye_left": {
+    "worker_id": "/root/workflow_runner/split_anklet_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "context": "Existing independent splitter actor in root-authorized bounded pool.",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_anklet_left"
+    }
+  },
+  "group_child_layers:head/face/eye_left:review": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "context": "Existing root actor independently reviews; did not draw n23 candidate. Bounded actor pool."
+  },
+  "group:head/face/mouth": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "context": "Existing root actor becomes n24 maker at root request to share work/image context under bounded pool. Independent split and review by non-making actors retained.",
+    "node_workers": {
+      "group_completion": "/root",
+      "part_color_transitions": "/root",
+      "part_base_colors": "/root",
+      "part_brush_lines": "/root",
+      "part_highlights": "/root",
+      "part_local_shading": "/root",
+      "cast_shadow_artwork": "/root",
+      "part_motion_completion": "/root",
+      "part_volume": "/root",
+      "part_rendered": "/root",
+      "part_detail_lines": "/root",
+      "part_tone_boundaries": "/root",
+      "cast_shadow_relations": "/root",
+      "part_structure": "/root",
+      "part_contours": "/root"
+    }
+  },
+  "group_split:head/face/mouth": {
+    "worker_id": "/root/workflow_runner/split_anklet_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "context": "Existing independent splitter actor; root is n24 maker.",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_anklet_left"
+    }
+  },
+  "group_child_layers:head/face/mouth:review": {
+    "worker_id": "/root/workflow_runner/arm_right",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "context": "Existing actor independently reviews n24; did not draw this group. Root is n24 maker."
+  },
+  "group:head/front_hair/fringe_left": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "context": "Existing maker actor resumed under root-authorized bounded pool; independent split/root review for n25.",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner/arm_right",
+      "cast_shadow_relations": "/root/workflow_runner/arm_right",
+      "part_structure": "/root/workflow_runner/arm_right",
+      "part_base_colors": "/root/workflow_runner/arm_right",
+      "part_volume": "/root/workflow_runner/arm_right",
+      "cast_shadow_artwork": "/root/workflow_runner/arm_right",
+      "part_brush_lines": "/root/workflow_runner/arm_right",
+      "part_detail_lines": "/root/workflow_runner/arm_right",
+      "part_rendered": "/root",
+      "part_local_shading": "/root/workflow_runner/arm_right",
+      "part_tone_boundaries": "/root/workflow_runner/arm_right",
+      "part_color_transitions": "/root/workflow_runner/arm_right",
+      "part_highlights": "/root/workflow_runner/arm_right",
+      "part_contours": "/root/workflow_runner/arm_right",
+      "part_motion_completion": "/root/workflow_runner/arm_right",
+      "group_child_layers": "/root/workflow_runner/arm_right"
+    },
+    "session_recoveries": [
+      {
+        "time": "2026-10-06T16:12:37.036955+00:00",
+        "old_actor": "/root/workflow_runner/arm_right",
+        "new_actor": "/root",
+        "reason": "Actual image-processing policy error after saved part_rendered checkpoint; exact rejected call unknown. Root audits preserved draft and additional ordinary hair/head-only views without retrying old images. Original node author stays in node_workers until recovery actually completes.",
+        "last_error_free_reported_node": "part_highlights",
+        "saved_checkpoint": "part_rendered",
+        "audit": "refinement/groups/head/front_hair/fringe_left/runtime-failure-20261007.json",
+        "new_context": false,
+        "result": "refinement/groups/head/front_hair/fringe_left/recovery-20261007/recovery-result.json",
+        "status": "pass_local_hair_recovery",
+        "saved_candidate_author": "/root/workflow_runner/arm_right"
+      }
+    ]
+  },
+  "group_split:head/front_hair/fringe_left": {
+    "worker_id": "/root/workflow_runner/split_anklet_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "context": "Existing independent splitter actor in bounded pool.",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_anklet_left"
+    }
+  },
+  "group_child_layers:head/front_hair/fringe_left:review": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "context": "Independent root reviewer of n25 two-part candidate after bounded ancestor repair; root did not draw candidate."
+  },
+  "group:head/front_hair/fringe_right": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "context": "Existing root actor is maker for n26 under bounded pool; runner independent review and separate splitter. Not a new context.",
+    "node_workers": {
+      "group_completion": "/root",
+      "group_child_layers": "/root",
+      "part_motion_completion": "/root",
+      "cast_shadow_relations": "/root",
+      "part_structure": "/root",
+      "part_base_colors": "/root",
+      "part_volume": "/root",
+      "cast_shadow_artwork": "/root",
+      "part_brush_lines": "/root",
+      "part_detail_lines": "/root",
+      "part_rendered": "/root",
+      "part_local_shading": "/root",
+      "part_tone_boundaries": "/root",
+      "part_color_transitions": "/root",
+      "part_highlights": "/root",
+      "part_contours": "/root"
+    }
+  },
+  "group_split:head/front_hair/fringe_right": {
+    "worker_id": "/root/workflow_runner/split_anklet_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "context": "Existing independent splitter actor in bounded pool; root is n26 maker.",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_anklet_left"
+    }
+  },
+  "group_child_layers:head/front_hair/fringe_right:review": {
+    "worker_id": "/root/workflow_runner",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "context": "Existing runner actor independently reviews n26 candidate drawn by root; no drawing changes by reviewer."
+  },
+  "group:head/front_hair/temple_sweeps_left": {
+    "worker_id": "/root/workflow_runner",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "context": "Existing runner becomes n27 maker after root agreement; root independently reviews this candidate, separate splitter actor. Not a fresh context.",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner",
+      "group_child_layers": "/root/workflow_runner",
+      "part_contours": "/root/workflow_runner",
+      "part_structure": "/root/workflow_runner",
+      "part_tone_boundaries": "/root/workflow_runner",
+      "part_detail_lines": "/root/workflow_runner",
+      "part_brush_lines": "/root/workflow_runner",
+      "part_base_colors": "/root/workflow_runner",
+      "part_volume": "/root/workflow_runner",
+      "part_color_transitions": "/root/workflow_runner",
+      "part_local_shading": "/root/workflow_runner",
+      "cast_shadow_relations": "/root/workflow_runner",
+      "cast_shadow_artwork": "/root/workflow_runner",
+      "part_highlights": "/root/workflow_runner",
+      "part_rendered": "/root/workflow_runner"
+    },
+    "status": "done"
+  },
+  "group_split:head/front_hair/temple_sweeps_left": {
+    "worker_id": "/root/workflow_runner/split_anklet_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "configured_model": "gpt-6-sol",
+    "substitution": "Explicit user authorization",
+    "selected_node": "group_split",
+    "context": "Existing splitter in bounded pool, independent of runner maker and root reviewer.",
+    "node_workers": {
+      "group_split": "/root/workflow_runner/split_anklet_left"
+    }
+  },
+  "group_child_layers:head/front_hair/temple_sweeps_left:review": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "context": "Existing root independently reviews n27; maker is runner and splitter is separate actor."
+  },
+  "group:head/front_hair/temple_sweeps_right": {
+    "worker_id": "/root/jianma_runner_recovery",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "context": "New recovery actor after prior actor single-request image capacity failure; history and n28 frozen review preserved",
+    "node_workers": {
+      "group_completion": "/root/workflow_runner",
+      "group_child_layers": "/root/workflow_runner",
+      "part_motion_completion": "/root/workflow_runner",
+      "part_contours": "/root/workflow_runner",
+      "part_structure": "/root/workflow_runner",
+      "part_tone_boundaries": "/root/jianma_runner_recovery",
+      "part_detail_lines": "/root/jianma_runner_recovery",
+      "part_brush_lines": "/root/jianma_runner_recovery",
+      "part_base_colors": "/root/jianma_runner_recovery",
+      "part_volume": "/root/jianma_runner_recovery",
+      "part_color_transitions": "/root/jianma_runner_recovery",
+      "part_local_shading": "/root/jianma_runner_recovery",
+      "cast_shadow_relations": "/root/jianma_runner_recovery",
+      "cast_shadow_artwork": "/root/jianma_runner_recovery",
+      "part_highlights": "/root/jianma_runner_recovery",
+      "part_rendered": "/root/jianma_runner_recovery"
+    },
+    "status": "complete",
+    "prior_actual_actor": "/root/workflow_runner",
+    "recovery_record": "refinement/groups/head/front_hair/temple_sweeps_right/runtime-capacity-recovery-20261007.json"
+  },
+  "group_split:head/front_hair/temple_sweeps_right": {
+    "worker_id": "/root/workflow_runner/split_anklet_left",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "status": "done",
+    "logical_worker": "group_split:head/front_hair/temple_sweeps_right",
+    "context": "Existing independent splitter pool; user-approved model override; not new context."
+  },
+  "group_child_layers:head/front_hair/temple_sweeps_right:review": {
+    "worker_id": "/root",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "status": "done",
+    "report": "reviews/group_child_layers/head/front_hair/temple_sweeps_right/审查.md",
+    "context": "Existing root independent reviewer, maker is runner."
+  },
+  "group:head/rear_hair_left/inner_back_curtain": {
+    "worker_id": "/root/jianma_runner_recovery/maker_n29_render",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "part_rendered",
+    "logical_worker": "group:head/rear_hair_left/inner_back_curtain",
+    "status": "complete",
+    "node_workers": {
+      "group_completion": "/root/jianma_runner_recovery/maker_n29",
+      "group_child_layers": "/root/jianma_runner_recovery/maker_n29",
+      "part_motion_completion": "/root/jianma_runner_recovery/maker_n29",
+      "part_contours": "/root/jianma_runner_recovery/maker_n29",
+      "part_structure": "/root/jianma_runner_recovery/maker_n29",
+      "part_tone_boundaries": "/root/jianma_runner_recovery/maker_n29",
+      "part_detail_lines": "/root/jianma_runner_recovery/maker_n29",
+      "part_brush_lines": "/root/jianma_runner_recovery/maker_n29",
+      "part_base_colors": "/root/jianma_runner_recovery/maker_n29",
+      "part_volume": "/root/jianma_runner_recovery/maker_n29_render",
+      "part_color_transitions": "/root/jianma_runner_recovery/maker_n29_render",
+      "part_local_shading": "/root/jianma_runner_recovery/maker_n29_render",
+      "cast_shadow_relations": "/root/jianma_runner_recovery/maker_n29_render",
+      "cast_shadow_artwork": "/root/jianma_runner_recovery/maker_n29_render",
+      "part_highlights": "/root/jianma_runner_recovery/maker_n29_render",
+      "part_rendered": "/root/jianma_runner_recovery"
+    },
+    "context": "Fresh no-history continuation after prior maker39images at successful4.1; logical worker unchanged, old actual views attributed only to old actor",
+    "last_successful_node": "part_rendered",
+    "completed_nodes": [
+      "group_completion",
+      "part_motion_completion",
+      "part_contours",
+      "part_structure",
+      "part_tone_boundaries",
+      "part_detail_lines",
+      "part_brush_lines",
+      "part_base_colors",
+      "part_volume",
+      "part_color_transitions",
+      "part_local_shading",
+      "cast_shadow_relations",
+      "cast_shadow_artwork",
+      "part_highlights",
+      "part_rendered"
+    ],
+    "node1_result": "refinement/groups/head/rear_hair_left/inner_back_curtain/1.父级轮廓补全/node1-result.json",
+    "actual_viewed_image_count": 18,
+    "geometry_changed": false,
+    "candidate": "refinement/groups/head/rear_hair_left/inner_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-groups.svg",
+    "candidate_sha256": "5ef71923ba49f927c35822b518b8bc650998d1c4603c5dde2def75adc15ed5bb",
+    "actor_history": [
+      {
+        "actual_actor": "/root/jianma_runner_recovery/maker_n29",
+        "through_node": "part_base_colors",
+        "reason_for_handoff": "39 actual images; proactive capacity preservation, no error",
+        "handoff": "refinement/groups/head/rear_hair_left/inner_back_curtain/接管说明-maker_n29.md"
+      }
+    ],
+    "actor_continuations": [
+      {
+        "actual_actor": "/root/jianma_runner_recovery/maker_n29_render",
+        "from_node": "part_volume",
+        "prior_actor": "/root/jianma_runner_recovery/maker_n29",
+        "prior_successful_node": "part_base_colors",
+        "prior_actor_image_count": 39,
+        "reason": "预防容量溢出；新actor无历史续接，未验收候选为空"
+      }
+    ],
+    "actual_actor": "/root/jianma_runner_recovery/maker_n29_render",
+    "runtime_failure": "refinement/groups/head/rear_hair_left/inner_back_curtain/runtime-policy-failure-20261007.json",
+    "manual_approval": "validation/manual-n29-review.json",
+    "node_acceptance_actors": {
+      "part_rendered": {
+        "author": "/root/jianma_runner_recovery/maker_n29_render",
+        "acceptance_executor": "/root/jianma_runner_recovery",
+        "visual_reviewer": "user"
+      }
+    }
+  },
+  "group_split:head/rear_hair_left/inner_back_curtain": {
+    "worker_id": "/root/jianma_runner_recovery/split_n29",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "model_override": "User authorized unavailable gpt-6-sol-xhigh -> gpt-6-astra xhigh",
+    "selected_node": "group_split",
+    "status": "complete",
+    "context": "Fresh context independent from n29 maker; only2.1 children proposal, orchestrator owns native expand/checkpoint"
+  },
+  "group_child_layers:head/rear_hair_left/inner_back_curtain:review": {
+    "worker_id": "/root/review_n29",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "group_child_layers",
+    "status": "complete",
+    "context": "Fresh independent reviewer; root only verified returned hashes. Actual15views and per-component records in report."
+  },
+  "group:head/rear_hair_left/outer_back_curtain": {
+    "worker_id": "/root/jianma_runner_recovery/maker_n30",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "group_child_layers",
+    "logical_worker": "group:head/rear_hair_left/outer_back_curtain",
+    "status": "frozen_pending_manual_review_after_independent_policy_error",
+    "node_workers": {
+      "group_completion": "/root/jianma_runner_recovery/maker_n30",
+      "group_child_layers": "/root/jianma_runner_recovery/maker_n30"
+    },
+    "last_successful_node": "group_completion",
+    "completed_nodes": [
+      "group_completion"
+    ],
+    "actual_viewed_image_count": 40,
+    "node1_result": "refinement/groups/head/rear_hair_left/outer_back_curtain/1.父级轮廓补全/node1-result.json",
+    "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-groups.svg",
+    "candidate_sha256": "4da747b49621ec49eec03cbdeeac09a0563c0c4527afc57e24a3b4442a781679",
+    "context": "Node1 and2.2 actor reached40 images at frozen pending review; do not resume. Fresh continuation required.",
+    "manual_review": "validation/manual-n30-review.json"
+  },
+  "group_split:head/rear_hair_left/outer_back_curtain": {
+    "worker_id": "/root/jianma_runner_recovery/split_n30",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "model_override": "User authorized unavailable gpt-6-sol-xhigh -> gpt-6-astra xhigh",
+    "selected_node": "group_split",
+    "status": "complete",
+    "context": "Fresh independent actor; only2.1 children proposal. Coordinator owns native expand/checkpoint."
+  },
+  "group_child_layers:head/rear_hair_left/outer_back_curtain:review": {
+    "worker_id": "/root/review_n30",
+    "model": "gpt-6-astra",
+    "reasoning": "xhigh",
+    "selected_node": "group_child_layers",
+    "status": "policy_error_pending_manual_review",
+    "actual_viewed_image_count": 16,
+    "recorded_components": 5,
+    "candidate_sha256": "4da747b49621ec49eec03cbdeeac09a0563c0c4527afc57e24a3b4442a781679",
+    "partial_report": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/审查.md",
+    "runtime_failure": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/runtime-policy-failure-20261007.json",
+    "manual_review": "validation/manual-n30-review.json",
+    "context": "Real independent actor ended with content policy error. Partial original report preserved. No overall PASS, no retry, no replacement actor for rejected batch; user review remains pending."
   }
 }

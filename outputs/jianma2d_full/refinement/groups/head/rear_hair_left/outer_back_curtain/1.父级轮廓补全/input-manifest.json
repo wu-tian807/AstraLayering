@@ -1,0 +1,17 @@
+{
+  "target": "n30",
+  "node": "group_completion",
+  "logical_worker": "group:head/rear_hair_left/outer_back_curtain",
+  "actual_actor": "/root/jianma_runner_recovery/maker_n30",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "hashes": {
+    "block-layers/groups.svg": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+    "refinement/character.svg": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "structure/groups.json": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+    "block-layers/preview.png": "d57665f8d5d09a60ee698902a454576e810c403b7a9bb77d444538cd63c8d279"
+  }
+}

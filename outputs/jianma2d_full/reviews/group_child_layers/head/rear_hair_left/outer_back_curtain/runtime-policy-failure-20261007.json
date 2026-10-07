@@ -1,0 +1,45 @@
+{
+  "status": "independent_review_incomplete",
+  "actual_actor": "/root/review_n30",
+  "recorded_by": "/root",
+  "recorded_at": "2026-10-07T06:13:38.884023+00:00",
+  "error": "stream disconnected before completion: Image processing blocked due to content policy violation.",
+  "error_type": "image_processing_content_policy",
+  "capacity_error": false,
+  "failed_call_id": "call_UoSXY3JROTHn9iyFkLENvF6e",
+  "failed_call_timestamp": "2026-10-07T06:07:53.842Z",
+  "source": "Actual reviewer session transcript and task_complete event; root read text only",
+  "candidate": "refinement/groups/head/rear_hair_left/outer_back_curtain/2.直属拆分与色块/2.2.直属轮廓色块/candidate-groups.svg",
+  "candidate_sha256": "4da747b49621ec49eec03cbdeeac09a0563c0c4527afc57e24a3b4442a781679",
+  "rejected_batch": [
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/evidence/17-pointed-full.png",
+      "sha256": "95eebc3f0700537b39402b1081cca506523f64a36a9f1b15f4f40d12e88d5cfb"
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/evidence/18-pointed-root.png",
+      "sha256": "b16370bbcb22551c0666fe0dafa411395c8d88213a4e11ec50359089babe01ee"
+    },
+    {
+      "path": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/evidence/19-pointed-tip-8x.png",
+      "sha256": "b6106932c4a8bb2e384b775f6194df86ce0b46c3e369e74f0d9ae7c4011810c7"
+    }
+  ],
+  "last_completed_image_views": 16,
+  "completed_component_reviews": [
+    "inner_forked_lock",
+    "upper_loop_lock",
+    "lower_loop_lock",
+    "outward_curl_lock",
+    "sweeping_long_lock"
+  ],
+  "incomplete": [
+    "pointed_long_lock complete/root/tip",
+    "no-parent combination and repaired upper/lower-loop junction",
+    "whole-group connection/holes acceptance"
+  ],
+  "preserved_partial_report": "reviews/group_child_layers/head/rear_hair_left/outer_back_curtain/审查.md",
+  "preserved_partial_report_sha256": "523e72f355d48873460a2ece5294d2e56fb2209638b52f5caf71d4956ef51f01",
+  "preserved_actual_views_sha256": "d631fbd85e9a001fee74f0e4522d748a4335d5ea68c13b37bdac36b97650dc97",
+  "recovery": "Do not retry rejected images via the same or another actor, crop, encoding or route. Present original existing evidence for human review; no new model image acceptance. Native pointer remains group_split; no 2.2 checkpoint."
+}

@@ -1,0 +1,15 @@
+{
+  "node": "cast_shadow_relations",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "逐件明暗desc及4×髋根实看后确认无本组新增独立投影；临时衣影排除，现有腿投中央尾束的关系归原发组保留；空清单原生merge通过，21关系与SVG未改。",
+  "evidence": [
+    "4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/source-contact.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_relations"
+  },
+  "artwork_sha256": "bd24873bfe07e1d33bd9736ff26bb7639f986d8ef0c8119bdf5f278e51fd9d7d"
+}

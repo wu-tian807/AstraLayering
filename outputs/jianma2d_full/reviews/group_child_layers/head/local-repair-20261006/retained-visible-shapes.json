@@ -1,0 +1,183 @@
+{
+  "prior_independent_report": "reviews/review-ledger/head/006/report.md",
+  "prior_candidate_sha256": "dc53125f3eab4c6f0e3fe016146df7bffeca8903368ea0508cc28f05691e749b",
+  "prior_report_sha256": "404b05a2199c6889eaeb705443f81365049baa913a22629e17414a62061b2d97",
+  "children": [
+    {
+      "path": "head/face",
+      "container": "group-head-face",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-face",
+        "head-face-skin",
+        "head-face-left-ear-completion"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [
+        "head-face-hidden-forehead-temples"
+      ],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/front_hair",
+      "container": "group-head-front-hair",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-front-hair",
+        "head-front-hair-cap"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/face_framing_hair_left",
+      "container": "group-head-face-framing-hair-left",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-face-framing-hair-left",
+        "head-framing-left-main",
+        "head-framing-left-loop",
+        "head-framing-left-chest-loop"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/face_framing_hair_right",
+      "container": "group-head-face-framing-hair-right",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-face-framing-hair-right",
+        "head-framing-right-main",
+        "head-framing-right-loop",
+        "head-framing-right-chest-loop"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/rear_hair_left",
+      "container": "group-head-rear-hair-left",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-rear-hair-left",
+        "r1s1_head-rear-left-ear-opening-clip",
+        "r1s1_head-rear-left-ear-opening-geometry",
+        "head-rear-left-neck",
+        "head-rear-left-central-tail",
+        "head-rear-left-root",
+        "head-rear-left-hidden"
+      ],
+      "changed_ids": [
+        "head-rear-left-main"
+      ],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "new_visual_review"
+    },
+    {
+      "path": "head/rear_hair_right",
+      "container": "group-head-rear-hair-right",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-rear-hair-right",
+        "head-rear-right-main",
+        "head-rear-right-neck",
+        "head-rear-right-root",
+        "head-rear-right-hidden"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/crown",
+      "container": "group-head-crown",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-crown",
+        "head-child-crown-arch",
+        "head-child-crown-left",
+        "head-child-crown-right",
+        "head-child-crown-left-scroll",
+        "head-child-crown-right-scroll",
+        "head-child-crown-jewel",
+        "head-crown-mid-chain",
+        "head-crown-mid-gems"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [
+        "head-crown-hidden-anchor-center",
+        "head-crown-hidden-anchor-left",
+        "head-crown-hidden-anchor-right"
+      ],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/hanging_ribbon_left",
+      "container": "group-head-hanging-ribbon-left",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-hanging-ribbon-left",
+        "head-child-ribbon-left",
+        "head-child-chain-left"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/hanging_ribbon_right",
+      "container": "group-head-hanging-ribbon-right",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "group-head-hanging-ribbon-right",
+        "head-child-ribbon-right",
+        "head-child-chain-right"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/topknot_bun",
+      "container": "part-head-topknot-bun",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "part-head-topknot-bun",
+        "head-child-topknot-bun"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/earring_left",
+      "container": "part-head-earring-left",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "part-head-earring-left",
+        "head-earring-left-chain",
+        "head-earring-left-jewel"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    },
+    {
+      "path": "head/earring_right",
+      "container": "part-head-earring-right",
+      "reviewed_old_ids_with_attributes_unchanged": [
+        "part-head-earring-right",
+        "head-earring-right-chain",
+        "head-earring-right-jewel"
+      ],
+      "changed_ids": [],
+      "later_added_ids_preserved_from_local_input": [],
+      "local_verdict": "pass",
+      "basis": "retain_unchanged_reviewed_visible_shapes"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+[
+  ".runtime/svg-preview/python/bin/python",
+  "../../workflow-next/live2d-layering/tools/svg_preview.py",
+  "refinement/groups/head/front_hair/temple_sweeps_right/1.父级轮廓补全/candidate.svg",
+  "refinement/groups/head/front_hair/temple_sweeps_right/1.父级轮廓补全/local.png",
+  "--only",
+  "group-head-front-hair-temple-sweeps-right",
+  "--reference",
+  "references/base-subject.png",
+  "--edge-overlay",
+  "--crop",
+  "432",
+  "118",
+  "101",
+  "173",
+  "--scale",
+  "4"
+]

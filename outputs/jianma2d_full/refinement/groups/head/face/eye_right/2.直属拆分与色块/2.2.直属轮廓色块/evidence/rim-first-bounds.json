@@ -1,0 +1,70 @@
+{
+  "status": "fail",
+  "group_path": "head/face/eye_right",
+  "parent_svg": "refinement/groups/head/face/eye_right/2.直属拆分与色块/2.2.直属轮廓色块/input/guide.svg",
+  "parent_ids": [
+    "group-head-face-eye-right"
+  ],
+  "candidate_svg": "refinement/groups/head/face/eye_right/2.直属拆分与色块/2.2.直属轮廓色块/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/face/eye_right/upper_eyelid",
+      "status": "pass",
+      "ids": [
+        "group-head-face-eye-right-upper-eyelid"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "head/face/eye_right/iris",
+      "status": "pass",
+      "ids": [
+        "group-head-face-eye-right-iris"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/eye_right/sclera",
+      "status": "pass",
+      "ids": [
+        "part-head-face-eye-right-sclera"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/eye_right/lower_eyelid",
+      "status": "fail",
+      "ids": [
+        "part-head-face-eye-right-lower-eyelid"
+      ],
+      "outside_samples": 6,
+      "outside_area_px2": 0.375,
+      "outside_bbox": [
+        453.0,
+        246.25,
+        35.75,
+        5.25
+      ],
+      "diagnostic": "refinement/groups/head/face/eye_right/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查-images/04-outside.png",
+      "diagnostic_crop": [
+        450.0,
+        238.25,
+        46.75,
+        21.25
+      ]
+    }
+  ]
+}

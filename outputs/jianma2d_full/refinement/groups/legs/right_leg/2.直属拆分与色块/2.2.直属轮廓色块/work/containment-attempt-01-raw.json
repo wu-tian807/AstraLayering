@@ -1,0 +1,59 @@
+{
+  "status": "fail",
+  "group_path": "legs/right_leg",
+  "parent_svg": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/work/input-guide.svg",
+  "parent_ids": [
+    "group-legs-right-leg"
+  ],
+  "candidate_svg": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/work/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "legs/right_leg/foot",
+      "status": "pass",
+      "ids": [
+        "group-legs-right_leg-foot"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "legs/right_leg/thigh",
+      "status": "pass",
+      "ids": [
+        "part-legs-right_leg-thigh"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "legs/right_leg/lower_leg",
+      "status": "fail",
+      "ids": [
+        "part-legs-right_leg-lower_leg"
+      ],
+      "outside_samples": 1,
+      "outside_area_px2": 0.0625,
+      "outside_bbox": [
+        499.5,
+        1585.5,
+        0.25,
+        0.25
+      ],
+      "diagnostic": "refinement/groups/legs/right_leg/2.直属拆分与色块/2.2.直属轮廓色块/轮廓检查-images/03-outside.png",
+      "diagnostic_crop": [
+        491.5,
+        1577.5,
+        16.25,
+        16.25
+      ]
+    }
+  ]
+}

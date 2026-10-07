@@ -1,0 +1,69 @@
+{
+  "status": "pass",
+  "group_path": "head/front_hair",
+  "parent_svg": "refinement/groups/head/front_hair/local-repair-20261006/2.2/revision-02/input/groups.before.svg",
+  "parent_ids": [
+    "group-head-front-hair"
+  ],
+  "candidate_svg": "refinement/groups/head/front_hair/local-repair-20261006/2.2/revision-02/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "group",
+      "path": "head/front_hair/fringe_left",
+      "status": "pass",
+      "ids": [
+        "group-head-front-hair-fringe-left"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "head/front_hair/fringe_right",
+      "status": "pass",
+      "ids": [
+        "group-head-front-hair-fringe-right"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "head/front_hair/temple_sweeps_left",
+      "status": "pass",
+      "ids": [
+        "group-head-front-hair-temple-sweeps-left"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "group",
+      "path": "head/front_hair/temple_sweeps_right",
+      "status": "pass",
+      "ids": [
+        "group-head-front-hair-temple-sweeps-right"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/front_hair/scalp_cap",
+      "status": "pass",
+      "ids": [
+        "part-head-front-hair-scalp-cap"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

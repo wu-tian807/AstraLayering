@@ -1,0 +1,26 @@
+{
+  "status": "native_complete",
+  "group": "head/rear_hair_left/inner_back_curtain",
+  "node": "n29",
+  "author_actors": [
+    "/root/jianma_runner_recovery/maker_n29",
+    "/root/jianma_runner_recovery/maker_n29_render"
+  ],
+  "independent_2_2_reviewer": "/root/review_n29",
+  "4_7_visual_acceptance": "user confirmed exact root color revision; unchanged full-surface observations by prior actor reused by exact file comparison",
+  "manual_approval": "validation/manual-n29-review.json",
+  "artwork_sha256": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+  "guide_sha256": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+  "tree_sha256": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+  "rendering_sha256": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+  "preview_sha256": "5eb44ff0fce3577f8b5c8a4c9d8440b3d832a2e54556ce291ff0914c62d7eacd",
+  "rendering_layers": 33,
+  "new_effects": [],
+  "final_stage5_obligations": [
+    "Final rear hair stacking behind head/body and neighboring curtains",
+    "Retain ear-side opening, continuous hidden motion allowance and complete single side-lock tip",
+    "Final whole-composite visual check; manual n29 approval did not cover stage5"
+  ],
+  "runtime_policy_failure_preserved": "refinement/groups/head/rear_hair_left/inner_back_curtain/runtime-policy-failure-20261007.json",
+  "file_verification": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/final-file-verification.json"
+}

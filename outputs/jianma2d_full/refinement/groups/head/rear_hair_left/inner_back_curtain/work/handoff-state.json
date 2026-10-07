@@ -1,0 +1,28 @@
+{
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29",
+  "last_successful_node": "part_base_colors",
+  "native_active": {
+    "target": "n29",
+    "route": "generic",
+    "pointer": "part_base_colors"
+  },
+  "actual_viewed_image_count": 39,
+  "uncheckpointed_candidates": [],
+  "rendering_layer_count": 33,
+  "protected_artwork_outside_scoped_markers": "byte-identical to artwork-before.svg",
+  "hashes": {
+    "refinement/character.svg": "d56fe37072cc5ace322749dcdfa97b73ea340762d89126fe3e6c3b89085707be",
+    "refinement/preview.png": "78bdc1399e080a93b5b9ec31e1b215d296d4ff3d1c5c47e8fdd4e19da2942b5e",
+    "block-layers/groups.svg": "758c973ead98160c59a09bf83b236a4ecd970ff53189fb7388f6ea1efcb6009a",
+    "block-layers/preview.png": "d57665f8d5d09a60ee698902a454576e810c403b7a9bb77d444538cd63c8d279",
+    "structure/groups.json": "ad31de8f389efab4028d7153ca37045b7a3c1c079523b3f8b7e723156ac2ce04",
+    "structure/rendering.json": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/work/art-state.json": "e38a749d666b47d8ae2050df6030f5bec41a0a328289813f9e2474e99910453b",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/work/artwork-before.svg": "8d6cd65eae22919af940111560c8de0041bf76a0689499014c01f252e94568e6",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/work/n29_art.py": "56d033d0ba06f848391b9368e70159640d76de4140ea0d734d33564e508ad149",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/work/brush_paths.py": "53fef1fe8b4e3878fc98cb30267fbf3c198cf18af2fab75000d2577cd377b74c",
+    "refinement/groups/head/rear_hair_left/inner_back_curtain/3.geometry/3.5.画笔重绘/brush-samples.json": "1b105b726862c74865d1e84371eaa2fb63f422264df488df4b066a3d292bb9a0"
+  }
+}

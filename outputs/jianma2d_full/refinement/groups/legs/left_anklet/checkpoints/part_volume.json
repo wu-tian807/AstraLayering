@@ -1,0 +1,16 @@
+{
+  "target": "n20",
+  "node": "part_volume",
+  "worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "已实看完整独显与邻近参考，建立偏上前面受光、下部蓝色转暗和浅右侧面；均为自身表面明暗，无外部投影。",
+  "evidence": [
+    "views/part_volume.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_volume"
+  },
+  "artwork_sha256": "651adaeee8e16a5c5e42f045a649272c22f3c1165ca40d26cf040e2b81d0399d"
+}

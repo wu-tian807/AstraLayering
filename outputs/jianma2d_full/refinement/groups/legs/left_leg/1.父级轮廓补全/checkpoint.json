@@ -1,0 +1,20 @@
+{
+  "node": "group_completion",
+  "target": "n18",
+  "group_path": "legs/left_leg",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "timestamp": "2026-10-06T10:27:18.113655+00:00",
+  "status": "success",
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "group_completion"
+  },
+  "active": {
+    "target": "n18",
+    "route": "generic",
+    "pointer": "group_completion"
+  },
+  "geometry_changed": false,
+  "note": "refinement/groups/legs/left_leg/1.父级轮廓补全/补全说明.md"
+}

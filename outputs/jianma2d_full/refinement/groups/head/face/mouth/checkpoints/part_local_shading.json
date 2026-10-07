@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_local_shading",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "已实看两嘴角自身暗部：左端稍深、右端较窄，向中央柔和消退；下唇和完整内侧沿用现有浅转面，不重复加黑或增造牙舌阴影。",
+  "artwork_sha256": "7b898878ee58ab786ffecc30a63f888896de34deaa9acdfe81986c621cad17a4",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_local_shading.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_local_shading"
+  }
+}

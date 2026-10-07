@@ -1,0 +1,28 @@
+[
+  [
+    ".runtime/svg-preview/python/bin/python",
+    "../../workflow-next/live2d-layering/tools/svg_preview.py",
+    "refinement/groups/head/front_hair/fringe_right/stages/part_base_colors/candidate.svg",
+    "refinement/groups/head/front_hair/fringe_right/stages/part_base_colors/inspection.png",
+    "--reference",
+    "references/base-subject.png",
+    "--edge-overlay",
+    "--crop",
+    "430",
+    "140",
+    "82",
+    "146",
+    "--scale",
+    "4",
+    "--columns",
+    "4",
+    "--only",
+    "part-head-front-hair-fringe-right-broad-lock",
+    "--part",
+    "part-head-front-hair-fringe-right-broad-lock",
+    "--only",
+    "part-head-front-hair-fringe-right-fine-lock",
+    "--part",
+    "part-head-front-hair-fringe-right-fine-lock"
+  ]
+]

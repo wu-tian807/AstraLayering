@@ -1,0 +1,19 @@
+{
+  "actor": "/root/jianma_runner_recovery",
+  "method": "file-only audit; no image tool calls",
+  "approved_candidate_sha256": "aa0500f9170c3ffaa3f219076902765b4f4c253268e85c209e220b9e99163494",
+  "manual_approval_record": "validation/manual-n29-review.json",
+  "changed_ids_added_after_first_full_surface_observation": [
+    "n29_nape_back_sheet_root_same_material_connection",
+    "n29_nape_root_connection",
+    "n29_nape_root_connection_soft"
+  ],
+  "old_id_attribute_or_text_changes_after_first_observation": [],
+  "inner_side_lock_identical_to_previously_observed_revision": true,
+  "preexisting_path_d_changes_since3_5": [],
+  "outside_n29_markers_byte_identical": true,
+  "guide_tree_33_rendering_unchanged": true,
+  "preview": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/final-preview.png",
+  "preview_sha256": "5eb44ff0fce3577f8b5c8a4c9d8440b3d832a2e54556ce291ff0914c62d7eacd",
+  "preview_source": "Existing full-surface-commands.json successfully rendered final-preview.png from exact candidate; no rerender or image review in this acceptance."
+}

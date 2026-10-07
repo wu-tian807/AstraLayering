@@ -1,0 +1,17 @@
+{
+  "status": "in_progress",
+  "workflow": "workflow-next/live2d-layering",
+  "upstream_revision": "47fb50d",
+  "progress": "structure/groups.dispatch.json",
+  "artifacts": {
+    "preview_page": "index.html",
+    "layer_inspector": "layers.html",
+    "artwork": "refinement/character.svg",
+    "preview": "refinement/preview.png",
+    "groups": "structure/groups.json",
+    "rendering": "structure/rendering.json",
+    "accepted_n29_review": "review-n29.html",
+    "pending_review": "review-n30.html"
+  },
+  "progress_snapshot": "validation/progress-pr-snapshot.json"
+}

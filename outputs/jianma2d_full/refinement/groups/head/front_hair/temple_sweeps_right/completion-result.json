@@ -1,0 +1,27 @@
+{
+  "status": "native_complete",
+  "group": "head/front_hair/temple_sweeps_right",
+  "node": "n28",
+  "actual_maker_initial": "/root/workflow_runner",
+  "actual_maker_recovery": "/root/jianma_runner_recovery",
+  "independent_2_2_reviewer": "/root",
+  "artwork_sha256": "8d6cd65eae22919af940111560c8de0041bf76a0689499014c01f252e94568e6",
+  "guide_sha256": "c43bd301488eb4c5eb772a2f018cc70db0dc269ae96bec4f096618cf29feee4c",
+  "tree_sha256": "249e85dd7dd3c18fc795a2c4b166d5f5a1062495050dfd6036be6e2030d1bbe4",
+  "rendering_sha256": "d897cf000f79799c4a02f3835456af1b9f40e900c308fef50979fb26c3e6b65d",
+  "preview_sha256": "1bf29a31e10c30fcf5d671119c0bcef903e22a6059b4e61ef0ee0fac3f28c372",
+  "rendering_layers": 33,
+  "new_effects": [
+    "right_temple_ear_lock_cast_shadow",
+    "right_temple_lower_temple_lock_cast_shadow",
+    "right_temple_middle_temple_lock_cast_shadow",
+    "right_temple_upper_temple_lock_cast_shadow"
+  ],
+  "final_stage5_obligations": [
+    "four right temple receiver masks",
+    "upper shadow follow crown_sweeps resolve after n51",
+    "right continuous inner rim and forehead/fringe/ear composite",
+    "cross-group stacking over side long hair and under frontal fringe"
+  ],
+  "final_checks": "refinement/groups/head/front_hair/temple_sweeps_right/stages/part_rendered/final-checks.json"
+}

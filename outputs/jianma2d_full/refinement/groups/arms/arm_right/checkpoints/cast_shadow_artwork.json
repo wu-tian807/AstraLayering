@@ -1,0 +1,15 @@
+{
+  "node": "cast_shadow_artwork",
+  "target": "n17",
+  "worker": "group:arms/arm_right",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "note": "1个完整右前发raw窄影完成；独显源影与原生apply后的上臂/前发组合4×实看，21层原生check通过；仅本组新表面/影置于前发下，既有层相对顺序保留，正式影仍未绑定receiver。",
+  "evidence": [
+    "views/cast-shadow-board.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_artwork"
+  },
+  "artwork_sha256": "f7e2e40e544f53d103f832b77bed39732ff0788b8cfb20a266905e500375f07e"
+}

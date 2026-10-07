@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "layers": 21,
+  "complete": false,
+  "scope": "Names, tree paths, SVG references and receiver mask structure only",
+  "preexisting_svg_ids_preserved": 1328,
+  "preexisting_relative_order_preserved": true,
+  "guide_geometry_preserved": true,
+  "groups_preserved": true
+}

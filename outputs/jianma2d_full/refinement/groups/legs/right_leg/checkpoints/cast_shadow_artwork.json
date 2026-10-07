@@ -1,0 +1,16 @@
+{
+  "node": "cast_shadow_artwork",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "本组无独立owner投影，沿用已有完整影源与关系；原生rendering结构检查通过，当前part及组合实看，无提前receiver裁切。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/cast_shadow_artwork.png",
+    "refinement/groups/legs/right_leg/4.rendering stack/4.5.投影处理/4.5.2.独立投影绘制/proof.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "cast_shadow_artwork"
+  },
+  "artwork_sha256": "c9f7d19c8e530b0e1b5fbe989b7578b5c640a618185a46d323fea5b047886b78"
+}

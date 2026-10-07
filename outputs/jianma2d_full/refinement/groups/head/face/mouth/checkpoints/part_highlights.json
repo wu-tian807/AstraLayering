@@ -1,0 +1,20 @@
+{
+  "target": "n24",
+  "node": "part_highlights",
+  "status": "pass",
+  "worker": "group:head/face/mouth",
+  "worker_id": "/root",
+  "new_independent_context": false,
+  "note": "已实看上唇窄软亮边与下唇淡反光；初稿下唇亮带过显，减弱并复看，上唇边缘略柔化。亮部随所属唇面同动，保存在part内，无需跨部件独立层；25条关系保持。内侧无可见高光，不添加臆测亮点。",
+  "artwork_sha256": "f1775cd4e5ea069aab8f5fe43e4ce2b7f69463d5bfd9c7767cc5d497146d5ff7",
+  "guide_sha256": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+  "other_root_elements_preserved": 66,
+  "other_rendering_layers_preserved": 25,
+  "evidence": [
+    "views/part_highlights.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_highlights"
+  }
+}

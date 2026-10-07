@@ -1,0 +1,23 @@
+{
+  "target": "n20",
+  "node": "group_child_layers",
+  "logical_worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "status": "frozen_awaiting_independent_review",
+  "timestamp": "2026-10-06T11:58:51.171286+00:00",
+  "candidate_sha256": "606e9a96427ea3c358d39102360a4fe4c55f0102a6fb833ef87df17a187d65f9",
+  "bounds_outside_samples": {
+    "legs/left_anklet/ankle_chain": 0,
+    "legs/left_anklet/gem_pendant": 0,
+    "legs/left_anklet/small_charm": 0
+  },
+  "existing_svg_ids_preserved": 286,
+  "active": {
+    "target": "n20",
+    "route": "generic",
+    "pointer": "group_split"
+  },
+  "evidence": "inspection-board.png",
+  "note": "绘制说明.md"
+}

@@ -1,0 +1,27 @@
+{
+  "parent_raw_bytes_unchanged": true,
+  "other_prior_svg_bytes_unchanged": true,
+  "children": [
+    {
+      "id": "part-head-face-eye-right-sclera",
+      "binding": "head/face/eye_right/sclera",
+      "path_count": 2
+    },
+    {
+      "id": "group-head-face-eye-right-iris",
+      "binding": "head/face/eye_right/iris",
+      "path_count": 1
+    },
+    {
+      "id": "part-head-face-eye-right-lower-eyelid",
+      "binding": "head/face/eye_right/lower_eyelid",
+      "path_count": 1
+    },
+    {
+      "id": "group-head-face-eye-right-upper-eyelid",
+      "binding": "head/face/eye_right/upper_eyelid",
+      "path_count": 3
+    }
+  ],
+  "independent_highlight_deferred": true
+}

@@ -1,0 +1,22 @@
+{
+  "node": "part_rendered",
+  "worker": "group:head/rear_hair_left",
+  "worker_id": "/root/workflow_runner/rear_left_finish",
+  "note": "按参考压低尾束偏白中间调、微调后脑冷银灰并将9条可见笔触改为同材质灰蓝渐变；完整隐藏根/尾束独显与原生apply相邻组合已实际复看，geometry及目标组外字节不变；17层check通过，preview从同一正式SVG生成。",
+  "artifacts": {
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.7.线色融合与材质细化/parts.svg": "ad01bb286a9003349aac0b7ebd1162fb60be979fa714d71de7f601f85e8d8999",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.7.线色融合与材质细化/root.png": "8316870571efa80d6bf16b1255cb413fb7601ed937dafd1a539490c21205749a",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.7.线色融合与材质细化/tail.png": "567f3c7a8f03ad2f59b49410e805d011cb1481d9c010c4b3bf2f1e009da40885",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.7.线色融合与材质细化/context.png": "9d27369d6d81398bb1f4a4c4511b81ed3325e75f96efb9bd1c97ac867cb87030",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.7.线色融合与材质细化/tail-shadows.png": "2d877969b18062cde4ed5a8b51658fb3965fa608842b99ef08572c83dc9dc749",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.7.线色融合与材质细化/diagnostic-combined.svg": "4340dbbd3a0c66d6f657cdf18db0a2fa40de23da8b5c9214af4c1a35e378cb47",
+    "refinement/groups/head/rear_hair_left/4.rendering stack/4.7.线色融合与材质细化/说明.md": "4f952d4a5f1c46910ce4109fe5781e6e3f9a4bcf22b9c50fc1cea526fc315935",
+    "refinement/preview.png": "c4df3ff43093a518fdf63f539b1d9a82d724085a314ca5ab9e68c6170a331577"
+  },
+  "guide_sha256": "9f3683c1c13778ace8f24dc82425df4eddb526d2d3d5b93e9c5aaba7306a6de9",
+  "artwork_sha256": "79532e737135f4b9e8e3e53c6762a063f1ca2721f44d6871e8aa684e159c24ef",
+  "rendering_sha256": "76b87199fccf07e45db0195cbfd41569cb085c9ae5265e58490675729db9c5f7",
+  "geometry_unchanged": true,
+  "out_of_scope_svg_bytes_unchanged": true,
+  "unresolved_current_group": []
+}

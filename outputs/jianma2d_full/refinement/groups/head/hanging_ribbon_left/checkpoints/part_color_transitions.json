@@ -1,0 +1,7 @@
+{
+  "node": "part_color_transitions",
+  "worker": "/root/workflow_runner/ribbon_left",
+  "guide_sha256": "f7e0a5393b1cff4640d72a2f4279ebc929e20c596a0bd80b71b24b55b87bf410",
+  "artwork_sha256": "d4cc60a73f0a816f7a95cae396dcb5dcb1d7d5aa1ddc7332360674b5a81101fd",
+  "note": "低强度紫灰/青蓝过渡与滴焰局部色已完成，独显及相邻组合实看；保留大明暗，未产生新增硬边。"
+}

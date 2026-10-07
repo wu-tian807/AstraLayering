@@ -1,0 +1,54 @@
+{
+  "status": "pass",
+  "node": "group_completion",
+  "target": "n8",
+  "maker": "/root/workflow_runner/arm_right",
+  "role": "local successor repair; original creator retained in historical record",
+  "source_trial_sha256": "62cece6a2bc64ecee0bf88f80a439aee5b25338e45e7bc196ca34f0fb5544892",
+  "candidate_and_standard_sha256": "10a876b30db98ebf7637232fee6f5b538618f6356cf94ad0a265887e511416a2",
+  "preview_sha256": "4ba9a2ed11e3129aaca96419f6f2fd3c0ec001055cc8d78e252070d2d9b90a5e",
+  "change": "append one closed fine-lock carrier in group-head-front-hair",
+  "remove_only_added_path_recovers_input_bytes": true,
+  "n25_and_all_children_unchanged": true,
+  "head_parent_unchanged": true,
+  "artwork_rendering_and_scalp_cap_unchanged": true,
+  "all_ids_unique": true,
+  "bounds": {
+    "kind": "group",
+    "path": "head/front_hair",
+    "status": "pass",
+    "ids": [
+      "group-head-front-hair"
+    ],
+    "outside_samples": 0,
+    "outside_area_px2": 0.0,
+    "outside_bbox": null
+  },
+  "before_sha256": {
+    "block-layers/groups.svg": "8571083cdbae54a853a10af76abbf1e9c49d106da2a2f69354d569bcf3290034",
+    "block-layers/preview.png": "d928f6d3e68e54b1c73eb5e77b5b72294d2bf3a20bb84dd698ec342f02c78f6f",
+    "structure/groups.json": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+    "structure/groups.dispatch.json": "576775f2ebef5a62836447e4033692bb8f6e7b65fe7e04403201368acacc268d",
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "refinement/groups/head/front_hair/1.父级轮廓补全/补全说明.md": "6194c071626de00f9afd926de15ffd5b3dfdb7c1f6da99c574faf505833e26e3"
+  },
+  "after_sha256_before_note_and_checkpoint": {
+    "block-layers/groups.svg": "10a876b30db98ebf7637232fee6f5b538618f6356cf94ad0a265887e511416a2",
+    "block-layers/preview.png": "4ba9a2ed11e3129aaca96419f6f2fd3c0ec001055cc8d78e252070d2d9b90a5e",
+    "structure/groups.json": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+    "structure/groups.dispatch.json": "576775f2ebef5a62836447e4033692bb8f6e7b65fe7e04403201368acacc268d",
+    "refinement/character.svg": "4372800dbbb61deef83aa92074cdf998992c4e1a2020406946119cfd405fe53b",
+    "refinement/preview.png": "c29c90eeda0bc77ae2a4fdc3df33190a68fc118b1cf5eaaa81f2f24b5dad5b0f",
+    "structure/rendering.json": "4ba2f8dfe668882d5752eafde674a1202831dc1eb7be330e6bedd124be6a03bb",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+    "refinement/groups/head/front_hair/1.父级轮廓补全/补全说明.md": "6194c071626de00f9afd926de15ffd5b3dfdb7c1f6da99c574faf505833e26e3"
+  },
+  "actually_viewed": [
+    "evidence/group-isolated-reference.png",
+    "evidence/local-before-after.png",
+    "evidence/full-blend.png"
+  ]
+}

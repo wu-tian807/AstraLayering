@@ -1,0 +1,7 @@
+{
+  "node": "part_rendered",
+  "worker_id": "/root/workflow_runner/leg_right_finish",
+  "input_sha256": "f80b96281f8c12e7d3ebd0b8df0226ed1baed19d6402eaa78d404b50dbf0310c",
+  "output_sha256": "00e1641b47bb4c13b46b4af4d711608cee1d88409678de90b056286c223aef7c",
+  "state": "checkpointed"
+}

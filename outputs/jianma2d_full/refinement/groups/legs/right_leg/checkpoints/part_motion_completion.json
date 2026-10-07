@@ -1,0 +1,18 @@
+{
+  "node": "part_motion_completion",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "已看Milly两例、两个part独显和同坐标对照；圆髋根、圆膝根与圆踝端同面余量足够，空children清单校验通过，默认包含全部PASS；仅补desc，几何不变。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/2.直属拆分与色块/2.3.运动露出补齐/motion-examples.png",
+    "refinement/groups/legs/right_leg/2.直属拆分与色块/2.3.运动露出补齐/motion-parts.png",
+    "refinement/groups/legs/right_leg/2.直属拆分与色块/2.3.运动露出补齐/motion-board.png",
+    "refinement/groups/legs/right_leg/2.直属拆分与色块/2.3.运动露出补齐/轮廓检查.json"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_motion_completion"
+  },
+  "artwork_sha256": "ca574ede72f49ba3ea6a93628bf48dddb8afeaa08039e1ec29a7a8b4c915a02b"
+}

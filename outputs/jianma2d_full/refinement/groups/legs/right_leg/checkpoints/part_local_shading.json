@@ -1,0 +1,16 @@
+{
+  "node": "part_local_shading",
+  "target": "n19",
+  "worker": "group:legs/right_leg",
+  "worker_id": "/root/workflow_runner/leg_right",
+  "note": "膝前纵向浅凹和踝侧柔暗完成；4×膝部对照后修正外侧凹痕向内下方的走势，并缩短内侧暗部，防止形成两条对称硬槽。",
+  "evidence": [
+    "refinement/groups/legs/right_leg/views/part_local_shading.png",
+    "refinement/groups/legs/right_leg/views/part_local_shading-knee.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_local_shading"
+  },
+  "artwork_sha256": "c9f7d19c8e530b0e1b5fbe989b7578b5c640a618185a46d323fea5b047886b78"
+}

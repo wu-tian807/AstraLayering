@@ -1,0 +1,27 @@
+{
+  "status": "pass",
+  "old_artwork_root_count": 58,
+  "old_artwork_ids_payload_order_preserved": true,
+  "old_rendering_records_preserved": 21,
+  "new_layer_count": 2,
+  "physical_tree_unchanged": true,
+  "guide_non_desc_geometry_unchanged": true,
+  "two_part_surface_and_clip_paths_exactly_match_guide": true,
+  "unique_svg_ids": 1711,
+  "rendering_structural_check": {
+    "status": "pass",
+    "layers": 23,
+    "complete": false,
+    "scope": "Names, tree paths, SVG references and receiver mask structure only"
+  },
+  "candidate_sha256": "880596f427d02af4ce9fea47916b40ebc295a18ccd1e783900eba72cd2198b42",
+  "rendering_sha256": "17c422f5624fd3bcd0ff1fb260fd08c997f550dd3efa322836ba268d90328a19",
+  "groups_sha256": "4548e37adec40af7897cb42f56d367512f3ce44df545f47331d026f44bb30ec6",
+  "guide_sha256": "6b30be5b55171fd6fa086321a2c298e22453c93d3d283b89469ab7009b63edab",
+  "reference_sha256": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+  "line_reference_sha256": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "worker": "group:head/face/eye_right",
+  "new_independent_context": false,
+  "check_correction": "Initial prefix-only surface query accidentally included new surface_light <g>; corrected to actual numbered surface paths. No artwork changes were needed."
+}

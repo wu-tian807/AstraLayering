@@ -1,0 +1,258 @@
+{
+  "actual_actor": "/root/jianma_runner_recovery/maker_n29_render",
+  "total_actor_loaded_images": 21,
+  "views": [
+    {
+      "actor_ordinal": 1,
+      "node": "continuation-baseline",
+      "path": "references/base-subject.png",
+      "sha256": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
+      "size": [
+        895,
+        1758
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/work/实际观察.md"
+    },
+    {
+      "actor_ordinal": 2,
+      "node": "continuation-baseline",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.1.基色与材质分区/nape_back_sheet-sheet.png",
+      "sha256": "8990de97b38e14fcb9ed0ee0142b3dc564092b71fb30cd8c4b5ebcdd9a0bd5a4",
+      "size": [
+        2400,
+        1924
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/work/实际观察.md"
+    },
+    {
+      "actor_ordinal": 3,
+      "node": "continuation-baseline",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.1.基色与材质分区/inner_side_lock-sheet.png",
+      "sha256": "30260d09641f9d7cd27280b3011ccf8c454fffe038020f1770b341b4213f8437",
+      "size": [
+        1440,
+        2304
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/work/实际观察.md"
+    },
+    {
+      "actor_ordinal": 4,
+      "node": "part_volume",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/nape_back_sheet-sheet.png",
+      "sha256": "2f451db24e0cc35d7207dbeaaf805f95b19997e4f929e3de7ccb16562e4f0b94",
+      "size": [
+        2400,
+        1924
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/实际观察.md"
+    },
+    {
+      "actor_ordinal": 5,
+      "node": "part_volume",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/inner_side_lock-sheet.png",
+      "sha256": "84f8c8799e51d3e980a75528ee359184740636b41b057905569797ee922321ab",
+      "size": [
+        1440,
+        2304
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/实际观察.md"
+    },
+    {
+      "actor_ordinal": 6,
+      "node": "part_volume",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/combination-sheet.png",
+      "sha256": "8fc3040ddcaac747e370ba89fb50ee1cbd50c9c42a06c29edf8893c5c0fd1f6b",
+      "size": [
+        1920,
+        2604
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.2.大明暗与体积/实际观察.md"
+    },
+    {
+      "actor_ordinal": 7,
+      "node": "part_color_transitions",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/nape_back_sheet-sheet.png",
+      "sha256": "e2d25a09d5878fa4daf06b29a979a7b5df569dbb4b394e2207683d1a2839724a",
+      "size": [
+        2400,
+        1924
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/实际观察.md"
+    },
+    {
+      "actor_ordinal": 8,
+      "node": "part_color_transitions",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/inner_side_lock-sheet.png",
+      "sha256": "34bf6e09091db29052eae7b2c2f571ec63a42ca8a4be83689ad7d07b8a6336a2",
+      "size": [
+        1440,
+        2304
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/实际观察.md"
+    },
+    {
+      "actor_ordinal": 9,
+      "node": "part_color_transitions",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/combination-sheet.png",
+      "sha256": "234dbc44ec1f7df620c527bea9d56f42bc513bb6393190874a003af1bde61b32",
+      "size": [
+        1920,
+        2604
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.3.过渡色与局部色/实际观察.md"
+    },
+    {
+      "actor_ordinal": 10,
+      "node": "part_local_shading",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/nape_back_sheet-sheet.png",
+      "sha256": "98899a4d1c99e4758d3aed831cdd26018ccd1e38251a7dea03c64d0ae7c921ac",
+      "size": [
+        2000,
+        2272
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/实际观察.md"
+    },
+    {
+      "actor_ordinal": 11,
+      "node": "part_local_shading",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/inner_side_lock-sheet.png",
+      "sha256": "a1701c1947d0014b9e6af4483a7403ea0e947021a6a1f0a324fedde23f77d628",
+      "size": [
+        1440,
+        2832
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/实际观察.md"
+    },
+    {
+      "actor_ordinal": 12,
+      "node": "part_local_shading",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/combination-sheet.png",
+      "sha256": "c40fba7186240184a26f84ea69ccfe9c6d622d2a5bdc8b46df73f132597f52dd",
+      "size": [
+        1740,
+        2772
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.4.局部暗部细化/实际观察.md"
+    },
+    {
+      "actor_ordinal": 13,
+      "node": "cast_shadow_relations",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/nape_back_sheet-sheet.png",
+      "sha256": "1d80e56285fb507617942aff5e0110958768936ea653969e5fd09bc5ce3032f7",
+      "size": [
+        1360,
+        608
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/实际观察.md"
+    },
+    {
+      "actor_ordinal": 14,
+      "node": "cast_shadow_relations",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/inner_side_lock-sheet.png",
+      "sha256": "6481a8b900d653c910440fb2b0f782644cb0076cc3b8110dc55992f358ddaea3",
+      "size": [
+        1360,
+        608
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/实际观察.md"
+    },
+    {
+      "actor_ordinal": 15,
+      "node": "cast_shadow_relations",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/caster-evidence-sheet.png",
+      "sha256": "76ffaab44579f3f51ce0a924db5233c52525f455cb8532171ff85d1777117e49",
+      "size": [
+        1600,
+        2004
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.5.投影处理/4.5.1.投影识别与关系定义/实际观察.md"
+    },
+    {
+      "actor_ordinal": 16,
+      "node": "part_highlights",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/nape_back_sheet-sheet.png",
+      "sha256": "d372563b2637892cf015146f2810ed6097223d45f340e440cd3c7e108e2dcab3",
+      "size": [
+        2400,
+        1924
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/实际观察.md"
+    },
+    {
+      "actor_ordinal": 17,
+      "node": "part_highlights",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/inner_side_lock-sheet.png",
+      "sha256": "84e01ef0458a48ee2fee47a502c85bbe865903d74e1d205afc91fa0fbdeb0e2a",
+      "size": [
+        1440,
+        2304
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/实际观察.md"
+    },
+    {
+      "actor_ordinal": 18,
+      "node": "part_highlights",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/combination-sheet.png",
+      "sha256": "a91b53b5e8e010247b9821876dc74e1cfb6e963ad46651f767c603566e6b744c",
+      "size": [
+        1920,
+        2604
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.6.高光与反光/实际观察.md"
+    },
+    {
+      "actor_ordinal": 19,
+      "node": "part_rendered",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/revision-001-before-root-match/nape_back_sheet-complete.png",
+      "sha256": "e25d1a790c99a0d37affe2be68dcb9887b94b26039699dbe77d2c309b4f79e4c",
+      "size": [
+        1020,
+        2098
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/实际观察.md"
+    },
+    {
+      "actor_ordinal": 20,
+      "node": "part_rendered",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/revision-001-before-root-match/inner_side_lock-complete.png",
+      "sha256": "6bd15dea5ef2e5fec063635423b17a3cefadc20b6b52604c51b6004a52474bd2",
+      "size": [
+        750,
+        2408
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/实际观察.md"
+    },
+    {
+      "actor_ordinal": 21,
+      "node": "part_rendered",
+      "path": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/revision-001-before-root-match/neighbor-surfaces.png",
+      "sha256": "7d4869afca3a6cb2a2877706a6b22524e6f1a35315944cc78ed772601f01cfd5",
+      "size": [
+        1230,
+        2408
+      ],
+      "loaded": "actual original-resolution image; sheets preserve source pixels",
+      "observation": "refinement/groups/head/rear_hair_left/inner_back_curtain/4.rendering stack/4.7.线色融合与材质细化/实际观察.md"
+    }
+  ]
+}

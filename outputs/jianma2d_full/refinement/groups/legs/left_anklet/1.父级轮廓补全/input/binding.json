@@ -1,0 +1,12 @@
+{
+  "worker_id": "/root/workflow_runner/anklet_left",
+  "logical_worker": "group:legs/left_anklet",
+  "node": "group_completion",
+  "target": "n20",
+  "input_sha256": {
+    "block-layers/groups.svg": "ef3982399bd32157e0ea1e668264df006ba91b371119d1068db365f44e57f549",
+    "block-layers/preview.png": "7c25dda9d7dda218aa768182b48f99df7674acd7c40daa2b4bf8eb44fbbd55e0",
+    "structure/groups.json": "be6db61a380157497e3fefcf0f277416b9e797bb5bbe3f9b1339134c2f385ff1",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  }
+}

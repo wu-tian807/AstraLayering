@@ -1,0 +1,15 @@
+{
+  "node": "part_base_colors",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "参考重新确认浅暖桃粉光洁肌肤基色；两part独显与骨盆组合实看，完整隐藏根端同材质，无衣片/脚链色区，原rendering沿用。",
+  "evidence": [
+    "views/part_base_colors.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_base_colors"
+  },
+  "artwork_sha256": "2286990765111a0899371d86a592ca122aa0dbb532a1d66c4f47da482ec2b2a1"
+}

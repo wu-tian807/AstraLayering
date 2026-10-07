@@ -1,0 +1,16 @@
+{
+  "target": "n21",
+  "node": "part_highlights",
+  "worker": "group:legs/right_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "note": "实看本侧银白偏冷青的中央略上反光及完整表面；亮核与下蓝连续，无孔洞，无新增独立效果或关系。",
+  "evidence": [
+    "views/part_highlights.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_highlights"
+  },
+  "artwork_sha256": "e0cc075d6dd6a4b4561062847b63a28125c706b6ffbf0667411dc65b605cc174"
+}

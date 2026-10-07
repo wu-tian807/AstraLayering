@@ -1,0 +1,47 @@
+{
+  "status": "pass",
+  "group_path": "head/face/mouth",
+  "parent_svg": "refinement/groups/head/face/mouth/2.直属拆分与色块/2.3.运动露出补齐/input/guide.svg",
+  "parent_ids": [
+    "group-head-face-mouth"
+  ],
+  "candidate_svg": "refinement/groups/head/face/mouth/2.直属拆分与色块/2.3.运动露出补齐/candidate.svg",
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "results": [
+    {
+      "kind": "part",
+      "path": "head/face/mouth/upper_lip",
+      "status": "pass",
+      "ids": [
+        "part-head-face-mouth-upper-lip"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/mouth/lower_lip",
+      "status": "pass",
+      "ids": [
+        "part-head-face-mouth-lower-lip"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    },
+    {
+      "kind": "part",
+      "path": "head/face/mouth/mouth_interior",
+      "status": "pass",
+      "ids": [
+        "part-head-face-mouth-mouth-interior"
+      ],
+      "outside_samples": 0,
+      "outside_area_px2": 0.0,
+      "outside_bbox": null
+    }
+  ]
+}

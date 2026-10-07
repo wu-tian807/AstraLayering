@@ -1,0 +1,33 @@
+{
+  "worker_id": "/root/workflow_runner/anklet_left",
+  "logical_worker": "group:legs/left_anklet",
+  "target": "n20",
+  "node": "group_completion",
+  "crop": [
+    367,
+    1585,
+    81,
+    98
+  ],
+  "scale": 4,
+  "unchanged_existing_paths": 26,
+  "added_path_ids": [
+    "legs-left-anklet-rear-return"
+  ],
+  "other_svg_content_unchanged": true,
+  "parent_mask_outside_pixels": 0,
+  "baseline_parent_mask_outside_pixels": 0,
+  "new_rear_return_outside_parent_pixels": 0,
+  "rear_return_raster_bbox_at_crop_scale_4": [
+    66,
+    54,
+    258,
+    122
+  ],
+  "input_sha256": {
+    "block-layers/groups.svg": "ef3982399bd32157e0ea1e668264df006ba91b371119d1068db365f44e57f549",
+    "block-layers/preview.png": "7c25dda9d7dda218aa768182b48f99df7674acd7c40daa2b4bf8eb44fbbd55e0",
+    "structure/groups.json": "be6db61a380157497e3fefcf0f277416b9e797bb5bbe3f9b1339134c2f385ff1",
+    "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b"
+  }
+}

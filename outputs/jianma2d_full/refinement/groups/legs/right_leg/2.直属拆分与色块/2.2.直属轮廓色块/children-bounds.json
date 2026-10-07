@@ -1,0 +1,49 @@
+{
+  "scale": 4,
+  "alpha_threshold": 128,
+  "coordinate_units": "original viewport pixels",
+  "children": [
+    {
+      "path": "legs/right_leg/thigh",
+      "kind": "part",
+      "ids": [
+        "part-legs-right_leg-thigh"
+      ],
+      "bounds_xywh": [
+        439.75,
+        658.0,
+        138.25,
+        524.0
+      ]
+    },
+    {
+      "path": "legs/right_leg/lower_leg",
+      "kind": "part",
+      "ids": [
+        "part-legs-right_leg-lower_leg"
+      ],
+      "bounds_xywh": [
+        441.75,
+        1108.0,
+        89.25,
+        508.0
+      ]
+    },
+    {
+      "path": "legs/right_leg/foot",
+      "kind": "group",
+      "ids": [
+        "group-legs-right_leg-foot"
+      ],
+      "bounds_xywh": [
+        442.0,
+        1545.0,
+        74.25,
+        161.5
+      ]
+    }
+  ],
+  "union_missing_samples": 0,
+  "union_outside_samples": 0,
+  "parent_unchanged": true
+}

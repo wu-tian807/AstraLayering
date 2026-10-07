@@ -1,0 +1,57 @@
+{
+  "target": "n20",
+  "node": "group_child_layers",
+  "logical_worker": "group:legs/left_anklet",
+  "worker_id": "/root/workflow_runner/arm_right",
+  "continuation": "平台限制下按root授权复用现存actor；不是新独立上下文。既有n17历史、n20 node1/独立2.1作者记录保持原样。",
+  "children": [
+    {
+      "kind": "group",
+      "path": "legs/left_anklet/ankle_chain",
+      "id": "group-legs-left-anklet-ankle-chain",
+      "source_paths": [
+        "legs-left-anklet-rear-return",
+        "legs-left-anklet-connector-01",
+        "legs-left-anklet-connector-02",
+        "legs-left-anklet-connector-03",
+        "legs-left-anklet-connector-04",
+        "legs-left-anklet-connector-05",
+        "legs-left-anklet-connector-06",
+        "legs-left-anklet-connector-07",
+        "legs-left-anklet-connector-08",
+        "legs-left-anklet-connector-09",
+        "legs-left-anklet-connector-10",
+        "legs-left-anklet-anchor-1",
+        "legs-left-anklet-anchor-2",
+        "legs-left-anklet-link-01",
+        "legs-left-anklet-link-02",
+        "legs-left-anklet-link-03",
+        "legs-left-anklet-link-04",
+        "legs-left-anklet-link-05",
+        "legs-left-anklet-link-06",
+        "legs-left-anklet-link-07",
+        "legs-left-anklet-link-08",
+        "legs-left-anklet-clasp"
+      ]
+    },
+    {
+      "kind": "group",
+      "path": "legs/left_anklet/gem_pendant",
+      "id": "group-legs-left-anklet-gem-pendant",
+      "source_paths": [
+        "legs-left-anklet-clasp-to-bail",
+        "legs-left-anklet-bail",
+        "legs-left-anklet-bail-to-gem",
+        "legs-left-anklet-pendant"
+      ]
+    },
+    {
+      "kind": "part",
+      "path": "legs/left_anklet/small_charm",
+      "id": "part-legs-left-anklet-small-charm",
+      "source_paths": [
+        "legs-left-anklet-small-charm"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "node": "part_structure",
+  "target": "n18",
+  "worker": "group:legs/left_leg",
+  "worker_id": "/root/workflow_runner/leg_left",
+  "note": "5条膝前浅凹、胫前转面和踝内收束曲线完成；2part彩参/线参实看，完整隐藏同面连续，后续柔色面接管，无横切关节缝。",
+  "evidence": [
+    "views/part_structure.png"
+  ],
+  "command_result": {
+    "action": "checkpointed",
+    "pointer": "part_structure"
+  },
+  "artwork_sha256": "bf437a67f72efcd0068114bd61cf4a1927569168a2f87c58c419e1b00f5eecc7"
+}

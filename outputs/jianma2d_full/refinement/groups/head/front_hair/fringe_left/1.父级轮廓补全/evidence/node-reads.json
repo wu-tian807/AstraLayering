@@ -1,0 +1,14 @@
+{
+  "target": "n25",
+  "logical_worker": "group:head/front_hair/fringe_left",
+  "actual_actor": "/root/workflow_runner/arm_right",
+  "new_independent_context": false,
+  "reads": {
+    "../../workflow-next/live2d-layering/SKILL.md": "165b5253821a253c6adc8be126bc92ac2bd3054af09722995a05f73fb0b5cede",
+    "../../workflow-next/live2d-layering/\u6d41\u7a0b.yaml": "d3b086d97b6f4de761f9e94d0973175f1a138d028dc47d108774ad8833bb6556",
+    "../../workflow-next/live2d-layering/4.\u4e13\u9879\u7ec6\u5316/\u6d41\u7a0b.yaml": "33b4e39759ad6868cd932f90ee1c42b1e5e956ef658f3bddd2628044a2a46739",
+    "../../workflow-next/live2d-layering/templates/\u90e8\u4ef6\u4e13\u9879/generic/1.\u7236\u7ea7\u8f6e\u5ed3\u8865\u5168/\u6d41\u7a0b.yaml": "915fa04454f2fbfefed1b7e9b177631784e489dad078f45bf36e3fd17bd94868",
+    "../../workflow-next/live2d-layering/templates/\u90e8\u4ef6\u4e13\u9879/generic/1.\u7236\u7ea7\u8f6e\u5ed3\u8865\u5168/\u63d0\u793a\u8bcd.txt": "bca8abaed2156fb428ef2221e3a93e0528094c1ae1efcb425dd70dad83b30689",
+    "../../workflow-next/live2d-layering/templates/\u90e8\u4ef6\u4e13\u9879/generic/1.\u7236\u7ea7\u8f6e\u5ed3\u8865\u5168/gpt-6-astra-xhigh.model": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  }
+}

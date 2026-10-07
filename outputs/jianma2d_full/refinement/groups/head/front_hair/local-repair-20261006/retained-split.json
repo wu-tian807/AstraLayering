@@ -1,0 +1,27 @@
+{
+  "node": "group_split",
+  "decision": "retain_existing_independently_authored_direct_structure",
+  "not_rerun": true,
+  "direct_children": [
+    "head/front_hair/fringe_left",
+    "head/front_hair/fringe_right",
+    "head/front_hair/scalp_cap",
+    "head/front_hair/temple_sweeps_left",
+    "head/front_hair/temple_sweeps_right"
+  ],
+  "previous_completed_children_equal": true,
+  "tree_sha256": "ad91935302a70a86285e70e90a78898ff7979460c0b3602280dd4edb2c3fd353",
+  "original_worker": {
+    "worker_id": "/root/group_split_front_hair",
+    "model": "gpt-6-sol",
+    "reasoning": "xhigh",
+    "sequence": "r2s2",
+    "target": "n8",
+    "selected_node": "group_split",
+    "dispatched_at": "2026-10-05T19:07:16.323910+00:00",
+    "node_workers": {
+      "group_split": "/root/group_split_front_hair"
+    }
+  },
+  "basis": "Only geometric extent of existing fringe_left requires correction; current five direct identities and classification match approved completed n8 structure. No new direct child or mirror change, no expand needed."
+}
