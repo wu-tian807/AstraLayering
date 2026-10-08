@@ -1,3 +1,0 @@
-已完成 **4.5.1 投影识别与关系定义**。右上眼睑的候选投影关系及来源疑问已写入曲线说明；未确认可独立分离的投影，清单保持为空。自检通过，画面及其他部件保持不变。
-
-交付：SVG（交付路径：`refinement/character.svg`） · 投影清单（交付路径：`structure/rendering.json`） · 检查预览（本地证据：`tmp/rendering-replay/right-upper-eyelid-cast-shadow-relations/eye-board.png`）

@@ -1,3 +1,0 @@
-已完成 4.3「过渡色与局部色」，仅调整 `head/right_eye/upper_eyelid`。独显、参考放大对照及组合预览自检通过；其余部件与渲染关系保留。
-
-交付：character.svg（交付路径：`refinement/character.svg`） · rendering.json（交付路径：`structure/rendering.json`） · 对照预览（本地证据：`tmp/rendering-replay/right-upper-eyelid-color-transitions/rim-detail.png`）

@@ -1,3 +1,0 @@
-已完成 4.2：仅为右眼上眼睑添加柔和的自身转面明暗。独显、放大对照及组合自检通过；其余 30 个 part、渲染登记表和调度指针未改。
-
-交付：SVG（交付路径：`refinement/character.svg`） · rendering.json（交付路径：`structure/rendering.json`） · 自检预览（本地证据：`tmp/rendering-replay/right-upper-eyelid-volume/rim-detail.png`）。

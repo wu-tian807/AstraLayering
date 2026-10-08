@@ -1,8 +1,0 @@
-{
-  "time": "2026-10-05T22:10:54.893950+00:00",
-  "logical_worker": "group:head/crown",
-  "old_actual": "/root/group_crown_parent_recovery",
-  "actual_old_candidate_sha256": "07bd7b008a8afc0c79453316638dca5e810082ada6ef465a73d5b93d89489f9d",
-  "observed": "After upstream parent approved, same-session followup at 22:06 UTC plus health request gave no ACK or validation outputs. Interrupted and retried exact same session at about22:09 UTC; final health request at22:10 UTC still no response. Known input blockers resolved; approved head f4a95e frozen.",
-  "scope": "Recover only pending node1 approved-parent validation/publish. Preserve original candidate and all historical authors; current node1 expected binding must be explicitly audited handoff to new actual session."
-}

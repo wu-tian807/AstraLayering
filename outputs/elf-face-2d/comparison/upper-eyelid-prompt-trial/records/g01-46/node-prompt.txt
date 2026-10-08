@@ -1,7 +1,0 @@
-聚焦 `<group_path>` 的直属 part，按 `<groups>` 的完整 `data-part-path` 定位输入 `<artwork_svg>`。角色参考图 `<reference>` 提供画风、材质和光照依据，`<guide_svg>` 的 part 色块提供形体范围，曲线的 `<desc>` 提供区域与笔触意图。保留其他 part 和已有独立渲染层；在 `working_dir` 内的临时稿中绘制、自查后更新输出 `<artwork_svg>`。
-
-根据参考图为直属 part 补高光、反光与透光等必要的亮部，控制位置、形状、宽度、透明度和边缘软硬。皮肤、头发、布料、金属和透明材质按各自画法处理；高光与大光向、已有暗部一致。
-
-随表面一起变化的亮部保存在该 part 中。确需独立跟随或裁切的反光、发光等效果，可用 type 为 reflection、highlight 或 glow 的独立渲染层；沿用 `<rendering>` 的 id、owner、follow、clip_to 规则，用 `python3 <rendering_tool> merge --groups <groups> --rendering <rendering> --scope <group_path> --patch <清单> --out <rendering>` 合并关系。完整效果图形保存到同名 `<g>`，裁切交后置步骤。
-
-用 `<preview_tool>` 独显当前 part，对照参考图裁切放大查看本步内容，再查看组合效果。完成后交付 `<artwork_svg>` 和 `<rendering>`；关系未改变时沿用已有记录。

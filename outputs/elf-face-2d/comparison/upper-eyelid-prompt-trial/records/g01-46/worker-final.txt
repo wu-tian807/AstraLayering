@@ -1,3 +1,0 @@
-已完成 4.6「高光与反光」。参考图未支持上眼睑新增亮部，已保留画面并记录复核结论；其他部件及渲染关系保持不变。独显、组合预览和结构检查通过。
-
-交付：SVG（交付路径：`refinement/character.svg`） · 渲染记录（交付路径：`structure/rendering.json`） · 预览（本地证据：`tmp/rendering-replay/upper-eyelid-highlights/review-board.png`）

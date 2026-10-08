@@ -1,9 +1,0 @@
-{
-  "time": "2026-10-05T22:47:10.253901+00:00",
-  "logical_worker": "group:head/crown",
-  "old_actual": "/root/group_crown_range_recovery",
-  "stage": "part_motion_completion pending, unbound, uncheckpointed",
-  "guide_sha256": "b58f4f5abb0fd0c8aac0041c7f161e705a7a65d9e1b14e7220601323835f9ede",
-  "same_session_resume": "Followup at22:40 after source2.2 PASS checkpoint, health request at22:42 no ACK/output, interrupt and exact same-session retry at22:44:39 still no ACK/output by22:46:52. Current2.3 directory absent, no unresolved upstream condition.",
-  "scope": "Recover only pending motion/13 with new actual actor. Preserve all old node1/2.2 expected bindings and historical producers; no source expected binding exists for motion or13, no READY manufactured."
-}

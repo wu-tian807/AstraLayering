@@ -1,3 +1,0 @@
-已完成 4.6「高光与反光」。参考图未见明确的眼睑独立高光，保留现有亮面，更新复核说明与节点标记。自检通过，其余部件及渲染关系不变。
-
-交付：SVG（交付路径：`refinement/character.svg`） · 渲染记录（交付路径：`structure/rendering.json`） · 预览（本地证据：`tmp/rendering-replay/right-upper-eyelid-highlights/eye-board.png`）

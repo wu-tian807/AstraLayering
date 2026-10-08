@@ -1,3 +1,0 @@
-已完成 **4.4 局部暗部细化**，仅修改 `iris_disc`。预览与自检通过，其余 30 个部件及渲染关系保持不变。
-
-交付：SVG（交付路径：`refinement/character.svg`） · 渲染记录（交付路径：`structure/rendering.json`） · 效果预览（本地证据：`tmp/rendering-replay/iris-disc-local-shading/combined-reference.png`）

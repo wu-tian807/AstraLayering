@@ -1,6 +1,6 @@
 # Jianma v4 实际运行记录
 
-本目录保存角色分层流程的实际输入、选项、阶段产物、历史返修与审查证据；当前完整素体位于 [clothing/character.svg](refinement/groups/clothing/character.svg)，后续衣装制作见 [jianma_clothing](../jianma_clothing/readme.md)。
+本目录保存角色分层流程的实际输入、选项、阶段产物与当前审查记录；当前完整素体位于 [clothing/character.svg](refinement/groups/clothing/character.svg)，后续衣装制作见 [jianma_clothing](../jianma_clothing/readme.md)。
 
 [完整运行记录](运行记录.md) · [本轮选项](options.json) · [部件清单](structure/parts.yaml) · [成果展示](../../demos/jianma-current-case/readme.md)
 
@@ -22,11 +22,10 @@
 
 本角色没有额外实际运行的 special_parts / generic 制作结果，不能据此宣称这些类别已实跑通过。
 
-## 历史轮次与证据
+## 保留范围与证据
 
-- `refinement/groups/old-*.eyes/`、`old-*.hair/`、`old-*.mouth/` 保存早期实际生成及失败轮次；内部编号沿用当时流程，不与当前模板强行对应。
-- [reviews/refinement](reviews/refinement/) 保存独立审查、返修与证据；历史报告反映当时被审版本，不能代替当前稿状态。
-- [tmp](tmp/) 同时包含原运行使用的绘制/取色脚本、局部对照、投影试跑与中间诊断，作为实跑过程归档保留。
+- [reviews/refinement](reviews/refinement/) 保存当前各部件的独立审查、返修与证据；历史报告反映当时被审版本，不能代替当前稿状态。
+- 2026-10-08 清理了 `tmp/`、`old-*` 失败轮次、旧返修副本及重复候选快照；当前成稿与必要阶段产物保持原始内容。运行记录中这些旧路径仅作历史记录。
 - [嘴部耗时调查](嘴部耗时调查.md) 保留当时的耗时定位。
 
 ## 与当前技能的关系

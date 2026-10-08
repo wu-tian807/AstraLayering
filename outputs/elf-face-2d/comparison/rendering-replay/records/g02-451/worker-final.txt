@@ -1,3 +1,0 @@
-已完成 4.5.1「投影识别与关系定义」。虹膜的候选投影及来源疑问已写入曲线说明，未新增独立投影层。画面及其余 30 个部件保持不变，自检通过。
-
-SVG 成稿（交付路径：`refinement/character.svg`） · 渲染关系（交付路径：`structure/rendering.json`） · 预览（本地证据：`tmp/rendering-replay/iris-disc-cast-shadow-relations/combined-reference.png`）

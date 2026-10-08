@@ -1,9 +1,0 @@
-{
-  "time": "2026-10-05T19:45:20.515271+00:00",
-  "node": "part_motion_completion",
-  "old_actual_worker_id": "/root/group_front_hair",
-  "new_actual_worker_id": "/root/group_front_hair_motion_recovery",
-  "reason": "Unresponsive dispatched pending node; audit /Users/wutian/Desktop/coding/AstraLayering/outputs/jianma2d_full/tmp/worker-handoffs/head/front_hair/unresponsive-motion-20261006-01/audit.json",
-  "scope": "Only pending and future nodes. Prior source bindings, successful actual producers and all artifacts unchanged. No existing source binding/replay for this pending node, so no state rewrite.",
-  "new_session_ack_received": true
-}

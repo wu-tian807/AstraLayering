@@ -1,3 +1,0 @@
-已完成当前 4.1 节点：仅更新右眼上眼睑基色，保留原笔触与窄边，其余 30 个 part 不变。独显、放大对照和组合自检通过。
-
-交付：character.svg（交付路径：`refinement/character.svg`） · rendering.json（交付路径：`structure/rendering.json`）（沿用原表）· 自检预览（本地证据：`tmp/rendering-replay/right-upper-eyelid-base-colors/candidate-eye-board.png`）。调度指针未改。

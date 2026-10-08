@@ -1,8 +1,0 @@
-{
-  "target": "head/right_eye/upper_eyelid",
-  "source_artwork_sha256": "92aa2cfdc23ed31d653f554200e33fe1a4c24527feca9af0eef94bb63df0da55",
-  "prepared_artwork_sha256": "07a911d231e57a2f0c8b68a66ef5f85c82180cc3db7ecc1a146b857cfe98683f",
-  "geometry_source_sha256": "463e5d1e7660da9a30dc9a43c355ba7ddd675e9b4415d0abc83aefbcc6866006",
-  "restored_part_exact_geometry_text": true,
-  "other_svg_bytes_preserved": true
-}

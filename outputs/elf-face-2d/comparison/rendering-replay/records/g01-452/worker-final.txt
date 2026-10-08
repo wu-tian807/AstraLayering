@@ -1,3 +1,0 @@
-已完成 **4.5.2 独立投影绘制**节点。右上眼睑无已登记的独立投影，本轮沿用原 SVG 和空投影清单。临时稿结构检查、独显及组合预览通过，所有部件保持不变。
-
-交付：SVG（交付路径：`refinement/character.svg`） · 投影清单（交付路径：`structure/rendering.json`） · 检查预览（本地证据：`tmp/rendering-replay/right-upper-eyelid-cast-shadow-artwork/eye-board.png`）

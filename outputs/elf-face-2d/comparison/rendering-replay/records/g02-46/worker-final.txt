@@ -1,3 +1,0 @@
-已完成 4.6「高光与反光」：仅为指定虹膜底盘补暖亮透光、调整四条浅粉细纹。自检通过，其余 30 个部件保留。
-
-交付 SVG（交付路径：`refinement/character.svg`） · 渲染记录（沿用）（交付路径：`structure/rendering.json`） · 预览（本地证据：`tmp/rendering-replay/iris-disc-highlights/part-combined-reference.png`）

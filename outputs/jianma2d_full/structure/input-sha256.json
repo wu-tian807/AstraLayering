@@ -1,9 +1,0 @@
-{
-  "references/original.png": "7565a7464cb2142f84be80afe7486eeaa16c67b444d2e3e1b931d7a8c9c82d96",
-  "references/simplified-character.png": "61af871b6ded6931f8c1960e28384db3f667048a661354c64a9bbe3848abf692",
-  "references/base-subject.png": "7f17481a8416753247fc54c3e2433723ebf5464764a320f91cae279d356dfd3b",
-  "references/line-reference.png": "0bf1b4919180b96727f3faf09900ca06c523833cb2bed225d0d4b912550fcee4",
-  "structure/groups.json": "204d9a9f134942cec5b8da614ea0babc2ce362fd39ea8cbcd25677817a7c7248",
-  "reviews/group_layers/candidate-01.svg": "087c24f754b10b10f857fea2cb85ba7a20979f45746a0c5359381469df0961bb",
-  "reviews/group_layers/review-01.md": "11c686fa73740a19e249bb36dd7ddb0a9a39333ab1d4540004720fb065bcb1f1"
-}

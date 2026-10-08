@@ -1,3 +1,0 @@
-已完成 4.3：仅为 `head/right_eye/upper_eyelid` 补入柔和暖冷过渡。其他部件、原有明暗及渲染关系保持，独显和组合检查通过。
-
-SVG 成稿（交付路径：`refinement/character.svg`） · 渲染记录（交付路径：`structure/rendering.json`） · 预览对照（本地证据：`tmp/rendering-replay/upper-eyelid-color-transitions/rim-review.png`）

@@ -1,6 +1,6 @@
 # SVG 示例与画法对比
 
-这里放可直接查看的 SVG 结果、必要参考图及案例说明。当前主工作流的逐阶段验证放在 [outputs](../outputs/readme.md)，失败记录放在 [output_bad_cases](../output_bad_cases/readme.md)。
+这里放可直接查看的 SVG 结果、必要参考图及案例说明。完整成稿案例及必要制作记录放在 [outputs](../outputs/readme.md)。
 
 | 案例 | 内容 |
 | --- | --- |

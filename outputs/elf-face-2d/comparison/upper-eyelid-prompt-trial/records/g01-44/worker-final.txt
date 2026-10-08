@@ -1,3 +1,0 @@
-已完成 4.4：仅细化 `head/right_eye/upper_eyelid` 的睑缘暗色，保留原有细度、软边和渐隐。其他部件及渲染关系未变，结构与视觉检查通过。
-
-SVG 成稿（交付路径：`refinement/character.svg`） · 渲染记录（交付路径：`structure/rendering.json`） · 预览对照（本地证据：`tmp/rendering-replay/upper-eyelid-local-shading/rim-review.png`）

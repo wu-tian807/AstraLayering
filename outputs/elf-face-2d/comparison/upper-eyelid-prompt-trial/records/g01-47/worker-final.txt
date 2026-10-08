@@ -1,5 +1,0 @@
-4.7 已交付：睑缘已校为更接近参考的深酒红，并完成线色融合。结构检查通过。
-
-仍未解决：既有支撑遮挡部分参考虹膜、接界位置与软边差异、相邻睫毛灰边；均已记录。
-
-SVG（交付路径：`refinement/character.svg`） · 渲染记录（交付路径：`structure/rendering.json`） · 预览（交付路径：`refinement/preview.png`） · 局部对照（本地证据：`tmp/rendering-replay/upper-eyelid-material/review-board.png`）

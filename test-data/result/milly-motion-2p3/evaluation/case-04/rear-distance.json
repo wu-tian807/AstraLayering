@@ -1,8 +1,0 @@
-{
-  "case_id": "case-04",
-  "measurement": "Distances of candidate-only rear alpha sample centres to original rear alpha at threshold 128; native canvas pixels. Hidden and visible combined.",
-  "candidate_added_samples": 1983,
-  "candidate_removed_samples": 746,
-  "candidate_only_max_distance_px": 5.385164807134504,
-  "candidate_only_distance_p95_px": 4.47213595499958
-}

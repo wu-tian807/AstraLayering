@@ -1,3 +1,0 @@
-已完成 4.5.2「独立投影绘制」。登记清单为空，本轮无投影可绘制；SVG 和渲染关系原样交付，独显、组合预览及结构检查通过。
-
-SVG 成稿（交付路径：`refinement/character.svg`） · 渲染关系（交付路径：`structure/rendering.json`） · 预览（本地证据：`tmp/rendering-replay/iris-disc-cast-shadow-artwork/part-combined-reference.png`）

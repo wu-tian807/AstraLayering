@@ -1,3 +1,0 @@
-已完成 4.4「局部暗部细化」，仅收细上眼睑暗带的中央折底与两端。结构及预览自检通过，其余部件和渲染关系保留。
-
-交付：character.svg（交付路径：`refinement/character.svg`） · rendering.json（交付路径：`structure/rendering.json`） · 对照预览（本地证据：`tmp/rendering-replay/right-upper-eyelid-local-dark/rim-detail.png`）

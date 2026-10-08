@@ -1,3 +1,0 @@
-已完成 4.7「线色融合与材质细化」：调整指定虹膜底盘的四段外缘线色，隐藏表面与组合检查通过，其余 30 个部件保留。
-
-交付 SVG（交付路径：`refinement/character.svg`） · 渲染记录（交付路径：`structure/rendering.json`） · 整图预览（交付路径：`refinement/preview.png`）

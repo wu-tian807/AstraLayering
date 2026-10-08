@@ -1,3 +1,0 @@
-已完成 `iris_disc` 基色与材质分区，独显及组合自检通过，其余 30 个部件保持不变。
-
-交付：SVG 成稿（交付路径：`refinement/character.svg`） · 渲染登记表（沿用）（交付路径：`structure/rendering.json`） · 组合预览（本地证据：`tmp/rendering-replay/iris-disc-base-colors/combined-reference.png`）

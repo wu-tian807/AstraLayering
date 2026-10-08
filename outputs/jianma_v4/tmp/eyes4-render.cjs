@@ -1,2 +1,0 @@
-const sharp=require('C:/Users/22129/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp');const fs=require('fs');const out='refinement/groups/eyes/4.眼周肤色与局部层次';
-(async()=>{await sharp(fs.readFileSync(out+'/character.svg')).flatten({background:'#fff'}).png().toFile(out+'/preview.png');for(const mode of ['no-right-skin','no-left-skin','no-skin','no-right-eye','no-left-eye','no-eyes'])await sharp(fs.readFileSync(out+'/evidence/'+mode+'.svg')).flatten({background:'#fff'}).png().toFile(out+'/evidence/'+mode+'.png');})();

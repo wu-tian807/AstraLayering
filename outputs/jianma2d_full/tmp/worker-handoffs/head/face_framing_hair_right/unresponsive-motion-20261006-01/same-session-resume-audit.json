@@ -1,9 +1,0 @@
-{
-  "time": "2026-10-05T22:08:06.086354+00:00",
-  "logical_worker": "group:head/face_framing_hair_right",
-  "original_actual": "/root/group_framing_right",
-  "stage": "part_motion_completion pending and uncheckpointed",
-  "approved_guide_sha256": "51e519e09881b5eec6c7b4f15d7d4a6b60cc63fa416810bbb8bc94faadb9a694",
-  "observed": "No ACK or 2.3 output after followup at about 22:03 UTC; separate health requests then interruption and exact same-session retry at 22:06 UTC still no ACK or output by 22:07:43 UTC. Original 1/2.2 successful authors and expected bindings must remain.",
-  "action": "Retire stalled session and use fresh actual recovery actor only for pending unbound motion/13; no status or READY manufactured."
-}

@@ -1,3 +1,0 @@
-已完成 4.7。右上眼睑接界线已融合为灰玫瑰至紫褐渐变，保留原有粗细、渐隐和软边。结构与预览自检通过，其余部件及渲染关系不变。
-
-交付：SVG（交付路径：`refinement/character.svg`） · 渲染记录（交付路径：`structure/rendering.json`） · 预览（交付路径：`refinement/preview.png`）

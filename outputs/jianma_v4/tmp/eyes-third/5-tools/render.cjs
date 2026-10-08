@@ -1,3 +1,0 @@
-const fs=require('node:fs'),path=require('node:path');const sharp=require('C:/Users/22129/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp');
-const dir=path.resolve(process.argv[2]);const check=JSON.parse(fs.readFileSync(path.join(dir,'check.json'),'utf8'));
-(async()=>{await sharp(path.join(check.output,'character.svg')).flatten({background:'#fff'}).png().toFile(path.join(check.output,'preview.png'));for(const n of fs.readdirSync(dir).filter(n=>n.endsWith('.svg')))await sharp(path.join(dir,n)).flatten({background:'#fff'}).png().toFile(path.join(dir,n.replace(/\.svg$/,'.png')));console.log(check.step+' '+check.eye+' rendered.');})().catch(e=>{console.error(e);process.exit(1)});

@@ -167,10 +167,9 @@ SVG按实体部件组织，保留当前姿态所需的隐藏底形：例如发�
 | [人物分层技能](./.agents/skills/live2d-layering/readme.md) | 人物分组模板、节点配置、提示词与公共工具 |
 | [衣装技能](./.agents/skills/live2d-clothing/readme.md) | 多层衣装、附件、补形与穿插的制作节点 |
 | [工作流配置格式](./.agents/skills/live2d-layering/docs/workflow-dsl.md) | 输入输出、条件、循环、会话复用与审查规则 |
-| [outputs](./outputs/readme.md) | 案例逐阶段参考、SVG 与记录 |
+| [outputs](./outputs/readme.md) | 7 个完整成稿案例、必要参考与制作记录 |
 | [analysis](./analysis/readme.md) | 复核、问题原因与画法研究 |
 | [demos](./demos/readme.md) | 新旧成果、完整部件展示与画法对比 |
-| [output_bad_cases](./output_bad_cases/readme.md) | 早期失败产物及问题记录 |
 
 <details>
 <summary>历史资料</summary>
@@ -183,7 +182,7 @@ SVG按实体部件组织，保留当前姿态所需的隐藏底形：例如发�
 
 欢迎通过 [Issues](https://github.com/wu-tian807/AstraLayering/issues) 讨论问题，或通过 [Pull Requests](https://github.com/wu-tian807/AstraLayering/pulls) 提交工作流改进、SVG 示例、失败案例和动画绑定实验。
 
-分享结果时请注明参考图、所用模型与提示词、阶段目标和实际问题。展示结果放入 `demos/`，当前流程的逐阶段验证放入 `outputs/`，失败复盘放入 `output_bad_cases/`。
+分享结果时请注明参考图、所用模型与提示词、阶段目标和实际问题。展示结果放入 `demos/`，完整成稿案例及必要记录放入 `outputs/`；局部试验、未完成运行与临时文件不再作为成果目录保留。
 
 
 ## 教程与学习资料

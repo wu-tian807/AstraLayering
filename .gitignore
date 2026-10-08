@@ -26,13 +26,6 @@ node_modules/
 /analysis/suzuran-analysis/heavy-hair-strokes.svg
 /analysis/suzuran-analysis/heavy-hair-strokes.html
 
-# Scratch files from the Jianma steps 1–3 run.
-/outputs/jianma2d/tmp/
-/outputs/jianma2d/block-layers/draft.svg
-
-# Scratch files from the Cute Girl steps 1–3 run.
-/outputs/cute-girl-2d/tmp/
-
 # Locally held third-party tutorial assets; existing tracked videos are preserved.
 /tutorial/live2d-guidance/local-assets/
 /tutorial/drawing-tutorial/*.mp4
@@ -44,7 +37,3 @@ node_modules/
 /outputs/jianma2d-opus55-20261005/tmp/
 /outputs/jianma2d-opus55-20261005/.runtime/
 /outputs/jianma2d-opus55-20261005/structure/*.lock
-
-# Local dependencies and locks from the paused Jianma run.
-/outputs/jianma2d_full/.runtime/
-/outputs/jianma2d_full/structure/*.lock

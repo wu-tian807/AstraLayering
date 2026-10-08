@@ -1,3 +1,0 @@
-已完成 4.5.1，仅更新右眼上眼皮的投影说明。投影来源仍无法可靠分离，已记录疑问，未新增独立层；画面及其他部件保持不变，自检通过。
-
-交付 SVG（交付路径：`refinement/character.svg`） · 预览（本地证据：`tmp/rendering-replay/upper-eyelid-shadow-relations/review-board.png`）

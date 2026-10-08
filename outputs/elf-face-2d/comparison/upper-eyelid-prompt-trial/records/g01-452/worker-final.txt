@@ -1,3 +1,0 @@
-已完成 4.5.2。当前无已登记的独立投影，SVG 与 rendering.json 原样交付；结构检查、部件独显和组合预览均通过。
-
-交付 SVG（交付路径：`refinement/character.svg`） · 预览（本地证据：`tmp/rendering-replay/upper-eyelid-shadow-artwork/review-board.png`）

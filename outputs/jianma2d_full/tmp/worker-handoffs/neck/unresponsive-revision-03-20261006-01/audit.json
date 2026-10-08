@@ -1,9 +1,0 @@
-{
-  "time": "2026-10-05T18:02:02.670244+00:00",
-  "worker": "/root/group_neck_resource_recovery",
-  "reason": "Revision-03 dispatched 17:53; no ACK or artifact after over 8 minutes; status request 17:59 unanswered. Current revision candidate and original reviewer proof preserved. Recovery may adjust only reviewed true connection gap.",
-  "candidate_sha256": "8c81a17e87058d7e72637be440b5f7cc0c5c68e62d7de0f882813d33c0bbd75f",
-  "pending_recovery": false,
-  "recovery_worker": "/root/group_neck_gap_recovery",
-  "handoff_proof": "tmp/worker-handoffs/neck/*/002"
-}

@@ -1,3 +1,0 @@
-已完成 `head/right_eye/upper_eyelid` 的柔和转面明暗，独显、组合与结构检查通过。其余部件及调度文件保持不变。
-
-交付：character.svg（交付路径：`refinement/character.svg`） · rendering.json（沿用）（交付路径：`structure/rendering.json`） · 对照预览（本地证据：`tmp/rendering-replay/upper-eyelid-volume/review-board.png`）

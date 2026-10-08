@@ -1,9 +1,0 @@
-{
-  "time": "2026-10-05T15:09:56.857113+00:00",
-  "worker": "group_child_layers:head:review",
-  "old_worker_id": "/root/review_head_children",
-  "reason": "Third-candidate local recheck and subsequent status request had no reply or new artifacts; checks at15:03 and15:06 showed original report unchanged. Interrupted before same-model independent recovery.",
-  "scope": "historical two independent reviews and their original authorship retained; next local recovery review gets its actual new reviewer id",
-  "report_before_sha256": "a911b3778bfa01198646160f6936d60b342970a4a16c45194e60cc3b01eda88e",
-  "candidate_sha256": "cba25d38af900a7836261c32ec53fdf40aa65e5c5c767e1757affb238bea2cf6"
-}
