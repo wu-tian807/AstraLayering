@@ -1,6 +1,6 @@
 # 完整成稿案例
 
-`outputs/` 只保留已产出完整人物、完整衣装或完整独立展示的案例。必要参考、正式阶段产物与当前审查记录随案例保存；局部试验、未完成运行、旧失败轮次和临时文件已移出仓库。
+`outputs/` 保存已产出完整人物、完整衣装或完整独立展示的案例，以及必要参考、正式阶段产物与当前审查记录。
 
 ## 成果索引
 
@@ -15,11 +15,5 @@
 | Pelican bicycle | 可直接打开的完整鹈鹕自行车展示 | [展示页面](pelican-bicycle/index.html) · [预览](pelican-bicycle/preview.png) |
 
 成稿指已有完整主体产物，不表示所有美术问题或动态绑定均已验收。具体限制以对应案例记录为准。
-
-## 2026-10-08 清理
-
-移出了 `case2`、`case3_miku_v2`、`cute-girl-2d`、`elf-face-2d`、`jianma_expression2`、`jianma_v1`、`jianma_v2`、`jianma2d`、`jianma2d_full`。同时移出旧失败案例目录、独立测试素材目录、空工具目录中的缓存，以及完整案例中的临时文件、旧失败轮次和重复快照。
-
-保留的成稿、参考与正式阶段产物未重绘；已入库的旧文件可从清理前的 Git 历史查阅。旧运行记录中的已移除路径仅作历史记录。
 
 展示与必要说明见 [demos](../demos/readme.md)；当前工作流见 [人物分层技能](../.agents/skills/live2d-layering/readme.md) 与 [workflow-next](../workflow-next/live2d-layering/readme.md)；使用 [SVG 预览器](../loading/svg-preview.html) 查看分组与显隐。
