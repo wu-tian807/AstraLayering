@@ -1,0 +1,18 @@
+如何给脸部画好看通透的皮肤？新手必学皮肤上色方法！【轻微课 一看就绘-799期】
+https://www.bilibili.com/video/BV17Z4y1h7bm/
+轻微课官方账号自己的第799期教学；开头引用其他画师署名插画，研究对象仅为随后演示，不将引用插画当作可用素材。
+范围：20 timestamped frames inspected; not continuous viewing, no audio transcription, not entire anthology
+字幕：Only danmaku XML retrieved; danmaku is viewer commentary, not subtitles. No login/cookies; no ASR. Teaching text is sampled burned-in captions.
+
+实际观察（原始概括，非逐字转录）
+00:36 / 00:44 / 00:52 色轮先在暖色区域取高明度、低饱和肤色；示范选浅黄色。
+01:00 / 02:20 底色先填满；发缝等窄区域用更小笔头处理。
+01:16 / 01:24 / 01:32 / 02:20 阴影取色向红偏移并降低明度、提高饱和；左侧光源对应右侧阴影，耳与颈部遮蔽区域整体着阴影色。
+01:40 / 01:48 / 01:56 柔化局部颜色过渡；面颊加入偏黄、偏红的软边暖色，鼻部随后也出现暖色。
+02:04 / 02:12 鼻和唇加入小面积高光；后段说明把线条改为深棕色。
+
+我们推导的绘画先验（尚未实作/验证，不是作者规定）
+可用的绘画先验是关系而非固定肤色：基底—偏红阴影—软边暖色—小高光形成不同尺度的色块。 渲染表示可分别容纳覆盖遮蔽、低频血色与稀疏高光，不把它们压成同一种阴影。
+可把遮蔽边、体积过渡、腮红、线色作为不同成因建模，保留画家刻意弱化脸部外轮廓的空间。 先做颜色/边缘类型的表示实验，再决定是否需要几何输入；不是新拆分约束。
+
+权利：Official video page says unauthorized reposting prohibited; no permissive license observed. Public access does not grant reuse. Source video and frame samples remain private research only; do not rehost or redistribute.

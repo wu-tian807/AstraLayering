@@ -12,3 +12,10 @@
 这些内容的绘画步骤、皮肤着色与头发结构目前只是文件名提示的候选学习主题，具体知识仍待观看核验。PSD 未发现。来源、署名、转载条件及视频字幕配对待补；不自动公开或上传资料。
 
 另见 [云端已验证学习记录](../live2d-guidance/cloud-study-notes-20261001.md)，其中 Ferrum 视频与官方 PSD 尚未同步到 Windows。
+
+
+## 肤色与眼部绘画研究 · 2026-10-01
+
+[肤色学习记录](studies/face-eye-20261001/skin_learning_zh.txt)（轻微课）与[厚涂眼睛学习记录](studies/face-eye-20261001/eye_learning_zh.txt)（板绘人堆堆 P1），另有[机器可读绘画先验](studies/face-eye-20261001/drawing_priors.json)及[来源与验证清单](studies/face-eye-20261001/source_manifest.json)。
+
+两段视频仅在云端下载并全长解码验证，原视频与抽帧未同步 Windows、不再发布。研究覆盖分别为 20 和 16 个时间点抽帧，非连续观看、非音频听写，也非完整合集；仅有弹幕与抽样画面字幕，弹幕不是字幕。记录区分实际观察与尚未实作的推导，不将样本假设变成强制规则或写入 generic。

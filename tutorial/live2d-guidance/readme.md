@@ -2,6 +2,8 @@
 
 本页索引原创分析与真实可解析数据；源资产只保留在本地忽略目录，不包含在公开 git 内容中。教程供流程设计者按专题学习，再落实到具体节点；执行者无需通读。此次不修改 generic，不引入动画实现；补全部分作为独立 part 的决定保持不变。
 
+当前入口：[原创研究总索引](../live2d-research/local-index.md)、[模型原件统一目录](model-originals/readme.md)及[逐文件清单](model-originals/manifest.json)。2026-10-08 已将 Milly/Lier/樱桃的 35 文件及两份原 ZIP 复制到 `model-originals/`，与旧副本和 ZIP 成员逐项核对哈希；旧 `local-assets/` 保留。以下旧整理记录中的 `local-assets` 路径是历史位置。五份云端包已收到 Library 引用，但下载有界重试报 HTTP 403，官方原件及全量 Oct1–8 报告尚未本机导入。
+
 [云端已验证学习记录（2026-10-01）](cloud-study-notes-20261001.md)：铁锭 Ferrum 头发阴影 P2、黑酱 kuroko 身体拆分合集 P1，以及 Live2D 官方 Haru/Koharu/Haruto PSD 样本研究。两段视频均已下载并全长解码通过；Ferrum 记录为抽帧与画面字幕，kuroko 为 10 帧抽样观察，均不等于连续完整听写或完整观看。kuroko 合集剩余部分未获取。相关原始资料仅在云端，Windows 尚未同步。
 
 [官方 Haru 眼部建模证据](haru-eye-model-study.json)：云端实际 PSD、运行配置与动作端点的原创研究；源资产未在 Windows。保留交接 JSON 原文，`limits.windows_repository_modified=false` 指原云端研究阶段，并非当前索引维护状态。cmo3 未解码，1.1 为动作请求值，未证实渲染是否钳制；检查矩阵仅作学习建议，不写入 generic。

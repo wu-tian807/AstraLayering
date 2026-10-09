@@ -1,0 +1,18 @@
+【眼睛教程】厚涂眼睛如何画出质感？0基础厚涂小白必看！ p01 冷傲眼睛的绘制思路
+https://www.bilibili.com/video/BV1Gb4y1k7da/?p=1
+板绘人堆堆；简介以第一人称说明自己的画法，画面带同名水印及同步手绘演示。只研究p1短版，未研究p3约50分钟原速版。
+范围：16 timestamped frames inspected; not continuous viewing, no audio transcription, not entire anthology
+字幕：Only danmaku XML retrieved; danmaku is viewer commentary, not subtitles. No login/cookies; no ASR. Teaching text is sampled burned-in captions.
+
+实际观察（原始概括，非逐字转录）
+00:20 / 00:28 先铺皮肤底色，再用较轻的草图放置眉、上下眼睑与虹膜。
+00:36 / 00:44 / 00:52 先用大片粉红眼周色、青蓝虹膜、暗瞳孔和眉块建立分区，再进入塑造；此时还没有最终睫毛细节。
+01:00 / 01:08 柔和眼周保留，但上眼睑及眼角轮廓变清楚，眉块也出现方向性毛流。
+01:16 / 01:24 虹膜加入绿/青的放射细节；之后上睫毛沿眼睑曲线伸出，长短和方向有变化。
+01:40 / 01:48 / 01:56 后段补下睫毛及细小明暗、亮点；细线集中在眼缘，周围皮肤仍大面积柔化。
+
+我们推导的绘画先验（尚未实作/验证，不是作者规定）
+眼睛的识别依赖嵌套形状：眼裂包住虹膜，虹膜包住瞳孔；上眼睑截断虹膜，睫毛方向随局部眼缘改变。 几何候选应携带遮挡顺序和局部切线，不仅有独立闭合轮廓。
+质感来自硬软边分配与细节预算：大块眼周先塑造，最高频线条及对比留给睫毛、瞳孔和小亮点。 尝试结构色块→局部边缘→稀疏细节的分尺度生成；不是把所有皮肤都锐化。
+
+权利：Official video page says unauthorized reposting prohibited; no permissive license observed. Public access does not grant reuse. Source video and frame samples remain private research only; do not rehost or redistribute.

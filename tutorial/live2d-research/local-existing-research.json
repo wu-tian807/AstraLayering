@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "purpose": "Index existing local original research without moving or overwriting prior files",
+  "research_files": 10,
+  "supporting_documents": 1,
+  "files": [
+    {
+      "path": "tutorial/live2d-guidance/cloud-study-notes-20261001.md",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\live2d-guidance\\cloud-study-notes-20261001.md",
+      "topic": "cloud-sampling-and-official-psd",
+      "role": "research",
+      "bytes": 5111,
+      "sha256": "4a3a8c4bc0cd8ef6c21ec43aa4264213f7be5866c7d520f704ff74f917f61189"
+    },
+    {
+      "path": "tutorial/live2d-guidance/haru-eye-model-study.json",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\live2d-guidance\\haru-eye-model-study.json",
+      "topic": "haru-eye",
+      "role": "research",
+      "bytes": 10721,
+      "sha256": "e70b3444e824f052b0b39fa9e3a0a7e4e8f2a9a94596eb66e10f2536711f9952"
+    },
+    {
+      "path": "tutorial/live2d-guidance/data/milly-psd-structure.json",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\live2d-guidance\\data\\milly-psd-structure.json",
+      "topic": "milly-psd",
+      "role": "research",
+      "bytes": 312923,
+      "sha256": "1db8b8d217f3e356be2658c88defede8445e5d957d6209ddee607b28cd37d318"
+    },
+    {
+      "path": "tutorial/live2d-guidance/data/lier-runtime-index.json",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\live2d-guidance\\data\\lier-runtime-index.json",
+      "topic": "lier-runtime",
+      "role": "research",
+      "bytes": 93347,
+      "sha256": "19e1aa59e76d7231f22a5b35ff0a9cf1c93a3c39fc4b562bc75780543ffb327c"
+    },
+    {
+      "path": "tutorial/live2d-guidance/data/cherry-cake-angel-study.md",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\live2d-guidance\\data\\cherry-cake-angel-study.md",
+      "topic": "cherry-cake-angel",
+      "role": "research",
+      "bytes": 3208,
+      "sha256": "12ac72919f1bdede149040e16a683ad05aaafa41b96d88634c06ffef0bcee2e8"
+    },
+    {
+      "path": "tutorial/live2d-guidance/data/cherry-cake-angel-runtime-study.json",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\live2d-guidance\\data\\cherry-cake-angel-runtime-study.json",
+      "topic": "cherry-cake-angel",
+      "role": "research",
+      "bytes": 100523,
+      "sha256": "b19155f07d2079c6cb175bb76af8beae2abeca2b9aade8d54b9864dfe76b8fc1"
+    },
+    {
+      "path": "tutorial/live2d-guidance/data/learning-data.md",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\live2d-guidance\\data\\learning-data.md",
+      "topic": "milly-and-lier",
+      "role": "supporting-document",
+      "bytes": 4064,
+      "sha256": "e95d30320ef0cec50065bff64cacf8bad2920b6ac00dc2bb57df660152d95d6b"
+    },
+    {
+      "path": "tutorial/drawing-tutorial/studies/face-eye-20261001/drawing_priors.json",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\drawing-tutorial\\studies\\face-eye-20261001\\drawing_priors.json",
+      "topic": "face-eye-20261001",
+      "role": "research",
+      "bytes": 5170,
+      "sha256": "42cd0ba8f7d5d1d39d570c5f390a98e762be278cca739cb5c5106452146dbb9b"
+    },
+    {
+      "path": "tutorial/drawing-tutorial/studies/face-eye-20261001/eye_learning_zh.txt",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\drawing-tutorial\\studies\\face-eye-20261001\\eye_learning_zh.txt",
+      "topic": "face-eye-20261001",
+      "role": "research",
+      "bytes": 1996,
+      "sha256": "bdcd117c444bc003a07ca311227a4b2fe130cddeca9f00f48a97281f59a4b4a8"
+    },
+    {
+      "path": "tutorial/drawing-tutorial/studies/face-eye-20261001/skin_learning_zh.txt",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\drawing-tutorial\\studies\\face-eye-20261001\\skin_learning_zh.txt",
+      "topic": "face-eye-20261001",
+      "role": "research",
+      "bytes": 1959,
+      "sha256": "c0421766e8b464c09dd8b682ef9516b10eb93be35feea8f1ab62f3e75429c70b"
+    },
+    {
+      "path": "tutorial/drawing-tutorial/studies/face-eye-20261001/source_manifest.json",
+      "local_path": "D:\\Resources\\workspace\\AstraLayering\\tutorial\\drawing-tutorial\\studies\\face-eye-20261001\\source_manifest.json",
+      "topic": "face-eye-20261001",
+      "role": "research",
+      "bytes": 9633,
+      "sha256": "ef253d8ea1d4a5f4c72a4d56300493fe232244d7005d8175c1a5b0b48fb8a785"
+    }
+  ],
+  "cloud_import": {
+    "library_file_id": "libfile_7bf60220b26081919e7f751d83b16682",
+    "file_name": "Live2D_research_repository-import_2026-10-01_to_08.zip",
+    "reported_bytes": 318778,
+    "reported_file_count": 93,
+    "locally_imported": false,
+    "status": "supported Library helper download failed with HTTP status 403; transfer route stopped"
+  }
+}

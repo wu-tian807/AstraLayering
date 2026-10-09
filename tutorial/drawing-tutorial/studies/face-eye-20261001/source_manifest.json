@@ -1,0 +1,245 @@
+{
+  "verified_at_utc": "2026-10-01T12:50:45Z",
+  "purpose": "AstraLayering drawing-prior research, complementary to splitting lessons; no repository implementation changes",
+  "tool": {
+    "name": "yt-dlp",
+    "version": "2026.8.19",
+    "environment": "../.venv",
+    "authentication": "none; no cookies",
+    "environment_scope": "cloud-only; not a Windows repository environment"
+  },
+  "storage_scope": "Source videos and frame samples remain private in the cloud; only original text and JSON are stored on Windows",
+  "windows_source_assets_present": false,
+  "sources": [
+    {
+      "id": "BV17Z4y1h7bm",
+      "url": "https://www.bilibili.com/video/BV17Z4y1h7bm/",
+      "creator": "轻微课",
+      "coverage": "20 timestamped frames inspected; not continuous viewing, no audio transcription, not entire anthology",
+      "observations": [
+        {
+          "time_seconds": [
+            36,
+            44,
+            52
+          ],
+          "observed": "色轮先在暖色区域取高明度、低饱和肤色；示范选浅黄色。",
+          "evidence": "sampled_visual_and_burned_in_caption"
+        },
+        {
+          "time_seconds": [
+            60,
+            140
+          ],
+          "observed": "底色先填满；发缝等窄区域用更小笔头处理。",
+          "evidence": "sampled_visual_and_burned_in_caption"
+        },
+        {
+          "time_seconds": [
+            76,
+            84,
+            92,
+            140
+          ],
+          "observed": "阴影取色向红偏移并降低明度、提高饱和；左侧光源对应右侧阴影，耳与颈部遮蔽区域整体着阴影色。",
+          "evidence": "sampled_visual_and_burned_in_caption"
+        },
+        {
+          "time_seconds": [
+            100,
+            108,
+            116
+          ],
+          "observed": "柔化局部颜色过渡；面颊加入偏黄、偏红的软边暖色，鼻部随后也出现暖色。",
+          "evidence": "sampled_visual_and_burned_in_caption"
+        },
+        {
+          "time_seconds": [
+            124,
+            132
+          ],
+          "observed": "鼻和唇加入小面积高光；后段说明把线条改为深棕色。",
+          "evidence": "sampled_visual_and_burned_in_caption"
+        }
+      ],
+      "inferences": [
+        {
+          "claim": "可用的绘画先验是关系而非固定肤色：基底—偏红阴影—软边暖色—小高光形成不同尺度的色块。",
+          "application": "渲染表示可分别容纳覆盖遮蔽、低频血色与稀疏高光，不把它们压成同一种阴影。",
+          "status": "our_inference_not_creator_rule"
+        },
+        {
+          "claim": "可把遮蔽边、体积过渡、腮红、线色作为不同成因建模，保留画家刻意弱化脸部外轮廓的空间。",
+          "application": "先做颜色/边缘类型的表示实验，再决定是否需要几何输入；不是新拆分约束。",
+          "status": "our_inference_not_creator_rule"
+        }
+      ],
+      "key": "skin",
+      "source_identity": "轻微课官方账号自己的第799期教学；开头引用其他画师署名插画，研究对象仅为随后演示，不将引用插画当作可用素材。",
+      "samples": [
+        4,
+        12,
+        20,
+        28,
+        36,
+        44,
+        52,
+        60,
+        68,
+        76,
+        84,
+        92,
+        100,
+        108,
+        116,
+        124,
+        132,
+        140,
+        148,
+        154
+      ],
+      "title": "如何给脸部画好看通透的皮肤？新手必学皮肤上色方法！【轻微课 一看就绘-799期】",
+      "creator_id": "2973198",
+      "metadata_duration_seconds": 158.399,
+      "file": "skin.mp4",
+      "bytes": 12807290,
+      "sha256": "04e7c4c487c47e2587841031291e0b64d531c1da3ca687ff0541d8b4f895e3bd",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "hevc",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "codec_name": "aac"
+          }
+        ],
+        "format": {
+          "duration": "158.400000"
+        }
+      },
+      "subtitle_status": "Only danmaku XML retrieved; danmaku is viewer commentary, not subtitles. No login/cookies; no ASR. Teaching text is sampled burned-in captions.",
+      "license": "Official video page says unauthorized reposting prohibited; no permissive license observed. Public access does not grant reuse. Source video and frame samples remain private research only; do not rehost or redistribute.",
+      "status": "downloaded_ffprobe_full_decode_verified_sampled",
+      "decode_check": "Full ffmpeg decode exit 0; error log empty",
+      "storage_scope": "cloud-only; file is a relative filename in the private cloud research environment",
+      "windows_synchronized": false,
+      "verification_provenance": "Cloud research handoff; not downloaded or decoded again on Windows"
+    },
+    {
+      "id": "BV1Gb4y1k7da_p1",
+      "url": "https://www.bilibili.com/video/BV1Gb4y1k7da/?p=1",
+      "creator": "板绘人堆堆",
+      "coverage": "16 timestamped frames inspected; not continuous viewing, no audio transcription, not entire anthology",
+      "observations": [
+        {
+          "time_seconds": [
+            20,
+            28
+          ],
+          "observed": "先铺皮肤底色，再用较轻的草图放置眉、上下眼睑与虹膜。",
+          "evidence": "sampled_visual_and_burned_in_caption"
+        },
+        {
+          "time_seconds": [
+            36,
+            44,
+            52
+          ],
+          "observed": "先用大片粉红眼周色、青蓝虹膜、暗瞳孔和眉块建立分区，再进入塑造；此时还没有最终睫毛细节。",
+          "evidence": "sampled_visual_and_burned_in_caption"
+        },
+        {
+          "time_seconds": [
+            60,
+            68
+          ],
+          "observed": "柔和眼周保留，但上眼睑及眼角轮廓变清楚，眉块也出现方向性毛流。",
+          "evidence": "sampled_visual_and_burned_in_caption"
+        },
+        {
+          "time_seconds": [
+            76,
+            84
+          ],
+          "observed": "虹膜加入绿/青的放射细节；之后上睫毛沿眼睑曲线伸出，长短和方向有变化。",
+          "evidence": "sampled_visual_sequence"
+        },
+        {
+          "time_seconds": [
+            100,
+            108,
+            116
+          ],
+          "observed": "后段补下睫毛及细小明暗、亮点；细线集中在眼缘，周围皮肤仍大面积柔化。",
+          "evidence": "sampled_visual_and_burned_in_caption"
+        }
+      ],
+      "inferences": [
+        {
+          "claim": "眼睛的识别依赖嵌套形状：眼裂包住虹膜，虹膜包住瞳孔；上眼睑截断虹膜，睫毛方向随局部眼缘改变。",
+          "application": "几何候选应携带遮挡顺序和局部切线，不仅有独立闭合轮廓。",
+          "status": "our_inference_from_example_not_universal_rule"
+        },
+        {
+          "claim": "质感来自硬软边分配与细节预算：大块眼周先塑造，最高频线条及对比留给睫毛、瞳孔和小亮点。",
+          "application": "尝试结构色块→局部边缘→稀疏细节的分尺度生成；不是把所有皮肤都锐化。",
+          "status": "our_inference_not_creator_rule"
+        }
+      ],
+      "key": "eye",
+      "source_identity": "板绘人堆堆；简介以第一人称说明自己的画法，画面带同名水印及同步手绘演示。只研究p1短版，未研究p3约50分钟原速版。",
+      "samples": [
+        4,
+        12,
+        20,
+        28,
+        36,
+        44,
+        52,
+        60,
+        68,
+        76,
+        84,
+        92,
+        100,
+        108,
+        116,
+        124
+      ],
+      "title": "【眼睛教程】厚涂眼睛如何画出质感？0基础厚涂小白必看！ p01 冷傲眼睛的绘制思路",
+      "creator_id": "2008516332",
+      "metadata_duration_seconds": 130.565,
+      "file": "eye.mp4",
+      "bytes": 15150063,
+      "sha256": "2e0de212ae4ccdb3aebd4291707c97fe5659798586c080cc5a12790b9fbf9cce",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "codec_name": "aac"
+          }
+        ],
+        "format": {
+          "duration": "130.565805"
+        }
+      },
+      "subtitle_status": "Only danmaku XML retrieved; danmaku is viewer commentary, not subtitles. No login/cookies; no ASR. Teaching text is sampled burned-in captions.",
+      "license": "Official video page says unauthorized reposting prohibited; no permissive license observed. Public access does not grant reuse. Source video and frame samples remain private research only; do not rehost or redistribute.",
+      "status": "downloaded_ffprobe_full_decode_verified_sampled",
+      "decode_check": "Full ffmpeg decode exit 0; error log empty",
+      "storage_scope": "cloud-only; file is a relative filename in the private cloud research environment",
+      "windows_synchronized": false,
+      "verification_provenance": "Cloud research handoff; not downloaded or decoded again on Windows"
+    }
+  ]
+}

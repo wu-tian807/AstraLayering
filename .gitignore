@@ -28,6 +28,11 @@ node_modules/
 
 # Locally held third-party tutorial assets; existing tracked videos are preserved.
 /tutorial/live2d-guidance/local-assets/
+# Central original-model storage: only our index and metadata may be tracked.
+# Archives, extracted assets, author license originals and incoming bundles stay local.
+/tutorial/live2d-guidance/model-originals/*
+!/tutorial/live2d-guidance/model-originals/readme.md
+!/tutorial/live2d-guidance/model-originals/manifest.json
 /tutorial/drawing-tutorial/*.mp4
 !/tutorial/drawing-tutorial/画画的基本步骤.mp4
 !/tutorial/drawing-tutorial/上色皮肤肉体的步骤.mp4

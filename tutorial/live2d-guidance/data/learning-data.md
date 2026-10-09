@@ -1,6 +1,6 @@
 # 可解析学习数据
 
-本目录包含从实际源文件提取的结构事实和原创分析，不含 PSD、纹理、moc3 或配置原文件。仓库为 public；米粒包内说明禁止再传播包内文件，莉尔许可未知，因此原资产只在本地 `local-assets/` 保存。学习用途不自动赋予再发布许可。
+本目录包含从实际源文件提取的结构事实和原创分析，不含 PSD、纹理、moc3 或配置原文件。仓库为 public；米粒包内说明禁止再传播包内文件，莉尔许可未知，因此原资产只在本地忽略目录保存。当前统一入口为 [model-originals](../model-originals/readme.md)，旧 `local-assets/` 副本保留。学习用途不自动赋予再发布许可。
 
 ## 米粒 PSD 结构
 
@@ -32,12 +32,12 @@
 
 ## 本地完整学习包与复现
 
-本机 `local-assets/milly/` 保留米粒的 PSD、原画和运行包，`local-assets/lier/` 保留莉尔运行包；均精确忽略且未推送。原 ZIP 与工作目录原解压副本保留，复制逐文件 SHA-256 已核对。其他机器不会因克隆仓库获得这些源资产，须从原作者按许可自行取得。
+本机 `model-originals/milly/` 保留米粒的 PSD、原画和运行包，`model-originals/lier/` 保留莉尔运行包；均精确忽略且未推送。原 ZIP 在 `model-originals/archives/`，原 Downloads ZIP 与旧 `local-assets/` 解压副本保留，复制逐文件 SHA-256 已核对。其他机器不会因克隆仓库获得这些源资产，须从原作者按许可自行取得。
 
 使用已有 Python 3 的标准库复现，无需安装包：
 
 ```text
-python tools/parse_learning_assets.py --psd local-assets/milly/Milly原画.psd --runtime local-assets/lier --out data
+python tools/parse_learning_assets.py --psd model-originals/milly/Milly原画.psd --runtime model-originals/lier --out data
 ```
 
 脚本只读源文件，不执行其中代码、不解码或导出像素。解析依据：[Adobe PSD 文件格式规范](https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/)。来源和许可状态见 [总索引](../readme.md)。

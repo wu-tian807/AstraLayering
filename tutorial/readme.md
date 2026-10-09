@@ -6,6 +6,9 @@
 | --- | --- |
 | [live2d-tutorial-text](live2d-tutorial-text) | 已有 14 讲文字与来源文件，原内容保留；作者夏卜卜，许可未知 |
 | [drawing-tutorial](drawing-tutorial/readme.md) | 已有三个视频与一个 SRT，保留原文件；来源关系待验证 |
+| [原创研究总索引](live2d-research/local-index.md) | 已有本机研究按主题导航和哈希清单；Oct1–8 云端 93 文件包已提供引用，下载 HTTP 403，尚未落地 |
+| [模型原件统一入口](live2d-guidance/model-originals/readme.md) | Milly/Lier/樱桃三套原件及两份原 ZIP 已归集；官方七份原 ZIP 待恢复 Library 下载；素材全部 Git 忽略 |
+| [肤色与眼部绘画先验](drawing-tutorial/studies/face-eye-20261001/drawing_priors.json) | 两条云端教程的抽样观察与待验证假设；源码视频和帧未同步 Windows |
 | [live2d-guidance](live2d-guidance/readme.md) | 米粒/莉尔真实资料分析、来源许可与学习状态；逐层 PSD / runtime 结构数据可学习，源资产仅本地忽略目录 |
 | [云端学习记录](live2d-guidance/cloud-study-notes-20261001.md) | Ferrum 阴影分层和官方 PSD 样本的原创研究概括；原资产仅云端取得 |
 
