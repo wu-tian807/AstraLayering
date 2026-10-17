@@ -1,0 +1,8 @@
+node_modules/
+.run/
+.work/
+.venv/
+__pycache__/
+*.pyc
+*.kra~
+core
