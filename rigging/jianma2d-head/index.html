@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>剑妈 · 头部九轴研究</title><link rel="stylesheet" href="style.css"></head>
+<body><header><div><p class="eyebrow">ASTRA / RIGGING STUDIES · 01</p><h1>剑妈<span>头部九轴</span></h1></div><a href="README.md">制作笔记 ↗</a></header>
+<main><section class="stage-card" aria-label="角色变形预览"><div class="stage-top"><span id="pose-label">正面 · 原始姿态</span><span id="status" role="status">正在载入分层原画…</span></div><div class="viewport"><canvas id="stage" aria-label="剑妈头部九轴实时预览"></canvas><svg id="guides" aria-hidden="true"></svg></div><div class="stage-bottom"><span>拖动右侧圆点，观察整个头部的联动</span><button id="play" disabled>连续巡览</button></div></section>
+<aside><section class="panel"><div class="section-title"><h2>方向与边界</h2><button id="reset" disabled>回到原画</button></div><p class="muted">X / Y 最大幅度为 ±10，轻微转头，只露出少量侧后发。</p>
+<div class="direction-controls"><div id="pad" role="application" tabindex="0" aria-label="转头方向，方向键调节左右及俯仰"><span class="pad-up">抬头</span><span class="pad-down">低头</span><span class="pad-left">左</span><span class="pad-right">右</span><i id="dot"></i></div><div id="nine" class="nine" aria-label="九个边界姿态"></div></div>
+<div id="sliders"></div></section>
+<section class="panel"><h2>观察整体变形</h2><label class="check"><input id="physics" type="checkbox" checked>头发与配饰惯性</label><label class="check"><input id="grid" type="checkbox">显示脸部曲面与中线</label><label class="check"><input id="bare" type="checkbox">隐藏头发与头饰，检查脸型</label><label class="check"><input id="closeup" type="checkbox">面部近景</label><p class="muted footnote">发根随头转动，长发逐渐过渡到肩部。五官保留独立关键形，头饰有透视，刘海和发梢带轻微阻尼摆动，分缝保持固定。</p></section>
+<section class="panel note"><p class="eyebrow">从教程到这个例子</p><p>先做大框架，再校正五官和四角。X / Y 控制朝向，Z 围绕颈部侧倾。</p><p class="muted">使用与基础表情相同的剑妈穿戴分层稿。脸型、五官、头壳分层绑定，衣领局部跟随颈部。</p></section>
+</aside></main><footer>实验例 · 不修改分层流程，不写入游戏存档。<a href="rig.json">变形定义</a><a href="source.json">原画来源</a></footer><script type="module" src="app.mjs"></script></body></html>

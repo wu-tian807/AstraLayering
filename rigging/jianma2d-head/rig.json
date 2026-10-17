@@ -1,0 +1,3343 @@
+{
+  "schema": "astra.head-nine-key.v9",
+  "character": "jianma-clothing-refined",
+  "parameters": {
+    "x": {
+      "label": "左右转头",
+      "min": -10,
+      "max": 10,
+      "default": 0
+    },
+    "y": {
+      "label": "抬头 / 低头",
+      "min": -10,
+      "max": 10,
+      "default": 0
+    },
+    "z": {
+      "label": "侧倾",
+      "min": -20,
+      "max": 20,
+      "default": 0
+    }
+  },
+  "keyCoordinates": [
+    [
+      -1,
+      -1
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      -1,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      -1,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "interpolation": "tensor-smoothstep-3x3",
+  "head": {
+    "center": [
+      444,
+      199
+    ],
+    "neckPivot": [
+      444,
+      285
+    ],
+    "bounds": [
+      364,
+      92,
+      160,
+      179
+    ],
+    "faceBounds": [
+      394,
+      121,
+      100,
+      144
+    ]
+  },
+  "preview": {
+    "viewBox": [
+      250,
+      -8,
+      390,
+      425
+    ],
+    "closeup": [
+      328,
+      87,
+      232,
+      239
+    ],
+    "atlasClip": [
+      80,
+      -8,
+      745,
+      830
+    ],
+    "textureScale": 3,
+    "meshStep": 5,
+    "faceMeshStep": 2.5
+  },
+  "notes": [
+    "Pose endpoints are explicitly authored from the reference, with staged rendered comparison of silhouette, eyes/mouth, ears, scalp, bun and rear hair.",
+    "The face cage preserves landmark order and shared skin/feature mapping. Scalp and bun have separate authored endpoint contours; hanging roots share the scalp.",
+    "Neutral SVG and all 12 expression controls remain unchanged. Head poses are local preview state, never exported or synchronized.",
+    "Reference registration uses a uniform .58 scale and torso translation; no pose-specific image stretching.",
+    "Hair strand artwork, profile nose marks and ornaments retain the source drawing; reference likeness does not mean pixel identity."
+  ],
+  "neck": {
+    "followY": 264,
+    "fixedY": 329,
+    "rollRadius": 34,
+    "socket": [
+      444,
+      246,
+      12
+    ],
+    "yawWidth": 0.96,
+    "hiddenYawLift": 16,
+    "hiddenPitchLift": 10
+  },
+  "surfaces": {
+    "rearR": {
+      "anchor": [
+        393.277,
+        220.0
+      ],
+      "guides": [
+        [
+          155.525,
+          396.7067,
+          1,
+          1
+        ],
+        [
+          240.0,
+          382.0,
+          1,
+          1
+        ],
+        [
+          345.0,
+          362.0,
+          0.64,
+          0.7
+        ],
+        [
+          540.0,
+          320.0,
+          0.22,
+          0.2
+        ],
+        [
+          780.0,
+          295.0,
+          0,
+          0
+        ]
+      ],
+      "bendEndY": 490,
+      "rootBlend": [
+        205,
+        255
+      ]
+    },
+    "rearL": {
+      "anchor": [
+        494.723,
+        220.0
+      ],
+      "guides": [
+        [
+          155.525,
+          491.2933,
+          1,
+          1
+        ],
+        [
+          240.0,
+          506.0,
+          1,
+          1
+        ],
+        [
+          345.0,
+          526.0,
+          0.64,
+          0.7
+        ],
+        [
+          540.0,
+          568.0,
+          0.22,
+          0.2
+        ],
+        [
+          780.0,
+          593.0,
+          0,
+          0
+        ]
+      ],
+      "bendEndY": 490,
+      "rootBlend": [
+        205,
+        255
+      ]
+    },
+    "sideR": {
+      "anchor": [
+        389.3778,
+        220.0
+      ],
+      "guides": [
+        [
+          146.375,
+          399.38,
+          1,
+          1
+        ],
+        [
+          230.0,
+          385.0576,
+          1,
+          1
+        ],
+        [
+          300.0,
+          382.0,
+          0.9,
+          0.7
+        ],
+        [
+          410.0,
+          374.0,
+          0.55,
+          0.25
+        ],
+        [
+          570.0,
+          370.0,
+          0,
+          0
+        ]
+      ],
+      "bendEndY": 470,
+      "rootBlend": [
+        205,
+        255
+      ]
+    },
+    "sideL": {
+      "anchor": [
+        498.6222,
+        220.0
+      ],
+      "guides": [
+        [
+          146.375,
+          488.62,
+          1,
+          1
+        ],
+        [
+          230.0,
+          502.9424,
+          1,
+          1
+        ],
+        [
+          300.0,
+          506.0,
+          0.9,
+          0.7
+        ],
+        [
+          410.0,
+          514.0,
+          0.55,
+          0.25
+        ],
+        [
+          570.0,
+          518.0,
+          0,
+          0
+        ]
+      ],
+      "bendEndY": 470,
+      "rootBlend": [
+        205,
+        255
+      ]
+    },
+    "ribbonR": {
+      "anchor": [
+        362.42,
+        121.67
+      ],
+      "guides": [
+        [
+          121.67,
+          362.42,
+          1,
+          1
+        ],
+        [
+          290.0,
+          321.0,
+          0.85,
+          0.6
+        ],
+        [
+          530.0,
+          273.0,
+          0.3,
+          0.1
+        ],
+        [
+          800.0,
+          220.0,
+          0,
+          0
+        ]
+      ],
+      "bendEndY": 420,
+      "parent": "ornamentR"
+    },
+    "ribbonL": {
+      "anchor": [
+        525.58,
+        121.67
+      ],
+      "guides": [
+        [
+          121.67,
+          525.58,
+          1,
+          1
+        ],
+        [
+          290.0,
+          567.0,
+          0.85,
+          0.6
+        ],
+        [
+          530.0,
+          615.0,
+          0.3,
+          0.1
+        ],
+        [
+          840.0,
+          668.0,
+          0,
+          0
+        ]
+      ],
+      "bendEndY": 420,
+      "parent": "ornamentL"
+    },
+    "earringR": {
+      "anchor": [
+        394,
+        223
+      ]
+    },
+    "earringL": {
+      "anchor": [
+        493,
+        223
+      ]
+    },
+    "bun": {
+      "anchor": [
+        444.0,
+        102.455
+      ]
+    },
+    "crown": {
+      "anchor": [
+        444.0,
+        102.455
+      ],
+      "depth": 12
+    },
+    "halo": {
+      "anchor": [
+        444.0,
+        102.455
+      ],
+      "depth": 25
+    },
+    "ornamentR": {
+      "anchor": [
+        400.7,
+        126.245
+      ],
+      "depth": 25
+    },
+    "ornamentL": {
+      "anchor": [
+        487.3,
+        126.245
+      ],
+      "depth": 25
+    },
+    "forehead": {
+      "anchor": [
+        444,
+        151
+      ],
+      "depth": 64
+    }
+  },
+  "bindings": {
+    "hair_back_right": "rearR",
+    "hair_back_left": "rearL",
+    "headdress_halo": "halo",
+    "hair_bun": "bun",
+    "headdress_branch_right": "ornamentR",
+    "headdress_branch_left": "ornamentL",
+    "streamer_right": "ribbonR",
+    "streamer_left": "ribbonL",
+    "coat_back": "body",
+    "skirt_outer_back": "body",
+    "skirt_blue_back": "body",
+    "skirt_inner_back": "body",
+    "pelvis": "body",
+    "mantle_back": "body",
+    "waist_back": "body",
+    "inner_bodice_back": "body",
+    "collar_back": "collar",
+    "neck": "skin",
+    "torso": "body",
+    "fx_hair5_right_long_on_torso": "body",
+    "fx_hair5_left_long_on_torso": "body",
+    "inner_bodice": "body",
+    "collar_front_right": "collar",
+    "collar_front_left": "collar",
+    "foot_chain_right_2": "body",
+    "foot_chain_left_2": "body",
+    "calf_right": "body",
+    "calf_left": "body",
+    "thigh_right": "body",
+    "thigh_left": "body",
+    "foot_right": "body",
+    "foot_left": "body",
+    "foot_chain_right": "body",
+    "foot_chain_left": "body",
+    "skirt_inner_front": "body",
+    "skirt_blue_front": "body",
+    "skirt_outer_right": "body",
+    "skirt_outer_left": "body",
+    "waist_front": "body",
+    "coat_front_right": "body",
+    "coat_front_left": "body",
+    "gauze_sleeve_right_back": "body",
+    "gauze_sleeve_left_back": "body",
+    "skirt_outer_right_flounce": "body",
+    "skirt_outer_left_flounce": "body",
+    "waist_tails": "body",
+    "waist_knot": "body",
+    "opaque_upper_right_back": "body",
+    "upper_arm_right": "body",
+    "opaque_upper_left_back": "body",
+    "upper_arm_left": "body",
+    "opaque_lower_right_back": "body",
+    "forearm_right": "body",
+    "opaque_lower_left_back": "body",
+    "forearm_left": "body",
+    "opaque_upper_right": "body",
+    "opaque_lower_right": "body",
+    "opaque_upper_left": "body",
+    "opaque_lower_left": "body",
+    "gauze_sleeve_right": "body",
+    "gauze_sleeve_left": "body",
+    "mantle_front_left": "body",
+    "mantle_front_right": "body",
+    "chest_ornament": "body",
+    "pendant_chain": "body",
+    "pendant_anchor": "body",
+    "pendant_beads": "body",
+    "pendant_tassel": "body",
+    "hair_crown_complete_cap": "fringe",
+    "earring_right_back": "earringR",
+    "ear_right": "earR",
+    "fx_hair_side_right_on_ear": "shadowEarR",
+    "fx_hair5_right_long_on_ear": "shadowEarR",
+    "earring_left_back": "earringL",
+    "ear_left": "earL",
+    "fx_hair_side_left_on_ear": "shadowEarL",
+    "fx_hair5_left_long_on_ear": "shadowEarL",
+    "face_base": "face",
+    "fx_hair_front_right_on_face": "shadowFaceR",
+    "fx_hair_front_left_on_face": "shadowFaceL",
+    "fx_hair_side_right_on_face": "shadowFaceR",
+    "fx_hair_side_left_on_face": "shadowFaceL",
+    "fx_forehead_jewel_on_face": "shadowJewel",
+    "fx_face_edge_reflection": "faceDetail",
+    "blush_right": "faceDetail",
+    "blush_left": "faceDetail",
+    "eye_right": "eyeR",
+    "eye_left": "eyeL",
+    "brow_right": "browR",
+    "brow_left": "browL",
+    "nose": "nose",
+    "fx_nose_tip_highlight": "nose",
+    "mouth": "mouth",
+    "forehead_jewel_back": "forehead",
+    "hair_crown": "fringe",
+    "hair_side_right": "sideR",
+    "hair_side_left": "sideL",
+    "hair_front_right": "sideR",
+    "hair_front_left": "sideL",
+    "hand_right": "body",
+    "opaque_lower_right_cuff_front": "body",
+    "hand_left": "body",
+    "opaque_lower_left_cuff_front": "body",
+    "headdress_branch_right_2": "ornamentR",
+    "headdress_branch_left_2": "ornamentL",
+    "headdress_center": "crown",
+    "forehead_jewel": "forehead",
+    "earring_right": "earringR",
+    "fx_hair5_right_long_on_earring": "earringR",
+    "earring_left": "earringL",
+    "fx_hair5_left_long_on_earring": "earringL",
+    "fx_body5_face_on_neck": "shadowNeck"
+  },
+  "features": {
+    "eyeR": {
+      "anchor": [
+        419.5,
+        198.5
+      ],
+      "size": [
+        41,
+        29
+      ],
+      "parent": "face",
+      "depthOffset": 0,
+      "tangentX": 0.2,
+      "tangentY": 0,
+      "core": [
+        18,
+        8
+      ],
+      "support": [
+        56,
+        34
+      ],
+      "strength": 2
+    },
+    "eyeL": {
+      "anchor": [
+        468.5,
+        198.5
+      ],
+      "size": [
+        41,
+        29
+      ],
+      "parent": "face",
+      "depthOffset": 0,
+      "tangentX": 0.2,
+      "tangentY": 0,
+      "core": [
+        18,
+        8
+      ],
+      "support": [
+        56,
+        34
+      ],
+      "strength": 2
+    },
+    "browR": {
+      "anchor": [
+        419,
+        185
+      ],
+      "size": [
+        32,
+        7
+      ],
+      "parent": "face",
+      "depthOffset": 0,
+      "tangentX": 0.2,
+      "tangentY": 0,
+      "poseFrame": "eyeR"
+    },
+    "browL": {
+      "anchor": [
+        469,
+        185
+      ],
+      "size": [
+        32,
+        7
+      ],
+      "parent": "face",
+      "depthOffset": 0,
+      "tangentX": 0.2,
+      "tangentY": 0,
+      "poseFrame": "eyeL"
+    },
+    "nose": {
+      "anchor": [
+        444,
+        228
+      ],
+      "size": [
+        15,
+        17
+      ],
+      "parent": "face",
+      "depthOffset": 7,
+      "tangentX": 0,
+      "tangentY": 0.35,
+      "core": [
+        6,
+        7
+      ],
+      "support": [
+        22,
+        26
+      ],
+      "strength": 0.7
+    },
+    "mouth": {
+      "anchor": [
+        444,
+        243
+      ],
+      "size": [
+        31,
+        25
+      ],
+      "parent": "face",
+      "depthOffset": 2,
+      "tangentX": 0,
+      "tangentY": 0,
+      "core": [
+        12,
+        5
+      ],
+      "support": [
+        30,
+        22
+      ],
+      "strength": 0.65
+    }
+  },
+  "collar": {
+    "followY": 256,
+    "fixedY": 344,
+    "headFollow": 0.32,
+    "rollFollow": 0.24,
+    "twist": 0.045
+  },
+  "physics": {
+    "step": 0.008333333333333333,
+    "maxCatchup": 0.1,
+    "threshold": 0.018,
+    "strands": {
+      "sideL": {
+        "frequency": 2.7,
+        "damping": 0.64,
+        "startY": 225,
+        "endY": 415,
+        "maxOffset": 9,
+        "rollLever": 65
+      },
+      "sideR": {
+        "frequency": 2.9,
+        "damping": 0.64,
+        "startY": 225,
+        "endY": 415,
+        "maxOffset": 9,
+        "rollLever": 65
+      },
+      "rearL": {
+        "frequency": 1.8,
+        "damping": 0.68,
+        "startY": 228,
+        "endY": 660,
+        "maxOffset": 13,
+        "rollLever": 100
+      },
+      "rearR": {
+        "frequency": 2.0,
+        "damping": 0.68,
+        "startY": 228,
+        "endY": 660,
+        "maxOffset": 13,
+        "rollLever": 100
+      },
+      "ribbonL": {
+        "frequency": 1.6,
+        "damping": 0.52,
+        "startY": 121.67,
+        "endY": 560,
+        "maxOffset": 17,
+        "rollLever": 115
+      },
+      "ribbonR": {
+        "frequency": 1.7,
+        "damping": 0.52,
+        "startY": 121.67,
+        "endY": 560,
+        "maxOffset": 17,
+        "rollLever": 115
+      },
+      "earringL": {
+        "frequency": 3.8,
+        "damping": 0.4,
+        "startY": 228,
+        "endY": 312,
+        "maxOffset": 5,
+        "rollLever": 40
+      },
+      "earringR": {
+        "frequency": 4.2,
+        "damping": 0.4,
+        "startY": 228,
+        "endY": 266,
+        "maxOffset": 4,
+        "rollLever": 23
+      },
+      "fringeR": {
+        "frequency": 3.4,
+        "damping": 0.66,
+        "startY": 132,
+        "endY": 218,
+        "maxOffset": 2.8,
+        "rollLever": 35,
+        "outputScale": [
+          1,
+          0.4
+        ],
+        "driver": {
+          "kind": "fringe",
+          "anchor": [
+            426,
+            125
+          ]
+        }
+      },
+      "fringeL": {
+        "frequency": 3.7,
+        "damping": 0.66,
+        "startY": 132,
+        "endY": 218,
+        "maxOffset": 2.8,
+        "rollLever": 35,
+        "outputScale": [
+          1,
+          0.4
+        ],
+        "driver": {
+          "kind": "fringe",
+          "anchor": [
+            462,
+            125
+          ]
+        }
+      }
+    },
+    "fringe": {
+      "channels": [
+        "fringeR",
+        "fringeL"
+      ],
+      "partX": 444,
+      "partPinWidth": 12,
+      "sideFullWidth": 42,
+      "fadeStartY": 232,
+      "fadeEndY": 310,
+      "groups": [
+        "hair_crown_complete_cap",
+        "hair_crown",
+        "hair_front_right",
+        "hair_front_left",
+        "fx_hair_front_right_on_face",
+        "fx_hair_front_left_on_face"
+      ]
+    }
+  },
+  "projections": {
+    "shadowFaceR": {
+      "caster": "sideR",
+      "receiver": "face"
+    },
+    "shadowFaceL": {
+      "caster": "sideL",
+      "receiver": "face"
+    },
+    "shadowJewel": {
+      "caster": "forehead",
+      "receiver": "face"
+    },
+    "shadowEarR": {
+      "caster": "sideR",
+      "receiver": "earR"
+    },
+    "shadowEarL": {
+      "caster": "sideL",
+      "receiver": "earL"
+    },
+    "shadowNeck": {
+      "caster": "face",
+      "receiver": "skin",
+      "sourceOffset": [
+        -3.5,
+        21.5
+      ]
+    }
+  },
+  "volume": {
+    "pivot": [
+      444,
+      185
+    ],
+    "focalLength": 1100,
+    "yawRadians": 0.5,
+    "upRadians": 0.26,
+    "downRadians": 0.24,
+    "downLift": 7,
+    "face": {
+      "centerX": 444,
+      "radiusX": 58,
+      "roundness": 0.28,
+      "rows": [
+        105,
+        135,
+        155,
+        185,
+        198.5,
+        218,
+        228,
+        244,
+        270,
+        300
+      ],
+      "depth": [
+        25,
+        38,
+        50,
+        58,
+        58,
+        58,
+        57,
+        49,
+        40,
+        22
+      ],
+      "sideDepth": [
+        10,
+        15,
+        25,
+        30,
+        30,
+        26,
+        25,
+        26,
+        35,
+        20
+      ],
+      "upChinLift": 2
+    },
+    "scalp": {
+      "centerX": 444,
+      "radiusX": 81,
+      "roundness": 0.3,
+      "rows": [
+        54.875,
+        91.475,
+        102.455,
+        128.075,
+        155.525,
+        192.125,
+        220.0,
+        280.0,
+        350.0
+      ],
+      "depth": [
+        -32,
+        -5,
+        10,
+        44,
+        61,
+        66,
+        57,
+        34,
+        14
+      ],
+      "sideDepth": [
+        -25,
+        -5,
+        0,
+        10,
+        16,
+        18,
+        18,
+        8,
+        -10
+      ],
+      "silhouetteShift": 7
+    },
+    "bun": {
+      "centerX": 444,
+      "radiusX": 40,
+      "roundness": 0.35,
+      "rows": [
+        40.235,
+        59.45,
+        77.75,
+        91.475,
+        102.455,
+        114.35
+      ],
+      "depth": [
+        -25,
+        -16,
+        -2,
+        7,
+        10,
+        10
+      ],
+      "sideDepth": [
+        -30,
+        -27,
+        -18,
+        -4,
+        8,
+        10
+      ],
+      "upHeight": 0.9,
+      "downHeight": 1.12
+    }
+  },
+  "keyforms": {
+    "face": {
+      "landmarks": {
+        "top": [
+          444,
+          121
+        ],
+        "templeL": [
+          398,
+          164
+        ],
+        "templeR": [
+          490,
+          164
+        ],
+        "outerEyeL": [
+          396,
+          204
+        ],
+        "outerEyeR": [
+          492,
+          204
+        ],
+        "chin": [
+          444,
+          264.6
+        ],
+        "eyeL": [
+          419.5,
+          198.5
+        ],
+        "eyeR": [
+          468.5,
+          198.5
+        ],
+        "nose": [
+          444,
+          227
+        ],
+        "mouth": [
+          444,
+          243
+        ],
+        "outside-0": [
+          350,
+          80
+        ],
+        "outside-1": [
+          538,
+          80
+        ],
+        "outside-2": [
+          538,
+          310
+        ],
+        "outside-3": [
+          350,
+          310
+        ]
+      },
+      "poses": {
+        "-1,-1": {
+          "top": [
+            417.9,
+            139.92
+          ],
+          "templeL": [
+            383.1,
+            181.1
+          ],
+          "templeR": [
+            477.64,
+            182.26
+          ],
+          "outerEyeL": [
+            384.26,
+            222.86
+          ],
+          "outerEyeR": [
+            478.8,
+            219.96
+          ],
+          "chin": [
+            425.44,
+            275.64
+          ],
+          "eyeL": [
+            397.6,
+            217.64
+          ],
+          "eyeR": [
+            437.04,
+            218.22
+          ],
+          "nose": [
+            411.52,
+            241.42
+          ],
+          "mouth": [
+            419.64,
+            254.76
+          ],
+          "outside-0": [
+            338,
+            88
+          ],
+          "outside-1": [
+            526,
+            88
+          ],
+          "outside-2": [
+            526,
+            318
+          ],
+          "outside-3": [
+            338,
+            318
+          ]
+        },
+        "-1,0": {
+          "top": [
+            426.6,
+            121.36
+          ],
+          "templeL": [
+            387.16,
+            170.08
+          ],
+          "templeR": [
+            484.02,
+            166.6
+          ],
+          "outerEyeL": [
+            389.48,
+            204.88
+          ],
+          "outerEyeR": [
+            484.6,
+            203.14
+          ],
+          "chin": [
+            427.18,
+            267.52
+          ],
+          "eyeL": [
+            402.24,
+            199.66
+          ],
+          "eyeR": [
+            444.58,
+            199.08
+          ],
+          "nose": [
+            416.16,
+            225.76
+          ],
+          "mouth": [
+            421.96,
+            240.84
+          ],
+          "outside-0": [
+            338,
+            80
+          ],
+          "outside-1": [
+            526,
+            80
+          ],
+          "outside-2": [
+            526,
+            310
+          ],
+          "outside-3": [
+            338,
+            310
+          ]
+        },
+        "0,-1": {
+          "top": [
+            444.0,
+            138.18
+          ],
+          "templeL": [
+            396.44,
+            178.78
+          ],
+          "templeR": [
+            491.56,
+            178.78
+          ],
+          "outerEyeL": [
+            399.92,
+            218.22
+          ],
+          "outerEyeR": [
+            488.08,
+            218.22
+          ],
+          "chin": [
+            444.0,
+            272.74
+          ],
+          "eyeL": [
+            420.22,
+            215.32
+          ],
+          "eyeR": [
+            467.78,
+            215.32
+          ],
+          "nose": [
+            444.0,
+            239.1
+          ],
+          "mouth": [
+            444.0,
+            252.44
+          ],
+          "outside-0": [
+            350,
+            88
+          ],
+          "outside-1": [
+            538,
+            88
+          ],
+          "outside-2": [
+            538,
+            318
+          ],
+          "outside-3": [
+            350,
+            318
+          ]
+        },
+        "-1,1": {
+          "top": [
+            437.62,
+            107.44
+          ],
+          "templeL": [
+            394.12,
+            157.32
+          ],
+          "templeR": [
+            493.3,
+            153.84
+          ],
+          "outerEyeL": [
+            395.28,
+            189.22
+          ],
+          "outerEyeR": [
+            491.56,
+            188.64
+          ],
+          "chin": [
+            430.08,
+            255.92
+          ],
+          "eyeL": [
+            409.2,
+            184.58
+          ],
+          "eyeR": [
+            455.02,
+            181.68
+          ],
+          "nose": [
+            423.12,
+            203.14
+          ],
+          "mouth": [
+            427.76,
+            223.44
+          ],
+          "outside-0": [
+            338,
+            72
+          ],
+          "outside-1": [
+            526,
+            72
+          ],
+          "outside-2": [
+            526,
+            302
+          ],
+          "outside-3": [
+            338,
+            302
+          ]
+        },
+        "0,1": {
+          "top": [
+            444.0,
+            101.64
+          ],
+          "templeL": [
+            397.02,
+            153.84
+          ],
+          "templeR": [
+            490.98,
+            153.84
+          ],
+          "outerEyeL": [
+            398.76,
+            186.9
+          ],
+          "outerEyeR": [
+            489.24,
+            186.9
+          ],
+          "chin": [
+            444.0,
+            248.38
+          ],
+          "eyeL": [
+            419.06,
+            177.04
+          ],
+          "eyeR": [
+            468.94,
+            177.04
+          ],
+          "nose": [
+            444.0,
+            199.08
+          ],
+          "mouth": [
+            444.0,
+            215.9
+          ],
+          "outside-0": [
+            350,
+            72
+          ],
+          "outside-1": [
+            538,
+            72
+          ],
+          "outside-2": [
+            538,
+            302
+          ],
+          "outside-3": [
+            350,
+            302
+          ]
+        },
+        "1,-1": {
+          "top": [
+            470.1,
+            139.92
+          ],
+          "templeL": [
+            410.36,
+            182.26
+          ],
+          "templeR": [
+            504.9,
+            181.1
+          ],
+          "outerEyeL": [
+            409.2,
+            219.96
+          ],
+          "outerEyeR": [
+            503.74,
+            222.86
+          ],
+          "chin": [
+            462.56,
+            275.64
+          ],
+          "eyeL": [
+            450.96,
+            218.22
+          ],
+          "eyeR": [
+            490.4,
+            217.64
+          ],
+          "nose": [
+            476.48,
+            241.42
+          ],
+          "mouth": [
+            468.36,
+            254.76
+          ],
+          "outside-0": [
+            362,
+            88
+          ],
+          "outside-1": [
+            550,
+            88
+          ],
+          "outside-2": [
+            550,
+            318
+          ],
+          "outside-3": [
+            362,
+            318
+          ]
+        },
+        "1,0": {
+          "top": [
+            461.4,
+            121.36
+          ],
+          "templeL": [
+            403.98,
+            166.6
+          ],
+          "templeR": [
+            500.84,
+            170.08
+          ],
+          "outerEyeL": [
+            403.4,
+            203.14
+          ],
+          "outerEyeR": [
+            498.52,
+            204.88
+          ],
+          "chin": [
+            460.82,
+            267.52
+          ],
+          "eyeL": [
+            443.42,
+            199.08
+          ],
+          "eyeR": [
+            485.76,
+            199.66
+          ],
+          "nose": [
+            471.84,
+            225.76
+          ],
+          "mouth": [
+            466.04,
+            240.84
+          ],
+          "outside-0": [
+            362,
+            80
+          ],
+          "outside-1": [
+            550,
+            80
+          ],
+          "outside-2": [
+            550,
+            310
+          ],
+          "outside-3": [
+            362,
+            310
+          ]
+        },
+        "1,1": {
+          "top": [
+            450.38,
+            107.44
+          ],
+          "templeL": [
+            394.7,
+            153.84
+          ],
+          "templeR": [
+            493.88,
+            157.32
+          ],
+          "outerEyeL": [
+            396.44,
+            188.64
+          ],
+          "outerEyeR": [
+            492.72,
+            189.22
+          ],
+          "chin": [
+            457.92,
+            255.92
+          ],
+          "eyeL": [
+            432.98,
+            181.68
+          ],
+          "eyeR": [
+            478.8,
+            184.58
+          ],
+          "nose": [
+            464.88,
+            203.14
+          ],
+          "mouth": [
+            460.24,
+            223.44
+          ],
+          "outside-0": [
+            362,
+            72
+          ],
+          "outside-1": [
+            550,
+            72
+          ],
+          "outside-2": [
+            550,
+            302
+          ],
+          "outside-3": [
+            362,
+            302
+          ]
+        }
+      },
+      "interpolation": "thin-plate-spline",
+      "contours": {
+        "source": {
+          "R": [
+            [
+              [
+                492,
+                204
+              ],
+              [
+                491,
+                209
+              ],
+              [
+                490,
+                213
+              ],
+              [
+                489,
+                217
+              ]
+            ],
+            [
+              [
+                489,
+                217
+              ],
+              [
+                486,
+                230
+              ],
+              [
+                481,
+                240
+              ],
+              [
+                473,
+                248
+              ]
+            ],
+            [
+              [
+                473,
+                248
+              ],
+              [
+                465,
+                255
+              ],
+              [
+                457,
+                260
+              ],
+              [
+                450,
+                263
+              ]
+            ],
+            [
+              [
+                450,
+                263
+              ],
+              [
+                447.6,
+                264.2
+              ],
+              [
+                445.8,
+                264.6
+              ],
+              [
+                444,
+                264.6
+              ]
+            ]
+          ],
+          "L": [
+            [
+              [
+                396,
+                204
+              ],
+              [
+                397,
+                209
+              ],
+              [
+                398,
+                213
+              ],
+              [
+                399,
+                217
+              ]
+            ],
+            [
+              [
+                399,
+                217
+              ],
+              [
+                402,
+                230
+              ],
+              [
+                407,
+                240
+              ],
+              [
+                415,
+                248
+              ]
+            ],
+            [
+              [
+                415,
+                248
+              ],
+              [
+                423,
+                255
+              ],
+              [
+                431,
+                260
+              ],
+              [
+                438,
+                263
+              ]
+            ],
+            [
+              [
+                438,
+                263
+              ],
+              [
+                440.4,
+                264.2
+              ],
+              [
+                442.2,
+                264.6
+              ],
+              [
+                444,
+                264.6
+              ]
+            ]
+          ]
+        },
+        "poses": {
+          "-1,-1": {
+            "L": [
+              [
+                384.26,
+                222.86
+              ],
+              [
+                385,
+                248
+              ],
+              [
+                413,
+                273
+              ],
+              [
+                425.44,
+                275.64
+              ]
+            ],
+            "R": [
+              [
+                478.8,
+                219.96
+              ],
+              [
+                476,
+                245
+              ],
+              [
+                438,
+                273
+              ],
+              [
+                425.44,
+                275.64
+              ]
+            ]
+          },
+          "-1,0": {
+            "L": [
+              [
+                389.48,
+                204.88
+              ],
+              [
+                390,
+                235
+              ],
+              [
+                415,
+                265
+              ],
+              [
+                427.18,
+                267.52
+              ]
+            ],
+            "R": [
+              [
+                484.6,
+                203.14
+              ],
+              [
+                482,
+                234
+              ],
+              [
+                440,
+                265
+              ],
+              [
+                427.18,
+                267.52
+              ]
+            ]
+          },
+          "-1,1": {
+            "L": [
+              [
+                395.28,
+                189.22
+              ],
+              [
+                396,
+                223
+              ],
+              [
+                418,
+                253
+              ],
+              [
+                430.08,
+                255.92
+              ]
+            ],
+            "R": [
+              [
+                491.56,
+                188.64
+              ],
+              [
+                490,
+                224
+              ],
+              [
+                444,
+                253
+              ],
+              [
+                430.08,
+                255.92
+              ]
+            ]
+          },
+          "0,-1": {
+            "L": [
+              [
+                399.92,
+                218.22
+              ],
+              [
+                401,
+                244
+              ],
+              [
+                432,
+                270
+              ],
+              [
+                444,
+                272.74
+              ]
+            ],
+            "R": [
+              [
+                488.08,
+                218.22
+              ],
+              [
+                487,
+                244
+              ],
+              [
+                456,
+                270
+              ],
+              [
+                444,
+                272.74
+              ]
+            ]
+          },
+          "0,1": {
+            "L": [
+              [
+                398.76,
+                186.9
+              ],
+              [
+                400,
+                217
+              ],
+              [
+                432,
+                246
+              ],
+              [
+                444,
+                248.38
+              ]
+            ],
+            "R": [
+              [
+                489.24,
+                186.9
+              ],
+              [
+                488,
+                217
+              ],
+              [
+                456,
+                246
+              ],
+              [
+                444,
+                248.38
+              ]
+            ]
+          },
+          "1,-1": {
+            "L": [
+              [
+                409.2,
+                219.96
+              ],
+              [
+                412,
+                245
+              ],
+              [
+                450,
+                273
+              ],
+              [
+                462.56,
+                275.64
+              ]
+            ],
+            "R": [
+              [
+                503.74,
+                222.86
+              ],
+              [
+                503,
+                248
+              ],
+              [
+                475,
+                273
+              ],
+              [
+                462.56,
+                275.64
+              ]
+            ]
+          },
+          "1,0": {
+            "L": [
+              [
+                403.4,
+                203.14
+              ],
+              [
+                406,
+                234
+              ],
+              [
+                448,
+                265
+              ],
+              [
+                460.82,
+                267.52
+              ]
+            ],
+            "R": [
+              [
+                498.52,
+                204.88
+              ],
+              [
+                498,
+                235
+              ],
+              [
+                473,
+                265
+              ],
+              [
+                460.82,
+                267.52
+              ]
+            ]
+          },
+          "1,1": {
+            "L": [
+              [
+                396.44,
+                188.64
+              ],
+              [
+                398,
+                224
+              ],
+              [
+                444,
+                253
+              ],
+              [
+                457.92,
+                255.92
+              ]
+            ],
+            "R": [
+              [
+                492.72,
+                189.22
+              ],
+              [
+                492,
+                223
+              ],
+              [
+                470,
+                253
+              ],
+              [
+                457.92,
+                255.92
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "earL": {
+      "landmarks": {
+        "root": [
+          493,
+          223
+        ],
+        "upper": [
+          493,
+          207
+        ],
+        "outer": [
+          502,
+          215
+        ]
+      },
+      "poses": {
+        "-1,-1": {
+          "root": [
+            480.54,
+            230.4
+          ],
+          "upper": [
+            480.54,
+            215.84
+          ],
+          "outer": [
+            486.12,
+            223.12
+          ]
+        },
+        "-1,0": {
+          "root": [
+            488.66,
+            219.38
+          ],
+          "upper": [
+            488.66,
+            204.82
+          ],
+          "outer": [
+            494.24,
+            212.1
+          ]
+        },
+        "0,-1": {
+          "root": [
+            493.0,
+            230.0
+          ],
+          "upper": [
+            493.0,
+            215.44
+          ],
+          "outer": [
+            501.1,
+            222.72
+          ]
+        },
+        "-1,1": {
+          "root": [
+            500.26,
+            217.06
+          ],
+          "upper": [
+            500.26,
+            202.5
+          ],
+          "outer": [
+            505.84,
+            209.78
+          ]
+        },
+        "0,1": {
+          "root": [
+            493.0,
+            216.0
+          ],
+          "upper": [
+            493.0,
+            201.44
+          ],
+          "outer": [
+            501.1,
+            208.72
+          ]
+        },
+        "1,-1": {
+          "root": [
+            484.0,
+            226.4
+          ],
+          "upper": [
+            484.0,
+            211.84
+          ],
+          "outer": [
+            487.15,
+            219.12
+          ]
+        },
+        "1,0": {
+          "root": [
+            484.0,
+            215.38
+          ],
+          "upper": [
+            484.0,
+            200.82
+          ],
+          "outer": [
+            487.15,
+            208.1
+          ]
+        },
+        "1,1": {
+          "root": [
+            484.0,
+            213.06
+          ],
+          "upper": [
+            484.0,
+            198.5
+          ],
+          "outer": [
+            487.15,
+            205.78
+          ]
+        }
+      }
+    },
+    "earR": {
+      "landmarks": {
+        "root": [
+          395,
+          223
+        ],
+        "upper": [
+          395,
+          207
+        ],
+        "outer": [
+          386,
+          215
+        ]
+      },
+      "poses": {
+        "-1,-1": {
+          "root": [
+            404.0,
+            226.4
+          ],
+          "upper": [
+            404.0,
+            211.84
+          ],
+          "outer": [
+            400.85,
+            219.12
+          ]
+        },
+        "-1,0": {
+          "root": [
+            404.0,
+            215.38
+          ],
+          "upper": [
+            404.0,
+            200.82
+          ],
+          "outer": [
+            400.85,
+            208.1
+          ]
+        },
+        "0,-1": {
+          "root": [
+            395.0,
+            230.0
+          ],
+          "upper": [
+            395.0,
+            215.44
+          ],
+          "outer": [
+            386.9,
+            222.72
+          ]
+        },
+        "-1,1": {
+          "root": [
+            404.0,
+            213.06
+          ],
+          "upper": [
+            404.0,
+            198.5
+          ],
+          "outer": [
+            400.85,
+            205.78
+          ]
+        },
+        "0,1": {
+          "root": [
+            395.0,
+            216.0
+          ],
+          "upper": [
+            395.0,
+            201.44
+          ],
+          "outer": [
+            386.9,
+            208.72
+          ]
+        },
+        "1,-1": {
+          "root": [
+            407.46,
+            230.4
+          ],
+          "upper": [
+            407.46,
+            215.84
+          ],
+          "outer": [
+            401.88,
+            223.12
+          ]
+        },
+        "1,0": {
+          "root": [
+            399.34,
+            219.38
+          ],
+          "upper": [
+            399.34,
+            204.82
+          ],
+          "outer": [
+            393.76,
+            212.1
+          ]
+        },
+        "1,1": {
+          "root": [
+            387.74,
+            217.06
+          ],
+          "upper": [
+            387.74,
+            202.5
+          ],
+          "outer": [
+            382.16,
+            209.78
+          ]
+        }
+      }
+    },
+    "scalp": {
+      "landmarks": {
+        "top": [
+          444,
+          102.455
+        ],
+        "topL": [
+          406,
+          108
+        ],
+        "topR": [
+          482,
+          108
+        ],
+        "upperL": [
+          383,
+          145
+        ],
+        "upperR": [
+          505,
+          145
+        ],
+        "middleL": [
+          373,
+          192
+        ],
+        "middleR": [
+          515,
+          192
+        ],
+        "bottomL": [
+          387,
+          225
+        ],
+        "bottomR": [
+          501,
+          225
+        ],
+        "base": [
+          444,
+          226
+        ],
+        "partTop": [
+          444,
+          125
+        ],
+        "partMid": [
+          444,
+          145
+        ],
+        "hairlineL": [
+          426,
+          155
+        ],
+        "hairlineR": [
+          462,
+          155
+        ],
+        "templeL": [
+          402,
+          197
+        ],
+        "templeR": [
+          486,
+          197
+        ]
+      },
+      "poses": {
+        "-1,-1": {
+          "top": [
+            446.32,
+            101.06
+          ],
+          "topL": [
+            408.62,
+            106.28
+          ],
+          "topR": [
+            486.92,
+            109.76
+          ],
+          "upperL": [
+            373.82,
+            146.88
+          ],
+          "upperR": [
+            515.92,
+            147.46
+          ],
+          "middleL": [
+            370.92,
+            193.86
+          ],
+          "middleR": [
+            522.88,
+            181.68
+          ],
+          "bottomL": [
+            375.84,
+            219.96
+          ],
+          "bottomR": [
+            479.97,
+            228.66
+          ],
+          "base": [
+            439.94,
+            237.82
+          ],
+          "partTop": [
+            412.58,
+            139.34
+          ],
+          "partMid": [
+            404.04,
+            159.64
+          ],
+          "hairlineL": [
+            393.72,
+            172.98
+          ],
+          "hairlineR": [
+            422.8,
+            171.24
+          ],
+          "templeL": [
+            380.1,
+            208.36
+          ],
+          "templeR": [
+            454.54,
+            213
+          ]
+        },
+        "-1,0": {
+          "top": [
+            460.24,
+            98.74
+          ],
+          "topL": [
+            423.7,
+            103.38
+          ],
+          "topR": [
+            502,
+            109.18
+          ],
+          "upperL": [
+            384.84,
+            143.98
+          ],
+          "upperR": [
+            523.46,
+            144.56
+          ],
+          "middleL": [
+            377.88,
+            190.96
+          ],
+          "middleR": [
+            531,
+            179.94
+          ],
+          "bottomL": [
+            385.0,
+            215.9
+          ],
+          "bottomR": [
+            489.6,
+            223.44
+          ],
+          "base": [
+            448.64,
+            224.6
+          ],
+          "partTop": [
+            420.12,
+            123.68
+          ],
+          "partMid": [
+            414.48,
+            142.24
+          ],
+          "hairlineL": [
+            402.82,
+            155
+          ],
+          "hairlineR": [
+            433.18,
+            153.26
+          ],
+          "templeL": [
+            384.74,
+            194.44
+          ],
+          "templeR": [
+            462.08,
+            195.6
+          ]
+        },
+        "0,-1": {
+          "top": [
+            444,
+            98.74
+          ],
+          "topL": [
+            403.4,
+            103.96
+          ],
+          "topR": [
+            484.6,
+            103.96
+          ],
+          "upperL": [
+            377.88,
+            143.98
+          ],
+          "upperR": [
+            510.12,
+            143.98
+          ],
+          "middleL": [
+            374.98,
+            189.8
+          ],
+          "middleR": [
+            513.02,
+            189.8
+          ],
+          "bottomL": [
+            395.28,
+            222.86
+          ],
+          "bottomR": [
+            492.72,
+            222.86
+          ],
+          "base": [
+            444,
+            226.92
+          ],
+          "partTop": [
+            444,
+            135.86
+          ],
+          "partMid": [
+            444,
+            158.48
+          ],
+          "hairlineL": [
+            428.92,
+            170.08
+          ],
+          "hairlineR": [
+            459.08,
+            170.08
+          ],
+          "templeL": [
+            405.14,
+            205.46
+          ],
+          "templeR": [
+            482.86,
+            205.46
+          ]
+        },
+        "-1,1": {
+          "top": [
+            467.2,
+            98.74
+          ],
+          "topL": [
+            428.34,
+            105.12
+          ],
+          "topR": [
+            504.9,
+            111.5
+          ],
+          "upperL": [
+            396.44,
+            143.98
+          ],
+          "upperR": [
+            533.32,
+            144.56
+          ],
+          "middleL": [
+            381.94,
+            190.96
+          ],
+          "middleR": [
+            542.02,
+            190.96
+          ],
+          "bottomL": [
+            390.86,
+            214.16
+          ],
+          "bottomR": [
+            502.24,
+            216.48
+          ],
+          "base": [
+            449.8,
+            224.02
+          ],
+          "partTop": [
+            436.36,
+            110.92
+          ],
+          "partMid": [
+            429.56,
+            126.58
+          ],
+          "hairlineL": [
+            412.48,
+            135.86
+          ],
+          "hairlineR": [
+            445.48,
+            134.12
+          ],
+          "templeL": [
+            391.7,
+            178.78
+          ],
+          "templeR": [
+            472.52,
+            186.9
+          ]
+        },
+        "0,1": {
+          "top": [
+            444,
+            98.74
+          ],
+          "topL": [
+            405.14,
+            103.96
+          ],
+          "topR": [
+            482.86,
+            103.96
+          ],
+          "upperL": [
+            380.2,
+            143.98
+          ],
+          "upperR": [
+            507.8,
+            143.98
+          ],
+          "middleL": [
+            369.76,
+            190.96
+          ],
+          "middleR": [
+            518.24,
+            190.96
+          ],
+          "bottomL": [
+            382.52,
+            211.84
+          ],
+          "bottomR": [
+            505.48,
+            211.84
+          ],
+          "base": [
+            444,
+            221.7
+          ],
+          "partTop": [
+            444,
+            112.08
+          ],
+          "partMid": [
+            444,
+            126
+          ],
+          "hairlineL": [
+            429.5,
+            134.7
+          ],
+          "hairlineR": [
+            458.5,
+            134.7
+          ],
+          "templeL": [
+            408.04,
+            177.62
+          ],
+          "templeR": [
+            479.96,
+            177.62
+          ]
+        },
+        "1,-1": {
+          "top": [
+            441.68,
+            101.06
+          ],
+          "topL": [
+            401.08,
+            109.76
+          ],
+          "topR": [
+            479.38,
+            106.28
+          ],
+          "upperL": [
+            372.08,
+            147.46
+          ],
+          "upperR": [
+            514.18,
+            146.88
+          ],
+          "middleL": [
+            365.12,
+            181.68
+          ],
+          "middleR": [
+            517.08,
+            193.86
+          ],
+          "bottomL": [
+            408.03,
+            228.66
+          ],
+          "bottomR": [
+            512.16,
+            219.96
+          ],
+          "base": [
+            448.06,
+            237.82
+          ],
+          "partTop": [
+            475.42,
+            139.34
+          ],
+          "partMid": [
+            483.96,
+            159.64
+          ],
+          "hairlineL": [
+            465.2,
+            171.24
+          ],
+          "hairlineR": [
+            494.28,
+            172.98
+          ],
+          "templeL": [
+            433.46,
+            213
+          ],
+          "templeR": [
+            507.9,
+            208.36
+          ]
+        },
+        "1,0": {
+          "top": [
+            427.76,
+            98.74
+          ],
+          "topL": [
+            386,
+            109.18
+          ],
+          "topR": [
+            464.3,
+            103.38
+          ],
+          "upperL": [
+            364.54,
+            144.56
+          ],
+          "upperR": [
+            503.16,
+            143.98
+          ],
+          "middleL": [
+            357,
+            179.94
+          ],
+          "middleR": [
+            510.12,
+            190.96
+          ],
+          "bottomL": [
+            398.4,
+            223.44
+          ],
+          "bottomR": [
+            503.0,
+            215.9
+          ],
+          "base": [
+            439.36,
+            224.6
+          ],
+          "partTop": [
+            467.88,
+            123.68
+          ],
+          "partMid": [
+            473.52,
+            142.24
+          ],
+          "hairlineL": [
+            454.82,
+            153.26
+          ],
+          "hairlineR": [
+            485.18,
+            155
+          ],
+          "templeL": [
+            425.92,
+            195.6
+          ],
+          "templeR": [
+            503.26,
+            194.44
+          ]
+        },
+        "1,1": {
+          "top": [
+            420.8,
+            98.74
+          ],
+          "topL": [
+            383.1,
+            111.5
+          ],
+          "topR": [
+            459.66,
+            105.12
+          ],
+          "upperL": [
+            354.68,
+            144.56
+          ],
+          "upperR": [
+            491.56,
+            143.98
+          ],
+          "middleL": [
+            345.98,
+            190.96
+          ],
+          "middleR": [
+            506.06,
+            190.96
+          ],
+          "bottomL": [
+            385.76,
+            216.48
+          ],
+          "bottomR": [
+            497.14,
+            214.16
+          ],
+          "base": [
+            438.2,
+            224.02
+          ],
+          "partTop": [
+            451.64,
+            110.92
+          ],
+          "partMid": [
+            458.44,
+            126.58
+          ],
+          "hairlineL": [
+            442.52,
+            134.12
+          ],
+          "hairlineR": [
+            475.52,
+            135.86
+          ],
+          "templeL": [
+            415.48,
+            186.9
+          ],
+          "templeR": [
+            496.3,
+            178.78
+          ]
+        }
+      },
+      "support": [
+        368,
+        100,
+        520,
+        227
+      ]
+    },
+    "bun": {
+      "landmarks": {
+        "top": [
+          444,
+          43
+        ],
+        "sideL": [
+          405,
+          75
+        ],
+        "sideR": [
+          478,
+          75
+        ],
+        "base": [
+          444,
+          102.455
+        ]
+      },
+      "poses": {
+        "-1,-1": {
+          "top": [
+            441.1,
+            32.62
+          ],
+          "sideL": [
+            413.26,
+            65.68
+          ],
+          "sideR": [
+            482.28,
+            66.84
+          ],
+          "base": [
+            446.32,
+            101.06
+          ]
+        },
+        "-1,0": {
+          "top": [
+            463.72,
+            36.1
+          ],
+          "sideL": [
+            432.4,
+            62.78
+          ],
+          "sideR": [
+            497.94,
+            68.0
+          ],
+          "base": [
+            460.24,
+            98.74
+          ]
+        },
+        "0,-1": {
+          "top": [
+            444.0,
+            29.72
+          ],
+          "sideL": [
+            409.2,
+            62.78
+          ],
+          "sideR": [
+            478.8,
+            62.78
+          ],
+          "base": [
+            444.0,
+            98.74
+          ]
+        },
+        "-1,1": {
+          "top": [
+            478.8,
+            49.44
+          ],
+          "sideL": [
+            443.42,
+            74.96
+          ],
+          "sideR": [
+            511.86,
+            74.38
+          ],
+          "base": [
+            467.2,
+            98.74
+          ]
+        },
+        "0,1": {
+          "top": [
+            444.0,
+            48.86
+          ],
+          "sideL": [
+            409.78,
+            74.38
+          ],
+          "sideR": [
+            478.22,
+            74.38
+          ],
+          "base": [
+            444.0,
+            98.74
+          ]
+        },
+        "1,-1": {
+          "top": [
+            446.9,
+            32.62
+          ],
+          "sideL": [
+            405.72,
+            66.84
+          ],
+          "sideR": [
+            474.74,
+            65.68
+          ],
+          "base": [
+            441.68,
+            101.06
+          ]
+        },
+        "1,0": {
+          "top": [
+            424.28,
+            36.1
+          ],
+          "sideL": [
+            390.06,
+            68.0
+          ],
+          "sideR": [
+            455.6,
+            62.78
+          ],
+          "base": [
+            427.76,
+            98.74
+          ]
+        },
+        "1,1": {
+          "top": [
+            409.2,
+            49.44
+          ],
+          "sideL": [
+            376.14,
+            74.38
+          ],
+          "sideR": [
+            444.58,
+            74.96
+          ],
+          "base": [
+            420.8,
+            98.74
+          ]
+        }
+      }
+    }
+  },
+  "keyformProvenance": {
+    "reference": "nine-views.png",
+    "method": "Reviewed smooth cheek/chin arcs; face skin interpolates silhouette and facial anchors. Eyes, brows and lips attach to that face with explicit local planes. Original SVG paths and texture bytes remain unchanged.",
+    "normalization": "Reference grid 2048/3, scale .58, neutral eye row 323→198.5, centre 341→444; pose torso registration recorded in author review."
+  },
+  "featureForms": {
+    "eyeR": {
+      "anchor": [
+        419.5,
+        198.5
+      ],
+      "poses": {
+        "-1,-1": {
+          "xAxis": [
+            0.6000000000000004,
+            0.09100000000000007
+          ],
+          "yAxis": [
+            0.0,
+            0.8200000000000003
+          ]
+        },
+        "-1,0": {
+          "xAxis": [
+            0.6000000000000004,
+            0.025999999999999295
+          ],
+          "yAxis": [
+            0.0,
+            0.9199999999999994
+          ]
+        },
+        "0,-1": {
+          "xAxis": [
+            0.989999999999999,
+            0.09750000000000066
+          ],
+          "yAxis": [
+            0.0,
+            0.8800000000000002
+          ]
+        },
+        "-1,1": {
+          "xAxis": [
+            0.6600000000000007,
+            -0.052000000000000615
+          ],
+          "yAxis": [
+            0.0,
+            0.9299999999999997
+          ]
+        },
+        "0,1": {
+          "xAxis": [
+            1.0,
+            -0.07799999999999992
+          ],
+          "yAxis": [
+            0.0,
+            1.0
+          ]
+        },
+        "1,-1": {
+          "xAxis": [
+            0.8300000000000003,
+            0.07800000000000093
+          ],
+          "yAxis": [
+            0.0,
+            0.8500000000000002
+          ]
+        },
+        "1,0": {
+          "xAxis": [
+            0.8599999999999994,
+            0.013000000000000154
+          ],
+          "yAxis": [
+            0.0,
+            0.9599999999999996
+          ]
+        },
+        "1,1": {
+          "xAxis": [
+            0.8599999999999994,
+            -0.039000000000000465
+          ],
+          "yAxis": [
+            0.0,
+            0.9899999999999997
+          ]
+        }
+      }
+    },
+    "eyeL": {
+      "anchor": [
+        468.5,
+        198.5
+      ],
+      "poses": {
+        "-1,-1": {
+          "xAxis": [
+            0.8300000000000003,
+            -0.07800000000000093
+          ],
+          "yAxis": [
+            0.0,
+            0.8500000000000002
+          ]
+        },
+        "-1,0": {
+          "xAxis": [
+            0.8599999999999994,
+            -0.013000000000000154
+          ],
+          "yAxis": [
+            0.0,
+            0.9599999999999996
+          ]
+        },
+        "0,-1": {
+          "xAxis": [
+            0.989999999999999,
+            -0.09750000000000066
+          ],
+          "yAxis": [
+            0.0,
+            0.8800000000000002
+          ]
+        },
+        "-1,1": {
+          "xAxis": [
+            0.8599999999999994,
+            0.039000000000000465
+          ],
+          "yAxis": [
+            0.0,
+            0.9899999999999997
+          ]
+        },
+        "0,1": {
+          "xAxis": [
+            1.0,
+            0.07799999999999992
+          ],
+          "yAxis": [
+            0.0,
+            1.0
+          ]
+        },
+        "1,-1": {
+          "xAxis": [
+            0.6000000000000004,
+            -0.09100000000000007
+          ],
+          "yAxis": [
+            0.0,
+            0.8200000000000003
+          ]
+        },
+        "1,0": {
+          "xAxis": [
+            0.6000000000000004,
+            -0.025999999999999295
+          ],
+          "yAxis": [
+            0.0,
+            0.9199999999999994
+          ]
+        },
+        "1,1": {
+          "xAxis": [
+            0.6600000000000007,
+            0.052000000000000615
+          ],
+          "yAxis": [
+            0.0,
+            0.9299999999999997
+          ]
+        }
+      }
+    },
+    "mouth": {
+      "anchor": [
+        444,
+        243
+      ],
+      "poses": {
+        "-1,-1": {
+          "xAxis": [
+            0.8525833333333329,
+            -0.0519999999999996
+          ],
+          "yAxis": [
+            0.0,
+            0.8400000000000005
+          ]
+        },
+        "-1,0": {
+          "xAxis": [
+            0.872166666666665,
+            -0.01950000000000074
+          ],
+          "yAxis": [
+            0.0,
+            1.0
+          ]
+        },
+        "0,-1": {
+          "xAxis": [
+            0.9799999999999992,
+            0.0
+          ],
+          "yAxis": [
+            0.0,
+            0.8399999999999977
+          ]
+        },
+        "-1,1": {
+          "xAxis": [
+            0.8721666666666673,
+            -0.01950000000000074
+          ],
+          "yAxis": [
+            0.0,
+            1.0
+          ]
+        },
+        "0,1": {
+          "xAxis": [
+            0.9799999999999992,
+            0.0
+          ],
+          "yAxis": [
+            0.0,
+            1.0
+          ]
+        },
+        "1,-1": {
+          "xAxis": [
+            0.8525833333333329,
+            0.0519999999999996
+          ],
+          "yAxis": [
+            0.0,
+            0.8400000000000005
+          ]
+        },
+        "1,0": {
+          "xAxis": [
+            0.872166666666665,
+            0.01950000000000074
+          ],
+          "yAxis": [
+            0.0,
+            1.0
+          ]
+        },
+        "1,1": {
+          "xAxis": [
+            0.8721666666666673,
+            0.01950000000000074
+          ],
+          "yAxis": [
+            0.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "nose": {
+      "anchor": [
+        444,
+        227
+      ],
+      "poses": {
+        "-1,-1": {
+          "xAxis": [
+            0.88,
+            0
+          ],
+          "yAxis": [
+            0,
+            0.9
+          ]
+        },
+        "-1,0": {
+          "xAxis": [
+            0.88,
+            0
+          ],
+          "yAxis": [
+            0,
+            1
+          ]
+        },
+        "0,-1": {
+          "xAxis": [
+            1,
+            0
+          ],
+          "yAxis": [
+            0,
+            0.9
+          ]
+        },
+        "-1,1": {
+          "xAxis": [
+            0.88,
+            0
+          ],
+          "yAxis": [
+            0,
+            1
+          ]
+        },
+        "0,1": {
+          "xAxis": [
+            1,
+            0
+          ],
+          "yAxis": [
+            0,
+            1
+          ]
+        },
+        "1,-1": {
+          "xAxis": [
+            0.88,
+            0
+          ],
+          "yAxis": [
+            0,
+            0.9
+          ]
+        },
+        "1,0": {
+          "xAxis": [
+            0.88,
+            0
+          ],
+          "yAxis": [
+            0,
+            1
+          ]
+        },
+        "1,1": {
+          "xAxis": [
+            0.88,
+            0
+          ],
+          "yAxis": [
+            0,
+            1
+          ]
+        }
+      }
+    }
+  },
+  "occlusion": {
+    "faceKind": "face",
+    "behindFaceGroups": [
+      "hair_side_right",
+      "hair_side_left",
+      "earring_right",
+      "earring_left"
+    ],
+    "foregroundGroups": [
+      "hair_crown",
+      "hair_front_right",
+      "hair_front_left"
+    ]
+  },
+  "keyformExtent": {
+    "x": 30,
+    "y": 30
+  }
+}

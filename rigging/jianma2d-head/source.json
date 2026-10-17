@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/wu-tian807/AstraLayering",
+  "path": "rigging/jianma2d-head/artwork/character.svg",
+  "sourceSha256": "a2ddb18831d1f3655b2871717f0aad25dfa616e13ee0a3a4d9e397c0c54a2c34",
+  "sourceBytes": 4955106,
+  "preview": "Authorized revised SVG shared with the expression workbench; v9 uses authored cheek/chin curves, face-attached feature planes and complete-layer occlusion. Live XY is limited to +/-10 for a subtle turn with a small rear-hair reveal; the authored +/-30 interpolation domain is preserved. Scalp temple/hairline keyforms follow the same-side eye displacement, with root-pinned left/right fringe inertia and matching shadows. Artwork and textures unchanged.",
+  "layerManifest": "layers.json",
+  "base": {
+    "repository": "https://github.com/wu-tian807/AstraLayering",
+    "commit": "0049060aa29c684dda998d883a06947d4736cae1",
+    "path": "outputs/jianma_clothing/final/character.svg",
+    "sourceSha256": "5bce80aa35a0331f34f1905d03886d0a4c2318ab623b8420a5e52561a5a5cae9"
+  },
+  "artRevision": "2026-10-08-head-face-reference",
+  "rigSchema": "astra.head-nine-key.v9"
+}
