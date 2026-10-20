@@ -6,8 +6,9 @@ import { steps as personSteps } from '../.agents/skills/live2d-maker/raster-laye
 import { steps as clothingSteps } from '../.agents/skills/live2d-maker/clothing-raster-layering/steps.ts';
 import { steps as assemblySteps } from '../.agents/skills/live2d-maker/character-assembly/steps.ts';
 import { nextReviewTask } from '../.agents/skills/live2d-maker/shared/raster/review.ts';
-import { inventory, jsonFile, safePath, tail } from './files.ts';
+import { inventory, jsonFile, safePath } from './files.ts';
 import { partProgress, phases } from './part-progress.ts';
+import { readTaskLog } from '../.agents/skills/live2d-maker/workflow/log.ts';
 
 export { phases } from './part-progress.ts';
 export const rasterDefinitions = { 'raster-layering': personSteps, 'clothing-raster-layering': clothingSteps, 'character-assembly': assemblySteps };
@@ -120,7 +121,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
     }
     pipelines.push({ id, status, states, messages, groups, threadId: config?.threadId ?? null, summary: saved?.summary });
   }
-  const logs = await tail(directory, 'workflow.log');
+  const log = await readTaskLog(directory);
   const worker = await optional('.web-worker.json');
   // The URL version changes when an existing draft is rewritten, even if no log or filename changes.
   const fileVersions: Record<string, string> = {};
@@ -131,7 +132,8 @@ export async function snapshot(directory: string, name: string, dir: string) {
       catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') errors.push(path + ': ' + String(error)); }
     }));
   }
-  return { ...record, files, fileVersions, pipelines, errors, logs,
+  return { ...record, files, fileVersions, pipelines, errors, logs: log.text,
+    logPath: log.path, logUpdatedAt: log.updatedAt, lastLogMessage: log.message,
     canStop: !!(record.runnerAlive && record.lockHeld && worker?.runnerId === record.run?.runner?.id),
     original: files.find(path => /^input\/original\.(png|jpe?g|webp)$/i.test(path)),
     reference: files.find(path => /^part-layering\/references\/simplified-subject\.(png|jpe?g|webp)$/i.test(path)),

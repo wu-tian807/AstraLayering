@@ -67,8 +67,7 @@ pnpm build:codex
 ```text
 <运行根目录>/<name>/
 ├── run.json                # 总入口保存配置与进度；各管线仍按自己的文件恢复
-├── workflow.log            # 调度和管线输出
-├── service.log             # 后台进程输出
+├── workflow.log            # 唯一主日志：调度、所有绘制/review agent 与后台错误输出
 ├── monitor.md              # 定时任务信息、环境配置与巡检记录，由 agent 维护
 ├── input/                  # 用户首次提供的原图，后续管线不复制上游
 ├── part-layering/           # references、groups、parts、stages、occlusion
@@ -77,6 +76,8 @@ pnpm build:codex
 ├── clothing-raster-layering/# run.json、step01～step02
 └── character-assembly/      # run.json、step01 穿戴组装
 ```
+
+前台、CLI 后台及网页启动共用 `workflow.log`，不再新增 `service.log`。旧后台任务尚未恢复时，查询和工作台兼容读取两者中最近更新的一份，并显示实际日志路径及更新时间。各 agent 的 `agents/*/events.jsonl`、`transcript.log` 是详细诊断记录，保留但不作为另一份主日志维护。
 
 完整仓库的默认运行根目录是 `<仓库>/.run`，独立安装的 skill 默认使用 `<skill上一级>/.run`；五个独立入口均可用 `--dir <绝对路径>` 指定其他运行根目录，启动后续管线和续跑时使用同一目录。显式传入的 `--dir` 不再额外插入 `.run`。用户输入的绝对路径直接使用；相对路径统一相对于 `<运行根目录>/<name>/`，与 shell 当前目录无关。规则也适用于 `--groups` 和正常运行时的 `--krita`。单独 `--check-krita` 无任务名，请提供绝对路径。只有人物 part 接收 `--image`；衣服 part 读取同名人物 part 的 `references/simplified-subject.*`，两套 raster 分别读取同名对应 part 的产物；组装入口读取人物 step03 KRA、衣服 step02 KRA 和人物 part 的简化穿衣参考。后续入口不再接受 `--input` 或另行提供图片。
 

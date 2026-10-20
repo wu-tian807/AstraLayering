@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { test, type TestContext } from 'node:test';
 import { pipelineIds, type PipelineId } from '../../shared/paths.ts';
 import { runTask } from '../runner.ts';
-import { acquireTaskLock, configureRun, directoryFor, readRun, taskStatus } from '../state.ts';
-import { parseArguments } from '../run.ts';
+import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, taskStatus } from '../state.ts';
+import { parseArguments, startBackground } from '../run.ts';
 
 async function fixture(t: TestContext) {
   const dir = await mkdtemp(join(tmpdir(), 'live2d-runner-'));
@@ -19,6 +19,56 @@ async function fixture(t: TestContext) {
 }
 const preflight = async (executable: string) => ({ executable, version: 'test' });
 
+test('状态保存失败不能切断后续 agent 日志、状态和阶段推进', async t => {
+  const f = await fixture(t);
+  let injected = false;
+  await runTask({ ...f.options, from: 'part-layering', to: 'part-layering' }, {
+    save: async (directory, run) => {
+      if (run.lastMessage === '[hair] 第一条消息' && !injected) {
+        injected = true;
+        throw Object.assign(new Error('模拟 Windows 文件占用'), { code: 'EPERM' });
+      }
+      await saveRun(directory, run);
+    },
+    execute: async (_id, _run, context) => {
+      context.progress('[hair] 第一条消息');
+      context.progress('[hair] 写入草稿成功');
+      return { summary: '完成' };
+    },
+  });
+  assert.equal(injected, true);
+  const log = await readFile(join(f.directory, 'workflow.log'), 'utf8');
+  assert.match(log, /状态保存失败.*模拟 Windows 文件占用/);
+  assert.equal(log.match(/\[hair\] 写入草稿成功/g)?.length, 1);
+  assert.match(log, /所选路线已完成/);
+  assert.equal((await readRun(f.directory, 'case'))?.status, 'completed');
+  assert.equal((await taskStatus(f.options)).log, join(f.directory, 'workflow.log'));
+  assert.equal((await readdir(f.directory)).includes('service.log'), false);
+});
+
+test('状态原子替换对短暂占用重试，永久失败保留旧状态并清理暂存', async t => {
+  const f = await fixture(t), run = await configureRun(f.options, f.directory);
+  let attempts = 0;
+  await saveRun(f.directory, run, async (source, destination) => {
+    if (++attempts < 3) throw Object.assign(new Error('busy'), { code: 'EPERM' });
+    await rename(source, destination);
+  });
+  assert.equal(attempts, 3);
+  const before = await readFile(join(f.directory, 'run.json'), 'utf8');
+  await assert.rejects(saveRun(f.directory, { ...run, status: 'completed' }, async () => {
+    throw Object.assign(new Error('disk failure'), { code: 'EIO' });
+  }), /disk failure/);
+  assert.equal(await readFile(join(f.directory, 'run.json'), 'utf8'), before);
+  assert.equal((await readdir(f.directory)).some(name => name.endsWith('.tmp')), false);
+});
+
+test('真实后台启动失败只写主日志，不另建 service.log', async t => {
+  const f = await fixture(t);
+  await assert.rejects(startBackground({ ...f.options, from: 'raster-layering', to: 'raster-layering' }), /Krita|krita/);
+  assert.match(await readFile(join(f.directory, 'workflow.log'), 'utf8'), /Krita|krita/);
+  assert.equal((await readdir(f.directory)).includes('service.log'), false);
+});
+
 test('总控保留输入与配置，严格按序推进；后续仅用 name 和 dir 恢复', async t => {
   const f = await fixture(t), first: PipelineId[] = [], second: PipelineId[] = [];
   await runTask({ ...f.options, image: 'reference.png', jobs: 2, standard: true }, { preflight, execute: async (id, run) => {
@@ -27,7 +77,7 @@ test('总控保留输入与配置，严格按序推进；后续仅用 name 和 d
     assert.equal(disk.activePipeline, id);
     assert.equal(disk.status, 'running');
     assert.equal(run.jobs, 2);
-    assert.equal(run.image, 'input/original.png');
+    assert.equal(run.image, join('input', 'original.png'));
     assert.equal(run.standard, true); assert.equal(disk.standard, true);
     return { summary: id, output: join(f.directory, id, 'output') };
   } });

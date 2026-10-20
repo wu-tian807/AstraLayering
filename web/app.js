@@ -212,8 +212,8 @@ function graph() {
  <footer class="flow-footnote">按 01 → 05 顺序执行 · 点击 group 横向展开，栏目与环节均可收起 · 草稿未落稿；正式稿与复核分别显示 · 按文件和报告展示，续跑资格由管线校验</footer></div>${state.inspect?inspector():''}</section>`;
 }
 function runNotice() {
- const message=data.run?.error||data.run?.lastMessage||'尚无总调度执行记录，可选择单条管线读取已有上游产物。';
- return `<details data-details="run-notice" class="run-notice ${data.status==='failed'?'error':''}" ${data.status==='failed'?'open':''}><summary>${icon(data.status==='failed'?'info':'clock')}<span>${esc(message.split('\n')[0])}</span><small>运行记录与日志</small></summary><div>${data.errors.length?`<pre class="status-error">${esc(data.errors.join('\n'))}</pre>`:''}<pre>${esc(data.run?.error||data.run?.lastMessage||message)}</pre><pre class="live-log">${esc(data.logs||'暂无日志')}</pre><small>目录：${esc(data.directory)}${data.run?.updatedAt?' · 更新：'+esc(new Date(data.run.updatedAt).toLocaleString()):''}</small></div></details>`;
+ const message=data.run?.error||data.lastLogMessage||data.run?.lastMessage||'尚无总调度执行记录，可选择单条管线读取已有上游产物。';
+ return `<details data-details="run-notice" class="run-notice ${data.status==='failed'?'error':''}" ${data.status==='failed'?'open':''}><summary>${icon(data.status==='failed'?'info':'clock')}<span>${esc(message.split('\n')[0])}</span><small>运行记录与日志</small></summary><div>${data.errors.length?`<pre class="status-error">${esc(data.errors.join('\n'))}</pre>`:''}<pre>${esc(message)}</pre><pre class="live-log">${esc(data.logs||'暂无日志')}</pre><small>日志：${esc(data.logPath||data.directory)}${data.logUpdatedAt?' · 日志更新：'+esc(new Date(data.logUpdatedAt).toLocaleString()):''}${data.run?.updatedAt?' · 状态保存：'+esc(new Date(data.run.updatedAt).toLocaleString()):''}</small></div></details>`;
 }
 let flowObserver;
 function connectFlow() {

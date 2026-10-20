@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, mkdtemp, readFile, rm, symlink, utimes, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { createWorkbench } from '../server.ts';
 import { snapshot } from '../snapshot.ts';
-import { runWebTask } from '../worker.ts';
+import { launch, runWebTask } from '../worker.ts';
 import { atomicJSON, jsonFile } from '../files.ts';
 import { acquireTaskLock, configureRun, saveRun, readRun } from '../../.agents/skills/live2d-maker/workflow/state.ts';
 
@@ -25,6 +25,42 @@ async function fixture(t: any, start?: NonNullable<Parameters<typeof createWorkb
 }
 const upload = async () => (await sharp({ create: { width: 8, height: 8, channels: 3, background: '#cbbbaa' } }).png().toBuffer()).toString('base64');
 async function put(root: string, path: string, value = 'content') { const file = join(root, path); await mkdir(join(file, '..'), { recursive: true }); await writeFile(file, value); }
+
+test('页面与状态查询读取同一份最新日志，不被旧 run.json 摘要遮盖', async t => {
+  const f = await fixture(t), task = join(f.dir, 'test');
+  await mkdir(task);
+  const run = await configureRun({ name: 'test', dir: f.dir }, task);
+  run.lastMessage = '[review-hair] 旧消息';
+  await saveRun(task, run);
+  await put(task, 'workflow.log', '[2026-10-20T14:40:00.000Z] [review-hair] 旧消息\n');
+  await utimes(join(task, 'workflow.log'), 1, 1);
+  await put(task, 'service.log', '[返修-hair] 工具调用：write_outline_svg\n{\n  "svg": "省略"\n}\n');
+  let value = await snapshot(task, 'test', f.dir);
+  assert.match(value.logs, /write_outline_svg/);
+  assert.equal(value.lastLogMessage, '[返修-hair] 工具调用：write_outline_svg');
+  assert.equal(value.logPath, join(task, 'service.log'));
+  await appendFile(join(task, 'workflow.log'), '[2026-10-20T16:00:00.000Z] [返修-hair] 自检完成\n'
+    + '[2026-10-20T16:00:01.000Z] [返修-hair] 收到 skills/changed：{}\n'
+    + '[2026-10-20T16:00:02.000Z] [返修-hair] 思考摘要：\n'
+    + '[2026-10-20T16:00:03.000Z] [返修-hair] 完成：{\n}\n');
+  await utimes(join(task, 'service.log'), 1, 1);
+  value = await snapshot(task, 'test', f.dir);
+  assert.equal(value.logPath, join(task, 'workflow.log'));
+  assert.equal(value.lastLogMessage, '[返修-hair] 自检完成');
+  assert.ok(value.logUpdatedAt);
+  const cli = await import('../../.agents/skills/live2d-maker/workflow/state.ts');
+  const status = await cli.taskStatus({ name: 'test', dir: f.dir });
+  assert.equal(status.lastMessage, value.lastLogMessage);
+  assert.equal(status.log, value.logPath);
+});
+
+test('网页后台启动同样只使用 workflow.log，失败时等待日志完成写入', async t => {
+  const f = await fixture(t);
+  await assert.rejects(launch({ name: 'test', dir: f.dir, krita: process.execPath,
+    from: 'raster-layering', to: 'raster-layering' }), /Krita|krita/);
+  assert.match(await readFile(join(f.dir, 'test/workflow.log'), 'utf8'), /Krita|krita/);
+  assert.equal(await readFile(join(f.dir, 'test/service.log')).then(() => true, () => false), false);
+});
 
 test('upload retains original/config; same name never overwrites; selection persists; stale tabs cannot start in another root', async t => {
   const f = await fixture(t);
@@ -50,11 +86,11 @@ test('task assets reject traversal and symlinks; SVG is served sandboxed; versio
   const f = await fixture(t);
   await f.post('tasks', { name: 'test', upload: await upload() });
   await put(f.dir, 'test/out.svg', '<svg xmlns="http://www.w3.org/2000/svg"/>');
-  await put(f.base, 'private.json', '{"private":true}');
-  await symlink(join(f.base, 'private.json'), join(f.dir, 'test/leak.json'));
+  await put(f.base, 'private/private.json', '{"private":true}');
+  await symlink(join(f.base, 'private'), join(f.dir, 'test/leak'), process.platform === 'win32' ? 'junction' : 'dir');
   const artifact = (path: string) => f.url + '/artifact?' + new URLSearchParams({ name: 'test', dir: f.dir, path });
   assert.equal((await fetch(artifact('../private.json'))).status, 400);
-  assert.equal((await fetch(artifact('leak.json'))).status, 400);
+  assert.equal((await fetch(artifact('leak/private.json'))).status, 400);
   const svg = await fetch(artifact('out.svg'));
   assert.equal(svg.status, 200); assert.match(svg.headers.get('content-security-policy')!, /sandbox/);
   const files = await (await fetch(f.url + '/api/config/files?ref=HEAD')).json() as any;

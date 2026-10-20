@@ -1,8 +1,8 @@
 import { fork, spawn, type ChildProcess } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
-import { appendFile, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createTaskLog, readTaskLog } from './log.ts';
 import { formatAgentError } from '../shared/codex/diagnostics.ts';
 import type { PipelineId } from '../shared/paths.ts';
 import { checkKrita, type KritaInstallation } from '../shared/raster/krita.ts';
@@ -59,18 +59,25 @@ export async function runTask(options: TaskOptions, dependencies: {
   execute?: PipelineExecution; signal?: AbortSignal; progress?: (message: string) => void;
   ready?: (run: TaskRun) => void;
   preflight?: (path: string) => Promise<KritaInstallation>;
+  save?: typeof saveRun;
 } = {}): Promise<TaskRun> {
   const directory = directoryFor(options);
   const release = await acquireTaskLock(directory);
   const signal = dependencies.signal ?? new AbortController().signal;
   let run: TaskRun | undefined, pending = Promise.resolve();
-  const persist = () => { const snapshot = structuredClone(run!); pending = pending.then(() => saveRun(directory, snapshot)); return pending; };
+  const log = createTaskLog(directory, dependencies.progress);
+  const persist = () => {
+    const snapshot = structuredClone(run!);
+    const operation = pending.then(() => (dependencies.save ?? saveRun)(directory, snapshot));
+    // A failed snapshot is reported to its caller, but cannot poison later saves.
+    pending = operation.catch(() => {});
+    return operation;
+  };
   const progress = (message: string) => {
     if (!message) return;
     run!.lastMessage = message;
-    pending = pending.then(() => appendFile(join(directory, 'workflow.log'), '[' + now() + '] ' + message + '\n'));
-    void persist().catch(() => {}); // Awaited at every pipeline boundary and in finally.
-    dependencies.progress?.(message);
+    log.write(message);
+    void persist().catch(error => log.write('状态保存失败，将在后续更新重试：' + formatAgentError(error)));
   };
   try {
     run = await configureRun(options, directory);
@@ -114,10 +121,10 @@ export async function runTask(options: TaskOptions, dependencies: {
     try {
       if (run?.runner) { delete run.runner.childPid; run.runner.finishedAt = now(); await persist(); }
       await pending;
-    } finally { await release(); }
+    } finally { try { await log.flush(); } finally { await release(); } }
   }
 }
 
 export async function lastLog(directory: string): Promise<string> {
-  return readFile(join(directory, 'service.log'), 'utf8').then(text => text.slice(-16 * 1024), () => '');
+  return (await readTaskLog(directory)).text;
 }

@@ -4,6 +4,7 @@ import { mkdir, open, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { runTask } from '../.agents/skills/live2d-maker/workflow/runner.ts';
+import { taskLogName } from '../.agents/skills/live2d-maker/workflow/log.ts';
 import { directoryFor, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
 import { atomicJSON, jsonFile, tail } from './files.ts';
 
@@ -21,7 +22,7 @@ export async function runWebTask(options: TaskOptions, token: string, dependenci
     finally { polling = false; }
   }, 1000);
   try {
-    return await runTask(options, { ...dependencies, signal: controller.signal, progress: dependencies.progress ?? console.log,
+    return await runTask(options, { ...dependencies, signal: controller.signal,
       ready: run => {
         // The task lock is already held when this callback runs.
         readyWrite = atomicJSON(join(directory, '.web-worker.json'), { token, pid: process.pid, runnerId: run.runner!.id })
@@ -42,25 +43,25 @@ export async function runWebTask(options: TaskOptions, token: string, dependenci
 export async function launch(options: TaskOptions): Promise<number> {
   const directory = directoryFor(options);
   await mkdir(directory, { recursive: true });
-  const log = await open(join(directory, 'service.log'), 'a', 0o600);
+  const log = await open(join(directory, taskLogName), 'a', 0o600);
   try {
     return await new Promise((resolve, reject) => {
       const child = fork(fileURLToPath(new URL('./worker.ts', import.meta.url)), [JSON.stringify(options), randomUUID()], {
         cwd: directory, detached: true, stdio: ['ignore', log.fd, log.fd, 'ipc'],
       });
-      let settled = false;
+      let settled = false, failure: Error | undefined;
       const finish = (error?: Error) => {
         if (settled) return; settled = true; clearTimeout(timer);
         if (child.connected) child.disconnect(); child.unref();
         if (error) reject(error); else resolve(child.pid!);
       };
-      const timer = setTimeout(() => { child.kill('SIGTERM'); finish(new Error('启动确认超时，请检查 service.log 后再续跑')); }, 30_000);
+      const timer = setTimeout(() => { child.kill('SIGTERM'); finish(new Error('启动确认超时，请检查 workflow.log 后再续跑')); }, 30_000);
       child.on('message', (message: any) => {
         if (message.type === 'ready') finish();
-        if (message.type === 'failure') finish(new Error(message.message));
+        if (message.type === 'failure') failure = new Error(message.message);
       });
       child.once('error', finish);
-      child.once('exit', (code, signal) => { if (!settled) void tail(directory, 'service.log').then(log => finish(new Error(`启动失败 (${code ?? signal})\n${log}`))); });
+      child.once('exit', (code, signal) => { if (!settled) void tail(directory, taskLogName).then(log => finish(failure ?? new Error(`启动失败 (${code ?? signal})\n${log}`))); });
     });
   } finally { await log.close(); }
 }

@@ -7,6 +7,7 @@ import { formatAgentError } from '../shared/codex/diagnostics.ts';
 import { directoryFor, pipelineId, taskStatus, type TaskOptions } from './state.ts';
 import { lastLog, runTask } from './runner.ts';
 import { replaceThread } from './recovery.ts';
+import { taskLogName } from './log.ts';
 
 export const help = [
   'live2d-maker — 制作、后台运行与恢复整条管线',
@@ -64,7 +65,7 @@ export function parseArguments(args: string[]) {
 export async function startBackground(options: TaskOptions): Promise<number> {
   const directory = directoryFor(options);
   await mkdir(directory, { recursive: true });
-  const log = await open(join(directory, 'service.log'), 'a', 0o600);
+  const log = await open(join(directory, taskLogName), 'a', 0o600);
   const args = ['--background-worker', '--name', options.name];
   if (options.standard !== undefined) args.push(options.standard ? '--standard' : '--no-standard');
   for (const key of ['dir', 'image', 'krita', 'from', 'to', 'jobs'] as const) {
@@ -75,7 +76,7 @@ export async function startBackground(options: TaskOptions): Promise<number> {
       const child = fork(fileURLToPath(import.meta.url), args, {
         cwd: directory, detached: true, stdio: ['ignore', log.fd, log.fd, 'ipc'],
       });
-      let settled = false;
+      let settled = false, failure: Error | undefined;
       const finish = (error?: Error) => {
         if (settled) return;
         settled = true; clearTimeout(timeout);
@@ -85,16 +86,16 @@ export async function startBackground(options: TaskOptions): Promise<number> {
       };
       const timeout = setTimeout(() => {
         child.kill('SIGTERM');
-        finish(new Error('后台启动确认超时。请查看 ' + join(directory, 'service.log') + ' 与 --status 后再重试。'));
+        finish(new Error('后台启动确认超时。请查看 ' + join(directory, taskLogName) + ' 与 --status 后再重试。'));
       }, 30_000);
       child.on('message', value => {
         const message = value as { type?: string; message?: string };
         if (message.type === 'ready') finish();
-        else if (message.type === 'failure') finish(new Error(message.message ?? '后台启动失败。'));
+        else if (message.type === 'failure') failure = new Error(message.message ?? '后台启动失败。');
       });
       child.once('error', error => finish(error));
       child.once('exit', (code, signal) => {
-        if (!settled) void lastLog(directory).then(log => finish(new Error('后台未启动 (code=' + code + ', signal=' + signal + ')\n' + log)));
+        if (!settled) void lastLog(directory).then(log => finish(failure ?? new Error('后台未启动 (code=' + code + ', signal=' + signal + ')\n' + log)));
       });
     });
   } finally { await log.close(); }
@@ -128,7 +129,7 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
     const interrupt = () => controller.abort(new Error('总调度收到终止信号；保留进度，稍后可续跑。'));
     process.once('SIGINT', interrupt); process.once('SIGTERM', interrupt);
     try {
-      await runTask(options, { signal: controller.signal, progress: console.log, ready: () => {
+      await runTask(options, { signal: controller.signal, progress: parsed.worker ? undefined : console.log, ready: () => {
         if (parsed.worker && process.connected) process.send?.({ type: 'ready' });
       } });
     } catch (error) {

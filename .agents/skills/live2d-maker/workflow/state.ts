@@ -1,10 +1,12 @@
 import { randomUUID, createHash } from 'node:crypto';
-import { copyFile, mkdir, readFile, readdir, rename, stat, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, readdir, rename, stat, unlink, writeFile } from 'node:fs/promises';
+import { setTimeout as delay } from 'node:timers/promises';
 import { extname, join, relative } from 'node:path';
 import lockfile from 'proper-lockfile';
 import { pipelineIds, resolveInput, resolveRunsDirectory, taskDirectory, type PipelineId } from '../shared/paths.ts';
 import { defaultAgentConcurrency } from '../shared/codex/agent-runtime.ts';
 import { readPreparationState } from '../part-layering/preparation-state.ts';
+import { readTaskLog } from './log.ts';
 
 export type TaskOptions = {
   name: string; dir?: string; image?: string; krita?: string;
@@ -53,11 +55,22 @@ export async function readRun(directory: string, name: string): Promise<TaskRun 
   selectedPipelines(pipelineId(run.from), pipelineId(run.to));
   return run;
 }
-export async function saveRun(directory: string, run: TaskRun): Promise<void> {
+export async function saveRun(directory: string, run: TaskRun, replace = rename): Promise<void> {
   run.updatedAt = now();
   const temporary = join(directory, '.run-' + randomUUID() + '.tmp');
-  await writeFile(temporary, JSON.stringify(run, null, 2) + '\n', { mode: 0o600 });
-  await rename(temporary, join(directory, 'run.json'));
+  try {
+    await writeFile(temporary, JSON.stringify(run, null, 2) + '\n', { mode: 0o600 });
+    for (let attempt = 0; ; attempt++) {
+      try { await replace(temporary, join(directory, 'run.json')); break; }
+      catch (error) {
+        // Readers/antivirus can briefly hold the destination on Windows.
+        if (!['EPERM', 'EACCES', 'EBUSY'].includes((error as NodeJS.ErrnoException).code ?? '') || attempt >= 4) throw error;
+        await delay(20 * 2 ** attempt);
+      }
+    }
+  } finally {
+    await unlink(temporary).catch(error => { if (error.code !== 'ENOENT') throw error; });
+  }
 }
 export async function acquireTaskLock(directory: string): Promise<() => Promise<void>> {
   await mkdir(directory, { recursive: true });
@@ -152,9 +165,11 @@ export async function taskStatus(options: Pick<TaskOptions, 'name' | 'dir'>) {
     } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
     return { id, ...run.pipelines[id], directory: path, ...(threadId === undefined ? {} : { threadId }), steps };
   }));
+  const log = await readTaskLog(directory);
   return {
     ...run, status: run.status === 'running' && !runnerAlive ? 'interrupted' : run.status,
     directory, runnerAlive: !!runnerAlive, lockHeld, pipelines,
-    log: join(directory, 'workflow.log'), monitor: join(directory, 'monitor.md'),
+    lastMessage: log.message ?? run.lastMessage, log: log.path, logUpdatedAt: log.updatedAt,
+    monitor: join(directory, 'monitor.md'),
   };
 }
