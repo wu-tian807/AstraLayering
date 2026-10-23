@@ -38,7 +38,7 @@ export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): Prepar
     const result = await agents.run({
       step: 'clothing_preparation', name: '纯衣服参考准备', imageGeneration: true,
       images: [{ path: image, description: '图 1：简化后的穿衣角色原稿。保留衣服与穿着形态，去除人物和非衣装饰品。' }],
-      prompt: `【绘制提示词】\n${prompt.trim()}\n\n【执行规则】\n将以上绘制提示词原样传给本步骤配置的生图工具（image_generation 是生图工具的概念总称，不要求工具字面同名；按当前配置使用实际生图工具，例如 Codex 内置 image_gen.imagegen。仅允许调用生图工具，禁止调用任何生图以外的工具；不得调用工具搜索、shell、文件操作、浏览器或其他辅助工具。不得切换到未配置的生图服务或直接 API），传入图 1，要求透明背景 PNG。只调用一次，返回实际生成文件的 savedPath。工具不可用或调用失败时返回 error；不配置 provider、不调用未配置的生图工具或直接 API、不用脚本或原图替代生图。成功时 error 为 null；失败时 savedPath 为 null。`,
+      prompt: `【绘制提示词】\n${prompt.trim()}\n\n【执行规则】\n将以上绘制提示词原样传给本步骤配置的生图工具（image_generation 是生图工具的概念总称，不要求工具字面同名；按当前配置使用实际生图工具，例如 Codex 内置 image_gen.imagegen。仅允许调用生图工具，禁止调用任何生图以外的工具；不得调用工具搜索、shell、文件操作、浏览器或其他辅助工具。不得切换到未配置的生图服务或直接 API），不增补绘制要求。传入图 1，要求透明背景 PNG。只调用一次；完成后直接返回实际生成文件的 savedPath，不检查、不返修、不重试。工具不可用或调用失败时返回 error；不配置 provider、不调用未配置的生图工具或直接 API、不用脚本或原图替代生图。成功时 error 为 null；失败时 savedPath 为 null。`,
       outputSchema: { type: 'object', additionalProperties: false, required: ['savedPath', 'error'],
         properties: { savedPath: { type: ['string', 'null'] }, error: { type: ['string', 'null'] } } },
     });
