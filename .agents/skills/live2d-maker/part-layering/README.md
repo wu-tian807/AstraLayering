@@ -145,8 +145,7 @@ group 的组件覆盖按联合色块判断。踝饰等完全落在本组底形�
 
 - `../input/original.<原扩展名>`（相对本管线目录）：首次原图只保存在任务根的 input，用于续跑和补齐缺失参考。
 - `standard.png`：标准参考；默认不调姿态，开启 `--standard` 后先判断再按需调整。
-- `options.json`：标准化选项 `{ "standard": boolean }`。
-- `.steps/<步骤>/`：original、options、pose、standard、judgment、simplified、base、ready 各自的 `.running` / `.completed` 标记，与 raster 共用 `shared/step-chain.ts` 的断链重试规则。`.completed` 记录产物指纹与依赖戳；姿态判断保存在 `.steps/pose/judgment.json`。删除某步的 `.completed` 或产物即重试该步，依赖它的后续步骤随之重做，ready 重做时清空本 part 拆分缓存；已完成步骤的产物在中断期间被替换时拒绝续跑并保留文件。旧任务的 `preparation.json` 在首次默认流程运行时一次性转换并删除，指纹仍吻合的步骤直接沿用。
+- `../preparation/stepNN/`：参考准备的步骤目录，与 raster 共用 `shared/step-section.ts` 的 section/stepNN 驱动和 `shared/step-chain.ts` 的断链重试规则。编号固定：step01 original、step02 options（`options.json` 记录 `{ "standard": boolean }`）、step03 pose（`judgment.json` 姿态判断）、step04 standard、step05 judgment、step06 simplified、step07 base、step08 ready；本次不用的步骤（如未开启 `--standard` 时的 pose）留空编号。`.completed` 记录产物指纹与依赖戳。删除某步的 `.completed` 或产物即重试该步，依赖它的后续步骤随之重做，ready 重做时清空本 part 拆分缓存；已完成步骤的产物在中断期间被替换时拒绝续跑并保留文件。旧任务的 `references/.steps/`、`references/options.json` 与 `preparation.json` 在首次默认流程运行时一次性迁入并删除，指纹仍吻合的步骤直接沿用。
 - `judgment.json`：原有画风判断，包含 `needsSimplification` 与 `reason`；兼容不含 `reason` 的旧记录。
 - `simplified-subject.png`：需要简化时生成，否则复制 standard.png；旧任务仍可沿用原扩展名。
 - `base-subject.png`：以简化参考和连体服款式图为输入生成素体换装参考。

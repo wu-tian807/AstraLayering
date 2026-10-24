@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { createHash, randomUUID } from 'node:crypto';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test, type TestContext } from 'node:test';
 import type { AgentTask } from '../../shared/codex/agents.ts';
@@ -12,6 +12,12 @@ import { createPreparationSteps } from '../run.ts';
 import { taskDirectory } from '../../shared/paths.ts';
 import sharp from 'sharp';
 import { formatAgentError } from '../../shared/codex/diagnostics.ts';
+
+// The preparation section and its fixed step numbers.
+const section = (refs: { directory: string } | string) => join(dirname(typeof refs === 'string' ? refs : refs.directory), 'preparation');
+const stages = ['original', 'options', 'pose', 'standard', 'judgment', 'simplified', 'base', 'ready'];
+const step = (stage: string) => `step0${stages.indexOf(stage) + 1}`;
+const optionsPath = (refs: { directory: string } | string) => join(section(refs), step('options'), 'options.json');
 
 const styleReference = fileURLToPath(new URL('../resources/简化参考图片.png', import.meta.url));
 const outfitReference = fileURLToPath(new URL('../resources/连体服参考.jpg', import.meta.url));
@@ -86,8 +92,7 @@ async function legacyRecord(refs: PreparationReferences, edit: (state: any) => v
     simplified: { inputHash: legacyHash(standard, false), outputHash: simplified },
     base: { inputHash: legacyHash(simplified), outputHash: base } }, partReferencesHash: legacyHash(simplified, base) };
   edit(state);
-  await rm(join(refs.directory, '.steps'), { recursive: true });
-  await rm(join(refs.directory, 'options.json'));
+  await rm(section(refs), { recursive: true });
   await writeFile(join(refs.directory, 'preparation.json'), JSON.stringify(state));
 }
 
@@ -103,7 +108,7 @@ test('旧 preparation.json 一次性转换为步骤记录，之后不再使用�
   assert.deepEqual(await prepareReferences({ runName: f.runName }, f.steps), refs);
   assert.equal(f.calls.length, 0);
   await assert.rejects(readFile(join(refs.directory, 'preparation.json')), { code: 'ENOENT' });
-  assert.deepEqual(JSON.parse(await readFile(join(refs.directory, 'options.json'), 'utf8')), { standard: false });
+  assert.deepEqual(JSON.parse(await readFile(optionsPath(refs), 'utf8')), { standard: false });
   assert.equal(await readFile(group, 'utf8'), 'groups');
   assert.deepEqual(await loadPreparedReferences(f.runName), refs);
 
@@ -162,7 +167,7 @@ test('--standard 先判断；已标准仅复制，需要调整才传一张原图
     f.calls.length = 0;
     assert.deepEqual(await prepareReferences({ runName: f.runName }, f.steps), refs);
     assert.equal(f.calls.length, 0);
-    assert.deepEqual(JSON.parse(await readFile(join(refs.directory, 'options.json'), 'utf8')), { standard: true });
+    assert.deepEqual(JSON.parse(await readFile(optionsPath(refs), 'utf8')), { standard: true });
   });
 });
 
@@ -178,8 +183,8 @@ test('标准生图异常保留选项和判断，续跑无需再次传 --standard
   });
   const directory = getPreparationDirectory(f.runName);
   await assert.rejects(readFile(join(directory, 'standard.png')), { code: 'ENOENT' });
-  assert.deepEqual(JSON.parse(await readFile(join(directory, 'options.json'), 'utf8')), { standard: true });
-  assert.equal(JSON.parse(await readFile(join(directory, '.steps/pose/judgment.json'), 'utf8')).needsAdjustment, true);
+  assert.deepEqual(JSON.parse(await readFile(optionsPath(directory), 'utf8')), { standard: true });
+  assert.equal(JSON.parse(await readFile(join(section(directory), step('pose'), 'judgment.json'), 'utf8')).needsAdjustment, true);
   f.calls.length = 0;
   await prepareReferences({ runName: f.runName }, f.steps);
   assert.deepEqual(f.calls.map(task => task.name), ['标准姿态', '参考判断', '素体换装']);
@@ -205,13 +210,13 @@ test('输入、选项或任一已跟踪参考变化时不修改文件、不调�
       const refs = await prepareReferences({ runName: f.runName, image: f.original }, f.steps);
       if (change === 'judgment') await writeFile(refs.judgment, JSON.stringify({ needsSimplification: true }));
       else if (change !== 'mode') await writeFile(refs[change]!, 'changed content');
-      const markers = join(refs.directory, '.steps');
-      const before = await Promise.all(['original', 'standard', 'judgment', 'simplified', 'base', 'ready'].map(id => readFile(join(markers, id, '.completed'))));
+      const markers = section(refs);
+      const before = await Promise.all(['original', 'standard', 'judgment', 'simplified', 'base', 'ready'].map(id => readFile(join(markers, step(id), '.completed'))));
       f.calls.length = 0;
       const standard = change === 'mode' ? true : undefined, error = change === 'mode' ? /不能直接切换/ : /不能直接续跑/;
       await assert.rejects(prepareReferences({ runName: f.runName, standard }, f.steps), error);
       await assert.rejects(loadPreparedReferences(f.runName, undefined, standard), error);
-      assert.deepEqual(await Promise.all(['original', 'standard', 'judgment', 'simplified', 'base', 'ready'].map(id => readFile(join(markers, id, '.completed')))), before);
+      assert.deepEqual(await Promise.all(['original', 'standard', 'judgment', 'simplified', 'base', 'ready'].map(id => readFile(join(markers, step(id), '.completed')))), before);
       if (change !== 'mode' && change !== 'judgment') assert.equal(await readFile(refs[change]!, 'utf8'), 'changed content');
       assert.equal(f.calls.length, 0);
     });
@@ -242,12 +247,12 @@ test('切换模式须对 options 显式重试，其后的参考随之重做', as
   const f = await fixture(t, false);
   const refs = await prepareReferences({ runName: f.runName, image: f.original }, f.steps);
   f.calls.length = 0;
-  await assert.rejects(prepareReferences({ runName: f.runName, standard: true }, f.steps), /不能直接切换[\s\S]*options\/\.completed/);
-  await rm(join(refs.directory, '.steps/options/.completed'));
+  await assert.rejects(prepareReferences({ runName: f.runName, standard: true }, f.steps), /不能直接切换[\s\S]*preparation\/step02\/\.completed/);
+  await rm(join(section(refs), step('options'), '.completed'));
   const resumed = await prepareReferences({ runName: f.runName, standard: true }, f.steps);
   assert.deepEqual(resumed, refs);
   assert.deepEqual(f.calls.map(task => task.name), ['姿态判断', '参考判断', '素体换装']);
-  assert.deepEqual(JSON.parse(await readFile(join(refs.directory, 'options.json'), 'utf8')), { standard: true });
+  assert.deepEqual(JSON.parse(await readFile(optionsPath(refs), 'utf8')), { standard: true });
 });
 
 test('旧任务没有原图也能续跑；启用标准化不冒充已有参考来源，只读加载不转换', async t => {
@@ -258,15 +263,15 @@ test('旧任务没有原图也能续跑；启用标准化不冒充已有参考�
   await writeFile(join(directory, 'simplified-subject.jpg'), 'legacy reference');
   await writeFile(join(directory, 'base-subject.png'), f.bytes);
   assert.equal((await loadPreparedReferences(f.runName)).standardImage, undefined);
-  await assert.rejects(readFile(join(directory, '.steps')), { code: 'ENOENT' });
+  await assert.rejects(readdir(section(directory)), { code: 'ENOENT' });
   await assert.rejects(prepareReferences({ runName: f.runName, image: f.original, standard: true }, f.steps), /不能直接切换/);
   const refs = await prepareReferences({ runName: f.runName }, f.steps);
   assert.equal(refs.standardImage, undefined); assert.equal(f.calls.length, 0);
   assert.deepEqual(await loadPreparedReferences(f.runName), refs);
   assert.deepEqual(await prepareReferences({ runName: f.runName }, f.steps), refs);
-  const record = await readFile(join(directory, '.steps/options/.completed'));
+  const record = await readFile(join(section(directory), step('options'), '.completed'));
   await assert.rejects(prepareReferences({ runName: f.runName, image: f.original, standard: true }, f.steps), /不能直接切换/);
-  assert.deepEqual(await readFile(join(directory, '.steps/options/.completed')), record);
+  assert.deepEqual(await readFile(join(section(directory), step('options'), '.completed')), record);
 });
 
 test('显式组的参考入口只读已有产物，缺失时不补图或调用 agent', async t => {
@@ -280,4 +285,45 @@ test('显式组的参考入口只读已有产物，缺失时不补图或调用 a
   assert.equal(f.calls.length, 0);
   await assert.rejects(readFile(refs.simplifiedSubject), { code: 'ENOENT' });
   await assert.rejects(readFile(refs.baseSubject), { code: 'ENOENT' });
+});
+
+// Rebuild the layout of earlier runs: records under references/.steps/<stage>
+// keyed by stage names, with the options in references/options.json.
+async function oldStepLayout(refs: PreparationReferences) {
+  const old = join(refs.directory, '.steps'), root = section(refs), stamps = new Map<string, string>();
+  const back = (path: string) => path === optionsPath(refs) ? join(refs.directory, 'options.json')
+    : path.startsWith(join(root, step('pose')) + '/') ? join(old, 'pose', relative(join(root, step('pose')), path)) : path;
+  const records = [];
+  for (const name of (await readdir(root)).sort()) {
+    const stage = stages[Number(name.slice(4)) - 1], record = JSON.parse(await readFile(join(root, name, '.completed'), 'utf8'));
+    const outputs = record.outputs && Object.fromEntries(Object.entries(record.outputs)
+      .map(([output, hash]) => [relative(join(old, stage), back(resolve(root, name, output))), hash]));
+    const stamp = outputs ? createHash('sha256').update(JSON.stringify(outputs)).digest('hex') : record.stamp;
+    stamps.set(record.stamp, stamp);
+    records.push({ name, stage, record: { ...record, stamp, ...(outputs ? { outputs } : {}) } });
+  }
+  await mkdir(old);
+  for (const { name, stage, record } of records) {
+    await cp(join(root, name), join(old, stage), { recursive: true });
+    const inputs = Object.fromEntries(Object.entries(record.inputs as Record<string, string>)
+      .map(([dependency, stamp]) => [stages[Number(dependency.slice(4)) - 1], stamps.get(stamp) ?? stamp]));
+    await writeFile(join(old, stage, '.completed'), JSON.stringify({ ...record, inputs }) + '\n');
+  }
+  await rename(join(old, 'options', 'options.json'), join(refs.directory, 'options.json'));
+  await rm(root, { recursive: true });
+}
+
+test('旧 references/.steps 步骤记录原样迁入 preparation/stepNN，不重做任何步骤', async t => {
+  const f = await fixture(t, false, true);
+  const refs = await prepareReferences({ runName: f.runName, image: f.original, standard: true }, f.steps);
+  const records = await Promise.all(stages.map(stage => readFile(join(section(refs), step(stage), '.completed'), 'utf8')));
+  await oldStepLayout(refs);
+  await assert.rejects(loadPreparedReferences(f.runName), /尚未转换/);
+  f.calls.length = 0;
+  assert.deepEqual(await prepareReferences({ runName: f.runName }, f.steps), refs);
+  assert.equal(f.calls.length, 0);
+  assert.deepEqual(await Promise.all(stages.map(stage => readFile(join(section(refs), step(stage), '.completed'), 'utf8'))), records);
+  await assert.rejects(readFile(join(refs.directory, 'options.json')), { code: 'ENOENT' });
+  await assert.rejects(readdir(join(refs.directory, '.steps')), { code: 'ENOENT' });
+  assert.deepEqual(await loadPreparedReferences(f.runName), refs);
 });

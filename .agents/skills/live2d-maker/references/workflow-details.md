@@ -30,7 +30,7 @@ pnpm start --name jianma --status --json
 
 `--standard` 是人物 part 的 preparation 选项，不增加独立管线。启动新任务前确认用户是否需要标准化；省略时默认关闭。启用后由 preparation agent 判断嘴部是否张大、眼睛是否张开、是否正视站立且双手在身体两侧；已符合就复制原图，否则通过本步骤配置的 `image_generation` 调整。未启用时不调用姿态判断或生图，直接复制原图。两种模式都输出 `part-layering/references/standard.png`，非 PNG 原图会转换格式，`input/original.<扩展名>` 保留原始文件。
 
-后续沿用现有画风判断、简化和素体流程，只把输入改为 `standard.png`。新步骤不额外增加视觉 review。总控 `run.json` 和人物 `references/options.json` 记录选项；前台、后台和仅用 `--name` 续跑都沿用保存值。独立 part 已保存的选项也可被首次总控继承。`--no-standard` 显式关闭；已完成的任务不能直接切换，须对 options 步骤执行重试（删除 `references/.steps/options/.completed`），其后的参考随之重做。显式指定这两个选项时，所选路线必须包含人物 part。
+后续沿用现有画风判断、简化和素体流程，只把输入改为 `standard.png`。新步骤不额外增加视觉 review。总控 `run.json` 和人物 `part-layering/preparation/step02/options.json` 记录选项；前台、后台和仅用 `--name` 续跑都沿用保存值。独立 part 已保存的选项也可被首次总控继承。`--no-standard` 显式关闭；已完成的任务不能直接切换，须对 options 步骤执行重试（删除 `part-layering/preparation/step02/.completed`），其后的参考随之重做。显式指定这两个选项时，所选路线必须包含人物 part。
 
 只操作特定组、设置拆分限深或调试单阶段时，使用[单管线操作与验收](individual-pipelines.md)中的独立入口；不要与同一任务的总调度同时运行。
 
@@ -175,7 +175,7 @@ pnpm test
 
 真实 alpha 不二次抠图。旧式不透明参考仍用 Node 内的边缘主色估计、颜色键和去溢色，不调用外部程序或 ML 安装；多色边缘没有可靠主色时保留原像素并记录跳过，衣服参考仍须有实际透明区域。颜色键不承担语义分割，近似背景色的前景仍可能误删。尺寸不同由 Sharp 等比缩放并居中透明补边，不裁紧人物或衣服；尺寸一致跳过缩放。已合格透明 PNG 在不需要缩放时原字节保留。
 
-后处理成功后直接替换正式参考文件，后续步骤只读取处理后的图片。处理前的生成原文件和处理报告保存于 references/archive/ 的独立历史目录，每次生成追加保存。archive 仅供人工查看，不参与程序输入、完成判断或恢复运行；删除 archive 不影响续跑，正式参考缺失时也不会从 archive 恢复。人物 part 的步骤记录（`references/.steps/`）仅记录正式参考的文件指纹及输入依赖，不保存归档路径或后处理进度。旧任务已有参考只校验并复用，不在续跑时自动重处理；新衣服参考需要同名人物的 standard.png，避免误用 original 或简化图尺寸作为基准。该过程不额外调用 LLM。
+后处理成功后直接替换正式参考文件，后续步骤只读取处理后的图片。处理前的生成原文件和处理报告保存于 references/archive/ 的独立历史目录，每次生成追加保存。archive 仅供人工查看，不参与程序输入、完成判断或恢复运行；删除 archive 不影响续跑，正式参考缺失时也不会从 archive 恢复。人物 part 的步骤记录（`part-layering/preparation/stepNN/`）仅记录正式参考的文件指纹及输入依赖，不保存归档路径或后处理进度。旧任务已有参考只校验并复用，不在续跑时自动重处理；新衣服参考需要同名人物的 standard.png，避免误用 original 或简化图尺寸作为基准。该过程不额外调用 LLM。
 
 Nano 两张背景图、背景选择、alpha 和错误／处理报告保留在调用步骤的 image-processing 目录。第二次生图、背景采样或画布适配失败时明确报错，日志指向实际文件，不发布未完成的新参考。无需透明化时直接保留输出；制作管线不依赖 FFmpeg 或 Python 抠图环境。
 

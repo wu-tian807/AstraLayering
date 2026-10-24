@@ -5,11 +5,12 @@ import { copyFile, mkdir, readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import sharp from 'sharp';
 import { clearPreparedParts, fileHash, readPreparationOptions } from '../shared/part/preparation-cache.ts';
-import { inspectChain, modifiedError, resetChain, startStep, completeStep, type ChainPlan, type ChainStep } from '../shared/step-chain.ts';
+import { modifiedError, type ChainPlan, type ChainStep } from '../shared/step-chain.ts';
+import { inspectSection, runSection } from '../shared/step-section.ts';
 import type { PreparationInput, PreparationReferences } from '../shared/part/preparation-types.ts';
-import { checkJudgment, checkStandardJudgment, copyAsPng, exists, findImage, poseJudgmentPath, preparationChain, present, produce,
-  stepsDirectory, writeJson, type PreparationStage, type ReferenceJudgment, type StandardJudgment } from './preparation-state.ts';
-import { migratePreparation } from './preparation-migration.ts';
+import { checkJudgment, checkStandardJudgment, copyAsPng, exists, findImage, poseJudgmentPath, preparationSteps, present, produce,
+  sectionDirectory, stageStep, stepStage, writeJson, type PreparationStage, type ReferenceJudgment, type StandardJudgment } from './preparation-state.ts';
+import { migratePreparation, migrateStepLayout } from './preparation-migration.ts';
 
 export type { PreparationInput, PreparationReferences, ReferenceJudgment, StandardJudgment };
 export type PreparationSteps = {
@@ -40,14 +41,14 @@ const output = (step: ChainStep) => resolve(step.directory, step.outputs![0]);
 const unfinished = (plan: ChainPlan, id: string) => plan.reset.includes(id) || plan.statuses.get(id) !== 'completed';
 
 function modeError(directory: string, saved: boolean): Error {
-  return new Error(`preparation 已按 --${saved ? '' : 'no-'}standard 制作，不能直接切换。需要切换时请对 options 步骤执行重试：删除 ${join(stepsDirectory(directory), 'options/.completed')} 后带新选项重跑，之后的参考会随之重做；或使用新的 --name。已有文件已保留。`);
+  return new Error(`preparation 已按 --${saved ? '' : 'no-'}standard 制作，不能直接切换。需要切换时请对 options 步骤执行重试：删除 ${join(sectionDirectory(directory), stageStep('options'), '.completed')} 后带新选项重跑，之后的参考会随之重做；或使用新的 --name。已有文件已保留。`);
 }
 
 // Explicit groups only read prepared inputs; no conversion, model call, copying or cache reset.
 export async function loadPreparedReferences(runName: string, root?: string, standard?: boolean): Promise<PreparationReferences> {
   const refs = await references(runName, root), directory = refs.directory;
-  if (!await present(stepsDirectory(directory))) {
-    if (await present(join(directory, 'preparation.json'))) {
+  if (!await present(sectionDirectory(directory))) {
+    if (await present(join(directory, '.steps')) || await present(join(directory, 'preparation.json'))) {
       throw new Error('preparation 记录尚未转换为步骤记录；请先不带 --groups 运行一次默认流程。');
     }
     // Bare references of tasks older than any record are read as they are.
@@ -59,11 +60,10 @@ export async function loadPreparedReferences(runName: string, root?: string, sta
   }
   const saved = await readPreparationOptions(directory);
   if (standard !== undefined && saved !== undefined && standard !== saved) throw modeError(directory, saved);
-  const chain = await preparationChain(refs, saved ?? standard ?? false, inputDirectory(runName, root));
-  const plan = await inspectChain(chain);
-  const modified = modifiedError(plan, chain);
+  const plan = await inspectSection(sectionDirectory(directory), await preparationSteps(refs, saved ?? standard ?? false, inputDirectory(runName, root)));
+  const modified = modifiedError(plan, plan.chain);
   if (modified) throw modified;
-  const missing = chain.filter(step => unfinished(plan, step.id))
+  const missing = plan.chain.filter(step => plan.defined.has(step.id) && unfinished(plan, step.id))
     .map(step => `${step.id}：${step.outputs ? output(step) : step.directory}`);
   if (missing.length) throw new Error(`显式 groups 的前置参考未完成：\n${missing.join('\n')}\n请先使用默认流程完成参考准备。`);
   return refs;
@@ -85,42 +85,33 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
     }
   }
   await mkdir(directory, { recursive: true });
+  await migrateStepLayout(directory);
   await migratePreparation(await references(input.runName, input.dir), inputs, progress);
   const standard = input.standard ?? await readPreparationOptions(directory) ?? false;
-  const reported = new Set<string>();
+  const initial = await references(input.runName, input.dir);
   let partsBuilt = false;
-  for (;;) {
-    const refs = await references(input.runName, input.dir);
-    const chain = await preparationChain(refs, standard, inputs, source);
-    const plan = await inspectChain(chain);
-    const modified = modifiedError(plan, chain);
-    if (modified) throw modified;
-    const saved = await readPreparationOptions(directory);
-    if (saved !== undefined && saved !== standard && !unfinished(plan, 'options')) throw modeError(directory, saved);
-    const pending = chain.find(step => unfinished(plan, step.id));
-    for (const step of chain) {
-      if (step === pending) break;
-      if (!reported.has(step.id)) { reported.add(step.id); await reuse(step.id as PreparationStage, refs); }
-    }
-    if (!pending) return refs;
-    // Refuse before deleting anything when the step cannot be redone.
-    const ids = new Set(chain.map(step => step.id));
-    if ((pending.id === 'original' && !source && (plan.reset.includes('original') || !refs.originalImage))
-      || (['pose', 'standard'].includes(pending.id) && !ids.has('original'))
-      || (['judgment', 'simplified', 'base'].includes(pending.id) && !ids.has('standard'))) {
-      throw new Error('首次启动或原图缺失时，需要 --image <角色图片路径>');
-    }
-    if (plan.reset.length) {
-      if (plan.reset.includes('ready')) partsBuilt = true;
-      await resetChain(chain, plan);
-      continue;
-    }
-    await mkdir(pending.directory, { recursive: true });
-    await startStep(pending.directory, plan.statuses.get(pending.id)!);
-    await run(pending.id as PreparationStage, pending, refs);
-    await completeStep(pending, chain);
-    reported.add(pending.id);
-  }
+  await runSection({
+    directory: sectionDirectory(directory), steps: await preparationSteps(initial, standard, inputs, source), progress,
+    async check(plan) {
+      const saved = await readPreparationOptions(directory);
+      if (saved !== undefined && saved !== standard && !unfinished(plan, stageStep('options'))) throw modeError(directory, saved);
+      // Refuse before deleting anything when the step cannot be redone.
+      const pending = plan.chain.find(step => plan.defined.has(step.id) && unfinished(plan, step.id));
+      const stage = pending && stepStage(pending.id), has = (stage: PreparationStage) => plan.defined.has(stageStep(stage));
+      if ((stage === 'original' && !source && (plan.reset.includes(pending!.id) || !initial.originalImage))
+        || ((stage === 'pose' || stage === 'standard') && !has('original'))
+        || ((stage === 'judgment' || stage === 'simplified' || stage === 'base') && !has('standard'))) {
+        throw new Error('首次启动或原图缺失时，需要 --image <角色图片路径>');
+      }
+      partsBuilt = plan.reset.includes(stageStep('ready'));
+    },
+    async step(step, status) {
+      const refs = await references(input.runName, input.dir), stage = stepStage(step.id);
+      if (status === 'completed') { await reuse(stage, refs); return; }
+      return () => run(stage, step, refs);
+    },
+  });
+  return references(input.runName, input.dir);
 
   async function reuse(id: PreparationStage, refs: PreparationReferences) {
     if (id === 'standard') progress?.('标准参考：沿用已有 standard.png');

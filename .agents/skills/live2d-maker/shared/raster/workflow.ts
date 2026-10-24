@@ -8,8 +8,9 @@ import { randomUUID } from 'node:crypto';
 import { runAgent, type Agent, type AgentRequest } from './agent.ts';
 import { checkKrita, type KritaInstallation } from './krita.ts';
 import type { StepDefinition } from './steps.ts';
-import { startStep } from '../step-chain.ts';
-import { canonicalPath, completeRasterStep, fileInfo, initializeRun, inspectRun, loadConfig, newConfig, resetSteps, saveConfig, within } from './run-store.ts';
+import type { StepStatus } from '../step-chain.ts';
+import { runSection, type SectionPlan } from '../step-section.ts';
+import { canonicalPath, fileInfo, initializeRun, loadConfig, newConfig, rasterSteps, saveConfig, within } from './run-store.ts';
 import { buildReviewPrompt, discardReviewReports, nextReviewTask, runReviews } from './review.ts';
 import { modelHarnesses } from '../agents/models.ts';
 import { cliExecutable } from '../agents/cli.ts';
@@ -77,7 +78,6 @@ export async function runWorkflow<Input>(pipeline: KritaPipeline<Input>, options
   const reference = await pipeline.resolveInput(options.name, root);
   const fingerprint = await pipeline.fingerprintInput?.(reference);
   const inputChanged = !!saved && fingerprint !== undefined && saved.inputFingerprint !== fingerprint;
-  const plan = inputChanged ? { statuses: new Map(), resetFrom: undefined } : await inspectRun(directory, definitions);
   const inputDirectories = pipeline.inputDirectories(reference);
   for (const source of inputDirectories) {
     if (within(source, directory) || within(directory, source)) throw new Error('上游与本管线目录必须分开');
@@ -92,41 +92,44 @@ export async function runWorkflow<Input>(pipeline: KritaPipeline<Input>, options
   config.krita = krita;
   options.progress?.(`前置检查通过：Krita ${krita.version} (${krita.executable})`);
   options.progress?.(`任务目录：${directory}；直接读取上游：${inputDirectories.join('、')}`);
-  if (plan.resetFrom !== undefined) options.progress?.(`${options.dryRun ? '预览：将' : '将'}重置 step${String(plan.resetFrom).padStart(2, '0')} 及后续步骤，并清除旧 threadId。`);
 
   const previous: string[] = [];
   const previews: string[] = [];
-  // Validate retained deliveries before making any reset destructive.
-  for (const [index, step] of definitions.entries()) {
-    if ((plan.resetFrom === undefined || index + 1 < plan.resetFrom) && plan.statuses.get(step.id) === 'completed') {
-      try { await checkFiles(join(directory, step.id), step.requiredFiles); }
+  const byId = new Map(definitions.map(step => [step.id, step]));
+  await runSection({ directory, steps: rasterSteps(definitions), dryRun: options.dryRun, signal: options.signal,
+    progress: options.progress, fresh: inputChanged, resetNote: '，并清除旧 threadId',
+    // Validate retained deliveries before making any reset destructive.
+    async keep(chainStep) {
+      const step = byId.get(chainStep.id)!;
+      try { await checkFiles(chainStep.directory, step.requiredFiles); }
       catch (error) { throw new Error(`${step.id} 已标记完成但交付缺失；请恢复文件，或删除 ${step.id}/.completed 触发重跑。`, { cause: error }); }
-      await pipeline.validateDelivery?.(join(directory, step.id), reference, step, krita, options.dryRun);
-    }
-  }
-  if (!options.dryRun) {
-    options.signal?.throwIfAborted();
-    if (inputChanged) {
-      const archive = directory + '.previous-' + randomUUID();
-      await rename(directory, archive);
-      options.progress?.(`输入或制作规则已变化；旧分支已保留到 ${archive}，重新制作本分支。`);
-    }
-    if (!saved || inputChanged) await initializeRun(directory, config);
-    else await saveConfig(directory, config);
-    await resetSteps(directory, config, plan);
-  }
+      await pipeline.validateDelivery?.(chainStep.directory, reference, step, krita, options.dryRun);
+    },
+    async prepare(plan) {
+      if (inputChanged) {
+        const archive = directory + '.previous-' + randomUUID();
+        await rename(directory, archive);
+        options.progress?.(`输入或制作规则已变化；旧分支已保留到 ${archive}，重新制作本分支。`);
+      }
+      if (!saved || inputChanged) await initializeRun(directory, config);
+      else await saveConfig(directory, config);
+      // The drawing thread carries the work of the steps being redone.
+      if (plan.reset.length) { config.threadId = null; delete config.threadHandoff; await saveConfig(directory, config); }
+    },
+    step: (chainStep, status, plan) => stepWork(byId.get(chainStep.id)!, status, plan),
+  });
+  if (options.dryRun) return previews.join('\n\n') || '当前已定义步骤均已完成；无需调用模型。';
+  return `已完成当前已定义步骤。交付目录：${previous.at(-1) ?? directory}`;
 
-  for (const [index, step] of definitions.entries()) {
-    options.signal?.throwIfAborted();
+  async function stepWork(step: StepDefinition, status: StepStatus, plan: SectionPlan): Promise<(() => Promise<void>) | undefined> {
     const output = join(directory, step.id);
-    const status = plan.resetFrom !== undefined && index + 1 >= plan.resetFrom ? 'absent' : plan.statuses.get(step.id);
     const drawingReady = status !== 'absent' && (step.review ? !!await fileInfo(join(output, 'report.md'))
       : status === 'running' && await legacyEdgeDrawingReady(output, step));
     const reviewTask = step.review && drawingReady ? await nextReviewTask(output) : undefined;
     if (status === 'completed' && (!step.review || !reviewTask)) {
       options.progress?.(`${step.id}：.completed 已存在，跳过`);
       previous.push(output);
-      continue;
+      return;
     }
     const model = step;
     if (options.dryRun) {
@@ -137,10 +140,8 @@ export async function runWorkflow<Input>(pipeline: KritaPipeline<Input>, options
       }
       options.progress?.(`${step.id}：${drawingReady ? '接续 review / 修复' : status === 'running' ? '恢复未完成步骤' : '开始步骤'} (${model.model} / ${model.effort})`);
       previous.push(output);
-      continue;
+      return async () => {};
     }
-    await mkdir(output, { recursive: true });
-    await startStep(output, status ?? 'absent');
     let lastAgentMessage = '';
     let lastThreadId: string | undefined;
     const invoke = async (prompt: string, phase: string, fresh = false) => {
@@ -209,7 +210,7 @@ export async function runWorkflow<Input>(pipeline: KritaPipeline<Input>, options
       await writeFile(resultFile, JSON.stringify(result, null, 2) + '\n');
       return result;
     };
-    try {
+    return async () => { try {
       await pipeline.prepareStep?.(output, reference, step, krita);
       if (!drawingReady) {
         if (step.review) {
@@ -241,8 +242,7 @@ export async function runWorkflow<Input>(pipeline: KritaPipeline<Input>, options
       await pipeline.validateDelivery?.(output, reference, step, krita);
       options.signal?.throwIfAborted();
       if (step.review) await finishReview(directory, step, plan, options.progress);
-      await completeRasterStep(directory, step.id);
-      options.progress?.(`${step.id}：交付检查通过，已写入 .completed`);
+      options.progress?.(`${step.id}：交付检查通过，写入 .completed`);
       previous.push(output);
     } catch (error) {
       const failure = agentOutcomeError(error instanceof Error ? error.message : String(error),
@@ -251,8 +251,6 @@ export async function runWorkflow<Input>(pipeline: KritaPipeline<Input>, options
       await writeFile(join(output, 'error.txt'), message + '\n');
       options.progress?.(message);
       throw failure;
-    }
+    } };
   }
-  if (options.dryRun) return previews.join('\n\n') || '当前已定义步骤均已完成；无需调用模型。';
-  return `已完成当前已定义步骤。交付目录：${previous.at(-1) ?? directory}`;
 }

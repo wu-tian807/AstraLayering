@@ -1,10 +1,11 @@
 import type { Harness } from '../agents/models.ts';
-import { lstat, mkdir, mkdtemp, readFile, readdir, realpath, rename, rm, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, mkdtemp, readFile, realpath, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { isPartLayeringInput, type PartLayeringInput } from './input.ts';
 import type { KritaInstallation } from './krita.ts';
 import type { StepDefinition } from './steps.ts';
-import { completeStep, inspectChain, resetChain, type ChainStep, type StepStatus } from '../step-chain.ts';
+import type { StepStatus } from '../step-chain.ts';
+import { inspectSection, stepId, type SectionPlan, type SectionStep } from '../step-section.ts';
 
 export type ThreadHandoff = {
   id: string;
@@ -25,10 +26,9 @@ export type RunConfig<Input = PartLayeringInput> = {
   threadHandoff?: ThreadHandoff;
 };
 export type { StepStatus };
-export type RunPlan = { statuses: Map<string, StepStatus>; resetFrom?: number };
+export type RunPlan = SectionPlan;
 
-
-export const stepId = (number: number) => `step${String(number).padStart(2, '0')}`;
+export { stepId };
 export function within(parent: string, path: string): boolean {
   const name = relative(parent, path);
   return name === '' || (!name.startsWith(`..${sep}`) && name !== '..' && !isAbsolute(name));
@@ -98,39 +98,16 @@ export async function initializeRun(directory: string, config: RunConfig<unknown
   } finally { await rm(staging, { recursive: true, force: true }); }
 }
 
-// Raster steps form a linear chain: each step depends on the one before it.
-function rasterChain(directory: string, count: number): ChainStep[] {
-  return Array.from({ length: count }, (_, index) => ({ id: stepId(index + 1), directory: join(directory, stepId(index + 1)),
-    dependsOn: index ? [stepId(index)] : [] }));
-}
-
-export async function inspectRun(directory: string, steps: readonly StepDefinition[]): Promise<RunPlan> {
-  for (const [index, step] of steps.entries()) {
+// Raster steps form one linear section. Each records the hashes of its
+// artwork (the .kra/.png deliveries), so edits made while a run was stopped are
+// refused instead of silently built upon.
+export function rasterSteps(steps: readonly StepDefinition[]): SectionStep[] {
+  return steps.map((step, index) => {
     if (step.id !== stepId(index + 1)) throw new Error('已定义步骤必须从 step01 开始连续排列。');
-  }
-  let entries: string[] = [];
-  try { entries = await readdir(directory); }
-  catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
-  const numbers = entries.filter(name => /^step\d{2}$/.test(name) && name !== 'step00').map(name => Number(name.slice(4)));
-  const plan = await inspectChain(rasterChain(directory, Math.max(0, ...numbers, steps.length)));
-  if (!plan.reset.length) return { statuses: plan.statuses };
-  // Report the break from the first missing step before it, as the gap caused it.
-  let resetFrom = Number(plan.reset[0].slice(4));
-  while (resetFrom > 1 && plan.statuses.get(stepId(resetFrom - 1)) === 'absent') resetFrom--;
-  return { statuses: plan.statuses, resetFrom };
+    const outputs = step.requiredFiles.filter(file => /\.(kra|png)$/i.test(file));
+    return { number: index + 1, ...(outputs.length ? { outputs } : {}) };
+  });
 }
 
-export async function resetSteps(directory: string, config: RunConfig<unknown>, plan: RunPlan): Promise<void> {
-  if (plan.resetFrom === undefined) return;
-  config.threadId = null;
-  delete config.threadHandoff;
-  await saveConfig(directory, config);
-  const chain = rasterChain(directory, plan.statuses.size);
-  await resetChain(chain, { statuses: plan.statuses, modified: [],
-    reset: chain.filter(step => Number(step.id.slice(4)) >= plan.resetFrom! && plan.statuses.get(step.id) !== 'absent').map(step => step.id) });
-}
-
-export const completeRasterStep = (directory: string, id: string) => {
-  const chain = rasterChain(directory, Number(id.slice(4)));
-  return completeStep(chain.at(-1)!, chain);
-};
+export const inspectRun = (directory: string, steps: readonly StepDefinition[]): Promise<SectionPlan> =>
+  inspectSection(directory, rasterSteps(steps));

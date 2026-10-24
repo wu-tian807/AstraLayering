@@ -123,6 +123,11 @@ test('中断保留同分支 thread；两套产物共存，重跑只检查选择�
   assert.deepEqual([...normal.filter((_value, i) => i % 4 === 3)], [255, 128, 0, 255]);
   await rm(join(f.task, 'shadow/mask/step01/character-shadowed.png'));
   await runWorkflow({ ...f.options, shadowMode: 'normal-depth' }, { ...f.deps, agent: async () => assert.fail('maps retained') });
+  // Deleting a recorded delivery retries that step.
+  await runWorkflow(f.options, { ...f.deps, agent: async request => { assert.equal(request.threadId, undefined); calls++; return f.deliver(request); } });
+  assert.equal(calls, 3);
+  await runWorkflow({ ...f.options, shadowMode: 'normal-depth' }, { ...f.deps, agent: async () => assert.fail('maps retained') });
+  await rm(join(f.task, 'shadow/mask/step01/report.md'));
   await assert.rejects(runWorkflow(f.options, { ...f.deps, agent: async () => assert.fail('missing completed file') }), /交付缺失/);
   assert.equal(JSON.parse(await readFile(join(f.task, 'shadow/selection.json'), 'utf8')).mode, 'normal-depth');
   assert.deepEqual(await readFile(join(f.source, 'character-assembled.kra')), Buffer.from(f.kra));
