@@ -179,8 +179,11 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
       capabilities: { experimentalApi: true },
     });
     await send({ method: 'initialized', params: {} });
+    // The server retains the model's history. We only need the live thread ID;
+    // hydrating image-bearing turns into one RPC response can exceed Node's
+    // string limit before readline can parse it.
     const started = await request(resumeThreadId ? 'thread/resume' : 'thread/start',
-      resumeThreadId ? { ...threadOptions, threadId: resumeThreadId } : threadOptions);
+      resumeThreadId ? { ...threadOptions, threadId: resumeThreadId, excludeTurns: true } : threadOptions);
     threadId = started.thread?.id;
     if (typeof threadId !== 'string') throw new Error('App Server 未返回会话 ID');
     await options.onEvent?.({ type: 'thread.started', thread_id: threadId });

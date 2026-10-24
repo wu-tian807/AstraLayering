@@ -10,7 +10,10 @@
       {
         "imports": {
           "three": "./vendor/three.module.js",
-          "@pixiv/three-vrm-materials-mtoon": "./vendor/mtoon.js"
+          "@pixiv/three-vrm-materials-mtoon": "./vendor/mtoon.js",
+          "#physics-core/": "./shared/physics-core/",
+          "#physics-evidence/": "./shared/physics-evidence/",
+          "#character-render/": "./shared/character-render/"
         }
       }
     </script>
@@ -166,6 +169,7 @@
               ☼ 移动光源
             </button>
             <button data-tool="disturb" title="悬停划过施力，无需按住" hidden>◌ 扰动</button>
+            <button data-tool="physics-select" title="点击可见部件选择编辑组件；再次点击切换重叠组件" hidden>⌖ 选组件</button>
           </div>
           <span class="divider"></span><button id="fit">适应</button
           ><button id="actual">100%</button><span id="zoom">100%</span>
@@ -241,14 +245,62 @@
         <div id="physics-workspace" role="tabpanel" hidden>
           <div class="panel-heading"><h2>摆动物理</h2><span id="physics-draft" class="muted">草稿</span></div>
           <section class="panel">
-            <div class="file-actions"><button id="physics-prepare">准备当前图层</button><button id="physics-close" hidden>释放部件</button></div>
+            <div class="file-actions"><button id="physics-prepare">准备当前图层</button></div>
             <p id="physics-status" class="muted">从角色原始图层建立物理绑定</p>
+            <label class="toggle"><input id="physics-guides" type="checkbox">显示网格与边界</label>
           </section>
+          <section class="panel" id="physics-workflow" aria-label="物理制作记录">
+            <div class="section-heading"><h3>制作记录</h3><button id="physics-workflow-refresh" class="text-button">更新</button></div>
+            <p id="physics-workflow-status" class="muted" role="status">从项目加载后查看制作记录</p>
+            <div id="physics-workflow-stages" class="workflow-stages" aria-label="三个制作阶段"></div>
+            <p id="physics-workflow-source" class="workflow-source" hidden></p>
+            <p id="physics-workflow-provenance" class="workflow-note" hidden></p>
+            <details class="workflow-details">
+              <summary>覆盖与装配 <span id="physics-coverage-count">待生成</span></summary>
+              <div id="physics-workflow-coverage"></div>
+              <h4>当前组件的连接</h4><div id="physics-workflow-assemblies"></div>
+            </details>
+            <details class="workflow-details">
+              <summary>标定比较</summary>
+              <label class="field">标定轮次<select id="physics-tuning-round" disabled></select></label>
+              <label class="field">比较输入<select id="physics-tuning-test" disabled></select></label>
+              <div id="physics-tuning-curve" class="physics-response-curve"></div>
+              <div id="physics-workflow-tuning"></div>
+            </details>
+            <details class="workflow-details">
+              <summary>独立复核</summary>
+              <div id="physics-workflow-findings"></div>
+              <h4 id="physics-evidence-state">记录证据 · 待生成</h4>
+              <label class="field">标准输入<select id="physics-evidence-test" disabled></select></label>
+              <div id="physics-evidence-curve" class="physics-response-curve"></div>
+              <div id="physics-evidence-metrics"></div>
+              <ul id="physics-evidence-events" class="workflow-events" aria-label="复核事件"></ul>
+              <button id="physics-evidence-play" disabled>当前配置试播</button>
+            </details>
+          </section>
+          <div id="component-controls" hidden>
+            <section class="panel"><h3>环境风</h3><label class="toggle"><input id="component-wind" type="checkbox" checked>启用微风</label><div class="slider"><div class="slider-head"><label for="component-wind-strength">风力</label><output id="component-wind-value">20%</output></div><input id="component-wind-strength" type="range" min="0" max="100" step="5" value="20"></div><label class="field">风向<select id="component-wind-direction"><option value="0">向右</option><option value="180">向左</option><option value="-90">向上</option><option value="90">向下</option></select></label></section>
+            <section class="panel"><p id="component-info" class="muted"></p><div id="component-response"></div></section>
+            <section class="panel physics-limit-panel"><h3>最大约束</h3><div id="component-limits"></div><p id="component-stats" role="status"></p></section>
+            <section class="panel" id="physics-live-panel" hidden>
+              <details><summary>实时响应</summary>
+                <div class="section-heading"><p id="physics-live-name" class="workflow-note"></p><button id="physics-live-reset" class="text-button">清空</button></div>
+                <div id="physics-live-curve" class="physics-response-curve"></div>
+                <div class="response-legend"><span class="response-root">固定残差</span><span class="response-mid">中段</span><span class="response-tip">末端</span></div>
+                <p class="workflow-note">相对当前支撑姿态的位移；仅观察实时预览。</p>
+              </details>
+            </section>
+            <section class="panel"><label class="field">复核动画<select id="component-test"></select></label><button id="component-save">保存到项目</button></section>
+            <section class="panel"><button id="component-edit">编辑绑定</button><p id="component-edit-hint" class="muted" hidden>拖动绿色固定区、蓝色中心线或橙色轮廓控制点。</p><details><summary>坐标与网格密度</summary><textarea id="component-geometry" rows="14" aria-label="源像素坐标中的固定区、轮廓与网格" spellcheck="false"></textarea><button id="component-geometry-apply">应用活动范围</button></details></section>
+          </div>
           <div id="physics-controls" hidden>
             <section class="panel">
-              <input id="physics-filter" type="search" placeholder="查找部件" aria-label="查找物理部件">
-              <label class="field">部件<select id="physics-part"></select></label>
-              <label class="toggle"><input id="physics-enabled" type="checkbox">启用摆动</label>
+              <h3>物理组件</h3>
+              <input id="physics-filter" type="search" placeholder="查找名称或类型" aria-label="查找物理组件">
+              <div id="physics-part" class="physics-component-list" role="listbox" aria-label="物理组件"></div>
+              <p id="physics-empty" class="muted" hidden>没有匹配的组件</p>
+              <p class="physics-current">当前编辑：<strong id="physics-selected-name">未选择组件</strong></p>
+              <label class="toggle"><input id="physics-enabled" type="checkbox">开启当前组件</label>
               <label class="field">类型<select id="physics-kind"><option value="cloth">布片 / 裙摆</option><option value="ribbon">飘带</option></select></label>
               <label class="field">固定侧<select id="physics-direction"><option value="down">上方固定 · 向下放开</option><option value="up">下方固定 · 向上放开</option><option value="right">左侧固定 · 向右放开</option><option value="left">右侧固定 · 向左放开</option></select></label>
             </section>
@@ -264,11 +316,11 @@
               <label id="physics-case-playback" class="toggle" hidden><input id="physics-demo" type="checkbox">循环演示</label>
               <div class="file-actions"><button id="physics-pause">暂停</button><button id="physics-step">单帧</button><button id="physics-reset">复位</button></div>
               <button id="physics-pulse" class="physics-pulse">单次扰动</button>
-              <label class="field">扰动范围<select id="physics-scope"><option value="current">当前部件</option><option value="all">全部摆动物体</option></select></label>
+              <label class="field">扰动对象<select id="physics-category"><option value="secondary">飘动物体</option><option value="jelly" disabled>果冻物体 · 未配置</option><option value="all">全部物理</option></select></label>
+              <label class="field">扰动范围<select id="physics-scope"><option value="all">范围内所有组件</option><option value="current">仅当前组件</option></select></label>
               <div class="slider"><div class="slider-head"><label for="physics-radius">受力半径</label><output id="physics-radius-value">90 px</output></div><input id="physics-radius" type="range" min="20" max="240" step="5" value="90"></div>
               <div class="slider"><div class="slider-head"><label for="physics-force">扰动力度</label><output id="physics-force-value">70%</output></div><input id="physics-force" type="range" min="10" max="200" step="5" value="70"></div>
-              <label class="toggle"><input id="physics-guides" type="checkbox" checked>显示网格与活动边界</label>
-              <p class="muted">绿色为固定区，虚线为活动边界。选择“扰动”后，鼠标划过即可施力。</p>
+              <p class="muted">选择“扰动”后，鼠标划过施力；当前编辑组件不限制“所有组件”的受力范围。</p>
             </section>
             <section class="panel"><div class="file-actions"><button id="physics-export">导出配置</button><label class="button">导入配置<input id="physics-import" type="file" accept=".json" hidden></label></div></section>
           </div>

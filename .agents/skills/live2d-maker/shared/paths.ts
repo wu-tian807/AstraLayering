@@ -15,7 +15,7 @@ export function resolveRunsDirectory(dir = runsDirectory): string {
   if (!isAbsolute(dir)) throw new Error('--dir 必须是运行根目录的绝对路径。');
   return resolve(dir);
 }
-export const pipelineIds = ['part-layering', 'raster-layering', 'clothing-part-layering', 'clothing-raster-layering', 'character-assembly', 'shadow'] as const;
+export const pipelineIds = ['part-layering', 'raster-layering', 'clothing-part-layering', 'clothing-raster-layering', 'character-assembly', 'shadow', 'physics'] as const;
 export type PipelineId = typeof pipelineIds[number];
 
 export function taskDirectory(name: string, root = runsDirectory): string {
@@ -30,7 +30,7 @@ export function taskDirectory(name: string, root = runsDirectory): string {
 export function pipelineDirectory(name: string, pipeline: PipelineId, root = runsDirectory): string {
   // The part entrypoints historically accept any single directory name. Keep
   // raster's stricter startup rule local to those pipelines when sharing paths.
-  if ((pipeline === 'raster-layering' || pipeline === 'clothing-raster-layering' || pipeline === 'character-assembly' || pipeline === 'shadow')
+  if ((pipeline === 'raster-layering' || pipeline === 'clothing-raster-layering' || pipeline === 'character-assembly' || pipeline === 'shadow' || pipeline === 'physics')
     && !/^[\p{L}\p{N}][\p{L}\p{N}._-]{0,127}$/u.test(name)) {
     throw new Error('--name 必须是单个任务名，以字母或数字开头，只含字母、数字、点、下划线或短横线（最多 128 字符）。');
   }

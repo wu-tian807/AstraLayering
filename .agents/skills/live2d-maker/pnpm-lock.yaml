@@ -11,18 +11,30 @@ importers:
       '@openai/codex-sdk':
         specifier: 0.161.0
         version: 0.161.0
+      '@pixiv/three-vrm-materials-mtoon':
+        specifier: 3.5.5
+        version: 3.5.5(three@0.180.0)
       '@xmldom/xmldom':
         specifier: 0.9.12
         version: 0.9.12
+      ag-psd:
+        specifier: 30.1.0
+        version: 30.1.0
       fflate:
         specifier: 0.8.2
         version: 0.8.2
+      playwright:
+        specifier: 1.60.0
+        version: 1.60.0
       proper-lockfile:
         specifier: 4.1.2
         version: 4.1.2
       sharp:
         specifier: 0.35.5
         version: 0.35.5(@types/node@24.19.1)
+      three:
+        specifier: 0.180.0
+        version: 0.180.0
     devDependencies:
       '@types/node':
         specifier: 24.19.1
@@ -256,6 +268,17 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@pixiv/three-vrm-materials-mtoon@3.5.5':
+    resolution: {integrity: sha512-7lThHf4OKBOsVenD+R6L6HffNUlKO3Twnhr3+z77MnUsSzsOanjVKJtjSIly9QJ6hgl8YJmI6RnxCKqXcpplog==}
+    peerDependencies:
+      three: '>=0.137'
+
+  '@pixiv/types-vrm-0.0@3.5.5':
+    resolution: {integrity: sha512-2S/0jswMjJTwL9ky8YzDR0CIaP6ZmE+HFuyW/0h+SA+awELf+J7WGgC8lTLM1MXzokO7Z2YVljU2F0fEhlKDIQ==}
+
+  '@pixiv/types-vrmc-materials-mtoon-1.0@3.5.5':
+    resolution: {integrity: sha512-GFVuksAJVhrWTXYmI/ucNsE611/d8N6BoZrzhUAAINndt98loyzapW2+DJu+GsUBO5yxd+vLsL0FB16XD9+TGg==}
+
   '@types/node@24.19.1':
     resolution: {integrity: sha512-aS3/DG0oM05K0RIXXP+hKjinGG5IgSSVGzswZxW3O0sS3pH4/fycXundUC9XsszgKCk4gHXylTEK6hyFxVxnoQ==}
 
@@ -389,6 +412,12 @@ packages:
     resolution: {integrity: sha512-5AXjrcMClTryPe9LgZrygpB1lj7s0S9E0+W+AHaVKAVyHanafK86iPSvG5xHVSp/jC+VH1UXu0TAEmY279xH7A==}
     engines: {node: '>=14.6'}
 
+  ag-psd@30.1.0:
+    resolution: {integrity: sha512-1ce6o84aC+oVyl83A35HHUniGjwA3piHmGem3J2odBOFRq5p7i4htaco94vePLfOcingZu4fsyospJLwPagkhg==}
+
+  base64-js@1.5.1:
+    resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+
   detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
@@ -396,8 +425,26 @@ packages:
   fflate@0.8.2:
     resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
 
+  fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  pako@2.1.0:
+    resolution: {integrity: sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==}
+
+  playwright-core@1.60.0:
+    resolution: {integrity: sha512-9bW6zvX/m0lEbgTKJ6YppOKx8H3VOPBMOCFh2irXFOT4BbHgrx5hPjwJYLT40Lu+4qtD36qKc/Hn56StUW57IA==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  playwright@1.60.0:
+    resolution: {integrity: sha512-hheHdokM8cdqCb0lcE3s+zT4t4W+vvjpGxsZlDnikarzx8tSzMebh3UiFtgqwFwnTnjYQcsyMF8ei2mCO/tpeA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   proper-lockfile@4.1.2:
     resolution: {integrity: sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==}
@@ -422,6 +469,9 @@ packages:
 
   signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+
+  three@0.180.0:
+    resolution: {integrity: sha512-o+qycAMZrh+TsE01GqWUxUIKR1AL0S8pq7zDkYOQw8GqfX8b8VoCKYUoHbhiX5j+7hr8XsuHDVU6+gkQJQKg9w==}
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
@@ -578,6 +628,16 @@ snapshots:
   '@openai/codex@0.161.0-win32-x64':
     optional: true
 
+  '@pixiv/three-vrm-materials-mtoon@3.5.5(three@0.180.0)':
+    dependencies:
+      '@pixiv/types-vrm-0.0': 3.5.5
+      '@pixiv/types-vrmc-materials-mtoon-1.0': 3.5.5
+      three: 0.180.0
+
+  '@pixiv/types-vrm-0.0@3.5.5': {}
+
+  '@pixiv/types-vrmc-materials-mtoon-1.0@3.5.5': {}
+
   '@types/node@24.19.1':
     dependencies:
       undici-types: 7.24.6
@@ -650,11 +710,31 @@ snapshots:
 
   '@xmldom/xmldom@0.9.12': {}
 
+  ag-psd@30.1.0:
+    dependencies:
+      base64-js: 1.5.1
+      pako: 2.1.0
+
+  base64-js@1.5.1: {}
+
   detect-libc@2.1.2: {}
 
   fflate@0.8.2: {}
 
+  fsevents@2.3.2:
+    optional: true
+
   graceful-fs@4.2.11: {}
+
+  pako@2.1.0: {}
+
+  playwright-core@1.60.0: {}
+
+  playwright@1.60.0:
+    dependencies:
+      playwright-core: 1.60.0
+    optionalDependencies:
+      fsevents: 2.3.2
 
   proper-lockfile@4.1.2:
     dependencies:
@@ -700,6 +780,8 @@ snapshots:
       '@types/node': 24.19.1
 
   signal-exit@3.0.7: {}
+
+  three@0.180.0: {}
 
   tslib@2.8.1:
     optional: true

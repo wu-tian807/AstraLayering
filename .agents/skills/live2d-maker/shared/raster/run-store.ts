@@ -22,6 +22,7 @@ export type RunConfig<Input = PartLayeringInput> = {
   krita: KritaInstallation;
   threadId: string | null;
   threadHarness?: Harness;
+  threadStep?: string;
   threadHandoff?: ThreadHandoff;
 };
 export type { StepStatus };
@@ -99,9 +100,9 @@ export async function initializeRun(directory: string, config: RunConfig<unknown
 }
 
 // Raster steps form a linear chain: each step depends on the one before it.
-function rasterChain(directory: string, count: number): ChainStep[] {
+function rasterChain(directory: string, count: number, steps: readonly StepDefinition[] = []): ChainStep[] {
   return Array.from({ length: count }, (_, index) => ({ id: stepId(index + 1), directory: join(directory, stepId(index + 1)),
-    dependsOn: index ? [stepId(index)] : [] }));
+    dependsOn: index ? [stepId(index)] : [], allowsEarlyArtifacts: steps[index]?.allowsEarlyArtifacts }));
 }
 
 export async function inspectRun(directory: string, steps: readonly StepDefinition[]): Promise<RunPlan> {
@@ -112,10 +113,13 @@ export async function inspectRun(directory: string, steps: readonly StepDefiniti
   try { entries = await readdir(directory); }
   catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
   const numbers = entries.filter(name => /^step\d{2}$/.test(name) && name !== 'step00').map(name => Number(name.slice(4)));
-  const plan = await inspectChain(rasterChain(directory, Math.max(0, ...numbers, steps.length)));
-  if (!plan.reset.length) return { statuses: plan.statuses };
+  const lastExisting = Math.max(0, ...numbers);
+  const plan = await inspectChain(rasterChain(directory, Math.max(lastExisting, steps.length), steps));
+  const gap = [...plan.statuses].find(([id, status]) => status === 'absent' && Number(id.slice(4)) < lastExisting);
+  if (!plan.reset.length && !gap) return { statuses: plan.statuses };
   // Report the break from the first missing step before it, as the gap caused it.
-  let resetFrom = Number(plan.reset[0].slice(4));
+  let resetFrom = Math.min(plan.reset.length ? Number(plan.reset[0].slice(4)) : Infinity,
+    gap ? Number(gap[0].slice(4)) : Infinity);
   while (resetFrom > 1 && plan.statuses.get(stepId(resetFrom - 1)) === 'absent') resetFrom--;
   return { statuses: plan.statuses, resetFrom };
 }

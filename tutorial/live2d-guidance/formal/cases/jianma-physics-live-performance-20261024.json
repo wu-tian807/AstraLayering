@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-24",
+  "device": "Apple M4 Pro / Chrome 155 / ANGLE Metal",
+  "viewport": [
+    1440,
+    1000
+  ],
+  "components": 40,
+  "enabledComponents": 40,
+  "sourceSize": [
+    1024,
+    1536
+  ],
+  "textureTargets": [
+    [
+      1486,
+      1998
+    ],
+    [
+      1486,
+      1998
+    ],
+    [
+      1486,
+      1998
+    ]
+  ],
+  "configHash": "27e1853a2dcc859a69f64393632f7c1dbba17f8d089c1a69c36299f221b79c2d",
+  "lightingAndProjection": true,
+  "measurement": "Count actual PhysicsPanel.render calls and fixed-step clock delta; RAF is not the physical frame rate.",
+  "before": {
+    "seconds": 4.0011000000238415,
+    "physicalFPS": 19.994501511965034,
+    "stepsPerSecond": 116.21804003829676
+  },
+  "after": {
+    "seconds": 4.001899999976158,
+    "physicalFPS": 59.971513531430034,
+    "stepsPerSecond": 119.94302706286007
+  },
+  "scope": "Short samples on the same canvas with identical maps, rig, viewport, lighting and enabled depth projection; only the live scheduling adapter changed. Offline evidence generation was active. No long-run or other-device guarantee.",
+  "bindingIssues": [],
+  "pageErrors": [],
+  "humanVisualReview": "unreviewed",
+  "lightingSettings": {
+    "lightX": 2.8,
+    "lightY": 0.5,
+    "lightZ": 1,
+    "lightColor": "#ffffff",
+    "ambient": 0.24,
+    "lightingMix": 0.55,
+    "shade": "#b7aec9",
+    "toony": 0.82,
+    "shift": -0.2,
+    "normalStrength": 0.85,
+    "normalY": 1,
+    "depthScale": 0.45,
+    "shadow": true,
+    "shadowStrength": 0.55,
+    "shadowSoftness": 3,
+    "bias": -0.0015,
+    "rim": 0,
+    "background": "#c9c9ce"
+  }
+}

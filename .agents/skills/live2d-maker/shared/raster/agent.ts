@@ -163,5 +163,5 @@ export async function runAgent(request: AgentRequest, client?: Client, runtime =
 
 // Drawing agents use the configured filesystem and image tools directly.
 export function rasterCodexConfig(step?: AgentStep) {
-  return { features: { image_generation: step !== 'shadow_mask' } };
+  return { features: { image_generation: step !== 'shadow_mask' && !step?.startsWith('physics_') } };
 }

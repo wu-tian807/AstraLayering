@@ -1,0 +1,443 @@
+{
+  "status": "manual-preview-awaiting-user-review",
+  "workflowAccepted": false,
+  "components": 46,
+  "unchangedClothComponents": 14,
+  "fixedStepHz": 120,
+  "stepsPerCase": 960,
+  "tests": {
+    "default-breeze": {
+      "hair-main-right": {
+        "peak": 42.724376971613516,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.8970058501282665
+      },
+      "hair-lock-right": {
+        "peak": 27.175083177210844,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.8979291235194182
+      },
+      "hair-front-right": {
+        "peak": 16.133395429061395,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.6916347561686393
+      },
+      "hair-main-left": {
+        "peak": 42.741012397080056,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.872741044551276
+      },
+      "hair-lock-left": {
+        "peak": 28.260582902323776,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.9020917441821439
+      },
+      "hair-front-left": {
+        "peak": 16.313370782379916,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.6195161434517331
+      },
+      "crown-ribbon-left": {
+        "peak": 60.73661199275086,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 2.002349424276076
+      },
+      "crown-ribbon-right": {
+        "peak": 61.27184493377749,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 2.2387004308142764
+      },
+      "earring-left": {
+        "peak": 1.2816598138909863,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.04353957631872163
+      },
+      "earring-right": {
+        "peak": 1.2797754659912608,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.04351619619671965
+      },
+      "waist-suspension": {
+        "peak": 5.049720260931967,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.15994231987770036
+      },
+      "waist-junction": {
+        "peak": 3.9195388796972135,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.15413129443669504
+      },
+      "waist-snowflake": {
+        "peak": 4.932643780395838,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.19644364538453374
+      },
+      "waist-silver-upper": {
+        "peak": 4.3542563228684665,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.3126871487243079
+      },
+      "waist-silver-long": {
+        "peak": 5.779149731048245,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.30438174021685427
+      },
+      "waist-lotus": {
+        "peak": 5.843317796353457,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.3749413129691561
+      },
+      "waist-ring-upper": {
+        "peak": 2.28476027401827,
+        "fallback": 0,
+        "limited": 6,
+        "root": 0,
+        "maxStep": 0.40283634438958416
+      },
+      "waist-ring-lower": {
+        "peak": 2.293773056090553,
+        "fallback": 0,
+        "limited": 6,
+        "root": 0,
+        "maxStep": 0.7164787191035202
+      },
+      "waist-tassel-buckle": {
+        "peak": 2.7439381307890964,
+        "fallback": 0,
+        "limited": 4,
+        "root": 0,
+        "maxStep": 1.091492569996035
+      },
+      "waist-white-tassel": {
+        "peak": 5.266606319330125,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 4.763154406657804
+      }
+    },
+    "tip-impulse": {
+      "hair-main-right": {
+        "peak": 23.574932181253534,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 1.3140883536225942
+      },
+      "hair-lock-right": {
+        "peak": 7.260979270196511,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.57484047341012
+      },
+      "hair-front-right": {
+        "peak": 7.383256217330156,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.7515734383686663
+      },
+      "hair-main-left": {
+        "peak": 23.634296789240786,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 1.3151335013635617
+      },
+      "hair-lock-left": {
+        "peak": 7.4846725124805635,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.5872059939002838
+      },
+      "hair-front-left": {
+        "peak": 8.285847805893745,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.8110551325578399
+      },
+      "crown-ribbon-left": {
+        "peak": 43.90962515288785,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 2.329775572736594
+      },
+      "crown-ribbon-right": {
+        "peak": 43.99812977267669,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 2.4212702796311305
+      },
+      "earring-left": {
+        "peak": 0.9725931388690845,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.07204439663928497
+      },
+      "earring-right": {
+        "peak": 0.9712441730782455,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.07202470376745396
+      },
+      "waist-suspension": {
+        "peak": 0.6770771667215204,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.04796687051208437
+      },
+      "waist-junction": {
+        "peak": 1.7782096935385796,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.14839950733210117
+      },
+      "waist-snowflake": {
+        "peak": 3.0896256852281865,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.2693853043068657
+      },
+      "waist-silver-upper": {
+        "peak": 2.4496345944570894,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.44332678350593824
+      },
+      "waist-silver-long": {
+        "peak": 3.5814512098295035,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.5825974907432965
+      },
+      "waist-lotus": {
+        "peak": 5.05714765859168,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.7428710827226155
+      },
+      "waist-ring-upper": {
+        "peak": 2.2422594839738705,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.8054204166074328
+      },
+      "waist-ring-lower": {
+        "peak": 2.2654572945116147,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 0.9490737321283973
+      },
+      "waist-tassel-buckle": {
+        "peak": 2.7316495432417374,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 1.1476150556213156
+      },
+      "waist-white-tassel": {
+        "peak": 4.5701983993807325,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 2.5867411729349215
+      }
+    },
+    "support-reverse": {
+      "hair-main-right": {
+        "peak": 42.847773112834105,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 2.117521336589533
+      },
+      "hair-lock-right": {
+        "peak": 16.923366294063033,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 1.6521459135265104
+      },
+      "hair-front-right": {
+        "peak": 19.963670134601387,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 1.6993907775211596
+      },
+      "hair-main-left": {
+        "peak": 42.69461694149666,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 2.1711971242708614
+      },
+      "hair-lock-left": {
+        "peak": 17.044824500741004,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 1.6450691108881301
+      },
+      "hair-front-left": {
+        "peak": 20.481739046704423,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 1.636338187955289
+      },
+      "crown-ribbon-left": {
+        "peak": 65.40703939114513,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 3.343536979748137
+      },
+      "crown-ribbon-right": {
+        "peak": 65.5508629868064,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 2.9493365059468033
+      },
+      "earring-left": {
+        "peak": 3.100018867625455,
+        "fallback": 0,
+        "limited": 51,
+        "root": 0,
+        "maxStep": 1.2933954075529073
+      },
+      "earring-right": {
+        "peak": 3.0952878745482058,
+        "fallback": 0,
+        "limited": 51,
+        "root": 0,
+        "maxStep": 1.2933963507436488
+      },
+      "waist-suspension": {
+        "peak": 11.321673939399554,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 1.38383992292205
+      },
+      "waist-junction": {
+        "peak": 5.612445315266543,
+        "fallback": 0,
+        "limited": 76,
+        "root": 0,
+        "maxStep": 1.3980695637280292
+      },
+      "waist-snowflake": {
+        "peak": 7.040299879912315,
+        "fallback": 0,
+        "limited": 66,
+        "root": 0,
+        "maxStep": 1.7959429057545435
+      },
+      "waist-silver-upper": {
+        "peak": 7.098817193608537,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 2.6739373060849516
+      },
+      "waist-silver-long": {
+        "peak": 8.667780077403757,
+        "fallback": 0,
+        "limited": 99,
+        "root": 0,
+        "maxStep": 3.400472713807517
+      },
+      "waist-lotus": {
+        "peak": 9.663050647127056,
+        "fallback": 0,
+        "limited": 98,
+        "root": 0,
+        "maxStep": 5.063015699679738
+      },
+      "waist-ring-upper": {
+        "peak": 2.319574174021874,
+        "fallback": 0,
+        "limited": 220,
+        "root": 0,
+        "maxStep": 5.726344757771528
+      },
+      "waist-ring-lower": {
+        "peak": 2.329445668291905,
+        "fallback": 0,
+        "limited": 257,
+        "root": 0,
+        "maxStep": 6.422855400106414
+      },
+      "waist-tassel-buckle": {
+        "peak": 2.7950341123676963,
+        "fallback": 0,
+        "limited": 245,
+        "root": 0,
+        "maxStep": 7.190404250203073
+      },
+      "waist-white-tassel": {
+        "peak": 9.612153502659728,
+        "fallback": 0,
+        "limited": 0,
+        "root": 0,
+        "maxStep": 12.747957243379005
+      }
+    }
+  },
+  "logicTestsPassed": 28,
+  "webTypecheck": "passed",
+  "sourceCanvas": {
+    "width": 1024,
+    "height": 1536
+  },
+  "sourceColorSha256": "99854996b865efb1d6daec39f8ef383dcc7b3636c236604801bbfd432ec6ab95"
+}

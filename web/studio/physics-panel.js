@@ -1,6 +1,7 @@
 import { ClothBody, bindingDefaults, validateBinding, physicsVersion } from './physics-model.js';
-import { PhysicsRenderer } from './physics-renderer.js';
+import { PhysicsRenderer } from '#character-render/physics-renderer.js';
 import { physicsRecipe, restorePhysicsRecipe, physicsRecordKey } from './physics-recipe.js';
+import { physicsComponentsAt } from './component-physics-selection.js';
 const $ = s => document.querySelector(s);
 const specs = {
   fixed: ['固定范围', 0, 85, 1, '%', 100], transition: ['过渡范围', 5, 40, 1, '%', 100],
@@ -8,10 +9,10 @@ const specs = {
   stretch: ['最大拉伸', .5, 8, .5, '%', 100], stiffness: ['回弹速度', 1, 25, .5, '', 1], damping: ['衰减速度', .5, 12, .5, '', 1],
 };
 export class PhysicsPanel {
-  constructor({ stage, surfaces, source, fingerprint, workspace, tool, busy, error, changed, download, selectLayer }) {
-    Object.assign(this, { stage, surfaces, source, fingerprint, workspace, tool, busy, error, changed, download, selectLayer });
+  constructor({ stage, surfaces, source, fingerprint, workspace, tool, busy, error, changed, download, selectLayer, layerState, retryLayers }) {
+    Object.assign(this, { stage, surfaces, source, fingerprint, workspace, tool, busy, error, changed, download, selectLayer, layerState, retryLayers });
     this.bindings = new Map(); this.bodies = new Map(); this.pending = new Map(); this.issues = []; this.epoch = 0; this.paused = false; this.enabled = false;
-    this.radius = 90; this.force = .7; this.showGuides = true; this.scope = 'current';
+    this.radius = 90; this.force = .7; this.showGuides = false; this.scope = 'all';this.category='secondary';
     for (const [key, [label, min, max, step, unit]] of Object.entries(specs)) {
       const box = document.createElement('div'); box.className = 'slider';
       box.innerHTML = `<div class="slider-head"><label for="physics-${key}">${label}</label><label class="slider-number"><input id="physics-number-${key}" type="number" min="${min}" max="${max}" step="${step}" aria-label="${label}数值"><span>${unit}</span></label></div><input id="physics-${key}" type="range" min="${min}" max="${max}" step="${step}" aria-label="${label}">`;
@@ -21,10 +22,14 @@ export class PhysicsPanel {
         this.edit(key, Math.max(min, Math.min(max, e.target.valueAsNumber)) / specs[key][5]);
       });
     }
-    $('#physics-prepare').onclick = () => void this.prepare();
-    $('#physics-close').onclick = () => this.source()?.physicsCase ? this.clear() : void this.surfaces.close();
+    $('#physics-prepare').onclick = () => void (this.layerState?.().error && !this.surfaces.session()?.session ? this.retryLayers?.() : this.prepare());
     $('#physics-demo').onchange = e => this.setDemo(e.target.checked);
-    $('#physics-part').onchange = e => this.select(e.target.value);
+    $('#physics-part').onclick = e => { const row=e.target.closest('[data-physics-component]');if(row)this.select(row.dataset.physicsComponent); };
+    $('#physics-part').onkeydown = e => {
+      const rows=[...$('#physics-part').querySelectorAll('[data-physics-component]')],i=rows.indexOf(e.target);
+      const n=e.key==='ArrowDown'?Math.min(rows.length-1,i+1):e.key==='ArrowUp'?Math.max(0,i-1):e.key==='Home'?0:e.key==='End'?rows.length-1:-1;
+      if(n>=0&&rows[n]){e.preventDefault();this.select(rows[n].dataset.physicsComponent);$('#physics-part').querySelector('[aria-selected="true"]')?.focus({preventScroll:true});}
+    };
     $('#physics-filter').oninput = () => this.options();
     $('#physics-enabled').onchange = e => this.edit('enabled', e.target.checked);
     $('#physics-direction').onchange = e => this.edit('direction', e.target.value);
@@ -35,6 +40,7 @@ export class PhysicsPanel {
     $('#physics-pulse').onclick = () => this.pulse();
     $('#physics-guides').onchange = e => { this.showGuides = e.target.checked; this.overlay(); };
     $('#physics-scope').onchange = e => { this.scope = e.target.value; this.pointer = null; };
+    $('#physics-category').onchange=e=>{this.category=e.target.value;this.pointer=null;};
     $('#physics-radius').oninput = e => { this.radius = e.target.valueAsNumber; $('#physics-radius-value').textContent = this.radius + ' px'; this.overlay(); };
     $('#physics-force').oninput = e => { this.force = e.target.valueAsNumber / 100; $('#physics-force-value').textContent = e.target.value + '%'; };
     $('#physics-export').onclick = () => this.download(new Blob([JSON.stringify(this.recipe(), null, 2) + '\n'], { type: 'application/json' }), 'character.physics.json');
@@ -47,15 +53,30 @@ export class PhysicsPanel {
     window.addEventListener('blur', this.onBlur); document.addEventListener('visibilitychange', this.onBlur);
     this.sync();
   }
+  selectionEntries(){return (this.parts||[]).map(l=>({id:l.id,name:l.name,enabled:!!this.bindings.get(l.id)?.enabled,detail:'图层组件'}));}
+  selectionAssignments(){return new Map([...this.bindings.keys()].map(id=>[id,id]));}
   options() {
-    const query = $('#physics-filter').value.toLowerCase();
-    const choices = this.parts?.filter(l => l.name.toLowerCase().includes(query) || l.id === this.selected) || [];
-    $('#physics-part').replaceChildren(...choices.map(l => new Option(`${this.bindings.get(l.id)?.enabled ? '● ' : ''}${l.name}`, l.id)));
-    $('#physics-part').value = this.selected || '';
+    const query = $('#physics-filter').value.trim().toLowerCase(),entries=this.selectionEntries();
+    const choices=entries.filter(c=>[c.id,c.name,c.detail].some(s=>s.toLowerCase().includes(query))),list=$('#physics-part'),scroll=list.scrollTop;
+    const focus=list.contains(document.activeElement)?document.activeElement.dataset.physicsComponent:null;
+    list.replaceChildren(...choices.map(c=>{const row=document.createElement('button');row.type='button';row.dataset.physicsComponent=c.id;row.setAttribute('role','option');row.setAttribute('aria-selected',String(c.id===this.selected));row.tabIndex=c.id===(choices.some(c=>c.id===this.selected)?this.selected:choices[0]?.id)?0:-1;row.className='physics-component-row';
+      const dot=document.createElement('span');dot.className='component-status'+(c.enabled?' enabled':'');dot.setAttribute('aria-hidden','true');
+      const label=document.createElement('span'),name=document.createElement('b'),detail=document.createElement('small');name.textContent=c.name;detail.textContent=c.detail+' · '+(c.enabled?'已开启':'已关闭');label.append(name,detail);row.append(dot,label);return row;}));
+    list.scrollTop=scroll;if(focus)list.querySelectorAll('[data-physics-component]').forEach(row=>{if(row.dataset.physicsComponent===focus)row.focus({preventScroll:true});});
+    $('#physics-empty').hidden=choices.length>0;$('#physics-selected-name').textContent=entries.find(c=>c.id===this.selected)?.name||'未选择组件';
+  }
+  revealSelection(){const list=$('#physics-part'),row=list.querySelector('[aria-selected="true"]');if(!row)return;const box=list.getBoundingClientRect(),r=row.getBoundingClientRect();if(r.top<box.top)list.scrollTop-=box.top-r.top;else if(r.bottom>box.bottom)list.scrollTop+=r.bottom-box.bottom;}
+  pick(e){
+    if(!this.ready||this.busy())return;const rect=this.stage.canvas.getBoundingClientRect(),[wx,wy]=this.stage.screenToWorld(e.clientX-rect.x,e.clientY-rect.y),[w,h]=this.size,point=[wx*h/2+w/2,h/2-wy*h/2];
+    const assignments=this.selectionAssignments();
+    const ids=physicsComponentsAt(this.parts,assignments,this.bodies,point,this.size,this.scene?.sourcePose);
+    if(!ids.length){this.error('这里没有可选的物理组件');return;}
+    const last=this.lastPick,same=last&&Math.hypot(e.clientX-last.x,e.clientY-last.y)<5&&e.timeStamp-last.time<2000&&ids.join()===last.ids;
+    const index=same?(last.index+1)%ids.length:0;this.lastPick={x:e.clientX,y:e.clientY,time:e.timeStamp,ids:ids.join(),index};this.select(ids[index]);
   }
   select(id) {
     if (!this.bindings.has(id)) return;
-    this.selected = id; this.pointer = null; this.selectLayer?.(id); this.sync(); this.overlay();
+    this.selected = id; this.pointer = null; this.selectLayer?.(id); this.sync(); this.revealSelection();this.changed();
   }
   async prepare({ draft, enabled = true, selected, paused = false, internal = false } = {}) {
     if (this.ready || this.preparing || !this.source() || (!internal && this.busy())) return;
@@ -91,7 +112,8 @@ export class PhysicsPanel {
     if (enabled && !this.ready) return this.prepare();
     this.enabled = enabled && this.ready;
     this.pointer = null; this.lastTime = 0; this.accumulator = 0;
-    if (!this.enabled) for (const b of this.bodies.values()) b.reset();
+    // Turning the module off suspends its clock and keeps the current pose and
+    // bindings. Reopening resumes; only the explicit reset action clears motion.
     this.render(); this.sync(); this.changed();
   }
   setDemo(enabled) {
@@ -207,13 +229,15 @@ export class PhysicsPanel {
     el.classList.toggle('limited', !!b?.stats.limited);
   }
   sync() {
+    $('#physics-guides').checked=this.showGuides;$('#physics-guides').disabled=!this.ready;
     const canPrepare = this.source()?.physicsCase || this.surfaces.session()?.session;
+    const native = this.layerState?.() || {}, failed = !canPrepare && !!native.error;
     $('#effect-physics').checked = this.enabled || this.preparing;
     $('#effect-physics').disabled = this.preparing || !this.source() || this.busy() || !canPrepare;
-    $('#physics-prepare').disabled = this.preparing || this.busy() || this.ready || !this.source() || !canPrepare;
-    $('#physics-prepare').textContent = this.preparing ? '正在准备…' : '准备当前图层';
-    $('#physics-controls').hidden = !this.ready; $('#physics-close').hidden = !this.ready;
-    $('#physics-status').textContent = this.preparing ? '读取当前部件与贴图…' : this.ready ? `${this.bodies.size} 个绑定 · ${this.enabled ? '已启用' : '已关闭'}` : this.source()&&!canPrepare ? '等待原生图层就绪…' : '开启摆动物理后自动准备部件';
+    $('#physics-prepare').disabled = this.preparing || this.busy() || this.ready || !this.source() || !canPrepare && !(failed && this.retryLayers);
+    $('#physics-prepare').textContent = this.preparing ? '正在准备…' : failed ? '重试图层加载' : '准备当前图层';
+    $('#physics-controls').hidden = !this.ready;
+    $('#physics-status').textContent = this.preparing ? '读取当前部件与贴图…' : this.ready ? `${this.bodies.size} 个绑定 · ${this.enabled ? '已启用' : '已关闭'}` : failed ? '图层加载失败：' + native.error : native.loading ? '正在加载原生图层…' : this.source()&&!canPrepare ? '等待原生图层就绪…' : '开启摆动物理后自动准备部件';
     $('#physics-demo').checked = !!this.demo;
     $('#physics-demo').disabled = !this.ready || this.busy();
     $('#physics-pause').textContent = this.paused ? '继续' : '暂停';
@@ -228,7 +252,7 @@ export class PhysicsPanel {
   }
   overlay() {
     const svg = $('#physics-overlay'); if (!svg) return;
-    const enabled = this.ready && this.enabled && this.workspace() === 'physics'; svg.toggleAttribute('hidden', !enabled);
+    const enabled = this.ready && this.workspace() === 'physics'; svg.toggleAttribute('hidden', !enabled);
     if (!enabled) return;
     const [w, h] = this.size, screen = (x, y) => this.stage.worldToScreen((x - w / 2) * 2 / h, (h / 2 - y) * 2 / h);
     const b = this.bodies.get(this.selected), commands = [], fixed = [], paths = [];
@@ -250,7 +274,7 @@ export class PhysicsPanel {
   }
   clear() {
     this.epoch++; cancelAnimationFrame(this.frame); this.ready = false; this.preparing = false; this.enabled = false; this.renderer?.dispose(); this.renderer = null;
-    this.parts = null; this.bindings.clear(); this.bodies.clear(); this.pending = new Map(); this.issues = []; this.selected = null; this.pointer = null; this.lastTime = 0; this.paused = false; this.demo = false; this.sync(); this.changed();
+    this.parts = null; this.bindings.clear(); this.bodies.clear(); this.pending = new Map(); this.issues = []; this.selected = null; this.pointer = null; this.lastPick=null;this.lastTime = 0; this.paused = false; this.demo = false; this.sync(); this.changed();
   }
   diagnostics() { return { ready: !!this.ready, enabled: this.enabled, demo: !!this.demo, paused: this.paused, selected: this.selected, solver: physicsVersion, size: this.size,
     issues: this.issues || [],

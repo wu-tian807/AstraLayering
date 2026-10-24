@@ -16,17 +16,24 @@
     "check": "tsc",
     "env:check": "node scripts/check-environment.ts",
     "test:agents": "node --test shared/tests/agv-gateway.test.ts shared/tests/agv-turn.test.ts shared/tests/agv-native-patch.test.ts shared/tests/tool-config.test.ts shared/tests/step-models.test.ts shared/tests/codex-images.test.ts shared/tests/environment.test.ts shared/tests/raster-retry.test.ts workflow/tests/runner.test.ts",
-    "test": "node --test shared/tests/*.test.ts part-layering/tests/*.test.ts raster-layering/tests/*.test.ts clothing-part-layering/tests/*.test.ts clothing-raster-layering/tests/*.test.ts character-assembly/tests/*.test.ts shadow/tests/*.test.ts workflow/tests/*.test.ts",
+    "test": "node --test shared/tests/*.test.ts part-layering/tests/*.test.ts raster-layering/tests/*.test.ts clothing-part-layering/tests/*.test.ts clothing-raster-layering/tests/*.test.ts character-assembly/tests/*.test.ts shadow/tests/*.test.ts workflow/tests/*.test.ts physics/tests/*.test.ts",
     "build:codex": "node patches/codex/build.ts",
     "shadow": "node shadow/run.ts",
-    "patch:agv": "node patches/agv/patch-response-header.ts"
+    "patch:agv": "node patches/agv/patch-response-header.ts",
+    "physics": "node physics/run.ts",
+    "physics:evidence": "node physics/evidence-cli.ts",
+    "physics:probe": "node physics/initialization-probe.ts"
   },
   "dependencies": {
     "@openai/codex-sdk": "0.161.0",
     "@xmldom/xmldom": "0.9.12",
     "proper-lockfile": "4.1.2",
     "sharp": "0.35.5",
-    "fflate": "0.8.2"
+    "fflate": "0.8.2",
+    "ag-psd": "30.1.0",
+    "three": "0.180.0",
+    "@pixiv/three-vrm-materials-mtoon": "3.5.5",
+    "playwright": "1.60.0"
   },
   "devDependencies": {
     "@types/node": "24.19.1",

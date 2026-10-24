@@ -11,7 +11,7 @@ import { readTaskLog } from './log.ts';
 
 export type TaskOptions = {
   name: string; dir?: string; image?: string; krita?: string;
-  from?: PipelineId; to?: PipelineId; jobs?: number; standard?: boolean; shadowMode?: ShadowMode;
+  from?: PipelineId; to?: PipelineId; jobs?: number; standard?: boolean; shadowMode?: ShadowMode; physicsProfile?: 'primary' | 'all'; physicsEnabled?: boolean; physicsReference?:string;
 };
 export type PipelineProgress = {
   status: 'pending' | 'running' | 'completed' | 'failed';
@@ -19,7 +19,7 @@ export type PipelineProgress = {
 };
 export type TaskRun = {
   version: 1; name: string; dir: string; from: PipelineId; to: PipelineId;
-  image?: string; krita?: string; jobs: number; standard?: boolean; shadowMode?: ShadowMode;
+  image?: string; krita?: string; jobs: number; standard?: boolean; shadowMode?: ShadowMode; physicsProfile?: 'primary' | 'all'; physicsEnabled?: boolean; physicsReference?:string;
   status: 'ready' | 'running' | 'completed' | 'failed' | 'interrupted';
   createdAt: string; updatedAt: string;
   activePipeline?: PipelineId;
@@ -55,6 +55,7 @@ export async function readRun(directory: string, name: string): Promise<TaskRun 
   }
   selectedPipelines(pipelineId(run.from), pipelineId(run.to));
   if (run.shadowMode !== undefined) shadowMode(run.shadowMode);
+  if (run.physicsProfile !== undefined && !['primary','all'].includes(run.physicsProfile)) throw Error('物理范围无效');
   return run;
 }
 export async function saveRun(directory: string, run: TaskRun, replace = rename): Promise<void> {
@@ -119,7 +120,7 @@ async function originalImage(directory: string, input?: string): Promise<string 
 export async function configureRun(options: TaskOptions, directory: string): Promise<TaskRun> {
   const saved = await readRun(directory, options.name);
   const from = options.from ?? saved?.from ?? 'part-layering';
-  const to = options.to ?? saved?.to ?? 'shadow';
+  const to = options.to ?? (options.physicsEnabled === true ? 'physics' : options.physicsEnabled === false && saved?.to === 'physics' && from !== 'physics' ? 'shadow' : saved?.to ?? 'shadow');
   const selected = selectedPipelines(from, to);
   if (options.standard !== undefined && !selected.includes('part-layering')) {
     throw new Error('--standard / --no-standard 需要本次路线包含 part-layering；请用 --from part-layering 运行人物 preparation。');
@@ -134,11 +135,13 @@ export async function configureRun(options: TaskOptions, directory: string): Pro
     status: 'ready', createdAt: now(), updatedAt: now(), pipelines: {},
   };
   Object.assign(run, { dir: resolveRunsDirectory(options.dir), from, to, jobs, standard,
+    physicsProfile: options.physicsProfile ?? saved?.physicsProfile ?? 'primary', physicsEnabled: to === 'physics',
     shadowMode: shadowMode(options.shadowMode ?? saved?.shadowMode) });
   run.image = image ?? saved?.image;
+  if(options.physicsReference)run.physicsReference=resolveInput(options.name,options.physicsReference,options.dir);
   if (options.krita) run.krita = resolveInput(options.name, options.krita, options.dir);
-  if (!run.krita && selected.some(id => id.includes('raster') || id === 'character-assembly' || id === 'shadow')) {
-    for (const id of ['raster-layering', 'clothing-raster-layering', 'character-assembly', 'shadow/mask', 'shadow/normal-depth']) {
+  if (!run.krita && selected.some(id => id.includes('raster') || id === 'character-assembly' || id === 'shadow' || id === 'physics')) {
+    for (const id of ['raster-layering', 'clothing-raster-layering', 'character-assembly', 'shadow/mask', 'shadow/normal-depth', 'physics']) {
       try {
         const config = JSON.parse(await readFile(join(directory, id, 'run.json'), 'utf8'));
         if (typeof config.krita?.executable === 'string') { run.krita = config.krita.executable; break; }

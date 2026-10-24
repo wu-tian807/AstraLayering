@@ -15,7 +15,7 @@ import { join, resolve } from 'node:path';
 // step is explicitly retried. Output paths are relative to the step directory
 // and may point outside it; a missing output reruns the step, and resetting a
 // step deletes its outputs.
-export type ChainStep = { id: string; directory: string; dependsOn: readonly string[]; outputs?: readonly string[] };
+export type ChainStep = { id: string; directory: string; dependsOn: readonly string[]; outputs?: readonly string[]; allowsEarlyArtifacts?: boolean };
 export type StepStatus = 'absent' | 'unmarked' | 'running' | 'completed';
 export type StepRecord = { stamp: string; inputs: Record<string, string>; outputs?: Record<string, string> };
 export type ChainPlan = {
@@ -78,7 +78,10 @@ export async function inspectChain(steps: readonly ChainStep[]): Promise<ChainPl
   const statuses = new Map<string, StepStatus>(), stamps = new Map<string, string | undefined>();
   const unusable = new Set<string>(), reset: string[] = [], modified: string[] = [];
   for (const step of steps) {
-    const { status, record } = await readStep(step.directory);
+    const state = await readStep(step.directory), record = state.record;
+    // Diagnostics can be produced before this step starts. Keep their files,
+    // while an absent marker still means the step has not run or been approved.
+    const status = state.status === 'unmarked' && step.allowsEarlyArtifacts ? 'absent' : state.status;
     statuses.set(step.id, status);
     // A completed step reopened for more work keeps its stamp while running.
     stamps.set(step.id, record?.stamp);

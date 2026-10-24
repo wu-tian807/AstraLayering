@@ -15,8 +15,10 @@ import { snapshot, summary } from './snapshot.ts';
 import { SVGThumbnails } from './svg-thumbnail.ts';
 import { KRAPreviews } from './kra-preview.ts';
 import { launch } from './worker.ts';
+import { validatePhysicsConfig } from './studio/component-physics-schema.js';
 import { LayerCompositor } from './layer-compositor.ts';
 import { studioProject } from './studio-project.ts';
+import { studioPhysicsWorkflow, studioPhysicsArtifact } from './studio-physics-workflow.ts';
 import { studioCatalog, studioAsset, studioReviews, saveStudioReview } from './studio.ts';
 import { projectDisplayName, saveProjectDisplayName, validateDisplayName } from './project-metadata.ts';
 
@@ -44,6 +46,8 @@ function options(value: any, dir: string): TaskOptions {
   if (value.from) result.from = pipelineId(value.from);
   if (value.to) result.to = pipelineId(value.to);
   if (result.from || result.to) selectedPipelines(result.from ?? pipelineIds[0], result.to ?? pipelineIds.at(-1)!);
+  if (value.physicsProfile !== undefined) { if(!['primary','all'].includes(value.physicsProfile)) throw Error('物理范围无效'); result.physicsProfile=value.physicsProfile; }
+  if (value.physicsEnabled !== undefined) { if(typeof value.physicsEnabled!=='boolean') throw Error('物理开关无效'); result.physicsEnabled=value.physicsEnabled; }
   if (value.shadowMode !== undefined) result.shadowMode = shadowMode(value.shadowMode);
   if (value.standard !== undefined) {
     if (typeof value.standard !== 'boolean') throw new Error('standard 必须是布尔值');
@@ -92,8 +96,23 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           json({ error: '不接受跨站运行操作' }, 403); return;
         }
         if (path.startsWith('/api/studio/layers/')) {
-          if (path === '/api/studio/layers/open') {
-            const document = await compositor.create(request, url.searchParams.get('format') ?? '');
+          if (path === '/api/studio/layers/open' || path === '/api/studio/layers/open-project') {
+            let document;
+            if (path.endsWith('/open-project')) {
+              const value = await body(request);
+              if (value.dir !== requestDir) { json({ error: '追踪目录已改变，请刷新页面后重试' }, 409); return; }
+              const directory = await task(value.name, requestDir);
+              const project = await studioProject(directory, value.name, requestDir, value.preview);
+              const source = project.files.document;
+              if (!source.available || value.path !== source.path || value.version !== source.version) {
+                json({ error: '项目工程已变化，请更新项目后重试' }, 409); return;
+              }
+              // The project already owns this file. Reuse it on the server instead
+              // of uploading the browser's downloaded KRA/PSD back to the same host.
+              const file = await safePath(directory, source.path);
+              async function* bytes() { yield* createReadStream(file); }
+              document = await compositor.create(bytes(), extname(source.path).slice(1).toLowerCase());
+            } else document = await compositor.create(request, url.searchParams.get('format') ?? '');
             if (response.destroyed) { await compositor.closeDocument(document.session); return; }
             response.once('close', () => {
               if (!response.writableFinished) void compositor.closeDocument(document.session).catch(() => {});
@@ -114,6 +133,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           const next = { directory: await validateDir(value.directory) };
           await atomicJSON(settingsPath, next); settings = next; json(settings); return;
         }
+        if(path==='/api/studio/physics') { const directory=await task(value.name); const config=validatePhysicsConfig(value.config); config.review={status:'draft',...(config.review?.baseConfigHash?{baseConfigHash:config.review.baseConfigHash}:{})}; await mkdir(join(directory,'physics'),{recursive:true}); await atomicJSON(join(directory,'physics/physics.draft.json'),config); json({saved:true},201); return; }
         if (path === '/api/studio/review') { json(await saveStudioReview(root, dirname(settingsPath), value), 201); return; }
         const opts = options(value, requestDir), directory = directoryFor(opts);
         if (path === '/api/tasks') {
@@ -232,7 +252,17 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         if (url.searchParams.get('dir') !== requestDir) { json({ error: '项目目录已改变，请刷新后重新打开' }, 409); return; }
         const name = url.searchParams.get('name') ?? '';
         const directory = await task(name, requestDir);
-        json({ ...await studioProject(directory, name, requestDir, url.searchParams.get('preview')), displayName: await projectDisplayName(directory, name) }); return;
+        const project = await studioProject(directory, name, requestDir, url.searchParams.get('preview'));
+        json({ ...project, physicsWorkflow: await studioPhysicsWorkflow(directory, name, requestDir, project.files.physics.available ? project.files.physics.path : undefined), displayName: await projectDisplayName(directory, name) }); return;
+      }
+      if (path === '/studio-physics-artifact') {
+        if (url.searchParams.get('dir') !== requestDir) { json({ error: '项目目录已改变，请刷新页面' }, 409); return; }
+        const name = url.searchParams.get('name') || '', directory = await task(name, requestDir);
+        const project = await studioProject(directory, name, requestDir);
+        const file = await studioPhysicsArtifact(directory, project.files.physics.path, url.searchParams.get('path') || '', url.searchParams.get('hash') || '');
+        response.setHeader('Content-Security-Policy', "sandbox; default-src 'none'; style-src 'unsafe-inline'; img-src data:");
+        response.writeHead(200, { 'Content-Type': file.endsWith('.svg') ? 'image/svg+xml' : 'image/png' });
+        createReadStream(file).on('error', () => response.destroy()).pipe(response); return;
       }
       if (path === '/api/studio/samples') { json(await studioCatalog(root)); return; }
       if (path === '/studio-document') {
@@ -251,16 +281,36 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         response.writeHead(200, { 'Content-Type': 'image/png' });
         response.end(await readFile(referenceUrl(path.split('/').at(-1)!))); return;
       }
+      // Existing browser sessions can still request the former module URLs.
+      // Redirect to the owner so its relative imports resolve within the skill.
+      const oldModule = path.slice('/studio/'.length);
+      if (path.startsWith('/studio/')) {
+        const core = ['component-physics-binding.js', 'component-physics-geometry.js', 'component-physics-model.js', 'component-physics-schema.js', 'physics-airflow.js', 'vendor/psd2live/xpbd.js', 'vendor/psd2live/pendulum.js', 'vendor/inochi2d/pendulum.js'];
+        const evidence = ['component-physics-worker.js', 'physics-motion-review.js', 'physics-recorded-frame.js', 'physics-test-input.js'];
+        const render = ['renderer.js', 'physics-renderer.js', 'surface-lighting.js', 'surface-shadow.js', 'projection-field.js', 'lighting-model.js', 'part-maps.js', 'harmonic-fill.js', 'surface-coverage.js'];
+        const owner = core.includes(oldModule) ? 'physics-core' : evidence.includes(oldModule) ? 'physics-evidence' : render.includes(oldModule) ? 'character-render' : null;
+        if (owner) { response.writeHead(307, { Location: '../'.repeat(oldModule.split('/').length) + 'shared/' + owner + '/' + oldModule }); response.end(); return; }
+      }
       const vendor: Record<string,string> = {
         '/vendor/three.module.js': 'node_modules/three/build/three.module.js',
         '/vendor/three.core.js': 'node_modules/three/build/three.core.js',
         '/vendor/mtoon.js': 'node_modules/@pixiv/three-vrm-materials-mtoon/lib/three-vrm-materials-mtoon.module.js',
         '/vendor/ag-psd.js': 'node_modules/ag-psd/dist/bundle.js',
         '/vendor/fflate.js': 'node_modules/fflate/umd/index.js',
+        '/shared/vendor/three.module.js': 'node_modules/three/build/three.module.js',
+        '/shared/vendor/three.core.js': 'node_modules/three/build/three.core.js',
       };
       if (vendor[path]) { response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8' }); response.end(await readFile(join(root, vendor[path]))); return; }
+      if (/^\/shared\/(physics-core|physics-evidence|character-render)\/[a-z-]+\.js$/.test(path)
+        || ['/shared/physics-core/vendor/psd2live/xpbd.js', '/shared/physics-core/vendor/psd2live/pendulum.js', '/shared/physics-core/vendor/inochi2d/pendulum.js'].includes(path)) {
+        const file = await safePath(join(root, '.agents/skills/live2d-maker/shared'), path.slice('/shared/'.length));
+        response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8' });
+        response.end(await readFile(file)); return;
+      }
       const staticFiles: Record<string, string> = { '/': 'index.html', '/app.js': 'app.js', '/progress.js': 'progress.js', '/report-markdown.js': 'report-markdown.js', '/task-selection.js': 'task-selection.js', '/styles.css': 'styles.css', '/studio': 'studio/index.html', '/studio/app.js': 'studio/app.js', '/studio/styles.css': 'studio/styles.css', '/studio/renderer.js': 'studio/renderer.js', '/studio/lighting-model.js': 'studio/lighting-model.js' };
-      for (const name of ['document-loader.js', 'document-worker.js', 'layer-panel.js', 'layer-model.js', 'surface-preview.js', 'surface-worker.js', 'surface-coverage.js', 'part-maps.js', 'harmonic-fill.js', 'projection-model.js', 'projection-panel.js', 'physics-model.js', 'physics-panel.js', 'physics-recipe.js', 'physics-renderer.js', 'physics-cases.js']) staticFiles['/studio/' + name] = 'studio/' + name;
+      for (const name of ['document-loader.js', 'document-worker.js', 'layer-panel.js', 'layer-model.js', 'surface-preview.js', 'surface-worker.js', 'surface-coverage.js', 'part-maps.js', 'harmonic-fill.js', 'projection-model.js', 'projection-panel.js', 'projection-field.js', 'physics-model.js', 'physics-panel.js', 'physics-recipe.js', 'physics-renderer.js', 'physics-cases.js', 'component-physics-binding.js', 'component-physics-geometry.js', 'component-physics-model.js', 'component-physics-schema.js', 'component-physics-panel.js', 'physics-test-input.js', 'physics-airflow.js']) staticFiles['/studio/' + name] = 'studio/' + name;
+      for (const name of ['component-physics-selection.js','component-physics-runner.js','component-physics-worker.js','surface-shadow.js','surface-lighting.js','vendor/psd2live/xpbd.js','vendor/psd2live/pendulum.js','vendor/inochi2d/pendulum.js']) staticFiles['/studio/' + name] = 'studio/' + name;
+      for (const name of ['physics-workflow-model.js', 'physics-workflow-panel.js', 'physics-recorded-frame.js', 'physics-motion-review.js']) staticFiles['/studio/' + name] = 'studio/' + name;
       if (!staticFiles[path]) { json({ error: 'Not found' }, 404); return; }
       const type = path.endsWith('.js') ? 'text/javascript' : path.endsWith('.css') ? 'text/css' : 'text/html';
       response.writeHead(200, { 'Content-Type': type + '; charset=utf-8' });

@@ -93,6 +93,7 @@ export const pipelineSteps = [
       { ...step('normal-depth-maps', '生成与验收贴图', 'pending'), processDirectory: 'shadow/normal-depth/step01' },
     ])],
     '本轮执行所选分支；两种方式的已有产物分别保留。'), childrenMode: 'alternative' }],
+  [step('step01','组件与实际连接','pending'),step('step02','固定区与约束绑定','pending'),step('step03','连续动画复核','pending')],
 ];
 
 export function groupLayers(groups) {
@@ -177,3 +178,5 @@ export function groupArtifacts(pipeline, group, depth) {
   children: [file(`${pipeline}/groups.json`, '分组树与分析记录')],
  };
 }
+
+stepArtifacts.push({step01:[file('physics/step01/analysis.json','组件分析'),file('physics/step01/report.md','分析说明')],step02:[file('physics/step02/physics.draft.json','物理草稿'),file('physics/step02/report.md','绑定说明')],step03:[file('physics/physics.json','正式物理配置'),file('physics/step03/findings.json','视觉结论'),file('physics/step03/evidence/manifest.json','连续动画证据'),file('physics/step03/report.md','复核说明')]});

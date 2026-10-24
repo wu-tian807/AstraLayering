@@ -20,6 +20,26 @@ async function tree(t: { after(fn: () => Promise<void>): void }) {
   return { steps, finish };
 }
 
+test('允许提前诊断的目录保持未开始，不能让已存在的后代冒充有效', async t => {
+  const { steps, finish } = await tree(t);
+  steps[1].allowsEarlyArtifacts = true;
+  await finish('a');
+  await mkdir(steps[1].directory);
+  const diagnostic = join(steps[1].directory, 'trace.json');
+  await writeFile(diagnostic, 'preserved diagnostic');
+  const initial = await inspectChain(steps);
+  assert.equal(initial.statuses.get('b'), 'absent');
+  assert.deepEqual(initial.reset, []);
+  await mkdir(steps[2].directory);
+  await writeFile(join(steps[2].directory, '.completed'), '');
+  const plan = await inspectChain(steps);
+  assert.deepEqual(plan.reset, ['c']);
+  await resetChain(steps, plan);
+  assert.equal(await readFile(diagnostic, 'utf8'), 'preserved diagnostic');
+  await startStep(steps[1].directory, 'absent');
+  assert.equal((await inspectChain(steps)).statuses.get('b'), 'running');
+});
+
 test('上游重新完成后，依赖它的已完成步骤及其后代断链重跑，旁支保留', async t => {
   const { steps, finish } = await tree(t);
   for (const id of ['a', 'b', 'c', 'd']) await finish(id);

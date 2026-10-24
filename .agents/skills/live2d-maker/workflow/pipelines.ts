@@ -12,6 +12,11 @@ import type { TaskRun } from './state.ts';
 
 export type PipelineResult = { summary: string; output?: string };
 export async function executePipeline(id: PipelineId, run: TaskRun, progress: (message: string) => void): Promise<PipelineResult> {
+  if (id === 'physics') {
+    const { runWorkflow: physics } = await import('../physics/run.ts');
+    const summary = await physics({ name: run.name, dir: run.dir, krita: run.krita, profile: run.physicsProfile, referencePhysics:run.physicsReference, progress });
+    return { summary, output: join(run.dir, run.name, 'physics', 'physics.json') };
+  }
   if (id === 'shadow') {
     const mode = shadowMode(run.shadowMode);
     const summary = await shadow({ name: run.name, dir: run.dir, krita: run.krita, shadowMode: mode, progress });

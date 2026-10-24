@@ -190,7 +190,7 @@ class Layers(Extension):
         if not session['doc'].exportImage(str(path), config):
             raise ValueError('Krita 未能导出合成图')
 
-    def surfaces(self, session, directory):
+    def surfaces(self, session, directory, projections=None):
         """Read-only source-UV snapshot, with native isolated clipping islands.
 
         Krita resolves each isolated group's clipping and blend modes once.
@@ -227,6 +227,33 @@ class Layers(Extension):
                     isolate(ancestor(key))
         records = []
         directory.mkdir(exist_ok=True)
+        by_uuid = {r['uuid']: r for r in session['rows']}
+        projection_groups = {}
+        for binding in (projections or []):
+            shadow = by_uuid.get(binding.get('shadowLayerUuid'))
+            base = by_uuid.get(binding.get('clipBaseLayerUuid'))
+            if not shadow or not base:
+                raise ValueError('投影来源不属于当前文档')
+            parent = shadow['parentId']
+            n = session['nodes'][shadow['id']]
+            if parent != base['parentId'] or parent not in islands or binding.get('follow') != 'caster' or n.type() != 'paintlayer' or n.blendingMode() not in ('normal', 'multiply') or not n.inheritAlpha() or n.childNodes():
+                raise ValueError('此投影混合结构尚不支持动态裁切，保留原生预览')
+            projection_groups.setdefault(parent, []).append((binding, shadow, base))
+        for key, entries in projection_groups.items():
+            allowed = {s['id'] for _, s, _ in entries} | {b['id'] for _, _, b in entries}
+            if len({b['id'] for _, _, b in entries}) != 1 or any(r['parentId'] == key and r['id'] not in allowed for r in session['rows']):
+                raise ValueError('投影隔离组含有额外合成依赖，保留原生预览')
+        extra_index = len(session['rows'])
+        def save_pixels(raw, rect):
+            nonlocal extra_index
+            if len(raw) != rect.width() * rect.height() * 4:
+                raise ValueError('投影像素格式不匹配')
+            name = 'part-%d-original.png' % extra_index
+            extra_index += 1
+            image = QImage(raw, rect.width(), rect.height(), rect.width() * 4, QImage.Format_ARGB32).copy()
+            if not image.save(str(directory / name), 'PNG'):
+                raise ValueError('无法读取投影像素')
+            return name
         for row in reversed(session['rows']):
             node = session['nodes'][row['id']]
             parent = row['parentId']
@@ -264,6 +291,7 @@ class Layers(Extension):
             part_path = namespace + path if namespace else None
             group = namespace + path.rsplit('/', 1)[0] if '/' in path else row['parentId'] or row['id']
             members = []
+            source_layers = []
             source_digest = hashlib.sha256()
             if composited:
                 for candidate in sorted(session['rows'], key=lambda r: r['uuid']):
@@ -279,15 +307,42 @@ class Layers(Extension):
                             sb = source.bounds().intersected(QRect(0, 0, doc.width(), doc.height()))
                             source_digest.update(json.dumps([sb.x(), sb.y(), sb.width(), sb.height()]).encode('ascii'))
                             if not sb.isEmpty():
-                                source_digest.update(bytes(source.pixelData(sb.x(), sb.y(), sb.width(), sb.height())))
+                                source_raw = bytes(source.pixelData(sb.x(), sb.y(), sb.width(), sb.height()))
+                                source_digest.update(source_raw)
+                                source_layers.append({'uuid': candidate['uuid'], 'contentHash': hashlib.sha256(source_raw).hexdigest(), 'bounds': {'x': sb.x(), 'y': sb.y(), 'width': sb.width(), 'height': sb.height()}})
                 # A shadow visibility/opacity edit changes the flattened colour,
                 # not its source identity. Fingerprint original member pixels.
                 content_hash = source_digest.hexdigest()
+            projection = None
+            if row['id'] in projection_groups:
+                entries = projection_groups[row['id']]
+                states = [(session['nodes'][s['id']], session['nodes'][s['id']].visible()) for _, s, _ in entries]
+                try:
+                    for n, _ in states:
+                        n.setVisible(False)
+                    doc.refreshProjection()
+                    doc.waitForDone()
+                    base_file = save_pixels(bytes(node.projectionPixelData(b.x(), b.y(), b.width(), b.height())), b)
+                finally:
+                    for n, state in states:
+                        n.setVisible(state)
+                    doc.refreshProjection()
+                    doc.waitForDone()
+                shadows = []
+                for binding, shadow, _ in sorted(entries, key=lambda e:session['rows'].index(e[1]), reverse=True):
+                    n = session['nodes'][shadow['id']]
+                    sb = n.bounds().intersected(QRect(0, 0, doc.width(), doc.height()))
+                    if sb.isEmpty():
+                        continue
+                    shadows.append({**binding, 'original':save_pixels(bytes(n.pixelData(sb.x(), sb.y(), sb.width(), sb.height())), sb),
+                                    'blendMode':n.blendingMode(), 'opacity':n.opacity(), 'visible':n.visible() and visible,
+                                    'bounds':{'x':sb.x(), 'y':sb.y(), 'width':sb.width(), 'height':sb.height()}})
+                projection = {'base':base_file, 'shadows':shadows, 'version':1}
             records.append({'id':row['id'], 'uuid':row['uuid'], 'legacyId':row['legacyId'],
-                            'partPath':part_path, 'sourceLayerUuids':members if composited else [row['uuid']],
+                            'partPath':part_path, 'sourceLayers':source_layers, 'sourceLayerUuids':members if composited else [row['uuid']],
                             'contentHash':content_hash,
                             'partId':group, 'name':name, 'visible':visible, 'opacity':node.opacity(),
-                            'composited':composited,
+                            'composited':composited, 'projection':projection,
                             'bounds':{'x':b.x(), 'y':b.y(), 'width':b.width(), 'height':b.height()}, **files})
         return {'layers':records, 'width':doc.width(), 'height':doc.height()}
 
@@ -317,7 +372,7 @@ class Layers(Extension):
             raise ValueError('图层会话已结束，请重新打开文件')
         session = self.docs[key]
         if job['op'] == 'surfaces':
-            return self.surfaces(session, Path(job['output']))
+            return self.surfaces(session, Path(job['output']), job.get('projections'))
         if job['op'] == 'close':
             session['doc'].setModified(False)
             session['doc'].close()

@@ -1,5 +1,5 @@
-import { extractPartMaps } from './part-maps.js';
-import { buildMapSurface } from './surface-coverage.js';
+import { extractPartMaps } from '../shared/character-render/part-maps.js';
+import { buildMapSurface } from '../shared/character-render/surface-coverage.js';
 self.onmessage = ({ data }) => {
   try {
     const { width, height, layers, normal, depth } = data;

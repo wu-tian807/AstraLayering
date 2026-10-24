@@ -10,6 +10,10 @@ import type { KritaInstallation } from './krita.ts';
 export type StepDefinition = {
   id: string;
   title: string;
+  freshSession?: boolean;
+  // Tool-produced diagnostics may exist before the scheduler starts this step.
+  // They do not establish running/completed state and still require validation.
+  allowsEarlyArtifacts?: boolean;
   model: string;
   effort: ModelSelection['effort'];
   modelTier?: ModelTier;

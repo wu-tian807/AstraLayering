@@ -42,6 +42,6 @@
 
 专业工作台：打开 Jianma 或当前项目 → 部件试验 → 准备部件贴图 → 选择手部 → 移动／旋转／前后／替换 → 复位。原画、法线、深度与光照仍使用同一个画布。
 
-实现：`web/studio/surface-coverage.js`、`part-maps.js`、`harmonic-fill.js`；原生快照由 `web/krita/astra_layers.py` 提供。通用归属与覆盖算法来自原人物工作台的同名模块，求解核逐字节复用。
+实现：前端交互位于 `web/studio/surface-coverage.js`；贴图归属与补全由 skill 的 `shared/character-render/part-maps.js`、`harmonic-fill.js` 维护，原生快照由 `shared/krita/native/astra_layers.py` 提供。前端直接消费共享实现，skill 可独立安装运行。
 
 定向复验：`web/tests/studio-surfaces.test.ts`。历史原生与浏览器辅助检查脚本已删除，可从 Git 提交记录查阅；原工作台对照脚本为 `verify-character-hand-surfaces.mjs` 和 `verify-character-surface-ownership.mjs`。临时图片与完整指标保留在忽略的检查目录，不作为新角色源文件提交；软件 GPU 检查不代表用户设备帧率。

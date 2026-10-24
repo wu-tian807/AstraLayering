@@ -6,6 +6,7 @@ import { pipelineIds } from '../.agents/skills/live2d-maker/shared/paths.ts';
 import { readRun, taskStatus, type TaskRun } from '../.agents/skills/live2d-maker/workflow/state.ts';
 import { steps as personSteps } from '../.agents/skills/live2d-maker/raster-layering/steps.ts';
 import { steps as clothingSteps } from '../.agents/skills/live2d-maker/clothing-raster-layering/steps.ts';
+import { steps as physicsSteps } from '../.agents/skills/live2d-maker/physics/steps.ts';
 import { steps as assemblySteps } from '../.agents/skills/live2d-maker/character-assembly/steps.ts';
 import { nextReviewTask } from '../.agents/skills/live2d-maker/shared/raster/review.ts';
 import { inventory, jsonFile, safePath } from './files.ts';
@@ -15,7 +16,7 @@ import { projectDisplayName } from './project-metadata.ts';
 import { reportPreview, type ReportPreview } from './report.ts';
 
 export { phases } from './part-progress.ts';
-export const rasterDefinitions = { 'raster-layering': personSteps, 'clothing-raster-layering': clothingSteps, 'character-assembly': assemblySteps };
+export const rasterDefinitions = { 'raster-layering': personSteps, 'clothing-raster-layering': clothingSteps, 'character-assembly': assemblySteps, physics: physicsSteps };
 export type Status = 'done' | 'running' | 'pending' | 'failed' | 'interrupted' | 'available' | 'skipped' | 'unconfirmed';
 export const statusOf = (value?: string): Status => value === 'completed' ? 'done' : value === 'ready' ? 'pending' : ['running', 'failed', 'interrupted'].includes(value ?? '') ? value as Status : 'pending';
 const flatten = (nodes: any[]): any[] => nodes.flatMap(node => [node, ...flatten(node.groups ?? [])]);

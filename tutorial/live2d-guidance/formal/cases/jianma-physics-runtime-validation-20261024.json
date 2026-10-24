@@ -1,0 +1,4366 @@
+{
+  "version": 1,
+  "scope": "Mac Chrome independent full fixed-step simulation; mesh comparisons at listed sample steps only",
+  "configHash": "27e1853a2dcc859a69f64393632f7c1dbba17f8d089c1a69c36299f221b79c2d",
+  "simulationHash": "73d9443fce2dacd7f8db7a0d31880b95354a7faaa4f21cfcedd1dd1122ce3635",
+  "stepHz": 120,
+  "steps": 960,
+  "sampleSteps": [
+    0,
+    60,
+    96,
+    180,
+    360,
+    960
+  ],
+  "productionScripts": {
+    "component-physics-model.js": "739aeb7cd4f38c104ac9095b9f0cca6f6533756895dc17991931c5baa9d61392",
+    "component-physics-geometry.js": "a18e065217216e8b83a1c3c7333f0192dc92299cf9d3fbc771342eeb1d131b25",
+    "component-physics-schema.js": "ae5c0794c8133ac76ed9ff35978e968a44aa1593a8ea464b033d12abfbdb23bb",
+    "physics-test-input.js": "5e6dd5fc8e33119de35517a6ae8859b646994ae99648ace4c984118f0db42c9a",
+    "vendor/psd2live/xpbd.js": "2d2bde9bcfce2886066199d314e23096143d34059f566254bf32353e5e5ef3e9",
+    "vendor/psd2live/pendulum.js": "d4c263db69b666427c3230dd26dfb6e56aa7ed47f1484be593fe33112d4f57bd",
+    "vendor/inochi2d/pendulum.js": "18c009545118b82a1ebc901d788ff2fac703750ec5aae969957a47ecb071279b"
+  },
+  "runs": [
+    {
+      "test": "neutral",
+      "components": 40,
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxFinalResidualPixels": 1.0785280415467626e-12,
+      "motionIssues": [],
+      "samples": [
+        {
+          "step": 0,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 60,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 96,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 180,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 360,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 960,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        }
+      ],
+      "metrics": {
+        "sleeve-gauze-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-gauze-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-point-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-train-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-drape-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-left": {
+          "peak": 1.4210854715202004e-14,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 1.4210854715202004e-14,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-left": {
+          "peak": 1.1368683772161603e-13,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 1.1368683772161603e-13,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-left": {
+          "peak": 1.1368683772161603e-13,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 1.1368683772161603e-13,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-right": {
+          "peak": 5.684341886080802e-14,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 5.684341886080802e-14,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-right": {
+          "peak": 5.684341886080802e-14,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 5.684341886080802e-14,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-right": {
+          "peak": 5.684341886080802e-14,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 5.684341886080802e-14,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-left": {
+          "peak": 1.1368683772161603e-13,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 1.1368683772161603e-13,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-right": {
+          "peak": 6.355287432313019e-14,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 6.355287432313019e-14,
+          "invalid": 0,
+          "issues": []
+        },
+        "forehead-drop": {
+          "peak": 5.684341886080802e-14,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 5.684341886080802e-14,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-small-tassel": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-left": {
+          "peak": 2.2737367544323206e-13,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 2.2737367544323206e-13,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-right": {
+          "peak": 2.3437142008433856e-13,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 2.3437142008433856e-13,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-upper": {
+          "peak": 1.2710574864626038e-13,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 1.2710574864626038e-13,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-lower": {
+          "peak": 2.3437142008433856e-13,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 2.3437142008433856e-13,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-upper": {
+          "peak": 1.0785280415467626e-12,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 1.0785280415467626e-12,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-lower": {
+          "peak": 2.2737367544323206e-13,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 2.2737367544323206e-13,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-tassel-buckle": {
+          "peak": 2.3437142008433856e-13,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 2.3437142008433856e-13,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "tip-impulse",
+      "components": 40,
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxFinalResidualPixels": 0.000012161503335633387,
+      "motionIssues": [],
+      "samples": [
+        {
+          "step": 0,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 60,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 96,
+          "maxMeshDeltaPixels": 1.1368683772161603e-13,
+          "statusDisagreements": []
+        },
+        {
+          "step": 180,
+          "maxMeshDeltaPixels": 1.5916157281026244e-12,
+          "statusDisagreements": []
+        },
+        {
+          "step": 360,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 960,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        }
+      ],
+      "metrics": {
+        "sleeve-gauze-right": {
+          "peak": 3.1168265855200206,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.2775864093190739,
+          "maxWorldStep": 1.2775864093190739,
+          "final": 3.1306243220791845e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-gauze-left": {
+          "peak": 1.242693590350011,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.5896145557630478,
+          "maxWorldStep": 0.5896145557630478,
+          "final": 2.5977121507077394e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-point-left": {
+          "peak": 4.833168374612686,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.4315240540954173,
+          "maxWorldStep": 1.4315240540954173,
+          "final": 2.358010259333987e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-train-right": {
+          "peak": 4.005180274782978,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.56535247176799,
+          "maxWorldStep": 1.5653524717680019,
+          "final": 6.988853396272368e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-drape-left": {
+          "peak": 4.2707085895004315,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.5666920805305091,
+          "maxWorldStep": 1.5666920805305091,
+          "final": 9.888874296566617e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-right": {
+          "peak": 6.562487945082061,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.359761153627955,
+          "maxWorldStep": 2.359761153627982,
+          "final": 2.5657489929032982e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-left": {
+          "peak": 6.003505139679913,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.9737436761901208,
+          "maxWorldStep": 1.9737436761901208,
+          "final": 1.060101162819466e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 16.595574646527968,
+          "root": 0,
+          "fallback": 2,
+          "limited": 13,
+          "maxStep": 4.645428527772534,
+          "maxWorldStep": 4.645428527772534,
+          "final": 4.726193615154295e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-right": {
+          "peak": 20.155782767578685,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.5025206342488233,
+          "maxWorldStep": 2.5025206342488233,
+          "final": 0.000004531946717697919,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-left": {
+          "peak": 22.105120491507048,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.8289654525097743,
+          "maxWorldStep": 2.8289654525097743,
+          "final": 0.0000057561210771673525,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 14.568098082962479,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7471434534177398,
+          "maxWorldStep": 0.7471434534177657,
+          "final": 0.0000037454709006519836,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 3.529036513368757,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.29941485015896674,
+          "maxWorldStep": 0.29941485015896674,
+          "final": 1.0040027473631925e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0.6446162040173146,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.08485307470539924,
+          "maxWorldStep": 0.08485307470539924,
+          "final": 2.595752341613334e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 14.550170502794966,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7454266423697883,
+          "maxWorldStep": 0.7454266423697883,
+          "final": 0.0000037477079074961107,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 3.638036728518665,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.308281398167424,
+          "maxWorldStep": 0.308281398167424,
+          "final": 2.2814090403381828e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.7436698713844333,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.0956347959731878,
+          "maxWorldStep": 0.0956347959731878,
+          "final": 1.123603563941574e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-left": {
+          "peak": 0.34748672025931915,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.019027582239715814,
+          "maxWorldStep": 0.01902758223970956,
+          "final": 9.02285800928141e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-left": {
+          "peak": 0.15288272101756661,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.040030844485893544,
+          "maxWorldStep": 0.040030844485893544,
+          "final": 4.677207522382045e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-left": {
+          "peak": 0.4209221472898155,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1297620877106063,
+          "maxWorldStep": 0.129762087710601,
+          "final": 1.8162401011662594e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 18.329187563991866,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.9534007594937692,
+          "maxWorldStep": 1.9534007594937692,
+          "final": 1.4877415948168622e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-right": {
+          "peak": 0.3474867202592625,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.019027582239772436,
+          "maxWorldStep": 0.019027582239764928,
+          "final": 9.024569174507534e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-right": {
+          "peak": 0.154661237662157,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.04013712735867609,
+          "maxWorldStep": 0.04013712735867609,
+          "final": 4.73613532844266e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-right": {
+          "peak": 0.3161195882515796,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.11311438204988893,
+          "maxWorldStep": 0.11311438204988256,
+          "final": 1.2754536216735432e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 17.89319810273367,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.9511072510388823,
+          "maxWorldStep": 1.9511072510389096,
+          "final": 3.865249536060629e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-left": {
+          "peak": 0.8609593267906659,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.06720450839698756,
+          "maxWorldStep": 0.06720450839698756,
+          "final": 8.91561798647239e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-right": {
+          "peak": 0.859767387355973,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.06711173522891799,
+          "maxWorldStep": 0.06711173522891799,
+          "final": 8.905450043316588e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "forehead-drop": {
+          "peak": 0.8879785856023673,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.07876870547283205,
+          "maxWorldStep": 0.07876870547283434,
+          "final": 4.923400910642303e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-left": {
+          "peak": 0.7666555851644511,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3706214375591161,
+          "maxWorldStep": 0.3706214375591161,
+          "final": 2.871161311737285e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-right": {
+          "peak": 0.5871409921131446,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3712257873361928,
+          "maxWorldStep": 0.3712257873361928,
+          "final": 7.605785390747034e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-left": {
+          "peak": 0.6232279909767938,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.24374141691938525,
+          "maxWorldStep": 0.24374141691938525,
+          "final": 1.1354606310167685e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-right": {
+          "peak": 0.76493362549702,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3289325481649439,
+          "maxWorldStep": 0.3289325481649439,
+          "final": 5.214819707511813e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-small-tassel": {
+          "peak": 0.6722698714644438,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.05495509741649013,
+          "maxWorldStep": 0.05495509741649013,
+          "final": 5.507327080638726e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-left": {
+          "peak": 1.1709834343947638,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.09800342991445066,
+          "maxWorldStep": 0.09800342991445066,
+          "final": 5.713437758272381e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-right": {
+          "peak": 1.3886286599972046,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.11611122982791854,
+          "maxWorldStep": 0.11611122982791854,
+          "final": 6.75633253416109e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-upper": {
+          "peak": 0.5739313849081951,
+          "root": 0,
+          "fallback": 0,
+          "limited": 13,
+          "maxStep": 0.06684828224537392,
+          "maxWorldStep": 0.06684828224537392,
+          "final": 2.86874965870784e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-lower": {
+          "peak": 0.4953568153929044,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1726145444654243,
+          "maxWorldStep": 0.1726145444654243,
+          "final": 1.5398130460304914e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-upper": {
+          "peak": 0.5800930216367869,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.058040928759339236,
+          "maxWorldStep": 0.058040928759339236,
+          "final": 0.000012161503335633387,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-lower": {
+          "peak": 0.4797674715939285,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.10646951107726198,
+          "maxWorldStep": 0.10646951107726198,
+          "final": 1.1506892911016897e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-tassel-buckle": {
+          "peak": 0.47311722174715415,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3105687282668543,
+          "maxWorldStep": 0.3105687282668543,
+          "final": 1.4669105008995008e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 4.777499996705872,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.3655835821953861,
+          "maxWorldStep": 1.3655835821953861,
+          "final": 3.7442100262053945e-10,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "support-release",
+      "components": 40,
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxFinalResidualPixels": 0.00022170935764368667,
+      "motionIssues": [],
+      "samples": [
+        {
+          "step": 0,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 60,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 96,
+          "maxMeshDeltaPixels": 7.048583938740194e-12,
+          "statusDisagreements": []
+        },
+        {
+          "step": 180,
+          "maxMeshDeltaPixels": 1.0686562745831907e-11,
+          "statusDisagreements": []
+        },
+        {
+          "step": 360,
+          "maxMeshDeltaPixels": 6.934897101018578e-12,
+          "statusDisagreements": []
+        },
+        {
+          "step": 960,
+          "maxMeshDeltaPixels": 1.0118128557223827e-10,
+          "statusDisagreements": []
+        }
+      ],
+      "metrics": {
+        "sleeve-gauze-right": {
+          "peak": 6.230566159073832,
+          "root": 0,
+          "fallback": 0,
+          "limited": 99,
+          "maxStep": 0.7580918283229767,
+          "maxWorldStep": 2.578413690896292,
+          "final": 3.679157912541605e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-gauze-left": {
+          "peak": 9.809541372093568,
+          "root": 0,
+          "fallback": 0,
+          "limited": 85,
+          "maxStep": 1.28412687491346,
+          "maxWorldStep": 3.093654484742748,
+          "final": 0.0000010925846442363359,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-point-left": {
+          "peak": 6.144471987039682,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7037616954356652,
+          "maxWorldStep": 2.099355377114177,
+          "final": 4.063429076051005e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-train-right": {
+          "peak": 4.130593555007681,
+          "root": 0,
+          "fallback": 0,
+          "limited": 97,
+          "maxStep": 0.6156757898700451,
+          "maxWorldStep": 1.9986043275684995,
+          "final": 3.1823889522256195e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-drape-left": {
+          "peak": 4.061624030742294,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.6496779728168787,
+          "maxWorldStep": 2.023739918304493,
+          "final": 1.2482106683264143e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-right": {
+          "peak": 6.315748389140439,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7834750265406579,
+          "maxWorldStep": 2.3906672854853257,
+          "final": 1.718242769026831e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-left": {
+          "peak": 6.109073032955405,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7487964220200387,
+          "maxWorldStep": 2.3870598197400534,
+          "final": 1.518471662289463e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 7.330851628010139,
+          "root": 0,
+          "fallback": 0,
+          "limited": 61,
+          "maxStep": 0.7552297196140573,
+          "maxWorldStep": 2.507491597183976,
+          "final": 1.4049949153499104e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-right": {
+          "peak": 19.785922669470892,
+          "root": 0,
+          "fallback": 0,
+          "limited": 2,
+          "maxStep": 1.9359906558447837,
+          "maxWorldStep": 2.890590399820427,
+          "final": 0.00022170935764368667,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-left": {
+          "peak": 20.0757867314318,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.8852802066610468,
+          "maxWorldStep": 2.9527557185479356,
+          "final": 0.00019608163489194015,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 33.676225234673,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.828252459256145,
+          "maxWorldStep": 2.8282524592561717,
+          "final": 0.00007004988540891613,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 32.26546063696176,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.6152325387432533,
+          "maxWorldStep": 2.5678734878803526,
+          "final": 9.727663944818575e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 3.037841386803695,
+          "root": 0,
+          "fallback": 0,
+          "limited": 19,
+          "maxStep": 0.23543689076070426,
+          "maxWorldStep": 2.6846178788764052,
+          "final": 3.987683650776398e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 51.44841902788246,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.196316245155222,
+          "maxWorldStep": 2.58160124059009,
+          "final": 0.00007176354064803095,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 32.07902720335939,
+          "root": 0,
+          "fallback": 0,
+          "limited": 1,
+          "maxStep": 1.640615889497079,
+          "maxWorldStep": 2.5630477466321726,
+          "final": 9.875454389033489e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 2.018439645492223,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.22284068735536103,
+          "maxWorldStep": 2.685597263752287,
+          "final": 3.807614565612157e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-left": {
+          "peak": 0.38521257782106816,
+          "root": 0,
+          "fallback": 0,
+          "limited": 92,
+          "maxStep": 0.03311242045222425,
+          "maxWorldStep": 2.6654677700171114,
+          "final": 9.763728186937476e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-left": {
+          "peak": 0.22676942180418533,
+          "root": 0,
+          "fallback": 0,
+          "limited": 62,
+          "maxStep": 0.060889731538079354,
+          "maxWorldStep": 2.6404806886409116,
+          "final": 5.669211660557183e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-left": {
+          "peak": 0.6849237908709205,
+          "root": 0,
+          "fallback": 0,
+          "limited": 74,
+          "maxStep": 0.18238003452072832,
+          "maxWorldStep": 2.6223889339172897,
+          "final": 2.128133261483925e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 36.69969325577324,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.222870810468752,
+          "maxWorldStep": 2.5714575689178316,
+          "final": 3.2720407037599826e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-right": {
+          "peak": 0.38527635536901944,
+          "root": 0,
+          "fallback": 0,
+          "limited": 93,
+          "maxStep": 0.033083212102927285,
+          "maxWorldStep": 2.668538683672176,
+          "final": 9.686108191987763e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-right": {
+          "peak": 0.22865554713942793,
+          "root": 0,
+          "fallback": 0,
+          "limited": 63,
+          "maxStep": 0.06154742620147493,
+          "maxWorldStep": 2.643476203629495,
+          "final": 5.519448004053135e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-right": {
+          "peak": 0.5601136694031931,
+          "root": 0,
+          "fallback": 0,
+          "limited": 72,
+          "maxStep": 0.1657015536053962,
+          "maxWorldStep": 2.623908309097816,
+          "final": 5.5493414956432114e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 37.01660437966321,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.2690364866618378,
+          "maxWorldStep": 2.5969680833777344,
+          "final": 3.6454843879377636e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-left": {
+          "peak": 3.1058144322190033,
+          "root": 0,
+          "fallback": 0,
+          "limited": 61,
+          "maxStep": 0.6092470027422974,
+          "maxWorldStep": 2.5242670711794193,
+          "final": 6.27751101086687e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-right": {
+          "peak": 3.1010667842514215,
+          "root": 0,
+          "fallback": 0,
+          "limited": 58,
+          "maxStep": 0.6036731932265861,
+          "maxWorldStep": 2.5257042237192953,
+          "final": 6.161998233588071e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "forehead-drop": {
+          "peak": 1.1920178291271548,
+          "root": 0,
+          "fallback": 0,
+          "limited": 112,
+          "maxStep": 0.36020098112859844,
+          "maxWorldStep": 2.609440284990648,
+          "final": 1.3973160708298757e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-left": {
+          "peak": 1.6157528241687895,
+          "root": 0,
+          "fallback": 0,
+          "limited": 94,
+          "maxStep": 0.35825057898818147,
+          "maxWorldStep": 2.405145960607127,
+          "final": 4.82657523103513e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-right": {
+          "peak": 1.3917887691393567,
+          "root": 0,
+          "fallback": 0,
+          "limited": 87,
+          "maxStep": 0.34188335678815207,
+          "maxWorldStep": 2.4079837172442073,
+          "final": 9.27368907865622e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-left": {
+          "peak": 2.1916630368841266,
+          "root": 0,
+          "fallback": 0,
+          "limited": 9,
+          "maxStep": 0.42115465477130104,
+          "maxWorldStep": 2.304360537815097,
+          "final": 4.843630356165754e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-right": {
+          "peak": 2.1919739485156287,
+          "root": 0,
+          "fallback": 0,
+          "limited": 8,
+          "maxStep": 0.42257010023958447,
+          "maxWorldStep": 2.303104362235171,
+          "final": 1.0055322841491681e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-small-tassel": {
+          "peak": 3.137402958255236,
+          "root": 0,
+          "fallback": 0,
+          "limited": 36,
+          "maxStep": 0.2049156372671182,
+          "maxWorldStep": 2.205839030072745,
+          "final": 1.8302663887289495e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-left": {
+          "peak": 2.00987970840265,
+          "root": 0,
+          "fallback": 0,
+          "limited": 88,
+          "maxStep": 0.48200692794364836,
+          "maxWorldStep": 1.2134743829488197,
+          "final": 1.5735760881992024e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-right": {
+          "peak": 2.401925886323586,
+          "root": 0,
+          "fallback": 0,
+          "limited": 83,
+          "maxStep": 0.5470932924407266,
+          "maxWorldStep": 1.220584648628975,
+          "final": 1.7918324448008795e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-upper": {
+          "peak": 0.5801669594252012,
+          "root": 0,
+          "fallback": 0,
+          "limited": 171,
+          "maxStep": 0.09899816552445277,
+          "maxWorldStep": 1.8419621508412984,
+          "final": 9.513102230508322e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-lower": {
+          "peak": 0.5825247249179891,
+          "root": 0,
+          "fallback": 0,
+          "limited": 139,
+          "maxStep": 0.22560839245946834,
+          "maxWorldStep": 1.811322703422705,
+          "final": 9.28844841356212e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-upper": {
+          "peak": 0.5980794378287116,
+          "root": 0,
+          "fallback": 0,
+          "limited": 191,
+          "maxStep": 0.1232132214807969,
+          "maxWorldStep": 1.834396979812981,
+          "final": 0.00012871010016940815,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-lower": {
+          "peak": 0.5771911785984933,
+          "root": 0,
+          "fallback": 0,
+          "limited": 127,
+          "maxStep": 0.2276417557475404,
+          "maxWorldStep": 1.7991937895100998,
+          "final": 0.00001892890978851935,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-tassel-buckle": {
+          "peak": 0.6989936875252336,
+          "root": 0,
+          "fallback": 0,
+          "limited": 119,
+          "maxStep": 0.4407301350447276,
+          "maxWorldStep": 1.7738148021960867,
+          "final": 1.5155191131352148e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 16.06752585536821,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.0483686570621256,
+          "maxWorldStep": 1.7805976167568625,
+          "final": 6.675307635379757e-9,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "support-reverse",
+      "components": 40,
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxFinalResidualPixels": 0.0011576612279869498,
+      "motionIssues": [],
+      "samples": [
+        {
+          "step": 0,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 60,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 96,
+          "maxMeshDeltaPixels": 1.1368683772161603e-13,
+          "statusDisagreements": []
+        },
+        {
+          "step": 180,
+          "maxMeshDeltaPixels": 1.1368683772161603e-13,
+          "statusDisagreements": []
+        },
+        {
+          "step": 360,
+          "maxMeshDeltaPixels": 9.094947017729282e-12,
+          "statusDisagreements": []
+        },
+        {
+          "step": 960,
+          "maxMeshDeltaPixels": 7.389644451905042e-12,
+          "statusDisagreements": []
+        }
+      ],
+      "metrics": {
+        "sleeve-gauze-right": {
+          "peak": 2.145057373379449,
+          "root": 0,
+          "fallback": 0,
+          "limited": 241,
+          "maxStep": 0.09683882744071998,
+          "maxWorldStep": 1.3761361244121166,
+          "final": 1.3461780895610844e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-gauze-left": {
+          "peak": 3.0366901335550494,
+          "root": 0,
+          "fallback": 0,
+          "limited": 131,
+          "maxStep": 0.1308246256527376,
+          "maxWorldStep": 1.3869065064978237,
+          "final": 1.4402129964092253e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-point-left": {
+          "peak": 2.2565337319932866,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.09867438673228413,
+          "maxWorldStep": 1.373395633941675,
+          "final": 1.6618530423674798e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-train-right": {
+          "peak": 1.1771889067517076,
+          "root": 0,
+          "fallback": 0,
+          "limited": 118,
+          "maxStep": 0.06700314803252504,
+          "maxWorldStep": 1.3329176334447466,
+          "final": 9.117804282204084e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-drape-left": {
+          "peak": 1.4242890049526684,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.05913951165830943,
+          "maxWorldStep": 1.3424469251600972,
+          "final": 2.7544481295523525e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-right": {
+          "peak": 2.3526990158855403,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.10701283010594069,
+          "maxWorldStep": 1.3800803253329272,
+          "final": 4.089349721433776e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-left": {
+          "peak": 2.217484395538133,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.0967246636634491,
+          "maxWorldStep": 1.3727533620291468,
+          "final": 8.462358730865051e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 2.5205531066201066,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.11300727609538529,
+          "maxWorldStep": 1.3692154400364331,
+          "final": 6.138355029781735e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-right": {
+          "peak": 7.492556664206834,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.36803760825523485,
+          "maxWorldStep": 1.539991118678465,
+          "final": 0.000011029924457125736,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-left": {
+          "peak": 7.547549873774298,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3714680162943937,
+          "maxWorldStep": 1.542901881818989,
+          "final": 0.000021961336697405246,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 17.888634420684767,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.7424940213856688,
+          "maxWorldStep": 1.6406826129060317,
+          "final": 0.0002416297952643231,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 20.346566941430204,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.8185000829721282,
+          "maxWorldStep": 1.2933845057515896,
+          "final": 5.396009555271374e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 2.9384876862968006,
+          "root": 0,
+          "fallback": 0,
+          "limited": 17,
+          "maxStep": 0.20323219673151677,
+          "maxWorldStep": 1.2933911385938752,
+          "final": 1.0142700106216443e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 31.440024145683704,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.538371786470618,
+          "maxWorldStep": 1.367142362918141,
+          "final": 0.00024171380351379563,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 19.82968358965757,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7920121002463311,
+          "maxWorldStep": 1.293405635552726,
+          "final": 5.442799832483716e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.9462615931356578,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.21031581320210382,
+          "maxWorldStep": 1.293385336649456,
+          "final": 9.771753458475228e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-left": {
+          "peak": 0.3836736075942435,
+          "root": 0,
+          "fallback": 0,
+          "limited": 51,
+          "maxStep": 0.0457813850022742,
+          "maxWorldStep": 1.294265155624021,
+          "final": 9.79797722151454e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-left": {
+          "peak": 0.2264279939447701,
+          "root": 0,
+          "fallback": 0,
+          "limited": 55,
+          "maxStep": 0.09848919664404183,
+          "maxWorldStep": 1.2859086923658163,
+          "final": 5.575718083429297e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-left": {
+          "peak": 0.6797442623097799,
+          "root": 0,
+          "fallback": 0,
+          "limited": 30,
+          "maxStep": 0.32951474460297736,
+          "maxWorldStep": 1.2771103769208734,
+          "final": 6.183751496662781e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 24.89961662591427,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 4.732665203706182,
+          "maxWorldStep": 4.10112869190392,
+          "final": 1.1344243252513807e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-right": {
+          "peak": 0.38367360759418695,
+          "root": 0,
+          "fallback": 0,
+          "limited": 51,
+          "maxStep": 0.045781385002104144,
+          "maxWorldStep": 1.2942698257080725,
+          "final": 9.79797722151454e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-right": {
+          "peak": 0.22841479149079397,
+          "root": 0,
+          "fallback": 0,
+          "limited": 55,
+          "maxStep": 0.0986661580198809,
+          "maxWorldStep": 1.2859088750159169,
+          "final": 5.628701215769703e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-right": {
+          "peak": 0.5564682088556395,
+          "root": 0,
+          "fallback": 0,
+          "limited": 33,
+          "maxStep": 0.2890514279863449,
+          "maxWorldStep": 1.2759104447991152,
+          "final": 4.5216072432249666e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 25.099552672046908,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 4.788284022289748,
+          "maxWorldStep": 4.162145772508616,
+          "final": 1.9982957873011546e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-left": {
+          "peak": 3.1030768080743965,
+          "root": 0,
+          "fallback": 0,
+          "limited": 57,
+          "maxStep": 0.3896963642853401,
+          "maxWorldStep": 1.2934244368577394,
+          "final": 2.128384752281511e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-right": {
+          "peak": 3.0983140000027056,
+          "root": 0,
+          "fallback": 0,
+          "limited": 58,
+          "maxStep": 0.38952462306518665,
+          "maxWorldStep": 1.2934277943686148,
+          "final": 2.1286883605582664e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "forehead-drop": {
+          "peak": 1.1920294899920576,
+          "root": 0,
+          "fallback": 0,
+          "limited": 163,
+          "maxStep": 0.3473609529110891,
+          "maxWorldStep": 1.2933964379727012,
+          "final": 4.216086812109492e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-left": {
+          "peak": 0.40471578499307187,
+          "root": 0,
+          "fallback": 0,
+          "limited": 213,
+          "maxStep": 0.03493789803581676,
+          "maxWorldStep": 1.3058648932149377,
+          "final": 3.4339111215734905e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-right": {
+          "peak": 0.5321815132947175,
+          "root": 0,
+          "fallback": 0,
+          "limited": 139,
+          "maxStep": 0.0412161684392533,
+          "maxWorldStep": 1.3174384060189526,
+          "final": 6.969870122822773e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-left": {
+          "peak": 0.40317563427770603,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.01829100301346602,
+          "maxWorldStep": 1.311565848571308,
+          "final": 1.252891364417825e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-right": {
+          "peak": 0.4035408685819682,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.01829419640428909,
+          "maxWorldStep": 1.3115740900280752,
+          "final": 2.8820904923597803e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-small-tassel": {
+          "peak": 3.225816059943497,
+          "root": 0,
+          "fallback": 0,
+          "limited": 34,
+          "maxStep": 0.1820873784066287,
+          "maxWorldStep": 1.3119102257054176,
+          "final": 6.845896864882957e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-left": {
+          "peak": 2.009993050375421,
+          "root": 0,
+          "fallback": 0,
+          "limited": 141,
+          "maxStep": 0.4846663127900043,
+          "maxWorldStep": 1.2933929483926037,
+          "final": 4.591110860351898e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-right": {
+          "peak": 2.4020844112362814,
+          "root": 0,
+          "fallback": 0,
+          "limited": 134,
+          "maxStep": 0.5345238718283738,
+          "maxWorldStep": 1.29339460322436,
+          "final": 4.941331974164518e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-upper": {
+          "peak": 0.5801668133314928,
+          "root": 0,
+          "fallback": 0,
+          "limited": 185,
+          "maxStep": 0.18004326651415564,
+          "maxWorldStep": 1.2934420679411942,
+          "final": 9.971111741855543e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-lower": {
+          "peak": 0.5825244215433466,
+          "root": 0,
+          "fallback": 0,
+          "limited": 174,
+          "maxStep": 0.516850274056613,
+          "maxWorldStep": 1.2923052386540774,
+          "final": 9.876508366956953e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-upper": {
+          "peak": 0.5980638443704994,
+          "root": 0,
+          "fallback": 0,
+          "limited": 197,
+          "maxStep": 0.14038682253669005,
+          "maxWorldStep": 1.2932802662381375,
+          "final": 0.0011576612279869498,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-lower": {
+          "peak": 0.5772191839475262,
+          "root": 0,
+          "fallback": 0,
+          "limited": 184,
+          "maxStep": 0.3542114461971151,
+          "maxWorldStep": 1.2913001036511493,
+          "final": 0.000025711934499429182,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-tassel-buckle": {
+          "peak": 0.6989943535870475,
+          "root": 0,
+          "fallback": 0,
+          "limited": 159,
+          "maxStep": 1.0665807823640578,
+          "maxWorldStep": 1.2892722582545553,
+          "final": 1.9326762412674725e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 12.412825409389653,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 5.024855374823172,
+          "maxWorldStep": 4.354313920346109,
+          "final": 1.375926392591167e-10,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "sustained",
+      "components": 40,
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxFinalResidualPixels": 0.0000631716524104839,
+      "motionIssues": [],
+      "samples": [
+        {
+          "step": 0,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 60,
+          "maxMeshDeltaPixels": 2.842170943040401e-14,
+          "statusDisagreements": []
+        },
+        {
+          "step": 96,
+          "maxMeshDeltaPixels": 2.2737367544323206e-13,
+          "statusDisagreements": []
+        },
+        {
+          "step": 180,
+          "maxMeshDeltaPixels": 1.7053025658242404e-13,
+          "statusDisagreements": []
+        },
+        {
+          "step": 360,
+          "maxMeshDeltaPixels": 1.1368683772161603e-13,
+          "statusDisagreements": []
+        },
+        {
+          "step": 960,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        }
+      ],
+      "metrics": {
+        "sleeve-gauze-right": {
+          "peak": 0.37149885617910494,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.15199200774927782,
+          "maxWorldStep": 0.15199200774927782,
+          "final": 3.264270506344476e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-gauze-left": {
+          "peak": 0.1856216408111737,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.07505113676581655,
+          "maxWorldStep": 0.07505113676581655,
+          "final": 2.106826830983504e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-point-left": {
+          "peak": 0.574186270817329,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.17007663295979872,
+          "maxWorldStep": 0.17007663295979872,
+          "final": 1.9317051327297686e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-train-right": {
+          "peak": 0.47637580530899554,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.18604884088840715,
+          "maxWorldStep": 0.18604884088840123,
+          "final": 1.258198358422256e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-drape-left": {
+          "peak": 0.5071932151181002,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.18615549677340018,
+          "maxWorldStep": 0.18615549677340018,
+          "final": 4.613228427101527e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-right": {
+          "peak": 0.8780144747845448,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.28166274316637435,
+          "maxWorldStep": 0.28166274316640194,
+          "final": 7.513791400138426e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-left": {
+          "peak": 0.7134064242502355,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.23454607315964204,
+          "maxWorldStep": 0.23454607315964204,
+          "final": 1.216028840849001e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 2.212620656785917,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.6549635724314796,
+          "maxWorldStep": 0.6549635724314796,
+          "final": 1.0305768044378182e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-right": {
+          "peak": 3.8216787022356526,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3323193691702171,
+          "maxWorldStep": 0.3323193691702171,
+          "final": 0.00003232243949820948,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-left": {
+          "peak": 4.202611649536376,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.37276609838096453,
+          "maxWorldStep": 0.37276609838096453,
+          "final": 0.00004963934951980064,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 5.361306982918739,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.15603060010015293,
+          "maxWorldStep": 0.15603060010015293,
+          "final": 0.000034744260830348664,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 0.8896613181719236,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.042628850778799264,
+          "maxWorldStep": 0.042628850778799264,
+          "final": 7.370093859103782e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0.10630663196812865,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.010202600163330326,
+          "maxWorldStep": 0.010202600163330326,
+          "final": 9.593609318783045e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 5.360278032485117,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.15590443402096207,
+          "maxWorldStep": 0.15590443402096207,
+          "final": 0.0000347647268672652,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 0.917027646852836,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.04393067714591247,
+          "maxWorldStep": 0.04393067714591247,
+          "final": 7.565878268635003e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.12418403919573637,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.011531222927852478,
+          "maxWorldStep": 0.011531222927852478,
+          "final": 3.853089123708218e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-left": {
+          "peak": 0.32923440151811795,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.00809873769805086,
+          "maxWorldStep": 0.008098737698056985,
+          "final": 9.363045359235496e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-left": {
+          "peak": 0.136454400877886,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.010920067650439149,
+          "maxWorldStep": 0.010920067650437753,
+          "final": 5.00560126309439e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-left": {
+          "peak": 0.2766232385267441,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.023655002899682462,
+          "maxWorldStep": 0.02365500289968781,
+          "final": 1.5575832188162695e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 9.041501539077196,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.299272566912986,
+          "maxWorldStep": 0.299272566912986,
+          "final": 1.1885576931204128e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-right": {
+          "peak": 0.32923440151811795,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.00809873769805086,
+          "maxWorldStep": 0.008098737698056985,
+          "final": 9.36362432519496e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-right": {
+          "peak": 0.13641335731959434,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.010970992951551644,
+          "maxWorldStep": 0.010970992951550542,
+          "final": 5.056461593641597e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-right": {
+          "peak": 0.18874004195417704,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.02007546854618904,
+          "maxWorldStep": 0.0200754685461902,
+          "final": 1.2132342249796306e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 9.129041906236102,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.29473804573299106,
+          "maxWorldStep": 0.29473804573301826,
+          "final": 8.19319554305924e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-left": {
+          "peak": 0.25682402142104915,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.010627148207058183,
+          "maxWorldStep": 0.010627148207058183,
+          "final": 9.766537880520145e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-right": {
+          "peak": 0.2564706323967653,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.010612527570682893,
+          "maxWorldStep": 0.010612527570682893,
+          "final": 9.75454267763782e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "forehead-drop": {
+          "peak": 0.31725122608217604,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.0137791247442938,
+          "maxWorldStep": 0.013779124744292461,
+          "final": 1.8195153289799043e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-left": {
+          "peak": 0.09119541780184871,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.04408031020505364,
+          "maxWorldStep": 0.04408031020505364,
+          "final": 2.0639848519365423e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-right": {
+          "peak": 0.09636975608724054,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.0495563678585416,
+          "maxWorldStep": 0.0495563678585416,
+          "final": 2.769971577268216e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-left": {
+          "peak": 0.07392266359573435,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.028967182865967594,
+          "maxWorldStep": 0.028967182865967594,
+          "final": 1.4745222296601962e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-right": {
+          "peak": 0.09112403133506594,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.03913217077715843,
+          "maxWorldStep": 0.03913217077715843,
+          "final": 1.4244978912849743e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-small-tassel": {
+          "peak": 0.16263876035748898,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.008137055200685238,
+          "maxWorldStep": 0.008137055200685238,
+          "final": 9.046018242946164e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-left": {
+          "peak": 0.37275553000189565,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.016151565784446972,
+          "maxWorldStep": 0.016151565784446972,
+          "final": 2.1127027983712224e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-right": {
+          "peak": 0.4409842857617157,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.019107059175856988,
+          "maxWorldStep": 0.019107059175856988,
+          "final": 2.4972022982522613e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-upper": {
+          "peak": 0.4959316627194525,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.017889442856519135,
+          "maxWorldStep": 0.017889442856519135,
+          "final": 8.870086576612862e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-lower": {
+          "peak": 0.2792132599710723,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.028320142395014087,
+          "maxWorldStep": 0.028320142395014087,
+          "final": 1.4004457869354262e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-upper": {
+          "peak": 0.4603831501122655,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.01563103995719771,
+          "maxWorldStep": 0.01563103995719771,
+          "final": 0.0000631716524104839,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-lower": {
+          "peak": 0.2938299850850576,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.030133541540606674,
+          "maxWorldStep": 0.030133541540606674,
+          "final": 0.000002494102281927442,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-tassel-buckle": {
+          "peak": 0.3055673221786953,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.04153134913821099,
+          "maxWorldStep": 0.04153134913821099,
+          "final": 6.913981848442614e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 3.781252378611582,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.17011188617922493,
+          "maxWorldStep": 0.17011188617922493,
+          "final": 5.8903110992205924e-9,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "extreme",
+      "components": 40,
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxFinalResidualPixels": 0.000029662800119475014,
+      "motionIssues": [],
+      "samples": [
+        {
+          "step": 0,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 60,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 96,
+          "maxMeshDeltaPixels": 2.2737367544323206e-13,
+          "statusDisagreements": []
+        },
+        {
+          "step": 180,
+          "maxMeshDeltaPixels": 1.1368683772161603e-13,
+          "statusDisagreements": []
+        },
+        {
+          "step": 360,
+          "maxMeshDeltaPixels": 2.9558577807620168e-12,
+          "statusDisagreements": []
+        },
+        {
+          "step": 960,
+          "maxMeshDeltaPixels": 4.547473508864641e-12,
+          "statusDisagreements": []
+        }
+      ],
+      "metrics": {
+        "sleeve-gauze-right": {
+          "peak": 9.198984463835487,
+          "root": 0,
+          "fallback": 0,
+          "limited": 3,
+          "maxStep": 3.787073724936983,
+          "maxWorldStep": 3.787073724936997,
+          "final": 9.260985635764808e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-gauze-left": {
+          "peak": 3.6132463468978586,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.7320252508177385,
+          "maxWorldStep": 1.7320252508177385,
+          "final": 7.50049211270925e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-point-left": {
+          "peak": 14.370553521615774,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 4.256324673034616,
+          "maxWorldStep": 4.256324673034616,
+          "final": 6.858820126112734e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-train-right": {
+          "peak": 11.87884755974417,
+          "root": 0,
+          "fallback": 0,
+          "limited": 4,
+          "maxStep": 4.650216597677833,
+          "maxWorldStep": 4.6502165976778205,
+          "final": 7.886592020238435e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-drape-left": {
+          "peak": 12.708926982252539,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 4.657114112407381,
+          "maxWorldStep": 4.657114112407381,
+          "final": 7.099618769204625e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-right": {
+          "peak": 19.504540252956414,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 7.008878350807253,
+          "maxWorldStep": 7.008878350807225,
+          "final": 7.633885153218354e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-left": {
+          "peak": 17.841802191097543,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 5.8657432056675995,
+          "maxWorldStep": 5.8657432056675995,
+          "final": 3.1527834980890937e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 21.560477847512622,
+          "root": 0,
+          "fallback": 2,
+          "limited": 18,
+          "maxStep": 6.134633797990241,
+          "maxWorldStep": 6.134633797990241,
+          "final": 1.0657655961522157e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-right": {
+          "peak": 59.77580117809798,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 7.434894603459474,
+          "maxWorldStep": 7.434894603459474,
+          "final": 0.000012997197597899105,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-left": {
+          "peak": 65.27409498548822,
+          "root": 0,
+          "fallback": 0,
+          "limited": 14,
+          "maxStep": 8.404733843126126,
+          "maxWorldStep": 8.404733843126126,
+          "final": 0.000016977656498857423,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 39.40492160305553,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.0453299841856625,
+          "maxWorldStep": 2.0453299841856376,
+          "final": 0.000011123445715645066,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 10.242499871244007,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.879720426614347,
+          "maxWorldStep": 0.879720426614347,
+          "final": 6.732177545275104e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 1.6268915437314266,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1840067217721047,
+          "maxWorldStep": 0.1840067217721047,
+          "final": 7.624876536542713e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 39.32425688521523,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.0491263434615345,
+          "maxWorldStep": 2.0491263434615345,
+          "final": 0.000011130101106836287,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 10.566743903154816,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.9057213696008029,
+          "maxWorldStep": 0.9057213696008029,
+          "final": 6.904475055688409e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 1.8320779908322096,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.19857533957348153,
+          "maxWorldStep": 0.19857533957348153,
+          "final": 3.083871305861251e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-left": {
+          "peak": 0.3717374614804453,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.021998737911848747,
+          "maxWorldStep": 0.021998737911853812,
+          "final": 3.72375267092146e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-left": {
+          "peak": 0.21457684509606018,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.04779282349652938,
+          "maxWorldStep": 0.04779282349652715,
+          "final": 8.756941162337363e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-left": {
+          "peak": 0.6368348014124464,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.16158058333707168,
+          "maxWorldStep": 0.161580583337077,
+          "final": 3.214021661933183e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 23.078864848677142,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 3.0515239503408313,
+          "maxWorldStep": 3.0515239503408313,
+          "final": 1.3696092519883464e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-right": {
+          "peak": 0.3717374614804453,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.02199873791179213,
+          "maxWorldStep": 0.021998737911797194,
+          "final": 3.726608901195139e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-right": {
+          "peak": 0.21647002951328617,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.04791747667237879,
+          "maxWorldStep": 0.04791747667237191,
+          "final": 8.776948304343389e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-right": {
+          "peak": 0.5195098986629554,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.14123933287513066,
+          "maxWorldStep": 0.14123933287513404,
+          "final": 2.673079592629434e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 23.222645018685377,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 3.0682338636049225,
+          "maxWorldStep": 3.0682338636049766,
+          "final": 1.4609441000151037e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-left": {
+          "peak": 2.126547575331815,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.17867456667012316,
+          "maxWorldStep": 0.17867456667012316,
+          "final": 8.600113141755841e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-right": {
+          "peak": 2.1234914110274454,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.17842338558105122,
+          "maxWorldStep": 0.17842338558105122,
+          "final": 8.587548536839792e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "forehead-drop": {
+          "peak": 1.1766621507522634,
+          "root": 0,
+          "fallback": 0,
+          "limited": 9,
+          "maxStep": 0.15019317075493838,
+          "maxWorldStep": 0.15019317075493632,
+          "final": 2.3005846439379683e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-left": {
+          "peak": 2.273107899240516,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.0992977414109522,
+          "maxWorldStep": 1.0992977414109522,
+          "final": 2.6409452402731404e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-right": {
+          "peak": 1.3450094922307738,
+          "root": 0,
+          "fallback": 0,
+          "limited": 3,
+          "maxStep": 1.0150109081680625,
+          "maxWorldStep": 1.0150109081680625,
+          "final": 1.6206915034417404e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-left": {
+          "peak": 1.8584992421416606,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7242231720937031,
+          "maxWorldStep": 0.7242231720937031,
+          "final": 1.754156960553278e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-right": {
+          "peak": 2.2107213395166054,
+          "root": 0,
+          "fallback": 0,
+          "limited": 2,
+          "maxStep": 0.9748333214873494,
+          "maxWorldStep": 0.9748333214873494,
+          "final": 1.1561973753560289e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-small-tassel": {
+          "peak": 1.6929063252602723,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.11720200415985636,
+          "maxWorldStep": 0.11720200415985636,
+          "final": 6.823634015022599e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-left": {
+          "peak": 1.9174646263967325,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.2100154495593512,
+          "maxWorldStep": 0.2100154495593512,
+          "final": 2.665426642181904e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-right": {
+          "peak": 2.287864553834431,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.24974400819690004,
+          "maxWorldStep": 0.24974400819690004,
+          "final": 3.1494090448794485e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-upper": {
+          "peak": 0.5799416094995963,
+          "root": 0,
+          "fallback": 0,
+          "limited": 37,
+          "maxStep": 0.08830501594814393,
+          "maxWorldStep": 0.08830501594814393,
+          "final": 9.52057498670896e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-lower": {
+          "peak": 0.5820322438830138,
+          "root": 0,
+          "fallback": 0,
+          "limited": 30,
+          "maxStep": 0.2552948588115566,
+          "maxWorldStep": 0.2552948588115566,
+          "final": 8.56468627616617e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-upper": {
+          "peak": 0.5976684438430548,
+          "root": 0,
+          "fallback": 0,
+          "limited": 49,
+          "maxStep": 0.09548257394102716,
+          "maxWorldStep": 0.09548257394102716,
+          "final": 0.000029662800119475014,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-lower": {
+          "peak": 0.5755758813522348,
+          "root": 0,
+          "fallback": 0,
+          "limited": 21,
+          "maxStep": 0.211335394774434,
+          "maxWorldStep": 0.211335394774434,
+          "final": 7.955222616944787e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-tassel-buckle": {
+          "peak": 0.6972583824616078,
+          "root": 0,
+          "fallback": 0,
+          "limited": 21,
+          "maxStep": 0.5528971964920737,
+          "maxWorldStep": 0.5528971964920737,
+          "final": 1.4251600780430686e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 11.146124784280412,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.842551848938377,
+          "maxWorldStep": 2.842551848938377,
+          "final": 1.0562021188924318e-10,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "combined",
+      "components": 40,
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxFinalResidualPixels": 0.0002252708443556706,
+      "motionIssues": [],
+      "samples": [
+        {
+          "step": 0,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 60,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 96,
+          "maxMeshDeltaPixels": 4.092726157978177e-12,
+          "statusDisagreements": []
+        },
+        {
+          "step": 180,
+          "maxMeshDeltaPixels": 9.279688129026908e-12,
+          "statusDisagreements": []
+        },
+        {
+          "step": 360,
+          "maxMeshDeltaPixels": 1.609734567864507e-9,
+          "statusDisagreements": []
+        },
+        {
+          "step": 960,
+          "maxMeshDeltaPixels": 1.0061285138363019e-10,
+          "statusDisagreements": []
+        }
+      ],
+      "metrics": {
+        "sleeve-gauze-right": {
+          "peak": 6.271694283051849,
+          "root": 0,
+          "fallback": 0,
+          "limited": 99,
+          "maxStep": 1.2775864093190739,
+          "maxWorldStep": 2.577953060018958,
+          "final": 3.647589789401609e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-gauze-left": {
+          "peak": 9.641338681306458,
+          "root": 0,
+          "fallback": 0,
+          "limited": 85,
+          "maxStep": 1.2408204456296614,
+          "maxWorldStep": 3.044712862002846,
+          "final": 0.000001092513431701202,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-point-left": {
+          "peak": 7.024160372746987,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.4315240540954173,
+          "maxWorldStep": 2.3330047147254773,
+          "final": 4.084060012584415e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-train-right": {
+          "peak": 6.03006171117257,
+          "root": 0,
+          "fallback": 0,
+          "limited": 97,
+          "maxStep": 1.56535247176799,
+          "maxWorldStep": 2.1816369825840525,
+          "final": 3.1223260190669717e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-drape-left": {
+          "peak": 5.706131730792272,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.5666920805305091,
+          "maxWorldStep": 2.1873022764299064,
+          "final": 1.2606714969155274e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-right": {
+          "peak": 8.015766047405165,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.359761153627955,
+          "maxWorldStep": 2.3906672854853257,
+          "final": 1.453743376740973e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-left": {
+          "peak": 7.66606745325516,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.9737436761901208,
+          "maxWorldStep": 2.3870598197400534,
+          "final": 1.6268145274972596e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 14.95897082315671,
+          "root": 0,
+          "fallback": 2,
+          "limited": 74,
+          "maxStep": 4.645428527772534,
+          "maxWorldStep": 4.645428527772534,
+          "final": 1.3952756801771312e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-right": {
+          "peak": 19.53288227930376,
+          "root": 0,
+          "fallback": 0,
+          "limited": 3,
+          "maxStep": 2.5025206342488233,
+          "maxWorldStep": 2.958572096083443,
+          "final": 0.0002252708443556706,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-left": {
+          "peak": 19.1090641395146,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.8289654525097743,
+          "maxWorldStep": 3.0300835345487482,
+          "final": 0.00020157870230849093,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 33.15378641246636,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.7303732058899226,
+          "maxWorldStep": 2.7303732058898955,
+          "final": 0.0000663519045484435,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 32.266839538870364,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.60966983458281,
+          "maxWorldStep": 2.5678734878803526,
+          "final": 9.727663944818575e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 3.0378412022018884,
+          "root": 0,
+          "fallback": 0,
+          "limited": 19,
+          "maxStep": 0.2354369448900399,
+          "maxWorldStep": 2.6846178788764052,
+          "final": 3.987683650776398e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 47.8642282058433,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.149561968173805,
+          "maxWorldStep": 2.58160124059009,
+          "final": 0.00006804290893438678,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 32.0805790328899,
+          "root": 0,
+          "fallback": 0,
+          "limited": 1,
+          "maxStep": 1.6358458397157616,
+          "maxWorldStep": 2.5630477466321726,
+          "final": 9.875454389033489e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 2.0184393476617943,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.22284068543630306,
+          "maxWorldStep": 2.685597263752287,
+          "final": 3.807614565612157e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-left": {
+          "peak": 0.38521335046992133,
+          "root": 0,
+          "fallback": 0,
+          "limited": 91,
+          "maxStep": 0.03312576845980935,
+          "maxWorldStep": 2.66551168392832,
+          "final": 9.763741053120547e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-left": {
+          "peak": 0.22674441759772515,
+          "root": 0,
+          "fallback": 0,
+          "limited": 62,
+          "maxStep": 0.06091309391092367,
+          "maxWorldStep": 2.6404828864103917,
+          "final": 5.668078142183618e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-left": {
+          "peak": 0.6849228826434703,
+          "root": 0,
+          "fallback": 0,
+          "limited": 71,
+          "maxStep": 0.18251782533360184,
+          "maxWorldStep": 2.622398098805437,
+          "final": 2.128133261483925e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 36.70589037897746,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.999358993756732,
+          "maxWorldStep": 2.571482983846333,
+          "final": 3.1350445710001744e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-right": {
+          "peak": 0.3852768966338401,
+          "root": 0,
+          "fallback": 0,
+          "limited": 92,
+          "maxStep": 0.03306846044286715,
+          "maxWorldStep": 2.6685819912870565,
+          "final": 9.686108191987763e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-right": {
+          "peak": 0.2286538959910714,
+          "root": 0,
+          "fallback": 0,
+          "limited": 63,
+          "maxStep": 0.06159031867982589,
+          "maxWorldStep": 2.6434777284824036,
+          "final": 5.518886180804418e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-right": {
+          "peak": 0.5601118438873792,
+          "root": 0,
+          "fallback": 0,
+          "limited": 70,
+          "maxStep": 0.1659034176656995,
+          "maxWorldStep": 2.6239175614380694,
+          "final": 5.732038046407213e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 37.024246802765084,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.069220840885933,
+          "maxWorldStep": 2.596983958090242,
+          "final": 3.3949613897100803e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-left": {
+          "peak": 3.10581456971067,
+          "root": 0,
+          "fallback": 0,
+          "limited": 58,
+          "maxStep": 0.6045617192488935,
+          "maxWorldStep": 2.524365861377094,
+          "final": 6.271802282043157e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-right": {
+          "peak": 3.101066834388983,
+          "root": 0,
+          "fallback": 0,
+          "limited": 57,
+          "maxStep": 0.5996484173266543,
+          "maxWorldStep": 2.52580675621052,
+          "final": 6.158571537673505e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "forehead-drop": {
+          "peak": 1.1920161759291055,
+          "root": 0,
+          "fallback": 0,
+          "limited": 111,
+          "maxStep": 0.36011378165192603,
+          "maxWorldStep": 2.6094399616932926,
+          "final": 1.3973160708298757e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-left": {
+          "peak": 1.6165198681387019,
+          "root": 0,
+          "fallback": 0,
+          "limited": 93,
+          "maxStep": 0.3706214375591161,
+          "maxWorldStep": 2.405157885902184,
+          "final": 4.817479748453479e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-right": {
+          "peak": 1.3917885551080056,
+          "root": 0,
+          "fallback": 0,
+          "limited": 87,
+          "maxStep": 0.4967227287262701,
+          "maxWorldStep": 2.4079805780087105,
+          "final": 9.283620808058789e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-left": {
+          "peak": 2.285009853087234,
+          "root": 0,
+          "fallback": 0,
+          "limited": 9,
+          "maxStep": 0.5412499774959557,
+          "maxWorldStep": 2.304267463654365,
+          "final": 4.844844988630045e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-right": {
+          "peak": 2.382428985310421,
+          "root": 0,
+          "fallback": 0,
+          "limited": 8,
+          "maxStep": 0.5325374400795602,
+          "maxWorldStep": 2.3239241910910833,
+          "final": 1.0117101810793763e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-small-tassel": {
+          "peak": 3.137408711641613,
+          "root": 0,
+          "fallback": 0,
+          "limited": 37,
+          "maxStep": 0.20494537350615155,
+          "maxWorldStep": 2.205839030072745,
+          "final": 1.8303602939711467e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-left": {
+          "peak": 2.0098795927481565,
+          "root": 0,
+          "fallback": 0,
+          "limited": 86,
+          "maxStep": 0.4782213829969959,
+          "maxWorldStep": 1.2135839360018985,
+          "final": 1.5734629132823929e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-right": {
+          "peak": 2.4019256357638836,
+          "root": 0,
+          "fallback": 0,
+          "limited": 82,
+          "maxStep": 0.5457619907481465,
+          "maxWorldStep": 1.2205852291999497,
+          "final": 1.7916057943300883e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-upper": {
+          "peak": 0.5801669594139498,
+          "root": 0,
+          "fallback": 0,
+          "limited": 169,
+          "maxStep": 0.09885534385758431,
+          "maxWorldStep": 1.8419939355557573,
+          "final": 9.512537927670136e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-lower": {
+          "peak": 0.5825247246782416,
+          "root": 0,
+          "fallback": 0,
+          "limited": 137,
+          "maxStep": 0.2740731959085048,
+          "maxWorldStep": 1.8113228450231056,
+          "final": 9.28844841356212e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-upper": {
+          "peak": 0.5980790997453035,
+          "root": 0,
+          "fallback": 0,
+          "limited": 191,
+          "maxStep": 0.12305533119559801,
+          "maxWorldStep": 1.8342624283490327,
+          "final": 0.00012772010520521398,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-lower": {
+          "peak": 0.5771917783145153,
+          "root": 0,
+          "fallback": 0,
+          "limited": 128,
+          "maxStep": 0.24223909938039212,
+          "maxWorldStep": 1.7991936653015876,
+          "final": 0.000018915679852541577,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-tassel-buckle": {
+          "peak": 0.6989936870954475,
+          "root": 0,
+          "fallback": 0,
+          "limited": 117,
+          "maxStep": 0.5021295788642671,
+          "maxWorldStep": 1.7738136106751163,
+          "final": 1.5155191131352148e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 16.029629747032896,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.2034247599948014,
+          "maxWorldStep": 1.780596731152392,
+          "final": 6.675307635379757e-9,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "light-brush",
+      "components": 40,
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxFinalResidualPixels": 0.0000017650676009342562,
+      "motionIssues": [],
+      "samples": [
+        {
+          "step": 0,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 60,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 96,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 180,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 360,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 960,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        }
+      ],
+      "metrics": {
+        "sleeve-gauze-right": {
+          "peak": 0.2787156927030195,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.11402434294481496,
+          "maxWorldStep": 0.11402434294481496,
+          "final": 4.386926400592861e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-gauze-left": {
+          "peak": 0.1119692120879803,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.05285765863808709,
+          "maxWorldStep": 0.05285765863808709,
+          "final": 3.6141866436238055e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-point-left": {
+          "peak": 0.4307337886952416,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.12758566026419652,
+          "maxWorldStep": 0.12758566026419652,
+          "final": 1.989025873155534e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-train-right": {
+          "peak": 0.35737411969072397,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.13956929301000567,
+          "maxWorldStep": 0.13956929301002044,
+          "final": 4.3208758716989006e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-drape-left": {
+          "peak": 0.38047380969988714,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1396479715591311,
+          "maxWorldStep": 0.1396479715591311,
+          "final": 7.557216904447444e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-right": {
+          "peak": 0.5849805856165047,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.21041653732088658,
+          "maxWorldStep": 0.21041653732088658,
+          "final": 2.2869822112820894e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-left": {
+          "peak": 0.5351765601137382,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.17594967048545834,
+          "maxWorldStep": 0.17594967048545834,
+          "final": 9.596792101979953e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 1.6598181797179794,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.4622268102139881,
+          "maxWorldStep": 0.4622268102139881,
+          "final": 2.4984179615173834e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-right": {
+          "peak": 1.7983141964623683,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.22311976076669576,
+          "maxWorldStep": 0.22311976076669576,
+          "final": 4.098884689082807e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-left": {
+          "peak": 1.9758832623026634,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.25222349302382796,
+          "maxWorldStep": 0.25222349302382796,
+          "final": 5.136019868344968e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 1.315688813183047,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.06708753681413884,
+          "maxWorldStep": 0.06708753681413884,
+          "final": 3.3395832564512e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 0.31562775885604183,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.02673178505397623,
+          "maxWorldStep": 0.02673178505397623,
+          "final": 3.971171111134675e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0.05894425673890883,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.007654322742101921,
+          "maxWorldStep": 0.007654322742101921,
+          "final": 8.153032088314427e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 1.314824305414574,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.0670121461708371,
+          "maxWorldStep": 0.0670121461708371,
+          "final": 3.341580233070701e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 0.32528952774081865,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.02752643569749007,
+          "maxWorldStep": 0.02752643569749007,
+          "final": 4.0732700957562465e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.0682263574844893,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.008651234333905244,
+          "maxWorldStep": 0.008651234333905244,
+          "final": 1.0690031445589835e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-left": {
+          "peak": 0.08415928268090399,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.004358818112201362,
+          "maxWorldStep": 0.004358818112193761,
+          "final": 9.516020950102316e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-left": {
+          "peak": 0.055501244754888886,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.006797988787975362,
+          "maxWorldStep": 0.006797988787975362,
+          "final": 5.183476664499246e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-left": {
+          "peak": 0.08985438497031363,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.017321356383663278,
+          "maxWorldStep": 0.01732135638366802,
+          "final": 1.1873190460579562e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 1.36309014467189,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.22491321513300588,
+          "maxWorldStep": 0.22491321513300588,
+          "final": 1.2291902699923043e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-right": {
+          "peak": 0.08415928268084737,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.004358818112201362,
+          "maxWorldStep": 0.004358818112195028,
+          "final": 9.518298214775251e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-right": {
+          "peak": 0.05542968322364135,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.006820302070103857,
+          "maxWorldStep": 0.006820302070098689,
+          "final": 5.141599578255833e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-right": {
+          "peak": 0.06916014024414181,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.015086822308558654,
+          "maxWorldStep": 0.015086822308558654,
+          "final": 1.2760195738390658e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 1.421516712958908,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.2214760054657645,
+          "maxWorldStep": 0.22147600546579171,
+          "final": 9.756235622862438e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-left": {
+          "peak": 0.07889559437430137,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.006093001086628373,
+          "maxWorldStep": 0.006093001086628373,
+          "final": 3.6291212341316235e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-right": {
+          "peak": 0.07878708988636417,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.006084621557299812,
+          "maxWorldStep": 0.006084621557299812,
+          "final": 3.62439674207664e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "forehead-drop": {
+          "peak": 0.1033978432058921,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.008198342000275308,
+          "maxWorldStep": 0.008198342000278355,
+          "final": 9.742039889323524e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-left": {
+          "peak": 0.06841444214287802,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.03306873650108508,
+          "maxWorldStep": 0.03306873650108508,
+          "final": 2.725642171470286e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-right": {
+          "peak": 0.05241808966852679,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.033102708682126974,
+          "maxWorldStep": 0.033102708682126974,
+          "final": 1.1371485807403151e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-left": {
+          "peak": 0.05545105415457194,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.021730407957031423,
+          "maxWorldStep": 0.021730407957031423,
+          "final": 1.599574210747485e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-right": {
+          "peak": 0.0683639454015358,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.029356896588752793,
+          "maxWorldStep": 0.029356896588752793,
+          "final": 1.2407637146021892e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-small-tassel": {
+          "peak": 0.06161278384235312,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.004979930887595413,
+          "maxWorldStep": 0.004979930887595413,
+          "final": 6.776837304432703e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-left": {
+          "peak": 0.12011103979113469,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.009517901224899842,
+          "maxWorldStep": 0.009517901224899842,
+          "final": 9.244489441746952e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-right": {
+          "peak": 0.1420658291963541,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.011257531406043807,
+          "maxWorldStep": 0.011257531406043807,
+          "final": 9.7290000967278e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-upper": {
+          "peak": 0.15829125635939736,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.011793695899776455,
+          "maxWorldStep": 0.011793695899776455,
+          "final": 9.640156099196175e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-lower": {
+          "peak": 0.14280550594725724,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.021330436224590996,
+          "maxWorldStep": 0.021330436224590996,
+          "final": 8.861892500699606e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-upper": {
+          "peak": 0.10198566317296703,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.007214669607795896,
+          "maxWorldStep": 0.007214669607795896,
+          "final": 0.0000017650676009342562,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-lower": {
+          "peak": 0.17296295823480715,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.012830057938328627,
+          "maxWorldStep": 0.012830057938328627,
+          "final": 2.3796878982856234e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-tassel-buckle": {
+          "peak": 0.09085976386794294,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.031201681308115608,
+          "maxWorldStep": 0.031201681308115608,
+          "final": 1.4211292402786947e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 0.5172642987541227,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1276518178789169,
+          "maxWorldStep": 0.1276518178789169,
+          "final": 2.0640048120019825e-10,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "airflow",
+      "components": 40,
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxFinalResidualPixels": 0.004336497048513307,
+      "motionIssues": [],
+      "samples": [
+        {
+          "step": 0,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 60,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 96,
+          "maxMeshDeltaPixels": 0,
+          "statusDisagreements": []
+        },
+        {
+          "step": 180,
+          "maxMeshDeltaPixels": 1.1368683772161603e-12,
+          "statusDisagreements": []
+        },
+        {
+          "step": 360,
+          "maxMeshDeltaPixels": 7.560174708487466e-12,
+          "statusDisagreements": []
+        },
+        {
+          "step": 960,
+          "maxMeshDeltaPixels": 1.2505552149377763e-11,
+          "statusDisagreements": []
+        }
+      ],
+      "metrics": {
+        "sleeve-gauze-right": {
+          "peak": 4.503728373559594,
+          "root": 0,
+          "fallback": 0,
+          "limited": 1,
+          "maxStep": 0.37516654295086344,
+          "maxWorldStep": 0.37516654295086344,
+          "final": 0.00007539957082174228,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-gauze-left": {
+          "peak": 7.221507863964374,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.5223004601751982,
+          "maxWorldStep": 0.5223004601751982,
+          "final": 0.00015826616718852483,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-point-left": {
+          "peak": 4.816050245951038,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.4618261148300873,
+          "maxWorldStep": 0.4618261148300873,
+          "final": 0.00008496187835321862,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-train-right": {
+          "peak": 3.545273189111355,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.47642491761249534,
+          "maxWorldStep": 0.4764249176124922,
+          "final": 5.242356214493743e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-drape-left": {
+          "peak": 4.1654917854272835,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.5114493227670339,
+          "maxWorldStep": 0.5114493227670339,
+          "final": 0.000004159396549954576,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-right": {
+          "peak": 8.692400820132027,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.8924009897744607,
+          "maxWorldStep": 0.8924009897744607,
+          "final": 0.00013831653654790922,
+          "invalid": 0,
+          "issues": []
+        },
+        "robe-panel-left": {
+          "peak": 7.545405122311182,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7616972526197433,
+          "maxWorldStep": 0.7616972526197433,
+          "final": 0.00013621283314046434,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 5.685528230865614,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.49486570409521546,
+          "maxWorldStep": 0.49486570409521546,
+          "final": 0.000004508806546419885,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-right": {
+          "peak": 21.815675924448108,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.1047847567497648,
+          "maxWorldStep": 1.1047847567497648,
+          "final": 0.0014664082875327673,
+          "invalid": 0,
+          "issues": []
+        },
+        "sash-tail-left": {
+          "peak": 23.662129883485786,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.2204995013080266,
+          "maxWorldStep": 1.2204995013080266,
+          "final": 0.0013100308440081158,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 8.4566465919945,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.17874615479755737,
+          "maxWorldStep": 0.17874615479755737,
+          "final": 0.004328614533345251,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 4.062818312006416,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1325204350429734,
+          "maxWorldStep": 0.1325204350429734,
+          "final": 1.9532231869582215e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0.6239341752096199,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.034083973167674864,
+          "maxWorldStep": 0.034083973167674864,
+          "final": 4.2598672754644557e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 10.876427430984617,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.25671383296022965,
+          "maxWorldStep": 0.25671383296022965,
+          "final": 0.004336497048513307,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 4.083859620628563,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1320699511029245,
+          "maxWorldStep": 0.1320699511029245,
+          "final": 2.0420363143947565e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.3639227933051206,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.018320517882937384,
+          "maxWorldStep": 0.018320517882937384,
+          "final": 4.2530369448515125e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-left": {
+          "peak": 0.2495764251763321,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.005481965652170039,
+          "maxWorldStep": 0.005481965652174949,
+          "final": 4.898422511145685e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-left": {
+          "peak": 0.09338511722339495,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.006341277755929774,
+          "maxWorldStep": 0.006341277755928761,
+          "final": 2.0683683018187827e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-left": {
+          "peak": 0.22620837210597566,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.01259469408088849,
+          "maxWorldStep": 0.012594694080880459,
+          "final": 8.065841847611956e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 3.8833866341325716,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3580575388270851,
+          "maxWorldStep": 0.3580575388270851,
+          "final": 0.0000012780153684106942,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-upper-right": {
+          "peak": 0.24957642517621884,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.00548196565223649,
+          "maxWorldStep": 0.0054819656522315805,
+          "final": 4.899567576998599e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-lower-right": {
+          "peak": 0.09293735076583616,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.006378011105354166,
+          "maxWorldStep": 0.006378011105355821,
+          "final": 2.0871339262950873e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-head-right": {
+          "peak": 0.15740308235109943,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.01086980553714465,
+          "maxWorldStep": 0.010869805537143458,
+          "final": 8.5639008844333e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 4.0401063334021075,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3550751034942642,
+          "maxWorldStep": 0.3550751034942642,
+          "final": 0.000001650113732918798,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-left": {
+          "peak": 0.5516971659079604,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.019242374757599826,
+          "maxWorldStep": 0.019242374757599826,
+          "final": 2.3694528973755206e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "earring-right": {
+          "peak": 0.5508905765350919,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.01921425550643289,
+          "maxWorldStep": 0.01921425550643289,
+          "final": 2.3659952554988287e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "forehead-drop": {
+          "peak": 0.3112707905197376,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.011326447583418326,
+          "maxWorldStep": 0.011326447583416952,
+          "final": 4.558402613583959e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-left": {
+          "peak": 0.18581970808136875,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.03668173862983058,
+          "maxWorldStep": 0.03668173862983058,
+          "final": 7.647498067521926e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "sleeve-shell-right": {
+          "peak": 0.18374673068605932,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.03191760338747461,
+          "maxWorldStep": 0.03191760338747461,
+          "final": 7.75036976113499e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-left": {
+          "peak": 0.2296907330583853,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.0401790212178778,
+          "maxWorldStep": 0.0401790212178778,
+          "final": 2.1304628130526313e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-short-loop-right": {
+          "peak": 0.25015171777876793,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.043735579337251466,
+          "maxWorldStep": 0.043735579337251466,
+          "final": 2.1101627190495105e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-small-tassel": {
+          "peak": 0.31390494668861374,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.01094254496840567,
+          "maxWorldStep": 0.01094254496840567,
+          "final": 0.0000064182649102243875,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-left": {
+          "peak": 0.3686620518927727,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.013354331965255857,
+          "maxWorldStep": 0.013354331965255857,
+          "final": 5.3339860295167935e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "anklet-drop-right": {
+          "peak": 0.4383534905555109,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.015878222197743614,
+          "maxWorldStep": 0.015878222197743614,
+          "final": 6.341558864144526e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-upper": {
+          "peak": 0.3861417329224022,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.010962225731343629,
+          "maxWorldStep": 0.010962225731343629,
+          "final": 1.0027234319105262e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-lower": {
+          "peak": 0.1957738749488426,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.01280576715499235,
+          "maxWorldStep": 0.01280576715499235,
+          "final": 5.255023805694225e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-upper": {
+          "peak": 0.0998544784235857,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.00521521118564537,
+          "maxWorldStep": 0.00521521118564537,
+          "final": 0.000014278062200707685,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-ring-inner-lower": {
+          "peak": 0.23767265307322466,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.018501560275075542,
+          "maxWorldStep": 0.018501560275075542,
+          "final": 0.0000672923739988052,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-tassel-buckle": {
+          "peak": 0.18743363144635922,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.01701623571375169,
+          "maxWorldStep": 0.01701623571375169,
+          "final": 2.84404835354474e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 2.1113321835585435,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.09958000648452148,
+          "maxWorldStep": 0.09958000648452148,
+          "final": 3.134339102074045e-7,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    }
+  ],
+  "canonicalConfigMatches": true
+}

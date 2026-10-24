@@ -69,6 +69,8 @@ Krita 的路径检查和实际启动使用工作流加载的同一环境，包�
 默认[方案 1](model-presets.md)全部使用 `gpt-6.1-sol`：preparation low；两套 part 绘制／review medium，分组／去重／补全／深度 high；两套 raster step01 绘制／返修／review 与组装 xhigh；raster step02、人物 step03 和阴影 medium。生图使用 `codex-native`，复用宿主内置工具；不固定底层图像模型版本，无需单独填写生图 API。方案 2 为可选混合配置。LLM 按职责覆盖，生图按拥有工具的实际 agent 覆盖，见 [模型与 harness](agent-models.md) 和 [example.env](../example.env)。Codex 自定义生图和按图片数 compact 共用按需自动构建的可选补丁；`codex-native` 生图以及 Claude／AGV 自定义生图不要求补丁。未启用相关功能时不构建 Codex；启用且未指定入口时自动构建，缺 Rust 1.95.0 会提示并安装到临时目录，结束后清理。Git 和平台 C/C++ 编译依赖仍须可用。AGV 用 `layering_agv_unlimited_response_header_timeout=true` 开启独立副本的自动准备，见 [patches](../patches/README.md)。Nano 透明后处理使用已有 Node／Sharp，不安装 Python 包或抠图权重。
 环境变量、图片阈值、临时错误重试和工具配置细节见 [配置与工作流细节](workflow-details.md)。
 
+组件摆动物理使用 skill 自带 `shared/physics-core`、`shared/physics-evidence` 和 `shared/character-render`，可独立安装运行，不依赖 `web/` 或工作台服务。原任务目录、上游产物及模型配置继续复用；离线图像证据需要 Playwright 浏览器和带插件的 Krita，依赖见 skill package.json。数值标定不需要浏览器，前端可引用同一共享实现。
+
 所有操作 Krita 的 agent 自动收到同一份[环境与故障恢复说明](../shared/krita/environment.md)，沿用现有 shell、computer use 或已验证 bridge。私有进程的 macOS 配置、Python 资源和 HOME 必须一致；不能把一次自建启动器失败直接当作不可恢复阻塞。
 
 动态提示词只在 Markdown 已声明的 `{变量名}` 位置展开，位置由模板决定。Krita 说明使用各阶段的 `{krita_environment}`；全文有来源路径与开始／结束标记。生图规则、运行信息、恢复与 CLI 说明等均有显式模板，见[提示词模板与动态位置](prompt-templates.md)。最终提示词在请求目录 `prompt.md` 和既有阶段记录中可直接审查，不新增执行工具，不修改全局或隐藏系统提示词。

@@ -1,0 +1,196 @@
+{
+  "date": "2026-10-24",
+  "status": "investigating",
+  "userReport": {
+    "browser": "Safari",
+    "trigger": "正常加载画面之后，物理接管时立即出现大块拉伸、三角折面和条纹",
+    "deviceAndBrowserVersion": "not provided",
+    "confirmedFixed": false
+  },
+  "configHash": "27e1853a2dcc859a69f64393632f7c1dbba17f8d089c1a69c36299f221b79c2d",
+  "existingPhysicsConfigurationAndEvidence": "preserved",
+  "nativeSafari": {
+    "device": "Apple M4 Pro",
+    "version": "26.3.1",
+    "method": "临时诊断页；从工作流导出的同一部件 PNG 无损解码为 RGBA，调用原工作台贴图补全、ComponentScene 与 PhysicsRenderer；保留原尺寸、运动余量和四种通道。每个取图时点会 GPU 读回，因此不代表正常页面连续异步绘制。",
+    "windStrength": 0.15,
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "outputSize": [
+      1486,
+      1998
+    ],
+    "captures": [
+      {
+        "step": 0,
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+        "neutral": {
+          "alphaError": 1.10888671875,
+          "rgbMeanError": 0.13272623864321217,
+          "alphaPoint": {
+            "x": 628,
+            "y": 1356,
+            "expected": 252,
+            "actual": 250.89111328125
+          }
+        },
+        "usingBaseline": true,
+        "renderer": "Apple GPU",
+        "error": 0,
+        "maxTravel": 4.548894372360918e-12,
+        "images": {
+          "color": "6572cc044145566b70f9061bb9318d961f2de831fe0a780bdc2e49233e3c83d0",
+          "normal": "419314222e00499aab7106bfecbb15b2520af448720fb55f3f47d4a2c2c58c1e",
+          "depth": "7e5cd192fb25c84c236aa3ba767a287b404f2b53eaae04a879142db1e7e29cbb",
+          "lit": "abb0ca87d4c3f5b6d919ce397ed1eccb6e4c60b1aee5de69fdd0462b61ee4f23"
+        }
+      },
+      {
+        "step": 2,
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+        "neutral": {
+          "alphaError": 1.10888671875,
+          "rgbMeanError": 0.13272623864321217,
+          "alphaPoint": {
+            "x": 628,
+            "y": 1356,
+            "expected": 252,
+            "actual": 250.89111328125
+          }
+        },
+        "usingBaseline": false,
+        "renderer": "Apple GPU",
+        "error": 0,
+        "maxTravel": 0.24014213002548107,
+        "images": {
+          "color": "97e370b028211ec388a48b84a46e7240d8c177da4afe7dd5f01aec2817c08b2b",
+          "normal": "b812e8f18bae0d39b3a04506386ce64774cd80dcd3af329b16098597fbee7fea",
+          "depth": "19c2d59486f4341bb400ba32b80267cdb206f58da46b2c4f9608873bc874ff55",
+          "lit": "2307f0dbbe3526a92331ee71aab77c5cb97e0661dbfe7967750fb17387347239"
+        }
+      },
+      {
+        "step": 24,
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+        "neutral": {
+          "alphaError": 1.10888671875,
+          "rgbMeanError": 0.13272623864321217,
+          "alphaPoint": {
+            "x": 628,
+            "y": 1356,
+            "expected": 252,
+            "actual": 250.89111328125
+          }
+        },
+        "usingBaseline": false,
+        "renderer": "Apple GPU",
+        "error": 0,
+        "maxTravel": 13.198536505204563,
+        "images": {
+          "color": "0c8d024458eb467251776df5a30d27de68d04d536672e8c8bf2bc5f0e4a86cd1",
+          "normal": "facd8974647fd0bcc3838d7aa6c5be0c761c39488cbd5b366f79e1740c389a5f",
+          "depth": "78e991443042841f39fa13802d6124ad768334654ecc812becc9cc3d69d6c55f",
+          "lit": "59e9bac898247ce01b0cfbc6ef4d05ef985efc289364833ee062b3558af44b43"
+        }
+      },
+      {
+        "step": 240,
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3.1 Safari/605.1.15",
+        "neutral": {
+          "alphaError": 1.10888671875,
+          "rgbMeanError": 0.13272623864321217,
+          "alphaPoint": {
+            "x": 628,
+            "y": 1356,
+            "expected": 252,
+            "actual": 250.89111328125
+          }
+        },
+        "usingBaseline": false,
+        "renderer": "Apple GPU",
+        "error": 0,
+        "maxTravel": 6.327430289382366,
+        "images": {
+          "color": "c1072d953543663c9196b01b9a454fa7c9079a68b3a9cd5f1078f1dabede3d30",
+          "normal": "13d1046a31f8f7e54cf4e5a1cb90c6ff9d00d1e5613d63736f6e2e2ba32d945b",
+          "depth": "b5fe1842b0f9bc56a56f6d1e596bcacb5263ac13597b9a482a60b0758dc5df23",
+          "lit": "9829306a9bf783e5425c92cab7f511e4e170cc88a836630e3350601a6fbae5b8"
+        }
+      }
+    ],
+    "actuallyViewedImages": [
+      "2/color",
+      "2/normal",
+      "2/lit",
+      "24/lit",
+      "240/lit"
+    ],
+    "observedFailure": "not reproduced in these captures",
+    "workerTopologyAtStep2": "40 组件的 rest 顶点与索引完全一致",
+    "continuousWorkerPage": "测试页仅收到 boot，未得到完整运行结果；不登记为通过"
+  },
+  "schedulingChange": {
+    "simulation": "unchanged 120 Hz fixed steps and two-step Worker jobs",
+    "display": "coalesce complete snapshots to at most one physics render per requestAnimationFrame",
+    "manual": "immediate render; cancels pending display",
+    "cleanup": "reset, failure and disposal cancel pending display",
+    "rootCauseOfUserFailure": "not established"
+  },
+  "chromePreview": {
+    "device": "Apple M4 Pro / Chrome 155 / ANGLE Metal",
+    "seconds": 4.0005,
+    "physicalFPS": 50.49368828896388,
+    "stepsPerSecond": 119.7350331208599,
+    "displayFrames": 240,
+    "maxDrawsPerFrame": 1,
+    "components": 40,
+    "sourceSize": [
+      1024,
+      1536
+    ],
+    "bindingIssues": [],
+    "pageErrors": [],
+    "actuallyViewed": [
+      "lit",
+      "color"
+    ],
+    "scope": "同一工作台前端的私有诊断代理，仅替换两份待发布调度源码；完整项目读取、法线、深度、6组投影和物理启用。四秒样本不代表所有设备或长期性能。"
+  },
+  "reportedMissingMotionAudit": {
+    "userFeedback": "刷新后画面正常，但头发／挂件不动，物理看起来像只剩旧版衣服。此反馈不构成原 Safari 故障修复通过。",
+    "rollbackFound": false,
+    "publishedComponentCounts": { "cloth": 14, "strand": 10, "pendant": 16 },
+    "configurationChanged": false,
+    "defaultBreezeObservation": "原发布页在第123步，前发最大位移约0.29–0.47 px、耳坠约0.45 px；缩小显示时容易不可见。最大网格位移也可能发生在被衣服遮住的长发末端，不能据此断言可见发束摆动明显。",
+    "livePulseIssue": "工作台单次扰动取网格顺序最后一个最大权重点；刚性挂件每点权重均为1，因此可选到挂点附近。原耳坠脉冲第24步仅0.02684 px。",
+    "livePulseFix": "选择最大活动权重中离支撑最远的自由点，沿支撑半径的切向施力。与既有管线tip-impulse加载方式一致；求解器、正式配置、复核输入文件及旧证据保持原字节。",
+    "originalSizePixelCheck": {
+      "device": "Linux Chrome / ANGLE SwiftShader，定点取图；不代表Safari连续播放",
+      "sourceSize": [1024, 1536],
+      "components": 40,
+      "bindingIssues": [],
+      "pageErrors": [],
+      "earringRightStep24": { "travelPixels": 0.8374232814766351, "changedPixelsAbove5Of255": 149, "allSampledFramesValid": true },
+      "hairFrontRightStep12": { "travelPixels": 1.653433208882819, "changedPixelsAbove5Of255": 657, "allSampledFramesValid": true },
+      "crownRibbonLeftStep12": { "travelPixels": 3.5851352224738773, "changedPixelsAbove5Of255": 3730, "allSampledFramesValid": true },
+      "scope": "比较各组件单独脉冲的0、6、12、24、48、96步原尺寸颜色画面；实际查看前发和耳坠局部及全身。像素差证明此采样下有画面变化，不代替自然度与所有图层可见性复核。"
+    },
+    "macChromeHover": {
+      "components": 40,
+      "selected": "sleeve-gauze-right",
+      "scope": "all",
+      "hairFrontRight": { "receivedImpulses": 27, "peakTravelPixels": 2.2591121786943984 },
+      "earringRight": { "receivedImpulses": 10, "peakTravelPixels": 1.6114416710292077 },
+      "pageErrors": [],
+      "scopeOfConclusion": "真实pointermove和同工作台连续Worker运行证明头部组件无需单独选中即可受力。用户实际Safari是否加载40组件及其可见运动仍未确认。"
+    }
+  },
+  "checks": [
+    "5 targeted Worker and presentation tests passed",
+    "web TypeScript check passed",
+    "2 targeted live pulse tests passed: all-component free-end torque matches review, fixed roots and limits remain valid, current-component scope and disable switch respected"
+  ],
+  "mergeReadiness": "PR 78 remains Draft; original Safari failure unresolved"
+}
