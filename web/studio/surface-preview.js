@@ -1,4 +1,4 @@
-import { loadImage } from './renderer.js';
+import { loadImage } from '#character-render/renderer.js';
 const $ = s => document.querySelector(s);
 const canvas = (w,h) => { const c=document.createElement('canvas');c.width=w;c.height=h;return c; };
 const pixels = image => { const c=canvas(image.width,image.height),ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);return ctx.getImageData(0,0,c.width,c.height).data; };
@@ -28,7 +28,7 @@ export class SurfacePreview {
     if(!owner||!session?.session) return this.error('请等待原生图层就绪后准备');
     const epoch=++this.epoch,controller=new AbortController();this.fetchController=controller;$('#surface-prepare').disabled=true;$('#surface-status').textContent='正在读取部件与补全贴图…';
     try {
-      const response=await fetch('./api/studio/layers/surfaces',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(session),signal:controller.signal}),packet=await response.json();
+      const response=await fetch('./api/studio/layers/surfaces',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...session,projections:owner.shadowBindings?.shadows}),signal:controller.signal}),packet=await response.json();
       if(!response.ok)throw Error(packet.error);
       const w=packet.width,h=packet.height;
       const imageBlob=async file=>{const u=URL.createObjectURL(file);try{return await loadImage(u);}finally{URL.revokeObjectURL(u);}};
@@ -51,7 +51,10 @@ export class SurfacePreview {
           controller.signal.throwIfAborted();const index=next++,l=packet.layers[index];
           const [rgba,maskedRgba]=await Promise.all([read(l,'original'),read(l,'masked')]);
           for(let p=3;p<rgba.length;p+=4){rgba[p]=Math.round(rgba[p]*l.opacity/255);maskedRgba[p]=l.visible?Math.round(maskedRgba[p]*l.opacity/255):0;}
-          layers[index]={...l,rgba,maskedRgba};completed++;
+          let projection=null;
+          if(l.projection){const base=await read({...l,original:l.projection.base},'original');for(let p=3;p<base.length;p+=4)base[p]=l.visible?Math.round(base[p]*l.opacity/255):0;
+            const shadows=[];for(const s of l.projection.shadows){const data=await read(s,'original');for(let p=3;p<data.length;p+=4)data[p]=s.visible?Math.round(data[p]*s.opacity/255):0;shadows.push({...s,rgba:data});}projection={...l.projection,rgba:base,shadows};}
+          layers[index]={...l,rgba,maskedRgba,projection};completed++;
           if(epoch===this.epoch)$('#surface-status').textContent=`正在读取部件 ${completed}/${layers.length}…`;
         }
       }));

@@ -19,7 +19,7 @@ import { join, resolve } from 'node:path';
 // A dependency is a step id, or `id#output` to depend on one declared output's
 // hash only, so a step that rewrites several files reruns just the dependents of
 // the files that actually changed.
-export type ChainStep = { id: string; directory: string; dependsOn: readonly string[]; outputs?: readonly string[] };
+export type ChainStep = { id: string; directory: string; dependsOn: readonly string[]; outputs?: readonly string[]; allowsEarlyArtifacts?: boolean };
 export type StepStatus = 'absent' | 'unmarked' | 'running' | 'completed';
 export type StepRecord = { stamp: string; inputs: Record<string, string>; outputs?: Record<string, string> };
 export type ChainPlan = {
@@ -87,7 +87,10 @@ export async function inspectChain(steps: readonly ChainStep[]): Promise<ChainPl
   const statuses = new Map<string, StepStatus>(), records = new Map<string, StepRecord | undefined>();
   const unusable = new Set<string>(), reset: string[] = [], modified: string[] = [];
   for (const step of steps) {
-    const { status, record } = await readStep(step.directory);
+    const state = await readStep(step.directory), record = state.record;
+    // Diagnostics can be produced before this step starts. Keep their files,
+    // while an absent marker still means the step has not run or been approved.
+    const status = state.status === 'unmarked' && step.allowsEarlyArtifacts ? 'absent' : state.status;
     statuses.set(step.id, status);
     // A completed step reopened for more work keeps its stamp while running.
     records.set(step.id, record);

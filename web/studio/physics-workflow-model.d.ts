@@ -1,0 +1,16 @@
+export const workflowStages: { id: string; letter: string; title: string }[];
+export function statusLabel(status: string): string;
+export function normalizedStages(data?: any): { id: string; letter: string; title: string; status: string; label: string; reason: string }[];
+export function provenanceSummary(data?: any, dirty?: boolean): { title: string; tone: string; detail: string; evidenceCurrent: boolean; workflowAccepted: boolean };
+export function coverageRows(coverage?: any): any[];
+export function selectedAssemblies(assemblies?: any, selected?: string): any[];
+export function tuningRounds(tuning?: any, selected?: string): any[];
+export function candidateMetrics(candidate: any, selected?: string): { peak: number; maxStep: number; fallback: number; limited: number } | null;
+export function candidateMotionTarget(candidate: any, selected?: string, test?: string): any | null;
+export function candidateResponseCurves(round: any, selected?: string, test?: string): { id: string; name: string; selected: boolean; points: number[][] }[];
+export function selectedFindings(findings?: any, selected?: string): any[];
+export function selectedEvents(run?: any, selected?: string): any[];
+export function recordedCurve(run?: any, selected?: string): number[][];
+export function curveGeometry(series: any[], options?: { width?: number; height?: number; padding?: number; minTime?: number; maxTime?: number }): { start: number; end: number; extent: number; width: number; height: number; zero: number; series: any[] };
+export function responseProbes(body: any): { mid: number; tip: number; axis: number[] } | null;
+export function sampleResponse(body: any, probes: { mid: number; tip: number; axis: number[] } | null): { root: number; mid: number; tip: number } | null;

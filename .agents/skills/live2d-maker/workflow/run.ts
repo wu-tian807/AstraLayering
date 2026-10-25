@@ -18,22 +18,24 @@ export const help = [
   '进度：pnpm start --name <任务名> --status [--json]',
   '--dir <绝对路径> 指定运行根目录，任务记录在 <dir>/<name>/run.json。',
   '--from / --to <管线> 选择连续范围，默认从人物 part 到阴影制作。',
-  '管线：part-layering、raster-layering、clothing-part-layering、clothing-raster-layering、character-assembly、shadow',
+  '管线：part-layering、raster-layering、clothing-part-layering、clothing-raster-layering、character-assembly、shadow、physics',
   '--shadow-mode mask|normal-depth 选择阴影路线，首次默认 mask；续跑省略沿用保存值。',
+  '--physics 开启末尾物理工作流；--physics-profile primary|all（默认 primary）。--no-physics 显式关闭。',
+  '--physics-reference <认可配置.json> 为物理提供明确的初始化／运动目标，续跑沿用。',
   '--jobs <正整数> part 的 agent 并发，默认 3。',
   '--standard 在人物 preparation 中先判断姿态，必要时生成 standard.png；默认关闭，仅复制原图。',
   '续跑省略选项则沿用已保存配置；--no-standard 显式关闭。切换选项须通过 preparation 指纹检查。',
   '省略 --background 则在前台执行；总入口不会自行创建定时任务。',
   '',
   '恢复损坏的绘制会话（先确认任务已停止，保留产物和标记）：',
-  'pnpm start --name <任务名> --replace-thread <raster管线或character-assembly> --handoff <交接.md> --reason <原因>',
+  'pnpm start --name <任务名> --replace-thread <raster管线、character-assembly、shadow或physics> --handoff <交接.md> --reason <原因>',
   '此命令只准备恢复；之后用正常续跑命令启动。相对输入路径均以 <dir>/<name> 为基准。',
 ].join('\n');
 
 export function parseArguments(args: string[]) {
   const { values } = parseArgs({ args, options: {
     name: { type: 'string' }, dir: { type: 'string' }, image: { type: 'string' }, krita: { type: 'string' },
-    'shadow-mode': { type: 'string' }, from: { type: 'string' }, to: { type: 'string' }, jobs: { type: 'string' },
+    physics: { type: 'boolean' }, 'no-physics': { type: 'boolean' }, 'physics-profile': { type: 'string' }, 'physics-reference':{type:'string'}, 'shadow-mode': { type: 'string' }, from: { type: 'string' }, to: { type: 'string' }, jobs: { type: 'string' },
     standard: { type: 'boolean' }, 'no-standard': { type: 'boolean' },
     background: { type: 'boolean' }, 'background-worker': { type: 'boolean' },
     status: { type: 'boolean' }, json: { type: 'boolean' }, help: { type: 'boolean', short: 'h' },
@@ -42,7 +44,11 @@ export function parseArguments(args: string[]) {
   if (values.help) return { mode: 'help' as const };
   if (!values.name) throw new Error('请提供 --name <任务名>。');
   if (values.standard && values['no-standard']) throw new Error('--standard 与 --no-standard 不能同时使用。');
+  if (values.physics && values['no-physics']) throw Error('--physics 与 --no-physics 不可同时使用');
+  if (values['physics-profile'] && !['primary','all'].includes(values['physics-profile'])) throw Error('物理范围必须为 primary 或 all');
   const options: TaskOptions = { name: values.name, dir: values.dir, image: values.image, krita: values.krita,
+    physicsEnabled: values['no-physics'] ? false : values.physics, physicsProfile: values['physics-profile'] as TaskOptions['physicsProfile'],
+    physicsReference:values['physics-reference'],
     standard: values['no-standard'] ? false : values.standard,
     shadowMode: values['shadow-mode'] === undefined ? undefined : shadowMode(values['shadow-mode']),
     from: values.from ? pipelineId(values.from) : undefined, to: values.to ? pipelineId(values.to) : undefined,
@@ -71,6 +77,9 @@ export async function startBackground(options: TaskOptions): Promise<number> {
   const log = await open(join(directory, taskLogName), 'a', 0o600);
   const args = ['--background-worker', '--name', options.name];
   if (options.shadowMode !== undefined) args.push('--shadow-mode', options.shadowMode);
+  if (options.physicsEnabled !== undefined) args.push(options.physicsEnabled ? '--physics' : '--no-physics');
+  if (options.physicsProfile) args.push('--physics-profile', options.physicsProfile);
+  if (options.physicsReference) args.push('--physics-reference', options.physicsReference);
   if (options.standard !== undefined) args.push(options.standard ? '--standard' : '--no-standard');
   for (const key of ['dir', 'image', 'krita', 'from', 'to', 'jobs'] as const) {
     if (options[key] !== undefined) args.push('--' + key, String(options[key]));

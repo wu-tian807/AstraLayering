@@ -17,6 +17,9 @@
 | raster step02 | `raster_step02` | 人物与衣服的边缘精修，无独立 review |
 | raster step01 review | `raster_step01_review` | 两套 raster 的独立 reviewer |
 | raster step03 | `raster_step03` | 仅人物的去除连体服 |
+| 物理组件分析 | `physics_analysis` | 源层、连接与覆盖范围 |
+| 物理绑定 | `physics_authoring` | 固定区、网格与最大约束 |
+| 物理动画复核 | `physics_review` | 同求解器模拟、逐帧证据与结论，无生图 |
 | 穿戴组装 | `assembly` | 人物与衣服 KRA 组装 |
 | 阴影 | `shadow` | 蒙版投影制作与可选法线／深度制作共用语言模型 |
 

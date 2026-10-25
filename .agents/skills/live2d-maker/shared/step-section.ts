@@ -10,7 +10,7 @@ import { completeStep, inspectChain, modifiedError, resetChain, startStep, type 
 export const stepId = (number: number) => `step${String(number).padStart(2, '0')}`;
 // dependsOn defaults to the step before it; dependencies the run does not define are dropped.
 // upstream names completed steps of another pipeline (see SectionRun.upstream) that this step was built on.
-export type SectionStep = { number: number; dependsOn?: readonly number[]; upstream?: readonly string[]; outputs?: readonly string[] };
+export type SectionStep = { number: number; dependsOn?: readonly number[]; upstream?: readonly string[]; outputs?: readonly string[]; allowsEarlyArtifacts?: boolean };
 export type SectionPlan = ChainPlan & { chain: ChainStep[]; defined: Set<string>; resetFrom?: number };
 
 export async function sectionChain(directory: string, steps: readonly SectionStep[], scan = true, upstream: readonly ChainStep[] = []): Promise<ChainStep[]> {
@@ -36,7 +36,8 @@ export async function sectionChain(directory: string, steps: readonly SectionSte
     const local = step?.dependsOn ? step.dependsOn.filter(dependency => defined.has(dependency)).map(stepId) : previous ? [previous.id] : [];
     chain.push({ id: stepId(number), directory: join(directory, stepId(number)),
       dependsOn: [...(step?.upstream ?? []).filter(id => external.has(id)), ...local],
-      ...(step?.outputs ? { outputs: step.outputs } : {}) });
+      ...(step?.outputs ? { outputs: step.outputs } : {}),
+      ...(step?.allowsEarlyArtifacts ? { allowsEarlyArtifacts: true } : {}) });
   }
   return chain;
 }

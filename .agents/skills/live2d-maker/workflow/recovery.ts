@@ -5,6 +5,8 @@ import { pipeline as character } from '../raster-layering/run.ts';
 import { pipeline as clothing } from '../clothing-raster-layering/run.ts';
 import { pipeline as assembly } from '../character-assembly/run.ts';
 import { makePipeline as shadowPipeline } from '../shadow/run.ts';
+import { steps as physicsSteps } from '../physics/steps.ts';
+import type { PhysicsInput } from '../physics/input.ts';
 import { inspectRun, loadConfig, saveConfig } from '../shared/raster/run-store.ts';
 import { resolveInput, type PipelineId } from '../shared/paths.ts';
 import { acquireTaskLock, directoryFor, now, readRun, type TaskOptions } from './state.ts';
@@ -12,8 +14,10 @@ import { acquireTaskLock, directoryFor, now, readRun, type TaskOptions } from '.
 export async function replaceThread(options: Pick<TaskOptions, 'name' | 'dir'> & {
   pipeline: PipelineId; handoff: string; reason: string;
 }): Promise<string> {
-  const regular = [character, clothing, assembly].find(value => value.id === options.pipeline);
-  if (!regular && options.pipeline !== 'shadow') throw new Error('--replace-thread 仅适用于 raster、character-assembly 或 shadow；part 根据文件恢复。');
+  const physics = { id: 'physics', steps: physicsSteps,
+    validateInput: (value: unknown): value is PhysicsInput => !!value && typeof value === 'object' && 'document' in value && 'profile' in value };
+  const regular = [character, clothing, assembly, physics].find(value => value.id === options.pipeline);
+  if (!regular && options.pipeline !== 'shadow') throw new Error('--replace-thread 仅适用于 raster、character-assembly、shadow 或 physics；part 根据文件恢复。');
   if (!options.reason.trim()) throw new Error('更换 thread 必须提供非空 --reason。');
   const directory = directoryFor(options);
   const release = await acquireTaskLock(directory);

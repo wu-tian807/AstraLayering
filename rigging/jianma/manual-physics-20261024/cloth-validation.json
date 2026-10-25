@@ -1,0 +1,575 @@
+{
+  "purpose": "Jianma lower-garment manual preview; no workflow acceptance",
+  "revision": "manual-motion-cloth-20261024",
+  "workflowAccepted": false,
+  "userVisualReview": "pending",
+  "sourceCanvas": {
+    "width": 1024,
+    "height": 1536
+  },
+  "priorPresetCommit": "534a711b",
+  "sourceMappingsAndArtwork": "unchanged",
+  "untouchedComponents": 38,
+  "unchangedLimits": [
+    "maxTravel",
+    "maxAngle",
+    "maxStretch",
+    "maxCompression",
+    "maxShear",
+    "minAreaRatio"
+  ],
+  "targetComponents": [
+    "sleeve-point-left",
+    "sleeve-train-right",
+    "sleeve-drape-left",
+    "robe-panel-right",
+    "robe-panel-left",
+    "inner-skirt",
+    "sash-tail-right",
+    "sash-tail-left"
+  ],
+  "directedTestsPassed": 30,
+  "webTypecheck": "passed",
+  "solverReference": "https://github.com/tsunehimatoi/psd2live/blob/24b1e87892f0051f1168058e1d60405d88a8a07c/src/main/kotlin/io/github/psd2live/core/sim/XpbdSolver.kt",
+  "solverChange": "Retain final substep velocity; discard blocked secondary velocity after author safety projection, without adding correction energy. Distance sweep order remains unchanged.",
+  "replay": {
+    "fixedHz": 120,
+    "scope": "eight lower-garment components; identical source-pose input for before/after",
+    "durationSec": {
+      "breeze": 12,
+      "tip-impulse": 8,
+      "support-reverse": 8
+    },
+    "before": {
+      "breeze": {
+        "sleeve-point-left": {
+          "peak": 3.91969882870002,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.32796690784505245,
+          "accelP95": 0.002281914798913931,
+          "accelMax": 0.017022963994349993,
+          "end": 2.685447480624662
+        },
+        "sleeve-train-right": {
+          "peak": 2.7574312458480468,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.31900543949201676,
+          "accelP95": 0.0009106719819840237,
+          "accelMax": 0.011306396609555236,
+          "end": 1.5283267410310721
+        },
+        "sleeve-drape-left": {
+          "peak": 3.343575864641006,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.35714972454354665,
+          "accelP95": 0.001408695249892844,
+          "accelMax": 0.017203313061372683,
+          "end": 2.2507146961843563
+        },
+        "robe-panel-right": {
+          "peak": 6.876596876221038,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.6640923948226884,
+          "accelP95": 0.004122504756480794,
+          "accelMax": 0.030818561094605457,
+          "end": 3.8795359392757423
+        },
+        "robe-panel-left": {
+          "peak": 6.103563279094995,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.5782003973224619,
+          "accelP95": 0.0033902072879072875,
+          "accelMax": 0.028926375808850935,
+          "end": 4.0600269751812545
+        },
+        "inner-skirt": {
+          "peak": 4.56946271028346,
+          "limited": 70,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.3869393805728123,
+          "accelP95": 0.0021143598389130602,
+          "accelMax": 0.01861048626039974,
+          "end": 2.9359994324186287
+        },
+        "sash-tail-right": {
+          "peak": 18.363135629823965,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.8920003423071421,
+          "accelP95": 0.015245719194354024,
+          "accelMax": 0.044858293745733135,
+          "end": 11.231126938022696
+        },
+        "sash-tail-left": {
+          "peak": 19.89439403527509,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.9844000580749253,
+          "accelP95": 0.01687390320398663,
+          "accelMax": 0.04902019184214623,
+          "end": 12.255045077636668
+        }
+      },
+      "tip-impulse": {
+        "sleeve-point-left": {
+          "peak": 4.833168374612686,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.3308056982552898,
+          "accelP95": 0.03720365221533939,
+          "accelMax": 0.20914195100999677,
+          "end": 1.0708348336047885e-9
+        },
+        "sleeve-train-right": {
+          "peak": 4.005180274782978,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.3027370266153184,
+          "accelP95": 0.03568498991022295,
+          "accelMax": 0.25957508130294116,
+          "end": 6.988853396272368e-10
+        },
+        "sleeve-drape-left": {
+          "peak": 4.2707085895004315,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.3155567503886232,
+          "accelP95": 0.037733791645450765,
+          "accelMax": 0.2535529862259409,
+          "end": 9.888874296566617e-10
+        },
+        "robe-panel-right": {
+          "peak": 6.562487945082061,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 2.261581801748008,
+          "accelP95": 0.057703318381356894,
+          "accelMax": 0.2846368964638657,
+          "end": 2.5783839619423656e-8
+        },
+        "robe-panel-left": {
+          "peak": 6.003505139679913,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.9444991355816228,
+          "accelP95": 0.053293160491080016,
+          "accelMax": 0.2897344611101289,
+          "end": 1.2143083507999331e-8
+        },
+        "inner-skirt": {
+          "peak": 16.595574646527968,
+          "limited": 13,
+          "fallback": 2,
+          "root": 0,
+          "maxStep": 4.345994528108804,
+          "accelP95": 0.06569572724094996,
+          "accelMax": 0.8158375244373133,
+          "end": 4.726193615154295e-10
+        },
+        "sash-tail-right": {
+          "peak": 20.155782767578685,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 2.502225897468179,
+          "accelP95": 0.06986010742377857,
+          "accelMax": 0.24105467309323103,
+          "end": 0.0000052727657968566025
+        },
+        "sash-tail-left": {
+          "peak": 22.105120491507048,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 2.828829489915165,
+          "accelP95": 0.0777366793870442,
+          "accelMax": 0.26962627241880455,
+          "end": 0.000006402802176834634
+        }
+      },
+      "support-reverse": {
+        "sleeve-point-left": {
+          "peak": 1.8083485428719432,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.0998785237030688,
+          "accelP95": 0.03474807483598852,
+          "accelMax": 0.03993030572019052,
+          "end": 1.3115027911931744e-7
+        },
+        "sleeve-train-right": {
+          "peak": 0.9432879432147433,
+          "limited": 114,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.067434916209379,
+          "accelP95": 0.03254835475536311,
+          "accelMax": 0.04146254456355081,
+          "end": 9.872507033587961e-10
+        },
+        "sleeve-drape-left": {
+          "peak": 1.1410744924942358,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.0752084398618535,
+          "accelP95": 0.03329158784072206,
+          "accelMax": 0.03964267062804083,
+          "end": 2.157583694403375e-9
+        },
+        "robe-panel-right": {
+          "peak": 1.8840784861618176,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.1052535471521878,
+          "accelP95": 0.035033876276344245,
+          "accelMax": 0.040504751320384,
+          "end": 5.970161714958487e-9
+        },
+        "robe-panel-left": {
+          "peak": 1.7764535351532802,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.0994894384577947,
+          "accelP95": 0.03483912516662713,
+          "accelMax": 0.039954399284511055,
+          "end": 7.706455203771137e-8
+        },
+        "inner-skirt": {
+          "peak": 2.0186138976783266,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.0967294717615914,
+          "accelP95": 0.03690793639123058,
+          "accelMax": 0.04197747400615981,
+          "end": 5.128237411301293e-9
+        },
+        "sash-tail-right": {
+          "peak": 5.999615919483029,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.2333513592424765,
+          "accelP95": 0.04209646133926981,
+          "accelMax": 0.05110385702289477,
+          "end": 0.000014662492970814917
+        },
+        "sash-tail-left": {
+          "peak": 6.045300632831356,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.2359057333524106,
+          "accelP95": 0.042040957224230624,
+          "accelMax": 0.05065008462872811,
+          "end": 0.000022546067028648515
+        }
+      }
+    },
+    "after": {
+      "breeze": {
+        "sleeve-point-left": {
+          "peak": 11.02743312031098,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.24493050477406086,
+          "accelP95": 0.0009312336741231775,
+          "accelMax": 0.006851851321016511,
+          "end": 9.313751623790031
+        },
+        "sleeve-train-right": {
+          "peak": 12.450613283099642,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.3187816582695575,
+          "accelP95": 0.0011893029915199804,
+          "accelMax": 0.006508144094780732,
+          "end": 8.387892959008157
+        },
+        "sleeve-drape-left": {
+          "peak": 12.002895392829103,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.3088092567327294,
+          "accelP95": 0.0012722232743271888,
+          "accelMax": 0.006646850148854355,
+          "end": 10.133583379776228
+        },
+        "robe-panel-right": {
+          "peak": 19.90482030999678,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.41507030965942704,
+          "accelP95": 0.0016383765343732648,
+          "accelMax": 0.014494313525887037,
+          "end": 13.712122035678485
+        },
+        "robe-panel-left": {
+          "peak": 17.924129157781007,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.4076054516841623,
+          "accelP95": 0.0016046030481220441,
+          "accelMax": 0.009511410081927352,
+          "end": 15.009843357764174
+        },
+        "inner-skirt": {
+          "peak": 10.353496353024832,
+          "limited": 426,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.331154135651218,
+          "accelP95": 0.000934858408186301,
+          "accelMax": 0.003729135895980562,
+          "end": 8.033344853807009
+        },
+        "sash-tail-right": {
+          "peak": 19.832187447582708,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.3453818378422966,
+          "accelP95": 0.001913587260901295,
+          "accelMax": 0.01063148615355658,
+          "end": 14.456598021132624
+        },
+        "sash-tail-left": {
+          "peak": 21.962812393700272,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 0.36471931978474004,
+          "accelP95": 0.002088076641484804,
+          "accelMax": 0.012438687571830087,
+          "end": 16.49917643250199
+        }
+      },
+      "tip-impulse": {
+        "sleeve-point-left": {
+          "peak": 13.61800032661973,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.5908009467665352,
+          "accelP95": 0.031673527511998145,
+          "accelMax": 0.4041786279844928,
+          "end": 0.0000011909906060960672
+        },
+        "sleeve-train-right": {
+          "peak": 14.826002463073818,
+          "limited": 10,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 4.0471189007100214,
+          "accelP95": 0.039195414610933454,
+          "accelMax": 0.5908294497761517,
+          "end": 0.0000011261731147193806
+        },
+        "sleeve-drape-left": {
+          "peak": 15.867663805677028,
+          "limited": 7,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 2.437733600022966,
+          "accelP95": 0.03756497040888007,
+          "accelMax": 0.3375286127743493,
+          "end": 2.294206491672439e-7
+        },
+        "robe-panel-right": {
+          "peak": 20.29449473939547,
+          "limited": 1,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 3.162547739908149,
+          "accelP95": 0.042665057841077214,
+          "accelMax": 0.48430074980996096,
+          "end": 0.0000022026777806590513
+        },
+        "robe-panel-left": {
+          "peak": 21.808189812952563,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 2.5057707419451845,
+          "accelP95": 0.042319601495250936,
+          "accelMax": 0.3370210418230499,
+          "end": 0.0000021036849679423145
+        },
+        "inner-skirt": {
+          "peak": 6.105635654872484,
+          "limited": 6,
+          "fallback": 1,
+          "root": 0,
+          "maxStep": 4.381201760896488,
+          "accelP95": 0.02966529475486368,
+          "accelMax": 0.5852880767064335,
+          "end": 1.1595057977411827e-9
+        },
+        "sash-tail-right": {
+          "peak": 31.14042125588586,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 2.522657271163439,
+          "accelP95": 0.037894411462730204,
+          "accelMax": 0.13650373134225902,
+          "end": 0.000006018533482197983
+        },
+        "sash-tail-left": {
+          "peak": 34.23132742146198,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 2.848334825209463,
+          "accelP95": 0.028597143894785404,
+          "accelMax": 0.1550194797689528,
+          "end": 0.0000068344899940877995
+        }
+      },
+      "support-reverse": {
+        "sleeve-point-left": {
+          "peak": 35.21176944506125,
+          "limited": 162,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.3681534029050226,
+          "accelP95": 0.04511173523542311,
+          "accelMax": 0.08051904776743868,
+          "end": 0.00009324510713782402
+        },
+        "sleeve-train-right": {
+          "peak": 32.15507450697515,
+          "limited": 150,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.5880750620809465,
+          "accelP95": 0.055609726390752456,
+          "accelMax": 0.16336427451074087,
+          "end": 0.00007093552860340605
+        },
+        "sleeve-drape-left": {
+          "peak": 32.242720252214916,
+          "limited": 11,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.44035846207737,
+          "accelP95": 0.05246592819696616,
+          "accelMax": 0.07209074520528702,
+          "end": 0.00002202541660587896
+        },
+        "robe-panel-right": {
+          "peak": 37.99610234565635,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.5265488370776836,
+          "accelP95": 0.0484831725959225,
+          "accelMax": 0.10753913920916602,
+          "end": 0.0000631873797086763
+        },
+        "robe-panel-left": {
+          "peak": 36.85561190510432,
+          "limited": 79,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.3832203667961949,
+          "accelP95": 0.055292105029934646,
+          "accelMax": 0.08168899326028622,
+          "end": 0.0000571926690692262
+        },
+        "inner-skirt": {
+          "peak": 25.88835543102669,
+          "limited": 99,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.4894371892079334,
+          "accelP95": 0.05152149444438692,
+          "accelMax": 0.06931943599761325,
+          "end": 6.713060141668955e-7
+        },
+        "sash-tail-right": {
+          "peak": 35.57622420195293,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.3565020538823092,
+          "accelP95": 0.04768630494328363,
+          "accelMax": 0.0566768219853202,
+          "end": 0.00026493450734862566
+        },
+        "sash-tail-left": {
+          "peak": 37.684430727190666,
+          "limited": 0,
+          "fallback": 0,
+          "root": 0,
+          "maxStep": 1.3023448976996974,
+          "accelP95": 0.04661421528163601,
+          "accelMax": 0.05592298207488966,
+          "end": 0.00021679215660090783
+        }
+      }
+    }
+  },
+  "continuousBrowser": {
+    "browser": "Mac Chrome",
+    "durationSec": 29.133430000066756,
+    "renderFPS": 59.86250160025798,
+    "components": 46,
+    "cases": [
+      "default breeze",
+      "wind release",
+      "pointer hover sweep without click"
+    ],
+    "textureTargetSizes": [
+      [
+        1486,
+        1998
+      ],
+      [
+        1486,
+        1998
+      ],
+      [
+        1486,
+        1998
+      ]
+    ],
+    "errors": [],
+    "allFinalComponentsValid": true
+  },
+  "macWebKit": {
+    "route": "local HTTP tunnel, current candidate resources intercepted",
+    "openingAndRun": "passed",
+    "components": 46,
+    "firstClockStep": 32,
+    "lastClockStep": 646,
+    "actualSafari": "not automatically driven"
+  }
+}

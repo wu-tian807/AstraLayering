@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "date": "2026-10-24",
+  "command": "pnpm physics --name jianma --dir <independent-run-root> --profile all --krita <krita>",
+  "exitCode": 0,
+  "skipped": [
+    "step01",
+    "step02",
+    "step03"
+  ],
+  "completed": [
+    {
+      "step": "step01",
+      "markerHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "step": "step02",
+      "markerHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "step": "step03",
+      "markerHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    }
+  ],
+  "configHash": "27e1853a2dcc859a69f64393632f7c1dbba17f8d089c1a69c36299f221b79c2d",
+  "sourceThreadUnchanged": true,
+  "newAgentRequest": false,
+  "method": "Observed CLI exit 0 and all three .completed skip messages; compared configuration and marker hashes with the preceding publication receipt. No new simulation or rendering requested.",
+  "human": "unreviewed"
+}

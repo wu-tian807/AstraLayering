@@ -44,7 +44,7 @@ async function checkFiles(directory: string, files: readonly string[]): Promise<
 }
 
 export type KritaPipeline<Input> = {
-  id: Extract<PipelineId, 'raster-layering' | 'clothing-raster-layering' | 'character-assembly' | 'shadow'>;
+  id: Extract<PipelineId, 'raster-layering' | 'clothing-raster-layering' | 'character-assembly' | 'shadow' | 'physics'>;
   directorySuffix?: string;
   tools?(output: string, input: Input, step: StepDefinition, phase: string): NonNullable<AgentRequest['tools']>;
   fingerprintInput?(input: Input): Promise<string>;
@@ -155,8 +155,13 @@ export async function runWorkflow<Input>(pipeline: KritaPipeline<Input>, options
       previous.push(output);
       return async () => {};
     }
+    await mkdir(output, { recursive: true });
     let lastAgentMessage = '';
     let lastThreadId: string | undefined;
+    if(step.freshSession&&config.threadStep!==step.id){
+      await appendFile(join(output,'attempts.jsonl'),JSON.stringify({previousThreadId:config.threadId,reason:'独立步骤会话',step:step.id,at:new Date().toISOString()})+'\n');
+      config.threadId=null;delete config.threadHarness;delete config.threadHandoff;config.threadStep=step.id;await saveConfig(directory,config);
+    }
     const invoke = async (prompt: string, phase: string, fresh = false) => {
       lastAgentMessage = '';
       lastThreadId = fresh ? undefined : config.threadId ?? undefined;

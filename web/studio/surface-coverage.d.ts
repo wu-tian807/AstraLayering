@@ -1,4 +1,2 @@
-import type { LayerPixels,MapSurface } from './part-maps.js';
-export interface SurfaceCoverageOptions { fillInterior?:boolean; sealGapPixels?:number; paddingPixels?:number }
-export const defaultContourCoverage:Readonly<SurfaceCoverageOptions>;
-export function buildMapSurface(layers:readonly LayerPixels[],options?:SurfaceCoverageOptions):MapSurface;
+// Compatibility export; implementation is owned by the independently installable skill.
+export * from "../../.agents/skills/live2d-maker/shared/character-render/surface-coverage.js";

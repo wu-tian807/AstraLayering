@@ -1,18 +1,19 @@
-import { LightingStage, loadImage } from "./renderer.js";
+import { LightingStage, loadImage } from "#character-render/renderer.js";
 import { LayerPanel } from "./layer-panel.js";
 import { SurfacePreview } from "./surface-preview.js";
 import { stateKey } from "./layer-model.js";
 import { openDocument } from "./document-loader.js";
 import { ProjectionPanel } from './projection-panel.js';
 import { projectionOnlyEdit } from './projection-model.js';
-import { PhysicsPanel } from './physics-panel.js';
+import { ComponentPhysicsPanel as PhysicsPanel } from './component-physics-panel.js';
+import { PhysicsWorkflowPanel } from './physics-workflow-panel.js';
 import { physicsProjects, createPhysicsCase } from './physics-cases.js';
 import {
   defaults,
   presets,
   validateSettings,
   rendererVersion,
-} from "./lighting-model.js";
+} from "#character-render/lighting-model.js";
 const $ = (s) => document.querySelector(s);
 const esc = (s) =>
   String(s ?? "").replace(
@@ -37,7 +38,7 @@ const state = {
   workspace: 'lighting',
   lightingEnabled: true,
 };
-let projections, physics;
+let projections, physics, physicsWorkflow;
 function toast(message) {
   $("#toast").textContent = message;
   $("#toast").classList.add("visible");
@@ -315,6 +316,8 @@ function sync() {
   $('#physics-workspace').hidden = !physical;
   $('[data-tool="disturb"]').hidden = !physical;
   $('[data-tool="disturb"]').disabled = !physics?.enabled || state.busy;
+  $('[data-tool="physics-select"]').hidden = !physical;
+  $('[data-tool="physics-select"]').disabled = !physics?.ready || state.busy || state.layerBusy;
   $('.recipe-actions').hidden = !lighting;
   $('#engine').textContent = [state.lightingEnabled && hasNormal ? '光照' : '', physics?.enabled ? '物理' : '', '原尺寸'].filter(Boolean).join(' · ');
   $('#physics-case-playback').hidden = !state.source?.physicsCase;
@@ -347,6 +350,7 @@ function sync() {
   }
   overlay();
   physics?.sync();
+  physicsWorkflow?.sync(physical);
 }
 function apply(custom = false) {
   state.settings = validateSettings(state.settings);
@@ -428,7 +432,7 @@ $("#views").onclick = (e) => {
 };
 $('#show-shading').onchange = e => selectView(e.target.checked ? 'shading' : 'lit');
 function selectTool(tool) {
-  if (tool === 'light' && (state.workspace !== 'lighting' || !state.lightingEnabled) || tool === 'disturb' && (state.workspace !== 'physics' || !physics?.enabled)) tool = 'move';
+  if (tool === 'light' && (state.workspace !== 'lighting' || !state.lightingEnabled) || tool === 'disturb' && (state.workspace !== 'physics' || !physics?.enabled) || tool==='physics-select'&&(state.workspace!=='physics'||!physics?.ready)) tool = 'move';
   pointer = null;
   if (physics) physics.pointer = null;
   state.tool = tool;
@@ -436,6 +440,7 @@ function selectTool(tool) {
     el.classList.toggle("active", el.dataset.tool === tool);
   $("#stage").classList.toggle("light", tool === "light");
   $("#stage").classList.toggle("disturb", tool === "disturb");
+  $('#stage').classList.toggle('pick-component',tool==='physics-select');
   overlay();
 }
 $("#interaction").onclick = (e) => {
@@ -454,6 +459,7 @@ for (const el of [$("#stage"), $("#light-handle")]) {
   el.onpointerdown = (e) => {
     if (state.busy || !state.source || e.button !== 0) return;
     if (state.tool === 'disturb') return;
+    if (state.tool === 'physics-select') {physics.pick(e);return;}
     pointer = {
       id: e.pointerId,
       x: e.clientX,
@@ -466,6 +472,7 @@ for (const el of [$("#stage"), $("#light-handle")]) {
     if (state.tool === "light") placeLight(e);
   };
   el.onpointermove = (e) => {
+    if(state.tool==='physics-select')return;
     if (state.tool === 'disturb') { physics?.input(e); return; }
     if (!pointer || pointer.id !== e.pointerId) return;
     if (pointer.tool === "light") placeLight(e);
@@ -553,10 +560,18 @@ $("#export-image").onclick = async () => {
 const layers = new LayerPanel({
   download,
   error: toast,
+  retry: retryNativeLayers,
+  selected(row){
+    if(!physics?.ready||state.workspace!=='physics')return;
+    const c=physics.formal?physics.config.components.find(c=>c.layerRefs.some(r=>r.uuid===row.uuid)):null;
+    if(c)physics.select(c.id);else if(!physics.formal&&physics.bindings.has(row.id))physics.select(row.id);
+  },
   rendered() {
     projections?.render();
+    if (physics && !physics.ready) physics.sync();
     if (physics?.ready) {
-      if (state.workspace === 'physics' && layers.selected !== physics.selected && physics.bindings.has(layers.selected)) physics.select(layers.selected);
+      const refs=physics.formal&&state.workspace==='physics'?physics.config.components.find(c=>c.id===physics.selected)?.layerRefs||[]:[];
+      for(const row of $('#layers').querySelectorAll('[data-layer]'))row.classList.toggle('physics-related',refs.some(r=>r.uuid===layers.layers.find(l=>l.id===row.dataset.layer)?.uuid));
     }
   },
   busy(value) {
@@ -603,7 +618,18 @@ const surfaces = new SurfacePreview({stage, source:()=>state.source, session:()=
   changed(active){state.surfaceActive=active;if(!active)physics?.clear();sync();}});
 physics = new PhysicsPanel({stage, surfaces, source:()=>state.source, fingerprint:()=>state.source?.authorHash,
   workspace:()=>state.workspace, tool:()=>state.tool, busy:()=>state.busy||state.layerBusy, error:toast,
-  download, changed(){layers.render();if(!physics.enabled&&state.tool==='disturb')selectTool('move');sync();}, selectLayer(id){if(layers.selected!==id){layers.selected=id;layers.render();}}});
+  layerState:()=>({loading:layers.loading,error:layers.openError}), retryLayers:retryNativeLayers,
+  download, changed(){layers.render();if(!physics.enabled&&state.tool==='disturb'||!physics.ready&&state.tool==='physics-select')selectTool('move');sync();}, selectLayer(id,uuids=[]){if(uuids.includes(layers.layers.find(l=>l.id===layers.selected)?.uuid))return;if(layers.selected!==id)layers.select(id,{notify:false});}});
+physicsWorkflow = new PhysicsWorkflowPanel({ physics, source: () => state.source });
+physics.observed = (body, elapsed) => physicsWorkflow.sample(body, elapsed);
+physics.persisted = () => { physicsWorkflow.sync(state.workspace === 'physics'); void physicsWorkflow.refresh(); };
+async function retryNativeLayers() {
+  const owner = state.source;
+  if (!owner || state.busy || layers.pending) return;
+  await layers.open({ ...owner, layerKey: 'reopen' });
+  if (layers.session && state.source?.layerDocument === owner.layerDocument && !physics.ready)
+    await physics.prepare();
+}
 $('#effect-lighting').onchange = e => {
   state.lightingEnabled = e.target.checked;
   if (!state.lightingEnabled) { if (state.tool === 'light') selectTool('move'); if (state.view === 'shading') selectView('lit'); }
@@ -746,7 +772,11 @@ async function install(source, id, reset = true) {
     }
     if (source.sample) u.searchParams.set("name", source.sample);
     history.replaceState(null, "", u);
-    if (reset) void layers.open(source);
+    if (reset) {
+      const opening=layers.open(source);
+      // Component bindings need the native UUID catalogue before preparation.
+      if(source.componentPhysics)await opening;
+    }
   } finally {
     Object.values(urls).forEach(URL.revokeObjectURL);
   }
@@ -965,11 +995,12 @@ async function openProject(name, dir, preview, workspace, refresh = false) {
     const sameDocument = !refresh && state.source?.project?.name === name && state.source.project.dir === dir &&
       state.source.project.files.document.path === project.files.document.path &&
       state.source.project.files.document.version === project.files.document.version;
-    const [document, normal, depth, bindings] = await Promise.all([
+    const [document, normal, depth, bindings, physicsConfig] = await Promise.all([
       read("document"),
       read("normal"),
       read("depth"),
       read('bindings'),
+      read('physics'),
     ]);
     if (id !== state.generation) return;
     const source = sameDocument && preview ? { ...state.source } : await openDocument(
@@ -986,7 +1017,8 @@ async function openProject(name, dir, preview, workspace, refresh = false) {
         maps.normal = null; maps.depth = null;
       }
     }
-    await install({ ...source, ...maps, shadowBindings, project }, id, !preserve);
+    await install({ ...source, ...maps, shadowBindings, project, componentPhysics: physicsConfig ? JSON.parse(await physicsConfig.text()) : null }, id, !preserve);
+    if(id===state.generation&&physicsConfig&&layers.session)await physics.prepare({enabled:true,internal:true});
     if (id === state.generation) $("#task-dialog").close();
   } catch (e) {
     if (id === state.generation) {
@@ -1071,6 +1103,7 @@ for (const button of document.querySelectorAll('[data-workspace]')) button.oncli
   state.workspace = workspace;
   if (workspace !== 'lighting' && state.view === 'shading') selectView(state.source?.normal ? 'lit' : 'color');
   const u = new URL(location.href); u.searchParams.set('workspace', workspace); history.replaceState(null, '', u);
+  layers.render();
   sync();
 };
 async function openExampleProject(caseId, workspace = 'lighting') {
@@ -1106,6 +1139,7 @@ else if (
   void openJianma();
 else if (requested.get("name")) void openProject(requested.get("name"));
 window.addEventListener("pagehide", () => {
+  physicsWorkflow.dispose();
   surfaces.clear();
   layers.clear(true);
   cancelAnimationFrame(frame);
@@ -1113,6 +1147,7 @@ window.addEventListener("pagehide", () => {
 });
 window.studioDiagnostics = () => ({
   physics: physics.diagnostics(),
+  physicsWorkflow: physicsWorkflow.diagnostics(),
   tool: state.tool,
   surface: surfaces.diagnostics(),
   renderer: rendererVersion,

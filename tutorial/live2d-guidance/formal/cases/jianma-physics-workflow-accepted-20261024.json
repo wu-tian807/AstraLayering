@@ -1,0 +1,4847 @@
+{
+  "version": 1,
+  "description": "Jianma all-profile workflow output after the native step03 review; actual browser interaction validation is a separate record.",
+  "source": {
+    "canvas": {
+      "width": 1024,
+      "height": 1536
+    },
+    "documentHash": "67d35251f8c178d87002dff36180b61f790ec92de062875b47c3163bf89cc965",
+    "colorHash": "99854996b865efb1d6daec39f8ef383dcc7b3636c236604801bbfd432ec6ab95"
+  },
+  "configHash": "27e1853a2dcc859a69f64393632f7c1dbba17f8d089c1a69c36299f221b79c2d",
+  "simulationHash": "73d9443fce2dacd7f8db7a0d31880b95354a7faaa4f21cfcedd1dd1122ce3635",
+  "renderHash": "75fcc7ba11bfcb268e34b33fb120b7487eea06b0d8af99dba177141ac383cdc8",
+  "evidenceVersion": "astra-physics-evidence-2",
+  "inputVersion": "astra-physics-tests-3",
+  "solver": "astra-component-physics-1",
+  "stepHz": 120,
+  "steps": 960,
+  "renderDevice": {
+    "connection": "cdp",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Pro, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)"
+  },
+  "review": {
+    "numerical": "all-steps-all-meshes",
+    "render": "completed",
+    "aiVisual": "selected-frames",
+    "human": "unreviewed"
+  },
+  "human": "unreviewed",
+  "imageViews": {
+    "total": 1101,
+    "byMode": {
+      "color": 1029,
+      "lit": 36,
+      "depth": 18,
+      "normal": 18
+    },
+    "byTest": {
+      "neutral": 18,
+      "tip-impulse": 84,
+      "support-release": 156,
+      "support-reverse": 333,
+      "sustained": 92,
+      "extreme": 96,
+      "combined": 171,
+      "light-brush": 68,
+      "airflow": 83
+    },
+    "componentCrops": 224,
+    "scope": "Only actually queried images; full numerical trajectories do not imply every frame was visually reviewed."
+  },
+  "coverage": [
+    {
+      "family": "other",
+      "region": "脸/眉/鼻/耳",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:face/face_base",
+        "character:face/eyebrow_left",
+        "character:face/eyebrow_right",
+        "character:face/ear_left",
+        "character:face/ear_right",
+        "character:face/nose"
+      ]
+    },
+    {
+      "family": "other",
+      "region": "左眼及睑缘",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:face/eye_left/upper_eyelid",
+        "character:face/eye_left/lower_eyelid",
+        "character:face/eye_left/sclera",
+        "character:face/eye_left/iris",
+        "character:face/eye_left/highlight",
+        "character:face/eye_left/lower_eyelashes",
+        "character:face/eye_left/eyelid_crease"
+      ]
+    },
+    {
+      "family": "other",
+      "region": "右眼及睑缘",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:face/eye_right/upper_eyelid",
+        "character:face/eye_right/lower_eyelid",
+        "character:face/eye_right/sclera",
+        "character:face/eye_right/iris",
+        "character:face/eye_right/highlight",
+        "character:face/eye_right/eyelid_crease"
+      ]
+    },
+    {
+      "family": "other",
+      "region": "口唇/口腔/牙舌",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:face/mouth/upper_lip",
+        "character:face/mouth/lower_lip",
+        "character:face/mouth/mouth_interior",
+        "character:face/mouth/upper_teeth",
+        "character:face/mouth/lower_teeth",
+        "character:face/mouth/tongue"
+      ]
+    },
+    {
+      "family": "hair",
+      "region": "贴头发盖/头皮",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:hair/hair_cap"
+      ]
+    },
+    {
+      "family": "hair",
+      "region": "前发/刘海/耳前侧发·左/画面右",
+      "bound": [
+        {
+          "part": "character:hair/side_hair_left",
+          "component": "hair-front-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "hair",
+      "region": "前发/刘海/耳前侧发·右/画面左",
+      "bound": [
+        {
+          "part": "character:hair/side_hair_right",
+          "component": "hair-front-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "hair",
+      "region": "后枕长主发·左/画面右",
+      "bound": [
+        {
+          "part": "character:hair/back_hair/main_left",
+          "component": "hair-main-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "hair",
+      "region": "后枕长主发·右/画面左",
+      "bound": [
+        {
+          "part": "character:hair/back_hair/main_right",
+          "component": "hair-main-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "hair",
+      "region": "后发外侧中长束·左/画面右",
+      "bound": [
+        {
+          "part": "character:hair/back_hair/lock_left",
+          "component": "hair-lock-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "hair",
+      "region": "后发外侧中长束·右/画面左",
+      "bound": [
+        {
+          "part": "character:hair/back_hair/lock_right",
+          "component": "hair-lock-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "hair",
+      "region": "头顶发髻",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:hair/bun"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "冠框/冠翼",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:head_accessories/crown_frame"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "发髻前莲花冠饰",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:head_accessories/lotus_ornament"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "额前宝石固定座",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:head_accessories/forehead_ornament/upper_sapphire_mount"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "额中央水滴悬坠",
+      "bound": [
+        {
+          "part": "character:head_accessories/forehead_ornament/teardrop_pendant",
+          "component": "forehead-drop",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "冠翼下上宝石·left",
+      "bound": [
+        {
+          "part": "character:head_accessories/left_crown_ribbon/jeweled_suspension/crown_connector",
+          "component": "crown-upper-left",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "character:head_accessories/left_crown_ribbon/jeweled_suspension/upper_gem",
+          "component": "crown-upper-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "冠翼下下宝石·left",
+      "bound": [
+        {
+          "part": "character:head_accessories/left_crown_ribbon/jeweled_suspension/inter_gem_connector",
+          "component": "crown-lower-left",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "character:head_accessories/left_crown_ribbon/jeweled_suspension/lower_gem",
+          "component": "crown-lower-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "冠带头及末端短接·left",
+      "bound": [
+        {
+          "part": "character:head_accessories/left_crown_ribbon/jeweled_suspension/ribbon_connector",
+          "component": "crown-head-left",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "character:head_accessories/left_crown_ribbon/ribbon_head",
+          "component": "crown-head-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "冠侧长飘带·left",
+      "bound": [
+        {
+          "part": "character:head_accessories/left_crown_ribbon/ribbon_tail",
+          "component": "crown-ribbon-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "冠翼下上宝石·right",
+      "bound": [
+        {
+          "part": "character:head_accessories/right_crown_ribbon/gem_suspension/crown_gem_link",
+          "component": "crown-upper-right",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "character:head_accessories/right_crown_ribbon/gem_suspension/upper_diamond_gem",
+          "component": "crown-upper-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "冠翼下下宝石·right",
+      "bound": [
+        {
+          "part": "character:head_accessories/right_crown_ribbon/gem_suspension/inter_gem_link",
+          "component": "crown-lower-right",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "character:head_accessories/right_crown_ribbon/gem_suspension/lower_diamond_gem",
+          "component": "crown-lower-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "冠带头及末端短接·right",
+      "bound": [
+        {
+          "part": "character:head_accessories/right_crown_ribbon/gem_suspension/gem_ribbon_link",
+          "component": "crown-head-right",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "character:head_accessories/right_crown_ribbon/ribbon_head",
+          "component": "crown-head-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "冠侧长飘带·right",
+      "bound": [
+        {
+          "part": "character:head_accessories/right_crown_ribbon/ribbon_body",
+          "component": "crown-ribbon-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "左耳耳钉",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:head_accessories/left_earring/ear_stud"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "耳垂悬链/耳坠·left",
+      "bound": [
+        {
+          "part": "character:head_accessories/left_earring/suspension_chain",
+          "component": "earring-left",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "character:head_accessories/left_earring/sapphire_pendant",
+          "component": "earring-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "右耳耳钉",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:head_accessories/right_earring/ear_stud"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "耳垂悬链/耳坠·right",
+      "bound": [
+        {
+          "part": "character:head_accessories/right_earring/suspension_chain",
+          "component": "earring-right",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "character:head_accessories/right_earring/sapphire_pendant",
+          "component": "earring-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "other",
+      "region": "颈部",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:neck"
+      ]
+    },
+    {
+      "family": "other",
+      "region": "躯干",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:body/torso"
+      ]
+    },
+    {
+      "family": "other",
+      "region": "胸部",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:body/breast"
+      ]
+    },
+    {
+      "family": "other",
+      "region": "左臂/腕/手指",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:arms/arm_left/upper_arm",
+        "character:arms/arm_left/forearm",
+        "character:arms/arm_left/hand/palm",
+        "character:arms/arm_left/hand/thumb",
+        "character:arms/arm_left/hand/index_finger",
+        "character:arms/arm_left/hand/middle_finger",
+        "character:arms/arm_left/hand/ring_finger",
+        "character:arms/arm_left/hand/little_finger"
+      ]
+    },
+    {
+      "family": "other",
+      "region": "右臂/腕/手指",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:arms/arm_right/upper_arm",
+        "character:arms/arm_right/forearm",
+        "character:arms/arm_right/hand/palm",
+        "character:arms/arm_right/hand/thumb",
+        "character:arms/arm_right/hand/index_finger",
+        "character:arms/arm_right/hand/middle_finger",
+        "character:arms/arm_right/hand/ring_finger",
+        "character:arms/arm_right/hand/little_finger"
+      ]
+    },
+    {
+      "family": "other",
+      "region": "骨盆",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:pelvis"
+      ]
+    },
+    {
+      "family": "other",
+      "region": "左腿/踝/足",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:legs/leg_left/leg",
+        "character:legs/leg_left/foot"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "左踝前固定宝石",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:legs/leg_left/ankle_gem"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "踝足 V 链及中央硬汇接·left",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "character:legs/leg_left/anklet/ankle_chain",
+          "code": "unsupported-topology",
+          "reason": "V 链两侧转入踝部固定根，下端共同连接保形中央硬接头；链臂与硬接头位置/朝向相互耦合。只采样软场会压扁接头，只单向悬摆接头会拉开两链端。"
+        },
+        {
+          "part": "character:legs/leg_left/anklet/center_link",
+          "code": "unsupported-topology",
+          "reason": "V 链两侧转入踝部固定根，下端共同连接保形中央硬接头；链臂与硬接头位置/朝向相互耦合。只采样软场会压扁接头，只单向悬摆接头会拉开两链端。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "踝链下独立硬坠·left",
+      "bound": [
+        {
+          "part": "character:legs/leg_left/anklet/teardrop_pendant",
+          "component": "anklet-drop-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "other",
+      "region": "右腿/踝/足",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:legs/leg_right/leg",
+        "character:legs/leg_right/foot"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "右踝前固定宝石",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "character:legs/leg_right/ankle_gem"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "踝足 V 链及中央硬汇接·right",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "character:legs/leg_right/anklet/outer_chain",
+          "code": "unsupported-topology",
+          "reason": "V 链两侧转入踝部固定根，下端共同连接保形中央硬接头；链臂与硬接头位置/朝向相互耦合。只采样软场会压扁接头，只单向悬摆接头会拉开两链端。"
+        },
+        {
+          "part": "character:legs/leg_right/anklet/inner_chain",
+          "code": "unsupported-topology",
+          "reason": "V 链两侧转入踝部固定根，下端共同连接保形中央硬接头；链臂与硬接头位置/朝向相互耦合。只采样软场会压扁接头，只单向悬摆接头会拉开两链端。"
+        },
+        {
+          "part": "character:legs/leg_right/anklet/central_connector",
+          "code": "unsupported-topology",
+          "reason": "V 链两侧转入踝部固定根，下端共同连接保形中央硬接头；链臂与硬接头位置/朝向相互耦合。只采样软场会压扁接头，只单向悬摆接头会拉开两链端。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "踝链下独立硬坠·right",
+      "bound": [
+        {
+          "part": "character:legs/leg_right/anklet/gem_pendant",
+          "component": "anklet-drop-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "立领/颈根",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "clothing:outer_robe/collar_shoulders/standing_collar/right_front_collar",
+        "clothing:outer_robe/collar_shoulders/standing_collar/left_front_collar",
+        "clothing:outer_robe/collar_shoulders/standing_collar/side_back_collar"
+      ]
+    },
+    {
+      "family": "fabric",
+      "region": "肩覆片/袖根接缝",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "clothing:outer_robe/collar_shoulders/right_shoulder_cover",
+        "clothing:outer_robe/collar_shoulders/left_shoulder_cover"
+      ]
+    },
+    {
+      "family": "fabric",
+      "region": "肩肘腕间宽袖筒·left",
+      "bound": [
+        {
+          "part": "clothing:outer_robe/left_sleeve/front_sleeve_wall",
+          "component": "sleeve-shell-left",
+          "enabled": true,
+          "freedom": "free"
+        },
+        {
+          "part": "clothing:outer_robe/left_sleeve/rear_sleeve_wall",
+          "component": "sleeve-shell-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "左袖后口连接壁与长垂料",
+      "bound": [
+        {
+          "part": "clothing:outer_robe/left_sleeve/rear_cuff_drape/cuff_attachment_wall",
+          "component": "sleeve-drape-left",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "clothing:outer_robe/left_sleeve/rear_cuff_drape/free_curled_drape",
+          "component": "sleeve-drape-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "左袖外侧扇展覆片",
+      "bound": [
+        {
+          "part": "clothing:outer_robe/left_sleeve/outer_flared_gauze",
+          "component": "sleeve-gauze-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "左袖侧尖長纱",
+      "bound": [
+        {
+          "part": "clothing:outer_robe/left_sleeve/side_pointed_gauze",
+          "component": "sleeve-point-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "肩肘腕间宽袖筒·right",
+      "bound": [
+        {
+          "part": "clothing:outer_robe/right_sleeve/sleeve_tube/front_sleeve_wall",
+          "component": "sleeve-shell-right",
+          "enabled": true,
+          "freedom": "free"
+        },
+        {
+          "part": "clothing:outer_robe/right_sleeve/sleeve_tube/rear_sleeve_wall",
+          "component": "sleeve-shell-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "右袖外側扇面与尖瓣",
+      "bound": [
+        {
+          "part": "clothing:outer_robe/right_sleeve/outer_side_gauze",
+          "component": "sleeve-gauze-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "右袖后口卷曲长垂料",
+      "bound": [
+        {
+          "part": "clothing:outer_robe/right_sleeve/cuff_train",
+          "component": "sleeve-train-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "长前襟·left",
+      "bound": [
+        {
+          "part": "clothing:outer_robe/left_front_panel",
+          "component": "robe-panel-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "长前襟·right",
+      "bound": [
+        {
+          "part": "clothing:outer_robe/right_front_panel",
+          "component": "robe-panel-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "贴身胸腹衣片",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "clothing:inner_dress/bodice_front"
+      ]
+    },
+    {
+      "family": "fabric",
+      "region": "内裙前壁与侧后壁",
+      "bound": [
+        {
+          "part": "clothing:inner_dress/skirt_front",
+          "component": "inner-skirt",
+          "enabled": true,
+          "freedom": "free"
+        },
+        {
+          "part": "clothing:inner_dress/skirt_side_back",
+          "component": "inner-skirt",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "环腰束带",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "clothing:waist_sash/circumferential_band/front_band",
+        "clothing:waist_sash/circumferential_band/side_back_band"
+      ]
+    },
+    {
+      "family": "fabric",
+      "region": "腰前结芯",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "clothing:waist_sash/front_tie/knot_core"
+      ]
+    },
+    {
+      "family": "fabric",
+      "region": "腰结短回折环·right",
+      "bound": [
+        {
+          "part": "clothing:waist_sash/front_tie/right_short_loop",
+          "component": "waist-short-loop-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "腰结短回折环·left",
+      "bound": [
+        {
+          "part": "clothing:waist_sash/front_tie/left_short_loop",
+          "component": "waist-short-loop-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "腰结束口短布穗",
+      "bound": [
+        {
+          "part": "clothing:waist_sash/front_tie/bound_tassel",
+          "component": "waist-small-tassel",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "腰带长布幅·right",
+      "bound": [
+        {
+          "part": "clothing:waist_sash/right_long_tail",
+          "component": "sash-tail-right",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "fabric",
+      "region": "腰带长布幅·left",
+      "bound": [
+        {
+          "part": "clothing:waist_sash/left_long_tail",
+          "component": "sash-tail-left",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "领扣固定座",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "clothing:collar_fastener/central_clasp/clasp_body"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "领扣下汇接/胸前双支链",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:collar_fastener/central_clasp/hanging_junction",
+          "code": "unsupported-topology",
+          "reason": "扣下汇接节点上接领扣，左右两支软链下端固定在胸饰；节点运动与两链长度/端点同时耦合。将节点单独悬摆会拉开胸饰端，暂不启用。"
+        },
+        {
+          "part": "clothing:collar_fastener/right_chest_chain",
+          "code": "unsupported-topology",
+          "reason": "扣下汇接节点上接领扣，左右两支软链下端固定在胸饰；节点运动与两链长度/端点同时耦合。将节点单独悬摆会拉开胸饰端，暂不启用。"
+        },
+        {
+          "part": "clothing:collar_fastener/left_chest_chain",
+          "code": "unsupported-topology",
+          "reason": "扣下汇接节点上接领扣，左右两支软链下端固定在胸饰；节点运动与两链长度/端点同时耦合。将节点单独悬摆会拉开胸饰端，暂不启用。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "领瓣到领扣双端链",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:collar_fastener/right_collar_chain",
+          "code": "unsupported-topology",
+          "reason": "短领链两端分别接固定领瓣与领扣，实际柔性跨度需要同时保留两端接点；不改成单端吊绳或整段刚体摆。"
+        },
+        {
+          "part": "clothing:collar_fastener/left_collar_chain",
+          "code": "unsupported-topology",
+          "reason": "短领链两端分别接固定领瓣与领扣，实际柔性跨度需要同时保留两端接点；不改成单端吊绳或整段刚体摆。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "固定胸饰",
+      "bound": [],
+      "deferred": [],
+      "fixed": [
+        "clothing:chest_ornament"
+      ]
+    },
+    {
+      "family": "accessory",
+      "region": "腰结到汇结双支悬绳",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/upper_suspension/right_suspension_cord/rear_insertion_end",
+          "code": "unsupported-topology",
+          "reason": "左右悬绳在腰结有两个固定入根，下端汇到同一小结；同根前后片有真实 alpha 搭接，必须共享各自绳场。共结位置同时受两根长度/张力限制，不能猜为单根悬摆。"
+        },
+        {
+          "part": "clothing:waist_pendant/upper_suspension/right_suspension_cord/front_arc_cord",
+          "code": "unsupported-topology",
+          "reason": "左右悬绳在腰结有两个固定入根，下端汇到同一小结；同根前后片有真实 alpha 搭接，必须共享各自绳场。共结位置同时受两根长度/张力限制，不能猜为单根悬摆。"
+        },
+        {
+          "part": "clothing:waist_pendant/upper_suspension/left_suspension_cord/hidden_entry",
+          "code": "unsupported-topology",
+          "reason": "左右悬绳在腰结有两个固定入根，下端汇到同一小结；同根前后片有真实 alpha 搭接，必须共享各自绳场。共结位置同时受两根长度/张力限制，不能猜为单根悬摆。"
+        },
+        {
+          "part": "clothing:waist_pendant/upper_suspension/left_suspension_cord/front_arc",
+          "code": "unsupported-topology",
+          "reason": "左右悬绳在腰结有两个固定入根，下端汇到同一小结；同根前后片有真实 alpha 搭接，必须共享各自绳场。共结位置同时受两根长度/张力限制，不能猜为单根悬摆。"
+        },
+        {
+          "part": "clothing:waist_pendant/upper_suspension/junction_linkage/junction_knot",
+          "code": "unsupported-topology",
+          "reason": "左右悬绳在腰结有两个固定入根，下端汇到同一小结；同根前后片有真实 alpha 搭接，必须共享各自绳场。共结位置同时受两根长度/张力限制，不能猜为单根悬摆。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "腰汇结下菱形上珠",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/upper_suspension/junction_linkage/diamond_bead",
+          "code": "unsupported-topology",
+          "reason": "腰挂菱形上珠的已知下接运动路径为：菱珠下尖 [511,605] → 上窄颈/中珠 → 下窄颈/末珠/雪花 → 上银链/双珠 → 长银件 → 下双珠/水滴 → 人字吊架。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "腰挂上短颈/中间珠",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/upper_suspension/junction_linkage/short_bead_linkage/upper_flexible_neck",
+          "code": "unsupported-topology",
+          "reason": "腰挂短颈与中间珠的已知下接运动路径为：中珠下尖 [511,614] → 下窄颈/末珠/雪花 → 上银链/双珠 → 长银件 → 下双珠/水滴 → 人字吊架。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        },
+        {
+          "part": "clothing:waist_pendant/upper_suspension/junction_linkage/short_bead_linkage/middle_bead",
+          "code": "unsupported-topology",
+          "reason": "腰挂短颈与中间珠的已知下接运动路径为：中珠下尖 [511,614] → 下窄颈/末珠/雪花 → 上银链/双珠 → 长银件 → 下双珠/水滴 → 人字吊架。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "腰挂末端短珠接/雪花坠",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/upper_suspension/junction_linkage/short_bead_linkage/lower_flexible_neck",
+          "code": "unsupported-topology",
+          "reason": "腰挂短珠接与雪花硬坠的已知下接运动路径为：雪花下根 [511,666] → 上银链/双珠 → 长银件 → 下双珠/水滴 → 人字吊架。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        },
+        {
+          "part": "clothing:waist_pendant/upper_suspension/junction_linkage/short_bead_linkage/terminal_bead",
+          "code": "unsupported-topology",
+          "reason": "腰挂短珠接与雪花硬坠的已知下接运动路径为：雪花下根 [511,666] → 上银链/双珠 → 长银件 → 下双珠/水滴 → 人字吊架。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        },
+        {
+          "part": "clothing:waist_pendant/snowflake_pendant",
+          "code": "unsupported-topology",
+          "reason": "腰挂短珠接与雪花硬坠的已知下接运动路径为：雪花下根 [511,666] → 上银链/双珠 → 长银件 → 下双珠/水滴 → 人字吊架。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "雪花下直短链/上双珠",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/lower_silver_strand/upper_chain",
+          "code": "unsupported-topology",
+          "reason": "雪花下短链与上双珠的已知下接运动路径为：上双珠下根 [512,724] → 长银件 → 下双珠/水滴 → 人字吊架。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        },
+        {
+          "part": "clothing:waist_pendant/lower_silver_strand/upper_bead_link",
+          "code": "unsupported-topology",
+          "reason": "雪花下短链与上双珠的已知下接运动路径为：上双珠下根 [512,724] → 长银件 → 下双珠/水滴 → 人字吊架。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "腰挂细长银硬坠",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/lower_silver_strand/elongated_silver_link",
+          "code": "unsupported-topology",
+          "reason": "腰挂细长银硬件的已知下接运动路径为：长银件下根 [512,773] → 下双珠/水滴 → 人字吊架。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "腰挂下双珠接/水滴硬坠",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/lower_silver_strand/lower_bead_link",
+          "code": "unsupported-topology",
+          "reason": "下双珠接与水滴银坠的已知下接运动路径为：水滴附属底茎 [512,811] → 人字吊架顶茎。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        },
+        {
+          "part": "clothing:waist_pendant/lower_silver_strand/teardrop_pendant",
+          "code": "unsupported-topology",
+          "reason": "下双珠接与水滴银坠的已知下接运动路径为：水滴附属底茎 [512,811] → 人字吊架顶茎。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "莲体上人字银吊架",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/lotus_coupler/silver_hanger",
+          "code": "unsupported-topology",
+          "reason": "莲架人字硬吊架的已知下接运动路径为：人字吊架画面左臂 [505,821]、右臂 [519,821] → 两短支 → 莲体双肩 [500,829]、[522,830]。下游双短支/莲体仍暂缓且仅随姿态，启用此件会经串联接点拉开吊架—短支的真实接口；因此本件明确暂缓，保留候选参考。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "莲架双短支/莲体",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/lotus_coupler/right_side_link",
+          "code": "unsupported-topology",
+          "reason": "人字吊架两臂通过左右独立短软支接同一硬莲体双肩；每支与吊架/莲体都有原像素搭接。若莲体独立偏转须两端同步，不能把硬体两肩压成单挂点绳。"
+        },
+        {
+          "part": "clothing:waist_pendant/lotus_coupler/left_side_link",
+          "code": "unsupported-topology",
+          "reason": "人字吊架两臂通过左右独立短软支接同一硬莲体双肩；每支与吊架/莲体都有原像素搭接。若莲体独立偏转须两端同步，不能把硬体两肩压成单挂点绳。"
+        },
+        {
+          "part": "clothing:waist_pendant/lotus_coupler/lotus_body",
+          "code": "unsupported-topology",
+          "reason": "人字吊架两臂通过左右独立短软支接同一硬莲体双肩；每支与吊架/莲体都有原像素搭接。若莲体独立偏转须两端同步，不能把硬体两肩压成单挂点绳。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "莲架中央菱饰",
+      "bound": [],
+      "deferred": [
+        {
+          "part": "clothing:waist_pendant/lotus_coupler/central_diamond_pendant",
+          "code": "uncertain-connection",
+          "reason": "菱饰顶部与人字吊架之间保留真实空隙，原 alpha 最近点 [510,818]→[511,820] 距离√5≈2.24 px，无搭接；note 也明确不虚构连接桥。下端在莲体后有搭接，无法只凭名称确认独立上挂点。"
+        }
+      ],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "莲体下接件/上硬环",
+      "bound": [
+        {
+          "part": "clothing:waist_pendant/lotus_coupler/lower_ring_connector/front_connector_tip",
+          "component": "waist-ring-upper",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "clothing:waist_pendant/lotus_coupler/lower_ring_connector/rear_insertion_return",
+          "component": "waist-ring-upper",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "clothing:waist_pendant/double_ring_chain/upper_ring_body",
+          "component": "waist-ring-upper",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "环间三片短接/下硬环",
+      "bound": [
+        {
+          "part": "clothing:waist_pendant/double_ring_chain/lower_ring_body",
+          "component": "waist-ring-lower",
+          "enabled": true,
+          "freedom": "free"
+        },
+        {
+          "part": "clothing:waist_pendant/double_ring_chain/inter_ring_link/rear_threaded_stem",
+          "component": "waist-ring-lower",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "clothing:waist_pendant/double_ring_chain/inter_ring_link/upper_front_head",
+          "component": "waist-ring-lower",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "clothing:waist_pendant/double_ring_chain/inter_ring_link/lower_front_head",
+          "component": "waist-ring-lower",
+          "enabled": true,
+          "freedom": "follow"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "硬环孔内悬珠·upper",
+      "bound": [
+        {
+          "part": "clothing:waist_pendant/double_ring_chain/upper_inner_drop",
+          "component": "waist-ring-inner-upper",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "硬环孔内悬珠·lower",
+      "bound": [
+        {
+          "part": "clothing:waist_pendant/double_ring_chain/lower_inner_drop",
+          "component": "waist-ring-inner-lower",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "下环穿接吊扣/流苏硬扣",
+      "bound": [
+        {
+          "part": "clothing:waist_pendant/tassel_buckle/ring_return_back",
+          "component": "waist-tassel-buckle",
+          "enabled": true,
+          "freedom": "follow"
+        },
+        {
+          "part": "clothing:waist_pendant/tassel_buckle/buckle_front",
+          "component": "waist-tassel-buckle",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    },
+    {
+      "family": "accessory",
+      "region": "腰挂长白流苏",
+      "bound": [
+        {
+          "part": "clothing:waist_pendant/long_white_tassel",
+          "component": "waist-white-tassel",
+          "enabled": true,
+          "freedom": "free"
+        }
+      ],
+      "deferred": [],
+      "fixed": []
+    }
+  ],
+  "components": [
+    {
+      "id": "sleeve-gauze-right",
+      "name": "右袖外側扇面与尖瓣",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:outer_robe/right_sleeve/outer_side_gauze"
+      ],
+      "sourceLayerUuids": [
+        "4cefead4-cfc5-40af-bf2e-e088e824b5c0"
+      ],
+      "supports": [
+        {
+          "id": "pose/right-sleeve-side-field/0",
+          "at": [
+            400,
+            371
+          ]
+        },
+        {
+          "id": "pose/right-sleeve-side-field/1",
+          "at": [
+            340,
+            501
+          ]
+        },
+        {
+          "id": "pose/right-sleeve-side-field/2",
+          "at": [
+            262,
+            650
+          ]
+        },
+        {
+          "id": "pose/right-sleeve-side-field/3",
+          "at": [
+            234,
+            730
+          ]
+        },
+        {
+          "id": "pose/right-sleeve-side-field/4",
+          "at": [
+            250,
+            802
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 3,
+        "dampingRatio": 0.2,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-7,
+        "shearCompliance": 0.0004,
+        "bendCompliance": 0.0006,
+        "shapeCompliance": 0.0002
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 16,
+        "maxStretch": 0.025,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.68
+      },
+      "authoring": {
+        "freeLength": 424.14,
+        "transitionPixels": 28,
+        "fixedRegionCount": 2,
+        "controlGrid": [
+          3,
+          6
+        ]
+      },
+      "maxTravelPixels": 42.414
+    },
+    {
+      "id": "sleeve-gauze-left",
+      "name": "左袖外侧扇展覆片",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:outer_robe/left_sleeve/outer_flared_gauze"
+      ],
+      "sourceLayerUuids": [
+        "f9135148-0876-4ff3-a9df-9a4dcccce298"
+      ],
+      "supports": [
+        {
+          "id": "pose/left-sleeve-side-field/0",
+          "at": [
+            641,
+            461
+          ]
+        },
+        {
+          "id": "pose/left-sleeve-side-field/1",
+          "at": [
+            676,
+            528
+          ]
+        },
+        {
+          "id": "pose/left-sleeve-side-field/2",
+          "at": [
+            715,
+            602
+          ]
+        },
+        {
+          "id": "pose/left-sleeve-side-field/3",
+          "at": [
+            742,
+            656
+          ]
+        },
+        {
+          "id": "pose/left-sleeve-side-field/4",
+          "at": [
+            771,
+            701
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 5.5,
+        "dampingRatio": 0.08,
+        "inputGain": 2
+      },
+      "material": {
+        "stretchCompliance": 1e-7,
+        "shearCompliance": 0.0001,
+        "bendCompliance": 0.0008,
+        "shapeCompliance": 0.001
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 16,
+        "maxStretch": 0.025,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.68
+      },
+      "authoring": {
+        "freeLength": 144.67,
+        "transitionPixels": 28,
+        "fixedRegionCount": 2,
+        "controlGrid": [
+          4,
+          8
+        ]
+      },
+      "maxTravelPixels": 14.466999999999999
+    },
+    {
+      "id": "sleeve-point-left",
+      "name": "左袖侧尖長纱",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:outer_robe/left_sleeve/side_pointed_gauze"
+      ],
+      "sourceLayerUuids": [
+        "3bf7134c-559c-4379-a25c-6dc6db3e2718"
+      ],
+      "supports": [
+        {
+          "id": "pose/left-rear-cuff-outer-fold/0",
+          "at": [
+            764,
+            800
+          ]
+        },
+        {
+          "id": "pose/left-rear-cuff-outer-fold/1",
+          "at": [
+            769,
+            834
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 3,
+        "dampingRatio": 0.2,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.00001,
+        "bendCompliance": 0.0001,
+        "shapeCompliance": 0.0002,
+        "compressionCompliance": 0.000001
+      },
+      "limits": {
+        "maxTravel": 0.11,
+        "maxAngle": 17,
+        "maxStretch": 0.025,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.68
+      },
+      "authoring": {
+        "freeLength": 431.03,
+        "transitionPixels": 42,
+        "fixedRegionCount": 1,
+        "controlGrid": [
+          3,
+          6
+        ]
+      },
+      "maxTravelPixels": 47.4133
+    },
+    {
+      "id": "sleeve-train-right",
+      "name": "右袖后口卷曲长垂料",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:outer_robe/right_sleeve/cuff_train"
+      ],
+      "sourceLayerUuids": [
+        "25bb6a36-311f-42be-83be-436c6965f336"
+      ],
+      "supports": [
+        {
+          "id": "pose/right-rear-cuff-field/0",
+          "at": [
+            379,
+            734
+          ]
+        },
+        {
+          "id": "pose/right-rear-cuff-field/1",
+          "at": [
+            367,
+            780
+          ]
+        },
+        {
+          "id": "pose/right-rear-cuff-field/2",
+          "at": [
+            315,
+            797
+          ]
+        },
+        {
+          "id": "pose/right-rear-cuff-field/3",
+          "at": [
+            252,
+            792
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 3,
+        "dampingRatio": 0.2,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.00001,
+        "bendCompliance": 0.0001,
+        "shapeCompliance": 0.0002,
+        "compressionCompliance": 0.000001
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 16,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.7
+      },
+      "authoring": {
+        "freeLength": 613.54,
+        "transitionPixels": 48,
+        "fixedRegionCount": 2,
+        "controlGrid": [
+          3,
+          6
+        ]
+      },
+      "maxTravelPixels": 61.354
+    },
+    {
+      "id": "sleeve-drape-left",
+      "name": "左袖后口连接壁与长垂料",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:outer_robe/left_sleeve/rear_cuff_drape/cuff_attachment_wall",
+        "clothing:outer_robe/left_sleeve/rear_cuff_drape/free_curled_drape"
+      ],
+      "sourceLayerUuids": [
+        "ca8e66ba-fde3-41d1-bb60-f89005844bbe",
+        "404507ea-0975-48e4-baca-487074be8edc"
+      ],
+      "supports": [
+        {
+          "id": "pose/left-rear-cuff-field/0",
+          "at": [
+            649,
+            711
+          ]
+        },
+        {
+          "id": "pose/left-rear-cuff-field/1",
+          "at": [
+            704,
+            702
+          ]
+        },
+        {
+          "id": "pose/left-rear-cuff-field/2",
+          "at": [
+            772,
+            730
+          ]
+        },
+        {
+          "id": "pose/left-rear-cuff-field/3",
+          "at": [
+            659,
+            785
+          ]
+        },
+        {
+          "id": "pose/left-rear-cuff-field/4",
+          "at": [
+            764,
+            790
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 3,
+        "dampingRatio": 0.2,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.00001,
+        "bendCompliance": 0.0001,
+        "shapeCompliance": 0.0002,
+        "compressionCompliance": 0.000001
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 16,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.7
+      },
+      "authoring": {
+        "freeLength": 624.13,
+        "transitionPixels": 48,
+        "fixedRegionCount": 1,
+        "controlGrid": [
+          3,
+          6
+        ]
+      },
+      "maxTravelPixels": 62.413000000000004
+    },
+    {
+      "id": "robe-panel-right",
+      "name": "长前襟·right",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:outer_robe/right_front_panel"
+      ],
+      "sourceLayerUuids": [
+        "7fbce1bc-878f-4199-85fe-950e3c1de052"
+      ],
+      "supports": [
+        {
+          "id": "pose/torso-panel-right/0",
+          "at": [
+            470,
+            373
+          ]
+        },
+        {
+          "id": "pose/torso-panel-right/1",
+          "at": [
+            457,
+            439
+          ]
+        },
+        {
+          "id": "pose/torso-panel-right/2",
+          "at": [
+            443,
+            512
+          ]
+        },
+        {
+          "id": "pose/torso-panel-right/3",
+          "at": [
+            479,
+            531
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 3,
+        "dampingRatio": 0.2,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.00001,
+        "bendCompliance": 0.0001,
+        "shapeCompliance": 0.0002,
+        "compressionCompliance": 0.000001
+      },
+      "limits": {
+        "maxTravel": 0.075,
+        "maxAngle": 12,
+        "maxStretch": 0.02,
+        "maxCompression": 0.1,
+        "maxShear": 12,
+        "minAreaRatio": 0.74
+      },
+      "authoring": {
+        "freeLength": 983.61,
+        "transitionPixels": 68,
+        "fixedRegionCount": 1,
+        "controlGrid": [
+          6,
+          12
+        ]
+      },
+      "maxTravelPixels": 73.77074999999999
+    },
+    {
+      "id": "robe-panel-left",
+      "name": "长前襟·left",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:outer_robe/left_front_panel"
+      ],
+      "sourceLayerUuids": [
+        "be78f61b-0384-4021-b392-c06c6b38c962",
+        "1f303111-7ad4-4f5f-8295-cef037b4729d"
+      ],
+      "supports": [
+        {
+          "id": "pose/torso-panel-left/0",
+          "at": [
+            558,
+            375
+          ]
+        },
+        {
+          "id": "pose/torso-panel-left/1",
+          "at": [
+            571,
+            441
+          ]
+        },
+        {
+          "id": "pose/torso-panel-left/2",
+          "at": [
+            548,
+            515
+          ]
+        },
+        {
+          "id": "pose/torso-panel-left/3",
+          "at": [
+            584,
+            532
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 3,
+        "dampingRatio": 0.2,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.00001,
+        "bendCompliance": 0.0001,
+        "shapeCompliance": 0.0002,
+        "compressionCompliance": 0.000001
+      },
+      "limits": {
+        "maxTravel": 0.075,
+        "maxAngle": 12,
+        "maxStretch": 0.02,
+        "maxCompression": 0.1,
+        "maxShear": 12,
+        "minAreaRatio": 0.74
+      },
+      "authoring": {
+        "freeLength": 989.58,
+        "transitionPixels": 68,
+        "fixedRegionCount": 1,
+        "controlGrid": [
+          3,
+          6
+        ]
+      },
+      "maxTravelPixels": 74.2185
+    },
+    {
+      "id": "inner-skirt",
+      "name": "内裙前壁与侧后壁",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:inner_dress/skirt_front",
+        "clothing:inner_dress/skirt_side_back"
+      ],
+      "sourceLayerUuids": [
+        "aeac0595-0ed4-4ab3-88ee-395b6d776312",
+        "a33473aa-e558-4865-8265-3a65abe02de4"
+      ],
+      "supports": [
+        {
+          "id": "pose/waist-pelvis-skirt-field/0",
+          "at": [
+            459,
+            508
+          ]
+        },
+        {
+          "id": "pose/waist-pelvis-skirt-field/1",
+          "at": [
+            486,
+            514
+          ]
+        },
+        {
+          "id": "pose/waist-pelvis-skirt-field/2",
+          "at": [
+            512,
+            515
+          ]
+        },
+        {
+          "id": "pose/waist-pelvis-skirt-field/3",
+          "at": [
+            538,
+            514
+          ]
+        },
+        {
+          "id": "pose/waist-pelvis-skirt-field/4",
+          "at": [
+            567,
+            508
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 3,
+        "dampingRatio": 0.3,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.00001,
+        "bendCompliance": 0.0001,
+        "shapeCompliance": 0.0002,
+        "compressionCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.065,
+        "maxAngle": 10,
+        "maxStretch": 0.02,
+        "maxCompression": 0.1,
+        "maxShear": 12,
+        "minAreaRatio": 0.75
+      },
+      "authoring": {
+        "freeLength": 898.85,
+        "transitionPixels": 72,
+        "fixedRegionCount": 1,
+        "controlGrid": [
+          5,
+          10
+        ]
+      },
+      "maxTravelPixels": 58.425250000000005
+    },
+    {
+      "id": "sash-tail-right",
+      "name": "腰带长布幅·right",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_sash/right_long_tail"
+      ],
+      "sourceLayerUuids": [
+        "4ad5acb4-1dff-4467-bf02-b0a8cd0fd094"
+      ],
+      "supports": [
+        {
+          "id": "pose/waist-front-knot-right/0",
+          "at": [
+            499,
+            519
+          ]
+        },
+        {
+          "id": "pose/waist-front-knot-right/1",
+          "at": [
+            515,
+            523
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 3,
+        "dampingRatio": 0.2,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 2e-8,
+        "shearCompliance": 0.0005,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0006
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 16,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.7
+      },
+      "authoring": {
+        "freeLength": 741,
+        "transitionPixels": 54,
+        "fixedRegionCount": 1,
+        "controlGrid": [
+          3,
+          6
+        ]
+      },
+      "maxTravelPixels": 74.10000000000001
+    },
+    {
+      "id": "sash-tail-left",
+      "name": "腰带长布幅·left",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_sash/left_long_tail"
+      ],
+      "sourceLayerUuids": [
+        "aaab2d41-416c-4772-9755-cb7f7607e16d"
+      ],
+      "supports": [
+        {
+          "id": "pose/waist-front-knot-left/0",
+          "at": [
+            513,
+            523
+          ]
+        },
+        {
+          "id": "pose/waist-front-knot-left/1",
+          "at": [
+            529,
+            528
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 3,
+        "dampingRatio": 0.2,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 2e-8,
+        "shearCompliance": 0.0005,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0006
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 16,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.7
+      },
+      "authoring": {
+        "freeLength": 803,
+        "transitionPixels": 54,
+        "fixedRegionCount": 1,
+        "controlGrid": [
+          3,
+          6
+        ]
+      },
+      "maxTravelPixels": 80.30000000000001
+    },
+    {
+      "id": "waist-white-tassel",
+      "name": "腰挂长白流苏",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_pendant/long_white_tassel"
+      ],
+      "sourceLayerUuids": [
+        "69ced8b9-4297-4911-9bb9-5560421d2964"
+      ],
+      "supports": [
+        {
+          "id": "pose/tassel-buckle-bundle/0",
+          "at": [
+            513,
+            925
+          ],
+          "componentId": "waist-tassel-buckle",
+          "sourcePartIds": [
+            "clothing:waist_pendant/tassel_buckle/buckle_front",
+            "clothing:waist_pendant/tassel_buckle/ring_return_back"
+          ]
+        },
+        {
+          "id": "pose/tassel-buckle-bundle/1",
+          "at": [
+            513,
+            941
+          ],
+          "componentId": "waist-tassel-buckle",
+          "sourcePartIds": [
+            "clothing:waist_pendant/tassel_buckle/buckle_front",
+            "clothing:waist_pendant/tassel_buckle/ring_return_back"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.8,
+        "dampingRatio": 0.7,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0003,
+        "bendCompliance": 0.0005,
+        "shapeCompliance": 0.0006
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 9,
+        "maxStretch": 0.015,
+        "maxCompression": 0.08,
+        "maxShear": 10,
+        "minAreaRatio": 0.75
+      },
+      "authoring": {
+        "freeLength": 295.565,
+        "transitionPixels": 45,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 29.5565
+    },
+    {
+      "id": "hair-main-right",
+      "name": "后发主束·右/画面左",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:hair/back_hair/main_right"
+      ],
+      "sourceLayerUuids": [
+        "b8615608-3b8c-4783-b538-29e5e78ca63c"
+      ],
+      "supports": [
+        {
+          "id": "pose/head-occiput-main-right",
+          "at": [
+            465,
+            189
+          ],
+          "sourcePartIds": [
+            "character:hair/hair_cap",
+            "character:face/ear_right"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 0.8,
+        "dampingRatio": 0.42,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0006,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.075,
+        "maxAngle": 12,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.72
+      },
+      "authoring": {
+        "freeLength": 1234.012,
+        "transitionPixels": 40,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 92.5509
+    },
+    {
+      "id": "hair-lock-right",
+      "name": "后发外缘游离束·右/画面左",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:hair/back_hair/lock_right"
+      ],
+      "sourceLayerUuids": [
+        "f583c09a-98fc-49c3-a835-2c5e5ec00320"
+      ],
+      "supports": [
+        {
+          "id": "pose/head-occiput-lock-right",
+          "at": [
+            464,
+            201
+          ],
+          "sourcePartIds": [
+            "character:hair/hair_cap",
+            "character:face/ear_right"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.7,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0006,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.09,
+        "maxAngle": 14,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.72
+      },
+      "authoring": {
+        "freeLength": 508.722,
+        "transitionPixels": 36,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 45.78498
+    },
+    {
+      "id": "hair-front-right",
+      "name": "前发/刘海及耳前尾·右/画面左",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:hair/side_hair_right"
+      ],
+      "sourceLayerUuids": [
+        "30dd241c-2976-4bf6-8433-18d50dc7f479"
+      ],
+      "supports": [
+        {
+          "id": "pose/head-front-root-right",
+          "at": [
+            506,
+            93
+          ],
+          "sourcePartIds": [
+            "character:hair/hair_cap"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 2,
+        "dampingRatio": 0.5,
+        "inputGain": 1.8
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0006,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.04,
+        "maxAngle": 5,
+        "maxStretch": 0.012,
+        "maxCompression": 0.05,
+        "maxShear": 6,
+        "minAreaRatio": 0.85
+      },
+      "authoring": {
+        "freeLength": 81.77,
+        "transitionPixels": 20,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 3.2708
+    },
+    {
+      "id": "hair-main-left",
+      "name": "后发主束·左/画面右",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:hair/back_hair/main_left"
+      ],
+      "sourceLayerUuids": [
+        "968dd3aa-0604-4d47-8786-0810efce0fce"
+      ],
+      "supports": [
+        {
+          "id": "pose/head-occiput-main-left",
+          "at": [
+            557,
+            190
+          ],
+          "sourcePartIds": [
+            "character:hair/hair_cap",
+            "character:face/ear_left"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 0.8,
+        "dampingRatio": 0.42,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0006,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.075,
+        "maxAngle": 12,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.72
+      },
+      "authoring": {
+        "freeLength": 1235.444,
+        "transitionPixels": 40,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 92.6583
+    },
+    {
+      "id": "hair-lock-left",
+      "name": "后发外缘游离束·左/画面右",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:hair/back_hair/lock_left"
+      ],
+      "sourceLayerUuids": [
+        "7b84120e-c39b-40ec-b927-b13210a2340d"
+      ],
+      "supports": [
+        {
+          "id": "pose/head-occiput-lock-left",
+          "at": [
+            562,
+            205
+          ],
+          "sourcePartIds": [
+            "character:hair/hair_cap",
+            "character:face/ear_left"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.7,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0006,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.09,
+        "maxAngle": 14,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.72
+      },
+      "authoring": {
+        "freeLength": 527.274,
+        "transitionPixels": 36,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 47.45466
+    },
+    {
+      "id": "hair-front-left",
+      "name": "前发/刘海及耳前尾·左/画面右",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:hair/side_hair_left"
+      ],
+      "sourceLayerUuids": [
+        "4026373e-5071-49f0-bbab-487abe4b33a7"
+      ],
+      "supports": [
+        {
+          "id": "pose/head-front-root-left",
+          "at": [
+            518,
+            92
+          ],
+          "sourcePartIds": [
+            "character:hair/hair_cap"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 2,
+        "dampingRatio": 0.5,
+        "inputGain": 1.8
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0006,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.04,
+        "maxAngle": 5,
+        "maxStretch": 0.012,
+        "maxCompression": 0.05,
+        "maxShear": 6,
+        "minAreaRatio": 0.85
+      },
+      "authoring": {
+        "freeLength": 84.645,
+        "transitionPixels": 20,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 3.3857999999999997
+    },
+    {
+      "id": "crown-upper-left",
+      "name": "冠下上宝石·left",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/left_crown_ribbon/jeweled_suspension/crown_connector",
+        "character:head_accessories/left_crown_ribbon/jeweled_suspension/upper_gem"
+      ],
+      "sourceLayerUuids": [
+        "4bece45b-c7e2-4965-acd3-bcf9117b90c7",
+        "b55837ab-d4ec-479b-84e8-5e0c1e264f1a"
+      ],
+      "supports": [
+        {
+          "id": "pose/crown-wing-left",
+          "at": [
+            620,
+            98
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/crown_frame"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.8,
+        "inputGain": 1.5,
+        "outputFrequencyHz": 0.4
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 1,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 21.095
+      },
+      "maxTravelPixels": 2.1095
+    },
+    {
+      "id": "crown-lower-left",
+      "name": "冠下下宝石·left",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/left_crown_ribbon/jeweled_suspension/inter_gem_connector",
+        "character:head_accessories/left_crown_ribbon/jeweled_suspension/lower_gem"
+      ],
+      "sourceLayerUuids": [
+        "2d8ee53d-f52e-4d4a-aa38-ff456583cd6f",
+        "c6f7ef15-59e7-4b71-bd0e-c2686ce0688b"
+      ],
+      "supports": [
+        {
+          "id": "crown-upper-tip-left",
+          "at": [
+            620,
+            120
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/left_crown_ribbon/jeweled_suspension/upper_gem"
+          ],
+          "componentId": "crown-upper-left"
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.8,
+        "inputGain": 1.5,
+        "outputFrequencyHz": 0.4
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 1,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 12.042
+      },
+      "maxTravelPixels": 1.2042000000000002
+    },
+    {
+      "id": "crown-head-left",
+      "name": "冠带装饰头·left",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/left_crown_ribbon/jeweled_suspension/ribbon_connector",
+        "character:head_accessories/left_crown_ribbon/ribbon_head"
+      ],
+      "sourceLayerUuids": [
+        "361d610c-2368-4344-8d2c-7be8d52368eb",
+        "5facb50a-98df-40f6-b71d-00d0459e4f5b"
+      ],
+      "supports": [
+        {
+          "id": "crown-lower-tip-left",
+          "at": [
+            620,
+            132
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/left_crown_ribbon/jeweled_suspension/lower_gem"
+          ],
+          "componentId": "crown-lower-left"
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.8,
+        "inputGain": 1.5,
+        "outputFrequencyHz": 0.4
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 1,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 38.079
+      },
+      "maxTravelPixels": 3.8079
+    },
+    {
+      "id": "crown-ribbon-left",
+      "name": "连续冠飘带·left",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/left_crown_ribbon/ribbon_tail"
+      ],
+      "sourceLayerUuids": [
+        "e1797bbe-89f8-4346-bc44-5c84063d45c8"
+      ],
+      "supports": [
+        {
+          "id": "crown-head-ribbon-left",
+          "at": [
+            620,
+            166
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/left_crown_ribbon/ribbon_head"
+          ],
+          "componentId": "crown-head-left"
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.8,
+        "dampingRatio": 0.7,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0006,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 9,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.72
+      },
+      "authoring": {
+        "freeLength": 733.131,
+        "transitionPixels": 80,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 73.3131
+    },
+    {
+      "id": "crown-upper-right",
+      "name": "冠下上宝石·right",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/right_crown_ribbon/gem_suspension/crown_gem_link",
+        "character:head_accessories/right_crown_ribbon/gem_suspension/upper_diamond_gem"
+      ],
+      "sourceLayerUuids": [
+        "3620bc2b-93d6-49d4-a247-ef4b24e9d746",
+        "598e3e29-029a-4b89-b344-d4702a117e80"
+      ],
+      "supports": [
+        {
+          "id": "pose/crown-wing-right",
+          "at": [
+            405,
+            98
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/crown_frame"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.8,
+        "inputGain": 1.5,
+        "outputFrequencyHz": 0.4
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 1,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 21.095
+      },
+      "maxTravelPixels": 2.1095
+    },
+    {
+      "id": "crown-lower-right",
+      "name": "冠下下宝石·right",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/right_crown_ribbon/gem_suspension/inter_gem_link",
+        "character:head_accessories/right_crown_ribbon/gem_suspension/lower_diamond_gem"
+      ],
+      "sourceLayerUuids": [
+        "ad3ab209-c2e8-4d03-a526-500a84a561bc",
+        "42842175-5509-4a40-bbe8-6ae7c494cc15"
+      ],
+      "supports": [
+        {
+          "id": "crown-upper-tip-right",
+          "at": [
+            405,
+            120
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/right_crown_ribbon/gem_suspension/upper_diamond_gem"
+          ],
+          "componentId": "crown-upper-right"
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.8,
+        "inputGain": 1.5,
+        "outputFrequencyHz": 0.4
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 1,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 12.166
+      },
+      "maxTravelPixels": 1.2166000000000001
+    },
+    {
+      "id": "crown-head-right",
+      "name": "冠带装饰头·right",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/right_crown_ribbon/gem_suspension/gem_ribbon_link",
+        "character:head_accessories/right_crown_ribbon/ribbon_head"
+      ],
+      "sourceLayerUuids": [
+        "a9e84439-e344-4fe5-ade2-3c244f5b3dbf",
+        "3f68b5a8-5d4b-4c13-adb1-21961830efa0"
+      ],
+      "supports": [
+        {
+          "id": "crown-lower-tip-right",
+          "at": [
+            405,
+            132
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/right_crown_ribbon/gem_suspension/lower_diamond_gem"
+          ],
+          "componentId": "crown-lower-right"
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.8,
+        "inputGain": 1.5,
+        "outputFrequencyHz": 0.4
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 1,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 31.145
+      },
+      "maxTravelPixels": 3.1145
+    },
+    {
+      "id": "crown-ribbon-right",
+      "name": "连续冠飘带·right",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/right_crown_ribbon/ribbon_body"
+      ],
+      "sourceLayerUuids": [
+        "600b2cdb-64c6-4351-b161-3d4e4ad5ceed"
+      ],
+      "supports": [
+        {
+          "id": "crown-head-ribbon-right",
+          "at": [
+            405,
+            158
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/right_crown_ribbon/ribbon_head"
+          ],
+          "componentId": "crown-head-right"
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.8,
+        "dampingRatio": 0.7,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0006,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 9,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.72
+      },
+      "authoring": {
+        "freeLength": 741.786,
+        "transitionPixels": 80,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 74.1786
+    },
+    {
+      "id": "earring-left",
+      "name": "耳链与蓝宝石坠·left",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/left_earring/suspension_chain",
+        "character:head_accessories/left_earring/sapphire_pendant"
+      ],
+      "sourceLayerUuids": [
+        "4429d448-42da-4d6f-8471-96e608f6d591",
+        "5105d4fa-d448-4228-85bd-b48d278cc3b0"
+      ],
+      "supports": [
+        {
+          "id": "pose/ear-stud-left",
+          "at": [
+            562,
+            225
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/left_earring/ear_stud",
+            "character:face/ear_left"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.45,
+        "dampingRatio": 0.42,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 14,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 31.064
+      },
+      "maxTravelPixels": 3.1064000000000003
+    },
+    {
+      "id": "earring-right",
+      "name": "耳链与蓝宝石坠·right",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/right_earring/suspension_chain",
+        "character:head_accessories/right_earring/sapphire_pendant"
+      ],
+      "sourceLayerUuids": [
+        "649bc20a-6e47-4457-b17d-7508c32283bc",
+        "36de5359-7207-4476-88a1-5b10c7bd069e"
+      ],
+      "supports": [
+        {
+          "id": "pose/ear-stud-right",
+          "at": [
+            463,
+            225
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/right_earring/ear_stud",
+            "character:face/ear_right"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.45,
+        "dampingRatio": 0.42,
+        "inputGain": 0.65
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 14,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 31.016
+      },
+      "maxTravelPixels": 3.1016
+    },
+    {
+      "id": "forehead-drop",
+      "name": "额心短颈水滴坠",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:head_accessories/forehead_ornament/teardrop_pendant"
+      ],
+      "sourceLayerUuids": [
+        "f62bf253-edcb-4326-8f3d-7574c4028b95"
+      ],
+      "supports": [
+        {
+          "id": "pose/forehead-mount",
+          "at": [
+            512,
+            148
+          ],
+          "sourcePartIds": [
+            "character:head_accessories/forehead_ornament/upper_sapphire_mount"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.5,
+        "dampingRatio": 0.4,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.07,
+        "maxAngle": 6,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 17.029
+      },
+      "maxTravelPixels": 1.1920300000000001
+    },
+    {
+      "id": "sleeve-shell-left",
+      "name": "宽袖筒前后壁·left",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:outer_robe/left_sleeve/front_sleeve_wall",
+        "clothing:outer_robe/left_sleeve/rear_sleeve_wall"
+      ],
+      "sourceLayerUuids": [
+        "bc36f01f-13ab-4e98-a664-99596ae8ebef",
+        "34dc66c9-7c23-4603-8ada-bc3bfea32606"
+      ],
+      "supports": [
+        {
+          "id": "pose/sleeve-shoulder-left",
+          "at": [
+            623,
+            373
+          ],
+          "sourcePartIds": [
+            "character:arms/arm_left/upper_arm"
+          ]
+        },
+        {
+          "id": "pose/sleeve-elbow-left",
+          "at": [
+            649,
+            526
+          ],
+          "sourcePartIds": [
+            "character:arms/arm_left/upper_arm",
+            "character:arms/arm_left/forearm"
+          ]
+        },
+        {
+          "id": "pose/sleeve-cuff-inner-left",
+          "at": [
+            650,
+            710
+          ],
+          "sourcePartIds": [
+            "character:arms/arm_left/forearm"
+          ]
+        },
+        {
+          "id": "pose/sleeve-cuff-outer-left",
+          "at": [
+            773,
+            725
+          ],
+          "sourcePartIds": [
+            "character:arms/arm_left/forearm"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 6,
+        "dampingRatio": 0.03,
+        "inputGain": 2
+      },
+      "material": {
+        "stretchCompliance": 0.000001,
+        "shearCompliance": 0.002,
+        "bendCompliance": 0.0016,
+        "shapeCompliance": 0.0004
+      },
+      "limits": {
+        "maxTravel": 0.06,
+        "maxAngle": 6,
+        "maxStretch": 0.015,
+        "maxCompression": 0.08,
+        "maxShear": 10,
+        "minAreaRatio": 0.82
+      },
+      "authoring": {
+        "freeLength": 41.184,
+        "transitionPixels": 28,
+        "fixedRegionCount": 6,
+        "controlGrid": [
+          3,
+          6
+        ]
+      },
+      "maxTravelPixels": 2.47104
+    },
+    {
+      "id": "sleeve-shell-right",
+      "name": "宽袖筒前后壁·right",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:outer_robe/right_sleeve/sleeve_tube/front_sleeve_wall",
+        "clothing:outer_robe/right_sleeve/sleeve_tube/rear_sleeve_wall"
+      ],
+      "sourceLayerUuids": [
+        "7b960c64-bf02-4696-9ce9-ceb2307aedf1",
+        "6d254424-c3e3-47d1-ae09-e9d7aca56961"
+      ],
+      "supports": [
+        {
+          "id": "pose/sleeve-shoulder-right",
+          "at": [
+            407,
+            373
+          ],
+          "sourcePartIds": [
+            "character:arms/arm_right/upper_arm"
+          ]
+        },
+        {
+          "id": "pose/sleeve-elbow-right",
+          "at": [
+            373,
+            526
+          ],
+          "sourcePartIds": [
+            "character:arms/arm_right/upper_arm",
+            "character:arms/arm_right/forearm"
+          ]
+        },
+        {
+          "id": "pose/sleeve-cuff-inner-right",
+          "at": [
+            375,
+            742
+          ],
+          "sourcePartIds": [
+            "character:arms/arm_right/forearm"
+          ]
+        },
+        {
+          "id": "pose/sleeve-cuff-outer-right",
+          "at": [
+            248,
+            744
+          ],
+          "sourcePartIds": [
+            "character:arms/arm_right/forearm"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 6,
+        "dampingRatio": 0.03,
+        "inputGain": 2
+      },
+      "material": {
+        "stretchCompliance": 0.0002,
+        "shearCompliance": 0.002,
+        "bendCompliance": 0.0016,
+        "shapeCompliance": 0.0004
+      },
+      "limits": {
+        "maxTravel": 0.06,
+        "maxAngle": 6,
+        "maxStretch": 0.015,
+        "maxCompression": 0.08,
+        "maxShear": 10,
+        "minAreaRatio": 0.82
+      },
+      "authoring": {
+        "freeLength": 46,
+        "transitionPixels": 28,
+        "fixedRegionCount": 6,
+        "controlGrid": [
+          3,
+          6
+        ]
+      },
+      "maxTravelPixels": 2.76
+    },
+    {
+      "id": "waist-short-loop-left",
+      "name": "腰结短布环·left",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_sash/front_tie/left_short_loop"
+      ],
+      "sourceLayerUuids": [
+        "8a1f8490-65d3-49fc-9660-83bab8436fff"
+      ],
+      "supports": [
+        {
+          "id": "pose/waist-short-loop-left",
+          "at": [
+            520,
+            518
+          ],
+          "sourcePartIds": [
+            "clothing:waist_sash/front_tie/knot_core"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 6,
+        "dampingRatio": 0.03,
+        "inputGain": 2
+      },
+      "material": {
+        "stretchCompliance": 0.000001,
+        "shearCompliance": 0.001,
+        "bendCompliance": 0.002,
+        "shapeCompliance": 0.0002
+      },
+      "limits": {
+        "maxTravel": 0.07,
+        "maxAngle": 8,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.72
+      },
+      "authoring": {
+        "freeLength": 32.657,
+        "transitionPixels": 12,
+        "fixedRegionCount": 1,
+        "controlGrid": [
+          2,
+          2
+        ]
+      },
+      "maxTravelPixels": 2.28599
+    },
+    {
+      "id": "waist-short-loop-right",
+      "name": "腰结短布环·right",
+      "kind": "cloth",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_sash/front_tie/right_short_loop"
+      ],
+      "sourceLayerUuids": [
+        "46deb4ad-cc76-4782-95dd-2dda0d4ba1fd"
+      ],
+      "supports": [
+        {
+          "id": "pose/waist-short-loop-right",
+          "at": [
+            502,
+            518
+          ],
+          "sourcePartIds": [
+            "clothing:waist_sash/front_tie/knot_core"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 6,
+        "dampingRatio": 0.03,
+        "inputGain": 2
+      },
+      "material": {
+        "stretchCompliance": 0.000001,
+        "shearCompliance": 0.001,
+        "bendCompliance": 0.002,
+        "shapeCompliance": 0.0002
+      },
+      "limits": {
+        "maxTravel": 0.07,
+        "maxAngle": 8,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.72
+      },
+      "authoring": {
+        "freeLength": 35.485,
+        "transitionPixels": 12,
+        "fixedRegionCount": 1,
+        "controlGrid": [
+          2,
+          2
+        ]
+      },
+      "maxTravelPixels": 2.48395
+    },
+    {
+      "id": "waist-small-tassel",
+      "name": "腰结束口小布穗",
+      "kind": "strand",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_sash/front_tie/bound_tassel"
+      ],
+      "sourceLayerUuids": [
+        "554bbd28-cf6f-4712-89dc-3de866c21589"
+      ],
+      "supports": [
+        {
+          "id": "pose/waist-small-tassel",
+          "at": [
+            513,
+            519
+          ],
+          "sourcePartIds": [
+            "clothing:waist_sash/front_tie/knot_core"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.4,
+        "inputGain": 2
+      },
+      "material": {
+        "stretchCompliance": 1e-8,
+        "shearCompliance": 0.0006,
+        "bendCompliance": 0.0004,
+        "shapeCompliance": 0.0005
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 14,
+        "maxStretch": 0.02,
+        "maxCompression": 0.12,
+        "maxShear": 14,
+        "minAreaRatio": 0.72
+      },
+      "authoring": {
+        "freeLength": 33.784,
+        "transitionPixels": 8,
+        "fixedRegionCount": 1
+      },
+      "maxTravelPixels": 3.3784
+    },
+    {
+      "id": "anklet-drop-left",
+      "name": "踝链下短颈硬坠·left",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:legs/leg_left/anklet/teardrop_pendant"
+      ],
+      "sourceLayerUuids": [
+        "916c02a8-4300-41e4-85d3-5034344cb068"
+      ],
+      "supports": [
+        {
+          "id": "pose/anklet-center-left",
+          "at": [
+            543,
+            1424
+          ],
+          "sourcePartIds": [
+            "character:legs/leg_left/anklet/center_link",
+            "character:legs/leg_left/foot"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.5,
+        "dampingRatio": 0.4,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 14,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 20.1
+      },
+      "maxTravelPixels": 2.0100000000000002
+    },
+    {
+      "id": "anklet-drop-right",
+      "name": "踝链下短颈硬坠·right",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "character:legs/leg_right/anklet/gem_pendant"
+      ],
+      "sourceLayerUuids": [
+        "0a488e19-8892-4466-ae99-32c29528894e"
+      ],
+      "supports": [
+        {
+          "id": "pose/anklet-center-right",
+          "at": [
+            483,
+            1419
+          ],
+          "sourcePartIds": [
+            "character:legs/leg_right/anklet/central_connector",
+            "character:legs/leg_right/foot"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.5,
+        "dampingRatio": 0.4,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 14,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 24.021
+      },
+      "maxTravelPixels": 2.4021000000000003
+    },
+    {
+      "id": "waist-ring-upper",
+      "name": "莲接前后片与上硬环",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_pendant/lotus_coupler/lower_ring_connector/rear_insertion_return",
+        "clothing:waist_pendant/lotus_coupler/lower_ring_connector/front_connector_tip",
+        "clothing:waist_pendant/double_ring_chain/upper_ring_body"
+      ],
+      "sourceLayerUuids": [
+        "70b05c0b-5900-4dd0-9780-93bcc88ebd8c",
+        "78543f27-7657-4b66-8823-a4bd8d0beee4",
+        "08c9ec0b-2a77-4ece-a3fa-6205b1beb932"
+      ],
+      "supports": [
+        {
+          "id": "pose/lotus-bottom-ring",
+          "at": [
+            512,
+            849
+          ],
+          "sourcePartIds": [
+            "clothing:waist_pendant/lotus_coupler/lotus_body"
+          ]
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.8,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 1,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 32.249
+      },
+      "maxTravelPixels": 3.2249000000000003
+    },
+    {
+      "id": "waist-ring-lower",
+      "name": "环间前后短接与下硬环",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_pendant/double_ring_chain/inter_ring_link/rear_threaded_stem",
+        "clothing:waist_pendant/double_ring_chain/inter_ring_link/upper_front_head",
+        "clothing:waist_pendant/double_ring_chain/inter_ring_link/lower_front_head",
+        "clothing:waist_pendant/double_ring_chain/lower_ring_body"
+      ],
+      "sourceLayerUuids": [
+        "d20d5de8-2167-4228-b1a8-9e7ae669a844",
+        "18c77004-4be7-4a1f-88ab-707670b80e2c",
+        "9d32f6ca-2735-4ce5-9965-4f8d7570b286",
+        "d45a36e2-e4b4-414b-bdff-4d524eae23fc"
+      ],
+      "supports": [
+        {
+          "id": "waist-upper-ring-bottom",
+          "at": [
+            512,
+            880
+          ],
+          "sourcePartIds": [
+            "clothing:waist_pendant/double_ring_chain/upper_ring_body"
+          ],
+          "componentId": "waist-ring-upper"
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.8,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 1,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 32.388
+      },
+      "maxTravelPixels": 3.2388
+    },
+    {
+      "id": "waist-ring-inner-upper",
+      "name": "环孔内短茎小悬珠·upper",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_pendant/double_ring_chain/upper_inner_drop"
+      ],
+      "sourceLayerUuids": [
+        "fd123c2a-fe8e-4a5b-a8c2-479d44abcd7b"
+      ],
+      "supports": [
+        {
+          "id": "waist-ring-inner-root-upper",
+          "at": [
+            512,
+            856
+          ],
+          "sourcePartIds": [
+            "clothing:waist_pendant/double_ring_chain/upper_ring_body"
+          ],
+          "componentId": "waist-ring-upper"
+        }
+      ],
+      "response": {
+        "frequencyHz": 0.9,
+        "dampingRatio": 0.28,
+        "inputGain": 2
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.07,
+        "maxAngle": 6,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 8.544
+      },
+      "maxTravelPixels": 0.5980800000000001
+    },
+    {
+      "id": "waist-ring-inner-lower",
+      "name": "环孔内短茎小悬珠·lower",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_pendant/double_ring_chain/lower_inner_drop"
+      ],
+      "sourceLayerUuids": [
+        "05bfaa85-2b16-4fb8-a56a-ef0073614e38"
+      ],
+      "supports": [
+        {
+          "id": "waist-ring-inner-root-lower",
+          "at": [
+            512,
+            887
+          ],
+          "sourcePartIds": [
+            "clothing:waist_pendant/double_ring_chain/lower_ring_body"
+          ],
+          "componentId": "waist-ring-lower"
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.3,
+        "inputGain": 2
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.07,
+        "maxAngle": 6,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 8.246
+      },
+      "maxTravelPixels": 0.5772200000000001
+    },
+    {
+      "id": "waist-tassel-buckle",
+      "name": "吊扣前后回接与角形硬扣",
+      "kind": "pendant",
+      "enabled": true,
+      "sourcePartIds": [
+        "clothing:waist_pendant/tassel_buckle/ring_return_back",
+        "clothing:waist_pendant/tassel_buckle/buckle_front"
+      ],
+      "sourceLayerUuids": [
+        "073bc257-451e-4b91-a1cd-adc030aaa7fc",
+        "ae1396dc-2e52-4a6a-8bc6-b5dc5b531316"
+      ],
+      "supports": [
+        {
+          "id": "waist-lower-ring-bottom",
+          "at": [
+            512,
+            912
+          ],
+          "sourcePartIds": [
+            "clothing:waist_pendant/double_ring_chain/lower_ring_body"
+          ],
+          "componentId": "waist-ring-lower"
+        }
+      ],
+      "response": {
+        "frequencyHz": 1.2,
+        "dampingRatio": 0.8,
+        "inputGain": 1.5
+      },
+      "material": {
+        "stretchCompliance": 0,
+        "shearCompliance": 0,
+        "bendCompliance": 0,
+        "shapeCompliance": 0
+      },
+      "limits": {
+        "maxTravel": 0.1,
+        "maxAngle": 1,
+        "maxStretch": 0.005,
+        "maxCompression": 0,
+        "maxShear": 1,
+        "minAreaRatio": 0.95
+      },
+      "authoring": {
+        "freeLength": 39.051
+      },
+      "maxTravelPixels": 3.9051000000000005
+    }
+  ],
+  "runs": [
+    {
+      "test": "neutral",
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxTravel": 1.0785280415467626e-12,
+      "fallbackSteps": 0,
+      "limitedSteps": 0,
+      "notSettled": [],
+      "maxFinalResidualPixels": 1.0785280415467626e-12,
+      "motionIssues": [],
+      "fallbackEvents": [],
+      "highlightedComponents": {
+        "sleeve-gauze-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 0,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0,
+          "maxWorldStep": 0,
+          "final": 0,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "tip-impulse",
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxTravel": 22.105120491507048,
+      "fallbackSteps": 2,
+      "limitedSteps": 26,
+      "notSettled": [],
+      "maxFinalResidualPixels": 0.000012161503335633387,
+      "motionIssues": [],
+      "fallbackEvents": [
+        {
+          "type": "fallback",
+          "component": "inner-skirt",
+          "step": 60
+        },
+        {
+          "type": "fallback",
+          "component": "inner-skirt",
+          "step": 77
+        }
+      ],
+      "highlightedComponents": {
+        "sleeve-gauze-right": {
+          "peak": 3.1168265855200206,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.2775864093190739,
+          "maxWorldStep": 1.2775864093190739,
+          "final": 3.1306243220791845e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 16.595574646527968,
+          "root": 0,
+          "fallback": 2,
+          "limited": 13,
+          "maxStep": 4.645428527772534,
+          "maxWorldStep": 4.645428527772534,
+          "final": 4.726193615154295e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 14.568098082962479,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7471434534177398,
+          "maxWorldStep": 0.7471434534177657,
+          "final": 0.0000037454709006519836,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 3.529036513368757,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.29941485015896674,
+          "maxWorldStep": 0.29941485015896674,
+          "final": 1.0040027473631925e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0.6446162040173146,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.08485307470539924,
+          "maxWorldStep": 0.08485307470539924,
+          "final": 2.595752341613334e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 14.550170502794966,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7454266423697883,
+          "maxWorldStep": 0.7454266423697883,
+          "final": 0.0000037477079074961107,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 3.638036728518665,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.308281398167424,
+          "maxWorldStep": 0.308281398167424,
+          "final": 2.2814090403381828e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.7436698713844333,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.0956347959731878,
+          "maxWorldStep": 0.0956347959731878,
+          "final": 1.123603563941574e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 18.329187563991866,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.9534007594937692,
+          "maxWorldStep": 1.9534007594937692,
+          "final": 1.4877415948168622e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 17.89319810273367,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.9511072510388823,
+          "maxWorldStep": 1.9511072510389096,
+          "final": 3.865249536060629e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 4.777499996705872,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.3655835821953861,
+          "maxWorldStep": 1.3655835821953861,
+          "final": 3.7442100262053945e-10,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "support-release",
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxTravel": 51.44841902788246,
+      "fallbackSteps": 0,
+      "limitedSteps": 2203,
+      "notSettled": [],
+      "maxFinalResidualPixels": 0.00022170935764368667,
+      "motionIssues": [],
+      "fallbackEvents": [],
+      "highlightedComponents": {
+        "sleeve-gauze-right": {
+          "peak": 6.230566159071014,
+          "root": 0,
+          "fallback": 0,
+          "limited": 99,
+          "maxStep": 0.7580918283226578,
+          "maxWorldStep": 2.578413690896339,
+          "final": 3.679152425662158e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 7.330851628010139,
+          "root": 0,
+          "fallback": 0,
+          "limited": 61,
+          "maxStep": 0.7552297196140573,
+          "maxWorldStep": 2.507491597183976,
+          "final": 1.4049949153499104e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 33.676225234673,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.828252459256145,
+          "maxWorldStep": 2.8282524592561717,
+          "final": 0.00007004988540891613,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 32.265460636961706,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.6152325387432533,
+          "maxWorldStep": 2.5678734878803526,
+          "final": 9.727663944818575e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 3.037841386803695,
+          "root": 0,
+          "fallback": 0,
+          "limited": 19,
+          "maxStep": 0.23543689076070426,
+          "maxWorldStep": 2.6846178788764052,
+          "final": 3.987683650776398e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 51.44841902788246,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.196316245155222,
+          "maxWorldStep": 2.58160124059009,
+          "final": 0.00007176354064803095,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 32.07902720335927,
+          "root": 0,
+          "fallback": 0,
+          "limited": 1,
+          "maxStep": 1.6406158894966736,
+          "maxWorldStep": 2.5630477466321726,
+          "final": 9.875454389033489e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 2.018439645492223,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.22284068735536103,
+          "maxWorldStep": 2.685597263752287,
+          "final": 3.807614565612157e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 36.69969325577324,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.222870810468752,
+          "maxWorldStep": 2.5714575689178316,
+          "final": 3.2720407037599826e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 37.01660437966321,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.2690364866618378,
+          "maxWorldStep": 2.5969680833777344,
+          "final": 3.6454843879377636e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 16.06752585536821,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.0483686570621256,
+          "maxWorldStep": 1.7805976167568625,
+          "final": 6.675307635379757e-9,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "support-reverse",
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxTravel": 31.440024145683704,
+      "fallbackSteps": 0,
+      "limitedSteps": 2620,
+      "notSettled": [],
+      "maxFinalResidualPixels": 0.0011576612279869498,
+      "motionIssues": [],
+      "fallbackEvents": [],
+      "highlightedComponents": {
+        "sleeve-gauze-right": {
+          "peak": 2.145057373379449,
+          "root": 0,
+          "fallback": 0,
+          "limited": 241,
+          "maxStep": 0.09683882744071998,
+          "maxWorldStep": 1.3761361244121166,
+          "final": 1.3461780895610844e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 2.5205531066201066,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.11300727609538529,
+          "maxWorldStep": 1.3692154400364331,
+          "final": 6.138355029781735e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 17.888634420684767,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.7424940213856688,
+          "maxWorldStep": 1.6406826129060317,
+          "final": 0.0002416297952643231,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 20.346566941430112,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.8185000829720213,
+          "maxWorldStep": 1.2933845057515896,
+          "final": 5.396009555271374e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 2.9384876862968006,
+          "root": 0,
+          "fallback": 0,
+          "limited": 17,
+          "maxStep": 0.20323219673151677,
+          "maxWorldStep": 1.2933911385938752,
+          "final": 1.0142700106216443e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 31.440024145683704,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.538371786470618,
+          "maxWorldStep": 1.367142362918249,
+          "final": 0.00024171380351379563,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 19.82968358965757,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.7920121002464776,
+          "maxWorldStep": 1.293405635552726,
+          "final": 5.442799832483716e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.9462615931356578,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.21031581320210382,
+          "maxWorldStep": 1.293385336649456,
+          "final": 9.771753458475228e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 24.89961662591427,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 4.732665203705961,
+          "maxWorldStep": 4.101128691903812,
+          "final": 1.1344243252513807e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 25.099552672046876,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 4.788284022289716,
+          "maxWorldStep": 4.162145772508578,
+          "final": 1.9982957873011546e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 12.412825409389653,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 5.024855374823058,
+          "maxWorldStep": 4.354313920346109,
+          "final": 1.375926392591167e-10,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "sustained",
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxTravel": 9.129041906236102,
+      "fallbackSteps": 0,
+      "limitedSteps": 0,
+      "notSettled": [],
+      "maxFinalResidualPixels": 0.0000631716524104839,
+      "motionIssues": [],
+      "fallbackEvents": [],
+      "highlightedComponents": {
+        "sleeve-gauze-right": {
+          "peak": 0.37149885617910494,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.15199200774927782,
+          "maxWorldStep": 0.15199200774927782,
+          "final": 3.264270506344476e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 2.212620656785917,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.6549635724314796,
+          "maxWorldStep": 0.6549635724314796,
+          "final": 1.0305768044378182e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 5.361306982918739,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.15603060010015293,
+          "maxWorldStep": 0.15603060010015293,
+          "final": 0.000034744260830348664,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 0.8896613181719236,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.042628850778799264,
+          "maxWorldStep": 0.042628850778799264,
+          "final": 7.370093859103782e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0.10630663196812865,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.010202600163330326,
+          "maxWorldStep": 0.010202600163330326,
+          "final": 9.593609318783045e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 5.360278032485117,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.15590443402096207,
+          "maxWorldStep": 0.15590443402096207,
+          "final": 0.0000347647268672652,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 0.917027646852836,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.04393067714591247,
+          "maxWorldStep": 0.04393067714591247,
+          "final": 7.565878268635003e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.12418403919573637,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.011531222927852478,
+          "maxWorldStep": 0.011531222927852478,
+          "final": 3.853089123708218e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 9.041501539077306,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.299272566912986,
+          "maxWorldStep": 0.299272566912986,
+          "final": 1.1885576931204128e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 9.129041906236102,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.29473804573299106,
+          "maxWorldStep": 0.29473804573301826,
+          "final": 8.19319554305924e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 3.781252378611582,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.17011188617922493,
+          "maxWorldStep": 0.17011188617922493,
+          "final": 5.8903110992205924e-9,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "extreme",
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxTravel": 65.27409498548822,
+      "fallbackSteps": 2,
+      "limitedSteps": 211,
+      "notSettled": [],
+      "maxFinalResidualPixels": 0.000029662800119475014,
+      "motionIssues": [],
+      "fallbackEvents": [
+        {
+          "type": "fallback",
+          "component": "inner-skirt",
+          "step": 60
+        },
+        {
+          "type": "fallback",
+          "component": "inner-skirt",
+          "step": 77
+        }
+      ],
+      "highlightedComponents": {
+        "sleeve-gauze-right": {
+          "peak": 9.198984463835487,
+          "root": 0,
+          "fallback": 0,
+          "limited": 3,
+          "maxStep": 3.787073724936983,
+          "maxWorldStep": 3.787073724936997,
+          "final": 9.261277930543224e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 21.560477847512622,
+          "root": 0,
+          "fallback": 2,
+          "limited": 18,
+          "maxStep": 6.134633797990241,
+          "maxWorldStep": 6.134633797990241,
+          "final": 1.0657655961522157e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 39.40492160305553,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.045329984185459,
+          "maxWorldStep": 2.045329984185485,
+          "final": 0.000011123445715645066,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 10.242499871244007,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.879720426614347,
+          "maxWorldStep": 0.879720426614347,
+          "final": 6.732177545275104e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 1.6268915437314266,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1840067217721047,
+          "maxWorldStep": 0.1840067217721047,
+          "final": 7.624876536542713e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 39.32425688521523,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.0491263434615345,
+          "maxWorldStep": 2.0491263434615345,
+          "final": 0.000011130101106836287,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 10.566743903154816,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.9057213696008029,
+          "maxWorldStep": 0.9057213696008029,
+          "final": 6.904475055688409e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 1.8320779908322096,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.19857533957348153,
+          "maxWorldStep": 0.19857533957348153,
+          "final": 3.083871305861251e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 23.078864848677142,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 3.0515239503408313,
+          "maxWorldStep": 3.0515239503408313,
+          "final": 1.3696092519883464e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 23.222645018685377,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 3.0682338636049225,
+          "maxWorldStep": 3.0682338636049766,
+          "final": 1.4609441000151037e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 11.146124784280412,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.842551848938377,
+          "maxWorldStep": 2.842551848938377,
+          "final": 1.0562021188924318e-10,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "combined",
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxTravel": 47.8642282058433,
+      "fallbackSteps": 2,
+      "limitedSteps": 2197,
+      "notSettled": [],
+      "maxFinalResidualPixels": 0.0002252708443556706,
+      "motionIssues": [],
+      "fallbackEvents": [
+        {
+          "type": "fallback",
+          "component": "inner-skirt",
+          "step": 60
+        },
+        {
+          "type": "fallback",
+          "component": "inner-skirt",
+          "step": 80
+        }
+      ],
+      "highlightedComponents": {
+        "sleeve-gauze-right": {
+          "peak": 6.271694283046953,
+          "root": 0,
+          "fallback": 0,
+          "limited": 99,
+          "maxStep": 1.2775864093190739,
+          "maxWorldStep": 2.5779530599855747,
+          "final": 3.647605880167959e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 14.95897082315671,
+          "root": 0,
+          "fallback": 2,
+          "limited": 74,
+          "maxStep": 4.645428527772534,
+          "maxWorldStep": 4.645428527772534,
+          "final": 1.3952756801771312e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 33.15378641246623,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.7303732058896157,
+          "maxWorldStep": 2.730373205889643,
+          "final": 0.0000663519045484435,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 32.26683953887042,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.6096698345827603,
+          "maxWorldStep": 2.5678734878803526,
+          "final": 9.727663944818575e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 3.0378412022018884,
+          "root": 0,
+          "fallback": 0,
+          "limited": 19,
+          "maxStep": 0.2354369448900399,
+          "maxWorldStep": 2.6846178788764052,
+          "final": 3.987683650776398e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 47.8642282058433,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.149561968173915,
+          "maxWorldStep": 2.58160124059009,
+          "final": 0.00006804290893438678,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 32.0805790328895,
+          "root": 0,
+          "fallback": 0,
+          "limited": 1,
+          "maxStep": 1.6358458397158635,
+          "maxWorldStep": 2.5630477466321726,
+          "final": 9.875454389033489e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 2.0184393476617943,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.22284068543630306,
+          "maxWorldStep": 2.685597263752287,
+          "final": 3.807614565612157e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 36.70589037897743,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 1.999358993756732,
+          "maxWorldStep": 2.571482983846333,
+          "final": 3.1350445710001744e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 37.024246802765106,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.069220840885958,
+          "maxWorldStep": 2.596983958090242,
+          "final": 3.3949613897100803e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 16.029629747032896,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 2.2034247599948014,
+          "maxWorldStep": 1.780596731152392,
+          "final": 6.675307635379757e-9,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "light-brush",
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxTravel": 1.9758832623026634,
+      "fallbackSteps": 0,
+      "limitedSteps": 0,
+      "notSettled": [],
+      "maxFinalResidualPixels": 0.0000017650676009342562,
+      "motionIssues": [],
+      "fallbackEvents": [],
+      "highlightedComponents": {
+        "sleeve-gauze-right": {
+          "peak": 0.2787156927030195,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.11402434294481496,
+          "maxWorldStep": 0.11402434294481496,
+          "final": 4.386926400592861e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 1.6598181797179794,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.4622268102139881,
+          "maxWorldStep": 0.4622268102139881,
+          "final": 2.4984179615173834e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 1.315688813183047,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.06708753681413884,
+          "maxWorldStep": 0.06708753681413884,
+          "final": 3.3395832564512e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 0.31562775885604183,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.02673178505397623,
+          "maxWorldStep": 0.02673178505397623,
+          "final": 3.971171111134675e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0.05894425673890883,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.007654322742101921,
+          "maxWorldStep": 0.007654322742101921,
+          "final": 8.153032088314427e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 1.314824305414574,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.0670121461708371,
+          "maxWorldStep": 0.0670121461708371,
+          "final": 3.341580233070701e-7,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 0.32528952774081865,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.02752643569749007,
+          "maxWorldStep": 0.02752643569749007,
+          "final": 4.0732700957562465e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.0682263574844893,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.008651234333905244,
+          "maxWorldStep": 0.008651234333905244,
+          "final": 1.0690031445589835e-9,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 1.36309014467189,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.22491321513300588,
+          "maxWorldStep": 0.22491321513300588,
+          "final": 1.2291902699923043e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 1.421516712958908,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.2214760054657645,
+          "maxWorldStep": 0.22147600546579171,
+          "final": 9.756235622862438e-11,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 0.5172642987541227,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1276518178789169,
+          "maxWorldStep": 0.1276518178789169,
+          "final": 2.0640048120019825e-10,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    },
+    {
+      "test": "airflow",
+      "invalidSteps": 0,
+      "maxRoot": 0,
+      "maxTravel": 23.662129883485786,
+      "fallbackSteps": 0,
+      "limitedSteps": 1,
+      "notSettled": [],
+      "maxFinalResidualPixels": 0.004336497048513307,
+      "motionIssues": [],
+      "fallbackEvents": [],
+      "highlightedComponents": {
+        "sleeve-gauze-right": {
+          "peak": 4.503728373559594,
+          "root": 0,
+          "fallback": 0,
+          "limited": 1,
+          "maxStep": 0.37516654295086344,
+          "maxWorldStep": 0.37516654295086344,
+          "final": 0.00007539957082174228,
+          "invalid": 0,
+          "issues": []
+        },
+        "inner-skirt": {
+          "peak": 5.685528230865614,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.49486570409521546,
+          "maxWorldStep": 0.49486570409521546,
+          "final": 0.000004508806546419885,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-right": {
+          "peak": 8.4566465919945,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.17874615479755737,
+          "maxWorldStep": 0.17874615479755737,
+          "final": 0.004328614533345251,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-right": {
+          "peak": 4.062818312006416,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1325204350429734,
+          "maxWorldStep": 0.1325204350429734,
+          "final": 1.9532231869582215e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-right": {
+          "peak": 0.6239341752096199,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.034083973167674864,
+          "maxWorldStep": 0.034083973167674864,
+          "final": 4.2598672754644557e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-main-left": {
+          "peak": 10.876427430984617,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.25671383296022965,
+          "maxWorldStep": 0.25671383296022965,
+          "final": 0.004336497048513307,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-lock-left": {
+          "peak": 4.083859620628563,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.1320699511029245,
+          "maxWorldStep": 0.1320699511029245,
+          "final": 2.0420363143947565e-8,
+          "invalid": 0,
+          "issues": []
+        },
+        "hair-front-left": {
+          "peak": 0.3639227933051206,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.018320517882937384,
+          "maxWorldStep": 0.018320517882937384,
+          "final": 4.2530369448515125e-10,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-left": {
+          "peak": 3.8833866341324637,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3580575388270851,
+          "maxWorldStep": 0.3580575388270851,
+          "final": 0.0000012780153684106942,
+          "invalid": 0,
+          "issues": []
+        },
+        "crown-ribbon-right": {
+          "peak": 4.0401063334021075,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.3550751034942642,
+          "maxWorldStep": 0.3550751034942642,
+          "final": 0.000001650113732918798,
+          "invalid": 0,
+          "issues": []
+        },
+        "waist-white-tassel": {
+          "peak": 2.1113321835585435,
+          "root": 0,
+          "fallback": 0,
+          "limited": 0,
+          "maxStep": 0.09958000648452148,
+          "maxWorldStep": 0.09958000648452148,
+          "final": 3.134339102074045e-7,
+          "invalid": 0,
+          "issues": []
+        }
+      }
+    }
+  ],
+  "lighting": {
+    "version": 1,
+    "documentHash": "67d35251f8c178d87002dff36180b61f790ec92de062875b47c3163bf89cc965",
+    "maps": {
+      "normal": {
+        "path": "shadow/normal-depth/step01/normal.png",
+        "contentHash": "6f16d54013bdbba1fe2f6315b37352cd3f1fafe0657738b87701f31951add508",
+        "upstreamAvailable": false,
+        "status": "frozen-preview-input"
+      },
+      "depth": {
+        "path": "shadow/normal-depth/step01/depth.png",
+        "contentHash": "83a74400e0c4ee109398bdd44dd9d4e48afc6c9cdf8e8ee471b4e54525ad11e0",
+        "upstreamAvailable": false,
+        "status": "frozen-preview-input"
+      }
+    }
+  }
+}

@@ -19,6 +19,36 @@ import type { StepDefinition } from '../../shared/raster/steps.ts';
 import { acquireTaskLock } from '../state.ts';
 import { replaceThread } from '../recovery.ts';
 
+test('物理复核换会话保留已完成绑定、完整轨迹和当前贴图，不改步骤标记', async t => {
+  const f = await fixture(t), target = join(f.task, 'physics');
+  const files = {
+    'step01/.completed': 'analysis complete', 'step02/.completed': 'binding complete',
+    'step02/physics.draft.json': 'source-matched binding', 'step03/.running': 'review pending',
+    'step03/evidence/manifest.json': 'current simulation manifest',
+    'step03/evidence/tip-impulse/trace.jsonl.gz': 'complete recorded commands and meshes',
+    'preview/normal.png': 'real normal map', 'preview/depth.png': 'real depth map',
+    'step03/prompt.md': 'previous review prompt',
+  };
+  for (const [file, bytes] of Object.entries(files)) {
+    await mkdir(dirname(join(target, file)), { recursive: true });
+    await writeFile(join(target, file), bytes);
+  }
+  await writeFile(join(target, 'run.json'), JSON.stringify({ version: 2, name: 'case', threadId: 'old-physics-review', threadStep: 'step03',
+    sourceInput: { task: f.task, document: 'source.kra', color: 'source.png', profile: 'all', structures: [] },
+    krita: { executable: process.execPath, version: 'test' }, models: { step03: { model: 'gpt-6-astra', effort: 'xhigh' } } }));
+  await writeFile(join(f.task, 'handoff.md'), '真实两图已补齐，同指纹完整数值轨迹保留，继续重渲染并实际看图。');
+  const archive = await replaceThread({ ...f.recovery, pipeline: 'physics' });
+  const config = JSON.parse(await readFile(join(target, 'run.json'), 'utf8'));
+  assert.equal(config.threadId, null);
+  assert.equal(config.threadStep, 'step03');
+  assert.equal(config.threadHandoff.previousThreadId, 'old-physics-review');
+  assert.match(await readFile(config.threadHandoff.notes, 'utf8'), /完整数值轨迹保留/);
+  assert.equal(JSON.parse(await readFile(join(archive, 'run-before.json'), 'utf8')).threadId, 'old-physics-review');
+  for (const [file, bytes] of Object.entries(files)) assert.equal(await readFile(join(target, file), 'utf8'), bytes);
+  await assert.rejects(readFile(join(target, 'step03/.completed')), { code: 'ENOENT' });
+  await assert.rejects(readFile(join(target, 'physics.json')), { code: 'ENOENT' });
+});
+
 test('阴影恢复按保存模式替换当前会话，保留另一分支与已生成贴图', async t => {
   for (const mode of ['normal-depth', 'mask'] as const) {
     const f = await fixture(t), target = join(f.task, 'shadow', mode), other = join(f.task, 'shadow', mode === 'mask' ? 'normal-depth' : 'mask');

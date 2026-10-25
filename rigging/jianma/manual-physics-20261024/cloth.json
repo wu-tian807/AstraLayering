@@ -1,0 +1,181 @@
+{
+  "purpose": "Manual lower-garment tuning; not workflow acceptance",
+  "components": [
+    {
+      "id": "sleeve-point-left",
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.0005,
+        "bendCompliance": 0.0006,
+        "shapeCompliance": 0.00065,
+        "compressionCompliance": 0.0005
+      },
+      "response": {
+        "frequencyHz": 1.1,
+        "dampingRatio": 0.48,
+        "inputGain": 1.5
+      },
+      "authoring": {
+        "controlGrid": [
+          3,
+          8
+        ],
+        "transitionPixels": 60
+      }
+    },
+    {
+      "id": "sleeve-train-right",
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.0005,
+        "bendCompliance": 0.0006,
+        "shapeCompliance": 0.00065,
+        "compressionCompliance": 0.0005
+      },
+      "response": {
+        "frequencyHz": 1.1,
+        "dampingRatio": 0.48,
+        "inputGain": 1.5
+      },
+      "authoring": {
+        "controlGrid": [
+          3,
+          8
+        ],
+        "transitionPixels": 60
+      }
+    },
+    {
+      "id": "sleeve-drape-left",
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.0005,
+        "bendCompliance": 0.0006,
+        "shapeCompliance": 0.00065,
+        "compressionCompliance": 0.0005
+      },
+      "response": {
+        "frequencyHz": 1.1,
+        "dampingRatio": 0.48,
+        "inputGain": 1.5
+      },
+      "authoring": {
+        "controlGrid": [
+          3,
+          8
+        ],
+        "transitionPixels": 60
+      }
+    },
+    {
+      "id": "robe-panel-right",
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.0005,
+        "bendCompliance": 0.0006,
+        "shapeCompliance": 0.00065,
+        "compressionCompliance": 0.0005
+      },
+      "response": {
+        "frequencyHz": 1.1,
+        "dampingRatio": 0.48,
+        "inputGain": 0.65
+      },
+      "authoring": {
+        "controlGrid": [
+          4,
+          10
+        ],
+        "transitionPixels": 70
+      }
+    },
+    {
+      "id": "robe-panel-left",
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.0005,
+        "bendCompliance": 0.0006,
+        "shapeCompliance": 0.00065,
+        "compressionCompliance": 0.0005
+      },
+      "response": {
+        "frequencyHz": 1.1,
+        "dampingRatio": 0.48,
+        "inputGain": 0.65
+      },
+      "authoring": {
+        "controlGrid": [
+          4,
+          10
+        ],
+        "transitionPixels": 70
+      }
+    },
+    {
+      "id": "inner-skirt",
+      "material": {
+        "stretchCompliance": 1e-9,
+        "shearCompliance": 0.0002,
+        "bendCompliance": 0.0006,
+        "shapeCompliance": 0.00045,
+        "compressionCompliance": 0.0002
+      },
+      "response": {
+        "frequencyHz": 1.25,
+        "dampingRatio": 0.55,
+        "inputGain": 1.5
+      },
+      "authoring": {
+        "controlGrid": [
+          4,
+          8
+        ],
+        "transitionPixels": 72
+      }
+    },
+    {
+      "id": "sash-tail-right",
+      "material": {
+        "stretchCompliance": 2e-8,
+        "shearCompliance": 0.0005,
+        "bendCompliance": 0.0006,
+        "shapeCompliance": 0.00065,
+        "compressionCompliance": 0.0005
+      },
+      "response": {
+        "frequencyHz": 1.05,
+        "dampingRatio": 0.48,
+        "inputGain": 0.65
+      },
+      "authoring": {
+        "controlGrid": [
+          3,
+          8
+        ],
+        "transitionPixels": 60
+      }
+    },
+    {
+      "id": "sash-tail-left",
+      "material": {
+        "stretchCompliance": 2e-8,
+        "shearCompliance": 0.0005,
+        "bendCompliance": 0.0006,
+        "shapeCompliance": 0.00065,
+        "compressionCompliance": 0.0005
+      },
+      "response": {
+        "frequencyHz": 1.05,
+        "dampingRatio": 0.48,
+        "inputGain": 0.65
+      },
+      "authoring": {
+        "controlGrid": [
+          3,
+          8
+        ],
+        "transitionPixels": 60
+      }
+    }
+  ]
+}

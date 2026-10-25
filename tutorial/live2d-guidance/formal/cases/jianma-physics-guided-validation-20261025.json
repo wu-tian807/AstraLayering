@@ -1,0 +1,637 @@
+{
+  "version": 1,
+  "date": "2026-10-25",
+  "project": "jianma-physics-guided-20261024",
+  "experiment": "same-source-approved-reference-initialization",
+  "referenceApprovalInherited": false,
+  "newCharacterVisualGeneralizationProven": false,
+  "sourceCoverage": {
+    "parts": 158,
+    "layers": 159,
+    "excluded": 79,
+    "bind": 79,
+    "defer": 0,
+    "components": 46,
+    "assemblies": 29,
+    "referenceMatchedLayers": 80
+  },
+  "enabledComponents": [
+    "sleeve-gauze-right",
+    "sleeve-gauze-left",
+    "sleeve-point-left",
+    "sleeve-train-right",
+    "sleeve-drape-left",
+    "robe-panel-right",
+    "robe-panel-left",
+    "inner-skirt",
+    "sash-tail-right",
+    "sash-tail-left",
+    "waist-white-tassel",
+    "hair-main-right",
+    "hair-lock-right",
+    "hair-front-right",
+    "hair-main-left",
+    "hair-lock-left",
+    "hair-front-left",
+    "crown-upper-left",
+    "crown-lower-left",
+    "crown-head-left",
+    "crown-ribbon-left",
+    "crown-upper-right",
+    "crown-lower-right",
+    "crown-head-right",
+    "crown-ribbon-right",
+    "earring-left",
+    "earring-right",
+    "forehead-drop",
+    "sleeve-shell-left",
+    "sleeve-shell-right",
+    "waist-short-loop-left",
+    "waist-short-loop-right",
+    "waist-small-tassel",
+    "anklet-drop-left",
+    "anklet-drop-right",
+    "waist-ring-upper",
+    "waist-ring-lower",
+    "waist-ring-inner-upper",
+    "waist-ring-inner-lower",
+    "waist-tassel-buckle",
+    "waist-suspension",
+    "waist-junction",
+    "waist-snowflake",
+    "waist-silver-upper",
+    "waist-silver-long",
+    "waist-lotus"
+  ],
+  "configHash": "aec1206716453d89cd87a28888c1e01def0681ebc025e85c1c83ba818b6280b0",
+  "solverHash": "c5064c38ecba96993beb9b137e14c5d136af103b7e67c02352a43e7cd9d7e3e9",
+  "renderHash": "0087e23668de26f4e3f7c87bcd6231de222f6adae0367cdf0a405bcf95fbf4a7",
+  "evidenceVersion": "astra-physics-evidence-2",
+  "stepHz": 120,
+  "framePadding": 231,
+  "numerical": [
+    {
+      "test": "neutral",
+      "durationSteps": 960,
+      "invalidSteps": 0,
+      "fallbackSteps": 0,
+      "limitedSteps": 0,
+      "maxRoot": 0,
+      "motionIssues": {}
+    },
+    {
+      "test": "tip-impulse",
+      "durationSteps": 1344,
+      "invalidSteps": 0,
+      "fallbackSteps": 0,
+      "limitedSteps": 36,
+      "maxRoot": 0,
+      "motionIssues": {}
+    },
+    {
+      "test": "support-release",
+      "durationSteps": 1545,
+      "invalidSteps": 0,
+      "fallbackSteps": 0,
+      "limitedSteps": 2179,
+      "maxRoot": 0,
+      "motionIssues": {}
+    },
+    {
+      "test": "support-reverse",
+      "durationSteps": 1532,
+      "invalidSteps": 0,
+      "fallbackSteps": 0,
+      "limitedSteps": 2829,
+      "maxRoot": 0,
+      "motionIssues": {}
+    },
+    {
+      "test": "sustained",
+      "durationSteps": 1488,
+      "invalidSteps": 0,
+      "fallbackSteps": 0,
+      "limitedSteps": 1,
+      "maxRoot": 0,
+      "motionIssues": {}
+    },
+    {
+      "test": "extreme",
+      "durationSteps": 1353,
+      "invalidSteps": 0,
+      "fallbackSteps": 1,
+      "limitedSteps": 474,
+      "maxRoot": 0,
+      "motionIssues": {}
+    },
+    {
+      "test": "combined",
+      "durationSteps": 1550,
+      "invalidSteps": 0,
+      "fallbackSteps": 0,
+      "limitedSteps": 2171,
+      "maxRoot": 0,
+      "motionIssues": {}
+    },
+    {
+      "test": "light-brush",
+      "durationSteps": 1292,
+      "invalidSteps": 0,
+      "fallbackSteps": 0,
+      "limitedSteps": 0,
+      "maxRoot": 0,
+      "motionIssues": {}
+    },
+    {
+      "test": "airflow",
+      "durationSteps": 1736,
+      "invalidSteps": 0,
+      "fallbackSteps": 0,
+      "limitedSteps": 68,
+      "maxRoot": 0,
+      "motionIssues": {}
+    }
+  ],
+  "aiImageReview": {
+    "status": "accepted",
+    "coverage": {
+      "numerical": "all-steps-all-meshes",
+      "render": "completed",
+      "aiVisual": "selected-frames",
+      "human": "unreviewed"
+    },
+    "viewOperations": 1737,
+    "uniqueImages": 1595,
+    "independentReviewAudit": {
+      "reviewSession": "bf3787ad-8d56-4999-80f2-9faeaaf4879b",
+      "producerBaselineOperations": 150,
+      "currentCOperations": 1737,
+      "modes": {
+        "color": 1644,
+        "lit": 31,
+        "normal": 32,
+        "depth": 30
+      },
+      "missingRequiredWholeFrameRequests": 0,
+      "missingRequestModes": {},
+      "componentsWithoutCurrentLocalObservation": 0,
+      "citationsOutsideCurrentCObservation": 0,
+      "accepted": true
+    },
+    "sharedLedgerOperations": 1887,
+    "producerPrefixHash": "e3e98739b4e7709ca303869e07a4be1145de26bc22ec2ee55a19592e6ea7aebb",
+    "referenceVerdict": "supported",
+    "criteria": {
+      "sleeve-gauze-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "sleeve-gauze-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "sleeve-point-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "sleeve-train-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "sleeve-drape-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "robe-panel-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "robe-panel-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "inner-skirt": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "sash-tail-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "sash-tail-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-white-tassel": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "hair-main-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "hair-lock-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "hair-front-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "hair-main-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "hair-lock-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "hair-front-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "crown-upper-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "crown-lower-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "crown-head-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "crown-ribbon-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "crown-upper-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "crown-lower-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "crown-head-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "crown-ribbon-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "earring-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "earring-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "forehead-drop": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "sleeve-shell-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "sleeve-shell-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-short-loop-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-short-loop-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-small-tassel": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "anklet-drop-left": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "anklet-drop-right": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-ring-upper": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-ring-lower": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-ring-inner-upper": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-ring-inner-lower": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-tassel-buckle": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-suspension": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-junction": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-snowflake": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-silver-upper": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-silver-long": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      },
+      "waist-lotus": {
+        "attachment": "supported",
+        "shape": "supported",
+        "response": "supported",
+        "limits": "supported",
+        "layers": "supported",
+        "surfaces": "supported"
+      }
+    }
+  },
+  "live": {
+    "route": "/studio?project=jianma-physics-guided-20261024&workspace=physics&preview=mixed",
+    "sourcePrecision": {
+      "color": [
+        1024,
+        1536
+      ],
+      "normal": [
+        1024,
+        1536
+      ],
+      "depth": [
+        1024,
+        1536
+      ]
+    },
+    "motion": {
+      "sleeve-gauze-right": 2.823463780630534,
+      "sleeve-gauze-left": 4.5535747156018065,
+      "sleeve-point-left": 10.750334838635045,
+      "sleeve-train-right": 10.956902401199484,
+      "sleeve-drape-left": 12.173391284699871,
+      "robe-panel-right": 19.324408739356244,
+      "robe-panel-left": 17.38751337757832,
+      "inner-skirt": 9.853429959135767,
+      "sash-tail-right": 22.905573519826188,
+      "sash-tail-left": 21.99703205830322,
+      "waist-white-tassel": 4.26266217869969,
+      "hair-main-right": 38.99803042669216,
+      "hair-lock-right": 22.887810640134155,
+      "hair-front-right": 14.580863895352218,
+      "hair-main-left": 39.093378394935954,
+      "hair-lock-left": 23.72638246389134,
+      "hair-front-left": 14.615785165080492,
+      "crown-upper-left": 0.25587825757579946,
+      "crown-lower-left": 0.05849114767432566,
+      "crown-head-left": 0.20170021527254622,
+      "crown-ribbon-left": 54.34105908140596,
+      "crown-upper-right": 0.2558782575757983,
+      "crown-lower-right": 0.05803727980238778,
+      "crown-head-right": 0.13919293698953175,
+      "crown-ribbon-right": 55.52824067540008,
+      "earring-left": 1.1985939437775128,
+      "earring-right": 1.1968333082995617,
+      "forehead-drop": 0.2769542232624934,
+      "sleeve-shell-left": 0.11604043102980452,
+      "sleeve-shell-right": 0.07214618799427143,
+      "waist-short-loop-left": 0.18495739364937716,
+      "waist-short-loop-right": 0.16108431094399572,
+      "waist-small-tassel": 0.24102981148670136,
+      "anklet-drop-left": 0.32716836253909476,
+      "anklet-drop-right": 0.38900606950268196,
+      "waist-ring-upper": 2.0838930288542494,
+      "waist-ring-lower": 2.2383576200698956,
+      "waist-ring-inner-upper": 0.548965123044522,
+      "waist-ring-inner-lower": 0.491177176341491,
+      "waist-tassel-buckle": 2.497520894519712,
+      "waist-suspension": 3.8595570241588115,
+      "waist-junction": 3.8704830625017705,
+      "waist-snowflake": 1.9841250313801302,
+      "waist-silver-upper": 3.9091120747043666,
+      "waist-silver-long": 5.461920364265721,
+      "waist-lotus": 3.758988561677257
+    },
+    "hoverInteraction": "Move no force; Disturb hover without click while sleeve remains selected",
+    "selected": "sleeve-gauze-left",
+    "maps": {
+      "normal": true,
+      "depth": true
+    },
+    "errors": []
+  },
+  "artifacts": {
+    "config": "physics/physics.json",
+    "findings": "physics/step03/findings.json",
+    "evidence": "physics/step03/evidence/manifest.json"
+  },
+  "checksums": {
+    "physics.json": "45cbaa6307ad81643ddb2edad4414dde164fe22fc362c74beaba3ee9706e964c",
+    "step03/findings.json": "5843d92c295033938ffbf70d702aa6c9a7ea8ef4e884ce3274d8f5df075e1a0d",
+    "step03/evidence/manifest.json": "c4c745e5030663273428390245305478ab3857a87f0968c9b54348a928c4fcad"
+  }
+}

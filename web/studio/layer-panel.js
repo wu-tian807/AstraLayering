@@ -27,8 +27,8 @@ async function api(operation, data) {
   return value;
 }
 export class LayerPanel {
-  constructor({ composite, changed, busy, error, download, rendered }) {
-    this.callbacks = { composite, changed, busy, error, download, rendered };
+  constructor({ composite, changed, busy, error, download, rendered, retry, selected }) {
+    this.callbacks = { composite, changed, busy, error, download, rendered, retry, selected };
     this.epoch = 0;
     this.layers = [];
     this.collapsed = new Set();
@@ -45,7 +45,7 @@ export class LayerPanel {
           : this.collapsed.add(l.id);
       } else if (e.target.closest("[data-eye]") && this.session) {
         this.change(l.id, "visible", !l.visible);
-      } else this.selected = l.id;
+      } else {this.select(l.id,{reveal:false});return;}
       this.render();
     };
     for (const id of ["layer-opacity", "layer-opacity-number"]) {
@@ -82,7 +82,7 @@ export class LayerPanel {
       this.queue();
     };
     $("#layer-retry").onclick = () => {
-      if (this.owner) void this.open({ ...this.owner, layerKey: "reopen" });
+      if (this.owner) void (this.callbacks.retry ? this.callbacks.retry() : this.open({ ...this.owner, layerKey: "reopen" }));
     };
     $("#layer-save").onclick = () => void this.save();
     this.render();
@@ -113,6 +113,7 @@ export class LayerPanel {
     this.collapsed.clear();
     this.loading = this.working = this.saving = this.gesture = false;
     this.message = "";
+    this.openError = "";
     this.callbacks.busy(false);
     this.render();
   }
@@ -150,15 +151,14 @@ export class LayerPanel {
       if (epoch !== this.epoch) return;
       if (!availability.available)
         throw Error("图层只读 · 未配置 Krita 合成服务");
-      const r = await fetch(
-        "./api/studio/layers/open?format=" +
-          owner.name.split(".").at(-1).toLowerCase(),
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/octet-stream" },
-          body: owner.file,
-        },
-      );
+      const project = owner.project;
+      const r = project ? await fetch('./api/studio/layers/open-project', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: project.name, dir: project.dir, preview: project.previewMode,
+          path: project.files.document.path, version: project.files.document.version }),
+      }) : await fetch('./api/studio/layers/open?format=' + owner.name.split('.').at(-1).toLowerCase(), {
+        method: 'POST', headers: { 'Content-Type': 'application/octet-stream' }, body: owner.file,
+      });
       const data = await r.json();
       if (!r.ok) throw Error(data.error || r.statusText);
       if (epoch !== this.epoch) {
@@ -176,7 +176,7 @@ export class LayerPanel {
         await this.callbacks.composite(owner, data, null);
       this.message = "Krita 合成 · 原尺寸";
     } catch (e) {
-      if (epoch === this.epoch) this.message = e.message;
+      if (epoch === this.epoch) this.openError = this.message = e.message;
     } finally {
       if (epoch === this.epoch) {
         this.loading = false;
@@ -207,18 +207,19 @@ export class LayerPanel {
     l[key] = value;
     this.queue();
   }
-  select(id) {
+  select(id,{notify=true,reveal=true}={}) {
     const row = this.layers.find(l => l.id === id);
     if (!row) return;
     this.selected = id;
-    $('#layer-filter').value = '';
+    if(reveal)$('#layer-filter').value = '';
     let parent = row.parentId;
     while (parent) {
       this.collapsed.delete(parent);
       parent = this.layers.find(l => l.id === parent)?.parentId;
     }
     this.render();
-    [...document.querySelectorAll('[data-layer]')].find(el => el.dataset.layer === id)?.scrollIntoView({ block: 'nearest' });
+    if(reveal)[...document.querySelectorAll('[data-layer]')].find(el => el.dataset.layer === id)?.scrollIntoView({ block: 'nearest' });
+    if(notify)this.callbacks.selected?.(row);
   }
   history(from, to) {
     if (!from.length || !this.session || this.saving) return;
@@ -330,7 +331,6 @@ export class LayerPanel {
     );
   }
   render() {
-    this.callbacks.rendered?.();
     const rows = layerTree(
         this.layers,
         this.collapsed,
@@ -386,6 +386,7 @@ export class LayerPanel {
       this.saving;
     $("#layer-save").disabled = !this.session || this.pending || this.saving;
     $("#layer-properties").hidden = !selected || !this.session;
+    this.callbacks.rendered?.();
     if (!selected || !this.session) return;
     $("#layer-selected").textContent = selected.name;
     $("#layer-kind").textContent = layerTypes[selected.type] || selected.type;

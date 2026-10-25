@@ -23,6 +23,7 @@ export type RunConfig<Input = PartLayeringInput> = {
   krita: KritaInstallation;
   threadId: string | null;
   threadHarness?: Harness;
+  threadStep?: string;
   threadHandoff?: ThreadHandoff;
 };
 export type { StepStatus };
@@ -107,7 +108,8 @@ export function rasterSteps(steps: readonly StepDefinition[], upstream: readonly
   return steps.map((step, index) => {
     if (step.id !== stepId(index + 1)) throw new Error('已定义步骤必须从 step01 开始连续排列。');
     const outputs = step.requiredFiles.filter(file => /\.(kra|png)$/i.test(file));
-    return { number: index + 1, ...(index === 0 && upstream.length ? { upstream } : {}), ...(outputs.length ? { outputs } : {}) };
+    return { number: index + 1, ...(index === 0 && upstream.length ? { upstream } : {}), ...(outputs.length ? { outputs } : {}),
+      ...(step.allowsEarlyArtifacts ? { allowsEarlyArtifacts: true } : {}) };
   });
 }
 

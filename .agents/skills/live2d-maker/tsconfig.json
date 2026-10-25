@@ -4,6 +4,6 @@
     "noEmit": true, "allowImportingTsExtensions": true,
     "skipLibCheck": true, "types": ["node"]
   },
-  "include": ["scripts/**/*.ts", "patches/**/*.ts", "shared/**/*.ts", "part-layering/**/*.ts", "raster-layering/**/*.ts", "clothing-part-layering/**/*.ts", "clothing-raster-layering/**/*.ts", "character-assembly/**/*.ts", "shadow/**/*.ts", "workflow/**/*.ts"],
+  "include": ["scripts/**/*.ts", "patches/**/*.ts", "shared/**/*.ts", "part-layering/**/*.ts", "raster-layering/**/*.ts", "clothing-part-layering/**/*.ts", "clothing-raster-layering/**/*.ts", "character-assembly/**/*.ts", "shadow/**/*.ts", "physics/**/*.ts", "workflow/**/*.ts"],
   "exclude": ["**/.run/**", "**/node_modules/**"]
 }

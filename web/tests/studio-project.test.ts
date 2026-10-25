@@ -94,6 +94,38 @@ test("Project preview rejects stale directories, escaping names and symlinked ou
   await symlink(outside, join(f.project, studioArtifacts.normal));
   assert.equal((await f.get()).status, 400);
 });
+test('Native project opening rejects a stale source and never accepts an arbitrary file path', async t => {
+  const f = await fixture(t);
+  await f.put(studioArtifacts.document);
+  const preview = await f.get(), project = await preview.json() as any;
+  const post = (overrides: Record<string, unknown>) => fetch(new URL('/api/studio/layers/open-project', preview.url), {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: f.name, dir: f.dir, preview: project.previewMode,
+      path: project.files.document.path, version: project.files.document.version, ...overrides }),
+  });
+  assert.equal((await post({ dir: f.root })).status, 409);
+  assert.equal((await post({ path: '../private.kra' })).status, 409);
+  assert.equal((await post({ name: '../outside' })).status, 400);
+  assert.equal((await post({ preview: 'mixed' })).status, 400);
+  await f.put(studioArtifacts.document, 'new revision');
+  const stale = await post({});
+  assert.equal(stale.status, 409);
+  assert.match((await stale.json() as any).error, /工程已变化/);
+  const file = join(f.project, studioArtifacts.document);
+  await rm(file);
+  await f.put('../private.kra');
+  await symlink(join(f.dir, 'private.kra'), file);
+  assert.equal((await post({})).status, 400);
+});
+test('physics drafts persist under their reviewed parent and cannot mask a newer delivery',async t=>{
+  const f=await fixture(t),formal={kind:'astra-component-physics',version:1,solver:'astra-component-physics-1',source:{canvas:{width:300,height:400}},components:[],review:{status:'accepted',configHash:'revision-a'}};
+  await f.put('physics/physics.json',JSON.stringify(formal));
+  const initial=await f.get(),base=new URL(initial.url).origin;
+  const response=await fetch(base+'/api/studio/physics',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:f.name,dir:f.dir,config:{...formal,review:{status:'draft',baseConfigHash:'revision-a'}}})});assert.equal(response.status,201);
+  let data=await(await f.get()).json() as any;assert.equal(data.files.physics.path,'physics/physics.draft.json');assert.equal(data.physicsDraftStale,false);
+  await f.put('physics/physics.json',JSON.stringify({...formal,review:{status:'accepted',configHash:'revision-b'}}));
+  data=await(await f.get()).json() as any;assert.equal(data.physicsDraftStale,true);assert.equal(data.files.physics.path,'physics/physics.json');
+});
 test('Two shadow routes coexist: last complete selection chooses its document and pauses stale maps', async t => {
   const f = await fixture(t), hash = (value: string) => createHash('sha256').update(value).digest('hex');
   await f.put(studioArtifacts.document, 'source'); await f.put(studioArtifacts.color, 'color');
@@ -184,4 +216,25 @@ test('Unified studio discovers pending maps, ignores legacy light files and pref
   await f.put('shadow/normal-depth/step01/source.json', JSON.stringify({ ...record, mode: 'normal-depth' }));
   data = await (await f.get({ preview: 'mixed' })).json() as any;
   assert.equal(data.previewDraft, false); assert.equal(data.files.normal.path, studioArtifacts.normal);
+});
+
+test('frozen physics preview keeps exact maps across review-rule changes without accepting a shadow delivery', async t => {
+  const f = await fixture(t), hash = (v: string) => createHash('sha256').update(v).digest('hex');
+  await f.put(studioArtifacts.document, 'source'); await f.put(studioArtifacts.color, 'color');
+  await f.put(shadowArtifacts.draftNormal, 'normal'); await f.put(shadowArtifacts.draftDepth, 'depth');
+  await f.put('physics/physics.json', JSON.stringify({ source: { documentHash: hash('source'), colorHash: hash('color') }, components: [] }));
+  await f.put('physics/source/surface-inputs.json', JSON.stringify({ version: 1, documentHash: hash('source'), maps: {
+    normal: { path: shadowArtifacts.draftNormal, contentHash: hash('normal') },
+    depth: { path: shadowArtifacts.draftDepth, contentHash: hash('depth') },
+  } }));
+  let data = await (await f.get()).json() as any;
+  assert.equal(data.files.normal.available, true); assert.equal(data.files.depth.available, true);
+  assert.equal(data.previewReview, 'frozen-preview-input'); assert.equal(data.previewFrozen, true);
+  assert.equal(data.shadowMode, undefined);
+  await f.put(shadowArtifacts.draftNormal, 'changed');
+  data = await (await f.get()).json() as any;
+  assert.equal(data.files.normal.available, false); assert.equal(data.files.depth.available, false);
+  await f.put(shadowArtifacts.draftNormal, 'normal'); await f.put(studioArtifacts.color, 'changed');
+  data = await (await f.get()).json() as any;
+  assert.equal(data.files.normal.available, false);
 });

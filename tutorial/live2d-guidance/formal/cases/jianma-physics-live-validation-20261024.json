@@ -1,0 +1,606 @@
+{
+  "project": "jianma-shadow-fresh-20261022",
+  "configHash": "27e1853a2dcc859a69f64393632f7c1dbba17f8d089c1a69c36299f221b79c2d",
+  "components": 40,
+  "maps": {
+    "normal": true,
+    "depth": true
+  },
+  "projections": 6,
+  "assetSizes": {
+    "color": [
+      1024,
+      1536
+    ],
+    "normal": [
+      1024,
+      1536
+    ],
+    "depth": [
+      1024,
+      1536
+    ]
+  },
+  "sourcePrecision": "1024x1536 retained",
+  "scriptBytesMatched": true,
+  "selected": "sleeve-gauze-right",
+  "step": 115,
+  "hair": [
+    {
+      "id": "hair-main-right",
+      "valid": true,
+      "travel": 3.510126913662792,
+      "root": 0,
+      "stretch": 0,
+      "shear": 0,
+      "angle": 1.2250099451321301,
+      "minArea": 0.9920152452228616,
+      "limited": false,
+      "correction": 0,
+      "fallback": false
+    },
+    {
+      "id": "hair-lock-right",
+      "valid": true,
+      "travel": 0.7669477404794526,
+      "root": 0,
+      "stretch": 0,
+      "shear": 0,
+      "angle": 0.2853142950969999,
+      "minArea": 0.9955847951165793,
+      "limited": false,
+      "correction": 0,
+      "fallback": false
+    },
+    {
+      "id": "hair-front-right",
+      "valid": true,
+      "travel": 0.07246970863322996,
+      "root": 0,
+      "stretch": 0,
+      "shear": 0,
+      "angle": 0.17066328434925138,
+      "minArea": 0.999520515849584,
+      "limited": false,
+      "correction": 0,
+      "fallback": false
+    },
+    {
+      "id": "hair-main-left",
+      "valid": true,
+      "travel": 3.519637570762391,
+      "root": 0,
+      "stretch": 0,
+      "shear": 0,
+      "angle": 1.2235348686435532,
+      "minArea": 0.99300181638915,
+      "limited": false,
+      "correction": 0,
+      "fallback": false
+    },
+    {
+      "id": "hair-lock-left",
+      "valid": true,
+      "travel": 0.7906006757633177,
+      "root": 0,
+      "stretch": 0,
+      "shear": 0,
+      "angle": 0.2827069653529325,
+      "minArea": 0.9994382406425475,
+      "limited": false,
+      "correction": 0,
+      "fallback": false
+    },
+    {
+      "id": "hair-front-left",
+      "valid": true,
+      "travel": 0.09272589174776863,
+      "root": 0,
+      "stretch": 2.6645352591003757e-15,
+      "shear": 0,
+      "angle": 0.21748023240060305,
+      "minArea": 0.9987160780216816,
+      "limited": false,
+      "correction": 0,
+      "fallback": false
+    }
+  ],
+  "moving": [
+    {
+      "id": "sleeve-gauze-right",
+      "travel": 0.19848202038649043
+    },
+    {
+      "id": "sleeve-gauze-left",
+      "travel": 0.2027721525276275
+    },
+    {
+      "id": "sleeve-point-left",
+      "travel": 1.5081280737052163
+    },
+    {
+      "id": "sleeve-train-right",
+      "travel": 0.8833434634923774
+    },
+    {
+      "id": "sleeve-drape-left",
+      "travel": 0.6906199029494581
+    },
+    {
+      "id": "robe-panel-right",
+      "travel": 1.9574523225276137
+    },
+    {
+      "id": "robe-panel-left",
+      "travel": 2.0384294181643177
+    },
+    {
+      "id": "inner-skirt",
+      "travel": 1.1234180359982653
+    },
+    {
+      "id": "sash-tail-right",
+      "travel": 3.743037788426565
+    },
+    {
+      "id": "sash-tail-left",
+      "travel": 4.186563487580433
+    },
+    {
+      "id": "waist-white-tassel",
+      "travel": 2.83985714804621
+    },
+    {
+      "id": "hair-main-right",
+      "travel": 3.510126913662792
+    },
+    {
+      "id": "hair-lock-right",
+      "travel": 0.7669477404794526
+    },
+    {
+      "id": "hair-front-right",
+      "travel": 0.07246970863322996
+    },
+    {
+      "id": "hair-main-left",
+      "travel": 3.519637570762391
+    },
+    {
+      "id": "hair-lock-left",
+      "travel": 0.7906006757633177
+    },
+    {
+      "id": "hair-front-left",
+      "travel": 0.09272589174776863
+    },
+    {
+      "id": "crown-upper-left",
+      "travel": 0.31313968348445886
+    },
+    {
+      "id": "crown-lower-left",
+      "travel": 0.010830071153537098
+    },
+    {
+      "id": "crown-head-left",
+      "travel": 0.0689990981572511
+    },
+    {
+      "id": "crown-ribbon-left",
+      "travel": 7.420465148433889
+    },
+    {
+      "id": "crown-upper-right",
+      "travel": 0.31313968348445886
+    },
+    {
+      "id": "crown-lower-right",
+      "travel": 0.009925348389881277
+    },
+    {
+      "id": "crown-head-right",
+      "travel": 0.020492080632456472
+    },
+    {
+      "id": "crown-ribbon-right",
+      "travel": 6.737880020638347
+    },
+    {
+      "id": "earring-left",
+      "travel": 0.12683503881508182
+    },
+    {
+      "id": "earring-right",
+      "travel": 0.12666058063957
+    },
+    {
+      "id": "forehead-drop",
+      "travel": 0.2237133570621956
+    },
+    {
+      "id": "sleeve-shell-left",
+      "travel": 0.002862653763123339
+    },
+    {
+      "id": "sleeve-shell-right",
+      "travel": 0.027305939083034584
+    },
+    {
+      "id": "waist-short-loop-left",
+      "travel": 0.07613916127524961
+    },
+    {
+      "id": "waist-short-loop-right",
+      "travel": 0.08632551241238913
+    },
+    {
+      "id": "waist-small-tassel",
+      "travel": 0.2928488132218866
+    },
+    {
+      "id": "anklet-drop-left",
+      "travel": 0.2615746427968722
+    },
+    {
+      "id": "anklet-drop-right",
+      "travel": 0.3094280128659059
+    },
+    {
+      "id": "waist-ring-upper",
+      "travel": 0.4155368833525323
+    },
+    {
+      "id": "waist-ring-lower",
+      "travel": 0.1150967734993757
+    },
+    {
+      "id": "waist-ring-inner-upper",
+      "travel": 0.5404388508049444
+    },
+    {
+      "id": "waist-ring-inner-lower",
+      "travel": 0.4755754929776866
+    },
+    {
+      "id": "waist-tassel-buckle",
+      "travel": 0.24014344833206
+    }
+  ],
+  "hover": {
+    "moveCausesNoForce": true,
+    "moveBefore": [
+      [
+        "sleeve-gauze-right",
+        1
+      ],
+      [
+        "sleeve-gauze-left",
+        1
+      ],
+      [
+        "sleeve-point-left",
+        1
+      ],
+      [
+        "sleeve-train-right",
+        1
+      ],
+      [
+        "sleeve-drape-left",
+        1
+      ],
+      [
+        "robe-panel-right",
+        1
+      ],
+      [
+        "robe-panel-left",
+        1
+      ],
+      [
+        "inner-skirt",
+        1
+      ],
+      [
+        "sash-tail-right",
+        1
+      ],
+      [
+        "sash-tail-left",
+        1
+      ],
+      [
+        "waist-white-tassel",
+        1
+      ],
+      [
+        "hair-main-right",
+        1
+      ],
+      [
+        "hair-lock-right",
+        1
+      ],
+      [
+        "hair-front-right",
+        1
+      ],
+      [
+        "hair-main-left",
+        1
+      ],
+      [
+        "hair-lock-left",
+        1
+      ],
+      [
+        "hair-front-left",
+        1
+      ],
+      [
+        "crown-upper-left",
+        1
+      ],
+      [
+        "crown-lower-left",
+        1
+      ],
+      [
+        "crown-head-left",
+        1
+      ],
+      [
+        "crown-ribbon-left",
+        1
+      ],
+      [
+        "crown-upper-right",
+        1
+      ],
+      [
+        "crown-lower-right",
+        1
+      ],
+      [
+        "crown-head-right",
+        1
+      ],
+      [
+        "crown-ribbon-right",
+        1
+      ],
+      [
+        "earring-left",
+        1
+      ],
+      [
+        "earring-right",
+        1
+      ],
+      [
+        "forehead-drop",
+        1
+      ],
+      [
+        "sleeve-shell-left",
+        1
+      ],
+      [
+        "sleeve-shell-right",
+        1
+      ],
+      [
+        "waist-short-loop-left",
+        1
+      ],
+      [
+        "waist-short-loop-right",
+        1
+      ],
+      [
+        "waist-small-tassel",
+        1
+      ],
+      [
+        "anklet-drop-left",
+        1
+      ],
+      [
+        "anklet-drop-right",
+        1
+      ],
+      [
+        "waist-ring-upper",
+        1
+      ],
+      [
+        "waist-ring-lower",
+        1
+      ],
+      [
+        "waist-ring-inner-upper",
+        1
+      ],
+      [
+        "waist-ring-inner-lower",
+        1
+      ],
+      [
+        "waist-tassel-buckle",
+        1
+      ]
+    ],
+    "moveAfter": [
+      [
+        "sleeve-gauze-right",
+        1
+      ],
+      [
+        "sleeve-gauze-left",
+        1
+      ],
+      [
+        "sleeve-point-left",
+        1
+      ],
+      [
+        "sleeve-train-right",
+        1
+      ],
+      [
+        "sleeve-drape-left",
+        1
+      ],
+      [
+        "robe-panel-right",
+        1
+      ],
+      [
+        "robe-panel-left",
+        1
+      ],
+      [
+        "inner-skirt",
+        1
+      ],
+      [
+        "sash-tail-right",
+        1
+      ],
+      [
+        "sash-tail-left",
+        1
+      ],
+      [
+        "waist-white-tassel",
+        1
+      ],
+      [
+        "hair-main-right",
+        1
+      ],
+      [
+        "hair-lock-right",
+        1
+      ],
+      [
+        "hair-front-right",
+        1
+      ],
+      [
+        "hair-main-left",
+        1
+      ],
+      [
+        "hair-lock-left",
+        1
+      ],
+      [
+        "hair-front-left",
+        1
+      ],
+      [
+        "crown-upper-left",
+        1
+      ],
+      [
+        "crown-lower-left",
+        1
+      ],
+      [
+        "crown-head-left",
+        1
+      ],
+      [
+        "crown-ribbon-left",
+        1
+      ],
+      [
+        "crown-upper-right",
+        1
+      ],
+      [
+        "crown-lower-right",
+        1
+      ],
+      [
+        "crown-head-right",
+        1
+      ],
+      [
+        "crown-ribbon-right",
+        1
+      ],
+      [
+        "earring-left",
+        1
+      ],
+      [
+        "earring-right",
+        1
+      ],
+      [
+        "forehead-drop",
+        1
+      ],
+      [
+        "sleeve-shell-left",
+        1
+      ],
+      [
+        "sleeve-shell-right",
+        1
+      ],
+      [
+        "waist-short-loop-left",
+        1
+      ],
+      [
+        "waist-short-loop-right",
+        1
+      ],
+      [
+        "waist-small-tassel",
+        1
+      ],
+      [
+        "anklet-drop-left",
+        1
+      ],
+      [
+        "anklet-drop-right",
+        1
+      ],
+      [
+        "waist-ring-upper",
+        1
+      ],
+      [
+        "waist-ring-lower",
+        1
+      ],
+      [
+        "waist-ring-inner-upper",
+        1
+      ],
+      [
+        "waist-ring-inner-lower",
+        1
+      ],
+      [
+        "waist-tassel-buckle",
+        1
+      ]
+    ],
+    "withoutClick": true,
+    "target": "hair-lock-right",
+    "impulsesBefore": 1,
+    "impulsesAfter": 13
+  },
+  "errors": [],
+  "date": "2026-10-24",
+  "url": "https://gameclaw.woa.com/ai-weapon-spirit/character-layering/studio?project=jianma-shadow-fresh-20261022&preview=mixed&workspace=physics",
+  "device": "Apple M4 Pro / Chrome 155 / ANGLE Metal",
+  "human": "unreviewed"
+}

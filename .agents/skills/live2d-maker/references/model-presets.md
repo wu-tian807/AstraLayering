@@ -27,6 +27,9 @@
 | raster step03（仅人物） | `gpt-6.1-sol-medium` | `layering_agent_raster_step03_model` |
 | 穿戴组装 | `gpt-6.1-sol-xhigh` | `layering_agent_assembly_model` |
 | 阴影 | `gpt-6.1-sol-medium` | `layering_agent_shadow_model` |
+| 物理结构分析 A | `gpt-6.1-sol-high` | `layering_agent_physics_analysis_model` |
+| 物理制作／标定／返修 B | `gpt-6.1-sol-xhigh` | `layering_agent_physics_authoring_model` |
+| 物理独立复核 C | `gpt-6.1-sol-xhigh` | `layering_agent_physics_review_model` |
 
 全部生图槽位默认继承 `layering_default_image_model=codex-native`，直接使用宿主 Codex 内置生图工具，具体图像模型版本由宿主决定，不在本方案固定。复用当前 Codex 登录和 provider，无需单独填写生图 API；阴影蒙版在 Krita 制作，不启用生图工具。图片数 compact 留空时关闭，已有配置的启停与阈值保持原样。
 
