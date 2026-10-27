@@ -201,3 +201,13 @@ Krita 安装和 agent 定时巡检由启动方式 1 的 agent 协助处理；网
 | [教程与研究](tutorial/live2d-guidance/readme.md) | 分层、光照、投影与物理依据 |
 
 日常使用只需首页和对应入口；管线细节集中在各 section 的一个 `README.md`。历史作品与旧技能仍保留在仓库中。
+
+## 开源协议
+
+本项目采用 **GNU Lesser General Public License v3.0（LGPL-3.0-only）**，仅适用第 3.0 版。除另有说明外，本仓库的原创内容按此协议提供。
+
+协议全文见 [LICENSE](LICENSE)，其引用的 GNU GPL v3.0 条款见 [COPYING](COPYING)；两份文件共同构成 LGPL v3.0 的完整条款。
+
+LGPL 允许在满足协议条件时被闭源程序链接使用；分发对本项目 LGPL 代码的修改时，仍须遵守相应的源码提供义务。具体权利与义务以协议全文为准。
+
+第三方依赖、引用资料和素材仍遵循各自的许可证或权利声明，本项目的 LGPL 授权不替代其原有授权。

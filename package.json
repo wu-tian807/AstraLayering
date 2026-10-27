@@ -1,5 +1,6 @@
 {
   "name": "astra-layering-web",
+  "license": "LGPL-3.0-only",
   "private": true,
   "type": "module",
   "engines": {
