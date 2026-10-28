@@ -30,4 +30,4 @@
 
 线稿增加独立审查subagent、增加检查与返修投入目前仅为[候选改进](https://github.com/wu-tian807/AstraLayering/blob/ae7b7b5bb83275900a33c7d287b07987a55ffed5/analysis/miku-v3-review/readme.md#pending-review)，尚未修改执行提示词或启用。
 
-使用现有[SVG预览器](../../loading/part-preview.html)加载本目录彩图与SVG即可比较。返回[案例索引](../readme.md)。
+使用现有[SVG预览器](../../svg-previewer/part-preview.html)加载本目录彩图与SVG即可比较。返回[案例索引](../readme.md)。

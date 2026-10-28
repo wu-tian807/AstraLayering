@@ -16,7 +16,7 @@
 | [comparison.png](comparison.png) | 原运行导出的原图、成稿、叠合及代表性局部对照 |
 | [snapshot.json](snapshot.json) | 本次快照各文件的原始相对位置及内容摘要 |
 
-SVG 和原预览均原样复制；首页三栏图只排列已有图片，未改造型或重画。打开[预览器](../../loading/part-preview.html)并拖入上述 SVG，即可查看分组和独显。
+SVG 和原预览均原样复制；首页三栏图只排列已有图片，未改造型或重画。打开[预览器](../../svg-previewer/part-preview.html)并拖入上述 SVG，即可查看分组和独显。
 
 ## 已有结构与后续限制
 

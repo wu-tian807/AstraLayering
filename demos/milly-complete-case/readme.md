@@ -47,4 +47,4 @@
 
 原报告和诊断JSON中的绝对路径保留生成时记录；原`/Users/wutian/Desktop/coding/AstraLayering/working/`对应本目录。历史review证据对应各自候选，不等同于当前最终版本。
 
-使用现有[SVG预览器](../../loading/part-preview.html)加载本轮彩图与SVG进行对比。返回[案例索引](../readme.md)。
+使用现有[SVG预览器](../../svg-previewer/part-preview.html)加载本轮彩图与SVG进行对比。返回[案例索引](../readme.md)。

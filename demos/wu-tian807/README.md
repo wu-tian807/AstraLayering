@@ -8,6 +8,6 @@
 | 深海少女服装 | [重绘](miku深海少女服装.svg) · [临摹](miku深海少女服装_astra临摹.svg) | [原图](miku深海少女服装.png) |
 | 头部特写 | [bottom-up 试验](头部特写_bottom_up.svg) · [错误分层试验](高质量_头部特写_错误分层.svg) | [原图](头部特写.png) |
 
-SVG 可下载编辑，或拖入 [part-preview](../../loading/part-preview.html) 与对应参考图对比。
+SVG 可下载编辑，或拖入 [part-preview](../../svg-previewer/part-preview.html) 与对应参考图对比。
 
 返回[成果索引](../readme.md)。

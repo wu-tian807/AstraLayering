@@ -6,4 +6,4 @@
 
 步骤目录保留正式轮廓与 review 结论（`groups/<id>/step01/`）、补全检查（`step02/`）、子组拆分（`step03/`）及同层去重（`layers/depthNN/`）；移除了提示词副本和逐次工具观察记录。`previews/` 保留代表性过程图，`references/` 保留本任务准备的参考图。SVG 和图片保留原始字节，未重画。
 
-[part-preview](../../../loading/part-preview.html) 可加载 `preview.svg`、`references/base-subject.png` 和 `groups.json` 对照查看。返回[四条管线成果](../README.md)。
+[part-preview](../../../svg-previewer/part-preview.html) 可加载 `preview.svg`、`references/base-subject.png` 和 `groups.json` 对照查看。返回[四条管线成果](../README.md)。

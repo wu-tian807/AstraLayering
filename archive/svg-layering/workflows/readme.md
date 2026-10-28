@@ -8,7 +8,7 @@
 
 **首个完整生成结果已完成。** 基础连体服角色已走通阶段1—5，得到可编辑、具备遮挡补全的完整分层彩图SVG。人物整体形体保持较好；局部线稿、配件构造、虹膜分层和头发颜色仍需改进，按具体误差定位对应阶段。
 
-[开发进度与未来展望](./开发进度.md) · [首例完整展示](../../../demos/first-complete-case/readme.md) · [终稿SVG](../../../demos/first-complete-case/source/step05-base-character/05-2_局部色彩与材质.svg) · [SVG预览器](../../../loading/part-preview.html)
+[开发进度与未来展望](./开发进度.md) · [首例完整展示](../../../demos/first-complete-case/readme.md) · [终稿SVG](../../../demos/first-complete-case/source/step05-base-character/05-2_局部色彩与材质.svg) · [SVG预览器](../../../svg-previewer/part-preview.html)
 
 此前复测：[miku_v3](../../../demos/miku-v3/readme.md)已完成阶段1—5产物，阶段3新五步已实际运行。脸型、头型及包脸关系明显改善；眼睑睫毛、手足线条和头发材质仍有局部差异，见[本轮复核](../../../analysis/miku-v3-review/readme.md)。阶段2、阶段3 step2后、阶段4及阶段5 step1现有独立review入口，由总控调度，Milly已实际执行；阶段5 step2保持自查。见[总控入口](../SKILL.md)与[审查节点](../references/流程.md#再运行主流程)。上一轮[case3_miku_v2](../../../outputs/case3_miku_v2/readme.md)保留在阶段4。
 
@@ -26,7 +26,7 @@
 
 [完整部件树静态长图](../../../demos/first-complete-case/parts-tree-full.png) · [独显示例大图](../../../demos/first-complete-case/isolated-parts.png)
 
-31个实体归属因前后穿插组织成36个绘制分组，另有29个内部子部件；动图展示全部65个语义节点。底形、墨线、明暗和材质资源保留在所属部件内，不重复计为实体。跨层发束保留同一归属，提取完整部件时需一并保留相关分段。交互查看统一使用现有[svg-preview](../../../loading/part-preview.html)。
+31个实体归属因前后穿插组织成36个绘制分组，另有29个内部子部件；动图展示全部65个语义节点。底形、墨线、明暗和材质资源保留在所属部件内，不重复计为实体。跨层发束保留同一归属，提取完整部件时需一并保留相关分段。交互查看统一使用现有[svg-preview](../../../svg-previewer/part-preview.html)。
 
 ## 流程总览
 

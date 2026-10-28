@@ -41,7 +41,7 @@
 
 ## 查看与保留范围
 
-两份 SVG 可直接导入 [统一预览器](../../loading/part-preview.html)。像素临摹版文件较大，查看局部前可先看缩略图。
+两份 SVG 可直接导入 [统一预览器](../../svg-previewer/part-preview.html)。像素临摹版文件较大，查看局部前可先看缩略图。
 
 保留最终 SVG、参考图、关键预览、构建脚本、路径记录与像素版的 `work/part-seeds.json`。批量拟合缓存、试画备份及重复嵌入完整 SVG 的 `绘制过程.html` 留在本地并由 Git 忽略；可分别用 `make_preview.py`、`preview.py` 重建回放页。
 
