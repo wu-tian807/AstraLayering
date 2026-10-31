@@ -42,7 +42,7 @@ test('Pink Doll ships a head-only nine-axis document with the three preview leve
   assert.ok(levelParts(doc, 'face').every((p: any) => p.level === 'face'));
   assert.ok(levelParts(doc, 'hair').some((p: any) => p.level === 'hair') && !levelParts(doc, 'hair').some((p: any) => p.level === 'accessory'));
   for (const p of doc.parts) {
-    await readFile(new URL('../../demos/pink-doll/nine-axis/step01_head/' + p.texture, import.meta.url));
+    await readFile(new URL('../../demos/pink-doll/nine-axis/step02_head/' + p.texture, import.meta.url));
     assert.deepEqual(Object.keys(p.keyforms).sort(), ['-30', '0', '30'].sort());
   }
   assert.deepEqual(deformerTree(doc).map((l: any) => l.id), ['face', 'hair', 'accessory']);

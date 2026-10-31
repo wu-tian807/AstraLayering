@@ -25,7 +25,7 @@ test('preview masks multiline and inherited credentials while exposing resolved 
  for(const secret of ['test-secret-value','file-claude-secret','shell-secret-value','first\\nsecond'])assert.ok(!serialized.includes(secret));
  assert.match(data.preview,/CUSTOM_TOKEN=\[已隐藏\]/);
  assert.equal(data.fields.filter(f=>f.section==='llm').length,13);
- assert.equal(data.fields.filter(f=>f.section==='image').length,18);
+ assert.equal(data.fields.filter(f=>f.section==='image').length,19);
  const claude=data.fields.find(f=>f.key==='layering_claude_api_key')!;
  assert.equal(claude.overridden,true);assert.equal(claude.sourceKey,'ANTHROPIC_API_KEY');
  assert.equal(data.providers?.claude.baseUrl,'https://gateway.example');

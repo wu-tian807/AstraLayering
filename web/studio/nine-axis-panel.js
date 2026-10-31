@@ -32,7 +32,7 @@ export class HeadNineAxisPanel {
     this.stopSwing();
     if (!force && this.doc && this.project?.folder === project?.folder && this.version === entry?.version) return;
     this.project = project; this.version = entry?.version; this.clear();
-    if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step01_head/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
+    if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step02_head/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
     this.status('正在读取头部九轴…');
     try {
       const url = path => './studio-artifact?' + new URLSearchParams({ folder: project.folder, path, version: entry.version });

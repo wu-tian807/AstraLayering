@@ -25,6 +25,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'character-assembly', step: 'step01' },
   { section: 'shadow', step: 'step01_mask' },
   { section: 'shadow', step: 'step01_normal-depth' },
+  { section: 'nine-axis', step: 'step01_turn' },
   { section: 'part-layering', step: 'step03_pose' },
   { section: 'part-layering', step: 'step04_standard' },
   { section: 'part-layering', step: 'step05_simplified' },
