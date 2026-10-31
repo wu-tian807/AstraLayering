@@ -283,7 +283,7 @@ test('续跑补全沿用保留原形的草稿，提示词只给固定的先读�
   assert.equal(await seen(true), shape('face'));
 });
 
-test('不可见部件直接绘制非空 SVG，分别完成生成图 edge、原图 blend 和独显后提交', async t => {
+test('不可见部件直接绘制非空 SVG，完成原图 blend 和独显即可提交；生成图怎样对照由提示词决定', async t => {
   const f = await fixture(t), group = normalizeGroups([{ id: 'face/eye_left/iris', kind: 'part',
     allowOutsideParent: true, hiddenInReference: true }])[0];
   await publishGroups(f.directory, [{ id: group.id, kind: 'part', allowOutsideParent: true, hiddenInReference: true }]);
@@ -305,7 +305,6 @@ test('不可见部件直接绘制非空 SVG，分别完成生成图 edge、原�
     await preview.execute({ path: outputPath, mode: 'svg' }, signal);
     await assert.rejects(tool(task, 'submit_completion').execute({ note: 'test' }, signal), /默认 blend/);
     await preview.execute({ path: outputPath, mode: 'blend' }, signal);
-    await assert.rejects(tool(task, 'submit_completion').execute({ note: 'test' }, signal), /edge/);
     await preview.execute({ ...compare, mode: 'edge', referenceOffset: [0, 1] }, signal);
     // 重新绘制会清除当前草稿的全部旧检查。
     await tool(task, 'set_completion_paths').execute({ paths }, signal);
@@ -319,7 +318,7 @@ test('不可见部件直接绘制非空 SVG，分别完成生成图 edge、原�
   assert.equal((await checkGroupCompletion({ ...f, group, before: { path: source }, after: result })).passed, true);
 });
 
-test('生成图在检查后变化须重新 edge 查看，更新的观察可正常提交', async t => {
+test('对照过的生成图在检查后变化须重新查看，更新的观察可正常提交', async t => {
   const f = await fixture(t), group = normalizeGroups([{ id: 'face', hiddenInReference: true }])[0];
   const source = join(f.directory, 'source.svg'), outputPath = join(f.directory, 'face.draft.svg'), generated = join(f.directory, 'generated.png');
   await writeFile(source, shape('face', 10, 90, true));

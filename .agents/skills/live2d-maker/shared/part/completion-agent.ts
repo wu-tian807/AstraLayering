@@ -76,9 +76,11 @@ export async function completeGroupOcclusion(context: DrawingContext & { reviewe
           !observations.some(entry => entry.source === observedDraft && entry.mode === 'svg')) throw new Error('须预览当前补全草稿与人物/衣服参考图的默认 blend 和 SVG 独显');
       const original = await realpath(reference);
       const referenceViews = observations.filter(entry => entry.source === observedDraft && entry.reference && entry.reference !== original);
-      if (context.group.hiddenInReference || referenceViews.length) {
-        const shapeReferences = new Map(referenceViews.filter(entry => entry.mode === 'edge').map(entry => [entry.reference!, entry]));
-        if (!shapeReferences.size) throw new Error('须用 preview_svg 的 edge、reference 与 referenceRegion 对照生成图，检查边缘一致性');
+      // How a generated image is compared is the prompt's rule: same-pose images
+      // are edge-checked whole, turned views only by region. Every image that was
+      // compared is recorded so a later change to it is caught.
+      if (referenceViews.length) {
+        const shapeReferences = new Map(referenceViews.map(entry => [entry.reference!, entry]));
         const checkedDependencies = [];
         for (const entry of shapeReferences.values()) {
           const dependency = await fileDependency(root, entry.reference!);
