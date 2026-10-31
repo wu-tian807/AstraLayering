@@ -5,7 +5,7 @@ import sharp from 'sharp';
 import { toTaskPath } from '../shared/task-paths.ts';
 import { fileHash, type Box, type TurnInput } from './turn.ts';
 
-// step02_head: the agent fits the face to the left view and delivers the
+// step02_angle-x: the agent fits the face to the left view and delivers the
 // ParamAngleX −30 warps (face-left.json + layers/). The +30 side is the mirror
 // image: each part takes its left/right pair's −30 field reflected about the
 // face axis. The program then writes deformers.json and source.json.

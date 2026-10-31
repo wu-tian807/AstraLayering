@@ -1,6 +1,7 @@
 // Head nine-axis document: one Cubism-style warp deformer per head layer.
 // Each part owns a (cols+1)×(rows+1) control lattice in canvas pixels with
-// keyforms on ParamAngleX; the art mesh UV is the regular lattice over bbox.
+// keyforms on ParamAngleX and, once step03 has run, keyformsY on ParamAngleY
+// sharing the rest form keyforms["0"]; the art mesh UV is the regular lattice over bbox.
 export const levelNames = { face: '脸＋五官', hair: '头发', accessory: '头饰' };
 
 export function validateHeadNineAxis(doc) {
@@ -16,29 +17,39 @@ export function validateHeadNineAxis(doc) {
     if (!Number.isInteger(p.cols) || !Number.isInteger(p.rows) || p.cols < 1 || p.rows < 1) throw Error(p.id + '：网格尺寸无效');
     if (!Array.isArray(p.bbox) || p.bbox.length !== 4 || !(p.bbox[2] > p.bbox[0] && p.bbox[3] > p.bbox[1])) throw Error(p.id + '：网格范围无效');
     if (!Array.isArray(p.textureBounds) || p.textureBounds.length !== 4) throw Error(p.id + '：贴图范围无效');
-    const count = (p.cols + 1) * (p.rows + 1), keys = Object.keys(p.keyforms ?? {});
-    if (!keys.includes('0')) throw Error(p.id + '：缺少静止关键形');
-    for (const k of keys) {
-      if (!Number.isFinite(Number(k))) throw Error(p.id + '：关键形参数无效 ' + k);
-      const pts = p.keyforms[k];
+    const count = (p.cols + 1) * (p.rows + 1);
+    if (!Object.keys(p.keyforms ?? {}).includes('0')) throw Error(p.id + '：缺少静止关键形');
+    for (const [forms, name] of [[p.keyforms, 'X'], [p.keyformsY ?? {}, 'Y']]) for (const k of Object.keys(forms)) {
+      if (!Number.isFinite(Number(k))) throw Error(`${p.id}：${name} 关键形参数无效 ${k}`);
+      const pts = forms[k];
       if (!Array.isArray(pts) || pts.length !== count || pts.some(q => !Array.isArray(q) || q.length !== 2 || !q.every(Number.isFinite)))
-        throw Error(`${p.id}：关键形 ${k} 需要 ${count} 个控制点`);
+        throw Error(`${p.id}：${name} 关键形 ${k} 需要 ${count} 个控制点`);
     }
   }
   for (const l of doc.levels) if (!Array.isArray(l.includes) || l.includes.some(x => !levelNames[x])) throw Error('预览层级无效：' + l.id);
   return doc;
 }
 
-export const keyValues = part => Object.keys(part.keyforms).map(Number).sort((a, b) => a - b);
+// One parameter's forms: X is keyforms; Y is keyformsY plus the shared rest form.
+export const axisForms = (part, axis = 'x') => axis === 'x' ? part.keyforms : { '0': part.keyforms['0'], ...part.keyformsY };
+export const keyValues = (part, axis = 'x') => Object.keys(axisForms(part, axis)).map(Number).sort((a, b) => a - b);
 
 // Linear blend between neighbouring keyforms; values outside the keys hold the end form.
-export function keyformAt(part, value, out = new Float32Array((part.cols + 1) * (part.rows + 1) * 2)) {
-  const keys = keyValues(part);
+function blend(forms, value, out, add) {
+  const keys = Object.keys(forms).map(Number).sort((a, b) => a - b);
   let a = keys[0], b = keys[0];
   if (value >= keys.at(-1)) a = b = keys.at(-1);
   else for (let i = 0; i < keys.length - 1; i++) if (value >= keys[i] && value <= keys[i + 1]) { a = keys[i]; b = keys[i + 1]; break; }
-  const t = a === b ? 0 : (value - a) / (b - a), A = part.keyforms[String(a)], B = part.keyforms[String(b)];
-  for (let i = 0; i < A.length; i++) { out[i * 2] = A[i][0] + (B[i][0] - A[i][0]) * t; out[i * 2 + 1] = A[i][1] + (B[i][1] - A[i][1]) * t; }
+  const t = a === b ? 0 : (value - a) / (b - a), A = forms[String(a)], B = forms[String(b)], R = forms['0'];
+  for (let i = 0; i < A.length; i++) for (const k of [0, 1]) {
+    const v = A[i][k] + (B[i][k] - A[i][k]) * t;
+    out[i * 2 + k] = add ? out[i * 2 + k] + v - R[i][k] : v;
+  }
+}
+// X and Y offsets from the rest form add up; the diagonal corners are not made yet.
+export function keyformAt(part, x, y = 0, out = new Float32Array((part.cols + 1) * (part.rows + 1) * 2)) {
+  blend(part.keyforms, x, out, false);
+  if (y && part.keyformsY) blend(axisForms(part, 'y'), y, out, true);
   return out;
 }
 

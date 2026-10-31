@@ -1014,11 +1014,11 @@ canvas.disturb { cursor: crosshair; }
 .nine-points.editable circle:hover { fill: #ffcf5a; }
 #nine-axis-hud { position: absolute; left: 10px; top: 8px; padding: 3px 7px; border-radius: 4px; background: #000a; color: #cfe3ff; font-variant-numeric: tabular-nums; pointer-events: none; }
 .nine-levels { display: grid; grid-template-columns: repeat(3,1fr); }
-.nine-levels button.active, #nine-axis-keys button.active { background: #414b66; border-color: #596e97; }
+.nine-levels button.active, #nine-axis-keys button.active, #nine-axis-keys-y button.active { background: #414b66; border-color: #596e97; }
 .nine-param { display: grid; grid-template-columns: 48px 1fr 64px; gap: 6px; align-items: center; margin: 6px 0; }
 .nine-keys { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
-#nine-axis-keys { display: flex; gap: 4px; }
-#nine-axis-keys button { min-width: 38px; }
+#nine-axis-keys, #nine-axis-keys-y { display: flex; gap: 4px; }
+#nine-axis-keys button, #nine-axis-keys-y button { min-width: 38px; }
 #nine-axis-tree { max-height: 340px; overflow: auto; border: 1px solid var(--line); border-radius: 4px; padding: 4px; }
 #nine-axis-tree summary { cursor: pointer; padding: 2px 0; color: #c3cad8; }
 #nine-axis-tree .nine-group { margin-left: 12px; }

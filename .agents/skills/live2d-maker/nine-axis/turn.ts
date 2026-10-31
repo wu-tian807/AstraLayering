@@ -7,7 +7,7 @@ import { readStep, type ChainStep } from '../shared/step-chain.ts';
 import { taskDirectory } from '../shared/paths.ts';
 import { toTaskPath } from '../shared/task-paths.ts';
 
-// step01_turn: the upper body around the head is redrawn by an image model in
+// step01_views: the upper body around the head is redrawn by an image model in
 // five head poses, each copied from a template character's front → pose pair.
 // The right-side poses are not drawn: later steps mirror the face deformation.
 export const turnViews = ['left', 'up', 'down', 'left-up', 'left-down'] as const;

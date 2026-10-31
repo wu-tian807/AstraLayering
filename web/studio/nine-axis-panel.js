@@ -3,6 +3,7 @@ import { validateHeadNineAxis, keyformAt, keyValues, lattice, refine, meshIndice
 const $ = s => document.querySelector(s);
 const SUB = 2, NS = 'http://www.w3.org/2000/svg';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const sign = k => (k > 0 ? '+' : '') + k;
 const short = id => id.replace(/^(face|hair)\//, '').replace(/^features\//, '');
 // Premultiplied texel output without colour conversion keeps the source paint.
 const vertexShader = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}';
@@ -10,11 +11,13 @@ const fragmentShader = 'uniform sampler2D map;uniform float dim;varying vec2 vUv
 
 export class HeadNineAxisPanel {
   constructor({ error }) {
-    Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.level = 'accessory'; this.selected = null; this.hidden = new Set();
+    Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.valueY = 0; this.level = 'accessory'; this.selected = null; this.hidden = new Set();
     this.radius = 40; this.showGrid = true; this.dirty = new Set(); this.active = false;
     this.canvas = $('#nine-axis-canvas'); this.overlay = $('#nine-axis-overlay'); this.view = $('#nine-axis-view');
     $('#nine-axis-angle').oninput = e => this.setValue(e.target.valueAsNumber);
     $('#nine-axis-angle-number').onchange = e => this.setValue(e.target.valueAsNumber);
+    $('#nine-axis-angle-y').oninput = e => this.setValue(this.value, e.target.valueAsNumber);
+    $('#nine-axis-angle-y-number').onchange = e => this.setValue(this.value, e.target.valueAsNumber);
     for (const b of document.querySelectorAll('[data-nine-level]')) b.onclick = () => { this.level = b.dataset.nineLevel; this.sync(); };
     $('#nine-axis-swing').onchange = e => e.target.checked ? this.swing() : this.stopSwing();
     $('#nine-axis-grid').onchange = e => { this.showGrid = e.target.checked; this.draw(); };
@@ -26,13 +29,13 @@ export class HeadNineAxisPanel {
     this.view.addEventListener('pointerdown', e => this.pointerDown(e));
     new ResizeObserver(() => this.resize()).observe(this.view);
   }
-  diagnostics() { return { loaded: !!this.doc, value: this.value, level: this.level, selected: this.selected, edited: [...this.dirty] }; }
+  diagnostics() { return { loaded: !!this.doc, value: this.value, valueY: this.valueY, level: this.level, selected: this.selected, edited: [...this.dirty] }; }
   async load(project, force = false) {
     const epoch = ++this.epoch, entry = project?.nineAxis;
     this.stopSwing();
     if (!force && this.doc && this.project?.folder === project?.folder && this.version === entry?.version) return;
     this.project = project; this.version = entry?.version; this.clear();
-    if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step02_head/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
+    if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step02_angle-x/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
     this.status('正在读取头部九轴…');
     try {
       const url = path => './studio-artifact?' + new URLSearchParams({ folder: project.folder, path, version: entry.version });
@@ -65,9 +68,17 @@ export class HeadNineAxisPanel {
       m.renderOrder = order; m.frustumCulled = false; this.scene.add(m); this.meshes.set(p.id, m);
     });
     const ax = doc.parameters?.find(q => q.id === 'ParamAngleX') ?? { min: -30, max: 30, keys: [-30, 0, 30] };
+    const ay = doc.parameters?.find(q => q.id === 'ParamAngleY' && q.keys?.length > 1 && !q.status);
+    const keyButton = (k, set) => { const b = document.createElement('button'); b.textContent = (k > 0 ? '+' : '') + k; b.dataset.key = k; b.onclick = set; return b; };
     for (const el of [$('#nine-axis-angle'), $('#nine-axis-angle-number')]) { el.min = ax.min; el.max = ax.max; }
-    $('#nine-axis-keys').replaceChildren(...ax.keys.map(k => { const b = document.createElement('button'); b.textContent = (k > 0 ? '+' : '') + k; b.dataset.key = k; b.onclick = () => this.setValue(k); return b; }));
-    $('#nine-axis-other-params').textContent = (doc.parameters ?? []).filter(q => q.id !== 'ParamAngleX').map(q => `${q.name}（${q.id}）${q.status ?? ''}`).join(' · ');
+    $('#nine-axis-keys').replaceChildren(...ax.keys.map(k => keyButton(k, () => this.setValue(k, 0))));
+    this.valueY = 0; $('#nine-axis-y').hidden = !ay;
+    if (ay) {
+      for (const el of [$('#nine-axis-angle-y'), $('#nine-axis-angle-y-number')]) { el.min = ay.min; el.max = ay.max; }
+      $('#nine-axis-keys-y').replaceChildren(...ay.keys.map(k => keyButton(k, () => this.setValue(0, k))));
+    }
+    const shown = new Set(['ParamAngleX', ay?.id]);
+    $('#nine-axis-other-params').textContent = (doc.parameters ?? []).filter(q => !shown.has(q.id)).map(q => `${q.name}（${q.id}）${q.status ?? ''}`).join(' · ');
     $('#nine-axis-notes').textContent = doc.notes ?? '';
     $('#nine-axis-controls').hidden = false; this.status(`${doc.parts.length} 个变形器 · 网格 ${doc.parts[0].cols}×${doc.parts[0].rows}`);
     this.fit(); this.buildTree(); this.sync();
@@ -93,24 +104,39 @@ export class HeadNineAxisPanel {
     root.replaceChildren(...items);
   }
   select(id) { this.selected = this.selected === id ? null : id; this.sync(); }
-  setValue(v) { if (!Number.isFinite(v) || !this.doc) return; this.value = Math.round(Math.max(-30, Math.min(30, v)) * 10) / 10; this.sync(); }
-  onKey() { const p = this.part(); return p ? keyValues(p).find(k => Math.abs(k - this.value) < 1e-6) : undefined; }
+  setValue(x, y = this.valueY) {
+    if (!Number.isFinite(x) || !Number.isFinite(y) || !this.doc) return;
+    const clamp = v => Math.round(Math.max(-30, Math.min(30, v)) * 10) / 10;
+    this.value = clamp(x); this.valueY = $('#nine-axis-y').hidden ? 0 : clamp(y); this.sync();
+  }
+  // The keyform being edited: an X key while Y is 0, or a Y key while X is 0.
+  onKey() {
+    const p = this.part(); if (!p) return undefined;
+    const on = (axis, v) => keyValues(p, axis).find(k => Math.abs(k - v) < 1e-6);
+    if (!this.valueY) { const key = on('x', this.value); return key === undefined ? undefined : { forms: p.keyforms, key, label: 'X ' + sign(key) }; }
+    if (!this.value) { const key = on('y', this.valueY); return key === undefined ? undefined : { forms: p.keyformsY, key, label: 'Y ' + sign(key) }; }
+    return undefined;
+  }
   part() { return this.doc?.parts.find(p => p.id === this.selected); }
   sync() {
     if (!this.doc) return;
     $('#nine-axis-angle').value = this.value; $('#nine-axis-angle-number').value = this.value;
-    $('#nine-axis-hud').textContent = `ParamAngleX ${this.value > 0 ? '+' : ''}${this.value.toFixed(1)}`;
+    $('#nine-axis-angle-y').value = this.valueY; $('#nine-axis-angle-y-number').value = this.valueY;
+    const hud = (id, v) => `${id} ${v > 0 ? '+' : ''}${v.toFixed(1)}`;
+    $('#nine-axis-hud').textContent = hud('ParamAngleX', this.value) + ($('#nine-axis-y').hidden ? '' : ' · ' + hud('ParamAngleY', this.valueY));
     for (const b of document.querySelectorAll('[data-nine-level]')) b.classList.toggle('active', b.dataset.nineLevel === this.level);
-    for (const b of $('#nine-axis-keys').children) b.classList.toggle('active', Number(b.dataset.key) === this.value);
+    for (const b of $('#nine-axis-keys').children) b.classList.toggle('active', !this.valueY && Number(b.dataset.key) === this.value);
+    for (const b of $('#nine-axis-keys-y').children) b.classList.toggle('active', !this.value && Number(b.dataset.key) === this.valueY);
     const visible = new Set(levelParts(this.doc, this.level).map(p => p.id));
     for (const row of document.querySelectorAll('.nine-part')) { row.classList.toggle('selected', row.dataset.part === this.selected); row.classList.toggle('outside', !visible.has(row.dataset.part)); row.classList.toggle('edited', this.dirty.has(row.dataset.part)); }
     const p = this.part(), key = this.onKey();
     $('#nine-axis-selection').hidden = !p;
     if (p) {
       $('#nine-axis-selected-name').textContent = p.id;
-      $('#nine-axis-selected-info').textContent = `变形器 ${p.cols}×${p.rows} · 关键形 ${keyValues(p).map(k => (k > 0 ? '+' : '') + k).join(' / ')}${p.status ? ' · ' + p.status : ''}`;
-      $('#nine-axis-edit-hint').textContent = key === undefined ? '停在关键形上（点上方 −30 / 0 / +30）才能拖动控制点' : `正在编辑关键形 ${key > 0 ? '+' : ''}${key}：拖动控制点，软选择半径内的点随之移动`;
-      $('#nine-axis-reset').disabled = key === undefined || !this.original?.has(p.id + '@' + key);
+      const ys = p.keyformsY ? ` · Y ${keyValues(p, 'y').map(sign).join(' / ')}` : '';
+      $('#nine-axis-selected-info').textContent = `变形器 ${p.cols}×${p.rows} · 关键形 X ${keyValues(p).map(sign).join(' / ')}${ys}${p.status ? ' · ' + p.status : ''}`;
+      $('#nine-axis-edit-hint').textContent = key === undefined ? '停在关键形上（点上方 −30 / 0 / +30，另一角度为 0）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
+      $('#nine-axis-reset').disabled = key === undefined || !this.original?.has(p.id + '@' + key.label);
     }
     $('#nine-axis-dirty').hidden = !this.dirty.size; $('#nine-axis-dirty').textContent = `已修改 ${this.dirty.size} 个变形器，只在本次会话内保留`;
     this.draw();
@@ -132,7 +158,7 @@ export class HeadNineAxisPanel {
     const visible = new Set(levelParts(this.doc, this.level).map(p => p.id)), sel = this.selected;
     for (const p of this.doc.parts) {
       const m = this.meshes.get(p.id); m.visible = visible.has(p.id) && !this.hidden.has(p.id); if (!m.visible) continue;
-      const pts = refine(keyformAt(p, this.value), p.cols, p.rows, SUB), pos = m.geometry.attributes.position.array;
+      const pts = refine(keyformAt(p, this.value, this.valueY), p.cols, p.rows, SUB), pos = m.geometry.attributes.position.array;
       for (let i = 0, k = 0; i < pts.length; i += 2, k += 3) { pos[k] = pts[i]; pos[k + 1] = pts[i + 1]; }
       m.geometry.attributes.position.needsUpdate = true; m.material.uniforms.dim.value = sel && sel !== p.id && $('#nine-axis-isolate').checked ? .35 : 1;
     }
@@ -142,7 +168,7 @@ export class HeadNineAxisPanel {
   drawOverlay(x0, y0, s) {
     const p = this.part();
     if (!p || !this.showGrid || !this.meshes.get(p.id)?.visible) { this.overlay.replaceChildren(); return; }
-    const pts = keyformAt(p, this.value), X = i => (pts[i * 2] - x0) / s, Y = i => (pts[i * 2 + 1] - y0) / s, c = p.cols + 1;
+    const pts = keyformAt(p, this.value, this.valueY), X = i => (pts[i * 2] - x0) / s, Y = i => (pts[i * 2 + 1] - y0) / s, c = p.cols + 1;
     let d = '';
     for (let j = 0; j <= p.rows; j++) { d += 'M'; for (let i = 0; i < c; i++) d += `${X(j * c + i).toFixed(1)},${Y(j * c + i).toFixed(1)} `; }
     for (let i = 0; i < c; i++) { d += 'M'; for (let j = 0; j <= p.rows; j++) d += `${X(j * c + i).toFixed(1)},${Y(j * c + i).toFixed(1)} `; }
@@ -158,9 +184,9 @@ export class HeadNineAxisPanel {
     this.view.setPointerCapture(e.pointerId);
     let move;
     if (index !== undefined && p && key !== undefined) {
-      const name = String(key), from = p.keyforms[name].map(q => [...q]);
-      this.original ??= new Map(); if (!this.original.has(p.id + '@' + name)) this.original.set(p.id + '@' + name, from);
-      move = ev => { p.keyforms[name] = dragKeyform(from, Number(index), (ev.clientX - start[0]) * s, (ev.clientY - start[1]) * s, this.radius); this.dirty.add(p.id); this.draw(); };
+      const name = String(key.key), from = key.forms[name].map(q => [...q]), id = p.id + '@' + key.label;
+      this.original ??= new Map(); if (!this.original.has(id)) this.original.set(id, from);
+      move = ev => { key.forms[name] = dragKeyform(from, Number(index), (ev.clientX - start[0]) * s, (ev.clientY - start[1]) * s, this.radius); this.dirty.add(p.id); this.draw(); };
     } else {
       if (index !== undefined) this.error('停在关键形上才能编辑控制点');
       const c = { ...this.cam }; move = ev => { this.cam.cx = c.cx - (ev.clientX - start[0]) * s; this.cam.cy = c.cy - (ev.clientY - start[1]) * s; this.draw(); };
@@ -175,12 +201,12 @@ export class HeadNineAxisPanel {
   }
   resetKeyform() {
     const p = this.part(), key = this.onKey(); if (!p || key === undefined) return;
-    const saved = this.original?.get(p.id + '@' + key); if (saved) p.keyforms[String(key)] = saved.map(q => [...q]);
-    this.original?.delete(p.id + '@' + key);
+    const id = p.id + '@' + key.label, saved = this.original?.get(id); if (saved) key.forms[String(key.key)] = saved.map(q => [...q]);
+    this.original?.delete(id);
     if (![...(this.original?.keys() ?? [])].some(k => k.startsWith(p.id + '@'))) this.dirty.delete(p.id);
     this.sync();
   }
-  swing() { cancelAnimationFrame(this.raf); $('#nine-axis-swing').checked = true; const t0 = performance.now(); const tick = t => { this.setValue(30 * Math.sin((t - t0) / 1000 * Math.PI * .5)); this.raf = requestAnimationFrame(tick); }; this.raf = requestAnimationFrame(tick); }
+  swing() { cancelAnimationFrame(this.raf); $('#nine-axis-swing').checked = true; const t0 = performance.now(); const tick = t => { this.setValue(30 * Math.sin((t - t0) / 1000 * Math.PI * .5), 0); this.raf = requestAnimationFrame(tick); }; this.raf = requestAnimationFrame(tick); }
   stopSwing() { cancelAnimationFrame(this.raf); this.raf = 0; $('#nine-axis-swing').checked = false; }
   activate(on) { if (on === this.active) return; this.active = on; this.view.hidden = !on; if (!on) this.stopSwing(); else requestAnimationFrame(() => this.resize()); }
 }
