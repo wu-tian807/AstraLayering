@@ -9,7 +9,7 @@ import { readDefaultConfiguration } from '../default-configuration.ts';
 import { kritaLimit, kritaLimitKey } from '../krita/section-krita.ts';
 import { withNodePath } from '../process-environment.ts';
 import { imageBudget, type ImageBudget } from '../../patches/shared/visual-context.ts';
-import { resolveModelDefaults, resolveImageDefaults, stepModelSlots, imageSteps, imageModelProviders, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
+import { resolveModelDefaults, modelSlotKey, legacyModelSlotKeys, resolveImageDefaults, stepModelSlots, imageSteps, imageModelProviders, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
 import { resolveHarnessProviders, validateApiUrl, type HarnessProviders } from '../agents/providers.ts';
 export { validateApiUrl } from '../agents/providers.ts';
 
@@ -103,8 +103,8 @@ export function parseWorkflowEnvironment(source: string, env: NodeJS.ProcessEnv 
   else delete effective.LAYERING_REQUEST_COMPACT_BYTES;
   const slotModels = {} as Record<ModelSlot, AgentModel>;
   for (const [slot, fallback] of Object.entries(roleDefaults) as [ModelSlot, string][]) {
-    const key = `layering_agent_${slot}_model`;
-    let selection: string | undefined = get(key);
+    const key = modelSlotKey(slot), legacy = legacyModelSlotKeys[slot];
+    let selection: string | undefined = get(key) || (legacy && get(legacy));
     if (!selection) {
       // An old per-step file can be reused when its values agree for this role.
       // Never silently choose between differing character/clothing or draw/repair settings.

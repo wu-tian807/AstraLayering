@@ -32,9 +32,9 @@ test('preview masks multiline and inherited credentials while exposing resolved 
  assert.equal(data.models.find(m=>m.id==='claude-sonnet-5-5')?.available,false);
 });
 test('saves selected keys atomically, preserving comments, CRLF, secrets, unknown multiline records and budgets',async t=>{
- const original="# Local settings\r\nlayering_agent_preparation_model=gpt-6.1-sol-low # keep this note\r\nlayering_codex_api_key='unchanged-secret'\r\nCUSTOM='first\r\nsecond # still value'\r\nlayering_codex_request_compact_mib=80\r\n";
+ const original="# Local settings\r\npreparation_agent_model=gpt-6.1-sol-low # keep this note\r\nlayering_codex_api_key='unchanged-secret'\r\nCUSTOM='first\r\nsecond # still value'\r\nlayering_codex_request_compact_mib=80\r\n";
  const f=await fixture(t,original),before=await f.environment.read();
- const changes={layering_agent_preparation_model:'gpt-6.1-sol-high',layering_part_simplify_image_model:'gpt-image-2.5-flare',layering_openai_image_api_key:'image-secret',layering_openai_image_base_url:'https://images.example/v1'};
+ const changes={preparation_agent_model:'gpt-6.1-sol-high',layering_part_simplify_image_model:'gpt-image-2.5-flare',layering_openai_image_api_key:'image-secret',layering_openai_image_base_url:'https://images.example/v1'};
  await f.environment.preview({revision:before.revision,changes});
  assert.equal(await readFile(join(f.directory,'.env'),'utf8'),original);
  const saved=await f.environment.save({revision:before.revision,changes});
@@ -52,18 +52,18 @@ test('saves selected keys atomically, preserving comments, CRLF, secrets, unknow
 });
 test('rejects stale and concurrent writes, unsupported keys, missing CLIs and broken connections without changing the file',async t=>{
  const f=await fixture(t,'# unchanged\n'),source=await f.environment.read();
- await assert.rejects(f.environment.save({revision:source.revision,changes:{layering_agent_preparation_model:'claude-sonnet-5-5-high'}}),/安装.*claude/);
+ await assert.rejects(f.environment.save({revision:source.revision,changes:{preparation_agent_model:'claude-sonnet-5-5-high'}}),/安装.*claude/);
  await assert.rejects(f.environment.save({revision:source.revision,changes:{PATH:'arbitrary'}}),/字段无效/);
  await assert.rejects(f.environment.save({revision:source.revision,changes:{layering_codex_base_url:'https://gateway.example'}}),/缺少鉴权/);
  assert.equal(await readFile(join(f.directory,'.env'),'utf8'),'# unchanged\n');
- const result=await Promise.allSettled([f.environment.save({revision:source.revision,changes:{layering_agent_preparation_model:'gpt-6.1-sol-high'}}),f.environment.save({revision:source.revision,changes:{layering_agent_preparation_model:'gpt-6.1-sol-medium'}})]);
+ const result=await Promise.allSettled([f.environment.save({revision:source.revision,changes:{preparation_agent_model:'gpt-6.1-sol-high'}}),f.environment.save({revision:source.revision,changes:{preparation_agent_model:'gpt-6.1-sol-medium'}})]);
  assert.equal(result.filter(r=>r.status==='fulfilled').length,1);
  assert.ok(result.some(r=>r.status==='rejected'&&r.reason instanceof EnvironmentConflict));
 });
 test('keeps an unchanged masked credential, allows explicit clearing, and creates missing .env from the current template',async t=>{
  const f=await fixture(t),source=await f.environment.read();assert.equal(source.exists,false);
  const first=await f.environment.save({revision:source.revision,changes:{layering_codex_api_key:'initial-secret'}});
- const second=await f.environment.save({revision:first.revision,changes:{layering_agent_preparation_model:'gpt-6.1-sol-medium'}});
+ const second=await f.environment.save({revision:first.revision,changes:{preparation_agent_model:'gpt-6.1-sol-medium'}});
  assert.equal(parseEnv(await readFile(join(f.directory,'.env'),'utf8')).layering_codex_api_key,'initial-secret');
  await f.environment.save({revision:second.revision,changes:{layering_codex_api_key:''}});
  assert.equal(parseEnv(await readFile(join(f.directory,'.env'),'utf8')).layering_codex_api_key,'');
@@ -85,14 +85,14 @@ test('refuses symlinked .env and keeps its external target untouched',async t=>{
  assert.equal(await readFile(target,'utf8'),'KEEP=yes');
 });
 test('HTTP save is same-origin, revision-checked, and the next task start reads the saved configuration',async t=>{
- const f=await fixture(t,'layering_agent_preparation_model=gpt-6.1-sol-low\n');
+ const f=await fixture(t,'preparation_agent_model=gpt-6.1-sol-low\n');
  let observed='';const runs=join(f.directory,'runs');
  const server=await createWorkbench({settingsPath:join(f.directory,'settings.json'),defaultDir:runs,environment:f.environment,preflight:async()=>{},start:async()=>{observed=loadWorkflowEnvironment({},f.directory).stepModels.part_standardize.effort;return 123;}});
  await new Promise<void>(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise<void>(resolve=>server.close(()=>resolve())));
  const url='http://127.0.0.1:'+(server.address() as any).port;
  const post=(path:string,body:any,extra={})=>fetch(url+'/api/'+path,{method:'POST',headers:{'Content-Type':'application/json',...extra},body:JSON.stringify({dir:runs,...body})});
  const source=await (await fetch(url+'/api/config/environment')).json() as any;
- const edit={revision:source.revision,changes:{layering_agent_preparation_model:'gpt-6.1-sol-high'}};
+ const edit={revision:source.revision,changes:{preparation_agent_model:'gpt-6.1-sol-high'}};
  assert.equal((await post('config/environment',edit,{Origin:'https://unrelated.example'})).status,403);
  assert.equal((await post('config/environment/preview',edit)).status,200);
  assert.equal(loadWorkflowEnvironment({},f.directory).stepModels.part_standardize.effort,'low');
@@ -106,7 +106,7 @@ test('HTTP save is same-origin, revision-checked, and the next task start reads 
 
 test('web defaults, runtime fallback and generated .env follow the skill template after model changes',async t=>{
  const f=await fixture(t);
- let template=f.template.replace(/^layering_agent_\w+_model=.*$/gm,line=>line.split('=')[0]+'=gpt-6-astra-high');
+ let template=f.template.replace(/^(?:layering_agent_\w+_model|preparation_agent_model)=.*$/gm,line=>line.split('=')[0]+'=gpt-6-astra-high');
  template=template.replace('layering_default_image_model=codex-native','layering_default_image_model=gpt-image-2.5-flare');
  template=template.replace('layering_part_base_subject_image_model=','layering_part_base_subject_image_model=gemini-nano-banana-2.1');
  await writeFile(join(f.directory,'example.env'),template);
