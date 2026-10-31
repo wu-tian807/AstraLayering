@@ -8,7 +8,7 @@ import { once } from 'node:events';
 import { parseEnv } from 'node:util';
 import sharp from 'sharp';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
-import { modelHarnesses, modelSlotDefaults, stepModelSlots, stepDefaults, imageSteps, parseAgentModel } from '../agents/models.ts';
+import { modelHarnesses, modelSlotDefaults, modelSlotKey, type ModelSlot, stepModelSlots, stepDefaults, imageSteps, parseAgentModel } from '../agents/models.ts';
 import { imageGenerationTool, validateImageSelection } from '../agents/images.ts';
 import { cliExecutable, runCliTask } from '../agents/cli.ts';
 import { CodexAgents } from '../codex/agents.ts';
@@ -42,6 +42,9 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
     assert.equal(settings.stepModels[step].model, 'gemini-4-argon');
   }
   assert.equal(settings.stepModels.part_occlusion.model, 'gpt-6.1-sol');
+  // preparation 的旧键在已有 .env 中仍生效，新键优先。
+  assert.equal(loadWorkflowEnvironment({ layering_agent_preparation_model: 'claude-haiku-5-5-low' }, root).stepModels.part_standardize.model, 'claude-haiku-5-5');
+  assert.equal(loadWorkflowEnvironment({ layering_agent_preparation_model: 'claude-haiku-5-5-low', preparation_agent_model: 'gpt-6.1-sol-high' }, root).stepModels.part_standardize.effort, 'high');
   assert.deepEqual(settings.stepModels.clothing_occlusion, settings.stepModels.part_occlusion);
   for (const step of ['raster_step01', 'raster_step01_repair', 'clothing_raster_step01', 'clothing_raster_step01_repair'] as const) {
     assert.deepEqual(settings.stepModels[step], parseAgentModel('claude-opus-5-5-medium', 'fixture'));
@@ -66,7 +69,7 @@ test('every image-capable agent rejects native imagegen with a different harness
     assert.equal(loadWorkflowEnvironment({}, root).stepImages[step], undefined);
   }
   for (const step of imageSteps) {
-    const settings = loadWorkflowEnvironment({ [`layering_agent_${stepModelSlots[step]}_model`]: 'gemini-4-argon-high' }, root);
+    const settings = loadWorkflowEnvironment({ [modelSlotKey(stepModelSlots[step])]: 'gemini-4-argon-high' }, root);
     assert.throws(() => validateImageSelection(settings, step), /Codex 内置 imagegen.*harness.*agv/, step);
   }
   const settings = loadWorkflowEnvironment({ layering_agent_part_review_model: 'gemini-4-argon-high' }, root);
@@ -80,7 +83,7 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
   const contents = await readFile(new URL('../../example.env', import.meta.url), 'utf8');
   const variables = parseEnv(contents);
   assert.equal(Object.keys(modelSlotDefaults).length, 14);
-  for (const role of Object.keys(modelSlotDefaults)) assert.ok(Object.hasOwn(variables, `layering_agent_${role}_model`));
+  for (const role of Object.keys(modelSlotDefaults)) assert.ok(Object.hasOwn(variables, modelSlotKey(role as ModelSlot)));
   for (const step of imageSteps) assert.ok(Object.hasOwn(variables, `layering_${step}_image_model`));
   assert.equal(Object.keys(variables).filter(key => key.endsWith('_image_model') && !['layering_default_image_model', 'layering_image_model'].includes(key)).length, imageSteps.length);
   const root = await fixture(t);

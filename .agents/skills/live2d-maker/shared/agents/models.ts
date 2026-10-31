@@ -21,9 +21,13 @@ export const modelSlots = [
   'raster_step03', 'assembly', 'shadow', 'nine_axis_head',
 ] as const;
 export type ModelSlot = typeof modelSlots[number];
+// preparation 使用不带 layering 前缀的键；旧键仅在已有 .env 中兼容读取。
+export const modelSlotKey = (slot: ModelSlot) => slot === 'preparation' ? 'preparation_agent_model' : `layering_agent_${slot}_model`;
+export const legacyModelSlotKeys: Partial<Record<ModelSlot, string>> = { preparation: 'layering_agent_preparation_model' };
+export const isModelSlotKey = (key: string) => modelSlots.some(slot => modelSlotKey(slot) === key);
 export function resolveModelDefaults(configuration: DefaultConfiguration): Readonly<Record<ModelSlot, string>> {
   return Object.freeze(Object.fromEntries(modelSlots.map(slot => {
-    const key = `layering_agent_${slot}_model`, value = requiredDefault(configuration, key);
+    const key = modelSlotKey(slot), value = requiredDefault(configuration, key);
     parseAgentModel(value, `example.env:${key}`);
     return [slot, value];
   })) as Record<ModelSlot, string>);

@@ -20,7 +20,7 @@
 
 | 职责 | 模型与力度 | `.env` 配置键 |
 | --- | --- | --- |
-| 全部 preparation | `gpt-6.1-sol-low` | `layering_agent_preparation_model` |
+| 全部 preparation | `gpt-6.1-sol-low` | `preparation_agent_model` |
 | part 轮廓绘制与返修 | `gpt-6.1-sol-medium` | `layering_agent_part_draw_model` |
 | part 轮廓 review | `gpt-6.1-sol-medium` | `layering_agent_part_review_model` |
 | 同层去重／重叠分析 | `gpt-6.1-sol-high` | `layering_agent_part_reduce_model` |
@@ -47,7 +47,7 @@
 
 | 职责 | 模型与力度 | `.env` 配置键 |
 | --- | --- | --- |
-| 全部 preparation | `gpt-6.1-sol-low` | `layering_agent_preparation_model` |
+| 全部 preparation | `gpt-6.1-sol-low` | `preparation_agent_model` |
 | part 轮廓绘制与返修 | `gpt-6.1-sol-xhigh` | `layering_agent_part_draw_model` |
 | part 轮廓 review | `gpt-6.1-sol-xhigh` | `layering_agent_part_review_model` |
 | 同层去重／重叠分析 | `gpt-6.1-sol-xhigh` | `layering_agent_part_reduce_model` |
@@ -195,7 +195,9 @@ Nano 后处理保持第一张生成图的尺寸和比例；工作流仍负责后
 
 ## 配置覆盖与旧键迁移
 
-同名 shell 变量优先于 `.env`，优先级按每个键分别计算。LLM 选择顺序为：统一职责键 `layering_agent_<职责>_model` → 同职责下取值一致的旧小步骤键 → 已填写的旧 medium／high 键 → 代码默认值。生图选择顺序为：步骤生图键 → 全局默认生图键 → 旧生图 API 配置的兼容默认 → `codex-native`。修改全局默认时检查已有步骤覆盖，用 `pnpm env:check` 查看最终结果。
+同名 shell 变量优先于 `.env`，优先级按每个键分别计算。LLM 选择顺序为：统一职责键 `layering_agent_<职责>_model`（preparation 为 `preparation_agent_model`）→ 同职责下取值一致的旧小步骤键 → 已填写的旧 medium／high 键 → 代码默认值。生图选择顺序为：步骤生图键 → 全局默认生图键 → 旧生图 API 配置的兼容默认 → `codex-native`。修改全局默认时检查已有步骤覆盖，用 `pnpm env:check` 查看最终结果。
+
+preparation 职责键已由 `layering_agent_preparation_model` 改名为 `preparation_agent_model`；已有 `.env` 只填旧键时继续读取，两者都填时以新键为准。
 
 旧 `layering_<小步骤>_model` 在同一职责的已填写值一致时继续读取；取值冲突时，明确填写对应的统一职责键。旧 `layering_high_model` 对应两套 raster 的 step01、review／返修与 step02，`layering_medium_model` 对应其余职责，这一兼容映射保持原有含义。
 
