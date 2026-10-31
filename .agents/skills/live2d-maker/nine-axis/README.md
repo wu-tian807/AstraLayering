@@ -19,7 +19,7 @@ agent 使用 `layering_agent_preparation_model`（默认 gpt-6.1-sol-low），�
 
 ## step02_head：left 方向的脸部＋双耳透视形变
 
-1. agent（`layering_agent_shadow_model`）带着 krita 与 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step02_head/prompts/脸部与双耳转向.md` 给出 pink-doll 的拟合方法与教程先验：模板匹配定位五官，父级为圆柱转向加 10×10 平滑残差（对齐向左视角的可见脸轮廓），子级按教程分眉眼、嘴、鼻在父级上补细节，最后牛顿法反解为每层 16×16 warp。不提供固定的拟合库：agent 在本步 `workspace/` 里自写脚本，蒙版、轮廓段、权重、ROI 与远近侧耳等按角色判断并看图检查。
+1. agent（`layering_agent_nine_axis_head_model`）带着 krita 与 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step02_head/prompts/脸部与双耳转向.md` 给出 pink-doll 的拟合方法与教程先验：模板匹配定位五官，父级为圆柱转向加 10×10 平滑残差（对齐向左视角的可见脸轮廓），子级按教程分眉眼、嘴、鼻在父级上补细节，最后牛顿法反解为每层 16×16 warp。不提供固定的拟合库：agent 在本步 `workspace/` 里自写脚本，蒙版、轮廓段、权重、ROI 与远近侧耳等按角色判断并看图检查。
 2. agent 只交付向左（−30）：`face-left.json`（脸部中轴 `axis`、各层控制点，按绘制顺序从上到下）、`layers/`、`left-check.png`。不补绘。耳朵不拟合生图像素，近侧耳只随父级平移和横向缩放；远侧耳整体转到脑后、排在脸底之下由脸遮挡，不用透明度隐藏（交付带 `opacity` 会被拒绝）。
 3. 程序检查交付，按 id 中的 left/right 配对，把配对图层的 −30 关于中轴镜像为 +30，写出 `deformers.json` 与 `source.json`。
 

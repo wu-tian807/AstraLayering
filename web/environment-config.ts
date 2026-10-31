@@ -12,7 +12,7 @@ import { validateImageSelection } from '../.agents/skills/live2d-maker/shared/ag
 import { validateProviderModel } from '../.agents/skills/live2d-maker/shared/agents/providers.ts';
 
 const envValues = (source: string) => parseEnv(source) as Record<string,string>;
-const roles: Record<string,string> = { preparation:'参考准备与姿态判断',part_draw:'轮廓绘制与返修',part_review:'轮廓审核',part_reduce:'同层去重',part_completion:'遮挡补全',part_groups:'部件分组',part_depth:'深度分析',raster_step01:'分层绘制与返修',raster_step01_review:'分层绘制审核',raster_step02:'边缘精修',raster_step03:'人物换装素体',assembly:'穿戴组装',shadow:'阴影制作' };
+const roles: Record<string,string> = { preparation:'参考准备与姿态判断',part_draw:'轮廓绘制与返修',part_review:'轮廓审核',part_reduce:'同层去重',part_completion:'遮挡补全',part_groups:'部件分组',part_depth:'深度分析',raster_step01:'分层绘制与返修',raster_step01_review:'分层绘制审核',raster_step02:'边缘精修',raster_step03:'人物换装素体',assembly:'穿戴组装',shadow:'阴影制作',nine_axis_head:'九轴脸部与双耳转向' };
 const images: Record<string,string> = { part_standardize:'人物姿态标准化',part_simplify:'简化穿衣参考',part_base_subject:'人物素体参考',clothing_preparation:'纯衣服参考',part_completion:'人物补全辅助参考',clothing_completion:'衣服补全辅助参考',raster_step01:'人物分层绘制',raster_step01_review:'人物绘制审核',raster_step01_repair:'人物绘制返修',raster_step02:'人物边缘精修',raster_step03:'人物换装素体',clothing_raster_step01:'衣服分层绘制',clothing_raster_step01_review:'衣服绘制审核',clothing_raster_step01_repair:'衣服绘制返修',clothing_raster_step02:'衣服边缘精修',assembly:'穿戴组装',shadow_maps:'阴影法线与深度' };
 export const secretKey = (key: string) => /(?:key|token|secret|password|credential|authorization)/i.test(key);
 const digest = (text: string, exists: boolean) => createHash('sha256').update(`${exists}\0${text}`).digest('hex');

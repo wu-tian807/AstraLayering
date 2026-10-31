@@ -79,7 +79,7 @@ test('every image-capable agent rejects native imagegen with a different harness
 test('scheme 1 template and code defaults resolve all role efforts and native images without extra providers', async t => {
   const contents = await readFile(new URL('../../example.env', import.meta.url), 'utf8');
   const variables = parseEnv(contents);
-  assert.equal(Object.keys(modelSlotDefaults).length, 13);
+  assert.equal(Object.keys(modelSlotDefaults).length, 14);
   for (const role of Object.keys(modelSlotDefaults)) assert.ok(Object.hasOwn(variables, `layering_agent_${role}_model`));
   for (const step of imageSteps) assert.ok(Object.hasOwn(variables, `layering_${step}_image_model`));
   assert.equal(Object.keys(variables).filter(key => key.endsWith('_image_model') && !['layering_default_image_model', 'layering_image_model'].includes(key)).length, imageSteps.length);
@@ -92,7 +92,7 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
     preparation: 'low', part_draw: 'medium', part_review: 'medium',
     part_groups: 'high', part_reduce: 'high', part_completion: 'high', part_depth: 'high',
     raster_step01: 'xhigh', raster_step01_review: 'xhigh', raster_step02: 'medium',
-    raster_step03: 'medium', assembly: 'xhigh', shadow: 'medium',
+    raster_step03: 'medium', assembly: 'xhigh', shadow: 'medium', nine_axis_head: 'xhigh',
   };
   for (const [step, role] of Object.entries(stepModelSlots)) {
     assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(`gpt-6.1-sol-${expected[role]}`, 'fixture'), step);
@@ -119,7 +119,7 @@ test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for sim
     part_groups: 'gpt-6.1-sol-xhigh', part_depth: 'gpt-6.1-sol-xhigh', part_reduce: 'gpt-6.1-sol-xhigh',
     raster_step01: 'claude-opus-5-5-xhigh', raster_step01_review: 'claude-sonnet-5-5-xhigh',
     raster_step02: 'claude-sonnet-5-5-xhigh', raster_step03: 'claude-sonnet-5-5-xhigh',
-    assembly: 'claude-sonnet-5-5-xhigh', shadow: 'claude-sonnet-5-5-xhigh',
+    assembly: 'claude-sonnet-5-5-xhigh', shadow: 'claude-sonnet-5-5-xhigh', nine_axis_head: 'claude-sonnet-5-5-xhigh',
   };
   for (const [step, role] of Object.entries(stepModelSlots)) {
     assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(expected[role], 'fixture'), step);

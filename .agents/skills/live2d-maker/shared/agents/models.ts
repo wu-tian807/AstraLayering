@@ -18,7 +18,7 @@ export type AgentModel = { model: ModelId; effort: ReasoningEffort; harness: Har
 export const modelSlots = [
   'preparation', 'part_draw', 'part_review', 'part_reduce', 'part_completion',
   'part_groups', 'part_depth', 'raster_step01', 'raster_step02', 'raster_step01_review',
-  'raster_step03', 'assembly', 'shadow',
+  'raster_step03', 'assembly', 'shadow', 'nine_axis_head',
 ] as const;
 export type ModelSlot = typeof modelSlots[number];
 export function resolveModelDefaults(configuration: DefaultConfiguration): Readonly<Record<ModelSlot, string>> {
@@ -44,7 +44,7 @@ export const stepModelSlots = {
   raster_step03: 'raster_step03',
   clothing_raster_step01: 'raster_step01', clothing_raster_step02: 'raster_step02',
   clothing_raster_step01_review: 'raster_step01_review', clothing_raster_step01_repair: 'raster_step01',
-  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_view: 'preparation', nine_axis_head: 'shadow',
+  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_view: 'preparation', nine_axis_head: 'nine_axis_head',
 } as const satisfies Record<string, ModelSlot>;
 export type AgentStep = keyof typeof stepModelSlots;
 export const stepDefaults = Object.fromEntries(Object.entries(stepModelSlots)
