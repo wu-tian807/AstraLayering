@@ -14,6 +14,14 @@ test('Keyforms blend linearly on ParamAngleX and hold beyond the end keys', () =
   assert.deepEqual([...keyformAt(p, 20)].slice(0, 2), [0, 0]);
 });
 
+test('ParamAngleY keyforms add their offset from the rest form to the X blend', () => {
+  const p = part({ '0': rest, '-30': rest.map(([x, y]) => [x - 30, y]) }, { keyformsY: { '30': rest.map(([x, y]) => [x, y - 6]), '-30': rest.map(([x, y]) => [x, y + 3]) } });
+  assert.deepEqual([...keyformAt(p, 0, 15)].slice(0, 2), [0, -3]);
+  assert.deepEqual([...keyformAt(p, -15, -30)].slice(0, 2), [-15, 3]);
+  assert.deepEqual([...keyformAt(part({ '0': rest }), 0, 30)].slice(0, 2), [0, 0], '没有 Y 关键形时不动');
+  assert.throws(() => validateHeadNineAxis({ version: 1, kind: 'head-nine-axis', levels: [{ id: 'hair', includes: ['hair'] }], parts: [{ ...p, keyformsY: { '30': rest.slice(1) } }] }), /Y 关键形 30/);
+});
+
 test('Art mesh refinement follows the warp bilinearly inside each cell', () => {
   const pts = new Float32Array([0, 0, 10, 0, 0, 10, 20, 10]), out = refine(pts, 1, 1, 2);
   assert.deepEqual([...out.slice(8, 10)], [7.5, 5]);  // cell centre
@@ -42,7 +50,7 @@ test('Pink Doll ships a head-only nine-axis document with the three preview leve
   assert.ok(levelParts(doc, 'face').every((p: any) => p.level === 'face'));
   assert.ok(levelParts(doc, 'hair').some((p: any) => p.level === 'hair') && !levelParts(doc, 'hair').some((p: any) => p.level === 'accessory'));
   for (const p of doc.parts) {
-    await readFile(new URL('../../demos/pink-doll/nine-axis/step02_head/' + p.texture, import.meta.url));
+    await readFile(new URL('../../demos/pink-doll/nine-axis/step02_angle-x/' + p.texture, import.meta.url));
     assert.deepEqual(Object.keys(p.keyforms).sort(), ['-30', '0', '30'].sort());
   }
   assert.deepEqual(deformerTree(doc).map((l: any) => l.id), ['face', 'hair', 'accessory']);

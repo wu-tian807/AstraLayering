@@ -163,7 +163,7 @@ pnpm web
 | 组装原画 | `character-assembly/step01/character-assembled.png` |
 | 法线 | `lighting/normal.png` |
 | 深度 | `lighting/depth.png` |
-| 头部九轴 | `nine-axis/step02_head/deformers.json`；补绘工程 `character-nine-axis.kra` / 同名 PNG |
+| 头部九轴 | `nine-axis/step02_angle-x/deformers.json`；补绘工程 `character-nine-axis.kra` / 同名 PNG |
 
 角色工程沿用已有组装管线。法线 / 深度路径是阴影 normal-depth 模式的固定发布约定。未生成时显示“待管线生成”，仍可预览角色原画；组装结果缺失则显示等待状态，不使用任意 KRA 或参考图代替。管线产出后点“更新项目”（或重新打开项目）自动绑定，操作会重置本次图层改动。管线负责保证贴图与组装原画对应，尺寸不符仍明确拒绝。头部九轴目录的 `source.json` 与当前选中的组装或阴影 KRA / PNG 一致时，角色工程改载九轴补绘工程；来源变化则退回原工程并标记待重做（见 `.agents/skills/live2d-maker/nine-axis/README.md`）。
 

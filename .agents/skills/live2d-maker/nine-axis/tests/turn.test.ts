@@ -8,6 +8,7 @@ import sharp from 'sharp';
 import { cropUpperBody, resolveTurnInput, upperBodyBox, turnViews } from '../turn.ts';
 import { runWorkflow, viewPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
+import { writeFaceY } from './angle-y.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 
 const rect = (w: number, h: number, x: number, y: number, rw: number, rh: number) =>
@@ -66,7 +67,7 @@ test('阴影蒙版完成时用阴影角色图', async t => {
 test('每个视角的提示词带入动作与三张参考图', () => {
   for (const view of turnViews) {
     const prompt = viewPrompt(view, '/task');
-    assert.match(prompt, /\/task\/nine-axis\/step01_turn\/upper-body\.png/);
+    assert.match(prompt, /\/task\/nine-axis\/step01_views\/upper-body\.png/);
     assert.match(prompt, new RegExp(`pink-doll/front\\.png[\\s\\S]*pink-doll/${view}\\.png`));
     assert.doesNotMatch(prompt, /\{(view|motion)\}/);
   }
@@ -82,9 +83,10 @@ test('step01 生成五个视角并统一到上半身尺寸，完成后沿用', a
   };
   let fitted = 0;
   const fitHead = async (directory: string) => { fitted++; await writeFaceLeft(directory); };
-  const deps = { environment: loadWorkflowEnvironment({}), draw, fitHead };
-  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /4 个脸部图层/);
-  const step = join(task, 'nine-axis/step01_turn'), size = (await sharp(join(step, 'upper-body.png')).metadata()).width;
+  const fitAngleY = async (directory: string) => { fitted++; await writeFaceY(directory); };
+  const deps = { environment: loadWorkflowEnvironment({}), draw, fitHead, fitAngleY };
+  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /4 个脸部图层的抬头与低头/);
+  const step = join(task, 'nine-axis/step01_views'), size = (await sharp(join(step, 'upper-body.png')).metadata()).width;
   for (const view of turnViews) {
     const { data, info } = await sharp(join(step, `${view}.png`)).raw().toBuffer({ resolveWithObject: true });
     assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
@@ -95,15 +97,22 @@ test('step01 生成五个视角并统一到上半身尺寸，完成后沿用', a
   await access(join(step, '.completed'));
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /沿用/);
   assert.equal(drawn.length, 5);
-  assert.equal(fitted, 1);
-  const source = JSON.parse(await readFile(join(task, 'nine-axis/step02_head/source.json'), 'utf8'));
+  assert.equal(fitted, 2);
+  const source = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/source.json'), 'utf8'));
   assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
   assert.equal(source.sourceKraHash.length, 64);
   // The far ear's turn mirrors with the pair: turning right, the left ear goes behind like the right ear turning left.
-  const { parts } = JSON.parse(await readFile(join(task, 'nine-axis/step02_head/deformers.json'), 'utf8'));
+  const { parts } = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/deformers.json'), 'utf8'));
   const byId = Object.fromEntries(parts.map((p: { id: string }) => [p.id, p]));
   assert.deepEqual(byId['face/ear_left'].keyforms['30'][0], [126, 70]);
   assert.ok(parts.every((p: object) => !('opacity' in p)));
+  // step03 adds the Y keyforms to step02's deformers and brings the textures along.
+  const combined = JSON.parse(await readFile(join(task, 'nine-axis/step03_angle-y/deformers.json'), 'utf8'));
+  assert.deepEqual(combined.parameters.find((q: { id: string }) => q.id === 'ParamAngleY').keys, [-30, 0, 30]);
+  const base = combined.parts.find((p: { id: string }) => p.id === 'face/face_base');
+  assert.deepEqual(base.keyforms['30'], byId['face/face_base'].keyforms['30']);
+  assert.deepEqual(base.keyformsY['30'][0], [60, 56]);
+  await access(join(task, 'nine-axis/step03_angle-y/layers/000.png'));
 });
 
 test('任一视角失败时 step01 不完成，并列出失败的视角', async t => {
@@ -113,5 +122,5 @@ test('任一视角失败时 step01 不完成，并列出失败的视角', async 
     await sharp({ create: { width: 8, height: 8, channels: 3, background: '#fff' } }).png().toFile(output);
   };
   await assert.rejects(runWorkflow({ name: 'case', dir: root }, { environment: loadWorkflowEnvironment({}), draw }), /down[\s\S]*模型拒绝/);
-  await assert.rejects(access(join(task, 'nine-axis/step01_turn/.completed')));
+  await assert.rejects(access(join(task, 'nine-axis/step01_views/.completed')));
 });
