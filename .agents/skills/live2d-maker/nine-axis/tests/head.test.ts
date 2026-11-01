@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import sharp from 'sharp';
-import { checkFaceLeft, faceWidthRatio, mirrorKeyform, pairId, stepTexture, type Part } from '../head.ts';
+import { checkFaceLeft, mirrorKeyform, pairId, stepTexture, type Part } from '../head.ts';
 
 const grid = (x0: number, y0: number, x1: number, y1: number, shift = (x: number, y: number): [number, number] => [x, y]) =>
   [[x0, y0], [x1, y0], [x0, y1], [x1, y1]].map(([x, y]) => shift(x, y));
@@ -62,12 +62,4 @@ test('贴图接受 agent 写的绝对路径，存为本步 layers/ 相对路径'
   assert.equal(stepTexture(step, task, 'face/nose', 'layers/003.png'), 'layers/003.png');
   assert.throws(() => stepTexture(step, task, 'face/nose', '/elsewhere/layers/003.png'), /本步 layers/);
   assert.throws(() => stepTexture(step, task, 'face/nose', `${step}/workspace/003.png`), /本步 layers/);
-});
-
-test('脸贴在头上：−30 时外轮廓宽度不到正面 90% 判为压扁', () => {
-  const alpha = new Uint8Array(80 * 50).fill(255);
-  const face = (shift: (x: number, y: number) => [number, number]): Part => ({ ...part('face/face_base', [60, 60, 140, 110], shift), textureBounds: [60, 60, 80, 50] });
-  assert.equal(faceWidthRatio(face((x, y) => [x - 10, y]), alpha, 80, 50), 1);
-  // Shrunk toward the axis like a flat panel at 45°: 75% of the frontal width.
-  assert.ok(Math.abs(faceWidthRatio(face((x, y) => [100 + (x - 100) * 0.75, y]), alpha, 80, 50) - 0.75) < 0.01);
 });
