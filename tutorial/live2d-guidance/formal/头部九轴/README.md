@@ -17,7 +17,7 @@
 
 ## 目标与已知问题
 
-- 目标转角：视角约 **45°**（step01 的 left 视角），即角度 X/Y 边界关键形 ParamAngleX/Y ±30 的形状；±30 是参数值，不是度数。
+- 目标转角：视角约 **45°**（step01 的 left 视角），即 ParamAngleX ±45° 边界关键形的形状；上下为抬头 +25°、低头 −20°。刻度见 `knowledge/nine-axis/step01_views/references/angles.json`，`deformers.json` 以度数记录。
 - AI 自由形变通常只能做到约 15° 而不严重变形。
 - 转角更大时，AI 倾向于扭曲脖子来代替头部本身的透视形变。
 

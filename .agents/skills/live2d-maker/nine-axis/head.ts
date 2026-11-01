@@ -3,12 +3,14 @@ import { access, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
 import { toTaskPath } from '../shared/task-paths.ts';
+import { angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { fileHash, type Box, type TurnInput } from './turn.ts';
 
 // step02_angle-x: the agent fits the face to the left view and delivers the
 // ParamAngleX −30 warps (face-left.json + layers/). The +30 side is the mirror
 // image: each part takes its left/right pair's −30 field reflected about the
-// face axis. The program then writes deformers.json and source.json.
+// face axis. The program then writes deformers.json (keys in degrees, see
+// angles.ts) and source.json.
 export const headOutputs = ['face-left.json', 'deformers.json', 'source.json'] as const;
 export type HeadInput = TurnInput & { document: string };
 
@@ -87,7 +89,7 @@ async function atomic(path: string, text: string) {
 }
 
 // After the agent: check its delivery, mirror, and write the workbench files.
-export async function finishHead(directory: string, input: HeadInput, box: Box): Promise<number> {
+export async function finishHead(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale()): Promise<number> {
   const task = dirname(dirname(directory)), { width = 0, height = 0 } = await sharp(input.color).metadata();
   let raw: unknown;
   try { raw = JSON.parse(await readFile(join(directory, 'face-left.json'), 'utf8')); }
@@ -96,16 +98,17 @@ export async function finishHead(directory: string, input: HeadInput, box: Box):
   for (const p of face.parts) await access(join(directory, p.texture)).catch(error => { throw new Error(`${p.id}：缺少贴图 ${p.texture}`, { cause: error }); });
   const byId = new Map(face.parts.map(p => [p.id, p])), pair = (p: Part) => byId.get(pairId(p.id)) ?? p;
   const parts = face.parts.map(p => ({ id: p.id, level: 'face', group: p.group, texture: p.texture, textureBounds: p.textureBounds, bbox: p.bbox,
-    cols: p.cols, rows: p.rows, keyforms: { '0': p.keyforms['0'], '-30': p.keyforms['-30'], '30': mirrorKeyform(p, pair(p), face.axis) } }));
+    cols: p.cols, rows: p.rows, keyforms: { [scale.x[0]]: p.keyforms['-30'], '0': p.keyforms['0'], [scale.x[1]]: mirrorKeyform(p, pair(p), face.axis) } }));
   const [kraHash, colorHash] = await Promise.all([fileHash(input.document), fileHash(input.color)]);
   const document = toTaskPath(task, input.document), color = toTaskPath(task, input.color);
   await atomic(join(directory, 'deformers.json'), JSON.stringify({ version: 1, kind: 'head-nine-axis', canvas: [width, height],
     source: { document, sha256: kraHash }, view: { x: box.x, y: box.y, width: box.size, height: box.size }, axis: face.axis,
-    parameters: [{ id: 'ParamAngleX', name: '角度 X', min: -30, max: 30, default: 0, keys: [-30, 0, 30] },
-      { id: 'ParamAngleY', name: '角度 Y', min: -30, max: 30, default: 0, keys: [0], status: '未制作' }],
+    parameters: [angleParameter('ParamAngleX', '角度 X', scale.x), { ...angleParameter('ParamAngleY', '角度 Y', scale.y), keys: [0], status: '未制作' }],
     levels: [{ id: 'face', name: '脸＋五官', includes: ['face'] }],
-    notes: [face.notes?.trim(), '+30 为左右成对镜像。'].filter(Boolean).join(' '), parts }) + '\n');
+    notes: [face.notes?.trim(), `${sign(scale.x[0])}° 为向左视角，${sign(scale.x[1])}° 为左右成对镜像。`].filter(Boolean).join(' '), parts }) + '\n');
   await atomic(join(directory, 'source.json'), JSON.stringify({ version: 1, sourceDocument: document, sourceColor: color,
     sourceKraHash: kraHash, sourceColorHash: colorHash, updatedAt: new Date().toISOString() }, null, 2) + '\n');
   return parts.length;
 }
+
+export const sign = (v: number) => (v > 0 ? '+' : '') + v;

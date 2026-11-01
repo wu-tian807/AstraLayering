@@ -5,6 +5,7 @@
 
 ## 未发布
 
+- **头部九轴参数改用度数：** agent 交付仍是 "-30" / "30" 关键形，提示词不变；交付后程序按新增的 `knowledge/nine-axis/step01_views/references/angles.json`（ParamAngleX −45° / +45°，ParamAngleY −20° 低头 / +25° 抬头，与 step01 视角一致）把 `deformers.json` 的参数范围与关键形键写成度数，工作台的滑杆、回摆与夹取范围都读文档本身。对外兼容（如 Cubism 默认 ±30）留给以后的导出层。先验知识启动检查要求该文件存在（缺失时拒绝启动），内容格式在九轴启动时、任何 agent 之前检查。已有的 step02、step03 产物仍是 ±30 键，需重新运行收尾程序或重做。
 - **头部九轴没有耳朵时跳过耳朵：** step02、step03 提示词写明角色没有耳朵图层（如被头发完全遮住）时跳过耳朵、照常交付。此前 pink-doll 的 step03 已交付全部脸部关键形，agent 却以“缺少双耳输入”报失败。只改措辞，已完成步骤不重做。
 - **模型配置键去掉 `layering_` 前缀：** `layering_agent_<职责>_model` 改为 `<职责>_agent_model`，`layering_<步骤>_image_model` 改为 `<步骤>_image_model`，`layering_default_image_model` 改为 `default_image_model`；example.env、预设、WebUI 与文档只写新键。过渡期内已有 `.env` 只填旧键时照常读取，新旧都填时以新键为准，过渡期后移除旧键。连接、路径、预算等非模型键不变。已完成步骤不重做。
 - **Codex 工具改为直接调用：** 模型目录把 gpt-6.1-sol 等模型的 `tool_mode` 设为 `code_mode_only`，所有工具都藏在 code mode 的 exec 脚本后面；自定义工具的结果在脚本里被压成一串“JSON + data URL”文本，agent 常漏看图片或路径。现在每次启动 App Server 先导出同一配置下的模型目录、把 `tool_mode` 清空，再以 `model_catalog_json` 传入，所有模型直接调用原生生图与本流程工具，看图工具的图片直接进入上下文。已完成步骤不重做。

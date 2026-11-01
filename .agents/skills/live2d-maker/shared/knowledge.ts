@@ -160,6 +160,7 @@ export function checkKnowledge(directory = current): void {
     for (const declared of knowledgeSteps) {
       const step = stepKnowledge(declared.section, declared.step);
       const config = parseAgent(join(step.directory, 'agent.json'), Boolean(declared.review));
+      for (const name of declared.references ?? []) if (!existsSync(step.reference(name))) throw new Error(`先验知识缺少程序读取的文件：${step.reference(name)}`);
       for (const role of ['main', 'review', 'repair'] as const) {
         if (role !== 'main' && !config.review) continue;
         for (const path of step.files(role)) {
