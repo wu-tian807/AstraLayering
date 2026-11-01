@@ -6,8 +6,10 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;'
 const sign = k => (k > 0 ? '+' : '') + k;
 const short = id => id.replace(/^(face|hair)\//, '').replace(/^features\//, '');
 // Premultiplied texel output without colour conversion keeps the source paint.
+// The grid (bbox) is larger than the texture; outside it clamp-to-edge would
+// smear the border texels into blocks, so those fragments are dropped.
 const vertexShader = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}';
-const fragmentShader = 'uniform sampler2D map;uniform float dim;varying vec2 vUv;void main(){vec4 c=texture2D(map,vUv);if(c.a<0.002)discard;gl_FragColor=vec4(c.rgb*c.a*dim,c.a*dim);}';
+const fragmentShader = 'uniform sampler2D map;uniform float dim;varying vec2 vUv;void main(){if(any(lessThan(vUv,vec2(0.0)))||any(greaterThan(vUv,vec2(1.0))))discard;vec4 c=texture2D(map,vUv);if(c.a<0.002)discard;gl_FragColor=vec4(c.rgb*c.a*dim,c.a*dim);}';
 
 export class HeadNineAxisPanel {
   constructor({ error }) {
