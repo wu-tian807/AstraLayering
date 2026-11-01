@@ -67,6 +67,25 @@ export function stepTexture(directory: string, task: string, id: string, texture
   return local;
 }
 
+// The face sits on a head about as wide as itself: turned, its outline keeps
+// nearly the frontal width. A face shrunk like a flat panel (75% at 45°) fails.
+export const minFaceWidth = 0.9;
+export function faceWidthRatio(part: Part, alpha: Uint8Array, width: number, height: number): number {
+  const [tx, ty] = part.textureBounds;
+  let rest = [Infinity, -Infinity], turned = [Infinity, -Infinity];
+  for (let y = 0; y < height; y++) for (const x of edges(alpha, width, y)) {
+    const [mx] = warpPoint(part, '-30', tx + x + 0.5, ty + y + 0.5);
+    rest = [Math.min(rest[0], tx + x), Math.max(rest[1], tx + x + 1)];
+    turned = [Math.min(turned[0], mx - 0.5), Math.max(turned[1], mx + 0.5)];
+  }
+  return (turned[1] - turned[0]) / (rest[1] - rest[0]);
+}
+function edges(alpha: Uint8Array, width: number, y: number): number[] {
+  const row = alpha.subarray(y * width, (y + 1) * width);
+  const left = row.findIndex(a => a >= 128), right = row.findLastIndex(a => a >= 128);
+  return left < 0 ? [] : [left, right];
+}
+
 const isEar = (id: string) => /(^|[/_])ear(?=$|[/_])/.test(id);
 
 // The other side's layer: left and right swapped as whole words of the id.
@@ -108,6 +127,10 @@ export async function finishHead(directory: string, input: HeadInput, box: Box, 
   const face = checkFaceLeft(raw, [width, height]);
   for (const p of face.parts) p.texture = stepTexture(directory, task, p.id, p.texture);
   for (const p of face.parts) await access(join(directory, p.texture)).catch(error => { throw new Error(`${p.id}：缺少贴图 ${p.texture}`, { cause: error }); });
+  const base = face.parts.find(p => p.id === 'face/face_base')!;
+  const { data, info } = await sharp(join(directory, base.texture)).ensureAlpha().extractChannel('alpha').raw().toBuffer({ resolveWithObject: true });
+  const ratio = faceWidthRatio(base, data, info.width, info.height);
+  if (!(ratio >= minFaceWidth)) throw new Error(`face/face_base：−30 时脸的外轮廓宽度只有正面的 ${Math.round(ratio * 100)}%（须不小于 ${minFaceWidth * 100}%），脸被压扁了；脸贴在头上，转向时外轮廓基本不动`);
   const byId = new Map(face.parts.map(p => [p.id, p])), pair = (p: Part) => byId.get(pairId(p.id)) ?? p;
   // face-left.json lists parts top to bottom (KRA order); deformers.json lists
   // them in drawing order, bottom first, as the workbench renders them.

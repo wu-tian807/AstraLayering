@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { checkFaceLeft, mirrorKeyform, pairId, stepTexture, type Part } from '../head.ts';
+import sharp from 'sharp';
+import { checkFaceLeft, faceWidthRatio, mirrorKeyform, pairId, stepTexture, type Part } from '../head.ts';
 
 const grid = (x0: number, y0: number, x1: number, y1: number, shift = (x: number, y: number): [number, number] => [x, y]) =>
   [[x0, y0], [x1, y0], [x0, y1], [x1, y1]].map(([x, y]) => shift(x, y));
@@ -15,8 +16,11 @@ const part = (id: string, bbox: [number, number, number, number], shift: (x: num
 // the ears sit under the face, and the far (right) ear turns behind it at −30.
 export async function writeFaceLeft(directory: string) {
   await mkdir(join(directory, 'layers'), { recursive: true });
-  await writeFile(join(directory, 'layers/000.png'), '');
-  const parts = [part('face/face_base', [60, 60, 140, 110], (x, y) => [x - 10, y]), part('face/eye_left', [110, 70, 130, 80], (x, y) => [x - 5, y]),
+  const opaque = (width: number, height: number) => sharp({ create: { width, height, channels: 4, background: '#fff' } }).png();
+  await opaque(1, 1).toFile(join(directory, 'layers/000.png'));
+  await opaque(80, 50).toFile(join(directory, 'layers/001.png'));
+  const base = { ...part('face/face_base', [60, 60, 140, 110], (x, y) => [x - 10, y]), texture: 'layers/001.png', textureBounds: [60, 60, 80, 50] };
+  const parts = [base, part('face/eye_left', [110, 70, 130, 80], (x, y) => [x - 5, y]),
     part('face/ear_right', [50, 70, 60, 90], (x, y) => [x + 14, y]), part('face/ear_left', [140, 70, 150, 90], (x, y) => [x - 6, y])];
   await writeFile(join(directory, 'face-left.json'), JSON.stringify({ axis: 100, notes: '测试', parts }));
 }
@@ -58,4 +62,12 @@ test('贴图接受 agent 写的绝对路径，存为本步 layers/ 相对路径'
   assert.equal(stepTexture(step, task, 'face/nose', 'layers/003.png'), 'layers/003.png');
   assert.throws(() => stepTexture(step, task, 'face/nose', '/elsewhere/layers/003.png'), /本步 layers/);
   assert.throws(() => stepTexture(step, task, 'face/nose', `${step}/workspace/003.png`), /本步 layers/);
+});
+
+test('脸贴在头上：−30 时外轮廓宽度不到正面 90% 判为压扁', () => {
+  const alpha = new Uint8Array(80 * 50).fill(255);
+  const face = (shift: (x: number, y: number) => [number, number]): Part => ({ ...part('face/face_base', [60, 60, 140, 110], shift), textureBounds: [60, 60, 80, 50] });
+  assert.equal(faceWidthRatio(face((x, y) => [x - 10, y]), alpha, 80, 50), 1);
+  // Shrunk toward the axis like a flat panel at 45°: 75% of the frontal width.
+  assert.ok(Math.abs(faceWidthRatio(face((x, y) => [100 + (x - 100) * 0.75, y]), alpha, 80, 50) - 0.75) < 0.01);
 });

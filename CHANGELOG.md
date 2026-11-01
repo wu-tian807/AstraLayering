@@ -5,6 +5,7 @@
 
 ## 未发布
 
+- **头部九轴 step02 加入头部体积先验与脸宽检查：** 脸贴在一个和脸差不多宽的头上，不是平板；转到约 45° 时外轮廓基本不动，变化的是五官移动、压缩和远侧侧脸轮廓。此前 agent 用圆柱把整张脸收窄，pink-doll 的 face_base 在 −30 时只剩正面宽度的 73.5%，脸被压扁。提示词在父级拟合中加入宽度约束，并写入【教程先验】；收尾程序检查 face_base 在 −30 时的外轮廓宽度，不到正面的 90% 就拒收。已交付的 step02 若不足 90% 需重做，step03 随之重做。
 - **头部九轴 deformers.json 按绘制顺序写出：** `face-left.json` 的 parts 按 KRA 自上而下排列，工作台按数组顺序自下而上绘制，程序原样照抄，导致 face_base 最后绘制、盖住全部五官（pink-doll 只看到一张脸）。现在 step02 收尾时反转为自下而上，step03 沿用。已有 step02/step03 产物需重新运行收尾程序；agent 交付不需重做。
 - **头部九轴 step02 接受绝对贴图路径：** 共享提示词要求 agent 在交付 JSON 里写绝对路径，`face-left.json` 的 texture 校验却只认相对的 `layers/NNN.png`，agent 照共享约定交付后被拒收（pink-doll 连续两次复现）。现在按任务路径约定解析：绝对路径、相对任务根或以 `layers/` 开头的本步相对路径都接受，须落在本步 `layers/` 下，`deformers.json` 仍存为 `layers/NNN.png`。已完成步骤不重做；因此失败的 step02 可直接重跑收尾。
 - **头部九轴参数改用度数：** agent 交付仍是 "-30" / "30" 关键形，提示词不变；交付后程序按新增的 `knowledge/nine-axis/step01_views/references/angles.json`（ParamAngleX −45° / +45°，ParamAngleY −20° 低头 / +25° 抬头，与 step01 视角一致）把 `deformers.json` 的参数范围与关键形键写成度数，工作台的滑杆、回摆与夹取范围都读文档本身。对外兼容（如 Cubism 默认 ±30）留给以后的导出层。先验知识启动检查要求该文件存在（缺失时拒绝启动），内容格式在九轴启动时、任何 agent 之前检查。已有的 step02、step03 产物仍是 ±30 键，需重新运行收尾程序或重做。
