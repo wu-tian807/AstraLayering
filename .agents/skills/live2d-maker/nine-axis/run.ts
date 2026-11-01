@@ -20,6 +20,7 @@ import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { produceTurn, resolveTurnInput, turnViews, type Box, type DrawView, type TurnInput, type TurnView } from './turn.ts';
 import { finishHead, resolveHeadInput, type HeadInput } from './head.ts';
 import { finishAngleY } from './angle-y.ts';
+import { angleScale } from './angles.ts';
 
 export const help = `nine-axis — 头部九轴
 pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> [--dir <绝对运行根目录>] [--dry-run]
@@ -29,7 +30,9 @@ step01_views：从工作台当前的角色图（阴影蒙版交付后为 shadow/
 使用 preparation_agent_model 与 nine_axis_view_image_model（留空继承默认生图模型）。
 step02_angle-x：left 方向的脸部＋双耳透视形变。agent 在 workspace 里按 pink-doll 的拟合方法自己写脚本，用 krita 工具
 导出脸部图层，拟合出向左（ParamAngleX −30，对应约 45° 的 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
-与记录源 KRA/PNG 哈希的 source.json。只做脸与双耳，不含头发；不补绘。使用 nine_axis_head_agent_model。
+与记录源 KRA/PNG 哈希的 source.json。
+交付后程序按 knowledge/nine-axis/step01_views/references/angles.json 把 −30 / +30 标定为度数（默认 X ±45°、Y +25° / −20°），
+deformers.json 的参数与关键形都以度数记录，agent 的交付格式不变。只做脸与双耳，不含头发；不补绘。使用 nine_axis_head_agent_model。
 step03_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step02 的图层与 16×16 网格，分别拟合 up 视角（ParamAngleY +30）与
 down 视角（−30），交付 face-y.json；程序把 Y 关键形并入 step02 的变形器，写出工作台读取的 deformers.json。
 只做形变：轮廓线的出现与消失留给后续步骤。使用 nine_axis_head_agent_model。
@@ -89,6 +92,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const model = environment.stepModels.nine_axis_view, image = environment.stepImages.nine_axis_view ?? 'codex-native';
   const label = `${model.model}-${model.effort} / ${image}`;
   for (const view of turnViews) viewPrompt(view, task);
+  const scale = angleScale();
   const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
   const headLabel = `${environment.stepModels.nine_axis_head.model}-${environment.stepModels.nine_axis_head.effort}`;
   let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined;
@@ -115,7 +119,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         if (options.dryRun) { progress(`预览：用 ${headLabel} 拟合脸部抬头与低头。\n提示词：\n${angleYPrompt(task)}`); summary = '预览完成，未调用模型'; return; }
         const fit = dependencies.fitAngleY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳上下'));
         await fit(step.directory, angleYPrompt(task));
-        summary = `nine-axis/step03_angle-y 已完成：${await finishAngleY(step.directory, join(directory, 'step02_angle-x'))} 个脸部图层的抬头与低头`;
+        summary = `nine-axis/step03_angle-y 已完成：${await finishAngleY(step.directory, join(directory, 'step02_angle-x'), scale)} 个脸部图层的抬头与低头`;
       };
       if (step.id === 'step02_angle-x') return async () => {
         const head = await resolveHeadInput(input);
@@ -123,7 +127,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         const box = JSON.parse(await readFile(join(directory, 'step01_views', 'crop.json'), 'utf8')).box as Box;
         const fit = dependencies.fitHead ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳转向'));
         await fit(step.directory, headPrompt(head, task));
-        summary = `nine-axis/step02_angle-x 已完成：${await finishHead(step.directory, head, box)} 个脸部图层的 ±30 转向`;
+        summary = `nine-axis/step02_angle-x 已完成：${await finishHead(step.directory, head, box, scale)} 个脸部图层的 ${scale.x[0]}° / +${scale.x[1]}° 转向`;
       };
       return async () => {
         if (options.dryRun) { progress(`预览：从 ${input.color} 截取上半身，用 ${label} 生成 ${turnViews.join('、')} 视角。\n提示词（left）：\n${viewPrompt('left', task)}`); summary = '预览完成，未调用模型'; return; }

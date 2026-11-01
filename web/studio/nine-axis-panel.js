@@ -69,6 +69,8 @@ export class HeadNineAxisPanel {
     });
     const ax = doc.parameters?.find(q => q.id === 'ParamAngleX') ?? { min: -30, max: 30, keys: [-30, 0, 30] };
     const ay = doc.parameters?.find(q => q.id === 'ParamAngleY' && q.keys?.length > 1 && !q.status);
+    // Ranges and keys are in degrees, written by the workflow into deformers.json.
+    this.axes = { x: ax, y: ay };
     const keyButton = (k, set) => { const b = document.createElement('button'); b.textContent = (k > 0 ? '+' : '') + k; b.dataset.key = k; b.onclick = set; return b; };
     for (const el of [$('#nine-axis-angle'), $('#nine-axis-angle-number')]) { el.min = ax.min; el.max = ax.max; }
     $('#nine-axis-keys').replaceChildren(...ax.keys.map(k => keyButton(k, () => this.setValue(k, 0))));
@@ -106,8 +108,8 @@ export class HeadNineAxisPanel {
   select(id) { this.selected = this.selected === id ? null : id; this.sync(); }
   setValue(x, y = this.valueY) {
     if (!Number.isFinite(x) || !Number.isFinite(y) || !this.doc) return;
-    const clamp = v => Math.round(Math.max(-30, Math.min(30, v)) * 10) / 10;
-    this.value = clamp(x); this.valueY = $('#nine-axis-y').hidden ? 0 : clamp(y); this.sync();
+    const clamp = (v, q) => Math.round(Math.max(q.min, Math.min(q.max, v)) * 10) / 10;
+    this.value = clamp(x, this.axes.x); this.valueY = this.axes.y ? clamp(y, this.axes.y) : 0; this.sync();
   }
   // The keyform being edited: an X key while Y is 0, or a Y key while X is 0.
   onKey() {
@@ -135,7 +137,7 @@ export class HeadNineAxisPanel {
       $('#nine-axis-selected-name').textContent = p.id;
       const ys = p.keyformsY ? ` · Y ${keyValues(p, 'y').map(sign).join(' / ')}` : '';
       $('#nine-axis-selected-info').textContent = `变形器 ${p.cols}×${p.rows} · 关键形 X ${keyValues(p).map(sign).join(' / ')}${ys}${p.status ? ' · ' + p.status : ''}`;
-      $('#nine-axis-edit-hint').textContent = key === undefined ? '停在关键形上（点上方 −30 / 0 / +30，另一角度为 0）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
+      $('#nine-axis-edit-hint').textContent = key === undefined ? '停在关键形上（点上方的度数按钮，另一角度为 0）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
       $('#nine-axis-reset').disabled = key === undefined || !this.original?.has(p.id + '@' + key.label);
     }
     $('#nine-axis-dirty').hidden = !this.dirty.size; $('#nine-axis-dirty').textContent = `已修改 ${this.dirty.size} 个变形器，只在本次会话内保留`;
@@ -206,7 +208,7 @@ export class HeadNineAxisPanel {
     if (![...(this.original?.keys() ?? [])].some(k => k.startsWith(p.id + '@'))) this.dirty.delete(p.id);
     this.sync();
   }
-  swing() { cancelAnimationFrame(this.raf); $('#nine-axis-swing').checked = true; const t0 = performance.now(); const tick = t => { this.setValue(30 * Math.sin((t - t0) / 1000 * Math.PI * .5), 0); this.raf = requestAnimationFrame(tick); }; this.raf = requestAnimationFrame(tick); }
+  swing() { cancelAnimationFrame(this.raf); $('#nine-axis-swing').checked = true; const t0 = performance.now(); const tick = t => { this.setValue(this.axes.x.max * Math.sin((t - t0) / 1000 * Math.PI * .5), 0); this.raf = requestAnimationFrame(tick); }; this.raf = requestAnimationFrame(tick); }
   stopSwing() { cancelAnimationFrame(this.raf); this.raf = 0; $('#nine-axis-swing').checked = false; }
   activate(on) { if (on === this.active) return; this.active = on; this.view.hidden = !on; if (!on) this.stopSwing(); else requestAnimationFrame(() => this.resize()); }
 }

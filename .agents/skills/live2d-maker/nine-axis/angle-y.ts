@@ -1,12 +1,14 @@
 import { randomUUID } from 'node:crypto';
 import { copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
+import { angleParameter, angleScale, type AngleScale } from './angles.ts';
+import { sign } from './head.ts';
 
 // step03_angle-y: the agent fits the same face warps to the up and down views
 // and delivers ParamAngleY +30 (up) and −30 (down) per step02 part
 // (face-y.json). Up and down are not mirror images, so both are fitted. The
 // program copies step02's deformers and textures and adds the Y keyforms, so
-// the workbench reads one document with both angles.
+// the workbench reads one document with both angles, keys in degrees (angles.ts).
 
 type Point = [number, number];
 type XPart = { id: string; texture: string; cols: number; rows: number; keyforms: Record<string, Point[]> };
@@ -42,7 +44,7 @@ async function atomic(path: string, text: string) {
 }
 
 // After the agent: check its delivery against step02 and write the combined deformers.json.
-export async function finishAngleY(directory: string, angleX: string): Promise<number> {
+export async function finishAngleY(directory: string, angleX: string, scale: AngleScale = angleScale()): Promise<number> {
   const x = JSON.parse(await readFile(join(angleX, 'deformers.json'), 'utf8')) as XDocument;
   let raw: unknown;
   try { raw = JSON.parse(await readFile(join(directory, 'face-y.json'), 'utf8')); }
@@ -50,9 +52,10 @@ export async function finishAngleY(directory: string, angleX: string): Promise<n
   const byId = new Map(checkFaceY(raw, x).parts.map(p => [p.id, p.keyforms]));
   await mkdir(join(directory, 'layers'), { recursive: true });
   for (const p of x.parts) await copyFile(join(angleX, p.texture), join(directory, p.texture));
-  const parts = x.parts.map(p => ({ ...p, keyformsY: { '-30': byId.get(p.id)!['-30'], '30': byId.get(p.id)!['30'] } }));
-  const parameters = x.parameters.map(q => q.id === 'ParamAngleY' ? { id: 'ParamAngleY', name: '角度 Y', min: -30, max: 30, default: 0, keys: [-30, 0, 30] } : q);
-  const notes = [x.notes, (raw as FaceY).notes?.trim(), 'Y：+30 抬头、−30 低头，与 X 叠加预览；斜向（四角）未制作。'].filter(Boolean).join(' ');
+  const [down, up] = scale.y;
+  const parts = x.parts.map(p => ({ ...p, keyformsY: { [down]: byId.get(p.id)!['-30'], [up]: byId.get(p.id)!['30'] } }));
+  const parameters = x.parameters.map(q => q.id === 'ParamAngleY' ? angleParameter('ParamAngleY', '角度 Y', scale.y) : q);
+  const notes = [x.notes, (raw as FaceY).notes?.trim(), `Y：${sign(up)}° 抬头、${sign(down)}° 低头，与 X 叠加预览；斜向（四角）未制作。`].filter(Boolean).join(' ');
   await atomic(join(directory, 'deformers.json'), JSON.stringify({ ...x, parameters, notes, parts }) + '\n');
   return parts.length;
 }
