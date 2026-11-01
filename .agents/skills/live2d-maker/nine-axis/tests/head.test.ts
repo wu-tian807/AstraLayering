@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { checkFaceLeft, mirrorKeyform, pairId, type Part } from '../head.ts';
+import { checkFaceLeft, mirrorKeyform, pairId, stepTexture, type Part } from '../head.ts';
 
 const grid = (x0: number, y0: number, x1: number, y1: number, shift = (x: number, y: number): [number, number] => [x, y]) =>
   [[x0, y0], [x1, y0], [x0, y1], [x1, y1]].map(([x, y]) => shift(x, y));
@@ -49,4 +49,13 @@ test('交付检查：缺 face_base 或控制点数不对时报错', () => {
   assert.throws(() => checkFaceLeft({ axis: 100, parts: [ear, base] }, [200, 400]), /ear_right.*之下/);
   assert.equal(checkFaceLeft({ axis: 100, parts: [base, ear] }, [200, 400]).parts.length, 2);
   assert.equal(checkFaceLeft({ axis: 100, parts: [base] }, [200, 400]).parts.length, 1);
+});
+
+test('贴图接受 agent 写的绝对路径，存为本步 layers/ 相对路径', () => {
+  const task = '/runs/doll', step = '/runs/doll/nine-axis/step02_angle-x';
+  assert.equal(stepTexture(step, task, 'face/nose', `${step}/layers/003.png`), 'layers/003.png');
+  assert.equal(stepTexture(step, task, 'face/nose', 'nine-axis/step02_angle-x/layers/003.png'), 'layers/003.png');
+  assert.equal(stepTexture(step, task, 'face/nose', 'layers/003.png'), 'layers/003.png');
+  assert.throws(() => stepTexture(step, task, 'face/nose', '/elsewhere/layers/003.png'), /本步 layers/);
+  assert.throws(() => stepTexture(step, task, 'face/nose', `${step}/workspace/003.png`), /本步 layers/);
 });

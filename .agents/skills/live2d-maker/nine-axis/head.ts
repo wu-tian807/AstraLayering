@@ -1,8 +1,8 @@
 import { randomUUID } from 'node:crypto';
 import { access, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { dirname, isAbsolute, join, relative, sep } from 'node:path';
 import sharp from 'sharp';
-import { toTaskPath } from '../shared/task-paths.ts';
+import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import { angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { fileHash, type Box, type TurnInput } from './turn.ts';
 
@@ -34,7 +34,7 @@ export function checkFaceLeft(value: unknown, canvas: [number, number]): FaceLef
     if (typeof p?.id !== 'string' || !p.id.startsWith('face/') || ids.has(p.id)) throw new Error(`face-left.json：部件 id 须为不重复的 face/ 路径：${p?.id}`);
     ids.add(p.id);
     if (typeof p.group !== 'string' || !p.group) throw new Error(`${p.id}：缺少 group`);
-    if (typeof p.texture !== 'string' || !/^layers\/[\w-]+\.png$/.test(p.texture)) throw new Error(`${p.id}：texture 须为 layers/NNN.png`);
+    if (typeof p.texture !== 'string' || !p.texture) throw new Error(`${p.id}：缺少 texture`);
     if (!Array.isArray(p.textureBounds) || p.textureBounds.length !== 4 || !p.textureBounds.every(Number.isFinite)) throw new Error(`${p.id}：textureBounds 无效`);
     if (!Array.isArray(p.bbox) || p.bbox.length !== 4 || !p.bbox.every(Number.isFinite) || !(p.bbox[2] > p.bbox[0] && p.bbox[3] > p.bbox[1])) throw new Error(`${p.id}：bbox 无效`);
     if (!Number.isInteger(p.cols) || !Number.isInteger(p.rows) || p.cols < 1 || p.rows < 1) throw new Error(`${p.id}：网格尺寸无效`);
@@ -54,6 +54,17 @@ export function checkFaceLeft(value: unknown, canvas: [number, number]): FaceLef
   const above = face.parts.slice(0, base).find(p => isEar(p.id));
   if (above) throw new Error(`${above.id}：耳朵须排在 face/face_base 之下，才能被脸遮挡`);
   return face;
+}
+
+// Agents write task files as absolute paths (shared runtime prompt); a relative
+// path means the task root, or the step directory when it starts with layers/.
+// Either way the texture must be a PNG in this step's layers/, and deformers.json
+// stores it relative to the step directory, which the workbench reads from.
+export function stepTexture(directory: string, task: string, id: string, texture: string): string {
+  const path = isAbsolute(texture) || !texture.startsWith('layers/') ? fromTaskPath(task, texture) : join(directory, texture);
+  const local = relative(directory, path).split(sep).join('/');
+  if (!/^layers\/[\w-]+\.png$/.test(local)) throw new Error(`${id}：texture 须为本步 layers/ 下的 PNG：${texture}`);
+  return local;
 }
 
 const isEar = (id: string) => /(^|[/_])ear(?=$|[/_])/.test(id);
@@ -95,6 +106,7 @@ export async function finishHead(directory: string, input: HeadInput, box: Box, 
   try { raw = JSON.parse(await readFile(join(directory, 'face-left.json'), 'utf8')); }
   catch (error) { throw new Error('agent 未交付可读的 face-left.json', { cause: error }); }
   const face = checkFaceLeft(raw, [width, height]);
+  for (const p of face.parts) p.texture = stepTexture(directory, task, p.id, p.texture);
   for (const p of face.parts) await access(join(directory, p.texture)).catch(error => { throw new Error(`${p.id}：缺少贴图 ${p.texture}`, { cause: error }); });
   const byId = new Map(face.parts.map(p => [p.id, p])), pair = (p: Part) => byId.get(pairId(p.id)) ?? p;
   const parts = face.parts.map(p => ({ id: p.id, level: 'face', group: p.group, texture: p.texture, textureBounds: p.textureBounds, bbox: p.bbox,
