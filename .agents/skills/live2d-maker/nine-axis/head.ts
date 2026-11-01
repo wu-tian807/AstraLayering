@@ -109,7 +109,9 @@ export async function finishHead(directory: string, input: HeadInput, box: Box, 
   for (const p of face.parts) p.texture = stepTexture(directory, task, p.id, p.texture);
   for (const p of face.parts) await access(join(directory, p.texture)).catch(error => { throw new Error(`${p.id}：缺少贴图 ${p.texture}`, { cause: error }); });
   const byId = new Map(face.parts.map(p => [p.id, p])), pair = (p: Part) => byId.get(pairId(p.id)) ?? p;
-  const parts = face.parts.map(p => ({ id: p.id, level: 'face', group: p.group, texture: p.texture, textureBounds: p.textureBounds, bbox: p.bbox,
+  // face-left.json lists parts top to bottom (KRA order); deformers.json lists
+  // them in drawing order, bottom first, as the workbench renders them.
+  const parts = face.parts.toReversed().map(p => ({ id: p.id, level: 'face', group: p.group, texture: p.texture, textureBounds: p.textureBounds, bbox: p.bbox,
     cols: p.cols, rows: p.rows, keyforms: { [scale.x[0]]: p.keyforms['-30'], '0': p.keyforms['0'], [scale.x[1]]: mirrorKeyform(p, pair(p), face.axis) } }));
   const [kraHash, colorHash] = await Promise.all([fileHash(input.document), fileHash(input.color)]);
   const document = toTaskPath(task, input.document), color = toTaskPath(task, input.color);

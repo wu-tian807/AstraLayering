@@ -105,6 +105,8 @@ test('step01 生成五个视角并统一到上半身尺寸，完成后沿用', a
   // The agent's −30 / +30 are written in degrees from knowledge angles.json (left view 45°).
   const { parts, parameters } = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/deformers.json'), 'utf8'));
   assert.deepEqual(parameters.find((q: { id: string }) => q.id === 'ParamAngleX').keys, [-45, 0, 45]);
+  // face-left.json is top to bottom; deformers.json is drawing order, bottom first.
+  assert.deepEqual(parts.map((p: { id: string }) => p.id), ['face/ear_left', 'face/ear_right', 'face/eye_left', 'face/face_base']);
   const byId = Object.fromEntries(parts.map((p: { id: string }) => [p.id, p]));
   assert.deepEqual(Object.keys(byId['face/face_base'].keyforms).sort(), ['-45', '0', '45']);
   assert.deepEqual(byId['face/ear_left'].keyforms['45'][0], [126, 70]);
