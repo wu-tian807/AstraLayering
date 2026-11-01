@@ -1,9 +1,11 @@
 // Steps whose prompts and tools come from knowledge/<section>/<step>/agent.json.
 // The code decides whether a step has a review; `required` names the tools a
-// role cannot deliver without.
+// role cannot deliver without, `references` the files the program itself reads
+// from the step's references/.
 export type KnowledgeStep = {
   section: string; step: string;
   required?: readonly string[];
+  references?: readonly string[];
   review?: { required?: readonly string[] };
 };
 
@@ -25,7 +27,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'character-assembly', step: 'step01' },
   { section: 'shadow', step: 'step01_mask' },
   { section: 'shadow', step: 'step01_normal-depth' },
-  { section: 'nine-axis', step: 'step01_views' },
+  { section: 'nine-axis', step: 'step01_views', references: ['angles.json'] },
   { section: 'nine-axis', step: 'step02_angle-x', required: ['krita'] },
   { section: 'nine-axis', step: 'step03_angle-y' },
   { section: 'part-layering', step: 'step03_pose' },

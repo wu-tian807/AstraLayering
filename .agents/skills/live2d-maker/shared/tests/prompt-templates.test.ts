@@ -45,5 +45,8 @@ test('启动检查 reference 与 shared_reference 指向的文件，uri 不检�
     await cp(defaultKnowledgeDirectory,root,{recursive:true,force:true});
     await rm(join(root,'part-layering/step11_completion/references/fingers/complete-fingers.png'));
     assert.throws(()=>checkKnowledge(root),/\{reference:step11_completion\/references\/fingers\/complete-fingers\.png\}.*groups/);
+    await cp(defaultKnowledgeDirectory,root,{recursive:true,force:true});
+    await rm(join(root,'nine-axis/step01_views/references/angles.json'));
+    assert.throws(()=>checkKnowledge(root),/缺少程序读取的文件：.*angles\.json/);
   }finally{ await rm(root,{recursive:true,force:true}); }
 });
