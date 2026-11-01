@@ -50,7 +50,7 @@ step02 沿用已确认结构，用 `locate_pixel_differences` 候选框引导细
 
 ## step01 审核与修复
 
-同一步骤的绘制与返修共用 `agents/steps/<stepNN>/session.json` 记录的 thread，进入下一步骤时新建 thread；reviewer 使用 `layering_agent_raster_step01_review_model` 和独立新上下文。
+同一步骤的绘制与返修共用 `agents/steps/<stepNN>/session.json` 记录的 thread，进入下一步骤时新建 thread；reviewer 使用 `raster_step01_review_agent_model` 和独立新上下文。
 
 1. 初次绘制交付后生成 `review-01.md`。通过则完成，有问题则由原绘制会话处理全部反馈，自检后发布 `repair-01.md`。
 2. 首轮修复完成后执行 `review-02.md`。通过则完成，有问题则修复并发布 `repair-02.md`，随后进入 step02。

@@ -22,7 +22,7 @@ export const help = `character-assembly — 单 agent 组装人物与衣服 KRA
   part-layering/references/simplified-subject.png
 交付到 <运行根目录>/<name>/character-assembly/step01/：
   character-assembled.kra、character-assembled.png、report.md
-使用 layering_agent_assembly_model 配置，默认 gpt-6.1-sol / xhigh；只有一个绘制 agent，不设 reviewer。
+使用 assembly_agent_model 配置，默认 gpt-6.1-sol / xhigh；只有一个绘制 agent，不设 reviewer。
 .run 不参与路径拼接；各步 thread 记在 agents/steps/<stepNN>/session.json，.running 续原 thread，.completed 跳过。
 用总入口 pnpm start --name <任务名> --retry --section character-assembly --step step01（或网页「重试」）重置本步和 thread，不修改上游产物。
 `;

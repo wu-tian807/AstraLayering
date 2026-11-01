@@ -20,7 +20,7 @@ export const help = `raster-layering — 按顺序执行 Krita 栅格分层流�
 不复制上游输入，不保存配置；各步 thread 记在 agents/steps/<stepNN>/session.json，步骤状态由 .running / .completed 决定。
 中断保留 .running 并继续原 thread；用总入口 pnpm start --name <任务名> --retry --section raster-layering --step <stepNN>（或网页「重试」）只重做该步骤并开启新 thread，已完成的后续步骤沿用；上游 occlusion.json 的修正保留。
 step01 依赖上游 part 的最后一步 occlusion：该步未完成时拒绝运行；part 重做后本管线已完成步骤沿用，不自动重跑，需要时对相应步骤重试。
-各步模型读取 .env 的 layering_agent_raster_step01_model、_step02_model、_step03_model 与 _step01_review_model，默认值见 example.env。
+各步模型读取 .env 的 raster_step01_agent_model、raster_step02_agent_model、raster_step03_agent_model 与 raster_step01_review_agent_model，默认值见 example.env。
 第一步 reviewer 每次新会话；反馈由原绘制 thread 全部修完。最多检查两次，无问题即结束，第二次修完不再检查。
 每步新建自己的绘制 thread，本步绘制与返修共用；第三步去除连体服，交付 character-dressup-base.kra、同名 PNG 和 report.md，不设 reviewer；素体未换装时直接复制第二步成果。
 `;

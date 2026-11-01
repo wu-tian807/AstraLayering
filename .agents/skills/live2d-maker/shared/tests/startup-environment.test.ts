@@ -49,7 +49,7 @@ test('preflight checks only selected harnesses once, and reports missing interpr
   const root = await fixture(t), executable = join(root, 'claude'), calls = join(root, 'calls');
   await writeFile(executable, `#!${process.execPath}\nrequire('node:fs').appendFileSync(${JSON.stringify(calls)},'version\\n');console.log('1.2.3');\n`, { mode: 0o700 });
   const settings = loadWorkflowEnvironment({ PATH: '', layering_claude_path: executable, layering_agv_path: join(root, 'absent-agv'),
-    layering_agent_part_review_model: 'claude-sonnet-5-5-high' }, root);
+    part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
   await preflightAgentSteps(settings, ['part_outline_review', 'clothing_outline_review']);
   assert.equal(await readFile(calls, 'utf8'), 'version\n');
   await writeFile(executable, '#!/usr/bin/env missing-layering-interpreter\n', { mode: 0o700 });

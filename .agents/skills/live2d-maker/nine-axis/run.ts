@@ -26,13 +26,13 @@ pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可�
 step01_views：从工作台当前的角色图（阴影蒙版交付后为 shadow/step01_mask/character-shadowed.png，否则为组装图）
 按脸、头发、头饰形状截取头顶到肩线的方形头部特写 upper-body.png，再由生图 agent 参照模板角色的正面→姿态，
 画出 ${turnViews.join('、')} 五个视角（右侧由后续步骤镜像脸部形变得到）。
-使用 preparation_agent_model 与 layering_nine_axis_view_image_model（留空继承默认生图模型）。
+使用 preparation_agent_model 与 nine_axis_view_image_model（留空继承默认生图模型）。
 step02_angle-x：left 方向的脸部＋双耳透视形变。agent 在 workspace 里按 pink-doll 的拟合方法自己写脚本，用 krita 工具
 导出脸部图层，拟合出向左（ParamAngleX −30，对应约 45° 的 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
-与记录源 KRA/PNG 哈希的 source.json。只做脸与双耳，不含头发；不补绘。使用 layering_agent_nine_axis_head_model。
+与记录源 KRA/PNG 哈希的 source.json。只做脸与双耳，不含头发；不补绘。使用 nine_axis_head_agent_model。
 step03_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step02 的图层与 16×16 网格，分别拟合 up 视角（ParamAngleY +30）与
 down 视角（−30），交付 face-y.json；程序把 Y 关键形并入 step02 的变形器，写出工作台读取的 deformers.json。
-只做形变：轮廓线的出现与消失留给后续步骤。使用 layering_agent_nine_axis_head_model。
+只做形变：轮廓线的出现与消失留给后续步骤。使用 nine_axis_head_agent_model。
 提示词：<knowledge>/nine-axis/step01_views/、step02_angle-x/、step03_angle-y/。上游产物重做后其后的步骤随之重做。
 总入口：pnpm start --name <任务名> --from nine-axis --to nine-axis。
 `;

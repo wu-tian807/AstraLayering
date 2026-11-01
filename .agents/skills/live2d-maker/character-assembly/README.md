@@ -1,6 +1,6 @@
 # character-assembly
 
-在人物和衣服 raster 都完成后，用一个绘制 agent 将两份 KRA 组装成穿戴工程，尽可能贴近简化穿衣角色参考。读取 skill 根目录 `.env` 的 `layering_agent_assembly_model`，默认值统一见 [模型方案](../references/model-presets.md)，组装后由绘制者自检。
+在人物和衣服 raster 都完成后，用一个绘制 agent 将两份 KRA 组装成穿戴工程，尽可能贴近简化穿衣角色参考。读取 skill 根目录 `.env` 的 `assembly_agent_model`，默认值统一见 [模型方案](../references/model-presets.md)，组装后由绘制者自检。
 
 ## 单独运行本 section
 

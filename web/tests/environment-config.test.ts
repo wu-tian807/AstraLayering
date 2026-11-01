@@ -34,7 +34,7 @@ test('preview masks multiline and inherited credentials while exposing resolved 
 test('saves selected keys atomically, preserving comments, CRLF, secrets, unknown multiline records and budgets',async t=>{
  const original="# Local settings\r\npreparation_agent_model=gpt-6.1-sol-low # keep this note\r\nlayering_codex_api_key='unchanged-secret'\r\nCUSTOM='first\r\nsecond # still value'\r\nlayering_codex_request_compact_mib=80\r\n";
  const f=await fixture(t,original),before=await f.environment.read();
- const changes={preparation_agent_model:'gpt-6.1-sol-high',layering_part_simplify_image_model:'gpt-image-2.5-flare',layering_openai_image_api_key:'image-secret',layering_openai_image_base_url:'https://images.example/v1'};
+ const changes={preparation_agent_model:'gpt-6.1-sol-high',part_simplify_image_model:'gpt-image-2.5-flare',layering_openai_image_api_key:'image-secret',layering_openai_image_base_url:'https://images.example/v1'};
  await f.environment.preview({revision:before.revision,changes});
  assert.equal(await readFile(join(f.directory,'.env'),'utf8'),original);
  const saved=await f.environment.save({revision:before.revision,changes});
@@ -106,16 +106,16 @@ test('HTTP save is same-origin, revision-checked, and the next task start reads 
 
 test('web defaults, runtime fallback and generated .env follow the skill template after model changes',async t=>{
  const f=await fixture(t);
- let template=f.template.replace(/^(?:layering_agent_\w+_model|preparation_agent_model)=.*$/gm,line=>line.split('=')[0]+'=gpt-6-astra-high');
- template=template.replace('layering_default_image_model=codex-native','layering_default_image_model=gpt-image-2.5-flare');
- template=template.replace('layering_part_base_subject_image_model=','layering_part_base_subject_image_model=gemini-nano-banana-2.1');
+ let template=f.template.replace(/^\w+_agent_model=.*$/gm,line=>line.split('=')[0]+'=gpt-6-astra-high');
+ template=template.replace('default_image_model=codex-native','default_image_model=gpt-image-2.5-flare');
+ template=template.replace('part_base_subject_image_model=','part_base_subject_image_model=gemini-nano-banana-2.1');
  await writeFile(join(f.directory,'example.env'),template);
  const data=await f.environment.read();
  for(const field of data.fields.filter(field=>field.section==='llm')){
   assert.equal(field.fallback,'gpt-6-astra-high');assert.equal(field.effective,'gpt-6-astra-high');
  }
- assert.equal(data.fields.find(field=>field.key==='layering_default_image_model')?.fallback,'gpt-image-2.5-flare');
- assert.equal(data.fields.find(field=>field.key==='layering_part_base_subject_image_model')?.effective,'gemini-nano-banana-2.1');
+ assert.equal(data.fields.find(field=>field.key==='default_image_model')?.fallback,'gpt-image-2.5-flare');
+ assert.equal(data.fields.find(field=>field.key==='part_base_subject_image_model')?.effective,'gemini-nano-banana-2.1');
  const before=loadWorkflowEnvironment({},f.directory);
  await f.environment.save({revision:data.revision,changes:{}});
  assert.equal(await readFile(join(f.directory,'.env'),'utf8'),template);

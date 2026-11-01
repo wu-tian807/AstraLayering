@@ -212,7 +212,7 @@ test('残留的旧管线 run.json 不被读取或改写；使用当前环境模�
   await writeFile(file, JSON.stringify({ version: 2, name: 'test', sourceInput: { directory: '/elsewhere', parts: '/elsewhere/parts' },
     krita: { executable: '/retired/krita' }, models: { step01: { model: 'retired-model', effort: 'obsolete' } } }));
   const before = await readFile(file);
-  const environment = loadWorkflowEnvironment({ layering_agent_raster_step01_model: 'gpt-6.1-sol-low' });
+  const environment = loadWorkflowEnvironment({ raster_step01_agent_model: 'gpt-6.1-sol-low' });
   await runWorkflow({ ...f.resume, dryRun: true }, { ...f.deps, environment, agent: forbidden });
   assert.deepEqual(await readFile(file), before);
   await runWorkflow(f.resume, { ...f.deps, environment, agent: async request => {

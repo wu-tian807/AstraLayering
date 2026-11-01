@@ -26,7 +26,7 @@ test('raster 自定义框选工具与原生生图兼容，保留配置与会话'
     .replace('文件已保存，不返回 JSON。', '{"status":"completed","summary":"inspected"}');
   await writeFile(server.executable, source);
   const environment = loadWorkflowEnvironment({ layering_codex_path: server.executable,
-    layering_raster_step01_image_model: 'gpt-image-2.5-flare',
+    raster_step01_image_model: 'gpt-image-2.5-flare',
     layering_openai_image_base_url: 'https://image.example/v1', layering_openai_image_api_key: 'fixture' }, root);
   let called = 0;
   const result = await runAgent({ directory: root, step: 'raster_step01', model: 'gpt-6-astra', effort: 'xhigh',
@@ -74,7 +74,7 @@ test('normal/depth use opaque data transport in both tools and native routes wit
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => new Promise<void>(done => server.close(() => done())));
   const settings = loadWorkflowEnvironment({ layering_codex_path: executable,
-    layering_shadow_maps_image_model: 'gemini-nano-banana-2.1',
+    shadow_maps_image_model: 'gemini-nano-banana-2.1',
     layering_google_image_base_url: `http://127.0.0.1:${(server.address() as any).port}/v1`,
     layering_google_image_api_key: 'fixture', layering_google_image_protocol: 'openai' }, root);
   const tool = imageGenerationTool(settings, 'shadow_maps', join(root, 'output'))!;
@@ -94,12 +94,12 @@ test('normal/depth use opaque data transport in both tools and native routes wit
 test('codex-native does not enable image patches; custom Codex models require current image capabilities', async t => {
   const { root, executable } = await fixture(t);
   const native = loadWorkflowEnvironment({ layering_codex_path: '/missing/codex', LAYERING_IMAGE_BASE_URL: 'https://stale.example',
-    layering_image_base_url: 'https://legacy.example/v1', layering_image_api_key: 'fixture', layering_default_image_model: 'codex-native' }, root);
+    layering_image_base_url: 'https://legacy.example/v1', layering_image_api_key: 'fixture', default_image_model: 'codex-native' }, root);
   assert.equal(usesPatchedImageTool(native, 'part_simplify'), false);
   assert.equal(native.codex.env!.LAYERING_IMAGE_BASE_URL, undefined);
   await assert.rejects(checkCodexCapabilities(native), /补丁能力检查/);
   const custom = loadWorkflowEnvironment({ layering_codex_path: executable,
-    layering_part_simplify_image_model: 'gpt-image-2.5-flare', layering_openai_image_base_url: 'https://image.example/v1',
+    part_simplify_image_model: 'gpt-image-2.5-flare', layering_openai_image_base_url: 'https://image.example/v1',
     layering_openai_image_api_key: 'fixture' }, root);
   assert.equal(usesPatchedImageTool(custom, 'part_simplify'), true);
   await checkCodexCapabilities(custom, custom.codex, { image: true });
@@ -146,7 +146,7 @@ test('native routes share OpenAI/Gemini transports, preserve image bytes/alpha a
   const base = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
   const settings = loadWorkflowEnvironment({ layering_codex_path: executable,
     PATH: process.env.PATH,
-    layering_part_simplify_image_model: 'gpt-image-2.5-flare', layering_part_base_subject_image_model: 'gemini-nano-banana-2.1',
+    part_simplify_image_model: 'gpt-image-2.5-flare', part_base_subject_image_model: 'gemini-nano-banana-2.1',
     layering_openai_image_base_url: base + '/v1', layering_openai_image_api_key: 'openai-secret',
     layering_google_image_base_url: base + '/v1beta', layering_google_image_api_key: 'google-secret' }, root);
   const openai = await createCodexImageRoute(settings, 'part_simplify', join(root, 'openai'));
@@ -188,7 +188,7 @@ test('Codex completion uses native image events, resumes after changing image mo
   source = source.replace('const calls =', `${fakeDebug(capabilities)}\nconst calls =`);
   await writeFile(server.executable, source);
   const settings = loadWorkflowEnvironment({ layering_codex_path: server.executable,
-    layering_part_completion_image_model: 'gpt-image-2.5-flare',
+    part_completion_image_model: 'gpt-image-2.5-flare',
     layering_openai_image_base_url: 'https://image.example/v1', layering_openai_image_api_key: 'fixture' }, root);
   const session = new CodexAgents({ environment: settings, cwd: root, logDirectory: join(root, 'logs') }).createSession();
   try {
