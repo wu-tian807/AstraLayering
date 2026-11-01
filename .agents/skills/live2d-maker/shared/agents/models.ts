@@ -21,10 +21,13 @@ export const modelSlots = [
   'raster_step03', 'assembly', 'shadow', 'nine_axis_head',
 ] as const;
 export type ModelSlot = typeof modelSlots[number];
-// preparation 使用不带 layering 前缀的键；旧键仅在已有 .env 中兼容读取。
-export const modelSlotKey = (slot: ModelSlot) => slot === 'preparation' ? 'preparation_agent_model' : `layering_agent_${slot}_model`;
-export const legacyModelSlotKeys: Partial<Record<ModelSlot, string>> = { preparation: 'layering_agent_preparation_model' };
+// 模型键不带 layering 前缀；带前缀的旧键仅在已有 .env 中兼容读取，过渡期后移除。
+export const modelSlotKey = (slot: ModelSlot) => `${slot}_agent_model`;
+export const legacyModelSlotKey = (slot: ModelSlot) => `layering_agent_${slot}_model`;
 export const isModelSlotKey = (key: string) => modelSlots.some(slot => modelSlotKey(slot) === key);
+export const defaultImageModelKey = 'default_image_model', legacyDefaultImageModelKey = 'layering_default_image_model';
+export const imageModelKey = (step: string) => `${step}_image_model`;
+export const legacyImageModelKey = (step: string) => `layering_${step}_image_model`;
 export function resolveModelDefaults(configuration: DefaultConfiguration): Readonly<Record<ModelSlot, string>> {
   return Object.freeze(Object.fromEntries(modelSlots.map(slot => {
     const key = modelSlotKey(slot), value = requiredDefault(configuration, key);
@@ -88,10 +91,10 @@ export function resolveImageDefaults(configuration: DefaultConfiguration) {
     if (!Object.hasOwn(imageModelProviders, value)) throw new Error(`example.env:${key} 需要选择支持的生图模型`);
     return value as ImageModel;
   };
-  const model = parse(requiredDefault(configuration, 'layering_default_image_model'), 'layering_default_image_model');
+  const model = parse(requiredDefault(configuration, defaultImageModelKey), defaultImageModelKey);
   const legacy = parse(requiredDefault(configuration, 'layering_image_model'), 'layering_image_model');
   const steps = Object.fromEntries(imageSteps.map(step => {
-    const key = `layering_${step}_image_model`, value = configuration[key]?.trim();
+    const key = imageModelKey(step), value = configuration[key]?.trim();
     return [step, value ? parse(value, key) : model];
   })) as Record<AgentStep, ImageModel>;
   return { model, legacy, steps };

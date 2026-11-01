@@ -34,10 +34,10 @@ pnpm start --name jianma --from shadow --to shadow --shadow-mode normal-depth
 
 | 设置 | 含义 |
 | --- | --- |
-| `layering_agent_shadow_model` | 阴影制作 LLM 职责，默认 `gpt-6.1-sol-xhigh` |
-| `layering_shadow_maps_image_model` | 法线／深度使用的生图模型 |
+| `shadow_agent_model` | 阴影制作 LLM 职责，默认 `gpt-6.1-sol-xhigh` |
+| `shadow_maps_image_model` | 法线／深度使用的生图模型 |
 
-蒙版分支只使用 LLM 操作 Krita，不启用生图工具。法线／深度生图键留空继承 `layering_default_image_model`，复用现有 provider、凭据与协议。模型／harness 配对和补丁入口预检与其他步骤一致，不新增凭据配置系统。
+蒙版分支只使用 LLM 操作 Krita，不启用生图工具。法线／深度生图键留空继承 `default_image_model`，复用现有 provider、凭据与协议。模型／harness 配对和补丁入口预检与其他步骤一致，不新增凭据配置系统。
 
 每个分支独立保存 `run.json`、thread、`.running` 和 `.completed`。完成判定只检查本次分支的必需交付，不能因为另一分支已有成果就跳过。原尺寸、原生裁切、真实引用及地图 alpha／灰度由程序校验；轮廓配准、运动余量和美感由绘制者逐图检查，记录到报告。自动校验不替代视觉验收。
 

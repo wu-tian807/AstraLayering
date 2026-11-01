@@ -9,7 +9,7 @@ import { readDefaultConfiguration } from '../default-configuration.ts';
 import { kritaLimit, kritaLimitKey } from '../krita/section-krita.ts';
 import { withNodePath } from '../process-environment.ts';
 import { imageBudget, type ImageBudget } from '../../patches/shared/visual-context.ts';
-import { resolveModelDefaults, modelSlotKey, legacyModelSlotKeys, resolveImageDefaults, stepModelSlots, imageSteps, imageModelProviders, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
+import { resolveModelDefaults, modelSlotKey, legacyModelSlotKey, defaultImageModelKey, legacyDefaultImageModelKey, imageModelKey, legacyImageModelKey, resolveImageDefaults, stepModelSlots, imageSteps, imageModelProviders, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
 import { resolveHarnessProviders, validateApiUrl, type HarnessProviders } from '../agents/providers.ts';
 export { validateApiUrl } from '../agents/providers.ts';
 
@@ -103,8 +103,8 @@ export function parseWorkflowEnvironment(source: string, env: NodeJS.ProcessEnv 
   else delete effective.LAYERING_REQUEST_COMPACT_BYTES;
   const slotModels = {} as Record<ModelSlot, AgentModel>;
   for (const [slot, fallback] of Object.entries(roleDefaults) as [ModelSlot, string][]) {
-    const key = modelSlotKey(slot), legacy = legacyModelSlotKeys[slot];
-    let selection: string | undefined = get(key) || (legacy && get(legacy));
+    const key = modelSlotKey(slot);
+    let selection: string | undefined = get(key) || get(legacyModelSlotKey(slot));
     if (!selection) {
       // An old per-step file can be reused when its values agree for this role.
       // Never silently choose between differing character/clothing or draw/repair settings.
@@ -135,12 +135,13 @@ export function parseWorkflowEnvironment(source: string, env: NodeJS.ProcessEnv 
     }
   }
   const stepImages: WorkflowEnvironment['stepImages'] = {};
-  const fallbackImage = get('layering_default_image_model') || (imageUrl ? imageModel : imageDefaults.model);
+  const defaultImage = get(defaultImageModelKey) || get(legacyDefaultImageModelKey);
+  const fallbackImage = defaultImage || (imageUrl ? imageModel : imageDefaults.model);
   for (const step of imageSteps) {
-    const key = `layering_${step}_image_model`;
+    const key = imageModelKey(step), legacy = legacyImageModelKey(step);
     // Explicit blank means inherit the chosen global model. Missing keys may
     // inherit a step-specific template default, while legacy image routes stay intact.
-    const value = get(key) || (Object.hasOwn(effective, key) || get('layering_default_image_model') || imageUrl
+    const value = get(key) || get(legacy) || (Object.hasOwn(effective, key) || Object.hasOwn(effective, legacy) || defaultImage || imageUrl
       ? fallbackImage : imageDefaults.steps[step]);
     if (!Object.hasOwn(imageModelProviders, value)) throw new Error(`${key} 必须为 ${Object.keys(imageModelProviders).join(', ')}。`);
     stepImages[step] = value as ImageModel;

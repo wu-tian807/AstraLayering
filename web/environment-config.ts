@@ -5,7 +5,7 @@ import { resolve, join, delimiter } from 'node:path';
 import { parseEnv, promisify } from 'node:util';
 import { execFile } from 'node:child_process';
 import { workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
-import { modelHarnesses, modelSlots, modelSlotKey, isModelSlotKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
+import { modelHarnesses, modelSlots, modelSlotKey, isModelSlotKey, defaultImageModelKey, imageModelKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
 import { parseWorkflowEnvironment, type WorkflowEnvironment } from '../.agents/skills/live2d-maker/shared/codex/environment.ts';
 import { appServerCommand } from '../.agents/skills/live2d-maker/shared/codex/tool-agent.ts';
 import { validateImageSelection } from '../.agents/skills/live2d-maker/shared/agents/images.ts';
@@ -99,7 +99,7 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
   async function schema() {
     const template=await readFile(join(directory,'example.env'),'utf8'), defaults=envValues(template);
     const modelSlotDefaults=resolveModelDefaults(defaults), imageDefaults=resolveImageDefaults(defaults);
-    return {template,fields:[...Object.entries(modelSlotDefaults).map(([slot,fallback])=>({key:modelSlotKey(slot as ModelSlot),label:roles[slot],section:'llm',type:'model',fallback})),{key:'layering_default_image_model',label:'默认生图模型',section:'image',type:'image',fallback:imageDefaults.model},...imageSteps.map(step=>({key:`layering_${step}_image_model`,label:images[step],section:'image',type:'image',fallback:defaults[`layering_${step}_image_model`]??''})),...scalarFields(defaults)] as Field[]};
+    return {template,fields:[...Object.entries(modelSlotDefaults).map(([slot,fallback])=>({key:modelSlotKey(slot as ModelSlot),label:roles[slot],section:'llm',type:'model',fallback})),{key:defaultImageModelKey,label:'默认生图模型',section:'image',type:'image',fallback:imageDefaults.model},...imageSteps.map(step=>({key:imageModelKey(step),label:images[step],section:'image',type:'image',fallback:defaults[imageModelKey(step)]??''})),...scalarFields(defaults)] as Field[]};
   }
   async function describe(text:string,exists:boolean,revision:string) {
     const {fields}=await schema(),values=envValues(text), issues:string[]=[];
@@ -109,7 +109,7 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
     const effective:Record<string,string>={};
     if(settings) {
       for(const [step,slot] of Object.entries(stepModelSlots)) {const m=settings.stepModels[step as AgentStep];effective[modelSlotKey(slot)]=`${m.model}-${m.effort}`;}
-      for(const step of imageSteps)effective[`layering_${step}_image_model`]=settings.stepImages[step]!;
+      for(const step of imageSteps)effective[imageModelKey(step)]=settings.stepImages[step]!;
       for(const step of imageSteps)try{validateImageSelection(settings,step);}catch(error){issues.push((error as Error).message);}
       for(const slot of modelSlots){const step=Object.keys(stepModelSlots).find(s=>stepModelSlots[s as AgentStep]===slot)!;try{validateProviderModel(settings.providers,settings.stepModels[step as AgentStep],roles[slot]);}catch(error){issues.push((error as Error).message);}}
     }

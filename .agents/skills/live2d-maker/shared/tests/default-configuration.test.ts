@@ -18,8 +18,8 @@ test('the skill template drives missing .env, missing role keys, legacy tiers an
   const root=await fixture(t);
   let template=await readFile(templateUrl,'utf8');
   for(const slot of modelSlots)template=replace(template,modelSlotKey(slot),'gpt-6-astra-high');
-  template=replace(template,'layering_default_image_model','gpt-image-2.5-flare');
-  template=replace(template,'layering_part_base_subject_image_model','gemini-nano-banana-2.1');
+  template=replace(template,'default_image_model','gpt-image-2.5-flare');
+  template=replace(template,'part_base_subject_image_model','gemini-nano-banana-2.1');
   template=replace(template,'layering_image_model','gpt-image-2.5-flare');
   template=replace(template,'layering_google_image_protocol','openai');
   await writeFile(join(root,'example.env'),template);
@@ -34,10 +34,10 @@ test('the skill template drives missing .env, missing role keys, legacy tiers an
   assert.deepEqual(loadWorkflowEnvironment({},root).stepModels,first.stepModels);
   assert.deepEqual(loadWorkflowEnvironment({},root).stepImages,first.stepImages);
   // Explicit empty step fields inherit the user's selected global image model.
-  const explicit=loadWorkflowEnvironment({preparation_agent_model:'gpt-6.1-sol-low',layering_part_base_subject_image_model:''},root);
+  const explicit=loadWorkflowEnvironment({preparation_agent_model:'gpt-6.1-sol-low',part_base_subject_image_model:''},root);
   assert.equal(explicit.stepModels.part_standardize.model,'gpt-6.1-sol');
   assert.equal(explicit.stepImages.part_base_subject,'gpt-image-2.5-flare');
-  await writeFile(join(root,'.env'),'# partial config\nlayering_agent_shadow_model=gpt-6.1-sol-medium\n');
+  await writeFile(join(root,'.env'),'# partial config\nshadow_agent_model=gpt-6.1-sol-medium\n');
   template=replace(template,'preparation_agent_model','gpt-6.1-sol-xhigh');
   await writeFile(join(root,'example.env'),template);
   const updated=loadWorkflowEnvironment({layering_image_base_url:'https://images.example/v1',layering_image_api_key:'fixture',layering_google_image_base_url:'https://images.example/v1',layering_google_image_api_key:'fixture'},root);
@@ -45,7 +45,7 @@ test('the skill template drives missing .env, missing role keys, legacy tiers an
   assert.equal(updated.stepModels.shadow_mask.effort,'medium');
   assert.equal(updated.stepImages.part_simplify,'gpt-image-2.5-flare');
   assert.equal(updated.imageApis.google?.protocol,'openai');
-  assert.equal(await readFile(join(root,'.env'),'utf8'),'# partial config\nlayering_agent_shadow_model=gpt-6.1-sol-medium\n');
+  assert.equal(await readFile(join(root,'.env'),'utf8'),'# partial config\nshadow_agent_model=gpt-6.1-sol-medium\n');
 });
 
 test('invalid or incomplete defaults identify the skill template and preserve the user file', async t => {
@@ -53,7 +53,7 @@ test('invalid or incomplete defaults identify the skill template and preserve th
   const user='# user settings\n';await writeFile(join(root,'.env'),user);
   await writeFile(join(root,'example.env'),replace(template,'preparation_agent_model',''));
   assert.throws(()=>loadWorkflowEnvironment({},root),/example.env.*preparation_agent_model/);
-  await writeFile(join(root,'example.env'),replace(template,'layering_default_image_model','unsupported'));
-  assert.throws(()=>loadWorkflowEnvironment({},root),/example.env:layering_default_image_model/);
+  await writeFile(join(root,'example.env'),replace(template,'default_image_model','unsupported'));
+  assert.throws(()=>loadWorkflowEnvironment({},root),/example.env:default_image_model/);
   assert.equal(await readFile(join(root,'.env'),'utf8'),user);
 });

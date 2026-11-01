@@ -32,7 +32,7 @@ Krita 阴影采用隔离组和透明度继承，JSON 保存真实 part ID 与最
 
 光照调试在统一角色工作台完成，不属于生图管线。工作台提供动画、柔和、右侧柔光、左侧柔光、顶部柔光、戏剧侧光、暖色夕照、冷色月光和蒙版柔光等内置预设。原组装默认右侧柔光，含投影蒙版默认蒙版柔光；首次进入即启用光照，随后切换工作区保留用户参数。可继续手调、重置或导出／导入光照配置。管线不执行光照调校步骤。
 
-角色原素材精度保持不变，PNG 无损输出。模型配置使用 `layering_agent_shadow_model`；蒙版不启用生图工具。法线／深度生图设置 `layering_shadow_maps_image_model`，省略复用既有默认生图服务。
+角色原素材精度保持不变，PNG 无损输出。模型配置使用 `shadow_agent_model`；蒙版不启用生图工具。法线／深度生图设置 `shadow_maps_image_model`，省略复用既有默认生图服务。
 
 正式蒙版方法：`tutorial/live2d-guidance/formal/09-clipped-cast-shadows.md`，依据真实 Milly 裙影／发影、PSD 与 moc3、官方裁切实现；一个来源允许联合裁切到多个受影 part。
 

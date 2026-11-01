@@ -156,12 +156,12 @@ test('only selected steps are validated, and all validation finishes before any 
   const root = await fixture(t), cli = join(root, 'fixture-cli');
   await writeFile(cli, cliFixture, { mode: 0o700 });
   const settings = loadWorkflowEnvironment({ layering_claude_path: cli, layering_codex_path: '/nonexistent/codex',
-    layering_agent_part_review_model: 'claude-sonnet-5-5-high', layering_codex_models: 'gpt-6-astra', layering_claude_models: 'claude-sonnet-5-5' }, root);
+    part_review_agent_model: 'claude-sonnet-5-5-high', layering_codex_models: 'gpt-6-astra', layering_claude_models: 'claude-sonnet-5-5' }, root);
   await preflightAgentSteps(settings, ['part_outline_review']);
   assert.throws(() => validateProviderModel(settings.providers, settings.stepModels.part_outline, 'part_outline'), /part_outline.*gpt-6.1-sol/);
   await assert.rejects(preflightAgentSteps(settings, ['part_outline', 'part_outline_review']), /不在 layering_codex_models/);
   const denied = loadWorkflowEnvironment({ layering_codex_path: '/nonexistent/codex', layering_claude_path: '/nonexistent/claude',
-    layering_codex_models: 'gpt-6.1-sol', layering_agent_part_review_model: 'claude-sonnet-5-5-high', layering_claude_models: 'claude-opus-5-5' }, root);
+    layering_codex_models: 'gpt-6.1-sol', part_review_agent_model: 'claude-sonnet-5-5-high', layering_claude_models: 'claude-opus-5-5' }, root);
   // First step passes its model list; second fails before probing the first CLI.
   await assert.rejects(preflightAgentSteps(denied, ['part_outline', 'part_outline_review']), /不在 layering_claude_models/);
   const task = { name: 'denied', prompt: 'fixture', cwd: root };

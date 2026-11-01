@@ -53,14 +53,14 @@ test('Nano-only preparation starts without Krita/Python; missing image credentia
   await writeFile(f.krita, `#!${process.execPath}\nif(process.argv.includes('--version'))console.log('codex-cli 0.161.0');else console.log(JSON.stringify({version:1,image_provider:true,image_provider_version:2,failed_error_event_version:1}));\n`);
   const options = { name: 'case', dir: f.directory, from: 'part-layering' as const, to: 'part-layering' as const };
   const environment = loadWorkflowEnvironment({ layering_codex_path: f.krita, PATH: '',
-    layering_part_simplify_image_model: 'gemini-nano-banana-2.1', layering_google_image_api_key: 'fixture',
+    part_simplify_image_model: 'gemini-nano-banana-2.1', layering_google_image_api_key: 'fixture',
     layering_google_image_base_url: 'https://example.invalid' }, f.directory);
   let started = false, ready = false;
   await runTask(options, { environment, ready() { ready = true; }, execute: async () => { started = true; return { summary: 'prepared' }; } });
   assert.equal(started, true); assert.equal(ready, true);
   assert.equal((await taskStatus(options)).status, 'completed');
   const missingCredentials = loadWorkflowEnvironment({ layering_codex_path: f.krita,
-    layering_part_simplify_image_model: 'gemini-nano-banana-2.1' }, f.directory);
+    part_simplify_image_model: 'gemini-nano-banana-2.1' }, f.directory);
   await assert.rejects(preflightAgentSteps(missingCredentials, ['part_simplify']), /API URL \/ API key/);
   ready = false;
   const raster = { ...options, name: 'raster', from: 'raster-layering' as const, to: 'raster-layering' as const };

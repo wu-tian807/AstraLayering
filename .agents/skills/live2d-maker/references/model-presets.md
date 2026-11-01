@@ -4,7 +4,7 @@
 
 完整仓库可在网页 **“管线配置 → 环境与模型”** 中选择模型、预览并保存 `.env`；界面与工作流共用配置解析器。独立 skill 或批量配置可按本页的配置键编辑文件。
 
-每套方案同时包含 **LLM** 和 **生图模型**：`layering_agent_<职责>_model` 选择执行任务的语言模型与思考力度，`layering_<步骤>_image_model` 选择该步骤调用的生图模型。LLM 按职责配置，人物与衣服共用；生图按实际步骤分别配置，完整键见下方[生图模型与配置键](#生图模型与配置键)。
+每套方案同时包含 **LLM** 和 **生图模型**：`<职责>_agent_model` 选择执行任务的语言模型与思考力度，`<步骤>_image_model` 选择该步骤调用的生图模型。LLM 按职责配置，人物与衣服共用；生图按实际步骤分别配置，完整键见下方[生图模型与配置键](#生图模型与配置键)。
 
 常规配置阅读两套方案与[生图配置键](#生图模型与配置键)；自定义接入时阅读 [CLI 与 provider](#cli-与-provider)和[生图执行](#生图执行与透明处理)，迁移或续跑时阅读[配置覆盖](#配置覆盖与旧键迁移)与[会话记录](#会话与记录)。
 
@@ -21,21 +21,21 @@
 | 职责 | 模型与力度 | `.env` 配置键 |
 | --- | --- | --- |
 | 全部 preparation | `gpt-6.1-sol-low` | `preparation_agent_model` |
-| part 轮廓绘制与返修 | `gpt-6.1-sol-medium` | `layering_agent_part_draw_model` |
-| part 轮廓 review | `gpt-6.1-sol-medium` | `layering_agent_part_review_model` |
-| 同层去重／重叠分析 | `gpt-6.1-sol-high` | `layering_agent_part_reduce_model` |
-| SVG 遮挡补全 | `gpt-6.1-sol-high` | `layering_agent_part_completion_model` |
-| 首次分组与后续细分组 | `gpt-6.1-sol-high` | `layering_agent_part_groups_model` |
-| 最终深度分析 | `gpt-6.1-sol-high` | `layering_agent_part_depth_model` |
-| raster step01 绘制与返修 | `gpt-6.1-sol-xhigh` | `layering_agent_raster_step01_model` |
-| raster step01 review | `gpt-6.1-sol-xhigh` | `layering_agent_raster_step01_review_model` |
-| raster step02 | `gpt-6.1-sol-medium` | `layering_agent_raster_step02_model` |
-| raster step03（仅人物） | `gpt-6.1-sol-medium` | `layering_agent_raster_step03_model` |
-| 穿戴组装 | `gpt-6.1-sol-xhigh` | `layering_agent_assembly_model` |
-| 阴影 | `gpt-6.1-sol-medium` | `layering_agent_shadow_model` |
-| 九轴 step02 脸部与双耳转向 | `gpt-6.1-sol-xhigh` | `layering_agent_nine_axis_head_model` |
+| part 轮廓绘制与返修 | `gpt-6.1-sol-medium` | `part_draw_agent_model` |
+| part 轮廓 review | `gpt-6.1-sol-medium` | `part_review_agent_model` |
+| 同层去重／重叠分析 | `gpt-6.1-sol-high` | `part_reduce_agent_model` |
+| SVG 遮挡补全 | `gpt-6.1-sol-high` | `part_completion_agent_model` |
+| 首次分组与后续细分组 | `gpt-6.1-sol-high` | `part_groups_agent_model` |
+| 最终深度分析 | `gpt-6.1-sol-high` | `part_depth_agent_model` |
+| raster step01 绘制与返修 | `gpt-6.1-sol-xhigh` | `raster_step01_agent_model` |
+| raster step01 review | `gpt-6.1-sol-xhigh` | `raster_step01_review_agent_model` |
+| raster step02 | `gpt-6.1-sol-medium` | `raster_step02_agent_model` |
+| raster step03（仅人物） | `gpt-6.1-sol-medium` | `raster_step03_agent_model` |
+| 穿戴组装 | `gpt-6.1-sol-xhigh` | `assembly_agent_model` |
+| 阴影 | `gpt-6.1-sol-medium` | `shadow_agent_model` |
+| 九轴 step02 脸部与双耳转向 | `gpt-6.1-sol-xhigh` | `nine_axis_head_agent_model` |
 
-生图设置为 `layering_default_image_model=codex-native`，全部步骤的生图覆盖键留空，继承宿主 Codex 内置生图工具。具体图像模型版本由宿主决定，复用当前 Codex 登录和 provider。逐步骤键与自定义服务配置见下方[生图表](#生图模型与配置键)。图片数 compact 留空时关闭，已有配置的启停与阈值保持原样。
+生图设置为 `default_image_model=codex-native`，全部步骤的生图覆盖键留空，继承宿主 Codex 内置生图工具。具体图像模型版本由宿主决定，复用当前 Codex 登录和 provider。逐步骤键与自定义服务配置见下方[生图表](#生图模型与配置键)。图片数 compact 留空时关闭，已有配置的启停与阈值保持原样。
 
 新安装直接以 `example.env` 创建 `.env`。代码默认值更新不改写已有 `.env`；显式职责配置、兼容旧键和 shell 覆盖继续生效，优先级见[配置覆盖与旧键迁移](#配置覆盖与旧键迁移)。
 
@@ -48,19 +48,19 @@
 | 职责 | 模型与力度 | `.env` 配置键 |
 | --- | --- | --- |
 | 全部 preparation | `gpt-6.1-sol-low` | `preparation_agent_model` |
-| part 轮廓绘制与返修 | `gpt-6.1-sol-xhigh` | `layering_agent_part_draw_model` |
-| part 轮廓 review | `gpt-6.1-sol-xhigh` | `layering_agent_part_review_model` |
-| 同层去重／重叠分析 | `gpt-6.1-sol-xhigh` | `layering_agent_part_reduce_model` |
-| SVG 遮挡补全 | `claude-sonnet-5-5-xhigh` | `layering_agent_part_completion_model` |
-| 首次分组与后续细分组 | `gpt-6.1-sol-xhigh` | `layering_agent_part_groups_model` |
-| 最终深度分析 | `gpt-6.1-sol-xhigh` | `layering_agent_part_depth_model` |
-| raster step01 绘制与返修 | `claude-opus-5-5-xhigh` | `layering_agent_raster_step01_model` |
-| raster step01 review | `claude-sonnet-5-5-xhigh` | `layering_agent_raster_step01_review_model` |
-| raster step02 | `claude-sonnet-5-5-xhigh` | `layering_agent_raster_step02_model` |
-| raster step03（仅人物） | `claude-sonnet-5-5-xhigh` | `layering_agent_raster_step03_model` |
-| 穿戴组装 | `claude-sonnet-5-5-xhigh` | `layering_agent_assembly_model` |
-| 阴影 | `claude-sonnet-5-5-xhigh` | `layering_agent_shadow_model` |
-| 九轴 step02 脸部与双耳转向 | `claude-sonnet-5-5-xhigh` | `layering_agent_nine_axis_head_model` |
+| part 轮廓绘制与返修 | `gpt-6.1-sol-xhigh` | `part_draw_agent_model` |
+| part 轮廓 review | `gpt-6.1-sol-xhigh` | `part_review_agent_model` |
+| 同层去重／重叠分析 | `gpt-6.1-sol-xhigh` | `part_reduce_agent_model` |
+| SVG 遮挡补全 | `claude-sonnet-5-5-xhigh` | `part_completion_agent_model` |
+| 首次分组与后续细分组 | `gpt-6.1-sol-xhigh` | `part_groups_agent_model` |
+| 最终深度分析 | `gpt-6.1-sol-xhigh` | `part_depth_agent_model` |
+| raster step01 绘制与返修 | `claude-opus-5-5-xhigh` | `raster_step01_agent_model` |
+| raster step01 review | `claude-sonnet-5-5-xhigh` | `raster_step01_review_agent_model` |
+| raster step02 | `claude-sonnet-5-5-xhigh` | `raster_step02_agent_model` |
+| raster step03（仅人物） | `claude-sonnet-5-5-xhigh` | `raster_step03_agent_model` |
+| 穿戴组装 | `claude-sonnet-5-5-xhigh` | `assembly_agent_model` |
+| 阴影 | `claude-sonnet-5-5-xhigh` | `shadow_agent_model` |
+| 九轴 step02 脸部与双耳转向 | `claude-sonnet-5-5-xhigh` | `nine_axis_head_agent_model` |
 
 SVG 合并由程序执行，不配置 LLM。步骤职责、绘图提示词、review 轮次和会话恢复规则保留原有实现。
 
@@ -87,38 +87,38 @@ OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/gener
 
 ### 全局默认与逐步骤覆盖
 
-**步骤键有值时使用该值，留空时继承 `layering_default_image_model`。** 方案 1 将全局默认设为 `codex-native`；方案 2 将其设为 `gpt-image-2.5-sunburst`，再覆盖特定步骤。下表的“继承默认”表示该步骤键留空。
+**步骤键有值时使用该值，留空时继承 `default_image_model`。** 方案 1 将全局默认设为 `codex-native`；方案 2 将其设为 `gpt-image-2.5-sunburst`，再覆盖特定步骤。下表的“继承默认”表示该步骤键留空。
 
 | 生图用途 | `.env` 配置键 | 方案 1 | 方案 2 |
 | --- | --- | --- | --- |
-| 全局默认 | `layering_default_image_model` | `codex-native` | `gpt-image-2.5-sunburst` |
-| 人物姿态标准化 | `layering_part_standardize_image_model` | 继承默认 | 继承默认 |
-| 简化穿衣角色参考 | `layering_part_simplify_image_model` | 继承默认 | `gpt-image-2.5-sunburst` |
-| 人物素体参考 | `layering_part_base_subject_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
-| 纯衣服参考 | `layering_clothing_preparation_image_model` | 继承默认 | `gpt-image-2.5-sunburst` |
-| 人物 part 遮挡补全辅助参考 | `layering_part_completion_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
-| 衣服 part 遮挡补全辅助参考 | `layering_clothing_completion_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
-| 人物 raster step01 绘制 | `layering_raster_step01_image_model` | 继承默认 | 继承默认 |
-| 人物 raster step01 review | `layering_raster_step01_review_image_model` | 继承默认 | 继承默认 |
-| 人物 raster step01 返修 | `layering_raster_step01_repair_image_model` | 继承默认 | 继承默认 |
-| 人物 raster step02 边缘精修 | `layering_raster_step02_image_model` | 继承默认 | 继承默认 |
-| 人物 raster step03 换装素体 | `layering_raster_step03_image_model` | 继承默认 | 继承默认 |
-| 衣服 raster step01 绘制 | `layering_clothing_raster_step01_image_model` | 继承默认 | 继承默认 |
-| 衣服 raster step01 review | `layering_clothing_raster_step01_review_image_model` | 继承默认 | 继承默认 |
-| 衣服 raster step01 返修 | `layering_clothing_raster_step01_repair_image_model` | 继承默认 | 继承默认 |
-| 衣服 raster step02 边缘精修 | `layering_clothing_raster_step02_image_model` | 继承默认 | 继承默认 |
-| 穿戴组装 | `layering_assembly_image_model` | 继承默认 | 继承默认 |
-| 阴影法线／深度贴图 | `layering_shadow_maps_image_model` | 继承默认 | 继承默认 |
+| 全局默认 | `default_image_model` | `codex-native` | `gpt-image-2.5-sunburst` |
+| 人物姿态标准化 | `part_standardize_image_model` | 继承默认 | 继承默认 |
+| 简化穿衣角色参考 | `part_simplify_image_model` | 继承默认 | `gpt-image-2.5-sunburst` |
+| 人物素体参考 | `part_base_subject_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
+| 纯衣服参考 | `clothing_preparation_image_model` | 继承默认 | `gpt-image-2.5-sunburst` |
+| 人物 part 遮挡补全辅助参考 | `part_completion_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
+| 衣服 part 遮挡补全辅助参考 | `clothing_completion_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
+| 人物 raster step01 绘制 | `raster_step01_image_model` | 继承默认 | 继承默认 |
+| 人物 raster step01 review | `raster_step01_review_image_model` | 继承默认 | 继承默认 |
+| 人物 raster step01 返修 | `raster_step01_repair_image_model` | 继承默认 | 继承默认 |
+| 人物 raster step02 边缘精修 | `raster_step02_image_model` | 继承默认 | 继承默认 |
+| 人物 raster step03 换装素体 | `raster_step03_image_model` | 继承默认 | 继承默认 |
+| 衣服 raster step01 绘制 | `clothing_raster_step01_image_model` | 继承默认 | 继承默认 |
+| 衣服 raster step01 review | `clothing_raster_step01_review_image_model` | 继承默认 | 继承默认 |
+| 衣服 raster step01 返修 | `clothing_raster_step01_repair_image_model` | 继承默认 | 继承默认 |
+| 衣服 raster step02 边缘精修 | `clothing_raster_step02_image_model` | 继承默认 | 继承默认 |
+| 穿戴组装 | `assembly_image_model` | 继承默认 | 继承默认 |
+| 阴影法线／深度贴图 | `shadow_maps_image_model` | 继承默认 | 继承默认 |
 
-这些键配置各 agent 的生图工具能力，实际调用按对应步骤的任务要求执行，reviewer 仍只提交反馈。姿态标准化在开启 `standard` 且判断需要调整时执行；阴影 `mask` 分支在 Krita 制作原生蒙版，`layering_shadow_maps_image_model` 用于 `normal-depth` 分支。法线／深度按数据纹理原样返回 RGB，完成时按原画恢复 alpha。
+这些键配置各 agent 的生图工具能力，实际调用按对应步骤的任务要求执行，reviewer 仍只提交反馈。姿态标准化在开启 `standard` 且判断需要调整时执行；阴影 `mask` 分支在 Krita 制作原生蒙版，`shadow_maps_image_model` 用于 `normal-depth` 分支。法线／深度按数据纹理原样返回 RGB，完成时按原画恢复 alpha。
 
 ### 修改示例
 
 例如，将**人物 raster step01 的绘制与返修**都改用 Flare，填写以下两个步骤键，并按上表准备 OpenAI 生图连接：
 
 ```dotenv
-layering_raster_step01_image_model=gpt-image-2.5-flare
-layering_raster_step01_repair_image_model=gpt-image-2.5-flare
+raster_step01_image_model=gpt-image-2.5-flare
+raster_step01_repair_image_model=gpt-image-2.5-flare
 ```
 
 人物 review、衣服绘制和其他步骤继续使用各自配置。调整全局默认时，已有显式步骤值继续优先；希望某一步跟随新默认时，将该步骤键留空。修改后用 `pnpm env:check` 核对每个步骤实际采用的 LLM、生图模型与服务协议。
@@ -146,7 +146,7 @@ layering_raster_step01_repair_image_model=gpt-image-2.5-flare
 例如，将两套 part 的 review 改为 Argon：
 
 ```dotenv
-layering_agent_part_review_model=gemini-4-argon-high
+part_review_agent_model=gemini-4-argon-high
 ```
 
 ## 主模型连接与模型列表
@@ -165,7 +165,7 @@ layering_agent_part_review_model=gemini-4-argon-high
 | Claude Code | `anthropic`（Messages） | key 必填；URL 留空为 `https://api.anthropic.com` | 每次请求的私有 settings 中生成 `modelPicker` |
 | AGV | `genai` 或 `openai` | key 与 URL 都必填；协议留空默认 `genai` | 映射到原生 `AGY_LLM_GATEWAY_MODELS` |
 
-`models` 接受逗号分隔的模型 ID，自动去掉两侧空白和重复项，不写力度后缀或 JSON 数组。例如 `layering_codex_models=gpt-6.1-sol,gpt-6-astra`。留空不限制。列表声明可用模型，具体职责仍由 `layering_agent_<职责>_model` 选择，工作流模型枚举保持上表范围。启动前只核对本次所选步骤；模型不在列表时明确报错，不发起模型请求。列表不证明账号拥有该模型权限。
+`models` 接受逗号分隔的模型 ID，自动去掉两侧空白和重复项，不写力度后缀或 JSON 数组。例如 `layering_codex_models=gpt-6.1-sol,gpt-6-astra`。留空不限制。列表声明可用模型，具体职责仍由 `<职责>_agent_model` 选择，工作流模型枚举保持上表范围。启动前只核对本次所选步骤；模型不在列表时明确报错，不发起模型请求。列表不证明账号拥有该模型权限。
 
 Claude 的已有 Bedrock／Vertex／Foundry 路由在统一连接留空时继承；填写统一连接与已启用的云平台路由冲突时明确报错。AGV 的 `openai` 模式可以透传，但本项目的 AGV 工具／原图转发及图片容量保护依赖 `genai`；配置保护却选 `openai` 时不会静默忽略。
 
@@ -195,15 +195,15 @@ Nano 后处理保持第一张生成图的尺寸和比例；工作流仍负责后
 
 ## 配置覆盖与旧键迁移
 
-同名 shell 变量优先于 `.env`，优先级按每个键分别计算。LLM 选择顺序为：统一职责键 `layering_agent_<职责>_model`（preparation 为 `preparation_agent_model`）→ 同职责下取值一致的旧小步骤键 → 已填写的旧 medium／high 键 → 代码默认值。生图选择顺序为：步骤生图键 → 全局默认生图键 → 旧生图 API 配置的兼容默认 → `codex-native`。修改全局默认时检查已有步骤覆盖，用 `pnpm env:check` 查看最终结果。
+同名 shell 变量优先于 `.env`，优先级按每个键分别计算。LLM 选择顺序为：统一职责键 `<职责>_agent_model`（preparation 为 `preparation_agent_model`）→ 同职责下取值一致的旧小步骤键 → 已填写的旧 medium／high 键 → 代码默认值。生图选择顺序为：步骤生图键 → 全局默认生图键 → 旧生图 API 配置的兼容默认 → `codex-native`。修改全局默认时检查已有步骤覆盖，用 `pnpm env:check` 查看最终结果。
 
-preparation 职责键已由 `layering_agent_preparation_model` 改名为 `preparation_agent_model`；已有 `.env` 只填旧键时继续读取，两者都填时以新键为准。
+模型键已去掉 `layering_` 前缀：`layering_agent_<职责>_model` → `<职责>_agent_model`，`layering_<步骤>_image_model` → `<步骤>_image_model`，`layering_default_image_model` → `default_image_model`。过渡期内已有 `.env` 只填旧键时继续读取，两者都填时以新键为准；新建配置只写新键，旧键将在过渡期后移除。
 
 旧 `layering_<小步骤>_model` 在同一职责的已填写值一致时继续读取；取值冲突时，明确填写对应的统一职责键。旧 `layering_high_model` 对应两套 raster 的 step01、review／返修与 step02，`layering_medium_model` 对应其余职责，这一兼容映射保持原有含义。
 
-part 遮挡补全分别使用 `layering_part_completion_image_model` 和 `layering_clothing_completion_image_model`。已有配置从 `layering_part_outline_image_model`／`layering_part_outline_repair_image_model` 迁到人物补全键，衣服的对应旧键迁到衣服补全键，保留原选择的生图模型并删除旧键。旧绘制与返修值不一致时先确认补全使用哪一个，不自动替用户选择。
+part 遮挡补全分别使用 `part_completion_image_model` 和 `clothing_completion_image_model`。已有配置从 `layering_part_outline_image_model`／`layering_part_outline_repair_image_model` 迁到人物补全键，衣服的对应旧键迁到衣服补全键，保留原选择的生图模型并删除旧键。旧绘制与返修值不一致时先确认补全使用哪一个，不自动替用户选择。
 
-独立 raster reviewer 使用 `layering_agent_raster_step01_review_model`；返修与绘制共用 `layering_agent_raster_step01_model`。原 `layering_agent_raster_step02_review_model` 配置需迁移为新的 step01 键；各自独立的生图键同样从 `raster_step02_review/repair` 改为 `raster_step01_review/repair`，衣服带 `clothing_` 前缀。模型、力度和生图选择保持可自定义，见 [example.env](../example.env)。
+独立 raster reviewer 使用 `raster_step01_review_agent_model`；返修与绘制共用 `raster_step01_agent_model`。原 `layering_agent_raster_step02_review_model` 配置需迁移为新的 step01 键；各自独立的生图键同样从 `raster_step02_review/repair` 改为 `raster_step01_review/repair`，衣服带 `clothing_` 前缀。模型、力度和生图选择保持可自定义，见 [example.env](../example.env)。
 
 ## 会话与记录
 

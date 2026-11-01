@@ -18,11 +18,11 @@
 2. 五个视角 left、up、down、left-up、left-down 各由一个生图 agent 同时生成：图1 为 `upper-body.png`，图2、图3 为模板角色 pink-doll 的正面与目标姿态（`knowledge/nine-axis/step01_views/references/pink-doll/`），提示词为同目录 `prompts/视角参考.md`，各视角的动作说明在 `prompts/views/<视角>.md`。右侧视角不画：角色常不对称，但脸部形变可以镜像复用。
 3. 结果铺在同一灰色上，缩放到上半身同尺寸后写为 `<视角>.png`；模型与各文件哈希写入 `views.json`。
 
-agent 使用 `preparation_agent_model`（默认 gpt-6.1-sol-low），生图模型为 `layering_nine_axis_view_image_model`，留空继承 `layering_default_image_model`。已完成的 step01 保留；来源角色图重做后如需新视角，删除 `nine-axis/step01_views` 再运行。
+agent 使用 `preparation_agent_model`（默认 gpt-6.1-sol-low），生图模型为 `nine_axis_view_image_model`，留空继承 `default_image_model`。已完成的 step01 保留；来源角色图重做后如需新视角，删除 `nine-axis/step01_views` 再运行。
 
 ## step02_angle-x：left 方向的脸部＋双耳透视形变
 
-1. agent（`layering_agent_nine_axis_head_model`）带着 krita 与 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step02_angle-x/prompts/脸部与双耳转向.md` 给出 pink-doll 的拟合方法与教程先验：模板匹配定位五官，父级为圆柱转向加 10×10 平滑残差（对齐向左视角的可见脸轮廓），子级按教程分眉眼、嘴、鼻在父级上补细节，最后牛顿法反解为每层 16×16 warp。不提供固定的拟合库：agent 在本步 `workspace/` 里自写脚本，蒙版、轮廓段、权重、ROI 与远近侧耳等按角色判断并看图检查。
+1. agent（`nine_axis_head_agent_model`）带着 krita 与 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step02_angle-x/prompts/脸部与双耳转向.md` 给出 pink-doll 的拟合方法与教程先验：模板匹配定位五官，父级为圆柱转向加 10×10 平滑残差（对齐向左视角的可见脸轮廓），子级按教程分眉眼、嘴、鼻在父级上补细节，最后牛顿法反解为每层 16×16 warp。不提供固定的拟合库：agent 在本步 `workspace/` 里自写脚本，蒙版、轮廓段、权重、ROI 与远近侧耳等按角色判断并看图检查。
 2. agent 只交付向左（−30）：`face-left.json`（脸部中轴 `axis`、各层控制点，按绘制顺序从上到下）、`layers/`、`left-check.png`。不补绘。耳朵不拟合生图像素，近侧耳只随父级平移和横向缩放；远侧耳整体转到脑后、排在脸底之下由脸遮挡，不用透明度隐藏（交付带 `opacity` 会被拒绝）。
 3. 程序检查交付，按 id 中的 left/right 配对，把配对图层的 −30 关于中轴镜像为 +30，写出 `deformers.json` 与 `source.json`。
 
@@ -34,7 +34,7 @@ agent 使用 `preparation_agent_model`（默认 gpt-6.1-sol-low），生图模�
 
 ## step03_angle-y：脸部＋双耳的上下形变
 
-1. agent（与 step02 同用 `layering_agent_nine_axis_head_model`）带着 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step03_angle-y/prompts/脸部与双耳上下.md`。沿用 step02 的图层贴图、16×16 网格与绘制顺序，方法同 step02，只把圆柱的转轴换成横轴：父级为横轴圆柱俯仰加 10×10 残差，子级分眉眼、嘴、鼻。抬头（up → +30）与低头（down → −30）分别拟合，不镜像。教程先验以距离关系为主：低头时眉眼距离缩小、嘴变扁、鼻子靠近嘴，抬头相反。双耳都按父级在耳根点的位移随动，不转到脑后。
+1. agent（与 step02 同用 `nine_axis_head_agent_model`）带着 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step03_angle-y/prompts/脸部与双耳上下.md`。沿用 step02 的图层贴图、16×16 网格与绘制顺序，方法同 step02，只把圆柱的转轴换成横轴：父级为横轴圆柱俯仰加 10×10 残差，子级分眉眼、嘴、鼻。抬头（up → +30）与低头（down → −30）分别拟合，不镜像。教程先验以距离关系为主：低头时眉眼距离缩小、嘴变扁、鼻子靠近嘴，抬头相反。双耳都按父级在耳根点的位移随动，不转到脑后。
 2. 只做形变本身：抬头、低头时轮廓线的出现与消失不处理，留给后续步骤统一调整。不补绘、不用透明度。
 3. agent 交付 `face-y.json`（每个 step02 部件的 "30"、"-30" 关键形）与 `up-check.png`、`down-check.png`。程序检查部件与控制点数和 step02 一致，把 `layers/` 复制到本步，写出含 X、Y 两个参数的 `deformers.json`：X 关键形仍在 `keyforms`，Y 关键形在 `keyformsY`（与 X 共用静止形 `keyforms["0"]`）。
 
