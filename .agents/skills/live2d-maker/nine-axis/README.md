@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | `step01_views` | 角色工作台当前的角色图（阴影蒙版完成时为 `shadow/step01_mask/character-shadowed.png`，否则为 `character-assembly/step01/character-assembled.png`），以及 `part-layering/parts/{face,hair,head_accessories}.svg` | `nine-axis/step01_views/upper-body.png`、`crop.json`、`{left,right}.png`、`{left,right}.mp4`、`frames/`、`views.json` |
 | `step02_angle-x` | 同上的 KRA / PNG 与 `step01_views` 的视角参考 | `nine-axis/step02_angle-x/face-left.json`、`layers/*.png`、`left-check.png`、`deformers.json`、`source.json` |
-| `step03_angle-y` | `step02_angle-x` 的 `deformers.json` 与 `layers/`，`step01_views` 的 up、down 视角（step01 目前不生成，待定） | `nine-axis/step03_angle-y/face-y.json`、`up-check.png`、`down-check.png`、`deformers.json`、`layers/*.png` |
+| `step03_angle-y` | `step02_angle-x` 的 `deformers.json` 与 `layers/`，`step01_views` 的 up、down 视角（暂停：step01 不再生成 up、down，工作流跑完 step02 即止） | `nine-axis/step03_angle-y/face-y.json`、`up-check.png`、`down-check.png`、`deformers.json`、`layers/*.png` |
 
 步骤名后缀说明各步做什么：`views` 生成视角参考，`angle-x` 做角度 X（左右），`angle-y` 做角度 Y（上下）。
 

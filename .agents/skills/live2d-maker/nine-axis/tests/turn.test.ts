@@ -10,7 +10,6 @@ import sharp from 'sharp';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, resolveTurnInput, upperBodyBox, turnViews } from '../turn.ts';
 import { angleYPrompt, headPrompt, runWorkflow, turnPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
-import { writeFaceY } from './angle-y.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
 
@@ -138,9 +137,8 @@ test('step01 生成向左、向右两个视角并统一到上半身尺寸，完�
   const generate = async (prompt: string) => { prompts.push(prompt); return { id: `v${prompts.length}`, status: { status: 'completed' }, bytes: await readFile(sample) }; };
   let fitted = 0;
   const fitHead = async (directory: string) => { fitted++; await writeFaceLeft(directory); };
-  const fitAngleY = async (directory: string) => { fitted++; await writeFaceY(directory); };
-  const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead, fitAngleY };
-  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /4 个脸部图层的抬头与低头/);
+  const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead };
+  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /4 个脸部图层的 -30° \/ \+30° 转向/);
   const step = join(task, 'nine-axis/step01_views'), size = (await sharp(join(step, 'upper-body.png')).metadata()).width;
   for (const view of turnViews) {
     const { data, info } = await sharp(join(step, `${view}.png`)).raw().toBuffer({ resolveWithObject: true });
@@ -152,7 +150,7 @@ test('step01 生成向左、向右两个视角并统一到上半身尺寸，完�
   await access(join(step, '.completed'));
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /沿用/);
   assert.deepEqual(prompts.map(p => /左侧/.test(p)).sort(), [false, true]);
-  assert.equal(fitted, 2);
+  assert.equal(fitted, 1);
   const source = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/source.json'), 'utf8'));
   assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
   assert.equal(source.sourceKraHash.length, 64);
@@ -166,13 +164,8 @@ test('step01 生成向左、向右两个视角并统一到上半身尺寸，完�
   assert.deepEqual(Object.keys(byId['face/face_base'].keyforms).sort(), ['-30', '0', '30']);
   assert.deepEqual(byId['face/ear_left'].keyforms['30'][0], [126, 70]);
   assert.ok(parts.every((p: object) => !('opacity' in p)));
-  // step03 adds the Y keyforms to step02's deformers and brings the textures along.
-  const combined = JSON.parse(await readFile(join(task, 'nine-axis/step03_angle-y/deformers.json'), 'utf8'));
-  assert.deepEqual(combined.parameters.find((q: { id: string }) => q.id === 'ParamAngleY').keys, [-20, 0, 25]);
-  const base = combined.parts.find((p: { id: string }) => p.id === 'face/face_base');
-  assert.deepEqual(base.keyforms['30'], byId['face/face_base'].keyforms['30']);
-  assert.deepEqual(base.keyformsY['25'][0], [60, 56]);
-  await access(join(task, 'nine-axis/step03_angle-y/layers/000.png'));
+  // step03_angle-y is shelved, so the workflow stops after step02.
+  await assert.rejects(access(join(task, 'nine-axis/step03_angle-y')));
 });
 
 test('任一方向失败时 step01 不完成，并列出失败的方向', async t => {
