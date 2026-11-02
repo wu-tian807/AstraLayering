@@ -84,9 +84,46 @@ export async function generateImage(api: ImageApi, model: ImageModel, args: Imag
     (replacement, input) => requestImage(api, model, replacement, [{ bytes: input, mime: 'image/png' }], signal)) : png;
 }
 
+// Rate limits, timeouts, 5xx and dropped connections are waited out here, so
+// the agent only sees errors it cannot fix by waiting (401/403/404, bad input).
+export const imageRetry = { delays: [15, 30, 60, 120, 240, 300].map(s => s * 1000) };
+
+class TransientImageError extends Error {
+  retryAfter?: number;
+  constructor(message: string, retryAfter?: number) { super(message); this.retryAfter = retryAfter; }
+}
+
+function transient(error: unknown): boolean {
+  if (error instanceof TransientImageError) return true;
+  const code = (error as any)?.cause?.code ?? (error as any)?.code;
+  return error instanceof TypeError && /fetch failed|terminated/i.test(error.message)
+    || typeof code === 'string' && (code.startsWith('UND_ERR') || ['ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'EPIPE', 'EAI_AGAIN'].includes(code));
+}
+
+function wait(ms: number, signal: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => { signal.removeEventListener('abort', abort); resolve(); }, ms);
+    const abort = () => { clearTimeout(timer); reject(signal.reason); };
+    signal.addEventListener('abort', abort, { once: true });
+  });
+}
+
 // Background-only edits share the provider and cancellation, without recursively
 // starting another transparent-image request.
 async function requestImage(api: ImageApi, model: ImageModel, args: ImageArguments,
+  inputs: ImageInput[], signal: AbortSignal): Promise<Buffer> {
+  for (let attempt = 0; ; attempt++) {
+    try { return await attemptImage(api, model, args, inputs, signal); }
+    catch (error) {
+      const delay = imageRetry.delays[attempt];
+      if (signal.aborted || delay === undefined || !transient(error)) throw error;
+      const retryAfter = error instanceof TransientImageError ? error.retryAfter : undefined;
+      await wait(Math.max(delay, retryAfter ?? 0), signal);
+    }
+  }
+}
+
+async function attemptImage(api: ImageApi, model: ImageModel, args: ImageArguments,
   inputs: ImageInput[], signal: AbortSignal): Promise<Buffer> {
   signal.throwIfAborted();
   const base = api.baseUrl.replace(/\/+$/, '');
@@ -112,7 +149,14 @@ async function requestImage(api: ImageApi, model: ImageModel, args: ImageArgumen
       output_format: 'png', ...(args.size ? { size: args.size } : {}), ...(args.quality ? { quality: args.quality } : {}) });
   }
   const response = await fetch(url, { method: 'POST', headers, body, signal });
-  if (!response.ok) throw new Error(`生图 ${model} HTTP ${response.status}：${(await response.text()).replaceAll(api.apiKey, '[redacted]').slice(-3000)}`);
+  if (!response.ok) {
+    const message = `生图 ${model} HTTP ${response.status}：${(await response.text()).replaceAll(api.apiKey, '[redacted]').slice(-3000)}`;
+    if (response.status === 408 || response.status === 429 || response.status >= 500) {
+      const seconds = Number(response.headers.get('retry-after'));
+      throw new TransientImageError(message, Number.isFinite(seconds) ? seconds * 1000 : undefined);
+    }
+    throw new Error(message);
+  }
   const result = await response.json() as any;
   let bytes: Buffer;
   if (api.protocol === 'gemini') {
