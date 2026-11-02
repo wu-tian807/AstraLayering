@@ -22,7 +22,7 @@ agent 使用 `preparation_agent_model`（默认 gpt-6.1-sol-low），生图模�
 
 ## step02_angle-x：left 方向的脸部＋双耳透视形变
 
-1. agent（`nine_axis_head_agent_model`）带着 krita 与 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step02_angle-x/prompts/脸部与双耳转向.md` 给出 pink-doll 的拟合方法与教程先验：模板匹配定位五官，先按教程画出转过去的整条脸底轮廓（头的大小不变、远侧往上收、近侧往左下移、下颌底连续、不画后脑），再以轮廓对应与五官锚点做一个平滑的整体变形（只在脸底不透明区内求），子级按教程分眉眼、嘴、鼻在父级上补细节，最后导出为每层 warp（脸底 32×32，其余 16×16）。不提供固定的拟合库：agent 在本步 `workspace/` 里自写脚本，蒙版、轮廓段、权重、ROI 与远近侧耳等按角色判断并看图检查。
+1. agent（`nine_axis_head_agent_model`）带着 krita 与 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step02_angle-x/prompts/脸部与双耳转向.md` 给出方法与教程先验。五官与脸底分开做：五官在 left.png 中露出来，按模板匹配定位、竖轴圆柱转向，再分眉眼、嘴、鼻拟合到 left.png 的五官像素；脸底轮廓常被头发遮住，先按教程画出转过去的整条轮廓（头的大小不变、远侧往上收、近侧往左下移、下颌底连续、不画后脑，并包住拟合好的五官），再以轮廓对应与五官锚点做一个平滑的整体变形（只在脸底不透明区内求）；合起来看时五官位置不对只整组平移。最后导出为每层 warp（脸底 32×32，其余 16×16）。不提供固定的拟合库：agent 在本步 `workspace/` 里自写脚本，蒙版、轮廓段、权重、ROI 与远近侧耳等按角色判断并看图检查。
 2. agent 只交付向左（−30）：`face-left.json`（脸部中轴 `axis`、各层控制点，按绘制顺序从上到下）、`layers/`、`left-check.png`。不补绘。耳朵不拟合生图像素，近侧耳只随父级平移和横向缩放；远侧耳整体转到脑后、排在脸底之下由脸遮挡，不用透明度隐藏（交付带 `opacity` 会被拒绝）。
 3. 程序检查交付，按 id 中的 left/right 配对，把配对图层的 −30 关于中轴镜像为 +30，按刻度换成度数后写出 `deformers.json` 与 `source.json`。
 
