@@ -33,7 +33,7 @@ step02_angle-x：left 方向的脸部＋双耳透视形变。agent 在 workspace
 与记录源 KRA/PNG 哈希的 source.json。
 交付后程序按 knowledge/nine-axis/step01_views/references/angles.json 把 −30 / +30 标定为度数（默认 X ±45°、Y +25° / −20°），
 deformers.json 的参数与关键形都以度数记录，agent 的交付格式不变。只做脸与双耳，不含头发；不补绘。使用 nine_axis_head_agent_model。
-step03_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step02 的图层与 16×16 网格，分别拟合 up 视角（ParamAngleY +30）与
+step03_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step02 的图层与网格（脸底 32×32，其余 16×16），分别拟合 up 视角（ParamAngleY +30）与
 down 视角（−30），交付 face-y.json；程序把 Y 关键形并入 step02 的变形器，写出工作台读取的 deformers.json。
 只做形变：轮廓线的出现与消失留给后续步骤。使用 nine_axis_head_agent_model。
 提示词：<knowledge>/nine-axis/step01_views/、step02_angle-x/、step03_angle-y/。上游产物重做后其后的步骤随之重做。
