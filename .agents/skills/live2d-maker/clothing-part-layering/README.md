@@ -27,7 +27,7 @@ preparation 使用当前配置的生图工具，将两张参考按顺序放入�
 
 1. 按 `--name` 读取同名人物 part 的 `references/simplified-subject.png`与 `references/base-subject.png`，以及 `references/standard.png`（决定统一画布尺寸并用于生成图后处理，其指纹写入 preparation.json），不保存输入副本。缺少时明确提示上游命令与手动放置的路径。使用 [preparation 提示词](../knowledge/clothing-part-layering/step01_preparation/prompts/preparation.md) 提取两图之间的换装衣物，生成统一画布尺寸的透明 `references/clothing.png`。保留衣料、衣服自身附件、薄纱及正常开口，补全遮住的衣料；允许整套衣装等比缩放和移动，衣片间的相对比例与连接保持一致。
 2. 查看纯衣服图与原穿衣角色，按外到内检查结构、建立初始 group。纯衣服图是衣片轮廓与绘画标准，原角色用于判断穿插与随动关系。group 表示结构归属，包含关系和数组顺序不代表绘制深度。
-3. 逐层执行轮廓绘制、review / 返修、同层去重、遮挡补全、自检及直属 group / part 分析。完成当前层后继续下一层，实际结构决定拆分深度。
+3. 逐层执行轮廓绘制、review / 返修、同层去重、遮挡补全、自检及直属 group / part 分析。各父组补全、自检及直属拆分完成后，立即派发其子组描边与 review；下一层统一去重仍等待所有父组拆分结束、名单固定且全部轮廓就绪，再开始该层补全。实际结构决定拆分深度，提前派发遵守 `--max-depth` 和所选分支范围。
 4. 合成 `preview.svg`，为所有终止 part 规划并逐件、逐区域检查深度，保存 `occlusion.json`。
 
 绘制者在首次绘制或返修中发现当前组 `note` 的职责或层序说明有误时，可用 `update_group_note` 精确替换唯一匹配的原句。工具只修改本组说明，通过调度器共用的写入队列保存；下一次 review 和后续拆分读取更新后的说明。仅有说明问题时保持正确 SVG，不修改父组或分组树。
