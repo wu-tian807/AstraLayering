@@ -72,14 +72,14 @@ test('每个视角的提示词带入动作与三张参考图', () => {
     assert.doesNotMatch(prompt, /\{(view|motion|\w+_degrees)\}/);
   }
   assert.match(viewPrompt('up', '/task'), /抬头约 25°/);
-  assert.match(viewPrompt('left', '/task'), /转约 45°/);
+  assert.match(viewPrompt('left', '/task'), /转约 30°/);
 });
 
 test('step02、step03 的提示词以度数写出关键形', () => {
   const x = headPrompt({ document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0], '/task'), y = angleYPrompt('/task');
-  assert.match(x, /ParamAngleX = -45/);
+  assert.match(x, /ParamAngleX = -30/);
   assert.match(y, /ParamAngleY = 25[\s\S]*ParamAngleY = -20/);
-  for (const prompt of [x, y]) assert.doesNotMatch(prompt, /\{\w+_(angle|degrees)\}|[−-]30\b|±30/);
+  for (const prompt of [x, y]) assert.doesNotMatch(prompt, /\{\w+_(angle|degrees)\}/);
 });
 
 test('step01 生成五个视角并统一到上半身尺寸，完成后沿用', async t => {
@@ -110,20 +110,20 @@ test('step01 生成五个视角并统一到上半身尺寸，完成后沿用', a
   assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
   assert.equal(source.sourceKraHash.length, 64);
   // The far ear's turn mirrors with the pair: turning right, the left ear goes behind like the right ear turning left.
-  // Keyform keys are the degrees from knowledge angles.json (left view 45°).
+  // Keyform keys are the degrees from knowledge angles.json (left view 30°).
   const { parts, parameters } = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/deformers.json'), 'utf8'));
-  assert.deepEqual(parameters.find((q: { id: string }) => q.id === 'ParamAngleX').keys, [-45, 0, 45]);
+  assert.deepEqual(parameters.find((q: { id: string }) => q.id === 'ParamAngleX').keys, [-30, 0, 30]);
   // face-left.json is top to bottom; deformers.json is drawing order, bottom first.
   assert.deepEqual(parts.map((p: { id: string }) => p.id), ['face/ear_left', 'face/ear_right', 'face/eye_left', 'face/face_base']);
   const byId = Object.fromEntries(parts.map((p: { id: string }) => [p.id, p]));
-  assert.deepEqual(Object.keys(byId['face/face_base'].keyforms).sort(), ['-45', '0', '45']);
-  assert.deepEqual(byId['face/ear_left'].keyforms['45'][0], [126, 70]);
+  assert.deepEqual(Object.keys(byId['face/face_base'].keyforms).sort(), ['-30', '0', '30']);
+  assert.deepEqual(byId['face/ear_left'].keyforms['30'][0], [126, 70]);
   assert.ok(parts.every((p: object) => !('opacity' in p)));
   // step03 adds the Y keyforms to step02's deformers and brings the textures along.
   const combined = JSON.parse(await readFile(join(task, 'nine-axis/step03_angle-y/deformers.json'), 'utf8'));
   assert.deepEqual(combined.parameters.find((q: { id: string }) => q.id === 'ParamAngleY').keys, [-20, 0, 25]);
   const base = combined.parts.find((p: { id: string }) => p.id === 'face/face_base');
-  assert.deepEqual(base.keyforms['45'], byId['face/face_base'].keyforms['45']);
+  assert.deepEqual(base.keyforms['30'], byId['face/face_base'].keyforms['30']);
   assert.deepEqual(base.keyformsY['25'][0], [60, 56]);
   await access(join(task, 'nine-axis/step03_angle-y/layers/000.png'));
 });
