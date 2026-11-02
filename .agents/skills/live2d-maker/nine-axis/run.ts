@@ -6,7 +6,7 @@ import { readFile } from 'node:fs/promises';
 import { agentOutcomeError, formatAgentError, validateAgentOutcome } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { selectKnowledge, stepKnowledge } from '../shared/knowledge.ts';
+import { renderKnowledge, selectKnowledge, stepKnowledge } from '../shared/knowledge.ts';
 import { runSection } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { CodexAgents } from '../shared/codex/agents.ts';
@@ -20,7 +20,7 @@ import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { produceTurn, resolveTurnInput, turnViews, type Box, type DrawView, type TurnInput, type TurnView } from './turn.ts';
 import { finishHead, resolveHeadInput, type HeadInput } from './head.ts';
 import { finishAngleY } from './angle-y.ts';
-import { angleScale } from './angles.ts';
+import { angleScale, angleValues } from './angles.ts';
 
 export const help = `nine-axis — 头部九轴
 pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> [--dir <绝对运行根目录>] [--dry-run]
@@ -29,12 +29,12 @@ step01_views：从工作台当前的角色图（阴影蒙版交付后为 shadow/
 画出 ${turnViews.join('、')} 五个视角（右侧由后续步骤镜像脸部形变得到）。
 使用 preparation_agent_model 与 nine_axis_view_image_model（留空继承默认生图模型）。
 step02_angle-x：left 方向的脸部＋双耳透视形变。agent 在 workspace 里按 pink-doll 的拟合方法自己写脚本，用 krita 工具
-导出脸部图层，拟合出向左（ParamAngleX −30，对应约 45° 的 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
+导出脸部图层，拟合出向左（ParamAngleX −45，即 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/；程序按左右配对镜像出 +45，写出工作台读取的 deformers.json
 与记录源 KRA/PNG 哈希的 source.json。
-交付后程序按 knowledge/nine-axis/step01_views/references/angles.json 把 −30 / +30 标定为度数（默认 X ±45°、Y +25° / −20°），
-deformers.json 的参数与关键形都以度数记录，agent 的交付格式不变。只做脸与双耳，不含头发；不补绘。使用 nine_axis_head_agent_model。
-step03_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step02 的图层与网格（脸底 32×32，其余 16×16），分别拟合 up 视角（ParamAngleY +30）与
-down 视角（−30），交付 face-y.json；程序把 Y 关键形并入 step02 的变形器，写出工作台读取的 deformers.json。
+ParamAngleX / ParamAngleY 处处以度数为值：各视角的度数只记在 knowledge/nine-axis/step01_views/references/angles.json（默认 left 45、up 25、down 20），
+由程序填进各步提示词，agent 交付与 deformers.json 的关键形键都是这些度数；换成 Cubism ±30 等范围留给导出。只做脸与双耳，不含头发；不补绘。使用 nine_axis_head_agent_model。
+step03_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step02 的图层与网格（脸底 32×32，其余 16×16），分别拟合 up 视角（ParamAngleY +25）与
+down 视角（−20），交付 face-y.json；程序把 Y 关键形并入 step02 的变形器，写出工作台读取的 deformers.json。
 只做形变：轮廓线的出现与消失留给后续步骤。使用 nine_axis_head_agent_model。
 提示词：<knowledge>/nine-axis/step01_views/、step02_angle-x/、step03_angle-y/。上游产物重做后其后的步骤随之重做。
 总入口：pnpm start --name <任务名> --from nine-axis --to nine-axis。
@@ -44,7 +44,7 @@ down 视角（−30），交付 face-y.json；程序把 Y 关键形并入 step02
 export function viewPrompt(view: TurnView, taskRoot: string): string {
   const knowledge = stepKnowledge('nine-axis', 'step01_views'), path = join(knowledge.directory, 'prompts/views', `${view}.md`);
   if (!existsSync(path)) throw new Error(`先验知识缺少视角说明：${path}`);
-  const motion = readFileSync(path, 'utf8').trim();
+  const motion = renderKnowledge(readFileSync(path, 'utf8'), angleValues()).trim();
   if (!motion) throw new Error(`视角说明为空：${path}`);
   return knowledge.render('main', { view, motion }, { taskRoot }).trim();
 }
@@ -63,9 +63,9 @@ export function createDrawView(agents: Pick<CodexAgents, 'run'>, taskRoot: strin
 }
 
 export function headPrompt(input: HeadInput, taskRoot: string): string {
-  return stepKnowledge('nine-axis', 'step02_angle-x').render('main', { document: input.document, color: input.color }, { taskRoot }).trim();
+  return stepKnowledge('nine-axis', 'step02_angle-x').render('main', { document: input.document, color: input.color, ...angleValues() }, { taskRoot }).trim();
 }
-export const angleYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step03_angle-y').render('main', {}, { taskRoot }).trim();
+export const angleYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step03_angle-y').render('main', angleValues(), { taskRoot }).trim();
 
 // The face agents write their own fitting scripts in the section workspace,
 // which step02 and step03 share; the step's knowledge picks their tools (Krita
