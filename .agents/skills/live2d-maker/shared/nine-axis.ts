@@ -1,5 +1,5 @@
 // Relative to <dir>/<name>. The nine-axis section keeps one directory per step,
-// like shadow: step01_views holds the upper body and its left/right head-turn frames;
+// like shadow: step01_views holds the upper body and its left head-turn frame;
 // step02_angle-x holds the left/right head warp deformers and the editable KRA
 // with the repainted reveal areas; step03_angle-y adds up/down to the same
 // deformers, and the workbench reads its deformers.json once it exists. source.json names the KRA it was made from;

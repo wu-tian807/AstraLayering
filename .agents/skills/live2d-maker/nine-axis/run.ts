@@ -15,7 +15,7 @@ import { SectionKrita, kritaRecordFile } from '../shared/krita/section-krita.ts'
 import { createKritaTool } from '../shared/krita/tool.ts';
 import { createBitmapTool } from '../shared/part/bitmap-tool.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
-import { ffmpegPath, generateVideo, produceTurn, resolveTurnInput, turnViews, type Box, type GenerateVideo, type TurnInput, type TurnView } from './turn.ts';
+import { ffmpegPath, generateVideo, produceTurn, resolveTurnInput, type Box, type GenerateVideo, type TurnInput } from './turn.ts';
 import { finishHead, resolveHeadInput, type HeadInput } from './head.ts';
 import { finishAngleY } from './angle-y.ts';
 import { angleScale, angleValues } from './angles.ts';
@@ -24,7 +24,7 @@ export const help = `nine-axis — 头部九轴
 pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> [--dir <绝对运行根目录>] [--dry-run]
 step01_views：从工作台当前的角色图（阴影蒙版交付后为 shadow/step01_mask/character-shadowed.png，否则为组装图）
 按脸、头发、头饰形状截取头顶到肩线的方形正面头部特写 upper-body.png，作为首帧分别交给生视频模型：身体与镜头不动，
-只有头匀速转到侧面（90°），向左、向右各一段；程序按帧序取出转到 angles.json left 度数（默认 30°）的帧 left.png、right.png；不生成 up、down。
+只有头匀速向左转到侧面（90°）；程序按帧序取出转到 angles.json left 度数（默认 30°）的一帧 left.png。只做向左，不生成向右与 up、down。
 需要 .env 的 layering_video_base_url / layering_video_api_key（留空时用 layering_openai_image_*）、layering_video_model 和 ffmpeg。
 step02_angle-x：left 方向的脸部＋双耳透视形变。agent 在 workspace 里按 pink-doll 的拟合方法自己写脚本，用 krita 工具
 导出脸部图层，拟合出向左（ParamAngleX −30，即 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
@@ -38,8 +38,7 @@ down 视角（−20），交付 face-y.json；程序把 Y 关键形并入 step02
 总入口：pnpm start --name <任务名> --from nine-axis --to nine-axis。
 `;
 
-// One turn prompt for both sides; only the side the face turns to differs.
-export const turnPrompt = (view: TurnView) => stepKnowledge('nine-axis', 'step01_views').render('main', { side: view === 'left' ? '左' : '右' }).trim();
+export const turnPrompt = () => stepKnowledge('nine-axis', 'step01_views').render('main').trim();
 // Checked before any step starts, so a run without the video service fails at once.
 export function requireVideoApi(environment: Pick<WorkflowEnvironment, 'videoApi'>): VideoApi {
   if (!environment.videoApi) throw new Error('头部九轴转头视频需要生视频接口：请在 live2d-maker/.env 填写 layering_video_base_url 与 layering_video_api_key（或 layering_openai_image_base_url / api_key）。未配置时 step01 无法运行。');
@@ -75,7 +74,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const root = resolveRunsDirectory(options.dir), progress = options.progress ?? (() => {});
   const task = taskDirectory(options.name, root), directory = join(task, 'nine-axis');
   const environment = dependencies.environment ?? loadWorkflowEnvironment();
-  const prompts = Object.fromEntries(turnViews.map(view => [view, turnPrompt(view)])) as Record<TurnView, string>;
+  const prompt = turnPrompt();
   const scale = angleScale();
   const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
   const headLabel = `${environment.stepModels.nine_axis_head.model}-${environment.stepModels.nine_axis_head.effort}`;
@@ -117,10 +116,10 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       return async () => {
         const api = dependencies.generate ? undefined : requireVideoApi(environment), model = api?.model ?? 'injected';
         const generate: GenerateVideo = dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o));
-        if (options.dryRun) { progress(`预览：从 ${input.color} 截取上半身，用 ${model} 生成向左、向右转头视频并取 ${scale.x[1]}° 帧。\n提示词（left）：\n${prompts.left}`); summary = '预览完成，未调用模型'; return; }
+        if (options.dryRun) { progress(`预览：从 ${input.color} 截取上半身，用 ${model} 生成向左转头视频并取 ${scale.x[1]}° 帧。\n提示词：\n${prompt}`); summary = '预览完成，未调用模型'; return; }
         const ffmpeg = dependencies.ffmpeg ?? await ffmpegPath(environment.codex.env);
-        const box = await produceTurn(step.directory, input, generate, prompts, { signal: options.signal, progress, ffmpeg, model, angle: scale.x[1] });
-        summary = `nine-axis/step01_views 已完成：${box.size}×${box.size} 上半身的向左、向右 ${scale.x[1]}° 视角`;
+        const box = await produceTurn(step.directory, input, generate, prompt, { signal: options.signal, progress, ffmpeg, model, angle: scale.x[1] });
+        summary = `nine-axis/step01_views 已完成：${box.size}×${box.size} 上半身的向左 ${scale.x[1]}° 视角`;
       };
     } }); } finally { await sectionKrita?.release(); }
   return summary;

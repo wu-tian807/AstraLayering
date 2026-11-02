@@ -1,10 +1,10 @@
 # 头部九轴
 
-入口：`pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <Krita 可执行文件>`。九轴全部完成前不接入总控流程与工作台阶段，只能这样单独启动；目前只做脸部与双耳：step02 左右转向（ParamAngleX），step03 上下（ParamAngleY），不含头发，斜向（四角）未做。ParamAngleX / ParamAngleY 处处以度数为值：ParamAngleX −30 / +30（step01 left、right 取转头视频中转到 30° 的帧），ParamAngleY +25 抬头 / −20 低头。各角度只记在 `knowledge/nine-axis/step01_views/references/angles.json`，由程序用来取视频帧、填进 step02、step03 的提示词；agent 交付的关键形键、`deformers.json` 的参数范围与关键形键都是这些度数，工作台的范围读文档本身。改角度幅度只改这个文件。换成 Cubism 默认 ±30 等范围留给以后的导出层。状态记在各步骤目录的完成标记。
+入口：`pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <Krita 可执行文件>`。九轴全部完成前不接入总控流程与工作台阶段，只能这样单独启动；目前只做脸部与双耳：step02 左右转向（ParamAngleX），step03 上下（ParamAngleY），不含头发，斜向（四角）未做。ParamAngleX / ParamAngleY 处处以度数为值：ParamAngleX −30 / +30（step01 的 left 取向左转头视频中转到 30° 的帧，+30 由 step02 镜像），ParamAngleY +25 抬头 / −20 低头。各角度只记在 `knowledge/nine-axis/step01_views/references/angles.json`，由程序用来取视频帧、填进 step02、step03 的提示词；agent 交付的关键形键、`deformers.json` 的参数范围与关键形键都是这些度数，工作台的范围读文档本身。改角度幅度只改这个文件。换成 Cubism 默认 ±30 等范围留给以后的导出层。状态记在各步骤目录的完成标记。
 
 | 步骤 | 输入 | 交付 |
 | --- | --- | --- |
-| `step01_views` | 角色工作台当前的角色图（阴影蒙版完成时为 `shadow/step01_mask/character-shadowed.png`，否则为 `character-assembly/step01/character-assembled.png`），以及 `part-layering/parts/{face,hair,head_accessories}.svg` | `nine-axis/step01_views/upper-body.png`、`crop.json`、`{left,right}.png`、`{left,right}.mp4`、`frames/`、`views.json` |
+| `step01_views` | 角色工作台当前的角色图（阴影蒙版完成时为 `shadow/step01_mask/character-shadowed.png`，否则为 `character-assembly/step01/character-assembled.png`），以及 `part-layering/parts/{face,hair,head_accessories}.svg` | `nine-axis/step01_views/upper-body.png`、`crop.json`、`left.png`、`left.mp4`、`frames/`、`views.json` |
 | `step02_angle-x` | 同上的 KRA / PNG 与 `step01_views` 的视角参考 | `nine-axis/step02_angle-x/face-left.json`、`layers/*.png`、`left-check.png`、`deformers.json`、`source.json` |
 | `step03_angle-y` | `step02_angle-x` 的 `deformers.json` 与 `layers/`，`step01_views` 的 up、down 视角（暂停：step01 不再生成 up、down，工作流跑完 step02 即止） | `nine-axis/step03_angle-y/face-y.json`、`up-check.png`、`down-check.png`、`deformers.json`、`layers/*.png` |
 
@@ -15,8 +15,8 @@
 ## step01_views：头部视角参考
 
 1. 按脸、头发、头饰形状的不透明范围截取方形头部特写，取景与模板 pink-doll 的参考图一致：上沿为头部最高点，下沿为脸底再往下半个脸高（到肩线），以脸中心为横向中心，四周留 6%；宽度只需容下脸与头饰，长发可被两侧裁掉；超出画布处补灰（128）。裁切框写入 `crop.json`。
-2. 向左、向右各生成一段转头视频，两段同时进行：首帧为 `upper-body.png`，提示词为 `prompts/转头.md`（只转头，表情、身体不动，匀速转到最后一帧的正侧面 90°）。
-3. 用 ffmpeg 取帧：第 `round((帧数−1)×30/90)` 帧即转到 30° 的一帧，缩放到上半身同尺寸后写为 `left.png`、`right.png`；视频存为 `<方向>.mp4`，原始帧在 `frames/`，模型、帧号与各文件哈希写入 `views.json`。
+2. 生成一段向左转头视频（只需向左，向右由 step02 镜像）：首帧为 `upper-body.png`，提示词为 `prompts/转头.md`（只转头，表情、身体不动，匀速转到最后一帧的正侧面 90°）。
+3. 用 ffmpeg 取帧：第 `round((帧数−1)×30/90)` 帧即转到 30° 的一帧，缩放到上半身同尺寸后写为 `left.png`；视频存为 `left.mp4`，原始帧在 `frames/`，模型、帧号与各文件哈希写入 `views.json`。
 
 生视频接口为 `layering_video_base_url` / `layering_video_api_key`，留空沿用 OpenAI 生图代理（`layering_openai_image_*`）；模型为 `layering_video_model`（默认 seedance-2.5）。需要 ffmpeg。已完成的 step01 保留；来源角色图重做后如需新视角，删除 `nine-axis/step01_views` 再运行。
 

@@ -14,8 +14,6 @@ import type { VideoApi } from '../shared/codex/environment.ts';
 // the first frame, once per side. Only the head turns, at constant speed, from
 // the front to profile (90°) over the whole video, so the view at the left
 // angle is the frame that far through. Up and down are not made here.
-export const turnViews = ['left', 'right'] as const;
-export type TurnView = typeof turnViews[number];
 export const profileAngle = 90, turnSeconds = '5';
 const background = 128, margin = 0.06, neckFaces = 0.5;
 const terminal = new Set(['completed', 'failed', 'cancelled', 'expired']);
@@ -158,7 +156,7 @@ async function atomic(path: string, bytes: Buffer | string) {
   await writeFile(tmp, bytes); await rename(tmp, path);
 }
 
-export const turnOutputs = ['upper-body.png', 'crop.json', ...turnViews.map(view => `${view}.png`), 'views.json'] as const;
+export const turnOutputs = ['upper-body.png', 'crop.json', 'left.png', 'views.json'] as const;
 export type GenerateVideo = (prompt: string, image: Buffer, options: { signal?: AbortSignal; progress?: (message: string) => void }) => Promise<VideoResult>;
 
 // A frame comes back at the video's size; it is brought to the upper body's square.
@@ -168,35 +166,29 @@ export async function normalizeView(path: string, size: number): Promise<Buffer>
     .resize(size, size, { fit: 'contain', background: grey }).removeAlpha().png().toBuffer();
 }
 
-// The whole step: crop, then both turn videos at once and their frames at the
-// left angle. Paths in records are task-relative.
-export async function produceTurn(directory: string, input: TurnInput, generate: GenerateVideo, prompts: Record<TurnView, string>,
+// The whole step: crop, then one left turn video and its frame at the left
+// angle. Paths in records are task-relative.
+export async function produceTurn(directory: string, input: TurnInput, generate: GenerateVideo, prompt: string,
   { signal, progress, ffmpeg, model, angle }: { signal?: AbortSignal; progress?: (message: string) => void; ffmpeg: string; model: string; angle: number }) {
   const task = dirname(dirname(directory)), { width = 0, height = 0 } = await sharp(input.color).metadata();
   const box = await upperBodyBox(input, width, height), image = await cropUpperBody(input.color, box);
   await atomic(join(directory, 'upper-body.png'), image);
   await atomic(join(directory, 'crop.json'), JSON.stringify({ version: 1, source: toTaskPath(task, input.color), sourceHash: await fileHash(input.color),
     parts: input.parts.map(path => toTaskPath(task, path)), canvas: [width, height], box, background }, null, 2) + '\n');
-  progress?.(`上半身裁切 ${box.size}×${box.size}，提交向左、向右两段转头视频（约 5 分钟）`);
-  const started = Date.now(), views: Record<string, object> = {};
-  // Both videos run to their end before a failure is reported.
-  const results = await Promise.allSettled(turnViews.map(async view => {
-    const output = join(directory, `${view}.png`), mp4 = join(directory, `${view}.mp4`), frame = join(directory, 'frames', `${view}.png`);
-    await rm(output, { force: true });
-    const video = await generate(prompts[view], image, { signal, progress: message => progress?.(`${view}：${message}`) });
-    await atomic(mp4, video.bytes); await mkdir(dirname(frame), { recursive: true });
-    const taken = await extractTurnFrame(ffmpeg, mp4, frame, angle, signal);
-    const bytes = await normalizeView(frame, box.size);
-    await atomic(output, bytes);
-    const { url: _url, ...status } = video.status;
-    views[view] = { path: `${view}.png`, sha256: bufferHash(bytes), prompt: prompts[view], videoId: video.id, status,
-      video: { path: `${view}.mp4`, sha256: bufferHash(video.bytes), bytes: video.bytes.length }, frame: taken };
-    progress?.(`视角 ${view} 已完成：第 ${taken.frameIndex}/${taken.frameCount - 1} 帧（约 ${taken.angle.toFixed(1)}°）`);
-  }));
-  const failed = results.flatMap((result, index) => result.status === 'rejected' ? [`${turnViews[index]}：${result.reason instanceof Error ? result.reason.message : result.reason}`] : []);
-  if (failed.length) throw new Error(`转头视频失败（${failed.length}/${turnViews.length}）\n${failed.join('\n')}`, { cause: (results.find(r => r.status === 'rejected') as PromiseRejectedResult).reason });
-  await atomic(join(directory, 'views.json'), JSON.stringify({ version: 2, model, seconds: turnSeconds, profileAngle, angle,
+  progress?.(`上半身裁切 ${box.size}×${box.size}，提交向左转头视频（约 5 分钟）`);
+  const started = Date.now(), output = join(directory, 'left.png'), mp4 = join(directory, 'left.mp4'), frame = join(directory, 'frames', 'left.png');
+  await rm(output, { force: true });
+  const video = await generate(prompt, image, { signal, progress });
+  await atomic(mp4, video.bytes); await mkdir(dirname(frame), { recursive: true });
+  const taken = await extractTurnFrame(ffmpeg, mp4, frame, angle, signal);
+  const bytes = await normalizeView(frame, box.size);
+  await atomic(output, bytes);
+  const { url: _url, ...status } = video.status;
+  progress?.(`left 已完成：第 ${taken.frameIndex}/${taken.frameCount - 1} 帧（约 ${taken.angle.toFixed(1)}°）`);
+  await atomic(join(directory, 'views.json'), JSON.stringify({ version: 3, model, seconds: turnSeconds, profileAngle, angle,
     input: { path: 'upper-body.png', sha256: bufferHash(image) },
-    views: Object.fromEntries(turnViews.map(view => [view, views[view]])), elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
+    left: { path: 'left.png', sha256: bufferHash(bytes), prompt, videoId: video.id, status,
+      video: { path: 'left.mp4', sha256: bufferHash(video.bytes), bytes: video.bytes.length }, frame: taken },
+    elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
   return box;
 }

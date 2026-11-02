@@ -7,7 +7,7 @@ import { createServer } from 'node:http';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
-import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, resolveTurnInput, upperBodyBox, turnViews } from '../turn.ts';
+import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, resolveTurnInput, upperBodyBox } from '../turn.ts';
 import { angleYPrompt, headPrompt, runWorkflow, turnPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
@@ -66,10 +66,9 @@ test('阴影蒙版完成时用阴影角色图', async t => {
   assert.equal(input.color, join(shadow, 'character-shadowed.png'));
 });
 
-test('左右转头提示词只差方向；生视频接口缺省用 OpenAI 生图代理', async () => {
-  assert.match(turnPrompt('left'), /转向画面左侧/);
-  assert.match(turnPrompt('right'), /转向画面右侧/);
-  assert.equal(turnPrompt('left').replace('左侧', '右侧'), turnPrompt('right'));
+test('转头提示词向左；生视频接口缺省用 OpenAI 生图代理', async () => {
+  assert.match(turnPrompt(), /转向画面左侧/);
+  assert.doesNotMatch(turnPrompt(), /[{}]/);
   assert.equal(loadWorkflowEnvironment({}).videoApi, undefined);
   assert.deepEqual(loadWorkflowEnvironment({ layering_openai_image_base_url: 'https://image.example/v1', layering_openai_image_api_key: 'i' }).videoApi,
     { baseUrl: 'https://image.example/v1', apiKey: 'i', model: 'seedance-2.5' });
@@ -129,7 +128,7 @@ test('step02、step03 的提示词以度数写出关键形', () => {
   for (const prompt of [x, y]) assert.doesNotMatch(prompt, /\{\w+_(angle|degrees)\}/);
 });
 
-test('step01 生成向左、向右两个视角并统一到上半身尺寸，完成后沿用', async t => {
+test('step01 只生成向左视角并统一到上半身尺寸，完成后沿用', async t => {
   const { root, task } = await fixture(t);
   const sample = join(root, 'sample.mp4'), ffmpeg = await testVideo(t, sample);
   if (!ffmpeg) return;
@@ -140,16 +139,14 @@ test('step01 生成向左、向右两个视角并统一到上半身尺寸，完�
   const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead };
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /4 个脸部图层的 -30° \/ \+30° 转向/);
   const step = join(task, 'nine-axis/step01_views'), size = (await sharp(join(step, 'upper-body.png')).metadata()).width;
-  for (const view of turnViews) {
-    const { data, info } = await sharp(join(step, `${view}.png`)).raw().toBuffer({ resolveWithObject: true });
-    assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
-  }
+  const { info } = await sharp(join(step, 'left.png')).raw().toBuffer({ resolveWithObject: true });
+  assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
+  await assert.rejects(access(join(step, 'right.png')));
   const record = JSON.parse(await readFile(join(step, 'views.json'), 'utf8'));
-  assert.deepEqual(Object.keys(record.views), ['left', 'right']);
-  assert.equal(record.views.left.frame.frameIndex, 20);
+  assert.equal(record.left.frame.frameIndex, 20);
   await access(join(step, '.completed'));
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /沿用/);
-  assert.deepEqual(prompts.map(p => /左侧/.test(p)).sort(), [false, true]);
+  assert.equal(prompts.length, 1);
   assert.equal(fitted, 1);
   const source = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/source.json'), 'utf8'));
   assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
@@ -168,13 +165,10 @@ test('step01 生成向左、向右两个视角并统一到上半身尺寸，完�
   await assert.rejects(access(join(task, 'nine-axis/step03_angle-y')));
 });
 
-test('任一方向失败时 step01 不完成，并列出失败的方向', async t => {
+test('转头视频失败时 step01 不完成', async t => {
   const { root, task } = await fixture(t);
-  const generate = async (prompt: string) => {
-    if (prompt.includes('右侧')) throw new Error('模型拒绝');
-    return { id: 'v', status: {}, bytes: Buffer.from('') };
-  };
-  await assert.rejects(runWorkflow({ name: 'case', dir: root }, { environment: loadWorkflowEnvironment({}), generate, ffmpeg: '/bin/false' }), /right[\s\S]*模型拒绝/);
+  const generate = async () => { throw new Error('模型拒绝'); };
+  await assert.rejects(runWorkflow({ name: 'case', dir: root }, { environment: loadWorkflowEnvironment({}), generate, ffmpeg: '/bin/false' }), /模型拒绝/);
   await assert.rejects(access(join(task, 'nine-axis/step01_views/.completed')));
 });
 
