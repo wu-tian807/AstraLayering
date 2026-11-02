@@ -4,8 +4,8 @@ import { dirname, join } from 'node:path';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { sign } from './head.ts';
 
-// step03_angle-y: the agent fits the same face warps to the up and down views
-// and delivers the ParamAngleY up and down keyforms (+25 / −20 by default,
+// step04_angle-y: the agent fits the same face warps to step03's up and down views
+// and delivers the ParamAngleY up and down keyforms (+25 / −25 by default,
 // degrees, see angles.ts) per step02 part (face-y.json). Up and down are not
 // mirror images, so both are fitted. The program copies step02's deformers and
 // textures and adds the Y keyforms, so the workbench reads one document with both angles.

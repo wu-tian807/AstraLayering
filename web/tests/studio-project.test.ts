@@ -200,10 +200,10 @@ test('Project reports the head nine-axis document and prefers its KRA while the 
   assert.equal(await (await read('nine-axis/step02_angle-x/layers/005.png')).text(), 'layer');
   assert.equal((await read('nine-axis/step02_angle-x/layers/../source.json')).status, 400);
   // Once step03 has added up/down, its deformers and textures are the ones shown.
-  await f.put(a.angleYDeformers, '{}'); await f.put('nine-axis/step03_angle-y/layers/005.png', 'layer y');
+  await f.put(a.angleYDeformers, '{}'); await f.put('nine-axis/step04_angle-y/layers/005.png', 'layer y');
   data = (await (await f.get()).json()) as any;
   assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.angleYDeformers, true]);
-  assert.equal(await (await read('nine-axis/step03_angle-y/layers/005.png')).text(), 'layer y');
+  assert.equal(await (await read('nine-axis/step04_angle-y/layers/005.png')).text(), 'layer y');
   await f.put(studioArtifacts.document, 'kra'); await f.put(studioArtifacts.color, 'png');
   await f.put(a.headDocument, 'nine kra'); await f.put(a.headColor, 'nine png');
   const hash = (s: string) => createHash('sha256').update(s).digest('hex');

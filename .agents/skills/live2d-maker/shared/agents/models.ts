@@ -51,7 +51,7 @@ export const stepModelSlots = {
   raster_step03: 'raster_step03',
   clothing_raster_step01: 'raster_step01', clothing_raster_step02: 'raster_step02',
   clothing_raster_step01_review: 'raster_step01_review', clothing_raster_step01_repair: 'raster_step01',
-  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_view: 'preparation', nine_axis_head: 'nine_axis_head',
+  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_head: 'nine_axis_head',
 } as const satisfies Record<string, ModelSlot>;
 export type AgentStep = keyof typeof stepModelSlots;
 export const stepDefaults = Object.fromEntries(Object.entries(stepModelSlots)
@@ -61,7 +61,7 @@ export const imageSteps: readonly AgentStep[] = [
   'part_completion', 'clothing_completion',
   'raster_step01', 'raster_step02', 'raster_step01_review', 'raster_step01_repair', 'raster_step03',
   'clothing_raster_step01', 'clothing_raster_step02', 'clothing_raster_step01_review', 'clothing_raster_step01_repair',
-  'assembly', 'shadow_maps', 'nine_axis_view',
+  'assembly', 'shadow_maps',
 ];
 export function parseAgentModel(value: string, key: string): AgentModel {
   const match = value.trim().match(/^(.+)-(low|medium|high|xhigh)$/);
