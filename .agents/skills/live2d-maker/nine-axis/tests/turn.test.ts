@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, resolveTurnInput, upperBodyBox } from '../turn.ts';
-import { angleYPrompt, headPrompt, runWorkflow, turnPrompt } from '../run.ts';
+import { angleYPrompt, headPrompt, runWorkflow, turnPrompt, viewYPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
@@ -66,11 +66,11 @@ test('阴影蒙版完成时用阴影角色图', async t => {
   assert.equal(input.color, join(shadow, 'character-shadowed.png'));
 });
 
-test('视角提示词：left 转头、up 仰视、down 俯视；生视频接口缺省用 OpenAI 生图代理', async () => {
-  assert.match(turnPrompt('left'), /转向画面左侧/);
-  assert.match(turnPrompt('up'), /仰视/);
-  assert.match(turnPrompt('down'), /俯视/);
-  for (const view of ['left', 'up', 'down'] as const) assert.doesNotMatch(turnPrompt(view), /[{}]/);
+test('转头提示词向左；生视频接口缺省用 OpenAI 生图代理', async () => {
+  assert.match(turnPrompt(), /转向画面左侧/);
+  assert.doesNotMatch(turnPrompt(), /[{}]/);
+  assert.match(viewYPrompt('up'), /仰视/);
+  assert.match(viewYPrompt('down'), /俯视/);
   assert.equal(loadWorkflowEnvironment({}).videoApi, undefined);
   assert.deepEqual(loadWorkflowEnvironment({ layering_openai_image_base_url: 'https://image.example/v1', layering_openai_image_api_key: 'i' }).videoApi,
     { baseUrl: 'https://image.example/v1', apiKey: 'i', model: 'seedance-2.5' });
@@ -123,14 +123,14 @@ test('按帧序取出转到 30° 的帧（整段匀速转到 90°）', async t =
   assert.equal((await sharp(join(root, 'frame.png')).metadata()).width, 32);
 });
 
-test('step02、step03 的提示词以度数写出关键形', () => {
+test('step02、step04 的提示词以度数写出关键形', () => {
   const x = headPrompt({ document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0], '/task'), y = angleYPrompt('/task');
   assert.match(x, /ParamAngleX = -30/);
   assert.match(y, /ParamAngleY = 25[\s\S]*ParamAngleY = -25/);
   for (const prompt of [x, y]) assert.doesNotMatch(prompt, /\{\w+_(angle|degrees)\}/);
 });
 
-test('step01 生成 left、up、down 视角并统一到上半身尺寸，完成后沿用', async t => {
+test('step01 生成向左视角，step03 生成上下视角，都统一到上半身尺寸，完成后沿用', async t => {
   const { root, task } = await fixture(t);
   const sample = join(root, 'sample.mp4'), ffmpeg = await testVideo(t, sample);
   if (!ffmpeg) return;
@@ -139,16 +139,13 @@ test('step01 生成 left、up、down 视角并统一到上半身尺寸，完成�
   let fitted = 0;
   const fitHead = async (directory: string) => { fitted++; await writeFaceLeft(directory); };
   const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead };
-  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /4 个脸部图层的 -30° \/ \+30° 转向/);
+  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step03_views-y 已完成：抬头 25°、低头 25°/);
   const step = join(task, 'nine-axis/step01_views'), size = (await sharp(join(step, 'upper-body.png')).metadata()).width;
-  for (const view of ['left', 'up', 'down']) {
-    const { info } = await sharp(join(step, `${view}.png`)).raw().toBuffer({ resolveWithObject: true });
-    assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
-  }
+  const { info } = await sharp(join(step, 'left.png')).raw().toBuffer({ resolveWithObject: true });
+  assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
   await assert.rejects(access(join(step, 'right.png')));
   const record = JSON.parse(await readFile(join(step, 'views.json'), 'utf8'));
-  // 61 frames to 90°: left 30° is frame 20, up / down 25° is frame round(60·25/90) = 17.
-  assert.deepEqual([record.left.frame.frameIndex, record.up.frame.frameIndex, record.down.frame.frameIndex], [20, 17, 17]);
+  assert.equal(record.left.frame.frameIndex, 20);
   await access(join(step, '.completed'));
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /沿用/);
   assert.equal(prompts.length, 3);
@@ -166,8 +163,14 @@ test('step01 生成 left、up、down 视角并统一到上半身尺寸，完成�
   assert.deepEqual(Object.keys(byId['face/face_base'].keyforms).sort(), ['-30', '0', '30']);
   assert.deepEqual(byId['face/ear_left'].keyforms['30'][0], [126, 70]);
   assert.ok(parts.every((p: object) => !('opacity' in p)));
-  // step03_angle-y is shelved, so the workflow stops after step02.
-  await assert.rejects(access(join(task, 'nine-axis/step03_angle-y')));
+  const y = join(task, 'nine-axis/step03_views-y'), viewY = JSON.parse(await readFile(join(y, 'views.json'), 'utf8'));
+  for (const view of ['up', 'down']) {
+    const { info: yInfo } = await sharp(join(y, `${view}.png`)).raw().toBuffer({ resolveWithObject: true });
+    assert.deepEqual([yInfo.width, yInfo.height, viewY[view].angle, viewY[view].frame.frameIndex], [size, size, 25, 17]);
+  }
+  assert.equal(viewY.input.path, 'nine-axis/step01_views/upper-body.png');
+  // step04_angle-y is shelved, so the workflow stops after step03.
+  await assert.rejects(access(join(task, 'nine-axis/step04_angle-y')));
 });
 
 test('转头视频失败时 step01 不完成', async t => {

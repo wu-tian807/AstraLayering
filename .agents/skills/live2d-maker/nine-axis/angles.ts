@@ -3,7 +3,7 @@ import { stepKnowledge } from '../shared/knowledge.ts';
 
 // ParamAngleX / ParamAngleY are in degrees everywhere: the step01 views, the
 // agents' prompts and deliveries, and deformers.json. The degrees of each view
-// (left about 30°, up about 25°, down about 25°) live only in knowledge/
+// (left about 30°, up and down about 25°) live only in knowledge/
 // nine-axis/step01_views/references/angles.json and are filled into the
 // prompts; mapping to another range (e.g. Cubism ±30) belongs to an exporter.
 export type AngleScale = { x: [number, number]; y: [number, number] };

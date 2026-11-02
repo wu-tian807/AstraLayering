@@ -156,11 +156,7 @@ async function atomic(path: string, bytes: Buffer | string) {
   await writeFile(tmp, bytes); await rename(tmp, path);
 }
 
-// left: the head turns left; up / down: the camera moves below / above, so
-// the face looks raised / lowered. Each video ends at 90°.
-export const turnViews = ['left', 'up', 'down'] as const;
-export type TurnView = typeof turnViews[number];
-export const turnOutputs = ['upper-body.png', 'crop.json', ...turnViews.map(view => `${view}.png`), 'views.json'];
+export const turnOutputs = ['upper-body.png', 'crop.json', 'left.png', 'views.json'] as const;
 export type GenerateVideo = (prompt: string, image: Buffer, options: { signal?: AbortSignal; progress?: (message: string) => void }) => Promise<VideoResult>;
 
 // A frame comes back at the video's size; it is brought to the upper body's square.
@@ -170,32 +166,54 @@ export async function normalizeView(path: string, size: number): Promise<Buffer>
     .resize(size, size, { fit: 'contain', background: grey }).removeAlpha().png().toBuffer();
 }
 
-// The whole step: crop, then one video per view and its frame at that view's
+// One video from the upper body and its frame at the view's angle, brought to
+// the upper body's square. Paths in the record are relative to the step directory.
+async function takeView(directory: string, view: string, prompt: string, angle: number, image: Buffer, size: number, generate: GenerateVideo,
+  { signal, progress, ffmpeg }: { signal?: AbortSignal; progress?: (message: string) => void; ffmpeg: string }) {
+  const output = join(directory, `${view}.png`), mp4 = join(directory, `${view}.mp4`), frame = join(directory, 'frames', `${view}.png`);
+  await rm(output, { force: true });
+  const video = await generate(prompt, image, { signal, progress: message => progress?.(`${view}：${message}`) });
+  await atomic(mp4, video.bytes); await mkdir(dirname(frame), { recursive: true });
+  const taken = await extractTurnFrame(ffmpeg, mp4, frame, angle, signal);
+  const bytes = await normalizeView(frame, size);
+  await atomic(output, bytes);
+  const { url: _url, ...status } = video.status;
+  progress?.(`${view} 已完成：第 ${taken.frameIndex}/${taken.frameCount - 1} 帧（约 ${taken.angle.toFixed(1)}°）`);
+  return { path: `${view}.png`, sha256: bufferHash(bytes), prompt, videoId: video.id, status,
+    video: { path: `${view}.mp4`, sha256: bufferHash(video.bytes), bytes: video.bytes.length }, frame: taken };
+}
+
+// The whole step: crop, then one left turn video and its frame at the left
 // angle. Paths in records are task-relative.
-export async function produceTurn(directory: string, input: TurnInput, generate: GenerateVideo, views: { view: TurnView; prompt: string; angle: number }[],
-  { signal, progress, ffmpeg, model }: { signal?: AbortSignal; progress?: (message: string) => void; ffmpeg: string; model: string }) {
+export async function produceTurn(directory: string, input: TurnInput, generate: GenerateVideo, prompt: string,
+  { signal, progress, ffmpeg, model, angle }: { signal?: AbortSignal; progress?: (message: string) => void; ffmpeg: string; model: string; angle: number }) {
   const task = dirname(dirname(directory)), { width = 0, height = 0 } = await sharp(input.color).metadata();
   const box = await upperBodyBox(input, width, height), image = await cropUpperBody(input.color, box);
   await atomic(join(directory, 'upper-body.png'), image);
   await atomic(join(directory, 'crop.json'), JSON.stringify({ version: 1, source: toTaskPath(task, input.color), sourceHash: await fileHash(input.color),
     parts: input.parts.map(path => toTaskPath(task, path)), canvas: [width, height], box, background }, null, 2) + '\n');
-  progress?.(`上半身裁切 ${box.size}×${box.size}，提交 ${views.map(v => v.view).join('、')} 视频（约 5 分钟）`);
-  const started = Date.now();
-  await Promise.all(views.map(({ view }) => rm(join(directory, `${view}.png`), { force: true })));
-  const records = await Promise.all(views.map(async ({ view, prompt, angle }) => {
-    const output = join(directory, `${view}.png`), mp4 = join(directory, `${view}.mp4`), frame = join(directory, 'frames', `${view}.png`);
-    const video = await generate(prompt, image, { signal, progress: message => progress?.(`${view}：${message}`) });
-    await atomic(mp4, video.bytes); await mkdir(dirname(frame), { recursive: true });
-    const taken = await extractTurnFrame(ffmpeg, mp4, frame, angle, signal);
-    const bytes = await normalizeView(frame, box.size);
-    await atomic(output, bytes);
-    const { url: _url, ...status } = video.status;
-    progress?.(`${view} 已完成：第 ${taken.frameIndex}/${taken.frameCount - 1} 帧（约 ${taken.angle.toFixed(1)}°）`);
-    return [view, { path: `${view}.png`, sha256: bufferHash(bytes), angle, prompt, videoId: video.id, status,
-      video: { path: `${view}.mp4`, sha256: bufferHash(video.bytes), bytes: video.bytes.length }, frame: taken }] as const;
-  }));
-  await atomic(join(directory, 'views.json'), JSON.stringify({ version: 4, model, seconds: turnSeconds, profileAngle,
-    input: { path: 'upper-body.png', sha256: bufferHash(image) }, ...Object.fromEntries(records),
+  progress?.(`上半身裁切 ${box.size}×${box.size}，提交向左转头视频（约 5 分钟）`);
+  const started = Date.now(), left = await takeView(directory, 'left', prompt, angle, image, box.size, generate, { signal, progress, ffmpeg });
+  await atomic(join(directory, 'views.json'), JSON.stringify({ version: 3, model, seconds: turnSeconds, profileAngle, angle,
+    input: { path: 'upper-body.png', sha256: bufferHash(image) }, left,
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
   return box;
+}
+
+// step03_views-y: from step01's upper body, the camera moves below (up: the
+// face looks raised) and above (down: the face looks lowered), each ending at
+// 90°; the frame at each view's angle is taken.
+export const viewsY = ['up', 'down'] as const;
+export type ViewY = typeof viewsY[number];
+export const viewsYOutputs = [...viewsY.map(view => `${view}.png`), 'views.json'];
+export async function produceViewsY(directory: string, upperBody: string, generate: GenerateVideo, views: { view: ViewY; prompt: string; angle: number }[],
+  { signal, progress, ffmpeg, model }: { signal?: AbortSignal; progress?: (message: string) => void; ffmpeg: string; model: string }) {
+  const task = dirname(dirname(directory)), image = await readFile(upperBody), { width = 0 } = await sharp(image).metadata();
+  progress?.(`提交 ${views.map(v => v.view).join('、')} 镜头视频（约 5 分钟）`);
+  const started = Date.now();
+  const records = await Promise.all(views.map(async ({ view, prompt, angle }) =>
+    [view, { ...await takeView(directory, view, prompt, angle, image, width, generate, { signal, progress, ffmpeg }), angle }] as const));
+  await atomic(join(directory, 'views.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
+    input: { path: toTaskPath(task, upperBody), sha256: bufferHash(image) }, ...Object.fromEntries(records),
+    elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
 }
