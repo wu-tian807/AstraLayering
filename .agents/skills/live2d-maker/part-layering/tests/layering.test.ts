@@ -12,15 +12,25 @@ import { readStep } from '../../shared/step-chain.ts';
 import { fixture, shape, workingMerger, workingSteps } from './layering-fixture.ts';
 import { profile } from '../profile.ts';
 
-test('按层严格等待：所有 review 结束才去重，所有父组结束才开始下一层；层内保持并发', { timeout: 5000 }, async t => {
+test('子组提前描边和 review；下一层去重等待所有父组拆分及所有轮廓齐备', { timeout: 5000 }, async t => {
   const f = await fixture(t), events: string[] = [];
   const steps = workingSteps(events, [{ id: 'fast' }, { id: 'slow' }], { fast: [{ id: 'fast/child' }], slow: [{ id: 'slow/child' }] });
   const slowReview = Promise.withResolvers<void>(), reviewing = Promise.withResolvers<void>();
   const slowSplit = Promise.withResolvers<void>(), splitting = Promise.withResolvers<void>();
   const fastReviewed = Promise.withResolvers<void>();
+  const childReviewed = Promise.withResolvers<void>(), releaseChildReview = Promise.withResolvers<void>();
+  const slowChildReviewed = Promise.withResolvers<void>();
   const run = runLayering({ ...f, groups: null, steps: { ...steps,
     async reviewOutline(context) { if (context.group.id === 'slow') { reviewing.resolve(); await slowReview.promise; }
-      const result = await steps.reviewOutline(context); if (context.group.id === 'fast') fastReviewed.resolve(); return result; },
+      const result = await steps.reviewOutline(context);
+      if (context.group.id === 'fast') fastReviewed.resolve();
+      if (context.group.id === 'fast/child') { childReviewed.resolve(); await releaseChildReview.promise; }
+      if (context.group.id === 'slow/child') slowChildReviewed.resolve();
+      return result; },
+    async reduceOutlines(context) {
+      if (context.depth === 1) assert.deepEqual(context.entries.map(entry => entry.group.id).sort(), ['fast/child', 'slow/child']);
+      return steps.reduceOutlines!(context);
+    },
     async splitChildren(context) { if (context.group.id === 'slow') { splitting.resolve(); await slowSplit.promise; } return steps.splitChildren(context); },
   }, mergeSvg: workingMerger(events) });
   try {
@@ -31,11 +41,20 @@ test('按层严格等待：所有 review 结束才去重，所有父组结束才
     slowReview.resolve();
     await splitting.promise;
     assert.ok(events.includes('layer-0:reduce'));
-    assert.ok(!events.some(event => event.includes('/child:')));
-  } finally { slowReview.resolve(); slowSplit.resolve(); await run; }
+    await childReviewed.promise;
+    assert.ok(events.includes('fast/child:outline') && events.includes('fast/child:review'));
+    assert.ok(!events.includes('slow:children'));
+    assert.ok(!events.includes('layer-1:reduce') && !events.includes('fast/child:completion'));
+    slowSplit.resolve();
+    await slowChildReviewed.promise;
+    assert.ok(!events.includes('layer-1:reduce'), 'fast child review is still in flight');
+  } finally { slowReview.resolve(); slowSplit.resolve(); releaseChildReview.resolve(); await run; }
   const result = await run;
   assert.equal(result.status, 'completed');
-  assert.ok(events.indexOf('fast/child:outline') > events.indexOf('slow:children'));
+  assert.ok(events.indexOf('fast/child:outline') < events.indexOf('slow:children'));
+  assert.equal(events.filter(event => event === 'fast/child:outline').length, 1);
+  assert.equal(events.filter(event => event === 'fast/child:review').length, 1);
+  assert.equal(events.filter(event => event === 'layer-1:reduce').length, 1);
   assert.ok(events.indexOf('layer-1:reduce') > events.indexOf('slow/child:review'));
   assert.ok(events.indexOf('fast:completion') > events.indexOf('layer-0:reduce'));
 });

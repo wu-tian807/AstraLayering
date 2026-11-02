@@ -364,12 +364,15 @@ export async function runLayering(input: {
       }
     }
 
+    const preparedEarly = new Set<string>();
     for (let depth = 0; depth < (input.maxDepth ?? Infinity); depth++) {
       const entries = walkGroups(store.snapshot().groups).filter(entry => entry.depth === depth);
       if (!entries.length) break;
       // --groups only filters the work; every group of the layer is still checked.
       const selectedIds = scope();
-      await batch(entries, id => prepare(id, !selectedIds || selectedIds.has(id)));
+      await batch(entries, async id => {
+        if (!preparedEarly.has(id)) await prepare(id, !selectedIds || selectedIds.has(id));
+      });
       if (entries.some(entry => context(entry.group.id).group.steps.review.status !== 'completed')) {
         report(`第 ${depth} 层仍有未完成轮廓，等待本层齐备后去重`);
         break;
@@ -378,9 +381,25 @@ export async function runLayering(input: {
       catch (error) { throw new GroupExecutionError(`第 ${depth} 层`, 'reduction', error); }
       const finishIds = scope();
       const finishTargets = entries.filter(entry => !finishIds || finishIds.has(entry.group.id));
-      await batch(finishTargets, finish);
+      await batch(finishTargets, async id => {
+        await finish(id);
+        if (!groupCompleted(context(id).group)) return;
+        // The parent's reduction, completion and split are committed. Its direct
+        // children can prepare while other parents are still finishing. They must
+        // not reduce or complete until the next iteration has the full layer.
+        const childScope = scope();
+        const children = walkGroups(store.snapshot().groups).filter(entry =>
+          entry.parent?.id === id && (!childScope || childScope.has(entry.group.id)));
+        await batch(children, async childId => {
+          // A pending early review must wait for a subsequent run, not retry
+          // immediately when the layer loop reaches this same child.
+          preparedEarly.add(childId);
+          await prepare(childId, true);
+        });
+      });
       if (finishTargets.some(entry => !groupCompleted(context(entry.group.id).group))) break;
-      // 下一层必须等待整层；显式选择也不会自动派发未选分支。
+      // 下一层去重必须等待本层所有拆分完成，固定完整名单；
+      // 已提前描边的子组沿用步骤记录，显式选择不派发未选分支。
       if (entries.some(entry => !groupCompleted(context(entry.group.id).group))) {
         report(`第 ${depth} 层还有未完成分支，下一层等待`);
         break;
