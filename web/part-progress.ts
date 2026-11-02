@@ -35,7 +35,7 @@ export async function partProgress(directory: string, section: string, groups: a
   const visit = (nodes: any[], depth: number) => nodes.forEach(node => { entries.push({ node, depth }); visit(node.groups ?? [], depth + 1); });
   visit(groups, 0);
   const reviewInputs = new Map<any, { report: any; outline: Buffer | undefined }>();
-  const skippedReviews = new Set<any>();
+  const skippedReviews = new Map<any, string>();
   const steps = new Map<string, Promise<StepStatus>>();
   const step = (id: string) => {
     if (!steps.has(id)) steps.set(id, stepStatus(directory, section, id).catch(error => { errors.push(`${section}/${id}: ${String(error)}`); return 'absent' as const; }));
@@ -62,9 +62,10 @@ export async function partProgress(directory: string, section: string, groups: a
     const completed = await read(path('completion'));
     const [prepared, layer, finished, split] = await Promise.all([step(groupStepId(node.id, 'outline')), step(layerStepId(depth)),
       step(groupStepId(node.id, 'completion')), step(groupStepId(node.id, 'children'))]);
-    const skipped = node.hiddenInReference === true && prepared === 'completed' && !!outline;
-    const skipDetail = '原图不可见，已跳过描边和轮廓复核';
-    if (skipped) skippedReviews.add(node);
+    const skipDetail = node.hiddenInReference === true ? '原图不可见，已跳过描边和轮廓复核'
+      : node.outlineFromParent ? '轮廓由父组完成稿框选复制，已跳过描边和轮廓复核' : '';
+    const skipped = !!skipDetail && prepared === 'completed' && !!outline;
+    if (skipped) skippedReviews.set(node, skipDetail);
     mark('outline', !!outline && marked(prepared), marked(prepared) && (!!outline || draft('outline')),
       skipped ? skipDetail : outline ? '已落稿' : '草稿 · 未落稿', prepared === 'completed' && !outline ? path('outline') : undefined);
 
@@ -107,7 +108,7 @@ export async function partProgress(directory: string, section: string, groups: a
     const { report, outline } = reviewInputs.get(node)!;
     node.webReviewRounds = partReviewRounds(node.id, report, outline, calls, !!activeSince);
     if (skippedReviews.has(node)) for (const round of node.webReviewRounds) {
-      round.review = { status: 'skipped', detail: '原图不可见，已跳过轮廓复核' };
+      round.review = { status: 'skipped', detail: skippedReviews.get(node)! };
       round.repair = { status: 'skipped', detail: '轮廓复核已跳过，无需返修' };
     }
   }

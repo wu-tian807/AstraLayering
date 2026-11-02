@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { snapshot } from '../snapshot.ts';
 import { acquireTaskLock, configureRun, saveRun } from '../../.agents/skills/live2d-maker/workflow/state.ts';
 import { svgHash } from '../../.agents/skills/live2d-maker/shared/part/artifact-facts.ts';
+import { groupSummary } from '../progress.js';
 
 const svg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0L10 10Z"/></svg>');
 async function fixture(t: any, section = 'part-layering') {
@@ -162,6 +163,39 @@ for (const section of ['part-layering', 'clothing-part-layering']) test(`${secti
   assert.equal(value.part.groups[0].webPhases.outline, 'failed', 'a completed step missing its product failed');
   assert.match(value.part.groups[0].webDetails.outline, /缺少交付/);
   assert.equal(value.part.groups[0].webPhases.review, 'pending', 'missing skip output is not a completed review');
+});
+
+test('parent-copied arms finish without review reports and show the completed tree icon', async t => {
+  const f = await fixture(t), id = 'arms/arm_left', step = 'arms/children/arm_left';
+  const group = { id, outlineFromParent: { x: 10, y: 10, width: 20, height: 30 }, groups: [] };
+  await f.put('groups.json', { groups: [{ id: 'arms', groups: [group] }] });
+  const original = await readFile(join(f.task, 'part-layering/groups.json'));
+  const node = async () => (await f.get()).part.groups[0].groups[0];
+  assert.equal((await node()).webPhases.review, 'pending');
+  await f.put(`step09_outline/${step}/outline.svg`, svg);
+  await f.mark(`step09_outline/${step}`, 'running');
+  assert.equal((await node()).webPhases.review, 'pending', 'copy metadata and an in-flight SVG are insufficient');
+  await rm(join(f.task, `part-layering/step09_outline/${step}/.running`));
+  await f.mark(`step09_outline/${step}`);
+  let value = await node();
+  assert.equal(value.webPhases.review, 'done');
+  assert.match(value.webDetails.review, /父组.*复制.*已跳过/);
+  assert.ok(value.webReviewRounds.every((round: any) => round.review.status === 'skipped' && round.repair.status === 'skipped'));
+  assert.ok(value.webReviewRounds.every((round: any) => /父组.*复制/.test(round.review.detail)));
+  assert.equal(groupSummary(value).status, 'available', 'completion and child analysis still need to finish');
+  await f.put(`step10_reduce/depth02/${id}.svg`, svg);
+  await f.put(`parts/${id}.svg`, svg);
+  await f.put(`step11_completion/${step}/check.json`, { groupId: id, passed: true });
+  for (const path of ['step10_reduce/depth02', `step11_completion/${step}`, `step12_children/${step}`]) await f.mark(path);
+  value = await node();
+  assert.ok(Object.values(value.webPhases).every(status => status === 'done'));
+  assert.equal(groupSummary(value).status, 'done');
+  assert.deepEqual(await readFile(join(f.task, 'part-layering/groups.json')), original);
+  assert.equal((await f.get()).files.some(file => file.endsWith('/review.json')), false);
+  await rm(join(f.task, `part-layering/step09_outline/${step}/outline.svg`));
+  value = await node();
+  assert.equal(value.webPhases.outline, 'failed');
+  assert.equal(value.webPhases.review, 'pending', 'missing copied SVG must not appear reviewed');
 });
 
 for (const section of ['part-layering', 'clothing-part-layering']) test(`${section}: initial and depth requests show running without outputs, and candidates remain previewable`, async t => {
