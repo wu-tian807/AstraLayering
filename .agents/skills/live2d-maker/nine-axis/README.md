@@ -1,13 +1,13 @@
 # 头部九轴
 
-入口：`pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <Krita 可执行文件>`。九轴全部完成前不接入总控流程与工作台阶段，只能这样单独启动；目前只做脸部与双耳：step02 左右转向（ParamAngleX），step04 上下（ParamAngleY，暂停），不含头发，斜向（四角）未做。ParamAngleX / ParamAngleY 处处以度数为值：ParamAngleX −30 / +30（step01 的 left 取向左转头视频中转到 30° 的帧，+30 由 step02 镜像），ParamAngleY +25 抬头 / −25 低头（step03 取镜头上下移动视频中的 25° 帧）。各角度只记在 `knowledge/nine-axis/step01_views/references/angles.json`，由程序用来取视频帧、填进 step02、step04 的提示词；agent 交付的关键形键、`deformers.json` 的参数范围与关键形键都是这些度数，工作台的范围读文档本身。改角度幅度只改这个文件。换成 Cubism 默认 ±30 等范围留给以后的导出层。状态记在各步骤目录的完成标记。
+入口：`pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <Krita 可执行文件>`。九轴全部完成前不接入总控流程与工作台阶段，只能这样单独启动；目前只做脸部与双耳：step02 左右转向（ParamAngleX），step04 上下（ParamAngleY），不含头发，斜向（四角）未做。ParamAngleX / ParamAngleY 处处以度数为值：ParamAngleX −30 / +30（step01 的 left 取向左转头视频中转到 30° 的帧，+30 由 step02 镜像），ParamAngleY +25 抬头 / −25 低头（step03 取镜头上下移动视频中的 25° 帧）。各角度只记在 `knowledge/nine-axis/step01_views/references/angles.json`，由程序用来取视频帧、填进 step02、step04 的提示词；agent 交付的关键形键、`deformers.json` 的参数范围与关键形键都是这些度数，工作台的范围读文档本身。改角度幅度只改这个文件。换成 Cubism 默认 ±30 等范围留给以后的导出层。状态记在各步骤目录的完成标记。
 
 | 步骤 | 输入 | 交付 |
 | --- | --- | --- |
 | `step01_views` | 角色工作台当前的角色图（阴影蒙版完成时为 `shadow/step01_mask/character-shadowed.png`，否则为 `character-assembly/step01/character-assembled.png`），以及 `part-layering/parts/{face,hair,head_accessories}.svg` | `nine-axis/step01_views/upper-body.png`、`crop.json`、`left.png`、`left.mp4`、`frames/`、`views.json` |
 | `step02_angle-x` | 同上的 KRA / PNG 与 `step01_views` 的视角参考 | `nine-axis/step02_angle-x/face-left.json`、`layers/*.png`、`left-check.png`、`deformers.json`、`source.json` |
 | `step03_views-y` | `step01_views` 的 `upper-body.png` | `nine-axis/step03_views-y/up.png`、`down.png`、`up.mp4`、`down.mp4`、`frames/`、`views.json` |
-| `step04_angle-y` | `step02_angle-x` 的 `deformers.json` 与 `layers/`，`step03_views-y` 的 up、down 视角（暂停：工作流跑完 step03 即止） | `nine-axis/step04_angle-y/face-y.json`、`up-check.png`、`down-check.png`、`deformers.json`、`layers/*.png` |
+| `step04_angle-y` | `step02_angle-x` 的 `deformers.json` 与 `layers/`，`step03_views-y` 的 up、down 视角 | `nine-axis/step04_angle-y/face-y.json`、`up-check.png`、`down-check.png`、`deformers.json`、`layers/*.png` |
 
 步骤名后缀说明各步做什么：`views` 生成左右视角参考，`views-y` 生成上下视角参考，`angle-x` 做角度 X（左右），`angle-y` 做角度 Y（上下）。
 
@@ -42,9 +42,9 @@
 
 载入顺序：工作台先按既有规则选出组装或阴影 KRA；若 `source.json` 指向的正是这份 KRA / PNG 且哈希一致，改为载入 `character-nine-axis.kra` 与同名 PNG。来源变化时退回所选 KRA，并标记九轴 KRA 待重做，不混用旧补绘。
 
-## step04_angle-y：脸部＋双耳的上下形变（暂停）
+## step04_angle-y：脸部＋双耳的上下形变
 
-1. agent（与 step02 同用 `nine_axis_head_agent_model`）带着 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step04_angle-y/prompts/脸部与双耳上下.md`。沿用 step02 的图层贴图、网格与绘制顺序，方法同 step02，只把圆柱的转轴换成横轴：父级为横轴圆柱俯仰加 10×10 残差，子级分眉眼、嘴、鼻。抬头（up → +25）与低头（down → −25）分别拟合，不镜像。教程先验以距离关系为主：低头时眉眼距离缩小、嘴变扁、鼻子靠近嘴，抬头相反。双耳都按父级在耳根点的位移随动，不转到脑后。
+1. agent（与 step02 同用 `nine_axis_head_agent_model`）带着 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step04_angle-y/prompts/脸部与双耳上下.md`。沿用 step02 的图层贴图、网格与绘制顺序，目标是让脸型的变形对齐 step03 视频帧里的脸型，方法同 step02：父级为绕横轴转动的球加一层平滑位移，子级分眉眼、嘴、鼻。抬头（up → +25）与低头（down → −25）分别拟合，不镜像。教程先验（`references/tutorial/` 的正面、低头、抬头网格与 3D 模型对照）：头的大小不变、脸变扁；低头时网格中间下弯、头顶一圈饱满、下巴变尖，抬头时下半张脸饱满、下巴变圆润；低头时眉眼距离缩小、嘴变扁、鼻子靠近嘴，抬头相反。双耳都按父级在耳根点的位移随动，不转到脑后。
 2. 只做形变本身：抬头、低头时轮廓线的出现与消失不处理，留给后续步骤统一调整。不补绘、不用透明度。
 3. agent 交付 `face-y.json`（每个 step02 部件的 "25"、"-25" 关键形）与 `up-check.png`、`down-check.png`。程序检查部件与控制点数和 step02 一致，把 `layers/` 复制到本步，写出含 X、Y 两个参数的 `deformers.json`：X 关键形仍在 `keyforms`，Y 关键形在 `keyformsY`（与 X 共用静止形 `keyforms["0"]`）。
 

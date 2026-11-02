@@ -138,8 +138,13 @@ test('step01 生成向左视角，step03 生成上下视角，都统一到上半
   const generate = async (prompt: string) => { prompts.push(prompt); return { id: `v${prompts.length}`, status: { status: 'completed' }, bytes: await readFile(sample) }; };
   let fitted = 0;
   const fitHead = async (directory: string) => { fitted++; await writeFaceLeft(directory); };
-  const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead };
-  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step03_views-y 已完成：抬头 25°、低头 25°/);
+  // The Y fit keeps the step02 rest grid for both keyforms.
+  const fitAngleY = async (directory: string) => {
+    const { parts } = JSON.parse(await readFile(join(directory, '../step02_angle-x/deformers.json'), 'utf8'));
+    await writeFile(join(directory, 'face-y.json'), JSON.stringify({ notes: '', parts: parts.map((p: { id: string; keyforms: Record<string, number[][]> }) => ({ id: p.id, keyforms: { 25: p.keyforms['0'], '-25': p.keyforms['0'] } })) }));
+  };
+  const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead, fitAngleY };
+  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step04_angle-y 已完成：4 个脸部图层的抬头与低头/);
   const step = join(task, 'nine-axis/step01_views'), size = (await sharp(join(step, 'upper-body.png')).metadata()).width;
   const { info } = await sharp(join(step, 'left.png')).raw().toBuffer({ resolveWithObject: true });
   assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
@@ -169,8 +174,8 @@ test('step01 生成向左视角，step03 生成上下视角，都统一到上半
     assert.deepEqual([yInfo.width, yInfo.height, viewY[view].angle, viewY[view].frame.frameIndex], [size, size, 25, 17]);
   }
   assert.equal(viewY.input.path, 'nine-axis/step01_views/upper-body.png');
-  // step04_angle-y is shelved, so the workflow stops after step03.
-  await assert.rejects(access(join(task, 'nine-axis/step04_angle-y')));
+  const angleY = JSON.parse(await readFile(join(task, 'nine-axis/step04_angle-y/deformers.json'), 'utf8'));
+  assert.deepEqual(angleY.parameters.find((q: { id: string }) => q.id === 'ParamAngleY').keys, [-25, 0, 25]);
 });
 
 test('转头视频失败时 step01 不完成', async t => {

@@ -34,7 +34,7 @@ down 镜头匀速升到头顶正上方俯视（脸看起来低下），都在最
 用的生视频接口与 step01 相同。
 ParamAngleX / ParamAngleY 处处以度数为值：各视角的度数只记在 knowledge/nine-axis/step01_views/references/angles.json（默认 left 30、up 25、down 25），
 由程序填进各步提示词，agent 交付与 deformers.json 的关键形键都是这些度数；换成 Cubism ±30 等范围留给导出。只做脸与双耳，不含头发；不补绘。使用 nine_axis_head_agent_model。
-step04_angle-y（暂停，不运行）：上下方向的脸部＋双耳形变。agent 沿用 step02 的图层与网格（脸底 32×32，其余 16×16），分别拟合 step03 的 up 视角（ParamAngleY +25）与
+step04_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step02 的图层与网格（脸底 32×32，其余 16×16），分别拟合 step03 的 up 视角（ParamAngleY +25）与
 down 视角（−25），交付 face-y.json；程序把 Y 关键形并入 step02 的变形器，写出工作台读取的 deformers.json。
 只做形变：轮廓线的出现与消失留给后续步骤。使用 nine_axis_head_agent_model。
 提示词：<knowledge>/nine-axis/step01_views/、step02_angle-x/、step03_views-y/（up 用 prompts/视角视频.md，down 用 prompts/groups/down/视角视频.md）、step04_angle-y/。上游产物重做后其后的步骤随之重做。
@@ -99,8 +99,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const agents = () => new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress });
   const preflight = () => preflightAgentSteps(environment, ['nine_axis_head'], { runsRoot: root, progress, env: environment.codex.env });
   try { await runSection({ directory,
-    // step04_angle-y is shelved for now.
-    steps: [{ number: 1, note: 'views' }, { number: 2, note: 'angle-x' }, { number: 3, note: 'views-y' }],
+    steps: [{ number: 1, note: 'views' }, { number: 2, note: 'angle-x' }, { number: 3, note: 'views-y' }, { number: 4, note: 'angle-y' }],
     dryRun: options.dryRun, signal: options.signal, progress,
     async step(step, status) {
       if (status === 'completed') return undefined;
