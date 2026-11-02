@@ -1,14 +1,12 @@
 import { parseArgs } from 'node:util';
-import { existsSync, readFileSync } from 'node:fs';
-import { copyFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { readFile } from 'node:fs/promises';
-import { agentOutcomeError, formatAgentError, validateAgentOutcome } from '../shared/codex/diagnostics.ts';
+import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { renderKnowledge, selectKnowledge, stepKnowledge } from '../shared/knowledge.ts';
+import { selectKnowledge, stepKnowledge } from '../shared/knowledge.ts';
 import { runSection } from '../shared/step-section.ts';
-import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
+import { loadWorkflowEnvironment, type VideoApi, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { CodexAgents } from '../shared/codex/agents.ts';
 import { preflightAgentSteps } from '../shared/agents/preflight.ts';
 import { prepareWorkspace, workspacePrompt } from '../shared/agents/workspace.ts';
@@ -17,7 +15,7 @@ import { SectionKrita, kritaRecordFile } from '../shared/krita/section-krita.ts'
 import { createKritaTool } from '../shared/krita/tool.ts';
 import { createBitmapTool } from '../shared/part/bitmap-tool.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
-import { produceTurn, resolveTurnInput, turnViews, type Box, type DrawView, type TurnInput, type TurnView } from './turn.ts';
+import { ffmpegPath, generateVideo, produceTurn, resolveTurnInput, turnViews, type Box, type GenerateVideo, type TurnInput, type TurnView } from './turn.ts';
 import { finishHead, resolveHeadInput, type HeadInput } from './head.ts';
 import { finishAngleY } from './angle-y.ts';
 import { angleScale, angleValues } from './angles.ts';
@@ -25,9 +23,9 @@ import { angleScale, angleValues } from './angles.ts';
 export const help = `nine-axis — 头部九轴
 pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> [--dir <绝对运行根目录>] [--dry-run]
 step01_views：从工作台当前的角色图（阴影蒙版交付后为 shadow/step01_mask/character-shadowed.png，否则为组装图）
-按脸、头发、头饰形状截取头顶到肩线的方形头部特写 upper-body.png，再由生图 agent 参照模板角色的正面→姿态，
-画出 ${turnViews.join('、')} 五个视角（右侧由后续步骤镜像脸部形变得到）。
-使用 preparation_agent_model 与 nine_axis_view_image_model（留空继承默认生图模型）。
+按脸、头发、头饰形状截取头顶到肩线的方形正面头部特写 upper-body.png，作为首帧分别交给生视频模型：身体与镜头不动，
+只有头匀速转到侧面（90°），向左、向右各一段；程序按帧序取出转到 angles.json left 度数（默认 30°）的帧 left.png、right.png；不生成 up、down。
+需要 .env 的 layering_video_base_url / layering_video_api_key（留空时用 layering_openai_image_*）、layering_video_model 和 ffmpeg。
 step02_angle-x：left 方向的脸部＋双耳透视形变。agent 在 workspace 里按 pink-doll 的拟合方法自己写脚本，用 krita 工具
 导出脸部图层，拟合出向左（ParamAngleX −30，即 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
 与记录源 KRA/PNG 哈希的 source.json。
@@ -40,27 +38,15 @@ down 视角（−20），交付 face-y.json；程序把 Y 关键形并入 step02
 总入口：pnpm start --name <任务名> --from nine-axis --to nine-axis。
 `;
 
-// The view's motion is a knowledge file of its own, filled into the shared prompt.
-export function viewPrompt(view: TurnView, taskRoot: string): string {
-  const knowledge = stepKnowledge('nine-axis', 'step01_views'), path = join(knowledge.directory, 'prompts/views', `${view}.md`);
-  if (!existsSync(path)) throw new Error(`先验知识缺少视角说明：${path}`);
-  const motion = renderKnowledge(readFileSync(path, 'utf8'), angleValues()).trim();
-  if (!motion) throw new Error(`视角说明为空：${path}`);
-  return knowledge.render('main', { view, motion }, { taskRoot }).trim();
+// One turn prompt for both sides; only the side the face turns to differs.
+export const turnPrompt = (view: TurnView) => stepKnowledge('nine-axis', 'step01_views').render('main', { side: view === 'left' ? '左' : '右' }).trim();
+// Checked before any step starts, so a run without the video service fails at once.
+export function requireVideoApi(environment: Pick<WorkflowEnvironment, 'videoApi'>): VideoApi {
+  if (!environment.videoApi) throw new Error('头部九轴转头视频需要生视频接口：请在 live2d-maker/.env 填写 layering_video_base_url 与 layering_video_api_key（或 layering_openai_image_base_url / api_key）。未配置时 step01 无法运行。');
+  return environment.videoApi;
 }
 
 const outputSchema = { type: 'object', properties: { error: { type: ['string', 'null'] } }, required: ['error'], additionalProperties: false };
-export function createDrawView(agents: Pick<CodexAgents, 'run'>, taskRoot: string): DrawView {
-  return async (view, output) => {
-    const result = await agents.run({ step: 'nine_axis_view', name: `视角参考 ${view}`, imageGeneration: true, outputSchema,
-      prompt: viewPrompt(view, taskRoot) });
-    await validateAgentOutcome(result, async () => {
-      const image = result.images.at(-1);
-      if (!image) throw new Error('imagegen did not produce an image');
-      await copyFile(image.savedPath, output);
-    });
-  };
-}
 
 export function headPrompt(input: HeadInput, taskRoot: string): string {
   return stepKnowledge('nine-axis', 'step02_angle-x').render('main', { document: input.document, color: input.color, ...angleValues() }, { taskRoot }).trim();
@@ -83,15 +69,13 @@ export function createFitHead(agents: Pick<CodexAgents, 'run'>, tools: (step: st
 }
 
 export type NineAxisOptions = { name: string; dir?: string; krita?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
-export type NineAxisDependencies = { environment?: WorkflowEnvironment; draw?: DrawView; fitHead?: FitHead; fitAngleY?: FitHead;
+export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; ffmpeg?: string; fitHead?: FitHead; fitAngleY?: FitHead;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
   const root = resolveRunsDirectory(options.dir), progress = options.progress ?? (() => {});
   const task = taskDirectory(options.name, root), directory = join(task, 'nine-axis');
   const environment = dependencies.environment ?? loadWorkflowEnvironment();
-  const model = environment.stepModels.nine_axis_view, image = environment.stepImages.nine_axis_view ?? 'codex-native';
-  const label = `${model.model}-${model.effort} / ${image}`;
-  for (const view of turnViews) viewPrompt(view, task);
+  const prompts = Object.fromEntries(turnViews.map(view => [view, turnPrompt(view)])) as Record<TurnView, string>;
   const scale = angleScale();
   const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
   const headLabel = `${environment.stepModels.nine_axis_head.model}-${environment.stepModels.nine_axis_head.effort}`;
@@ -130,16 +114,12 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         summary = `nine-axis/step02_angle-x 已完成：${await finishHead(step.directory, head, box, scale)} 个脸部图层的 ${scale.x[0]}° / +${scale.x[1]}° 转向`;
       };
       return async () => {
-        if (options.dryRun) { progress(`预览：从 ${input.color} 截取上半身，用 ${label} 生成 ${turnViews.join('、')} 视角。\n提示词（left）：\n${viewPrompt('left', task)}`); summary = '预览完成，未调用模型'; return; }
-        let draw = dependencies.draw;
-        if (!draw) {
-          const normalization = { runsRoot: root, progress, env: environment.codex.env };
-          await preflightAgentSteps(environment, ['nine_axis_view'], normalization);
-          draw = createDrawView(new CodexAgents({ environment, imageNormalization: normalization, cwd: directory,
-            logDirectory: join(directory, 'agents'), progress }), task);
-        }
-        const box = await produceTurn(step.directory, input, draw, { progress, model: label });
-        summary = `nine-axis/step01_views 已完成：${box.size}×${box.size} 上半身的 ${turnViews.length} 个视角`;
+        const api = dependencies.generate ? undefined : requireVideoApi(environment), model = api?.model ?? 'injected';
+        const generate: GenerateVideo = dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o));
+        if (options.dryRun) { progress(`预览：从 ${input.color} 截取上半身，用 ${model} 生成向左、向右转头视频并取 ${scale.x[1]}° 帧。\n提示词（left）：\n${prompts.left}`); summary = '预览完成，未调用模型'; return; }
+        const ffmpeg = dependencies.ffmpeg ?? await ffmpegPath(environment.codex.env);
+        const box = await produceTurn(step.directory, input, generate, prompts, { signal: options.signal, progress, ffmpeg, model, angle: scale.x[1] });
+        summary = `nine-axis/step01_views 已完成：${box.size}×${box.size} 上半身的向左、向右 ${scale.x[1]}° 视角`;
       };
     } }); } finally { await sectionKrita?.release(); }
   return summary;
