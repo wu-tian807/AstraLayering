@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import sharp from 'sharp';
 import { checkFaceLeft, mirrorKeyform, pairId, stepTexture, type Part } from '../head.ts';
 
 const grid = (x0: number, y0: number, x1: number, y1: number, shift = (x: number, y: number): [number, number] => [x, y]) =>
@@ -15,8 +16,11 @@ const part = (id: string, bbox: [number, number, number, number], shift: (x: num
 // the ears sit under the face, and the far (right) ear turns behind it at −30.
 export async function writeFaceLeft(directory: string) {
   await mkdir(join(directory, 'layers'), { recursive: true });
-  await writeFile(join(directory, 'layers/000.png'), '');
-  const parts = [part('face/face_base', [60, 60, 140, 110], (x, y) => [x - 10, y]), part('face/eye_left', [110, 70, 130, 80], (x, y) => [x - 5, y]),
+  const opaque = (width: number, height: number) => sharp({ create: { width, height, channels: 4, background: '#fff' } }).png();
+  await opaque(1, 1).toFile(join(directory, 'layers/000.png'));
+  await opaque(80, 50).toFile(join(directory, 'layers/001.png'));
+  const base = { ...part('face/face_base', [60, 60, 140, 110], (x, y) => [x - 10, y]), texture: 'layers/001.png', textureBounds: [60, 60, 80, 50] };
+  const parts = [base, part('face/eye_left', [110, 70, 130, 80], (x, y) => [x - 5, y]),
     part('face/ear_right', [50, 70, 60, 90], (x, y) => [x + 14, y]), part('face/ear_left', [140, 70, 150, 90], (x, y) => [x - 6, y])];
   await writeFile(join(directory, 'face-left.json'), JSON.stringify({ axis: 100, notes: '测试', parts }));
 }
