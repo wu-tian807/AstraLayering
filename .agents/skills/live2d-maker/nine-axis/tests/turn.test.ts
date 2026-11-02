@@ -66,9 +66,11 @@ test('阴影蒙版完成时用阴影角色图', async t => {
   assert.equal(input.color, join(shadow, 'character-shadowed.png'));
 });
 
-test('转头提示词向左；生视频接口缺省用 OpenAI 生图代理', async () => {
-  assert.match(turnPrompt(), /转向画面左侧/);
-  assert.doesNotMatch(turnPrompt(), /[{}]/);
+test('视角提示词：left 转头、up 仰视、down 俯视；生视频接口缺省用 OpenAI 生图代理', async () => {
+  assert.match(turnPrompt('left'), /转向画面左侧/);
+  assert.match(turnPrompt('up'), /仰视/);
+  assert.match(turnPrompt('down'), /俯视/);
+  for (const view of ['left', 'up', 'down'] as const) assert.doesNotMatch(turnPrompt(view), /[{}]/);
   assert.equal(loadWorkflowEnvironment({}).videoApi, undefined);
   assert.deepEqual(loadWorkflowEnvironment({ layering_openai_image_base_url: 'https://image.example/v1', layering_openai_image_api_key: 'i' }).videoApi,
     { baseUrl: 'https://image.example/v1', apiKey: 'i', model: 'seedance-2.5' });
@@ -124,11 +126,11 @@ test('按帧序取出转到 30° 的帧（整段匀速转到 90°）', async t =
 test('step02、step03 的提示词以度数写出关键形', () => {
   const x = headPrompt({ document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0], '/task'), y = angleYPrompt('/task');
   assert.match(x, /ParamAngleX = -30/);
-  assert.match(y, /ParamAngleY = 25[\s\S]*ParamAngleY = -20/);
+  assert.match(y, /ParamAngleY = 25[\s\S]*ParamAngleY = -25/);
   for (const prompt of [x, y]) assert.doesNotMatch(prompt, /\{\w+_(angle|degrees)\}/);
 });
 
-test('step01 只生成向左视角并统一到上半身尺寸，完成后沿用', async t => {
+test('step01 生成 left、up、down 视角并统一到上半身尺寸，完成后沿用', async t => {
   const { root, task } = await fixture(t);
   const sample = join(root, 'sample.mp4'), ffmpeg = await testVideo(t, sample);
   if (!ffmpeg) return;
@@ -139,14 +141,17 @@ test('step01 只生成向左视角并统一到上半身尺寸，完成后沿用'
   const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead };
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /4 个脸部图层的 -30° \/ \+30° 转向/);
   const step = join(task, 'nine-axis/step01_views'), size = (await sharp(join(step, 'upper-body.png')).metadata()).width;
-  const { info } = await sharp(join(step, 'left.png')).raw().toBuffer({ resolveWithObject: true });
-  assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
+  for (const view of ['left', 'up', 'down']) {
+    const { info } = await sharp(join(step, `${view}.png`)).raw().toBuffer({ resolveWithObject: true });
+    assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
+  }
   await assert.rejects(access(join(step, 'right.png')));
   const record = JSON.parse(await readFile(join(step, 'views.json'), 'utf8'));
-  assert.equal(record.left.frame.frameIndex, 20);
+  // 61 frames to 90°: left 30° is frame 20, up / down 25° is frame round(60·25/90) = 17.
+  assert.deepEqual([record.left.frame.frameIndex, record.up.frame.frameIndex, record.down.frame.frameIndex], [20, 17, 17]);
   await access(join(step, '.completed'));
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /沿用/);
-  assert.equal(prompts.length, 1);
+  assert.equal(prompts.length, 3);
   assert.equal(fitted, 1);
   const source = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/source.json'), 'utf8'));
   assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
