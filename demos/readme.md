@@ -8,7 +8,6 @@
 | Pink Elf | 70 层人物、32 层衣装，102 个源绘画层组装；人物三步、衣服两步、组装和阴影完整路线 | [完整案例](pink-elf/README.md) · [最终 KRA](pink-elf/shadow/mask/step01/character-shadowed.kra) |
 | Jianma | 90 层人物、69 层衣装、159 个源绘画层合成，单 agent 组装对照 | [完整案例](jianma/README.md) · [组装实跑](jianma/character-assembly/README.md) · [合成 KRA](jianma/assembled/jianma-assembled.kra) |
 | Closed Face | 保留半身闭眼闭嘴构图；49 个源绘画层组装、32 个蒙版、6 处投影，六段管线完整归档 | [完整案例](closed-face-full-20261026/README.md) · [最终 KRA](closed-face-full-20261026/shadow/mask/step01/character-shadowed.kra) |
-| Clothed Man | 短袖短裤男孩；54 层人物、14 层衣装，68 个源绘画层组装、4 条原生投影，六段管线完整归档 | [完整案例](clothed-man-20261028/README.md) · [最终 KRA](clothed-man-20261028/shadow/mask/step01/character-shadowed.kra) |
 
 三组展示统一采用 **原图 + 完整合成图 : 立体爆炸图 = 5:5** 的版式。爆炸图将真实 KRA 绘画层组合为五组，人物保持完整姿态，发束与衣装沿纵深展开，保留组内坐标、比例与绘制顺序。完整分层像素保存在 KRA 与源图层 PNG 中。
 
