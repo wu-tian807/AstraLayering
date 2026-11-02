@@ -1,12 +1,28 @@
-请根据 clothing-raster-layering/step01/review-0{review_round}.md 逐项修复当前 clothing-raster-layering/step01/clothing-depth.kra。
+根据 clothing-raster-layering/step01/review-0{review_round}.md 修复当前的 clothing-raster-layering/step01/clothing-depth.kra。
 
-先阅读反馈和证据，对照 clothing-part-layering/references/ 中本步使用的参考图定位原因。继续当前工程，保留已合格的绘画、补全与配准。需要调整分层时，同步上游分层数据及当前工程，在 clothing-raster-layering/step01/report.md 记录修改依据和结果。
+## 目标
 
-重点修正部件本体的脏污、缺口和组装结构问题（错位、层级、明显画风差异），保持部件完整、组合准确；不追求像素级还原。按 reviewer 的编号框选、局部对照与图层说明定位问题，对照参考修正形体、画风和衔接过渡。允许用原图中本部件的可见区域覆盖来拟合画风，不能把遮挡物或相邻部件贴入本层，也不能用原图遮挡物替代应生成的补全。覆盖区与补绘区、相邻部件之间的颜色和质感接缝须用 Krita 画笔逐处修自然。细微柔边留给第二步，不新增阴影、AO、投影，不用全层模糊或阈值处理代替修画。衣料、纱料透明度和正常开口保持完整，衣服图层不画入人体。
+- review 列出的每个问题都修好。修的过程中自己发现的其他问题也一并修好。
+- 修完后要达到第一步的目标：
+  - 每个衣片独显都连续、完整、干净。
+  - 参考中可见的内容没有缺失或断开。
+  - 衔接处在原尺寸下看不出拼接。
+  - 组装结构合理。
 
-每处修改后检查单层、隐藏上方图层和全部叠加的效果，确认没有引入缺损、错位或接缝。保存 KRA 后重新打开核对图层、顺序和像素，更新用于验收的 PNG及 clothing-raster-layering/step01/report.md。
+## 要保护的
 
-将逐项处理结果、证据与重开检查写入 clothing-raster-layering/step01/repair-0{review_round}.md.tmp。第一行写“结论：已修复”或“结论：仍有问题”；全部反馈处理完成并通过自检才写“已修复”，仍有问题则继续当前返修。
+- 已经合格的绘画、补全和配准。
+- 衣片归属：每层只含本衣片自己的内容。
+- 参考画风：不加阴影、AO、投影。
+- 衣料、纱料透明度和正常开口；衣服图层不画入人体，已拆开的前后衣片不合层。
 
-使用参考覆盖不得改变内容归属。只能使用参考中本部件自己的可见像素，不能为缩小整图差异把其他部件或遮挡物的像素归入当前层，也不能靠错误覆盖掩盖缺口。逐层独显核对归属，隐藏上层核对补全；整图相似不代表分件正确。
+## 结构变更
 
+需要调整分层时，同步修改上游分层数据和当前工程，并在 clothing-raster-layering/step01/report.md 记录依据和结果。
+
+## 交付
+
+1. 每处修改都检查三个视图：单层、隐藏上层、整图。
+2. 保存 KRA，重新打开，核对图层和像素没有变化。
+3. 更新用于验收的 PNG 和 clothing-raster-layering/step01/report.md。
+4. 把逐项处理结果、证据和重开检查写入 clothing-raster-layering/step01/repair-0{review_round}.md.tmp。第一行写“结论：已修复”或“结论：仍有问题”。全部问题都修好并自检通过，才写“已修复”。
