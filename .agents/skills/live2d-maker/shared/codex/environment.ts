@@ -146,7 +146,7 @@ export function parseWorkflowEnvironment(source: string, env: NodeJS.ProcessEnv 
     validateApiUrl(videoUrl, 'layering_video_base_url');
   }
   const video = videoUrl ? { baseUrl: videoUrl, apiKey: videoKey! } : imageApis.openai;
-  if (video) videoApi = { baseUrl: video.baseUrl, apiKey: video.apiKey, model: get('layering_video_model') || requiredDefault(defaults, 'layering_video_model') };
+  if (video) videoApi = { baseUrl: video.baseUrl, apiKey: video.apiKey, model: get('nine_axis_view_video_model') || requiredDefault(defaults, 'nine_axis_view_video_model') };
   const stepImages: WorkflowEnvironment['stepImages'] = {};
   const defaultImage = get(defaultImageModelKey) || get(legacyDefaultImageModelKey);
   const fallbackImage = defaultImage || (imageUrl ? imageModel : imageDefaults.model);

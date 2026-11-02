@@ -25,7 +25,7 @@ pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可�
 step01_views：从工作台当前的角色图（阴影蒙版交付后为 shadow/step01_mask/character-shadowed.png，否则为组装图）
 按脸、头发、头饰形状截取头顶到肩线的方形正面头部特写 upper-body.png，作为首帧分别交给生视频模型：身体与镜头不动，
 只有头匀速向左转到侧面（90°）；程序按帧序取出转到 angles.json left 度数（默认 30°）的一帧 left.png。只做向左，不生成向右与 up、down。
-需要 .env 的 layering_video_base_url / layering_video_api_key（留空时用 layering_openai_image_*）、layering_video_model 和 ffmpeg。
+需要 .env 的 layering_video_base_url / layering_video_api_key（留空时用 layering_openai_image_*）、nine_axis_view_video_model 和 ffmpeg。
 step02_angle-x：left 方向的脸部＋双耳透视形变。agent 在 workspace 里按 pink-doll 的拟合方法自己写脚本，用 krita 工具
 导出脸部图层，拟合出向左（ParamAngleX −30，即 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
 与记录源 KRA/PNG 哈希的 source.json。

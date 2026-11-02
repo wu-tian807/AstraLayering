@@ -18,7 +18,7 @@
 2. 生成一段向左转头视频（只需向左，向右由 step02 镜像）：首帧为 `upper-body.png`，提示词为 `prompts/转头.md`（只转头，表情、身体不动，匀速转到最后一帧的正侧面 90°）。
 3. 用 ffmpeg 取帧：第 `round((帧数−1)×30/90)` 帧即转到 30° 的一帧，缩放到上半身同尺寸后写为 `left.png`；视频存为 `left.mp4`，原始帧在 `frames/`，模型、帧号与各文件哈希写入 `views.json`。
 
-生视频接口为 `layering_video_base_url` / `layering_video_api_key`，留空沿用 OpenAI 生图代理（`layering_openai_image_*`）；模型为 `layering_video_model`（默认 seedance-2.5）。需要 ffmpeg。已完成的 step01 保留；来源角色图重做后如需新视角，删除 `nine-axis/step01_views` 再运行。
+生视频接口为 `layering_video_base_url` / `layering_video_api_key`，留空沿用 OpenAI 生图代理（`layering_openai_image_*`）；模型为 `nine_axis_view_video_model`（默认 seedance-2.5）。需要 ffmpeg。已完成的 step01 保留；来源角色图重做后如需新视角，删除 `nine-axis/step01_views` 再运行。
 
 ## step02_angle-x：left 方向的脸部＋双耳透视形变
 

@@ -73,7 +73,7 @@ test('转头提示词向左；生视频接口缺省用 OpenAI 生图代理', asy
   assert.deepEqual(loadWorkflowEnvironment({ layering_openai_image_base_url: 'https://image.example/v1', layering_openai_image_api_key: 'i' }).videoApi,
     { baseUrl: 'https://image.example/v1', apiKey: 'i', model: 'seedance-2.5' });
   assert.deepEqual(loadWorkflowEnvironment({ layering_openai_image_base_url: 'https://image.example/v1', layering_openai_image_api_key: 'i',
-    layering_video_base_url: 'https://video.example/v1', layering_video_api_key: 'k', layering_video_model: 'm' }).videoApi,
+    layering_video_base_url: 'https://video.example/v1', layering_video_api_key: 'k', nine_axis_view_video_model: 'm' }).videoApi,
     { baseUrl: 'https://video.example/v1', apiKey: 'k', model: 'm' });
   await assert.rejects(ffmpegPath({ PATH: '' }), (error: unknown) => error instanceof MissingDependencyError);
 });
