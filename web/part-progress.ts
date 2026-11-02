@@ -5,7 +5,7 @@ import { readStep, type StepStatus } from '../.agents/skills/live2d-maker/shared
 import { safePath, webFilePath } from './files.ts';
 import { currentAgentCalls, throttled, type AgentCall } from './agent-progress.ts';
 import { partStages } from './part-stages.ts';
-import { partReviewRounds } from './part-review.ts';
+import { partReviewRounds, partReviewSkip } from './part-review.ts';
 
 export const phases = ['outline', 'review', 'reduction', 'completion', 'completionCheck', 'children'] as const;
 type Phase = typeof phases[number];
@@ -35,7 +35,6 @@ export async function partProgress(directory: string, section: string, groups: a
   const visit = (nodes: any[], depth: number) => nodes.forEach(node => { entries.push({ node, depth }); visit(node.groups ?? [], depth + 1); });
   visit(groups, 0);
   const reviewInputs = new Map<any, { report: any; outline: Buffer | undefined }>();
-  const skippedReviews = new Map<any, string>();
   const steps = new Map<string, Promise<StepStatus>>();
   const step = (id: string) => {
     if (!steps.has(id)) steps.set(id, stepStatus(directory, section, id).catch(error => { errors.push(`${section}/${id}: ${String(error)}`); return 'absent' as const; }));
@@ -62,10 +61,8 @@ export async function partProgress(directory: string, section: string, groups: a
     const completed = await read(path('completion'));
     const [prepared, layer, finished, split] = await Promise.all([step(groupStepId(node.id, 'outline')), step(layerStepId(depth)),
       step(groupStepId(node.id, 'completion')), step(groupStepId(node.id, 'children'))]);
-    const skipDetail = node.hiddenInReference === true ? '原图不可见，已跳过描边和轮廓复核'
-      : node.outlineFromParent ? '轮廓由父组完成稿框选复制，已跳过描边和轮廓复核' : '';
-    const skipped = !!skipDetail && prepared === 'completed' && !!outline;
-    if (skipped) skippedReviews.set(node, skipDetail);
+    node.webReviewSkip = partReviewSkip(node, prepared, !!outline);
+    const { skip: skipped, reason: skipDetail } = node.webReviewSkip;
     mark('outline', !!outline && marked(prepared), marked(prepared) && (!!outline || draft('outline')),
       skipped ? skipDetail : outline ? '已落稿' : '草稿 · 未落稿', prepared === 'completed' && !outline ? path('outline') : undefined);
 
@@ -106,11 +103,7 @@ export async function partProgress(directory: string, section: string, groups: a
   const calls = await currentAgentCalls(directory, section, files, errors, activeSince ?? failedSince, !!failedSince);
   for (const { node } of entries) {
     const { report, outline } = reviewInputs.get(node)!;
-    node.webReviewRounds = partReviewRounds(node.id, report, outline, calls, !!activeSince);
-    if (skippedReviews.has(node)) for (const round of node.webReviewRounds) {
-      round.review = { status: 'skipped', detail: skippedReviews.get(node)! };
-      round.repair = { status: 'skipped', detail: '轮廓复核已跳过，无需返修' };
-    }
+    node.webReviewRounds = partReviewRounds(node.id, report, outline, calls, !!activeSince, node.webReviewSkip);
   }
   const latest = new Map<string, { call: AgentCall; phase: Phase; targets: any[] }>();
   for (const call of calls) {
@@ -120,6 +113,7 @@ export async function partProgress(directory: string, section: string, groups: a
       '正面遮挡补全': 'completion', '直属结构拆分': 'children', '同层轮廓去重': 'reduction' } as const)[match[1]]!;
     const targets = entries.filter(({ node, depth }) => phase === 'reduction' ? String(depth) === match[2] : node.id === match[2]).map(entry => entry.node);
     for (const node of targets) {
+      if (node.webReviewSkip.skip && (phase === 'outline' || phase === 'review')) continue;
       const id = `${node.id}:${phase}`;
       latest.set(id, { call, phase, targets: [node] });
     }

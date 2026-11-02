@@ -141,6 +141,8 @@ for (const section of ['part-layering', 'clothing-part-layering']) test(`${secti
   assert.equal(node.webPhases.review, 'done');
   assert.match(node.webDetails.outline, /原图不可见.*已跳过/);
   assert.match(node.webDetails.review, /原图不可见.*已跳过/);
+  assert.equal(node.webReviewSkip.skip, true);
+  assert.equal(node.webReviewSkip.reason, node.webDetails.review);
   assert.deepEqual(node.webReviewRounds.map((round: any) => [round.review.status, round.repair.status]),
     [['skipped', 'skipped'], ['skipped', 'skipped']]);
   assert.ok(node.webReviewRounds.every((round: any) => round.review.reportIndex === undefined && round.repair.reportIndex === undefined));
@@ -180,6 +182,8 @@ test('parent-copied arms finish without review reports and show the completed tr
   let value = await node();
   assert.equal(value.webPhases.review, 'done');
   assert.match(value.webDetails.review, /父组.*复制.*已跳过/);
+  assert.equal(value.webReviewSkip.skip, true);
+  assert.equal(value.webReviewSkip.reason, value.webDetails.review);
   assert.ok(value.webReviewRounds.every((round: any) => round.review.status === 'skipped' && round.repair.status === 'skipped'));
   assert.ok(value.webReviewRounds.every((round: any) => /父组.*复制/.test(round.review.detail)));
   assert.equal(groupSummary(value).status, 'available', 'completion and child analysis still need to finish');
@@ -196,6 +200,28 @@ test('parent-copied arms finish without review reports and show the completed tr
   value = await node();
   assert.equal(value.webPhases.outline, 'failed');
   assert.equal(value.webPhases.review, 'pending', 'missing copied SVG must not appear reviewed');
+});
+
+test('both skip reasons use the same decision when old failed calls are present', async t => {
+  const f = await fixture(t);
+  const run = await configureRun({ name: 'test', dir: f.dir, from: 'part-layering', to: 'part-layering' }, f.task);
+  run.status = 'failed'; run.activeSections = ['part-layering'];
+  run.runner = { id: 'old-runner', pid: process.pid, startedAt: new Date(Date.now() - 1000).toISOString(), finishedAt: new Date().toISOString() };
+  run.sections['part-layering']!.status = 'failed'; await saveRun(f.task, run);
+  for (const flags of [{ hiddenInReference: true }, { outlineFromParent: { x: 0, y: 0, width: 10, height: 10 } }]) {
+    await f.put('groups.json', { groups: [{ id: 'body', ...flags, groups: [] }] });
+    await f.mark('step09_outline/body');
+    await f.put('step09_outline/body/outline.svg', svg);
+    for (const mode of ['组轮廓绘制', '组轮廓review']) {
+      await f.put(`agents/${mode}/request.json`, { task: { name: mode + '-body' } });
+      await f.put(`agents/${mode}/result.json`, { status: 'failed' });
+    }
+    const node = (await f.get()).part.groups[0];
+    assert.equal(node.webReviewSkip.skip, true);
+    assert.equal(node.webPhases.outline, 'done');
+    assert.equal(node.webPhases.review, 'done');
+    assert.ok(node.webReviewRounds.every((round: any) => round.review.status === 'skipped'));
+  }
 });
 
 for (const section of ['part-layering', 'clothing-part-layering']) test(`${section}: initial and depth requests show running without outputs, and candidates remain previewable`, async t => {

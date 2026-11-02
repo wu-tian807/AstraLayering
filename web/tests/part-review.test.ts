@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { partReviewRounds } from '../part-review.ts';
+import { partReviewRounds, partReviewSkip } from '../part-review.ts';
 import { groupArtifacts, groupReviewSteps, groupStagePreviewArtifacts, reviewReportText } from '../progress.js';
 import { svgHash, type Review, type ReviewReport } from '../../.agents/skills/live2d-maker/shared/part/artifact-facts.ts';
 import type { AgentCall } from '../agent-progress.ts';
@@ -16,6 +16,23 @@ const call = (mode: 'review' | 'repair', time: number, finished = false, failed 
 const observe = (reviews: Review[], outline = initial, calls: AgentCall[] = [], active = false) =>
   partReviewRounds('face', { groupId: 'face', reviews }, outline, calls, active);
 const states = (rounds: ReturnType<typeof observe>) => rounds.flatMap(round => [round.review.status, round.repair.status]);
+
+test('one skip decision covers different reasons and requires a completed outline', () => {
+  assert.deepEqual(partReviewSkip({}, 'completed', true), { skip: false, reason: '' });
+  for (const [group, reason] of [[{ hiddenInReference: true }, /原图不可见/],
+    [{ outlineFromParent: { x: 0, y: 0, width: 10, height: 10 } }, /父组.*复制/]] as const) {
+    for (const status of ['absent', 'unmarked', 'running']) assert.equal(partReviewSkip(group, status, true).skip, false);
+    assert.equal(partReviewSkip(group, 'completed', false).skip, false);
+    const decision = partReviewSkip(group, 'completed', true);
+    assert.equal(decision.skip, true);
+    assert.match(decision.reason, reason);
+    const rounds = partReviewRounds('face', undefined, initial,
+      [call('review', 10, true, true), call('repair', 20)], true, decision);
+    assert.deepEqual(states(rounds), ['skipped', 'skipped', 'skipped', 'skipped']);
+    assert.ok(rounds.every(round => round.review.detail === decision.reason));
+    assert.ok(rounds.every(round => round.review.reportIndex === undefined && round.repair.reportIndex === undefined));
+  }
+});
 
 test('a saved review does not hide its active agent; repair and second review follow their own calls', () => {
   assert.deepEqual(states(observe([], initial, [call('review', 10)], true)), ['running', 'pending', 'pending', 'pending']);

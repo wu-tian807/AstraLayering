@@ -2,13 +2,28 @@ import { matchesHash, type ReviewReport } from '../.agents/skills/live2d-maker/s
 import { throttled, type AgentCall } from './agent-progress.ts';
 import type { PartReviewRound, ReviewPhase } from './progress.js';
 
+export type ReviewSkip = { skip: boolean; reason: string };
+
+// Display-only skip decision, shared by phase status and review rounds. A flag
+// alone is insufficient: the skipped step must have published its outline.
+export function partReviewSkip(group: { hiddenInReference?: boolean; outlineFromParent?: unknown },
+  prepared: string, hasOutline: boolean): ReviewSkip {
+  const reason = group.hiddenInReference === true ? '原图不可见，已跳过描边和轮廓复核'
+    : group.outlineFromParent ? '轮廓由父组完成稿框选复制，已跳过描边和轮廓复核' : '';
+  return { skip: !!reason && prepared === 'completed' && hasOutline, reason };
+}
+
 // Read-only observations of the existing two-round review chain. Retries and
 // blocked inspections are not additional quality rounds.
 export function partReviewRounds(groupId: string, report: ReviewReport | undefined, outline: Buffer | undefined,
-  calls: AgentCall[], active: boolean): PartReviewRound[] {
+  calls: AgentCall[], active: boolean, skip: ReviewSkip = { skip: false, reason: '' }): PartReviewRound[] {
   const rounds: PartReviewRound[] = [1, 2].map(round => ({ round,
     review: { status: 'pending', detail: '等待轮廓复核' },
     repair: { status: 'pending', detail: '等待本轮复核意见' },
+  }));
+  if (skip.skip) return rounds.map(round => ({ ...round,
+    review: { status: 'skipped', detail: skip.reason },
+    repair: { status: 'skipped', detail: '轮廓复核已跳过，无需返修' },
   }));
   const reviews = report?.groupId === groupId && Array.isArray(report.reviews)
     ? report.reviews.flatMap((review, index) => review && ['pass', 'revise', 'blocked'].includes(review.verdict)
