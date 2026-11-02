@@ -18,6 +18,7 @@ import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { ffmpegPath, generateVideo, produceTurn, produceViewsY, resolveTurnInput, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput } from './turn.ts';
 import { finishHead, resolveHeadInput, type HeadInput } from './head.ts';
 import { finishAngleY } from './angle-y.ts';
+import { cornerAngleValues, createCornerTool, finishAngleXY, writeLinearCorners } from './angle-xy.ts';
 import { angleScale, angleValues } from './angles.ts';
 
 export const help = `nine-axis — 头部九轴
@@ -37,7 +38,10 @@ ParamAngleX / ParamAngleY 处处以度数为值：各视角的度数只记在 kn
 step04_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step02 的图层与网格（脸底 32×32，其余 16×16），分别拟合 step03 的 up 视角（ParamAngleY +25）与
 down 视角（−25），交付 face-y.json；程序把 Y 关键形并入 step02 的变形器，写出工作台读取的 deformers.json。
 只做形变：轮廓线的出现与消失留给后续步骤。使用 nine_axis_head_agent_model。
-提示词：<knowledge>/nine-axis/step01_views/、step02_angle-x/、step03_views-y/（up 用 prompts/视角视频.md，down 用 prompts/groups/down/视角视频.md）、step04_angle-y/。上游产物重做后其后的步骤随之重做。
+step05_angle-xy：斜向（四角）的脸部＋双耳形变。程序把 step02 的向左与 step04 的抬头、低头线性叠加，写成左上（X −30, Y +25）、左下（X −30, Y −25）的起始形 linear.json；
+agent 照提示词里的教程要点手动斜切，交付 face-xy.json。需要时 agent 调用 corner_view 工具：以 step03 的 up.png（左上）或 down.png（左下）为首帧，用 step01 的转头提示词
+生成向左转头视频，取向左度数的一帧作斜向参考（与 step01 相同的生视频接口和 ffmpeg）。程序按左右配对镜像出右上、右下，写出工作台读取的 deformers.json；工作台在 3×3 关键形之间双线性插值。
+提示词：<knowledge>/nine-axis/step01_views/、step02_angle-x/、step03_views-y/（up 用 prompts/视角视频.md，down 用 prompts/groups/down/视角视频.md）、step04_angle-y/、step05_angle-xy/。上游产物重做后其后的步骤随之重做。
 总入口：pnpm start --name <任务名> --from nine-axis --to nine-axis。
 `;
 
@@ -56,6 +60,7 @@ export function headPrompt(input: HeadInput, taskRoot: string): string {
 // up uses the step file; down replaces it through its group.
 export const viewYPrompt = (view: ViewY) => stepKnowledge('nine-axis', 'step03_views-y').render('main', {}, view === 'up' ? {} : { group: view }).trim();
 export const angleYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step04_angle-y').render('main', angleValues(), { taskRoot }).trim();
+export const angleXYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step05_angle-xy').render('main', { ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
 
 // The face agents write their own fitting scripts in the section workspace,
 // which step02 and step04 share; the step's knowledge picks their tools (Krita
@@ -73,7 +78,7 @@ export function createFitHead(agents: Pick<CodexAgents, 'run'>, tools: (step: st
 }
 
 export type NineAxisOptions = { name: string; dir?: string; krita?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
-export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; ffmpeg?: string; fitHead?: FitHead; fitAngleY?: FitHead;
+export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; ffmpeg?: string; fitHead?: FitHead; fitAngleY?: FitHead; fitAngleXY?: FitHead;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
   const root = resolveRunsDirectory(options.dir), progress = options.progress ?? (() => {});
@@ -84,9 +89,16 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
   const headLabel = `${environment.stepModels.nine_axis_head.model}-${environment.stepModels.nine_axis_head.effort}`;
   let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined;
+  // The video steps and step05's corner tool use the same video service.
+  const video = () => {
+    const api = dependencies.generate ? undefined : requireVideoApi(environment);
+    return { model: api?.model ?? 'injected', generate: dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o)) as GenerateVideo };
+  };
   // Krita is only needed by step02's agent, so only a run that reaches it asks for one.
   const faceTools = async (stepId: string): Promise<FunctionTool[]> => {
     const bitmap = createBitmapTool(directory, join(directory, stepId, 'observations'));
+    if (stepId === 'step05_angle-xy') return [bitmap, createCornerTool(join(directory, stepId), join(directory, 'step03_views-y'), prompt, scale.x[1],
+      async () => ({ generate: video().generate, ffmpeg: dependencies.ffmpeg ?? await ffmpegPath(environment.codex.env) }), progress)];
     if (stepId !== 'step02_angle-x') return [bitmap];
     if (!sectionKrita) {
       if (!options.krita?.trim()) throw new Error('step02_angle-x 需要 --krita <已安装的 Krita 可执行文件路径>。');
@@ -99,15 +111,10 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const agents = () => new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress });
   const preflight = () => preflightAgentSteps(environment, ['nine_axis_head'], { runsRoot: root, progress, env: environment.codex.env });
   try { await runSection({ directory,
-    steps: [{ number: 1, note: 'views' }, { number: 2, note: 'angle-x' }, { number: 3, note: 'views-y' }, { number: 4, note: 'angle-y' }],
+    steps: [{ number: 1, note: 'views' }, { number: 2, note: 'angle-x' }, { number: 3, note: 'views-y' }, { number: 4, note: 'angle-y' }, { number: 5, note: 'angle-xy' }],
     dryRun: options.dryRun, signal: options.signal, progress,
     async step(step, status) {
       if (status === 'completed') return undefined;
-      // Both video steps use the same video service.
-      const video = () => {
-        const api = dependencies.generate ? undefined : requireVideoApi(environment);
-        return { model: api?.model ?? 'injected', generate: dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o)) as GenerateVideo };
-      };
       if (step.id === 'step03_views-y') return async () => {
         const { model, generate } = video();
         const views = viewsY.map(view => ({ view, prompt: viewYPrompt(view), angle: view === 'up' ? scale.y[1] : -scale.y[0] }));
@@ -121,6 +128,14 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         const fit = dependencies.fitAngleY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳上下'));
         await fit(step.directory, angleYPrompt(task));
         summary = `nine-axis/step04_angle-y 已完成：${await finishAngleY(step.directory, join(directory, 'step02_angle-x'), scale)} 个脸部图层的抬头与低头`;
+      };
+      if (step.id === 'step05_angle-xy') return async () => {
+        if (options.dryRun) { progress(`预览：用 ${headLabel} 从线性叠加起手斜切脸部四角，需要时用 ${video().model} 生成斜向参考帧。\n提示词：\n${angleXYPrompt(task)}`); summary = '预览完成，未调用模型'; return; }
+        const angleY = join(directory, 'step04_angle-y');
+        await writeLinearCorners(step.directory, angleY, scale);
+        const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向'));
+        await fit(step.directory, angleXYPrompt(task));
+        summary = `nine-axis/step05_angle-xy 已完成：${await finishAngleXY(step.directory, angleY, scale)} 个脸部图层的斜向四角`;
       };
       if (step.id === 'step02_angle-x') return async () => {
         const head = await resolveHeadInput(input);
