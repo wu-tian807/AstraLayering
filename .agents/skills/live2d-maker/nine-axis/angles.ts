@@ -1,23 +1,33 @@
 import { readFileSync } from 'node:fs';
 import { stepKnowledge } from '../shared/knowledge.ts';
 
-// The face agents deliver their boundary keyforms as "-30" / "30"; the angles
-// those stand for are fixed by the step01 views (left about 45°, up about 25°,
-// down about 20°) and kept in knowledge/nine-axis/step01_views/references/
-// angles.json. After the agents, the program writes deformers.json in those
-// degrees, so the workbench's scale comes from the document itself.
+// ParamAngleX / ParamAngleY are in degrees everywhere: the step01 views, the
+// agents' prompts and deliveries, and deformers.json. The degrees of each view
+// (left about 45°, up about 25°, down about 20°) live only in knowledge/
+// nine-axis/step01_views/references/angles.json and are filled into the
+// prompts; mapping to another range (e.g. Cubism ±30) belongs to an exporter.
 export type AngleScale = { x: [number, number]; y: [number, number] };
 
 export function angleScale(): AngleScale {
   const path = stepKnowledge('nine-axis', 'step01_views').reference('angles.json');
-  let raw: Record<string, Record<string, unknown>>;
-  try { raw = JSON.parse(readFileSync(path, 'utf8')); } catch (error) { throw new Error(`先验知识缺少角度刻度：${path}`, { cause: error }); }
-  const pair = (id: string): [number, number] => {
-    const low = raw?.[id]?.['-30'], high = raw?.[id]?.['30'];
-    if (typeof low !== 'number' || typeof high !== 'number' || !(low < 0 && high > 0)) throw new Error(`${path}：${id} 须为 {"-30": 负度数, "30": 正度数}`);
-    return [low, high];
+  let raw: Record<string, unknown>;
+  try { raw = JSON.parse(readFileSync(path, 'utf8')); } catch (error) { throw new Error(`先验知识缺少角度：${path}`, { cause: error }); }
+  const degrees = (view: string): number => {
+    const value = raw?.[view];
+    if (typeof value !== 'number' || !(value > 0)) throw new Error(`${path}：${view} 须为该视角的正度数`);
+    return value;
   };
-  return { x: pair('ParamAngleX'), y: pair('ParamAngleY') };
+  const left = degrees('left');
+  return { x: [-left, left], y: [-degrees('down'), degrees('up')] };
 }
+
+// Keyform keys are the parameter values written as JSON keys ("-45", "45").
+export const angleKey = (value: number) => String(value);
+
+// What the prompts are filled with: parameter values (keys) and view magnitudes.
+export const angleValues = ({ x, y }: AngleScale = angleScale()) => ({
+  left_angle: angleKey(x[0]), right_angle: angleKey(x[1]), down_angle: angleKey(y[0]), up_angle: angleKey(y[1]),
+  left_degrees: String(x[1]), up_degrees: String(y[1]), down_degrees: String(-y[0]),
+});
 
 export const angleParameter = (id: string, name: string, [min, max]: [number, number]) => ({ id, name, min, max, default: 0, keys: [min, 0, max] });

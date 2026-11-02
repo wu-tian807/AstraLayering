@@ -3,14 +3,14 @@ import { access, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, relative, sep } from 'node:path';
 import sharp from 'sharp';
 import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
-import { angleParameter, angleScale, type AngleScale } from './angles.ts';
+import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { fileHash, type Box, type TurnInput } from './turn.ts';
 
 // step02_angle-x: the agent fits the face to the left view and delivers the
-// ParamAngleX −30 warps (face-left.json + layers/). The +30 side is the mirror
-// image: each part takes its left/right pair's −30 field reflected about the
-// face axis. The program then writes deformers.json (keys in degrees, see
-// angles.ts) and source.json.
+// ParamAngleX left keyform (−45 by default, degrees, see angles.ts) as
+// face-left.json + layers/. The right side is the mirror image: each part takes
+// its left/right pair's left field reflected about the face axis. The program
+// then writes deformers.json and source.json.
 export const headOutputs = ['face-left.json', 'deformers.json', 'source.json'] as const;
 export type HeadInput = TurnInput & { document: string };
 
@@ -25,7 +25,7 @@ export type Part = { id: string; group: string; texture: string; textureBounds: 
   cols: number; rows: number; keyforms: Record<string, Point[]> };
 export type FaceLeft = { axis: number; notes?: string; parts: Part[] };
 
-export function checkFaceLeft(value: unknown, canvas: [number, number]): FaceLeft {
+export function checkFaceLeft(value: unknown, canvas: [number, number], left: string): FaceLeft {
   const face = value as FaceLeft;
   if (!face || typeof face !== 'object' || !Number.isFinite(face.axis) || face.axis <= 0 || face.axis >= canvas[0]) throw new Error('face-left.json：axis 须为画布内的脸部中轴列');
   if (!Array.isArray(face.parts) || !face.parts.length) throw new Error('face-left.json：没有部件');
@@ -39,7 +39,7 @@ export function checkFaceLeft(value: unknown, canvas: [number, number]): FaceLef
     if (!Array.isArray(p.bbox) || p.bbox.length !== 4 || !p.bbox.every(Number.isFinite) || !(p.bbox[2] > p.bbox[0] && p.bbox[3] > p.bbox[1])) throw new Error(`${p.id}：bbox 无效`);
     if (!Number.isInteger(p.cols) || !Number.isInteger(p.rows) || p.cols < 1 || p.rows < 1) throw new Error(`${p.id}：网格尺寸无效`);
     const count = (p.cols + 1) * (p.rows + 1);
-    for (const key of ['0', '-30']) {
+    for (const key of ['0', left]) {
       const points = p.keyforms?.[key];
       if (!Array.isArray(points) || points.length !== count || points.some(q => !Array.isArray(q) || q.length !== 2 || !q.every(Number.isFinite))) {
         throw new Error(`${p.id}：关键形 ${key} 需要 ${count} 个控制点`);
@@ -72,7 +72,7 @@ const isEar = (id: string) => /(^|[/_])ear(?=$|[/_])/.test(id);
 // The other side's layer: left and right swapped as whole words of the id.
 export const pairId = (id: string) => id.replace(/(^|[/_])(left|right)(?=$|[/_])/g, (_, lead, side) => lead + (side === 'left' ? 'right' : 'left'));
 
-// A part's −30 position of a canvas point: bilinear in its control lattice;
+// A part's keyform position of a canvas point: bilinear in its control lattice;
 // outside the lattice the nearest edge's displacement carries on.
 export function warpPoint(part: Part, key: string, x: number, y: number): Point {
   const [x0, y0, x1, y1] = part.bbox, { cols, rows } = part, points = part.keyforms[key];
@@ -84,10 +84,10 @@ export function warpPoint(part: Part, key: string, x: number, y: number): Point 
   return [at(0) + x - restX, at(1) + y - restY];
 }
 
-// +30 of a part = its pair's −30, reflected about the face axis.
-export function mirrorKeyform(part: Part, pair: Part, axis: number): Point[] {
+// The right keyform of a part = its pair's left keyform, reflected about the face axis.
+export function mirrorKeyform(part: Part, pair: Part, axis: number, left: string): Point[] {
   return part.keyforms['0'].map(([x, y]) => {
-    const [mx, my] = warpPoint(pair, '-30', 2 * axis - x, y);
+    const [mx, my] = warpPoint(pair, left, 2 * axis - x, y);
     return [round(2 * axis - mx), round(my)];
   });
 }
@@ -105,14 +105,14 @@ export async function finishHead(directory: string, input: HeadInput, box: Box, 
   let raw: unknown;
   try { raw = JSON.parse(await readFile(join(directory, 'face-left.json'), 'utf8')); }
   catch (error) { throw new Error('agent 未交付可读的 face-left.json', { cause: error }); }
-  const face = checkFaceLeft(raw, [width, height]);
+  const left = angleKey(scale.x[0]), face = checkFaceLeft(raw, [width, height], left);
   for (const p of face.parts) p.texture = stepTexture(directory, task, p.id, p.texture);
   for (const p of face.parts) await access(join(directory, p.texture)).catch(error => { throw new Error(`${p.id}：缺少贴图 ${p.texture}`, { cause: error }); });
   const byId = new Map(face.parts.map(p => [p.id, p])), pair = (p: Part) => byId.get(pairId(p.id)) ?? p;
   // face-left.json lists parts top to bottom (KRA order); deformers.json lists
   // them in drawing order, bottom first, as the workbench renders them.
   const parts = face.parts.toReversed().map(p => ({ id: p.id, level: 'face', group: p.group, texture: p.texture, textureBounds: p.textureBounds, bbox: p.bbox,
-    cols: p.cols, rows: p.rows, keyforms: { [scale.x[0]]: p.keyforms['-30'], '0': p.keyforms['0'], [scale.x[1]]: mirrorKeyform(p, pair(p), face.axis) } }));
+    cols: p.cols, rows: p.rows, keyforms: { [left]: p.keyforms[left], '0': p.keyforms['0'], [angleKey(scale.x[1])]: mirrorKeyform(p, pair(p), face.axis, left) } }));
   const [kraHash, colorHash] = await Promise.all([fileHash(input.document), fileHash(input.color)]);
   const document = toTaskPath(task, input.document), color = toTaskPath(task, input.color);
   await atomic(join(directory, 'deformers.json'), JSON.stringify({ version: 1, kind: 'head-nine-axis', canvas: [width, height],

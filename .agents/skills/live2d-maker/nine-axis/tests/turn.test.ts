@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { cropUpperBody, resolveTurnInput, upperBodyBox, turnViews } from '../turn.ts';
-import { runWorkflow, viewPrompt } from '../run.ts';
+import { angleYPrompt, headPrompt, runWorkflow, viewPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { writeFaceY } from './angle-y.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
@@ -69,9 +69,17 @@ test('每个视角的提示词带入动作与三张参考图', () => {
     const prompt = viewPrompt(view, '/task');
     assert.match(prompt, /\/task\/nine-axis\/step01_views\/upper-body\.png/);
     assert.match(prompt, new RegExp(`pink-doll/front\\.png[\\s\\S]*pink-doll/${view}\\.png`));
-    assert.doesNotMatch(prompt, /\{(view|motion)\}/);
+    assert.doesNotMatch(prompt, /\{(view|motion|\w+_degrees)\}/);
   }
-  assert.match(viewPrompt('up', '/task'), /抬头/);
+  assert.match(viewPrompt('up', '/task'), /抬头约 25°/);
+  assert.match(viewPrompt('left', '/task'), /转约 45°/);
+});
+
+test('step02、step03 的提示词以度数写出关键形', () => {
+  const x = headPrompt({ document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0], '/task'), y = angleYPrompt('/task');
+  assert.match(x, /ParamAngleX = -45/);
+  assert.match(y, /ParamAngleY = 25[\s\S]*ParamAngleY = -20/);
+  for (const prompt of [x, y]) assert.doesNotMatch(prompt, /\{\w+_(angle|degrees)\}|[−-]30\b|±30/);
 });
 
 test('step01 生成五个视角并统一到上半身尺寸，完成后沿用', async t => {
@@ -102,7 +110,7 @@ test('step01 生成五个视角并统一到上半身尺寸，完成后沿用', a
   assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
   assert.equal(source.sourceKraHash.length, 64);
   // The far ear's turn mirrors with the pair: turning right, the left ear goes behind like the right ear turning left.
-  // The agent's −30 / +30 are written in degrees from knowledge angles.json (left view 45°).
+  // Keyform keys are the degrees from knowledge angles.json (left view 45°).
   const { parts, parameters } = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/deformers.json'), 'utf8'));
   assert.deepEqual(parameters.find((q: { id: string }) => q.id === 'ParamAngleX').keys, [-45, 0, 45]);
   // face-left.json is top to bottom; deformers.json is drawing order, bottom first.
