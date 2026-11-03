@@ -95,7 +95,7 @@ pnpm web
 每次检查：
 
 1. 运行 `--status --json`，结合 `run.json`、`workflow.log`、当前报告和错误判断阶段；独立 section 无总控时沿用独立进程和事实记录。
-2. 核对实际进程身份、子进程和日志；固定沉默时长、`.running` 或仅 PID 存活均不足以认定卡死。正常或自动退避中的任务不重复启动。`<section>/krita.json` 的 `state: waiting` 表示在排队等本机 Krita 名额（`layering_krita_max_instances`，默认 4），不是卡死；`krita: false` 的步骤不占名额。
+2. 核对实际进程身份、子进程和日志；固定沉默时长、`.running` 或仅 PID 存活均不足以认定卡死。正常或自动退避中的任务不重复启动。`<section>/krita.json` 的 `state: waiting` 表示在排队等本机 Krita 名额（`krita_max_instances`，默认 4），不是卡死；`krita: false` 的步骤不占名额。
 3. 失败时检查最后消息、会话与已保存产物，修复可恢复的环境／输入问题后以原入口、范围、name、dir 续跑。不能只记录故障后等待。按情况选择：原会话可继续用 `--continue`（默认）；会话损坏但产物可用用 `--resume`；产物本身不合格才用 `--retry`。
 4. 追加发现、动作与结果到 `monitor.md`；只在有实质变化、故障、完成或需用户操作时通知，正常无变化保持安静。另检查网页仍连接同一任务。
 5. 完成时核对文件并交付，取消时核实身份后停止本任务及子进程；关闭本任务定时检查，保留产物和共享工作台。

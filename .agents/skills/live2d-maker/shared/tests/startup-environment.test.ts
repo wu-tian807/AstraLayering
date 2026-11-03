@@ -37,8 +37,8 @@ import {appendFileSync} from 'node:fs';
 if(process.argv.slice(2).join(' ')!=='--version')process.exit(9);
 appendFileSync(${JSON.stringify(calls)},JSON.stringify({args:process.argv.slice(2),path:process.env.PATH})+'\\n');
 console.log('fixture CLI 1.2.3');\n`, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ PATH: '', layering_codex_path: executable, layering_claude_path: executable,
-    layering_agv_path: executable }, root);
+  const settings = loadWorkflowEnvironment({ PATH: '', codex_path: executable, claude_path: executable,
+    agv_path: executable }, root);
   for (const harness of ['codex', 'claude', 'agv'] as const) assert.equal(await checkAgentCli(settings, harness), 'fixture CLI 1.2.3');
   const records = (await readFile(calls, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
   assert.equal(records.length, 3);
@@ -48,7 +48,7 @@ console.log('fixture CLI 1.2.3');\n`, { mode: 0o700 });
 test('preflight checks only selected harnesses once, and reports missing interpreters before drawing', { skip: process.platform === 'win32' }, async t => {
   const root = await fixture(t), executable = join(root, 'claude'), calls = join(root, 'calls');
   await writeFile(executable, `#!${process.execPath}\nrequire('node:fs').appendFileSync(${JSON.stringify(calls)},'version\\n');console.log('1.2.3');\n`, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ PATH: '', layering_claude_path: executable, layering_agv_path: join(root, 'absent-agv'),
+  const settings = loadWorkflowEnvironment({ PATH: '', claude_path: executable, agv_path: join(root, 'absent-agv'),
     part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
   await preflightAgentSteps(settings, ['part_outline_review', 'clothing_outline_review']);
   assert.equal(await readFile(calls, 'utf8'), 'version\n');

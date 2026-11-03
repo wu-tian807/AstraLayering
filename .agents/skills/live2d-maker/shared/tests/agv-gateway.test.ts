@@ -87,7 +87,7 @@ test('gateway records actual request size/images and configured compatibility wi
   upstream.listen(0, '127.0.0.1'); await once(upstream, 'listening');
   t.after(() => { upstream.closeAllConnections(); upstream.close(); });
   const env = { AGY_LLM_GATEWAY_URL: `http://127.0.0.1:${(upstream.address() as { port: number }).port}/v1beta`,
-    AGY_LLM_GATEWAY_WIRE_PROTOCOL: 'genai', layering_agv_minimal_thinking_level: 'LOW' };
+    AGY_LLM_GATEWAY_WIRE_PROTOCOL: 'genai', agv_minimal_thinking_level: 'LOW' };
   const events: any[] = [];
   const gateway = await genaiGateway(env, [], root, new AbortController().signal, async event => { events.push(event); });
   assert.ok(gateway); t.after(() => gateway.close());
@@ -103,8 +103,8 @@ test('gateway records actual request size/images and configured compatibility wi
   assert.equal(prepared.inputImages, 1); assert.equal(prepared.requestBytes, Buffer.byteLength(JSON.stringify(received)));
   assert.equal(prepared.requestedThinkingLevel, 'MINIMAL'); assert.equal(prepared.thinkingLevel, 'LOW');
   assert.doesNotMatch(JSON.stringify(events), /private-key|private prompt|private-image/);
-  await assert.rejects(genaiGateway({ ...env, layering_agv_minimal_thinking_level: 'UNKNOWN' }, [], root,
-    new AbortController().signal), /layering_agv_minimal_thinking_level/);
+  await assert.rejects(genaiGateway({ ...env, agv_minimal_thinking_level: 'UNKNOWN' }, [], root,
+    new AbortController().signal), /agv_minimal_thinking_level/);
 });
 
 test('AGV gateway keeps HTTP failures and broken streams visible after flushing headers', async t => {

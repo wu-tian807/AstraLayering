@@ -15,7 +15,7 @@ import { processAlive, taskStatus } from '../state.ts';
 import { fakePatchedCodex, patchedCodexCapabilities } from '../../shared/tests/fake-codex.ts';
 
 // Real background workers inherit this and pass the Codex startup check without a build.
-process.env.layering_codex_path = await fakePatchedCodex();
+process.env.codex_path = await fakePatchedCodex();
 
 const cli = fileURLToPath(new URL('../run.ts', import.meta.url));
 async function fixture(t: TestContext, slow = false) {
@@ -39,9 +39,9 @@ async function fixture(t: TestContext, slow = false) {
       + 'else if (!fs.existsSync(' + JSON.stringify(seen) + ')) { fs.writeFileSync(' + JSON.stringify(seen) + ', ""); '
       + 'console.log(' + JSON.stringify(JSON.stringify(patchedCodexCapabilities)) + '); }\n'
       + 'else { fs.writeFileSync(' + JSON.stringify(join(task, 'probe.pid')) + ', String(process.pid)); setTimeout(() => {}, 60000); }\n', { mode: 0o755 });
-    const previous = process.env.layering_codex_path;
-    process.env.layering_codex_path = codex;
-    t.after(() => { process.env.layering_codex_path = previous; });
+    const previous = process.env.codex_path;
+    process.env.codex_path = codex;
+    t.after(() => { process.env.codex_path = previous; });
   }
   const output = join(task, 'character-assembly');
   await mkdir(output, { recursive: true });

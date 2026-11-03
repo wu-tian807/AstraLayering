@@ -25,9 +25,9 @@ test('blank uniform connections preserve native login, cloud routing and code de
   const shell = { CODEX_HOME: '/existing/codex', ANTHROPIC_AUTH_TOKEN: 'TOKEN_FIXTURE', CLAUDE_CODE_USE_BEDROCK: '1' };
   const template = await readFile(new URL('../../example.env', import.meta.url), 'utf8');
   const variables = parseEnv(template);
-  for (const key of ['layering_codex_protocol', 'layering_claude_protocol', 'layering_openai_image_protocol']) assert.ok(!Object.hasOwn(variables, key));
-  assert.ok(Object.hasOwn(variables, 'layering_agv_protocol'));
-  assert.ok(Object.hasOwn(variables, 'layering_google_image_protocol'));
+  for (const key of ['codex_protocol', 'claude_protocol', 'openai_image_protocol']) assert.ok(!Object.hasOwn(variables, key));
+  assert.ok(Object.hasOwn(variables, 'agv_protocol'));
+  assert.ok(Object.hasOwn(variables, 'google_image_protocol'));
   await writeFile(join(root, '.env'), template);
   const settings = loadWorkflowEnvironment(shell, root);
   assert.deepEqual(settings.codex.config, {});
@@ -46,33 +46,33 @@ test('blank uniform connections preserve native login, cloud routing and code de
 test('uniform fields map to each CLI without modifying the caller or embedding keys in Codex config', async t => {
   const root = await fixture(t);
   const shell = {
-    layering_codex_api_key: 'CODEX_SECRET', layering_codex_base_url: 'https://codex.test/v1',
-    layering_codex_models: 'gpt-6.1-sol, gpt-6-astra,gpt-6.1-sol',
-    layering_claude_api_key: 'CLAUDE_SECRET', layering_claude_base_url: 'https://claude.test',
-    layering_claude_models: 'claude-sonnet-5-5,claude-opus-5-5',
-    layering_agv_api_key: 'AGV_SECRET', layering_agv_base_url: 'https://agv.test/v1beta',
-    layering_agv_models: 'gemini-4-argon,gemini-3-flash-preview', layering_agv_protocol: 'genai',
+    codex_api_key: 'CODEX_SECRET', codex_base_url: 'https://codex.test/v1',
+    codex_models: 'gpt-6.1-sol, gpt-6-astra,gpt-6.1-sol',
+    claude_api_key: 'CLAUDE_SECRET', claude_base_url: 'https://claude.test',
+    claude_models: 'claude-sonnet-5-5,claude-opus-5-5',
+    agv_api_key: 'AGV_SECRET', agv_base_url: 'https://agv.test/v1beta',
+    agv_models: 'gemini-4-argon,gemini-3-flash-preview', agv_protocol: 'genai',
     ANTHROPIC_AUTH_TOKEN: 'INHERITED_TOKEN',
   };
   const before = { ...shell }, hostToken = process.env.ANTHROPIC_AUTH_TOKEN;
   const settings = loadWorkflowEnvironment(shell, root), env = settings.codex.env!;
   assert.deepEqual(settings.providers!.codex.models, ['gpt-6.1-sol', 'gpt-6-astra']);
-  assert.equal(settings.codex.config!.model_provider, 'layering_custom');
+  assert.equal(settings.codex.config!.model_provider, 'custom');
   assert.equal(settings.providers!.codex.protocol, 'responses');
   assert.equal(settings.providers!.claude.protocol, 'anthropic');
-  assert.equal((settings.codex.config!.model_providers as any).layering_custom.env_key, 'layering_codex_api_key');
-  assert.equal(env.layering_codex_api_key, shell.layering_codex_api_key);
-  assert.equal(env.ANTHROPIC_API_KEY, shell.layering_claude_api_key);
-  assert.equal(env.ANTHROPIC_BASE_URL, shell.layering_claude_base_url);
+  assert.equal((settings.codex.config!.model_providers as any).custom.env_key, 'codex_api_key');
+  assert.equal(env.codex_api_key, shell.codex_api_key);
+  assert.equal(env.ANTHROPIC_API_KEY, shell.claude_api_key);
+  assert.equal(env.ANTHROPIC_BASE_URL, shell.claude_base_url);
   assert.equal(env.ANTHROPIC_AUTH_TOKEN, undefined);
-  assert.equal(env.AGY_LLM_GATEWAY_API_KEY, shell.layering_agv_api_key);
-  assert.equal(env.AGY_LLM_GATEWAY_URL, shell.layering_agv_base_url);
-  assert.equal(env.AGY_LLM_GATEWAY_MODELS, shell.layering_agv_models);
+  assert.equal(env.AGY_LLM_GATEWAY_API_KEY, shell.agv_api_key);
+  assert.equal(env.AGY_LLM_GATEWAY_URL, shell.agv_base_url);
+  assert.equal(env.AGY_LLM_GATEWAY_MODELS, shell.agv_models);
   assert.equal(env.AGY_LLM_GATEWAY_WIRE_PROTOCOL, 'genai');
   assert.doesNotMatch(JSON.stringify(settings.codex.config), /SECRET|TOKEN/);
   assert.deepEqual(shell, before);
   assert.equal(process.env.ANTHROPIC_AUTH_TOKEN, hostToken);
-  const official = loadWorkflowEnvironment({ layering_codex_api_key: 'fixture', layering_claude_api_key: 'fixture' }, root);
+  const official = loadWorkflowEnvironment({ codex_api_key: 'fixture', claude_api_key: 'fixture' }, root);
   assert.equal(official.providers!.codex.baseUrl, 'https://api.openai.com/v1');
   assert.equal(official.providers!.claude.baseUrl, 'https://api.anthropic.com');
   assert.equal(official.providers!.claude.protocol, 'anthropic');
@@ -80,13 +80,13 @@ test('uniform fields map to each CLI without modifying the caller or embedding k
 
 test('source precedence is shell unified, shell alias, file unified, file alias, including legacy Codex flag=false', async t => {
   const aliases: Record<Harness, [string, string]> = {
-    codex: ['layering_provider_api_key', 'layering_provider_base_url'],
+    codex: ['provider_api_key', 'provider_base_url'],
     claude: ['ANTHROPIC_API_KEY', 'ANTHROPIC_BASE_URL'],
     agv: ['AGY_LLM_GATEWAY_API_KEY', 'AGY_LLM_GATEWAY_URL'],
   };
   for (const harness of ['codex', 'claude', 'agv'] as const) {
-    const root = await fixture(t), prefix = `layering_${harness}_`, [aliasKey, aliasUrl] = aliases[harness];
-    const source = `layering_custom_provider=false\n${prefix}api_key=FILE_UNIFIED\n${prefix}base_url=https://file-unified.test/v1\n${aliasKey}=FILE_ALIAS\n${aliasUrl}=https://file-alias.test/v1\n`;
+    const root = await fixture(t), prefix = `${harness}_`, [aliasKey, aliasUrl] = aliases[harness];
+    const source = `custom_provider=false\n${prefix}api_key=FILE_UNIFIED\n${prefix}base_url=https://file-unified.test/v1\n${aliasKey}=FILE_ALIAS\n${aliasUrl}=https://file-alias.test/v1\n`;
     await writeFile(join(root, '.env'), source);
     const load = (shell: NodeJS.ProcessEnv) => loadWorkflowEnvironment(shell, root);
     assert.equal(load({}).providers![harness].apiKey, 'FILE_UNIFIED');
@@ -96,8 +96,8 @@ test('source precedence is shell unified, shell alias, file unified, file alias,
     assert.equal(shellAlias.providers![harness].sources.apiKey, aliasKey);
     assert.equal(shellAlias.providers![harness].connection, 'unified');
     if (harness === 'codex') {
-      assert.equal(shellAlias.codex.config!.model_provider, 'layering_custom');
-      assert.equal(shellAlias.codex.env!.layering_codex_api_key, 'SHELL_ALIAS');
+      assert.equal(shellAlias.codex.config!.model_provider, 'custom');
+      assert.equal(shellAlias.codex.env!.codex_api_key, 'SHELL_ALIAS');
     }
     const unified = load({ [prefix + 'api_key']: 'SHELL_UNIFIED', [aliasKey]: 'SHELL_ALIAS' });
     assert.equal(unified.providers![harness].apiKey, 'SHELL_UNIFIED');
@@ -105,18 +105,18 @@ test('source precedence is shell unified, shell alias, file unified, file alias,
     assert.equal(await readFile(join(root, '.env'), 'utf8'), source);
   }
   const root = await fixture(t);
-  const disabled = loadWorkflowEnvironment({ layering_custom_provider: 'false', layering_provider_api_key: 'unused', layering_provider_base_url: 'https://unused.test/v1' }, root);
+  const disabled = loadWorkflowEnvironment({ custom_provider: 'false', provider_api_key: 'unused', provider_base_url: 'https://unused.test/v1' }, root);
   assert.deepEqual(disabled.codex.config, {});
   assert.equal(disabled.providers!.codex.apiKey, undefined);
-  const legacy = loadWorkflowEnvironment({ layering_custom_provider: 'true', layering_provider_api_key: 'fixture', layering_provider_base_url: 'https://legacy.test/v1' }, root);
+  const legacy = loadWorkflowEnvironment({ custom_provider: 'true', provider_api_key: 'fixture', provider_base_url: 'https://legacy.test/v1' }, root);
   assert.equal(legacy.providers!.codex.connection, 'legacy');
-  assert.equal((legacy.codex.config!.model_providers as any).layering_custom.env_key, 'layering_provider_api_key');
+  assert.equal((legacy.codex.config!.model_providers as any).custom.env_key, 'provider_api_key');
 });
 
 test('reject unsupported protocols, malformed lists and unusable explicit connections before requests', async t => {
   const root = await fixture(t);
   for (const harness of ['codex', 'claude', 'agv']) {
-    const prefix = `layering_${harness}_`;
+    const prefix = `${harness}_`;
     assert.throws(() => loadWorkflowEnvironment({ [prefix + 'base_url']: 'https://valid.test/v1' }, root), /缺少鉴权或地址/);
     for (const url of ['not-a-url', 'file:///tmp/api', 'https://user:secret@test/v1', 'https://test/v1?key=secret', 'https://test/#secret']) {
       assert.throws(() => loadWorkflowEnvironment({ [prefix + 'api_key']: 'fixture', [prefix + 'base_url']: url }, root), /HTTP\(S\)/);
@@ -125,13 +125,13 @@ test('reject unsupported protocols, malformed lists and unusable explicit connec
       assert.throws(() => loadWorkflowEnvironment({ [prefix + 'models']: models }, root), /逗号分隔/);
     }
   }
-  assert.throws(() => loadWorkflowEnvironment({ layering_agv_protocol: 'invalid' }, root), /仅支持 genai \/ openai/);
-  assert.throws(() => loadWorkflowEnvironment({ layering_google_image_protocol: 'invalid' }, root), /layering_google_image_protocol 无效/);
-  const image = loadWorkflowEnvironment({ layering_openai_image_base_url: 'https://image.test/v1', layering_openai_image_api_key: 'fixture' }, root);
+  assert.throws(() => loadWorkflowEnvironment({ agv_protocol: 'invalid' }, root), /仅支持 genai \/ openai/);
+  assert.throws(() => loadWorkflowEnvironment({ google_image_protocol: 'invalid' }, root), /google_image_protocol 无效/);
+  const image = loadWorkflowEnvironment({ openai_image_base_url: 'https://image.test/v1', openai_image_api_key: 'fixture' }, root);
   assert.equal(image.imageApis.openai!.protocol, 'openai');
-  assert.throws(() => loadWorkflowEnvironment({ layering_agv_api_key: 'fixture' }, root), /layering_agv_base_url/);
+  assert.throws(() => loadWorkflowEnvironment({ agv_api_key: 'fixture' }, root), /agv_base_url/);
   assert.deepEqual(parseProviderModels('gemini-4-argon, vendors/model:version,gemini-4-argon', 'models'), ['gemini-4-argon', 'vendors/model:version']);
-  for (const protocol of ['genai', 'openai']) assert.equal(loadWorkflowEnvironment({ layering_agv_api_key: 'fixture', layering_agv_base_url: 'https://agv.test/v1', layering_agv_protocol: protocol }, root).codex.env!.AGY_LLM_GATEWAY_WIRE_PROTOCOL, protocol);
+  for (const protocol of ['genai', 'openai']) assert.equal(loadWorkflowEnvironment({ agv_api_key: 'fixture', agv_base_url: 'https://agv.test/v1', agv_protocol: protocol }, root).codex.env!.AGY_LLM_GATEWAY_WIRE_PROTOCOL, protocol);
 });
 
 // Captures only fixture credentials inside the disposable request workspace.
@@ -155,24 +155,24 @@ console.log(JSON.stringify(claude?{type:'result',session_id:id,result:'done'}:{e
 test('only selected steps are validated, and all validation finishes before any capability probe or model call', async t => {
   const root = await fixture(t), cli = join(root, 'fixture-cli');
   await writeFile(cli, cliFixture, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, layering_codex_path: '/nonexistent/codex',
-    part_review_agent_model: 'claude-sonnet-5-5-high', layering_codex_models: 'gpt-6-astra', layering_claude_models: 'claude-sonnet-5-5' }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, codex_path: '/nonexistent/codex',
+    part_review_agent_model: 'claude-sonnet-5-5-high', codex_models: 'gpt-6-astra', claude_models: 'claude-sonnet-5-5' }, root);
   await preflightAgentSteps(settings, ['part_outline_review']);
   assert.throws(() => validateProviderModel(settings.providers, settings.stepModels.part_outline, 'part_outline'), /part_outline.*gpt-6.1-sol/);
-  await assert.rejects(preflightAgentSteps(settings, ['part_outline', 'part_outline_review']), /不在 layering_codex_models/);
-  const denied = loadWorkflowEnvironment({ layering_codex_path: '/nonexistent/codex', layering_claude_path: '/nonexistent/claude',
-    layering_codex_models: 'gpt-6.1-sol', part_review_agent_model: 'claude-sonnet-5-5-high', layering_claude_models: 'claude-opus-5-5' }, root);
+  await assert.rejects(preflightAgentSteps(settings, ['part_outline', 'part_outline_review']), /不在 codex_models/);
+  const denied = loadWorkflowEnvironment({ codex_path: '/nonexistent/codex', claude_path: '/nonexistent/claude',
+    codex_models: 'gpt-6.1-sol', part_review_agent_model: 'claude-sonnet-5-5-high', claude_models: 'claude-opus-5-5' }, root);
   // First step passes its model list; second fails before probing the first CLI.
-  await assert.rejects(preflightAgentSteps(denied, ['part_outline', 'part_outline_review']), /不在 layering_claude_models/);
+  await assert.rejects(preflightAgentSteps(denied, ['part_outline', 'part_outline_review']), /不在 claude_models/);
   const task = { name: 'denied', prompt: 'fixture', cwd: root };
   const agents = new CodexAgents({ environment: settings, cwd: root });
-  await assert.rejects(agents.run(task), /不在 layering_codex_models/);
+  await assert.rejects(agents.run(task), /不在 codex_models/);
   const session = agents.createSession();
-  try { await assert.rejects(session.run(task), /不在 layering_codex_models/); } finally { await session.close(); }
+  try { await assert.rejects(session.run(task), /不在 codex_models/); } finally { await session.close(); }
   const functions = createFunctionToolSession({ environment: settings, cwd: root });
-  try { await assert.rejects(functions.run(task), /不在 layering_codex_models/); } finally { await functions.close(); }
-  await assert.rejects(runAgent({ directory: root, prompt: 'fixture', model: 'gpt-6.1-sol', effort: 'medium', environment: settings, onEvent: async () => {} }), /不在 layering_codex_models/);
-  await assert.rejects(runCliTask(task, parseAgentModel('claude-sonnet-5-5-high', 'fixture'), denied, { cwd: root }, new AbortController().signal), /不在 layering_claude_models/);
+  try { await assert.rejects(functions.run(task), /不在 codex_models/); } finally { await functions.close(); }
+  await assert.rejects(runAgent({ directory: root, prompt: 'fixture', model: 'gpt-6.1-sol', effort: 'medium', environment: settings, onEvent: async () => {} }), /不在 codex_models/);
+  await assert.rejects(runCliTask(task, parseAgentModel('claude-sonnet-5-5-high', 'fixture'), denied, { cwd: root }, new AbortController().signal), /不在 claude_models/);
   assert.deepEqual((await readdir(root)).sort(), ['fixture-cli']);
 });
 
@@ -183,8 +183,8 @@ test('Claude private settings apply model lists and explicit credentials, preser
   const hostSettings = JSON.stringify({ apiKeyHelper: 'original-helper', env: { ANTHROPIC_API_KEY: 'OLD_KEY', ANTHROPIC_AUTH_TOKEN: 'OLD_TOKEN' } });
   await writeFile(join(user, 'settings.json'), hostSettings);
   await writeFile(join(user, '.credentials.json'), 'existing-login');
-  const env = { CLAUDE_CONFIG_DIR: user, ANTHROPIC_AUTH_TOKEN: 'SHELL_TOKEN', layering_claude_path: cli,
-    layering_claude_api_key: 'EXPLICIT_FIXTURE_KEY', layering_claude_base_url: 'https://claude.test', layering_claude_models: 'claude-sonnet-5-5,claude-opus-5-5' };
+  const env = { CLAUDE_CONFIG_DIR: user, ANTHROPIC_AUTH_TOKEN: 'SHELL_TOKEN', claude_path: cli,
+    claude_api_key: 'EXPLICIT_FIXTURE_KEY', claude_base_url: 'https://claude.test', claude_models: 'claude-sonnet-5-5,claude-opus-5-5' };
   const settings = loadWorkflowEnvironment(env, root), options = { cwd, logDirectory: join(cwd, 'agents') }, task = { name: 'fixture', cwd, prompt: 'unchanged prompt' };
   const first = await runCliTask(task, parseAgentModel('claude-sonnet-5-5-xhigh', 'fixture'), settings, options, new AbortController().signal);
   const a = JSON.parse(await readFile(join(cwd, 'workspace', 'fixture.json'), 'utf8'));
@@ -198,7 +198,7 @@ test('Claude private settings apply model lists and explicit credentials, preser
   assert.equal((await stat(join(first.logDirectory!, 'auth-settings.json'))).mode & 0o777, 0o600);
   await writeFile(join(a.env.CLAUDE_CONFIG_DIR, 'session-sentinel'), 'keep');
   await writeFile(join(cwd, 'keep.kra'), 'existing-artifact');
-  const changed = loadWorkflowEnvironment({ ...env, layering_claude_api_key: 'NEXT_FIXTURE_KEY', layering_claude_models: 'claude-opus-5-5' }, root);
+  const changed = loadWorkflowEnvironment({ ...env, claude_api_key: 'NEXT_FIXTURE_KEY', claude_models: 'claude-opus-5-5' }, root);
   const second = await runCliTask(task, parseAgentModel('claude-opus-5-5-high', 'fixture'), changed, options, new AbortController().signal, first.threadId!);
   const b = JSON.parse(await readFile(join(cwd, 'workspace', 'fixture.json'), 'utf8'));
   assert.equal(second.threadId, first.threadId);
@@ -220,8 +220,8 @@ test('AGV receives native key, protocol and comma model list in its controlled w
   await mkdir(cwd, { recursive: true }); await writeFile(cli, cliFixture, { mode: 0o700 });
   let previous: string | undefined, data: string | undefined;
   for (const protocol of ['openai', 'genai']) {
-    const settings = loadWorkflowEnvironment({ layering_agv_path: cli, layering_agv_api_key: 'AGV_FIXTURE_KEY',
-      layering_agv_base_url: 'https://agv.test/v1beta', layering_agv_models: 'gemini-4-argon, gemini-3-flash-preview', layering_agv_protocol: protocol }, root);
+    const settings = loadWorkflowEnvironment({ agv_path: cli, agv_api_key: 'AGV_FIXTURE_KEY',
+      agv_base_url: 'https://agv.test/v1beta', agv_models: 'gemini-4-argon, gemini-3-flash-preview', agv_protocol: protocol }, root);
     const result = await runCliTask({ name: 'agv', cwd, prompt: 'fixture' }, parseAgentModel('gemini-4-argon-high', 'fixture'), settings,
       { cwd, logDirectory: join(cwd, 'agents') }, new AbortController().signal, previous);
     const meta = JSON.parse(await readFile(join(cwd, 'workspace', 'fixture.json'), 'utf8'));
@@ -240,21 +240,21 @@ test('explicit Claude Messages connection rejects native cloud routes while inhe
   const root = await fixture(t), cwd = join(root, '.run/case/shadow'), cli = join(root, 'fixture-cli');
   await mkdir(cwd, { recursive: true }); await writeFile(cli, cliFixture, { mode: 0o700 });
   for (const mode of ['BEDROCK', 'VERTEX', 'FOUNDRY']) {
-    const inherited = loadWorkflowEnvironment({ layering_claude_path: cli, [`CLAUDE_CODE_USE_${mode}`]: '1' }, root);
+    const inherited = loadWorkflowEnvironment({ claude_path: cli, [`CLAUDE_CODE_USE_${mode}`]: '1' }, root);
     const task = { name: mode, cwd, prompt: 'fixture' }, model = parseAgentModel('claude-sonnet-5-5-high', 'fixture'), options = { cwd };
     assert.equal((await runCliTask(task, model, inherited, options, new AbortController().signal)).text, 'done');
-    const explicit = loadWorkflowEnvironment({ layering_claude_path: cli, [`CLAUDE_CODE_USE_${mode}`]: '1', layering_claude_api_key: 'fixture' }, root);
+    const explicit = loadWorkflowEnvironment({ claude_path: cli, [`CLAUDE_CODE_USE_${mode}`]: '1', claude_api_key: 'fixture' }, root);
     await assert.rejects(runCliTask(task, model, explicit, options, new AbortController().signal), /Messages.*云平台路由不兼容/);
   }
 });
 
 test('configuration report shows unified sources, model lists and credential presence without key values', async t => {
   const root = await fixture(t);
-  const report = configurationReport({ layering_codex_api_key: 'CODEX_SECRET', layering_codex_models: 'gpt-6.1-sol',
-    layering_claude_api_key: 'CLAUDE_SECRET', layering_agv_api_key: 'AGV_SECRET', layering_agv_base_url: 'https://agv.test/v1beta',
-    layering_agv_models: 'gemini-4-argon', ANTHROPIC_AUTH_TOKEN: 'TOKEN_SECRET' }, root);
+  const report = configurationReport({ codex_api_key: 'CODEX_SECRET', codex_models: 'gpt-6.1-sol',
+    claude_api_key: 'CLAUDE_SECRET', agv_api_key: 'AGV_SECRET', agv_base_url: 'https://agv.test/v1beta',
+    agv_models: 'gemini-4-argon', ANTHROPIC_AUTH_TOKEN: 'TOKEN_SECRET' }, root);
   assert.equal(report.providers.codex.credentialsConfigured, true);
-  assert.equal(report.providers.codex.sources.apiKey, 'layering_codex_api_key');
+  assert.equal(report.providers.codex.sources.apiKey, 'codex_api_key');
   assert.deepEqual(report.providers.codex.models, ['gpt-6.1-sol']);
   assert.equal(report.providers.agv.protocol, 'genai');
   assert.equal(report.providers.agv.baseUrl, 'https://agv.test/v1beta');

@@ -40,7 +40,7 @@ export function configurationReport(env: NodeJS.ProcessEnv = process.env, direct
       baseUrl: provider.baseUrl ?? null, protocol: provider.protocol ?? null,
       models: provider.models ?? null, sources: provider.sources,
     }])),
-    agvPatch: { enabled: settings.codex.env?.layering_agv_unlimited_response_header_timeout === 'true' },
+    agvPatch: { enabled: settings.codex.env?.agv_unlimited_response_header_timeout === 'true' },
     imageBudgets: Object.fromEntries(Object.entries(settings.imageBudgets ?? {}).map(([harness, budget]) => [harness, {
       enabled: budget.images !== undefined || budget.bytes !== undefined || budget.deduplicate === true,
       images: budget.images ?? null, requestBytes: budget.bytes ?? null, deduplicate: budget.deduplicate === true,

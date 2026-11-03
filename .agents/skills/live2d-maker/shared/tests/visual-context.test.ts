@@ -41,11 +41,11 @@ async function fixture(t: { after(fn: () => Promise<unknown>): void }) {
 }
 
 test('budgets are independently opt-in, legacy image threshold only affects Codex, and invalid configuration fails', () => {
-  assert.deepEqual(imageBudget({ layering_image_compact_threshold: '49' }, 'codex'), { images: 49 });
-  assert.deepEqual(imageBudget({ layering_image_compact_threshold: '49' }, 'agv'), {});
-  assert.deepEqual(imageBudget({ layering_agv_request_compact_mib: '80', layering_agv_image_compact_threshold: '90' }, 'agv'), { images: 90, bytes: 80 * 1048576 });
-  for (const value of ['0', '-1', '1.5', 'NaN']) assert.throws(() => imageBudget({ layering_claude_request_compact_mib: value }, 'claude'), /正整数/);
-  assert.throws(() => imageBudget({ layering_agv_image_deduplicate: '1' }, 'agv'), /true 或 false/);
+  assert.deepEqual(imageBudget({ image_compact_threshold: '49' }, 'codex'), { images: 49 });
+  assert.deepEqual(imageBudget({ image_compact_threshold: '49' }, 'agv'), {});
+  assert.deepEqual(imageBudget({ agv_request_compact_mib: '80', agv_image_compact_threshold: '90' }, 'agv'), { images: 90, bytes: 80 * 1048576 });
+  for (const value of ['0', '-1', '1.5', 'NaN']) assert.throws(() => imageBudget({ claude_request_compact_mib: value }, 'claude'), /正整数/);
+  assert.throws(() => imageBudget({ agv_image_deduplicate: '1' }, 'agv'), /true 或 false/);
 });
 
 test('exact-image dedup retains the latest image and all source/coordinate/call context; another crop is not merged', () => {

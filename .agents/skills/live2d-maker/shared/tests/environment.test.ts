@@ -28,35 +28,35 @@ test('默认继承 Codex 配置，.env 模型后缀是力度，shell 优先且�
   assert.deepEqual(baseline.models.medium, { model: 'gpt-6.1-sol', effort: 'medium' });
   assert.deepEqual(baseline.models.high, { model: 'gpt-6.1-sol', effort: 'xhigh' });
   assert.equal(baseline.imageCompactThreshold, undefined);
-  await writeFile(join(root, '.env'), 'layering_medium_model=gpt-6.1-sol-low\nlayering_high_model=gpt-6-astra-high\nlayering_codex_path=bin/codex\n');
-  const settings = loadWorkflowEnvironment({ layering_medium_model: 'gpt-6.1-sol-medium' }, root);
+  await writeFile(join(root, '.env'), 'medium_model=gpt-6.1-sol-low\nhigh_model=gpt-6-astra-high\ncodex_path=bin/codex\n');
+  const settings = loadWorkflowEnvironment({ medium_model: 'gpt-6.1-sol-medium' }, root);
   assert.deepEqual(settings.models.medium, { model: 'gpt-6.1-sol', effort: 'medium' });
   assert.deepEqual(settings.models.high, { model: 'gpt-6-astra', effort: 'high' });
   assert.equal(settings.codex.codexPathOverride, join(root, 'bin/codex'));
-  assert.equal(process.env.layering_high_model, undefined);
+  assert.equal(process.env.high_model, undefined);
 });
 
 test('本机 Krita 并发上限来自 .env，默认取 example.env，非正整数直接报错', async t => {
   const root = await fixture(t);
-  assert.equal(loadWorkflowEnvironment({}, root).codex.env!.layering_krita_max_instances, '4');
-  await writeFile(join(root, '.env'), 'layering_krita_max_instances=2\n');
-  assert.equal(loadWorkflowEnvironment({}, root).codex.env!.layering_krita_max_instances, '2');
-  assert.equal(loadWorkflowEnvironment({ layering_krita_max_instances: '6' }, root).codex.env!.layering_krita_max_instances, '6');
-  await writeFile(join(root, '.env'), 'layering_krita_max_instances=0\n');
-  assert.throws(() => loadWorkflowEnvironment({}, root), /layering_krita_max_instances 须为正整数/);
+  assert.equal(loadWorkflowEnvironment({}, root).codex.env!.krita_max_instances, '4');
+  await writeFile(join(root, '.env'), 'krita_max_instances=2\n');
+  assert.equal(loadWorkflowEnvironment({}, root).codex.env!.krita_max_instances, '2');
+  assert.equal(loadWorkflowEnvironment({ krita_max_instances: '6' }, root).codex.env!.krita_max_instances, '6');
+  await writeFile(join(root, '.env'), 'krita_max_instances=0\n');
+  assert.throws(() => loadWorkflowEnvironment({}, root), /krita_max_instances 须为正整数/);
 });
 
 test('主模型与生图分别鉴权；只填生图模型不启用，按需准备补丁失败时保留原因', async t => {
   const root = await fixture(t);
-  const onlyModel = loadWorkflowEnvironment({ layering_image_model: 'another-image-model' }, root);
+  const onlyModel = loadWorkflowEnvironment({ image_model: 'another-image-model' }, root);
   assert.equal(onlyModel.stepImages.part_simplify, 'codex-native');
   assert.deepEqual(onlyModel.imageApis, {});
-  const settings = loadWorkflowEnvironment({ layering_custom_provider: 'true', layering_provider_base_url: 'https://chat.example/v1',
-    layering_provider_api_key: 'chat-secret', layering_image_base_url: 'https://images.example/v1', layering_image_api_key: 'image-secret',
-    layering_image_compact_threshold: '49' }, root);
-  const provider = (settings.codex.config!.model_providers as any).layering_custom;
+  const settings = loadWorkflowEnvironment({ custom_provider: 'true', provider_base_url: 'https://chat.example/v1',
+    provider_api_key: 'chat-secret', image_base_url: 'https://images.example/v1', image_api_key: 'image-secret',
+    image_compact_threshold: '49' }, root);
+  const provider = (settings.codex.config!.model_providers as any).custom;
   assert.equal(provider.base_url, 'https://chat.example/v1');
-  assert.equal(provider.env_key, 'layering_provider_api_key');
+  assert.equal(provider.env_key, 'provider_api_key');
   assert.equal(settings.codex.env!.LAYERING_IMAGE_BASE_URL, undefined);
   assert.equal(settings.codex.env!.LAYERING_IMAGE_API_KEY, undefined);
   assert.equal(settings.stepImages.part_simplify, 'gpt-image-2.5-sunburst');
@@ -65,12 +65,12 @@ test('主模型与生图分别鉴权；只填生图模型不启用，按需准�
   assert.equal(settings.codex.env!.LAYERING_IMAGE_COMPACT_THRESHOLD, '49');
   assert.ok(!JSON.stringify(settings.codex.config).includes('secret'));
   await assert.rejects(checkCodexCapabilities(settings, settings.codex, {}, async () => { throw new Error('fixture build failure'); }), /fixture build failure/);
-  assert.throws(() => loadWorkflowEnvironment({layering_agv_unlimited_response_header_timeout: 'yes'}, root), /layering_agv_unlimited_response_header_timeout/);
-  assert.throws(() => loadWorkflowEnvironment({layering_agv_patch: 'true'}, root), /已改名为 layering_agv_unlimited_response_header_timeout/);
-  assert.throws(() => loadWorkflowEnvironment({ layering_custom_provider: 'true' }, root), /需要填写/);
-  assert.throws(() => loadWorkflowEnvironment({ layering_image_api_key: 'secret' }, root), /同时填写/);
-  for (const invalid of ['0', '-1', '49.2', 'NaN']) assert.throws(() => loadWorkflowEnvironment({ layering_image_compact_threshold: invalid }, root), /正整数/);
-  assert.throws(() => loadWorkflowEnvironment({ layering_medium_model: 'model-invalid-effort' }, root), /思考力度/);
+  assert.throws(() => loadWorkflowEnvironment({agv_unlimited_response_header_timeout: 'yes'}, root), /agv_unlimited_response_header_timeout/);
+  assert.throws(() => loadWorkflowEnvironment({agv_patch: 'true'}, root), /已改名为 agv_unlimited_response_header_timeout/);
+  assert.throws(() => loadWorkflowEnvironment({ custom_provider: 'true' }, root), /需要填写/);
+  assert.throws(() => loadWorkflowEnvironment({ image_api_key: 'secret' }, root), /同时填写/);
+  for (const invalid of ['0', '-1', '49.2', 'NaN']) assert.throws(() => loadWorkflowEnvironment({ image_compact_threshold: invalid }, root), /正整数/);
+  assert.throws(() => loadWorkflowEnvironment({ medium_model: 'model-invalid-effort' }, root), /思考力度/);
 });
 
 test('图片压缩拒绝旧去图补丁，生图能力缓存不能绕过 v2 检查', { skip: process.platform === 'win32' }, async t => {
@@ -82,10 +82,10 @@ test('图片压缩拒绝旧去图补丁，生图能力缓存不能绕过 v2 检�
     await chmod(executable, 0o755);
   };
   await install(capabilities);
-  const provider = loadWorkflowEnvironment({ layering_codex_path: executable,
-    layering_image_base_url: 'https://images.example/v1', layering_image_api_key: 'fixture' }, root);
+  const provider = loadWorkflowEnvironment({ codex_path: executable,
+    image_base_url: 'https://images.example/v1', image_api_key: 'fixture' }, root);
   await checkCodexCapabilities(provider, provider.codex, { image: true });
-  const compact = loadWorkflowEnvironment({ layering_codex_path: executable, layering_image_compact_threshold: '49' }, root);
+  const compact = loadWorkflowEnvironment({ codex_path: executable, image_compact_threshold: '49' }, root);
   await assert.rejects(checkCodexCapabilities(compact), /补丁能力检查/);
   await install({ ...capabilities, image_compaction_version: 2 });
   await checkCodexCapabilities(compact);
@@ -93,8 +93,8 @@ test('图片压缩拒绝旧去图补丁，生图能力缓存不能绕过 v2 检�
 
 test('独立字节预算保留 env 控制权，Codex 明确拒绝缺少字节保护能力的旧补丁', { skip: process.platform === 'win32' }, async t => {
   const root = await fixture(t), executable = join(root, 'codex-budget-fixture');
-  await writeFile(join(root, '.env'), 'layering_image_compact_threshold=49\nlayering_agv_request_compact_mib=80\nlayering_claude_image_compact_threshold=90\n');
-  const settings = loadWorkflowEnvironment({ layering_codex_path: executable, layering_codex_request_compact_mib: '28' }, root);
+  await writeFile(join(root, '.env'), 'image_compact_threshold=49\nagv_request_compact_mib=80\nclaude_image_compact_threshold=90\n');
+  const settings = loadWorkflowEnvironment({ codex_path: executable, codex_request_compact_mib: '28' }, root);
   assert.equal(settings.imageCompactThreshold, 49);
   assert.equal(settings.codex.env!.LAYERING_REQUEST_COMPACT_BYTES, String(28 * 1048576));
   assert.deepEqual(settings.imageBudgets!.agv, { bytes: 80 * 1048576 });
@@ -113,7 +113,7 @@ test('独立字节预算保留 env 控制权，Codex 明确拒绝缺少字节保
 test('两套 raster 续跑读取当前环境模型，仍恢复原 threadId，缺产物诊断带最后消息', async t => {
   for (const section of [character, clothing]) await t.test(section.id, async t => {
     const root = await fixture(t); await seedUpstream('case', section.inputSection, root);
-    const environment = loadWorkflowEnvironment({ layering_high_model: 'gpt-6-astra-high' }, root);
+    const environment = loadWorkflowEnvironment({ high_model: 'gpt-6-astra-high' }, root);
     const directory = join(root, 'case', section.id);
     const deps = { runsDirectory: root, steps: [section.steps[0]], environment,
       preflight: async (executable: string) => ({ executable }) };
@@ -132,7 +132,7 @@ test('两套 raster 续跑读取当前环境模型，仍恢复原 threadId，缺
     assert.match(formatAgentError(failure), /persistent-thread/);
     assert.match(await readFile(join(directory, 'agents/steps/step01/error.txt'), 'utf8'), /模型最后消息/);
     await assert.rejects(readFile(join(directory, 'step01/.completed')), { code: 'ENOENT' });
-    const changed = loadWorkflowEnvironment({ layering_high_model: 'gpt-6.1-sol-low' }, root);
+    const changed = loadWorkflowEnvironment({ high_model: 'gpt-6.1-sol-low' }, root);
     await runWorkflow(section, { name: 'case', krita: process.execPath }, { ...deps, environment: changed, agent: async request => {
       if (isRasterReview(request)) return deliverRasterStep(request, section.steps[0]);
       assert.equal(request.threadId, 'persistent-thread');

@@ -56,9 +56,9 @@ test('交付检查：缺 face_base 或控制点数不对时报错', () => {
 });
 
 test('贴图接受 agent 写的绝对路径，存为本步 layers/ 相对路径', () => {
-  const task = '/runs/doll', step = '/runs/doll/nine-axis/step02_angle-x';
+  const task = '/runs/doll', step = '/runs/doll/nine-axis/step03_angle-x';
   assert.equal(stepTexture(step, task, 'face/nose', `${step}/layers/003.png`), 'layers/003.png');
-  assert.equal(stepTexture(step, task, 'face/nose', 'nine-axis/step02_angle-x/layers/003.png'), 'layers/003.png');
+  assert.equal(stepTexture(step, task, 'face/nose', 'nine-axis/step03_angle-x/layers/003.png'), 'layers/003.png');
   assert.equal(stepTexture(step, task, 'face/nose', 'layers/003.png'), 'layers/003.png');
   assert.throws(() => stepTexture(step, task, 'face/nose', '/elsewhere/layers/003.png'), /本步 layers/);
   assert.throws(() => stepTexture(step, task, 'face/nose', `${step}/workspace/003.png`), /本步 layers/);

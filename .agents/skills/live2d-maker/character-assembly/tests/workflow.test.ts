@@ -130,7 +130,7 @@ test('中断恢复同一组装 thread；删 completed 重建 thread，只清理�
 test('medium 从环境配置读取，不使用 high 配置或上游绘制 thread', async t => {
   const f = await fixture(t);
   const environment = loadWorkflowEnvironment({
-    layering_medium_model: 'gpt-6.1-sol-high', layering_high_model: 'gpt-6-astra-xhigh',
+    medium_model: 'gpt-6.1-sol-high', high_model: 'gpt-6-astra-xhigh',
   }, f.root);
   await runWorkflow(f.options, { ...f.deps, environment, agent: async request => {
     assert.equal(request.model, 'gpt-6.1-sol'); assert.equal(request.effort, 'high');

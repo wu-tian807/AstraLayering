@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 // Every Codex run requires the patched build. Tests that reach the startup check
-// without a fake app server point layering_codex_path here instead of building it.
+// without a fake app server point codex_path here instead of building it.
 // Every patched build reports the full set patches/codex/build.ts verifies, so the
 // fakes do too: what a run needs must not depend on the local .env.
 export const patchedCodexCapabilities = { version: 1, image_provider: true, image_provider_version: 2, image_compaction: true,

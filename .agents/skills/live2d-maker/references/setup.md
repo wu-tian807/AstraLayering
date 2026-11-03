@@ -47,17 +47,17 @@ pnpm install --frozen-lockfile
 ## 模型 CLI 与生图
 
 - **配置：** `.env` 缺少时以 `example.env` 创建默认方案，已有选择沿用。职责、CLI 路径、provider 与各生图协议的自定义见[模型方案与配置](model-presets.md)。主模型使用[统一连接字段](model-presets.md#主模型连接与模型列表)，shell 统一键或旧别名优先于文件；API 密钥只保存在本地配置。
-- **Codex：** 复用 `CODEX_HOME`／`~/.codex` 的登录与授权；`.env` 的 `layering_codex_home` 可为工作流的 Codex 另设 `CODEX_HOME`（相对路径以 skill 根目录为基准）。`codex-native` 使用宿主内置 imagegen，只能用于 LLM 是 Codex 的步骤；其他 harness 的生图步骤需改选 GPT Image 或 Nano 服务，填写对应 API URL、key 与协议。
+- **Codex：** 复用 `CODEX_HOME`／`~/.codex` 的登录与授权；`.env` 的 `codex_home` 可为工作流的 Codex 另设 `CODEX_HOME`（相对路径以 skill 根目录为基准）。`codex-native` 使用宿主内置 imagegen，只能用于 LLM 是 Codex 的步骤；其他 harness 的生图步骤需改选 GPT Image 或 Nano 服务，填写对应 API URL、key 与协议。
 - **Claude Code／Antigravity：** 复用已有 CLI 入口与登录，同样通过共享生图工具 imagegen 调用所选生图服务。CLI 由用户已有安装提供，或按用户确认的方案安装；pnpm 只负责项目依赖。
 - **核对：** 在实际后台启动环境执行 `pnpm env:check`，核对实际 skill、配置文件、模型、生图、CLI、图片预算与 shell 覆盖。此命令只预览配置，不验证登录；真实工具调用与恢复验证见 [shared](../shared/README.md#启动验证)。首次正式准备产生合格图片后，可记录为该生图组合的实际证据。
 
 ### CLI 准备与补丁构建
 
-**Codex：** 所有 Codex 步骤都使用补丁版，程序自动构建并缓存；只用 Claude／AGV 时不构建。`layering_codex_path` 留空即可启用，指定已有入口时检查补丁能力后复用。Git 和平台 C/C++ 编译工具需要本机提供；Rust 1.95.0 自动复用或临时安装，详见下节。补丁功能与能力要求见 [patches · 原生 Codex 补丁](../patches/README.md#原生-codex-补丁)。
+**Codex：** 所有 Codex 步骤都使用补丁版，程序自动构建并缓存；只用 Claude／AGV 时不构建。`codex_path` 留空即可启用，指定已有入口时检查补丁能力后复用。Git 和平台 C/C++ 编译工具需要本机提供；Rust 1.95.0 自动复用或临时安装，详见下节。补丁功能与能力要求见 [patches · 原生 Codex 补丁](../patches/README.md#原生-codex-补丁)。
 
 **Claude Code：** 复用已安装的 CLI 与登录，无需修改或重新编译 CLI，也不需要 Rust 或 C/C++ 工具链。图片数／请求体保护、可选去重及支持的服务路由见 [patches · 图片容量保护](../patches/README.md#图片容量保护)；遇到结构化拒绝时的恢复机制与边界见 [Claude Code 拒绝后的会话恢复](../patches/README.md#claude-code-拒绝后的会话恢复)。
 
-**AGV：** 复用已安装的 CLI 与登录。启用 `layering_agv_unlimited_response_header_timeout=true` 时，程序准备独立的受控副本，不需要 Rust；适用构建、60 秒响应头期限及验证见 [patches](../patches/README.md#agv-自定义网关的响应头期限)。
+**AGV：** 复用已安装的 CLI 与登录。启用 `agv_unlimited_response_header_timeout=true` 时，程序准备独立的受控副本，不需要 Rust；适用构建、60 秒响应头期限及验证见 [patches](../patches/README.md#agv-自定义网关的响应头期限)。
 
 图片数和请求体预算按服务限制配置，通过 `env:check` 核对；切换模型或升级时沿用已有预算。
 
@@ -78,7 +78,7 @@ pnpm build:codex --source /absolute/codex-source --jobs 4
 使用 `--source` 时应保留该源码仓库，worktree 共享它的 Git 对象。手工测试可把输出路径传给 [patches 中的验证脚本](../patches/README.md#本地模拟验证)，无需修改 `.env`。
 
 - **查看进度：** 源码下载、检出和 Rust 准备有新输出时，按约 20 秒的间隔汇报最近一行；编译阶段按约 30 秒的间隔汇报，并显示已编译的 crate 数与耗时。完整输出持续写入缓存目录的 `build.log`，工作流日志显示阶段进度和日志路径。
-- **长时间无输出：** 连续 3 分钟无新输出会提示检查网络，也可能是在链接大文件；提示本身不会终止命令。可继续等待，或停止任务、配置 `HTTPS_PROXY` 等代理后继续，也可指定已构建且通过能力检查的 `layering_codex_path`。另有 Git HTTP 低速保护：传输持续 10 分钟低于 1000 字节／秒时，Git 会结束该下载；这与 3 分钟无输出提示分别处理。
+- **长时间无输出：** 连续 3 分钟无新输出会提示检查网络，也可能是在链接大文件；提示本身不会终止命令。可继续等待，或停止任务、配置 `HTTPS_PROXY` 等代理后继续，也可指定已构建且通过能力检查的 `codex_path`。另有 Git HTTP 低速保护：传输持续 10 分钟低于 1000 字节／秒时，Git 会结束该下载；这与 3 分钟无输出提示分别处理。
 - **Windows 检出与缓存：** 构建用 Git 子进程固定 LF 换行、启用长路径并设置下载低速保护，保留用户的代理、证书和凭据设置，不修改用户 Git 配置。已有缓存中尚未应用补丁的源码无法通过补丁检查时，重新获取一次；新检出的源码仍不兼容时明确失败。已应用补丁的源码和通过哈希校验的可执行缓存继续复用，无需手动清空整个缓存。
 
 ## Krita 与显示环境
@@ -88,7 +88,7 @@ pnpm build:codex --source /absolute/codex-source --jobs 4
 - **私有进程：** 每个 section 一个私有 Krita，使用临时资源目录和随附的桥接插件；Linux／macOS 使用独立配置，Windows 共享偏好的边界见下条。agent 通过 `krita` 工具按需启动、查看状态与 pid、执行 Python 脚本，崩溃或卡死时自行重启；section 结束（完成、失败或停止）时由工作流关闭并清理。框架不替 agent 启动 Krita。
 - **Windows 用户偏好：** Windows 的 Qt 使用系统已知文件夹定位配置，不受 APPDATA／LOCALAPPDATA／XDG 环境变量重定向影响。工作流共享用户的 kritarc、kritadisplayrc、窗口布局与最近文件；只确保 `[python] enable_astra_bridge=true`，保留其他配置，不恢复旧文件覆盖新偏好，也不修改全局 ResourceDirectory。每个 section 建立临时启动目录，通过目录联接复用已安装的 Krita 二进制、库和内置资源，让嵌入式 Python 能找到本 section 的私有桥接。插件、资源数据库和通信文件留在私有目录，不安装到用户 pykrita 目录；section 结束后清理启动目录，不删除原安装。
 - **对话框：** 桥接插件自动取消会卡住无人值守界面的对话框（例如导出参数框），并在工具结果中给出提示。
-- **并发上限：** 本机同时运行的 Krita 数量由 `.env` 的 `layering_krita_max_instances` 限制（默认 4，跨任务计算；名额锁位于系统临时目录的 `astra-krita.slots`，可用 `ASTRA_STUDIO_KRITA_SLOTS` 改位置）。需要 Krita 的 section 在开始步骤前占一个名额，持有到 section 结束；名额用满时排队等待。声明 `krita: false` 的步骤不占名额，其 agent 也没有 krita 工具。网页在 section 占用或排队等待 Krita 时显示标识。
+- **并发上限：** 本机同时运行的 Krita 数量由 `.env` 的 `krita_max_instances` 限制（默认 4，跨任务计算；名额锁位于系统临时目录的 `astra-krita.slots`，可用 `ASTRA_STUDIO_KRITA_SLOTS` 改位置）。需要 Krita 的 section 在开始步骤前占一个名额，持有到 section 结束；名额用满时排队等待。声明 `krita: false` 的步骤不占名额，其 agent 也没有 krita 工具。网页在 section 占用或排队等待 Krita 时显示标识。
 - **显示：** Linux 已设置 `DISPLAY`、`WAYLAND_DISPLAY` 或 `QT_QPA_PLATFORM` 时直接沿用，不启动 Xvfb；都没有时工作流启动一个共享的 Xvfb（以 `-noreset` 运行），多个 section 的 Krita 共用它。Xvfb 需要本机安装（`apt install xvfb` 等），不在 PATH 时用 `ASTRA_STUDIO_XVFB` 指定路径。macOS 与 Windows 使用当前桌面。
 
 缺少 Xvfb 时，任务会记录为失败，并在网页与 `workflow.log` 中显示具体依赖、安装方法和显示环境配置提示。补齐后点「继续」（命令行 `--continue`），会重新检查并沿用已有会话和产物接着运行。

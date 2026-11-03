@@ -21,7 +21,7 @@ if(process.argv.includes('--version')) { console.log('fake 1.2.3'); process.exit
 let input=''; for await(const chunk of process.stdin) input += chunk;
 await writeFile(process.env.TEST_CAPTURE,JSON.stringify({args:process.argv.slice(2),input}));
 console.log(JSON.stringify({type:'result',session_id:'fixture',result:'done'}));`);
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, TEST_CAPTURE: join(root, 'capture.json') }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, TEST_CAPTURE: join(root, 'capture.json') }, root);
   assert.match(await checkAgentCli(settings, 'claude'), /1\.2\.3/);
   const result = await runCliTask({ name: 'fixture', cwd: root, prompt: '测试 & 内容' },
     parseAgentModel('claude-sonnet-5-5-high', 'test'), settings,

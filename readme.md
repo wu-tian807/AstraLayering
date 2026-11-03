@@ -95,8 +95,8 @@ agent 首次拉取或更新本仓库前，先问一次用户是**使用者**还�
 | **C/C++ 编译工具链** | **使用 Codex 时必选。** 首次制作时构建本仓库的 Codex 补丁版，之后复用缓存；不用 Codex 时不需要。安装方式见下方系统表 |
 | **Claude Code CLI（已登录）** | **可选。** 想用 Claude 模型（`claude-*`）时安装，例如混合方案中的遮挡补全、栅格绘制、组装与阴影 |
 | **Antigravity CLI（已登录）** | **可选。** 想用 Gemini 语言模型（`gemini-4-argon`）时安装 |
-| **GPT Image 生图服务** | **可选。** 生图想用 `gpt-image-2.5-sunburst`／`flare` 时，在 `.env` 填写 `layering_openai_image_base_url` 与 `layering_openai_image_api_key`。不用 Codex 时，生图步骤需在它和 Nano Banana 中选一个 |
-| **Nano Banana 生图服务** | **可选。** 想用 Gemini 生图（`gemini-nano-banana-2.1`）时，在 `.env` 填写 `layering_google_image_base_url` 与 `layering_google_image_api_key`，协议选 `gemini` 或 `openai` |
+| **GPT Image 生图服务** | **可选。** 生图想用 `gpt-image-2.5-sunburst`／`flare` 时，在 `.env` 填写 `openai_image_base_url` 与 `openai_image_api_key`。不用 Codex 时，生图步骤需在它和 Nano Banana 中选一个 |
+| **Nano Banana 生图服务** | **可选。** 想用 Gemini 生图（`gemini-nano-banana-2.1`）时，在 `.env` 填写 `google_image_base_url` 与 `google_image_api_key`，协议选 `gemini` 或 `openai` |
 | **Xvfb** | **Linux 无桌面时必选**，其他情况不需要。机器没有 `DISPLAY`／`WAYLAND_DISPLAY` 时，工作流用它启动共享虚拟显示给 Krita 使用；用 `apt install xvfb` 等安装 |
 
 模型和生图的组合方式见 [模型方案](.agents/skills/live2d-maker/references/model-presets.md)；启动前可执行 `pnpm env:check` 核对实际生效的模型、CLI 与生图配置（不验证登录）。
@@ -208,7 +208,7 @@ Krita 安装和 agent 定时巡检由启动方式 1 的 agent 协助处理；网
 
 版本以 Git 标签 `vX.Y.Z` 为准，标题栏左侧显示当前版本；在标签之后还有新提交时显示为 `v0.1.0+3`（标签后第 3 个提交）。各版本的变化与升级影响见 [CHANGELOG](CHANGELOG.md)。
 
-工作台每天最多访问一次 GitHub（`api.github.com`）查询最新发布标签，发现新版本时在标题栏提示并链接更新说明，可点 × 不再提示该版本。它只提示，不下载、不替换文件；离线或查询失败时不显示任何提示。完全关闭：在“管线配置”页把“检查新版本”设为关闭，即写入 `.agents/skills/live2d-maker/.env` 的 `layering_update_check=false`，无需重启。
+工作台每天最多访问一次 GitHub（`api.github.com`）查询最新发布标签，发现新版本时在标题栏提示并链接更新说明，可点 × 不再提示该版本。它只提示，不下载、不替换文件；离线或查询失败时不显示任何提示。完全关闭：在“管线配置”页把“检查新版本”设为关闭，即写入 `.agents/skills/live2d-maker/.env` 的 `update_check=false`，无需重启。
 
 | 获取方式 | 更新方法 |
 | --- | --- |

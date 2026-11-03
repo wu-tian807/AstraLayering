@@ -73,5 +73,5 @@ export async function createPatchedAgv(sourcePath: string, directory?: string): 
 if (import.meta.main) {
   const { values } = parseArgs({ options: { source: { type: 'string' }, dir: { type: 'string' } }, strict: true, allowPositionals: false });
   if (!values.source) throw new Error('请指定 --source <已安装的 AGV 可执行文件>，不会下载或安装 CLI。');
-  console.log('layering_agv_path=' + await createPatchedAgv(resolve(values.source), values.dir));
+  console.log('agv_path=' + await createPatchedAgv(resolve(values.source), values.dir));
 }

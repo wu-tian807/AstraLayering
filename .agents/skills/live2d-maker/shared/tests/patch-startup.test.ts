@@ -147,7 +147,7 @@ test('长命令按行汇报进度，节流并统计编译数；静默时提示�
   watch.line!('Updating crates.io index'); clock = 500; watch.line!('Compiling a v1'); clock = 1500; watch.line!('Compiling b v1');
   assert.deepEqual(messages, ['编译 Codex 补丁：Updating crates.io index（已用 0 秒）', '编译 Codex 补丁：已编译 2 个 crate，最近 Compiling b v1（已用 2 秒）']);
   watch.quiet!.notify(180_000);
-  assert.match(messages[2], /已 3 分 0 秒没有新输出.*网络受阻.*HTTPS_PROXY.*layering_codex_path.*\/logs\/build\.log/);
+  assert.match(messages[2], /已 3 分 0 秒没有新输出.*网络受阻.*HTTPS_PROXY.*codex_path.*\/logs\/build\.log/);
 });
 test('缺 C/C++ 工具链时先检查后报清楚的安装提示，不克隆；构建日志里的缺工具也同样提示；装好后继续即构建', async t => {
   const root = await fixture(t), sdkHost = join(root, 'sdk-host'); await writeFile(sdkHost, 'companion');

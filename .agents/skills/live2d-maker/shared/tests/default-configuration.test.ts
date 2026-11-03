@@ -20,8 +20,8 @@ test('the skill template drives missing .env, missing role keys, legacy tiers an
   for(const slot of modelSlots)template=replace(template,modelSlotKey(slot),'gpt-6-astra-high');
   template=replace(template,'default_image_model','gpt-image-2.5-flare');
   template=replace(template,'part_base_subject_image_model','gemini-nano-banana-2.1');
-  template=replace(template,'layering_image_model','gpt-image-2.5-flare');
-  template=replace(template,'layering_google_image_protocol','openai');
+  template=replace(template,'image_model','gpt-image-2.5-flare');
+  template=replace(template,'google_image_protocol','openai');
   await writeFile(join(root,'example.env'),template);
   const first=loadWorkflowEnvironment({},root);
   for(const step of Object.keys(stepModelSlots) as (keyof typeof stepModelSlots)[]) {
@@ -40,7 +40,7 @@ test('the skill template drives missing .env, missing role keys, legacy tiers an
   await writeFile(join(root,'.env'),'# partial config\nshadow_agent_model=gpt-6.1-sol-medium\n');
   template=replace(template,'preparation_agent_model','gpt-6.1-sol-xhigh');
   await writeFile(join(root,'example.env'),template);
-  const updated=loadWorkflowEnvironment({layering_image_base_url:'https://images.example/v1',layering_image_api_key:'fixture',layering_google_image_base_url:'https://images.example/v1',layering_google_image_api_key:'fixture'},root);
+  const updated=loadWorkflowEnvironment({image_base_url:'https://images.example/v1',image_api_key:'fixture',google_image_base_url:'https://images.example/v1',google_image_api_key:'fixture'},root);
   assert.equal(updated.stepModels.part_standardize.effort,'xhigh');
   assert.equal(updated.stepModels.shadow_mask.effort,'medium');
   assert.equal(updated.stepImages.part_simplify,'gpt-image-2.5-flare');
