@@ -28,6 +28,7 @@ import { checkKnowledge, defaultKnowledgeDirectory } from '../.agents/skills/liv
 import { exportCompletedRun } from '../.agents/skills/live2d-maker/workflow/export.ts';
 import { LayerCompositor } from './layer-compositor.ts';
 import { isStudioPath, studioProject } from './studio-project.ts';
+import { saveNineAxis } from './nine-axis-save.ts';
 import { studioCatalog, studioAsset, studioReviews, saveStudioReview } from './studio.ts';
 import { createUpdateCheck } from './update-check.ts';
 import { installedVersion } from '../.agents/skills/live2d-maker/shared/version.ts';
@@ -191,6 +192,10 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           return;
         }
         const value = await body(request);
+        if (path === '/api/studio/nine-axis/save') {
+          const { directory } = await studioFolder(value.folder ?? '');
+          json(await saveNineAxis(directory, value)); return;
+        }
         if (value.dir !== requestDir) { json({ error: '追踪目录已改变，请刷新页面后重试' }, 409); return; }
         if (path === '/api/config/environment' || path === '/api/config/environment/preview') {
           try { json(await (path.endsWith('/preview') ? environment.preview(value) : environment.save(value))); }
@@ -357,7 +362,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       if (path === '/api/studio/project' || path === '/studio-artifact') {
         const { directory, name, dir } = await studioFolder(url.searchParams.get('folder') ?? '');
         if (path === '/api/studio/project') {
-          json({ ...await studioProject(directory, name, dir, url.searchParams.get('preview')), folder: directory, displayName: await projectDisplayName(directory, name),
+          json({ ...await studioProject(directory, name, dir, url.searchParams.get('preview'), url.searchParams.get('nineStage')), folder: directory, displayName: await projectDisplayName(directory, name),
             inDirectory: dir === settings.directory }); return;
         }
         // Only the studio's fixed outputs are readable, wherever the folder is.

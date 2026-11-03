@@ -764,13 +764,15 @@ let projectListGeneration = 0;
 async function openProject(folder, preview, workspace, refresh = false) {
   const id = begin("正在打开项目…", true);
   try {
+    const nineStage = new URLSearchParams(location.search).get('nineStage');
+    const nineSelection = nineStage ? { nineStage } : {};
     let project = await get(
-      "./api/studio/project?" + new URLSearchParams({ folder, ...(preview ? { preview } : {}) }),
+      "./api/studio/project?" + new URLSearchParams({ folder, ...nineSelection, ...(preview ? { preview } : {}) }),
     );
     // Load the complete available document once. Shadow visibility is edited
     // in its native graph, never by reopening another base from a selector.
     if (project.previewMode === 'normal-depth' && project.previewModes.mask) {
-      project = await get('./api/studio/project?' + new URLSearchParams({ folder, preview: project.previewModes.mixed ? 'mixed' : 'mask' }));
+      project = await get('./api/studio/project?' + new URLSearchParams({ folder, ...nineSelection, preview: project.previewModes.mixed ? 'mixed' : 'mask' }));
     }
     if (id !== state.generation) return;
     void nineAxis.load(project);

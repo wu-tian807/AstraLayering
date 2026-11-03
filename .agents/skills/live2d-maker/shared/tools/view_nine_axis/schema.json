@@ -30,6 +30,8 @@
         "type": "string"
       }
     },
+    "only": {"type": "array", "items": {"type": "string"}},
+    "hidden": {"type": "array", "items": {"type": "string"}},
     "grid": {
       "type": "array",
       "items": {

@@ -1,0 +1,36 @@
+import '../../shared/tests/ignore-local-env.ts';
+import assert from 'node:assert/strict';
+import { test } from 'node:test';
+import { mkdtemp, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import sharp from 'sharp';
+import { createHeadEditTool } from '../edit-tool.ts';
+import { mirrorHierarchy, type FaceLeft } from '../head.ts';
+import { evaluatePoints } from '../../shared/nine-axis-model.js';
+const points = (box: number[], dx = 0) => [[box[0],box[1]],[box[2],box[1]],[box[0],box[3]],[box[2],box[3]]].map(([x,y]) => [x+dx,y]);
+const node = (id: string, bbox: number[], dx: number): any => ({id, level:'face',bbox,cols:1,rows:1,keyforms:{'0':points(bbox),'-30':points(bbox,dx)}});
+test('mirror uses the complete source hierarchy even when only one eye has a parent', () => {
+  const warp = node('author-chosen', [0,0,200,100], 11);
+  const left = {...node('face/eye_left', [120,20,140,40], 3),parent:warp.id};
+  const right = node('face/eye_right', [60,20,80,40], -2);
+  const mirrored = mirrorHierarchy({version:2,axis:100,deformers:[warp],parts:[left,right]} as FaceLeft);
+  const doc: any = {deformers:mirrored.deformers,parts:mirrored.parts};
+  assert.deepEqual([...evaluatePoints(doc,mirrored.parts[1],30)], [46,20,66,20,46,40,66,40]);
+  assert.deepEqual([...evaluatePoints(doc,mirrored.parts[0],30)], [122,20,142,20,122,40,142,40]);
+});
+test('edit tool imports source textures, persists artist groups, previews revision, and rejects stale writes',async t=>{
+  const root = await mkdtemp(join(tmpdir(),'astra-edit-tool-'));t.after(()=>rm(root,{recursive:true,force:true}));
+  const dir=join(root,'nine-axis/step03_angle-x');await mkdir(join(dir,'layers'),{recursive:true});
+  const color=join(root,'source.png'),document=join(root,'source.kra');await writeFile(document,'source');
+  await sharp({create:{width:200,height:200,channels:4,background:'#fff'}}).png().toFile(color);
+  await sharp({create:{width:1,height:1,channels:4,background:'#fff'}}).png().toFile(join(dir,'layers/a.png'));
+  const tool=createHeadEditTool(dir,{color,document} as any,{x:0,y:0,size:200}),signal=new AbortController().signal;
+  const read = (r: any) => JSON.parse(r.contentItems[0].text);
+  assert.deepEqual(read(await tool.execute({},signal)).nodes,[]);
+  const imported=read(await tool.execute({importParts:[{id:'face/face_base',group:'face',texture:join(dir,'layers/a.png'),textureBounds:[20,20,80,80],bbox:[20,20,100,100],cols:1,rows:1}]},signal));
+  await tool.execute({revision:imported.revision,operations:[{action:'create_warp',id:'my-form',targets:['face/face_base']},{action:'transform',id:'my-form',x:-30,translate:[4,0]}]},signal);
+  const source=JSON.parse(await readFile(join(dir,'face-left.json'),'utf8'));
+  assert.equal(source.parts[0].parent,'my-form');assert.equal(source.deformers.length,1);
+  await assert.rejects(tool.execute({revision:imported.revision,operations:[{action:'remove_warp',id:'my-form'}]},signal),/revision/);
+});

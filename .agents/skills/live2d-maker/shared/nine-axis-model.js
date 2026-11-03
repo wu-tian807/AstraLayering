@@ -1,4 +1,7 @@
-// Head nine-axis document: one Cubism-style warp deformer per head layer.
+// Head nine-axis v2: artist-owned warp hierarchy, independent of draw order.
+// All grids are expressed in the undeformed canvas coordinate system. A node's
+// local shape is evaluated first, then carried through its parent and ancestors.
+// Group warps have no texture; parts retain their own local editable mesh.
 // Each part owns a (cols+1)×(rows+1) control lattice in canvas pixels with
 // keyforms on ParamAngleX and, once step04 has run, keyformsY on ParamAngleY
 // sharing the rest form keyforms["0"]; step05 adds the corners as keyformsXY
@@ -9,18 +12,23 @@
 export const levelNames = { face: '脖子＋脸＋五官', hair: '头发', accessory: '头饰' };
 
 export function validateHeadNineAxis(doc) {
-  if (doc?.version !== 1 || doc.kind !== 'head-nine-axis') throw Error('头部九轴数据版本无效');
+  if (doc?.version !== 2 || doc.kind !== 'head-nine-axis') throw Error('头部九轴数据须为 version 2');
+  if (!Array.isArray(doc.deformers)) throw Error('头部九轴数据缺少 deformers 数组');
   if (!Array.isArray(doc.parts) || !doc.parts.length) throw Error('头部九轴数据没有部件');
   if (!Array.isArray(doc.levels) || !doc.levels.length) throw Error('头部九轴数据没有预览层级');
   const ids = new Set();
-  for (const p of doc.parts) {
+  const partIds = new Set(doc.parts.map(p => p.id));
+  for (const p of nodes(doc)) {
     if (typeof p.id !== 'string' || ids.has(p.id)) throw Error('部件编号无效或重复：' + p.id);
     ids.add(p.id);
     if (!levelNames[p.level]) throw Error(p.id + '：未知层级 ' + p.level);
-    if (!/^layers\/[\w-]+\.png$/.test(p.texture)) throw Error(p.id + '：贴图路径无效');
+    if (partIds.has(p.id) && !/^layers\/[\w-]+\.png$/.test(p.texture)) throw Error(p.id + '：贴图路径无效');
     if (!Number.isInteger(p.cols) || !Number.isInteger(p.rows) || p.cols < 1 || p.rows < 1) throw Error(p.id + '：网格尺寸无效');
     if (!Array.isArray(p.bbox) || p.bbox.length !== 4 || !(p.bbox[2] > p.bbox[0] && p.bbox[3] > p.bbox[1])) throw Error(p.id + '：网格范围无效');
-    if (!Array.isArray(p.textureBounds) || p.textureBounds.length !== 4) throw Error(p.id + '：贴图范围无效');
+    if (partIds.has(p.id) && (!Array.isArray(p.textureBounds) || p.textureBounds.length !== 4 || !p.textureBounds.every(Number.isFinite) || p.textureBounds[2] <= 0 || p.textureBounds[3] <= 0)) throw Error(p.id + '：贴图范围无效');
+    if (!p.bbox.every(Number.isFinite)) throw Error(p.id + '：网格范围须为有限数字');
+    if (p.interpolation !== undefined && !['linear', 'smooth'].includes(p.interpolation)) throw Error(p.id + '：interpolation 须为 linear 或 smooth');
+    if (p.parameterInterpolation?.x !== undefined && !['linear', 'ellipse'].includes(p.parameterInterpolation.x)) throw Error(p.id + '：X 插值须为 linear 或 ellipse');
     const count = (p.cols + 1) * (p.rows + 1);
     if (!Object.keys(p.keyforms ?? {}).includes('0')) throw Error(p.id + '：缺少静止关键形');
     for (const [forms, name] of [[p.keyforms, 'X'], [p.keyformsY ?? {}, 'Y'], [p.keyformsXY ?? {}, '斜向']]) for (const k of Object.keys(forms)) {
@@ -30,11 +38,27 @@ export function validateHeadNineAxis(doc) {
         throw Error(`${p.id}：${name} 关键形 ${k} 需要 ${count} 个控制点`);
     }
   }
+  const parents = new Map(doc.deformers.map(p => [p.id, p]));
+  for (const p of nodes(doc)) {
+    const chain = new Set([p.id]); let next = p.parent;
+    while (next !== undefined && next !== null) {
+      if (!parents.has(next)) throw Error(p.id + '：父变形器不存在 ' + next);
+      if (chain.has(next)) throw Error(p.id + '：父子变形器存在循环 ' + next);
+      chain.add(next); next = parents.get(next).parent;
+    }
+    if (p.parameterInterpolation?.x === 'ellipse' && (keyValues(p).length !== 3 || keyValues(p)[1] !== 0)) throw Error(p.id + '：ellipse 需要负值、0、正值三个 X 关键形；增加中间形前改为 linear');
+    if (/^neck(?:\/|$)/.test(p.id)) {
+      if (p.parent) throw Error(p.id + '：脖子必须保持固定，不能挂到头部变形器');
+      const rest = p.keyforms['0'];
+      for (const forms of [p.keyforms, p.keyformsY ?? {}, p.keyformsXY ?? {}]) for (const points of Object.values(forms))
+        if (points.some((q, i) => Math.abs(q[0] - rest[i][0]) > 1e-5 || Math.abs(q[1] - rest[i][1]) > 1e-5)) throw Error(p.id + '：脖子不能跟随转头移动、拉斜或拉长；修正脸与固定脖子的连接');
+    }
+  }
   for (const p of doc.parts) {
     if (p.role !== undefined && p.role !== 'mask') throw Error(p.id + '：未知角色 ' + p.role);
     if (p.clip === undefined) continue;
     const by = p.clip?.by;
-    if (!Array.isArray(by) || !by.length || by.some(id => !ids.has(id) || id === p.id)) throw Error(p.id + '：裁切来源无效');
+    if (!Array.isArray(by) || !by.length || by.some(id => !partIds.has(id) || id === p.id)) throw Error(p.id + '：裁切来源无效：须为其他贴图部件，组级 Warp 没有蒙版像素');
     if (p.clip.invert !== undefined && typeof p.clip.invert !== 'boolean') throw Error(p.id + '：裁切反转须为布尔值');
   }
   for (const l of doc.levels) if (!Array.isArray(l.includes) || l.includes.some(x => !levelNames[x])) throw Error('预览层级无效：' + l.id);
@@ -68,9 +92,107 @@ function gridForm(part, x, y) {
 export function keyformAt(part, x, y = 0, out = new Float32Array((part.cols + 1) * (part.rows + 1) * 2)) {
   const [x0, x1, s] = span(keyValues(part), x), [y0, y1, t] = part.keyformsY ? span(keyValues(part, 'y'), y) : [0, 0, 0];
   const A = gridForm(part, x0, y0), B = gridForm(part, x1, y0), C = gridForm(part, x0, y1), D = gridForm(part, x1, y1);
-  for (let i = 0; i < A.length; i++) for (const k of [0, 1])
-    out[i * 2 + k] = (A[i][k] * (1 - s) + B[i][k] * s) * (1 - t) + (C[i][k] * (1 - s) + D[i][k] * s) * t;
+  if (part.parameterInterpolation?.x === 'ellipse') {
+    const keys = keyValues(part), value = Math.max(-1, Math.min(1, x / (x < 0 ? -keys[0] : keys[2]))), theta = value * Math.PI / 2;
+    const rows = [y0, y1].map(Y => keys.map(X => gridForm(part, X, Y)));
+    const ellipse = (forms, i, k) => { const [L, M, R] = forms, c = (L[i][k] + R[i][k]) / 2; return c + (M[i][k] - c) * Math.cos(theta) + (R[i][k] - L[i][k]) / 2 * Math.sin(theta); };
+    for (let i = 0; i < A.length; i++) for (const k of [0, 1]) out[i * 2 + k] = ellipse(rows[0], i, k) * (1 - t) + ellipse(rows[1], i, k) * t;
+  } else for (let i = 0; i < A.length; i++) for (const k of [0, 1])
+      out[i * 2 + k] = (A[i][k] * (1 - s) + B[i][k] * s) * (1 - t) + (C[i][k] * (1 - s) + D[i][k] * s) * t;
   return out;
+}
+
+export const nodes = doc => [...doc.deformers, ...doc.parts];
+export function descendants(doc, id) {
+  const found = new Set([id]);
+  for (let changed = true; changed;) { changed = false; for (const n of nodes(doc)) if (found.has(n.parent) && !found.has(n.id)) { found.add(n.id); changed = true; } }
+  return found;
+}
+
+// Interpolate displacement rather than absolute position, so rest grids and
+// points outside a parent's rectangle retain identity. Smooth uses a tensor
+// cubic curve through the authored handles; rendering subdivisions are separate.
+const cubic = (a, b, c, d, t) => b + .5 * t * (c - a + t * (2 * a - 5 * b + 4 * c - d + t * (3 * (b - c) + d - a)));
+export function warpPoint(part, points, x, y) {
+  const [x0, y0, x1, y1] = part.bbox, { cols, rows } = part;
+  const u = Math.max(0, Math.min(cols, (x - x0) / (x1 - x0) * cols)), v = Math.max(0, Math.min(rows, (y - y0) / (y1 - y0) * rows));
+  const i = Math.min(cols - 1, Math.floor(u)), j = Math.min(rows - 1, Math.floor(v)), s = u - i, t = v - j;
+  const at = (I, J, k) => {
+    // Linear extrapolation of edge handles preserves an affine transform at edges.
+    const a = Math.max(0, Math.min(cols, I)), b = Math.max(0, Math.min(rows, J));
+    const value = (C, R) => points[(R * (cols + 1) + C) * 2 + k] - (k ? y0 + (y1 - y0) * R / rows : x0 + (x1 - x0) * C / cols);
+    let q = value(a, b);
+    if (I !== a) q += (I - a) * (a === 0 ? value(1, b) - q : q - value(cols - 1, b));
+    if (J !== b) q += (J - b) * (b === 0 ? value(a, 1) - value(a, b) : value(a, b) - value(a, rows - 1));
+    return q;
+  };
+  const displacement = k => {
+    if (part.interpolation !== 'smooth') return (at(i, j, k) * (1 - s) + at(i + 1, j, k) * s) * (1 - t) + (at(i, j + 1, k) * (1 - s) + at(i + 1, j + 1, k) * s) * t;
+    const row = J => cubic(at(i - 1, J, k), at(i, J, k), at(i + 1, J, k), at(i + 2, J, k), s);
+    return cubic(row(j - 1), row(j), row(j + 1), row(j + 2), t);
+  };
+  return [x + displacement(0), y + displacement(1)];
+}
+export function inverseWarpPoint(part, points, x, y) {
+  let px = x, py = y;
+  for (let i = 0; i < 30; i++) {
+    const q = warpPoint(part, points, px, py), dx = q[0] - x, dy = q[1] - y;
+    if (Math.hypot(dx, dy) < 1e-5) return [px, py];
+    const h = .01, a = warpPoint(part, points, px + h, py), b = warpPoint(part, points, px, py + h);
+    const ax = (a[0] - q[0]) / h, ay = (a[1] - q[1]) / h, bx = (b[0] - q[0]) / h, by = (b[1] - q[1]) / h, det = ax * by - bx * ay;
+    if (Math.abs(det) < 1e-8) break;
+    px -= (by * dx - bx * dy) / det; py -= (ax * dy - ay * dx) / det;
+  }
+  throw Error(part.id + '：无法反解父级变形；先修正折叠或过度压缩的网格');
+}
+export function parentPoint(doc, node, x, y, px, py, inverse = false) {
+  const byId = new Map(doc.deformers.map(n => [n.id, n])), chain = [];
+  for (let id = node.parent; id; id = byId.get(id).parent) chain.push(byId.get(id));
+  if (inverse) chain.reverse();
+  for (const parent of chain) [px, py] = (inverse ? inverseWarpPoint : warpPoint)(parent, keyformAt(parent, x, y), px, py);
+  return [px, py];
+}
+export function evaluatePoints(doc, node, x, y = 0, subdivision = 1) {
+  const local = keyformAt(node, x, y), rest = lattice(node), samples = refine(rest, node.cols, node.rows, subdivision), out = new Float32Array(samples.length);
+  const byId = new Map(doc.deformers.map(n => [n.id, n])), chain = [];
+  for (let id = node.parent; id; id = byId.get(id).parent) { const p = byId.get(id); chain.push([p, keyformAt(p, x, y)]); }
+  for (let i = 0; i < samples.length; i += 2) {
+    let q = warpPoint(node, local, samples[i], samples[i + 1]);
+    for (const [parent, points] of chain) q = warpPoint(parent, points, q[0], q[1]);
+    out.set(q, i);
+  }
+  return out;
+}
+
+// Reparenting retains each existing keyed shape in canvas space. It does not
+// invent grouping or silently reset an already authored child deformation.
+export function reparent(doc, ids, parent) {
+  const byId = new Map(nodes(doc).map(n => [n.id, n]));
+  if (parent && !doc.deformers.some(n => n.id === parent)) throw Error('父变形器不存在：' + parent);
+  if (new Set(ids).size !== ids.length || ids.some(id => !byId.has(id))) throw Error('改挂的部件或变形器编号无效');
+  for (const id of ids) if (parent && descendants(doc, id).has(parent)) throw Error(id + '：改挂会造成父子循环');
+  if (ids.some(id => ids.some(other => other !== id && descendants(doc, other).has(id)))) throw Error('一次改挂不能同时选中祖先和它的子级');
+  const forms = n => [['keyforms', n.keyforms], ['keyformsY', n.keyformsY ?? {}], ['keyformsXY', n.keyformsXY ?? {}]];
+  const before = ids.map(id => {
+    const n = byId.get(id), snapshots = [];
+    for (const [field, keys] of forms(n)) for (const key of Object.keys(keys)) {
+      const [x, y] = field === 'keyforms' ? [Number(key), 0] : field === 'keyformsY' ? [0, Number(key)] : key.split(',').map(Number);
+      snapshots.push({ field, key, x, y, points: keys[key].map(([px, py]) => parentPoint(doc, n, x, y, px, py)) });
+    }
+    return { n, snapshots };
+  });
+  for (const { n, snapshots } of before) {
+    if (parent) n.parent = parent; else delete n.parent;
+    for (const { field, key, x, y, points } of snapshots) n[field][key] = points.map(([px, py]) => parentPoint(doc, n, x, y, px, py, true));
+  }
+}
+export function checkWarpGeometry(node) {
+  const forms = [...Object.values(node.keyforms), ...Object.values(node.keyformsY ?? {}), ...Object.values(node.keyformsXY ?? {})];
+  for (const pts of forms) for (let j = 0; j < node.rows; j++) for (let i = 0; i < node.cols; i++) {
+    const a = pts[j * (node.cols + 1) + i], b = pts[j * (node.cols + 1) + i + 1], c = pts[(j + 1) * (node.cols + 1) + i], d = pts[(j + 1) * (node.cols + 1) + i + 1];
+    const cross = (A, B, C) => (B[0] - A[0]) * (C[1] - A[1]) - (B[1] - A[1]) * (C[0] - A[0]);
+    if (cross(a, b, c) <= 1e-6 || cross(b, d, c) <= 1e-6) throw Error(`${node.id}：第 ${j} 行第 ${i} 列网格折叠或面积为零`);
+  }
 }
 
 export function lattice(part) {

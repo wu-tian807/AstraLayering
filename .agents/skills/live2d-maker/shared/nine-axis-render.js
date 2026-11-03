@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import { keyformAt, refine, lattice, meshIndices, levelParts } from './nine-axis-model.js';
+import { evaluatePoints, refine, lattice, meshIndices, levelParts } from './nine-axis-model.js';
 
 // The head nine-axis drawing, shared by the workbench panel and the agents'
 // view_nine_axis tool, so an agent sees exactly what the workbench shows.
-export const SUB = 2;
+export const SUB = 5;
 // Premultiplied texel output without colour conversion keeps the source paint.
 // The grid (bbox) is larger than the texture; outside it clamp-to-edge would
 // smear the border texels into blocks, so those fragments are dropped.
@@ -60,7 +60,7 @@ export class HeadNineAxisRenderer {
     const clipped = this.doc.parts.filter(p => p.clip && shown.has(p.id)), needed = new Set([...shown, ...clipped.flatMap(p => p.clip.by)]);
     for (const p of this.doc.parts) {
       if (!needed.has(p.id)) continue;
-      const m = this.meshes.get(p.id), pts = refine(keyformAt(p, x, y), p.cols, p.rows, SUB), pos = m.geometry.attributes.position.array;
+      const m = this.meshes.get(p.id), pts = evaluatePoints(this.doc, p, x, y, SUB), pos = m.geometry.attributes.position.array;
       for (let i = 0, k = 0; i < pts.length; i += 2, k += 3) { pos[k] = pts[i]; pos[k + 1] = pts[i + 1]; }
       m.geometry.attributes.position.needsUpdate = true;
       const u = m.material.uniforms, mask = p.role === 'mask';

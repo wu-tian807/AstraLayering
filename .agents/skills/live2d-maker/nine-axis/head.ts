@@ -5,6 +5,7 @@ import sharp from 'sharp';
 import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { fileHash, type Box, type TurnInput } from './turn.ts';
+import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry, warpPoint as sampleWarp, type WarpGrid, type HeadNineAxis } from '../shared/nine-axis-model.js';
 
 // step03_angle-x: the agent fits the face to the left view and delivers the
 // ParamAngleX left keyform (−30 by default, degrees, see angles.ts) as
@@ -22,11 +23,12 @@ export async function resolveHeadInput(turn: TurnInput): Promise<HeadInput> {
 
 type Point = [number, number];
 export type Part = { id: string; group: string; texture: string; textureBounds: number[]; bbox: number[];
-  cols: number; rows: number; keyforms: Record<string, Point[]> };
-export type FaceLeft = { axis: number; notes?: string; parts: Part[] };
+  cols: number; rows: number; keyforms: Record<string, Point[]>; parent?: string; interpolation?: 'linear' | 'smooth'; parameterInterpolation?: { x?: 'linear' | 'ellipse' }; role?: 'mask'; clip?: { by: string[]; invert?: boolean } };
+export type FaceLeft = { version: 2; axis: number; notes?: string; deformers: WarpGrid[]; parts: Part[] };
 
 export function checkFaceLeft(value: unknown, canvas: [number, number], left: string): FaceLeft {
   const face = value as FaceLeft;
+  if (face?.version !== 2 || !Array.isArray(face.deformers)) throw new Error('face-left.json：须为 version 2，含 artist 定义的 deformers 数组（可以为空）');
   if (!face || typeof face !== 'object' || !Number.isFinite(face.axis) || face.axis <= 0 || face.axis >= canvas[0]) throw new Error('face-left.json：axis 须为画布内的脸部中轴列');
   if (!Array.isArray(face.parts) || !face.parts.length) throw new Error('face-left.json：没有部件');
   const ids = new Set<string>();
@@ -53,6 +55,8 @@ export function checkFaceLeft(value: unknown, canvas: [number, number], left: st
   const base = face.parts.findIndex(p => p.id === 'face/face_base');
   const above = face.parts.slice(0, base).find(p => isEar(p.id));
   if (above) throw new Error(`${above.id}：耳朵须排在 face/face_base 之下，才能被脸遮挡`);
+  validateHeadNineAxis({ version: 2, kind: 'head-nine-axis', levels: [faceLevel], deformers: face.deformers,
+    parts: face.parts.map(p => ({ level: 'face', ...p })) });
   return face;
 }
 
@@ -78,23 +82,46 @@ export const pairId = (id: string) => id.replace(/(^|[/_])(left|right)(?=$|[/_])
 // A part's keyform position of a canvas point: bilinear in its control lattice;
 // outside the lattice the nearest edge's displacement carries on.
 export function warpPoint(part: Part, key: string, x: number, y: number): Point {
-  const [x0, y0, x1, y1] = part.bbox, { cols, rows } = part, points = part.keyforms[key];
-  const u = Math.min(cols, Math.max(0, (x - x0) / (x1 - x0) * cols)), v = Math.min(rows, Math.max(0, (y - y0) / (y1 - y0) * rows));
-  const i = Math.min(cols - 1, Math.floor(u)), j = Math.min(rows - 1, Math.floor(v)), s = u - i, t = v - j;
-  const a = points[j * (cols + 1) + i], b = points[j * (cols + 1) + i + 1], c = points[(j + 1) * (cols + 1) + i], d = points[(j + 1) * (cols + 1) + i + 1];
-  const at = (k: 0 | 1) => (a[k] * (1 - s) + b[k] * s) * (1 - t) + (c[k] * (1 - s) + d[k] * s) * t;
-  const restX = x0 + (x1 - x0) * u / cols, restY = y0 + (y1 - y0) * v / rows;
-  return [at(0) + x - restX, at(1) + y - restY];
+  return sampleWarp(part as WarpGrid, part.keyforms[key]?.flat() ?? keyformAt(part as WarpGrid, Number(key)), x, y);
 }
 
 // The right keyform of a part = its pair's left keyform, reflected about the face axis.
-export function mirrorKeyform(part: Part, pair: Part, axis: number, left: string): Point[] {
+export function mirrorKeyform(part: Pick<Part, 'keyforms'>, pair: Part | WarpGrid, axis: number, left: string): Point[] {
   return part.keyforms['0'].map(([x, y]) => {
-    const [mx, my] = warpPoint(pair, left, 2 * axis - x, y);
+    const [mx, my] = sampleWarp(pair as WarpGrid, pair.keyforms[left]?.flat() ?? keyformAt(pair as WarpGrid, Number(left)), 2 * axis - x, y);
     return [round(2 * axis - mx), round(my)];
   });
 }
 const round = (value: number) => Math.round(value * 100) / 100;
+
+// Mirror the composed left shape, then express it in the destination parent's
+// right space. Artists may use different hierarchies on the two sides.
+export function mirrorHierarchy(face: FaceLeft): { deformers: WarpGrid[]; parts: Part[] } {
+  const source = { version: 2, kind: 'head-nine-axis', deformers: face.deformers,
+    parts: face.parts.map(p => ({ level: 'face', ...p })) } as HeadNineAxis;
+  const target = structuredClone(source), byId = new Map(nodes(source).map(p => [p.id, p]));
+  const done = new Set<string>(), ordered: WarpGrid[] = [];
+  const visit = (p: WarpGrid) => {
+    if (done.has(p.id)) return;
+    if (p.parent) visit(target.deformers.find(q => q.id === p.parent)!);
+    done.add(p.id); ordered.push(p);
+  };
+  for (const p of nodes(target)) visit(p);
+  for (const p of ordered) {
+    const pair = byId.get(pairId(p.id)) ?? byId.get(p.id)!;
+    for (const k of Object.keys(p.keyforms).map(Number).filter(k => k < 0)) {
+      const left = keyformAt(pair, k);
+      p.keyforms[angleKey(-k)] = p.keyforms['0'].map(([x, y]) => {
+        if (/^neck(?:\/|$)/.test(p.id)) return [x, y];
+        let [mx, my] = sampleWarp(pair, left, 2 * face.axis - x, y);
+        [mx, my] = parentPoint(source, pair, k, 0, mx, my);
+        const q = parentPoint(target, p, -k, 0, 2 * face.axis - mx, my, true);
+        return q.map(v => Math.round(v * 10000) / 10000) as Point;
+      });
+    }
+  }
+  return { deformers: target.deformers, parts: target.parts as Part[] };
+}
 
 async function atomic(path: string, text: string) {
   await mkdir(dirname(path), { recursive: true });
@@ -113,25 +140,32 @@ export async function writeBuilt(directory: string, { doc, textures }: Built) {
 
 // Check the agent's delivery and mirror it into the workbench document.
 export async function buildHead(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale()): Promise<Built & { source: Record<string, string> }> {
-  const task = dirname(dirname(directory)), { width = 0, height = 0 } = await sharp(input.color).metadata();
   let raw: unknown;
   try { raw = JSON.parse(await readFile(join(directory, 'face-left.json'), 'utf8')); }
   catch (error) { throw new Error('agent 未交付可读的 face-left.json', { cause: error }); }
-  const left = angleKey(scale.x[0]), face = checkFaceLeft(raw, [width, height], left);
-  for (const p of face.parts) p.texture = stepTexture(directory, task, p.id, p.texture);
+  return compileHead(directory, input, box, raw as FaceLeft, scale);
+}
+export async function compileHead(directory: string, input: HeadInput, box: Box, value: FaceLeft, scale: AngleScale = angleScale()): Promise<Built & { source: Record<string, string> }> {
+  const task = dirname(dirname(directory)), { width = 0, height = 0 } = await sharp(input.color).metadata(), left = angleKey(scale.x[0]);
+  const local = structuredClone(value);
+  for (const p of local.parts ?? []) p.texture = stepTexture(directory, task, p.id, p.texture);
+  const face = checkFaceLeft(local, [width, height], left);
   for (const p of face.parts) await access(join(directory, p.texture)).catch(error => { throw new Error(`${p.id}：缺少贴图 ${p.texture}`, { cause: error }); });
-  const byId = new Map(face.parts.map(p => [p.id, p])), pair = (p: Part) => byId.get(pairId(p.id)) ?? p;
+  const mirrored = mirrorHierarchy(face);
   // face-left.json lists parts top to bottom (KRA order); deformers.json lists
   // them in drawing order, bottom first, as the workbench renders them.
-  const parts = face.parts.toReversed().map(p => ({ id: p.id, level: 'face', group: p.group, texture: p.texture, textureBounds: p.textureBounds, bbox: p.bbox,
-    cols: p.cols, rows: p.rows, keyforms: { [left]: p.keyforms[left], '0': p.keyforms['0'], [angleKey(scale.x[1])]: mirrorKeyform(p, pair(p), face.axis, left) } }));
+  const parts = mirrored.parts.toReversed().map(p => ({ level: 'face', ...p }));
+  const deformers = mirrored.deformers;
   const [kraHash, colorHash] = await Promise.all([fileHash(input.document), fileHash(input.color)]);
   const document = toTaskPath(task, input.document), color = toTaskPath(task, input.color);
-  const doc = { version: 1, kind: 'head-nine-axis', canvas: [width, height],
+  const keys = [...new Set([...deformers, ...parts].flatMap(p => Object.keys(p.keyforms).map(Number)))].sort((a, b) => a - b);
+  const doc = { version: 2, kind: 'head-nine-axis', canvas: [width, height],
     source: { document, sha256: kraHash }, view: { x: box.x, y: box.y, width: box.size, height: box.size }, axis: face.axis,
-    parameters: [angleParameter('ParamAngleX', '角度 X', scale.x), { ...angleParameter('ParamAngleY', '角度 Y', scale.y), keys: [0], status: '未制作' }],
+    parameters: [{ ...angleParameter('ParamAngleX', '角度 X', scale.x), keys }, { ...angleParameter('ParamAngleY', '角度 Y', scale.y), keys: [0], status: '未制作' }],
     levels: [faceLevel],
-    notes: [face.notes?.trim(), `${sign(scale.x[0])}° 为向左视角，${sign(scale.x[1])}° 为左右成对镜像。`].filter(Boolean).join(' '), parts };
+    notes: [face.notes?.trim(), `${sign(scale.x[0])}° 为向左视角，${sign(scale.x[1])}° 为左右成对镜像。`].filter(Boolean).join(' '), deformers, parts };
+  validateHeadNineAxis(doc);
+  for (const n of [...deformers, ...parts]) checkWarpGeometry(n);
   return { doc, textures: new Map(parts.map(p => [p.texture, join(directory, p.texture)])),
     source: { sourceDocument: document, sourceColor: color, sourceKraHash: kraHash, sourceColorHash: colorHash } };
 }

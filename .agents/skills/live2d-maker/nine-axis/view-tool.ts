@@ -6,7 +6,7 @@ import { chromium } from 'playwright';
 import { toolDefinition } from '../shared/codex/tool-config.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { taskRootOf, toAgentPath } from '../shared/task-paths.ts';
-import { validateHeadNineAxis, keyformAt } from '../shared/nine-axis-model.js';
+import { validateHeadNineAxis, keyformAt, evaluatePoints, nodes, descendants } from '../shared/nine-axis-model.js';
 import type { Built } from './head.ts';
 
 // view_nine_axis: the step's current delivery, built as the program will build
@@ -24,16 +24,17 @@ const page = (width: number, height: number, overlay: string) => `<!doctype html
 <script type="importmap">{"imports":{"three":"/three.module.js"}}</script></head><body><div id="view"><canvas></canvas>${overlay}</div><script type="module">
 import { HeadNineAxisRenderer, shownParts } from '/nine-axis-render.js';
 try {
-  const { doc, x, y, level, masks, frame } = await (await fetch('/args.json')).json();
+  const { doc, x, y, level, masks, only, hidden, frame } = await (await fetch('/args.json')).json();
   const images = await Promise.all(doc.parts.map(async (p, i) => createImageBitmap(await (await fetch('/texture/' + i)).blob(), { premultiplyAlpha: 'none' })));
   const view = new HeadNineAxisRenderer(document.querySelector('canvas'));
   view.renderer.setPixelRatio(1); view.renderer.setSize(${width}, ${height}, false);
-  view.install(doc, images); view.draw(frame, x, y, shownParts(doc, level, { masks: new Set(masks) }));
+  view.install(doc, images); const shown = shownParts(doc, level, { masks: new Set(masks), hidden: new Set(hidden) });
+  view.draw(frame, x, y, only.length ? new Set([...shown].filter(id => only.includes(id))) : shown);
   await new Promise(requestAnimationFrame); window.rendered = 'ok';
 } catch (error) { window.rendered = String(error?.message ?? error); }
 </script></body></html>`;
 
-type Args = { x?: unknown; y?: unknown; level?: unknown; crop?: unknown; scale?: unknown; masks?: unknown; grid?: unknown };
+type Args = { x?: unknown; y?: unknown; level?: unknown; crop?: unknown; scale?: unknown; masks?: unknown; grid?: unknown; only?: unknown; hidden?: unknown };
 type Parameter = { id: string; min?: number; max?: number; keys?: number[]; status?: string };
 
 export function createNineAxisViewTool(directory: string, observationDirectory: string, build: () => Promise<Built>): FunctionTool {
@@ -61,19 +62,28 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
       if (typeof scale !== 'number' || !Number.isFinite(scale) || scale < 0.25 || scale > 8) throw new Error('scale 须为 0.25 至 8');
       const [x0, y0, cw, ch] = crop as number[], width = Math.round(cw * scale), height = Math.round(ch * scale);
       if (width < 1 || height < 1 || width * height > 16_000_000) throw new Error('预览过大或过小，请调整选框或 scale');
-      const partIds = new Set(doc.parts.map(p => p.id)), gridIds = args.grid ?? [];
+      const allNodes = nodes(doc), partIds = new Set(allNodes.map(p => p.id)), gridIds = args.grid ?? [];
       if (!Array.isArray(gridIds) || gridIds.some(g => !partIds.has(g))) throw new Error('grid 须为部件 id 列表');
+      const curves = new Map<string, Float32Array>();
       const grids = (gridIds as string[]).map(id => {
-        const p = doc.parts.find(q => q.id === id)!, pts = keyformAt(p, x, y), points: number[][] = [];
+        const p = allNodes.find(q => q.id === id)!, pts = evaluatePoints(doc, p, x, y), points: number[][] = [];
         for (let i = 0; i < pts.length; i += 2) points.push([Math.round(pts[i] * 10) / 10, Math.round(pts[i + 1] * 10) / 10]);
-        return { id, cols: p.cols, rows: p.rows, points };
+        curves.set(id, evaluatePoints(doc, p, x, y, 5));
+        const local = keyformAt(p, x, y), localPoints = points.map((_, i) => [local[i * 2], local[i * 2 + 1]]);
+        return { id, cols: p.cols, rows: p.rows, points, ...(p.parent ? { parent: p.parent, localPoints } : {}) };
       });
+      const selection = (value: unknown, name: string) => {
+        if (value === undefined) return [];
+        if (!Array.isArray(value) || value.some(id => !partIds.has(id))) throw Error(`${name} 须为部件/变形器 id 数组`);
+        return [...new Set(value.flatMap(id => [...descendants(doc, id)]))];
+      };
+      const only = selection(args.only, 'only'), hidden = selection(args.hidden, 'hidden');
       const sx = (v: number) => ((v - x0) * scale).toFixed(1), sy = (v: number) => ((v - y0) * scale).toFixed(1);
-      const overlay = grids.length ? `<svg width="${width}" height="${height}">${grids.map(({ cols, rows, points }) => {
-        const c = cols + 1, at = (i: number) => `${sx(points[i][0])},${sy(points[i][1])}`;
+      const overlay = grids.length ? `<svg width="${width}" height="${height}">${grids.map(({ id, cols, rows, points }) => {
+        const curve = curves.get(id)!, c = cols * 5 + 1, at = (i: number) => `${sx(curve[i * 2])},${sy(curve[i * 2 + 1])}`;
         let d = '';
-        for (let j = 0; j <= rows; j++) { d += 'M'; for (let i = 0; i < c; i++) d += at(j * c + i) + ' '; }
-        for (let i = 0; i < c; i++) { d += 'M'; for (let j = 0; j <= rows; j++) d += at(j * c + i) + ' '; }
+        for (let j = 0; j <= rows; j++) { d += 'M'; for (let i = 0; i < c; i++) d += at(j * 5 * c + i) + ' '; }
+        for (let i = 0; i <= cols; i++) { d += 'M'; for (let j = 0; j <= rows * 5; j++) d += at(j * c + i * 5) + ' '; }
         return `<path class="nine-grid" d="${d}"/><g class="nine-points">${points.map(([px, py]) => `<circle cx="${sx(px)}" cy="${sy(py)}" r="3"/>`).join('')}</g>`;
       }).join('')}</svg>` : '';
       const textures = doc.parts.map(p => built.textures.get(p.texture)!);
@@ -85,7 +95,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         await tab.route(origin + '/**', async route => {
           const path = new URL(route.request().url()).pathname, js = 'text/javascript';
           if (path === '/') return route.fulfill({ contentType: 'text/html', body: page(width, height, overlay) });
-          if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, x, y, level, masks, frame: { x0, y0, width: cw, height: ch } }) });
+          if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, x, y, level, masks, only, hidden, frame: { x0, y0, width: cw, height: ch } }) });
           if (path.startsWith('/texture/')) return route.fulfill({ contentType: 'image/png', body: await readFile(textures[Number(path.slice(9))]) });
           if (path === '/three.module.js' || path === '/three.core.js') return route.fulfill({ contentType: js, body: await readFile(join(three, path)) });
           if (path === '/nine-axis-render.js' || path === '/nine-axis-model.js') return route.fulfill({ contentType: js, body: await readFile(join(shared, path)) });

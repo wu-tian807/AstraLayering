@@ -255,3 +255,12 @@ test('The project list reads task folders under a chosen base folder, the run di
   assert.equal(missing.status, 404); assert.equal((await missing.json() as any).missing, true);
   assert.equal((await list('relative')).status, 400);
 });
+
+test('Nine-axis links can open X without deleting existing later-stage artifacts',async t=>{
+  const f=await fixture(t);
+  await f.put(nineAxisArtifacts.headDeformers,'left-right');
+  await f.put(nineAxisArtifacts.angleYDeformers,'up-down');
+  assert.equal((await (await f.get()).json() as any).nineAxis.path,nineAxisArtifacts.angleYDeformers);
+  assert.equal((await (await f.get({nineStage:'x'})).json() as any).nineAxis.path,nineAxisArtifacts.headDeformers);
+  assert.equal((await f.get({nineStage:'invalid'})).status,400);
+});
