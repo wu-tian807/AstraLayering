@@ -42,7 +42,6 @@ test('wrapping garments can become distinct front/back parts even when they move
   // The clothed character is the upstream simplified subject at its fixed task path.
   const refs = { ...f.references, originalImage: join(dirname(f.directory), 'part-layering/references/simplified-subject.png') };
   const adapter = createLayeringSteps({ async run(task) {
-    assert.equal(task.imageGeneration, false);
     const input = promptInput(task.prompt);
     assert.equal(input.additionalReferences[0].path, refs.originalImage);
     const preview = task.tools!.find(tool => tool.name === 'preview_svg')!;

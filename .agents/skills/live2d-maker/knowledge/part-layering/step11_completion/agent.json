@@ -10,7 +10,8 @@
       "set_completion_paths",
       "submit_completion",
       "read_svg",
-      "view_bitmap"
+      "view_bitmap",
+      "imagegen"
     ]
   }
 }

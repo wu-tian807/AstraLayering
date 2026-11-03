@@ -102,7 +102,7 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
   async function schema() {
     const template=await readFile(join(directory,'example.env'),'utf8'), defaults=envValues(template);
     const modelSlotDefaults=resolveModelDefaults(defaults), imageDefaults=resolveImageDefaults(defaults);
-    return {template,fields:[...Object.entries(modelSlotDefaults).map(([slot,fallback])=>({key:modelSlotKey(slot as ModelSlot),label:roles[slot],section:'llm',type:'model',fallback})),{key:defaultImageModelKey,label:'默认生图模型',section:'image',type:'image',fallback:imageDefaults.model},...imageSteps.map(step=>({key:imageModelKey(step),label:images[step],section:'image',type:'image',fallback:defaults[imageModelKey(step)]??''})),...scalarFields(defaults)] as Field[]};
+    return {template,fields:[...Object.entries(modelSlotDefaults).map(([slot,fallback])=>({key:modelSlotKey(slot as ModelSlot),label:roles[slot],section:'llm',type:'model',fallback})),{key:defaultImageModelKey,label:'默认生图模型',section:'image',type:'image',fallback:imageDefaults.model},...imageSteps().map(step=>({key:imageModelKey(step),label:images[step]??step,section:'image',type:'image',fallback:defaults[imageModelKey(step)]??''})),...scalarFields(defaults)] as Field[]};
   }
   async function describe(text:string,exists:boolean,revision:string) {
     const {fields}=await schema(),values=withLegacyKeys(envValues(text)), issues:string[]=[];
@@ -112,8 +112,8 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
     const effective:Record<string,string>={};
     if(settings) {
       for(const [step,slot] of Object.entries(stepModelSlots)) {const m=settings.stepModels[step as AgentStep];effective[modelSlotKey(slot)]=`${m.model}-${m.effort}`;}
-      for(const step of imageSteps)effective[imageModelKey(step)]=settings.stepImages[step]!;
-      for(const step of imageSteps)try{validateImageSelection(settings,step);}catch(error){issues.push((error as Error).message);}
+      for(const step of imageSteps())effective[imageModelKey(step)]=settings.stepImages[step]!;
+      for(const step of imageSteps())try{validateImageSelection(settings,step);}catch(error){issues.push((error as Error).message);}
       for(const slot of modelSlots){const step=Object.keys(stepModelSlots).find(s=>stepModelSlots[s as AgentStep]===slot)!;try{validateProviderModel(settings.providers,settings.stepModels[step as AgentStep],roles[slot]);}catch(error){issues.push((error as Error).message);}}
     }
     return {path:file,exists,revision,preview:redactedPreview(text),issues:[...new Set(issues)],cli,

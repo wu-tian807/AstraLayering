@@ -41,7 +41,7 @@ async function checkImage(image: string, input: string): Promise<void> {
 export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): PreparationSteps {
   return { async extract(image, baseImage, output, prompt) {
     const result = await agents.run({
-      step: 'clothing_preparation', name: '纯衣服参考准备', imageGeneration: true,
+      step: 'clothing_preparation', name: '纯衣服参考准备',
       prompt,
       outputSchema: { type: 'object', additionalProperties: false, required: ['error'], properties: { error: { type: ['string', 'null'] } } },
     });

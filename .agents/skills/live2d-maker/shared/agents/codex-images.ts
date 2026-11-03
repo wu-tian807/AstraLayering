@@ -7,9 +7,10 @@ import { checkCodexCapabilities, type WorkflowEnvironment } from '../codex/envir
 import { generateImage, validateImageSelection, type ImageArguments, type ImageInput } from './images.ts';
 import { imageModelProviders, type AgentStep } from './models.ts';
 import type { ImageProcessingOptions } from '../image-processing.ts';
+import { agentImageGeneration } from '../agent-knowledge.ts';
 
 export function usesPatchedImageTool(settings: WorkflowEnvironment, step?: AgentStep): boolean {
-  return !!step && settings.stepModels[step].harness === 'codex'
+  return !!step && agentImageGeneration(step) && settings.stepModels[step].harness === 'codex'
     && !!settings.stepImages[step] && settings.stepImages[step] !== 'codex-native';
 }
 

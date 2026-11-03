@@ -68,12 +68,12 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
 
 test('every image-capable agent rejects native imagegen with a different harness; part review stays text-only', async t => {
   const root = await fixture(t);
-  for (const step of ['part_completion', 'clothing_completion'] as const) assert.ok(imageSteps.includes(step));
-  for (const step of ['part_outline', 'part_outline_repair', 'clothing_outline', 'clothing_outline_repair', 'part_outline_review', 'clothing_outline_review'] as const) {
-    assert.ok(!imageSteps.includes(step));
+  for (const step of ['part_completion', 'clothing_completion'] as const) assert.ok(imageSteps().includes(step));
+  for (const step of ['part_outline', 'part_outline_repair', 'clothing_outline', 'clothing_outline_repair', 'part_outline_review', 'clothing_outline_review', 'raster_step03'] as const) {
+    assert.ok(!imageSteps().includes(step));
     assert.equal(loadWorkflowEnvironment({}, root).stepImages[step], undefined);
   }
-  for (const step of imageSteps) {
+  for (const step of imageSteps()) {
     const settings = loadWorkflowEnvironment({ [modelSlotKey(stepModelSlots[step])]: 'gemini-4-argon-high' }, root);
     assert.throws(() => validateImageSelection(settings, step), /Codex 内置 imagegen.*harness.*agv/, step);
   }
@@ -89,8 +89,8 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
   const variables = parseEnv(contents);
   assert.equal(Object.keys(modelSlotDefaults).length, 14);
   for (const role of Object.keys(modelSlotDefaults)) assert.ok(Object.hasOwn(variables, modelSlotKey(role as ModelSlot)));
-  for (const step of imageSteps) assert.ok(Object.hasOwn(variables, `${step}_image_model`));
-  assert.equal(Object.keys(variables).filter(key => key.endsWith('_image_model') && !['default_image_model', 'image_model'].includes(key)).length, imageSteps.length);
+  for (const step of imageSteps()) assert.ok(Object.hasOwn(variables, `${step}_image_model`));
+  assert.equal(Object.keys(variables).filter(key => key.endsWith('_image_model') && !['default_image_model', 'image_model'].includes(key)).length, imageSteps().length);
   const root = await fixture(t);
   await writeFile(join(root, '.env'), contents);
   const settings = loadWorkflowEnvironment({}, root);
@@ -109,7 +109,7 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
   assert.deepEqual(settings.imageApis, {});
   assert.deepEqual(settings.cliPaths, {});
   assert.equal(settings.imageCompactThreshold, undefined);
-  assert.ok(imageSteps.every(step => settings.stepImages[step] === 'codex-native'));
+  assert.ok(imageSteps().every(step => settings.stepImages[step] === 'codex-native'));
 });
 
 test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for simplification', async t => {
@@ -133,7 +133,7 @@ test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for sim
     assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(expected[role], 'fixture'), step);
   }
   const nanoSteps = new Set(['part_base_subject', 'part_completion', 'clothing_completion']);
-  for (const step of imageSteps) {
+  for (const step of imageSteps()) {
     assert.equal(settings.stepImages[step], nanoSteps.has(step) ? 'gemini-nano-banana-2.1' : 'gpt-image-2.5-sunburst', step);
     validateImageSelection(settings, step);
   }
@@ -146,7 +146,7 @@ test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for sim
   assert.equal(custom.stepImages.part_simplify, 'gpt-image-2.5-flare');
   assert.equal(custom.stepImages.part_base_subject, 'gemini-nano-banana-2.1');
   assert.deepEqual(custom.stepModels.raster_step02, settings.stepModels.raster_step02);
-  for (const step of imageSteps) validateImageSelection(custom, step);
+  for (const step of imageSteps()) validateImageSelection(custom, step);
 });
 
 test('consistent legacy settings are shared, conflicts require an explicit role, and new configuration wins', async t => {

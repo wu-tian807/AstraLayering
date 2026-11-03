@@ -127,7 +127,7 @@ export async function drawGroupOutline(
     name: `${repair ? '组轮廓返修' : '组轮廓绘制'}-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
     tools: knowledge.tools(repair ? 'repair' : 'main', [preview, write, createSvgReadTool(context.directory),
       createBitmapTool(context.directory, join(context.directory, 'observations', 'outline', context.group.id)),
-      noteRepair]), imageGeneration: false,
+      noteRepair]),
     prompt: repairPrompt || drawingPrompt,
     ...(repairPrompt ? { recoveryPrompt: `${drawingPrompt}\n\n${runtimePrompt('outline-repair-resume')}${repairPrompt}` } : {}),
   });
@@ -187,7 +187,7 @@ async function reviewOnce(
   const response = await agents.run({
     step: partStep(profile.id, 'outline_review'), name: `组轮廓review-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
     tools: knowledge.tools('review', [preview, submit, createSvgReadTool(context.directory),
-      createBitmapTool(context.directory, join(context.directory, 'observations', 'review', context.group.id))]), imageGeneration: false,
+      createBitmapTool(context.directory, join(context.directory, 'observations', 'review', context.group.id))]),
     prompt: knowledge.render('review', runtime(context, input, round), { taskRoot: taskRootOf(context.directory), group: context.group.id }),
   });
   if (!submitted) throw agentOutcomeError('独立 review 未通过 submit_review 保存结论', response);

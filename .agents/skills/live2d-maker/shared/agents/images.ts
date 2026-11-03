@@ -10,8 +10,10 @@ import { needsSolidBackground, providerImageArguments, transparentGeneratedImage
 import type { ImageProcessingOptions } from '../image-processing.ts';
 import { recommendBackground, type BackgroundRecommendation } from './background-selection.ts';
 import { imagePath } from '../task-paths.ts';
+import { agentImageGeneration } from '../agent-knowledge.ts';
 
 export function validateImageSelection(settings: WorkflowEnvironment, step: AgentStep): void {
+  if (!agentImageGeneration(step)) return;
   const image = settings.stepImages[step];
   if (!image) return;
   const provider = imageModelProviders[image], agent = settings.stepModels[step];
@@ -25,6 +27,7 @@ export function validateImageSelection(settings: WorkflowEnvironment, step: Agen
 
 export function imageGenerationTool(settings: WorkflowEnvironment, step: AgentStep, output: string,
   normalization: ImageProcessingOptions = {}): FunctionTool | undefined {
+  if (!agentImageGeneration(step)) return;
   const model = settings.stepImages[step];
   if (!model || model === 'codex-native') return;
   validateImageSelection(settings, step);

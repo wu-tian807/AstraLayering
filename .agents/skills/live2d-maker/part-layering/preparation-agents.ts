@@ -83,20 +83,20 @@ export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): Prepar
     },
     standardize: async (image, output, prompt) => {
       const result = await agents.run({
-        step: 'part_standardize', name: '标准姿态', imageGeneration: true, outputSchema: imageOutputSchema,
+        step: 'part_standardize', name: '标准姿态', outputSchema: imageOutputSchema,
         prompt,
       });
       await validateAgentOutcome(result, () => saveImage(result.images.at(-1), output));
     },
     simplify: async (image, output, prompt, processGenerated) => {
       await prepareImage(agents, simplified, {
-        step: 'part_simplify', name: '参考判断与简化', prompt, imageGeneration: true,
+        step: 'part_simplify', name: '参考判断与简化', prompt,
         outputSchema: referenceOutputSchema,
       }, image, output, processGenerated);
     },
     baseSubject: async (image, output, prompt, processGenerated) => {
       return prepareImage(agents, base, {
-        step: 'part_base_subject', name: '素体换装', prompt, imageGeneration: true, outputSchema: referenceOutputSchema,
+        step: 'part_base_subject', name: '素体换装', prompt, outputSchema: referenceOutputSchema,
       }, image, output, processGenerated);
     },
   };

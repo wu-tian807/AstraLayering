@@ -1,4 +1,5 @@
 import { readDefaultConfiguration, requiredDefault, type DefaultConfiguration } from '../default-configuration.ts';
+import { agentImageGeneration } from '../agent-knowledge.ts';
 
 export const modelHarnesses = {
   'gpt-6.1-sol': 'codex',
@@ -51,18 +52,12 @@ export const stepModelSlots = {
   raster_step03: 'raster_step03',
   clothing_raster_step01: 'raster_step01', clothing_raster_step02: 'raster_step02',
   clothing_raster_step01_review: 'raster_step01_review', clothing_raster_step01_repair: 'raster_step01',
-  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_head: 'nine_axis_head',
+  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_head: 'nine_axis_head', nine_axis_head_y: 'nine_axis_head', nine_axis_head_xy: 'nine_axis_head',
 } as const satisfies Record<string, ModelSlot>;
 export type AgentStep = keyof typeof stepModelSlots;
 export const stepDefaults = Object.fromEntries(Object.entries(stepModelSlots)
   .map(([step, slot]) => [step, modelSlotDefaults[slot]])) as Record<AgentStep, string>;
-export const imageSteps: readonly AgentStep[] = [
-  'part_standardize', 'part_simplify', 'part_base_subject', 'clothing_preparation',
-  'part_completion', 'clothing_completion',
-  'raster_step01', 'raster_step02', 'raster_step01_review', 'raster_step01_repair', 'raster_step03',
-  'clothing_raster_step01', 'clothing_raster_step02', 'clothing_raster_step01_review', 'clothing_raster_step01_repair',
-  'assembly', 'shadow_maps',
-];
+export const imageSteps = (): AgentStep[] => (Object.keys(stepModelSlots) as AgentStep[]).filter(agentImageGeneration);
 export function parseAgentModel(value: string, key: string): AgentModel {
   const match = value.trim().match(/^(.+)-(low|medium|high|xhigh)$/);
   if (!match || !Object.hasOwn(modelHarnesses, match[1])) {
@@ -93,7 +88,7 @@ export function resolveImageDefaults(configuration: DefaultConfiguration) {
   };
   const model = parse(requiredDefault(configuration, defaultImageModelKey), defaultImageModelKey);
   const legacy = parse(requiredDefault(configuration, 'image_model'), 'image_model');
-  const steps = Object.fromEntries(imageSteps.map(step => {
+  const steps = Object.fromEntries(imageSteps().map(step => {
     const key = imageModelKey(step), value = configuration[key]?.trim();
     return [step, value ? parse(value, key) : model];
   })) as Record<AgentStep, ImageModel>;
