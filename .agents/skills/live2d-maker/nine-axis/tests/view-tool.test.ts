@@ -35,6 +35,26 @@ test('view_nine_axis 用工作台渲染器在工作台底色上画出本步交�
   await assert.rejects(tool.execute({ grid: ['face/nose'] }, signal), /grid/);
   await assert.rejects(tool.execute({ y: 10 }, signal), /ParamAngleY/);
   await assert.rejects(tool.execute({ x: 40 }, signal), /-30 至 30/);
+  const reference = join(directory, 'reference.png');
+  await sharp({ create: { width: 100, height: 100, channels: 3, background: '#00f' } }).composite([
+    { input: await sharp({ create: { width: 10, height: 100, channels: 3, background: '#0f0' } }).png().toBuffer(), left: 30, top: 0 },
+  ]).png().toFile(reference);
+  const compared = await tool.execute({ x: -30, crop: [10, 20, 60, 60], scale: 2, reference: { path: reference, bounds: [0, 0, 100, 100] } }, signal);
+  const comparison = JSON.parse((compared.contentItems[0] as { text: string }).text).comparison;
+  assert.equal(compared.contentItems.length, 3);
+  assert.equal(comparison.registration, 'none; same canvas coordinates');
+  assert.equal(comparison.axis, 50);
+  const { data, info: comparisonInfo } = await sharp(comparison.savedPath).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  assert.equal(comparisonInfo.width, 360); assert.equal(comparisonInfo.height, 148);
+  const at = (x: number, y: number) => [...data.subarray((y * comparisonInfo.width + x) * 3, (y * comparisonInfo.width + x) * 3 + 3)];
+  // Original x=35 lands at screen x=50 even though the viewport is cropped.
+  // The shifted red model overlays the green strip there, without recentering.
+  assert.deepEqual(at(50, 88), [0, 255, 0]);
+  assert.deepEqual(at(170, 88), [255, 0, 0]);
+  assert.deepEqual(at(290, 88), [128, 127, 0]);
+  // Original x=60 remains outside the shifted model: reference blue stays blue.
+  assert.deepEqual(at(340, 88), [0, 0, 255]);
+  await assert.rejects(tool.execute({ reference: { path: reference, bounds: [0, 0, 0, 100] } }, signal), /reference.bounds/);
 });
 
 test('isolated clipped parts retain mask coverage; hidden clipped layers need no render target', async t => {

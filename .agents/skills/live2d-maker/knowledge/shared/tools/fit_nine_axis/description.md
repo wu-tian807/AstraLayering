@@ -1,0 +1,22 @@
+按你描出的原画轮廓与 left 目标轮廓，自动求当前步骤的 Warp 参数。原画贴图保持，输出仍是 edit_nine_axis 使用的真实 face-left.json；现有 drag、points、transform 可继续微调。不会自动分组或建立预设层级。
+
+先写 trace JSON，用 `inspect` 看描线，再用 `fit` 求形变。参数：action=inspect/fit、trace=文件路径；fit 另给 id=你选择的 Warp 或图形部件。features 可指定本轮使用的描线/参考点 id，默认全部；revision 可防止覆盖其他编辑；smoothness 默认 0.02，只约束网格的额外弯曲，减小可让局部转折更贴合，增大可减少无约束区域的波动。
+
+trace 的格式：
+```json
+{
+  "version": 1,
+  "space": "view",
+  "curves": [
+    {"id": "left-cheek", "part": "face/face_base", "source": "M 110 210 Q 120 260 197 283", "target": "M 96 210 Q 110 257 170 282", "visibility": "visible"}
+  ],
+  "landmarks": [
+    {"id": "chin", "part": "face/face_base", "source": [197,283], "target": [170,282], "visibility": "visible"}
+  ]
+}
+```
+例子只说明语法，坐标必须按当前角色描。space=view 表示与 step01 upper-body / step02 left 同样的方形视框像素，工具按 crop.json 加回画布坐标；space=canvas 表示原画布像素。part 是描线对应的原 KRA 贴图部件，必须属于本轮 id。source 和 target 是 SVG path d，方向相同、起终点对应同一语义位置；闭合轮廓的起点和方向也须一致。工具沿曲线自动采样并按弧长对应，无须写大量网格点。眼窝、颊部、颌角、下巴等转折应拆成对应的小段，不能用一个跨越多个转折的长路径让弧长匹配猜位置。可以补少量 landmarks 稳住确实有对应的部位。
+
+visible 是参考中看得见的轮廓，默认权重 1；occluded 是被头发等遮挡、由你补出的结构，默认权重 0.03。可按证据给 weight，但补全不能压过可见部分。程序会与仅可见描线的拟合比较；补全若使可见点移动超过 0.1 个原画布像素，自动减弱补全并返回 occludedWeightScale。inspect 显示原画/参考上的描线：红色实线为可见，青色虚线为补全，黄色点为对应位置。检查 source 贴合导出的原画部件，target 贴合实际 left 帧；发丝边界不是脸缘。五官可以继续一轮批量液化，不要求全部描线。
+
+fit 只编辑选中节点的 left 关键形，保留其父级、子级、其他节点和静止形。工具使用工作台同一个平滑 Warp 计算，处理父级坐标反解，验证左右端点与中间角度的组合网格再保存。失败不会写入作者文件。返回新 revision、逐段拟合前后平均/最大误差（原画布像素）、描线检查图，另保存 fit-report.json。误差小只说明网格贴住了描线；仍须用 view_nine_axis reference 核对描线是否贴住视频和整体效果。某段残差大时，检查对应点、拆段、增加合适的控制点或局部 Warp，再重拟合。

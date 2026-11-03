@@ -40,13 +40,13 @@
 
 ## step03_angle-x：left 方向的脸部＋双耳透视形变
 
-1. agent 带着 `krita`、`edit_nine_axis`、`view_bitmap` 与 `view_nine_axis` 启动。导出脸与固定脖子的图层后，`edit_nine_axis.importParts` 创建小尺寸的初始网格，不自动建解剖分组。agent 参照教程先调脸型，再调眉眼的大形，随后嘴、鼻，最后回看完整脸与脖子的连接。
+1. agent 带着 `krita`、`edit_nine_axis`、`fit_nine_axis`、`view_bitmap` 与 `view_nine_axis` 启动。从原 KRA 导出脸与固定脖子，`edit_nine_axis.importParts` 创建初始网格，不自动建解剖分组。agent 描原画脸缘和 left 目标脸缘，再由 `fit_nine_axis` 自动求脸底 Warp；五官可一轮批量液化，然后回看完整脸。
 2. `create_warp`、`reparent`、`remove_warp` 由 agent 定义组级与父子 Warp；部件始终保留自己的局部网格。父级调整影响后代，局部编辑不影响兄弟或父级。编辑工具接受画布位置，自动反解父级，原子保存作者文件 `face-left.json` 并返回 revision。预览可显示组级网格、只看某一组，再恢复带脖子的完整脸。控制点少而清楚，平滑曲线与渲染细分分开。
-3. 脸侧轮廓按额头、眼窝、颧颊、下颌形成起伏；眉眼上半部透视更强，瞳孔分割尽量横平竖直，嘴下半部透视更强，鼻、嘴、下巴对齐。父级不能兼顾的部位用局部关键形或子 Warp 补偿。`parameterInterpolation.x: "ellipse"` 提供经过 −30、0、+30 的弧线；增加中间关键形时保留采样结果后改为分段线性插值。
+3. left 帧是可见脸型和五官的唯一视觉目标。`face-trace.json` 用 SVG path 记录源线和目标线，在眼窝、颧颊、颌角、下巴等转折拆段；可见区域标 `visible`，遮挡补全标 `occluded`。教程只用于后者，不以通用脸型改变可见轮廓。求解使用同一平滑 Warp 与父级反解，保留其他节点；补全与可见曲线冲突时自动弱化。父级不足时补局部关键形或子 Warp。`parameterInterpolation.x: "ellipse"` 可给出弧线，额外中间形按实际过渡补。
 4. 脖子从首次导入就进入参考与完整预览，不能挂到头部 Warp，也不能平移、倾斜、拉长。接缝先检查顶部覆盖与下颌线，记录角度和缺口；脖子顶部延长与最终接触调整统一在 step07 处理。已有线/蒙版复用，不能为了当前脖子的长度改变应有脸型。默认形蒙版在线下方，转头只裁掉接触区。每次调整都检查 −30、−15、0、+15、+30 的完整脸。耳朵整体贴着脸缘，远侧放到脸后，不用透明度隐藏。
 5. `face-left.json` 为 version 2，含 `axis`、`deformers`（可空）与 top-first `parts`。程序镜像组合后的向左形变，再反解到右侧节点的父级空间；不要求左右采用相同层级，写出 `deformers.json` 与 `source.json`。
 
-教程定义结构与制作顺序，角色视频是具体形变的拟合目标。先确认裁框、尺度和眼线/鼻嘴对齐，再叠加可见轮廓，按偏差修正父级与局部网格；保留眼尾、颧颊、下颌转折和下巴收尖的线条节奏。头发遮住的脸缘仍依教程构造，不追着发丝拟合。`left-fit-check.png` 保存前后叠加，`video-fit.json` 可记录参考哈希、可见区、对齐方式与测量结果。
+`fit_nine_axis.inspect` 先叠出描线；`fit` 将曲线自动采样为对应点，返回逐段平均/最大误差，保存 `fit-report.json`。拟合到描线仍须确认描线贴住视频。`view_nine_axis.reference` 返回参考／当前／50% 叠加三联图，固定正面 axis，不按五官重新对齐；`left-fit-check.png` 保存整脸对比，`far-side-check.png` 放大画面左侧眼窝到颊部，不能只检查一段下颌。描线格式见 [拟合工具](../knowledge/shared/tools/fit_nine_axis/description.md)。
 
 - `deformers.json`：version 2。无贴图的 `deformers` 和带贴图的 bottom-first `parts` 分开，`parent` 引用 Warp，绘制顺序独立于变形层级。每个节点有 `bbox`、`cols`、`rows`、`keyforms`；节点的局部形先形变，再依次通过父级。贴图保留原画布的 `textureBounds`，路径为本步 `layers/` 相对路径。工作台能选择父级或部件、拖动组合后的控制点并保存。完整字段与操作见 [编辑工具](../knowledge/shared/tools/edit_nine_axis/description.md)。
 - `character-nine-axis.kra`（需要像素修复时由 agent 在 Krita 保存）：在来源 KRA 上补绘转头露出的区域（例如后发被脸遮住的内层与外轮廓线），其他图层与 UUID 不变，因此阴影 `shadows.json` 的绑定仍然有效。旧 KRA 不覆盖。

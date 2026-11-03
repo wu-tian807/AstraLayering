@@ -1,0 +1,3 @@
+import type { HeadNineAxis, Point } from './nine-axis-model.js';
+export interface FitFeature { id: string; part: string; weight?: number; visibility?: 'visible' | 'occluded'; samples: {from: Point; to: Point}[] }
+export function fitWarpToTraces(doc: HeadNineAxis, options: {id: string; x?: number; y?: number; features: FitFeature[]; smoothness?: number}): {doc: HeadNineAxis; report: {id: string; x: number; y: number; units: string; before: {id: string; samples: number; weight: number; meanPixels: number; maxPixels: number}[]; after: {id: string; samples: number; weight: number; meanPixels: number; maxPixels: number}[]; controls: number; smoothness: number; occludedWeightScale: number}};

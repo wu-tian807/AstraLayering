@@ -1,6 +1,6 @@
 {
   "main": {
     "initial": ["prompts/脸部与双耳转向.md"],
-    "tools": ["krita", "view_bitmap", "view_nine_axis", "edit_nine_axis"]
+    "tools": ["krita", "view_bitmap", "view_nine_axis", "edit_nine_axis", "fit_nine_axis"]
   }
 }

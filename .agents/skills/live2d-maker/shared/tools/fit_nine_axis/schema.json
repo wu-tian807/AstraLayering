@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["action", "trace"],
+  "properties": {
+    "action": {"enum": ["inspect", "fit"]},
+    "trace": {"type": "string"},
+    "id": {"type": "string"},
+    "features": {"type": "array", "items": {"type": "string"}},
+    "revision": {"type": "string"},
+    "smoothness": {"type": "number", "minimum": 0, "maximum": 10}
+  }
+}

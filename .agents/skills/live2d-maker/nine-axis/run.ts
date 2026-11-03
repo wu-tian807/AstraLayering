@@ -22,6 +22,7 @@ import { buildAngleXY, cornerAngleValues, finishAngleXY, writeLinearCorners } fr
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
 import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
+import { createNineAxisFitTool } from './fit-tool.ts';
 import { createContinuationEditTool } from './continuation-edit-tool.ts';
 import { angleScale, angleValues } from './angles.ts';
 
@@ -119,7 +120,9 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       sectionKrita = new SectionKrita({ section: directory, krita: krita.executable, env: environment.codex.env, record: join(directory, kritaRecordFile) });
     }
     await sectionKrita.reserve(options.signal, waiting => progress(`${stepId}：${waiting}`));
-    const edit = stepId === 'step03_angle-x' ? [createHeadEditTool(join(directory, stepId), await resolveHeadInput(input), JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box, scale)] : [continuation];
+    const head = stepId === 'step03_angle-x' ? await resolveHeadInput(input) : undefined;
+    const box = head ? JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box : undefined;
+    const edit = head ? [createHeadEditTool(join(directory, stepId), head, box, scale), createNineAxisFitTool(join(directory, stepId), head, box, scale)] : [continuation];
     return [createKritaTool(sectionKrita, task), bitmap, view, ...edit];
   };
   const agents = () => new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress });
