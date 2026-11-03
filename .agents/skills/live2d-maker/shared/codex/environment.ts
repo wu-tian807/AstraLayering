@@ -150,7 +150,7 @@ export function parseWorkflowEnvironment(source: string, env: NodeJS.ProcessEnv 
   const stepImages: WorkflowEnvironment['stepImages'] = {};
   const defaultImage = get(defaultImageModelKey) || get(legacyDefaultImageModelKey);
   const fallbackImage = defaultImage || (imageUrl ? imageModel : imageDefaults.model);
-  for (const step of imageSteps) {
+  for (const step of imageSteps()) {
     const key = imageModelKey(step), legacy = legacyImageModelKey(step);
     // Explicit blank means inherit the chosen global model. Missing keys may
     // inherit a step-specific template default, while legacy image routes stay intact.

@@ -28,7 +28,7 @@ async function saveImage(image: GeneratedImage | undefined, output: string): Pro
 
 async function prepareImage(agents: Pick<CodexAgents, 'run'>, knowledge: ReturnType<typeof stepKnowledge>, task: AgentTask, input: string, output: string, processGenerated?: ProcessGenerated): Promise<ReferenceChoice> {
   let reusedReason: string | undefined;
-  const result = await agents.run({ ...task, tools: knowledge.tools('main', [{
+  const result = await agents.run({ ...task, imageGeneration: knowledge.imageGeneration('main'), tools: knowledge.tools('main', [{
     ...toolDefinition('reuse_reference'),
     async execute(value, signal, context) {
       if (!value || typeof value !== 'object' || Array.isArray(value)
@@ -83,20 +83,20 @@ export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): Prepar
     },
     standardize: async (image, output, prompt) => {
       const result = await agents.run({
-        step: 'part_standardize', name: '标准姿态', imageGeneration: true, outputSchema: imageOutputSchema,
+        imageGeneration: stepKnowledge('part-layering', 'step04_standard').imageGeneration('main'), step: 'part_standardize', name: '标准姿态', outputSchema: imageOutputSchema,
         prompt,
       });
       await validateAgentOutcome(result, () => saveImage(result.images.at(-1), output));
     },
     simplify: async (image, output, prompt, processGenerated) => {
       await prepareImage(agents, simplified, {
-        step: 'part_simplify', name: '参考判断与简化', prompt, imageGeneration: true,
+        step: 'part_simplify', name: '参考判断与简化', prompt,
         outputSchema: referenceOutputSchema,
       }, image, output, processGenerated);
     },
     baseSubject: async (image, output, prompt, processGenerated) => {
       return prepareImage(agents, base, {
-        step: 'part_base_subject', name: '素体换装', prompt, imageGeneration: true, outputSchema: referenceOutputSchema,
+        step: 'part_base_subject', name: '素体换装', prompt, outputSchema: referenceOutputSchema,
       }, image, output, processGenerated);
     },
   };

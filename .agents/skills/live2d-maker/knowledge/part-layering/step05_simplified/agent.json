@@ -5,7 +5,8 @@
       "prompts/参考图片.md"
     ],
     "tools": [
-      "reuse_reference"
+      "reuse_reference",
+      "imagegen"
     ]
   }
 }

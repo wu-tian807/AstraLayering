@@ -60,7 +60,7 @@ export function runtimePrompt(name: string, values: KnowledgeValues = {}, option
 }
 
 type AgentRole = { initial: string[]; tools?: string[] };
-type AgentConfig = { main: AgentRole; review?: AgentRole & { repair: { initial: string[] } } };
+type AgentConfig = { main: AgentRole; review?: AgentRole & { repair: AgentRole } };
 
 function parseAgent(path: string, reviewDeclared: boolean): AgentConfig {
   let config: any;
@@ -71,7 +71,7 @@ function parseAgent(path: string, reviewDeclared: boolean): AgentConfig {
     && (value.tools === undefined || list(value.tools)) && Object.keys(value).every(key => keys.includes(key));
   const valid = config && typeof config === 'object' && role(config.main, ['initial', 'tools'])
     && Object.keys(config).every(key => key === 'main' || key === 'review')
-    && (config.review === undefined || (role(config.review, ['initial', 'tools', 'repair']) && role(config.review.repair, ['initial'])));
+    && (config.review === undefined || (role(config.review, ['initial', 'tools', 'repair']) && role(config.review.repair, ['initial', 'tools'])));
   if (!valid) throw new Error(`agent.json 结构无效：${path}`);
   if (config.review && !reviewDeclared) throw new Error(`本步骤没有 review，agent.json 不能声明 review：${path}`);
   if (!config.review && reviewDeclared) throw new Error(`本步骤需要 review 与 repair：${path}`);
@@ -102,9 +102,16 @@ export function stepKnowledge(section: string, step: string) {
     return join(directory, file);
   };
   const files = (role: KnowledgeRole, group?: string) => initial(role).map(file => filePath(file, group));
+  const toolNames = (role: KnowledgeRole): string[] => {
+    const config = agent();
+    return (role === 'review' ? config.review?.tools
+      : role === 'repair' ? config.review?.repair.tools ?? config.main.tools : config.main.tools) ?? [];
+  };
   return {
     directory,
     files,
+    toolNames,
+    imageGeneration: (role: KnowledgeRole) => toolNames(role).includes('imagegen'),
     reference: (name: string) => join(directory, 'references', name),
     // Each file is rendered on its own; the results are joined byte for byte.
     render(role: KnowledgeRole, values: KnowledgeValues, options: { taskRoot?: string; group?: string } = {}): string {
@@ -117,8 +124,7 @@ export function stepKnowledge(section: string, step: string) {
     // agent.json decides which provided tools the agent sees and in what
     // order; a step may replace a tool description in tools/<name>/.
     tools<T extends FunctionTool>(role: KnowledgeRole, provided: readonly T[]): T[] {
-      const config = agent();
-      const names = (role === 'review' ? config.review?.tools : config.main.tools) ?? [];
+      const names = toolNames(role);
       return names.flatMap(name => {
         const tool = provided.find(item => item.name === name);
         if (!tool) return [];
@@ -170,7 +176,9 @@ export function checkKnowledge(directory = current): void {
       }
       // Group priors replace step prompts when their group runs.
       for (const path of markdownFiles(join(step.directory, 'prompts', 'groups'))) checkReferences(path, declared.section);
-      for (const [role, tools] of [['main', config.main.tools ?? []], ['review', config.review?.tools ?? []]] as const) {
+      for (const [role, tools] of [['main', step.toolNames('main')], ['review', config.review ? step.toolNames('review') : []],
+        ['repair', config.review ? step.toolNames('repair') : []]] as const) {
+        if (role !== 'main' && !config.review) continue;
         for (const name of tools) {
           if (!schemas.has(name)) throw new Error(`${declared.section}/${declared.step} 引用了未注册的工具：${name}`);
           const own = join(step.directory, 'tools', name, 'description.md');
@@ -178,7 +186,7 @@ export function checkKnowledge(directory = current): void {
           const description = existsSync(own) ? read(own) : existsSync(shared) ? read(shared) : '';
           if (!description.trim()) throw new Error(`工具 ${name} 缺少说明：${own}`);
         }
-        const required = role === 'main' ? declared.required ?? [] : declared.review?.required ?? [];
+        const required = role === 'review' ? declared.review?.required ?? [] : declared.required ?? [];
         for (const name of required) if (!tools.includes(name)) throw new Error(`${declared.section}/${declared.step} 的 ${role} 缺少必需工具：${name}`);
       }
     }

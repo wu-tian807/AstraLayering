@@ -123,7 +123,6 @@ export async function runTask(options: TaskOptions, dependencies: {
   };
   const progress = (message: string) => { if (message) log.write(message); };
   try {
-    const environment = !dependencies.execute || dependencies.environment ? dependencies.environment ?? loadWorkflowEnvironment() : undefined;
     // Krita is checked before the run is recorded as running, and before the agent
     // preflight: it is quick, while that may build the patched Codex. A refusal
     // leaves run.json as it was.
@@ -131,6 +130,7 @@ export async function runTask(options: TaskOptions, dependencies: {
     // Like Krita, the knowledge directory is checked before the run is recorded as running;
     // the scheduler's own preflight then reads the same directory as its section workers.
     selectKnowledge(configured.knowledge ?? defaultKnowledgeDirectory);
+    const environment = !dependencies.execute || dependencies.environment ? dependencies.environment ?? loadWorkflowEnvironment() : undefined;
     // A missing system dependency such as Xvfb is the exception: the run is recorded as failed with its install hint.
     const missing = await requireKrita(configured, !!options.krita, dependencies.preflight ?? (path => checkKrita(path, environment?.codex.env)))
       .then(() => undefined, error => { if (error instanceof MissingDependencyError) return error; throw error; });

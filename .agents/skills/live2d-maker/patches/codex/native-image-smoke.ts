@@ -10,8 +10,9 @@ import sharp from 'sharp';
 import { CodexAgents } from '../../shared/codex/agents.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 
-const { values } = parseArgs({ options: { codex: { type: 'string' } } });
+const { values } = parseArgs({ options: { codex: { type: 'string' }, case: { type: 'string' } } });
 if (!values.codex) throw new Error('请用 --codex 指定构建返回的实际二进制路径');
+if (values.case && !['disabled', 'openai', 'gemini'].includes(values.case)) throw new Error('--case 必须为 disabled、openai 或 gemini');
 const root = await mkdtemp(join(tmpdir(), 'layering-native-image-smoke-'));
 const png = await sharp({ create: { width: 32, height: 48, channels: 4, background: '#d1479580' } }).png().toBuffer();
 const nanoPng = await sharp({ create: { width: 32, height: 48, channels: 3, background: '#09f20a' } })
@@ -25,6 +26,14 @@ const server = createServer(async (req, res) => {
     if (req.url === '/chat/v1/responses') {
       assert.equal(req.headers.authorization, 'Bearer chat-fixture');
       const body = JSON.parse(bytes.toString());
+      if (protocol === 'disabled') {
+        assert.ok(!JSON.stringify(body.tools ?? []).includes('imagegen'), 'undeclared native image tool reached the model request');
+        turn++;
+        const id = `disabled_${turn}`;
+        res.setHeader('content-type', 'text/event-stream');
+        res.end(`data: ${JSON.stringify({ type: 'response.created', response: { id } })}\n\ndata: ${JSON.stringify({ type: 'response.output_item.done', item: { type: 'message', id: `msg_${id}`, role: 'assistant', content: [{ type: 'output_text', text: 'done' }] } })}\n\ndata: ${JSON.stringify({ type: 'response.completed', response: { id, usage: { input_tokens: 10, output_tokens: 1, total_tokens: 11 } } })}\n\n`);
+        return;
+      }
       // Namespace tool definitions may be rendered into system instructions by Codex.
       if (turn === 0) assert.ok(JSON.stringify(body).includes('imagegen'), 'native tool definition missing from the model request');
       const index = ++turn, id = `resp_${protocol}_${index}`;
@@ -67,7 +76,7 @@ const server = createServer(async (req, res) => {
 server.listen(0, '127.0.0.1'); await once(server, 'listening');
 const base = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
 try {
-  for (protocol of ['openai', 'gemini']) {
+  for (protocol of values.case ? [values.case] : ['disabled', 'openai', 'gemini']) {
     turn = 0; generation = 0;
     const directory = join(root, protocol), home = join(directory, 'codex-home'); await mkdir(home, { recursive: true });
     const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.startsWith('layering_') && !key.startsWith('LAYERING_')));
@@ -76,8 +85,23 @@ try {
       part_simplify_image_model: protocol === 'openai' ? 'gpt-image-2.5-flare' : 'gemini-nano-banana-2.1',
       [`layering_${protocol === 'openai' ? 'openai' : 'google'}_image_base_url`]: base + (protocol === 'openai' ? '/images/v1' : '/images/v1beta'),
       [`layering_${protocol === 'openai' ? 'openai' : 'google'}_image_api_key`]: 'image-fixture' }, directory);
+    if (protocol === 'disabled') settings.codex.config = { ...settings.codex.config, 'features.image_generation': true };
     const session = new CodexAgents({ environment: settings, cwd: directory, logDirectory: join(directory, 'agents') }).createSession();
     try {
+      if (protocol === 'disabled') {
+        const task = { step: 'raster_step03' as const, name: 'manual fixture', prompt: 'Return done.', imageGeneration: true, timeoutMs: 30_000 };
+        const first = await session.run(task);
+        assert.ok(first.threadId);
+        await session.close();
+        const continuation = new CodexAgents({ environment: settings, cwd: directory, logDirectory: join(directory, 'agents') }).createSession(first.threadId);
+        let second;
+        try { second = await continuation.run(task); } finally { await continuation.close(); }
+        assert.equal(first.threadId, second.threadId);
+        assert.equal(turn, 2); assert.equal(generation, 0);
+        assert.deepEqual(first.images, []); assert.deepEqual(second.images, []);
+        console.log(JSON.stringify({ protocol, passed: true, nativeToolAbsent: true, turns: turn }));
+        continue;
+      }
       const result = await session.run({ step: 'part_simplify', name: 'native fixture', prompt: 'Run the simulated image fixture.',
         imageGeneration: true, timeoutMs: 90_000 });
       assert.equal(generation, 2); assert.equal(result.images.length, 2);

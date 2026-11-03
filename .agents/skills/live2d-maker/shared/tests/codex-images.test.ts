@@ -17,6 +17,43 @@ import { textResult } from '../codex/function-tools.ts';
 
 const capabilities = { version: 1, image_provider: true, image_provider_version: 2, image_compaction: true, image_compaction_version: 2, failed_error_event_version: 1 };
 
+for (const resumed of [false, true]) test(`Krita-only step03 disables native imagegen on thread/${resumed ? 'resume' : 'start'} despite old settings`, async t => {
+  const { root } = await fixture(t);
+  const server = await fakeAppServer(root, [{ tool: 'krita', arguments: {} }], 'completed', [],
+    { finalText: '{"status":"completed","summary":"painted in Krita"}' });
+  const environment = loadWorkflowEnvironment({ layering_codex_path: server.executable,
+    default_image_model: 'gpt-image-2.5-flare', raster_step03_image_model: 'codex-native',
+    layering_raster_step03_image_model: 'gemini-nano-banana-2.1' }, root);
+  assert.equal(environment.stepImages.raster_step03, undefined);
+  assert.equal(imageGenerationTool(environment, 'raster_step03', root), undefined);
+  assert.equal(usesPatchedImageTool(environment, 'raster_step03'), false);
+  // Simulate user-level settings: the explicit per-thread false must win.
+  environment.codex.config = { features: { image_generation: true }, 'features.image_generation': true };
+  let painted = 0;
+  const result = await runAgent({ directory: root, step: 'raster_step03', model: 'gpt-6.1-sol', effort: 'medium',
+    prompt: 'Paint in Krita.', ...(resumed ? { threadId: 'native-thread' } : {}), environment, onEvent: async () => {},
+    tools: [{ name: 'krita', description: 'fixture', inputSchema: { type: 'object' },
+      execute: async () => { painted++; return textResult('painted'); } }] });
+  assert.equal(result.status, 'completed'); assert.equal(painted, 1);
+  const protocol = (await readFile(server.capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
+  const thread = protocol.find(event => event.method === (resumed ? 'thread/resume' : 'thread/start'));
+  assert.equal(thread.params.config['features.image_generation'], false);
+  assert.equal(thread.params.config['features.unified_exec'], true);
+  assert.deepEqual(thread.params.dynamicTools.map((tool: any) => tool.name), ['krita']);
+});
+
+test('native transport rejects an explicit imagegen opt-in for a manual workflow step', async t => {
+  const { root } = await fixture(t);
+  const server = await fakeAppServer(root, []);
+  const environment = loadWorkflowEnvironment({ layering_codex_path: server.executable }, root);
+  const session = new CodexAgents({ environment, cwd: root }).createSession('native-thread');
+  try {
+    await session.run({ step: 'raster_step03', name: 'manual step', prompt: 'fixture', imageGeneration: true });
+  } finally { await session.close(); }
+  const protocol = (await readFile(server.capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
+  assert.equal(protocol.find(event => event.method === 'thread/resume').params.config['features.image_generation'], false);
+});
+
 test('raster 自定义框选工具与原生生图兼容，保留配置与会话', async t => {
   const { root } = await fixture(t);
   const server = await fakeAppServer(root, [{ tool: 'annotate_review_regions', arguments: {} }]);

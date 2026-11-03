@@ -28,7 +28,7 @@ test('the skill template drives missing .env, missing role keys, legacy tiers an
     assert.equal(first.stepModels[step].model,'gpt-6-astra');assert.equal(first.stepModels[step].effort,'high');
   }
   assert.deepEqual(first.models,{medium:{model:'gpt-6-astra',effort:'high'},high:{model:'gpt-6-astra',effort:'high'}});
-  for(const step of imageSteps)assert.equal(first.stepImages[step],step==='part_base_subject'?'gemini-nano-banana-2.1':'gpt-image-2.5-flare');
+  for(const step of imageSteps())assert.equal(first.stepImages[step],step==='part_base_subject'?'gemini-nano-banana-2.1':'gpt-image-2.5-flare');
   await assert.rejects(access(join(root,'.env')),{code:'ENOENT'});
   await writeFile(join(root,'.env'),template);
   assert.deepEqual(loadWorkflowEnvironment({},root).stepModels,first.stepModels);

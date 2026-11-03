@@ -17,6 +17,7 @@ import { randomUUID } from 'node:crypto';
 import type { ThreadEvent } from '@openai/codex-sdk';
 import type { ImageProcessingOptions } from '../image-processing.ts';
 import { executionPaths } from '../agents/workspace.ts';
+import { agentImageGeneration } from '../agent-knowledge.ts';
 
 export const agentDefaults = defaultModels.medium;
 
@@ -226,6 +227,13 @@ export class CodexAgents {
         if (busy) throw new Error('同一会话不能并发运行');
         busy = true;
         try {
+          // agent.json is the capability source for every harness and image
+          // provider. Model selection and old caller flags cannot grant access.
+          if (original.step) {
+            const enabled = agentImageGeneration(original.step);
+            original = { ...original, imageGeneration: enabled,
+              tools: enabled ? original.tools : original.tools?.filter(tool => tool.name !== 'imagegen') };
+          }
           const settings = this.options.environment!;
           const selected = this.options.selectedModel || (original.step ? settings.stepModels[original.step]
             : parseAgentModel(`${settings.models.medium.model}-${settings.models.medium.effort}`, '默认模型'));
@@ -298,6 +306,7 @@ export class CodexAgents {
   // One-shot turns share the app-server session path. A turn without function
   // tools stays shell-free unless the task asks otherwise.
   async run(task: AgentTask): Promise<AgentResult> {
+    if (task.step) task = { ...task, imageGeneration: agentImageGeneration(task.step) };
     const plain = !task.tools?.length;
     const session = this.createSession();
     let result: AgentResult;

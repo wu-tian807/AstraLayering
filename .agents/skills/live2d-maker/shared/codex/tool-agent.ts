@@ -19,6 +19,7 @@ import type { ToolResult } from './function-tools.ts';
 import { validateProviderModel } from '../agents/providers.ts';
 import { prepareWorkspace, workspacePrompt, workspaceTools } from '../agents/workspace.ts';
 import { imagePath } from '../task-paths.ts';
+import { agentImageGeneration } from '../agent-knowledge.ts';
 
 // Only the protocol subset used here is maintained. The CLI is pinned by codex-sdk.
 type Message = { id?: number | string; method?: string; params?: Record<string, any>;
@@ -318,14 +319,18 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
       if (busy) throw new Error('同一会话不能并发运行');
       checkFailure();
       const paths = await prepareWorkspace(task, options.cwd ?? workflowsDirectory);
-      const tools = workspaceTools(task.tools ?? [], paths);
+      const permittedImages = task.step ? agentImageGeneration(task.step) : task.imageGeneration === true;
+      const tools = workspaceTools((task.tools ?? []).filter(tool => permittedImages || tool.name !== 'imagegen'), paths);
       const byName = new Map(tools.map(tool => [tool.name, tool]));
       if (byName.size !== tools.length || tools.some(tool => !/^[a-zA-Z0-9_-]+$/.test(tool.name))) {
         throw new Error('function tool 名称无效或重复');
       }
       const workingDirectory = paths.workspace;
       const definitions = tools.map(({ name, description, inputSchema }) => ({ type: 'function', name, description, inputSchema }));
-      const enableImageGeneration = task.imageGeneration ?? false, enableShell = task.shell ?? true;
+      // Named workflow steps must declare image capability. A caller or global
+      // Codex config cannot enable native imagegen for a manual drawing step.
+      const enableImageGeneration = permittedImages && task.imageGeneration === true;
+      const enableShell = task.shell ?? true;
       if (threadId && (cwd !== workingDirectory || imageGeneration !== enableImageGeneration || shell !== enableShell ||
           toolDefinitions !== JSON.stringify(definitions))) {
         throw new Error('延续会话不能改变工作目录、工具定义、shell 或生图开关');
@@ -339,7 +344,9 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
       const threadOptions = {
         // No sandbox for now: paths are managed by the prompt and tools, not by write limits.
         model: selectedModel.model, cwd, sandbox: 'danger-full-access', approvalPolicy: 'never',
-        config: flattenConfig({ ...options.config, model_reasoning_effort: selectedModel.effort, web_search: 'disabled',
+        // Normalize user dotted/nested keys before applying workflow overrides;
+        // otherwise a dotted features.image_generation=true may win by key order.
+        config: flattenConfig({ ...flattenConfig(options.config ?? {}), model_reasoning_effort: selectedModel.effort, web_search: 'disabled',
           ...(options.baseUrl ? { openai_base_url: options.baseUrl } : {}),
           features: { image_generation: imageGeneration, shell_tool: shell, unified_exec: shell, multi_agent: false, memories: false, goals: false } }),
         dynamicTools: definitions,
