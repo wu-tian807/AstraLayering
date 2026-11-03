@@ -1,95 +1,115 @@
-# ParamAngleX −30 候选
+# ParamAngleX −30 局部续修候选
 
-本轮为待用户确认的候选。仅制作 X；+30 由程序镜像生成，Y、四角和 step07 未制作。本次导出、拟合与五官调整均保留原 KRA 绘画。
+本轮按 review-feedback 延续用户已赞许的真实 seed，候选尚待用户确认。只制作 X，+30 由程序镜像；24 张原贴图、全部部件、两个完整眼 Warp、嘴 Warp 和固定脖子保留。实际修改仅为 face_contour 的 −30 关键形。
 
 ![left 参考与当前候选](left-check.png)
 
-## 来源、坐标和分组
+## 来源、坐标与分组
 
-画布为 1254×1254，固定特写范围为 `[431,35,394,394]`，镜像轴为原画布 x=628。所有参考叠加均使用这套坐标，没有按眼睛、下巴重新对齐。图中青色虚线是固定正面中轴。
+源为本轮原始 character-assembled.kra / PNG，哈希分别为 `56b11c5fd7a3db20e512de642bb1a5922d2f312b2c96557d0c8d3da022587ad4`、`52359407596567a2874c9714b1e4ea336f1268916e3de784737deeb8de8f173c`，与 seed 的源核对记录一致。全部24张 PNG 的文件哈希及解码 RGBA 哈希仍与原 KRA 投影核验一致，UUID、上下顺序、裁切范围未变。沿用23个脸层与身体中的独立 neck，没有重新导入静止网格。layer-export-manifest.json、source-layer-verification.json 保留历史导出记录，其 run4 路径表示 seed 的出处；本轮真实路径和核对见 verification.json。
 
-从原始 `character-assembled.kra` 以 Krita 的图层投影导出 23 个脸层和身体中的独立 neck，按原画布边界裁切透明 PNG。投影保留原层效果；未替换、重绘或液化贴图像素。`layer-export-manifest.json` 保存原 UUID、名称、上下顺序与裁切位置；`source-layer-verification.json` 实际核对全部 24 张 PNG 的解码 RGBA 与原 KRA 投影一致，UUID 和顺序一致，Krita 原文档 modified=false。
+画布1254×1254，固定特写 `[431,35,394,394]`，镜像轴 x=628。所有预览保持原始位置和比例，没有按眼睛或下巴重新配准。青色虚线表示正面中轴。
 
-| 节点 | 实际包含部件 | 分组理由 |
+| 节点 | 部件与分组理由 |
+| --- | --- |
+| face_contour，8×8 | 仅 face_base；原肤色、轮廓、内绘腮红同层，独立拟合脸缘 |
+| eye_left / eye_right，各4×4 | 各带上睑、睑褶、下睫毛、下睑、高光、虹膜、眼白七层；整眼透视，显式镜像配对 |
+| mouth_pose，2×2 | 五层口唇、舌、齿、口腔共同调整，保持覆盖 |
+| 眉、鼻 | 独立部件网格，保留已有液化落点 |
+| neck | 最底层，无父 Warp，全部关键形等于静止形 |
+
+Warp 平级；eye_left 是角色左眼、画面右侧近眼，eye_right 是画面左侧远眼。源 KRA 没有独立耳层，不伪造；腮红已经绘在脸底内。
+
+## 本轮真实脸缘与补全
+
+原 face_base 按 textureBounds `[548,142,159,177]` 放回画布，再裁固定 box 得到 source-face-reference.png。source-face.svg 完整轮廓取原部件，远侧真实 alpha 外缘已局部重描，纠正旧描线约1–1.5 px 的局部偏差。
+
+target-face.svg 对指定 left.png 同坐标检查。已结合本角色原视频相邻帧辨认：远侧眼尾外下方实际显露的实体边缘是 visible，眼上方及发梢覆盖区是 occluded；发束切入皮肤窗口的凹口不捏入脸肉。对应路径分为以下小段，单位为特写 view 像素。
+
+| 段 | target 范围 | 证据 |
 | --- | --- | --- |
-| face_contour，8×8 | face_base 的肤色、轮廓和内绘腮红 | 脸底线色在同一原层，独立自动拟合完整轮廓；较密网格容纳颊颌转折 |
-| eye_left、eye_right，各 4×4 | 各自的上眼睑、睑褶、下睫毛、下眼睑、高光、虹膜、眼白，共七层 | 整眼改变远近宽度和眼尾，保持虹膜、高光与睑线关系；显式 mirror_pair |
-| mouth_pose，2×2 | 上唇、下唇、舌、上齿、口腔五层 | 共同压缩和侧向倾斜，避免口腔层分離 |
-| 眉、鼻 | 各自原部件的局部网格 | 独立修正落点、眉梢和鼻尖，不被脸底轮廓拟合牵动 |
-| neck | 原身体脖子层 | 最底层、无父 Warp，全部关键形保持原形 |
+| far-orbit-hidden | `[96.5,181]` → `[102.6,200.5]` | occluded，眼上方覆盖区 |
+| far-orbit-visible | `[102.6,200.5]` → `[108.1,219.5]` | visible，眼尾外侧显露脸缘 |
+| far-cheek-steep | `[108.1,219.5]` → `[111.1,236]` | visible，较近竖向的颊部陡段 |
+| far-cheek-hair-tip | `[111.1,236]` → `[116,247.5]` | occluded，发梢覆盖下的连续实体 |
+| far-cheek-lower | `[116,247.5]` → `[123,254.5]` | visible，发梢以下重新显露的颊缘 |
 
-这些 Warp 平级，没有预设整头或所有五官共同变形。`eye_left` 是角色左眼、画面右侧近眼；`eye_right` 是画面左侧远眼。原 KRA 没有独立耳层，不伪造耳朵；腮红已绘在 face_base 内，没有新增腮红贴图。
+远侧颌段、两半下巴、近侧颌段仍为 visible；额顶、太阳穴及近侧被发束覆盖的眼窝至上颊补全为 occluded。保留已确认的近侧完整 target 路径与下巴形状，不为了陡段修改其它已确认区域。下巴由 source view `[196.5,283.5]` 到 target `[167,281.3]`，即画布 `[598,316.3]`。
 
-## 真实脸缘与遮挡补全
+已查看圆脸视频关键帧板和实际7.2秒帧、教程 left 完整脸底及三个关键帧、不同模型总板及 Hiyori 单模型。选 Hiyori 的圆润鹅蛋脸作为遮挡结构先验：本角色饱满颊部、渐收下颌和小尖颏较接近这一类型。只指导被挡区的连续体量，不复制比例、角度、五官或脖子，也不改变已贴视频的可见段。
 
-已打开圆脸视频关键帧板、实际圆脸视频 7.2 秒帧、教程完整 left 脸底、不同脸型模型参考板和 Hiyori 单模型参考，并抽看本角色 left 视频。选用 Hiyori 的圆润鹅蛋脸结构辅助遮挡补全：本角色原完整脸具有饱满颊部、逐渐收束的下颌和小尖颏，较接近这一类型。没有平均长脸和短圆脸，也没有复制 Hiyori 的尺寸、角度、五官或脖子。
+两份 SVG 均为394×394、透明背景、闭合纯色色块、stroke=none。已实际用 preview_svg 整图 blend 和重叠局部 blend/edge 核对远侧眼窝、陡段、颊颌与相邻区，并复查近侧和下巴。face-trace.json 的15个小段与 completion 完整闭合轮廓使用同一组路径，不以发缘闭合皮肤窗口。
 
-当前 left 中，两侧太阳穴、眼窝外缘和多数上颊被发束挡住。尤其画面右眼外侧沿发束弯曲的皮肤窗口属于遮挡边界，未作为脸外缘，也未把发束凹口捏进脸底。下方清晰露出的远侧颌段、两半下巴和近侧颌段标为 visible；其余八段完整脸外轮廓标为 occluded。补全从原 KRA 的整张脸底向额头、太阳穴、眼窝和完整近侧颊部连续延伸。
+![source 远侧真实部件外缘](source-trace-edge.png)
 
-`face-trace.json` 的 12 个对应小段与闭合 source/target 使用同一组曲线，方向和语义端点一致。原下巴 view `[196.5,283.5]` 移到 `[167,281.3]`，即画布 `[598,316.3]`；上半脸和五官的位移各不相同，不是整脸统一横移。
+![target 远侧眼尾至颊缘](target-trace-edge.png)
 
-![描线三联图：原画／left／完整目标脸](trace-check.png)
+![target 陡段局部边缘](target-trace-steep-edge.png)
 
-`fit_nine_axis inspect` 在拟合前已实际调用并查看完整脸预测；最终再次 inspect，completionMismatch 仍为 `[]`。`face-completion-check.png` 保留工具返回的原始素脸双板。工具拼板时 source 面板被放在居中位置，随后由 target 面板遮盖了半张源脸；因此另存 `face-completion-full-check.png` 供完整检查。该补充图左板按相同 source 路径、相同尺度绘制，右板保留工具原 target 面板；它是预测检查图，不是贴图，也不冒充工具原输出。原画完整脸底另经实际部件渲染核对。
+## inspect、自动拟合与实际脸底
 
-![完整 source／target 素脸补充检查](face-completion-full-check.png)
+已实际调用 fit_nine_axis inspect，查看描线三联图和完整无遮挡 source/target 素脸双图，completionMismatch=[]。face-completion-check.png 是本轮工具原始完整双板，不沿用旧补充拼图。
 
-## 自动拟合与实际脸底
+![本轮描线三联图](trace-check.png)
 
-已实际调用 `fit_nine_axis fit` 制作 face_contour，不以手填网格代替脸底拟合。最终使用 81 个控制点、smoothness=0.002，visible 权重 1，occluded 权重 0.03，occludedWeightScale=1。`fit-report.json` 是工具返回的逐段报告。下表单位为原画布像素，度量的是网格对描线的残差。
+![本轮完整 source / target 素脸预测](face-completion-check.png)
 
-| 段 | 证据 | 拟合后平均／最大 |
+随后实际调用 fit_nine_axis fit，id=face_contour，81控制点，smoothness=0.002。visible 权重1，occluded 基础权重0.03；工具为避免补全牵动可见证据，自动采用 occludedWeightScale=0.01（实际补全权重约0.0003）。fit-report.json 保存完整逐段结果，下表单位为原画布像素，仅表示网格对描线的残差。
+
+| 段 | 证据 | 拟合后平均 / 最大 px |
 | --- | --- | --- |
-| far-crown | occluded | 0.103 / 0.524 |
-| far-temple | occluded | 0.146 / 0.524 |
-| far-orbit | occluded | 0.086 / 0.272 |
-| far-cheek | occluded | 0.106 / 0.236 |
-| far-jaw | visible | 0.049 / 0.100 |
-| far-chin | visible | 0.095 / 0.263 |
-| near-chin | visible | 0.052 / 0.156 |
-| near-jaw | visible | 0.045 / 0.156 |
-| near-cheek | occluded | 0.162 / 0.415 |
-| near-orbit | occluded | 0.070 / 0.285 |
-| near-temple | occluded | 0.051 / 0.153 |
-| near-crown | occluded | 0.041 / 0.260 |
+| far-crown | occluded | 0.244 / 0.628 |
+| far-temple | occluded | 1.242 / 2.302 |
+| far-orbit-hidden | occluded | 1.543 / 2.302 |
+| far-orbit-visible | visible | 0.100 / 0.285 |
+| far-cheek-steep | visible | 0.106 / 0.285 |
+| far-cheek-hair-tip | occluded | 0.376 / 0.549 |
+| far-cheek-lower | visible | 0.110 / 0.270 |
+| far-jaw | visible | 0.100 / 0.270 |
+| far-chin | visible | 0.072 / 0.212 |
+| near-chin | visible | 0.066 / 0.142 |
+| near-jaw | visible | 0.034 / 0.142 |
+| near-cheek | occluded | 0.344 / 0.623 |
+| near-orbit | occluded | 0.093 / 0.382 |
+| near-temple | occluded | 0.157 / 0.291 |
+| near-crown | occluded | 0.152 / 0.291 |
+| chin-tip | visible | 0.015 / 0.015 |
 
-下巴标点误差为 0.029 px。已单独查看真实网格渲染的 face_base，并与完整预测核对；近侧眼窝至颊部保持连续体量，原画轮廓的细笔锋保留。五官后续编辑未改动脸底 Warp，可见颌线与下巴没有随五官调整偏离描线。
+far-orbit-visible 平均残差由4.598降至0.100 px；far-cheek-steep 由2.991降至0.106 px。隐藏 far-temple/orbit 与预测最大约2.302 px；近侧隐藏颊部最大0.623 px。这是弱补全与原平滑网格的差异，不以移动可见脸缘强行消除。
 
-![实际变形后的独立脸底](face-base-left-check.png)
+已单独渲染实际变形 face_base，并与完整预测核对，完整近侧眼窝至颊部体量连续。再显示五官和固定脖子，同坐标叠到指定视频帧，检查远侧眼窝、颊缘、颌角和下巴的位置、转向和笔锋。原贴图细小笔锋与 alpha 边缘保留；不以预测图代替实际形变图。
 
-## 五官与可见残差
+![实际网格变形后的独立脸底](face-base-left-check.png)
 
-先用一个 operations 批次完成有把握的眉眼、鼻、嘴整体调整，再根据同坐标叠加微调。近眼整体向左约 36.48 px，宽度约原来的 0.992；远眼向左约 26.99 px，宽度约 0.764，并修正侧向剪切。远眼的眼白、睑峰和外眼尾随整眼变化，不是只移动瞳孔。近、远眉分别独立调整外半与眉梢。
+## 五官复核与剩余差异
 
-嘴的五层共同向左约 35.92 px，横向约 0.844、纵向约 0.978，并加入侧向剪切和倾斜。鼻独立向左约 43 px、适度压缩；最后对鼻层下半部作约 1–2.2 px 的局部左移与少量纵向调整，校正放大图中深色鼻尖偏右的位置。原鼻高光和笔触仍保留。
+本轮保留 seed 已完成的一轮批量液化与微调，没有无新证据地重调五官。已有近眼整体左移约36.48 px、宽度约0.992；远眼左移约26.99 px、宽度约0.764，并有侧向剪切和眼尾调整。嘴五层共同左移约35.92 px，横向约0.844、纵向约0.978；鼻和眉独立调整，鼻层另有下半部局部校正。两眼内外角、睑峰、虹膜及高光、鼻尖、嘴角和口腔覆盖本轮已放大逐项复核，全部部件和三个五官 Warp 与 seed 完全一致。
 
-两眼内外角、上睑峰、虹膜与高光、鼻尖、嘴角及口腔覆盖已逐项看过。下列残差仍可在放大图中看到，候选不宣称逐像素一致：
+仍能看到的局部差异如下，候选不宣称逐像素一致：
 
-- 鼻尖画布约 x=582–584、y=255–260：落点已校正，原深色笔触的分叉与高光清晰边缘仍不同于视频的竖直软笔触。
-- 嘴画布约 x=581–605、y=271–298：原口角和下唇外线保留稍有棱角的笔锋，视频边缘更圆、更软；口腔层没有分離。
-- 两眼上睑、睫毛尖与虹膜下缘：整体位置和远近宽度相合，原画细线、软边与视频重采样仍有局部差别。
-- 远侧露出的颊颌过渡与下巴：实际线条仍含原画的小笔锋起伏；拟合贴住描线不等于视频每个像素完全一致。
+- 鼻尖画布 x约582–584、y约255–260：原深色分叉笔触和高光边缘不同于视频更软的竖向笔触。
+- 嘴画布 x约581–605、y约271–298：原口角、下唇边线保留稍有棱角的笔锋，视频边缘更圆软；口腔各层衔接。
+- 两眼细睑线、睫毛尖、虹膜下缘：原画软边与视频重采样有小差异，整体落点和远近眼宽度保持。
+- 远侧眼窝下至颊颌：原脸底轮廓仍有细小笔锋和线宽差异；主体陡段、转向已贴当前描线，不能用低拟合残差代替视频核对。
 
-![画面左侧眼窝、眼尾、颧颊与脸缘](far-side-check.png)
+![远侧眼窝、眼尾、颧颊与脸缘的实际对照](far-side-check.png)
 
 ![近侧眼窝至颊颌](near-side-check.png)
 
 ![鼻嘴细节](mouth-check.png)
 
-`left-fit-check.png` 保留完整 reference／current／50% overlay 三联图。`left-check.png` 是其前两板原位裁出，所有板采用固定视框和比例。
+left-fit-check.png 是完整 reference/current/50% overlay 三联图；left-check.png 仅原位裁出其前两板。对照未重居中、缩放或配准。
 
-## 过渡与 step07 接触记录
+## 过渡、固定脖子与 step07
 
-已查看 −30、−15、0、+15、+30 的完整脸、五官和固定脖子。使用线性 X 插值，眼睛和嘴层保持衔接，脸底没有突然收缩、融化或分離；0 的局部网格与初始规则网格一致，原画叠加核对无错位。本轮没有补中间关键形或改用 ellipse。
+已实际查看−30、−15、0、+15、+30完整脸、五官与固定脖子。沿用线性 X，没有增加中间关键形。眼睛、口腔与脸底过渡连续，没有突然收缩或层间分离；0全部网格与初始规则网格完全一致，且已同坐标对原合成PNG核对。镜像侧由真实程序生成。
 
-![固定视框的五个 X 角度](intermediate-check.png)
+![五角度同尺度实际渲染](intermediate-check.png)
 
-脖子的父级为空，所有 X 关键形与静止网格完全相同；没有平移、拉长或倾斜。目前脸底仍覆盖脖子顶部，没有以扭动脖子填缝。视频脖子本身有偏移，因此其外缘与固定原脖存在差别，留待后续接触收尾评审。
+neck 无父级，作者源与镜像工程全部 X 关键形保持原形，没有移动、拉长、倾斜。本轮下巴仍覆盖原脖子顶部；视频脖子本身有侧移，与固定原脖外缘的差别留接触收尾评审。交给 step07 的原画布位置：下巴约 `[598,316.3]`；远侧顶部 x=600–608、y=313–330；近侧颌颈交界 x=650–665、y=292–311。后续复核顶部延长、覆盖与颌线收尾及对应镜像接触，本步未实施。
 
-交给 step07 的位置均为原画布坐标：下巴约 `[598,316.3]`；远侧顶部接触约 x=600–608、y=313–330；近侧颌颈交界约 x=650–665、y=292–311。应复核固定脖子顶部延长、覆盖和颌线收尾，并检查程序镜像侧的对应接触。本步未实施这些操作。
+![固定 neck 网格与颌颈接触](neck-contact-check.png)
 
-![颌颈接触与固定 neck 网格](neck-contact-check.png)
+## 交付核对
 
-## 文件核对
-
-`face-left.json` 是 edit/fit 工具保存的 version 2 作者源；`deformers.json` 与 `source.json` 已由本仓库真实 `finishHead` 编译器生成，包含镜像 X 和源 KRA/PNG 哈希。贴图共 24 张，作者源共四个 Warp、24 个原部件。`verification.json` 与 `view-evidence.json` 记录坐标、静止形、固定 neck、工具输出来源与产物哈希。用户确认前，本候选不作为流程稳定性结论。
+face-left.json 为 edit_nine_axis / fit_nine_axis 保存的真实 version2 作者源；deformers.json、source.json 已用本仓库 finishHead 真实编译器更新，验证层级和网格并生成右侧。verification.json 和 view-evidence.json 记录本轮哈希、24张贴图继承原投影的核对、唯一实际修改节点、同源 SVG/trace、工具原图及派生拼板来源。Y、四角和 step07 未推进。此轮交付仍为待用户确认候选。

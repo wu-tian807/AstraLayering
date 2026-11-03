@@ -2,7 +2,7 @@
   {
     "id": "face/eyebrow_left",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eyebrow_left.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eyebrow_left.png",
     "textureBounds": [
       650,
       178,
@@ -21,7 +21,7 @@
   {
     "id": "face/eyebrow_right",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eyebrow_right.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eyebrow_right.png",
     "textureBounds": [
       554,
       179,
@@ -40,7 +40,7 @@
   {
     "id": "face/eye_left/upper_eyelid",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_left__upper_eyelid.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_left__upper_eyelid.png",
     "textureBounds": [
       651,
       207,
@@ -59,7 +59,7 @@
   {
     "id": "face/eye_right/upper_eyelid",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_right__upper_eyelid.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_right__upper_eyelid.png",
     "textureBounds": [
       546,
       207,
@@ -78,7 +78,7 @@
   {
     "id": "face/eye_left/eyelid_crease",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_left__eyelid_crease.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_left__eyelid_crease.png",
     "textureBounds": [
       654,
       203,
@@ -97,7 +97,7 @@
   {
     "id": "face/eye_right/eyelid_crease",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_right__eyelid_crease.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_right__eyelid_crease.png",
     "textureBounds": [
       565,
       203,
@@ -116,7 +116,7 @@
   {
     "id": "face/eye_left/lower_eyelashes",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_left__lower_eyelashes.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_left__lower_eyelashes.png",
     "textureBounds": [
       682,
       247,
@@ -135,7 +135,7 @@
   {
     "id": "face/eye_right/lower_eyelashes",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_right__lower_eyelashes.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_right__lower_eyelashes.png",
     "textureBounds": [
       566,
       247,
@@ -154,7 +154,7 @@
   {
     "id": "face/eye_left/lower_eyelid",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_left__lower_eyelid.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_left__lower_eyelid.png",
     "textureBounds": [
       662,
       250,
@@ -173,7 +173,7 @@
   {
     "id": "face/eye_right/lower_eyelid",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_right__lower_eyelid.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_right__lower_eyelid.png",
     "textureBounds": [
       574,
       250,
@@ -192,7 +192,7 @@
   {
     "id": "face/eye_left/highlight",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_left__highlight.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_left__highlight.png",
     "textureBounds": [
       659,
       217,
@@ -211,7 +211,7 @@
   {
     "id": "face/eye_right/highlight",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_right__highlight.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_right__highlight.png",
     "textureBounds": [
       573,
       218,
@@ -230,7 +230,7 @@
   {
     "id": "face/eye_left/iris",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_left__iris.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_left__iris.png",
     "textureBounds": [
       655,
       211,
@@ -249,7 +249,7 @@
   {
     "id": "face/eye_right/iris",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_right__iris.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_right__iris.png",
     "textureBounds": [
       569,
       211,
@@ -268,7 +268,7 @@
   {
     "id": "face/eye_left/sclera",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_left__sclera.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_left__sclera.png",
     "textureBounds": [
       653,
       210,
@@ -287,7 +287,7 @@
   {
     "id": "face/eye_right/sclera",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__eye_right__sclera.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__eye_right__sclera.png",
     "textureBounds": [
       558,
       212,
@@ -306,7 +306,7 @@
   {
     "id": "face/mouth/upper_lip",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__mouth__upper_lip.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__mouth__upper_lip.png",
     "textureBounds": [
       615,
       271,
@@ -325,7 +325,7 @@
   {
     "id": "face/mouth/lower_lip",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__mouth__lower_lip.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__mouth__lower_lip.png",
     "textureBounds": [
       615,
       281,
@@ -344,7 +344,7 @@
   {
     "id": "face/mouth/tongue",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__mouth__tongue.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__mouth__tongue.png",
     "textureBounds": [
       615,
       281,
@@ -363,7 +363,7 @@
   {
     "id": "face/mouth/upper_teeth",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__mouth__upper_teeth.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__mouth__upper_teeth.png",
     "textureBounds": [
       622,
       271,
@@ -382,7 +382,7 @@
   {
     "id": "face/mouth/mouth_interior",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__mouth__mouth_interior.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__mouth__mouth_interior.png",
     "textureBounds": [
       615,
       271,
@@ -401,7 +401,7 @@
   {
     "id": "face/nose",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__nose.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__nose.png",
     "textureBounds": [
       623,
       246,
@@ -420,7 +420,7 @@
   {
     "id": "face/face_base",
     "group": "face",
-    "texture": "nine-axis/step03_angle-x/layers/face__face_base.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/face__face_base.png",
     "textureBounds": [
       548,
       142,
@@ -439,7 +439,7 @@
   {
     "id": "neck",
     "group": "body",
-    "texture": "nine-axis/step03_angle-x/layers/neck.png",
+    "texture": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/layers/neck.png",
     "textureBounds": [
       565,
       293,
