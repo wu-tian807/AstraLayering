@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "runner": "live2d-maker/nine-axis/run.ts",
+  "sourceCommit": "973d88334729cb4d39d40b7beb4dac108ad943d5",
+  "startedAt": "2026-11-03T16:07:21.055Z",
+  "finishedAt": "2026-11-03T16:31:07.790Z",
+  "step": "step03_angle-x",
+  "source": "original KRA; workflow exports layers and authors all warps",
+  "handAuthoredDeformerInput": false,
+  "handExportedLayerInput": false,
+  "publicationNormalization": "Only task paths in metadata and notes become relative; all geometry and textures remain the pipeline output",
+  "promptSha256": "5177eb60bf8b1ec8ef89b11be558fa94153b80fcc3347d276f700939aa7ff58b",
+  "inputs": [
+    {
+      "path": "character-assembly/step01/character-assembled.kra",
+      "sha256": "56b11c5fd7a3db20e512de642bb1a5922d2f312b2c96557d0c8d3da022587ad4"
+    },
+    {
+      "path": "character-assembly/step01/character-assembled.png",
+      "sha256": "52359407596567a2874c9714b1e4ea336f1268916e3de784737deeb8de8f173c"
+    },
+    {
+      "path": "part-layering/parts/face.svg",
+      "sha256": "f82d5905cb0984059eb76d5b4d5936bda6f85583c966483ddf4e728f9f5c881f"
+    },
+    {
+      "path": "part-layering/parts/hair.svg",
+      "sha256": "e8a4f8f9abf7cdcccef3c6b8361c1956ffa1666fe05197ac8d68ea2dd7e34a61"
+    },
+    {
+      "path": "part-layering/parts/head_accessories.svg",
+      "sha256": "0cb17f7f36166262cb923ebffc4f905077d1cd13abc9d99df656a5c09ef2a939"
+    },
+    {
+      "path": "nine-axis/step01_video/upper-body.png",
+      "sha256": "199356c96aa75b16c05def0ebd4334b5e8caae4982f800dfa6eb86d05ea5a5db"
+    },
+    {
+      "path": "nine-axis/step01_video/crop.json",
+      "sha256": "a042788ecfb8aeab491599dda55b214714d9776afa8d6dfdc6e959b03300a6f6"
+    },
+    {
+      "path": "nine-axis/step01_video/left.mp4",
+      "sha256": "f9ba06ba2ede5fb2dfd791c8e09b7ccbb01dcde09737dd9035066a64ef11f9eb"
+    },
+    {
+      "path": "nine-axis/step01_video/.completed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "nine-axis/step02_views/left.png",
+      "sha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155"
+    },
+    {
+      "path": "nine-axis/step02_views/views.json",
+      "sha256": "32153cec0c81be4dba674747d01330cb1dca38c8f40739701fa3c89d27321c9c"
+    },
+    {
+      "path": "nine-axis/step02_views/.completed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "outputHashes": [
+    {
+      "path": "face-left.json",
+      "pipelineSha256": "bc964ebef87428f9ec8e67873f662d4fc9be9b8ade94b7f2f4c514d512749a8e",
+      "sha256": "6690395d4d73a50276dcdfbc6d8ba250c732973df3d48b0f650f10f6c63c5be5"
+    },
+    {
+      "path": "deformers.json",
+      "pipelineSha256": "af6a7c964add504d6caf8b250ab1a37dd5ccfbb7abb18cab522d20420bcbced9",
+      "sha256": "928739c93403ba43c7804dee2efb4d6765d3962987500062a41446553004bebc"
+    },
+    {
+      "path": "source.json",
+      "pipelineSha256": "fd263894f598307a889ff451535be1a6f43959ffcd266b214f1074c71d3a8ac5",
+      "sha256": "fd263894f598307a889ff451535be1a6f43959ffcd266b214f1074c71d3a8ac5"
+    },
+    {
+      "path": ".completed",
+      "pipelineSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "left-check.png",
+      "pipelineSha256": "e86c62b2072cf5a48dd744ea7f2ba953ccdfe49c147da3d7a311a8b5170f3793",
+      "sha256": "e86c62b2072cf5a48dd744ea7f2ba953ccdfe49c147da3d7a311a8b5170f3793"
+    },
+    {
+      "path": "left-fit-check.png",
+      "pipelineSha256": "92b00bf8a6565fbdea380097d99e3a11195f7454c2c8869e53d1923a07a29c8c",
+      "sha256": "92b00bf8a6565fbdea380097d99e3a11195f7454c2c8869e53d1923a07a29c8c"
+    },
+    {
+      "path": "intermediate-check.png",
+      "pipelineSha256": "7393dea94adebeee5ba0bd7e589c7b9db3d8fda814b6342341788eb1de23840d",
+      "sha256": "7393dea94adebeee5ba0bd7e589c7b9db3d8fda814b6342341788eb1de23840d"
+    },
+    {
+      "path": "neck-contact-check.png",
+      "pipelineSha256": "048492e3b28d48d4bdd5056fb3461d3333ec49b004df5892f1ecc7c4d21dd522",
+      "sha256": "048492e3b28d48d4bdd5056fb3461d3333ec49b004df5892f1ecc7c4d21dd522"
+    },
+    {
+      "path": "layers/eye_left_eyelid_crease.png",
+      "pipelineSha256": "c96c35a331589316feb0e60c00d57b3a3b137f09d7da3cb5c11f31475d5dfae2",
+      "sha256": "c96c35a331589316feb0e60c00d57b3a3b137f09d7da3cb5c11f31475d5dfae2"
+    },
+    {
+      "path": "layers/eye_left_highlight.png",
+      "pipelineSha256": "57df604a34f985bdc7baacda3be3273e967d922accdf8a765031c6ad767a9017",
+      "sha256": "57df604a34f985bdc7baacda3be3273e967d922accdf8a765031c6ad767a9017"
+    },
+    {
+      "path": "layers/eye_left_iris.png",
+      "pipelineSha256": "491c0b4bd4a3f83cc67d287b6d43ad95d6b21d9ce33cab6c3459458983679dea",
+      "sha256": "491c0b4bd4a3f83cc67d287b6d43ad95d6b21d9ce33cab6c3459458983679dea"
+    },
+    {
+      "path": "layers/eye_left_lower_eyelashes.png",
+      "pipelineSha256": "8baae4cbebde81ddbdc0d2e3a534a9428251c320ad526719e35e732051899b77",
+      "sha256": "8baae4cbebde81ddbdc0d2e3a534a9428251c320ad526719e35e732051899b77"
+    },
+    {
+      "path": "layers/eye_left_lower_eyelid.png",
+      "pipelineSha256": "af2132fb76e311e58eef44771f0d756e2a6f7a1fb82d7cb98d74f41518c914a7",
+      "sha256": "af2132fb76e311e58eef44771f0d756e2a6f7a1fb82d7cb98d74f41518c914a7"
+    },
+    {
+      "path": "layers/eye_left_sclera.png",
+      "pipelineSha256": "a9ae87ca0d9bc0723232300eefe2019ab7eb59bd494129973966bc9c41b33ba5",
+      "sha256": "a9ae87ca0d9bc0723232300eefe2019ab7eb59bd494129973966bc9c41b33ba5"
+    },
+    {
+      "path": "layers/eye_left_upper_eyelid.png",
+      "pipelineSha256": "28e2a2fe4d91d2379c84d63868edd9f6cfb67ddcc2a6bf0624619cfb11d069db",
+      "sha256": "28e2a2fe4d91d2379c84d63868edd9f6cfb67ddcc2a6bf0624619cfb11d069db"
+    },
+    {
+      "path": "layers/eye_right_eyelid_crease.png",
+      "pipelineSha256": "f9d4244cf6842112782b8042cc9598535a48bfe1ab5c40772382046b3a232ab7",
+      "sha256": "f9d4244cf6842112782b8042cc9598535a48bfe1ab5c40772382046b3a232ab7"
+    },
+    {
+      "path": "layers/eye_right_highlight.png",
+      "pipelineSha256": "1c8cc7423e81af36e99e8ceb729a0d8873276c25d5deadc98952ab287c0a9739",
+      "sha256": "1c8cc7423e81af36e99e8ceb729a0d8873276c25d5deadc98952ab287c0a9739"
+    },
+    {
+      "path": "layers/eye_right_iris.png",
+      "pipelineSha256": "b8667bbcc4d9b4b341e57e74574c57ea8b58d9ba13d0489d419ea18a9c4f2758",
+      "sha256": "b8667bbcc4d9b4b341e57e74574c57ea8b58d9ba13d0489d419ea18a9c4f2758"
+    },
+    {
+      "path": "layers/eye_right_lower_eyelashes.png",
+      "pipelineSha256": "85eed3d792031b25d918cac0c341609b59ea621bca6cdbc91268fae51834652c",
+      "sha256": "85eed3d792031b25d918cac0c341609b59ea621bca6cdbc91268fae51834652c"
+    },
+    {
+      "path": "layers/eye_right_lower_eyelid.png",
+      "pipelineSha256": "530e950a0e905e0d6e7efdd225e2b552004a6f9eaaa89b001e8a6fec16ab483b",
+      "sha256": "530e950a0e905e0d6e7efdd225e2b552004a6f9eaaa89b001e8a6fec16ab483b"
+    },
+    {
+      "path": "layers/eye_right_sclera.png",
+      "pipelineSha256": "d692bf018d1efe13735d3588819a0abcf463965bf68339fed262ece981c9ab4a",
+      "sha256": "d692bf018d1efe13735d3588819a0abcf463965bf68339fed262ece981c9ab4a"
+    },
+    {
+      "path": "layers/eye_right_upper_eyelid.png",
+      "pipelineSha256": "22016a1a8540aeaf2fce78db29c1ee7a640fdd81fe744c4734fe625e71888a69",
+      "sha256": "22016a1a8540aeaf2fce78db29c1ee7a640fdd81fe744c4734fe625e71888a69"
+    },
+    {
+      "path": "layers/eyebrow_left.png",
+      "pipelineSha256": "5eab44e70230cec3c0f944f0ab344629dd381cc74185edf60b08e4ad4456576f",
+      "sha256": "5eab44e70230cec3c0f944f0ab344629dd381cc74185edf60b08e4ad4456576f"
+    },
+    {
+      "path": "layers/eyebrow_right.png",
+      "pipelineSha256": "839b3c2dc7914858c6cdc659315df641f0dfdad37541eaf28acff1ee245e98fb",
+      "sha256": "839b3c2dc7914858c6cdc659315df641f0dfdad37541eaf28acff1ee245e98fb"
+    },
+    {
+      "path": "layers/face_base.png",
+      "pipelineSha256": "5ab0230e203d1a530f0a5ee635daf3c5f4da8013e687dc96338991790617b7d0",
+      "sha256": "5ab0230e203d1a530f0a5ee635daf3c5f4da8013e687dc96338991790617b7d0"
+    },
+    {
+      "path": "layers/mouth_lower_lip.png",
+      "pipelineSha256": "4b313154482ebb29ac92d282af250975e4bf2591a95ee82a64bd9fa876b2fc76",
+      "sha256": "4b313154482ebb29ac92d282af250975e4bf2591a95ee82a64bd9fa876b2fc76"
+    },
+    {
+      "path": "layers/mouth_mouth_interior.png",
+      "pipelineSha256": "8dd4405a29051332550f08fcbbb5e56767b2ae3c6c9756990dbedc935acba63b",
+      "sha256": "8dd4405a29051332550f08fcbbb5e56767b2ae3c6c9756990dbedc935acba63b"
+    },
+    {
+      "path": "layers/mouth_tongue.png",
+      "pipelineSha256": "4c20224fd9227a0080ca91c06ce33c03c12a7f8bb057c3f3c5b47301a4eec1d6",
+      "sha256": "4c20224fd9227a0080ca91c06ce33c03c12a7f8bb057c3f3c5b47301a4eec1d6"
+    },
+    {
+      "path": "layers/mouth_upper_lip.png",
+      "pipelineSha256": "30725da96899b993a828d85b50bba12446a37494e447a2773648d12ab710bdf5",
+      "sha256": "30725da96899b993a828d85b50bba12446a37494e447a2773648d12ab710bdf5"
+    },
+    {
+      "path": "layers/mouth_upper_teeth.png",
+      "pipelineSha256": "7709a723af8bd25bfe072471e900386ab5860b531ccc3063a1501a1e20534015",
+      "sha256": "7709a723af8bd25bfe072471e900386ab5860b531ccc3063a1501a1e20534015"
+    },
+    {
+      "path": "layers/neck.png",
+      "pipelineSha256": "a1b3fa464da617cef72bb77ea674090349c7d75bcc5387aeb5d1c70e7aa5ec11",
+      "sha256": "a1b3fa464da617cef72bb77ea674090349c7d75bcc5387aeb5d1c70e7aa5ec11"
+    },
+    {
+      "path": "layers/nose.png",
+      "pipelineSha256": "6e8ae2629423691a66e893761b02a000bfac6c315774ab47436b5e6e4eb39e39",
+      "sha256": "6e8ae2629423691a66e893761b02a000bfac6c315774ab47436b5e6e4eb39e39"
+    },
+    {
+      "path": "checks/angle-x-+0.png",
+      "pipelineSha256": "881efdb0984b2e18837eab94e05a80c0aa1e35ee01b9a4b6a33095f5eaab81e7",
+      "sha256": "881efdb0984b2e18837eab94e05a80c0aa1e35ee01b9a4b6a33095f5eaab81e7"
+    },
+    {
+      "path": "checks/angle-x-+15.png",
+      "pipelineSha256": "52d98709b5d449740b82c0acf125510d2f6c791aafc8094700940b3d31c976c8",
+      "sha256": "52d98709b5d449740b82c0acf125510d2f6c791aafc8094700940b3d31c976c8"
+    },
+    {
+      "path": "checks/angle-x-+30.png",
+      "pipelineSha256": "527ec7edbb5cc8d2c55e427f71c38873e3882ece65df0b7564d6ffac27a605a7",
+      "sha256": "527ec7edbb5cc8d2c55e427f71c38873e3882ece65df0b7564d6ffac27a605a7"
+    },
+    {
+      "path": "checks/angle-x--15.png",
+      "pipelineSha256": "e406ff75c40c7c3d91d33c0846520418f92dbc6e332d5f0722e7bff6fd88509e",
+      "sha256": "e406ff75c40c7c3d91d33c0846520418f92dbc6e332d5f0722e7bff6fd88509e"
+    },
+    {
+      "path": "checks/angle-x--30.png",
+      "pipelineSha256": "0647f29aa8628019e7ffb35266a05c197366449c1b8c2ee1e8a657c6211ac73f",
+      "sha256": "0647f29aa8628019e7ffb35266a05c197366449c1b8c2ee1e8a657c6211ac73f"
+    },
+    {
+      "path": "checks/stage01-face-base.png",
+      "pipelineSha256": "1ce75ae917e89dbfe1469c3f77d1fd05c1fd6728b95c95e7470d1a047c49ce20",
+      "sha256": "1ce75ae917e89dbfe1469c3f77d1fd05c1fd6728b95c95e7470d1a047c49ce20"
+    },
+    {
+      "path": "checks/stage02-brow-eye.png",
+      "pipelineSha256": "06f19e601a3bc85ce938baa85c387c2921c03b49627ac1c6f1c02a73460e0806",
+      "sha256": "06f19e601a3bc85ce938baa85c387c2921c03b49627ac1c6f1c02a73460e0806"
+    },
+    {
+      "path": "checks/stage03-mouth.png",
+      "pipelineSha256": "27330e7377565f145c3af6461274e4411edf64e04b17e53e603090b1163b279d",
+      "sha256": "27330e7377565f145c3af6461274e4411edf64e04b17e53e603090b1163b279d"
+    }
+  ]
+}

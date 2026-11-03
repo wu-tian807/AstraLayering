@@ -1,0 +1,491 @@
+{
+  "source": "character-assembly/step01/character-assembled.kra",
+  "canvas": [
+    1254,
+    1254
+  ],
+  "parts": [
+    {
+      "id": "face/eyebrow_left",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eyebrow_left.png",
+      "textureBounds": [
+        648,
+        176,
+        56,
+        19
+      ],
+      "bbox": [
+        648,
+        176,
+        704,
+        195
+      ],
+      "uuid": "{5b2e3185-c524-4414-a30c-d53b629d4120}",
+      "layerName": "057 | face/eyebrow_left",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eyebrow_right",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eyebrow_right.png",
+      "textureBounds": [
+        552,
+        177,
+        55,
+        18
+      ],
+      "bbox": [
+        552,
+        177,
+        607,
+        195
+      ],
+      "uuid": "{d4611c12-835b-4238-be8b-e2e35d071564}",
+      "layerName": "056 | face/eyebrow_right",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_left/upper_eyelid",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_left_upper_eyelid.png",
+      "textureBounds": [
+        649,
+        205,
+        63,
+        41
+      ],
+      "bbox": [
+        649,
+        205,
+        712,
+        246
+      ],
+      "uuid": "{c468e273-bcf6-449e-88ad-c0a9c5903eae}",
+      "layerName": "055 | face/eye_left/upper_eyelid",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_right/upper_eyelid",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_right_upper_eyelid.png",
+      "textureBounds": [
+        544,
+        205,
+        63,
+        41
+      ],
+      "bbox": [
+        544,
+        205,
+        607,
+        246
+      ],
+      "uuid": "{ecd374aa-3e90-4081-8bca-f3d7a8e721ec}",
+      "layerName": "054 | face/eye_right/upper_eyelid",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_left/eyelid_crease",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_left_eyelid_crease.png",
+      "textureBounds": [
+        652,
+        201,
+        40,
+        12
+      ],
+      "bbox": [
+        652,
+        201,
+        692,
+        213
+      ],
+      "uuid": "{a2bc57ac-1ca1-4eb0-b551-ece8ceda5378}",
+      "layerName": "048 | face/eye_left/eyelid_crease",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_right/eyelid_crease",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_right_eyelid_crease.png",
+      "textureBounds": [
+        563,
+        201,
+        42,
+        13
+      ],
+      "bbox": [
+        563,
+        201,
+        605,
+        214
+      ],
+      "uuid": "{882565db-0435-4e0f-8ec7-f1809318e55a}",
+      "layerName": "047 | face/eye_right/eyelid_crease",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_left/lower_eyelashes",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_left_lower_eyelashes.png",
+      "textureBounds": [
+        680,
+        245,
+        13,
+        11
+      ],
+      "bbox": [
+        680,
+        245,
+        693,
+        256
+      ],
+      "uuid": "{66389e76-a936-4ad4-a2d9-3d3f9cf4226a}",
+      "layerName": "046 | face/eye_left/lower_eyelashes",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_right/lower_eyelashes",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_right_lower_eyelashes.png",
+      "textureBounds": [
+        564,
+        245,
+        12,
+        11
+      ],
+      "bbox": [
+        564,
+        245,
+        576,
+        256
+      ],
+      "uuid": "{b0b0f412-8256-48af-af0d-f503d997f494}",
+      "layerName": "045 | face/eye_right/lower_eyelashes",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_left/lower_eyelid",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_left_lower_eyelid.png",
+      "textureBounds": [
+        660,
+        248,
+        23,
+        8
+      ],
+      "bbox": [
+        660,
+        248,
+        683,
+        256
+      ],
+      "uuid": "{74ebe557-8aa2-47dd-a183-597e11ecb8a3}",
+      "layerName": "044 | face/eye_left/lower_eyelid",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_right/lower_eyelid",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_right_lower_eyelid.png",
+      "textureBounds": [
+        572,
+        248,
+        26,
+        9
+      ],
+      "bbox": [
+        572,
+        248,
+        598,
+        257
+      ],
+      "uuid": "{0585e7a5-14f4-4951-a77c-7a76efeb5451}",
+      "layerName": "043 | face/eye_right/lower_eyelid",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_left/highlight",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_left_highlight.png",
+      "textureBounds": [
+        657,
+        215,
+        31,
+        32
+      ],
+      "bbox": [
+        657,
+        215,
+        688,
+        247
+      ],
+      "uuid": "{146709c9-dd83-4494-a41b-70a920e6a5e0}",
+      "layerName": "042 | face/eye_left/highlight",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_right/highlight",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_right_highlight.png",
+      "textureBounds": [
+        571,
+        216,
+        30,
+        29
+      ],
+      "bbox": [
+        571,
+        216,
+        601,
+        245
+      ],
+      "uuid": "{da47d23e-314a-4b57-89e5-8913e49ece99}",
+      "layerName": "041 | face/eye_right/highlight",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_left/iris",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_left_iris.png",
+      "textureBounds": [
+        653,
+        209,
+        37,
+        45
+      ],
+      "bbox": [
+        653,
+        209,
+        690,
+        254
+      ],
+      "uuid": "{3a8496f1-8e31-40de-a515-e3ad30851f67}",
+      "layerName": "040 | face/eye_left/iris",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_right/iris",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_right_iris.png",
+      "textureBounds": [
+        567,
+        209,
+        37,
+        45
+      ],
+      "bbox": [
+        567,
+        209,
+        604,
+        254
+      ],
+      "uuid": "{3dd3a3f0-da8e-411e-876c-af021d7289ac}",
+      "layerName": "039 | face/eye_right/iris",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_left/sclera",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_left_sclera.png",
+      "textureBounds": [
+        651,
+        208,
+        50,
+        48
+      ],
+      "bbox": [
+        651,
+        208,
+        701,
+        256
+      ],
+      "uuid": "{aa0095b0-f3fb-4656-8339-3de44ed5f410}",
+      "layerName": "038 | face/eye_left/sclera",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/eye_right/sclera",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/eye_right_sclera.png",
+      "textureBounds": [
+        556,
+        210,
+        51,
+        45
+      ],
+      "bbox": [
+        556,
+        210,
+        607,
+        255
+      ],
+      "uuid": "{fa840fe1-4e0d-4b12-a539-8e595e3f63a0}",
+      "layerName": "037 | face/eye_right/sclera",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/mouth_upper_lip.png",
+      "textureBounds": [
+        613,
+        269,
+        30,
+        20
+      ],
+      "bbox": [
+        613,
+        269,
+        643,
+        289
+      ],
+      "uuid": "{ca63e007-a627-419b-852f-557d03a28b52}",
+      "layerName": "036 | face/mouth/upper_lip",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/mouth_lower_lip.png",
+      "textureBounds": [
+        613,
+        279,
+        30,
+        21
+      ],
+      "bbox": [
+        613,
+        279,
+        643,
+        300
+      ],
+      "uuid": "{77661b6f-be96-4710-b56c-e9553189fa20}",
+      "layerName": "035 | face/mouth/lower_lip",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/mouth/tongue",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/mouth_tongue.png",
+      "textureBounds": [
+        613,
+        279,
+        30,
+        21
+      ],
+      "bbox": [
+        613,
+        279,
+        643,
+        300
+      ],
+      "uuid": "{76fe80b0-63f9-4eb3-8633-9bb8b96e0140}",
+      "layerName": "034 | face/mouth/tongue",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/mouth_upper_teeth.png",
+      "textureBounds": [
+        620,
+        269,
+        17,
+        10
+      ],
+      "bbox": [
+        620,
+        269,
+        637,
+        279
+      ],
+      "uuid": "{f8779d0c-3f7c-498c-9e57-bacc110daedc}",
+      "layerName": "033 | face/mouth/upper_teeth",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/mouth_mouth_interior.png",
+      "textureBounds": [
+        613,
+        269,
+        30,
+        31
+      ],
+      "bbox": [
+        613,
+        269,
+        643,
+        300
+      ],
+      "uuid": "{5eeec7b0-6070-40ee-997d-0bd90c9e51ab}",
+      "layerName": "032 | face/mouth/mouth_interior",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/nose",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/nose.png",
+      "textureBounds": [
+        621,
+        244,
+        14,
+        19
+      ],
+      "bbox": [
+        621,
+        244,
+        635,
+        263
+      ],
+      "uuid": "{4badab51-4e65-406c-a2b6-2c3b416f8fad}",
+      "layerName": "031 | face/nose",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "face/face_base",
+      "group": "face",
+      "texture": "nine-axis/step03_angle-x/layers/face_base.png",
+      "textureBounds": [
+        546,
+        140,
+        163,
+        181
+      ],
+      "bbox": [
+        546,
+        140,
+        709,
+        321
+      ],
+      "uuid": "{7800356f-9032-4024-869a-e72d6b74200a}",
+      "layerName": "030 | face/face_base",
+      "layerType": "paintlayer"
+    },
+    {
+      "id": "neck",
+      "group": "body",
+      "texture": "nine-axis/step03_angle-x/layers/neck.png",
+      "textureBounds": [
+        563,
+        291,
+        130,
+        74
+      ],
+      "bbox": [
+        563,
+        291,
+        693,
+        365
+      ],
+      "uuid": "{c239788d-a8dc-4750-b027-6a52c4012b4d}",
+      "layerName": "010 | neck",
+      "layerType": "paintlayer"
+    }
+  ],
+  "export": "Krita node.projectionPixelData; includes visible masks; KRA top-to-bottom",
+  "sourceSha256": "56b11c5fd7a3db20e512de642bb1a5922d2f312b2c96557d0c8d3da022587ad4"
+}

@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "canvas": [
+    1254,
+    1254
+  ],
+  "crop": {
+    "x": 431,
+    "y": 35,
+    "size": 394
+  },
+  "reference": "nine-axis/step02_views/left.png",
+  "scale": 1,
+  "translate": [
+    0,
+    0
+  ],
+  "basis": "Front crop agrees with source eye line/nose/mouth; left frame keeps stable eye line and mouth height. No camera scale/translation adjustment required.",
+  "visibleJawRangeCrop": [
+    120,
+    210
+  ],
+  "excluded": "Hair boundaries below far eye and near-side hair/shadow beyond u=210 are not visible face contours."
+}
