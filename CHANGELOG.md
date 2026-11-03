@@ -4,6 +4,7 @@
 每个版本说明实际变化，以及**升级后已完成任务是否需要重做**：续跑时由各步骤的指纹决定，只改措辞的提示词修订不会让已完成步骤重做。
 
 ## 未发布
+- **分层局部修画与视觉验收：** 人物、衣服 step01 将原图作为形体和笔触依据，原始像素复用限定到 Krita 中确认需要恢复的局部；补充原生选区取样用法及每次局部操作后的独显、合成对照。step02 与 review 以轮廓清晰、部件干净和衔接连续为保留差异的前提，差异定位工具只负责定位。已完成成果沿用，现有瑕疵需要针对所属步骤返修。
 - **头部九轴拆出视频步骤，改为六步：** 新的 `step01_video` 生成全部视频：上半身特写为首帧的向左转头 left、镜头仰视 up、俯视 down，再以 up、down 的 25° 帧为首帧生成左上 left-up、左下 left-down 转头视频；`step02_views` 只从 left.mp4 取 left.png，`step04_views-y` 只从 up/down.mp4 取 up.png、down.png。原 step02_angle-x、step04_angle-y、step05_angle-xy 顺延为 `step03_angle-x`、`step05_angle-y`、`step06_angle-xy`。删除 corner_view 工具：step06 的 agent 需要斜向参考时自己用 ffmpeg 从 left-up.mp4、left-down.mp4 取帧。**旧任务的 `nine-axis/` 目录与新步骤名不对应，需删除后重跑。**
 - **生视频只用自己的接口：** 去掉生视频在未填写时沿用 OpenAI 生图代理的回退；须填写 `video_base_url` / `video_api_key`，缺少时 step01_video 报错。
 - **`.env` 键名去掉 `layering_` 前缀：** 接口、模型等键统一不带前缀（如 `layering_codex_api_key` → `codex_api_key`、`layering_video_base_url` → `video_base_url`）；旧键仍按去掉前缀后的同一键读取，两者都填时以新键为准。
