@@ -30,6 +30,25 @@ async function fixture(t: TestContext) {
   return { root, task };
 }
 
+test('单跑 left 沿用参考输入，不调用视频或后续形变步骤', async t => {
+  const { root, task } = await fixture(t), nine = join(task, 'nine-axis'), videos = join(nine, 'step01_video'), views = join(nine, 'step02_views');
+  await mkdir(videos, { recursive: true }); await mkdir(views, { recursive: true });
+  const crop = JSON.stringify({ box: { x: 0, y: 0, size: 200 } });
+  await writeFile(join(videos, 'crop.json'), crop);
+  const left = await readFile(join(task, 'character-assembly/step01/character-assembled.png'));
+  await writeFile(join(views, 'left.png'), left);
+  const unexpected = async () => { throw new Error('不应调用其他步骤'); };
+  const summary = await runWorkflow({ name: 'case', dir: root, step: 'step03_angle-x' }, {
+    environment: loadWorkflowEnvironment({}), generate: unexpected, fitHead: writeFaceLeft,
+    fitAngleY: unexpected, fitAngleXY: unexpected, fitJawLine: unexpected,
+  });
+  assert.match(summary, /step03_angle-x 已完成/);
+  assert.equal(await readFile(join(videos, 'crop.json'), 'utf8'), crop);
+  assert.deepEqual(await readFile(join(views, 'left.png')), left);
+  await access(join(nine, 'step03_angle-x/.completed'));
+  for (const step of ['step04_views-y', 'step05_angle-y', 'step06_angle-xy', 'step07_jaw-line']) await assert.rejects(access(join(nine, step)), { code: 'ENOENT' });
+});
+
 test('头部特写从头顶截到肩线，以脸为中心并留边，长发不加宽', async t => {
   const { root } = await fixture(t);
   const input = await resolveTurnInput('case', root);

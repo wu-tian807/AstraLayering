@@ -1,5 +1,7 @@
 # 头部九轴
 
+仅验证左右制作时，可在独立运行目录沿用原始 KRA/PNG 与已完成的 step01/step02 输入，使用 `pnpm nine-axis --name <任务名> --dir <绝对运行根目录> --knowledge <先验知识目录> --krita <可执行文件> --step step03_angle-x`。该入口只运行左右制作，不生成视频、不推进后续角度；从原始 KRA 验证时不复制已有 `face-left.json`、变形器或导出的贴图。
+
 入口：`pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <Krita 可执行文件>`。范围为脸部与双耳，以及固定脖子的连接：step03 左右转向（ParamAngleX），step05 上下（ParamAngleY），step06 斜向（四角），不含头发。ParamAngleX / ParamAngleY 处处以度数为值：ParamAngleX −30 / +30（step02 取向左转头视频中转到 30° 的帧，+30 由 step03 镜像），ParamAngleY +25 抬头 / −25 低头（step04 取镜头上下移动视频中的 25° 帧）。各角度只记在 `knowledge/nine-axis/step01_video/references/angles.json`，由程序用来取视频帧、填进 step03、step05、step06 的提示词；agent 交付的关键形键、`deformers.json` 的参数范围与关键形键都是这些度数，工作台的范围读文档本身。改角度幅度只改这个文件。换成 Cubism 默认 ±30 等范围留给以后的导出层。状态记在各步骤目录的完成标记。
 
 | 步骤 | 输入 | 交付 |

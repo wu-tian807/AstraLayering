@@ -5,7 +5,7 @@ import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
 import { selectKnowledge, stepKnowledge } from '../shared/knowledge.ts';
-import { runSection } from '../shared/step-section.ts';
+import { runSection, stepName } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type VideoApi, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { CodexAgents } from '../shared/codex/agents.ts';
 import { preflightAgentSteps } from '../shared/agents/preflight.ts';
@@ -26,7 +26,8 @@ import { createContinuationEditTool } from './continuation-edit-tool.ts';
 import { angleScale, angleValues } from './angles.ts';
 
 export const help = `nine-axis — 头部九轴
-pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> [--dir <绝对运行根目录>] [--dry-run]
+pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> [--dir <绝对运行根目录>] [--step step03_angle-x] [--dry-run]
+--step 只运行指定步骤，沿用已存在的上游输入，不推进其他步骤。
 step01_video：生成本管线的全部视频。从工作台当前的角色图（阴影蒙版交付后为 shadow/step01_mask/character-shadowed.png，否则为组装图）
 按脸、头发、头饰形状截取头顶到肩线的方形正面头部特写 upper-body.png，以它为首帧同时生成三段 5 秒视频：left 身体与镜头不动、只有头匀速向左转到侧面（90°）；
 up 人物不动、镜头匀速降到下巴正下方仰视（脸看起来抬起）；down 镜头匀速升到头顶正上方俯视（脸看起来低下），都在最后一帧到 90°。
@@ -82,10 +83,13 @@ export function createFitHead(agents: Pick<CodexAgents, 'run'>, tools: (step: st
   };
 }
 
-export type NineAxisOptions = { name: string; dir?: string; krita?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
+export type NineAxisOptions = { name: string; dir?: string; krita?: string; step?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
 export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; ffmpeg?: string; fitHead?: FitHead; fitAngleY?: FitHead; fitAngleXY?: FitHead; fitJawLine?: FitHead;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
+  const allSteps = [{ number: 1, note: 'video' }, { number: 2, note: 'views' }, { number: 3, note: 'angle-x' }, { number: 4, note: 'views-y' }, { number: 5, note: 'angle-y' }, { number: 6, note: 'angle-xy' }, { number: 7, note: 'jaw-line' }];
+  const steps = options.step ? allSteps.filter(step => stepName(step.number, step.note) === options.step) : allSteps;
+  if (!steps.length) throw new Error('--step 须为已定义的九轴步骤，例如 step03_angle-x。');
   const root = resolveRunsDirectory(options.dir), progress = options.progress ?? (() => {});
   const task = taskDirectory(options.name, root), directory = join(task, 'nine-axis');
   const environment = dependencies.environment ?? loadWorkflowEnvironment();
@@ -122,7 +126,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const preflight = () => preflightAgentSteps(environment, ['nine_axis_head'], { runsRoot: root, progress, env: environment.codex.env });
   const preview = (text: string) => { progress(`预览：${text}`); summary = '预览完成，未调用模型'; };
   try { await runSection({ directory,
-    steps: [{ number: 1, note: 'video' }, { number: 2, note: 'views' }, { number: 3, note: 'angle-x' }, { number: 4, note: 'views-y' }, { number: 5, note: 'angle-y' }, { number: 6, note: 'angle-xy' }, { number: 7, note: 'jaw-line' }],
+    steps,
     dryRun: options.dryRun, signal: options.signal, progress,
     async step(step, status) {
       if (status === 'completed') return undefined;
@@ -177,7 +181,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
 
 export function parseRunArguments(args: string[]) {
   const { values } = parseArgs({ args, options: { name: { type: 'string' }, dir: { type: 'string' }, knowledge: { type: 'string' },
-    krita: { type: 'string' }, 'dry-run': { type: 'boolean' }, help: { type: 'boolean', short: 'h' } }, allowPositionals: false });
+    krita: { type: 'string' }, step: { type: 'string' }, 'dry-run': { type: 'boolean' }, help: { type: 'boolean', short: 'h' } }, allowPositionals: false });
   if (!values.help && !values.name?.trim()) throw new Error('必须提供 --name <任务名>。');
   if (!values.help && !values.knowledge?.trim()) throw new Error('必须提供 --knowledge <先验知识目录>；独立 section 不保存配置，每次启动（含续跑）都须指定。');
   if (values.dir !== undefined) resolveRunsDirectory(values.dir);
@@ -191,7 +195,7 @@ if (import.meta.main) {
     const controller = new AbortController(), stop = () => controller.abort(new Error('头部九轴已中断；续跑会重新生成未完成的步骤。'));
     process.once('SIGINT', stop); process.once('SIGTERM', stop);
     const release = args['dry-run'] ? undefined : await acquireTaskLock(taskDirectory(args.name!, args.dir));
-    try { console.log(await runWorkflow({ name: args.name!, dir: args.dir, krita: args.krita, dryRun: args['dry-run'], signal: controller.signal, progress: console.log })); }
+    try { console.log(await runWorkflow({ name: args.name!, dir: args.dir, krita: args.krita, step: args.step, dryRun: args['dry-run'], signal: controller.signal, progress: console.log })); }
     finally { await release?.(); process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); }
   })().catch(error => { console.error(formatAgentError(error)); process.exitCode = 1; });
 }
