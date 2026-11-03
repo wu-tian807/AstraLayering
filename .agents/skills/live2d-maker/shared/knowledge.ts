@@ -60,7 +60,7 @@ export function runtimePrompt(name: string, values: KnowledgeValues = {}, option
 }
 
 type AgentRole = { initial: string[]; tools?: string[] };
-type AgentConfig = { main: AgentRole; review?: AgentRole & { repair: AgentRole } };
+type AgentConfig = { main: AgentRole; review?: AgentRole & { repair: { initial: string[] } } };
 
 function parseAgent(path: string, reviewDeclared: boolean): AgentConfig {
   let config: any;
@@ -71,7 +71,7 @@ function parseAgent(path: string, reviewDeclared: boolean): AgentConfig {
     && (value.tools === undefined || list(value.tools)) && Object.keys(value).every(key => keys.includes(key));
   const valid = config && typeof config === 'object' && role(config.main, ['initial', 'tools'])
     && Object.keys(config).every(key => key === 'main' || key === 'review')
-    && (config.review === undefined || (role(config.review, ['initial', 'tools', 'repair']) && role(config.review.repair, ['initial', 'tools'])));
+    && (config.review === undefined || (role(config.review, ['initial', 'tools', 'repair']) && role(config.review.repair, ['initial'])));
   if (!valid) throw new Error(`agent.json 结构无效：${path}`);
   if (config.review && !reviewDeclared) throw new Error(`本步骤没有 review，agent.json 不能声明 review：${path}`);
   if (!config.review && reviewDeclared) throw new Error(`本步骤需要 review 与 repair：${path}`);
@@ -104,8 +104,8 @@ export function stepKnowledge(section: string, step: string) {
   const files = (role: KnowledgeRole, group?: string) => initial(role).map(file => filePath(file, group));
   const toolNames = (role: KnowledgeRole): string[] => {
     const config = agent();
-    return (role === 'review' ? config.review?.tools
-      : role === 'repair' ? config.review?.repair.tools ?? config.main.tools : config.main.tools) ?? [];
+    // Repairs continue the drawing thread and use its original tool definitions.
+    return (role === 'review' ? config.review?.tools : config.main.tools) ?? [];
   };
   return {
     directory,
@@ -176,8 +176,7 @@ export function checkKnowledge(directory = current): void {
       }
       // Group priors replace step prompts when their group runs.
       for (const path of markdownFiles(join(step.directory, 'prompts', 'groups'))) checkReferences(path, declared.section);
-      for (const [role, tools] of [['main', step.toolNames('main')], ['review', config.review ? step.toolNames('review') : []],
-        ['repair', config.review ? step.toolNames('repair') : []]] as const) {
+      for (const [role, tools] of [['main', step.toolNames('main')], ['review', config.review ? step.toolNames('review') : []]] as const) {
         if (role !== 'main' && !config.review) continue;
         for (const name of tools) {
           if (!schemas.has(name)) throw new Error(`${declared.section}/${declared.step} 引用了未注册的工具：${name}`);

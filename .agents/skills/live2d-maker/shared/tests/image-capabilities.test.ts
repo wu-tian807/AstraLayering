@@ -23,25 +23,35 @@ async function setImages(directory: string, enabled: boolean) {
   await writeFile(path, JSON.stringify(config));
 }
 
-test('all named agents read capability from their role; repair can override main tools', async t => {
+test('all named agents read capability from their role; main and repair share tools', async t => {
   const knowledge = await temporaryKnowledge(t);
   for (const step of Object.keys(stepModelSlots)) assert.equal(typeof agentImageGeneration(step as keyof typeof stepModelSlots), 'boolean');
   for (const step of ['raster_step02', 'raster_step03', 'raster_step01_review', 'clothing_raster_step02', 'clothing_raster_step01_review', 'assembly'] as const) {
     assert.equal(agentImageGeneration(step), false, step);
   }
-  assert.equal(agentImageGeneration('raster_step01_repair'), true, 'repair inherits main tools');
+  for (const section of ['part-layering', 'clothing-part-layering', 'raster-layering', 'clothing-raster-layering']) {
+    const step = stepKnowledge(section, section.endsWith('raster-layering') ? 'step01' : 'step09_outline');
+    assert.deepEqual(step.toolNames('repair'), step.toolNames('main'), section);
+    assert.equal(step.imageGeneration('repair'), step.imageGeneration('main'), section);
+  }
+  assert.equal(agentImageGeneration('raster_step01_repair'), true, 'repair uses main tools');
   const path = join(knowledge, 'raster-layering/step01/agent.json');
   const config = JSON.parse(await readFile(path, 'utf8'));
-  config.review.repair.tools = config.main.tools.filter((name: string) => name !== 'imagegen');
+  config.main.tools = config.main.tools.filter((name: string) => name !== 'imagegen');
   await writeFile(path, JSON.stringify(config));
   checkKnowledge(knowledge);
-  assert.equal(agentImageGeneration('raster_step01'), true);
+  assert.equal(agentImageGeneration('raster_step01'), false);
   assert.equal(agentImageGeneration('raster_step01_review'), false);
   assert.equal(agentImageGeneration('raster_step01_repair'), false);
   assert.ok(!stepKnowledge('raster-layering', 'step01').tools('repair', [{ name: 'imagegen' } as any]).length);
+  config.main.tools.push('imagegen');
+  await writeFile(path, JSON.stringify(config));
+  assert.equal(agentImageGeneration('raster_step01'), true);
+  assert.equal(agentImageGeneration('raster_step01_repair'), true);
+  assert.equal(agentImageGeneration('raster_step01_review'), false);
   await setImages(knowledge, true);
   assert.ok(imageSteps().includes('raster_step02'), 'custom knowledge can enable a formerly manual step');
-  config.review.repair.tools.push('missing-tool');
+  config.main.tools.push('missing-tool');
   await writeFile(path, JSON.stringify(config));
   assert.throws(() => checkKnowledge(knowledge), /未注册的工具/);
 });
