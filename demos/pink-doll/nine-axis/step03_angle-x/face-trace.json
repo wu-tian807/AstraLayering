@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "space": "view",
+  "completion": {
+    "source": "M 196.5 107.5 C 173 107.5 148 120 134.5 137.5 C 123 152 119 163 119.5 177.5 C 117.5 191 120 206 124.5 217.5 C 129 234 137 249 145 257 C 151 262.5 160 268 168.5 272.5 C 182 279 191 282.7 196.5 283.5 C 202 283 214 278.2 225 272.5 C 234 268.5 242 263.8 248 257.5 C 258 247 265 233 268.5 217.5 C 272 204 275 191 273.5 177.5 C 273 161 268 149 258.5 137.5 C 243 119 220 107.5 196.5 107.5 Z",
+    "target": "M 178 106.5 C 149 107 119 121 106 143 C 98 157 95 168 96.5 181 C 96 194 100 209 104.5 221 C 108 236 114 246 123 254.5 C 128 259.5 136 264.5 144.5 269.2 C 157 277 161 281.8 167 281.3 C 173 281 185 277 195.5 273.9 C 207 270.5 218 266 224 261 C 238 246 243 231 247 216 C 252 202 255 190 254 177 C 253 161 249 149 240 136 C 224 116 202 106 178 106.5 Z",
+    "part": "face/face_base"
+  },
+  "curves": [
+    {
+      "id": "far-crown",
+      "part": "face/face_base",
+      "source": "M 196.5 107.5 C 173 107.5 148 120 134.5 137.5",
+      "target": "M 178 106.5 C 149 107 119 121 106 143",
+      "visibility": "occluded"
+    },
+    {
+      "id": "far-temple",
+      "part": "face/face_base",
+      "source": "M 134.5 137.5 C 123 152 119 163 119.5 177.5",
+      "target": "M 106 143 C 98 157 95 168 96.5 181",
+      "visibility": "occluded"
+    },
+    {
+      "id": "far-orbit",
+      "part": "face/face_base",
+      "source": "M 119.5 177.5 C 117.5 191 120 206 124.5 217.5",
+      "target": "M 96.5 181 C 96 194 100 209 104.5 221",
+      "visibility": "occluded"
+    },
+    {
+      "id": "far-cheek",
+      "part": "face/face_base",
+      "source": "M 124.5 217.5 C 129 234 137 249 145 257",
+      "target": "M 104.5 221 C 108 236 114 246 123 254.5",
+      "visibility": "occluded"
+    },
+    {
+      "id": "far-jaw",
+      "part": "face/face_base",
+      "source": "M 145 257 C 151 262.5 160 268 168.5 272.5",
+      "target": "M 123 254.5 C 128 259.5 136 264.5 144.5 269.2",
+      "visibility": "visible"
+    },
+    {
+      "id": "far-chin",
+      "part": "face/face_base",
+      "source": "M 168.5 272.5 C 182 279 191 282.7 196.5 283.5",
+      "target": "M 144.5 269.2 C 157 277 161 281.8 167 281.3",
+      "visibility": "visible"
+    },
+    {
+      "id": "near-chin",
+      "part": "face/face_base",
+      "source": "M 196.5 283.5 C 202 283 214 278.2 225 272.5",
+      "target": "M 167 281.3 C 173 281 185 277 195.5 273.9",
+      "visibility": "visible"
+    },
+    {
+      "id": "near-jaw",
+      "part": "face/face_base",
+      "source": "M 225 272.5 C 234 268.5 242 263.8 248 257.5",
+      "target": "M 195.5 273.9 C 207 270.5 218 266 224 261",
+      "visibility": "visible"
+    },
+    {
+      "id": "near-cheek",
+      "part": "face/face_base",
+      "source": "M 248 257.5 C 258 247 265 233 268.5 217.5",
+      "target": "M 224 261 C 238 246 243 231 247 216",
+      "visibility": "occluded"
+    },
+    {
+      "id": "near-orbit",
+      "part": "face/face_base",
+      "source": "M 268.5 217.5 C 272 204 275 191 273.5 177.5",
+      "target": "M 247 216 C 252 202 255 190 254 177",
+      "visibility": "occluded"
+    },
+    {
+      "id": "near-temple",
+      "part": "face/face_base",
+      "source": "M 273.5 177.5 C 273 161 268 149 258.5 137.5",
+      "target": "M 254 177 C 253 161 249 149 240 136",
+      "visibility": "occluded"
+    },
+    {
+      "id": "near-crown",
+      "part": "face/face_base",
+      "source": "M 258.5 137.5 C 243 119 220 107.5 196.5 107.5",
+      "target": "M 240 136 C 224 116 202 106 178 106.5",
+      "visibility": "occluded"
+    }
+  ],
+  "landmarks": [
+    {
+      "id": "chin-tip",
+      "part": "face/face_base",
+      "source": [
+        196.5,
+        283.5
+      ],
+      "target": [
+        167,
+        281.3
+      ],
+      "visibility": "visible"
+    }
+  ]
+}

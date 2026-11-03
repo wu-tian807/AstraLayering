@@ -1,0 +1,378 @@
+{
+  "status": "candidate-awaiting-user-confirmation",
+  "verifiedAt": "2026-11-03T18:21:52.476653+00:00",
+  "authorRevision": "c60377149bdb229d2c3314706042e4432cf1ad74d0092a8f90af07b0126ef40f",
+  "compiledBy": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/nine-axis/head.ts:finishHead",
+  "compilerValidatedGeometry": true,
+  "partCount": 24,
+  "deformerCount": 4,
+  "sourcePixelsAndUuidMatchOriginal": true,
+  "sourceKritaDocumentModified": false,
+  "zeroGridMaximumErrorPixels": 0,
+  "neckParent": null,
+  "neckAllKeyformsEqualRest": true,
+  "parameterX": {
+    "id": "ParamAngleX",
+    "name": "角度 X",
+    "min": -30,
+    "max": 30,
+    "default": 0,
+    "keys": [
+      -30,
+      0,
+      30
+    ]
+  },
+  "parameterY": {
+    "id": "ParamAngleY",
+    "name": "角度 Y",
+    "min": -25,
+    "max": 25,
+    "default": 0,
+    "keys": [
+      0
+    ],
+    "status": "未制作"
+  },
+  "visualAnglesChecked": [
+    -30,
+    -15,
+    0,
+    15,
+    30
+  ],
+  "onlyCurrentXStageAuthored": true,
+  "completionMismatch": [],
+  "fitUnits": "original canvas pixels",
+  "fitErrors": [
+    {
+      "id": "far-crown",
+      "samples": 43,
+      "weight": 0.03,
+      "meanPixels": 0.10288388020900688,
+      "maxPixels": 0.5235320177917571
+    },
+    {
+      "id": "far-temple",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 0.1461984576338178,
+      "maxPixels": 0.5235320177917571
+    },
+    {
+      "id": "far-orbit",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 0.08599544686057087,
+      "maxPixels": 0.2721356527229835
+    },
+    {
+      "id": "far-cheek",
+      "samples": 23,
+      "weight": 0.03,
+      "meanPixels": 0.10561687136644551,
+      "maxPixels": 0.2359204039533689
+    },
+    {
+      "id": "far-jaw",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.049295106913883335,
+      "maxPixels": 0.10009036413926964
+    },
+    {
+      "id": "far-chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.0954825040488943,
+      "maxPixels": 0.26275074530183257
+    },
+    {
+      "id": "near-chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.05192714668718133,
+      "maxPixels": 0.15564825018344194
+    },
+    {
+      "id": "near-jaw",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.044555762473530096,
+      "maxPixels": 0.15564825018344194
+    },
+    {
+      "id": "near-cheek",
+      "samples": 26,
+      "weight": 0.03,
+      "meanPixels": 0.16159956405022238,
+      "maxPixels": 0.4150086104675596
+    },
+    {
+      "id": "near-orbit",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 0.07034150722417945,
+      "maxPixels": 0.28512191451444235
+    },
+    {
+      "id": "near-temple",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 0.051337972622282395,
+      "maxPixels": 0.15328612417079313
+    },
+    {
+      "id": "near-crown",
+      "samples": 36,
+      "weight": 0.03,
+      "meanPixels": 0.04122632178720658,
+      "maxPixels": 0.26035470474760625
+    },
+    {
+      "id": "chin-tip",
+      "samples": 1,
+      "weight": 1,
+      "meanPixels": 0.028986664101684594,
+      "maxPixels": 0.028986664101684594
+    }
+  ],
+  "originalSourceHashes": {
+    "kra": "56b11c5fd7a3db20e512de642bb1a5922d2f312b2c96557d0c8d3da022587ad4",
+    "png": "52359407596567a2874c9714b1e4ea336f1268916e3de784737deeb8de8f173c"
+  },
+  "requiredDeliverablesPresent": true,
+  "completionSupplementTargetEqualsRawToolOutput": true,
+  "files": [
+    {
+      "path": "nine-axis/step03_angle-x/face-left.json",
+      "bytes": 38742,
+      "sha256": "c60377149bdb229d2c3314706042e4432cf1ad74d0092a8f90af07b0126ef40f"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/deformers.json",
+      "bytes": 41715,
+      "sha256": "60d93586ca2bda546434507e854f23a846c07dc7907fdbb438ca38c91f8ae0ad"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/source.json",
+      "bytes": 381,
+      "sha256": "7cab19a566e60a02ceb4a56c16f3cfcb9955fff0cf68a0a82c2854bb3bbbc6ca"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/face-trace.json",
+      "bytes": 3768,
+      "sha256": "cf33f4301657c0b6ec3f7f3b03ae9eeb0c979bc3fe8d4d21d121d0566fc082c8"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/trace-check.png",
+      "bytes": 1626567,
+      "sha256": "9061441788c0b42c0f7ed50fd15cf72388e6d410a55c076646dd4c9bd4113ba9"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/face-completion-check.png",
+      "bytes": 46865,
+      "sha256": "dd49707ade3afdc458f1f67290355195adacb57aeb6f22219c6e2c2e4e133644"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/face-base-left-check.png",
+      "bytes": 66715,
+      "sha256": "22049b6cec90ea7377c47340b30793af0e0a5c0a3985938138afa5e351c49e89"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/fit-report.json",
+      "bytes": 5522,
+      "sha256": "27146621554bf9cbf03baf2c9c1906cf5b28e0cb51efaa0367f3217d64a81bc5"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/left-check.png",
+      "bytes": 580910,
+      "sha256": "9f93559ea597df9c6df3abf9980b8267f87998189510c76bbd2a2ce457c4cf55"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/left-fit-check.png",
+      "bytes": 1156527,
+      "sha256": "41bc214a323e8c496a2f2701b7f89ca783162616eee4e55b98e4545bd320c344"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/far-side-check.png",
+      "bytes": 907873,
+      "sha256": "9cf90e2732c7184ec6729b70ef2e1e563334177f3cde3aa619ed148e03cd6112"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/intermediate-check.png",
+      "bytes": 168500,
+      "sha256": "640a2f2ba9883768bbe5001afcc3ccb037e365b6d51c71221054cef2ee4803ef"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/neck-contact-check.png",
+      "bytes": 637876,
+      "sha256": "31e5f399128a3d7d5c3e6e15dd033faba69d602f32558b0304399136d5e9557b"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/notes.md",
+      "bytes": 8510,
+      "sha256": "264210b22405c06144d8bd41f8e69f402945b8f701931fd582bf2b1d0f595518"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layer-export-manifest.json",
+      "bytes": 12251,
+      "sha256": "8378193ae86d4833aea68d2f92d3a505d3ebd810255fa7efe63684202669ae1a"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/source-layer-verification.json",
+      "bytes": 14199,
+      "sha256": "d2d00e9632ab428ecae407e63a0ff7ed7902ade29b7652851603755aeee77b9a"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/view-evidence.json",
+      "bytes": 7594,
+      "sha256": "89fab882f9054b2b9643d80d135b815e97b901f569f0c81350290093c23197c5"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/face-completion-full-check.png",
+      "bytes": 21094,
+      "sha256": "e49b654cbdfc9cbd142a73ceb97a8719605eebaf7c4f6448a074e0ff60fa7f94"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/left-current.png",
+      "bytes": 104803,
+      "sha256": "29e52589deee5f8d36c7e4feb95f78419d6af545ff1b1f620b94fec39a206a70"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/near-side-check.png",
+      "bytes": 746993,
+      "sha256": "90ceef05222bbab0c1ac5f48ba9bc712fe8431034c3eda4f21c89d9bb240c419"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/mouth-check.png",
+      "bytes": 363071,
+      "sha256": "4793bf25ec4e981bf6045c67a341890cc344cc0fafc784e90bc361b848cb1ca4"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/front-check.png",
+      "bytes": 298280,
+      "sha256": "39b95104077c2572a52c72dae90745aeb48b96e7645ef37281cecd258df8b9fc"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_left__eyelid_crease.png",
+      "bytes": 653,
+      "sha256": "d788e2360842364c4efd4f580a3d7b5cacce306cdb55d1a4ed7c23aaaac56755"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_left__highlight.png",
+      "bytes": 606,
+      "sha256": "73c4bcc44f6fb0ff6775afac71af5288560b9dffb6910ab79ff1c7221f0c79c5"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_left__iris.png",
+      "bytes": 2826,
+      "sha256": "013170820242f84ff21fdd850a9d367539cc19d95fbb848b852d88aae75be5c4"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_left__lower_eyelashes.png",
+      "bytes": 284,
+      "sha256": "be4b8be1573897b1ec5b518d6c107cc7bf5bbb2d73d81ba1be5c2a6ff1b1d70e"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_left__lower_eyelid.png",
+      "bytes": 304,
+      "sha256": "1c1d3fe9846b03903a05df0962782b5546b05904c9e959c2fd7b467938cceae1"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_left__sclera.png",
+      "bytes": 1778,
+      "sha256": "7f4ec589a79756c03181294d31c72680c1163de71005ccd225e9a8b35a7634ae"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_left__upper_eyelid.png",
+      "bytes": 2134,
+      "sha256": "685479313394094ea426e742e448724a7bdbce370e65870d4e70ed3ca73b9c57"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_right__eyelid_crease.png",
+      "bytes": 681,
+      "sha256": "a80e5b3e220f79ef8c41ac307a902d1a2c0ab026bf01545a473576d8e3e11e2c"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_right__highlight.png",
+      "bytes": 518,
+      "sha256": "bbb3e425b59419f51d028573f106c345f981bb24ebbd0fe7ae3a3ea74aefa860"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_right__iris.png",
+      "bytes": 2775,
+      "sha256": "d1c024675efa07f890ea1269143226a1560b2384bdfe499fc79f0c3e94576cdd"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_right__lower_eyelashes.png",
+      "bytes": 256,
+      "sha256": "d7eb4f2079f1816d9eec403ef139dddb35abaf6872237b4415a89fc25303b99a"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_right__lower_eyelid.png",
+      "bytes": 390,
+      "sha256": "f59c188f40234a451bc4e9dff7096743eaddfe047c5179a1d3358c1b55232030"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_right__sclera.png",
+      "bytes": 1806,
+      "sha256": "c23bd63cc1a847170929dead7a89ad6f750bfee90aca685cb20c40382e9a542a"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eye_right__upper_eyelid.png",
+      "bytes": 2066,
+      "sha256": "ed58717c3d2b62414e9b3a5d1f3cfe3a345523ee1c6ac1381c8f7ca4eb88ca4e"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eyebrow_left.png",
+      "bytes": 884,
+      "sha256": "3f3bcdf1f9fbc13e5c26bd0e649bdbe6195e3f29b58671b194b507d8647565f2"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__eyebrow_right.png",
+      "bytes": 812,
+      "sha256": "92dfbc06b446c5552a40cc843a2fd79d9b781045cf04341f624f75d7832a6d8d"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__face_base.png",
+      "bytes": 24087,
+      "sha256": "7baea62d9800a0ccdad18b99495d677865ece7a3499fec6b3c8f015201ac8ce8"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__mouth__lower_lip.png",
+      "bytes": 707,
+      "sha256": "d3ac963c60fc4894744132b1e6c1fa6dc96db2e7c0f94e272f63697c5de5d808"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__mouth__mouth_interior.png",
+      "bytes": 1087,
+      "sha256": "821bfb133531a8f7fa5323f44c5a9a32416b700929cc93e9549a7f6520f4093e"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__mouth__tongue.png",
+      "bytes": 810,
+      "sha256": "43be3f19618840ea46247452bf8acf918e0c7e553953d8d479e3dfb79397b307"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__mouth__upper_lip.png",
+      "bytes": 726,
+      "sha256": "34ea76f889e6b20d2852354138bf1ba36f99565fd2b9ddf24a9e1fa3cc177c06"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__mouth__upper_teeth.png",
+      "bytes": 223,
+      "sha256": "c884d541e779a4d7cb08bfe7137818224cd8848afb3dd6a6f4af44559e60b42c"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/face__nose.png",
+      "bytes": 473,
+      "sha256": "7bbfe6ecd497c2a7f1dda0280b82a90f1ef3a462e93729600ab5887ef30eb56a"
+    },
+    {
+      "path": "nine-axis/step03_angle-x/layers/neck.png",
+      "bytes": 5217,
+      "sha256": "30231c847f6357a5e08f2a4ff5305c1c25c1683adc7ba45e0fc59d68496953e9"
+    }
+  ]
+}

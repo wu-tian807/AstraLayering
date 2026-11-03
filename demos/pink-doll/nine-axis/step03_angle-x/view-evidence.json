@@ -1,0 +1,140 @@
+{
+  "status": "candidate-awaiting-user-confirmation",
+  "authorRevision": "c60377149bdb229d2c3314706042e4432cf1ad74d0092a8f90af07b0126ef40f",
+  "authorGeometrySha256": "3ae30657c9ce1947b51d22ffd8fb2334747f541d9498aa767ce265796f55fbc2",
+  "view": [
+    431,
+    35,
+    394,
+    394
+  ],
+  "axis": 628,
+  "reference": "nine-axis/step02_views/left.png",
+  "referenceBounds": [
+    431,
+    35,
+    394,
+    394
+  ],
+  "registration": "none; same canvas coordinates",
+  "completionMismatch": [],
+  "toolImageCopies": {
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/trace-check.png": "nine-axis/step03_angle-x/workspace/bitmaps/0f8be980-3d2f-4c89-b376-200cb1750298-trace.png",
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/face-completion-check.png": "nine-axis/step03_angle-x/workspace/bitmaps/d95e69e1-0c19-458f-8aa5-29a20d4ab62a-completion.png",
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/face-base-left-check.png": "nine-axis/step03_angle-x/workspace/bitmaps/0a3823c5-cc35-406e-9d14-12cd88b64726.png",
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/left-current.png": "nine-axis/step03_angle-x/workspace/bitmaps/ef3fe8a0-aa2a-4bcd-b889-9a4b23873d26.png",
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/left-fit-check.png": "nine-axis/step03_angle-x/workspace/bitmaps/95cd3ad2-085c-4ae4-bd7e-e3408a429a28-comparison.png",
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/far-side-check.png": "nine-axis/step03_angle-x/workspace/bitmaps/946ec1ba-b24f-4961-8c95-9ef9519f92e0-comparison.png",
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/near-side-check.png": "nine-axis/step03_angle-x/workspace/bitmaps/d900ab5f-ccc6-4271-b69d-40020f1b555b-comparison.png",
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/mouth-check.png": "nine-axis/step03_angle-x/workspace/bitmaps/2da22155-9895-4bbe-8d7d-42d4a463abc5-comparison.png",
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/neck-contact-check.png": "nine-axis/step03_angle-x/workspace/bitmaps/68107576-d822-4f1e-bc2d-3113ee5efed2-comparison.png",
+    "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-pipeline-20261104/run4/pink-doll/nine-axis/step03_angle-x/front-check.png": "nine-axis/step03_angle-x/workspace/bitmaps/46966c48-912f-4d75-866f-8b3e846b59fd-comparison.png"
+  },
+  "crops": {
+    "far-side-check.png": {
+      "box": [
+        519,
+        176,
+        77,
+        124
+      ],
+      "scale": 5
+    },
+    "near-side-check.png": {
+      "box": [
+        609,
+        176,
+        103,
+        134
+      ],
+      "scale": 4
+    },
+    "mouth-check.png": {
+      "box": [
+        571,
+        240,
+        57,
+        64
+      ],
+      "scale": 7
+    },
+    "neck-contact-check.png": {
+      "box": [
+        552,
+        292,
+        153,
+        77
+      ],
+      "scale": 5,
+      "grid": [
+        "neck"
+      ]
+    }
+  },
+  "intermediateImages": [
+    {
+      "x": -30,
+      "y": 0,
+      "source": "nine-axis/step03_angle-x/workspace/bitmaps/ef3fe8a0-aa2a-4bcd-b889-9a4b23873d26.png",
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ]
+    },
+    {
+      "x": -15,
+      "y": 0,
+      "source": "nine-axis/step03_angle-x/workspace/bitmaps/f671940f-0275-4827-9e3e-e729b3e16daf.png",
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ]
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "source": "nine-axis/step03_angle-x/workspace/bitmaps/e8db222e-fb5d-47d0-b852-df2ef51dbd2b.png",
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ]
+    },
+    {
+      "x": 15,
+      "y": 0,
+      "source": "nine-axis/step03_angle-x/workspace/bitmaps/7aa7874f-105b-42c9-9468-9f5cd54b08ea.png",
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ]
+    },
+    {
+      "x": 30,
+      "y": 0,
+      "source": "nine-axis/step03_angle-x/workspace/bitmaps/f17dc5ac-f692-4327-ba7f-943578bf072f.png",
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ]
+    }
+  ],
+  "derivedImages": {
+    "left-check.png": "first two unchanged panels of left-fit-check.png",
+    "intermediate-check.png": "five fixed view renders; -30 is scaled from 2 to 1, no alignment or repositioning",
+    "face-completion-full-check.png": "supplement: same source SVG rendered in its full panel; target panel retained from inspect"
+  },
+  "unchangedGeometrySnapshots": {
+    "front-check.png": "0 keyforms unchanged by final left-only nose correction",
+    "face-base-left-check.png": "face_contour and face_base unchanged after their final fit"
+  }
+}

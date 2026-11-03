@@ -1,0 +1,15 @@
+{
+  "role": "supporting face completion references; not character geometry or pipeline output",
+  "sourceCommit": "1aa7f781",
+  "files": [
+    {
+      "path": "nine-axis/reference-priors/model-face-priors.jpg",
+      "sha256": "9412711e7bb42fe88318905f2d889edb48b88b41dc539f00d92eacc1046b2171"
+    },
+    {
+      "path": "nine-axis/reference-priors/round-face-keyframes.jpg",
+      "sha256": "c8c142d37bbfab3cca51c9ebc198e697776bc71851d1e8221e6cd491c924ff8f"
+    }
+  ],
+  "userApproval": "pending"
+}

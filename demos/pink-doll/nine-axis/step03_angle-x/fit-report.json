@@ -1,0 +1,248 @@
+{
+  "id": "face_contour",
+  "x": -30,
+  "y": 0,
+  "units": "original canvas pixels",
+  "before": [
+    {
+      "id": "far-crown",
+      "samples": 43,
+      "weight": 0.03,
+      "meanPixels": 4.790523916591857,
+      "maxPixels": 5.522702896536617
+    },
+    {
+      "id": "far-temple",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 1.5976530399515108,
+      "maxPixels": 4.421664138923026
+    },
+    {
+      "id": "far-orbit",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 2.666840993793035,
+      "maxPixels": 3.9549200959531894
+    },
+    {
+      "id": "far-cheek",
+      "samples": 23,
+      "weight": 0.03,
+      "meanPixels": 2.041762682398444,
+      "maxPixels": 3.9549200959531894
+    },
+    {
+      "id": "far-jaw",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.038852485388042805,
+      "maxPixels": 0.13109117601062092
+    },
+    {
+      "id": "far-chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.1493238697847902,
+      "maxPixels": 0.41680493728694606
+    },
+    {
+      "id": "near-chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.057983305997607884,
+      "maxPixels": 0.22001184062679763
+    },
+    {
+      "id": "near-jaw",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.05402939916106268,
+      "maxPixels": 0.22001184062679763
+    },
+    {
+      "id": "near-cheek",
+      "samples": 26,
+      "weight": 0.03,
+      "meanPixels": 3.1852381787383774,
+      "maxPixels": 5.68334410768712
+    },
+    {
+      "id": "near-orbit",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 4.7433186381863575,
+      "maxPixels": 5.68334410768712
+    },
+    {
+      "id": "near-temple",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 4.79690406144532,
+      "maxPixels": 5.062646796101264
+    },
+    {
+      "id": "near-crown",
+      "samples": 36,
+      "weight": 0.03,
+      "meanPixels": 3.7300911832462336,
+      "maxPixels": 4.507192828138222
+    },
+    {
+      "id": "chin-tip",
+      "samples": 1,
+      "weight": 1,
+      "meanPixels": 0.06494527584110531,
+      "maxPixels": 0.06494527584110531
+    }
+  ],
+  "after": [
+    {
+      "id": "far-crown",
+      "samples": 43,
+      "weight": 0.03,
+      "meanPixels": 0.10288388020900688,
+      "maxPixels": 0.5235320177917571
+    },
+    {
+      "id": "far-temple",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 0.1461984576338178,
+      "maxPixels": 0.5235320177917571
+    },
+    {
+      "id": "far-orbit",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 0.08599544686057087,
+      "maxPixels": 0.2721356527229835
+    },
+    {
+      "id": "far-cheek",
+      "samples": 23,
+      "weight": 0.03,
+      "meanPixels": 0.10561687136644551,
+      "maxPixels": 0.2359204039533689
+    },
+    {
+      "id": "far-jaw",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.049295106913883335,
+      "maxPixels": 0.10009036413926964
+    },
+    {
+      "id": "far-chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.0954825040488943,
+      "maxPixels": 0.26275074530183257
+    },
+    {
+      "id": "near-chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.05192714668718133,
+      "maxPixels": 0.15564825018344194
+    },
+    {
+      "id": "near-jaw",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.044555762473530096,
+      "maxPixels": 0.15564825018344194
+    },
+    {
+      "id": "near-cheek",
+      "samples": 26,
+      "weight": 0.03,
+      "meanPixels": 0.16159956405022238,
+      "maxPixels": 0.4150086104675596
+    },
+    {
+      "id": "near-orbit",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 0.07034150722417945,
+      "maxPixels": 0.28512191451444235
+    },
+    {
+      "id": "near-temple",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 0.051337972622282395,
+      "maxPixels": 0.15328612417079313
+    },
+    {
+      "id": "near-crown",
+      "samples": 36,
+      "weight": 0.03,
+      "meanPixels": 0.04122632178720658,
+      "maxPixels": 0.26035470474760625
+    },
+    {
+      "id": "chin-tip",
+      "samples": 1,
+      "weight": 1,
+      "meanPixels": 0.028986664101684594,
+      "maxPixels": 0.028986664101684594
+    }
+  ],
+  "controls": 81,
+  "smoothness": 0.002,
+  "occludedWeightScale": 1,
+  "trace": "nine-axis/step03_angle-x/face-trace.json",
+  "traceSha256": "cf33f4301657c0b6ec3f7f3b03ae9eeb0c979bc3fe8d4d21d121d0566fc082c8",
+  "referenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+  "visibility": [
+    {
+      "id": "far-crown",
+      "visibility": "occluded"
+    },
+    {
+      "id": "far-temple",
+      "visibility": "occluded"
+    },
+    {
+      "id": "far-orbit",
+      "visibility": "occluded"
+    },
+    {
+      "id": "far-cheek",
+      "visibility": "occluded"
+    },
+    {
+      "id": "far-jaw",
+      "visibility": "visible"
+    },
+    {
+      "id": "far-chin",
+      "visibility": "visible"
+    },
+    {
+      "id": "near-chin",
+      "visibility": "visible"
+    },
+    {
+      "id": "near-jaw",
+      "visibility": "visible"
+    },
+    {
+      "id": "near-cheek",
+      "visibility": "occluded"
+    },
+    {
+      "id": "near-orbit",
+      "visibility": "occluded"
+    },
+    {
+      "id": "near-temple",
+      "visibility": "occluded"
+    },
+    {
+      "id": "near-crown",
+      "visibility": "occluded"
+    }
+  ]
+}
