@@ -23,6 +23,21 @@ async function setImages(directory: string, enabled: boolean) {
   await writeFile(path, JSON.stringify(config));
 }
 
+test('nine-axis steps use their own agent.json while sharing a model slot', async t => {
+  const knowledge = await temporaryKnowledge(t);
+  const entries = [['step03_angle-x', 'nine_axis_head'], ['step05_angle-y', 'nine_axis_head_y'],
+    ['step06_angle-xy', 'nine_axis_head_xy']] as const;
+  for (const [directory, identity] of entries) {
+    const path = join(knowledge, 'nine-axis', directory, 'agent.json');
+    const config = JSON.parse(await readFile(path, 'utf8'));
+    config.main.tools.push('imagegen');
+    await writeFile(path, JSON.stringify(config));
+    for (const [, other] of entries) assert.equal(agentImageGeneration(other), other === identity);
+    config.main.tools.pop();
+    await writeFile(path, JSON.stringify(config));
+  }
+});
+
 test('all named agents read capability from their role; main and repair share tools', async t => {
   const knowledge = await temporaryKnowledge(t);
   for (const step of Object.keys(stepModelSlots)) assert.equal(typeof agentImageGeneration(step as keyof typeof stepModelSlots), 'boolean');
