@@ -16,7 +16,7 @@ import { defaultKnowledgeDirectory, knowledgeDirectory, selectKnowledge } from '
 import { markBaseStep } from '../../shared/tests/dressup-fixture.ts';
 
 // Real background workers inherit this and pass the Codex startup check without a build.
-process.env.layering_codex_path = await fakePatchedCodex();
+process.env.codex_path = await fakePatchedCodex();
 
 const png = (background: string) => sharp({ create: { width: 2, height: 2, channels: 4, background } }).png().toBuffer();
 const originalImage = await png('#f00');

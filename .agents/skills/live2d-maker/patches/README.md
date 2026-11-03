@@ -4,25 +4,25 @@
 
 | 功能 | .env 开关／选择 | 启动行为 |
 | --- | --- | --- |
-| Codex 失败流错误读取 | 使用 Codex 即生效，无开关 | 未指定 `layering_codex_path` 时自动构建并复用缓存；读取 LiteLLM 在空 `response.failed` 后单独发送的 `error` 事件 |
-| Codex 图片数 compact | `layering_image_compact_threshold=<正整数>` | 未指定 `layering_codex_path` 时自动构建并复用缓存 |
-| 三种 CLI 图片／请求体预算 | `layering_<codex/claude/agv>_image_compact_threshold` / `layering_<codex/claude/agv>_request_compact_mib` | 留空关闭；按实际发送内容检查，带图分批压缩，保留最新图与恢复记录 |
+| Codex 失败流错误读取 | 使用 Codex 即生效，无开关 | 未指定 `codex_path` 时自动构建并复用缓存；读取 LiteLLM 在空 `response.failed` 后单独发送的 `error` 事件 |
+| Codex 图片数 compact | `image_compact_threshold=<正整数>` | 未指定 `codex_path` 时自动构建并复用缓存 |
+| 三种 CLI 图片／请求体预算 | `<codex/claude/agv>_image_compact_threshold` / `<codex/claude/agv>_request_compact_mib` | 留空关闭；按实际发送内容检查，带图分批压缩，保留最新图与恢复记录 |
 | Claude 拒绝后的会话恢复 | 自动处理结构化 refusal，无开关 | 保留记录与产物，从恢复提示词新建会话；边界见下文 |
 | Codex 自定义生图 | 对应步骤选择 GPT／Nano，并填写对应 API | 与 compact 共用同一补丁，按所选路线实际需要准备 |
-| AGV 响应头期限兼容 | `layering_agv_unlimited_response_header_timeout=true` | 自动检查已安装 CLI，准备独立受控副本，不需要 Rust |
+| AGV 响应头期限兼容 | `agv_unlimited_response_header_timeout=true` | 自动检查已安装 CLI，准备独立受控副本，不需要 Rust |
 
 使用 Codex harness 时始终准备补丁；只用 Claude／AGV 时不构建 Codex。显式指定已有 Codex 补丁路径时，必须通过能力／完整性检查。详细行为与验证见下方各节；安装与构建操作见 [setup · CLI 准备与补丁构建](../references/setup.md#cli-准备与补丁构建)。
 
 ## 图片容量保护
 
-上限属于实际模型／网关路由，不属于 CLI 名字。旧 `layering_image_compact_threshold` 仍只用于 Codex；专用 Codex 键优先。每个接口独立配置图片数和 MiB 预算，不预设所有接口都有 50 张或 100 MiB 限制。预算是提前压缩的触发值，不能改变服务端硬上限。Codex 字节预算要求补丁能力 `request_compaction_version: 1`；旧图片数能力仍为 v2。
+上限属于实际模型／网关路由，不属于 CLI 名字。旧 `image_compact_threshold` 仍只用于 Codex；专用 Codex 键优先。每个接口独立配置图片数和 MiB 预算，不预设所有接口都有 50 张或 100 MiB 限制。预算是提前压缩的触发值，不能改变服务端硬上限。Codex 字节预算要求补丁能力 `request_compaction_version: 1`；旧图片数能力仍为 v2。
 
 AGV 的保护需要已配置的 GenAI 网关，Claude 支持 Messages 路由（包括已有自定义 base URL），保留原鉴权及原生自动压缩。未支持的 AGV 协议或 Claude Bedrock／Vertex／Foundry 路由启用保护时明确报错，不静默忽略 `.env`。
 
 - 共用模块先检查最终 JSON 字节数及内联图片数，包含 Base64、全部文字和工具定义。摘要请求本身也遵守预算，超出时分批；单个多图工具结果无需重跑。
 - AGV／Claude 保留原有文字、调用／结果配对与签名，只把实际完成视觉总结的旧图片替换为有出处的视觉记忆。尽量保留最近四张；预算不足时至少保留最新一张。任务指定的必要参考图保留原图。无法容纳必要输入时明确失败并保留历史。
 - 每批成功且有完整终态、非空摘要后，原图、摘要及状态原子写入 CLI 会话的 `cli-data/visual-context/`；续跑复用成功批次。失败、空摘要、截断和不完整 SSE 不替换图片。该目录始终在任务请求记录内，不写用户全局 CLI 配置。
-- 默认不做无损去重。`layering_agv_image_deduplicate=true` 或 `layering_claude_image_deduplicate=true` 只去掉更老的重复图片数据：字节和已知来源／裁剪／倍率／模式都一致才合并，最新图片保留完整原图并标注唯一 ID，旧位置保留文字、坐标和调用记录并引用该 ID。不同位置的相同空白截图不合并，未识别上下文时保守匹配。Codex 继续原生带图 compact，没有独立去重开关。
+- 默认不做无损去重。`agv_image_deduplicate=true` 或 `claude_image_deduplicate=true` 只去掉更老的重复图片数据：字节和已知来源／裁剪／倍率／模式都一致才合并，最新图片保留完整原图并标注唯一 ID，旧位置保留文字、坐标和调用记录并引用该 ID。不同位置的相同空白截图不合并，未识别上下文时保守匹配。Codex 继续原生带图 compact，没有独立去重开关。
 
 CLI 退出／压缩失败不会标记制作完成，也不删除草稿、反馈或旧会话。修改 `.env` 后按原入口恢复；无需更改绘图要求、模型或 review 轮次。
 
@@ -49,14 +49,14 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 
 ### 补丁入口与缓存校验
 
-使用 Codex harness 时始终需要补丁版：错误读取修正对所有请求生效。`layering_codex_path` 留空时，启动预检自动准备并复用缓存；显式指定入口时只检查该入口，不自动替换。构建命令、平台依赖与恢复办法见 [setup · Codex 补丁构建与恢复](../references/setup.md#codex-补丁构建与恢复)。
+使用 Codex harness 时始终需要补丁版：错误读取修正对所有请求生效。`codex_path` 留空时，启动预检自动准备并复用缓存；显式指定入口时只检查该入口，不自动替换。构建命令、平台依赖与恢复办法见 [setup · Codex 补丁构建与恢复](../references/setup.md#codex-补丁构建与恢复)。
 
 缓存为 `.codex-build/<平台-架构>/<源码与补丁指纹>/`。进程锁防止并发重复构建，产物和官方 Code Mode companion 的 SHA-256 校验通过后才复用；失败不写成功标记，中断后可直接续跑。补丁更新使用新指纹目录，旧文件保留。所有入口要求 `failed_error_event_version: 1`；生图要求 `image_provider_version: 2`，按图片数压缩要求 `image_compaction_version: 2`，请求体预算另外要求 `request_compaction_version: 1`。
 
 ### 行为
 
 - 标准 Responses 流在 `response.failed.error` 中给出失败原因，读取方式不变。LiteLLM 的流式失败先发 `error: null` 的 `response.failed`，再以独立 `error` 事件给出原因；补丁用后者替换空失败的通用提示，按同一错误码映射，不会让通用提示覆盖已有原因。`content_policy_violation`（如图片审查拒绝）报告为不可重试的请求错误并保留原文，不再以“stream disconnected… response.failed event received”重连 5 次。WebSocket 路径不变。工作流只按结构化错误码决定是否重试（见 [shared](../shared/README.md#自动检查)），因此这项修正与下文 [Responses 错误透传](#responses-错误透传) 直接决定失败是否被当作可重试错误。
-- 生图继续走原生 image generation extension 的工具、鉴权、重试、文件落盘及事件。独立配置不替换主模型 provider；每个请求的本地路由将 `/images/generations` JSON 和 `/images/edits` 标准 multipart 交给共享 OpenAI／Google 适配器。GPT／Nano 模型均由逐步骤配置选择，生图原稿保存到对应步骤的 `workspace/generated/`；报告引用的图片由发布流程复制到报告旁，`agents/` 只保留请求、会话与事件记录。旧 `layering_image_base_url / api_key / model` 仅作为同一套配置的兼容输入，不再单独启动旧补丁通道。Claude／AGV 使用同一个适配器的函数工具 `imagegen`（Codex 侧的 feature 与补丁标识仍为 `image_generation`），配置见 [模型与 harness](../references/model-presets.md)。
+- 生图继续走原生 image generation extension 的工具、鉴权、重试、文件落盘及事件。独立配置不替换主模型 provider；每个请求的本地路由将 `/images/generations` JSON 和 `/images/edits` 标准 multipart 交给共享 OpenAI／Google 适配器。GPT／Nano 模型均由逐步骤配置选择，生图原稿保存到对应步骤的 `workspace/generated/`；报告引用的图片由发布流程复制到报告旁，`agents/` 只保留请求、会话与事件记录。旧 `image_base_url / api_key / model` 仅作为同一套配置的兼容输入，不再单独启动旧补丁通道。Claude／AGV 使用同一个适配器的函数工具 `imagegen`（Codex 侧的 feature 与补丁标识仍为 `image_generation`），配置见 [模型与 harness](../references/model-presets.md)。
 - Nano 的透明请求在共享适配器中先按目标参考颜色从红／绿／蓝里推荐背景色，再将明确的纯色要求交给模型；返回后保留原始 RGB，以它为唯一参考再生成一张仅换背景的白底或黑底图，由 Node／Sharp 差分恢复透明度与前景颜色，不改变第一张图像的尺寸；不需要抠图权重或额外 Python 包。选色评分、两张 RGB 图、alpha 及处理报告保存在对应步骤的 `workspace/generated/image-processing/`。GPT 原生 alpha、`codex-native` 路径及现有 Rust 补丁保持不变，本项无需重新构建 Codex。
 - 在每次普通模型请求前检查图片数，涵盖用户图片、工具图片与生图结果。阈值设为 49 时，恰好 49 张会全部参与原生带图 compact；不移除视觉能力，也不使用“不支持图片输入”的占位语。
 - 批量工具使图片数跳到 52 时，先带图压缩前 49 张，将剩余 3 张原样放入新上下文。保留对应文字、图序、图片精度、调用参数和已完成的工具调用/结果配对；无需再次执行工具。同一条消息或一次 Code Mode 输出含多图也适用。120 张会按 49、49、22 分段，最后 22 张直接供正常请求查看。每张图必须实际进入一次成功的视觉压缩，或仍以原图保留。
@@ -78,13 +78,13 @@ python3 patches/codex/image-compaction-smoke.py --codex /absolute/codex
 
 测试仅启动本机 HTTP 模拟服务，使用虚拟密钥与生成的测试 PNG。图片专项测试使用不同图片逐张比对原始数据，服务拒绝任何含 50 张及以上图片的请求；覆盖 48/49/50/52/120 张、一次工具批量输出、单次 Code Mode 从 44 跳到 52、关闭保护、失败/空摘要后的同 thread 恢复、工具配对和消息 ID 唯一性。字节专项还覆盖图片数未超限时的字节超限、双预算、批量工具和压缩失败后恢复；通用 smoke 另覆盖原生生图／编辑接口与分别鉴权。不调用真实模型、不消耗生图额度，也不修改已有作品；这些测试验证请求和恢复机制，不代替实际模型的视觉质量验收。
 
-`layering_codex_request_compact_mib` 开启后，普通请求和视觉 compact 均使用真实 Responses 序列化器计算大小（含指令、工具和 Base64），预留传输元数据。HTTP／WebSocket 发包前还有最终字节检查。溢出时按图片数量与字节两种预算选择可实际总结的前缀，其余原图及工具配对保留；无法容纳文本和一张图时明确报错，不删除未总结的历史。关闭此项时原 49 张图片保护保持原行为。
+`codex_request_compact_mib` 开启后，普通请求和视觉 compact 均使用真实 Responses 序列化器计算大小（含指令、工具和 Base64），预留传输元数据。HTTP／WebSocket 发包前还有最终字节检查。溢出时按图片数量与字节两种预算选择可实际总结的前缀，其余原图及工具配对保留；无法容纳文本和一张图时明确报错，不删除未总结的历史。关闭此项时原 49 张图片保护保持原行为。
 
 ## AGV 自定义网关的响应头期限
 
 已验证的 Linux x64 AGV 1.4.4、1.4.5 默认等待响应头 60 秒。供应商尚未返回响应头时，CLI 会取消请求并重试；它与整个 print 回合的 `--print-timeout` 无关。工作流不提前返回虚假的 HTTP 200，也不忽略上游错误。
 
-这是针对结构可确认构建的可选兼容补丁，不自动安装 CLI。先检查现有 CLI 和登录，在 `.env` 设置 `layering_agv_unlimited_response_header_timeout=true`；工作流首次使用 AGV 时自动准备独立副本，并校验复用。默认关闭，不需要 Rust。也可手动提前准备：
+这是针对结构可确认构建的可选兼容补丁，不自动安装 CLI。先检查现有 CLI 和登录，在 `.env` 设置 `agv_unlimited_response_header_timeout=true`；工作流首次使用 AGV 时自动准备独立副本，并校验复用。默认关闭，不需要 Rust。也可手动提前准备：
 
 ```bash
 pnpm patch:agv --source /absolute/path/to/agy --dir /absolute/path/to/.run
@@ -94,11 +94,11 @@ pnpm patch:agv --source /absolute/path/to/agy --dir /absolute/path/to/.run
 
 返回的 `antigravity` 是受控启动入口：每次启动前验证 `antigravity.bin` 的完整 SHA-256，强制传入字符串 `true`（CLI 不接受 `1`），运行中和结束时再次检查文件是否被替换。CLI 如果仍启动自动更新，工作流明确报错并停止本次调用，保留会话与产物。旧补丁目录或已更新的副本在下次调用前重新做结构检查，兼容时创建新的受控副本，绝不按旧 `patch.json` 的声明直接运行。
 
-自动模式的 `layering_agv_path` 可留空以查找原始 CLI，或指向已安装 CLI，无需记录生成路径。手动模式仍可把打印的路径写入 `.env`。关闭 `layering_agv_unlimited_response_header_timeout` 并清除已有补丁路径后恢复全局原 CLI。会话和产物不变，不要删除 threadId。不要提交生成的 CLI 或任务过程记录。
+自动模式的 `agv_path` 可留空以查找原始 CLI，或指向已安装 CLI，无需记录生成路径。手动模式仍可把打印的路径写入 `.env`。关闭 `agv_unlimited_response_header_timeout` 并清除已有补丁路径后恢复全局原 CLI。会话和产物不变，不要删除 threadId。不要提交生成的 CLI 或任务过程记录。
 
 已验证构建的 `sir_flash_lite` 是 CLI 内置的安全预检查：在工具执行前查看近期推理和待执行操作，判断是否需要进一步安全审查。它不承担分层绘制或图像 review；嵌入配置为 `LOG` 模式、8 秒期限。实测中其 MINIMAL 请求报错后，主回合仍可完成，但检查本身失败，并产生额外请求和等待。这与主请求 60 秒响应头期限分别诊断，不关闭监视、不延长其专用期限，也不因这类内部日志重开已经成功交付的会话。
 
-部分网关还把 CLI 的内部 MINIMAL 调用路由到只接受 LOW 的模型。已通过真实接口确认后，可设置 `layering_agv_minimal_thinking_level=LOW`。这只替换 MINIMAL，不修改绘制/review 的 LOW、MEDIUM、HIGH 请求；留空保留原协议。它不关闭内部监视，也不会修改其原生期限。
+部分网关还把 CLI 的内部 MINIMAL 调用路由到只接受 LOW 的模型。已通过真实接口确认后，可设置 `agv_minimal_thinking_level=LOW`。这只替换 MINIMAL，不修改绘制/review 的 LOW、MEDIUM、HIGH 请求；留空保留原协议。它不关闭内部监视，也不会修改其原生期限。
 
 验证应包含：真实 CLI 等待超过 60 秒的响应头仍成功；HTTP 400/503 不误报成功；取消能及时结束；以及真实多图/工具调用的耗时和产物。不能以短请求跑通或进程仍存活代替这些检查。
 

@@ -17,7 +17,7 @@
 
 ## 目标与已知问题
 
-- 目标转角：视角约 **45°**（step01 的 left 视角），即 ParamAngleX ±45° 边界关键形的形状；上下为抬头 +25°、低头 −20°。刻度见 `knowledge/nine-axis/step01_views/references/angles.json`，`deformers.json` 以度数记录。
+- 目标转角：视角约 **45°**（step01 的 left 视角），即 ParamAngleX ±45° 边界关键形的形状；上下为抬头 +25°、低头 −20°。刻度见 `knowledge/nine-axis/step01_video/references/angles.json`，`deformers.json` 以度数记录。
 - AI 自由形变通常只能做到约 15° 而不严重变形。
 - 转角更大时，AI 倾向于扭曲脖子来代替头部本身的透视形变。
 
@@ -41,7 +41,7 @@
 
 ## 工具
 
-[`tools/generate_turn_video.py`](../../tools/generate_turn_video.py)：以正面原图为首帧调用 Seedance（默认 `seedance-2.5`）生成转头参考视频。它复用 live2d-maker `.env` 中的 OpenAI 生图代理（`layering_openai_image_base_url/api_key`），也可用 `LAYERING_VIDEO_BASE_URL/API_KEY` 覆盖，并输出 `.mp4` 和记录参数、提示词、输入／输出 SHA-256 的 `.json`。
+[`tools/generate_turn_video.py`](../../tools/generate_turn_video.py)：以正面原图为首帧调用 Seedance（默认 `seedance-2.5`）生成转头参考视频。它复用 live2d-maker `.env` 中的 OpenAI 生图代理（`openai_image_base_url/api_key`），也可用 `LAYERING_VIDEO_BASE_URL/API_KEY` 覆盖，并输出 `.mp4` 和记录参数、提示词、输入／输出 SHA-256 的 `.json`。
 
 ```bash
 python3 tutorial/live2d-guidance/tools/generate_turn_video.py \

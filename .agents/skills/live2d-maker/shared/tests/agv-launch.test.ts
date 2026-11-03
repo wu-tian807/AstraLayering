@@ -53,7 +53,7 @@ test('preflight exposes an ineffective patch setting instead of swallowing it as
   const directory = join(root, '.runtime/agv/build/v2'); await mkdir(directory, { recursive: true });
   const executable = join(directory, 'antigravity'); await writeFile(executable, '#!' + process.execPath + '\n', { mode: 0o700 });
   await writeFile(join(directory, 'patch.json'), JSON.stringify({ format: 2, sourceSha256: 'test', defaultResponseHeaderTimeoutSeconds: 0, autoUpdateDisabledByTrue: false }));
-  await assert.rejects(cliExecutable(loadWorkflowEnvironment({ layering_agv_path: executable }), 'agv'), error => {
+  await assert.rejects(cliExecutable(loadWorkflowEnvironment({ agv_path: executable }), 'agv'), error => {
     assert.match(String(error), /禁用自动更新/); assert.doesNotMatch(String(error), /没有可用的全局入口/); return true;
   });
 });
@@ -62,9 +62,9 @@ test('AGV 自动补丁默认关闭；开启后实际进入兼容检查，不静�
   const root=await mkdtemp(join(tmpdir(),'agv-auto-')); t.after(()=>rm(root,{recursive:true,force:true}));
   const executable=join(root,'agy'), bytes=Buffer.alloc(80); bytes.write('7f454c460201',0,'hex');
   await writeFile(executable,bytes, {mode:0o700});
-  const disabled=loadWorkflowEnvironment({layering_agv_path:executable,layering_agv_unlimited_response_header_timeout:'false'},root);
+  const disabled=loadWorkflowEnvironment({agv_path:executable,agv_unlimited_response_header_timeout:'false'},root);
   assert.equal(await cliExecutable(disabled,'agv',root),await realpath(executable));
-  const enabled=loadWorkflowEnvironment({layering_agv_path:executable,layering_agv_unlimited_response_header_timeout:'true'},root);
+  const enabled=loadWorkflowEnvironment({agv_path:executable,agv_unlimited_response_header_timeout:'true'},root);
   await assert.rejects(cliExecutable(enabled,'agv',root),/无法确认/);
   assert.deepEqual(await readFile(executable),bytes);
 });

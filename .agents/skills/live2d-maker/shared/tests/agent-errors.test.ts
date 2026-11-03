@@ -127,7 +127,7 @@ for (const mode of ['rpc', 'turn', 'eof', 'recovered']) test(`Codex App Server $
 
 test('raster steps keep turn failure details without retrying', async t => {
   const f = await fixture(t);
-  const environment = loadWorkflowEnvironment({ layering_codex_path: await errorServer(f.root, 'turn') }, f.root);
+  const environment = loadWorkflowEnvironment({ codex_path: await errorServer(f.root, 'turn') }, f.root);
   await assert.rejects(runAgent({ prompt: 'same task', directory: f.cwd, model: 'gpt-6.1-sol', effort: 'low', environment, onEvent: async () => {} },
     new AgentRuntime(1, async () => assert.fail('must not retry'))), error => {
     assert.ok(error instanceof AgentCallError);
@@ -148,7 +148,7 @@ console.log(JSON.stringify({type:'assistant',session_id:'cli-session',message:{c
 console.log(JSON.stringify(${JSON.stringify(final)}));
 process.exit(3);
 `, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ [`layering_${harness}_path`]: executable }, f.root);
+  const settings = loadWorkflowEnvironment({ [`${harness}_path`]: executable }, f.root);
   const model = parseAgentModel(harness === 'agv' ? 'gemini-4-argon-high' : 'claude-haiku-5-5-xhigh', 'test');
   let failure: AgentCallError | undefined;
   await assert.rejects(runCliTask({ name: harness, cwd: f.cwd, prompt: 'same task' }, model, settings,

@@ -11,7 +11,7 @@ const moved = (points: Point[], dy: number) => points.map(([x, y]) => [x, y + dy
 
 // Up lifts each step02 part by 4 px and down lowers it by 3, on step02's lattice.
 export async function writeFaceY(directory: string) {
-  const x = JSON.parse(await readFile(join(directory, '../step02_angle-x/deformers.json'), 'utf8'));
+  const x = JSON.parse(await readFile(join(directory, '../step03_angle-x/deformers.json'), 'utf8'));
   const parts = x.parts.map((p: { id: string; keyforms: Record<string, Point[]> }) => ({ id: p.id, keyforms: { '25': moved(p.keyforms['0'], -4), '-25': moved(p.keyforms['0'], 3) } }));
   await writeFile(join(directory, 'face-y.json'), JSON.stringify({ notes: '测试', parts }));
 }

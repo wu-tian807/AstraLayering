@@ -10,7 +10,7 @@
 
 `preview_svg` 的生成图对照参数只在补全阶段开放，section 定义覆盖后仍保留阶段限制。`referenceRegion` 使用生成图坐标选取对应部件，工具将裁片等比居中到 SVG 实际内容范围；`referenceOffset` 使用原图像素微调，各轴上限为部件尺寸的 10%。生成图用 `edge` 检查形状，省略 reference 参数后用默认参考图 `blend` 检查定位；`crop` 仅控制最终查看窗口。生成图对照默认聚焦部件，普通对照默认全画布，输入文件保持原样。读取与预览接受可读本地路径及符号链接，参考图沿用生图工具返回的位置。自定义生图工具 `imagegen` 的 `input_images` 与可选 `output_path` 只接受绝对路径，`output_path` 省略时使用默认生图目录；原生 Codex 生图保留自身保存位置并返回绝对 `savedPath`。两类生图返回或 agent 回复的相对 `savedPath` 直接报错，不按任何目录猜测。
 
-Krita 的用法只写在 [krita 工具说明](../knowledge/shared/tools/krita/description.md)，仅随需要 Krita 的 section 的工具提供，提示词不注入共用环境段落；prompts 与工具说明是运行输入，不是额外使用手册。私有进程、并发名额（`layering_krita_max_instances`，`krita: false` 的步骤不占名额也没有该工具）与显示环境见 [Krita 与显示环境](../references/setup.md#krita-与显示环境)。
+Krita 的用法只写在 [krita 工具说明](../knowledge/shared/tools/krita/description.md)，仅随需要 Krita 的 section 的工具提供，提示词不注入共用环境段落；prompts 与工具说明是运行输入，不是额外使用手册。私有进程、并发名额（`krita_max_instances`，`krita: false` 的步骤不占名额也没有该工具）与显示环境见 [Krita 与显示环境](../references/setup.md#krita-与显示环境)。
 
 Codex 的每个回合都经 App Server（`codex app-server`）执行；延续已有 thread 时不能改变工作目录、工具定义、shell 或生图开关，需要改变时新建 thread。Claude／AGV 的工具活动按长度截断后镜像到 `workflow.log`，完整记录在请求目录的 `events.jsonl`。总控并发运行的管线各在独立 worker 进程中，agent 名额由总调度统一按 `--jobs` 分配，跨进程共享。
 

@@ -62,7 +62,7 @@ SVG 小图预览按实际可见内容居中取景，等比放大并保留边距�
 
 “管线配置”分为两个页签：
 
-- **环境与模型**：按职责选择语言模型与思考力度、按步骤选择生图模型；编辑模型连接、生图服务、图片容量保护和运行环境（含本机 Krita 并发上限 `layering_krita_max_instances`，默认 4）。CLI 检测仅查询本机入口与版本，未就绪的 CLI 对应模型会标注并禁用。填写 CLI 路径后可重新检测；登录、生图能力和账号权限在制作启动时检查。
+- **环境与模型**：按职责选择语言模型与思考力度、按步骤选择生图模型；编辑模型连接、生图服务、图片容量保护和运行环境（含本机 Krita 并发上限 `krita_max_instances`，默认 4）。CLI 检测仅查询本机入口与版本，未就绪的 CLI 对应模型会标注并禁用。填写 CLI 路径后可重新检测；登录、生图能力和账号权限在制作启动时检查。
 - **先验知识**：只读浏览全局设置中的先验知识目录，提示词、参考资料与工具说明都维护在这里，按管线嵌套为文件夹树，搜索时展开全部。Markdown、JSON 与常见文本直接预览，图片、视频（可拖动进度）和音频内嵌播放，其他文件提供下载。工具 `description.md` 旁显示随代码发布的 `schema.json`（管线自有的 schema 优先于 `shared/tools`）。目录位于 Git 仓库内时，可选择工作区、本地或远端跟踪分支（含 `origin/main`）、提交版本及差异基准；不在仓库内时只显示当前文件。远端快照由维护者执行 `git fetch` 更新。
 
 ![环境与模型配置](demo-screenshots/13-environment-config.png)
@@ -77,7 +77,7 @@ SVG 小图预览按实际可见内容居中取景，等比放大并保留边距�
 
 ![先验知识版本浏览](demo-screenshots/15-config-tools.png)
 
-**软件版本：** 标题栏显示发布标签版本（`.agents/skills/live2d-maker/shared/version.ts`：本仓库检出用 `git describe` 的 `vX.Y.Z` 标签，标签后的提交显示为 `+N`；无 `.git` 时用根 `package.json` 的 `version`）。`GET /api/version` 返回当前版本与最新标签，`/healthz` 也带 `version`。最新标签每天最多查询一次 GitHub tags API，结果缓存在 `.web/update-check.json`，失败一小时后再试且不提示；skill `.env` 的 `layering_update_check=false` 关闭查询（shell 同名变量优先，每次请求重新读取，配置页可直接切换）。任务 `run.json` 的 `createdWith`／`lastRunWith` 记录创建与最近一次配置运行的版本。发布流程：更新 `package.json` 版本与 `CHANGELOG.md`，合入 main 后打 `vX.Y.Z` 标签并推送，再用 `pnpm release:pack` 从该标签生成 `.release/AstraLayering-vX.Y.Z.zip`（按 `.gitattributes` 的 `export-ignore` 只带工作台、skill、展示图与 Pink Doll 示例）。
+**软件版本：** 标题栏显示发布标签版本（`.agents/skills/live2d-maker/shared/version.ts`：本仓库检出用 `git describe` 的 `vX.Y.Z` 标签，标签后的提交显示为 `+N`；无 `.git` 时用根 `package.json` 的 `version`）。`GET /api/version` 返回当前版本与最新标签，`/healthz` 也带 `version`。最新标签每天最多查询一次 GitHub tags API，结果缓存在 `.web/update-check.json`，失败一小时后再试且不提示；skill `.env` 的 `update_check=false` 关闭查询（shell 同名变量优先，每次请求重新读取，配置页可直接切换）。任务 `run.json` 的 `createdWith`／`lastRunWith` 记录创建与最近一次配置运行的版本。发布流程：更新 `package.json` 版本与 `CHANGELOG.md`，合入 main 后打 `vX.Y.Z` 标签并推送，再用 `pnpm release:pack` 从该标签生成 `.release/AstraLayering-vX.Y.Z.zip`（按 `.gitattributes` 的 `export-ignore` 只带工作台、skill、展示图与 Pink Doll 示例）。
 
 ## 部署
 
@@ -163,7 +163,7 @@ pnpm web
 | 组装原画 | `character-assembly/step01/character-assembled.png` |
 | 法线 | `lighting/normal.png` |
 | 深度 | `lighting/depth.png` |
-| 头部九轴 | `nine-axis/step02_angle-x/deformers.json`；补绘工程 `character-nine-axis.kra` / 同名 PNG |
+| 头部九轴 | `nine-axis/step03_angle-x/deformers.json`；补绘工程 `character-nine-axis.kra` / 同名 PNG |
 
 角色工程沿用已有组装管线。法线 / 深度路径是阴影 normal-depth 模式的固定发布约定。未生成时显示“待管线生成”，仍可预览角色原画；组装结果缺失则显示等待状态，不使用任意 KRA 或参考图代替。管线产出后点“更新项目”（或重新打开项目）自动绑定，操作会重置本次图层改动。管线负责保证贴图与组装原画对应，尺寸不符仍明确拒绝。头部九轴目录的 `source.json` 与当前选中的组装或阴影 KRA / PNG 一致时，角色工程改载九轴补绘工程；来源变化则退回原工程并标记待重做（见 `.agents/skills/live2d-maker/nine-axis/README.md`）。
 

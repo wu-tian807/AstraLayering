@@ -24,7 +24,7 @@ console.log(JSON.stringify(${harness === 'claude'
     ? "{type:'result',session_id:id,result:'done'}"
     : "{event:'result',result:{conversation_id:id,status:'SUCCESS',response:'done'}}"}));
 `, { mode: 0o700 });
-  const env = { [`layering_${harness}_path`]: executable, CLAUDE_CONFIG_DIR: join(root, 'empty-user') };
+  const env = { [`${harness}_path`]: executable, CLAUDE_CONFIG_DIR: join(root, 'empty-user') };
   const settings = loadWorkflowEnvironment(env, root), options = { cwd: root, logDirectory: join(root, 'agents') };
   const model = parseAgentModel(harness === 'claude' ? 'claude-sonnet-5-5-high' : 'gemini-4-argon-high', 'test');
   const schema = { type: 'object', properties: { status: { type: 'string' } }, required: ['status'] };

@@ -92,7 +92,7 @@ export function resolveImageDefaults(configuration: DefaultConfiguration) {
     return value as ImageModel;
   };
   const model = parse(requiredDefault(configuration, defaultImageModelKey), defaultImageModelKey);
-  const legacy = parse(requiredDefault(configuration, 'layering_image_model'), 'layering_image_model');
+  const legacy = parse(requiredDefault(configuration, 'image_model'), 'image_model');
   const steps = Object.fromEntries(imageSteps.map(step => {
     const key = imageModelKey(step), value = configuration[key]?.trim();
     return [step, value ? parse(value, key) : model];

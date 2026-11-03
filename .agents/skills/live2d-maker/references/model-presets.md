@@ -77,13 +77,13 @@ SVG 合并由程序执行，不配置 LLM。步骤职责、绘图提示词、rev
 | 生图模型 | 配套 `.env` 配置与使用条件 |
 | --- | --- |
 | `codex-native` | 对应步骤的 LLM 使用 Codex harness，复用其登录与宿主生图能力 |
-| `gpt-image-2.5-sunburst` | `layering_openai_image_base_url`、`layering_openai_image_api_key`；协议固定为 OpenAI Images |
+| `gpt-image-2.5-sunburst` | `openai_image_base_url`、`openai_image_api_key`；协议固定为 OpenAI Images |
 | `gpt-image-2.5-flare` | 与 Sunburst 共用上述 OpenAI 生图连接配置 |
-| `gemini-nano-banana-2.1` | `layering_google_image_base_url`、`layering_google_image_api_key`；`layering_google_image_protocol` 按服务选择 `gemini` 或 `openai` |
+| `gemini-nano-banana-2.1` | `google_image_base_url`、`google_image_api_key`；`google_image_protocol` 按服务选择 `gemini` 或 `openai` |
 
 OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/generations` 或 `/images/edits`；Gemini 原生服务的 base URL 通常包含 `/v1beta`，程序追加 `/models/<模型>:generateContent`。按服务提供的地址和协议填写，API 密钥在本机保存。
 
-所有 Codex 步骤都使用补丁版 Codex（`layering_codex_path` 留空即自动准备，构建见 [setup](setup.md#codex-补丁构建与恢复)）；Codex 步骤选具体 GPT／Nano 生图模型时，补丁还须具备原生 image provider v2。Claude／AGV 使用共享生图函数工具。为 Claude／AGV 步骤选择上述 GPT／Nano 服务，并准备对应 API；`codex-native` 对应 Codex 步骤。
+所有 Codex 步骤都使用补丁版 Codex（`codex_path` 留空即自动准备，构建见 [setup](setup.md#codex-补丁构建与恢复)）；Codex 步骤选具体 GPT／Nano 生图模型时，补丁还须具备原生 image provider v2。Claude／AGV 使用共享生图函数工具。为 Claude／AGV 步骤选择上述 GPT／Nano 服务，并准备对应 API；`codex-native` 对应 Codex 步骤。
 
 ### 全局默认与逐步骤覆盖
 
@@ -137,9 +137,9 @@ raster_step01_repair_image_model=gpt-image-2.5-flare
 
 | CLI | 模型枚举 | 入口 |
 | --- | --- | --- |
-| Codex | `gpt-6.1-sol`、`gpt-6-astra` | `layering_codex_path` 留空自动准备补丁版，填写时检查指定入口的补丁能力；`layering_codex_home` 设置 Codex 子进程的 `CODEX_HOME`（留空沿用 shell 的 `CODEX_HOME`／`~/.codex`） |
-| Claude Code | `claude-sonnet-5-5`、`claude-opus-5-5`、`claude-haiku-5-5` | `layering_claude_path`，未填则找全局 `claude` |
-| Antigravity（agv） | `gemini-4-argon` | `layering_agv_path`，未填则找全局 `agy`／`agv`／`antigravity` |
+| Codex | `gpt-6.1-sol`、`gpt-6-astra` | `codex_path` 留空自动准备补丁版，填写时检查指定入口的补丁能力；`codex_home` 设置 Codex 子进程的 `CODEX_HOME`（留空沿用 shell 的 `CODEX_HOME`／`~/.codex`） |
+| Claude Code | `claude-sonnet-5-5`、`claude-opus-5-5`、`claude-haiku-5-5` | `claude_path`，未填则找全局 `claude` |
+| Antigravity（agv） | `gemini-4-argon` | `agv_path`，未填则找全局 `agy`／`agv`／`antigravity` |
 
 支持力度 `low`、`medium`、`high`、`xhigh`。配置路径相对于 skill 根目录；模型是否获授权仍由用户的 CLI 登录或 provider 决定。Claude Code／Antigravity 复用本机入口与登录；启动会报告缺失条件，由 agent 与用户确认安装、登录或改选模型的方案。
 
@@ -151,13 +151,13 @@ part_review_agent_model=gemini-4-argon-high
 
 ## 主模型连接与模型列表
 
-三种 CLI 统一使用 `layering_<codex|claude|agv>_<api_key|base_url|models>`。只有 AGV 提供 `layering_agv_protocol` 协议选择；Codex 固定使用 Responses，Claude 自定义连接固定使用 Anthropic Messages。连接字段留空时复用已有登录和 provider；主模型与生图各自鉴权，不共用 key。具体字段如下，CLI 路径和生图连接沿用同一份 `.env`：
+三种 CLI 统一使用 `<codex|claude|agv>_<api_key|base_url|models>`。只有 AGV 提供 `agv_protocol` 协议选择；Codex 固定使用 Responses，Claude 自定义连接固定使用 Anthropic Messages。连接字段留空时复用已有登录和 provider；主模型与生图各自鉴权，不共用 key。具体字段如下，CLI 路径和生图连接沿用同一份 `.env`：
 
 | CLI | API 密钥 | 服务地址 | 可用模型列表 |
 | --- | --- | --- | --- |
-| Codex | `layering_codex_api_key` | `layering_codex_base_url` | `layering_codex_models` |
-| Claude | `layering_claude_api_key` | `layering_claude_base_url` | `layering_claude_models` |
-| AGV | `layering_agv_api_key` | `layering_agv_base_url` | `layering_agv_models` |
+| Codex | `codex_api_key` | `codex_base_url` | `codex_models` |
+| Claude | `claude_api_key` | `claude_base_url` | `claude_models` |
+| AGV | `agv_api_key` | `agv_base_url` | `agv_models` |
 
 | CLI | 协议 | 自定义连接 | 模型列表的原生适配 |
 | --- | --- | --- | --- |
@@ -165,17 +165,17 @@ part_review_agent_model=gemini-4-argon-high
 | Claude Code | `anthropic`（Messages） | key 必填；URL 留空为 `https://api.anthropic.com` | 每次请求的私有 settings 中生成 `modelPicker` |
 | AGV | `genai` 或 `openai` | key 与 URL 都必填；协议留空默认 `genai` | 映射到原生 `AGY_LLM_GATEWAY_MODELS` |
 
-`models` 接受逗号分隔的模型 ID，自动去掉两侧空白和重复项，不写力度后缀或 JSON 数组。例如 `layering_codex_models=gpt-6.1-sol,gpt-6-astra`。留空不限制。列表声明可用模型，具体职责仍由 `<职责>_agent_model` 选择，工作流模型枚举保持上表范围。启动前只核对本次所选步骤；模型不在列表时明确报错，不发起模型请求。列表不证明账号拥有该模型权限。
+`models` 接受逗号分隔的模型 ID，自动去掉两侧空白和重复项，不写力度后缀或 JSON 数组。例如 `codex_models=gpt-6.1-sol,gpt-6-astra`。留空不限制。列表声明可用模型，具体职责仍由 `<职责>_agent_model` 选择，工作流模型枚举保持上表范围。启动前只核对本次所选步骤；模型不在列表时明确报错，不发起模型请求。列表不证明账号拥有该模型权限。
 
 Claude 的已有 Bedrock／Vertex／Foundry 路由在统一连接留空时继承；填写统一连接与已启用的云平台路由冲突时明确报错。AGV 的 `openai` 模式可以透传，但本项目的 AGV 工具／原图转发及图片容量保护依赖 `genai`；配置保护却选 `openai` 时不会静默忽略。
 
-逐字段优先级为 shell 统一键、shell 旧别名、`.env` 统一键、`.env` 旧别名，最后继承 CLI 登录；空 shell 值屏蔽文件中的同名键。旧 Codex `layering_custom_provider=true` 与 `layering_provider_base_url/api_key`，Claude `ANTHROPIC_API_KEY/BASE_URL`，AGV `AGY_LLM_GATEWAY_API_KEY/URL/MODELS/WIRE_PROTOCOL` 继续兼容。统一 Codex 连接不再需要旧开关。CLI 接收转换后的原生字段，不修改 `process.env` 或全局配置；显式 Claude 连接的 key 优先于继承的 token／key helper，后者仅在本次私有配置中移除。
+逐字段优先级为 shell 统一键、shell 旧别名、`.env` 统一键、`.env` 旧别名，最后继承 CLI 登录；空 shell 值屏蔽文件中的同名键。旧 Codex `custom_provider=true` 与 `provider_base_url/api_key`，Claude `ANTHROPIC_API_KEY/BASE_URL`，AGV `AGY_LLM_GATEWAY_API_KEY/URL/MODELS/WIRE_PROTOCOL` 继续兼容。统一 Codex 连接不再需要旧开关。CLI 接收转换后的原生字段，不修改 `process.env` 或全局配置；显式 Claude 连接的 key 优先于继承的 token／key helper，后者仅在本次私有配置中移除。
 
 `pnpm env:check` 展示每个 CLI 的连接来源、地址、协议、模型列表和凭据是否填写，不输出 key／token 值。与 CLI 登录权限和版本检查一起核对，见[生效配置核对](../workflow/README.md#生效配置核对)。
 
 AGV 的 GenAI 网关 base URL 可以包含 `/v1beta`，转发会保留供应商前缀并避免重复追加 API 路径。请求日志记录实际图片数、请求字节数、上游响应头与首条内容时间，正文与鉴权保留在原接口调用环境。
 
-部分供应商需要兼容 CLI 内部请求中的 `MINIMAL`。`layering_agv_minimal_thinking_level` 默认留空，完整保留原生协议；只有实际接口确认不支持时才显式填写 `LOW`、`MEDIUM` 或 `HIGH`，仅替换 MINIMAL。支持 MINIMAL 的上游保持此项留空，各 agent 沿用已选力度。若遇到 CLI 自身 60 秒响应头期限，按[可选 AGV 兼容补丁](../patches/README.md)核对构建并验证；继续复用原 CLI 登录与会话。
+部分供应商需要兼容 CLI 内部请求中的 `MINIMAL`。`agv_minimal_thinking_level` 默认留空，完整保留原生协议；只有实际接口确认不支持时才显式填写 `LOW`、`MEDIUM` 或 `HIGH`，仅替换 MINIMAL。支持 MINIMAL 的上游保持此项留空，各 agent 沿用已选力度。若遇到 CLI 自身 60 秒响应头期限，按[可选 AGV 兼容补丁](../patches/README.md)核对构建并验证；继续复用原 CLI 登录与会话。
 
 ## 生图执行与透明处理
 
@@ -199,7 +199,7 @@ Nano 后处理保持第一张生成图的尺寸和比例；工作流仍负责后
 
 模型键已去掉 `layering_` 前缀：`layering_agent_<职责>_model` → `<职责>_agent_model`，`layering_<步骤>_image_model` → `<步骤>_image_model`，`layering_default_image_model` → `default_image_model`。过渡期内已有 `.env` 只填旧键时继续读取，两者都填时以新键为准；新建配置只写新键，旧键将在过渡期后移除。
 
-旧 `layering_<小步骤>_model` 在同一职责的已填写值一致时继续读取；取值冲突时，明确填写对应的统一职责键。旧 `layering_high_model` 对应两套 raster 的 step01、review／返修与 step02，`layering_medium_model` 对应其余职责，这一兼容映射保持原有含义。
+旧 `layering_<小步骤>_model` 在同一职责的已填写值一致时继续读取；取值冲突时，明确填写对应的统一职责键。旧 `high_model` 对应两套 raster 的 step01、review／返修与 step02，`medium_model` 对应其余职责，这一兼容映射保持原有含义。
 
 part 遮挡补全分别使用 `part_completion_image_model` 和 `clothing_completion_image_model`。已有配置从 `layering_part_outline_image_model`／`layering_part_outline_repair_image_model` 迁到人物补全键，衣服的对应旧键迁到衣服补全键，保留原选择的生图模型并删除旧键。旧绘制与返修值不一致时先确认补全使用哪一个，不自动替用户选择。
 
@@ -215,4 +215,4 @@ Codex、Claude／agv 共用 `<步骤>/workspace/` 工作区，中间文件在其
 
 同一 CLI 内改变模型或力度继续恢复原会话。Codex 的生图模型改变时，重启本请求的原生通道并恢复原 thread，已有产物保留。切换 CLI、以 `--resume`（网页“恢复”）清除会话或会话不可用时新建会话，旧请求记录与产物保留，ID 替换写入历史；不要手动删除会话 ID。新会话读取已有输入、产物及反馈继续。缺产物的正常退出仍报错并展示最后消息，不增加自动空产物重试。
 
-旧 `layering_image_compact_threshold` 仅作用于 Codex，沿用原生带图压缩补丁。新增各 CLI 独立的图片数和请求体 MiB 预算，可按实际路由开启；留空保持原行为。AGV／Claude 接入补丁复用同一视觉压缩模块，原生自动压缩仍保留。配置和恢复边界见 [图片容量保护](../patches/README.md#图片容量保护)。
+旧 `image_compact_threshold` 仅作用于 Codex，沿用原生带图压缩补丁。新增各 CLI 独立的图片数和请求体 MiB 预算，可按实际路由开启；留空保持原行为。AGV／Claude 接入补丁复用同一视觉压缩模块，原生自动压缩仍保留。配置和恢复边界见 [图片容量保护](../patches/README.md#图片容量保护)。

@@ -24,12 +24,12 @@ export function imageBudget(env: NodeJS.ProcessEnv, harness: 'codex' | 'claude' 
     if (!/^\d+$/.test(raw) || !Number.isSafeInteger(value) || value < 1) throw new Error(`${key} 必须是正整数；留空关闭。`);
     return value;
   };
-  const images = integer(`layering_${harness}_image_compact_threshold`)
-    ?? (harness === 'codex' ? integer('layering_image_compact_threshold') : undefined);
-  const mib = integer(`layering_${harness}_request_compact_mib`);
-  if (mib && !Number.isSafeInteger(mib * 1048576)) throw new Error(`layering_${harness}_request_compact_mib 超出范围。`);
-  const raw = env[`layering_${harness}_image_deduplicate`]?.trim();
-  if (raw && !['true', 'false'].includes(raw)) throw new Error(`layering_${harness}_image_deduplicate 只能为 true 或 false。`);
+  const images = integer(`${harness}_image_compact_threshold`)
+    ?? (harness === 'codex' ? integer('image_compact_threshold') : undefined);
+  const mib = integer(`${harness}_request_compact_mib`);
+  if (mib && !Number.isSafeInteger(mib * 1048576)) throw new Error(`${harness}_request_compact_mib 超出范围。`);
+  const raw = env[`${harness}_image_deduplicate`]?.trim();
+  if (raw && !['true', 'false'].includes(raw)) throw new Error(`${harness}_image_deduplicate 只能为 true 或 false。`);
   if (harness === 'codex' && raw === 'true') throw new Error('独立无损图片去重目前用于 AGV／Claude 接入补丁；Codex 使用原生带图 compact，不支持此去重开关。');
   return { ...(images ? { images } : {}), ...(mib ? { bytes: mib * 1048576 } : {}), ...(raw === 'true' ? { deduplicate: true } : {}) };
 }

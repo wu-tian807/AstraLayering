@@ -50,7 +50,7 @@ export async function cliExecutable(settings: WorkflowEnvironment, harness: Harn
     // Compatibility errors must reach the user, rather than be swallowed and
     // misreported as a missing CLI or silently fall back to an unpatched one.
     if (harness !== 'agv') return executable;
-    if (settings.codex.env?.layering_agv_unlimited_response_header_timeout === 'true') {
+    if (settings.codex.env?.agv_unlimited_response_header_timeout === 'true') {
       const {createPatchedAgv} = await import('../../patches/agv/patch-response-header.ts');
       const root = resolveRunsDirectory(runsRoot);
       await mkdir(root, {recursive: true});
@@ -58,7 +58,7 @@ export async function cliExecutable(settings: WorkflowEnvironment, harness: Harn
     }
     return resolvePatchedAgv(executable);
   }
-  throw new Error(`所选步骤需要 ${harness} CLI，但没有可用的全局入口${explicit ? `：${explicit}` : ''}。工作流不会自动安装；请安装并登录，或设置 layering_${harness}_path / 改用已有模型。`);
+  throw new Error(`所选步骤需要 ${harness} CLI，但没有可用的全局入口${explicit ? `：${explicit}` : ''}。工作流不会自动安装；请安装并登录，或设置 ${harness}_path / 改用已有模型。`);
 }
 type StoredSession = { harness: Harness; data: string; workspace: string };
 async function readSessions(root: string): Promise<Record<string, StoredSession>> {

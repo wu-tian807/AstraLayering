@@ -2,10 +2,9 @@
 """Generate a reference head-turn video (Seedance via an OpenAI Videos API proxy).
 
 The result is a shape prior for nine-axis work; it is not a production asset.
-Connection settings come from the live2d-maker skill `.env` (the same OpenAI
-image proxy used for image generation) unless overridden by environment:
-
-  LAYERING_VIDEO_BASE_URL / LAYERING_VIDEO_API_KEY
+Connection settings are the video keys in the live2d-maker skill `.env`
+(video_base_url / video_api_key; the shell environment overrides them). The
+image keys are never used.
 
 Each run writes <out>.mp4 and <out>.json (model, parameters, prompt, input and
 output SHA-256, remote video id). The API key is never written or printed.
@@ -43,13 +42,10 @@ def read_env(path: Path) -> dict[str, str]:
 
 def connection(env_path: Path) -> tuple[str, str]:
     env = read_env(env_path)
-    base = os.environ.get('LAYERING_VIDEO_BASE_URL') or env.get('layering_video_base_url') \
-        or env.get('layering_openai_image_base_url')
-    key = os.environ.get('LAYERING_VIDEO_API_KEY') or env.get('layering_video_api_key') \
-        or env.get('layering_openai_image_api_key')
+    base = os.environ.get('video_base_url') or env.get('video_base_url') or env.get('layering_video_base_url')
+    key = os.environ.get('video_api_key') or env.get('video_api_key') or env.get('layering_video_api_key')
     if not base or not key:
-        sys.exit(f'缺少视频接口配置：设置 LAYERING_VIDEO_BASE_URL/API_KEY，或在 {env_path} 配置 '
-                 'layering_openai_image_base_url/api_key。')
+        sys.exit(f'缺少视频接口配置：在 {env_path} 填写 video_base_url 和 video_api_key。')
     return base.rstrip('/'), key
 
 
