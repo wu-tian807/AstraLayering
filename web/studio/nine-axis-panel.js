@@ -4,16 +4,25 @@ const $ = s => document.querySelector(s);
 const SUB = 2, NS = 'http://www.w3.org/2000/svg';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const sign = k => (k > 0 ? '+' : '') + k;
+const clipLabel = p => p.clip ? `${p.clip.invert ? '反向裁切' : '裁切'} ← ${p.clip.by.map(id => short(id)).join('、')}` : '';
 const short = id => id.replace(/^(face|hair)\//, '').replace(/^features\//, '');
 // Premultiplied texel output without colour conversion keeps the source paint.
 // The grid (bbox) is larger than the texture; outside it clamp-to-edge would
 // smear the border texels into blocks, so those fragments are dropped.
 const vertexShader = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}';
-const fragmentShader = 'uniform sampler2D map;uniform float dim;varying vec2 vUv;void main(){if(any(lessThan(vUv,vec2(0.0)))||any(greaterThan(vUv,vec2(1.0))))discard;vec4 c=texture2D(map,vUv);if(c.a<0.002)discard;gl_FragColor=vec4(c.rgb*c.a*dim,c.a*dim);}';
+// Clipping (Cubism clip masks): the sources' alpha is first drawn into an
+// offscreen target of the canvas size; a clipped part multiplies its alpha by
+// that coverage, or by 1 − coverage when inverted. In the mask pass a part writes
+// only its alpha, so overlapping sources add up to their union.
+const fragmentShader = 'uniform sampler2D map;uniform sampler2D clip;uniform float dim;uniform float clipMode;uniform float maskPass;uniform float tint;uniform vec2 res;varying vec2 vUv;'
+  + 'void main(){if(any(lessThan(vUv,vec2(0.0)))||any(greaterThan(vUv,vec2(1.0))))discard;vec4 c=texture2D(map,vUv);if(c.a<0.002)discard;'
+  + 'if(maskPass>0.5){gl_FragColor=vec4(c.a);return;}float a=c.a*dim;if(clipMode>0.5){float m=texture2D(clip,gl_FragCoord.xy/res).a;a*=clipMode>1.5?1.0-m:m;}'
+  + 'gl_FragColor=vec4(mix(c.rgb,vec3(0.25,0.85,1.0),tint)*a,a);}';
+const clipKey = p => p.clip.by.join('|');
 
 export class HeadNineAxisPanel {
   constructor({ error }) {
-    Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.valueY = 0; this.level = 'accessory'; this.selected = null; this.hidden = new Set();
+    Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.valueY = 0; this.level = 'accessory'; this.selected = null; this.hidden = new Set(); this.shownMasks = new Set(); this.targets = new Map();
     this.radius = 40; this.showGrid = true; this.dirty = new Set(); this.active = false;
     this.canvas = $('#nine-axis-canvas'); this.overlay = $('#nine-axis-overlay'); this.view = $('#nine-axis-view');
     $('#nine-axis-angle').oninput = e => this.setValue(e.target.valueAsNumber);
@@ -50,7 +59,8 @@ export class HeadNineAxisPanel {
   }
   clear() {
     for (const m of this.meshes?.values() ?? []) { m.geometry.dispose(); m.material.uniforms.map.value.dispose(); m.material.dispose(); }
-    this.meshes = new Map(); this.scene = null; this.doc = null; this.dirty.clear(); this.selected = null; this.hidden.clear();
+    for (const t of this.targets.values()) t.dispose();
+    this.meshes = new Map(); this.targets.clear(); this.scene = null; this.doc = null; this.dirty.clear(); this.selected = null; this.hidden.clear(); this.shownMasks.clear();
     $('#nine-axis-tree').replaceChildren(); $('#nine-axis-controls').hidden = true; this.overlay.replaceChildren(); this.renderer?.clear();
   }
   status(text) { $('#nine-axis-status').textContent = text; }
@@ -65,7 +75,7 @@ export class HeadNineAxisPanel {
       g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(new THREE.BufferAttribute(meshIndices(p.cols * SUB, p.rows * SUB), 1));
       const t = new THREE.Texture(images[order]); t.flipY = false; t.colorSpace = THREE.NoColorSpace; t.premultiplyAlpha = true;
       t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; t.needsUpdate = true;
-      const m = new THREE.Mesh(g, new THREE.ShaderMaterial({ uniforms: { map: { value: t }, dim: { value: 1 } }, vertexShader, fragmentShader,
+      const m = new THREE.Mesh(g, new THREE.ShaderMaterial({ uniforms: { map: { value: t }, dim: { value: 1 }, clip: { value: null }, clipMode: { value: 0 }, maskPass: { value: 0 }, tint: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } }, vertexShader, fragmentShader,
         transparent: true, depthTest: false, depthWrite: false, blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor, premultipliedAlpha: true }));
       m.renderOrder = order; m.frustumCulled = false; this.scene.add(m); this.meshes.set(p.id, m);
     });
@@ -97,8 +107,11 @@ export class HeadNineAxisPanel {
         if (parent !== details) { parent.className = 'nine-group'; parent.innerHTML = `<summary>${esc(short(group.id))}</summary>`; details.append(parent); }
         for (const p of group.parts) {
           const row = document.createElement('div'); row.className = 'nine-part'; row.dataset.part = p.id;
-          row.innerHTML = `<input type="checkbox" checked title="显示"><span>${esc(short(p.id))}</span>${p.status ? `<em>${esc(p.status)}</em>` : ''}`;
-          row.querySelector('input').onchange = e => { e.target.checked ? this.hidden.delete(p.id) : this.hidden.add(p.id); this.draw(); };
+          const tag = [p.role === 'mask' ? '蒙版' : '', clipLabel(p), p.status ?? ''].filter(Boolean).join(' · ');
+          // A mask part is not drawn; its box shows it tinted so it can be seen and edited.
+          row.innerHTML = `<input type="checkbox" ${p.role === 'mask' ? 'title="显示蒙版"' : 'checked title="显示"'}><span>${esc(short(p.id))}</span>${tag ? `<em>${esc(tag)}</em>` : ''}`;
+          const shown = p.role === 'mask' ? this.shownMasks : null;
+          row.querySelector('input').onchange = e => { if (shown) e.target.checked ? shown.add(p.id) : shown.delete(p.id); else e.target.checked ? this.hidden.delete(p.id) : this.hidden.add(p.id); this.draw(); };
           row.onclick = e => { if (e.target.tagName !== 'INPUT') this.select(p.id); };
           parent.append(row);
         }
@@ -139,7 +152,8 @@ export class HeadNineAxisPanel {
     if (p) {
       $('#nine-axis-selected-name').textContent = p.id;
       const ys = (p.keyformsY ? ` · Y ${keyValues(p, 'y').map(sign).join(' / ')}` : '') + (p.keyformsXY ? ` · 斜向 ${Object.keys(p.keyformsXY).length} 角` : '');
-      $('#nine-axis-selected-info').textContent = `变形器 ${p.cols}×${p.rows} · 关键形 X ${keyValues(p).map(sign).join(' / ')}${ys}${p.status ? ' · ' + p.status : ''}`;
+      const extra = [p.role === 'mask' ? '蒙版（不绘制，只裁切其他部件）' : '', clipLabel(p), p.status ?? ''].filter(Boolean).map(t => ' · ' + t).join('');
+      $('#nine-axis-selected-info').textContent = `变形器 ${p.cols}×${p.rows} · 关键形 X ${keyValues(p).map(sign).join(' / ')}${ys}${extra}`;
       $('#nine-axis-edit-hint').textContent = key === undefined ? '停在关键形上（点上方的度数按钮，另一角度为 0；或两个角度都在关键形上的斜向角）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
       $('#nine-axis-reset').disabled = key === undefined || !this.original?.has(p.id + '@' + key.label);
     }
@@ -160,12 +174,32 @@ export class HeadNineAxisPanel {
     if (!this.doc || !this.active || !this.renderer) return;
     const { r, s, x0, y0 } = this.frame(); if (!r.width) return;
     Object.assign(this.camera, { left: x0, right: x0 + r.width * s, top: y0, bottom: y0 + r.height * s }); this.camera.updateProjectionMatrix();
-    const visible = new Set(levelParts(this.doc, this.level).map(p => p.id)), sel = this.selected;
+    const visible = new Set(levelParts(this.doc, this.level).map(p => p.id)), sel = this.selected, isolate = $('#nine-axis-isolate').checked;
+    // Clip sources take effect whether or not they are shown or in the level.
+    const shown = new Set(this.doc.parts.filter(p => p.role === 'mask' ? sel === p.id || this.shownMasks.has(p.id) : visible.has(p.id) && !this.hidden.has(p.id)).map(p => p.id));
+    const clipped = this.doc.parts.filter(p => p.clip && shown.has(p.id)), needed = new Set([...shown, ...clipped.flatMap(p => p.clip.by)]);
     for (const p of this.doc.parts) {
-      const m = this.meshes.get(p.id); m.visible = visible.has(p.id) && !this.hidden.has(p.id); if (!m.visible) continue;
-      const pts = refine(keyformAt(p, this.value, this.valueY), p.cols, p.rows, SUB), pos = m.geometry.attributes.position.array;
+      if (!needed.has(p.id)) continue;
+      const m = this.meshes.get(p.id), pts = refine(keyformAt(p, this.value, this.valueY), p.cols, p.rows, SUB), pos = m.geometry.attributes.position.array;
       for (let i = 0, k = 0; i < pts.length; i += 2, k += 3) { pos[k] = pts[i]; pos[k + 1] = pts[i + 1]; }
-      m.geometry.attributes.position.needsUpdate = true; m.material.uniforms.dim.value = sel && sel !== p.id && $('#nine-axis-isolate').checked ? .35 : 1;
+      m.geometry.attributes.position.needsUpdate = true;
+      const u = m.material.uniforms, mask = p.role === 'mask';
+      u.tint.value = mask ? 1 : 0; u.dim.value = (mask ? .55 : 1) * (sel && sel !== p.id && isolate ? .35 : 1);
+    }
+    const size = this.renderer.getDrawingBufferSize(new THREE.Vector2()), keys = new Map(clipped.map(p => [clipKey(p), p.clip.by]));
+    for (const [key, t] of this.targets) if (!keys.has(key)) { t.dispose(); this.targets.delete(key); }
+    for (const [key, by] of keys) {
+      let t = this.targets.get(key);
+      if (!t) this.targets.set(key, t = new THREE.WebGLRenderTarget(size.x, size.y, { depthBuffer: false }));
+      else if (t.width !== size.x || t.height !== size.y) t.setSize(size.x, size.y);
+      for (const [id, m] of this.meshes) { m.visible = by.includes(id); m.material.uniforms.maskPass.value = 1; }
+      this.renderer.setRenderTarget(t); this.renderer.render(this.scene, this.camera);
+    }
+    this.renderer.setRenderTarget(null);
+    for (const p of this.doc.parts) {
+      const m = this.meshes.get(p.id), u = m.material.uniforms; m.visible = shown.has(p.id); u.maskPass.value = 0;
+      u.clipMode.value = p.clip && !(p.role === 'mask') ? (p.clip.invert ? 2 : 1) : 0;
+      if (u.clipMode.value) { u.clip.value = this.targets.get(clipKey(p)).texture; u.res.value.copy(size); }
     }
     this.renderer.render(this.scene, this.camera);
     this.drawOverlay(x0, y0, s);

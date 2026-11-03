@@ -52,9 +52,17 @@ test('Validation rejects incomplete keyforms and unknown levels', () => {
   assert.throws(() => validateHeadNineAxis(doc(part({ '0': rest }, { level: 'body' }))), /未知层级/);
 });
 
+test('Validation accepts mask parts and clips that name other parts', () => {
+  const doc = (...parts: any[]) => ({ version: 1, kind: 'head-nine-axis', levels: [{ id: 'hair', includes: ['hair'] }], parts });
+  const mask = part({ '0': rest }, { id: 'hair/mask', role: 'mask' });
+  assert.doesNotThrow(() => validateHeadNineAxis(doc(mask, part({ '0': rest }, { clip: { by: ['hair/mask'], invert: true } }))));
+  assert.throws(() => validateHeadNineAxis(doc(mask, part({ '0': rest }, { clip: { by: ['hair/none'] } }))), /裁切来源无效/);
+  assert.throws(() => validateHeadNineAxis(doc(part({ '0': rest }, { role: 'shadow' }))), /未知角色/);
+});
+
 test('Pink Doll ships a head-only nine-axis document with the three preview levels', async () => {
   const doc = validateHeadNineAxis(JSON.parse(await readFile(new URL('../../demos/pink-doll/' + nineAxisArtifacts.headDeformers, import.meta.url), 'utf8')));
-  assert.ok(doc.parts.every((p: any) => /^(face|hair)\/|^head_accessories/.test(p.id)), '只含头部图层');
+  assert.ok(doc.parts.every((p: any) => /^(face|hair)\/|^neck(\/|$)|^head_accessories/.test(p.id)), '只含头部图层');
   assert.deepEqual(doc.levels.map((l: any) => levelParts(doc, l.id).length > 0), [true, true, true]);
   assert.ok(levelParts(doc, 'face').every((p: any) => p.level === 'face'));
   assert.ok(levelParts(doc, 'hair').some((p: any) => p.level === 'hair') && !levelParts(doc, 'hair').some((p: any) => p.level === 'accessory'));

@@ -31,7 +31,7 @@ export function checkFaceLeft(value: unknown, canvas: [number, number], left: st
   if (!Array.isArray(face.parts) || !face.parts.length) throw new Error('face-left.json：没有部件');
   const ids = new Set<string>();
   for (const p of face.parts) {
-    if (typeof p?.id !== 'string' || !p.id.startsWith('face/') || ids.has(p.id)) throw new Error(`face-left.json：部件 id 须为不重复的 face/ 路径：${p?.id}`);
+    if (typeof p?.id !== 'string' || !isHeadPartId(p.id) || ids.has(p.id)) throw new Error(`face-left.json：部件 id 须为不重复的 face/ 路径或脖子 neck：${p?.id}`);
     ids.add(p.id);
     if (typeof p.group !== 'string' || !p.group) throw new Error(`${p.id}：缺少 group`);
     if (typeof p.texture !== 'string' || !p.texture) throw new Error(`${p.id}：缺少 texture`);
@@ -67,6 +67,9 @@ export function stepTexture(directory: string, task: string, id: string, texture
   return local;
 }
 
+// The first level is neck + face + features: the neck layer comes along by default.
+export const isHeadPartId = (id: string) => /^(face\/|neck(\/|$))/.test(id);
+export const faceLevel = { id: 'face', name: '脖子＋脸＋五官', includes: ['face'] };
 const isEar = (id: string) => /(^|[/_])ear(?=$|[/_])/.test(id);
 
 // The other side's layer: left and right swapped as whole words of the id.
@@ -118,7 +121,7 @@ export async function finishHead(directory: string, input: HeadInput, box: Box, 
   await atomic(join(directory, 'deformers.json'), JSON.stringify({ version: 1, kind: 'head-nine-axis', canvas: [width, height],
     source: { document, sha256: kraHash }, view: { x: box.x, y: box.y, width: box.size, height: box.size }, axis: face.axis,
     parameters: [angleParameter('ParamAngleX', '角度 X', scale.x), { ...angleParameter('ParamAngleY', '角度 Y', scale.y), keys: [0], status: '未制作' }],
-    levels: [{ id: 'face', name: '脸＋五官', includes: ['face'] }],
+    levels: [faceLevel],
     notes: [face.notes?.trim(), `${sign(scale.x[0])}° 为向左视角，${sign(scale.x[1])}° 为左右成对镜像。`].filter(Boolean).join(' '), parts }) + '\n');
   await atomic(join(directory, 'source.json'), JSON.stringify({ version: 1, sourceDocument: document, sourceColor: color,
     sourceKraHash: kraHash, sourceColorHash: colorHash, updatedAt: new Date().toISOString() }, null, 2) + '\n');

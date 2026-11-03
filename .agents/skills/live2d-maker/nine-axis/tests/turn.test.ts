@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, resolveTurnInput, upperBodyBox } from '../turn.ts';
-import { angleXYPrompt, angleYPrompt, headPrompt, runWorkflow, videoPrompt } from '../run.ts';
+import { angleXYPrompt, angleYPrompt, headPrompt, jawLinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
@@ -125,12 +125,14 @@ test('按帧序取出转到 30° 的帧（整段匀速转到 90°）', async t =
   assert.equal((await sharp(join(root, 'frame.png')).metadata()).width, 32);
 });
 
-test('step03、step05、step06 的提示词以度数写出关键形', () => {
-  const x = headPrompt({ document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0], '/task'), y = angleYPrompt('/task'), xy = angleXYPrompt('/task');
+test('step03、step05、step06、step07 的提示词以度数写出关键形', () => {
+  const head = { document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0];
+  const x = headPrompt(head, '/task'), y = angleYPrompt('/task'), xy = angleXYPrompt('/task'), jaw = jawLinePrompt(head, '/task');
   assert.match(x, /ParamAngleX = -30/);
   assert.match(y, /ParamAngleY = 25[\s\S]*ParamAngleY = -25/);
   assert.match(xy, /"-30,25"[\s\S]*"-30,-25"/);
-  for (const prompt of [x, y, xy]) assert.doesNotMatch(prompt, /\{\w+\}/);
+  assert.match(jaw, /"-30,25"[\s\S]*"invert": true/);
+  for (const prompt of [x, y, xy, jaw]) assert.doesNotMatch(prompt, /\{\w+\}/);
 });
 
 test('step01 生成全部视频，step02、step04 取视角帧，都统一到上半身尺寸，完成后沿用', async t => {
@@ -152,8 +154,20 @@ test('step01 生成全部视频，step02、step04 取视角帧，都统一到上
     const linear = JSON.parse(await readFile(join(directory, 'linear.json'), 'utf8'));
     await writeFile(join(directory, 'face-xy.json'), JSON.stringify({ notes: '', parts: linear.parts }));
   };
-  const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead, fitAngleY, fitAngleXY };
-  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step06_angle-xy 已完成：4 个脸部图层的斜向四角/);
+  // The jaw fit keeps every step06 part, adds a jaw line clipped (inverted) by a mask that rides the face base grid.
+  const fitJawLine = async (directory: string) => {
+    const { parts } = JSON.parse(await readFile(join(directory, '../step06_angle-xy/deformers.json'), 'utf8'));
+    const base = parts.find((p: { id: string }) => p.id === 'face/face_base'), pick = (forms: Record<string, unknown>, keys: string[]) => Object.fromEntries(keys.map(k => [k, forms[k]]));
+    const grid = { bbox: base.bbox, cols: base.cols, rows: base.rows, keyforms: pick(base.keyforms, ['0', '-30']), keyformsY: base.keyformsY, keyformsXY: pick(base.keyformsXY, ['-30,25', '-30,-25']) };
+    await mkdir(join(directory, 'layers'), { recursive: true });
+    for (const name of ['jaw_line', 'jaw_mask']) await writeFile(join(directory, `layers/${name}.png`), 'png');
+    const fresh = (id: string, extra: object) => ({ id, group: 'jaw', texture: `layers/${id.split('/')[1]}.png`, textureBounds: base.textureBounds, ...grid, ...extra });
+    await writeFile(join(directory, 'jaw.json'), JSON.stringify({ notes: '补画下颌线', parts: [
+      fresh('face/jaw_line', { clip: { by: ['face/jaw_mask'], invert: true } }), fresh('face/jaw_mask', { role: 'mask' }),
+      ...parts.toReversed().map((p: { id: string }) => ({ id: p.id }))] }));
+  };
+  const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead, fitAngleY, fitAngleXY, fitJawLine };
+  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step07_jaw-line 已完成：6 个部件的下颌线与脖子/);
   const videos = join(task, 'nine-axis/step01_video'), step = join(task, 'nine-axis/step02_views');
   const size = (await sharp(join(videos, 'upper-body.png')).metadata()).width;
   const record01 = JSON.parse(await readFile(join(videos, 'videos.json'), 'utf8'));
@@ -200,6 +214,14 @@ test('step01 生成全部视频，step02、step04 取视角帧，都统一到上
     for (const [corner, key] of [['-30,25', '-30'], ['30,25', '30'], ['30,-25', '30']])
       p.keyformsXY[corner].forEach((q, i) => q.forEach((v, k) => assert.ok(Math.abs(v - p.keyforms[key][i][k]) < 0.02, `${p.id} ${corner}`)));
   }
+  // step07 draws the kept parts first, then the mask and the clipped line on top, with the right side mirrored.
+  const jaw = JSON.parse(await readFile(join(task, 'nine-axis/step07_jaw-line/deformers.json'), 'utf8'));
+  assert.deepEqual(jaw.parts.map((p: { id: string }) => p.id).slice(-2), ['face/jaw_mask', 'face/jaw_line']);
+  assert.deepEqual(jaw.levels.map((l: { name: string }) => l.name), ['脖子＋脸＋五官']);
+  const line = jaw.parts.at(-1), faceBase = xy.parts.find((p: { id: string }) => p.id === 'face/face_base');
+  assert.deepEqual([line.clip, Object.keys(line.keyforms).sort(), Object.keys(line.keyformsXY).sort()], [{ by: ['face/jaw_mask'], invert: true }, ['-30', '0', '30'], ['-30,-25', '-30,25', '30,-25', '30,25']]);
+  line.keyforms['30'].forEach((q: number[], i: number) => q.forEach((v, k) => assert.ok(Math.abs(v - faceBase.keyforms['30'][i][k]) < 0.02)));
+  await access(join(task, 'nine-axis/step07_jaw-line', faceBase.texture));
 });
 
 test('视频失败时 step01 不完成', async t => {

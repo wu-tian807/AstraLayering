@@ -204,6 +204,11 @@ test('Project reports the head nine-axis document and prefers its KRA while the 
   data = (await (await f.get()).json()) as any;
   assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.angleYDeformers, true]);
   assert.equal(await (await read('nine-axis/step05_angle-y/layers/005.png')).text(), 'layer y');
+  // step07 adds the jaw line, the neck and their masks, with named textures.
+  await f.put(a.jawLineDeformers, '{}'); await f.put('nine-axis/step07_jaw-line/layers/jaw_line.png', 'jaw');
+  data = (await (await f.get()).json()) as any;
+  assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.jawLineDeformers, true]);
+  assert.equal(await (await read('nine-axis/step07_jaw-line/layers/jaw_line.png')).text(), 'jaw');
   await f.put(studioArtifacts.document, 'kra'); await f.put(studioArtifacts.color, 'png');
   await f.put(a.headDocument, 'nine kra'); await f.put(a.headColor, 'nine png');
   const hash = (s: string) => createHash('sha256').update(s).digest('hex');

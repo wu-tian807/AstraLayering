@@ -19,6 +19,7 @@ import { ffmpegPath, generateVideo, produceVideos, produceViews, resolveTurnInpu
 import { finishHead, resolveHeadInput, type HeadInput } from './head.ts';
 import { finishAngleY } from './angle-y.ts';
 import { cornerAngleValues, finishAngleXY, writeLinearCorners } from './angle-xy.ts';
+import { finishJawLine } from './jaw-line.ts';
 import { angleScale, angleValues } from './angles.ts';
 
 export const help = `nine-axis — 头部九轴
@@ -41,7 +42,11 @@ down 视角（−25），交付 face-y.json；程序把 Y 关键形并入 step03
 step06_angle-xy：斜向（四角）的脸部＋双耳形变。程序把 step03 的向左与 step05 的抬头、低头线性叠加，写成左上（X −30, Y +25）、左下（X −30, Y −25）的起始形 linear.json；
 agent 照提示词里的教程要点手动斜切，交付 face-xy.json；斜向参考由 agent 自己用 ffmpeg 从 step01 的 left-up.mp4、left-down.mp4 取帧。
 程序按左右配对镜像出右上、右下，写出工作台读取的 deformers.json；工作台在 3×3 关键形之间双线性插值。
-提示词：<knowledge>/nine-axis/step01_video/（left、left-up、left-down 用 prompts/视频.md，up、down 用 prompts/groups/<up|down>/视频.md）、step03_angle-x/、step05_angle-y/、step06_angle-xy/。
+step07_jaw-line：下颌线与脖子。agent 用 krita 工具从源 KRA 取脖子，判断原图有无下颌线（有则从脸底分离并补底色，无则补画），
+照 Cubism 教程做下颌线蒙版（反向裁切下颌线）、脸部蒙版与被它裁切的脸色扩展，脖子顶部加高插到脸下、底部不动，交付 jaw.json、layers/ 与按裁切方式写好的
+character-nine-axis.kra；程序沿用 step06 未替换的部件，镜像右侧关键形，写出工作台读取的 deformers.json（部件可带 role "mask" 与 clip {by, invert}）。
+第一层为「脖子＋脸＋五官」。
+提示词：<knowledge>/nine-axis/step01_video/（left、left-up、left-down 用 prompts/视频.md，up、down 用 prompts/groups/<up|down>/视频.md）、step03_angle-x/、step05_angle-y/、step06_angle-xy/、step07_jaw-line/。
 上游产物重做后其后的步骤随之重做。总入口：pnpm start --name <任务名> --from nine-axis --to nine-axis。
 `;
 
@@ -61,9 +66,11 @@ export function headPrompt(input: HeadInput, taskRoot: string): string {
 }
 export const angleYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step05_angle-y').render('main', angleValues(), { taskRoot }).trim();
 export const angleXYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step06_angle-xy').render('main', { ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
+export const jawLinePrompt = (input: HeadInput, taskRoot: string) => stepKnowledge('nine-axis', 'step07_jaw-line')
+  .render('main', { document: input.document, color: input.color, ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
 
 // The face agents write their own fitting scripts in the section workspace,
-// which step03, step05 and step06 share; the step's knowledge picks their tools (Krita
+// which step03 to step07 share; the step's knowledge picks their tools (Krita
 // to export the face layers, the bitmap viewer to look at them).
 export type FitHead = (directory: string, prompt: string) => Promise<void>;
 export function createFitHead(agents: Pick<CodexAgents, 'run'>, tools: (step: string) => Promise<FunctionTool[]>, step: string, name: string): FitHead {
@@ -78,7 +85,7 @@ export function createFitHead(agents: Pick<CodexAgents, 'run'>, tools: (step: st
 }
 
 export type NineAxisOptions = { name: string; dir?: string; krita?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
-export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; ffmpeg?: string; fitHead?: FitHead; fitAngleY?: FitHead; fitAngleXY?: FitHead;
+export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; ffmpeg?: string; fitHead?: FitHead; fitAngleY?: FitHead; fitAngleXY?: FitHead; fitJawLine?: FitHead;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
   const root = resolveRunsDirectory(options.dir), progress = options.progress ?? (() => {});
@@ -94,23 +101,23 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   };
   const ffmpeg = async () => dependencies.ffmpeg ?? await ffmpegPath(environment.codex.env);
   const videos = join(directory, 'step01_video'), angleY = { up: scale.y[1], down: -scale.y[0] };
-  // Krita is only needed by step03's agent, so only a run that reaches it asks for one.
+  // Krita is only needed by step03's and step07's agents, so only a run that reaches them asks for one.
   const faceTools = async (stepId: string): Promise<FunctionTool[]> => {
     const bitmap = createBitmapTool(directory, join(directory, stepId, 'observations'));
-    if (stepId !== 'step03_angle-x') return [bitmap];
+    if (stepId !== 'step03_angle-x' && stepId !== 'step07_jaw-line') return [bitmap];
     if (!sectionKrita) {
-      if (!options.krita?.trim()) throw new Error('step03_angle-x 需要 --krita <已安装的 Krita 可执行文件路径>。');
+      if (!options.krita?.trim()) throw new Error(`${stepId} 需要 --krita <已安装的 Krita 可执行文件路径>。`);
       const krita = await checkKrita(resolveInput(options.name, options.krita, root), environment.codex.env);
       sectionKrita = new SectionKrita({ section: directory, krita: krita.executable, env: environment.codex.env, record: join(directory, kritaRecordFile) });
     }
-    await sectionKrita.reserve(options.signal, waiting => progress(`step03_angle-x：${waiting}`));
+    await sectionKrita.reserve(options.signal, waiting => progress(`${stepId}：${waiting}`));
     return [createKritaTool(sectionKrita, task), bitmap];
   };
   const agents = () => new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress });
   const preflight = () => preflightAgentSteps(environment, ['nine_axis_head'], { runsRoot: root, progress, env: environment.codex.env });
   const preview = (text: string) => { progress(`预览：${text}`); summary = '预览完成，未调用模型'; };
   try { await runSection({ directory,
-    steps: [{ number: 1, note: 'video' }, { number: 2, note: 'views' }, { number: 3, note: 'angle-x' }, { number: 4, note: 'views-y' }, { number: 5, note: 'angle-y' }, { number: 6, note: 'angle-xy' }],
+    steps: [{ number: 1, note: 'video' }, { number: 2, note: 'views' }, { number: 3, note: 'angle-x' }, { number: 4, note: 'views-y' }, { number: 5, note: 'angle-y' }, { number: 6, note: 'angle-xy' }, { number: 7, note: 'jaw-line' }],
     dryRun: options.dryRun, signal: options.signal, progress,
     async step(step, status) {
       if (status === 'completed') return undefined;
@@ -140,13 +147,20 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         await fit(step.directory, angleYPrompt(task));
         summary = `nine-axis/step05_angle-y 已完成：${await finishAngleY(step.directory, join(directory, 'step03_angle-x'), scale)} 个脸部图层的抬头与低头`;
       };
-      return async () => {
+      if (step.id === 'step06_angle-xy') return async () => {
         if (options.dryRun) return preview(`用 ${headLabel} 从线性叠加起手斜切脸部四角。\n提示词：\n${angleXYPrompt(task)}`);
         const angleYDirectory = join(directory, 'step05_angle-y');
         await writeLinearCorners(step.directory, angleYDirectory, scale);
         const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向'));
         await fit(step.directory, angleXYPrompt(task));
         summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(step.directory, angleYDirectory, scale)} 个脸部图层的斜向四角`;
+      };
+      return async () => {
+        const head = await resolveHeadInput(input);
+        if (options.dryRun) return preview(`用 ${headLabel} 做下颌线、脸部蒙版与脖子。\n提示词：\n${jawLinePrompt(head, task)}`);
+        const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子'));
+        await fit(step.directory, jawLinePrompt(head, task));
+        summary = `nine-axis/step07_jaw-line 已完成：${await finishJawLine(step.directory, join(directory, 'step06_angle-xy'), scale)} 个部件的下颌线与脖子`;
       };
     } }); } finally { await sectionKrita?.release(); }
   return summary;
