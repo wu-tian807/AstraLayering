@@ -86,7 +86,7 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
     const completionImage = await sharp({ create: { width: box.size * 2, height: box.size * 2, channels: 4, background: '#2b2e35' } }).composite([{ input: complete }, { input: overlay('target') }]).png().toBuffer();
     const completedSource = Buffer.from(`<svg width="${box.size * 2}" height="${box.size * 2}" viewBox="${viewBox}"><path d="${esc(trace.completion.source)}" fill="#ffe6d7" stroke="#cf9d91" stroke-width="0.7"/></svg>`);
     const sourceCompletionImage = await sharp({ create: { width: box.size * 2, height: box.size * 2, channels: 4, background: '#2b2e35' } }).composite([{ input: completedSource }, { input: overlay('source') }]).png().toBuffer();
-    const completionCheckImage = await sharp({ create: { width: box.size * 4, height: box.size * 2, channels: 4, background: '#2b2e35' } }).composite([{ input: sourceCompletionImage }, { input: completionImage, left: box.size * 2, top: 0 }]).png().toBuffer();
+    const completionCheckImage = await sharp({ create: { width: box.size * 4, height: box.size * 2, channels: 4, background: '#2b2e35' } }).composite([{ input: sourceCompletionImage, left: 0, top: 0 }, { input: completionImage, left: box.size * 2, top: 0 }]).png().toBuffer();
     panels.push(completionImage);
     const traceImage = await sharp({ create: { width: box.size * 6, height: box.size * 2, channels: 4, background: '#20242b' } }).composite(panels.map((input, i) => ({ input, left: box.size * 2 * i, top: 0 }))).png().toBuffer();
     const traceCheck = join(destination, `${randomUUID()}-trace.png`); await writeFile(traceCheck, traceImage);

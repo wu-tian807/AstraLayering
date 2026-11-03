@@ -62,6 +62,7 @@ test('trace inspection is read-only; SVG fitting persists real left geometry and
   const inspectInfo = JSON.parse(inspected.contentItems[0].text), imageInfo = await sharp(inspectInfo.traceCheck).metadata(); assert.equal(imageInfo.width, 600);
   const { data, info: completedInfo } = await sharp(inspectInfo.completionCheck).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   assert.equal(completedInfo.width, 400);
+  assert.deepEqual([...data.subarray((100 * 400 + 100) * 3, (100 * 400 + 100) * 3 + 3)], [255, 230, 215], 'complete source face occupies the first panel without centering over the target');
   assert.deepEqual([...data.subarray((100 * 400 + 300) * 3, (100 * 400 + 300) * 3 + 3)], [255, 230, 215], 'complete target face remains visible without reference hair');
   const validTrace = await readFile(trace, 'utf8');
   await writeFile(trace, JSON.stringify({ ...JSON.parse(validTrace), curves: [{ id: 'hair-seam', part: complete.part, source: 'M10 10L10 90', target: 'M45 30L45 70', visibility: 'visible' }] }));
