@@ -29,6 +29,10 @@ test('view_nine_axis 用工作台渲染器在工作台底色上画出本步交�
   assert.deepEqual(await pixel({}, 5, 5), [0x2b, 0x2e, 0x35]);
   assert.deepEqual(await pixel({ x: -30, scale: 2 }, 30, 100), [255, 0, 0]);
   assert.deepEqual(await pixel({ x: -30, scale: 2 }, 130, 100), [0x2b, 0x2e, 0x35]);
+  const gridded = await tool.execute({ x: -30, grid: ['face/face_base'] }, signal), info = JSON.parse((gridded.contentItems[0] as { text: string }).text);
+  assert.deepEqual(info.grid, [{ id: 'face/face_base', cols: 1, rows: 1, points: grid(30, 30, 70, 70, -20) }]);
+  assert.deepEqual(await pixel({ x: -30, grid: ['face/face_base'] }, 10, 30), [0x1d, 0x3a, 0x4a]);
+  await assert.rejects(tool.execute({ grid: ['face/nose'] }, signal), /grid/);
   await assert.rejects(tool.execute({ y: 10 }, signal), /ParamAngleY/);
   await assert.rejects(tool.execute({ x: 40 }, signal), /-30 至 30/);
 });

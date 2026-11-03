@@ -6,20 +6,22 @@ import { chromium } from 'playwright';
 import { toolDefinition } from '../shared/codex/tool-config.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { taskRootOf, toAgentPath } from '../shared/task-paths.ts';
-import { validateHeadNineAxis } from '../shared/nine-axis-model.js';
+import { validateHeadNineAxis, keyformAt } from '../shared/nine-axis-model.js';
 import type { Built } from './head.ts';
 
 // view_nine_axis: the step's current delivery, built as the program will build
 // it, drawn by the workbench's own renderer (shared/nine-axis-render.js) in a
 // headless browser on the workbench background, so the agent sees what the
-// workbench shows at those angles and that level.
+// workbench shows at those angles and that level. grid overlays the chosen
+// parts' control grids as the workbench's grid toggle does, and returns their
+// control points at those angles.
 
 const shared = join(dirname(fileURLToPath(import.meta.url)), '..', 'shared');
 const three = dirname(fileURLToPath(import.meta.resolve('three')));
 const origin = 'http://nine-axis.local';
 const checker = 'background:#2b2e35;background-image:linear-gradient(45deg,#30333a 25%,transparent 25%,transparent 75%,#30333a 75%),linear-gradient(45deg,#30333a 25%,transparent 25%,transparent 75%,#30333a 75%);background-size:24px 24px;background-position:0 0,12px 12px';
-const page = (width: number, height: number) => `<!doctype html><html><head><style>html,body{margin:0}#view{position:relative;width:${width}px;height:${height}px;${checker}}canvas{position:absolute;inset:0}</style>
-<script type="importmap">{"imports":{"three":"/three.module.js"}}</script></head><body><div id="view"><canvas></canvas></div><script type="module">
+const page = (width: number, height: number, overlay: string) => `<!doctype html><html><head><style>html,body{margin:0}#view{position:relative;width:${width}px;height:${height}px;${checker}}canvas,svg{position:absolute;inset:0}.nine-grid{fill:none;stroke:#6fd1ff;stroke-width:1;opacity:.75}.nine-points circle{fill:#1d3a4a;stroke:#6fd1ff;stroke-width:1}</style>
+<script type="importmap">{"imports":{"three":"/three.module.js"}}</script></head><body><div id="view"><canvas></canvas>${overlay}</div><script type="module">
 import { HeadNineAxisRenderer, shownParts } from '/nine-axis-render.js';
 try {
   const { doc, x, y, level, masks, frame } = await (await fetch('/args.json')).json();
@@ -31,7 +33,7 @@ try {
 } catch (error) { window.rendered = String(error?.message ?? error); }
 </script></body></html>`;
 
-type Args = { x?: unknown; y?: unknown; level?: unknown; crop?: unknown; scale?: unknown; masks?: unknown };
+type Args = { x?: unknown; y?: unknown; level?: unknown; crop?: unknown; scale?: unknown; masks?: unknown; grid?: unknown };
 type Parameter = { id: string; min?: number; max?: number; keys?: number[]; status?: string };
 
 export function createNineAxisViewTool(directory: string, observationDirectory: string, build: () => Promise<Built>): FunctionTool {
@@ -59,6 +61,21 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
       if (typeof scale !== 'number' || !Number.isFinite(scale) || scale < 0.25 || scale > 8) throw new Error('scale 须为 0.25 至 8');
       const [x0, y0, cw, ch] = crop as number[], width = Math.round(cw * scale), height = Math.round(ch * scale);
       if (width < 1 || height < 1 || width * height > 16_000_000) throw new Error('预览过大或过小，请调整选框或 scale');
+      const partIds = new Set(doc.parts.map(p => p.id)), gridIds = args.grid ?? [];
+      if (!Array.isArray(gridIds) || gridIds.some(g => !partIds.has(g))) throw new Error('grid 须为部件 id 列表');
+      const grids = (gridIds as string[]).map(id => {
+        const p = doc.parts.find(q => q.id === id)!, pts = keyformAt(p, x, y), points: number[][] = [];
+        for (let i = 0; i < pts.length; i += 2) points.push([Math.round(pts[i] * 10) / 10, Math.round(pts[i + 1] * 10) / 10]);
+        return { id, cols: p.cols, rows: p.rows, points };
+      });
+      const sx = (v: number) => ((v - x0) * scale).toFixed(1), sy = (v: number) => ((v - y0) * scale).toFixed(1);
+      const overlay = grids.length ? `<svg width="${width}" height="${height}">${grids.map(({ cols, rows, points }) => {
+        const c = cols + 1, at = (i: number) => `${sx(points[i][0])},${sy(points[i][1])}`;
+        let d = '';
+        for (let j = 0; j <= rows; j++) { d += 'M'; for (let i = 0; i < c; i++) d += at(j * c + i) + ' '; }
+        for (let i = 0; i < c; i++) { d += 'M'; for (let j = 0; j <= rows; j++) d += at(j * c + i) + ' '; }
+        return `<path class="nine-grid" d="${d}"/><g class="nine-points">${points.map(([px, py]) => `<circle cx="${sx(px)}" cy="${sy(py)}" r="3"/>`).join('')}</g>`;
+      }).join('')}</svg>` : '';
       const textures = doc.parts.map(p => built.textures.get(p.texture)!);
       signal.throwIfAborted();
       const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
@@ -67,7 +84,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         const tab = await browser.newPage({ viewport: { width, height } });
         await tab.route(origin + '/**', async route => {
           const path = new URL(route.request().url()).pathname, js = 'text/javascript';
-          if (path === '/') return route.fulfill({ contentType: 'text/html', body: page(width, height) });
+          if (path === '/') return route.fulfill({ contentType: 'text/html', body: page(width, height, overlay) });
           if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, x, y, level, masks, frame: { x0, y0, width: cw, height: ch } }) });
           if (path.startsWith('/texture/')) return route.fulfill({ contentType: 'image/png', body: await readFile(textures[Number(path.slice(9))]) });
           if (path === '/three.module.js' || path === '/three.core.js') return route.fulfill({ contentType: js, body: await readFile(join(three, path)) });
@@ -86,7 +103,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
       const savedPath = join(destination, `${randomUUID()}.png`);
       await writeFile(savedPath, data);
       return { success: true, contentItems: [
-        { type: 'inputText', text: JSON.stringify({ x, y, level: ids.includes(level) ? level : ids[0], crop, scale, width, height, savedPath: await toAgentPath(root, savedPath) }) },
+        { type: 'inputText', text: JSON.stringify({ x, y, level: ids.includes(level) ? level : ids[0], crop, scale, width, height, savedPath: await toAgentPath(root, savedPath), ...(grids.length ? { grid: grids } : {}) }) },
         { type: 'inputImage', imageUrl: `data:image/png;base64,${data.toString('base64')}` },
       ] };
     },

@@ -37,7 +37,7 @@
 
 ## step03_angle-x：left 方向的脸部＋双耳透视形变
 
-1. agent（`nine_axis_head_agent_model`）带着 krita、view_bitmap 与 view_nine_axis 工具启动，提示词 `knowledge/nine-axis/step03_angle-x/prompts/脸部与双耳转向.md` 给出目标、教程纯脸的转头样子与要保护的地方。agent 用 krita 导出脸部图层，像在 Cubism 里拖手柄那样直接改 `face-left.json` 的控制点：先拉脸底大形，再调五官与耳朵；每改一次用 view_nine_axis（按程序组装交付、用工作台渲染器画）预览，看起来对了才算做好。脚本只帮着成片挪点，不拿参考图自动拟合。每层一个 warp（脸底 32×32，其余 16×16）。
+1. agent（`nine_axis_head_agent_model`）带着 krita、view_bitmap 与 view_nine_axis 工具启动，提示词 `knowledge/nine-axis/step03_angle-x/prompts/脸部与双耳转向.md` 给出目标、教程纯脸的转头样子与要保护的地方。agent 用 krita 导出脸部图层，像在 Cubism 里拖手柄那样直接改 `face-left.json` 的控制点：先拉脸底大形，再调五官与耳朵；每改一次用 view_nine_axis（按程序组装交付、用工作台渲染器画，可用 grid 叠出部件网格与控制点）预览，看起来对了才算做好。脚本只帮着成片挪点，不拿参考图自动拟合。每层一个 warp（脸底 32×32，其余 16×16）。
 2. agent 只交付向左（−30）：`face-left.json`（脸部中轴 `axis`、各层控制点，按绘制顺序从上到下）、`layers/`、`left-check.png`。不补绘。耳朵整只刚性随动，近侧耳根贴着脸缘；远侧耳整体转到脑后、排在脸底之下由脸遮挡，不用透明度隐藏（交付带 `opacity` 会被拒绝）。
 3. 程序检查交付，按 id 中的 left/right 配对，把配对图层的 −30 关于中轴镜像为 +30，写出 `deformers.json` 与 `source.json`。
 
