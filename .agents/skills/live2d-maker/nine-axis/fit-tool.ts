@@ -14,7 +14,7 @@ import { angleScale, type AngleScale } from './angles.ts';
 
 type Curve = { id: string; part: string; source: string; target: string; visibility?: 'visible' | 'occluded'; weight?: number };
 type Landmark = Omit<Curve, 'source' | 'target'> & { source: [number, number]; target: [number, number] };
-type Trace = { version: 1; space: 'view' | 'canvas'; curves: Curve[]; landmarks?: Landmark[] };
+type Trace = { version: 1; space: 'view' | 'canvas'; completion: { part: string; source: string; target: string }; curves: Curve[]; landmarks?: Landmark[] };
 const hash = (s: string | Buffer) => createHash('sha256').update(s).digest('hex');
 const esc = (s: string) => s.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
@@ -29,6 +29,7 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
     if (text.length > 1_000_000) throw Error('trace 文件过大');
     const trace = JSON.parse(text) as Trace;
     if (trace.version !== 1 || !['view', 'canvas'].includes(trace.space) || !Array.isArray(trace.curves) || !trace.curves.length || trace.curves.length > 128) throw Error('trace 需要 version:1、space:view/canvas 和 1 至 128 条 curves');
+    if (!trace.completion || typeof trace.completion.part !== 'string' || ![trace.completion.source, trace.completion.target].every(d => typeof d === 'string' && d.length < 32000 && /z\s*$/i.test(d))) throw Error('先补全完整脸型：completion 需要 part、source 和 target 两条闭合 SVG path；不能仅凭露出的皮肤边界拟合');
     const ids = new Set<string>(), partIds = new Set<string>();
     const weight = (f: Curve | Landmark) => f.weight ?? (f.visibility === 'occluded' ? 0.03 : 1);
     const check = (f: Curve | Landmark) => {
@@ -43,11 +44,13 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
     if (args.revision !== undefined && args.revision !== hash(original)) throw Error('作者数据已变化，请读取最新 revision');
     const doc = { version: 2 as const, kind: 'head-nine-axis' as const, levels: [{ id: 'face', includes: ['face' as const] }], deformers: raw.deformers, parts: raw.parts.toReversed().map(p => ({ level: 'face' as const, ...p })) };
     for (const id of partIds) if (!doc.parts.some(p => p.id === id)) throw Error('描线 part 不存在：' + id);
+    if (!doc.parts.some(p => p.id === trace.completion.part)) throw Error('completion.part 不存在');
     const selectedIds = args.features ?? [...ids];
     if (!Array.isArray(selectedIds) || !selectedIds.length || selectedIds.some(id => !ids.has(id))) throw Error('features 须为 trace 中的 id');
     signal.throwIfAborted();
     const browser = await chromium.launch();
     let sampled: { id: string; points: { from: [number, number]; to: [number, number] }[] }[];
+    let completionMismatch: { id: string; sourcePixels: number; targetPixels: number }[];
     try {
       const tab = await browser.newPage();
       sampled = await tab.evaluate(curves => curves.map(f => {
@@ -58,6 +61,16 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
         const closed = /z\s*$/i.test(f.source) && /z\s*$/i.test(f.target);
         return { id: f.id, points: Array.from({ length: count }, (_, i) => { const t = i / (closed ? count : count - 1), p = from.getPointAtLength(a * t), q = to.getPointAtLength(b * t); return { from: [p.x, p.y] as [number, number], to: [q.x, q.y] as [number, number] }; }) };
       }), trace.curves);
+      completionMismatch = await tab.evaluate(({ completion, sampled }) => {
+        const contour = (d: string) => {
+          const p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d); const length = p.getTotalLength();
+          if (!(length > 0)) throw Error('完整脸型闭合路径无效');
+          const count = Math.min(8192, Math.ceil(length * 4)); return Array.from({ length: count }, (_, i) => { const q = p.getPointAtLength(length * i / count); return [q.x, q.y]; });
+        };
+        const source = contour(completion.source), target = contour(completion.target);
+        const distance = (p: number[], line: number[][]) => Math.sqrt(Math.min(...line.map(q => (q[0] - p[0]) ** 2 + (q[1] - p[1]) ** 2)));
+        return sampled.map(f => ({ id: f.id, sourcePixels: Math.max(...f.points.map(p => distance(p.from, source))), targetPixels: Math.max(...f.points.map(p => distance(p.to, target))) })).filter(f => f.sourcePixels > 2 || f.targetPixels > 2);
+      }, { completion: trace.completion, sampled });
     } finally { await browser.close(); }
     const toCanvas = (p: [number, number]): [number, number] => trace.space === 'view' ? [p[0] + box.x, p[1] + box.y] : p;
     const features: FitFeature[] = [
@@ -68,11 +81,20 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
     const sourceImage = await cropUpperBody(input.color, box), targetImage = await readFile(reference);
     const overlay = (side: 'source' | 'target') => Buffer.from(`<svg width="${box.size * 2}" height="${box.size * 2}" viewBox="${trace.space === 'view' ? `0 0 ${box.size} ${box.size}` : `${box.x} ${box.y} ${box.size} ${box.size}`}">${trace.curves.map(f => `<path d="${esc(f[side])}" fill="none" stroke="${f.visibility === 'occluded' ? '#54c9ff' : '#ff315d'}" stroke-width="0.7"${f.visibility === 'occluded' ? ' stroke-dasharray="3 2"' : ''}/>`).join('')}${(trace.landmarks ?? []).map(f => `<circle cx="${f[side][0]}" cy="${f[side][1]}" r="1.5" fill="#ffeb55"/>`).join('')}</svg>`);
     const panels = await Promise.all(([sourceImage, targetImage] as const).map((image, i) => sharp(image).resize(box.size * 2, box.size * 2).composite([{ input: overlay(i ? 'target' : 'source') }]).png().toBuffer()));
-    const traceImage = await sharp({ create: { width: box.size * 4, height: box.size * 2, channels: 4, background: '#20242b' } }).composite(panels.map((input, i) => ({ input, left: box.size * 2 * i, top: 0 }))).png().toBuffer();
+    const viewBox = trace.space === 'view' ? `0 0 ${box.size} ${box.size}` : `${box.x} ${box.y} ${box.size} ${box.size}`;
+    const complete = Buffer.from(`<svg width="${box.size * 2}" height="${box.size * 2}" viewBox="${viewBox}"><path d="${esc(trace.completion.target)}" fill="#ffe6d7" stroke="#cf9d91" stroke-width="0.7"/></svg>`);
+    const completionImage = await sharp({ create: { width: box.size * 2, height: box.size * 2, channels: 4, background: '#2b2e35' } }).composite([{ input: complete }, { input: overlay('target') }]).png().toBuffer();
+    const completedSource = Buffer.from(`<svg width="${box.size * 2}" height="${box.size * 2}" viewBox="${viewBox}"><path d="${esc(trace.completion.source)}" fill="#ffe6d7" stroke="#cf9d91" stroke-width="0.7"/></svg>`);
+    const sourceCompletionImage = await sharp({ create: { width: box.size * 2, height: box.size * 2, channels: 4, background: '#2b2e35' } }).composite([{ input: completedSource }, { input: overlay('source') }]).png().toBuffer();
+    const completionCheckImage = await sharp({ create: { width: box.size * 4, height: box.size * 2, channels: 4, background: '#2b2e35' } }).composite([{ input: sourceCompletionImage }, { input: completionImage, left: box.size * 2, top: 0 }]).png().toBuffer();
+    panels.push(completionImage);
+    const traceImage = await sharp({ create: { width: box.size * 6, height: box.size * 2, channels: 4, background: '#20242b' } }).composite(panels.map((input, i) => ({ input, left: box.size * 2 * i, top: 0 }))).png().toBuffer();
     const traceCheck = join(destination, `${randomUUID()}-trace.png`); await writeFile(traceCheck, traceImage);
+    const completionCheck = join(destination, `${randomUUID()}-completion.png`); await writeFile(completionCheck, completionCheckImage);
     let revision = hash(original), report: unknown;
     if (args.action === 'fit') {
       if (typeof args.id !== 'string') throw Error('fit 需要你选择的变形器或部件 id');
+      if (completionMismatch.length) throw Error('描线与完整脸型不一致，未拟合：' + JSON.stringify(completionMismatch) + '。先修正完整脸缘；皮肤与头发的交界不能作为脸外轮廓。');
       const fitted = fitWarpToTraces(doc, { id: args.id, x: scale.x[0], features, smoothness: args.smoothness });
       const edited: FaceLeft = { ...raw, deformers: fitted.doc.deformers, parts: fitted.doc.parts.toReversed() as Part[] };
       const built = await compileHead(directory, input, box, edited, scale);
@@ -91,8 +113,9 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
       await writeFile(join(directory, 'fit-report.json'), JSON.stringify(report, null, 2) + '\n');
     }
     return { success: true, contentItems: [
-      { type: 'inputText', text: JSON.stringify({ revision, traceCheck: await toAgentPath(task, traceCheck), reference: await toAgentPath(task, reference), space: trace.space, features: features.map(f => ({ id: f.id, samples: f.samples.length, weight: f.weight })), ...(report ? { report } : {}) }) },
+      { type: 'inputText', text: JSON.stringify({ revision, traceCheck: await toAgentPath(task, traceCheck), completionCheck: await toAgentPath(task, completionCheck), completionMismatch, reference: await toAgentPath(task, reference), space: trace.space, features: features.map(f => ({ id: f.id, samples: f.samples.length, weight: f.weight })), ...(report ? { report } : {}) }) },
       { type: 'inputImage', imageUrl: `data:image/png;base64,${traceImage.toString('base64')}` },
+      { type: 'inputImage', imageUrl: `data:image/png;base64,${completionCheckImage.toString('base64')}` },
     ] };
   } };
 }

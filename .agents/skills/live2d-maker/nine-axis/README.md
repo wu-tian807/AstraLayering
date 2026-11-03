@@ -40,13 +40,15 @@
 
 ## step03_angle-x：left 方向的脸部＋双耳透视形变
 
-1. agent 带着 `krita`、`edit_nine_axis`、`fit_nine_axis`、`view_bitmap` 与 `view_nine_axis` 启动。从原 KRA 导出脸与固定脖子，`edit_nine_axis.importParts` 创建初始网格，不自动建解剖分组。agent 描原画脸缘和 left 目标脸缘，再由 `fit_nine_axis` 自动求脸底 Warp；五官可一轮批量液化，然后回看完整脸。
+1. agent 带着 `krita`、`edit_nine_axis`、`fit_nine_axis`、`view_bitmap` 与 `view_nine_axis` 启动。从原 KRA 导出脸与固定脖子，`edit_nine_axis.importParts` 创建初始网格，不自动建解剖分组。agent 描真实可见脸缘，结合原画与带图先验预测完整闭合 left 脸底，先检查无遮挡素脸，再由 `fit_nine_axis` 自动求脸底 Warp；五官可一轮批量液化，然后回看完整脸。
 2. `create_warp`、`reparent`、`remove_warp` 由 agent 定义组级与父子 Warp；部件始终保留自己的局部网格。父级调整影响后代，局部编辑不影响兄弟或父级。编辑工具接受画布位置，自动反解父级，原子保存作者文件 `face-left.json` 并返回 revision。预览可显示组级网格、只看某一组，再恢复带脖子的完整脸。控制点少而清楚，平滑曲线与渲染细分分开。
 3. left 帧是可见脸型和五官的唯一视觉目标。`face-trace.json` 用 SVG path 记录源线和目标线，在眼窝、颧颊、颌角、下巴等转折拆段；可见区域标 `visible`，遮挡补全标 `occluded`。教程只用于后者，不以通用脸型改变可见轮廓。求解使用同一平滑 Warp 与父级反解，保留其他节点；补全与可见曲线冲突时自动弱化。父级不足时补局部关键形或子 Warp。`parameterInterpolation.x: "ellipse"` 可给出弧线，额外中间形按实际过渡补。
 4. 脖子从首次导入就进入参考与完整预览，不能挂到头部 Warp，也不能平移、倾斜、拉长。接缝先检查顶部覆盖与下颌线，记录角度和缺口；脖子顶部延长与最终接触调整统一在 step07 处理。已有线/蒙版复用，不能为了当前脖子的长度改变应有脸型。默认形蒙版在线下方，转头只裁掉接触区。每次调整都检查 −30、−15、0、+15、+30 的完整脸。耳朵整体贴着脸缘，远侧放到脸后，不用透明度隐藏。
 5. `face-left.json` 为 version 2，含 `axis`、`deformers`（可空）与 top-first `parts`。程序镜像组合后的向左形变，再反解到右侧节点的父级空间；不要求左右采用相同层级，写出 `deformers.json` 与 `source.json`。
 
-`fit_nine_axis.inspect` 先叠出描线；`fit` 将曲线自动采样为对应点，返回逐段平均/最大误差，保存 `fit-report.json`。拟合到描线仍须确认描线贴住视频。`view_nine_axis.reference` 返回参考／当前／50% 叠加三联图，固定正面 axis，不按五官重新对齐；`left-fit-check.png` 保存整脸对比，`far-side-check.png` 放大画面左侧眼窝到颊部，不能只检查一段下颌。描线格式见 [拟合工具](../knowledge/shared/tools/fit_nine_axis/description.md)。
+`face-trace.json.completion` 保存完整闭合 source/target 脸型，各分段由同一轮廓拆出；皮肤与头发交界不能作为外脸缘。先读[带图脸型补全先验](../knowledge/nine-axis/step03_angle-x/references/completion/脸型补全先验.md)，参考圆脸视频、教程和不同脸型原生模型的左转脸底，只补视频被遮挡的结构。
+
+`fit_nine_axis.inspect` 先叠出描线与完整 target 素脸，并返回完整 source/target 的 `completionCheck`；分段偏离完整脸型时拒绝拟合。保存 `face-completion-check.png`，实际变形后的单独脸底用 `view_nine_axis` 另存 `face-base-left-check.png`。`fit` 将曲线自动采样为对应点，返回逐段平均/最大误差，保存 `fit-report.json`。拟合到描线仍须确认描线贴住视频。`view_nine_axis.reference` 返回参考／当前／50% 叠加三联图，固定正面 axis，不按五官重新对齐；`left-fit-check.png` 保存整脸对比，`far-side-check.png` 放大画面左侧眼窝到颊部，不能只检查一段下颌。本轮为待用户验收的候选，用户明确通过前不能宣称流程稳定。描线格式见 [拟合工具](../knowledge/shared/tools/fit_nine_axis/description.md)。
 
 - `deformers.json`：version 2。无贴图的 `deformers` 和带贴图的 bottom-first `parts` 分开，`parent` 引用 Warp，绘制顺序独立于变形层级。每个节点有 `bbox`、`cols`、`rows`、`keyforms`；节点的局部形先形变，再依次通过父级。贴图保留原画布的 `textureBounds`，路径为本步 `layers/` 相对路径。工作台能选择父级或部件、拖动组合后的控制点并保存。完整字段与操作见 [编辑工具](../knowledge/shared/tools/edit_nine_axis/description.md)。
 - `character-nine-axis.kra`（需要像素修复时由 agent 在 Krita 保存）：在来源 KRA 上补绘转头露出的区域（例如后发被脸遮住的内层与外轮廓线），其他图层与 UUID 不变，因此阴影 `shadows.json` 的绑定仍然有效。旧 KRA 不覆盖。
