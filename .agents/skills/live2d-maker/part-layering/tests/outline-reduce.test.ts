@@ -13,7 +13,6 @@ for (const mode of ['changed', 'unchanged', 'empty', 'selected-source', 'no-prev
     const base = await fixture(t), f = mode === 'symlinked-root' ? await linkedFixture(t, base) : base, events: string[] = [], steps = workingSteps(events, [{ id: 'hair' }, { id: 'accessories' }]);
     const input = { ...f, groups: null, steps: { ...steps, async reduceOutlines(context: Parameters<typeof reduceGroupOutlines>[0]) {
       return { status: 'completed' as const, output: await reduceGroupOutlines(context, { async run(task) {
-        assert.equal(task.imageGeneration, false);
         const runtime = promptInput(task.prompt);
         const listed = JSON.parse(((await task.tools!.find(tool => tool.name === 'list_reduction_groups')!.execute({}, signal)).contentItems[0] as { text: string }).text);
         const groups = listed.parents.flatMap((parent: { groups: unknown[] }) => parent.groups);

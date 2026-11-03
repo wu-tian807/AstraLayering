@@ -63,7 +63,6 @@ function agents(verdicts: string[], options: {
     const input = runtime(task);
     const preview = task.tools!.find(tool => tool.name === 'preview_svg')!;
     if (task.name.startsWith('组轮廓review')) {
-      assert.equal(task.imageGeneration, false);
       assert.equal(input.outputSvg, undefined);
       await preview.execute({ path: input.candidate, mode: 'edge', crop: [5, 5, 90, 90], scale: 2 }, signal);
       if (!options.missingSubmission) await task.tools!.find(tool => tool.name === 'submit_review')!
@@ -71,7 +70,6 @@ function agents(verdicts: string[], options: {
           feedback: `对照左侧可见边界 x=10；主要结构和宽度的具体意见。第 ${reviews} 轮反馈。` }, signal);
       if (options.failAfterSubmission) throw new Error('审查提交后中断');
     } else {
-      assert.equal(task.imageGeneration, false);
       assert.ok(input.outputSvg);
       await writeFile(fromTaskPath(taskRootOf(task.cwd!), input.outputSvg), svg(input.group.id, 10 + drawingTurns++));
       if ((options.failRepair && drawingTurns > 1) || options.failDrawingTurn === drawingTurns) throw new Error('返修执行失败');
@@ -160,8 +158,6 @@ test('真实默认适配器接入绘制、自检和独立 review，之后停在�
   assert.ok(mock.calls[0].task.prompt.startsWith(staticPromptPrefix(await readFile(partKnowledge(profile, 'outline').files('main')[0], 'utf8'))));
   assert.ok(mock.calls[1].task.prompt.startsWith(staticPromptPrefix(await readFile(partKnowledge(profile, 'outline').files('review')[0], 'utf8'))));
   assert.ok(mock.calls.every(call => call.task.cwd === f.directory));
-  assert.equal(mock.calls[0].task.imageGeneration, false);
-  assert.equal(mock.calls[1].task.imageGeneration, false);
   assert.notEqual(mock.calls[0].session, mock.calls[1].session);
   assert.deepEqual(mock.closed, [mock.calls[0].session]);
   const state = (await GroupStore.open(f.directory)).snapshot();

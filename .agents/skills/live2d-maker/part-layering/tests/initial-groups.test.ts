@@ -57,7 +57,6 @@ test('首次识别一次调用，绑定 view_bitmap 和 write_groups；直接保
   assert.equal(calls.length, 1);
   assert.equal(calls[0].name, '首次分组识别');
   assert.equal(calls[0].cwd, context.directory);
-  assert.equal(calls[0].imageGeneration, undefined);
   assert.ok(calls[0].prompt.startsWith(staticPromptPrefix(await readFile(partKnowledge(profile, 'initial').files('main')[0], 'utf8'))));
   assert.match(calls[0].prompt, /本次运行目录/);
   assert.ok(calls[0].prompt.includes(`素体参考图：${join(context.directory, 'references/base-subject.png')}`));

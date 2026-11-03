@@ -28,7 +28,7 @@ async function saveImage(image: GeneratedImage | undefined, output: string): Pro
 
 async function prepareImage(agents: Pick<CodexAgents, 'run'>, knowledge: ReturnType<typeof stepKnowledge>, task: AgentTask, input: string, output: string, processGenerated?: ProcessGenerated): Promise<ReferenceChoice> {
   let reusedReason: string | undefined;
-  const result = await agents.run({ ...task, imageGeneration: knowledge.imageGeneration('main'), tools: knowledge.tools('main', [{
+  const result = await agents.run({ ...task, tools: knowledge.tools('main', [{
     ...toolDefinition('reuse_reference'),
     async execute(value, signal, context) {
       if (!value || typeof value !== 'object' || Array.isArray(value)
@@ -83,7 +83,7 @@ export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): Prepar
     },
     standardize: async (image, output, prompt) => {
       const result = await agents.run({
-        imageGeneration: stepKnowledge('part-layering', 'step04_standard').imageGeneration('main'), step: 'part_standardize', name: '标准姿态', outputSchema: imageOutputSchema,
+        step: 'part_standardize', name: '标准姿态', outputSchema: imageOutputSchema,
         prompt,
       });
       await validateAgentOutcome(result, () => saveImage(result.images.at(-1), output));

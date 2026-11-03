@@ -176,8 +176,7 @@ export function checkKnowledge(directory = current): void {
       }
       // Group priors replace step prompts when their group runs.
       for (const path of markdownFiles(join(step.directory, 'prompts', 'groups'))) checkReferences(path, declared.section);
-      for (const [role, tools] of [['main', step.toolNames('main')], ['review', config.review ? step.toolNames('review') : []]] as const) {
-        if (role !== 'main' && !config.review) continue;
+      for (const [role, tools] of [['main', config.main.tools ?? []], ['review', config.review?.tools ?? []]] as const) {
         for (const name of tools) {
           if (!schemas.has(name)) throw new Error(`${declared.section}/${declared.step} 引用了未注册的工具：${name}`);
           const own = join(step.directory, 'tools', name, 'description.md');
@@ -185,7 +184,7 @@ export function checkKnowledge(directory = current): void {
           const description = existsSync(own) ? read(own) : existsSync(shared) ? read(shared) : '';
           if (!description.trim()) throw new Error(`工具 ${name} 缺少说明：${own}`);
         }
-        const required = role === 'review' ? declared.review?.required ?? [] : declared.required ?? [];
+        const required = role === 'main' ? declared.required ?? [] : declared.review?.required ?? [];
         for (const name of required) if (!tools.includes(name)) throw new Error(`${declared.section}/${declared.step} 的 ${role} 缺少必需工具：${name}`);
       }
     }

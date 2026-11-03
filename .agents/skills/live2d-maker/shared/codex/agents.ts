@@ -230,9 +230,7 @@ export class CodexAgents {
           // agent.json is the capability source for every harness and image
           // provider. Model selection and old caller flags cannot grant access.
           if (original.step) {
-            const enabled = agentImageGeneration(original.step);
-            original = { ...original, imageGeneration: enabled,
-              tools: enabled ? original.tools : original.tools?.filter(tool => tool.name !== 'imagegen') };
+            original = { ...original, imageGeneration: agentImageGeneration(original.step) };
           }
           const settings = this.options.environment!;
           const selected = this.options.selectedModel || (original.step ? settings.stepModels[original.step]
@@ -261,8 +259,7 @@ export class CodexAgents {
               return result;
             };
           }
-          let task = image ? { ...original, imageGeneration: false, tools: [...original.tools || [], image] }
-            : usesPatchedImageTool(settings, original.step) ? { ...original, imageGeneration: true } : original;
+          let task = image ? { ...original, imageGeneration: false, tools: [...original.tools || [], image] } : original;
           if (!id && original.recoveryPrompt) task = { ...task, prompt: original.recoveryPrompt };
           const signal = taskSignal(task, [closing.signal, ...(externalSignal ? [externalSignal] : [])]);
           let result: AgentResult;

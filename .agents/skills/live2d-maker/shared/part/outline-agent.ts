@@ -123,7 +123,7 @@ export async function drawGroupOutline(
   const repairPrompt = repair && knowledge.render('repair', runtime(context, input, repair.round), { taskRoot: taskRootOf(context.directory), group: context.group.id });
   if (repairPrompt) await recordRepair(output, repair.round, repairPrompt);
   const response = await agents.run({
-    step: partStep(profile.id, repair ? 'outline_repair' : 'outline'), imageGeneration: knowledge.imageGeneration(repair ? 'repair' : 'main'),
+    step: partStep(profile.id, repair ? 'outline_repair' : 'outline'),
     name: `${repair ? '组轮廓返修' : '组轮廓绘制'}-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
     tools: knowledge.tools(repair ? 'repair' : 'main', [preview, write, createSvgReadTool(context.directory),
       createBitmapTool(context.directory, join(context.directory, 'observations', 'outline', context.group.id)),
@@ -185,7 +185,7 @@ async function reviewOnce(
     },
   };
   const response = await agents.run({
-    step: partStep(profile.id, 'outline_review'), imageGeneration: knowledge.imageGeneration('review'), name: `组轮廓review-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
+    step: partStep(profile.id, 'outline_review'), name: `组轮廓review-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
     tools: knowledge.tools('review', [preview, submit, createSvgReadTool(context.directory),
       createBitmapTool(context.directory, join(context.directory, 'observations', 'review', context.group.id))]),
     prompt: knowledge.render('review', runtime(context, input, round), { taskRoot: taskRootOf(context.directory), group: context.group.id }),
