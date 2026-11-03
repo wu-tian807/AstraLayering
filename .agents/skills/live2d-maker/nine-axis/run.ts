@@ -31,14 +31,14 @@ up 人物不动、镜头匀速降到下巴正下方仰视（脸看起来抬起�
 随后取 up、down 转到 angles.json 度数的一帧（first/up.png、first/down.png）作首帧，用同一转头提示词生成 left-up、left-down 两段向左转头视频，供斜向参考。
 需要 .env 的 video_base_url / video_api_key（不使用生图接口，缺少时报错）、nine_axis_view_video_model 和 ffmpeg。
 step02_views：程序按帧序从 left.mp4 取出转到 angles.json left 度数（默认 30°）的一帧 left.png。
-step03_angle-x：left 方向的脸部＋双耳透视形变。agent 在 workspace 里按 pink-doll 的拟合方法自己写脚本，用 krita 工具
-导出脸部图层，拟合出向左（ParamAngleX −30，即 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
+step03_angle-x：left 方向的脸部＋双耳透视形变。agent 用 krita 工具导出脸部图层，
+直接改控制点摆出向左（ParamAngleX −30，即 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/（每改一次用 view_nine_axis 按工作台的样子预览）；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
 与记录源 KRA/PNG 哈希的 source.json。
 step04_views-y：程序从 up.mp4、down.mp4 取出 angles.json up、down 度数（默认都是 25°）的一帧，写为 up.png、down.png。
 ParamAngleX / ParamAngleY 处处以度数为值：各视角的度数只记在 knowledge/nine-axis/step01_video/references/angles.json（默认 left 30、up 25、down 25），
 由程序填进各步提示词，agent 交付与 deformers.json 的关键形键都是这些度数；换成 Cubism ±30 等范围留给导出。只做脸与双耳，不含头发；不补绘。使用 nine_axis_head_agent_model。
-step05_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step03 的图层与网格（脸底 32×32，其余 16×16），分别拟合 step04 的 up 视角（ParamAngleY +25）与
-down 视角（−25），交付 face-y.json；程序把 Y 关键形并入 step03 的变形器，写出工作台读取的 deformers.json。
+step05_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step03 的图层与网格（脸底 32×32，其余 16×16），分别照 step04 的 up 视角（ParamAngleY +25）与
+down 视角（−25）直接改控制点，交付 face-y.json；程序把 Y 关键形并入 step03 的变形器，写出工作台读取的 deformers.json。
 只做形变：轮廓线的出现与消失留给后续步骤。使用 nine_axis_head_agent_model。
 step06_angle-xy：斜向（四角）的脸部＋双耳形变。程序把 step03 的向左与 step05 的抬头、低头线性叠加，写成左上（X −30, Y +25）、左下（X −30, Y −25）的起始形 linear.json；
 agent 照提示词里的教程要点手动斜切，交付 face-xy.json；斜向参考由 agent 自己用 ffmpeg 从 step01 的 left-up.mp4、left-down.mp4 取帧。
@@ -139,7 +139,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       };
       if (step.id === 'step03_angle-x') return async () => {
         const head = await resolveHeadInput(input);
-        if (options.dryRun) return preview(`用 ${headLabel} 拟合脸部向左转向，镜像出向右。\n提示词：\n${headPrompt(head, task)}`);
+        if (options.dryRun) return preview(`用 ${headLabel} 摆出脸部向左转向，镜像出向右。\n提示词：\n${headPrompt(head, task)}`);
         const box = JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box as Box;
         builds[step.id] = () => buildHead(step.directory, head, box, scale);
         const fit = dependencies.fitHead ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳转向'));
@@ -147,7 +147,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         summary = `nine-axis/step03_angle-x 已完成：${await finishHead(step.directory, head, box, scale)} 个脸部图层的 ${scale.x[0]}° / +${scale.x[1]}° 转向`;
       };
       if (step.id === 'step05_angle-y') return async () => {
-        if (options.dryRun) return preview(`用 ${headLabel} 拟合脸部抬头与低头。\n提示词：\n${angleYPrompt(task)}`);
+        if (options.dryRun) return preview(`用 ${headLabel} 摆出脸部抬头与低头。\n提示词：\n${angleYPrompt(task)}`);
         builds[step.id] = () => buildAngleY(step.directory, join(directory, 'step03_angle-x'), scale);
         const fit = dependencies.fitAngleY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳上下'));
         await fit(step.directory, angleYPrompt(task));

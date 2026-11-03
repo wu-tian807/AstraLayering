@@ -37,8 +37,8 @@
 
 ## step03_angle-x：left 方向的脸部＋双耳透视形变
 
-1. agent（`nine_axis_head_agent_model`）带着 krita 与 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step03_angle-x/prompts/脸部与双耳转向.md` 给出方法与教程先验。五官与脸底分开做：五官在 left.png 中露出来，按模板匹配定位、竖轴圆柱转向，再分眉眼、嘴、鼻拟合到 left.png 的五官像素；脸底轮廓常被头发遮住，先按教程画出转过去的整条轮廓（头的大小不变、远侧往上收、近侧往左下移、下颌底连续、不画后脑，并包住拟合好的五官），再以轮廓对应与五官锚点做一个平滑的整体变形（只在脸底不透明区内求）；合起来看时五官位置不对只整组平移。最后导出为每层 warp（脸底 32×32，其余 16×16）。不提供固定的拟合库：agent 在本步 `workspace/` 里自写脚本，蒙版、轮廓段、权重、ROI 与远近侧耳等按角色判断并看图检查。
-2. agent 只交付向左（−30）：`face-left.json`（脸部中轴 `axis`、各层控制点，按绘制顺序从上到下）、`layers/`、`left-check.png`。不补绘。耳朵不拟合生图像素，近侧耳只随父级平移和横向缩放；远侧耳整体转到脑后、排在脸底之下由脸遮挡，不用透明度隐藏（交付带 `opacity` 会被拒绝）。
+1. agent（`nine_axis_head_agent_model`）带着 krita、view_bitmap 与 view_nine_axis 工具启动，提示词 `knowledge/nine-axis/step03_angle-x/prompts/脸部与双耳转向.md` 给出目标、教程纯脸的转头样子与要保护的地方。agent 用 krita 导出脸部图层，像在 Cubism 里拖手柄那样直接改 `face-left.json` 的控制点：先拉脸底大形，再调五官与耳朵；每改一次用 view_nine_axis（按程序组装交付、用工作台渲染器画）预览，看起来对了才算做好。脚本只帮着成片挪点，不拿参考图自动拟合。每层一个 warp（脸底 32×32，其余 16×16）。
+2. agent 只交付向左（−30）：`face-left.json`（脸部中轴 `axis`、各层控制点，按绘制顺序从上到下）、`layers/`、`left-check.png`。不补绘。耳朵整只刚性随动，近侧耳根贴着脸缘；远侧耳整体转到脑后、排在脸底之下由脸遮挡，不用透明度隐藏（交付带 `opacity` 会被拒绝）。
 3. 程序检查交付，按 id 中的 left/right 配对，把配对图层的 −30 关于中轴镜像为 +30，写出 `deformers.json` 与 `source.json`。
 
 - `deformers.json`：每个脸部图层一个 warp deformer（脸底 32×32，其余 16×16），控制点为原画像素，关键形在 ParamAngleX −30 / 0 / +30（度数）；部件按绘制顺序从上到下排列；`layers/` 是各层贴图，路径相对本步骤目录。
@@ -49,7 +49,7 @@
 
 ## step05_angle-y：脸部＋双耳的上下形变
 
-1. agent（与 step03 同用 `nine_axis_head_agent_model`）带着 view_bitmap 工具启动，提示词 `knowledge/nine-axis/step05_angle-y/prompts/脸部与双耳上下.md`。沿用 step03 的图层贴图、网格与绘制顺序，目标是让脸型的变形对齐 step04 视角帧里的脸型，方法同 step03：父级为绕横轴转动的球加一层平滑位移，子级分眉眼、嘴、鼻。抬头（up → +25）与低头（down → −25）分别拟合，不镜像。教程先验（`references/tutorial/` 的正面、低头、抬头网格与 3D 模型对照）：头的大小不变、脸变扁；低头时网格中间下弯、头顶一圈饱满、下巴变尖，抬头时下半张脸饱满、下巴变圆润；低头时眉眼距离缩小、嘴变扁、鼻子靠近嘴，抬头相反。双耳都按父级在耳根点的位移随动，不转到脑后。
+1. agent（与 step03 同用 `nine_axis_head_agent_model`）带着 view_bitmap 与 view_nine_axis 工具启动，提示词 `knowledge/nine-axis/step05_angle-y/prompts/脸部与双耳上下.md`。沿用 step03 的图层贴图、网格与绘制顺序，像 step03 那样直接改控制点、用 view_nine_axis 预览，照 step04 视角帧与教程纯脸（`references/tutorial/` 的正面、低头、抬头网格与 3D 模型对照）摆出抬头（up → +25）与低头（down → −25），不镜像：头的大小不变、脸变扁；低头时网格中间下弯、头顶一圈饱满、下巴变尖，抬头时下半张脸饱满、下巴变圆润；低头时眉眼距离缩小、嘴变扁、鼻子靠近嘴，抬头相反。耳朵贴着脸缘随动。
 2. 只做形变本身：抬头、低头时轮廓线的出现与消失不处理，留给后续步骤统一调整。不补绘、不用透明度。
 3. agent 交付 `face-y.json`（每个 step03 部件的 "25"、"-25" 关键形）与 `up-check.png`、`down-check.png`。程序检查部件与控制点数和 step03 一致，把 `layers/` 复制到本步，写出含 X、Y 两个参数的 `deformers.json`：X 关键形仍在 `keyforms`，Y 关键形在 `keyformsY`（与 X 共用静止形 `keyforms["0"]`）。
 
@@ -58,7 +58,7 @@
 ## step06_angle-xy：脸部＋双耳的斜向（四角）
 
 1. 程序把 step03 的向左与 step05 的抬头、低头相对静止形的位移相加，写出左上（ParamAngleX −30, ParamAngleY +25）、左下（−30, −25）的起始形 `linear.json`。
-2. agent（`nine_axis_head_agent_model`）带着 view_bitmap 启动，提示词 `knowledge/nine-axis/step06_angle-xy/prompts/脸部与双耳斜向.md`：从起始形出发照教程手动斜切，把两个角调得好看、从正面到四角过渡顺滑。提示词里带教程斜切要点与 `references/tutorial/` 的教程斜切截图（左上、左下的眉眼腮与嘴，左下做完的鼻嘴下巴）。
+2. agent（`nine_axis_head_agent_model`）带着 view_bitmap 与 view_nine_axis 启动，提示词 `knowledge/nine-axis/step06_angle-xy/prompts/脸部与双耳斜向.md`：从起始形出发照教程直接改控制点手动斜切、用 view_nine_axis 预览，把两个角调得好看、从正面到四角过渡顺滑。提示词里带教程斜切要点与 `references/tutorial/` 的教程斜切截图（左上、左下的眉眼腮与嘴，左下做完的鼻嘴下巴）。
 3. 斜向参考由 agent 需要时自己用 ffmpeg 从 step01 的 `left-up.mp4`、`left-down.mp4` 取帧：头从抬头、低头首帧匀速向左转，最后一帧到侧面 90°，向左度数处的一帧即斜向角（有几度误差），只作形状参考。
 4. agent 交付 `face-xy.json`（每个部件的 "-30,25"、"-30,-25" 关键形）与两张对照图。程序检查部件与控制点数和 step05 一致，按左右配对镜像出右上 "30,25"、右下 "30,-25"，写出 `deformers.json`：四角在 `keyformsXY`，键为 "X,Y" 度数。
 
