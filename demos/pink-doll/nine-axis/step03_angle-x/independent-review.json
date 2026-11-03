@@ -1,0 +1,33 @@
+{
+  "freshRun": "run7",
+  "baselineRun": "run6",
+  "readOnly": true,
+  "registration": "same original crop and pixel positions; no alignment or image liquify",
+  "authorSha256": "d543ac3ef9bf5cb8a542489e5ec0ec1dfb4f32ec7c4a2d5e24651187bf8cccbc",
+  "results": [
+    {
+      "name": "full",
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2,
+      "path": "fresh-vs-refined-full.png",
+      "referenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155"
+    },
+    {
+      "name": "far",
+      "crop": [
+        511,
+        180,
+        100,
+        135
+      ],
+      "scale": 6,
+      "path": "fresh-vs-refined-far.png",
+      "referenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155"
+    }
+  ]
+}
