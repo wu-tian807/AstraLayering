@@ -29,6 +29,36 @@ async function fixture(t: TestContext) {
   return { directory, reference, path, observationDirectory, tool: createSvgPreviewTool({ directory, reference, canvas, observationDirectory }) };
 }
 
+test('九轴复用 SVG 预览时，同画布参考保持原坐标、局部矢量边缘和输入文件', async t => {
+  const f = await fixture(t);
+  const source = await readFile(f.path), originalReference = await readFile(f.reference);
+  const supplied = join(f.directory, 'source-face.png');
+  await sharp({ create: { ...canvas, channels: 4, background: '#00ff00' } }).png().toFile(supplied);
+  const suppliedBytes = await readFile(supplied);
+  const tool = createSvgPreviewTool({ ...f, canvas, referenceAlignment: 'canvas' });
+  const properties = tool.inputSchema.properties as Record<string, unknown>;
+  assert.ok(properties.reference); assert.ok(!properties.referenceRegion); assert.ok(!properties.referenceOffset);
+  for (const [reference, background] of [[undefined, [0, 0, 255]], [supplied, [0, 255, 0]]] as const) {
+    const result = await tool.execute({ path: f.path, mode: 'edge', crop: [10, 10, 80, 80], scale: 4, ...(reference ? { reference } : {}) }, signal);
+    const metadata = info(result);
+    assert.equal(metadata.referenceAlignment, 'canvas');
+    assert.equal(metadata.alignment, undefined);
+    assert.deepEqual([metadata.width, metadata.height], [320, 320]);
+    const { data, info: pixels } = await sharp(metadata.savedPath).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+    const pixel = (x: number, y: number) => [...data.subarray((y * pixels.width + x) * 3, (y * pixels.width + x) * 3 + 3)];
+    assert.deepEqual(pixel(40, 100), [235, 35, 55], 'x=20 stays at (20-10)*4, rather than centering reference to the SVG');
+    assert.deepEqual(pixel(44, 100), background, 'edge is the fill boundary; interior remains the reference');
+    assert.deepEqual(pixel(20, 100), background);
+  }
+  const wrongSize = join(f.directory, 'wrong-size.png');
+  await sharp({ create: { width: 60, height: 60, channels: 4, background: '#fff' } }).png().toFile(wrongSize);
+  await assert.rejects(tool.execute({ path: f.path, mode: 'edge', reference: wrongSize }, signal), /同坐标参考尺寸/);
+  await assert.rejects(tool.execute({ path: f.path, mode: 'edge', reference: supplied, referenceRegion: [0, 0, 100, 100] }, signal), /schema/);
+  assert.deepEqual(await readFile(f.path), source);
+  assert.deepEqual(await readFile(f.reference), originalReference);
+  assert.deepEqual(await readFile(supplied), suppliedBytes);
+});
+
 test('真实 root 和 g 属性中的 > 不影响绑定、范围检查和裁剪，实体和组 ID 按属性值比较', async t => {
   const f = await fixture(t);
   const id = 'hair/a.b';

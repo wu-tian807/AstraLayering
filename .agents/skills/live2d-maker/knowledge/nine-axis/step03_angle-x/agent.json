@@ -9,7 +9,8 @@
       "view_bitmap",
       "view_nine_axis",
       "edit_nine_axis",
-      "fit_nine_axis"
+      "fit_nine_axis",
+      "preview_svg"
     ]
   }
 }

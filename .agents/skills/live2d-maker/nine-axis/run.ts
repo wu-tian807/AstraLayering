@@ -14,6 +14,7 @@ import { checkKrita } from '../shared/raster/krita.ts';
 import { SectionKrita, kritaRecordFile } from '../shared/krita/section-krita.ts';
 import { createKritaTool } from '../shared/krita/tool.ts';
 import { createBitmapTool } from '../shared/part/bitmap-tool.ts';
+import { createSvgPreviewTool } from '../shared/part/svg-tools.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { ffmpegPath, generateVideo, produceVideos, produceViews, resolveTurnInput, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
 import { buildHead, finishHead, resolveHeadInput, type Built, type HeadInput } from './head.ts';
@@ -36,7 +37,8 @@ up 人物不动、镜头匀速降到下巴正下方仰视（脸看起来抬起�
 需要 .env 的 video_base_url / video_api_key（不使用生图接口，缺少时报错）、nine_axis_view_video_model 和 ffmpeg。
 step02_views：程序按帧序从 left.mp4 取出转到 angles.json left 度数（默认 30°）的一帧 left.png。
 step03_angle-x：left 方向的脸部＋双耳透视形变。agent 用 krita 工具导出脸部图层，
-用 edit_nine_axis 自己定义需要的组级与父子 Warp，保留部件局部网格；照教程摆出向左（ParamAngleX −30，即 left 视角）的脸与五官，脖子固定并从开始纳入预览，交付 version 2 的 face-left.json 与 layers/（每改一次用 view_nine_axis 按工作台的样子预览）；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
+复用 part 的 preview_svg 描边、局部核对并补全脸型，以视频可见区域为目标，用 fit_nine_axis 自动求 Warp；
+用 edit_nine_axis 自己定义需要的组级与父子 Warp并调整五官，保留部件局部网格。脖子固定并从开始纳入预览，交付 version 2 的 face-left.json 与 layers/（每改一次用 view_nine_axis 按工作台的样子预览）；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
 与记录源 KRA/PNG 哈希的 source.json。
 step04_views-y：程序从 up.mp4、down.mp4 取出 angles.json up、down 度数（默认都是 25°）的一帧，写为 up.png、down.png。
 ParamAngleX / ParamAngleY 处处以度数为值：各视角的度数只记在 knowledge/nine-axis/step01_video/references/angles.json（默认 left 30、up 25、down 25），
@@ -122,7 +124,9 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     await sectionKrita.reserve(options.signal, waiting => progress(`${stepId}：${waiting}`));
     const head = stepId === 'step03_angle-x' ? await resolveHeadInput(input) : undefined;
     const box = head ? JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box : undefined;
-    const edit = head ? [createHeadEditTool(join(directory, stepId), head, box, scale), createNineAxisFitTool(join(directory, stepId), head, box, scale)] : [continuation];
+    const edit = head ? [createHeadEditTool(join(directory, stepId), head, box, scale), createNineAxisFitTool(join(directory, stepId), head, box, scale),
+      createSvgPreviewTool({ directory: join(directory, stepId), reference: join(directory, 'step02_views/left.png'),
+        canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' })] : [continuation];
     return [createKritaTool(sectionKrita, task), bitmap, view, ...edit];
   };
   const agents = () => new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress });

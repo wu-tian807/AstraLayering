@@ -56,6 +56,8 @@
 
 载入顺序：工作台先按既有规则选出组装或阴影 KRA；若 `source.json` 指向的正是这份 KRA / PNG 且哈希一致，改为载入 `character-nine-axis.kra` 与同名 PNG。来源变化时退回所选 KRA，并标记九轴 KRA 待重做，不混用旧补绘。
 
+X 的描边复用 part-layering 的 `preview_svg`：先独立辨认可见形体，用闭合纯色色块的填色边缘起稿，整图 blend 后以重叠选框放大，用 blend/edge 核对。远侧眼尾外侧到颊部保留视频中的陡边、转折和笔锋，实际显露的脸缘不能整段归为遮挡；遮挡补全最后加入，不移动已核对的可见段。source 对同坐标无遮挡原脸底，target 默认对指定 left 帧。九轴以 `referenceAlignment: 'canvas'` 复用同一工具实现，参考不居中、不重新缩放，不开放生成图的 referenceRegion/referenceOffset；已有 Part 补全仍沿用原对齐方式。两份检查过的 SVG 生成 trace 后再求 Warp。已有真实管线产物可按本步 review-feedback.md 续修，保留已确认区域；工具与拟合技术检查通过仍须由用户确认视觉效果。
+
 ## step05_angle-y：脸部＋双耳的上下形变
 
 `edit_nine_axis {}` 从当前 X 的 `deformers.json` 建立完整 version 2 的 `face-y.json`。保留 `deformers`、局部 `parts`、裁切、贴图与来源，在 `keyformsY` 制作上下端点，不再交付平铺部件的坐标补丁。后续阶段的作者源带 `authoring.stage` 与 `upstreamSha256`；来源变动会拒绝旧数据，须按新上游重新制作。
