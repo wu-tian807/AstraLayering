@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { validateHeadNineAxis, keyformAt, lattice, refine, levelParts, dragKeyform, deformerTree } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
+import { validateHeadNineAxis, keyformAt, lattice, refine, levelParts, dragKeyform, deformerTree, evaluatePoints, nodes, meshIndices } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 import { nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 
 const part = (keyforms: Record<string, number[][]>, extra = {}): any => ({ id: 'hair/bangs', level: 'hair', texture: 'layers/000.png', textureBounds: [0, 0, 10, 10], bbox: [0, 0, 10, 10], cols: 1, rows: 1, keyforms, ...extra });
@@ -76,4 +76,21 @@ test('Pink Doll ships authored face warps, local feature meshes and fixed neck',
   assert.equal(neck.parent, undefined);
   assert.deepEqual(neck.keyforms['-30'], neck.keyforms['0']);
   assert.deepEqual(neck.keyforms['30'], neck.keyforms['0']);
+});
+
+
+test('completed Pink Doll keeps a fixed neck and unfolded composed meshes across nine axes and transitions', async () => {
+  const doc=validateHeadNineAxis(JSON.parse(await readFile(new URL('../../demos/pink-doll/' + nineAxisArtifacts.jawLineDeformers,import.meta.url),'utf8')));
+  const neck=doc.parts.find(p=>p.id==='neck')!;
+  for(const p of doc.parts)await readFile(new URL('../../demos/pink-doll/nine-axis/step07_jaw-line/'+p.texture,import.meta.url));
+  for(const x of [-30,-15,0,15,30])for(const y of [-25,-12.5,0,12.5,25]){
+    assert.deepEqual([...evaluatePoints(doc,neck,x,y)],neck.keyforms['0'].flat());
+    for(const n of nodes(doc)){
+      const points=evaluatePoints(doc,n,x,y,2),indices=meshIndices(n.cols*2,n.rows*2);
+      for(let i=0;i<indices.length;i+=3){const a=indices[i]*2,b=indices[i+1]*2,c=indices[i+2]*2;
+        const area=(points[b]-points[a])*(points[c+1]-points[a+1])-(points[b+1]-points[a+1])*(points[c]-points[a]);
+        assert.ok(area<0,`${n.id} folded at ${x},${y}`);
+      }
+    }
+  }
 });

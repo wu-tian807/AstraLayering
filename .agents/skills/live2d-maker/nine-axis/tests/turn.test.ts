@@ -11,6 +11,8 @@ import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, resolveTurn
 import { angleXYPrompt, angleYPrompt, headPrompt, jawLinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
+import { createContinuationEditTool } from '../continuation-edit-tool.ts';
+import { readUpstream, startContinuation } from '../continuation.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
 
 const rect = (w: number, h: number, x: number, y: number, rw: number, rh: number) =>
@@ -131,7 +133,8 @@ test('step03、step05、step06、step07 的提示词以度数写出关键形', (
   assert.match(x, /ParamAngleX = -30/);
   assert.match(y, /ParamAngleY = 25[\s\S]*ParamAngleY = -25/);
   assert.match(xy, /"-30,25"[\s\S]*"-30,-25"/);
-  assert.match(jaw, /"-30,25"[\s\S]*"invert": true/);
+  assert.match(jaw, /"-30,25"/);
+  assert.match(jaw, /"invert": true/);
   for (const prompt of [x, y, xy, jaw]) assert.doesNotMatch(prompt, /\{\w+\}/);
 });
 
@@ -144,27 +147,22 @@ test('step01 生成全部视频，step02、step04 取视角帧，都统一到上
   const generate = async (prompt: string, image: Buffer) => { prompts.push(prompt); firsts.push(image); return { id: `v${prompts.length}`, status: { status: 'completed' }, bytes: await readFile(sample) }; };
   let fitted = 0;
   const fitHead = async (directory: string) => { fitted++; await writeFaceLeft(directory); };
-  // The Y fit keeps the step03 rest grid for both keyforms.
+  // All later fits retain the complete hierarchy and exact upstream source.
   const fitAngleY = async (directory: string) => {
-    const { parts } = JSON.parse(await readFile(join(directory, '../step03_angle-x/deformers.json'), 'utf8'));
-    await writeFile(join(directory, 'face-y.json'), JSON.stringify({ notes: '', parts: parts.map((p: { id: string; keyforms: Record<string, number[][]> }) => ({ id: p.id, keyforms: { 25: p.keyforms['0'], '-25': p.keyforms['0'] } })) }));
+    await createContinuationEditTool(directory, join(directory, '../step03_angle-x'), 'y').execute({}, new AbortController().signal);
   };
-  // The corner fit hands back the linear start unchanged.
   const fitAngleXY = async (directory: string) => {
-    const linear = JSON.parse(await readFile(join(directory, 'linear.json'), 'utf8'));
-    await writeFile(join(directory, 'face-xy.json'), JSON.stringify({ notes: '', parts: linear.parts }));
+    await createContinuationEditTool(directory, join(directory, '../step05_angle-y'), 'xy').execute({}, new AbortController().signal);
   };
-  // The jaw fit keeps every step06 part, adds a jaw line clipped (inverted) by a mask that rides the face base grid.
   const fitJawLine = async (directory: string) => {
-    const { parts } = JSON.parse(await readFile(join(directory, '../step06_angle-xy/deformers.json'), 'utf8'));
-    const base = parts.find((p: { id: string }) => p.id === 'face/face_base'), pick = (forms: Record<string, unknown>, keys: string[]) => Object.fromEntries(keys.map(k => [k, forms[k]]));
-    const grid = { bbox: base.bbox, cols: base.cols, rows: base.rows, keyforms: pick(base.keyforms, ['0', '-30']), keyformsY: base.keyformsY, keyformsXY: pick(base.keyformsXY, ['-30,25', '-30,-25']) };
+    const upstream = await readUpstream(join(directory, '../step06_angle-xy'));
+    const doc = startContinuation(upstream.doc, upstream.hash, 'jaw');
+    const base = doc.parts.find(p => p.id === 'face/face_base')!;
     await mkdir(join(directory, 'layers'), { recursive: true });
     for (const name of ['jaw_line', 'jaw_mask']) await writeFile(join(directory, `layers/${name}.png`), 'png');
-    const fresh = (id: string, extra: object) => ({ id, group: 'jaw', texture: `layers/${id.split('/')[1]}.png`, textureBounds: base.textureBounds, ...grid, ...extra });
-    await writeFile(join(directory, 'jaw.json'), JSON.stringify({ notes: '补画下颌线', parts: [
-      fresh('face/jaw_line', { clip: { by: ['face/jaw_mask'], invert: true } }), fresh('face/jaw_mask', { role: 'mask' }),
-      ...parts.toReversed().map((p: { id: string }) => ({ id: p.id }))] }));
+    const fresh = (id: string, extra: object) => ({ ...structuredClone(base), id, group: 'jaw', texture: `layers/${id.split('/')[1]}.png`, ...extra });
+    doc.parts.push(fresh('face/jaw_mask', { role: 'mask' }), fresh('face/jaw_line', { clip: { by: ['face/jaw_mask'], invert: true } }));
+    await writeFile(join(directory, 'jaw.json'), JSON.stringify(doc));
   };
   const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead, fitAngleY, fitAngleXY, fitJawLine };
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step07_jaw-line 已完成：6 个部件的下颌线与脖子/);

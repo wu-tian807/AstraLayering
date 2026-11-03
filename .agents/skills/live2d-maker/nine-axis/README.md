@@ -1,6 +1,6 @@
 # 头部九轴
 
-入口：`pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <Krita 可执行文件>`。九轴全部完成前不接入总控流程与工作台阶段，只能这样单独启动；目前只做脸部与双耳：step03 左右转向（ParamAngleX），step05 上下（ParamAngleY），step06 斜向（四角），不含头发。ParamAngleX / ParamAngleY 处处以度数为值：ParamAngleX −30 / +30（step02 取向左转头视频中转到 30° 的帧，+30 由 step03 镜像），ParamAngleY +25 抬头 / −25 低头（step04 取镜头上下移动视频中的 25° 帧）。各角度只记在 `knowledge/nine-axis/step01_video/references/angles.json`，由程序用来取视频帧、填进 step03、step05、step06 的提示词；agent 交付的关键形键、`deformers.json` 的参数范围与关键形键都是这些度数，工作台的范围读文档本身。改角度幅度只改这个文件。换成 Cubism 默认 ±30 等范围留给以后的导出层。状态记在各步骤目录的完成标记。
+入口：`pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <Krita 可执行文件>`。范围为脸部与双耳，以及固定脖子的连接：step03 左右转向（ParamAngleX），step05 上下（ParamAngleY），step06 斜向（四角），不含头发。ParamAngleX / ParamAngleY 处处以度数为值：ParamAngleX −30 / +30（step02 取向左转头视频中转到 30° 的帧，+30 由 step03 镜像），ParamAngleY +25 抬头 / −25 低头（step04 取镜头上下移动视频中的 25° 帧）。各角度只记在 `knowledge/nine-axis/step01_video/references/angles.json`，由程序用来取视频帧、填进 step03、step05、step06 的提示词；agent 交付的关键形键、`deformers.json` 的参数范围与关键形键都是这些度数，工作台的范围读文档本身。改角度幅度只改这个文件。换成 Cubism 默认 ±30 等范围留给以后的导出层。状态记在各步骤目录的完成标记。
 
 | 步骤 | 输入 | 交付 |
 | --- | --- | --- |
@@ -10,6 +10,7 @@
 | `step04_views-y` | `step01_video` 的 `up.mp4`、`down.mp4` 与 `upper-body.png` | `nine-axis/step04_views-y/up.png`、`down.png`、`frames/`、`views.json` |
 | `step05_angle-y` | `step03_angle-x` 的 `deformers.json` 与 `layers/`，`step04_views-y` 的 up、down 视角 | `nine-axis/step05_angle-y/face-y.json`、`up-check.png`、`down-check.png`、`deformers.json`、`layers/*.png` |
 | `step06_angle-xy` | `step05_angle-y` 的 `deformers.json`，各视角，step01 的 `left-up.mp4`、`left-down.mp4` | `nine-axis/step06_angle-xy/linear.json`、`face-xy.json`、`left-up-check.png`、`left-down-check.png`、`deformers.json`、`layers/*.png` |
+| `step07_jaw-line` | `step06_angle-xy`、当前九轴 KRA | `jaw.json`、`deformers.json`、`jaw-check.png`，必要的 KRA/贴图修复 |
 
 步骤名后缀说明各步做什么：`video` 生成全部视频，`views` 取左右视角帧，`views-y` 取上下视角帧，`angle-x` 做角度 X（左右），`angle-y` 做角度 Y（上下），`angle-xy` 做斜向。
 
@@ -51,19 +52,24 @@
 
 ## step05_angle-y：脸部＋双耳的上下形变
 
-1. agent（与 step03 同用 `nine_axis_head_agent_model`）带着 view_bitmap 与 view_nine_axis 工具启动，提示词 `knowledge/nine-axis/step05_angle-y/prompts/脸部与双耳上下.md`。沿用 step03 的图层贴图、网格与绘制顺序，像 step03 那样直接改控制点、用 view_nine_axis 预览，照 step04 视角帧与教程纯脸（`references/tutorial/` 的正面、低头、抬头网格与 3D 模型对照）摆出抬头（up → +25）与低头（down → −25），不镜像：头的大小不变、脸变扁；低头时网格中间下弯、头顶一圈饱满、下巴变尖，抬头时下半张脸饱满、下巴变圆润；低头时眉眼距离缩小、嘴变扁、鼻子靠近嘴，抬头相反。耳朵贴着脸缘随动。
-2. 只做形变本身：抬头、低头时轮廓线的出现与消失不处理，留给后续步骤统一调整。不补绘、不用透明度。
-3. agent 交付 `face-y.json`（每个 step03 部件的 "25"、"-25" 关键形）与 `up-check.png`、`down-check.png`。程序检查部件与控制点数和 step03 一致，把 `layers/` 复制到本步，写出含 X、Y 两个参数的 `deformers.json`：X 关键形仍在 `keyforms`，Y 关键形在 `keyformsY`（与 X 共用静止形 `keyforms["0"]`）。
+`edit_nine_axis {}` 从当前 X 的 `deformers.json` 建立完整 version 2 的 `face-y.json`。保留 `deformers`、局部 `parts`、裁切、贴图与来源，在 `keyformsY` 制作上下端点，不再交付平铺部件的坐标补丁。后续阶段的作者源带 `authoring.stage` 与 `upstreamSha256`；来源变动会拒绝旧数据，须按新上游重新制作。
 
-工作台在本步 `deformers.json` 存在时读它，否则读 step03 的。斜向角未做时预览把 X、Y 各自相对静止形的位移相加；只有另一角度为 0 时才能编辑该角度的关键形。
+agent 沿用或重新安排自己的 Warp 层级，先调大形再补整眼、嘴及独立部件；新增节点自动有当前阶段的关键形。改挂/拆分应保留已有部件在画布上的 X 姿态。Y 重点是眉眼、眼嘴、嘴颏的距离：低头缩短、嘴变扁，下脸收窄；抬头眉眼拉开、嘴变高，下颊和下颌饱满。没有耳朵时跳过，不假造图层。
 
-## step06_angle-xy：脸部＋双耳的斜向（四角）
+固定脖子从开始进入完整预览；脸型、下颌线和蒙版同步检查上下遮盖，不把明显接缝延后处理。需要补绘时回到有 Krita 的阶段修复，然后按新来源继续。`up-check.png`、`down-check.png` 用共享工作台渲染与参考并排。程序验证已制作的 X，继承贴图并输出本步 `deformers.json`。
 
-1. 程序把 step03 的向左与 step05 的抬头、低头相对静止形的位移相加，写出左上（ParamAngleX −30, ParamAngleY +25）、左下（−30, −25）的起始形 `linear.json`。
-2. agent（`nine_axis_head_agent_model`）带着 view_bitmap 与 view_nine_axis 启动，提示词 `knowledge/nine-axis/step06_angle-xy/prompts/脸部与双耳斜向.md`：从起始形出发照教程直接改控制点手动斜切、用 view_nine_axis 预览，把两个角调得好看、从正面到四角过渡顺滑。提示词里带教程斜切要点与 `references/tutorial/` 的教程斜切截图（左上、左下的眉眼腮与嘴，左下做完的鼻嘴下巴）。
-3. 斜向参考由 agent 需要时自己用 ffmpeg 从 step01 的 `left-up.mp4`、`left-down.mp4` 取帧：头从抬头、低头首帧匀速向左转，最后一帧到侧面 90°，向左度数处的一帧即斜向角（有几度误差），只作形状参考。
-4. agent 交付 `face-xy.json`（每个部件的 "-30,25"、"-30,-25" 关键形）与两张对照图。程序检查部件与控制点数和 step05 一致，按左右配对镜像出右上 "30,25"、右下 "30,-25"，写出 `deformers.json`：四角在 `keyformsXY`，键为 "X,Y" 度数。
+## step06_angle-xy：斜向四角
 
-工作台在本步 `deformers.json` 存在时优先读它，在 X、Y 的 3×3 关键形之间双线性插值；停在斜向角上（两个角度都在关键形上）时也能拖动编辑该角。轮廓线的出现与消失留给后续步骤。
+`linear.json` 是完整层级的初始文档，各节点局部 X/Y 位移相加。`edit_nine_axis {}` 建立 `face-xy.json`，agent 制作 `keyformsXY` 左上、左下，程序镜像组合后的结果，再反解到右侧父级。自定义镜像名称用 `mirror_pair`，也支持完整 `left/right` 词的自动配对。
 
-本轮验收集中在左右重构。已有 Y／四角的旧关键形不会自动适配新层级；后续制作必须以新 X 作者文件为基础重新预览。可用工作台 URL `?project=pink-doll&workspace=nine-axis&nineStage=x` 明确打开左右阶段，旧阶段文件保留。
+四角沿用教程的手动斜切，中轴留作参考，整体上下微移由预览决定。保留 X 侧脸额头、眼窝、颧颊、下颌的起伏，以及 Y 的五官距离；不能把左转轮廓强推成全外凸蛋形。父级负责大形，整眼/嘴的层级与独立部件补细节。单独 X/Y 姿态受保护。
+
+用 `view_nine_axis` 检查左右四角和轴到四角的过渡，放大瞳孔、口腔层与固定脖子接触。交付完整作者源及左右上/下检查图，程序继承贴图并输出 `deformers.json`。斜向参考视频与生成机制沿用。
+
+## step07_jaw-line：下颌接触收尾
+
+`edit_nine_axis {}` 从当前四角建立完整 `jaw.json`。复用已拆好的线、蒙版、脸色扩展；根据实际缺口补绘或增加局部 Warp。蒙版 `role: "mask"` 只作裁切源，线用 `clip: {by: [...], invert: true}`。静止保留原线，转动只擦掉压进脖子的接触段，其他线保持粗细与浓淡。贴图修复由私有 Krita 保存副本，原工程与 UUID 保留。
+
+脖子固定、不进头部 Warp。顶部需要补足时沿原两侧向上绘制，与下部连成直线，不能拉斜或拉长。九宫格 `jaw-check.png` 使用同一工作台渲染检查九个角度与中间值；程序继承贴图，完成本步 `deformers.json`。
+
+工作台默认读取完成的最高阶段；URL `nineStage=x|y|xy|jaw` 可明确比较对应阶段。version 2 是当前作者与运行格式，未发布旧格式不做兼容适配。视频生成不变。

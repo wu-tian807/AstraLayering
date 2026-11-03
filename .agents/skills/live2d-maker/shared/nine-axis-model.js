@@ -39,7 +39,9 @@ export function validateHeadNineAxis(doc) {
     }
   }
   const parents = new Map(doc.deformers.map(p => [p.id, p]));
+  const byId = new Map(nodes(doc).map(p=>[p.id,p]));
   for (const p of nodes(doc)) {
+    if (p.mirror !== undefined && (!byId.has(p.mirror) || p.mirror===p.id || partIds.has(p.id)!==partIds.has(p.mirror) || byId.get(p.mirror).mirror!==p.id)) throw Error(p.id+'：mirror 必须与同类节点互相配对');
     const chain = new Set([p.id]); let next = p.parent;
     while (next !== undefined && next !== null) {
       if (!parents.has(next)) throw Error(p.id + '：父变形器不存在 ' + next);

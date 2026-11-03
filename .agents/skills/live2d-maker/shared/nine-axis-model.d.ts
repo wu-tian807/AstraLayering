@@ -1,8 +1,8 @@
 export type Point = [number, number];
 export type HeadLevel = 'face' | 'hair' | 'accessory';
-export interface WarpGrid { id: string; name?: string; level: HeadLevel; parent?: string; bbox: number[]; cols: number; rows: number; keyforms: Record<string, Point[] | number[][]>; keyformsY?: Record<string, Point[] | number[][]>; keyformsXY?: Record<string, Point[] | number[][]>; interpolation?: 'linear' | 'smooth'; parameterInterpolation?: { x?: 'linear' | 'ellipse' }; status?: string }
+export interface WarpGrid { id: string; name?: string; level: HeadLevel; parent?: string; mirror?: string; bbox: number[]; cols: number; rows: number; keyforms: Record<string, Point[] | number[][]>; keyformsY?: Record<string, Point[] | number[][]>; keyformsXY?: Record<string, Point[] | number[][]>; interpolation?: 'linear' | 'smooth'; parameterInterpolation?: { x?: 'linear' | 'ellipse' }; status?: string }
 export interface HeadDeformer extends WarpGrid { group?: string; texture: string; textureBounds: number[]; role?: 'mask'; clip?: { by: string[]; invert?: boolean } }
-export interface HeadNineAxis { version: 2; kind: 'head-nine-axis'; canvas?: number[]; view?: { x: number; y: number; width: number; height: number }; parameters?: any[]; levels: { id: string; name?: string; includes: HeadLevel[] }[]; notes?: string; deformers: WarpGrid[]; parts: HeadDeformer[] }
+export interface HeadNineAxis { version: 2; kind: 'head-nine-axis'; canvas?: number[]; source?: {document:string;sha256:string}; view?: { x: number; y: number; width: number; height: number }; parameters?: any[]; levels: { id: string; name?: string; includes: HeadLevel[] }[]; notes?: string; deformers: WarpGrid[]; parts: HeadDeformer[] }
 export const levelNames: Record<HeadLevel, string>;
 export function validateHeadNineAxis(doc: any): HeadNineAxis;
 export function keyValues(part: WarpGrid, axis?: 'x' | 'y'): number[];

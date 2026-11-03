@@ -9,6 +9,17 @@ function grid(id, bbox, cols = 2, rows = 2) {
   const n = { id, bbox, cols, rows }, rest = pairs(lattice(n));
   return { ...n, interpolation: 'smooth', keyforms: { '0': rest } };
 }
+function initialForms(doc, n) {
+  const rest = n.keyforms['0'];
+  for (const key of doc.parameters?.find(p=>p.id==='ParamAngleX')?.keys ?? [0]) n.keyforms[String(key)] ??= structuredClone(rest);
+  const Y=doc.parameters?.find(p=>p.id==='ParamAngleY')?.keys?.filter(k=>k!==0) ?? [];
+  if (Y.length) n.keyformsY ??= {};
+  for (const key of Y) n.keyformsY[String(key)] ??= structuredClone(rest);
+  const corners=new Set(nodes(doc).flatMap(p=>Object.keys(p.keyformsXY??{})));
+  if (corners.size) n.keyformsXY ??= {};
+  for (const key of corners) n.keyformsXY[key] ??= structuredClone(rest);
+}
+
 function ensureKey(n, x = 0, y = 0) {
   number(x, 'x'); number(y, 'y');
   const field = !y ? 'keyforms' : !x ? 'keyformsY' : 'keyformsXY', key = !y ? String(x) : !x ? String(y) : `${x},${y}`;
@@ -29,7 +40,7 @@ export function editNineAxis(document, operations) {
       const p = op.part;
       if (!p || typeof p.id !== 'string' || !p.id || nodes(doc).some(n => n.id === p.id)) throw Error('新部件 id 无效或重复');
       const n = { ...grid(p.id, p.bbox, p.cols ?? 4, p.rows ?? 4), ...p, level: p.level ?? 'face' };
-      for (const key of doc.parameters?.find(p => p.id === 'ParamAngleX')?.keys ?? [0]) n.keyforms[String(key)] ??= structuredClone(n.keyforms['0']);
+      initialForms(doc,n);
       doc.parts.push(n);
     } else if (op.action === 'create_warp') {
       if (typeof op.id !== 'string' || !op.id || nodes(doc).some(n => n.id === op.id)) throw Error('新变形器 id 无效或重复');
@@ -37,7 +48,7 @@ export function editNineAxis(document, operations) {
       const children = targets.map(get), all = children.flatMap(n => Object.keys(n.keyforms).flatMap(k => pairs(evaluatePoints(doc, n, Number(k)))));
       const bbox = op.bbox ?? (all.length ? [Math.min(...all.map(q => q[0])) - 8, Math.min(...all.map(q => q[1])) - 8, Math.max(...all.map(q => q[0])) + 8, Math.max(...all.map(q => q[1])) + 8] : undefined);
       const n = { ...grid(op.id, bbox, op.cols, op.rows), level: op.level ?? children[0]?.level ?? 'face', ...(op.name ? { name: op.name } : {}) };
-      for (const key of doc.parameters?.find(p => p.id === 'ParamAngleX')?.keys ?? [0]) n.keyforms[String(key)] = structuredClone(n.keyforms['0']);
+      initialForms(doc,n);
       if (op.parent) n.parent = op.parent;
       doc.deformers.push(n); reparent(doc, targets, n.id);
     } else if (op.action === 'reparent') {
@@ -46,6 +57,12 @@ export function editNineAxis(document, operations) {
       const n = doc.deformers.find(n => n.id === op.id); if (!n) throw Error('变形器不存在：' + op.id);
       reparent(doc, nodes(doc).filter(q => q.parent === n.id).map(q => q.id), n.parent);
       doc.deformers = doc.deformers.filter(q => q.id !== n.id);
+      for (const q of nodes(doc)) if(q.mirror===n.id) delete q.mirror;
+    } else if (op.action === 'mirror_pair') {
+      if (!Array.isArray(op.targets) || op.targets.length!==2 || op.targets[0]===op.targets[1]) throw Error('mirror_pair 需要两个不同节点');
+      const [a,b]=op.targets.map(get);
+      for (const n of [a,b]) if(n.mirror && get(n.mirror).mirror===n.id) delete get(n.mirror).mirror;
+      a.mirror=b.id;b.mirror=a.id;
     } else if (op.action === 'interpolation') {
       const n = get(op.id); if (op.spatial !== undefined) n.interpolation = op.spatial;
       if (op.x !== undefined) n.parameterInterpolation = { ...n.parameterInterpolation, x: op.x };

@@ -5,7 +5,7 @@ import sharp from 'sharp';
 import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { fileHash, type Box, type TurnInput } from './turn.ts';
-import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry, warpPoint as sampleWarp, type WarpGrid, type HeadNineAxis } from '../shared/nine-axis-model.js';
+import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry, warpPoint as sampleWarp, type WarpGrid, type HeadNineAxis, type HeadLevel } from '../shared/nine-axis-model.js';
 
 // step03_angle-x: the agent fits the face to the left view and delivers the
 // ParamAngleX left keyform (−30 by default, degrees, see angles.ts) as
@@ -22,7 +22,7 @@ export async function resolveHeadInput(turn: TurnInput): Promise<HeadInput> {
 }
 
 type Point = [number, number];
-export type Part = { id: string; group: string; texture: string; textureBounds: number[]; bbox: number[];
+export type Part = { level?: HeadLevel; mirror?: string; id: string; group: string; texture: string; textureBounds: number[]; bbox: number[];
   cols: number; rows: number; keyforms: Record<string, Point[]>; parent?: string; interpolation?: 'linear' | 'smooth'; parameterInterpolation?: { x?: 'linear' | 'ellipse' }; role?: 'mask'; clip?: { by: string[]; invert?: boolean } };
 export type FaceLeft = { version: 2; axis: number; notes?: string; deformers: WarpGrid[]; parts: Part[] };
 
@@ -73,16 +73,17 @@ export function stepTexture(directory: string, task: string, id: string, texture
 
 // The first level is neck + face + features: the neck layer comes along by default.
 export const isHeadPartId = (id: string) => /^(face\/|neck(\/|$))/.test(id);
-export const faceLevel = { id: 'face', name: '脖子＋脸＋五官', includes: ['face'] };
+export const faceLevel: HeadNineAxis['levels'][number] = { id: 'face', name: '脖子＋脸＋五官', includes: ['face'] };
 const isEar = (id: string) => /(^|[/_])ear(?=$|[/_])/.test(id);
 
 // The other side's layer: left and right swapped as whole words of the id.
-export const pairId = (id: string) => id.replace(/(^|[/_])(left|right)(?=$|[/_])/g, (_, lead, side) => lead + (side === 'left' ? 'right' : 'left'));
+export const pairId = (id: string) => id.replace(/(^|[/_.-])(left|right)(?=$|[/_.-])/g, (_, lead, side) => lead + (side === 'left' ? 'right' : 'left'));
 
 // A part's keyform position of a canvas point: bilinear in its control lattice;
 // outside the lattice the nearest edge's displacement carries on.
 export function warpPoint(part: Part, key: string, x: number, y: number): Point {
-  return sampleWarp(part as WarpGrid, part.keyforms[key]?.flat() ?? keyformAt(part as WarpGrid, Number(key)), x, y);
+  const node: WarpGrid = { level: 'face', ...part };
+  return sampleWarp(node, part.keyforms[key]?.flat() ?? keyformAt(node, Number(key)), x, y);
 }
 
 // The right keyform of a part = its pair's left keyform, reflected about the face axis.
@@ -96,10 +97,8 @@ const round = (value: number) => Math.round(value * 100) / 100;
 
 // Mirror the composed left shape, then express it in the destination parent's
 // right space. Artists may use different hierarchies on the two sides.
-export function mirrorHierarchy(face: FaceLeft): { deformers: WarpGrid[]; parts: Part[] } {
-  const source = { version: 2, kind: 'head-nine-axis', deformers: face.deformers,
-    parts: face.parts.map(p => ({ level: 'face', ...p })) } as HeadNineAxis;
-  const target = structuredClone(source), byId = new Map(nodes(source).map(p => [p.id, p]));
+export function mirrorDocument<T extends HeadNineAxis>(document: T, axis: number, field: 'keyforms' | 'keyformsXY'): T {
+  const source = document, target = structuredClone(document), byId = new Map(nodes(source).map(p => [p.id, p]));
   const done = new Set<string>(), ordered: WarpGrid[] = [];
   const visit = (p: WarpGrid) => {
     if (done.has(p.id)) return;
@@ -108,19 +107,25 @@ export function mirrorHierarchy(face: FaceLeft): { deformers: WarpGrid[]; parts:
   };
   for (const p of nodes(target)) visit(p);
   for (const p of ordered) {
-    const pair = byId.get(pairId(p.id)) ?? byId.get(p.id)!;
-    for (const k of Object.keys(p.keyforms).map(Number).filter(k => k < 0)) {
-      const left = keyformAt(pair, k);
-      p.keyforms[angleKey(-k)] = p.keyforms['0'].map(([x, y]) => {
-        if (/^neck(?:\/|$)/.test(p.id)) return [x, y];
-        let [mx, my] = sampleWarp(pair, left, 2 * face.axis - x, y);
-        [mx, my] = parentPoint(source, pair, k, 0, mx, my);
-        const q = parentPoint(target, p, -k, 0, 2 * face.axis - mx, my, true);
+    const pair = byId.get(p.mirror ?? pairId(p.id)) ?? byId.get(p.id)!;
+    for (const key of Object.keys(p[field] ?? {})) {
+      const [x, y = 0] = key.split(',').map(Number); if (!(x < 0)) continue;
+      const left = keyformAt(pair, x, y), right = field === 'keyforms' ? angleKey(-x) : `${angleKey(-x)},${angleKey(y)}`;
+      p[field]![right] = p.keyforms['0'].map(([px, py]) => {
+        if (/^neck(?:\/|$)/.test(p.id)) return [px, py];
+        let [mx, my] = sampleWarp(pair, left, 2 * axis - px, py);
+        [mx, my] = parentPoint(source, pair, x, y, mx, my);
+        const q = parentPoint(target, p, -x, y, 2 * axis - mx, my, true);
         return q.map(v => Math.round(v * 10000) / 10000) as Point;
       });
     }
   }
-  return { deformers: target.deformers, parts: target.parts as Part[] };
+  return target;
+}
+export function mirrorHierarchy(face: FaceLeft): { deformers: WarpGrid[]; parts: (Part & { level: HeadLevel })[] } {
+  const doc = mirrorDocument({ version: 2, kind: 'head-nine-axis', levels: [faceLevel], deformers: face.deformers,
+    parts: face.parts.map(p => ({ level: 'face', ...p })) } as HeadNineAxis, face.axis, 'keyforms');
+  return { deformers: doc.deformers, parts: doc.parts as (Part & { level: HeadLevel })[] };
 }
 
 async function atomic(path: string, text: string) {
@@ -131,7 +136,7 @@ async function atomic(path: string, text: string) {
 
 // A step's workbench document built from the delivery, and the file each texture
 // comes from: view_nine_axis renders it as it is, finish writes it into the step.
-export type Built = { doc: Record<string, unknown> & { parts: { id: string; texture: string }[] }; textures: Map<string, string> };
+export type Built = { doc: HeadNineAxis; textures: Map<string, string> };
 export async function writeBuilt(directory: string, { doc, textures }: Built) {
   await mkdir(join(directory, 'layers'), { recursive: true });
   for (const [texture, source] of textures) if (source !== join(directory, texture)) await copyFile(source, join(directory, texture));
@@ -154,12 +159,12 @@ export async function compileHead(directory: string, input: HeadInput, box: Box,
   const mirrored = mirrorHierarchy(face);
   // face-left.json lists parts top to bottom (KRA order); deformers.json lists
   // them in drawing order, bottom first, as the workbench renders them.
-  const parts = mirrored.parts.toReversed().map(p => ({ level: 'face', ...p }));
+  const parts = mirrored.parts.toReversed().map(p => ({ ...p, level: p.level ?? 'face' as HeadLevel }));
   const deformers = mirrored.deformers;
   const [kraHash, colorHash] = await Promise.all([fileHash(input.document), fileHash(input.color)]);
   const document = toTaskPath(task, input.document), color = toTaskPath(task, input.color);
   const keys = [...new Set([...deformers, ...parts].flatMap(p => Object.keys(p.keyforms).map(Number)))].sort((a, b) => a - b);
-  const doc = { version: 2, kind: 'head-nine-axis', canvas: [width, height],
+  const doc: HeadNineAxis & { axis: number } = { version: 2, kind: 'head-nine-axis', canvas: [width, height],
     source: { document, sha256: kraHash }, view: { x: box.x, y: box.y, width: box.size, height: box.size }, axis: face.axis,
     parameters: [{ ...angleParameter('ParamAngleX', '角度 X', scale.x), keys }, { ...angleParameter('ParamAngleY', '角度 Y', scale.y), keys: [0], status: '未制作' }],
     levels: [faceLevel],

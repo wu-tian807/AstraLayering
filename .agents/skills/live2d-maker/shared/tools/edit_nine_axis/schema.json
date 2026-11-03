@@ -11,7 +11,7 @@
       "items": {
         "type": "object", "additionalProperties": false, "required": ["action"],
         "properties": {
-          "action": {"enum": ["create_warp", "add_part", "reparent", "remove_warp", "interpolation", "clip", "points", "drag", "transform"]},
+          "action": {"enum": ["create_warp", "add_part", "reparent", "remove_warp", "interpolation", "mirror_pair", "clip", "points", "drag", "transform"]},
           "id": {"type": "string"}, "name": {"type": "string"}, "level": {"type": "string"},
           "targets": {"type": "array", "items": {"type": "string"}},
           "parent": {"type": ["string", "null"]},

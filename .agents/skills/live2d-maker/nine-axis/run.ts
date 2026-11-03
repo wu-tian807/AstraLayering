@@ -22,6 +22,7 @@ import { buildAngleXY, cornerAngleValues, finishAngleXY, writeLinearCorners } fr
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
 import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
+import { createContinuationEditTool } from './continuation-edit-tool.ts';
 import { angleScale, angleValues } from './angles.ts';
 
 export const help = `nine-axis — 头部九轴
@@ -38,15 +39,10 @@ step03_angle-x：left 方向的脸部＋双耳透视形变。agent 用 krita 工
 step04_views-y：程序从 up.mp4、down.mp4 取出 angles.json up、down 度数（默认都是 25°）的一帧，写为 up.png、down.png。
 ParamAngleX / ParamAngleY 处处以度数为值：各视角的度数只记在 knowledge/nine-axis/step01_video/references/angles.json（默认 left 30、up 25、down 25），
 由程序填进各步提示词，agent 交付与 deformers.json 的关键形键都是这些度数；换成 Cubism ±30 等范围留给导出。只做脸、双耳与固定脖子的连接，不含头发；必要的顶部覆盖与下颌线分层可在 Krita 修复。使用 nine_axis_head_agent_model。
-step05_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step03 的图层与网格（脸底 32×32，其余 16×16），分别照 step04 的 up 视角（ParamAngleY +25）与
-down 视角（−25）直接改控制点，交付 face-y.json；程序把 Y 关键形并入 step03 的变形器，写出工作台读取的 deformers.json。
-只做形变：轮廓线的出现与消失留给后续步骤。使用 nine_axis_head_agent_model。
-step06_angle-xy：斜向（四角）的脸部＋双耳形变。程序把 step03 的向左与 step05 的抬头、低头线性叠加，写成左上（X −30, Y +25）、左下（X −30, Y −25）的起始形 linear.json；
-agent 照提示词里的教程要点手动斜切，交付 face-xy.json；斜向参考由 agent 自己用 ffmpeg 从 step01 的 left-up.mp4、left-down.mp4 取帧。
-程序按左右配对镜像出右上、右下，写出工作台读取的 deformers.json；工作台在 3×3 关键形之间双线性插值。
-step07_jaw-line：下颌线与脖子。agent 用 krita 工具从源 KRA 取脖子，判断原图有无下颌线（有则从脸底分离并补底色，无则补画），
-照 Cubism 教程做下颌线蒙版（反向裁切下颌线）、脸部蒙版与被它裁切的脸色扩展，脖子顶部加高插到脸下、底部不动，交付 jaw.json、layers/ 与按裁切方式写好的
-character-nine-axis.kra；程序沿用 step06 未替换的部件，镜像右侧关键形，写出工作台读取的 deformers.json（部件可带 role "mask" 与 clip {by, invert}）。
+step05_angle-y：沿用当前 X 的层级与局部网格，用 edit_nine_axis 制作 Y，上下分别摆形，保住左右透视，固定脖子与下颌接触同步检查。
+step06_angle-xy：以局部 X/Y 叠加为起点，用 edit_nine_axis 手动斜切左上/左下，保住侧面起伏，镜像组合后的右侧四角。
+step07_jaw-line：用 edit_nine_axis 与私有 Krita 完成接触区线蒙版、底色扩展及必要的脖子顶部补足，脖子所有关键形固定。
+这三步的作者源均为完整 version 2，继承上游 deformers/parts/裁切，记录上游哈希；来源变化须重做，不能沿用旧式平铺坐标补丁。
 第一层为「脖子＋脸＋五官」。
 提示词：<knowledge>/nine-axis/step01_video/（left、left-up、left-down 用 prompts/视频.md，up、down 用 prompts/groups/<up|down>/视频.md）、step03_angle-x/、step05_angle-y/、step06_angle-xy/、step07_jaw-line/。
 上游产物重做后其后的步骤随之重做。总入口：pnpm start --name <任务名> --from nine-axis --to nine-axis。
@@ -109,14 +105,17 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const faceTools = async (stepId: string): Promise<FunctionTool[]> => {
     const observations = join(directory, stepId, 'observations');
     const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations, () => builds[stepId]());
-    if (stepId !== 'step03_angle-x' && stepId !== 'step07_jaw-line') return [bitmap, view];
+    const stage = stepId==='step05_angle-y'?'y':stepId==='step06_angle-xy'?'xy':'jaw';
+    const upstream = stepId==='step05_angle-y'?'step03_angle-x':stepId==='step06_angle-xy'?'step05_angle-y':'step06_angle-xy';
+    const continuation = createContinuationEditTool(join(directory,stepId),join(directory,upstream),stage,scale);
+    if (stepId !== 'step03_angle-x' && stepId !== 'step07_jaw-line') return [bitmap, view, continuation];
     if (!sectionKrita) {
       if (!options.krita?.trim()) throw new Error(`${stepId} 需要 --krita <已安装的 Krita 可执行文件路径>。`);
       const krita = await checkKrita(resolveInput(options.name, options.krita, root), environment.codex.env);
       sectionKrita = new SectionKrita({ section: directory, krita: krita.executable, env: environment.codex.env, record: join(directory, kritaRecordFile) });
     }
     await sectionKrita.reserve(options.signal, waiting => progress(`${stepId}：${waiting}`));
-    const edit = stepId === 'step03_angle-x' ? [createHeadEditTool(join(directory, stepId), await resolveHeadInput(input), JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box, scale)] : [];
+    const edit = stepId === 'step03_angle-x' ? [createHeadEditTool(join(directory, stepId), await resolveHeadInput(input), JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box, scale)] : [continuation];
     return [createKritaTool(sectionKrita, task), bitmap, view, ...edit];
   };
   const agents = () => new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress });

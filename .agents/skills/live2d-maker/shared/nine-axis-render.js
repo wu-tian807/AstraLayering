@@ -78,7 +78,7 @@ export class HeadNineAxisRenderer {
     this.renderer.setRenderTarget(null);
     for (const p of this.doc.parts) {
       const m = this.meshes.get(p.id), u = m.material.uniforms; m.visible = shown.has(p.id); u.maskPass.value = 0;
-      u.clipMode.value = p.clip && !(p.role === 'mask') ? (p.clip.invert ? 2 : 1) : 0;
+      u.clipMode.value = shown.has(p.id) && p.clip && !(p.role === 'mask') ? (p.clip.invert ? 2 : 1) : 0;
       if (u.clipMode.value) { u.clip.value = this.targets.get(clipKey(p)).texture; u.res.value.copy(size); }
     }
     this.renderer.render(this.scene, this.camera);
