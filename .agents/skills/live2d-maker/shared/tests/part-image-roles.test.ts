@@ -78,11 +78,11 @@ for (const harness of ['claude', 'agv'] as const) for (const section of ['charac
     server.listen(0, '127.0.0.1'); await once(server, 'listening');
     t.after(() => { server.closeAllConnections(); return new Promise<void>(done => server.close(() => done())); });
     const model = harness === 'claude' ? 'claude-sonnet-5-5-high' : 'gemini-4-argon-high';
-    const settings = loadWorkflowEnvironment({ [`layering_${harness}_path`]: executable,
+    const settings = loadWorkflowEnvironment({ [`${harness}_path`]: executable,
       part_draw_agent_model: model, part_completion_agent_model: model,
       part_completion_image_model: 'gemini-nano-banana-2.1', clothing_completion_image_model: 'gemini-nano-banana-2.1',
-      layering_google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`,
-      layering_google_image_api_key: 'fixture', layering_google_image_protocol: 'openai' }, f.directory);
+      google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`,
+      google_image_api_key: 'fixture', google_image_protocol: 'openai' }, f.directory);
     const agents = new CodexAgents({ environment: settings, cwd: f.directory, logDirectory: join(f.directory, 'agents') });
     // face deliberately uses a specialized completion prompt; clothing uses its
     // own generic prompt. Both must receive the shared per-section reference rule.

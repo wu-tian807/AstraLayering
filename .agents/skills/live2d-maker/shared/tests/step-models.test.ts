@@ -90,7 +90,7 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
   assert.equal(Object.keys(modelSlotDefaults).length, 14);
   for (const role of Object.keys(modelSlotDefaults)) assert.ok(Object.hasOwn(variables, modelSlotKey(role as ModelSlot)));
   for (const step of imageSteps) assert.ok(Object.hasOwn(variables, `${step}_image_model`));
-  assert.equal(Object.keys(variables).filter(key => key.endsWith('_image_model') && !['default_image_model', 'layering_image_model'].includes(key)).length, imageSteps.length);
+  assert.equal(Object.keys(variables).filter(key => key.endsWith('_image_model') && !['default_image_model', 'image_model'].includes(key)).length, imageSteps.length);
   const root = await fixture(t);
   await writeFile(join(root, '.env'), contents);
   const settings = loadWorkflowEnvironment({}, root);
@@ -115,8 +115,8 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
 test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for simplification', async t => {
   const base = parseEnv(await readFile(new URL('../../example.env', import.meta.url), 'utf8'));
   const overrides = parseEnv(await readFile(new URL('../../presets/optimized.env', import.meta.url), 'utf8'));
-  const variables = { ...base, ...overrides, layering_google_image_base_url: 'https://image.example/v1beta', layering_google_image_api_key: 'fixture',
-    layering_openai_image_base_url: 'https://image.example/v1', layering_openai_image_api_key: 'fixture' };
+  const variables = { ...base, ...overrides, google_image_base_url: 'https://image.example/v1beta', google_image_api_key: 'fixture',
+    openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'fixture' };
   const root = await fixture(t);
   await writeFile(join(root, '.env'), Object.entries(variables).map(([key, value]) => `${key}=${value}\n`).join(''));
   const settings = loadWorkflowEnvironment({}, root);
@@ -140,7 +140,7 @@ test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for sim
   assert.equal(settings.imageCompactThreshold, undefined);
   assert.deepEqual(settings.codex.config, {});
   const custom = loadWorkflowEnvironment({ part_review_agent_model: 'claude-sonnet-5-5-xhigh', part_simplify_image_model: 'gpt-image-2.5-flare',
-    layering_openai_image_base_url: 'https://images.example/v1', layering_openai_image_api_key: 'fixture' }, root);
+    openai_image_base_url: 'https://images.example/v1', openai_image_api_key: 'fixture' }, root);
   assert.equal(custom.stepModels.part_outline_review.model, 'claude-sonnet-5-5');
   assert.deepEqual(custom.stepModels.clothing_outline_review, custom.stepModels.part_outline_review);
   assert.equal(custom.stepImages.part_simplify, 'gpt-image-2.5-flare');
@@ -167,7 +167,7 @@ test('consistent legacy settings are shared, conflicts require an explicit role,
 
 test('legacy tier overrides keep their historical roles and explicit role and shell values still win', async t => {
   const root = await fixture(t);
-  const file = 'layering_medium_model=gpt-6.1-sol-low\nlayering_high_model=gpt-6-astra-high\n';
+  const file = 'medium_model=gpt-6.1-sol-low\nhigh_model=gpt-6-astra-high\n';
   await writeFile(join(root, '.env'), file);
   const settings = loadWorkflowEnvironment({}, root);
   const highRoles = new Set(['raster_step01', 'raster_step01_review', 'raster_step02']);
@@ -223,8 +223,8 @@ test('custom image edit transports original prompts and images over both protoco
     protocol = mode;
     expectedBackground = provider === 'google' ? 'opaque' : 'transparent';
     const settings = loadWorkflowEnvironment({ part_simplify_image_model: model, PATH: process.env.PATH,
-      [`layering_${provider}_image_base_url`]: base + (mode === 'gemini' ? '/v1beta' : '/v1'),
-      [`layering_${provider}_image_api_key`]: 'image-test-secret', ...(provider === 'google' ? { layering_google_image_protocol: mode } : {}) }, root);
+      [`${provider}_image_base_url`]: base + (mode === 'gemini' ? '/v1beta' : '/v1'),
+      [`${provider}_image_api_key`]: 'image-test-secret', ...(provider === 'google' ? { google_image_protocol: mode } : {}) }, root);
     const outputDirectory = `${provider}-${mode}`;
     const tool = imageGenerationTool(settings, 'part_simplify', join(root, outputDirectory))!;
     const current = { name: tool.name, description: tool.description, inputSchema: tool.inputSchema };
@@ -284,7 +284,7 @@ console.log(JSON.stringify(kind==='claude'?{type:'result',session_id:id,result:'
 test('Claude and agv run in the step workspace with original MCP schemas and resumable local session data', async t => {
   const root = await fixture(t), cwd = join(root, '.run/case/part-layering'), cli = join(root, 'fake-cli.mjs');
   await mkdir(cwd, { recursive: true }); await writeFile(cli, fakeCli, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, layering_agv_path: cli }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, agv_path: cli }, root);
   let called = 0;
   for (const [id, wireModel] of [['claude-sonnet-5-5-high', 'claude-sonnet-5-5'],
     ['claude-opus-5-5-xhigh', 'claude-opus-5-5'], ['claude-haiku-5-5-low', 'claude-haiku-5-5'], ['gemini-4-argon-xhigh', 'gemini-4-argon']]) {
@@ -322,7 +322,7 @@ await writeFile(join(process.cwd(),'child-node.json'),JSON.stringify({path:proce
 const meta=`);
   await writeFile(cli, script, { mode: 0o700 });
   const inheritedPath = join(root, 'service-bin'); await mkdir(inheritedPath);
-  const settings = loadWorkflowEnvironment({ PATH: inheritedPath, layering_claude_path: cli, layering_agv_path: cli }, root);
+  const settings = loadWorkflowEnvironment({ PATH: inheritedPath, claude_path: cli, agv_path: cli }, root);
   const hostPath = process.env.PATH;
   for (const id of ['claude-sonnet-5-5-high', 'gemini-4-argon-high']) {
     const result = await runCliTask({ name: 'env-node', cwd, prompt: 'fixture' }, parseAgentModel(id, 'fixture'), settings,
@@ -340,7 +340,7 @@ test('unavailable CLI sessions are replaced once without deleting existing deliv
   const root = await fixture(t), cwd = join(root, '.run/case/part-layering'), cli = join(root, 'fake-cli.mjs');
   await mkdir(cwd, { recursive: true }); await writeFile(cli, fakeCli, { mode: 0o700 });
   await writeFile(join(cwd, 'keep.svg'), 'existing');
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
   await mkdir(join(cwd, 'agents'), { recursive: true });
   await mkdir(join(cwd, 'agents/old-data'), { recursive: true });
   await mkdir(join(cwd, 'agents/old-workspace'), { recursive: true });
@@ -359,7 +359,7 @@ test('unavailable CLI sessions are replaced once without deleting existing deliv
 test('a CLI session over its context window is replaced once from the recovery prompt', async t => {
   const root = await fixture(t), cwd = join(root, '.run/case/part-layering'), cli = join(root, 'fake-cli.mjs');
   await mkdir(cwd, { recursive: true }); await writeFile(cli, fakeCli, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
   await mkdir(join(cwd, 'agents/old-data'), { recursive: true });
   await mkdir(join(cwd, 'agents/old-workspace'), { recursive: true });
   await writeFile(join(cwd, 'agents/sessions.json'), JSON.stringify({ full: { harness: 'claude', data: join(cwd, 'agents/old-data'), workspace: join(cwd, 'agents/old-workspace') } }));
@@ -380,7 +380,7 @@ for (const [harness, model, overflowed] of [['claude', 'claude-sonnet-5-5-high',
 test(`a new ${harness} session over its context window on its first turn fails; one that called tools is replaced again`, async t => {
   const root = await fixture(t), cwd = join(root, '.run/case/part-layering'), cli = join(root, 'fake-cli.mjs');
   await mkdir(cwd, { recursive: true }); await writeFile(cli, fakeCli, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, layering_agv_path: cli, part_review_agent_model: model }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, agv_path: cli, part_review_agent_model: model }, root);
   await mkdir(join(cwd, 'agents/old-data'), { recursive: true });
   await mkdir(join(cwd, 'agents/old-workspace'), { recursive: true });
   await writeFile(join(cwd, 'agents/sessions.json'), JSON.stringify({ full: { harness, data: join(cwd, 'agents/old-data'), workspace: join(cwd, 'agents/old-workspace') } }));
@@ -409,7 +409,7 @@ test('a CLI session refused by model safeguards is replaced once from the recove
   const root = await fixture(t), cwd = join(root, '.run/case/part-layering'), cli = join(root, 'fake-cli.mjs');
   await mkdir(cwd, { recursive: true }); await writeFile(cli, fakeCli, { mode: 0o700 });
   await writeFile(join(cwd, 'keep.svg'), 'existing');
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
   await mkdir(join(cwd, 'agents/old-data'), { recursive: true });
   await mkdir(join(cwd, 'agents/old-workspace'), { recursive: true });
   await writeFile(join(cwd, 'agents/sessions.json'), JSON.stringify({ refused: { harness: 'claude', data: join(cwd, 'agents/old-data'), workspace: join(cwd, 'agents/old-workspace') } }));
@@ -441,7 +441,7 @@ test('a CLI session refused by model safeguards is replaced once from the recove
 test('a new session refused after working for a while is replaced again', async t => {
   const root = await fixture(t), cwd = join(root, '.run/case/part-layering'), cli = join(root, 'fake-cli.mjs');
   await mkdir(cwd, { recursive: true }); await writeFile(cli, fakeCli, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
   const reasons: string[] = [];
   const agents = new CodexAgents({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
     runtime: new AgentRuntime(1, async () => assert.fail('a refusal must not wait')),
@@ -459,10 +459,10 @@ test('model/effort changes resume within a harness, switching harness creates a 
   const root = await fixture(t), cwd = join(root, '.run/case/part-layering'), cli = join(root, 'fake-cli.mjs');
   await mkdir(cwd, { recursive: true }); await writeFile(cli, fakeCli, { mode: 0o700 });
   await writeFile(join(cwd, 'keep.svg'), 'existing');
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, layering_agv_path: cli,
+  const settings = loadWorkflowEnvironment({ claude_path: cli, agv_path: cli,
     part_draw_agent_model: 'claude-sonnet-5-5-high', part_completion_agent_model: 'claude-opus-5-5-xhigh',
     part_review_agent_model: 'gemini-4-argon-high', default_image_model: 'gemini-nano-banana-2.1',
-    layering_google_image_base_url: 'https://image.example/v1beta', layering_google_image_api_key: 'fixture' }, root);
+    google_image_base_url: 'https://image.example/v1beta', google_image_api_key: 'fixture' }, root);
   const replaced: string[] = [];
   const agent = new CodexAgents({ environment: settings, cwd, logDirectory: join(cwd, 'agents'), onThreadReplacement: async id => { replaced.push(id); } });
   const session = agent.createSession();
@@ -484,14 +484,14 @@ test('CLI cancellation and early failures finish logs and stop the request proce
   const root = await fixture(t), cwd = join(root, '.run/case'), cli = join(root, 'waiting.mjs');
   await mkdir(cwd, { recursive: true });
   await writeFile(cli, `#!${process.execPath}\nsetInterval(()=>{},10000);`, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli }, root);
   const options = { cwd, logDirectory: join(cwd, 'agents') };
   let error: any;
   try { await runCliTask({ name: 'cancel', cwd, prompt: 'test' }, parseAgentModel('claude-sonnet-5-5-high', 'fixture'), settings, options, AbortSignal.timeout(200)); }
   catch (failure) { error = failure; }
   assert.match(String(error), /Timeout|abort/i);
   assert.equal(JSON.parse(await readFile(join(error.logDirectory, 'result.json'), 'utf8')).status, 'failed');
-  await assert.rejects(cliExecutable(loadWorkflowEnvironment({ layering_claude_path: root }, root), 'claude'), /没有可用/);
+  await assert.rejects(cliExecutable(loadWorkflowEnvironment({ claude_path: root }, root), 'claude'), /没有可用/);
 });
 
 test('raster CLI service retries retain the session and report retry progress', async t => {
@@ -504,8 +504,8 @@ try { await readFile(flag); } catch {
 }
 const meta=`).replace("result:'完成'", "result:'{\"status\":\"completed\",\"summary\":\"recovered\"}'");
   await writeFile(cli, script, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, raster_step02_agent_model: 'claude-sonnet-5-5-high',
-    raster_step02_image_model: 'gemini-nano-banana-2.1', layering_google_image_base_url: 'https://image.example/v1beta', layering_google_image_api_key: 'fixture' }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, raster_step02_agent_model: 'claude-sonnet-5-5-high',
+    raster_step02_image_model: 'gemini-nano-banana-2.1', google_image_base_url: 'https://image.example/v1beta', google_image_api_key: 'fixture' }, root);
   const ids: string[] = [], retries: number[] = [];
   const result = await runAgent({ directory: cwd, step: 'raster_step02', model: 'claude-sonnet-5-5', effort: 'high',
     environment: settings, prompt: 'continue', async onEvent(event) {
@@ -542,9 +542,9 @@ const outside=await rpc('tools/call',{name:imageTool.name,arguments:{prompt:'fix
 if(outside.isError)throw new Error(outside.content[0].text);
 const id=resumed||randomUUID();`).replace("result:'完成'", "result:'{\"status\":\"completed\",\"summary\":\"generated\"}'");
   await writeFile(cli, script, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ layering_claude_path: cli, raster_step01_agent_model: 'claude-sonnet-5-5-high',
-    raster_step01_image_model: 'gpt-image-2.5-flare', layering_openai_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`,
-    layering_openai_image_api_key: 'fixture', LAYERING_TEST_REFERENCE: source, LAYERING_TEST_OTHER_REFERENCE: other }, root);
+  const settings = loadWorkflowEnvironment({ claude_path: cli, raster_step01_agent_model: 'claude-sonnet-5-5-high',
+    raster_step01_image_model: 'gpt-image-2.5-flare', openai_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`,
+    openai_image_api_key: 'fixture', LAYERING_TEST_REFERENCE: source, LAYERING_TEST_OTHER_REFERENCE: other }, root);
   const result = await runAgent({ directory: cwd, step: 'raster_step01', model: 'claude-sonnet-5-5', effort: 'high',
     environment: settings, prompt: 'generate', onEvent: async () => {} }, new AgentRuntime(1));
   assert.equal(result.summary, 'generated'); assert.equal(called, 2);

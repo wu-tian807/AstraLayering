@@ -78,7 +78,7 @@ const upstream = `http://127.0.0.1:${(server.address() as { port: number }).port
 try {
   const env = { ...process.env, ANTHROPIC_BASE_URL: upstream, ANTHROPIC_API_KEY: 'local-fixture', ANTHROPIC_AUTH_TOKEN: 'local-fixture',
     AGY_LLM_GATEWAY_URL: upstream, AGY_LLM_GATEWAY_API_KEY: 'local-fixture', AGY_LLM_GATEWAY_WIRE_PROTOCOL: 'genai', AGY_LLM_GATEWAY_MODELS: 'gemini-4-argon',
-    [`layering_${harness}_image_compact_threshold`]: '49', ...(values.cli ? { [`layering_${harness}_path`]: values.cli } : {}) };
+    [`${harness}_image_compact_threshold`]: '49', ...(values.cli ? { [`${harness}_path`]: values.cli } : {}) };
   const settings = loadWorkflowEnvironment(env, root);
   const model = parseAgentModel(harness === 'agv' ? 'gemini-4-argon-high' : 'claude-sonnet-5-5-high', 'fixture');
   const result = await runCliTask({ name: 'local-visual-transport-fixture', cwd: root, prompt: 'Complete the local transport fixture.',

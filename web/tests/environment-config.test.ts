@@ -19,27 +19,27 @@ async function fixture(t:any, text?:string, env:NodeJS.ProcessEnv={}) {
  return {directory,template,environment};
 }
 test('preview masks multiline and inherited credentials while exposing resolved roles and unified provider sources',async t=>{
- const f=await fixture(t,"layering_codex_api_key='test-secret-value'\nlayering_claude_api_key=file-claude-secret\nCUSTOM_TOKEN='first\nsecond'\n",{ANTHROPIC_API_KEY:'shell-secret-value',ANTHROPIC_BASE_URL:'https://gateway.example'});
+ const f=await fixture(t,"codex_api_key='test-secret-value'\nclaude_api_key=file-claude-secret\nCUSTOM_TOKEN='first\nsecond'\n",{ANTHROPIC_API_KEY:'shell-secret-value',ANTHROPIC_BASE_URL:'https://gateway.example'});
  const data=await f.environment.read();
  const serialized=JSON.stringify(data);
  for(const secret of ['test-secret-value','file-claude-secret','shell-secret-value','first\\nsecond'])assert.ok(!serialized.includes(secret));
  assert.match(data.preview,/CUSTOM_TOKEN=\[已隐藏\]/);
  assert.equal(data.fields.filter(f=>f.section==='llm').length,14);
  assert.equal(data.fields.filter(f=>f.section==='image').length,18);
- const claude=data.fields.find(f=>f.key==='layering_claude_api_key')!;
+ const claude=data.fields.find(f=>f.key==='claude_api_key')!;
  assert.equal(claude.overridden,true);assert.equal(claude.sourceKey,'ANTHROPIC_API_KEY');
  assert.equal(data.providers?.claude.baseUrl,'https://gateway.example');
  assert.equal(data.models.find(m=>m.id==='claude-sonnet-5-5')?.available,false);
 });
 test('saves selected keys atomically, preserving comments, CRLF, secrets, unknown multiline records and budgets',async t=>{
- const original="# Local settings\r\npreparation_agent_model=gpt-6.1-sol-low # keep this note\r\nlayering_codex_api_key='unchanged-secret'\r\nCUSTOM='first\r\nsecond # still value'\r\nlayering_codex_request_compact_mib=80\r\n";
+ const original="# Local settings\r\npreparation_agent_model=gpt-6.1-sol-low # keep this note\r\ncodex_api_key='unchanged-secret'\r\nCUSTOM='first\r\nsecond # still value'\r\ncodex_request_compact_mib=80\r\n";
  const f=await fixture(t,original),before=await f.environment.read();
- const changes={preparation_agent_model:'gpt-6.1-sol-high',part_simplify_image_model:'gpt-image-2.5-flare',layering_openai_image_api_key:'image-secret',layering_openai_image_base_url:'https://images.example/v1'};
+ const changes={preparation_agent_model:'gpt-6.1-sol-high',part_simplify_image_model:'gpt-image-2.5-flare',openai_image_api_key:'image-secret',openai_image_base_url:'https://images.example/v1'};
  await f.environment.preview({revision:before.revision,changes});
  assert.equal(await readFile(join(f.directory,'.env'),'utf8'),original);
  const saved=await f.environment.save({revision:before.revision,changes});
  const bytes=await readFile(join(f.directory,'.env'),'utf8');
- assert.ok(bytes.includes("layering_codex_api_key='unchanged-secret'\r\nCUSTOM='first\r\nsecond # still value'\r\nlayering_codex_request_compact_mib=80\r\n"));
+ assert.ok(bytes.includes("codex_api_key='unchanged-secret'\r\nCUSTOM='first\r\nsecond # still value'\r\ncodex_request_compact_mib=80\r\n"));
  assert.match(bytes,/gpt-6.1-sol-high # keep this note\r\n/);
  assert.ok(!bytes.replaceAll('\r\n','').includes('\n'));
  assert.ok(!JSON.stringify(saved).includes('image-secret'));
@@ -54,7 +54,7 @@ test('rejects stale and concurrent writes, unsupported keys, missing CLIs and br
  const f=await fixture(t,'# unchanged\n'),source=await f.environment.read();
  await assert.rejects(f.environment.save({revision:source.revision,changes:{preparation_agent_model:'claude-sonnet-5-5-high'}}),/安装.*claude/);
  await assert.rejects(f.environment.save({revision:source.revision,changes:{PATH:'arbitrary'}}),/字段无效/);
- await assert.rejects(f.environment.save({revision:source.revision,changes:{layering_codex_base_url:'https://gateway.example'}}),/缺少鉴权/);
+ await assert.rejects(f.environment.save({revision:source.revision,changes:{codex_base_url:'https://gateway.example'}}),/缺少鉴权/);
  assert.equal(await readFile(join(f.directory,'.env'),'utf8'),'# unchanged\n');
  const result=await Promise.allSettled([f.environment.save({revision:source.revision,changes:{preparation_agent_model:'gpt-6.1-sol-high'}}),f.environment.save({revision:source.revision,changes:{preparation_agent_model:'gpt-6.1-sol-medium'}})]);
  assert.equal(result.filter(r=>r.status==='fulfilled').length,1);
@@ -62,11 +62,11 @@ test('rejects stale and concurrent writes, unsupported keys, missing CLIs and br
 });
 test('keeps an unchanged masked credential, allows explicit clearing, and creates missing .env from the current template',async t=>{
  const f=await fixture(t),source=await f.environment.read();assert.equal(source.exists,false);
- const first=await f.environment.save({revision:source.revision,changes:{layering_codex_api_key:'initial-secret'}});
+ const first=await f.environment.save({revision:source.revision,changes:{codex_api_key:'initial-secret'}});
  const second=await f.environment.save({revision:first.revision,changes:{preparation_agent_model:'gpt-6.1-sol-medium'}});
- assert.equal(parseEnv(await readFile(join(f.directory,'.env'),'utf8')).layering_codex_api_key,'initial-secret');
- await f.environment.save({revision:second.revision,changes:{layering_codex_api_key:''}});
- assert.equal(parseEnv(await readFile(join(f.directory,'.env'),'utf8')).layering_codex_api_key,'');
+ assert.equal(parseEnv(await readFile(join(f.directory,'.env'),'utf8')).codex_api_key,'initial-secret');
+ await f.environment.save({revision:second.revision,changes:{codex_api_key:''}});
+ assert.equal(parseEnv(await readFile(join(f.directory,'.env'),'utf8')).codex_api_key,'');
  assert.ok((await readFile(join(f.directory,'.env'),'utf8')).includes('# 三种主模型 CLI 共用'));
 });
 test('ordinary values round-trip quotes and Windows paths; unrelated records stay byte-identical',()=>{

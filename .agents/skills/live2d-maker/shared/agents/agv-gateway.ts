@@ -97,9 +97,9 @@ export async function genaiGateway(env: NodeJS.ProcessEnv, tools: readonly Funct
     if (budget.images || budget.bytes || budget.deduplicate) throw new Error('AGV 图片容量保护需要已配置的 genai 网关；当前接口无法拦截实际请求，未静默忽略保护配置。');
     return;
   }
-  const minimalThinking = env.layering_agv_minimal_thinking_level?.trim();
+  const minimalThinking = env.agv_minimal_thinking_level?.trim();
   if (minimalThinking && !['LOW', 'MEDIUM', 'HIGH'].includes(minimalThinking)) {
-    throw new Error('layering_agv_minimal_thinking_level 只能为 LOW、MEDIUM、HIGH；留空保留 CLI 原值。');
+    throw new Error('agv_minimal_thinking_level 只能为 LOW、MEDIUM、HIGH；留空保留 CLI 原值。');
   }
   const visual = context ?? new VisualContext({ directory: `${logsRoot}/visual-context`, protocol: 'genai', budget });
   const upstream = env.AGY_LLM_GATEWAY_URL.replace(/\/+$/, '');

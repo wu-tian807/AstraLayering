@@ -4,10 +4,10 @@ import { dirname, join } from 'node:path';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { sign } from './head.ts';
 
-// step04_angle-y: the agent fits the same face warps to step03's up and down views
+// step05_angle-y: the agent fits the same face warps to step04's up and down views
 // and delivers the ParamAngleY up and down keyforms (+25 / −25 by default,
-// degrees, see angles.ts) per step02 part (face-y.json). Up and down are not
-// mirror images, so both are fitted. The program copies step02's deformers and
+// degrees, see angles.ts) per step03 part (face-y.json). Up and down are not
+// mirror images, so both are fitted. The program copies step03's deformers and
 // textures and adds the Y keyforms, so the workbench reads one document with both angles.
 
 type Point = [number, number];
@@ -15,7 +15,7 @@ type XPart = { id: string; texture: string; cols: number; rows: number; keyforms
 type XDocument = { parts: XPart[]; parameters: { id: string }[]; notes?: string };
 export type FaceY = { notes?: string; parts: { id: string; keyforms: Record<string, Point[]> }[] };
 
-export function checkFaceY(value: unknown, x: XDocument, keys: string[], file = 'face-y.json', upstream = 'step02'): FaceY {
+export function checkFaceY(value: unknown, x: XDocument, keys: string[], file = 'face-y.json', upstream = 'step03'): FaceY {
   const face = value as FaceY;
   if (!face || typeof face !== 'object' || !Array.isArray(face.parts)) throw new Error(`${file}：没有部件`);
   const expected = new Map(x.parts.map(p => [p.id, p])), seen = new Set<string>();
@@ -45,7 +45,7 @@ async function atomic(path: string, text: string) {
   await writeFile(tmp, text); await rename(tmp, path);
 }
 
-// After the agent: check its delivery against step02 and write the combined deformers.json.
+// After the agent: check its delivery against step03 and write the combined deformers.json.
 export async function finishAngleY(directory: string, angleX: string, scale: AngleScale = angleScale()): Promise<number> {
   const x = JSON.parse(await readFile(join(angleX, 'deformers.json'), 'utf8')) as XDocument;
   let raw: unknown;

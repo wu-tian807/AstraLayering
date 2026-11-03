@@ -3,13 +3,14 @@ import { join } from 'node:path';
 import { parseEnv } from 'node:util';
 import { atomicJSON } from './files.ts';
 import { workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
+import { withLegacyKeys } from '../.agents/skills/live2d-maker/shared/legacy-keys.ts';
 import { compareVersions, installedVersion, releaseTag, type InstalledVersion } from '../.agents/skills/live2d-maker/shared/version.ts';
 
 // Looks up the newest release tag on GitHub at most once a day and only reports it; nothing is
-// downloaded or replaced. Offline or failed lookups stay silent. layering_update_check=false in the skill
+// downloaded or replaced. Offline or failed lookups stay silent. update_check=false in the skill
 // .env (the file people already carry over when updating) or in the shell disables it; the shell wins.
 export const repository = 'wu-tian807/AstraLayering';
-export const updateCheckKey = 'layering_update_check';
+export const updateCheckKey = 'update_check';
 const day = 24 * 60 * 60 * 1000, retry = 60 * 60 * 1000;
 export type UpdateState = InstalledVersion & {
   check: 'off' | 'ok' | 'unavailable';
@@ -24,8 +25,8 @@ export function newestTag(tags: unknown): string | undefined {
 
 // Read on every request, so switching it on the configuration page needs no restart.
 export async function updateCheckEnabled(env: NodeJS.ProcessEnv = process.env, envFile = join(workflowsDirectory, '.env')) {
-  let value = env[updateCheckKey];
-  if (value === undefined) try { value = (parseEnv(await readFile(envFile, 'utf8')) as Record<string, string>)[updateCheckKey]; } catch { /* No .env yet. */ }
+  let value = withLegacyKeys(env)[updateCheckKey];
+  if (value === undefined) try { value = withLegacyKeys(parseEnv(await readFile(envFile, 'utf8')) as Record<string, string>)[updateCheckKey]; } catch { /* No .env yet. */ }
   return !/^(off|false|0|no)$/i.test(value?.trim() ?? '');
 }
 

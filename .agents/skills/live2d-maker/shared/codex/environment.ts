@@ -9,6 +9,7 @@ import { readDefaultConfiguration, requiredDefault } from '../default-configurat
 import { kritaLimit, kritaLimitKey } from '../krita/section-krita.ts';
 import { withNodePath } from '../process-environment.ts';
 import { imageBudget, type ImageBudget } from '../../patches/shared/visual-context.ts';
+import { withLegacyKeys } from '../legacy-keys.ts';
 import { resolveModelDefaults, modelSlotKey, legacyModelSlotKey, defaultImageModelKey, legacyDefaultImageModelKey, imageModelKey, legacyImageModelKey, resolveImageDefaults, stepModelSlots, imageSteps, imageModelProviders, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
 import { resolveHarnessProviders, validateApiUrl, type HarnessProviders } from '../agents/providers.ts';
 export { validateApiUrl } from '../agents/providers.ts';
@@ -60,41 +61,42 @@ export function loadWorkflowEnvironment(env: NodeJS.ProcessEnv = process.env, di
 }
 
 // The workbench validates drafts with exactly the same resolver as new workers.
-export function parseWorkflowEnvironment(source: string, env: NodeJS.ProcessEnv = process.env,
+export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEnv = process.env,
   directory = workflowsDirectory): WorkflowEnvironment {
+  const env = withLegacyKeys(shell);
   const defaults = readDefaultConfiguration(directory);
   const roleDefaults = resolveModelDefaults(defaults), imageDefaults = resolveImageDefaults(defaults);
   const tiers = tierDefaults(roleDefaults);
-  const file = parseEnv(source);
+  const file = withLegacyKeys(parseEnv(source));
   const effective = Object.fromEntries(Object.entries({ ...file, ...env }).filter((entry): entry is [string, string] => entry[1] !== undefined));
   const get = (name: string) => effective[name]?.trim();
-  const flag = get('layering_custom_provider');
-  if (flag && !['true', 'false', '1', '0'].includes(flag)) throw new Error('layering_custom_provider 只能为 true 或 false。');
-  if (get('layering_agv_patch')) throw new Error('layering_agv_patch 已改名为 layering_agv_unlimited_response_header_timeout，请在 .env 中改用新名称。');
-  const agvPatch = get('layering_agv_unlimited_response_header_timeout');
-  if (agvPatch && !['true', 'false'].includes(agvPatch)) throw new Error('layering_agv_unlimited_response_header_timeout 只能为 true 或 false。');
-  if (agvPatch) effective.layering_agv_unlimited_response_header_timeout = agvPatch;
+  const flag = get('custom_provider');
+  if (flag && !['true', 'false', '1', '0'].includes(flag)) throw new Error('custom_provider 只能为 true 或 false。');
+  if (get('agv_patch')) throw new Error('agv_patch 已改名为 agv_unlimited_response_header_timeout，请在 .env 中改用新名称。');
+  const agvPatch = get('agv_unlimited_response_header_timeout');
+  if (agvPatch && !['true', 'false'].includes(agvPatch)) throw new Error('agv_unlimited_response_header_timeout 只能为 true 或 false。');
+  if (agvPatch) effective.agv_unlimited_response_header_timeout = agvPatch;
   // Normalized here so a bad value fails before any section starts.
   effective[kritaLimitKey] = String(kritaLimit(effective, defaults));
   const config: NonNullable<CodexOptions['config']> = {};
   const providers = resolveHarnessProviders(file, env, effective, flag === 'true' || flag === '1');
   const unifiedCodex = providers.codex.connection === 'unified';
   if (unifiedCodex || flag === 'true' || flag === '1') {
-    config.model_provider = 'layering_custom';
-    config.model_providers = { layering_custom: {
-      name: 'Layering custom provider', base_url: providers.codex.baseUrl!, env_key: unifiedCodex ? 'layering_codex_api_key' : 'layering_provider_api_key',
+    config.model_provider = 'custom';
+    config.model_providers = { custom: {
+      name: 'Custom provider', base_url: providers.codex.baseUrl!, env_key: unifiedCodex ? 'codex_api_key' : 'provider_api_key',
       wire_api: 'responses', requires_openai_auth: false,
     } };
   }
   const path = (value: string) => isAbsolute(value) ? value : resolve(directory, value);
-  const home = get('layering_codex_home');
+  const home = get('codex_home');
   if (home) effective.CODEX_HOME = path(home);
-  const executable = get('layering_codex_path');
-  const imageUrl = get('layering_image_base_url'), imageKey = get('layering_image_api_key');
-  const imageModel = get('layering_image_model') || imageDefaults.legacy;
+  const executable = get('codex_path');
+  const imageUrl = get('image_base_url'), imageKey = get('image_api_key');
+  const imageModel = get('image_model') || imageDefaults.legacy;
   if (imageUrl || imageKey) {
-    if (!imageUrl || !imageKey) throw new Error('自定义生图需要同时填写 layering_image_base_url 和 layering_image_api_key。');
-    validateApiUrl(imageUrl, 'layering_image_base_url');
+    if (!imageUrl || !imageKey) throw new Error('自定义生图需要同时填写 image_base_url 和 image_api_key。');
+    validateApiUrl(imageUrl, 'image_base_url');
   }
   // The old image keys feed the same per-step API settings below. Only the
   // request's native route may set extension variables in a Codex child.
@@ -121,32 +123,31 @@ export function parseWorkflowEnvironment(source: string, env: NodeJS.ProcessEnv 
       if (values.size > 1) throw new Error(`旧模型配置 ${previous.join('、')} 不一致；请设置统一的 ${key}。原 .env 不会自动改写。`);
       selection = values.values().next().value;
     }
-    const tier = get(legacyHighModelSlots.includes(slot) ? 'layering_high_model' : 'layering_medium_model');
+    const tier = get(legacyHighModelSlots.includes(slot) ? 'high_model' : 'medium_model');
     slotModels[slot] = parseAgentModel(selection || tier || fallback, key);
   }
   const stepModels = Object.fromEntries(Object.entries(stepModelSlots)
     .map(([step, slot]) => [step, { ...slotModels[slot] }])) as WorkflowEnvironment['stepModels'];
   const imageApis: WorkflowEnvironment['imageApis'] = {};
   for (const provider of ['openai', 'google'] as const) {
-    const baseUrl = get(`layering_${provider}_image_base_url`) || (provider === 'openai' ? imageUrl : undefined);
-    const apiKey = get(`layering_${provider}_image_api_key`) || (provider === 'openai' ? imageKey : undefined);
-    const protocol = provider === 'google' ? get('layering_google_image_protocol') || defaults.layering_google_image_protocol : 'openai';
-    if (!['openai', 'gemini'].includes(protocol)) throw new Error('layering_google_image_protocol 无效。');
+    const baseUrl = get(`${provider}_image_base_url`) || (provider === 'openai' ? imageUrl : undefined);
+    const apiKey = get(`${provider}_image_api_key`) || (provider === 'openai' ? imageKey : undefined);
+    const protocol = provider === 'google' ? get('google_image_protocol') || defaults.google_image_protocol : 'openai';
+    if (!['openai', 'gemini'].includes(protocol)) throw new Error('google_image_protocol 无效。');
     if (baseUrl || apiKey) {
-      if (!baseUrl || !apiKey) throw new Error(`${provider} 生图需要同时填写 layering_${provider}_image_base_url 和 layering_${provider}_image_api_key。`);
-      validateApiUrl(baseUrl, `layering_${provider}_image_base_url`);
+      if (!baseUrl || !apiKey) throw new Error(`${provider} 生图需要同时填写 ${provider}_image_base_url 和 ${provider}_image_api_key。`);
+      validateApiUrl(baseUrl, `${provider}_image_base_url`);
       imageApis[provider] = { baseUrl, apiKey, protocol: protocol as ImageApi['protocol'] };
     }
   }
-  // Without its own keys the video service is the OpenAI image proxy, which also serves /videos.
-  const videoUrl = get('layering_video_base_url'), videoKey = get('layering_video_api_key');
+  // The video service has its own keys; the image services are never used for it.
+  const videoUrl = get('video_base_url'), videoKey = get('video_api_key');
   let videoApi: VideoApi | undefined;
   if (videoUrl || videoKey) {
-    if (!videoUrl || !videoKey) throw new Error('生视频需要同时填写 layering_video_base_url 和 layering_video_api_key。');
-    validateApiUrl(videoUrl, 'layering_video_base_url');
+    if (!videoUrl || !videoKey) throw new Error('生视频需要同时填写 video_base_url 和 video_api_key。');
+    validateApiUrl(videoUrl, 'video_base_url');
+    videoApi = { baseUrl: videoUrl, apiKey: videoKey, model: get('nine_axis_view_video_model') || requiredDefault(defaults, 'nine_axis_view_video_model') };
   }
-  const video = videoUrl ? { baseUrl: videoUrl, apiKey: videoKey! } : imageApis.openai;
-  if (video) videoApi = { baseUrl: video.baseUrl, apiKey: video.apiKey, model: get('nine_axis_view_video_model') || requiredDefault(defaults, 'nine_axis_view_video_model') };
   const stepImages: WorkflowEnvironment['stepImages'] = {};
   const defaultImage = get(defaultImageModelKey) || get(legacyDefaultImageModelKey);
   const fallbackImage = defaultImage || (imageUrl ? imageModel : imageDefaults.model);
@@ -161,15 +162,15 @@ export function parseWorkflowEnvironment(source: string, env: NodeJS.ProcessEnv 
   }
   const cliPaths: WorkflowEnvironment['cliPaths'] = {};
   for (const harness of ['claude', 'agv'] as const) {
-    const value = get(`layering_${harness}_path`);
+    const value = get(`${harness}_path`);
     if (value) cliPaths[harness] = path(value);
   }
   if (executable) cliPaths.codex = path(executable);
   return {
     stepModels, stepImages, imageApis, cliPaths, imageBudgets, providers, ...(videoApi ? { videoApi } : {}),
     models: {
-      medium: parseModel(get('layering_medium_model'), tiers.medium, 'layering_medium_model'),
-      high: parseModel(get('layering_high_model'), tiers.high, 'layering_high_model'),
+      medium: parseModel(get('medium_model'), tiers.medium, 'medium_model'),
+      high: parseModel(get('high_model'), tiers.high, 'high_model'),
     },
     codex: { env: effective, config, ...(executable ? { codexPathOverride: path(executable) } : {}) },
     ...(threshold === undefined ? {} : { imageCompactThreshold: threshold }),
@@ -184,7 +185,7 @@ export async function checkCodexCapabilities(settings: WorkflowEnvironment, opti
   // Every Codex run needs the patched build: it reads the failure detail LiteLLM
   // sends after an empty response.failed, so blocked input is reported, not retried.
   const executable = options.codexPathOverride ?? settings.codex.codexPathOverride ?? await prepare();
-  const instruction = 'layering_codex_path 显式指定的入口必须具备对应能力；清空此项即自动构建补丁版 Codex。';
+  const instruction = 'codex_path 显式指定的入口必须具备对应能力；清空此项即自动构建补丁版 Codex。';
   const needsVisualCompaction = settings.imageCompactThreshold !== undefined || needsBytes;
   const cacheKey = `${executable}\0${needs.image ? 'image-provider-v2' : ''}\0${needsVisualCompaction ? 'visual-compaction-v2' : ''}\0${needsBytes ? 'request-compaction-v1' : ''}`;
   let check = checkedCapabilities.get(cacheKey);

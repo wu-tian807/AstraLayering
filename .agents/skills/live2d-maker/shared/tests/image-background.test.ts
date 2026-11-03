@@ -99,9 +99,9 @@ test('both routes recover dual backgrounds over Gemini/OpenAI protocols without 
     first = await solidImage(color);
     for (const native of [false, true]) for (const edit of [false, true]) {
       const directory = join(root, `${protocol}-${color[0]}-${native}-${edit}`);
-      const settings = loadWorkflowEnvironment({ layering_codex_path: executable, PATH: '',
-        part_simplify_image_model: 'gemini-nano-banana-2.1', layering_google_image_base_url: base + '/v1beta',
-        layering_google_image_api_key: 'fixture', layering_google_image_protocol: protocol }, root);
+      const settings = loadWorkflowEnvironment({ codex_path: executable, PATH: '',
+        part_simplify_image_model: 'gemini-nano-banana-2.1', google_image_base_url: base + '/v1beta',
+        google_image_api_key: 'fixture', google_image_protocol: protocol }, root);
       const prompt = '保留主体和正常开口，输出透明 PNG。';
       let output: Buffer;
       if (native) {
@@ -177,8 +177,8 @@ test('Nano fails explicitly with retained raw generation when no reliable solid 
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => { server.closeAllConnections(); return new Promise<void>(done => server.close(() => done())); });
   const settings = loadWorkflowEnvironment({ part_simplify_image_model: 'gemini-nano-banana-2.1', PATH: process.env.PATH,
-    layering_google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
-    layering_google_image_api_key: 'fixture', layering_google_image_protocol: 'openai' }, root);
+    google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
+    google_image_api_key: 'fixture', google_image_protocol: 'openai' }, root);
   const tool = imageGenerationTool(settings, 'part_simplify', root)!;
   await assert.rejects(tool.execute({ prompt: '主体透明 PNG', input_images: [] }, new AbortController().signal), /Nano 透明背景处理失败.*原始生图保留在/);
   const [id] = await readdir(join(root, 'image-processing'));
@@ -196,8 +196,8 @@ test('second request failures preserve the first image and expose the provider e
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => { server.closeAllConnections(); return new Promise<void>(done => server.close(() => done())); });
   const settings = loadWorkflowEnvironment({ part_simplify_image_model: 'gemini-nano-banana-2.1',
-    layering_google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
-    layering_google_image_api_key: 'fixture-secret', layering_google_image_protocol: 'openai' }, root);
+    google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
+    google_image_api_key: 'fixture-secret', google_image_protocol: 'openai' }, root);
   await assert.rejects(imageGenerationTool(settings, 'part_simplify', root)!.execute(
     { prompt: '透明 PNG', input_images: [] }, new AbortController().signal), /HTTP 503.*provider failed \[redacted\].*原始生图保留在/);
   assert.equal(calls, 2);
@@ -219,8 +219,8 @@ test('cancellation during the second call retains the first image and request re
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => { server.closeAllConnections(); return new Promise<void>(done => server.close(() => done())); });
   const settings = loadWorkflowEnvironment({ part_simplify_image_model: 'gemini-nano-banana-2.1',
-    layering_google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
-    layering_google_image_api_key: 'fixture', layering_google_image_protocol: 'openai' }, root);
+    google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
+    google_image_api_key: 'fixture', google_image_protocol: 'openai' }, root);
   const controller = new AbortController();
   const rejected = assert.rejects(imageGenerationTool(settings, 'part_simplify', root)!.execute(
     { prompt: '透明 PNG', input_images: [] }, controller.signal), /cancelled.*原始生图保留在/);

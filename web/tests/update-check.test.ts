@@ -52,11 +52,11 @@ test('the switch lives in the skill .env and the shell overrides it', async () =
   const dir = await mkdtemp(join(tmpdir(), 'update-switch-')), envFile = join(dir, '.env');
   try {
     assert.equal(await updateCheckEnabled({}, envFile), true, 'on without a .env');
-    await writeFile(envFile, 'layering_update_check=false\n');
+    await writeFile(envFile, 'update_check=false\n');
     assert.equal(await updateCheckEnabled({}, envFile), false);
-    assert.equal(await updateCheckEnabled({ layering_update_check: 'true' }, envFile), true);
-    await writeFile(envFile, 'layering_update_check=\n');
+    assert.equal(await updateCheckEnabled({ update_check: 'true' }, envFile), true);
+    await writeFile(envFile, 'update_check=\n');
     assert.equal(await updateCheckEnabled({}, envFile), true, 'empty keeps the default');
-    assert.equal(await updateCheckEnabled({ layering_update_check: 'off' }, envFile), false);
+    assert.equal(await updateCheckEnabled({ update_check: 'off' }, envFile), false);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });

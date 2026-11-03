@@ -131,10 +131,10 @@ async function removeStaleProfiles() {
 // ---- Machine-wide cap ------------------------------------------------------
 
 // Each Krita takes several hundred MB, and separate tasks each run their own
-// sections, so all of them share layering_krita_max_instances slots (.env,
+// sections, so all of them share krita_max_instances slots (.env,
 // default in example.env): one lock file per slot, holding its owner's pid.
 // A slot whose owner died is free.
-export const kritaLimitKey = 'layering_krita_max_instances';
+export const kritaLimitKey = 'krita_max_instances';
 // ASTRA_STUDIO_KRITA_SLOTS moves the locks elsewhere (tests keep their own).
 const defaultSlotsDirectory = () => process.env.ASTRA_STUDIO_KRITA_SLOTS || join(tmpdir(), 'astra-krita.slots');
 

@@ -111,7 +111,7 @@ test('CLI adapter resumes after historical failure, preserves records, and still
   const executable = join(root, 'agy.mjs'); await writeFile(executable, cli, { mode: 0o700 });
   const cwd = join(root, 'case'); await mkdir(cwd);
   await writeFile(join(cwd, 'keep.svg'), 'existing draft');
-  const settings = loadWorkflowEnvironment({ layering_agv_path: executable }, root);
+  const settings = loadWorkflowEnvironment({ agv_path: executable }, root);
   const model = parseAgentModel('gemini-4-argon-high', 'test');
   const options = { cwd, logDirectory: join(cwd, 'agents') };
   let id: string | undefined;
@@ -157,7 +157,7 @@ for (const failure of ['retry-header-timeout', 'retry-idle-timeout']) test(`${fa
   const executable = join(root, 'agy.mjs'); await writeFile(executable, cli, { mode: 0o700 });
   const cwd = join(root, 'case'); await mkdir(cwd);
   await writeFile(join(cwd, 'keep.svg'), 'existing draft');
-  const settings = loadWorkflowEnvironment({ layering_agv_path: executable }, root);
+  const settings = loadWorkflowEnvironment({ agv_path: executable }, root);
   const waits: number[] = [], ids: string[] = [], retries: string[] = [];
   const agents = new CodexAgents({ environment: settings, selectedModel: parseAgentModel('gemini-4-argon-high', 'test'),
     cwd, logDirectory: join(cwd, 'agents'), runtime: new AgentRuntime(1, async ms => { waits.push(ms); }, () => 1),
@@ -192,8 +192,8 @@ for(let i=0;i<2;i++)await (await fetch(process.env.AGY_LLM_GATEWAY_URL+'/v1beta/
 emit({event:'result',result:{conversation_id:id,status:'ERROR',error:'API error (attempt 3): Resource has been exhausted',response:''}});process.exit(3);
 `, { mode: 0o700 });
   const cwd = join(root, 'case'); await mkdir(cwd);
-  const settings = loadWorkflowEnvironment({ layering_agv_path: executable, layering_agv_api_key: 'fixture',
-    layering_agv_base_url: `http://127.0.0.1:${(upstream.address() as { port: number }).port}`, layering_agv_protocol: 'genai' }, root);
+  const settings = loadWorkflowEnvironment({ agv_path: executable, agv_api_key: 'fixture',
+    agv_base_url: `http://127.0.0.1:${(upstream.address() as { port: number }).port}`, agv_protocol: 'genai' }, root);
   const model = parseAgentModel('gemini-4-argon-high', 'test');
   await assert.rejects(runCliTask({ name: 'throttled', cwd, prompt: 'go' }, model, settings, { cwd, logDirectory: join(cwd, 'agents') },
     new AbortController().signal), error => {

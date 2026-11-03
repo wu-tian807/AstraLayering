@@ -93,7 +93,7 @@ test('section Krita: machine-wide cap queues sections until a slot is free', asy
   // A slot left by a process that died is reclaimed.
   await mkdir(slots);
   await writeFile(join(slots, '0.lock'), '999999999');
-  const env = { ...process.env, DISPLAY: ':fixture', layering_krita_max_instances: '1' };
+  const env = { ...process.env, DISPLAY: ':fixture', krita_max_instances: '1' };
   const first = new SectionKrita({ section: 'a', krita, env, slotsDirectory: slots });
   const secondRecord = join(root, 'b.json');
   const second = new SectionKrita({ section: 'b', krita, env, slotsDirectory: slots, record: secondRecord });
@@ -107,7 +107,7 @@ test('section Krita: machine-wide cap queues sections until a slot is free', asy
   const queued = second.reserve(undefined, message => messages.push(message));
   await new Promise(resolve => setTimeout(resolve, 300));
   assert.equal(second.reserved, false);
-  assert.match(second.status().waiting ?? '', /layering_krita_max_instances/);
+  assert.match(second.status().waiting ?? '', /krita_max_instances/);
   assert.equal(messages.length, 1);
   const waiting = await readKritaRecord(secondRecord);
   assert.deepEqual([waiting?.state, waiting?.limit, await kritaSlotsInUse(slots)], ['waiting', 1, 1]);
@@ -138,9 +138,9 @@ test('section Krita: machine-wide cap queues sections until a slot is free', asy
   await second.release();
   assert.equal(await exists(secondRecord), false);
 
-  assert.throws(() => kritaLimit({ layering_krita_max_instances: '0' }), /正整数/);
-  assert.throws(() => kritaLimit({ layering_krita_max_instances: '2.5' }), /正整数/);
-  assert.equal(kritaLimit({ layering_krita_max_instances: ' 3 ' }), 3);
+  assert.throws(() => kritaLimit({ krita_max_instances: '0' }), /正整数/);
+  assert.throws(() => kritaLimit({ krita_max_instances: '2.5' }), /正整数/);
+  assert.equal(kritaLimit({ krita_max_instances: ' 3 ' }), 3);
   // The default comes from example.env.
   assert.equal(kritaLimit({}), 4);
 });
