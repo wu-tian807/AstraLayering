@@ -16,10 +16,11 @@ import { createKritaTool } from '../shared/krita/tool.ts';
 import { createBitmapTool } from '../shared/part/bitmap-tool.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { ffmpegPath, generateVideo, produceVideos, produceViews, resolveTurnInput, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
-import { finishHead, resolveHeadInput, type HeadInput } from './head.ts';
-import { finishAngleY } from './angle-y.ts';
-import { cornerAngleValues, finishAngleXY, writeLinearCorners } from './angle-xy.ts';
-import { finishJawLine } from './jaw-line.ts';
+import { buildHead, finishHead, resolveHeadInput, type Built, type HeadInput } from './head.ts';
+import { buildAngleY, finishAngleY } from './angle-y.ts';
+import { buildAngleXY, cornerAngleValues, finishAngleXY, writeLinearCorners } from './angle-xy.ts';
+import { buildJawLine, finishJawLine } from './jaw-line.ts';
+import { createNineAxisViewTool } from './view-tool.ts';
 import { angleScale, angleValues } from './angles.ts';
 
 export const help = `nine-axis — 头部九轴
@@ -101,17 +102,20 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   };
   const ffmpeg = async () => dependencies.ffmpeg ?? await ffmpegPath(environment.codex.env);
   const videos = join(directory, 'step01_video'), angleY = { up: scale.y[1], down: -scale.y[0] };
+  // Each face step's agent views its delivery as the workbench draws it, built the way the step will build it.
+  const builds: Record<string, () => Promise<Built>> = {};
   // Krita is only needed by step03's and step07's agents, so only a run that reaches them asks for one.
   const faceTools = async (stepId: string): Promise<FunctionTool[]> => {
-    const bitmap = createBitmapTool(directory, join(directory, stepId, 'observations'));
-    if (stepId !== 'step03_angle-x' && stepId !== 'step07_jaw-line') return [bitmap];
+    const observations = join(directory, stepId, 'observations');
+    const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations, () => builds[stepId]());
+    if (stepId !== 'step03_angle-x' && stepId !== 'step07_jaw-line') return [bitmap, view];
     if (!sectionKrita) {
       if (!options.krita?.trim()) throw new Error(`${stepId} 需要 --krita <已安装的 Krita 可执行文件路径>。`);
       const krita = await checkKrita(resolveInput(options.name, options.krita, root), environment.codex.env);
       sectionKrita = new SectionKrita({ section: directory, krita: krita.executable, env: environment.codex.env, record: join(directory, kritaRecordFile) });
     }
     await sectionKrita.reserve(options.signal, waiting => progress(`${stepId}：${waiting}`));
-    return [createKritaTool(sectionKrita, task), bitmap];
+    return [createKritaTool(sectionKrita, task), bitmap, view];
   };
   const agents = () => new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress });
   const preflight = () => preflightAgentSteps(environment, ['nine_axis_head'], { runsRoot: root, progress, env: environment.codex.env });
@@ -137,12 +141,14 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         const head = await resolveHeadInput(input);
         if (options.dryRun) return preview(`用 ${headLabel} 拟合脸部向左转向，镜像出向右。\n提示词：\n${headPrompt(head, task)}`);
         const box = JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box as Box;
+        builds[step.id] = () => buildHead(step.directory, head, box, scale);
         const fit = dependencies.fitHead ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳转向'));
         await fit(step.directory, headPrompt(head, task));
         summary = `nine-axis/step03_angle-x 已完成：${await finishHead(step.directory, head, box, scale)} 个脸部图层的 ${scale.x[0]}° / +${scale.x[1]}° 转向`;
       };
       if (step.id === 'step05_angle-y') return async () => {
         if (options.dryRun) return preview(`用 ${headLabel} 拟合脸部抬头与低头。\n提示词：\n${angleYPrompt(task)}`);
+        builds[step.id] = () => buildAngleY(step.directory, join(directory, 'step03_angle-x'), scale);
         const fit = dependencies.fitAngleY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳上下'));
         await fit(step.directory, angleYPrompt(task));
         summary = `nine-axis/step05_angle-y 已完成：${await finishAngleY(step.directory, join(directory, 'step03_angle-x'), scale)} 个脸部图层的抬头与低头`;
@@ -151,6 +157,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         if (options.dryRun) return preview(`用 ${headLabel} 从线性叠加起手斜切脸部四角。\n提示词：\n${angleXYPrompt(task)}`);
         const angleYDirectory = join(directory, 'step05_angle-y');
         await writeLinearCorners(step.directory, angleYDirectory, scale);
+        builds[step.id] = () => buildAngleXY(step.directory, angleYDirectory, scale);
         const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向'));
         await fit(step.directory, angleXYPrompt(task));
         summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(step.directory, angleYDirectory, scale)} 个脸部图层的斜向四角`;
@@ -158,6 +165,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       return async () => {
         const head = await resolveHeadInput(input);
         if (options.dryRun) return preview(`用 ${headLabel} 做下颌线、脸部蒙版与脖子。\n提示词：\n${jawLinePrompt(head, task)}`);
+        builds[step.id] = () => buildJawLine(step.directory, join(directory, 'step06_angle-xy'), scale);
         const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子'));
         await fit(step.directory, jawLinePrompt(head, task));
         summary = `nine-axis/step07_jaw-line 已完成：${await finishJawLine(step.directory, join(directory, 'step06_angle-xy'), scale)} 个部件的下颌线与脖子`;

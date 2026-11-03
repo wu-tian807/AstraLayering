@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { validateHeadNineAxis, keyformAt, lattice, refine, levelParts, dragKeyform, deformerTree } from '../studio/nine-axis-model.js';
+import { validateHeadNineAxis, keyformAt, lattice, refine, levelParts, dragKeyform, deformerTree } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 import { nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 
 const part = (keyforms: Record<string, number[][]>, extra = {}): any => ({ id: 'hair/bangs', level: 'hair', texture: 'layers/000.png', textureBounds: [0, 0, 10, 10], bbox: [0, 0, 10, 10], cols: 1, rows: 1, keyforms, ...extra });

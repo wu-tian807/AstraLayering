@@ -1,1 +1,1 @@
-{"main":{"initial":["prompts/脸部与双耳斜向.md"],"tools":["view_bitmap"]}}
+{"main":{"initial":["prompts/脸部与双耳斜向.md"],"tools":["view_bitmap","view_nine_axis"]}}

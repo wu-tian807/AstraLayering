@@ -1,28 +1,14 @@
-import * as THREE from 'three';
-import { validateHeadNineAxis, keyformAt, keyValues, lattice, refine, meshIndices, levelParts, dragKeyform, deformerTree } from './nine-axis-model.js';
+import { validateHeadNineAxis, keyformAt, keyValues, levelParts, dragKeyform, deformerTree } from './nine-axis-model.js';
+import { HeadNineAxisRenderer, shownParts } from './nine-axis-render.js';
 const $ = s => document.querySelector(s);
-const SUB = 2, NS = 'http://www.w3.org/2000/svg';
+const NS = 'http://www.w3.org/2000/svg';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const sign = k => (k > 0 ? '+' : '') + k;
 const clipLabel = p => p.clip ? `${p.clip.invert ? '反向裁切' : '裁切'} ← ${p.clip.by.map(id => short(id)).join('、')}` : '';
 const short = id => id.replace(/^(face|hair)\//, '').replace(/^features\//, '');
-// Premultiplied texel output without colour conversion keeps the source paint.
-// The grid (bbox) is larger than the texture; outside it clamp-to-edge would
-// smear the border texels into blocks, so those fragments are dropped.
-const vertexShader = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}';
-// Clipping (Cubism clip masks): the sources' alpha is first drawn into an
-// offscreen target of the canvas size; a clipped part multiplies its alpha by
-// that coverage, or by 1 − coverage when inverted. In the mask pass a part writes
-// only its alpha, so overlapping sources add up to their union.
-const fragmentShader = 'uniform sampler2D map;uniform sampler2D clip;uniform float dim;uniform float clipMode;uniform float maskPass;uniform float tint;uniform vec2 res;varying vec2 vUv;'
-  + 'void main(){if(any(lessThan(vUv,vec2(0.0)))||any(greaterThan(vUv,vec2(1.0))))discard;vec4 c=texture2D(map,vUv);if(c.a<0.002)discard;'
-  + 'if(maskPass>0.5){gl_FragColor=vec4(c.a);return;}float a=c.a*dim;if(clipMode>0.5){float m=texture2D(clip,gl_FragCoord.xy/res).a;a*=clipMode>1.5?1.0-m:m;}'
-  + 'gl_FragColor=vec4(mix(c.rgb,vec3(0.25,0.85,1.0),tint)*a,a);}';
-const clipKey = p => p.clip.by.join('|');
-
 export class HeadNineAxisPanel {
   constructor({ error }) {
-    Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.valueY = 0; this.level = 'accessory'; this.selected = null; this.hidden = new Set(); this.shownMasks = new Set(); this.targets = new Map();
+    Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.valueY = 0; this.level = 'accessory'; this.selected = null; this.hidden = new Set(); this.shownMasks = new Set();
     this.radius = 40; this.showGrid = true; this.dirty = new Set(); this.active = false;
     this.canvas = $('#nine-axis-canvas'); this.overlay = $('#nine-axis-overlay'); this.view = $('#nine-axis-view');
     $('#nine-axis-angle').oninput = e => this.setValue(e.target.valueAsNumber);
@@ -58,27 +44,13 @@ export class HeadNineAxisPanel {
     } catch (e) { if (epoch === this.epoch) { this.status(e.message); this.error(e.message); } }
   }
   clear() {
-    for (const m of this.meshes?.values() ?? []) { m.geometry.dispose(); m.material.uniforms.map.value.dispose(); m.material.dispose(); }
-    for (const t of this.targets.values()) t.dispose();
-    this.meshes = new Map(); this.targets.clear(); this.scene = null; this.doc = null; this.dirty.clear(); this.selected = null; this.hidden.clear(); this.shownMasks.clear();
-    $('#nine-axis-tree').replaceChildren(); $('#nine-axis-controls').hidden = true; this.overlay.replaceChildren(); this.renderer?.clear();
+    this.view3?.clear(); this.doc = null; this.dirty.clear(); this.selected = null; this.hidden.clear(); this.shownMasks.clear();
+    $('#nine-axis-tree').replaceChildren(); $('#nine-axis-controls').hidden = true; this.overlay.replaceChildren();
   }
   status(text) { $('#nine-axis-status').textContent = text; }
   install(doc, images) {
-    if (!this.renderer) { this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, premultipliedAlpha: true, antialias: true }); this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace; }
-    this.doc = doc; this.scene = new THREE.Scene(); this.camera = new THREE.OrthographicCamera(0, 1, 0, 1, -1, 1);
-    doc.parts.forEach((p, order) => {
-      const [tx, ty, tw, th] = p.textureBounds, uvSource = refine(lattice(p), p.cols, p.rows, SUB), uv = new Float32Array(uvSource.length);
-      for (let i = 0; i < uv.length; i += 2) { uv[i] = (uvSource[i] - tx) / tw; uv[i + 1] = (uvSource[i + 1] - ty) / th; }
-      const g = new THREE.BufferGeometry();
-      g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(uv.length / 2 * 3), 3));
-      g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(new THREE.BufferAttribute(meshIndices(p.cols * SUB, p.rows * SUB), 1));
-      const t = new THREE.Texture(images[order]); t.flipY = false; t.colorSpace = THREE.NoColorSpace; t.premultiplyAlpha = true;
-      t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; t.needsUpdate = true;
-      const m = new THREE.Mesh(g, new THREE.ShaderMaterial({ uniforms: { map: { value: t }, dim: { value: 1 }, clip: { value: null }, clipMode: { value: 0 }, maskPass: { value: 0 }, tint: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } }, vertexShader, fragmentShader,
-        transparent: true, depthTest: false, depthWrite: false, blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor, premultipliedAlpha: true }));
-      m.renderOrder = order; m.frustumCulled = false; this.scene.add(m); this.meshes.set(p.id, m);
-    });
+    this.view3 ??= new HeadNineAxisRenderer(this.canvas);
+    this.doc = doc; this.view3.install(doc, images);
     const ax = doc.parameters?.find(q => q.id === 'ParamAngleX') ?? { min: -30, max: 30, keys: [-30, 0, 30] };
     const ay = doc.parameters?.find(q => q.id === 'ParamAngleY' && q.keys?.length > 1 && !q.status);
     // Ranges and keys are in degrees, written by the workflow into deformers.json.
@@ -161,9 +133,9 @@ export class HeadNineAxisPanel {
     this.draw();
   }
   resize() {
-    if (!this.renderer) return;
+    if (!this.view3) return;
     const r = this.view.getBoundingClientRect(); if (!r.width || !r.height) return;
-    this.renderer.setPixelRatio(devicePixelRatio); this.renderer.setSize(r.width, r.height, false); this.draw();
+    this.view3.renderer.setPixelRatio(devicePixelRatio); this.view3.renderer.setSize(r.width, r.height, false); this.draw();
   }
   fit() { if (!this.doc) return; const v = this.doc.view ?? { x: 0, y: 0, width: this.doc.canvas[0], height: this.doc.canvas[1] }; this.cam = { cx: v.x + v.width / 2, cy: v.y + v.height / 2, span: Math.max(v.width, v.height) }; this.draw(); }
   frame() {
@@ -171,42 +143,16 @@ export class HeadNineAxisPanel {
     return { r, s, x0: this.cam.cx - r.width * s / 2, y0: this.cam.cy - r.height * s / 2 };
   }
   draw() {
-    if (!this.doc || !this.active || !this.renderer) return;
+    if (!this.doc || !this.active || !this.view3) return;
     const { r, s, x0, y0 } = this.frame(); if (!r.width) return;
-    Object.assign(this.camera, { left: x0, right: x0 + r.width * s, top: y0, bottom: y0 + r.height * s }); this.camera.updateProjectionMatrix();
-    const visible = new Set(levelParts(this.doc, this.level).map(p => p.id)), sel = this.selected, isolate = $('#nine-axis-isolate').checked;
-    // Clip sources take effect whether or not they are shown or in the level.
-    const shown = new Set(this.doc.parts.filter(p => p.role === 'mask' ? sel === p.id || this.shownMasks.has(p.id) : visible.has(p.id) && !this.hidden.has(p.id)).map(p => p.id));
-    const clipped = this.doc.parts.filter(p => p.clip && shown.has(p.id)), needed = new Set([...shown, ...clipped.flatMap(p => p.clip.by)]);
-    for (const p of this.doc.parts) {
-      if (!needed.has(p.id)) continue;
-      const m = this.meshes.get(p.id), pts = refine(keyformAt(p, this.value, this.valueY), p.cols, p.rows, SUB), pos = m.geometry.attributes.position.array;
-      for (let i = 0, k = 0; i < pts.length; i += 2, k += 3) { pos[k] = pts[i]; pos[k + 1] = pts[i + 1]; }
-      m.geometry.attributes.position.needsUpdate = true;
-      const u = m.material.uniforms, mask = p.role === 'mask';
-      u.tint.value = mask ? 1 : 0; u.dim.value = (mask ? .55 : 1) * (sel && sel !== p.id && isolate ? .35 : 1);
-    }
-    const size = this.renderer.getDrawingBufferSize(new THREE.Vector2()), keys = new Map(clipped.map(p => [clipKey(p), p.clip.by]));
-    for (const [key, t] of this.targets) if (!keys.has(key)) { t.dispose(); this.targets.delete(key); }
-    for (const [key, by] of keys) {
-      let t = this.targets.get(key);
-      if (!t) this.targets.set(key, t = new THREE.WebGLRenderTarget(size.x, size.y, { depthBuffer: false }));
-      else if (t.width !== size.x || t.height !== size.y) t.setSize(size.x, size.y);
-      for (const [id, m] of this.meshes) { m.visible = by.includes(id); m.material.uniforms.maskPass.value = 1; }
-      this.renderer.setRenderTarget(t); this.renderer.render(this.scene, this.camera);
-    }
-    this.renderer.setRenderTarget(null);
-    for (const p of this.doc.parts) {
-      const m = this.meshes.get(p.id), u = m.material.uniforms; m.visible = shown.has(p.id); u.maskPass.value = 0;
-      u.clipMode.value = p.clip && !(p.role === 'mask') ? (p.clip.invert ? 2 : 1) : 0;
-      if (u.clipMode.value) { u.clip.value = this.targets.get(clipKey(p)).texture; u.res.value.copy(size); }
-    }
-    this.renderer.render(this.scene, this.camera);
+    const sel = this.selected, isolate = $('#nine-axis-isolate').checked;
+    const shown = shownParts(this.doc, this.level, { hidden: this.hidden, masks: this.shownMasks, selected: sel });
+    this.view3.draw({ x0, y0, width: r.width * s, height: r.height * s }, this.value, this.valueY, shown, p => sel && sel !== p.id && isolate ? .35 : 1);
     this.drawOverlay(x0, y0, s);
   }
   drawOverlay(x0, y0, s) {
     const p = this.part();
-    if (!p || !this.showGrid || !this.meshes.get(p.id)?.visible) { this.overlay.replaceChildren(); return; }
+    if (!p || !this.showGrid || !this.view3.meshes.get(p.id)?.visible) { this.overlay.replaceChildren(); return; }
     const pts = keyformAt(p, this.value, this.valueY), X = i => (pts[i * 2] - x0) / s, Y = i => (pts[i * 2 + 1] - y0) / s, c = p.cols + 1;
     let d = '';
     for (let j = 0; j <= p.rows; j++) { d += 'M'; for (let i = 0; i < c; i++) d += `${X(j * c + i).toFixed(1)},${Y(j * c + i).toFixed(1)} `; }

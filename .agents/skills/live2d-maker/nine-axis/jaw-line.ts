@@ -1,9 +1,8 @@
-import { randomUUID } from 'node:crypto';
-import { access, copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { angleKey, angleScale, type AngleScale } from './angles.ts';
 import { cornerKey } from './angle-xy.ts';
-import { faceLevel, isHeadPartId, mirrorKeyform, pairId, stepTexture, type Part } from './head.ts';
+import { faceLevel, isHeadPartId, mirrorKeyform, pairId, stepTexture, writeBuilt, type Built, type Part } from './head.ts';
 
 // step07_jaw-line: the jaw line, the neck under the face, and the masks that
 // clip them, as in the Cubism tutorial. The original may or may not have a jaw
@@ -66,15 +65,9 @@ export function checkJaw(value: unknown, upstream: HeadDocument, scale: AngleSca
   return jaw;
 }
 
-async function atomic(path: string, text: string) {
-  await mkdir(dirname(path), { recursive: true });
-  const tmp = `${path}.${randomUUID()}.tmp`;
-  await writeFile(tmp, text); await rename(tmp, path);
-}
-
-// After the agent: check jaw.json against step06, keep or replace each part,
-// mirror the right keyforms and corners, and write the workbench document.
-export async function finishJawLine(directory: string, angleXY: string, scale: AngleScale = angleScale()): Promise<number> {
+// After the agent: check jaw.json against step06, keep or replace each part and
+// mirror the right keyforms and corners.
+export async function buildJawLine(directory: string, angleXY: string, scale: AngleScale = angleScale()): Promise<Built> {
   const doc = JSON.parse(await readFile(join(angleXY, 'deformers.json'), 'utf8')) as HeadDocument;
   let raw: unknown;
   try { raw = JSON.parse(await readFile(join(directory, 'jaw.json'), 'utf8')); }
@@ -93,8 +86,6 @@ export async function finishJawLine(directory: string, angleXY: string, scale: A
   const own = new Set(merged.filter(p => p.fresh).map(p => p.texture)), kept = merged.filter(p => !p.fresh);
   const clash = kept.find(p => own.has(p.texture));
   if (clash) throw new Error(`${clash.texture}：与沿用的 step06 部件 ${clash.id} 的贴图同名，新贴图换一个文件名`);
-  await mkdir(join(directory, 'layers'), { recursive: true });
-  for (const p of kept) await copyFile(join(angleXY, p.texture), join(directory, p.texture));
   const byId = new Map(merged.map(p => [p.id, p])), [left, right] = scale.x.map(angleKey), corners = [scale.y[1], scale.y[0]];
   const parts = merged.map(({ fresh, ...p }) => {
     if (!(jaw.parts.find(q => q.id === p.id)!.keyforms)) return p;
@@ -107,6 +98,11 @@ export async function finishJawLine(directory: string, angleXY: string, scale: A
     return { ...p, keyforms: { [left]: p.keyforms[left], '0': p.keyforms['0'], [right]: mirrorKeyform(p, pair, doc.axis, left) }, keyformsXY };
   });
   const notes = [doc.notes?.trim(), jaw.notes?.trim(), '下颌线：线、脸色扩展与脖子由蒙版裁切（Cubism 剪贴蒙版；反转即只画蒙版以外），向右与右侧两角为左右成对镜像。'].filter(Boolean).join(' ');
-  await atomic(join(directory, 'deformers.json'), JSON.stringify({ ...doc, levels: [faceLevel], notes, parts }) + '\n');
-  return parts.length;
+  return { doc: { ...doc, levels: [faceLevel], notes, parts }, textures: new Map(merged.map(p => [p.texture, join(p.fresh ? directory : angleXY, p.texture)])) };
+}
+// Write the workbench document.
+export async function finishJawLine(directory: string, angleXY: string, scale: AngleScale = angleScale()): Promise<number> {
+  const built = await buildJawLine(directory, angleXY, scale);
+  await writeBuilt(directory, built);
+  return built.doc.parts.length;
 }
