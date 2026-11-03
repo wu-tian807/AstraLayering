@@ -168,7 +168,8 @@ export async function normalizeView(path: string, size: number): Promise<Buffer>
 
 // One video from the upper body and its frame at the view's angle, brought to
 // the upper body's square. Paths in the record are relative to the step directory.
-async function takeView(directory: string, view: string, prompt: string, angle: number, image: Buffer, size: number, generate: GenerateVideo,
+// step05's corner tool takes its views the same way.
+export async function takeView(directory: string, view: string, prompt: string, angle: number, image: Buffer, size: number, generate: GenerateVideo,
   { signal, progress, ffmpeg }: { signal?: AbortSignal; progress?: (message: string) => void; ffmpeg: string }) {
   const output = join(directory, `${view}.png`), mp4 = join(directory, `${view}.mp4`), frame = join(directory, 'frames', `${view}.png`);
   await rm(output, { force: true });

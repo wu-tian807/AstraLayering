@@ -113,13 +113,14 @@ export class HeadNineAxisPanel {
     const clamp = (v, q) => Math.round(Math.max(q.min, Math.min(q.max, v)) * 10) / 10;
     this.value = clamp(x, this.axes.x); this.valueY = this.axes.y ? clamp(y, this.axes.y) : 0; this.sync();
   }
-  // The keyform being edited: an X key while Y is 0, or a Y key while X is 0.
+  // The keyform being edited: an X key while Y is 0, a Y key while X is 0, or a corner both are on.
   onKey() {
     const p = this.part(); if (!p) return undefined;
     const on = (axis, v) => keyValues(p, axis).find(k => Math.abs(k - v) < 1e-6);
     if (!this.valueY) { const key = on('x', this.value); return key === undefined ? undefined : { forms: p.keyforms, key, label: 'X ' + sign(key) }; }
     if (!this.value) { const key = on('y', this.valueY); return key === undefined ? undefined : { forms: p.keyformsY, key, label: 'Y ' + sign(key) }; }
-    return undefined;
+    const x = on('x', this.value), y = on('y', this.valueY), key = `${x},${y}`;
+    return p.keyformsXY?.[key] ? { forms: p.keyformsXY, key, label: `XY ${sign(x)} ${sign(y)}` } : undefined;
   }
   part() { return this.doc?.parts.find(p => p.id === this.selected); }
   sync() {
@@ -137,9 +138,9 @@ export class HeadNineAxisPanel {
     $('#nine-axis-selection').hidden = !p;
     if (p) {
       $('#nine-axis-selected-name').textContent = p.id;
-      const ys = p.keyformsY ? ` · Y ${keyValues(p, 'y').map(sign).join(' / ')}` : '';
+      const ys = (p.keyformsY ? ` · Y ${keyValues(p, 'y').map(sign).join(' / ')}` : '') + (p.keyformsXY ? ` · 斜向 ${Object.keys(p.keyformsXY).length} 角` : '');
       $('#nine-axis-selected-info').textContent = `变形器 ${p.cols}×${p.rows} · 关键形 X ${keyValues(p).map(sign).join(' / ')}${ys}${p.status ? ' · ' + p.status : ''}`;
-      $('#nine-axis-edit-hint').textContent = key === undefined ? '停在关键形上（点上方的度数按钮，另一角度为 0）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
+      $('#nine-axis-edit-hint').textContent = key === undefined ? '停在关键形上（点上方的度数按钮，另一角度为 0；或两个角度都在关键形上的斜向角）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
       $('#nine-axis-reset').disabled = key === undefined || !this.original?.has(p.id + '@' + key.label);
     }
     $('#nine-axis-dirty').hidden = !this.dirty.size; $('#nine-axis-dirty').textContent = `已修改 ${this.dirty.size} 个变形器，只在本次会话内保留`;

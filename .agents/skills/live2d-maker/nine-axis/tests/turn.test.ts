@@ -8,7 +8,8 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, resolveTurnInput, upperBodyBox } from '../turn.ts';
-import { angleYPrompt, headPrompt, runWorkflow, turnPrompt, viewYPrompt } from '../run.ts';
+import { createCornerTool } from '../angle-xy.ts';
+import { angleXYPrompt, angleYPrompt, headPrompt, runWorkflow, turnPrompt, viewYPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
@@ -123,11 +124,12 @@ test('按帧序取出转到 30° 的帧（整段匀速转到 90°）', async t =
   assert.equal((await sharp(join(root, 'frame.png')).metadata()).width, 32);
 });
 
-test('step02、step04 的提示词以度数写出关键形', () => {
-  const x = headPrompt({ document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0], '/task'), y = angleYPrompt('/task');
+test('step02、step04、step05 的提示词以度数写出关键形', () => {
+  const x = headPrompt({ document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0], '/task'), y = angleYPrompt('/task'), xy = angleXYPrompt('/task');
   assert.match(x, /ParamAngleX = -30/);
   assert.match(y, /ParamAngleY = 25[\s\S]*ParamAngleY = -25/);
-  for (const prompt of [x, y]) assert.doesNotMatch(prompt, /\{\w+_(angle|degrees)\}/);
+  assert.match(xy, /"-30,25"[\s\S]*"-30,-25"/);
+  for (const prompt of [x, y, xy]) assert.doesNotMatch(prompt, /\{\w+\}/);
 });
 
 test('step01 生成向左视角，step03 生成上下视角，都统一到上半身尺寸，完成后沿用', async t => {
@@ -138,8 +140,18 @@ test('step01 生成向左视角，step03 生成上下视角，都统一到上半
   const generate = async (prompt: string) => { prompts.push(prompt); return { id: `v${prompts.length}`, status: { status: 'completed' }, bytes: await readFile(sample) }; };
   let fitted = 0;
   const fitHead = async (directory: string) => { fitted++; await writeFaceLeft(directory); };
-  const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead };
-  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step03_views-y 已完成：抬头 25°、低头 25°/);
+  // The Y fit keeps the step02 rest grid for both keyforms.
+  const fitAngleY = async (directory: string) => {
+    const { parts } = JSON.parse(await readFile(join(directory, '../step02_angle-x/deformers.json'), 'utf8'));
+    await writeFile(join(directory, 'face-y.json'), JSON.stringify({ notes: '', parts: parts.map((p: { id: string; keyforms: Record<string, number[][]> }) => ({ id: p.id, keyforms: { 25: p.keyforms['0'], '-25': p.keyforms['0'] } })) }));
+  };
+  // The corner fit hands back the linear start unchanged.
+  const fitAngleXY = async (directory: string) => {
+    const linear = JSON.parse(await readFile(join(directory, 'linear.json'), 'utf8'));
+    await writeFile(join(directory, 'face-xy.json'), JSON.stringify({ notes: '', parts: linear.parts }));
+  };
+  const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead, fitAngleY, fitAngleXY };
+  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step05_angle-xy 已完成：4 个脸部图层的斜向四角/);
   const step = join(task, 'nine-axis/step01_views'), size = (await sharp(join(step, 'upper-body.png')).metadata()).width;
   const { info } = await sharp(join(step, 'left.png')).raw().toBuffer({ resolveWithObject: true });
   assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
@@ -169,8 +181,24 @@ test('step01 生成向左视角，step03 生成上下视角，都统一到上半
     assert.deepEqual([yInfo.width, yInfo.height, viewY[view].angle, viewY[view].frame.frameIndex], [size, size, 25, 17]);
   }
   assert.equal(viewY.input.path, 'nine-axis/step01_views/upper-body.png');
-  // step04_angle-y is shelved, so the workflow stops after step03.
-  await assert.rejects(access(join(task, 'nine-axis/step04_angle-y')));
+  const angleY = JSON.parse(await readFile(join(task, 'nine-axis/step04_angle-y/deformers.json'), 'utf8'));
+  assert.deepEqual(angleY.parameters.find((q: { id: string }) => q.id === 'ParamAngleY').keys, [-25, 0, 25]);
+  // With rest-shaped Y keys the linear corners are the X keys, and the right corners mirror to the +30 keys.
+  const xy = JSON.parse(await readFile(join(task, 'nine-axis/step05_angle-xy/deformers.json'), 'utf8'));
+  assert.doesNotMatch(xy.notes, /未制作/);
+  for (const p of xy.parts as { id: string; keyforms: Record<string, number[][]>; keyformsXY: Record<string, number[][]> }[]) {
+    assert.deepEqual(Object.keys(p.keyformsXY).sort(), ['-30,-25', '-30,25', '30,-25', '30,25']);
+    for (const [corner, key] of [['-30,25', '-30'], ['30,25', '30'], ['30,-25', '30']])
+      p.keyformsXY[corner].forEach((q, i) => q.forEach((v, k) => assert.ok(Math.abs(v - p.keyforms[key][i][k]) < 0.02, `${p.id} ${corner}`)));
+  }
+  // The corner tool starts from step03's up view and takes the left-angle frame.
+  const tool = createCornerTool(join(task, 'nine-axis/step05_angle-xy'), y, 'turn', 30, async () => ({ generate, ffmpeg }));
+  const out = await tool.execute({ corner: 'left-up' }, undefined, { root: task } as never);
+  assert.equal(JSON.parse((out.contentItems[0] as { text: string }).text).frame.frameIndex, 20);
+  const corner = JSON.parse(await readFile(join(task, 'nine-axis/step05_angle-xy/left-up.json'), 'utf8'));
+  assert.equal(corner.first, 'up.png');
+  assert.equal((await sharp(join(task, 'nine-axis/step05_angle-xy/left-up.png')).metadata()).width, size);
+  await assert.rejects(tool.execute({ corner: 'right-up' }, undefined, { root: task } as never), /corner 须为/);
 });
 
 test('转头视频失败时 step01 不完成', async t => {

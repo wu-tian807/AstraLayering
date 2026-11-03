@@ -2,7 +2,7 @@
 // like shadow: step01_views holds the upper body and its left head-turn frame;
 // step02_angle-x holds the left/right head warp deformers and the editable KRA
 // with the repainted reveal areas; step03_views-y holds the up/down camera frames; step04_angle-y adds up/down to the same
-// deformers, and the workbench reads its deformers.json once it exists. source.json names the KRA it was made from;
+// deformers and step05_angle-xy the four corners; the workbench reads the newest step's deformers.json. source.json names the KRA it was made from;
 // the workbench loads the nine-axis KRA only while that source is unchanged.
 export const nineAxisArtifacts = {
   turnUpperBody: 'nine-axis/step01_views/upper-body.png',
@@ -13,6 +13,7 @@ export const nineAxisArtifacts = {
   headDeformers: 'nine-axis/step02_angle-x/deformers.json',
   headSource: 'nine-axis/step02_angle-x/source.json',
   angleYDeformers: 'nine-axis/step04_angle-y/deformers.json',
+  angleXYDeformers: 'nine-axis/step05_angle-xy/deformers.json',
 } as const;
 
 export type NineAxisSource = { version: 1; sourceDocument: string; sourceColor: string; sourceKraHash: string; sourceColorHash: string };

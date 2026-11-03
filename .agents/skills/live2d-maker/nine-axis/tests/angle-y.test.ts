@@ -12,17 +12,17 @@ const moved = (points: Point[], dy: number) => points.map(([x, y]) => [x, y + dy
 // Up lifts each step02 part by 4 px and down lowers it by 3, on step02's lattice.
 export async function writeFaceY(directory: string) {
   const x = JSON.parse(await readFile(join(directory, '../step02_angle-x/deformers.json'), 'utf8'));
-  const parts = x.parts.map((p: { id: string; keyforms: Record<string, Point[]> }) => ({ id: p.id, keyforms: { '25': moved(p.keyforms['0'], -4), '-20': moved(p.keyforms['0'], 3) } }));
+  const parts = x.parts.map((p: { id: string; keyforms: Record<string, Point[]> }) => ({ id: p.id, keyforms: { '25': moved(p.keyforms['0'], -4), '-25': moved(p.keyforms['0'], 3) } }));
   await writeFile(join(directory, 'face-y.json'), JSON.stringify({ notes: '测试', parts }));
 }
 
 test('Y 交付检查：部件须与 step02 一一对应，控制点数沿用其网格', () => {
   const rest: Point[] = [[0, 0], [1, 0], [0, 1], [1, 1]];
   const x = { parameters: [], parts: ids.map(id => ({ id, texture: 'layers/000.png', cols: 1, rows: 1, keyforms: { '0': rest } })) };
-  const y = (only = ids, points = rest) => ({ parts: only.map(id => ({ id, keyforms: { '25': points, '-20': points } })) });
-  assert.equal(checkFaceY(y(), x, ['25', '-20']).parts.length, 4);
-  assert.throws(() => checkFaceY(y(ids.slice(1)), x, ['25', '-20']), /缺少部件 face\/face_base/);
-  assert.throws(() => checkFaceY(y([...ids, 'face/nose']), x, ['25', '-20']), /face\/nose/);
-  assert.throws(() => checkFaceY(y(ids, rest.slice(1)), x, ['25', '-20']), /关键形 25 需要 4 个/);
-  assert.throws(() => checkFaceY({ parts: [...y().parts.slice(1), { ...y().parts[0], opacity: {} }] }, x, ['25', '-20']), /不透明度/);
+  const y = (only = ids, points = rest) => ({ parts: only.map(id => ({ id, keyforms: { '25': points, '-25': points } })) });
+  assert.equal(checkFaceY(y(), x, ['25', '-25']).parts.length, 4);
+  assert.throws(() => checkFaceY(y(ids.slice(1)), x, ['25', '-25']), /缺少部件 face\/face_base/);
+  assert.throws(() => checkFaceY(y([...ids, 'face/nose']), x, ['25', '-25']), /face\/nose/);
+  assert.throws(() => checkFaceY(y(ids, rest.slice(1)), x, ['25', '-25']), /关键形 25 需要 4 个/);
+  assert.throws(() => checkFaceY({ parts: [...y().parts.slice(1), { ...y().parts[0], opacity: {} }] }, x, ['25', '-25']), /不透明度/);
 });

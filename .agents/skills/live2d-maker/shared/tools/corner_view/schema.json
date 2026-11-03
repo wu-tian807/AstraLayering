@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "corner"
+  ],
+  "properties": {
+    "corner": {
+      "type": "string",
+      "enum": [
+        "left-up",
+        "left-down"
+      ]
+    }
+  }
+}

@@ -31,6 +31,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'nine-axis', step: 'step02_angle-x', required: ['krita'] },
   { section: 'nine-axis', step: 'step03_views-y' },
   { section: 'nine-axis', step: 'step04_angle-y' },
+  { section: 'nine-axis', step: 'step05_angle-xy' },
   { section: 'part-layering', step: 'step03_pose' },
   { section: 'part-layering', step: 'step04_standard' },
   { section: 'part-layering', step: 'step05_simplified' },

@@ -22,6 +22,15 @@ test('ParamAngleY keyforms add their offset from the rest form to the X blend', 
   assert.throws(() => validateHeadNineAxis({ version: 1, kind: 'head-nine-axis', levels: [{ id: 'hair', includes: ['hair'] }], parts: [{ ...p, keyformsY: { '30': rest.slice(1) } }] }), /Y 关键形 30/);
 });
 
+test('Diagonal corners blend bilinearly with the axis keyforms', () => {
+  const corner = rest.map(([x, y]) => [x - 40, y - 10]);
+  const p = part({ '0': rest, '-30': rest.map(([x, y]) => [x - 30, y]) }, { keyformsY: { '30': rest.map(([x, y]) => [x, y - 6]) }, keyformsXY: { '-30,30': corner } });
+  assert.deepEqual([...keyformAt(p, -30, 30)].slice(0, 2), [-40, -10]);
+  assert.deepEqual([...keyformAt(p, -15, 15)].slice(0, 2), [(-30 - 40) / 4, (-6 - 10) / 4]);
+  assert.deepEqual([...keyformAt(p, -30, 0)].slice(0, 2), [-30, 0], '轴上的关键形不受斜向角影响');
+  assert.throws(() => validateHeadNineAxis({ version: 1, kind: 'head-nine-axis', levels: [{ id: 'hair', includes: ['hair'] }], parts: [{ ...p, keyformsXY: { '-30': corner } }] }), /斜向 关键形参数无效/);
+});
+
 test('Art mesh refinement follows the warp bilinearly inside each cell', () => {
   const pts = new Float32Array([0, 0, 10, 0, 0, 10, 20, 10]), out = refine(pts, 1, 1, 2);
   assert.deepEqual([...out.slice(8, 10)], [7.5, 5]);  // cell centre

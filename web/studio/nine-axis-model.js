@@ -1,7 +1,8 @@
 // Head nine-axis document: one Cubism-style warp deformer per head layer.
 // Each part owns a (cols+1)×(rows+1) control lattice in canvas pixels with
-// keyforms on ParamAngleX and, once step03 has run, keyformsY on ParamAngleY
-// sharing the rest form keyforms["0"]; the art mesh UV is the regular lattice over bbox.
+// keyforms on ParamAngleX and, once step04 has run, keyformsY on ParamAngleY
+// sharing the rest form keyforms["0"]; step05 adds the corners as keyformsXY
+// keyed "x,y". The art mesh UV is the regular lattice over bbox.
 export const levelNames = { face: '脸＋五官', hair: '头发', accessory: '头饰' };
 
 export function validateHeadNineAxis(doc) {
@@ -19,8 +20,8 @@ export function validateHeadNineAxis(doc) {
     if (!Array.isArray(p.textureBounds) || p.textureBounds.length !== 4) throw Error(p.id + '：贴图范围无效');
     const count = (p.cols + 1) * (p.rows + 1);
     if (!Object.keys(p.keyforms ?? {}).includes('0')) throw Error(p.id + '：缺少静止关键形');
-    for (const [forms, name] of [[p.keyforms, 'X'], [p.keyformsY ?? {}, 'Y']]) for (const k of Object.keys(forms)) {
-      if (!Number.isFinite(Number(k))) throw Error(`${p.id}：${name} 关键形参数无效 ${k}`);
+    for (const [forms, name] of [[p.keyforms, 'X'], [p.keyformsY ?? {}, 'Y'], [p.keyformsXY ?? {}, '斜向']]) for (const k of Object.keys(forms)) {
+      if (!(name === '斜向' ? k.split(',').length === 2 && k.split(',').every(v => v && Number.isFinite(Number(v))) : Number.isFinite(Number(k)))) throw Error(`${p.id}：${name} 关键形参数无效 ${k}`);
       const pts = forms[k];
       if (!Array.isArray(pts) || pts.length !== count || pts.some(q => !Array.isArray(q) || q.length !== 2 || !q.every(Number.isFinite)))
         throw Error(`${p.id}：${name} 关键形 ${k} 需要 ${count} 个控制点`);
@@ -34,22 +35,31 @@ export function validateHeadNineAxis(doc) {
 export const axisForms = (part, axis = 'x') => axis === 'x' ? part.keyforms : { '0': part.keyforms['0'], ...part.keyformsY };
 export const keyValues = (part, axis = 'x') => Object.keys(axisForms(part, axis)).map(Number).sort((a, b) => a - b);
 
-// Linear blend between neighbouring keyforms; values outside the keys hold the end form.
-function blend(forms, value, out, add) {
-  const keys = Object.keys(forms).map(Number).sort((a, b) => a - b);
-  let a = keys[0], b = keys[0];
-  if (value >= keys.at(-1)) a = b = keys.at(-1);
-  else for (let i = 0; i < keys.length - 1; i++) if (value >= keys[i] && value <= keys[i + 1]) { a = keys[i]; b = keys[i + 1]; break; }
-  const t = a === b ? 0 : (value - a) / (b - a), A = forms[String(a)], B = forms[String(b)], R = forms['0'];
-  for (let i = 0; i < A.length; i++) for (const k of [0, 1]) {
-    const v = A[i][k] + (B[i][k] - A[i][k]) * t;
-    out[i * 2 + k] = add ? out[i * 2 + k] + v - R[i][k] : v;
-  }
+// The neighbouring keys of a value and its fraction between them; values
+// outside the keys hold the end key.
+function span(keys, value) {
+  if (value <= keys[0]) return [keys[0], keys[0], 0];
+  if (value >= keys.at(-1)) return [keys.at(-1), keys.at(-1), 0];
+  const i = keys.findIndex((k, n) => value >= k && value <= keys[n + 1]);
+  return [keys[i], keys[i + 1], (value - keys[i]) / (keys[i + 1] - keys[i])];
 }
-// X and Y offsets from the rest form add up; the diagonal corners are not made yet.
+// The form at a grid point of the keys: an axis keyform, a corner, or, for a
+// corner not made yet, the X and Y offsets from the rest form added up.
+function gridForm(part, x, y) {
+  if (!y) return part.keyforms[String(x)];
+  const Y = axisForms(part, 'y')[String(y)];
+  if (!x) return Y;
+  const corner = part.keyformsXY?.[`${x},${y}`];
+  if (corner) return corner;
+  const X = part.keyforms[String(x)], R = part.keyforms['0'];
+  return X.map((q, i) => [q[0] + Y[i][0] - R[i][0], q[1] + Y[i][1] - R[i][1]]);
+}
+// Bilinear blend over the 3×3 grid of keyforms, as Cubism blends two parameters.
 export function keyformAt(part, x, y = 0, out = new Float32Array((part.cols + 1) * (part.rows + 1) * 2)) {
-  blend(part.keyforms, x, out, false);
-  if (y && part.keyformsY) blend(axisForms(part, 'y'), y, out, true);
+  const [x0, x1, s] = span(keyValues(part), x), [y0, y1, t] = part.keyformsY ? span(keyValues(part, 'y'), y) : [0, 0, 0];
+  const A = gridForm(part, x0, y0), B = gridForm(part, x1, y0), C = gridForm(part, x0, y1), D = gridForm(part, x1, y1);
+  for (let i = 0; i < A.length; i++) for (const k of [0, 1])
+    out[i * 2 + k] = (A[i][k] * (1 - s) + B[i][k] * s) * (1 - t) + (C[i][k] * (1 - s) + D[i][k] * s) * t;
   return out;
 }
 
