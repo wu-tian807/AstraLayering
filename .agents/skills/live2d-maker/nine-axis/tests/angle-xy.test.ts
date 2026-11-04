@@ -26,6 +26,15 @@ test('corner completion retains agent frame choices and rejects a changed refere
   await save();await writeFile(join(directory,'videos.json'),JSON.stringify(videos));
   await checkCornerReferences(directory,16);
   assert.deepEqual(corners.map(c=>frames[c].frameIndex),[3,12]);
+  // Native tool paths may be absolute, but must still refer to this step's
+  // original selected files. Checking never rewrites selection metadata.
+  frames['left-up'].video=join(directory,'left-up.mp4');frames['left-up'].path=join(directory,'left-up.png');await save();
+  const absoluteSelection=await readFile(join(directory,'selected-frames.json'));
+  await checkCornerReferences(directory,16);
+  assert.deepEqual(await readFile(join(directory,'selected-frames.json')),absoluteSelection);
+  frames['left-up'].path=join(directory,'..','left-up.png');await save();
+  await assert.rejects(checkCornerReferences(directory,16),/缺少本步选帧路径/);
+  frames['left-up'].path=join(directory,'left-up.png');await save();
   const reference=await readFile(join(directory,'left-up.png'));
   await sharp({create:{width:16,height:16,channels:4,background:'#f00'}}).png().toFile(join(directory,'left-up.png'));
   frames['left-up'].sha256=await fileHash(join(directory,'left-up.png'));await save();
