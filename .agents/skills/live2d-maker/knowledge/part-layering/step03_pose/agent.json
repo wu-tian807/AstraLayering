@@ -1,8 +1,7 @@
 {
   "main": {
     "initial": [
-      "prompts/0-姿态判断.md",
-      "prompts/参考图片.md"
+      "prompts/0-姿态判断.md"
     ],
     "tools": []
   }

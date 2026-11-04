@@ -1,9 +1,7 @@
 {
   "main": {
     "initial": [
-      "prompts/10-直属结构拆分.md",
-      "prompts/10-拆分操作约定.md",
-      "prompts/参考图片.md"
+      "prompts/10-直属结构拆分.md"
     ],
     "tools": [
       "view_bitmap",

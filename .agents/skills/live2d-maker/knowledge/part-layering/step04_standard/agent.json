@@ -1,9 +1,7 @@
 {
   "main": {
     "initial": [
-      "prompts/0-标准姿态.md",
-      "prompts/preparation-standardize-rules.md",
-      "prompts/参考图片.md"
+      "prompts/0-标准姿态.md"
     ],
     "tools": [
       "imagegen"
