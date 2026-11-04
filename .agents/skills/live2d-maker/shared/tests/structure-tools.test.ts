@@ -46,10 +46,10 @@ test('两套 step01 绘制与两轮返修提供编辑工具；reviewer 和后续
     if (section.id === character.id) assert.deepEqual(section.tools!(output, f.input, section.steps[2], 'draw'), []);
     const draw = await section.buildPrompt(step, f.input, output, []);
     const repair = await buildReviewPrompt(step, { kind: 'repair', filename: 'repair-01.md', index: 1 });
-    for (const prompt of [draw, repair]) {
-      assert.ok(prompt.includes('修改 groups.json 用 edit_groups，修改 occlusion.json 用 edit_occlusion'));
-      assert.ok(!prompt.includes('直接编辑上游 groups.json'));
-    }
+    assert.ok(draw.includes('修改 groups.json 用 edit_groups，修改 occlusion.json 用 edit_occlusion'));
+    assert.ok(!draw.includes('直接编辑上游 groups.json'));
+    // Repairs continue the drawing thread, or get the drawing prompt prepended in a new one.
+    assert.ok(!repair.includes('你负责当前阶段的绘画质量和分层结构'));
   }
 });
 

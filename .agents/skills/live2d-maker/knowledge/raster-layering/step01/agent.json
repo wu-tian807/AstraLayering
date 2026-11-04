@@ -24,7 +24,6 @@
     "repair": {
       "initial": [
         "prompts/01-repair.md",
-        "shared/prompts/raster-drawing-responsibilities.md",
         "shared/prompts/raster-review-runtime.md"
       ]
     }

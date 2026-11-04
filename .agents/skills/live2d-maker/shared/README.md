@@ -146,7 +146,7 @@ pnpm check
 | part 轮廓绘制／返修 | 仅修改当前组 note | 无 | `update_group_note` 精确替换当前 note 中唯一匹配的文本，走 GroupStore 写入队列；不改父组、其他组或树结构。见 [outline-agent.ts](part/outline-agent.ts) |
 | part 细分组 | 改变直属子节点，程序保存分组树 | 无 | `submit_children` 返回并校验结构，调度器写对应 `children.json`，再更新根树；agent 不直接编辑事实文件。见 [children-agent.ts](part/children-agent.ts)、[layering.ts](part/layering.ts) |
 | part 最终遮挡层级规划 | 无；要求规划期间输入不变 | 生成深度表 | `propose_occlusion`、`check_occlusion_part`、`submit_occlusion` 校验，调度器原子写入最终文件。见 [occlusion-agent.ts](part/occlusion-agent.ts)、[occlusion-plan.ts](part/occlusion-plan.ts) |
-| raster step01 绘制及两轮返修 | 允许直接编辑并同步 SVG／记录 | 允许直接编辑深度与区域 | [raster-drawing-responsibilities.md](../knowledge/shared/prompts/raster-drawing-responsibilities.md) 在 step01 绘制及 repair 中注入；结构修改由当前绘制 agent 执行 |
+| raster step01 绘制及两轮返修 | 允许直接编辑并同步 SVG／记录 | 允许直接编辑深度与区域 | [raster-drawing-responsibilities.md](../knowledge/shared/prompts/raster-drawing-responsibilities.md) 在 step01 绘制中注入；repair 沿用绘制 thread，新建 thread 时前置完整绘制提示词，不再重复注入；结构修改由当前绘制 agent 执行 |
 | raster step01 独立 reviewer | 只读检查与反馈 | 只读检查与反馈 | 不注入结构写回职责；框选工具只输出审查证据。见 [review.ts](raster/review.ts)、[part-section.ts](raster/part-section.ts) |
 | raster step02、人物 step03 | 当前任务没有授予新的结构编辑职责 | 同左 | 新提示词要求沿用结构；`buildPrompt` 仅在 step01 注入写回职责。与 step01 共用绘制会话，旧指令仍在历史中；文档还有与此冲突的措辞，见 M4 |
 | part 独立 reviewer、同层去重、遮挡补全 | 不编辑这两个结构文件；各自仅提交审查或 SVG 产物 | 同左 | 工具绑定对应产物；同层去重与补全不接管分组树或最终深度表 |
