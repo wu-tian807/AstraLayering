@@ -27,6 +27,7 @@ import type { KritaSection } from '../.agents/skills/live2d-maker/shared/raster/
 import { completeRun } from '../.agents/skills/live2d-maker/workflow/export.ts';
 import { copiedInput, inputKras } from './kra-inputs.ts';
 import { kritaRecordFile, kritaSlotsInUse, readKritaRecord } from '../.agents/skills/live2d-maker/shared/krita/section-krita.ts';
+import { nineAxisProgress } from './nine-axis-progress.ts';
 
 export { phases } from './part-progress.ts';
 export const rasterDefinitions = { 'raster-layering': personSteps, 'clothing-raster-layering': clothingSteps, 'character-assembly': assemblySteps };
@@ -71,6 +72,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
   // Slots held machine-wide, read once a section of this task holds or awaits one.
   let kritaInUse: number | undefined;
   for (const id of sectionIds) {
+    if (id === 'nine-axis') continue; // Parallel child observation is handled below.
     if (record.run?.archive && !record.run.sections[id]) continue;
     // The character and clothing lanes run side by side: several sections can be active at once.
     const current = !!record.run?.activeSections?.includes(id);
@@ -247,6 +249,14 @@ export async function snapshot(directory: string, name: string, dir: string) {
     sections.push({ id, ...(id === 'shadow' ? { mode } : {}), status, states, messages, previews, feedback, reports, groups, steps,
       threadId, krita, summary: saved?.summary, ...(saved?.skipped ? { skipped: true } : {}) });
   }
+  // Nine-axis currently also has a standalone runner. Show its artifacts and
+  // markers without registering or starting another workflow here.
+  const nineSaved = record.run?.sections['nine-axis'];
+  if (!record.run?.archive || nineSaved) sections.push(await nineAxisProgress(directory, fileSet, errors, {
+    active: record.runnerAlive && record.lockHeld && record.run?.activeSections?.includes('nine-axis') && nineSaved?.status !== 'failed',
+    failed: nineSaved?.status === 'failed', archive: !!record.run?.archive,
+    since: record.run?.runner?.startedAt, reason: nineSaved?.summary,
+  }));
   const log = await readTaskLog(directory);
   // Server-side readers above may use agent records; the page only gets readable artifacts.
   const servedFiles = files.filter(path => !agentRecord(path));

@@ -2,6 +2,9 @@
 // All grids are expressed in the undeformed canvas coordinate system. A node's
 // local shape is evaluated first, then carried through its parent and ancestors.
 // Group warps have no texture; parts retain their own local editable mesh.
+// An axisSources document keeps independent authors intact. Root corrections
+// are evaluated before the part-specific continuous axis mapping; source trees
+// are never rendered, resampled into root grids, or treated as editable nodes.
 // Each part owns a (cols+1)×(rows+1) control lattice in canvas pixels with
 // keyforms on ParamAngleX and, once a pitch step has run, keyformsY on ParamAngleY
 // sharing the rest form keyforms["0"]; step05 adds the corners as keyformsXY
@@ -64,6 +67,34 @@ export function validateHeadNineAxis(doc) {
     if (p.clip.invert !== undefined && typeof p.clip.invert !== 'boolean') throw Error(p.id + '：裁切反转须为布尔值');
   }
   for (const l of doc.levels) if (!Array.isArray(l.includes) || l.includes.some(x => !levelNames[x])) throw Error('预览层级无效：' + l.id);
+  if (doc.axisSources !== undefined) {
+    if (!Array.isArray(doc.axisSources) || doc.axisSources.length !== 3) throw Error('axisSources 须包含完整 x/up/down 三份独立作者');
+    const axes = new Set(), parts = new Map(doc.parts.map(p => [p.id, p]));
+    let originalIds;
+    for (const source of doc.axisSources) {
+      if (!source || !['x', 'up', 'down'].includes(source.axis) || axes.has(source.axis)) throw Error('axisSources 方向无效或重复');
+      axes.add(source.axis);
+      if (!/^[a-f0-9]{64}$/.test(source.sha256)) throw Error('axisSources：源作者 SHA256 无效');
+      if (!source.doc || Object.hasOwn(source.doc, 'axisSources')) throw Error('axisSources 不允许递归源作者');
+      validateHeadNineAxis(source.doc);
+      originalIds ??= new Set(source.doc.parts.map(p => p.id));
+      if (source.doc.parts.length !== originalIds.size || source.doc.parts.some(p => !originalIds.has(p.id))) throw Error(source.axis + '：三份源部件集合须一致');
+      for (const p of source.doc.parts) {
+        const root = parts.get(p.id);
+        if (!root || ['texture', 'textureBounds', 'bbox', 'cols', 'rows'].some(k => JSON.stringify(p[k]) !== JSON.stringify(root[k])))
+          throw Error(source.axis + '/' + p.id + '：原图层、贴图范围或 UV 网格不一致');
+        if (p.keyforms['0'].some((q, i) => q.some((v, k) => Math.abs(v - root.keyforms['0'][i][k]) > 1e-5)))
+          throw Error(source.axis + '/' + p.id + '：原形不一致');
+        const rest = lattice(root), neutral = evaluatePoints(source.doc, p, 0, 0, 2), samples = refine(rest, root.cols, root.rows, 2);
+        if (root.keyforms['0'].some((q, i) => q.some((v, k) => Math.abs(v - rest[i * 2 + k]) > 1e-5)) || neutral.some((v, i) => Math.abs(v - samples[i]) > 1e-5))
+          throw Error(source.axis + '/' + p.id + '：共同中性原形或源父链静止姿态已改变');
+      }
+      for (const k of ['source', 'canvas', 'view', 'axis']) if (JSON.stringify(source.doc[k]) !== JSON.stringify(doc[k])) throw Error(source.axis + '：共同中性输入 ' + k + ' 不一致');
+      // Source docs are protected snapshots. Drop any previously prepared
+      // mapping when an explicit validation occurs, including after reopening.
+      sourceMappings.delete(source.doc);
+    }
+  }
   return doc;
 }
 
@@ -135,15 +166,15 @@ export function warpPoint(part, points, x, y) {
   };
   return [x + displacement(0), y + displacement(1)];
 }
-export function inverseWarpPoint(part, points, x, y) {
+export function inversePoint(transform, x, y, label = '变形') {
   // Keep the fast Newton path. If an edge's change of derivative causes a
   // cycle, restart with backtracking rather than accepting a larger residual.
   for (const backtrack of [false, true]) {
     let px = x, py = y;
     for (let i = 0; i < (backtrack ? 80 : 30); i++) {
-      const q = warpPoint(part, points, px, py), dx = q[0] - x, dy = q[1] - y, error = Math.hypot(dx, dy);
+      const q = transform(px, py), dx = q[0] - x, dy = q[1] - y, error = Math.hypot(dx, dy);
       if (!Number.isFinite(error)) break;
-      const h = .01, a = warpPoint(part, points, px + h, py), b = warpPoint(part, points, px, py + h);
+      const h = .01, a = transform(px + h, py), b = transform(px, py + h);
       const ax = (a[0] - q[0]) / h, ay = (a[1] - q[1]) / h, bx = (b[0] - q[0]) / h, by = (b[1] - q[1]) / h, det = ax * by - bx * ay;
       if (!Number.isFinite(det) || Math.abs(det) < 1e-8) break;
       if (error < 1e-5) { if (det > 0) return [px, py]; break; }
@@ -151,30 +182,92 @@ export function inverseWarpPoint(part, points, x, y) {
       if (!backtrack) { px -= stepX; py -= stepY; continue; }
       let accepted = false;
       for (let step = 1; step >= 1 / 32768; step /= 2) {
-        const nx = px - step * stepX, ny = py - step * stepY, next = warpPoint(part, points, nx, ny);
+        const nx = px - step * stepX, ny = py - step * stepY, next = transform(nx, ny);
         if (Math.hypot(next[0] - x, next[1] - y) < error) { px = nx; py = ny; accepted = true; break; }
       }
       if (!accepted) break;
     }
   }
-  throw Error(part.id + '：无法反解父级变形；先修正折叠或过度压缩的网格');
+  throw Error(label + '：无法反解父级变形；先修正折叠或过度压缩的网格');
 }
-export function parentPoint(doc, node, x, y, px, py, inverse = false) {
-  const byId = new Map(doc.deformers.map(n => [n.id, n])), chain = [];
-  for (let id = node.parent; id; id = byId.get(id).parent) chain.push(byId.get(id));
-  if (inverse) chain.reverse();
-  for (const parent of chain) [px, py] = (inverse ? inverseWarpPoint : warpPoint)(parent, keyformAt(parent, x, y), px, py);
+export function inverseWarpPoint(part, points, x, y) {
+  return inversePoint((px, py) => warpPoint(part, points, px, py), x, y, part.id);
+}
+
+// Float32 control storage must not add a second rounding displacement when an
+// identity root carries a source's original function. Detect identity once per
+// prepared grid (also important for neutral groups with fractional spacing).
+function preparedWarp(node, points) {
+  const [x0, y0, x1, y1] = node.bbox;
+  let identity = true;
+  for (let j = 0; j <= node.rows && identity; j++) for (let i = 0; i <= node.cols; i++) {
+    const k = (j * (node.cols + 1) + i) * 2;
+    if (points[k] !== Math.fround(x0 + (x1 - x0) * i / node.cols) || points[k + 1] !== Math.fround(y0 + (y1 - y0) * j / node.rows)) { identity = false; break; }
+  }
+  return [node, points, identity];
+}
+function parentChain(doc, node, x, y, byId = new Map(doc.deformers.map(n => [n.id, n])), forms) {
+  const chain = [];
+  for (let id = node.parent; id; id = byId.get(id).parent) {
+    const p = byId.get(id); chain.push(preparedWarp(p, forms?.get(id) ?? keyformAt(p, x, y)));
+  }
+  return chain;
+}
+const carry = (chain, px, py) => {
+  for (const [node, points, identity] of chain) if (!identity) [px, py] = warpPoint(node, points, px, py);
   return [px, py];
+};
+
+// One angle entry per protected source doc, not one Map/chain per vertex.
+// Mutable root corrections are prepared afresh for every evaluation/edit.
+const sourceMappings = new WeakMap();
+function sourceMapping(doc, x, y) {
+  const old = sourceMappings.get(doc);
+  if (old?.x === x && old?.y === y) return old.parts;
+  const byId = new Map(doc.deformers.map(n => [n.id, n])), forms = new Map(nodes(doc).map(n => [n.id, keyformAt(n, x, y)]));
+  const parts = new Map(doc.parts.map(p => [p.id, [preparedWarp(p, forms.get(p.id)), ...parentChain(doc, p, x, y, byId, forms)]]));
+  sourceMappings.set(doc, { x, y, parts });
+  return parts;
+}
+function axisMapping(doc, node, x, y, sourcePartId) {
+  // A root group lives in pre-axis canvas space: its descendants can have
+  // different source groups/mappings, so there is no single group-level T.
+  const partId = sourcePartId ?? node.id;
+  if (sourcePartId !== undefined && !doc.parts.some(p => p.id === partId)) throw Error('sourcePartId 须为联合贴图部件：' + partId);
+  if (!doc.axisSources || (!x && !y) || !doc.parts.some(p => p.id === partId)) return;
+  const X = x ? sourceMapping(doc.axisSources.find(s => s.axis === 'x').doc, x, 0).get(partId) : undefined;
+  const Y = y ? sourceMapping(doc.axisSources.find(s => s.axis === (y > 0 ? 'up' : 'down')).doc, 0, y).get(partId) : undefined;
+  // New root-only artwork (e.g. a later jaw mask) has no original source map.
+  // It follows its authored root chain once; never borrow the face's source T.
+  if (!X && !Y) return;
+  if (!X) return (px, py) => carry(Y, px, py);
+  if (!Y) return (px, py) => carry(X, px, py);
+  return (px, py) => {
+    const a = carry(X, px, py), b = carry(Y, px, py);
+    return [a[0] + b[0] - px, a[1] + b[1] - py];
+  };
+}
+function parentTransform(doc, node, x, y, sourcePartId) {
+  const chain = parentChain(doc, node, x, y), base = axisMapping(doc, node, x, y, sourcePartId);
+  return (px, py, inverse = false) => {
+    if (inverse) {
+      if (base) [px, py] = inversePoint(base, px, py, node.id + ' axisSources');
+      for (let i = chain.length - 1; i >= 0; i--) if (!chain[i][2]) [px, py] = inverseWarpPoint(chain[i][0], chain[i][1], px, py);
+    } else {
+      [px, py] = carry(chain, px, py);
+      if (base) [px, py] = base(px, py);
+    }
+    return [px, py];
+  };
+}
+export function parentPoint(doc, node, x, y, px, py, inverse = false, sourcePartId) {
+  // The optional leaf context lets fitting a root group finish that leaf's
+  // complete path. Bare group handles/evaluation remain in pre-axis space.
+  return parentTransform(doc, node, x, y, sourcePartId)(px, py, inverse);
 }
 export function evaluatePoints(doc, node, x, y = 0, subdivision = 1) {
-  const local = keyformAt(node, x, y), rest = lattice(node), samples = refine(rest, node.cols, node.rows, subdivision), out = new Float32Array(samples.length);
-  const byId = new Map(doc.deformers.map(n => [n.id, n])), chain = [];
-  for (let id = node.parent; id; id = byId.get(id).parent) { const p = byId.get(id); chain.push([p, keyformAt(p, x, y)]); }
-  for (let i = 0; i < samples.length; i += 2) {
-    let q = warpPoint(node, local, samples[i], samples[i + 1]);
-    for (const [parent, points] of chain) q = warpPoint(parent, points, q[0], q[1]);
-    out.set(q, i);
-  }
+  const local = [preparedWarp(node, keyformAt(node, x, y))], samples = refine(lattice(node), node.cols, node.rows, subdivision), out = new Float32Array(samples.length), transform = parentTransform(doc, node, x, y);
+  for (let i = 0; i < samples.length; i += 2) out.set(transform(...carry(local, samples[i], samples[i + 1])), i);
   return out;
 }
 

@@ -1,15 +1,14 @@
 import { lstat, readFile } from 'node:fs/promises';
 import { safePath, atomicJSON } from './files.ts';
-import { nineAxisArtifacts } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisDeformerPaths } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import { validateHeadNineAxis, nodes, checkWarpGeometry } from '../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 
-const paths = new Set<string>([nineAxisArtifacts.headDeformers, nineAxisArtifacts.angleUpDeformers, nineAxisArtifacts.angleDownDeformers, nineAxisArtifacts.angleXYDeformers, nineAxisArtifacts.jawLineDeformers]);
 const pending = new Map<string, Promise<unknown>>();
 const identity = (doc: any) => JSON.stringify({ ...doc, parts: doc.parts.map(strip), deformers: doc.deformers.map(strip) });
 function strip({ keyforms, keyformsY, keyformsXY, ...n }: any) { return n; }
 
 export async function saveNineAxis(directory: string, value: any) {
-  if (!paths.has(value.path)) throw Error('只能保存工作台的九轴文件');
+  if (!nineAxisDeformerPaths.has(value.path)) throw Error('只能保存工作台的九轴文件');
   const file = await safePath(directory, value.path), previous = pending.get(file) ?? Promise.resolve();
   const operation = previous.catch(() => {}).then(async () => {
     const info = await lstat(file), version = `${info.mtimeMs}:${info.size}`;

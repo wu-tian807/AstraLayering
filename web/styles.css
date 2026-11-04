@@ -150,6 +150,8 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 .step-children{flex-direction:row;align-items:flex-start;gap:22px}
 .step-children>.step-node{width:224px;height:calc(var(--step-height) - 118px)}
 .step-children.step-alternatives{grid-template-columns:224px 30px 224px}
+.step-children.step-parallel{display:grid;grid-template-columns:repeat(3,224px);gap:14px}
+.step-parallel>.step-node:before{display:none}
 .step-content>.group-cycle{padding:0 12px 12px;width:max-content;min-width:538px;height:100%;display:flex;flex-direction:column}
 .group-cycle>.cycle-rule{flex-shrink:0;margin-bottom:6px;padding:6px 10px}
 .group-cycle>.cycle-context{flex-shrink:0;margin:3px 0 10px}

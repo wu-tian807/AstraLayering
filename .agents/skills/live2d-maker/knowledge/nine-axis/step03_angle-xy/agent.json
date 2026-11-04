@@ -1,0 +1,16 @@
+{
+  "main": {
+    "initial": [
+      "shared/references/nine-axis/完整脸底覆盖.md",
+      "prompts/脸部与双耳斜向.md",
+      "references/completion/脸型补全先验.md"
+    ],
+    "tools": [
+      "view_bitmap",
+      "preview_svg",
+      "fit_nine_axis",
+      "view_nine_axis",
+      "edit_nine_axis"
+    ]
+  }
+}

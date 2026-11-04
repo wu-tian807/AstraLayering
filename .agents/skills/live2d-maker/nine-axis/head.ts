@@ -7,7 +7,7 @@ import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.
 import { fileHash, type Box, type TurnInput } from './turn.ts';
 import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry, warpPoint as sampleWarp, type WarpGrid, type HeadNineAxis, type HeadLevel } from '../shared/nine-axis-model.js';
 
-// step02_angle-x: the agent fits the face to the left view and delivers the
+// step02_angles: the agent fits the face to the left view and delivers the
 // ParamAngleX left keyform (−30 by default, degrees, see angles.ts) as
 // face-left.json + layers/. The right side is the mirror image: each part takes
 // its left/right pair's left field reflected about the face axis. The program
@@ -144,14 +144,14 @@ export async function writeBuilt(directory: string, { doc, textures }: Built) {
 }
 
 // Check the agent's delivery and mirror it into the workbench document.
-export async function buildHead(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale()): Promise<Built & { source: Record<string, string> }> {
+export async function buildHead(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory))): Promise<Built & { source: Record<string, string> }> {
   let raw: unknown;
   try { raw = JSON.parse(await readFile(join(directory, 'face-left.json'), 'utf8')); }
   catch (error) { throw new Error('agent 未交付可读的 face-left.json', { cause: error }); }
-  return compileHead(directory, input, box, raw as FaceLeft, scale);
+  return compileHead(directory, input, box, raw as FaceLeft, scale, taskRoot);
 }
-export async function compileHead(directory: string, input: HeadInput, box: Box, value: FaceLeft, scale: AngleScale = angleScale()): Promise<Built & { source: Record<string, string> }> {
-  const task = dirname(dirname(directory)), { width = 0, height = 0 } = await sharp(input.color).metadata(), left = angleKey(scale.x[0]);
+export async function compileHead(directory: string, input: HeadInput, box: Box, value: FaceLeft, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory))): Promise<Built & { source: Record<string, string> }> {
+  const task = taskRoot, { width = 0, height = 0 } = await sharp(input.color).metadata(), left = angleKey(scale.x[0]);
   const local = structuredClone(value);
   for (const p of local.parts ?? []) p.texture = stepTexture(directory, task, p.id, p.texture);
   const face = checkFaceLeft(local, [width, height], left);
@@ -176,8 +176,8 @@ export async function compileHead(directory: string, input: HeadInput, box: Box,
 }
 
 // After the agent: write the workbench files.
-export async function finishHead(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale()): Promise<number> {
-  const built = await buildHead(directory, input, box, scale);
+export async function finishHead(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory))): Promise<number> {
+  const built = await buildHead(directory, input, box, scale, taskRoot);
   await writeBuilt(directory, built);
   await atomic(join(directory, 'source.json'), JSON.stringify({ version: 1, ...built.source, updatedAt: new Date().toISOString() }, null, 2) + '\n');
   return built.doc.parts.length;

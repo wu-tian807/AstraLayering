@@ -9,7 +9,7 @@ export type PitchStage = 'up' | 'down';
 export type Stage = PitchStage | 'xy' | 'jaw';
 export type AuthoredHead = HeadNineAxis & { axis: number; authoring: { stage: Stage; upstreamSha256: string } };
 export const authorFile = (stage: Stage) => ({ up: 'face-up.json', down: 'face-down.json', xy: 'face-xy.json', jaw: 'jaw.json' })[stage];
-export const pitchKeys = (stage: PitchStage, scale: AngleScale) => stage === 'up' ? [scale.y[1]] : scale.y;
+export const pitchKeys = (stage: PitchStage, scale: AngleScale) => [stage === 'up' ? scale.y[1] : scale.y[0]];
 export const sha256 = (s: string) => createHash('sha256').update(s).digest('hex');
 
 export async function readUpstream(directory: string) {
@@ -24,7 +24,8 @@ export function startContinuation(upstream: HeadNineAxis & { axis: number }, has
   doc.authoring = { stage, upstreamSha256: hash };
   if (stage === 'up' || stage === 'down') {
     const keys = pitchKeys(stage, scale);
-    const range: [number, number] = stage === 'up' ? [0, scale.y[1]] : scale.y;
+    const existingUp = upstream.parameters?.find(p => p.id === 'ParamAngleY')?.keys?.includes(scale.y[1]);
+    const range: [number, number] = stage === 'up' ? [0, scale.y[1]] : [scale.y[0], existingUp ? scale.y[1] : 0];
     doc.parameters = doc.parameters!.map(p => p.id === 'ParamAngleY' ? { ...angleParameter('ParamAngleY', '角度 Y', range), keys: [...new Set([range[0], 0, range[1]])] } : p);
     for (const n of nodes(doc)) {
       n.keyformsY ??= {};
@@ -44,6 +45,7 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
   const doc = validateHeadNineAxis(value) as AuthoredHead;
   if (doc.authoring?.stage !== stage || doc.authoring?.upstreamSha256 !== hash) throw Error(`${authorFile(stage)}：上游已变化或来源记录不匹配，请从当前上游重新制作`);
   if (doc.axis !== upstream.axis || JSON.stringify(doc.canvas) !== JSON.stringify(upstream.canvas) || JSON.stringify(doc.source) !== JSON.stringify((upstream as any).source)) throw Error('不能替换上游画布、中轴或角色来源');
+  if (JSON.stringify(doc.axisSources) !== JSON.stringify(upstream.axisSources)) throw Error('不能替换已完成单轴的形变来源；本阶段只编辑当前方向');
   const ids = new Map(nodes(doc).map(n => [n.id, n]));
   for (const n of upstream.parts) if (!ids.has(n.id)) throw Error(`${authorFile(stage)}：缺少上游节点 ${n.id}`);
   // Existing poses stay in canvas space even if an artist adds or reparents a
@@ -58,7 +60,7 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
     }
   }
   const fields: [string, string[]][] = [['keyforms', ['0', ...scale.x.map(angleKey)]]];
-  fields.push(['keyformsY', (stage === 'up' ? pitchKeys(stage, scale) : scale.y).map(angleKey)]);
+  fields.push(['keyformsY', (stage === 'up' || stage === 'down' ? pitchKeys(stage, scale) : scale.y).map(angleKey)]);
   if (stage === 'xy' || stage === 'jaw') fields.push(['keyformsXY', scale.x.flatMap(x => scale.y.map(y => `${angleKey(x)},${angleKey(y)}`))]);
   for (const n of nodes(doc)) {
     for (const [field, keys] of fields) for (const key of keys) if (!(n as any)[field]?.[key]) throw Error(`${n.id}：缺少 ${field} 关键形 ${key}`);

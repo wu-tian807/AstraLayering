@@ -20,7 +20,7 @@ export interface ProgressStep {
   status: string;
   children: ProgressStep[];
   note: string;
-  childrenMode?: 'alternative';
+  childrenMode?: 'alternative' | 'parallel';
   processDirectory?: string;
 }
 export const groupPhases: [GroupPhase, string][];

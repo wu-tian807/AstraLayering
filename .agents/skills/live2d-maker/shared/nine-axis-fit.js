@@ -32,7 +32,7 @@ export function fitWarpToTraces(document, options) {
   const rest = lattice(selected), current = [...keyformAt(selected, x, y)], count = rest.length / 2;
   if (count > 256) throw Error('拟合控制点超过 256；先用较少控制点拟合大形，再补局部');
   const localSource = (partId, p) => {
-    let n = byId.get(partId); if (!n) throw Error('描线的原画部件不存在：' + partId);
+    let n = doc.parts.find(n => n.id === partId); if (!n) throw Error('描线的原画部件不存在：' + partId);
     let q = [...p];
     for (let i = 0; n && i <= byId.size; i++) {
       if (n.id === id) return q;
@@ -50,10 +50,12 @@ export function fitWarpToTraces(document, options) {
     const start = rows.length;
     for (const sample of f.samples) {
       const source = localSource(f.part, point(sample.from, f.id + '.from')), target = point(sample.to, f.id + '.to');
-      const wanted = parentPoint(doc, selected, x, y, ...target, true), baseline = warpPoint(selected, current, ...source);
+      // Descendant local warps have already carried `source` into the selected
+      // grid. Finish/invert the path with this leaf's axis T, never a group T.
+      const wanted = parentPoint(doc, selected, x, y, ...target, true, f.part), baseline = warpPoint(selected, current, ...source);
       const basis = new Float64Array(count);
       for (let i = 0; i < count; i++) { const unit = [...rest]; unit[i * 2] += 1; basis[i] = warpPoint(selected, unit, ...source)[0] - source[0]; }
-      rows.push({ basis, residual: wanted.map((v, k) => v - baseline[k]), source, target, weight: weight * Math.max(1, 64 / f.samples.length), occluded: f.visibility === 'occluded' });
+      rows.push({ basis, residual: wanted.map((v, k) => v - baseline[k]), source, target, part: f.part, weight: weight * Math.max(1, 64 / f.samples.length), occluded: f.visibility === 'occluded' });
     }
     summaries.push({ id: f.id, start, count: rows.length - start, weight });
   }
@@ -83,8 +85,8 @@ export function fitWarpToTraces(document, options) {
   if (rows.some(row => row.occluded)) {
     const visibleOnly = solve(0);
     const visibleShift = (values) => Math.max(...rows.filter(row => !row.occluded).map(row => {
-      const a = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source));
-      const b = parentPoint(doc, selected, x, y, ...warpPoint(selected, visibleOnly, ...row.source));
+      const a = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source), false, row.part);
+      const b = parentPoint(doc, selected, x, y, ...warpPoint(selected, visibleOnly, ...row.source), false, row.part);
       return Math.hypot(a[0] - b[0], a[1] - b[1]);
     }));
     // Completion may fill unconstrained regions, but cannot move a fitted
@@ -97,7 +99,7 @@ export function fitWarpToTraces(document, options) {
   catch (error) { throw Error('拟合未保存：' + error.message + '。请检查描线对应关系，增加局部控制或参考点。'); }
   const measure = values => summaries.map(f => {
     const errors = rows.slice(f.start, f.start + f.count).map(row => {
-      const q = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source));
+      const q = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source), false, row.part);
       return Math.hypot(q[0] - row.target[0], q[1] - row.target[1]);
     });
     return { id: f.id, samples: f.count, weight: f.weight, meanPixels: errors.reduce((a, b) => a + b, 0) / errors.length, maxPixels: Math.max(...errors) };

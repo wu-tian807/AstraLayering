@@ -13,7 +13,7 @@ import type { Box } from './turn.ts';
 const hash = (s: string) => createHash('sha256').update(s).digest('hex');
 // Artist-facing editing of the left/right step's actual authoring document.
 // Importing layers creates identity meshes, never a prescribed anatomical rig.
-export function createHeadEditTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale()): FunctionTool {
+export function createHeadEditTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory))): FunctionTool {
   return { ...toolDefinition('edit_nine_axis'), async execute(value, signal) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('参数须为对象');
     const args = value as { revision?: string; axis?: number; importParts?: Part[]; operations?: any[]; notes?: string };
@@ -34,7 +34,7 @@ export function createHeadEditTool(directory: string, input: HeadInput, box: Box
         return { ...n, keyforms: Object.fromEntries(scale.x.concat(0).map(k => [String(k), structuredClone(points)])) };
       });
     }
-    const localTexture = (p: Part) => { p.texture = stepTexture(directory, dirname(dirname(directory)), p.id, p.texture); };
+    const localTexture = (p: Part) => { p.texture = stepTexture(directory, taskRoot, p.id, p.texture); };
     for (const p of doc.parts) localTexture(p as Part);
     if (args.operations) {
       const operations = structuredClone(args.operations);
@@ -44,7 +44,7 @@ export function createHeadEditTool(directory: string, input: HeadInput, box: Box
     const edited: FaceLeft = { version: 2, axis: doc.axis, notes: args.notes ?? raw.notes, deformers: doc.deformers,
       parts: doc.parts.toReversed() as Part[] };
     const built = !edited.parts.length && !args.importParts && !args.operations
-      ? { doc } : await compileHead(directory, input, box, edited, scale);
+      ? { doc } : await compileHead(directory, input, box, edited, scale, taskRoot);
     signal.throwIfAborted();
     if (args.operations || args.importParts || args.axis !== undefined || args.notes !== undefined) {
       // Validate and mirror in memory before replacing the author source.

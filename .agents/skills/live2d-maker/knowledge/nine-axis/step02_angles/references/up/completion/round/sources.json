@@ -1,0 +1,43 @@
+{
+  "source": "user-provided 圆脸九轴.mp4",
+  "sourceVideo": "../../../completion/round-face.mp4",
+  "sourceVideoSha256": "4ff3c66b08b7bac23524a8853ac142a9e7a50f0fafc910683f48fc0564b6502d",
+  "sourceFrameSize": [
+    720,
+    960
+  ],
+  "faceType": "短圆脸",
+  "segmentSeconds": [
+    9.5,
+    11.7
+  ],
+  "originalCaption": "+Y-X Corner → -Y-X Corner",
+  "interpretation": "Y varies at nonzero X; mouth expression changes. No pure-Y endpoints or measured physical angles are asserted. Only hidden face-volume continuity reference.",
+  "frames": [
+    {
+      "file": "y-corner-9_6.png",
+      "requestedTimeSeconds": 9.6,
+      "sha256": "b6a9850c8cd8d75dbb515f40e34d5fcc0f7ab3435f0b515ede30f356b45163d9"
+    },
+    {
+      "file": "y-corner-10_3.png",
+      "requestedTimeSeconds": 10.3,
+      "sha256": "3e8b1398eb587a260d0903944c0f89edcca3589b42b6255311c993bf596a63af"
+    },
+    {
+      "file": "y-corner-11_0.png",
+      "requestedTimeSeconds": 11.0,
+      "sha256": "45b1b85aa438348bc14fdf63e0c3c6dc8a9efa513cedbcabd465470336fb2955"
+    },
+    {
+      "file": "y-corner-11_6.png",
+      "requestedTimeSeconds": 11.6,
+      "sha256": "0af32c45c36d64c806b70bc2fc1dd221daf2e8498670dbb0ac506b78567fc29f"
+    }
+  ],
+  "board": {
+    "file": "round-face-y-keyframes.jpg",
+    "sha256": "a6a3376f79172a083638e74f4da0383e6f3d6c2d2e83738ffbe73e4e1d9af1fc"
+  },
+  "processing": "Existing ffmpeg 7.0.2, -ss seconds -frames:v 1; raw PNG frames unmodified. Board only uniform resize/layout/text, full frame and credits retained."
+}

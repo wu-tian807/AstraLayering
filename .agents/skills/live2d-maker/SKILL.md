@@ -77,7 +77,7 @@ pnpm start --name my-character --dir /绝对路径/运行根目录 --from charac
 
 ## 头部九轴
 
-已有组装／阴影 KRA 与角色图时，独立使用 `pnpm nine-axis --name <任务名> --dir <绝对运行根目录> --knowledge <先验知识目录> --krita <可执行文件>`，单步可加 `--step <步骤>`；输入与恢复方式见 [nine-axis/README.md](nine-axis/README.md)。七步依次为 `step01_video`（左视频＋left 取帧）→ `step02_angle-x` → `step03_video-y`（上下视频＋取帧）→ `step04_angle-up` → `step05_angle-down` → `step06_angle-xy`（此时生成 left-up/down 参考视频）→ `step07_jaw-line`。角度配置仍只使用 [step01 的 angles.json](knowledge/nine-axis/step01_video/references/angles.json)。
+已有组装／阴影 KRA 与角色图时，独立使用 `pnpm nine-axis --name <任务名> --dir <绝对运行根目录> --knowledge <先验知识目录> --krita <可执行文件>`，单步可加 `--step <步骤>`；输入与恢复方式见 [nine-axis/README.md](nine-axis/README.md)。四步为 `step01_video`（left/up/down 视频＋取帧）→ `step02_angles`（left/up/down 子组独立三路并行，共享原 KRA neutral 与同一 agent.json）→ `step03_angle-xy`（依赖单轴，agent 自选两角参考帧并制作）→ `step04_jaw-line`。角度配置仍只使用 [step01 的 angles.json](knowledge/nine-axis/step01_video/references/angles.json)。
 
 ## 其他按需参考
 

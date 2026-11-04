@@ -1,7 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { access, constants, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
-import { basename, delimiter, dirname, join } from 'node:path';
+import { basename, delimiter, dirname, join, relative, sep } from 'node:path';
 import sharp from 'sharp';
 import { MissingDependencyError } from '../shared/missing-dependency.ts';
 import { requireUpstream } from '../shared/upstream.ts';
@@ -204,9 +204,14 @@ export async function produceLeftVideo(directory: string, input: TurnInput, gene
     parts: input.parts.map(path => toTaskPath(task, path)), canvas: [width, height], box, background }, null, 2) + '\n');
   const run = { signal, progress }, started = Date.now();
   progress?.(`头部裁切 ${box.size}×${box.size}，提交向左转头视频`);
-  const left = await takeVideo(directory, 'left', prompt, image, 'upper-body.png', generate, run);
+  const cached = await readFile(join(directory, 'videos.json'), 'utf8').then(JSON.parse, error => { if (error.code !== 'ENOENT') throw error; });
+  const previous = cached?.left;
+  const reusable = cached?.version === 1 && cached.model === model && cached.seconds === turnSeconds && cached.profileAngle === profileAngle
+    && cached.input?.sha256 === bufferHash(image) && previous?.prompt === prompt && previous.first === 'upper-body.png' && previous.path === 'left.mp4'
+    && await exists(join(directory, previous.path)) && await fileHash(join(directory, previous.path)) === previous.sha256;
+  const left = reusable ? previous : await takeVideo(directory, 'left', prompt, image, 'upper-body.png', generate, run);
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
-    input: { path: 'upper-body.png', sha256: bufferHash(image) }, left,
+    input: { path: 'upper-body.png', sha256: bufferHash(image) }, ...(cached?.input?.sha256 === bufferHash(image) ? { up: cached.up, down: cached.down } : {}), left,
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
   await produceViews(directory, directory, [{ view: 'left', angle }], { signal, progress, ffmpeg });
   return box;
@@ -223,7 +228,7 @@ export async function producePitchVideos(directory: string, front: string, gener
     && cached.profileAngle === profileAngle && cached.input?.sha256 === bufferHash(image);
   progress?.('提交抬头、低头绕轴视频，沿用左转步骤的正面裁框');
   const records = await Promise.all(viewsY.map(async view => {
-    const previous = cached?.[view], first = '../step01_video/upper-body.png';
+    const previous = cached?.[view], first = relative(directory, upperBody).split(sep).join('/');
     if (sameInput && previous?.prompt === prompts[view] && previous.first === first && previous.path === `${view}.mp4`
       && await exists(join(directory, previous.path)) && await fileHash(join(directory, previous.path)) === previous.sha256) {
       progress?.(`${view}：沿用相同输入与提示词、哈希核对通过的视频`);
@@ -232,7 +237,7 @@ export async function producePitchVideos(directory: string, front: string, gener
     return [view, await takeVideo(directory, view, prompts[view], image, first, generate, { signal, progress })] as const;
   }));
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
-    input: { path: '../step01_video/upper-body.png', sha256: bufferHash(image) }, ...Object.fromEntries(records),
+    input: { path: relative(directory, upperBody).split(sep).join('/'), sha256: bufferHash(image) }, ...(directory === front && cached && 'left' in cached ? { left: cached.left } : {}), ...Object.fromEntries(records),
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
   await produceViews(directory, directory, viewsY.map(view => ({ view, angle: angles[view] })), { signal, progress, ffmpeg, upperBody });
 }
@@ -247,11 +252,14 @@ export async function produceCornerVideos(directory: string, pitch: string, gene
   const sameSettings = cached?.version === 1 && cached.model === model && cached.seconds === turnSeconds && cached.profileAngle === profileAngle;
   progress?.('提交左上、左下转头参考视频');
   const records = await Promise.all(viewsY.map(async view => {
-    const corner = `left-${view}` as const, first = `../step03_video-y/${view}.png`, image = await readFile(join(pitch, `${view}.png`)), inputSha256 = bufferHash(image), previous = cached?.[corner];
-    if (sameSettings && previous?.prompt === prompt && previous.first === first && previous.inputSha256 === inputSha256
+    const corner = `left-${view}` as const, first = relative(directory, join(pitch, `${view}.png`)).split(sep).join('/'), image = await readFile(join(pitch, `${view}.png`)), inputSha256 = bufferHash(image), previous = cached?.[corner];
+    if (sameSettings && previous?.prompt === prompt && previous.inputSha256 === inputSha256
       && previous.path === `${corner}.mp4` && await exists(join(directory, previous.path)) && await fileHash(join(directory, previous.path)) === previous.sha256) {
       progress?.(`${corner}：沿用相同输入与提示词、哈希核对通过的视频`);
-      return [corner, previous] as const;
+      // Imported reference caches may use a former step path. Identity is
+      // established by the exact first-frame and video hashes, then this
+      // run records the current relative input path without editing video bytes.
+      return [corner, { ...previous, first }] as const;
     }
     return [corner, { ...await takeVideo(directory, corner, prompt, image, first, generate, { signal, progress }), inputSha256 }] as const;
   }));
@@ -269,6 +277,9 @@ export async function produceViews(directory: string, videos: string, views: { v
     progress?.(`${view}：第 ${taken.frame.frameIndex}/${taken.frame.frameCount - 1} 帧（约 ${taken.frame.angle.toFixed(1)}°）`);
     return [view, { ...taken, video: { path: toTaskPath(task, video), sha256: await fileHash(video) } }] as const;
   }));
+  const previous = await readFile(join(directory, 'views.json'), 'utf8').then(JSON.parse, error => { if (error.code !== 'ENOENT') throw error; });
+  const sameInput = previous?.input?.sha256 === await fileHash(upperBody);
+  const preserved = sameInput ? Object.fromEntries(videoNames.filter(view => !views.some(v => v.view === view) && previous?.[view]).map(view => [view, previous[view]])) : {};
   await atomic(join(directory, 'views.json'), JSON.stringify({ version: 1, profileAngle,
-    input: { path: toTaskPath(task, upperBody), sha256: await fileHash(upperBody) }, ...Object.fromEntries(records) }, null, 2) + '\n');
+    input: { path: toTaskPath(task, upperBody), sha256: await fileHash(upperBody) }, ...preserved, ...Object.fromEntries(records) }, null, 2) + '\n');
 }

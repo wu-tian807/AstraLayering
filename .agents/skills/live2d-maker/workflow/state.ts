@@ -9,7 +9,9 @@ import { sectionIds, resolveInput, resolveRunsDirectory, taskDirectory, type Sec
 import { defaultAgentConcurrency } from '../shared/codex/agent-runtime.ts';
 import { readTaskLog } from './log.ts';
 import { requireCurrentLayout } from './layout.ts';
-import { currentSession } from '../shared/agents/step-session.ts';
+import { currentSession, readStepSession } from '../shared/agents/step-session.ts';
+import { readStep } from '../shared/step-chain.ts';
+import { nineAxisGroupSteps, nineAxisSteps } from '../shared/nine-axis.ts';
 import { installedVersion } from '../shared/version.ts';
 import { copyAsPng, pngBytes } from '../shared/png.ts';
 
@@ -132,7 +134,7 @@ async function keepOriginal(directory: string, input?: string): Promise<void> {
     await copyAsPng(input, join(directory, 'input', 'original.png'));
   }
 }
-export const usesKrita = (selected: SectionId[]) => selected.some(id => id.includes('raster') || id === 'character-assembly' || id === 'shadow');
+export const usesKrita = (selected: SectionId[]) => selected.some(id => id.includes('raster') || id === 'character-assembly' || id === 'shadow' || id === 'nine-axis');
 // The Krita executable for this run: the one given now, else the one the task recorded.
 export function taskKrita(options: Pick<TaskOptions, 'name' | 'dir' | 'krita'>, saved: Pick<TaskRun, 'krita'> | undefined): string | undefined {
   return options.krita ? resolveInput(options.name, options.krita, options.dir) : saved?.krita;
@@ -170,15 +172,29 @@ export async function taskStatus(options: Pick<TaskOptions, 'name' | 'dir'>) {
   const lockHeld = await lockfile.check(directory, { lockfilePath: join(directory, '.runner.lock'), stale: 30_000 });
   const sections = await Promise.all(selectedSections(run.from, run.to).map(async id => {
     const path = join(directory, id);
-    let threadId: string | null | undefined, steps: { name: string; status: string }[] = [];
+    let threadId: string | null | undefined, steps: { name: string; status: string; threadId?: string }[] = [];
     try {
-      const entries = await readdir(path);
-      steps = await Promise.all(entries.filter(name => stepPattern.test(name)).sort().map(async name => ({
-        name, status: await stat(join(path, name, '.completed')).then(() => 'completed', () =>
-          stat(join(path, name, '.running')).then(() => 'running', () => 'unmarked')),
-      })));
-      // The thread of the running step, else of the last step that kept one.
-      threadId = (await currentSession(path, steps.map(step => ({ id: step.name, status: step.status }))))?.threadId ?? null;
+      if (id === 'nine-axis') {
+        // Fixed public paths include the independent sessions, but not neutral.
+        // Read them here rather than importing step-actions back into state.
+        const names = nineAxisSteps.flatMap(step => step === nineAxisSteps[1] ? [step, ...nineAxisGroupSteps] : [step]);
+        for (const name of names) {
+          const { status } = await readStep(join(path, name));
+          if (status === 'absent') continue;
+          const session = await readStepSession(path, name);
+          steps.push({ name, status, ...(session?.threadId ? { threadId: session.threadId } : {}) });
+        }
+        threadId = steps.find(step => step.status === 'running' && step.threadId)?.threadId
+          ?? [...steps].reverse().find(step => step.threadId)?.threadId ?? null;
+      } else {
+        const entries = await readdir(path);
+        steps = await Promise.all(entries.filter(name => stepPattern.test(name)).sort().map(async name => ({
+          name, status: await stat(join(path, name, '.completed')).then(() => 'completed', () =>
+            stat(join(path, name, '.running')).then(() => 'running', () => 'unmarked')),
+        })));
+        // The thread of the running step, else of the last step that kept one.
+        threadId = (await currentSession(path, steps.map(step => ({ id: step.name, status: step.status }))))?.threadId ?? null;
+      }
     } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
     return { id, ...(id === 'shadow' ? { mode: shadowMode(run.shadowMode) } : {}), ...run.sections[id], directory: path, ...(threadId === undefined ? {} : { threadId }), steps };
   }));

@@ -34,6 +34,8 @@ pnpm web --port 4387
 标题栏的继续／恢复／重试调用 `POST /api/task-action {name, action}`，一次作用于任务里全部中断或失败的步骤，随后重新运行任务；没有任何步骤记录时，继续打开运行对话框。
 单个步骤只在命令行处理：`pnpm start --name <任务名> --continue|--resume|--retry --section <管线> --step <步骤>`，`--step` 为管线目录下的步骤路径，如 `step11_completion/head/children/eye`、`step10_reduce/depth01`、`step02`、`step01_mask`；省略 `--section`／`--step` 时与标题栏相同。停止为 `pnpm start --name <任务名> --stop`。
 
+九轴子组使用 `--section nine-axis --step step02_angles/left|up|down`。既有 `POST /api/task-action` 接受 `{ name, dir, action, section? }`，`section` 填实际管线 ID（如 `nine-axis`）时仅恢复该管线并从该管线继续运行；省略时保持任务级操作。该接口不接受单个 `step`。
+
 ## 任务执行与流程预览
 
 “任务与执行”页签负责选择任务、启动 / 续跑、停止和查看日志。总览分“共同准备 → 人物线／衣服线 → 合流”三栏，管线卡片显示当前执行状态，失败时附失败原因；占用本机 Krita 名额的管线显示“占用 Krita”，名额已满时显示“Krita 排队中”，悬停查看已用／上限。点击卡片或“预览”，进入独立的“流程预览”页签并定位到该管线；也可用 `?name=<name>&page=preview&stage=0` 直接定位指定任务的人物分块，`stage=0..5` 对应六条管线。
@@ -163,7 +165,7 @@ pnpm web
 | 组装原画 | `character-assembly/step01/character-assembled.png` |
 | 法线 | `lighting/normal.png` |
 | 深度 | `lighting/depth.png` |
-| 头部九轴 | `nine-axis/step02_angle-x/deformers.json`；补绘工程 `character-nine-axis.kra` / 同名 PNG |
+| 头部九轴 | `nine-axis/step02_angles/{left,up,down}/deformers.json`；父合并 `step02_angles/deformers.json`；斜向 `step03_angle-xy`、下颌 `step04_jaw-line` |
 
 角色工程沿用已有组装管线。法线 / 深度路径是阴影 normal-depth 模式的固定发布约定。未生成时显示“待管线生成”，仍可预览角色原画；组装结果缺失则显示等待状态，不使用任意 KRA 或参考图代替。管线产出后点“更新项目”（或重新打开项目）自动绑定，操作会重置本次图层改动。管线负责保证贴图与组装原画对应，尺寸不符仍明确拒绝。头部九轴目录的 `source.json` 与当前选中的组装或阴影 KRA / PNG 一致时，角色工程改载九轴补绘工程；来源变化则退回原工程并标记待重做（见 `.agents/skills/live2d-maker/nine-axis/README.md`）。
 

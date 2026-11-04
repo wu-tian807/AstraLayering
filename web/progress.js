@@ -106,6 +106,12 @@ export const sectionSteps = [
       { ...step('normal-depth-maps', '生成与验收贴图', 'pending'), processDirectory: 'shadow/step01_normal-depth' },
     ])],
     '启动时选择其中一种方式执行；另一种方式的已有产物保留。'), childrenMode: 'alternative' }],
+  [step('step01_video', '三向视频与参考帧', 'pending'),
+    { ...step('step02_angles', '独立单轴与合并', 'pending', ['left', 'up', 'down'].map(group =>
+      step(`step02_angles/${group}`, { left: '左右转头', up: '抬头', down: '低头' }[group], 'pending')),
+      '三个子项并发制作；全部完成后合并单轴结果。'), childrenMode: 'parallel' },
+    step('step03_angle-xy', '斜向四角', 'pending', [], '等待三个单轴和父合并全部完成。'),
+    step('step04_jaw-line', '下颌线与脖子', 'pending')],
 ];
 
 export function groupLayers(groups) {
@@ -164,6 +170,14 @@ stepArtifacts.push({
   mask: [image('shadow/step01_mask/character-shadowed.png', '投影阴影'), image('shadow/step01_mask/face-review.png', '头脸投影 · 原尺寸对照'), image('shadow/step01_mask/inspection/overview.png', '去影对照'), file('shadow/step01_mask/character-shadowed.kra', '阴影 KRA'), file('shadow/step01_mask/shadows.json', '跟随与裁切关系'), file('shadow/step01_mask/inspection.json', '裁切检查'), file('shadow/step01_mask/report.md', '绘制报告')],
   'normal-depth': [],
   'normal-depth-maps': [image('shadow/step01_normal-depth/normal.png', '法线'), image('shadow/step01_normal-depth/depth.png', '深度'), file('shadow/step01_normal-depth/report.md', '贴图报告')],
+});
+stepArtifacts.push({
+  step01_video: [...['left', 'up', 'down'].flatMap(group => [image(`nine-axis/step01_video/${group}.png`, `${group} 参考帧`),
+    file(`nine-axis/step01_video/${group}.mp4`, `${group} 视频`)]), file('nine-axis/step01_video/views.json', '三向取帧记录')],
+  'step02_angles': [file('nine-axis/step02_angles/deformers.json', '合并单轴结果')],
+  ...Object.fromEntries(['left', 'up', 'down'].map(group => [`step02_angles/${group}`, [file(`nine-axis/step02_angles/${group}/deformers.json`, `${group} 独立单轴`)]])),
+  'step03_angle-xy': [file('nine-axis/step03_angle-xy/deformers.json', '斜向九轴结果')],
+  'step04_jaw-line': [file('nine-axis/step04_jaw-line/deformers.json', '下颌线结果')],
 });
 export function shadowInspectionArtifacts(files) {
   return files.filter(path => /^shadow\/step01_mask\/inspection\/relation-\d{3,}-review\.png$/.test(path)).sort()

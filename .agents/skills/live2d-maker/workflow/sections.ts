@@ -9,6 +9,7 @@ import { formatLayeringSummary } from '../shared/part/run.ts';
 import { runWorkflow as characterRaster } from '../raster-layering/run.ts';
 import { runWorkflow as clothingRaster } from '../clothing-raster-layering/run.ts';
 import { runWorkflow as assemble } from '../character-assembly/run.ts';
+import { runWorkflow as nineAxis } from '../nine-axis/run.ts';
 import type { SectionId } from '../shared/paths.ts';
 import { taskOriginal, type TaskRun } from './state.ts';
 
@@ -19,6 +20,10 @@ export type SectionResult = { summary: string; output?: string };
 export async function executeSection(id: SectionId, directory: string, run: TaskRun, progress: (message: string) => void,
   events: { prepared?(): void } = {}): Promise<SectionResult> {
   const name = basename(directory), dir = dirname(directory);
+  if (id === 'nine-axis') {
+    const summary = await nineAxis({ name, dir, krita: run.krita, progress });
+    return { summary, output: 'nine-axis/step04_jaw-line/deformers.json' };
+  }
   if (id === 'shadow') {
     const mode = shadowMode(run.shadowMode);
     const summary = await shadow({ name, dir, krita: run.krita, shadowMode: mode, progress });

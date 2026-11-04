@@ -98,7 +98,7 @@ test('ellipse passes through all three keyed poses and intermediate edits preser
 
 test('workbench saves keyforms; stale revisions and changed texture identities cannot overwrite source', async t => {
   const root = await mkdtemp(join(tmpdir(), 'nine-save-')); t.after(() => rm(root, { recursive: true, force: true }));
-  const path = 'nine-axis/step02_angle-x/deformers.json'; await mkdir(join(root, 'nine-axis/step02_angle-x'), { recursive: true });
+  const path = 'nine-axis/step02_angles/deformers.json'; await mkdir(join(root, 'nine-axis/step02_angles'), { recursive: true });
   const doc = fixture(); await writeFile(join(root, path), JSON.stringify(doc));
   const stat = await lstat(join(root, path)), version = `${stat.mtimeMs}:${stat.size}`;
   const edited = editNineAxis(doc, [{ action: 'transform', id: 'a', x: -30, translate: [2, 0] }]);

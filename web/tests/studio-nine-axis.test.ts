@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { validateHeadNineAxis, keyformAt, lattice, refine, levelParts, dragKeyform, deformerTree, evaluatePoints, nodes, meshIndices } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
-import { nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { legacyNineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 
 const part = (keyforms: Record<string, number[][]>, extra = {}): any => ({ id: 'hair/bangs', level: 'hair', texture: 'layers/000.png', textureBounds: [0, 0, 10, 10], bbox: [0, 0, 10, 10], cols: 1, rows: 1, keyforms, ...extra });
 const rest = [[0, 0], [10, 0], [0, 10], [10, 10]];
@@ -61,7 +61,7 @@ test('Validation accepts mask parts and clips that name other parts', () => {
 });
 
 test('Pink Doll ships authored face warps, local feature meshes and fixed neck', async () => {
-  const doc = validateHeadNineAxis(JSON.parse(await readFile(new URL('../../demos/pink-doll/' + nineAxisArtifacts.headDeformers, import.meta.url), 'utf8')));
+  const doc = validateHeadNineAxis(JSON.parse(await readFile(new URL('../../demos/pink-doll/' + legacyNineAxisArtifacts.headDeformers, import.meta.url), 'utf8')));
   assert.ok(doc.parts.every((p: any) => /^(face|hair)\/|^neck(\/|$)|^head_accessories/.test(p.id)), '只含头部图层');
   assert.deepEqual(doc.levels.map((l: any) => l.id), ['face']);
   assert.ok(doc.deformers.length > 0);

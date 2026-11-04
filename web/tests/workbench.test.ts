@@ -326,3 +326,27 @@ test('任务操作接口：恢复、重试人物与衣服分块的未完成步�
   // The removed single-step endpoint is gone; one step is acted on from the CLI.
   assert.equal((await f.post('step-action', { name: 'case', section: 'part-layering', step: 'step11_completion/head', action: 'retry' })).status, 404);
 });
+
+test('existing task-action accepts the nine-axis section ID and keeps another lane untouched', async t => {
+  const started: any[] = [];
+  const f = await fixture(t, async options => { started.push(options); return 456; }), task = join(f.dir, 'case');
+  await mkdir(task);
+  await saveRun(task, await configureRun({ name: 'case', dir: f.dir }, task));
+  await put(task, 'nine-axis/step02_angles/.running', '');
+  await put(task, 'nine-axis/step02_angles/up/.running', '');
+  await put(task, 'nine-axis/step02_angles/up/deformers.json', 'up author');
+  await put(task, 'nine-axis/agents/steps/step02_angles/up/session.json', JSON.stringify({ threadId: 'up-thread' }));
+  await put(task, 'part-layering/step11_completion/head/.running', '');
+  await put(task, 'part-layering/agents/steps/step11_completion/head/session.json', JSON.stringify({ threadId: 'part-thread' }));
+  const response = await f.post('task-action', { name: 'case', action: 'resume', section: 'nine-axis' });
+  assert.equal(response.status, 202);
+  assert.equal(started[0].from, 'nine-axis'); assert.equal(started[0].to, 'nine-axis');
+  assert.equal(await readFile(join(task, 'nine-axis/step02_angles/up/deformers.json'), 'utf8'), 'up author');
+  assert.equal((await jsonFile(task, 'part-layering/agents/steps/step11_completion/head/session.json'))!.threadId, 'part-thread');
+  assert.equal(await jsonFile(task, 'nine-axis/agents/steps/step02_angles/up/session.json'), undefined);
+  const wrongSection = await f.post('task-action', { name: 'case', action: 'retry', section: '6' });
+  assert.equal(wrongSection.status, 400); assert.match(wrongSection.value.error, /未知管线/);
+  const wrongScope = await f.post('task-action', { name: 'case', action: 'retry', section: 'nine-axis', step: 'step02_angles/up' });
+  assert.equal(wrongScope.status, 400); assert.match(wrongScope.value.error, /单步骤操作请使用 CLI/);
+  assert.equal(started.length, 1);
+});

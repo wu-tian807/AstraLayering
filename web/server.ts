@@ -268,6 +268,9 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           // The same commands as pnpm start: plain start / continue, or --continue / --resume / --retry
           // for every step still marked .running (task-action). One step is acted on from the CLI.
           if (starts.has(directory)) { json({ error: '该任务正在启动，请等待启动结果' }, 409); return; }
+          const actionSection = path === '/api/task-action' && value.section !== undefined ? sectionId(value.section) : undefined;
+          if (path === '/api/task-action' && value.step !== undefined) throw new Error('单步骤操作请使用 CLI --section 与 --step；task-action 作用于管线内所有待恢复步骤');
+          if (actionSection) opts.from = opts.to = actionSection;
           starts.add(directory);
           try {
             // Krita is checked before an action changes any step.
@@ -276,7 +279,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
               if (!(error instanceof KritaUnavailable)) throw error;
               json(kritaRefused(error), 409); return;
             }
-            const message = path === '/api/task-action' ? await applyTaskAction({ name: opts.name, dir: opts.dir, action: value.action }) : undefined;
+            const message = path === '/api/task-action' ? await applyTaskAction({ name: opts.name, dir: opts.dir, action: value.action, section: actionSection }) : undefined;
             json({ ...(message === undefined ? {} : { message }), pid: await start(opts), name: opts.name }, 202);
           } finally { starts.delete(directory); }
           return;
@@ -302,7 +305,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           try { const directory = await task(entry.name, requestDir); tasks.push(await summary(directory, entry.name, requestDir)); }
           catch (error) { tasks.push({ name: entry.name, status: 'failed', error: String(error) }); }
         }
-        json({ directory: requestDir, tasks }); return;
+        json({ directory: requestDir, tasks, sections: sectionIds }); return;
       }
       if (path === '/api/task' || path === '/artifact' || path === '/api/export') {
         if (url.searchParams.get('dir') !== requestDir) { json({ error: '追踪目录已改变，请刷新页面' }, 409); return; }
@@ -373,6 +376,9 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         if (!isStudioPath(selected)) throw new Error('工作台只读取角色组装、光照、投影与九轴产物');
         const file = await safePath(directory, selected);
         if (!(await lstat(file)).isFile()) throw new Error('产物不是文件');
+        if (extname(file).toLowerCase() === '.mp4') {
+          await streamMediaFile(file, 'video/mp4', request, response); return;
+        }
         response.writeHead(200, { 'Content-Type': extname(file).toLowerCase() === '.png' ? 'image/png' : extname(file).toLowerCase() === '.json' ? 'application/json' : 'application/octet-stream' });
         createReadStream(file).on('error', () => response.destroy()).pipe(response); return;
       }

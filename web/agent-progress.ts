@@ -1,11 +1,12 @@
 import { lstat, readFile } from 'node:fs/promises';
 import { safePath } from './files.ts';
 import { retryWaitFile } from '../.agents/skills/live2d-maker/shared/codex/agent-log.ts';
+import { fromTaskPath, toTaskPath } from '../.agents/skills/live2d-maker/shared/task-paths.ts';
 
 // throttledUntil: the call holds its slot while waiting to retry until then; retryError is the error as logged, verbatim.
-export type AgentCall = { name: string; step: string; request: string; mtime: number; finished: boolean; failed: boolean; throttledUntil?: number; retryError?: string };
+export type AgentCall = { name: string; step: string; request: string; mtime: number; finished: boolean; failed: boolean; outputDirectory?: string; throttledUntil?: number; retryError?: string };
 export const throttled = (call: AgentCall, now = Date.now()) => !call.finished && (call.throttledUntil ?? 0) > now;
-const requests = new Map<string, { version: string; name: string; step: string }>();
+const requests = new Map<string, { version: string; name: string; step: string; outputDirectory?: string }>();
 
 // A request is recorded after acquiring a slot. Read these records, never infer activity from a draft.
 export async function currentAgentCalls(directory: string, section: string, files: Set<string>,
@@ -22,7 +23,9 @@ export async function currentAgentCalls(directory: string, section: string, file
         let cached = requests.get(path);
         if (cached?.version !== version) {
           const value = JSON.parse(await readFile(path, 'utf8'));
-          cached = { version, name: value.task?.name ?? value.name ?? '', step: value.task?.step ?? '' };
+          const output = value.task?.outputDirectory ?? value.outputDirectory;
+          cached = { version, name: value.task?.name ?? value.name ?? '', step: value.task?.step ?? value.step ?? '',
+            ...(typeof output === 'string' ? { outputDirectory: toTaskPath(directory, fromTaskPath(directory, output)) } : {}) };
           if (requests.size >= 2048) requests.delete(requests.keys().next().value!);
           requests.set(path, cached);
         }
@@ -37,7 +40,7 @@ export async function currentAgentCalls(directory: string, section: string, file
           ? JSON.parse(await readFile(await safePath(directory, result), 'utf8')).status === 'failed' : false;
         const wait = pending ? JSON.parse(await readFile(await safePath(directory, waitPath), 'utf8')) : undefined;
         const throttledUntil = Date.parse(wait?.until) || undefined;
-        calls.push({ name: cached.name, step: cached.step, request, mtime: info.mtimeMs, finished, failed,
+        calls.push({ name: cached.name, step: cached.step, outputDirectory: cached.outputDirectory, request, mtime: info.mtimeMs, finished, failed,
           ...(throttledUntil ? { throttledUntil, retryError: String(wait.error ?? '') } : {}) });
       } catch (error) {
         if ((error as NodeJS.ErrnoException).code !== 'ENOENT') errors.push(request + ': ' + String(error));

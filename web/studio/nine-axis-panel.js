@@ -8,7 +8,7 @@ const clipLabel = p => p.clip ? `${p.clip.invert ? '反向裁切' : '裁切'} �
 const short = id => id.replace(/^(face|hair)\//, '').replace(/^features\//, '');
 // Only authored keys grant preview directions. Every node must have the Y
 // endpoint/corners, including additional local keys the renderer interpolates.
-export function nineAxisCapabilities(doc) {
+export function nineAxisCapabilities(doc, allowPlane = true) {
   const keys = id => [...new Set(doc.parameters?.find(p => p.id === id && !p.status)?.keys?.filter(Number.isFinite) ?? [0])].sort((a, b) => a - b);
   const all = nodes(doc), form = (n, field, key) => {
     const p = n[field]?.[String(key)];
@@ -21,7 +21,7 @@ export function nineAxisCapabilities(doc) {
   // Keep neighbouring local keys too: a parameter endpoint may lie between
   // node keys, and the renderer evaluates both neighbours before blending.
   const relevant = (ks, a) => ks.filter((k, i) => k && (k >= a.min && k <= a.max || k < a.min && (ks[i + 1] ?? Infinity) >= a.min || k > a.max && (ks[i - 1] ?? -Infinity) <= a.max));
-  const plane = x.min < 0 && x.max > 0 && y.min < 0 && y.max > 0 && all.every(n => {
+  const plane = allowPlane && x.min < 0 && x.max > 0 && y.min < 0 && y.max > 0 && all.every(n => {
     const xs = [...new Set([...x.keys.filter(Boolean), ...relevant(keyValues(n), x)])];
     const ys = [...new Set([...y.keys.filter(Boolean), ...relevant(keyValues(n, 'y'), y)])];
     return xs.every(a => ys.every(b => form(n, 'keyformsXY', `${a},${b}`)));
@@ -78,9 +78,9 @@ export class HeadNineAxisPanel {
   async load(project, force = false) {
     const epoch = ++this.epoch, entry = project?.nineAxis;
     this.stopSwing();
-    if (!force && this.doc && this.project?.folder === project?.folder && this.version === entry?.version) return;
+    if (!force && entry?.available && this.doc && this.project?.folder === project?.folder && this.project?.nineAxis?.path === entry?.path && this.version === entry?.version) return;
     this.project = project; this.version = entry?.version; this.clear();
-    if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step02_angle-x/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
+    if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step02_angles/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
     this.status('正在读取头部九轴…');
     try {
       const url = path => './studio-artifact?' + new URLSearchParams({ folder: project.folder, path, version: entry.version });
@@ -88,7 +88,9 @@ export class HeadNineAxisPanel {
       const doc = validateHeadNineAxis(await r.json()), base = entry.path.replace(/[^/]+$/, '');
       const images = await Promise.all(doc.parts.map(async p => { const b = await fetch(url(base + p.texture)); if (!b.ok) throw Error(p.id + '：贴图读取失败'); return createImageBitmap(await b.blob(), { premultiplyAlpha: 'none' }); }));
       if (epoch !== this.epoch) return;
-      this.install(doc, images);
+      // Source composition belongs to the shared model/renderer. The merge's
+      // neutral XY correction grids do not announce a completed corner stage.
+      this.install(doc, images, !['x', 'up', 'down', 'y'].includes(entry.stage));
     } catch (e) { if (epoch === this.epoch) { this.status(e.message); this.error(e.message); } }
   }
   clear() {
@@ -97,10 +99,10 @@ export class HeadNineAxisPanel {
     $('#nine-axis-tree').replaceChildren(); $('#nine-axis-controls').hidden = true; this.overlay.replaceChildren();
   }
   status(text) { $('#nine-axis-status').textContent = text; }
-  install(doc, images) {
+  install(doc, images, allowPlane = true) {
     this.view3 ??= new HeadNineAxisRenderer(this.canvas);
     this.doc = doc; this.view3.install(doc, images);
-    this.axes = nineAxisCapabilities(doc);
+    this.axes = nineAxisCapabilities(doc, allowPlane);
     const ax = this.axes.x, ay = this.axes.y.min || this.axes.y.max ? this.axes.y : null;
     const keyButton = (k, set) => { const b = document.createElement('button'); b.textContent = (k > 0 ? '+' : '') + k; b.dataset.key = k; b.onclick = set; return b; };
     const configure = (el, axis) => { el.min = axis.min; el.max = axis.max; el.disabled = axis.min === axis.max; };

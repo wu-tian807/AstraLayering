@@ -1,0 +1,50 @@
+{
+  "source": "铁锭 Ferrum《Live2D Cubism Tutorial No.004 ④ 五官九轴》",
+  "sourceVideoSha256": "a4a5c5778041b60ab677ba60edbf53d8c6cb1d4f13863e4e09161e5bc11aab41",
+  "sourceFrameSize": [
+    1280,
+    720
+  ],
+  "faceType": "圆润鹅蛋脸（按画面轮廓描述）",
+  "frames": [
+    {
+      "file": "01-face-down-keyform.jpg",
+      "requestedTimeSeconds": 248,
+      "description": "低头；面板 X=0/Y=-30/Z=0",
+      "sha256": "b854b648fe09211fb4684ab6d487c7531cc009c9a23029614661d574583cd6da"
+    },
+    {
+      "file": "02-face-down-grid.jpg",
+      "requestedTimeSeconds": 252,
+      "description": "低头制作的脸底网格；下巴渐收",
+      "sha256": "e61fad46ac336fd30cde4041758880e8be9937389d8a141891cfaebd634fcff8"
+    },
+    {
+      "file": "03-face-up-grid.jpg",
+      "requestedTimeSeconds": 256,
+      "description": "抬头制作；字幕讨论圆润下巴",
+      "sha256": "f308a7fb5c9d76cf5ff0f6b01ff9fb9ad3f3a7ea7dc03a784f82b61e568ad874"
+    },
+    {
+      "file": "04-brow-eye-y-comparison.jpg",
+      "requestedTimeSeconds": 447,
+      "description": "教程叠图左/中/右为抬头/正面/低头示例",
+      "sha256": "8776da71cd88e89cd5d8e794c2bb845fd7e527c615e3edf1f92c269cdd1f1c64"
+    },
+    {
+      "file": "05-eyes-down-grid.jpg",
+      "requestedTimeSeconds": 455,
+      "description": "低头眉眼制作局部",
+      "sha256": "942cc44d24c4215bd73d31bee3ad91ff9e0a44c36ceb8fd650fab1e45973cf9a"
+    },
+    {
+      "file": "06-eyes-up-grid.jpg",
+      "requestedTimeSeconds": 462,
+      "description": "抬头眉眼制作局部",
+      "sha256": "ceae823b38f0e5beaf592dab9df607edde0ca9f43d6eaee0360f2116056a336c"
+    }
+  ],
+  "processing": "Existing ffmpeg 7.0.2, -ss seconds -frames:v 1; full original frame, JPEG quality 96, no geometry changes.",
+  "interpretation": "In-progress teaching keyforms and inserted example faces, not measured physical-angle targets. Tutorial flattening/feature-spacing advice does not override the current character video. Tutorial neck motion is not copied; current neck stays fixed and closure waits for step04 下颌步骤.",
+  "sourceVideoNote": "Original formal tutorial; local full-resolution keyframes and hashes are self-contained. Video is not required to load this prior."
+}

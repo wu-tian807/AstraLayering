@@ -38,6 +38,7 @@ export const sectionDependencies: Record<SectionId, readonly { id: SectionId; pr
   'clothing-raster-layering': [{ id: 'clothing-part-layering' }],
   'character-assembly': [{ id: 'raster-layering' }, { id: 'clothing-raster-layering' }],
   'shadow': [{ id: 'character-assembly' }],
+  'nine-axis': [{ id: 'shadow' }],
 };
 
 function terminate(child: ChildProcess, force = false) {
@@ -145,7 +146,9 @@ export async function runTask(options: TaskOptions, dependencies: {
     const selected = selectedSections(run.from, run.to);
     if (environment) {
       const standard = run.standard;
-      await preflightAgentSteps(environment, selected.flatMap(id => sectionAgentSteps(id, standard, run!.shadowMode)), { runsRoot: dirname(directory), progress,
+      await preflightAgentSteps(environment, selected.flatMap(id => id === 'nine-axis'
+        ? ['nine_axis_head', 'nine_axis_head_xy', 'nine_axis_head_jaw'] as const
+        : sectionAgentSteps(id, standard, run!.shadowMode)), { runsRoot: dirname(directory), progress,
         building: () => { progress('准备中：构建补丁版 Codex，完成后自动开始；构建期间的停止请求在构建结束后生效。'); dependencies.preparing?.(run!); } });
     }
     signal.throwIfAborted();

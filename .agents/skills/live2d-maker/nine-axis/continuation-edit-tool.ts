@@ -9,7 +9,7 @@ import { stepTexture } from './head.ts';
 import { angleScale, type AngleScale } from './angles.ts';
 import { readUpstream, startContinuation, compileContinuation, authorFile, sha256, type AuthoredHead, type Stage } from './continuation.ts';
 
-export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale()): FunctionTool {
+export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory))): FunctionTool {
   return { ...toolDefinition('edit_nine_axis'), async execute(value, signal) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('参数须为对象');
     const args = value as { operations?: any[]; revision?: string; notes?: string; axis?: unknown; importParts?: unknown };
@@ -27,7 +27,7 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
           if ((stage === 'up' || stage === 'down') && (x !== 0 || y !== (stage === 'up' ? scale.y[1] : scale.y[0]))) throw Error(`${stage} 阶段只编辑 X=0、Y=${stage === 'up' ? scale.y[1] : scale.y[0]} 的关键形`);
           if (stage === 'xy' && (x !== scale.x[0] || !scale.y.includes(y))) throw Error('四角阶段只编辑左上、左下；右侧由组合形变镜像');
         }
-        if (op?.action === 'add_part' && op.part) op.part.texture = stepTexture(directory, dirname(dirname(directory)), op.part.id, op.part.texture);
+        if (op?.action === 'add_part' && op.part) op.part.texture = stepTexture(directory, taskRoot, op.part.id, op.part.texture);
       }
       doc = editNineAxis(doc, operations) as AuthoredHead;
     }

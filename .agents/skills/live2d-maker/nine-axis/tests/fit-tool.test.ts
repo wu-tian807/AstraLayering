@@ -54,7 +54,7 @@ test('trace fitting respects composed ancestors and descendants and preserves un
 
 test('trace inspection is read-only; SVG fitting persists real left geometry and reports curve residuals', async t => {
   const root = await mkdtemp(join(tmpdir(), 'nine-fit-')); t.after(() => rm(root, { recursive: true, force: true }));
-  const directory = join(root, 'nine-axis/step02_angle-x'); await mkdir(join(directory, 'layers'), { recursive: true }); await mkdir(join(root, 'nine-axis/step01_video'), { recursive: true });
+  const directory = join(root, 'nine-axis/step02_angles'); await mkdir(join(directory, 'layers'), { recursive: true }); await mkdir(join(root, 'nine-axis/step01_video'), { recursive: true });
   const color = join(root, 'source.png'), document = join(root, 'source.kra'), reference = join(root, 'nine-axis/step01_video/left.png');
   await writeFile(document, 'source'); await sharp({ create: { width: 200, height: 200, channels: 4, background: '#fff' } }).png().toFile(color);
   await sharp({ create: { width: 100, height: 100, channels: 4, background: '#888' } }).png().toFile(reference);
@@ -90,11 +90,11 @@ test('trace inspection is read-only; SVG fitting persists real left geometry and
 
 test('up and down trace fitting saves independent Y endpoints and preserves completed up and X', async t => {
   const root = await mkdtemp(join(tmpdir(), 'nine-pitch-fit-')); t.after(() => rm(root, { recursive: true, force: true }));
-  const xdir = join(root, 'nine-axis/step02_angle-x'); await mkdir(join(xdir, 'layers'), { recursive: true });
-  await mkdir(join(root, 'nine-axis/step03_video-y'), { recursive: true });
+  const xdir = join(root, 'nine-axis/step02_angles'); await mkdir(join(xdir, 'layers'), { recursive: true });
+  await mkdir(join(root, 'nine-axis/step01_video'), { recursive: true });
   const color = join(root, 'source.png'), document = join(root, 'source.kra'); await writeFile(document, 'source');
   await sharp({ create: { width: 200, height: 200, channels: 4, background: '#fff' } }).png().toFile(color);
-  for (const direction of ['up', 'down']) await sharp({ create: { width: 100, height: 100, channels: 4, background: '#888' } }).png().toFile(join(root, `nine-axis/step03_video-y/${direction}.png`));
+  for (const direction of ['up', 'down']) await sharp({ create: { width: 100, height: 100, channels: 4, background: '#888' } }).png().toFile(join(root, `nine-axis/step01_video/${direction}.png`));
   await sharp({ create: { width: 80, height: 80, channels: 4, background: '#ffe4d2' } }).png().toFile(join(xdir, 'layers/base.png'));
   const input: any = { color, document }, box = { x: 50, y: 40, size: 100 }, signal = new AbortController().signal;
   await createHeadEditTool(xdir, input, box).execute({ importParts: [{ id: 'face/face_base', group: 'face', texture: 'layers/base.png', textureBounds: [60, 50, 80, 80], bbox: [60, 50, 140, 130], cols: 3, rows: 3 }] }, signal);
@@ -123,7 +123,7 @@ test('up and down trace fitting saves independent Y endpoints and preserves comp
 
 const xyFixture = async (t: TestContext) => {
   const root = await mkdtemp(join(tmpdir(), 'nine-xy-fit-')); t.after(() => rm(root, { recursive: true, force: true }));
-  const directory = join(root, 'nine-axis/step06_angle-xy'), upstreamDirectory = join(root, 'nine-axis/step05_angle-down');
+  const directory = join(root, 'nine-axis/step03_angle-xy'), upstreamDirectory = join(root, 'nine-axis/step05_angle-down');
   await mkdir(join(upstreamDirectory, 'layers'), { recursive: true });
   const color = join(root, 'source.png'), document = join(root, 'source.kra'); await writeFile(document, 'source');
   await sharp({ create: { width: 200, height: 200, channels: 4, background: '#fff' } }).png().toFile(color);
@@ -206,6 +206,17 @@ test('XY fits each selected frame into a saved corner, protects axes and the oth
     else assert.equal(await readFile(join(f.directory, 'left-up-fit-report.json'), 'utf8'), upReport, 'down fitting retains the up report');
     assert.equal(result(await f.tool.execute({ action: 'inspect', corner, trace }, f.signal)).revision, fitted.revision, 'saved revision is usable for the same corner and inputs');
   }
+  await mkdir(join(f.directory, 'frames'), { recursive: true });
+  const frames: Record<string, unknown> = {}, videos: Record<string, unknown> = {};
+  for (const corner of ['left-up', 'left-down']) {
+    const video = Buffer.from(`test video ${corner}`), image = f.references.get(corner)!;
+    await writeFile(join(f.directory, `${corner}.mp4`), video);
+    await writeFile(join(f.directory, 'frames', `${corner}.png`), image);
+    videos[corner] = { sha256: sha256(video) };
+    frames[corner] = { video: `${corner}.mp4`, path: `${corner}.png`, frameIndex: 1, reason: 'fixture frame', videoSha256: sha256(video), sha256: sha256(image) };
+  }
+  await writeFile(join(f.directory, 'selected-frames.json'), JSON.stringify({ version: 1, frames }));
+  await writeFile(join(f.directory, 'videos.json'), JSON.stringify({ version: 1, ...videos }));
   await finishAngleXY(f.directory, f.upstreamDirectory, f.scale);
   assert.deepEqual(await readFile(join(f.directory, 'layers/base.png')), f.texture, 'published texture is copied unchanged from the upstream');
   assert.deepEqual(await readFile(join(f.upstreamDirectory, 'layers/base.png')), f.texture);

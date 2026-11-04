@@ -10,6 +10,7 @@ import { steps as personSteps } from '../raster-layering/steps.ts';
 import { steps as clothingSteps } from '../clothing-raster-layering/steps.ts';
 import { steps as assemblySteps } from '../character-assembly/steps.ts';
 import { maskSteps, mapSteps } from '../shadow/steps.ts';
+import { nineAxisGroups, nineAxisSteps } from './nine-axis.ts';
 
 // The files a completed step must still hold. A run refuses to keep a completed
 // step that lost one; retry is how such a step is redone. Paths are absolute;
@@ -22,7 +23,49 @@ const references = (root: string, name: string) => join(root, 'references', name
 const itemGroup = (item: string) => item.split('/children/').join('/');
 const present = (path: string) => lstat(path).then(info => info.isFile(), () => false);
 
+// These are recoverable file contracts, not visual acceptance. A coverage
+// report can only check the mask it was given; the user still reviews the art.
+const coverageFiles = ['face-coverage.svg', 'face-coverage-report.json', 'face-coverage-check.png', 'face-alpha-check.png'];
+const axisFiles = (group: string) => [`face-${group}.json`, 'deformers.json', 'source.json', 'face-trace.json', 'fit-report.json', ...coverageFiles];
+async function textureDeliveries(directory: string): Promise<string[]> {
+  let document;
+  try { document = JSON.parse(await readFile(join(directory, 'deformers.json'), 'utf8')); }
+  catch { return []; } // The document itself is already a required delivery.
+  return [...new Set<string>((Array.isArray(document.parts) ? document.parts : [])
+    .flatMap((part: { texture?: unknown }) => typeof part?.texture === 'string' ? [join(directory, part.texture)] : []))];
+}
+async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
+  const [step, group] = id.split('/'), directory = join(root, id);
+  if (step === nineAxisSteps[0] && !group) return [
+    'upper-body.png', 'crop.json', 'videos.json', 'views.json',
+    ...nineAxisGroups.flatMap(view => [`${view}.mp4`, `${view}.png`, `frames/${view}.png`]),
+  ].map(file => join(directory, file));
+  if (step === nineAxisSteps[1]) {
+    if (group && (nineAxisGroups as readonly string[]).includes(group)) {
+      return [...axisFiles(group).map(file => join(directory, file)), ...await textureDeliveries(directory)];
+    }
+    if (group) return [];
+    const files = ['deformers.json', 'axis-sources.json', 'source.json',
+      'neutral/deformers.json', 'neutral/source.json', 'neutral/export-record.json', 'neutral/head_parts_manifest.json',
+      'merged/deformers.json', 'merged/axis-sources.json'].map(file => join(directory, file));
+    for (const view of nineAxisGroups) files.push(...await nineAxisDeliveries(root, `${step}/${view}`));
+    for (const output of [directory, join(directory, 'neutral'), join(directory, 'merged')]) files.push(...await textureDeliveries(output));
+    return [...new Set(files)];
+  }
+  if (step === nineAxisSteps[2] && !group) return [
+    ...['face-xy.json', 'linear.json', 'deformers.json', 'videos.json', 'selected-frames.json',
+      ...['left-up', 'left-down'].flatMap(corner => [`${corner}.mp4`, `${corner}.png`, `frames/${corner}.png`,
+        `${corner}-face-trace.json`, `${corner}-fit-report.json`, ...coverageFiles.map(file => `${corner}-${file}`)])]
+      .map(file => join(directory, file)), ...await textureDeliveries(directory),
+  ];
+  if (step === nineAxisSteps[3] && !group) return [
+    join(directory, 'jaw.json'), join(directory, 'deformers.json'), ...await textureDeliveries(directory),
+  ];
+  return [];
+}
+
 export async function stepDeliveries(root: string, section: SectionId, id: string): Promise<string[]> {
+  if (section === 'nine-axis') return nineAxisDeliveries(root, id);
   const raster = rasterSteps[section];
   if (raster) return raster.find(step => step.id === id)?.requiredFiles.map(file => join(root, id, file)) ?? [];
   const [step, ...items] = id.split('/'), item = items.join('/');

@@ -9,7 +9,8 @@ import { runTask } from '../runner.ts';
 import { preflightKrita } from '../krita.ts';
 import { checkKrita } from '../../shared/raster/krita.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
-import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, taskStatus } from '../state.ts';
+import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, taskStatus } from '../state.ts';
+import { sessionPath } from '../../shared/agents/step-session.ts';
 import { main, parseArguments, startBackground } from '../run.ts';
 import { fakePatchedCodex } from '../../shared/tests/fake-codex.ts';
 import { defaultKnowledgeDirectory, knowledgeDirectory, selectKnowledge } from '../../shared/knowledge.ts';
@@ -89,7 +90,7 @@ test('总控保留输入与配置，按依赖推进；后续仅用 name 和 dir 
     assert.equal(run.standard, true); assert.equal(disk.standard, true);
     return { summary: id, output: join(f.directory, id, 'output') };
   } });
-  assert.deepEqual([...first].sort(), [...sectionIds].sort());
+  assert.deepEqual([...first].sort(), selectedSections('part-layering', 'shadow').sort());
   for (const [before, after] of [['part-layering', 'raster-layering'], ['part-layering', 'clothing-part-layering'],
     ['clothing-part-layering', 'clothing-raster-layering'], ['raster-layering', 'character-assembly'],
     ['clothing-raster-layering', 'character-assembly'], ['character-assembly', 'shadow']] as const) assert.ok(first.indexOf(before) < first.indexOf(after), before + ' → ' + after);
@@ -103,7 +104,7 @@ test('总控保留输入与配置，按依赖推进；后续仅用 name 和 dir 
     return { summary: '管线自身检查并跳过', output: 'retained' };
   } });
   // Re-enter the section's own authoritative checks, never trust a stale top-level completion alone.
-  assert.deepEqual([...second].sort(), sectionIds.filter(id => !['part-layering', 'clothing-part-layering'].includes(id)).sort());
+  assert.deepEqual([...second].sort(), selectedSections('raster-layering', 'shadow').filter(id => id !== 'clothing-part-layering').sort());
   const status = await taskStatus(f.options);
   assert.equal(status.status, 'completed'); assert.equal(status.runnerAlive, false); assert.equal(status.lockHeld, false);
   assert.equal(status.output, 'retained');
@@ -357,6 +358,53 @@ test('素体未换装时跳过衣服拆分与衣服绘制，记为已完成后�
   await markBaseStep(f.directory, true);
   const dressed = await runTask({ name: 'case', dir: f.options.dir }, { preflight, execute: async id => { executed.push(id); return { summary: id }; } });
   // part-layering stays as drawn: its raster stage has started.
-  assert.deepEqual(executed, sectionIds.slice(1));
+  assert.deepEqual(executed, selectedSections('raster-layering', 'shadow'));
   assert.equal(dressed.sections['clothing-part-layering']?.skipped, undefined);
+});
+
+test('总入口显式九轴路线独立执行，默认路线仍止于 shadow，恢复沿用三名共享 agent', async t => {
+  assert.equal(sectionIds.at(-1), 'nine-axis');
+  assert.deepEqual(selectedSections('nine-axis', 'nine-axis'), ['nine-axis']);
+  assert.equal(selectedSections('part-layering', 'shadow').includes('nine-axis'), false);
+  const parsed = parseArguments(['--name', 'case', '--from', 'nine-axis', '--to', 'nine-axis']);
+  assert.notEqual(parsed.mode, 'help');
+  if (parsed.mode !== 'help') assert.equal(parsed.options.from, 'nine-axis');
+  const f = await fixture(t), calls: SectionId[] = [];
+  const execute: NonNullable<Parameters<typeof runTask>[1]>['execute'] = async (id, run, context) => {
+    calls.push(id);
+    assert.equal(run.jobs, 3);
+    assert.equal(context.slots?.limit, 3);
+    return { summary: 'nine-axis complete', output: 'nine-axis/step04_jaw-line/deformers.json' };
+  };
+  await runTask({ ...f.options, from: 'nine-axis', to: 'nine-axis' }, { preflight, execute });
+  assert.deepEqual(calls, ['nine-axis']);
+  const saved = (await readRun(f.directory))!;
+  assert.deepEqual(Object.keys(saved.sections), ['nine-axis']);
+  assert.equal(saved.output, 'nine-axis/step04_jaw-line/deformers.json');
+  calls.length = 0;
+  await runTask({ name: 'case', dir: f.options.dir }, { preflight, execute });
+  assert.deepEqual(calls, ['nine-axis']);
+});
+
+test('总入口状态读取九轴独立子会话，父步骤无会话时选择正在运行的 child，neutral 不展示', async t => {
+  const f = await fixture(t), root = join(f.directory, 'nine-axis');
+  await saveRun(f.directory, await configureRun({ ...f.options, from: 'nine-axis', to: 'nine-axis' }, f.directory));
+  for (const [id, marker] of [['step01_video', '.completed'], ['step02_angles', '.running'],
+    ['step02_angles/neutral', '.completed'], ['step02_angles/left', '.completed'],
+    ['step02_angles/up', '.running'], ['step02_angles/down', '.running']] as const) {
+    await mkdir(join(root, id), { recursive: true });
+    await writeFile(join(root, id, marker), '');
+  }
+  for (const group of ['left', 'up', 'down']) {
+    const path = sessionPath(root, `step02_angles/${group}`);
+    await mkdir(join(path, '..'), { recursive: true });
+    await writeFile(path, JSON.stringify({ threadId: `${group}-thread` }));
+  }
+  const status = await taskStatus(f.options), nine = status.sections[0];
+  assert.equal(nine.threadId, 'up-thread');
+  assert.deepEqual(nine.steps.map(step => [step.name, step.status, step.threadId]), [
+    ['step01_video', 'completed', undefined], ['step02_angles', 'running', undefined],
+    ['step02_angles/left', 'completed', 'left-thread'], ['step02_angles/up', 'running', 'up-thread'],
+    ['step02_angles/down', 'running', 'down-thread'],
+  ]);
 });

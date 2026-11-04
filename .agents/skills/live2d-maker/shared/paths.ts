@@ -15,7 +15,7 @@ export function resolveRunsDirectory(dir = runsDirectory): string {
   if (!isAbsolute(dir)) throw new Error('--dir 必须是运行根目录的绝对路径。');
   return resolve(dir);
 }
-export const sectionIds = ['part-layering', 'raster-layering', 'clothing-part-layering', 'clothing-raster-layering', 'character-assembly', 'shadow'] as const;
+export const sectionIds = ['part-layering', 'raster-layering', 'clothing-part-layering', 'clothing-raster-layering', 'character-assembly', 'shadow', 'nine-axis'] as const;
 export type SectionId = typeof sectionIds[number];
 
 export function taskDirectory(name: string, root = runsDirectory): string {
