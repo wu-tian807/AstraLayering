@@ -41,7 +41,7 @@ let tasks = initial.tasks, data = { files:[], sections:[] }, sectionSteps = stru
 const state = {
  page:new URLSearchParams(location.search).get('page')||'project', name:selectedTask(initial.directory,tasks,new URLSearchParams(location.search).get('name')),
  stage:0, selectedStep:'preparation', inspect:false, compare:false, asset:null, zoom:null, autoHeight:true, canvasLeft:0, canvasTop:0, lane:0, mergeShift:0,
- directory:initial.directory, ref:'worktree', file:'', diff:false, configFilter:'', configFolders:new Map(), uploaded:null, configMode:'env',
+ directory:initial.directory, ref:new URLSearchParams(location.search).get('ref')||'worktree', file:new URLSearchParams(location.search).get('file')||'', diff:false, configFilter:'', configFolders:new Map(), uploaded:null, configMode:new URLSearchParams(location.search).get('file')?'files':'env',
  collapsedSections:new Set(), collapsedSteps:new Set(), collapsedPhases:new Set(),
  details:new Map(),
 };
