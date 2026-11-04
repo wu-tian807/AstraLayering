@@ -1,6 +1,7 @@
 import { parseArgs } from 'node:util';
 import { join } from 'node:path';
-import { readFile } from 'node:fs/promises';
+import { copyFile, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
@@ -167,6 +168,22 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         builds[step.id] = () => buildHead(step.directory, head, box, scale);
         const fit = dependencies.fitHead ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳转向', options.signal));
         await fit(step.directory, headPrompt(head, task));
+        // Visible forehead windows constrain the completed face from outside
+        // the predicted contour. Recheck final actual alpha before completion.
+        const current = await builds[step.id](), bounds = [box.x, box.y, box.size, box.size];
+        const mask = join(step.directory, 'face-coverage.svg');
+        await readFile(mask).catch(error => { throw new Error('step02 缺少 face-coverage.svg：先按视频描出可见额头皮肤，不能仅检查闭合脸型', { cause: error }); });
+        const checked = await createNineAxisViewTool(directory, join(step.directory, 'observations'), async () => current).execute({
+          x: scale.x[0], y: 0, level: 'face', only: ['face/face_base'], crop: bounds, scale: 1,
+          reference: { path: join(videos, 'left.png'), bounds }, coverage: { path: mask, bounds },
+        }, options.signal ?? new AbortController().signal);
+        const info = JSON.parse((checked.contentItems[0] as { text: string }).text);
+        const report = { x: info.x, y: info.y, crop: info.crop, scale: info.scale, ...info.coverage, finalAuthorSha256: createHash('sha256').update(await readFile(join(step.directory, 'face-left.json'))).digest('hex'),
+          referenceSha256: createHash('sha256').update(await readFile(join(videos, 'left.png'))).digest('hex') };
+        await copyFile(report.savedPath, join(step.directory, 'face-coverage-check.png'));
+        await copyFile(report.alphaSavedPath, join(step.directory, 'face-alpha-check.png'));
+        await writeFile(join(step.directory, 'face-coverage-report.json'), JSON.stringify(report, null, 2) + '\n');
+        if (!report.satisfied) throw new Error(`step02 可见皮肤覆盖不足：${report.uncoveredPixels} 个像素未被实际脸底覆盖，检查 face-coverage-check.png 标红处并修正完整额部`);
         summary = `nine-axis/step02_angle-x 已完成：${await finishHead(step.directory, head, box, scale)} 个脸部图层的 ${scale.x[0]}° / +${scale.x[1]}° 转向`;
       };
       if (step.id === 'step04_angle-up' || step.id === 'step05_angle-down') return async () => {

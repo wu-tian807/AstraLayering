@@ -49,6 +49,23 @@ test('单跑 left 沿用参考输入，不调用视频或后续形变步骤', as
   for (const step of ['step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step06_angle-xy', 'step07_jaw-line']) await assert.rejects(access(join(nine, step)), { code: 'ENOENT' });
 });
 
+test('step02 rejects an uncovered forehead window even when the face contour and mesh are valid', async t => {
+  const { root, task } = await fixture(t), videos = join(task, 'nine-axis/step01_video');
+  await mkdir(videos, { recursive: true });
+  await writeFile(join(videos, 'crop.json'), JSON.stringify({ box: { x: 0, y: 0, size: 200 } }));
+  await writeFile(join(videos, 'left.png'), await readFile(join(task, 'character-assembly/step01/character-assembled.png')));
+  await assert.rejects(runWorkflow({ name: 'case', dir: root, step: 'step02_angle-x' }, {
+    environment: loadWorkflowEnvironment({}), fitHead: async directory => {
+      await writeFaceLeft(directory);
+      await writeFile(join(directory, 'face-coverage.svg'), rect(200, 200, 10, 10, 5, 5));
+    },
+  }), /可见皮肤覆盖不足/);
+  const step = join(task, 'nine-axis/step02_angle-x');
+  await assert.rejects(access(join(step, '.completed')), { code: 'ENOENT' });
+  const report = JSON.parse(await readFile(join(step, 'face-coverage-report.json'), 'utf8'));
+  assert.equal(report.satisfied, false); assert.equal(report.uncoveredPixels, 25);
+});
+
 test('头部特写从头顶截到肩线，以脸为中心并留边，长发不加宽', async t => {
   const { root } = await fixture(t);
   const input = await resolveTurnInput('case', root);

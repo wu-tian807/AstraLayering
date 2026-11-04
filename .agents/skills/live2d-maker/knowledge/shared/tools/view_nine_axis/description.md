@@ -3,3 +3,7 @@
 `grid` 可以指定部件或组级 Warp，网格曲线按实际平滑形变采样。返回 `points` 是画布位置；有父级时另返回 `parent` 和 `localPoints`。`only`、`hidden` 可以指定部件或 Warp，Warp 会展开到后代；可临时只看眉眼或嘴鼻，再恢复带固定脖子的完整脸。
 
 `reference: {path, bounds?: [x,y,width,height]}` 另外返回完整的参考／当前／50% 叠加三联图和 `comparison.savedPath`。bounds 是参考图片覆盖的原画布范围，默认文档的初始视框；例如 step02 的 left.png 使用 crop.json 的 box，原始同画布合成 PNG 使用 [0,0,画布宽,画布高]。工具不会自动对齐、重居中或按五官修改参考；青色虚线始终标出文档正面的 axis。配合 crop 放大整张脸、左侧眼窝至脸缘和两眼，逐轮检查偏差。比较图可以复制为交付检查图。参考图不会替换贴图或修改作者数据。
+
+`coverage: {path, bounds?: [x,y,width,height]}` 检查实际皮肤 alpha 是否完整包含所给的可见皮肤蒙版。蒙版用透明 PNG/SVG，不透明填色表示必须有皮肤；由参考视频独立描出，不能从当前完整脸预测生成。须用 `only` 指定实际皮肤部件，并令 `crop` 与 coverage.bounds 相同，避免把缺口裁出检查。默认 bounds 为文档初始视框。空蒙版或全不透明背景会报错。
+
+返回 `coverage.satisfied`、`requiredPixels`、`uncoveredPixels`、原画布面积 `uncoveredAreaCanvasPixels` 和缺口原画布范围 `uncoveredBounds`。蒙版 alpha≥128 的像素为必需，实际皮肤 alpha≥250 才算覆盖；棋盘底、参考图、网格及 CSS 透明叠加均不参与判定。`coverage.savedPath` 将缺口标红、已覆盖区域淡绿显示；`alphaSavedPath` 是同一次实际渲染的透明 RGBA。另记录 maskSha256、alphaSha256 和 builtDocumentSha256，可绑定这次作者版本。蒙版本身是否准确仍须用 preview_svg/reference 核对；不能缩小蒙版来消除缺口。
