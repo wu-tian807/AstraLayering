@@ -1,0 +1,586 @@
+{
+  "version": 1,
+  "run": "run8",
+  "stage": "up",
+  "runner": "live2d-maker/nine-axis/run.ts",
+  "sourceCommit": "48cff6057a382a0826f061c144e7b215d3de32a7",
+  "publicationCodeCommit": "8bfb2203d24b0f1fec06562906e0ba7d0b022ea7",
+  "productionRunner": true,
+  "injectedFit": false,
+  "existingDirectionParametersCopied": false,
+  "existingDirectionTracesCopied": false,
+  "reuseAcceptedX": true,
+  "acceptedXCommit": "4595a6048112ed409e71b148c7a994a9d2a034b3",
+  "freshAgentSession": true,
+  "originalVideoSha256": "cc840e44c053e689ab2f661f54ee00b2851568bc4859222261bd33fbd101e9c5",
+  "pipelineUpstreamSha256": "e29782f927aa4d4e82ddf277aa721a1366b93063373dc5c922fa358db82a3d24",
+  "publicationUpstreamSha256": "e29782f927aa4d4e82ddf277aa721a1366b93063373dc5c922fa358db82a3d24",
+  "publicationNormalization": "Relative task paths in metadata/notes and corresponding upstream document hash; geometry and textures unchanged",
+  "promptSha256": "c24791f06409807c8f292702f8b6396089218a42471a2491b17f5604866e6675",
+  "toolCalls": [
+    {
+      "id": "call_6Rf6NPnwygzo7UiNwUJxmy4R",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_rm6g6dt34fRxapCYs3Q5H4Ed",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_njxa8ZQd24khSg1X5NJr6BMG",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_mRHqiG7zgJFxWA87veoA052Q",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_vyKpDM5z5qALj6DL3DSs3Wm1",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_8VHW7nyMBqLr3SZWBYupi1np",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_HmAg56x0noUkD2QP5gzBIdVx",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_7hR0nWJuJSRXBpNFc8NwGVRA",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_IaCCvvptQcWZYigDVZ8R4gM7",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_XtViky1XiDFXkePtjHVn8mm5",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_BMXz55g2MpFaUTysqWKQuKQp",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_kUXisY4cLfF3xoo5llv2YE0D",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_FpYc05cAP9vrXTXthYOkdPj9",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_Lhacu2cCzC7cOkugetw73xk1",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_K2Bny1v6Oz7nqASkigZ9jDt0",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_Iq66zzLGeiQp4nVtfvQSHoKh",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_zG20QDmUnropIVKtL0NtmuDC",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_xFNyTJaYirLRNfsR65kYIo2Z",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_Kifk0Fx08UrxceD4dR5TdXDo",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_1eyftLLO8eDlXPWIycLA9FwJ",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_QUNLvY1L3oZJFA166pPNWQSr",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_8tG5bHM3ReL0ojkykVM2mq78",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_0DbTYfvIeO5eKcbL6gdpm1im",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_aenZvNGBCHKwshcJ1wwZn6tW",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_xkC1YNF9aTxe5tduGrQ0El4q",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_2lQ7vt3pFRT5A1HVep9xeIEh",
+      "tool": "fit_nine_axis",
+      "action": "inspect",
+      "success": true
+    },
+    {
+      "id": "call_q8x0C7330rq7pVraSprEeBrA",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": true
+    },
+    {
+      "id": "call_VUYwxWYVP4lyq4vK1vU8WfVl",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_kBIbUlQMrBgR9fSgnSdkcwIo",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_jH2xXgvvYrSfAXAEyU9NTMfk",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_RjeZ1cszqaynPBzdHlBIQ6Kq",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_YHMcRdBujnv1zkDsecG64iYC",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_tfDTdLkm8Pc8YO870X1v35XI",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_X8i9kR4OCTK0Ijcxn0DfbJ7L",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_M0QcEUa4XcYk3e2ExMywgskj",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_iOGkU387CfFs3X3vg3g4dOzP",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_FnyWliTeuIIxP39u4WbpzuIC",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_pcHBGscEOVRd7s76sPhhT3gn",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_9Z9eBZfa6FL2ZdL5O3vxDx7w",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_PWNZDgLYAh1u9Uc6MuMwuN6Q",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_vxMV6LDOO5qC83BPmHuVEbgq",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_MEUH2VDtuqNE7CWdVVMnF0po",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_PK8F8O967QWn7jN9ynV9rNaM",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_MirhhVAoWxjrbP22zukwvy2p",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_EQ23CFTmK93yBkatM9eWVIAQ",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_X1k5md1odH7vHn8lzoSciSoj",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_0VwVcCKBUsT8pZs3Q65O5rrT",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_bURM4q2B8enaVN24I4ptLPix",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_DqTcqpCWmDiQq7viBJLuugQC",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_DDJEhaBKXcSC9UtjlTWuYZN9",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_02y7fFwxqnC757NAH9DyoryC",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_vmFCOZZm69OlhJIu80toPJhy",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_GkrDhmFiykLk67K5jQYKs5ci",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_6UPk3Rizc089DxIQVzkLuRCO",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_vvhfIiQrK88by5t59FjWyPNi",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_MxfFKH9xKU6YOFrcNeO99YcI",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_LRFwOO5X57JnA8ujWHrw1r62",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_3xHBk7qUF5PJSrXQIlL3LpjN",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_eKdZJ3CnBXDNesq56JDNyyyi",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_M5BjsZjlQxmC6qD6O8o8UzpS",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_QVJuCTo1SqzbsQB3kMNimKxu",
+      "tool": "view_bitmap",
+      "success": true
+    }
+  ],
+  "outputHashes": [
+    {
+      "path": ".completed",
+      "pipelineSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "deformers.json",
+      "pipelineSha256": "26ce300f05dd7aa744c34e54aa946d6bbbef1cb31db158e39a895fc645076bf9",
+      "sha256": "f9fc7ad02d0fe0896bf3f054e7b10ab715e68f2cdd5458dda84747e4aa0b0a44"
+    },
+    {
+      "path": "face-base-up-check.png",
+      "pipelineSha256": "b1d27a59be496a836fe5c5249f7eec5c1e0b1d2742e53bd984cd67477adb7f57",
+      "sha256": "b1d27a59be496a836fe5c5249f7eec5c1e0b1d2742e53bd984cd67477adb7f57"
+    },
+    {
+      "path": "face-completion-check.png",
+      "pipelineSha256": "610cf2ba0a22dd656559bd316fdfbc1a0602d70b37e089513e5f33b48cd73e2f",
+      "sha256": "610cf2ba0a22dd656559bd316fdfbc1a0602d70b37e089513e5f33b48cd73e2f"
+    },
+    {
+      "path": "face-trace.json",
+      "pipelineSha256": "07991b64d9fcf5764f30c00943e57fab8719a58ce957d772fc7912169fe03146",
+      "sha256": "07991b64d9fcf5764f30c00943e57fab8719a58ce957d772fc7912169fe03146"
+    },
+    {
+      "path": "face-up.json",
+      "pipelineSha256": "26ce300f05dd7aa744c34e54aa946d6bbbef1cb31db158e39a895fc645076bf9",
+      "sha256": "f9fc7ad02d0fe0896bf3f054e7b10ab715e68f2cdd5458dda84747e4aa0b0a44"
+    },
+    {
+      "path": "features-check.png",
+      "pipelineSha256": "d65212b1a762627a73e627fa3d1c33808673d4feb47bd4ae8c5a58f07eb3e5a9",
+      "sha256": "d65212b1a762627a73e627fa3d1c33808673d4feb47bd4ae8c5a58f07eb3e5a9"
+    },
+    {
+      "path": "fit-report.json",
+      "pipelineSha256": "f204fa7a0ced6058fc52e0dd6c27726ee469a84862a9ad3ab2abf2ab78517074",
+      "sha256": "fbdc0489e03e4ab8a7bda758a6b5876f25c9019dc2d458eb4d188a21e06ad672"
+    },
+    {
+      "path": "intermediate-check.png",
+      "pipelineSha256": "184e2b28c5bf1795be14282d92f3d1bdfb5ff16f369f92f98debefb29b256ce5",
+      "sha256": "184e2b28c5bf1795be14282d92f3d1bdfb5ff16f369f92f98debefb29b256ce5"
+    },
+    {
+      "path": "jaw-chin-check.png",
+      "pipelineSha256": "04bafac0f258e52d56d3148cd29c8869cc565afbbcacd87112be448eb405fed4",
+      "sha256": "04bafac0f258e52d56d3148cd29c8869cc565afbbcacd87112be448eb405fed4"
+    },
+    {
+      "path": "neck-contact-check.png",
+      "pipelineSha256": "abd43ddd3ac5e666a0e4fa2a87c69db3fa11bc2edd83fcfcd388996e35e38577",
+      "sha256": "abd43ddd3ac5e666a0e4fa2a87c69db3fa11bc2edd83fcfcd388996e35e38577"
+    },
+    {
+      "path": "notes.md",
+      "pipelineSha256": "b0c046d0e89c5587bc6d1270483cc345daa91a3ae5795dbf7f3dd25510aa0f02",
+      "sha256": "66850a9f897748b187ef0df1b17e86c7013491290fc20442c569a900ba23aee5"
+    },
+    {
+      "path": "source-face-reference.png",
+      "pipelineSha256": "309063194052207dce86dc03386b2aa1d356879acabf44db54f1129d3e1b0291",
+      "sha256": "309063194052207dce86dc03386b2aa1d356879acabf44db54f1129d3e1b0291"
+    },
+    {
+      "path": "source-face.svg",
+      "pipelineSha256": "1e8f73c7c25b5691928598cfef4a9f426bd2c983e2ff3a32098c1c689b71bba1",
+      "sha256": "1e8f73c7c25b5691928598cfef4a9f426bd2c983e2ff3a32098c1c689b71bba1"
+    },
+    {
+      "path": "source-trace-edge.png",
+      "pipelineSha256": "2f9acf77b08d2309de1f29f331d61aed998835cdee72649d6f34dde6f71c2c21",
+      "sha256": "2f9acf77b08d2309de1f29f331d61aed998835cdee72649d6f34dde6f71c2c21"
+    },
+    {
+      "path": "target-face.svg",
+      "pipelineSha256": "214f438426a90aa75debf0598a41036eeb5e4566561db2789e8c3d7dbcf531d1",
+      "sha256": "214f438426a90aa75debf0598a41036eeb5e4566561db2789e8c3d7dbcf531d1"
+    },
+    {
+      "path": "target-trace-edge.png",
+      "pipelineSha256": "d165d5e25950be6392cad68a57537930d3706ea2136591a18dc6b18ab17b8465",
+      "sha256": "d165d5e25950be6392cad68a57537930d3706ea2136591a18dc6b18ab17b8465"
+    },
+    {
+      "path": "trace-check.png",
+      "pipelineSha256": "514d828c6b16a6425d6cfab6fa18dcd4db475071d081c71310965d2b776559ed",
+      "sha256": "514d828c6b16a6425d6cfab6fa18dcd4db475071d081c71310965d2b776559ed"
+    },
+    {
+      "path": "up-check.png",
+      "pipelineSha256": "5758279ca1c0c209462470eff5ee9f54e2f7124a8936941bd929281416f3a54c",
+      "sha256": "5758279ca1c0c209462470eff5ee9f54e2f7124a8936941bd929281416f3a54c"
+    },
+    {
+      "path": "up-fit-check.png",
+      "pipelineSha256": "2f58e2f5011b55d751319b0ee45db12071af55c278f612068c093b941584f97e",
+      "sha256": "2f58e2f5011b55d751319b0ee45db12071af55c278f612068c093b941584f97e"
+    },
+    {
+      "path": "validation-report.json",
+      "pipelineSha256": "add44c558002940b95390e039e5b0edf87485f1079e3b51781e0a555f47ce839",
+      "sha256": "793b3ed4db0604d8fa59dfe61031bdfffc981844bc09d5239194cf4bfed1fc32"
+    },
+    {
+      "path": "checks/eyes-nose-mouth-check.png",
+      "pipelineSha256": "d7a3726ecc715d15f16b697857a0da22a25c1bc1b28f8efb86b9789cda66a4f7",
+      "sha256": "d7a3726ecc715d15f16b697857a0da22a25c1bc1b28f8efb86b9789cda66a4f7"
+    },
+    {
+      "path": "checks/front-fit-check.png",
+      "pipelineSha256": "16d6e521cd95a9fdfe59871b6387a6234ba7fa2a9ee572436450e627d40b534f",
+      "sha256": "16d6e521cd95a9fdfe59871b6387a6234ba7fa2a9ee572436450e627d40b534f"
+    },
+    {
+      "path": "checks/render-manifest.json",
+      "pipelineSha256": "1bedc530f107ff8024eaf9de267327edabf6673d42969b5acead884527de88bc",
+      "sha256": "9db6136cfd5ac79416db63f9c940af8f8ba207d09ae30475cf6842c77055c5be"
+    },
+    {
+      "path": "checks/temple-cheek-check.png",
+      "pipelineSha256": "3dbd395f9af06e813937d81bc5ce9e403e594cddb06f9126463dac085cedbf80",
+      "sha256": "3dbd395f9af06e813937d81bc5ce9e403e594cddb06f9126463dac085cedbf80"
+    },
+    {
+      "path": "layers/face__eye_left__eyelid_crease.png",
+      "pipelineSha256": "d788e2360842364c4efd4f580a3d7b5cacce306cdb55d1a4ed7c23aaaac56755",
+      "sha256": "d788e2360842364c4efd4f580a3d7b5cacce306cdb55d1a4ed7c23aaaac56755"
+    },
+    {
+      "path": "layers/face__eye_left__highlight.png",
+      "pipelineSha256": "73c4bcc44f6fb0ff6775afac71af5288560b9dffb6910ab79ff1c7221f0c79c5",
+      "sha256": "73c4bcc44f6fb0ff6775afac71af5288560b9dffb6910ab79ff1c7221f0c79c5"
+    },
+    {
+      "path": "layers/face__eye_left__iris.png",
+      "pipelineSha256": "013170820242f84ff21fdd850a9d367539cc19d95fbb848b852d88aae75be5c4",
+      "sha256": "013170820242f84ff21fdd850a9d367539cc19d95fbb848b852d88aae75be5c4"
+    },
+    {
+      "path": "layers/face__eye_left__lower_eyelashes.png",
+      "pipelineSha256": "be4b8be1573897b1ec5b518d6c107cc7bf5bbb2d73d81ba1be5c2a6ff1b1d70e",
+      "sha256": "be4b8be1573897b1ec5b518d6c107cc7bf5bbb2d73d81ba1be5c2a6ff1b1d70e"
+    },
+    {
+      "path": "layers/face__eye_left__lower_eyelid.png",
+      "pipelineSha256": "1c1d3fe9846b03903a05df0962782b5546b05904c9e959c2fd7b467938cceae1",
+      "sha256": "1c1d3fe9846b03903a05df0962782b5546b05904c9e959c2fd7b467938cceae1"
+    },
+    {
+      "path": "layers/face__eye_left__sclera.png",
+      "pipelineSha256": "7f4ec589a79756c03181294d31c72680c1163de71005ccd225e9a8b35a7634ae",
+      "sha256": "7f4ec589a79756c03181294d31c72680c1163de71005ccd225e9a8b35a7634ae"
+    },
+    {
+      "path": "layers/face__eye_left__upper_eyelid.png",
+      "pipelineSha256": "685479313394094ea426e742e448724a7bdbce370e65870d4e70ed3ca73b9c57",
+      "sha256": "685479313394094ea426e742e448724a7bdbce370e65870d4e70ed3ca73b9c57"
+    },
+    {
+      "path": "layers/face__eye_right__eyelid_crease.png",
+      "pipelineSha256": "a80e5b3e220f79ef8c41ac307a902d1a2c0ab026bf01545a473576d8e3e11e2c",
+      "sha256": "a80e5b3e220f79ef8c41ac307a902d1a2c0ab026bf01545a473576d8e3e11e2c"
+    },
+    {
+      "path": "layers/face__eye_right__highlight.png",
+      "pipelineSha256": "bbb3e425b59419f51d028573f106c345f981bb24ebbd0fe7ae3a3ea74aefa860",
+      "sha256": "bbb3e425b59419f51d028573f106c345f981bb24ebbd0fe7ae3a3ea74aefa860"
+    },
+    {
+      "path": "layers/face__eye_right__iris.png",
+      "pipelineSha256": "d1c024675efa07f890ea1269143226a1560b2384bdfe499fc79f0c3e94576cdd",
+      "sha256": "d1c024675efa07f890ea1269143226a1560b2384bdfe499fc79f0c3e94576cdd"
+    },
+    {
+      "path": "layers/face__eye_right__lower_eyelashes.png",
+      "pipelineSha256": "d7eb4f2079f1816d9eec403ef139dddb35abaf6872237b4415a89fc25303b99a",
+      "sha256": "d7eb4f2079f1816d9eec403ef139dddb35abaf6872237b4415a89fc25303b99a"
+    },
+    {
+      "path": "layers/face__eye_right__lower_eyelid.png",
+      "pipelineSha256": "f59c188f40234a451bc4e9dff7096743eaddfe047c5179a1d3358c1b55232030",
+      "sha256": "f59c188f40234a451bc4e9dff7096743eaddfe047c5179a1d3358c1b55232030"
+    },
+    {
+      "path": "layers/face__eye_right__sclera.png",
+      "pipelineSha256": "c23bd63cc1a847170929dead7a89ad6f750bfee90aca685cb20c40382e9a542a",
+      "sha256": "c23bd63cc1a847170929dead7a89ad6f750bfee90aca685cb20c40382e9a542a"
+    },
+    {
+      "path": "layers/face__eye_right__upper_eyelid.png",
+      "pipelineSha256": "ed58717c3d2b62414e9b3a5d1f3cfe3a345523ee1c6ac1381c8f7ca4eb88ca4e",
+      "sha256": "ed58717c3d2b62414e9b3a5d1f3cfe3a345523ee1c6ac1381c8f7ca4eb88ca4e"
+    },
+    {
+      "path": "layers/face__eyebrow_left.png",
+      "pipelineSha256": "3f3bcdf1f9fbc13e5c26bd0e649bdbe6195e3f29b58671b194b507d8647565f2",
+      "sha256": "3f3bcdf1f9fbc13e5c26bd0e649bdbe6195e3f29b58671b194b507d8647565f2"
+    },
+    {
+      "path": "layers/face__eyebrow_right.png",
+      "pipelineSha256": "92dfbc06b446c5552a40cc843a2fd79d9b781045cf04341f624f75d7832a6d8d",
+      "sha256": "92dfbc06b446c5552a40cc843a2fd79d9b781045cf04341f624f75d7832a6d8d"
+    },
+    {
+      "path": "layers/face__face_base.png",
+      "pipelineSha256": "7baea62d9800a0ccdad18b99495d677865ece7a3499fec6b3c8f015201ac8ce8",
+      "sha256": "7baea62d9800a0ccdad18b99495d677865ece7a3499fec6b3c8f015201ac8ce8"
+    },
+    {
+      "path": "layers/face__mouth__lower_lip.png",
+      "pipelineSha256": "d3ac963c60fc4894744132b1e6c1fa6dc96db2e7c0f94e272f63697c5de5d808",
+      "sha256": "d3ac963c60fc4894744132b1e6c1fa6dc96db2e7c0f94e272f63697c5de5d808"
+    },
+    {
+      "path": "layers/face__mouth__mouth_interior.png",
+      "pipelineSha256": "821bfb133531a8f7fa5323f44c5a9a32416b700929cc93e9549a7f6520f4093e",
+      "sha256": "821bfb133531a8f7fa5323f44c5a9a32416b700929cc93e9549a7f6520f4093e"
+    },
+    {
+      "path": "layers/face__mouth__tongue.png",
+      "pipelineSha256": "43be3f19618840ea46247452bf8acf918e0c7e553953d8d479e3dfb79397b307",
+      "sha256": "43be3f19618840ea46247452bf8acf918e0c7e553953d8d479e3dfb79397b307"
+    },
+    {
+      "path": "layers/face__mouth__upper_lip.png",
+      "pipelineSha256": "34ea76f889e6b20d2852354138bf1ba36f99565fd2b9ddf24a9e1fa3cc177c06",
+      "sha256": "34ea76f889e6b20d2852354138bf1ba36f99565fd2b9ddf24a9e1fa3cc177c06"
+    },
+    {
+      "path": "layers/face__mouth__upper_teeth.png",
+      "pipelineSha256": "c884d541e779a4d7cb08bfe7137818224cd8848afb3dd6a6f4af44559e60b42c",
+      "sha256": "c884d541e779a4d7cb08bfe7137818224cd8848afb3dd6a6f4af44559e60b42c"
+    },
+    {
+      "path": "layers/face__nose.png",
+      "pipelineSha256": "7bbfe6ecd497c2a7f1dda0280b82a90f1ef3a462e93729600ab5887ef30eb56a",
+      "sha256": "7bbfe6ecd497c2a7f1dda0280b82a90f1ef3a462e93729600ab5887ef30eb56a"
+    },
+    {
+      "path": "layers/neck.png",
+      "pipelineSha256": "30231c847f6357a5e08f2a4ff5305c1c25c1683adc7ba45e0fc59d68496953e9",
+      "sha256": "30231c847f6357a5e08f2a4ff5305c1c25c1683adc7ba45e0fc59d68496953e9"
+    },
+    {
+      "path": "up-independent-check.png",
+      "sha256": "2f58e2f5011b55d751319b0ee45db12071af55c278f612068c093b941584f97e",
+      "origin": "independent-read-only-renderer"
+    },
+    {
+      "path": "up-review.json",
+      "sha256": "ba431a1ee65aa1845eaf401297d013003257faa3f9e7d3f4a4faaf61a5e6ace0",
+      "origin": "independent-read-only-renderer"
+    }
+  ]
+}

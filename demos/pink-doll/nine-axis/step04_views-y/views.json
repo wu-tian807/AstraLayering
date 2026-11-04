@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "profileAngle": 90,
+  "input": {
+    "path": "nine-axis/step01_video/upper-body.png",
+    "sha256": "199356c96aa75b16c05def0ebd4334b5e8caae4982f800dfa6eb86d05ea5a5db"
+  },
+  "up": {
+    "path": "up.png",
+    "sha256": "f1b8ebacb6c5b738f2c71e03f81aecc3f6fc25cd06028af3d5a066acd367ab0e",
+    "angle": 25,
+    "frame": {
+      "frameCount": 121,
+      "frameIndex": 33,
+      "angle": 24.750000000000004
+    },
+    "video": {
+      "path": "nine-axis/step01_video/up.mp4",
+      "sha256": "cc840e44c053e689ab2f661f54ee00b2851568bc4859222261bd33fbd101e9c5"
+    }
+  },
+  "down": {
+    "path": "down.png",
+    "sha256": "afd6f46a51b8c1ee9d23a931f992f3b0577855005f92765b4ddabdcb57f1196c",
+    "angle": 25,
+    "frame": {
+      "frameCount": 121,
+      "frameIndex": 33,
+      "angle": 24.750000000000004
+    },
+    "video": {
+      "path": "nine-axis/step01_video/down.mp4",
+      "sha256": "3cf11bb46e225efc64d5de9a0235377e1c5f16eed86c5405379f4cd7922d41a9"
+    }
+  }
+}

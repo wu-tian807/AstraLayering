@@ -1,0 +1,13 @@
+{
+  "stage": "up",
+  "readOnly": true,
+  "renderer": "workbench view_nine_axis",
+  "originalRegistration": true,
+  "x": 0,
+  "y": 25,
+  "authorSha256": "26ce300f05dd7aa744c34e54aa946d6bbbef1cb31db158e39a895fc645076bf9",
+  "referenceSha256": "f1b8ebacb6c5b738f2c71e03f81aecc3f6fc25cd06028af3d5a066acd367ab0e",
+  "maxProtectedShift": 0,
+  "all24TexturesMatchAcceptedX": true,
+  "comparison": "up-independent-check.png"
+}

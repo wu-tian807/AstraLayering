@@ -1,0 +1,76 @@
+[
+  {
+    "output": "nine-axis/step05_angle-up/source-trace-edge.png",
+    "source": "nine-axis/step05_angle-up/workspace/previews/2026-11-04T01-55-28-239Z-11.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/target-trace-edge.png",
+    "source": "nine-axis/step05_angle-up/workspace/previews/2026-11-04T01-55-28-239Z-12.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/trace-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/1c8054c0-f28b-4d9d-bacd-8a8628e7c5cf-trace.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/face-completion-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/70dbfd20-2783-4af9-b83f-19df8be5d35d-completion.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/face-base-up-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/9181599f-ef15-4670-96c0-949c6dd1af8c.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/up-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/803eda61-0974-472e-877b-5854cbf673ef.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/up-fit-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/9379cea4-3f2c-45a0-9b4d-479949849033-comparison.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/jaw-chin-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/9f55209f-2298-4ed0-a58f-74d2bc3f6e0c-comparison.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/features-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/78803e88-2164-4edd-9971-cc0757b7ca87-comparison.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/neck-contact-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/9ff77513-71ea-4784-a327-f32305505476-comparison.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/checks/temple-cheek-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/eb847340-15ce-4a38-8817-d0864409fc8a-comparison.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/checks/front-fit-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/c4d00072-1ab6-4d93-b3f8-5a4640bd5121-comparison.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/checks/eyes-nose-mouth-check.png",
+    "source": "nine-axis/step05_angle-up/workspace/bitmaps/ef77ccd2-2f41-4c5d-9bc7-50c184311b49-comparison.png"
+  },
+  {
+    "output": "nine-axis/step05_angle-up/intermediate-check.png",
+    "sourceRenders": [
+      "nine-axis/step05_angle-up/workspace/bitmaps/d352042e-3592-472d-9af2-33649c7a8172.png",
+      "nine-axis/step05_angle-up/workspace/bitmaps/50d3ec36-50c3-4197-af4c-560ae9627661.png",
+      "nine-axis/step05_angle-up/workspace/bitmaps/c27a94da-1620-4c50-9a1d-52949305c1aa.png",
+      "nine-axis/step05_angle-up/workspace/bitmaps/355a1327-9791-47cf-b5e0-571b5f92b061.png",
+      "nine-axis/step05_angle-up/workspace/bitmaps/803eda61-0974-472e-877b-5854cbf673ef.png",
+      "nine-axis/step05_angle-up/workspace/bitmaps/d397f7d3-3c09-4258-bee3-ba904f40a91d.png",
+      "nine-axis/step05_angle-up/workspace/bitmaps/79602803-7e6d-40b0-b88d-09ed1ba89c1c.png",
+      "nine-axis/step05_angle-up/workspace/bitmaps/d352042e-3592-472d-9af2-33649c7a8172.png",
+      "nine-axis/step05_angle-up/workspace/bitmaps/622e22aa-dfea-4dbe-a14d-ef2353fed0fa.png",
+      "nine-axis/step05_angle-up/workspace/bitmaps/ecefd814-efc1-4f8f-a267-0f9d22f70bb8.png"
+    ],
+    "canvasBox": [
+      431,
+      35,
+      394,
+      394
+    ],
+    "registration": "none"
+  }
+]
