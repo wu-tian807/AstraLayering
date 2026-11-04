@@ -1,0 +1,38 @@
+{
+  "groupId": "waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮通过。已先独立查看纯衣服整图及 x451–492、y631–716 的 8 倍局部，再检查 note、候选源码、父完成 SVG，并完成整图 blend、覆盖当前全部可见区域的 8 倍 blend/edge 与 SVG 独显。\n\n归属与完整性：本片为雪花下方约 x466–477、y646–698 的小菱形接节、梭形细杆及下端连续珠节。参考中这些实体均有覆盖，未误包中央蓝色垂布、雪花本体或下方蓝色圆形嵌座；嵌座按 note 归 elongated_link。此段无可确认的真实镂空或另行分离附件，未发现可见组件遗漏。\n\n轮廓与接缝：小菱形接节 y646–654、细杆 y654–680、两处珠节 y680–697 的位置、宽度和收窄过渡与参考一致。y644.4 起短接头为继承父稿的隐藏搭接，藏于雪花下尖之后；y697–698 的底端窄颈止于相邻圆形嵌座之前，未吞并嵌座。独显连续，无断裂或异常孔洞。父范围四倍采样检查 outsidePixels=0。note 已明确上下分界、前后关系、共同随动与隐藏搭接，无需修改。\n\n证据：![局部原图叠加](review-evidence/blend.png) ![全部可见段边缘对照](review-evidence/edge.png) ![候选独显](review-evidence/solid.png)\n\n未发现有图像依据的返修项；不需要重画当前 part。",
+      "candidateHash": "379f63119c904a25e5e47552b30ffb29771f8a03b2c2bc30fe49857c68d84452",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/middle_articulated_chain/children/upper_connector_segment/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/middle_articulated_chain/children/upper_connector_segment/previews/2026-11-02T18-23-36-466Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/middle_articulated_chain/children/upper_connector_segment/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/middle_articulated_chain/children/upper_connector_segment/previews/2026-11-02T18-23-36-466Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/middle_articulated_chain/children/upper_connector_segment/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/middle_articulated_chain/children/upper_connector_segment/previews/2026-11-02T18-23-36-466Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_pendant_and_tassel/middle_articulated_chain.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/middle_articulated_chain/children/upper_connector_segment/previews/2026-11-02T18-23-36-466Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/middle_articulated_chain/children/upper_connector_segment/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/middle_articulated_chain/children/upper_connector_segment/previews/2026-11-02T18-23-36-466Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T18:28:42.047Z"
+    }
+  ]
+}

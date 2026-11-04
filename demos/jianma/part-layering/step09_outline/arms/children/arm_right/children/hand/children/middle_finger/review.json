@@ -3,9 +3,56 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已读取本组说明、groups.json 对应职责、候选源码及父组完成稿 ../../../../../../../../../parts/arms/arm_right/hand.svg。先检查整图 blend，再以 [271,740,33,42]（指根至屈曲指身）和 [275,771,36,34]（弯折至回勾指尖）两个重叠选框分别进行 8 倍 blend、edge 对照；另以 [282,778,26,23]、[297,785,11,16] 复核邻指接缝与末端，并查看参考手部、指根局部及同坐标父稿叠加，覆盖本组全部可见区域。\n可见回勾段位于食指下、无名指上，约 x286–305、y778–797；指尖右缘、圆钝收口及上下邻指接界均有参考依据，未见父范围内可明确定位的漏画或外缘偏差。近掌指根和指身为连贯补形，邻指遮挡下的合理重叠保留，未把内部明暗线或遮挡边误作需要挖开的孔缝。本件为连续单一指体，无孤立点、来源不明碎片或形体归属混乱，未发现本组独立组件缺失。\n父范围四倍采样检查通过：outsideSamples=0，outsidePixels=0。当前未发现需要单列的上游范围冲突。",
-      "candidateHash": "6f9817a3a025afa14df201e37d02ef183846fa8baae8671c4dc0d8c3a79954ad",
-      "updatedAt": "2026-10-16T18:33:02.524Z"
+      "feedback": "已读取本组说明、素体参考、候选及父组 hand 完成 SVG，并完成全图叠加定位、手部整体参考核对，以及相互重叠的局部选框（299,870,26,23）与（308,884,19,22）的 blend/edge 放大检查。候选覆盖食指后方、下端右侧露出的中指窄条及相邻圆钝指端；上方另有叠压的手指范围，未发现候选误包这些相邻结构。近端交接（约309,879）、指体两侧及末端（约319–322,891–900）与参考中的可见范围相符，没有确认的可见组件遗漏、无依据孔隙或碎片噪音。被食指及掌部遮挡的完整连接留待补全，本轮不要求恢复。候选独显为连续干净色块，父范围四倍采样检查 outsidePixels=0，满足本轮父范围约束。",
+      "candidateHash": "761321174433f4369e7a3bba3e92e93e76c86b96a5fd0009f3847130fee6cebb",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-02T16-50-28-268Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-02T16-50-28-268Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-02T16-50-28-268Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-02T16-50-28-268Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-02T16-50-28-268Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-02T16-50-28-268Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-02T16-50-28-268Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-02T16-50-28-268Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-02T16-50-28-268Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:15:12.982Z"
     }
   ]
 }

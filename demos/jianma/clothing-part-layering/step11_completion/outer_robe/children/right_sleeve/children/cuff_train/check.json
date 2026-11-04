@@ -1,7 +1,0 @@
-{
-  "groupId": "outer_robe/right_sleeve/cuff_train",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "3e439dd735339a6cdec5fa14f6c18dc1dad40c0e80e4ae1ecf602ae50e56d0f4",
-  "afterHash": "b164f8c2536192957d0553d7ff71c72983eeab2681a5ef93d1411a4d2d43b591"
-}

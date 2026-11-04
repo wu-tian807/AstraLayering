@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "untouched_layers": 24,
+  "unchanged_names_uuids_and_pixels": [
+    "001 | collar_shoulder_cape/standing_collar | back",
+    "030 | outer_robe_body/left_robe_panel",
+    "031 | outer_robe_body/right_robe_panel",
+    "070 | collar_shoulder_cape/left_shoulder_cape",
+    "071 | collar_shoulder_cape/right_shoulder_cape",
+    "072 | collar_shoulder_cape/standing_collar | front",
+    "080 | collar_jewel_fastener/left_beaded_chain",
+    "081 | collar_jewel_fastener/right_beaded_chain",
+    "082 | collar_jewel_fastener/central_pendant/hanging_bead",
+    "083 | collar_jewel_fastener/central_pendant/connecting_ring",
+    "084 | collar_jewel_fastener/fixed_jewel",
+    "085 | chest_ornament",
+    "100 | waist_pendant_and_tassel/upper_suspension",
+    "105 | waist_sash_and_knot/center_knot",
+    "108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+    "109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+    "110 | waist_pendant_and_tassel/snowflake_medallion",
+    "111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+    "112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+    "113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+    "114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+    "115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front",
+    "116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+    "117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame"
+  ],
+  "repaired_logical_parts": 15,
+  "new_back_root_layers": 3
+}

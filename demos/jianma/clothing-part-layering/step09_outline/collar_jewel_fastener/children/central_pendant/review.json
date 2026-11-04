@@ -1,0 +1,38 @@
+{
+  "groupId": "collar_jewel_fastener/central_pendant",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已只读核对纯衣服参考、groups.json 中本组及父组 note、候选和父完成 SVG。先从原参考确认本组仅负责主宝石下方中央镂空小环、环底短连接段及末端小珠（约 x467–475、y257–278），不含两侧斜链、链珠、领布或胸饰。已完成整图 blend 定位、局部 8 倍 blend 与 edge、SVG 独显及父稿局部叠加，覆盖本组全部可见区域。小环外轮廓、上尖接点、真实环孔、环底连接与末端小珠的形状、位置及比例与参考相符；两侧珠链留在本组之外，周围间隙保持透明，无误包其他衣片或人体、无确定可见组件遗漏。连接段连续，上端与固定扣的合理搭接及两侧链内接头的遮盖关系与 note 一致。note 已传递实体范围、相邻分界、前后关系、共同随动与隐藏搭接职责。父范围四倍采样检查通过，outsideSamples=0。无需重画或局部返修。\n图像证据：局部原图叠加 ![blend](previews/2026-11-02T16-37-23-222Z-2.png)；覆盖全部本组可见边缘的放大图 ![edge](previews/2026-11-02T16-37-23-222Z-3.png)；独显 ![svg](previews/2026-11-02T16-37-23-222Z-4.png)；父完成稿及邻接关系 ![parent](previews/2026-11-02T16-37-23-222Z-5.png)。",
+      "candidateHash": "c769a5467e68210911cf0bb29e813f539c30457c27eb5c61c03aafe01d0bd333",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/previews/2026-11-02T16-37-23-222Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/previews/2026-11-02T16-37-23-222Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/previews/2026-11-02T16-37-23-222Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/previews/2026-11-02T16-37-23-222Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/collar_jewel_fastener.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/previews/2026-11-02T16-37-23-222Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:06:00.118Z"
+    }
+  ]
+}

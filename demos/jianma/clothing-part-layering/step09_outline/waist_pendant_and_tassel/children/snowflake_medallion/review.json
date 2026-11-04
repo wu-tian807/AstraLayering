@@ -1,0 +1,72 @@
+{
+  "groupId": "waist_pendant_and_tassel/snowflake_medallion",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已独立查看纯衣服全图、x442–500/y586–658 的 8 倍原图、候选全图 blend、覆盖整片的 8 倍 blend/edge/纯 SVG，以及父完成稿源码与局部叠加。雪花外形、位置、比例及上下分界整体对应，没有误包布片、人体或邻接连接节；父范围检查 outsidePixels=0。无需重画整组。\n\n上游范围限制——固定嵌饰被当作真实开口遗漏：原图约 x468–474/y608–614 的上部小水滴、x467–475/y618–630 的中央梭形区域，可见独立封闭的浅色／蓝色嵌饰实体和其边界，并非透出后方垂布的整块孔洞。候选对应两条封闭子路径将整块嵌饰全部扣空，纯 SVG 和 edge 均可核对。这是实体覆盖遗漏；只要求恢复嵌饰的纯色几何范围，不要求内部高光、色彩或纹样。父 SVG 在相同位置也使用完全相同的扣空路径，且本节点未开启 allowOutsideParent，因此这两处不能在当前父范围约束下单独补入：需先在上游父稿恢复嵌饰实体范围，再同步至本 part；保留嵌饰周围实际镂空，不将其他孔洞整片填实。本次未修改父稿或候选。\n\n图像证据：![原图局部](review_evidence/reference-detail.png) ![候选边缘覆盖](review_evidence/candidate-edge.png) ![父稿叠加](review_evidence/parent-blend.png)\n\nnote 已明确完整固定嵌饰归本片、相邻连接节归属、前后关系、摆动与搭接职责，无另需修改的说明问题。除上述上游限制外，未发现有充分图像依据的当前父范围内返修项。",
+      "candidateHash": "1a51a45c5d6c5711f8b48ddc88cdbaca3ba32f1bbb0897e6bd809edf635a4465",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T16-38-39-055Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T16-38-39-055Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T16-38-39-055Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T16-38-39-055Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_pendant_and_tassel.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T16-38-39-055Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:07:57.471Z",
+      "repairedCandidateHash": "1a51a45c5d6c5711f8b48ddc88cdbaca3ba32f1bbb0897e6bd809edf635a4465"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮：当前子片在父范围约束内通过；另有一项必须保留记录的上游限制。已独立查看纯衣服整图、x445–497/y590–656 的 8 倍局部，并完成候选整图 blend、局部 blend/edge、纯色独显及父完成稿局部叠加。完整外缘、上下接合、左右分枝及全部内孔均已覆盖检查。候选没有误包中央垂布、人体或相邻连接节；位置比例与参考吻合，父包含检查 outsidePixels=0。不要求重画本组，当前父范围内未发现确定需要返修的问题。\n\n上游限制（可见固定嵌饰实体被父稿挖空）：约 x468–474/y608–614 的上方小水滴嵌饰，以及 x467–475/y618–631 的中央水滴嵌饰，在参考中有独立浅色实体与内部深浅变化，其形状区别于旁侧透出蓝色垂布的镂空。候选 evenodd 路径分别以 M470.5 607.9、M470.6 617.7 起始的子路径将两者整块挖空；这属于固定嵌饰实际覆盖缺失，而非要求恢复花纹、颜色或高光。父 SVG 同样将这两个范围挖空，且本节点未允许超出父范围，因此无法仅在当前子片范围内补回。要求上游修正父稿的这两处实体覆盖，随后同步当前片，保持周围真正镂空透空；父稿本次只读，不在此修改。此限制不列为当前子片可独立修复的返修项，也不记 blocked。\n\n图像证据：\n![参考局部：可见上方与中央嵌饰实体](review_evidence/reference_detail.png)\n![候选边缘：两个嵌饰范围被作为孔洞](review_evidence/candidate_edge.png)\n![候选独显：实体缺失范围](review_evidence/candidate_solid.png)\n![父稿叠加：相同两处空缺来自父范围](review_evidence/parent_blend.png)",
+      "candidateHash": "1a51a45c5d6c5711f8b48ddc88cdbaca3ba32f1bbb0897e6bd809edf635a4465",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T17-13-50-228Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T17-13-50-228Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T17-13-50-228Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T17-13-50-228Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_pendant_and_tassel.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/snowflake_medallion/previews/2026-11-02T17-13-50-228Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:15:49.686Z"
+    }
+  ]
+}

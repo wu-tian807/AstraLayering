@@ -1,0 +1,43 @@
+{
+  "groupId": "central_blue_drapery/central_folded_tail",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，无确定需要修改的问题。已只读核对纯衣服原参考、groups.json 中本 part 及父组 note、候选 SVG 和父完成 SVG。\n\n归属与完整职责：先从原参考确认中央布尾在两侧直垂幅之间、珠链和流苏之后连续向下，并于约 x433–520、y1300–1466 形成卷尾。候选从约 y459 腰根连续到末端，保留了遮挡后的衣料与两侧内缘后的小幅搭接，没有将流苏末端斜边误作布尾断口；没有把左右长幅的短回折尖端作为中央尾的可见外伸部。珠链、流苏处的覆盖是后方衣料延续，并非将悬饰实体并入本 part。\n\n逐区检查：腰根 x450–492、y459–550 的位置及隐藏搭接合理；y550–1277 两侧纵边连续，位于相邻长幅内侧后方，没有越到外袍或内裙可见区域；y1277–1310 与两侧短回折段连接处保留合理遮挡搭接；x433–520、y1300–1466 的左右卷曲外缘、下端收窄与翻折末端在放大边缘叠加中吻合。卷尾内部折线属于同片折返，无需作为真实开口挖除。未发现可见组件遗漏、误包人体、薄纱或分离附件。\n\nnote 已说明实体范围、相邻边界、在腰结／珠链／流苏／两侧长幅之后且在内裙及身体之前的关系、腰根共同随动、独立弯曲摆动和必要隐藏搭接；连续卷尾保留一个逻辑 part 合理。父范围四倍采样检查通过，outsidePixels=0，无上游范围限制。\n\n图像证据：\n- [整体原图叠加](review-evidence/overall-blend.png)\n- [腰根至上中段边缘放大](review-evidence/upper-edge.png)\n- [中下段及邻片交接边缘放大](review-evidence/middle-edge.png)\n- [下部卷尾与末端边缘放大](review-evidence/tail-edge.png)\n- [完整候选轮廓独显](review-evidence/silhouette.png)\n\n候选和父稿均未修改；纯色填充及未绘制的纹样、明暗、材质不作为本阶段缺陷。",
+      "candidateHash": "7b7222202216376eb2b499be7af248b7fc9aee2051d22b552011802957a36367",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/previews/2026-11-02T16-36-29-539Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/previews/2026-11-02T16-36-29-539Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/central_blue_drapery.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/previews/2026-11-02T16-36-29-539Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/previews/2026-11-02T16-36-29-539Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/previews/2026-11-02T16-36-29-539Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/children/central_folded_tail/previews/2026-11-02T16-36-29-539Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:05:55.545Z"
+    }
+  ]
+}

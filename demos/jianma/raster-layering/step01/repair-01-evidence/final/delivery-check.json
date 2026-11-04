@@ -1,0 +1,44 @@
+{
+  "KRA_zip_valid": true,
+  "RGBA_png_size": [
+    941,
+    1672
+  ],
+  "all_69_part_layer_names_UUIDs_valid": true,
+  "PNG_preclose_reopen_delivery_decoded_pixels_equal": true,
+  "kra_sha256": "a7147c915b8dc08d98880cd8851afb61722bb944c8dd38bb7d23716b497e4fd8",
+  "png_sha256": "8c0cf594b92b765add8e10e28dc392c26e3a76844f935e25c29bdebee44e0588",
+  "counts": {
+    "logical_parts": 65,
+    "paint_layers": 69,
+    "native_masks": 17,
+    "native_groups": 5,
+    "all_nodes": 91
+  },
+  "protected_unchanged_paint_slices": [
+    "hair/back_hair/cap | complete",
+    "hair/bun | complete",
+    "head_accessories/crown_pendants/crown_pendant_right | complete",
+    "head_accessories/crown_pendants/crown_pendant_left | complete",
+    "face/face_base | complete",
+    "face/mouth/lower_teeth | complete",
+    "face/eyebrows/eyebrow_right | complete",
+    "face/eyebrows/eyebrow_left | complete",
+    "face/nose | complete",
+    "hair/sidelock/sidelock_right | complete",
+    "hair/sidelock/sidelock_left | complete",
+    "head_accessories/bun_ornament | complete",
+    "head_accessories/crown_frame | 实际 KRA mounting_root 普通绘画分片：使用同名 SVG data-completion-additions 中左右安装舌片的完整区域，约左 x390–425、右 x513–548、y115.5–152。后根保留与可见冠缘的重叠，置两侧 side_hair 后、cap 与 bun 前；默认由侧发和同件前片覆盖。",
+    "head_accessories/forehead_pendant | 实际 KRA mounting_root 普通绘画分片：完整额饰在 y<134 的上方附着根，包括约x465–472、y125–133的隐藏连接余量，置左右 side_hair 后、cap 前；与前片在y132–134重叠。",
+    "hair/side_hair/side_hair_right | complete",
+    "hair/side_hair/side_hair_left | complete",
+    "head_accessories/forehead_pendant | 实际 KRA visible_front 普通绘画分片：完整额饰 y>=132 的小宝石、短连接、菱形主体及水滴坠，置左右 side_hair 和 face_base 前；顶部y132–134与后根连续重叠，不在菱形中部切断。",
+    "head_accessories/crown_frame | 实际 KRA visible_front 普通绘画分片：同名 SVG 原可见 crown-frame-outline 整体，包括头顶弧梁、连接桥、左右卷饰及全部可见内下缘。置两侧 side_hair 与左右 crown_pendant 前，沿原可见内下缘与后根连续搭接，不把整段下冠缘移至后层。"
+  ],
+  "required_outputs": [
+    "raster-layering/step01/character-depth.kra",
+    "raster-layering/step01/character-depth.png",
+    "raster-layering/step01/report.md",
+    "raster-layering/step01/repair-01.md.tmp"
+  ]
+}

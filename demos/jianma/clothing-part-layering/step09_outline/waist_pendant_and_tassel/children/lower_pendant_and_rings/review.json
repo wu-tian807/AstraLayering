@@ -1,0 +1,38 @@
+{
+  "groupId": "waist_pendant_and_tassel/lower_pendant_and_rings",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮检查通过。已先从纯衣服参考 clothing.png 独立确认本组归属，再核对 groups.json 中当前节点及父组 note、候选和父完成 SVG；检查包括全画布 blend、局部原图 8 倍放大、候选 8 倍 blend／edge／纯色独显，以及父稿局部叠加。\n图像核对范围覆盖全部可见组件：① x452–491、y809–854 的大坠顶端固定镶座、完整坠体和下连接节，轮廓与原图蓝色坠体及固定包边对应，没有把周围中央垂布或投影作为实体包入；坠内浅色纹样为固定绘画内容，不应挖孔。② x455–489、y852–883 的上圆环及内悬珠，和 x455–489、y884–915 的下圆环及内悬珠，在局部边缘叠加中位置、比例和外缘吻合；两处珠体下方及两侧真实环孔均透空，悬珠保留。③ y880–889 的两环连接件及 x470–474、y912–918 的下短杆均覆盖原图可见实体，下界停在流苏顶珠之前，未误包 long_tassel 的顶珠或帽。上界与中段水滴连接位置及保守搭接符合 note。\n候选整体坐标正确，无可见组件遗漏、误包其他衣片或人体、明显接缝或主要形状比例错误。当前为 group，联合覆盖足以承担 note 的完整范围；附件相对摆动职责和后续子节点的穿插说明已在 note 中记录。父范围四倍采样检查 outsidePixels=0。未发现确定需要修改的问题，无需重画或修改 note。",
+      "candidateHash": "4216dfd8cb1f9d5e3120a7c1e7083aaf731bccc0071fc9f6230b4c0b61dd30dc",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/previews/2026-11-02T16-42-15-214Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/previews/2026-11-02T16-42-15-214Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/previews/2026-11-02T16-42-15-214Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_pendant_and_tassel.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/previews/2026-11-02T16-42-15-214Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/previews/2026-11-02T16-42-15-214Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:12:51.374Z"
+    }
+  ]
+}

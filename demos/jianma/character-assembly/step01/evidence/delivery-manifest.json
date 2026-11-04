@@ -1,0 +1,84 @@
+{
+  "files": [
+    {
+      "path": "character-assembly/step01/character-assembled.kra",
+      "bytes": 72472048,
+      "sha256": "4f3be28a4684b956b3771fe6b8575e85b49ab28721ee2221a93efcf06c34b3ad"
+    },
+    {
+      "path": "character-assembly/step01/character-assembled.png",
+      "bytes": 1375897,
+      "sha256": "c77a572fc68f98a5de44a47c8a308a989de794a300b46f171c7ab979cbbe4742"
+    },
+    {
+      "path": "character-assembly/step01/character-assembled.ora",
+      "bytes": 4432706,
+      "sha256": "745b176ae27155878d7b7f8399d149031c6ed1e885e4bd566b48abdd47aab84d"
+    },
+    {
+      "path": "raster-layering/step03/character-dressup-base.kra",
+      "bytes": 13698073,
+      "sha256": "f06cd1091280d66b4817268dd46981ec9a05fcfca9f29972562f072159900dc8"
+    },
+    {
+      "path": "clothing-raster-layering/step02/clothing-soft-edges.kra",
+      "bytes": 62811804,
+      "sha256": "247d1a55514519e71b349879c1ca6668f5aa85e1ea98d7771edae9d415fbcf5b"
+    },
+    {
+      "path": "part-layering/references/simplified-subject.png",
+      "bytes": 1353784,
+      "sha256": "e2c76a87b6f289ebb62db0d4ddbca7cc417e9c6b8611002a785b454807cafeef"
+    }
+  ],
+  "png": {
+    "mode": "RGBA",
+    "size": [
+      941,
+      1672
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  "registration": {
+    "nominal_uniform_scale": 0.96,
+    "scaled_clothing_canvas": [
+      903,
+      1605
+    ],
+    "translation": [
+      17,
+      124
+    ],
+    "sleeve_screen_left_local_translation": [
+      5,
+      0
+    ],
+    "sleeve_screen_right_local_translation": [
+      -5,
+      0
+    ]
+  },
+  "new_masks": [
+    {
+      "part": "legs/leg_right/leg",
+      "hidden_canvas_rect": [
+        328,
+        770,
+        15,
+        31
+      ]
+    },
+    {
+      "part": "legs/leg_left/leg",
+      "hidden_canvas_rect": [
+        596,
+        770,
+        15,
+        31
+      ]
+    }
+  ]
+}

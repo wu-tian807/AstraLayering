@@ -1,36 +1,38 @@
 {
   "version": 1,
   "archive": true,
-  "name": "jianma",
-  "dir": ".",
-  "jobs": 3,
   "from": "part-layering",
-  "to": "character-assembly",
-  "standard": false,
+  "to": "shadow",
+  "jobs": 3,
+  "standard": true,
   "shadowMode": "mask",
   "status": "completed",
-  "createdAt": "2026-10-26T00:00:00Z",
-  "updatedAt": "2026-10-26T00:00:00Z",
+  "createdAt": "2026-11-02T08:57:26.161Z",
+  "updatedAt": "2026-11-03T18:43:29.985Z",
   "sections": {
     "part-layering": {
       "status": "completed",
-      "updatedAt": "2026-10-26T00:00:00Z"
+      "updatedAt": "2026-11-02T18:35:48.615Z"
     },
     "raster-layering": {
       "status": "completed",
-      "updatedAt": "2026-10-26T00:00:00Z"
+      "updatedAt": "2026-11-03T18:17:47.778Z"
     },
     "clothing-part-layering": {
       "status": "completed",
-      "updatedAt": "2026-10-26T00:00:00Z"
+      "updatedAt": "2026-11-02T19:08:34.180Z"
     },
     "clothing-raster-layering": {
       "status": "completed",
-      "updatedAt": "2026-10-26T00:00:00Z"
+      "updatedAt": "2026-11-03T18:04:28.477Z"
     },
     "character-assembly": {
       "status": "completed",
-      "updatedAt": "2026-10-26T00:00:00Z"
+      "updatedAt": "2026-11-03T18:34:16.154Z"
+    },
+    "shadow": {
+      "status": "completed",
+      "updatedAt": "2026-11-03T18:43:29.984Z"
     }
   }
 }

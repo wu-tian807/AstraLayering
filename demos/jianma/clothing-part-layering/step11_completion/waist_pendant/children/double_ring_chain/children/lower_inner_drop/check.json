@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/double_ring_chain/lower_inner_drop",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "80abee149cac4272d34d101e0b828cd05f4259afc41ba3883e5160bd27a8d518",
-  "afterHash": "49ba96aa9c3b68dfd2f4ae82dc3bad9e8e6eb9784ef3c5dedb4fdee826a3d056"
-}

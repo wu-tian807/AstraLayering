@@ -1,0 +1,77 @@
+{
+  "groupId": "waist_pendant_and_tassel",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "本轮已只读核对纯衣服参考、groups.json 中本组 note 与候选源码，并完成整体 blend、全串 SVG 独显、挂线至雪花及珠节/大坠/珠环/流苏帽/长流苏末端的分区放大与 edge 覆盖。本节点为根 group，无父 SVG 范围约束。整串附件归属、主体位置比例、雪花镂空及珠环真孔、流苏与后方中央蓝色折返布尾的分界均可保留，不需要重画整组。\n\n确定需修正一处局部轮廓：x466–476、y655–679，雪花下方小菱珠与下方两颗小珠之间的细长金属连接件。参考的鼓起部位靠近上端，随后向下收成细杆；候选将鼓起部位下移，约 y658–662 的上部两侧未包住参考实体，而约 y665–672 又向两侧扩入蓝色底布。要求按参考重新描这段连续外轮廓，将鼓起部位上移并恢复下段细杆，保持上下珠节与全串坐标不变。此处是实体外轮廓问题，不涉及内部明暗恢复。证据：局部 edge 图 previews/2026-11-02T11-50-18-197Z-7.png（crop=[460,650,23,38], scale=8），可见参考上方肩部在红边外、候选下方鼓起红边落到蓝色底布；全串局部 blend 图 previews/2026-11-02T11-50-18-197Z-6.png 可交叉核对。",
+      "candidateHash": "d066a621eac853e52c5d0a196fe8f9184b47192b34b9fea186f66076e625a92b",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T11-50-18-197Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T11-50-18-197Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T11-50-18-197Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T11-50-18-197Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T11-50-18-197Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T11-50-18-197Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T11-50-18-197Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:42:27.172Z",
+      "repairedCandidateHash": "ec93552b1846be70dcceead4a3b430cffc2cdb00bfad8f6d0a81cb2e51aff868"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第2轮通过。先独立核对纯衣服参考，再完成候选全画布 blend、x440–505/y480–960 的4倍原图与 edge 对照、x438–511/y925–1370 的3倍原图与 edge 对照，以及全串 SVG 独显。参考可见归属为腰前细悬线、小宝石和珠节、雪花金属饰、椭圆与水滴连接件、蓝色大坠、两枚含悬珠的圆环、流苏帽和浅色穗束；候选覆盖完整，整体位置、各节比例及衔接与参考相符。雪花真实镂空和两枚珠环的可见内孔均保留；长流苏两侧及约(448,1323)至(500,1354)斜切末端吻合，未误包后方蓝色折返布尾或相邻衣片。note 已说明实体范围、邻接归属、位于中央蓝色垂布前方、腰部随动与各节摆动及流苏独立弯曲职责。该节点为顶层 group，无父 SVG 范围约束。未发现有图像依据的需修改问题。",
+      "candidateHash": "ec93552b1846be70dcceead4a3b430cffc2cdb00bfad8f6d0a81cb2e51aff868",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T12-45-50-804Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T12-45-50-804Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T12-45-50-804Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/previews/2026-11-02T12-45-50-804Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:48:45.463Z"
+    }
+  ]
+}

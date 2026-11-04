@@ -1,0 +1,292 @@
+{
+  "version": 2,
+  "shadows": [
+    {
+      "id": "side-right-to-face",
+      "casterPartId": "character:hair/side_hair",
+      "receiverPartIds": [
+        "character:face"
+      ],
+      "casterLayerUuids": [
+        "eb9f4ebc-74ea-4247-aa0c-468fc4aa54d6"
+      ],
+      "receiverLayerUuids": [
+        "05210561-d9dd-4843-b30a-a63f7b43116c"
+      ],
+      "shadowLayerUuid": "f3a2f404-5dbb-4a06-ac1a-dfb04b2b851c",
+      "clipBaseLayerUuid": "05210561-d9dd-4843-b30a-a63f7b43116c",
+      "follow": "caster",
+      "blendMode": "normal",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -3,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "notes": "暖灰粉正常不透明色；依据额角接触带，隐藏根区完整；未由深度号推算距离。 输入索引名称归属为父part，casterPartId/receiverPartIds沿用其真实父组；motionSourcePartId/receiverSurfacePartIds明确叶级运动来源和受影面，UUID定位实际原图层。",
+      "motionSourcePartId": "character:hair/side_hair/side_hair_right",
+      "receiverSurfacePartIds": [
+        "character:face/face_base"
+      ],
+      "colorRGBA": [
+        218,
+        179,
+        179,
+        255
+      ]
+    },
+    {
+      "id": "side-left-to-face",
+      "casterPartId": "character:hair/side_hair",
+      "receiverPartIds": [
+        "character:face"
+      ],
+      "casterLayerUuids": [
+        "431dc8ad-bd0d-4ddc-94e9-a49f6af32517"
+      ],
+      "receiverLayerUuids": [
+        "05210561-d9dd-4843-b30a-a63f7b43116c"
+      ],
+      "shadowLayerUuid": "2e1c5a5d-19db-49a4-9565-5e84a0a7051c",
+      "clipBaseLayerUuid": "05210561-d9dd-4843-b30a-a63f7b43116c",
+      "follow": "caster",
+      "blendMode": "normal",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -3,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "notes": "与另一宽侧发同色避免重叠叠黑；右侧轮廓独立描绘。 输入索引名称归属为父part，casterPartId/receiverPartIds沿用其真实父组；motionSourcePartId/receiverSurfacePartIds明确叶级运动来源和受影面，UUID定位实际原图层。",
+      "motionSourcePartId": "character:hair/side_hair/side_hair_left",
+      "receiverSurfacePartIds": [
+        "character:face/face_base"
+      ],
+      "colorRGBA": [
+        218,
+        179,
+        179,
+        255
+      ]
+    },
+    {
+      "id": "upper-lid-right",
+      "casterPartId": "character:face/eyes/eye_right",
+      "receiverPartIds": [
+        "character:face/eyes/eye_right/sclera",
+        "character:face/eyes/eye_right/iris"
+      ],
+      "casterLayerUuids": [
+        "538a5f1d-7615-4552-8757-e916939e3793",
+        "495462dd-1159-4a01-bed3-efa147ef134a"
+      ],
+      "receiverLayerUuids": [
+        "34f70e93-53b9-415d-ab1e-2e184b0da10b",
+        "3bce0122-a3f2-4da8-9ace-9532e2066e9a"
+      ],
+      "shadowLayerUuid": "adeb3242-673a-42b8-8fa1-be92deb1e601",
+      "clipBaseLayerUuid": "3252441e-8d1c-48de-9f32-31497f86d56a",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -2,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "notes": "上睑接触投影窄片，保留现有眼白灰蓝过渡与虹膜固有深色。裁切为原眼开口，follow上睑而非虹膜。 输入索引名称归属为父part，casterPartId/receiverPartIds沿用其真实父组；motionSourcePartId/receiverSurfacePartIds明确叶级运动来源和受影面，UUID定位实际原图层。",
+      "motionSourcePartId": "character:face/eyes/eye_right/upper_eyelid",
+      "receiverSurfacePartIds": [
+        "character:face/eyes/eye_right/sclera",
+        "character:face/eyes/eye_right/iris"
+      ],
+      "colorRGBA": [
+        221,
+        227,
+        237,
+        255
+      ]
+    },
+    {
+      "id": "upper-lid-left",
+      "casterPartId": "character:face/eyes/eye_left",
+      "receiverPartIds": [
+        "character:face/eyes/eye_left/sclera",
+        "character:face/eyes/eye_left/iris"
+      ],
+      "casterLayerUuids": [
+        "d699c479-867c-4c80-8daa-ef5c12ac5919",
+        "82f93c9a-8c37-433f-b573-72a46f9a7ee7"
+      ],
+      "receiverLayerUuids": [
+        "f14ed857-29cf-4c89-92a9-d4bde22d8edc",
+        "4e67f3d9-e9e4-4b27-b40e-6d8bcbfc8ac4"
+      ],
+      "shadowLayerUuid": "c10572fc-cc57-434f-b3bc-3a0ec8a3bfb1",
+      "clipBaseLayerUuid": "1480fffa-92e7-4471-a5c4-aa4edba7a21f",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -2,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "notes": "上睑接触投影窄片，保留现有眼白灰蓝过渡与虹膜固有深色。裁切为原眼开口，follow上睑而非虹膜。 输入索引名称归属为父part，casterPartId/receiverPartIds沿用其真实父组；motionSourcePartId/receiverSurfacePartIds明确叶级运动来源和受影面，UUID定位实际原图层。",
+      "motionSourcePartId": "character:face/eyes/eye_left/upper_eyelid",
+      "receiverSurfacePartIds": [
+        "character:face/eyes/eye_left/sclera",
+        "character:face/eyes/eye_left/iris"
+      ],
+      "colorRGBA": [
+        221,
+        227,
+        237,
+        255
+      ]
+    },
+    {
+      "id": "skirt-to-legs",
+      "casterPartId": "clothing:inner_long_dress",
+      "receiverPartIds": [
+        "character:legs/leg_right",
+        "character:legs/leg_left"
+      ],
+      "casterLayerUuids": [
+        "88686b4d-6946-4a8d-98e1-55b7fdc172ee"
+      ],
+      "receiverLayerUuids": [
+        "9c64defe-cd1d-47cc-a124-83149984fed6",
+        "31dfffc8-e688-485e-92f6-e4d8d5197017"
+      ],
+      "shadowLayerUuid": "e171a4d4-5a80-496a-b54d-1dc2b2a1da22",
+      "clipBaseLayerUuid": "4cc1de73-6b39-48f6-a3b7-d829d10a716c",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -6,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "notes": "裙口按原画前裙缘留约5px柔和接触投影，完整裙形覆盖隐藏腿段并伸出联合接收面；保留腿部原蒙版。 输入索引名称归属为父part，casterPartId/receiverPartIds沿用其真实父组；motionSourcePartId/receiverSurfacePartIds明确叶级运动来源和受影面，UUID定位实际原图层。",
+      "motionSourcePartId": "clothing:inner_long_dress/long_skirt",
+      "receiverSurfacePartIds": [
+        "character:legs/leg_right/leg",
+        "character:legs/leg_left/leg"
+      ],
+      "colorRGBA": [
+        214,
+        193,
+        201,
+        255
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "casterPartId": "character:hair/sidelock/sidelock_right",
+      "reason": "从耳前向脸外延伸，细束及卷尾在脸轮廓之外；参考无向脸内平移的投影依据，不为显影补平行线；偏移仅作无新增阴影对照。",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -3,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    {
+      "casterPartId": "character:hair/sidelock/sidelock_left",
+      "reason": "从耳前向脸外延伸，细束及卷尾在脸轮廓之外；参考无向脸内平移的投影依据，不为显影补平行线；偏移仅作无新增阴影对照。",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -3,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    }
+  ]
+}

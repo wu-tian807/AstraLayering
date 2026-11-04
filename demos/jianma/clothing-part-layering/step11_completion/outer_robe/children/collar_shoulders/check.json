@@ -1,7 +1,0 @@
-{
-  "groupId": "outer_robe/collar_shoulders",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "7bcbeae56bbeb78030bdfbd76fdc30ec73d0b1d32696a4b0b0f3be9fc877e08c",
-  "afterHash": "50d1724a836be01bec0bc762a024a26e7fcd1dbcb6e28c97c318d3c52207290e"
-}

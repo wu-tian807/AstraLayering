@@ -1,0 +1,566 @@
+{
+  "image": "raster-layering/step01/workspace/review-current/default.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        405,
+        340,
+        128,
+        23
+      ],
+      "layers": [
+        "030.0 | neck | complete",
+        "031.0 | body/torso | complete",
+        "neck_and_shoulder_attachment_blend"
+      ],
+      "description": "默认组装颈根有横向浅色接缝和灰紫小点，锁骨上方呈截断带。参考此处肤色与颈胸明暗连续；在本件重叠内接顺底色和笔触，保留锁骨线及肩带。",
+      "crop": [
+        393,
+        328,
+        152,
+        47
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R1-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R1-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R1-comparison.png"
+      }
+    },
+    {
+      "id": "R2a",
+      "bounds": [
+        362,
+        392,
+        214,
+        153
+      ],
+      "layers": [
+        "031.0 | body/torso | complete",
+        "032.0 | body/breast | complete",
+        "torso_attachment_blend"
+      ],
+      "description": "胸衣原有立体亮暗和深色外轮廓大幅缺失，胸下侧边呈薄色块转折，缝线随之变直。按参考恢复胸部体积、柔和布面明暗及边线，并接顺胸片与躯干。",
+      "crop": [
+        350,
+        380,
+        238,
+        177
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R2a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R2a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R2a-comparison.png"
+      }
+    },
+    {
+      "id": "R2b",
+      "bounds": [
+        343,
+        533,
+        253,
+        286
+      ],
+      "layers": [
+        "031.0 | body/torso | complete",
+        "013.0 | pelvis | complete"
+      ],
+      "description": "腰腹和骨盆衣面近乎均匀平涂，腰线有折点，原腿口双边线及裆尖暗部缺失。恢复参考衣面塑形、连续曲线与腿口厚度，保持独立完整衣片。",
+      "crop": [
+        331,
+        521,
+        277,
+        310
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R2b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R2b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R2b-comparison.png"
+      }
+    },
+    {
+      "id": "R3a",
+      "bounds": [
+        279,
+        773,
+        49,
+        133
+      ],
+      "layers": [
+        "021.0 | arms/arm_right/hand/palm | complete",
+        "014.0–018.0 | arms/arm_right/hand/* | complete",
+        "020.0 | arms/arm_right/forearm | complete"
+      ],
+      "description": "画面左手掌指连接出现硬色阶与轮廓台阶，拇指甲变为小方框，细指阴影和描边被简化。各层内补画并接顺掌指、腕掌；保留原姿势与指长及独立归属。",
+      "crop": [
+        267,
+        761,
+        73,
+        157
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R3a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R3a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R3a-comparison.png"
+      }
+    },
+    {
+      "id": "R3b",
+      "bounds": [
+        611,
+        776,
+        49,
+        131
+      ],
+      "layers": [
+        "029.0 | arms/arm_left/hand/palm | complete",
+        "024.0–028.0 | arms/arm_left/hand/* | complete",
+        "022.0 | arms/arm_left/forearm | complete"
+      ],
+      "description": "画面右手掌下缘切到指根形成硬横边，拇指甲呈方框，各指平涂且原重叠暗线不足。恢复参考掌指形体、指甲与阴影，逐层保持自己的内容并接顺。",
+      "crop": [
+        599,
+        764,
+        73,
+        155
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R3b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R3b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R3b-comparison.png"
+      }
+    },
+    {
+      "id": "R4a",
+      "bounds": [
+        409,
+        202,
+        47,
+        40
+      ],
+      "layers": [
+        "044.0–049.0 | face/eyes/eye_right/* | complete",
+        "066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front"
+      ],
+      "description": "画面左眼原圆瞳与虹膜层次改为细长竖瞳加简单蓝色渐变，高光布局改变，眼睑笔触明显简化。按参考恢复圆瞳、虹膜纹理与反光，保留眼内拆层、开口蒙版及上睑双深度。",
+      "crop": [
+        397,
+        190,
+        71,
+        64
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R4a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R4a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R4a-comparison.png"
+      }
+    },
+    {
+      "id": "R4b",
+      "bounds": [
+        482,
+        202,
+        50,
+        40
+      ],
+      "layers": [
+        "038.0–043.0 | face/eyes/eye_left/*",
+        "066.0 | face/eyes/eye_left/upper_eyelid | outer_lash_front"
+      ],
+      "description": "画面右眼同样由原圆瞳和有层次虹膜改为竖向椭圆瞳及平滑渐变，高光与眼内笔触失真。按本侧参考恢复，保留独立虹膜高光和深度分片。",
+      "crop": [
+        470,
+        190,
+        74,
+        64
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R4b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R4b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R4b-comparison.png"
+      }
+    },
+    {
+      "id": "R5",
+      "bounds": [
+        446,
+        252,
+        46,
+        45
+      ],
+      "layers": [
+        "050.0 | face/mouth/mouth_interior | complete",
+        "052.0 | face/mouth/tongue | complete",
+        "053.0 | face/mouth/upper_teeth | complete",
+        "054.0 | face/mouth/lower_lip | complete",
+        "055.0 | face/mouth/upper_lip | complete"
+      ],
+      "description": "嘴部变为平面暗圆和粉色色块；原口腔上壁层次、舌缘明暗、上下唇高光及柔和外缘缺失，唇片边缘有硬接色。按参考恢复口内纵深和唇缘笔触，保留开口与牙舌完整底形。",
+      "crop": [
+        434,
+        240,
+        70,
+        69
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R5-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R5-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R5-comparison.png"
+      }
+    },
+    {
+      "id": "R6a",
+      "bounds": [
+        402,
+        251,
+        20,
+        96
+      ],
+      "layers": [
+        "033.0 | head_accessories/earrings/earring_right | complete"
+      ],
+      "description": "画面左耳饰菱形朝向与连接形态改画，长坠缩为窄条、明暗破碎；原柳叶形下坠与深边线未保留。恢复本侧原轮廓、宽度与连续金属笔触，保留隐藏安装端。",
+      "crop": [
+        390,
+        239,
+        44,
+        120
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R6a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R6a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R6a-comparison.png"
+      }
+    },
+    {
+      "id": "R6b",
+      "bounds": [
+        516,
+        251,
+        20,
+        96
+      ],
+      "layers": [
+        "034.0 | head_accessories/earrings/earring_left | complete"
+      ],
+      "description": "画面右耳饰原菱形及短节被扭成斜片，下坠明显窄碎。按本侧原参考恢复宝石和金属坠形及连贯边线，保留本侧差异与完整安装根。",
+      "crop": [
+        504,
+        239,
+        44,
+        120
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R6b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R6b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R6b-comparison.png"
+      }
+    },
+    {
+      "id": "R7a",
+      "bounds": [
+        224,
+        188,
+        177,
+        1246
+      ],
+      "layers": [
+        "001.0 | hair/back_hair/long_hair_right | complete"
+      ],
+      "description": "画面左长发原清晰的纵向分束、折面高光、暗线和收尖笔触被大面积模糊条纹替换；与头部清晰发面画风不一致。沿原可见发流恢复结构和边线，再将隐藏区接入同样笔触，保留完整根、外弯和长梢。",
+      "crop": [
+        212,
+        176,
+        201,
+        1270
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R7a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R7a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R7a-comparison.png"
+      }
+    },
+    {
+      "id": "R7b",
+      "bounds": [
+        539,
+        188,
+        176,
+        1246
+      ],
+      "layers": [
+        "002.0 | hair/back_hair/long_hair_left | complete"
+      ],
+      "description": "画面右长发可见区同样缺少原有清晰分束和深浅折面，变为柔糊条纹。按本侧参考恢复发流、暗边及尖梢，不改变原长度与现有完整补全归属。",
+      "crop": [
+        527,
+        176,
+        200,
+        1270
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R7b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R7b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R7b-comparison.png"
+      }
+    },
+    {
+      "id": "R9a",
+      "bounds": [
+        282,
+        351,
+        120,
+        448
+      ],
+      "layers": [
+        "019.0 | arms/arm_right/upper_arm | complete",
+        "020.0 | arms/arm_right/forearm | complete",
+        "031.0 | body/torso | complete"
+      ],
+      "description": "画面左臂原细深描边和肘部塑形显著丢失，边缘呈浅色阶梯，轮廓与参考清晰画风不一致。恢复原可见边线与肘部笔触，隐藏根保留连续。",
+      "crop": [
+        270,
+        339,
+        144,
+        472
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9a-comparison.png"
+      }
+    },
+    {
+      "id": "R9b",
+      "bounds": [
+        536,
+        351,
+        121,
+        448
+      ],
+      "layers": [
+        "023.0 | arms/arm_left/upper_arm | complete",
+        "022.0 | arms/arm_left/forearm | complete",
+        "031.0 | body/torso | complete"
+      ],
+      "description": "画面右臂同样丢失原外轮廓、肘窝暗部和边缘细高光；恢复本侧原笔触，接顺肘腕，保留完整上臂前臂。",
+      "crop": [
+        524,
+        339,
+        145,
+        472
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9b-comparison.png"
+      }
+    },
+    {
+      "id": "R9c",
+      "bounds": [
+        332,
+        715,
+        275,
+        395
+      ],
+      "layers": [
+        "009.0 | legs/leg_right/leg | complete",
+        "010.0 | legs/leg_left/leg | complete"
+      ],
+      "description": "双大腿原深色轮廓及腿间连续细线消失，内侧局部融为一片后又露出锯齿细缝。按参考恢复两腿各自边线和接触关系，保留全长皮肤底形。",
+      "crop": [
+        320,
+        703,
+        299,
+        419
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9c-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9c-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9c-comparison.png"
+      }
+    },
+    {
+      "id": "R9d",
+      "bounds": [
+        377,
+        1090,
+        185,
+        408
+      ],
+      "layers": [
+        "009.0 | legs/leg_right/leg | complete",
+        "010.0 | legs/leg_left/leg | complete"
+      ],
+      "description": "膝下和小腿原细深外轮廓大幅缺失，浅色像素阶梯成为边界，膝部原细亮暗被糊化。恢复原轮廓笔触与清晰膝形，保持比例与腿长。",
+      "crop": [
+        365,
+        1078,
+        209,
+        432
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9d-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9d-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R9d-comparison.png"
+      }
+    },
+    {
+      "id": "R10a",
+      "bounds": [
+        400,
+        1586,
+        70,
+        60
+      ],
+      "layers": [
+        "009.0 | legs/leg_right/leg | complete"
+      ],
+      "description": "画面左足趾缝呈断续杂色，趾甲和趾腹边线缺损，拇趾底有黑青色孤点。按参考清理脏像素并重接趾缝、甲缘与足底轮廓，保留全部脚趾及足背链归属。",
+      "crop": [
+        388,
+        1574,
+        94,
+        84
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R10a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R10a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R10a-comparison.png"
+      }
+    },
+    {
+      "id": "R10b",
+      "bounds": [
+        468,
+        1586,
+        71,
+        60
+      ],
+      "layers": [
+        "010.0 | legs/leg_left/leg | complete"
+      ],
+      "description": "画面右足趾底有横向粗糙白边和黑青杂点，趾缝边线破碎。按本侧参考重画趾甲、趾缝和连续外轮廓，保留趾数和足背链。",
+      "crop": [
+        456,
+        1574,
+        95,
+        84
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R10b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R10b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R10b-comparison.png"
+      }
+    },
+    {
+      "id": "R11a",
+      "bounds": [
+        411,
+        1494,
+        55,
+        53
+      ],
+      "layers": [
+        "011.0 | legs/leg_right/anklet_front | complete",
+        "009.0 | legs/leg_right/leg | complete"
+      ],
+      "description": "画面左踝珠链至足背中央链之间有明确断口，原相连的银链变成悬空链头；珠链同时失去原紧密金属连接形态。在各自层内恢复连接长度与原链节，保持绕踝前后归属。",
+      "crop": [
+        399,
+        1482,
+        79,
+        77
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R11a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R11a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R11a-comparison.png"
+      }
+    },
+    {
+      "id": "R11b",
+      "bounds": [
+        473,
+        1494,
+        53,
+        53
+      ],
+      "layers": [
+        "012.0 | legs/leg_left/anklet_front | complete",
+        "010.0 | legs/leg_left/leg | complete"
+      ],
+      "description": "画面右踝珠链与足背链连接松脱，原链头和珠环的连续接点未保留；恢复接点及原银链节形态，保留各件独立。",
+      "crop": [
+        461,
+        1482,
+        77,
+        77
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R11b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R11b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R11b-comparison.png"
+      }
+    },
+    {
+      "id": "R13a",
+      "bounds": [
+        394,
+        232,
+        29,
+        34
+      ],
+      "layers": [
+        "035.0 | face/ears/ear_right | complete",
+        "face_and_side_hair_default_occlusion"
+      ],
+      "description": "画面左耳原可见耳廓转折和内耳阴影被平涂加U形线替换。参考本侧可见耳结构恢复轮廓与明暗，并自然延续隐藏耳廓；保留完整耳形和默认遮挡范围。",
+      "crop": [
+        382,
+        220,
+        53,
+        58
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R13a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R13a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R13a-comparison.png"
+      }
+    },
+    {
+      "id": "R13b",
+      "bounds": [
+        515,
+        232,
+        29,
+        34
+      ],
+      "layers": [
+        "036.0 | face/ears/ear_left | complete",
+        "face_and_side_hair_default_occlusion"
+      ],
+      "description": "画面右耳原可见耳甲阴影和耳廓折面简化成肤色色片及U线。按本侧原画恢复可见耳结构，延续完整隐藏耳形，保留蒙版控制。",
+      "crop": [
+        503,
+        220,
+        53,
+        58
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R13b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R13b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6f2bd269-83ac-42a0-8fc1-bb5d12a2b420/R13b-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

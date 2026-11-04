@@ -2,10 +2,86 @@
   "groupId": "neck",
   "reviews": [
     {
+      "verdict": "revise",
+      "feedback": "已完成整图 blend 定位，以及下颌接缝、左右颈侧、左右颈根和中央下缘的重叠选框放大核对（6–8 倍，blend/edge），并检查 SVG 独显。neck 无父组范围约束。实体归属与主要形体正确，无可见独立组件遗漏，无碎片或噪点，不需要整组重画。\n\n需修正左右颈根外缘的局部内缩：左侧约 (411,349) 至 (441,329)，右侧约 (496,329) 至 (527,349)。参考中皮肤与后方灰蓝头发的分界连续向外展开；候选曲线在这两段偏向皮肤内侧，放大 blend 可见色块外侧仍留有连续的浅肤色细带，edge 中红线与真实分界分离，约为原图 1 像素上下，局部接近 2 像素。请分别依据左右参考将曲线向外贴齐真实皮肤外缘，连贯接回颈侧及两端颈根，不改变中央与 body 的合理交接，不沿锁骨明暗线另挖轮廓。\n\n图像证据：左侧 [blend](previews/2026-11-02T09-11-14-079Z-6.png)、[edge](previews/2026-11-02T09-11-14-079Z-4.png)；右侧 [blend](previews/2026-11-02T09-11-14-079Z-7.png)、[edge](previews/2026-11-02T09-11-14-079Z-5.png)。",
+      "candidateHash": "6752564fb35bbf47843eaaf06855a41fd4bae70b9625ec2b635078848ebbc428",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-11-14-079Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-11-14-079Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-11-14-079Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-11-14-079Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-11-14-079Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-11-14-079Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-11-14-079Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-11-14-079Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:16:32.578Z",
+      "repairedCandidateHash": "ffafc88f336543e665002fbc973648385c48b0c8522c2ec65f2f93085565eff0"
+    },
+    {
       "verdict": "pass",
-      "feedback": "仅审查 neck（下颌至躯干之间的颈部，锁骨归 body），无父组，父范围检查不适用。先查看整图 blend 定位，随后以 8 倍 blend 和 edge 完成四个重叠选框：[478,240,68,38] 下颌接缝；[458,247,57,82] 左颈侧及左颈根；[505,247,61,82] 右颈侧及右颈根；[458,291,108,39] 颈根及躯干接缝，完整覆盖本组可见区域。下颌两端至下巴的上缘与参考接缝贴合；左右颈侧从下颌向颈根的宽度、弧度和转向与皮肤/头发可见边界吻合，肩带附近连接连续，无有依据的越出、缩入或漏画。颈根为与 body 的连续分组接缝，未将内部阴影作为外轮廓判据。候选为单一连续形体，无孔洞、刻意挖缝、孤立像素点、碎发丝或碎片堆砌，未发现噪音或形体归属混乱。全部分块核对后未发现需返修的明确图像证据，通过。",
-      "candidateHash": "231f97958df63de6a9e295da17fa1dae69f023eefe81e5846750e6ffa55a1b2e",
-      "updatedAt": "2026-10-14T11:51:47.852Z"
+      "feedback": "已核对 neck 职责：下颌以下至颈根，锁骨归 body；本组为顶层节点，无父范围约束。先查看整图 blend 定位，再以参考局部 (393,280,150,95)、全组放大 blend (398,285,141,88)，以及相互重叠的左侧 edge (402,288,77,82) 和右侧 edge (461,288,77,82) 完整核对。下颌接缝、左右颈侧与后发交界、颈侧向颈根展开的曲线及两侧末端均与参考吻合，未发现误包头发或遗漏可见颈部。下缘为与 body 连续皮肤之间的分组接缝，不将锁骨明暗线要求为外轮廓。SVG 独显核对形体连续干净，无孤点、碎片、无依据孔洞或刻意挖缝。本轮通过，无需重画或局部返修。",
+      "candidateHash": "ffafc88f336543e665002fbc973648385c48b0c8522c2ec65f2f93085565eff0",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-21-12-863Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-21-12-863Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-21-12-863Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-21-12-863Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-02T09-21-12-863Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:25:23.536Z"
     }
   ]
 }

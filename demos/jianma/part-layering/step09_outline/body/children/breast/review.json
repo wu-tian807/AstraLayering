@@ -2,18 +2,57 @@
   "groupId": "body/breast",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "已读取 body/breast 组说明、参考图、候选 SVG 和完成父稿 ../../../../../parts/body.svg。先看整图 blend，再以左上 [415,325,110,100]、右上 [500,325,110,100]、左下 [415,395,115,80]、右下 [495,395,115,80] 四个重叠选框逐块检查 blend 与 edge，覆盖全部色块；另用 view_bitmap 放大胸部及双侧外缘，并在相同 8 倍局部叠加父、子轮廓。父范围检查 pass，outsideSamples=0。\n\n父内可修问题：\n1. 画面右侧乳房外缘约 x589–602、y396–442 持续向内缩，尤其下段转向胸下缘的弧线。参考可见隆起与上臂／后发分界的轮廓在候选红线外侧；同局部父边界也在候选外侧，存在仍属于本组容纳范围的未覆盖细带。例如 y430 候选约 x596.5、父边界约 x597.1；y438 候选约 x590.6、父边界约 x591.8，后者已有约 1.1 原图像素的父内余量。请将这一段外缘向右修正，在父允许范围内贴合可靠可见边缘，保留外隆到下转的连续弧度，并衔接现有胸下补形；不要以已通过父检查为理由保留缩入。证据：选框 [574,375,36,72] 的参考放大，以及候选 edge 2026-10-14T20-38-53-319Z-15.png、父 edge -16.png。\n2. 画面左侧乳房下半外弧约 x422–436、y414–442 也有细窄缩入。相同局部叠加中，候选红线位于父蓝线的右侧，参考隆起下转的深色边界仍沿更外侧延续；例如 y425 候选约 x425.1、父边界约 x424.5，y430 候选约 x427.5、父边界约 x426.9。请在父内把下半外弧向左补齐，保持与上半外缘及下缘承接连续，不把这条可见外缘误作衣服内部阴影而忽略。证据：选框 [416,375,36,72] 的参考放大，以及候选 edge 2026-10-14T20-38-53-319Z-13.png、父 edge -14.png。\n\n上游范围限制（单独记录）：画面右侧最外隆起中段约 x602–604、y398–423，参考深色外轮廓的外侧部分超出父 body 的边界；父、子同局部叠加可见父线本身仍处于该参考轮廓内侧。此父外残余只能扩大上游 body 范围才能恢复，不要求当前子组越界，也未认为它已补齐；当前候选与父线之间尚有余量，仍须先完成第 1 项父内修正。\n\n其余核对：上部双侧根部、中央乳沟凹转、色块内部连续覆盖和胸下缘均已放大检查；领口、肩带、包边及缝线没有被作为独立组件收入。遮挡下的完整下缘补形附近没有可靠可见实体边界，不要求贴到普通明暗分界。未见孤点、碎片堆砌、无依据孔洞、组件缺失或形体归属混乱；以上返修属于外缘位置偏差，不属于噪音或最终着色未画。",
-      "candidateHash": "973e6801cd2e785d87bedcda003d9220f487db373c565745cd2392fc513dbbe6",
-      "updatedAt": "2026-10-14T20:44:59.076Z",
-      "repairedCandidateHash": "7d5a404bbb0d9eb4e6c82480f48e917832550149cb5291b3258517759785062e"
-    },
-    {
-      "verdict": "revise",
-      "feedback": "已读取 body/breast 组说明、参考图、候选及父组完成 SVG。先以整图 blend 定位，再对 [413,325,110,85]、[501,325,112,85]、[413,392,110,77]、[501,392,112,77] 四个重叠选框逐块作 5–6 倍 blend/edge 核对，覆盖双侧上缘、中央连接、两侧外缘及全部胸下缘；另以 8 倍原图和窄幅 edge 核对两侧，并将父、候选边缘在同一局部叠加。父范围检查 pass，outsideSamples=0、outsidePixels=0。\n\n当前组须返修：画面右侧胸部外缘上段，约 x596–601、y380–394，候选轮廓向内收了一小条。8 倍 edge 选框 [580,357,31,41] 中，红线在白色隆起与上臂之间真实外沿的左侧；例如 y383 候选 x约597.3，而参考外缘在 x约598，y388 候选 x约599.2，而参考外缘在 x约600。这里核对的是外侧身体隆起边缘，不是更靠右的腋部阴影或衣服内部缝线。该段仍有父内可修空间，尤其 y392 候选 x约600.4、父边界 x601，不能把全部偏差归给父稿。请按参考向外修正这段侧缘，并平顺接入下方已贴父边界的曲线；在父范围内补足，不要求子组越界。\n\n单列上游限制：画面右侧约 x601–604、y396–420 的侧缘，参考中的可见隆起外沿比父 SVG 更靠右。同局部父子叠加 [579,378,31,70] 显示，此段候选已贴合父的容纳边界，继续恢复参考外沿需要扩大父范围。该部分尚未恢复，应由上游处理；本轮不要求修改父稿或子组越界，也不放宽父范围检查。证据为候选窄幅 edge 预览 2026-10-14T20-51-02-985Z-14.png、同框父组 edge -15.png 及对应 view_bitmap 原图。\n\n其余区域已完成核对：双侧与中央保持一个连续实体，未以领口截断，也未领取肩带、包边或缝线；衣物遮挡下的上部根缘和胸下缘为合理完整补形，不要求贴普通阴影分界。未发现孔洞、孤点、碎片、噪音或形体归属混乱，无独立组件缺失问题。此次 revise 的依据是上述父内可修的右侧外缘偏差，不是最终着色未画。",
-      "candidateHash": "7d5a404bbb0d9eb4e6c82480f48e917832550149cb5291b3258517759785062e",
-      "updatedAt": "2026-10-14T20:59:08.317Z",
-      "repairedCandidateHash": "a5fe4364115731921989a3f1411067baf2d60d10105aa1ec555a21ffc74a795a"
+      "verdict": "pass",
+      "feedback": "已读取 body/breast 与 body 的职责、原始参考、候选及父完成 SVG，并在整图叠加定位后以三个重叠选框覆盖全部色块：左侧 [355,385,125,145]、右侧 [460,385,125,145]、中央 [410,385,120,145]，逐块完成 5 倍 blend 与 edge 核对。左右乳房及连体服覆盖的体积归属正确，两侧可见圆隆外缘、腋侧起接与下方接回躯干处均贴合参考；中央胸沟位置正确。上、下内部覆盖边界附近没有对应的可靠实体外缘，现有连续完整形体合理，不要求贴合领口、衣缝或明暗分界。未发现可见组件遗漏、误包相邻实体、真实孔洞被填平、碎片噪音或需要重画的问题。父范围检查 outsidePixels=0，候选完整容纳于 body 完成轮廓内，无已确认的上游范围冲突。\n\n图像证据：[父组叠加](review-evidence/round1-parent-blend.png)、[左侧叠加](review-evidence/round1-left-blend.png)、[左侧边缘](review-evidence/round1-left-edge.png)、[右侧叠加](review-evidence/round1-right-blend.png)、[右侧边缘](review-evidence/round1-right-edge.png)、[中央叠加](review-evidence/round1-center-blend.png)、[中央边缘](review-evidence/round1-center-edge.png)、[候选独显](review-evidence/round1-candidate.png)。",
+      "candidateHash": "a455db01c8bf01941bc9a60169dcbd07633e5f077904238c0f7e78a77e6dd1b9",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-02T10-11-21-683Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/body.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-02T10-11-21-683Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-02T10-11-21-683Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-02T10-11-21-683Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-02T10-11-21-683Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-02T10-11-21-683Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-02T10-11-21-683Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-02T10-11-21-683Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-02T10-11-21-683Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:22:14.058Z"
     }
   ]
 }

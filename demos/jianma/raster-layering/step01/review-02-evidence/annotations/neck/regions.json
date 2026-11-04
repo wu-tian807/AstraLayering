@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/isolated/30-neck.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/ddecbb70-7af9-48c5-b1c7-5105a1e01dae/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/ddecbb70-7af9-48c5-b1c7-5105a1e01dae/regions.json",
+  "regions": [
+    {
+      "id": "R4",
+      "bounds": [
+        416,
+        351,
+        107,
+        20
+      ],
+      "layers": [
+        "030.0 | neck | complete"
+      ],
+      "description": "颈部完整独显底端约 y359–367 有一片单色倒三角补片，上缘为近水平硬色阶，颈部纵向明暗到此突然停止。默认被躯干遮住，但隐藏上层/独显不连续；应在本颈内将原有肤色明暗延续至补全底端。",
+      "crop": [
+        408,
+        343,
+        123,
+        36
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/ddecbb70-7af9-48c5-b1c7-5105a1e01dae/R4-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/ddecbb70-7af9-48c5-b1c7-5105a1e01dae/R4-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/ddecbb70-7af9-48c5-b1c7-5105a1e01dae/R4-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

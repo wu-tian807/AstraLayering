@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" data-source-sha256="ee9fc67eeeccd22bf16d35448753f9dd43fd56c0f528523f584f15bc0fabd246">
-  <g id="waist_pendant_upper_suspension_right_suspension_cord_front_arc_cord" data-group-path="waist_pendant/upper_suspension/right_suspension_cord/front_arc_cord" fill="#E96B95" stroke="none">
-    <desc>角色自身右侧、画面左侧长悬绳的完整露前弧绳。沿父组第二条 path 的原轮廓，自 knot_core 左下出绳遮挡线约 (498.63,514.64) 至 (499.68,515.36) 向下延续至约 (511,592)；上端沿父绳两边保留从 y514.3 起的短接舌，与 rear_insertion_end 仅在结芯遮住的区域内搭接。出结弧绳位于 front_band、right_short_loop、腹前身体、中央蓝幅及内裙之前，约 x493.6～495.4、y535～550 的交叠压在短环绳前；整片排于 knot_core 之后，上接舌藏在结芯后。下端 y591～592.7 保留搭于 junction_linkage/junction_knot 后的短绳末端。不含藏后根端、另一支 left_suspension_cord、短环绳、腰带小布穗、汇接小结及结翼或珠接；两支绳各自接入同一汇接点。上接点与 rear_insertion_end 共同随腰结、前腰带及骨盆，下端与另一支悬绳共同跟随汇接小结；同根悬绳的柔性变形与整体悬摆连续，分片处无新增自由关节。固定细节随绳，全片可统一排在前腰带、短环绳及腹前衣片前、结芯和汇接小结后，终止为 part。仅表达纯色实体轮廓，保持父范围，不填人体或弧内开口。</desc>
-    <path d="M 499.817741935484,515.02 L 499.1,516.8 C 496.7,526.4 495.1,539.9 494.1,552.6 C 493.5,561.7 493.4,571.6 496.7,579.1 C 499.4,585.3 505.5,589.1 511.3,591.5 L 510.8,592.7 C 504.7,590.5 498.4,586.3 495.5,579.7 C 492.1,572.0 492.3,561.4 492.9,552.4 C 493.8,539.5 495.4,526.1 497.9,516.5 L 498.759375,514.3 Z"/>
-  </g>
-</svg>

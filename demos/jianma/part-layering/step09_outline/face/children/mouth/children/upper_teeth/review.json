@@ -3,9 +3,36 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已先查看候选整图 blend，并将嘴部定位于 x≈503–521、y≈231–244。随后以 8 倍查看完整局部 [494,222,36,29]，并用左框 [499,225,17,18]、右框 [509,225,17,18] 及中央重叠框 [505,228,15,13] 的 blend/edge 覆盖整片牙带、左右端、上下缘和相邻口缘；参考局部使用 view_bitmap 核对，父组 mouth.svg 同坐标的 blend/edge/svg 已查看。\n参考的小圆口没有清晰可辨的独立上齿列；上口中央浅色边沿依组说明属于 upper_lip，不能据此要求 upper_teeth 复制唇缘，也没有图像依据要求增加分离牙尖或齿缝。候选位于上口缘内侧，为单片连续浅色弧形牙带；左右端与牙根侧连续，中央下缘平顺，没有挖缝、漏接、孤点、噪音碎片或形体归属混乱。无可靠可见齿缘可供逐像素贴合的隐藏部分按合理补形保留；不将独立预览中的露出量作为显影顺序问题，也不扩大本轮至大片遮挡补形。\n父范围检查通过：四倍采样 outsideSamples=0、outsidePixels=0；牙带全在 mouth 父范围内。未发现本组允许范围内有明确参考依据的组件漏画或可修轮廓问题，亦未发现需要扩大父范围的上游冲突。",
-      "candidateHash": "1da39bbdaba69670f523c21ce878a29f271a570e5c657675602f2096e5930509",
-      "updatedAt": "2026-10-14T22:39:33.135Z"
+      "feedback": "已核对组说明、参考图、候选及父组 mouth 完成 SVG，并先查看整图 blend 定位。参考口腔上沿内侧确有一段连续白色上牙，候选归属正确，未误包上唇或口腔暗部。通过口部选框 [447,253,44,43] 及完整覆盖上牙的 [455,258,26,13] 八倍放大原图、blend、edge 和 SVG 独显，检查了左右端、上缘与上唇接缝、下缘及全段连续性：可见范围完整，位置、宽度、弧度和端部转向与参考吻合，无明确漏画、孤点、碎片或形体混乱。allowOutsideParent=true；画布坐标及实体职责正确，当前候选亦位于父组范围内。本轮无需返修，不要求恢复被遮挡牙列或根部。",
+      "candidateHash": "4f7ca0aed0b74a5137b14b6155fde2b758d8a1dc4acb71e88dd849db3913e2b3",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-02T11-24-56-379Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-02T11-24-56-379Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-02T11-24-56-379Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-02T11-24-56-379Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-02T11-24-56-379Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:25:56.506Z"
     }
   ]
 }

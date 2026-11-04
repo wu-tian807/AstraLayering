@@ -1,0 +1,72 @@
+{
+  "groupId": "waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "局部返修即可，无需重画整片。已从纯衣服原图独立确认归属，并完成整体叠加、全片 8 倍局部 blend/edge、SVG 独显及父完成稿边缘对照；其余珠体左右边缘、下尖、周围孔隙与顶部隐藏短挂接未发现需修改的问题，父范围检查 outsidePixels=0。\n\n1. 悬珠上部圆拱可见实体漏包：约 x467–476、y891–894，重点是短挂接左右两侧。原图中白色悬珠的上缘呈连续圆拱，与外侧蓝色环体有明确边界；候选珠体的上缘却从约 y893.1 起，edge 图红线横穿该圆拱内部，blend 图可见候选上方残留一圈白色珠体，中央细短接头不能替代这两侧实体。此处依据是珠体与环体的外轮廓分界，不是珠面高光或内部明暗。请向上补齐珠体圆拱及两肩，保持原图可见宽度、下半轮廓和周围孔隙；保留顶部短挂接在环缘后的隐藏搭接，并同步将 note 中约 y893 的遮挡描述改为与实际圆拱和短挂接交界一致。父 SVG 的环体已覆盖该上部区域，补齐可在父联合范围内完成，不属于必须扩大父稿的上游限制。\n\n图像证据：原图局部 ![原参考局部](bitmaps/bf18e962-9718-485a-9994-8970c0d64a2c.png)；候选叠加 ![候选局部叠加](previews/2026-11-02T18-44-03-423Z-2.png)；候选边缘 ![候选边缘对照](previews/2026-11-02T18-44-03-423Z-3.png)；父范围边缘 ![父完成稿局部](previews/2026-11-02T18-44-03-423Z-4.png)。",
+      "candidateHash": "5e56813991ff4458545066f3e6cb0aa90ee9254cf529e00e1c981bdfdee36616",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-44-03-423Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-44-03-423Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-44-03-423Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-44-03-423Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-44-03-423Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T18:46:28.398Z",
+      "repairedCandidateHash": "6a225ecf547ef4bb40bb162c225bde78591183b51d6d8c98d0ee90da580f2876"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮检查通过。已独立查看纯衣服参考全图及 x447–495、y875–922 局部，再核对当前 note、候选源码和父完成 SVG；完成候选全图 blend、局部 8 倍 blend、edge、SVG 独显及父稿局部叠加检查。原参考中本片归属为下圆环孔内完整悬珠，约 x466–477、y891–903；顶部连续圆拱、左右肩、两侧收拢边及珠底均已覆盖，无实际可见组件遗漏，未误包外围圆环、下短杆或后方垂布。候选中央顶部短挂接承接父稿隐藏搭接，圆拱两肩不再横向截断，符合参考可见边界；周围环孔保持空白。比例、位置与参考一致，局部轮廓无确定需要修改的问题。父范围四倍采样检查 outsidePixels=0。note 已说明实体范围、与 ring_frame 的连续遮挡分界、前后关系、相对摆动及共同控制职责；无须返修或重画。",
+      "candidateHash": "6a225ecf547ef4bb40bb162c225bde78591183b51d6d8c98d0ee90da580f2876",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-48-25-121Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-48-25-121Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-48-25-121Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-48-25-121Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/lower_pendant_and_rings/children/lower_ring_assembly/children/inner_pendant/previews/2026-11-02T18-48-25-121Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T18:49:38.963Z"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "image": "clothing-raster-layering/step01/review-evidence/review01/layer-051.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "clothing-raster-layering/step01/review-evidence/review01/marks/sleeve-right/marked.png",
+  "manifest": "clothing-raster-layering/step01/review-evidence/review01/marks/sleeve-right/regions.json",
+  "regions": [
+    {
+      "id": "R4",
+      "bounds": [
+        557,
+        413,
+        119,
+        211
+      ],
+      "layers": [
+        "051 | sleeve_screen_right/left_sleeve_tube | front",
+        "061 | sleeve_screen_right/left_hanging_drape | front"
+      ],
+      "description": "画面右袖筒补全区与可见区沿斜线拼接，细点状新纹样在斜边处突变为粗亮原枝纹，斜线左端有深色竖片和硬折角；合显仍能辨认两套边。将051补成自身连续袖料，去掉不属于筒面形体的斜向接边和重影，匹配纹样、底色及线宽；维持061独立包边和正常开口。",
+      "crop": [
+        541,
+        397,
+        151,
+        243
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01/marks/sleeve-right/R4-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01/marks/sleeve-right/R4-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01/marks/sleeve-right/R4-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

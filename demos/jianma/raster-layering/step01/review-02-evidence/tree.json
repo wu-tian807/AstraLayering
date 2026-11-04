@@ -1,0 +1,1276 @@
+[
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{78bdd5cb-6eb4-4702-9114-9fc564ccc057}')",
+    "name": "001.0 | hair/back_hair/long_hair_right | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      224,
+      169,
+      245,
+      1261
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{c3468f00-ed70-451f-a645-8ede54c178db}')",
+    "name": "002.0 | hair/back_hair/long_hair_left | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      469,
+      105,
+      245,
+      1324
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{8fb0171e-1b1b-4b23-b8c4-776c50428166}')",
+    "name": "003.0 | hair/back_hair/cap | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      372,
+      110,
+      194,
+      262
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{78f18acd-6ca1-41e9-9fdf-5ca0396e89e6}')",
+    "name": "004.0 | hair/bun | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      420,
+      37,
+      97,
+      85
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{1ea39c60-9bc6-4eaa-9d3e-75f9dddc4c84}')",
+    "name": "005.0 | head_accessories/crown_pendants/crown_pendant_right | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      327,
+      111,
+      26,
+      79
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{fab3a085-522d-45c4-bc93-732eb87bddd2}')",
+    "name": "006.0 | head_accessories/crown_pendants/crown_pendant_left | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      585,
+      111,
+      25,
+      79
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{a69151f3-3451-4a3d-9d3b-d040edd5142a}')",
+    "name": "007.0 | legs/leg_right/anklet_back | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      417,
+      1495,
+      44,
+      12
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{940fb78a-784a-449e-8b43-157516d1ee74}')",
+    "name": "default_closed_or_back_occlusion",
+    "type": "transparencymask",
+    "parent": "007.0 | legs/leg_right/anklet_back | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      417,
+      1495,
+      44,
+      12
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{6bd3b73d-a184-4745-9482-e60925a5b2a5}')",
+    "name": "008.0 | legs/leg_left/anklet_back | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      477,
+      1496,
+      45,
+      11
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{f3172c38-01e8-47ff-b748-5225213e78c7}')",
+    "name": "default_closed_or_back_occlusion",
+    "type": "transparencymask",
+    "parent": "008.0 | legs/leg_left/anklet_back | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      477,
+      1496,
+      45,
+      11
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{9c64defe-cd1d-47cc-a124-83149984fed6}')",
+    "name": "009.0 | legs/leg_right/leg | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      332,
+      678,
+      137,
+      964
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{31dfffc8-e688-485e-92f6-e4d8d5197017}')",
+    "name": "010.0 | legs/leg_left/leg | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      467,
+      678,
+      139,
+      965
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{abe8365b-9f4b-4562-9b75-7b85a57ac9db}')",
+    "name": "011.0 | legs/leg_right/anklet_front | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      414,
+      1502,
+      49,
+      14
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{aa2ecc80-b5e4-4ff8-b9bb-9b0bf16911db}')",
+    "name": "012.0 | legs/leg_left/anklet_front | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      476,
+      1502,
+      47,
+      14
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{9f746d95-b938-40f1-81e3-d54ee20c5345}')",
+    "name": "013.0 | pelvis | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      346,
+      566,
+      247,
+      249
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{2722ff9c-2e16-4c92-9737-64f66c4fd839}')",
+    "name": "014.0 | arms/arm_right/hand/little_finger | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      290,
+      838,
+      30,
+      47
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{3fd418d2-70da-46d0-bf21-579beff475c5}')",
+    "name": "015.0 | arms/arm_right/hand/ring_finger | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      292,
+      845,
+      29,
+      41
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{ffa7ef3e-a94d-4d76-86ad-e7da8a3c4f9c}')",
+    "name": "016.0 | arms/arm_right/hand/middle_finger | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      289,
+      840,
+      33,
+      61
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{17cd49df-01be-4b6a-ba96-3518f814b3f9}')",
+    "name": "017.0 | arms/arm_right/hand/index_finger | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      287,
+      834,
+      32,
+      70
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{37bcea3b-7389-4853-ab97-45729c27cb54}')",
+    "name": "018.0 | arms/arm_right/hand/thumb | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      304,
+      818,
+      20,
+      52
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{2b6fac33-46ff-46bf-9be1-1aedf229de0d}')",
+    "name": "019.0 | arms/arm_right/upper_arm | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      316,
+      353,
+      99,
+      263
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{1b191d7f-97db-4096-bcd6-8151771e9c8f}')",
+    "name": "020.0 | arms/arm_right/forearm | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      286,
+      574,
+      81,
+      227
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{81f0e613-f46e-4b45-9ec7-30fcc8707810}')",
+    "name": "upper_arm_attachment_blend",
+    "type": "transparencymask",
+    "parent": "020.0 | arms/arm_right/forearm | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      286,
+      574,
+      81,
+      227
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{61645b96-cab0-474b-9e70-359d03670037}')",
+    "name": "021.0 | arms/arm_right/hand/palm | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      282,
+      775,
+      42,
+      79
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{3a56cf55-9b4d-4789-b1bd-aeddced81fed}')",
+    "name": "wrist_attachment_blend",
+    "type": "transparencymask",
+    "parent": "021.0 | arms/arm_right/hand/palm | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      282,
+      775,
+      42,
+      79
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{8859c2c1-7cd6-46df-a2e9-f904fdb54fe6}')",
+    "name": "022.0 | arms/arm_left/forearm | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      571,
+      555,
+      81,
+      242
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{20733596-023e-467b-84be-6a5b476585e3}')",
+    "name": "023.0 | arms/arm_left/upper_arm | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      523,
+      353,
+      98,
+      244
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{99f4ad1e-06fc-4e92-894c-9a3581c3682e}')",
+    "name": "forearm_attachment_blend",
+    "type": "transparencymask",
+    "parent": "023.0 | arms/arm_left/upper_arm | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      523,
+      353,
+      98,
+      244
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{af94f360-b7b2-4d72-a282-abe81899ae99}')",
+    "name": "024.0 | arms/arm_left/hand/index_finger | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      618,
+      842,
+      29,
+      41
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{9731fecf-1b7a-45f9-a358-d450b58ed4b0}')",
+    "name": "025.0 | arms/arm_left/hand/middle_finger | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      615,
+      846,
+      32,
+      56
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{9ad7ffb1-b84f-4b39-a6f1-1c6c4a8d039b}')",
+    "name": "026.0 | arms/arm_left/hand/little_finger | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      633,
+      832,
+      23,
+      54
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{403c6067-0d7d-4a22-a14d-3607410ad8cd}')",
+    "name": "027.0 | arms/arm_left/hand/ring_finger | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      619,
+      841,
+      30,
+      63
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{f1662c0b-1af8-433a-a5a2-35a1f3a20669}')",
+    "name": "028.0 | arms/arm_left/hand/thumb | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      615,
+      825,
+      15,
+      45
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{5bd257eb-a516-45c1-87e8-58921e019d92}')",
+    "name": "029.0 | arms/arm_left/hand/palm | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      614,
+      779,
+      42,
+      77
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{5d75451b-6d6a-49c1-b925-59583126819f}')",
+    "name": "wrist_attachment_blend",
+    "type": "transparencymask",
+    "parent": "029.0 | arms/arm_left/hand/palm | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      614,
+      779,
+      42,
+      77
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{15144020-c825-4901-a742-08becc748c51}')",
+    "name": "030.0 | neck | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      410,
+      267,
+      118,
+      99
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{ba0c4b14-931a-404b-839f-3be36c4824cb}')",
+    "name": "031.0 | body/torso | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      337,
+      348,
+      264,
+      381
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{a439fdf7-01a7-4073-8087-bcbb7c4d288a}')",
+    "name": "neck_and_shoulder_attachment_blend",
+    "type": "transparencymask",
+    "parent": "031.0 | body/torso | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      337,
+      348,
+      264,
+      381
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{8285ee5c-57cc-4f94-88fa-f4f345c8f094}')",
+    "name": "032.0 | body/breast | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      365,
+      395,
+      208,
+      134
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{bfddc43a-3f8b-43aa-8a27-de8f36c1f3c8}')",
+    "name": "torso_attachment_blend",
+    "type": "transparencymask",
+    "parent": "032.0 | body/breast | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      365,
+      395,
+      208,
+      134
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{d0100130-a76d-47d0-a29a-6bfd074e6c5f}')",
+    "name": "033.0 | head_accessories/earrings/earring_right | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      405,
+      254,
+      14,
+      90
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{6c968e73-72f1-42c1-8019-9302690bd470}')",
+    "name": "034.0 | head_accessories/earrings/earring_left | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      519,
+      254,
+      14,
+      90
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{88643f29-e403-43ed-b8a4-26686a75824b}')",
+    "name": "035.0 | face/ears/ear_right | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      381,
+      215,
+      45,
+      49
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{c53967c4-d44d-4bfb-8c4e-1ade0baafb0f}')",
+    "name": "face_and_side_hair_default_occlusion",
+    "type": "transparencymask",
+    "parent": "035.0 | face/ears/ear_right | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      381,
+      215,
+      45,
+      49
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{a3e7fab5-8355-4552-97db-51f5652cd883}')",
+    "name": "036.0 | face/ears/ear_left | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      512,
+      216,
+      45,
+      48
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{4f206a90-66ae-488f-bab4-cb1a00f9048c}')",
+    "name": "face_and_side_hair_default_occlusion",
+    "type": "transparencymask",
+    "parent": "036.0 | face/ears/ear_left | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      512,
+      216,
+      45,
+      48
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{05210561-d9dd-4843-b30a-a63f7b43116c}')",
+    "name": "037.0 | face/face_base | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      404,
+      146,
+      131,
+      160
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{1480fffa-92e7-4471-a5c4-aa4edba7a21f}')",
+    "name": "face/eyes/eye_left | opening_contents",
+    "type": "grouplayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      487,
+      211,
+      35,
+      26
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{f14ed857-29cf-4c89-92a9-d4bde22d8edc}')",
+    "name": "038.0 | face/eyes/eye_left/sclera | complete",
+    "type": "paintlayer",
+    "parent": "face/eyes/eye_left | opening_contents",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      487,
+      211,
+      35,
+      26
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{79f5c52c-6d37-43b7-bc8d-4cff90e26374}')",
+    "name": "face/eyes/eye_left | iris_highlight_clip",
+    "type": "grouplayer",
+    "parent": "face/eyes/eye_left | opening_contents",
+    "visible": true,
+    "inheritAlpha": true,
+    "bounds": [
+      488,
+      210,
+      24,
+      27
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{4e67f3d9-e9e4-4b27-b40e-6d8bcbfc8ac4}')",
+    "name": "039.0 | face/eyes/eye_left/iris | complete",
+    "type": "paintlayer",
+    "parent": "face/eyes/eye_left | iris_highlight_clip",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      488,
+      210,
+      24,
+      27
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{ec09cfdf-4c68-499d-bbdb-a942880a7b98}')",
+    "name": "040.0 | face/eyes/eye_left/highlight | complete",
+    "type": "paintlayer",
+    "parent": "face/eyes/eye_left | iris_highlight_clip",
+    "visible": true,
+    "inheritAlpha": true,
+    "bounds": [
+      493,
+      215,
+      17,
+      7
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{b7217171-64f4-4cdb-adb7-98f00d02542f}')",
+    "name": "upper_and_lower_eyelid_opening",
+    "type": "transparencymask",
+    "parent": "face/eyes/eye_left | opening_contents",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      487,
+      211,
+      35,
+      26
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{932004ef-4f82-4863-a2e8-5702e5f4220b}')",
+    "name": "041.0 | face/eyes/eye_left/lower_eyelid | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      491,
+      226,
+      31,
+      13
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{d699c479-867c-4c80-8daa-ef5c12ac5919}')",
+    "name": "042.0 | face/eyes/eye_left/upper_eyelid | main_lid",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      485,
+      208,
+      38,
+      20
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{3639c2c4-e109-498d-b4d3-2aa7cc846772}')",
+    "name": "043.0 | face/eyes/eye_left/eyelid_crease | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      486,
+      205,
+      24,
+      8
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{3252441e-8d1c-48de-9f32-31497f86d56a}')",
+    "name": "face/eyes/eye_right | opening_contents",
+    "type": "grouplayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      416,
+      213,
+      36,
+      25
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{34f70e93-53b9-415d-ab1e-2e184b0da10b}')",
+    "name": "044.0 | face/eyes/eye_right/sclera | complete",
+    "type": "paintlayer",
+    "parent": "face/eyes/eye_right | opening_contents",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      416,
+      213,
+      36,
+      25
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{3e3e1335-673d-40f8-bc33-35450ba92680}')",
+    "name": "face/eyes/eye_right | iris_highlight_clip",
+    "type": "grouplayer",
+    "parent": "face/eyes/eye_right | opening_contents",
+    "visible": true,
+    "inheritAlpha": true,
+    "bounds": [
+      425,
+      212,
+      23,
+      25
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{3bce0122-a3f2-4da8-9ace-9532e2066e9a}')",
+    "name": "045.0 | face/eyes/eye_right/iris | complete",
+    "type": "paintlayer",
+    "parent": "face/eyes/eye_right | iris_highlight_clip",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      425,
+      212,
+      23,
+      25
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{ac42bcae-4251-466e-a197-db238ee9517a}')",
+    "name": "046.0 | face/eyes/eye_right/highlight | complete",
+    "type": "paintlayer",
+    "parent": "face/eyes/eye_right | iris_highlight_clip",
+    "visible": true,
+    "inheritAlpha": true,
+    "bounds": [
+      430,
+      216,
+      14,
+      13
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{e55d75e2-cdb8-44e2-ac23-227c731b15c1}')",
+    "name": "upper_and_lower_eyelid_opening",
+    "type": "transparencymask",
+    "parent": "face/eyes/eye_right | opening_contents",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      416,
+      213,
+      36,
+      25
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{bc984aa5-bc74-40e7-aab2-824ddbcce3a1}')",
+    "name": "047.0 | face/eyes/eye_right/lower_eyelid | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      412,
+      220,
+      38,
+      19
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{538a5f1d-7615-4552-8757-e916939e3793}')",
+    "name": "048.0 | face/eyes/eye_right/upper_eyelid | main_lid",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      417,
+      208,
+      36,
+      25
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{05d74f82-e79b-494e-a987-963a10c7df57}')",
+    "name": "049.0 | face/eyes/eye_right/eyelid_crease | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      421,
+      205,
+      30,
+      8
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{5ecc458c-d070-4bd5-89c6-373175c3b125}')",
+    "name": "face/mouth | opening_contents",
+    "type": "grouplayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      453,
+      260,
+      32,
+      30
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{33c3ea08-2619-4e9b-b207-879a426122b8}')",
+    "name": "050.0 | face/mouth/mouth_interior | complete",
+    "type": "paintlayer",
+    "parent": "face/mouth | opening_contents",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      453,
+      260,
+      32,
+      30
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{6da0c3a9-f9cb-4ce1-b796-cae92c765925}')",
+    "name": "051.0 | face/mouth/lower_teeth | complete",
+    "type": "paintlayer",
+    "parent": "face/mouth | opening_contents",
+    "visible": true,
+    "inheritAlpha": true,
+    "bounds": [
+      456,
+      279,
+      26,
+      12
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{72977381-84df-4153-8bb5-b9a574710458}')",
+    "name": "default_closed_or_back_occlusion",
+    "type": "transparencymask",
+    "parent": "051.0 | face/mouth/lower_teeth | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      456,
+      279,
+      26,
+      12
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{f04d969e-bc63-4aa7-be79-a49deaa1922f}')",
+    "name": "052.0 | face/mouth/tongue | complete",
+    "type": "paintlayer",
+    "parent": "face/mouth | opening_contents",
+    "visible": true,
+    "inheritAlpha": true,
+    "bounds": [
+      457,
+      270,
+      24,
+      19
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{d5d9fe8c-4930-4c05-9a76-eed077809f1d}')",
+    "name": "053.0 | face/mouth/upper_teeth | complete",
+    "type": "paintlayer",
+    "parent": "face/mouth | opening_contents",
+    "visible": true,
+    "inheritAlpha": true,
+    "bounds": [
+      456,
+      257,
+      25,
+      10
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{cddb764f-ef60-4c93-905a-3e2a82e6b999}')",
+    "name": "upper_lip_root_occlusion",
+    "type": "transparencymask",
+    "parent": "053.0 | face/mouth/upper_teeth | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      456,
+      257,
+      25,
+      10
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{06aae8b3-f027-44db-a037-b9b3eecf6ca7}')",
+    "name": "upper_and_lower_lip_opening",
+    "type": "transparencymask",
+    "parent": "face/mouth | opening_contents",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      453,
+      260,
+      32,
+      30
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{562d4152-fdd0-407d-b6a5-3b9fc4aa9baa}')",
+    "name": "054.0 | face/mouth/lower_lip | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      451,
+      270,
+      36,
+      25
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{3a9aaeab-44e3-4640-971b-ccb37806068c}')",
+    "name": "055.0 | face/mouth/upper_lip | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      447,
+      253,
+      44,
+      28
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{ac4945cf-4446-468c-8a9e-8001b45da597}')",
+    "name": "056.0 | face/eyebrows/eyebrow_right | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      410,
+      189,
+      44,
+      9
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{573a191c-1809-420e-a658-f7a50f5dbac3}')",
+    "name": "057.0 | face/eyebrows/eyebrow_left | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      483,
+      189,
+      46,
+      9
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{8d5e141b-87cc-49d4-9622-e5cc0fea60bd}')",
+    "name": "058.0 | face/nose | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      462,
+      242,
+      15,
+      14
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{9a2a473e-21db-4388-8c91-718162d418ff}')",
+    "name": "059.0 | hair/sidelock/sidelock_right | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      367,
+      177,
+      62,
+      162
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{b56c1e37-ba59-4014-a734-dc33be4610ac}')",
+    "name": "side_hair_root_occlusion",
+    "type": "transparencymask",
+    "parent": "059.0 | hair/sidelock/sidelock_right | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      367,
+      177,
+      62,
+      162
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{2799914a-e942-4cdb-8749-c2d6ef60234a}')",
+    "name": "060.0 | hair/sidelock/sidelock_left | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      509,
+      177,
+      60,
+      162
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{c72912b7-fe81-470e-acdf-0f5d4971c420}')",
+    "name": "side_hair_root_occlusion",
+    "type": "transparencymask",
+    "parent": "060.0 | hair/sidelock/sidelock_left | complete",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      509,
+      177,
+      60,
+      162
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{bbdf4cef-6d2f-461d-b89a-0478efeb5863}')",
+    "name": "061.0 | head_accessories/bun_ornament | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      418,
+      63,
+      101,
+      53
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{27a9fa4e-8359-483b-be05-600c033be350}')",
+    "name": "061.5 | head_accessories/crown_frame | mounting_root",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      390,
+      116,
+      158,
+      34
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{07b882af-c65d-4977-ad8a-2cb190fbbf29}')",
+    "name": "062.0 | head_accessories/forehead_pendant | mounting_root",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      465,
+      125,
+      8,
+      9
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{eb9f4ebc-74ea-4247-aa0c-468fc4aa54d6}')",
+    "name": "063.0 | hair/side_hair/side_hair_right | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      367,
+      103,
+      102,
+      156
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{431dc8ad-bd0d-4ddc-94e9-a49f6af32517}')",
+    "name": "064.0 | hair/side_hair/side_hair_left | complete",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      469,
+      103,
+      100,
+      156
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{8f15e56d-ad11-472d-9b95-f460a1037aaf}')",
+    "name": "065.0 | head_accessories/forehead_pendant | visible_front",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      454,
+      132,
+      28,
+      58
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{82f93c9a-8c37-433f-b573-72a46f9a7ee7}')",
+    "name": "066.0 | face/eyes/eye_left/upper_eyelid | outer_lash_front",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      519,
+      213,
+      10,
+      15
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{495462dd-1159-4a01-bed3-efa147ef134a}')",
+    "name": "066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      410,
+      209,
+      11,
+      20
+    ]
+  },
+  {
+    "uuid": "PyQt5.QtCore.QUuid('{d85d2872-2d37-4366-828f-d2f01636d589}')",
+    "name": "067.0 | head_accessories/crown_frame | visible_front",
+    "type": "paintlayer",
+    "parent": "root",
+    "visible": true,
+    "inheritAlpha": false,
+    "bounds": [
+      322,
+      15,
+      295,
+      126
+    ]
+  }
+]

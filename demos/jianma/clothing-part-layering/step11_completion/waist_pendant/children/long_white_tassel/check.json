@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/long_white_tassel",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "32391317d4cfd5286ab2b966839608071419bea0e6a813aadaa902c21dd7e162",
-  "afterHash": "b8dfdaafd12e2ec0986d1be0327de02f8ca91eb729ba2cdba6b6ce83befc86ed"
-}

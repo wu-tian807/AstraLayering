@@ -1,7 +1,0 @@
-{
-  "groupId": "legs/leg_right/anklet/gem_pendant",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "498addba65dc023de5e7320c7720b85efadbd60e44aea2f8de7dd2990bdef30a",
-  "afterHash": "1210b86dff79d0e7d6e0d0bf32cc8c85590a23c736cc96554775afafe6eb76ba"
-}

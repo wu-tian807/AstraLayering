@@ -1,0 +1,709 @@
+{
+  "canvas": [
+    941,
+    1672
+  ],
+  "logical_parts": 65,
+  "paint_layers": 69,
+  "mask_count": 18,
+  "group_count": 5,
+  "total_nodes": 92,
+  "modified_paint_layers": 19,
+  "preserved_paint_layers": 50,
+  "modified": [
+    {
+      "id": "legs/leg_right/leg",
+      "level": 9,
+      "region": "complete",
+      "name": "009.0 | legs/leg_right/leg | complete",
+      "uuid": "{9c64defe-cd1d-47cc-a124-83149984fed6}",
+      "state": "painted",
+      "registration_repair": "whole generated leg cross-section geometrically matched to its complete SVG; no reference color replacement",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "level": 10,
+      "region": "complete",
+      "name": "010.0 | legs/leg_left/leg | complete",
+      "uuid": "{31dfffc8-e688-485e-92f6-e4d8d5197017}",
+      "state": "painted",
+      "registration_repair": "whole generated leg cross-section geometrically matched to its complete SVG; no reference color replacement",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "pelvis",
+      "level": 13,
+      "region": "complete",
+      "name": "013.0 | pelvis | complete",
+      "uuid": "{9f746d95-b938-40f1-81e3-d54ee20c5345}",
+      "state": "painted_native",
+      "material_repair": "complete white leotard surface and continuous seam paths redrawn inside this part; shared drawing coordinates, independent ownership",
+      "contour_repair": "restored original garment outside contour and leg-opening trim with native strokes; internal attachment edges remain unlined",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "level": 17,
+      "region": "complete",
+      "name": "017.0 | arms/arm_right/hand/index_finger | complete",
+      "uuid": "{17cd49df-01be-4b6a-ba96-3518f814b3f9}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "level": 18,
+      "region": "complete",
+      "name": "018.0 | arms/arm_right/hand/thumb | complete",
+      "uuid": "{37bcea3b-7389-4853-ab97-45729c27cb54}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "level": 20,
+      "region": "complete",
+      "name": "020.0 | arms/arm_right/forearm | complete",
+      "uuid": "{1b191d7f-97db-4096-bcd6-8151771e9c8f}",
+      "state": "painted_native",
+      "attachment_mask": "{81f0e613-f46e-4b45-9ec7-30fcc8707810}",
+      "repair01_join": "native 26px root blend over fully opaque own upper-arm support, complete forearm paint retained",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "level": 21,
+      "region": "complete",
+      "name": "021.0 | arms/arm_right/hand/palm | complete",
+      "uuid": "{61645b96-cab0-474b-9e70-359d03670037}",
+      "state": "painted_native",
+      "attachment_mask": "{3a56cf55-9b4d-4789-b1bd-aeddced81fed}",
+      "repair01_join": "wrist_attachment_blend over opaque arms/arm_right/forearm",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "level": 22,
+      "region": "complete",
+      "name": "022.0 | arms/arm_left/forearm | complete",
+      "uuid": "{8859c2c1-7cd6-46df-a2e9-f904fdb54fe6}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "level": 28,
+      "region": "complete",
+      "name": "028.0 | arms/arm_left/hand/thumb | complete",
+      "uuid": "{f1662c0b-1af8-433a-a5a2-35a1f3a20669}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "level": 29,
+      "region": "complete",
+      "name": "029.0 | arms/arm_left/hand/palm | complete",
+      "uuid": "{5bd257eb-a516-45c1-87e8-58921e019d92}",
+      "state": "painted_native",
+      "attachment_mask": "{5d75451b-6d6a-49c1-b925-59583126819f}",
+      "repair01_join": "wrist_attachment_blend over opaque arms/arm_left/forearm",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "neck",
+      "level": 30,
+      "region": "complete",
+      "name": "030.0 | neck | complete",
+      "uuid": "{15144020-c825-4901-a742-08becc748c51}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "body/torso",
+      "level": 31,
+      "region": "complete",
+      "name": "031.0 | body/torso | complete",
+      "uuid": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+      "state": "painted",
+      "material_repair": "complete white leotard surface and continuous seam paths redrawn inside this part; shared drawing coordinates, independent ownership",
+      "attachment_mask": "{a439fdf7-01a7-4073-8087-bcbb7c4d288a}",
+      "contour_repair": "restored original garment outside contour and leg-opening trim with native strokes; internal attachment edges remain unlined",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/ears/ear_right",
+      "level": 35,
+      "region": "complete",
+      "name": "035.0 | face/ears/ear_right | complete",
+      "uuid": "{88643f29-e403-43ed-b8a4-26686a75824b}",
+      "state": "painted_native",
+      "default_mask": "{c53967c4-d44d-4bfb-8c4e-1ade0baafb0f}",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/ears/ear_left",
+      "level": 36,
+      "region": "complete",
+      "name": "036.0 | face/ears/ear_left | complete",
+      "uuid": "{a3e7fab5-8355-4552-97db-51f5652cd883}",
+      "state": "painted_native",
+      "default_mask": "{4f206a90-66ae-488f-bab4-cb1a00f9048c}",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "level": 45,
+      "region": "complete",
+      "name": "045.0 | face/eyes/eye_right/iris | complete",
+      "uuid": "{3bce0122-a3f2-4da8-9ace-9532e2066e9a}",
+      "state": "painted_native",
+      "previous_uuid": "{ad12e237-edc3-44cb-beaa-aa89bd831b34}",
+      "parent_uuid": "{3e3e1335-673d-40f8-bc33-35450ba92680}",
+      "opening_group": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "opening_mask": "{e55d75e2-cdb8-44e2-ac23-227c731b15c1}"
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right",
+      "level": 56,
+      "region": "complete",
+      "name": "056.0 | face/eyebrows/eyebrow_right | complete",
+      "uuid": "{ac4945cf-4446-468c-8a9e-8001b45da597}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left",
+      "level": 57,
+      "region": "complete",
+      "name": "057.0 | face/eyebrows/eyebrow_left | complete",
+      "uuid": "{573a191c-1809-420e-a658-f7a50f5dbac3}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "hair/sidelock/sidelock_right",
+      "level": 59,
+      "region": "complete",
+      "name": "059.0 | hair/sidelock/sidelock_right | complete",
+      "uuid": "{9a2a473e-21db-4388-8c91-718162d418ff}",
+      "state": "painted",
+      "default_mask": "{b56c1e37-ba59-4014-a734-dc33be4610ac}",
+      "registration_repair": "continuous geometric mapping of own generated hair surface to complete SVG, source alpha holes removed without reference-color fitting",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "hair/sidelock/sidelock_left",
+      "level": 60,
+      "region": "complete",
+      "name": "060.0 | hair/sidelock/sidelock_left | complete",
+      "uuid": "{2799914a-e942-4cdb-8749-c2d6ef60234a}",
+      "state": "painted",
+      "default_mask": "{c72912b7-fe81-470e-acdf-0f5d4971c420}",
+      "registration_repair": "continuous geometric mapping of own generated hair surface to complete SVG, source alpha holes removed without reference-color fitting",
+      "parent_uuid": "ROOT"
+    }
+  ],
+  "preserved": [
+    {
+      "id": "hair/back_hair/long_hair_right",
+      "level": 1,
+      "region": "complete",
+      "name": "001.0 | hair/back_hair/long_hair_right | complete",
+      "uuid": "{78bdd5cb-6eb4-4702-9114-9fc564ccc057}",
+      "state": "painted",
+      "registration_repair": "continuous geometric mapping of own generated hair surface to complete SVG, source alpha holes removed without reference-color fitting",
+      "flow_repair": "full part hair painting refined after registration; flow junctions repainted without moving silhouette or reference",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "hair/back_hair/long_hair_left",
+      "level": 2,
+      "region": "complete",
+      "name": "002.0 | hair/back_hair/long_hair_left | complete",
+      "uuid": "{c3468f00-ed70-451f-a645-8ede54c178db}",
+      "state": "painted",
+      "registration_repair": "continuous geometric mapping of own generated hair surface to complete SVG, source alpha holes removed without reference-color fitting",
+      "flow_repair": "full part hair painting refined after registration; flow junctions repainted without moving silhouette or reference",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "hair/back_hair/cap",
+      "level": 3,
+      "region": "complete",
+      "name": "003.0 | hair/back_hair/cap | complete",
+      "uuid": "{8fb0171e-1b1b-4b23-b8c4-776c50428166}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "hair/bun",
+      "level": 4,
+      "region": "complete",
+      "name": "004.0 | hair/bun | complete",
+      "uuid": "{78f18acd-6ca1-41e9-9fdf-5ca0396e89e6}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "head_accessories/crown_pendants/crown_pendant_right",
+      "level": 5,
+      "region": "complete",
+      "name": "005.0 | head_accessories/crown_pendants/crown_pendant_right | complete",
+      "uuid": "{1ea39c60-9bc6-4eaa-9d3e-75f9dddc4c84}",
+      "state": "painted",
+      "join_repair": "same-part subpixel silver connectors painted; SVG and ancestor unions updated, no new part/depth",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "head_accessories/crown_pendants/crown_pendant_left",
+      "level": 6,
+      "region": "complete",
+      "name": "006.0 | head_accessories/crown_pendants/crown_pendant_left | complete",
+      "uuid": "{fab3a085-522d-45c4-bc93-732eb87bddd2}",
+      "state": "painted",
+      "join_repair": "same-part subpixel silver connectors painted; SVG and ancestor unions updated, no new part/depth",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "legs/leg_right/anklet_back",
+      "level": 7,
+      "region": "complete",
+      "name": "007.0 | legs/leg_right/anklet_back | complete",
+      "uuid": "{a69151f3-3451-4a3d-9d3b-d040edd5142a}",
+      "state": "painted_native",
+      "default_mask": "{940fb78a-784a-449e-8b43-157516d1ee74}",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "legs/leg_left/anklet_back",
+      "level": 8,
+      "region": "complete",
+      "name": "008.0 | legs/leg_left/anklet_back | complete",
+      "uuid": "{6bd3b73d-a184-4745-9482-e60925a5b2a5}",
+      "state": "painted_native",
+      "default_mask": "{f3172c38-01e8-47ff-b748-5225213e78c7}",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "legs/leg_right/anklet_front",
+      "level": 11,
+      "region": "complete",
+      "name": "011.0 | legs/leg_right/anklet_front | complete",
+      "uuid": "{abe8365b-9f4b-4562-9b75-7b85a57ac9db}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "legs/leg_left/anklet_front",
+      "level": 12,
+      "region": "complete",
+      "name": "012.0 | legs/leg_left/anklet_front | complete",
+      "uuid": "{aa2ecc80-b5e4-4ff8-b9bb-9b0bf16911db}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_right/hand/little_finger",
+      "level": 14,
+      "region": "complete",
+      "name": "014.0 | arms/arm_right/hand/little_finger | complete",
+      "uuid": "{2722ff9c-2e16-4c92-9737-64f66c4fd839}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_right/hand/ring_finger",
+      "level": 15,
+      "region": "complete",
+      "name": "015.0 | arms/arm_right/hand/ring_finger | complete",
+      "uuid": "{3fd418d2-70da-46d0-bf21-579beff475c5}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_right/hand/middle_finger",
+      "level": 16,
+      "region": "complete",
+      "name": "016.0 | arms/arm_right/hand/middle_finger | complete",
+      "uuid": "{ffa7ef3e-a94d-4d76-86ad-e7da8a3c4f9c}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "level": 19,
+      "region": "complete",
+      "name": "019.0 | arms/arm_right/upper_arm | complete",
+      "uuid": "{2b6fac33-46ff-46bf-9be1-1aedf229de0d}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "level": 23,
+      "region": "complete",
+      "name": "023.0 | arms/arm_left/upper_arm | complete",
+      "uuid": "{20733596-023e-467b-84be-6a5b476585e3}",
+      "state": "painted_native",
+      "attachment_mask": "{99f4ad1e-06fc-4e92-894c-9a3581c3682e}",
+      "repair01_join": "forearm_attachment_blend over opaque arms/arm_left/forearm",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "level": 24,
+      "region": "complete",
+      "name": "024.0 | arms/arm_left/hand/index_finger | complete",
+      "uuid": "{af94f360-b7b2-4d72-a282-abe81899ae99}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "level": 25,
+      "region": "complete",
+      "name": "025.0 | arms/arm_left/hand/middle_finger | complete",
+      "uuid": "{9731fecf-1b7a-45f9-a358-d450b58ed4b0}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_left/hand/little_finger",
+      "level": 26,
+      "region": "complete",
+      "name": "026.0 | arms/arm_left/hand/little_finger | complete",
+      "uuid": "{9ad7ffb1-b84f-4b39-a6f1-1c6c4a8d039b}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "arms/arm_left/hand/ring_finger",
+      "level": 27,
+      "region": "complete",
+      "name": "027.0 | arms/arm_left/hand/ring_finger | complete",
+      "uuid": "{403c6067-0d7d-4a22-a14d-3607410ad8cd}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "body/breast",
+      "level": 32,
+      "region": "complete",
+      "name": "032.0 | body/breast | complete",
+      "uuid": "{8285ee5c-57cc-4f94-88fa-f4f345c8f094}",
+      "state": "painted",
+      "material_repair": "complete white leotard surface and continuous seam paths redrawn inside this part; shared drawing coordinates, independent ownership",
+      "attachment_mask": "{bfddc43a-3f8b-43aa-8a27-de8f36c1f3c8}",
+      "contour_repair": "restored original garment outside contour and leg-opening trim with native strokes; internal attachment edges remain unlined",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "head_accessories/earrings/earring_right",
+      "level": 33,
+      "region": "complete",
+      "name": "033.0 | head_accessories/earrings/earring_right | complete",
+      "uuid": "{d0100130-a76d-47d0-a29a-6bfd074e6c5f}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "head_accessories/earrings/earring_left",
+      "level": 34,
+      "region": "complete",
+      "name": "034.0 | head_accessories/earrings/earring_left | complete",
+      "uuid": "{6c968e73-72f1-42c1-8019-9302690bd470}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/face_base",
+      "level": 37,
+      "region": "complete",
+      "name": "037.0 | face/face_base | complete",
+      "uuid": "{05210561-d9dd-4843-b30a-a63f7b43116c}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "level": 38,
+      "region": "complete",
+      "name": "038.0 | face/eyes/eye_left/sclera | complete",
+      "uuid": "{f14ed857-29cf-4c89-92a9-d4bde22d8edc}",
+      "state": "painted_native",
+      "previous_uuid": "{12ff252e-98bb-45b5-a322-c44430638e06}",
+      "parent_uuid": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "opening_group": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "opening_mask": "{b7217171-64f4-4cdb-adb7-98f00d02542f}"
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "level": 39,
+      "region": "complete",
+      "name": "039.0 | face/eyes/eye_left/iris | complete",
+      "uuid": "{4e67f3d9-e9e4-4b27-b40e-6d8bcbfc8ac4}",
+      "state": "painted_native",
+      "previous_uuid": "{21f7a988-e9d5-4208-938d-537ecb8bd5ef}",
+      "parent_uuid": "{79f5c52c-6d37-43b7-bc8d-4cff90e26374}",
+      "opening_group": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "opening_mask": "{b7217171-64f4-4cdb-adb7-98f00d02542f}"
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "level": 40,
+      "region": "complete",
+      "name": "040.0 | face/eyes/eye_left/highlight | complete",
+      "uuid": "{ec09cfdf-4c68-499d-bbdb-a942880a7b98}",
+      "state": "painted_native",
+      "previous_uuid": "{6e249d22-8ba0-4214-a2d4-e41a5d4a22b2}",
+      "parent_uuid": "{79f5c52c-6d37-43b7-bc8d-4cff90e26374}",
+      "opening_group": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "opening_mask": "{b7217171-64f4-4cdb-adb7-98f00d02542f}"
+    },
+    {
+      "id": "face/eyes/eye_left/lower_eyelid",
+      "level": 41,
+      "region": "complete",
+      "name": "041.0 | face/eyes/eye_left/lower_eyelid | complete",
+      "uuid": "{932004ef-4f82-4863-a2e8-5702e5f4220b}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "level": 42,
+      "region": "main_lid 普通绘画主体分片：原上睑缘、上眼线及外角连接，位于眼白、虹膜、高光和下睑连接前，位于宽侧发后。外角与66前片在同一原黑色笔触内部搭接。",
+      "name": "042.0 | face/eyes/eye_left/upper_eyelid | main_lid",
+      "uuid": "{d699c479-867c-4c80-8daa-ef5c12ac5919}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "level": 43,
+      "region": "complete",
+      "name": "043.0 | face/eyes/eye_left/eyelid_crease | complete",
+      "uuid": "{3639c2c4-e109-498d-b4d3-2aa7cc846772}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "level": 44,
+      "region": "complete",
+      "name": "044.0 | face/eyes/eye_right/sclera | complete",
+      "uuid": "{34f70e93-53b9-415d-ab1e-2e184b0da10b}",
+      "state": "painted_native",
+      "previous_uuid": "{55fe30bf-0ba8-46de-900e-f4004963db76}",
+      "parent_uuid": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "opening_group": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "opening_mask": "{e55d75e2-cdb8-44e2-ac23-227c731b15c1}"
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "level": 46,
+      "region": "complete",
+      "name": "046.0 | face/eyes/eye_right/highlight | complete",
+      "uuid": "{ac42bcae-4251-466e-a197-db238ee9517a}",
+      "state": "painted_native",
+      "previous_uuid": "{c7b6a5c2-fddd-4bae-8c69-568415d31b9d}",
+      "parent_uuid": "{3e3e1335-673d-40f8-bc33-35450ba92680}",
+      "opening_group": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "opening_mask": "{e55d75e2-cdb8-44e2-ac23-227c731b15c1}"
+    },
+    {
+      "id": "face/eyes/eye_right/lower_eyelid",
+      "level": 47,
+      "region": "complete",
+      "name": "047.0 | face/eyes/eye_right/lower_eyelid | complete",
+      "uuid": "{bc984aa5-bc74-40e7-aab2-824ddbcce3a1}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "level": 48,
+      "region": "main_lid 普通绘画主体分片：原上睑缘、上眼线及外眼角连接，在眼内三件和下睑连接前、宽侧发后；与66.5外睫毛前片在原黑色眼角笔触内部搭接。",
+      "name": "048.0 | face/eyes/eye_right/upper_eyelid | main_lid",
+      "uuid": "{538a5f1d-7615-4552-8757-e916939e3793}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "level": 49,
+      "region": "complete",
+      "name": "049.0 | face/eyes/eye_right/eyelid_crease | complete",
+      "uuid": "{05d74f82-e79b-494e-a987-963a10c7df57}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "level": 50,
+      "region": "complete",
+      "name": "050.0 | face/mouth/mouth_interior | complete",
+      "uuid": "{33c3ea08-2619-4e9b-b207-879a426122b8}",
+      "state": "painted_native",
+      "previous_uuid": "{fa5fd029-345f-475d-ad4a-015a6896fcd1}",
+      "parent_uuid": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "opening_group": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "opening_mask": "{06aae8b3-f027-44db-a037-b9b3eecf6ca7}"
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "level": 51,
+      "region": "complete",
+      "name": "051.0 | face/mouth/lower_teeth | complete",
+      "uuid": "{6da0c3a9-f9cb-4ce1-b796-cae92c765925}",
+      "state": "painted_native",
+      "previous_uuid": "{48fa27ab-06f4-4fc8-afa6-aeaa4e5874c0}",
+      "parent_uuid": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "opening_group": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "opening_mask": "{06aae8b3-f027-44db-a037-b9b3eecf6ca7}",
+      "default_mask": "{72977381-84df-4153-8bb5-b9a574710458}"
+    },
+    {
+      "id": "face/mouth/tongue",
+      "level": 52,
+      "region": "complete",
+      "name": "052.0 | face/mouth/tongue | complete",
+      "uuid": "{f04d969e-bc63-4aa7-be79-a49deaa1922f}",
+      "state": "painted_native",
+      "previous_uuid": "{328c109d-0d5a-4d76-ad51-19857c14598a}",
+      "parent_uuid": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "opening_group": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "opening_mask": "{06aae8b3-f027-44db-a037-b9b3eecf6ca7}"
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "level": 53,
+      "region": "complete",
+      "name": "053.0 | face/mouth/upper_teeth | complete",
+      "uuid": "{d5d9fe8c-4930-4c05-9a76-eed077809f1d}",
+      "state": "painted_native",
+      "previous_uuid": "{8fc39742-4747-44e5-99a5-c0b879a3c5e1}",
+      "parent_uuid": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "opening_group": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "opening_mask": "{06aae8b3-f027-44db-a037-b9b3eecf6ca7}",
+      "default_mask": "{cddb764f-ef60-4c93-905a-3e2a82e6b999}"
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "level": 54,
+      "region": "complete",
+      "name": "054.0 | face/mouth/lower_lip | complete",
+      "uuid": "{562d4152-fdd0-407d-b6a5-3b9fc4aa9baa}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "level": 55,
+      "region": "complete",
+      "name": "055.0 | face/mouth/upper_lip | complete",
+      "uuid": "{3a9aaeab-44e3-4640-971b-ccb37806068c}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/nose",
+      "level": 58,
+      "region": "complete",
+      "name": "058.0 | face/nose | complete",
+      "uuid": "{8d5e141b-87cc-49d4-9622-e5cc0fea60bd}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "head_accessories/bun_ornament",
+      "level": 61,
+      "region": "complete",
+      "name": "061.0 | head_accessories/bun_ornament | complete",
+      "uuid": "{bbdf4cef-6d2f-461d-b89a-0478efeb5863}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "head_accessories/crown_frame",
+      "level": 61.5,
+      "region": "实际 KRA mounting_root 普通绘画分片：使用同名 SVG data-completion-additions 中左右安装舌片的完整区域，约左 x390–425、右 x513–548、y115.5–152。后根保留与可见冠缘的重叠，置两侧 side_hair 后、cap 与 bun 前；默认由侧发和同件前片覆盖。",
+      "name": "061.5 | head_accessories/crown_frame | mounting_root",
+      "uuid": "{27a9fa4e-8359-483b-be05-600c033be350}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "head_accessories/forehead_pendant",
+      "level": 62,
+      "region": "实际 KRA mounting_root 普通绘画分片：完整额饰在 y<134 的上方附着根，包括约x465–472、y125–133的隐藏连接余量，置左右 side_hair 后、cap 前；与前片在y132–134重叠。",
+      "name": "062.0 | head_accessories/forehead_pendant | mounting_root",
+      "uuid": "{07b882af-c65d-4977-ad8a-2cb190fbbf29}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "level": 63,
+      "region": "complete",
+      "name": "063.0 | hair/side_hair/side_hair_right | complete",
+      "uuid": "{eb9f4ebc-74ea-4247-aa0c-468fc4aa54d6}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "level": 64,
+      "region": "complete",
+      "name": "064.0 | hair/side_hair/side_hair_left | complete",
+      "uuid": "{431dc8ad-bd0d-4ddc-94e9-a49f6af32517}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "head_accessories/forehead_pendant",
+      "level": 65,
+      "region": "实际 KRA visible_front 普通绘画分片：完整额饰 y>=132 的小宝石、短连接、菱形主体及水滴坠，置左右 side_hair 和 face_base 前；顶部y132–134与后根连续重叠，不在菱形中部切断。",
+      "name": "065.0 | head_accessories/forehead_pendant | visible_front",
+      "uuid": "{8f15e56d-ad11-472d-9b95-f460a1037aaf}",
+      "state": "painted",
+      "join_repair": "same-part subpixel silver connectors painted; SVG and ancestor unions updated, no new part/depth",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "level": 66,
+      "region": "组装中新发现的 outer_lash_front 普通绘画分片：原图画面右侧外眼角跨到侧发前的黑色睫毛，局部检查框x519–532、y208–229，仅提取该框内本上睑的深色笔触；在两侧 side_hair 前、冠架67后，与42主体连成同一上睑。",
+      "name": "066.0 | face/eyes/eye_left/upper_eyelid | outer_lash_front",
+      "uuid": "{82f93c9a-8c37-433f-b573-72a46f9a7ee7}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "level": 66.5,
+      "region": "组装中新发现的 outer_lash_front 普通绘画分片：原图画面左侧外眼角伸到侧发前的黑色睫毛，检查框x407–420、y208–229，只含本上睑原深色笔触。在两侧 side_hair 前、冠架67后，和48主体保持同一上眼睑归属。",
+      "name": "066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front",
+      "uuid": "{495462dd-1159-4a01-bed3-efa147ef134a}",
+      "state": "painted_native",
+      "parent_uuid": "ROOT"
+    },
+    {
+      "id": "head_accessories/crown_frame",
+      "level": 67,
+      "region": "实际 KRA visible_front 普通绘画分片：同名 SVG 原可见 crown-frame-outline 整体，包括头顶弧梁、连接桥、左右卷饰及全部可见内下缘。置两侧 side_hair 与左右 crown_pendant 前，沿原可见内下缘与后根连续搭接，不把整段下冠缘移至后层。",
+      "name": "067.0 | head_accessories/crown_frame | visible_front",
+      "uuid": "{d85d2872-2d37-4366-828f-d2f01636d589}",
+      "state": "painted",
+      "parent_uuid": "ROOT"
+    }
+  ],
+  "all_17_previous_masks_raw_unchanged": true,
+  "PNG_preclose_reopened_delivery_decoded_pixels_equal": true,
+  "groups_occlusion_ids_and_depth_match_current_KRA": true,
+  "kra_zip_integrity_pass": true,
+  "KRA_sha256": "69ed424cb649801d8466b8853c6c6ae097196b148e4f399ece54a99bbfaeeaf0",
+  "PNG_sha256": "2512717b9b62462273b4b9582f20f052f48b9ac7e19025f4bfeb35b4379b6b43"
+}

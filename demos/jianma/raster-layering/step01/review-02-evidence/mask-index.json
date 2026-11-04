@@ -1,0 +1,138 @@
+[
+  {
+    "index": 1,
+    "mask": "default_closed_or_back_occlusion",
+    "uuid": "PyQt5.QtCore.QUuid('{940fb78a-784a-449e-8b43-157516d1ee74}')",
+    "parent": "007.0 | legs/leg_right/anklet_back | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/01--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 2,
+    "mask": "default_closed_or_back_occlusion",
+    "uuid": "PyQt5.QtCore.QUuid('{f3172c38-01e8-47ff-b748-5225213e78c7}')",
+    "parent": "008.0 | legs/leg_left/anklet_back | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/02--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 3,
+    "mask": "upper_arm_attachment_blend",
+    "uuid": "PyQt5.QtCore.QUuid('{81f0e613-f46e-4b45-9ec7-30fcc8707810}')",
+    "parent": "020.0 | arms/arm_right/forearm | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/03--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 4,
+    "mask": "wrist_attachment_blend",
+    "uuid": "PyQt5.QtCore.QUuid('{3a56cf55-9b4d-4789-b1bd-aeddced81fed}')",
+    "parent": "021.0 | arms/arm_right/hand/palm | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/04--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 5,
+    "mask": "forearm_attachment_blend",
+    "uuid": "PyQt5.QtCore.QUuid('{99f4ad1e-06fc-4e92-894c-9a3581c3682e}')",
+    "parent": "023.0 | arms/arm_left/upper_arm | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/05--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 6,
+    "mask": "wrist_attachment_blend",
+    "uuid": "PyQt5.QtCore.QUuid('{5d75451b-6d6a-49c1-b925-59583126819f}')",
+    "parent": "029.0 | arms/arm_left/hand/palm | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/06--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 7,
+    "mask": "neck_and_shoulder_attachment_blend",
+    "uuid": "PyQt5.QtCore.QUuid('{a439fdf7-01a7-4073-8087-bcbb7c4d288a}')",
+    "parent": "031.0 | body/torso | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/07--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 8,
+    "mask": "torso_attachment_blend",
+    "uuid": "PyQt5.QtCore.QUuid('{bfddc43a-3f8b-43aa-8a27-de8f36c1f3c8}')",
+    "parent": "032.0 | body/breast | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/08--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 9,
+    "mask": "face_and_side_hair_default_occlusion",
+    "uuid": "PyQt5.QtCore.QUuid('{c53967c4-d44d-4bfb-8c4e-1ade0baafb0f}')",
+    "parent": "035.0 | face/ears/ear_right | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/09--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 10,
+    "mask": "face_and_side_hair_default_occlusion",
+    "uuid": "PyQt5.QtCore.QUuid('{4f206a90-66ae-488f-bab4-cb1a00f9048c}')",
+    "parent": "036.0 | face/ears/ear_left | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/10--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 11,
+    "mask": "upper_and_lower_eyelid_opening",
+    "uuid": "PyQt5.QtCore.QUuid('{b7217171-64f4-4cdb-adb7-98f00d02542f}')",
+    "parent": "face/eyes/eye_left | opening_contents",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/11--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 12,
+    "mask": "upper_and_lower_eyelid_opening",
+    "uuid": "PyQt5.QtCore.QUuid('{e55d75e2-cdb8-44e2-ac23-227c731b15c1}')",
+    "parent": "face/eyes/eye_right | opening_contents",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/12--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 13,
+    "mask": "default_closed_or_back_occlusion",
+    "uuid": "PyQt5.QtCore.QUuid('{72977381-84df-4153-8bb5-b9a574710458}')",
+    "parent": "051.0 | face/mouth/lower_teeth | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/13--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 14,
+    "mask": "upper_lip_root_occlusion",
+    "uuid": "PyQt5.QtCore.QUuid('{cddb764f-ef60-4c93-905a-3e2a82e6b999}')",
+    "parent": "053.0 | face/mouth/upper_teeth | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/14--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 15,
+    "mask": "upper_and_lower_lip_opening",
+    "uuid": "PyQt5.QtCore.QUuid('{06aae8b3-f027-44db-a037-b9b3eecf6ca7}')",
+    "parent": "face/mouth | opening_contents",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/15--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 16,
+    "mask": "side_hair_root_occlusion",
+    "uuid": "PyQt5.QtCore.QUuid('{b56c1e37-ba59-4014-a734-dc33be4610ac}')",
+    "parent": "059.0 | hair/sidelock/sidelock_right | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/16--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  },
+  {
+    "index": 17,
+    "mask": "side_hair_root_occlusion",
+    "uuid": "PyQt5.QtCore.QUuid('{c72912b7-fe81-470e-acdf-0f5d4971c420}')",
+    "parent": "060.0 | hair/sidelock/sidelock_left | complete",
+    "off": "raster-layering/step01/review-02-evidence/mask-toggle/17--off.png",
+    "on": "raster-layering/step01/review-02-evidence/default.png"
+  }
+]

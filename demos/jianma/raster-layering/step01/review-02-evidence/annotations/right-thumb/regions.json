@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/isolated/18-arms__arm_right__hand__thumb.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/7e71d232-361f-4bcd-9252-724af8155356/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/7e71d232-361f-4bcd-9252-724af8155356/regions.json",
+  "regions": [
+    {
+      "id": "R3b",
+      "bounds": [
+        303,
+        816,
+        24,
+        34
+      ],
+      "layers": [
+        "018.0 | arms/arm_right/hand/thumb | complete"
+      ],
+      "description": "右拇指独显上根呈单色斜切补块，约 y829–838 在补根与原有明暗之间出现角状接线。参考此根被掌遮挡，应按本拇指的可见肤色塑形连续补画。",
+      "crop": [
+        295,
+        808,
+        40,
+        50
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/7e71d232-361f-4bcd-9252-724af8155356/R3b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/7e71d232-361f-4bcd-9252-724af8155356/R3b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/7e71d232-361f-4bcd-9252-724af8155356/R3b-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

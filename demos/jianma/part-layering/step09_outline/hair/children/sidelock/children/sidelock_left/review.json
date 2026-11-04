@@ -1,0 +1,122 @@
+{
+  "groupId": "hair/sidelock/sidelock_left",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成全图定位，并以重叠选框 [502,172,64,108]、[530,258,48,88] 的 blend/edge 放大核对全部上段、耳前接缝、弧形尾段及尖端，同时查看父完成 SVG 和候选独显。候选父范围检查通过，outsidePixels=0；隐藏根部沿用父稿的合理补形，无须按宽侧发纹理裁切。未发现耳饰误领或独立组件遗漏。不需整体重画，但须修正以下父范围内的可见边缘：\n1. 耳前上段靠脸/耳的一侧，约 x525–539、y232–255：红边偏向皮肤，形成过宽且带折点的楔形，覆盖原图可见的耳前肤色；原图鬓发边缘在候选右侧，沿细束平顺下行。请收回多画的皮肤区域，沿真实发束与肤色分界重描该段，勿把阴影边或耳廓并入发束。证据：![上段边缘](previews/2026-11-02T11-12-46-505Z-4.png)。\n2. 下方回弯外缘约 x561–570、y299–326：候选右缘向白底外鼓，尤其 y307–321，超过参考中细束外侧的灰色轮廓；与上方曲率衔接后，尾弧显得偏宽、偏右。请在父内收回外扩区域，按参考实际外缘调整弧度与向内回转位置，保持发束内侧的真实空隙。证据：![下段边缘](previews/2026-11-02T11-12-46-505Z-6.png)。\n另有已确认的上游父范围限制，单独记录，不要求当前子组越界：A. 耳前至中段外侧约 x537–566、y239–286，参考发束右侧边缘位于父轮廓右侧，候选已经贴父边，遗漏的窄带只有扩大父范围才可恢复。B. 尾端约 x552–557、y329–335，父稿自身存在斜向裁断的空隙，把连续的回收尖端割成主体与小三角；参考这里是连续收尖的发束，并非两个独立碎片。候选与父稿在同一局部核对一致，不能在当前父约束下补通。父局部证据：![父范围对照](previews/2026-11-02T11-12-46-505Z-7.png)；候选独显：![尖端断裂](previews/2026-11-02T11-12-46-505Z-8.png)。以上父限制未被补齐；当前仍有第1、2项父内可修问题，因此本轮 revise。",
+      "candidateHash": "dbb516986bab29014d75a384f153a1ef8d4971f050d75a258ecb14a4212a4c60",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-12-46-505Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair/sidelock.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-12-46-505Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-12-46-505Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-12-46-505Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-12-46-505Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-12-46-505Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/hair/sidelock.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-12-46-505Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-12-46-505Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:23:10.217Z",
+      "repairedCandidateHash": "d170d74956e027fdb6f82fc2d643a33348c9c7bf5e5bcf9fed7602515457c0e9"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "已按整图定位及三个相互重叠的局部选框完成核对：根部/上段 [500,170,60,105]、中段 [530,248,48,70]、弧尾/尖端 [540,300,38,48]，各自检查 blend 与 edge，并查看父完成稿及候选独显。归属正确：仅覆盖画面右侧细长鬓发，未混入耳饰、宽侧发或后方发幕；隐藏根部搭接保留合理。当前父范围内未发现需要当前组返修的可见组件缺漏或轮廓问题，父范围检测 outsidePixels=0。\n\n单独记录已确认的上游限制（不要求本子组越界修复）：\n1. 画面右侧鬓发中段外缘，约 x548–568、y255–295，参考的真实外侧描边在父稿边界右侧，父稿在这一段略向内收，候选已贴合父边界。父 edge 与候选 edge 在同一位置均显示这条未覆盖的外缘，扩大当前子组会超出父范围。证据：previews/2026-11-02T11-48-02-101Z-6.png（候选）与 previews/2026-11-02T11-48-02-101Z-9.png（父稿）。\n2. 弧尾近尖端约 x553–557、y329–334 存在斜向断缝，将末端小三角与上方弧段切开；参考此处为连续收尖发束。父稿与候选在同一局部均有相同断缝，候选已经覆盖可用父范围，缝隙本身在父范围外，属于父轮廓裁切限制，尚未补齐。证据：previews/2026-11-02T11-48-02-101Z-8.png（候选）与 previews/2026-11-02T11-48-02-101Z-9.png（父稿）。这块尖端有参考依据，不作为来源不明碎片要求删除。\n\n上述仅为已确认的父范围限制；本轮允许范围内其余检查通过，无需重画当前组。",
+      "candidateHash": "d170d74956e027fdb6f82fc2d643a33348c9c7bf5e5bcf9fed7602515457c0e9",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair/sidelock.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/hair/sidelock.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-9.png"
+        },
+        {
+          "source": "part-layering/parts/hair/sidelock.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/sidelock/children/sidelock_left/previews/2026-11-02T11-48-02-101Z-12.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:37:31.518Z"
+    }
+  ]
+}

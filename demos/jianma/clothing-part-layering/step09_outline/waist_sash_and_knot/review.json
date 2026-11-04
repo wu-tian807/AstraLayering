@@ -1,0 +1,33 @@
+{
+  "groupId": "waist_sash_and_knot",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第1轮独立审查通过。已先查看纯衣服整图，再检查 groups.json 中 waist_sash_and_knot 的 note、候选源码、全图 blend、覆盖本组全部可见范围的4倍 edge、6倍 blend、5倍 SVG 独显及8倍原图结部细节。本节点为顶层 group，无父 SVG 或父范围限制；候选未修改。\n\n归属及轮廓核对：横向腰带约 x412–532、y448–463，中央结约 x460–482、y450–464，以及结下两侧短环和短垂端至约 y555，均与原参考相符。左右横带端点止于相邻外袍遮盖边，结与短端根部连接连续；左右短端的外扩、折返和尖端位置与原图吻合。中央约 x468–478、y465–550 的间隙保留，未收取其后浅色衣身、宽蓝色长垂布或细悬线；珠饰从约 y558 向下延伸，未被候选并入。短环与其后本组短端在投影中重叠，联合覆盖正确，不能将环内深色折面机械挖空。未发现人体误包、实际可见组件遗漏、真实开口被封或需要重画的主要形状问题。\n\nnote 已说明实体职责及与长垂布、悬饰的分界、腰带绕腰的前后区域、结压住横带与短端根部的关系和共同随腰及末端摆动职责，与本组联合覆盖相符。本组无薄纱。纯色填充及无内部布面纹理不构成缺陷。\n\n图像证据（均覆盖本组全部可见范围）：[原参考局部](review-evidence/reference-detail.png)、[边缘叠加](review-evidence/edge-detail.png)、[半透明叠加](review-evidence/blend-detail.png)、[轮廓独显](review-evidence/silhouette-detail.png)。无确定需要修改的问题。",
+      "candidateHash": "b9d8c8a68eb66822539af2ed15d20d0327f7050f1184cf762e8a3cf9820239a6",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/previews/2026-11-02T11-35-03-370Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/previews/2026-11-02T11-35-03-370Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/previews/2026-11-02T11-35-03-370Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/previews/2026-11-02T11-35-03-370Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:49:46.644Z"
+    }
+  ]
+}

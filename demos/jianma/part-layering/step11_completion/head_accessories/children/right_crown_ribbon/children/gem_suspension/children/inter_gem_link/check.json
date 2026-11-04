@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/right_crown_ribbon/gem_suspension/inter_gem_link",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "05d82ca5478195c7e3b45caeffbebe8c7e8d051c57a3b737fe7dd43eac8d791c",
-  "afterHash": "0ceaecce433e202afc95ae8a588ab7826740c2c16cf5c654d7fb5be712e77d83"
-}

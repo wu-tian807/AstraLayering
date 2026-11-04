@@ -1,0 +1,37 @@
+{
+  "image": "clothing-raster-layering/step01/review-evidence/review01/layer-022.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "clothing-raster-layering/step01/review-evidence/review01/marks/blue-left/marked.png",
+  "manifest": "clothing-raster-layering/step01/review-evidence/review01/marks/blue-left/regions.json",
+  "regions": [
+    {
+      "id": "R6b",
+      "bounds": [
+        392,
+        456,
+        73,
+        514
+      ],
+      "layers": [
+        "022 | central_blue_drapery/right_long_panel"
+      ],
+      "description": "画面左蓝色长幅的根部及外侧也是大块浅蓝平涂，与保留的暗边、纵向布褶按曲线/尖角硬拼；左右同类问题各自存在，需独立修画。以本幅自身纵褶连续补全，软化材质过渡但保持自由边清晰，保留原长宽、斜尖及回折，不将020中央尾或附件并入。",
+      "crop": [
+        380,
+        444,
+        97,
+        538
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01/marks/blue-left/R6b-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01/marks/blue-left/R6b-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01/marks/blue-left/R6b-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

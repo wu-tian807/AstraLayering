@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/upper_suspension/left_suspension_cord",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "168666b55adb995fcdf5ed34c836eb83425fd0c43e2262214be38c95b9b063d2",
-  "afterHash": "4afe0d8c7021264255f422b4ae605912fec65e48ccb94212bb6ed0058bd9337d"
-}

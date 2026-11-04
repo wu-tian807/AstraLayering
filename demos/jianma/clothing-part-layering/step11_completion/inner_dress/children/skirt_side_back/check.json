@@ -1,7 +1,0 @@
-{
-  "groupId": "inner_dress/skirt_side_back",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "817b090241fddfeed6ff4a3bf8cc5fea637fa03457e509b47237608195444528",
-  "afterHash": "87b0affdd2e1aac64dd6719508efc0e6ca53f2efb06878c7b8d731597da11d46"
-}

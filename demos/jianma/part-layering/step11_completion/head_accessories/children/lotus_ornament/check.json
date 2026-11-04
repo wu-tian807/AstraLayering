@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/lotus_ornament",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "bae93ecb0f8d8030927db3c4d7d462b28011fabd07c247734ed2a2ba39332139",
-  "afterHash": "e16542481fbb920efdc77dc4be004e3f58ec68b3f5e15e81211874669c839ea0"
-}

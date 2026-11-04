@@ -1,0 +1,33 @@
+{
+  "groupId": "collar_shoulder_cape",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过，无已核实且需要修改的问题。已先独立查看纯衣服整图及 x270–670、y160–440 放大参考，再完成候选整图 blend、覆盖本组全部可见区域的 4 倍 edge 与 blend、3 倍 SVG 独显检查。此节点为顶层 group，无父 SVG／父范围限制。\n\n归属及几何核对：x431–512、y171–254 的立领、领侧翻边与喉前闭合衣料，以及左右肩面至 x285–657、y421 附近的短肩披均有联合覆盖；两侧斜向披缘包含可见包边与末端翻折，未把下方长袖垂布、袍身长前襟或整块胸饰收进本组。胸前开口保持透明，独立短链和胸饰未被连成填满开口的实体。喉扣所在位置允许领布在独立扣体后保留合理隐藏搭接，不将该交叠本身判为错误归属。未见本组实际可见组件遗漏或需要重画的主要形状、位置比例问题。\n\nnote 已说明领口前后区域相对脖子的关系、肩披在袖根及袍肩之前、共同随上身运动及必要衣料搭接；与候选职责一致。当前为纯色控制轮廓，不因缺少内部分色、纹样或材质表现判错。\n\n图像证据：\n![纯衣服局部参考](review-evidence/reference.png)\n![覆盖全组可见区域的边缘核对](review-evidence/edge.png)\n![原图叠加定位与开口核对](review-evidence/blend.png)\n![候选纯色独显](review-evidence/svg.png)",
+      "candidateHash": "24023a135d3582ff2fc4f8e779901fc96259cd72c013a8651900e97245a53e02",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/previews/2026-11-02T11-39-18-078Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/previews/2026-11-02T11-39-18-078Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/previews/2026-11-02T11-39-18-078Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/previews/2026-11-02T11-39-18-078Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:32:02.729Z"
+    }
+  ]
+}

@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/forehead_ornament",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "78fb5e0d540e5d41e29fed53bef1df77905f113bfd7eec4c51e888a0072aff49",
-  "afterHash": "c9c64b7579ec1af725f1ddb90f137b45d0a0ca6f39631fae08c3fede5265c90c"
-}

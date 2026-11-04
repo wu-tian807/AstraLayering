@@ -1,0 +1,952 @@
+{
+  "reference": "part-layering/references/base-subject.png",
+  "reference_sha256": "92758181d25dd48f217d78e86d59a993441e8f5035620fa92a3258838047c81d",
+  "native_local_source_method": "Krita Selection.copy/paste within confirmed own-part regions; canvas coordinates kept; original clipboard restored; own material brushwork for hidden continuation and joins",
+  "active_records": [
+    "raster-layering/step01/workspace/repair01/R1-R2-final-records.json",
+    "raster-layering/step01/workspace/repair01/R1-coverage-final-records.json",
+    "raster-layering/step01/workspace/repair01/R2-hidden-final-records.json",
+    "raster-layering/step01/workspace/repair01/pelvis-seam-final-records.json",
+    "raster-layering/step01/workspace/repair01/finger-material-final-records.json",
+    "raster-layering/step01/workspace/repair01/R4-clean-brush-final-records.json",
+    "raster-layering/step01/workspace/repair01/oral-ownership-final-records.json",
+    "raster-layering/step01/workspace/repair01/tongue-final-records.json",
+    "raster-layering/step01/workspace/repair01/R6-R13-records.json",
+    "raster-layering/step01/workspace/repair01/face-refined-records.json",
+    "raster-layering/step01/workspace/repair01/R7-active-reuse.json",
+    "raster-layering/step01/workspace/repair01/R7-hidden-refined-records.json",
+    "raster-layering/step01/workspace/repair01/R8-final-records.json",
+    "raster-layering/step01/workspace/repair01/arms-material-final-records.json",
+    "raster-layering/step01/workspace/repair01/arm-hand-joins-final-records.json",
+    "raster-layering/step01/workspace/repair01/left-forearm-material-final-records.json",
+    "raster-layering/step01/workspace/repair01/join-final-records.json",
+    "raster-layering/step01/workspace/repair01/leg-contour-final-records.json",
+    "raster-layering/step01/workspace/repair01/front-chain-ownership-final-records.json"
+  ],
+  "paint_layers": [
+    {
+      "part_id": "hair/back_hair/long_hair_right",
+      "uuid": "{78bdd5cb-6eb4-4702-9114-9fc564ccc057}",
+      "name": "001.0 | hair/back_hair/long_hair_right | complete",
+      "depth": 1,
+      "region": "complete",
+      "issues": [
+        "R7"
+      ],
+      "source": "原画本件可见发流局部＋黄色隐藏发面生图补画；左上发段另做本件原生纵向发流"
+    },
+    {
+      "part_id": "hair/back_hair/long_hair_left",
+      "uuid": "{c3468f00-ed70-451f-a645-8ede54c178db}",
+      "name": "002.0 | hair/back_hair/long_hair_left | complete",
+      "depth": 2,
+      "region": "complete",
+      "issues": [
+        "R7",
+        "R8"
+      ],
+      "source": "原画本件可见发流局部＋黄色隐藏发面生图补画；左上发段另做本件原生纵向发流"
+    },
+    {
+      "part_id": "hair/back_hair/cap",
+      "uuid": "{8fb0171e-1b1b-4b23-b8c4-776c50428166}",
+      "name": "003.0 | hair/back_hair/cap | complete",
+      "depth": 3,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "hair/bun",
+      "uuid": "{78f18acd-6ca1-41e9-9fdf-5ca0396e89e6}",
+      "name": "004.0 | hair/bun | complete",
+      "depth": 4,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "head_accessories/crown_pendants/crown_pendant_right",
+      "uuid": "{1ea39c60-9bc6-4eaa-9d3e-75f9dddc4c84}",
+      "name": "005.0 | head_accessories/crown_pendants/crown_pendant_right | complete",
+      "depth": 5,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "head_accessories/crown_pendants/crown_pendant_left",
+      "uuid": "{fab3a085-522d-45c4-bc93-732eb87bddd2}",
+      "name": "006.0 | head_accessories/crown_pendants/crown_pendant_left | complete",
+      "depth": 6,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "legs/leg_right/anklet_back",
+      "uuid": "{a69151f3-3451-4a3d-9d3b-d040edd5142a}",
+      "name": "007.0 | legs/leg_right/anklet_back | complete",
+      "depth": 7,
+      "region": "complete",
+      "issues": [
+        "R12"
+      ],
+      "source": "原生完整后半珠链、连续银丝；材质尺度依据同侧前链"
+    },
+    {
+      "part_id": "legs/leg_left/anklet_back",
+      "uuid": "{6bd3b73d-a184-4745-9482-e60925a5b2a5}",
+      "name": "008.0 | legs/leg_left/anklet_back | complete",
+      "depth": 8,
+      "region": "complete",
+      "issues": [
+        "R12"
+      ],
+      "source": "原生完整后半珠链、连续银丝；材质尺度依据同侧前链"
+    },
+    {
+      "part_id": "legs/leg_right/leg",
+      "uuid": "{9c64defe-cd1d-47cc-a124-83149984fed6}",
+      "name": "009.0 | legs/leg_right/leg | complete",
+      "depth": 9,
+      "region": "complete",
+      "issues": [
+        "R9",
+        "R10",
+        "R11"
+      ],
+      "source": "沿用完整腿底；原画本件轮廓／膝／足趾局部；原生内侧线、足底弧线与足背链根"
+    },
+    {
+      "part_id": "legs/leg_left/leg",
+      "uuid": "{31dfffc8-e688-485e-92f6-e4d8d5197017}",
+      "name": "010.0 | legs/leg_left/leg | complete",
+      "depth": 10,
+      "region": "complete",
+      "issues": [
+        "R9",
+        "R10",
+        "R11"
+      ],
+      "source": "沿用完整腿底；原画本件轮廓／膝／足趾局部；原生内侧线、足底弧线与足背链根"
+    },
+    {
+      "part_id": "legs/leg_right/anklet_front",
+      "uuid": "{abe8365b-9f4b-4562-9b75-7b85a57ac9db}",
+      "name": "011.0 | legs/leg_right/anklet_front | complete",
+      "depth": 11,
+      "region": "complete",
+      "issues": [
+        "R11",
+        "R12"
+      ],
+      "source": "原生连续银链与紧密九珠；仅原画本件珠面中心局部取样，清除肤色底边"
+    },
+    {
+      "part_id": "legs/leg_left/anklet_front",
+      "uuid": "{aa2ecc80-b5e4-4ff8-b9bb-9b0bf16911db}",
+      "name": "012.0 | legs/leg_left/anklet_front | complete",
+      "depth": 12,
+      "region": "complete",
+      "issues": [
+        "R11",
+        "R12"
+      ],
+      "source": "原生连续银链与紧密九珠；仅原画本件珠面中心局部取样，清除肤色底边"
+    },
+    {
+      "part_id": "pelvis",
+      "uuid": "{9f746d95-b938-40f1-81e3-d54ee20c5345}",
+      "name": "013.0 | pelvis | complete",
+      "depth": 13,
+      "region": "complete",
+      "issues": [
+        "R2"
+      ],
+      "source": "原画本件可见布面／边线局部＋黄色隐藏布面生图补画＋本件原生接线"
+    },
+    {
+      "part_id": "arms/arm_right/hand/little_finger",
+      "uuid": "{2722ff9c-2e16-4c92-9737-64f66c4fd839}",
+      "name": "014.0 | arms/arm_right/hand/little_finger | complete",
+      "depth": 14,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_right/hand/ring_finger",
+      "uuid": "{3fd418d2-70da-46d0-bf21-579beff475c5}",
+      "name": "015.0 | arms/arm_right/hand/ring_finger | complete",
+      "depth": 15,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_right/hand/middle_finger",
+      "uuid": "{ffa7ef3e-a94d-4d76-86ad-e7da8a3c4f9c}",
+      "name": "016.0 | arms/arm_right/hand/middle_finger | complete",
+      "depth": 16,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_right/hand/index_finger",
+      "uuid": "{17cd49df-01be-4b6a-ba96-3518f814b3f9}",
+      "name": "017.0 | arms/arm_right/hand/index_finger | complete",
+      "depth": 17,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_right/hand/thumb",
+      "uuid": "{37bcea3b-7389-4853-ab97-45729c27cb54}",
+      "name": "018.0 | arms/arm_right/hand/thumb | complete",
+      "depth": 18,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_right/upper_arm",
+      "uuid": "{2b6fac33-46ff-46bf-9be1-1aedf229de0d}",
+      "name": "019.0 | arms/arm_right/upper_arm | complete",
+      "depth": 19,
+      "region": "complete",
+      "issues": [
+        "R9"
+      ],
+      "source": "原生完整肤色底形＋原画本件细轮廓、肘腕局部笔触；本件根部材质接续"
+    },
+    {
+      "part_id": "arms/arm_right/forearm",
+      "uuid": "{1b191d7f-97db-4096-bcd6-8151771e9c8f}",
+      "name": "020.0 | arms/arm_right/forearm | complete",
+      "depth": 20,
+      "region": "complete",
+      "issues": [
+        "R3",
+        "R9"
+      ],
+      "source": "原生完整肤色底形＋原画本件细轮廓、肘腕局部笔触；本件根部材质接续"
+    },
+    {
+      "part_id": "arms/arm_right/hand/palm",
+      "uuid": "{61645b96-cab0-474b-9e70-359d03670037}",
+      "name": "021.0 | arms/arm_right/hand/palm | complete",
+      "depth": 21,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_left/forearm",
+      "uuid": "{8859c2c1-7cd6-46df-a2e9-f904fdb54fe6}",
+      "name": "022.0 | arms/arm_left/forearm | complete",
+      "depth": 22,
+      "region": "complete",
+      "issues": [
+        "R3",
+        "R9"
+      ],
+      "source": "原生完整肤色底形＋原画本件细轮廓、肘腕局部笔触；本件根部材质接续"
+    },
+    {
+      "part_id": "arms/arm_left/upper_arm",
+      "uuid": "{20733596-023e-467b-84be-6a5b476585e3}",
+      "name": "023.0 | arms/arm_left/upper_arm | complete",
+      "depth": 23,
+      "region": "complete",
+      "issues": [
+        "R9"
+      ],
+      "source": "原生完整肤色底形＋原画本件细轮廓、肘腕局部笔触；本件根部材质接续"
+    },
+    {
+      "part_id": "arms/arm_left/hand/index_finger",
+      "uuid": "{af94f360-b7b2-4d72-a282-abe81899ae99}",
+      "name": "024.0 | arms/arm_left/hand/index_finger | complete",
+      "depth": 24,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_left/hand/middle_finger",
+      "uuid": "{9731fecf-1b7a-45f9-a358-d450b58ed4b0}",
+      "name": "025.0 | arms/arm_left/hand/middle_finger | complete",
+      "depth": 25,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_left/hand/little_finger",
+      "uuid": "{9ad7ffb1-b84f-4b39-a6f1-1c6c4a8d039b}",
+      "name": "026.0 | arms/arm_left/hand/little_finger | complete",
+      "depth": 26,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_left/hand/ring_finger",
+      "uuid": "{403c6067-0d7d-4a22-a14d-3607410ad8cd}",
+      "name": "027.0 | arms/arm_left/hand/ring_finger | complete",
+      "depth": 27,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_left/hand/thumb",
+      "uuid": "{f1662c0b-1af8-433a-a5a2-35a1f3a20669}",
+      "name": "028.0 | arms/arm_left/hand/thumb | complete",
+      "depth": 28,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "arms/arm_left/hand/palm",
+      "uuid": "{5bd257eb-a516-45c1-87e8-58921e019d92}",
+      "name": "029.0 | arms/arm_left/hand/palm | complete",
+      "depth": 29,
+      "region": "complete",
+      "issues": [
+        "R3"
+      ],
+      "source": "原画本件掌指／甲面／褶线局部笔触；隐藏指根按本手肤色画笔色整体补画"
+    },
+    {
+      "part_id": "neck",
+      "uuid": "{15144020-c825-4901-a742-08becc748c51}",
+      "name": "030.0 | neck | complete",
+      "depth": 30,
+      "region": "complete",
+      "issues": [
+        "R1"
+      ],
+      "source": "沿用完整颈部与已恢复颌下笔触；原画本件颈根局部取样＋原生细轮廓"
+    },
+    {
+      "part_id": "body/torso",
+      "uuid": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+      "name": "031.0 | body/torso | complete",
+      "depth": 31,
+      "region": "complete",
+      "issues": [
+        "R1",
+        "R2",
+        "R9"
+      ],
+      "source": "原画本件可见布面／边线局部＋黄色隐藏布面生图补画＋本件原生接线"
+    },
+    {
+      "part_id": "body/breast",
+      "uuid": "{8285ee5c-57cc-4f94-88fa-f4f345c8f094}",
+      "name": "032.0 | body/breast | complete",
+      "depth": 32,
+      "region": "complete",
+      "issues": [
+        "R2"
+      ],
+      "source": "原画本件胸部布面、胸沟及轮廓局部取样；保留完整独立胸片"
+    },
+    {
+      "part_id": "head_accessories/earrings/earring_right",
+      "uuid": "{d0100130-a76d-47d0-a29a-6bfd074e6c5f}",
+      "name": "033.0 | head_accessories/earrings/earring_right | complete",
+      "depth": 33,
+      "region": "complete",
+      "issues": [
+        "R6"
+      ],
+      "source": "本侧原画宝石、短节、长坠局部取样＋本件原生完整金属底材／安装根"
+    },
+    {
+      "part_id": "head_accessories/earrings/earring_left",
+      "uuid": "{6c968e73-72f1-42c1-8019-9302690bd470}",
+      "name": "034.0 | head_accessories/earrings/earring_left | complete",
+      "depth": 34,
+      "region": "complete",
+      "issues": [
+        "R6"
+      ],
+      "source": "本侧原画宝石、短节、长坠局部取样＋本件原生完整金属底材／安装根"
+    },
+    {
+      "part_id": "face/ears/ear_right",
+      "uuid": "{88643f29-e403-43ed-b8a4-26686a75824b}",
+      "name": "035.0 | face/ears/ear_right | complete",
+      "depth": 35,
+      "region": "complete",
+      "issues": [
+        "R13"
+      ],
+      "source": "原生完整耳廓／对耳轮／耳甲；本侧原画可见内耳局部；耳垂本件肤色修画"
+    },
+    {
+      "part_id": "face/ears/ear_left",
+      "uuid": "{a3e7fab5-8355-4552-97db-51f5652cd883}",
+      "name": "036.0 | face/ears/ear_left | complete",
+      "depth": 36,
+      "region": "complete",
+      "issues": [
+        "R13"
+      ],
+      "source": "原生完整耳廓／对耳轮／耳甲；本侧原画可见内耳局部；耳垂本件肤色修画"
+    },
+    {
+      "part_id": "face/face_base",
+      "uuid": "{05210561-d9dd-4843-b30a-a63f7b43116c}",
+      "name": "037.0 | face/face_base | complete",
+      "depth": 37,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "face/eyes/eye_left/sclera",
+      "uuid": "{f14ed857-29cf-4c89-92a9-d4bde22d8edc}",
+      "name": "038.0 | face/eyes/eye_left/sclera | complete",
+      "depth": 38,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "原生完整眼白重画；自身蓝灰至白色材质，无虹膜像素"
+    },
+    {
+      "part_id": "face/eyes/eye_left/iris",
+      "uuid": "{4e67f3d9-e9e4-4b27-b40e-6d8bcbfc8ac4}",
+      "name": "039.0 | face/eyes/eye_left/iris | complete",
+      "depth": 39,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画虹膜局部纹理＋原生完整底材与近圆暗瞳；排除高光及睑线"
+    },
+    {
+      "part_id": "face/eyes/eye_left/highlight",
+      "uuid": "{ec09cfdf-4c68-499d-bbdb-a942880a7b98}",
+      "name": "040.0 | face/eyes/eye_left/highlight | complete",
+      "depth": 40,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "face/eyes/eye_left/lower_eyelid",
+      "uuid": "{932004ef-4f82-4863-a2e8-5702e5f4220b}",
+      "name": "041.0 | face/eyes/eye_left/lower_eyelid | complete",
+      "depth": 41,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "face/eyes/eye_left/upper_eyelid",
+      "uuid": "{d699c479-867c-4c80-8daa-ef5c12ac5919}",
+      "name": "042.0 | face/eyes/eye_left/upper_eyelid | main_lid",
+      "depth": 42,
+      "region": "main_lid 普通绘画主体分片：原上睑缘、上眼线及外角连接，位于眼白、虹膜、高光和下睑连接前，位于宽侧发后。外角与66前片在同一原黑色笔触内部搭接。",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "face/eyes/eye_left/eyelid_crease",
+      "uuid": "{3639c2c4-e109-498d-b4d3-2aa7cc846772}",
+      "name": "043.0 | face/eyes/eye_left/eyelid_crease | complete",
+      "depth": 43,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "face/eyes/eye_right/sclera",
+      "uuid": "{34f70e93-53b9-415d-ab1e-2e184b0da10b}",
+      "name": "044.0 | face/eyes/eye_right/sclera | complete",
+      "depth": 44,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "原生完整眼白重画；自身蓝灰至白色材质，无虹膜像素"
+    },
+    {
+      "part_id": "face/eyes/eye_right/iris",
+      "uuid": "{3bce0122-a3f2-4da8-9ace-9532e2066e9a}",
+      "name": "045.0 | face/eyes/eye_right/iris | complete",
+      "depth": 45,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画虹膜局部纹理＋原生完整底材与近圆暗瞳；排除高光及睑线"
+    },
+    {
+      "part_id": "face/eyes/eye_right/highlight",
+      "uuid": "{ac42bcae-4251-466e-a197-db238ee9517a}",
+      "name": "046.0 | face/eyes/eye_right/highlight | complete",
+      "depth": 46,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "face/eyes/eye_right/lower_eyelid",
+      "uuid": "{bc984aa5-bc74-40e7-aab2-824ddbcce3a1}",
+      "name": "047.0 | face/eyes/eye_right/lower_eyelid | complete",
+      "depth": 47,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "face/eyes/eye_right/upper_eyelid",
+      "uuid": "{538a5f1d-7615-4552-8757-e916939e3793}",
+      "name": "048.0 | face/eyes/eye_right/upper_eyelid | main_lid",
+      "depth": 48,
+      "region": "main_lid 普通绘画主体分片：原上睑缘、上眼线及外眼角连接，在眼内三件和下睑连接前、宽侧发后；与66.5外睫毛前片在原黑色眼角笔触内部搭接。",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "face/eyes/eye_right/eyelid_crease",
+      "uuid": "{05d74f82-e79b-494e-a987-963a10c7df57}",
+      "name": "049.0 | face/eyes/eye_right/eyelid_crease | complete",
+      "depth": 49,
+      "region": "complete",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "face/mouth/mouth_interior",
+      "uuid": "{33c3ea08-2619-4e9b-b207-879a426122b8}",
+      "name": "050.0 | face/mouth/mouth_interior | complete",
+      "depth": 50,
+      "region": "complete",
+      "issues": [
+        "R5"
+      ],
+      "source": "原生完整口底＋原画本件上壁局部笔触；排除牙舌、唇缘"
+    },
+    {
+      "part_id": "face/mouth/lower_teeth",
+      "uuid": "{6da0c3a9-f9cb-4ce1-b796-cae92c765925}",
+      "name": "051.0 | face/mouth/lower_teeth | complete",
+      "depth": 51,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "face/mouth/tongue",
+      "uuid": "{f04d969e-bc63-4aa7-be79-a49deaa1922f}",
+      "name": "052.0 | face/mouth/tongue | complete",
+      "depth": 52,
+      "region": "complete",
+      "issues": [
+        "R5"
+      ],
+      "source": "原生完整粉色舌面与上缘明暗；原画本件内缩中心笔触"
+    },
+    {
+      "part_id": "face/mouth/upper_teeth",
+      "uuid": "{d5d9fe8c-4930-4c05-9a76-eed077809f1d}",
+      "name": "053.0 | face/mouth/upper_teeth | complete",
+      "depth": 53,
+      "region": "complete",
+      "issues": [
+        "R5"
+      ],
+      "source": "原生完整象牙色牙根；可见露牙量由原生蒙版控制"
+    },
+    {
+      "part_id": "face/mouth/lower_lip",
+      "uuid": "{562d4152-fdd0-407d-b6a5-3b9fc4aa9baa}",
+      "name": "054.0 | face/mouth/lower_lip | complete",
+      "depth": 54,
+      "region": "complete",
+      "issues": [
+        "R5"
+      ],
+      "source": "原画本件唇缘、高光、皮肤过渡局部笔触；保留完整唇根"
+    },
+    {
+      "part_id": "face/mouth/upper_lip",
+      "uuid": "{3a9aaeab-44e3-4640-971b-ccb37806068c}",
+      "name": "055.0 | face/mouth/upper_lip | complete",
+      "depth": 55,
+      "region": "complete",
+      "issues": [
+        "R5"
+      ],
+      "source": "原画本件唇缘、高光、皮肤过渡局部笔触；保留完整唇根"
+    },
+    {
+      "part_id": "face/eyebrows/eyebrow_right",
+      "uuid": "{ac4945cf-4446-468c-8a9e-8001b45da597}",
+      "name": "056.0 | face/eyebrows/eyebrow_right | complete",
+      "depth": 56,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "face/eyebrows/eyebrow_left",
+      "uuid": "{573a191c-1809-420e-a658-f7a50f5dbac3}",
+      "name": "057.0 | face/eyebrows/eyebrow_left | complete",
+      "depth": 57,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "face/nose",
+      "uuid": "{8d5e141b-87cc-49d4-9622-e5cc0fea60bd}",
+      "name": "058.0 | face/nose | complete",
+      "depth": 58,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "hair/sidelock/sidelock_right",
+      "uuid": "{9a2a473e-21db-4388-8c91-718162d418ff}",
+      "name": "059.0 | hair/sidelock/sidelock_right | complete",
+      "depth": 59,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "hair/sidelock/sidelock_left",
+      "uuid": "{2799914a-e942-4cdb-8749-c2d6ef60234a}",
+      "name": "060.0 | hair/sidelock/sidelock_left | complete",
+      "depth": 60,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "head_accessories/bun_ornament",
+      "uuid": "{bbdf4cef-6d2f-461d-b89a-0478efeb5863}",
+      "name": "061.0 | head_accessories/bun_ornament | complete",
+      "depth": 61,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "head_accessories/crown_frame",
+      "uuid": "{27a9fa4e-8359-483b-be05-600c033be350}",
+      "name": "061.5 | head_accessories/crown_frame | mounting_root",
+      "depth": 61.5,
+      "region": "实际 KRA mounting_root 普通绘画分片：使用同名 SVG data-completion-additions 中左右安装舌片的完整区域，约左 x390–425、右 x513–548、y115.5–152。后根保留与可见冠缘的重叠，置两侧 side_hair 后、cap 与 bun 前；默认由侧发和同件前片覆盖。",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "head_accessories/forehead_pendant",
+      "uuid": "{07b882af-c65d-4977-ad8a-2cb190fbbf29}",
+      "name": "062.0 | head_accessories/forehead_pendant | mounting_root",
+      "depth": 62,
+      "region": "实际 KRA mounting_root 普通绘画分片：完整额饰在 y<134 的上方附着根，包括约x465–472、y125–133的隐藏连接余量，置左右 side_hair 后、cap 前；与前片在y132–134重叠。",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "hair/side_hair/side_hair_right",
+      "uuid": "{eb9f4ebc-74ea-4247-aa0c-468fc4aa54d6}",
+      "name": "063.0 | hair/side_hair/side_hair_right | complete",
+      "depth": 63,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "hair/side_hair/side_hair_left",
+      "uuid": "{431dc8ad-bd0d-4ddc-94e9-a49f6af32517}",
+      "name": "064.0 | hair/side_hair/side_hair_left | complete",
+      "depth": 64,
+      "region": "complete",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "head_accessories/forehead_pendant",
+      "uuid": "{8f15e56d-ad11-472d-9b95-f460a1037aaf}",
+      "name": "065.0 | head_accessories/forehead_pendant | visible_front",
+      "depth": 65,
+      "region": "实际 KRA visible_front 普通绘画分片：完整额饰 y>=132 的小宝石、短连接、菱形主体及水滴坠，置左右 side_hair 和 face_base 前；顶部y132–134与后根连续重叠，不在菱形中部切断。",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    },
+    {
+      "part_id": "face/eyes/eye_left/upper_eyelid",
+      "uuid": "{82f93c9a-8c37-433f-b573-72a46f9a7ee7}",
+      "name": "066.0 | face/eyes/eye_left/upper_eyelid | outer_lash_front",
+      "depth": 66,
+      "region": "组装中新发现的 outer_lash_front 普通绘画分片：原图画面右侧外眼角跨到侧发前的黑色睫毛，局部检查框x519–532、y208–229，仅提取该框内本上睑的深色笔触；在两侧 side_hair 前、冠架67后，与42主体连成同一上睑。",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "face/eyes/eye_right/upper_eyelid",
+      "uuid": "{495462dd-1159-4a01-bed3-efa147ef134a}",
+      "name": "066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front",
+      "depth": 66.5,
+      "region": "组装中新发现的 outer_lash_front 普通绘画分片：原图画面左侧外眼角伸到侧发前的黑色睫毛，检查框x407–420、y208–229，只含本上睑原深色笔触。在两侧 side_hair 前、冠架67后，和48主体保持同一上眼睑归属。",
+      "issues": [
+        "R4"
+      ],
+      "source": "本侧原画本件睑线／褶线／高光的局部原生取样；保留原片间搭接"
+    },
+    {
+      "part_id": "head_accessories/crown_frame",
+      "uuid": "{d85d2872-2d37-4366-828f-d2f01636d589}",
+      "name": "067.0 | head_accessories/crown_frame | visible_front",
+      "depth": 67,
+      "region": "实际 KRA visible_front 普通绘画分片：同名 SVG 原可见 crown-frame-outline 整体，包括头顶弧梁、连接桥、左右卷饰及全部可见内下缘。置两侧 side_hair 与左右 crown_pendant 前，沿原可见内下缘与后根连续搭接，不把整段下冠缘移至后层。",
+      "issues": [],
+      "source": "原工程绘画保留；首次来源见生成索引及初版记录"
+    }
+  ],
+  "native_controls": [
+    {
+      "name": "upper_and_lower_eyelid_opening",
+      "uuid": "{b7217171-64f4-4cdb-adb7-98f00d02542f}",
+      "parent": "face/eyes/eye_left | opening_contents",
+      "parent_uuid": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "reference-open aperture between this eye upper/lower lid inner edges and corners; shared by sclera, iris and highlight",
+      "default_enabled": true
+    },
+    {
+      "name": "upper_and_lower_eyelid_opening",
+      "uuid": "{e55d75e2-cdb8-44e2-ac23-227c731b15c1}",
+      "parent": "face/eyes/eye_right | opening_contents",
+      "parent_uuid": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "reference-open aperture between this eye upper/lower lid inner edges and corners; shared by sclera, iris and highlight",
+      "default_enabled": true
+    },
+    {
+      "name": "upper_and_lower_lip_opening",
+      "uuid": "{06aae8b3-f027-44db-a037-b9b3eecf6ca7}",
+      "parent": "face/mouth | opening_contents",
+      "parent_uuid": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "reference-open mouth aperture defined by upper/lower lip inner edges and corners; shared by all four mouth contents",
+      "default_enabled": true
+    },
+    {
+      "name": "default_closed_or_back_occlusion",
+      "uuid": "{72977381-84df-4153-8bb5-b9a574710458}",
+      "parent": "051.0 | face/mouth/lower_teeth | complete",
+      "parent_uuid": "{6da0c3a9-f9cb-4ce1-b796-cae92c765925}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "lower lip/tongue default completely hides lower teeth",
+      "default_enabled": true
+    },
+    {
+      "name": "default_closed_or_back_occlusion",
+      "uuid": "{f3172c38-01e8-47ff-b748-5225213e78c7}",
+      "parent": "008.0 | legs/leg_left/anklet_back | complete",
+      "parent_uuid": "{6bd3b73d-a184-4745-9482-e60925a5b2a5}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "this leg covers the entire rear anklet in the reference front pose",
+      "default_enabled": true
+    },
+    {
+      "name": "default_closed_or_back_occlusion",
+      "uuid": "{940fb78a-784a-449e-8b43-157516d1ee74}",
+      "parent": "007.0 | legs/leg_right/anklet_back | complete",
+      "parent_uuid": "{a69151f3-3451-4a3d-9d3b-d040edd5142a}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "this leg covers the entire rear anklet in the reference front pose",
+      "default_enabled": true
+    },
+    {
+      "name": "upper_lip_root_occlusion",
+      "uuid": "{cddb764f-ef60-4c93-905a-3e2a82e6b999}",
+      "parent": "053.0 | face/mouth/upper_teeth | complete",
+      "parent_uuid": "{d5d9fe8c-4930-4c05-9a76-eed077809f1d}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "upper lip covers completed tooth roots; only the original narrow upper tooth segment is exposed",
+      "default_enabled": true
+    },
+    {
+      "name": "face_and_side_hair_default_occlusion",
+      "uuid": "{4f206a90-66ae-488f-bab4-cb1a00f9048c}",
+      "parent": "036.0 | face/ears/ear_left | complete",
+      "parent_uuid": "{a3e7fab5-8355-4552-97db-51f5652cd883}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "visible outline from reference under face/side-hair cover; completed own texture is intact behind mask",
+      "default_enabled": true
+    },
+    {
+      "name": "face_and_side_hair_default_occlusion",
+      "uuid": "{c53967c4-d44d-4bfb-8c4e-1ade0baafb0f}",
+      "parent": "035.0 | face/ears/ear_right | complete",
+      "parent_uuid": "{88643f29-e403-43ed-b8a4-26686a75824b}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "visible outline from reference under face/side-hair cover; completed own texture is intact behind mask",
+      "default_enabled": true
+    },
+    {
+      "name": "side_hair_root_occlusion",
+      "uuid": "{c72912b7-fe81-470e-acdf-0f5d4971c420}",
+      "parent": "060.0 | hair/sidelock/sidelock_left | complete",
+      "parent_uuid": "{2799914a-e942-4cdb-8749-c2d6ef60234a}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "visible outline from reference under face/side-hair cover; completed own texture is intact behind mask",
+      "default_enabled": true
+    },
+    {
+      "name": "side_hair_root_occlusion",
+      "uuid": "{b56c1e37-ba59-4014-a734-dc33be4610ac}",
+      "parent": "059.0 | hair/sidelock/sidelock_right | complete",
+      "parent_uuid": "{9a2a473e-21db-4388-8c91-718162d418ff}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "visible outline from reference under face/side-hair cover; completed own texture is intact behind mask",
+      "default_enabled": true
+    },
+    {
+      "name": "torso_attachment_blend",
+      "uuid": "{bfddc43a-3f8b-43aa-8a27-de8f36c1f3c8}",
+      "parent": "032.0 | body/breast | complete",
+      "parent_uuid": "{8285ee5c-57cc-4f94-88fa-f4f345c8f094}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "6px soft root transition only along upper attachment against torso; independent complete breast texture remains intact",
+      "default_enabled": true
+    },
+    {
+      "name": "neck_and_shoulder_attachment_blend",
+      "uuid": "{a439fdf7-01a7-4073-8087-bcbb7c4d288a}",
+      "parent": "031.0 | body/torso | complete",
+      "parent_uuid": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "24px bare-skin shoulder overlap and 3px neck overlap; fade only over fully opaque underlying own anatomy, AA/non-overlap pixels remain opaque to avoid background pinholes",
+      "default_enabled": true
+    },
+    {
+      "name": "upper_arm_attachment_blend",
+      "uuid": "{81f0e613-f46e-4b45-9ec7-30fcc8707810}",
+      "parent": "020.0 | arms/arm_right/forearm | complete",
+      "parent_uuid": "{1b191d7f-97db-4096-bcd6-8151771e9c8f}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "26px proximal elbow attachment, fade only where the same arm upper-arm layer is fully opaque; keeps own outline and full forearm painting",
+      "default_enabled": true
+    },
+    {
+      "name": "forearm_attachment_blend",
+      "uuid": "{99f4ad1e-06fc-4e92-894c-9a3581c3682e}",
+      "parent": "023.0 | arms/arm_left/upper_arm | complete",
+      "parent_uuid": "{20733596-023e-467b-84be-6a5b476585e3}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "26px bottom root attachment against arms/arm_left/forearm, only where underlying own anatomy is fully opaque; full original paint retained",
+      "default_enabled": true
+    },
+    {
+      "name": "wrist_attachment_blend",
+      "uuid": "{3a56cf55-9b4d-4789-b1bd-aeddced81fed}",
+      "parent": "021.0 | arms/arm_right/hand/palm | complete",
+      "parent_uuid": "{61645b96-cab0-474b-9e70-359d03670037}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "18px top root attachment against arms/arm_right/forearm, only where underlying own anatomy is fully opaque; full original paint retained",
+      "default_enabled": true
+    },
+    {
+      "name": "wrist_attachment_blend",
+      "uuid": "{5d75451b-6d6a-49c1-b925-59583126819f}",
+      "parent": "029.0 | arms/arm_left/hand/palm | complete",
+      "parent_uuid": "{5bd257eb-a516-45c1-87e8-58921e019d92}",
+      "type": "transparencymask",
+      "colorModel": "A",
+      "native_pixel_bytes": 1,
+      "control_region": "18px top root attachment against arms/arm_left/forearm, only where underlying own anatomy is fully opaque; full original paint retained",
+      "default_enabled": true
+    }
+  ],
+  "upstream_shape_change": "part-layering/parts/legs/leg_left/leg.svg"
+}

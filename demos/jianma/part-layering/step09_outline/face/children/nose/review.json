@@ -3,9 +3,36 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已完成 face/nose 全部可见区域的分块放大核对。先查看候选整图 blend 定位，再检查鼻部上下两段重叠选框 [502,208,21,12]、[502,216,21,12] 的 8 倍 blend 与 edge，并用 [496,204,33,27] 的整体鼻部局部复核连续性；同时查看父组 ../../../../../parts/face.svg 的完成形体和混合预览，另核对原图 [502,208,21,20] 的原始像素放大。\n鼻尖上端、左右收束边缘及下端两侧鼻孔区域均已覆盖。候选约 x508–517、y211–224 的单一连续局部鼻形包含参考的浅小鼻尖亮点、细微鼻尖阴影和短小鼻孔点线所在范围，没有遗漏属于本组的独立组件；未带入上方普通鼻梁肤色过渡或大块周围脸部肤色。参考鼻部外侧主要是浅淡肤色过渡，没有依据把内部亮暗分界另作外轮廓。与连续脸底的覆盖关系合理，鼻部与眼、嘴之间的可见间隔保留。\n轮廓干净，无来源不明的孤点、碎片、刻意挖缝或形体归属混乱。当前为统一轮廓色块，鼻孔线色与高光的最终着色尚未绘制，不属于组件缺失。未发现有明确图像依据的可见边缘错位或漏画。\n父范围检查通过：4 倍采样 outsideSamples=0、outsidePixels=0、outsideBox=null。",
-      "candidateHash": "e5e5267f3a66b5446dc4b52a2971a8a41420b2ed9a98a54ceec53e38f21b8bb5",
-      "updatedAt": "2026-10-14T19:07:43.397Z"
+      "feedback": "已核对 face/nose 的说明、原图、候选及父组完成稿；全图叠加定位后，以原图区域 [435,227,65,38] 检查鼻部与双眼、嘴部的归属，再以 [453,235,32,25] 的 8 倍 blend、edge 和独显核对全部可见范围。参考中的双鼻点与中央小高光均位于连续鼻部色块内，未发现独立可见组件遗漏；参考无清晰独立鼻梁线，周边弥散明暗不作为硬轮廓要求。候选位置、比例与局部连续形体合理，无碎点、孔洞或相邻眼口结构误包。父组完成稿覆盖该区域，四倍采样范围检查 outsidePixels=0，无父范围冲突。通过。",
+      "candidateHash": "07f2253d88e5699374dced45c45b399115be3036e5969132419f44f28a3e5d72",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-02T10-03-37-965Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-02T10-03-37-965Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-02T10-03-37-965Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-02T10-03-37-965Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-02T10-03-37-965Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:14:00.442Z"
     }
   ]
 }

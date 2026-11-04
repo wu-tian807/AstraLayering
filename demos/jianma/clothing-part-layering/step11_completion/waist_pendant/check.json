@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，3 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "ce3e2c9b80965b3b256dede89f530344d008b4e2ab2264324dd2e4ddc7d7d75a",
-  "afterHash": "d270a86e8580437a5b276f65db5c1597329ac8a3459e6ee21db7e3c0102211a6"
-}

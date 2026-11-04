@@ -1,9 +1,0 @@
-{
-  "model": "gpt-image-2",
-  "quality": "high",
-  "size": "1536x2048",
-  "promptSHA256": "769e3df6db0a3855a2e2ef12af79a88a59176a949ac77acc8711931dc4cb105c",
-  "referenceSHA256": "baed236281750ec28a9a7c24b63ac35e324cd6bd8e559a3968f48e439e07a5d3",
-  "outputSHA256": "de1b08b95715359b0932a5811895933e28ccc956882595d51744825216063bcc",
-  "receiptRecordedAt": "2026-10-20T12:50:44.644644+00:00"
-}

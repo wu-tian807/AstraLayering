@@ -1,0 +1,874 @@
+{
+  "canvas": [
+    941,
+    1672
+  ],
+  "color": [
+    "RGBA",
+    "U8",
+    "sRGB-elle-V2-srgbtrc.icc"
+  ],
+  "node_count": 49,
+  "nodes": [
+    {
+      "name": "001 | collar_shoulder_cape/standing_collar | back",
+      "uuid": "{448df4c9-96c7-40e9-b298-05c0674638f7}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 0,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "c35068db16347ba9c3fcdd105aea20846a89447721dbb4b1971a20c4b1c6c8cc",
+      "alpha_sha256": "d15087f4472c3eb6527a6ab9267f1da0e744708ca76c419f085c7f9c8654f53b"
+    },
+    {
+      "name": "002 | inner_long_dress/long_skirt | back",
+      "uuid": "{0e35da44-fa87-4557-a9cd-3459aa7b6cdf}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 1,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "843366a499774ba8a398c6e2d47eac0c7fa2d32d6e622e5f6d9b86994577faa5",
+      "alpha_sha256": "c8976debadd6a758e52eca5dd1af35022a39a4d79d68281a345ce088b0d62773"
+    },
+    {
+      "name": "003 | waist_sash_and_knot/waist_band | back",
+      "uuid": "{ee430c3b-6a85-46ed-8e71-e15d8da3b6ab}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 2,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "2e9b2401a3eea5d1fbe12a8cfe118e39230243f862e4e46f0ed0d3d664d7a65e",
+      "alpha_sha256": "c8370b3b646ec11cb3c56b5bad4759c022c290145bd0a4bd74df348b6303e85e"
+    },
+    {
+      "name": "010 | inner_long_dress/long_skirt | front",
+      "uuid": "{8d550ac0-4c93-4c99-9c81-c6b710d0b095}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 3,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "a57d637ace85c03af96ed7d574fb184d65cb7ee12aa88e59075c471811057fa5",
+      "alpha_sha256": "310e55142ec9881efb974fce04151182bf1de3ea0310c5d1cdb41c1aeaa06e8d"
+    },
+    {
+      "name": "010.1 | central_blue_drapery/central_folded_tail | back waist root",
+      "uuid": "{78bc1e28-59ea-44e1-90ea-768e3988c410}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 4,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "bc32f50e002d114a023c8254b50d39386740cb88742e5446f09dd104f6a8774f",
+      "alpha_sha256": "5b34dcfb3108a0b268ef50e73f99fd28af74c65e5762f259ff3d528b3e1abd39"
+    },
+    {
+      "name": "010.2 | central_blue_drapery/left_long_panel | back waist root",
+      "uuid": "{a7b62523-83bd-4fc8-9770-82a707ca9001}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 5,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "1093969eafb06430b9e81804b78e725c58e19ad4b64aefdfb1c2fdb194999da7",
+      "alpha_sha256": "872c8fd7427f66372c1e11955aeb58bc64459a0ec0a990eab8beb5258e65e07d"
+    },
+    {
+      "name": "010.3 | central_blue_drapery/right_long_panel | back waist root",
+      "uuid": "{65fa757b-6b4a-4397-8c78-87f270678625}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 6,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "7156fdafad4a880471785d39f234916022caf2f2cb6738bfab5bd0706e18c3ba",
+      "alpha_sha256": "ed2e56ff125bad2abe1b1851d507ce1651a576566db5f85823b45d049f5bf3d2"
+    },
+    {
+      "name": "011 | inner_long_dress/bodice_and_waist",
+      "uuid": "{e49d9e03-ca99-444a-99ac-041e59dfb80b}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 7,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "4bc40fc148e1eb0227073763d3ed6996323c8db405251fac84d7db93cae3d738",
+      "alpha_sha256": "e3f52a8192e3b77293f8b5eaa69e78a85798290890bafa428922985675130a57"
+    },
+    {
+      "name": "020 | central_blue_drapery/central_folded_tail | front",
+      "uuid": "{b578d36e-4025-47d6-9587-ff6a0a52b4f0}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 8,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "bc8f244d8564378c367c851a05efe6bc0c0e98f57930d10625bd4bff349652ba",
+      "alpha_sha256": "f88ed92d1c5fc2c8c89668aff88515f66fcb272b1249d48408cf0f729f5f4984"
+    },
+    {
+      "name": "021 | central_blue_drapery/left_long_panel | front",
+      "uuid": "{5570fda1-2f31-4d28-9c36-495eed12e654}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 9,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "3be07967f70a66eb58ea11be927f897892e085ec7fbb854b312079605ee390ed",
+      "alpha_sha256": "26370935dd4bfa569b38fbced722469e3cb0b87b43f0a8cbb9144b0bf9665f5f"
+    },
+    {
+      "name": "022 | central_blue_drapery/right_long_panel | front",
+      "uuid": "{9d0ff3e9-740b-44e5-a8b5-f2635a5dd3c2}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 10,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "b4ae70d2c4b32c432006cb6ca5757df975c95476844460854f48fdf13b483cd1",
+      "alpha_sha256": "cb7adb27c5e5bf90ee5502b3e2d3c446fbed2cfcc5455fad47d5c9cf7e65768c"
+    },
+    {
+      "name": "025 | waist_sash_and_knot/waist_band | front",
+      "uuid": "{bbc07874-0300-4944-b323-a9c65cec3ef1}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 11,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "1cd91693319515c49cb27b087248a118cfc63dc4e26c5a5231eb9e3712f92526",
+      "alpha_sha256": "0ee01c50bf7f87d4d462343195676a7780ab53109897b6f174f4482d0788bff5"
+    },
+    {
+      "name": "030 | outer_robe_body/left_robe_panel",
+      "uuid": "{937356d7-288f-4412-bcc7-e253d2ceb64b}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 12,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "d33e9200da63648f6e8187cf25505e33212caab4df15301d3b0ea2a5a6573577",
+      "alpha_sha256": "b5a06525f2d0b2ee6f14de4f31a39ce446cf97aaac2e81509bd7f3644e2e946c"
+    },
+    {
+      "name": "031 | outer_robe_body/right_robe_panel",
+      "uuid": "{60bd2482-c7dc-4522-b270-022893b02486}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 13,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "709c18af47eb5ec973d6bb9bbe51069af4285e28e26d6a342bd1387fba566c92",
+      "alpha_sha256": "de78a8c886f6a414c383522b1e79779801026fb321746c7dc805fe8a76de3a03"
+    },
+    {
+      "name": "040 | sleeve_screen_left/right_hanging_drape | back",
+      "uuid": "{4bef1885-89fe-4c15-9abd-e68b37229d2d}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 14,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "abd7f4c0235cf2aba1f084dadddccce1a071d05e26c9257a53ad45691d3cce36",
+      "alpha_sha256": "0314fe9358f4f0acfb4b09cb2d930779822f723533279e054b3b922ba8746492"
+    },
+    {
+      "name": "041 | sleeve_screen_right/left_hanging_drape | back",
+      "uuid": "{77fcc592-d710-4d99-9b0c-1e2965f0bda5}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 15,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "78ebe0e3577f56aec3cc9f4f120f61d7a3139ee090d65190e14edbe4e9f18a86",
+      "alpha_sha256": "58fcc69f7229c6229790a7e1a8dde6d05c369e9c2443f73be395dbad43c73703"
+    },
+    {
+      "name": "042 | sleeve_screen_left/right_sleeve_tube | back",
+      "uuid": "{8f0002cf-03e5-4258-b427-9141b7d26219}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 16,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "5b129b191368b88966bdd6ab34383445971c923c807a2d4fe2be7cf5315d67cc",
+      "alpha_sha256": "19013da81f786ead7f958490d5a1ac0cbb20acba296fb928329b217eb2243be5"
+    },
+    {
+      "name": "043 | sleeve_screen_right/left_sleeve_tube | back",
+      "uuid": "{15c1b420-3b4a-4eb0-927f-091161cf9407}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 17,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "617f953a70d840f5b06e169e5fd3a8fef331d4455b4869259b021e0eb88a9b04",
+      "alpha_sha256": "9187797616f9fab22e99c9a23dfba08c303becd247832691d8d3dde2e3ea23fe"
+    },
+    {
+      "name": "050 | sleeve_screen_left/right_sleeve_tube | front",
+      "uuid": "{824ddbe3-c712-4e56-80e7-56b5b73315d5}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 18,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "91c6cc3d1a00f09271c1e76d0ef3645d39d687599ffd3039f0db0a1a5741d55a",
+      "alpha_sha256": "09813ecddf3c4a1fadae982a8f1e0a7c612bf5c2142db0068a58addced81cea7"
+    },
+    {
+      "name": "051 | sleeve_screen_right/left_sleeve_tube | front",
+      "uuid": "{a4a789c5-b72e-4e3d-b710-bab8bc4c5e5e}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 19,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "bd2bc13455244a99daadc11d7ed8f9513f40fa5ec1c80ae02cbbe2e918152e8e",
+      "alpha_sha256": "d50e7c2771e352af769b5d9ccba94f5b858b2fa1b8b78cf1ca22ba853ada749f"
+    },
+    {
+      "name": "060 | sleeve_screen_left/right_hanging_drape | front",
+      "uuid": "{9f8f53de-82b3-41a6-9560-a5a574d09aa8}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 20,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "127a745b4f27a02bde0eff4a51024b4ef078b335ff5f686260809f3d06da52b1",
+      "alpha_sha256": "441338c690deaa49176982da087e00028ad1964ca42e1c3809ca9bd912d8508f"
+    },
+    {
+      "name": "061 | sleeve_screen_right/left_hanging_drape | front",
+      "uuid": "{05b89668-8569-4537-a453-1254e2aa70c9}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 21,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "1ce30e228309b294ad9c5142be79bacb3dcdd9b843cecbedbbade316b6454fb9",
+      "alpha_sha256": "96455f65b807b3ce6a9829b35d5ff33d36c16b5be530928358a9e1ee614be990"
+    },
+    {
+      "name": "070 | collar_shoulder_cape/left_shoulder_cape",
+      "uuid": "{e4e0616b-0fad-4a35-a593-c2225aba4402}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 22,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "694569ca674baf59a2396b5445456deda0b61687cae4473539c08d4bb229ed47",
+      "alpha_sha256": "a0fbcc932f58fa46ff35dab0b8579f937c10545ca5a9f888cc9cfc82a4e1c75b"
+    },
+    {
+      "name": "071 | collar_shoulder_cape/right_shoulder_cape",
+      "uuid": "{aed42338-b858-4645-ace8-6c6b6d552528}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 23,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "775ffbf6fbfaba2a69d882ce76b9ee898351cb4ce0da48b450c21687b868fdc0",
+      "alpha_sha256": "7c9ab1aa4d695925288be744c5461e4df8508e0c223021b0ed032fb5f3d9481c"
+    },
+    {
+      "name": "072 | collar_shoulder_cape/standing_collar | front",
+      "uuid": "{04d9238d-4429-4a5e-a569-8cf7e640b4c9}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 24,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "dc245020be09e99532c8091c474d8b1c44c6a84323dec50dadb173d8b2b2102a",
+      "alpha_sha256": "a36859e502c4f55c30d88a26baa18ac7ef2a0737894e8ff9e07358fa0f155443"
+    },
+    {
+      "name": "080 | collar_jewel_fastener/left_beaded_chain",
+      "uuid": "{60533a4b-028a-4dd7-bcdd-4102ee092f68}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 25,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "f026a67ac883cd477e4038ba1e67418b69f90b3748b1a591e102f6dcf99de673",
+      "alpha_sha256": "18377a2c671828cc710b76a23f135a185c44fae9473683dfec9613116453892d"
+    },
+    {
+      "name": "081 | collar_jewel_fastener/right_beaded_chain",
+      "uuid": "{a25b734f-d758-457b-800a-f49d2a1aab33}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 26,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "5ddb744987e1ba6a818ade4fe60d722f6d0bfcec9bf0159d692207df6aa87ac1",
+      "alpha_sha256": "3952be7d1396fed5977e2e602da7790dd0c4764b54f5020cf193e7208ddc56ba"
+    },
+    {
+      "name": "082 | collar_jewel_fastener/central_pendant/hanging_bead",
+      "uuid": "{e6610023-213a-4447-bb89-ba0ce5af38b7}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 27,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "aa54b20616e5ce90372fe1b3cb60fd2d0f68f8cdafadc1e81bc3aa5a0f88eae8",
+      "alpha_sha256": "fa6197ee264ce74b725cc53df5a036a30acdca5f66f618981069c6fac3b90d0a"
+    },
+    {
+      "name": "083 | collar_jewel_fastener/central_pendant/connecting_ring",
+      "uuid": "{c640902f-61aa-4766-905f-e0c0dacc7673}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 28,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "8268869ebf089e528657aa8b3e42bbcc17d9b342128bc37c7cc155ae42ba4efc",
+      "alpha_sha256": "6e02ffe01110542ea50e6e4cddb1e7781618b7a5dd9bf88eb561277ddb24db6e"
+    },
+    {
+      "name": "084 | collar_jewel_fastener/fixed_jewel",
+      "uuid": "{a4dd0458-4ccd-4e78-b6bd-5e4e06d16833}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 29,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "f93aab05c48eb5d99db450f8a47fbfeb3e5a3f1ce5b89232dcf309512d90050e",
+      "alpha_sha256": "40bd918b58fd7124c3937d8c6ab57e1853130bfcf8c57e90302951ef4e90ea93"
+    },
+    {
+      "name": "085 | chest_ornament",
+      "uuid": "{7ff3e970-4f42-460e-8328-dc7d041a9189}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 30,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "4bfe2134f9aca4401a4de35447517f02e31b161edf566ca985a766b30f2f80d8",
+      "alpha_sha256": "9c1b128dea3ff0b0469314e79ce368a2bea6f6eddaf15f606d3612affb00d97d"
+    },
+    {
+      "name": "100 | waist_pendant_and_tassel/upper_suspension",
+      "uuid": "{f44f66dc-eedc-40f8-9a23-c0877cfa04e6}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 31,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "46a82371dce055cde7d078b6f125e32a2800679e674eec8c5930256f649f5449",
+      "alpha_sha256": "adbc1f951a5a035f3469a2a36eb7b2bb76b4c8833bf31ea98495679b5affdbce"
+    },
+    {
+      "name": "waist opening | hide completed suspension root",
+      "uuid": "{0e97c101-ee19-4c87-8fa6-41749a295fac}",
+      "type": "transparencymask",
+      "parent": "{f44f66dc-eedc-40f8-9a23-c0877cfa04e6}",
+      "order": 0,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "bb9d5b58526bdc7737ccc7af878e9c358fa7f326eb0c2b64ba787a8572ec8d77",
+      "alpha_sha256": "bb9d5b58526bdc7737ccc7af878e9c358fa7f326eb0c2b64ba787a8572ec8d77"
+    },
+    {
+      "name": "101 | waist_sash_and_knot/left_short_tail",
+      "uuid": "{292dee11-7918-45c8-bee9-1b70459251b5}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 32,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "c0ee80b0478312e31b8e1ddc71d6dc7a68ee53a917208b1b6189453e63edc28e",
+      "alpha_sha256": "2ebdc0b1c263030054c1842ed75b6f15951889b2cdd63ba581d50ea333e9d237"
+    },
+    {
+      "name": "102 | waist_sash_and_knot/right_short_tail",
+      "uuid": "{0597ced5-ffe5-4afa-8845-bb5fc07018fb}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 33,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "8e02c314196f73c6b9849771b2ccca6b5cda9ed4b87d0f6a8705fd4f4ce394c2",
+      "alpha_sha256": "fd3f951cd98f3cc5c6760d480a94c8229920f10c14fed74a577d40c17b3e16d3"
+    },
+    {
+      "name": "103 | waist_sash_and_knot/left_short_loop",
+      "uuid": "{5c35cebf-839b-4adc-a114-ec59b7a0a273}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 34,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "7244558ef681e98c5f7e22486a97abe740dd6b002bd237e0316a1bdb8be1b39e",
+      "alpha_sha256": "3aacfe0eab24f012db72d186f2d7b5a513d0af6c629f4495f7df8a1c419dde1f"
+    },
+    {
+      "name": "104 | waist_sash_and_knot/right_short_loop",
+      "uuid": "{c587ec68-0faf-4d6b-a5b1-bc8edb2be27b}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 35,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "3fadebaeeba38d84393fbee6ed039832685e85b3118289bc0a4dc1a67eaf1deb",
+      "alpha_sha256": "5b5a8e39aca02c1282f29085fcf2711ca96e8ac45b3d64b590ec1186ee6ba1c8"
+    },
+    {
+      "name": "105 | waist_sash_and_knot/center_knot",
+      "uuid": "{5d6a62d6-62c7-48d0-b743-55a54f63ad48}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 36,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "73a402140ffca21b877aec155ba5a0b5a283dbf4dc78f15bdaf989979c8baf12",
+      "alpha_sha256": "bed258d8fe61ec943cd5e8ca3acc9fbb249e23cefb8aebe4b6c75b67fbe0c21a"
+    },
+    {
+      "name": "108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+      "uuid": "{3e4bd53e-224e-42d6-b8c0-80a8b129d0cf}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 37,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "1997c9c93a567f05bcb965b06475c7b08dc21f26f3d08139e8b738bacf004374",
+      "alpha_sha256": "209dadf487b48fd058e97683d37dec5664cea27f46f4e0633a872fa16f13a704"
+    },
+    {
+      "name": "109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+      "uuid": "{2d461cef-2627-4437-8154-850aeb4fb67b}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 38,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "ccf88ae16e4e97d794ced4185e2f6ff0f93329466b3750bde2ef0f570e70a3c2",
+      "alpha_sha256": "5acd0251c8ab78ab36907b5945b00fafd91c6727d29c181fb827500cb95932d9"
+    },
+    {
+      "name": "110 | waist_pendant_and_tassel/snowflake_medallion",
+      "uuid": "{198460c7-721d-46e7-9bcf-b917d4c47e05}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 39,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "a324947a9cc3639e3394c4c18e270b3dd8d8f0aacebcb1f75ee195e8a83b592d",
+      "alpha_sha256": "7c15137cc8798ec9d3929146948caa64a0cdb775f25de4ace7bebf889a7cb166"
+    },
+    {
+      "name": "111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+      "uuid": "{e03c594b-44fb-4b4f-8e44-0386680362bd}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 40,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "8356dc6d6c199c1ee28ad72afb4d2bacb61b29be0d35595ed33ba632c245e4a6",
+      "alpha_sha256": "61df23a7876f1d59c40e51545d052311a570093cef51be5d0b8dc605ca934502"
+    },
+    {
+      "name": "112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+      "uuid": "{c76f19bb-8a2c-49db-8e48-440281984bbc}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 41,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "d16fb5d1a659d7711620d97a8139b93e39f926645f3c6471939dc2fde6a33fe3",
+      "alpha_sha256": "8415d26d1371d360f1f333a0c29e90e6dd1b5492a855b7e02c5909b61e6ed138"
+    },
+    {
+      "name": "113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+      "uuid": "{bb991b05-be97-4f43-a0e7-346a2dee2ed7}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 42,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "b1c51b325a3beaa4fa3a4592e00781b55d812a0f7114f01c678db63a53dc28ac",
+      "alpha_sha256": "11204c0c736696860af595d0aa9b020e0eadb23ec914031747a5980af880dd81"
+    },
+    {
+      "name": "114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+      "uuid": "{6dc8cec9-3f4f-4f62-bc20-05d66a1a69de}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 43,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "6f4cd6730db5060c717e91583b361b90ef10a105f9c5335863e96458f25bcbe5",
+      "alpha_sha256": "2454a8df930f7aa0201676193c7da74a0866f9c5b77a076d40c304e67741d554"
+    },
+    {
+      "name": "115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front",
+      "uuid": "{44b87ac9-8c41-458d-892b-ffcb4bef2bca}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 44,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "1a5b94411064fbc3cf60c231687a4a8290f96d7e5870102154187c6d698d6b54",
+      "alpha_sha256": "33787af68288c611ed3afa79bc506b45b31f0f8a110ba5064cbdfa9670284455"
+    },
+    {
+      "name": "116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+      "uuid": "{d24884f2-e02b-4c08-8d18-097a084644ee}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 45,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "dadc61444a07bc18bc090e5143f2ab4b829da8af6a698bcf91ece5f057708562",
+      "alpha_sha256": "56572aa856b93ffaac76ade245c692872532ba42f17f28a3f2dd83290ad774d5"
+    },
+    {
+      "name": "117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+      "uuid": "{9f773cfa-ef82-4ef9-a0dc-11542d706268}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 46,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "a2f613bba426261e67d10156f447d6cbe64f0c87fa82656b2d2289023c39091f",
+      "alpha_sha256": "22a4dd5bb20976c1091a05552631f8244701f1b7f7271642394f04bd6a3d7bbd"
+    },
+    {
+      "name": "118 | waist_pendant_and_tassel/long_tassel",
+      "uuid": "{48ad6dd8-4994-4b64-80b3-964ce235dfbd}",
+      "type": "paintlayer",
+      "parent": "root",
+      "order": 47,
+      "visible": true,
+      "opacity": 255,
+      "inherit_alpha": false,
+      "alpha_locked": false,
+      "locked": false,
+      "blending_mode": "normal",
+      "sha256": "900419cd3772bc48602430d4ebe1d6623612749e3bd0f96593f98a1184c79b80",
+      "alpha_sha256": "a3bf23feae43e8179a4f14ab8bb554cf55fdcd054cb4041ce87edfd052e95bbf"
+    }
+  ],
+  "parts": {
+    "collar_shoulder_cape/standing_collar": [
+      0,
+      24
+    ],
+    "inner_long_dress/long_skirt": [
+      1,
+      3
+    ],
+    "waist_sash_and_knot/waist_band": [
+      2,
+      11
+    ],
+    "central_blue_drapery/central_folded_tail": [
+      4,
+      8
+    ],
+    "central_blue_drapery/left_long_panel": [
+      5,
+      9
+    ],
+    "central_blue_drapery/right_long_panel": [
+      6,
+      10
+    ],
+    "inner_long_dress/bodice_and_waist": [
+      7
+    ],
+    "outer_robe_body/left_robe_panel": [
+      12
+    ],
+    "outer_robe_body/right_robe_panel": [
+      13
+    ],
+    "sleeve_screen_left/right_hanging_drape": [
+      14,
+      20
+    ],
+    "sleeve_screen_right/left_hanging_drape": [
+      15,
+      21
+    ],
+    "sleeve_screen_left/right_sleeve_tube": [
+      16,
+      18
+    ],
+    "sleeve_screen_right/left_sleeve_tube": [
+      17,
+      19
+    ],
+    "collar_shoulder_cape/left_shoulder_cape": [
+      22
+    ],
+    "collar_shoulder_cape/right_shoulder_cape": [
+      23
+    ],
+    "collar_jewel_fastener/left_beaded_chain": [
+      25
+    ],
+    "collar_jewel_fastener/right_beaded_chain": [
+      26
+    ],
+    "collar_jewel_fastener/central_pendant/hanging_bead": [
+      27
+    ],
+    "collar_jewel_fastener/central_pendant/connecting_ring": [
+      28
+    ],
+    "collar_jewel_fastener/fixed_jewel": [
+      29
+    ],
+    "chest_ornament": [
+      30
+    ],
+    "waist_pendant_and_tassel/upper_suspension": [
+      31
+    ],
+    "waist_sash_and_knot/left_short_tail": [
+      32
+    ],
+    "waist_sash_and_knot/right_short_tail": [
+      33
+    ],
+    "waist_sash_and_knot/left_short_loop": [
+      34
+    ],
+    "waist_sash_and_knot/right_short_loop": [
+      35
+    ],
+    "waist_sash_and_knot/center_knot": [
+      36
+    ],
+    "waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment": [
+      37
+    ],
+    "waist_pendant_and_tassel/middle_articulated_chain/elongated_link": [
+      38
+    ],
+    "waist_pendant_and_tassel/snowflake_medallion": [
+      39
+    ],
+    "waist_pendant_and_tassel/middle_articulated_chain/teardrop_link": [
+      40
+    ],
+    "waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant": [
+      41
+    ],
+    "waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant": [
+      42,
+      44
+    ],
+    "waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame": [
+      43
+    ],
+    "waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant": [
+      45
+    ],
+    "waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame": [
+      46
+    ],
+    "waist_pendant_and_tassel/long_tassel": [
+      47
+    ]
+  },
+  "kra_sha256": "247d1a55514519e71b349879c1ca6668f5aa85e1ea98d7771edae9d415fbcf5b"
+}

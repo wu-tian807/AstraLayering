@@ -1,7 +1,0 @@
-{
-  "groupId": "face/eye_left",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "775bcdaf8b2c16e1fa162e873cd55618b7ce48434d803ec7fa51c6708a96aa66",
-  "afterHash": "6144bfefeb1fb569c3d128ba827e11f3f93bca0156c0f18098b3055ad5e743f8"
-}

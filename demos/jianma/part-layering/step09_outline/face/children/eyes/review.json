@@ -1,0 +1,113 @@
+{
+  "groupId": "face/eyes",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已检查整图 blend、父组完成 SVG，并对画面左眼 [402,200,68,46]、右眼 [468,200,69,46] 进行 8 倍原图、blend 与 edge 核对，选框在鼻侧重叠；覆盖双眼主体、独立眼褶线、上下睫毛、内外眼角及所有尖端，并查看 SVG 独显。主体归属清楚，两条独立眼褶线已覆盖，真实肤色间隙保留，无须整组重画；需修正以下局部轮廓。\n\n1. 双眼下眼睑连续外缘漏盖：画面左眼约 x429–443、y236–239，画面右眼约 x496–510、y236–239。参考中白眼球/虹膜下方有明确连续的灰褐色下睑弧线，edge 图中该弧线仍露在红色边缘下方，候选下缘收进约 1–2 像素。此处是本组眼睑的可见边缘，不是要增加弥散眼影或内部着色。请沿各眼实际下睑外缘补足连续弧带，并顺接两端及下睫毛，不沿镜像统一处理。证据：![左眼边缘](review-evidence/left-edge.png) ![右眼边缘](review-evidence/right-edge.png)。\n\n2. 画面右眼上睫毛与外眼角局部不贴合：约 x489–502、y209–218 的上睫毛斜升段，参考黑色睫毛外缘位于红线的左上方，候选缩入，留出可见黑色窄带；外侧尖端约 x527–529、y218–220，候选又向右上超出实际黑色尖端，带入邻近浅色发束/肤色。请按右眼本身的黑色可见边界重描该段斜率、上缘与外尖端，保持参考的转折和尖端位置。左右眼并非严格镜像，不能以另一眼的镜像曲线代替该处参考。证据：![右眼边缘](review-evidence/right-edge.png)。\n\n父范围检查通过，outsidePixels=0；上述修正均在父完成轮廓内可完成，无上游范围限制。未发现需要清理的孤点、碎片堆砌或主要形体归属混乱。",
+      "candidateHash": "a9436564f7b1842728ab9779b70adae24ab4c43e87e63f688c3e3232d8df67bd",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-07-56-215Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-07-56-215Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-07-56-215Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-07-56-215Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-07-56-215Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-07-56-215Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-07-56-215Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:19:23.239Z",
+      "repairedCandidateHash": "165d19f60fc63da94190cc06a3480e0c8ef1ccaac0e3d75b0936d7c3d290a3a1"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已完成整图 blend 定位，分别对画面左眼 [402,199,61,47]、右眼 [477,199,61,47] 作 8 倍参考、blend、edge 核对，并以重叠选框复核上下眼缘、眼角与两条独立眼褶线；查看了父完成 SVG 与候选独显。双眼主体、睫毛及独立眼褶线均存在，未发现误认部件、组件整段遗漏或碎片噪音；主要形体无需整体重画，以下为当前组局部轮廓返修。\n1. 双眼下缘靠内眼角的弧段外扩：画面左眼约 x440–451、y228–237，画面右眼约 x487–499、y228–238。edge 中红线在白色眼球／下睑可见边缘外侧的肤色上，尤以右眼靠鼻侧的斜弧明显；底部约 x432–441、y238–239 与 x497–506、y238–239 也包入了下睑线下面的一窄条肤色。请依据两侧各自的白色开口及实有下睑线收回轮廓，修正下缘弧度和向内眼角的收束；保留有依据的下睫毛尖端，不将柔和皮肤阴影并入眼睛范围。\n2. 画面右眼独立眼褶线的内侧半段（约 x488–504、y205–212）与参考不齐。该段参考棕色实线的上侧及靠鼻端位于候选之外，候选弧线偏向右下，直接镜像左侧的走向没有贴合右侧实际眼褶。请按右眼参考单独调整该段的起止位置、上缘及弧度，覆盖明确的眼褶线并保留它与上睫毛之间的真实肤色间隙；不扩成弥散眼影。\n父范围检查：4 倍采样 outsidePixels=0，以上返修位置均在父 face 完成范围内，无需修改父稿，无已确认的上游范围限制。",
+      "candidateHash": "165d19f60fc63da94190cc06a3480e0c8ef1ccaac0e3d75b0936d7c3d290a3a1",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-02T10-26-29-419Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:34:10.588Z",
+      "repairedCandidateHash": "789c6f4892286b33f59da8973158bf919d37e36960b138de6da2a60084db1a9a"
+    }
+  ]
+}

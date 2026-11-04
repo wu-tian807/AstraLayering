@@ -1,0 +1,48 @@
+{
+  "groupId": "sleeve_screen_left/right_sleeve_tube",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第1轮独立审查通过，无已核实的返修项。已先查看纯衣服全图和 x240–400、y300–720 局部，再核对 note、父完成 SVG、候选整图 blend、覆盖全部候选区域的 3 倍 edge、上下段放大 blend 及完整轮廓独显。原图中斜向前翻并向内卷曲的宽布幅属于相邻长垂布；候选沿其遮挡边界保留袖筒与必要隐藏搭接，未把下方长垂布、袍身前襟或人体纳入。x289–387、y264–440 的袖根沿用父稿隐藏补出区域，note 已明确藏于肩披之后；上段窄幅袖筒与下段至 x257–333、y671–707 的筒口位置、比例及相邻接缝对应参考。袖口保持闭合衣料口缘与透明开口，未以实心椭圆封口；内壁及前后绕腕关系已在本 part note 中传达。固定包边的实体覆盖保留，未见应独立归属本片的可见附件或薄纱遗漏。父范围检查四倍采样 outsidePixels=0，无上游范围限制。无需重画或修改 note。",
+      "candidateHash": "5251aa3a79f609d826af89a1a6d76accd3b665558b92e37be34e68a3734dc133",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/previews/2026-11-02T16-30-01-253Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/previews/2026-11-02T16-30-01-253Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/sleeve_screen_left.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/previews/2026-11-02T16-30-01-253Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/previews/2026-11-02T16-30-01-253Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/previews/2026-11-02T16-30-01-253Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/previews/2026-11-02T16-30-01-253Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_sleeve_tube/previews/2026-11-02T16-30-01-253Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:58:51.737Z"
+    }
+  ]
+}

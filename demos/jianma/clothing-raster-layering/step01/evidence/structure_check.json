@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "logical_parts": 37,
+  "paint_layers": 45,
+  "multi_depth_parts": 8,
+  "native_transparency_masks": 1,
+  "all_depth_regions_match_upstream": true,
+  "all_terminal_svgs_parse": true,
+  "all_paint_layers_visible": true,
+  "only_mask_enabled": true,
+  "reopen_pixels_unchanged": true
+}

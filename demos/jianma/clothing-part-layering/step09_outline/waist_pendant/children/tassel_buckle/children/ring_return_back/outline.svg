@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" data-source-sha256="41bca285e92e242c35bdd7f8cc8959fa0aa46091929028ab1a5ee5cdd9427b3f">
-  <g id="waist_pendant_tassel_buckle_ring_return_back_outline" data-group-path="waist_pendant/tassel_buckle/ring_return_back" fill="#8FB2D8" stroke="none">
-    <desc>吊耳穿入 double_ring_chain 下环后的细吊茎及短后回段，复用父组上方细茎范围。上端位于下环低圈缘之后；末端 y915～917.5 与 buckle_front 吊耳保留隐藏搭接。整片在中央蓝幅、内裙及腿之前，不包含下环、扣体两翼、中央尖叶或 long_white_tassel，也不向环孔补实体。与 buckle_front 共用约 x511.5、y912 的连接根，随整扣共同摆动，不设独立铰点，保持扣体向流苏传递摆动的连接连续。</desc>
-    <path d="M 511.1,910.1 Q 512.1,909.9 513.0,910.25 L 512.9,917.5 L 510.3,917.5 L 510.4,912.0 Q 510.5,910.6 511.1,910.1 Z"/>
-  </g>
-</svg>

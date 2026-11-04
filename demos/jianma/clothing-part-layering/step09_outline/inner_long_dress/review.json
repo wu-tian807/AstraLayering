@@ -1,0 +1,43 @@
+{
+  "groupId": "inner_long_dress",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过，无已核实需修改项。已先独立查看纯衣服参考并读取 groups.json 中 inner_long_dress 的完整 note，再核对候选源码、整体 blend、分区放大 edge、下裙 blend 与 SVG 独显。本节点为顶层 group，parentGroup=null，无父 SVG 范围约束。\n\n核对依据：\n1. 胸饰下衣身及宽腰（约 x402–538、y343–485）：参考显示浅色衣身位于胸饰下方、两侧外袍内缘之间，宽腰跨 y421–484。候选覆盖此区域，上缘藏入胸饰、侧缘贴合外袍内缘；腰带及胸饰细长端处的覆盖是后层衣料的合理搭接，无人体或胸前开口误填。见 ![衣身及宽腰边缘叠加](review_evidence/bodice_edge.png)。\n2. y485–约800：独立参考放大确认该段中央为蓝色长垂布，两侧可见波浪翻襟属于外袍；未发现本组可见衣料遗漏。上下轮廓暂不连通是遮挡所致，隐藏大块衣料由后续补全负责。\n3. 两侧内裙窄条（约 x397–422／519–545、y801–1095）：参考中位于蓝色垂布与外袍翻襟之间的连续裙料已被覆盖，未把外袍卷曲前翻面纳入。起点、宽度、位置及两侧长边与可见分界相符。见 ![裙身中段边缘叠加](review_evidence/skirt_middle_edge.png)。\n4. 下裙与褶裥裙缘（约 x370–575、y1095–1466）：候选沿蓝色直垂幅、斜尖和折返尾的可见分界转折，保留合理隐藏搭接；左右裙身连接到底部裙缘，裙脚宽度、外侧轮廓及底部起伏符合参考，未把流苏或蓝色尾布误归入。横向裙缘接缝属于同组内部结构，不要求另设路径。见 ![下裙边缘叠加](review_evidence/hem_edge.png)、![下裙覆盖](review_evidence/skirt_blend.png)。\n5. 整体位置、比例及联合覆盖检查通过，无本组可见分离附件、薄纱或真实开口被遗漏或封闭；note 已说明实体范围、相邻边界、前后遮挡、随动及隐藏搭接职责。见 ![整体覆盖](review_evidence/overall_blend.png)、![候选独显](review_evidence/svg_only.png)。\n\n不需要重画当前组；未要求修改配色、纹样、褶皱明暗或材质表现。候选及输入均保持只读。",
+      "candidateHash": "313b72049e70333956e33dfbfda41ac33b1e2571b2ecb7d5e7f4037f6dcafd34",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/previews/2026-11-02T11-45-23-235Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/previews/2026-11-02T11-45-23-235Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/previews/2026-11-02T11-45-23-235Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/previews/2026-11-02T11-45-23-235Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/previews/2026-11-02T11-45-23-235Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/previews/2026-11-02T11-45-23-235Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:40:20.852Z"
+    }
+  ]
+}

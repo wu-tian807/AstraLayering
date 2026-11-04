@@ -1,7 +1,0 @@
-{
-  "groupId": "legs/leg_left/anklet/teardrop_pendant",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "66a1815265c1289fb98718622c8eadc08befc7ef6a300a382e712c398e3b4f7c",
-  "afterHash": "bc1564e6adecdb8906d514bbc7c3d83cd4fa4d535a45b89fd53d9b21a662366b"
-}

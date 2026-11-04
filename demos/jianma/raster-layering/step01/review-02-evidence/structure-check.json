@@ -1,0 +1,207 @@
+{
+  "terminal_parts": 65,
+  "ordinary_paint_slices": 69,
+  "part_ids_match": true,
+  "depths_match": true,
+  "actual_depths": {
+    "hair/back_hair/long_hair_right": [
+      1
+    ],
+    "hair/back_hair/long_hair_left": [
+      2
+    ],
+    "hair/back_hair/cap": [
+      3
+    ],
+    "hair/bun": [
+      4
+    ],
+    "head_accessories/crown_pendants/crown_pendant_right": [
+      5
+    ],
+    "head_accessories/crown_pendants/crown_pendant_left": [
+      6
+    ],
+    "legs/leg_right/anklet_back": [
+      7
+    ],
+    "legs/leg_left/anklet_back": [
+      8
+    ],
+    "legs/leg_right/leg": [
+      9
+    ],
+    "legs/leg_left/leg": [
+      10
+    ],
+    "legs/leg_right/anklet_front": [
+      11
+    ],
+    "legs/leg_left/anklet_front": [
+      12
+    ],
+    "pelvis": [
+      13
+    ],
+    "arms/arm_right/hand/little_finger": [
+      14
+    ],
+    "arms/arm_right/hand/ring_finger": [
+      15
+    ],
+    "arms/arm_right/hand/middle_finger": [
+      16
+    ],
+    "arms/arm_right/hand/index_finger": [
+      17
+    ],
+    "arms/arm_right/hand/thumb": [
+      18
+    ],
+    "arms/arm_right/upper_arm": [
+      19
+    ],
+    "arms/arm_right/forearm": [
+      20
+    ],
+    "arms/arm_right/hand/palm": [
+      21
+    ],
+    "arms/arm_left/forearm": [
+      22
+    ],
+    "arms/arm_left/upper_arm": [
+      23
+    ],
+    "arms/arm_left/hand/index_finger": [
+      24
+    ],
+    "arms/arm_left/hand/middle_finger": [
+      25
+    ],
+    "arms/arm_left/hand/little_finger": [
+      26
+    ],
+    "arms/arm_left/hand/ring_finger": [
+      27
+    ],
+    "arms/arm_left/hand/thumb": [
+      28
+    ],
+    "arms/arm_left/hand/palm": [
+      29
+    ],
+    "neck": [
+      30
+    ],
+    "body/torso": [
+      31
+    ],
+    "body/breast": [
+      32
+    ],
+    "head_accessories/earrings/earring_right": [
+      33
+    ],
+    "head_accessories/earrings/earring_left": [
+      34
+    ],
+    "face/ears/ear_right": [
+      35
+    ],
+    "face/ears/ear_left": [
+      36
+    ],
+    "face/face_base": [
+      37
+    ],
+    "face/eyes/eye_left/sclera": [
+      38
+    ],
+    "face/eyes/eye_left/iris": [
+      39
+    ],
+    "face/eyes/eye_left/highlight": [
+      40
+    ],
+    "face/eyes/eye_left/lower_eyelid": [
+      41
+    ],
+    "face/eyes/eye_left/upper_eyelid": [
+      42,
+      66
+    ],
+    "face/eyes/eye_left/eyelid_crease": [
+      43
+    ],
+    "face/eyes/eye_right/sclera": [
+      44
+    ],
+    "face/eyes/eye_right/iris": [
+      45
+    ],
+    "face/eyes/eye_right/highlight": [
+      46
+    ],
+    "face/eyes/eye_right/lower_eyelid": [
+      47
+    ],
+    "face/eyes/eye_right/upper_eyelid": [
+      48,
+      66.5
+    ],
+    "face/eyes/eye_right/eyelid_crease": [
+      49
+    ],
+    "face/mouth/mouth_interior": [
+      50
+    ],
+    "face/mouth/lower_teeth": [
+      51
+    ],
+    "face/mouth/tongue": [
+      52
+    ],
+    "face/mouth/upper_teeth": [
+      53
+    ],
+    "face/mouth/lower_lip": [
+      54
+    ],
+    "face/mouth/upper_lip": [
+      55
+    ],
+    "face/eyebrows/eyebrow_right": [
+      56
+    ],
+    "face/eyebrows/eyebrow_left": [
+      57
+    ],
+    "face/nose": [
+      58
+    ],
+    "hair/sidelock/sidelock_right": [
+      59
+    ],
+    "hair/sidelock/sidelock_left": [
+      60
+    ],
+    "head_accessories/bun_ornament": [
+      61
+    ],
+    "head_accessories/crown_frame": [
+      61.5,
+      67
+    ],
+    "head_accessories/forehead_pendant": [
+      62,
+      65
+    ],
+    "hair/side_hair/side_hair_right": [
+      63
+    ],
+    "hair/side_hair/side_hair_left": [
+      64
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "groupId": "outer_robe_body/left_robe_panel",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第1轮独立审查通过。先依据纯衣服原图确认归属：本片为角色左侧、画面右侧的外袍胸侧—长前襟—落地下摆，包含连续内侧卷襟及其折返面；外侧袖筒、卷曲长袖布、肩披、胸饰、内裙及中央蓝色垂布均不属本片。已只读核对 groups.json 中本 part 与父组 note、候选源码、父完成 SVG，并完成整体 blend、全片独显及三段放大 edge，覆盖全部可见区域。\n\n核对依据：\n1. 胸侧与腰侧（约 x496–575、y264–540）：可见袍身内缘沿胸饰下方及内衣侧缘延续，外侧沿肩披下袖袍接界；候选上端与腰侧补块均继承父完成稿的隐藏搭接，没有把这些搭接当作前景肩披、胸饰或腰带。见 ![上段边缘叠加](review-evidence/upper-edge.png)。\n2. 中段（约 x498–650、y480–1080）：长襟、内缘波浪卷面的联合覆盖完整，内侧折返后的衣面仍属同一袍片；没有把内部自折线错误挖成开口，中央开襟保持透空。外缘沿袖筒及长垂布内侧分界，未纳入袖口。见 ![中段边缘叠加](review-evidence/middle-edge.png)。\n3. 下段（约 x549–831、y1010–1535）：内缘长边、外侧展开弧、内侧裙摆圆角及两瓣落地下摆的位置比例与参考一致；外侧独立袖布尖端与卷尾未并入，未见可见袍料遗漏。见 ![下段边缘叠加](review-evidence/lower-edge.png)。\n4. 整体与独显未见人体误包、额外孔洞、分离附件遗漏或坐标偏移；父范围四倍采样检查 outsidePixels=0。note 已明确邻接归属、前后关系、同片自折、随动及隐藏搭接，足以传递到终止 part。见 ![整体叠加](review-evidence/overall-blend.png)、![独显](review-evidence/standalone.png)。\n\n未发现有图像依据且需要修改的问题；不需要重画当前 part。",
+      "candidateHash": "b8e82cc652227345ec296cb68e55409c196f60764107fcf9a66112198ae3b2a1",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/previews/2026-11-02T16-11-19-306Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/previews/2026-11-02T16-11-19-306Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/previews/2026-11-02T16-11-19-306Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/previews/2026-11-02T16-11-19-306Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/outer_robe_body.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/previews/2026-11-02T16-11-19-306Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/children/left_robe_panel/previews/2026-11-02T16-11-19-306Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:43:41.838Z"
+    }
+  ]
+}

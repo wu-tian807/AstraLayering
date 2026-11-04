@@ -1,0 +1,38 @@
+{
+  "groupId": "collar_jewel_fastener/fixed_jewel",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，fixed_jewel 通过。已只读核对纯衣服参考、groups.json 中本片与父组 note、候选和父完成 SVG，并完成全图叠加、覆盖本片全部可见区域的 8 倍局部 blend／edge 及 SVG 独显。\n\n从原参考独立确认：本片是喉前中央宝石和紧贴外缘的固定托，约 x457–486、y225–258；两侧横向延展的白色尖瓣属于领布，下方镂空环与珠链属于相邻组件。候选上尖、左右肩缘与弧形侧缘、下收尖及位置比例符合该范围，未误包两侧领布、下方环孔或珠链，也未见本片可见实体遗漏。下尖至中央环上接点保留短量搭接，与 note 的固定扣遮住环坠接点关系一致。内部宝石切面、亮暗与固定装饰绘画无需转换为内部路径。本片无应挖开的真实孔洞，也无薄纱或额外分离附件。\n\n父范围检查通过：4 倍采样 outsidePixels=0；候选完整位于父完成稿内。note 已传递实体范围、相邻分界、位于领布与喉部之前、随领口及上胸共同运动，以及下尖隐藏搭接职责，无需修改。无需要重画、局部返修或单列上游限制的问题。\n\n图像证据：[整体定位叠加](review-evidence/overall-blend.png)、[局部原图叠加](review-evidence/detail-blend.png)、[全部扣体边缘覆盖](review-evidence/detail-edge.png)、[候选独显](review-evidence/isolated.png)。",
+      "candidateHash": "264482de14bd5681e851dc01b993004fc4c0d4710054dc17bc10b4a1b981a25c",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/fixed_jewel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/fixed_jewel/previews/2026-11-02T16-22-39-352Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/fixed_jewel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/fixed_jewel/previews/2026-11-02T16-22-39-352Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/fixed_jewel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/fixed_jewel/previews/2026-11-02T16-22-39-352Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/collar_jewel_fastener.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/fixed_jewel/previews/2026-11-02T16-22-39-352Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/fixed_jewel/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/fixed_jewel/previews/2026-11-02T16-22-39-352Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:53:51.818Z"
+    }
+  ]
+}

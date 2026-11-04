@@ -1,0 +1,48 @@
+{
+  "groupId": "face/ears",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已核对组说明、原始参考、候选及父组完成 SVG，并完成整图叠加、画面左侧 [376,214,51,58] 与右侧 [512,214,51,58] 的 8 倍 blend/edge 对照，以及耳垂接缝参考局部和 SVG 独显检查。双耳各自位于鬓发两侧的可见区域均已覆盖；分离区域对应头发遮挡，不是孤立噪点。两侧分别核对后，耳廓外缘、鬓发交界、脸侧连接及耳垂与耳饰邻接处未发现确定需修改的轮廓或归属问题，未将悬垂耳饰纳入本组。候选无碎片噪音，画布坐标正确；父范围检查 outsidePixels=0，满足未设置 allowOutsideParent 时的约束。本轮无需重画或局部返修。",
+      "candidateHash": "c08e43ce4ecf8d7e0b7db97074c15a8e48b353dc8e3d5f8d91754eb89b4cf0ff",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/ears/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/previews/2026-11-02T10-02-44-475Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/previews/2026-11-02T10-02-44-475Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/ears/previews/2026-11-02T10-02-44-475Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/previews/2026-11-02T10-02-44-475Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/ears/previews/2026-11-02T10-02-44-475Z-5.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/previews/2026-11-02T10-02-44-475Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/ears/previews/2026-11-02T10-02-44-475Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:13:00.479Z"
+    }
+  ]
+}

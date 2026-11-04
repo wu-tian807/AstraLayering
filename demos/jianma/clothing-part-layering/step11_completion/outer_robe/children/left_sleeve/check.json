@@ -1,7 +1,0 @@
-{
-  "groupId": "outer_robe/left_sleeve",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "8584cb48ff62e9560f2ec8b28901308ef268b287fb34e9aa983d21be42083f36",
-  "afterHash": "7797d0f36b459acd14e9ae31335c48bdc0fa4c3d92879c93b8df917b16d28b59"
-}

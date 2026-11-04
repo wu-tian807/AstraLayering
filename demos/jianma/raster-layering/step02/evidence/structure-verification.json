@@ -1,0 +1,7 @@
+{
+  "logical_parts": 65,
+  "paint_slices": 69,
+  "groups_ids_equal": true,
+  "note": "neck and pelvis are drawable group IDs in upstream, included per original KRA and occlusion",
+  "depth_mapping_equal": true
+}

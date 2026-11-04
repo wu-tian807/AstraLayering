@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" data-source-sha256="955ad269726f25e98da8f86e58154557c4a26ad5ba24828ed280e5f39a3d4645">
-  <g id="waist_pendant_lotus_coupler_right_side_link_outline" data-group-path="waist_pendant/lotus_coupler/right_side_link" fill="#E36C52" stroke="none" fill-rule="nonzero">
-    <desc>穿衣角色自身右侧、画面左侧的独立短支，实体约 x499.2～506.8、y821.2～832.1。上界在 x505～507、y821～823，连接 silver_hanger 自身右臂下挂点，保留臂端后方短搭接；下界在 x499～502、y830～832，接入 lotus_body 自身右肩瓣，末端保留肩瓣后方短搭接。中段连续，仅覆盖支接实体，不包含中央菱形悬饰、固定莲瓣、水滴或上环。整支位于 silver_hanger 与 lotus_body 接端之后，位于中央蓝幅、内裙及腹下／腿之前，不穿越人体或上环。上根随吊架接点，下根随莲体接点，两端位置驱动独立弯曲或伸缩，整支使用同一变形控制与固定深度；固定亮点和明暗随支体。父范围限制：中下段约 x503～504、y827～829 的参考侧缘超出父完成覆盖，当前保持父内形状，由上游补回该侧缘。</desc>
-    <path d="M 505.6,821.2 L 506.8,822.0 L 501.3,830.5 Q 500.7,831.3 500.1,832.1 Q 499.55,831.9 499.2,831.3 Z"/>
-  </g>
-</svg>

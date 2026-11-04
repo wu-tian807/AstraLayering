@@ -1,0 +1,9 @@
+{
+  "groups_leaves": 37,
+  "logical_parts": 37,
+  "depth_slices": 48,
+  "groups_match": true,
+  "occlusion_match": true,
+  "all_part_svgs_exist": true,
+  "all_source_structure_preserved": true
+}

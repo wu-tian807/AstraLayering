@@ -1,0 +1,62 @@
+{
+  "groupId": "collar_jewel_fastener",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "本轮已独立查看纯衣服全图、喉扣局部放大、候选全图 blend，以及覆盖本组全部可见区域的 8 倍 blend、edge 和 SVG 独显；已读取当前组 note 与完整候选源码。本组为顶层 group，无父 SVG。主宝石托、中央小环及孔隙、下垂珠的位置与主要轮廓基本成立，未发现误包领布、胸饰卷叶或人体；不需要重画当前组。\n\n确定需要修正一项：两侧细链靠胸饰接点的小珠实体遗漏。位置约为左侧 x446–452、y271–276，右侧 x490–497、y271–276。纯衣服参考中，在左右上方已有小珠之外，两根斜链各自下行至胸饰上内缘前，还各有一颗带独立凸起外轮廓的浅色小珠；局部参考可见其珠体跨出细链宽度，与下方胸饰卷叶边缘可区分。候选此处只有细线收尾，edge 未沿这两颗珠体包络，SVG 独显也只见上方一对小珠。请在当前联合轮廓中补齐这对接点珠的可见实体外轮廓，并与链段保持参考中的连接、在胸饰遮盖处保留合理短搭接；不要把下方卷叶一起收进本组。无需另拆 part，也无需恢复珠体高光、色彩或阴影。\n\n证据：原参考链珠局部（裁片范围 x440–504、y256–283）![原参考链珠局部](review_evidence/chain_reference.png)；候选边缘覆盖（范围 x440–504、y219–285）![候选边缘覆盖](review_evidence/fastener_edge.png)；候选纯色独显 ![候选独显](review_evidence/fastener_solid.png)。",
+      "candidateHash": "779bb0d9305d81e57bc698ba64401a3f623f1f68afae0cc17c2301c3dda4621c",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/previews/2026-11-02T11-39-30-391Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/previews/2026-11-02T11-39-30-391Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/previews/2026-11-02T11-39-30-391Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/previews/2026-11-02T11-39-30-391Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:33:56.506Z",
+      "repairedCandidateHash": "84d45aca446d29cda0069e6895a3b673214d83e454282290fdbac16bda320cef"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "已从纯衣服参考独立确认归属，并完成整图 blend、局部 8 倍参考放大、blend、edge 及 SVG 独显核对，覆盖本组全部可见区域（约 x446–497、y225–278）。主宝石及贴边托的轮廓、位置与比例对应参考；两侧向外延展的领布尖瓣未被误收。中央环坠保留真实内孔，下方短珠坠、两侧细链及链珠均有覆盖，悬件之间的空隙保留透明，链端止于胸饰上内缘附近，未误包蓝白卷叶或人体。note 已说明实体范围、与领布及胸饰的分界、相对领与上胸的前后关系、随动和接点隐藏搭接。本节点为顶层 group，无父 SVG 范围约束。未发现有图像依据且需修改的轮廓或说明问题；无需重画。",
+      "candidateHash": "84d45aca446d29cda0069e6895a3b673214d83e454282290fdbac16bda320cef",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/previews/2026-11-02T12-43-08-932Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/previews/2026-11-02T12-43-08-932Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/previews/2026-11-02T12-43-08-932Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/previews/2026-11-02T12-43-08-932Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:47:05.712Z"
+    }
+  ]
+}

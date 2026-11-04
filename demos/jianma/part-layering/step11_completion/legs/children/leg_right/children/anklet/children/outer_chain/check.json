@@ -1,7 +1,0 @@
-{
-  "groupId": "legs/leg_right/anklet/outer_chain",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "440f908ec73db0e53d5de92ca57208ca107fb5116f72d9105046d28e6087c97d",
-  "afterHash": "1266bba004064cfcbeaad5e97fc90f2a2451c2c02d93e1d3657b0a03747bd9ec"
-}

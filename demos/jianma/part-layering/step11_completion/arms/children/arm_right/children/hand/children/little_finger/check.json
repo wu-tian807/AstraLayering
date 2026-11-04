@@ -1,7 +1,5 @@
 {
   "groupId": "arms/arm_right/hand/little_finger",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "ff10988ad0eed320babce79400ec4eefa947147bd0d62ac7dbe20ff9fe8a8323",
-  "afterHash": "7c8a6e99bf2d02d728e36337c3b3e4742b84c504bb5cca48c478dd49f89a6a8e"
+  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

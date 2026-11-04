@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_sash/front_tie/right_short_loop",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "d825b91f5a569ce83f6cdf4896cf52fe29c5fa3cb44b3acd822eefe190510f6f",
-  "afterHash": "08f758f6ee194ecbe3c74710cc6c789e7c3d63707dd1d2ef5ab0b7ce91815c40"
-}

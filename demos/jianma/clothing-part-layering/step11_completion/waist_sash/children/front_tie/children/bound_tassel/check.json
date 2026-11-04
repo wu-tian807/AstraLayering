@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_sash/front_tie/bound_tassel",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "333a31aba2c9021a8558c5873c7a0bc03983d0da0a4e82358d9df10dbc45d1f0",
-  "afterHash": "31ca616a5747e0c7714038ebfb39e784a601a7c694a558e9e85408e8940c2ed1"
-}

@@ -1,0 +1,851 @@
+[
+  {
+    "part": "hair/back_hair/long_hair_right",
+    "stem": "01-hair__back_hair__long_hair_right",
+    "layers": [
+      "001.0 | hair/back_hair/long_hair_right | complete"
+    ],
+    "bounds": [
+      224,
+      169,
+      245,
+      1261
+    ]
+  },
+  {
+    "part": "hair/back_hair/long_hair_left",
+    "stem": "02-hair__back_hair__long_hair_left",
+    "layers": [
+      "002.0 | hair/back_hair/long_hair_left | complete"
+    ],
+    "bounds": [
+      469,
+      105,
+      245,
+      1324
+    ]
+  },
+  {
+    "part": "hair/back_hair/cap",
+    "stem": "03-hair__back_hair__cap",
+    "layers": [
+      "003.0 | hair/back_hair/cap | complete"
+    ],
+    "bounds": [
+      372,
+      110,
+      194,
+      262
+    ]
+  },
+  {
+    "part": "hair/bun",
+    "stem": "04-hair__bun",
+    "layers": [
+      "004.0 | hair/bun | complete"
+    ],
+    "bounds": [
+      420,
+      37,
+      97,
+      85
+    ]
+  },
+  {
+    "part": "head_accessories/crown_pendants/crown_pendant_right",
+    "stem": "05-head_accessories__crown_pendants__crown_pendant_right",
+    "layers": [
+      "005.0 | head_accessories/crown_pendants/crown_pendant_right | complete"
+    ],
+    "bounds": [
+      327,
+      111,
+      26,
+      79
+    ]
+  },
+  {
+    "part": "head_accessories/crown_pendants/crown_pendant_left",
+    "stem": "06-head_accessories__crown_pendants__crown_pendant_left",
+    "layers": [
+      "006.0 | head_accessories/crown_pendants/crown_pendant_left | complete"
+    ],
+    "bounds": [
+      585,
+      111,
+      25,
+      79
+    ]
+  },
+  {
+    "part": "legs/leg_right/anklet_back",
+    "stem": "07-legs__leg_right__anklet_back",
+    "layers": [
+      "007.0 | legs/leg_right/anklet_back | complete"
+    ],
+    "bounds": [
+      417,
+      1495,
+      44,
+      14
+    ]
+  },
+  {
+    "part": "legs/leg_left/anklet_back",
+    "stem": "08-legs__leg_left__anklet_back",
+    "layers": [
+      "008.0 | legs/leg_left/anklet_back | complete"
+    ],
+    "bounds": [
+      477,
+      1496,
+      45,
+      13
+    ]
+  },
+  {
+    "part": "legs/leg_right/leg",
+    "stem": "09-legs__leg_right__leg",
+    "layers": [
+      "009.0 | legs/leg_right/leg | complete"
+    ],
+    "bounds": [
+      332,
+      678,
+      137,
+      965
+    ]
+  },
+  {
+    "part": "legs/leg_left/leg",
+    "stem": "10-legs__leg_left__leg",
+    "layers": [
+      "010.0 | legs/leg_left/leg | complete"
+    ],
+    "bounds": [
+      467,
+      678,
+      139,
+      965
+    ]
+  },
+  {
+    "part": "legs/leg_right/anklet_front",
+    "stem": "11-legs__leg_right__anklet_front",
+    "layers": [
+      "011.0 | legs/leg_right/anklet_front | complete"
+    ],
+    "bounds": [
+      414,
+      1500,
+      49,
+      15
+    ]
+  },
+  {
+    "part": "legs/leg_left/anklet_front",
+    "stem": "12-legs__leg_left__anklet_front",
+    "layers": [
+      "012.0 | legs/leg_left/anklet_front | complete"
+    ],
+    "bounds": [
+      476,
+      1501,
+      47,
+      15
+    ]
+  },
+  {
+    "part": "pelvis",
+    "stem": "13-pelvis",
+    "layers": [
+      "013.0 | pelvis | complete"
+    ],
+    "bounds": [
+      346,
+      566,
+      247,
+      249
+    ]
+  },
+  {
+    "part": "arms/arm_right/hand/little_finger",
+    "stem": "14-arms__arm_right__hand__little_finger",
+    "layers": [
+      "014.0 | arms/arm_right/hand/little_finger | complete"
+    ],
+    "bounds": [
+      290,
+      838,
+      30,
+      47
+    ]
+  },
+  {
+    "part": "arms/arm_right/hand/ring_finger",
+    "stem": "15-arms__arm_right__hand__ring_finger",
+    "layers": [
+      "015.0 | arms/arm_right/hand/ring_finger | complete"
+    ],
+    "bounds": [
+      292,
+      845,
+      29,
+      41
+    ]
+  },
+  {
+    "part": "arms/arm_right/hand/middle_finger",
+    "stem": "16-arms__arm_right__hand__middle_finger",
+    "layers": [
+      "016.0 | arms/arm_right/hand/middle_finger | complete"
+    ],
+    "bounds": [
+      289,
+      840,
+      33,
+      61
+    ]
+  },
+  {
+    "part": "arms/arm_right/hand/index_finger",
+    "stem": "17-arms__arm_right__hand__index_finger",
+    "layers": [
+      "017.0 | arms/arm_right/hand/index_finger | complete"
+    ],
+    "bounds": [
+      287,
+      834,
+      32,
+      70
+    ]
+  },
+  {
+    "part": "arms/arm_right/hand/thumb",
+    "stem": "18-arms__arm_right__hand__thumb",
+    "layers": [
+      "018.0 | arms/arm_right/hand/thumb | complete"
+    ],
+    "bounds": [
+      304,
+      818,
+      20,
+      52
+    ]
+  },
+  {
+    "part": "arms/arm_right/upper_arm",
+    "stem": "19-arms__arm_right__upper_arm",
+    "layers": [
+      "019.0 | arms/arm_right/upper_arm | complete"
+    ],
+    "bounds": [
+      316,
+      353,
+      99,
+      263
+    ]
+  },
+  {
+    "part": "arms/arm_right/forearm",
+    "stem": "20-arms__arm_right__forearm",
+    "layers": [
+      "020.0 | arms/arm_right/forearm | complete"
+    ],
+    "bounds": [
+      286,
+      574,
+      81,
+      227
+    ]
+  },
+  {
+    "part": "arms/arm_right/hand/palm",
+    "stem": "21-arms__arm_right__hand__palm",
+    "layers": [
+      "021.0 | arms/arm_right/hand/palm | complete"
+    ],
+    "bounds": [
+      282,
+      775,
+      42,
+      79
+    ]
+  },
+  {
+    "part": "arms/arm_left/forearm",
+    "stem": "22-arms__arm_left__forearm",
+    "layers": [
+      "022.0 | arms/arm_left/forearm | complete"
+    ],
+    "bounds": [
+      571,
+      555,
+      81,
+      242
+    ]
+  },
+  {
+    "part": "arms/arm_left/upper_arm",
+    "stem": "23-arms__arm_left__upper_arm",
+    "layers": [
+      "023.0 | arms/arm_left/upper_arm | complete"
+    ],
+    "bounds": [
+      523,
+      353,
+      98,
+      244
+    ]
+  },
+  {
+    "part": "arms/arm_left/hand/index_finger",
+    "stem": "24-arms__arm_left__hand__index_finger",
+    "layers": [
+      "024.0 | arms/arm_left/hand/index_finger | complete"
+    ],
+    "bounds": [
+      618,
+      842,
+      29,
+      41
+    ]
+  },
+  {
+    "part": "arms/arm_left/hand/middle_finger",
+    "stem": "25-arms__arm_left__hand__middle_finger",
+    "layers": [
+      "025.0 | arms/arm_left/hand/middle_finger | complete"
+    ],
+    "bounds": [
+      615,
+      846,
+      32,
+      56
+    ]
+  },
+  {
+    "part": "arms/arm_left/hand/little_finger",
+    "stem": "26-arms__arm_left__hand__little_finger",
+    "layers": [
+      "026.0 | arms/arm_left/hand/little_finger | complete"
+    ],
+    "bounds": [
+      633,
+      832,
+      23,
+      54
+    ]
+  },
+  {
+    "part": "arms/arm_left/hand/ring_finger",
+    "stem": "27-arms__arm_left__hand__ring_finger",
+    "layers": [
+      "027.0 | arms/arm_left/hand/ring_finger | complete"
+    ],
+    "bounds": [
+      619,
+      841,
+      30,
+      63
+    ]
+  },
+  {
+    "part": "arms/arm_left/hand/thumb",
+    "stem": "28-arms__arm_left__hand__thumb",
+    "layers": [
+      "028.0 | arms/arm_left/hand/thumb | complete"
+    ],
+    "bounds": [
+      615,
+      825,
+      15,
+      45
+    ]
+  },
+  {
+    "part": "arms/arm_left/hand/palm",
+    "stem": "29-arms__arm_left__hand__palm",
+    "layers": [
+      "029.0 | arms/arm_left/hand/palm | complete"
+    ],
+    "bounds": [
+      614,
+      779,
+      42,
+      77
+    ]
+  },
+  {
+    "part": "neck",
+    "stem": "30-neck",
+    "layers": [
+      "030.0 | neck | complete"
+    ],
+    "bounds": [
+      410,
+      267,
+      118,
+      99
+    ]
+  },
+  {
+    "part": "body/torso",
+    "stem": "31-body__torso",
+    "layers": [
+      "031.0 | body/torso | complete"
+    ],
+    "bounds": [
+      337,
+      348,
+      264,
+      381
+    ]
+  },
+  {
+    "part": "body/breast",
+    "stem": "32-body__breast",
+    "layers": [
+      "032.0 | body/breast | complete"
+    ],
+    "bounds": [
+      365,
+      395,
+      208,
+      134
+    ]
+  },
+  {
+    "part": "head_accessories/earrings/earring_right",
+    "stem": "33-head_accessories__earrings__earring_right",
+    "layers": [
+      "033.0 | head_accessories/earrings/earring_right | complete"
+    ],
+    "bounds": [
+      405,
+      254,
+      14,
+      90
+    ]
+  },
+  {
+    "part": "head_accessories/earrings/earring_left",
+    "stem": "34-head_accessories__earrings__earring_left",
+    "layers": [
+      "034.0 | head_accessories/earrings/earring_left | complete"
+    ],
+    "bounds": [
+      519,
+      254,
+      14,
+      90
+    ]
+  },
+  {
+    "part": "face/ears/ear_right",
+    "stem": "35-face__ears__ear_right",
+    "layers": [
+      "035.0 | face/ears/ear_right | complete"
+    ],
+    "bounds": [
+      381,
+      215,
+      45,
+      49
+    ]
+  },
+  {
+    "part": "face/ears/ear_left",
+    "stem": "36-face__ears__ear_left",
+    "layers": [
+      "036.0 | face/ears/ear_left | complete"
+    ],
+    "bounds": [
+      512,
+      216,
+      45,
+      48
+    ]
+  },
+  {
+    "part": "face/face_base",
+    "stem": "37-face__face_base",
+    "layers": [
+      "037.0 | face/face_base | complete"
+    ],
+    "bounds": [
+      404,
+      146,
+      131,
+      160
+    ]
+  },
+  {
+    "part": "face/eyes/eye_left/sclera",
+    "stem": "38-face__eyes__eye_left__sclera",
+    "layers": [
+      "038.0 | face/eyes/eye_left/sclera | complete"
+    ],
+    "bounds": [
+      487,
+      211,
+      35,
+      26
+    ]
+  },
+  {
+    "part": "face/eyes/eye_left/iris",
+    "stem": "39-face__eyes__eye_left__iris",
+    "layers": [
+      "039.0 | face/eyes/eye_left/iris | complete"
+    ],
+    "bounds": [
+      488,
+      210,
+      24,
+      27
+    ]
+  },
+  {
+    "part": "face/eyes/eye_left/highlight",
+    "stem": "40-face__eyes__eye_left__highlight",
+    "layers": [
+      "040.0 | face/eyes/eye_left/highlight | complete"
+    ],
+    "bounds": [
+      493,
+      215,
+      17,
+      7
+    ]
+  },
+  {
+    "part": "face/eyes/eye_left/lower_eyelid",
+    "stem": "41-face__eyes__eye_left__lower_eyelid",
+    "layers": [
+      "041.0 | face/eyes/eye_left/lower_eyelid | complete"
+    ],
+    "bounds": [
+      491,
+      226,
+      31,
+      13
+    ]
+  },
+  {
+    "part": "face/eyes/eye_left/upper_eyelid",
+    "stem": "42-face__eyes__eye_left__upper_eyelid",
+    "layers": [
+      "042.0 | face/eyes/eye_left/upper_eyelid | main_lid",
+      "066.0 | face/eyes/eye_left/upper_eyelid | outer_lash_front"
+    ],
+    "bounds": [
+      485,
+      208,
+      44,
+      20
+    ]
+  },
+  {
+    "part": "face/eyes/eye_left/eyelid_crease",
+    "stem": "43-face__eyes__eye_left__eyelid_crease",
+    "layers": [
+      "043.0 | face/eyes/eye_left/eyelid_crease | complete"
+    ],
+    "bounds": [
+      486,
+      205,
+      24,
+      8
+    ]
+  },
+  {
+    "part": "face/eyes/eye_right/sclera",
+    "stem": "44-face__eyes__eye_right__sclera",
+    "layers": [
+      "044.0 | face/eyes/eye_right/sclera | complete"
+    ],
+    "bounds": [
+      416,
+      213,
+      36,
+      25
+    ]
+  },
+  {
+    "part": "face/eyes/eye_right/iris",
+    "stem": "45-face__eyes__eye_right__iris",
+    "layers": [
+      "045.0 | face/eyes/eye_right/iris | complete"
+    ],
+    "bounds": [
+      425,
+      212,
+      23,
+      25
+    ]
+  },
+  {
+    "part": "face/eyes/eye_right/highlight",
+    "stem": "46-face__eyes__eye_right__highlight",
+    "layers": [
+      "046.0 | face/eyes/eye_right/highlight | complete"
+    ],
+    "bounds": [
+      430,
+      216,
+      14,
+      13
+    ]
+  },
+  {
+    "part": "face/eyes/eye_right/lower_eyelid",
+    "stem": "47-face__eyes__eye_right__lower_eyelid",
+    "layers": [
+      "047.0 | face/eyes/eye_right/lower_eyelid | complete"
+    ],
+    "bounds": [
+      412,
+      220,
+      38,
+      19
+    ]
+  },
+  {
+    "part": "face/eyes/eye_right/upper_eyelid",
+    "stem": "48-face__eyes__eye_right__upper_eyelid",
+    "layers": [
+      "048.0 | face/eyes/eye_right/upper_eyelid | main_lid",
+      "066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front"
+    ],
+    "bounds": [
+      410,
+      208,
+      43,
+      25
+    ]
+  },
+  {
+    "part": "face/eyes/eye_right/eyelid_crease",
+    "stem": "49-face__eyes__eye_right__eyelid_crease",
+    "layers": [
+      "049.0 | face/eyes/eye_right/eyelid_crease | complete"
+    ],
+    "bounds": [
+      421,
+      205,
+      30,
+      8
+    ]
+  },
+  {
+    "part": "face/mouth/mouth_interior",
+    "stem": "50-face__mouth__mouth_interior",
+    "layers": [
+      "050.0 | face/mouth/mouth_interior | complete"
+    ],
+    "bounds": [
+      453,
+      260,
+      32,
+      30
+    ]
+  },
+  {
+    "part": "face/mouth/lower_teeth",
+    "stem": "51-face__mouth__lower_teeth",
+    "layers": [
+      "051.0 | face/mouth/lower_teeth | complete"
+    ],
+    "bounds": [
+      456,
+      279,
+      26,
+      12
+    ]
+  },
+  {
+    "part": "face/mouth/tongue",
+    "stem": "52-face__mouth__tongue",
+    "layers": [
+      "052.0 | face/mouth/tongue | complete"
+    ],
+    "bounds": [
+      457,
+      270,
+      24,
+      19
+    ]
+  },
+  {
+    "part": "face/mouth/upper_teeth",
+    "stem": "53-face__mouth__upper_teeth",
+    "layers": [
+      "053.0 | face/mouth/upper_teeth | complete"
+    ],
+    "bounds": [
+      456,
+      257,
+      25,
+      10
+    ]
+  },
+  {
+    "part": "face/mouth/lower_lip",
+    "stem": "54-face__mouth__lower_lip",
+    "layers": [
+      "054.0 | face/mouth/lower_lip | complete"
+    ],
+    "bounds": [
+      451,
+      270,
+      36,
+      25
+    ]
+  },
+  {
+    "part": "face/mouth/upper_lip",
+    "stem": "55-face__mouth__upper_lip",
+    "layers": [
+      "055.0 | face/mouth/upper_lip | complete"
+    ],
+    "bounds": [
+      447,
+      253,
+      44,
+      28
+    ]
+  },
+  {
+    "part": "face/eyebrows/eyebrow_right",
+    "stem": "56-face__eyebrows__eyebrow_right",
+    "layers": [
+      "056.0 | face/eyebrows/eyebrow_right | complete"
+    ],
+    "bounds": [
+      410,
+      189,
+      44,
+      9
+    ]
+  },
+  {
+    "part": "face/eyebrows/eyebrow_left",
+    "stem": "57-face__eyebrows__eyebrow_left",
+    "layers": [
+      "057.0 | face/eyebrows/eyebrow_left | complete"
+    ],
+    "bounds": [
+      483,
+      189,
+      46,
+      9
+    ]
+  },
+  {
+    "part": "face/nose",
+    "stem": "58-face__nose",
+    "layers": [
+      "058.0 | face/nose | complete"
+    ],
+    "bounds": [
+      462,
+      242,
+      15,
+      14
+    ]
+  },
+  {
+    "part": "hair/sidelock/sidelock_right",
+    "stem": "59-hair__sidelock__sidelock_right",
+    "layers": [
+      "059.0 | hair/sidelock/sidelock_right | complete"
+    ],
+    "bounds": [
+      367,
+      177,
+      62,
+      162
+    ]
+  },
+  {
+    "part": "hair/sidelock/sidelock_left",
+    "stem": "60-hair__sidelock__sidelock_left",
+    "layers": [
+      "060.0 | hair/sidelock/sidelock_left | complete"
+    ],
+    "bounds": [
+      509,
+      177,
+      60,
+      162
+    ]
+  },
+  {
+    "part": "head_accessories/bun_ornament",
+    "stem": "61-head_accessories__bun_ornament",
+    "layers": [
+      "061.0 | head_accessories/bun_ornament | complete"
+    ],
+    "bounds": [
+      418,
+      63,
+      101,
+      53
+    ]
+  },
+  {
+    "part": "head_accessories/crown_frame",
+    "stem": "62-head_accessories__crown_frame",
+    "layers": [
+      "061.5 | head_accessories/crown_frame | mounting_root",
+      "067.0 | head_accessories/crown_frame | visible_front"
+    ],
+    "bounds": [
+      322,
+      15,
+      295,
+      135
+    ]
+  },
+  {
+    "part": "head_accessories/forehead_pendant",
+    "stem": "63-head_accessories__forehead_pendant",
+    "layers": [
+      "062.0 | head_accessories/forehead_pendant | mounting_root",
+      "065.0 | head_accessories/forehead_pendant | visible_front"
+    ],
+    "bounds": [
+      454,
+      125,
+      28,
+      65
+    ]
+  },
+  {
+    "part": "hair/side_hair/side_hair_right",
+    "stem": "64-hair__side_hair__side_hair_right",
+    "layers": [
+      "063.0 | hair/side_hair/side_hair_right | complete"
+    ],
+    "bounds": [
+      367,
+      103,
+      102,
+      156
+    ]
+  },
+  {
+    "part": "hair/side_hair/side_hair_left",
+    "stem": "65-hair__side_hair__side_hair_left",
+    "layers": [
+      "064.0 | hair/side_hair/side_hair_left | complete"
+    ],
+    "bounds": [
+      469,
+      103,
+      100,
+      156
+    ]
+  }
+]

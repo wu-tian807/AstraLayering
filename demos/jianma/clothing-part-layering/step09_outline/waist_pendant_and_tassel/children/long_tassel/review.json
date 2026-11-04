@@ -1,0 +1,43 @@
+{
+  "groupId": "waist_pendant_and_tassel/long_tassel",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已独立查看纯衣服原图、当前 part 与父组 note、候选及父完成 SVG，并完成整体 blend、覆盖全片的 3 倍局部 blend/edge、顶珠与帽部 8 倍 edge 及 SVG 独显检查。本轮无确定需修改的问题。\n归属与完整性：x448–500、y917–1354 的顶珠、短接头、折角形帽和完整长穗均已覆盖；未误包上方圆环、中央垂布或末端后方蓝色折返布尾。帽两端、帽下穗束收口、穗束左右长边及斜切末端与参考吻合，无实际可见组件遗漏或应透空区域被填。帽下隐藏搭接符合父稿及 note；note 已交代相邻分界、前后关系、固定连接与整束弯曲随动职责。父范围四倍采样检查 outsidePixels=0，无上游范围限制。不需要重画。\n图像证据：[整体叠加](review_evidence/overall_blend.png)、[全片局部边缘覆盖](review_evidence/full_edge.png)、[顶珠与帽沿放大](review_evidence/cap_edge.png)、[纯轮廓独显](review_evidence/silhouette.png)。",
+      "candidateHash": "2a6a42b28588a2004b2649371b8debac35915b2f29797252ae117d24676671e7",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/previews/2026-11-02T16-39-21-750Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_pendant_and_tassel.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/previews/2026-11-02T16-39-21-750Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/previews/2026-11-02T16-39-21-750Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/previews/2026-11-02T16-39-21-750Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/previews/2026-11-02T16-39-21-750Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/long_tassel/previews/2026-11-02T16-39-21-750Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:08:52.914Z"
+    }
+  ]
+}

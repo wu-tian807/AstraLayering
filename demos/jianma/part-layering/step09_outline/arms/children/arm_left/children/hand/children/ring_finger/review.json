@@ -2,17 +2,52 @@
   "groupId": "arms/arm_left/hand/ring_finger",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "已先查看整图 blend，并以 8 倍 blend、edge 完整核对三个重叠区域：指根 [732,744,20,25]、弯曲指身 [727,761,25,28]、末段与指尖 [714,781,27,27]；另复核接缝 [730,770,19,30]，对照参考局部和父 hand.svg。父范围检查通过：outsideSamples=0、outsidePixels=0。\n\n1. 无名指靠小指侧的可见叠接边缘，约 x734–745、y774–795，向指内缩入。接缝选框的参考图中，屈指肤面与右侧小指之间有连续、明确的左下弯落边界；候选 edge 红线在 y777–790 一带持续位于该边界左侧约 1–2 个原图像素，blend 中仍可见一条属于无名指边缘的肤色/轮廓带留在色块外。约 y780、x741–743 及 y785、x739–741 处尤其清楚。请沿参考恢复这一连续侧缘的宽度和弯曲走向，并平顺接回约 x733、y796.5 的末段，不能用内部明暗线代替实体叠接轮廓。父 SVG 在同一选框内包含这条遗漏窄带，故属于本组父内可修问题，不是上游范围限制。\n\n其余已核对区域未发现有明确图像依据的漏画或其他轮廓问题；未发现孤点、碎片堆砌、来源不明的细丝或形体归属混乱。本轮返修针对上述连续侧缘缩入，不涉及最终着色或组内纹理。",
-      "candidateHash": "96180be0dcf12c61926ed7a7395824e80cbcf7aa8f7ddcdad9c23193b42cd407",
-      "updatedAt": "2026-10-16T18:28:34.329Z",
-      "repairedCandidateHash": "9a8de378302dfc359a453a3be43c414f5eb64427a1ba40c5a6bcb6f23a8564da"
-    },
-    {
       "verdict": "pass",
-      "feedback": "已仅对 arms/arm_left/hand/ring_finger 完成本轮独立审查。先看整图 blend 定位，再以 8 倍放大的重叠选框 [731,746,20,28]、[723,766,28,27]、[715,784,26,25] 覆盖根部、全部指身、弯折、末段与指尖，逐块核对参考、blend 和 edge；另以 [718,778,30,30]、[718,792,18,13]、[731,773,17,25] 复核接缝和父稿。候选为连续完整指体，根端局部圆弧连接合理；中指遮挡侧的补形连续，小指侧弯折与层叠边缘有参考依据，未发现父范围内可修的缺漏、无依据挖缝、孤点、碎片或形体归属混乱。父范围检查通过：四倍采样 outsideSamples=0、outsidePixels=0。\n单列上游限制：约 x721—725、y801—803 的圆钝指尖最下缘，参考的深色外轮廓在候选红边下方仍有一条窄带，约不足至 1 像素；同框比较父稿 edge 与候选 edge（指尖选框 [718,792,18,13]，观察图尾号 -15 与 -16）可见二者在该段重合，候选已经覆盖至父边界。恢复这条参考外缘需扩大父 hand.svg 的容纳范围，属于上游限制；该窄带并未由当前候选补齐，不要求本组越界修复，也未放宽父范围检查。除此已确认的上游限制外，当前允许范围内检查通过。",
-      "candidateHash": "9a8de378302dfc359a453a3be43c414f5eb64427a1ba40c5a6bcb6f23a8564da",
-      "updatedAt": "2026-10-16T18:34:19.492Z"
+      "feedback": "已读取本组及父组说明、参考图、候选和父组完成 SVG。先完成整图 blend 定位，再对覆盖全部候选的 [610,844,45,64] 区域进行 8 倍 blend、edge 核对，并以相互重叠的上段 [626,843,30,38]、下段 [614,872,31,36] 检查指根接入、两侧指间接缝、弯折和最低指尖；另查看原图手部 [605,815,58,96] 及右侧接缝 [630,856,22,30]，并在同一局部查看父 SVG 的 edge。参考中前层宽长指身及最低指尖归本组，候选未误包后方较短指尖或右侧小指；可见区域覆盖完整，指侧遮挡边界、下段收束和指尖与参考吻合。近端封口位于掌部接入范围，不要求恢复被掌部覆盖的完整指根。独显轮廓连续干净，无孤点、碎片或无依据孔洞。父范围检查 outsidePixels=0，满足本组父范围约束。未发现确定需要修改的问题。",
+      "candidateHash": "83826859feac8acc3a7e16f97ef115487bc0a46b1f94aa9dfe7831b9b3e919fd",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-02T16-47-58-159Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-02T16-47-58-159Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-02T16-47-58-159Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-02T16-47-58-159Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-02T16-47-58-159Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-02T16-47-58-159Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-02T16-47-58-159Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-02T16-47-58-159Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:12:30.334Z"
     }
   ]
 }

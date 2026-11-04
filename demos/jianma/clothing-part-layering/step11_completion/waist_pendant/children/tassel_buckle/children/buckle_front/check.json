@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/tassel_buckle/buckle_front",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "60855d6b19fc5f3f1cbc4975e5c66b2d856874b97d22c3b9b290f57dcde7917a",
-  "afterHash": "f8eebd11e46e226e3b59422c0d00e24b6ee7db4d3eaca778e136513e1eed5fee"
-}

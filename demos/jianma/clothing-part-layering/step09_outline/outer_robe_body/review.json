@@ -1,0 +1,38 @@
+{
+  "groupId": "outer_robe_body",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，outer_robe_body（group）通过。已只读检查纯衣服参考、groups.json 中本组及相邻组 note、当前候选源码；本组为顶层节点，无父 SVG。先从参考确认：本组为胸饰两侧躯干袍料、左右长前襟、连续宽包边与波浪翻襟及落地下摆，袖体、肩披、中央蓝色垂布、内裙和独立悬饰均另属相邻组。\n\n已完成全图 blend、SVG 独显及分区 2 倍 edge 核对，覆盖本组全部可见区域：①胸腰至上段（x320–620，y300–820），胸饰下搭接、袍身内外侧分界及腰下襟根与参考相符，没有把中央衣身或腰带并入；②中下段（x240–700，y760–1300），两侧袍身与袖垂布分界、翻襟联合覆盖及中央开襟保留正确；参考中的波浪边是同片前翻与后续袍料的自遮叠，波浪后仍可见连续袍料，候选以联合实体覆盖表达合理，不要求沿内部翻卷线挖空或另立路径；③落地下摆（x100–840，y1240–1560），两侧外展弧、内侧短摆与前侧长摆的底缘转折及最下端位置比例吻合，中央内裙裙缘与蓝色折返尾未被收取。未发现有图像依据的可见组件遗漏、误包人体或其他衣片、封闭真实开口、主要形状或坐标比例错误。note 已交代相邻分界、胸肩遮盖、腰侧搭接、前襟相对内裙的前后关系和共同随动/自遮叠职责。无需重画或局部返修。\n\n证据：![整体叠加](review_evidence/overall_blend.png)\n![胸腰及上段边缘](review_evidence/upper_edge.png)\n![中下段边缘](review_evidence/middle_edge.png)\n![下摆边缘](review_evidence/hem_edge.png)\n![轮廓独显](review_evidence/outline_only.png)",
+      "candidateHash": "2f906e8304185b0a228700dcd1078e1ddc9b493adc9dd229df5097bd038e184d",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/previews/2026-11-02T11-46-26-303Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/previews/2026-11-02T11-46-26-303Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/previews/2026-11-02T11-46-26-303Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/previews/2026-11-02T11-46-26-303Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_robe_body/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/outer_robe_body/previews/2026-11-02T11-46-26-303Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:41:48.805Z"
+    }
+  ]
+}

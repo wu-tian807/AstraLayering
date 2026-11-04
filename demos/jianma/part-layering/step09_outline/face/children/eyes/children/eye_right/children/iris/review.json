@@ -1,0 +1,48 @@
+{
+  "groupId": "face/eyes/eye_right/iris",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组及父组说明、候选和父完成 SVG，先整图 blend 定位，再以 [419,210,34,32] 的 8 倍 blend/edge 覆盖全部虹膜，并用上区 [422,212,29,16]、下区 [422,224,29,16] 的重叠放大核对全部边缘与连续性，同时检查独显。画面左侧右眼的蓝色虹膜、深色外缘和瞳孔均由同一连续色块覆盖，左右弧边及底部外缘与参考吻合，无误包眼白、可见组件遗漏、孔洞或孤立碎片。顶部与上眼睑遮挡处衔接合理，遮挡后完整形状留给补全阶段。父组局部叠加及四倍采样范围检查通过，outsidePixels=0；未发现当前范围内需修改的问题。",
+      "candidateHash": "0a42ee182a5be8e58b5db6384e1ed4ed92f7a73de39030d6d5e341809e8b41d1",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-02T16-37-37-134Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-02T16-37-37-134Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-02T16-37-37-134Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-02T16-37-37-134Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-02T16-37-37-134Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-02T16-37-37-134Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-02T16-37-37-134Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:00:55.103Z"
+    }
+  ]
+}

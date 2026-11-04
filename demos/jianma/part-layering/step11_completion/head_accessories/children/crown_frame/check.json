@@ -1,7 +1,5 @@
 {
   "groupId": "head_accessories/crown_frame",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "dc2468281be5415c8d888c8858a6083238cd9d73c39a8bee19ea82b91e883800",
-  "afterHash": "dab5a5a29a49b7a0e560fecc5a5ee32b3a2dc0cf2d26741d053a30516160557d"
+  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

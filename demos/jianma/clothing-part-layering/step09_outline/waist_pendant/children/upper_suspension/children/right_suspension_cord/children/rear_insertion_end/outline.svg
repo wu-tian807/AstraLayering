@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" data-source-sha256="ee9fc67eeeccd22bf16d35448753f9dd43fd56c0f528523f584f15bc0fabd246">
-  <g id="waist_pendant_upper_suspension_right_suspension_cord_rear_insertion_end" data-group-path="waist_pendant/upper_suspension/right_suspension_cord/rear_insertion_end" fill="#E96B95" stroke="none">
-    <desc>角色自身右侧、画面左侧长悬绳的完整藏后入结段。保留父 SVG 第一条 path 全部短根端及第二条 path 接续至结芯左下前缘的上段；两条路径属于同根绳，其原重叠仅用于连续连接。下界严格沿 knot_core 左下前缘，从 (498.6257105871,514.6421808970) 至 (499.6820079044,515.3566203970)，与 front_arc_cord 共享出结遮挡线；front_arc_cord 的短接舌顺父绳范围从约 y514.3 搭入，仅在结芯遮住的范围内搭接，不出现可见断缝。本片全体位于 front_band 与 knot_core 之后，腹腰身体、中央蓝幅及内裙之前；约 (503.2,504.6) 的根端处于前腰带范围而在结芯外，须由前腰带实际遮挡。不含出结以下长弧、left_suspension_cord、right_short_loop、腰带小布穗及汇接结翼。上根随腰结、前腰带与骨盆，下边与 front_arc_cord 共用出结接点及同根绳连续柔性变形，不另设自由关节或独立悬摆；下游仍与 left_suspension_cord 共接同一汇接点，随腰前悬饰整体运动。本片为终止 part，固定细节随绳，保留父已有实体及接口，不补绕身体背后的绳，不输出人体。</desc>
-    <path d="M 499.7,511.8 L 502.6,504.5 C 502.8,504.0 503.2,503.8 503.6,504.0 C 504.0,504.2 504.1,504.6 503.9,505.1 L 500.9,512.3 Z"/>
-    <path d="M 501.6,510.6 L 499.6820079044,515.3566203970 C 499.2002281244,515.2543591063 498.8466164247,514.9980614795 498.6257105871,514.6421808970 L 500.4,510.1 Z"/>
-  </g>
-</svg>

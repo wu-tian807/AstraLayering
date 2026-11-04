@@ -1,0 +1,272 @@
+[
+  {
+    "index": 1,
+    "id": "collar_shoulder_cape/standing_collar",
+    "layers": [
+      "001 | collar_shoulder_cape/standing_collar | back",
+      "072 | collar_shoulder_cape/standing_collar | front"
+    ]
+  },
+  {
+    "index": 2,
+    "id": "inner_long_dress/long_skirt",
+    "layers": [
+      "002 | inner_long_dress/long_skirt | back",
+      "010 | inner_long_dress/long_skirt | front"
+    ]
+  },
+  {
+    "index": 3,
+    "id": "waist_sash_and_knot/waist_band",
+    "layers": [
+      "003 | waist_sash_and_knot/waist_band | back",
+      "025 | waist_sash_and_knot/waist_band | front"
+    ]
+  },
+  {
+    "index": 4,
+    "id": "central_blue_drapery/central_folded_tail",
+    "layers": [
+      "010.1 | central_blue_drapery/central_folded_tail | back waist root",
+      "020 | central_blue_drapery/central_folded_tail | front"
+    ]
+  },
+  {
+    "index": 5,
+    "id": "central_blue_drapery/left_long_panel",
+    "layers": [
+      "010.2 | central_blue_drapery/left_long_panel | back waist root",
+      "021 | central_blue_drapery/left_long_panel | front"
+    ]
+  },
+  {
+    "index": 6,
+    "id": "central_blue_drapery/right_long_panel",
+    "layers": [
+      "010.3 | central_blue_drapery/right_long_panel | back waist root",
+      "022 | central_blue_drapery/right_long_panel | front"
+    ]
+  },
+  {
+    "index": 7,
+    "id": "inner_long_dress/bodice_and_waist",
+    "layers": [
+      "011 | inner_long_dress/bodice_and_waist"
+    ]
+  },
+  {
+    "index": 8,
+    "id": "outer_robe_body/left_robe_panel",
+    "layers": [
+      "030 | outer_robe_body/left_robe_panel"
+    ]
+  },
+  {
+    "index": 9,
+    "id": "outer_robe_body/right_robe_panel",
+    "layers": [
+      "031 | outer_robe_body/right_robe_panel"
+    ]
+  },
+  {
+    "index": 10,
+    "id": "sleeve_screen_left/right_hanging_drape",
+    "layers": [
+      "040 | sleeve_screen_left/right_hanging_drape | back",
+      "060 | sleeve_screen_left/right_hanging_drape | front"
+    ]
+  },
+  {
+    "index": 11,
+    "id": "sleeve_screen_right/left_hanging_drape",
+    "layers": [
+      "041 | sleeve_screen_right/left_hanging_drape | back",
+      "061 | sleeve_screen_right/left_hanging_drape | front"
+    ]
+  },
+  {
+    "index": 12,
+    "id": "sleeve_screen_left/right_sleeve_tube",
+    "layers": [
+      "042 | sleeve_screen_left/right_sleeve_tube | back",
+      "050 | sleeve_screen_left/right_sleeve_tube | front"
+    ]
+  },
+  {
+    "index": 13,
+    "id": "sleeve_screen_right/left_sleeve_tube",
+    "layers": [
+      "043 | sleeve_screen_right/left_sleeve_tube | back",
+      "051 | sleeve_screen_right/left_sleeve_tube | front"
+    ]
+  },
+  {
+    "index": 14,
+    "id": "collar_shoulder_cape/left_shoulder_cape",
+    "layers": [
+      "070 | collar_shoulder_cape/left_shoulder_cape"
+    ]
+  },
+  {
+    "index": 15,
+    "id": "collar_shoulder_cape/right_shoulder_cape",
+    "layers": [
+      "071 | collar_shoulder_cape/right_shoulder_cape"
+    ]
+  },
+  {
+    "index": 16,
+    "id": "collar_jewel_fastener/left_beaded_chain",
+    "layers": [
+      "080 | collar_jewel_fastener/left_beaded_chain"
+    ]
+  },
+  {
+    "index": 17,
+    "id": "collar_jewel_fastener/right_beaded_chain",
+    "layers": [
+      "081 | collar_jewel_fastener/right_beaded_chain"
+    ]
+  },
+  {
+    "index": 18,
+    "id": "collar_jewel_fastener/central_pendant/hanging_bead",
+    "layers": [
+      "082 | collar_jewel_fastener/central_pendant/hanging_bead"
+    ]
+  },
+  {
+    "index": 19,
+    "id": "collar_jewel_fastener/central_pendant/connecting_ring",
+    "layers": [
+      "083 | collar_jewel_fastener/central_pendant/connecting_ring"
+    ]
+  },
+  {
+    "index": 20,
+    "id": "collar_jewel_fastener/fixed_jewel",
+    "layers": [
+      "084 | collar_jewel_fastener/fixed_jewel"
+    ]
+  },
+  {
+    "index": 21,
+    "id": "chest_ornament",
+    "layers": [
+      "085 | chest_ornament"
+    ]
+  },
+  {
+    "index": 22,
+    "id": "waist_pendant_and_tassel/upper_suspension",
+    "layers": [
+      "100 | waist_pendant_and_tassel/upper_suspension"
+    ]
+  },
+  {
+    "index": 23,
+    "id": "waist_sash_and_knot/left_short_tail",
+    "layers": [
+      "101 | waist_sash_and_knot/left_short_tail"
+    ]
+  },
+  {
+    "index": 24,
+    "id": "waist_sash_and_knot/right_short_tail",
+    "layers": [
+      "102 | waist_sash_and_knot/right_short_tail"
+    ]
+  },
+  {
+    "index": 25,
+    "id": "waist_sash_and_knot/left_short_loop",
+    "layers": [
+      "103 | waist_sash_and_knot/left_short_loop"
+    ]
+  },
+  {
+    "index": 26,
+    "id": "waist_sash_and_knot/right_short_loop",
+    "layers": [
+      "104 | waist_sash_and_knot/right_short_loop"
+    ]
+  },
+  {
+    "index": 27,
+    "id": "waist_sash_and_knot/center_knot",
+    "layers": [
+      "105 | waist_sash_and_knot/center_knot"
+    ]
+  },
+  {
+    "index": 28,
+    "id": "waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+    "layers": [
+      "108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment"
+    ]
+  },
+  {
+    "index": 29,
+    "id": "waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+    "layers": [
+      "109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link"
+    ]
+  },
+  {
+    "index": 30,
+    "id": "waist_pendant_and_tassel/snowflake_medallion",
+    "layers": [
+      "110 | waist_pendant_and_tassel/snowflake_medallion"
+    ]
+  },
+  {
+    "index": 31,
+    "id": "waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+    "layers": [
+      "111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link"
+    ]
+  },
+  {
+    "index": 32,
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+    "layers": [
+      "112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant"
+    ]
+  },
+  {
+    "index": 33,
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant",
+    "layers": [
+      "113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+      "115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front"
+    ]
+  },
+  {
+    "index": 34,
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+    "layers": [
+      "114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame"
+    ]
+  },
+  {
+    "index": 35,
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+    "layers": [
+      "116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant"
+    ]
+  },
+  {
+    "index": 36,
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+    "layers": [
+      "117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame"
+    ]
+  },
+  {
+    "index": 37,
+    "id": "waist_pendant_and_tassel/long_tassel",
+    "layers": [
+      "118 | waist_pendant_and_tassel/long_tassel"
+    ]
+  }
+]

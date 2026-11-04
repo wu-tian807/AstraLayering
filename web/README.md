@@ -184,4 +184,4 @@ pnpm web
 
 ## 成果展示
 
-项目首页采用“原图 → 合成图 → 部件爆炸图”并排形式，同一案例绑定同一来源版本；原图与合成图共占左半，立体爆炸图占右半。当前静态展示素材见 [Jianma 对照](../showcase/jianma-reference-composite-exploded.png)。
+项目首页展示案例的原图、合成图与部件爆炸图。同一案例的素材绑定同一来源版本，见 [Jianma 对照](../showcase/jianma-reference-composite-exploded.png)。

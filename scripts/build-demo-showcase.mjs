@@ -12,14 +12,14 @@ const width = 3000, height = 1780;
 const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
 const text = (x, y, value, size = 22, fill = '#727a8c', attributes = '') => `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${size}" fill="${fill}" ${attributes}>${escape(value)}</text>`;
 const image = (bytes, x, y, w, h) => `<image x="${x}" y="${y}" width="${w}" height="${h}" href="data:image/png;base64,${bytes.toString('base64')}"/>`;
-const cleanName = name => name.replace(/^\d+\s*(?:\|\s*)?/, '');
-const isBody = layer => layer.source ? layer.source === 'body' : /^(hair|face|head_accessories|neck|body|arms|pelvis|legs)(\/|::|$)/.test(cleanName(layer.name));
+const cleanName = name => name.replace(/^(?:人物|衣服)\s*\|\s*/, '').replace(/^\d+(?:\.\d+)?\s*(?:\|\s*)?/, '');
+const isBody = layer => layer.name.startsWith('衣服 |') ? false : layer.name.startsWith('人物 |') ? true : layer.source ? layer.source === 'body' : /^(hair|face|head_accessories|neck|body|arms|pelvis|legs)(\/|::|$)/.test(cleanName(layer.name));
 const cases = [
-  { id: 'jianma', title: 'Jianma', source: 'demos/jianma/assembled', reference: 'demos/jianma/input/original.jpg',
-    composite: 'demos/jianma/assembled/preview.png', counts: [90, 69], titles: ['Rear hair', 'Character', 'Inner dress', 'Outer robe', 'Sash & jewelry'],
+  { id: 'jianma', title: 'Jianma', source: '.web/showcase-layers/jianma', reference: 'demos/jianma/input/original.png',
+    composite: 'demos/jianma/shadow/step01_mask/character-shadowed.png', counts: [69, 48], titles: ['Rear hair', 'Character', 'Inner dress', 'Outer robe', 'Sash & jewelry'],
     classify(layer, name) {
       if (isBody(layer)) return /^hair\/(back_hair|bun|hair_cap)/.test(name) || /crown_ribbon\/(ribbon_tail|ribbon_body)$/.test(name) ? 0 : 1;
-      return name.startsWith('inner_dress/') ? 2 : name.startsWith('outer_robe/') ? 3 : 4;
+      return name.startsWith('inner_long_dress/') ? 2 : /^(outer_robe_body|sleeve_|collar_shoulder_cape)/.test(name) ? 3 : 4;
     } },
   { id: 'pink-doll', title: 'Pink Doll', source: '.web/showcase-layers/pink-doll', reference: 'demos/pink-doll/input/original.jpg',
     composite: 'demos/pink-doll/character-assembly/step01/character-assembled.png', counts: [58, 8], titles: ['Rear hair', 'Character', 'Bodice', 'Tiered skirt', 'Chest bow'],
@@ -46,7 +46,19 @@ const { values } = parseArgs({ options: { case: { type: 'string' } } });
 if (values.case && !cases.some(profile => profile.id === values.case)) throw new Error(`Unknown case: ${values.case}. Choose ${cases.map(profile => profile.id).join(', ')}.`);
 await mkdir(output, { recursive: true });
 for (const [caseIndex, profile] of cases.entries()) {
-  if (!values.case || profile.id === values.case) await render(profile, caseIndex);
+  if (!values.case || profile.id === values.case) {
+    if (profile.id === 'jianma') await renderJianma(profile);
+    await render(profile, caseIndex);
+  }
+}
+
+async function renderJianma(profile) {
+  const images = await Promise.all([profile.reference, profile.composite].map(async file =>
+    sharp(join(root, file)).resize(1260, 1580, { fit: 'contain', background: '#f2f4f7' }).flatten({ background: '#f2f4f7' }).png().toBuffer()));
+  const label = Buffer.from(`<svg width="${width}" height="${height}">${text(115, 55, 'Jianma · Reference & final', 36)}${text(470, 125, 'Reference', 26)}${text(1900, 125, 'Final', 26)}</svg>`);
+  await sharp({ create: { width, height, channels: 4, background: '#f2f4f7' } }).composite([
+    { input: images[0], left: 100, top: 150 }, { input: images[1], left: 1640, top: 150 }, { input: label, left: 0, top: 0 },
+  ]).png().toFile(join(output, 'jianma-reference-composite.png'));
 }
 
 async function render(profile, caseIndex) {

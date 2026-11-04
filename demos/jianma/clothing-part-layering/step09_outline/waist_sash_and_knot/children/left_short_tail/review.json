@@ -1,0 +1,38 @@
+{
+  "groupId": "waist_sash_and_knot/left_short_tail",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "通过。先从纯衣服参考独立确认：本片是画面右侧短环后方的自由短垂端，环侧露布约 x485–496、y463–530，下部折转及尖端延续至约 x482、y556；短环、宽蓝色长垂布和珠链分别属于相邻组件。已查看全幅参考与候选整体叠加，并对 x470–505、y448–564 全片进行 8 倍 blend、edge 和 SVG 独显检查，同时核对父完成稿与 note。候选的上端接结位置、环侧外缘、下段收窄折转及末端尖角与参考一致，未发现可见组件遗漏、其他衣片误包或真实开口误填；内侧凹缘对应短环遮挡边界，不属于需开孔的结构。根部接入中央结遮挡区，note 已明确位于同侧短环之后、腰部衣身及宽长垂布之前，并说明共同随动与自由摆动职责。候选在父 SVG 范围内，四倍采样 outsidePixels=0。无确定需要修改的问题，无需重画。",
+      "candidateHash": "aaeb7329239babc38dc782d721c53cb81da621685c08fd3800871991531b8e93",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/left_short_tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/left_short_tail/previews/2026-11-02T16-31-55-543Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/left_short_tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/left_short_tail/previews/2026-11-02T16-31-55-543Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/left_short_tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/left_short_tail/previews/2026-11-02T16-31-55-543Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_sash_and_knot.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/left_short_tail/previews/2026-11-02T16-31-55-543Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/left_short_tail/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/left_short_tail/previews/2026-11-02T16-31-55-543Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:00:06.177Z"
+    }
+  ]
+}
