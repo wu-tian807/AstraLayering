@@ -16,8 +16,9 @@ export function inversePoint(transform: (x: number, y: number) => Point, x: numb
 export function nodes(doc: HeadNineAxis): WarpGrid[];
 export function descendants(doc: HeadNineAxis, id: string): Set<string>;
 export function evaluatePoints(doc: HeadNineAxis, node: WarpGrid, x: number, y?: number, subdivision?: number): Float32Array;
-/** sourcePartId explicitly finishes a fitted group's descendant leaf path; bare groups remain pre-axis. */
-export function parentPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number, inverse?: boolean, sourcePartId?: string): Point;
+/** Independent source pose of one leaf, before current canvas Warp parents. */
+export function axisPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number): Point;
+export function parentPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number, inverse?: boolean): Point;
 export function checkWarpGeometry(node: WarpGrid): void;
 export function reparent(doc: HeadNineAxis, ids: string[], parent?: string): void;
 export function refine(points: ArrayLike<number>, cols: number, rows: number, n: number, out?: Float32Array): Float32Array;

@@ -7,6 +7,7 @@ import { evaluatePoints, inversePoint, keyformAt, lattice, nodes, parentPoint, r
 import { scale, pts, grid, baseline, independentAxes, joint } from './axis-fixtures.ts';
 import { mirrorDocument } from '../head.ts';
 import { fitWarpToTraces, type FitFeature } from '../../shared/nine-axis-fit.js';
+import { editNineAxis } from '../../shared/nine-axis-edit.js';
 const close = (a: ArrayLike<number>, b: ArrayLike<number>, epsilon = 1e-5) => {
   assert.equal(a.length, b.length);
   for (let i = 0; i < a.length; i++) assert.ok(Math.abs(a[i] - b[i]) < epsilon, `${i}: ${a[i]} vs ${b[i]}`);
@@ -19,6 +20,28 @@ const sourcePoint = (doc: HeadNineAxis, id: string, x: number, y: number, p: Poi
   while (n.parent) { n = doc.deformers.find(g => g.id === n.parent)! as typeof n; q = warpPoint(n, keyformAt(n, x, y), ...q); }
   return q;
 };
+
+test('whole-feature corner translation and scale act on the rendered image after independent axis warps', () => {
+  const imported = joint();
+  imported.parameters = [{ id: 'ParamAngleX', keys: [-30, 0, 30] }, { id: 'ParamAngleY', keys: [-25, 0, 25] }];
+  const doc = editNineAxis(imported, [{ action: 'create_warp', id: 'feature-group',
+    targets: imported.parts.slice(0, 3).map(p => p.id), cols: 3, rows: 3 }]);
+  for (const operation of [{ translate: [10, 0] }, { scale: [1.07, .93], origin: [50, 50] }]) {
+    const edited = editNineAxis(doc, [{ action: 'transform', id: 'feature-group', x: -30, y: 25, ...operation }]);
+    for (const part of doc.parts.slice(0, 3)) {
+      const before = evaluatePoints(doc, part, -30, 25, 5);
+      const after = evaluatePoints(edited, edited.parts.find(p => p.id === part.id)!, -30, 25, 5);
+      const expected = Array.from(before, (value, i) => operation.translate
+        ? value + operation.translate[i % 2]
+        : 50 + (value - 50) * operation.scale![i % 2]);
+      close(after, expected, .0001);
+    }
+    assert.deepEqual(edited.axisSources, doc.axisSources);
+    close(evaluatePoints(edited, edited.parts[3], -30, 25, 5), evaluatePoints(doc, doc.parts[3], -30, 25, 5));
+    for (const [x, y] of [[-30, 0], [0, 25], [0, -25]]) for (const part of doc.parts)
+      close(evaluatePoints(edited, edited.parts.find(p => p.id === part.id)!, x, y, 5), evaluatePoints(doc, part, x, y, 5));
+  }
+});
 
 test('independent nonlinear parent trees, ellipse and authored intermediate functions survive every single-axis pose', () => {
   const axes = independentAxes(), doc = joint(axes);
@@ -34,7 +57,7 @@ test('independent nonlinear parent trees, ellipse and authored intermediate func
   assert.notEqual(axes.x.parts[1].parent, axes.up.parts[1].parent, 'independent group selections conflict without being merged');
 });
 
-test('root local → root parents → exact source T; inverse undoes T first and supports local corner correction', () => {
+test('root leaf enters exact source pose before canvas parents; inverse undoes parents before source pose', () => {
   const axes = independentAxes(), doc = joint(axes), p = doc.parts[0];
   const g = grid('xy-author-group'), outer = grid('xy-outer'); g.parent = outer.id;
   for (const n of [g, outer]) {
@@ -48,18 +71,17 @@ test('root local → root parents → exact source T; inverse undoes T first and
   const originals = JSON.stringify(doc.axisSources);
   for (const [x, y] of [[-30, 25], [-19.7, 16.3], [30, -25], [0, 12.5]]) {
     const q0: Point = [38.73, 48.26];
-    const q = warpPoint(outer, keyformAt(outer, x, y), ...warpPoint(g, keyformAt(g, x, y), ...q0));
-    const a = x ? sourcePoint(axes.x, p.id, x, 0, q) : q;
-    const b = y ? sourcePoint(y > 0 ? axes.up : axes.down, p.id, 0, y, q) : q;
-    const expected: Point = [a[0] + b[0] - q[0], a[1] + b[1] - q[1]];
+    const a = x ? sourcePoint(axes.x, p.id, x, 0, q0) : q0;
+    const b = y ? sourcePoint(y > 0 ? axes.up : axes.down, p.id, 0, y, q0) : q0;
+    const q: Point = [a[0] + b[0] - q0[0], a[1] + b[1] - q0[1]];
+    const expected = warpPoint(outer, keyformAt(outer, x, y), ...warpPoint(g, keyformAt(g, x, y), ...q));
     close(parentPoint(doc, p, x, y, ...q0), expected);
     close(parentPoint(doc, p, x, y, ...expected, true), q0, 2e-5);
   }
   const expected = parentPoint(doc, p, -30, 25, ...warpPoint(p, keyformAt(p, -30, 25), 0, 0));
   close(evaluatePoints(doc, p, -30, 25).slice(0, 2), expected);
-  // Groups remain pre-T; they cannot use an arbitrary descendant's axis map.
+  // Group handles are canvas coordinates; leaves enter source T before them.
   close(parentPoint(doc, g, -30, 25, 20, 30), warpPoint(outer, keyformAt(outer, -30, 25), 20, 30));
-  close(parentPoint(doc, g, -30, 25, ...warpPoint(g, keyformAt(g, -30, 25), 20, 30), false, p.id), parentPoint(doc, p, -30, 25, 20, 30));
   const before = evaluatePoints(doc, p, -30, 25, 3);
   reparent(doc, [p.id], undefined);
   // Reparent promises keyed control-point preservation, not nonlinear baking.
@@ -173,7 +195,7 @@ test('fitWarpToTraces on merged leaf in a root parent group inverts nonlinear so
   for (const [x, y] of [[-30, 0], [30, 0], [0, -25], [0, 25], [-30, -25]]) for (const p of doc.parts) close(evaluatePoints(fitted.doc, fitted.doc.parts.find(n => n.id === p.id)!, x, y, 3), evaluatePoints(doc, p, x, y, 3));
 });
 
-test('fitWarpToTraces selected root group must use each descendant leaf T for inverse and actual residual', () => {
+test('fitWarpToTraces selected canvas group receives each descendant source pose and measures actual residual', () => {
   const { doc, group, features, position } = fitCase();
   const fitted = fitWarpToTraces(doc, { id: group.id, x: -30, y: 25, features, smoothness: 0 });
   assert.ok(fitted.report.before.every(r => r.maxPixels > .5), 'both independently mapped leaves require real changes');
@@ -182,8 +204,8 @@ test('fitWarpToTraces selected root group must use each descendant leaf T for in
   assert.deepEqual(fitted.doc.axisSources, doc.axisSources);
   assert.deepEqual(fitted.doc.parts, doc.parts, 'only the selected group correction changes');
   for (const [x, y] of [[-30, 0], [0, 25], [0, -25], [-30, -25]]) for (const p of doc.parts) close(evaluatePoints(fitted.doc, fitted.doc.parts.find(n => n.id === p.id)!, x, y, 3), evaluatePoints(doc, p, x, y, 3));
-  // Weight reduction and reported residuals must also use the complete leaf
-  // mapping, or a group can claim a small residual before source T is applied.
+  // Weight reduction and reported residuals include each complete leaf source
+  // pose, including independently grouped descendants.
   const occluded = fitWarpToTraces(doc, { id: group.id, x: -30, y: 25, smoothness: 0, features: [...features,
     { id: 'conflicting-hidden', part: features[0].part, visibility: 'occluded', weight: 100, samples: [{ from: [50, 50], to: [90, 90] }] }] });
   assert.ok(occluded.report.occludedWeightScale < 1);

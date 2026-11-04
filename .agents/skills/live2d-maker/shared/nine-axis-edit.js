@@ -45,7 +45,12 @@ export function editNineAxis(document, operations) {
     } else if (op.action === 'create_warp') {
       if (typeof op.id !== 'string' || !op.id || nodes(doc).some(n => n.id === op.id)) throw Error('新变形器 id 无效或重复');
       const targets = op.targets ?? []; if (!Array.isArray(targets)) throw Error('targets 须为 id 数组');
-      const children = targets.map(get), all = children.flatMap(n => Object.keys(n.keyforms).flatMap(k => pairs(evaluatePoints(doc, n, Number(k)))));
+      const children = targets.map(get), all = children.flatMap(n => {
+        const poses = [...Object.keys(n.keyforms).map(k => [Number(k), 0]),
+          ...Object.keys(n.keyformsY ?? {}).map(k => [0, Number(k)]),
+          ...Object.keys(n.keyformsXY ?? {}).map(k => k.split(',').map(Number))];
+        return poses.flatMap(([x, y]) => pairs(evaluatePoints(doc, n, x, y)));
+      });
       const bbox = op.bbox ?? (all.length ? [Math.min(...all.map(q => q[0])) - 8, Math.min(...all.map(q => q[1])) - 8, Math.max(...all.map(q => q[0])) + 8, Math.max(...all.map(q => q[1])) + 8] : undefined);
       const n = { ...grid(op.id, bbox, op.cols, op.rows), level: op.level ?? children[0]?.level ?? 'face', ...(op.name ? { name: op.name } : {}) };
       initialForms(doc,n);

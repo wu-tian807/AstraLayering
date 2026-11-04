@@ -229,11 +229,10 @@ function sourceMapping(doc, x, y) {
   sourceMappings.set(doc, { x, y, parts });
   return parts;
 }
-function axisMapping(doc, node, x, y, sourcePartId) {
-  // A root group lives in pre-axis canvas space: its descendants can have
-  // different source groups/mappings, so there is no single group-level T.
-  const partId = sourcePartId ?? node.id;
-  if (sourcePartId !== undefined && !doc.parts.some(p => p.id === partId)) throw Error('sourcePartId 须为联合贴图部件：' + partId);
+function axisMapping(doc, node, x, y) {
+  // Each original leaf enters its independent axis mapping once, before the
+  // current author groups. Those groups act on the resulting canvas image.
+  const partId = node.id;
   if (!doc.axisSources || (!x && !y) || !doc.parts.some(p => p.id === partId)) return;
   const X = x ? sourceMapping(doc.axisSources.find(s => s.axis === 'x').doc, x, 0).get(partId) : undefined;
   const Y = y ? sourceMapping(doc.axisSources.find(s => s.axis === (y > 0 ? 'up' : 'down')).doc, 0, y).get(partId) : undefined;
@@ -247,23 +246,25 @@ function axisMapping(doc, node, x, y, sourcePartId) {
     return [a[0] + b[0] - px, a[1] + b[1] - py];
   };
 }
-function parentTransform(doc, node, x, y, sourcePartId) {
-  const chain = parentChain(doc, node, x, y), base = axisMapping(doc, node, x, y, sourcePartId);
+export function axisPoint(doc, node, x, y, px, py) {
+  const base = axisMapping(doc, node, x, y);
+  return base ? base(px, py) : [px, py];
+}
+function parentTransform(doc, node, x, y) {
+  const chain = parentChain(doc, node, x, y), base = axisMapping(doc, node, x, y);
   return (px, py, inverse = false) => {
     if (inverse) {
-      if (base) [px, py] = inversePoint(base, px, py, node.id + ' axisSources');
       for (let i = chain.length - 1; i >= 0; i--) if (!chain[i][2]) [px, py] = inverseWarpPoint(chain[i][0], chain[i][1], px, py);
+      if (base) [px, py] = inversePoint(base, px, py, node.id + ' axisSources');
     } else {
-      [px, py] = carry(chain, px, py);
       if (base) [px, py] = base(px, py);
+      [px, py] = carry(chain, px, py);
     }
     return [px, py];
   };
 }
-export function parentPoint(doc, node, x, y, px, py, inverse = false, sourcePartId) {
-  // The optional leaf context lets fitting a root group finish that leaf's
-  // complete path. Bare group handles/evaluation remain in pre-axis space.
-  return parentTransform(doc, node, x, y, sourcePartId)(px, py, inverse);
+export function parentPoint(doc, node, x, y, px, py, inverse = false) {
+  return parentTransform(doc, node, x, y)(px, py, inverse);
 }
 export function evaluatePoints(doc, node, x, y = 0, subdivision = 1) {
   const local = [preparedWarp(node, keyformAt(node, x, y))], samples = refine(lattice(node), node.cols, node.rows, subdivision), out = new Float32Array(samples.length), transform = parentTransform(doc, node, x, y);

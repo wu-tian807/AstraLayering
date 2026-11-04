@@ -1,4 +1,4 @@
-import { nodes, lattice, keyformAt, warpPoint, parentPoint, checkWarpGeometry, validateHeadNineAxis } from './nine-axis-model.js';
+import { nodes, lattice, keyformAt, warpPoint, axisPoint, parentPoint, checkWarpGeometry, validateHeadNineAxis } from './nine-axis-model.js';
 
 // Fit the author's chosen node to points on its descendants' original artwork.
 // Ancestors and descendants remain fixed. The same Warp evaluator as rendering
@@ -36,7 +36,9 @@ export function fitWarpToTraces(document, options) {
     let q = [...p];
     for (let i = 0; n && i <= byId.size; i++) {
       if (n.id === id) return q;
-      q = warpPoint(n, keyformAt(n, x, y), ...q); n = byId.get(n.parent);
+      q = warpPoint(n, keyformAt(n, x, y), ...q);
+      if (n.id === partId) q = axisPoint(doc, n, x, y, ...q);
+      n = byId.get(n.parent);
     }
     throw Error(partId + ' 不属于拟合节点 ' + id + '；请选择它实际所属的 Warp 或单独部件');
   };
@@ -50,9 +52,9 @@ export function fitWarpToTraces(document, options) {
     const start = rows.length;
     for (const sample of f.samples) {
       const source = localSource(f.part, point(sample.from, f.id + '.from')), target = point(sample.to, f.id + '.to');
-      // Descendant local warps have already carried `source` into the selected
-      // grid. Finish/invert the path with this leaf's axis T, never a group T.
-      const wanted = parentPoint(doc, selected, x, y, ...target, true, f.part), baseline = warpPoint(selected, current, ...source);
+      // Descendant leaves enter their own source pose before current canvas
+      // groups. Finish/invert only the parents above the selected node.
+      const wanted = parentPoint(doc, selected, x, y, ...target, true), baseline = warpPoint(selected, current, ...source);
       const basis = new Float64Array(count);
       for (let i = 0; i < count; i++) { const unit = [...rest]; unit[i * 2] += 1; basis[i] = warpPoint(selected, unit, ...source)[0] - source[0]; }
       rows.push({ basis, residual: wanted.map((v, k) => v - baseline[k]), source, target, part: f.part, weight: weight * Math.max(1, 64 / f.samples.length), occluded: f.visibility === 'occluded' });
@@ -85,8 +87,8 @@ export function fitWarpToTraces(document, options) {
   if (rows.some(row => row.occluded)) {
     const visibleOnly = solve(0);
     const visibleShift = (values) => Math.max(...rows.filter(row => !row.occluded).map(row => {
-      const a = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source), false, row.part);
-      const b = parentPoint(doc, selected, x, y, ...warpPoint(selected, visibleOnly, ...row.source), false, row.part);
+      const a = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source));
+      const b = parentPoint(doc, selected, x, y, ...warpPoint(selected, visibleOnly, ...row.source));
       return Math.hypot(a[0] - b[0], a[1] - b[1]);
     }));
     // Completion may fill unconstrained regions, but cannot move a fitted
@@ -99,7 +101,7 @@ export function fitWarpToTraces(document, options) {
   catch (error) { throw Error('拟合未保存：' + error.message + '。请检查描线对应关系，增加局部控制或参考点。'); }
   const measure = values => summaries.map(f => {
     const errors = rows.slice(f.start, f.start + f.count).map(row => {
-      const q = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source), false, row.part);
+      const q = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source));
       return Math.hypot(q[0] - row.target[0], q[1] - row.target[1]);
     });
     return { id: f.id, samples: f.count, weight: f.weight, meanPixels: errors.reduce((a, b) => a + b, 0) / errors.length, maxPixels: Math.max(...errors) };
