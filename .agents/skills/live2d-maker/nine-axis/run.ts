@@ -19,7 +19,7 @@ import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { ffmpegPath, generateVideo, produceLeftVideo, producePitchVideos, produceCornerVideos, resolveTurnInput, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
 import { buildHead, finishHead, resolveHeadInput, type Built, type HeadInput } from './head.ts';
 import { buildAngleY, finishAngleY } from './angle-y.ts';
-import { buildAngleXY, cornerAngleValues, finishAngleXY, writeLinearCorners } from './angle-xy.ts';
+import { buildAngleXY, checkCornerReferences, cornerAngleValues, finishAngleXY, writeLinearCorners } from './angle-xy.ts';
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
 import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
@@ -36,7 +36,7 @@ step02_angle-x：agent 导出原 KRA 图层，复用 Part 的 preview_svg 描边
 step03_video-y：复用 step01 的正面与裁框，生成 5 秒 0→90° up/down 绕轴视频，并在本步取 up/down 参考帧。
 step04_angle-up：独立描边、补全与拟合抬头，保护 X。
 step05_angle-down：独立描边、补全与拟合低头，保护 X 与 up。
-step06_angle-xy：以 up/down 参考帧生成 left-up/left-down 参考视频，再制作四角。
+step06_angle-xy：以 up/down 参考帧生成斜向视频，agent 自选 left-up/left-down 帧，描边、补全并自动拟合；右侧镜像。
 step07_jaw-line：下颌与颈部接触收尾。
 视频接口使用 video_base_url / video_api_key、nine_axis_view_video_model 和 ffmpeg。
 取帧角度只记在 knowledge/nine-axis/step01_video/references/angles.json（默认 left 30°，up/down 25°），ParamAngleX/Y 使用度数。
@@ -117,7 +117,17 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       return [bitmap, view, continuation, createNineAxisFitTool(stepDirectory, head, box, scale, { stage: pitch, upstreamDirectory: upstream }),
         createSvgPreviewTool({ directory: stepDirectory, reference: join(directory, `step03_video-y/${pitch}.png`), canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' })];
     }
-    if (stepId === 'step06_angle-xy') return [bitmap, view, continuation];
+    if (stepId === 'step06_angle-xy') {
+      const head = await resolveHeadInput(input), box = JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box as Box;
+      const svg = createSvgPreviewTool({ directory: stepDirectory, reference: join(stepDirectory, 'left-up.png'),
+        canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' });
+      return [bitmap, view, continuation, createNineAxisFitTool(stepDirectory, head, box, scale, { stage: 'xy', upstreamDirectory: upstream }),
+        { ...svg, async execute(value, signal, context) {
+          const args = value as { mode?: string; reference?: string };
+          if ((args?.mode === 'blend' || args?.mode === 'edge') && !args.reference) throw Error('斜向有两个目标帧，blend/edge 必须显式指定对应 corner PNG 或同坐标 source 参考图');
+          return svg.execute(value, signal, context);
+        } }];
+    }
     if (!sectionKrita) {
       if (!options.krita?.trim()) throw new Error(`${stepId} 需要 --krita <已安装的 Krita 可执行文件路径>。`);
       const krita = await checkKrita(resolveInput(options.name, options.krita, root), environment.codex.env);
@@ -168,7 +178,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         summary = `nine-axis/${step.id} 已完成：${await finishAngleY(step.directory, upstream, stage, scale)} 个脸部图层的${label}`;
       };
       if (step.id === 'step06_angle-xy') return async () => {
-        if (options.dryRun) return preview(`用 ${headLabel} 从线性叠加起手斜切脸部四角。\n提示词：\n${angleXYPrompt(task)}`);
+        if (options.dryRun) return preview(`用 ${headLabel} 自选斜向视频帧，描边、补全并自动拟合左上/左下，镜像出右侧。\n提示词：\n${angleXYPrompt(task)}`);
         const { model, generate } = video();
         await produceCornerVideos(step.directory, join(directory, 'step03_video-y'), generate, videoPrompt(), { signal: options.signal, progress, model });
         const angleYDirectory = join(directory, 'step05_angle-down');
@@ -176,6 +186,8 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         builds[step.id] = () => buildAngleXY(step.directory, angleYDirectory, scale);
         const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向'));
         await fit(step.directory, angleXYPrompt(task));
+        const box = JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box as Box;
+        await checkCornerReferences(step.directory, box.size);
         summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(step.directory, angleYDirectory, scale)} 个脸部图层的斜向四角`;
       };
       return async () => {

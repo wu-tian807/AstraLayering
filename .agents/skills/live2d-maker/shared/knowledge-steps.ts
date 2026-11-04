@@ -32,7 +32,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'nine-axis', step: 'step03_video-y' },
   { section: 'nine-axis', step: 'step04_angle-up', required: ['preview_svg', 'fit_nine_axis'] },
   { section: 'nine-axis', step: 'step05_angle-down', required: ['preview_svg', 'fit_nine_axis'] },
-  { section: 'nine-axis', step: 'step06_angle-xy' },
+  { section: 'nine-axis', step: 'step06_angle-xy', required: ['preview_svg', 'fit_nine_axis'] },
   { section: 'nine-axis', step: 'step07_jaw-line', required: ['krita'] },
   { section: 'part-layering', step: 'step03_pose' },
   { section: 'part-layering', step: 'step04_standard' },

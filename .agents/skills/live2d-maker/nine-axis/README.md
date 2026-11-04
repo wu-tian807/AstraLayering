@@ -63,15 +63,19 @@ up 从已完成 X 的 `deformers.json` 建立 `face-up.json`，新增 Y=0 与抬
 
 两步带图先验分别见 [up](../knowledge/nine-axis/step04_angle-up/references/completion/脸型补全先验.md) 与 [down](../knowledge/nine-axis/step05_angle-down/references/completion/脸型补全先验.md)。工具由步骤绑定参考帧、作者文件和 Y 方向，复用同一拟合实现，不增加角度猜测或另一套液化算法。各步保存 source/target SVG、face-trace.json、trace-check、face-completion-check、face-base-<方向>-check、fit-report，以及完整/叠加/颊颌/五官/固定脖子/过渡检查图。数值与几何检查不能代替用户视觉验收。
 
-## step06_angle-xy：斜向参考视频与四角
+## step06_angle-xy：斜向选帧、描边与自动拟合
 
-从 `step05_angle-down/deformers.json` 的完整 X/up/down 工程继续。在本步先以 `step03_video-y/up.png`、`down.png` 为首帧，沿用 step01 的 left 转头提示词，分别生成 5 秒 `left-up.mp4`、`left-down.mp4`，来源、提示词和哈希保存到本步 `videos.json`，再启动四角制作。需要时按 left 度数/90 取斜向参考帧；不在 step01 或 step03 提前生成这些视频。
+从 `step05_angle-down/deformers.json` 的完整 X/up/down 工程继续。本步以原 up/down 参考帧为首帧，沿用 step01 的 left 提示词，分别生成约5秒 `left-up.mp4`、`left-down.mp4`，再启动斜向 agent。来源、提示词和哈希保存在 `videos.json`，不提前放到其他步骤或 knowledge。
 
-`linear.json` 是完整层级的初始文档，各节点局部 X/Y 位移相加。`edit_nine_axis {}` 建立 `face-xy.json`，agent 制作 `keyformsXY` 左上、左下，程序镜像组合后的结果，再反解到右侧父级。自定义镜像名称用 `mirror_pair`，也支持完整 `left/right` 词的自动配对。
+agent 实际查看全片多帧与候选附近画面，独立选择合适的 left-up/left-down 帧。根据既有 left 的侧转幅度、各自 up/down 的俯仰感、远近眼显露、鼻嘴侧移和额顶/下颌投影判断；不强制两段同时间，不把时间比例当作精确角度。原帧保存 `frames/`，只等比规范化到固定 box，保存同名 PNG。`selected-frames.json` 的 `frames` 中每角记录 `video`、`path`、实际 `frameIndex` 和/或 `timeSeconds`、原片/PNG 哈希及选帧理由。此后该角始终对着已选 PNG 描边、拟合；更换帧后重新处理该角。
 
-四角沿用教程的手动斜切，中轴留作参考，整体上下微移由预览决定。保留 X 侧脸额头、眼窝、颧颊、下颌的起伏，以及 Y 的五官距离；不能把左转轮廓强推成全外凸蛋形。父级负责大形，整眼/嘴的层级与独立部件补细节。单独 X/Y 姿态受保护。
+`linear.json` 只是局部 X/Y 位移叠加的完整层级起点。`edit_nine_axis {}` 建立 `face-xy.json`；agent 复用 Part 的 `preview_svg` 以闭合纯色色块描可见脸缘、补全隐藏额顶/颊颌，分别保存每角 SVG 与 trace。`preview_svg` 的 blend/edge 显式给对应角的 `reference`，保持原坐标。分类脸型与带图教程只指导隐藏结构，当前视频决定可见轮廓、五官与笔锋。补全指南见 [斜向先验](../knowledge/nine-axis/step06_angle-xy/references/completion/脸型补全先验.md)。
 
-用 `view_nine_axis` 检查左右四角和轴到四角的过渡，放大瞳孔、口腔层与固定脖子接触。交付完整作者源及左右上/下检查图，程序继承贴图并输出 `deformers.json`。斜向参考视频读取本步的 `left-up.mp4`、`left-down.mp4`。
+`fit_nine_axis` 的 `corner=left-up|left-down` 绑定已选 PNG 与工程角，自动求该角 Warp；两角分别保存报告。分组、父子关系、局部微调仍由 agent 决定，五官可一轮批量调整。先看完整预测脸，再看原贴图实际形变，放大远侧眼尾到颊部的竖向轮廓及颊颌/下巴。程序完成前检查两角选帧哈希、同裁框尺寸及拟合报告引用，参考或描线改变后必须重新拟合；这些检查不替 agent 选帧。
+
+上游单独 X/Y 与已正确的另一角受保护。右侧镜像组合后的结果，再反解到相应父级；自定义镜像名称用 `mirror_pair` 或完整 `left/right` 词。实际检查左右四角、轴到四角及两左角之间的过渡，五官不融化或分离，网格不折叠。脖子从开始参与参考并保持固定，接触收尾留 step07。
+
+交付完整作者源、原贴图、选帧记录、每角描边/补全/实际脸底/五官/接触检查图，以及过渡、原轴保护与右侧镜像检查图；输出 `deformers.json`。视觉效果由用户验收，不能仅凭完成标记或拟合残差宣称稳定。
 
 ## step07_jaw-line：下颌接触收尾
 

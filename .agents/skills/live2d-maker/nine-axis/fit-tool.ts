@@ -21,12 +21,15 @@ const esc = (s: string) => s.replaceAll('&', '&amp;').replaceAll('"', '&quot;').
 
 // This tool only derives geometry from the pipeline agent's trace. It never
 // supplies an anatomical rig or silently imports a previous character fit.
-export function createNineAxisFitTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), pitch?: { stage: PitchStage; upstreamDirectory: string }): FunctionTool {
-  const task = dirname(dirname(directory)), reference = join(task, pitch ? `nine-axis/step03_video-y/${pitch.stage}.png` : 'nine-axis/step01_video/left.png'), author = join(directory, pitch ? authorFile(pitch.stage) : 'face-left.json');
-  const x = pitch ? 0 : scale.x[0], y = pitch ? (pitch.stage === 'up' ? scale.y[1] : scale.y[0]) : 0;
+export function createNineAxisFitTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), continuation?: { stage: PitchStage | 'xy'; upstreamDirectory: string }): FunctionTool {
+  const task = dirname(dirname(directory)), author = join(directory, continuation ? authorFile(continuation.stage) : 'face-left.json');
   return { ...toolDefinition('fit_nine_axis'), async execute(value, signal, context) {
-    const args = value as { action?: string; trace?: string; id?: string; features?: string[]; revision?: string; smoothness?: number };
+    const args = value as { action?: string; trace?: string; id?: string; features?: string[]; revision?: string; smoothness?: number; corner?: string };
     if (!args || !['inspect', 'fit'].includes(args.action ?? '') || typeof args.trace !== 'string') throw Error('action 须为 inspect 或 fit，并提供 trace JSON 路径');
+    const xy = continuation?.stage === 'xy';
+    if (xy && !['left-up', 'left-down'].includes(args.corner ?? '')) throw Error('xy 阶段 corner 必须为 left-up 或 left-down；右侧由组合形变镜像');
+    const reference = xy ? join(directory, `${args.corner}.png`) : join(task, continuation ? `nine-axis/step03_video-y/${continuation.stage}.png` : 'nine-axis/step01_video/left.png');
+    const x = !continuation || xy ? scale.x[0] : 0, y = xy ? (args.corner === 'left-up' ? scale.y[1] : scale.y[0]) : continuation ? (continuation.stage === 'up' ? scale.y[1] : scale.y[0]) : 0;
     const tracePath = fromTaskPath(task, args.trace), text = await readFile(tracePath, 'utf8');
     if (text.length > 1_000_000) throw Error('trace 文件过大');
     const trace = JSON.parse(text) as Trace;
@@ -43,8 +46,13 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
     for (const f of trace.curves) { check(f); if (![f.source, f.target].every(s => typeof s === 'string' && s.length > 0 && s.length < 32000)) throw Error(f.id + '：source/target 须为 SVG path d'); }
     for (const f of trace.landmarks ?? []) { check(f); if (![f.source, f.target].every(p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite))) throw Error(f.id + '：参考点须为 [x,y]'); }
     const original = await readFile(author, 'utf8'), raw = JSON.parse(original) as FaceLeft | AuthoredHead;
-    if (args.revision !== undefined && args.revision !== hash(original)) throw Error('作者数据已变化，请读取最新 revision');
-    const doc = pitch ? raw as AuthoredHead : { version: 2 as const, kind: 'head-nine-axis' as const, levels: [{ id: 'face', includes: ['face' as const] }], deformers: raw.deformers, parts: raw.parts.toReversed().map(p => ({ level: 'face' as const, ...p })) };
+    const targetImage = await readFile(reference).catch(error => {
+      if (xy && (error as NodeJS.ErrnoException).code === 'ENOENT') throw Error(`xy 阶段缺少 ${args.corner} 的所选参考帧：${reference}；先从对应视频选帧并保存为 ${args.corner}.png`);
+      throw error;
+    });
+    const revisionFor = (authorText: string) => xy ? hash(JSON.stringify({ corner: args.corner, referenceSha256: hash(targetImage), traceSha256: hash(text), authorSha256: hash(authorText) })) : hash(authorText);
+    if (args.revision !== undefined && args.revision !== revisionFor(original)) throw Error(xy ? 'corner、所选参考帧、描线或作者数据已变化，请重新 inspect 读取最新 revision' : '作者数据已变化，请读取最新 revision');
+    const doc = continuation ? raw as AuthoredHead : { version: 2 as const, kind: 'head-nine-axis' as const, levels: [{ id: 'face', includes: ['face' as const] }], deformers: raw.deformers, parts: raw.parts.toReversed().map(p => ({ level: 'face' as const, ...p })) };
     for (const id of partIds) if (!doc.parts.some(p => p.id === id)) throw Error('描线 part 不存在：' + id);
     if (!doc.parts.some(p => p.id === trace.completion.part)) throw Error('completion.part 不存在');
     const selectedIds = args.features ?? [...ids];
@@ -80,7 +88,7 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
       ...(trace.landmarks ?? []).map(f => ({ id: f.id, part: f.part, visibility: f.visibility, weight: weight(f), samples: [{ from: toCanvas(f.source), to: toCanvas(f.target) }] })),
     ].filter(f => selectedIds.includes(f.id));
     const destination = context ? join(context.workspace, 'bitmaps') : join(directory, 'observations'); await mkdir(destination, { recursive: true });
-    const sourceImage = await cropUpperBody(input.color, box), targetImage = await readFile(reference);
+    const sourceImage = await cropUpperBody(input.color, box);
     const overlay = (side: 'source' | 'target') => Buffer.from(`<svg width="${box.size * 2}" height="${box.size * 2}" viewBox="${trace.space === 'view' ? `0 0 ${box.size} ${box.size}` : `${box.x} ${box.y} ${box.size} ${box.size}`}">${trace.curves.map(f => `<path d="${esc(f[side])}" fill="none" stroke="${f.visibility === 'occluded' ? '#54c9ff' : '#ff315d'}" stroke-width="0.7"${f.visibility === 'occluded' ? ' stroke-dasharray="3 2"' : ''}/>`).join('')}${(trace.landmarks ?? []).map(f => `<circle cx="${f[side][0]}" cy="${f[side][1]}" r="1.5" fill="#ffeb55"/>`).join('')}</svg>`);
     const panels = await Promise.all(([sourceImage, targetImage] as const).map((image, i) => sharp(image).resize(box.size * 2, box.size * 2).composite([{ input: overlay(i ? 'target' : 'source') }]).png().toBuffer()));
     const viewBox = trace.space === 'view' ? `0 0 ${box.size} ${box.size}` : `${box.x} ${box.y} ${box.size} ${box.size}`;
@@ -93,15 +101,18 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
     const traceImage = await sharp({ create: { width: box.size * 6, height: box.size * 2, channels: 4, background: '#20242b' } }).composite(panels.map((input, i) => ({ input, left: box.size * 2 * i, top: 0 }))).png().toBuffer();
     const traceCheck = join(destination, `${randomUUID()}-trace.png`); await writeFile(traceCheck, traceImage);
     const completionCheck = join(destination, `${randomUUID()}-completion.png`); await writeFile(completionCheck, completionCheckImage);
-    let revision = hash(original), report: unknown;
+    let revision = revisionFor(original), report: unknown;
     if (args.action === 'fit') {
       if (typeof args.id !== 'string') throw Error('fit 需要你选择的变形器或部件 id');
       if (completionMismatch.length) throw Error('描线与完整脸型不一致，未拟合：' + JSON.stringify(completionMismatch) + '。先修正完整脸缘；皮肤与头发的交界不能作为脸外轮廓。');
       const fitted = fitWarpToTraces(doc, { id: args.id, x, y, features, smoothness: args.smoothness });
-      const edited = pitch ? { ...raw, deformers: fitted.doc.deformers, parts: fitted.doc.parts } as AuthoredHead : { ...raw, deformers: fitted.doc.deformers, parts: fitted.doc.parts.toReversed() as Part[] } as FaceLeft;
-      const built = pitch ? await compileContinuation(directory, pitch.upstreamDirectory, edited as AuthoredHead, pitch.stage, scale) : await compileHead(directory, input, box, edited as FaceLeft, scale);
+      const edited = continuation ? { ...raw, deformers: fitted.doc.deformers, parts: fitted.doc.parts } as AuthoredHead : { ...raw, deformers: fitted.doc.deformers, parts: fitted.doc.parts.toReversed() as Part[] } as FaceLeft;
+      const built = continuation ? await compileContinuation(directory, continuation.upstreamDirectory, edited as AuthoredHead, continuation.stage, scale) : await compileHead(directory, input, box, edited as FaceLeft, scale);
       // Endpoint validity alone cannot prove composed parent/child meshes safe.
-      const poses = [...[scale.x[0], scale.x[0] / 2, 0, scale.x[1] / 2, scale.x[1]].map(a => [a, 0]), ...(pitch ? (pitch.stage === 'up' ? [scale.y[1] / 2, scale.y[1]] : [scale.y[0], scale.y[0] / 2, scale.y[1] / 2, scale.y[1]]).map(a => [0, a]) : [])];
+      const xs = [scale.x[0], scale.x[0] / 2, 0, scale.x[1] / 2, scale.x[1]];
+      // Only this corner and its mirror change. The opposite Y corner may
+      // still be an unfitted initial form and must not block independent fitting.
+      const poses = xy ? xs.flatMap(a => [0, y / 2, y].map(b => [a, b])) : [...xs.map(a => [a, 0]), ...(continuation ? (continuation.stage === 'up' ? [scale.y[1] / 2, scale.y[1]] : [scale.y[0], scale.y[0] / 2, scale.y[1] / 2, scale.y[1]]).map(a => [0, a]) : [])];
       for (const [angleX, angleY] of poses) for (const n of nodes(built.doc)) {
         const p = evaluatePoints(built.doc, n, angleX, angleY, 4), cols = n.cols * 4, rows = n.rows * 4;
         for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
@@ -111,12 +122,16 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
       }
       signal.throwIfAborted();
       if (await readFile(author, 'utf8') !== original || await readFile(tracePath, 'utf8') !== text) throw Error('拟合期间作者数据或描线改变，未保存，请重试');
-      const next = JSON.stringify(edited) + '\n', tmp = author + '.' + randomUUID() + '.tmp'; await writeFile(tmp, next); await rename(tmp, author); revision = hash(next);
-      report = { ...fitted.report, trace: args.trace, traceSha256: hash(text), referenceSha256: hash(targetImage), visibility: trace.curves.map(f => ({ id: f.id, visibility: f.visibility ?? 'visible' })) };
-      await writeFile(join(directory, 'fit-report.json'), JSON.stringify(report, null, 2) + '\n');
+      if (xy && !(await readFile(reference).catch(error => {
+        if ((error as NodeJS.ErrnoException).code === 'ENOENT') throw Error('拟合期间所选参考帧被删除，未保存，请重新选帧并 inspect');
+        throw error;
+      })).equals(targetImage)) throw Error('拟合期间所选参考帧改变，未保存，请重新 inspect');
+      const next = JSON.stringify(edited) + '\n', tmp = author + '.' + randomUUID() + '.tmp'; await writeFile(tmp, next); await rename(tmp, author); revision = revisionFor(next);
+      report = { ...fitted.report, ...(xy ? { corner: args.corner } : {}), trace: args.trace, traceSha256: hash(text), referenceSha256: hash(targetImage), visibility: trace.curves.map(f => ({ id: f.id, visibility: f.visibility ?? 'visible' })) };
+      await writeFile(join(directory, xy ? `${args.corner}-fit-report.json` : 'fit-report.json'), JSON.stringify(report, null, 2) + '\n');
     }
     return { success: true, contentItems: [
-      { type: 'inputText', text: JSON.stringify({ revision, x, y, traceCheck: await toAgentPath(task, traceCheck), completionCheck: await toAgentPath(task, completionCheck), completionMismatch, reference: await toAgentPath(task, reference), space: trace.space, features: features.map(f => ({ id: f.id, samples: f.samples.length, weight: f.weight })), ...(report ? { report } : {}) }) },
+      { type: 'inputText', text: JSON.stringify({ revision, x, y, ...(xy ? { corner: args.corner, referenceSha256: hash(targetImage) } : {}), traceCheck: await toAgentPath(task, traceCheck), completionCheck: await toAgentPath(task, completionCheck), completionMismatch, reference: await toAgentPath(task, reference), space: trace.space, features: features.map(f => ({ id: f.id, samples: f.samples.length, weight: f.weight })), ...(report ? { report } : {}) }) },
       { type: 'inputImage', imageUrl: `data:image/png;base64,${traceImage.toString('base64')}` },
       { type: 'inputImage', imageUrl: `data:image/png;base64,${completionCheckImage.toString('base64')}` },
     ] };

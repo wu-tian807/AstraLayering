@@ -7,7 +7,7 @@ import { createServer } from 'node:http';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
-import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, producePitchVideos, resolveTurnInput, upperBodyBox } from '../turn.ts';
+import { cropUpperBody, extractTurnFrame, ffmpegPath, fileHash, generateVideo, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox } from '../turn.ts';
 import { angleXYPrompt, angleYPrompt, headPrompt, jawLinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
@@ -176,6 +176,15 @@ test('七步依次生成各自视频与参考帧，尺寸一致，完成后沿�
   };
   const fitAngleXY = async (directory: string) => {
     await createContinuationEditTool(directory, join(directory, '../step05_angle-down'), 'xy').execute({}, new AbortController().signal);
+    const size=(await sharp(join(directory,'../step03_video-y/up.png')).metadata()).width!,frames:Record<string,unknown>={};
+    for(const [corner,angle] of [['left-up',15],['left-down',45]] as const) {
+      const chosen=await takeFrame(directory,`${corner}.png`,join(directory,`${corner}.mp4`),angle,size,{ffmpeg});
+      const trace=join(directory,`${corner}-face-trace.json`);await writeFile(trace,'{"fixture":"selected trace"}');
+      const videoSha256=await fileHash(join(directory,`${corner}.mp4`));
+      frames[corner]={video:`${corner}.mp4`,path:chosen.path,frameIndex:chosen.frame.frameIndex,videoSha256,sha256:chosen.sha256,reason:'Chosen independently by the injected agent'};
+      await writeFile(join(directory,`${corner}-fit-report.json`),JSON.stringify({referenceSha256:chosen.sha256,traceSha256:await fileHash(trace)}));
+    }
+    await writeFile(join(directory,'selected-frames.json'),JSON.stringify({version:1,frames}));
   };
   const fitJawLine = async (directory: string) => {
     const upstream = await readUpstream(join(directory, '../step06_angle-xy'));
@@ -197,6 +206,8 @@ test('七步依次生成各自视频与参考帧，尺寸一致，完成后沿�
   const corners = join(task, 'nine-axis/step06_angle-xy');
   const recordCorners = JSON.parse(await readFile(join(corners, 'videos.json'), 'utf8'));
   for (const name of ['left-up', 'left-down']) await access(join(corners, `${name}.mp4`));
+  const selectedCorners=JSON.parse(await readFile(join(corners,'selected-frames.json'),'utf8'));
+  assert.deepEqual(['left-up','left-down'].map(c=>selectedCorners.frames[c].frameIndex),[10,30],'the pipeline retains the agent’s different frame choices');
   // The corner turns start from the up and down views at their angles.
   assert.deepEqual([recordCorners['left-up'].first, recordCorners['left-down'].first], ['../step03_video-y/up.png', '../step03_video-y/down.png']);
   assert.equal(record01.left.first, 'upper-body.png');

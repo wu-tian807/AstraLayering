@@ -1,4 +1,4 @@
-按你描出的原画轮廓与 本步目标轮廓，自动求当前步骤的 Warp 参数。原画贴图保持，输出仍是 edit_nine_axis 使用的真实作者文件（X 为 face-left.json，up/down 为 face-up.json/face-down.json）；现有 drag、points、transform 可继续微调。不会自动分组或建立预设层级。
+按你描出的原画轮廓与本步目标轮廓，自动求当前步骤的 Warp 参数。原画贴图保持，输出仍是 edit_nine_axis 使用的真实作者文件（X 为 face-left.json，up/down 为 face-up.json/face-down.json，斜向为 face-xy.json）；现有 drag、points、transform 可继续微调。不会自动分组或建立预设层级。
 
 先预测完整脸型并写 trace JSON，用 `inspect` 看描线与无遮挡素脸，再用 `fit` 求形变。参数：action=inspect/fit、trace=文件路径；fit 另给 id=你选择的 Warp 或图形部件。features 可指定本轮使用的描线/参考点 id，默认全部；revision 可防止覆盖其他编辑；smoothness 默认 0.02，只约束网格的额外弯曲，减小可让局部转折更贴合，增大可减少无约束区域的波动。
 
@@ -29,3 +29,5 @@ inspect 显示三联图：原画描线、目标描线、无遮挡完整 target �
 fit 只编辑选中节点的本步目标关键形，保留其父级、子级、其他节点和静止形。工具使用工作台同一个平滑 Warp 计算，处理父级坐标反解，验证已制作轴的端点与中间角度的组合网格再保存。失败不会写入作者文件。返回新 revision、逐段拟合前后平均/最大误差（原画布像素）、描线检查图，另保存 fit-report.json。误差小只说明网格贴住了描线；仍须用 view_nine_axis reference 核对描线是否贴住视频和整体效果。某段残差大时，检查对应点、拆段、增加合适的控制点或局部 Warp，再重拟合。
 
 方向由管线步骤绑定：X 的 left 为 X=-left,Y=0；up 为 X=0,Y=+up；down 为 X=0,Y=-down。无需在工具参数重复填写方向。up/down 从本步完整作者文件拟合，保留来源和绘制顺序；down 额外保护上游的 up 姿态。
+
+斜向 step06 的 inspect/fit 必须给 corner="left-up" 或 "left-down"，绑定本步同名 PNG 的 agent 已选视频帧和对应 X/Y 关键形；两角各自描边、补全与拟合。先用 preview_svg 显式指定该角参考图，保存独立 trace JSON。例：`{action:"fit",corner:"left-up",trace:"绝对路径/left-up-face-trace.json",id:"自选脸底Warp",revision:"最新inspect返回值"}`。不需要手填角度。fit 只调整这一个组合关键形，保留另一个左角和上游 X/Y；右侧由程序镜像组合结果。所选帧或描线变化后重新 inspect，不能沿用旧 revision。两角分别保存 left-up-fit-report.json、left-down-fit-report.json，避免覆盖。

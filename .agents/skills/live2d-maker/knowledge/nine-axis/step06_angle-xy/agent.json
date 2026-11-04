@@ -5,6 +5,8 @@
     ],
     "tools": [
       "view_bitmap",
+      "preview_svg",
+      "fit_nine_axis",
       "view_nine_axis",
       "edit_nine_axis"
     ]
