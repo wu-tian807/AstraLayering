@@ -1,0 +1,357 @@
+{
+  "version": 1,
+  "status": "candidate awaiting user confirmation",
+  "author": "nine-axis/step02_angle-x/face-left.json",
+  "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+  "view": [
+    431,
+    35,
+    394,
+    394
+  ],
+  "registration": "none; same canvas coordinates",
+  "images": [
+    {
+      "output": "nine-axis/step02_angle-x/trace-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/ceba2e1f-1022-48f3-ab44-ae3d93ceda8f-trace.png",
+      "sha256": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+      "kind": "fit_nine_axis.inspect",
+      "purpose": "Final inspect: source, target trace and unobstructed prediction.",
+      "canvasCrop": null,
+      "scale": null
+    },
+    {
+      "output": "nine-axis/step02_angle-x/face-completion-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/425ce4cd-5a06-42f7-8068-2f22da435253-completion.png",
+      "sha256": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+      "kind": "fit_nine_axis.inspect",
+      "purpose": "Final inspect: complete source and target predictions; not actual deformed alpha.",
+      "canvasCrop": null,
+      "scale": null
+    },
+    {
+      "output": "nine-axis/step02_angle-x/face-base-left-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/f5317331-71b0-4866-a34c-017cf79b554d.png",
+      "sha256": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+      "kind": "view_nine_axis",
+      "purpose": "Final actual face_base only at X=-30.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/face-base-completion-overlay.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/2b25dc92-81ae-45a0-b9e0-8edba44de5ea-comparison.png",
+      "sha256": "db6ce24c29d61eb728eae4ddea64a503f9c4d5900b6a037f9551bc72dcba17ff",
+      "kind": "view_nine_axis",
+      "purpose": "Complete prediction, actual deformed face_base and 50% overlay.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/forehead-temple-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/ff9fb4af-fa2e-47f4-a121-d7e8c8ccdb61-comparison.png",
+      "sha256": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+      "kind": "view_nine_axis",
+      "purpose": "Final actual forehead and temples, face_shape grid, prediction overlay.",
+      "canvasCrop": [
+        523,
+        137,
+        190,
+        116
+      ],
+      "scale": 4
+    },
+    {
+      "output": "nine-axis/step02_angle-x/hair-coverage-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/519c0b91-3765-4404-8043-356a6102652a-comparison.png",
+      "sha256": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+      "kind": "view_nine_axis",
+      "purpose": "Static target hair reference, final head and overlay. No animated hair is included in author.",
+      "canvasCrop": [
+        516,
+        132,
+        209,
+        173
+      ],
+      "scale": 3
+    },
+    {
+      "output": "nine-axis/step02_angle-x/left-fit-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/516858c4-5e96-4318-ac4e-c5b92c635c48-comparison.png",
+      "sha256": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
+      "kind": "view_nine_axis",
+      "purpose": "Target reference, final full head with fixed neck and 50% overlay.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/far-side-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/486b7366-49eb-4393-891c-2565db3730f8-comparison.png",
+      "sha256": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
+      "kind": "view_nine_axis",
+      "purpose": "Far eye socket, eye tail, steep cheek and visible face outline.",
+      "canvasCrop": [
+        520,
+        202,
+        92,
+        107
+      ],
+      "scale": 6
+    },
+    {
+      "output": "nine-axis/step02_angle-x/jaw-chin-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/dd541c91-bbe9-466c-9925-34a468cdb664-comparison.png",
+      "sha256": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
+      "kind": "view_nine_axis",
+      "purpose": "Visible jaw and chin final same-coordinate comparison.",
+      "canvasCrop": [
+        540,
+        274,
+        142,
+        52
+      ],
+      "scale": 5
+    },
+    {
+      "output": "nine-axis/step02_angle-x/neck-contact-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/71d7333a-52d3-4d96-90fb-390ebd4c1741-comparison.png",
+      "sha256": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
+      "kind": "view_nine_axis",
+      "purpose": "Final chin coverage over untouched neck; contact finishing deferred to step07.",
+      "canvasCrop": [
+        556,
+        288,
+        151,
+        76
+      ],
+      "scale": 4
+    },
+    {
+      "output": "nine-axis/step02_angle-x/front-check.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/198dd45d-edfb-43e4-80b2-e4e77423a690-comparison.png",
+      "sha256": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+      "kind": "view_nine_axis",
+      "purpose": "Final X=0 compared with original same-canvas assembled PNG.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/left-check.png",
+      "derivedFrom": "nine-axis/step02_angle-x/left-fit-check.png",
+      "operation": "first two unchanged comparison panels",
+      "sha256": "f2a947cc20f6fbb2aabcfb60b50b9a867a28ca0778a18c630ac8600f8e9b9071"
+    },
+    {
+      "output": "nine-axis/step02_angle-x/checks/x-minus30.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/83711c8f-e4b6-4431-bf34-d0563e66806f.png",
+      "sha256": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
+      "kind": "view_nine_axis",
+      "purpose": "Final full view X=-30, Y=0.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/checks/x-minus22_5.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/e0702739-05d9-4c67-b891-0c572295fd7b.png",
+      "sha256": "618251aeefb0acbffb59d87134906a174e295078c0f214d777d792c4c6ae87bb",
+      "kind": "view_nine_axis",
+      "purpose": "Final full view X=-22.5, Y=0.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/checks/x-minus15.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/16fbdc0a-041c-4fde-acd5-d6c38a267c08.png",
+      "sha256": "82b55228de274f521dc05ac387e4afbd6a74a8e4ccafed4bc11085a9fa1ffff9",
+      "kind": "view_nine_axis",
+      "purpose": "Final full view X=-15, Y=0.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/checks/x-minus7_5.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/01e7c767-b40a-4277-b088-e221d73fb964.png",
+      "sha256": "35c4fed747c187e910c9b00a981a302466fc24106b5c3ac2744fa7307471ccfc",
+      "kind": "view_nine_axis",
+      "purpose": "Final full view X=-7.5, Y=0.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/checks/x-0.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/ff6e96ed-7237-4ba4-b8cc-05e4d0d4d591.png",
+      "sha256": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
+      "kind": "view_nine_axis",
+      "purpose": "Final full view X=0, Y=0.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/checks/x-plus7_5.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/9d5ea217-6563-498f-816b-188ce478ab70.png",
+      "sha256": "67aad5ab5dd1a18f3406d538e87960f0af45bbb350b3a0ede76fee5cd58b9bd0",
+      "kind": "view_nine_axis",
+      "purpose": "Final full view X=7.5, Y=0.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/checks/x-plus15.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/5bf84f75-04ea-4339-956c-400a395aaf08.png",
+      "sha256": "66d1528f7ad21662c2c229b3e0041c6cf984cc0b5a69cf40703b4463808ca816",
+      "kind": "view_nine_axis",
+      "purpose": "Final full view X=15, Y=0.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/checks/x-plus22_5.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/5717d5cd-20ac-445f-acbb-b464aed96ac9.png",
+      "sha256": "262bb2bdc3a1e99014b67cbb831517d4fdec8aa3cc2d876d50fd09a06ccf789d",
+      "kind": "view_nine_axis",
+      "purpose": "Final full view X=22.5, Y=0.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/checks/x-plus30.png",
+      "toolOutput": "nine-axis/step02_angle-x/workspace/bitmaps/747eaa24-9db9-4778-8394-45c02d4e33bf.png",
+      "sha256": "9f772f3dea17f6f94cadc0c1f201881e7d161b56809f757741ed7c09bc2b12d3",
+      "kind": "view_nine_axis",
+      "purpose": "Final full view X=30, Y=0.",
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2
+    },
+    {
+      "output": "nine-axis/step02_angle-x/intermediate-check.png",
+      "derivedFrom": [
+        "nine-axis/step02_angle-x/checks/x-plus30.png",
+        "nine-axis/step02_angle-x/checks/x-minus30.png",
+        "nine-axis/step02_angle-x/checks/x-0.png",
+        "nine-axis/step02_angle-x/checks/x-plus22_5.png",
+        "nine-axis/step02_angle-x/checks/x-minus22_5.png",
+        "nine-axis/step02_angle-x/checks/x-minus15.png",
+        "nine-axis/step02_angle-x/checks/x-plus7_5.png",
+        "nine-axis/step02_angle-x/checks/x-minus7_5.png",
+        "nine-axis/step02_angle-x/checks/x-plus15.png"
+      ],
+      "operation": "same canvas crop and scale for every angle; no recentering",
+      "sha256": "cb8bcadfbc57c5b26720bf9fa50f69a112068dd32056aead24c3d251ec43bb15",
+      "angles": [
+        -30,
+        -22.5,
+        -15,
+        -7.5,
+        0,
+        7.5,
+        15,
+        22.5,
+        30
+      ],
+      "canvasCrop": [
+        431,
+        35,
+        394,
+        394
+      ]
+    },
+    {
+      "output": "nine-axis/step02_angle-x/forehead-transition-check.png",
+      "derivedFrom": [
+        "nine-axis/step02_angle-x/checks/x-plus30.png",
+        "nine-axis/step02_angle-x/checks/x-minus30.png",
+        "nine-axis/step02_angle-x/checks/x-0.png",
+        "nine-axis/step02_angle-x/checks/x-plus22_5.png",
+        "nine-axis/step02_angle-x/checks/x-minus22_5.png",
+        "nine-axis/step02_angle-x/checks/x-minus15.png",
+        "nine-axis/step02_angle-x/checks/x-plus7_5.png",
+        "nine-axis/step02_angle-x/checks/x-minus7_5.png",
+        "nine-axis/step02_angle-x/checks/x-plus15.png"
+      ],
+      "operation": "same canvas crop and scale for every angle; no recentering",
+      "sha256": "1afff35d1f260e693118810b0a7b23e87a9b39d374eb274006d5892de72eded9",
+      "angles": [
+        -30,
+        -22.5,
+        -15,
+        -7.5,
+        0,
+        7.5,
+        15,
+        22.5,
+        30
+      ],
+      "canvasCrop": [
+        523,
+        137,
+        216,
+        116
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "status": "candidate awaiting user confirmation",
+  "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+  "sourceKraSha256": "56b11c5fd7a3db20e512de642bb1a5922d2f312b2c96557d0c8d3da022587ad4",
+  "sourceColorSha256": "52359407596567a2874c9714b1e4ea336f1268916e3de784737deeb8de8f173c",
+  "layerCount": 24,
+  "layerHashesMatchOriginalKritaExport": true,
+  "drawOrderMatchesOriginalKraExport": true,
+  "neckParent": null,
+  "neckAllKeyformsIdentical": true,
+  "compiledNeckAllKeyformsIdentical": true,
+  "onlyProducedAxis": "ParamAngleX",
+  "paramAngleYKeys": [
+    0
+  ],
+  "xyProduced": false,
+  "step07Produced": false,
+  "completionMismatch": [],
+  "occludedWeightScale": 1,
+  "fitTraceSha256": "9d3099adcf7f33b3adba3b7b1fe28c3d69d9e8c6d3c85746a69fc48dfee9047e",
+  "fitReferenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+  "fitScope": "face_shape only; subsequent edits affected eyes, eyebrows, mouth and nose, not face_shape or face_base",
+  "visibleResidualsPixels": [
+    {
+      "id": "far-orbit-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.08206386675683183,
+      "maxPixels": 0.17895064323689247
+    },
+    {
+      "id": "far-upper-cheek",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.1423404265941024,
+      "maxPixels": 0.36180155710494416
+    },
+    {
+      "id": "far-cheek-steep",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.19143385445893807,
+      "maxPixels": 0.535300088511645
+    },
+    {
+      "id": "far-jaw-turn",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.334299650726127,
+      "maxPixels": 0.7351982106140532
+    },
+    {
+      "id": "far-jaw-chin",
+      "samples": 27,
+      "weight": 1,
+      "meanPixels": 0.16366467472914714,
+      "maxPixels": 0.7351982106140532
+    },
+    {
+      "id": "near-chin-jaw",
+      "samples": 33,
+      "weight": 1,
+      "meanPixels": 0.023778074457940147,
+      "maxPixels": 0.07917143647845878
+    },
+    {
+      "id": "chin",
+      "samples": 1,
+      "weight": 1,
+      "meanPixels": 0.020125288012315935,
+      "maxPixels": 0.020125288012315935
+    }
+  ],
+  "inspectedXValues": [
+    -30,
+    -22.5,
+    -15,
+    -7.5,
+    0,
+    7.5,
+    15,
+    22.5,
+    30
+  ]
+}

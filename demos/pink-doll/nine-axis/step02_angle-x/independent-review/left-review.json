@@ -1,0 +1,3173 @@
+{
+  "version": 1,
+  "step": "step02_angle-x",
+  "status": "passed",
+  "readOnly": true,
+  "sourceCommit": "095020d08df93fa3ff6ef9de4c42f40ada7fbc97",
+  "workflowResultSha256": "2fbc1cec11ca0e010c323763b30702e61f45cde6ecc777e97eecd2de87e0b718",
+  "inputsSha256": "bd2b7cefb40d67620768cfa7decc510f38bc7fdef678f784449e8326146bfaad",
+  "visualStatus": "pending owner/user inspection",
+  "ownerAccepted": false,
+  "visualAcceptanceRequired": true,
+  "visualChecks": {
+    "actualForeheadTopContinuity": "pending inspection",
+    "bothForeheadCornersAndTemples": "pending inspection",
+    "bangSkinWindowCoverage": "pending inspection",
+    "completeOccludedPredictionVsActualFace": "pending inspection"
+  },
+  "outputDirectory": "independent-review/left-D5eCE6",
+  "images": [
+    {
+      "name": "left-full",
+      "purpose": "Actual face/features/fixed neck vs original frame, no registration",
+      "x": -30,
+      "y": 0,
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2,
+      "only": [],
+      "grid": [],
+      "current": "left-full-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
+      "comparison": "left-full-comparison.png",
+      "referenceBounds": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "referenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+      "comparisonSha256": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf"
+    },
+    {
+      "name": "front-full",
+      "purpose": "Fresh KRA export/rest vs original composed KRA image",
+      "x": 0,
+      "y": 0,
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 2,
+      "only": [],
+      "grid": [],
+      "current": "front-full-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
+      "comparison": "front-full-comparison.png",
+      "referenceBounds": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "referenceSha256": "52359407596567a2874c9714b1e4ea336f1268916e3de784737deeb8de8f173c",
+      "comparisonSha256": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d"
+    },
+    {
+      "name": "front-complete-face",
+      "purpose": "Actual original full face alpha on checker vs unchanged source contour",
+      "x": 0,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        199
+      ],
+      "scale": 2,
+      "only": [
+        "face/face_base"
+      ],
+      "grid": [],
+      "current": "front-complete-face-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "f81c5e3559cb48ab5cb2ac3d7bbad1069b865ba634aa63c0fc9f6bce2afe0c13",
+      "comparison": "front-complete-face-comparison.png",
+      "referenceBounds": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "referenceSha256": "e85fe3850c49e9da3e580956a66655a5052a4c0e7ddce7f0cdabf666f8b04f90",
+      "comparisonSha256": "afbeade144e8a1c3b668f4fbe6f70f0bec817bcb2b7fc66f27f2dba1aa897587"
+    },
+    {
+      "name": "left-complete-face",
+      "purpose": "Actual final full face silhouette on checker vs unchanged completion prediction",
+      "x": -30,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        199
+      ],
+      "scale": 2,
+      "only": [
+        "face/face_base"
+      ],
+      "grid": [],
+      "current": "left-complete-face-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "9a966282faed98a49363337c8fab7b09d3e69423a24dfec74871c567faa158e4",
+      "comparison": "left-complete-face-comparison.png",
+      "referenceBounds": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "referenceSha256": "c8b912851a88235444f33bc47551b49ca125cb5ad0bbb209d0a44f3ceb222ecf",
+      "comparisonSha256": "a35ac255d933be0eee8a13a5141bb0bc3d35a7579b2065ea10c793536554ea55"
+    },
+    {
+      "name": "left-forehead-temple",
+      "purpose": "Actual forehead top, both forehead corners and temples vs unchanged completion",
+      "x": -30,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        140
+      ],
+      "scale": 4,
+      "only": [
+        "face/face_base"
+      ],
+      "grid": [],
+      "current": "left-forehead-temple-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "839fa131ba16f1a09d048499fb127a5f816d41a47ff2b0c0e012d6ed88e09ffa",
+      "comparison": "left-forehead-temple-comparison.png",
+      "referenceBounds": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "referenceSha256": "c8b912851a88235444f33bc47551b49ca125cb5ad0bbb209d0a44f3ceb222ecf",
+      "comparisonSha256": "5ed435bbcfcacaa4b4efe5dc4242a633191c0da5398789e68f004ebde9447e5c"
+    },
+    {
+      "name": "left-hair-coverage",
+      "purpose": "Actual full face vs original left static hair occlusion window",
+      "x": -30,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        140
+      ],
+      "scale": 4,
+      "only": [
+        "face/face_base"
+      ],
+      "grid": [],
+      "current": "left-hair-coverage-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "839fa131ba16f1a09d048499fb127a5f816d41a47ff2b0c0e012d6ed88e09ffa",
+      "comparison": "left-hair-coverage-comparison.png",
+      "referenceBounds": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "referenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+      "comparisonSha256": "278a18cbcd35090ca341de2e904441b1b9c59c69824d0ff45fd1613ec3f3fd8f"
+    },
+    {
+      "name": "left-bang-skin-window",
+      "purpose": "Actual final face/features beneath the original bang skin window; inspect exposed forehead/corners for missing face coverage",
+      "x": -30,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        140
+      ],
+      "scale": 4,
+      "only": [],
+      "grid": [],
+      "current": "left-bang-skin-window-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "c4c764708821505e5f550f335fe6c103889a1ec5b5be871348d47cf74fa49c7c",
+      "comparison": "left-bang-skin-window-comparison.png",
+      "referenceBounds": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "referenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+      "comparisonSha256": "bd0f02792ecc747ef411ac057e4c5b8179522311d5744db19b60c57ed442415b"
+    },
+    {
+      "name": "front-hair-coverage",
+      "purpose": "Actual original full face vs original KRA static bangs/temples",
+      "x": 0,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        140
+      ],
+      "scale": 3,
+      "only": [
+        "face/face_base"
+      ],
+      "grid": [],
+      "current": "front-hair-coverage-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "f6d70416886bcd1e3386319b3e2327386c7de62c0f34eab5defe937be6f6fde8",
+      "comparison": "front-hair-coverage-comparison.png",
+      "referenceBounds": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "referenceSha256": "52359407596567a2874c9714b1e4ea336f1268916e3de784737deeb8de8f173c",
+      "comparisonSha256": "92c7e71199fec561154db670b498aa751ff33393679508bf2943ce7cf8ec8791"
+    },
+    {
+      "name": "left-control-range",
+      "purpose": "Actual agent-defined local/group Warp control ranges",
+      "x": -30,
+      "y": 0,
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 1,
+      "only": [],
+      "grid": [
+        "face_shape",
+        "eye_left_pose",
+        "eye_right_pose",
+        "mouth_pose",
+        "face/face_base"
+      ],
+      "current": "left-control-range-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "7225d2d752cebc8bcc96fd831ab98dc1b3026424367d7b05bfb22fac8e4c552e"
+    },
+    {
+      "name": "left-far-brush-edge",
+      "purpose": "Actual far eye-tail/orbit/cheek boundary, tangent and brush width in same-coordinate overlay",
+      "x": -30,
+      "y": 0,
+      "crop": [
+        519,
+        210,
+        35,
+        75
+      ],
+      "scale": 6,
+      "only": [],
+      "grid": [],
+      "current": "left-far-brush-edge-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "09ff8975d660579d27e1058bf8645bc533f675b19bd69e856e372cdd0decbdfb",
+      "comparison": "left-far-brush-edge-comparison.png",
+      "referenceBounds": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "referenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+      "comparisonSha256": "b838d057bd2d0818d1d8331d40d288b904a27c31610939d17d9f71fa313ea8c0"
+    },
+    {
+      "name": "transition-x-15",
+      "purpose": "Actual X-only intermediate/mirror features and fixed neck",
+      "x": -15,
+      "y": 0,
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 1,
+      "only": [],
+      "grid": [],
+      "current": "transition-x-15-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "6e1a95a805f718b91893486666ab1c738af063886f3f91b73090201f6107ea2a"
+    },
+    {
+      "name": "transition-x-15-complete-face",
+      "purpose": "Actual complete upper-face continuity at intermediate/mirror pose",
+      "x": -15,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        199
+      ],
+      "scale": 2,
+      "only": [
+        "face/face_base"
+      ],
+      "grid": [],
+      "current": "transition-x-15-complete-face-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "38152923f4609cf11db425ce127b323362042ce4d12c619367cdd508f14b1778"
+    },
+    {
+      "name": "transition-x0",
+      "purpose": "Actual X-only intermediate/mirror features and fixed neck",
+      "x": 0,
+      "y": 0,
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 1,
+      "only": [],
+      "grid": [],
+      "current": "transition-x0-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "8a0229ba03a4706d455007c246a3c5617c5194cc3e3bcc88dc5f227bf72d974f"
+    },
+    {
+      "name": "transition-x0-complete-face",
+      "purpose": "Actual complete upper-face continuity at intermediate/mirror pose",
+      "x": 0,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        199
+      ],
+      "scale": 2,
+      "only": [
+        "face/face_base"
+      ],
+      "grid": [],
+      "current": "transition-x0-complete-face-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "f81c5e3559cb48ab5cb2ac3d7bbad1069b865ba634aa63c0fc9f6bce2afe0c13"
+    },
+    {
+      "name": "transition-x15",
+      "purpose": "Actual X-only intermediate/mirror features and fixed neck",
+      "x": 15,
+      "y": 0,
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 1,
+      "only": [],
+      "grid": [],
+      "current": "transition-x15-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "743418edf5868cc69f024b95c183faf29e4ee1cc45d8a24782e0d9389c6e5cd3"
+    },
+    {
+      "name": "transition-x15-complete-face",
+      "purpose": "Actual complete upper-face continuity at intermediate/mirror pose",
+      "x": 15,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        199
+      ],
+      "scale": 2,
+      "only": [
+        "face/face_base"
+      ],
+      "grid": [],
+      "current": "transition-x15-complete-face-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "0365335217bb4b113e0be67c2ce7ee62c7e47aace38b0074c3221f5111a941d3"
+    },
+    {
+      "name": "transition-x30",
+      "purpose": "Actual X-only intermediate/mirror features and fixed neck",
+      "x": 30,
+      "y": 0,
+      "crop": [
+        431,
+        35,
+        394,
+        394
+      ],
+      "scale": 1,
+      "only": [],
+      "grid": [],
+      "current": "transition-x30-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "f3e210001d6c21e50deaeaaf4291e82ff0fe9f9dc18b3e857ab5ef2827dcc0cc"
+    },
+    {
+      "name": "transition-x30-complete-face",
+      "purpose": "Actual complete upper-face continuity at intermediate/mirror pose",
+      "x": 30,
+      "y": 0,
+      "crop": [
+        492,
+        130,
+        271,
+        199
+      ],
+      "scale": 2,
+      "only": [
+        "face/face_base"
+      ],
+      "grid": [],
+      "current": "transition-x30-complete-face-current.png",
+      "renderedBuiltDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "renderedAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+      "renderedDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+      "binding": "Existing view_nine_axis receives this exact read-only built.doc; complete source/protected snapshots checked before/after.",
+      "currentSha256": "5b67eb7130c615aa61785ff4425e6715dda327a10f7cff0416cf1ec0e32ad395"
+    }
+  ],
+  "startedAt": "2026-11-04T11:54:15.910Z",
+  "protectedFilesBefore": {
+    "character-assembly/step01/character-assembled.kra": "56b11c5fd7a3db20e512de642bb1a5922d2f312b2c96557d0c8d3da022587ad4",
+    "character-assembly/step01/character-assembled.png": "52359407596567a2874c9714b1e4ea336f1268916e3de784737deeb8de8f173c",
+    "nine-axis/step01_video/.completed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "nine-axis/step01_video/upper-body.png": "199356c96aa75b16c05def0ebd4334b5e8caae4982f800dfa6eb86d05ea5a5db",
+    "nine-axis/step01_video/crop.json": "a042788ecfb8aeab491599dda55b214714d9776afa8d6dfdc6e959b03300a6f6",
+    "nine-axis/step01_video/left.png": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+    "nine-axis/step01_video/views.json": "32153cec0c81be4dba674747d01330cb1dca38c8f40739701fa3c89d27321c9c",
+    "nine-axis/step01_video/left.mp4": "f9ba06ba2ede5fb2dfd791c8e09b7ccbb01dcde09737dd9035066a64ef11f9eb",
+    "part-layering/parts/face.svg": "f82d5905cb0984059eb76d5b4d5936bda6f85583c966483ddf4e728f9f5c881f",
+    "part-layering/parts/hair.svg": "e8a4f8f9abf7cdcccef3c6b8361c1956ffa1666fe05197ac8d68ea2dd7e34a61",
+    "part-layering/parts/head_accessories.svg": "0cb17f7f36166262cb923ebffc4f905077d1cd13abc9d99df656a5c09ef2a939",
+    "nine-axis/continuity-reference/up-current.png": "24cd2dc252979c2ab762cf85670434a0fe5ad6dce316ff6ff0d65b33c68aa667",
+    "nine-axis/continuity-reference/down-current.png": "cb61255a1553cfd97dbe324b640280696aadb09df2aebece70d0d8039ca4c036",
+    "nine-axis/continuity-reference/left-up-left-left-down.mp4": "f395079397615dcfd388e78f78e8b872e042ac1cbad57c0b0b8f330cd63a1e98",
+    "nine-axis/continuity-reference/render-provenance.json": "50535cc8339446d233571c3e2cb8a173bb9e1674921577ca726784eaeab56256",
+    "nine-axis/continuity-reference/README.md": "945f688789f425b2f8ef7091b75e5d09540f3679945184f8ac67293a8e143a92",
+    "nine-axis/continuity-reference/face-base-sequence.png": "6ef15f5e5b25f4a5ba5b6ec643fd387dbdee43ebf15d87b25728c66f7842d97f",
+    "nine-axis/continuity-reference/face-sequence.png": "e93932d6402ec5573d477beb1debf4fb7fac8bc2ff2c903507c081ce36381efc"
+  },
+  "sourceFilesBefore": {
+    ".completed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "checks/x-0.png": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
+    "checks/x-minus15.png": "82b55228de274f521dc05ac387e4afbd6a74a8e4ccafed4bc11085a9fa1ffff9",
+    "checks/x-minus22_5.png": "618251aeefb0acbffb59d87134906a174e295078c0f214d777d792c4c6ae87bb",
+    "checks/x-minus30.png": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
+    "checks/x-minus7_5.png": "35c4fed747c187e910c9b00a981a302466fc24106b5c3ac2744fa7307471ccfc",
+    "checks/x-plus15.png": "66d1528f7ad21662c2c229b3e0041c6cf984cc0b5a69cf40703b4463808ca816",
+    "checks/x-plus22_5.png": "262bb2bdc3a1e99014b67cbb831517d4fdec8aa3cc2d876d50fd09a06ccf789d",
+    "checks/x-plus30.png": "9f772f3dea17f6f94cadc0c1f201881e7d161b56809f757741ed7c09bc2b12d3",
+    "checks/x-plus7_5.png": "67aad5ab5dd1a18f3406d538e87960f0af45bbb350b3a0ede76fee5cd58b9bd0",
+    "deformers.json": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+    "export-record.json": "db2b93ad08e839664548e3c447ce024fbca98f67b1e02c5ff7a7af4105ad324a",
+    "face-base-completion-overlay.png": "db6ce24c29d61eb728eae4ddea64a503f9c4d5900b6a037f9551bc72dcba17ff",
+    "face-base-left-check.png": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+    "face-completion-check.png": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+    "face-left.json": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+    "face-trace.json": "9d3099adcf7f33b3adba3b7b1fe28c3d69d9e8c6d3c85746a69fc48dfee9047e",
+    "far-side-check.png": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
+    "fit-report.json": "9142fb132683d403e65f224c082755b37736350add1e22a7fb13e3af84a0a652",
+    "forehead-temple-check.png": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+    "forehead-transition-check.png": "1afff35d1f260e693118810b0a7b23e87a9b39d374eb274006d5892de72eded9",
+    "front-check.png": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+    "hair-coverage-check.png": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+    "image-provenance.json": "01108189628e34f2720308887e7f467c439b812f3e401fbead75e418b56507ec",
+    "intermediate-check.png": "cb8bcadfbc57c5b26720bf9fa50f69a112068dd32056aead24c3d251ec43bb15",
+    "jaw-chin-check.png": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
+    "layers/face__eye_left__eyelid_crease.png": "d788e2360842364c4efd4f580a3d7b5cacce306cdb55d1a4ed7c23aaaac56755",
+    "layers/face__eye_left__highlight.png": "73c4bcc44f6fb0ff6775afac71af5288560b9dffb6910ab79ff1c7221f0c79c5",
+    "layers/face__eye_left__iris.png": "013170820242f84ff21fdd850a9d367539cc19d95fbb848b852d88aae75be5c4",
+    "layers/face__eye_left__lower_eyelashes.png": "be4b8be1573897b1ec5b518d6c107cc7bf5bbb2d73d81ba1be5c2a6ff1b1d70e",
+    "layers/face__eye_left__lower_eyelid.png": "1c1d3fe9846b03903a05df0962782b5546b05904c9e959c2fd7b467938cceae1",
+    "layers/face__eye_left__sclera.png": "7f4ec589a79756c03181294d31c72680c1163de71005ccd225e9a8b35a7634ae",
+    "layers/face__eye_left__upper_eyelid.png": "685479313394094ea426e742e448724a7bdbce370e65870d4e70ed3ca73b9c57",
+    "layers/face__eye_right__eyelid_crease.png": "a80e5b3e220f79ef8c41ac307a902d1a2c0ab026bf01545a473576d8e3e11e2c",
+    "layers/face__eye_right__highlight.png": "bbb3e425b59419f51d028573f106c345f981bb24ebbd0fe7ae3a3ea74aefa860",
+    "layers/face__eye_right__iris.png": "d1c024675efa07f890ea1269143226a1560b2384bdfe499fc79f0c3e94576cdd",
+    "layers/face__eye_right__lower_eyelashes.png": "d7eb4f2079f1816d9eec403ef139dddb35abaf6872237b4415a89fc25303b99a",
+    "layers/face__eye_right__lower_eyelid.png": "f59c188f40234a451bc4e9dff7096743eaddfe047c5179a1d3358c1b55232030",
+    "layers/face__eye_right__sclera.png": "c23bd63cc1a847170929dead7a89ad6f750bfee90aca685cb20c40382e9a542a",
+    "layers/face__eye_right__upper_eyelid.png": "ed58717c3d2b62414e9b3a5d1f3cfe3a345523ee1c6ac1381c8f7ca4eb88ca4e",
+    "layers/face__eyebrow_left.png": "3f3bcdf1f9fbc13e5c26bd0e649bdbe6195e3f29b58671b194b507d8647565f2",
+    "layers/face__eyebrow_right.png": "92dfbc06b446c5552a40cc843a2fd79d9b781045cf04341f624f75d7832a6d8d",
+    "layers/face__face_base.png": "7baea62d9800a0ccdad18b99495d677865ece7a3499fec6b3c8f015201ac8ce8",
+    "layers/face__mouth__lower_lip.png": "d3ac963c60fc4894744132b1e6c1fa6dc96db2e7c0f94e272f63697c5de5d808",
+    "layers/face__mouth__mouth_interior.png": "821bfb133531a8f7fa5323f44c5a9a32416b700929cc93e9549a7f6520f4093e",
+    "layers/face__mouth__tongue.png": "43be3f19618840ea46247452bf8acf918e0c7e553953d8d479e3dfb79397b307",
+    "layers/face__mouth__upper_lip.png": "34ea76f889e6b20d2852354138bf1ba36f99565fd2b9ddf24a9e1fa3cc177c06",
+    "layers/face__mouth__upper_teeth.png": "c884d541e779a4d7cb08bfe7137818224cd8848afb3dd6a6f4af44559e60b42c",
+    "layers/face__nose.png": "7bbfe6ecd497c2a7f1dda0280b82a90f1ef3a462e93729600ab5887ef30eb56a",
+    "layers/neck.png": "30231c847f6357a5e08f2a4ff5305c1c25c1683adc7ba45e0fc59d68496953e9",
+    "left-check.png": "f2a947cc20f6fbb2aabcfb60b50b9a867a28ca0778a18c630ac8600f8e9b9071",
+    "left-fit-check.png": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
+    "neck-contact-check.png": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
+    "notes.md": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+    "source-face-reference.png": "f26084e3fafcc481da84790a2386e92ab6910526d1fb9719730231359a6a4d33",
+    "source-face.svg": "451c4e7dac3fc53af4022217892d9e77e102947edb3c8bde7279a6dbf3dfb04b",
+    "source-trace-edge.png": "ad19dcfb9f58450bd68c725a076948b363835986625d08687177410602260069",
+    "source.json": "defdd47b861b90379b5235b46453cfd0a1669d93c87f6078dca32d81e02db504",
+    "target-face.svg": "922eb64c85a3b6df96f6ac98aa5fc4a6abacbf184b9092bc16bb763b7d015307",
+    "target-trace-edge.png": "80cc359fcf99704ae5173911f332e6e6b23668f3475c587b842b672be866bffe",
+    "trace-check.png": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+    "verification.json": "516df9a3139edb2b4eb130779896550f15a0980ea4b85f051c4690812e6cde18",
+    "workspace/bitmaps/004971f2-de36-449d-aac3-f1820f1d80b9.png": "df1c54a2ea3ea3f37ff7d3fc1b1f75d5074a391e5db66033913ea950dfe598a2",
+    "workspace/bitmaps/01e7c767-b40a-4277-b088-e221d73fb964.png": "35c4fed747c187e910c9b00a981a302466fc24106b5c3ac2744fa7307471ccfc",
+    "workspace/bitmaps/0aa93d9a-8e1c-44bd-acba-e55153dc1ab8.png": "e5d6b60864619b64b18cf009f89253fb644472cd703d2c2c73e1484cd45c89d9",
+    "workspace/bitmaps/0f20484e-e4e1-4627-aa47-66581eefeb05.png": "2c388b41cad5baaf131ae4ccebc5b6277de94f6063c545b559bc50eb89cda856",
+    "workspace/bitmaps/135f30bb-063f-4013-a659-b312d9310d71-comparison.png": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+    "workspace/bitmaps/16fbdc0a-041c-4fde-acd5-d6c38a267c08.png": "82b55228de274f521dc05ac387e4afbd6a74a8e4ccafed4bc11085a9fa1ffff9",
+    "workspace/bitmaps/198dd45d-edfb-43e4-80b2-e4e77423a690-comparison.png": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+    "workspace/bitmaps/1be0125e-6497-4fb1-9495-a7b9f877f520.png": "f6550c20bd32eba596a494a924041b38d84c2354a389a405b6d05d8ad888485b",
+    "workspace/bitmaps/1c6a55bc-d063-4ce7-bbfc-a2187f4391d2.png": "e93932d6402ec5573d477beb1debf4fb7fac8bc2ff2c903507c081ce36381efc",
+    "workspace/bitmaps/1d34efb7-340d-4bb8-aaf0-6bc4f38cf908-completion.png": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+    "workspace/bitmaps/2b25dc92-81ae-45a0-b9e0-8edba44de5ea-comparison.png": "db6ce24c29d61eb728eae4ddea64a503f9c4d5900b6a037f9551bc72dcba17ff",
+    "workspace/bitmaps/2c226ebc-0399-49b3-81a8-7fd77cb82f08.png": "736ad0b39dfa4681bd4a2e4cd97eef2cbcaaeda4b567d5f72701d4ac859d54d1",
+    "workspace/bitmaps/31f02a96-793f-43a4-aa6d-771c55358dd1.png": "594ac864fc0515503eeffe0e770cf2cc7308efadd9aebb649040fa67ee43fc34",
+    "workspace/bitmaps/33e8816f-b568-43f3-86e4-17cf606143e6.png": "5086e306b7340b264d66088f76706efd1b9431ddcc30b3e2a2efee648740a7da",
+    "workspace/bitmaps/425ce4cd-5a06-42f7-8068-2f22da435253-completion.png": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+    "workspace/bitmaps/4487c227-7cbb-4438-8204-e226866f4ac5.png": "a6053ed441415ded78948b188c48f9f270e31146d180303b417439b063a23961",
+    "workspace/bitmaps/467b7814-2833-4b20-9491-8ae753e0ae5c-completion.png": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+    "workspace/bitmaps/486b7366-49eb-4393-891c-2565db3730f8-comparison.png": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
+    "workspace/bitmaps/516858c4-5e96-4318-ac4e-c5b92c635c48-comparison.png": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
+    "workspace/bitmaps/519c0b91-3765-4404-8043-356a6102652a-comparison.png": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+    "workspace/bitmaps/55e85991-dbf5-4f52-af48-0a72bda4756b-trace.png": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+    "workspace/bitmaps/564b3012-a598-4070-965f-4c87779de5ab.png": "19c06b7d3c54692e29b94c98cdd6abac7f5b134bab82683df168c9daa0e116d2",
+    "workspace/bitmaps/5717d5cd-20ac-445f-acbb-b464aed96ac9.png": "262bb2bdc3a1e99014b67cbb831517d4fdec8aa3cc2d876d50fd09a06ccf789d",
+    "workspace/bitmaps/5bf84f75-04ea-4339-956c-400a395aaf08.png": "66d1528f7ad21662c2c229b3e0041c6cf984cc0b5a69cf40703b4463808ca816",
+    "workspace/bitmaps/5c69c0b7-1d03-4ae3-b7fb-7d91721b164a.png": "57209ef74f81ac701869fde5d4ec79d950f2bd55b3427659d8816db40c3aab68",
+    "workspace/bitmaps/5e563b97-5580-4750-87d1-9bf85f5c1723.png": "d17950541c76f463025165fc6d6563877aef9ad7308e78e74b4c1c25aaa151a9",
+    "workspace/bitmaps/6097f36d-abe1-4962-93c6-ae1b8939964a.png": "2d779f7d21b6dba9c620240b4039d4d42c825448eef734a90504c7b51445aad7",
+    "workspace/bitmaps/64ab1d23-5472-4218-a4bb-a3912ee1559e.png": "f8327849cf119210821c9d9ca4dc9e9b5220171476e80ece9051cc08ad847a0e",
+    "workspace/bitmaps/69911626-8b46-4de2-b643-6156f91d3181-trace.png": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+    "workspace/bitmaps/7001a9ff-a23c-4b1b-adbf-a03c1a5df6ad-comparison.png": "14228564c39937906db88a8ecaaf0c2d844668f0137feaa3e5efb3800aa24dd5",
+    "workspace/bitmaps/71d7333a-52d3-4d96-90fb-390ebd4c1741-comparison.png": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
+    "workspace/bitmaps/747eaa24-9db9-4778-8394-45c02d4e33bf.png": "9f772f3dea17f6f94cadc0c1f201881e7d161b56809f757741ed7c09bc2b12d3",
+    "workspace/bitmaps/7c77251d-4811-4915-9605-d9d9867c3ed3.png": "6ef15f5e5b25f4a5ba5b6ec643fd387dbdee43ebf15d87b25728c66f7842d97f",
+    "workspace/bitmaps/7dac7fb2-0ba6-486d-a6c0-239431d87c22.png": "869321d6f4b452f33cd3404bb5eb94572074d422e23cde0b74dc08315cbf3c69",
+    "workspace/bitmaps/7de2911b-30a2-424b-b0fa-8e2842589efb.png": "e4f2fdf747c0d2bfccdc023119398609f10e67ca90e2e7e6d0043463e11bc063",
+    "workspace/bitmaps/83711c8f-e4b6-4431-bf34-d0563e66806f.png": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
+    "workspace/bitmaps/8e0a556c-467a-4ced-9435-a451c531c746.png": "f02ce38038360bcd8f2b732ad91c12b502f84f1c28fab02339bd28338f533140",
+    "workspace/bitmaps/9235152b-6e10-47e1-8ebe-d563616015f0.png": "1157969546f5805fc86b761be3061d49a1ae2aacd39f30332faec9ce7c1a0dab",
+    "workspace/bitmaps/9302c6eb-466d-4bbd-80bc-d67b667eb693.png": "869efd499576624a63eb49f6f392997b3df78719a38c462be05ce5d57b7b6fbe",
+    "workspace/bitmaps/959bc037-f919-454f-ab0c-79b6d521e765.png": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
+    "workspace/bitmaps/9b81e2c1-b0db-4800-89b0-969712e43a82.png": "27576798a4e2226db3b93ce2c6bd293be3417b8183cc444681957bd3f0dff0fa",
+    "workspace/bitmaps/9d5ea217-6563-498f-816b-188ce478ab70.png": "67aad5ab5dd1a18f3406d538e87960f0af45bbb350b3a0ede76fee5cd58b9bd0",
+    "workspace/bitmaps/9e6c1e63-2ba1-4801-bbaa-89c15a63971f.png": "6ef15f5e5b25f4a5ba5b6ec643fd387dbdee43ebf15d87b25728c66f7842d97f",
+    "workspace/bitmaps/a0bc816a-f388-42da-81ee-693e4112f4bf-comparison.png": "057bb6e41fdc9a28f50b4a795bde02cdc9af52ccccf7c083c0179bb33178edfd",
+    "workspace/bitmaps/a2c76438-00b4-4f02-a7e1-bb1e615da9aa.png": "d1497434ba441910ce1514d17bd157fa51ac6228e5bbc3bb7c9005b79df47965",
+    "workspace/bitmaps/a6c0671e-6eec-4110-bfa8-04854ad78557.png": "6eba89c42aa4f0df4b826c203bbf69a8f835072ab56c77a06a7d8dfb0e1e7db8",
+    "workspace/bitmaps/a717ce6f-e98b-4640-ad89-b94052eb0345-comparison.png": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+    "workspace/bitmaps/ae2201b0-26f5-4f14-9b94-63e3533d0617.png": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+    "workspace/bitmaps/b31298f5-14d7-49bb-82c0-bddaf45ad072-comparison.png": "db6ce24c29d61eb728eae4ddea64a503f9c4d5900b6a037f9551bc72dcba17ff",
+    "workspace/bitmaps/b3e27cf2-2f9a-4626-8ceb-9ae30ba55ab4-comparison.png": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+    "workspace/bitmaps/baa38548-2292-4021-8cbf-1acd2e614507.png": "02a963250899cb814f062d88c8133f8c010fcd769410d0bcb851f47baa19b8e2",
+    "workspace/bitmaps/bec118bf-ad26-4801-acb2-da911154520b.png": "18795fbf8f582464a7d3ebb5ef988d1d9c2675734bc5a0d1c2ae77bdc501e183",
+    "workspace/bitmaps/c00ad1a3-2ab6-4634-9f8e-898d5758552f.png": "e93932d6402ec5573d477beb1debf4fb7fac8bc2ff2c903507c081ce36381efc",
+    "workspace/bitmaps/cabdaa6b-df3d-4cf7-8991-e35c696c145b.png": "3436cde31a87e7c323a66c054f6eceb7bec22acdb6867910228ada5cf894085f",
+    "workspace/bitmaps/ceba2e1f-1022-48f3-ab44-ae3d93ceda8f-trace.png": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+    "workspace/bitmaps/cf7611d9-23ef-4ac2-9cc0-e5b65839207f.png": "736ad0b39dfa4681bd4a2e4cd97eef2cbcaaeda4b567d5f72701d4ac859d54d1",
+    "workspace/bitmaps/d32be692-784c-4d25-a9a6-3cca743d6d01.png": "46d6dfffccd03c5bb255f2244993c0ea6fce0d3f949748e750566f42bcbb62d7",
+    "workspace/bitmaps/d40cc720-4ff4-40fa-a64b-a54db4403973.png": "9c3a5d621294698772dfdb243145fe891fbd5fab9fb00bbcaff884dda4335b19",
+    "workspace/bitmaps/dc00bdb1-57ae-41a2-a41d-04a3d32baec6.png": "51c79de11f914dc94a8844eeca79fde999dc2564fc1fbd9ec8e2ec013d5042b5",
+    "workspace/bitmaps/dd541c91-bbe9-466c-9925-34a468cdb664-comparison.png": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
+    "workspace/bitmaps/de0dadc7-f058-4ce6-9f17-a42e0402b2f7.png": "f02ce38038360bcd8f2b732ad91c12b502f84f1c28fab02339bd28338f533140",
+    "workspace/bitmaps/de909cad-65f1-42f7-b7e6-c416c7e7555b.png": "df1c54a2ea3ea3f37ff7d3fc1b1f75d5074a391e5db66033913ea950dfe598a2",
+    "workspace/bitmaps/e0702739-05d9-4c67-b891-0c572295fd7b.png": "618251aeefb0acbffb59d87134906a174e295078c0f214d777d792c4c6ae87bb",
+    "workspace/bitmaps/e5a4d2f9-2cfd-488c-b337-f58c0ed6de54.png": "01afdc17742fab50793e077f08b7ccffade1855e4d99d6e50e604584a419e5fb",
+    "workspace/bitmaps/efa069b0-1147-4cdb-95dd-dd3d8f95e6d3.png": "5086e306b7340b264d66088f76706efd1b9431ddcc30b3e2a2efee648740a7da",
+    "workspace/bitmaps/f00172c9-149d-4d3b-85f4-383322df5a88-comparison.png": "679faf1042d5fb1b79a9133e7721b48090552b624294296a555dc24be83b64c2",
+    "workspace/bitmaps/f5317331-71b0-4866-a34c-017cf79b554d.png": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+    "workspace/bitmaps/fb502f35-ecab-4b48-bfef-155ae74614eb.png": "8e3e2fae56a3f7738ef42d13788e913e2098af79a1d5aa815fb5fe9ab26e41b1",
+    "workspace/bitmaps/fe2f68b5-a4aa-4fbd-a532-e7c65a4061c5.png": "1aff87ee133054b59f64ab57f1198056b7f99390c4996644df1f7ab3f9ede374",
+    "workspace/bitmaps/ff6e96ed-7237-4ba4-b8cc-05e4d0d4d591.png": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
+    "workspace/bitmaps/ff9fb4af-fa2e-47f4-a121-d7e8c8ccdb61-comparison.png": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+    "workspace/compile.mjs": "a70ea8394fe44b269d7ec44509bd69fdeb64a85ac5ee2d8384c1b38d8149488c",
+    "workspace/context/hair__back_hair.png": "e2fcccf7915d440f6ae751ed2b4504485e42bfdb54d9902886e4e8ca55da5e62",
+    "workspace/context/hair__bangs.png": "1158d91165e84aa13fc663703033f352242fb749745480c7766118721aa68e0a",
+    "workspace/context/hair__bun_left.png": "63f61cedea409b8f668b115c758944ec6aea879c8f3cddbde6cc75f7bc1aef40",
+    "workspace/context/hair__bun_right.png": "b191d72ac1574fbebf6d0653af607a629b6c50f479f46a7d79e65d6af354adbf",
+    "workspace/context/hair__front_side_hair_left__front.png": "04f1721fe4ba8407e3e2fc9e53b217bbe67a377e3d68a889c71f246807330a48",
+    "workspace/context/hair__front_side_hair_left__root.png": "0900392143d3b8b8221a1d1f0da818faaa6339b53f907ecd246ff3b702d2677e",
+    "workspace/context/hair__front_side_hair_right__front.png": "8fb8bb3c5f42213bf0a2248d940b33d822a1b2db0046654e8296c038a817875b",
+    "workspace/context/hair__front_side_hair_right__root.png": "1c46b5dcbcd884bcd741aeb28f52bcb6f764c74fbb59f1a24f688e903cbdc3f2",
+    "workspace/context/hair__side_hair_left.png": "10b8720a2d7401833410dc35dfa3b78157155defffeb1ae17113391ee273bd7c",
+    "workspace/context/hair__side_hair_right.png": "7701d077fea101776b6aa0569b74a8cd2b96f2a539dea0a50a6a6be3c5a01e53",
+    "workspace/context/head_accessories__front.png": "4c03b1046ef4a71aa9165aaaf7f42a1b9f59d0c228c3aa42750ff5f9896d6d19",
+    "workspace/context/head_accessories__root.png": "fa3db1cd3d9d23953d22a0842b20b785aa7e62894b9261c257ee7a4e99c6a362",
+    "workspace/continuity-video-1.8.png": "cff7f9f5386e9c116d7793d34f0d0fed36dde0f693497397f64bc91cf7c84db3",
+    "workspace/continuity-video-2.1.png": "143f52fd28189c9241083f4a13b02c6e38e7af0ac1aeaba625aa327054c1e0b5",
+    "workspace/continuity-video-2.4.png": "ac7311c95bef92918875917754a3579a9df3c3276ede169b870fc66551299aec",
+    "workspace/continuity-video-diagnostic.png": "1be152480ba66832e6bf41165ef7fbb542e629da5bc9f0a69704cde2ec709ec6",
+    "workspace/export_kra.py": "c80ab415e4e2fd3c289fc74d55ffae4e1829a20f5a7381b76c784ea0ebf86aa1",
+    "workspace/finalize_delivery.py": "c3f4386f61ee331744054689ce2c66bc7fd875ce172b34abc918de9da86d2740",
+    "workspace/inspect_kra.py": "bd005386c96b54d6d825548386bf2c4946e890542be5640ec0eadd7f557067cc",
+    "workspace/kra-tree.json": "a44725330ca1b0591302e359d85431574ae176d2aebef3c1171d234ee7b612ad",
+    "workspace/left-neighbor-board.png": "3b5d540049c4868772003d46103b84b9988ad5caf1d077eed47b528d4de66065",
+    "workspace/prepare_reference.py": "ec1406f8ea8faa7a8bf5311d98dbc33b07d4a0e8b591d178772de89981e44523",
+    "workspace/previews/2026-11-04T11-17-35-997Z-1.png": "b5a35add38ec1ef0429fffe6bcb0214470026085277e3a75ce82a6db7ab55b3a",
+    "workspace/previews/2026-11-04T11-17-35-997Z-10.png": "9de83ca0772136f0482714356eac6a2fae92c9c2b465e01d5e517a249ba5ac68",
+    "workspace/previews/2026-11-04T11-17-35-997Z-11.png": "9f9c9a1c3a6e4235f76b66f6a64bda555f876519ce66286bf3399e057b72abcd",
+    "workspace/previews/2026-11-04T11-17-35-997Z-12.png": "aedd88084d8cb217a3ab8b0ca3ac8fbbba6ad9fefa7b388d72201addf812a0d0",
+    "workspace/previews/2026-11-04T11-17-35-997Z-13.png": "6004fc7d6918d79ea8475d9897f4510bbab7f6c3ae67aea696a4219d82868760",
+    "workspace/previews/2026-11-04T11-17-35-997Z-2.png": "9cb91bbae58fd03a79c194d725c346814e2c3efc44a97fcfd4f090b6af428034",
+    "workspace/previews/2026-11-04T11-17-35-997Z-3.png": "91074156146f6e1a62bf45fa0e32a3da670f65883230e457ada19df4976948bd",
+    "workspace/previews/2026-11-04T11-17-35-997Z-4.png": "f3b37bf764190a7c2068dca1300828b41501a4027b08de221173a4b3d758bcb8",
+    "workspace/previews/2026-11-04T11-17-35-997Z-5.png": "cf17d2e1c8cc8f7934ab1fa9ac336687656715e31ebe661b80adfcb24a94a60a",
+    "workspace/previews/2026-11-04T11-17-35-997Z-6.png": "ad19dcfb9f58450bd68c725a076948b363835986625d08687177410602260069",
+    "workspace/previews/2026-11-04T11-17-35-997Z-7.png": "b5d9da68dc02aa310567fb8e7e2f79a9de570805f36634f84230e1cba26fe11d",
+    "workspace/previews/2026-11-04T11-17-35-997Z-8.png": "a4c9f56f2c60705b9270cfdc47c6eecae508124b8cea1b73e6e25d6acde88312",
+    "workspace/previews/2026-11-04T11-17-35-997Z-9.png": "80cc359fcf99704ae5173911f332e6e6b23668f3475c587b842b672be866bffe",
+    "workspace/round-face-3.25.png": "17321b3a81dd58e66b8ffc5cf36e957ac52beacbb9a437b46ba62d57a8b89236",
+    "workspace/round-face-6.7.png": "3c73a774359a3f5fa490265e64ab737adbca33cdfb7d927c4b3c766d22b83dce",
+    "workspace/round-face-7.7.png": "8e74c3c51efe192a585b44d5ee9a912f4bf783284c95a8bc39502baea37eb996",
+    "workspace/round-face-8.7.png": "79cb7401b24f44f58231d7b7cb309d672d2b71b765d180c9fb8024c5fcdd3767",
+    "workspace/round-video-reference-check.png": "e40d76aeb2b55294c09800b1682707292ff53216e98e70758098931b3f057ae8",
+    "workspace/source-alpha-fit.json": "655bf7361ec517c1e0fe265883aa34e9ce03f6d63403612b66c8aac87ece26b7",
+    "workspace/source-alpha-trace-log.json": "30710ade0e3d083cb709698fa02bf186af8456435a6b80e379c6fee8f7e1a3b8",
+    "workspace/target-completion-reference.png": "c9f14bdcb300f89682d16d3ad72d4d9a4190ce77d8e93d424dc2588479710419",
+    "workspace/trace_faces.py": "b327f181dc7a6f8000eae617de62afa579c1e4ef6bcb86c13a0e21eece425481"
+  },
+  "agentFilesBefore": {
+    "2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl/events.jsonl": "ba992c03634544d239a4504f1651e0d6e537bdc04e6ab80c68394814435a89be",
+    "2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl/prompt.md": "7ddb81f2f1e8e880d5adb51900822ac2c2d21235778190a9f30463c1374da19b",
+    "2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl/request.json": "e1ba6d16a3503cf8064eb1c08290141bf659beebe98adfe2882edf37fef87b75",
+    "2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl/result.json": "3e41f57a296cf7d237f3d380c5fca7c33a0bf4461da93cd5cdfc8b67f354ce69",
+    "workflow.log": "5432757a45a6782f4b3a43d77d1ecc624db0ab96edb5f3e3f1a4629fbd2db632"
+  },
+  "sourceAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+  "deformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+  "agentEvidence": {
+    "freshInitialNativeSession": true,
+    "recoveryCount": 0,
+    "sessions": [
+      {
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "requestedSessionThreadId": null,
+        "status": "completed",
+        "error": null,
+        "startedAt": "2026-11-04T11:17:36.002Z",
+        "finishedAt": "2026-11-04T11:53:54.829Z",
+        "requestSha256": "e1ba6d16a3503cf8064eb1c08290141bf659beebe98adfe2882edf37fef87b75",
+        "resultSha256": "3e41f57a296cf7d237f3d380c5fca7c33a0bf4461da93cd5cdfc8b67f354ce69",
+        "eventsSha256": "ba992c03634544d239a4504f1651e0d6e537bdc04e6ab80c68394814435a89be",
+        "promptSha256": "7ddb81f2f1e8e880d5adb51900822ac2c2d21235778190a9f30463c1374da19b",
+        "savedPromptSha256": "7ddb81f2f1e8e880d5adb51900822ac2c2d21235778190a9f30463c1374da19b",
+        "recoveryFromThreadId": null
+      }
+    ],
+    "toolCalls": [
+      {
+        "id": "call_ka4DSzJOCEDp58sGXyZr8BcO",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:18:07.603Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "bb43f14a34aab4818ec9d5f277eb4dca52b12989974c384c36a035598fa30a13",
+        "outputSha256": "c80674af65e268ec233c9f26c7977a2da1885b8a38843f6da7ded6e24243c6a1",
+        "path": "nine-axis/step01_video/left.png"
+      },
+      {
+        "id": "call_FS0tpjyzs5K65LTbYL4PG9Wl",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:18:15.717Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "bdb38b211e94e77bd4b91cf739c5f7f7bb55528c0a9d5efd421dbb4eb03d9e8b",
+        "outputSha256": "f94b3edc36b2716d3d16f6ba0a03431ffc31d9e4945fde5b854d1feaa32b4fc9",
+        "path": "nine-axis/step01_video/upper-body.png"
+      },
+      {
+        "id": "call_Ck1xoXT1pjKWYAioLodUPqzm",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:18:28.467Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "b089a5ea0ace12e346d91c11d1588e9fad5e957b6b4e3121d30a4dde0b50b192",
+        "outputSha256": "b94f90059a060e9502f9220e4dd87b650fec9216b712473f20698f9ff72a0e28",
+        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/round-face-keyframes.jpg"
+      },
+      {
+        "id": "call_4Kxo10sKepFgAzBqqn9RPbqX",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:18:41.581Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "57a7dd90707aaf8ca1e537962f9ac4123ac63659bb0dfb40806ecd2f03837dda",
+        "outputSha256": "f282920021f0ae401a91c766858019c3857e3b09a9b27a1a555611e5cacdd3b5",
+        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/tutorial/left-face-base.png"
+      },
+      {
+        "id": "call_RUMm46nkxiuZzErMRWRmnhPa",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:18:52.809Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "640b2f1fcb73b2475e4e0a90161bad61afcea45df48e2c27a2b3b6bd0a9f392a",
+        "outputSha256": "2ab6ed327f908b661b40c7284004b143eb2e49ba5da761fa44d8ec926ae1903b",
+        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/model-face-priors.jpg"
+      },
+      {
+        "id": "call_aQonNAumb2e4uPRu9KGHGRFh",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:19:06.216Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "0d1a83c00665c9237807a615405d88258bc08930c831ef0c2e8096418bd6448b",
+        "outputSha256": "4ab0ddba616fc633474db76baeb3cbc126e63b0fba2635a617949f5da286bf32",
+        "path": "nine-axis/continuity-reference/face-base-sequence.png"
+      },
+      {
+        "id": "call_NOnKJ9by8QKdI9jRtNFmWO64",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:19:15.860Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "41ed4959d58c4be98e6a99050d2bd1d164750c5f986eb8c70cab4f82e2111c0c",
+        "outputSha256": "0a1755c340d5817205be9552b6b9127a96ba2438888697340e5f2620d581b629",
+        "path": "nine-axis/continuity-reference/face-sequence.png"
+      },
+      {
+        "id": "call_02yxhhDN6UuMgbHA4Py4Hgee",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:19:32.232Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "f3f631934d049320d2692dfc399508be3086aa3f533f6b438b5772df34a81675",
+        "outputSha256": "e9d972b269d401e8741c12b7131cfd1d9b2b6292b544dfd20b6ab0a261886d55",
+        "path": "nine-axis/continuity-reference/up-current.png"
+      },
+      {
+        "id": "call_SXXvyoVhrbspyORVyWMj7O1G",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:19:43.148Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "0b98aec9a8db613a7aae7419522331a46f7f4e2d8193434cc768d277a4077dc1",
+        "outputSha256": "0ebb5f0cbd6e11375ea782f555ad86733365d3ea5b3c072dfa8c69dbcfcc845a",
+        "path": "nine-axis/continuity-reference/down-current.png"
+      },
+      {
+        "id": "call_wVLG58lfrS0TccoY0mYkdRUc",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:20:18.789Z",
+        "tool": "krita",
+        "success": true,
+        "argumentsSha256": "ac74066219ea40942bd8c187751ad1693b32bf0fd2d7c857fc02b080795fc443",
+        "outputSha256": "85acb3770c692905ea90eacea00aff6f89314eb6179dd5c907d2a55b1b26de2b",
+        "action": "start"
+      },
+      {
+        "id": "call_ymZs6ycOkWwtTWZ4HGAji9Z4",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:20:42.269Z",
+        "tool": "krita",
+        "success": true,
+        "argumentsSha256": "3b7cfaa44746c8fbca38aaebc36ae44d858be1b7813247333c7f6e53c0cb717a",
+        "outputSha256": "7851b5a9261bd29232371ff6d91c369421fb360eb42a1bfa9a16b68146e4a5c8",
+        "action": "run",
+        "script": "nine-axis/step02_angle-x/workspace/inspect_kra.py"
+      },
+      {
+        "id": "call_gxBGuXNiMvsYizAAAMyxIrwr",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:21:19.129Z",
+        "tool": "krita",
+        "success": true,
+        "argumentsSha256": "858dfe55df64331e2a947531eef7a003e7b881a4ff66340359144014dafda9b8",
+        "outputSha256": "9c142e22ee69623c2a8ad848957cdef2b59137691ec236c117737526b54d9df0",
+        "action": "run",
+        "script": "nine-axis/step02_angle-x/workspace/export_kra.py"
+      },
+      {
+        "id": "call_ZcS7b5ITQEunpHUZa3lvGjdw",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:21:32.924Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "48d37392295e083450e5400f1f4ed7ecedc302a26b0914a5d97a0f9a50436959",
+        "outputSha256": "f9844768f6c352407c89e32e7d898338845552ec099748d7cf87e64754b48c95",
+        "path": "nine-axis/step02_angle-x/layers/face__face_base.png"
+      },
+      {
+        "id": "call_tbiO036ZV0JzJAucoEJ26tHG",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:22:20.051Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "7bde1227313a147359253b12719fe86a254b23e7a8c2f64224925fe949aac324",
+        "outputSha256": "cee24381b329d8e92561427203f58f35334b40d5e5dff10c5b236ae2fd434f15"
+      },
+      {
+        "id": "call_UStBPreHNkGu1sT0N3Jw21Tl",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:22:36.258Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "a8604710b2ea1236862af2adcd18122e3a23c9f196e5ef065bc8158bd3b7985d",
+        "outputSha256": "5a0041f4f56eceb0e61c7f2ca98af74e290e8ab404096ff32f3f39d9b9272332",
+        "reference": {
+          "path": "character-assembly/step01/character-assembled.png",
+          "bounds": [
+            0,
+            0,
+            1254,
+            1254
+          ]
+        },
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "call_D4m9UiTcbuNWG4MG2k4FyJ30",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:23:46.436Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "c5edb76c994fece030616eb6710928f4255211223dc139aa1d1a87291a51b64a",
+        "outputSha256": "58ea73ffae61552294d448a8b4fb3b39fb9fda2646231a8a4e3fa90ec5b201c8",
+        "path": "nine-axis/step01_video/left.png",
+        "crop": [
+          85,
+          163,
+          75,
+          110
+        ]
+      },
+      {
+        "id": "call_FFNOln4OxGYj6kzDni8vocdp",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:24:01.344Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "7dc002a01bfa1f9398a64ef142351eba8f394905a55a5b3fb3e78ccee3765e10",
+        "outputSha256": "2e6ff1b85619040c26b4953212d1841eeb3ed29dfd2d7a1a916dcf7a3a6d50db",
+        "path": "nine-axis/step01_video/left.png",
+        "crop": [
+          159,
+          219,
+          92,
+          76
+        ]
+      },
+      {
+        "id": "call_uvTNMb9BFHcr61oSSSmsPlFs",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:25:01.150Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "83e2a189e8f07f2e8547f3f6ca8335c6f4037f8832434ceedbce6e30e8863a6d",
+        "outputSha256": "fbefa83477b843d8cf3f2305f90c50d732b009bcf050ebb493040e62db202b8e",
+        "path": "nine-axis/step02_angle-x/workspace/left-neighbor-board.png"
+      },
+      {
+        "id": "call_nP0YmSQjs3Ra2RW6Bc54nfgX",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:26:37.677Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "3f685e309a3f6ab9291882b10454dd9aa96d4bfd4d5e2393b98071fb3ef39dc9",
+        "outputSha256": "ff15489986ee37888cac8bafd68c350054bd7f206f828672b0ff26092fde1af6",
+        "path": "nine-axis/step02_angle-x/source-face.svg",
+        "reference": "nine-axis/step02_angle-x/source-face-reference.png",
+        "mode": "blend"
+      },
+      {
+        "id": "call_YkUWJjjYPv3Jf0KcZHw4rwz1",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:26:49.598Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "8965915397f79caf9394780a68df9abd1bd70f04bb5a5a11311c260843028486",
+        "outputSha256": "0be908544ff67aa65c16a82b2ee1d93df4fa2d7f69b0a60d5ab09d3609b2eb1a",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "mode": "blend"
+      },
+      {
+        "id": "call_00jl6TMaz4dX9bOXL30UXlhN",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:26:59.720Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "863fc7e15dceb315406f035accb21e8c3979aaafb62f8ed30106e784a34963ff",
+        "outputSha256": "4ecee823bf3703f8de83c33befd306d36df26e299fb859cdf66a73de3289327c",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "crop": [
+          88,
+          176,
+          69,
+          91
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_45q9Lt97RpOuLbiOsUF29nRE",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:27:11.096Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "3a3a4cf357b844ee8448907ffd06294924174441fae6930e236318491f66d257",
+        "outputSha256": "4ee8353b1281e81d0957b0052f97b6f026bae4af5ef1b1c92552c8f17be1fd22",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "crop": [
+          91,
+          189,
+          60,
+          83
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_JBQJeJsL1t8KCwJEYACRrTSt",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:28:02.216Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "0c0cfb478eca7b57c26cef39e1e40aaf1b3fea09b010d818ad444110cd75da1a",
+        "outputSha256": "a06ff3b4f4fa0a66bfb8b847f0a16df4078ea6e01ec4f738ceb2d0e968692c14",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "crop": [
+          116,
+          246,
+          119,
+          43
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_0XJvb9I5PqA5841rnzj5zJ1W",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:28:18.178Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "7f1e0506b050b4d0d89f9f54cc3e0e46e8f1d71894ae1233d94c57c9aa66b0f0",
+        "outputSha256": "972a5ffe5661e2204a185d0f11361854b52bc2699a3600e69abece54d08c1207",
+        "path": "nine-axis/step02_angle-x/source-face.svg",
+        "reference": "nine-axis/step02_angle-x/source-face-reference.png",
+        "crop": [
+          114,
+          175,
+          85,
+          113
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_1Bbavbf4UPGLKu1BqDNX8vm5",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:28:29.534Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "f1fb63880aae2021688750f7966dff020a1ff52fb21edefadaa25b3a6ba09565",
+        "outputSha256": "f32031eefa6a3ee7c97044e457eb08dfca94875d5ec5c88b661d8f7964e96ead",
+        "path": "nine-axis/step02_angle-x/source-face.svg",
+        "reference": "nine-axis/step02_angle-x/source-face-reference.png",
+        "crop": [
+          180,
+          103,
+          99,
+          184
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_Fz1dYrmafI635PAQZwlQGMbW",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:28:41.567Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "a95f083e8e6c8c343214f857a23a29e0c53685c34281afb33c9c44ca8f8d216d",
+        "outputSha256": "6e090c30ca63a3caa57fa7c20cc058a5df929fc090ff8e43f435c910915ce4fa",
+        "path": "nine-axis/step02_angle-x/source-face.svg",
+        "reference": "nine-axis/step02_angle-x/source-face-reference.png",
+        "crop": [
+          115,
+          103,
+          165,
+          88
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_6g7OeSTC8TPEGIND9uxZfJ14",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:29:06.572Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "86788cead5b85720ebbbec0fc4e71281c00a560c41c7104f28ee94b8b5b11bf2",
+        "outputSha256": "4b94e2559ad38bf4cc33489540fb635dca0dfc40189cdb0759996bdb88ba2afb",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "crop": [
+          88,
+          176,
+          90,
+          112
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_P9dDdBEknWM07rSAJAYbGKTc",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:29:20.831Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "55854733e28b1030bfa40e2b87b6198d84b47cf8619e3e013b60af28f23aeac2",
+        "outputSha256": "21501b07f1d3a6e8b6659c59b274a428eaa440233e2bd8013e81e4954fc18958",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "crop": [
+          91,
+          187,
+          88,
+          101
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_FpHZ6GzykJOY71Jzzh543qrs",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:29:30.859Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "9d524f4e1863bb58a5244f62b3c6fb1ad16c4b5a571f174db65074018222bf7c",
+        "outputSha256": "93ae13d201453c2561111a9b6e702efdbf6de6cabaa63b657bee12aa0a176959",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "crop": [
+          158,
+          239,
+          89,
+          49
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_kiWbnLVDQFKhJYORMUNiAZZx",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:29:42.278Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "a391f00e7c70075f6658660ba2e4ea2a6e57ee053d0d4df50363a09d390b464e",
+        "outputSha256": "e3c28377b9b410c8177e7dfdf5f1555c0931e2225eb5c5b7c06b26e7f093a085",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "crop": [
+          155,
+          234,
+          90,
+          57
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_6Lx1wGBdBySMohwuPSCU6eU5",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:29:52.915Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "7f364020a53231c5b13be2d45c23fb2a39127b8720cb01e880b5b734c3559b8a",
+        "outputSha256": "cd275b16dec2dafaa61b2565bcabbeeeafc5f645fbc329d42a2c885cbb8033ac",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "mode": "svg"
+      },
+      {
+        "id": "call_GHWnC456H41GXAG22FZqIR8d",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:30:43.600Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "d9ec1f7b3753fc918b9c16af56ee832661732efc23eb289249de930861cf4b56",
+        "outputSha256": "5551aaa519109149372cb6ad122e880ff0dd48fb05e57bdd644937e02ebe7283"
+      },
+      {
+        "id": "call_BW9RLabvh0RlGIQlNPJBRy8n",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:30:56.510Z",
+        "tool": "fit_nine_axis",
+        "success": true,
+        "argumentsSha256": "770b011cfb045abc20e7e5677110a82723e7008163c4bb820d0c96c1bde6c5c2",
+        "outputSha256": "273b43b4cbbac1a90287dec7c29c322d350b7a8ba9ca5d9b19c38c8e84b42362",
+        "action": "inspect",
+        "trace": "nine-axis/step02_angle-x/face-trace.json"
+      },
+      {
+        "id": "call_gsKfM3uRJoCxfklc1tPIqkpJ",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:31:18.983Z",
+        "tool": "fit_nine_axis",
+        "success": true,
+        "argumentsSha256": "c21b6957d4fdd80741792dcb8ab6a76ebdc2a5a28d6f3782272155ccf76cc6c9",
+        "outputSha256": "a0c48155dc7da369e8eafffb3564b86c8e9c94d86656daf1aab347f64d1816fb",
+        "action": "fit",
+        "targetId": "face_shape",
+        "trace": "nine-axis/step02_angle-x/face-trace.json"
+      },
+      {
+        "id": "call_YQaxQkfyNPr5bkilwbNrcYSi",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:31:34.953Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "78bb98267187804d6cf813f9aaf2231112c4743916c0d582ada4de0e8aac0462",
+        "outputSha256": "e6a5093ea682912e9296691465e6de8bc690e5bda7269537dd45a10fb49b9610",
+        "x": -30,
+        "only": [
+          "face/face_base"
+        ]
+      },
+      {
+        "id": "call_jMgWEeoUVECH56gXWL2KsNaI",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:31:53.143Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "3e72f6bb4077b0bb542fa6a186941d8b11d4fe223919c23c71909e5c85f0fbdb",
+        "outputSha256": "9e21dc8ceb408ecf3016fe1b171938a9f7bd41f2522b8da62285094a9c735340",
+        "path": "nine-axis/step01_video/left.png",
+        "crop": [
+          90,
+          139,
+          157,
+          126
+        ]
+      },
+      {
+        "id": "call_jnJ8VTWwVaPBCeFhV1dd2pXQ",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:32:55.545Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "aa0470b7e59872133d5275646dc5e616d01704b8bce851bf9795059fc09d78bd",
+        "outputSha256": "92eb8421b47a18dc98ab185225dfd7d8d83d7cea1df19b3cd9454129220a99b3"
+      },
+      {
+        "id": "call_dDlnZAoNE8z9Ct7bpcxGUZCC",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:33:10.437Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "a820257146ddb23f3678949e7964d49d5612d526f368a36b9b578e21bd28e0ca",
+        "outputSha256": "af1411245c4328bf27020ebfe351015bdf837cbd64ba6d39ad678dc01b5295f0",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30
+      },
+      {
+        "id": "call_VcLYXpD91TaQwWj8brJ6dYjb",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:33:32.306Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "ad454d82ed0a177bead3dbf2892d45f8a2a8ef295d44313c64b95b86caa7f5ad",
+        "outputSha256": "985f65f6436c769daec436997d98853b8fbb74b3acf6629b03aa01e7fca9d3f0",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          521,
+          203,
+          158,
+          63
+        ]
+      },
+      {
+        "id": "call_pk0cDTrzNXmzam24MfCMIpPU",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:34:37.482Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "9c00a931f29c8a6c7c79439ac6dca70bd3aca49c1364321c93edd4a3d3557505",
+        "outputSha256": "f17b0ddec9b6c04f47dac325e0e73013c6f259a4ca66fa4a8acbd20713a2c041"
+      },
+      {
+        "id": "call_vogHZ9g3jsNnKgdfUm80f9VN",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:35:23.298Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "ad454d82ed0a177bead3dbf2892d45f8a2a8ef295d44313c64b95b86caa7f5ad",
+        "outputSha256": "93d4cdaded9008463141349bc1e0b8c0eefbda493d814cb9a7c439e57bc58892",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          521,
+          203,
+          158,
+          63
+        ]
+      },
+      {
+        "id": "call_cYesF2V200BBO4a0ACCNesvW",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:36:37.160Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "ace4c7d784ee3db6fff1161f85f520dcb82d80e2ab7f49e7a94b2b7f12a32651",
+        "outputSha256": "7a3c066d3d86ba7842f39d45eb380c3e29d7ee0959a25272bf9c8bd30c738b8b"
+      },
+      {
+        "id": "call_dJzzd8MI77Tm4EdGGxJZeVy8",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:38:14.997Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "d8e4d8d24e8309618ca0822d5b5174a112a20c79707043553a7bffbe6194355a",
+        "outputSha256": "1fcf440490cec098af438f304cb9aa573b1d62b2b3ad4344b653f0380da7ca97",
+        "reference": {
+          "path": "nine-axis/step02_angle-x/workspace/target-completion-reference.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "only": [
+          "face/face_base"
+        ]
+      },
+      {
+        "id": "call_q5nAfW17bilviieaKHpqVXkH",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:38:29.769Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "c72afc7abb2fed8dcc2990433253e5aeb483cc14509c83aa0f2a2770c4560aa3",
+        "outputSha256": "afc7d90584c25ed5c6a1c56e939776dfba4747746efc92d7c2d7816ee3f47cd8",
+        "reference": {
+          "path": "nine-axis/step02_angle-x/workspace/target-completion-reference.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          523,
+          137,
+          190,
+          116
+        ],
+        "only": [
+          "face/face_base"
+        ],
+        "grid": [
+          "face_shape"
+        ]
+      },
+      {
+        "id": "call_Lx4BGymrQPYq4HVRMME6xg5G",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:38:46.768Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "5e2409201fc0a65bf5e3e255000fb946b61fb4122bfa3d9c92b6ea9b5eedcd45",
+        "outputSha256": "18faf79e94cb60233175fcede94c8e11eba8599994a7ca64713f652ae5bcf6f2",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          516,
+          132,
+          209,
+          173
+        ]
+      },
+      {
+        "id": "call_Sf5cXubNeZyJFy7FbTdSqrgn",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:39:02.589Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "eccf23562d7648b4b5d63ceb64e7cc65182e05ee575ea541de143213454a97a1",
+        "outputSha256": "7e74caeda5c50952c9c5cca46600ec61891b1ccc50313c83fe92958874d269e1",
+        "x": -15
+      },
+      {
+        "id": "call_ldtA6IiZiS0zxxsm0sK58M6Q",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:39:16.994Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "5b93691c8033b87bb4c2fc7fcb46d279c49534144258bbb291fce0f8723ff1bf",
+        "outputSha256": "e00f9128d31de310db4a0bb64243703ddba71986dcacf221216962b279f31eab",
+        "x": 15
+      },
+      {
+        "id": "call_cwpT15VoXXdwUKYfoUfrpyOk",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:39:29.383Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "b2d1c114828d422c71bb0f7137e6a1ee65139eb853883cc8ff3889bea3776a8a",
+        "outputSha256": "ff83ae0f788104d2bd5577e31a22ae43c32244a36b374f77ed80e6c6b38fa321",
+        "x": 30
+      },
+      {
+        "id": "call_I6ZsHAy501af5WfQnMIh1bG1",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:41:46.457Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "03b4cbd610197134ad8a22b7f3559afc32b15284fa902043306fa1c6ea217cd3",
+        "outputSha256": "d0ee9b14efe2356f16f93a418582dd3236692d221200436ab76c8efea6c7ff59",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "y": 0
+      },
+      {
+        "id": "call_yaBCP9Td0l0ki354Kjq2s5ji",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:41:57.005Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "4bedd83c567f72040989d9ce452a211a2781ef95e9161915b1adc3b7b6416d42",
+        "outputSha256": "77b1cf750174bfd7d8465e3fb854b3f431741ced1aa5e9d62608e8a539c74ba2",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "y": 0,
+        "crop": [
+          520,
+          202,
+          92,
+          107
+        ]
+      },
+      {
+        "id": "call_byAVtHN1bG2bmjE7E6Yo30Nz",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:42:07.351Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "40419017ee5ba99785dce30181f44f20aba2dfbe52e4b597fd78cdb9857d95aa",
+        "outputSha256": "c6af1a0adfbc7310182138bfa79c6c53801dece471217355583e2ec071fe8832",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "y": 0,
+        "crop": [
+          540,
+          274,
+          142,
+          52
+        ]
+      },
+      {
+        "id": "call_DMRSiXdJuM4XQICk1GY1cuwG",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:42:17.187Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "0602191e8f7b4f48a05b6016665895b5691b6f559f0bd13cd94245f986f4c536",
+        "outputSha256": "063753e173747cd51e1606a0cbba9818fea8d9b68fa42d592570f720e487faab",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "y": 0,
+        "crop": [
+          556,
+          288,
+          151,
+          76
+        ]
+      },
+      {
+        "id": "call_nRlPEJ7R1EUhfAnCQGQttOdM",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:42:49.822Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "2b869d51685b372fe326391374b9bdfc6ab9e4e92beb1ec909457f61cb9d1acf",
+        "outputSha256": "54347790a80f1e5912374666050e1347a6f73777b0d13ad6df43c77e4e2beb66",
+        "path": "nine-axis/step02_angle-x/workspace/round-video-reference-check.png"
+      },
+      {
+        "id": "call_SYCWhgzgATYoE2F61viqv25P",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:42:59.666Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "de159bdc28c836dbdd366aa629cd4441ac1a1282dddb3c1e6c7e2f708ada826c",
+        "outputSha256": "ba794abdb78c151e48468cdc76bc32f37ce13687b4746d688afca08b16e32f97",
+        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/tutorial/01-face-x-side.jpg"
+      },
+      {
+        "id": "call_3X1lQd6sXU6h4xzJAuuvsH3Z",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:43:08.612Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "b1c77d39843d756931f46a63da2c66dd2092038f9b1db4af4798222f376f0b70",
+        "outputSha256": "5e39f285387d45d2602957595be490b5c70453824e2f49f931809c3b728c9a14",
+        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/tutorial/02-three-concave-convex.jpg"
+      },
+      {
+        "id": "call_ZGCICxzIATx3Xw3D16Evwybr",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:43:16.994Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "20d987be5f2d689801444aab088d3d75b9a5af4ac5320fdf7f5a7a46529a3f41",
+        "outputSha256": "b7a3a096eaa74b1450dce55ca4009342ddf378116bad050dd3b20f97e3f33a4f",
+        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/tutorial/03-face-x-done.jpg"
+      },
+      {
+        "id": "call_yVQDf3JT9rNEPAQjH7oJEKEJ",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:43:27.938Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "aaad88a1eb44ca68a8a9840456867cd1cd83e51dd5d38079c8ed51923fee2a0e",
+        "outputSha256": "f8c8a9489fb70607fa22a5a0ef1fefbaffe623f472be355696eabf5974420d8e",
+        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/models/hiyori/reference.jpg"
+      },
+      {
+        "id": "call_PRxxuZS4F1Lwq7SpmdtRhSJm",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:43:44.917Z",
+        "tool": "fit_nine_axis",
+        "success": true,
+        "argumentsSha256": "770b011cfb045abc20e7e5677110a82723e7008163c4bb820d0c96c1bde6c5c2",
+        "outputSha256": "9daf40ae325dba5461b1a3a567d47c1ce38721c4db0b2590d13f2e2d452be4b8",
+        "action": "inspect",
+        "trace": "nine-axis/step02_angle-x/face-trace.json"
+      },
+      {
+        "id": "call_eRC9o8uPB2GtONOdKSeljmhw",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:43:58.218Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "91741c1a7ca13f111fb0660c189168470ecf0c942044e63a93ec8a083b33cb69",
+        "outputSha256": "6512003a5c076742154821daac9284da375d93abb422ffa7f47b8cce9f8f1934",
+        "reference": {
+          "path": "nine-axis/step02_angle-x/workspace/target-completion-reference.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "y": 0,
+        "only": [
+          "face/face_base"
+        ]
+      },
+      {
+        "id": "call_B3sIpVENt9EHLG86z8elG8ej",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:44:15.847Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "2145549be4b973154ee1a56467c2d5d9af30fd3f9d53a0ddba61bb852e1ba73d",
+        "outputSha256": "2df82806d360b37b095b6e0fa9a6b8abbfda6c2c5ff62f708dbbd29128096aea",
+        "reference": {
+          "path": "nine-axis/step02_angle-x/workspace/target-completion-reference.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "y": 0,
+        "crop": [
+          523,
+          137,
+          190,
+          116
+        ],
+        "only": [
+          "face/face_base"
+        ],
+        "grid": [
+          "face_shape"
+        ]
+      },
+      {
+        "id": "call_iOjozf1czydJ22nvspm08l5v",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:44:51.716Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "a8604710b2ea1236862af2adcd18122e3a23c9f196e5ef065bc8158bd3b7985d",
+        "outputSha256": "7df62de40f7b008c7ab3be8ca5d547447c5ff42d567703a4e107a3d665b4970d",
+        "reference": {
+          "path": "character-assembly/step01/character-assembled.png",
+          "bounds": [
+            0,
+            0,
+            1254,
+            1254
+          ]
+        },
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "call_IrBnigo84KMqFvM7AOg0rQtF",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:45:03.057Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "48a6d3626f1b7ecbdf2ada4591dbd5e4cb1edc7671f6f08412717933ae584449",
+        "outputSha256": "28203cb597b8a03b65bf4c64d33a08041c503fd4943e326e2dc47566784072f0",
+        "x": -22.5,
+        "y": 0
+      },
+      {
+        "id": "call_hKUJDgRpHpl9uwHYqQzvYppj",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:45:12.675Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "b8079596ab60f72735afee6076040fef9819ba504a646c22de2fe9b60b4b3efa",
+        "outputSha256": "d17e37f3af454456377499617c9c96bdd96005c4b7cdf76ec17e440ec3a167da",
+        "x": -7.5,
+        "y": 0
+      },
+      {
+        "id": "call_KvkKTVQscfLOqTiTknjg7a6S",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:45:30.895Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "76b14aa9cd3bec7ba215a3468aa56c524d968b0078dd6ce44ab479aaf3bcded2",
+        "outputSha256": "5ad6824fedc1461b0da0d848ca9f7002bb7ca5de00ae92e45f6a8f60a218bc73",
+        "x": 7.5,
+        "y": 0
+      },
+      {
+        "id": "call_dlur03ohjKGJMi5EGsi7uuSV",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:45:41.579Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "a24ac9cbd5fa93050120c4491b6dae26a3de6e9d51dca6f37560498d5eccbd96",
+        "outputSha256": "584feebc1a4677705088e8c840295a9e7eecf7f4e46b2173083594d3a068150b",
+        "x": 22.5,
+        "y": 0
+      },
+      {
+        "id": "call_92xTEmpKIe7RiyyluyBjiNVY",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:45:57.784Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "004f53efad318902d64a2ffc5733935717b8d30c0417a794b03cfc3eed329069",
+        "outputSha256": "aa7594e23ec0b0a63c74af4ee27142d8c411e37ad53757454cf6a8866f3a0ded",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "y": 0,
+        "crop": [
+          516,
+          132,
+          209,
+          173
+        ]
+      },
+      {
+        "id": "call_39gAmZcD1fL01n6CjLXs4Tjy",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:46:17.255Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "0d1a83c00665c9237807a615405d88258bc08930c831ef0c2e8096418bd6448b",
+        "outputSha256": "13c57a33589942a6085b74ca04534be884e830c3ace4ae18ab4011155a4c6bc7",
+        "path": "nine-axis/continuity-reference/face-base-sequence.png"
+      },
+      {
+        "id": "call_dhwkRyumppkuNbXL9n8JKpWX",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:46:29.041Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "41ed4959d58c4be98e6a99050d2bd1d164750c5f986eb8c70cab4f82e2111c0c",
+        "outputSha256": "67854da7deb9a37e81da3e275cc1548cc29d5fa8bd2cf0cba90cb535c7051465",
+        "path": "nine-axis/continuity-reference/face-sequence.png"
+      },
+      {
+        "id": "call_2G9QZ8hiCrcJU5EYS0RACAz8",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:46:57.673Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "f3f631934d049320d2692dfc399508be3086aa3f533f6b438b5772df34a81675",
+        "outputSha256": "ff703034e4d93f40bc9996ed3281d19ff85c344c28433eb088a0590425354515",
+        "path": "nine-axis/continuity-reference/up-current.png"
+      },
+      {
+        "id": "call_mqHxlT5KuaA7GMaVIbh9pc4u",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:47:10.582Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "0b98aec9a8db613a7aae7419522331a46f7f4e2d8193434cc768d277a4077dc1",
+        "outputSha256": "8d94b6ce421fd941995536aab50f9c7cb179f566603faec344155101c96f87fc",
+        "path": "nine-axis/continuity-reference/down-current.png"
+      },
+      {
+        "id": "call_MUbaslv3V2EGKfFiLzBF8BxC",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:49:31.285Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "d5165c197adf6949f41dc744dd6d7030658ef16e5bd8eee63fc10e2de9d46269",
+        "outputSha256": "1721d1b5efe0a3638fdf833c8275f616397f770fbb2594fa0316c4d56a942e56",
+        "path": "nine-axis/step02_angle-x/workspace/continuity-video-diagnostic.png"
+      },
+      {
+        "id": "call_yzeEzZfLevwlyRtznYCXTZ0x",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:51:50.250Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "8d5a5570624f1f26858ce05b09ff5f6f80334c44a05f048441fbf38b32346915",
+        "outputSha256": "eac13ac8a7dfd580d4ad26dc06e61268fd880e7fea3a9d430db33f12e752761a",
+        "path": "nine-axis/step02_angle-x/intermediate-check.png"
+      },
+      {
+        "id": "call_96dSlMBsrnlo20aZw5uuSAxM",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:52:08.732Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "1051cb945591a101132671a7815b531d54c1389643f9487997d0742ffe2b4995",
+        "outputSha256": "fa3e11f746a4bd2511d265740afacc4ba5612a2de029410d2268405ac0e00a7d",
+        "path": "nine-axis/step02_angle-x/forehead-transition-check.png"
+      },
+      {
+        "id": "call_SOsGGBvtouOmfmA06VKadqvP",
+        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
+        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
+        "timestamp": "2026-11-04T11:53:13.967Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "1051cb945591a101132671a7815b531d54c1389643f9487997d0742ffe2b4995",
+        "outputSha256": "10bd2ccf61b8178d3a4225f0320c96717c0d4983c9754c70dfab5898db6b26ca",
+        "path": "nine-axis/step02_angle-x/forehead-transition-check.png"
+      }
+    ],
+    "sourcePreviewCallIds": [
+      "call_nP0YmSQjs3Ra2RW6Bc54nfgX",
+      "call_0XJvb9I5PqA5841rnzj5zJ1W",
+      "call_1Bbavbf4UPGLKu1BqDNX8vm5",
+      "call_Fz1dYrmafI635PAQZwlQGMbW"
+    ],
+    "targetPreviewCallIds": [
+      "call_YkUWJjjYPv3Jf0KcZHw4rwz1",
+      "call_00jl6TMaz4dX9bOXL30UXlhN",
+      "call_45q9Lt97RpOuLbiOsUF29nRE",
+      "call_JBQJeJsL1t8KCwJEYACRrTSt",
+      "call_6g7OeSTC8TPEGIND9uxZfJ14",
+      "call_P9dDdBEknWM07rSAJAYbGKTc",
+      "call_FpHZ6GzykJOY71Jzzh543qrs",
+      "call_kiWbnLVDQFKhJYORMUNiAZZx",
+      "call_6Lx1wGBdBySMohwuPSCU6eU5"
+    ],
+    "fitCallIds": [
+      "call_gsKfM3uRJoCxfklc1tPIqkpJ"
+    ],
+    "exportCallId": "call_gxBGuXNiMvsYizAAAMyxIrwr",
+    "initialImportCallId": "call_tbiO036ZV0JzJAucoEJ26tHG",
+    "nativeExportRecordMatchesCurrent": true,
+    "initialImportHasNoPoseFields": true
+  },
+  "reviewModuleHashes": {
+    ".agents/skills/live2d-maker/nine-axis/head.ts": "6438747240808c460d93d88875731a068224a41d3b3e370866e71b368288833b",
+    ".agents/skills/live2d-maker/nine-axis/view-tool.ts": "8b18e8ed23fbfdc8f81b84b7757b6be59978bf9ed76f0568f8660f5def9930e1",
+    ".agents/skills/live2d-maker/shared/nine-axis-model.js": "706804331fd738f6d324ca387dda479a9f117cb5109c5294c5c1525e6a0a3e7a",
+    ".agents/skills/live2d-maker/shared/nine-axis-render.js": "9a3860eff897972d9b97c45281532286f6b86135b378dfe67d15ec741a0718f3"
+  },
+  "builtDocumentSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+  "builtDocumentHashEncoding": "JSON.stringify(doc,null,2) plus newline",
+  "kraTextures": {
+    "sourceKraSha256": "56b11c5fd7a3db20e512de642bb1a5922d2f312b2c96557d0c8d3da022587ad4",
+    "exportRecordSha256": "db2b93ad08e839664548e3c447ce024fbca98f67b1e02c5ff7a7af4105ad324a",
+    "nativeExportRecordMatched": true,
+    "xmlIdentityAndOrderMatched": true,
+    "all24TextureBytesMatchNativeExport": true,
+    "textures": [
+      {
+        "id": "face/eyebrow_left",
+        "uuid": "{5b2e3185-c524-4414-a30c-d53b629d4120}",
+        "originalName": "057 | face/eyebrow_left",
+        "originalIndex": 0,
+        "path": "layers/face__eyebrow_left.png",
+        "textureBounds": [
+          650,
+          178,
+          52,
+          15
+        ],
+        "sha256": "3f3bcdf1f9fbc13e5c26bd0e649bdbe6195e3f29b58671b194b507d8647565f2",
+        "masks": []
+      },
+      {
+        "id": "face/eyebrow_right",
+        "uuid": "{d4611c12-835b-4238-be8b-e2e35d071564}",
+        "originalName": "056 | face/eyebrow_right",
+        "originalIndex": 1,
+        "path": "layers/face__eyebrow_right.png",
+        "textureBounds": [
+          554,
+          179,
+          51,
+          14
+        ],
+        "sha256": "92dfbc06b446c5552a40cc843a2fd79d9b781045cf04341f624f75d7832a6d8d",
+        "masks": []
+      },
+      {
+        "id": "face/eye_left/upper_eyelid",
+        "uuid": "{c468e273-bcf6-449e-88ad-c0a9c5903eae}",
+        "originalName": "055 | face/eye_left/upper_eyelid",
+        "originalIndex": 2,
+        "path": "layers/face__eye_left__upper_eyelid.png",
+        "textureBounds": [
+          651,
+          207,
+          59,
+          37
+        ],
+        "sha256": "685479313394094ea426e742e448724a7bdbce370e65870d4e70ed3ca73b9c57",
+        "masks": []
+      },
+      {
+        "id": "face/eye_right/upper_eyelid",
+        "uuid": "{ecd374aa-3e90-4081-8bca-f3d7a8e721ec}",
+        "originalName": "054 | face/eye_right/upper_eyelid",
+        "originalIndex": 3,
+        "path": "layers/face__eye_right__upper_eyelid.png",
+        "textureBounds": [
+          546,
+          207,
+          59,
+          37
+        ],
+        "sha256": "ed58717c3d2b62414e9b3a5d1f3cfe3a345523ee1c6ac1381c8f7ca4eb88ca4e",
+        "masks": []
+      },
+      {
+        "id": "face/eye_left/eyelid_crease",
+        "uuid": "{a2bc57ac-1ca1-4eb0-b551-ece8ceda5378}",
+        "originalName": "048 | face/eye_left/eyelid_crease",
+        "originalIndex": 4,
+        "path": "layers/face__eye_left__eyelid_crease.png",
+        "textureBounds": [
+          654,
+          203,
+          36,
+          8
+        ],
+        "sha256": "d788e2360842364c4efd4f580a3d7b5cacce306cdb55d1a4ed7c23aaaac56755",
+        "masks": []
+      },
+      {
+        "id": "face/eye_right/eyelid_crease",
+        "uuid": "{882565db-0435-4e0f-8ec7-f1809318e55a}",
+        "originalName": "047 | face/eye_right/eyelid_crease",
+        "originalIndex": 5,
+        "path": "layers/face__eye_right__eyelid_crease.png",
+        "textureBounds": [
+          565,
+          203,
+          38,
+          9
+        ],
+        "sha256": "a80e5b3e220f79ef8c41ac307a902d1a2c0ab026bf01545a473576d8e3e11e2c",
+        "masks": []
+      },
+      {
+        "id": "face/eye_left/lower_eyelashes",
+        "uuid": "{66389e76-a936-4ad4-a2d9-3d3f9cf4226a}",
+        "originalName": "046 | face/eye_left/lower_eyelashes",
+        "originalIndex": 6,
+        "path": "layers/face__eye_left__lower_eyelashes.png",
+        "textureBounds": [
+          682,
+          247,
+          9,
+          7
+        ],
+        "sha256": "be4b8be1573897b1ec5b518d6c107cc7bf5bbb2d73d81ba1be5c2a6ff1b1d70e",
+        "masks": []
+      },
+      {
+        "id": "face/eye_right/lower_eyelashes",
+        "uuid": "{b0b0f412-8256-48af-af0d-f503d997f494}",
+        "originalName": "045 | face/eye_right/lower_eyelashes",
+        "originalIndex": 7,
+        "path": "layers/face__eye_right__lower_eyelashes.png",
+        "textureBounds": [
+          566,
+          247,
+          8,
+          7
+        ],
+        "sha256": "d7eb4f2079f1816d9eec403ef139dddb35abaf6872237b4415a89fc25303b99a",
+        "masks": []
+      },
+      {
+        "id": "face/eye_left/lower_eyelid",
+        "uuid": "{74ebe557-8aa2-47dd-a183-597e11ecb8a3}",
+        "originalName": "044 | face/eye_left/lower_eyelid",
+        "originalIndex": 8,
+        "path": "layers/face__eye_left__lower_eyelid.png",
+        "textureBounds": [
+          662,
+          250,
+          19,
+          4
+        ],
+        "sha256": "1c1d3fe9846b03903a05df0962782b5546b05904c9e959c2fd7b467938cceae1",
+        "masks": []
+      },
+      {
+        "id": "face/eye_right/lower_eyelid",
+        "uuid": "{0585e7a5-14f4-4951-a77c-7a76efeb5451}",
+        "originalName": "043 | face/eye_right/lower_eyelid",
+        "originalIndex": 9,
+        "path": "layers/face__eye_right__lower_eyelid.png",
+        "textureBounds": [
+          574,
+          250,
+          22,
+          5
+        ],
+        "sha256": "f59c188f40234a451bc4e9dff7096743eaddfe047c5179a1d3358c1b55232030",
+        "masks": []
+      },
+      {
+        "id": "face/eye_left/highlight",
+        "uuid": "{146709c9-dd83-4494-a41b-70a920e6a5e0}",
+        "originalName": "042 | face/eye_left/highlight",
+        "originalIndex": 10,
+        "path": "layers/face__eye_left__highlight.png",
+        "textureBounds": [
+          659,
+          217,
+          27,
+          28
+        ],
+        "sha256": "73c4bcc44f6fb0ff6775afac71af5288560b9dffb6910ab79ff1c7221f0c79c5",
+        "masks": []
+      },
+      {
+        "id": "face/eye_right/highlight",
+        "uuid": "{da47d23e-314a-4b57-89e5-8913e49ece99}",
+        "originalName": "041 | face/eye_right/highlight",
+        "originalIndex": 11,
+        "path": "layers/face__eye_right__highlight.png",
+        "textureBounds": [
+          573,
+          218,
+          26,
+          25
+        ],
+        "sha256": "bbb3e425b59419f51d028573f106c345f981bb24ebbd0fe7ae3a3ea74aefa860",
+        "masks": []
+      },
+      {
+        "id": "face/eye_left/iris",
+        "uuid": "{3a8496f1-8e31-40de-a515-e3ad30851f67}",
+        "originalName": "040 | face/eye_left/iris",
+        "originalIndex": 12,
+        "path": "layers/face__eye_left__iris.png",
+        "textureBounds": [
+          655,
+          211,
+          33,
+          41
+        ],
+        "sha256": "013170820242f84ff21fdd850a9d367539cc19d95fbb848b852d88aae75be5c4",
+        "masks": []
+      },
+      {
+        "id": "face/eye_right/iris",
+        "uuid": "{3dd3a3f0-da8e-411e-876c-af021d7289ac}",
+        "originalName": "039 | face/eye_right/iris",
+        "originalIndex": 13,
+        "path": "layers/face__eye_right__iris.png",
+        "textureBounds": [
+          569,
+          211,
+          33,
+          41
+        ],
+        "sha256": "d1c024675efa07f890ea1269143226a1560b2384bdfe499fc79f0c3e94576cdd",
+        "masks": []
+      },
+      {
+        "id": "face/eye_left/sclera",
+        "uuid": "{aa0095b0-f3fb-4656-8339-3de44ed5f410}",
+        "originalName": "038 | face/eye_left/sclera",
+        "originalIndex": 14,
+        "path": "layers/face__eye_left__sclera.png",
+        "textureBounds": [
+          653,
+          210,
+          46,
+          44
+        ],
+        "sha256": "7f4ec589a79756c03181294d31c72680c1163de71005ccd225e9a8b35a7634ae",
+        "masks": []
+      },
+      {
+        "id": "face/eye_right/sclera",
+        "uuid": "{fa840fe1-4e0d-4b12-a539-8e595e3f63a0}",
+        "originalName": "037 | face/eye_right/sclera",
+        "originalIndex": 15,
+        "path": "layers/face__eye_right__sclera.png",
+        "textureBounds": [
+          558,
+          212,
+          47,
+          41
+        ],
+        "sha256": "c23bd63cc1a847170929dead7a89ad6f750bfee90aca685cb20c40382e9a542a",
+        "masks": []
+      },
+      {
+        "id": "face/mouth/upper_lip",
+        "uuid": "{ca63e007-a627-419b-852f-557d03a28b52}",
+        "originalName": "036 | face/mouth/upper_lip",
+        "originalIndex": 16,
+        "path": "layers/face__mouth__upper_lip.png",
+        "textureBounds": [
+          615,
+          271,
+          26,
+          16
+        ],
+        "sha256": "34ea76f889e6b20d2852354138bf1ba36f99565fd2b9ddf24a9e1fa3cc177c06",
+        "masks": []
+      },
+      {
+        "id": "face/mouth/lower_lip",
+        "uuid": "{77661b6f-be96-4710-b56c-e9553189fa20}",
+        "originalName": "035 | face/mouth/lower_lip",
+        "originalIndex": 17,
+        "path": "layers/face__mouth__lower_lip.png",
+        "textureBounds": [
+          615,
+          281,
+          26,
+          17
+        ],
+        "sha256": "d3ac963c60fc4894744132b1e6c1fa6dc96db2e7c0f94e272f63697c5de5d808",
+        "masks": []
+      },
+      {
+        "id": "face/mouth/tongue",
+        "uuid": "{76fe80b0-63f9-4eb3-8633-9bb8b96e0140}",
+        "originalName": "034 | face/mouth/tongue",
+        "originalIndex": 18,
+        "path": "layers/face__mouth__tongue.png",
+        "textureBounds": [
+          615,
+          281,
+          26,
+          17
+        ],
+        "sha256": "43be3f19618840ea46247452bf8acf918e0c7e553953d8d479e3dfb79397b307",
+        "masks": []
+      },
+      {
+        "id": "face/mouth/upper_teeth",
+        "uuid": "{f8779d0c-3f7c-498c-9e57-bacc110daedc}",
+        "originalName": "033 | face/mouth/upper_teeth",
+        "originalIndex": 19,
+        "path": "layers/face__mouth__upper_teeth.png",
+        "textureBounds": [
+          622,
+          271,
+          13,
+          6
+        ],
+        "sha256": "c884d541e779a4d7cb08bfe7137818224cd8848afb3dd6a6f4af44559e60b42c",
+        "masks": []
+      },
+      {
+        "id": "face/mouth/mouth_interior",
+        "uuid": "{5eeec7b0-6070-40ee-997d-0bd90c9e51ab}",
+        "originalName": "032 | face/mouth/mouth_interior",
+        "originalIndex": 20,
+        "path": "layers/face__mouth__mouth_interior.png",
+        "textureBounds": [
+          615,
+          271,
+          26,
+          27
+        ],
+        "sha256": "821bfb133531a8f7fa5323f44c5a9a32416b700929cc93e9549a7f6520f4093e",
+        "masks": []
+      },
+      {
+        "id": "face/nose",
+        "uuid": "{4badab51-4e65-406c-a2b6-2c3b416f8fad}",
+        "originalName": "031 | face/nose",
+        "originalIndex": 21,
+        "path": "layers/face__nose.png",
+        "textureBounds": [
+          623,
+          246,
+          10,
+          15
+        ],
+        "sha256": "7bbfe6ecd497c2a7f1dda0280b82a90f1ef3a462e93729600ab5887ef30eb56a",
+        "masks": []
+      },
+      {
+        "id": "face/face_base",
+        "uuid": "{7800356f-9032-4024-869a-e72d6b74200a}",
+        "originalName": "030 | face/face_base",
+        "originalIndex": 22,
+        "path": "layers/face__face_base.png",
+        "textureBounds": [
+          548,
+          142,
+          159,
+          177
+        ],
+        "sha256": "7baea62d9800a0ccdad18b99495d677865ece7a3499fec6b3c8f015201ac8ce8",
+        "masks": []
+      },
+      {
+        "id": "neck",
+        "uuid": "{c239788d-a8dc-4750-b027-6a52c4012b4d}",
+        "originalName": "010 | neck",
+        "originalIndex": 23,
+        "path": "layers/neck.png",
+        "textureBounds": [
+          565,
+          293,
+          126,
+          70
+        ],
+        "sha256": "30231c847f6357a5e08f2a4ff5305c1c25c1683adc7ba45e0fc59d68496953e9",
+        "masks": []
+      }
+    ],
+    "limitation": "XML identity, native Krita export result, bounds and byte hashes verified; no separate native per-layer pixel reprojection was performed."
+  },
+  "geometry": {
+    "poses": [
+      [
+        -30,
+        0
+      ],
+      [
+        -25,
+        0
+      ],
+      [
+        -20,
+        0
+      ],
+      [
+        -15,
+        0
+      ],
+      [
+        -10,
+        0
+      ],
+      [
+        -5,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        10,
+        0
+      ],
+      [
+        15,
+        0
+      ],
+      [
+        20,
+        0
+      ],
+      [
+        25,
+        0
+      ],
+      [
+        30,
+        0
+      ]
+    ],
+    "subdivision": 4,
+    "checkedTriangles": 203008,
+    "minimumSignedDoubleArea": 0.17578506469726562,
+    "neck": {
+      "ids": [
+        "neck"
+      ],
+      "parentsEmpty": true,
+      "restIsOriginalCanvasLattice": true,
+      "allKeysAndIntermediateSamplesFixed": true
+    },
+    "mirrorMeasurements": [
+      {
+        "id": "neck",
+        "pair": "neck",
+        "maxComposedReflectionDifferencePixels": 0
+      },
+      {
+        "id": "face/face_base",
+        "pair": "face/face_base",
+        "maxComposedReflectionDifferencePixels": 0.06990844756055338
+      },
+      {
+        "id": "face/nose",
+        "pair": "face/nose",
+        "maxComposedReflectionDifferencePixels": 0.00003967285154151166
+      },
+      {
+        "id": "face/mouth/mouth_interior",
+        "pair": "face/mouth/mouth_interior",
+        "maxComposedReflectionDifferencePixels": 0.0013745594114880078
+      },
+      {
+        "id": "face/mouth/upper_teeth",
+        "pair": "face/mouth/upper_teeth",
+        "maxComposedReflectionDifferencePixels": 0.000608525920597458
+      },
+      {
+        "id": "face/mouth/tongue",
+        "pair": "face/mouth/tongue",
+        "maxComposedReflectionDifferencePixels": 0.0013744707690648283
+      },
+      {
+        "id": "face/mouth/lower_lip",
+        "pair": "face/mouth/lower_lip",
+        "maxComposedReflectionDifferencePixels": 0.0013744707690648283
+      },
+      {
+        "id": "face/mouth/upper_lip",
+        "pair": "face/mouth/upper_lip",
+        "maxComposedReflectionDifferencePixels": 0.0013745594114880078
+      },
+      {
+        "id": "face/eye_right/sclera",
+        "pair": "face/eye_left/sclera",
+        "maxComposedReflectionDifferencePixels": 0.00012529758366442464
+      },
+      {
+        "id": "face/eye_left/sclera",
+        "pair": "face/eye_right/sclera",
+        "maxComposedReflectionDifferencePixels": 0.0031625093465323714
+      },
+      {
+        "id": "face/eye_right/iris",
+        "pair": "face/eye_left/iris",
+        "maxComposedReflectionDifferencePixels": 0.00008628863978999615
+      },
+      {
+        "id": "face/eye_left/iris",
+        "pair": "face/eye_right/iris",
+        "maxComposedReflectionDifferencePixels": 0.000935744474733689
+      },
+      {
+        "id": "face/eye_right/highlight",
+        "pair": "face/eye_left/highlight",
+        "maxComposedReflectionDifferencePixels": 0.00006875017157929923
+      },
+      {
+        "id": "face/eye_left/highlight",
+        "pair": "face/eye_right/highlight",
+        "maxComposedReflectionDifferencePixels": 0.0008659953751670017
+      },
+      {
+        "id": "face/eye_right/lower_eyelid",
+        "pair": "face/eye_left/lower_eyelid",
+        "maxComposedReflectionDifferencePixels": 0.00008478119109075443
+      },
+      {
+        "id": "face/eye_left/lower_eyelid",
+        "pair": "face/eye_right/lower_eyelid",
+        "maxComposedReflectionDifferencePixels": 0.000738824630539903
+      },
+      {
+        "id": "face/eye_right/lower_eyelashes",
+        "pair": "face/eye_left/lower_eyelashes",
+        "maxComposedReflectionDifferencePixels": 0.00007304814960216557
+      },
+      {
+        "id": "face/eye_left/lower_eyelashes",
+        "pair": "face/eye_right/lower_eyelashes",
+        "maxComposedReflectionDifferencePixels": 0.0008697440826133822
+      },
+      {
+        "id": "face/eye_right/eyelid_crease",
+        "pair": "face/eye_left/eyelid_crease",
+        "maxComposedReflectionDifferencePixels": 0.00009138799643670725
+      },
+      {
+        "id": "face/eye_left/eyelid_crease",
+        "pair": "face/eye_right/eyelid_crease",
+        "maxComposedReflectionDifferencePixels": 0.0007388694098458718
+      },
+      {
+        "id": "face/eye_right/upper_eyelid",
+        "pair": "face/eye_left/upper_eyelid",
+        "maxComposedReflectionDifferencePixels": 0.00012535246863705382
+      },
+      {
+        "id": "face/eye_left/upper_eyelid",
+        "pair": "face/eye_right/upper_eyelid",
+        "maxComposedReflectionDifferencePixels": 0.009586082799661576
+      },
+      {
+        "id": "face/eyebrow_right",
+        "pair": "face/eyebrow_left",
+        "maxComposedReflectionDifferencePixels": 0.00004225510815558664
+      },
+      {
+        "id": "face/eyebrow_left",
+        "pair": "face/eyebrow_right",
+        "maxComposedReflectionDifferencePixels": 0.000028722426463900774
+      }
+    ],
+    "mirrorMeasurementLimit": "Diagnostic of paired composed reflection; dense geometry and actual mirror images are reviewed separately."
+  },
+  "reference": {
+    "frameIndex": 40,
+    "frameCount": 121,
+    "imageSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+    "videoSha256": "f9ba06ba2ede5fb2dfd791c8e09b7ccbb01dcde09737dd9035066a64ef11f9eb",
+    "referenceSelection": "retain existing left frame40",
+    "coordinates": [
+      431,
+      35,
+      394,
+      394
+    ],
+    "recordedAngle": 30,
+    "angleIsPhysicalMeasurement": false,
+    "verification": "Unchanged original frame/video SHA and original selection manifest; no new frame selection or video generation."
+  },
+  "traceEvidence": {
+    "traceSha256": "9d3099adcf7f33b3adba3b7b1fe28c3d69d9e8c6d3c85746a69fc48dfee9047e",
+    "fitReportSha256": "9142fb132683d403e65f224c082755b37736350add1e22a7fb13e3af84a0a652",
+    "sourceSvgSha256": "451c4e7dac3fc53af4022217892d9e77e102947edb3c8bde7279a6dbf3dfb04b",
+    "targetSvgSha256": "922eb64c85a3b6df96f6ac98aa5fc4a6abacbf184b9092bc16bb763b7d015307",
+    "occludedWeightScale": 1,
+    "finalReportIsNotFinalAlphaProof": true,
+    "sourceSvgRaster": {
+      "path": "source-unchanged-svg.png",
+      "sha256": "e85fe3850c49e9da3e580956a66655a5052a4c0e7ddce7f0cdabf666f8b04f90",
+      "derivation": "Rasterized original SVG bytes, no prediction or contour changes; display reference only."
+    },
+    "targetSvgRaster": {
+      "path": "target-unchanged-svg.png",
+      "sha256": "c8b912851a88235444f33bc47551b49ca125cb5ad0bbb209d0a44f3ceb222ecf",
+      "derivation": "Rasterized original SVG bytes, no prediction or contour changes; display reference only."
+    }
+  },
+  "finalTraceResiduals": [
+    {
+      "id": "far-forehead",
+      "visibility": "occluded",
+      "samples": 31,
+      "meanPixels": 0.08652960418672374,
+      "maxPixels": 0.3540279134926431
+    },
+    {
+      "id": "far-temple",
+      "visibility": "occluded",
+      "samples": 22,
+      "meanPixels": 0.19614582204009423,
+      "maxPixels": 0.5408275539237508
+    },
+    {
+      "id": "far-orbit-hidden",
+      "visibility": "occluded",
+      "samples": 16,
+      "meanPixels": 0.34100841636052376,
+      "maxPixels": 0.6027719405770403
+    },
+    {
+      "id": "far-orbit-visible",
+      "visibility": "visible",
+      "samples": 16,
+      "meanPixels": 0.08206743038043693,
+      "maxPixels": 0.17895220192950856
+    },
+    {
+      "id": "far-upper-cheek",
+      "visibility": "visible",
+      "samples": 16,
+      "meanPixels": 0.1423346984430518,
+      "maxPixels": 0.3618195931201634
+    },
+    {
+      "id": "far-cheek-steep",
+      "visibility": "visible",
+      "samples": 16,
+      "meanPixels": 0.19143007701662484,
+      "maxPixels": 0.535311585407407
+    },
+    {
+      "id": "far-cheek-hair-overlap",
+      "visibility": "occluded",
+      "samples": 16,
+      "meanPixels": 0.5454566959859428,
+      "maxPixels": 0.7540220754633072
+    },
+    {
+      "id": "far-jaw-turn",
+      "visibility": "visible",
+      "samples": 16,
+      "meanPixels": 0.3343016099294862,
+      "maxPixels": 0.7351991327134779
+    },
+    {
+      "id": "far-jaw-chin",
+      "visibility": "visible",
+      "samples": 27,
+      "meanPixels": 0.16366381315830264,
+      "maxPixels": 0.7351991327134779
+    },
+    {
+      "id": "near-chin-jaw",
+      "visibility": "visible",
+      "samples": 33,
+      "meanPixels": 0.023777338872940455,
+      "maxPixels": 0.07917242717309272
+    },
+    {
+      "id": "near-cheek-hidden",
+      "visibility": "occluded",
+      "samples": 20,
+      "meanPixels": 0.2689410028608984,
+      "maxPixels": 0.5105375376134936
+    },
+    {
+      "id": "near-orbit-hidden",
+      "visibility": "occluded",
+      "samples": 18,
+      "meanPixels": 0.4303574595186992,
+      "maxPixels": 0.642852551544658
+    },
+    {
+      "id": "near-temple-lower",
+      "visibility": "occluded",
+      "samples": 16,
+      "meanPixels": 0.19529989569587963,
+      "maxPixels": 0.3944844883994986
+    },
+    {
+      "id": "near-temple-upper",
+      "visibility": "occluded",
+      "samples": 16,
+      "meanPixels": 0.04474063180813271,
+      "maxPixels": 0.08651612863107622
+    },
+    {
+      "id": "near-forehead",
+      "visibility": "occluded",
+      "samples": 21,
+      "meanPixels": 0.12386296376356806,
+      "maxPixels": 0.3962217846284067
+    },
+    {
+      "id": "forehead-crown",
+      "visibility": "occluded",
+      "samples": 35,
+      "meanPixels": 0.08968076147027514,
+      "maxPixels": 0.3962217846284067
+    },
+    {
+      "id": "chin",
+      "visibility": "visible",
+      "samples": 1,
+      "meanPixels": 0.020122685851568827,
+      "maxPixels": 0.020122685851568827
+    }
+  ],
+  "residualMeaning": "Current composed geometry vs agent trace, not video fidelity or proof of completed actual forehead alpha.",
+  "agentCheckImages": {
+    "face-base-left-check.png": {
+      "sha256": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "face-completion-check.png": {
+      "sha256": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "far-side-check.png": {
+      "sha256": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "forehead-temple-check.png": {
+      "sha256": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "forehead-transition-check.png": {
+      "sha256": "1afff35d1f260e693118810b0a7b23e87a9b39d374eb274006d5892de72eded9",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "front-check.png": {
+      "sha256": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "hair-coverage-check.png": {
+      "sha256": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "intermediate-check.png": {
+      "sha256": "cb8bcadfbc57c5b26720bf9fa50f69a112068dd32056aead24c3d251ec43bb15",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "jaw-chin-check.png": {
+      "sha256": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "left-check.png": {
+      "sha256": "f2a947cc20f6fbb2aabcfb60b50b9a867a28ca0778a18c630ac8600f8e9b9071",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "left-fit-check.png": {
+      "sha256": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "neck-contact-check.png": {
+      "sha256": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "source-trace-edge.png": {
+      "sha256": "ad19dcfb9f58450bd68c725a076948b363835986625d08687177410602260069",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "target-trace-edge.png": {
+      "sha256": "80cc359fcf99704ae5173911f332e6e6b23668f3475c587b842b672be866bffe",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "trace-check.png": {
+      "sha256": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    },
+    "workspace/round-video-reference-check.png": {
+      "sha256": "e40d76aeb2b55294c09800b1682707292ff53216e98e70758098931b3f057ae8",
+      "retainedOriginalBytes": true,
+      "screenshotAuthorVersionVerified": false,
+      "notesAuthorDeclaration": {
+        "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+        "notesSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+        "kind": "agent declaration; not proof of screenshot provenance"
+      }
+    }
+  },
+  "inspectionWindows": {
+    "fullFace": [
+      492,
+      130,
+      271,
+      199
+    ],
+    "forehead": [
+      492,
+      130,
+      271,
+      140
+    ],
+    "purpose": "Derived display windows only; no prescribed skull size or control range."
+  },
+  "farEdge": {
+    "crop": [
+      519,
+      210,
+      35,
+      75
+    ],
+    "curves": [
+      {
+        "id": "far-temple",
+        "visibility": "occluded"
+      },
+      {
+        "id": "far-orbit-hidden",
+        "visibility": "occluded"
+      },
+      {
+        "id": "far-orbit-visible",
+        "visibility": "visible"
+      },
+      {
+        "id": "far-upper-cheek",
+        "visibility": "visible"
+      },
+      {
+        "id": "far-cheek-steep",
+        "visibility": "visible"
+      },
+      {
+        "id": "far-cheek-hair-overlap",
+        "visibility": "occluded"
+      }
+    ],
+    "locationSource": "Existing labeled visible far-side trace samples; inspection crop only",
+    "referenceWithOriginalTraceSha256": "da2712783685051b05d4988454d4f25a72f0c437b1af1cdd52b05ffbd25fddfe"
+  },
+  "continuityReferences": [
+    {
+      "path": "nine-axis/continuity-reference/up-current.png",
+      "sha256": "24cd2dc252979c2ab762cf85670434a0fe5ad6dce316ff6ff0d65b33c68aa667",
+      "readOnlyDiagnostic": true
+    },
+    {
+      "path": "nine-axis/continuity-reference/down-current.png",
+      "sha256": "cb61255a1553cfd97dbe324b640280696aadb09df2aebece70d0d8039ca4c036",
+      "readOnlyDiagnostic": true
+    },
+    {
+      "path": "nine-axis/continuity-reference/left-up-left-left-down.mp4",
+      "sha256": "f395079397615dcfd388e78f78e8b872e042ac1cbad57c0b0b8f330cd63a1e98",
+      "readOnlyDiagnostic": true
+    },
+    {
+      "path": "nine-axis/continuity-reference/render-provenance.json",
+      "sha256": "50535cc8339446d233571c3e2cb8a173bb9e1674921577ca726784eaeab56256",
+      "readOnlyDiagnostic": true
+    },
+    {
+      "path": "nine-axis/continuity-reference/README.md",
+      "sha256": "945f688789f425b2f8ef7091b75e5d09540f3679945184f8ac67293a8e143a92",
+      "readOnlyDiagnostic": true
+    },
+    {
+      "path": "nine-axis/continuity-reference/face-base-sequence.png",
+      "sha256": "6ef15f5e5b25f4a5ba5b6ec643fd387dbdee43ebf15d87b25728c66f7842d97f",
+      "readOnlyDiagnostic": true
+    },
+    {
+      "path": "nine-axis/continuity-reference/face-sequence.png",
+      "sha256": "e93932d6402ec5573d477beb1debf4fb7fac8bc2ff2c903507c081ce36381efc",
+      "readOnlyDiagnostic": true
+    }
+  ],
+  "candidateIdentity": {
+    "source": "This completed fresh run, not the old live left",
+    "authorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+    "deformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6"
+  },
+  "visualEvidence": {
+    "completeOccludedPrediction": [
+      "target-unchanged-svg.png",
+      "left-complete-face-comparison.png"
+    ],
+    "actualForeheadAndBothCorners": [
+      "left-forehead-temple-comparison.png"
+    ],
+    "bangSkinWindow": [
+      "left-hair-coverage-comparison.png",
+      "left-bang-skin-window-comparison.png"
+    ],
+    "acceptanceRule": "Inspect actual final face coverage and upper alpha silhouette against full prediction and original bang skin window. Closed SVG paths and small trace residuals are insufficient; all visual checks remain pending owner/user approval."
+  },
+  "coverageAndIntegrationLimit": "Actual full-face silhouette, unchanged completion, static KRA/video hair windows and X mirror/halves rendered. No hair motion or new-X to existing-Y/XY integration was created or accepted; supplied old diagonal sequences are diagnostic only. Small trace residuals do not prove actual forehead completion or video fidelity.",
+  "protectedFilesAfter": {
+    "character-assembly/step01/character-assembled.kra": "56b11c5fd7a3db20e512de642bb1a5922d2f312b2c96557d0c8d3da022587ad4",
+    "character-assembly/step01/character-assembled.png": "52359407596567a2874c9714b1e4ea336f1268916e3de784737deeb8de8f173c",
+    "nine-axis/step01_video/.completed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "nine-axis/step01_video/upper-body.png": "199356c96aa75b16c05def0ebd4334b5e8caae4982f800dfa6eb86d05ea5a5db",
+    "nine-axis/step01_video/crop.json": "a042788ecfb8aeab491599dda55b214714d9776afa8d6dfdc6e959b03300a6f6",
+    "nine-axis/step01_video/left.png": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+    "nine-axis/step01_video/views.json": "32153cec0c81be4dba674747d01330cb1dca38c8f40739701fa3c89d27321c9c",
+    "nine-axis/step01_video/left.mp4": "f9ba06ba2ede5fb2dfd791c8e09b7ccbb01dcde09737dd9035066a64ef11f9eb",
+    "part-layering/parts/face.svg": "f82d5905cb0984059eb76d5b4d5936bda6f85583c966483ddf4e728f9f5c881f",
+    "part-layering/parts/hair.svg": "e8a4f8f9abf7cdcccef3c6b8361c1956ffa1666fe05197ac8d68ea2dd7e34a61",
+    "part-layering/parts/head_accessories.svg": "0cb17f7f36166262cb923ebffc4f905077d1cd13abc9d99df656a5c09ef2a939",
+    "nine-axis/continuity-reference/up-current.png": "24cd2dc252979c2ab762cf85670434a0fe5ad6dce316ff6ff0d65b33c68aa667",
+    "nine-axis/continuity-reference/down-current.png": "cb61255a1553cfd97dbe324b640280696aadb09df2aebece70d0d8039ca4c036",
+    "nine-axis/continuity-reference/left-up-left-left-down.mp4": "f395079397615dcfd388e78f78e8b872e042ac1cbad57c0b0b8f330cd63a1e98",
+    "nine-axis/continuity-reference/render-provenance.json": "50535cc8339446d233571c3e2cb8a173bb9e1674921577ca726784eaeab56256",
+    "nine-axis/continuity-reference/README.md": "945f688789f425b2f8ef7091b75e5d09540f3679945184f8ac67293a8e143a92",
+    "nine-axis/continuity-reference/face-base-sequence.png": "6ef15f5e5b25f4a5ba5b6ec643fd387dbdee43ebf15d87b25728c66f7842d97f",
+    "nine-axis/continuity-reference/face-sequence.png": "e93932d6402ec5573d477beb1debf4fb7fac8bc2ff2c903507c081ce36381efc"
+  },
+  "sourceFilesAfter": {
+    ".completed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "checks/x-0.png": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
+    "checks/x-minus15.png": "82b55228de274f521dc05ac387e4afbd6a74a8e4ccafed4bc11085a9fa1ffff9",
+    "checks/x-minus22_5.png": "618251aeefb0acbffb59d87134906a174e295078c0f214d777d792c4c6ae87bb",
+    "checks/x-minus30.png": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
+    "checks/x-minus7_5.png": "35c4fed747c187e910c9b00a981a302466fc24106b5c3ac2744fa7307471ccfc",
+    "checks/x-plus15.png": "66d1528f7ad21662c2c229b3e0041c6cf984cc0b5a69cf40703b4463808ca816",
+    "checks/x-plus22_5.png": "262bb2bdc3a1e99014b67cbb831517d4fdec8aa3cc2d876d50fd09a06ccf789d",
+    "checks/x-plus30.png": "9f772f3dea17f6f94cadc0c1f201881e7d161b56809f757741ed7c09bc2b12d3",
+    "checks/x-plus7_5.png": "67aad5ab5dd1a18f3406d538e87960f0af45bbb350b3a0ede76fee5cd58b9bd0",
+    "deformers.json": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+    "export-record.json": "db2b93ad08e839664548e3c447ce024fbca98f67b1e02c5ff7a7af4105ad324a",
+    "face-base-completion-overlay.png": "db6ce24c29d61eb728eae4ddea64a503f9c4d5900b6a037f9551bc72dcba17ff",
+    "face-base-left-check.png": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+    "face-completion-check.png": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+    "face-left.json": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+    "face-trace.json": "9d3099adcf7f33b3adba3b7b1fe28c3d69d9e8c6d3c85746a69fc48dfee9047e",
+    "far-side-check.png": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
+    "fit-report.json": "9142fb132683d403e65f224c082755b37736350add1e22a7fb13e3af84a0a652",
+    "forehead-temple-check.png": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+    "forehead-transition-check.png": "1afff35d1f260e693118810b0a7b23e87a9b39d374eb274006d5892de72eded9",
+    "front-check.png": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+    "hair-coverage-check.png": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+    "image-provenance.json": "01108189628e34f2720308887e7f467c439b812f3e401fbead75e418b56507ec",
+    "intermediate-check.png": "cb8bcadfbc57c5b26720bf9fa50f69a112068dd32056aead24c3d251ec43bb15",
+    "jaw-chin-check.png": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
+    "layers/face__eye_left__eyelid_crease.png": "d788e2360842364c4efd4f580a3d7b5cacce306cdb55d1a4ed7c23aaaac56755",
+    "layers/face__eye_left__highlight.png": "73c4bcc44f6fb0ff6775afac71af5288560b9dffb6910ab79ff1c7221f0c79c5",
+    "layers/face__eye_left__iris.png": "013170820242f84ff21fdd850a9d367539cc19d95fbb848b852d88aae75be5c4",
+    "layers/face__eye_left__lower_eyelashes.png": "be4b8be1573897b1ec5b518d6c107cc7bf5bbb2d73d81ba1be5c2a6ff1b1d70e",
+    "layers/face__eye_left__lower_eyelid.png": "1c1d3fe9846b03903a05df0962782b5546b05904c9e959c2fd7b467938cceae1",
+    "layers/face__eye_left__sclera.png": "7f4ec589a79756c03181294d31c72680c1163de71005ccd225e9a8b35a7634ae",
+    "layers/face__eye_left__upper_eyelid.png": "685479313394094ea426e742e448724a7bdbce370e65870d4e70ed3ca73b9c57",
+    "layers/face__eye_right__eyelid_crease.png": "a80e5b3e220f79ef8c41ac307a902d1a2c0ab026bf01545a473576d8e3e11e2c",
+    "layers/face__eye_right__highlight.png": "bbb3e425b59419f51d028573f106c345f981bb24ebbd0fe7ae3a3ea74aefa860",
+    "layers/face__eye_right__iris.png": "d1c024675efa07f890ea1269143226a1560b2384bdfe499fc79f0c3e94576cdd",
+    "layers/face__eye_right__lower_eyelashes.png": "d7eb4f2079f1816d9eec403ef139dddb35abaf6872237b4415a89fc25303b99a",
+    "layers/face__eye_right__lower_eyelid.png": "f59c188f40234a451bc4e9dff7096743eaddfe047c5179a1d3358c1b55232030",
+    "layers/face__eye_right__sclera.png": "c23bd63cc1a847170929dead7a89ad6f750bfee90aca685cb20c40382e9a542a",
+    "layers/face__eye_right__upper_eyelid.png": "ed58717c3d2b62414e9b3a5d1f3cfe3a345523ee1c6ac1381c8f7ca4eb88ca4e",
+    "layers/face__eyebrow_left.png": "3f3bcdf1f9fbc13e5c26bd0e649bdbe6195e3f29b58671b194b507d8647565f2",
+    "layers/face__eyebrow_right.png": "92dfbc06b446c5552a40cc843a2fd79d9b781045cf04341f624f75d7832a6d8d",
+    "layers/face__face_base.png": "7baea62d9800a0ccdad18b99495d677865ece7a3499fec6b3c8f015201ac8ce8",
+    "layers/face__mouth__lower_lip.png": "d3ac963c60fc4894744132b1e6c1fa6dc96db2e7c0f94e272f63697c5de5d808",
+    "layers/face__mouth__mouth_interior.png": "821bfb133531a8f7fa5323f44c5a9a32416b700929cc93e9549a7f6520f4093e",
+    "layers/face__mouth__tongue.png": "43be3f19618840ea46247452bf8acf918e0c7e553953d8d479e3dfb79397b307",
+    "layers/face__mouth__upper_lip.png": "34ea76f889e6b20d2852354138bf1ba36f99565fd2b9ddf24a9e1fa3cc177c06",
+    "layers/face__mouth__upper_teeth.png": "c884d541e779a4d7cb08bfe7137818224cd8848afb3dd6a6f4af44559e60b42c",
+    "layers/face__nose.png": "7bbfe6ecd497c2a7f1dda0280b82a90f1ef3a462e93729600ab5887ef30eb56a",
+    "layers/neck.png": "30231c847f6357a5e08f2a4ff5305c1c25c1683adc7ba45e0fc59d68496953e9",
+    "left-check.png": "f2a947cc20f6fbb2aabcfb60b50b9a867a28ca0778a18c630ac8600f8e9b9071",
+    "left-fit-check.png": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
+    "neck-contact-check.png": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
+    "notes.md": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
+    "source-face-reference.png": "f26084e3fafcc481da84790a2386e92ab6910526d1fb9719730231359a6a4d33",
+    "source-face.svg": "451c4e7dac3fc53af4022217892d9e77e102947edb3c8bde7279a6dbf3dfb04b",
+    "source-trace-edge.png": "ad19dcfb9f58450bd68c725a076948b363835986625d08687177410602260069",
+    "source.json": "defdd47b861b90379b5235b46453cfd0a1669d93c87f6078dca32d81e02db504",
+    "target-face.svg": "922eb64c85a3b6df96f6ac98aa5fc4a6abacbf184b9092bc16bb763b7d015307",
+    "target-trace-edge.png": "80cc359fcf99704ae5173911f332e6e6b23668f3475c587b842b672be866bffe",
+    "trace-check.png": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+    "verification.json": "516df9a3139edb2b4eb130779896550f15a0980ea4b85f051c4690812e6cde18",
+    "workspace/bitmaps/004971f2-de36-449d-aac3-f1820f1d80b9.png": "df1c54a2ea3ea3f37ff7d3fc1b1f75d5074a391e5db66033913ea950dfe598a2",
+    "workspace/bitmaps/01e7c767-b40a-4277-b088-e221d73fb964.png": "35c4fed747c187e910c9b00a981a302466fc24106b5c3ac2744fa7307471ccfc",
+    "workspace/bitmaps/0aa93d9a-8e1c-44bd-acba-e55153dc1ab8.png": "e5d6b60864619b64b18cf009f89253fb644472cd703d2c2c73e1484cd45c89d9",
+    "workspace/bitmaps/0f20484e-e4e1-4627-aa47-66581eefeb05.png": "2c388b41cad5baaf131ae4ccebc5b6277de94f6063c545b559bc50eb89cda856",
+    "workspace/bitmaps/135f30bb-063f-4013-a659-b312d9310d71-comparison.png": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+    "workspace/bitmaps/16fbdc0a-041c-4fde-acd5-d6c38a267c08.png": "82b55228de274f521dc05ac387e4afbd6a74a8e4ccafed4bc11085a9fa1ffff9",
+    "workspace/bitmaps/198dd45d-edfb-43e4-80b2-e4e77423a690-comparison.png": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+    "workspace/bitmaps/1be0125e-6497-4fb1-9495-a7b9f877f520.png": "f6550c20bd32eba596a494a924041b38d84c2354a389a405b6d05d8ad888485b",
+    "workspace/bitmaps/1c6a55bc-d063-4ce7-bbfc-a2187f4391d2.png": "e93932d6402ec5573d477beb1debf4fb7fac8bc2ff2c903507c081ce36381efc",
+    "workspace/bitmaps/1d34efb7-340d-4bb8-aaf0-6bc4f38cf908-completion.png": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+    "workspace/bitmaps/2b25dc92-81ae-45a0-b9e0-8edba44de5ea-comparison.png": "db6ce24c29d61eb728eae4ddea64a503f9c4d5900b6a037f9551bc72dcba17ff",
+    "workspace/bitmaps/2c226ebc-0399-49b3-81a8-7fd77cb82f08.png": "736ad0b39dfa4681bd4a2e4cd97eef2cbcaaeda4b567d5f72701d4ac859d54d1",
+    "workspace/bitmaps/31f02a96-793f-43a4-aa6d-771c55358dd1.png": "594ac864fc0515503eeffe0e770cf2cc7308efadd9aebb649040fa67ee43fc34",
+    "workspace/bitmaps/33e8816f-b568-43f3-86e4-17cf606143e6.png": "5086e306b7340b264d66088f76706efd1b9431ddcc30b3e2a2efee648740a7da",
+    "workspace/bitmaps/425ce4cd-5a06-42f7-8068-2f22da435253-completion.png": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+    "workspace/bitmaps/4487c227-7cbb-4438-8204-e226866f4ac5.png": "a6053ed441415ded78948b188c48f9f270e31146d180303b417439b063a23961",
+    "workspace/bitmaps/467b7814-2833-4b20-9491-8ae753e0ae5c-completion.png": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+    "workspace/bitmaps/486b7366-49eb-4393-891c-2565db3730f8-comparison.png": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
+    "workspace/bitmaps/516858c4-5e96-4318-ac4e-c5b92c635c48-comparison.png": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
+    "workspace/bitmaps/519c0b91-3765-4404-8043-356a6102652a-comparison.png": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+    "workspace/bitmaps/55e85991-dbf5-4f52-af48-0a72bda4756b-trace.png": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+    "workspace/bitmaps/564b3012-a598-4070-965f-4c87779de5ab.png": "19c06b7d3c54692e29b94c98cdd6abac7f5b134bab82683df168c9daa0e116d2",
+    "workspace/bitmaps/5717d5cd-20ac-445f-acbb-b464aed96ac9.png": "262bb2bdc3a1e99014b67cbb831517d4fdec8aa3cc2d876d50fd09a06ccf789d",
+    "workspace/bitmaps/5bf84f75-04ea-4339-956c-400a395aaf08.png": "66d1528f7ad21662c2c229b3e0041c6cf984cc0b5a69cf40703b4463808ca816",
+    "workspace/bitmaps/5c69c0b7-1d03-4ae3-b7fb-7d91721b164a.png": "57209ef74f81ac701869fde5d4ec79d950f2bd55b3427659d8816db40c3aab68",
+    "workspace/bitmaps/5e563b97-5580-4750-87d1-9bf85f5c1723.png": "d17950541c76f463025165fc6d6563877aef9ad7308e78e74b4c1c25aaa151a9",
+    "workspace/bitmaps/6097f36d-abe1-4962-93c6-ae1b8939964a.png": "2d779f7d21b6dba9c620240b4039d4d42c825448eef734a90504c7b51445aad7",
+    "workspace/bitmaps/64ab1d23-5472-4218-a4bb-a3912ee1559e.png": "f8327849cf119210821c9d9ca4dc9e9b5220171476e80ece9051cc08ad847a0e",
+    "workspace/bitmaps/69911626-8b46-4de2-b643-6156f91d3181-trace.png": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+    "workspace/bitmaps/7001a9ff-a23c-4b1b-adbf-a03c1a5df6ad-comparison.png": "14228564c39937906db88a8ecaaf0c2d844668f0137feaa3e5efb3800aa24dd5",
+    "workspace/bitmaps/71d7333a-52d3-4d96-90fb-390ebd4c1741-comparison.png": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
+    "workspace/bitmaps/747eaa24-9db9-4778-8394-45c02d4e33bf.png": "9f772f3dea17f6f94cadc0c1f201881e7d161b56809f757741ed7c09bc2b12d3",
+    "workspace/bitmaps/7c77251d-4811-4915-9605-d9d9867c3ed3.png": "6ef15f5e5b25f4a5ba5b6ec643fd387dbdee43ebf15d87b25728c66f7842d97f",
+    "workspace/bitmaps/7dac7fb2-0ba6-486d-a6c0-239431d87c22.png": "869321d6f4b452f33cd3404bb5eb94572074d422e23cde0b74dc08315cbf3c69",
+    "workspace/bitmaps/7de2911b-30a2-424b-b0fa-8e2842589efb.png": "e4f2fdf747c0d2bfccdc023119398609f10e67ca90e2e7e6d0043463e11bc063",
+    "workspace/bitmaps/83711c8f-e4b6-4431-bf34-d0563e66806f.png": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
+    "workspace/bitmaps/8e0a556c-467a-4ced-9435-a451c531c746.png": "f02ce38038360bcd8f2b732ad91c12b502f84f1c28fab02339bd28338f533140",
+    "workspace/bitmaps/9235152b-6e10-47e1-8ebe-d563616015f0.png": "1157969546f5805fc86b761be3061d49a1ae2aacd39f30332faec9ce7c1a0dab",
+    "workspace/bitmaps/9302c6eb-466d-4bbd-80bc-d67b667eb693.png": "869efd499576624a63eb49f6f392997b3df78719a38c462be05ce5d57b7b6fbe",
+    "workspace/bitmaps/959bc037-f919-454f-ab0c-79b6d521e765.png": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
+    "workspace/bitmaps/9b81e2c1-b0db-4800-89b0-969712e43a82.png": "27576798a4e2226db3b93ce2c6bd293be3417b8183cc444681957bd3f0dff0fa",
+    "workspace/bitmaps/9d5ea217-6563-498f-816b-188ce478ab70.png": "67aad5ab5dd1a18f3406d538e87960f0af45bbb350b3a0ede76fee5cd58b9bd0",
+    "workspace/bitmaps/9e6c1e63-2ba1-4801-bbaa-89c15a63971f.png": "6ef15f5e5b25f4a5ba5b6ec643fd387dbdee43ebf15d87b25728c66f7842d97f",
+    "workspace/bitmaps/a0bc816a-f388-42da-81ee-693e4112f4bf-comparison.png": "057bb6e41fdc9a28f50b4a795bde02cdc9af52ccccf7c083c0179bb33178edfd",
+    "workspace/bitmaps/a2c76438-00b4-4f02-a7e1-bb1e615da9aa.png": "d1497434ba441910ce1514d17bd157fa51ac6228e5bbc3bb7c9005b79df47965",
+    "workspace/bitmaps/a6c0671e-6eec-4110-bfa8-04854ad78557.png": "6eba89c42aa4f0df4b826c203bbf69a8f835072ab56c77a06a7d8dfb0e1e7db8",
+    "workspace/bitmaps/a717ce6f-e98b-4640-ad89-b94052eb0345-comparison.png": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+    "workspace/bitmaps/ae2201b0-26f5-4f14-9b94-63e3533d0617.png": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+    "workspace/bitmaps/b31298f5-14d7-49bb-82c0-bddaf45ad072-comparison.png": "db6ce24c29d61eb728eae4ddea64a503f9c4d5900b6a037f9551bc72dcba17ff",
+    "workspace/bitmaps/b3e27cf2-2f9a-4626-8ceb-9ae30ba55ab4-comparison.png": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+    "workspace/bitmaps/baa38548-2292-4021-8cbf-1acd2e614507.png": "02a963250899cb814f062d88c8133f8c010fcd769410d0bcb851f47baa19b8e2",
+    "workspace/bitmaps/bec118bf-ad26-4801-acb2-da911154520b.png": "18795fbf8f582464a7d3ebb5ef988d1d9c2675734bc5a0d1c2ae77bdc501e183",
+    "workspace/bitmaps/c00ad1a3-2ab6-4634-9f8e-898d5758552f.png": "e93932d6402ec5573d477beb1debf4fb7fac8bc2ff2c903507c081ce36381efc",
+    "workspace/bitmaps/cabdaa6b-df3d-4cf7-8991-e35c696c145b.png": "3436cde31a87e7c323a66c054f6eceb7bec22acdb6867910228ada5cf894085f",
+    "workspace/bitmaps/ceba2e1f-1022-48f3-ab44-ae3d93ceda8f-trace.png": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+    "workspace/bitmaps/cf7611d9-23ef-4ac2-9cc0-e5b65839207f.png": "736ad0b39dfa4681bd4a2e4cd97eef2cbcaaeda4b567d5f72701d4ac859d54d1",
+    "workspace/bitmaps/d32be692-784c-4d25-a9a6-3cca743d6d01.png": "46d6dfffccd03c5bb255f2244993c0ea6fce0d3f949748e750566f42bcbb62d7",
+    "workspace/bitmaps/d40cc720-4ff4-40fa-a64b-a54db4403973.png": "9c3a5d621294698772dfdb243145fe891fbd5fab9fb00bbcaff884dda4335b19",
+    "workspace/bitmaps/dc00bdb1-57ae-41a2-a41d-04a3d32baec6.png": "51c79de11f914dc94a8844eeca79fde999dc2564fc1fbd9ec8e2ec013d5042b5",
+    "workspace/bitmaps/dd541c91-bbe9-466c-9925-34a468cdb664-comparison.png": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
+    "workspace/bitmaps/de0dadc7-f058-4ce6-9f17-a42e0402b2f7.png": "f02ce38038360bcd8f2b732ad91c12b502f84f1c28fab02339bd28338f533140",
+    "workspace/bitmaps/de909cad-65f1-42f7-b7e6-c416c7e7555b.png": "df1c54a2ea3ea3f37ff7d3fc1b1f75d5074a391e5db66033913ea950dfe598a2",
+    "workspace/bitmaps/e0702739-05d9-4c67-b891-0c572295fd7b.png": "618251aeefb0acbffb59d87134906a174e295078c0f214d777d792c4c6ae87bb",
+    "workspace/bitmaps/e5a4d2f9-2cfd-488c-b337-f58c0ed6de54.png": "01afdc17742fab50793e077f08b7ccffade1855e4d99d6e50e604584a419e5fb",
+    "workspace/bitmaps/efa069b0-1147-4cdb-95dd-dd3d8f95e6d3.png": "5086e306b7340b264d66088f76706efd1b9431ddcc30b3e2a2efee648740a7da",
+    "workspace/bitmaps/f00172c9-149d-4d3b-85f4-383322df5a88-comparison.png": "679faf1042d5fb1b79a9133e7721b48090552b624294296a555dc24be83b64c2",
+    "workspace/bitmaps/f5317331-71b0-4866-a34c-017cf79b554d.png": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+    "workspace/bitmaps/fb502f35-ecab-4b48-bfef-155ae74614eb.png": "8e3e2fae56a3f7738ef42d13788e913e2098af79a1d5aa815fb5fe9ab26e41b1",
+    "workspace/bitmaps/fe2f68b5-a4aa-4fbd-a532-e7c65a4061c5.png": "1aff87ee133054b59f64ab57f1198056b7f99390c4996644df1f7ab3f9ede374",
+    "workspace/bitmaps/ff6e96ed-7237-4ba4-b8cc-05e4d0d4d591.png": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
+    "workspace/bitmaps/ff9fb4af-fa2e-47f4-a121-d7e8c8ccdb61-comparison.png": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+    "workspace/compile.mjs": "a70ea8394fe44b269d7ec44509bd69fdeb64a85ac5ee2d8384c1b38d8149488c",
+    "workspace/context/hair__back_hair.png": "e2fcccf7915d440f6ae751ed2b4504485e42bfdb54d9902886e4e8ca55da5e62",
+    "workspace/context/hair__bangs.png": "1158d91165e84aa13fc663703033f352242fb749745480c7766118721aa68e0a",
+    "workspace/context/hair__bun_left.png": "63f61cedea409b8f668b115c758944ec6aea879c8f3cddbde6cc75f7bc1aef40",
+    "workspace/context/hair__bun_right.png": "b191d72ac1574fbebf6d0653af607a629b6c50f479f46a7d79e65d6af354adbf",
+    "workspace/context/hair__front_side_hair_left__front.png": "04f1721fe4ba8407e3e2fc9e53b217bbe67a377e3d68a889c71f246807330a48",
+    "workspace/context/hair__front_side_hair_left__root.png": "0900392143d3b8b8221a1d1f0da818faaa6339b53f907ecd246ff3b702d2677e",
+    "workspace/context/hair__front_side_hair_right__front.png": "8fb8bb3c5f42213bf0a2248d940b33d822a1b2db0046654e8296c038a817875b",
+    "workspace/context/hair__front_side_hair_right__root.png": "1c46b5dcbcd884bcd741aeb28f52bcb6f764c74fbb59f1a24f688e903cbdc3f2",
+    "workspace/context/hair__side_hair_left.png": "10b8720a2d7401833410dc35dfa3b78157155defffeb1ae17113391ee273bd7c",
+    "workspace/context/hair__side_hair_right.png": "7701d077fea101776b6aa0569b74a8cd2b96f2a539dea0a50a6a6be3c5a01e53",
+    "workspace/context/head_accessories__front.png": "4c03b1046ef4a71aa9165aaaf7f42a1b9f59d0c228c3aa42750ff5f9896d6d19",
+    "workspace/context/head_accessories__root.png": "fa3db1cd3d9d23953d22a0842b20b785aa7e62894b9261c257ee7a4e99c6a362",
+    "workspace/continuity-video-1.8.png": "cff7f9f5386e9c116d7793d34f0d0fed36dde0f693497397f64bc91cf7c84db3",
+    "workspace/continuity-video-2.1.png": "143f52fd28189c9241083f4a13b02c6e38e7af0ac1aeaba625aa327054c1e0b5",
+    "workspace/continuity-video-2.4.png": "ac7311c95bef92918875917754a3579a9df3c3276ede169b870fc66551299aec",
+    "workspace/continuity-video-diagnostic.png": "1be152480ba66832e6bf41165ef7fbb542e629da5bc9f0a69704cde2ec709ec6",
+    "workspace/export_kra.py": "c80ab415e4e2fd3c289fc74d55ffae4e1829a20f5a7381b76c784ea0ebf86aa1",
+    "workspace/finalize_delivery.py": "c3f4386f61ee331744054689ce2c66bc7fd875ce172b34abc918de9da86d2740",
+    "workspace/inspect_kra.py": "bd005386c96b54d6d825548386bf2c4946e890542be5640ec0eadd7f557067cc",
+    "workspace/kra-tree.json": "a44725330ca1b0591302e359d85431574ae176d2aebef3c1171d234ee7b612ad",
+    "workspace/left-neighbor-board.png": "3b5d540049c4868772003d46103b84b9988ad5caf1d077eed47b528d4de66065",
+    "workspace/prepare_reference.py": "ec1406f8ea8faa7a8bf5311d98dbc33b07d4a0e8b591d178772de89981e44523",
+    "workspace/previews/2026-11-04T11-17-35-997Z-1.png": "b5a35add38ec1ef0429fffe6bcb0214470026085277e3a75ce82a6db7ab55b3a",
+    "workspace/previews/2026-11-04T11-17-35-997Z-10.png": "9de83ca0772136f0482714356eac6a2fae92c9c2b465e01d5e517a249ba5ac68",
+    "workspace/previews/2026-11-04T11-17-35-997Z-11.png": "9f9c9a1c3a6e4235f76b66f6a64bda555f876519ce66286bf3399e057b72abcd",
+    "workspace/previews/2026-11-04T11-17-35-997Z-12.png": "aedd88084d8cb217a3ab8b0ca3ac8fbbba6ad9fefa7b388d72201addf812a0d0",
+    "workspace/previews/2026-11-04T11-17-35-997Z-13.png": "6004fc7d6918d79ea8475d9897f4510bbab7f6c3ae67aea696a4219d82868760",
+    "workspace/previews/2026-11-04T11-17-35-997Z-2.png": "9cb91bbae58fd03a79c194d725c346814e2c3efc44a97fcfd4f090b6af428034",
+    "workspace/previews/2026-11-04T11-17-35-997Z-3.png": "91074156146f6e1a62bf45fa0e32a3da670f65883230e457ada19df4976948bd",
+    "workspace/previews/2026-11-04T11-17-35-997Z-4.png": "f3b37bf764190a7c2068dca1300828b41501a4027b08de221173a4b3d758bcb8",
+    "workspace/previews/2026-11-04T11-17-35-997Z-5.png": "cf17d2e1c8cc8f7934ab1fa9ac336687656715e31ebe661b80adfcb24a94a60a",
+    "workspace/previews/2026-11-04T11-17-35-997Z-6.png": "ad19dcfb9f58450bd68c725a076948b363835986625d08687177410602260069",
+    "workspace/previews/2026-11-04T11-17-35-997Z-7.png": "b5d9da68dc02aa310567fb8e7e2f79a9de570805f36634f84230e1cba26fe11d",
+    "workspace/previews/2026-11-04T11-17-35-997Z-8.png": "a4c9f56f2c60705b9270cfdc47c6eecae508124b8cea1b73e6e25d6acde88312",
+    "workspace/previews/2026-11-04T11-17-35-997Z-9.png": "80cc359fcf99704ae5173911f332e6e6b23668f3475c587b842b672be866bffe",
+    "workspace/round-face-3.25.png": "17321b3a81dd58e66b8ffc5cf36e957ac52beacbb9a437b46ba62d57a8b89236",
+    "workspace/round-face-6.7.png": "3c73a774359a3f5fa490265e64ab737adbca33cdfb7d927c4b3c766d22b83dce",
+    "workspace/round-face-7.7.png": "8e74c3c51efe192a585b44d5ee9a912f4bf783284c95a8bc39502baea37eb996",
+    "workspace/round-face-8.7.png": "79cb7401b24f44f58231d7b7cb309d672d2b71b765d180c9fb8024c5fcdd3767",
+    "workspace/round-video-reference-check.png": "e40d76aeb2b55294c09800b1682707292ff53216e98e70758098931b3f057ae8",
+    "workspace/source-alpha-fit.json": "655bf7361ec517c1e0fe265883aa34e9ce03f6d63403612b66c8aac87ece26b7",
+    "workspace/source-alpha-trace-log.json": "30710ade0e3d083cb709698fa02bf186af8456435a6b80e379c6fee8f7e1a3b8",
+    "workspace/target-completion-reference.png": "c9f14bdcb300f89682d16d3ad72d4d9a4190ce77d8e93d424dc2588479710419",
+    "workspace/trace_faces.py": "b327f181dc7a6f8000eae617de62afa579c1e4ef6bcb86c13a0e21eece425481"
+  },
+  "agentFilesAfter": {
+    "2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl/events.jsonl": "ba992c03634544d239a4504f1651e0d6e537bdc04e6ab80c68394814435a89be",
+    "2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl/prompt.md": "7ddb81f2f1e8e880d5adb51900822ac2c2d21235778190a9f30463c1374da19b",
+    "2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl/request.json": "e1ba6d16a3503cf8064eb1c08290141bf659beebe98adfe2882edf37fef87b75",
+    "2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl/result.json": "3e41f57a296cf7d237f3d380c5fca7c33a0bf4461da93cd5cdfc8b67f354ce69",
+    "workflow.log": "5432757a45a6782f4b3a43d77d1ecc624db0ab96edb5f3e3f1a4629fbd2db632"
+  },
+  "finalAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
+  "finalDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
+  "allSourceBytesUnchanged": true,
+  "finishedAt": "2026-11-04T11:54:32.616Z"
+}
