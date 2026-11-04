@@ -33,7 +33,7 @@ async function fixture(t: TestContext): Promise<InitialContext> {
 }
 
 const wingGroups = {
-  subject: 'other', groups: [
+  groups: [
     { name: 'left_wing', groups: [], note: '主体左翼' },
     { name: 'right_wing', groups: [], note: null },
   ],
@@ -68,7 +68,7 @@ test('首次识别一次调用，绑定 view_bitmap 和 write_groups；直接保
   assert.doesNotMatch(calls[0].prompt, /view_bitmap.*crop/);
   assert.doesNotMatch(calls[0].prompt, /分组输出文件/);
   assert.deepEqual(result, { status: 'completed', output: {
-    subject: 'other', groups: [
+    groups: [
       { id: 'left_wing', name: 'left_wing', note: '主体左翼' },
       { id: 'right_wing', name: 'right_wing' },
     ],
@@ -91,7 +91,6 @@ test('null 且组为空接入真实识别适配器，结果原子保存，旧文
   const state = (await GroupStore.open(context.directory)).snapshot();
   assert.ok(!('initial' in state));
   assert.deepEqual(state.groups.map(group => group.id), ['left_wing', 'right_wing']);
-  assert.equal(state.subject, 'other');
   assert.ok(!('mirror_pairs' in state));
   assert.ok(state.groups.every(group => group.groups.length === 0 && group.steps.outline.status === 'pending'));
   const legacy = JSON.parse(await readFile(result.groupsPath, 'utf8'));
@@ -112,7 +111,7 @@ test('写入工具拒绝空组、深入拆分、part、进度、无效名称和�
     { ...wingGroups, groups: [{ name: 'head', groups: [], kind: 'part', note: null }] },
     { ...wingGroups, groups: [{ name: 'Head', groups: [], note: null }] },
     { ...wingGroups, groups: [wingGroups.groups[0], wingGroups.groups[0]] },
-    { ...wingGroups, subject: 'invalid' },
+    { ...wingGroups, subject: 'other' },
     { ...wingGroups, initial: { status: 'completed' } },
     { ...wingGroups, groups: [{ name: 'head', groups: [], steps: {}, note: null }] },
   ];
@@ -133,7 +132,7 @@ test('写入工具拒绝空组、深入拆分、part、进度、无效名称和�
 test('首次分组失败不留下组，续跑仍可重新识别', async t => {
   const context = await fixture(t);
   const steps = initialSteps({ async run(task) {
-    await saveGrouping(task, { subject: 'character', groups: [] });
+    await saveGrouping(task, { groups: [] });
     return { text: 'ok', images: [] };
   } });
   await assert.rejects(runLayering({ ...context, groups: null, steps }), /非空/);
@@ -177,7 +176,7 @@ test('工具报错可修正参数后提交；重复提交不能覆盖已有组',
     await assert.rejects(saveGrouping(task, { ...wingGroups, groups: [] }), /非空/);
     await saveGrouping(task);
     const before = await readFile(join(context.directory, partSteps.initial, 'groups.json'), 'utf8');
-    await assert.rejects(saveGrouping(task, { subject: 'character', groups: [{ name: 'head', groups: [], note: null }] }), /不能覆盖/);
+    await assert.rejects(saveGrouping(task, { groups: [{ name: 'head', groups: [], note: null }] }), /不能覆盖/);
     assert.equal(await readFile(join(context.directory, partSteps.initial, 'groups.json'), 'utf8'), before);
     return { text: 'ok', images: [] };
   } });

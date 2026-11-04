@@ -2,17 +2,9 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "subject",
     "groups"
   ],
   "properties": {
-    "subject": {
-      "type": "string",
-      "enum": [
-        "character",
-        "other"
-      ]
-    },
     "groups": {
       "type": "array",
       "minItems": 1,

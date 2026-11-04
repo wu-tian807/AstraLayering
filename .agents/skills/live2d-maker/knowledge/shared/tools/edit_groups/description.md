@@ -1,6 +1,6 @@
 修改当前人物／衣服 raster step01 的上游 groups.json。绘制及返修时使用本工具保存完整分组树；读取继续使用内置文件工具。
 
-提交 groups 数组，保留未调整的节点、ID、顺序和说明。节点使用 id、kind、name、note、metadata、groups；kind 为 part 的节点没有子节点，没有孩子的 group 也按终止部件处理。版本、subject 和保存路径由程序沿用，steps 等运行状态由调度器管理。
+提交 groups 数组，保留未调整的节点、ID、顺序和说明。节点使用 id、kind、name、note、metadata、groups；kind 为 part 的节点没有子节点，没有孩子的 group 也按终止部件处理。版本和保存路径由程序沿用，steps 等运行状态由调度器管理。
 
 先保存对应 parts/<id>.svg，再提交结构。拆分、合并或修改终止部件 ID 时，在同一次调用中提供完整 layers 深度表，格式与 edit_occlusion 相同；仅改父组、归属、顺序或说明且终止 ID 不变时可省略 layers。工具校验重复／非法 ID、节点结构、全部终止部件的 SVG 和深度覆盖，全部通过才保存；失败返回具体错误，修正参数后再次调用，已有文件保持原样。
 

@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { readStep, type ChainStep } from '../step-chain.ts';
-import type { GroupProgress, GroupSeed, Subject } from './layering-types.ts';
+import type { GroupProgress, GroupSeed } from './layering-types.ts';
 import { groupDepth, groupStepId, layerStepId, parentGroupId, partSteps } from '../step-paths.js';
 export { groupDepth, groupStepId, layerStepId, parentGroupId } from '../step-paths.js';
 
@@ -36,10 +36,11 @@ export async function readChildren(directory: string, id: string): Promise<Child
   if (value?.groupId !== id || !Array.isArray(value.groups)) throw new Error(`子组记录损坏：${groupStepId(id, 'children')}/children.json`);
   return value;
 }
-export async function readInitialGroups(directory: string): Promise<{ subject?: Subject; groups: GroupSeed[] }> {
+export async function readInitialGroups(directory: string): Promise<{ groups: GroupSeed[] }> {
   const value = JSON.parse(await readFile(join(directory, partSteps.initial, 'groups.json'), 'utf8'));
   if (!value || !Array.isArray(value.groups)) throw new Error(`首次分组记录损坏：${partSteps.initial}/groups.json`);
-  return value;
+  // Older runs also saved an unused subject field; only the groups are read.
+  return { groups: value.groups };
 }
 
 type LayerCache = Map<number, boolean>;
@@ -84,10 +85,10 @@ export async function readGroupTree(directory: string, seed: GroupSeed, saved: M
 }
 
 // Rebuilds the whole tree: the initial seeds, then each completed children split.
-export async function readStepTree(directory: string, saved: Map<string, GroupSeed>): Promise<{ subject?: Subject; groups: unknown[]; merged: boolean }> {
+export async function readStepTree(directory: string, saved: Map<string, GroupSeed>): Promise<{ groups: unknown[]; merged: boolean }> {
   if ((await readPartStep(directory, partSteps.initial)).status !== 'completed') return { groups: [], merged: false };
   const initial = await readInitialGroups(directory), layers: LayerCache = new Map();
   const groups = await Promise.all(initial.groups.map(seed => readGroupTree(directory, seed, saved, layers)));
   const merged = (await readPartStep(directory, partSteps.merge)).status === 'completed';
-  return { ...(initial.subject !== undefined ? { subject: initial.subject } : {}), groups, merged };
+  return { groups, merged };
 }

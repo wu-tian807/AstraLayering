@@ -7,7 +7,7 @@ import type { FunctionTool } from './function-tools.ts';
 type Definition = Pick<FunctionTool, 'name' | 'description' | 'inputSchema'>;
 export const toolsDirectory = fileURLToPath(new URL('../tools/', import.meta.url));
 // Sections whose tools/<name>/schema.json add or replace a shared schema.
-export const sectionToolDirectories = ['../../shadow/tools/', '../../part-layering/tools/', '../../clothing-part-layering/tools/']
+export const sectionToolDirectories = ['../../shadow/tools/', '../../part-layering/tools/']
   .map(path => fileURLToPath(new URL(path, import.meta.url)));
 
 function optional(path: string): string | undefined {

@@ -90,10 +90,10 @@ test('未知字段、重复深度、缺失区域或检查返回具体错误；�
   await validateRasterStructure(f.input);
 });
 
-test('分组工具保留 subject、metadata 和未调整节点，终止 group 也参与深度覆盖', async t => {
+test('分组工具保留 metadata 和未调整节点，旧记录中的 subject 读取时丢弃，终止 group 也参与深度覆盖', async t => {
   const f = await fixture(t);
-  const groups = { subject: 'character', groups: [{ id: 'fixture', kind: 'group', name: '原名称', note: '原说明', metadata: { control: 'face' }, groups: [] }] };
-  await writeFile(join(f.directory, 'groups.json'), JSON.stringify(groups));
+  const groups = { groups: [{ id: 'fixture', kind: 'group', name: '原名称', note: '原说明', metadata: { control: 'face' }, groups: [] }] };
+  await writeFile(join(f.directory, 'groups.json'), JSON.stringify({ subject: 'character', ...groups }));
   groups.groups[0].note = '已修正职责';
   await f.tool('edit_groups').execute({ groups: groups.groups }, signal);
   assert.deepEqual(await f.json('groups.json'), groups);

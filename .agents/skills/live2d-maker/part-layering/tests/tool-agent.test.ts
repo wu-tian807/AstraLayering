@@ -52,7 +52,7 @@ test('原生初始分组可裁剪放大回传图片、保存正式分组，开�
     simplifiedSubject: 'unused', judgment: 'unused' };
   await mkdir(references.directory, { recursive: true });
   await sharp({ create: { width: 100, height: 200, channels: 4, background: '#ff0000' } }).png().toFile(references.baseSubject);
-  const grouping = { subject: 'character', groups: [{ name: 'head', groups: [], note: '头部' }] };
+  const grouping = { groups: [{ name: 'head', groups: [], note: '头部' }] };
   const server = await fakeAppServer(f.directory, [
     { tool: 'view_bitmap', arguments: { path: references.baseSubject, crop: [10, 20, 20, 30], scale: 2 } },
     { tool: 'write_groups', arguments: grouping },
@@ -103,7 +103,7 @@ test('原生初始分组可裁剪放大回传图片、保存正式分组，开�
   const saved = JSON.parse(submission.contentItems[0].text).path;
   assert.equal(saved, join(directory, 'step08_initial/groups.json'));
   assert.deepEqual(JSON.parse(await readFile(saved, 'utf8')), {
-    subject: 'character', groups: [{ id: 'head', kind: 'group', name: 'head', note: '头部' }],
+    groups: [{ id: 'head', kind: 'group', name: 'head', note: '头部' }],
   });
   const logged = await log(f.logDirectory);
   assert.equal(logged.request.transport, 'app-server');
