@@ -11,8 +11,8 @@ const previewModes = ['mask', 'normal-depth', 'mixed'] as const;
 const { selection: _selection, ...shadowOutputs } = shadowArtifacts;
 // Every output the studio may read from a project folder.
 export const studioPaths = new Set<string>([...Object.values(studioArtifacts), ...Object.values(shadowOutputs), ...Object.values(nineAxisArtifacts)]);
-// Nine-axis layer textures are numbered by draw order.
-export const isStudioPath = (path: string) => studioPaths.has(path) || /^nine-axis\/step0(3_angle-x|5_angle-y|6_angle-xy)\/layers\/\d{3}\.png$/.test(path);
+// Nine-axis layer textures: numbered by draw order, or named by step07's new parts.
+export const isStudioPath = (path: string) => studioPaths.has(path) || /^nine-axis\/step0(3_angle-x|5_angle-y|6_angle-xy|7_jaw-line)\/layers\/[\w-]+\.png$/.test(path);
 
 export async function studioProject(directory: string, name: string, dir: string, preview?: string | null) {
   if (preview && !previewModes.includes(preview as any)) throw Error('预览方式必须为 mask、normal-depth 或 mixed');
@@ -79,8 +79,8 @@ export async function studioProject(directory: string, name: string, dir: string
   };
   // The newest editable document wins: a nine-axis KRA made from the chosen
   // document replaces it; layer UUIDs are kept, so shadow bindings still apply.
-  let nineAxis = await file(nineAxisArtifacts.angleXYDeformers);
-  for (const path of [nineAxisArtifacts.angleYDeformers, nineAxisArtifacts.headDeformers]) if (!nineAxis.available) nineAxis = await file(path);
+  let nineAxis = await file(nineAxisArtifacts.jawLineDeformers);
+  for (const path of [nineAxisArtifacts.angleXYDeformers, nineAxisArtifacts.angleYDeformers, nineAxisArtifacts.headDeformers]) if (!nineAxis.available) nineAxis = await file(path);
   let nineAxisDocument = false, nineAxisStale = false;
   let nineSource: unknown;
   try { nineSource = JSON.parse(await readFile(await safePath(directory, nineAxisArtifacts.headSource), 'utf8')); }

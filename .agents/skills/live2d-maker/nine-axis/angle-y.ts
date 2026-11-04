@@ -1,8 +1,7 @@
-import { randomUUID } from 'node:crypto';
-import { copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
-import { sign } from './head.ts';
+import { sign, writeBuilt, type Built } from './head.ts';
 
 // step05_angle-y: the agent fits the same face warps to step04's up and down views
 // and delivers the ParamAngleY up and down keyforms (+25 / −25 by default,
@@ -39,26 +38,22 @@ export function checkFaceY(value: unknown, x: XDocument, keys: string[], file = 
 
 export const cornersPending = '斜向（四角）未制作。';
 
-async function atomic(path: string, text: string) {
-  await mkdir(dirname(path), { recursive: true });
-  const tmp = `${path}.${randomUUID()}.tmp`;
-  await writeFile(tmp, text); await rename(tmp, path);
-}
-
-// After the agent: check its delivery against step03 and write the combined deformers.json.
-export async function finishAngleY(directory: string, angleX: string, scale: AngleScale = angleScale()): Promise<number> {
+// After the agent: check its delivery against step03 and add the Y keyforms.
+export async function buildAngleY(directory: string, angleX: string, scale: AngleScale = angleScale()): Promise<Built> {
   const x = JSON.parse(await readFile(join(angleX, 'deformers.json'), 'utf8')) as XDocument;
   let raw: unknown;
   try { raw = JSON.parse(await readFile(join(directory, 'face-y.json'), 'utf8')); }
   catch (error) { throw new Error('agent 未交付可读的 face-y.json', { cause: error }); }
   const [down, up] = scale.y, keys = [angleKey(up), angleKey(down)];
   const byId = new Map(checkFaceY(raw, x, keys).parts.map(p => [p.id, p.keyforms]));
-  await mkdir(join(directory, 'layers'), { recursive: true });
-  for (const p of x.parts) await copyFile(join(angleX, p.texture), join(directory, p.texture));
   const parts = x.parts.map(p => ({ ...p, keyformsY: { [keys[1]]: byId.get(p.id)![keys[1]], [keys[0]]: byId.get(p.id)![keys[0]] } }));
   const parameters = x.parameters.map(q => q.id === 'ParamAngleY' ? angleParameter('ParamAngleY', '角度 Y', scale.y) : q);
   const notes = [x.notes, (raw as FaceY).notes?.trim(), `Y：${sign(up)}° 抬头、${sign(down)}° 低头，与 X 叠加预览；${cornersPending}`].filter(Boolean).join(' ');
-  await atomic(join(directory, 'deformers.json'), JSON.stringify({ ...x, parameters, notes, parts }) + '\n');
-  return parts.length;
+  return { doc: { ...x, parameters, notes, parts }, textures: new Map(x.parts.map(p => [p.texture, join(angleX, p.texture)])) };
+}
+export async function finishAngleY(directory: string, angleX: string, scale: AngleScale = angleScale()): Promise<number> {
+  const built = await buildAngleY(directory, angleX, scale);
+  await writeBuilt(directory, built);
+  return built.doc.parts.length;
 }
 

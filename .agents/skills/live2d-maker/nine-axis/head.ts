@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { access, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { access, copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, relative, sep } from 'node:path';
 import sharp from 'sharp';
 import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
@@ -31,7 +31,7 @@ export function checkFaceLeft(value: unknown, canvas: [number, number], left: st
   if (!Array.isArray(face.parts) || !face.parts.length) throw new Error('face-left.json：没有部件');
   const ids = new Set<string>();
   for (const p of face.parts) {
-    if (typeof p?.id !== 'string' || !p.id.startsWith('face/') || ids.has(p.id)) throw new Error(`face-left.json：部件 id 须为不重复的 face/ 路径：${p?.id}`);
+    if (typeof p?.id !== 'string' || !isHeadPartId(p.id) || ids.has(p.id)) throw new Error(`face-left.json：部件 id 须为不重复的 face/ 路径或脖子 neck：${p?.id}`);
     ids.add(p.id);
     if (typeof p.group !== 'string' || !p.group) throw new Error(`${p.id}：缺少 group`);
     if (typeof p.texture !== 'string' || !p.texture) throw new Error(`${p.id}：缺少 texture`);
@@ -67,6 +67,9 @@ export function stepTexture(directory: string, task: string, id: string, texture
   return local;
 }
 
+// The first level is neck + face + features: the neck layer comes along by default.
+export const isHeadPartId = (id: string) => /^(face\/|neck(\/|$))/.test(id);
+export const faceLevel = { id: 'face', name: '脖子＋脸＋五官', includes: ['face'] };
 const isEar = (id: string) => /(^|[/_])ear(?=$|[/_])/.test(id);
 
 // The other side's layer: left and right swapped as whole words of the id.
@@ -99,8 +102,17 @@ async function atomic(path: string, text: string) {
   await writeFile(tmp, text); await rename(tmp, path);
 }
 
-// After the agent: check its delivery, mirror, and write the workbench files.
-export async function finishHead(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale()): Promise<number> {
+// A step's workbench document built from the delivery, and the file each texture
+// comes from: view_nine_axis renders it as it is, finish writes it into the step.
+export type Built = { doc: Record<string, unknown> & { parts: { id: string; texture: string }[] }; textures: Map<string, string> };
+export async function writeBuilt(directory: string, { doc, textures }: Built) {
+  await mkdir(join(directory, 'layers'), { recursive: true });
+  for (const [texture, source] of textures) if (source !== join(directory, texture)) await copyFile(source, join(directory, texture));
+  await atomic(join(directory, 'deformers.json'), JSON.stringify(doc) + '\n');
+}
+
+// Check the agent's delivery and mirror it into the workbench document.
+export async function buildHead(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale()): Promise<Built & { source: Record<string, string> }> {
   const task = dirname(dirname(directory)), { width = 0, height = 0 } = await sharp(input.color).metadata();
   let raw: unknown;
   try { raw = JSON.parse(await readFile(join(directory, 'face-left.json'), 'utf8')); }
@@ -115,14 +127,21 @@ export async function finishHead(directory: string, input: HeadInput, box: Box, 
     cols: p.cols, rows: p.rows, keyforms: { [left]: p.keyforms[left], '0': p.keyforms['0'], [angleKey(scale.x[1])]: mirrorKeyform(p, pair(p), face.axis, left) } }));
   const [kraHash, colorHash] = await Promise.all([fileHash(input.document), fileHash(input.color)]);
   const document = toTaskPath(task, input.document), color = toTaskPath(task, input.color);
-  await atomic(join(directory, 'deformers.json'), JSON.stringify({ version: 1, kind: 'head-nine-axis', canvas: [width, height],
+  const doc = { version: 1, kind: 'head-nine-axis', canvas: [width, height],
     source: { document, sha256: kraHash }, view: { x: box.x, y: box.y, width: box.size, height: box.size }, axis: face.axis,
     parameters: [angleParameter('ParamAngleX', '角度 X', scale.x), { ...angleParameter('ParamAngleY', '角度 Y', scale.y), keys: [0], status: '未制作' }],
-    levels: [{ id: 'face', name: '脸＋五官', includes: ['face'] }],
-    notes: [face.notes?.trim(), `${sign(scale.x[0])}° 为向左视角，${sign(scale.x[1])}° 为左右成对镜像。`].filter(Boolean).join(' '), parts }) + '\n');
-  await atomic(join(directory, 'source.json'), JSON.stringify({ version: 1, sourceDocument: document, sourceColor: color,
-    sourceKraHash: kraHash, sourceColorHash: colorHash, updatedAt: new Date().toISOString() }, null, 2) + '\n');
-  return parts.length;
+    levels: [faceLevel],
+    notes: [face.notes?.trim(), `${sign(scale.x[0])}° 为向左视角，${sign(scale.x[1])}° 为左右成对镜像。`].filter(Boolean).join(' '), parts };
+  return { doc, textures: new Map(parts.map(p => [p.texture, join(directory, p.texture)])),
+    source: { sourceDocument: document, sourceColor: color, sourceKraHash: kraHash, sourceColorHash: colorHash } };
+}
+
+// After the agent: write the workbench files.
+export async function finishHead(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale()): Promise<number> {
+  const built = await buildHead(directory, input, box, scale);
+  await writeBuilt(directory, built);
+  await atomic(join(directory, 'source.json'), JSON.stringify({ version: 1, ...built.source, updatedAt: new Date().toISOString() }, null, 2) + '\n');
+  return built.doc.parts.length;
 }
 
 export const sign = (v: number) => (v > 0 ? '+' : '') + v;

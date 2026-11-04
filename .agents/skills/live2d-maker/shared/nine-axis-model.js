@@ -3,7 +3,10 @@
 // keyforms on ParamAngleX and, once step04 has run, keyformsY on ParamAngleY
 // sharing the rest form keyforms["0"]; step05 adds the corners as keyformsXY
 // keyed "x,y". The art mesh UV is the regular lattice over bbox.
-export const levelNames = { face: '脸＋五官', hair: '头发', accessory: '头饰' };
+// Masks follow Cubism clipping: a part with clip {by, invert} is drawn only
+// where (or, inverted, only where not) the union of its sources' current alpha
+// covers it; a part with role "mask" is never drawn itself, only clips others.
+export const levelNames = { face: '脖子＋脸＋五官', hair: '头发', accessory: '头饰' };
 
 export function validateHeadNineAxis(doc) {
   if (doc?.version !== 1 || doc.kind !== 'head-nine-axis') throw Error('头部九轴数据版本无效');
@@ -26,6 +29,13 @@ export function validateHeadNineAxis(doc) {
       if (!Array.isArray(pts) || pts.length !== count || pts.some(q => !Array.isArray(q) || q.length !== 2 || !q.every(Number.isFinite)))
         throw Error(`${p.id}：${name} 关键形 ${k} 需要 ${count} 个控制点`);
     }
+  }
+  for (const p of doc.parts) {
+    if (p.role !== undefined && p.role !== 'mask') throw Error(p.id + '：未知角色 ' + p.role);
+    if (p.clip === undefined) continue;
+    const by = p.clip?.by;
+    if (!Array.isArray(by) || !by.length || by.some(id => !ids.has(id) || id === p.id)) throw Error(p.id + '：裁切来源无效');
+    if (p.clip.invert !== undefined && typeof p.clip.invert !== 'boolean') throw Error(p.id + '：裁切反转须为布尔值');
   }
   for (const l of doc.levels) if (!Array.isArray(l.includes) || l.includes.some(x => !levelNames[x])) throw Error('预览层级无效：' + l.id);
   return doc;

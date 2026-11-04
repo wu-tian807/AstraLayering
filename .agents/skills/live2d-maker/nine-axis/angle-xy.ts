@@ -1,9 +1,9 @@
 import { randomUUID } from 'node:crypto';
-import { copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { angleKey, angleScale, type AngleScale } from './angles.ts';
 import { checkFaceY, cornersPending, type FaceY } from './angle-y.ts';
-import { mirrorKeyform, pairId, sign, type Part } from './head.ts';
+import { mirrorKeyform, pairId, sign, writeBuilt, type Built, type Part } from './head.ts';
 
 // step06_angle-xy: the diagonal (corner) keyforms on both angles. The program
 // writes the linear start — rest + the X offset + the Y offset — for the left
@@ -43,17 +43,14 @@ export async function writeLinearCorners(directory: string, angleY: string, scal
     keyforms: Object.fromEntries(corners.map(c => [cornerKey(...v[c]), linearCorner(p, ...v[c])])) })) }) + '\n');
 }
 
-// After the agent: check face-xy.json against step05, mirror the right corners
-// and write the deformers.json the workbench reads.
-export async function finishAngleXY(directory: string, angleY: string, scale: AngleScale = angleScale()): Promise<number> {
+// After the agent: check face-xy.json against step05 and mirror the right corners.
+export async function buildAngleXY(directory: string, angleY: string, scale: AngleScale = angleScale()): Promise<Built> {
   const doc = JSON.parse(await readFile(join(angleY, 'deformers.json'), 'utf8')) as YDocument, v = cornerValues(scale);
   let raw: unknown;
   try { raw = JSON.parse(await readFile(join(directory, 'face-xy.json'), 'utf8')); }
   catch (error) { throw new Error('agent 未交付可读的 face-xy.json', { cause: error }); }
   const keys = corners.map(c => cornerKey(...v[c]));
   const byId = new Map(checkFaceY(raw, doc, keys, 'face-xy.json', 'step05').parts.map(p => [p.id, p.keyforms]));
-  await mkdir(join(directory, 'layers'), { recursive: true });
-  for (const p of doc.parts) await copyFile(join(angleY, p.texture), join(directory, p.texture));
   const parts = doc.parts.map(p => {
     const own = byId.get(p.id)!, pair = doc.parts.find(q => q.id === pairId(p.id)) ?? p, forms = byId.get(pair.id)!;
     const right = (c: Corner) => {
@@ -65,6 +62,11 @@ export async function finishAngleXY(directory: string, angleY: string, scale: An
   const [lx] = v['left-up'];
   const notes = [doc.notes?.replace(cornersPending, '').trim(), (raw as FaceY).notes?.trim(),
     `斜向：${sign(lx)}° 的左上、左下手动斜切，${sign(-lx)}° 的右上、右下为左右成对镜像；四角之间双线性插值。`].filter(Boolean).join(' ');
-  await atomic(join(directory, 'deformers.json'), JSON.stringify({ ...doc, notes, parts }) + '\n');
-  return parts.length;
+  return { doc: { ...doc, notes, parts }, textures: new Map(doc.parts.map(p => [p.texture, join(angleY, p.texture)])) };
+}
+// Write the deformers.json the workbench reads.
+export async function finishAngleXY(directory: string, angleY: string, scale: AngleScale = angleScale()): Promise<number> {
+  const built = await buildAngleXY(directory, angleY, scale);
+  await writeBuilt(directory, built);
+  return built.doc.parts.length;
 }
