@@ -1,18 +1,18 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import { test, type TestContext } from 'node:test';
 import sharp from 'sharp';
 import { SectionKrita } from '../../shared/krita/section-krita.ts';
-import { submitJob } from '../../shared/krita/bridge/client.mjs';
+import { submitJob, type BridgeResult } from '../../shared/krita/bridge/client.mjs';
 import { evaluatePoints, lattice } from '../../shared/nine-axis-model.js';
 import { compileContinuation, startContinuation, sha256 } from '../continuation.ts';
 import { checkFaceLeft, compileHead, writeBuilt, type HeadInput } from '../head.ts';
 import { fileHash } from '../turn.ts';
-import { prepareNeutral } from '../neutral.ts';
+import { prepareNeutral, prepareNeutralBridge } from '../neutral.ts';
 
 const scale = { x: [-30, 30] as [number, number], y: [-25, 25] as [number, number] };
 const box = { x: 4, y: 4, size: 8 };
@@ -29,7 +29,8 @@ const layers: Layer[] = [
 // Use the real submitJob file protocol, executing the generated Python with
 // small Krita/QImage doubles. This exercises traversal, export and finally-close
 // rather than merely returning a precomputed manifest from a mocked TS API.
-async function fixture(t: TestContext, nodes = layers, options: { failExport?: boolean; corruptHash?: boolean; depth?: string } = {}) {
+async function fixture(t: TestContext, nodes = layers, options: { failExport?: boolean; corruptHash?: boolean; depth?: string;
+  startupReplies?: Partial<BridgeResult>[]; exportReply?: Partial<BridgeResult> } = {}) {
   const root = await mkdtemp(join(tmpdir(), 'neutral-原图-'));
   let stop = async () => {};
   t.after(async () => { await stop(); await rm(root, { recursive: true, force: true }); });
@@ -128,6 +129,7 @@ print(json.dumps(reply))
   await mkdir(jobs, { recursive: true });
   await writeFile(join(bridge, 'ready.json'), JSON.stringify({ pid: process.pid, jobs }));
   const calls = { reserve: 0, start: 0, release: 0, jobs: 0, events: [] as string[] };
+  const replies: (BridgeResult & { startup: boolean })[] = [];
   const handled = new Set<string>();
   let running = false, pending: Promise<void> | undefined;
   const timer = setInterval(() => {
@@ -144,8 +146,12 @@ print(json.dumps(reply))
         python.stdin.end(await readFile(join(jobs, name), 'utf8'));
         const code = await new Promise<number | null>((resolve, reject) => { python.once('error', reject); python.once('close', resolve); });
         const reply = code === 0 ? JSON.parse(stdout) : { ok: false, error: stderr };
+        const startup = name.includes('-startup-');
+        if (startup && options.startupReplies?.length) Object.assign(reply, options.startupReplies.shift());
+        if (!startup && options.exportReply) Object.assign(reply, options.exportReply);
         calls.events = reply.events ?? [];
-        if (options.corruptHash && reply.ok) reply.result.parts[0].sha256 = '0'.repeat(64);
+        if (!startup && options.corruptHash && reply.ok) reply.result.parts[0].sha256 = '0'.repeat(64);
+        replies.push({ ...reply, startup });
         await writeFile(join(jobs, name.replace(/\.py$/, '.json')), JSON.stringify(reply));
       }
     })().finally(() => { running = false; });
@@ -153,14 +159,14 @@ print(json.dumps(reply))
   stop = async () => { clearInterval(timer); await pending; };
   const krita = { bridge, async reserve(signal?: AbortSignal) { signal?.throwIfAborted(); calls.reserve++; },
     async start(signal?: AbortSignal) { signal?.throwIfAborted(); calls.start++; }, async release() { calls.release++; } } as unknown as SectionKrita;
-  return { root, directory, input, krita, calls };
+  return { root, directory, input, krita, calls, replies };
 }
 
 test('one original KRA job preserves layers, metadata, identity and the merge export contract', async t => {
   const f = await fixture(t), originalHash = await fileHash(f.input.document);
   const built = await prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root);
   const { doc, manifest } = built;
-  assert.deepEqual(f.calls, { reserve: 1, start: 1, release: 0, jobs: 1, events: ['open',
+  assert.deepEqual(f.calls, { reserve: 1, start: 1, release: 0, jobs: 2, events: ['open',
     'projection:head_accessories::front', 'projection:hair/bangs', 'projection:0001 | face/eye_left/iris',
     'projection:0002 | face/face_base', 'projection:neck', 'close'] });
   assert.deepEqual(doc.parts.map(p => p.id), ['neck', 'face/face_base', 'face/eye_left/iris']);
@@ -269,7 +275,7 @@ test('PNG export failure, duplicate ids and unsupported projection always close 
     const f = await fixture(t, [...nodes], options);
     await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), error);
     assert.equal(f.calls.events[0], 'open'); assert.equal(f.calls.events.at(-1), 'close');
-    assert.equal(f.calls.jobs, 1); assert.equal(f.calls.release, 0);
+    assert.equal(f.calls.jobs, 2); assert.equal(f.calls.release, 0);
     await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
   }
 });
@@ -281,6 +287,50 @@ test('bad exported PNG hash prevents publishing a neutral baseline', async t => 
   await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
 });
 
+const recovery = { ok: false, error: '', stderr: '', dialogs: [{ title: 'Recover Files – Krita', class: 'QDialog' }],
+  hints: ['startup recovery cancelled by the shared bridge'] };
+
+test('first-job startup recovery is drained before opening the original KRA; export still runs exactly once', async t => {
+  const f = await fixture(t, layers, { startupReplies: [recovery] });
+  const built = await prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root);
+  assert.deepEqual(f.replies.map(r => [r.startup, r.ok]), [[true, false], [true, true], [false, true]]);
+  assert.deepEqual(f.replies[0].result, { neutralStartup: true });
+  assert.deepEqual(f.replies[0].dialogs, recovery.dialogs);
+  assert.equal(f.calls.events.filter(e => e === 'open').length, 1);
+  assert.equal(f.calls.events.at(-1), 'close');
+  assert.equal(built.doc.parts.length, 3); assert.equal(f.calls.release, 0);
+});
+
+test('unknown startup dialogs, actual Python failures, and a second recovery failure stop before export', async t => {
+  for (const startupReplies of [
+    [{ ...recovery, dialogs: [{ title: 'Overwrite source?', class: 'QDialog' }] }],
+    [{ ...recovery, error: 'Traceback: actual Python error' }],
+    [{ ...recovery, stderr: 'actual stderr error' }],
+    [recovery, recovery],
+    [{ ...recovery, result: null }],
+  ]) {
+    const f = await fixture(t, layers, { startupReplies: structuredClone(startupReplies) });
+    await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), /启动检查失败/);
+    assert.ok(f.replies.every(r => r.startup)); assert.deepEqual(f.calls.events, []);
+    await assert.rejects(access(join(f.directory, 'layers')), { code: 'ENOENT' });
+  }
+});
+
+test('ok:false with a complete export result and empty stderr remains an export failure with dialogs/hints and raw cause', async t => {
+  const f = await fixture(t, layers, { exportReply: recovery });
+  await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), error => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /原 KRA 导出失败：startup recovery cancelled/);
+    assert.match(error.message, /Recover Files – Krita/); assert.match(error.message, /"dialogs".*"hints"/);
+    const reply = error.cause as BridgeResult;
+    assert.equal(reply.ok, false); assert.equal((reply.result as { parts: unknown[] }).parts.length, 3);
+    return true;
+  });
+  assert.equal(f.calls.events.at(-1), 'close');
+  assert.equal(f.replies.filter(r => !r.startup).length, 1);
+  await assert.rejects(access(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
+});
+
 test('real Krita exports original KRA projections, BGRA channels and off-canvas bounds',
   { skip: !process.env.ASTRA_TEST_KRITA && 'ASTRA_TEST_KRITA 未设置' }, async t => {
     const root = await mkdtemp(join(tmpdir(), 'neutral-real-'));
@@ -288,14 +338,11 @@ test('real Krita exports original KRA projections, BGRA channels and off-canvas 
     t.after(async () => { await krita.release(); await rm(root, { recursive: true, force: true }); });
     await krita.reserve(); await krita.start();
     const document = join(root, 'original.kra'), color = join(root, 'original.png'), script = join(root, 'fixture.py');
-    // Krita can discover pre-existing user autosaves at startup. The shared
-    // bridge cancels its recovery dialog; drain that startup event separately
-    // before requiring a clean result for fixture creation and neutral export.
-    await writeFile(script, 'result = True\n');
-    const startup = await submitJob(krita.bridge!, script);
-    assert.equal(startup.result, true, JSON.stringify(startup));
-    assert.equal(startup.error, undefined, JSON.stringify(startup));
-    assert.ok((startup.dialogs ?? []).every(d => /^Recover Files/.test(d.title)), JSON.stringify(startup));
+    // Use production startup handling, not a test-only recovery workaround.
+    const startup = await prepareNeutralBridge(krita);
+    assert.equal(startup.ok, true, JSON.stringify(startup));
+    assert.deepEqual(startup.result, { neutralStartup: true });
+    assert.deepEqual(startup.dialogs, []);
     await writeFile(script, `from krita import Krita, InfoObject
 from PyQt5.QtCore import QByteArray
 doc = Krita.instance().createDocument(32,32,'neutral','RGBA','U8','',72.0)

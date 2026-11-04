@@ -2,7 +2,7 @@ import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
-import { submitJob } from '../shared/krita/bridge/client.mjs';
+import { submitJob, type BridgeResult } from '../shared/krita/bridge/client.mjs';
 import type { SectionKrita } from '../shared/krita/section-krita.ts';
 import { checkWarpGeometry, lattice, validateHeadNineAxis, type HeadDeformer, type HeadNineAxis, type Point } from '../shared/nine-axis-model.js';
 import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
@@ -116,6 +116,38 @@ function freeze<T>(value: T): T {
   return value;
 }
 
+function bridgeFailure(stage: string, reply: BridgeResult): Error {
+  const detail = reply.error?.trim() || reply.stderr?.trim() || reply.hints?.filter(h => h.trim()).join('\n')
+    || reply.dialogs?.map(d => d.title).join('、') || '桥接未返回成功结果';
+  return Error(`neutral：Krita ${stage}失败：${detail}\n${JSON.stringify({ id: reply.id, ok: reply.ok,
+    error: reply.error, stderr: reply.stderr, dialogs: reply.dialogs, hints: reply.hints })}`, { cause: reply });
+}
+
+/** Drain startup recovery independently of asset work; also usable as a native
+ * bridge probe. A recovery dialog on this no-op is cancelled by the shared
+ * bridge. Require a clean second no-op before opening the source document.
+ */
+export async function prepareNeutralBridge(krita: SectionKrita, signal?: AbortSignal): Promise<BridgeResult> {
+  signal?.throwIfAborted();
+  await krita.reserve(signal); await krita.start(signal);
+  const temporary = await mkdtemp(join(tmpdir(), 'nine-axis-neutral-startup-'));
+  try {
+    const script = join(temporary, 'startup.py');
+    await writeFile(script, "result = {'neutralStartup': True}\n");
+    let reply = await submitJob(krita.bridge!, script, { signal });
+    const completed = (r: BridgeResult) => r.result !== null && typeof r.result === 'object'
+      && (r.result as { neutralStartup?: unknown }).neutralStartup === true;
+    const recoveryOnly = !reply.ok && completed(reply) && !reply.error?.trim() && !reply.stderr?.trim()
+      && !!reply.dialogs?.length && reply.dialogs.every(d => d.class === 'QDialog' && /^Recover Files(?:\s+[–-]\s+Krita)?$/.test(d.title));
+    if (recoveryOnly) reply = await submitJob(krita.bridge!, script, { signal });
+    if (reply.ok !== true || !completed(reply) || reply.dialogs?.length || reply.error?.trim() || reply.stderr?.trim())
+      throw bridgeFailure('启动检查', reply);
+    return reply;
+  } finally {
+    await rm(temporary, { recursive: true, force: true });
+  }
+}
+
 /** One read-only KRA export. The caller owns beginStep/completion and Krita.release().
  * Pass the same taskRoot to all independent axes; omitting it uses directory itself,
  * never a guessed ancestor. Clone doc before authoring any directional keyforms.
@@ -129,8 +161,7 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   for (const range of [scale.x, scale.y]) if (range.length !== 2 || !range.every(Number.isFinite) || !(range[0] < 0 && range[1] > 0))
     throw Error('neutral：角度范围须包含负值与正值');
   const [kraHash, colorHash, colorMetadata] = await Promise.all([fileHash(document), fileHash(color), sharp(color).metadata()]);
-  await krita.reserve(signal);
-  await krita.start(signal);
+  await prepareNeutralBridge(krita, signal);
   signal?.throwIfAborted();
   const temporary = await mkdtemp(join(tmpdir(), 'nine-axis-neutral-'));
   let exported: Pick<NeutralManifest, 'canvas' | 'sourceKraSha256' | 'parts' | 'referenceLayers'>;
@@ -138,7 +169,7 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
     const script = join(temporary, 'export_layers.py');
     await writeFile(script, exportScript(document, output));
     const reply = await submitJob(krita.bridge!, script, { signal });
-    if (!reply.ok) throw Error(`neutral：Krita 原 KRA 导出失败：${reply.error ?? reply.stderr ?? 'unknown error'}`);
+    if (!reply.ok) throw bridgeFailure('原 KRA 导出', reply);
     exported = reply.result as typeof exported;
   } finally {
     await rm(temporary, { recursive: true, force: true });
