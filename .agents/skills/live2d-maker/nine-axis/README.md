@@ -10,11 +10,12 @@
 | `step02_views` | `step01_video` 的 `left.mp4` 与 `upper-body.png` | `nine-axis/step02_views/left.png`、`frames/`、`views.json` |
 | `step03_angle-x` | 同上的 KRA / PNG，step01 的 `upper-body.png`、`crop.json` 与 step02 的 `left.png` | `nine-axis/step03_angle-x/face-left.json`、`layers/*.png`、`left-check.png`、`deformers.json`、`source.json` |
 | `step04_views-y` | `step01_video` 的 `up.mp4`、`down.mp4` 与 `upper-body.png` | `nine-axis/step04_views-y/up.png`、`down.png`、`frames/`、`views.json` |
-| `step05_angle-y` | `step03_angle-x` 的 `deformers.json` 与 `layers/`，`step04_views-y` 的 up、down 视角 | `nine-axis/step05_angle-y/face-y.json`、`up-check.png`、`down-check.png`、`deformers.json`、`layers/*.png` |
-| `step06_angle-xy` | `step05_angle-y` 的 `deformers.json`，各视角，step01 的 `left-up.mp4`、`left-down.mp4` | `nine-axis/step06_angle-xy/linear.json`、`face-xy.json`、`left-up-check.png`、`left-down-check.png`、`deformers.json`、`layers/*.png` |
-| `step07_jaw-line` | `step06_angle-xy`、当前九轴 KRA | `jaw.json`、`deformers.json`、`jaw-check.png`，必要的 KRA/贴图修复 |
+| `step05_angle-up` | `step03_angle-x` 的工程与原贴图，`step04_views-y/up.png` | `face-up.json`、独立描线/完整脸预测/拟合报告、`up-check.png`、`deformers.json`、`layers/*.png` |
+| `step06_angle-down` | `step05_angle-up` 的工程与原贴图，`step04_views-y/down.png` | `face-down.json`、独立描线/完整脸预测/拟合报告、`down-check.png`、`deformers.json`、`layers/*.png` |
+| `step07_angle-xy` | `step06_angle-down` 的 `deformers.json`，各视角，step01 的 `left-up.mp4`、`left-down.mp4` | `nine-axis/step07_angle-xy/linear.json`、`face-xy.json`、`left-up-check.png`、`left-down-check.png`、`deformers.json`、`layers/*.png` |
+| `step08_jaw-line` | `step07_angle-xy`、当前九轴 KRA | `jaw.json`、`deformers.json`、`jaw-check.png`，必要的 KRA/贴图修复 |
 
-步骤名后缀说明各步做什么：`video` 生成全部视频，`views` 取左右视角帧，`views-y` 取上下视角帧，`angle-x` 做角度 X（左右），`angle-y` 做角度 Y（上下），`angle-xy` 做斜向。
+步骤名后缀说明各步做什么：`video` 生成全部视频，`views` 取左右视角帧，`views-y` 取上下视角帧，`angle-x` 做角度 X（左右），`angle-up` 独立做抬头，`angle-down` 独立做低头，`angle-xy` 做斜向。
 
 路径常量见 `shared/nine-axis.ts`。
 
@@ -58,15 +59,17 @@
 
 X 的描边复用 part-layering 的 `preview_svg`：先独立辨认可见形体，用闭合纯色色块的填色边缘起稿，整图 blend 后以重叠选框放大，用 blend/edge 核对。远侧眼尾外侧到颊部保留视频中的陡边、转折和笔锋，实际显露的脸缘不能整段归为遮挡；遮挡补全最后加入，不移动已核对的可见段。source 对同坐标无遮挡原脸底，target 默认对指定 left 帧。九轴以 `referenceAlignment: 'canvas'` 复用同一工具实现，参考不居中、不重新缩放，不开放生成图的 referenceRegion/referenceOffset；已有 Part 补全仍沿用原对齐方式。两份检查过的 SVG 生成 trace 后再求 Warp。已有真实管线产物可按本步 review-feedback.md 续修，保留已确认区域；工具与拟合技术检查通过仍须由用户确认视觉效果。
 
-## step05_angle-y：脸部＋双耳的上下形变
+## step05_angle-up 与 step06_angle-down：独立的俯仰制作
 
-`edit_nine_axis {}` 从当前 X 的 `deformers.json` 建立完整 version 2 的 `face-y.json`。保留 `deformers`、局部 `parts`、裁切、贴图与来源，在 `keyformsY` 制作上下端点，不再交付平铺部件的坐标补丁。后续阶段的作者源带 `authoring.stage` 与 `upstreamSha256`；来源变动会拒绝旧数据，须按新上游重新制作。
+up 从已完成 X 的 `deformers.json` 建立 `face-up.json`，新增 Y=0 与抬头端点；down 从 up 建立独立 `face-down.json`，新增低头端点。每步拥有自己的 agent 会话、提示词、SVG/trace、补全预测、拟合报告和检查图，可以单独运行或重试。down 保留 up 的工程但只制作低头，不镜像抬头或复用其目标描线。四角从 down 的完整上下工程继续。
 
-agent 沿用或重新安排自己的 Warp 层级，先调大形再补整眼、嘴及独立部件；新增节点自动有当前阶段的关键形。改挂/拆分应保留已有部件在画布上的 X 姿态。Y 重点是眉眼、眼嘴、嘴颏的距离：低头缩短、嘴变扁，下脸收窄；抬头眉眼拉开、嘴变高，下颊和下颌饱满。没有耳朵时跳过，不假造图层。
+两步使用与 left 相同的制作方式：先辨认可见实体脸缘，复用 Part 的 `preview_svg` 做闭合纯色色块描边与局部 blend/edge 核对；可见段标 visible，再结合原画与带图先验补全隐藏的额头、太阳穴、脸颊和下颌。每个方向独立选择适用脸型。分别先看完整 source/target 素脸双图，再用 `fit_nine_axis` 自动求本步端点，最后另看真正变形后的脸底。视频可见区域是唯一目标，教程和原生模型仅指导遮挡补全，不硬套五官距离规则。
 
-固定脖子从开始进入完整预览；脸型、下颌线和蒙版同步检查上下遮盖并记录需求，脖子顶部延长与最终接触调整统一在 step07。`up-check.png`、`down-check.png` 用共享工作台渲染与参考并排。程序验证已制作的 X，继承贴图并输出本步 `deformers.json`。
+俯仰重点检查下颌弧度、下巴位置、可见额顶及整体纵深，以及眉眼/鼻嘴/嘴颏距离、眼睑、虹膜与口腔层。五官可一轮批量液化后微调。Warp 分组、父子和局部修正由 agent 自定；程序保护已制作的 X，down 还保护 up 的端点和中间姿态。脖子始终固定并参加接触对照，顶部补足与最终消线留 step08。
 
-## step06_angle-xy：斜向四角
+两步带图先验分别见 [up](../knowledge/nine-axis/step05_angle-up/references/completion/脸型补全先验.md) 与 [down](../knowledge/nine-axis/step06_angle-down/references/completion/脸型补全先验.md)。工具由步骤绑定参考帧、作者文件和 Y 方向，复用同一拟合实现，不增加角度猜测或另一套液化算法。各步保存 source/target SVG、face-trace.json、trace-check、face-completion-check、face-base-<方向>-check、fit-report，以及完整/叠加/颊颌/五官/固定脖子/过渡检查图。数值与几何检查不能代替用户视觉验收。
+
+## step07_angle-xy：斜向四角
 
 `linear.json` 是完整层级的初始文档，各节点局部 X/Y 位移相加。`edit_nine_axis {}` 建立 `face-xy.json`，agent 制作 `keyformsXY` 左上、左下，程序镜像组合后的结果，再反解到右侧父级。自定义镜像名称用 `mirror_pair`，也支持完整 `left/right` 词的自动配对。
 
@@ -74,10 +77,10 @@ agent 沿用或重新安排自己的 Warp 层级，先调大形再补整眼、�
 
 用 `view_nine_axis` 检查左右四角和轴到四角的过渡，放大瞳孔、口腔层与固定脖子接触。交付完整作者源及左右上/下检查图，程序继承贴图并输出 `deformers.json`。斜向参考视频与生成机制沿用。
 
-## step07_jaw-line：下颌接触收尾
+## step08_jaw-line：下颌接触收尾
 
 `edit_nine_axis {}` 从当前四角建立完整 `jaw.json`。复用已拆好的线、蒙版、脸色扩展；根据实际缺口补绘或增加局部 Warp。蒙版 `role: "mask"` 只作裁切源，线用 `clip: {by: [...], invert: true}`。静止保留原线，转动只擦掉压进脖子的接触段，其他线保持粗细与浓淡。贴图修复由私有 Krita 保存副本，原工程与 UUID 保留。
 
 脖子固定、不进头部 Warp。顶部需要补足时沿原两侧向上绘制，与下部连成直线，不能拉斜或拉长。九宫格 `jaw-check.png` 使用同一工作台渲染检查九个角度与中间值；程序继承贴图，完成本步 `deformers.json`。
 
-工作台默认读取完成的最高阶段；URL `nineStage=x|y|xy|jaw` 可明确比较对应阶段。version 2 是当前作者与运行格式，未发布旧格式不做兼容适配。视频生成不变。
+工作台默认读取完成的最高阶段；URL `nineStage=x|up|down|y|xy|jaw` 可明确比较对应阶段。version 2 是当前作者与运行格式，未发布旧格式不做兼容适配。视频生成不变。

@@ -5,9 +5,11 @@ import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.
 import { mirrorDocument, type Built } from './head.ts';
 import { nodes, validateHeadNineAxis, checkWarpGeometry, evaluatePoints, type HeadNineAxis } from '../shared/nine-axis-model.js';
 
-export type Stage = 'y' | 'xy' | 'jaw';
+export type PitchStage = 'up' | 'down';
+export type Stage = PitchStage | 'xy' | 'jaw';
 export type AuthoredHead = HeadNineAxis & { axis: number; authoring: { stage: Stage; upstreamSha256: string } };
-export const authorFile = (stage: Stage) => ({ y: 'face-y.json', xy: 'face-xy.json', jaw: 'jaw.json' })[stage];
+export const authorFile = (stage: Stage) => ({ up: 'face-up.json', down: 'face-down.json', xy: 'face-xy.json', jaw: 'jaw.json' })[stage];
+export const pitchKeys = (stage: PitchStage, scale: AngleScale) => stage === 'up' ? [scale.y[1]] : scale.y;
 export const sha256 = (s: string) => createHash('sha256').update(s).digest('hex');
 
 export async function readUpstream(directory: string) {
@@ -20,9 +22,14 @@ export async function readUpstream(directory: string) {
 export function startContinuation(upstream: HeadNineAxis & { axis: number }, hash: string, stage: Stage, scale: AngleScale = angleScale()): AuthoredHead {
   const doc = structuredClone(upstream) as AuthoredHead;
   doc.authoring = { stage, upstreamSha256: hash };
-  if (stage === 'y') {
-    doc.parameters = doc.parameters!.map(p => p.id === 'ParamAngleY' ? angleParameter('ParamAngleY', '角度 Y', scale.y) : p);
-    for (const n of nodes(doc)) n.keyformsY = Object.fromEntries(scale.y.map(y => [angleKey(y), structuredClone(n.keyforms['0'])]));
+  if (stage === 'up' || stage === 'down') {
+    const keys = pitchKeys(stage, scale);
+    const range: [number, number] = stage === 'up' ? [0, scale.y[1]] : scale.y;
+    doc.parameters = doc.parameters!.map(p => p.id === 'ParamAngleY' ? { ...angleParameter('ParamAngleY', '角度 Y', range), keys: [...new Set([range[0], 0, range[1]])] } : p);
+    for (const n of nodes(doc)) {
+      n.keyformsY ??= {};
+      for (const y of keys) n.keyformsY[angleKey(y)] ??= structuredClone(n.keyforms['0']);
+    }
   }
   if (stage === 'xy') for (const n of nodes(doc)) {
     n.keyformsXY = {};
@@ -44,15 +51,15 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
   if (stage !== 'jaw') for (const n of upstream.parts) {
     const target = ids.get(n.id)!;
     const sampleKeys=(keys:string[])=>{const k=keys.map(Number).sort((a,b)=>a-b);return [...k,...k.slice(1).map((v,i)=>(v+k[i])/2)];};
-    const poses = [...sampleKeys(Object.keys(n.keyforms)).map(x => [x, 0]), ...(stage === 'xy' ? sampleKeys(['0',...Object.keys(n.keyformsY ?? {})]).map(y => [0, y]) : [])];
+    const poses = [...sampleKeys(Object.keys(n.keyforms)).map(x => [x, 0]), ...(stage === 'down' || stage === 'xy' ? sampleKeys(['0',...Object.keys(n.keyformsY ?? {})]).map(y => [0, y]) : [])];
     for (const [x,y] of poses) {
       const a = evaluatePoints(upstream, n, x, y, 2), b = evaluatePoints(doc, target, x, y, 2);
       if (a.length !== b.length || a.some((v, i) => Math.abs(v - b[i]) > .02)) throw Error(`${n.id}：本阶段不能改动已制作的轴 ${x},${y}`);
     }
   }
   const fields: [string, string[]][] = [['keyforms', ['0', ...scale.x.map(angleKey)]]];
-  fields.push(['keyformsY', scale.y.map(angleKey)]);
-  if (stage !== 'y') fields.push(['keyformsXY', scale.x.flatMap(x => scale.y.map(y => `${angleKey(x)},${angleKey(y)}`))]);
+  fields.push(['keyformsY', (stage === 'up' ? pitchKeys(stage, scale) : scale.y).map(angleKey)]);
+  if (stage === 'xy' || stage === 'jaw') fields.push(['keyformsXY', scale.x.flatMap(x => scale.y.map(y => `${angleKey(x)},${angleKey(y)}`))]);
   for (const n of nodes(doc)) {
     for (const [field, keys] of fields) for (const key of keys) if (!(n as any)[field]?.[key]) throw Error(`${n.id}：缺少 ${field} 关键形 ${key}`);
     if ('opacity' in n) throw Error(`${n.id}：使用覆盖与裁切，不用透明度隐藏部件`);
@@ -64,7 +71,7 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
 export async function compileContinuation(directory: string, upstreamDirectory: string, value: AuthoredHead, stage: Stage, scale: AngleScale = angleScale()): Promise<Built> {
   const upstream = await readUpstream(upstreamDirectory);
   const checked = checkContinuation(value, upstream.doc, upstream.hash, stage, scale);
-  const mirrored = stage === 'y' ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY');
+  const mirrored = stage === 'up' || stage === 'down' ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY');
   const doc = stage === 'jaw' ? mirrorDocument(mirrored, checked.axis, 'keyforms') : mirrored;
   validateHeadNineAxis(doc); for (const n of nodes(doc)) checkWarpGeometry(n);
   const textures = new Map<string,string>();

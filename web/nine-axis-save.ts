@@ -3,7 +3,7 @@ import { safePath, atomicJSON } from './files.ts';
 import { nineAxisArtifacts } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import { validateHeadNineAxis, nodes, checkWarpGeometry } from '../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 
-const paths = new Set<string>([nineAxisArtifacts.headDeformers, nineAxisArtifacts.angleYDeformers, nineAxisArtifacts.angleXYDeformers, nineAxisArtifacts.jawLineDeformers]);
+const paths = new Set<string>([nineAxisArtifacts.headDeformers, nineAxisArtifacts.angleUpDeformers, nineAxisArtifacts.angleDownDeformers, nineAxisArtifacts.angleXYDeformers, nineAxisArtifacts.jawLineDeformers]);
 const pending = new Map<string, Promise<unknown>>();
 const identity = (doc: any) => JSON.stringify({ ...doc, parts: doc.parts.map(strip), deformers: doc.deformers.map(strip) });
 function strip({ keyforms, keyformsY, keyformsXY, ...n }: any) { return n; }

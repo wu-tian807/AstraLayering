@@ -24,7 +24,7 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
       if (Array.isArray(operations)) for (const op of operations) {
         if (['points','drag','transform'].includes(op?.action)) {
           const x = op.x ?? 0, y = op.y ?? 0;
-          if (stage === 'y' && (x !== 0 || !scale.y.includes(y))) throw Error('上下阶段只编辑 X=0、Y 为上下端点的关键形');
+          if ((stage === 'up' || stage === 'down') && (x !== 0 || y !== (stage === 'up' ? scale.y[1] : scale.y[0]))) throw Error(`${stage} 阶段只编辑 X=0、Y=${stage === 'up' ? scale.y[1] : scale.y[0]} 的关键形`);
           if (stage === 'xy' && (x !== scale.x[0] || !scale.y.includes(y))) throw Error('四角阶段只编辑左上、左下；右侧由组合形变镜像');
         }
         if (op?.action === 'add_part' && op.part) op.part.texture = stepTexture(directory, dirname(dirname(directory)), op.part.id, op.part.texture);

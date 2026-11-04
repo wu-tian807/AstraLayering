@@ -3,7 +3,7 @@
 // local shape is evaluated first, then carried through its parent and ancestors.
 // Group warps have no texture; parts retain their own local editable mesh.
 // Each part owns a (cols+1)×(rows+1) control lattice in canvas pixels with
-// keyforms on ParamAngleX and, once step04 has run, keyformsY on ParamAngleY
+// keyforms on ParamAngleX and, once a pitch step has run, keyformsY on ParamAngleY
 // sharing the rest form keyforms["0"]; step05 adds the corners as keyformsXY
 // keyed "x,y". The art mesh UV is the regular lattice over bbox.
 // Masks follow Cubism clipping: a part with clip {by, invert} is drawn only

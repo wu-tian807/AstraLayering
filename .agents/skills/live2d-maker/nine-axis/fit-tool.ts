@@ -11,6 +11,7 @@ import { nodes, evaluatePoints } from '../shared/nine-axis-model.js';
 import { compileHead, type HeadInput, type FaceLeft, type Part } from './head.ts';
 import { cropUpperBody, type Box } from './turn.ts';
 import { angleScale, type AngleScale } from './angles.ts';
+import { authorFile, compileContinuation, type AuthoredHead, type PitchStage } from './continuation.ts';
 
 type Curve = { id: string; part: string; source: string; target: string; visibility?: 'visible' | 'occluded'; weight?: number };
 type Landmark = Omit<Curve, 'source' | 'target'> & { source: [number, number]; target: [number, number] };
@@ -20,8 +21,9 @@ const esc = (s: string) => s.replaceAll('&', '&amp;').replaceAll('"', '&quot;').
 
 // This tool only derives geometry from the pipeline agent's trace. It never
 // supplies an anatomical rig or silently imports a previous character fit.
-export function createNineAxisFitTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale()): FunctionTool {
-  const task = dirname(dirname(directory)), reference = join(task, 'nine-axis/step02_views/left.png'), author = join(directory, 'face-left.json');
+export function createNineAxisFitTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), pitch?: { stage: PitchStage; upstreamDirectory: string }): FunctionTool {
+  const task = dirname(dirname(directory)), reference = join(task, pitch ? `nine-axis/step04_views-y/${pitch.stage}.png` : 'nine-axis/step02_views/left.png'), author = join(directory, pitch ? authorFile(pitch.stage) : 'face-left.json');
+  const x = pitch ? 0 : scale.x[0], y = pitch ? (pitch.stage === 'up' ? scale.y[1] : scale.y[0]) : 0;
   return { ...toolDefinition('fit_nine_axis'), async execute(value, signal, context) {
     const args = value as { action?: string; trace?: string; id?: string; features?: string[]; revision?: string; smoothness?: number };
     if (!args || !['inspect', 'fit'].includes(args.action ?? '') || typeof args.trace !== 'string') throw Error('action 须为 inspect 或 fit，并提供 trace JSON 路径');
@@ -40,9 +42,9 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
     };
     for (const f of trace.curves) { check(f); if (![f.source, f.target].every(s => typeof s === 'string' && s.length > 0 && s.length < 32000)) throw Error(f.id + '：source/target 须为 SVG path d'); }
     for (const f of trace.landmarks ?? []) { check(f); if (![f.source, f.target].every(p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite))) throw Error(f.id + '：参考点须为 [x,y]'); }
-    const original = await readFile(author, 'utf8'), raw = JSON.parse(original) as FaceLeft;
+    const original = await readFile(author, 'utf8'), raw = JSON.parse(original) as FaceLeft | AuthoredHead;
     if (args.revision !== undefined && args.revision !== hash(original)) throw Error('作者数据已变化，请读取最新 revision');
-    const doc = { version: 2 as const, kind: 'head-nine-axis' as const, levels: [{ id: 'face', includes: ['face' as const] }], deformers: raw.deformers, parts: raw.parts.toReversed().map(p => ({ level: 'face' as const, ...p })) };
+    const doc = pitch ? raw as AuthoredHead : { version: 2 as const, kind: 'head-nine-axis' as const, levels: [{ id: 'face', includes: ['face' as const] }], deformers: raw.deformers, parts: raw.parts.toReversed().map(p => ({ level: 'face' as const, ...p })) };
     for (const id of partIds) if (!doc.parts.some(p => p.id === id)) throw Error('描线 part 不存在：' + id);
     if (!doc.parts.some(p => p.id === trace.completion.part)) throw Error('completion.part 不存在');
     const selectedIds = args.features ?? [...ids];
@@ -95,15 +97,16 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
     if (args.action === 'fit') {
       if (typeof args.id !== 'string') throw Error('fit 需要你选择的变形器或部件 id');
       if (completionMismatch.length) throw Error('描线与完整脸型不一致，未拟合：' + JSON.stringify(completionMismatch) + '。先修正完整脸缘；皮肤与头发的交界不能作为脸外轮廓。');
-      const fitted = fitWarpToTraces(doc, { id: args.id, x: scale.x[0], features, smoothness: args.smoothness });
-      const edited: FaceLeft = { ...raw, deformers: fitted.doc.deformers, parts: fitted.doc.parts.toReversed() as Part[] };
-      const built = await compileHead(directory, input, box, edited, scale);
+      const fitted = fitWarpToTraces(doc, { id: args.id, x, y, features, smoothness: args.smoothness });
+      const edited = pitch ? { ...raw, deformers: fitted.doc.deformers, parts: fitted.doc.parts } as AuthoredHead : { ...raw, deformers: fitted.doc.deformers, parts: fitted.doc.parts.toReversed() as Part[] } as FaceLeft;
+      const built = pitch ? await compileContinuation(directory, pitch.upstreamDirectory, edited as AuthoredHead, pitch.stage, scale) : await compileHead(directory, input, box, edited as FaceLeft, scale);
       // Endpoint validity alone cannot prove composed parent/child meshes safe.
-      for (const angle of [scale.x[0], scale.x[0] / 2, 0, scale.x[1] / 2, scale.x[1]]) for (const n of nodes(built.doc)) {
-        const p = evaluatePoints(built.doc, n, angle, 0, 4), cols = n.cols * 4, rows = n.rows * 4;
+      const poses = [...[scale.x[0], scale.x[0] / 2, 0, scale.x[1] / 2, scale.x[1]].map(a => [a, 0]), ...(pitch ? (pitch.stage === 'up' ? [scale.y[1] / 2, scale.y[1]] : [scale.y[0], scale.y[0] / 2, scale.y[1] / 2, scale.y[1]]).map(a => [0, a]) : [])];
+      for (const [angleX, angleY] of poses) for (const n of nodes(built.doc)) {
+        const p = evaluatePoints(built.doc, n, angleX, angleY, 4), cols = n.cols * 4, rows = n.rows * 4;
         for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
           const a = r * (cols + 1) + c, b = a + 1, d = a + cols + 1, e = d + 1;
-          for (const [i, j, k] of [[a, b, d], [b, e, d]]) if ((p[j * 2] - p[i * 2]) * (p[k * 2 + 1] - p[i * 2 + 1]) - (p[j * 2 + 1] - p[i * 2 + 1]) * (p[k * 2] - p[i * 2]) <= 1e-6) throw Error(`拟合未保存：${n.id} 在 X=${angle} 的组合网格翻折；检查对应关系或增加局部控制`);
+          for (const [i, j, k] of [[a, b, d], [b, e, d]]) if ((p[j * 2] - p[i * 2]) * (p[k * 2 + 1] - p[i * 2 + 1]) - (p[j * 2 + 1] - p[i * 2 + 1]) * (p[k * 2] - p[i * 2]) <= 1e-6) throw Error(`拟合未保存：${n.id} 在 X=${angleX},Y=${angleY} 的组合网格翻折；检查对应关系或增加局部控制`);
         }
       }
       signal.throwIfAborted();
@@ -113,7 +116,7 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
       await writeFile(join(directory, 'fit-report.json'), JSON.stringify(report, null, 2) + '\n');
     }
     return { success: true, contentItems: [
-      { type: 'inputText', text: JSON.stringify({ revision, traceCheck: await toAgentPath(task, traceCheck), completionCheck: await toAgentPath(task, completionCheck), completionMismatch, reference: await toAgentPath(task, reference), space: trace.space, features: features.map(f => ({ id: f.id, samples: f.samples.length, weight: f.weight })), ...(report ? { report } : {}) }) },
+      { type: 'inputText', text: JSON.stringify({ revision, x, y, traceCheck: await toAgentPath(task, traceCheck), completionCheck: await toAgentPath(task, completionCheck), completionMismatch, reference: await toAgentPath(task, reference), space: trace.space, features: features.map(f => ({ id: f.id, samples: f.samples.length, weight: f.weight })), ...(report ? { report } : {}) }) },
       { type: 'inputImage', imageUrl: `data:image/png;base64,${traceImage.toString('base64')}` },
       { type: 'inputImage', imageUrl: `data:image/png;base64,${completionCheckImage.toString('base64')}` },
     ] };

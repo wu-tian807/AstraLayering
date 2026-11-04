@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdir, mkdtemp, realpath, writeFile, symlink, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, realpath, readFile, writeFile, symlink, rm } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { tmpdir } from "node:os";
 import { createHash } from 'node:crypto';
@@ -199,16 +199,6 @@ test('Project reports the head nine-axis document and prefers its KRA while the 
   const read = (path: string) => fetch(f.base + '/studio-artifact?' + new URLSearchParams({ folder: f.project, path }));
   assert.equal(await (await read('nine-axis/step03_angle-x/layers/005.png')).text(), 'layer');
   assert.equal((await read('nine-axis/step03_angle-x/layers/../source.json')).status, 400);
-  // Once step03 has added up/down, its deformers and textures are the ones shown.
-  await f.put(a.angleYDeformers, '{}'); await f.put('nine-axis/step05_angle-y/layers/005.png', 'layer y');
-  data = (await (await f.get()).json()) as any;
-  assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.angleYDeformers, true]);
-  assert.equal(await (await read('nine-axis/step05_angle-y/layers/005.png')).text(), 'layer y');
-  // step07 adds the jaw line, the neck and their masks, with named textures.
-  await f.put(a.jawLineDeformers, '{}'); await f.put('nine-axis/step07_jaw-line/layers/jaw_line.png', 'jaw');
-  data = (await (await f.get()).json()) as any;
-  assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.jawLineDeformers, true]);
-  assert.equal(await (await read('nine-axis/step07_jaw-line/layers/jaw_line.png')).text(), 'jaw');
   await f.put(studioArtifacts.document, 'kra'); await f.put(studioArtifacts.color, 'png');
   await f.put(a.headDocument, 'nine kra'); await f.put(a.headColor, 'nine png');
   const hash = (s: string) => createHash('sha256').update(s).digest('hex');
@@ -256,11 +246,115 @@ test('The project list reads task folders under a chosen base folder, the run di
   assert.equal((await list('relative')).status, 400);
 });
 
-test('Nine-axis links can open X without deleting existing later-stage artifacts',async t=>{
-  const f=await fixture(t);
-  await f.put(nineAxisArtifacts.headDeformers,'left-right');
-  await f.put(nineAxisArtifacts.angleYDeformers,'up-down');
-  assert.equal((await (await f.get()).json() as any).nineAxis.path,nineAxisArtifacts.angleYDeformers);
-  assert.equal((await (await f.get({nineStage:'x'})).json() as any).nineAxis.path,nineAxisArtifacts.headDeformers);
-  assert.equal((await f.get({nineStage:'invalid'})).status,400);
+test('Nine-axis preview advances from X through up, down, corners and jaw, skipping unavailable documents', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  const order = [a.headDeformers, a.angleUpDeformers, a.angleDownDeformers, a.angleXYDeformers, a.jawLineDeformers];
+  for (const path of order) {
+    await f.put(path, '{}');
+    const data = await (await f.get()).json() as any;
+    assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [path, true]);
+  }
+  // Re-saving an earlier step must not make it win over a completed later one.
+  await f.put(a.angleUpDeformers, 'newer up');
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.jawLineDeformers);
+  await f.put(a.jawLineDeformers, '');
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.angleXYDeformers);
+  await rm(join(f.project, a.angleXYDeformers));
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.angleDownDeformers);
+  await f.put(a.angleDownDeformers, '');
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.angleUpDeformers);
+  await rm(join(f.project, a.angleUpDeformers));
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.headDeformers);
+});
+
+test('Nine-axis links select X, up or down independently; Y explicitly selects the complete down document', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  const stages = { x: a.headDeformers, up: a.angleUpDeformers, down: a.angleDownDeformers,
+    y: a.angleDownDeformers, xy: a.angleXYDeformers, jaw: a.jawLineDeformers };
+  for (const path of new Set(Object.values(stages))) await f.put(path, path);
+  for (const [nineStage, path] of Object.entries(stages)) {
+    const response = await f.get({ nineStage });
+    assert.equal(response.status, 200);
+    const data = await response.json() as any;
+    assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [path, true]);
+    assert.equal(await readFile(join(f.project, path), 'utf8'), path, 'Selecting a stage leaves its author document intact');
+  }
+  await rm(join(f.project, a.angleDownDeformers));
+  for (const nineStage of ['down', 'y']) {
+    const data = await (await f.get({ nineStage })).json() as any;
+    assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.angleDownDeformers, false], 'Explicit stages never silently fall back to up or jaw');
+  }
+  assert.equal((await (await f.get({ nineStage: 'up' })).json() as any).nineAxis.available, true);
+  for (const nineStage of ['invalid', 'toString', '__proto__', 'nine-axis/step05_angle-up/deformers.json']) {
+    const response = await f.get({ nineStage });
+    assert.equal(response.status, 400);
+    assert.match((await response.json() as any).error, /x、up、down、y、xy 或 jaw/);
+  }
+});
+
+test('Studio reads textures only from the explicit X, up, down, corners and jaw layer directories', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  const read = (path: string) => fetch(f.base + '/studio-artifact?' + new URLSearchParams({ folder: f.project, path }));
+  for (const path of [a.headDeformers, a.angleUpDeformers, a.angleDownDeformers, a.angleXYDeformers, a.jawLineDeformers]) {
+    await f.put(path, 'deformers');
+    assert.equal(await (await read(path)).text(), 'deformers');
+    for (const name of ['005', 'jaw_line', 'eye-left']) {
+      const texture = path.replace('deformers.json', `layers/${name}.png`);
+      await f.put(texture, texture);
+      assert.equal(await (await read(texture)).text(), texture);
+    }
+  }
+  for (const path of ['nine-axis/step05_angle-y/layers/005.png', 'nine-axis/step06_angle-xy/layers/005.png',
+    'nine-axis/step07_jaw-line/layers/jaw_line.png', 'nine-axis/step04_views-y/layers/005.png',
+    'nine-axis/step09_private/layers/005.png', 'nine-axis/step05_angle-up/private.png',
+    'nine-axis/step06_angle-down/layers/nested/005.png', 'nine-axis/step05_angle-up/layers/005.jpg',
+    'nine-axis/step05_angle-up/source.json', 'nine-axis/step06_angle-down/notes.md', 'private.png']) {
+    await f.put(path, 'private');
+    assert.equal((await read(path)).status, 400, path);
+  }
+  assert.equal((await read('nine-axis/step05_angle-up/layers/../source.json')).status, 400);
+});
+
+test('Studio saves up and down keyforms independently while retaining X, earlier Y poses and save guards', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  const rest = [[0, 0], [10, 0], [0, 10], [10, 10]];
+  const save = (value: any) => fetch(f.base + '/api/studio/nine-axis/save', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ folder: f.project, ...value }),
+  });
+  for (const [nineStage, path, yKeys, y] of [
+    ['up', a.angleUpDeformers, [0, 25], 25], ['down', a.angleDownDeformers, [-25, 0, 25], -25],
+  ] as const) {
+    const doc = { version: 2, kind: 'head-nine-axis', levels: [{ id: 'face', includes: ['face'] }], deformers: [],
+      parameters: [{ id: 'ParamAngleX', keys: [-30, 0, 30] }, { id: 'ParamAngleY', keys: [...yKeys] }],
+      parts: [{ id: 'face', level: 'face', texture: 'layers/005.png', textureBounds: [0, 0, 10, 10], bbox: [0, 0, 10, 10], cols: 1, rows: 1,
+        keyforms: { '-30': rest.map(([x, y]) => [x - 2, y]), '0': rest, '30': rest.map(([x, y]) => [x + 2, y]) },
+        keyformsY: Object.fromEntries(yKeys.map(key => [String(key), rest.map(([x, y]) => [x, y - key / 5])])) }] };
+    await f.put(path, JSON.stringify(doc));
+    const before = await (await f.get({ nineStage })).json() as any;
+    const edited = structuredClone(doc);
+    edited.parts[0].keyformsY[String(y)] = rest.map(([x, py]) => [x + 1, py - y / 5]);
+    const response = await save({ path, version: before.nineAxis.version, document: edited });
+    assert.equal(response.status, 200);
+    const saved = await response.json() as any;
+    assert.equal(saved.path, path);
+    assert.deepEqual(JSON.parse(await readFile(join(f.project, path), 'utf8')), edited);
+    assert.deepEqual(edited.parts[0].keyforms, doc.parts[0].keyforms, 'Y edits retain every X endpoint');
+    if (nineStage === 'down') assert.deepEqual(edited.parts[0].keyformsY['25'], doc.parts[0].keyformsY['25'], 'Down edits retain up');
+    const stale = await save({ path, version: before.nineAxis.version, document: doc });
+    assert.equal(stale.status, 400);
+    assert.match((await stale.json() as any).error, /已变化/);
+    const changed = structuredClone(edited); changed.parts[0].texture = 'layers/other.png';
+    const rejected = await save({ path, version: saved.version, document: changed });
+    assert.equal(rejected.status, 400);
+    assert.match((await rejected.json() as any).error, /不能替换图层/);
+    assert.deepEqual(JSON.parse(await readFile(join(f.project, path), 'utf8')), edited);
+  }
+  for (const path of ['nine-axis/step05_angle-y/deformers.json', 'nine-axis/step05_angle-up/source.json',
+    'nine-axis/step06_angle-down/other.json', 'nine-axis/step09_private/deformers.json', 'run.json']) {
+    await f.put(path, 'private');
+    const response = await save({ path, version: 'anything', document: {} });
+    assert.equal(response.status, 400);
+    assert.match((await response.json() as any).error, /只能保存工作台的九轴文件/);
+    assert.equal(await readFile(join(f.project, path), 'utf8'), 'private');
+  }
 });

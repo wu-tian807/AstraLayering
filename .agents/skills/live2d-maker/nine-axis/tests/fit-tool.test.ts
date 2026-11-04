@@ -9,6 +9,9 @@ import { fitWarpToTraces } from '../../shared/nine-axis-fit.js';
 import { lattice, keyformAt, warpPoint, parentPoint, type HeadNineAxis } from '../../shared/nine-axis-model.js';
 import { createNineAxisFitTool } from '../fit-tool.ts';
 import { createHeadEditTool } from '../edit-tool.ts';
+import { finishHead } from '../head.ts';
+import { createContinuationEditTool } from '../continuation-edit-tool.ts';
+import { finishAngleY } from '../angle-y.ts';
 
 const node = (id: string, bbox: number[], cols = 3, rows = 3): any => {
   const p: any = { id, level: 'face', bbox, cols, rows, interpolation: 'smooth' }, rest = [...lattice(p)];
@@ -77,4 +80,35 @@ test('trace inspection is read-only; SVG fitting persists real left geometry and
   assert.equal(raw.deformers.length, 0); assert.deepEqual(raw.parts[0].keyforms['0'], JSON.parse(original).parts[0].keyforms['0']);
   assert.ok(Math.abs(raw.parts[0].keyforms['-30'][0][0] - 55) < 0.01, 'view coordinates add crop origin exactly once');
   await assert.rejects(tool.execute({ action: 'fit', trace, id: 'face/face_base', revision: inspectInfo.revision }, signal), /revision/);
+});
+
+test('up and down trace fitting saves independent Y endpoints and preserves completed up and X', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'nine-pitch-fit-')); t.after(() => rm(root, { recursive: true, force: true }));
+  const xdir = join(root, 'nine-axis/step03_angle-x'); await mkdir(join(xdir, 'layers'), { recursive: true });
+  await mkdir(join(root, 'nine-axis/step04_views-y'), { recursive: true });
+  const color = join(root, 'source.png'), document = join(root, 'source.kra'); await writeFile(document, 'source');
+  await sharp({ create: { width: 200, height: 200, channels: 4, background: '#fff' } }).png().toFile(color);
+  for (const direction of ['up', 'down']) await sharp({ create: { width: 100, height: 100, channels: 4, background: '#888' } }).png().toFile(join(root, `nine-axis/step04_views-y/${direction}.png`));
+  await sharp({ create: { width: 80, height: 80, channels: 4, background: '#ffe4d2' } }).png().toFile(join(xdir, 'layers/base.png'));
+  const input: any = { color, document }, box = { x: 50, y: 40, size: 100 }, signal = new AbortController().signal;
+  await createHeadEditTool(xdir, input, box).execute({ importParts: [{ id: 'face/face_base', group: 'face', texture: 'layers/base.png', textureBounds: [60, 50, 80, 80], bbox: [60, 50, 140, 130], cols: 3, rows: 3 }] }, signal);
+  await finishHead(xdir, input, box);
+  let upstreamDirectory = xdir;
+  for (const [stage, offset] of [['up', -5], ['down', 8]] as const) {
+    const directory = join(root, `nine-axis/${stage === 'up' ? 'step05_angle-up' : 'step06_angle-down'}`);
+    const edit = createContinuationEditTool(directory, upstreamDirectory, stage); await edit.execute({}, signal);
+    const author = join(directory, `face-${stage}.json`), original = JSON.parse(await readFile(author, 'utf8'));
+    const trace = join(directory, 'face-trace.json'), source = 'M10 10L90 10L90 90L10 90Z', target = `M10 ${10+offset}L90 ${10+offset}L90 ${90+offset}L10 ${90+offset}Z`;
+    await writeFile(trace, JSON.stringify({ version: 1, space: 'view', completion: { part: 'face/face_base', source, target }, curves: [{ id: 'face', part: 'face/face_base', source, target, visibility: 'visible' }] }));
+    const tool = createNineAxisFitTool(directory, input, box, undefined, { stage, upstreamDirectory });
+    const inspected: any = await tool.execute({ action: 'inspect', trace }, signal); const info = JSON.parse(inspected.contentItems[0].text);
+    assert.equal(info.y, stage === 'up' ? 25 : -25); assert.equal(info.x, 0); assert.match(info.reference, new RegExp(`${stage}\\.png$`));
+    const fitted: any = await tool.execute({ action: 'fit', trace, id: 'face/face_base', revision: info.revision }, signal);
+    const report = JSON.parse(fitted.contentItems[0].text).report; assert.ok(report.after[0].maxPixels < .01);
+    const saved = JSON.parse(await readFile(author, 'utf8'));
+    assert.deepEqual(saved.parts[0].keyforms, original.parts[0].keyforms, 'X stays unchanged');
+    if (stage === 'down') assert.deepEqual(saved.parts[0].keyformsY['25'], original.parts[0].keyformsY['25'], 'up stays unchanged');
+    assert.ok(Math.abs(saved.parts[0].keyformsY[String(info.y)][0][1] - (50+offset)) < .01);
+    await finishAngleY(directory, upstreamDirectory, stage); upstreamDirectory = directory;
+  }
 });
