@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "frames": {
+    "left-up": {
+      "video": "left-up.mp4",
+      "path": "left-up.png",
+      "frameIndex": 40,
+      "timeSeconds": 1.6666666666666667,
+      "videoSha256": "c1242bb418aaeb06477071a0698e21ddb6b875aecc1dc816b2b831126c49fb26",
+      "sha256": "ef7a6af02f803b143455eb796b197800604479dcde2f69c637e804656c644665",
+      "reason": "全段0–120帧及24–52候选、38/40/42加密比较。40帧远眼较近眼略窄，鼻嘴向左偏移与既有left接近；保留up的短下脸、抬头底缘与额顶投影。两眼/唇缘清楚，无明显滚转、变焦或叠影。"
+    },
+    "left-down": {
+      "video": "left-down.mp4",
+      "path": "left-down.png",
+      "frameIndex": 36,
+      "timeSeconds": 1.5,
+      "videoSha256": "169f7825f2bf144cae8dd83092b408920504302b4fc7cfa780381b0b2842193f",
+      "sha256": "0af404b5e8b4ba45755db8ed99836b0421a136c42e5a8cebf22519609e54621a",
+      "reason": "全段0–120帧及24–52候选、34/36/38/40/42加密比较。36帧远近眼显露差、鼻嘴侧移与既有left接近，下脸渐收及额顶/眉眼高度仍保留down投影；后段侧转更大、远眼明显缩窄，未选。无明显滚转、变焦或叠影。"
+    }
+  }
+}

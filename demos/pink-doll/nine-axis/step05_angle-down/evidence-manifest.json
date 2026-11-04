@@ -1,0 +1,92 @@
+{
+  "authorSha256": "9c33fe06d48ab816e5b8e6434518d866969deaa23e9269b9286fcc8f11f233c4",
+  "referenceBounds": [
+    431,
+    35,
+    394,
+    394
+  ],
+  "registration": "none",
+  "imageNotes": {
+    "face-completion-check.png": "SVG prediction, not actual texture rendering",
+    "forehead-temple-check.png": "Final actual alpha and prediction at fixed coordinates; overlapping crops",
+    "hair-coverage-check.png": "Final actual face behind static target-frame hair; head runtime has no hair nodes or defined hair sway",
+    "intermediate-check.png": "Actual whole head and fixed neck at 0 / -12.5 / -25",
+    "protected-axes-check.png": "Actual inherited X and up poses",
+    "video-direction-check.png": "Only direction-diagnostic thumbnails; never used as fitting target"
+  },
+  "files": [
+    {
+      "path": "nine-axis/step05_angle-down/down-check.png",
+      "sha256": "cb61255a1553cfd97dbe324b640280696aadb09df2aebece70d0d8039ca4c036"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/down-fit-check.png",
+      "sha256": "f772a069f4def4d692afdf8c17c8043ec0103b119a06427baf567c5a5c6542c4"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/face-base-down-check.png",
+      "sha256": "3544af5f1802fbc8c64d2fb0818b5144308e5b9b86066bef8e34d6289dd175e0"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/face-completion-check.png",
+      "sha256": "e5f0b6bd82dea0e1a3125070acf64b5247e187f610d5f7419d12c3bb3b98b865"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/face-completion-fit-check.png",
+      "sha256": "4e462d059e184e19f474db8052fe20cc246219659c863590addbaa446fc4db11"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/features-check.png",
+      "sha256": "cadd1ca79ccdcc2cf57d14e09d52e91c7d34579e5413e6521281456f09dc931e"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/forehead-temple-check.png",
+      "sha256": "c7f5dee852ad9f3fba400f594bcc56b566e62e5112d3ea7f20c8250ba24b953a"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/hair-coverage-check.png",
+      "sha256": "d29675a7266c07a668f2a1a28c08e5d016074e18e8f454b357484555b3adb8d3"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/intermediate-check.png",
+      "sha256": "f16ee1a3e55fbcc43f39269ad0990f2ca72cff770b0654ffbb49b82f88a9233d"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/jaw-chin-check.png",
+      "sha256": "d1019e51830bf69e4e690d42ccc3d397142958aaed9f1a636a6aa7df3dcc159b"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/mouth-detail-check.png",
+      "sha256": "c71be4a7b8d5700d4edf4b52edbe4c6ccd5809861d4669839b78dd4382125d90"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/neck-contact-check.png",
+      "sha256": "b6b09de28b1037f5e2ed5147099b5a0c716d3874faa84752b94035d4a228e963"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/protected-axes-check.png",
+      "sha256": "b7f7d8df2cd149b917dd245eef46b44ca545d404f150f7f2803a23067a560360"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/source-face-reference.png",
+      "sha256": "309063194052207dce86dc03386b2aa1d356879acabf44db54f1129d3e1b0291"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/source-trace-edge.png",
+      "sha256": "c9bfe98f7657709264ed81817f653acd135f3457de06df462d6a623beff2fac3"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/target-trace-edge.png",
+      "sha256": "c5a44b55b23ef6b1ac90c931bacadc0b920ad63cc62f02d1a49a2a1552aba58e"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/trace-check.png",
+      "sha256": "eb6580b14fa1a96f531a1ea50d7943d796165ec99462e076905174083fe52876"
+    },
+    {
+      "path": "nine-axis/step05_angle-down/video-direction-check.png",
+      "sha256": "68cef1ef2b0d971b7e95d65599b0681788cfbfcd74c5bdb2ce02c7758cc94942"
+    }
+  ]
+}

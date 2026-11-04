@@ -1,0 +1,77 @@
+{
+  "source-trace-edge.png": {
+    "source": "nine-axis/step04_angle-up/workspace/previews/2026-11-04T08-40-54-434Z-11.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "target-trace-edge.png": {
+    "source": "nine-axis/step04_angle-up/workspace/previews/2026-11-04T08-40-54-434Z-12.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "trace-check.png": {
+    "source": "nine-axis/step04_angle-up/workspace/bitmaps/145cefb7-1126-44d8-b97b-ae194f517f93-trace.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "face-completion-check.png": {
+    "source": "nine-axis/step04_angle-up/workspace/bitmaps/dac6c9c3-2a15-4f29-997f-b5ae631e3a77-completion.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "face-base-up-check.png": {
+    "source": "nine-axis/step04_angle-up/workspace/bitmaps/a02dc230-de37-4374-a8ee-460597408ee3.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "up-check.png": {
+    "source": "nine-axis/step04_angle-up/workspace/bitmaps/a769672c-98a0-4940-b4da-8b2cdd0bac3c.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "up-fit-check.png": {
+    "source": "nine-axis/step04_angle-up/workspace/bitmaps/a47f3e1d-b779-4048-8831-7a628b53f7c2-comparison.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "jaw-chin-check.png": {
+    "source": "nine-axis/step04_angle-up/workspace/bitmaps/95587380-ac5e-4812-8dee-99a2d55eaf67-comparison.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "features-check.png": {
+    "source": "nine-axis/step04_angle-up/workspace/bitmaps/c663cb77-836b-40b6-a054-a3754ff21956-comparison.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "neck-contact-check.png": {
+    "source": "nine-axis/step04_angle-up/workspace/bitmaps/89fdc960-1123-42c7-981c-cef4b87a1a70-comparison.png",
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65"
+  },
+  "intermediate-check.png": {
+    "sources": [
+      "nine-axis/step04_angle-up/workspace/bitmaps/e2b2ba0a-32da-4e7d-abaa-01d99ccd09a2.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/a2e7cd65-f017-48f1-a927-8f68f225f15e.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/ba8b8dfa-f8b9-40d7-add3-c2febc2fdbca.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/c9656d90-c60b-462d-8345-428ff005e7d8.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/fae6d3a0-7994-4267-be09-a1894842d3f2.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/a17d87cd-959b-4ae0-ab40-657449191ee9.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/59c522d7-ab79-45c7-a067-1b88fbf0bdf4.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/e2b2ba0a-32da-4e7d-abaa-01d99ccd09a2.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/728785ec-c4ec-4062-a5bd-379c233c0dfc.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/a25485f0-03dd-4ca1-9a8a-a87a65ce44f0.png"
+    ],
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65",
+    "registration": "fixed canvas coordinates; no per-pose alignment"
+  },
+  "forehead-temple-check.png": {
+    "sources": [
+      "nine-axis/step04_angle-up/workspace/bitmaps/ecc3b9e3-0d2e-42cd-bca9-0e52d2b2b25b-comparison.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/a8b2bb54-25c6-486b-831d-5aa968ffcfb3.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/f456e49a-0995-4490-b146-82b90c0f294a.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/3c47e5fd-0cf3-43f6-824e-1c73efb8826d.png"
+    ],
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65",
+    "registration": "fixed canvas coordinates; no per-pose alignment"
+  },
+  "hair-coverage-check.png": {
+    "sources": [
+      "nine-axis/step04_angle-up/workspace/bitmaps/4a9f550a-2dd4-4e96-bb02-7db2dccc2d6a-comparison.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/d963640f-e2fe-4eaf-9136-c03123e97189-comparison.png",
+      "nine-axis/step04_angle-up/workspace/bitmaps/3187203b-96fb-4692-b56c-ff0924ed96db-comparison.png"
+    ],
+    "authorSha256": "d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65",
+    "registration": "fixed canvas coordinates; no per-pose alignment"
+  }
+}

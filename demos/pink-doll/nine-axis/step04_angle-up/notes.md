@@ -1,97 +1,99 @@
-# X=0 / ParamAngleY=+25 制作记录
+# X=0 / ParamAngleY=+25 抬头制作记录
 
-本步已保存可复查的 up 候选及完整 version 2 工程。只制作 +25，未制作 down、四角或颈部收尾。技术核验通过，视觉验收仍待用户确认，尚不称本方向流程稳定。
+本步完成 up 作者工程与真实贴图检查，尚待用户视觉验收，未称本方向流程稳定。未制作 down、四角或颈部收尾。
 
-## 目标、方向与坐标
+## 来源、坐标与视频方向
 
-目标为同任务 `step03_video-y/up.png`，原片为 `step03_video-y/up.mp4`。实际使用已有 ffmpeg 取并打开原片 0、30、60、90、120 帧：运动为正立的竖直俯仰透视，未见水平转身、滚转倒立或推近放大；五帧只帮助辨认结构，拟合仍以指定 PNG 为准。
+- 上游：`/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-forehead-pipeline-20261104/run1/pink-doll/nine-axis/step02_angle-x/deformers.json`，SHA256 `e29782f927aa4d4e82ddf277aa721a1366b93063373dc5c922fa358db82a3d24`。
+- 唯一目标：`/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-forehead-pipeline-20261104/run1/pink-doll/nine-axis/step03_video-y/up.png`，SHA256 `18515228cc9789d4ab99e7970fb8c1b8d92ee223db52f045bb01b310d0c287ce`。
+- 原视频：`/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-forehead-pipeline-20261104/run1/pink-doll/nine-axis/step03_video-y/up.mp4`；正面：`/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-forehead-pipeline-20261104/run1/pink-doll/nine-axis/step01_video/upper-body.png`。
+- 裁框：`/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-forehead-pipeline-20261104/run1/pink-doll/nine-axis/step01_video/crop.json`。原画布 1254×1254，中轴 x=628；固定 box=[431,35,394,394]。所有叠加均使用此坐标和尺度，没有按五官或下巴重新对齐。
 
-原画布 1254×1254，中轴 x=628。原始裁框为 x=431、y=35、size=394；特写 (u,v) 直接对应 (431+u,35+v)。所有目标比较保持此尺度和位置，未按变形五官、下巴重新对齐、旋转或缩放参考。
+复用 `/data/home/lockliu/.local/bin/ffmpeg` 从原视频的 121 帧中取 0、30、60、90、120 帧，实际查看五帧板。运动为正立的竖直抬头透视，无水平转身、滚转倒立或推近放大；指定 up.png 为目标（所选第 33 帧），相邻帧只辅助辨认归属。视频后段的脖子运动没有带入工程。
 
-![原片五帧方向检查](video-direction-check.png)
+![视频方向五帧](video-direction-check.png)
 
-## 源脸型与遮挡补全
+## 脸型辨认与遮挡补全依据
 
-实际打开上游完整 face_base PNG，沿 textureBounds=[548,142,159,177] 放回画布后裁出 `source-face-reference.png`；此图只用于原 alpha 外缘检查，未更换贴图。原脸是饱满颊、圆润鹅蛋体量与小尖颏，不是发束围出的皮肤窗口。
+已读取并实际打开先验页的六模型板、Hiyori 放大图、圆脸视频关键帧，以及教程 04:16 脸底、07:27 上下并列、07:42 眉眼关系图。
 
-已实际查看圆脸 Y 关键帧、教程抬头脸底及上下并列/眉眼网格、六种模型图。选择 Hiyori 的圆润鹅蛋脸，仅帮助补全隐藏额顶、太阳穴与上颊的连续体量；其饱满颊和小尖颏接近原脸。短宽圆脸、长窄脸等没有与它平均，也未复制模型角度、表情、视线、装饰或脖子运动。圆脸片段含 X 和表情变化，只观察体量连贯性。
+本角色原画完整 alpha 是饱满圆润鹅蛋脸，颊部有体量、下颌渐收至小尖颏。选择 Hiyori 的额顶—额角—太阳穴—上颊连续结构作为隐藏部分参考；没有采用 Koharu/Haruto 的短扁圆颏，没有平均不同脸型。圆脸视频片段含 X 转向和表情，仅看体量连续性；教程只解释隐藏结构，不借用示例角度、网格位移、眉眼距离或脖子运动。
 
-目标可见下颊、颌底与下巴比源脸更平、更圆收，按当前视频描。下巴目标特写约 (196.813,286.088)，原画布约 (627.813,321.088)。不能因为“抬头”一词另规定下巴向上移动或一律磨圆。
+源轮廓来自 `face/face_base` 的原画完整 alpha，包含额顶与下颌，不是刘海间的皮肤窗口，也不是已做 X 转角。按原 textureBounds 放回原画布，再按固定 box 裁出 source-face-reference.png，未修改贴图。视频的鬓发凹口、下睫毛、内鼻线和颈部阴影没有被描成实体脸缘。
 
-两侧发梢下方确实露出的皮肤侧缘分别标为 visible：左下颊从 (126.8,244) 到 (142,270)，右下颊从 (251.8,269.7) 到 (268,244)。额顶、太阳穴、发束后的上中颊标 occluded；发梢凹口不压入脸肉。内部鼻线、腮色、颈部阴影均不作为外轮廓。
+source-face.svg、target-face.svg 和 face-trace.json 由同一组 12 个语义对应的 cubic 路径段生成，均为 394×394。六段可见颊颌/下巴优先；六段额顶、额角、太阳穴为 occluded，原始权重 0.03。另用一处可见下巴 landmark 稳定对应。整图及重叠局部 blend/edge 已实际查看，最后 inspect 的 completionMismatch=[]。
 
-两份 SVG 是 394×394、透明背景、闭合纯色且 stroke=none 的同一组路径段。实际进行了整图 blend、重叠分区 blend/edge 及独显素脸检查，随后从相同段生成 trace。右源下颊分段用 De Casteljau 拆分，未改变原轮廓。最后 inspect 的 completionMismatch=[]。
+第一次隐藏额顶预测偏低，放大刘海高处皮肤三角窗口后，将隐藏 crown/forehead 修为顶部 view(197,104)，两侧额角约(139,127)/(255,127)。已对齐的可见下颌路径和五官没有随此补全修改。最终预测不沿刘海下缘闭合，也不扩大到发髻、头饰或整片头发外轮廓。
 
-![源和目标完整补全](face-completion-check.png)
+![完整 source 与 target 预测](face-completion-check.png)
 
-## 分组与实际形变
+## Warp 分组与最终拟合
 
-继承上游全部局部网格、绘制顺序和来源：face-completion（12×12）→face-silhouette（6×8）→face/face_base（4×4）。本步新增根级 up-volume-correction（12×12）只包住脸底层级，用于已拟合颊颌与隐藏上颊之间的修顺；其范围 [505,135,740,377]，不含五官或脖子。新层的静止与 X 形保持原画布位置。
+沿用真实 version 2 层级、绘制顺序、局部网格和 X 关键形。face-silhouette 6×8 负责脸底大形，parent=face-completion；后者保留原 X 补全，Y 形保持原位。密度已有足够控制范围，未给全部五官复制同一形变。
 
-先自动拟合可见脸缘，再检查真实贴图渲染。较小平滑约束曾触发网格折叠，失败试验均未保存。保留有效平滑拟合后，按实际完整素脸与同一目标 SVG 局部修顺隐藏侧缘：收回上部多出的体量、补足中颊内收，保住可见颌底与下巴。实际脸底与纯色预测是两份独立检查，交付的是原纹理的真实 Warp 渲染。
+左右 eye Warp 各 4×4 共同带动眼白、虹膜、高光、眼睑和睫毛，避免只移瞳孔。mouth-perspective 2×2 带动口腔各层，舌头再独立修正。眉与鼻保持独立，依据视频落点调整，未预设所有五官都跟脸底投影。
 
-两只整眼分别沿用独立的 4×4 Warp，每眼七层共同调整；口腔五层沿用独立 2×2 mouth-perspective。鼻、眉独立修改，不预设随脸底变形。neck 从始至终 parent 为空，静止、X、Y 关键形完全相同。
+最终 fit 作用于 face-silhouette，smoothness=0.01、63 控制点，occludedWeightScale=0.1，因此隐藏段有效权重为 0.003。以下是自动 fit 的语义对应点误差，单位为原画布像素，不是描边与视频的视觉偏差，也不代替 alpha 覆盖检查。
 
-![真正形变后的完整脸底](face-base-up-check.png)
+| 分段/点 | 证据 | 平均残差 | 最大残差 |
+| --- | --- | ---: | ---: |
+| crown-right | 遮挡补全 | 0.3832 | 1.8299 |
+| right-forehead | 遮挡补全 | 0.6438 | 2.1910 |
+| right-temple | 遮挡补全 | 0.8802 | 2.1910 |
+| right-cheek | 可见 | 0.0544 | 0.1087 |
+| right-jaw | 可见 | 0.1077 | 0.2522 |
+| chin-right | 可见 | 0.0651 | 0.2522 |
+| chin-left | 可见 | 0.0608 | 0.2420 |
+| left-jaw | 可见 | 0.1112 | 0.2420 |
+| left-cheek | 可见 | 0.0641 | 0.1648 |
+| left-temple | 遮挡补全 | 0.9132 | 2.0717 |
+| left-forehead | 遮挡补全 | 0.6100 | 2.0717 |
+| crown-left | 遮挡补全 | 0.3919 | 1.9018 |
+| chin | 可见 | 0.0096 | 0.0096 |
 
-## 五官微调
+最后自动拟合作者 SHA256：`8195d7d7b7cd5b86592a76e0e8e00d753c7c1a21f054ce933e448a9572eac206`。
+随后只更新作者 notes，没有改几何、五官或贴图；最终作者与 deformers.json SHA256 均为：
 
-一次有把握的 operations 批次完成眼、眉、鼻、嘴，再进行小幅微调。以下均为原画布像素，按本角色目标决定：
+`d5fb75add598a208c3fde42858e1296627b8abf4b48348e612fe4e3432067c65`
 
-- 图像左整眼向外约 1.95、向下约 1.81；图像右整眼向外约 2.27、向下约 2.27。宽约增加 4%，高度基本保留，外眼尾有轻微向下坡度。眼白、眼睑、睫毛、虹膜和高光共同变化，保留原画左右差异。
-- 鼻围绕原中心缩至 90%，向右约 0.50、向上约 6.15，核对眼鼻与鼻嘴关系。
-- 整口腔总宽约增加 3.7%，高度约增加 0.8%，整体向上约 2.93，保留张嘴表情、牙、舌和上下唇的配合。
-- 两眉宽约缩 2%、高约缩 1%，分别向上约 1.1/1.0，小幅向内调整。
+face-trace.json SHA256：`a8ab64ac47918544143b6098cc428641576938fc91996c657e8cfcd8597f14c7`。fit-report.json 保留最终 fit 数值并补入此来源关系；check-provenance.json 标记最终检查图所对应作者。所有正式验收图为最终隐藏额顶修正后的图。
 
-原鼻贴图的白高光仍比视频明显；原下眼线、睫毛点与唇缘笔锋有细小差异，保留并列检查，没有透明度消除。原 KRA 无独立耳朵，跳过耳部；也没有独立腮色层，腮色随真实脸底一起处理。
+## 真实额頂、额角和发缘验收
 
-![五官同坐标比较](features-check.png)
+独显真实 face_base 看整张脸，再用原画布 crop [565,136,125,82]、[536,176,72,115]、[651,176,73,115] 以 6 倍放大核对额顶和双侧额角/太阳穴；另以同坐标 target completion PNG 对照实际 alpha。额顶中心至两侧额角再到上颊保持连续体量，没有新缺顶、深凹坑、裂口或需要皮肤覆盖处露背景。
 
-## 最终逐段残差
+实际隐藏轮廓与预测仍有最多约 2.2 像素的拟合差异；两侧源 alpha 的细小阶梯笔缘在放大时仍可见，未换贴图或用透明度抹去。额顶没有因低隐藏权重而压薄。最终实际额顶在刘海两处高皮肤窗口的尖部后留有数像素静态搭接；较亮的窗口内部证据点 view(160,122)/(233,121) 与同横坐标实际上缘约112.3之间有约9.7/8.7像素纵向余量，这只是内部取样佐证，不把它当整个发缘的最小余量。
 
-单位为原画布像素。`fit-report.json` 的 before/after 保留最后一次自动拟合结果；下面及 finalMeasured 是之后手工修顺的当前工程，用同一 SVG 弧长采样、原生组合 Warp 重新实测，author 哈希对应当前 face-up.json。
+静态发缘对照显示太阳穴到上颊处有脸底搭接，可见颊颌没有被补全拉走。Y=12.5 的上脸局部也实际放大查看，额顶/额角持续连贯。工程没有头发层，也没有定义发摆范围；本次只核对原画及 up 视频静态遮挡与脸底自身完整性，不能保证未来头发动态时不露底，未自定发摆或制作头发动画。
 
-“对应均值/最大”包含沿轮廓的语义对应位置差异；“轮廓最大距离”是补充的到完整预测 target 外缘的最近距离。后者只评估完整素脸轮廓接近程度，不能证明遮挡结构在视频中真实可见，也不能替代对应残差。
+![实际脸底与补全对照、额顶及太阳穴放大](forehead-temple-check.png)
 
-| 段 | 证据 | 对应均值 | 对应最大 | 轮廓最大距离 |
-| --- | --- | ---: | ---: | ---: |
-| left-forehead-temple | occluded | 0.830 | 1.373 | 0.830 |
-| left-temple | occluded | 1.674 | 2.474 | 0.668 |
-| left-upper-cheek | occluded | 3.002 | 3.544 | 0.668 |
-| left-mid-cheek | occluded | 4.295 | 6.073 | 0.931 |
-| left-cheek-turn | occluded | 0.212 | 0.398 | 0.230 |
-| left-lower-cheek | visible | 0.172 | 0.472 | 0.290 |
-| left-jaw | visible | 0.139 | 0.472 | 0.185 |
-| chin | visible | 0.078 | 0.182 | 0.201 |
-| right-jaw | visible | 0.140 | 0.589 | 0.201 |
-| right-lower-cheek | visible | 0.155 | 0.589 | 0.173 |
-| right-mid-cheek | occluded | 4.774 | 6.708 | 0.785 |
-| right-upper-cheek | occluded | 4.736 | 6.524 | 1.165 |
-| right-forehead-temple | occluded | 1.241 | 2.810 | 0.840 |
-| chin-center | visible | 0.050 | 0.050 | 0.107 |
+![同坐标静态发缘覆盖](hair-coverage-check.png)
 
-可见颊颌均值约 0.08–0.17，最大约 0.59。隐藏中上颊的弧长对应仍有约 3–4.8 均值、最高 6.71 的残差；完整预测轮廓的最近距离最高约 1.17。实际完整脸底保留连续体量，但隐藏区域属于补全判断，不视为视频验证过的精确解。
+## 五官、固定脖子与剩余偏差
+
+按 up 同坐标核对眉眼、眼鼻、鼻嘴、嘴颏关系和眼睑弧度。第一批将两整眼微向外、向下调整，眼尾做局部下移，保留虹膜与高光配合；眉独立微调。嘴组略上移并调整宽高，保留开口表情；二轮以下缘为锚压低舌头上缘，增加视频可见的深色口腔比例。鼻通过局部网格收窄白高光并匹配鼻线起止，没有改透明度。调整依据为本角色视频，不强制采用“抬头眉眼拉开/嘴变高”等教程距离规则。
+
+仍可见的差异：原贴图白鼻高光比视频明显；部分眼线、下睫毛和口缘的像素笔锋约有一像素局部差异；脸底自带的深色下颌线比视频明显，颊部纹理/腮红也保留原素材。可见下颌主体与下巴落点已贴住目标，不能把 fit 的小残差理解成所有笔触逐像素一致。
+
+![五官目标、实际及叠加](features-check.png)
+
+neck 从开始参与完整渲染，parent=null，bbox=[565,293,691,363]，所有 X/Y 关键形与静止形完全相同。下巴覆盖固定脖子顶部；视频脖子更长/更宽处未通过拉伸补齐。step07 处理接触区域：原画布下巴中心约(628,321)、左右颈顶交接约(602,317)/(654,317)附近的下颌接触线、颈顶覆盖补足和阴影收尾。额顶、额角及太阳穴的脸底完整性在本步完成，未留给 step07。
+
+原 KRA 无独立耳朵层，本步跳过耳朵制作。
 
 ![下颌与下巴](jaw-chin-check.png)
-![左颊放大](left-cheek-check.png)
-![右颊放大](right-cheek-check.png)
-
-## 固定脖子与 step07 交接
-
-当前下巴覆盖固定脖子顶部，无通过拉长或倾斜脖子填接缝。原脸底纹理有深色下颌接触线及微小白色缺口，端点仍可见。接触重点约原画布 x=602–654、y=314–322；颌两侧的线与白色笔锋也需一起审查。额顶/发遮挡处的最终覆盖、脖子顶部补足、接触消线与阴影归 step07。
-
-目标视频的脖子下部投影较长，固定素材的肩颈形状与其不重合；本步明确保留原形原位置，不为追这部分差异改错目标脸型。没有增加贴图、蒙版或改不透明度。
 
 ![固定脖子接触](neck-contact-check.png)
 
-## 过渡、来源与交付核验
+## 过渡、保留校验与产物
 
-实际查看 Y=0、12.5、25 及 X=-30、-15、0、15、30，未见五官突然收缩、分离或融化，脖子固定。额外原生检查 Y=6.25、18.75 的组合细分网格；所有检查姿态均无翻折，最小有向三角面积为 0.168415 原画布平方像素。
+实际查看 X=0 下的 Y=0、6.25、12.5、18.75、25；回查 Y=0 下的 X=-30、-15、0、15、30。脸型和五官过渡没有突然收缩、融化或分离，固定脖子不动。X 的既有非对称额部造型保持上游结果，本步没有修改其它方向。
 
-原生 buildContinuation/writeBuilt 已按最新作者源重新生成 deformers.json 与 layers。24 张继承贴图逐一 SHA256 与上游相同，受保护 X 姿态最大控制点数值差 0.00006104 像素（新增恒等父级后的浮点舍入量），来源验证通过。没有负 Y 或四角关键形。完整校验见 validation-report.json。
+使用管线 finishAngleY 编译真实作者文件并导出 deformers.json/layers，checkContinuation 验证来源和已制作姿态。另按每个上游部件、细分网格检查五个 X 姿态，最大画布位移差为 0。24 张导出贴图与上游 SHA256 一致，中轴、来源、绘制顺序不变，neck 全关键形等于静止形。详见 validation-report.json。这些技术检查不代替用户视觉验收。
 
-当前作者 SHA256：`9a2a6489922deb4e9e254440e433b67da6e7f74c1941ba40d1330ceb80bfc6f7`。
+![同坐标单轴端点与中间值](intermediate-check.png)
 
-![完整端点同坐标比较](up-fit-check.png)
-![0 到 +25 过渡](intermediate-check.png)
-![受保护的 X 姿态](x-protected-check.png)
+正式产物保存在 `/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-forehead-pipeline-20261104/run1/pink-doll/nine-axis/step04_angle-up`：face-up.json、deformers.json、原图 layers/、两份闭合 SVG、原画 alpha 检查底图、共享 face-trace.json、最终 fit-report.json、所有指定检查图及本记录。完整端点见 up-check.png，同坐标视频三联见 up-fit-check.png。
+
+![完整端点](up-check.png)

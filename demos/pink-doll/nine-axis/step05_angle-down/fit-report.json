@@ -5,370 +5,280 @@
   "units": "original canvas pixels",
   "before": [
     {
-      "id": "left-forehead",
-      "samples": 63,
+      "id": "forehead_right",
+      "samples": 32,
       "weight": 0.03,
-      "meanPixels": 1.6883188769823811,
-      "maxPixels": 2.202666092477675
+      "meanPixels": 24.811599155237122,
+      "maxPixels": 25.255676797072706
     },
     {
-      "id": "left-temple",
+      "id": "temple_right",
+      "samples": 39,
+      "weight": 0.03,
+      "meanPixels": 12.36837620376316,
+      "maxPixels": 23.516257458016508
+    },
+    {
+      "id": "upper_cheek_right_a",
       "samples": 16,
       "weight": 0.03,
-      "meanPixels": 2.5451466346450458,
-      "maxPixels": 2.930963312038942
+      "meanPixels": 0.34487781651080973,
+      "maxPixels": 0.642740347142503
     },
     {
-      "id": "left-upper-cheek",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 3.7162268954989552,
-      "maxPixels": 4.467042518649474
-    },
-    {
-      "id": "left-mid-cheek",
-      "samples": 18,
-      "weight": 0.03,
-      "meanPixels": 4.660828228701488,
-      "maxPixels": 4.819481573824482
-    },
-    {
-      "id": "left-cheek-turn",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 5.10812263006755,
-      "maxPixels": 5.398998225663969
-    },
-    {
-      "id": "left-lower-cheek",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 2.683893875391339,
-      "maxPixels": 5.398998225663969
-    },
-    {
-      "id": "left-jaw",
-      "samples": 28,
-      "weight": 1,
-      "meanPixels": 0.03902717701368604,
-      "maxPixels": 0.18511496168364514
-    },
-    {
-      "id": "chin",
-      "samples": 16,
-      "weight": 1,
-      "meanPixels": 0.0826336771814297,
-      "maxPixels": 0.18511496168364514
-    },
-    {
-      "id": "right-jaw",
-      "samples": 28,
-      "weight": 1,
-      "meanPixels": 0.03379980418734634,
-      "maxPixels": 0.15062469016185187
-    },
-    {
-      "id": "right-lower-cheek",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 0.6235929754151,
-      "maxPixels": 1.315680639736231
-    },
-    {
-      "id": "right-mid-cheek",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 1.1663648310515933,
-      "maxPixels": 2.3362119132363057
-    },
-    {
-      "id": "right-upper-cheek",
+      "id": "upper_cheek_right_b",
       "samples": 20,
-      "weight": 0.03,
-      "meanPixels": 2.9306190750151515,
-      "maxPixels": 6.8792621395183335
+      "weight": 1,
+      "meanPixels": 0.026856905088838985,
+      "maxPixels": 0.053343735731778676
     },
     {
-      "id": "right-forehead",
-      "samples": 63,
+      "id": "cheek_right",
+      "samples": 16,
       "weight": 0.03,
-      "meanPixels": 5.1256502080415425,
-      "maxPixels": 7.167147185769522
+      "meanPixels": 0.08216212902690904,
+      "maxPixels": 0.18991472987924335
+    },
+    {
+      "id": "jaw_right",
+      "samples": 24,
+      "weight": 1,
+      "meanPixels": 0.07129751627186567,
+      "maxPixels": 0.18991472987924335
+    },
+    {
+      "id": "chin_right",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.06303841163612563,
+      "maxPixels": 0.10790159895752058
+    },
+    {
+      "id": "chin_left",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.04568028332142097,
+      "maxPixels": 0.07296027351739003
+    },
+    {
+      "id": "jaw_left",
+      "samples": 24,
+      "weight": 1,
+      "meanPixels": 0.07203379324533378,
+      "maxPixels": 0.1556776594681956
+    },
+    {
+      "id": "cheek_left",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 0.16604062757876953,
+      "maxPixels": 0.24803566156494322
+    },
+    {
+      "id": "upper_cheek_left_a",
+      "samples": 20,
+      "weight": 1,
+      "meanPixels": 0.024592174299377496,
+      "maxPixels": 0.05935657807574737
+    },
+    {
+      "id": "upper_cheek_left_b",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 0.08211092335485697,
+      "maxPixels": 0.15252837137279357
+    },
+    {
+      "id": "temple_left",
+      "samples": 39,
+      "weight": 0.03,
+      "meanPixels": 12.014252999981307,
+      "maxPixels": 23.426353558516677
+    },
+    {
+      "id": "forehead_left",
+      "samples": 33,
+      "weight": 0.03,
+      "meanPixels": 24.77619727846211,
+      "maxPixels": 25.254641634973098
+    },
+    {
+      "id": "chin-tip",
+      "samples": 1,
+      "weight": 1,
+      "meanPixels": 0.059497363165309375,
+      "maxPixels": 0.059497363165309375
     }
   ],
   "after": [
     {
-      "id": "left-forehead",
-      "samples": 63,
+      "id": "forehead_right",
+      "samples": 32,
       "weight": 0.03,
-      "meanPixels": 0.1428454379143865,
-      "maxPixels": 0.412334825589818
+      "meanPixels": 0.15475127687128337,
+      "maxPixels": 1.0936007062543345
     },
     {
-      "id": "left-temple",
+      "id": "temple_right",
+      "samples": 39,
+      "weight": 0.03,
+      "meanPixels": 0.3166650486916457,
+      "maxPixels": 1.0936007062543345
+    },
+    {
+      "id": "upper_cheek_right_a",
       "samples": 16,
       "weight": 0.03,
-      "meanPixels": 0.34871128620804664,
-      "maxPixels": 0.43333472159620995
+      "meanPixels": 0.3001640940926142,
+      "maxPixels": 1.0667136480562969
     },
     {
-      "id": "left-upper-cheek",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 0.24646720088413912,
-      "maxPixels": 0.4730574360375816
-    },
-    {
-      "id": "left-mid-cheek",
-      "samples": 18,
-      "weight": 0.03,
-      "meanPixels": 0.4229994349089573,
-      "maxPixels": 0.8554698523763532
-    },
-    {
-      "id": "left-cheek-turn",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 1.6778772908089896,
-      "maxPixels": 2.537940432051234
-    },
-    {
-      "id": "left-lower-cheek",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 1.3106457959823374,
-      "maxPixels": 2.537940432051234
-    },
-    {
-      "id": "left-jaw",
-      "samples": 28,
-      "weight": 1,
-      "meanPixels": 0.040329586308737106,
-      "maxPixels": 0.13784436869792627
-    },
-    {
-      "id": "chin",
-      "samples": 16,
-      "weight": 1,
-      "meanPixels": 0.06505795811361263,
-      "maxPixels": 0.13784436869792627
-    },
-    {
-      "id": "right-jaw",
-      "samples": 28,
-      "weight": 1,
-      "meanPixels": 0.01937931870671356,
-      "maxPixels": 0.1180545978274173
-    },
-    {
-      "id": "right-lower-cheek",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 0.4690525848011129,
-      "maxPixels": 1.202271911708134
-    },
-    {
-      "id": "right-mid-cheek",
-      "samples": 16,
-      "weight": 0.03,
-      "meanPixels": 0.8670845042397086,
-      "maxPixels": 2.044815046116411
-    },
-    {
-      "id": "right-upper-cheek",
+      "id": "upper_cheek_right_b",
       "samples": 20,
-      "weight": 0.03,
-      "meanPixels": 0.8264292287702893,
-      "maxPixels": 2.044815046116411
+      "weight": 1,
+      "meanPixels": 0.01001152389973257,
+      "maxPixels": 0.021909220337971734
     },
     {
-      "id": "right-forehead",
-      "samples": 63,
+      "id": "cheek_right",
+      "samples": 16,
       "weight": 0.03,
-      "meanPixels": 0.33853077860094116,
-      "maxPixels": 1.651117326122592
+      "meanPixels": 0.09572276264648878,
+      "maxPixels": 0.2060828106692683
+    },
+    {
+      "id": "jaw_right",
+      "samples": 24,
+      "weight": 1,
+      "meanPixels": 0.05901501798888901,
+      "maxPixels": 0.14821667035200878
+    },
+    {
+      "id": "chin_right",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.0416216371623722,
+      "maxPixels": 0.06722471840440336
+    },
+    {
+      "id": "chin_left",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.05710304120385128,
+      "maxPixels": 0.10432377706586751
+    },
+    {
+      "id": "jaw_left",
+      "samples": 24,
+      "weight": 1,
+      "meanPixels": 0.03564131795264015,
+      "maxPixels": 0.10432377706586751
+    },
+    {
+      "id": "cheek_left",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 0.12615787629861402,
+      "maxPixels": 0.2233846687812065
+    },
+    {
+      "id": "upper_cheek_left_a",
+      "samples": 20,
+      "weight": 1,
+      "meanPixels": 0.012725328084473742,
+      "maxPixels": 0.07746434936540784
+    },
+    {
+      "id": "upper_cheek_left_b",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 0.35141537621268415,
+      "maxPixels": 1.221986965286855
+    },
+    {
+      "id": "temple_left",
+      "samples": 39,
+      "weight": 0.03,
+      "meanPixels": 0.33145478946125123,
+      "maxPixels": 1.221986965286855
+    },
+    {
+      "id": "forehead_left",
+      "samples": 33,
+      "weight": 0.03,
+      "meanPixels": 0.1563241825014313,
+      "maxPixels": 1.0780312357624304
+    },
+    {
+      "id": "chin-tip",
+      "samples": 1,
+      "weight": 1,
+      "meanPixels": 0.06435933944377813,
+      "maxPixels": 0.06435933944377813
     }
   ],
   "controls": 169,
-  "smoothness": 0.002,
-  "occludedWeightScale": 0.010000000000000002,
+  "smoothness": 0.02,
+  "occludedWeightScale": 1,
   "trace": "nine-axis/step05_angle-down/face-trace.json",
-  "traceSha256": "84e58553df9b8d7157df7b34897aa3500f9484c2c68121ac22fd05f42f51129b",
+  "traceSha256": "ffc2b3c2efa6b19a77f3e48bc8f067834aabfd215891300499b102cdcb31bbe4",
   "referenceSha256": "68165e3193dc43fbe1f1c87e30159fe922631b70b577ee030f142ced26062c3b",
   "visibility": [
     {
-      "id": "left-forehead",
+      "id": "forehead_right",
       "visibility": "occluded"
     },
     {
-      "id": "left-temple",
+      "id": "temple_right",
       "visibility": "occluded"
     },
     {
-      "id": "left-upper-cheek",
+      "id": "upper_cheek_right_a",
       "visibility": "occluded"
     },
     {
-      "id": "left-mid-cheek",
-      "visibility": "occluded"
-    },
-    {
-      "id": "left-cheek-turn",
-      "visibility": "occluded"
-    },
-    {
-      "id": "left-lower-cheek",
-      "visibility": "occluded"
-    },
-    {
-      "id": "left-jaw",
+      "id": "upper_cheek_right_b",
       "visibility": "visible"
     },
     {
-      "id": "chin",
+      "id": "cheek_right",
+      "visibility": "occluded"
+    },
+    {
+      "id": "jaw_right",
       "visibility": "visible"
     },
     {
-      "id": "right-jaw",
+      "id": "chin_right",
       "visibility": "visible"
     },
     {
-      "id": "right-lower-cheek",
+      "id": "chin_left",
+      "visibility": "visible"
+    },
+    {
+      "id": "jaw_left",
+      "visibility": "visible"
+    },
+    {
+      "id": "cheek_left",
       "visibility": "occluded"
     },
     {
-      "id": "right-mid-cheek",
+      "id": "upper_cheek_left_a",
+      "visibility": "visible"
+    },
+    {
+      "id": "upper_cheek_left_b",
       "visibility": "occluded"
     },
     {
-      "id": "right-upper-cheek",
+      "id": "temple_left",
       "visibility": "occluded"
     },
     {
-      "id": "right-forehead",
+      "id": "forehead_left",
       "visibility": "occluded"
-    }
-  ],
-  "finalAuthorSha256": "12742502e51dddd6388c323f70e9aee85928e68617ac7cca1df1e4d343abe3c1",
-  "finalMeasurementMethod": "Same SVG arc-length samples and native composed Warp evaluator at X=0,Y=-25 for the final author file; original automatic before/after retained above. No manual face contour correction followed the final automatic fit.",
-  "contourDistanceMethod": "Supplemental nearest distance to the complete predicted target outline sampled every 0.25 view pixels; measures silhouette closeness, not correspondence or accuracy against occluded video evidence.",
-  "finalMeasured": [
-    {
-      "id": "left-forehead",
-      "visibility": "occluded",
-      "samples": 63,
-      "meanPixels": 0.14284082674510365,
-      "maxPixels": 0.4123282178869572,
-      "meanContourDistancePixels": 0.11123274173210121,
-      "maxContourDistancePixels": 0.29268783766819373
-    },
-    {
-      "id": "left-temple",
-      "visibility": "occluded",
-      "samples": 16,
-      "meanPixels": 0.3487113054876879,
-      "maxPixels": 0.43333350361815404,
-      "meanContourDistancePixels": 0.10382816691178205,
-      "maxContourDistancePixels": 0.29268783766819373
-    },
-    {
-      "id": "left-upper-cheek",
-      "visibility": "occluded",
-      "samples": 16,
-      "meanPixels": 0.2464725964222944,
-      "maxPixels": 0.47304843399279606,
-      "meanContourDistancePixels": 0.08130337294487111,
-      "maxContourDistancePixels": 0.13261068825869643
-    },
-    {
-      "id": "left-mid-cheek",
-      "visibility": "occluded",
-      "samples": 18,
-      "meanPixels": 0.4230023144768641,
-      "maxPixels": 0.8554690318308552,
-      "meanContourDistancePixels": 0.2854732195548153,
-      "maxContourDistancePixels": 0.40198705014692215
-    },
-    {
-      "id": "left-cheek-turn",
-      "visibility": "occluded",
-      "samples": 16,
-      "meanPixels": 1.6778801304223945,
-      "maxPixels": 2.537945607992327,
-      "meanContourDistancePixels": 0.33581072456383615,
-      "maxContourDistancePixels": 0.3592855091428599
-    },
-    {
-      "id": "left-lower-cheek",
-      "visibility": "occluded",
-      "samples": 16,
-      "meanPixels": 1.3106509470528316,
-      "maxPixels": 2.537945607992327,
-      "meanContourDistancePixels": 0.20640082356605569,
-      "maxContourDistancePixels": 0.3566586853591301
-    },
-    {
-      "id": "left-jaw",
-      "visibility": "visible",
-      "samples": 28,
-      "meanPixels": 0.04032740613907147,
-      "maxPixels": 0.13785540247170408,
-      "meanContourDistancePixels": 0.0793788910972811,
-      "maxContourDistancePixels": 0.14154197687164202
-    },
-    {
-      "id": "chin",
-      "visibility": "visible",
-      "samples": 16,
-      "meanPixels": 0.06505685816092868,
-      "maxPixels": 0.13785540247170408,
-      "meanContourDistancePixels": 0.09276836774147205,
-      "maxContourDistancePixels": 0.15357537376718472
-    },
-    {
-      "id": "right-jaw",
-      "visibility": "visible",
-      "samples": 28,
-      "meanPixels": 0.019377532748380555,
-      "maxPixels": 0.11807178748737258,
-      "meanContourDistancePixels": 0.06999514770181257,
-      "maxContourDistancePixels": 0.15357537376718472
-    },
-    {
-      "id": "right-lower-cheek",
-      "visibility": "occluded",
-      "samples": 16,
-      "meanPixels": 0.4690543386348199,
-      "maxPixels": 1.2022799697204143,
-      "meanContourDistancePixels": 0.16564661313391182,
-      "maxContourDistancePixels": 0.2832190434065742
-    },
-    {
-      "id": "right-mid-cheek",
-      "visibility": "occluded",
-      "samples": 16,
-      "meanPixels": 0.8670894532860298,
-      "maxPixels": 2.0448163124894205,
-      "meanContourDistancePixels": 0.16951566903000193,
-      "maxContourDistancePixels": 0.27476472397788965
-    },
-    {
-      "id": "right-upper-cheek",
-      "visibility": "occluded",
-      "samples": 20,
-      "meanPixels": 0.8264268699809773,
-      "maxPixels": 2.0448163124894205,
-      "meanContourDistancePixels": 0.15911534362636753,
-      "maxContourDistancePixels": 0.3656158396381545
-    },
-    {
-      "id": "right-forehead",
-      "visibility": "occluded",
-      "samples": 63,
-      "meanPixels": 0.33852363196060736,
-      "maxPixels": 1.6511080423519362,
-      "meanContourDistancePixels": 0.22830979002011373,
-      "maxContourDistancePixels": 0.48365987626079365
     }
   ]
 }
