@@ -75,7 +75,7 @@ export async function analyzeChildren(context: GroupContext & { completed: SvgAr
   const copy = toolCatalog(profile.toolsDirectory).names().includes('copy_parent_region')
     ? [createParentRegionTool({ directory: context.directory, parentPath: sourceSvg, canvas, groupId: context.group.id,
       observationDirectory: directory, overrides: profile.toolsDirectory, copies })] : [];
-  const response = await agents.run({ step: partStep(partProfile(context).id, 'children'), name: `直属结构拆分-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'children')), imageGeneration: false,
+  const response = await agents.run({ step: partStep(partProfile(context).id, 'children'), name: `直属结构拆分-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'children')),
     tools: knowledge.tools('main', [createBitmapTool(context.directory, directory), createSvgPreviewTool({ directory: context.directory, reference, canvas,
       observationDirectory: directory, observed: entry => observations.push(entry) }), ...copy, submit]),
     prompt: knowledge.render('main', {

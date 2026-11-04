@@ -102,9 +102,16 @@ export function stepKnowledge(section: string, step: string) {
     return join(directory, file);
   };
   const files = (role: KnowledgeRole, group?: string) => initial(role).map(file => filePath(file, group));
+  const toolNames = (role: KnowledgeRole): string[] => {
+    const config = agent();
+    // Repairs continue the drawing thread and use its original tool definitions.
+    return (role === 'review' ? config.review?.tools : config.main.tools) ?? [];
+  };
   return {
     directory,
     files,
+    toolNames,
+    imageGeneration: (role: KnowledgeRole) => toolNames(role).includes('imagegen'),
     reference: (name: string) => join(directory, 'references', name),
     // Each file is rendered on its own; the results are joined byte for byte.
     render(role: KnowledgeRole, values: KnowledgeValues, options: { taskRoot?: string; group?: string } = {}): string {
@@ -117,8 +124,7 @@ export function stepKnowledge(section: string, step: string) {
     // agent.json decides which provided tools the agent sees and in what
     // order; a step may replace a tool description in tools/<name>/.
     tools<T extends FunctionTool>(role: KnowledgeRole, provided: readonly T[]): T[] {
-      const config = agent();
-      const names = (role === 'review' ? config.review?.tools : config.main.tools) ?? [];
+      const names = toolNames(role);
       return names.flatMap(name => {
         const tool = provided.find(item => item.name === name);
         if (!tool) return [];

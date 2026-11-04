@@ -17,6 +17,7 @@ import { randomUUID } from 'node:crypto';
 import type { ThreadEvent } from '@openai/codex-sdk';
 import type { ImageProcessingOptions } from '../image-processing.ts';
 import { executionPaths } from '../agents/workspace.ts';
+import { agentImageGeneration } from '../agent-knowledge.ts';
 
 export const agentDefaults = defaultModels.medium;
 
@@ -226,6 +227,11 @@ export class CodexAgents {
         if (busy) throw new Error('同一会话不能并发运行');
         busy = true;
         try {
+          // agent.json is the capability source for every harness and image
+          // provider. Model selection and old caller flags cannot grant access.
+          if (original.step) {
+            original = { ...original, imageGeneration: agentImageGeneration(original.step) };
+          }
           const settings = this.options.environment!;
           const selected = this.options.selectedModel || (original.step ? settings.stepModels[original.step]
             : parseAgentModel(`${settings.models.medium.model}-${settings.models.medium.effort}`, '默认模型'));
@@ -253,8 +259,7 @@ export class CodexAgents {
               return result;
             };
           }
-          let task = image ? { ...original, imageGeneration: false, tools: [...original.tools || [], image] }
-            : usesPatchedImageTool(settings, original.step) ? { ...original, imageGeneration: true } : original;
+          let task = image ? { ...original, imageGeneration: false, tools: [...original.tools || [], image] } : original;
           if (!id && original.recoveryPrompt) task = { ...task, prompt: original.recoveryPrompt };
           const signal = taskSignal(task, [closing.signal, ...(externalSignal ? [externalSignal] : [])]);
           let result: AgentResult;
@@ -298,6 +303,7 @@ export class CodexAgents {
   // One-shot turns share the app-server session path. A turn without function
   // tools stays shell-free unless the task asks otherwise.
   async run(task: AgentTask): Promise<AgentResult> {
+    if (task.step) task = { ...task, imageGeneration: agentImageGeneration(task.step) };
     const plain = !task.tools?.length;
     const session = this.createSession();
     let result: AgentResult;

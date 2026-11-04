@@ -35,16 +35,13 @@ test('完全遮挡节点可提交空可见轮廓，经独立 review 后补出形
     calls.push(task.name);
     const input = promptInput(task.prompt);
     if (task.name.startsWith('组轮廓绘制')) {
-      assert.equal(task.imageGeneration, false);
       await tool(task, 'write_outline_svg').execute({ svg: shape('face', 10, 90, true) }, signal);
       await tool(task, 'preview_svg').execute({ path: input.outputSvg, mode: 'blend' }, signal);
     } else if (task.name.startsWith('组轮廓review')) {
-      assert.equal(task.imageGeneration, false);
       await tool(task, 'preview_svg').execute({ path: input.candidate, mode: 'edge' }, signal);
       await tool(task, 'submit_review').execute({ verdict: 'pass', feedback: '本测试参考中该节点完全遮挡，没有可见轮廓；隐藏形体留给补全。' }, signal);
     } else {
       assert.ok(task.name.startsWith('正面遮挡补全'));
-      assert.equal(task.imageGeneration, true);
       // face 使用专用正文，通用规则修改不能遗漏它。
       assert.doesNotMatch(task.prompt, /露出双耳的结构参考并查看|本次参考只露耳缘/);
       assert.match(task.prompt, /部件完全被遮挡.*必须先.*结构辅助图并查看/);
@@ -93,7 +90,6 @@ test('补全默认适配器用只读 agent 和新增工具，提交后正式发�
   let calls = 0;
   const adapter = createLayeringSteps(sessioned(async task => {
     calls++;
-    assert.equal(task.imageGeneration, true);
     assert.ok(task.tools!.some(tool => tool.name === 'view_bitmap'));
     assert.match(task.prompt, /部件完全被遮挡.*必须先.*结构辅助图并查看/);
     assert.match(task.prompt, /不画成侧面视角的形状/);
@@ -292,7 +288,6 @@ test('不可见部件直接绘制非空 SVG，完成原图 blend 和独显即可
   await writeFile(source, shape(group.id, 10, 90, true));
   await sharp({ create: { width: 40, height: 20, channels: 4, background: 'blue' } }).png().toFile(generated);
   const result = await completeGroupOcclusion({ ...f, group, reviewed: { path: source }, outputPath }, { async run(task) {
-    assert.equal(task.imageGeneration, true);
     assert.match(task.prompt, /referenceRegion.*框选生成图/);
     const input = promptInput(task.prompt);
     assert.equal(input.group.hiddenInReference, true);

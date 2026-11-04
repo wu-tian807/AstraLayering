@@ -34,20 +34,18 @@ export type Agent = (request: AgentRequest) => Promise<StepResult>;
 export async function runAgent(request: AgentRequest, runtime = new AgentRuntime(1)): Promise<StepResult> {
   const task = { cwd: request.directory, outputDirectory: request.outputDirectory, step: request.step };
   const paths = executionPaths(task, request.directory);
-  // Keep the configured login and tool providers; enable the native image tool.
+  // Keep the configured login and tool providers; image capability is per step.
   const environment = request.environment ?? loadWorkflowEnvironment();
   const selected = parseAgentModel(`${request.model}-${request.effort}`, request.step || 'raster agent');
   validateProviderModel(environment.providers, selected, request.step);
   // A rejected model leaves no directories behind.
   await prepareWorkspace(task, request.directory);
-  const image = request.step && environment.stepImages[request.step];
   const agents = new CodexAgents({ environment, selectedModel: selected, cwd: request.directory, imageNormalization: request.imageNormalization,
     logDirectory: join(request.directory, 'agents'), runtime, onRetry: request.onRetry,
     onEvent: request.onEvent, onThreadReplacement: request.onThreadReplacement });
   const session = agents.createSession(request.threadId);
   try {
     const result = await session.run({ step: request.step, name: request.step || 'raster', prompt: request.prompt, recoveryPrompt: request.recoveryPrompt,
-      imageGeneration: selected.harness === 'codex' && !!image,
       cwd: request.directory, outputDirectory: paths.outputDirectory, tools: request.tools,
       outputSchema: { type: 'object', additionalProperties: false, properties: {
         status: { type: 'string', enum: ['completed', 'blocked'] }, summary: { type: 'string' } }, required: ['status', 'summary'] } }, request.signal);

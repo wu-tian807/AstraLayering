@@ -46,9 +46,8 @@ async function fixture(t: TestContext, needsSimplification: boolean, needsAdjust
         const saved = JSON.parse((result.contentItems[0] as { text: string }).text);
         return { text: JSON.stringify({ error: null, reason: saved.reason }), images: [] };
       }
-      if (!task.imageGeneration) {
-        return { text: JSON.stringify(task.name === '姿态判断' ? { needsAdjustment, reason: '测试姿态判断' }
-          : { needsSimplification, reason: '测试画风判断' }), images: [] };
+      if (task.step === 'part_pose_judgment') {
+        return { text: JSON.stringify({ needsAdjustment, reason: '测试姿态判断' }), images: [] };
       }
       return { text: JSON.stringify({ error: null, reason: '测试转换依据' }), images: [{ savedPath: generated }] };
     },
@@ -252,7 +251,7 @@ test('--standard 先判断；已标准仅复制，需要调整才传一张原图
     assert.deepEqual(referencePaths(judge.prompt), [refs.originalImage]);
     const generation = f.calls.find(task => task.name === '标准姿态');
     if (adjust) {
-      assert.equal(generation!.imageGeneration, true);
+      assert.equal(generation!.step, 'part_standardize');
       assert.deepEqual(referencePaths(generation!.prompt), [refs.originalImage]);
       assert.deepEqual(await readFile(refs.standardImage!), await readFile(f.generated));
     } else assert.deepEqual(await readFile(refs.standardImage!), f.bytes);

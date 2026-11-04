@@ -89,6 +89,8 @@ OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/gener
 
 **步骤键有值时使用该值，留空时继承 `default_image_model`。** 方案 1 将全局默认设为 `codex-native`；方案 2 将其设为 `gpt-image-2.5-sunburst`，再覆盖特定步骤。下表的“继承默认”表示该步骤键留空。
 
+生图能力由各步骤 agent.json 的 tools 中是否声明 imagegen 决定，.env 只选择已授权步骤使用的模型与服务。默认 review、step02、人物 step03 和组装不声明生图，已有这些步骤的旧模型键不能开启工具。自定义 knowledge 增删 imagegen 后，下次启动按实际声明解析对应的生图模型（未填写则继承默认），无需改代码里的能力列表。
+
 | 生图用途 | `.env` 配置键 | 方案 1 | 方案 2 |
 | --- | --- | --- | --- |
 | 全局默认 | `default_image_model` | `codex-native` | `gpt-image-2.5-sunburst` |
@@ -99,18 +101,12 @@ OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/gener
 | 人物 part 遮挡补全辅助参考 | `part_completion_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
 | 衣服 part 遮挡补全辅助参考 | `clothing_completion_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
 | 人物 raster step01 绘制 | `raster_step01_image_model` | 继承默认 | 继承默认 |
-| 人物 raster step01 review | `raster_step01_review_image_model` | 继承默认 | 继承默认 |
 | 人物 raster step01 返修 | `raster_step01_repair_image_model` | 继承默认 | 继承默认 |
-| 人物 raster step02 边缘精修 | `raster_step02_image_model` | 继承默认 | 继承默认 |
-| 人物 raster step03 换装素体 | `raster_step03_image_model` | 继承默认 | 继承默认 |
 | 衣服 raster step01 绘制 | `clothing_raster_step01_image_model` | 继承默认 | 继承默认 |
-| 衣服 raster step01 review | `clothing_raster_step01_review_image_model` | 继承默认 | 继承默认 |
 | 衣服 raster step01 返修 | `clothing_raster_step01_repair_image_model` | 继承默认 | 继承默认 |
-| 衣服 raster step02 边缘精修 | `clothing_raster_step02_image_model` | 继承默认 | 继承默认 |
-| 穿戴组装 | `assembly_image_model` | 继承默认 | 继承默认 |
 | 阴影法线／深度贴图 | `shadow_maps_image_model` | 继承默认 | 继承默认 |
 
-这些键配置各 agent 的生图工具能力，实际调用按对应步骤的任务要求执行，reviewer 仍只提交反馈。姿态标准化在开启 `standard` 且判断需要调整时执行；阴影 `mask` 分支在 Krita 制作原生蒙版，`shadow_maps_image_model` 用于 `normal-depth` 分支。法线／深度按数据纹理原样返回 RGB，完成时按原画恢复 alpha。
+这些键只选择已声明生图能力的 agent 使用的模型，实际调用按对应步骤的任务要求执行，reviewer 仍只提交反馈。姿态标准化在开启 `standard` 且判断需要调整时执行；阴影 `mask` 分支在 Krita 制作原生蒙版，`shadow_maps_image_model` 用于 `normal-depth` 分支。法线／深度按数据纹理原样返回 RGB，完成时按原画恢复 alpha。
 
 ### 修改示例
 

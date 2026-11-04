@@ -4,10 +4,12 @@
 每个版本说明实际变化，以及**升级后已完成任务是否需要重做**：续跑时由各步骤的指纹决定，只改措辞的提示词修订不会让已完成步骤重做。
 
 ## 未发布
+- **分层局部修画与视觉验收：** 人物、衣服 step01 将原图作为形体和笔触依据，原始像素复用限定到 Krita 中确认需要恢复的局部；补充原生选区取样用法及每次局部操作后的独显、合成对照。step02 与 review 以轮廓清晰、部件干净和衔接连续为保留差异的前提，差异定位工具只负责定位。已完成成果沿用，现有瑕疵需要针对所属步骤返修。
 - **头部九轴拆出视频步骤，改为六步：** 新的 `step01_video` 生成全部视频：上半身特写为首帧的向左转头 left、镜头仰视 up、俯视 down，再以 up、down 的 25° 帧为首帧生成左上 left-up、左下 left-down 转头视频；`step02_views` 只从 left.mp4 取 left.png，`step04_views-y` 只从 up/down.mp4 取 up.png、down.png。原 step02_angle-x、step04_angle-y、step05_angle-xy 顺延为 `step03_angle-x`、`step05_angle-y`、`step06_angle-xy`。删除 corner_view 工具：step06 的 agent 需要斜向参考时自己用 ffmpeg 从 left-up.mp4、left-down.mp4 取帧。**旧任务的 `nine-axis/` 目录与新步骤名不对应，需删除后重跑。**
 - **生视频只用自己的接口：** 去掉生视频在未填写时沿用 OpenAI 生图代理的回退；须填写 `video_base_url` / `video_api_key`，缺少时 step01_video 报错。
 - **`.env` 键名去掉 `layering_` 前缀：** 接口、模型等键统一不带前缀（如 `layering_codex_api_key` → `codex_api_key`、`layering_video_base_url` → `video_base_url`）；旧键仍按去掉前缀后的同一键读取，两者都填时以新键为准。
 - **分件调度：** 人物与衣服分件在单个父组完成补全、自检和拆分后立即派发子组描边与 review；下一层去重仍等待全部父组拆分和全层轮廓齐备。
+- **生图能力由 agent.json 统一控制：** 仅为 tools 中声明 imagegen 的 agent 提供生图；Codex 内置工具、自定义 key 的 patch 路由和其他 CLI 的自定义工具共用声明检查。移除代码里的生图能力名单，默认关闭 review、边缘精修、人物 step03 与组装的生图能力，step03 使用 Krita 手工补绘。repair 与 main 续接同一绘制 thread，共用 main.tools；review 使用独立 thread 与自己的 tools。修复点号与嵌套配置覆盖顺序，避免全局开关重开被禁用的原生工具。已有成果不重做，下次启动或恢复按新声明执行。
 - **嘴部拆分补充上下嘴先验：** part-layering 嘴部直属拆分写明 upper_lip 是上唇线加线上方盖过口腔上半部的肤色，lower_lip 是下唇线加线下方包住嘴角的 U 形肤色，闭嘴时两条唇线贴合组装回参考；参考只有一条闭嘴线时上下各带一份。依据 Live2D 官方样例 Haru、Koharu、Momose 的分层。只改措辞，已完成步骤不重做。
 - **分层绘制提示词改为“目标 + 要保护的”：** 人物与衣服的 raster step01（含 review、repair）、step02、step03 及共享的绘制职责提示词，去掉逐条“先做什么、不许做什么”的流程限制，只写本步要达到的目标、要保护的内容（部件归属、部件自身连贯、上游结构、原图画风、已合格内容、内容安全线）、可用手段和交付契约；每一步发现的问题都在本步修好，方法由 agent 自选。step01 正文从约 8.5k 字缩到约 3k 字。step02 写清交付的是可直接绑定的最终部件：组装像原图，独显时每片画完整，外轮廓描边在补全区沿同一轮廓画完、与可见段粗细浓淡一致，部件交界处描边不断开、不重叠加粗。step01（含 review、repair）写清衔接归第一步：补全与可见区、贴原图与新画、深度分片、相邻部件之间，原尺寸下不能有台阶、错位、断线、粗细突变、色差、硬边或毛刺。step02 仍修好遗留下来的问题。工具、文件路径、报告格式与 blocked 条件不变。只改措辞，已完成步骤不重做。
 - **移除 clothed-man 案例：** 该案例分层质量太差，已从 demos 删除，demos 首页同步去掉对应条目。只删归档，不影响已有任务。

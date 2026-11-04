@@ -5,6 +5,8 @@
       "prompts/runtime.md",
       "prompts/runtime-output.md"
     ],
-    "tools": []
+    "tools": [
+      "imagegen"
+    ]
   }
 }

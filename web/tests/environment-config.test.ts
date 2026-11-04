@@ -8,6 +8,7 @@ import { parseEnv } from 'node:util';
 import { createEnvironmentConfig, EnvironmentConflict, patchEnvironment } from '../environment-config.ts';
 import { createWorkbench } from '../server.ts';
 import { loadWorkflowEnvironment } from '../../.agents/skills/live2d-maker/shared/codex/environment.ts';
+import { imageSteps, imageModelKey } from '../../.agents/skills/live2d-maker/shared/agents/models.ts';
 
 async function fixture(t:any, text?:string, env:NodeJS.ProcessEnv={}) {
  const directory=await realpath(await mkdtemp(join(tmpdir(),'astra-env-')));
@@ -25,7 +26,8 @@ test('preview masks multiline and inherited credentials while exposing resolved 
  for(const secret of ['test-secret-value','file-claude-secret','shell-secret-value','first\\nsecond'])assert.ok(!serialized.includes(secret));
  assert.match(data.preview,/CUSTOM_TOKEN=\[已隐藏\]/);
  assert.equal(data.fields.filter(f=>f.section==='llm').length,14);
- assert.equal(data.fields.filter(f=>f.section==='image').length,18);
+ assert.deepEqual(data.fields.filter(f=>f.section==='image').map(f=>f.key), ['default_image_model', ...imageSteps().map(imageModelKey)]);
+ assert.ok(!data.fields.some(f=>f.key==='raster_step03_image_model'));
  const claude=data.fields.find(f=>f.key==='claude_api_key')!;
  assert.equal(claude.overridden,true);assert.equal(claude.sourceKey,'ANTHROPIC_API_KEY');
  assert.equal(data.providers?.claude.baseUrl,'https://gateway.example');

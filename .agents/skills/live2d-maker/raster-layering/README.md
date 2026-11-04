@@ -27,7 +27,7 @@ pnpm raster-layering --check-krita --krita /绝对路径/krita
 | step02 | [边缘精修](../knowledge/raster-layering/step02/prompts/02-边缘柔化与去锯齿.md)，逐层自检 | `character-soft-edges.kra`、同名 PNG、`report.md` |
 | step03 | [去除临时连体服](../knowledge/raster-layering/step03/prompts/03-去除连体服.md)，补全换装身体底层并自检 | `character-dressup-base.kra`、同名 PNG、`report.md` |
 
-三步的 agent 都有 `krita` 工具；此外按环节注册的流程工具如下（生图工具按 harness 另行提供）：
+三步的 agent 都有 `krita` 工具；此外按环节注册的流程工具如下（仅 agent.json 的 tools 声明 `imagegen` 的角色按 harness 提供生图）：
 
 | 环节 | 工具 |
 | --- | --- |
@@ -44,7 +44,7 @@ pnpm raster-layering --check-krita --krita /绝对路径/krita
 
 step01 reviewer 看图确认确定问题，通过 `annotate_review_regions` 生成带编号框、图层说明与同坐标局部对照。可使用本部件自己的原图可见像素覆盖，补绘与覆盖区靠画笔修自然，其他部件的像素各自保留归属。
 
-step02 沿用已确认结构，用 `locate_pixel_differences` 候选框引导细节检查，并逐层扩展观察全部部件；局部修边缘、残色、锯齿、接缝、描边与瑕疵，保持图层结构和原有光影。step03 先标记涉及连体服的 part，再参考已有皮肤补构型与肤色，保留身体轮廓与换装需要的覆盖范围。
+step02 沿用已确认结构，用 `locate_pixel_differences` 候选框引导细节检查，并逐层扩展观察全部部件；局部修边缘、残色、锯齿、接缝、描边与瑕疵，保持图层结构和原有光影。step03 先标记涉及连体服的 part，再参考已有皮肤，在 Krita 中用画笔手工补构型与肤色，保留身体轮廓与换装需要的覆盖范围。默认 agent.json 不声明 imagegen，因此本步不提供生图能力；Codex 原生 imagegen 在启动和恢复会话时均禁用，旧的 `raster_step03_image_model` 配置不能重新开启工具。
 
 每步交付包含保存、重新打开、逐层显隐与合成核对；记录实际修改、检查和剩余问题。程序校验文件，艺术质量由实际观察确认。
 

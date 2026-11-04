@@ -80,7 +80,10 @@ export type FitHead = (directory: string, prompt: string) => Promise<void>;
 export function createFitHead(agents: Pick<CodexAgents, 'run'>, tools: (step: string) => Promise<FunctionTool[]>, step: string, name: string): FitHead {
   return async (directory, prompt) => {
     const nine = join(directory, '..'), paths = await prepareWorkspace({ cwd: nine, outputDirectory: directory }, nine);
-    const result = await agents.run({ step: 'nine_axis_head', name, cwd: nine, outputDirectory: directory, outputSchema,
+    const identity = { 'step03_angle-x': 'nine_axis_head', 'step05_angle-up': 'nine_axis_head_y', 'step06_angle-down': 'nine_axis_head_down', 'step07_angle-xy': 'nine_axis_head_xy', 'step08_jaw-line': 'nine_axis_head_jaw' } as const;
+    const agentStep = identity[step as keyof typeof identity];
+    if (!agentStep) throw new Error(`未知头部九轴步骤：${step}`);
+    const result = await agents.run({ step: agentStep, name, cwd: nine, outputDirectory: directory, outputSchema,
       tools: stepKnowledge('nine-axis', step).tools('main', await tools(step)), prompt: workspacePrompt(prompt, paths) });
     let error: unknown;
     try { error = (JSON.parse(result.text) as { error?: unknown }).error; } catch { throw agentOutcomeError(`${name}没有返回结果`, result); }
@@ -135,7 +138,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       createSvgPreviewTool({ directory: stepDirectory, reference: join(directory, 'step02_views/left.png'), canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' })];
   };
   const agents = () => new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress });
-  const preflight = () => preflightAgentSteps(environment, ['nine_axis_head'], { runsRoot: root, progress, env: environment.codex.env });
+  const preflight = () => preflightAgentSteps(environment, ['nine_axis_head', 'nine_axis_head_y', 'nine_axis_head_down', 'nine_axis_head_xy', 'nine_axis_head_jaw'], { runsRoot: root, progress, env: environment.codex.env });
   const preview = (text: string) => { progress(`预览：${text}`); summary = '预览完成，未调用模型'; };
   try { await runSection({ directory,
     steps,

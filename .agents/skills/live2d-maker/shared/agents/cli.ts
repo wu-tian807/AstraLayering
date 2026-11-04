@@ -1,4 +1,5 @@
 import { knowledgeDirectory } from '../knowledge.ts';
+import { agentImageGeneration } from '../agent-knowledge.ts';
 import { access, mkdir, readFile, writeFile, copyFile, rename, chmod, realpath, stat } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { homedir } from 'node:os';
@@ -86,7 +87,8 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
   const executable = await cliExecutable(settings, model.harness, options.imageNormalization?.runsRoot);
   const root = resolve(options.logDirectory || join(task.cwd || options.cwd!, 'agents'));
   const paths = await prepareWorkspace(task, options.cwd!);
-  task = { ...task, tools: workspaceTools(task.tools || [], paths) };
+  task = { ...task, tools: workspaceTools((task.tools || []).filter(tool =>
+    tool.name !== 'imagegen' || !task.step || agentImageGeneration(task.step)), paths) };
   const log = await AgentLog.create(root, task.name, { task: { ...task, tools: task.tools?.map(({ name, description, inputSchema }) => ({ name, description, inputSchema })) },
     workspace: paths.workspace, outputDirectory: paths.outputDirectory,
     prompt: task.prompt, sessionThreadId: resumed || null, threadOptions: { model: model.model, modelReasoningEffort: model.effort, harness: model.harness } }, paths.root);

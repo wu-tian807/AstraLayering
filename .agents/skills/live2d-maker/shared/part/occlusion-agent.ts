@@ -104,7 +104,7 @@ export async function planPartOcclusion(context: OcclusionContext, agents: Pick<
       return textResult({ completed: false, message });
     },
   };
-  const response = await agents.run({ step: partStep(partProfile(context).id, 'occlusion'), name: '最终遮挡层级规划', cwd: context.directory, imageGeneration: false,
+  const response = await agents.run({ step: partStep(partProfile(context).id, 'occlusion'), name: '最终遮挡层级规划', cwd: context.directory,
     tools: knowledge.tools('main', [createSvgPreviewTool({ directory: context.directory, reference,
       canvas: { width: meta.autoOrient.width, height: meta.autoOrient.height }, observationDirectory: directory,
       observed: entry => observations.push(entry) }), propose, check, submit, problem]),
