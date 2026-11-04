@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { ToolCatalog, toolsDirectory } from '../codex/tool-config.ts';
 import { profile as clothing } from '../../clothing-part-layering/profile.ts';
+const characterTools = fileURLToPath(new URL('../../part-layering/tools/', import.meta.url));
 import { CodexAgents } from '../codex/agents.ts';
 import { stepKnowledge } from '../knowledge.ts';
 import { textResult } from '../codex/function-tools.ts';
@@ -13,13 +14,12 @@ import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
 import { nodeExecutables } from '../../part-layering/tests/node-executables.ts';
 import { createSvgPreviewTool } from '../part/svg-tools.ts';
 
-test('工具配置逐文件覆盖；衣服的 subject 限制不会污染共享定义', () => {
-  const shared = new ToolCatalog(), specialized = new ToolCatalog(toolsDirectory, clothing.toolsDirectory);
-  const subjects = (catalog: ToolCatalog) => (catalog.get('write_groups').inputSchema.properties as any).subject.enum;
-  assert.deepEqual(subjects(shared), ['character', 'other']);
-  assert.deepEqual(subjects(specialized), ['other']);
-  assert.equal(shared.get('write_groups').description, specialized.get('write_groups').description);
-  assert.deepEqual(shared.get('preview_svg'), specialized.get('preview_svg'));
+test('人物与衣服共用 write_groups；管线自有工具不污染共享定义', () => {
+  const shared = new ToolCatalog(), character = new ToolCatalog(toolsDirectory, characterTools), clothingCatalog = new ToolCatalog(toolsDirectory, clothing.toolsDirectory);
+  assert.deepEqual(character.get('write_groups'), shared.get('write_groups'));
+  assert.deepEqual(clothingCatalog.get('write_groups'), shared.get('write_groups'));
+  assert.ok(!('subject' in (shared.get('write_groups').inputSchema.properties as object)));
+  assert.ok(character.names().includes('copy_parent_region') && !shared.names().includes('copy_parent_region'));
 });
 
 test('管线自有工具只出现在该管线的 catalog；缺文件明确报错', async t => {
@@ -27,7 +27,7 @@ test('管线自有工具只出现在该管线的 catalog；缺文件明确报错
   assert.ok(new ToolCatalog(toolsDirectory, own).names().includes('inspect_shadow_mask'));
   assert.ok(!new ToolCatalog().names().includes('inspect_shadow_mask'));
   // Which tools an agent sees is decided by its agent.json, not the catalog.
-  assert.ok(!stepKnowledge('clothing-part-layering', 'step01_preparation').tools('main', [{ ...new ToolCatalog().get('reuse_reference'), execute: async () => textResult('') }]).length);
+  assert.ok(!stepKnowledge('clothing-part-layering', 'step01_preparation').tools('main', [{ ...new ToolCatalog(toolsDirectory, fileURLToPath(new URL('../../part-layering/tools/', import.meta.url))).get('reuse_reference'), execute: async () => textResult('') }]).length);
   const root = await mkdtemp(join(tmpdir(), 'tool-own-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   await mkdir(join(root, 'only_description'));

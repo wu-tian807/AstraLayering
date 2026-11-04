@@ -37,7 +37,7 @@ test('启动检查 reference 与 shared_reference 指向的文件，uri 不检�
   const root=await mkdtemp(join(tmpdir(),'knowledge-'));
   try{
     await cp(defaultKnowledgeDirectory,root,{recursive:true});
-    const task=join(root,'part-layering/step05_simplified/prompts/参考图片.md');
+    const task=join(root,'part-layering/step05_simplified/prompts/2-简化图片.md');
     await appendFile(task,'\n{uri:不存在/x.png}\n');
     checkKnowledge(root);
     await appendFile(task,'{shared_reference:不存在.png}\n');

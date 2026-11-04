@@ -1,9 +1,8 @@
-import type { InitialContext, Subject } from './layering-types.ts';
+import type { InitialContext } from './layering-types.ts';
 
 export type PartProfile = {
   id: 'part-layering' | 'clothing-part-layering';
   toolsDirectory?: string;
-  subjects: readonly Subject[];
 };
 
 export function partProfile(context: Pick<InitialContext, 'profile'>): PartProfile {

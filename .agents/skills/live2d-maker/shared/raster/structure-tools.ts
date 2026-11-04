@@ -2,14 +2,14 @@ import { readFile, realpath, rm, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
-import { checkSubject, normalizeGroups, walkGroups, writeAtomic } from '../part/groups.ts';
-import type { GroupInput, Subject } from '../part/layering-types.ts';
+import { normalizeGroups, walkGroups, writeAtomic } from '../part/groups.ts';
+import type { GroupInput } from '../part/layering-types.ts';
 import { validateOcclusionDocument, type OcclusionPlan } from '../part/occlusion-plan.ts';
 import { depthPreviewPath, publishDepthPreview } from '../part/depth-preview.ts';
 import type { PartLayeringInput } from './input.ts';
 import { fromTaskPath, taskRootOf } from '../task-paths.ts';
 
-type StructureGroups = { version?: 1; subject?: Subject; groups: GroupInput[] };
+type StructureGroups = { version?: 1; groups: GroupInput[] };
 function object(value: unknown, path: string): Record<string, unknown> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error(`${path}：必须为对象`);
   return value as Record<string, unknown>;
@@ -21,9 +21,8 @@ function fields(value: Record<string, unknown>, allowed: readonly string[], path
 
 export function validateStructureGroups(value: unknown): StructureGroups {
   const document = object(value, 'groups');
-  fields(document, ['version', 'subject', 'groups'], 'groups');
+  fields(document, ['version', 'groups'], 'groups');
   if (document.version !== undefined && document.version !== 1) throw new Error('groups.version：必须为 1');
-  checkSubject(document.subject);
   if (!Array.isArray(document.groups) || !document.groups.length) throw new Error('groups.groups：必须为非空数组');
   const ids = new Set<string>();
   function visit(values: unknown[], path: string) {
@@ -56,7 +55,9 @@ async function readStructureFile(path: string): Promise<string> {
   return readFile(path, 'utf8');
 }
 async function readGroups(input: PartLayeringInput) {
-  return validateStructureGroups(JSON.parse(await readStructureFile(join(input.directory, 'groups.json'))));
+  // Older runs also saved an unused subject field; it is dropped on read.
+  const { subject: _, ...document } = object(JSON.parse(await readStructureFile(join(input.directory, 'groups.json'))), 'groups');
+  return validateStructureGroups(document);
 }
 async function readPlan(input: PartLayeringInput): Promise<Record<string, unknown>> {
   return object(JSON.parse(await readStructureFile(join(input.directory, 'occlusion.json'))), 'occlusion');

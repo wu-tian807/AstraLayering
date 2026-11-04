@@ -33,18 +33,17 @@ pnpm raster-layering --check-krita --krita /绝对路径/krita
 | --- | --- |
 | step01 绘制与返修 | `edit_groups`、`edit_occlusion` |
 | step01 review | `annotate_review_regions` |
-| step02 绘制 | `locate_pixel_differences` |
-| step03 | 无 |
+| step02、step03 | 无 |
 
-`locate_pixel_differences` 传 `parts` 时须同时给 `layers`：保存当前 KRA 后用 `krita` 工具导出的 `.ora`，早于 KRA 最后保存会报错。step01 交付时的结构诊断失败只记为“结构检查提示”，不阻止完成，见 [shared](../shared/README.md#多深度与上游修正)。
+step01 交付时的结构诊断失败只记为“结构检查提示”，不阻止完成，见 [shared](../shared/README.md#多深度与上游修正)。
 
 素体未换装（见 [总控](../workflow/README.md#姿态与参考)）时，step03 不调用 agent，直接把 step02 的 KRA 与 PNG 复制为 step03 成果，并标记为已完成。
 
 每步从上一步成果另存到自己的 stepNN 目录，保留原尺寸、各阶段工程和报告。step01 按完整轮廓逐件生图、配准、补全和修画，对可见形体、画风、隐藏结构及接缝负责；通过 `edit_groups`、`edit_occlusion` 校验并保存分组、归属与深度修正，同步对应上游和当前工程。一个逻辑 part 可有多个绘画深度，实际拆层与指纹同步见 [shared](../shared/README.md#多深度与上游修正)。
 
-step01 reviewer 看图确认确定问题，通过 `annotate_review_regions` 生成带编号框、图层说明与同坐标局部对照。可使用本部件自己的原图可见像素覆盖，补绘与覆盖区靠画笔修自然，其他部件的像素各自保留归属。
+step01 的优化主要依靠 reviewer 的框选结果：reviewer 看图确认确定问题，通过 `annotate_review_regions` 生成带编号框、图层说明与同坐标局部对照，返修按这些框逐项修复。可使用本部件自己的原图可见像素覆盖，补绘与覆盖区靠画笔修自然，其他部件的像素各自保留归属。
 
-step02 沿用已确认结构，用 `locate_pixel_differences` 候选框引导细节检查，并逐层扩展观察全部部件；局部修边缘、残色、锯齿、接缝、描边与瑕疵，保持图层结构和原有光影。step03 先标记涉及连体服的 part，再参考已有皮肤，在 Krita 中用画笔手工补构型与肤色，保留身体轮廓与换装需要的覆盖范围。默认 agent.json 不声明 imagegen，因此本步不提供生图能力；Codex 原生 imagegen 在启动和恢复会话时均禁用，旧的 `raster_step03_image_model` 配置不能重新开启工具。
+step02 沿用已确认结构，先把整图与原图并排看，列出部件瑕疵、接缝不足和画风差异的清单，再逐项在所属部件上用 Krita 修画，保持图层结构；结论靠看图，不做像素差异比对。step03 先标记涉及连体服的 part，再参考已有皮肤，在 Krita 中用画笔手工补构型与肤色，保留身体轮廓与换装需要的覆盖范围。默认 agent.json 不声明 imagegen，因此本步不提供生图能力；Codex 原生 imagegen 在启动和恢复会话时均禁用，旧的 `raster_step03_image_model` 配置不能重新开启工具。
 
 每步交付包含保存、重新打开、逐层显隐与合成核对；记录实际修改、检查和剩余问题。程序校验文件，艺术质量由实际观察确认。
 

@@ -18,7 +18,7 @@ test('clothing prompt lookup is local and has no inherited body-specific prior',
   await assert.rejects(readdir(join(children.directory, 'prompts', 'groups')), { code: 'ENOENT' });
 });
 
-test('initial groups receive both clothing and clothed-character references and reject a character subject', async t => {
+test('initial groups receive both clothing and clothed-character references', async t => {
   const f = await fixture(t);
   // The clothed character is the upstream simplified subject at its fixed task path.
   const refs = { ...f.references, originalImage: join(dirname(f.directory), 'part-layering/references/simplified-subject.png') };
@@ -26,14 +26,12 @@ test('initial groups receive both clothing and clothed-character references and 
     for (const path of [refs.baseSubject, refs.originalImage]) assert.ok(task.prompt.includes(`参考图绝对路径：${path}`));
     const tool = task.tools!.find(tool => tool.name === 'write_groups')!;
     const groups = [{ name: 'coat', groups: [], note: '整件衣物；按控制和穿插需要继续拆分' }];
-    await assert.rejects(tool.execute({ subject: 'character', groups }, signal), /other/);
-    await tool.execute({ subject: 'other', groups }, signal);
+    await tool.execute({ groups }, signal);
     return { text: 'saved', images: [] };
   } });
   const result = await adapter.initialGroups({ ...f, references: refs });
   assert.equal(result.status, 'completed');
   const tree = JSON.parse(await readFile(join(f.directory, 'step08_initial/groups.json'), 'utf8'));
-  assert.equal(tree.subject, 'other');
   assert.deepEqual(tree.groups.map((group: { id: string }) => group.id), ['coat']);
 });
 

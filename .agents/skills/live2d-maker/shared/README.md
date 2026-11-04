@@ -24,7 +24,7 @@ step01 绘制与返修对轮廓、隐藏补全、画风和结构负责。读取�
 
 工具校验失败直接向当前 agent 返回具体字段路径与原因，保留原文件，修正参数后再次提交。step01 结束时的额外结构诊断记录为日志“结构检查提示”，供前端查看；这项诊断继续保留完成与后续执行，也保留原有视觉 review 轮数。完成标记表示已通过当前交付检查，结构诊断与视觉检查应分别核对。
 
-各环节的流程工具见 [raster 工具表](../raster-layering/README.md#三步交付)：结构编辑工具仅提供给两套 raster step01 绘制／返修，reviewer 只用框选工具，step02 使用像素差异工具；需要 Krita 的步骤中，绘制、review 与返修 agent 都另有 `krita` 工具。各 CLI 沿用共用函数工具通道和原有会话恢复能力。职责约定与受控工具校验之外没有写入沙箱：Codex 使用 `danger-full-access`，Claude／AGV 使用 `--dangerously-skip-permissions`。
+各环节的流程工具见 [raster 工具表](../raster-layering/README.md#三步交付)：结构编辑工具仅提供给两套 raster step01 绘制／返修，reviewer 只用框选工具，step02、step03 只用 Krita；需要 Krita 的步骤中，绘制、review 与返修 agent 都另有 `krita` 工具。各 CLI 沿用共用函数工具通道和原有会话恢复能力。职责约定与受控工具校验之外没有写入沙箱：Codex 使用 `danger-full-access`，Claude／AGV 使用 `--dangerously-skip-permissions`。
 
 raster 中断、主动重跑及已进入 raster 的总控续跑保留上游修正。独立重跑 part 会从首次分组与各步骤事实重建树；仅写在根 groups.json 的树结构调整需事先留档核对。来源与审计证据见本页文末。
 
@@ -146,7 +146,7 @@ pnpm check
 | part 轮廓绘制／返修 | 仅修改当前组 note | 无 | `update_group_note` 精确替换当前 note 中唯一匹配的文本，走 GroupStore 写入队列；不改父组、其他组或树结构。见 [outline-agent.ts](part/outline-agent.ts) |
 | part 细分组 | 改变直属子节点，程序保存分组树 | 无 | `submit_children` 返回并校验结构，调度器写对应 `children.json`，再更新根树；agent 不直接编辑事实文件。见 [children-agent.ts](part/children-agent.ts)、[layering.ts](part/layering.ts) |
 | part 最终遮挡层级规划 | 无；要求规划期间输入不变 | 生成深度表 | `propose_occlusion`、`check_occlusion_part`、`submit_occlusion` 校验，调度器原子写入最终文件。见 [occlusion-agent.ts](part/occlusion-agent.ts)、[occlusion-plan.ts](part/occlusion-plan.ts) |
-| raster step01 绘制及两轮返修 | 允许直接编辑并同步 SVG／记录 | 允许直接编辑深度与区域 | [raster-drawing-responsibilities.md](../knowledge/shared/prompts/raster-drawing-responsibilities.md) 在 step01 绘制及 repair 中注入；结构修改由当前绘制 agent 执行 |
+| raster step01 绘制及两轮返修 | 允许直接编辑并同步 SVG／记录 | 允许直接编辑深度与区域 | [raster-drawing-responsibilities.md](../knowledge/shared/prompts/raster-drawing-responsibilities.md) 在 step01 绘制中注入；repair 沿用绘制 thread，新建 thread 时前置完整绘制提示词，不再重复注入；结构修改由当前绘制 agent 执行 |
 | raster step01 独立 reviewer | 只读检查与反馈 | 只读检查与反馈 | 不注入结构写回职责；框选工具只输出审查证据。见 [review.ts](raster/review.ts)、[part-section.ts](raster/part-section.ts) |
 | raster step02、人物 step03 | 当前任务没有授予新的结构编辑职责 | 同左 | 新提示词要求沿用结构；`buildPrompt` 仅在 step01 注入写回职责。与 step01 共用绘制会话，旧指令仍在历史中；文档还有与此冲突的措辞，见 M4 |
 | part 独立 reviewer、同层去重、遮挡补全 | 不编辑这两个结构文件；各自仅提交审查或 SVG 产物 | 同左 | 工具绑定对应产物；同层去重与补全不接管分组树或最终深度表 |
@@ -172,7 +172,7 @@ pnpm check
 | M3 | [raster-drawing-responsibilities.md](../knowledge/shared/prompts/raster-drawing-responsibilities.md)：`检查相关文件能够解析、引用完整且图像一致`；[workflow.ts](raster/workflow.ts) 的 `checkFiles` 与 `交付检查通过，写入 .completed` | 能解析 JSON 不证明符合 schema；当前 part raster 没有挂接结构交付校验，完成门槛主要检查要求的输出文件存在、非空且位于目录内。`.completed` 或视觉 review 通过不证明回写的结构文件合法 |
 | M4 | [workflow-details.md](README.md#多深度与上游修正)“多深度与上游修正”：`step01 绘画者…step02 沿用已确认结构精修柔边，使用现有文件工具直接修改 groups.json、occlusion.json 和对应 SVG。可以调整层序、归属或拆出…` | 同段将 step01 与 step02 连写，容易把结构编辑权限扩展到 step02；人物／衣服 step02 提示词实际要求沿用层序、归属，不新增拆层。step03 也要求保持结构。参见 [steps.ts](raster/steps.ts) 中仅为 step01 注入写回职责的条件 |
 | M5 | [raster-drawing-responsibilities.md](../knowledge/shared/prompts/raster-drawing-responsibilities.md)：`直接编辑上游 groups.json…`、`上游分层文件保存后即作为后续工作的有效输入`；[workflow-details.md](README.md#多深度与上游修正)：`上游结构修改在中断与主动重跑后继续使用` | 这不是所有恢复入口都成立的保证。`GroupStore.open` 从首次分组与各已完成的 `children.json` 重建树；根 groups.json 仅保留已有 ID 的 name／note／metadata。只改根树增加、删除或重排节点，独立 part 恢复时可能被旧步骤事实覆盖。总控在 raster 已启动时跳过 part 恢复只是保护一条入口。见 [groups.ts](part/groups.ts)、[part-steps.ts](part/part-steps.ts) |
-| M6 | [workflow-details.md](README.md#多深度与上游修正)“编辑工具说明与 schema”：`raster 各阶段按下文约定提供深度工具`、`实际执行与文件写入校验仍在 TS 中` | 当前 part raster 只注册 reviewer 框选及 step02 像素差异工具，没有深度修改／校验工具。工具回调中的 schema 校验不会覆盖 agent 用脚本直接改写上游 JSON 的路径，不能让 agent 误以为保存后已有同等保护 |
+| M6 | [workflow-details.md](README.md#多深度与上游修正)“编辑工具说明与 schema”：`raster 各阶段按下文约定提供深度工具`、`实际执行与文件写入校验仍在 TS 中` | 观察时 part raster 只注册 reviewer 框选及 step02 像素差异工具，没有深度修改／校验工具（像素差异工具现已删除，step01 绘制／返修已注册 `edit_groups`、`edit_occlusion`）。工具回调中的 schema 校验不会覆盖 agent 用脚本直接改写上游 JSON 的路径，不能让 agent 误以为保存后已有同等保护 |
 
 ### 后续修复边界
 

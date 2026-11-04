@@ -86,8 +86,8 @@ test('dry-run 按 name 定位上游，保留完整提示词，不写文件、不
   assert.deepEqual(await resolvePartInput('test', 'part-layering', f.deps.runsDirectory), expected);
   const prompt = await runWorkflow({ ...f.options, dryRun: true }, { ...f.deps, agent: forbidden });
   assert.ok(prompt.startsWith(staticPromptPrefix(await readFile(mainPrompt(steps[0]), 'utf8'))));
-  assert.ok(prompt.includes(JSON.stringify(join(f.input, 'parts'))));
-  assert.ok(prompt.includes(JSON.stringify(join(f.output, 'step01'))));
+  assert.ok(prompt.includes(join(f.input, 'parts')));
+  assert.ok(prompt.includes(join(f.output, 'step01/character-depth.kra')));
   await assert.rejects(readdir(f.output), { code: 'ENOENT' });
 });
 
@@ -102,7 +102,7 @@ test('step01 绘制和 review 完成后才执行 step02；缺 PNG 保留中断�
   const f = await fixture(t), deps = { ...f.deps, steps };
   const calls: string[] = [];
   await assert.rejects(runWorkflow(f.options, { ...deps, agent: async request => {
-    if (request.prompt.startsWith('你负责对第一步交付')) {
+    if (request.prompt.startsWith('你负责独立 review 第一步的交付')) {
       calls.push('review'); assert.equal(request.threadId, undefined);
       assert.equal(request.tools?.[0].name, 'annotate_review_regions');
       await absent(join(f.output, 'step01/.completed'));
@@ -112,7 +112,7 @@ test('step01 绘制和 review 完成后才执行 step02；缺 PNG 保留中断�
       return complete;
     }
     if (calls.length === 0) { calls.push('step01'); assert.deepEqual(request.tools?.map(tool => tool.name), ['edit_groups', 'edit_occlusion', 'krita']); return deliver(request, steps[0]); }
-    calls.push('step02'); assert.equal(request.threadId, undefined); assert.equal(request.tools?.[0].name, 'locate_pixel_differences');
+    calls.push('step02'); assert.equal(request.threadId, undefined); assert.deepEqual(request.tools?.map(tool => tool.name), ['krita']);
     await request.onEvent({ type: 'thread.started', thread_id: 'thread-step02' });
     await readFile(join(f.output, 'step01/.completed'));
     await writeFile(join(f.output, 'step02/character-soft-edges.kra'), 'partially softened artwork');
@@ -142,10 +142,10 @@ test('已完成第一步的任务可按 name 预览第二步，显示实际输�
   const deps = { ...f.deps, steps: f.definitions };
   const prompt = await runWorkflow({ ...f.resume, dryRun: true }, { ...deps, agent: forbidden });
   assert.ok(prompt.startsWith(staticPromptPrefix(await readFile(mainPrompt(steps[1]), 'utf8'))));
-  assert.ok(prompt.includes(JSON.stringify(join(f.input, 'references'))));
-  assert.ok(prompt.includes(JSON.stringify(join(f.output, 'step01/character-depth.kra'))));
-  assert.ok(prompt.includes(JSON.stringify(join(f.output, 'step02/character-soft-edges.kra'))));
-  assert.ok(prompt.includes(JSON.stringify(join(f.output, 'step02/character-soft-edges.png'))));
+  assert.ok(prompt.includes(join(f.input, 'references')));
+  assert.ok(prompt.includes(join(f.output, 'step01/character-depth.kra')));
+  assert.ok(prompt.includes(`全部保存在 ${join(f.output, 'step02')}/`));
+  assert.ok(prompt.includes('character-soft-edges.kra') && prompt.includes('character-soft-edges.png'));
   assert.ok(!prompt.includes(process.execPath), 'Krita 只经 krita 工具使用，路径不进提示词');
   assert.ok(!prompt.includes('demos/soft-edge-krita'), '不引用历史示例工程');
   await assert.rejects(readdir(join(f.output, 'step02')), { code: 'ENOENT' });
@@ -191,7 +191,7 @@ test('已完成第一步的任务接续后两步，各步新建 thread 并使用
     assert.equal(request.threadId, undefined);
     assert.equal(request.model, step.model);
     assert.equal(request.effort, 'medium');
-    assert.ok(request.prompt.includes(JSON.stringify(join(f.output, 'step01/report.md'))));
+    assert.ok(request.prompt.includes(join(f.output, 'step01/report.md')));
     return deliver(request, step);
   } });
   assert.equal(index, 3);

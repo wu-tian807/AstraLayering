@@ -1,10 +1,7 @@
 {
   "main": {
     "initial": [
-      "prompts/mask.md",
-      "prompts/runtime.md",
-      "prompts/shadow-inspection.md",
-      "prompts/runtime-output.md"
+      "prompts/mask.md"
     ],
     "tools": [
       "inspect_shadow_mask",

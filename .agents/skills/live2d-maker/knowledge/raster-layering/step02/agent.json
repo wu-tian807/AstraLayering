@@ -1,11 +1,9 @@
 {
   "main": {
     "initial": [
-      "prompts/02-边缘柔化与去锯齿.md",
-      "prompts/runtime.md"
+      "prompts/02-边缘柔化与去锯齿.md"
     ],
     "tools": [
-      "locate_pixel_differences",
       "krita"
     ]
   }

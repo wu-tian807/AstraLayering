@@ -112,12 +112,6 @@ export function walkGroups(groups: GroupNode[], depth = 0, parent?: GroupNode): 
   ]);
 }
 
-export function checkSubject(subject: unknown): void {
-  if (subject !== undefined && subject !== 'character' && subject !== 'other') {
-    throw new Error('subject must be character or other');
-  }
-}
-
 export function findGroup(document: GroupsDocument, id: string): GroupNode {
   const entry = walkGroups(document.groups).find(entry => entry.group.id === id);
   if (!entry) throw new Error(`Unknown group: ${id}`);
@@ -174,11 +168,9 @@ export class GroupStore {
     const tree = await readStepTree(directory, saved);
     const document: GroupsDocument = {
       version: 1,
-      ...(tree.subject !== undefined ? { subject: tree.subject } : {}),
       groups: normalizeGroups(tree.groups),
       merge: tree.merged ? { status: 'completed', output: { path: join(directory, 'preview.svg') } } : { status: 'pending' },
     };
-    checkSubject(document.subject);
     const savedGroups = JSON.stringify(input) === JSON.stringify(groupStructure(document)) ? serialize(input) : undefined;
     return new GroupStore(path, document, savedGroups);
   }
@@ -214,5 +206,5 @@ function groupStructure(document: GroupsDocument) {
   function tree(groups: GroupNode[]): GroupInput[] {
     return groups.map(({ steps, groups: children, ...group }) => ({ ...group, groups: tree(children) }));
   }
-  return { ...(document.subject !== undefined ? { subject: document.subject } : {}), groups: tree(document.groups) };
+  return { groups: tree(document.groups) };
 }

@@ -13,10 +13,10 @@ import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import type { InitialContext, InitialGrouping } from './layering-types.ts';
 import { taskRootOf, toAgentPath } from '../task-paths.ts';
 
-function decodeInitialGrouping(value: unknown, subjects: readonly string[]): InitialGrouping {
+function decodeInitialGrouping(value: unknown): InitialGrouping {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('首次分组 JSON 须为对象');
   const raw = value as Record<string, unknown>;
-  if (!Array.isArray(raw.groups) || !raw.groups.length || Object.keys(raw).some(key => !['subject', 'groups'].includes(key))) {
+  if (!Array.isArray(raw.groups) || !raw.groups.length || Object.keys(raw).some(key => key !== 'groups')) {
     throw new Error('首次分组必须包含非空的 groups 数组，且只包含组');
   }
   const groups = raw.groups.map((group: unknown) => {
@@ -29,9 +29,8 @@ function decodeInitialGrouping(value: unknown, subjects: readonly string[]): Ini
     }
     return { id: item.name, name: item.name, ...(typeof item.note === 'string' ? { note: item.note } : {}) };
   });
-  if (typeof raw.subject !== 'string' || !subjects.includes(raw.subject)) throw new Error(`首次分组的 subject 必须为 ${subjects.join(' 或 ')}`);
   normalizeGroups(groups);
-  return { groups, subject: raw.subject as InitialGrouping['subject'] };
+  return { groups };
 }
 
 export async function recognizeInitialGroups(
@@ -48,7 +47,7 @@ export async function recognizeInitialGroups(
     ...toolDefinition('write_groups', profile.toolsDirectory),
     async execute(value, signal) {
       signal.throwIfAborted();
-      const result = decodeInitialGrouping(value, profile.subjects);
+      const result = decodeInitialGrouping(value);
       if (submitted) throw new Error('已有分组，不能覆盖；请继续现有进度');
       normalizeGroups(result.groups);
       signal.throwIfAborted();
