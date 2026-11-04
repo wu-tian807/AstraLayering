@@ -1,7 +1,0 @@
-{
-  "groupId": "legs/leg_left/anklet",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，4 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "2716e8cbe67e4218fe6942fe297c4a418cb04968a9d96171452a7039ac3dad50",
-  "afterHash": "44fd546cdf1c76ace6ddbc46824f71c33cb446684a7f8eb9d8ce67737675aaaf"
-}

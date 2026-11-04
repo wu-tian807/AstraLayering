@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_sash/left_long_tail",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "a7804fa587d92dccbdac674c0293825ce6da9717d6c8cb1b1ac5e96fdf21964f",
-  "afterHash": "d25ffbc88a92ebaabf9919c74bcc98eaf043cc504bed1cc1e60578bfa9eed7cf"
-}

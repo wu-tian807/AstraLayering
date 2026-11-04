@@ -2,10 +2,141 @@
   "groupId": "face",
   "reviews": [
     {
+      "verdict": "revise",
+      "feedback": "已完成整图 blend 定位，并用相互重叠的局部选框检查额头、左右脸缘及睫毛外尖、双耳、耳根、下颌和下巴；face 无父组。脸部及五官的主体联合覆盖成立，不要求内部拆分；未见孤立噪点。需要以下修改，保留已对齐的额头与主体，不必整组重画：\n\n1. 双耳可见区域漏画（组件覆盖缺失，优先修正）。原图在两侧外层盘发与前垂长发之间，各有一块明确的粉肤色耳部露出区域，约左 x383–400、y224–245，右 x539–555、y224–245。它们位于当前主耳廓色块外侧，被前垂发束与内侧耳廓隔开；不是发丝或应留到补全阶段的不可见部分。当前候选在这两处完全没有覆盖。请分别依据左右原图补入真实可见的耳部色块，沿两侧发束遮挡边缘对齐，不强制镜像，也不必跨过遮挡发束连接。证据：左侧 [blend](previews/2026-11-02T09-07-36-669Z-7.png)、[edge](previews/2026-11-02T09-07-36-669Z-8.png)；右侧 [blend](previews/2026-11-02T09-07-36-669Z-9.png)、[edge](previews/2026-11-02T09-07-36-669Z-10.png)。\n\n2. 下颌两侧曲线外扩。由耳根以下至下巴两侧，约左 x419–460、y270–304 和右 x479–520、y270–304，候选红边向下/向外偏出原图清晰的脸部外缘；偏差在两侧下颌弧段最明显，约 1–3 个原图像素，使脸下半部偏宽厚，并包入邻接的头发/颈侧背景。请逐侧重描下颌弧线，贴合原图外侧深色轮廓，不以脸内的白色高光线为边界；中央下巴尖位置基本吻合，应保留并平顺接回。证据：[下颌 edge](previews/2026-11-02T09-07-36-669Z-12.png)、[下颌 blend](previews/2026-11-02T09-07-36-669Z-11.png)，原图局部 [参考](bitmaps/ea044e87-5aa9-40fd-80b1-31d0c4a40584.png)。",
+      "candidateHash": "2cca3117bde3105f55d61b84027e6ce6357a3487377edfd863ab947918047ebc",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-07-36-669Z-13.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:17:22.545Z",
+      "repairedCandidateHash": "d78b487841a0812506c3636b92108e096ff85a962268783c48ae83111bf4c69b"
+    },
+    {
       "verdict": "pass",
-      "feedback": "已完成本轮 face 组独立轮廓审查。先用整图 blend 定位，再以相互重叠的选框 [470,130,80,64]（额头及两侧上缘）、[438,165,66,78]（画面左侧脸缘与耳朵）、[522,165,65,78]（画面右侧脸缘与耳朵）、[462,218,102,58]（双侧下颌与颏尖）、[486,170,54,74]（中央面部）分别进行 6 倍 blend、edge 核对，完整覆盖本组全部可见区域；另用 [447,201,28,33]、[549,201,28,33]、[482,242,58,26] 的 8 倍 blend、edge 复核双耳与耳坠交界及颏尖，并对照原始参考放大图。\n额头发际与两侧脸发接缝、双耳露出部分的外缘及耳垂、耳垂到脸颊的连接、双侧下颌到颏尖的连续边缘均贴合参考。耳坠覆盖处保留连续耳垂形体，未见为避让饰件而挖出的无依据缺口；下颌边缘与颈部接缝未见漏画。候选为单一连续闭合形体，无孤立像素、碎发丝、碎片堆砌或形体归属混乱，也无无依据孔洞或开口。\n未发现具有明确图像依据的轮廓超出、缩入、接缝缺漏或需要返修的折角／转向偏差。组内五官细节、最终着色、显影顺序和大片遮挡补形未纳入本轮。parentGroup 为 null，无父范围检查项。结论：pass。输入及候选 SVG 未修改。",
-      "candidateHash": "f68bb800c6754ae628fdf35818d9763b3574469adcfb986c71577e8de1b82325",
-      "updatedAt": "2026-10-14T11:49:40.142Z"
+      "feedback": "第 2 轮：通过。已读取 face 职责与候选源码，并完成整图 blend 定位；face 为顶层组，无父 SVG 或父范围约束。随后用相互重叠的局部选框，分别以 blend、edge 核对额部及双侧额发接缝（405,155,128,82）、左眼外角与左耳（378,210,70,77）、右眼外角与右耳（490,210,70,77）、双侧下颌至下巴及颈部接缝（411,256,116,57），并检查 SVG 独显。\n\n可见脸部、五官与双耳范围均已覆盖；两侧发束之间的分离肤色区域有参考依据，属于耳部可见区域，并非孤立噪点。左右耳及眼外角分别对照参考，未发现需修改的遗漏、误包相邻结构或轮廓偏离。下颌与下巴边缘、耳下缘和发束遮挡接缝均贴合参考。五官及眼褶线位于主体联合色块内，当前不要求内部拆分。轮廓干净，无需重画或局部返修。\n\n核对证据：![额部与眼外角](review-evidence-round2/forehead-edge.png) ![左耳及接缝](review-evidence-round2/left-ear-edge.png) ![右耳及接缝](review-evidence-round2/right-ear-edge.png) ![下颌与下巴](review-evidence-round2/jaw-edge.png) ![独显轮廓](review-evidence-round2/shape.png)",
+      "candidateHash": "d78b487841a0812506c3636b92108e096ff85a962268783c48ae83111bf4c69b",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-02T09-22-53-835Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:28:54.398Z"
     }
   ]
 }

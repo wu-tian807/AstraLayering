@@ -1,0 +1,117 @@
+{
+  "groupId": "hair/side_hair/side_hair_left",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已按整图定位，并以重叠选框 [460,95,113,95]、[492,170,88,100] 完成全部可见区域的 blend/edge 检查，另以 [530,190,46,74] 8 倍核对外缘、开口与收尖，并查看父完成稿同一局部。形体归属及主体覆盖成立，无孤点、碎片或需整组重画的形体混乱；父范围检查通过（outsidePixels=0）。\n\n1. 当前组可修：画面右侧外缘约 x563–568、y212–226。参考在上层发瓣尾端向内收进后，再接下层发瓣外缘，存在明确的内凹转折；候选从 (567,216) 向下作平缓连续弧线，跨过该内凹，在参考发缘右方白底多包约 1–2 像素，并磨平层间转向。请在父范围内收回这段外缘，逐点贴合参考的凹入与重新外展，保留折返，不能只平滑整条弧线。属于局部轮廓修正，不需重画整个组。证据：![候选局部边缘](review-evidence/outer-opening-edge.png) ![同区参考](review-evidence/outer-opening-reference.png)。\n\n2. 已确认的上游限制（不要求当前子组越界修补）：耳上三角开口下端约 x548–553、y239–245。参考肤色楔形在较上方结束，下端及右侧已转为蓝灰发面；候选开口仍延伸到 (549,245)，切掉一小段可见发面。父 SVG 在同区具有完全相同的开口边界，因此该缺口处位于父填色之外，当前子组已贴合父界，不能在保持父范围约束时补回。须由上游收小开口后才能恢复此处，不声称本轮已覆盖。证据：![父稿同区边缘](review-evidence/parent-outer-opening-edge.png)，与上述候选边缘及参考对照。其余顶部、额角、脸侧接缝及合理遮挡补形已核对；本轮 revise 的直接原因是第 1 项父内可修的外缘过包。",
+      "candidateHash": "53b35b747fa2e93ad402614bc246ae4be0c228f3dcbf3e844318c1f1a1c28625",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T11-24-56-393Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair/side_hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T11-24-56-393Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T11-24-56-393Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T11-24-56-393Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T11-24-56-393Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T11-24-56-393Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T11-24-56-393Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/hair/side_hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T11-24-56-393Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T11-24-56-393Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:31:47.393Z",
+      "repairedCandidateHash": "f96851bd2a08008ff7feb55ad092cbfcfb6b6b3f88228d6ccf9d6b38a6364a0b"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "已完成整图定位，并以重叠选框逐块核对全部可见范围：头顶与根区（458,98,100,85）、额角及太阳穴至外侧起伏（483,153,95,75）、耳前开口与下端收尖（510,210,70,60）；各区均检查原图 blend 与 edge，并查看父组完成稿及候选独显。画面右侧宽侧发归属正确，可见主发面、外缘转折、耳前肤色开口及收尖均已覆盖；未发现误包邻接部件、可见组件遗漏、孤立碎片或需重画的形体问题。候选父范围检查通过（4倍采样，outsidePixels=0）。本轮未发现有明确图像依据、需要当前组修改的问题。",
+      "candidateHash": "f96851bd2a08008ff7feb55ad092cbfcfb6b6b3f88228d6ccf9d6b38a6364a0b",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair/side_hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/hair/side_hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/children/side_hair_left/previews/2026-11-02T12-30-52-805Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:42:04.830Z"
+    }
+  ]
+}

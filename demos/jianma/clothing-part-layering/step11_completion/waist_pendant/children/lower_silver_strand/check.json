@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/lower_silver_strand",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "711a6c9e23a12d32cb4d123c40f702c03d533829ca55ed5b3e47ed9290c9fa94",
-  "afterHash": "bbeabff7be181222a18fd6dec6e32c1a77cba3c5772328adf878439cff639711"
-}

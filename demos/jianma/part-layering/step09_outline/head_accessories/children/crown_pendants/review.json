@@ -1,0 +1,127 @@
+{
+  "groupId": "head_accessories/crown_pendants",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已核对整图叠加，并以画面左侧 (320,108,42,92)、右侧 (578,108,42,92) 两个 8 倍选框完整检查连接端、两颗短节、连接颈及下部菱形硬坠；另以 (328,114,24,24)、(588,114,24,24) 重叠放大冠缘接缝。父稿亦在相同局部做 edge 对照。两件吊饰归属正确，未将下方银白长发纳入；无整件遗漏或碎片噪音，不需要整体重画。候选父范围检测通过，outsidePixels=0。\n\n当前组须修：画面左侧冠缘下的小连接端，约 x336–339、y120–125，候选左边缘向白色背景鼓出，随后斜收至第一颗菱形上尖；参考中的可见连接节位于其右侧，是较窄的灰蓝连接形体。请收回这段已露出冠缘的左侧多余轮廓，按参考保留窄连接，不把冠缘以下的白色背景包入。此处收边在现有父范围内即可完成；冠缘遮挡内已有合理连接补形可保留，不要求恢复隐藏结构。证据：[左侧接缝 edge](review-evidence/2026-11-02T10-10-31-503Z-9.png)、[左侧完整 blend](review-evidence/2026-11-02T10-10-31-503Z-3.png)。\n\n单列上游父范围限制：左侧连接端右缘约 x342–345、y120–125，以及第一颗菱形右缘约 x346–348、y134–138，参考仍有可见灰蓝实体，当前子稿与父稿边界均在其内侧；右侧连接端左缘约 x594–597、y124–129 也存在相同的父范围截窄。相同选框中的父、子 edge 已核对，候选在这些缺口方向已贴合父边界，须扩大父范围才能恢复；本轮不要求子稿越界，也不声称已覆盖这些可见部分。证据：[左侧候选 edge](review-evidence/2026-11-02T10-10-31-503Z-4.png)、[左侧父稿 edge](review-evidence/2026-11-02T10-10-31-503Z-7.png)、[右侧候选 edge](review-evidence/2026-11-02T10-10-31-503Z-6.png)、[右侧父稿 edge](review-evidence/2026-11-02T10-10-31-503Z-8.png)。其余两侧短节、下部硬坠外缘及尖端已逐件核对；本次 revise 针对上述父范围内可收回的左侧连接端多包区域。",
+      "candidateHash": "9a0c2dd9086d702253c6b3d9c408dd6fe7e52af739bdd5690a53d9cfe64ed07c",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-10-31-503Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:22:47.169Z",
+      "repairedCandidateHash": "df04407c8b7e420fc633f02bb228d526741df8d5de19d5c952d81ec68601e8bf"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "已核对本组两侧全部可见区域：画面左侧 x322–358、y108–195，右侧 x580–616、y108–195，分别完成原图 blend、edge 放大对照，并检查父完成 SVG 的相同局部及候选独显。两件短吊饰的连接端、两段小菱形短节、下部连接节及大菱形硬坠均有覆盖；下方银白长条确属头发，没有误纳入。未发现独立组件漏画、孤点或碎片堆砌，不要求重画当前组。父范围检查通过，outsidePixels=0。\n\n已确认的上游范围限制（不要求当前子组越界修复）：左侧冠缘下方连接环约 x340–345、y120–127，参考中的环右缘位于候选右侧；同局部父 SVG 的外缘也在这里收窄，候选已贴合该父边界。右侧连接端至第一小菱形之间约 x593–598、y123–134，参考可见的左侧连接轮廓亦有一部分落在父轮廓左侧，候选与父边界一致。这些参考边缘尚未补齐，须由上游扩大相应父范围后才能恢复，不能在本轮要求当前子组越界。当前允许范围内未发现另需修改的问题。\n\n图像证据：左侧[候选 edge](review-evidence/round2-left-candidate-edge.png)、[父稿同局部 edge](review-evidence/round2-left-parent-edge.png)；右侧[候选 edge](review-evidence/round2-right-candidate-edge.png)、[父稿同局部 edge](review-evidence/round2-right-parent-edge.png)。",
+      "candidateHash": "df04407c8b7e420fc633f02bb228d526741df8d5de19d5c952d81ec68601e8bf",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-9.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_pendants/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_pendants/previews/2026-11-02T10-28-04-688Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:36:09.267Z"
+    }
+  ]
+}

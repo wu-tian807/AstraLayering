@@ -1,0 +1,164 @@
+[
+  {
+    "index": 1,
+    "mask": "default_closed_or_back_occlusion",
+    "uuid": "{940fb78a-784a-449e-8b43-157516d1ee74}",
+    "parent": "007.0 | legs/leg_right/anklet_back | complete",
+    "parent_uuid": "{a69151f3-3451-4a3d-9d3b-d040edd5142a}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/01-off.png"
+  },
+  {
+    "index": 2,
+    "mask": "default_closed_or_back_occlusion",
+    "uuid": "{f3172c38-01e8-47ff-b748-5225213e78c7}",
+    "parent": "008.0 | legs/leg_left/anklet_back | complete",
+    "parent_uuid": "{6bd3b73d-a184-4745-9482-e60925a5b2a5}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/02-off.png"
+  },
+  {
+    "index": 3,
+    "mask": "upper_arm_attachment_blend",
+    "uuid": "{81f0e613-f46e-4b45-9ec7-30fcc8707810}",
+    "parent": "020.0 | arms/arm_right/forearm | complete",
+    "parent_uuid": "{1b191d7f-97db-4096-bcd6-8151771e9c8f}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/03-off.png"
+  },
+  {
+    "index": 4,
+    "mask": "wrist_attachment_blend",
+    "uuid": "{3a56cf55-9b4d-4789-b1bd-aeddced81fed}",
+    "parent": "021.0 | arms/arm_right/hand/palm | complete",
+    "parent_uuid": "{61645b96-cab0-474b-9e70-359d03670037}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/04-off.png"
+  },
+  {
+    "index": 5,
+    "mask": "forearm_attachment_blend",
+    "uuid": "{99f4ad1e-06fc-4e92-894c-9a3581c3682e}",
+    "parent": "023.0 | arms/arm_left/upper_arm | complete",
+    "parent_uuid": "{20733596-023e-467b-84be-6a5b476585e3}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/05-off.png"
+  },
+  {
+    "index": 6,
+    "mask": "wrist_attachment_blend",
+    "uuid": "{5d75451b-6d6a-49c1-b925-59583126819f}",
+    "parent": "029.0 | arms/arm_left/hand/palm | complete",
+    "parent_uuid": "{5bd257eb-a516-45c1-87e8-58921e019d92}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/06-off.png"
+  },
+  {
+    "index": 7,
+    "mask": "neck_and_shoulder_attachment_blend",
+    "uuid": "{a439fdf7-01a7-4073-8087-bcbb7c4d288a}",
+    "parent": "031.0 | body/torso | complete",
+    "parent_uuid": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/07-off.png"
+  },
+  {
+    "index": 8,
+    "mask": "pelvis_attachment_blend",
+    "uuid": "{3d3120f6-4b89-4dd5-a50c-30e93443720a}",
+    "parent": "031.0 | body/torso | complete",
+    "parent_uuid": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/08-off.png"
+  },
+  {
+    "index": 9,
+    "mask": "torso_attachment_blend",
+    "uuid": "{bfddc43a-3f8b-43aa-8a27-de8f36c1f3c8}",
+    "parent": "032.0 | body/breast | complete",
+    "parent_uuid": "{8285ee5c-57cc-4f94-88fa-f4f345c8f094}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/09-off.png"
+  },
+  {
+    "index": 10,
+    "mask": "face_and_side_hair_default_occlusion",
+    "uuid": "{c53967c4-d44d-4bfb-8c4e-1ade0baafb0f}",
+    "parent": "035.0 | face/ears/ear_right | complete",
+    "parent_uuid": "{88643f29-e403-43ed-b8a4-26686a75824b}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/10-off.png"
+  },
+  {
+    "index": 11,
+    "mask": "face_and_side_hair_default_occlusion",
+    "uuid": "{4f206a90-66ae-488f-bab4-cb1a00f9048c}",
+    "parent": "036.0 | face/ears/ear_left | complete",
+    "parent_uuid": "{a3e7fab5-8355-4552-97db-51f5652cd883}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/11-off.png"
+  },
+  {
+    "index": 12,
+    "mask": "upper_and_lower_eyelid_opening",
+    "uuid": "{b7217171-64f4-4cdb-adb7-98f00d02542f}",
+    "parent": "face/eyes/eye_left | opening_contents",
+    "parent_uuid": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/12-off.png"
+  },
+  {
+    "index": 13,
+    "mask": "upper_and_lower_eyelid_opening",
+    "uuid": "{e55d75e2-cdb8-44e2-ac23-227c731b15c1}",
+    "parent": "face/eyes/eye_right | opening_contents",
+    "parent_uuid": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/13-off.png"
+  },
+  {
+    "index": 14,
+    "mask": "default_closed_or_back_occlusion",
+    "uuid": "{72977381-84df-4153-8bb5-b9a574710458}",
+    "parent": "051.0 | face/mouth/lower_teeth | complete",
+    "parent_uuid": "{6da0c3a9-f9cb-4ce1-b796-cae92c765925}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/14-off.png"
+  },
+  {
+    "index": 15,
+    "mask": "upper_lip_root_occlusion",
+    "uuid": "{cddb764f-ef60-4c93-905a-3e2a82e6b999}",
+    "parent": "053.0 | face/mouth/upper_teeth | complete",
+    "parent_uuid": "{d5d9fe8c-4930-4c05-9a76-eed077809f1d}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/15-off.png"
+  },
+  {
+    "index": 16,
+    "mask": "upper_and_lower_lip_opening",
+    "uuid": "{06aae8b3-f027-44db-a037-b9b3eecf6ca7}",
+    "parent": "face/mouth | opening_contents",
+    "parent_uuid": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/16-off.png"
+  },
+  {
+    "index": 17,
+    "mask": "side_hair_root_occlusion",
+    "uuid": "{b56c1e37-ba59-4014-a734-dc33be4610ac}",
+    "parent": "059.0 | hair/sidelock/sidelock_right | complete",
+    "parent_uuid": "{9a2a473e-21db-4388-8c91-718162d418ff}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/17-off.png"
+  },
+  {
+    "index": 18,
+    "mask": "side_hair_root_occlusion",
+    "uuid": "{c72912b7-fe81-470e-acdf-0f5d4971c420}",
+    "parent": "060.0 | hair/sidelock/sidelock_left | complete",
+    "parent_uuid": "{2799914a-e942-4cdb-8749-c2d6ef60234a}",
+    "default_enabled": true,
+    "off_image": "raster-layering/step01/repair-02-evidence/final/masks/18-off.png"
+  }
+]

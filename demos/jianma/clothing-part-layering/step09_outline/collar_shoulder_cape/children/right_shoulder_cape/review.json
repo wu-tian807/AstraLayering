@@ -1,0 +1,48 @@
+{
+  "groupId": "collar_shoulder_cape/right_shoulder_cape",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已从纯衣服参考独立确认本片为画面左侧的角色右肩短披，并核对当前 part note、候选源码及父完成 SVG。整体叠加、全片局部放大、外缘与披尖六倍边缘覆盖、领根与胸前卷曲内缘六倍边缘覆盖以及 SVG 独显均已检查。肩顶、外肩下垂轮廓、斜向披缘和披尖位置比例符合参考；放大复核后，外肩边线未见可确定的实体漏裁。领根分界为立领下方的合理隐藏搭接，内缘补片与父稿登记的胸饰后方遮挡衣料一致，未跨胸前真实开口补布。未发现误包长袖、袍身或人体、可见组件遗漏、真实开口封闭或需要重画的主体错误。固定包边随联合轮廓覆盖，不要求内部纹样或材质表现。note 已明确实体范围、相邻分界、前后关系、共同随动和隐藏搭接。父范围四倍采样检查通过，outsidePixels=0。无确定需要修改的问题。",
+      "candidateHash": "c2906e1c348dc32c48507bf679fa955b9dc198116286658a45080a49babe19f8",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/previews/2026-11-02T16-26-15-779Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/previews/2026-11-02T16-26-15-779Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/collar_shoulder_cape.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/previews/2026-11-02T16-26-15-779Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/previews/2026-11-02T16-26-15-779Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/previews/2026-11-02T16-26-15-779Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/previews/2026-11-02T16-26-15-779Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/right_shoulder_cape/previews/2026-11-02T16-26-15-779Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:55:26.195Z"
+    }
+  ]
+}

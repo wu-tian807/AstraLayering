@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/left_earring",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "2a8d3f1f427c4b13d87e5ed7f5fcdc5a3d428ec8d2c16a7536a7e75ea816e6c9",
-  "afterHash": "28d6a2917cedaaac1c3570ed0e69b1b8e806e56de94b38dc7c25a158f28433f1"
-}

@@ -1,0 +1,300 @@
+{
+  "size_unchanged": true,
+  "color_unchanged": true,
+  "layers": [
+    {
+      "name": "001 | collar_shoulder_cape/standing_collar | back",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "002 | inner_long_dress/long_skirt | back",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "003 | waist_sash_and_knot/waist_band | back",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "010 | inner_long_dress/long_skirt | front",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "010.1 | central_blue_drapery/central_folded_tail | back waist root",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "010.2 | central_blue_drapery/left_long_panel | back waist root",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "010.3 | central_blue_drapery/right_long_panel | back waist root",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "011 | inner_long_dress/bodice_and_waist",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "020 | central_blue_drapery/central_folded_tail | front",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "021 | central_blue_drapery/left_long_panel | front",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "022 | central_blue_drapery/right_long_panel | front",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "025 | waist_sash_and_knot/waist_band | front",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "030 | outer_robe_body/left_robe_panel",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "031 | outer_robe_body/right_robe_panel",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "040 | sleeve_screen_left/right_hanging_drape | back",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "041 | sleeve_screen_right/left_hanging_drape | back",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "042 | sleeve_screen_left/right_sleeve_tube | back",
+      "same_pixels": false,
+      "same_alpha": false,
+      "same_structure": true
+    },
+    {
+      "name": "043 | sleeve_screen_right/left_sleeve_tube | back",
+      "same_pixels": false,
+      "same_alpha": false,
+      "same_structure": true
+    },
+    {
+      "name": "050 | sleeve_screen_left/right_sleeve_tube | front",
+      "same_pixels": false,
+      "same_alpha": false,
+      "same_structure": true
+    },
+    {
+      "name": "051 | sleeve_screen_right/left_sleeve_tube | front",
+      "same_pixels": false,
+      "same_alpha": false,
+      "same_structure": true
+    },
+    {
+      "name": "060 | sleeve_screen_left/right_hanging_drape | front",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "061 | sleeve_screen_right/left_hanging_drape | front",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "070 | collar_shoulder_cape/left_shoulder_cape",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "071 | collar_shoulder_cape/right_shoulder_cape",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "072 | collar_shoulder_cape/standing_collar | front",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "080 | collar_jewel_fastener/left_beaded_chain",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "081 | collar_jewel_fastener/right_beaded_chain",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "082 | collar_jewel_fastener/central_pendant/hanging_bead",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "083 | collar_jewel_fastener/central_pendant/connecting_ring",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "084 | collar_jewel_fastener/fixed_jewel",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "085 | chest_ornament",
+      "same_pixels": false,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "100 | waist_pendant_and_tassel/upper_suspension",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "waist opening | hide completed suspension root",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "101 | waist_sash_and_knot/left_short_tail",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "102 | waist_sash_and_knot/right_short_tail",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "103 | waist_sash_and_knot/left_short_loop",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "104 | waist_sash_and_knot/right_short_loop",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "105 | waist_sash_and_knot/center_knot",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "110 | waist_pendant_and_tassel/snowflake_medallion",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    },
+    {
+      "name": "114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+      "same_pixels": false,
+      "same_alpha": false,
+      "same_structure": true
+    },
+    {
+      "name": "115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front",
+      "same_pixels": false,
+      "same_alpha": false,
+      "same_structure": true
+    },
+    {
+      "name": "116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+      "same_pixels": false,
+      "same_alpha": false,
+      "same_structure": true
+    },
+    {
+      "name": "117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+      "same_pixels": false,
+      "same_alpha": false,
+      "same_structure": true
+    },
+    {
+      "name": "118 | waist_pendant_and_tassel/long_tassel",
+      "same_pixels": true,
+      "same_alpha": true,
+      "same_structure": true
+    }
+  ]
+}

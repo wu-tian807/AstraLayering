@@ -1,0 +1,63 @@
+{
+  "image": "clothing-raster-layering/step01/review-evidence/review02/parts/P02.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "clothing-raster-layering/step01/workspace/review-regions/2bedb25a-a3a1-4518-9ff2-54bda5752470/marked.png",
+  "manifest": "clothing-raster-layering/step01/workspace/review-regions/2bedb25a-a3a1-4518-9ff2-54bda5752470/regions.json",
+  "regions": [
+    {
+      "id": "R4a",
+      "bounds": [
+        359,
+        1296,
+        32,
+        174
+      ],
+      "layers": [
+        "010 | inner_long_dress/long_skirt | front",
+        "002 | inner_long_dress/long_skirt | back（合显连续性复核）"
+      ],
+      "description": "内裙画面左侧原可见窄条与外侧补全料之间，横缝在约x376、y1310至1322跳台阶，随后一条亮暗双边从接头贯穿到裙口，独显仍读成竖向贴条。应清除贴条边、将横缝延续为同一平顺曲线，并把两边纵褶、底色及下包边接成同一裙料；保留参考可见深褶和白包边及前后独立分片。",
+      "crop": [
+        341,
+        1278,
+        68,
+        210
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/2bedb25a-a3a1-4518-9ff2-54bda5752470/R4a-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/2bedb25a-a3a1-4518-9ff2-54bda5752470/R4a-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/2bedb25a-a3a1-4518-9ff2-54bda5752470/R4a-comparison.png"
+      }
+    },
+    {
+      "id": "R4b",
+      "bounds": [
+        553,
+        1296,
+        35,
+        174
+      ],
+      "layers": [
+        "010 | inner_long_dress/long_skirt | front",
+        "002 | inner_long_dress/long_skirt | back（合显连续性复核）"
+      ],
+      "description": "内裙画面右侧同样存在窄条贴接：约x568、y1310至1322的横缝突然落差，外侧一条直亮边及色差延伸到裙口。应独立接顺本侧横缝、消掉纵向贴片分界和下沿硬接，保留已恢复的可见褶线与白包边，不以外袍遮住问题代替修复。",
+      "crop": [
+        535,
+        1278,
+        71,
+        210
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/2bedb25a-a3a1-4518-9ff2-54bda5752470/R4b-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/2bedb25a-a3a1-4518-9ff2-54bda5752470/R4b-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/2bedb25a-a3a1-4518-9ff2-54bda5752470/R4b-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

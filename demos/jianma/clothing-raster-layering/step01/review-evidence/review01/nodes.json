@@ -1,0 +1,646 @@
+[
+  {
+    "name": "001 | collar_shoulder_cape/standing_collar | back",
+    "type": "paintlayer",
+    "uuid": "{448df4c9-96c7-40e9-b298-05c0674638f7}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      431,
+      170,
+      81,
+      65
+    ],
+    "depth": 0
+  },
+  {
+    "name": "002 | inner_long_dress/long_skirt | back",
+    "type": "paintlayer",
+    "uuid": "{0e35da44-fa87-4557-a9cd-3459aa7b6cdf}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      287,
+      478,
+      369,
+      985
+    ],
+    "depth": 0
+  },
+  {
+    "name": "003 | waist_sash_and_knot/waist_band | back",
+    "type": "paintlayer",
+    "uuid": "{ee430c3b-6a85-46ed-8e71-e15d8da3b6ab}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      386,
+      442,
+      172,
+      19
+    ],
+    "depth": 0
+  },
+  {
+    "name": "010 | inner_long_dress/long_skirt | front",
+    "type": "paintlayer",
+    "uuid": "{8d550ac0-4c93-4c99-9c81-c6b710d0b095}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      298,
+      476,
+      353,
+      993
+    ],
+    "depth": 0
+  },
+  {
+    "name": "011 | inner_long_dress/bodice_and_waist",
+    "type": "paintlayer",
+    "uuid": "{e49d9e03-ca99-444a-99ac-041e59dfb80b}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      399,
+      328,
+      143,
+      160
+    ],
+    "depth": 0
+  },
+  {
+    "name": "020 | central_blue_drapery/central_folded_tail",
+    "type": "paintlayer",
+    "uuid": "{b578d36e-4025-47d6-9587-ff6a0a52b4f0}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      430,
+      456,
+      93,
+      1013
+    ],
+    "depth": 0
+  },
+  {
+    "name": "021 | central_blue_drapery/left_long_panel",
+    "type": "paintlayer",
+    "uuid": "{5570fda1-2f31-4d28-9c36-495eed12e654}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      478,
+      456,
+      78,
+      856
+    ],
+    "depth": 0
+  },
+  {
+    "name": "022 | central_blue_drapery/right_long_panel",
+    "type": "paintlayer",
+    "uuid": "{9d0ff3e9-740b-44e5-a8b5-f2635a5dd3c2}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      392,
+      456,
+      73,
+      856
+    ],
+    "depth": 0
+  },
+  {
+    "name": "025 | waist_sash_and_knot/waist_band | front",
+    "type": "paintlayer",
+    "uuid": "{bbc07874-0300-4944-b323-a9c65cec3ef1}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      411,
+      446,
+      122,
+      17
+    ],
+    "depth": 0
+  },
+  {
+    "name": "030 | outer_robe_body/left_robe_panel",
+    "type": "paintlayer",
+    "uuid": "{937356d7-288f-4412-bcc7-e253d2ceb64b}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      494,
+      261,
+      339,
+      1277
+    ],
+    "depth": 0
+  },
+  {
+    "name": "031 | outer_robe_body/right_robe_panel",
+    "type": "paintlayer",
+    "uuid": "{60bd2482-c7dc-4522-b270-022893b02486}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      110,
+      261,
+      337,
+      1277
+    ],
+    "depth": 0
+  },
+  {
+    "name": "040 | sleeve_screen_left/right_hanging_drape | back",
+    "type": "paintlayer",
+    "uuid": "{4bef1885-89fe-4c15-9abd-e68b37229d2d}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      71,
+      325,
+      307,
+      1132
+    ],
+    "depth": 0
+  },
+  {
+    "name": "041 | sleeve_screen_right/left_hanging_drape | back",
+    "type": "paintlayer",
+    "uuid": "{77fcc592-d710-4d99-9b0c-1e2965f0bda5}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      561,
+      325,
+      308,
+      1132
+    ],
+    "depth": 0
+  },
+  {
+    "name": "042 | sleeve_screen_left/right_sleeve_tube | back",
+    "type": "paintlayer",
+    "uuid": "{8f0002cf-03e5-4258-b427-9141b7d26219}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      256,
+      665,
+      79,
+      23
+    ],
+    "depth": 0
+  },
+  {
+    "name": "043 | sleeve_screen_right/left_sleeve_tube | back",
+    "type": "paintlayer",
+    "uuid": "{15c1b420-3b4a-4eb0-927f-091161cf9407}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      608,
+      665,
+      78,
+      24
+    ],
+    "depth": 0
+  },
+  {
+    "name": "050 | sleeve_screen_left/right_sleeve_tube | front",
+    "type": "paintlayer",
+    "uuid": "{824ddbe3-c712-4e56-80e7-56b5b73315d5}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      255,
+      261,
+      136,
+      448
+    ],
+    "depth": 0
+  },
+  {
+    "name": "051 | sleeve_screen_right/left_sleeve_tube | front",
+    "type": "paintlayer",
+    "uuid": "{a4a789c5-b72e-4e3d-b710-bab8bc4c5e5e}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      548,
+      250,
+      140,
+      458
+    ],
+    "depth": 0
+  },
+  {
+    "name": "060 | sleeve_screen_left/right_hanging_drape | front",
+    "type": "paintlayer",
+    "uuid": "{9f8f53de-82b3-41a6-9560-a5a574d09aa8}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      174,
+      289,
+      207,
+      446
+    ],
+    "depth": 0
+  },
+  {
+    "name": "061 | sleeve_screen_right/left_hanging_drape | front",
+    "type": "paintlayer",
+    "uuid": "{05b89668-8569-4537-a453-1254e2aa70c9}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      565,
+      254,
+      198,
+      481
+    ],
+    "depth": 0
+  },
+  {
+    "name": "070 | collar_shoulder_cape/left_shoulder_cape",
+    "type": "paintlayer",
+    "uuid": "{e4e0616b-0fad-4a35-a593-c2225aba4402}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      493,
+      219,
+      164,
+      202
+    ],
+    "depth": 0
+  },
+  {
+    "name": "071 | collar_shoulder_cape/right_shoulder_cape",
+    "type": "paintlayer",
+    "uuid": "{aed42338-b858-4645-ace8-6c6b6d552528}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      286,
+      215,
+      168,
+      207
+    ],
+    "depth": 0
+  },
+  {
+    "name": "072 | collar_shoulder_cape/standing_collar | front",
+    "type": "paintlayer",
+    "uuid": "{04d9238d-4429-4a5e-a569-8cf7e640b4c9}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      416,
+      175,
+      111,
+      81
+    ],
+    "depth": 0
+  },
+  {
+    "name": "080 | collar_jewel_fastener/left_beaded_chain",
+    "type": "paintlayer",
+    "uuid": "{60533a4b-028a-4dd7-bcdd-4102ee092f68}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      474,
+      263,
+      27,
+      17
+    ],
+    "depth": 0
+  },
+  {
+    "name": "081 | collar_jewel_fastener/right_beaded_chain",
+    "type": "paintlayer",
+    "uuid": "{a25b734f-d758-457b-800a-f49d2a1aab33}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      443,
+      261,
+      26,
+      19
+    ],
+    "depth": 0
+  },
+  {
+    "name": "082 | collar_jewel_fastener/central_pendant/hanging_bead",
+    "type": "paintlayer",
+    "uuid": "{e6610023-213a-4447-bb89-ba0ce5af38b7}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      466,
+      268,
+      11,
+      12
+    ],
+    "depth": 0
+  },
+  {
+    "name": "083 | collar_jewel_fastener/central_pendant/connecting_ring",
+    "type": "paintlayer",
+    "uuid": "{c640902f-61aa-4766-905f-e0c0dacc7673}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      465,
+      257,
+      12,
+      14
+    ],
+    "depth": 0
+  },
+  {
+    "name": "084 | collar_jewel_fastener/fixed_jewel",
+    "type": "paintlayer",
+    "uuid": "{a4dd0458-4ccd-4e78-b6bd-5e4e06d16833}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      455,
+      223,
+      33,
+      37
+    ],
+    "depth": 0
+  },
+  {
+    "name": "085 | chest_ornament",
+    "type": "paintlayer",
+    "uuid": "{7ff3e970-4f42-460e-8328-dc7d041a9189}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      395,
+      269,
+      148,
+      157
+    ],
+    "depth": 0
+  },
+  {
+    "name": "100 | waist_pendant_and_tassel/upper_suspension",
+    "type": "paintlayer",
+    "uuid": "{f44f66dc-eedc-40f8-9a23-c0877cfa04e6}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      460,
+      477,
+      21,
+      124
+    ],
+    "depth": 0
+  },
+  {
+    "name": "waist opening | hide completed suspension root",
+    "type": "transparencymask",
+    "uuid": "{0e97c101-ee19-4c87-8fa6-41749a295fac}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      460,
+      477,
+      21,
+      124
+    ],
+    "depth": 1
+  },
+  {
+    "name": "101 | waist_sash_and_knot/left_short_tail",
+    "type": "paintlayer",
+    "uuid": "{292dee11-7918-45c8-bee9-1b70459251b5}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      476,
+      452,
+      23,
+      104
+    ],
+    "depth": 0
+  },
+  {
+    "name": "102 | waist_sash_and_knot/right_short_tail",
+    "type": "paintlayer",
+    "uuid": "{0597ced5-ffe5-4afa-8845-bb5fc07018fb}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      446,
+      454,
+      22,
+      102
+    ],
+    "depth": 0
+  },
+  {
+    "name": "103 | waist_sash_and_knot/left_short_loop",
+    "type": "paintlayer",
+    "uuid": "{5c35cebf-839b-4adc-a114-ec59b7a0a273}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      475,
+      450,
+      17,
+      68
+    ],
+    "depth": 0
+  },
+  {
+    "name": "104 | waist_sash_and_knot/right_short_loop",
+    "type": "paintlayer",
+    "uuid": "{c587ec68-0faf-4d6b-a5b1-bc8edb2be27b}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      449,
+      449,
+      22,
+      76
+    ],
+    "depth": 0
+  },
+  {
+    "name": "105 | waist_sash_and_knot/center_knot",
+    "type": "paintlayer",
+    "uuid": "{5d6a62d6-62c7-48d0-b743-55a54f63ad48}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      458,
+      448,
+      26,
+      18
+    ],
+    "depth": 0
+  },
+  {
+    "name": "108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+    "type": "paintlayer",
+    "uuid": "{3e4bd53e-224e-42d6-b8c0-80a8b129d0cf}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      463,
+      642,
+      16,
+      59
+    ],
+    "depth": 0
+  },
+  {
+    "name": "109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+    "type": "paintlayer",
+    "uuid": "{2d461cef-2627-4437-8154-850aeb4fb67b}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      461,
+      695,
+      20,
+      74
+    ],
+    "depth": 0
+  },
+  {
+    "name": "110 | waist_pendant_and_tassel/snowflake_medallion",
+    "type": "paintlayer",
+    "uuid": "{198460c7-721d-46e7-9bcf-b917d4c47e05}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      449,
+      598,
+      44,
+      52
+    ],
+    "depth": 0
+  },
+  {
+    "name": "111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+    "type": "paintlayer",
+    "uuid": "{e03c594b-44fb-4b4f-8e44-0386680362bd}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      459,
+      764,
+      26,
+      51
+    ],
+    "depth": 0
+  },
+  {
+    "name": "112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+    "type": "paintlayer",
+    "uuid": "{c76f19bb-8a2c-49db-8e48-440281984bbc}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      450,
+      806,
+      44,
+      51
+    ],
+    "depth": 0
+  },
+  {
+    "name": "113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+    "type": "paintlayer",
+    "uuid": "{bb991b05-be97-4f43-a0e7-346a2dee2ed7}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      470,
+      889,
+      4,
+      3
+    ],
+    "depth": 0
+  },
+  {
+    "name": "114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+    "type": "paintlayer",
+    "uuid": "{6dc8cec9-3f4f-4f62-bc20-05d66a1a69de}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      452,
+      877,
+      39,
+      43
+    ],
+    "depth": 0
+  },
+  {
+    "name": "115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front",
+    "type": "paintlayer",
+    "uuid": "{44b87ac9-8c41-458d-892b-ffcb4bef2bca}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      463,
+      889,
+      16,
+      16
+    ],
+    "depth": 0
+  },
+  {
+    "name": "116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+    "type": "paintlayer",
+    "uuid": "{d24884f2-e02b-4c08-8d18-097a084644ee}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      463,
+      856,
+      16,
+      17
+    ],
+    "depth": 0
+  },
+  {
+    "name": "117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+    "type": "paintlayer",
+    "uuid": "{9f773cfa-ef82-4ef9-a0dc-11542d706268}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      452,
+      850,
+      39,
+      35
+    ],
+    "depth": 0
+  },
+  {
+    "name": "118 | waist_pendant_and_tassel/long_tassel",
+    "type": "paintlayer",
+    "uuid": "{48ad6dd8-4994-4b64-80b3-964ce235dfbd}",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      446,
+      915,
+      56,
+      441
+    ],
+    "depth": 0
+  }
+]

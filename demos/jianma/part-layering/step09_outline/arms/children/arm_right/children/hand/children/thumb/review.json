@@ -3,9 +3,51 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已读取当前 thumb 说明、参考图、候选 SVG 及父组 hand 完成 SVG；先查看候选整图 blend 定位，再以 8 倍放大对 [288,726,33,28]（指根与虎口）、[285,744,32,25]（指身两侧与狭长空隙）、[285,761,24,24]（远段与指尖）三个相互重叠选框逐块完成 blend、edge 和参考原图核对，并查看父组同部位叠加。三个选框覆盖全部候选及本组可见范围。\n指根至指尖为连续完整形体；近掌圆弧连接余量位于父范围内。虎口转折、朝食指一侧的内缘及外侧收窄走向与参考贴合，狭长指间负形保持开放；远段覆盖浅色指甲所属范围，圆钝指尖及其在食指屈曲段前方的接界吻合，无可确认的漏画、外溢或不当挖缝。未见孤点、碎片或来源不明的形体，指甲属于已覆盖实体内部，不要求另拆。父范围检查 pass：outsideSamples=0、outsidePixels=0。未发现需单列的上游父范围限制。",
-      "candidateHash": "6ec7c3936fe0ccf0ef6c7be165e13bca063270054a788b242024f06a6ec16c67",
-      "updatedAt": "2026-10-16T18:22:43.551Z"
+      "feedback": "已依据参考图独立确认：本组为画面左侧手部、掌部右缘向下伸出的拇指，未误包左侧四指或指间空隙。整图叠加定位后，以 [299,813,30,39] 与 [304,842,25,34] 两个重叠选框在 8 倍 blend、edge 下覆盖核对全部可见区域，并查看父组同区域叠加及候选独显。拇指根部连接、指缝侧弧线、右侧外缘及圆钝指端均连续且与参考吻合，指甲所在范围已被整体色块覆盖；根部上缘为掌部覆盖处的合理连接范围。不见可见组件遗漏、误认、碎片或无依据孔隙。候选完整容纳于父组轮廓内，父范围检查 outsidePixels=0。本轮无需修改。",
+      "candidateHash": "3201e72c4f61bd8b1762d402ce875a65d0a9ccadf085e378740b6efbaead908a",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/previews/2026-11-02T16-50-06-905Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/previews/2026-11-02T16-50-06-905Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/previews/2026-11-02T16-50-06-905Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/previews/2026-11-02T16-50-06-905Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/previews/2026-11-02T16-50-06-905Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/previews/2026-11-02T16-50-06-905Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/previews/2026-11-02T16-50-06-905Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/thumb/previews/2026-11-02T16-50-06-905Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:13:53.406Z"
     }
   ]
 }

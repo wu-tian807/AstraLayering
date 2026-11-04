@@ -1,7 +1,5 @@
 {
   "groupId": "body/breast",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "a5fe4364115731921989a3f1411067baf2d60d10105aa1ec555a21ffc74a795a",
-  "afterHash": "8ae004655615c9f647b1bf444d6fd50916bdb8d68915b8b55a871ccf1eca7216"
+  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/isolated/28-arms__arm_left__hand__thumb.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/2a6cdc50-3de3-418c-8baa-173c215b0eaa/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/2a6cdc50-3de3-418c-8baa-173c215b0eaa/regions.json",
+  "regions": [
+    {
+      "id": "R3c",
+      "bounds": [
+        611,
+        820,
+        22,
+        32
+      ],
+      "layers": [
+        "028.0 | arms/arm_left/hand/thumb | complete"
+      ],
+      "description": "左拇指完整独显根部为均一浅色色帽，约 y838–845 接到原有纵向明暗时突然切换，形成补画接缝。保留指甲与可见指体，在本指内延续材质。",
+      "crop": [
+        603,
+        812,
+        38,
+        48
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/2a6cdc50-3de3-418c-8baa-173c215b0eaa/R3c-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/2a6cdc50-3de3-418c-8baa-173c215b0eaa/R3c-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/2a6cdc50-3de3-418c-8baa-173c215b0eaa/R3c-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

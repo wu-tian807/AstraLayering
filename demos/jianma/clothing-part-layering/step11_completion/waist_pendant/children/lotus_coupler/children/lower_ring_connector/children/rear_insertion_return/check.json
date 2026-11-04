@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/lotus_coupler/lower_ring_connector/rear_insertion_return",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "1cef51db7def957e6f297c62111f2a984103288a20396717036b839ac655eeab",
-  "afterHash": "4e2d23865f174f94af731f71be49215729dfbd37019f00859060d214c68f7c02"
-}

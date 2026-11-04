@@ -1,7 +1,5 @@
 {
   "groupId": "arms/arm_right/upper_arm",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "1ba5a06ea3320aa060f3dc1bc1affd0a509978bcb25ed59c55079b69c211efc2",
-  "afterHash": "8dc88afcf495ba69602f0464a22ca4d5250ad09d40cf015a2cb5eb0b76ae3c93"
+  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

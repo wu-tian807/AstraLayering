@@ -1,7 +1,0 @@
-{
-  "groupId": "outer_robe/right_sleeve/outer_side_gauze",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "068deaac21e44a8d9c01ce3dcb8f316d02f3297dc05a4ebed6a70a0c711a7bda",
-  "afterHash": "244410616987fa2a9d55589237512a093d73fb0a49b1f89b144c6cb51a8d07f9"
-}

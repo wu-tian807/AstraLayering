@@ -2,18 +2,52 @@
   "groupId": "arms/arm_left/hand",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "已按本次 hand 组说明审查角色自身左手（画面右侧髋外），仅核对该组联合轮廓与可见覆盖。先检查整图 blend，再以 A=[695,688,60,65]（腕部/掌根）、B=[707,728,42,64]（拇指/负形）、C=[715,755,51,61]（屈指/全部下端）、D=[734,716,32,78]（右侧手缘）四个相互重叠选框逐块检查参考、blend、edge，均为 8 倍；另以 E=[728,696,28,48]、F=[724,762,21,25]、H=[716,783,20,24]、I=[728,790,22,22]复核接缝、负形下端和指尖，同框对照父组完成 SVG。全手 svg 预览也已检查。\n\n父范围检查：pass，固定 4 倍采样，outsideSamples=0、outsidePixels=0。但仍有以下父内可修问题，故本轮 revise。\n\n1. 画面右侧腕缘至掌背上段，约 x734–752、y701–737：候选上端接缝右侧往下的弧线明显缩入，尤其 y709–724 一带，blend 留出连续的原图肤色/轮廓窄带，edge 红线落在皮肤内。相同局部父 blend/edge 的右界比候选向右约 1–3 个原图像素，说明这部分尚有父内可覆盖区域，不能全部归因于父稿限制。请在父范围内补足右腕至掌背的这段外缘，恢复参考的宽度、弧度和接合后的连续走向；顶部用于交接的圆弧本身不要求贴到原图内部阴影上。证据：observations/review/arms/arm_left/hand/2026-10-15T00-25-39-443Z-5.png、-10.png、-11.png（子），-12.png、-15.png（父 edge），-16.png 与 -17.png（E 同框子/父 blend）；参考 E 为 7afd29ff-37a0-424d-81bd-b6e0a80e979a.png。\n\n2. 拇指与屈指之间真实负形的下端，约 x732–735、y773–777：候选负形在约 (733,773) 已收尖闭合；参考中的灰紫背景/后方发色窄楔仍沿拇指内缘向下延续，直到更靠近拇指末端与屈指交接的位置。F 的 blend 可见候选填色盖住这一小段真实负形，导致连接处偏厚。请按两侧肤色实体的可见边缘向下恢复窄楔，保留下方有依据的接触/重叠，不用阴影线另挖指缝。这是负形被填占，属于局部形体问题；删除这部分填色即可在父范围内修正，不是要求越父界补画。证据：子 F edge -18.png、blend -26.png；参考 F 为 58d1c88e-3e82-4dcd-8399-b5eb19bdb4ec.png；B 的参考、blend、edge 已交叉核对。\n\n3. 其余外缘仍需消除父内的细小缩边：左侧掌缘及左下屈指外缘（约 x707–722、y720–801），右侧掌缘至最下指尖（约 x736–757、y742–805）在同框父/子 edge 中仍有约数分之一至半个原图像素的内退；参考可见边缘在这些位置也未被候选充分覆盖。H 中左下屈指外缘、I 中最下指尖尤其清楚。请将这些当前允许覆盖的窄带补到父范围内可达到的边界，保留参考的真实转向，不增加独立碎片、不提前拆指。证据：A 子/父 -5.png/-12.png，C 子/父 -9.png/-14.png，H 子/父 -22.png/-23.png，I 子/父 -24.png/-25.png；参考 H 为 dd32fd05-8773-40e4-af12-055a6f71108e.png，参考 I 为 9db6c5c5-1361-4bc5-83d4-c7e5f5376494.png。\n\n已确认的上游父范围限制（单列，不要求当前子组越界）：右侧掌背外缘及向下的指侧斜边，约 x745–758、y738–794，以及最下指尖约 x736–739、y805–807，参考的连续肤色外沿还在父红边之外；D、C、I 同框父/子叠参考预览可见父稿本身已缩入这些可见边缘。当前子组补足第 3 项所述父内余量后，剩余约 1–2 像素左右的外侧肤色带/末端长度只能由上游扩大父范围恢复。本轮没有补齐这些父外部分，不能据此放宽父检查，也不要求 hand 越界。\n\n轮廓干净度与组件：未见来源不明的孤点、碎发丝或碎片堆砌；掌与五指已有联合实体覆盖，未因缺少内部 path/分指边线判组件缺失。不要求本轮完成指节、指甲、普通明暗或最终着色。返修原因是可见外缘缩入与真实负形局部填占，仍有父内可修问题。",
-      "candidateHash": "37b9c41c3faf44ab21dcf596e08d06109c8c514df056ab65cf73dcc43a073e9a",
-      "updatedAt": "2026-10-15T00:32:44.057Z",
-      "repairedCandidateHash": "bf4b55b1346f9f5c1c99defb5291971757701e03bb4d82eeef8db2674f50f7f8"
-    },
-    {
-      "verdict": "revise",
-      "feedback": "已按整图 blend 定位，再以 8 倍重叠选框 [699,688,53,61]、[707,730,58,58]、[711,768,54,45] 完整核对腕根接缝、掌缘、拇指、指间负形与全部屈指指尖；另以 [720,736,25,48]、[724,763,20,22] 对照参考、候选 blend/edge，并将父组与候选同局部边界叠加核对。父范围检查 pass，四倍采样 outsideSamples=0。\n返修：拇指与屈指之间的孔洞被扩大，侵蚀了连续手指实体，并非最终着色问题。① 孔洞画面右缘约 x735–739、y748–771，候选相对参考真实负形向屈指侧多切入约 1–2 原图像素；blend 中白洞吞掉右侧窄皮肤带，edge 红线偏入参考仍可见的暖肤色/轮廓边。应向孔洞内回填该侧实体，贴合真实负形边缘。② 孔洞下端：参考负形约在 (733,773) 附近收合，继续朝拇指尖延伸的是拇指与屈指的叠压分界，下面仍有连续暖肤色；候选却把孔洞拖到约 (732,777)，在 y774–776 额外挖出细长尖楔。应回填该尖楔，按真实孔洞收口，保留拇指尖的可靠可见边缘及其与后方屈指的叠压，不把内部深线当成孔洞边界。\n两处属于同一孔洞轮廓的局部形体问题，均可在当前父范围内回填修复；不是需扩大父范围的上游限制。其余可见腕缘、掌外缘、屈指外围与指尖已完成分块核对，未发现有明确依据的其他返修项；未见孤点、碎片噪音或整段独立组件缺失。",
-      "candidateHash": "bf4b55b1346f9f5c1c99defb5291971757701e03bb4d82eeef8db2674f50f7f8",
-      "updatedAt": "2026-10-15T00:46:17.177Z",
-      "repairedCandidateHash": "51aac5cfbd0c95225fe3abb697a9dd89bee1d3ce753dafc2ca5c9e7ea3f04e6c"
+      "verdict": "pass",
+      "feedback": "已按本组职责核对画面右侧左手：整图定位后，以 [607,772,55,88] 与 [608,838,55,73] 两个重叠选框逐块完成 blend、edge 检查，并查看参考原图、父完成 SVG 和候选独显。腕端接缝、手掌两侧、拇指及虎口开口、靠拢手指的外缘和全部可见指端均已覆盖；未发现误包长发、可见组件漏画、孤立碎片或形体归属混乱。腕端为合理的组间截面；无需重画当前组。父范围检查 outsidePixels=0。\n上游范围限制：掌部靠画面左侧的外缘约 x614–622、y797–826，以及最下方指端约 x616–625、y896–905，参考仍可见窄条轮廓边缘位于候选之外，指端下缘约有1–2像素差距。在同一局部查看父 SVG 的 edge（选框 [607,772,56,139]）并核对源码后，确认这些位置的候选外缘与父完成轮廓完全相同，缺少的参考范围处于父范围之外，恢复它们必须先扩大父稿；当前子组不能越界补齐。本轮未将这些上游限制视为已经补齐，也未放宽父约束。当前允许范围内未发现仍可修的缺漏。\n图像证据：![上段边缘](previews/2026-11-02T11-24-56-404Z-4.png)；![下段边缘](previews/2026-11-02T11-24-56-404Z-6.png)；![父稿同部位边缘](previews/2026-11-02T11-24-56-404Z-7.png)。",
+      "candidateHash": "9fee1c03996c6f2c68ab7ef336111330bef6624c63b2895abe71baa4d971013c",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/previews/2026-11-02T11-24-56-404Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/previews/2026-11-02T11-24-56-404Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/previews/2026-11-02T11-24-56-404Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/previews/2026-11-02T11-24-56-404Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/previews/2026-11-02T11-24-56-404Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/previews/2026-11-02T11-24-56-404Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/previews/2026-11-02T11-24-56-404Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/previews/2026-11-02T11-24-56-404Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:41:09.894Z"
     }
   ]
 }

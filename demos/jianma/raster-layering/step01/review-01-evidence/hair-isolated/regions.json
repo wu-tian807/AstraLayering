@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review-current/isolated/02-hair__back_hair__long_hair_left.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/380eca70-66cc-4e99-b2b8-8d021a9ceacc/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/380eca70-66cc-4e99-b2b8-8d021a9ceacc/regions.json",
+  "regions": [
+    {
+      "id": "R8",
+      "bounds": [
+        585,
+        149,
+        28,
+        49
+      ],
+      "layers": [
+        "002.0 | hair/back_hair/long_hair_left | complete"
+      ],
+      "description": "关闭上层后，左长发狭长上段内部仍有完整菱形宝石切面及上方细串残影；同坐标原宝石属于006冠吊饰。仅在002中清除该饰件残影，接成连续纵向发纹，保留完整补根、发束轮廓与006自身绘画。",
+      "crop": [
+        569,
+        133,
+        60,
+        81
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/380eca70-66cc-4e99-b2b8-8d021a9ceacc/R8-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/380eca70-66cc-4e99-b2b8-8d021a9ceacc/R8-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/380eca70-66cc-4e99-b2b8-8d021a9ceacc/R8-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

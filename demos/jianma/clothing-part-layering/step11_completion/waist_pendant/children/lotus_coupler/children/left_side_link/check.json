@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/lotus_coupler/left_side_link",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "45184c2c110a6f8336c53b67f0ae1ff911ee96ef102ac5fd39c926dc9c432851",
-  "afterHash": "ad12cdccc2278b460677a7b0010574f1a9440752cb387d89e70e7d902dd3dc1c"
-}

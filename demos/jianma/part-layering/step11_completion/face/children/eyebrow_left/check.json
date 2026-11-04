@@ -1,7 +1,0 @@
-{
-  "groupId": "face/eyebrow_left",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "3b88859ce4d13c2bec242ab2e5cdbfebc136534a1210b1452c8fa22e87058efd",
-  "afterHash": "a1e6d824e3dbb29b49e022fd7f74dfa006c3fc9cd9887c259c589b66bfcf5a95"
-}

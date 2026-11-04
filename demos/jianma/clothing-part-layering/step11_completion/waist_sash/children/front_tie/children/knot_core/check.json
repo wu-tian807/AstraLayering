@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_sash/front_tie/knot_core",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "7b81c49900eaafe8272260b10f1e07906b2c7cff0481b21b1e0ffa9effc345f3",
-  "afterHash": "85fa07e175a98896d7e800bbdfac19eb6c80727e8a66878a2c2156496c2118c8"
-}

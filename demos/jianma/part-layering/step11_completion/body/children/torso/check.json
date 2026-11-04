@@ -1,7 +1,5 @@
 {
   "groupId": "body/torso",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "d80fa047ab7b000443d619eed33895601a87be3b7cd6943e09ba63b382ce3346",
-  "afterHash": "0aa6897746f3548d9ab421329fa82a4b8910b88c1f63537f6e19bbccaf824bda"
+  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

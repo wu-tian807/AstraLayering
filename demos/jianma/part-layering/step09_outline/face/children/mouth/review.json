@@ -3,17 +3,100 @@
   "reviews": [
     {
       "verdict": "revise",
-      "feedback": "已读取 face/mouth 组说明、参考图、候选及父组 face.svg；先检查整图 blend，再以四个相互重叠的选框 [499,227,15,13]、[509,227,16,13]、[499,236,15,13]、[509,236,16,13]，全部按 8 倍 blend、edge 与原图核对，覆盖完整上唇、左右口角、下唇及与脸底的全周接边。父范围检查 pass，outsideSamples=0。需要返修的外缘问题如下：\n1. 上唇外缘（约 x505–519、y230–234，尤其 x509–515 的中央上缘）：edge 红线高于参考浅色唇缘，落在唇上方肤色中；blend 显示多出一圈粉色上拱。候选中央最高处约 y230.4，且把参考较平的中央唇缘及两侧肩部转向统一磨成高圆弧。请向下收回多出的上缘，按浅色唇缘与脸部肤色的真实外边界恢复中央平缓段和两侧转向，不沿口内深浅分界描形。\n2. 左侧口角及左下转弯（约 x502–507、y234–242）：放大 edge 可见候选轮廓在浅色唇缘外侧，blend 在左缘和下左缘额外染入肤色，左口角显得偏宽、转弯偏圆。请逐段内收至可见浅色唇缘的外边界，并保留口角向下唇收拢的实际走向；保持整嘴连续，不切成小块。\n3. 下唇中央及两侧收束（约 x507–518、y243–245）：完整 edge 和两个下半选框显示红线低于可见下唇亮色的外缘，候选底部形成比参考更深的圆弧；blend 将唇下肤色并入粉色色块。请上收多出的下缘，沿可靠的浅色下唇外缘连续闭合，不把下方弥散唇下阴影或周围肤色当作嘴部实体。\n轮廓本身连续、干净，未发现孤点、碎片堆砌或无依据挖缝；本次返修涉及可见外缘外扩与唇形转向失准，不涉及噪音或组件归属混乱。未发现本组独立组件整段缺失；口内明暗、唇色和高光的最终着色未绘不作为返修理由。",
-      "candidateHash": "b3009b1f7715e5480ce406285ba526df2237c616746fedfd56ba176f01ad100e",
-      "updatedAt": "2026-10-14T19:29:11.376Z",
-      "repairedCandidateHash": "9ba2aa1567b86de222de534518919684f964d3e1e8cf55f63685ab0896df83c4"
+      "feedback": "已检查整图叠加、父组完成稿，并以全嘴选框 [445,250,50,48] 及相互重叠的上半部 [451,258,37,20]、下半部 [451,273,37,22] 放大核对参考、blend 与 edge。嘴部归属正确，口腔与舌面已在联合色块内覆盖，无需提前拆分；候选完全位于父范围内，无越界或上游范围限制，未见孤点、碎片或形体混乱。不需整体重画，但有一处可见唇缘漏画须局部返修：下唇中央及两侧短弧（约 x462–477、y287–291），参考在中央白色唇部高光下方仍有连续的玫瑰粉色下唇弧面，候选却在 y289.2 收口，切掉高光下方的可见下唇，底缘也收成较窄的圆尖。请依据参考补足这段连续下唇，使底部宽度、弧度和最低点贴合实际唇缘；不要只覆盖白色高光，也不要把更外围弥散的皮肤阴影并入口部。证据：参考下半部放大图 bitmaps/32400684-081b-4f8f-8989-304a613b172f.png；对应 edge 图 previews/2026-11-02T10-06-00-949Z-8.png、blend 图 previews/2026-11-02T10-06-00-949Z-7.png。其余上唇与左右外缘已完成核对，未发现另需提交的确定缺陷。",
+      "candidateHash": "9e7763d51a53cb071d52e0a81b032a0d5195ce5fdf444afc8ac658555170712e",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-06-00-949Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-06-00-949Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-06-00-949Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-06-00-949Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-06-00-949Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-06-00-949Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-06-00-949Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-06-00-949Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:17:29.443Z",
+      "repairedCandidateHash": "d3e1b11829beb4dbaff2508360d220706e2d21f437f5a6e64e00c8a4cc2adce6"
     },
     {
-      "verdict": "revise",
-      "feedback": "已按整图 blend 定位，并以 [500,228,25,12]、[500,237,25,13]、[500,230,15,18]、[510,230,15,18] 四个重叠选框逐块查看参考、blend 和 edge，覆盖上缘、两侧嘴角、下缘及与脸底的接续；同时查看了父组完成 SVG。父范围检查 pass，outsideSamples=0。发现以下有图像依据的覆盖问题：\n1. 左右外唇缘覆盖不足，尤其画面左侧约 x502–505、y234–241，右侧约 x520–523、y234–241。参考中张口暗色区外侧还有连续的浅色唇缘；edge 图中红线落在该浅色带内侧，blend 图仍能看到一圈浅色唇缘露在候选外。请将嘴部外轮廓沿参考的浅色唇缘外边界补足，保留两侧嘴角的收转，不只围住张口色区，也不要扩到周围普通肤色。\n2. 下唇可见形体漏纳入，约 x507–517、y243–246。候选下缘在 y244 附近已收口，而参考下方仍有与唇缘相接的浅亮下唇区域，放大下缘 edge/blend 可见它位于轮廓之外。请连续补入可辨认的下唇亮色唇体及外缘，不将它拆成孤点，也不要把更下方弥散的肤色阴影并入嘴部。此项是嘴部范围/唇体覆盖缺失，不是要求本轮完成口内渐变或最终着色。\n候选现有主体连续，未发现孤立像素、碎片或来源不明的小块；返修原因是唇缘与下唇形体覆盖不足，不涉及噪音堆砌。",
-      "candidateHash": "9ba2aa1567b86de222de534518919684f964d3e1e8cf55f63685ab0896df83c4",
-      "updatedAt": "2026-10-14T19:39:58.583Z",
-      "repairedCandidateHash": "2fbec48dbf72eca9d2d5536924bc55ae153ec11f333617712076d839bee1442a"
+      "verdict": "pass",
+      "feedback": "第2轮已核对 face/mouth 组说明、素体参考、候选及父组完成稿。先查看全图 blend 定位，再以 [443,251,53,48] 整体放大及相互重叠的上半区 [449,257,40,21]、下半区 [449,271,40,24] 逐段检查原图、blend 与 edge，并查看 SVG 独显。候选覆盖上唇、两侧唇缘、口腔及舌面和下唇的联合范围，未发现组件遗漏、误包相邻结构、需修正的可见外缘或孤立碎片。内部口腔、舌面及唇部明暗已包含于联合色块，属于后续拆分与着色内容。候选完全容纳于父组 face 完成轮廓，4倍采样越界为0；无上游范围冲突。本轮通过。",
+      "candidateHash": "d3e1b11829beb4dbaff2508360d220706e2d21f437f5a6e64e00c8a4cc2adce6",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-25-00-610Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-25-00-610Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-25-00-610Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-25-00-610Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-25-00-610Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-25-00-610Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-25-00-610Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-02T10-25-00-610Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:30:45.947Z"
     }
   ]
 }

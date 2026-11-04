@@ -3,17 +3,155 @@
   "reviews": [
     {
       "verdict": "revise",
-      "feedback": "已完成 arms 全组核对：先查看整图 blend，再以左右各四个重叠选框覆盖上臂/腋侧、肘部、前臂至腕部、双手及全部指尖和指间开口，逐框检查 blend 与 edge；另以 8 倍放大复核腋侧、腕部和手指开口。覆盖选框为左 [360,330,100,190]、[330,470,105,150]、[280,575,110,155]、[255,690,80,125]，右 [564,330,105,190]、[585,470,110,150]、[634,575,110,155]、[695,690,80,125]。本组无父组，范围检查不适用。需一次修复以下全部确认问题（左右均指画面方向，坐标为原图像素）：\n1. 左腋下接缝约 x421–426、y419–438：参考中衣身向外转出的下缘旁有连续可见的肤色窄条/小楔形，之后才接入手臂与头发边界。候选从 (421.4,420.7) 到 (423.2,435.3) 提前截入这段肤色，blend 中留下未覆盖的肤色条，edge 红线明显在皮肤内部，局部缩入约 2–3 像素。须补足这段连续手臂形体，沿参考的衣缘及其下方真实皮肤/头发接缝重描转向，不能把可见小楔形漏掉或用平滑斜边替代。证据：8 倍选框 [414,386,22,66]，observations/review/arms/2026-10-14T12-05-18-460Z-20.png（blend）、-22.png（edge）。\n2. 右腋下接缝约 x598–603、y419–438：同样存在明确可见、与上臂连续的肤色小楔形；候选在 (602.6,420.7) 至 (600.8,435.3) 一段过早向腕侧收窄，留下未覆盖的肤色条，红线位于皮肤内。须按右侧参考独立补足局部宽度及衣身下缘处的转折，使衣缘下方与头发相接的手臂外缘连续贴合。证据：8 倍选框 [588,386,22,66]，同目录 -21.png（blend）、-23.png（edge）。\n3. 右腕靠身体一侧约 x705–714、y701–738：参考皮肤/头发接缝位于候选轮廓右侧；候选红线落在发色区域，blend 可见一条头发被包进绿色色块，而原接缝仍在色块内部，局部越出约 1–2 像素。须将此段向右收回并按右腕真实弯度重描，连续衔接前臂和拇指根部，不能直接沿用左腕镜像。证据：8 倍选框 [697,672,45,74]，同目录 -29.png（blend）、-31.png（edge）。\n以上属于局部轮廓缩入、接缝漏覆和越界，未发现来源不明的孤点、碎发丝或碎片堆砌，也未发现需要拆分的形体归属混乱。其余已覆盖区域未确认额外问题；不要求修改手内明暗线、指甲细节或大片遮挡补形。",
-      "candidateHash": "bc3fc118b94d953c254f82c509b5fc4a627c9f82fd1fe15a3d24c1bd4e48e1bf",
-      "updatedAt": "2026-10-14T12:18:39.499Z",
-      "repairedCandidateHash": "a48c4b35372c8296bf9bf6fc0601b5940888a1e736bf20679ce9ad54e55cbaa5"
+      "feedback": "已核对 arms 的组说明、参考原图、候选源码及整图 blend；无父组。放大覆盖双侧肩端与上臂（320,340,295,240）、肘至前臂（280,540,382,255）、左手（270,755,70,160）、右手（600,755,70,160），均对照 blend 与 edge，另以 8 倍核对两手指尖并检查 SVG 独显。双臂实体归属和主要形体正确，无明确组件整段遗漏、孤点或碎片噪音；不需要重画全组。须修正以下局部真实外缘：\n1. 画面右手朝躯干一侧的并拢手指外缘，约 x615–623、y877–901：原图后排指尖呈分段凸起，约 y883 处有清楚的收口转折，随后另一指尖向下延伸。当前镜像曲线把上段指尖及其下方收口连成偏外的连续弧面，覆盖了参考中的头发区域；下段后排指尖又提前收回，未覆盖其下端可见轮廓。请按右手原图分别校正凸起、收口和末端长度，保持联合手形连续，不要求描内部指纹或分指线。证据：[右手指尖 edge，8 倍](review-evidence/right-fingers-edge.png)。\n2. 画面左手并拢手指末端，约 x317–323、y889–902：原图靠右侧的后排指尖在主指尖旁向下延伸，并有明确的小圆端；候选该小圆端收得过早、偏内，原图下方仍留有未覆盖的指尖边缘。请沿参考恢复这段可见小指尖的长度与圆端，并贴合它与最长指尖之间的短凹口；保留本体连续，不把它另拆为碎块。证据：[左手指尖 edge，8 倍](review-evidence/left-fingers-edge.png)。\n以上为局部边缘及指尖转折修正，不涉及大片遮挡补全或最终着色。其余已检查区域未发现需要返修的确定问题。",
+      "candidateHash": "d4b0223abd48dc7bb3a9fc80963998a408789d87a8a3eb9f5ffcb7489dfb9a80",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-08-10-112Z-12.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:15:13.645Z",
+      "repairedCandidateHash": "4019bb6a97965ff7f02e9945de3ecc53b8cbe20915103eddb23ac015d6c5a826"
     },
     {
-      "verdict": "revise",
-      "feedback": "已完成本组全部可见区域的分块放大核对：先查看整图 blend，再以左右各四个重叠选框覆盖肩臂衔接（y300–455）、上臂至肘部（y425–585）、前臂至手腕（y550–710）、完整双手（y680–820），每框均检查 blend 和 edge；另以 8 倍复核双手指间孔洞、指尖及右侧前臂外缘。本组无父组，无父范围检查项。\n\n返修项：\n1. 画面右侧前臂外缘（arms-right），肘部下方约 x676–691、y545–585 的皮肤与身后头发交界处，候选边缘局部向臂内缩入。8 倍 blend 图可见色块外仍留有连续的肤色窄带，edge 红线在该段位于原图可见外缘的内侧，约有半像素至一像素的偏移，并非臂内明暗分界。请按原图这一段真实的皮肤外缘向外修正，消除漏覆窄带，保持与上方肘部转向及下方前臂轮廓的连续衔接。\n图像依据：crop=[660,515,45,90]、scale=8 的 blend 和 edge：\n./observations/review/arms/2026-10-14T12-33-47-089Z-23.png\n./observations/review/arms/2026-10-14T12-33-47-089Z-22.png\n该偏移亦在右侧上臂—肘部及前臂—腕部的重叠选框中可见。\n\n本项为可见外缘位置偏差，不涉及噪音、孤点、碎片堆砌或形体归属混乱。双手孔洞、开口和尖端及其余已覆盖区域未发现另有明确图像依据的返修问题。",
-      "candidateHash": "a48c4b35372c8296bf9bf6fc0601b5940888a1e736bf20679ce9ad54e55cbaa5",
-      "updatedAt": "2026-10-14T12:49:25.372Z",
-      "repairedCandidateHash": "563d9961ca5954ecdd32b3c0c33caa306a394e447c9653a63f38ad9057777d01"
+      "verdict": "pass",
+      "feedback": "本轮已独立核对 arms 说明、原图及候选源码；arms 为顶层组，无父范围约束。先看全图 blend，再以相互重叠的区域逐块检查：左/右上臂（320,340,80,245；540,340,80,245）、左/右肘及前臂（280,560,95,245；563,560,100,245）、左/右腕掌及全部可见指尖（274,775,58,138；607,775,58,138），各区均查看 blend 与 edge，双手另对照放大原图，左虎口追加 8 倍细看。双侧肩端、臂外缘、与连体服及头发相邻的内缘、腕部转向、虎口开口及指尖均已覆盖；未发现误包头发或躯干、可见组件遗漏、真实开口填平、孤立碎片或确定需要修改的轮廓问题。右臂虽采用镜像变换，已单独对照原图核验。无需重画当前组。\n图像证据：[整图叠加](review-evidence-round2/full-blend.png)；[左上臂](review-evidence-round2/left-upper-edge.png)、[右上臂](review-evidence-round2/right-upper-edge.png)；[左前臂](review-evidence-round2/left-forearm-edge.png)、[右前臂](review-evidence-round2/right-forearm-edge.png)；[左手](review-evidence-round2/left-hand-edge.png)、[右手](review-evidence-round2/right-hand-edge.png)；[色块独显](review-evidence-round2/outline.png)。",
+      "candidateHash": "4019bb6a97965ff7f02e9945de3ecc53b8cbe20915103eddb23ac015d6c5a826",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-14.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-02T09-21-23-798Z-15.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:27:21.347Z"
     }
   ]
 }

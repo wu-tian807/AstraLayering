@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/isolated/17-arms__arm_right__hand__index_finger.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/ed4f33c4-9bbd-4d50-bd2c-e268b4cc0917/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/ed4f33c4-9bbd-4d50-bd2c-e268b4cc0917/regions.json",
+  "regions": [
+    {
+      "id": "R3a",
+      "bounds": [
+        286,
+        831,
+        29,
+        33
+      ],
+      "layers": [
+        "017.0 | arms/arm_right/hand/index_finger | complete"
+      ],
+      "description": "完整独显中的隐藏指根为均一浅肤色色块，至约 y849 出现横向硬分界，原有侧缘暗线在该处骤停；需在本指内接顺根部材质与侧缘笔触。参考该坐标的根部被掌遮挡，不能照抄掌片。",
+      "crop": [
+        278,
+        823,
+        45,
+        49
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/ed4f33c4-9bbd-4d50-bd2c-e268b4cc0917/R3a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/ed4f33c4-9bbd-4d50-bd2c-e268b4cc0917/R3a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/ed4f33c4-9bbd-4d50-bd2c-e268b4cc0917/R3a-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

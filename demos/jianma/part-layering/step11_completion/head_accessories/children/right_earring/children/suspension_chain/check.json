@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/right_earring/suspension_chain",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "3d71143f98615dbce67dbfdd69e2eb5da1e2389d7d20b8e072ba0148e9630121",
-  "afterHash": "926152120c7f313be668f5097184d7836091b2b41933a2764127546a64e66a49"
-}

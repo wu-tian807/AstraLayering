@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/right_crown_ribbon/gem_suspension/upper_diamond_gem",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "20b96b3b2999b86861ae92d261da13bc7930d5f1d439714f343fa23d9477ec2b",
-  "afterHash": "40d01d84b24a9d198aed8d5261c48a7d013f6883f01e3eb805065b8027d0af72"
-}

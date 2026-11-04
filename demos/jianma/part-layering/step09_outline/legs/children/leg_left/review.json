@@ -3,16 +3,140 @@
   "reviews": [
     {
       "verdict": "revise",
-      "feedback": "已完成本组全范围核对：先看候选整图 blend 和父组完成 SVG，再对髋与大腿 [490,535,170,260]、下大腿与膝 [490,770,150,260]、小腿 [495,1000,115,255]、下小腿与踝 [500,1225,90,200]、脚背及全部脚趾 [500,1385,90,140] 分别以 blend、edge 放大检查，相邻选框重叠；另以踝饰 7 倍、脚趾 8 倍局部核对父稿。父范围检查 pass：outsideSamples=0，outsidePixels=0。\n\n返修项（均为组件缺失，不是最终着色未画）：\n1. 踝前蓝色菱形宝石及上方小连接珠缺失，约 x535–546、y1358–1384。参考可清楚辨认珠体、短连接和下方完整菱形外缘；候选此处仅有腿的底色块，edge 无这些组件边缘。请在本组建立有明确外轮廓的珠体、连接和完整菱形宝石，切面与高光可留后续。\n2. 踝部至脚背的整条 V 形链饰及中央连接件缺失，约 x515–564、y1380–1425。参考两侧链条从踝侧连续斜向脚背中央，汇入中央连接件；候选只沿腿脚联合外缘描形，链条内侧边缘与中央连接件均未建立。请补齐两支连续链饰及中央连接件的组件轮廓，保留链条与肤色的清晰归属，不用零散像素点或碎片代替链饰；皮肤本体保持连续，不为避让链饰挖缝。\n3. 中央连接件下方的蓝色垂坠缺失，约 x537–550、y1424–1447。参考有明确的上端收束、两侧外扩及下端尖部；候选无对应独立形体。请补上完整垂坠及有依据的短连接，按参考保持轮廓和连接关系。\n\n图像证据：observations/review/legs/leg_left/2026-10-14T21-15-35-657Z-14.png 为候选踝脚独显，只有一整块腿脚形体；-15.png 为同区 edge，未见上述饰件的组件轮廓；-16.png 为同区父稿 edge，用于确认容纳范围。参考放大见 observations/review/legs/leg_left/6906a843-e8f5-464f-8c65-b8210a47a812.png。同时读取候选 SVG 确认其仅有一个 path、一个闭合子路径，无其他形状，故 blend 中可见的饰件来自参考底图，不能视作候选已画出。\n\n这些饰件的主体均可在现有父范围内建立，不能归为只能扩大父范围才能修复的上游限制。腿脚主体其余可见外缘、内侧邻腿接缝、膝踝连续性及五趾已完成覆盖核对，未发现需另列的明确父内偏差；未见孤立噪点、来源不明碎片或碎片堆砌。本次返修重点是补齐独立饰件形体及清晰归属，候选和父稿均未修改。",
-      "candidateHash": "c48040bf80595076e8fdea13c04869274b91d2e51c73014809b391a74aa9db98",
-      "updatedAt": "2026-10-14T21:17:55.127Z",
-      "repairedCandidateHash": "425f1bfa9ddd542b5479ea78abe8b866dc536d40e089b35b25fba4f0bf272a83"
+      "feedback": "已按整图定位，并以重叠选框 [450,675,180,320]、[450,965,145,310]、[455,1240,125,285]、[460,1485,95,172] 完成原图 blend 与 edge 对照，覆盖髋腿口、大腿、膝、小腿、踝链、足背与全部趾端；另核对父完成 SVG 和独显。实体归属、主要形体与连续性正确，无整段组件遗漏或碎片噪音，不需整体重画，需修正以下局部轮廓。近端已有父稿补形可保留；足背内部链饰已被联合色块覆盖，不要求本轮拆分。\n\n1. 当前可修：画面右腿的内侧膝下至小腿边缘，约 x471–483、y1120–1445。参考在膝下向画面右侧收进、形成双腿之间的白色间隙；候选红线在 y1140–1210 最明显地落入白背景，较真实皮肤外缘向左多出约2–4像素，随后小腿内缘仍有连续偏宽。应沿参考皮肤与白背景的实际交界收回并平顺衔接上下段，不能沿内部阴影描边。此处收回仍在父范围内，属于当前组可修，不是上游限制。证据：[膝与上小腿](review-evidence/knee-edge.png)、[下小腿](review-evidence/shin-edge.png)。\n\n2. 当前可修：踝链两端约 x474–479 与 x520–526、y1498–1517，以及内侧足踝约 x474–479、y1524–1548。参考珠链两端为较紧凑的实际外缘，候选向白背景鼓出较宽的圆包；内侧足踝下方也有向左凸出的无依据余量。请收回到珠链及腿脚联合实体的真实外边缘，保留明确的珠链凸出与其下方收颈转折，不能用一段宽圆包概括。修改在父范围内可完成。证据：[踝与足部六倍 edge](review-evidence/foot-edge.png)。\n\n单列上游范围限制（不要求当前子组越界）：父稿与候选在本侧使用同一可见主轮廓。外侧小腿约 x555–558、y1205–1270，及外侧足踝约 x522–525、y1528–1542，参考真实外缘局部位于当前红线右侧；父 edge 与候选 edge 对照确认父范围也止于同一条偏内边界，恢复这部分须扩大父范围。该部分尚未补齐，应记录为父稿限制；不得据此放宽当前父范围检查。证据：[父小腿 edge](review-evidence/parent-calf-edge.png)、[候选踝足 edge](review-evidence/foot-edge.png)、[父踝足 edge](review-evidence/parent-foot-edge.png)。候选四倍采样父范围检查为 outsidePixels=0。上述第1、2项仍是父内可修问题，故本轮 revise。",
+      "candidateHash": "3337e2d658d7cf9f3da818451071f760d1298e17d764887472a50f3c3fe90dd9",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-10.png"
+        },
+        {
+          "source": "part-layering/parts/legs.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-11.png"
+        },
+        {
+          "source": "part-layering/parts/legs.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-03-54-512Z-13.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:15:54.247Z",
+      "repairedCandidateHash": "ff03d8035c357096bb97cbf89883909281003682ca81b0276766d7a4fabda8dd"
     },
     {
       "verdict": "pass",
-      "feedback": "已先查看候选整图 blend 定位，并读取 legs/leg_left 组说明、候选 SVG 与父组 ../../../../../parts/legs.svg。以相互重叠的六个选框完成全组核对：髋部及上大腿 [495,535,165,235]、大腿中下段 [495,715,160,240]、膝部至小腿上端 [495,900,115,205]、小腿中段 [495,1060,115,220]、小腿下段至踝部 [500,1230,90,200]、踝链至全脚 [500,1360,90,165]；各段均对照了放大的 blend、edge 与 view_bitmap 参考。另对踝部 [510,1330,65,100] 和全脚/趾端 [505,1430,80,90] 作 8 倍近查，并以同坐标父稿叠加预览核对范围与接缝。\n髋部可见边缘与衣口交接、大腿内外缘、膝部连续转向、小腿两侧收束、踝部及脚背外缘、五趾外缘与趾端凹口均有覆盖，未发现有明确图像依据的父内可修缺漏或轮廓偏移。隐藏髋端保持现有连续补形，不将衣装边界当成人体外缘。双腿贴近处和双脚相邻处归属清楚，无人为挖缝；趾间内部线条不作为本轮孔洞。踝前连接珠、菱形宝石、V 形链饰、中央连接件及下垂蓝宝石均被本组联合色块覆盖，链饰伸出腿脚本体的两侧也已纳入；其内部拆分和最终着色不作为缺失。未见来源不明的孤点、碎片堆砌或形体混乱。\n父范围检查通过：4 倍采样，outsideSamples=0，outsidePixels=0。未确认需要扩大父范围才能恢复的独立缺失段。当前组通过。",
-      "candidateHash": "425f1bfa9ddd542b5479ea78abe8b866dc536d40e089b35b25fba4f0bf272a83",
-      "updatedAt": "2026-10-14T21:36:33.286Z"
+      "feedback": "第 2 轮独立审查通过。已读取 legs/leg_left 职责、参考图、候选及父完成稿 legs.svg；先整图 blend 定位，再以相互重叠的选框 [455,690,170,430]、[455,1060,130,360]、[460,1370,95,290] 完成全部可见区域的 blend 与 edge 放大核对，并以 [466,1488,74,165]、8 倍放大复核踝链两端、足侧与全部趾尖；同时查看父稿同一足部局部和候选独显。画面右侧左腿的归属正确，未误包后发、手部或另一腿；衣物遮挡下已有近端补形保持连续。大腿内外缘、膝两侧转向、小腿收束、踝部、足侧及趾尖与参考可见边缘对齐。踝链及足背链饰所属范围已被联合色块覆盖，无需本层添加内部拆分或链饰内边。未发现实际可见组件遗漏、无依据孔洞、孤立碎片或噪点；无需重画当前组。候选父范围检查 outsidePixels=0，满足未设置 allowOutsideParent 时的父范围约束。本轮未发现需返修的明确问题。",
+      "candidateHash": "ff03d8035c357096bb97cbf89883909281003682ca81b0276766d7a4fabda8dd",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/legs.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/previews/2026-11-02T10-25-31-398Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:32:12.750Z"
     }
   ]
 }

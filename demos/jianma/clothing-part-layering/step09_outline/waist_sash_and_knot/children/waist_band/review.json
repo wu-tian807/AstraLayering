@@ -1,0 +1,38 @@
+{
+  "groupId": "waist_sash_and_knot/waist_band",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第1轮，waist_sash_and_knot/waist_band：通过。已先从纯衣服原图确认本片归属，再查看节点及父组 note、候选和父完成 SVG，完成整图 blend、腰带全域 8 倍 blend/edge 及 SVG 独显。参考可见横带在约 x412–532、y448–461；左右段的上、下边界与候选一致，中央 x456–484 的横带连续区域位于独立中央结之后，属于合理隐藏搭接。两端约 x388–416 与 x527–556 为 note 明确登记、父完成稿已有的前襟下隐藏延续，不属于误包白色前襟。候选整体连续，无意外孔隙；未收录短环、自由短端、宽长垂布、珠链或人体，没有本片实际可见组件遗漏。note 已说明腰带前面、侧后区域、遮挡分界和共同随腰关系。父范围检查 outsidePixels=0，无上游范围限制。无需重画或局部修改。\n\n图像证据（覆盖全部横带及两侧隐藏延续，裁剪原图坐标 [380,438,183,32]，8倍）：\n![原图叠加](review_evidence/round1_blend.png)\n![轮廓边缘覆盖](review_evidence/round1_edge.png)\n![候选独显](review_evidence/round1_svg.png)",
+      "candidateHash": "2679a348f743e976effdf33ef196c1d18ac70cdb06a5289f9f48f38a2944b18b",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/waist_band/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/waist_band/previews/2026-11-02T16-33-48-805Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/waist_band/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/waist_band/previews/2026-11-02T16-33-48-805Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/waist_band/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/waist_band/previews/2026-11-02T16-33-48-805Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_sash_and_knot.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/waist_band/previews/2026-11-02T16-33-48-805Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/waist_band/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/waist_band/previews/2026-11-02T16-33-48-805Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:03:06.853Z"
+    }
+  ]
+}

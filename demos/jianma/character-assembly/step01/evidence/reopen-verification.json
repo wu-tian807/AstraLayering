@@ -1,0 +1,6312 @@
+{
+  "saved": true,
+  "png_exported": true,
+  "ora_exported": true,
+  "canvas": [
+    941,
+    1672
+  ],
+  "profile": "sRGB-elle-V2-srgbtrc.icc",
+  "resolution": 300,
+  "node_count": 143,
+  "paint_layers": 117,
+  "groups": 5,
+  "transparency_masks": 21,
+  "node_properties_and_raw_pixels_identical": true,
+  "before": [
+    {
+      "name": "人物 | 001 | hair/back_hair/long_hair_right | complete",
+      "type": "paintlayer",
+      "uuid": "{78bdd5cb-6eb4-4702-9114-9fc564ccc057}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        223,
+        169,
+        247,
+        1261
+      ],
+      "raw_sha256": "a9fd9621aa816bd98bff6b00973486ec583de2c7474f60afeb9a04136145c614"
+    },
+    {
+      "name": "人物 | 002 | hair/back_hair/long_hair_left | complete",
+      "type": "paintlayer",
+      "uuid": "{c3468f00-ed70-451f-a645-8ede54c178db}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        468,
+        105,
+        246,
+        1324
+      ],
+      "raw_sha256": "cc03d139ad6372d9e09c8e4ff8defb8efeb63b04497000d456e85b811a539098"
+    },
+    {
+      "name": "人物 | 003 | hair/back_hair/cap | complete",
+      "type": "paintlayer",
+      "uuid": "{8fb0171e-1b1b-4b23-b8c4-776c50428166}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        372,
+        110,
+        194,
+        262
+      ],
+      "raw_sha256": "a952e5277d776016901a0193e091c58bdf44de3698ad1757985340c873429580"
+    },
+    {
+      "name": "人物 | 004 | hair/bun | complete",
+      "type": "paintlayer",
+      "uuid": "{78f18acd-6ca1-41e9-9fdf-5ca0396e89e6}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        420,
+        35,
+        97,
+        87
+      ],
+      "raw_sha256": "695615f8fa6e54757a36dd708bf85fc7b9fc83394363ef1c21cea2254fd4c8b5"
+    },
+    {
+      "name": "人物 | 005 | head_accessories/crown_pendants/crown_pendant_right | complete",
+      "type": "paintlayer",
+      "uuid": "{1ea39c60-9bc6-4eaa-9d3e-75f9dddc4c84}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        327,
+        111,
+        26,
+        79
+      ],
+      "raw_sha256": "656aeb760a7c6026eb675c52588f9ad66a2ca5cb43736bfb1b0914fc4be01385"
+    },
+    {
+      "name": "人物 | 006 | head_accessories/crown_pendants/crown_pendant_left | complete",
+      "type": "paintlayer",
+      "uuid": "{fab3a085-522d-45c4-bc93-732eb87bddd2}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        585,
+        111,
+        25,
+        79
+      ],
+      "raw_sha256": "8deb3e4234c95637ac88b0549748ed2a898aaed77440af4a832bf6bcf328291e"
+    },
+    {
+      "name": "人物 | 007 | legs/leg_right/anklet_back | complete",
+      "type": "paintlayer",
+      "uuid": "{a69151f3-3451-4a3d-9d3b-d040edd5142a}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        417,
+        1495,
+        44,
+        12
+      ],
+      "raw_sha256": "39887007ce966e71870ca070471bbaadb2e3145172d666441d9466496a0985bf"
+    },
+    {
+      "name": "default_closed_or_back_occlusion",
+      "type": "transparencymask",
+      "uuid": "{940fb78a-784a-449e-8b43-157516d1ee74}",
+      "parent": "{a69151f3-3451-4a3d-9d3b-d040edd5142a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        417,
+        1495,
+        44,
+        12
+      ],
+      "raw_sha256": "8889eb3cdd3d0ac94711b47ce78b430d8e23a7b31ecc994c56d0c3310c87674a"
+    },
+    {
+      "name": "人物 | 008 | legs/leg_left/anklet_back | complete",
+      "type": "paintlayer",
+      "uuid": "{6bd3b73d-a184-4745-9482-e60925a5b2a5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        477,
+        1496,
+        45,
+        11
+      ],
+      "raw_sha256": "689885c8200a06f48efcb860956745000dabf68f35643c68fec90bb508180dd3"
+    },
+    {
+      "name": "default_closed_or_back_occlusion",
+      "type": "transparencymask",
+      "uuid": "{f3172c38-01e8-47ff-b748-5225213e78c7}",
+      "parent": "{6bd3b73d-a184-4745-9482-e60925a5b2a5}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        477,
+        1496,
+        45,
+        11
+      ],
+      "raw_sha256": "92239e028c6a89c493c27a46dab9b9198bab95a6af15ce6f95aeadce38a66313"
+    },
+    {
+      "name": "衣服 | 002 | inner_long_dress/long_skirt | back",
+      "type": "paintlayer",
+      "uuid": "{e5a3c677-ecad-42ef-b01a-d33f89032383}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        292,
+        583,
+        355,
+        945
+      ],
+      "raw_sha256": "3dc474c8f317869a518d3e0124a461eafd054bc8c3df71cf783ecb0ae57d5d18"
+    },
+    {
+      "name": "人物 | 009 | legs/leg_right/leg | complete",
+      "type": "paintlayer",
+      "uuid": "{9c64defe-cd1d-47cc-a124-83149984fed6}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        332,
+        678,
+        137,
+        964
+      ],
+      "raw_sha256": "674f75b4bdc95195cf6d96e3e599383ec7f515a9b6e6c04e367c69b13b2a013c"
+    },
+    {
+      "name": "assembly | thigh edge behind opaque sleeve cuff",
+      "type": "transparencymask",
+      "uuid": "{7c29ac59-8d84-48f3-a868-5605c71503f9}",
+      "parent": "{9c64defe-cd1d-47cc-a124-83149984fed6}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        332,
+        678,
+        137,
+        964
+      ],
+      "raw_sha256": "0cd30439607a2fadbe18d808c5c25fd0df8f34242f8cbf932dc61d6a0f9b6c86"
+    },
+    {
+      "name": "人物 | 010 | legs/leg_left/leg | complete",
+      "type": "paintlayer",
+      "uuid": "{31dfffc8-e688-485e-92f6-e4d8d5197017}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        467,
+        678,
+        139,
+        965
+      ],
+      "raw_sha256": "2de094fe6fa9067cca414cc58b8c31f4afcb3d36abebcea951b4cca0c682418a"
+    },
+    {
+      "name": "assembly | thigh edge behind opaque sleeve cuff",
+      "type": "transparencymask",
+      "uuid": "{b9840608-4f8e-43c7-9b57-23d7ebe7ca1f}",
+      "parent": "{31dfffc8-e688-485e-92f6-e4d8d5197017}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        467,
+        678,
+        139,
+        965
+      ],
+      "raw_sha256": "1a1245061a62653547b12d87b43df8e3d2d35acd28f76250f3cce6d8135b223c"
+    },
+    {
+      "name": "人物 | 011 | legs/leg_right/anklet_front | complete",
+      "type": "paintlayer",
+      "uuid": "{abe8365b-9f4b-4562-9b75-7b85a57ac9db}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        414,
+        1502,
+        49,
+        14
+      ],
+      "raw_sha256": "3a83b75382004ff78881605a3433f0a785fe6861db940b66c35b1229c8ccc50b"
+    },
+    {
+      "name": "人物 | 012 | legs/leg_left/anklet_front | complete",
+      "type": "paintlayer",
+      "uuid": "{aa2ecc80-b5e4-4ff8-b9bb-9b0bf16911db}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        476,
+        1502,
+        47,
+        14
+      ],
+      "raw_sha256": "41e47b0bb1779e5846364a378d306fd5c1036196540832ee93846b1cc8969a3a"
+    },
+    {
+      "name": "人物 | 013 | pelvis | complete",
+      "type": "paintlayer",
+      "uuid": "{9f746d95-b938-40f1-81e3-d54ee20c5345}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        346,
+        566,
+        247,
+        249
+      ],
+      "raw_sha256": "f86c3a499ac975b3b5627d5d9296e4ba52a1850137c825a8ea5f9e2d550b5d95"
+    },
+    {
+      "name": "衣服 | 040 | sleeve_screen_left/right_hanging_drape | back",
+      "type": "paintlayer",
+      "uuid": "{8ad95953-dec7-41c0-9122-dc098da9cc27}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        22,
+        124
+      ],
+      "bounds": [
+        90,
+        436,
+        295,
+        1087
+      ],
+      "raw_sha256": "4c1958a5788a2f1d3521ef08ac646467d3ea182457d863943276f969ffa18b3d"
+    },
+    {
+      "name": "衣服 | 041 | sleeve_screen_right/left_hanging_drape | back",
+      "type": "paintlayer",
+      "uuid": "{c478f7c3-f600-4d54-9ab4-b66f003297c7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        12,
+        124
+      ],
+      "bounds": [
+        550,
+        436,
+        296,
+        1087
+      ],
+      "raw_sha256": "7c025a2dc900939af898490069d97607aa915f4169ba4f7691528d8de5f7f971"
+    },
+    {
+      "name": "人物 | 019 | arms/arm_right/upper_arm | complete",
+      "type": "paintlayer",
+      "uuid": "{2b6fac33-46ff-46bf-9be1-1aedf229de0d}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        316,
+        353,
+        99,
+        263
+      ],
+      "raw_sha256": "505163f5d3c6d3f125e800f384b32a1cb3aa4923bd0f78233a7c8a25c9ef50ef"
+    },
+    {
+      "name": "人物 | 020 | arms/arm_right/forearm | complete",
+      "type": "paintlayer",
+      "uuid": "{1b191d7f-97db-4096-bcd6-8151771e9c8f}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        286,
+        574,
+        81,
+        227
+      ],
+      "raw_sha256": "45b8719bb9dce44d9f1fcc1cf01eb42c35e7d16ad86379bbcc01ff03a649fd78"
+    },
+    {
+      "name": "upper_arm_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{81f0e613-f46e-4b45-9ec7-30fcc8707810}",
+      "parent": "{1b191d7f-97db-4096-bcd6-8151771e9c8f}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        286,
+        574,
+        81,
+        227
+      ],
+      "raw_sha256": "95851a2952478f4ffd997f1f55770ccca66993690b93e07d0f7cb5a1db484fc3"
+    },
+    {
+      "name": "人物 | 022 | arms/arm_left/forearm | complete",
+      "type": "paintlayer",
+      "uuid": "{8859c2c1-7cd6-46df-a2e9-f904fdb54fe6}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        571,
+        555,
+        81,
+        242
+      ],
+      "raw_sha256": "9a15967c3d7f1d82cb42b594989f53fd26e635a78af5069226f9c979fded55f0"
+    },
+    {
+      "name": "人物 | 023 | arms/arm_left/upper_arm | complete",
+      "type": "paintlayer",
+      "uuid": "{20733596-023e-467b-84be-6a5b476585e3}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        523,
+        353,
+        98,
+        244
+      ],
+      "raw_sha256": "504a19b7d2f12ce08217015914bf7b157b70e074e194bb438e8b93f4bb9b4918"
+    },
+    {
+      "name": "forearm_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{99f4ad1e-06fc-4e92-894c-9a3581c3682e}",
+      "parent": "{20733596-023e-467b-84be-6a5b476585e3}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        523,
+        353,
+        98,
+        244
+      ],
+      "raw_sha256": "f08c808f830114748a80410cb28e776639bd5ede78425bb003bcbb8c57d3cd98"
+    },
+    {
+      "name": "衣服 | 001 | collar_shoulder_cape/standing_collar | back",
+      "type": "paintlayer",
+      "uuid": "{e550c86e-9940-4336-ad21-bbb2c58af453}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        431,
+        287,
+        77,
+        63
+      ],
+      "raw_sha256": "f466164fc79f32ef6ecaf973527976d5caba1569b1a5f8237852879fc967fd09"
+    },
+    {
+      "name": "人物 | 030 | neck | complete",
+      "type": "paintlayer",
+      "uuid": "{15144020-c825-4901-a742-08becc748c51}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        410,
+        267,
+        118,
+        99
+      ],
+      "raw_sha256": "d5dc5b83fd1870015d3da7ef8b4c5fea92d01ec51e474e507365be7f97023175"
+    },
+    {
+      "name": "人物 | 031 | body/torso | complete",
+      "type": "paintlayer",
+      "uuid": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        337,
+        348,
+        264,
+        381
+      ],
+      "raw_sha256": "d422b5903d4937bea400a8b6729d32edad84b0336c312ea02d3c78414370e33b"
+    },
+    {
+      "name": "neck_and_shoulder_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{a439fdf7-01a7-4073-8087-bcbb7c4d288a}",
+      "parent": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        337,
+        348,
+        264,
+        381
+      ],
+      "raw_sha256": "f8d2d0681750d376d07eb5d631dd1273d75393674e63e0dba11411024f6f46f6"
+    },
+    {
+      "name": "pelvis_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{3d3120f6-4b89-4dd5-a50c-30e93443720a}",
+      "parent": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        337,
+        348,
+        264,
+        381
+      ],
+      "raw_sha256": "a21cc2ef4470b2927938b37ad7645360058817c41b8bcbd045bbf1b2837ed357"
+    },
+    {
+      "name": "人物 | 032 | body/breast | complete",
+      "type": "paintlayer",
+      "uuid": "{8285ee5c-57cc-4f94-88fa-f4f345c8f094}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        365,
+        395,
+        208,
+        134
+      ],
+      "raw_sha256": "2e0467a81466f0b783b91ad6d956854036682da13ddc1ca8bd1ce0abae452833"
+    },
+    {
+      "name": "torso_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{bfddc43a-3f8b-43aa-8a27-de8f36c1f3c8}",
+      "parent": "{8285ee5c-57cc-4f94-88fa-f4f345c8f094}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        365,
+        395,
+        208,
+        134
+      ],
+      "raw_sha256": "d41a9d9233fcf1de2e8e9093dfa3d12305725fbd31c4f94e6514138570024798"
+    },
+    {
+      "name": "衣服 | 003 | waist_sash_and_knot/waist_band | back",
+      "type": "paintlayer",
+      "uuid": "{4916b52f-5125-4026-8071-6b46ac6cb8fb}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        387,
+        548,
+        165,
+        19
+      ],
+      "raw_sha256": "bf81af72f32e09f5e40457461e28efc44406a17cb55d47680fcbaa6e5b65b006"
+    },
+    {
+      "name": "衣服 | 010 | inner_long_dress/long_skirt | front",
+      "type": "paintlayer",
+      "uuid": "{88686b4d-6946-4a8d-98e1-55b7fdc172ee}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        303,
+        581,
+        339,
+        952
+      ],
+      "raw_sha256": "f874dc17ea13754db0a323d0b0ef67c3d9f4093ed4383a0d5d5a5aa191af0cfb"
+    },
+    {
+      "name": "衣服 | 010 | central_blue_drapery/central_folded_tail | back waist root",
+      "type": "paintlayer",
+      "uuid": "{c9457b67-528d-427d-af43-4281aa922598}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        454,
+        563,
+        31,
+        27
+      ],
+      "raw_sha256": "3323bdf7ef2e87d462d248403cd3f16fc99eaa3375cbe21d6d72e924ad6ed9d8"
+    },
+    {
+      "name": "衣服 | 010 | central_blue_drapery/left_long_panel | back waist root",
+      "type": "paintlayer",
+      "uuid": "{307821bb-d83b-4231-8d60-dadec680776e}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        477,
+        563,
+        20,
+        27
+      ],
+      "raw_sha256": "7ea2908b52506b2866de9dce96cd04aaabb83375577a82388ca004aaa8c5a354"
+    },
+    {
+      "name": "衣服 | 010 | central_blue_drapery/right_long_panel | back waist root",
+      "type": "paintlayer",
+      "uuid": "{dd2466df-17fe-4d19-b18a-91c7ea7e52d5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        445,
+        563,
+        17,
+        27
+      ],
+      "raw_sha256": "5658397e2ab6726adfc3574653c0c25ef7e7032f15dda3fcce888eeb67937509"
+    },
+    {
+      "name": "衣服 | 011 | inner_long_dress/bodice_and_waist",
+      "type": "paintlayer",
+      "uuid": "{0ff6c837-f99e-46f0-9254-0734fffcf426}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        401,
+        439,
+        135,
+        153
+      ],
+      "raw_sha256": "108e623929da8a6188bb074b68be77e9ae2d26b6a90207a42c559575405d8e82"
+    },
+    {
+      "name": "衣服 | 020 | central_blue_drapery/central_folded_tail | front",
+      "type": "paintlayer",
+      "uuid": "{d4dc4034-3c7b-4d81-a392-a96dfc94ffb4}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        430,
+        590,
+        89,
+        943
+      ],
+      "raw_sha256": "365f0ea0e4397d84416e37b72c638fb9692312c5db01e7a11fb95cb2dff4da3c"
+    },
+    {
+      "name": "衣服 | 021 | central_blue_drapery/left_long_panel | front",
+      "type": "paintlayer",
+      "uuid": "{1ec6374f-bef4-4c46-8e80-4595fee1c0ac}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        476,
+        590,
+        75,
+        792
+      ],
+      "raw_sha256": "eec445d5f584eb963b455bcf6dd106d0d50d765378a2abac98598ab3bc98361f"
+    },
+    {
+      "name": "衣服 | 022 | central_blue_drapery/right_long_panel | front",
+      "type": "paintlayer",
+      "uuid": "{d8296fd8-bf24-4a56-a36c-7d0d18d245a7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        393,
+        590,
+        70,
+        792
+      ],
+      "raw_sha256": "37d50acefc1a18feba62b8f5ad3b91b2f47245fc22bb1e89790b6911d6c8cf81"
+    },
+    {
+      "name": "衣服 | 025 | waist_sash_and_knot/waist_band | front",
+      "type": "paintlayer",
+      "uuid": "{8cdb1993-c9ae-4c2f-a176-574bb4ed45cd}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        411,
+        552,
+        117,
+        16
+      ],
+      "raw_sha256": "c8a73610306efef843d2ffb36aa2e02c1380fa1c2590e4710a2b4cd540a8fc31"
+    },
+    {
+      "name": "衣服 | 030 | outer_robe_body/left_robe_panel",
+      "type": "paintlayer",
+      "uuid": "{172268e7-3a44-41e9-b43f-988e88b5c04d}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        491,
+        375,
+        324,
+        1225
+      ],
+      "raw_sha256": "38d625f4a78e51300b4772f273b4ee800b8458fa974c29d1a11e07fe3448817d"
+    },
+    {
+      "name": "衣服 | 031 | outer_robe_body/right_robe_panel",
+      "type": "paintlayer",
+      "uuid": "{a0a40daf-0007-43bf-89ee-53584b187597}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        123,
+        375,
+        323,
+        1225
+      ],
+      "raw_sha256": "dbd300536b7743dd53968763e98a6bd2c787ea6c39835d84e3f4b49ee6a568aa"
+    },
+    {
+      "name": "衣服 | 042 | sleeve_screen_left/right_sleeve_tube | back",
+      "type": "paintlayer",
+      "uuid": "{219db08e-244c-4948-b07f-3de0e92fa247}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        22,
+        124
+      ],
+      "bounds": [
+        268,
+        762,
+        75,
+        25
+      ],
+      "raw_sha256": "a91adac049390aa7fc804ac11fd8b0b6bcbe9067399b8ae79f336008cc7bc701"
+    },
+    {
+      "name": "衣服 | 043 | sleeve_screen_right/left_sleeve_tube | back",
+      "type": "paintlayer",
+      "uuid": "{11a7e8fa-7f25-4702-9759-d042b81e7fd5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        12,
+        124
+      ],
+      "bounds": [
+        595,
+        762,
+        75,
+        24
+      ],
+      "raw_sha256": "9cac7f06781c4f1386e83fce07529936826693a56cbfb90f28552f6006c7f6ec"
+    },
+    {
+      "name": "衣服 | 050 | sleeve_screen_left/right_sleeve_tube | front",
+      "type": "paintlayer",
+      "uuid": "{96c3b772-c261-41ac-bc54-f7abb41d868b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        22,
+        124
+      ],
+      "bounds": [
+        267,
+        375,
+        130,
+        428
+      ],
+      "raw_sha256": "f50512b1c6ca9e4fec6af636c9f694dd0ee8808d12ba3750d2697bbef2df76c5"
+    },
+    {
+      "name": "衣服 | 051 | sleeve_screen_right/left_sleeve_tube | front",
+      "type": "paintlayer",
+      "uuid": "{d19a900a-c5cb-412a-b5d2-f6c0ee16c6c1}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        12,
+        124
+      ],
+      "bounds": [
+        538,
+        364,
+        137,
+        438
+      ],
+      "raw_sha256": "acb32a782849ddecc6c55dac2c9da735f58d88a631c8a3df8699e292f5ab35d2"
+    },
+    {
+      "name": "衣服 | 060 | sleeve_screen_left/right_hanging_drape | front",
+      "type": "paintlayer",
+      "uuid": "{b2428530-2f42-444f-9384-72fefc350a41}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        22,
+        124
+      ],
+      "bounds": [
+        189,
+        401,
+        199,
+        429
+      ],
+      "raw_sha256": "0b496859663c5573ef2fd8c7f9babff71bfcbdbc1895ebc3166e7c3eed9204b9"
+    },
+    {
+      "name": "衣服 | 061 | sleeve_screen_right/left_hanging_drape | front",
+      "type": "paintlayer",
+      "uuid": "{1f5c1e44-f47a-454a-bfbc-4797e3d650ef}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        12,
+        124
+      ],
+      "bounds": [
+        554,
+        368,
+        190,
+        462
+      ],
+      "raw_sha256": "00f2d0eb613a38e8eb9a1942ac84223754f4dc3f62ca9a25bd416650ec209a7b"
+    },
+    {
+      "name": "衣服 | 070 | collar_shoulder_cape/left_shoulder_cape",
+      "type": "paintlayer",
+      "uuid": "{51034d71-cb80-4d01-9473-e759281b1b29}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        490,
+        334,
+        157,
+        194
+      ],
+      "raw_sha256": "da8c8c30c036c65c92c49b6ddcd152c0e030387870f1f80109af7830ce0b6340"
+    },
+    {
+      "name": "衣服 | 071 | collar_shoulder_cape/right_shoulder_cape",
+      "type": "paintlayer",
+      "uuid": "{407341ab-e194-43cd-ae31-af19d63146d5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        291,
+        330,
+        162,
+        199
+      ],
+      "raw_sha256": "34f90eb7475bf1cbbd9b7ffabb455f00237435a5da4e16e1398e4f8aa33d5e34"
+    },
+    {
+      "name": "衣服 | 072 | collar_shoulder_cape/standing_collar | front",
+      "type": "paintlayer",
+      "uuid": "{6b83d0e9-a4ae-4aeb-bfa5-0a646d1449de}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        416,
+        292,
+        107,
+        78
+      ],
+      "raw_sha256": "14253c1597bc9b9515fe1df6016080a203139e1db15809ecc6649ae2538e693a"
+    },
+    {
+      "name": "衣服 | 080 | collar_jewel_fastener/left_beaded_chain",
+      "type": "paintlayer",
+      "uuid": "{fb60bdb3-3f93-472b-8558-418b66aef8c7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        472,
+        376,
+        26,
+        17
+      ],
+      "raw_sha256": "deb91b1790902652e3d1a49f8ab579ba4993c06351c91b2d0a53898fe8c42ec2"
+    },
+    {
+      "name": "衣服 | 081 | collar_jewel_fastener/right_beaded_chain",
+      "type": "paintlayer",
+      "uuid": "{d39365cf-0a8c-43bd-9ee3-b54aa975f43b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        442,
+        375,
+        25,
+        18
+      ],
+      "raw_sha256": "25997d09ec67baf50c24404805df42dd2cdf694646604927c4aa87c795af144b"
+    },
+    {
+      "name": "衣服 | 082 | collar_jewel_fastener/central_pendant/hanging_bead",
+      "type": "paintlayer",
+      "uuid": "{61e5ae03-d22b-41ca-b38a-65a6126c47ae}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        464,
+        381,
+        11,
+        12
+      ],
+      "raw_sha256": "3ba64b07b72abac943418ed9abfbc69100ee5e6a76de57699c05147cfb2a9025"
+    },
+    {
+      "name": "衣服 | 083 | collar_jewel_fastener/central_pendant/connecting_ring",
+      "type": "paintlayer",
+      "uuid": "{b7def7a7-308a-4138-b76f-b46029eddd3e}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        463,
+        371,
+        12,
+        12
+      ],
+      "raw_sha256": "6752ebf5c59b28327a96664c0c8acaf5073d85f92d157db1a03dcb834384c780"
+    },
+    {
+      "name": "衣服 | 084 | collar_jewel_fastener/fixed_jewel",
+      "type": "paintlayer",
+      "uuid": "{645a9e61-0c21-4af6-a427-0119d914f7ed}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        454,
+        338,
+        31,
+        36
+      ],
+      "raw_sha256": "18915b4a2d1b7f0a07926578c0bca271ef0a5f2e2b5b0a4902f3092747047eee"
+    },
+    {
+      "name": "衣服 | 085 | chest_ornament",
+      "type": "paintlayer",
+      "uuid": "{6a4ae882-d8e8-427e-90c9-50cad7a28d52}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        396,
+        382,
+        142,
+        151
+      ],
+      "raw_sha256": "128fd50b80b63d2038cbd0e5e9cce47c5e2890d1b0b0c9c76446d2ab6c9ed696"
+    },
+    {
+      "name": "衣服 | 100 | waist_pendant_and_tassel/upper_suspension",
+      "type": "paintlayer",
+      "uuid": "{43cad39f-0269-4158-9b91-d08305696e07}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        458,
+        582,
+        21,
+        119
+      ],
+      "raw_sha256": "ccdf4ada3a24baf2e4063a78448297125d14fb26c5328ab0a4daf6009b24cac5"
+    },
+    {
+      "name": "waist opening | hide completed suspension root",
+      "type": "transparencymask",
+      "uuid": "{8ca01bfc-05be-4332-bcc1-78dd89d43215}",
+      "parent": "{43cad39f-0269-4158-9b91-d08305696e07}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        458,
+        582,
+        21,
+        119
+      ],
+      "raw_sha256": "1816578465244f3f71ada83bc511fea613bb0bf2cf2b1454ff14ec1ec1dce71a"
+    },
+    {
+      "name": "衣服 | 101 | waist_sash_and_knot/left_short_tail",
+      "type": "paintlayer",
+      "uuid": "{9226d628-004f-4f37-87d9-e74a9d04bda5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        474,
+        558,
+        22,
+        100
+      ],
+      "raw_sha256": "49214657fabf5acb65c01c9ada4054b6e0d690b72e58fcbf1f36c304aa43abe6"
+    },
+    {
+      "name": "衣服 | 102 | waist_sash_and_knot/right_short_tail",
+      "type": "paintlayer",
+      "uuid": "{62e0a389-d2f4-4800-9bb2-038882cc7155}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        445,
+        561,
+        21,
+        97
+      ],
+      "raw_sha256": "f610af8ff643c869f1086aade79293889b20786a281e3df9f203a71f37d37a37"
+    },
+    {
+      "name": "衣服 | 103 | waist_sash_and_knot/left_short_loop",
+      "type": "paintlayer",
+      "uuid": "{bd16d7de-c2b4-45ae-8990-eec8deff4afd}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        473,
+        556,
+        16,
+        64
+      ],
+      "raw_sha256": "3318f70c0e022442d4260b31e70ab4771404d9b1abc5bb32e6d0359afd1ba683"
+    },
+    {
+      "name": "衣服 | 104 | waist_sash_and_knot/right_short_loop",
+      "type": "paintlayer",
+      "uuid": "{c1cbc3a2-d0f9-49fb-9627-04ab64514185}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        448,
+        555,
+        21,
+        73
+      ],
+      "raw_sha256": "74e5f296e5bda946131be685f336b7acca85ddf5beb9900b2ec47d173b6f549b"
+    },
+    {
+      "name": "衣服 | 105 | waist_sash_and_knot/center_knot",
+      "type": "paintlayer",
+      "uuid": "{e56028a1-05a7-4439-b854-3755795088a8}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        458,
+        554,
+        23,
+        17
+      ],
+      "raw_sha256": "f655c966f1a8d9d9ca6d3c786395711fd51a57a2d4065dff63c236660ab00882"
+    },
+    {
+      "name": "衣服 | 108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+      "type": "paintlayer",
+      "uuid": "{123029a7-4417-4722-952d-711c0d1de0be}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        461,
+        740,
+        16,
+        57
+      ],
+      "raw_sha256": "6803f3293bbd2023f52ef292ba2afb4bd92eb8bba43f90bdb57bd15af9068c5d"
+    },
+    {
+      "name": "衣服 | 109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+      "type": "paintlayer",
+      "uuid": "{776bd1f8-30ad-4987-8621-e17715086c00}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        459,
+        791,
+        20,
+        71
+      ],
+      "raw_sha256": "cc8d02fb70505722a66a651b69c8c512c2f31673c5d97f2057e87f40fc0cba7c"
+    },
+    {
+      "name": "衣服 | 110 | waist_pendant_and_tassel/snowflake_medallion",
+      "type": "paintlayer",
+      "uuid": "{78ecc71b-dc7b-4b0b-85c9-4767a217fbdf}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        449,
+        698,
+        40,
+        50
+      ],
+      "raw_sha256": "631ac9361896ddd3c3e294ebad939064802c2d75d013d8c884624550ef11bd89"
+    },
+    {
+      "name": "衣服 | 111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+      "type": "paintlayer",
+      "uuid": "{9e78b6fa-c670-4d95-b36b-2a54100c49c4}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        457,
+        857,
+        25,
+        49
+      ],
+      "raw_sha256": "0c02177a4da1f6527a59d84f2a5171671f172be371a4f389adadb2b8f7c571da"
+    },
+    {
+      "name": "衣服 | 112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+      "type": "paintlayer",
+      "uuid": "{3682b021-2cc9-4e2e-bf71-de6855604ba0}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        450,
+        899,
+        41,
+        48
+      ],
+      "raw_sha256": "54934c322d72fce999d20653f9bcbd97afc3630e89a668ae37cae89024c51d3b"
+    },
+    {
+      "name": "衣服 | 113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+      "type": "paintlayer",
+      "uuid": "{c18087f9-e383-4e8e-9859-7042fb577352}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        468,
+        977,
+        4,
+        3
+      ],
+      "raw_sha256": "104cdd238f5ec00598c646a5d8be3a46c25ce44af07b766531507c35c7f6afaa"
+    },
+    {
+      "name": "衣服 | 114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+      "type": "paintlayer",
+      "uuid": "{f89977f0-b069-4ed7-8838-415bf1b58db1}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        453,
+        968,
+        33,
+        38
+      ],
+      "raw_sha256": "053cd4db25b64bb1a4dfdfc04b84c1e044c75e10b20dcf48f805a0a7cf6790e8"
+    },
+    {
+      "name": "衣服 | 115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front",
+      "type": "paintlayer",
+      "uuid": "{62d23f21-b9d4-423d-8c97-d270a780fde7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        463,
+        979,
+        12,
+        12
+      ],
+      "raw_sha256": "332a17a9f93546a51c1b3a8a94ea6599bbd41448514db5fc5ff29797d501650d"
+    },
+    {
+      "name": "衣服 | 116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+      "type": "paintlayer",
+      "uuid": "{e55503a6-9bfa-454d-a5a3-5bca7fa6b414}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        463,
+        947,
+        12,
+        13
+      ],
+      "raw_sha256": "025b9b989b72fcc75085f3266350ec2825f1b0c0cc07a12bf7f83689fb8336ff"
+    },
+    {
+      "name": "衣服 | 117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+      "type": "paintlayer",
+      "uuid": "{e472a31e-76f5-4720-8a96-511fb991110e}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        453,
+        940,
+        33,
+        32
+      ],
+      "raw_sha256": "81bc00a3e5c889912fe70609c92838aacba5ba69a1e69204616dc7fa08fb5b73"
+    },
+    {
+      "name": "衣服 | 118 | waist_pendant_and_tassel/long_tassel",
+      "type": "paintlayer",
+      "uuid": "{9d4d0fb9-c218-4719-a8ea-8d50600e69f4}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        445,
+        1002,
+        54,
+        424
+      ],
+      "raw_sha256": "a070aeb3f994beb1fb7bd974144462aad9c6116f4ec75245b6eca614facbb504"
+    },
+    {
+      "name": "人物 | 014 | arms/arm_right/hand/little_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{2722ff9c-2e16-4c92-9737-64f66c4fd839}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        290,
+        838,
+        30,
+        45
+      ],
+      "raw_sha256": "d57bf8ecae6856a958224e7b237dcf7c719475fedca8ea9e2fef6c2a1e8a1d7a"
+    },
+    {
+      "name": "人物 | 015 | arms/arm_right/hand/ring_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{3fd418d2-70da-46d0-bf21-579beff475c5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        291,
+        845,
+        30,
+        40
+      ],
+      "raw_sha256": "26b0d59768c54d82dc06f68e96500eeb8eec3abeeca88090b0cf5704a714a604"
+    },
+    {
+      "name": "人物 | 016 | arms/arm_right/hand/middle_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{ffa7ef3e-a94d-4d76-86ad-e7da8a3c4f9c}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        289,
+        840,
+        33,
+        59
+      ],
+      "raw_sha256": "1e5ebf4dd8ca5db12b2b85756e0a7ab18bc139a02907568a73d488d11a8dab06"
+    },
+    {
+      "name": "人物 | 017 | arms/arm_right/hand/index_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{17cd49df-01be-4b6a-ba96-3518f814b3f9}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        287,
+        834,
+        32,
+        70
+      ],
+      "raw_sha256": "0ac14a22b096f3e0cce1b95e7392a2b8a36ced6ddfb74d881ec7fdf42cb05d8b"
+    },
+    {
+      "name": "人物 | 018 | arms/arm_right/hand/thumb | complete",
+      "type": "paintlayer",
+      "uuid": "{37bcea3b-7389-4853-ab97-45729c27cb54}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        304,
+        818,
+        20,
+        52
+      ],
+      "raw_sha256": "82fd88473f2f116a574bb86b55eded9e2cb518a9156481eaa87c28ea145bfca8"
+    },
+    {
+      "name": "人物 | 021 | arms/arm_right/hand/palm | complete",
+      "type": "paintlayer",
+      "uuid": "{61645b96-cab0-474b-9e70-359d03670037}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        281,
+        775,
+        43,
+        79
+      ],
+      "raw_sha256": "990d400c22c26b286b4aed8a2d2534a2e4479703d155ca25ceaa8f63fcae6d0b"
+    },
+    {
+      "name": "wrist_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{3a56cf55-9b4d-4789-b1bd-aeddced81fed}",
+      "parent": "{61645b96-cab0-474b-9e70-359d03670037}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        281,
+        775,
+        43,
+        79
+      ],
+      "raw_sha256": "57a6ce6f0438fe21ba41cc2cde22db3d0b8015daf6675f4d39822508806fd43a"
+    },
+    {
+      "name": "人物 | 024 | arms/arm_left/hand/index_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{af94f360-b7b2-4d72-a282-abe81899ae99}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        618,
+        842,
+        29,
+        41
+      ],
+      "raw_sha256": "2a7a7a95595085543a034e3414917f3dcab43086c2f9e3d1f9fe8b636197c027"
+    },
+    {
+      "name": "人物 | 025 | arms/arm_left/hand/middle_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{9731fecf-1b7a-45f9-a358-d450b58ed4b0}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        615,
+        846,
+        32,
+        55
+      ],
+      "raw_sha256": "7abf11942162683ac118fa95760d39b8f9e9bc8580a40eabb790a5ab79dbc1f4"
+    },
+    {
+      "name": "人物 | 026 | arms/arm_left/hand/little_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{9ad7ffb1-b84f-4b39-a6f1-1c6c4a8d039b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        633,
+        832,
+        23,
+        54
+      ],
+      "raw_sha256": "e81027ff813bf78a28d31941069a581633642c04a91685f2c946627a126590a2"
+    },
+    {
+      "name": "人物 | 027 | arms/arm_left/hand/ring_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{403c6067-0d7d-4a22-a14d-3607410ad8cd}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        618,
+        841,
+        31,
+        63
+      ],
+      "raw_sha256": "118d77dd2d519bcd80981eeda042ef1ea7f230c95a2157c343784c5aa5f5766e"
+    },
+    {
+      "name": "人物 | 028 | arms/arm_left/hand/thumb | complete",
+      "type": "paintlayer",
+      "uuid": "{f1662c0b-1af8-433a-a5a2-35a1f3a20669}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        614,
+        825,
+        16,
+        45
+      ],
+      "raw_sha256": "11f856537b46632734fe59bf3babf45060c33902fee1897070fb8a1e8a3c4f0d"
+    },
+    {
+      "name": "人物 | 029 | arms/arm_left/hand/palm | complete",
+      "type": "paintlayer",
+      "uuid": "{5bd257eb-a516-45c1-87e8-58921e019d92}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        613,
+        779,
+        43,
+        77
+      ],
+      "raw_sha256": "f22bc39971df36928bea46d6ea5637ade548687d41abc37501f14fc73a0d15e3"
+    },
+    {
+      "name": "wrist_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{5d75451b-6d6a-49c1-b925-59583126819f}",
+      "parent": "{5bd257eb-a516-45c1-87e8-58921e019d92}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        613,
+        779,
+        43,
+        77
+      ],
+      "raw_sha256": "f0bb01c9c4872cc5ef4d24ecfb12199ba62ccb83eda973c6c5ceff9b09d19138"
+    },
+    {
+      "name": "人物 | 033 | head_accessories/earrings/earring_right | complete",
+      "type": "paintlayer",
+      "uuid": "{d0100130-a76d-47d0-a29a-6bfd074e6c5f}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        405,
+        254,
+        14,
+        90
+      ],
+      "raw_sha256": "35265f36dbebf840db72b26d444b77090ee534549b2bcdfea29626db245a00d3"
+    },
+    {
+      "name": "人物 | 034 | head_accessories/earrings/earring_left | complete",
+      "type": "paintlayer",
+      "uuid": "{6c968e73-72f1-42c1-8019-9302690bd470}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        519,
+        254,
+        14,
+        90
+      ],
+      "raw_sha256": "b8a577f6e8fdb9eba293902d0d4344f1006555392c46d8881047da2c5ff784cf"
+    },
+    {
+      "name": "人物 | 035 | face/ears/ear_right | complete",
+      "type": "paintlayer",
+      "uuid": "{88643f29-e403-43ed-b8a4-26686a75824b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        381,
+        215,
+        45,
+        49
+      ],
+      "raw_sha256": "9f6c546a94b37a86bfc50b3a1f001c24811058bb4a09eba26801bdbd95766b9f"
+    },
+    {
+      "name": "face_and_side_hair_default_occlusion",
+      "type": "transparencymask",
+      "uuid": "{c53967c4-d44d-4bfb-8c4e-1ade0baafb0f}",
+      "parent": "{88643f29-e403-43ed-b8a4-26686a75824b}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        381,
+        215,
+        45,
+        49
+      ],
+      "raw_sha256": "92758fb3fb49589c6e8d3048bf8aa9bf8c822f528da268ce68c56811c34b78f8"
+    },
+    {
+      "name": "人物 | 036 | face/ears/ear_left | complete",
+      "type": "paintlayer",
+      "uuid": "{a3e7fab5-8355-4552-97db-51f5652cd883}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        512,
+        216,
+        45,
+        48
+      ],
+      "raw_sha256": "eaca84ce573d3f661080da1d5d8507a3161053a082a75cc840e0ae6f27f9dc09"
+    },
+    {
+      "name": "face_and_side_hair_default_occlusion",
+      "type": "transparencymask",
+      "uuid": "{4f206a90-66ae-488f-bab4-cb1a00f9048c}",
+      "parent": "{a3e7fab5-8355-4552-97db-51f5652cd883}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        512,
+        216,
+        45,
+        48
+      ],
+      "raw_sha256": "18bb7f26820a3f117f17ac4ecb6f085fa021ab52da8ce6e7e1635698ac091a07"
+    },
+    {
+      "name": "人物 | 037 | face/face_base | complete",
+      "type": "paintlayer",
+      "uuid": "{05210561-d9dd-4843-b30a-a63f7b43116c}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        404,
+        146,
+        131,
+        160
+      ],
+      "raw_sha256": "68e2b7830791a6d074a4e6482bc0673155d9def0bc5eb9c38fb91e7ff7d15a97"
+    },
+    {
+      "name": "人物 | face/eyes/eye_left | opening_contents",
+      "type": "grouplayer",
+      "uuid": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        487,
+        211,
+        35,
+        26
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "038.0 | face/eyes/eye_left/sclera | complete",
+      "type": "paintlayer",
+      "uuid": "{f14ed857-29cf-4c89-92a9-d4bde22d8edc}",
+      "parent": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        487,
+        211,
+        35,
+        26
+      ],
+      "raw_sha256": "d27270e0877c7ced079590d1cfa5e0d04352e2899e19b2c82736ed73f0af3e62"
+    },
+    {
+      "name": "face/eyes/eye_left | iris_highlight_clip",
+      "type": "grouplayer",
+      "uuid": "{79f5c52c-6d37-43b7-bc8d-4cff90e26374}",
+      "parent": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        488,
+        210,
+        24,
+        27
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "039.0 | face/eyes/eye_left/iris | complete",
+      "type": "paintlayer",
+      "uuid": "{4e67f3d9-e9e4-4b27-b40e-6d8bcbfc8ac4}",
+      "parent": "{79f5c52c-6d37-43b7-bc8d-4cff90e26374}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        488,
+        210,
+        24,
+        27
+      ],
+      "raw_sha256": "108ebccaa3b692939d38356307300dadb762d61e4126d343ed80309286de3a92"
+    },
+    {
+      "name": "040.0 | face/eyes/eye_left/highlight | complete",
+      "type": "paintlayer",
+      "uuid": "{ec09cfdf-4c68-499d-bbdb-a942880a7b98}",
+      "parent": "{79f5c52c-6d37-43b7-bc8d-4cff90e26374}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        493,
+        215,
+        17,
+        7
+      ],
+      "raw_sha256": "f0388621ea2fb26005c9fd37a24e057992af2319948a72e005aa178c1e922052"
+    },
+    {
+      "name": "upper_and_lower_eyelid_opening",
+      "type": "transparencymask",
+      "uuid": "{b7217171-64f4-4cdb-adb7-98f00d02542f}",
+      "parent": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        487,
+        211,
+        35,
+        26
+      ],
+      "raw_sha256": "f3d1fed738b829182346d16628933d556b6800bc97bf825461b264df3da44ef4"
+    },
+    {
+      "name": "人物 | 041 | face/eyes/eye_left/lower_eyelid | complete",
+      "type": "paintlayer",
+      "uuid": "{932004ef-4f82-4863-a2e8-5702e5f4220b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        491,
+        226,
+        31,
+        13
+      ],
+      "raw_sha256": "819a8c7a7abfa053a4d5dc9fc4c7be5d941e3dbefcf984f400d13bc39d94cbb5"
+    },
+    {
+      "name": "人物 | 042 | face/eyes/eye_left/upper_eyelid | main_lid",
+      "type": "paintlayer",
+      "uuid": "{d699c479-867c-4c80-8daa-ef5c12ac5919}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        485,
+        208,
+        38,
+        20
+      ],
+      "raw_sha256": "eddcd7267ffd99c4361a1bab86ccf1252b1fe4fe58d3a43562d8a6c6a9bd4c6a"
+    },
+    {
+      "name": "人物 | 043 | face/eyes/eye_left/eyelid_crease | complete",
+      "type": "paintlayer",
+      "uuid": "{3639c2c4-e109-498d-b4d3-2aa7cc846772}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        486,
+        205,
+        24,
+        8
+      ],
+      "raw_sha256": "13ade8b4621560be94ef99044964d4c6e462060a9cd6c54a43348b859097e8d6"
+    },
+    {
+      "name": "人物 | face/eyes/eye_right | opening_contents",
+      "type": "grouplayer",
+      "uuid": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        416,
+        213,
+        36,
+        25
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "044.0 | face/eyes/eye_right/sclera | complete",
+      "type": "paintlayer",
+      "uuid": "{34f70e93-53b9-415d-ab1e-2e184b0da10b}",
+      "parent": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        416,
+        213,
+        36,
+        25
+      ],
+      "raw_sha256": "f90c444032b1a54e3184fc91f17eca349e9d5ad222871a07569372241e8a44cf"
+    },
+    {
+      "name": "face/eyes/eye_right | iris_highlight_clip",
+      "type": "grouplayer",
+      "uuid": "{3e3e1335-673d-40f8-bc33-35450ba92680}",
+      "parent": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        425,
+        212,
+        23,
+        25
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "045.0 | face/eyes/eye_right/iris | complete",
+      "type": "paintlayer",
+      "uuid": "{3bce0122-a3f2-4da8-9ace-9532e2066e9a}",
+      "parent": "{3e3e1335-673d-40f8-bc33-35450ba92680}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        425,
+        212,
+        23,
+        25
+      ],
+      "raw_sha256": "9768d1ae924ff3472f98895592781fe0921d098640a125300eaa1f6e07e4761a"
+    },
+    {
+      "name": "046.0 | face/eyes/eye_right/highlight | complete",
+      "type": "paintlayer",
+      "uuid": "{ac42bcae-4251-466e-a197-db238ee9517a}",
+      "parent": "{3e3e1335-673d-40f8-bc33-35450ba92680}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        430,
+        216,
+        14,
+        13
+      ],
+      "raw_sha256": "6ded786d708de1ce98b3279021cc7b95a87e61be6039866a695f1fbae5ed430b"
+    },
+    {
+      "name": "upper_and_lower_eyelid_opening",
+      "type": "transparencymask",
+      "uuid": "{e55d75e2-cdb8-44e2-ac23-227c731b15c1}",
+      "parent": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        416,
+        213,
+        36,
+        25
+      ],
+      "raw_sha256": "5afb3f1b987e4519c6578a081d0da800af7a1f967c8096c7815529f6ad6620c4"
+    },
+    {
+      "name": "人物 | 047 | face/eyes/eye_right/lower_eyelid | complete",
+      "type": "paintlayer",
+      "uuid": "{bc984aa5-bc74-40e7-aab2-824ddbcce3a1}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        412,
+        220,
+        38,
+        19
+      ],
+      "raw_sha256": "0a0aff7877766e1932fcc584f3d2078d1526915e9ba9088e3d0d429deb88b073"
+    },
+    {
+      "name": "人物 | 048 | face/eyes/eye_right/upper_eyelid | main_lid",
+      "type": "paintlayer",
+      "uuid": "{538a5f1d-7615-4552-8757-e916939e3793}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        417,
+        208,
+        36,
+        25
+      ],
+      "raw_sha256": "c8b53f930a9329fcb498c0aa3683e3fd645bed81f4915f9e0fc575befd68b770"
+    },
+    {
+      "name": "人物 | 049 | face/eyes/eye_right/eyelid_crease | complete",
+      "type": "paintlayer",
+      "uuid": "{05d74f82-e79b-494e-a987-963a10c7df57}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        421,
+        205,
+        30,
+        8
+      ],
+      "raw_sha256": "c0297a709312ea93c1a929f3762007644fa22929c6d162dbd28e6933b2045731"
+    },
+    {
+      "name": "人物 | face/mouth | opening_contents",
+      "type": "grouplayer",
+      "uuid": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        453,
+        260,
+        32,
+        30
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "050.0 | face/mouth/mouth_interior | complete",
+      "type": "paintlayer",
+      "uuid": "{33c3ea08-2619-4e9b-b207-879a426122b8}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        453,
+        260,
+        32,
+        30
+      ],
+      "raw_sha256": "cf66393d4067e1224c67bf220de28729e06e200888736eb2cabf3246cc9fa290"
+    },
+    {
+      "name": "051.0 | face/mouth/lower_teeth | complete",
+      "type": "paintlayer",
+      "uuid": "{6da0c3a9-f9cb-4ce1-b796-cae92c765925}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        456,
+        279,
+        26,
+        12
+      ],
+      "raw_sha256": "20c1037a5a275ecd4fb694fec5c8a9ad1909d5e0a8a0bfab688d5e19ddceeb79"
+    },
+    {
+      "name": "default_closed_or_back_occlusion",
+      "type": "transparencymask",
+      "uuid": "{72977381-84df-4153-8bb5-b9a574710458}",
+      "parent": "{6da0c3a9-f9cb-4ce1-b796-cae92c765925}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        456,
+        279,
+        26,
+        12
+      ],
+      "raw_sha256": "6287e17fe5efcb191aec8a2578e685d0a1040a0ab53bd1f02c7f49cc6c8fced7"
+    },
+    {
+      "name": "052.0 | face/mouth/tongue | complete",
+      "type": "paintlayer",
+      "uuid": "{f04d969e-bc63-4aa7-be79-a49deaa1922f}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        457,
+        270,
+        24,
+        19
+      ],
+      "raw_sha256": "b6c1cde1b414851fbf424a81711f3ede17c9f80004927656e7a70c9144044200"
+    },
+    {
+      "name": "053.0 | face/mouth/upper_teeth | complete",
+      "type": "paintlayer",
+      "uuid": "{d5d9fe8c-4930-4c05-9a76-eed077809f1d}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        456,
+        257,
+        25,
+        10
+      ],
+      "raw_sha256": "f6e16981c553b7292dbcdd33bdaec18da9221e2903abd3a46daf652f242ea0c8"
+    },
+    {
+      "name": "upper_lip_root_occlusion",
+      "type": "transparencymask",
+      "uuid": "{cddb764f-ef60-4c93-905a-3e2a82e6b999}",
+      "parent": "{d5d9fe8c-4930-4c05-9a76-eed077809f1d}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        456,
+        257,
+        25,
+        10
+      ],
+      "raw_sha256": "05ebe550206fd303711c4c7125c00c7de0b520735448668629fbdbaf2692dd6c"
+    },
+    {
+      "name": "upper_and_lower_lip_opening",
+      "type": "transparencymask",
+      "uuid": "{06aae8b3-f027-44db-a037-b9b3eecf6ca7}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        453,
+        260,
+        32,
+        30
+      ],
+      "raw_sha256": "30ef203b43d11ba08bc696f1274739f6362f2de8d0c06a5780bfcadd21dd1403"
+    },
+    {
+      "name": "人物 | 054 | face/mouth/lower_lip | complete",
+      "type": "paintlayer",
+      "uuid": "{562d4152-fdd0-407d-b6a5-3b9fc4aa9baa}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        451,
+        270,
+        36,
+        25
+      ],
+      "raw_sha256": "c0b01a2407f6dfeb7b0de2f302fb147b33c4212df928a8827701b1565be926bb"
+    },
+    {
+      "name": "人物 | 055 | face/mouth/upper_lip | complete",
+      "type": "paintlayer",
+      "uuid": "{3a9aaeab-44e3-4640-971b-ccb37806068c}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        447,
+        253,
+        44,
+        28
+      ],
+      "raw_sha256": "ef8742c5305bbb6069565652078dce52bafe4d9ae0fbd323ee8516d606fd0ab8"
+    },
+    {
+      "name": "人物 | 056 | face/eyebrows/eyebrow_right | complete",
+      "type": "paintlayer",
+      "uuid": "{ac4945cf-4446-468c-8a9e-8001b45da597}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        410,
+        189,
+        44,
+        9
+      ],
+      "raw_sha256": "ac2e87fac48b53920dfbb5f97fa006736c249ad742aae79f9b6c7ed3dd0cea5a"
+    },
+    {
+      "name": "人物 | 057 | face/eyebrows/eyebrow_left | complete",
+      "type": "paintlayer",
+      "uuid": "{573a191c-1809-420e-a658-f7a50f5dbac3}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        483,
+        189,
+        46,
+        9
+      ],
+      "raw_sha256": "344fd4018ab22f3dcdab42dbfd76acedac4f4ee2ed134b0fe41d947b39e5e9b4"
+    },
+    {
+      "name": "人物 | 058 | face/nose | complete",
+      "type": "paintlayer",
+      "uuid": "{8d5e141b-87cc-49d4-9622-e5cc0fea60bd}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        462,
+        242,
+        15,
+        14
+      ],
+      "raw_sha256": "9a657771099be437b27742a15a42d6452af59d5b78226cbda625e8058db78ef0"
+    },
+    {
+      "name": "人物 | 059 | hair/sidelock/sidelock_right | complete",
+      "type": "paintlayer",
+      "uuid": "{9a2a473e-21db-4388-8c91-718162d418ff}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        367,
+        177,
+        62,
+        162
+      ],
+      "raw_sha256": "d73032279ba2d5294a86e2370eb19d891d34f13d4ff731e45efaf002db9f24a9"
+    },
+    {
+      "name": "side_hair_root_occlusion",
+      "type": "transparencymask",
+      "uuid": "{b56c1e37-ba59-4014-a734-dc33be4610ac}",
+      "parent": "{9a2a473e-21db-4388-8c91-718162d418ff}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        367,
+        177,
+        62,
+        162
+      ],
+      "raw_sha256": "3c3d8a2e9915fe90aebdfb8615742b66e41f63cd0acf2d0ab4a85b3e00eddb73"
+    },
+    {
+      "name": "人物 | 060 | hair/sidelock/sidelock_left | complete",
+      "type": "paintlayer",
+      "uuid": "{2799914a-e942-4cdb-8749-c2d6ef60234a}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        509,
+        177,
+        60,
+        162
+      ],
+      "raw_sha256": "60f0088f4c8bd5d57cb36dc7271fa75576d09232110d8ef50baea973067ef7ae"
+    },
+    {
+      "name": "side_hair_root_occlusion",
+      "type": "transparencymask",
+      "uuid": "{c72912b7-fe81-470e-acdf-0f5d4971c420}",
+      "parent": "{2799914a-e942-4cdb-8749-c2d6ef60234a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        509,
+        177,
+        60,
+        162
+      ],
+      "raw_sha256": "f1fcdafd7117a45188a5a04427d1ce928a0a1e5f807e8d3bf47ba3f5c237c0c2"
+    },
+    {
+      "name": "人物 | 061 | head_accessories/bun_ornament | complete",
+      "type": "paintlayer",
+      "uuid": "{bbdf4cef-6d2f-461d-b89a-0478efeb5863}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        418,
+        63,
+        101,
+        53
+      ],
+      "raw_sha256": "3889626c99fa9b20e92f4c1f51f48dd367260855cc81326452ccbbcf8034afc2"
+    },
+    {
+      "name": "人物 | 061.5 | head_accessories/crown_frame | mounting_root",
+      "type": "paintlayer",
+      "uuid": "{27a9fa4e-8359-483b-be05-600c033be350}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        390,
+        116,
+        158,
+        34
+      ],
+      "raw_sha256": "29658f6b40f94ca5ef3c4973d25e248156968e3a1c3d76a997e10d23c465e77c"
+    },
+    {
+      "name": "人物 | 062 | head_accessories/forehead_pendant | mounting_root",
+      "type": "paintlayer",
+      "uuid": "{07b882af-c65d-4977-ad8a-2cb190fbbf29}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        465,
+        125,
+        8,
+        9
+      ],
+      "raw_sha256": "d9590ff5490fc2b946419f12fb96f6d66ce79da13a9bf495f5c5966d0f45a2d7"
+    },
+    {
+      "name": "人物 | 063 | hair/side_hair/side_hair_right | complete",
+      "type": "paintlayer",
+      "uuid": "{eb9f4ebc-74ea-4247-aa0c-468fc4aa54d6}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        367,
+        103,
+        102,
+        156
+      ],
+      "raw_sha256": "8a6ad20c07b23e4da9b7723c375cf623ea76ea9d45c516b93c20eba76ebb1b64"
+    },
+    {
+      "name": "人物 | 064 | hair/side_hair/side_hair_left | complete",
+      "type": "paintlayer",
+      "uuid": "{431dc8ad-bd0d-4ddc-94e9-a49f6af32517}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        469,
+        103,
+        100,
+        156
+      ],
+      "raw_sha256": "076bca95a6213220aecf650867abad9d0df089448b5ef515629436a8bfd7500e"
+    },
+    {
+      "name": "人物 | 065 | head_accessories/forehead_pendant | visible_front",
+      "type": "paintlayer",
+      "uuid": "{8f15e56d-ad11-472d-9b95-f460a1037aaf}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        454,
+        132,
+        28,
+        58
+      ],
+      "raw_sha256": "4eff3b00eddaea243786f604c8466a685cc5710e71af89f44d69ce8f93e52309"
+    },
+    {
+      "name": "人物 | 066 | face/eyes/eye_left/upper_eyelid | outer_lash_front",
+      "type": "paintlayer",
+      "uuid": "{82f93c9a-8c37-433f-b573-72a46f9a7ee7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        519,
+        213,
+        10,
+        15
+      ],
+      "raw_sha256": "920dc564f21cac159886495851c4ab282086ce816083c7c11cd2d7b726eb3e3f"
+    },
+    {
+      "name": "人物 | 066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front",
+      "type": "paintlayer",
+      "uuid": "{495462dd-1159-4a01-bed3-efa147ef134a}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        410,
+        209,
+        11,
+        20
+      ],
+      "raw_sha256": "88964058fba76024f500751fb5f43c02ada511972c54ebf03d625d5337bf2daa"
+    },
+    {
+      "name": "人物 | 067 | head_accessories/crown_frame | visible_front",
+      "type": "paintlayer",
+      "uuid": "{d85d2872-2d37-4366-828f-d2f01636d589}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        320,
+        15,
+        299,
+        126
+      ],
+      "raw_sha256": "566080a375ae822996c61feaccb3dc54d3ae886adbdf253aa46c63b0c2783426"
+    }
+  ],
+  "after": [
+    {
+      "name": "人物 | 001 | hair/back_hair/long_hair_right | complete",
+      "type": "paintlayer",
+      "uuid": "{78bdd5cb-6eb4-4702-9114-9fc564ccc057}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        223,
+        169,
+        247,
+        1261
+      ],
+      "raw_sha256": "a9fd9621aa816bd98bff6b00973486ec583de2c7474f60afeb9a04136145c614"
+    },
+    {
+      "name": "人物 | 002 | hair/back_hair/long_hair_left | complete",
+      "type": "paintlayer",
+      "uuid": "{c3468f00-ed70-451f-a645-8ede54c178db}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        468,
+        105,
+        246,
+        1324
+      ],
+      "raw_sha256": "cc03d139ad6372d9e09c8e4ff8defb8efeb63b04497000d456e85b811a539098"
+    },
+    {
+      "name": "人物 | 003 | hair/back_hair/cap | complete",
+      "type": "paintlayer",
+      "uuid": "{8fb0171e-1b1b-4b23-b8c4-776c50428166}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        372,
+        110,
+        194,
+        262
+      ],
+      "raw_sha256": "a952e5277d776016901a0193e091c58bdf44de3698ad1757985340c873429580"
+    },
+    {
+      "name": "人物 | 004 | hair/bun | complete",
+      "type": "paintlayer",
+      "uuid": "{78f18acd-6ca1-41e9-9fdf-5ca0396e89e6}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        420,
+        35,
+        97,
+        87
+      ],
+      "raw_sha256": "695615f8fa6e54757a36dd708bf85fc7b9fc83394363ef1c21cea2254fd4c8b5"
+    },
+    {
+      "name": "人物 | 005 | head_accessories/crown_pendants/crown_pendant_right | complete",
+      "type": "paintlayer",
+      "uuid": "{1ea39c60-9bc6-4eaa-9d3e-75f9dddc4c84}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        327,
+        111,
+        26,
+        79
+      ],
+      "raw_sha256": "656aeb760a7c6026eb675c52588f9ad66a2ca5cb43736bfb1b0914fc4be01385"
+    },
+    {
+      "name": "人物 | 006 | head_accessories/crown_pendants/crown_pendant_left | complete",
+      "type": "paintlayer",
+      "uuid": "{fab3a085-522d-45c4-bc93-732eb87bddd2}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        585,
+        111,
+        25,
+        79
+      ],
+      "raw_sha256": "8deb3e4234c95637ac88b0549748ed2a898aaed77440af4a832bf6bcf328291e"
+    },
+    {
+      "name": "人物 | 007 | legs/leg_right/anklet_back | complete",
+      "type": "paintlayer",
+      "uuid": "{a69151f3-3451-4a3d-9d3b-d040edd5142a}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        417,
+        1495,
+        44,
+        12
+      ],
+      "raw_sha256": "39887007ce966e71870ca070471bbaadb2e3145172d666441d9466496a0985bf"
+    },
+    {
+      "name": "default_closed_or_back_occlusion",
+      "type": "transparencymask",
+      "uuid": "{940fb78a-784a-449e-8b43-157516d1ee74}",
+      "parent": "{a69151f3-3451-4a3d-9d3b-d040edd5142a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        417,
+        1495,
+        44,
+        12
+      ],
+      "raw_sha256": "8889eb3cdd3d0ac94711b47ce78b430d8e23a7b31ecc994c56d0c3310c87674a"
+    },
+    {
+      "name": "人物 | 008 | legs/leg_left/anklet_back | complete",
+      "type": "paintlayer",
+      "uuid": "{6bd3b73d-a184-4745-9482-e60925a5b2a5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        477,
+        1496,
+        45,
+        11
+      ],
+      "raw_sha256": "689885c8200a06f48efcb860956745000dabf68f35643c68fec90bb508180dd3"
+    },
+    {
+      "name": "default_closed_or_back_occlusion",
+      "type": "transparencymask",
+      "uuid": "{f3172c38-01e8-47ff-b748-5225213e78c7}",
+      "parent": "{6bd3b73d-a184-4745-9482-e60925a5b2a5}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        477,
+        1496,
+        45,
+        11
+      ],
+      "raw_sha256": "92239e028c6a89c493c27a46dab9b9198bab95a6af15ce6f95aeadce38a66313"
+    },
+    {
+      "name": "衣服 | 002 | inner_long_dress/long_skirt | back",
+      "type": "paintlayer",
+      "uuid": "{e5a3c677-ecad-42ef-b01a-d33f89032383}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        292,
+        583,
+        355,
+        945
+      ],
+      "raw_sha256": "3dc474c8f317869a518d3e0124a461eafd054bc8c3df71cf783ecb0ae57d5d18"
+    },
+    {
+      "name": "人物 | 009 | legs/leg_right/leg | complete",
+      "type": "paintlayer",
+      "uuid": "{9c64defe-cd1d-47cc-a124-83149984fed6}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        332,
+        678,
+        137,
+        964
+      ],
+      "raw_sha256": "674f75b4bdc95195cf6d96e3e599383ec7f515a9b6e6c04e367c69b13b2a013c"
+    },
+    {
+      "name": "assembly | thigh edge behind opaque sleeve cuff",
+      "type": "transparencymask",
+      "uuid": "{7c29ac59-8d84-48f3-a868-5605c71503f9}",
+      "parent": "{9c64defe-cd1d-47cc-a124-83149984fed6}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        332,
+        678,
+        137,
+        964
+      ],
+      "raw_sha256": "0cd30439607a2fadbe18d808c5c25fd0df8f34242f8cbf932dc61d6a0f9b6c86"
+    },
+    {
+      "name": "人物 | 010 | legs/leg_left/leg | complete",
+      "type": "paintlayer",
+      "uuid": "{31dfffc8-e688-485e-92f6-e4d8d5197017}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        467,
+        678,
+        139,
+        965
+      ],
+      "raw_sha256": "2de094fe6fa9067cca414cc58b8c31f4afcb3d36abebcea951b4cca0c682418a"
+    },
+    {
+      "name": "assembly | thigh edge behind opaque sleeve cuff",
+      "type": "transparencymask",
+      "uuid": "{b9840608-4f8e-43c7-9b57-23d7ebe7ca1f}",
+      "parent": "{31dfffc8-e688-485e-92f6-e4d8d5197017}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        467,
+        678,
+        139,
+        965
+      ],
+      "raw_sha256": "1a1245061a62653547b12d87b43df8e3d2d35acd28f76250f3cce6d8135b223c"
+    },
+    {
+      "name": "人物 | 011 | legs/leg_right/anklet_front | complete",
+      "type": "paintlayer",
+      "uuid": "{abe8365b-9f4b-4562-9b75-7b85a57ac9db}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        414,
+        1502,
+        49,
+        14
+      ],
+      "raw_sha256": "3a83b75382004ff78881605a3433f0a785fe6861db940b66c35b1229c8ccc50b"
+    },
+    {
+      "name": "人物 | 012 | legs/leg_left/anklet_front | complete",
+      "type": "paintlayer",
+      "uuid": "{aa2ecc80-b5e4-4ff8-b9bb-9b0bf16911db}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        476,
+        1502,
+        47,
+        14
+      ],
+      "raw_sha256": "41e47b0bb1779e5846364a378d306fd5c1036196540832ee93846b1cc8969a3a"
+    },
+    {
+      "name": "人物 | 013 | pelvis | complete",
+      "type": "paintlayer",
+      "uuid": "{9f746d95-b938-40f1-81e3-d54ee20c5345}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        346,
+        566,
+        247,
+        249
+      ],
+      "raw_sha256": "f86c3a499ac975b3b5627d5d9296e4ba52a1850137c825a8ea5f9e2d550b5d95"
+    },
+    {
+      "name": "衣服 | 040 | sleeve_screen_left/right_hanging_drape | back",
+      "type": "paintlayer",
+      "uuid": "{8ad95953-dec7-41c0-9122-dc098da9cc27}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        22,
+        124
+      ],
+      "bounds": [
+        90,
+        436,
+        295,
+        1087
+      ],
+      "raw_sha256": "4c1958a5788a2f1d3521ef08ac646467d3ea182457d863943276f969ffa18b3d"
+    },
+    {
+      "name": "衣服 | 041 | sleeve_screen_right/left_hanging_drape | back",
+      "type": "paintlayer",
+      "uuid": "{c478f7c3-f600-4d54-9ab4-b66f003297c7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        12,
+        124
+      ],
+      "bounds": [
+        550,
+        436,
+        296,
+        1087
+      ],
+      "raw_sha256": "7c025a2dc900939af898490069d97607aa915f4169ba4f7691528d8de5f7f971"
+    },
+    {
+      "name": "人物 | 019 | arms/arm_right/upper_arm | complete",
+      "type": "paintlayer",
+      "uuid": "{2b6fac33-46ff-46bf-9be1-1aedf229de0d}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        316,
+        353,
+        99,
+        263
+      ],
+      "raw_sha256": "505163f5d3c6d3f125e800f384b32a1cb3aa4923bd0f78233a7c8a25c9ef50ef"
+    },
+    {
+      "name": "人物 | 020 | arms/arm_right/forearm | complete",
+      "type": "paintlayer",
+      "uuid": "{1b191d7f-97db-4096-bcd6-8151771e9c8f}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        286,
+        574,
+        81,
+        227
+      ],
+      "raw_sha256": "45b8719bb9dce44d9f1fcc1cf01eb42c35e7d16ad86379bbcc01ff03a649fd78"
+    },
+    {
+      "name": "upper_arm_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{81f0e613-f46e-4b45-9ec7-30fcc8707810}",
+      "parent": "{1b191d7f-97db-4096-bcd6-8151771e9c8f}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        286,
+        574,
+        81,
+        227
+      ],
+      "raw_sha256": "95851a2952478f4ffd997f1f55770ccca66993690b93e07d0f7cb5a1db484fc3"
+    },
+    {
+      "name": "人物 | 022 | arms/arm_left/forearm | complete",
+      "type": "paintlayer",
+      "uuid": "{8859c2c1-7cd6-46df-a2e9-f904fdb54fe6}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        571,
+        555,
+        81,
+        242
+      ],
+      "raw_sha256": "9a15967c3d7f1d82cb42b594989f53fd26e635a78af5069226f9c979fded55f0"
+    },
+    {
+      "name": "人物 | 023 | arms/arm_left/upper_arm | complete",
+      "type": "paintlayer",
+      "uuid": "{20733596-023e-467b-84be-6a5b476585e3}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        523,
+        353,
+        98,
+        244
+      ],
+      "raw_sha256": "504a19b7d2f12ce08217015914bf7b157b70e074e194bb438e8b93f4bb9b4918"
+    },
+    {
+      "name": "forearm_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{99f4ad1e-06fc-4e92-894c-9a3581c3682e}",
+      "parent": "{20733596-023e-467b-84be-6a5b476585e3}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        523,
+        353,
+        98,
+        244
+      ],
+      "raw_sha256": "f08c808f830114748a80410cb28e776639bd5ede78425bb003bcbb8c57d3cd98"
+    },
+    {
+      "name": "衣服 | 001 | collar_shoulder_cape/standing_collar | back",
+      "type": "paintlayer",
+      "uuid": "{e550c86e-9940-4336-ad21-bbb2c58af453}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        431,
+        287,
+        77,
+        63
+      ],
+      "raw_sha256": "f466164fc79f32ef6ecaf973527976d5caba1569b1a5f8237852879fc967fd09"
+    },
+    {
+      "name": "人物 | 030 | neck | complete",
+      "type": "paintlayer",
+      "uuid": "{15144020-c825-4901-a742-08becc748c51}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        410,
+        267,
+        118,
+        99
+      ],
+      "raw_sha256": "d5dc5b83fd1870015d3da7ef8b4c5fea92d01ec51e474e507365be7f97023175"
+    },
+    {
+      "name": "人物 | 031 | body/torso | complete",
+      "type": "paintlayer",
+      "uuid": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        337,
+        348,
+        264,
+        381
+      ],
+      "raw_sha256": "d422b5903d4937bea400a8b6729d32edad84b0336c312ea02d3c78414370e33b"
+    },
+    {
+      "name": "neck_and_shoulder_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{a439fdf7-01a7-4073-8087-bcbb7c4d288a}",
+      "parent": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        337,
+        348,
+        264,
+        381
+      ],
+      "raw_sha256": "f8d2d0681750d376d07eb5d631dd1273d75393674e63e0dba11411024f6f46f6"
+    },
+    {
+      "name": "pelvis_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{3d3120f6-4b89-4dd5-a50c-30e93443720a}",
+      "parent": "{ba0c4b14-931a-404b-839f-3be36c4824cb}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        337,
+        348,
+        264,
+        381
+      ],
+      "raw_sha256": "a21cc2ef4470b2927938b37ad7645360058817c41b8bcbd045bbf1b2837ed357"
+    },
+    {
+      "name": "人物 | 032 | body/breast | complete",
+      "type": "paintlayer",
+      "uuid": "{8285ee5c-57cc-4f94-88fa-f4f345c8f094}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        365,
+        395,
+        208,
+        134
+      ],
+      "raw_sha256": "2e0467a81466f0b783b91ad6d956854036682da13ddc1ca8bd1ce0abae452833"
+    },
+    {
+      "name": "torso_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{bfddc43a-3f8b-43aa-8a27-de8f36c1f3c8}",
+      "parent": "{8285ee5c-57cc-4f94-88fa-f4f345c8f094}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        365,
+        395,
+        208,
+        134
+      ],
+      "raw_sha256": "d41a9d9233fcf1de2e8e9093dfa3d12305725fbd31c4f94e6514138570024798"
+    },
+    {
+      "name": "衣服 | 003 | waist_sash_and_knot/waist_band | back",
+      "type": "paintlayer",
+      "uuid": "{4916b52f-5125-4026-8071-6b46ac6cb8fb}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        387,
+        548,
+        165,
+        19
+      ],
+      "raw_sha256": "bf81af72f32e09f5e40457461e28efc44406a17cb55d47680fcbaa6e5b65b006"
+    },
+    {
+      "name": "衣服 | 010 | inner_long_dress/long_skirt | front",
+      "type": "paintlayer",
+      "uuid": "{88686b4d-6946-4a8d-98e1-55b7fdc172ee}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        303,
+        581,
+        339,
+        952
+      ],
+      "raw_sha256": "f874dc17ea13754db0a323d0b0ef67c3d9f4093ed4383a0d5d5a5aa191af0cfb"
+    },
+    {
+      "name": "衣服 | 010 | central_blue_drapery/central_folded_tail | back waist root",
+      "type": "paintlayer",
+      "uuid": "{c9457b67-528d-427d-af43-4281aa922598}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        454,
+        563,
+        31,
+        27
+      ],
+      "raw_sha256": "3323bdf7ef2e87d462d248403cd3f16fc99eaa3375cbe21d6d72e924ad6ed9d8"
+    },
+    {
+      "name": "衣服 | 010 | central_blue_drapery/left_long_panel | back waist root",
+      "type": "paintlayer",
+      "uuid": "{307821bb-d83b-4231-8d60-dadec680776e}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        477,
+        563,
+        20,
+        27
+      ],
+      "raw_sha256": "7ea2908b52506b2866de9dce96cd04aaabb83375577a82388ca004aaa8c5a354"
+    },
+    {
+      "name": "衣服 | 010 | central_blue_drapery/right_long_panel | back waist root",
+      "type": "paintlayer",
+      "uuid": "{dd2466df-17fe-4d19-b18a-91c7ea7e52d5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        445,
+        563,
+        17,
+        27
+      ],
+      "raw_sha256": "5658397e2ab6726adfc3574653c0c25ef7e7032f15dda3fcce888eeb67937509"
+    },
+    {
+      "name": "衣服 | 011 | inner_long_dress/bodice_and_waist",
+      "type": "paintlayer",
+      "uuid": "{0ff6c837-f99e-46f0-9254-0734fffcf426}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        401,
+        439,
+        135,
+        153
+      ],
+      "raw_sha256": "108e623929da8a6188bb074b68be77e9ae2d26b6a90207a42c559575405d8e82"
+    },
+    {
+      "name": "衣服 | 020 | central_blue_drapery/central_folded_tail | front",
+      "type": "paintlayer",
+      "uuid": "{d4dc4034-3c7b-4d81-a392-a96dfc94ffb4}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        430,
+        590,
+        89,
+        943
+      ],
+      "raw_sha256": "365f0ea0e4397d84416e37b72c638fb9692312c5db01e7a11fb95cb2dff4da3c"
+    },
+    {
+      "name": "衣服 | 021 | central_blue_drapery/left_long_panel | front",
+      "type": "paintlayer",
+      "uuid": "{1ec6374f-bef4-4c46-8e80-4595fee1c0ac}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        476,
+        590,
+        75,
+        792
+      ],
+      "raw_sha256": "eec445d5f584eb963b455bcf6dd106d0d50d765378a2abac98598ab3bc98361f"
+    },
+    {
+      "name": "衣服 | 022 | central_blue_drapery/right_long_panel | front",
+      "type": "paintlayer",
+      "uuid": "{d8296fd8-bf24-4a56-a36c-7d0d18d245a7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        393,
+        590,
+        70,
+        792
+      ],
+      "raw_sha256": "37d50acefc1a18feba62b8f5ad3b91b2f47245fc22bb1e89790b6911d6c8cf81"
+    },
+    {
+      "name": "衣服 | 025 | waist_sash_and_knot/waist_band | front",
+      "type": "paintlayer",
+      "uuid": "{8cdb1993-c9ae-4c2f-a176-574bb4ed45cd}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        411,
+        552,
+        117,
+        16
+      ],
+      "raw_sha256": "c8a73610306efef843d2ffb36aa2e02c1380fa1c2590e4710a2b4cd540a8fc31"
+    },
+    {
+      "name": "衣服 | 030 | outer_robe_body/left_robe_panel",
+      "type": "paintlayer",
+      "uuid": "{172268e7-3a44-41e9-b43f-988e88b5c04d}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        491,
+        375,
+        324,
+        1225
+      ],
+      "raw_sha256": "38d625f4a78e51300b4772f273b4ee800b8458fa974c29d1a11e07fe3448817d"
+    },
+    {
+      "name": "衣服 | 031 | outer_robe_body/right_robe_panel",
+      "type": "paintlayer",
+      "uuid": "{a0a40daf-0007-43bf-89ee-53584b187597}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        123,
+        375,
+        323,
+        1225
+      ],
+      "raw_sha256": "dbd300536b7743dd53968763e98a6bd2c787ea6c39835d84e3f4b49ee6a568aa"
+    },
+    {
+      "name": "衣服 | 042 | sleeve_screen_left/right_sleeve_tube | back",
+      "type": "paintlayer",
+      "uuid": "{219db08e-244c-4948-b07f-3de0e92fa247}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        22,
+        124
+      ],
+      "bounds": [
+        268,
+        762,
+        75,
+        25
+      ],
+      "raw_sha256": "a91adac049390aa7fc804ac11fd8b0b6bcbe9067399b8ae79f336008cc7bc701"
+    },
+    {
+      "name": "衣服 | 043 | sleeve_screen_right/left_sleeve_tube | back",
+      "type": "paintlayer",
+      "uuid": "{11a7e8fa-7f25-4702-9759-d042b81e7fd5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        12,
+        124
+      ],
+      "bounds": [
+        595,
+        762,
+        75,
+        24
+      ],
+      "raw_sha256": "9cac7f06781c4f1386e83fce07529936826693a56cbfb90f28552f6006c7f6ec"
+    },
+    {
+      "name": "衣服 | 050 | sleeve_screen_left/right_sleeve_tube | front",
+      "type": "paintlayer",
+      "uuid": "{96c3b772-c261-41ac-bc54-f7abb41d868b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        22,
+        124
+      ],
+      "bounds": [
+        267,
+        375,
+        130,
+        428
+      ],
+      "raw_sha256": "f50512b1c6ca9e4fec6af636c9f694dd0ee8808d12ba3750d2697bbef2df76c5"
+    },
+    {
+      "name": "衣服 | 051 | sleeve_screen_right/left_sleeve_tube | front",
+      "type": "paintlayer",
+      "uuid": "{d19a900a-c5cb-412a-b5d2-f6c0ee16c6c1}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        12,
+        124
+      ],
+      "bounds": [
+        538,
+        364,
+        137,
+        438
+      ],
+      "raw_sha256": "acb32a782849ddecc6c55dac2c9da735f58d88a631c8a3df8699e292f5ab35d2"
+    },
+    {
+      "name": "衣服 | 060 | sleeve_screen_left/right_hanging_drape | front",
+      "type": "paintlayer",
+      "uuid": "{b2428530-2f42-444f-9384-72fefc350a41}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        22,
+        124
+      ],
+      "bounds": [
+        189,
+        401,
+        199,
+        429
+      ],
+      "raw_sha256": "0b496859663c5573ef2fd8c7f9babff71bfcbdbc1895ebc3166e7c3eed9204b9"
+    },
+    {
+      "name": "衣服 | 061 | sleeve_screen_right/left_hanging_drape | front",
+      "type": "paintlayer",
+      "uuid": "{1f5c1e44-f47a-454a-bfbc-4797e3d650ef}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        12,
+        124
+      ],
+      "bounds": [
+        554,
+        368,
+        190,
+        462
+      ],
+      "raw_sha256": "00f2d0eb613a38e8eb9a1942ac84223754f4dc3f62ca9a25bd416650ec209a7b"
+    },
+    {
+      "name": "衣服 | 070 | collar_shoulder_cape/left_shoulder_cape",
+      "type": "paintlayer",
+      "uuid": "{51034d71-cb80-4d01-9473-e759281b1b29}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        490,
+        334,
+        157,
+        194
+      ],
+      "raw_sha256": "da8c8c30c036c65c92c49b6ddcd152c0e030387870f1f80109af7830ce0b6340"
+    },
+    {
+      "name": "衣服 | 071 | collar_shoulder_cape/right_shoulder_cape",
+      "type": "paintlayer",
+      "uuid": "{407341ab-e194-43cd-ae31-af19d63146d5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        291,
+        330,
+        162,
+        199
+      ],
+      "raw_sha256": "34f90eb7475bf1cbbd9b7ffabb455f00237435a5da4e16e1398e4f8aa33d5e34"
+    },
+    {
+      "name": "衣服 | 072 | collar_shoulder_cape/standing_collar | front",
+      "type": "paintlayer",
+      "uuid": "{6b83d0e9-a4ae-4aeb-bfa5-0a646d1449de}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        416,
+        292,
+        107,
+        78
+      ],
+      "raw_sha256": "14253c1597bc9b9515fe1df6016080a203139e1db15809ecc6649ae2538e693a"
+    },
+    {
+      "name": "衣服 | 080 | collar_jewel_fastener/left_beaded_chain",
+      "type": "paintlayer",
+      "uuid": "{fb60bdb3-3f93-472b-8558-418b66aef8c7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        472,
+        376,
+        26,
+        17
+      ],
+      "raw_sha256": "deb91b1790902652e3d1a49f8ab579ba4993c06351c91b2d0a53898fe8c42ec2"
+    },
+    {
+      "name": "衣服 | 081 | collar_jewel_fastener/right_beaded_chain",
+      "type": "paintlayer",
+      "uuid": "{d39365cf-0a8c-43bd-9ee3-b54aa975f43b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        442,
+        375,
+        25,
+        18
+      ],
+      "raw_sha256": "25997d09ec67baf50c24404805df42dd2cdf694646604927c4aa87c795af144b"
+    },
+    {
+      "name": "衣服 | 082 | collar_jewel_fastener/central_pendant/hanging_bead",
+      "type": "paintlayer",
+      "uuid": "{61e5ae03-d22b-41ca-b38a-65a6126c47ae}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        464,
+        381,
+        11,
+        12
+      ],
+      "raw_sha256": "3ba64b07b72abac943418ed9abfbc69100ee5e6a76de57699c05147cfb2a9025"
+    },
+    {
+      "name": "衣服 | 083 | collar_jewel_fastener/central_pendant/connecting_ring",
+      "type": "paintlayer",
+      "uuid": "{b7def7a7-308a-4138-b76f-b46029eddd3e}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        463,
+        371,
+        12,
+        12
+      ],
+      "raw_sha256": "6752ebf5c59b28327a96664c0c8acaf5073d85f92d157db1a03dcb834384c780"
+    },
+    {
+      "name": "衣服 | 084 | collar_jewel_fastener/fixed_jewel",
+      "type": "paintlayer",
+      "uuid": "{645a9e61-0c21-4af6-a427-0119d914f7ed}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        454,
+        338,
+        31,
+        36
+      ],
+      "raw_sha256": "18915b4a2d1b7f0a07926578c0bca271ef0a5f2e2b5b0a4902f3092747047eee"
+    },
+    {
+      "name": "衣服 | 085 | chest_ornament",
+      "type": "paintlayer",
+      "uuid": "{6a4ae882-d8e8-427e-90c9-50cad7a28d52}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        396,
+        382,
+        142,
+        151
+      ],
+      "raw_sha256": "128fd50b80b63d2038cbd0e5e9cce47c5e2890d1b0b0c9c76446d2ab6c9ed696"
+    },
+    {
+      "name": "衣服 | 100 | waist_pendant_and_tassel/upper_suspension",
+      "type": "paintlayer",
+      "uuid": "{43cad39f-0269-4158-9b91-d08305696e07}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        458,
+        582,
+        21,
+        119
+      ],
+      "raw_sha256": "ccdf4ada3a24baf2e4063a78448297125d14fb26c5328ab0a4daf6009b24cac5"
+    },
+    {
+      "name": "waist opening | hide completed suspension root",
+      "type": "transparencymask",
+      "uuid": "{8ca01bfc-05be-4332-bcc1-78dd89d43215}",
+      "parent": "{43cad39f-0269-4158-9b91-d08305696e07}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        458,
+        582,
+        21,
+        119
+      ],
+      "raw_sha256": "1816578465244f3f71ada83bc511fea613bb0bf2cf2b1454ff14ec1ec1dce71a"
+    },
+    {
+      "name": "衣服 | 101 | waist_sash_and_knot/left_short_tail",
+      "type": "paintlayer",
+      "uuid": "{9226d628-004f-4f37-87d9-e74a9d04bda5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        474,
+        558,
+        22,
+        100
+      ],
+      "raw_sha256": "49214657fabf5acb65c01c9ada4054b6e0d690b72e58fcbf1f36c304aa43abe6"
+    },
+    {
+      "name": "衣服 | 102 | waist_sash_and_knot/right_short_tail",
+      "type": "paintlayer",
+      "uuid": "{62e0a389-d2f4-4800-9bb2-038882cc7155}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        445,
+        561,
+        21,
+        97
+      ],
+      "raw_sha256": "f610af8ff643c869f1086aade79293889b20786a281e3df9f203a71f37d37a37"
+    },
+    {
+      "name": "衣服 | 103 | waist_sash_and_knot/left_short_loop",
+      "type": "paintlayer",
+      "uuid": "{bd16d7de-c2b4-45ae-8990-eec8deff4afd}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        473,
+        556,
+        16,
+        64
+      ],
+      "raw_sha256": "3318f70c0e022442d4260b31e70ab4771404d9b1abc5bb32e6d0359afd1ba683"
+    },
+    {
+      "name": "衣服 | 104 | waist_sash_and_knot/right_short_loop",
+      "type": "paintlayer",
+      "uuid": "{c1cbc3a2-d0f9-49fb-9627-04ab64514185}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        448,
+        555,
+        21,
+        73
+      ],
+      "raw_sha256": "74e5f296e5bda946131be685f336b7acca85ddf5beb9900b2ec47d173b6f549b"
+    },
+    {
+      "name": "衣服 | 105 | waist_sash_and_knot/center_knot",
+      "type": "paintlayer",
+      "uuid": "{e56028a1-05a7-4439-b854-3755795088a8}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        458,
+        554,
+        23,
+        17
+      ],
+      "raw_sha256": "f655c966f1a8d9d9ca6d3c786395711fd51a57a2d4065dff63c236660ab00882"
+    },
+    {
+      "name": "衣服 | 108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+      "type": "paintlayer",
+      "uuid": "{123029a7-4417-4722-952d-711c0d1de0be}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        461,
+        740,
+        16,
+        57
+      ],
+      "raw_sha256": "6803f3293bbd2023f52ef292ba2afb4bd92eb8bba43f90bdb57bd15af9068c5d"
+    },
+    {
+      "name": "衣服 | 109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+      "type": "paintlayer",
+      "uuid": "{776bd1f8-30ad-4987-8621-e17715086c00}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        459,
+        791,
+        20,
+        71
+      ],
+      "raw_sha256": "cc8d02fb70505722a66a651b69c8c512c2f31673c5d97f2057e87f40fc0cba7c"
+    },
+    {
+      "name": "衣服 | 110 | waist_pendant_and_tassel/snowflake_medallion",
+      "type": "paintlayer",
+      "uuid": "{78ecc71b-dc7b-4b0b-85c9-4767a217fbdf}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        449,
+        698,
+        40,
+        50
+      ],
+      "raw_sha256": "631ac9361896ddd3c3e294ebad939064802c2d75d013d8c884624550ef11bd89"
+    },
+    {
+      "name": "衣服 | 111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+      "type": "paintlayer",
+      "uuid": "{9e78b6fa-c670-4d95-b36b-2a54100c49c4}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        457,
+        857,
+        25,
+        49
+      ],
+      "raw_sha256": "0c02177a4da1f6527a59d84f2a5171671f172be371a4f389adadb2b8f7c571da"
+    },
+    {
+      "name": "衣服 | 112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+      "type": "paintlayer",
+      "uuid": "{3682b021-2cc9-4e2e-bf71-de6855604ba0}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        450,
+        899,
+        41,
+        48
+      ],
+      "raw_sha256": "54934c322d72fce999d20653f9bcbd97afc3630e89a668ae37cae89024c51d3b"
+    },
+    {
+      "name": "衣服 | 113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+      "type": "paintlayer",
+      "uuid": "{c18087f9-e383-4e8e-9859-7042fb577352}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        468,
+        977,
+        4,
+        3
+      ],
+      "raw_sha256": "104cdd238f5ec00598c646a5d8be3a46c25ce44af07b766531507c35c7f6afaa"
+    },
+    {
+      "name": "衣服 | 114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+      "type": "paintlayer",
+      "uuid": "{f89977f0-b069-4ed7-8838-415bf1b58db1}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        453,
+        968,
+        33,
+        38
+      ],
+      "raw_sha256": "053cd4db25b64bb1a4dfdfc04b84c1e044c75e10b20dcf48f805a0a7cf6790e8"
+    },
+    {
+      "name": "衣服 | 115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front",
+      "type": "paintlayer",
+      "uuid": "{62d23f21-b9d4-423d-8c97-d270a780fde7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        463,
+        979,
+        12,
+        12
+      ],
+      "raw_sha256": "332a17a9f93546a51c1b3a8a94ea6599bbd41448514db5fc5ff29797d501650d"
+    },
+    {
+      "name": "衣服 | 116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+      "type": "paintlayer",
+      "uuid": "{e55503a6-9bfa-454d-a5a3-5bca7fa6b414}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        463,
+        947,
+        12,
+        13
+      ],
+      "raw_sha256": "025b9b989b72fcc75085f3266350ec2825f1b0c0cc07a12bf7f83689fb8336ff"
+    },
+    {
+      "name": "衣服 | 117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+      "type": "paintlayer",
+      "uuid": "{e472a31e-76f5-4720-8a96-511fb991110e}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        453,
+        940,
+        33,
+        32
+      ],
+      "raw_sha256": "81bc00a3e5c889912fe70609c92838aacba5ba69a1e69204616dc7fa08fb5b73"
+    },
+    {
+      "name": "衣服 | 118 | waist_pendant_and_tassel/long_tassel",
+      "type": "paintlayer",
+      "uuid": "{9d4d0fb9-c218-4719-a8ea-8d50600e69f4}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        17,
+        124
+      ],
+      "bounds": [
+        445,
+        1002,
+        54,
+        424
+      ],
+      "raw_sha256": "a070aeb3f994beb1fb7bd974144462aad9c6116f4ec75245b6eca614facbb504"
+    },
+    {
+      "name": "人物 | 014 | arms/arm_right/hand/little_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{2722ff9c-2e16-4c92-9737-64f66c4fd839}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        290,
+        838,
+        30,
+        45
+      ],
+      "raw_sha256": "d57bf8ecae6856a958224e7b237dcf7c719475fedca8ea9e2fef6c2a1e8a1d7a"
+    },
+    {
+      "name": "人物 | 015 | arms/arm_right/hand/ring_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{3fd418d2-70da-46d0-bf21-579beff475c5}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        291,
+        845,
+        30,
+        40
+      ],
+      "raw_sha256": "26b0d59768c54d82dc06f68e96500eeb8eec3abeeca88090b0cf5704a714a604"
+    },
+    {
+      "name": "人物 | 016 | arms/arm_right/hand/middle_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{ffa7ef3e-a94d-4d76-86ad-e7da8a3c4f9c}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        289,
+        840,
+        33,
+        59
+      ],
+      "raw_sha256": "1e5ebf4dd8ca5db12b2b85756e0a7ab18bc139a02907568a73d488d11a8dab06"
+    },
+    {
+      "name": "人物 | 017 | arms/arm_right/hand/index_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{17cd49df-01be-4b6a-ba96-3518f814b3f9}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        287,
+        834,
+        32,
+        70
+      ],
+      "raw_sha256": "0ac14a22b096f3e0cce1b95e7392a2b8a36ced6ddfb74d881ec7fdf42cb05d8b"
+    },
+    {
+      "name": "人物 | 018 | arms/arm_right/hand/thumb | complete",
+      "type": "paintlayer",
+      "uuid": "{37bcea3b-7389-4853-ab97-45729c27cb54}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        304,
+        818,
+        20,
+        52
+      ],
+      "raw_sha256": "82fd88473f2f116a574bb86b55eded9e2cb518a9156481eaa87c28ea145bfca8"
+    },
+    {
+      "name": "人物 | 021 | arms/arm_right/hand/palm | complete",
+      "type": "paintlayer",
+      "uuid": "{61645b96-cab0-474b-9e70-359d03670037}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        281,
+        775,
+        43,
+        79
+      ],
+      "raw_sha256": "990d400c22c26b286b4aed8a2d2534a2e4479703d155ca25ceaa8f63fcae6d0b"
+    },
+    {
+      "name": "wrist_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{3a56cf55-9b4d-4789-b1bd-aeddced81fed}",
+      "parent": "{61645b96-cab0-474b-9e70-359d03670037}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        281,
+        775,
+        43,
+        79
+      ],
+      "raw_sha256": "57a6ce6f0438fe21ba41cc2cde22db3d0b8015daf6675f4d39822508806fd43a"
+    },
+    {
+      "name": "人物 | 024 | arms/arm_left/hand/index_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{af94f360-b7b2-4d72-a282-abe81899ae99}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        618,
+        842,
+        29,
+        41
+      ],
+      "raw_sha256": "2a7a7a95595085543a034e3414917f3dcab43086c2f9e3d1f9fe8b636197c027"
+    },
+    {
+      "name": "人物 | 025 | arms/arm_left/hand/middle_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{9731fecf-1b7a-45f9-a358-d450b58ed4b0}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        615,
+        846,
+        32,
+        55
+      ],
+      "raw_sha256": "7abf11942162683ac118fa95760d39b8f9e9bc8580a40eabb790a5ab79dbc1f4"
+    },
+    {
+      "name": "人物 | 026 | arms/arm_left/hand/little_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{9ad7ffb1-b84f-4b39-a6f1-1c6c4a8d039b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        633,
+        832,
+        23,
+        54
+      ],
+      "raw_sha256": "e81027ff813bf78a28d31941069a581633642c04a91685f2c946627a126590a2"
+    },
+    {
+      "name": "人物 | 027 | arms/arm_left/hand/ring_finger | complete",
+      "type": "paintlayer",
+      "uuid": "{403c6067-0d7d-4a22-a14d-3607410ad8cd}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        618,
+        841,
+        31,
+        63
+      ],
+      "raw_sha256": "118d77dd2d519bcd80981eeda042ef1ea7f230c95a2157c343784c5aa5f5766e"
+    },
+    {
+      "name": "人物 | 028 | arms/arm_left/hand/thumb | complete",
+      "type": "paintlayer",
+      "uuid": "{f1662c0b-1af8-433a-a5a2-35a1f3a20669}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        614,
+        825,
+        16,
+        45
+      ],
+      "raw_sha256": "11f856537b46632734fe59bf3babf45060c33902fee1897070fb8a1e8a3c4f0d"
+    },
+    {
+      "name": "人物 | 029 | arms/arm_left/hand/palm | complete",
+      "type": "paintlayer",
+      "uuid": "{5bd257eb-a516-45c1-87e8-58921e019d92}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        613,
+        779,
+        43,
+        77
+      ],
+      "raw_sha256": "f22bc39971df36928bea46d6ea5637ade548687d41abc37501f14fc73a0d15e3"
+    },
+    {
+      "name": "wrist_attachment_blend",
+      "type": "transparencymask",
+      "uuid": "{5d75451b-6d6a-49c1-b925-59583126819f}",
+      "parent": "{5bd257eb-a516-45c1-87e8-58921e019d92}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        613,
+        779,
+        43,
+        77
+      ],
+      "raw_sha256": "f0bb01c9c4872cc5ef4d24ecfb12199ba62ccb83eda973c6c5ceff9b09d19138"
+    },
+    {
+      "name": "人物 | 033 | head_accessories/earrings/earring_right | complete",
+      "type": "paintlayer",
+      "uuid": "{d0100130-a76d-47d0-a29a-6bfd074e6c5f}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        405,
+        254,
+        14,
+        90
+      ],
+      "raw_sha256": "35265f36dbebf840db72b26d444b77090ee534549b2bcdfea29626db245a00d3"
+    },
+    {
+      "name": "人物 | 034 | head_accessories/earrings/earring_left | complete",
+      "type": "paintlayer",
+      "uuid": "{6c968e73-72f1-42c1-8019-9302690bd470}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        519,
+        254,
+        14,
+        90
+      ],
+      "raw_sha256": "b8a577f6e8fdb9eba293902d0d4344f1006555392c46d8881047da2c5ff784cf"
+    },
+    {
+      "name": "人物 | 035 | face/ears/ear_right | complete",
+      "type": "paintlayer",
+      "uuid": "{88643f29-e403-43ed-b8a4-26686a75824b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        381,
+        215,
+        45,
+        49
+      ],
+      "raw_sha256": "9f6c546a94b37a86bfc50b3a1f001c24811058bb4a09eba26801bdbd95766b9f"
+    },
+    {
+      "name": "face_and_side_hair_default_occlusion",
+      "type": "transparencymask",
+      "uuid": "{c53967c4-d44d-4bfb-8c4e-1ade0baafb0f}",
+      "parent": "{88643f29-e403-43ed-b8a4-26686a75824b}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        381,
+        215,
+        45,
+        49
+      ],
+      "raw_sha256": "92758fb3fb49589c6e8d3048bf8aa9bf8c822f528da268ce68c56811c34b78f8"
+    },
+    {
+      "name": "人物 | 036 | face/ears/ear_left | complete",
+      "type": "paintlayer",
+      "uuid": "{a3e7fab5-8355-4552-97db-51f5652cd883}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        512,
+        216,
+        45,
+        48
+      ],
+      "raw_sha256": "eaca84ce573d3f661080da1d5d8507a3161053a082a75cc840e0ae6f27f9dc09"
+    },
+    {
+      "name": "face_and_side_hair_default_occlusion",
+      "type": "transparencymask",
+      "uuid": "{4f206a90-66ae-488f-bab4-cb1a00f9048c}",
+      "parent": "{a3e7fab5-8355-4552-97db-51f5652cd883}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        512,
+        216,
+        45,
+        48
+      ],
+      "raw_sha256": "18bb7f26820a3f117f17ac4ecb6f085fa021ab52da8ce6e7e1635698ac091a07"
+    },
+    {
+      "name": "人物 | 037 | face/face_base | complete",
+      "type": "paintlayer",
+      "uuid": "{05210561-d9dd-4843-b30a-a63f7b43116c}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        404,
+        146,
+        131,
+        160
+      ],
+      "raw_sha256": "68e2b7830791a6d074a4e6482bc0673155d9def0bc5eb9c38fb91e7ff7d15a97"
+    },
+    {
+      "name": "人物 | face/eyes/eye_left | opening_contents",
+      "type": "grouplayer",
+      "uuid": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        487,
+        211,
+        35,
+        26
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "038.0 | face/eyes/eye_left/sclera | complete",
+      "type": "paintlayer",
+      "uuid": "{f14ed857-29cf-4c89-92a9-d4bde22d8edc}",
+      "parent": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        487,
+        211,
+        35,
+        26
+      ],
+      "raw_sha256": "d27270e0877c7ced079590d1cfa5e0d04352e2899e19b2c82736ed73f0af3e62"
+    },
+    {
+      "name": "face/eyes/eye_left | iris_highlight_clip",
+      "type": "grouplayer",
+      "uuid": "{79f5c52c-6d37-43b7-bc8d-4cff90e26374}",
+      "parent": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        488,
+        210,
+        24,
+        27
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "039.0 | face/eyes/eye_left/iris | complete",
+      "type": "paintlayer",
+      "uuid": "{4e67f3d9-e9e4-4b27-b40e-6d8bcbfc8ac4}",
+      "parent": "{79f5c52c-6d37-43b7-bc8d-4cff90e26374}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        488,
+        210,
+        24,
+        27
+      ],
+      "raw_sha256": "108ebccaa3b692939d38356307300dadb762d61e4126d343ed80309286de3a92"
+    },
+    {
+      "name": "040.0 | face/eyes/eye_left/highlight | complete",
+      "type": "paintlayer",
+      "uuid": "{ec09cfdf-4c68-499d-bbdb-a942880a7b98}",
+      "parent": "{79f5c52c-6d37-43b7-bc8d-4cff90e26374}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        493,
+        215,
+        17,
+        7
+      ],
+      "raw_sha256": "f0388621ea2fb26005c9fd37a24e057992af2319948a72e005aa178c1e922052"
+    },
+    {
+      "name": "upper_and_lower_eyelid_opening",
+      "type": "transparencymask",
+      "uuid": "{b7217171-64f4-4cdb-adb7-98f00d02542f}",
+      "parent": "{1480fffa-92e7-4471-a5c4-aa4edba7a21f}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        487,
+        211,
+        35,
+        26
+      ],
+      "raw_sha256": "f3d1fed738b829182346d16628933d556b6800bc97bf825461b264df3da44ef4"
+    },
+    {
+      "name": "人物 | 041 | face/eyes/eye_left/lower_eyelid | complete",
+      "type": "paintlayer",
+      "uuid": "{932004ef-4f82-4863-a2e8-5702e5f4220b}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        491,
+        226,
+        31,
+        13
+      ],
+      "raw_sha256": "819a8c7a7abfa053a4d5dc9fc4c7be5d941e3dbefcf984f400d13bc39d94cbb5"
+    },
+    {
+      "name": "人物 | 042 | face/eyes/eye_left/upper_eyelid | main_lid",
+      "type": "paintlayer",
+      "uuid": "{d699c479-867c-4c80-8daa-ef5c12ac5919}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        485,
+        208,
+        38,
+        20
+      ],
+      "raw_sha256": "eddcd7267ffd99c4361a1bab86ccf1252b1fe4fe58d3a43562d8a6c6a9bd4c6a"
+    },
+    {
+      "name": "人物 | 043 | face/eyes/eye_left/eyelid_crease | complete",
+      "type": "paintlayer",
+      "uuid": "{3639c2c4-e109-498d-b4d3-2aa7cc846772}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        486,
+        205,
+        24,
+        8
+      ],
+      "raw_sha256": "13ade8b4621560be94ef99044964d4c6e462060a9cd6c54a43348b859097e8d6"
+    },
+    {
+      "name": "人物 | face/eyes/eye_right | opening_contents",
+      "type": "grouplayer",
+      "uuid": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        416,
+        213,
+        36,
+        25
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "044.0 | face/eyes/eye_right/sclera | complete",
+      "type": "paintlayer",
+      "uuid": "{34f70e93-53b9-415d-ab1e-2e184b0da10b}",
+      "parent": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        416,
+        213,
+        36,
+        25
+      ],
+      "raw_sha256": "f90c444032b1a54e3184fc91f17eca349e9d5ad222871a07569372241e8a44cf"
+    },
+    {
+      "name": "face/eyes/eye_right | iris_highlight_clip",
+      "type": "grouplayer",
+      "uuid": "{3e3e1335-673d-40f8-bc33-35450ba92680}",
+      "parent": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        425,
+        212,
+        23,
+        25
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "045.0 | face/eyes/eye_right/iris | complete",
+      "type": "paintlayer",
+      "uuid": "{3bce0122-a3f2-4da8-9ace-9532e2066e9a}",
+      "parent": "{3e3e1335-673d-40f8-bc33-35450ba92680}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        425,
+        212,
+        23,
+        25
+      ],
+      "raw_sha256": "9768d1ae924ff3472f98895592781fe0921d098640a125300eaa1f6e07e4761a"
+    },
+    {
+      "name": "046.0 | face/eyes/eye_right/highlight | complete",
+      "type": "paintlayer",
+      "uuid": "{ac42bcae-4251-466e-a197-db238ee9517a}",
+      "parent": "{3e3e1335-673d-40f8-bc33-35450ba92680}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        430,
+        216,
+        14,
+        13
+      ],
+      "raw_sha256": "6ded786d708de1ce98b3279021cc7b95a87e61be6039866a695f1fbae5ed430b"
+    },
+    {
+      "name": "upper_and_lower_eyelid_opening",
+      "type": "transparencymask",
+      "uuid": "{e55d75e2-cdb8-44e2-ac23-227c731b15c1}",
+      "parent": "{3252441e-8d1c-48de-9f32-31497f86d56a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        416,
+        213,
+        36,
+        25
+      ],
+      "raw_sha256": "5afb3f1b987e4519c6578a081d0da800af7a1f967c8096c7815529f6ad6620c4"
+    },
+    {
+      "name": "人物 | 047 | face/eyes/eye_right/lower_eyelid | complete",
+      "type": "paintlayer",
+      "uuid": "{bc984aa5-bc74-40e7-aab2-824ddbcce3a1}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        412,
+        220,
+        38,
+        19
+      ],
+      "raw_sha256": "0a0aff7877766e1932fcc584f3d2078d1526915e9ba9088e3d0d429deb88b073"
+    },
+    {
+      "name": "人物 | 048 | face/eyes/eye_right/upper_eyelid | main_lid",
+      "type": "paintlayer",
+      "uuid": "{538a5f1d-7615-4552-8757-e916939e3793}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        417,
+        208,
+        36,
+        25
+      ],
+      "raw_sha256": "c8b53f930a9329fcb498c0aa3683e3fd645bed81f4915f9e0fc575befd68b770"
+    },
+    {
+      "name": "人物 | 049 | face/eyes/eye_right/eyelid_crease | complete",
+      "type": "paintlayer",
+      "uuid": "{05d74f82-e79b-494e-a987-963a10c7df57}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        421,
+        205,
+        30,
+        8
+      ],
+      "raw_sha256": "c0297a709312ea93c1a929f3762007644fa22929c6d162dbd28e6933b2045731"
+    },
+    {
+      "name": "人物 | face/mouth | opening_contents",
+      "type": "grouplayer",
+      "uuid": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        453,
+        260,
+        32,
+        30
+      ],
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "050.0 | face/mouth/mouth_interior | complete",
+      "type": "paintlayer",
+      "uuid": "{33c3ea08-2619-4e9b-b207-879a426122b8}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        453,
+        260,
+        32,
+        30
+      ],
+      "raw_sha256": "cf66393d4067e1224c67bf220de28729e06e200888736eb2cabf3246cc9fa290"
+    },
+    {
+      "name": "051.0 | face/mouth/lower_teeth | complete",
+      "type": "paintlayer",
+      "uuid": "{6da0c3a9-f9cb-4ce1-b796-cae92c765925}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        456,
+        279,
+        26,
+        12
+      ],
+      "raw_sha256": "20c1037a5a275ecd4fb694fec5c8a9ad1909d5e0a8a0bfab688d5e19ddceeb79"
+    },
+    {
+      "name": "default_closed_or_back_occlusion",
+      "type": "transparencymask",
+      "uuid": "{72977381-84df-4153-8bb5-b9a574710458}",
+      "parent": "{6da0c3a9-f9cb-4ce1-b796-cae92c765925}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        456,
+        279,
+        26,
+        12
+      ],
+      "raw_sha256": "6287e17fe5efcb191aec8a2578e685d0a1040a0ab53bd1f02c7f49cc6c8fced7"
+    },
+    {
+      "name": "052.0 | face/mouth/tongue | complete",
+      "type": "paintlayer",
+      "uuid": "{f04d969e-bc63-4aa7-be79-a49deaa1922f}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        457,
+        270,
+        24,
+        19
+      ],
+      "raw_sha256": "b6c1cde1b414851fbf424a81711f3ede17c9f80004927656e7a70c9144044200"
+    },
+    {
+      "name": "053.0 | face/mouth/upper_teeth | complete",
+      "type": "paintlayer",
+      "uuid": "{d5d9fe8c-4930-4c05-9a76-eed077809f1d}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": true,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        456,
+        257,
+        25,
+        10
+      ],
+      "raw_sha256": "f6e16981c553b7292dbcdd33bdaec18da9221e2903abd3a46daf652f242ea0c8"
+    },
+    {
+      "name": "upper_lip_root_occlusion",
+      "type": "transparencymask",
+      "uuid": "{cddb764f-ef60-4c93-905a-3e2a82e6b999}",
+      "parent": "{d5d9fe8c-4930-4c05-9a76-eed077809f1d}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        456,
+        257,
+        25,
+        10
+      ],
+      "raw_sha256": "05ebe550206fd303711c4c7125c00c7de0b520735448668629fbdbaf2692dd6c"
+    },
+    {
+      "name": "upper_and_lower_lip_opening",
+      "type": "transparencymask",
+      "uuid": "{06aae8b3-f027-44db-a037-b9b3eecf6ca7}",
+      "parent": "{5ecc458c-d070-4bd5-89c6-373175c3b125}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        453,
+        260,
+        32,
+        30
+      ],
+      "raw_sha256": "30ef203b43d11ba08bc696f1274739f6362f2de8d0c06a5780bfcadd21dd1403"
+    },
+    {
+      "name": "人物 | 054 | face/mouth/lower_lip | complete",
+      "type": "paintlayer",
+      "uuid": "{562d4152-fdd0-407d-b6a5-3b9fc4aa9baa}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        451,
+        270,
+        36,
+        25
+      ],
+      "raw_sha256": "c0b01a2407f6dfeb7b0de2f302fb147b33c4212df928a8827701b1565be926bb"
+    },
+    {
+      "name": "人物 | 055 | face/mouth/upper_lip | complete",
+      "type": "paintlayer",
+      "uuid": "{3a9aaeab-44e3-4640-971b-ccb37806068c}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        447,
+        253,
+        44,
+        28
+      ],
+      "raw_sha256": "ef8742c5305bbb6069565652078dce52bafe4d9ae0fbd323ee8516d606fd0ab8"
+    },
+    {
+      "name": "人物 | 056 | face/eyebrows/eyebrow_right | complete",
+      "type": "paintlayer",
+      "uuid": "{ac4945cf-4446-468c-8a9e-8001b45da597}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        410,
+        189,
+        44,
+        9
+      ],
+      "raw_sha256": "ac2e87fac48b53920dfbb5f97fa006736c249ad742aae79f9b6c7ed3dd0cea5a"
+    },
+    {
+      "name": "人物 | 057 | face/eyebrows/eyebrow_left | complete",
+      "type": "paintlayer",
+      "uuid": "{573a191c-1809-420e-a658-f7a50f5dbac3}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        483,
+        189,
+        46,
+        9
+      ],
+      "raw_sha256": "344fd4018ab22f3dcdab42dbfd76acedac4f4ee2ed134b0fe41d947b39e5e9b4"
+    },
+    {
+      "name": "人物 | 058 | face/nose | complete",
+      "type": "paintlayer",
+      "uuid": "{8d5e141b-87cc-49d4-9622-e5cc0fea60bd}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        462,
+        242,
+        15,
+        14
+      ],
+      "raw_sha256": "9a657771099be437b27742a15a42d6452af59d5b78226cbda625e8058db78ef0"
+    },
+    {
+      "name": "人物 | 059 | hair/sidelock/sidelock_right | complete",
+      "type": "paintlayer",
+      "uuid": "{9a2a473e-21db-4388-8c91-718162d418ff}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        367,
+        177,
+        62,
+        162
+      ],
+      "raw_sha256": "d73032279ba2d5294a86e2370eb19d891d34f13d4ff731e45efaf002db9f24a9"
+    },
+    {
+      "name": "side_hair_root_occlusion",
+      "type": "transparencymask",
+      "uuid": "{b56c1e37-ba59-4014-a734-dc33be4610ac}",
+      "parent": "{9a2a473e-21db-4388-8c91-718162d418ff}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        367,
+        177,
+        62,
+        162
+      ],
+      "raw_sha256": "3c3d8a2e9915fe90aebdfb8615742b66e41f63cd0acf2d0ab4a85b3e00eddb73"
+    },
+    {
+      "name": "人物 | 060 | hair/sidelock/sidelock_left | complete",
+      "type": "paintlayer",
+      "uuid": "{2799914a-e942-4cdb-8749-c2d6ef60234a}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        509,
+        177,
+        60,
+        162
+      ],
+      "raw_sha256": "60f0088f4c8bd5d57cb36dc7271fa75576d09232110d8ef50baea973067ef7ae"
+    },
+    {
+      "name": "side_hair_root_occlusion",
+      "type": "transparencymask",
+      "uuid": "{c72912b7-fe81-470e-acdf-0f5d4971c420}",
+      "parent": "{2799914a-e942-4cdb-8749-c2d6ef60234a}",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        509,
+        177,
+        60,
+        162
+      ],
+      "raw_sha256": "f1fcdafd7117a45188a5a04427d1ce928a0a1e5f807e8d3bf47ba3f5c237c0c2"
+    },
+    {
+      "name": "人物 | 061 | head_accessories/bun_ornament | complete",
+      "type": "paintlayer",
+      "uuid": "{bbdf4cef-6d2f-461d-b89a-0478efeb5863}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        418,
+        63,
+        101,
+        53
+      ],
+      "raw_sha256": "3889626c99fa9b20e92f4c1f51f48dd367260855cc81326452ccbbcf8034afc2"
+    },
+    {
+      "name": "人物 | 061.5 | head_accessories/crown_frame | mounting_root",
+      "type": "paintlayer",
+      "uuid": "{27a9fa4e-8359-483b-be05-600c033be350}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        390,
+        116,
+        158,
+        34
+      ],
+      "raw_sha256": "29658f6b40f94ca5ef3c4973d25e248156968e3a1c3d76a997e10d23c465e77c"
+    },
+    {
+      "name": "人物 | 062 | head_accessories/forehead_pendant | mounting_root",
+      "type": "paintlayer",
+      "uuid": "{07b882af-c65d-4977-ad8a-2cb190fbbf29}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        465,
+        125,
+        8,
+        9
+      ],
+      "raw_sha256": "d9590ff5490fc2b946419f12fb96f6d66ce79da13a9bf495f5c5966d0f45a2d7"
+    },
+    {
+      "name": "人物 | 063 | hair/side_hair/side_hair_right | complete",
+      "type": "paintlayer",
+      "uuid": "{eb9f4ebc-74ea-4247-aa0c-468fc4aa54d6}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        367,
+        103,
+        102,
+        156
+      ],
+      "raw_sha256": "8a6ad20c07b23e4da9b7723c375cf623ea76ea9d45c516b93c20eba76ebb1b64"
+    },
+    {
+      "name": "人物 | 064 | hair/side_hair/side_hair_left | complete",
+      "type": "paintlayer",
+      "uuid": "{431dc8ad-bd0d-4ddc-94e9-a49f6af32517}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        469,
+        103,
+        100,
+        156
+      ],
+      "raw_sha256": "076bca95a6213220aecf650867abad9d0df089448b5ef515629436a8bfd7500e"
+    },
+    {
+      "name": "人物 | 065 | head_accessories/forehead_pendant | visible_front",
+      "type": "paintlayer",
+      "uuid": "{8f15e56d-ad11-472d-9b95-f460a1037aaf}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        454,
+        132,
+        28,
+        58
+      ],
+      "raw_sha256": "4eff3b00eddaea243786f604c8466a685cc5710e71af89f44d69ce8f93e52309"
+    },
+    {
+      "name": "人物 | 066 | face/eyes/eye_left/upper_eyelid | outer_lash_front",
+      "type": "paintlayer",
+      "uuid": "{82f93c9a-8c37-433f-b573-72a46f9a7ee7}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        519,
+        213,
+        10,
+        15
+      ],
+      "raw_sha256": "920dc564f21cac159886495851c4ab282086ce816083c7c11cd2d7b726eb3e3f"
+    },
+    {
+      "name": "人物 | 066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front",
+      "type": "paintlayer",
+      "uuid": "{495462dd-1159-4a01-bed3-efa147ef134a}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        410,
+        209,
+        11,
+        20
+      ],
+      "raw_sha256": "88964058fba76024f500751fb5f43c02ada511972c54ebf03d625d5337bf2daa"
+    },
+    {
+      "name": "人物 | 067 | head_accessories/crown_frame | visible_front",
+      "type": "paintlayer",
+      "uuid": "{d85d2872-2d37-4366-828f-d2f01636d589}",
+      "parent": "root",
+      "visible": true,
+      "opacity": 255,
+      "blend": "normal",
+      "inheritAlpha": false,
+      "alphaLocked": false,
+      "position": [
+        0,
+        0
+      ],
+      "bounds": [
+        320,
+        15,
+        299,
+        126
+      ],
+      "raw_sha256": "566080a375ae822996c61feaccb3dc54d3ae886adbdf253aa46c63b0c2783426"
+    }
+  ]
+}

@@ -1,7 +1,0 @@
-{
-  "groupId": "face/eye_right/sclera",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "6d959af75e132cd6fb322e0e374f54baa6c2a32055beb8c4d5656085e6f837db",
-  "afterHash": "f1d48a0fd63b35338f436277c19e4987396f399c32e68be997f6a0d4dc3991d7"
-}

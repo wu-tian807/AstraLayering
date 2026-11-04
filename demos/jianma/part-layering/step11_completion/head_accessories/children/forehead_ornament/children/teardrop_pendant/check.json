@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/forehead_ornament/teardrop_pendant",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "167b92175eaa49865dad8b9b4fb44ee46133158af1039d2a80d5e433432d0ed1",
-  "afterHash": "9c1f6052df7b6e74095666bbec6d89929a1a67587f9a334863a70b95a1fe6bf7"
-}

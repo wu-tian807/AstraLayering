@@ -1,7 +1,0 @@
-{
-  "groupId": "outer_robe/left_sleeve/rear_cuff_drape",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "c057b283f660196548977c86159c39404cc5f40fbdba23ed0b25c9a6970f02a6",
-  "afterHash": "7cae412caa26d74ce4279eabe7ac36dee6192a3d49d6e012c2a9b103ec9ae659"
-}

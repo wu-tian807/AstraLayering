@@ -1,0 +1,38 @@
+{
+  "groupId": "waist_pendant_and_tassel/upper_suspension",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。已先查看纯衣服整图及 x440–502、y452–616 的 6 倍局部，确认本片可见归属为中央细悬线、小宝石及包边、下方珠节、短杆和雪花上方连接座；两侧蓝色系带、后方垂布及雪花主体均不属于本片。已核对当前 note、候选源码及父完成 SVG，并完成整体 blend、全片 7 倍 blend/SVG 独显、x440–502、y472–609 的 8 倍 edge 检查，覆盖全部候选可见区域。\n细线 x469–471、y489–557 与参考中央悬线对齐；宝石 x462–479、y557–575、珠节 y575–585、短杆及座 y585–599 的轮廓、位置、比例与参考一致，没有确定的可见组件遗漏或误包。顶部 y479.5–489 保留父稿已登记隐藏接头；下端 y598.6 与相邻雪花顶部保持合理衔接，未侵入雪花镂空。候选不含人体、底布或不属于本片的开口填充。本片无薄纱、真实内孔或包夹身体的深度区域；note 已传递实体范围、邻接、前后关系、随动和隐藏搭接职责。父范围 4 倍采样检查 outsidePixels=0。无需重画或局部修改。\n图像证据：![全片边缘放大](review-evidence/edge.png) ![全片原图叠加](review-evidence/blend.png)",
+      "candidateHash": "fd05be076c768adbb373f40edc6b23af1c0dfba69b4eac98cea36ba0809496bb",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/upper_suspension/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/upper_suspension/previews/2026-11-02T16-20-21-568Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/upper_suspension/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/upper_suspension/previews/2026-11-02T16-20-21-568Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/upper_suspension/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/upper_suspension/previews/2026-11-02T16-20-21-568Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/upper_suspension/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/upper_suspension/previews/2026-11-02T16-20-21-568Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_pendant_and_tassel.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_pendant_and_tassel/children/upper_suspension/previews/2026-11-02T16-20-21-568Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:51:33.625Z"
+    }
+  ]
+}

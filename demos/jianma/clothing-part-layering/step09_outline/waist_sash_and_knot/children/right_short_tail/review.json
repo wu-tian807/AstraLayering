@@ -1,0 +1,38 @@
+{
+  "groupId": "waist_sash_and_knot/right_short_tail",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已独立核对纯衣服参考、groups.json 中当前 part 与父组 note、候选源码和父完成 SVG，并完成全画布 blend 定位、局部 8 倍 blend / edge、父稿局部叠加及候选独显检查。结论：通过，未发现有图像依据且需当前阶段修改的问题。\n\n归属与可见覆盖：本片为角色右侧（画面左侧）短环之后的自由短端。参考中环外窄布面约 x449–455、y475–518，向下连续至 x449–463、y519–555 的折弯与末端尖角；候选均有覆盖，未误包同侧短环、中央珠链或后方宽长垂布。环下内侧转接、外侧 y532–542 的折弯及约 (461.5,555.4) 尖角与参考对应。没有需挖除的真实开口或另行补收的可见分离附件。\n\n位置与范围：941×1672 画布坐标正确，候选父范围检查 outsidePixels=0。局部边缘核对未发现需返修的轮廓偏移。候选上端 y475 以上通向结后的隐藏根部属于后续补全范围，不将未画隐藏形状判为可见遗漏。note 已明确当前实体职责、短环之前／之后关系、与衣身及宽长垂布的深度关系、随结及腰带运动和隐藏搭接要求。\n\n图像证据（均覆盖完整当前片的可见范围）：\n![候选原图叠加](review_evidence/candidate_blend.png)\n![候选边缘覆盖](review_evidence/candidate_edge.png)\n![父稿局部叠加](review_evidence/parent_blend.png)\n![候选纯色独显](review_evidence/candidate_solid.png)",
+      "candidateHash": "d734e84fb017bbf0aaddd5d76d5bc2842cb5c327f4eff2e77f13991754935c29",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/right_short_tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/right_short_tail/previews/2026-11-02T16-31-39-828Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/right_short_tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/right_short_tail/previews/2026-11-02T16-31-39-828Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/right_short_tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/right_short_tail/previews/2026-11-02T16-31-39-828Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/waist_sash_and_knot.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/right_short_tail/previews/2026-11-02T16-31-39-828Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/right_short_tail/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waist_sash_and_knot/children/right_short_tail/previews/2026-11-02T16-31-39-828Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:00:15.620Z"
+    }
+  ]
+}

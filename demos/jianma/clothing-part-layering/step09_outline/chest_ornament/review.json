@@ -2,10 +2,71 @@
   "groupId": "chest_ornament",
   "reviews": [
     {
+      "verdict": "revise",
+      "feedback": "已只读核对纯衣服整图、局部放大、候选整体 blend、覆盖本组全部可见区域的局部 edge/blend 和 SVG 独显，并读取 groups.json 中 chest_ornament 的 note。本节点无父组。主体归属、位置比例、中央真实开口、中央菱形、下卷瓣与长短饰端总体成立；不因缺少内部纹样或配色报错。需修改以下一项，不需要重画整组：\n\n1. 左右卷叶顶部的实体金属翘边遗漏／被削平。位置约左 x425–457、y270–281，右 x487–519、y270–282。纯衣服参考可见蓝色叶面上方另有连续浅色包边向中央上翘，形成高于叶面顶部的尖细轮廓；这部分沿卷叶连续，不是喉扣珠链，也不是透明背景杂点。候选以左侧 (455,278) 到 (428,280)、右侧 (489,278) 到 (517,282) 的低平曲线收顶，edge 图中该段上方仍露出一条明确的原饰件实体，漏掉约数像素高的上翘轮廓。请沿参考补足两侧顶部固定包边及翘尖的实际外形，使其与现有叶面合并覆盖；仍需与喉扣细链、珠坠及领披分界，不把它们收入胸饰。此处属于外轮廓缺失，不要求绘制包边内部颜色、高光或花纹。\n\n图像证据：![原参考顶部放大](review-evidence/reference-upper.png)\n![完整胸饰边缘叠加](review-evidence/edge-full-ornament.png)\n![完整胸饰半透明叠加](review-evidence/blend-full-ornament.png)",
+      "candidateHash": "0170723a7cfab05c0b980a4eb818073605b42b8a95dafb3ded9d09133cfa8691",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T11-45-13-020Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T11-45-13-020Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T11-45-13-020Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T11-45-13-020Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:37:53.615Z",
+      "repairedCandidateHash": "37135c8d796018d381fdbb6f593837379f505c47ad7454e61645529e4557ef5a"
+    },
+    {
       "verdict": "pass",
-      "feedback": "独立只读审查 chest_ornament（group）通过。已读取候选完整源码与 groups.json 中本组 note；本次 parentGroup、parentSvg 均为 null，无父边界约束或可单列的上游限制。按本组所有路径的联合覆盖核对，不以缺少独立宝石、银托或刻纹内部路径判定附件缺失。\n\n图像核对覆盖：先以 clothing.png crop=[425,335,175,120]、scale=5 查看全部胸饰，并对同范围运行 blend 与 edge；再以 scale=8 分别检查左翼 [435,345,80,52]、右翼 [510,345,80,52]、中央卷托/石托 [470,375,85,52]、全部细卷枝/卷脚 [445,399,135,50]。另对中央露空 [465,346,95,41]、底缘 [475,402,74,23] 和 [495,406,34,19]、左右卷脚 [445,398,44,49] 与 [535,398,42,49] 做参考/叠加局部复核，最后以 [430,342,166,109]、scale=2 确認整体比例和附件位置。\n\n具体证据与结论：\n1. 左翼约 x438～510、y348～392，右翼约 x516～586、y349～393：edge 的外端上翘、外侧转折和下缘弧线随参考实体边缘；两翼位置、宽高与中央连接关系一致。证据为 observations/review/chest_ornament/2026-10-18T07-07-56-744Z-6.png、-7.png 及全组 -1.png。\n2. 中央上缘真实露空约 x494～531、y352～383：候选留空，左右内缘收向约 (516,383)，没有用饰板或衣料封住开口；上方斜珠链不被吞并，翼顶挂点的短连接符合 note。证据为 -14.png（edge）和 -10.png（blend），并对照参考局部 ca4188a5-6afc-430e-921d-60f4b84df35f.png。\n3. 下方银卷托及中央菱形石托约 x475～554、y385～417：联合实体完整连接，两侧卷曲托座与中央尖下端均在覆盖中；底缘局部复核未发现可确认的漏实体。参考下方柔化暗影不作为额外金属轮廓要求。证据为 -5.png、-9.png、-11.png、-15.png（edge）及 -8.png、-16.png（blend）。\n4. 左横卷枝约 x451～486、y402～415，右横卷枝约 x534～575、y401～415，以及左下卷脚约 x472～484、y409～444、右下卷脚约 x537～554、y410～444：各路径与主托座连续，外伸端、弯折、厚度和下端位置贴合参考；横枝与下卷脚之间的可见衣料空间仍留空。证据为 -4.png（全部下部 edge），以及 -12.png、-13.png（左右 blend），未因其为独立路径而遗漏检查。\n\n职责与结构：本组为胸部及白衣/外袍上端之前的同一套胸饰，无图像依据要求将固定蓝银嵌色、卷纹或亮边另拆；本组也没有薄纱或需要夹住身体而跨前后深度的可确认区域。note 已交代实体范围、相邻衣料与领链分界、胸部前方层序、共同随动、挂点及必要隐藏搭接，并要求向后续子节点落实。没有发现需返修的有据问题；不修改候选或部件结构。",
-      "candidateHash": "6b76bdc820b7483d699cb8b8a26493fba48adbcc3d4980542c24eb3ddc2b20a0",
-      "updatedAt": "2026-10-18T07:38:18.300Z"
+      "feedback": "第 2 轮：通过。已先独立查看纯衣服全图及胸前局部，再完成候选整图 blend、覆盖全部可见范围的 5 倍 edge/blend/SVG 独显，以及上部卷叶和下伸端的 8 倍局部核对。chest_ornament 是顶层 group，无父 SVG／父范围限制。\n\n归属与覆盖：约 x398–541、y272–426 的左右卷叶、中央菱形及下卷瓣、两侧短弯端和两条细长端均有覆盖；未将上方喉扣、细链、小珠、两侧领披或下方腰带并入。中央胸前开口保持留空。下伸端连同浅色实体边缘检查，不按蓝色填面终点截断。组内固定卷纹和宝石表现无需内部路径，未据此判漏件。\n\n位置、比例与边界：逐段核对上部双尖卷叶及开口内缘（x400–540、y272–318）、两侧翻瓣和中央接合（y315–353）、短弯端（x427–440／503–517、y334–383）及长尖端（x444–456／486–503、y345–426），未发现确定需要修改的外形、归属、接缝或可见遗漏。note 已说明实体范围、邻接、位于内层衣身与外袍胸缘之前、共同随动和根部搭接，无需修订。本轮无需重画或局部返修。\n\n图像证据：\n![全部可见范围边缘覆盖](review-evidence-round02/edge-all.png)\n![全部可见范围原图叠加](review-evidence-round02/blend-all.png)\n![候选独显](review-evidence-round02/svg-all.png)",
+      "candidateHash": "37135c8d796018d381fdbb6f593837379f505c47ad7454e61645529e4557ef5a",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T12-47-30-269Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T12-47-30-269Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T12-47-30-269Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T12-47-30-269Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T12-47-30-269Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_ornament/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/chest_ornament/previews/2026-11-02T12-47-30-269Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T12:50:31.418Z"
     }
   ]
 }

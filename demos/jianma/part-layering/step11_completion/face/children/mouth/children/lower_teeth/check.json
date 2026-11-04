@@ -1,7 +1,5 @@
 {
   "groupId": "face/mouth/lower_teeth",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "e207e11e8f55f8ebb311985311226f70006d3917ad20a1fd39992a59dd28bed9",
-  "afterHash": "c3a3cda201e742c74db4782437096fe6f9a366e6a5f74b5230340d8fdb714a5f"
+  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

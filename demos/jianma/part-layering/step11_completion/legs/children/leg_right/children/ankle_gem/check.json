@@ -1,7 +1,0 @@
-{
-  "groupId": "legs/leg_right/ankle_gem",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "ed74e289fc6f0cfcd585878419dbbf06b0a5d47cb9f7bcdefc181414d3afcbb8",
-  "afterHash": "86235db65634a7d92e0fe972878c3bea14ecc565af46503d0cf9570e90e1f397"
-}

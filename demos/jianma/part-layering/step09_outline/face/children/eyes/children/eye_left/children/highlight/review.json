@@ -1,0 +1,88 @@
+{
+  "groupId": "face/eyes/eye_left/highlight",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已核对整图叠加、完整左眼区域（478,198,61,48）及虹膜放大区域，并以 blend、edge 和独显检查候选，结合父完成 SVG 核对范围。需要补画一个明确遗漏的可见组件：虹膜画面右上侧约 x=504–509、y=214–219 有一条由左上向右下倾斜的浅白小反光，位于深蓝虹膜内、紧邻深色外缘内侧。参考局部显示其为有独立形状的亮斑，与虹膜下半部大面积浅蓝渐变不同，属于 note 所述同动小亮斑；当前候选仅覆盖 x≈494–497、y≈218–221 的主高光，右上亮斑整段未覆盖。请按参考补出这条短斜向亮斑的可见轮廓，保持与主高光分离，不扩成外缘或下方渐变。证据见 previews/2026-11-02T16-32-48-910Z-5.png（右上亮斑 edge 局部，无候选覆盖）及 bitmaps/fe956918-27b0-4cc3-a4f2-0ed2694a2833.png（完整虹膜参考放大）。该亮斑位于父轮廓内部，无上游范围限制；这是组件缺失，需局部补画，不要求重画现有主高光。其余已核对区域未发现确定的归属错误、噪音、形体混乱或需要修改的边缘问题；现有候选父范围检查通过。",
+      "candidateHash": "a3ac20ad6bcd664a50fa4caa16a61660ffc67cc215cdca07594410ad017ca1aa",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T16-32-48-910Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T16-32-48-910Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T16-32-48-910Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T16-32-48-910Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T16-32-48-910Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T16-32-48-910Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:55:09.573Z",
+      "repairedCandidateHash": "23e37620436ca11bdf1980c3373d85eecdc0b0766e19b4011c84dcabdf4bc115"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已核对整图叠加、完整眼内区域及两块高光的放大原图/edge，查看父组完成 SVG；候选未超出父范围。需要局部返修，不需要重画整个组：右上小亮斑（第二个 path，现范围约 x504.9–508.5、y214.5–218.4）偏左上。参考中该斜向亮斑的亮部位于其右下，现轮廓左上端落在上方暗蓝虹膜区域，右下端则没有覆盖参考亮斑的下端。请依据参考把此块向右约 1 px、向下约 1–1.5 px 调整，并重贴其两侧及下端边缘，不以周围渐变扩大亮斑。证据：参考局部 [原图](bitmaps/1bbe997a-00e8-4582-8de4-4c70929050cc.png) 与同框 [候选边缘](previews/2026-11-02T17-17-11-927Z-5.png)，选框为 [501,211,13,14]、8 倍。主高光已核对，无需随之移动；其余眼内浅蓝区域属于虹膜渐变，不构成高光组件遗漏。未发现碎片噪音或实体归属混乱。",
+      "candidateHash": "23e37620436ca11bdf1980c3373d85eecdc0b0766e19b4011c84dcabdf4bc115",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T17-17-11-927Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T17-17-11-927Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T17-17-11-927Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T17-17-11-927Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T17-17-11-927Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T17-17-11-927Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-02T17-17-11-927Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:21:39.370Z",
+      "repairedCandidateHash": "3968e1f07a2c83c786727cd5bbaae128ff32ec105aa9be63ca4559f868989e97"
+    }
+  ]
+}

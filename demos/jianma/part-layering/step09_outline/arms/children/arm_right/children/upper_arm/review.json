@@ -2,17 +2,47 @@
   "groupId": "arms/arm_right/upper_arm",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "已读取 groups.json 中 arms/arm_right 与 upper_arm 的职责、参考图、候选 SVG 和父组完成 SVG；先作整图 blend 定位，再完成肩根 [370,305,95,145]（6倍）、臂身 [350,410,105,110]（7倍）、肘部 [330,490,100,95]（7倍）三个相互重叠选框的 blend/edge 核对，并追加外缘 [375,365,22,68] 和内缘 [395,430,40,105] 的8倍父子对照。父范围检查 pass：4倍采样 outsideSamples=0、outsidePixels=0。仍有以下父范围内可修问题，因此 revise：\n1. 画面左侧上臂外缘存在连续窄条缩入，主要在 y365–410 及 y450–505，候选边缘位于参考的可见臂缘内侧。8倍外缘接缝 blend 可见候选左侧残留未覆盖的边缘窄带，edge 与同框父组 edge 可确认父范围尚有余量。例如 y390 处候选左边界 x385.413，而父边界 x384.623；y480 处候选 x372.077，而父边界 x371.324。请在父范围内向画面左侧补齐这些窄条，依据参考保留原有外缘弧度及向肘部的连续转向，勿把已在父范围内的缺口作为上游限制。主要图像依据为 observations/review/arms/arm_right/upper_arm/2026-10-15T00-30-17-572Z-18.png 至 -21.png，并结合 -6.png、-7.png、-8.png 和 -13.png、-14.png。\n2. 靠躯干一侧、白色衣装下缘以下的可见臂缘，约 y435–470，也有细窄缩入。8倍内缘 blend/edge 显示候选右缘与参考皮肤—后方头发的交界之间仍留窄带；同局部父组覆盖比候选更完整。例如 y450 候选右边界 x419.814，父边界 x420.388，二者之间仍属本组可修范围。请只在父范围内补足这段可见边缘，使衣装下方至臂身的接缝连续，不沿头发内部明暗线描边，也不外扩父组。主要图像依据为同目录 -15.png、-16.png、-17.png，及臂身 -6.png 至 -8.png。\n本轮问题是可见轮廓覆盖不足，不是组件缺失或最终着色未画。未发现孤立像素、碎片堆砌或形体归属混乱；肩根伸入躯干下的圆弧、衣装覆盖下的合理局部补形以及肘端连接圆弧不据此要求贴合内部阴影或切口线。未提出需要扩大父范围的子组返修要求。候选及父稿均未修改。",
-      "candidateHash": "fda511d90a5bebb38f4cadd843a7588048ae7373ea3a4395ff2a93563cab04b8",
-      "updatedAt": "2026-10-15T00:36:30.098Z",
-      "repairedCandidateHash": "1ba5a06ea3320aa060f3dc1bc1affd0a509978bcb25ed59c55079b69c211efc2"
-    },
-    {
       "verdict": "pass",
-      "feedback": "已读取本组及父组说明、参考图、候选 SVG 与父组完成 SVG。先以整图 blend 定位，再对 [370,300,105,145]（肩根及腋侧，4倍）、[350,405,100,120]（臂身，5倍）、[330,485,105,110]（肘部，5倍）三个重叠选框逐块核对参考、blend 与 edge；追加 [380,325,65,60] 和 [345,505,65,60] 的8倍核对，并在肩根及肘端以相同选框对照父稿。可见肩外侧进入臂身的轮廓、腋侧露出边界、臂身两侧及轻弯肘部过渡均与参考贴合，选框交界连续。肩根伸入圆弧与肘端覆盖圆弧属于组说明规定的关节搭接面，保留合理连续实体，不要求沿内部阴影另挖轮廓。候选为干净、连通的上臂色块，无无依据孔洞、孤立点、碎片或形体归属混乱；本组无另需覆盖的独立饰件。父范围四倍采样检查 pass，outsideSamples=0、outsidePixels=0。未发现有明确图像依据的当前组可修问题，审查通过。",
-      "candidateHash": "1ba5a06ea3320aa060f3dc1bc1affd0a509978bcb25ed59c55079b69c211efc2",
-      "updatedAt": "2026-10-15T01:39:28.371Z"
+      "feedback": "已核对组说明、素体参考、候选与父完成 SVG，并完成整图叠加定位及两块重叠放大检查：肩端至上臂中段（315,340,110,150）、上臂中段至肘端（305,460,105,150），逐块查看参考、blend 与 edge，另核对候选独显。可见肩部、上臂外缘及腋下至肘部内缘覆盖完整，形体归属清晰；衣物覆盖侧的肩根补形沿用父稿合理范围，肘端为说明要求的连续圆弧搭接。未发现漏画组件、误包相邻结构、无依据孔隙或孤立碎片。父范围检查通过（四倍采样 outsidePixels=0），无需修改。",
+      "candidateHash": "86825699cb642f45fa0c5d9498f553fe2e0a930b7995ec63416d73ec63170af3",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-02T11-13-57-537Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-02T11-13-57-537Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-02T11-13-57-537Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-02T11-13-57-537Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-02T11-13-57-537Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-02T11-13-57-537Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-02T11-13-57-537Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:24:16.681Z"
     }
   ]
 }

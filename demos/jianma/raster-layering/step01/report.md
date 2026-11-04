@@ -1,96 +1,167 @@
-# 原尺寸逐层复看记录
+# 人物分层 KRA：repair-02 后有效记录
 
-检查对象为最终 `full.png` / KRA 图层；以下结论来自逐层看图，文件校验单独记录。深度沿用标准；2026-10-17 根据用户反馈修订了两个头部轮廓，详见 [shape-revisions.json](shape-revisions.json)。此前对侧发和发底的结论漏掉了发根暗面与耳后体积问题，已在本轮纠正。
+依据 [review-02.md](../../raster-layering/step01/review-02.md)，本轮9项、17个框选位置已修复，并处理复查中发现的骨盆隐藏缝线断头、局部试贴亮边和左拇指新接色。旧报告保留在 [返修前报告](../../raster-layering/step01/workspace/repair02/before-report.md)，本文件为当前有效图层、来源及控制记录。
 
-| 深度 | 部件 | 独立检查 |
-| --- | --- | --- |
-| 00 | [head_accessories/left_crown_ribbon/ribbon_tail](parts/head_accessories/left_crown_ribbon/ribbon_tail/44d5e412e369-full.png) | 完整长带，根端补齐，浅蓝渐变连续。 |
-| 01 | [head_accessories/right_crown_ribbon/ribbon_body](parts/head_accessories/right_crown_ribbon/ribbon_body/63fd3f71606e-full.png) | 完整长带，弯曲及回卷遵循标准。 |
-| 02 | [hair/back_hair/main_right](parts/hair/back_hair/main_right/3d2b9c587d7c-full.png) | 后发根与大遮挡面均为头发；修复横向断纹与轮廓缺口。 |
-| 03 | [hair/back_hair/main_left](parts/hair/back_hair/main_left/bed0132d0650-full.png) | 发底收小后新露出的内缘浅色断条已用 Krita 画笔接顺；复看根部与颈侧衔接。长发尺寸、标准分叉与末梢保留。 |
-| 04 | [hair/back_hair/lock_right](parts/hair/back_hair/lock_right/1fbc3c260f28-full.png) | 游离束根端与细末梢完整。 |
-| 05 | [hair/back_hair/lock_left](parts/hair/back_hair/lock_left/03a548664e48-full.png) | 游离束沿原流向延续，无相邻皮肤。 |
-| 06 | [hair/bun](parts/hair/bun/e87317889fc8-full.png) | 髻体及连接部补齐，无冠饰。 |
-| 07 | [hair/hair_cap](parts/hair/hair_cap/5392452ea3a2-full.png) | 用户指出的耳后圆弧来源层；下半部收回耳朵与下颌后，顶发和鬓角保持。独立层连续；组合中不再出现原来的颈侧大圆弧。此轮廓有明确修订。 |
-| 08 | [legs/leg_right/leg](parts/legs/leg_right/leg/9f4c54baaf3c-full.png) | 完整腿部皮肤，髋端和踝端补齐。 |
-| 09 | [legs/leg_left/leg](parts/legs/leg_left/leg/ad6f54ad9cf5-full.png) | 完整腿部皮肤，清除末端吊坠残影。 |
-| 10 | [legs/leg_right/foot](parts/legs/leg_right/foot/a1d15bac7aac-full.png) | 脚趾、趾甲及脚背完整，没有脚链。 |
-| 11 | [legs/leg_left/foot](parts/legs/leg_left/foot/b9806bdc934c-full.png) | 脚背和踝部连续，没有脚链和吊坠。 |
-| 12 | [pelvis](parts/pelvis/795e891ef729-full.png) | 不透明衣料、原有皮肤分界及隐藏腰部连续。 |
-| 13 | [neck](parts/neck/84e6d0543911-full.png) | 脖子补为连续皮肤，去除下巴 V 形边线。 |
-| 14 | [arms/arm_right/hand/index_finger](parts/arms/arm_right/hand/index_finger/80ddf50016db-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 15 | [arms/arm_right/hand/middle_finger](parts/arms/arm_right/hand/middle_finger/d7cae1956ad3-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 16 | [arms/arm_right/hand/ring_finger](parts/arms/arm_right/hand/ring_finger/f0e8d94ff1ed-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 17 | [arms/arm_right/hand/little_finger](parts/arms/arm_right/hand/little_finger/4a9854d792b9-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 18 | [arms/arm_right/hand/thumb](parts/arms/arm_right/hand/thumb/6c2633d36bcc-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 19 | [arms/arm_right/hand/palm](parts/arms/arm_right/hand/palm/e7a94da20745-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 20 | [arms/arm_right/forearm](parts/arms/arm_right/forearm/b8246b4c0727-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 21 | [arms/arm_right/upper_arm](parts/arms/arm_right/upper_arm/37a6116d5f50-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 22 | [arms/arm_left/upper_arm](parts/arms/arm_left/upper_arm/16e24412c90d-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 23 | [arms/arm_left/forearm](parts/arms/arm_left/forearm/91bfadacf0df-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 24 | [arms/arm_left/hand/little_finger](parts/arms/arm_left/hand/little_finger/57d87e4c09a1-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 25 | [arms/arm_left/hand/ring_finger](parts/arms/arm_left/hand/ring_finger/022d62bf10c1-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 26 | [arms/arm_left/hand/middle_finger](parts/arms/arm_left/hand/middle_finger/24d4b3200de1-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 27 | [arms/arm_left/hand/index_finger](parts/arms/arm_left/hand/index_finger/7573c64ea4fd-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 28 | [arms/arm_left/hand/thumb](parts/arms/arm_left/hand/thumb/c4ff789ec417-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 29 | [arms/arm_left/hand/palm](parts/arms/arm_left/hand/palm/6b03c39dbf88-full.png) | 肢体／手掌／单根手指完整，关节连接区补为皮肤，保持标准姿态。 |
-| 30 | [body/torso](parts/body/torso/8f2d09af8a06-full.png) | 重新生成自然 U 形领口，衣料和侧线连续。 |
-| 31 | [body/breast](parts/body/breast/268d0d42c60a-full.png) | 无隐藏区，按原可见区域恢复衣领和已有肤色。 |
-| 32 | [legs/leg_right/ankle_gem](parts/legs/leg_right/ankle_gem/d5a26cf5b496-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 33 | [legs/leg_left/ankle_gem](parts/legs/leg_left/ankle_gem/629691fbd047-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 34 | [legs/leg_right/anklet/outer_chain](parts/legs/leg_right/anklet/outer_chain/652c1944f40f-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 35 | [legs/leg_right/anklet/inner_chain](parts/legs/leg_right/anklet/inner_chain/72b57dbbe1e5-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 36 | [legs/leg_right/anklet/gem_pendant](parts/legs/leg_right/anklet/gem_pendant/52798931d68d-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 37 | [legs/leg_right/anklet/central_connector](parts/legs/leg_right/anklet/central_connector/b8b03e79b3c2-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 38 | [legs/leg_left/anklet/ankle_chain](parts/legs/leg_left/anklet/ankle_chain/a77348e2fef9-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 39 | [legs/leg_left/anklet/center_link](parts/legs/leg_left/anklet/center_link/61160068b14a-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 40 | [legs/leg_left/anklet/teardrop_pendant](parts/legs/leg_left/anklet/teardrop_pendant/c4608cce4f61-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 41 | [head_accessories/left_earring/suspension_chain](parts/head_accessories/left_earring/suspension_chain/046ca4d98adf-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 42 | [head_accessories/right_earring/suspension_chain](parts/head_accessories/right_earring/suspension_chain/e8cf1ac5dd7d-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 43 | [head_accessories/left_earring/sapphire_pendant](parts/head_accessories/left_earring/sapphire_pendant/5c50b98bd7b0-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 44 | [head_accessories/right_earring/sapphire_pendant](parts/head_accessories/right_earring/sapphire_pendant/73a326ebfc67-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 45 | [head_accessories/left_earring/ear_stud](parts/head_accessories/left_earring/ear_stud/d4f4c922ffb5-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 46 | [head_accessories/right_earring/ear_stud](parts/head_accessories/right_earring/ear_stud/9a6ec8b75d59-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 47 | [face/ear_right](parts/face/ear_right/bb27926dce5a-full.png) | 耳轮、内耳与耳垂完整，无头发或耳饰。 |
-| 48 | [face/ear_left](parts/face/ear_left/109f6bc27a65-full.png) | 耳根及耳廓完整，内耳保留柔和转折。 |
-| 49 | [face/face_base](parts/face/face_base/d7dd999a34e6-full.png) | 脸底连续，五官、额饰和头发不在本层。 |
-| 50 | [face/eye_left/sclera](parts/face/eye_left/sclera/57c5328cb645-full.png) | 完整浅色眼白，无虹膜和睫毛。 |
-| 51 | [face/eye_right/sclera](parts/face/eye_right/sclera/3c50d42457ad-full.png) | 完整浅色眼白，遮住的上缘也已补齐。 |
-| 52 | [face/eye_left/iris](parts/face/eye_left/iris/36b839ded624-full.png) | 虹膜及瞳孔完整，上缘补圆。 |
-| 53 | [face/eye_right/iris](parts/face/eye_right/iris/805fa732355a-full.png) | 虹膜及瞳孔完整，遵循标准轮廓。 |
-| 54 | [face/eye_left/highlight](parts/face/eye_left/highlight/e01102f0a9ef-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 55 | [face/eye_right/highlight](parts/face/eye_right/highlight/3b78e224103c-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 56 | [face/eye_left/lower_eyelashes](parts/face/eye_left/lower_eyelashes/ef2613e27cee-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 57 | [face/eye_left/lower_eyelid](parts/face/eye_left/lower_eyelid/991391bc83ad-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 58 | [face/eye_right/lower_eyelid](parts/face/eye_right/lower_eyelid/f7fb860b1fee-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 59 | [face/eye_left/upper_eyelid](parts/face/eye_left/upper_eyelid/e2c1ff330770-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 60 | [face/eye_right/upper_eyelid](parts/face/eye_right/upper_eyelid/c7a4719da9d8-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 61 | [face/eye_left/eyelid_crease](parts/face/eye_left/eyelid_crease/4a857030175d-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 62 | [face/eye_right/eyelid_crease](parts/face/eye_right/eyelid_crease/03f93833b355-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 63 | [face/eyebrow_left](parts/face/eyebrow_left/6c5a7db4333e-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 64 | [face/eyebrow_right](parts/face/eyebrow_right/309792a67e6d-full.png) | 独立眼部细节完整，边缘清理后不带相邻部件。 |
-| 65 | [face/nose](parts/face/nose/1c498d883fcb-full.png) | 独立鼻部明暗细节，未带入整张脸。 |
-| 66 | [face/mouth/mouth_interior](parts/face/mouth/mouth_interior/1e5b97388f48-full.png) | 连续的口腔底形。 |
-| 67 | [face/mouth/tongue](parts/face/mouth/tongue/381d86d3a89f-full.png) | 独立舌面，未带入牙齿或嘴唇。 |
-| 68 | [face/mouth/lower_teeth](parts/face/mouth/lower_teeth/b9f55efa3c17-full.png) | 简单完整的浅色下牙带。 |
-| 69 | [face/mouth/upper_teeth](parts/face/mouth/upper_teeth/e09c6ae93c87-full.png) | 浅色上牙带，无牙龈或额外牙缝。 |
-| 70 | [face/mouth/lower_lip](parts/face/mouth/lower_lip/debf43976224-full.png) | 下唇细线完整。 |
-| 71 | [face/mouth/upper_lip](parts/face/mouth/upper_lip/f7771503c9b5-full.png) | 上唇线完整。 |
-| 72 | [head_accessories/forehead_ornament/teardrop_pendant](parts/head_accessories/forehead_ornament/teardrop_pendant/971913d2b5b7-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 73 | [head_accessories/forehead_ornament/upper_sapphire_mount](parts/head_accessories/forehead_ornament/upper_sapphire_mount/2fce40635b56-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 74 | [head_accessories/left_crown_ribbon/jeweled_suspension/crown_connector](parts/head_accessories/left_crown_ribbon/jeweled_suspension/crown_connector/a8168b7efe52-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 75 | [head_accessories/right_crown_ribbon/gem_suspension/crown_gem_link](parts/head_accessories/right_crown_ribbon/gem_suspension/crown_gem_link/ffc25dc73fa8-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 76 | [head_accessories/left_crown_ribbon/jeweled_suspension/inter_gem_connector](parts/head_accessories/left_crown_ribbon/jeweled_suspension/inter_gem_connector/ccc7989326bd-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 77 | [head_accessories/right_crown_ribbon/gem_suspension/inter_gem_link](parts/head_accessories/right_crown_ribbon/gem_suspension/inter_gem_link/edf4f18275ab-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 78 | [head_accessories/left_crown_ribbon/jeweled_suspension/ribbon_connector](parts/head_accessories/left_crown_ribbon/jeweled_suspension/ribbon_connector/8696f470d1e5-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 79 | [head_accessories/right_crown_ribbon/gem_suspension/gem_ribbon_link](parts/head_accessories/right_crown_ribbon/gem_suspension/gem_ribbon_link/308d9ed1cb54-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 80 | [head_accessories/left_crown_ribbon/jeweled_suspension/upper_gem](parts/head_accessories/left_crown_ribbon/jeweled_suspension/upper_gem/fe548912811d-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 81 | [head_accessories/right_crown_ribbon/gem_suspension/upper_diamond_gem](parts/head_accessories/right_crown_ribbon/gem_suspension/upper_diamond_gem/1682326985db-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 82 | [head_accessories/left_crown_ribbon/jeweled_suspension/lower_gem](parts/head_accessories/left_crown_ribbon/jeweled_suspension/lower_gem/fcc6075f2e0b-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 83 | [head_accessories/right_crown_ribbon/gem_suspension/lower_diamond_gem](parts/head_accessories/right_crown_ribbon/gem_suspension/lower_diamond_gem/a0c30fe7e169-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 84 | [head_accessories/left_crown_ribbon/ribbon_head](parts/head_accessories/left_crown_ribbon/ribbon_head/9909b9da75e7-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 85 | [head_accessories/right_crown_ribbon/ribbon_head](parts/head_accessories/right_crown_ribbon/ribbon_head/dd880cda6254-full.png) | 独立饰物及连接端完整，仅保留自身银白／浅蓝绘画。 |
-| 86 | [head_accessories/crown_frame](parts/head_accessories/crown_frame/22fabb8dcffd-full.png) | 冠环与侧纹完整，保留设计空隙。 |
-| 87 | [hair/side_hair_right](parts/hair/side_hair_right/107e4e3cb841-full.png) | 前侧发束完整，无皮肤和饰品残片。 |
-| 88 | [hair/side_hair_left](parts/hair/side_hair_left/9f019d421f32-full.png) | 对照原画补回画面右侧发根暗面；经两次复看修顺额饰旁的间隙，以柔笔补上简单弧向明暗。新增区域已记录为轮廓修订。 |
-| 89 | [head_accessories/lotus_ornament](parts/head_accessories/lotus_ornament/3392943b0e7e-full.png) | 莲花饰物完整，低对比蓝银色。 |
+当前交付：[character-depth.kra](../../raster-layering/step01/character-depth.kra)、[默认透明PNG](character-depth.png)。[同尺寸左参考／右当前](repair-02-evidence/final/reference-comparison.png)。
+
+原图为 `../../part-layering/references/base-subject.png`。画布 941×1672，RGBA/U8，sRGB-elle-V2-srgbtrc.icc。参考始终使用原画布坐标，没有移动或缩放参考。
+
+本轮仅在已有工程中原生修画、局部原生选区取样、组装与检查，没有调用新的生图。前序生成和取样来源保留在 [返修前完整报告](../../raster-layering/step01/workspace/repair02/before-report.md) 及 [前序生成索引](../../raster-layering/step01/workspace/repair01/generated-source-index.json)。没有新增阴影层、AO、投影、发光或原画不存在的纹理。
+
+## 本轮逐项处理
+
+| review-02 项目 | 位置 | 处理及三视图结果 | 同坐标证据 |
+|---|---|---|---|
+| R1 衣片接色与侧缝 | R1a [379,687,56,62]；R1b [508,687,52,62] | 两件各自布面先接顺，同侧缝线重新对齐并接到原有腿口双边。新增12px下端接合蒙版；停用它仍无原斜切色阶。完整独显另查到骨盆隐藏根旧断头，已用本件材质清理并补成连续缝线。 自检通过。 | [R1 三视图对照](repair-02-evidence/R1-check.png) |
+| R2 双腕掌根 | R2a [280,770,47,39]；R2b [609,772,47,40] | 在本侧前臂与掌根自身恢复连续体积肤色、细边，去掉曲片／斜片补丁。原腕部蒙版保留；启停均核对，未另加肤色覆盖片。 自检通过。 | [R2 三视图对照](repair-02-evidence/R2-check.png) |
+| R3 右食指、双拇指补根 | R3a [286,831,29,33]；R3b [303,816,24,34]；R3c [611,820,22,32] | 各指取本指材质延续至根端，保留指甲、长度及叠指暗线。左拇指局部恢复后又检查到掌下接色，已在同指内接顺。独显与隐藏上层均不再出现横向帽边。 自检通过。 | [R3 三视图对照](repair-02-evidence/R3-check.png) |
+| R4 颈部底端 | [416,351,107,20] | 本颈纵向柔和明暗延续到三角底端，水平填色上缘消除；默认颈肩不改。未复制 torso 锁骨。 自检通过。 | [R4 三视图对照](repair-02-evidence/R4-check.png) |
+| R5 双细鬓发 | R5a [362,231,53,115]；R5b [522,231,53,115] | 恢复连续细灰边、内侧浅灰折面与银白窄亮芯，接通隐藏根和尖梢。原图试贴夹带的邻件像素已整件撤回，最终为本束自身连续原生笔触。根梢、弯度、alpha和层序保持。 自检通过。 | [R5 三视图对照](repair-02-evidence/R5-check.png) |
+| R6 双眉 | R6a [407,187,49,14]；R6b [482,187,50,14] | 恢复细边、窄亮芯、渐尖笔触及隐藏眉尾的连续材质；中段小范围恢复本眉原有笔触，排除周围皮肤与发遮尾部。 自检通过。 | [R6 三视图对照](repair-02-evidence/R6-check.png) |
+| R7 双上耳露出区 | R7a [379,223,29,32]；R7b [533,223,29,32] | 上耳恢复红褐耳内面、细对耳轮和必要亮边，与原有下耳笔触接通。完整耳形和默认遮挡蒙版保留；不改宽侧发、细鬓发的遮挡范围。 自检通过。 | [R7 三视图对照](repair-02-evidence/R7-check.png) |
+| R8 双踝足侧边 | R8a [408,1512,61,75]；R8b [474,1512,61,75] | 用连续曲线修顺原逐像素SVG缺口／凸点，同步修KRA alpha和细轮廓。局部抠图亮边以本腿材质修净；链枝范围保护，足背链根、趾缝、甲缘及前后链独立归属保持。 自检通过。 | [R8 三视图对照](repair-02-evidence/R8-check.png) |
+| R9 右眼暗瞳 | [427,216,20,18] | 原暗瞳轮廓与位置恢复为连续近圆／斜椭圆，右侧横向突起清除并接顺周围虹膜。原虹膜外缘、独立高光、剪贴关系及共享开口蒙版保持。 自检通过。 | [R9 三视图对照](repair-02-evidence/R9-check.png) |
+
+## 分层、深度与控制
+
+65 个逻辑 part、69 个普通绘画分片和 5 个眼口控制组保持原身份、归属、运动关系与深度。没有新逻辑件或本轮深度拆层；因此 `groups.json`、`occlusion.json` 未改。已将其终端ID与深度逐项和当前KRA核对。
+
+四个历史多深度件保持：冠架61.5/67、额饰62/65为上游预标；左上睑42/66、右上睑48/66.5为上游已记录的先前组装发现。八个分片均保持原UUID、父级及像素。[分片总览](repair-02-evidence/final/multi-depth-slices.png)。
+
+本轮仅新增 torso 的原生透明度蒙版 `pelvis_attachment_blend`，UUID `{3d3120f6-4b89-4dd5-a50c-30e93443720a}`，父层 `031.0 | body/torso | complete`／`{ba0c4b14-931a-404b-839f-3be36c4824cb}`。腰腹下缘12px柔接只在下方本件骨盆布面完全不透明处起效；完整躯干绘画仍保留。现在共18个原生蒙版。
+
+眼内仍各共用上下睑开口，虹膜／高光保持原剪贴；口内共用上下唇开口。默认保持参考睁眼、张口。下牙、后踝链以原生零开口蒙版默认隐藏；停用蒙版可检查完整底图。[前后链独立拼合](repair-02-evidence/final/front-back-rings-check.png)。
+
+## 形状及色块差异
+
+本轮上游形状变更已同步保存到：
+
+- `../../part-layering/parts/legs/leg_right/leg.svg`
+- `../../part-layering/parts/legs/leg_left/leg.svg`
+
+两者仅 y1512–1590 的足踝侧边由逐像素小凹凸改为连续曲线，局部约1–2px补齐／收回；KRA同段alpha沿用同一新轮廓。普通皮肤边界与细线一起修顺，没有用实心肤色扩张覆盖珠链空隙。ID、父组和深度不变；左右大腿、前轮左腿y880–1130内缘修正、足部下段和足背链仍保留。SVG前版与路径依据见 [形状记录](../../raster-layering/step01/workspace/repair02/ankle-svg-records.json)。
+
+其余与色块包络的既有差异继续保留：踝链珠间与细银丝之间有实际透明孔隙；右足底已清理的约1px浮点／脏边；正常抗锯齿亚像素覆盖差异。没有部件归属变化或新增深度分片。
+
+## 原生蒙版归属
+
+| 蒙版／UUID | 所属图层或组／UUID | 控制区域、默认及检查 |
+|---|---|---|
+| `upper_and_lower_eyelid_opening`<br>`{b7217171-64f4-4cdb-adb7-98f00d02542f}` | `face/eyes/eye_left \| opening_contents`<br>`{1480fffa-92e7-4471-a5c4-aa4edba7a21f}` | reference-open aperture between this eye upper/lower lid inner edges and corners; shared by sclera, iris and highlight；默认启用。原生A/U8已逐一启停并恢复 |
+| `upper_and_lower_eyelid_opening`<br>`{e55d75e2-cdb8-44e2-ac23-227c731b15c1}` | `face/eyes/eye_right \| opening_contents`<br>`{3252441e-8d1c-48de-9f32-31497f86d56a}` | reference-open aperture between this eye upper/lower lid inner edges and corners; shared by sclera, iris and highlight；默认启用。原生A/U8已逐一启停并恢复 |
+| `upper_and_lower_lip_opening`<br>`{06aae8b3-f027-44db-a037-b9b3eecf6ca7}` | `face/mouth \| opening_contents`<br>`{5ecc458c-d070-4bd5-89c6-373175c3b125}` | reference-open mouth aperture defined by upper/lower lip inner edges and corners; shared by all four mouth contents；默认启用。原生A/U8已逐一启停并恢复 |
+| `default_closed_or_back_occlusion`<br>`{72977381-84df-4153-8bb5-b9a574710458}` | `051.0 \| face/mouth/lower_teeth \| complete`<br>`{6da0c3a9-f9cb-4ce1-b796-cae92c765925}` | lower lip/tongue default completely hides lower teeth；默认启用。原生A/U8已逐一启停并恢复 |
+| `default_closed_or_back_occlusion`<br>`{f3172c38-01e8-47ff-b748-5225213e78c7}` | `008.0 \| legs/leg_left/anklet_back \| complete`<br>`{6bd3b73d-a184-4745-9482-e60925a5b2a5}` | this leg covers the entire rear anklet in the reference front pose；默认启用。原生A/U8已逐一启停并恢复 |
+| `default_closed_or_back_occlusion`<br>`{940fb78a-784a-449e-8b43-157516d1ee74}` | `007.0 \| legs/leg_right/anklet_back \| complete`<br>`{a69151f3-3451-4a3d-9d3b-d040edd5142a}` | this leg covers the entire rear anklet in the reference front pose；默认启用。原生A/U8已逐一启停并恢复 |
+| `upper_lip_root_occlusion`<br>`{cddb764f-ef60-4c93-905a-3e2a82e6b999}` | `053.0 \| face/mouth/upper_teeth \| complete`<br>`{d5d9fe8c-4930-4c05-9a76-eed077809f1d}` | upper lip covers completed tooth roots; only the original narrow upper tooth segment is exposed；默认启用。原生A/U8已逐一启停并恢复 |
+| `face_and_side_hair_default_occlusion`<br>`{4f206a90-66ae-488f-bab4-cb1a00f9048c}` | `036.0 \| face/ears/ear_left \| complete`<br>`{a3e7fab5-8355-4552-97db-51f5652cd883}` | visible outline from reference under face/side-hair cover; completed own texture is intact behind mask；默认启用。原生A/U8已逐一启停并恢复 |
+| `face_and_side_hair_default_occlusion`<br>`{c53967c4-d44d-4bfb-8c4e-1ade0baafb0f}` | `035.0 \| face/ears/ear_right \| complete`<br>`{88643f29-e403-43ed-b8a4-26686a75824b}` | visible outline from reference under face/side-hair cover; completed own texture is intact behind mask；默认启用。原生A/U8已逐一启停并恢复 |
+| `side_hair_root_occlusion`<br>`{c72912b7-fe81-470e-acdf-0f5d4971c420}` | `060.0 \| hair/sidelock/sidelock_left \| complete`<br>`{2799914a-e942-4cdb-8749-c2d6ef60234a}` | visible outline from reference under face/side-hair cover; completed own texture is intact behind mask；默认启用。原生A/U8已逐一启停并恢复 |
+| `side_hair_root_occlusion`<br>`{b56c1e37-ba59-4014-a734-dc33be4610ac}` | `059.0 \| hair/sidelock/sidelock_right \| complete`<br>`{9a2a473e-21db-4388-8c91-718162d418ff}` | visible outline from reference under face/side-hair cover; completed own texture is intact behind mask；默认启用。原生A/U8已逐一启停并恢复 |
+| `torso_attachment_blend`<br>`{bfddc43a-3f8b-43aa-8a27-de8f36c1f3c8}` | `032.0 \| body/breast \| complete`<br>`{8285ee5c-57cc-4f94-88fa-f4f345c8f094}` | 6px soft root transition only along upper attachment against torso; independent complete breast texture remains intact；默认启用。原生A/U8已逐一启停并恢复 |
+| `neck_and_shoulder_attachment_blend`<br>`{a439fdf7-01a7-4073-8087-bcbb7c4d288a}` | `031.0 \| body/torso \| complete`<br>`{ba0c4b14-931a-404b-839f-3be36c4824cb}` | 24px bare-skin shoulder overlap and 3px neck overlap; fade only over fully opaque underlying own anatomy, AA/non-overlap pixels remain opaque to avoid background pinholes；默认启用。原生A/U8已逐一启停并恢复 |
+| `upper_arm_attachment_blend`<br>`{81f0e613-f46e-4b45-9ec7-30fcc8707810}` | `020.0 \| arms/arm_right/forearm \| complete`<br>`{1b191d7f-97db-4096-bcd6-8151771e9c8f}` | 26px proximal elbow attachment, fade only where the same arm upper-arm layer is fully opaque; keeps own outline and full forearm painting；默认启用。原生A/U8已逐一启停并恢复 |
+| `forearm_attachment_blend`<br>`{99f4ad1e-06fc-4e92-894c-9a3581c3682e}` | `023.0 \| arms/arm_left/upper_arm \| complete`<br>`{20733596-023e-467b-84be-6a5b476585e3}` | 26px bottom root attachment against arms/arm_left/forearm, only where underlying own anatomy is fully opaque; full original paint retained；默认启用。原生A/U8已逐一启停并恢复 |
+| `wrist_attachment_blend`<br>`{3a56cf55-9b4d-4789-b1bd-aeddced81fed}` | `021.0 \| arms/arm_right/hand/palm \| complete`<br>`{61645b96-cab0-474b-9e70-359d03670037}` | 18px top root attachment against arms/arm_right/forearm, only where underlying own anatomy is fully opaque; full original paint retained；默认启用。原生A/U8已逐一启停并恢复 |
+| `wrist_attachment_blend`<br>`{5d75451b-6d6a-49c1-b925-59583126819f}` | `029.0 \| arms/arm_left/hand/palm \| complete`<br>`{5bd257eb-a516-45c1-87e8-58921e019d92}` | 18px top root attachment against arms/arm_left/forearm, only where underlying own anatomy is fully opaque; full original paint retained；默认启用。原生A/U8已逐一启停并恢复 |
+| `pelvis_attachment_blend`<br>`{3d3120f6-4b89-4dd5-a50c-30e93443720a}` | `031.0 \| body/torso \| complete`<br>`{ba0c4b14-931a-404b-839f-3be36c4824cb}` | waist cloth lower overlap, 12px fade only above fully opaque own pelvis cloth; complete torso material remains in paint buffer；默认启用。原生A/U8已逐一启停并恢复 |
+
+## 当前实际绘画层映射、来源与视图
+
+各行的独显为同一逻辑part全部深度合看，并停用显隐蒙版与无底件时的继承透明度；隐藏上层保留默认控制。默认整图见 [whole.png](repair-02-evidence/final/whole.png)。未修改件仍保留前序来源，详见返修前报告。
+
+| part ID | 实际绘画层／UUID | 深度、区域、父层 | 当前来源／本轮处理 | 视图 |
+|---|---|---|---|---|
+| `hair/back_hair/long_hair_right` | `001.0 \| hair/back_hair/long_hair_right \| complete`<br>`{78bdd5cb-6eb4-4702-9114-9fc564ccc057}` | 1 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/hair__back_hair__long_hair_right--isolated.png)／[隐藏上层](repair-02-evidence/final/hair__back_hair__long_hair_right--reveal.png) |
+| `hair/back_hair/long_hair_left` | `002.0 \| hair/back_hair/long_hair_left \| complete`<br>`{c3468f00-ed70-451f-a645-8ede54c178db}` | 2 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/hair__back_hair__long_hair_left--isolated.png)／[隐藏上层](repair-02-evidence/final/hair__back_hair__long_hair_left--reveal.png) |
+| `hair/back_hair/cap` | `003.0 \| hair/back_hair/cap \| complete`<br>`{8fb0171e-1b1b-4b23-b8c4-776c50428166}` | 3 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/hair__back_hair__cap--isolated.png)／[隐藏上层](repair-02-evidence/final/hair__back_hair__cap--reveal.png) |
+| `hair/bun` | `004.0 \| hair/bun \| complete`<br>`{78f18acd-6ca1-41e9-9fdf-5ca0396e89e6}` | 4 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/hair__bun--isolated.png)／[隐藏上层](repair-02-evidence/final/hair__bun--reveal.png) |
+| `head_accessories/crown_pendants/crown_pendant_right` | `005.0 \| head_accessories/crown_pendants/crown_pendant_right \| complete`<br>`{1ea39c60-9bc6-4eaa-9d3e-75f9dddc4c84}` | 5 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/head_accessories__crown_pendants__crown_pendant_right--isolated.png)／[隐藏上层](repair-02-evidence/final/head_accessories__crown_pendants__crown_pendant_right--reveal.png) |
+| `head_accessories/crown_pendants/crown_pendant_left` | `006.0 \| head_accessories/crown_pendants/crown_pendant_left \| complete`<br>`{fab3a085-522d-45c4-bc93-732eb87bddd2}` | 6 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/head_accessories__crown_pendants__crown_pendant_left--isolated.png)／[隐藏上层](repair-02-evidence/final/head_accessories__crown_pendants__crown_pendant_left--reveal.png) |
+| `legs/leg_right/anklet_back` | `007.0 \| legs/leg_right/anklet_back \| complete`<br>`{a69151f3-3451-4a3d-9d3b-d040edd5142a}` | 7 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/legs__leg_right__anklet_back--isolated.png)／[隐藏上层](repair-02-evidence/final/legs__leg_right__anklet_back--reveal.png) |
+| `legs/leg_left/anklet_back` | `008.0 \| legs/leg_left/anklet_back \| complete`<br>`{6bd3b73d-a184-4745-9482-e60925a5b2a5}` | 8 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/legs__leg_left__anklet_back--isolated.png)／[隐藏上层](repair-02-evidence/final/legs__leg_left__anklet_back--reveal.png) |
+| `legs/leg_right/leg` | `009.0 \| legs/leg_right/leg \| complete`<br>`{9c64defe-cd1d-47cc-a124-83149984fed6}` | 9 / complete<br>父：ROOT | R8：1512–1590段本腿足踝SVG与alpha修顺，本件内侧材质补齐极窄新边，原有细边恢复并原生接顺；链枝、趾缝、甲缘保留 | [独显](repair-02-evidence/final/legs__leg_right__leg--isolated.png)／[隐藏上层](repair-02-evidence/final/legs__leg_right__leg--reveal.png) |
+| `legs/leg_left/leg` | `010.0 \| legs/leg_left/leg \| complete`<br>`{31dfffc8-e688-485e-92f6-e4d8d5197017}` | 10 / complete<br>父：ROOT | R8：同上；前轮内腿接触轮廓修正保持，足背链仍属leg，前后踝链独立 | [独显](repair-02-evidence/final/legs__leg_left__leg--isolated.png)／[隐藏上层](repair-02-evidence/final/legs__leg_left__leg--reveal.png) |
+| `legs/leg_right/anklet_front` | `011.0 \| legs/leg_right/anklet_front \| complete`<br>`{abe8365b-9f4b-4562-9b75-7b85a57ac9db}` | 11 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/legs__leg_right__anklet_front--isolated.png)／[隐藏上层](repair-02-evidence/final/legs__leg_right__anklet_front--reveal.png) |
+| `legs/leg_left/anklet_front` | `012.0 \| legs/leg_left/anklet_front \| complete`<br>`{aa2ecc80-b5e4-4ff8-b9bb-9b0bf16911db}` | 12 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/legs__leg_left__anklet_front--isolated.png)／[隐藏上层](repair-02-evidence/final/legs__leg_left__anklet_front--reveal.png) |
+| `pelvis` | `013.0 \| pelvis \| complete`<br>`{9f746d95-b938-40f1-81e3-d54ee20c5345}` | 13 / complete<br>父：ROOT | R1：本件布面与连续侧缝修画；原图本件下段侧缝、腿口双边局部取样；隐藏根以本件干净布面原生取样清理旧断头并接续 | [独显](repair-02-evidence/final/pelvis--isolated.png)／[隐藏上层](repair-02-evidence/final/pelvis--reveal.png) |
+| `arms/arm_right/hand/little_finger` | `014.0 \| arms/arm_right/hand/little_finger \| complete`<br>`{2722ff9c-2e16-4c92-9737-64f66c4fd839}` | 14 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/arms__arm_right__hand__little_finger--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_right__hand__little_finger--reveal.png) |
+| `arms/arm_right/hand/ring_finger` | `015.0 \| arms/arm_right/hand/ring_finger \| complete`<br>`{3fd418d2-70da-46d0-bf21-579beff475c5}` | 15 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/arms__arm_right__hand__ring_finger--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_right__hand__ring_finger--reveal.png) |
+| `arms/arm_right/hand/middle_finger` | `016.0 \| arms/arm_right/hand/middle_finger \| complete`<br>`{ffa7ef3e-a94d-4d76-86ad-e7da8a3c4f9c}` | 16 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/arms__arm_right__hand__middle_finger--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_right__hand__middle_finger--reveal.png) |
+| `arms/arm_right/hand/index_finger` | `017.0 \| arms/arm_right/hand/index_finger \| complete`<br>`{17cd49df-01be-4b6a-ba96-3518f814b3f9}` | 17 / complete<br>父：ROOT | R3：本指自身横断材质原生取样 [290,857,12,3]，延续入隐藏根；软接到原指体 | [独显](repair-02-evidence/final/arms__arm_right__hand__index_finger--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_right__hand__index_finger--reveal.png) |
+| `arms/arm_right/hand/thumb` | `018.0 \| arms/arm_right/hand/thumb \| complete`<br>`{37bcea3b-7389-4853-ab97-45729c27cb54}` | 18 / complete<br>父：ROOT | R3：本指自身材质原生取样 [312,851,10,3] 延续补根；甲面、末端和叠指暗线保留 | [独显](repair-02-evidence/final/arms__arm_right__hand__thumb--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_right__hand__thumb--reveal.png) |
+| `arms/arm_right/upper_arm` | `019.0 \| arms/arm_right/upper_arm \| complete`<br>`{2b6fac33-46ff-46bf-9be1-1aedf229de0d}` | 19 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/arms__arm_right__upper_arm--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_right__upper_arm--reveal.png) |
+| `arms/arm_right/forearm` | `020.0 \| arms/arm_right/forearm \| complete`<br>`{1b191d7f-97db-4096-bcd6-8151771e9c8f}` | 20 / complete<br>父：ROOT | R2：本侧腕部体积肤色与细边在自身绘画层接续，近端和其余前臂保留 | [独显](repair-02-evidence/final/arms__arm_right__forearm--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_right__forearm--reveal.png) |
+| `arms/arm_right/hand/palm` | `021.0 \| arms/arm_right/hand/palm \| complete`<br>`{61645b96-cab0-474b-9e70-359d03670037}` | 21 / complete<br>父：ROOT | R2：本掌根与本侧前臂末端共用连续肤色塑形方向；本层细轮廓修画，掌纹及独立手指不并入 | [独显](repair-02-evidence/final/arms__arm_right__hand__palm--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_right__hand__palm--reveal.png) |
+| `arms/arm_left/forearm` | `022.0 \| arms/arm_left/forearm \| complete`<br>`{8859c2c1-7cd6-46df-a2e9-f904fdb54fe6}` | 22 / complete<br>父：ROOT | R2：同上；保持本侧腕形及左臂既有肘部关系 | [独显](repair-02-evidence/final/arms__arm_left__forearm--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_left__forearm--reveal.png) |
+| `arms/arm_left/upper_arm` | `023.0 \| arms/arm_left/upper_arm \| complete`<br>`{20733596-023e-467b-84be-6a5b476585e3}` | 23 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/arms__arm_left__upper_arm--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_left__upper_arm--reveal.png) |
+| `arms/arm_left/hand/index_finger` | `024.0 \| arms/arm_left/hand/index_finger \| complete`<br>`{af94f360-b7b2-4d72-a282-abe81899ae99}` | 24 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/arms__arm_left__hand__index_finger--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_left__hand__index_finger--reveal.png) |
+| `arms/arm_left/hand/middle_finger` | `025.0 \| arms/arm_left/hand/middle_finger \| complete`<br>`{9731fecf-1b7a-45f9-a358-d450b58ed4b0}` | 25 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/arms__arm_left__hand__middle_finger--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_left__hand__middle_finger--reveal.png) |
+| `arms/arm_left/hand/little_finger` | `026.0 \| arms/arm_left/hand/little_finger \| complete`<br>`{9ad7ffb1-b84f-4b39-a6f1-1c6c4a8d039b}` | 26 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/arms__arm_left__hand__little_finger--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_left__hand__little_finger--reveal.png) |
+| `arms/arm_left/hand/ring_finger` | `027.0 \| arms/arm_left/hand/ring_finger \| complete`<br>`{403c6067-0d7d-4a22-a14d-3607410ad8cd}` | 27 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/arms__arm_left__hand__ring_finger--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_left__hand__ring_finger--reveal.png) |
+| `arms/arm_left/hand/thumb` | `028.0 \| arms/arm_left/hand/thumb \| complete`<br>`{f1662c0b-1af8-433a-a5a2-35a1f3a20669}` | 28 / complete<br>父：ROOT | R3：原图本指可见段 [611,832,24,44] 局部取样并排除掌片；本指 y847–849 横断材质延续到隐藏根，消除掌下新色阶 | [独显](repair-02-evidence/final/arms__arm_left__hand__thumb--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_left__hand__thumb--reveal.png) |
+| `arms/arm_left/hand/palm` | `029.0 \| arms/arm_left/hand/palm \| complete`<br>`{5bd257eb-a516-45c1-87e8-58921e019d92}` | 29 / complete<br>父：ROOT | R2：同上；消除原斜切肤色补丁，原有18px腕接蒙版保留 | [独显](repair-02-evidence/final/arms__arm_left__hand__palm--isolated.png)／[隐藏上层](repair-02-evidence/final/arms__arm_left__hand__palm--reveal.png) |
+| `neck` | `030.0 \| neck \| complete`<br>`{15144020-c825-4901-a742-08becc748c51}` | 30 / complete<br>父：ROOT | R4：本颈 [410,348,118,7] 原生取样，沿纵向延续到底端；未取 torso 锁骨 | [独显](repair-02-evidence/final/neck--isolated.png)／[隐藏上层](repair-02-evidence/final/neck--reveal.png) |
+| `body/torso` | `031.0 \| body/torso \| complete`<br>`{ba0c4b14-931a-404b-839f-3be36c4824cb}` | 31 / complete<br>父：ROOT | R1：本件腰腹布面原生修画，侧缝落点与切线接续；新增下端原生接合蒙版，完整绘画不裁掉 | [独显](repair-02-evidence/final/body__torso--isolated.png)／[隐藏上层](repair-02-evidence/final/body__torso--reveal.png) |
+| `body/breast` | `032.0 \| body/breast \| complete`<br>`{8285ee5c-57cc-4f94-88fa-f4f345c8f094}` | 32 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/body__breast--isolated.png)／[隐藏上层](repair-02-evidence/final/body__breast--reveal.png) |
+| `head_accessories/earrings/earring_right` | `033.0 \| head_accessories/earrings/earring_right \| complete`<br>`{d0100130-a76d-47d0-a29a-6bfd074e6c5f}` | 33 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/head_accessories__earrings__earring_right--isolated.png)／[隐藏上层](repair-02-evidence/final/head_accessories__earrings__earring_right--reveal.png) |
+| `head_accessories/earrings/earring_left` | `034.0 \| head_accessories/earrings/earring_left \| complete`<br>`{6c968e73-72f1-42c1-8019-9302690bd470}` | 34 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/head_accessories__earrings__earring_left--isolated.png)／[隐藏上层](repair-02-evidence/final/head_accessories__earrings__earring_left--reveal.png) |
+| `face/ears/ear_right` | `035.0 \| face/ears/ear_right \| complete`<br>`{88643f29-e403-43ed-b8a4-26686a75824b}` | 35 / complete<br>父：ROOT | R7：本耳上耳内红褐材质、对耳轮和窄亮边原生修画，接到保留的下耳；试贴的头发边界像素已撤回 | [独显](repair-02-evidence/final/face__ears__ear_right--isolated.png)／[隐藏上层](repair-02-evidence/final/face__ears__ear_right--reveal.png) |
+| `face/ears/ear_left` | `036.0 \| face/ears/ear_left \| complete`<br>`{a3e7fab5-8355-4552-97db-51f5652cd883}` | 36 / complete<br>父：ROOT | R7：同上；左右形状各自保留，y248及以下原有耳垂和细笔触不改 | [独显](repair-02-evidence/final/face__ears__ear_left--isolated.png)／[隐藏上层](repair-02-evidence/final/face__ears__ear_left--reveal.png) |
+| `face/face_base` | `037.0 \| face/face_base \| complete`<br>`{05210561-d9dd-4843-b30a-a63f7b43116c}` | 37 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__face_base--isolated.png)／[隐藏上层](repair-02-evidence/final/face__face_base--reveal.png) |
+| `face/eyes/eye_left/sclera` | `038.0 \| face/eyes/eye_left/sclera \| complete`<br>`{f14ed857-29cf-4c89-92a9-d4bde22d8edc}` | 38 / complete<br>父：face/eyes/eye_left \| opening_contents | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_left__sclera--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_left__sclera--reveal.png) |
+| `face/eyes/eye_left/iris` | `039.0 \| face/eyes/eye_left/iris \| complete`<br>`{4e67f3d9-e9e4-4b27-b40e-6d8bcbfc8ac4}` | 39 / complete<br>父：face/eyes/eye_left \| iris_highlight_clip | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_left__iris--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_left__iris--reveal.png) |
+| `face/eyes/eye_left/highlight` | `040.0 \| face/eyes/eye_left/highlight \| complete`<br>`{ec09cfdf-4c68-499d-bbdb-a942880a7b98}` | 40 / complete<br>父：face/eyes/eye_left \| iris_highlight_clip | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_left__highlight--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_left__highlight--reveal.png) |
+| `face/eyes/eye_left/lower_eyelid` | `041.0 \| face/eyes/eye_left/lower_eyelid \| complete`<br>`{932004ef-4f82-4863-a2e8-5702e5f4220b}` | 41 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_left__lower_eyelid--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_left__lower_eyelid--reveal.png) |
+| `face/eyes/eye_left/upper_eyelid` | `042.0 \| face/eyes/eye_left/upper_eyelid \| main_lid`<br>`{d699c479-867c-4c80-8daa-ef5c12ac5919}` | 42 / main_lid<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_left__upper_eyelid--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_left__upper_eyelid--reveal.png) |
+| `face/eyes/eye_left/eyelid_crease` | `043.0 \| face/eyes/eye_left/eyelid_crease \| complete`<br>`{3639c2c4-e109-498d-b4d3-2aa7cc846772}` | 43 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_left__eyelid_crease--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_left__eyelid_crease--reveal.png) |
+| `face/eyes/eye_right/sclera` | `044.0 \| face/eyes/eye_right/sclera \| complete`<br>`{34f70e93-53b9-415d-ab1e-2e184b0da10b}` | 44 / complete<br>父：face/eyes/eye_right \| opening_contents | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_right__sclera--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_right__sclera--reveal.png) |
+| `face/eyes/eye_right/iris` | `045.0 \| face/eyes/eye_right/iris \| complete`<br>`{3bce0122-a3f2-4da8-9ace-9532e2066e9a}` | 45 / complete<br>父：face/eyes/eye_right \| iris_highlight_clip | R9：原图本眼暗瞳及紧邻虹膜 [428,217,17,18]，以窄椭圆选区原生取样，扣除独立高光；清除横向拖尾，不取上睑弧 | [独显](repair-02-evidence/final/face__eyes__eye_right__iris--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_right__iris--reveal.png) |
+| `face/eyes/eye_right/highlight` | `046.0 \| face/eyes/eye_right/highlight \| complete`<br>`{ac42bcae-4251-466e-a197-db238ee9517a}` | 46 / complete<br>父：face/eyes/eye_right \| iris_highlight_clip | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_right__highlight--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_right__highlight--reveal.png) |
+| `face/eyes/eye_right/lower_eyelid` | `047.0 \| face/eyes/eye_right/lower_eyelid \| complete`<br>`{bc984aa5-bc74-40e7-aab2-824ddbcce3a1}` | 47 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_right__lower_eyelid--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_right__lower_eyelid--reveal.png) |
+| `face/eyes/eye_right/upper_eyelid` | `048.0 \| face/eyes/eye_right/upper_eyelid \| main_lid`<br>`{538a5f1d-7615-4552-8757-e916939e3793}` | 48 / main_lid<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_right__upper_eyelid--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_right__upper_eyelid--reveal.png) |
+| `face/eyes/eye_right/eyelid_crease` | `049.0 \| face/eyes/eye_right/eyelid_crease \| complete`<br>`{05d74f82-e79b-494e-a987-963a10c7df57}` | 49 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_right__eyelid_crease--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_right__eyelid_crease--reveal.png) |
+| `face/mouth/mouth_interior` | `050.0 \| face/mouth/mouth_interior \| complete`<br>`{33c3ea08-2619-4e9b-b207-879a426122b8}` | 50 / complete<br>父：face/mouth \| opening_contents | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__mouth__mouth_interior--isolated.png)／[隐藏上层](repair-02-evidence/final/face__mouth__mouth_interior--reveal.png) |
+| `face/mouth/lower_teeth` | `051.0 \| face/mouth/lower_teeth \| complete`<br>`{6da0c3a9-f9cb-4ce1-b796-cae92c765925}` | 51 / complete<br>父：face/mouth \| opening_contents | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__mouth__lower_teeth--isolated.png)／[隐藏上层](repair-02-evidence/final/face__mouth__lower_teeth--reveal.png) |
+| `face/mouth/tongue` | `052.0 \| face/mouth/tongue \| complete`<br>`{f04d969e-bc63-4aa7-be79-a49deaa1922f}` | 52 / complete<br>父：face/mouth \| opening_contents | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__mouth__tongue--isolated.png)／[隐藏上层](repair-02-evidence/final/face__mouth__tongue--reveal.png) |
+| `face/mouth/upper_teeth` | `053.0 \| face/mouth/upper_teeth \| complete`<br>`{d5d9fe8c-4930-4c05-9a76-eed077809f1d}` | 53 / complete<br>父：face/mouth \| opening_contents | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__mouth__upper_teeth--isolated.png)／[隐藏上层](repair-02-evidence/final/face__mouth__upper_teeth--reveal.png) |
+| `face/mouth/lower_lip` | `054.0 \| face/mouth/lower_lip \| complete`<br>`{562d4152-fdd0-407d-b6a5-3b9fc4aa9baa}` | 54 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__mouth__lower_lip--isolated.png)／[隐藏上层](repair-02-evidence/final/face__mouth__lower_lip--reveal.png) |
+| `face/mouth/upper_lip` | `055.0 \| face/mouth/upper_lip \| complete`<br>`{3a9aaeab-44e3-4640-971b-ccb37806068c}` | 55 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__mouth__upper_lip--isolated.png)／[隐藏上层](repair-02-evidence/final/face__mouth__upper_lip--reveal.png) |
+| `face/eyebrows/eyebrow_right` | `056.0 \| face/eyebrows/eyebrow_right \| complete`<br>`{ac4945cf-4446-468c-8a9e-8001b45da597}` | 56 / complete<br>父：ROOT | R6：原生渐尖细灰边和窄亮芯；原图本眉中段 [431,190,20,5] 小范围取样，不含发遮尾部 | [独显](repair-02-evidence/final/face__eyebrows__eyebrow_right--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyebrows__eyebrow_right--reveal.png) |
+| `face/eyebrows/eyebrow_left` | `057.0 \| face/eyebrows/eyebrow_left \| complete`<br>`{573a191c-1809-420e-a658-f7a50f5dbac3}` | 57 / complete<br>父：ROOT | R6：同上；本眉中段原图取样 [487,190,20,5]，隐藏眉尾原生接续 | [独显](repair-02-evidence/final/face__eyebrows__eyebrow_left--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyebrows__eyebrow_left--reveal.png) |
+| `face/nose` | `058.0 \| face/nose \| complete`<br>`{8d5e141b-87cc-49d4-9622-e5cc0fea60bd}` | 58 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__nose--isolated.png)／[隐藏上层](repair-02-evidence/final/face__nose--reveal.png) |
+| `hair/sidelock/sidelock_right` | `059.0 \| hair/sidelock/sidelock_right \| complete`<br>`{9a2a473e-21db-4388-8c91-718162d418ff}` | 59 / complete<br>父：ROOT | R5：在原有完整本束材质上原生连续曲线修画细灰边、银白窄亮面和内侧折面；试贴原图的版本全部撤回 | [独显](repair-02-evidence/final/hair__sidelock__sidelock_right--isolated.png)／[隐藏上层](repair-02-evidence/final/hair__sidelock__sidelock_right--reveal.png) |
+| `hair/sidelock/sidelock_left` | `060.0 \| hair/sidelock/sidelock_left \| complete`<br>`{2799914a-e942-4cdb-8749-c2d6ef60234a}` | 60 / complete<br>父：ROOT | R5：同上，按本侧完整alpha配准；没有耳、耳饰、宽侧发或皮肤取样像素 | [独显](repair-02-evidence/final/hair__sidelock__sidelock_left--isolated.png)／[隐藏上层](repair-02-evidence/final/hair__sidelock__sidelock_left--reveal.png) |
+| `head_accessories/bun_ornament` | `061.0 \| head_accessories/bun_ornament \| complete`<br>`{bbdf4cef-6d2f-461d-b89a-0478efeb5863}` | 61 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/head_accessories__bun_ornament--isolated.png)／[隐藏上层](repair-02-evidence/final/head_accessories__bun_ornament--reveal.png) |
+| `head_accessories/crown_frame` | `061.5 \| head_accessories/crown_frame \| mounting_root`<br>`{27a9fa4e-8359-483b-be05-600c033be350}` | 61.5 / mounting_root<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/head_accessories__crown_frame--isolated.png)／[隐藏上层](repair-02-evidence/final/head_accessories__crown_frame--reveal.png) |
+| `head_accessories/forehead_pendant` | `062.0 \| head_accessories/forehead_pendant \| mounting_root`<br>`{07b882af-c65d-4977-ad8a-2cb190fbbf29}` | 62 / mounting_root<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/head_accessories__forehead_pendant--isolated.png)／[隐藏上层](repair-02-evidence/final/head_accessories__forehead_pendant--reveal.png) |
+| `hair/side_hair/side_hair_right` | `063.0 \| hair/side_hair/side_hair_right \| complete`<br>`{eb9f4ebc-74ea-4247-aa0c-468fc4aa54d6}` | 63 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/hair__side_hair__side_hair_right--isolated.png)／[隐藏上层](repair-02-evidence/final/hair__side_hair__side_hair_right--reveal.png) |
+| `hair/side_hair/side_hair_left` | `064.0 \| hair/side_hair/side_hair_left \| complete`<br>`{431dc8ad-bd0d-4ddc-94e9-a49f6af32517}` | 64 / complete<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/hair__side_hair__side_hair_left--isolated.png)／[隐藏上层](repair-02-evidence/final/hair__side_hair__side_hair_left--reveal.png) |
+| `head_accessories/forehead_pendant` | `065.0 \| head_accessories/forehead_pendant \| visible_front`<br>`{8f15e56d-ad11-472d-9b95-f460a1037aaf}` | 65 / visible_front<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/head_accessories__forehead_pendant--isolated.png)／[隐藏上层](repair-02-evidence/final/head_accessories__forehead_pendant--reveal.png) |
+| `face/eyes/eye_left/upper_eyelid` | `066.0 \| face/eyes/eye_left/upper_eyelid \| outer_lash_front`<br>`{82f93c9a-8c37-433f-b573-72a46f9a7ee7}` | 66 / outer_lash_front<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_left__upper_eyelid--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_left__upper_eyelid--reveal.png) |
+| `face/eyes/eye_right/upper_eyelid` | `066.5 \| face/eyes/eye_right/upper_eyelid \| outer_lash_front`<br>`{495462dd-1159-4a01-bed3-efa147ef134a}` | 66.5 / outer_lash_front<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/face__eyes__eye_right__upper_eyelid--isolated.png)／[隐藏上层](repair-02-evidence/final/face__eyes__eye_right__upper_eyelid--reveal.png) |
+| `head_accessories/crown_frame` | `067.0 \| head_accessories/crown_frame \| visible_front`<br>`{d85d2872-2d37-4366-828f-d2f01636d589}` | 67 / visible_front<br>父：ROOT | 保留：沿用返修前本件绘画；前序来源和复用记录见 ../../raster-layering/step01/workspace/repair02/before-report.md | [独显](repair-02-evidence/final/head_accessories__crown_frame--isolated.png)／[隐藏上层](repair-02-evidence/final/head_accessories__crown_frame--reveal.png) |
+
+## 看图检查与保存重开
+
+本轮逐件复查65件完整独显与隐藏上层总览，修复的19件另外使用原坐标局部面板查看单件、隐藏上层及默认整图。全部18个原生A/U8蒙版逐一启停，3个眼口共享开口另作临时归零测试后恢复。各次切换未改动绘画或蒙版原始缓冲。
+
+保存后关闭指定KRA，再从指定路径重新打开。69个绘画层、18个蒙版、5个组，共92个节点的名称、UUID、父子关系、顺序、显隐、剪贴状态及87份绘画／蒙版缓冲均与关闭前相同。默认PNG在保存前、重开后和交付文件的解码像素一致；KRA ZIP完整性通过。19个绘画层有本轮修复，其余50个绘画层及原有17个蒙版的像素与返修前完全一致。哈希只用于持久化和保护检查，不代替看图。
+
+[重开核验](../../raster-layering/step01/repair-02-evidence/final/reopen-verification.json) · [实际图层树](../../raster-layering/step01/repair-02-evidence/final/tree.json) · [交付及保留清单](../../raster-layering/step01/repair-02-evidence/final/delivery-check.json) · [蒙版数据检查](../../raster-layering/step01/repair-02-evidence/final/mask-checks.json)
+
+[蒙版启停1](repair-02-evidence/final/mask-switches-1.png)／[2](repair-02-evidence/final/mask-switches-2.png)／[3](repair-02-evidence/final/mask-switches-3.png) · [全部蒙版停用](repair-02-evidence/final/all-masks-off.png) · [眼口开口归零检查](repair-02-evidence/final/aperture-zero-test.png)。归零图用于验证控制，不是另画的闭眼／闭嘴姿态；最终已恢复参考开口。
+
+绘画自检：本轮review-02的9项、17处均已处理并通过当前保存画面的三视图检查，未列未解决问题。
+
+- 身体：[完整独显](repair-02-evidence/final/isolated-body.png)／[隐藏上层](repair-02-evidence/final/reveal-body.png)
+- 双手：[完整独显](repair-02-evidence/final/isolated-hands.png)／[隐藏上层](repair-02-evidence/final/reveal-hands.png)
+- 双眼：[完整独显](repair-02-evidence/final/isolated-eyes.png)／[隐藏上层](repair-02-evidence/final/reveal-eyes.png)
+- 脸耳口眉：[完整独显](repair-02-evidence/final/isolated-face-mouth.png)／[隐藏上层](repair-02-evidence/final/reveal-face-mouth.png)
+- 头发：[完整独显](repair-02-evidence/final/isolated-hair.png)／[隐藏上层](repair-02-evidence/final/reveal-hair.png)
+- 饰件：[完整独显](repair-02-evidence/final/isolated-jewelry.png)／[隐藏上层](repair-02-evidence/final/reveal-jewelry.png)
+- 腿足与踝链：[完整独显](repair-02-evidence/final/isolated-legs.png)／[隐藏上层](repair-02-evidence/final/reveal-legs.png)
+
+## 过程保存与恢复
+
+各批修改后保存同一指定工程。宽选区试贴出现的邻件像素已撤回：鬓发最终不使用试贴像素；上耳以本耳线面重画；右瞳孔只保留窄椭圆内本眼取样。一个绘制脚本返回过自动取消 `QProgressDialog` 提示，随后实际保存、导出和重开核验均成功，无遗留工具故障。过程脚本和操作记录位于 `../../raster-layering/step01/workspace/repair02`，有效交付以本报告与重开的KRA为准。

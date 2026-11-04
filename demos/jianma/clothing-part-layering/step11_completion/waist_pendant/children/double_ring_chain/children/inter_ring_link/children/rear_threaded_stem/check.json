@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/double_ring_chain/inter_ring_link/rear_threaded_stem",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "4cd6b3eeb573bd3fa96b8248a2ba5e918f6c4f40840da0f8169fd0c4bd221351",
-  "afterHash": "c7932b1d00609c174880540123f9eb5de9a6971c174da8c15495430e6a2dd0e4"
-}

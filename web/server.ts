@@ -376,7 +376,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       if (path === '/api/studio/samples') { json(await studioCatalog(root)); return; }
       if (path === '/studio-document') {
         if (url.searchParams.get('id') !== 'jianma') throw new Error('未登记的角色文件');
-        const file = await safePath(root, 'demos/jianma/assembled/jianma-assembled.kra');
+        const file = await safePath(root, 'demos/jianma/shadow/step01_mask/character-shadowed.kra');
         response.writeHead(200, { 'Content-Type': 'application/octet-stream' });
         createReadStream(file).on('error', () => response.destroy()).pipe(response); return;
       }

@@ -3,16 +3,110 @@
   "reviews": [
     {
       "verdict": "revise",
-      "feedback": "已先用整图 blend 定位，再以六个重叠选框 [370,285,155,115]、[500,285,155,115]、[405,370,120,130]、[500,370,120,130]、[410,470,115,105]、[500,470,115,105] 分别查看 5 倍 blend/edge，覆盖肩颈交界、双肩与手臂衔接、胸部、两侧胸腰、腹部及下方组间衔接；另以 7–8 倍复核肩缘与胸腰转折。无父组，父范围检查不适用。\n\n需一次修正以下两处可见边缘内缩：\n1. 画面右侧胸部下外缘，约 x587–597、y432–443，尤其 (591,438) 附近：参考中躯干与紫灰色后发的分界位于候选红线右侧；blend 留出一条连续的白色实体细边，edge 红线从这条细边内侧切过。请将这段胸部斜弧向右微调至实际外缘，连续接回约 (587,442) 的胸腰转折，保留该转折，不把胸内阴影线当作边界。证据：observations/review/body/2026-10-14T11-46-58-484Z-25.png（blend）、-26.png（edge）；较大上下文见 -10.png、-11.png。\n2. 画面右腰最凹点下方，约 x573–576、y509–513：参考有与躯干主体相连的小段亮色外缘，在内收后短促向外转；候选把这里平滑掠过，漏掉约 1 像素宽的连通局部。blend 中该白色局部露在色块外，edge 红线位于其内侧。请在同一连续路径中补足并还原局部转向，不加孤点或独立碎片，也不要改变附近已经贴合的腰线。证据：observations/review/body/2026-10-14T11-46-58-484Z-18.png（blend）、-17.png（edge），局部放大 -24.png。\n\n其余已覆盖区域未发现有明确图像依据的返修项；组间人为分界按允许重叠的衔接处理。本候选为连续完整色块，未发现孤立点、来源不明的碎片或形体归属混乱；本次返修涉及上述局部轮廓漏覆与内缩，不涉及噪音清理。",
-      "candidateHash": "cf27932f7281adadf19f6c8515011ff425ae22cf3da9ebc7a6cbee5737e61892",
-      "updatedAt": "2026-10-14T11:57:04.421Z",
-      "repairedCandidateHash": "da8bfd8652d2a868644cac237d52df588a6475157def444e113611702d57e54f"
+      "feedback": "已对全图叠加及三个相互重叠的局部（肩颈 y338–448、胸部 y421–539、腰腹 y518–663）逐块完成 blend、edge 核对，并对左右腰缘分别作 8 倍放大。body 无父组范围约束；主体归属、肩胸覆盖及连续性成立，未发现独立组件遗漏、碎片噪音或需整体重画的形体错误。需局部修正两侧腰腹外缘：\n1. 画面左侧 x387–400、y530–590：参考中连体服与后方头发之间的深色外轮廓向右收腰，候选红边在 y540–580 段偏左，包入约 2–3 像素的头发区域，收腰弧线也偏直。将此段边缘右移，依参考连续弧度重描；不要沿头发内部明暗分界取边。\n2. 两侧下腰至 body 底端 y600–650：参考中躯干向下外展的边缘位于候选之外。左侧约 x372–395，候选偏右约 1–3 像素；右侧约 x543–570，候选偏左约 2–4 像素，接近 y650 时尤明显。两侧均漏掉连续窄条躯干范围。按各自参考外缘分别向外补齐，使腰弧平顺衔接 y650 的 pelvis 分界端点；右侧须依原图单独调整，不沿用左侧镜像。此项仅改外缘与底端交点，不要求改变 body/pelvis 的内部横向分界。",
+      "candidateHash": "8f238c47d2232cd3c0c0082f3d93cbb7088b88594df51ba511bafbfaaddb83d6",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-05-27-552Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-05-27-552Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-05-27-552Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-05-27-552Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-05-27-552Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-05-27-552Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-05-27-552Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-05-27-552Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-05-27-552Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:14:08.815Z",
+      "repairedCandidateHash": "6551cc47b29a37a69c12272612e66aadd4371800d856b4159466bcd48e928a09"
     },
     {
       "verdict": "pass",
-      "feedback": "本轮仅审 body。已读取 groups.json、本组说明、参考图及候选 SVG；本组无父组，父范围检查不适用。先查看整图 blend 定位，再以 5 倍 blend 和 edge 完整核对六个相互重叠的选框：[372,286,160,108]、[494,286,160,108]（左右肩、颈部衔接及锁骨区域）；[376,346,156,120]、[494,346,156,120]（双侧肩臂分界、腋侧及胸侧）；[411,434,122,146]、[491,434,123,146]（胸腰转折、两侧腰腹及下部衔接）。这些选框完整覆盖候选可见范围，重叠处连续。另以 8 倍 blend、edge 及原参考局部复核 [563,483,30,49]：右腰约 (574,510–515) 的小转折在原图连续外缘上有明确依据，候选贴合该边缘。双肩外缘的宽度、弧度和走向，胸侧至腰部的收束与转向，以及腰腹外缘均与参考可见轮廓对齐；颈部、手臂及骨盆方向的本组衔接边连续，无漏画或无依据挖缝。色块为单一连续形体，没有孤点、来源不明碎片、噪音堆砌或形体归属混乱。未发现有明确图像依据的返修问题，通过。",
-      "candidateHash": "da8bfd8652d2a868644cac237d52df588a6475157def444e113611702d57e54f",
-      "updatedAt": "2026-10-14T12:15:33.202Z"
+      "feedback": "第 2 轮独立审查通过。已读取 body 职责及候选源码；body 为顶层组，无父范围约束。先检查整图 blend，再对上部 [325,335,290,185]、下部 [350,490,240,180] 做重叠放大的参考图、blend 与 edge 核对，并以 6 倍检查左右肩胸 [330,345,75,170]、[535,345,75,170]，以 5 倍复查双侧腰腹 [365,505,210,150]，另检查 SVG 独显。锁骨、双肩、胸腹及连体服上半部覆盖完整，左右肩外缘、胸侧至腋下转折、腰部收窄与向下展开均贴合参考中的可见边界；颈部、手臂及 pelvis 的人为分组接缝合理。未发现误包相邻长发、可见组件遗漏、真实孔洞被填平、孤立碎片或噪音；无需重画或局部返修。",
+      "candidateHash": "6551cc47b29a37a69c12272612e66aadd4371800d856b4159466bcd48e928a09",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-21-57-139Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-21-57-139Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-21-57-139Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-21-57-139Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-21-57-139Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-21-57-139Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-21-57-139Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-21-57-139Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-02T09-21-57-139Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:28:07.861Z"
     }
   ]
 }

@@ -1,0 +1,168 @@
+{
+  "image": "clothing-raster-layering/step01/review-evidence/review01/assembled.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/marked.png",
+  "manifest": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        445,
+        460,
+        53,
+        33
+      ],
+      "layers": [
+        "020 | central_blue_drapery/central_folded_tail",
+        "021 | central_blue_drapery/left_long_panel",
+        "022 | central_blue_drapery/right_long_panel",
+        "011 | inner_long_dress/bodice_and_waist"
+      ],
+      "description": "蓝布根部在腰结下方提前露出，盖住参考中两短环之间可见的淡紫腰面与腰下白边。调整根部局部前后遮挡，保留各片完整隐藏根。",
+      "crop": [
+        429,
+        444,
+        85,
+        65
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R1-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R1-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R1-comparison.png"
+      }
+    },
+    {
+      "id": "R5a",
+      "bounds": [
+        679,
+        651,
+        10,
+        35
+      ],
+      "layers": [
+        "051 | sleeve_screen_right/left_sleeve_tube | front",
+        "061 | sleeve_screen_right/left_hanging_drape | front"
+      ],
+      "description": "画面右袖口外侧、椭圆口上方存在细长透明裂隙，透出背景；参考此处衣料连续。用所属衣料窄量搭接闭缝，保留正常椭圆袖口。",
+      "crop": [
+        663,
+        635,
+        42,
+        67
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R5a-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R5a-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R5a-comparison.png"
+      }
+    },
+    {
+      "id": "R5b",
+      "bounds": [
+        591,
+        691,
+        22,
+        19
+      ],
+      "layers": [
+        "051 | sleeve_screen_right/left_sleeve_tube | front",
+        "041 | sleeve_screen_right/left_hanging_drape | back"
+      ],
+      "description": "画面右袖口内侧的纵向补料以浅色水平矩形台阶结束，接到后垂面时形成可见方块接头；参考内缘顺滑连续。重画过渡和搭接，不合并袖筒与垂布。",
+      "crop": [
+        575,
+        675,
+        54,
+        51
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R5b-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R5b-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R5b-comparison.png"
+      }
+    },
+    {
+      "id": "R7",
+      "bounds": [
+        367,
+        1308,
+        211,
+        162
+      ],
+      "layers": [
+        "002 | inner_long_dress/long_skirt | back",
+        "010 | inner_long_dress/long_skirt | front"
+      ],
+      "description": "参考可见下裙褶边的深色纵褶与白色下沿包边被大面积软化/抹掉，横接线也下移；当前露出部分呈模糊圆波，改变可辨认的褶边结构。恢复可见褶线、横缝位置与白包边，并自然接入补全。",
+      "crop": [
+        351,
+        1292,
+        243,
+        194
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R7-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R7-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R7-comparison.png"
+      }
+    },
+    {
+      "id": "R8",
+      "bounds": [
+        450,
+        915,
+        44,
+        40
+      ],
+      "layers": [
+        "118 | waist_pendant_and_tassel/long_tassel"
+      ],
+      "description": "流苏顶珠与折角帽颜色发白，帽外缘出现浅色宽晕，参考的深蓝清晰轮廓和下侧阴影丢失。恢复蓝帽轮廓与珠帽连接的明暗，保留穗束长度和形状。",
+      "crop": [
+        434,
+        899,
+        76,
+        72
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R8-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R8-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R8-comparison.png"
+      }
+    },
+    {
+      "id": "R9",
+      "bounds": [
+        409,
+        446,
+        124,
+        112
+      ],
+      "layers": [
+        "003 | waist_sash_and_knot/waist_band | back",
+        "025 | waist_sash_and_knot/waist_band | front",
+        "101 | waist_sash_and_knot/left_short_tail",
+        "102 | waist_sash_and_knot/right_short_tail",
+        "103 | waist_sash_and_knot/left_short_loop",
+        "104 | waist_sash_and_knot/right_short_loop"
+      ],
+      "description": "腰带和两自由短尾的补画变成无清晰包边的浅蓝渐变，原图深色边线、短尾折面/尖端的线性结构丢失；短环上根与原有暗折面也有色块式转换。按参考恢复边线和折面并平顺接入补全，维持各带独立身份。",
+      "crop": [
+        393,
+        430,
+        156,
+        144
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R9-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R9-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01/marks/assembled/R9-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

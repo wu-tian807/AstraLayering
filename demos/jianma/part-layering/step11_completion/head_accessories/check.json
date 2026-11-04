@@ -1,7 +1,5 @@
 {
   "groupId": "head_accessories",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，6 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "620c4fc9a2b8a058ba31e11a2f77389de8259b97bcc24d9b9f5bbd98d2d3d911",
-  "afterHash": "7a3c883f4e7bc4fe45863adcd5a13b08701aed1129c99d862af58cffee91bc9a"
+  "note": "程序核对：原 SVG 正文保留，8 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

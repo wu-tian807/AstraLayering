@@ -1,0 +1,1286 @@
+{
+  "reference": "part-layering/references/simplified-subject.png",
+  "current": "character-assembly/step01/character-assembled.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "crop": [
+    0,
+    0,
+    941,
+    1672
+  ],
+  "partSelection": {
+    "parts": [
+      "clothing:collar_shoulder_cape",
+      "clothing:sleeve_screen_left",
+      "clothing:sleeve_screen_right",
+      "clothing:outer_robe_body",
+      "clothing:inner_long_dress",
+      "clothing:waist_sash_and_knot",
+      "clothing:central_blue_drapery"
+    ],
+    "padding": 8,
+    "currentKra": "character-assembly/step01/character-assembled.kra",
+    "layersFile": "character-assembly/step01/character-assembled.ora",
+    "layers": [
+      {
+        "part": "clothing:collar_shoulder_cape",
+        "layer": "衣服 | 072 | collar_shoulder_cape/standing_collar | front",
+        "bounds": [
+          416,
+          292,
+          107,
+          78
+        ]
+      },
+      {
+        "part": "clothing:collar_shoulder_cape",
+        "layer": "衣服 | 071 | collar_shoulder_cape/right_shoulder_cape",
+        "bounds": [
+          291,
+          330,
+          162,
+          199
+        ]
+      },
+      {
+        "part": "clothing:collar_shoulder_cape",
+        "layer": "衣服 | 070 | collar_shoulder_cape/left_shoulder_cape",
+        "bounds": [
+          490,
+          334,
+          157,
+          194
+        ]
+      },
+      {
+        "part": "clothing:collar_shoulder_cape",
+        "layer": "衣服 | 001 | collar_shoulder_cape/standing_collar | back",
+        "bounds": [
+          431,
+          287,
+          77,
+          63
+        ]
+      },
+      {
+        "part": "clothing:sleeve_screen_left",
+        "layer": "衣服 | 060 | sleeve_screen_left/right_hanging_drape | front",
+        "bounds": [
+          189,
+          401,
+          199,
+          429
+        ]
+      },
+      {
+        "part": "clothing:sleeve_screen_left",
+        "layer": "衣服 | 050 | sleeve_screen_left/right_sleeve_tube | front",
+        "bounds": [
+          267,
+          375,
+          130,
+          428
+        ]
+      },
+      {
+        "part": "clothing:sleeve_screen_left",
+        "layer": "衣服 | 042 | sleeve_screen_left/right_sleeve_tube | back",
+        "bounds": [
+          268,
+          762,
+          75,
+          25
+        ]
+      },
+      {
+        "part": "clothing:sleeve_screen_left",
+        "layer": "衣服 | 040 | sleeve_screen_left/right_hanging_drape | back",
+        "bounds": [
+          90,
+          436,
+          295,
+          1087
+        ]
+      },
+      {
+        "part": "clothing:sleeve_screen_right",
+        "layer": "衣服 | 061 | sleeve_screen_right/left_hanging_drape | front",
+        "bounds": [
+          554,
+          368,
+          190,
+          462
+        ]
+      },
+      {
+        "part": "clothing:sleeve_screen_right",
+        "layer": "衣服 | 051 | sleeve_screen_right/left_sleeve_tube | front",
+        "bounds": [
+          538,
+          364,
+          137,
+          438
+        ]
+      },
+      {
+        "part": "clothing:sleeve_screen_right",
+        "layer": "衣服 | 043 | sleeve_screen_right/left_sleeve_tube | back",
+        "bounds": [
+          595,
+          762,
+          75,
+          24
+        ]
+      },
+      {
+        "part": "clothing:sleeve_screen_right",
+        "layer": "衣服 | 041 | sleeve_screen_right/left_hanging_drape | back",
+        "bounds": [
+          550,
+          436,
+          296,
+          1087
+        ]
+      },
+      {
+        "part": "clothing:outer_robe_body",
+        "layer": "衣服 | 031 | outer_robe_body/right_robe_panel",
+        "bounds": [
+          123,
+          375,
+          323,
+          1225
+        ]
+      },
+      {
+        "part": "clothing:outer_robe_body",
+        "layer": "衣服 | 030 | outer_robe_body/left_robe_panel",
+        "bounds": [
+          491,
+          375,
+          324,
+          1225
+        ]
+      },
+      {
+        "part": "clothing:inner_long_dress",
+        "layer": "衣服 | 011 | inner_long_dress/bodice_and_waist",
+        "bounds": [
+          401,
+          439,
+          135,
+          153
+        ]
+      },
+      {
+        "part": "clothing:inner_long_dress",
+        "layer": "衣服 | 010 | inner_long_dress/long_skirt | front",
+        "bounds": [
+          303,
+          581,
+          339,
+          952
+        ]
+      },
+      {
+        "part": "clothing:inner_long_dress",
+        "layer": "衣服 | 002 | inner_long_dress/long_skirt | back",
+        "bounds": [
+          292,
+          583,
+          355,
+          945
+        ]
+      },
+      {
+        "part": "clothing:waist_sash_and_knot",
+        "layer": "衣服 | 105 | waist_sash_and_knot/center_knot",
+        "bounds": [
+          458,
+          554,
+          23,
+          17
+        ]
+      },
+      {
+        "part": "clothing:waist_sash_and_knot",
+        "layer": "衣服 | 104 | waist_sash_and_knot/right_short_loop",
+        "bounds": [
+          448,
+          555,
+          21,
+          73
+        ]
+      },
+      {
+        "part": "clothing:waist_sash_and_knot",
+        "layer": "衣服 | 103 | waist_sash_and_knot/left_short_loop",
+        "bounds": [
+          473,
+          556,
+          16,
+          64
+        ]
+      },
+      {
+        "part": "clothing:waist_sash_and_knot",
+        "layer": "衣服 | 102 | waist_sash_and_knot/right_short_tail",
+        "bounds": [
+          445,
+          561,
+          21,
+          97
+        ]
+      },
+      {
+        "part": "clothing:waist_sash_and_knot",
+        "layer": "衣服 | 101 | waist_sash_and_knot/left_short_tail",
+        "bounds": [
+          474,
+          558,
+          22,
+          100
+        ]
+      },
+      {
+        "part": "clothing:waist_sash_and_knot",
+        "layer": "衣服 | 025 | waist_sash_and_knot/waist_band | front",
+        "bounds": [
+          411,
+          552,
+          117,
+          16
+        ]
+      },
+      {
+        "part": "clothing:waist_sash_and_knot",
+        "layer": "衣服 | 003 | waist_sash_and_knot/waist_band | back",
+        "bounds": [
+          387,
+          548,
+          165,
+          19
+        ]
+      },
+      {
+        "part": "clothing:central_blue_drapery",
+        "layer": "衣服 | 022 | central_blue_drapery/right_long_panel | front",
+        "bounds": [
+          393,
+          590,
+          70,
+          792
+        ]
+      },
+      {
+        "part": "clothing:central_blue_drapery",
+        "layer": "衣服 | 021 | central_blue_drapery/left_long_panel | front",
+        "bounds": [
+          476,
+          590,
+          75,
+          792
+        ]
+      },
+      {
+        "part": "clothing:central_blue_drapery",
+        "layer": "衣服 | 020 | central_blue_drapery/central_folded_tail | front",
+        "bounds": [
+          430,
+          590,
+          89,
+          943
+        ]
+      },
+      {
+        "part": "clothing:central_blue_drapery",
+        "layer": "衣服 | 010 | central_blue_drapery/right_long_panel | back waist root",
+        "bounds": [
+          445,
+          563,
+          17,
+          27
+        ]
+      },
+      {
+        "part": "clothing:central_blue_drapery",
+        "layer": "衣服 | 010 | central_blue_drapery/left_long_panel | back waist root",
+        "bounds": [
+          477,
+          563,
+          20,
+          27
+        ]
+      },
+      {
+        "part": "clothing:central_blue_drapery",
+        "layer": "衣服 | 010 | central_blue_drapery/central_folded_tail | back waist root",
+        "bounds": [
+          454,
+          563,
+          31,
+          27
+        ]
+      }
+    ]
+  },
+  "thresholds": {
+    "color": 80,
+    "coarseColor": 32,
+    "blurSigma": 2,
+    "regionGapPixels": 1,
+    "alpha": 96,
+    "minRegionPixels": 64
+  },
+  "counts": {
+    "missing": 6300,
+    "extra": 44022,
+    "color": 120732
+  },
+  "regions": [
+    {
+      "kind": "color",
+      "bounds": [
+        498,
+        346,
+        261,
+        1107
+      ],
+      "pixels": 27084
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        180,
+        367,
+        260,
+        1034
+      ],
+      "pixels": 18302
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        510,
+        794,
+        182,
+        804
+      ],
+      "pixels": 14340
+    },
+    {
+      "kind": "extra",
+      "bounds": [
+        617,
+        388,
+        227,
+        905
+      ],
+      "pixels": 13092
+    },
+    {
+      "kind": "extra",
+      "bounds": [
+        93,
+        530,
+        200,
+        762
+      ],
+      "pixels": 11467
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        250,
+        824,
+        184,
+        773
+      ],
+      "pixels": 10795
+    },
+    {
+      "kind": "extra",
+      "bounds": [
+        99,
+        1199,
+        98,
+        322
+      ],
+      "pixels": 6957
+    },
+    {
+      "kind": "extra",
+      "bounds": [
+        740,
+        1191,
+        98,
+        330
+      ],
+      "pixels": 6600
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        451,
+        564,
+        67,
+        558
+      ],
+      "pixels": 4779
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        395,
+        1138,
+        154,
+        343
+      ],
+      "pixels": 4518
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        146,
+        1240,
+        166,
+        337
+      ],
+      "pixels": 4041
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        140,
+        1203,
+        79,
+        293
+      ],
+      "pixels": 3577
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        726,
+        1190,
+        73,
+        293
+      ],
+      "pixels": 3509
+    },
+    {
+      "kind": "extra",
+      "bounds": [
+        125,
+        1328,
+        138,
+        249
+      ],
+      "pixels": 2711
+    },
+    {
+      "kind": "extra",
+      "bounds": [
+        681,
+        1346,
+        133,
+        230
+      ],
+      "pixels": 2709
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        451,
+        813,
+        39,
+        237
+      ],
+      "pixels": 2516
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        408,
+        279,
+        129,
+        68
+      ],
+      "pixels": 2147
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        657,
+        1345,
+        138,
+        228
+      ],
+      "pixels": 2088
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        697,
+        1476,
+        73,
+        118
+      ],
+      "pixels": 1366
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        136,
+        1163,
+        56,
+        97
+      ],
+      "pixels": 1361
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        745,
+        1172,
+        58,
+        88
+      ],
+      "pixels": 1154
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        309,
+        1174,
+        46,
+        211
+      ],
+      "pixels": 1087
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        640,
+        978,
+        71,
+        109
+      ],
+      "pixels": 940
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        127,
+        1416,
+        95,
+        100
+      ],
+      "pixels": 874
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        669,
+        1192,
+        81,
+        71
+      ],
+      "pixels": 837
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        225,
+        979,
+        65,
+        111
+      ],
+      "pixels": 828
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        408,
+        441,
+        79,
+        71
+      ],
+      "pixels": 794
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        474,
+        1459,
+        86,
+        82
+      ],
+      "pixels": 736
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        191,
+        1189,
+        65,
+        72
+      ],
+      "pixels": 651
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        421,
+        330,
+        99,
+        54
+      ],
+      "pixels": 641
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        711,
+        1152,
+        31,
+        87
+      ],
+      "pixels": 633
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        734,
+        1459,
+        80,
+        61
+      ],
+      "pixels": 628
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        599,
+        879,
+        32,
+        232
+      ],
+      "pixels": 608
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        422,
+        699,
+        13,
+        139
+      ],
+      "pixels": 555
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        620,
+        1550,
+        71,
+        49
+      ],
+      "pixels": 550
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        304,
+        1359,
+        45,
+        92
+      ],
+      "pixels": 543
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        250,
+        1549,
+        36,
+        50
+      ],
+      "pixels": 507
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        431,
+        1459,
+        39,
+        59
+      ],
+      "pixels": 504
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        503,
+        731,
+        11,
+        110
+      ],
+      "pixels": 467
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        327,
+        1523,
+        89,
+        34
+      ],
+      "pixels": 451
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        562,
+        1277,
+        38,
+        151
+      ],
+      "pixels": 443
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        568,
+        684,
+        20,
+        96
+      ],
+      "pixels": 438
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        523,
+        1523,
+        92,
+        33
+      ],
+      "pixels": 408
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        390,
+        1516,
+        77,
+        20
+      ],
+      "pixels": 408
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        683,
+        1107,
+        45,
+        84
+      ],
+      "pixels": 384
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        600,
+        1361,
+        35,
+        45
+      ],
+      "pixels": 288
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        212,
+        1151,
+        15,
+        48
+      ],
+      "pixels": 287
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        458,
+        564,
+        20,
+        44
+      ],
+      "pixels": 281
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        508,
+        974,
+        11,
+        53
+      ],
+      "pixels": 266
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        438,
+        654,
+        7,
+        76
+      ],
+      "pixels": 263
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        552,
+        1247,
+        9,
+        115
+      ],
+      "pixels": 263
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        224,
+        856,
+        22,
+        116
+      ],
+      "pixels": 246
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        665,
+        725,
+        8,
+        48
+      ],
+      "pixels": 227
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        702,
+        1002,
+        13,
+        50
+      ],
+      "pixels": 222
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        225,
+        1321,
+        14,
+        40
+      ],
+      "pixels": 207
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        210,
+        1085,
+        17,
+        55
+      ],
+      "pixels": 188
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        430,
+        546,
+        57,
+        15
+      ],
+      "pixels": 183
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        148,
+        1012,
+        75,
+        214
+      ],
+      "pixels": 180
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        367,
+        930,
+        32,
+        45
+      ],
+      "pixels": 174
+    },
+    {
+      "kind": "extra",
+      "bounds": [
+        206,
+        1574,
+        41,
+        24
+      ],
+      "pixels": 172
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        717,
+        1012,
+        76,
+        218
+      ],
+      "pixels": 172
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        256,
+        1086,
+        28,
+        95
+      ],
+      "pixels": 164
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        607,
+        1397,
+        13,
+        48
+      ],
+      "pixels": 164
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        746,
+        1170,
+        34,
+        43
+      ],
+      "pixels": 163
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        703,
+        1321,
+        12,
+        31
+      ],
+      "pixels": 163
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        220,
+        1002,
+        16,
+        61
+      ],
+      "pixels": 151
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        404,
+        424,
+        38,
+        12
+      ],
+      "pixels": 146
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        587,
+        797,
+        12,
+        79
+      ],
+      "pixels": 140
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        264,
+        1222,
+        6,
+        30
+      ],
+      "pixels": 140
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        664,
+        888,
+        21,
+        31
+      ],
+      "pixels": 137
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        549,
+        1107,
+        31,
+        28
+      ],
+      "pixels": 137
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        239,
+        1079,
+        13,
+        35
+      ],
+      "pixels": 131
+    },
+    {
+      "kind": "extra",
+      "bounds": [
+        696,
+        1574,
+        39,
+        23
+      ],
+      "pixels": 126
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        431,
+        1427,
+        30,
+        27
+      ],
+      "pixels": 125
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        744,
+        1476,
+        44,
+        32
+      ],
+      "pixels": 119
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        420,
+        590,
+        21,
+        10
+      ],
+      "pixels": 115
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        444,
+        562,
+        11,
+        28
+      ],
+      "pixels": 112
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        736,
+        1572,
+        32,
+        7
+      ],
+      "pixels": 111
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        461,
+        778,
+        15,
+        35
+      ],
+      "pixels": 109
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        353,
+        451,
+        23,
+        24
+      ],
+      "pixels": 107
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        173,
+        1572,
+        32,
+        7
+      ],
+      "pixels": 106
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        701,
+        1512,
+        8,
+        26
+      ],
+      "pixels": 104
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        685,
+        1072,
+        9,
+        28
+      ],
+      "pixels": 100
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        483,
+        1482,
+        28,
+        29
+      ],
+      "pixels": 96
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        424,
+        483,
+        13,
+        19
+      ],
+      "pixels": 95
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        157,
+        1475,
+        28,
+        24
+      ],
+      "pixels": 94
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        510,
+        384,
+        19,
+        13
+      ],
+      "pixels": 80
+    },
+    {
+      "kind": "missing",
+      "bounds": [
+        291,
+        1553,
+        32,
+        5
+      ],
+      "pixels": 79
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        495,
+        1149,
+        5,
+        59
+      ],
+      "pixels": 79
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        486,
+        442,
+        30,
+        11
+      ],
+      "pixels": 78
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        716,
+        1080,
+        12,
+        17
+      ],
+      "pixels": 73
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        196,
+        1265,
+        10,
+        16
+      ],
+      "pixels": 68
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        454,
+        515,
+        30,
+        21
+      ],
+      "pixels": 65
+    },
+    {
+      "kind": "color",
+      "bounds": [
+        252,
+        898,
+        17,
+        23
+      ],
+      "pixels": 65
+    }
+  ],
+  "note": "以候选框为局部检查入口，依据当前阶段职责和参考确认修复范围。候选不决定通过或内容归属；选择部件时只统计其当前范围及周边。"
+}

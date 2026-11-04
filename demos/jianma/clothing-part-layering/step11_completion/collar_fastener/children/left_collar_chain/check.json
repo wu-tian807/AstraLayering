@@ -1,7 +1,0 @@
-{
-  "groupId": "collar_fastener/left_collar_chain",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "ee1f4dabc7403c707e252738c067e1aa4e0c93ffa452035a17ac47066d3bc6f9",
-  "afterHash": "1962a57bb8ae6e6b792036f397325304b84daa14d7c8223b1748803ef9467d43"
-}

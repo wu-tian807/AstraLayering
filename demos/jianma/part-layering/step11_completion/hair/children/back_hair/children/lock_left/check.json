@@ -1,7 +1,0 @@
-{
-  "groupId": "hair/back_hair/lock_left",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "3616b18abd530a28773445779b972ceff594ba158636c18239e2f82711915571",
-  "afterHash": "2037a92494fb4b2cef266062de67235a9e30b241216b0b6a5135a1d6c36d8664"
-}
