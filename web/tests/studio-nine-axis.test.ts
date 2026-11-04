@@ -68,7 +68,7 @@ test('Pink Doll ships authored face warps, local feature meshes and fixed neck',
   assert.ok(doc.parts.some(p => p.parent));
   assert.ok(levelParts(doc, 'face').every((p: any) => p.level === 'face'));
   for (const p of doc.parts) {
-    await readFile(new URL('../../demos/pink-doll/nine-axis/step03_angle-x/' + p.texture, import.meta.url));
+    await readFile(new URL('../../demos/pink-doll/nine-axis/step02_angle-x/' + p.texture, import.meta.url));
     assert.deepEqual(Object.keys(p.keyforms).sort(), ['-30', '0', '30'].sort());
   }
   assert.deepEqual(deformerTree(doc).map((l: any) => l.id), ['face']);

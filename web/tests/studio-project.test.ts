@@ -195,10 +195,10 @@ test('Project reports the head nine-axis document and prefers its KRA while the 
   data = (await (await f.get()).json()) as any;
   assert.equal(data.nineAxis.available, true);
   // The deformers and their numbered layer textures read through the studio route.
-  await f.put('nine-axis/step03_angle-x/layers/005.png', 'layer');
+  await f.put('nine-axis/step02_angle-x/layers/005.png', 'layer');
   const read = (path: string) => fetch(f.base + '/studio-artifact?' + new URLSearchParams({ folder: f.project, path }));
-  assert.equal(await (await read('nine-axis/step03_angle-x/layers/005.png')).text(), 'layer');
-  assert.equal((await read('nine-axis/step03_angle-x/layers/../source.json')).status, 400);
+  assert.equal(await (await read('nine-axis/step02_angle-x/layers/005.png')).text(), 'layer');
+  assert.equal((await read('nine-axis/step02_angle-x/layers/../source.json')).status, 400);
   await f.put(studioArtifacts.document, 'kra'); await f.put(studioArtifacts.color, 'png');
   await f.put(a.headDocument, 'nine kra'); await f.put(a.headColor, 'nine png');
   const hash = (s: string) => createHash('sha256').update(s).digest('hex');
@@ -285,7 +285,7 @@ test('Nine-axis links select X, up or down independently; Y explicitly selects t
     assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.angleDownDeformers, false], 'Explicit stages never silently fall back to up or jaw');
   }
   assert.equal((await (await f.get({ nineStage: 'up' })).json() as any).nineAxis.available, true);
-  for (const nineStage of ['invalid', 'toString', '__proto__', 'nine-axis/step05_angle-up/deformers.json']) {
+  for (const nineStage of ['invalid', 'toString', '__proto__', 'nine-axis/step04_angle-up/deformers.json']) {
     const response = await f.get({ nineStage });
     assert.equal(response.status, 400);
     assert.match((await response.json() as any).error, /x、up、down、y、xy 或 jaw/);
@@ -304,15 +304,15 @@ test('Studio reads textures only from the explicit X, up, down, corners and jaw 
       assert.equal(await (await read(texture)).text(), texture);
     }
   }
-  for (const path of ['nine-axis/step05_angle-y/layers/005.png', 'nine-axis/step06_angle-xy/layers/005.png',
-    'nine-axis/step07_jaw-line/layers/jaw_line.png', 'nine-axis/step04_views-y/layers/005.png',
-    'nine-axis/step09_private/layers/005.png', 'nine-axis/step05_angle-up/private.png',
-    'nine-axis/step06_angle-down/layers/nested/005.png', 'nine-axis/step05_angle-up/layers/005.jpg',
-    'nine-axis/step05_angle-up/source.json', 'nine-axis/step06_angle-down/notes.md', 'private.png']) {
+  for (const path of ['nine-axis/step05_angle-y/layers/005.png', 'nine-axis/step03_angle-x/layers/005.png',
+    'nine-axis/step08_jaw-line/layers/jaw_line.png', 'nine-axis/step03_video-y/layers/005.png',
+    'nine-axis/step09_private/layers/005.png', 'nine-axis/step04_angle-up/private.png',
+    'nine-axis/step05_angle-down/layers/nested/005.png', 'nine-axis/step04_angle-up/layers/005.jpg',
+    'nine-axis/step04_angle-up/source.json', 'nine-axis/step05_angle-down/notes.md', 'private.png']) {
     await f.put(path, 'private');
     assert.equal((await read(path)).status, 400, path);
   }
-  assert.equal((await read('nine-axis/step05_angle-up/layers/../source.json')).status, 400);
+  assert.equal((await read('nine-axis/step04_angle-up/layers/../source.json')).status, 400);
 });
 
 test('Studio saves up and down keyforms independently while retaining X, earlier Y poses and save guards', async t => {
@@ -349,8 +349,8 @@ test('Studio saves up and down keyforms independently while retaining X, earlier
     assert.match((await rejected.json() as any).error, /不能替换图层/);
     assert.deepEqual(JSON.parse(await readFile(join(f.project, path), 'utf8')), edited);
   }
-  for (const path of ['nine-axis/step05_angle-y/deformers.json', 'nine-axis/step05_angle-up/source.json',
-    'nine-axis/step06_angle-down/other.json', 'nine-axis/step09_private/deformers.json', 'run.json']) {
+  for (const path of ['nine-axis/step05_angle-y/deformers.json', 'nine-axis/step04_angle-up/source.json',
+    'nine-axis/step05_angle-down/other.json', 'nine-axis/step09_private/deformers.json', 'run.json']) {
     await f.put(path, 'private');
     const response = await save({ path, version: 'anything', document: {} });
     assert.equal(response.status, 400);

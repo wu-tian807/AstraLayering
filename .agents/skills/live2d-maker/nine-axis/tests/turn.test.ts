@@ -31,22 +31,22 @@ async function fixture(t: TestContext) {
 }
 
 test('单跑 left 沿用参考输入，不调用视频或后续形变步骤', async t => {
-  const { root, task } = await fixture(t), nine = join(task, 'nine-axis'), videos = join(nine, 'step01_video'), views = join(nine, 'step02_views');
+  const { root, task } = await fixture(t), nine = join(task, 'nine-axis'), videos = join(nine, 'step01_video'), views = join(nine, 'step01_video');
   await mkdir(videos, { recursive: true }); await mkdir(views, { recursive: true });
   const crop = JSON.stringify({ box: { x: 0, y: 0, size: 200 } });
   await writeFile(join(videos, 'crop.json'), crop);
   const left = await readFile(join(task, 'character-assembly/step01/character-assembled.png'));
   await writeFile(join(views, 'left.png'), left);
   const unexpected = async () => { throw new Error('不应调用其他步骤'); };
-  const summary = await runWorkflow({ name: 'case', dir: root, step: 'step03_angle-x' }, {
+  const summary = await runWorkflow({ name: 'case', dir: root, step: 'step02_angle-x' }, {
     environment: loadWorkflowEnvironment({}), generate: unexpected, fitHead: writeFaceLeft,
     fitUp: unexpected, fitDown: unexpected, fitAngleXY: unexpected, fitJawLine: unexpected,
   });
-  assert.match(summary, /step03_angle-x 已完成/);
+  assert.match(summary, /step02_angle-x 已完成/);
   assert.equal(await readFile(join(videos, 'crop.json'), 'utf8'), crop);
   assert.deepEqual(await readFile(join(views, 'left.png')), left);
-  await access(join(nine, 'step03_angle-x/.completed'));
-  for (const step of ['step04_views-y', 'step05_angle-up', 'step06_angle-down', 'step07_angle-xy', 'step08_jaw-line']) await assert.rejects(access(join(nine, step)), { code: 'ENOENT' });
+  await access(join(nine, 'step02_angle-x/.completed'));
+  for (const step of ['step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step06_angle-xy', 'step07_jaw-line']) await assert.rejects(access(join(nine, step)), { code: 'ENOENT' });
 });
 
 test('头部特写从头顶截到肩线，以脸为中心并留边，长发不加宽', async t => {
@@ -146,7 +146,7 @@ test('按帧序取出转到 30° 的帧（整段匀速转到 90°）', async t =
   assert.equal((await sharp(join(root, 'frame.png')).metadata()).width, 32);
 });
 
-test('step03、step05、step06、step07 的提示词以度数写出关键形', () => {
+test('脸部步骤提示词以度数写出关键形', () => {
   const head = { document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0];
   const x = headPrompt(head, '/task'), up = angleYPrompt('/task', 'up'), down = angleYPrompt('/task', 'down'), xy = angleXYPrompt('/task'), jaw = jawLinePrompt(head, '/task');
   assert.match(x, /ParamAngleX = -30/);
@@ -158,7 +158,7 @@ test('step03、step05、step06、step07 的提示词以度数写出关键形', (
   for (const prompt of [x, up, down, xy, jaw]) assert.doesNotMatch(prompt, /\{\w+\}/);
 });
 
-test('step01 生成全部视频，step02、step04 取视角帧，都统一到上半身尺寸，完成后沿用', async t => {
+test('七步依次生成各自视频与参考帧，尺寸一致，完成后沿用', async t => {
   const { root, task } = await fixture(t);
   const sample = join(root, 'sample.mp4'), ffmpeg = await testVideo(t, sample);
   if (!ffmpeg) return;
@@ -169,16 +169,16 @@ test('step01 生成全部视频，step02、step04 取视角帧，都统一到上
   const fitHead = async (directory: string) => { fitted++; await writeFaceLeft(directory); };
   // All later fits retain the complete hierarchy and exact upstream source.
   const fitUp = async (directory: string) => {
-    await createContinuationEditTool(directory, join(directory, '../step03_angle-x'), 'up').execute({}, new AbortController().signal);
+    await createContinuationEditTool(directory, join(directory, '../step02_angle-x'), 'up').execute({}, new AbortController().signal);
   };
   const fitDown = async (directory: string) => {
-    await createContinuationEditTool(directory, join(directory, '../step05_angle-up'), 'down').execute({}, new AbortController().signal);
+    await createContinuationEditTool(directory, join(directory, '../step04_angle-up'), 'down').execute({}, new AbortController().signal);
   };
   const fitAngleXY = async (directory: string) => {
-    await createContinuationEditTool(directory, join(directory, '../step06_angle-down'), 'xy').execute({}, new AbortController().signal);
+    await createContinuationEditTool(directory, join(directory, '../step05_angle-down'), 'xy').execute({}, new AbortController().signal);
   };
   const fitJawLine = async (directory: string) => {
-    const upstream = await readUpstream(join(directory, '../step07_angle-xy'));
+    const upstream = await readUpstream(join(directory, '../step06_angle-xy'));
     const doc = startContinuation(upstream.doc, upstream.hash, 'jaw');
     const base = doc.parts.find(p => p.id === 'face/face_base')!;
     await mkdir(join(directory, 'layers'), { recursive: true });
@@ -188,14 +188,18 @@ test('step01 生成全部视频，step02、step04 取视角帧，都统一到上
     await writeFile(join(directory, 'jaw.json'), JSON.stringify(doc));
   };
   const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, fitHead, fitUp, fitDown, fitAngleXY, fitJawLine };
-  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step08_jaw-line 已完成：6 个部件的下颌线与脖子/);
-  const videos = join(task, 'nine-axis/step01_video'), step = join(task, 'nine-axis/step02_views');
+  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step07_jaw-line 已完成：6 个部件的下颌线与脖子/);
+  const videos = join(task, 'nine-axis/step01_video'), step = join(task, 'nine-axis/step01_video');
   const size = (await sharp(join(videos, 'upper-body.png')).metadata()).width;
   const record01 = JSON.parse(await readFile(join(videos, 'videos.json'), 'utf8'));
-  for (const name of ['left', 'up', 'down', 'left-up', 'left-down']) await access(join(videos, `${name}.mp4`));
+  await access(join(videos, 'left.mp4'));
+  for (const name of ['up', 'down', 'left-up', 'left-down']) await assert.rejects(access(join(videos, `${name}.mp4`)));
+  const corners = join(task, 'nine-axis/step06_angle-xy');
+  const recordCorners = JSON.parse(await readFile(join(corners, 'videos.json'), 'utf8'));
+  for (const name of ['left-up', 'left-down']) await access(join(corners, `${name}.mp4`));
   // The corner turns start from the up and down views at their angles.
-  assert.deepEqual([record01['left-up'].first, record01['left-down'].first], ['first/up.png', 'first/down.png']);
-  assert.equal(record01.first.up.frame.frameIndex, 17);
+  assert.deepEqual([recordCorners['left-up'].first, recordCorners['left-down'].first], ['../step03_video-y/up.png', '../step03_video-y/down.png']);
+  assert.equal(record01.left.first, 'upper-body.png');
   assert.equal((await sharp(firsts[3]).metadata()).width, size);
   const { info } = await sharp(join(step, 'left.png')).raw().toBuffer({ resolveWithObject: true });
   assert.deepEqual([info.width, info.height, info.channels], [size, size, 3]);
@@ -206,12 +210,12 @@ test('step01 生成全部视频，step02、step04 取视角帧，都统一到上
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /沿用/);
   assert.equal(prompts.length, 5);
   assert.equal(fitted, 1);
-  const source = JSON.parse(await readFile(join(task, 'nine-axis/step03_angle-x/source.json'), 'utf8'));
+  const source = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/source.json'), 'utf8'));
   assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
   assert.equal(source.sourceKraHash.length, 64);
   // The far ear's turn mirrors with the pair: turning right, the left ear goes behind like the right ear turning left.
   // Keyform keys are the degrees from knowledge angles.json (left view 30°).
-  const { parts, parameters } = JSON.parse(await readFile(join(task, 'nine-axis/step03_angle-x/deformers.json'), 'utf8'));
+  const { parts, parameters } = JSON.parse(await readFile(join(task, 'nine-axis/step02_angle-x/deformers.json'), 'utf8'));
   assert.deepEqual(parameters.find((q: { id: string }) => q.id === 'ParamAngleX').keys, [-30, 0, 30]);
   // face-left.json is top to bottom; deformers.json is drawing order, bottom first.
   assert.deepEqual(parts.map((p: { id: string }) => p.id), ['face/ear_left', 'face/ear_right', 'face/eye_left', 'face/face_base']);
@@ -219,32 +223,54 @@ test('step01 生成全部视频，step02、step04 取视角帧，都统一到上
   assert.deepEqual(Object.keys(byId['face/face_base'].keyforms).sort(), ['-30', '0', '30']);
   assert.deepEqual(byId['face/ear_left'].keyforms['30'][0], [126, 70]);
   assert.ok(parts.every((p: object) => !('opacity' in p)));
-  const y = join(task, 'nine-axis/step04_views-y'), viewY = JSON.parse(await readFile(join(y, 'views.json'), 'utf8'));
+  const y = join(task, 'nine-axis/step03_video-y'), viewY = JSON.parse(await readFile(join(y, 'views.json'), 'utf8'));
   for (const view of ['up', 'down']) {
     const { info: yInfo } = await sharp(join(y, `${view}.png`)).raw().toBuffer({ resolveWithObject: true });
     assert.deepEqual([yInfo.width, yInfo.height, viewY[view].angle, viewY[view].frame.frameIndex], [size, size, 25, 17]);
   }
   assert.equal(viewY.input.path, 'nine-axis/step01_video/upper-body.png');
-  const upDoc = JSON.parse(await readFile(join(task, 'nine-axis/step05_angle-up/deformers.json'), 'utf8'));
+  const upDoc = JSON.parse(await readFile(join(task, 'nine-axis/step04_angle-up/deformers.json'), 'utf8'));
   assert.deepEqual(upDoc.parameters.find((q: { id: string }) => q.id === 'ParamAngleY').keys, [0, 25]);
-  const angleY = JSON.parse(await readFile(join(task, 'nine-axis/step06_angle-down/deformers.json'), 'utf8'));
+  const angleY = JSON.parse(await readFile(join(task, 'nine-axis/step05_angle-down/deformers.json'), 'utf8'));
   assert.deepEqual(angleY.parameters.find((q: { id: string }) => q.id === 'ParamAngleY').keys, [-25, 0, 25]);
   // With rest-shaped Y keys the linear corners are the X keys, and the right corners mirror to the +30 keys.
-  const xy = JSON.parse(await readFile(join(task, 'nine-axis/step07_angle-xy/deformers.json'), 'utf8'));
+  const xy = JSON.parse(await readFile(join(task, 'nine-axis/step06_angle-xy/deformers.json'), 'utf8'));
   assert.doesNotMatch(xy.notes, /未制作/);
   for (const p of xy.parts as { id: string; keyforms: Record<string, number[][]>; keyformsXY: Record<string, number[][]> }[]) {
     assert.deepEqual(Object.keys(p.keyformsXY).sort(), ['-30,-25', '-30,25', '30,-25', '30,25']);
     for (const [corner, key] of [['-30,25', '-30'], ['30,25', '30'], ['30,-25', '30']])
       p.keyformsXY[corner].forEach((q, i) => q.forEach((v, k) => assert.ok(Math.abs(v - p.keyforms[key][i][k]) < 0.02, `${p.id} ${corner}`)));
   }
-  // step07 draws the kept parts first, then the mask and the clipped line on top, with the right side mirrored.
-  const jaw = JSON.parse(await readFile(join(task, 'nine-axis/step08_jaw-line/deformers.json'), 'utf8'));
+  // The jaw step draws the kept parts first, then the mask and the clipped line on top, with the right side mirrored.
+  const jaw = JSON.parse(await readFile(join(task, 'nine-axis/step07_jaw-line/deformers.json'), 'utf8'));
   assert.deepEqual(jaw.parts.map((p: { id: string }) => p.id).slice(-2), ['face/jaw_mask', 'face/jaw_line']);
   assert.deepEqual(jaw.levels.map((l: { name: string }) => l.name), ['脖子＋脸＋五官']);
   const line = jaw.parts.at(-1), faceBase = xy.parts.find((p: { id: string }) => p.id === 'face/face_base');
   assert.deepEqual([line.clip, Object.keys(line.keyforms).sort(), Object.keys(line.keyformsXY).sort()], [{ by: ['face/jaw_mask'], invert: true }, ['-30', '0', '30'], ['-30,-25', '-30,25', '30,-25', '30,25']]);
   line.keyforms['30'].forEach((q: number[], i: number) => q.forEach((v, k) => assert.ok(Math.abs(v - faceBase.keyforms['30'][i][k]) < 0.02)));
-  await access(join(task, 'nine-axis/step08_jaw-line', faceBase.texture));
+  await access(join(task, 'nine-axis/step07_jaw-line', faceBase.texture));
+});
+
+test('单跑 step03 只生成上下视频并取帧，原裁框和 left 完全保留', async t => {
+  const { root, task } = await fixture(t), nine = join(task, 'nine-axis'), front = join(nine, 'step01_video');
+  const sample = join(root, 'sample.mp4'), ffmpeg = await testVideo(t, sample);
+  if (!ffmpeg) return;
+  await mkdir(front, { recursive: true });
+  const image = await sharp({ create: { width: 96, height: 96, channels: 3, background: '#888' } }).png().toBuffer();
+  const protectedFiles = { 'upper-body.png': image, 'crop.json': Buffer.from('{"box":{"x":17,"y":23,"size":96}}'), 'left.png': image };
+  for (const [file, bytes] of Object.entries(protectedFiles)) await writeFile(join(front, file), bytes);
+  const unexpected = async () => { throw Error('不应调用脸部或四角'); };
+  let generated = 0;
+  await runWorkflow({ name: 'case', dir: root, step: 'step03_video-y' }, {
+    environment: loadWorkflowEnvironment({}), ffmpeg,
+    generate: async (_prompt, first) => { assert.deepEqual(first, image); generated++; return { id: `pitch-${generated}`, status: { status: 'completed' }, bytes: await readFile(sample) }; },
+    fitHead: unexpected, fitUp: unexpected, fitDown: unexpected, fitAngleXY: unexpected, fitJawLine: unexpected,
+  });
+  assert.equal(generated, 2);
+  for (const [file, bytes] of Object.entries(protectedFiles)) assert.deepEqual(await readFile(join(front, file)), bytes);
+  const pitch = join(nine, 'step03_video-y');
+  for (const file of ['up.mp4', 'down.mp4', 'up.png', 'down.png', 'videos.json', 'views.json', '.completed']) await access(join(pitch, file));
+  for (const step of ['step02_angle-x', 'step04_angle-up', 'step05_angle-down', 'step06_angle-xy', 'step07_jaw-line']) await assert.rejects(access(join(nine, step)));
 });
 
 test('视频失败时 step01 不完成', async t => {

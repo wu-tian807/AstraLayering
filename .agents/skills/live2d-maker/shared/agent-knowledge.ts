@@ -35,11 +35,11 @@ const agents: Record<AgentStep, { section: string; step: string; role?: Knowledg
   assembly: { section: 'character-assembly', step: 'step01' },
   shadow_mask: { section: 'shadow', step: 'step01_mask' },
   shadow_maps: { section: 'shadow', step: 'step01_normal-depth' },
-  nine_axis_head: { section: 'nine-axis', step: 'step03_angle-x' },
-  nine_axis_head_y: { section: 'nine-axis', step: 'step05_angle-up' },
-  nine_axis_head_down: { section: 'nine-axis', step: 'step06_angle-down' },
-  nine_axis_head_xy: { section: 'nine-axis', step: 'step07_angle-xy' },
-  nine_axis_head_jaw: { section: 'nine-axis', step: 'step08_jaw-line' },
+  nine_axis_head: { section: 'nine-axis', step: 'step02_angle-x' },
+  nine_axis_head_y: { section: 'nine-axis', step: 'step04_angle-up' },
+  nine_axis_head_down: { section: 'nine-axis', step: 'step05_angle-down' },
+  nine_axis_head_xy: { section: 'nine-axis', step: 'step06_angle-xy' },
+  nine_axis_head_jaw: { section: 'nine-axis', step: 'step07_jaw-line' },
 };
 
 export function agentImageGeneration(step: AgentStep): boolean {

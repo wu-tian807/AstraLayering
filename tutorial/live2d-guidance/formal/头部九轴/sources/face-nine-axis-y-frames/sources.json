@@ -46,5 +46,5 @@
     }
   ],
   "processing": "Existing ffmpeg 7.0.2, -ss seconds -frames:v 1; full original frame, JPEG quality 96, no geometry changes.",
-  "interpretation": "In-progress teaching keyforms and inserted example faces, not measured physical-angle targets. Tutorial flattening/feature-spacing advice does not override the current character video. Tutorial neck motion is not copied; current neck stays fixed and closure waits for step08."
+  "interpretation": "In-progress teaching keyforms and inserted example faces, not measured physical-angle targets. Tutorial flattening/feature-spacing advice does not override the current character video. Tutorial neck motion is not copied; current neck stays fixed and closure waits for step07."
 }

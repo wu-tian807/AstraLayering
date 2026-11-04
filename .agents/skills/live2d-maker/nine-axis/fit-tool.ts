@@ -22,7 +22,7 @@ const esc = (s: string) => s.replaceAll('&', '&amp;').replaceAll('"', '&quot;').
 // This tool only derives geometry from the pipeline agent's trace. It never
 // supplies an anatomical rig or silently imports a previous character fit.
 export function createNineAxisFitTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), pitch?: { stage: PitchStage; upstreamDirectory: string }): FunctionTool {
-  const task = dirname(dirname(directory)), reference = join(task, pitch ? `nine-axis/step04_views-y/${pitch.stage}.png` : 'nine-axis/step02_views/left.png'), author = join(directory, pitch ? authorFile(pitch.stage) : 'face-left.json');
+  const task = dirname(dirname(directory)), reference = join(task, pitch ? `nine-axis/step03_video-y/${pitch.stage}.png` : 'nine-axis/step01_video/left.png'), author = join(directory, pitch ? authorFile(pitch.stage) : 'face-left.json');
   const x = pitch ? 0 : scale.x[0], y = pitch ? (pitch.stage === 'up' ? scale.y[1] : scale.y[0]) : 0;
   return { ...toolDefinition('fit_nine_axis'), async execute(value, signal, context) {
     const args = value as { action?: string; trace?: string; id?: string; features?: string[]; revision?: string; smoothness?: number };
