@@ -1,15 +1,15 @@
 {
   "version": 3,
   "step": "step02_angle-x",
-  "sourceCommit": "095020d08df93fa3ff6ef9de4c42f40ada7fbc97",
+  "sourceCommit": "d48029753210f255a8f68e89cf130513ba7f97bc",
   "productionRunner": true,
   "injectedFit": false,
   "freshFromKra": true,
   "priorParametersCopied": false,
   "priorTracesCopied": false,
-  "startedAt": "2026-11-04T11:17:35.895Z",
-  "finishedAt": "2026-11-04T11:54:00.212Z",
-  "inputsSha256": "bd2b7cefb40d67620768cfa7decc510f38bc7fdef678f784449e8326146bfaad",
+  "startedAt": "2026-11-04T13:12:07.666Z",
+  "finishedAt": "2026-11-04T14:00:22.010Z",
+  "inputsSha256": "d1c8f83bba23c2053d502c29af3fe5a61137598bb2db5ff339ee178a1f0b7442",
   "protectedInputs": [
     {
       "path": "character-assembly/step01/character-assembled.kra",
@@ -56,46 +56,26 @@
       "sha256": "0cb17f7f36166262cb923ebffc4f905077d1cd13abc9d99df656a5c09ef2a939"
     }
   ],
-  "continuityReferences": [
-    {
-      "path": "nine-axis/continuity-reference/up-current.png",
-      "sha256": "24cd2dc252979c2ab762cf85670434a0fe5ad6dce316ff6ff0d65b33c68aa667"
-    },
-    {
-      "path": "nine-axis/continuity-reference/down-current.png",
-      "sha256": "cb61255a1553cfd97dbe324b640280696aadb09df2aebece70d0d8039ca4c036"
-    },
-    {
-      "path": "nine-axis/continuity-reference/left-up-left-left-down.mp4",
-      "sha256": "f395079397615dcfd388e78f78e8b872e042ac1cbad57c0b0b8f330cd63a1e98"
-    },
-    {
-      "path": "nine-axis/continuity-reference/render-provenance.json",
-      "sha256": "50535cc8339446d233571c3e2cb8a173bb9e1674921577ca726784eaeab56256"
-    },
-    {
-      "path": "nine-axis/continuity-reference/README.md",
-      "sha256": "945f688789f425b2f8ef7091b75e5d09540f3679945184f8ac67293a8e143a92"
-    },
-    {
-      "path": "nine-axis/continuity-reference/face-base-sequence.png",
-      "sha256": "6ef15f5e5b25f4a5ba5b6ec643fd387dbdee43ebf15d87b25728c66f7842d97f"
-    },
-    {
-      "path": "nine-axis/continuity-reference/face-sequence.png",
-      "sha256": "e93932d6402ec5573d477beb1debf4fb7fac8bc2ff2c903507c081ce36381efc"
-    }
-  ],
+  "problemFeedbackProvided": false,
+  "independentDiscoveryValidation": true,
+  "foreheadCoverage": {
+    "maskSha256": "1e160a10b68ff7a814e6599241c62a73da40ad442260adeaebbd6a334f35a874",
+    "requiredPixels": 2268,
+    "uncoveredPixels": 0,
+    "confirmedProbeCount": 9,
+    "visualStatus": "Assistant viewed unchanged-mask/original-frame and final actual-forehead/completion comparisons; owner acceptance pending"
+  },
+  "continuityReferences": [],
   "referenceSelection": "retain existing left frame40",
-  "pipelineAuthorSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
-  "pipelineDeformersSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
-  "publicationAuthorSha256": "304a24fa789d69448459dd9456906469e545fccc5ebecc33811eb9774940a8eb",
-  "publicationDeformersSha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+  "pipelineAuthorSha256": "70d79b7fd6507aa3e4e158d7663c4f237880c75e46227960ceee2d47c4650758",
+  "pipelineDeformersSha256": "a466c22be093b10b919509e445d06f04b27ab6faf691a11eadd2ddc891c9890d",
+  "publicationAuthorSha256": "765dfc074f51c0481279727479fe567c7b0916fbaa1a64afa18d0783d3c7a90e",
+  "publicationDeformersSha256": "47ae22bc27bec98252c54197b7020b724464b0c99a8be22376cf4c08072e80e8",
   "publicationNormalization": "Task paths in metadata/notes and derived trace hash only; geometry numbers and textures unchanged",
   "authorGeometryUnchanged": true,
   "independentReview": {
     "path": "independent-review/left-review.json",
-    "sourceSha256": "585b82f857683abf2c2c3e39d03c9a797ee6507a70faaaa4c872974ffe37dc12",
+    "sourceSha256": "980934dd374e8b6c2aae07b9b9c25ece19cfd980e8a6a81002da2a40d1dac0b9",
     "status": "passed",
     "ownerAccepted": false
   },
@@ -104,201 +84,177 @@
     "recoveryCount": 0,
     "sessions": [
       {
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
         "requestedSessionThreadId": null,
         "status": "completed",
         "error": null,
-        "startedAt": "2026-11-04T11:17:36.002Z",
-        "finishedAt": "2026-11-04T11:53:54.829Z",
-        "requestSha256": "e1ba6d16a3503cf8064eb1c08290141bf659beebe98adfe2882edf37fef87b75",
-        "resultSha256": "3e41f57a296cf7d237f3d380c5fca7c33a0bf4461da93cd5cdfc8b67f354ce69",
-        "eventsSha256": "ba992c03634544d239a4504f1651e0d6e537bdc04e6ab80c68394814435a89be",
-        "promptSha256": "7ddb81f2f1e8e880d5adb51900822ac2c2d21235778190a9f30463c1374da19b",
-        "savedPromptSha256": "7ddb81f2f1e8e880d5adb51900822ac2c2d21235778190a9f30463c1374da19b",
+        "startedAt": "2026-11-04T13:12:07.778Z",
+        "finishedAt": "2026-11-04T14:00:15.835Z",
+        "requestSha256": "ca1a0538ec57880060602b0352817e06948b208be672289939cd6a40d3973724",
+        "resultSha256": "8394f095e8002300b3b31bc3c06eab78e8f0db211116f583ae9cf56a4d3bce9c",
+        "eventsSha256": "f5c5ffe89b56d8768ef72c98fb638cf75ad04a3e5f755eb8e9518710b7d7a159",
+        "promptSha256": "7269fce4bfdfc7fc1a601b663e4ce39dd06f0c668a67fbc56d103d39a97b57cf",
+        "savedPromptSha256": "7269fce4bfdfc7fc1a601b663e4ce39dd06f0c668a67fbc56d103d39a97b57cf",
         "recoveryFromThreadId": null
       }
     ],
     "toolCalls": [
       {
-        "id": "call_ka4DSzJOCEDp58sGXyZr8BcO",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:18:07.603Z",
+        "id": "call_bMC3U1gvymlNgKSlw8ghkE45",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:12:55.101Z",
         "tool": "view_bitmap",
         "success": true,
-        "argumentsSha256": "bb43f14a34aab4818ec9d5f277eb4dca52b12989974c384c36a035598fa30a13",
-        "outputSha256": "c80674af65e268ec233c9f26c7977a2da1885b8a38843f6da7ded6e24243c6a1",
-        "path": "nine-axis/step01_video/left.png"
-      },
-      {
-        "id": "call_FS0tpjyzs5K65LTbYL4PG9Wl",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:18:15.717Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "bdb38b211e94e77bd4b91cf739c5f7f7bb55528c0a9d5efd421dbb4eb03d9e8b",
-        "outputSha256": "f94b3edc36b2716d3d16f6ba0a03431ffc31d9e4945fde5b854d1feaa32b4fc9",
+        "argumentsSha256": "9aab7b37f2845c06b80e1d1fd7997c43c9dd0ef67094e277ac7364ac2efe33ce",
+        "outputSha256": "995971d0138a4f92f93315d1cff2268ebca7974eeb3dde2d4d37602bb60085e8",
         "path": "nine-axis/step01_video/upper-body.png"
       },
       {
-        "id": "call_Ck1xoXT1pjKWYAioLodUPqzm",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:18:28.467Z",
+        "id": "call_vbIYzmSchpyiGo2dbbWMk5XV",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:13:07.995Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "e391b71d189d5ff98fc5dbf4c679724f1bcff4f836e8dc6e17d8cf65f725e4e1",
+        "outputSha256": "d9e6d060eac59365cfcefe6b8d5c48d002eab12979b1206b6c7be229fe505372",
+        "path": "nine-axis/step01_video/left.png"
+      },
+      {
+        "id": "call_A1H2fRfMPlEEJS9vvWvIpkpx",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:13:39.531Z",
         "tool": "view_bitmap",
         "success": true,
         "argumentsSha256": "b089a5ea0ace12e346d91c11d1588e9fad5e957b6b4e3121d30a4dde0b50b192",
-        "outputSha256": "b94f90059a060e9502f9220e4dd87b650fec9216b712473f20698f9ff72a0e28",
+        "outputSha256": "a3d5404d33a056bcfa51b0bc700cf8fc32012dbbb19faa20d23ebae9bc55156a",
         "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/round-face-keyframes.jpg"
       },
       {
-        "id": "call_4Kxo10sKepFgAzBqqn9RPbqX",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:18:41.581Z",
+        "id": "call_z1GduuJym3jzVVcRavwvFW3W",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:13:48.459Z",
         "tool": "view_bitmap",
         "success": true,
         "argumentsSha256": "57a7dd90707aaf8ca1e537962f9ac4123ac63659bb0dfb40806ecd2f03837dda",
-        "outputSha256": "f282920021f0ae401a91c766858019c3857e3b09a9b27a1a555611e5cacdd3b5",
+        "outputSha256": "a22aca2d96c2b947e8961816cb68c824b4900bfb7c13832eb7737d7a9fbcc939",
         "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/tutorial/left-face-base.png"
       },
       {
-        "id": "call_RUMm46nkxiuZzErMRWRmnhPa",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:18:52.809Z",
+        "id": "call_BHHSoiMBYRc3pVjSijB7tfZG",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:14:03.233Z",
         "tool": "view_bitmap",
         "success": true,
         "argumentsSha256": "640b2f1fcb73b2475e4e0a90161bad61afcea45df48e2c27a2b3b6bd0a9f392a",
-        "outputSha256": "2ab6ed327f908b661b40c7284004b143eb2e49ba5da761fa44d8ec926ae1903b",
+        "outputSha256": "001ec6dfb4d455ac38ac0c0e044f0d2192ae2659110dc7dfe2c55f0592230f4b",
         "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/model-face-priors.jpg"
       },
       {
-        "id": "call_aQonNAumb2e4uPRu9KGHGRFh",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:19:06.216Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "0d1a83c00665c9237807a615405d88258bc08930c831ef0c2e8096418bd6448b",
-        "outputSha256": "4ab0ddba616fc633474db76baeb3cbc126e63b0fba2635a617949f5da286bf32",
-        "path": "nine-axis/continuity-reference/face-base-sequence.png"
-      },
-      {
-        "id": "call_NOnKJ9by8QKdI9jRtNFmWO64",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:19:15.860Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "41ed4959d58c4be98e6a99050d2bd1d164750c5f986eb8c70cab4f82e2111c0c",
-        "outputSha256": "0a1755c340d5817205be9552b6b9127a96ba2438888697340e5f2620d581b629",
-        "path": "nine-axis/continuity-reference/face-sequence.png"
-      },
-      {
-        "id": "call_02yxhhDN6UuMgbHA4Py4Hgee",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:19:32.232Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "f3f631934d049320d2692dfc399508be3086aa3f533f6b438b5772df34a81675",
-        "outputSha256": "e9d972b269d401e8741c12b7131cfd1d9b2b6292b544dfd20b6ab0a261886d55",
-        "path": "nine-axis/continuity-reference/up-current.png"
-      },
-      {
-        "id": "call_SXXvyoVhrbspyORVyWMj7O1G",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:19:43.148Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "0b98aec9a8db613a7aae7419522331a46f7f4e2d8193434cc768d277a4077dc1",
-        "outputSha256": "0ebb5f0cbd6e11375ea782f555ad86733365d3ea5b3c072dfa8c69dbcfcc845a",
-        "path": "nine-axis/continuity-reference/down-current.png"
-      },
-      {
-        "id": "call_wVLG58lfrS0TccoY0mYkdRUc",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:20:18.789Z",
+        "id": "call_WZF9DrYL12WXOA84v5lX1i4I",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:14:43.194Z",
         "tool": "krita",
         "success": true,
         "argumentsSha256": "ac74066219ea40942bd8c187751ad1693b32bf0fd2d7c857fc02b080795fc443",
-        "outputSha256": "85acb3770c692905ea90eacea00aff6f89314eb6179dd5c907d2a55b1b26de2b",
+        "outputSha256": "f78b160a993334d25f396ec6c14f3dfd844c7376256f23d62c4c35ebfbca393e",
         "action": "start"
       },
       {
-        "id": "call_ymZs6ycOkWwtTWZ4HGAji9Z4",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:20:42.269Z",
+        "id": "call_LeGipZwEgrp1AVQwcLv0On03",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:15:33.041Z",
         "tool": "krita",
         "success": true,
-        "argumentsSha256": "3b7cfaa44746c8fbca38aaebc36ae44d858be1b7813247333c7f6e53c0cb717a",
-        "outputSha256": "7851b5a9261bd29232371ff6d91c369421fb360eb42a1bfa9a16b68146e4a5c8",
+        "argumentsSha256": "1b0a7e3a96969db98114a47319e5c97c94045110c7c50dc910e6b00d8bd23032",
+        "outputSha256": "5a694dc8ea4ed7e929847bccbd60628e7377b35d89ea44ba794d99bccc64df97",
         "action": "run",
         "script": "nine-axis/step02_angle-x/workspace/inspect_kra.py"
       },
       {
-        "id": "call_gxBGuXNiMvsYizAAAMyxIrwr",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:21:19.129Z",
+        "id": "call_slX24CX374mADjzOJGfkIJDp",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:16:08.010Z",
         "tool": "krita",
         "success": true,
-        "argumentsSha256": "858dfe55df64331e2a947531eef7a003e7b881a4ff66340359144014dafda9b8",
-        "outputSha256": "9c142e22ee69623c2a8ad848957cdef2b59137691ec236c117737526b54d9df0",
+        "argumentsSha256": "daac04d09944e11376d380125419aba1140f52e8fac2b6c0f411338eb826d97b",
+        "outputSha256": "312128781ef4904944c01b1054b5185bdc46a56901c6e8b95ddc777a7d175aa6",
         "action": "run",
-        "script": "nine-axis/step02_angle-x/workspace/export_kra.py"
+        "script": "nine-axis/step02_angle-x/workspace/export_layers.py"
       },
       {
-        "id": "call_ZcS7b5ITQEunpHUZa3lvGjdw",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:21:32.924Z",
+        "id": "call_AB35GeeGes7AmnHYKB5IoDAp",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:16:20.228Z",
         "tool": "view_bitmap",
         "success": true,
-        "argumentsSha256": "48d37392295e083450e5400f1f4ed7ecedc302a26b0914a5d97a0f9a50436959",
-        "outputSha256": "f9844768f6c352407c89e32e7d898338845552ec099748d7cf87e64754b48c95",
+        "argumentsSha256": "02d02afcaba60277b9c5f15c084777ac26623d9e5e47bf69261a17ae677e81de",
+        "outputSha256": "b25c9949c1bd5340eddb6d34794a28560afc5187af3002684ddab518cb0e88f9",
         "path": "nine-axis/step02_angle-x/layers/face__face_base.png"
       },
       {
-        "id": "call_tbiO036ZV0JzJAucoEJ26tHG",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:22:20.051Z",
-        "tool": "edit_nine_axis",
+        "id": "call_JzqvTy05eRsqtuEeQk8zdK6p",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:16:38.345Z",
+        "tool": "view_bitmap",
         "success": true,
-        "argumentsSha256": "7bde1227313a147359253b12719fe86a254b23e7a8c2f64224925fe949aac324",
-        "outputSha256": "cee24381b329d8e92561427203f58f35334b40d5e5dff10c5b236ae2fd434f15"
+        "argumentsSha256": "73a7a0a76b0174cc74c6860b20784fe981d89e75eb5c1be12e713616830bdb59",
+        "outputSha256": "e2c38e56ba6477d72a93c61be3254abe6593f8326fd31b0e70a2833d5929526f",
+        "path": "nine-axis/step02_angle-x/workspace/round-video-7.7.png"
       },
       {
-        "id": "call_UStBPreHNkGu1sT0N3Jw21Tl",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:22:36.258Z",
+        "id": "call_XIw8fhRq7CQ2YS7voRZgnCwO",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:16:54.031Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "aaad88a1eb44ca68a8a9840456867cd1cd83e51dd5d38079c8ed51923fee2a0e",
+        "outputSha256": "5eb55962cb653f3af83e4bbc2df0143894011c80cf7154ff85201d46e6414241",
+        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/models/hiyori/reference.jpg"
+      },
+      {
+        "id": "call_wbjQ43iZEu57iRtoq6ZLc2Vx",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:17:36.373Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "7ad7f0f055eb680429991d2d179c7748dcfd625218af215ac2610b1e56c6b96d",
+        "outputSha256": "4e0717906a7b9221058da54d724027338d9256b652ebd87a21df296d7ca14759"
+      },
+      {
+        "id": "call_iVRQAXTRLc6dhPC29pAx7LHs",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:17:50.873Z",
         "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "a8604710b2ea1236862af2adcd18122e3a23c9f196e5ef065bc8158bd3b7985d",
-        "outputSha256": "5a0041f4f56eceb0e61c7f2ca98af74e290e8ab404096ff32f3f39d9b9272332",
+        "argumentsSha256": "b079dc74783ebed5df0a36a66e6bee6ae301e4cad4a859a3acddeaf5824ceb9f",
+        "outputSha256": "1da73b2a3d9270bdf3b534eb13a7757770d68f94e5d081d1cbcaec7bd25fb444",
         "reference": {
           "path": "character-assembly/step01/character-assembled.png",
           "bounds": [
@@ -309,402 +265,876 @@
           ]
         },
         "x": 0,
-        "y": 0
-      },
-      {
-        "id": "call_D4m9UiTcbuNWG4MG2k4FyJ30",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:23:46.436Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "c5edb76c994fece030616eb6710928f4255211223dc139aa1d1a87291a51b64a",
-        "outputSha256": "58ea73ffae61552294d448a8b4fb3b39fb9fda2646231a8a4e3fa90ec5b201c8",
-        "path": "nine-axis/step01_video/left.png",
         "crop": [
-          85,
-          163,
-          75,
-          110
+          431,
+          35,
+          394,
+          394
         ]
       },
       {
-        "id": "call_FFNOln4OxGYj6kzDni8vocdp",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:24:01.344Z",
+        "id": "call_XgigRyHz4UTjQkOuRLEAOkad",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:18:04.720Z",
         "tool": "view_bitmap",
         "success": true,
-        "argumentsSha256": "7dc002a01bfa1f9398a64ef142351eba8f394905a55a5b3fb3e78ccee3765e10",
-        "outputSha256": "2e6ff1b85619040c26b4953212d1841eeb3ed29dfd2d7a1a916dcf7a3a6d50db",
+        "argumentsSha256": "c00299e0516553fbf7c1551e736c083e333ad1718a1afff10ddce74cae916517",
+        "outputSha256": "807119233f84463080cbc41024a46103ebae074bdb00956f51a386f38091993d",
         "path": "nine-axis/step01_video/left.png",
         "crop": [
-          159,
-          219,
-          92,
-          76
+          88,
+          102,
+          157,
+          83
         ]
       },
       {
-        "id": "call_uvTNMb9BFHcr61oSSSmsPlFs",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:25:01.150Z",
+        "id": "call_ZhDC8Q3hfQxbv3IBSSBV5SRY",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:19:25.495Z",
         "tool": "view_bitmap",
         "success": true,
-        "argumentsSha256": "83e2a189e8f07f2e8547f3f6ca8335c6f4037f8832434ceedbce6e30e8863a6d",
-        "outputSha256": "fbefa83477b843d8cf3f2305f90c50d732b009bcf050ebb493040e62db202b8e",
-        "path": "nine-axis/step02_angle-x/workspace/left-neighbor-board.png"
+        "argumentsSha256": "5899024ccb8453b45a511308172d3f2f45c33d8cc9589ed98648526a8da5a581",
+        "outputSha256": "7d7c756c9e0149f6789c4efd674fa2f0f42f86708a96006e06562abb7c8c1493",
+        "path": "nine-axis/step02_angle-x/workspace/forehead-grid.png"
       },
       {
-        "id": "call_nP0YmSQjs3Ra2RW6Bc54nfgX",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:26:37.677Z",
+        "id": "call_UsK1BkMqN95XKDb0m9Uvpkul",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:19:55.123Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "62869246d7e34ceebe3e7e3b4f2fda2bc44ddcd748a0d727460ec56b959feb46",
+        "outputSha256": "aa4b251d5ab132a64132a29cf652fe8aa3b84babe1be7f0c1efca87a57a43ec3",
+        "path": "nine-axis/step01_video/left.png",
+        "crop": [
+          102,
+          110,
+          52,
+          68
+        ]
+      },
+      {
+        "id": "call_3D5fWMZivEUkJRtcHitTVjPc",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:20:16.069Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "d87a1069a0b7107208676f28f7b0e5f1b1b68c4d36c474edbde57a6bcb2a0dac",
+        "outputSha256": "d535ba0853342023f27605aa46f60abf30ad0d293048126f55df13ee6a07b376",
+        "path": "nine-axis/step02_angle-x/workspace/far-side-grid.png"
+      },
+      {
+        "id": "call_MwjF0WOSGVOp1ReZliTh3OMG",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:20:36.114Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "d8621f8e61eff37dbd25574a5bf355f941cab1f82714bea76448a949e96b32dc",
+        "outputSha256": "4e4bdb34c3858fbabc2581bc5bff725e3a800494200eb117669ec2d3317549ff",
+        "path": "nine-axis/step01_video/left.png",
+        "crop": [
+          104,
+          231,
+          136,
+          58
+        ]
+      },
+      {
+        "id": "call_fM2VNSqE9oo1tpLiNpE1b6VT",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:22:26.878Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "874fe00a03508dfa9558fdba9696983f110f0afe73f99633d506ec7ce82d09d4",
+        "outputSha256": "6818fb864c5e4f482d71b6e7b3f6ab30cdd71819b7b694cae38bbfd8be62d6c7",
+        "path": "nine-axis/step01_video/left.png",
+        "crop": [
+          168,
+          108,
+          76,
+          73
+        ]
+      },
+      {
+        "id": "call_djEL0tGIuaYEpatLQAEgWVUQ",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:23:46.885Z",
         "tool": "preview_svg",
         "success": true,
-        "argumentsSha256": "3f685e309a3f6ab9291882b10454dd9aa96d4bfd4d5e2393b98071fb3ef39dc9",
-        "outputSha256": "ff15489986ee37888cac8bafd68c350054bd7f206f828672b0ff26092fde1af6",
+        "argumentsSha256": "516ed172d90bd17305eabb9fbf373f40f7975e1d4c516df6ec998d44af08a091",
+        "outputSha256": "a35363a3132457b1ac5c9114737c37bfbed83218fe92b79fe0750ddcecb9d87e",
         "path": "nine-axis/step02_angle-x/source-face.svg",
         "reference": "nine-axis/step02_angle-x/source-face-reference.png",
         "mode": "blend"
       },
       {
-        "id": "call_YkUWJjjYPv3Jf0KcZHw4rwz1",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:26:49.598Z",
+        "id": "call_1dxrXfekiJrJPLVtGviq8xbL",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:24:03.474Z",
         "tool": "preview_svg",
         "success": true,
-        "argumentsSha256": "8965915397f79caf9394780a68df9abd1bd70f04bb5a5a11311c260843028486",
-        "outputSha256": "0be908544ff67aa65c16a82b2ee1d93df4fa2d7f69b0a60d5ab09d3609b2eb1a",
+        "argumentsSha256": "2e4f78c78c4457c5e260824832714e648666e28c97eff6b3f656b5071834df49",
+        "outputSha256": "8dca41b57b82784753ff23d9cb1f06cbd939fc0ce23aaaf5fa30f00ee7da9df4",
+        "path": "nine-axis/step02_angle-x/source-face.svg",
+        "reference": "nine-axis/step02_angle-x/source-face-reference.png",
+        "crop": [
+          111,
+          100,
+          173,
+          191
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_WArgbrMj2LW0I7EBhSDugxTt",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:24:18.123Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "4c7df40d8acd9d7ca7b0b16915ec7f5af98c1be99475a5809c3edf5008f15ae0",
+        "outputSha256": "c87ca608b891260abb8d4d174fa1a19658453c22c84f2c941c585e21a892705b",
         "path": "nine-axis/step02_angle-x/target-face.svg",
         "mode": "blend"
       },
       {
-        "id": "call_00jl6TMaz4dX9bOXL30UXlhN",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:26:59.720Z",
+        "id": "call_dJj6wm5BSWEnrwwiPUPOAi6F",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:24:34.674Z",
         "tool": "preview_svg",
         "success": true,
-        "argumentsSha256": "863fc7e15dceb315406f035accb21e8c3979aaafb62f8ed30106e784a34963ff",
-        "outputSha256": "4ecee823bf3703f8de83c33befd306d36df26e299fb859cdf66a73de3289327c",
+        "argumentsSha256": "f111bc0a42058e05d4c56d81636befd2569dfa33a65c57cb2f06f9eb64ac36a2",
+        "outputSha256": "f64ac14c90ff8617480c5bd0b70d3f3cc0be1a142c55294e67ef12928d734a7d",
         "path": "nine-axis/step02_angle-x/target-face.svg",
         "crop": [
           88,
-          176,
-          69,
+          172,
+          64,
           91
         ],
         "mode": "edge"
       },
       {
-        "id": "call_45q9Lt97RpOuLbiOsUF29nRE",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:27:11.096Z",
+        "id": "call_BFefr3rOr6auFK8fDQuzwuYM",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:24:53.625Z",
         "tool": "preview_svg",
         "success": true,
-        "argumentsSha256": "3a3a4cf357b844ee8448907ffd06294924174441fae6930e236318491f66d257",
-        "outputSha256": "4ee8353b1281e81d0957b0052f97b6f026bae4af5ef1b1c92552c8f17be1fd22",
+        "argumentsSha256": "bcb32e0ba8166596edfe589dd57bbde69b83734cd5613bc97a783925995fcc54",
+        "outputSha256": "c86e7582939c43d7a41b7b2b807ab974f45d45cfa35570b7d984d986ef619e33",
         "path": "nine-axis/step02_angle-x/target-face.svg",
         "crop": [
           91,
-          189,
-          60,
-          83
+          193,
+          64,
+          76
         ],
         "mode": "blend"
       },
       {
-        "id": "call_JBQJeJsL1t8KCwJEYACRrTSt",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:28:02.216Z",
+        "id": "call_zxyOeuAOdU49SOXTdeMdqOnx",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:25:04.684Z",
         "tool": "preview_svg",
         "success": true,
-        "argumentsSha256": "0c0cfb478eca7b57c26cef39e1e40aaf1b3fea09b010d818ad444110cd75da1a",
-        "outputSha256": "a06ff3b4f4fa0a66bfb8b847f0a16df4078ea6e01ec4f738ceb2d0e968692c14",
+        "argumentsSha256": "27862034448999c6c08cfe182e50f5d7d69b7d0707dc6eac5cfc58fac5ec9338",
+        "outputSha256": "4a937916716d0973129d29d84ea9cb1890c781c69fcdac0df3088ff2405c88f3",
         "path": "nine-axis/step02_angle-x/target-face.svg",
         "crop": [
-          116,
-          246,
-          119,
-          43
+          117,
+          238,
+          125,
+          50
         ],
         "mode": "edge"
       },
       {
-        "id": "call_0XJvb9I5PqA5841rnzj5zJ1W",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:28:18.178Z",
+        "id": "call_v6glvC0JGWDcWasoQbnMVao4",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:25:20.378Z",
         "tool": "preview_svg",
         "success": true,
-        "argumentsSha256": "7f1e0506b050b4d0d89f9f54cc3e0e46e8f1d71894ae1233d94c57c9aa66b0f0",
-        "outputSha256": "972a5ffe5661e2204a185d0f11361854b52bc2699a3600e69abece54d08c1207",
-        "path": "nine-axis/step02_angle-x/source-face.svg",
-        "reference": "nine-axis/step02_angle-x/source-face-reference.png",
+        "argumentsSha256": "de4baae3ea79db075883929f977390244a40cec42d75a02b965718b472af05ae",
+        "outputSha256": "df2d9542ee1125134e935c80cf6d075aa0615fa0ec2d0293ccc65cce2bbbe535",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
+        "mode": "blend"
+      },
+      {
+        "id": "call_aEr0YFE3jHL3RMV4wPofzLsv",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:25:34.722Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "ee594492a6914fba2115aab342750daa52e75080acf4f890fb355e41dff94d52",
+        "outputSha256": "0c02a31d379b1e85c6ee73baacc0cfa15581a1e3d8e242e8f85e99d718e81475",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
         "crop": [
-          114,
+          95,
+          110,
+          63,
+          73
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_FkQLrzt4PgzztFX8alFh4PTC",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:26:03.872Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "540c3ecf62c7ea0069d123be79bb79c8b8ddb149e892423caa73df5a2449c182",
+        "outputSha256": "b0586b007b229604a63d413dbc9d3225d83d53a9492e2068eefb4e86fd6c4874",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
+        "crop": [
+          134,
+          146,
+          52,
+          36
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_8mPKDRbw3o1EFaGOK5WP9YdZ",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:26:24.826Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "0284bcfe87bf66ccd56fb3a41b609064eb16145a91fc94d35f8ff866ce945b45",
+        "outputSha256": "8320091c6d9ba7a7409a3140b62e545f69b8c122b15701e3e441e3a28f4f0de9",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
+        "crop": [
+          170,
+          108,
+          75,
+          74
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_kaVfprxg600HK1jQqeAszaf9",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:27:13.619Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "1a4ce9c0b48dbe3faa904326814e6d87eb657c3f089945d1b9ab07ea63241d41",
+        "outputSha256": "5659170433079edd8ab0902adf8a25f76ae58046874167f0f7ddd3d2a6239271",
+        "path": "nine-axis/step02_angle-x/workspace/right-slit-grid.png"
+      },
+      {
+        "id": "call_X4wKMEB192t2rkEwPUxU9ldX",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:27:56.034Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "666457c39d486d5dad7661483802aebd0f0da21b13fac68ca413b96fea0c179c",
+        "outputSha256": "85e10ed1acc9dc401ebb60f982ac956cbbca5813aba5d62ebf1796c5b38b63d2",
+        "path": "nine-axis/step02_angle-x/workspace/left-slit-grid.png"
+      },
+      {
+        "id": "call_oRCVlEOokX3fmBYW7laF3fbl",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:28:17.995Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "e92a7a450f575620245547ae250219347d5d1ad083f76bfd6f2181f19eab9f7c",
+        "outputSha256": "4e16df5318e88ec379eacc6b7591731ab7602114178cefdd0f1415dffa564e28",
+        "path": "nine-axis/step01_video/left.png",
+        "crop": [
+          182,
+          108,
+          18,
+          39
+        ]
+      },
+      {
+        "id": "call_p5XO41yr1zCfo5wVqVCdO6ca",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:29:05.484Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "3ae0608e153a7c7d0f37eeaebc70597790edf194f4a502e826f41cfa8a043556",
+        "outputSha256": "e1caffa45169db80eeda33db4b9be206c42e50f13b2787c78f3509bbc5044f2c",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
+        "crop": [
+          94,
+          108,
+          152,
+          76
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_BnR8QzQAGrcI5UWHHIGIaHG9",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:29:44.217Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "46e97c15921a9403bd26bf3fe533e89ac8b13566f301b57e00d1c63ed3065bed",
+        "outputSha256": "357a0cf760e13f0eb5cf24b3674522a043e8243ca8c8f1bfa9753035412a9ba4",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
+        "crop": [
+          94,
+          108,
+          152,
+          76
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_Sxl7ir2toL0lgfDCmcE0egyq",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:30:13.296Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "246c16b806325192debda097a5fcde0a60ba350ea0873e9e732f57f3b514531b",
+        "outputSha256": "36e7e7a9bdc2dc7db1017e32871eb077374b2422c3447cf59922ef84f6d8a53f",
+        "path": "nine-axis/step01_video/left.png",
+        "crop": [
+          148,
+          145,
+          34,
+          35
+        ]
+      },
+      {
+        "id": "call_qogfvNsNM5DCoMOfJERyaBN5",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:30:53.812Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "51ea81fef98fe58bd810aff7f3d841572d6c9684c95426a6d8cf9d28e08aff22",
+        "outputSha256": "d1d979c0e6edc5c16b06a2d47fd033dcd88879a3bd0d56c8882035aa112e1b58",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
+        "crop": [
+          134,
+          145,
+          52,
+          38
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_KBOAn1PZ9OZJdoVU4FIHCQ8h",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:32:18.527Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "5099cb273aadd56181870b1040739637fc643d6b9da4843d74abe69b59ee475c",
+        "outputSha256": "94a91d7acb2fb11c125e029c6aad94c7185c06d377de5b13e611e6dc76a1bbe3",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
+        "crop": [
+          92,
+          108,
+          155,
+          77
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_EfrcuUZC1s9K0ilBMraoxTIN",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:32:37.706Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "03b1f900f21e18616bf5db098157051fd1029fb49e926797d2349426e42e5590",
+        "outputSha256": "da349170c4713488a15b2b6739eb73864057f3bf2d098319186d2f36b0cf8bde",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
+        "crop": [
+          92,
+          108,
+          155,
+          77
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_TtNsYOxNtZwL78BKu3dRkfaa",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:32:53.279Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "1e25db86c2e932ab6fbfa03962457a5a0bd1b0e1c0151fa7556fcfd216ea7251",
+        "outputSha256": "c9884c101319acc361bd774df234272723fac15fd75f577ad09d21df66fc17e9",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "crop": [
+          87,
+          83,
+          170,
+          207
+        ],
+        "mode": "svg"
+      },
+      {
+        "id": "call_aF9ELCwzWUOfmfgEvIUg5JSa",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:33:44.544Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "55b54dcce7bb6b91cbed7fcbd9393f54910d6b78ddf414d41c37f2ab69d0033a",
+        "outputSha256": "12b613177f6ae40d62d4798c2c5ef84da3da69c1c03852d0f8f5775dd15e2623"
+      },
+      {
+        "id": "call_Sd8RS7alHmtO4sdglsb6HIiO",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:34:02.445Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "d8c89b3b8f486dd28df94470390c901b67605514192e46367a39b9a7f865a337",
+        "outputSha256": "1997e71e3fb0db468c442419a0032bce73ad7c5f7e908836f64c4455248d157c",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "crop": [
+          90,
+          89,
+          160,
+          105
+        ],
+        "mode": "blend"
+      },
+      {
+        "id": "call_kXiIYc3ByzNxHYLKzi6VfJez",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:34:24.181Z",
+        "tool": "fit_nine_axis",
+        "success": true,
+        "argumentsSha256": "535c7fa9085e2ff5c5d6e97c268fa73975bfc888571debe7486e526c80d97d03",
+        "outputSha256": "6d22d4913d495e53b65ac296e88500b911edea7a0c8660e2e882f5f2d6c21e32",
+        "action": "inspect",
+        "trace": "nine-axis/step02_angle-x/face-trace.json"
+      },
+      {
+        "id": "call_dUZq2fnoN4H81a3DUGtLu8Gs",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:34:43.270Z",
+        "tool": "fit_nine_axis",
+        "success": true,
+        "argumentsSha256": "5daf547d6a42ce542a37530f475f3bb86fb360ebad76b0befc180c64d2da6130",
+        "outputSha256": "e86e682883f384a8c4ed078a5c01c85adead1ae2647057ebc83ae4740ba37749",
+        "action": "fit",
+        "targetId": "face_form",
+        "trace": "nine-axis/step02_angle-x/face-trace.json"
+      },
+      {
+        "id": "call_SC4w5L34Jg0aqFbnFyAR2yQ3",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:35:01.264Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "8f9ad913609c1bd1acf1dc48b3ce69a8a427da16eecc51d26975bb1d463a3dd9",
+        "outputSha256": "48b595c814e8fdff8bc1c44393acf4bb48c62e4ceb434c9335106417f72c830e",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          431,
+          35,
+          394,
+          394
+        ],
+        "only": [
+          "face/face_base"
+        ]
+      },
+      {
+        "id": "call_sZC9FN3Y1liPbuPUcLAepUXS",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:35:38.229Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "a635db631498a77df6b02fd2a539d29491024ab691e2da6b8c54166a987c67ca",
+        "outputSha256": "c5d8a26160737673e4935afd5f289c2768a7da441851330b9add82b14e858f67",
+        "x": -30,
+        "crop": [
+          522,
+          115,
+          195,
+          151
+        ],
+        "only": [
+          "face/face_base"
+        ],
+        "grid": [
+          "face_form"
+        ]
+      },
+      {
+        "id": "call_dYMCqFQ3vwEq5HuyaM2vZrFq",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:36:41.264Z",
+        "tool": "fit_nine_axis",
+        "success": false,
+        "argumentsSha256": "fb760b2770de440ea16b2d30fad4730d1c024746fff45cf2b77d80360ee185ac",
+        "outputSha256": "c7a69690d0ec777ca19d624184e6d84026325f1bb0aa3f80d91f89f026a7f3de",
+        "action": "fit",
+        "targetId": "face_form",
+        "trace": "nine-axis/step02_angle-x/face-trace.json"
+      },
+      {
+        "id": "call_QcslOtc2RfMnftuScfFqWupH",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:37:05.886Z",
+        "tool": "fit_nine_axis",
+        "success": false,
+        "argumentsSha256": "4521e50350931a0225e4f67f52a81e31c3d04b2d8d372f5d5506f79a205fe1d4",
+        "outputSha256": "91739a93863c15f50f6492cf0c7df06d4a41f5da8538caced44216248b1d8a00",
+        "action": "fit",
+        "targetId": "face_form",
+        "trace": "nine-axis/step02_angle-x/face-trace.json"
+      },
+      {
+        "id": "call_iry69c08nDbRc9ishbyq9MDJ",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:38:36.113Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "b4ff5c0443b7a4f84482f2a5226d887f36a313c063478250a0cf262cc5804e84",
+        "outputSha256": "80f0d6987379d3086fee1f86576d7a3134958cd0aeb9de833d7ab847735a113f"
+      },
+      {
+        "id": "call_lTerAxmsjqE6qN8LmQ3VzQWG",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:38:58.476Z",
+        "tool": "fit_nine_axis",
+        "success": true,
+        "argumentsSha256": "1af58ad12bc46de3d9150b64008aade8fa897bc60db51cd90e33b74aa3b7411c",
+        "outputSha256": "6b864b1b973da4cbc1793448a4bea477b61043b30d781e995c6ebc4385a377ba",
+        "action": "fit",
+        "targetId": "face_refine",
+        "trace": "nine-axis/step02_angle-x/face-trace.json"
+      },
+      {
+        "id": "call_YQvxQ6iaCEx0L6Klq55mxOSU",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:39:20.446Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "b85b96ad4206f033152ded5dfb932b1750051ae7c6f1d9f46ba3f1038261ae62",
+        "outputSha256": "a9eb7652cd5eb1ab8cbd3d192f6563c42c4d9d7c97af09831e354a2b9321c82e",
+        "x": -30,
+        "crop": [
+          431,
+          35,
+          394,
+          394
+        ],
+        "only": [
+          "face/face_base"
+        ]
+      },
+      {
+        "id": "call_g2xBArFbcrgpbFm9yrGs5yJZ",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:41:59.172Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "af0f49c7f21069ff6759e2d7debcd77b9ed7b7a0424a1d5631593e83623fd5b1",
+        "outputSha256": "969b9094497539681b140a6396b18d5a18e1af09464fed373a5e61b06932265a",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "reference": "nine-axis/step02_angle-x/workspace/bitmaps/4ac2e83d-b091-4ffe-a4a1-fe99538ef6a0-alpha.png",
+        "crop": [
+          84,
+          84,
+          180,
+          115
+        ],
+        "mode": "edge"
+      },
+      {
+        "id": "call_8PbJEhWv25OjeyBKW24p7FCH",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:42:10.249Z",
+        "tool": "view_bitmap",
+        "success": true,
+        "argumentsSha256": "e00e3e78f50fdd862dd618df88ada5817162691cdd392f70d80bb7b72252626b",
+        "outputSha256": "51c1b9a0e019eef715838e1635b636741b29193d3cca97a6526d5cdfd59454f1",
+        "path": "nine-axis/step01_video/left.png",
+        "crop": [
+          84,
+          136,
           175,
-          85,
+          140
+        ]
+      },
+      {
+        "id": "call_XmKtthDCzwQVSOjNAxys8A46",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:42:21.653Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+        "outputSha256": "1ec9dd0c479104c3621f5a7c9e3ac88eef4aaa3067647a000e529470635edcd3"
+      },
+      {
+        "id": "call_0dR1HMpIU3f8F9sDD76PdDyx",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:43:15.115Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "2134906b037a305033680224ff6c2485cff867dd9efd38b2f2e31e62fd7d374b",
+        "outputSha256": "dcf7620a23466463a08ae2f0bb7140378384719b44b6dc73c6fce9e872075e1f"
+      },
+      {
+        "id": "call_ABBNdJ3aJBM24zgSd0WdrHa5",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:43:27.196Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "da20432cd8ea5180ccaf2d79dbcfac5421547338096d8d9be7bb07f9fdbe59c4",
+        "outputSha256": "e56d4f29a9a4592ee2e1069c4eab41a42ea184ac3ea806da5dd6466657f48187",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          431,
+          35,
+          394,
+          394
+        ]
+      },
+      {
+        "id": "call_I4JeuDaI5vkOUbbJDOyKmbHC",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:43:40.400Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "0e5736fdf43812e4702aa5aa5446bc10a154805f94d11a9e0d572e54a635dcdb",
+        "outputSha256": "41946bc321eff964868a546f8d4bbd54c1ff783afbc5bc3f89ed9a5150cf9a91",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          517,
+          199,
+          169,
+          103
+        ],
+        "grid": [
+          "mouth_form"
+        ]
+      },
+      {
+        "id": "call_oJocto0c66s006OlPUuU066Y",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:44:01.718Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "7e8c3db5b1ca592782b837c05ff8d7aa46e76c1149c186cc8e73172be1bd596e",
+        "outputSha256": "46949b28bddca18747c5ef8dff10476942223d2f83884ae06f6ee521d83b5749",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          519,
+          201,
+          61,
+          65
+        ]
+      },
+      {
+        "id": "call_54BHmdJujsKDynBw60BFKAL4",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:44:14.608Z",
+        "tool": "view_nine_axis",
+        "success": true,
+        "argumentsSha256": "635fc3b667e25d55d696e2e08c44d76e3611238aeedadd3c8d9deb295e2d3f66",
+        "outputSha256": "738b876d99873625ebc9d607de8f0da591817b2882c1918958d2683be4abb33c",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          609,
+          200,
+          74,
+          64
+        ],
+        "grid": [
+          "eye_left"
+        ]
+      },
+      {
+        "id": "call_16MoeDR6ZbuwA8dwfPDSAipl",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:45:23.585Z",
+        "tool": "edit_nine_axis",
+        "success": true,
+        "argumentsSha256": "d37f65c02552b89cc57f6f3c4fa1feb6ae307a74575137d2b05d4cac54622022",
+        "outputSha256": "36aab17ccae2035b9ae46a441bb0076556dd75098c72c9a1e49e5dd5e5a58655"
+      },
+      {
+        "id": "call_28VoqOQ8amVODL7atm3NGIas",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:46:13.561Z",
+        "tool": "preview_svg",
+        "success": true,
+        "argumentsSha256": "413cffd6b56eb6a5b18d3ac975f3289d40374c490f99d681034e9904b574f5ee",
+        "outputSha256": "b646f7af8fdbbb12d2096316d06269f67688ddcd4a5f7a39bab9c66c81f9561a",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "reference": "nine-axis/step02_angle-x/workspace/bitmaps/4ac2e83d-b091-4ffe-a4a1-fe99538ef6a0-alpha.png",
+        "crop": [
+          88,
+          140,
+          47,
           113
         ],
         "mode": "edge"
       },
       {
-        "id": "call_1Bbavbf4UPGLKu1BqDNX8vm5",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:28:29.534Z",
+        "id": "call_2NjUXwamvgEdEvq32pgq9CYE",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:46:29.297Z",
         "tool": "preview_svg",
         "success": true,
-        "argumentsSha256": "f1fb63880aae2021688750f7966dff020a1ff52fb21edefadaa25b3a6ba09565",
-        "outputSha256": "f32031eefa6a3ee7c97044e457eb08dfca94875d5ec5c88b661d8f7964e96ead",
-        "path": "nine-axis/step02_angle-x/source-face.svg",
-        "reference": "nine-axis/step02_angle-x/source-face-reference.png",
+        "argumentsSha256": "15a892dd164bc716c09ef71c48b9635d09c82a3a6f2426c5fef3ab6507078148",
+        "outputSha256": "c8e3d64cdfd30297a4be28d4f0c5ddf625c240d47451986b224b51760d9ebd7e",
+        "path": "nine-axis/step02_angle-x/face-coverage.svg",
         "crop": [
-          180,
-          103,
-          99,
-          184
+          94,
+          109,
+          150,
+          77
         ],
         "mode": "blend"
       },
       {
-        "id": "call_Fz1dYrmafI635PAQZwlQGMbW",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:28:41.567Z",
-        "tool": "preview_svg",
-        "success": true,
-        "argumentsSha256": "a95f083e8e6c8c343214f857a23a29e0c53685c34281afb33c9c44ca8f8d216d",
-        "outputSha256": "6e090c30ca63a3caa57fa7c20cc058a5df929fc090ff8e43f435c910915ce4fa",
-        "path": "nine-axis/step02_angle-x/source-face.svg",
-        "reference": "nine-axis/step02_angle-x/source-face-reference.png",
-        "crop": [
-          115,
-          103,
-          165,
-          88
-        ],
-        "mode": "edge"
-      },
-      {
-        "id": "call_6g7OeSTC8TPEGIND9uxZfJ14",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:29:06.572Z",
-        "tool": "preview_svg",
-        "success": true,
-        "argumentsSha256": "86788cead5b85720ebbbec0fc4e71281c00a560c41c7104f28ee94b8b5b11bf2",
-        "outputSha256": "4b94e2559ad38bf4cc33489540fb635dca0dfc40189cdb0759996bdb88ba2afb",
-        "path": "nine-axis/step02_angle-x/target-face.svg",
-        "crop": [
-          88,
-          176,
-          90,
-          112
-        ],
-        "mode": "edge"
-      },
-      {
-        "id": "call_P9dDdBEknWM07rSAJAYbGKTc",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:29:20.831Z",
-        "tool": "preview_svg",
-        "success": true,
-        "argumentsSha256": "55854733e28b1030bfa40e2b87b6198d84b47cf8619e3e013b60af28f23aeac2",
-        "outputSha256": "21501b07f1d3a6e8b6659c59b274a428eaa440233e2bd8013e81e4954fc18958",
-        "path": "nine-axis/step02_angle-x/target-face.svg",
-        "crop": [
-          91,
-          187,
-          88,
-          101
-        ],
-        "mode": "blend"
-      },
-      {
-        "id": "call_FpHZ6GzykJOY71Jzzh543qrs",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:29:30.859Z",
-        "tool": "preview_svg",
-        "success": true,
-        "argumentsSha256": "9d524f4e1863bb58a5244f62b3c6fb1ad16c4b5a571f174db65074018222bf7c",
-        "outputSha256": "93ae13d201453c2561111a9b6e702efdbf6de6cabaa63b657bee12aa0a176959",
-        "path": "nine-axis/step02_angle-x/target-face.svg",
-        "crop": [
-          158,
-          239,
-          89,
-          49
-        ],
-        "mode": "edge"
-      },
-      {
-        "id": "call_kiWbnLVDQFKhJYORMUNiAZZx",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:29:42.278Z",
-        "tool": "preview_svg",
-        "success": true,
-        "argumentsSha256": "a391f00e7c70075f6658660ba2e4ea2a6e57ee053d0d4df50363a09d390b464e",
-        "outputSha256": "e3c28377b9b410c8177e7dfdf5f1555c0931e2225eb5c5b7c06b26e7f093a085",
-        "path": "nine-axis/step02_angle-x/target-face.svg",
-        "crop": [
-          155,
-          234,
-          90,
-          57
-        ],
-        "mode": "blend"
-      },
-      {
-        "id": "call_6Lx1wGBdBySMohwuPSCU6eU5",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:29:52.915Z",
-        "tool": "preview_svg",
-        "success": true,
-        "argumentsSha256": "7f364020a53231c5b13be2d45c23fb2a39127b8720cb01e880b5b734c3559b8a",
-        "outputSha256": "cd275b16dec2dafaa61b2565bcabbeeeafc5f645fbc329d42a2c885cbb8033ac",
-        "path": "nine-axis/step02_angle-x/target-face.svg",
-        "mode": "svg"
-      },
-      {
-        "id": "call_GHWnC456H41GXAG22FZqIR8d",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:30:43.600Z",
-        "tool": "edit_nine_axis",
-        "success": true,
-        "argumentsSha256": "d9ec1f7b3753fc918b9c16af56ee832661732efc23eb289249de930861cf4b56",
-        "outputSha256": "5551aaa519109149372cb6ad122e880ff0dd48fb05e57bdd644937e02ebe7283"
-      },
-      {
-        "id": "call_BW9RLabvh0RlGIQlNPJBRy8n",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:30:56.510Z",
-        "tool": "fit_nine_axis",
-        "success": true,
-        "argumentsSha256": "770b011cfb045abc20e7e5677110a82723e7008163c4bb820d0c96c1bde6c5c2",
-        "outputSha256": "273b43b4cbbac1a90287dec7c29c322d350b7a8ba9ca5d9b19c38c8e84b42362",
-        "action": "inspect",
-        "trace": "nine-axis/step02_angle-x/face-trace.json"
-      },
-      {
-        "id": "call_gsKfM3uRJoCxfklc1tPIqkpJ",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:31:18.983Z",
-        "tool": "fit_nine_axis",
-        "success": true,
-        "argumentsSha256": "c21b6957d4fdd80741792dcb8ab6a76ebdc2a5a28d6f3782272155ccf76cc6c9",
-        "outputSha256": "a0c48155dc7da369e8eafffb3564b86c8e9c94d86656daf1aab347f64d1816fb",
-        "action": "fit",
-        "targetId": "face_shape",
-        "trace": "nine-axis/step02_angle-x/face-trace.json"
-      },
-      {
-        "id": "call_YQaxQkfyNPr5bkilwbNrcYSi",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:31:34.953Z",
+        "id": "call_boBONh5jB4YYlvNN4tmkOsMC",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:46:48.121Z",
         "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "78bb98267187804d6cf813f9aaf2231112c4743916c0d582ada4de0e8aac0462",
-        "outputSha256": "e6a5093ea682912e9296691465e6de8bc690e5bda7269537dd45a10fb49b9610",
-        "x": -30,
-        "only": [
-          "face/face_base"
-        ]
-      },
-      {
-        "id": "call_jMgWEeoUVECH56gXWL2KsNaI",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:31:53.143Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "3e72f6bb4077b0bb542fa6a186941d8b11d4fe223919c23c71909e5c85f0fbdb",
-        "outputSha256": "9e21dc8ceb408ecf3016fe1b171938a9f7bd41f2522b8da62285094a9c735340",
-        "path": "nine-axis/step01_video/left.png",
-        "crop": [
-          90,
-          139,
-          157,
-          126
-        ]
-      },
-      {
-        "id": "call_jnJ8VTWwVaPBCeFhV1dd2pXQ",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:32:55.545Z",
-        "tool": "edit_nine_axis",
-        "success": true,
-        "argumentsSha256": "aa0470b7e59872133d5275646dc5e616d01704b8bce851bf9795059fc09d78bd",
-        "outputSha256": "92eb8421b47a18dc98ab185225dfd7d8d83d7cea1df19b3cd9454129220a99b3"
-      },
-      {
-        "id": "call_dDlnZAoNE8z9Ct7bpcxGUZCC",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:33:10.437Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "a820257146ddb23f3678949e7964d49d5612d526f368a36b9b578e21bd28e0ca",
-        "outputSha256": "af1411245c4328bf27020ebfe351015bdf837cbd64ba6d39ad678dc01b5295f0",
-        "reference": {
-          "path": "nine-axis/step01_video/left.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30
-      },
-      {
-        "id": "call_VcLYXpD91TaQwWj8brJ6dYjb",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:33:32.306Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "ad454d82ed0a177bead3dbf2892d45f8a2a8ef295d44313c64b95b86caa7f5ad",
-        "outputSha256": "985f65f6436c769daec436997d98853b8fbb74b3acf6629b03aa01e7fca9d3f0",
+        "argumentsSha256": "da20432cd8ea5180ccaf2d79dbcfac5421547338096d8d9be7bb07f9fdbe59c4",
+        "outputSha256": "014eb117f149e15967d1fd7cdc7982e92c80cbe0ab31a9d957bcad8605476db9",
         "reference": {
           "path": "nine-axis/step01_video/left.png",
           "bounds": [
@@ -716,429 +1146,40 @@
         },
         "x": -30,
         "crop": [
-          521,
-          203,
-          158,
-          63
+          431,
+          35,
+          394,
+          394
         ]
       },
       {
-        "id": "call_pk0cDTrzNXmzam24MfCMIpPU",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:34:37.482Z",
-        "tool": "edit_nine_axis",
-        "success": true,
-        "argumentsSha256": "9c00a931f29c8a6c7c79439ac6dca70bd3aca49c1364321c93edd4a3d3557505",
-        "outputSha256": "f17b0ddec9b6c04f47dac325e0e73013c6f259a4ca66fa4a8acbd20713a2c041"
-      },
-      {
-        "id": "call_vogHZ9g3jsNnKgdfUm80f9VN",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:35:23.298Z",
+        "id": "call_zQJeTOaqbX4DePNNXToeRvnW",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:47:09.756Z",
         "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "ad454d82ed0a177bead3dbf2892d45f8a2a8ef295d44313c64b95b86caa7f5ad",
-        "outputSha256": "93d4cdaded9008463141349bc1e0b8c0eefbda493d814cb9a7c439e57bc58892",
-        "reference": {
-          "path": "nine-axis/step01_video/left.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
+        "argumentsSha256": "a03ca3eed642cc98f8170052afed7f7fda5d33d9c56c7302b26a8f9f67782fc1",
+        "outputSha256": "6122cdd25bca7efc1be67ad056c4571da5cf28fd411a12ca3d8988e0c86dcb97",
+        "x": -15,
         "crop": [
-          521,
-          203,
-          158,
-          63
+          431,
+          35,
+          394,
+          394
         ]
       },
       {
-        "id": "call_cYesF2V200BBO4a0ACCNesvW",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:36:37.160Z",
-        "tool": "edit_nine_axis",
-        "success": true,
-        "argumentsSha256": "ace4c7d784ee3db6fff1161f85f520dcb82d80e2ab7f49e7a94b2b7f12a32651",
-        "outputSha256": "7a3c066d3d86ba7842f39d45eb380c3e29d7ee0959a25272bf9c8bd30c738b8b"
-      },
-      {
-        "id": "call_dJzzd8MI77Tm4EdGGxJZeVy8",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:38:14.997Z",
+        "id": "call_ULifT1Mt2jaRF3vNa3DbOTrP",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:47:26.204Z",
         "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "d8e4d8d24e8309618ca0822d5b5174a112a20c79707043553a7bffbe6194355a",
-        "outputSha256": "1fcf440490cec098af438f304cb9aa573b1d62b2b3ad4344b653f0380da7ca97",
-        "reference": {
-          "path": "nine-axis/step02_angle-x/workspace/target-completion-reference.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
-        "only": [
-          "face/face_base"
-        ]
-      },
-      {
-        "id": "call_q5nAfW17bilviieaKHpqVXkH",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:38:29.769Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "c72afc7abb2fed8dcc2990433253e5aeb483cc14509c83aa0f2a2770c4560aa3",
-        "outputSha256": "afc7d90584c25ed5c6a1c56e939776dfba4747746efc92d7c2d7816ee3f47cd8",
-        "reference": {
-          "path": "nine-axis/step02_angle-x/workspace/target-completion-reference.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
-        "crop": [
-          523,
-          137,
-          190,
-          116
-        ],
-        "only": [
-          "face/face_base"
-        ],
-        "grid": [
-          "face_shape"
-        ]
-      },
-      {
-        "id": "call_Lx4BGymrQPYq4HVRMME6xg5G",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:38:46.768Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "5e2409201fc0a65bf5e3e255000fb946b61fb4122bfa3d9c92b6ea9b5eedcd45",
-        "outputSha256": "18faf79e94cb60233175fcede94c8e11eba8599994a7ca64713f652ae5bcf6f2",
-        "reference": {
-          "path": "nine-axis/step01_video/left.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
-        "crop": [
-          516,
-          132,
-          209,
-          173
-        ]
-      },
-      {
-        "id": "call_Sf5cXubNeZyJFy7FbTdSqrgn",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:39:02.589Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "eccf23562d7648b4b5d63ceb64e7cc65182e05ee575ea541de143213454a97a1",
-        "outputSha256": "7e74caeda5c50952c9c5cca46600ec61891b1ccc50313c83fe92958874d269e1",
-        "x": -15
-      },
-      {
-        "id": "call_ldtA6IiZiS0zxxsm0sK58M6Q",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:39:16.994Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "5b93691c8033b87bb4c2fc7fcb46d279c49534144258bbb291fce0f8723ff1bf",
-        "outputSha256": "e00f9128d31de310db4a0bb64243703ddba71986dcacf221216962b279f31eab",
-        "x": 15
-      },
-      {
-        "id": "call_cwpT15VoXXdwUKYfoUfrpyOk",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:39:29.383Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "b2d1c114828d422c71bb0f7137e6a1ee65139eb853883cc8ff3889bea3776a8a",
-        "outputSha256": "ff83ae0f788104d2bd5577e31a22ae43c32244a36b374f77ed80e6c6b38fa321",
-        "x": 30
-      },
-      {
-        "id": "call_I6ZsHAy501af5WfQnMIh1bG1",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:41:46.457Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "03b4cbd610197134ad8a22b7f3559afc32b15284fa902043306fa1c6ea217cd3",
-        "outputSha256": "d0ee9b14efe2356f16f93a418582dd3236692d221200436ab76c8efea6c7ff59",
-        "reference": {
-          "path": "nine-axis/step01_video/left.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
-        "y": 0
-      },
-      {
-        "id": "call_yaBCP9Td0l0ki354Kjq2s5ji",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:41:57.005Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "4bedd83c567f72040989d9ce452a211a2781ef95e9161915b1adc3b7b6416d42",
-        "outputSha256": "77b1cf750174bfd7d8465e3fb854b3f431741ced1aa5e9d62608e8a539c74ba2",
-        "reference": {
-          "path": "nine-axis/step01_video/left.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
-        "y": 0,
-        "crop": [
-          520,
-          202,
-          92,
-          107
-        ]
-      },
-      {
-        "id": "call_byAVtHN1bG2bmjE7E6Yo30Nz",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:42:07.351Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "40419017ee5ba99785dce30181f44f20aba2dfbe52e4b597fd78cdb9857d95aa",
-        "outputSha256": "c6af1a0adfbc7310182138bfa79c6c53801dece471217355583e2ec071fe8832",
-        "reference": {
-          "path": "nine-axis/step01_video/left.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
-        "y": 0,
-        "crop": [
-          540,
-          274,
-          142,
-          52
-        ]
-      },
-      {
-        "id": "call_DMRSiXdJuM4XQICk1GY1cuwG",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:42:17.187Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "0602191e8f7b4f48a05b6016665895b5691b6f559f0bd13cd94245f986f4c536",
-        "outputSha256": "063753e173747cd51e1606a0cbba9818fea8d9b68fa42d592570f720e487faab",
-        "reference": {
-          "path": "nine-axis/step01_video/left.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
-        "y": 0,
-        "crop": [
-          556,
-          288,
-          151,
-          76
-        ]
-      },
-      {
-        "id": "call_nRlPEJ7R1EUhfAnCQGQttOdM",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:42:49.822Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "2b869d51685b372fe326391374b9bdfc6ab9e4e92beb1ec909457f61cb9d1acf",
-        "outputSha256": "54347790a80f1e5912374666050e1347a6f73777b0d13ad6df43c77e4e2beb66",
-        "path": "nine-axis/step02_angle-x/workspace/round-video-reference-check.png"
-      },
-      {
-        "id": "call_SYCWhgzgATYoE2F61viqv25P",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:42:59.666Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "de159bdc28c836dbdd366aa629cd4441ac1a1282dddb3c1e6c7e2f708ada826c",
-        "outputSha256": "ba794abdb78c151e48468cdc76bc32f37ce13687b4746d688afca08b16e32f97",
-        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/tutorial/01-face-x-side.jpg"
-      },
-      {
-        "id": "call_3X1lQd6sXU6h4xzJAuuvsH3Z",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:43:08.612Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "b1c77d39843d756931f46a63da2c66dd2092038f9b1db4af4798222f376f0b70",
-        "outputSha256": "5e39f285387d45d2602957595be490b5c70453824e2f49f931809c3b728c9a14",
-        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/tutorial/02-three-concave-convex.jpg"
-      },
-      {
-        "id": "call_ZGCICxzIATx3Xw3D16Evwybr",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:43:16.994Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "20d987be5f2d689801444aab088d3d75b9a5af4ac5320fdf7f5a7a46529a3f41",
-        "outputSha256": "b7a3a096eaa74b1450dce55ca4009342ddf378116bad050dd3b20f97e3f33a4f",
-        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/tutorial/03-face-x-done.jpg"
-      },
-      {
-        "id": "call_yVQDf3JT9rNEPAQjH7oJEKEJ",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:43:27.938Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "aaad88a1eb44ca68a8a9840456867cd1cd83e51dd5d38079c8ed51923fee2a0e",
-        "outputSha256": "f8c8a9489fb70607fa22a5a0ef1fefbaffe623f472be355696eabf5974420d8e",
-        "path": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.agents/skills/live2d-maker/knowledge/nine-axis/step02_angle-x/references/completion/models/hiyori/reference.jpg"
-      },
-      {
-        "id": "call_PRxxuZS4F1Lwq7SpmdtRhSJm",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:43:44.917Z",
-        "tool": "fit_nine_axis",
-        "success": true,
-        "argumentsSha256": "770b011cfb045abc20e7e5677110a82723e7008163c4bb820d0c96c1bde6c5c2",
-        "outputSha256": "9daf40ae325dba5461b1a3a567d47c1ce38721c4db0b2590d13f2e2d452be4b8",
-        "action": "inspect",
-        "trace": "nine-axis/step02_angle-x/face-trace.json"
-      },
-      {
-        "id": "call_eRC9o8uPB2GtONOdKSeljmhw",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:43:58.218Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "91741c1a7ca13f111fb0660c189168470ecf0c942044e63a93ec8a083b33cb69",
-        "outputSha256": "6512003a5c076742154821daac9284da375d93abb422ffa7f47b8cce9f8f1934",
-        "reference": {
-          "path": "nine-axis/step02_angle-x/workspace/target-completion-reference.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
-        "y": 0,
-        "only": [
-          "face/face_base"
-        ]
-      },
-      {
-        "id": "call_B3sIpVENt9EHLG86z8elG8ej",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:44:15.847Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "2145549be4b973154ee1a56467c2d5d9af30fd3f9d53a0ddba61bb852e1ba73d",
-        "outputSha256": "2df82806d360b37b095b6e0fa9a6b8abbfda6c2c5ff62f708dbbd29128096aea",
-        "reference": {
-          "path": "nine-axis/step02_angle-x/workspace/target-completion-reference.png",
-          "bounds": [
-            431,
-            35,
-            394,
-            394
-          ]
-        },
-        "x": -30,
-        "y": 0,
-        "crop": [
-          523,
-          137,
-          190,
-          116
-        ],
-        "only": [
-          "face/face_base"
-        ],
-        "grid": [
-          "face_shape"
-        ]
-      },
-      {
-        "id": "call_iOjozf1czydJ22nvspm08l5v",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:44:51.716Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "a8604710b2ea1236862af2adcd18122e3a23c9f196e5ef065bc8158bd3b7985d",
-        "outputSha256": "7df62de40f7b008c7ab3be8ca5d547447c5ff42d567703a4e107a3d665b4970d",
+        "argumentsSha256": "70cb8547adda4d46371766ae60153a611037996e64e30d2d23a7a51fdf9fbf61",
+        "outputSha256": "2c4b8ac86dd68d77cc39a36bbbc964d44362851a41db30c75d5dabf1bf11ed04",
         "reference": {
           "path": "character-assembly/step01/character-assembled.png",
           "bounds": [
@@ -1149,70 +1190,80 @@
           ]
         },
         "x": 0,
-        "y": 0
+        "crop": [
+          431,
+          35,
+          394,
+          394
+        ]
       },
       {
-        "id": "call_IrBnigo84KMqFvM7AOg0rQtF",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:45:03.057Z",
+        "id": "call_vkk6ux2eiFdVEHVttCqows2g",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:47:39.361Z",
         "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "48a6d3626f1b7ecbdf2ada4591dbd5e4cb1edc7671f6f08412717933ae584449",
-        "outputSha256": "28203cb597b8a03b65bf4c64d33a08041c503fd4943e326e2dc47566784072f0",
-        "x": -22.5,
-        "y": 0
+        "argumentsSha256": "edf2a8fec4c88b68c0df4d5bd990afc3543af30e1499199afcaf3b6656533b0f",
+        "outputSha256": "904fff747fd3c5d8f1daa5c9bf4751979a3468d3d4002371a22c54091f3e7b91",
+        "x": 15,
+        "crop": [
+          431,
+          35,
+          394,
+          394
+        ]
       },
       {
-        "id": "call_hKUJDgRpHpl9uwHYqQzvYppj",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:45:12.675Z",
+        "id": "call_VT516xU585Too233576fdx6X",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:47:54.918Z",
         "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "b8079596ab60f72735afee6076040fef9819ba504a646c22de2fe9b60b4b3efa",
-        "outputSha256": "d17e37f3af454456377499617c9c96bdd96005c4b7cdf76ec17e440ec3a167da",
-        "x": -7.5,
-        "y": 0
+        "argumentsSha256": "fb1b8af8fc7a6fc79c2c2b3367854a691de7abfcd1b5d5ef98b5cd2be0b6d1d7",
+        "outputSha256": "b5153f94dd74d7ad7736066e1b23d706ac3dd3c5a3d3b6d7beb14c11fcedc668",
+        "x": 30,
+        "crop": [
+          431,
+          35,
+          394,
+          394
+        ]
       },
       {
-        "id": "call_KvkKTVQscfLOqTiTknjg7a6S",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:45:30.895Z",
+        "id": "call_xFLhtHAdH8I264F9puCeUJ24",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:48:34.040Z",
         "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "76b14aa9cd3bec7ba215a3468aa56c524d968b0078dd6ce44ab479aaf3bcded2",
-        "outputSha256": "5ad6824fedc1461b0da0d848ca9f7002bb7ca5de00ae92e45f6a8f60a218bc73",
-        "x": 7.5,
-        "y": 0
+        "argumentsSha256": "b85b96ad4206f033152ded5dfb932b1750051ae7c6f1d9f46ba3f1038261ae62",
+        "outputSha256": "c3825eb6a46e2b36430dd1075ec8fc26ca49762f70c64e421389d1d7851c8ca1",
+        "x": -30,
+        "crop": [
+          431,
+          35,
+          394,
+          394
+        ],
+        "only": [
+          "face/face_base"
+        ]
       },
       {
-        "id": "call_dlur03ohjKGJMi5EGsi7uuSV",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:45:41.579Z",
+        "id": "call_8NLQ6FpQjiZDoxeBqDTIgsKj",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:48:46.717Z",
         "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "a24ac9cbd5fa93050120c4491b6dae26a3de6e9d51dca6f37560498d5eccbd96",
-        "outputSha256": "584feebc1a4677705088e8c840295a9e7eecf7f4e46b2173083594d3a068150b",
-        "x": 22.5,
-        "y": 0
-      },
-      {
-        "id": "call_92xTEmpKIe7RiyyluyBjiNVY",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:45:57.784Z",
-        "tool": "view_nine_axis",
-        "success": true,
-        "argumentsSha256": "004f53efad318902d64a2ffc5733935717b8d30c0417a794b03cfc3eed329069",
-        "outputSha256": "aa7594e23ec0b0a63c74af4ee27142d8c411e37ad53757454cf6a8866f3a0ded",
+        "argumentsSha256": "52b343d197446202d000eb164056479ea500eabdd055f0994bddd2e251a575b9",
+        "outputSha256": "e3030bd794d4da415efc555bcf8a4c3b8d17d04172a5d3a5eb914adc8801be31",
         "reference": {
           "path": "nine-axis/step01_video/left.png",
           "bounds": [
@@ -1223,134 +1274,132 @@
           ]
         },
         "x": -30,
-        "y": 0,
         "crop": [
-          516,
-          132,
-          209,
-          173
+          518,
+          199,
+          73,
+          107
         ]
       },
       {
-        "id": "call_39gAmZcD1fL01n6CjLXs4Tjy",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:46:17.255Z",
-        "tool": "view_bitmap",
+        "id": "call_AuRxtTXOxW8jEOldISv6uBc4",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:49:11.712Z",
+        "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "0d1a83c00665c9237807a615405d88258bc08930c831ef0c2e8096418bd6448b",
-        "outputSha256": "13c57a33589942a6085b74ca04534be884e830c3ace4ae18ab4011155a4c6bc7",
-        "path": "nine-axis/continuity-reference/face-base-sequence.png"
+        "argumentsSha256": "971d3b91281960d5b4e89774283ead74eb6bae138b2d9dc800ee6e6ee2630fc3",
+        "outputSha256": "d69659b10cd39cba814d997252f9763af2201a60f3a5afb2dadc828ca9c7d8c0",
+        "reference": {
+          "path": "nine-axis/step01_video/left.png",
+          "bounds": [
+            431,
+            35,
+            394,
+            394
+          ]
+        },
+        "x": -30,
+        "crop": [
+          575,
+          240,
+          32,
+          61
+        ]
       },
       {
-        "id": "call_dhwkRyumppkuNbXL9n8JKpWX",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:46:29.041Z",
-        "tool": "view_bitmap",
+        "id": "call_YnP2iPGc7fRXytMkNRoJ3ckE",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:50:02.404Z",
+        "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "41ed4959d58c4be98e6a99050d2bd1d164750c5f986eb8c70cab4f82e2111c0c",
-        "outputSha256": "67854da7deb9a37e81da3e275cc1548cc29d5fa8bd2cf0cba90cb535c7051465",
-        "path": "nine-axis/continuity-reference/face-sequence.png"
+        "argumentsSha256": "3192a122c69d4106456c8d59a9ab002a4ce6caa7739ef5a383ba5bfd5bfb3815",
+        "outputSha256": "6b2e0b2b6654d61cbe4cee194ef32cd2e6051d101da7310dd792b691dffc7726",
+        "x": -30,
+        "crop": [
+          573,
+          238,
+          24,
+          30
+        ],
+        "only": [
+          "face/nose"
+        ],
+        "grid": [
+          "face/nose"
+        ]
       },
       {
-        "id": "call_2G9QZ8hiCrcJU5EYS0RACAz8",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:46:57.673Z",
-        "tool": "view_bitmap",
+        "id": "call_RNhllHMFVIDWWXEF4FuEHuq7",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:50:27.933Z",
+        "tool": "edit_nine_axis",
         "success": true,
-        "argumentsSha256": "f3f631934d049320d2692dfc399508be3086aa3f533f6b438b5772df34a81675",
-        "outputSha256": "ff703034e4d93f40bc9996ed3281d19ff85c344c28433eb088a0590425354515",
-        "path": "nine-axis/continuity-reference/up-current.png"
+        "argumentsSha256": "b90f7376e61271cb9b35544249615448d97fc00578bbf6b6c0cb4701724f9094",
+        "outputSha256": "68b8a6a47d365ece8509ff1b5dc9e5018e2f603a19be2ded4c14bd107d787510"
       },
       {
-        "id": "call_mqHxlT5KuaA7GMaVIbh9pc4u",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:47:10.582Z",
-        "tool": "view_bitmap",
+        "id": "call_AJDXdG92P5HPdVjlKhQrvT0K",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:54:46.689Z",
+        "tool": "view_nine_axis",
         "success": true,
-        "argumentsSha256": "0b98aec9a8db613a7aae7419522331a46f7f4e2d8193434cc768d277a4077dc1",
-        "outputSha256": "8d94b6ce421fd941995536aab50f9c7cb179f566603faec344155101c96f87fc",
-        "path": "nine-axis/continuity-reference/down-current.png"
+        "argumentsSha256": "b85b96ad4206f033152ded5dfb932b1750051ae7c6f1d9f46ba3f1038261ae62",
+        "outputSha256": "813f6cb6c8258f5dce69a80f3157c8dd04e84c822fad4c49cf5aada36f350519",
+        "x": -30,
+        "crop": [
+          431,
+          35,
+          394,
+          394
+        ],
+        "only": [
+          "face/face_base"
+        ]
       },
       {
-        "id": "call_MUbaslv3V2EGKfFiLzBF8BxC",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:49:31.285Z",
-        "tool": "view_bitmap",
+        "id": "call_V2VQ25tpSHO3yr6NBGLm0PnY",
+        "agent": "nine-axis/agents/2026-11-04T13-12-07-777Z-脸部与双耳转向-TrYywR",
+        "threadId": "01a1a6b0-34ca-7173-97eb-96766471c330",
+        "turnId": "01a1a6b0-360e-77b2-b757-297d8fbe6f73",
+        "timestamp": "2026-11-04T13:55:07.417Z",
+        "tool": "preview_svg",
         "success": true,
-        "argumentsSha256": "d5165c197adf6949f41dc744dd6d7030658ef16e5bd8eee63fc10e2de9d46269",
-        "outputSha256": "1721d1b5efe0a3638fdf833c8275f616397f770fbb2594fa0316c4d56a942e56",
-        "path": "nine-axis/step02_angle-x/workspace/continuity-video-diagnostic.png"
-      },
-      {
-        "id": "call_yzeEzZfLevwlyRtznYCXTZ0x",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:51:50.250Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "8d5a5570624f1f26858ce05b09ff5f6f80334c44a05f048441fbf38b32346915",
-        "outputSha256": "eac13ac8a7dfd580d4ad26dc06e61268fd880e7fea3a9d430db33f12e752761a",
-        "path": "nine-axis/step02_angle-x/intermediate-check.png"
-      },
-      {
-        "id": "call_96dSlMBsrnlo20aZw5uuSAxM",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:52:08.732Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "1051cb945591a101132671a7815b531d54c1389643f9487997d0742ffe2b4995",
-        "outputSha256": "fa3e11f746a4bd2511d265740afacc4ba5612a2de029410d2268405ac0e00a7d",
-        "path": "nine-axis/step02_angle-x/forehead-transition-check.png"
-      },
-      {
-        "id": "call_SOsGGBvtouOmfmA06VKadqvP",
-        "agent": "nine-axis/agents/2026-11-04T11-17-36-001Z-脸部与双耳转向-DFQxkl",
-        "threadId": "01a1a647-5a2b-79b0-bab8-f3cb6e8e8460",
-        "turnId": "01a1a647-5b63-7d43-bd1b-31585d6ca0a7",
-        "timestamp": "2026-11-04T11:53:13.967Z",
-        "tool": "view_bitmap",
-        "success": true,
-        "argumentsSha256": "1051cb945591a101132671a7815b531d54c1389643f9487997d0742ffe2b4995",
-        "outputSha256": "10bd2ccf61b8178d3a4225f0320c96717c0d4983c9754c70dfab5898db6b26ca",
-        "path": "nine-axis/step02_angle-x/forehead-transition-check.png"
+        "argumentsSha256": "43234c839440bf8633d09fc6055fb8e9963a2af609fde202e9b709e4c336f7b6",
+        "outputSha256": "b3c21e111007be50c0d7ba3a380a0a5a9dfa3d0391e4a3a688f3e5ba6e26f71f",
+        "path": "nine-axis/step02_angle-x/target-face.svg",
+        "reference": "nine-axis/step02_angle-x/face-alpha-check.png",
+        "mode": "edge"
       }
     ],
     "sourcePreviewCallIds": [
-      "call_nP0YmSQjs3Ra2RW6Bc54nfgX",
-      "call_0XJvb9I5PqA5841rnzj5zJ1W",
-      "call_1Bbavbf4UPGLKu1BqDNX8vm5",
-      "call_Fz1dYrmafI635PAQZwlQGMbW"
+      "call_djEL0tGIuaYEpatLQAEgWVUQ",
+      "call_1dxrXfekiJrJPLVtGviq8xbL"
     ],
     "targetPreviewCallIds": [
-      "call_YkUWJjjYPv3Jf0KcZHw4rwz1",
-      "call_00jl6TMaz4dX9bOXL30UXlhN",
-      "call_45q9Lt97RpOuLbiOsUF29nRE",
-      "call_JBQJeJsL1t8KCwJEYACRrTSt",
-      "call_6g7OeSTC8TPEGIND9uxZfJ14",
-      "call_P9dDdBEknWM07rSAJAYbGKTc",
-      "call_FpHZ6GzykJOY71Jzzh543qrs",
-      "call_kiWbnLVDQFKhJYORMUNiAZZx",
-      "call_6Lx1wGBdBySMohwuPSCU6eU5"
+      "call_WArgbrMj2LW0I7EBhSDugxTt",
+      "call_dJj6wm5BSWEnrwwiPUPOAi6F",
+      "call_BFefr3rOr6auFK8fDQuzwuYM",
+      "call_zxyOeuAOdU49SOXTdeMdqOnx",
+      "call_TtNsYOxNtZwL78BKu3dRkfaa",
+      "call_Sd8RS7alHmtO4sdglsb6HIiO"
     ],
     "fitCallIds": [
-      "call_gsKfM3uRJoCxfklc1tPIqkpJ"
+      "call_dUZq2fnoN4H81a3DUGtLu8Gs",
+      "call_lTerAxmsjqE6qN8LmQ3VzQWG"
     ],
-    "exportCallId": "call_gxBGuXNiMvsYizAAAMyxIrwr",
-    "initialImportCallId": "call_tbiO036ZV0JzJAucoEJ26tHG",
-    "nativeExportRecordMatchesCurrent": true,
+    "exportCallId": "call_slX24CX374mADjzOJGfkIJDp",
+    "initialImportCallId": "call_wbjQ43iZEu57iRtoq6ZLc2Vx",
+    "nativeExportRecordMatchesCurrent": false,
+    "nativeExportPartsMatchCurrent": true,
+    "exportRecordMatchScope": "all 24 native part records; source/canvas wrapper checked independently against protected KRA/XML and texture bytes",
     "initialImportHasNoPoseFields": true
   },
   "outputHashes": [
@@ -1361,153 +1410,135 @@
       "origin": "production-pipeline-agent"
     },
     {
-      "path": "checks/x-0.png",
-      "pipelineSha256": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
-      "sha256": "39e254388e16200ba1ac1b305f1815a958452de151068d26fe2264af2acb6d8a",
-      "origin": "production-pipeline-agent"
-    },
-    {
-      "path": "checks/x-minus15.png",
-      "pipelineSha256": "82b55228de274f521dc05ac387e4afbd6a74a8e4ccafed4bc11085a9fa1ffff9",
-      "sha256": "82b55228de274f521dc05ac387e4afbd6a74a8e4ccafed4bc11085a9fa1ffff9",
-      "origin": "production-pipeline-agent"
-    },
-    {
-      "path": "checks/x-minus22_5.png",
-      "pipelineSha256": "618251aeefb0acbffb59d87134906a174e295078c0f214d777d792c4c6ae87bb",
-      "sha256": "618251aeefb0acbffb59d87134906a174e295078c0f214d777d792c4c6ae87bb",
-      "origin": "production-pipeline-agent"
-    },
-    {
-      "path": "checks/x-minus30.png",
-      "pipelineSha256": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
-      "sha256": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
-      "origin": "production-pipeline-agent"
-    },
-    {
-      "path": "checks/x-minus7_5.png",
-      "pipelineSha256": "35c4fed747c187e910c9b00a981a302466fc24106b5c3ac2744fa7307471ccfc",
-      "sha256": "35c4fed747c187e910c9b00a981a302466fc24106b5c3ac2744fa7307471ccfc",
-      "origin": "production-pipeline-agent"
-    },
-    {
-      "path": "checks/x-plus15.png",
-      "pipelineSha256": "66d1528f7ad21662c2c229b3e0041c6cf984cc0b5a69cf40703b4463808ca816",
-      "sha256": "66d1528f7ad21662c2c229b3e0041c6cf984cc0b5a69cf40703b4463808ca816",
-      "origin": "production-pipeline-agent"
-    },
-    {
-      "path": "checks/x-plus22_5.png",
-      "pipelineSha256": "262bb2bdc3a1e99014b67cbb831517d4fdec8aa3cc2d876d50fd09a06ccf789d",
-      "sha256": "262bb2bdc3a1e99014b67cbb831517d4fdec8aa3cc2d876d50fd09a06ccf789d",
-      "origin": "production-pipeline-agent"
-    },
-    {
-      "path": "checks/x-plus30.png",
-      "pipelineSha256": "9f772f3dea17f6f94cadc0c1f201881e7d161b56809f757741ed7c09bc2b12d3",
-      "sha256": "9f772f3dea17f6f94cadc0c1f201881e7d161b56809f757741ed7c09bc2b12d3",
-      "origin": "production-pipeline-agent"
-    },
-    {
-      "path": "checks/x-plus7_5.png",
-      "pipelineSha256": "67aad5ab5dd1a18f3406d538e87960f0af45bbb350b3a0ede76fee5cd58b9bd0",
-      "sha256": "67aad5ab5dd1a18f3406d538e87960f0af45bbb350b3a0ede76fee5cd58b9bd0",
+      "path": "actual-completion-edge-check.png",
+      "pipelineSha256": "30f264090dfbeaa425b8b7b659560c9a4e7f9b4587895dca19f73eef73d71125",
+      "sha256": "30f264090dfbeaa425b8b7b659560c9a4e7f9b4587895dca19f73eef73d71125",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "deformers.json",
-      "pipelineSha256": "a0eec0bb9604912a8d4735c78d2c24992ea752438ff5213cab2a278471ec3da6",
-      "sha256": "2ad1505a4a2dff59b49f7e2051e7a404d25db1e9e0cc1c89cd324086afaa1ad1",
+      "pipelineSha256": "a466c22be093b10b919509e445d06f04b27ab6faf691a11eadd2ddc891c9890d",
+      "sha256": "47ae22bc27bec98252c54197b7020b724464b0c99a8be22376cf4c08072e80e8",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "export-record.json",
-      "pipelineSha256": "db2b93ad08e839664548e3c447ce024fbca98f67b1e02c5ff7a7af4105ad324a",
-      "sha256": "febda082014bcbd66980be944f005d83d367414976e8f3f4f2d49cc3b61f4c49",
+      "pipelineSha256": "ec3ce490bacea3d2f3fb7822103f3c8c334866a990acf62d86180730d91caf51",
+      "sha256": "1f9db40682bf7110d3b0cd520b9e026ab86b956cf7ed7b1978229a296be55bfd",
       "origin": "production-pipeline-agent"
     },
     {
-      "path": "face-base-completion-overlay.png",
-      "pipelineSha256": "db6ce24c29d61eb728eae4ddea64a503f9c4d5900b6a037f9551bc72dcba17ff",
-      "sha256": "db6ce24c29d61eb728eae4ddea64a503f9c4d5900b6a037f9551bc72dcba17ff",
+      "path": "face-alpha-check.png",
+      "pipelineSha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "sha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "face-base-left-check.png",
-      "pipelineSha256": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
-      "sha256": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+      "pipelineSha256": "a191d2a75343c3a8b97b21fd3e4049bf8968fd2f356bb4fabf64a15eb322df5e",
+      "sha256": "a191d2a75343c3a8b97b21fd3e4049bf8968fd2f356bb4fabf64a15eb322df5e",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "face-completion-check.png",
-      "pipelineSha256": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
-      "sha256": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+      "pipelineSha256": "3b79968c1a86fae610a8dcb31241cd3c4e3034f5d9da3f374a683998eba149f0",
+      "sha256": "3b79968c1a86fae610a8dcb31241cd3c4e3034f5d9da3f374a683998eba149f0",
+      "origin": "production-pipeline-agent"
+    },
+    {
+      "path": "face-coverage-check.png",
+      "pipelineSha256": "e31abe67eceff6c58e16a40da0e1e3297cd858a9562d42fd5ef243a1574d286f",
+      "sha256": "e31abe67eceff6c58e16a40da0e1e3297cd858a9562d42fd5ef243a1574d286f",
+      "origin": "production-pipeline-agent"
+    },
+    {
+      "path": "face-coverage-mask-check.png",
+      "pipelineSha256": "a5d99021b3afa580572ea5609f993a283fbed6768b940a2ca50c628cf3356f16",
+      "sha256": "a5d99021b3afa580572ea5609f993a283fbed6768b940a2ca50c628cf3356f16",
+      "origin": "production-pipeline-agent"
+    },
+    {
+      "path": "face-coverage-report.json",
+      "pipelineSha256": "18ad2b850785ece737e4367a0d5efd93caa85bb843b63fb9ed9f1d87dcb3161e",
+      "sha256": "046d94d9a1f9d9c276242d93d00f9981b8abd79a4c32b3aacbffcc4a7a8b58ca",
+      "origin": "production-pipeline-agent"
+    },
+    {
+      "path": "face-coverage.svg",
+      "pipelineSha256": "1e160a10b68ff7a814e6599241c62a73da40ad442260adeaebbd6a334f35a874",
+      "sha256": "1e160a10b68ff7a814e6599241c62a73da40ad442260adeaebbd6a334f35a874",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "face-left.json",
-      "pipelineSha256": "494882041541657aa9555d18739b0b8b06d851c34c00863e4bd34d5b96bd9088",
-      "sha256": "304a24fa789d69448459dd9456906469e545fccc5ebecc33811eb9774940a8eb",
+      "pipelineSha256": "70d79b7fd6507aa3e4e158d7663c4f237880c75e46227960ceee2d47c4650758",
+      "sha256": "765dfc074f51c0481279727479fe567c7b0916fbaa1a64afa18d0783d3c7a90e",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "face-trace.json",
-      "pipelineSha256": "9d3099adcf7f33b3adba3b7b1fe28c3d69d9e8c6d3c85746a69fc48dfee9047e",
-      "sha256": "b336b17081eb1eb06ec36ae41f7e9d3d24cf6ceb9c229eb5eccea527af2d49e8",
+      "pipelineSha256": "dc495d3b1e9c4d8c2ea861670560994bbf8ab02d0f8de9cf38f6c3558f148b31",
+      "sha256": "a9f7e28d3ffa7eb7c0da0b3b32407ccc2d2b02fa28ae32563674208f88e5ed22",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "far-side-check.png",
-      "pipelineSha256": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
-      "sha256": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
+      "pipelineSha256": "83bf0da79d207ca2a80086df6f97f70885f6f291217243a467b885ba113e02f9",
+      "sha256": "83bf0da79d207ca2a80086df6f97f70885f6f291217243a467b885ba113e02f9",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "fit-report.json",
-      "pipelineSha256": "9142fb132683d403e65f224c082755b37736350add1e22a7fb13e3af84a0a652",
-      "sha256": "ea427b829939ecb00bc2b1a5a30543002bbf0c8973adcf987ad4b78432f12c0d",
+      "pipelineSha256": "91e152ddbca7a957a6e609e379414f951f9abc307625ce78bea21eb29170de56",
+      "sha256": "feaaca5b45ee8c7834fc14f2ae6446e98ae225b828d4e10f79fa6825d0041f79",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "forehead-temple-check.png",
-      "pipelineSha256": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
-      "sha256": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+      "pipelineSha256": "3913dee0b964bb12ef6fe7f9b3cdb769da60df245ec9527e72e5325dfdf7fb96",
+      "sha256": "3913dee0b964bb12ef6fe7f9b3cdb769da60df245ec9527e72e5325dfdf7fb96",
       "origin": "production-pipeline-agent"
     },
     {
-      "path": "forehead-transition-check.png",
-      "pipelineSha256": "1afff35d1f260e693118810b0a7b23e87a9b39d374eb274006d5892de72eded9",
-      "sha256": "1afff35d1f260e693118810b0a7b23e87a9b39d374eb274006d5892de72eded9",
+      "path": "forehead-x-transition-check.png",
+      "pipelineSha256": "83c66809aade91d30cae3814612031eb9a2f1ac2117205931c73ee7532a5aebd",
+      "sha256": "83c66809aade91d30cae3814612031eb9a2f1ac2117205931c73ee7532a5aebd",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "front-check.png",
-      "pipelineSha256": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
-      "sha256": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+      "pipelineSha256": "bc27df863c7d11acef4af7e973d821ec62e9b1491b991e28e337f2bdb037d180",
+      "sha256": "bc27df863c7d11acef4af7e973d821ec62e9b1491b991e28e337f2bdb037d180",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "hair-coverage-check.png",
-      "pipelineSha256": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
-      "sha256": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+      "pipelineSha256": "b309cdac7236a0725d1b2003d3b852f57fb42c81907ec3508abc4413a337a088",
+      "sha256": "b309cdac7236a0725d1b2003d3b852f57fb42c81907ec3508abc4413a337a088",
       "origin": "production-pipeline-agent"
     },
     {
-      "path": "image-provenance.json",
-      "pipelineSha256": "01108189628e34f2720308887e7f467c439b812f3e401fbead75e418b56507ec",
-      "sha256": "f4b28c5c61b7fb80b0e05776a2c1d30cb83e1d8c30f04dbfe92f5644195e951e",
+      "path": "independent-alpha-check.png",
+      "pipelineSha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "sha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "origin": "production-pipeline-agent"
+    },
+    {
+      "path": "independent-coverage-check.png",
+      "pipelineSha256": "75cb03f2fc68c6e2ccc5aabfa46c26f6304999d3e86e15ed649a8fd4feb3b667",
+      "sha256": "75cb03f2fc68c6e2ccc5aabfa46c26f6304999d3e86e15ed649a8fd4feb3b667",
+      "origin": "production-pipeline-agent"
+    },
+    {
+      "path": "independent-coverage-report.json",
+      "pipelineSha256": "91e2e58ca50a16f5635a7e678b0b75285ca6cf873e66d1dcfacb1ea44cddf6a9",
+      "sha256": "749fdb9d59e4c43adf7f42c8ed1c7f30dbfc72b0fc55406ee9514f8f0f48117e",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "intermediate-check.png",
-      "pipelineSha256": "cb8bcadfbc57c5b26720bf9fa50f69a112068dd32056aead24c3d251ec43bb15",
-      "sha256": "cb8bcadfbc57c5b26720bf9fa50f69a112068dd32056aead24c3d251ec43bb15",
-      "origin": "production-pipeline-agent"
-    },
-    {
-      "path": "jaw-chin-check.png",
-      "pipelineSha256": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
-      "sha256": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
+      "pipelineSha256": "1a88965eb910b746441cebdc185d84e75cb2af7bc5f7071c74b085b8816bc34b",
+      "sha256": "1a88965eb910b746441cebdc185d84e75cb2af7bc5f7071c74b085b8816bc34b",
       "origin": "production-pipeline-agent"
     },
     {
@@ -1656,182 +1687,212 @@
     },
     {
       "path": "left-check.png",
-      "pipelineSha256": "f2a947cc20f6fbb2aabcfb60b50b9a867a28ca0778a18c630ac8600f8e9b9071",
-      "sha256": "f2a947cc20f6fbb2aabcfb60b50b9a867a28ca0778a18c630ac8600f8e9b9071",
+      "pipelineSha256": "971ae6704739751d687d2d26209f837f2fdc527acfdac62d27a49e97288e45a3",
+      "sha256": "971ae6704739751d687d2d26209f837f2fdc527acfdac62d27a49e97288e45a3",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "left-fit-check.png",
-      "pipelineSha256": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
-      "sha256": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
+      "pipelineSha256": "c4cc53a2b2e29ef69427c6c52e395870070352b4356bb93566b31e618c2c021d",
+      "sha256": "c4cc53a2b2e29ef69427c6c52e395870070352b4356bb93566b31e618c2c021d",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "neck-contact-check.png",
-      "pipelineSha256": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
-      "sha256": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
+      "pipelineSha256": "a081d23747c6ed88b5df7a53e0690a0eaf24cdf5866aa82772336c1156e244ee",
+      "sha256": "a081d23747c6ed88b5df7a53e0690a0eaf24cdf5866aa82772336c1156e244ee",
+      "origin": "production-pipeline-agent"
+    },
+    {
+      "path": "nose-mouth-check.png",
+      "pipelineSha256": "6ebf21bef9a18f642537b942bd8d0b3f8721944470e04105775b6ba07bcc2a7a",
+      "sha256": "6ebf21bef9a18f642537b942bd8d0b3f8721944470e04105775b6ba07bcc2a7a",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "notes.md",
-      "pipelineSha256": "f36da75d226e5fb563c770b6a86a9ed11bae1ef13f7cac20b3ae0e1ef34554c0",
-      "sha256": "189463f3038242ea1172e9a50020a035bf2b2869683f341365a5d8eb47d640a5",
+      "pipelineSha256": "78fe343116ac7e70a19f25bcb071cf3c280573ba57b17d8bb72bda4cf1a0abb7",
+      "sha256": "78fe343116ac7e70a19f25bcb071cf3c280573ba57b17d8bb72bda4cf1a0abb7",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "source-face-reference.png",
-      "pipelineSha256": "f26084e3fafcc481da84790a2386e92ab6910526d1fb9719730231359a6a4d33",
-      "sha256": "f26084e3fafcc481da84790a2386e92ab6910526d1fb9719730231359a6a4d33",
+      "pipelineSha256": "309063194052207dce86dc03386b2aa1d356879acabf44db54f1129d3e1b0291",
+      "sha256": "309063194052207dce86dc03386b2aa1d356879acabf44db54f1129d3e1b0291",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "source-face.svg",
-      "pipelineSha256": "451c4e7dac3fc53af4022217892d9e77e102947edb3c8bde7279a6dbf3dfb04b",
-      "sha256": "451c4e7dac3fc53af4022217892d9e77e102947edb3c8bde7279a6dbf3dfb04b",
+      "pipelineSha256": "5b9cb0df4c224c238236c7a06139014bbc714d1a8afd6e8820bae35ddd2ec620",
+      "sha256": "5b9cb0df4c224c238236c7a06139014bbc714d1a8afd6e8820bae35ddd2ec620",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "source-trace-edge.png",
-      "pipelineSha256": "ad19dcfb9f58450bd68c725a076948b363835986625d08687177410602260069",
-      "sha256": "ad19dcfb9f58450bd68c725a076948b363835986625d08687177410602260069",
+      "pipelineSha256": "348f253ac3162225e508e669422da9ce5c8b72762f371574641dc87b7afb01c0",
+      "sha256": "348f253ac3162225e508e669422da9ce5c8b72762f371574641dc87b7afb01c0",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "source.json",
-      "pipelineSha256": "defdd47b861b90379b5235b46453cfd0a1669d93c87f6078dca32d81e02db504",
-      "sha256": "defdd47b861b90379b5235b46453cfd0a1669d93c87f6078dca32d81e02db504",
+      "pipelineSha256": "309826598fec05200c4a74fe244fd9d50216c5d1df84ab08f0606e52b80793bc",
+      "sha256": "309826598fec05200c4a74fe244fd9d50216c5d1df84ab08f0606e52b80793bc",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "target-face.svg",
-      "pipelineSha256": "922eb64c85a3b6df96f6ac98aa5fc4a6abacbf184b9092bc16bb763b7d015307",
-      "sha256": "922eb64c85a3b6df96f6ac98aa5fc4a6abacbf184b9092bc16bb763b7d015307",
+      "pipelineSha256": "3dd8bb6b348cf8d96429b5b371acee836fdef7b002c2e151763dcdfcade6f524",
+      "sha256": "3dd8bb6b348cf8d96429b5b371acee836fdef7b002c2e151763dcdfcade6f524",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "target-trace-edge.png",
-      "pipelineSha256": "80cc359fcf99704ae5173911f332e6e6b23668f3475c587b842b672be866bffe",
-      "sha256": "80cc359fcf99704ae5173911f332e6e6b23668f3475c587b842b672be866bffe",
+      "pipelineSha256": "6a49b564ff219b4b6a7d80d932825e9cb940918e07351c3ee9c7cbf29317cf60",
+      "sha256": "6a49b564ff219b4b6a7d80d932825e9cb940918e07351c3ee9c7cbf29317cf60",
       "origin": "production-pipeline-agent"
     },
     {
       "path": "trace-check.png",
-      "pipelineSha256": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
-      "sha256": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
+      "pipelineSha256": "61e64469d2d49e67e9ada66a4e2650fc72617685e80938a0751c4894cbbb72fe",
+      "sha256": "61e64469d2d49e67e9ada66a4e2650fc72617685e80938a0751c4894cbbb72fe",
       "origin": "production-pipeline-agent"
     },
     {
-      "path": "verification.json",
-      "pipelineSha256": "516df9a3139edb2b4eb130779896550f15a0980ea4b85f051c4690812e6cde18",
-      "sha256": "516df9a3139edb2b4eb130779896550f15a0980ea4b85f051c4690812e6cde18",
-      "origin": "production-pipeline-agent"
+      "path": "independent-review/agent-checks/actual-completion-edge-check.png",
+      "sha256": "30f264090dfbeaa425b8b7b659560c9a4e7f9b4587895dca19f73eef73d71125",
+      "pipelineSha256": "30f264090dfbeaa425b8b7b659560c9a4e7f9b4587895dca19f73eef73d71125",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/agent-checks/face-alpha-check.png",
+      "sha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "pipelineSha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/face-base-left-check.png",
-      "sha256": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
-      "pipelineSha256": "3e735bd236059263af9964ef871e59b364f950dd8bfdd3dcd59a9b20f6b11dbd",
+      "sha256": "a191d2a75343c3a8b97b21fd3e4049bf8968fd2f356bb4fabf64a15eb322df5e",
+      "pipelineSha256": "a191d2a75343c3a8b97b21fd3e4049bf8968fd2f356bb4fabf64a15eb322df5e",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/face-completion-check.png",
-      "sha256": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
-      "pipelineSha256": "f2f12e79fd11fc217aed122adfb7dcd490d9b184d15e670b1ddd00f993c0aac4",
+      "sha256": "3b79968c1a86fae610a8dcb31241cd3c4e3034f5d9da3f374a683998eba149f0",
+      "pipelineSha256": "3b79968c1a86fae610a8dcb31241cd3c4e3034f5d9da3f374a683998eba149f0",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/agent-checks/face-coverage-check.png",
+      "sha256": "e31abe67eceff6c58e16a40da0e1e3297cd858a9562d42fd5ef243a1574d286f",
+      "pipelineSha256": "e31abe67eceff6c58e16a40da0e1e3297cd858a9562d42fd5ef243a1574d286f",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/agent-checks/face-coverage-mask-check.png",
+      "sha256": "a5d99021b3afa580572ea5609f993a283fbed6768b940a2ca50c628cf3356f16",
+      "pipelineSha256": "a5d99021b3afa580572ea5609f993a283fbed6768b940a2ca50c628cf3356f16",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/far-side-check.png",
-      "sha256": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
-      "pipelineSha256": "6b13a6c0bc35869072927da51c5d7dbf80e6a6384b41b4c04469bd9da012fcba",
+      "sha256": "83bf0da79d207ca2a80086df6f97f70885f6f291217243a467b885ba113e02f9",
+      "pipelineSha256": "83bf0da79d207ca2a80086df6f97f70885f6f291217243a467b885ba113e02f9",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/forehead-temple-check.png",
-      "sha256": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
-      "pipelineSha256": "f373362b36b4a9b55df0f8f40cfb0b9784054bcee77cc105e4ce2f1c8b14c849",
+      "sha256": "3913dee0b964bb12ef6fe7f9b3cdb769da60df245ec9527e72e5325dfdf7fb96",
+      "pipelineSha256": "3913dee0b964bb12ef6fe7f9b3cdb769da60df245ec9527e72e5325dfdf7fb96",
       "origin": "independent-read-only-review"
     },
     {
-      "path": "independent-review/agent-checks/forehead-transition-check.png",
-      "sha256": "1afff35d1f260e693118810b0a7b23e87a9b39d374eb274006d5892de72eded9",
-      "pipelineSha256": "1afff35d1f260e693118810b0a7b23e87a9b39d374eb274006d5892de72eded9",
+      "path": "independent-review/agent-checks/forehead-x-transition-check.png",
+      "sha256": "83c66809aade91d30cae3814612031eb9a2f1ac2117205931c73ee7532a5aebd",
+      "pipelineSha256": "83c66809aade91d30cae3814612031eb9a2f1ac2117205931c73ee7532a5aebd",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/front-check.png",
-      "sha256": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
-      "pipelineSha256": "f7cf8e6a4473d34e4ab9e9b582ad9f6d6ecb6ebb3d10aef890230add697b890d",
+      "sha256": "bc27df863c7d11acef4af7e973d821ec62e9b1491b991e28e337f2bdb037d180",
+      "pipelineSha256": "bc27df863c7d11acef4af7e973d821ec62e9b1491b991e28e337f2bdb037d180",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/hair-coverage-check.png",
-      "sha256": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
-      "pipelineSha256": "73e9a1acf89c1ecf3148773debe77cc38f3000825e3274d79a1f226b62a67b7a",
+      "sha256": "b309cdac7236a0725d1b2003d3b852f57fb42c81907ec3508abc4413a337a088",
+      "pipelineSha256": "b309cdac7236a0725d1b2003d3b852f57fb42c81907ec3508abc4413a337a088",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/agent-checks/independent-alpha-check.png",
+      "sha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "pipelineSha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/agent-checks/independent-coverage-check.png",
+      "sha256": "75cb03f2fc68c6e2ccc5aabfa46c26f6304999d3e86e15ed649a8fd4feb3b667",
+      "pipelineSha256": "75cb03f2fc68c6e2ccc5aabfa46c26f6304999d3e86e15ed649a8fd4feb3b667",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/intermediate-check.png",
-      "sha256": "cb8bcadfbc57c5b26720bf9fa50f69a112068dd32056aead24c3d251ec43bb15",
-      "pipelineSha256": "cb8bcadfbc57c5b26720bf9fa50f69a112068dd32056aead24c3d251ec43bb15",
-      "origin": "independent-read-only-review"
-    },
-    {
-      "path": "independent-review/agent-checks/jaw-chin-check.png",
-      "sha256": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
-      "pipelineSha256": "ef2a29a320ca5c907700d1068a04430edf6aa638a5737d5df0b2576fd24d2c8a",
+      "sha256": "1a88965eb910b746441cebdc185d84e75cb2af7bc5f7071c74b085b8816bc34b",
+      "pipelineSha256": "1a88965eb910b746441cebdc185d84e75cb2af7bc5f7071c74b085b8816bc34b",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/left-check.png",
-      "sha256": "f2a947cc20f6fbb2aabcfb60b50b9a867a28ca0778a18c630ac8600f8e9b9071",
-      "pipelineSha256": "f2a947cc20f6fbb2aabcfb60b50b9a867a28ca0778a18c630ac8600f8e9b9071",
+      "sha256": "971ae6704739751d687d2d26209f837f2fdc527acfdac62d27a49e97288e45a3",
+      "pipelineSha256": "971ae6704739751d687d2d26209f837f2fdc527acfdac62d27a49e97288e45a3",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/left-fit-check.png",
-      "sha256": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
-      "pipelineSha256": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
+      "sha256": "c4cc53a2b2e29ef69427c6c52e395870070352b4356bb93566b31e618c2c021d",
+      "pipelineSha256": "c4cc53a2b2e29ef69427c6c52e395870070352b4356bb93566b31e618c2c021d",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/neck-contact-check.png",
-      "sha256": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
-      "pipelineSha256": "c876e53aa3db6fdd9e55d63dcc5184c541ce0beadcddd0136d4a334ed844a43a",
+      "sha256": "a081d23747c6ed88b5df7a53e0690a0eaf24cdf5866aa82772336c1156e244ee",
+      "pipelineSha256": "a081d23747c6ed88b5df7a53e0690a0eaf24cdf5866aa82772336c1156e244ee",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/agent-checks/nose-mouth-check.png",
+      "sha256": "6ebf21bef9a18f642537b942bd8d0b3f8721944470e04105775b6ba07bcc2a7a",
+      "pipelineSha256": "6ebf21bef9a18f642537b942bd8d0b3f8721944470e04105775b6ba07bcc2a7a",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/source-trace-edge.png",
-      "sha256": "ad19dcfb9f58450bd68c725a076948b363835986625d08687177410602260069",
-      "pipelineSha256": "ad19dcfb9f58450bd68c725a076948b363835986625d08687177410602260069",
+      "sha256": "348f253ac3162225e508e669422da9ce5c8b72762f371574641dc87b7afb01c0",
+      "pipelineSha256": "348f253ac3162225e508e669422da9ce5c8b72762f371574641dc87b7afb01c0",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/target-trace-edge.png",
-      "sha256": "80cc359fcf99704ae5173911f332e6e6b23668f3475c587b842b672be866bffe",
-      "pipelineSha256": "80cc359fcf99704ae5173911f332e6e6b23668f3475c587b842b672be866bffe",
+      "sha256": "6a49b564ff219b4b6a7d80d932825e9cb940918e07351c3ee9c7cbf29317cf60",
+      "pipelineSha256": "6a49b564ff219b4b6a7d80d932825e9cb940918e07351c3ee9c7cbf29317cf60",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/agent-checks/trace-check.png",
-      "sha256": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
-      "pipelineSha256": "d7c2a053705525fecd41af40a9b9c00ced9857105c4b7ab30bc8bee2cb652476",
-      "origin": "independent-read-only-review"
-    },
-    {
-      "path": "independent-review/agent-checks/workspace/round-video-reference-check.png",
-      "sha256": "e40d76aeb2b55294c09800b1682707292ff53216e98e70758098931b3f057ae8",
-      "pipelineSha256": "e40d76aeb2b55294c09800b1682707292ff53216e98e70758098931b3f057ae8",
+      "sha256": "61e64469d2d49e67e9ada66a4e2650fc72617685e80938a0751c4894cbbb72fe",
+      "pipelineSha256": "61e64469d2d49e67e9ada66a4e2650fc72617685e80938a0751c4894cbbb72fe",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/front-complete-face-comparison.png",
-      "sha256": "afbeade144e8a1c3b668f4fbe6f70f0bec817bcb2b7fc66f27f2dba1aa897587",
-      "pipelineSha256": "afbeade144e8a1c3b668f4fbe6f70f0bec817bcb2b7fc66f27f2dba1aa897587",
+      "sha256": "d987940b72be938790d19d9972c70dd7589c22c645fe7b0d05ee6f7cca3578cb",
+      "pipelineSha256": "d987940b72be938790d19d9972c70dd7589c22c645fe7b0d05ee6f7cca3578cb",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/front-complete-face-current.png",
-      "sha256": "f81c5e3559cb48ab5cb2ac3d7bbad1069b865ba634aa63c0fc9f6bce2afe0c13",
-      "pipelineSha256": "f81c5e3559cb48ab5cb2ac3d7bbad1069b865ba634aa63c0fc9f6bce2afe0c13",
+      "sha256": "72a42210e885240a7fe14f48ad72d30b742bd42a08b003c3cc82be1e8ccf5ced",
+      "pipelineSha256": "72a42210e885240a7fe14f48ad72d30b742bd42a08b003c3cc82be1e8ccf5ced",
       "origin": "independent-read-only-review"
     },
     {
@@ -1848,98 +1909,182 @@
     },
     {
       "path": "independent-review/front-hair-coverage-comparison.png",
-      "sha256": "92c7e71199fec561154db670b498aa751ff33393679508bf2943ce7cf8ec8791",
-      "pipelineSha256": "92c7e71199fec561154db670b498aa751ff33393679508bf2943ce7cf8ec8791",
+      "sha256": "7b22b9ed7f6a53a917a8a9edb5d13f44d517c4a68ec9ce17769620dcb3f67a13",
+      "pipelineSha256": "7b22b9ed7f6a53a917a8a9edb5d13f44d517c4a68ec9ce17769620dcb3f67a13",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/front-hair-coverage-current.png",
-      "sha256": "f6d70416886bcd1e3386319b3e2327386c7de62c0f34eab5defe937be6f6fde8",
-      "pipelineSha256": "f6d70416886bcd1e3386319b3e2327386c7de62c0f34eab5defe937be6f6fde8",
+      "sha256": "49d2818361c9ddc60a8c84243c5e870bc3aa390952e8b3b6ef2a550bf663599f",
+      "pipelineSha256": "49d2818361c9ddc60a8c84243c5e870bc3aa390952e8b3b6ef2a550bf663599f",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/independent-face-coverage-report.json",
+      "sha256": "5d2f88d209765cfddb6b4b4d661c6fb93940e51b1a90557c7d7f9b1e878d6594",
+      "pipelineSha256": "5d2f88d209765cfddb6b4b4d661c6fb93940e51b1a90557c7d7f9b1e878d6594",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-bang-skin-window-comparison.png",
-      "sha256": "bd0f02792ecc747ef411ac057e4c5b8179522311d5744db19b60c57ed442415b",
-      "pipelineSha256": "bd0f02792ecc747ef411ac057e4c5b8179522311d5744db19b60c57ed442415b",
+      "sha256": "2c056941c09026c03bc7a6e7d94e2f12652c3734579d3e20567a1efb913077ed",
+      "pipelineSha256": "2c056941c09026c03bc7a6e7d94e2f12652c3734579d3e20567a1efb913077ed",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-bang-skin-window-current.png",
-      "sha256": "c4c764708821505e5f550f335fe6c103889a1ec5b5be871348d47cf74fa49c7c",
-      "pipelineSha256": "c4c764708821505e5f550f335fe6c103889a1ec5b5be871348d47cf74fa49c7c",
+      "sha256": "36da7248fbd0153eeebd91c5c5129f4b2155fc907a15fe917a81813b45cbb9d5",
+      "pipelineSha256": "36da7248fbd0153eeebd91c5c5129f4b2155fc907a15fe917a81813b45cbb9d5",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-complete-face-comparison.png",
-      "sha256": "a35ac255d933be0eee8a13a5141bb0bc3d35a7579b2065ea10c793536554ea55",
-      "pipelineSha256": "a35ac255d933be0eee8a13a5141bb0bc3d35a7579b2065ea10c793536554ea55",
+      "sha256": "6e1d6489f7dd858b170b72ffd667baf2570c6512a7557b6adc8c706880435757",
+      "pipelineSha256": "6e1d6489f7dd858b170b72ffd667baf2570c6512a7557b6adc8c706880435757",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-complete-face-current.png",
-      "sha256": "9a966282faed98a49363337c8fab7b09d3e69423a24dfec74871c567faa158e4",
-      "pipelineSha256": "9a966282faed98a49363337c8fab7b09d3e69423a24dfec74871c567faa158e4",
+      "sha256": "bc1816f3f8729e53bd705fbe42775158cdb25d5d8e5966dd1020e21ab66b6a43",
+      "pipelineSha256": "bc1816f3f8729e53bd705fbe42775158cdb25d5d8e5966dd1020e21ab66b6a43",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-control-range-current.png",
-      "sha256": "7225d2d752cebc8bcc96fd831ab98dc1b3026424367d7b05bfb22fac8e4c552e",
-      "pipelineSha256": "7225d2d752cebc8bcc96fd831ab98dc1b3026424367d7b05bfb22fac8e4c552e",
+      "sha256": "adfb5a0994c19f15968af8cfc6e285093ee9ca2ec49b5a3f0721c9b953d59b99",
+      "pipelineSha256": "adfb5a0994c19f15968af8cfc6e285093ee9ca2ec49b5a3f0721c9b953d59b99",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-far-brush-edge-comparison.png",
-      "sha256": "b838d057bd2d0818d1d8331d40d288b904a27c31610939d17d9f71fa313ea8c0",
-      "pipelineSha256": "b838d057bd2d0818d1d8331d40d288b904a27c31610939d17d9f71fa313ea8c0",
+      "sha256": "88f04c8c216069e73454688fa33bbf5a89e24882250d82c689981e70b74d053e",
+      "pipelineSha256": "88f04c8c216069e73454688fa33bbf5a89e24882250d82c689981e70b74d053e",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-far-brush-edge-current.png",
-      "sha256": "09ff8975d660579d27e1058bf8645bc533f675b19bd69e856e372cdd0decbdfb",
-      "pipelineSha256": "09ff8975d660579d27e1058bf8645bc533f675b19bd69e856e372cdd0decbdfb",
+      "sha256": "1a78388c4b693c3e2f7297f9436e7aa26717b7c424b0427991437c5cc71c5d95",
+      "pipelineSha256": "1a78388c4b693c3e2f7297f9436e7aa26717b7c424b0427991437c5cc71c5d95",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-forehead-temple-comparison.png",
-      "sha256": "5ed435bbcfcacaa4b4efe5dc4242a633191c0da5398789e68f004ebde9447e5c",
-      "pipelineSha256": "5ed435bbcfcacaa4b4efe5dc4242a633191c0da5398789e68f004ebde9447e5c",
+      "sha256": "29f0a464310da4d44b677c896fa55ad09f9e39a14c713a977239d975f07e63a8",
+      "pipelineSha256": "29f0a464310da4d44b677c896fa55ad09f9e39a14c713a977239d975f07e63a8",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-forehead-temple-current.png",
-      "sha256": "839fa131ba16f1a09d048499fb127a5f816d41a47ff2b0c0e012d6ed88e09ffa",
-      "pipelineSha256": "839fa131ba16f1a09d048499fb127a5f816d41a47ff2b0c0e012d6ed88e09ffa",
+      "sha256": "4b51bf74c2bb2380cb5b58351d41d7d378d9628cb25ede864966414d476e3fd3",
+      "pipelineSha256": "4b51bf74c2bb2380cb5b58351d41d7d378d9628cb25ede864966414d476e3fd3",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-full-comparison.png",
-      "sha256": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
-      "pipelineSha256": "ef287d797f224267058339bbeb2040e3fd86738d5f58f872f16901ec4afe9baf",
+      "sha256": "c4cc53a2b2e29ef69427c6c52e395870070352b4356bb93566b31e618c2c021d",
+      "pipelineSha256": "c4cc53a2b2e29ef69427c6c52e395870070352b4356bb93566b31e618c2c021d",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-full-current.png",
-      "sha256": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
-      "pipelineSha256": "65478ce3691e1b9c3641710f8ab6c9dbf5514d049ad577026fd03aedb0e317fd",
+      "sha256": "be37986089d1fce634637a44d8c056b5d35aec1fa2e8d7d06fba2d2678c15f7d",
+      "pipelineSha256": "be37986089d1fce634637a44d8c056b5d35aec1fa2e8d7d06fba2d2678c15f7d",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-hair-coverage-comparison.png",
-      "sha256": "278a18cbcd35090ca341de2e904441b1b9c59c69824d0ff45fd1613ec3f3fd8f",
-      "pipelineSha256": "278a18cbcd35090ca341de2e904441b1b9c59c69824d0ff45fd1613ec3f3fd8f",
+      "sha256": "03463e5f743107160b4e10eaff63bc97beb6705fac4f492db9c6e500cd7fd889",
+      "pipelineSha256": "03463e5f743107160b4e10eaff63bc97beb6705fac4f492db9c6e500cd7fd889",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-hair-coverage-current.png",
-      "sha256": "839fa131ba16f1a09d048499fb127a5f816d41a47ff2b0c0e012d6ed88e09ffa",
-      "pipelineSha256": "839fa131ba16f1a09d048499fb127a5f816d41a47ff2b0c0e012d6ed88e09ffa",
+      "sha256": "4b51bf74c2bb2380cb5b58351d41d7d378d9628cb25ede864966414d476e3fd3",
+      "pipelineSha256": "4b51bf74c2bb2380cb5b58351d41d7d378d9628cb25ede864966414d476e3fd3",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/left-independent-face-alpha.png",
+      "sha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "pipelineSha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/left-independent-face-comparison.png",
+      "sha256": "0a0c8bb8ac4dec8672c169c08801a921701e5899d7946823c83f6fc5a6a23e18",
+      "pipelineSha256": "0a0c8bb8ac4dec8672c169c08801a921701e5899d7946823c83f6fc5a6a23e18",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/left-independent-face-coverage.png",
+      "sha256": "e31abe67eceff6c58e16a40da0e1e3297cd858a9562d42fd5ef243a1574d286f",
+      "pipelineSha256": "e31abe67eceff6c58e16a40da0e1e3297cd858a9562d42fd5ef243a1574d286f",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/left-independent-face-current.png",
+      "sha256": "a191d2a75343c3a8b97b21fd3e4049bf8968fd2f356bb4fabf64a15eb322df5e",
+      "pipelineSha256": "a191d2a75343c3a8b97b21fd3e4049bf8968fd2f356bb4fabf64a15eb322df5e",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/left-independent-probes-alpha.png",
+      "sha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "pipelineSha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/left-independent-probes-comparison.png",
+      "sha256": "0a0c8bb8ac4dec8672c169c08801a921701e5899d7946823c83f6fc5a6a23e18",
+      "pipelineSha256": "0a0c8bb8ac4dec8672c169c08801a921701e5899d7946823c83f6fc5a6a23e18",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/left-independent-probes-coverage.png",
+      "sha256": "46e14806292e2363e6b59de8187bd7ca25e3c196bf5f8b21e8035daa676ccaee",
+      "pipelineSha256": "46e14806292e2363e6b59de8187bd7ca25e3c196bf5f8b21e8035daa676ccaee",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/left-independent-probes-current.png",
+      "sha256": "a191d2a75343c3a8b97b21fd3e4049bf8968fd2f356bb4fabf64a15eb322df5e",
+      "pipelineSha256": "a191d2a75343c3a8b97b21fd3e4049bf8968fd2f356bb4fabf64a15eb322df5e",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/left-review.json",
-      "sha256": "9789bb855e1286eaf1944b1a0fd325a81c48671825f1c76314505d433edcd837",
-      "pipelineSha256": "585b82f857683abf2c2c3e39d03c9a797ee6507a70faaaa4c872974ffe37dc12",
+      "sha256": "65d5a27b6c59d88ef0922b20a9666f324afdc207a227afe548b753c0257657f9",
+      "pipelineSha256": "980934dd374e8b6c2aae07b9b9c25ece19cfd980e8a6a81002da2a40d1dac0b9",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/mask-forehead-window-comparison.png",
+      "sha256": "e713066adc46faed01887f83e43f6c1c62d937a6a789365f1b6e23905ec537e6",
+      "pipelineSha256": "e713066adc46faed01887f83e43f6c1c62d937a6a789365f1b6e23905ec537e6",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/mask-original-frame-comparison.png",
+      "sha256": "92947e67c05791c59ab4a6641bef014995c83f606b02debe1a98ce0ff20c3f58",
+      "pipelineSha256": "92947e67c05791c59ab4a6641bef014995c83f606b02debe1a98ce0ff20c3f58",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/original-face-coverage.png",
+      "sha256": "2497c5ec209387ae31fa15d6e83d7bedd216894b1ebd4da462142cec609ff7ad",
+      "pipelineSha256": "2497c5ec209387ae31fa15d6e83d7bedd216894b1ebd4da462142cec609ff7ad",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/original-face-coverage.svg",
+      "sha256": "1e160a10b68ff7a814e6599241c62a73da40ad442260adeaebbd6a334f35a874",
+      "pipelineSha256": "1e160a10b68ff7a814e6599241c62a73da40ad442260adeaebbd6a334f35a874",
+      "origin": "independent-read-only-review"
+    },
+    {
+      "path": "independent-review/original-review-skin-probes.svg",
+      "sha256": "f918c5535c5c904e402fd0df776cd7561779128fe372245a70e397ed3b24f4be",
+      "pipelineSha256": "f918c5535c5c904e402fd0df776cd7561779128fe372245a70e397ed3b24f4be",
       "origin": "independent-read-only-review"
     },
     {
@@ -1950,38 +2095,38 @@
     },
     {
       "path": "independent-review/reference-with-original-far-trace.png",
-      "sha256": "da2712783685051b05d4988454d4f25a72f0c437b1af1cdd52b05ffbd25fddfe",
-      "pipelineSha256": "da2712783685051b05d4988454d4f25a72f0c437b1af1cdd52b05ffbd25fddfe",
+      "sha256": "8b717789529a34de09b9e1ee95754b4fa6c1a8788b420f4ae6b7a0e308da4da0",
+      "pipelineSha256": "8b717789529a34de09b9e1ee95754b4fa6c1a8788b420f4ae6b7a0e308da4da0",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/source-unchanged-svg.png",
-      "sha256": "e85fe3850c49e9da3e580956a66655a5052a4c0e7ddce7f0cdabf666f8b04f90",
-      "pipelineSha256": "e85fe3850c49e9da3e580956a66655a5052a4c0e7ddce7f0cdabf666f8b04f90",
+      "sha256": "1f501b744850b805ca8f2ea77ab34fbe99c008255a8437d9867add1b13b17c03",
+      "pipelineSha256": "1f501b744850b805ca8f2ea77ab34fbe99c008255a8437d9867add1b13b17c03",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/target-unchanged-svg.png",
-      "sha256": "c8b912851a88235444f33bc47551b49ca125cb5ad0bbb209d0a44f3ceb222ecf",
-      "pipelineSha256": "c8b912851a88235444f33bc47551b49ca125cb5ad0bbb209d0a44f3ceb222ecf",
+      "sha256": "d314d34b81c53f3736c0e12e20d101b6c33e9e35ed19a4ca37f095f4cb0c40e7",
+      "pipelineSha256": "d314d34b81c53f3736c0e12e20d101b6c33e9e35ed19a4ca37f095f4cb0c40e7",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/transition-x-15-complete-face-current.png",
-      "sha256": "38152923f4609cf11db425ce127b323362042ce4d12c619367cdd508f14b1778",
-      "pipelineSha256": "38152923f4609cf11db425ce127b323362042ce4d12c619367cdd508f14b1778",
+      "sha256": "4740bee248c82d089d9513351987125f71172cdc414bccbcf783e413f83cef11",
+      "pipelineSha256": "4740bee248c82d089d9513351987125f71172cdc414bccbcf783e413f83cef11",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/transition-x-15-current.png",
-      "sha256": "6e1a95a805f718b91893486666ab1c738af063886f3f91b73090201f6107ea2a",
-      "pipelineSha256": "6e1a95a805f718b91893486666ab1c738af063886f3f91b73090201f6107ea2a",
+      "sha256": "81124275f4cd61682d87e25a3212514ddf2da98553fc03bc4fc6744b377e46c0",
+      "pipelineSha256": "81124275f4cd61682d87e25a3212514ddf2da98553fc03bc4fc6744b377e46c0",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/transition-x0-complete-face-current.png",
-      "sha256": "f81c5e3559cb48ab5cb2ac3d7bbad1069b865ba634aa63c0fc9f6bce2afe0c13",
-      "pipelineSha256": "f81c5e3559cb48ab5cb2ac3d7bbad1069b865ba634aa63c0fc9f6bce2afe0c13",
+      "sha256": "72a42210e885240a7fe14f48ad72d30b742bd42a08b003c3cc82be1e8ccf5ced",
+      "pipelineSha256": "72a42210e885240a7fe14f48ad72d30b742bd42a08b003c3cc82be1e8ccf5ced",
       "origin": "independent-read-only-review"
     },
     {
@@ -1992,26 +2137,26 @@
     },
     {
       "path": "independent-review/transition-x15-complete-face-current.png",
-      "sha256": "0365335217bb4b113e0be67c2ce7ee62c7e47aace38b0074c3221f5111a941d3",
-      "pipelineSha256": "0365335217bb4b113e0be67c2ce7ee62c7e47aace38b0074c3221f5111a941d3",
+      "sha256": "966ac681a124464e29f8f246f1a7fa6068768d02965cfa6945f9e9a90695f13b",
+      "pipelineSha256": "966ac681a124464e29f8f246f1a7fa6068768d02965cfa6945f9e9a90695f13b",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/transition-x15-current.png",
-      "sha256": "743418edf5868cc69f024b95c183faf29e4ee1cc45d8a24782e0d9389c6e5cd3",
-      "pipelineSha256": "743418edf5868cc69f024b95c183faf29e4ee1cc45d8a24782e0d9389c6e5cd3",
+      "sha256": "dd3d853dde1634208ec522bff843f3d301026911b9f01f578344dfba86fc8afd",
+      "pipelineSha256": "dd3d853dde1634208ec522bff843f3d301026911b9f01f578344dfba86fc8afd",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/transition-x30-complete-face-current.png",
-      "sha256": "5b67eb7130c615aa61785ff4425e6715dda327a10f7cff0416cf1ec0e32ad395",
-      "pipelineSha256": "5b67eb7130c615aa61785ff4425e6715dda327a10f7cff0416cf1ec0e32ad395",
+      "sha256": "e9e0afb0e2537958be96c5be769cfde2cafca07c82dd880d6569f81ca6d0b3b4",
+      "pipelineSha256": "e9e0afb0e2537958be96c5be769cfde2cafca07c82dd880d6569f81ca6d0b3b4",
       "origin": "independent-read-only-review"
     },
     {
       "path": "independent-review/transition-x30-current.png",
-      "sha256": "f3e210001d6c21e50deaeaaf4291e82ff0fe9f9dc18b3e857ab5ef2827dcc0cc",
-      "pipelineSha256": "f3e210001d6c21e50deaeaaf4291e82ff0fe9f9dc18b3e857ab5ef2827dcc0cc",
+      "sha256": "dc4ae95f610ed1145aad1b9825841c01925ec510fced97e369c4f23212de0a17",
+      "pipelineSha256": "dc4ae95f610ed1145aad1b9825841c01925ec510fced97e369c4f23212de0a17",
       "origin": "independent-read-only-review"
     }
   ]

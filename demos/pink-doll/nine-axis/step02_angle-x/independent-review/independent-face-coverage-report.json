@@ -1,0 +1,61 @@
+{
+  "authorSha256": "70d79b7fd6507aa3e4e158d7663c4f237880c75e46227960ceee2d47c4650758",
+  "referenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+  "maskSha256": "1e160a10b68ff7a814e6599241c62a73da40ad442260adeaebbd6a334f35a874",
+  "probesSha256": "f918c5535c5c904e402fd0df776cd7561779128fe372245a70e397ed3b24f4be",
+  "builtDocumentSha256": "47ae22bc27bec98252c54197b7020b724464b0c99a8be22376cf4c08072e80e8",
+  "actual": {
+    "satisfied": true,
+    "requiredPixels": 2268,
+    "uncoveredPixels": 0,
+    "uncoveredAreaCanvasPixels": 0,
+    "uncoveredBounds": null,
+    "maskSha256": "1e160a10b68ff7a814e6599241c62a73da40ad442260adeaebbd6a334f35a874",
+    "alphaSha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+    "builtDocumentSha256": "47ae22bc27bec98252c54197b7020b724464b0c99a8be22376cf4c08072e80e8",
+    "maskAlphaThreshold": 128,
+    "faceAlphaThreshold": 250,
+    "bounds": [
+      431,
+      35,
+      394,
+      394
+    ],
+    "only": [
+      "face/face_base"
+    ],
+    "meaning": "Actual rendered skin alpha contains the supplied visible-skin mask; mask accuracy still requires reference review.",
+    "mask": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-left-coverage-repair-20261104/run3/independent-review/left-A8M0B0/original-face-coverage.svg",
+    "savedPath": "left-independent-face-coverage.png",
+    "alphaSavedPath": "left-independent-face-alpha.png",
+    "savedPathSha256": "e31abe67eceff6c58e16a40da0e1e3297cd858a9562d42fd5ef243a1574d286f"
+  },
+  "confirmedProbes": {
+    "satisfied": true,
+    "requiredPixels": 9,
+    "uncoveredPixels": 0,
+    "uncoveredAreaCanvasPixels": 0,
+    "uncoveredBounds": null,
+    "maskSha256": "f918c5535c5c904e402fd0df776cd7561779128fe372245a70e397ed3b24f4be",
+    "alphaSha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+    "builtDocumentSha256": "47ae22bc27bec98252c54197b7020b724464b0c99a8be22376cf4c08072e80e8",
+    "maskAlphaThreshold": 128,
+    "faceAlphaThreshold": 250,
+    "bounds": [
+      431,
+      35,
+      394,
+      394
+    ],
+    "only": [
+      "face/face_base"
+    ],
+    "meaning": "Actual rendered skin alpha contains the supplied visible-skin mask; mask accuracy still requires reference review.",
+    "mask": "/data/home/lockliu/workspaces/AstraLayering-nineaxis-deformer-hierarchy-20261103/.web/nine-axis-left-coverage-repair-20261104/run3/independent-review/left-A8M0B0/original-review-skin-probes.svg",
+    "savedPath": "left-independent-probes-coverage.png",
+    "alphaSavedPath": "left-independent-probes-alpha.png",
+    "savedPathSha256": "46e14806292e2363e6b59de8187bd7ca25e3c196bf5f8b21e8035daa676ccaee"
+  },
+  "producerCoverageSha256": "18ad2b850785ece737e4367a0d5efd93caa85bb843b63fb9ed9f1d87dcb3161e",
+  "maskVisualStatus": "pending assistant inspection; zero alpha gaps alone does not prove the mask follows the video"
+}

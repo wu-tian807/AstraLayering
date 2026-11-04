@@ -1,0 +1,37 @@
+{
+  "x": -30,
+  "y": 0,
+  "crop": [
+    431,
+    35,
+    394,
+    394
+  ],
+  "scale": 1,
+  "satisfied": true,
+  "requiredPixels": 2268,
+  "uncoveredPixels": 0,
+  "uncoveredAreaCanvasPixels": 0,
+  "uncoveredBounds": null,
+  "maskSha256": "1e160a10b68ff7a814e6599241c62a73da40ad442260adeaebbd6a334f35a874",
+  "alphaSha256": "ea3b33663b2c1f115818a20dd7d0588f4d6a9558c6e154406f1774b625d64b98",
+  "builtDocumentSha256": "47ae22bc27bec98252c54197b7020b724464b0c99a8be22376cf4c08072e80e8",
+  "maskAlphaThreshold": 128,
+  "faceAlphaThreshold": 250,
+  "bounds": [
+    431,
+    35,
+    394,
+    394
+  ],
+  "only": [
+    "face/face_base"
+  ],
+  "meaning": "Actual rendered skin alpha contains the supplied visible-skin mask; mask accuracy still requires reference review.",
+  "mask": "nine-axis/step02_angle-x/face-coverage.svg",
+  "savedPath": "nine-axis/step02_angle-x/workspace/bitmaps/885ba30c-78f3-4606-b2a2-84496e65259f-coverage.png",
+  "alphaSavedPath": "nine-axis/step02_angle-x/workspace/bitmaps/86e6ba34-637b-41a6-9e36-b7ae10c2712d-alpha.png",
+  "finalAuthorSha256": "70d79b7fd6507aa3e4e158d7663c4f237880c75e46227960ceee2d47c4650758",
+  "referenceSha256": "d6832b155687216cc5b161b4dd9ed3c3eee6c1d1fa344822501337c29cd2e155",
+  "provenance": "Final independent functions.view_nine_axis call after finishHead; returned values preserved."
+}
