@@ -1,0 +1,878 @@
+{
+  "version": 1,
+  "run": "run11",
+  "stage": "up",
+  "runner": "live2d-maker/nine-axis/run.ts",
+  "sourceCommit": "abae911f4ac5c82c2eec84300649c9863e8e57c1",
+  "publicationCodeCommit": "1f5a7f9682519296ee731260f0938e30ddf32be5",
+  "productionRunner": true,
+  "injectedFit": false,
+  "existingDirectionParametersCopied": false,
+  "existingDirectionTracesCopied": false,
+  "reuseAcceptedX": true,
+  "acceptedXCommit": "4595a6048112ed409e71b148c7a994a9d2a034b3",
+  "freshAgentSession": true,
+  "originalVideoSha256": "2a2ed6714ade3e73ec249554bef8e65856a8c105b7af2f2b72f3cd7e9b536a06",
+  "pipelineUpstreamSha256": "e29782f927aa4d4e82ddf277aa721a1366b93063373dc5c922fa358db82a3d24",
+  "publicationUpstreamSha256": "e29782f927aa4d4e82ddf277aa721a1366b93063373dc5c922fa358db82a3d24",
+  "publicationNormalization": "Relative task paths in metadata/notes and corresponding upstream document hash; geometry and textures unchanged",
+  "promptSha256": "9169a6bc76a3dd5dc5f137e3573a052bda12e0026771517cd3645f5d62a90177",
+  "toolCalls": [
+    {
+      "id": "call_3xbVZ4RpKPgsglIbAgajaQqN",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_4i79hYdij9fsM57FnvEyx4xH",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_Z1EA4eukU40RNbNRvfxRhLrP",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_B3cjZUV25gf8fP4bGd7eTw4c",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_IP4ydEoBLF6Yv57SGkRre5xR",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_Sd54WVkgfIuLJgaLpukK4SbT",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_q4rFIwCnDUBzt8AeQfLBWou6",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_TduxGXw1zUhvszMZ7jtbv0YB",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_BCGYY9sKCn1bK2P7B1WBYEyY",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_KbAPUcbkdnq3XWHMnyCDL9dk",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_XosaQSwA7gdRSnuXwKPxq4Rz",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_o4tCwSnWfIHE1lOf5waCyrsA",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_L9wGvpuWUolWC8LiBXNZbkl8",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_QDE8LpojYLy90F4Z5f895gtw",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_h7cgFA4Z7tdnHDfQVcbyiV9q",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_eBKcB6Qpj46WO2VDixU3j8LD",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_4QXZVUiPYz0xkCQNCdE630CF",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_zilLc0E17pjrhi7aOZUa6MdA",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_dFj660c0fXcyNAIuyLKEWiIM",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_yIhT84rrFkfgXmYdMYFtkqxl",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_WFZWMVCQpCwrsd7FNZsTbZpQ",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_PenIVgIiWYUR1Bv2mL8SJvaj",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_LAElTMXONRtnD8UiGUGQTsBY",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_5ok6WbGWjgICgmT47PZ6weze",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_PURKbY8M9aSheyEZt21t7lSD",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_NXILbRc0EU1OC86CBVtun96J",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_P7piti3XVVNPqopuE01U0p8V",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_eJDO1NDGNrSTEZJFtVtEr89S",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_HPow4kVAS9GCcU3xvBr5NtoD",
+      "tool": "fit_nine_axis",
+      "action": "inspect",
+      "success": true
+    },
+    {
+      "id": "call_FewPyM5kgc70YXkzhlrNkZAC",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": true
+    },
+    {
+      "id": "call_r8Kk7CVcNrlrnwBiZ5fJqXOv",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_Fsnb5NU7NtVY8tN5uUnBpOT5",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": false
+    },
+    {
+      "id": "call_CBihNQALxbZRoXbPurM4LwSz",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": true
+    },
+    {
+      "id": "call_DQblbRFdJExp8PHyoeizy7Aa",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_vxrlYBTa9FwDvoWTS4Jat0Ui",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": false
+    },
+    {
+      "id": "call_OUe2mB53Leujq5ppoUX4ZR4y",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": true
+    },
+    {
+      "id": "call_VlpJbE7OhyadaCQFGxsGnWXv",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": true
+    },
+    {
+      "id": "call_yTFhe2ks9fj9tgHv9DQgV7Yd",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": true
+    },
+    {
+      "id": "call_oJIIKxid2qzR2ljl4YO5ejYS",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_fbghgz6yrj2bylTnvatGdQHL",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_mRK9ULSE25tNqcHDmFsiXwDO",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_NRvjgWw7T7DZvZfqhbI4uS0I",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_pzfKd4T9H8WQLAP8sjBrMyMD",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_I84aMizB3ud8cBYNyTkVA7Nh",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_d1ZiJUEY7pesDayJgf8qjzcn",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_ER3rWn8Hz6KxVZhF6MrKE56e",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_k4rnDDTnXuhjqkIT5ZCUyANl",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_yvNOPGoVv0mCvmq88LgJ9bOS",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_ZH0BM2eGRApEV7Fr29yd26II",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_e2VItAW9O0UMcylg9AIwS3cC",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_O63xwEJ2N29MU7xAP9wSMteX",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_SShVWZUbl388nDsLmmXsxbl5",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_XVUQlIwBdxJmJO8BENUBeDDY",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_SLNn9THS7JitvBKNvOxaMpsA",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_a8OXC6cBVLmLkHraAyicYNAU",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_NEblLlz51oL1FDmRNDxA8Yco",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_q9MQub0rBuI3BOYt2cfXhkd5",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_PvflKPkKhzjopSbbcBLCpC4b",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_buRdVBHTxoytk4B1wyYzlUho",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_IUOdgg3RymcHZWHA0o84INAI",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_pO8pkvgrNs6YsetdTQUdxtOx",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_yfbU7VwZgnfTkb76rNPAJrro",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_DQysDspnntxBivSPVtfZJ7yj",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_eIJIwzadSAiFX8RXffn2fnzH",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_uk9h2QBRiEMCVJ4zNSSif6p8",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_JFZzCdz1THrh4qnSNASm5ycG",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_gT0PIhpsENXfRMrEINVFzfbS",
+      "tool": "fit_nine_axis",
+      "action": "inspect",
+      "success": true
+    },
+    {
+      "id": "call_1r1MaCJIlJKOr1HQW2CgC06S",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_DOesjcJY3UaYFR8GZH9obNh5",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_Tvy7fDHAbRKMhPuPnCCCG0OI",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_dWOuazc4c30ixeY0utBLLN3d",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_Wymv9kiwNvrA5Lw8uScSWRXD",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_3Kmv9ZwaTwzoZtaSxCXEScDN",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_bpBjNERZKVdHBNgMsjygZ2A7",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_2sbrQYCk6BkkPGekwCY2DSVY",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_5gKE6ZqM29wHsKOhBRtYejt9",
+      "tool": "fit_nine_axis",
+      "action": "inspect",
+      "success": true
+    },
+    {
+      "id": "call_pTa0MdhgIrbW6uTFvy4SuJaJ",
+      "tool": "fit_nine_axis",
+      "action": "inspect",
+      "success": true
+    },
+    {
+      "id": "call_Jnmk5SjiwOVsIQa1773rCzdh",
+      "tool": "fit_nine_axis",
+      "action": "inspect",
+      "success": true
+    },
+    {
+      "id": "call_BYHIz8GUIQip7d4qiAUo1Q6A",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": true
+    },
+    {
+      "id": "call_0OVXrcHWWGJ0keKy01KiQ6OT",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_EHgKqjygKVA2U9Up7Tfdhd1A",
+      "tool": "view_bitmap",
+      "success": true
+    },
+    {
+      "id": "call_jBrMttM5hx8zEiL5XLzwXGzo",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": false
+    },
+    {
+      "id": "call_9QET8m0flMGGXcYnMWwn6cJN",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": true
+    },
+    {
+      "id": "call_RTVbUiBGK6ZxX2MHke8DVdMW",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_SvevGNYe27dhM6YHZLfw8fVG",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_QZKwJUImePGlx5uT2g6pMWQg",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": true
+    },
+    {
+      "id": "call_zQSX7RMbu8wvAFjezHjbICyB",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_FaAcNJrQZcUEhNB9SVJPwKL0",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": false
+    },
+    {
+      "id": "call_Tozob4gsDrXDrqXYzFTQlPNe",
+      "tool": "fit_nine_axis",
+      "action": "fit",
+      "success": false
+    },
+    {
+      "id": "call_WO2JRdSJccWNoq7oi3iV9PLc",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_e7P23lJ4SFe52onytniVq2Hg",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_ezXEH0FSIURtkpozaCkohMyS",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_OZ1bmJWFKcBG6a13wCIPSiSj",
+      "tool": "edit_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_36JeBUFpyEa2AePcbwRP8vdB",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_N85tkBGxRds9rHa0i4iixAol",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_YQvQ5D1dOiY1jhrso1Fc2clh",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_bqAeueEe1X8FjUWkwXnsilFD",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_1BVEwRhg5TZnjGb1p1ghgsIK",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_W5WSHWgOSaUf5RuyFcXAywgr",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_V0eBzhXTtzdTWxSan9qyOHQk",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_xzZOpjFUjTqNrWBoSx90Lik3",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_GbcDPpgi4ejlYIzm1TkAqX4n",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_1IKimCFgr5QGB3jAsYAoaslf",
+      "tool": "preview_svg",
+      "success": true
+    },
+    {
+      "id": "call_d0w7wnULZtwP4UKERzGNskz4",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_AhlQItswp2KmtyW719pkN4Ef",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_z8Jsh08pri0BZqKO1UeSbM59",
+      "tool": "fit_nine_axis",
+      "action": "inspect",
+      "success": true
+    },
+    {
+      "id": "call_pwUJWxatAW5baEWyxARxLO9U",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_SjPc7QzmPGPOh0Wvv5zR2Moy",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_AO0rAR1PlspGTAgpWktNzwS1",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_Ws9ZxJb4M8zYwYL8j19i5rOV",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_7zDyybC7SstdSm6R24Qm8XGa",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_5hCsPUX82F9TcLuIKv5AWTrh",
+      "tool": "view_nine_axis",
+      "success": true
+    },
+    {
+      "id": "call_Z5uJGtrtCFOt9rAgJENyKSNf",
+      "tool": "view_bitmap",
+      "success": true
+    }
+  ],
+  "outputHashes": [
+    {
+      "path": ".completed",
+      "pipelineSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks.json",
+      "pipelineSha256": "b366debb930b7569e7c0d38af91fad7b6baeeac49521fbc79146224f02f4fb8d",
+      "sha256": "3407e6aef6ed078c56d343b03701ef5047212a1399cb4fee6a92260cc49932b6"
+    },
+    {
+      "path": "deformers.json",
+      "pipelineSha256": "9a2a6489922deb4e9e254440e433b67da6e7f74c1941ba40d1330ceb80bfc6f7",
+      "sha256": "ab38e6094ef9f12f1fd1af0ac5f1c16914f456eb798ec46f8cea874fa2791604"
+    },
+    {
+      "path": "face-base-up-check.png",
+      "pipelineSha256": "fa4bc90db52c49b555229382b0c368621aab722960c7e4b13fc99348761e8b82",
+      "sha256": "fa4bc90db52c49b555229382b0c368621aab722960c7e4b13fc99348761e8b82"
+    },
+    {
+      "path": "face-completion-check.png",
+      "pipelineSha256": "ffa6068a3664cc21a5fefe442d4c2343fbf05dc7a5184429b8a4637f19d25d85",
+      "sha256": "ffa6068a3664cc21a5fefe442d4c2343fbf05dc7a5184429b8a4637f19d25d85"
+    },
+    {
+      "path": "face-detail-up-check.png",
+      "pipelineSha256": "ff45223b80784f44fd15c8182097267e5b3ab14b2411826c5881c10361e2d484",
+      "sha256": "ff45223b80784f44fd15c8182097267e5b3ab14b2411826c5881c10361e2d484"
+    },
+    {
+      "path": "face-detail-up-fit-check.png",
+      "pipelineSha256": "089cfae8470de30af87be067cfcbd081b99f5b587d7aed14ff442688e680959b",
+      "sha256": "089cfae8470de30af87be067cfcbd081b99f5b587d7aed14ff442688e680959b"
+    },
+    {
+      "path": "face-trace.json",
+      "pipelineSha256": "f2d2fbc0c5acf00e5a02e1ff18bb8667bb8736c7c1511746689b3230e22a02df",
+      "sha256": "f2d2fbc0c5acf00e5a02e1ff18bb8667bb8736c7c1511746689b3230e22a02df"
+    },
+    {
+      "path": "face-up.json",
+      "pipelineSha256": "9a2a6489922deb4e9e254440e433b67da6e7f74c1941ba40d1330ceb80bfc6f7",
+      "sha256": "ab38e6094ef9f12f1fd1af0ac5f1c16914f456eb798ec46f8cea874fa2791604"
+    },
+    {
+      "path": "features-check.png",
+      "pipelineSha256": "bfe96e90085913c3512ecd39950158135401a4bfcef4613886d2ef7e6559aa76",
+      "sha256": "bfe96e90085913c3512ecd39950158135401a4bfcef4613886d2ef7e6559aa76"
+    },
+    {
+      "path": "fit-report.json",
+      "pipelineSha256": "0e1d547d42976c2ebcffd39b2dbd70749d7517a9a0a751509100d07ea433a3a4",
+      "sha256": "861e2d3a9de02e46fb2ac1d037641b3de4a5de6fc9c93b7fd5b9a776ab272285"
+    },
+    {
+      "path": "intermediate-check.png",
+      "pipelineSha256": "f755e2e10ba26678f07083fdff9c31d4e0bccd9e6ed51d1354f5fe630b5e8c22",
+      "sha256": "f755e2e10ba26678f07083fdff9c31d4e0bccd9e6ed51d1354f5fe630b5e8c22"
+    },
+    {
+      "path": "jaw-chin-check.png",
+      "pipelineSha256": "2792b5a8a2466f50beca91743d360dcc38d40cd9cfb92584a44b45b3db442f5d",
+      "sha256": "2792b5a8a2466f50beca91743d360dcc38d40cd9cfb92584a44b45b3db442f5d"
+    },
+    {
+      "path": "left-cheek-check.png",
+      "pipelineSha256": "c7ee88fbd88312f06bbf69eaad7643040dbb1260e2ffe2f51fcce5f9924914ce",
+      "sha256": "c7ee88fbd88312f06bbf69eaad7643040dbb1260e2ffe2f51fcce5f9924914ce"
+    },
+    {
+      "path": "neck-contact-check.png",
+      "pipelineSha256": "7e3e23a4202628c88beb7c5b790edfed2ea705c560cd536e727b6354947af78d",
+      "sha256": "7e3e23a4202628c88beb7c5b790edfed2ea705c560cd536e727b6354947af78d"
+    },
+    {
+      "path": "notes.md",
+      "pipelineSha256": "22ed51b4db850b439149b72f8377c651e21a5f4a3bb20e4edd67465dcaa540ad",
+      "sha256": "22ed51b4db850b439149b72f8377c651e21a5f4a3bb20e4edd67465dcaa540ad"
+    },
+    {
+      "path": "right-cheek-check.png",
+      "pipelineSha256": "9db5909c7c5b8db816a8b6a8ad53f5aff5604498e1e8081d8d6dd0db3159926c",
+      "sha256": "9db5909c7c5b8db816a8b6a8ad53f5aff5604498e1e8081d8d6dd0db3159926c"
+    },
+    {
+      "path": "source-face-reference.png",
+      "pipelineSha256": "f26084e3fafcc481da84790a2386e92ab6910526d1fb9719730231359a6a4d33",
+      "sha256": "f26084e3fafcc481da84790a2386e92ab6910526d1fb9719730231359a6a4d33"
+    },
+    {
+      "path": "source-face.svg",
+      "pipelineSha256": "295f6f302d0c09c275988a2220b4503b8b768231205168da600c1f84b76db507",
+      "sha256": "295f6f302d0c09c275988a2220b4503b8b768231205168da600c1f84b76db507"
+    },
+    {
+      "path": "source-trace-edge.png",
+      "pipelineSha256": "9d7d88f555c57d0be43aad3c3df4824f88cb6335b26d1f9c3c9b0237caf556ef",
+      "sha256": "9d7d88f555c57d0be43aad3c3df4824f88cb6335b26d1f9c3c9b0237caf556ef"
+    },
+    {
+      "path": "target-face.svg",
+      "pipelineSha256": "7931d08e9c412358b8c225817535bc226540b5db8915e8e84dd08c1d8b026ce4",
+      "sha256": "7931d08e9c412358b8c225817535bc226540b5db8915e8e84dd08c1d8b026ce4"
+    },
+    {
+      "path": "target-trace-edge.png",
+      "pipelineSha256": "e558fcb65b9de92dd0649b536cae601cd60fec200d919182731dc0f9f902dbfa",
+      "sha256": "e558fcb65b9de92dd0649b536cae601cd60fec200d919182731dc0f9f902dbfa"
+    },
+    {
+      "path": "trace-check.png",
+      "pipelineSha256": "5910a35d48a8cafdb41d93010d7d01c0384fcc3c13185bbf709a43729b87c942",
+      "sha256": "5910a35d48a8cafdb41d93010d7d01c0384fcc3c13185bbf709a43729b87c942"
+    },
+    {
+      "path": "up-check.png",
+      "pipelineSha256": "22362469b191b2521a5208116e6b9cbcf51932eff9663bb4adb8848036463215",
+      "sha256": "22362469b191b2521a5208116e6b9cbcf51932eff9663bb4adb8848036463215"
+    },
+    {
+      "path": "up-fit-check.png",
+      "pipelineSha256": "089d5ba1b3ead1995c451553179f516819bd75120f8b050b2b82ae4eaa979949",
+      "sha256": "089d5ba1b3ead1995c451553179f516819bd75120f8b050b2b82ae4eaa979949"
+    },
+    {
+      "path": "validation-report.json",
+      "pipelineSha256": "9e1b3f3a52b4abc9278324bf2b314008efbeb62f1c260d0f6c63e643119fbf89",
+      "sha256": "a87f6a5013f61abffdf58e7e97c7518d526138d70395ff9460582558fbc96bfe"
+    },
+    {
+      "path": "video-direction-check.png",
+      "pipelineSha256": "cf7fe9888e3d6d4d860f60f9caf7865ca4bdc66b5000133972b43083c6ca5f7f",
+      "sha256": "cf7fe9888e3d6d4d860f60f9caf7865ca4bdc66b5000133972b43083c6ca5f7f"
+    },
+    {
+      "path": "x-protected-check.png",
+      "pipelineSha256": "a7443f283f281a0d1e201f7fcde3d3e6c007aed15adda7a0eb424f90d30c8861",
+      "sha256": "a7443f283f281a0d1e201f7fcde3d3e6c007aed15adda7a0eb424f90d30c8861"
+    },
+    {
+      "path": "layers/face__eye_left__eyelid_crease.png",
+      "pipelineSha256": "d788e2360842364c4efd4f580a3d7b5cacce306cdb55d1a4ed7c23aaaac56755",
+      "sha256": "d788e2360842364c4efd4f580a3d7b5cacce306cdb55d1a4ed7c23aaaac56755"
+    },
+    {
+      "path": "layers/face__eye_left__highlight.png",
+      "pipelineSha256": "73c4bcc44f6fb0ff6775afac71af5288560b9dffb6910ab79ff1c7221f0c79c5",
+      "sha256": "73c4bcc44f6fb0ff6775afac71af5288560b9dffb6910ab79ff1c7221f0c79c5"
+    },
+    {
+      "path": "layers/face__eye_left__iris.png",
+      "pipelineSha256": "013170820242f84ff21fdd850a9d367539cc19d95fbb848b852d88aae75be5c4",
+      "sha256": "013170820242f84ff21fdd850a9d367539cc19d95fbb848b852d88aae75be5c4"
+    },
+    {
+      "path": "layers/face__eye_left__lower_eyelashes.png",
+      "pipelineSha256": "be4b8be1573897b1ec5b518d6c107cc7bf5bbb2d73d81ba1be5c2a6ff1b1d70e",
+      "sha256": "be4b8be1573897b1ec5b518d6c107cc7bf5bbb2d73d81ba1be5c2a6ff1b1d70e"
+    },
+    {
+      "path": "layers/face__eye_left__lower_eyelid.png",
+      "pipelineSha256": "1c1d3fe9846b03903a05df0962782b5546b05904c9e959c2fd7b467938cceae1",
+      "sha256": "1c1d3fe9846b03903a05df0962782b5546b05904c9e959c2fd7b467938cceae1"
+    },
+    {
+      "path": "layers/face__eye_left__sclera.png",
+      "pipelineSha256": "7f4ec589a79756c03181294d31c72680c1163de71005ccd225e9a8b35a7634ae",
+      "sha256": "7f4ec589a79756c03181294d31c72680c1163de71005ccd225e9a8b35a7634ae"
+    },
+    {
+      "path": "layers/face__eye_left__upper_eyelid.png",
+      "pipelineSha256": "685479313394094ea426e742e448724a7bdbce370e65870d4e70ed3ca73b9c57",
+      "sha256": "685479313394094ea426e742e448724a7bdbce370e65870d4e70ed3ca73b9c57"
+    },
+    {
+      "path": "layers/face__eye_right__eyelid_crease.png",
+      "pipelineSha256": "a80e5b3e220f79ef8c41ac307a902d1a2c0ab026bf01545a473576d8e3e11e2c",
+      "sha256": "a80e5b3e220f79ef8c41ac307a902d1a2c0ab026bf01545a473576d8e3e11e2c"
+    },
+    {
+      "path": "layers/face__eye_right__highlight.png",
+      "pipelineSha256": "bbb3e425b59419f51d028573f106c345f981bb24ebbd0fe7ae3a3ea74aefa860",
+      "sha256": "bbb3e425b59419f51d028573f106c345f981bb24ebbd0fe7ae3a3ea74aefa860"
+    },
+    {
+      "path": "layers/face__eye_right__iris.png",
+      "pipelineSha256": "d1c024675efa07f890ea1269143226a1560b2384bdfe499fc79f0c3e94576cdd",
+      "sha256": "d1c024675efa07f890ea1269143226a1560b2384bdfe499fc79f0c3e94576cdd"
+    },
+    {
+      "path": "layers/face__eye_right__lower_eyelashes.png",
+      "pipelineSha256": "d7eb4f2079f1816d9eec403ef139dddb35abaf6872237b4415a89fc25303b99a",
+      "sha256": "d7eb4f2079f1816d9eec403ef139dddb35abaf6872237b4415a89fc25303b99a"
+    },
+    {
+      "path": "layers/face__eye_right__lower_eyelid.png",
+      "pipelineSha256": "f59c188f40234a451bc4e9dff7096743eaddfe047c5179a1d3358c1b55232030",
+      "sha256": "f59c188f40234a451bc4e9dff7096743eaddfe047c5179a1d3358c1b55232030"
+    },
+    {
+      "path": "layers/face__eye_right__sclera.png",
+      "pipelineSha256": "c23bd63cc1a847170929dead7a89ad6f750bfee90aca685cb20c40382e9a542a",
+      "sha256": "c23bd63cc1a847170929dead7a89ad6f750bfee90aca685cb20c40382e9a542a"
+    },
+    {
+      "path": "layers/face__eye_right__upper_eyelid.png",
+      "pipelineSha256": "ed58717c3d2b62414e9b3a5d1f3cfe3a345523ee1c6ac1381c8f7ca4eb88ca4e",
+      "sha256": "ed58717c3d2b62414e9b3a5d1f3cfe3a345523ee1c6ac1381c8f7ca4eb88ca4e"
+    },
+    {
+      "path": "layers/face__eyebrow_left.png",
+      "pipelineSha256": "3f3bcdf1f9fbc13e5c26bd0e649bdbe6195e3f29b58671b194b507d8647565f2",
+      "sha256": "3f3bcdf1f9fbc13e5c26bd0e649bdbe6195e3f29b58671b194b507d8647565f2"
+    },
+    {
+      "path": "layers/face__eyebrow_right.png",
+      "pipelineSha256": "92dfbc06b446c5552a40cc843a2fd79d9b781045cf04341f624f75d7832a6d8d",
+      "sha256": "92dfbc06b446c5552a40cc843a2fd79d9b781045cf04341f624f75d7832a6d8d"
+    },
+    {
+      "path": "layers/face__face_base.png",
+      "pipelineSha256": "7baea62d9800a0ccdad18b99495d677865ece7a3499fec6b3c8f015201ac8ce8",
+      "sha256": "7baea62d9800a0ccdad18b99495d677865ece7a3499fec6b3c8f015201ac8ce8"
+    },
+    {
+      "path": "layers/face__mouth__lower_lip.png",
+      "pipelineSha256": "d3ac963c60fc4894744132b1e6c1fa6dc96db2e7c0f94e272f63697c5de5d808",
+      "sha256": "d3ac963c60fc4894744132b1e6c1fa6dc96db2e7c0f94e272f63697c5de5d808"
+    },
+    {
+      "path": "layers/face__mouth__mouth_interior.png",
+      "pipelineSha256": "821bfb133531a8f7fa5323f44c5a9a32416b700929cc93e9549a7f6520f4093e",
+      "sha256": "821bfb133531a8f7fa5323f44c5a9a32416b700929cc93e9549a7f6520f4093e"
+    },
+    {
+      "path": "layers/face__mouth__tongue.png",
+      "pipelineSha256": "43be3f19618840ea46247452bf8acf918e0c7e553953d8d479e3dfb79397b307",
+      "sha256": "43be3f19618840ea46247452bf8acf918e0c7e553953d8d479e3dfb79397b307"
+    },
+    {
+      "path": "layers/face__mouth__upper_lip.png",
+      "pipelineSha256": "34ea76f889e6b20d2852354138bf1ba36f99565fd2b9ddf24a9e1fa3cc177c06",
+      "sha256": "34ea76f889e6b20d2852354138bf1ba36f99565fd2b9ddf24a9e1fa3cc177c06"
+    },
+    {
+      "path": "layers/face__mouth__upper_teeth.png",
+      "pipelineSha256": "c884d541e779a4d7cb08bfe7137818224cd8848afb3dd6a6f4af44559e60b42c",
+      "sha256": "c884d541e779a4d7cb08bfe7137818224cd8848afb3dd6a6f4af44559e60b42c"
+    },
+    {
+      "path": "layers/face__nose.png",
+      "pipelineSha256": "7bbfe6ecd497c2a7f1dda0280b82a90f1ef3a462e93729600ab5887ef30eb56a",
+      "sha256": "7bbfe6ecd497c2a7f1dda0280b82a90f1ef3a462e93729600ab5887ef30eb56a"
+    },
+    {
+      "path": "layers/neck.png",
+      "pipelineSha256": "30231c847f6357a5e08f2a4ff5305c1c25c1683adc7ba45e0fc59d68496953e9",
+      "sha256": "30231c847f6357a5e08f2a4ff5305c1c25c1683adc7ba45e0fc59d68496953e9"
+    },
+    {
+      "path": "up-independent-check.png",
+      "sha256": "089d5ba1b3ead1995c451553179f516819bd75120f8b050b2b82ae4eaa979949",
+      "origin": "independent-read-only-renderer"
+    },
+    {
+      "path": "up-review.json",
+      "sha256": "55d0b087ff0e82ab03f20a9beb3d016bf2f159131ea810c4e66d6822540d5292",
+      "origin": "independent-read-only-renderer"
+    }
+  ]
+}
