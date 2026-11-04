@@ -5,8 +5,7 @@
       "prompts/runtime.md"
     ],
     "tools": [
-      "krita",
-      "imagegen"
+      "krita"
     ]
   }
 }

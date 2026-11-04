@@ -6,8 +6,7 @@
     ],
     "tools": [
       "locate_pixel_differences",
-      "krita",
-      "imagegen"
+      "krita"
     ]
   }
 }

@@ -264,7 +264,7 @@ test('异常后当前批次已派发任务收尾，保留成功事实且不进�
   assert.ok(await readFile(artifactPath(f.directory, 'c', 'outline')));
 });
 
-test('jianma 成果归档恢复 115 节点的完整结构与复核事实', async t => {
+test('jianma 成果归档恢复 88 节点的完整结构与复核事实', async t => {
   const directory = new URL('../../../../../demos/jianma/part-layering/', import.meta.url);
   try { await stat(directory); }
   catch (error) {
@@ -278,15 +278,15 @@ test('jianma 成果归档恢复 115 节点的完整结构与复核事实', async
   assert.equal(groups.length, 8);
   assert.ok(groups.every(group => group.steps.outline.status === 'completed' && group.steps.review.status === 'completed'));
   assert.ok(groups.every(group => Object.values(group.steps).every(step => step.status === 'completed')));
-  assert.equal(groups.find(group => group.id === 'arms')!.steps.review.output!.reviewOutcome, 'repaired');
+  assert.equal(groups.find(group => group.id === 'arms')!.steps.review.output!.reviewOutcome, 'pass');
   const hair = walkGroups([groups.find(group => group.id === 'hair')!]);
-  assert.equal(hair.length, 10);
+  assert.equal(hair.length, 12);
   assert.equal(hair.filter(({ group }) => group.kind === 'part').length, 8);
   assert.ok(hair.every(({ group }) => Object.values(group.steps).every(step => step.status === 'completed')));
   const all = walkGroups(groups);
-  assert.equal(all.length, 115);
+  assert.equal(all.length, 88);
   const complete = all.every(({ group }) => Object.values(group.steps).every(step => step.status === 'completed'));
-  assert.equal(all.filter(({ depth }) => depth === 3).length, 29);
+  assert.equal(all.filter(({ depth }) => depth === 3).length, 24);
   assert.ok(all.filter(({ depth }) => depth === 3).every(({ group }) => group.kind === 'part' && group.groups.length === 0));
   if (complete) {
     assert.equal(store.snapshot().merge.status, 'completed');

@@ -102,7 +102,7 @@ test('step01 绘制和 review 完成后才执行 step02；缺 PNG 保留中断�
   const f = await fixture(t), deps = { ...f.deps, steps };
   const calls: string[] = [];
   await assert.rejects(runWorkflow(f.options, { ...deps, agent: async request => {
-    if (request.prompt.startsWith('你负责对第一步交付')) {
+    if (request.prompt.startsWith('你负责独立 review 第一步的交付')) {
       calls.push('review'); assert.equal(request.threadId, undefined);
       assert.equal(request.tools?.[0].name, 'annotate_review_regions');
       await absent(join(f.output, 'step01/.completed'));
