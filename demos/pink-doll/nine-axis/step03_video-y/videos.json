@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "model": "seedance-2.5",
+  "seconds": "5",
+  "profileAngle": 90,
+  "input": {
+    "path": "../step01_video/upper-body.png",
+    "sha256": "199356c96aa75b16c05def0ebd4334b5e8caae4982f800dfa6eb86d05ea5a5db"
+  },
+  "up": {
+    "path": "up.mp4",
+    "sha256": "2a2ed6714ade3e73ec249554bef8e65856a8c105b7af2f2b72f3cd7e9b536a06",
+    "bytes": 3031076,
+    "first": "../step01_video/upper-body.png",
+    "prompt": "制作5秒的up仰视参考视频。首帧是人物的正面头部特写。人物像固定的立体雕像，保持同一个姿势和表情，头、肩膀、身体、头发与发饰都固定。\n\n相机沿人物正前方的竖直平面移动：以双耳之间的头部中心为固定目标，从正前方沿固定半径的圆弧向下绕行到头部正下方，镜头始终指向这个头部中心，焦距固定。0秒正面0°，1.25秒仰视22.5°，2.5秒仰视45°，3.75秒仰视67.5°，5秒垂直向上仰视90°，全程匀速。\n\n画面保持正立，人物左耳始终在画面左侧、右耳始终在画面右侧，双耳连线与双肩连线始终水平；上下方向不翻转，镜头没有绕视线方向的旋转。低机位的变化体现在脸部的立体透视：下巴底面逐渐显露，额头与头顶逐渐被遮挡，眉眼与鼻嘴产生仰视透视，最后一帧看到下颌底面。头部中心在画面里的位置与取景大小保持稳定，相机距离不缩短，画面不推近、不变焦、不放大。\n\n保持首帧的画法与上色，眼睛、眉毛和嘴的表情形状不变，不眨眼。纯灰色背景不变，不加文字、光效、粒子、闪光、虚化或打光变化。",
+    "videoId": "video_bGl0ZWxsbTpjdXN0b21fbGxtX3Byb3ZpZGVyOnZvbGNlbmdpbmU7bW9kZWxfaWQ6ZXAtMjAyNjA4MDcxNDA2NTgtc3ZkOXg7dmlkZW9faWQ6Y2d0LTIwMjYxMTA0MTE1MTMxLWVsMjF4",
+    "status": {
+      "id": "video_bGl0ZWxsbTpjdXN0b21fbGxtX3Byb3ZpZGVyOnZvbGNlbmdpbmU7bW9kZWxfaWQ6ZG91YmFvLXNlZWRhbmNlLTItNS0yNjA2Mjg7dmlkZW9faWQ6Y2d0LTIwMjYxMTA0MTE1MTMxLWVsMjF4",
+      "object": "video",
+      "status": "completed",
+      "created_at": 1793764291,
+      "completed_at": 1793764525,
+      "expires_at": null,
+      "error": null,
+      "progress": null,
+      "remixed_from_video_id": null,
+      "seconds": "5",
+      "size": "720p",
+      "model": "seedance-2.5",
+      "last_frame_url": null,
+      "usage": {
+        "completion_tokens": 108900,
+        "total_tokens": 108900
+      }
+    }
+  },
+  "down": {
+    "path": "down.mp4",
+    "sha256": "d7e62174df80d744df3f52fa2e5109e3680c7408f75ab4fa0ca21dff009e556c",
+    "bytes": 4097160,
+    "first": "../step01_video/upper-body.png",
+    "prompt": "制作5秒的down俯视参考视频。首帧是人物的正面头部特写。人物像固定的立体雕像，保持同一个姿势和表情，头、肩膀、身体、头发与发饰都固定。\n\n相机沿人物正前方的竖直平面移动：以双耳之间的头部中心为固定目标，从正前方沿固定半径的圆弧向上绕行到头部正上方，镜头始终指向这个头部中心，焦距固定。0秒正面0°，1.25秒俯视22.5°，2.5秒俯视45°，3.75秒俯视67.5°，5秒垂直向下俯视90°，全程匀速。\n\n画面保持正立，人物左耳始终在画面左侧、右耳始终在画面右侧，双耳连线与双肩连线始终水平；上下方向不翻转，镜头没有绕视线方向的旋转。高机位的变化体现在脸部的立体透视：头顶逐渐显露，脸部的竖向投影逐渐缩短，下巴底面逐渐被遮挡，眉眼与鼻嘴产生俯视透视，最后一帧主要看到头顶，五官被头部遮挡。头部中心在画面里的位置与取景大小保持稳定，相机距离不缩短，画面不推近、不变焦、不放大。\n\n保持首帧的画法与上色，眼睛、眉毛和嘴的表情形状不变，不眨眼。纯灰色背景不变，不加文字、光效、粒子、闪光、虚化或打光变化。",
+    "videoId": "video_bGl0ZWxsbTpjdXN0b21fbGxtX3Byb3ZpZGVyOnZvbGNlbmdpbmU7bW9kZWxfaWQ6ZXAtMjAyNjA4MDcxNDA2NTgtc3ZkOXg7dmlkZW9faWQ6Y2d0LTIwMjYxMTA0MTE1MTI2LWtocXVv",
+    "status": {
+      "id": "video_bGl0ZWxsbTpjdXN0b21fbGxtX3Byb3ZpZGVyOnZvbGNlbmdpbmU7bW9kZWxfaWQ6ZG91YmFvLXNlZWRhbmNlLTItNS0yNjA2Mjg7dmlkZW9faWQ6Y2d0LTIwMjYxMTA0MTE1MTI2LWtocXVv",
+      "object": "video",
+      "status": "completed",
+      "created_at": 1793764286,
+      "completed_at": 1793764440,
+      "expires_at": null,
+      "error": null,
+      "progress": null,
+      "remixed_from_video_id": null,
+      "seconds": "5",
+      "size": "720p",
+      "model": "seedance-2.5",
+      "last_frame_url": null,
+      "usage": {
+        "completion_tokens": 108900,
+        "total_tokens": 108900
+      }
+    }
+  },
+  "elapsedSeconds": 319.2
+}
