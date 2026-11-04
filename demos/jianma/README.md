@@ -2,7 +2,7 @@
 
 本案例使用 `ice-fairy-20261102` 的完整成果替换此前 Jianma 归档：标准化参考、人物与衣服分件、人物栅格绘制、穿戴组装和 mask 阴影。画布为 **941 × 1672**；组装工程包含 69 个人物绘画分片和 48 个衣服绘画分片。素材用于后续 Live2D 绑定，不包含动态绑定。
 
-[![参考图与最终成品](../../showcase/jianma-reference-composite.png)](../../showcase/jianma-reference-composite.png)
+[![参考图、最终成品与分层爆炸图](../../showcase/jianma-reference-composite-exploded.png)](../../showcase/jianma-reference-composite-exploded.png)
 
 | 阶段 | 成果 |
 | --- | --- |

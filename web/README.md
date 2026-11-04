@@ -184,4 +184,4 @@ pnpm web
 
 ## 成果展示
 
-项目首页展示案例的原图与合成图；部分案例另有部件爆炸图。同一案例的素材绑定同一来源版本，见 [Jianma 对照](../showcase/jianma-reference-composite.png)。
+项目首页展示案例的原图、合成图与部件爆炸图。同一案例的素材绑定同一来源版本，见 [Jianma 对照](../showcase/jianma-reference-composite-exploded.png)。

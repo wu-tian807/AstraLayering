@@ -9,9 +9,9 @@
 | Jianma | 人物、衣服分层，穿戴组装及阴影蒙版 | [完整案例](jianma/README.md) · [组装](jianma/character-assembly/step01/character-assembled.kra) · [最终 KRA](jianma/shadow/step01_mask/character-shadowed.kra) |
 | Closed Face | 保留半身闭眼闭嘴构图；49 个源绘画层组装、32 个蒙版、6 处投影，六段管线完整归档 | [完整案例](closed-face-full-20261026/README.md) · [最终 KRA](closed-face-full-20261026/shadow/mask/step01/character-shadowed.kra) |
 
-Jianma 展示参考与最终合成；其他案例使用原图、完整合成图与立体爆炸图。爆炸图将真实 KRA 绘画层组合为五组，人物保持完整姿态，发束与衣装沿纵深展开，保留组内坐标、比例与绘制顺序。完整分层像素保存在 KRA 与源图层 PNG 中。
+各案例展示原图、完整合成图与立体爆炸图。爆炸图将真实 KRA 绘画层组合为五组，人物保持完整姿态，发束与衣装沿纵深展开，保留组内坐标、比例与绘制顺序。完整分层像素保存在 KRA 与源图层 PNG 中。
 
-[![Jianma 参考与最终成品](../showcase/jianma-reference-composite.png)](../showcase/jianma-reference-composite.png)
+[![Jianma 参考、最终成品与分层爆炸图](../showcase/jianma-reference-composite-exploded.png)](../showcase/jianma-reference-composite-exploded.png)
 
 [![Pink Doll 原图、完整合成图与 66 层立体拆解](../showcase/pink-doll-reference-composite-exploded.png)](../showcase/pink-doll-reference-composite-exploded.png)
 
@@ -19,7 +19,7 @@ Jianma 展示参考与最终合成；其他案例使用原图、完整合成图�
 
 KRA 完整案例持续收录正式工程、参考和验收材料。Closed Face 另保留隐藏眼口部件回归的观察与局限，见[案例说明](closed-face-full-20261026/README.md)。历史 SVG 案例继续保留完整版本，便于回看当时的制作方式和成果。
 
-README 展示图集中在仓库根目录 [showcase](../showcase/)，只保存 README 实际引用的成图与演示录屏。Jianma 展示参考图与最终阴影合成；Pink Doll、Pink Elf 使用各自 `character-assembly/step01/` 的 KRA 和合成图。维护时，先在仓库根目录运行 `node scripts/export-showcase-layers.ts --krita <Krita可执行文件>`，将原生图层与来源摘要导出到已忽略的 `.web/showcase-layers/`，再运行 `node scripts/build-demo-showcase.mjs` 生成三张展示图。
+README 展示图集中在仓库根目录 [showcase](../showcase/)，只保存 README 实际引用的成图与演示录屏。Jianma 使用组装 KRA 的图层与最终阴影合成图；其他案例使用各自的组装 KRA 和合成图。维护时，先在仓库根目录运行 `node scripts/export-showcase-layers.ts --krita <Krita可执行文件>`，将原生图层与来源摘要导出到已忽略的 `.web/showcase-layers/`，再运行 `node scripts/build-demo-showcase.mjs` 生成展示图。
 
 ## 细看制作过程
 

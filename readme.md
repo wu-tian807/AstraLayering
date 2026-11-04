@@ -6,9 +6,9 @@
 
 人物与衣服分别完成结构拆分、隐藏补全、栅格绘制和边缘修画，再组装成完整角色。新的 KRA 分层路线已完成多个完整案例，是当前成熟的素材制作方案。
 
-Jianma 展示参考图与最新穿戴、阴影成品；其他案例展示输入原图、完整合成与分层爆炸图。点击图片可看大图。
+展示输入原图、完整合成与分层爆炸图；Jianma 为最新穿戴与阴影成品。点击图片可看大图。
 
-[![Jianma：参考图与最新成品](showcase/jianma-reference-composite.png)](showcase/jianma-reference-composite.png)
+[![Jianma：参考图、最新成品与分层爆炸图](showcase/jianma-reference-composite-exploded.png)](showcase/jianma-reference-composite-exploded.png)
 
 [Jianma](demos/jianma/README.md)：人物和衣装独立分层，包含穿戴组装与原生阴影蒙版。
 

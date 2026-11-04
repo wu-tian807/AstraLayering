@@ -12,14 +12,14 @@ const width = 3000, height = 1780;
 const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
 const text = (x, y, value, size = 22, fill = '#727a8c', attributes = '') => `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${size}" fill="${fill}" ${attributes}>${escape(value)}</text>`;
 const image = (bytes, x, y, w, h) => `<image x="${x}" y="${y}" width="${w}" height="${h}" href="data:image/png;base64,${bytes.toString('base64')}"/>`;
-const cleanName = name => name.replace(/^\d+\s*(?:\|\s*)?/, '');
-const isBody = layer => layer.source ? layer.source === 'body' : /^(hair|face|head_accessories|neck|body|arms|pelvis|legs)(\/|::|$)/.test(cleanName(layer.name));
+const cleanName = name => name.replace(/^(?:人物|衣服)\s*\|\s*/, '').replace(/^\d+(?:\.\d+)?\s*(?:\|\s*)?/, '');
+const isBody = layer => layer.name.startsWith('衣服 |') ? false : layer.name.startsWith('人物 |') ? true : layer.source ? layer.source === 'body' : /^(hair|face|head_accessories|neck|body|arms|pelvis|legs)(\/|::|$)/.test(cleanName(layer.name));
 const cases = [
-  { id: 'jianma', title: 'Jianma', source: 'demos/jianma', reference: 'demos/jianma/input/original.png',
-    composite: 'demos/jianma/shadow/step01_mask/character-shadowed.png', counts: [90, 69], titles: ['Rear hair', 'Character', 'Inner dress', 'Outer robe', 'Sash & jewelry'],
+  { id: 'jianma', title: 'Jianma', source: '.web/showcase-layers/jianma', reference: 'demos/jianma/input/original.png',
+    composite: 'demos/jianma/shadow/step01_mask/character-shadowed.png', counts: [69, 48], titles: ['Rear hair', 'Character', 'Inner dress', 'Outer robe', 'Sash & jewelry'],
     classify(layer, name) {
       if (isBody(layer)) return /^hair\/(back_hair|bun|hair_cap)/.test(name) || /crown_ribbon\/(ribbon_tail|ribbon_body)$/.test(name) ? 0 : 1;
-      return name.startsWith('inner_dress/') ? 2 : name.startsWith('outer_robe/') ? 3 : 4;
+      return name.startsWith('inner_long_dress/') ? 2 : /^(outer_robe_body|sleeve_|collar_shoulder_cape)/.test(name) ? 3 : 4;
     } },
   { id: 'pink-doll', title: 'Pink Doll', source: '.web/showcase-layers/pink-doll', reference: 'demos/pink-doll/input/original.jpg',
     composite: 'demos/pink-doll/character-assembly/step01/character-assembled.png', counts: [58, 8], titles: ['Rear hair', 'Character', 'Bodice', 'Tiered skirt', 'Chest bow'],
@@ -48,7 +48,7 @@ await mkdir(output, { recursive: true });
 for (const [caseIndex, profile] of cases.entries()) {
   if (!values.case || profile.id === values.case) {
     if (profile.id === 'jianma') await renderJianma(profile);
-    else await render(profile, caseIndex);
+    await render(profile, caseIndex);
   }
 }
 

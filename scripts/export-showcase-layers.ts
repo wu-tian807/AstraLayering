@@ -12,7 +12,7 @@ const { values } = parseArgs({ options: {
   krita: { type: 'string', default: process.platform === 'darwin' ? '/Applications/krita.app/Contents/MacOS/krita' : 'krita' },
   case: { type: 'string' },
 } });
-const supportedCases = ['pink-doll', 'pink-elf', 'black-white-doll'];
+const supportedCases = ['jianma', 'pink-doll', 'pink-elf', 'black-white-doll'];
 if (values.case && !supportedCases.includes(values.case)) throw new Error(`Unknown case: ${values.case}. Choose ${supportedCases.join(', ')}.`);
 const selectedCases = values.case ? [values.case] : supportedCases;
 const temporary = await mkdtemp(join(process.platform === 'darwin' ? '/tmp' : tmpdir(), 'astra-showcase-'));
