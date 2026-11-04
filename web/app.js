@@ -604,7 +604,7 @@ function jsonLines(text) {
 // open by themselves; one the user opened or closed stays so until the page reloads.
 function configTree() {
  const scope=file=>file;
- const families=[['part-layering','人物分块'],['raster-layering','人物绘制'],['clothing-part-layering','衣服分块'],['clothing-raster-layering','衣服绘制'],['character-assembly','穿戴组装'],['shadow','阴影制作'],['shared','公共先验'],['','其他文件']];
+ const families=[['part-layering','人物分块'],['raster-layering','人物绘制'],['clothing-part-layering','衣服分块'],['clothing-raster-layering','衣服绘制'],['character-assembly','穿戴组装'],['shadow','阴影制作'],['nine-axis','头部九轴'],['shared','公共先验'],['','其他文件']];
  const query=state.configFilter.toLowerCase();
  const owned=file=>families.some(([prefix])=>prefix&&scope(file).startsWith(prefix+'/'));
  const count=node=>node.files.length+[...node.folders.values()].reduce((sum,child)=>sum+count(child),0);

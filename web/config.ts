@@ -113,7 +113,12 @@ export async function configRaw(params: URLSearchParams, directory: string, requ
     const content = await bytes(directory, file);
     response.writeHead(200, { 'Content-Type': type, 'Content-Length': content.length }); response.end(content); return;
   }
-  const target = await safePath(directory, file.path), size = (await lstat(target)).size;
+  await streamMediaFile(await safePath(directory, file.path), type, request, response);
+}
+
+// Reuse the same ranged file response for task videos and knowledge media.
+export async function streamMediaFile(target: string, type: string, request: { headers: { range?: string } }, response: ServerResponse) {
+  const size = (await lstat(target)).size;
   const range = request.headers.range?.match(/^bytes=(\d*)-(\d*)$/);
   if (range && (range[1] || range[2])) {
     const start = range[1] ? Number(range[1]) : Math.max(0, size - Number(range[2]));

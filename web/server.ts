@@ -13,7 +13,7 @@ import { runsDirectory, sectionIds, workflowsDirectory } from '../.agents/skills
 import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, sectionId, taskStatus, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
 import { convertLayout } from '../.agents/skills/live2d-maker/workflow/layout.ts';
 import { applyTaskAction } from '../.agents/skills/live2d-maker/workflow/step-actions.ts';
-import { configAPI, configRaw } from './config.ts';
+import { configAPI, configRaw, streamMediaFile } from './config.ts';
 import { createEnvironmentConfig, EnvironmentConflict } from './environment-config.ts';
 import { atomicJSON, agentRecord, artifactExtensions, browse, inside, jsonFile, safePath } from './files.ts';
 import { createKritaScan } from './krita-scan.ts';
@@ -324,6 +324,9 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         const file = await safePath(directory, selected);
         const info = await lstat(file);
         if (!info.isFile()) throw new Error('产物不是文件');
+        if (extname(file).toLowerCase() === '.mp4') {
+          await streamMediaFile(file, 'video/mp4', request, response); return;
+        }
         if (url.searchParams.get('preview') === 'kra' && extname(file).toLowerCase() === '.kra') {
           const image = await kraPreviews.get(file, `${info.mtimeMs}:${info.ctimeMs}:${info.size}:${info.ino}`, url.searchParams.get('fit') === 'content');
           response.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control': 'no-cache' });
