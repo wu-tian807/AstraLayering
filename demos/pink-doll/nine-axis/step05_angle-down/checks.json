@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "stage": "down",
+  "x": 0,
+  "y": -25,
+  "authorSha256": "12742502e51dddd6388c323f70e9aee85928e68617ac7cca1df1e4d343abe3c1",
+  "referenceBounds": [
+    431,
+    35,
+    394,
+    394
+  ],
+  "registration": "none; same canvas coordinates",
+  "visualAcceptance": "pending user review",
+  "videoSampleFrames": [
+    0,
+    30,
+    60,
+    90,
+    120
+  ],
+  "videoSampleNativeSize": [
+    960,
+    960
+  ],
+  "checks": [
+    {
+      "file": "nine-axis/step05_angle-down/face-down.json",
+      "sha256": "12742502e51dddd6388c323f70e9aee85928e68617ac7cca1df1e4d343abe3c1"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/source-face.svg",
+      "sha256": "295f6f302d0c09c275988a2220b4503b8b768231205168da600c1f84b76db507"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/target-face.svg",
+      "sha256": "0754ef58e7bf96629cf98ce0a8fef4f286508eda8935d8a9b7201f0c51cc85da"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/source-face-reference.png",
+      "sha256": "f26084e3fafcc481da84790a2386e92ab6910526d1fb9719730231359a6a4d33"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/source-trace-edge.png",
+      "sha256": "b3c649399bbea377294624b162b6442199030e180f95bb0281903370285d4b80"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/target-trace-edge.png",
+      "sha256": "9766fb1c6677bbaa168a5fce9a1b709f2ed87bd8d20d445649f6fc45e6507a0a"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/face-trace.json",
+      "sha256": "84e58553df9b8d7157df7b34897aa3500f9484c2c68121ac22fd05f42f51129b"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/trace-check.png",
+      "sha256": "55c97e7cd6174c2bcb8868b440e951d34d951c34d6e023301c614849c4dee1a4"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/face-completion-check.png",
+      "sha256": "9d946503d2b0d19881ec56f5539b47b49c841c0050bec589db3557802ec41b12"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/face-base-down-check.png",
+      "sha256": "9aa5cb22e181b37ab3d4983f23f15f0488bbb3657faa44882b3001d8713ecf44"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/fit-report.json",
+      "sha256": "403d0679289b548ad82d3c4503cc747a1e89f73e1254775c54ca24e5174cbd96"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/down-check.png",
+      "sha256": "d0320e9844a0bd6c743d5994657e5c5d2012e6d882a6f1d7e30908cf6130d14c"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/down-fit-check.png",
+      "sha256": "c1a966861cd07e34137fd7137d43c9c5723cd71496fb1cab5a86cc63a0749a2d"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/jaw-chin-check.png",
+      "sha256": "951531b646f2db266473c07c216a25e3dffff0d634f64101911c33a505347d57"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/features-check.png",
+      "sha256": "03e5f9a0d68fad528869e3a137084d1921ffe52cd0aaf59e803f0410b9e907e0"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/neck-contact-check.png",
+      "sha256": "7f46843e05f39f81eab595aa56288420cebfae8daefb54870da874e06cbdd60d"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/intermediate-check.png",
+      "sha256": "eda3745d0a9ccc9fed7f29752ee6f6ff2a61bf824e8b92ffd0e08517bf323023"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/notes.md",
+      "sha256": "3b9bc6d1c7d6af6d4734708637640674872dc6a4c40a170a1c67c267e86d3562"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/deformers.json",
+      "sha256": "12742502e51dddd6388c323f70e9aee85928e68617ac7cca1df1e4d343abe3c1"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/validation-report.json",
+      "sha256": "459b85022fc193247fd2a9d63eca1b1e445851f6a4534573acaf3e2ef9d11629"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/video-direction-check.png",
+      "sha256": "aa8c07f2170cc9a7e62de502c53fadf69f0e16ad19faf1f0f572b6739fda6ee7"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/forehead-temple-check.png",
+      "sha256": "ea763f51e34b69a2255de3e6aabf3ee46edae3d9ccda1539d90b96adf77e3615"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/left-cheek-check.png",
+      "sha256": "2f3c4b093f1f2635f5b91e27405ece72b184f6e831d2ea51323f4eaca3c94a0e"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/right-cheek-check.png",
+      "sha256": "68eec3f7dd022dda3f46013cd42eb7f2f0f40b9e39f58abd8f3072b1897c4dac"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/x-protected-check.png",
+      "sha256": "2f42e0019aab579024ce353c4a63564981d3fbecdf5cd3a18e10a3d4d1068599"
+    },
+    {
+      "file": "nine-axis/step05_angle-down/up-protected-check.png",
+      "sha256": "6dfd28fe0b1d8865854e83fdd24ac7647bd621821ec7ed4ad3ddaf533433a8bd"
+    }
+  ]
+}
