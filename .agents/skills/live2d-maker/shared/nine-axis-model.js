@@ -136,14 +136,26 @@ export function warpPoint(part, points, x, y) {
   return [x + displacement(0), y + displacement(1)];
 }
 export function inverseWarpPoint(part, points, x, y) {
-  let px = x, py = y;
-  for (let i = 0; i < 30; i++) {
-    const q = warpPoint(part, points, px, py), dx = q[0] - x, dy = q[1] - y;
-    if (Math.hypot(dx, dy) < 1e-5) return [px, py];
-    const h = .01, a = warpPoint(part, points, px + h, py), b = warpPoint(part, points, px, py + h);
-    const ax = (a[0] - q[0]) / h, ay = (a[1] - q[1]) / h, bx = (b[0] - q[0]) / h, by = (b[1] - q[1]) / h, det = ax * by - bx * ay;
-    if (Math.abs(det) < 1e-8) break;
-    px -= (by * dx - bx * dy) / det; py -= (ax * dy - ay * dx) / det;
+  // Keep the fast Newton path. If an edge's change of derivative causes a
+  // cycle, restart with backtracking rather than accepting a larger residual.
+  for (const backtrack of [false, true]) {
+    let px = x, py = y;
+    for (let i = 0; i < (backtrack ? 80 : 30); i++) {
+      const q = warpPoint(part, points, px, py), dx = q[0] - x, dy = q[1] - y, error = Math.hypot(dx, dy);
+      if (!Number.isFinite(error)) break;
+      const h = .01, a = warpPoint(part, points, px + h, py), b = warpPoint(part, points, px, py + h);
+      const ax = (a[0] - q[0]) / h, ay = (a[1] - q[1]) / h, bx = (b[0] - q[0]) / h, by = (b[1] - q[1]) / h, det = ax * by - bx * ay;
+      if (!Number.isFinite(det) || Math.abs(det) < 1e-8) break;
+      if (error < 1e-5) { if (det > 0) return [px, py]; break; }
+      const stepX = (by * dx - bx * dy) / det, stepY = (ax * dy - ay * dx) / det;
+      if (!backtrack) { px -= stepX; py -= stepY; continue; }
+      let accepted = false;
+      for (let step = 1; step >= 1 / 32768; step /= 2) {
+        const nx = px - step * stepX, ny = py - step * stepY, next = warpPoint(part, points, nx, ny);
+        if (Math.hypot(next[0] - x, next[1] - y) < error) { px = nx; py = ny; accepted = true; break; }
+      }
+      if (!accepted) break;
+    }
   }
   throw Error(part.id + '：无法反解父级变形；先修正折叠或过度压缩的网格');
 }

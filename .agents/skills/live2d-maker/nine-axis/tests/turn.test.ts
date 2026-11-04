@@ -7,8 +7,8 @@ import { createServer } from 'node:http';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
-import { cropUpperBody, extractTurnFrame, ffmpegPath, fileHash, generateVideo, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox } from '../turn.ts';
-import { angleXYPrompt, angleYPrompt, headPrompt, jawLinePrompt, runWorkflow, videoPrompt } from '../run.ts';
+import { cropUpperBody, extractTurnFrame, ffmpegPath, fileHash, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox } from '../turn.ts';
+import { angleXYPrompt, angleYPrompt, createFitHead, headPrompt, jawLinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
@@ -304,6 +304,49 @@ test('俯仰续跑按输入、模型、提示词和视频哈希复用，单改 u
   await writeFile(join(pitch, 'down.mp4'), 'corrupted');
   await producePitchVideos(pitch, front, generate, { up: 'up-b', down: 'down-a' }, options);
   assert.equal(generated, 4, '损坏的视频不能沿用');
+});
+
+test('斜向续跑逐角核对首帧、提示词、模型与视频哈希，不重复生成相同视频', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'astra-corner-reuse-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const pitch = join(root, 'step03_video-y'), corner = join(root, 'step06_angle-xy');
+  await mkdir(pitch, { recursive: true }); await mkdir(corner, { recursive: true });
+  await writeFile(join(pitch, 'up.png'), 'up-first'); await writeFile(join(pitch, 'down.png'), 'down-first');
+  let generated = 0;
+  const generate = async () => ({ id: `corner-${++generated}`, status: { status: 'completed' }, bytes: Buffer.from(`video-${generated}`) });
+  await produceCornerVideos(corner, pitch, generate, 'left-a', { model: 'fixture' });
+  const initial = JSON.parse(await readFile(join(corner, 'videos.json'), 'utf8'));
+  const down = await readFile(join(corner, 'left-down.mp4'));
+  await produceCornerVideos(corner, pitch, generate, 'left-a', { model: 'fixture' });
+  assert.equal(generated, 2);
+  await writeFile(join(pitch, 'up.png'), 'changed-up-first');
+  await produceCornerVideos(corner, pitch, generate, 'left-a', { model: 'fixture' });
+  assert.equal(generated, 3);
+  const changed = JSON.parse(await readFile(join(corner, 'videos.json'), 'utf8'));
+  assert.equal(changed['left-down'].videoId, initial['left-down'].videoId);
+  assert.notEqual(changed['left-up'].videoId, initial['left-up'].videoId);
+  assert.deepEqual(await readFile(join(corner, 'left-down.mp4')), down);
+  await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'fixture' });
+  assert.equal(generated, 5, '提示词变化时不能复用');
+  await writeFile(join(corner, 'left-down.mp4'), 'corrupted');
+  await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'fixture' });
+  assert.equal(generated, 6, '损坏视频只重生该角');
+  await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'changed-model' });
+  assert.equal(generated, 8, '模型变化时不能复用');
+});
+
+test('九轴停止信号传入真实绘制 agent，已取消时不再启动', async t => {
+  const { task } = await fixture(t), controller = new AbortController();
+  let started = 0;
+  const fit = createFitHead({ async run(_task, signal) {
+    started++; assert.equal(signal, controller.signal);
+    controller.abort(new Error('cancel face fitting')); signal!.throwIfAborted();
+    return { text: '{"error":null}', images: [] };
+  } }, async () => [], 'step06_angle-xy', '斜向', controller.signal);
+  await assert.rejects(fit(join(task, 'nine-axis/step06_angle-xy'), 'test'), /cancel face fitting/);
+  assert.equal(started, 1);
+  await assert.rejects(fit(join(task, 'nine-axis/step06_angle-xy'), 'test'), /cancel face fitting/);
+  assert.equal(started, 1);
 });
 
 test('视频失败时 step01 不完成', async t => {

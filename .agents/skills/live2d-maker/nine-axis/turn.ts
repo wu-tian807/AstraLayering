@@ -240,9 +240,21 @@ export async function producePitchVideos(directory: string, front: string, gener
 export async function produceCornerVideos(directory: string, pitch: string, generate: GenerateVideo, prompt: string,
   { signal, progress, model }: Run & { model: string }) {
   const started = Date.now();
+  type Batch = { version: number; model: string; seconds: string; profileAngle: number } & Partial<Record<`left-${ViewY}`, Awaited<ReturnType<typeof takeVideo>> & { inputSha256: string }>>;
+  const cached: Batch | undefined = await readFile(join(directory, 'videos.json'), 'utf8').then(text => JSON.parse(text), error => {
+    if (error.code !== 'ENOENT') throw error;
+  });
+  const sameSettings = cached?.version === 1 && cached.model === model && cached.seconds === turnSeconds && cached.profileAngle === profileAngle;
   progress?.('提交左上、左下转头参考视频');
-  const records = await Promise.all(viewsY.map(async view => [ `left-${view}`,
-    await takeVideo(directory, `left-${view}`, prompt, await readFile(join(pitch, `${view}.png`)), `../step03_video-y/${view}.png`, generate, { signal, progress })] as const));
+  const records = await Promise.all(viewsY.map(async view => {
+    const corner = `left-${view}` as const, first = `../step03_video-y/${view}.png`, image = await readFile(join(pitch, `${view}.png`)), inputSha256 = bufferHash(image), previous = cached?.[corner];
+    if (sameSettings && previous?.prompt === prompt && previous.first === first && previous.inputSha256 === inputSha256
+      && previous.path === `${corner}.mp4` && await exists(join(directory, previous.path)) && await fileHash(join(directory, previous.path)) === previous.sha256) {
+      progress?.(`${corner}：沿用相同输入与提示词、哈希核对通过的视频`);
+      return [corner, previous] as const;
+    }
+    return [corner, { ...await takeVideo(directory, corner, prompt, image, first, generate, { signal, progress }), inputSha256 }] as const;
+  }));
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     ...Object.fromEntries(records), elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
 }

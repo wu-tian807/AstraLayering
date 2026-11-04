@@ -69,14 +69,15 @@ export const jawLinePrompt = (input: HeadInput, taskRoot: string) => stepKnowled
 // which the face steps share; the step's knowledge picks their tools (Krita
 // to export the face layers, the bitmap viewer to look at them).
 export type FitHead = (directory: string, prompt: string) => Promise<void>;
-export function createFitHead(agents: Pick<CodexAgents, 'run'>, tools: (step: string) => Promise<FunctionTool[]>, step: string, name: string): FitHead {
+export function createFitHead(agents: Pick<CodexAgents, 'run'>, tools: (step: string) => Promise<FunctionTool[]>, step: string, name: string, signal?: AbortSignal): FitHead {
   return async (directory, prompt) => {
+    signal?.throwIfAborted();
     const nine = join(directory, '..'), paths = await prepareWorkspace({ cwd: nine, outputDirectory: directory }, nine);
     const identity = { 'step02_angle-x': 'nine_axis_head', 'step04_angle-up': 'nine_axis_head_y', 'step05_angle-down': 'nine_axis_head_down', 'step06_angle-xy': 'nine_axis_head_xy', 'step07_jaw-line': 'nine_axis_head_jaw' } as const;
     const agentStep = identity[step as keyof typeof identity];
     if (!agentStep) throw new Error(`未知头部九轴步骤：${step}`);
     const result = await agents.run({ step: agentStep, name, cwd: nine, outputDirectory: directory, outputSchema,
-      tools: stepKnowledge('nine-axis', step).tools('main', await tools(step)), prompt: workspacePrompt(prompt, paths) });
+      tools: stepKnowledge('nine-axis', step).tools('main', await tools(step)), prompt: workspacePrompt(prompt, paths) }, signal);
     let error: unknown;
     try { error = (JSON.parse(result.text) as { error?: unknown }).error; } catch { throw agentOutcomeError(`${name}没有返回结果`, result); }
     if (typeof error === 'string' && error) throw agentOutcomeError(`${name}：${error}`, result);
@@ -164,7 +165,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         if (options.dryRun) return preview(`用 ${headLabel} 摆出脸部向左转向，镜像出向右。\n提示词：\n${headPrompt(head, task)}`);
         const box = JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box as Box;
         builds[step.id] = () => buildHead(step.directory, head, box, scale);
-        const fit = dependencies.fitHead ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳转向'));
+        const fit = dependencies.fitHead ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳转向', options.signal));
         await fit(step.directory, headPrompt(head, task));
         summary = `nine-axis/step02_angle-x 已完成：${await finishHead(step.directory, head, box, scale)} 个脸部图层的 ${scale.x[0]}° / +${scale.x[1]}° 转向`;
       };
@@ -173,7 +174,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         const upstream = join(directory, stage === 'up' ? 'step02_angle-x' : 'step04_angle-up');
         if (options.dryRun) return preview(`用 ${headLabel} 描边、补全并自动拟合脸部${label}。\n提示词：\n${angleYPrompt(task, stage)}`);
         builds[step.id] = () => buildAngleY(step.directory, upstream, stage, scale);
-        const fit = (stage === 'up' ? dependencies.fitUp : dependencies.fitDown) ?? (await preflight(), createFitHead(agents(), faceTools, step.id, `脸部与双耳${label}`));
+        const fit = (stage === 'up' ? dependencies.fitUp : dependencies.fitDown) ?? (await preflight(), createFitHead(agents(), faceTools, step.id, `脸部与双耳${label}`, options.signal));
         await fit(step.directory, angleYPrompt(task, stage));
         summary = `nine-axis/${step.id} 已完成：${await finishAngleY(step.directory, upstream, stage, scale)} 个脸部图层的${label}`;
       };
@@ -184,7 +185,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         const angleYDirectory = join(directory, 'step05_angle-down');
         await writeLinearCorners(step.directory, angleYDirectory, scale);
         builds[step.id] = () => buildAngleXY(step.directory, angleYDirectory, scale);
-        const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向'));
+        const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向', options.signal));
         await fit(step.directory, angleXYPrompt(task));
         const box = JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box as Box;
         await checkCornerReferences(step.directory, box.size);
@@ -194,7 +195,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         const head = await resolveHeadInput(input);
         if (options.dryRun) return preview(`用 ${headLabel} 做下颌线、脸部蒙版与脖子。\n提示词：\n${jawLinePrompt(head, task)}`);
         builds[step.id] = () => buildJawLine(step.directory, join(directory, 'step06_angle-xy'), scale);
-        const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子'));
+        const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子', options.signal));
         await fit(step.directory, jawLinePrompt(head, task));
         summary = `nine-axis/step07_jaw-line 已完成：${await finishJawLine(step.directory, join(directory, 'step06_angle-xy'), scale)} 个部件的下颌线与脖子`;
       };
