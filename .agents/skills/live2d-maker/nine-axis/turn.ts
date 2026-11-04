@@ -215,9 +215,22 @@ export async function produceLeftVideo(directory: string, input: TurnInput, gene
 export async function producePitchVideos(directory: string, front: string, generate: GenerateVideo, prompts: Record<ViewY, string>,
   { signal, progress, ffmpeg, model, angles }: Run & { ffmpeg: string; model: string; angles: Record<ViewY, number> }) {
   const upperBody = join(front, 'upper-body.png'), image = await readFile(upperBody), started = Date.now();
+  type Batch = { version: number; model: string; seconds: string; profileAngle: number; input: { sha256: string } } & Partial<Record<ViewY, Awaited<ReturnType<typeof takeVideo>>>>;
+  const cached: Batch | undefined = await readFile(join(directory, 'videos.json'), 'utf8').then(text => JSON.parse(text), error => {
+    if (error.code !== 'ENOENT') throw error;
+  });
+  const sameInput = cached?.version === 1 && cached.model === model && cached.seconds === turnSeconds
+    && cached.profileAngle === profileAngle && cached.input?.sha256 === bufferHash(image);
   progress?.('提交抬头、低头绕轴视频，沿用左转步骤的正面裁框');
-  const records = await Promise.all(viewsY.map(async view => [view,
-    await takeVideo(directory, view, prompts[view], image, '../step01_video/upper-body.png', generate, { signal, progress })] as const));
+  const records = await Promise.all(viewsY.map(async view => {
+    const previous = cached?.[view], first = '../step01_video/upper-body.png';
+    if (sameInput && previous?.prompt === prompts[view] && previous.first === first && previous.path === `${view}.mp4`
+      && await exists(join(directory, previous.path)) && await fileHash(join(directory, previous.path)) === previous.sha256) {
+      progress?.(`${view}：沿用相同输入与提示词、哈希核对通过的视频`);
+      return [view, previous] as const;
+    }
+    return [view, await takeVideo(directory, view, prompts[view], image, first, generate, { signal, progress })] as const;
+  }));
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     input: { path: '../step01_video/upper-body.png', sha256: bufferHash(image) }, ...Object.fromEntries(records),
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');

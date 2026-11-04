@@ -7,7 +7,7 @@ import { createServer } from 'node:http';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
-import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, resolveTurnInput, upperBodyBox } from '../turn.ts';
+import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, producePitchVideos, resolveTurnInput, upperBodyBox } from '../turn.ts';
 import { angleXYPrompt, angleYPrompt, headPrompt, jawLinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
@@ -271,6 +271,28 @@ test('单跑 step03 只生成上下视频并取帧，原裁框和 left 完全保
   const pitch = join(nine, 'step03_video-y');
   for (const file of ['up.mp4', 'down.mp4', 'up.png', 'down.png', 'videos.json', 'views.json', '.completed']) await access(join(pitch, file));
   for (const step of ['step02_angle-x', 'step04_angle-up', 'step05_angle-down', 'step06_angle-xy', 'step07_jaw-line']) await assert.rejects(access(join(nine, step)));
+});
+
+test('俯仰续跑按输入、模型、提示词和视频哈希复用，单改 up 不重生 down', async t => {
+  const { root, task } = await fixture(t), nine = join(task, 'nine-axis'), front = join(nine, 'step01_video'), pitch = join(nine, 'step03_video-y');
+  const sample = join(root, 'sample.mp4'), ffmpeg = await testVideo(t, sample);
+  if (!ffmpeg) return;
+  await mkdir(front, { recursive: true });
+  await writeFile(join(front, 'upper-body.png'), await sharp({ create: { width: 96, height: 96, channels: 3, background: '#888' } }).png().toBuffer());
+  let generated = 0;
+  const generate = async () => ({ id: `v${++generated}`, status: { status: 'completed' }, bytes: await readFile(sample) });
+  const options = { ffmpeg, model: 'fixture', angles: { up: 25, down: 25 } };
+  await producePitchVideos(pitch, front, generate, { up: 'up-a', down: 'down-a' }, options);
+  const before = JSON.parse(await readFile(join(pitch, 'videos.json'), 'utf8')), down = await readFile(join(pitch, 'down.mp4'));
+  await producePitchVideos(pitch, front, generate, { up: 'up-b', down: 'down-a' }, options);
+  assert.equal(generated, 3);
+  const after = JSON.parse(await readFile(join(pitch, 'videos.json'), 'utf8'));
+  assert.equal(after.down.videoId, before.down.videoId);
+  assert.notEqual(after.up.videoId, before.up.videoId);
+  assert.deepEqual(await readFile(join(pitch, 'down.mp4')), down);
+  await writeFile(join(pitch, 'down.mp4'), 'corrupted');
+  await producePitchVideos(pitch, front, generate, { up: 'up-b', down: 'down-a' }, options);
+  assert.equal(generated, 4, '损坏的视频不能沿用');
 });
 
 test('视频失败时 step01 不完成', async t => {
