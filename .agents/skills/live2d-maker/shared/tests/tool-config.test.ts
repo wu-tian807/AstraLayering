@@ -27,7 +27,7 @@ test('管线自有工具只出现在该管线的 catalog；缺文件明确报错
   assert.ok(new ToolCatalog(toolsDirectory, own).names().includes('inspect_shadow_mask'));
   assert.ok(!new ToolCatalog().names().includes('inspect_shadow_mask'));
   // Which tools an agent sees is decided by its agent.json, not the catalog.
-  assert.ok(!stepKnowledge('clothing-part-layering', 'step01_preparation').tools('main', [{ ...new ToolCatalog().get('reuse_reference'), execute: async () => textResult('') }]).length);
+  assert.ok(!stepKnowledge('clothing-part-layering', 'step01_preparation').tools('main', [{ ...new ToolCatalog(toolsDirectory, fileURLToPath(new URL('../../part-layering/tools/', import.meta.url))).get('reuse_reference'), execute: async () => textResult('') }]).length);
   const root = await mkdtemp(join(tmpdir(), 'tool-own-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   await mkdir(join(root, 'only_description'));

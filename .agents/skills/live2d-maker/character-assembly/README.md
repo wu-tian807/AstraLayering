@@ -31,8 +31,6 @@ pnpm character-assembly --name jianma --dir /绝对路径/运行根目录 --krit
 
 [完整绘制提示词](../knowledge/character-assembly/step01/prompts/01-人物与衣服组装.md) 先对照简化穿衣参考，将整套衣装等比缩放、平移到人物的对应位置，再调整穿插与局部贴合。局部修画解决组装产生的边界和接缝问题；漏肤可用原生可关闭的透明度遮罩处理，保留透纱效果。已有部件的发色、材质、笔触和描边差异保留并记录。不随意拆分现有部件或新增绘画层，不覆盖两份输入工程。
 
-`locate_pixel_differences` 的可选 `parts` 参数按当前 KRA 部件路径自动选择范围，包含后代与多个深度分片，范围随衣物缩放、位移和遮罩更新；无需手写框坐标。首次合成和最终保存重开后按衣物及接缝相关部件检查，整体穿戴关系由目视核对。部件路径可加 `character:` 或 `clothing:` 前缀限定来自人物或衣服工程。选择 `parts` 时必须同时传 `layers`：保存 KRA 后用 `krita` 工具导出的 `.ora`，早于 KRA 最后保存会报错；`part_padding` 默认 8 像素，用于检查部件周边的接缝与漏肤。`parts` 不填或空数组仍为全图检测；人物、衣服 step02 共用同一可选能力。工具同时输出检测范围预览和差异候选，候选由 agent 按本阶段职责判断。
-
 CLI 在 `character-assembly/step01/workspace/` 中运行，提示词给出两份 KRA、参考图和输出目录的绝对路径，不含 Krita 路径；Krita 由本 section 的 `krita` 工具启动与操作，见 [Krita 与显示环境](../references/setup.md#krita-与显示环境)。交付位置：
 
 ```text

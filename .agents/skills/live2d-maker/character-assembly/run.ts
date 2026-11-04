@@ -1,5 +1,3 @@
-import { dirname, join } from 'node:path';
-import { createPixelTool } from '../shared/raster/pixel-tool.ts';
 import { formatAgentError } from '../shared/codex/diagnostics.ts';
 import { runCli } from '../shared/raster/cli.ts';
 import { runWorkflow as runSharedWorkflow, type KritaSection, type WorkflowOptions, type Dependencies } from '../shared/raster/workflow.ts';
@@ -29,10 +27,6 @@ export const help = `character-assembly — 单 agent 组装人物与衣服 KRA
 
 export const section: KritaSection<AssemblyInput> = {
   id: 'character-assembly', steps,
-  tools: (output, input, _step, phase) => phase === 'draw'
-    ? [createPixelTool(dirname(output), dirname(dirname(output)), join(output, 'pixel-review'), {
-      sources: [{ namespace: 'character' as const, document: input.characterKra }, ...input.clothingKra ? [{ namespace: 'clothing' as const, document: input.clothingKra }] : []],
-    })] : [],
   // No clothing lane ran: the character KRA is the assembled result.
   passthrough: async (output, input) => input.clothingKra !== null ? undefined
     : copyDelivery(output, '素体换装沿用了简化参考，没有衣服需要组装', [

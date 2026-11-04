@@ -24,7 +24,7 @@ step01 绘制与返修对轮廓、隐藏补全、画风和结构负责。读取�
 
 工具校验失败直接向当前 agent 返回具体字段路径与原因，保留原文件，修正参数后再次提交。step01 结束时的额外结构诊断记录为日志“结构检查提示”，供前端查看；这项诊断继续保留完成与后续执行，也保留原有视觉 review 轮数。完成标记表示已通过当前交付检查，结构诊断与视觉检查应分别核对。
 
-各环节的流程工具见 [raster 工具表](../raster-layering/README.md#三步交付)：结构编辑工具仅提供给两套 raster step01 绘制／返修，reviewer 只用框选工具，step02 使用像素差异工具；需要 Krita 的步骤中，绘制、review 与返修 agent 都另有 `krita` 工具。各 CLI 沿用共用函数工具通道和原有会话恢复能力。职责约定与受控工具校验之外没有写入沙箱：Codex 使用 `danger-full-access`，Claude／AGV 使用 `--dangerously-skip-permissions`。
+各环节的流程工具见 [raster 工具表](../raster-layering/README.md#三步交付)：结构编辑工具仅提供给两套 raster step01 绘制／返修，reviewer 只用框选工具，step02、step03 只用 Krita；需要 Krita 的步骤中，绘制、review 与返修 agent 都另有 `krita` 工具。各 CLI 沿用共用函数工具通道和原有会话恢复能力。职责约定与受控工具校验之外没有写入沙箱：Codex 使用 `danger-full-access`，Claude／AGV 使用 `--dangerously-skip-permissions`。
 
 raster 中断、主动重跑及已进入 raster 的总控续跑保留上游修正。独立重跑 part 会从首次分组与各步骤事实重建树；仅写在根 groups.json 的树结构调整需事先留档核对。来源与审计证据见本页文末。
 
@@ -172,7 +172,7 @@ pnpm check
 | M3 | [raster-drawing-responsibilities.md](../knowledge/shared/prompts/raster-drawing-responsibilities.md)：`检查相关文件能够解析、引用完整且图像一致`；[workflow.ts](raster/workflow.ts) 的 `checkFiles` 与 `交付检查通过，写入 .completed` | 能解析 JSON 不证明符合 schema；当前 part raster 没有挂接结构交付校验，完成门槛主要检查要求的输出文件存在、非空且位于目录内。`.completed` 或视觉 review 通过不证明回写的结构文件合法 |
 | M4 | [workflow-details.md](README.md#多深度与上游修正)“多深度与上游修正”：`step01 绘画者…step02 沿用已确认结构精修柔边，使用现有文件工具直接修改 groups.json、occlusion.json 和对应 SVG。可以调整层序、归属或拆出…` | 同段将 step01 与 step02 连写，容易把结构编辑权限扩展到 step02；人物／衣服 step02 提示词实际要求沿用层序、归属，不新增拆层。step03 也要求保持结构。参见 [steps.ts](raster/steps.ts) 中仅为 step01 注入写回职责的条件 |
 | M5 | [raster-drawing-responsibilities.md](../knowledge/shared/prompts/raster-drawing-responsibilities.md)：`直接编辑上游 groups.json…`、`上游分层文件保存后即作为后续工作的有效输入`；[workflow-details.md](README.md#多深度与上游修正)：`上游结构修改在中断与主动重跑后继续使用` | 这不是所有恢复入口都成立的保证。`GroupStore.open` 从首次分组与各已完成的 `children.json` 重建树；根 groups.json 仅保留已有 ID 的 name／note／metadata。只改根树增加、删除或重排节点，独立 part 恢复时可能被旧步骤事实覆盖。总控在 raster 已启动时跳过 part 恢复只是保护一条入口。见 [groups.ts](part/groups.ts)、[part-steps.ts](part/part-steps.ts) |
-| M6 | [workflow-details.md](README.md#多深度与上游修正)“编辑工具说明与 schema”：`raster 各阶段按下文约定提供深度工具`、`实际执行与文件写入校验仍在 TS 中` | 当前 part raster 只注册 reviewer 框选及 step02 像素差异工具，没有深度修改／校验工具。工具回调中的 schema 校验不会覆盖 agent 用脚本直接改写上游 JSON 的路径，不能让 agent 误以为保存后已有同等保护 |
+| M6 | [workflow-details.md](README.md#多深度与上游修正)“编辑工具说明与 schema”：`raster 各阶段按下文约定提供深度工具`、`实际执行与文件写入校验仍在 TS 中` | 观察时 part raster 只注册 reviewer 框选及 step02 像素差异工具，没有深度修改／校验工具（像素差异工具现已删除，step01 绘制／返修已注册 `edit_groups`、`edit_occlusion`）。工具回调中的 schema 校验不会覆盖 agent 用脚本直接改写上游 JSON 的路径，不能让 agent 误以为保存后已有同等保护 |
 
 ### 后续修复边界
 
