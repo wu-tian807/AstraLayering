@@ -26,7 +26,7 @@
    - left：`prompts/视频.md`，只向左转头（向右由 step03 镜像），表情、身体不动，匀速转到最后一帧的正侧面 90°；
    - up：`prompts/groups/up/视频.md`，人物不动、镜头匀速降到下巴正下方仰视，最后一帧到 90°；
    - down：`prompts/groups/down/视频.md`，镜头匀速升到头顶正上方俯视。
-3. 从 up、down 视频按 `angles.json` 的度数取帧写为 `first/up.png`、`first/down.png`，再分别以它们为首帧、用 left 的转头提示词生成 `left-up.mp4`、`left-down.mp4`，供 step06 的 agent 作斜向参考。
+3. 从 up、down 视频按 `angles.json` 的度数取帧写为 `first/up.png`、`first/down.png`，再分别以它们为首帧、用 left 的转头提示词生成 `left-up.mp4`、`left-down.mp4`，供 step07 的 agent 作斜向参考。
 4. 模型、各视频的首帧、提示词与哈希写入 `videos.json`。
 
 生视频接口为 `video_base_url` / `video_api_key`，须单独填写，不使用生图接口，缺少时报错；模型为 `nine_axis_view_video_model`（默认 seedance-2.5）。需要 ffmpeg。已完成的 step01 保留；来源角色图重做后如需新视频，删除 `nine-axis/step01_video` 及之后的步骤再运行。
