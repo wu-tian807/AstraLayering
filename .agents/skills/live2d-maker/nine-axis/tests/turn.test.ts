@@ -18,6 +18,7 @@ import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { readUpstream, startContinuation } from '../continuation.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
+import { defaultKnowledgeDirectory } from '../../shared/knowledge.ts';
 
 const rect = (w: number, h: number, x: number, y: number, rw: number, rh: number) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect x="${x}" y="${y}" width="${rw}" height="${rh}" fill="#000"/></svg>`;
@@ -247,8 +248,14 @@ test('脸部步骤提示词以度数写出关键形', () => {
     assert.ok(prompt.includes(`/task/nine-axis/step02_angles/${group}/face-${group}.json`));
     assert.ok(prompt.includes('/task/nine-axis/step02_angles/neutral'));
     assert.ok(prompt.includes(`/task/nine-axis/step01_video/${group}.png`));
+    const prior = group === 'left' ? 'completion' : `${group}/completion`;
+    assert.ok(prompt.includes(join(defaultKnowledgeDirectory, 'nine-axis/step02_angles/references', prior, 'model-face-priors.jpg')));
+    assert.ok(prompt.includes('Hiyori') && prompt.includes('圆润鹅蛋脸') && prompt.includes('Haruto') && prompt.includes('宽圆脸'));
+    assert.match(prompt, /!\[.*?\]\(\/.*?\.jpg\)/);
   }
   assert.ok(xy.includes('/task/nine-axis/step02_angles/deformers.json'));
+  for (const corner of ['left-up', 'left-down']) assert.ok(xy.includes(join(defaultKnowledgeDirectory,
+    'nine-axis/step03_angle-xy/references/completion', corner, 'model-face-priors.jpg')));
   for (const prompt of [x, up, down, xy, jaw]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
 });
 
