@@ -5,8 +5,8 @@
       "prompts/runtime.md"
     ],
     "tools": [
-      "locate_pixel_differences",
-      "krita"
+      "krita",
+      "imagegen"
     ]
   }
 }

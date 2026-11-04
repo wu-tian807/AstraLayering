@@ -39,7 +39,7 @@ async function deliver(request: AgentRequest, thread = request.threadId ?? 'draw
   } else {
     await request.onEvent({ type: 'thread.started', thread_id: thread });
     const id = request.prompt.startsWith('在 clothing-raster-layering/step01/') ? 'step02' : 'step01';
-    assert.deepEqual(request.tools?.map(tool => tool.name), id === 'step02' ? ['locate_pixel_differences', 'krita'] : ['edit_groups', 'edit_occlusion', 'krita']);
+    assert.deepEqual(request.tools?.map(tool => tool.name), id === 'step02' ? ['krita'] : ['edit_groups', 'edit_occlusion', 'krita']);
     const step = steps.find(step => step.id === id)!;
     for (const file of step.requiredFiles) await writeFile(join(request.directory, id, 'review' in step && step.review && file === 'report.md' ? 'report.md.tmp' : file), `${id} ${file}`);
   }

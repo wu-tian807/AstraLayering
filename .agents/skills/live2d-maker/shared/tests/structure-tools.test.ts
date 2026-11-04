@@ -42,7 +42,7 @@ test('两套 step01 绘制与两轮返修提供编辑工具；reviewer 和后续
     for (const phase of ['review-01', 'review-02']) {
       assert.deepEqual(section.tools!(output, f.input, step, phase).map(tool => tool.name), ['annotate_review_regions']);
     }
-    assert.deepEqual(section.tools!(output, f.input, section.steps[1], 'draw').map(tool => tool.name), ['locate_pixel_differences']);
+    assert.deepEqual(section.tools!(output, f.input, section.steps[1], 'draw'), []);
     if (section.id === character.id) assert.deepEqual(section.tools!(output, f.input, section.steps[2], 'draw'), []);
     const draw = await section.buildPrompt(step, f.input, output, []);
     const repair = await buildReviewPrompt(step, { kind: 'repair', filename: 'repair-01.md', index: 1 });

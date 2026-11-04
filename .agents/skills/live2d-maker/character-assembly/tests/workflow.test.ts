@@ -71,13 +71,12 @@ test('dry-run 展开组装专用提示词与绝对路径，不混入拆层和深
   // Agents are shown absolute task paths.
   for (const input of Object.values(f.inputs)) assert.ok(prompt.includes(JSON.stringify(input)));
   for (const file of steps[0].requiredFiles) assert.ok(prompt.includes(join(f.output, 'step01', file)));
-  assert.match(prompt, /局部修画/);
-  assert.match(prompt, /parts 填入要检查的衣物部件路径/);
-  assert.match(prompt, /已有部件的发色、材质、笔触、细发丝和描边差异保留/);
+  assert.match(prompt, /在衣片自己的图层上重画它的边缘/);
+  assert.match(prompt, /parts 填要检查的衣物或人体部件路径/);
+  assert.match(prompt, /不用选区或透明度遮罩硬裁衣片轮廓/);
   assert.match(prompt, /可关闭的透明度遮罩/);
-  assert.match(prompt, /不要随意拆分现有部件或新增绘画层/);
+  assert.match(prompt, /不拆分现有部件，不合并成平面图/);
   assert.ok(!prompt.includes('occlusion.json'));
-  assert.ok(!prompt.includes('三色控制图'));
   await assert.rejects(stat(f.output), { code: 'ENOENT' });
 });
 
