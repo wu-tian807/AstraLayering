@@ -4,7 +4,8 @@
       "prompts/01-人物与衣服组装.md"
     ],
     "tools": [
-      "krita"
+      "krita",
+      "imagegen"
     ]
   }
 }

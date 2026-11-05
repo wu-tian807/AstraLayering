@@ -4,7 +4,8 @@
       "prompts/02-边缘柔化与去锯齿.md"
     ],
     "tools": [
-      "krita"
+      "krita",
+      "imagegen"
     ]
   }
 }
