@@ -9,11 +9,36 @@ import { startContinuation, checkContinuation, buildContinuation } from '../cont
 import { mirrorDocument } from '../head.ts';
 import { editNineAxis } from '../../shared/nine-axis-edit.js';
 import { evaluatePoints } from '../../shared/nine-axis-model.js';
+import { checkAxisSource } from '../axis-groups.ts';
 const box = [0,0,10,10], rest = [[0,0],[10,0],[0,10],[10,10]];
 const part = (id:string):any=>({id,level:'face',group:'test',texture:'layers/a.png',textureBounds:box,bbox:box,cols:1,rows:1,keyforms:{'0':structuredClone(rest),'-30':structuredClone(rest),'30':structuredClone(rest)}});
 const fixture=():any=>({version:2,kind:'head-nine-axis',axis:5,canvas:[20,20],source:{document:'source.kra',sha256:'x'},levels:[{id:'face',includes:['face']}],parameters:[{id:'ParamAngleX',keys:[-30,0,30]},{id:'ParamAngleY',keys:[0]}],deformers:[],parts:[part('a'),part('b'),part('neck')]});
 const signal=new AbortController().signal;
 const result=(r:any)=>JSON.parse(r.contentItems[0].text);
+test('independent pitch rejects changed shared clipping before saving; source completion also rejects clip and role changes', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'astra-pitch-source-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const neutral = join(root, 'neutral'); await mkdir(join(neutral, 'layers'), { recursive: true });
+  await writeFile(join(neutral, 'deformers.json'), JSON.stringify(fixture()));
+  await writeFile(join(neutral, 'layers/a.png'), 'original pixels');
+  for (const stage of ['up', 'down'] as const) {
+    const output = join(root, stage), tool = createContinuationEditTool(output, neutral, stage);
+    await tool.execute({}, signal);
+    const path = join(output, `face-${stage}.json`), before = await readFile(path);
+    await assert.rejects(tool.execute({ operations: [{ action: 'clip', id: 'a', by: ['b'] }] }, signal), /a：不能替换共享原图层的 clip/);
+    assert.deepEqual(await readFile(path), before, 'rejected clip must not replace the author');
+    const built = await buildContinuation(output, neutral, stage);
+    await checkAxisSource(neutral, built);
+    for (const [field, value] of [['clip', { by: ['b'] }], ['role', 'mask']] as const) {
+      const changed = { ...built, doc: structuredClone(built.doc) };
+      Object.assign(changed.doc.parts[0], { [field]: value });
+      await assert.rejects(checkAxisSource(neutral, changed), new RegExp('原图层的 ' + field));
+    }
+    await tool.execute({ operations: [{ action: 'create_warp', id: 'chosen', targets: ['a', 'b'] },
+      { action: 'transform', id: 'chosen', y: stage === 'up' ? 25 : -25, translate: [1, 2] }] }, signal);
+    await checkAxisSource(neutral, await buildContinuation(output, neutral, stage));
+  }
+});
 test('Y parent movement and local correction preserve X and fixed neck; newly defined warps inherit all keys',()=>{
   const upstream=fixture(), y=startContinuation(upstream,'hash','up');
   const doc=editNineAxis(y,[{action:'create_warp',id:'author-group',targets:['a','b']},{action:'create_warp',id:'local',parent:'author-group',targets:['a']},{action:'transform',id:'author-group',y:25,translate:[3,2]},{action:'transform',id:'local',y:25,translate:[1,0]}]);
@@ -62,12 +87,12 @@ test('continuation tool initializes and writes source atomically, rejects stale 
 
  test('down is independent of up key edits and protects the completed up pose and fixed neck',()=>{
   const x=fixture(),up=startContinuation(x,'x','up');
-  const madeUp=editNineAxis(up,[{action:'create_warp',id:'face-group',targets:['a','b']},{action:'transform',id:'face-group',y:25,translate:[2,-1]}]);
+  const madeUp=editNineAxis(up,[{action:'create_warp',id:'face-group',targets:['a','b']},{action:'transform',id:'face-group',y:25,translate:[2,-1]}]) as typeof up;
   checkContinuation(madeUp,x,'x','up');
   const down=startContinuation(madeUp,'up','down');
-  const madeDown=editNineAxis(down,[{action:'transform',id:'face-group',y:-25,translate:[-1,3]}]);
+  const madeDown=editNineAxis(down,[{action:'transform',id:'face-group',y:-25,translate:[-1,3]}]) as typeof down;
   checkContinuation(madeDown,madeUp,'up','down');
-  for(const p of madeDown.parts)assert.deepEqual([...evaluatePoints(madeDown,p,0,25)],[...evaluatePoints(madeUp,madeUp.parts.find(q=>q.id===p.id),0,25)]);
+  for(const p of madeDown.parts)assert.deepEqual([...evaluatePoints(madeDown,p,0,25)],[...evaluatePoints(madeUp,madeUp.parts.find(q=>q.id===p.id)!,0,25)]);
   assert.throws(()=>checkContinuation(editNineAxis(madeDown,[{action:'transform',id:'a',y:25,translate:[1,0]}]),madeUp,'up','down'),/不能改动已制作的轴/);
   assert.throws(()=>checkContinuation(editNineAxis(madeDown,[{action:'transform',id:'neck',y:-25,translate:[0,1]}]),madeUp,'up','down'),/脖子不能跟随转头移动/);
 });

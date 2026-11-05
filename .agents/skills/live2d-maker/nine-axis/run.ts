@@ -151,7 +151,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     const upstream = group ? neutral : stepId === 'step03_angle-xy' ? axes : join(directory, 'step03_angle-xy');
     if (stepId === 'step04_jaw-line') return [createKritaTool(await krita(), task), bitmap, view, createContinuationEditTool(output, upstream, 'jaw', scale, task)];
     const continuation = stage ? { stage, upstreamDirectory: neutral } : group ? undefined : { stage: 'xy' as const, upstreamDirectory: upstream };
-    const edit = group === 'left' ? createHeadEditTool(output, head, box, scale, task) : createContinuationEditTool(output, upstream, stage ?? 'xy', scale, task);
+    const edit = group === 'left' ? createHeadEditTool(output, head, box, scale, task, neutral) : createContinuationEditTool(output, upstream, stage ?? 'xy', scale, task);
     const svg = createSvgPreviewTool({ directory: output, reference: group ? join(videos, `${group}.png`) : join(output, 'left-up.png'), canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' });
     return [bitmap, view, edit, createNineAxisFitTool(output, head, box, scale, continuation, { taskRoot: task, referenceDirectory: videos }), group ? svg : { ...svg, async execute(value, signal, context) {
       const args = value as { mode?: string; reference?: string };

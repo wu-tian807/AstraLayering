@@ -8,6 +8,7 @@ import { nodes, type HeadNineAxis } from '../shared/nine-axis-model.js';
 import { stepTexture } from './head.ts';
 import { angleScale, type AngleScale } from './angles.ts';
 import { readUpstream, startContinuation, compileContinuation, authorFile, sha256, type AuthoredHead, type Stage } from './continuation.ts';
+import { checkAxisSource } from './axis-groups.ts';
 
 export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory))): FunctionTool {
   return { ...toolDefinition('edit_nine_axis'), async execute(value, signal) {
@@ -32,7 +33,9 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
       doc = editNineAxis(doc, operations) as AuthoredHead;
     }
     if (args.notes !== undefined) doc.notes = args.notes;
-    const built = await compileContinuation(directory, upstreamDirectory, doc, stage, scale); signal.throwIfAborted();
+    const built = await compileContinuation(directory, upstreamDirectory, doc, stage, scale);
+    if (stage === 'up' || stage === 'down') await checkAxisSource(upstreamDirectory, built);
+    signal.throwIfAborted();
     if (!text || args.operations || args.notes !== undefined) {
       const current = await readFile(path, 'utf8').catch(error => { if (error.code === 'ENOENT') return ''; throw error; });
       if (current !== text) throw Error('九轴数据在编辑期间变化，请重试');

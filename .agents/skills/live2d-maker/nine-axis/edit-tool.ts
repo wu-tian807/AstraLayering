@@ -9,11 +9,12 @@ import { nodes, lattice, type HeadNineAxis } from '../shared/nine-axis-model.js'
 import { compileHead, stepTexture, type HeadInput, type FaceLeft, type Part } from './head.ts';
 import { angleParameter, angleScale, type AngleScale } from './angles.ts';
 import type { Box } from './turn.ts';
+import { checkAxisSource } from './axis-groups.ts';
 
 const hash = (s: string) => createHash('sha256').update(s).digest('hex');
 // Artist-facing editing of the left/right step's actual authoring document.
 // Importing layers creates identity meshes, never a prescribed anatomical rig.
-export function createHeadEditTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory))): FunctionTool {
+export function createHeadEditTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory)), neutralDirectory?: string): FunctionTool {
   return { ...toolDefinition('edit_nine_axis'), async execute(value, signal) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('参数须为对象');
     const args = value as { revision?: string; axis?: number; importParts?: Part[]; operations?: any[]; notes?: string };
@@ -44,7 +45,8 @@ export function createHeadEditTool(directory: string, input: HeadInput, box: Box
     const edited: FaceLeft = { version: 2, axis: doc.axis, notes: args.notes ?? raw.notes, deformers: doc.deformers,
       parts: doc.parts.toReversed() as Part[] };
     const built = !edited.parts.length && !args.importParts && !args.operations
-      ? { doc } : await compileHead(directory, input, box, edited, scale, taskRoot);
+      ? { doc, textures: new Map<string, string>() } : await compileHead(directory, input, box, edited, scale, taskRoot);
+    if (neutralDirectory) await checkAxisSource(neutralDirectory, built);
     signal.throwIfAborted();
     if (args.operations || args.importParts || args.axis !== undefined || args.notes !== undefined) {
       // Validate and mirror in memory before replacing the author source.
