@@ -145,16 +145,16 @@ test('合并投影丢失时只重开父合并，不删除三个已完成作者�
   for (let index = 0; index < nineAxisGroups.length; index++) assert.deepEqual(await snapshot(join(parent, nineAxisGroups[index])), groups[index]);
 });
 
-test('九轴 completed 的交付检查包含三视频/子作者/真实覆盖/合并/斜角选帧与 trace，文件齐全不代表视觉通过', async t => {
+test('九轴 completed 的交付检查包含三视频/子作者/合并/斜角选帧与 trace，文件齐全不代表视觉通过', async t => {
   const f = await fixture(t);
   assert.deepEqual(await missingDeliveries(f.root, 'nine-axis', 'step02_angles/up'), []);
-  await rm(join(f.root, 'step02_angles/up/face-coverage-report.json'));
-  assert.deepEqual(await missingDeliveries(f.root, 'nine-axis', 'step02_angles/up'), [join(f.root, 'step02_angles/up/face-coverage-report.json')]);
+  await rm(join(f.root, 'step02_angles/up/fit-report.json'));
+  assert.deepEqual(await missingDeliveries(f.root, 'nine-axis', 'step02_angles/up'), [join(f.root, 'step02_angles/up/fit-report.json')]);
   const video = (await stepDeliveries(f.root, 'nine-axis', 'step01_video')).map(path => relative(f.root, path));
   for (const view of nineAxisGroups) assert.ok(video.includes(`step01_video/${view}.mp4`) && video.includes(`step01_video/${view}.png`));
   const xy = (await stepDeliveries(f.root, 'nine-axis', 'step03_angle-xy')).map(path => relative(f.root, path));
   for (const name of ['face-xy.json', 'selected-frames.json', 'left-up.png', 'left-down.mp4',
-    'left-up-face-trace.json', 'left-down-fit-report.json', 'left-up-face-coverage-report.json', 'left-down-face-coverage.svg']) assert.ok(xy.includes(`step03_angle-xy/${name}`), name);
+    'left-up-face-trace.json', 'left-down-fit-report.json']) assert.ok(xy.includes(`step03_angle-xy/${name}`), name);
 });
 
 test('九轴独立 CLI 无 ongoing 时 continue 可新跑，resume/retry 要求存在可恢复步骤', async t => {

@@ -1,4 +1,4 @@
-import { createHash, randomUUID } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -30,14 +30,12 @@ try {
   const view = new HeadNineAxisRenderer(document.querySelector('canvas'));
   view.renderer.setPixelRatio(1); view.renderer.setSize(${width}, ${height}, false);
   view.install(doc, images); const shown = shownParts(doc, level, { masks: new Set(masks), hidden: new Set(hidden) });
-  const selection = only.length ? new Set([...shown].filter(id => only.includes(id))) : shown;
-  view.draw(frame, x, y, selection);
-  window.captureAlpha = () => { view.draw(frame, x, y, selection); return document.querySelector('canvas').toDataURL('image/png'); };
+  view.draw(frame, x, y, only.length ? new Set([...shown].filter(id => only.includes(id))) : shown);
   await new Promise(requestAnimationFrame); window.rendered = 'ok';
 } catch (error) { window.rendered = String(error?.message ?? error); }
 </script></body></html>`;
 
-type Args = { x?: unknown; y?: unknown; level?: unknown; crop?: unknown; scale?: unknown; masks?: unknown; grid?: unknown; only?: unknown; hidden?: unknown; reference?: unknown; coverage?: unknown };
+type Args = { x?: unknown; y?: unknown; level?: unknown; crop?: unknown; scale?: unknown; masks?: unknown; grid?: unknown; only?: unknown; hidden?: unknown; reference?: unknown };
 type Parameter = { id: string; min?: number; max?: number; keys?: number[]; status?: string };
 
 export function createNineAxisViewTool(directory: string, observationDirectory: string, build: () => Promise<Built>): FunctionTool {
@@ -92,21 +90,6 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         return [...new Set(value.flatMap(id => [...descendants(doc, id)]))];
       };
       const only = selection(args.only, 'only'), hidden = selection(args.hidden, 'hidden');
-      let coverageMask: { path: string; bytes: Buffer; pixels: Buffer; bounds: number[] } | undefined;
-      if (args.coverage !== undefined) {
-        const r = args.coverage as { path?: unknown; bounds?: unknown };
-        if (!r || typeof r !== 'object' || Array.isArray(r) || typeof r.path !== 'string' || !r.path.trim()) throw Error('coverage 须含透明 PNG/SVG 的 path');
-        if (!only.length) throw Error('coverage 需要 only 明确指定实际皮肤部件');
-        const bounds = r.bounds ?? [v.x, v.y, v.width, v.height];
-        if (!Array.isArray(bounds) || bounds.length !== 4 || bounds.some((q, i) => q !== crop[i])) throw Error('coverage.bounds 必须与 crop 相同，检查完整蒙版，不能裁掉缺口');
-        const path = fromTaskPath(root, r.path), bytes = await readFile(path), meta = await sharp(bytes).metadata();
-        if (!meta.hasAlpha) throw Error('coverage 须使用透明背景，皮肤区域用不透明填色');
-        const pixels = await sharp(bytes).resize(width, height, { fit: 'fill' }).toColourspace('srgb').ensureAlpha().raw().toBuffer();
-        let required = 0;
-        for (let i = 0; i < width * height; i++) if (pixels[i * 4 + 3] >= 128) required++;
-        if (!required || required === width * height) throw Error('coverage 必须包含非空的可见皮肤区域和透明背景');
-        coverageMask = { path, bytes, pixels, bounds };
-      }
       const sx = (v: number) => ((v - x0) * scale).toFixed(1), sy = (v: number) => ((v - y0) * scale).toFixed(1);
       const overlay = grids.length ? `<svg width="${width}" height="${height}">${grids.map(({ id, cols, rows, points }) => {
         const curve = curves.get(id)!, c = cols * 5 + 1, at = (i: number) => `${sx(curve[i * 2])},${sy(curve[i * 2 + 1])}`;
@@ -120,7 +103,6 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
       const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
       let data: Buffer;
       let comparison: Buffer | undefined;
-      let alpha: Buffer | undefined, coverageImage: Buffer | undefined, coverageReport: Record<string, unknown> | undefined;
       try {
         const tab = await browser.newPage({ viewport: { width, height } });
         await tab.route(origin + '/**', async route => {
@@ -138,33 +120,6 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         const rendered = await tab.evaluate(() => (globalThis as { rendered?: string }).rendered);
         if (rendered !== 'ok') throw new Error('渲染失败：' + rendered);
         data = await tab.locator('#view').screenshot({ type: 'png' });
-        if (coverageMask) {
-          const url = await tab.evaluate(() => (globalThis as unknown as { captureAlpha(): string }).captureAlpha());
-          alpha = Buffer.from(url.slice(url.indexOf(',') + 1), 'base64');
-          const pixels = await sharp(alpha).ensureAlpha().raw().toBuffer(), overlay = Buffer.alloc(width * height * 4);
-          let requiredPixels = 0, uncoveredPixels = 0, minX = width, minY = height, maxX = -1, maxY = -1;
-          for (let i = 0; i < width * height; i++) {
-            if (coverageMask.pixels[i * 4 + 3] < 128) continue;
-            requiredPixels++;
-            const missing = pixels[i * 4 + 3] < 250;
-            overlay[i * 4] = missing ? 255 : 32; overlay[i * 4 + 1] = missing ? 48 : 220;
-            overlay[i * 4 + 2] = 64; overlay[i * 4 + 3] = missing ? 220 : 65;
-            if (missing) { uncoveredPixels++; const px = i % width, py = Math.floor(i / width); minX = Math.min(minX, px); maxX = Math.max(maxX, px); minY = Math.min(minY, py); maxY = Math.max(maxY, py); }
-          }
-          const hash = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex');
-          coverageReport = { satisfied: uncoveredPixels === 0, requiredPixels, uncoveredPixels,
-            uncoveredAreaCanvasPixels: uncoveredPixels / (scale * scale),
-            uncoveredBounds: uncoveredPixels ? [x0 + minX / scale, y0 + minY / scale, (maxX - minX + 1) / scale, (maxY - minY + 1) / scale] : null,
-            maskSha256: hash(coverageMask.bytes), alphaSha256: hash(alpha),
-            builtDocumentSha256: hash(Buffer.from(JSON.stringify(doc, null, 2) + '\n')),
-            maskAlphaThreshold: 128, faceAlphaThreshold: 250, bounds: coverageMask.bounds, only,
-            meaning: 'Actual rendered skin alpha contains the supplied visible-skin mask; mask accuracy still requires reference review.' };
-          // Reference and checker pixels never contribute to the alpha test.
-          const highlight = await sharp(overlay, { raw: { width, height, channels: 4 } }).png().toBuffer();
-          let backdrop = data;
-          if (reference && reference.bounds.every((q, i) => q === crop[i])) backdrop = await sharp(reference.bytes).resize(width, height, { fit: 'fill' }).png().toBuffer();
-          coverageImage = await sharp(backdrop).composite([{ input: highlight }]).png().toBuffer();
-        }
         if (reference) {
           // Three full-frame views in the same canvas coordinates. No fitting,
           // recentering or feature-based registration is performed here.
@@ -192,15 +147,10 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
       await writeFile(savedPath, data);
       const comparisonPath = comparison ? join(destination, `${randomUUID()}-comparison.png`) : undefined;
       if (comparisonPath) await writeFile(comparisonPath, comparison!);
-      const alphaPath = alpha ? join(destination, `${randomUUID()}-alpha.png`) : undefined;
-      const coveragePath = coverageImage ? join(destination, `${randomUUID()}-coverage.png`) : undefined;
-      if (alphaPath) await writeFile(alphaPath, alpha!);
-      if (coveragePath) await writeFile(coveragePath, coverageImage!);
       return { success: true, contentItems: [
-        { type: 'inputText', text: JSON.stringify({ x, y, level: ids.includes(level) ? level : ids[0], crop, scale, width, height, savedPath: await toAgentPath(root, savedPath), ...(grids.length ? { grid: grids } : {}), ...(reference && comparisonPath ? { comparison: { savedPath: await toAgentPath(root, comparisonPath), reference: await toAgentPath(root, reference.path), bounds: reference.bounds, registration: 'none; same canvas coordinates', axis: (doc as { axis?: number }).axis } } : {}), ...(coverageReport ? { coverage: { ...coverageReport, mask: await toAgentPath(root, coverageMask!.path), savedPath: await toAgentPath(root, coveragePath!), alphaSavedPath: await toAgentPath(root, alphaPath!) } } : {}) }) },
+        { type: 'inputText', text: JSON.stringify({ x, y, level: ids.includes(level) ? level : ids[0], crop, scale, width, height, savedPath: await toAgentPath(root, savedPath), ...(grids.length ? { grid: grids } : {}), ...(reference && comparisonPath ? { comparison: { savedPath: await toAgentPath(root, comparisonPath), reference: await toAgentPath(root, reference.path), bounds: reference.bounds, registration: 'none; same canvas coordinates', axis: (doc as { axis?: number }).axis } } : {}) }) },
         { type: 'inputImage', imageUrl: `data:image/png;base64,${data.toString('base64')}` },
         ...(comparison ? [{ type: 'inputImage' as const, imageUrl: `data:image/png;base64,${comparison.toString('base64')}` }] : []),
-        ...(coverageImage ? [{ type: 'inputImage' as const, imageUrl: `data:image/png;base64,${coverageImage.toString('base64')}` }] : []),
       ] };
     },
   };

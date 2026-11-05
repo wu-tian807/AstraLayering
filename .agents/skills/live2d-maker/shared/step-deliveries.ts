@@ -23,10 +23,8 @@ const references = (root: string, name: string) => join(root, 'references', name
 const itemGroup = (item: string) => item.split('/children/').join('/');
 const present = (path: string) => lstat(path).then(info => info.isFile(), () => false);
 
-// These are recoverable file contracts, not visual acceptance. A coverage
-// report can only check the mask it was given; the user still reviews the art.
-const coverageFiles = ['face-coverage.svg', 'face-coverage-report.json', 'face-coverage-check.png', 'face-alpha-check.png'];
-const axisFiles = (group: string) => [`face-${group}.json`, 'deformers.json', 'source.json', 'face-trace.json', 'fit-report.json', ...coverageFiles];
+// These are recoverable file contracts, not visual acceptance; the user still reviews the art.
+const axisFiles = (group: string) => [`face-${group}.json`, 'deformers.json', 'source.json', 'face-trace.json', 'fit-report.json'];
 async function textureDeliveries(directory: string): Promise<string[]> {
   let document;
   try { document = JSON.parse(await readFile(join(directory, 'deformers.json'), 'utf8')); }
@@ -55,7 +53,7 @@ async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
   if (step === nineAxisSteps[2] && !group) return [
     ...['face-xy.json', 'linear.json', 'deformers.json', 'videos.json', 'selected-frames.json',
       ...['left-up', 'left-down'].flatMap(corner => [`${corner}.mp4`, `${corner}.png`, `frames/${corner}.png`,
-        `${corner}-face-trace.json`, `${corner}-fit-report.json`, ...coverageFiles.map(file => `${corner}-${file}`)])]
+        `${corner}-face-trace.json`, `${corner}-fit-report.json`])]
       .map(file => join(directory, file)), ...await textureDeliveries(directory),
   ];
   if (step === nineAxisSteps[3] && !group) return [

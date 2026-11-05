@@ -41,15 +41,6 @@
         "bounds": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}}
       }
     },
-    "coverage": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["path"],
-      "properties": {
-        "path": {"type": "string"},
-        "bounds": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}}
-      }
-    },
     "grid": {
       "type": "array",
       "items": {

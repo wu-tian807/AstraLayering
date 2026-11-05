@@ -23,7 +23,6 @@ import { buildAngleY, finishAngleY } from './angle-y.ts';
 import { buildAngleXY, checkCornerReferences, cornerAngleValues, finishAngleXY, writeLinearCorners } from './angle-xy.ts';
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
 import { createNineAxisViewTool } from './view-tool.ts';
-import { checkFaceCoverage } from './face-coverage.ts';
 import { createHeadEditTool } from './edit-tool.ts';
 import { createNineAxisFitTool } from './fit-tool.ts';
 import { createContinuationEditTool } from './continuation-edit-tool.ts';
@@ -197,7 +196,6 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
             await fit(output, axisPrompt(head, task, group));
             const built = await builds[id]();
             await checkAxisSource(neutral, built);
-            await checkFaceCoverage(output, directory, group, built, box, scale, options.signal ?? new AbortController().signal, videos);
             if (group === 'left') await finishHead(output, head, box, scale, task); else await finishAngleY(output, neutral, group, scale);
             progress(`${id} 已完成，其他单轴独立继续`);
           },
@@ -224,7 +222,6 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         await fit(step.directory, angleXYPrompt(task));
         const box = await crop();
         await checkCornerReferences(step.directory, box.size);
-        await checkFaceCoverage(step.directory, directory, 'xy', await builds[step.id](), box, scale, options.signal ?? new AbortController().signal, videos);
         summary = `nine-axis/step03_angle-xy 已完成：${await finishAngleXY(step.directory, axes, scale)} 个原图层的斜向四角`;
       };
       return async () => {

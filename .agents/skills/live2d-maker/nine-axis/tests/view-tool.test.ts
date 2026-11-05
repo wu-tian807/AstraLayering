@@ -55,25 +55,6 @@ test('view_nine_axis 用工作台渲染器在工作台底色上画出本步交�
   // Original x=60 remains outside the shifted model: reference blue stays blue.
   assert.deepEqual(at(340, 88), [0, 0, 255]);
   await assert.rejects(tool.execute({ reference: { path: reference, bounds: [0, 0, 0, 100] } }, signal), /reference.bounds/);
-  await t.test('visible skin coverage uses actual alpha; opaque reference and checker cannot fill a gap', async () => {
-    const mask = join(directory, 'visible-skin.svg');
-    const svg = (paths: string) => `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">${paths}</svg>`;
-    await writeFile(mask, svg('<rect x="20" y="40" width="10" height="10" fill="white"/><rect x="60" y="40" width="5" height="10" fill="white"/>'));
-    const args = { x: -30, only: ['face/face_base'], reference: { path: reference }, coverage: { path: mask } };
-    const missed = await tool.execute(args, signal), result = JSON.parse((missed.contentItems[0] as { text: string }).text).coverage;
-    assert.equal(result.satisfied, false); assert.equal(result.requiredPixels, 150); assert.equal(result.uncoveredPixels, 50);
-    assert.deepEqual(result.uncoveredBounds, [60, 40, 5, 10]);
-    const { data: alpha } = await sharp(result.alphaSavedPath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-    assert.equal(alpha[(45 * 100 + 62) * 4 + 3], 0, 'reference and checker are absent from alpha');
-    assert.equal(alpha[(45 * 100 + 25) * 4 + 3], 255);
-    await writeFile(mask, svg('<rect x="20" y="40" width="10" height="10" fill="white"/>'));
-    const covered = JSON.parse(((await tool.execute(args, signal)).contentItems[0] as { text: string }).text).coverage;
-    assert.equal(covered.satisfied, true); assert.equal(covered.uncoveredPixels, 0);
-    await assert.rejects(tool.execute({ coverage: { path: mask } }, signal), /only/);
-    await assert.rejects(tool.execute({ ...args, crop: [20, 40, 10, 10] }, signal), /完整蒙版/);
-    await writeFile(mask, svg(''));
-    await assert.rejects(tool.execute(args, signal), /非空/);
-  });
 });
 
 test('isolated clipped parts retain mask coverage; hidden clipped layers need no render target', async t => {

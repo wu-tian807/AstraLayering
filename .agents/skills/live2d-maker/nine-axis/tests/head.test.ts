@@ -24,7 +24,6 @@ export async function writeFaceLeft(directory: string) {
     part('face/ear_right', [50, 70, 60, 90], (x, y) => [x + 14, y]), part('face/ear_left', [140, 70, 150, 90], (x, y) => [x - 6, y])];
   await writeFile(join(directory, 'face-left.json'), JSON.stringify({ version: 2, deformers: [], axis: 100, notes: '测试', parts }));
   const { box } = await readFile(join(directory, '../step01_video/crop.json'), 'utf8').then(JSON.parse).catch(() => ({ box: { x: 0, y: 0, size: 200 } }));
-  await writeFile(join(directory, 'face-coverage.svg'), `<svg xmlns="http://www.w3.org/2000/svg" width="${box.size}" height="${box.size}" viewBox="0 0 ${box.size} ${box.size}"><rect x="${75 - box.x}" y="${75 - box.y}" width="5" height="5" fill="white"/></svg>`);
 }
 
 test('左右配对只换整词 left/right', () => {

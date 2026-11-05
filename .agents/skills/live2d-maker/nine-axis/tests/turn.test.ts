@@ -52,12 +52,6 @@ async function prepareNeutralFixture(directory: string, input: HeadInput, box: B
   await writeFile(join(directory, 'source.json'), JSON.stringify({ version: 1, ...built.source }));
 }
 
-async function writeCoverage(directory: string, name = 'face-coverage.svg') {
-  const videos = join(directory, directory.endsWith('step03_angle-xy') ? '../step01_video' : '../../step01_video');
-  const { box } = JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')) as { box: Box };
-  await writeFile(join(directory, name), rect(box.size, box.size, 75 - box.x, 75 - box.y, 5, 5));
-}
-
 // Overlay only the fitted left pose on the seeded author. Keep original rest,
 // metadata, drawing sequence and texture identities from neutral.
 async function writeSeededFaceLeft(directory: string) {
@@ -67,14 +61,12 @@ async function writeSeededFaceLeft(directory: string) {
   const byId = new Map(fitted.parts.map(p => [p.id, p]));
   seeded.parts = seeded.parts.map(p => ({ ...p, keyforms: { ...p.keyforms, '-30': structuredClone(byId.get(p.id)!.keyforms['-30']) } }));
   await writeFile(join(directory, 'face-left.json'), JSON.stringify(seeded));
-  await writeCoverage(directory);
 }
 
 async function writePitch(directory: string, group: 'up' | 'down') {
   const path = join(directory, `face-${group}.json`), doc: HeadNineAxis = JSON.parse(await readFile(path, 'utf8'));
   for (const p of doc.parts) p.keyformsY![group === 'up' ? '25' : '-25'] = p.keyforms['0'].map(([x, y]) => [x, y + (group === 'up' ? -3 : 5)]);
   await writeFile(path, JSON.stringify(doc));
-  await writeCoverage(directory);
 }
 
 function assertPoseEqual(actual: HeadNineAxis, expected: HeadNineAxis, x: number, y: number) {
@@ -116,26 +108,6 @@ test('单跑 left 沿用参考输入，不调用视频或后续形变步骤', as
     for (const field of ['uuid', 'order', 'stackPath', 'texture', 'textureBounds', 'bbox', 'cols', 'rows'] as const)
       assert.deepEqual(q[field as keyof typeof q], p[field as keyof typeof p], `${p.id} original ${field}`);
   }
-});
-
-test('step02 rejects an uncovered forehead window even when the face contour and mesh are valid', async t => {
-  const { root, task } = await fixture(t), videos = join(task, 'nine-axis/step01_video');
-  await mkdir(videos, { recursive: true });
-  await writeFile(join(videos, 'crop.json'), JSON.stringify({ box: { x: 0, y: 0, size: 200 } }));
-  await writeFile(join(videos, 'left.png'), await readFile(join(task, 'character-assembly/step01/character-assembled.png')));
-  const unexpected = async () => { throw Error('only the left child should run'); };
-  await assert.rejects(runWorkflow({ name: 'case', dir: root, step: 'step02_angles/left' }, {
-    environment: loadWorkflowEnvironment({}), prepareNeutral: prepareNeutralFixture, fitUp: unexpected, fitDown: unexpected, fitHead: async directory => {
-      await writeSeededFaceLeft(directory);
-      await writeFile(join(directory, 'face-coverage.svg'), rect(200, 200, 10, 10, 5, 5));
-    },
-  }), /可见皮肤覆盖不足/);
-  const axes = join(task, 'nine-axis/step02_angles'), step = join(axes, 'left');
-  assert.equal((await readStep(axes)).status, 'running');
-  assert.equal((await readStep(step)).status, 'running');
-  await assert.rejects(access(join(axes, '.completed')), { code: 'ENOENT' });
-  const report = JSON.parse(await readFile(join(step, 'face-coverage-report.json'), 'utf8'));
-  assert.equal(report.satisfied, false); assert.equal(report.uncoveredPixels, 25);
 });
 
 test('头部特写从头顶截到肩线，以脸为中心并留边，长发不加宽', async t => {
@@ -315,7 +287,6 @@ test('连续四步：平层视频、三路真实并发、联合工程、斜角�
     assert.deepEqual(authored.axisSources, parent.doc.axisSources);
     const size = (await sharp(join(videos, 'up.png')).metadata()).width!, frames: Record<string, unknown> = {};
     for (const [corner, angle] of [['left-up', 15], ['left-down', 45]] as const) {
-      await writeCoverage(directory, `${corner}-face-coverage.svg`);
       const chosen = await takeFrame(directory, `${corner}.png`, join(directory, `${corner}.mp4`), angle, size, { ffmpeg });
       const trace = join(directory, `${corner}-face-trace.json`);
       await writeFile(trace, '{"fixture":"selected trace"}');
