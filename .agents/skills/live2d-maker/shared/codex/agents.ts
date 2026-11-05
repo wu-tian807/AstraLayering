@@ -5,7 +5,6 @@ import type { CodexOptions } from '@openai/codex-sdk';
 import { join } from 'node:path';
 import { AgentLog } from './agent-log.ts';
 import { AgentCallError, AgentRuntime, retryDelays, interruptedTaskPrompt, recoverableAgentError, retryableAgentError, type AgentRetry, type RecoverableAgentError } from './agent-runtime.ts';
-import { blockedImagesPrompt, readBlockedImages, type BlockedImages } from './blocked-images.ts';
 import { createFunctionToolSession } from './tool-agent.ts';
 import type { FunctionTool } from './function-tools.ts';
 import { parseAgentModel, type AgentStep, type AgentModel } from '../agents/models.ts';
@@ -65,7 +64,6 @@ export type AgentOptions = CodexOptions & {
 
 // Known errors fixed by a new session, only when there is a session to replace; see replacement for how often.
 const sessionReplacements: Partial<Record<RecoverableAgentError, { reason: string; progress: string }>> = {
-  modelRefusal: { reason: '模型安全过滤拒绝了本会话', progress: '模型安全过滤拒绝了本会话（常为误判）' },
   sessionProtocol: { reason: 'CLI 活动回合无法安全恢复', progress: 'CLI 活动回合恢复失败' },
   unavailableSession: { reason: '原 thread/session 不可用', progress: '原会话不可用' },
   contextWindow: { reason: '上下文超出模型窗口', progress: '上下文超出模型窗口' },
@@ -104,6 +102,10 @@ export class CodexAgents {
     return async (error: unknown, oldId: string | undefined): Promise<boolean> => {
       if (error instanceof AgentCallError) progress += error.progress;
       const kind = recoverableAgentError(error), replacement = kind && sessionReplacements[kind];
+      if (kind === 'blockedImages' || kind === 'modelRefusal') {
+        this.options.progress?.(`[${task.name}] 模型内容检查拒绝本回合，保留原会话、记录和产物，停止自动恢复。`);
+        return false;
+      }
       if (!replacement || !oldId) return false;
       if (progress) sinceProgress.clear();
       if (sinceProgress.has(kind) || replaced >= retryDelays.retries) return false;
@@ -159,12 +161,11 @@ export class CodexAgents {
             imageModel = routeKey;
           }
           session ||= createFunctionToolSession(functionOptions(), id);
-          let blocked: BlockedImages | undefined, fresh = false;
+          let fresh = false;
           const replace = this.replacement(task);
           return await this.invoke(task, signal, async () => {
             try {
-              const result = await session!.run(blocked ? { ...task, prompt: blockedImagesPrompt(blocked) }
-                : interrupted ? { ...task, prompt: interruptedTaskPrompt() }
+              const result = await session!.run(interrupted ? { ...task, prompt: interruptedTaskPrompt() }
                 : fresh ? { ...task, prompt: task.recoveryPrompt || task.prompt } : task, signal);
               id = result.threadId || id;
               for (const image of result.images) savedImages.add(image.savedPath);
@@ -174,7 +175,7 @@ export class CodexAgents {
               if (retryableAgentError(error) && !signal.aborted) {
                 id = failure.threadId || id;
                 for (const path of failure.savedImagePaths) savedImages.add(path);
-                interrupted = !!failure.threadId; blocked = undefined;
+                interrupted = !!failure.threadId;
                 if (failure.sessionBroken) {
                   await session!.close();
                   session = createFunctionToolSession(functionOptions(), failure.threadId);
@@ -187,21 +188,7 @@ export class CodexAgents {
             if (await replace(error, failure.threadId || id)) {
               await session!.close();
               session = createFunctionToolSession(functionOptions(), undefined);
-              id = undefined; blocked = undefined; interrupted = false; fresh = true;
-              return true;
-            }
-            if (recoverableAgentError(error) === 'blockedImages') {
-              // 每次拦截都把本批图片换成文字，在新会话里引导 agent 换法读取；
-              // 没有图片可换时拦截与图片无关，按致命错误结束。
-              const replaced = failure.threadPath ? await readBlockedImages(failure.threadPath) : undefined;
-              if (!replaced) return false;
-              for (const path of failure.savedImagePaths) savedImages.add(path);
-              await session!.close();
-              const old = failure.threadId || id;
-              if (old) await this.options.onThreadReplacement?.(old, '图片被内容策略拦截，历史图片已换成文字');
-              this.options.progress?.(`[${task.name}] 图片被内容策略拦截；${replaced.origins.length} 张图片已换成文字，新会话继续。`);
-              session = createFunctionToolSession(functionOptions(), undefined, replaced.items);
-              id = undefined; blocked = replaced; interrupted = false;
+              id = undefined; interrupted = false; fresh = true;
               return true;
             }
             return false;

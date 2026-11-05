@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { AgentCallError, blockedAgentError, retryableAgentError } from '../codex/agent-runtime.ts';
+import { AgentRuntime, AgentCallError, blockedAgentError, retryableAgentError } from '../codex/agent-runtime.ts';
 import { blockedImagesPrompt, replaceBlockedImages } from '../codex/blocked-images.ts';
 
 const line = (type: string, payload: unknown) => JSON.stringify({ type, payload });
@@ -14,6 +14,19 @@ test('内容策略拦截不按临时错误重试；包在断流里也能识别',
   assert.equal(retryableAgentError(error), false);
   assert.ok(blockedAgentError(new Error('wrapped', { cause: new AgentCallError('content_policy_violation') })));
   assert.equal(blockedAgentError(new AgentCallError('stream disconnected before completion')), false);
+});
+
+test('内容策略和模型拒绝在调用恢复回调之前终止，不等待、不新开尝试', async () => {
+  for (const error of [new AgentCallError('content_policy_violation', 'other'),
+    new AgentCallError('Model refused request', { refusal: {} })]) {
+    let attempts = 0, recoveries = 0;
+    const runtime = new AgentRuntime(1, async () => assert.fail('policy error must not wait'));
+    await assert.rejects(runtime.run(async () => { attempts++; throw error; }, {
+      recover: async () => { recoveries++; return true; },
+      onRetry: async () => assert.fail('policy error must not retry'),
+    }), caught => caught === error);
+    assert.equal(attempts, 1); assert.equal(recoveries, 0);
+  }
 });
 
 test('只换掉模型上次输出之后送入的图片；工具返回的图片标出工具与参数', () => {
@@ -30,7 +43,8 @@ test('只换掉模型上次输出之后送入的图片；工具返回的图片�
   const history = JSON.stringify(replaced.items);
   assert.ok(!history.includes('instructions') && !history.includes('environment_context'));
   assert.equal(history.match(/input_image/g)?.length, 1, '早先已被接受的图片保留');
-  assert.match(blockedImagesPrompt(replaced), /换一种方式读取[\s\S]*灰度[\s\S]*不要提交任何产物/);
+  assert.match(blockedImagesPrompt(replaced), /保留原文件[\s\S]*停止读取[\s\S]*不要提交任何产物/);
+  assert.doesNotMatch(blockedImagesPrompt(replaced), /换一种方式读取|转为灰度后再读/);
 });
 
 test('压缩后的历史以替换历史为准；本批没有图片时换掉历史里所有图片，完全无图则返回空', () => {
