@@ -1,9 +1,7 @@
 {
   "main": {
     "initial": [
-      "shared/references/nine-axis/完整脸底覆盖.md",
       "prompts/方向任务.md",
-      "prompts/制作流程.md",
       "prompts/补全先验.md"
     ],
     "tools": [

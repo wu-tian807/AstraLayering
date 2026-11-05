@@ -1,7 +1,6 @@
 {
   "main": {
     "initial": [
-      "shared/references/nine-axis/完整脸底覆盖.md",
       "prompts/脸部与双耳斜向.md",
       "references/completion/脸型补全先验.md"
     ],

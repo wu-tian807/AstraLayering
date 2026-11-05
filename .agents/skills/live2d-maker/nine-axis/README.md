@@ -25,9 +25,9 @@
 
 ## 公共配置与方向覆盖
 
-三个单轴只读取 [step02_angles/agent.json](../knowledge/nine-axis/step02_angles/agent.json)。共同制作规范与流程直接注入，`prompts/groups/left/方向任务.md`、`up/方向任务.md`、`down/方向任务.md` 覆盖 `prompts/方向任务.md`，完全复用 Part 的同名优先规则；缺少组文件时回退公共文件。工具列表仍从公共 agent.json 读取。每组独立保存作者、会话、workspace、观察图和报告。
+三个单轴只读取 [step02_angles/agent.json](../knowledge/nine-axis/step02_angles/agent.json)。`prompts/groups/left/方向任务.md`、`up/方向任务.md`、`down/方向任务.md` 各自是该方向的完整制作提示词，覆盖 `prompts/方向任务.md`，完全复用 Part 的同名优先规则；缺少组文件时回退公共文件。工具列表仍从公共 agent.json 读取。每组独立保存作者、会话、workspace、观察图和报告。
 
-全五方向使用 [完整脸底覆盖规范](../knowledge/shared/references/nine-axis/完整脸底覆盖.md)：原画完整 source → 整张 target 起稿与可见脸缘 → 主动扫描所有刘海皮肤窗口并独立标记 mask → 遮挡补全 → 自动拟合 → 实际脸底与覆盖检查 → 五官、连续帧 → 最后编辑后重检。视频决定可见轮廓、五官和笔锋，带图教程与分类脸型只补不可见结构。
+五个方向的提示词各自写全同一方法：原画完整 source → 整张 target 起稿与可见脸缘 → 主动扫描所有刘海皮肤窗口并独立标记 mask → 遮挡补全 → 自动拟合 → 实际脸底与覆盖检查 → 五官、连续帧 → 最后编辑后重检。视频决定可见轮廓、五官和笔锋，带图教程与分类脸型只补不可见结构。
 
 工具复用 `preview_svg` 看 source/target/mask 叠加，`fit_nine_axis` 从描线自动求 agent 选择的 Warp，`edit_nine_axis` 定义组级／父子 Warp 并批量或局部液化，`view_nine_axis` 查看实际贴图和 alpha。完整闭合脸型预测必须与可见分段同源；不能沿发间皮肤窗口闭成小块脸。Warp 分组、密度和父子关系由 agent 决定。
 
