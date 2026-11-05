@@ -4,7 +4,7 @@ import {join} from 'node:path';
 import type {AgentRequest, StepResult} from '../raster/agent.ts';
 import type {StepDefinition} from '../raster/steps.ts';
 
-export const isRasterReview = (request: AgentRequest) => request.prompt.startsWith('你负责对第一步交付');
+export const isRasterReview = (request: AgentRequest) => request.prompt.startsWith('你负责独立 review 第一步的交付');
 export async function deliverRasterStep(request: AgentRequest, step: StepDefinition, thread = 'fixture-thread', text = 'fixture'): Promise<StepResult> {
   if (isRasterReview(request)) {
     assert.equal(request.threadId, undefined);

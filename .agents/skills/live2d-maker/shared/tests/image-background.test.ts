@@ -191,7 +191,7 @@ test('second request failures preserve the first image and expose the provider e
   const server = createServer((_req, res) => {
     calls++;
     if (calls === 1) res.end(JSON.stringify({ data: [{ b64_json: first.toString('base64') }] }));
-    else res.writeHead(503).end('provider failed fixture-secret');
+    else res.writeHead(400).end('provider failed fixture-secret');
   });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => { server.closeAllConnections(); return new Promise<void>(done => server.close(() => done())); });
@@ -199,7 +199,7 @@ test('second request failures preserve the first image and expose the provider e
     google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
     google_image_api_key: 'fixture-secret', google_image_protocol: 'openai' }, root);
   await assert.rejects(imageGenerationTool(settings, 'part_simplify', root)!.execute(
-    { prompt: '透明 PNG', input_images: [] }, new AbortController().signal), /HTTP 503.*provider failed \[redacted\].*原始生图保留在/);
+    { prompt: '透明 PNG', input_images: [] }, new AbortController().signal), /HTTP 400.*provider failed \[redacted\].*原始生图保留在/);
   assert.equal(calls, 2);
   const [id] = await readdir(join(root, 'image-processing')); const directory = join(root, 'image-processing', id);
   assert.deepEqual(await readFile(join(directory, 'original.png')), first);

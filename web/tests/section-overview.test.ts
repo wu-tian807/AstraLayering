@@ -8,9 +8,10 @@ import { displayStatus, sectionSteps, shadowInspectionArtifacts, statusLabel, st
 const source = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 const renderer = source.slice(source.indexOf('function overviewCard('), source.indexOf('function graph('));
 const visibleStage = source.match(/^const visibleStage=.*$/m)![0];
+const lanes = source.match(/^const flowLanes = .*$/m)![0];
 const observed = source.slice(source.indexOf('function observedDisplayStatus('), source.indexOf('function rasterItems('));
 function render(statuses: string[], files: string[] = [], running = false, locked = false, archive?: { sections: Record<string, unknown> }, sections?: unknown[], kritaInUse?: number) {
-  return runInNewContext(visibleStage + '\n' + observed + renderer + '\nprojectPage();', {
+  return runInNewContext(lanes + '\n' + visibleStage + '\n' + observed + renderer + '\nprojectPage();', {
     stages: statuses.map((status, i) => ({ name: '管线 ' + i, id: 'section-' + i, status })),
     state: { name: 'case', stage: 0 }, data: { files, runnerAlive: running, lockHeld: locked, ...(sections ? { sections } : {}), kritaInUse, ...(archive ? { archived: true, run: archive } : {}) },
     stepArtifacts: {}, available: () => [], pageHeading: () => '', runNotice: () => '',

@@ -31,7 +31,7 @@ async function fixture(t: TestContext) {
   return { source, output: join(runsDirectory, 'test', 'clothing-raster-layering'), options: { name: 'test', krita: process.execPath }, deps: { environment: loadWorkflowEnvironment({}, directory), runsDirectory, preflight } };
 }
 async function deliver(request: AgentRequest, thread = request.threadId ?? 'drawing-1'): Promise<StepResult> {
-  if (request.prompt.startsWith('你负责对第一步交付')) {
+  if (request.prompt.startsWith('你负责独立 review 第一步的交付')) {
     assert.equal(request.threadId, undefined);
     assert.equal(request.tools?.[0].name, 'annotate_review_regions');
     await request.onEvent({ type: 'thread.started', thread_id: 'temporary-reviewer' });
@@ -53,7 +53,7 @@ test('independent run directory, parts path normalization, and external-only pro
   assert.equal(parseRunArguments(['--name', 'test', '--knowledge', 'knowledge']).name, 'test');
   assert.throws(() => parseRunArguments(['--name', 'test', '--provider-config', 'secret.json']), /Unknown option/);
   const prompt = await runWorkflow({ ...f.options, dryRun: true }, { ...f.deps, agent: async () => assert.fail('dry run must not invoke Codex') });
-  assert.ok(prompt.includes('本步骤配置的生图工具 imagegen'));
+  assert.ok(prompt.includes('生图工具 imagegen'));
   assert.ok(prompt.includes('step02/clothing-soft-edges.kra'));
   assert.ok(!prompt.includes('wearing-order.md') && !prompt.includes('character-dressup-base'));
   await assert.rejects(readdir(f.output), { code: 'ENOENT' });

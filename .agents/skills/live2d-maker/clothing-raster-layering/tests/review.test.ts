@@ -15,7 +15,7 @@ const completed: StepResult = { status: 'completed', summary: 'fixture completed
 const forbidden = async (): Promise<never> => assert.fail('unexpected model call');
 const preflight = async (executable: string) => ({ executable });
 async function absent(path: string) { await assert.rejects(readFile(path), { code: 'ENOENT' }); }
-const isReview = (request: AgentRequest) => request.prompt.startsWith('你负责对第一步交付');
+const isReview = (request: AgentRequest) => request.prompt.startsWith('你负责独立 review 第一步的交付');
 function reportName(request: AgentRequest): string {
   const name = request.prompt.match(/step01\/((?:review|repair)-\d{2}\.md\.tmp)/)?.[1];
   assert.ok(name, 'a single concrete output filename must be injected');

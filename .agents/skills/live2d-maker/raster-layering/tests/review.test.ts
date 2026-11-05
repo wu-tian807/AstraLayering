@@ -15,7 +15,7 @@ const completed: StepResult = { status: 'completed', summary: 'fixture completed
 const forbidden = async (): Promise<never> => assert.fail('unexpected model call');
 const preflight = async (executable: string) => ({ executable });
 async function absent(path: string) { await assert.rejects(readFile(path), { code: 'ENOENT' }); }
-const isReview = (request: AgentRequest) => request.prompt.startsWith('你负责对第一步交付');
+const isReview = (request: AgentRequest) => request.prompt.startsWith('你负责独立 review 第一步的交付');
 function reportName(request: AgentRequest): string {
   assert.deepEqual(request.tools?.map(tool => tool.name), isReview(request) ? ['annotate_review_regions', 'krita'] : ['edit_groups', 'edit_occlusion', 'krita']);
   const name = request.prompt.match(/step01\/((?:review|repair)-\d{2}\.md\.tmp)/)?.[1];
