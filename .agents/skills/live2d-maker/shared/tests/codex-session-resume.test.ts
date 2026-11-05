@@ -16,14 +16,10 @@ async function fixture(t: TestContext, mode: string) {
   const root = await mkdtemp(join(tmpdir(), 'session-resume-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const capture = join(root, 'protocol.jsonl'), executable = join(root, 'server.mjs');
-  const rollout = join(root, 'rollout.jsonl');
-  await writeFile(rollout, JSON.stringify({ type: 'response_item', payload: { type: 'message', role: 'user',
-    content: [{ type: 'input_text', text: '<image path="/fixture/reference.png">' },
-      { type: 'input_image', image_url: 'data:image/png;base64,AA' }] } }) + '\n');
   await writeFile(executable, `#!${process.execPath}
 import {createInterface} from 'node:readline';
 import {appendFile, readFile} from 'node:fs/promises';
-const mode=${JSON.stringify(mode)}, capture=${JSON.stringify(capture)}, rollout=${JSON.stringify(rollout)};
+const mode=${JSON.stringify(mode)}, capture=${JSON.stringify(capture)};
 ${fakeDebug()}
 const emit=v=>console.log(JSON.stringify(v)), record=v=>appendFile(capture,JSON.stringify(v)+'\\n');
 let threadId='old-thread', active, ended=false, starts=0, resuming=false;
@@ -34,7 +30,7 @@ for await(const line of createInterface({input:process.stdin})) {
  if(m.method==='thread/resume'||m.method==='thread/start') {
   resuming=m.method==='thread/resume';threadId=resuming?'old-thread':'new-thread';
   active=resuming&&(mode==='active'||mode==='stuck')?'old-turn':undefined;
-  emit({id:m.id,result:{thread:{id:threadId,path:rollout,status:{type:active?'active':'idle'},turns:active?[{id:active,status:'inProgress'}]:[]}}});
+  emit({id:m.id,result:{thread:{id:threadId,status:{type:active?'active':'idle'},turns:active?[{id:active,status:'inProgress'}]:[]}}});
  }
  if(m.method==='thread/read')emit({id:m.id,result:{thread:{id:threadId,turns:active?[{id:active,status:'inProgress'}]:[]}}});
  if(m.method==='turn/interrupt') {
@@ -62,11 +58,6 @@ for await(const line of createInterface({input:process.stdin})) {
   }
   // A replaced session is a new process, so count this test's turns from the capture.
   const allStarts=((await readFile(capture,'utf8')).match(/"method":"turn.start"/g)||[]).length;
-  if(mode==='policy-block'||mode==='model-refusal') {
-   emit({id:m.id,result:{turn:{id:'our-turn',status:'inProgress'}}});
-   emit({method:'item/completed',params:{threadId,turnId:'our-turn',item:{type:'commandExecution',status:'completed'}}});
-   emit({method:'turn/completed',params:{threadId,turn:{id:'our-turn',status:'failed',error:{message:mode==='policy-block'?'Image processing blocked due to content policy violation.':'Model refused this request',codexErrorInfo:mode==='policy-block'?'other':'refusal'}}}});continue;
-  }
   if(mode==='overflow'||mode==='overflow-always'||(mode==='overflow-work'&&allStarts<=2)) {
    emit({id:m.id,result:{turn:{id:'our-turn',status:'inProgress'}}});
    if(mode!=='overflow')emit({method:'item/completed',params:{threadId,turnId:'our-turn',item:{type:'commandExecution',status:'completed'}}});
@@ -95,25 +86,6 @@ for await(const line of createInterface({input:process.stdin})) {
     config: { features: { goals: true } }, logDirectory: join(root, 'agents') };
   return { root, options, async messages() { return (await readFile(capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line)); } };
 }
-
-for (const mode of ['policy-block', 'model-refusal']) test('content refusal stops without replacing the thread or retrying (' + mode + ')', { timeout: 10_000 }, async t => {
-  const f = await fixture(t, mode), replacements: string[] = [];
-  const artifact = join(f.root, 'keep.kra'); await writeFile(artifact, 'existing author bytes');
-  const agents = new CodexAgents({ ...f.options, onThreadReplacement: async id => { replacements.push(id); },
-    runtime: new AgentRuntime(1, async () => assert.fail('content refusal must not wait and retry')) });
-  const session = agents.createSession('old-thread');
-  try {
-    await assert.rejects(session.run({ name: mode, prompt: 'original task', outputSchema: schema }), error => {
-      assert.ok(error instanceof AgentCallError); assert.equal(error.threadId, 'old-thread');
-      assert.match(error.message, mode === 'policy-block' ? /content policy/ : /refused/); return true;
-    });
-    const messages = await f.messages();
-    assert.equal(messages.filter(m => m.method === 'turn/start').length, 1);
-    assert.equal(messages.filter(m => m.method === 'thread/start').length, 0);
-    assert.deepEqual(replacements, []);
-    assert.equal(await readFile(artifact, 'utf8'), 'existing author bytes');
-  } finally { await session.close(); }
-});
 
 for (const mode of ['active', 'race']) test('resume: interrupts and waits for the old turn (' + mode + ')', { timeout: 10_000 }, async t => {
   const f = await fixture(t, mode), progress: string[] = [];

@@ -25,7 +25,7 @@ export class AgentCallError extends Error {
 }
 
 const imageBlocked = /image (?:processing |input )?blocked|blocked due to content policy|content[\s_-]*policy[\s_-]*violation/i;
-// 内容策略拦截图片属于终止错误；保留会话和记录，不自动重发或改图绕过。
+// 内容策略拦截图片：重连只会重发同一张图，要换掉历史里的图片再继续。
 export function blockedAgentError(error: unknown): boolean {
   const seen = new Set<unknown>();
   for (let current = error; current instanceof Error && !seen.has(current); current = current.cause) {
@@ -61,8 +61,9 @@ function imageCountLimit(message: string): boolean {
   return count && (!throughput || /\bper\s+request\b/i.test(message));
 }
 
-// Classify known failures for the caller. Policy categories are terminal;
-// unavailable sessions, protocol failures and size limits have session remedies.
+// Known errors with a remedy: the caller fixes the session and calls again at once, without waiting.
+// blockedImages swaps blocked images for text; the others start a new session from the recovery prompt.
+// A model refusal can come from anything in the history, its own reasoning included, so it gets a new session too.
 export type RecoverableAgentError = 'blockedImages' | 'modelRefusal' | 'unavailableSession' | 'contextWindow' | 'imageOverflow' | 'sessionProtocol';
 export function recoverableAgentError(error: unknown): RecoverableAgentError | undefined {
   if (blockedAgentError(error)) return 'blockedImages';
@@ -182,8 +183,6 @@ export class AgentRuntime {
           return await operation(attempt);
         } catch (caught) {
           options.signal?.throwIfAborted();
-          const kind = recoverableAgentError(caught);
-          if (kind === 'blockedImages' || kind === 'modelRefusal') throw caught;
           if (await options.recover?.(caught)) { attempt--; continue; }
           options.signal?.throwIfAborted();
           if (!retryableAgentError(caught) || attempt > retryDelays.retries) throw caught;
