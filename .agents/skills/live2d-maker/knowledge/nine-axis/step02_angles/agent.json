@@ -2,6 +2,7 @@
   "main": {
     "initial": [
       "prompts/方向任务.md",
+      "shared/prompts/nine-axis-face-contour.md",
       "prompts/补全先验.md"
     ],
     "tools": [
