@@ -41,11 +41,8 @@ test('nine-axis steps use their own agent.json while sharing a model slot', asyn
 test('all named agents read capability from their role; main and repair share tools', async t => {
   const knowledge = await temporaryKnowledge(t);
   for (const step of Object.keys(stepModelSlots)) assert.equal(typeof agentImageGeneration(step as keyof typeof stepModelSlots), 'boolean');
-  for (const step of ['raster_step03', 'raster_step01_review', 'clothing_raster_step01_review', 'assembly'] as const) {
+  for (const step of ['raster_step02', 'raster_step03', 'raster_step01_review', 'clothing_raster_step02', 'clothing_raster_step01_review', 'assembly'] as const) {
     assert.equal(agentImageGeneration(step), false, step);
-  }
-  for (const step of ['raster_step02', 'clothing_raster_step02'] as const) {
-    assert.equal(agentImageGeneration(step), true, step);
   }
   for (const section of ['part-layering', 'clothing-part-layering', 'raster-layering', 'clothing-raster-layering']) {
     const step = stepKnowledge(section, section.endsWith('raster-layering') ? 'step01' : 'step09_outline');
@@ -67,10 +64,8 @@ test('all named agents read capability from their role; main and repair share to
   assert.equal(agentImageGeneration('raster_step01'), true);
   assert.equal(agentImageGeneration('raster_step01_repair'), true);
   assert.equal(agentImageGeneration('raster_step01_review'), false);
-  await setImages(knowledge, false);
-  assert.ok(!imageSteps().includes('raster_step02'), 'custom knowledge can disable a drawing step');
   await setImages(knowledge, true);
-  assert.ok(imageSteps().includes('raster_step02'));
+  assert.ok(imageSteps().includes('raster_step02'), 'custom knowledge can enable a formerly manual step');
   config.main.tools.push('missing-tool');
   await writeFile(path, JSON.stringify(config));
   assert.throws(() => checkKnowledge(knowledge), /未注册的工具/);
