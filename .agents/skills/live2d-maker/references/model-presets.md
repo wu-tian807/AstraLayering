@@ -89,7 +89,7 @@ OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/gener
 
 **步骤键有值时使用该值，留空时继承 `default_image_model`。** 方案 1 将全局默认设为 `codex-native`；方案 2 将其设为 `gpt-image-2.5-sunburst`，再覆盖特定步骤。下表的“继承默认”表示该步骤键留空。
 
-生图能力由各步骤 agent.json 的 tools 中是否声明 imagegen 决定，.env 只选择已授权步骤使用的模型与服务。默认 review、step02、人物 step03 和组装不声明生图，已有这些步骤的旧模型键不能开启工具。自定义 knowledge 增删 imagegen 后，下次启动按实际声明解析对应的生图模型（未填写则继承默认），无需改代码里的能力列表。
+生图能力由各步骤 agent.json 的 tools 中是否声明 imagegen 决定，.env 只选择已授权步骤使用的模型与服务。默认 review、人物 step03 和组装不声明生图，两套 step02 声明生图，已有这些步骤的旧模型键不能开启工具。自定义 knowledge 增删 imagegen 后，下次启动按实际声明解析对应的生图模型（未填写则继承默认），无需改代码里的能力列表。
 
 | 生图用途 | `.env` 配置键 | 方案 1 | 方案 2 |
 | --- | --- | --- | --- |

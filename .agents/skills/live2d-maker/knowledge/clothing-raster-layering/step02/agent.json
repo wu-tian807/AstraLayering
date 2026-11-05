@@ -4,7 +4,8 @@
       "prompts/02-边缘柔化.md"
     ],
     "tools": [
-      "krita"
+      "krita",
+      "imagegen"
     ]
   }
 }
