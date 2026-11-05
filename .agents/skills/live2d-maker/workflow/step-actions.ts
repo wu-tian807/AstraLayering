@@ -9,7 +9,7 @@ import { occlusionPath } from '../shared/part/occlusion-plan.ts';
 import { artifactPath, draftPath } from '../shared/part/artifact-facts.ts';
 import { partSteps, stepPattern } from '../shared/step-paths.js';
 import { sectionIds, type SectionId } from '../shared/paths.ts';
-import { nineAxisGroupSteps, nineAxisSteps } from '../shared/nine-axis.ts';
+import { nineAxisCornerSteps, nineAxisGroupSteps, nineAxisSteps } from '../shared/nine-axis.ts';
 import { acquireTaskLock, directoryFor, sectionId, type TaskOptions } from './state.ts';
 
 // Step recovery, for one step (CLI --section/--step) or for every step still
@@ -35,8 +35,11 @@ const partSections: readonly SectionId[] = ['part-layering', 'clothing-part-laye
 const safeSegment = (segment: string) => !!segment && segment !== '.' && segment !== '..' && !/[\\\0]/.test(segment);
 // Step ids are the step directories relative to the section (see part-steps.ts and step-section.ts).
 const itemSteps: readonly string[] = [partSteps.outline, partSteps.completion, partSteps.children];
-const anglesStep = nineAxisSteps[1];
-const axisChild = (step: string) => nineAxisGroupSteps.includes(step);
+// step02 left/up/down and step03 left-up/left-down are independent children;
+// their parent only owns the shared inputs and the combined result.
+const childSteps: Record<string, readonly string[]> = { [nineAxisSteps[1]]: nineAxisGroupSteps, [nineAxisSteps[2]]: nineAxisCornerSteps };
+const parentOf = (step: string) => Object.keys(childSteps).find(parent => childSteps[parent].includes(step));
+const axisChild = (step: string) => parentOf(step) !== undefined;
 export function validStepId(section: SectionId, id: string): boolean {
   if (typeof id !== 'string' || !id.split('/').every(safeSegment)) return false;
   if (section === 'nine-axis') return (nineAxisSteps as readonly string[]).includes(id) || axisChild(id);
@@ -95,14 +98,14 @@ export async function applyTaskAction(options: Pick<TaskOptions, 'name' | 'dir'>
     for (const section of options.section ? [sectionId(options.section)] : sectionIds) {
       const root = sectionRoot(directory, section);
       const steps = await listSteps(root, section);
-      const parentRunning = section === 'nine-axis' && steps.some(step => step.id === anglesStep && step.status === 'running');
+      const running = (id?: string) => section === 'nine-axis' && steps.some(step => step.id === id && step.status === 'running');
       const selected = steps.filter(step => step.status === 'running' || action === 'retry' && step.missing
-        || parentRunning && axisChild(step.id) && step.status !== 'completed');
-      const hasChild = section === 'nine-axis' && selected.some(step => axisChild(step.id));
+        || running(parentOf(step.id)) && step.status !== 'completed');
+      const hasChild = (parent: string) => section === 'nine-axis' && selected.some(step => parentOf(step.id) === parent);
       for (const step of selected) {
         // The parent contains neutral and completed siblings. Recover the
         // selected children independently; they reopen the merge on retry.
-        if (hasChild && step.id === anglesStep) continue;
+        if (hasChild(step.id)) continue;
         messages.push(`${section}/` + await actOnStep(root, section, step.id, action));
       }
     }
@@ -129,15 +132,16 @@ async function actOnStep(root: string, section: SectionId, step: string, action:
     if (!dropped) return `${step} 没有保存的会话，恢复等同继续：下次运行沿用产物。`;
     return `${step}：已清除会话${dropped.threadId ? ' ' + dropped.threadId : ''}，保留产物；下次运行在新会话中继续。`;
   }
-  if (section === 'nine-axis' && step === anglesStep) {
+  if (section === 'nine-axis' && childSteps[step]) {
     // A parent retry means unfinished children plus a fresh merge, not deletion
     // of the enclosing directory or every child's session/attempt history.
-    const children = (await listSteps(root, section)).filter(child => axisChild(child.id)
+    const children = (await listSteps(root, section)).filter(child => parentOf(child.id) === step
       && (child.status !== 'completed' || child.missing));
     const messages: string[] = [];
     for (const child of children) messages.push(await actOnStep(root, section, child.id, action));
-    await reopenAngles(root);
-    return [...messages, `${step}：保留 neutral 和已完成单轴，已清除联合投影；下次运行重新合并。`].join('\n');
+    await reopenParent(root, step);
+    return [...messages, step === nineAxisSteps[1] ? `${step}：保留 neutral 和已完成单轴，已清除联合投影；下次运行重新合并。`
+      : `${step}：保留斜向视频和已完成的角，已清除合并结果；下次运行重新合并。`].join('\n');
   }
   // retry: the step directory holds its session; some part products live outside it.
   const outputs: string[] = [];
@@ -151,18 +155,19 @@ async function actOnStep(root: string, section: SectionId, step: string, action:
   await rm(stepDirectory, { recursive: true, force: true });
   await rm(join(root, 'agents', 'steps', step), { recursive: true, force: true });
   const attempts = await clearAgentAttempts(root, stepDirectory);
-  if (section === 'nine-axis' && axisChild(step)) await reopenAngles(root);
+  if (section === 'nine-axis' && axisChild(step)) await reopenParent(root, parentOf(step)!);
   return `${step}：已删除步骤产物、会话${attempts ? `和 ${attempts} 次 agent 尝试记录` : ''}；下次运行重做该步骤。`;
 }
 
-async function reopenAngles(root: string): Promise<void> {
-  const parent = join(root, anglesStep);
+async function reopenParent(root: string, step: string): Promise<void> {
+  const parent = join(root, step);
   await mkdir(parent, { recursive: true });
   await rm(join(parent, '.completed'), { force: true });
   await writeFile(join(parent, '.running'), '', { flag: 'wx' }).catch(error => {
     if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
   });
-  for (const file of ['merged', 'layers', 'deformers.json', 'axis-sources.json', 'source.json']) {
+  const combined = step === nineAxisSteps[1] ? ['merged', 'layers', 'deformers.json', 'axis-sources.json', 'source.json'] : ['layers', 'deformers.json', 'face-xy.json', 'selected-frames.json'];
+  for (const file of combined) {
     await rm(join(parent, file), { recursive: true, force: true });
   }
 }

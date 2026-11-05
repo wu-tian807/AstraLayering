@@ -4,7 +4,7 @@ import { test, type TestContext } from 'node:test';
 import { access, copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import { createServer } from 'node:http';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, fileHash, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox, type Box } from '../turn.ts';
@@ -209,11 +209,12 @@ test('按帧序取出转到 30° 的帧（整段匀速转到 90°）', async t =
 
 test('脸部步骤提示词以度数写出关键形', () => {
   const head = { document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0];
-  const x = headPrompt(head, '/task'), up = angleYPrompt('/task', 'up'), down = angleYPrompt('/task', 'down'), xy = angleXYPrompt('/task'), jaw = jawLinePrompt(head, '/task');
+  const x = headPrompt(head, '/task'), up = angleYPrompt('/task', 'up'), down = angleYPrompt('/task', 'down'), xyUp = angleXYPrompt('/task', 'left-up'), xyDown = angleXYPrompt('/task', 'left-down'), jaw = jawLinePrompt(head, '/task');
   assert.match(x, /X\s*=\s*-30\s*[、,，]\s*Y\s*=\s*0/);
   assert.match(up, /X\s*=\s*0\s*[、,，]\s*Y\s*=\s*25/);
   assert.match(down, /X\s*=\s*0\s*[、,，]\s*Y\s*=\s*-25/);
-  assert.match(xy, /"-30,25"[\s\S]*"-30,-25"/);
+  assert.match(xyUp, /X\s*=\s*-30\s*[、,，]\s*Y\s*=\s*25/);
+  assert.match(xyDown, /X\s*=\s*-30\s*[、,，]\s*Y\s*=\s*-25/);
   assert.match(jaw, /"-30,25"/);
   assert.match(jaw, /"invert": true/);
   for (const [prompt, group] of [[x, 'left'], [up, 'up'], [down, 'down']] as const) {
@@ -225,10 +226,13 @@ test('脸部步骤提示词以度数写出关键形', () => {
     assert.ok(prompt.includes('Hiyori') && prompt.includes('圆润鹅蛋脸') && prompt.includes('Haruto') && prompt.includes('宽圆脸'));
     assert.match(prompt, /!\[.*?\]\(\/.*?\.jpg\)/);
   }
-  assert.ok(xy.includes('/task/nine-axis/step02_angles/deformers.json'));
-  for (const corner of ['left-up', 'left-down']) assert.ok(xy.includes(join(defaultKnowledgeDirectory,
-    'nine-axis/step03_angle-xy/references/completion', corner, 'model-face-priors.jpg')));
-  for (const prompt of [x, up, down, xy, jaw]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
+  for (const [xy, corner] of [[xyUp, 'left-up'], [xyDown, 'left-down']] as const) {
+    assert.ok(xy.includes('/task/nine-axis/step02_angles/deformers.json'));
+    assert.ok(xy.includes(`/task/nine-axis/step03_angle-xy/${corner}/face-xy.json`));
+    assert.ok(xy.includes(`/task/nine-axis/step03_angle-xy/${corner}/${corner}.mp4`));
+    assert.ok(xy.includes(join(defaultKnowledgeDirectory, 'nine-axis/step03_angle-xy/references/completion', corner, 'model-face-priors.jpg')));
+  }
+  for (const prompt of [x, up, down, xyUp, xyDown, jaw]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
 });
 
 test('连续四步：平层视频、三路真实并发、联合工程、斜角与下颌；完成后沿用', { timeout: 30_000 }, async t => {
@@ -274,19 +278,25 @@ test('连续四步：平层视频、三路真实并发、联合工程、斜角�
     fitted.push(group);
     if (group === 'left') await writeSeededFaceLeft(directory); else await writePitch(directory, group);
   };
+  const xyEntered = new Set<string>(), xyBarrier = Promise.withResolvers<void>();
   const fitAngleXY = async (directory: string) => {
+    const corner = basename(directory) as 'left-up' | 'left-down';
+    xyEntered.add(corner);
+    if (xyEntered.size === 2) xyBarrier.resolve();
+    await xyBarrier.promise;
+    assert.equal((await readStep(join(nine, 'step03_angle-xy'))).status, 'running');
     assert.equal((await readStep(axes)).status, 'completed');
     for (const group of axisGroups) assert.equal((await readStep(join(axes, group))).status, 'completed');
     assert.deepEqual(await readFile(join(axes, 'deformers.json')), await readFile(join(axes, 'merged/deformers.json')));
     const parent = await readUpstream(axes);
-    await createContinuationEditTool(directory, axes, 'xy', undefined, task).execute({}, new AbortController().signal);
+    await createContinuationEditTool(directory, axes, 'xy', undefined, task, corner).execute({}, new AbortController().signal);
     const authored = JSON.parse(await readFile(join(directory, 'face-xy.json'), 'utf8'));
     const linear = JSON.parse(await readFile(join(directory, 'linear.json'), 'utf8'));
     assert.equal(authored.authoring.upstreamSha256, parent.hash);
     assert.equal(linear.authoring.upstreamSha256, parent.hash);
     assert.deepEqual(authored.axisSources, parent.doc.axisSources);
     const size = (await sharp(join(videos, 'up.png')).metadata()).width!, frames: Record<string, unknown> = {};
-    for (const [corner, angle] of [['left-up', 15], ['left-down', 45]] as const) {
+    for (const angle of [corner === 'left-up' ? 15 : 45]) {
       const chosen = await takeFrame(directory, `${corner}.png`, join(directory, `${corner}.mp4`), angle, size, { ffmpeg });
       const trace = join(directory, `${corner}-face-trace.json`);
       await writeFile(trace, '{"fixture":"selected trace"}');

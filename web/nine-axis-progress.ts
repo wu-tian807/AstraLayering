@@ -2,7 +2,7 @@ import { join, relative } from 'node:path';
 import { readStep } from '../.agents/skills/live2d-maker/shared/step-chain.ts';
 import { missingDeliveries } from '../.agents/skills/live2d-maker/shared/step-deliveries.ts';
 import { readStepSession } from '../.agents/skills/live2d-maker/shared/agents/step-session.ts';
-import { nineAxisSteps, nineAxisGroupSteps, nineAxisGroups } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisSteps, nineAxisGroupSteps, nineAxisGroups, nineAxisCornerSteps } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import { safePath } from './files.ts';
 import { currentAgentCalls, throttled } from './agent-progress.ts';
 import type { Status } from './snapshot.ts';
@@ -13,7 +13,7 @@ const requirements: Record<string, string[]> = {
   'step02_angles': ['deformers.json'],
   'step03_angle-xy': ['deformers.json'],
   'step04_jaw-line': ['deformers.json'],
-  ...Object.fromEntries(nineAxisGroupSteps.map(id => [id, ['deformers.json']])),
+  ...Object.fromEntries([...nineAxisGroupSteps, ...nineAxisCornerSteps].map(id => [id, ['deformers.json']])),
 };
 type Observation = { active?: boolean; failed?: boolean; archive?: boolean; since?: string; reason?: string };
 
@@ -23,7 +23,7 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
   const root = join(directory, 'nine-axis'), states: Record<string, Status> = {}, messages: Record<string, string> = {};
   const calls = await currentAgentCalls(directory, 'nine-axis', files, errors, observation.since, true);
   const steps = [];
-  for (const id of nineAxisSteps.flatMap(id => id === 'step02_angles' ? [id, ...nineAxisGroupSteps] : [id])) {
+  for (const id of nineAxisSteps.flatMap(id => id === 'step02_angles' ? [id, ...nineAxisGroupSteps] : id === 'step03_angle-xy' ? [id, ...nineAxisCornerSteps] : [id])) {
     const prefix = `nine-axis/${id}`;
     let status: Awaited<ReturnType<typeof readStep>>['status'] = 'absent';
     try { status = (await readStep(await safePath(directory, prefix))).status; }
@@ -45,16 +45,20 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
         ...(status === 'completed' && missing.length ? { missing } : {}) });
     }
   }
-  const parent = 'step02_angles', children = nineAxisGroupSteps.map(id => states[id]);
-  const childrenDone = children.every(status => status === 'done');
-  if (states[parent] === 'done' && !childrenDone) {
-    states[parent] = 'failed'; messages[parent] = '父合并已标记完成，但 left/up/down 尚未全部完成';
-  } else if (states[parent] !== 'done') {
-    if (children.includes('running')) states[parent] = 'running';
-    else if (children.includes('throttled')) states[parent] = 'throttled';
-    else if (children.includes('failed')) states[parent] = 'failed';
-  }
-  const mergeComplete = childrenDone && states[parent] === 'done';
+  // A parent shows its children's activity until it has merged them all.
+  const aggregate = (parent: string, ids: string[], names: string) => {
+    const children = ids.map(id => states[id]), childrenDone = children.every(status => status === 'done');
+    if (states[parent] === 'done' && !childrenDone) {
+      states[parent] = 'failed'; messages[parent] = `父合并已标记完成，但 ${names} 尚未全部完成`;
+    } else if (states[parent] !== 'done') {
+      if (children.includes('running')) states[parent] = 'running';
+      else if (children.includes('throttled')) states[parent] = 'throttled';
+      else if (children.includes('failed')) states[parent] = 'failed';
+    }
+    return childrenDone && states[parent] === 'done';
+  };
+  const parent = 'step02_angles', mergeComplete = aggregate(parent, nineAxisGroupSteps, 'left/up/down');
+  aggregate('step03_angle-xy', nineAxisCornerSteps, 'left-up/left-down');
   // Existing XY/jaw files remain readable. Their completion is invalid while
   // the new source merge is pending; a retry never means a sibling was redone.
   if (!mergeComplete) {

@@ -11,7 +11,7 @@ import { readTaskLog } from './log.ts';
 import { requireCurrentLayout } from './layout.ts';
 import { currentSession, readStepSession } from '../shared/agents/step-session.ts';
 import { readStep } from '../shared/step-chain.ts';
-import { nineAxisGroupSteps, nineAxisSteps } from '../shared/nine-axis.ts';
+import { nineAxisCornerSteps, nineAxisGroupSteps, nineAxisSteps } from '../shared/nine-axis.ts';
 import { installedVersion } from '../shared/version.ts';
 import { copyAsPng, pngBytes } from '../shared/png.ts';
 
@@ -177,7 +177,7 @@ export async function taskStatus(options: Pick<TaskOptions, 'name' | 'dir'>) {
       if (id === 'nine-axis') {
         // Fixed public paths include the independent sessions, but not neutral.
         // Read them here rather than importing step-actions back into state.
-        const names = nineAxisSteps.flatMap(step => step === nineAxisSteps[1] ? [step, ...nineAxisGroupSteps] : [step]);
+        const names = nineAxisSteps.flatMap(step => step === nineAxisSteps[1] ? [step, ...nineAxisGroupSteps] : step === nineAxisSteps[2] ? [step, ...nineAxisCornerSteps] : [step]);
         for (const name of names) {
           const { status } = await readStep(join(path, name));
           if (status === 'absent') continue;
