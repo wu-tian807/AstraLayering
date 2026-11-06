@@ -25,7 +25,7 @@
 
 ## 公共配置与方向覆盖
 
-三个单轴只读取 [step02_angles/agent.json](../knowledge/nine-axis/step02_angles/agent.json)。`prompts/groups/left/方向任务.md`、`up/方向任务.md`、`down/方向任务.md` 各自是该方向的完整制作提示词，覆盖 `prompts/方向任务.md`，完全复用 Part 的同名优先规则；缺少组文件时回退公共文件。各方向的脸型先验同样放在 `prompts/groups/<方向>/补全先验.md`（left 近侧更圆润、远侧笔直陡线；up/down 保持正面的圆润体量），斜角读 [step03_angle-xy/prompts/斜向先验.md](../knowledge/nine-axis/step03_angle-xy/prompts/斜向先验.md)；所有方向共用 [nine-axis-face-contour.md](../knowledge/shared/prompts/nine-axis-face-contour.md)，以原画正面为主要参考、要求边缘干净。先验全部是文字，不再附教程截图或模型对照图。工具列表仍从公共 agent.json 读取。每组独立保存作者、会话、workspace、观察图和报告。
+三个单轴只读取 [step02_angles/agent.json](../knowledge/nine-axis/step02_angles/agent.json)。`prompts/groups/left/方向任务.md`、`up/方向任务.md`、`down/方向任务.md` 各自是该方向的完整制作提示词，覆盖 `prompts/方向任务.md`，完全复用 Part 的同名优先规则；缺少组文件时回退公共文件。各方向的脸型先验同样放在 `prompts/groups/<方向>/补全先验.md`（left 近侧保持正面圆润脸型、边缘连续，远侧笔直陡线；up/down 保持正面的圆润体量），斜角读 [step03_angle-xy/prompts/斜向先验.md](../knowledge/nine-axis/step03_angle-xy/prompts/斜向先验.md)；所有方向共用 [nine-axis-face-contour.md](../knowledge/shared/prompts/nine-axis-face-contour.md)，以原画正面为主要参考、要求边缘干净。先验全部是文字，不再附教程截图或模型对照图。工具列表仍从公共 agent.json 读取。每组独立保存作者、会话、workspace、观察图和报告。
 
 五个方向的提示词各自写全同一方法：原画完整 source → 整张 target 起稿与可见脸缘 （含刘海间露出的额头） → 遮挡补全 → 自动拟合 → 实际脸底检查 → 五官、连续帧 → 最后编辑后重检。视频决定可见轮廓、五官和笔锋；被遮挡的结构按原画正面脸型、通用轮廓先验和各方向的文字脸型先验补全。
 
