@@ -21,14 +21,13 @@ const esc = (s: string) => s.replaceAll('&', '&amp;').replaceAll('"', '&quot;').
 
 // This tool only derives geometry from the pipeline agent's trace. It never
 // supplies an anatomical rig or silently imports a previous character fit.
-export function createNineAxisFitTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), continuation?: { stage: PitchStage | 'xy'; upstreamDirectory: string; corner?: 'left-up' | 'left-down' }, paths?: { taskRoot: string; referenceDirectory: string }): FunctionTool {
+export function createNineAxisFitTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), continuation?: { stage: PitchStage | 'xy'; upstreamDirectory: string }, paths?: { taskRoot: string; referenceDirectory: string }): FunctionTool {
   const task = paths?.taskRoot ?? dirname(dirname(directory)), author = join(directory, continuation ? authorFile(continuation.stage) : 'face-left.json');
   return { ...toolDefinition('fit_nine_axis'), async execute(value, signal, context) {
     const args = value as { action?: string; trace?: string; id?: string; features?: string[]; revision?: string; smoothness?: number; corner?: string };
     if (!args || !['inspect', 'fit'].includes(args.action ?? '') || typeof args.trace !== 'string') throw Error('action 须为 inspect 或 fit，并提供 trace JSON 路径');
     const xy = continuation?.stage === 'xy';
     if (xy && !['left-up', 'left-down'].includes(args.corner ?? '')) throw Error('xy 阶段 corner 必须为 left-up 或 left-down；右侧由组合形变镜像');
-    if (continuation?.corner && args.corner !== continuation.corner) throw Error(`本会话只拟合 ${continuation.corner}；另一角由独立会话制作`);
     const reference = xy ? join(directory, `${args.corner}.png`) : paths ? join(paths.referenceDirectory, `${continuation?.stage ?? 'left'}.png`) : join(task, continuation ? `nine-axis/step01_video/${continuation.stage}.png` : 'nine-axis/step01_video/left.png');
     const x = !continuation || xy ? scale.x[0] : 0, y = xy ? (args.corner === 'left-up' ? scale.y[1] : scale.y[0]) : continuation ? (continuation.stage === 'up' ? scale.y[1] : scale.y[0]) : 0;
     const tracePath = fromTaskPath(task, args.trace), text = await readFile(tracePath, 'utf8');

@@ -44,8 +44,6 @@ export type NineAxisStage = keyof typeof nineAxisStages;
 export const nineAxisGroups = ['left', 'up', 'down'] as const;
 export const nineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line'] as const;
 export const nineAxisGroupSteps = nineAxisGroups.map(group => `step02_angles/${group}`);
-export const nineAxisCorners = ['left-up', 'left-down'] as const;
-export const nineAxisCornerSteps = nineAxisCorners.map(corner => `step03_angle-xy/${corner}`);
 export const nineAxisDeformerPaths = new Set<string>([...Object.values(nineAxisStages), ...Object.values(legacyNineAxisArtifacts).filter(path => path.endsWith('/deformers.json'))]);
 
 export type NineAxisSource = { version: 1; sourceDocument: string; sourceColor: string; sourceKraHash: string; sourceColorHash: string };

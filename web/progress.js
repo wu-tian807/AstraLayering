@@ -110,9 +110,7 @@ export const sectionSteps = [
     { ...step('step02_angles', '独立单轴与合并', 'pending', ['left', 'up', 'down'].map(group =>
       step(`step02_angles/${group}`, { left: '左右转头', up: '抬头', down: '低头' }[group], 'pending')),
       '三个子项并发制作；全部完成后合并单轴结果。'), childrenMode: 'parallel' },
-    { ...step('step03_angle-xy', '斜向四角与合并', 'pending', ['left-up', 'left-down'].map(corner =>
-      step(`step03_angle-xy/${corner}`, { 'left-up': '左上', 'left-down': '左下' }[corner], 'pending')),
-      '两角并发制作；全部完成后合并并镜像出右侧两角。'), childrenMode: 'parallel' },
+    step('step03_angle-xy', '斜向四角', 'pending', [], '等待三个单轴和父合并全部完成。'),
     step('step04_jaw-line', '下颌线与脖子', 'pending')],
 ];
 
@@ -179,8 +177,6 @@ stepArtifacts.push({
   'step02_angles': [file('nine-axis/step02_angles/deformers.json', '合并单轴结果')],
   ...Object.fromEntries(['left', 'up', 'down'].map(group => [`step02_angles/${group}`, [file(`nine-axis/step02_angles/${group}/deformers.json`, `${group} 独立单轴`)]])),
   'step03_angle-xy': [file('nine-axis/step03_angle-xy/deformers.json', '斜向九轴结果')],
-  ...Object.fromEntries(['left-up', 'left-down'].map(corner => [`step03_angle-xy/${corner}`, [image(`nine-axis/step03_angle-xy/${corner}/${corner}.png`, `${corner} 参考帧`),
-    file(`nine-axis/step03_angle-xy/${corner}/deformers.json`, `${corner} 斜角`)]])),
   'step04_jaw-line': [file('nine-axis/step04_jaw-line/deformers.json', '下颌线结果')],
 });
 export function shadowInspectionArtifacts(files) {

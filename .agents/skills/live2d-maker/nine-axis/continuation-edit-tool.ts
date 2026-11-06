@@ -10,7 +10,7 @@ import { angleScale, type AngleScale } from './angles.ts';
 import { readUpstream, startContinuation, compileContinuation, authorFile, sha256, type AuthoredHead, type Stage } from './continuation.ts';
 import { checkAxisSource } from './axis-groups.ts';
 
-export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory)), corner?: 'left-up' | 'left-down'): FunctionTool {
+export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory))): FunctionTool {
   return { ...toolDefinition('edit_nine_axis'), async execute(value, signal) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('参数须为对象');
     const args = value as { operations?: any[]; revision?: string; notes?: string; axis?: unknown; importParts?: unknown };
@@ -27,9 +27,7 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
           const x = op.x ?? 0, y = op.y ?? 0;
           if ((stage === 'up' || stage === 'down') && (x !== 0 || y !== (stage === 'up' ? scale.y[1] : scale.y[0]))) throw Error(`${stage} 阶段只编辑 X=0、Y=${stage === 'up' ? scale.y[1] : scale.y[0]} 的关键形`);
           if (stage === 'xy' && (x !== scale.x[0] || !scale.y.includes(y))) throw Error('四角阶段只编辑左上、左下；右侧由组合形变镜像');
-          if (corner && y !== (corner === 'left-up' ? scale.y[1] : scale.y[0])) throw Error(`本会话只编辑 ${corner}；另一角由独立会话制作`);
         }
-        if (corner && op?.action === 'add_part') throw Error('分角斜向只用上游图层，不新增图层');
         if (op?.action === 'add_part' && op.part) op.part.texture = stepTexture(directory, taskRoot, op.part.id, op.part.texture);
       }
       doc = editNineAxis(doc, operations) as AuthoredHead;

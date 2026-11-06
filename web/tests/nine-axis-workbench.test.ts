@@ -7,7 +7,7 @@ import { nineAxisProgress } from '../nine-axis-progress.ts';
 import { inventory } from '../files.ts';
 import { snapshot } from '../snapshot.ts';
 import { sectionSteps, stepArtifacts } from '../progress.js';
-import { nineAxisSteps, nineAxisGroupSteps, nineAxisCornerSteps, nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisSteps, nineAxisGroupSteps, nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import { evaluatePoints, validateHeadNineAxis } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 import { saveNineAxis } from '../nine-axis-save.ts';
 import { lstat } from 'node:fs/promises';
@@ -66,7 +66,7 @@ test('independent waits and failures never mark running or completed siblings th
 
 test('child retry marker layout keeps completed siblings; retained XY waits for all children and parent merge', async t => {
   const f = await fixture(t);
-  for (const id of [...nineAxisGroupSteps, 'step02_angles', ...nineAxisCornerSteps, 'step03_angle-xy']) {
+  for (const id of [...nineAxisGroupSteps, 'step02_angles', 'step03_angle-xy']) {
     await f.put(`${id}/.completed`); await f.put(`${id}/deformers.json`, '{}');
     await f.complete(id);
   }

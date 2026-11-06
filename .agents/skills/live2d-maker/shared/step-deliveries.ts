@@ -10,7 +10,7 @@ import { steps as personSteps } from '../raster-layering/steps.ts';
 import { steps as clothingSteps } from '../clothing-raster-layering/steps.ts';
 import { steps as assemblySteps } from '../character-assembly/steps.ts';
 import { maskSteps, mapSteps } from '../shadow/steps.ts';
-import { nineAxisCorners, nineAxisGroups, nineAxisSteps } from './nine-axis.ts';
+import { nineAxisGroups, nineAxisSteps } from './nine-axis.ts';
 
 // The files a completed step must still hold. A run refuses to keep a completed
 // step that lost one; retry is how such a step is redone. Paths are absolute;
@@ -50,16 +50,12 @@ async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
     for (const output of [directory, join(directory, 'neutral'), join(directory, 'merged')]) files.push(...await textureDeliveries(output));
     return [...new Set(files)];
   }
-  if (step === nineAxisSteps[2]) {
-    const cornerFiles = (corner: string) => [`${corner}.mp4`, `${corner}.png`, `frames/${corner}.png`, `${corner}-face-trace.json`, `${corner}-fit-report.json`];
-    if (group && (nineAxisCorners as readonly string[]).includes(group)) return [
-      ...['face-xy.json', 'deformers.json', 'selected-frames.json', ...cornerFiles(group)].map(file => join(directory, file)), ...await textureDeliveries(directory),
-    ];
-    if (group) return [];
-    const files = ['face-xy.json', 'linear.json', 'deformers.json', 'videos.json', 'selected-frames.json', ...nineAxisCorners.flatMap(cornerFiles)].map(file => join(directory, file));
-    for (const corner of nineAxisCorners) files.push(...await nineAxisDeliveries(root, `${step}/${corner}`));
-    return [...new Set([...files, ...await textureDeliveries(directory)])];
-  }
+  if (step === nineAxisSteps[2] && !group) return [
+    ...['face-xy.json', 'linear.json', 'deformers.json', 'videos.json', 'selected-frames.json',
+      ...['left-up', 'left-down'].flatMap(corner => [`${corner}.mp4`, `${corner}.png`, `frames/${corner}.png`,
+        `${corner}-face-trace.json`, `${corner}-fit-report.json`])]
+      .map(file => join(directory, file)), ...await textureDeliveries(directory),
+  ];
   if (step === nineAxisSteps[3] && !group) return [
     join(directory, 'jaw.json'), join(directory, 'deformers.json'), ...await textureDeliveries(directory),
   ];

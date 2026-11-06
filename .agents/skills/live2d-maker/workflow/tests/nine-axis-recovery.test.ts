@@ -6,7 +6,7 @@ import { test, type TestContext } from 'node:test';
 import { readStep } from '../../shared/step-chain.ts';
 import { sessionPath } from '../../shared/agents/step-session.ts';
 import { missingDeliveries, stepDeliveries } from '../../shared/step-deliveries.ts';
-import { nineAxisGroups, nineAxisGroupSteps, nineAxisCornerSteps, nineAxisSteps } from '../../shared/nine-axis.ts';
+import { nineAxisGroups, nineAxisGroupSteps, nineAxisSteps } from '../../shared/nine-axis.ts';
 import { applyStepAction, applyTaskAction, listSteps, validStepId } from '../step-actions.ts';
 
 async function put(path: string, text = path) {
@@ -63,7 +63,7 @@ async function fixture(t: TestContext) {
 }
 
 test('九轴只登记正式四步和三个 child，独立会话可见，neutral/merged 与旧 step 不可操作', async t => {
-  for (const id of [...nineAxisSteps, ...nineAxisGroupSteps, ...nineAxisCornerSteps]) assert.equal(validStepId('nine-axis', id), true, id);
+  for (const id of [...nineAxisSteps, ...nineAxisGroupSteps]) assert.equal(validStepId('nine-axis', id), true, id);
   for (const id of ['step02_angles/neutral', 'step02_angles/merged', 'step02_angles/left/more',
     'step02_angle-x', 'step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step06_angle-xy', 'step05', '../step02_angles']) {
     assert.equal(validStepId('nine-axis', id), false, id);
@@ -71,7 +71,7 @@ test('九轴只登记正式四步和三个 child，独立会话可见，neutral/
   const f = await fixture(t), steps = await listSteps(f.root, 'nine-axis');
   assert.deepEqual(steps.map(step => [step.id, step.session]), [
     ['step02_angles', false], ['step02_angles/down', true], ['step02_angles/left', true], ['step02_angles/up', true],
-    ['step03_angle-xy', false], ['step03_angle-xy/left-down', false], ['step03_angle-xy/left-up', false],
+    ['step03_angle-xy', false],
   ]);
   await assert.rejects(f.act('step02_angles/neutral', 'retry'), /没有步骤/);
 });

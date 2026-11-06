@@ -23,18 +23,13 @@ export async function seedAxis(directory: string, neutral: string, group: AxisGr
   await writeFile(join(directory, 'source.json'), await readFile(join(neutral, 'source.json')));
 }
 
-export type GroupHooks<G extends string> = {
+export async function runAxisGroups(directory: string, hooks: {
   prepare(): Promise<void>;
-  run(group: G, directory: string): Promise<void>;
-  seed?(group: G, directory: string): Promise<void>;
-  keep?(group: G, directory: string): Promise<void>;
-};
-export const runAxisGroups = (directory: string, hooks: GroupHooks<AxisGroup>, options: { group?: AxisGroup; signal?: AbortSignal } = {}) =>
-  runStepGroups(directory, axisGroups, hooks, options);
-// Children of one step run as concurrent independent sessions; the parent
-// only combines them once every child is completed.
-export async function runStepGroups<G extends string>(directory: string, groups: readonly G[], hooks: GroupHooks<G>, options: { group?: G; signal?: AbortSignal } = {}) {
-  const selected = options.group ? [options.group] : groups;
+  run(group: AxisGroup, directory: string): Promise<void>;
+  seed?(group: AxisGroup, directory: string): Promise<void>;
+  keep?(group: AxisGroup, directory: string): Promise<void>;
+}, options: { group?: AxisGroup; signal?: AbortSignal } = {}) {
+  const selected = options.group ? [options.group] : axisGroups;
   await runGroups([...selected], {
     preparation: hooks.prepare,
     async initialize() {},
@@ -57,7 +52,7 @@ export async function runStepGroups<G extends string>(directory: string, groups:
       await completeStep(output);
     },
   });
-  return (await Promise.all(groups.map(async group => (await readStep(join(directory, group))).status === 'completed'))).every(Boolean);
+  return (await Promise.all(axisGroups.map(async group => (await readStep(join(directory, group))).status === 'completed'))).every(Boolean);
 }
 
 // Source layer geometry and pixels are shared; fitting may freely choose

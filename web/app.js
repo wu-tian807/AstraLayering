@@ -352,7 +352,7 @@ function stepNode(index,step,nested=false) {
  const key=`${index}:${step.id}`, closed=state.collapsedSteps.has(key);
  const alternative=step.childrenMode==='alternative', parallel=step.childrenMode==='parallel';
  const mode=stages[index].id==='shadow'&&['mask','normal-depth'].includes(step.id);
- const nineStage=stages[index].id==='nine-axis'?({'step02_angles':'y','step02_angles/left':'x','step02_angles/up':'up','step02_angles/down':'down','step03_angle-xy':'xy','step03_angle-xy/left-up':'xy','step03_angle-xy/left-down':'xy','step04_jaw-line':'jaw'}[step.id]):null;
+ const nineStage=stages[index].id==='nine-axis'?({'step02_angles':'y','step02_angles/left':'x','step02_angles/up':'up','step02_angles/down':'down','step03_angle-xy':'xy','step04_jaw-line':'jaw'}[step.id]):null;
  const currentMode=mode&&step.id===(data.run?.shadowMode||'mask');
  const context=step.id==='layers'?groupCycle(index):step.children.length?`<div class="step-children ${alternative?'step-alternatives':parallel?'step-parallel':''}" ${alternative?'role="group" aria-label="阴影方式：二选一"':parallel?'role="group" aria-label="三个单轴并发制作"':''}>${isRasterSection(index)&&step.id==='step01'?reviewNodes(index,step.children):step.children.map((child,i)=>`${alternative&&i?'<span class="alternative-or">OR</span>':''}${stepNode(index,child,true)}`).join('')}</div>`:'';
  return `<section class="step-node ${nested?'nested':''} ${step.children.length?'step-container':''} ${isRasterSection(index)&&step.id==='step01'?'raster-review':''} ${closed?'node-collapsed':''} ${step.status} ${selected?'selected':''}" data-node="${index}:${step.id}">
