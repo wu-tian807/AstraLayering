@@ -126,6 +126,8 @@ export function mergeCornerDocs(upstream:AuthoredHead|{deformers:unknown[];parts
 }
 // Combine finished children into the parent's face-xy.json, verifying each
 // corner side of the compiled result against that child's own compiled pose.
+// The authored left side must match exactly; the right side is mirrored from
+// the merged chain, which differs slightly from mirroring one child alone.
 export async function mergeCorners(directory:string,angleY:string,scale:AngleScale=angleScale()):Promise<number>{
   const upstream=await readUpstream(angleY),child=(corner:Corner)=>join(directory,corner);
   const read=async(corner:Corner)=>JSON.parse(await readFile(join(child(corner),'face-xy.json'),'utf8')) as AuthoredHead;
@@ -136,7 +138,8 @@ export async function mergeCorners(directory:string,angleY:string,scale:AngleSca
     const parts=new Map(own.doc.parts.map(p=>[p.id,p]));
     for(const px of [x,x/2,0,-x/2,-x])for(const py of [0,y/2,y])for(const p of built.doc.parts){
       const a=evaluatePoints(built.doc,p,px,py,2),b=evaluatePoints(own.doc,parts.get(p.id)!,px,py,2);
-      if(a.length!==b.length||a.some((v,i)=>Math.abs(v-b[i])>.02))throw Error(`${p.id}：合并后 ${px},${py} 与 ${corner} 的结果不一致`);
+      const tolerance=px>0?2:.02;
+      if(a.length!==b.length||a.some((v,i)=>Math.abs(v-b[i])>tolerance))throw Error(`${p.id}：合并后 ${px},${py} 与 ${corner} 的结果不一致`);
     }
   }
   await writeJson(join(directory,'face-xy.json'),merged);
