@@ -41,7 +41,7 @@ pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可�
 step01_video：同一步生成 left/up/down 视频并取参考帧，正面裁框只确定一次。
 step02_angles：原 KRA 只导出一次，共享 neutral，left/up/down 三个独立 agent 并行描边、补全、自动拟合 Warp、调整五官与检查实际覆盖；完成后组合单轴工程。
 step03_angle-xy：依赖三个单轴，以 up/down 原帧生成斜向视频，由 agent 自选 left-up/left-down 帧并分别制作，镜像右侧。
-step04_jaw-line：固定脖子的顶部补足、下颌线和接触收尾。
+step04_jaw-line：照五个视频做九个角度的下颌线、固定脖子顶部与随头移动的脖子阴影。
 三个单轴共用一份 agent.json，prompts/groups/<方向>/<同名文件> 优先替换，其余提示词和工具共用。会话、workspace、作者文件与完成标记分别保存。
 Warp 分组与父子关系由 agent 自定，部件保留局部编辑。脖子保持固定，不随头倾斜或拉长。
 视频可见区域是拟合目标，教程和分类脸型图片只补隐藏结构。用户确认视觉效果后才算通过。
