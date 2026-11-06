@@ -53,7 +53,7 @@ test('independent run directory, parts path normalization, and external-only pro
   assert.equal(parseRunArguments(['--name', 'test', '--knowledge', 'knowledge']).name, 'test');
   assert.throws(() => parseRunArguments(['--name', 'test', '--provider-config', 'secret.json']), /Unknown option/);
   const prompt = await runWorkflow({ ...f.options, dryRun: true }, { ...f.deps, agent: async () => assert.fail('dry run must not invoke Codex') });
-  assert.ok(prompt.includes('每个衣片先用 imagegen 生成') && prompt.includes('用三色控制图'));
+  assert.ok(prompt.includes('每个衣片按以下流程画') && prompt.includes('用三色控制图'));
   assert.ok(prompt.includes('step02/clothing-soft-edges.kra'));
   assert.ok(!prompt.includes('wearing-order.md') && !prompt.includes('character-dressup-base'));
   await assert.rejects(readdir(f.output), { code: 'ENOENT' });
