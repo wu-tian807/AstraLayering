@@ -18,7 +18,6 @@ import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { readUpstream, startContinuation } from '../continuation.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
-import { defaultKnowledgeDirectory } from '../../shared/knowledge.ts';
 
 const rect = (w: number, h: number, x: number, y: number, rw: number, rh: number) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect x="${x}" y="${y}" width="${rw}" height="${rh}" fill="#000"/></svg>`;
@@ -213,24 +212,21 @@ test('脸部步骤提示词以度数写出关键形', () => {
   assert.match(x, /X\s*=\s*-30\s*[、,，]\s*Y\s*=\s*0/);
   assert.match(up, /X\s*=\s*0\s*[、,，]\s*Y\s*=\s*25/);
   assert.match(down, /X\s*=\s*0\s*[、,，]\s*Y\s*=\s*-25/);
-  assert.match(xyUp, /X\s*=\s*-30\s*[、,，]\s*Y\s*=\s*25/);
-  assert.match(xyDown, /X\s*=\s*-30\s*[、,，]\s*Y\s*=\s*-25/);
+  assert.ok(xyUp.includes("(X,Y)=(-30,25)"));
+  assert.ok(xyDown.includes("(X,Y)=(-30,-25)"));
   assert.match(jaw, /"-30,25"/);
   assert.match(jaw, /"invert": true/);
   for (const [prompt, group] of [[x, 'left'], [up, 'up'], [down, 'down']] as const) {
     assert.ok(prompt.includes(`/task/nine-axis/step02_angles/${group}/face-${group}.json`));
     assert.ok(prompt.includes('/task/nine-axis/step02_angles/neutral'));
     assert.ok(prompt.includes(`/task/nine-axis/step01_video/${group}.png`));
-    const prior = group === 'left' ? 'completion' : `${group}/completion`;
-    assert.ok(prompt.includes(join(defaultKnowledgeDirectory, 'nine-axis/step02_angles/references', prior, 'model-face-priors.jpg')));
-    assert.ok(prompt.includes('Hiyori') && prompt.includes('圆润鹅蛋脸') && prompt.includes('Haruto') && prompt.includes('宽圆脸'));
-    assert.match(prompt, /!\[.*?\]\(\/.*?\.jpg\)/);
+    assert.ok(prompt.includes(`【${group} 脸型先验】`) && prompt.includes('以原画正面的脸型为主要参考'));
   }
   for (const [xy, corner] of [[xyUp, 'left-up'], [xyDown, 'left-down']] as const) {
     assert.ok(xy.includes('/task/nine-axis/step02_angles/deformers.json'));
     assert.ok(xy.includes(`/task/nine-axis/step03_angle-xy/${corner}/face-xy.json`));
     assert.ok(xy.includes(`/task/nine-axis/step03_angle-xy/${corner}/${corner}.mp4`));
-    assert.ok(xy.includes(join(defaultKnowledgeDirectory, 'nine-axis/step03_angle-xy/references/completion', corner, 'model-face-priors.jpg')));
+    assert.ok(xy.includes('【斜向脸型先验】'));
   }
   for (const prompt of [x, up, down, xyUp, xyDown, jaw]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
 });

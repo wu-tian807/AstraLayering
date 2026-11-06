@@ -1,11 +1,10 @@
 import { parseArgs } from 'node:util';
 import { join } from 'node:path';
 import { copyFile, readFile, rm } from 'node:fs/promises';
-import { readFileSync } from 'node:fs';
 import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { renderKnowledge, selectKnowledge, stepKnowledge } from '../shared/knowledge.ts';
+import { selectKnowledge, stepKnowledge } from '../shared/knowledge.ts';
 import { runSection, stepName } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type VideoApi, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { CodexAgents } from '../shared/codex/agents.ts';
@@ -62,14 +61,12 @@ const outputSchema = { type: 'object', properties: { error: { type: ['string', '
 
 export function axisPrompt(input: HeadInput, taskRoot: string, group: AxisGroup): string {
   const nine = join(taskRoot, 'nine-axis'), output = join(nine, 'step02_angles', group), scale = angleScale();
-  const completionPrior = stepKnowledge('nine-axis', 'step02_angles').reference(group === 'left' ? 'completion/脸型补全先验.md' : `${group}/completion/脸型补全先验.md`);
-  const completionPriorContent = renderKnowledge(readFileSync(completionPrior, 'utf8'), angleValues(), { taskRoot, section: 'nine-axis' });
   return stepKnowledge('nine-axis', 'step02_angles').render('main', {
     ...angleValues(), document: input.document, color: input.color, output, neutral: join(nine, 'step02_angles/neutral'),
     reference_frame: join(nine, 'step01_video', `${group}.png`), source_frame: join(nine, 'step01_video/upper-body.png'),
     target_x: String(group === 'left' ? scale.x[0] : 0), target_y: String(group === 'up' ? scale.y[1] : group === 'down' ? scale.y[0] : 0),
     reference_video: join(nine, 'step01_video', `${group}.mp4`), reference_frames: '', continuity_reference: '',
-    author_file: join(output, `face-${group}.json`), completion_prior: completionPrior, completion_prior_content: completionPriorContent,
+    author_file: join(output, `face-${group}.json`),
   }, { taskRoot, group }).trim();
 }
 export const headPrompt = (input: HeadInput, taskRoot: string) => axisPrompt(input, taskRoot, 'left');

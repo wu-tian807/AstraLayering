@@ -3,7 +3,7 @@
     "initial": [
       "prompts/脸部与双耳斜向.md",
       "shared/prompts/nine-axis-face-contour.md",
-      "references/completion/脸型补全先验.md"
+      "prompts/斜向先验.md"
     ],
     "tools": [
       "view_bitmap",
