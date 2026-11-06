@@ -220,13 +220,13 @@ test('脸部步骤提示词以度数写出关键形', () => {
     assert.ok(prompt.includes(`/task/nine-axis/step02_angles/${group}/face-${group}.json`));
     assert.ok(prompt.includes('/task/nine-axis/step02_angles/neutral'));
     assert.ok(prompt.includes(`/task/nine-axis/step01_video/${group}.png`));
-    assert.ok(prompt.includes(`【${group} 脸型先验】`) && prompt.includes('以原画正面的脸型为主要参考'));
+    assert.ok(prompt.includes(`【${group} 先验】`) && prompt.includes('头发下面留足余量'));
   }
   for (const [xy, corner] of [[xyUp, 'left-up'], [xyDown, 'left-down']] as const) {
     assert.ok(xy.includes('/task/nine-axis/step02_angles/deformers.json'));
     assert.ok(xy.includes(`/task/nine-axis/step03_angle-xy/${corner}/face-xy.json`));
     assert.ok(xy.includes(`/task/nine-axis/step03_angle-xy/${corner}/${corner}.mp4`));
-    assert.ok(xy.includes('【斜向脸型先验】'));
+    assert.ok(xy.includes('【斜向先验】') && xy.includes('头发下面留足余量') && xy.includes(`path（指向规范化后的 ${corner}.png`));
   }
   for (const prompt of [x, up, down, xyUp, xyDown, jaw]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
 });
