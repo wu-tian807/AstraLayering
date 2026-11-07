@@ -9,7 +9,7 @@
 - simplified 参考（分析画法与投影范围）：{uri:part-layering/references/simplified-subject.png}。
 - part 分组与遮挡顺序：{uri:part-layering/groups.json}、{uri:part-layering/occlusion.json}；穿衣时另有 {uri:clothing-part-layering/groups.json}、{uri:clothing-part-layering/occlusion.json}。人物 ID 记为 character:<原 part ID>，衣服 ID 记为 clothing:<原 part ID>。
 
-在原组装 KRA 的新工程里用 Krita 直接绘制，不调用生图。先读制作参考 inputs.json、production.md，查看裙影与发影参考图。
+在原组装 KRA 的新工程里用 Krita 画笔绘制影子，不调用生图。先读制作参考 inputs.json、production.md，查看裙影与发影参考图。
 
 ## 目标
 
@@ -22,6 +22,7 @@
 
 ## 要保护的
 
+- 影子是画出来的：在影层上用 Krita 的画笔一笔一笔画，边缘的软硬和过渡靠笔触画出，和参考对上。在脚本里用 Qt、PIL 等按坐标画多边形、填色或填渐变，再写进图层，不是画画。
 - 部件自身的明暗、材质、线稿与高光保持原样，加上投影后依然可见。已有投影需要独立控制时，可以先局部去掉，补回接收面底色，再重做独立影层。
 - 投影的形状来自投影部件和接收面的实际关系；图层深度序号只表示叠放顺序，不代表投影距离。
 - 保持原分辨率、透明背景和原部件可编辑性，输入只读。移动接收层后检查原蒙版子节点，保留 UUID、归属和启用状态。

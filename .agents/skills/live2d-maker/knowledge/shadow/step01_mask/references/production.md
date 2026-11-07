@@ -1,6 +1,6 @@
 # 投影素材与检查
 
-先看同目录的 [skirt.png](skirt.png) 与 [hair.png](hair.png)：完整素材、受影联合裁切、重叠和相对偏移。图为原创结构示意；依据真实 Milly PSD 1220／832–834、moc3 ArtMesh119／47–51、faceM 与腿部 mask。真实资料与测量见仓库 `tutorial/live2d-guidance/formal/09-clipped-cast-shadows.md`；独立安装不依赖该目录。
+先看同目录的 [skirt.png](skirt.png) 与 [hair.png](hair.png)：完整素材、受影联合裁切、重叠和相对偏移。图里的色块只说明图层结构，影子本身用画笔画出。图为原创结构示意；依据真实 Milly PSD 1220／832–834、moc3 ArtMesh119／47–51、faceM 与腿部 mask。真实资料与测量见仓库 `tutorial/live2d-guidance/formal/09-clipped-cast-shadows.md`；独立安装不依赖该目录。
 
 `inputs.json` 列出本次真实 part、深度、原 KRA 图层 UUID 和识别到的归属。未识别归属的图层需对照像素确认，不能猜名称。多受影部件使用一个 `receiverPartIds` 数组；裁切 base 可是保留原子层的受影子组。Krita 透明度继承使用同组下方合成 alpha，base 下方不要混入其他实色层。
 
