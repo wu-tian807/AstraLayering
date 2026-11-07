@@ -16,7 +16,8 @@
     ],
     "tools": [
       "view_bitmap",
-      "preview_svg"
+      "preview_svg",
+      "submit_review"
     ],
     "repair": {
       "initial": [

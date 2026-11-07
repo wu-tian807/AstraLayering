@@ -14,7 +14,7 @@ import { checkKrita } from '../shared/raster/krita.ts';
 import { SectionKrita, kritaRecordFile } from '../shared/krita/section-krita.ts';
 import { createKritaTool } from '../shared/krita/tool.ts';
 import { createBitmapTool } from '../shared/part/bitmap-tool.ts';
-import { createSvgPreviewTool } from '../shared/part/svg-tools.ts';
+import { createSvgPreviewTool, type SvgObservation } from '../shared/part/svg-tools.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { ffmpegPath, generateVideo, produceLeftVideo, producePitchVideos, produceCornerVideos, resolveTurnInput, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
 import { buildHead, finishHead, resolveHeadInput, type Built, type HeadInput } from './head.ts';
@@ -129,12 +129,16 @@ export function createFitHead(agents: Agents, tools: (step: string) => Promise<F
 // Draw and repair share the outline's thread (agents/steps/<child>/outline, so a
 // retry of the child drops it); the reviewer is a fresh read-only session.
 export type OutlineHead = (directory: string, prompt: (role: OutlineRole) => string) => Promise<void>;
-export function createOutlineHead(agents: Agents, tools: (directory: string) => Promise<FunctionTool[]>, step: string, signal?: AbortSignal, sectionDirectory?: string, progress?: (message: string) => void): OutlineHead {
+export function createOutlineHead(agents: Agents, tools: (directory: string, observed?: (entry: SvgObservation) => void) => Promise<FunctionTool[]>, step: string, signal?: AbortSignal, sectionDirectory?: string, progress?: (message: string) => void): OutlineHead {
   const names = { main: '描边', review: '描边review', repair: '描边返修' }, steps = { main: 'nine_axis_outline', review: 'nine_axis_outline_review', repair: 'nine_axis_outline_repair' } as const;
-  return async (directory, prompt) => runOutline(directory, async role => runAgentTurn(agents, sectionDirectory ?? join(directory, '../..'), directory, {
-    step: steps[role], knowledge: 'step02_outline', role, session: role === 'review' ? undefined : `${step}/outline`,
-    name: `${names[role]} ${step.split('/')[1]}`, tools: await tools(directory), prompt: prompt(role),
-    ...(role === 'repair' ? { recoveryPrompt: `${prompt('main')}\n\n${prompt('repair')}` } : {}) }, signal), progress);
+  return async (directory, prompt) => {
+    const observations: SvgObservation[] = [];
+    await runOutline(directory, async (role, submit) => runAgentTurn(agents, sectionDirectory ?? join(directory, '../..'), directory, {
+      step: steps[role], knowledge: 'step02_outline', role, session: role === 'review' ? undefined : `${step}/outline`,
+      name: `${names[role]} ${step.split('/')[1]}`, prompt: prompt(role),
+      tools: [...await tools(directory, role === 'review' ? entry => observations.push(entry) : undefined), ...submit ? [submit] : []],
+      ...(role === 'repair' ? { recoveryPrompt: `${prompt('main')}\n\n${prompt('repair')}` } : {}) }, signal), observations, progress);
+  };
 }
 
 export type NineAxisOptions = { name: string; dir?: string; krita?: string; step?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
@@ -187,10 +191,10 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       return svg.execute(value, signal, context);
     } }];
   };
-  const outlineTools = async (output: string): Promise<FunctionTool[]> => {
-    const observations = join(output, 'observations'), box = await crop(), group = output.split('/').at(-2) as AxisGroup;
+  const outlineTools = async (output: string, observed?: (entry: SvgObservation) => void): Promise<FunctionTool[]> => {
+    const observations = join(output, 'observations', observed ? 'review' : 'outline'), box = await crop(), group = output.split('/').at(-2) as AxisGroup;
     return [createBitmapTool(directory, observations), createSvgPreviewTool({ directory: output, reference: join(videos, `${group}.png`),
-      canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' })];
+      canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas', observed })];
   };
   const preview = (text: string) => { progress(`预览：${text}`); summary = '预览完成，未调用模型'; };
   try { await runSection({ directory, steps, dryRun: options.dryRun, signal: options.signal, progress,

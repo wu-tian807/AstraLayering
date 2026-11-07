@@ -87,7 +87,7 @@ test('every image-capable agent rejects native imagegen with a different harness
 test('scheme 1 template and code defaults resolve all role efforts and native images without extra providers', async t => {
   const contents = await readFile(new URL('../../example.env', import.meta.url), 'utf8');
   const variables = parseEnv(contents);
-  assert.equal(Object.keys(modelSlotDefaults).length, 14);
+  assert.equal(Object.keys(modelSlotDefaults).length, 15);
   for (const role of Object.keys(modelSlotDefaults)) assert.ok(Object.hasOwn(variables, modelSlotKey(role as ModelSlot)));
   for (const step of imageSteps()) assert.ok(Object.hasOwn(variables, `${step}_image_model`));
   assert.equal(Object.keys(variables).filter(key => key.endsWith('_image_model') && !['default_image_model', 'image_model'].includes(key)).length, imageSteps().length);
@@ -100,7 +100,7 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
     preparation: 'low', part_draw: 'medium', part_review: 'medium',
     part_groups: 'high', part_reduce: 'high', part_completion: 'high', part_depth: 'high',
     raster_step01: 'xhigh', raster_step01_review: 'xhigh', raster_step02: 'medium',
-    raster_step03: 'medium', assembly: 'xhigh', shadow: 'medium', nine_axis_head: 'xhigh',
+    raster_step03: 'medium', assembly: 'xhigh', shadow: 'medium', nine_axis_head: 'xhigh', nine_axis_outline_review: 'xhigh',
   };
   for (const [step, role] of Object.entries(stepModelSlots)) {
     assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(`gpt-6.1-sol-${expected[role]}`, 'fixture'), step);
