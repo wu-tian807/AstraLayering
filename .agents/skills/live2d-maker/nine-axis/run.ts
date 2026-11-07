@@ -14,7 +14,7 @@ import { checkKrita } from '../shared/raster/krita.ts';
 import { SectionKrita, kritaRecordFile } from '../shared/krita/section-krita.ts';
 import { createKritaTool } from '../shared/krita/tool.ts';
 import { createBitmapTool } from '../shared/part/bitmap-tool.ts';
-import { createSvgPreviewTool, type SvgObservation } from '../shared/part/svg-tools.ts';
+import { createSvgPreviewTool } from '../shared/part/svg-tools.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { ffmpegPath, generateVideo, produceLeftVideo, producePitchVideos, produceCornerVideos, resolveTurnInput, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
 import { buildHead, finishHead, resolveHeadInput, type Built, type HeadInput } from './head.ts';
@@ -34,7 +34,7 @@ import { mergeAxes } from './axis-merge.ts';
 import { axisGroups, checkAxisSource, runAxisGroups, seedAxis, type AxisGroup } from './axis-groups.ts';
 import { readStepSession, writeStepSession } from '../shared/agents/step-session.ts';
 import type { AgentStep, Harness } from '../shared/agents/models.ts';
-import { runOutline, type OutlineRole } from './outline.ts';
+import { runOutline } from './outline.ts';
 import { applyStepAction, applyTaskAction } from '../workflow/step-actions.ts';
 
 export const help = `nine-axis — 头部九轴
@@ -60,7 +60,7 @@ export function requireVideoApi(environment: Pick<WorkflowEnvironment, 'videoApi
 
 const outputSchema = { type: 'object', properties: { error: { type: ['string', 'null'] } }, required: ['error'], additionalProperties: false };
 
-// The visible outline is its own agent with one review; only left has it so far.
+// The visible outline is drawn by its own agent; only left has it so far.
 export const outlineGroups: readonly AxisGroup[] = ['left'];
 function axisValues(input: HeadInput, taskRoot: string, group: AxisGroup) {
   const nine = join(taskRoot, 'nine-axis'), output = join(nine, 'step02_angles', group), scale = angleScale();
@@ -75,8 +75,8 @@ function axisValues(input: HeadInput, taskRoot: string, group: AxisGroup) {
 export function axisPrompt(input: HeadInput, taskRoot: string, group: AxisGroup): string {
   return stepKnowledge('nine-axis', 'step02_angles').render('main', axisValues(input, taskRoot, group), { taskRoot, group }).trim();
 }
-export const outlinePrompt = (input: HeadInput, taskRoot: string, group: AxisGroup, role: OutlineRole) =>
-  stepKnowledge('nine-axis', 'step02_outline').render(role, axisValues(input, taskRoot, group), { taskRoot, group }).trim();
+export const outlinePrompt = (input: HeadInput, taskRoot: string, group: AxisGroup) =>
+  stepKnowledge('nine-axis', 'step02_outline').render('main', axisValues(input, taskRoot, group), { taskRoot, group }).trim();
 export const headPrompt = (input: HeadInput, taskRoot: string) => axisPrompt(input, taskRoot, 'left');
 export const angleYPrompt = (taskRoot: string, stage: PitchStage) => axisPrompt({ document: '', color: '' } as HeadInput, taskRoot, stage);
 export const angleXYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step03_angle-xy').render('main', { ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
@@ -126,19 +126,12 @@ export function createFitHead(agents: Agents, tools: (step: string) => Promise<F
   };
 }
 
-// Draw and repair share the outline's thread (agents/steps/<child>/outline, so a
-// retry of the child drops it); the reviewer is a fresh read-only session.
-export type OutlineHead = (directory: string, prompt: (role: OutlineRole) => string) => Promise<void>;
-export function createOutlineHead(agents: Agents, tools: (directory: string, observed?: (entry: SvgObservation) => void) => Promise<FunctionTool[]>, step: string, signal?: AbortSignal, sectionDirectory?: string, progress?: (message: string) => void): OutlineHead {
-  const names = { main: '描边', review: '描边review', repair: '描边返修' }, steps = { main: 'nine_axis_outline', review: 'nine_axis_outline_review', repair: 'nine_axis_outline_repair' } as const;
-  return async (directory, prompt) => {
-    const observations: SvgObservation[] = [];
-    await runOutline(directory, async (role, submit) => runAgentTurn(agents, sectionDirectory ?? join(directory, '../..'), directory, {
-      step: steps[role], knowledge: 'step02_outline', role, session: role === 'review' ? undefined : `${step}/outline`,
-      name: `${names[role]} ${step.split('/')[1]}`, prompt: prompt(role),
-      tools: [...await tools(directory, role === 'review' ? entry => observations.push(entry) : undefined), ...submit ? [submit] : []],
-      ...(role === 'repair' ? { recoveryPrompt: `${prompt('main')}\n\n${prompt('repair')}` } : {}) }, signal), observations, progress);
-  };
+// The outline has its own thread (agents/steps/<child>/outline, so a retry of the child drops it).
+export type OutlineHead = (directory: string, prompt: string) => Promise<void>;
+export function createOutlineHead(agents: Agents, tools: (directory: string) => Promise<FunctionTool[]>, step: string, signal?: AbortSignal, sectionDirectory?: string): OutlineHead {
+  return async (directory, prompt) => runOutline(directory, async () => { await runAgentTurn(agents, sectionDirectory ?? join(directory, '../..'), directory, {
+    step: 'nine_axis_outline', knowledge: 'step02_outline', role: 'main', session: `${step}/outline`,
+    name: `描边 ${step.split('/')[1]}`, prompt, tools: await tools(directory) }, signal); });
 }
 
 export type NineAxisOptions = { name: string; dir?: string; krita?: string; step?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
@@ -159,7 +152,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined, agentPool: CodexAgents | undefined;
   const agents = () => agentPool ??= new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress, agentConcurrency: 3 });
   let preflightPromise: Promise<unknown> | undefined;
-  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_outline', 'nine_axis_outline_review', 'nine_axis_head', 'nine_axis_head_xy', 'nine_axis_head_jaw'], { runsRoot: root, progress, env: environment.codex.env });
+  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_outline', 'nine_axis_head', 'nine_axis_head_xy', 'nine_axis_head_jaw'], { runsRoot: root, progress, env: environment.codex.env });
   const video = () => {
     const api = dependencies.generate ? undefined : requireVideoApi(environment);
     return { model: api?.model ?? 'injected', generate: dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o)) as GenerateVideo };
@@ -191,10 +184,10 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       return svg.execute(value, signal, context);
     } }];
   };
-  const outlineTools = async (output: string, observed?: (entry: SvgObservation) => void): Promise<FunctionTool[]> => {
-    const observations = join(output, 'observations', observed ? 'review' : 'outline'), box = await crop(), group = output.split('/').at(-2) as AxisGroup;
+  const outlineTools = async (output: string): Promise<FunctionTool[]> => {
+    const observations = join(output, 'observations', 'outline'), box = await crop(), group = output.split('/').at(-2) as AxisGroup;
     return [createBitmapTool(directory, observations), createSvgPreviewTool({ directory: output, reference: join(videos, `${group}.png`),
-      canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas', observed })];
+      canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' })];
   };
   const preview = (text: string) => { progress(`预览：${text}`); summary = '预览完成，未调用模型'; };
   try { await runSection({ directory, steps, dryRun: options.dryRun, signal: options.signal, progress,
@@ -211,7 +204,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       };
       if (step.id === 'step02_angles') return async () => {
         if (options.dryRun) return preview((requestedGroup ? [requestedGroup as AxisGroup] : axisGroups).flatMap(group => [
-          ...outlineGroups.includes(group) ? [outlinePrompt(head, task, group, 'main')] : [], axisPrompt(head, task, group)]).join('\n\n'));
+          ...outlineGroups.includes(group) ? [outlinePrompt(head, task, group)] : [], axisPrompt(head, task, group)]).join('\n\n'));
         const box = await crop();
         const finished = await runAxisGroups(step.directory, {
           async prepare() {
@@ -233,11 +226,11 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
             const injected = group === 'left' ? dependencies.fitHead : group === 'up' ? dependencies.fitUp : dependencies.fitDown;
             // An injected fit stands for the whole child, outline included, unless an outline is injected too.
             const outline = !outlineGroups.includes(group) ? undefined : dependencies.outlineHead
-              ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools, id, options.signal, directory, progress)));
+              ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools, id, options.signal, directory)));
             if (outline) {
               const outlineDirectory = join(output, 'outline');
               await mkdir(outlineDirectory, { recursive: true });
-              await outline(outlineDirectory, role => outlinePrompt(head, task, group, role));
+              await outline(outlineDirectory, outlinePrompt(head, task, group));
             }
             const fit = injected ?? (await preflight(), createFitHead(agents(), faceTools, id, `单轴 ${group}`, options.signal, directory));
             await fit(output, axisPrompt(head, task, group));

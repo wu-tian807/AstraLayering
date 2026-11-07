@@ -8,21 +8,5 @@
       "view_bitmap",
       "preview_svg"
     ]
-  },
-  "review": {
-    "initial": [
-      "prompts/描边review.md",
-      "shared/prompts/nine-axis-face-contour.md"
-    ],
-    "tools": [
-      "view_bitmap",
-      "preview_svg",
-      "submit_review"
-    ],
-    "repair": {
-      "initial": [
-        "prompts/描边返修.md"
-      ]
-    }
   }
 }

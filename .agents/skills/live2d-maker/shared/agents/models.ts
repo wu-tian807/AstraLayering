@@ -19,7 +19,7 @@ export type AgentModel = { model: ModelId; effort: ReasoningEffort; harness: Har
 export const modelSlots = [
   'preparation', 'part_draw', 'part_review', 'part_reduce', 'part_completion',
   'part_groups', 'part_depth', 'raster_step01', 'raster_step02', 'raster_step01_review',
-  'raster_step03', 'assembly', 'shadow', 'nine_axis_head', 'nine_axis_outline_review',
+  'raster_step03', 'assembly', 'shadow', 'nine_axis_head',
 ] as const;
 export type ModelSlot = typeof modelSlots[number];
 // 模型键不带 layering 前缀；带前缀的旧键仅在已有 .env 中兼容读取，过渡期后移除。
@@ -52,7 +52,7 @@ export const stepModelSlots = {
   raster_step03: 'raster_step03',
   clothing_raster_step01: 'raster_step01', clothing_raster_step02: 'raster_step02',
   clothing_raster_step01_review: 'raster_step01_review', clothing_raster_step01_repair: 'raster_step01',
-  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_outline: 'nine_axis_head', nine_axis_outline_review: 'nine_axis_outline_review', nine_axis_outline_repair: 'nine_axis_head',
+  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_outline: 'nine_axis_head',
   nine_axis_head: 'nine_axis_head', nine_axis_head_y: 'nine_axis_head', nine_axis_head_down: 'nine_axis_head', nine_axis_head_xy: 'nine_axis_head', nine_axis_head_jaw: 'nine_axis_head',
 } as const satisfies Record<string, ModelSlot>;
 export type AgentStep = keyof typeof stepModelSlots;

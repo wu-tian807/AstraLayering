@@ -147,7 +147,7 @@ export async function runTask(options: TaskOptions, dependencies: {
     if (environment) {
       const standard = run.standard;
       await preflightAgentSteps(environment, selected.flatMap(id => id === 'nine-axis'
-        ? ['nine_axis_outline', 'nine_axis_outline_review', 'nine_axis_head', 'nine_axis_head_xy', 'nine_axis_head_jaw'] as const
+        ? ['nine_axis_outline', 'nine_axis_head', 'nine_axis_head_xy', 'nine_axis_head_jaw'] as const
         : sectionAgentSteps(id, standard, run!.shadowMode)), { runsRoot: dirname(directory), progress,
         building: () => { progress('准备中：构建补丁版 Codex，完成后自动开始；构建期间的停止请求在构建结束后生效。'); dependencies.preparing?.(run!); } });
     }
