@@ -1,6 +1,6 @@
 import { parseArgs } from 'node:util';
 import { join } from 'node:path';
-import { copyFile, mkdir, readFile, rm } from 'node:fs/promises';
+import { access, copyFile, mkdir, readFile, rm } from 'node:fs/promises';
 import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
@@ -17,7 +17,7 @@ import { createBitmapTool } from '../shared/part/bitmap-tool.ts';
 import { createSvgPreviewTool } from '../shared/part/svg-tools.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { ffmpegPath, generateVideo, produceLeftVideo, producePitchVideos, produceCornerVideos, resolveTurnInput, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
-import { buildHead, finishHead, resolveHeadInput, type Built, type HeadInput } from './head.ts';
+import { buildHead, copyDocument, finishHead, stepDocument, type Built, type HeadInput } from './head.ts';
 import { buildAngleY, finishAngleY } from './angle-y.ts';
 import { buildAngleXY, checkCornerReferences, cornerAngleValues, finishAngleXY, writeLinearCorners } from './angle-xy.ts';
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
@@ -148,7 +148,9 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const task = taskDirectory(options.name, root), directory = join(task, 'nine-axis'), videos = join(directory, 'step01_video'), axes = join(directory, 'step02_angles'), neutral = join(axes, 'neutral');
   const environment = dependencies.environment ?? loadWorkflowEnvironment(), scale = angleScale();
   const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
-  const head = await resolveHeadInput(input);
+  // step02 copies the shadow KRA into its own directory on every run; later
+  // steps that need the KRA copy it from the step before.
+  const head = stepDocument(input, axes), shadow = { document: input.color.replace(/\.png$/, '.kra'), color: input.color };
   let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined, agentPool: CodexAgents | undefined;
   const agents = () => agentPool ??= new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress, agentConcurrency: 3 });
   let preflightPromise: Promise<unknown> | undefined;
@@ -208,9 +210,9 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         const box = await crop();
         const finished = await runAxisGroups(step.directory, {
           async prepare() {
-            const current = await readStep(neutral);
-            if (current.status === 'completed') return;
-            await beginStep(neutral, current.status);
+            await copyDocument(shadow, head);
+            await rm(neutral, { recursive: true, force: true });
+            await beginStep(neutral, (await readStep(neutral)).status);
             if (dependencies.prepareNeutral) await dependencies.prepareNeutral(neutral, head, box, task);
             else {
               const instance = await krita();
@@ -265,16 +267,23 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         summary = `nine-axis/step03_angle-xy 已完成：${await finishAngleXY(step.directory, axes, scale)} 个原图层的斜向四角`;
       };
       return async () => {
-        if (options.dryRun) return preview(jawLinePrompt(head, task));
+        if (options.dryRun) return preview(jawLinePrompt(stepDocument(input, step.directory), task));
+        const jaw = stepDocument(input, step.directory);
+        if (!await exists(jaw.document)) {
+          const previous = stepDocument(input, join(directory, 'step03_angle-xy'));
+          await copyDocument(await exists(previous.document) ? previous : head, jaw);
+        }
         builds[step.id] = () => buildJawLine(step.directory, join(directory, 'step03_angle-xy'), scale);
         const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子', options.signal, directory));
-        await fit(step.directory, jawLinePrompt(head, task));
+        await fit(step.directory, jawLinePrompt(jaw, task));
         summary = `nine-axis/step04_jaw-line 已完成：${await finishJawLine(step.directory, join(directory, 'step03_angle-xy'), scale)} 个部件的下颌线与脖子`;
       };
     },
   }); } finally { await sectionKrita?.release(); }
   return summary;
 }
+
+const exists = (path: string) => access(path).then(() => true, () => false);
 
 export function parseRunArguments(args: string[]) {
   const { values } = parseArgs({ args, options: { name: { type: 'string' }, dir: { type: 'string' }, knowledge: { type: 'string' },

@@ -1,9 +1,9 @@
-import { createHash, randomUUID } from 'node:crypto';
-import { copyFile, link, lstat, mkdir, readFile, realpath, rename, rm, stat, writeFile } from 'node:fs/promises';
-import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { copyFile, link, lstat, mkdir, readFile, realpath, rename, rm, writeFile } from 'node:fs/promises';
+import { dirname, join, relative, resolve, sep } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import sharp from 'sharp';
-import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
+import { toTaskPath } from '../shared/task-paths.ts';
 import { angleParameter, angleScale, type AngleScale } from './angles.ts';
 import type { Built } from './head.ts';
 import { checkWarpGeometry, evaluatePoints, keyValues, lattice, nodes, refine, validateHeadNineAxis,
@@ -12,14 +12,13 @@ import { checkWarpGeometry, evaluatePoints, keyValues, lattice, nodes, refine, v
 export type AxesDirectories = { left: string; up: string; down: string };
 export type AxisMergeManifest = {
   version: 1; kind: 'nine-axis-independent-sources';
-  baseline: { sha256: string; exportRecordSha256: string; source: NonNullable<HeadNineAxis['source']> };
-  sources: { axis: IndependentAxis; sha256: string; embeddedDocumentSha256: string; file: string }[];
-  textures: { texture: string; sha256: string }[];
-  checks: { neutral: true; sourceFilesUnchanged: true; samples: { axis: IndependentAxis; angle: number; maxError: number }[] };
+  baseline: { source: NonNullable<HeadNineAxis['source']> };
+  sources: { axis: IndependentAxis; file: string }[];
+  textures: { texture: string }[];
+  checks: { neutral: true; samples: { axis: IndependentAxis; angle: number; maxError: number }[] };
 };
 export type MergedAxes = Built & { manifest: AxisMergeManifest };
-type Snapshot = { doc: HeadNineAxis; path: string; sha256: string };
-const hash = (bytes: string | Buffer) => createHash('sha256').update(bytes).digest('hex');
+type Snapshot = { doc: HeadNineAxis; path: string };
 const same = (a: unknown, b: unknown, label: string) => { if (!isDeepStrictEqual(a, b)) throw new Error(label + ' 不一致'); };
 const close = (a: ArrayLike<number>, b: ArrayLike<number>, label: string, tolerance = 1e-5) => {
   if (a.length !== b.length) throw new Error(label + ' 点数不一致');
@@ -32,24 +31,13 @@ async function snapshot(directory: string): Promise<Snapshot> {
   const path = join(directory, 'deformers.json'), bytes = await readFile(path);
   const doc = validateHeadNineAxis(JSON.parse(bytes.toString('utf8')));
   if (doc.axisSources !== undefined) throw new Error(path + '：合并输入须为独立作者，不允许 axisSources');
-  return { doc, path, sha256: hash(bytes) };
+  return { doc, path };
 }
 async function destinationPath(path: string): Promise<string> {
   for (let at = path;; at = dirname(at)) {
     try { return resolve(await realpath(at), relative(at, path)); }
     catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT' || dirname(at) === at) throw error; }
   }
-}
-async function sourcePath(directory: string, path: string, taskRoot?: string): Promise<string> {
-  if (taskRoot) return fromTaskPath(taskRoot, path);
-  if (isAbsolute(path)) return path;
-  if (path.split(/[\\/]/).includes('..')) throw new Error('原 KRA 路径不能越出任务目录');
-  for (let at = resolve(directory);; at = dirname(at)) {
-    const candidate = join(at, path);
-    if (await stat(candidate).then(s => s.isFile(), () => false)) return candidate;
-    if (dirname(at) === at) break;
-  }
-  throw new Error('找不到共同原 KRA：' + path);
 }
 function identity(node: WarpGrid, label: string) {
   const rest = lattice(node);
@@ -85,7 +73,7 @@ function angularSamples(doc: HeadNineAxis, axis: IndependentAxis, scale: AngleSc
 // Program-only composition of immutable independent authors. This deliberately
 // creates no anatomical/shared group: root groups belong to the future XY agent.
 // export-record.json is the native, static KRA export prepared with the baseline;
-// its part count (24 for pink-doll) and per-texture hashes are the authority.
+// its part count (24 for pink-doll) and texture bytes are the authority.
 export async function mergeAxes(directory: string, baselineDirectory: string, axesDirectories: AxesDirectories, scale: AngleScale = angleScale(), taskRoot?: string): Promise<MergedAxes> {
   if (![...scale.x, ...scale.y].every(Number.isFinite) || !(scale.x[0] < 0 && scale.x[1] > 0 && scale.y[0] < 0 && scale.y[1] > 0)) throw new Error('合并角度范围须含负/正 X/Y');
   const inputs = [baselineDirectory, axesDirectories.left, axesDirectories.up, axesDirectories.down].map(dir => resolve(dir));
@@ -98,21 +86,18 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
   const [baseline, ...sources] = await Promise.all(inputs.map(snapshot));
   const axes: IndependentAxis[] = ['x', 'up', 'down'];
   if (baseline.doc.deformers.length) throw new Error('shared-neutral baseline 不能预建 Warp');
-  if (!baseline.doc.source?.document || !/^[a-f0-9]{64}$/.test(baseline.doc.source.sha256)) throw new Error('中性输入缺少原 KRA 来源 SHA');
+  if (!baseline.doc.source?.document) throw new Error('中性输入缺少原 KRA 来源');
   if (!baseline.doc.canvas || !Number.isFinite(baseline.doc.axis)) throw new Error('中性输入缺少原画布/中轴');
-  const exportBytes = await readFile(join(baselineDirectory, 'export-record.json'));
-  const record = JSON.parse(exportBytes.toString('utf8'));
-  if (record.sourceKraSha256 !== baseline.doc.source.sha256 || !Array.isArray(record.parts)) throw new Error('静止导层记录与原 KRA 不一致');
+  const record = JSON.parse(await readFile(join(baselineDirectory, 'export-record.json'), 'utf8'));
+  if (!Array.isArray(record.parts)) throw new Error('静止导层记录缺少图层');
   same(record.canvas, baseline.doc.canvas, '静止导层画布');
-  const kra = await sourcePath(baselineDirectory, record.sourceKra ?? baseline.doc.source.document, taskRoot);
-  if (hash(await readFile(kra)) !== baseline.doc.source.sha256) throw new Error('原 KRA 字节 SHA 已改变');
   const exported = new Map<string, any>(record.parts.map((p: any) => [p.id, p]));
   if (exported.size !== record.parts.length || exported.size !== baseline.doc.parts.length) throw new Error('原 KRA 图层集合不完整');
   for (const p of baseline.doc.parts) {
     if (p.parent) throw new Error('中性输入部件不能预挂 Warp：' + p.id);
     identity(p, '中性原形 ' + p.id);
     const original = exported.get(p.id);
-    if (!original || !/^[a-f0-9]{64}$/.test(original.sha256)) throw new Error('原 KRA 图层缺少贴图 SHA：' + p.id);
+    if (!original) throw new Error('原 KRA 图层缺少导出记录：' + p.id);
     for (const k of ['texture', 'textureBounds', 'bbox', 'cols', 'rows']) same((p as any)[k], original[k], '原 KRA ' + p.id + '/' + k);
   }
   for (const [i, s] of sources.entries()) {
@@ -126,14 +111,13 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
       close(evaluatePoints(s.doc, p, 0, 0, 4), refine(lattice(base), base.cols, base.rows, 4), axes[i] + '/' + p.id + ' 父链中性姿态');
     }
   }
-  const textureHashes = new Map<string, string>();
+  const textures: string[] = [];
   for (const p of baseline.doc.parts) {
-    const bytes = await readFile(join(baselineDirectory, p.texture)), sha256 = hash(bytes);
-    if (sha256 !== exported.get(p.id).sha256) throw new Error(p.id + '：中性贴图不是原 KRA 静止导出字节');
+    const bytes = await readFile(join(baselineDirectory, p.texture));
     const meta = await sharp(bytes).metadata();
     if (meta.width !== p.textureBounds[2] || meta.height !== p.textureBounds[3]) throw new Error(p.id + '：原贴图尺寸不一致');
-    textureHashes.set(p.texture, sha256);
-    for (const [i, dir] of inputs.slice(1).entries()) if (hash(await readFile(join(dir, p.texture))) !== sha256) throw new Error(axes[i] + '/' + p.id + '：原贴图字节改变');
+    textures.push(p.texture);
+    for (const [i, dir] of inputs.slice(1).entries()) if (!(await readFile(join(dir, p.texture))).equals(bytes)) throw new Error(axes[i] + '/' + p.id + '：原贴图与 neutral 不同，需重跑该方向');
   }
   const doc = structuredClone(baseline.doc);
   // Retain baseline presentation/UV, remove stale author-specific metadata.
@@ -148,7 +132,7 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
     return p;
   });
   doc.parameters = [angleParameter('ParamAngleX', '角度 X', scale.x), angleParameter('ParamAngleY', '角度 Y', scale.y)];
-  doc.axisSources = sources.map((s, i) => ({ axis: axes[i], sha256: s.sha256, doc: structuredClone(s.doc) }));
+  doc.axisSources = sources.map((s, i) => ({ axis: axes[i], doc: structuredClone(s.doc) }));
   validateHeadNineAxis(doc);
   const samples: AxisMergeManifest['checks']['samples'] = [];
   for (const [i, s] of sources.entries()) for (const angle of angularSamples(s.doc, axes[i], scale)) {
@@ -158,10 +142,10 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
     samples.push({ axis: axes[i], angle, maxError });
   }
   const manifest: AxisMergeManifest = { version: 1, kind: 'nine-axis-independent-sources',
-    baseline: { sha256: baseline.sha256, exportRecordSha256: hash(exportBytes), source: structuredClone(baseline.doc.source) },
-    sources: sources.map((s, i) => ({ axis: axes[i], sha256: s.sha256, embeddedDocumentSha256: hash(JSON.stringify(s.doc)), file: taskRoot ? toTaskPath(taskRoot, s.path) : relative(output, s.path).split(sep).join('/') })),
-    textures: [...textureHashes].map(([texture, sha256]) => ({ texture, sha256 })),
-    checks: { neutral: true, sourceFilesUnchanged: true, samples } };
+    baseline: { source: structuredClone(baseline.doc.source) },
+    sources: sources.map((s, i) => ({ axis: axes[i], file: taskRoot ? toTaskPath(taskRoot, s.path) : relative(output, s.path).split(sep).join('/') })),
+    textures: textures.map(texture => ({ texture })),
+    checks: { neutral: true, samples } };
   // A scheduled parent may already contain the independent author folders.
   // Only new root projection names may be installed; none can be replaced.
   const existing = await lstat(output).catch(error => { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; return undefined; });
@@ -172,13 +156,7 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
   const installed: string[] = [];
   try {
     await mkdir(join(staging, 'layers'), { recursive: true });
-    for (const [texture, sha256] of textureHashes) {
-      await copyFile(join(baselineDirectory, texture), join(staging, texture));
-      if (hash(await readFile(join(staging, texture))) !== sha256) throw new Error('暂存贴图 SHA 改变：' + texture);
-    }
-    for (const s of [baseline, ...sources]) if (hash(await readFile(s.path)) !== s.sha256) throw new Error('合并期间独立作者已变化：' + s.path);
-    if (hash(await readFile(kra)) !== baseline.doc.source.sha256 || hash(await readFile(join(baselineDirectory, 'export-record.json'))) !== hash(exportBytes)) throw new Error('合并期间中性来源已变化');
-    for (const dir of inputs) for (const [texture, sha256] of textureHashes) if (hash(await readFile(join(dir, texture))) !== sha256) throw new Error('合并期间原贴图已变化：' + texture);
+    for (const texture of textures) await copyFile(join(baselineDirectory, texture), join(staging, texture));
     await writeFile(join(staging, 'deformers.json'), JSON.stringify(doc) + '\n', { flag: 'wx' });
     await writeFile(join(staging, 'axis-sources.json'), JSON.stringify(manifest, null, 2) + '\n', { flag: 'wx' });
     if (!existing) await rename(staging, output);

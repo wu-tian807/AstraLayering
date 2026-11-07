@@ -1,6 +1,6 @@
 // Task-relative paths for the four-step nine-axis pipeline. The workbench
-// reads the newest completed deformers.json; a repaired KRA is used only when
-// source.json still matches the selected upstream KRA/PNG.
+// reads the newest completed deformers.json and, once merged, the KRA copy
+// that step02 made from shadow.
 export const nineAxisArtifacts = {
   turnUpperBody: 'nine-axis/step01_video/upper-body.png',
   turnLeft: 'nine-axis/step01_video/left.png',
@@ -46,9 +46,3 @@ export const nineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy'
 export const nineAxisGroupSteps = nineAxisGroups.map(group => `step02_angles/${group}`);
 export const nineAxisDeformerPaths = new Set<string>([...Object.values(nineAxisStages), ...Object.values(legacyNineAxisArtifacts).filter(path => path.endsWith('/deformers.json'))]);
 
-export type NineAxisSource = { version: 1; sourceDocument: string; sourceColor: string; sourceKraHash: string; sourceColorHash: string };
-export function isNineAxisSource(value: unknown): value is NineAxisSource {
-  const r = value as NineAxisSource | null;
-  return !!r && r.version === 1 && typeof r.sourceDocument === 'string' && typeof r.sourceColor === 'string'
-    && [r.sourceKraHash, r.sourceColorHash].every(hash => typeof hash === 'string' && /^[a-f0-9]{64}$/.test(hash));
-}

@@ -9,7 +9,7 @@ export const grid = (id: string, bbox = [0, 0, 100, 100]): WarpGrid => {
 };
 export function baseline(): HeadNineAxis {
   return { version: 2, kind: 'head-nine-axis', axis: 50, canvas: [100, 100], view: { x: 0, y: 0, width: 100, height: 100 },
-    source: { document: 'original.kra', sha256: 'a'.repeat(64) }, levels: [{ id: 'face', includes: ['face'] }],
+    source: { document: 'original.kra' }, levels: [{ id: 'face', includes: ['face'] }],
     parameters: [{ id: 'ParamAngleX', keys: [0] }, { id: 'ParamAngleY', keys: [0] }], deformers: [],
     parts: ['face/face_base', 'face/eye_left', 'face/eye_right', 'neck'].map((id, i) => ({ ...grid(id), texture: `layers/p${i}.png`, textureBounds: [0, 0, 100, 100] })) };
 }
@@ -47,6 +47,6 @@ export function joint(axes = independentAxes()): HeadNineAxis {
     n.keyformsY = Object.fromEntries([-25, 0, 25].map(k => [String(k), pts(n)]));
     n.keyformsXY = Object.fromEntries([-30, 30].flatMap(x => [-25, 25].map(y => [`${x},${y}`, pts(n)])));
   }
-  doc.axisSources = Object.entries(axes).map(([axis, doc]) => ({ axis: axis as 'x' | 'up' | 'down', sha256: 'b'.repeat(64), doc }));
+  doc.axisSources = Object.entries(axes).map(([axis, doc]) => ({ axis: axis as 'x' | 'up' | 'down', doc }));
   return validateHeadNineAxis(doc);
 }

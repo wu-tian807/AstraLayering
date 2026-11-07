@@ -210,14 +210,8 @@ test('Project reports the head nine-axis document and prefers its KRA while the 
   assert.equal((await read('nine-axis/step02_angles/layers/../source.json')).status, 400);
   await f.put(studioArtifacts.document, 'kra'); await f.put(studioArtifacts.color, 'png');
   await f.put(a.headDocument, 'nine kra'); await f.put(a.headColor, 'nine png');
-  const hash = (s: string) => createHash('sha256').update(s).digest('hex');
-  await f.put(a.headSource, JSON.stringify({ version: 1, sourceDocument: studioArtifacts.document, sourceColor: studioArtifacts.color, sourceKraHash: hash('kra'), sourceColorHash: hash('png'), updatedAt: 'x' }));
   data = (await (await f.get()).json()) as any;
   assert.deepEqual([data.files.document.path, data.files.color.path, data.nineAxisDocument], [a.headDocument, a.headColor, true]);
-  // A changed source KRA falls back to it and marks the nine-axis KRA stale.
-  await f.put(studioArtifacts.document, 'kra 2');
-  data = (await (await f.get()).json()) as any;
-  assert.deepEqual([data.files.document.path, data.nineAxisDocument, data.nineAxisStale], [studioArtifacts.document, false, true]);
 });
 test('An imported task folder outside the run directory opens; only studio outputs are readable', async t => {
   const f = await fixture(t), folder = join(f.root, 'elsewhere', 'imported');

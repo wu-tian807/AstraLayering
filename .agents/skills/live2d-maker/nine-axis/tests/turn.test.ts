@@ -45,9 +45,8 @@ async function prepareNeutralFixture(directory: string, input: HeadInput, box: B
   await writeFile(join(directory, 'face-left.json'), JSON.stringify(face));
   const built = await buildHead(directory, input, box, undefined, taskRoot);
   await writeBuilt(directory, built);
-  const parts = await Promise.all(built.doc.parts.map(async p => ({ ...p, sha256: await fileHash(join(directory, p.texture)) })));
   await writeFile(join(directory, 'export-record.json'), JSON.stringify({ version: 1, sourceKra: built.doc.source!.document,
-    sourceKraSha256: built.doc.source!.sha256, canvas: built.doc.canvas, order: 'bottom-to-top', parts }));
+    canvas: built.doc.canvas, order: 'bottom-to-top', parts: built.doc.parts }));
   await writeFile(join(directory, 'source.json'), JSON.stringify({ version: 1, ...built.source }));
 }
 
@@ -335,8 +334,9 @@ test('连续四步：平层视频、三路真实并发、联合工程、斜角�
   for (const step of ['step02_angle-x', 'step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step06_angle-xy', 'step07_jaw-line']) await assert.rejects(access(join(nine, step)), { code: 'ENOENT' });
   for (const step of ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line']) assert.equal((await readStep(join(nine, step))).status, 'completed');
   const source = JSON.parse(await readFile(join(axes, 'source.json'), 'utf8'));
-  assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
-  assert.equal(source.sourceKraHash, await fileHash(join(task, source.sourceDocument)));
+  assert.equal(source.sourceDocument, 'nine-axis/step02_angles/character-nine-axis.kra');
+  assert.deepEqual(await readFile(join(task, source.sourceDocument)), await readFile(join(task, 'character-assembly/step01/character-assembled.kra')));
+  assert.deepEqual(await readFile(join(nine, 'step04_jaw-line/character-nine-axis.kra')), await readFile(join(task, source.sourceDocument)));
   const neutral = await readUpstream(join(axes, 'neutral')), merged = await readUpstream(axes);
   const independent = Object.fromEntries(await Promise.all(axisGroups.map(async group => [group, (await readUpstream(join(axes, group))).doc]))) as Record<AxisGroup, HeadNineAxis>;
   assert.deepEqual(merged.doc.parts.map(p => p.id), neutral.doc.parts.map(p => p.id));

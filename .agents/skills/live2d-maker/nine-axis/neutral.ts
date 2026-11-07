@@ -8,25 +8,25 @@ import { checkWarpGeometry, lattice, validateHeadNineAxis, type HeadDeformer, ty
 import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import { angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { faceLevel, writeBuilt, type Built, type HeadInput } from './head.ts';
-import { fileHash, type Box } from './turn.ts';
+import type { Box } from './turn.ts';
 
 type Bounds = [number, number, number, number];
 export type NeutralLayer = {
   id: string; group: string; texture: string; textureBounds: Bounds; bbox: Bounds;
   uuid: string; layerName: string; nodeType: string; parentUuid: string;
-  order: number; stackPath: number[]; visible: boolean; layerOpacity: number; blendingMode: string; sha256: string;
+  order: number; stackPath: number[]; visible: boolean; layerOpacity: number; blendingMode: string;
 };
 export type NeutralManifest = {
-  version: 1; sourceKra: string; sourceKraSha256: string; sourceColor: string; sourceColorSha256: string;
+  version: 1; sourceKra: string; sourceColor: string;
   canvas: [number, number]; method: string; order: 'top-to-bottom'; parts: NeutralLayer[]; referenceLayers: NeutralLayer[];
-  preview: { texture: string; textureBounds: Bounds; sha256: string };
+  preview: { texture: string; textureBounds: Bounds };
 };
 export type NeutralPart = Omit<HeadDeformer, 'keyforms' | 'keyformsY'> & NeutralLayer & {
   keyforms: Record<string, Point[]>; keyformsY: Record<string, Point[]>;
 };
 export type NeutralDocument = Omit<HeadNineAxis, 'parts' | 'source'> & {
   axis: number; canvas: [number, number]; parts: NeutralPart[];
-  source: { document: string; sha256: string };
+  source: { document: string };
 };
 export type NeutralBuilt = Omit<Built, 'doc'> & {
   doc: NeutralDocument; directory: string; path: string; manifestPath: string; exportRecordPath: string; sourcePath: string;
@@ -39,15 +39,8 @@ export type NeutralBuilt = Omit<Built, 'doc'> & {
 function exportScript(document: string, directory: string): string {
   return `from krita import Krita
 from PyQt5.QtGui import QImage
-import os, json, hashlib, re
+import os, json, re
 config = json.loads(${JSON.stringify(JSON.stringify({ document, directory }))})
-def digest(path):
-    h = hashlib.sha256()
-    with open(path, 'rb') as handle:
-        for block in iter(lambda: handle.read(1024 * 1024), b''):
-            h.update(block)
-    return h.hexdigest()
-source_hash = digest(config['document'])
 doc = Krita.instance().openDocument(config['document'])
 if doc is None:
     raise RuntimeError('Cannot open source KRA: ' + config['document'])
@@ -93,17 +86,15 @@ try:
                 texture=texture, textureBounds=[x,y,w,h], bbox=[x,y,x+w,y+h], uuid=uuid,
                 layerName=node.name(), nodeType=node.type(), parentUuid=parent.uniqueId().toString(),
                 order=order, stackPath=stack, visible=node.visible(), layerOpacity=node.opacity(),
-                blendingMode=node.blendingMode(), sha256=digest(destination))
+                blendingMode=node.blendingMode())
             (parts if core else references).append(record)
     visit(doc.rootNode(), [])
     if not any(p['id'] == 'face/face_base' for p in parts):
         raise RuntimeError('Source KRA has no face/face_base')
-    exported = dict(canvas=[doc.width(), doc.height()], sourceKraSha256=source_hash,
+    exported = dict(canvas=[doc.width(), doc.height()],
         parts=parts, referenceLayers=references)
 finally:
     doc.close()
-if digest(config['document']) != source_hash:
-    raise RuntimeError('Source KRA changed during neutral export')
 result = exported
 `;
 }
@@ -160,11 +151,11 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   if (![box.x, box.y, box.size].every(Number.isFinite) || box.size <= 0) throw Error('neutral：view box 无效');
   for (const range of [scale.x, scale.y]) if (range.length !== 2 || !range.every(Number.isFinite) || !(range[0] < 0 && range[1] > 0))
     throw Error('neutral：角度范围须包含负值与正值');
-  const [kraHash, colorHash, colorMetadata] = await Promise.all([fileHash(document), fileHash(color), sharp(color).metadata()]);
+  const colorMetadata = await sharp(color).metadata();
   await prepareNeutralBridge(krita, signal);
   signal?.throwIfAborted();
   const temporary = await mkdtemp(join(tmpdir(), 'nine-axis-neutral-'));
-  let exported: Pick<NeutralManifest, 'canvas' | 'sourceKraSha256' | 'parts' | 'referenceLayers'>;
+  let exported: Pick<NeutralManifest, 'canvas' | 'parts' | 'referenceLayers'>;
   try {
     const script = join(temporary, 'export_layers.py');
     await writeFile(script, exportScript(document, output));
@@ -175,8 +166,7 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
     await rm(temporary, { recursive: true, force: true });
   }
   signal?.throwIfAborted();
-  if (!exported || exported.sourceKraSha256 !== kraHash || await fileHash(document) !== kraHash || await fileHash(color) !== colorHash)
-    throw Error('neutral：源 KRA 或首图在导出期间变化');
+  if (!exported) throw Error('neutral：原 KRA 导出没有结果');
   const [width, height] = exported.canvas ?? [];
   if (width !== colorMetadata.width || height !== colorMetadata.height || !Number.isInteger(width) || !Number.isInteger(height) || width <= 0 || height <= 0)
     throw Error('neutral：源 KRA 与原始首图画布不一致');
@@ -184,9 +174,9 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   if (!(axis > 0 && axis < width)) throw Error('neutral：axis 须在原始画布内');
   if (!Array.isArray(exported.parts) || !Array.isArray(exported.referenceLayers)) throw Error('neutral：导出缺少图层 metadata');
   for (const layer of [...exported.parts, ...exported.referenceLayers]) {
-    const [meta, hash] = await Promise.all([sharp(join(output, layer.texture)).metadata(), fileHash(join(output, layer.texture))]);
-    if (hash !== layer.sha256 || meta.width !== layer.textureBounds[2] || meta.height !== layer.textureBounds[3])
-      throw Error(`neutral：原图层 PNG hash 或尺寸不一致：${layer.id}`);
+    const meta = await sharp(join(output, layer.texture)).metadata();
+    if (meta.width !== layer.textureBounds[2] || meta.height !== layer.textureBounds[3])
+      throw Error(`neutral：原图层 PNG 尺寸不一致：${layer.id}`);
   }
   // Identical to importParts initialization, without compileHead's mirror or
   // anatomical ordering rules. Original metadata and pixels remain untouched.
@@ -197,7 +187,7 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
       keyformsY: { '0': structuredClone(points) } };
   });
   const doc: NeutralDocument = { version: 2, kind: 'head-nine-axis', canvas: [width, height], axis,
-    source: { document: toTaskPath(root, document), sha256: kraHash },
+    source: { document: toTaskPath(root, document) },
     view: { x: box.x, y: box.y, width: box.size, height: box.size }, levels: [structuredClone(faceLevel)],
     parameters: [{ ...angleParameter('ParamAngleX', '角度 X', scale.x), status: '未制作' },
       { ...angleParameter('ParamAngleY', '角度 Y', scale.y), keys: [0], status: '未制作' }],
@@ -212,11 +202,11 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   await sharp({ create: { width: x1 - x0, height: y1 - y0, channels: 4, background: '#00000000' } })
     .composite(parts.map(p => ({ input: join(output, p.texture), left: p.textureBounds[0] - x0, top: p.textureBounds[1] - y0 })))
     .png().toFile(preview);
-  const manifest: NeutralManifest = { version: 1, sourceKra: doc.source.document, sourceKraSha256: kraHash,
-    sourceColor: toTaskPath(root, color), sourceColorSha256: colorHash, canvas: [width, height],
+  const manifest: NeutralManifest = { version: 1, sourceKra: doc.source.document,
+    sourceColor: toTaskPath(root, color), canvas: [width, height],
     method: 'Krita node.projectionPixelData; child masks included; RGBA/U8 ARGB32 PNG; original bounds; no view crop',
     order: 'top-to-bottom', parts: exported.parts, referenceLayers: exported.referenceLayers,
-    preview: { texture: 'original-full-face.png', textureBounds: [x0, y0, x1 - x0, y1 - y0], sha256: await fileHash(preview) } };
+    preview: { texture: 'original-full-face.png', textureBounds: [x0, y0, x1 - x0, y1 - y0] } };
   signal?.throwIfAborted();
   const textures = new Map(parts.map(p => [p.texture, join(output, p.texture)]));
   await writeBuilt(output, { doc, textures });
@@ -225,9 +215,9 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   // Merge consumes drawing order, while the manifest above keeps the original
   // top-first export. Both records retain the same unmodified texture metadata.
   const exportRecordPath = join(output, 'export-record.json'), sourcePath = join(output, 'source.json');
-  await writeFile(exportRecordPath, JSON.stringify({ version: 1, sourceKra: doc.source.document, sourceKraSha256: kraHash,
+  await writeFile(exportRecordPath, JSON.stringify({ version: 1, sourceKra: doc.source.document,
     canvas: doc.canvas, order: 'bottom-to-top', parts: doc.parts, referenceLayers: manifest.referenceLayers }, null, 2) + '\n');
-  const source = { sourceDocument: doc.source.document, sourceColor: manifest.sourceColor, sourceKraHash: kraHash, sourceColorHash: colorHash };
+  const source = { sourceDocument: doc.source.document, sourceColor: manifest.sourceColor };
   await writeFile(sourcePath, JSON.stringify({ version: 1, ...source }, null, 2) + '\n');
   return { doc: freeze(doc), textures, directory: output, path: join(output, 'deformers.json'),
     manifest: freeze(manifest), manifestPath, exportRecordPath, sourcePath, source: freeze(source), preview };

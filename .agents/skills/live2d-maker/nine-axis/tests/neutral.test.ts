@@ -11,7 +11,6 @@ import { submitJob, type BridgeResult } from '../../shared/krita/bridge/client.m
 import { evaluatePoints, lattice } from '../../shared/nine-axis-model.js';
 import { compileContinuation, startContinuation, sha256 } from '../continuation.ts';
 import { checkFaceLeft, compileHead, writeBuilt, type HeadInput } from '../head.ts';
-import { fileHash } from '../turn.ts';
 import { prepareNeutral, prepareNeutralBridge } from '../neutral.ts';
 
 const scale = { x: [-30, 30] as [number, number], y: [-25, 25] as [number, number] };
@@ -29,7 +28,7 @@ const layers: Layer[] = [
 // Use the real submitJob file protocol, executing the generated Python with
 // small Krita/QImage doubles. This exercises traversal, export and finally-close
 // rather than merely returning a precomputed manifest from a mocked TS API.
-async function fixture(t: TestContext, nodes = layers, options: { failExport?: boolean; corruptHash?: boolean; depth?: string;
+async function fixture(t: TestContext, nodes = layers, options: { failExport?: boolean; depth?: string;
   startupReplies?: Partial<BridgeResult>[]; exportReply?: Partial<BridgeResult> } = {}) {
   const root = await mkdtemp(join(tmpdir(), 'neutral-原图-'));
   let stop = async () => {};
@@ -150,7 +149,6 @@ print(json.dumps(reply))
         if (startup && options.startupReplies?.length) Object.assign(reply, options.startupReplies.shift());
         if (!startup && options.exportReply) Object.assign(reply, options.exportReply);
         calls.events = reply.events ?? [];
-        if (!startup && options.corruptHash && reply.ok) reply.result.parts[0].sha256 = '0'.repeat(64);
         replies.push({ ...reply, startup });
         await writeFile(join(jobs, name.replace(/\.py$/, '.json')), JSON.stringify(reply));
       }
@@ -163,7 +161,7 @@ print(json.dumps(reply))
 }
 
 test('one original KRA job preserves layers, metadata, identity and the merge export contract', async t => {
-  const f = await fixture(t), originalHash = await fileHash(f.input.document);
+  const f = await fixture(t), original = await readFile(f.input.document);
   const built = await prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root);
   const { doc, manifest } = built;
   assert.deepEqual(f.calls, { reserve: 1, start: 1, release: 0, jobs: 2, events: ['open',
@@ -176,7 +174,6 @@ test('one original KRA job preserves layers, metadata, identity and the merge ex
   assert.deepEqual(doc.canvas, [16, 16]); assert.equal(doc.axis, 8);
   assert.deepEqual(doc.view, { x: 4, y: 4, width: 8, height: 8 });
   assert.equal(doc.source.document, 'character-assembly/step01/original "doll".kra');
-  assert.equal(doc.source.sha256, originalHash);
   assert.deepEqual(doc.deformers, []);
   assert.deepEqual(doc.parameters!.map(p => [p.id, p.keys, p.status]), [['ParamAngleX', [-30, 0, 30], '未制作'], ['ParamAngleY', [0], '未制作']]);
   assert.deepEqual(doc.parts[1].textureBounds, [-2, 4, 20, 8]);
@@ -190,15 +187,15 @@ test('one original KRA job preserves layers, metadata, identity and the merge ex
       assert.deepEqual(Array.from(evaluatePoints(doc, p, x, y)), identity);
     assert.deepEqual(Object.keys(p.keyformsY!), ['0']);
     assert.notEqual(p.keyforms['0'], p.keyforms['-30']);
-    assert.equal(await fileHash(built.textures.get(p.texture)!), p.sha256);
+    await access(built.textures.get(p.texture)!);
   }
   assert.deepEqual(JSON.parse(await readFile(built.path, 'utf8')), doc);
   const record = JSON.parse(await readFile(built.exportRecordPath, 'utf8'));
   assert.deepEqual(record.parts, doc.parts);
-  assert.equal(record.sourceKraSha256, originalHash); assert.equal(record.sourceKra, doc.source.document);
+  assert.equal(record.sourceKra, doc.source.document);
   assert.deepEqual(record.canvas, doc.canvas);
   assert.deepEqual(JSON.parse(await readFile(built.sourcePath, 'utf8')), { version: 1, sourceDocument: doc.source.document,
-    sourceColor: manifest.sourceColor, sourceKraHash: originalHash, sourceColorHash: await fileHash(f.input.color) });
+    sourceColor: manifest.sourceColor });
   assert.deepEqual(JSON.parse(await readFile(built.manifestPath, 'utf8')), manifest);
   assert.deepEqual(manifest.preview.textureBounds, [-2, 0, 20, 16]);
   const { data, info } = await sharp(built.preview).raw().toBuffer({ resolveWithObject: true });
@@ -206,7 +203,7 @@ test('one original KRA job preserves layers, metadata, identity and the merge ex
   const pixel = (x: number, y: number) => Array.from(data.subarray((y * info.width + x) * 4, (y * info.width + x) * 4 + 4));
   assert.deepEqual(pixel(0, 4), [255, 0, 0, 255]); // outside original canvas and view survives
   assert.deepEqual(pixel(8, 6), [0, 255, 0, 255]); // top eye over face; reference hair excluded
-  assert.equal(await fileHash(f.input.document), originalHash);
+  assert.deepEqual(await readFile(f.input.document), original);
   assert.deepEqual((await readdir(f.directory)).sort(), ['deformers.json', 'export-record.json', 'head_parts_manifest.json',
     'layers', 'original-full-face.png', 'reference-layers', 'source.json']);
 });
@@ -278,13 +275,6 @@ test('PNG export failure, duplicate ids and unsupported projection always close 
     assert.equal(f.calls.jobs, 2); assert.equal(f.calls.release, 0);
     await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
   }
-});
-
-test('bad exported PNG hash prevents publishing a neutral baseline', async t => {
-  const f = await fixture(t, layers, { corruptHash: true });
-  await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), /PNG hash/);
-  assert.equal(f.calls.events.at(-1), 'close');
-  await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
 });
 
 const recovery = { ok: false, error: '', stderr: '', dialogs: [{ title: 'Recover Files – Krita', class: 'QDialog' }],

@@ -5,7 +5,7 @@ import { shadowArtifacts, shadowMode } from '../.agents/skills/live2d-maker/shar
 import { inspectDraftPreview } from '../.agents/skills/live2d-maker/shadow/preview.ts';
 import { safePath } from './files.ts';
 import { readStep } from '../.agents/skills/live2d-maker/shared/step-chain.ts';
-import { isNineAxisSource, nineAxisArtifacts, legacyNineAxisArtifacts, nineAxisStages, type NineAxisStage } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisArtifacts, legacyNineAxisArtifacts, nineAxisStages, type NineAxisStage } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
 
 type Selection = { version: number; mode: 'mask' | 'normal-depth'; sourceKraHash: string; sourceColorHash: string };
 const previewModes = ['mask', 'normal-depth', 'mixed'] as const;
@@ -110,21 +110,11 @@ export async function studioProject(directory: string, name: string, dir: string
     const candidate = await stageFile(stage);
     if (candidate.available) { selectedStage = stage; nineAxis = candidate; break; }
   }
-  let nineAxisDocument = false, nineAxisStale = false;
-  let nineSource: unknown;
-  try { nineSource = JSON.parse(await readFile(await safePath(directory, artifacts.headSource), 'utf8')); }
-  catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
-  if (nineSource !== undefined) {
-    if (!isNineAxisSource(nineSource)) throw Error('无效的头部九轴来源记录');
-    const source = nineSource;
-    const [document, color] = await Promise.all([file(artifacts.headDocument), file(artifacts.headColor)]);
-    if (mergeComplete && document.available && color.available && source.sourceDocument === files.document.path && source.sourceColor === files.color.path) {
-      nineAxisStale = (await Promise.all([files.document.path, files.color.path].map(async path => createHash('sha256').update(await readFile(await safePath(directory, path))).digest('hex'))))
-        .some((hash, i) => hash !== [source.sourceKraHash, source.sourceColorHash][i]);
-      if (!nineAxisStale) { files.document = document; files.color = color; nineAxisDocument = true; }
-    }
-  }
-  return { name, dir, files, nineAxis: { ...nineAxis, stage: selectedStage, layout: nested ? 'nested' : 'legacy', mergeComplete }, nineAxisDocument, nineAxisStale, previewMode: mode, previewModes: availableModes, maskStale, mapsStale,
+  // The nine-axis steps work on their own copy of the KRA; once merged, the workbench opens that copy.
+  let nineAxisDocument = false;
+  const [document, color] = await Promise.all([file(artifacts.headDocument), file(artifacts.headColor)]);
+  if (mergeComplete && document.available && color.available) { files.document = document; files.color = color; nineAxisDocument = true; }
+  return { name, dir, files, nineAxis: { ...nineAxis, stage: selectedStage, layout: nested ? 'nested' : 'legacy', mergeComplete }, nineAxisDocument, previewMode: mode, previewModes: availableModes, maskStale, mapsStale,
     previewDraft: useDraft, ...(useDraft ? { previewReview: draftRecord!.status, previewReviewReason: draftRecord!.reason } : {}),
     ...(selection ? { shadowMode: selection.mode, shadowStale: stale(selection) } : {}) };
 }

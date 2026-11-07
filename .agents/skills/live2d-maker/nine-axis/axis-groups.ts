@@ -59,7 +59,7 @@ export async function runAxisGroups(directory: string, hooks: {
 // Warp groups and local keyforms, but cannot quietly replace the neutral art.
 export async function checkAxisSource(neutral: string, built: Built) {
   const upstream = await readUpstream(neutral);
-  if (built.doc.axis !== upstream.doc.axis || JSON.stringify(built.doc.source) !== JSON.stringify(upstream.doc.source)) throw Error('单轴不能替换共享原画来源或中轴');
+  if (built.doc.axis !== upstream.doc.axis) throw Error('单轴不能替换共享中轴');
   if (built.doc.parts.length !== upstream.doc.parts.length) throw Error('单轴需保留共享原图层；局部控制可使用独立 Warp');
   for (const p of upstream.doc.parts) {
     const target = built.doc.parts.find(n => n.id === p.id);

@@ -74,7 +74,6 @@ export function validateHeadNineAxis(doc) {
     for (const source of doc.axisSources) {
       if (!source || !['x', 'up', 'down'].includes(source.axis) || axes.has(source.axis)) throw Error('axisSources 方向无效或重复');
       axes.add(source.axis);
-      if (!/^[a-f0-9]{64}$/.test(source.sha256)) throw Error('axisSources：源作者 SHA256 无效');
       if (!source.doc || Object.hasOwn(source.doc, 'axisSources')) throw Error('axisSources 不允许递归源作者');
       validateHeadNineAxis(source.doc);
       originalIds ??= new Set(source.doc.parts.map(p => p.id));

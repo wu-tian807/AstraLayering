@@ -4,7 +4,7 @@ import { dirname, isAbsolute, join, relative, sep } from 'node:path';
 import sharp from 'sharp';
 import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
-import { fileHash, type Box, type TurnInput } from './turn.ts';
+import type { Box, TurnInput } from './turn.ts';
 import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry, warpPoint as sampleWarp, type WarpGrid, type HeadNineAxis, type HeadLevel } from '../shared/nine-axis-model.js';
 
 // step02_angles: the agent fits the face to the left view and delivers the
@@ -15,10 +15,16 @@ import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry,
 export const headOutputs = ['face-left.json', 'deformers.json', 'source.json'] as const;
 export type HeadInput = TurnInput & { document: string };
 
-export async function resolveHeadInput(turn: TurnInput): Promise<HeadInput> {
-  const document = turn.color.replace(/\.png$/, '.kra');
-  if (!await access(document).then(() => true, () => false)) throw new Error(`缺少源 KRA：${document}`);
-  return { ...turn, document };
+// Each step that uses the KRA works on its own copy in its own directory.
+export const stepDocument = (turn: TurnInput, directory: string): HeadInput =>
+  ({ ...turn, document: join(directory, 'character-nine-axis.kra'), color: join(directory, 'character-nine-axis.png') });
+
+// Copy the KRA and its composite from the step before (shadow for step02).
+export async function copyDocument(from: { document: string; color: string }, to: HeadInput) {
+  for (const file of [from.document, from.color]) await access(file).catch(error => { throw new Error(`缺少源文件：${file}`, { cause: error }); });
+  await mkdir(dirname(to.document), { recursive: true });
+  await copyFile(from.document, to.document);
+  await copyFile(from.color, to.color);
 }
 
 type Point = [number, number];
@@ -161,18 +167,17 @@ export async function compileHead(directory: string, input: HeadInput, box: Box,
   // them in drawing order, bottom first, as the workbench renders them.
   const parts = mirrored.parts.toReversed().map(p => ({ ...p, level: p.level ?? 'face' as HeadLevel }));
   const deformers = mirrored.deformers;
-  const [kraHash, colorHash] = await Promise.all([fileHash(input.document), fileHash(input.color)]);
   const document = toTaskPath(task, input.document), color = toTaskPath(task, input.color);
   const keys = [...new Set([...deformers, ...parts].flatMap(p => Object.keys(p.keyforms).map(Number)))].sort((a, b) => a - b);
   const doc: HeadNineAxis & { axis: number } = { version: 2, kind: 'head-nine-axis', canvas: [width, height],
-    source: { document, sha256: kraHash }, view: { x: box.x, y: box.y, width: box.size, height: box.size }, axis: face.axis,
+    source: { document }, view: { x: box.x, y: box.y, width: box.size, height: box.size }, axis: face.axis,
     parameters: [{ ...angleParameter('ParamAngleX', '角度 X', scale.x), keys }, { ...angleParameter('ParamAngleY', '角度 Y', scale.y), keys: [0], status: '未制作' }],
     levels: [faceLevel],
     notes: [face.notes?.trim(), `${sign(scale.x[0])}° 为向左视角，${sign(scale.x[1])}° 为左右成对镜像。`].filter(Boolean).join(' '), deformers, parts };
   validateHeadNineAxis(doc);
   for (const n of [...deformers, ...parts]) checkWarpGeometry(n);
   return { doc, textures: new Map(parts.map(p => [p.texture, join(directory, p.texture)])),
-    source: { sourceDocument: document, sourceColor: color, sourceKraHash: kraHash, sourceColorHash: colorHash } };
+    source: { sourceDocument: document, sourceColor: color } };
 }
 
 // After the agent: write the workbench files.

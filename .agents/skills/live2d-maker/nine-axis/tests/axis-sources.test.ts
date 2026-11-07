@@ -101,7 +101,6 @@ test('reject incomplete/recursive/foreign source docs, original UV/rest changes 
   const mutate = (f: (doc: HeadNineAxis) => void, pattern: RegExp) => { const doc = joint(); f(doc); assert.throws(() => validateHeadNineAxis(doc), pattern); };
   mutate(doc => { doc.axisSources!.pop(); }, /完整/);
   mutate(doc => { doc.axisSources![1].axis = 'x'; }, /重复/);
-  mutate(doc => { doc.axisSources![0].sha256 = 'bogus'; }, /SHA256/);
   mutate(doc => { doc.axisSources![0].doc.axisSources = []; }, /递归/);
   mutate(doc => { doc.axisSources![0].doc.parts.pop(); }, /集合/);
   mutate(doc => { doc.axisSources![0].doc.parts[0].textureBounds[0]++; }, /UV/);
