@@ -1,10 +1,10 @@
 import { parseArgs } from 'node:util';
 import { join } from 'node:path';
-import { copyFile, readFile, rm } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, rm } from 'node:fs/promises';
 import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { selectKnowledge, stepKnowledge } from '../shared/knowledge.ts';
+import { selectKnowledge, stepKnowledge, type KnowledgeRole } from '../shared/knowledge.ts';
 import { runSection, stepName } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type VideoApi, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { CodexAgents } from '../shared/codex/agents.ts';
@@ -33,7 +33,8 @@ import { prepareNeutral } from './neutral.ts';
 import { mergeAxes } from './axis-merge.ts';
 import { axisGroups, checkAxisSource, runAxisGroups, seedAxis, type AxisGroup } from './axis-groups.ts';
 import { readStepSession, writeStepSession } from '../shared/agents/step-session.ts';
-import type { Harness } from '../shared/agents/models.ts';
+import type { AgentStep, Harness } from '../shared/agents/models.ts';
+import { runOutline, type OutlineRole } from './outline.ts';
 import { applyStepAction, applyTaskAction } from '../workflow/step-actions.ts';
 
 export const help = `nine-axis — 头部九轴
@@ -59,54 +60,85 @@ export function requireVideoApi(environment: Pick<WorkflowEnvironment, 'videoApi
 
 const outputSchema = { type: 'object', properties: { error: { type: ['string', 'null'] } }, required: ['error'], additionalProperties: false };
 
-export function axisPrompt(input: HeadInput, taskRoot: string, group: AxisGroup): string {
+// The visible outline is its own agent with one review; only left has it so far.
+export const outlineGroups: readonly AxisGroup[] = ['left'];
+function axisValues(input: HeadInput, taskRoot: string, group: AxisGroup) {
   const nine = join(taskRoot, 'nine-axis'), output = join(nine, 'step02_angles', group), scale = angleScale();
-  return stepKnowledge('nine-axis', 'step02_angles').render('main', {
-    ...angleValues(), document: input.document, color: input.color, output, neutral: join(nine, 'step02_angles/neutral'),
+  return {
+    ...angleValues(), group, document: input.document, color: input.color, output, neutral: join(nine, 'step02_angles/neutral'),
     reference_frame: join(nine, 'step01_video', `${group}.png`), source_frame: join(nine, 'step01_video/upper-body.png'),
     target_x: String(group === 'left' ? scale.x[0] : 0), target_y: String(group === 'up' ? scale.y[1] : group === 'down' ? scale.y[0] : 0),
     reference_video: join(nine, 'step01_video', `${group}.mp4`), reference_frames: '', continuity_reference: '',
-    author_file: join(output, `face-${group}.json`),
-  }, { taskRoot, group }).trim();
+    author_file: join(output, `face-${group}.json`), outline: join(output, 'outline'),
+  };
 }
+export function axisPrompt(input: HeadInput, taskRoot: string, group: AxisGroup): string {
+  return stepKnowledge('nine-axis', 'step02_angles').render('main', axisValues(input, taskRoot, group), { taskRoot, group }).trim();
+}
+export const outlinePrompt = (input: HeadInput, taskRoot: string, group: AxisGroup, role: OutlineRole) =>
+  stepKnowledge('nine-axis', 'step02_outline').render(role, axisValues(input, taskRoot, group), { taskRoot, group }).trim();
 export const headPrompt = (input: HeadInput, taskRoot: string) => axisPrompt(input, taskRoot, 'left');
 export const angleYPrompt = (taskRoot: string, stage: PitchStage) => axisPrompt({ document: '', color: '' } as HeadInput, taskRoot, stage);
 export const angleXYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step03_angle-xy').render('main', { ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
 export const jawLinePrompt = (input: HeadInput, taskRoot: string) => stepKnowledge('nine-axis', 'step04_jaw-line')
   .render('main', { document: input.document, color: input.color, ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
 
+type Agents = Pick<CodexAgents, 'run'> & Partial<Pick<CodexAgents, 'createSession'>>;
+// One agent turn. With `session` the turn continues that step's saved thread;
+// without it the turn is a fresh session that is never saved (a reviewer).
+// `recoveryPrompt` replaces the prompt when the saved thread is gone.
+type AgentTurn = { step: AgentStep; knowledge: string; role: KnowledgeRole; session?: string; name: string;
+  tools: FunctionTool[]; prompt: string; recoveryPrompt?: string };
+async function runAgentTurn(agents: Agents, nine: string, directory: string, turn: AgentTurn, signal?: AbortSignal) {
+  signal?.throwIfAborted();
+  const paths = await prepareWorkspace({ cwd: nine, outputDirectory: directory }, nine);
+  let saved = turn.session ? await readStepSession(nine, turn.session) ?? {} : {};
+  const persist = async (threadId: string | null, harness?: Harness) => {
+    if (!turn.session) return;
+    const next = { threadId: threadId || undefined, harness: harness ?? saved.harness };
+    if (next.threadId !== saved.threadId || next.harness !== saved.harness) await writeStepSession(nine, turn.session, next);
+    saved = next;
+  };
+  const session = turn.session ? agents.createSession?.(saved.threadId, { resumeHarness: saved.harness, onSessionStarted: persist, onThreadReplacement: async () => persist(null) }) : undefined;
+  const prompt = turn.recoveryPrompt && !saved.threadId ? turn.recoveryPrompt : turn.prompt;
+  let result;
+  try {
+    result = await (session ?? agents).run({ step: turn.step, name: turn.name, cwd: nine, outputDirectory: directory, outputSchema,
+      tools: stepKnowledge('nine-axis', turn.knowledge).tools(turn.role, turn.tools), prompt: workspacePrompt(prompt, paths),
+      ...(turn.recoveryPrompt ? { recoveryPrompt: workspacePrompt(turn.recoveryPrompt, paths) } : {}) }, signal);
+    if (result.threadId) await persist(result.threadId, result.harness);
+  } catch (error) {
+    if (error && typeof error === 'object' && 'threadId' in error && typeof error.threadId === 'string') await persist(error.threadId);
+    throw error;
+  } finally { await session?.close(); }
+  let error: unknown;
+  try { error = (JSON.parse(result.text) as { error?: unknown }).error; } catch { throw agentOutcomeError(`${turn.name}没有返回结果`, result); }
+  if (typeof error === 'string' && error) throw agentOutcomeError(`${turn.name}：${error}`, result);
+}
+
 export type FitHead = (directory: string, prompt: string) => Promise<void>;
-export function createFitHead(agents: Pick<CodexAgents, 'run'> & Partial<Pick<CodexAgents, 'createSession'>>, tools: (step: string) => Promise<FunctionTool[]>, step: string, name: string, signal?: AbortSignal, sectionDirectory?: string): FitHead {
+export function createFitHead(agents: Agents, tools: (step: string) => Promise<FunctionTool[]>, step: string, name: string, signal?: AbortSignal, sectionDirectory?: string): FitHead {
   return async (directory, prompt) => {
-    signal?.throwIfAborted();
-    const nine = sectionDirectory ?? join(directory, '..'), paths = await prepareWorkspace({ cwd: nine, outputDirectory: directory }, nine);
     const group = step.split('/')[1];
-    const knowledgeStep = group ? 'step02_angles' : step;
     const agentStep = group || step === 'step02_angles' ? 'nine_axis_head' : step === 'step03_angle-xy' ? 'nine_axis_head_xy' : 'nine_axis_head_jaw';
-    let saved = await readStepSession(nine, step) ?? {};
-    const persist = async (threadId: string | null, harness?: Harness) => {
-      const next = { threadId: threadId || undefined, harness: harness ?? saved.harness };
-      if (next.threadId !== saved.threadId || next.harness !== saved.harness) await writeStepSession(nine, step, next);
-      saved = next;
-    };
-    const session = agents.createSession?.(saved.threadId, { resumeHarness: saved.harness, onSessionStarted: persist, onThreadReplacement: async () => persist(null) });
-    let result;
-    try {
-      result = await (session ?? agents).run({ step: agentStep, name, cwd: nine, outputDirectory: directory, outputSchema,
-        tools: stepKnowledge('nine-axis', knowledgeStep).tools('main', await tools(step)), prompt: workspacePrompt(prompt, paths) }, signal);
-      if (result.threadId) await persist(result.threadId, result.harness);
-    } catch (error) {
-      if (error && typeof error === 'object' && 'threadId' in error && typeof error.threadId === 'string') await persist(error.threadId);
-      throw error;
-    } finally { await session?.close(); }
-    let error: unknown;
-    try { error = (JSON.parse(result.text) as { error?: unknown }).error; } catch { throw agentOutcomeError(`${name}没有返回结果`, result); }
-    if (typeof error === 'string' && error) throw agentOutcomeError(`${name}：${error}`, result);
+    await runAgentTurn(agents, sectionDirectory ?? join(directory, '..'), directory, { step: agentStep, knowledge: group ? 'step02_angles' : step,
+      role: 'main', session: step, name, tools: await tools(step), prompt }, signal);
   };
 }
 
+// Draw and repair share the outline's thread (agents/steps/<child>/outline, so a
+// retry of the child drops it); the reviewer is a fresh read-only session.
+export type OutlineHead = (directory: string, prompt: (role: OutlineRole) => string) => Promise<void>;
+export function createOutlineHead(agents: Agents, tools: (directory: string) => Promise<FunctionTool[]>, step: string, signal?: AbortSignal, sectionDirectory?: string, progress?: (message: string) => void): OutlineHead {
+  const names = { main: '描边', review: '描边review', repair: '描边返修' }, steps = { main: 'nine_axis_outline', review: 'nine_axis_outline_review', repair: 'nine_axis_outline_repair' } as const;
+  return async (directory, prompt) => runOutline(directory, async role => runAgentTurn(agents, sectionDirectory ?? join(directory, '../..'), directory, {
+    step: steps[role], knowledge: 'step02_outline', role, session: role === 'review' ? undefined : `${step}/outline`,
+    name: `${names[role]} ${step.split('/')[1]}`, tools: await tools(directory), prompt: prompt(role),
+    ...(role === 'repair' ? { recoveryPrompt: `${prompt('main')}\n\n${prompt('repair')}` } : {}) }, signal), progress);
+}
+
 export type NineAxisOptions = { name: string; dir?: string; krita?: string; step?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
-export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; ffmpeg?: string; fitHead?: FitHead; fitUp?: FitHead; fitDown?: FitHead; fitAngleXY?: FitHead; fitJawLine?: FitHead;
+export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; ffmpeg?: string; fitHead?: FitHead; outlineHead?: OutlineHead; fitUp?: FitHead; fitDown?: FitHead; fitAngleXY?: FitHead; fitJawLine?: FitHead;
   prepareNeutral?: (directory: string, input: HeadInput, box: Box, taskRoot: string) => Promise<void>;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
@@ -123,7 +155,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined, agentPool: CodexAgents | undefined;
   const agents = () => agentPool ??= new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress, agentConcurrency: 3 });
   let preflightPromise: Promise<unknown> | undefined;
-  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_head', 'nine_axis_head_xy', 'nine_axis_head_jaw'], { runsRoot: root, progress, env: environment.codex.env });
+  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_outline', 'nine_axis_outline_review', 'nine_axis_head', 'nine_axis_head_xy', 'nine_axis_head_jaw'], { runsRoot: root, progress, env: environment.codex.env });
   const video = () => {
     const api = dependencies.generate ? undefined : requireVideoApi(environment);
     return { model: api?.model ?? 'injected', generate: dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o)) as GenerateVideo };
@@ -155,6 +187,11 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       return svg.execute(value, signal, context);
     } }];
   };
+  const outlineTools = async (output: string): Promise<FunctionTool[]> => {
+    const observations = join(output, 'observations'), box = await crop(), group = output.split('/').at(-2) as AxisGroup;
+    return [createBitmapTool(directory, observations), createSvgPreviewTool({ directory: output, reference: join(videos, `${group}.png`),
+      canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' })];
+  };
   const preview = (text: string) => { progress(`预览：${text}`); summary = '预览完成，未调用模型'; };
   try { await runSection({ directory, steps, dryRun: options.dryRun, signal: options.signal, progress,
     async finished(step) { return step.id !== 'step02_angles' || (await Promise.all(axisGroups.map(async group => (await readStep(join(axes, group))).status === 'completed'))).every(Boolean); },
@@ -169,7 +206,8 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         summary = 'nine-axis/step01_video 已完成：left/up/down 原片与参考帧';
       };
       if (step.id === 'step02_angles') return async () => {
-        if (options.dryRun) return preview((requestedGroup ? [requestedGroup as AxisGroup] : axisGroups).map(group => axisPrompt(head, task, group)).join('\n\n'));
+        if (options.dryRun) return preview((requestedGroup ? [requestedGroup as AxisGroup] : axisGroups).flatMap(group => [
+          ...outlineGroups.includes(group) ? [outlinePrompt(head, task, group, 'main')] : [], axisPrompt(head, task, group)]).join('\n\n'));
         const box = await crop();
         const finished = await runAxisGroups(step.directory, {
           async prepare() {
@@ -189,6 +227,14 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
             const id = `step02_angles/${group}`;
             builds[id] = () => group === 'left' ? buildHead(output, head, box, scale, task) : buildAngleY(output, neutral, group, scale);
             const injected = group === 'left' ? dependencies.fitHead : group === 'up' ? dependencies.fitUp : dependencies.fitDown;
+            // An injected fit stands for the whole child, outline included, unless an outline is injected too.
+            const outline = !outlineGroups.includes(group) ? undefined : dependencies.outlineHead
+              ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools, id, options.signal, directory, progress)));
+            if (outline) {
+              const outlineDirectory = join(output, 'outline');
+              await mkdir(outlineDirectory, { recursive: true });
+              await outline(outlineDirectory, role => outlinePrompt(head, task, group, role));
+            }
             const fit = injected ?? (await preflight(), createFitHead(agents(), faceTools, id, `单轴 ${group}`, options.signal, directory));
             await fit(output, axisPrompt(head, task, group));
             const built = await builds[id]();
