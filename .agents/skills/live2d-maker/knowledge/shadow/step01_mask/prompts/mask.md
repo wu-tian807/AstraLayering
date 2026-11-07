@@ -30,7 +30,7 @@
 2. 建影层：在原组装 KRA 的新工程里，为每处投影在接收面的隔离组中新建影层，用原生透明度继承裁到接收面，混合方式让底层透出（例如正片叠底）；base 下方不混入其他实色层。
 3. 画：在影层上用 Krita 画笔画出投影，柔和的地方用软笔刷画出过渡。
 4. 对照：合成后和参考并排看，再放大看每处投影的形状、深浅、边缘，以及线稿是否透出；不对就回到第 3 步改。
-5. 检查：保存 KRA、导出一致 PNG，按真实 part／UUID、裁切 base、颜色与相对偏移写 shadows.json v2（follow 只表示运动来源），调用 inspect_shadow_mask。它返回的 problems 全部修好后再调用，直到没有 problems；结果在 {uri:shadow/step01_mask/inspection.json} 与 {uri:shadow/step01_mask/inspection}/。
+5. 检查：保存 KRA、导出一致 PNG，按真实 part／UUID、裁切 base、颜色与相对偏移写 shadows.json v2（follow 只表示运动来源，本步骤不制作 deformer／光向关键形），调用 inspect_shadow_mask。它返回的 problems 全部修好后再调用，直到没有 problems；结果在 {uri:shadow/step01_mask/inspection.json} 与 {uri:shadow/step01_mask/inspection}/。
 
 ## 交付
 
