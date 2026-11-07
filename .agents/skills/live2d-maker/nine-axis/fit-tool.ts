@@ -127,11 +127,11 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
         throw error;
       })).equals(targetImage)) throw Error('拟合期间所选参考帧改变，未保存，请重新 inspect');
       const next = JSON.stringify(edited) + '\n', tmp = author + '.' + randomUUID() + '.tmp'; await writeFile(tmp, next); await rename(tmp, author); revision = revisionFor(next);
-      report = { ...fitted.report, ...(xy ? { corner: args.corner } : {}), trace: args.trace, traceSha256: hash(text), referenceSha256: hash(targetImage), visibility: trace.curves.map(f => ({ id: f.id, visibility: f.visibility ?? 'visible' })) };
+      report = { ...fitted.report, ...(xy ? { corner: args.corner } : {}), trace: args.trace, visibility: trace.curves.map(f => ({ id: f.id, visibility: f.visibility ?? 'visible' })) };
       await writeFile(join(directory, xy ? `${args.corner}-fit-report.json` : 'fit-report.json'), JSON.stringify(report, null, 2) + '\n');
     }
     return { success: true, contentItems: [
-      { type: 'inputText', text: JSON.stringify({ revision, x, y, ...(xy ? { corner: args.corner, referenceSha256: hash(targetImage) } : {}), traceCheck: await toAgentPath(task, traceCheck), completionCheck: await toAgentPath(task, completionCheck), completionMismatch, reference: await toAgentPath(task, reference), space: trace.space, features: features.map(f => ({ id: f.id, samples: f.samples.length, weight: f.weight })), ...(report ? { report } : {}) }) },
+      { type: 'inputText', text: JSON.stringify({ revision, x, y, ...(xy ? { corner: args.corner } : {}), traceCheck: await toAgentPath(task, traceCheck), completionCheck: await toAgentPath(task, completionCheck), completionMismatch, reference: await toAgentPath(task, reference), space: trace.space, features: features.map(f => ({ id: f.id, samples: f.samples.length, weight: f.weight })), ...(report ? { report } : {}) }) },
       { type: 'inputImage', imageUrl: `data:image/png;base64,${traceImage.toString('base64')}` },
       { type: 'inputImage', imageUrl: `data:image/png;base64,${completionCheckImage.toString('base64')}` },
     ] };

@@ -171,7 +171,6 @@ test('XY fits each selected frame into a saved corner, protects axes and the oth
     assert.equal(await readFile(f.author, 'utf8'), beforeText, 'inspection does not write a keyform');
     assert.equal(inspected.corner, corner); assert.equal(inspected.x, -40); assert.equal(inspected.y, corner === 'left-up' ? 35 : -20);
     assert.equal(inspected.reference, join(f.directory, `${corner}.png`));
-    assert.equal(inspected.referenceSha256, sha256(f.references.get(corner)!));
     const { data, info } = await sharp(inspected.traceCheck).removeAlpha().raw().toBuffer({ resolveWithObject: true });
     const pixel = (x: number, y: number) => [...data.subarray((y * info.width + x) * 3, (y * info.width + x) * 3 + 3)];
     assert.deepEqual(pixel(300, 100), corner === 'left-up' ? [136, 136, 136] : [170, 187, 204], 'overlay shows this corner\'s selected frame');
@@ -201,7 +200,7 @@ test('XY fits each selected frame into a saved corner, protects axes and the oth
     }
     const reportPath = join(f.directory, `${corner}-fit-report.json`), reportText = await readFile(reportPath, 'utf8'), report = JSON.parse(reportText);
     assert.deepEqual(report, fitted.report); assert.equal(report.corner, corner); assert.equal(report.x, -40); assert.equal(report.y, inspected.y);
-    assert.equal(report.referenceSha256, sha256(f.references.get(corner)!)); assert.equal(report.trace, trace); assert.equal(report.traceSha256, sha256(await readFile(trace)));
+    assert.equal(report.trace, trace);
     if (corner === 'left-up') upReport = reportText;
     else assert.equal(await readFile(join(f.directory, 'left-up-fit-report.json'), 'utf8'), upReport, 'down fitting retains the up report');
     assert.equal(result(await f.tool.execute({ action: 'inspect', corner, trace }, f.signal)).revision, fitted.revision, 'saved revision is usable for the same corner and inputs');
@@ -212,8 +211,8 @@ test('XY fits each selected frame into a saved corner, protects axes and the oth
     const video = Buffer.from(`test video ${corner}`), image = f.references.get(corner)!;
     await writeFile(join(f.directory, `${corner}.mp4`), video);
     await writeFile(join(f.directory, 'frames', `${corner}.png`), image);
-    videos[corner] = { sha256: sha256(video) };
-    frames[corner] = { video: `${corner}.mp4`, path: `${corner}.png`, frameIndex: 1, reason: 'fixture frame', videoSha256: sha256(video), sha256: sha256(image) };
+    videos[corner] = { path: `${corner}.mp4` };
+    frames[corner] = { video: `${corner}.mp4`, path: `${corner}.png`, frameIndex: 1, reason: 'fixture frame' };
   }
   await writeFile(join(f.directory, 'selected-frames.json'), JSON.stringify({ version: 1, frames }));
   await writeFile(join(f.directory, 'videos.json'), JSON.stringify({ version: 1, ...videos }));

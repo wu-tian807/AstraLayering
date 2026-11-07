@@ -7,7 +7,7 @@ import { createServer } from 'node:http';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
-import { cropUpperBody, extractTurnFrame, ffmpegPath, fileHash, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox, type Box } from '../turn.ts';
+import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox, type Box } from '../turn.ts';
 import { angleXYPrompt, angleYPrompt, createFitHead, headPrompt, jawLinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { buildHead, writeBuilt, type FaceLeft, type HeadInput } from '../head.ts';
@@ -288,9 +288,8 @@ test('连续四步：平层视频、三路真实并发、联合工程、斜角�
       const trace = join(directory, `${corner}-face-trace.json`);
       await writeFile(trace, '{"fixture":"selected trace"}');
       frames[corner] = { video: `${corner}.mp4`, path: chosen.path, frameIndex: chosen.frame.frameIndex,
-        videoSha256: await fileHash(join(directory, `${corner}.mp4`)), sha256: chosen.sha256,
         reason: 'Different frame choices by the injected test agent; no visual acceptance claimed' };
-      await writeFile(join(directory, `${corner}-fit-report.json`), JSON.stringify({ referenceSha256: chosen.sha256, traceSha256: await fileHash(trace) }));
+      await writeFile(join(directory, `${corner}-fit-report.json`), JSON.stringify({ trace }));
     }
     await writeFile(join(directory, 'selected-frames.json'), JSON.stringify({ version: 1, frames }));
   };
@@ -316,7 +315,6 @@ test('连续四步：平层视频、三路真实并发、联合工程、斜角�
   for (const [view, angle, frame] of [['left', 30, 20], ['up', 25, 17], ['down', 25, 17]] as const) {
     for (const name of [`${view}.mp4`, `${view}.png`, `frames/${view}.png`]) await access(join(videos, name));
     assert.equal(record01[view].first, 'upper-body.png');
-    assert.equal(record01[view].sha256, await fileHash(join(videos, `${view}.mp4`)));
     const { info } = await sharp(join(videos, `${view}.png`)).raw().toBuffer({ resolveWithObject: true });
     assert.deepEqual([info.width, info.height, info.channels, views[view].angle, views[view].frame.frameIndex], [size, size, 3, angle, frame]);
     assert.equal(views[view].video.path, `nine-axis/step01_video/${view}.mp4`);
@@ -408,7 +406,7 @@ test('单跑 step01 拥有全部三路视频与参考帧，不创建旧步骤或
     await assert.rejects(access(join(nine, step)), { code: 'ENOENT' });
 });
 
-test('俯仰续跑按输入、模型、提示词和视频哈希复用，单改 up 不重生 down', async t => {
+test('俯仰续跑按模型和提示词复用已有视频，单改 up 不重生 down', async t => {
   const { root, task } = await fixture(t), nine = join(task, 'nine-axis'), front = join(nine, 'step01_video'), pitch = join(nine, 'pitch');
   const sample = join(root, 'sample.mp4'), ffmpeg = await testVideo(t, sample);
   if (!ffmpeg) return;
@@ -425,12 +423,9 @@ test('俯仰续跑按输入、模型、提示词和视频哈希复用，单改 u
   assert.equal(after.down.videoId, before.down.videoId);
   assert.notEqual(after.up.videoId, before.up.videoId);
   assert.deepEqual(await readFile(join(pitch, 'down.mp4')), down);
-  await writeFile(join(pitch, 'down.mp4'), 'corrupted');
-  await producePitchVideos(pitch, front, generate, { up: 'up-b', down: 'down-a' }, options);
-  assert.equal(generated, 4, '损坏的视频不能沿用');
 });
 
-test('斜向续跑逐角核对首帧、提示词、模型与视频哈希，不重复生成相同视频', async t => {
+test('斜向续跑按模型和提示词复用已有视频', async t => {
   const root = await mkdtemp(join(tmpdir(), 'astra-corner-reuse-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const pitch = join(root, 'pitch'), corner = join(root, 'corners');
@@ -443,20 +438,13 @@ test('斜向续跑逐角核对首帧、提示词、模型与视频哈希，不�
   const down = await readFile(join(corner, 'left-down.mp4'));
   await produceCornerVideos(corner, pitch, generate, 'left-a', { model: 'fixture' });
   assert.equal(generated, 2);
-  await writeFile(join(pitch, 'up.png'), 'changed-up-first');
-  await produceCornerVideos(corner, pitch, generate, 'left-a', { model: 'fixture' });
-  assert.equal(generated, 3);
-  const changed = JSON.parse(await readFile(join(corner, 'videos.json'), 'utf8'));
-  assert.equal(changed['left-down'].videoId, initial['left-down'].videoId);
-  assert.notEqual(changed['left-up'].videoId, initial['left-up'].videoId);
+  const reused = JSON.parse(await readFile(join(corner, 'videos.json'), 'utf8'));
+  assert.equal(reused['left-down'].videoId, initial['left-down'].videoId);
   assert.deepEqual(await readFile(join(corner, 'left-down.mp4')), down);
   await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'fixture' });
-  assert.equal(generated, 5, '提示词变化时不能复用');
-  await writeFile(join(corner, 'left-down.mp4'), 'corrupted');
-  await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'fixture' });
-  assert.equal(generated, 6, '损坏视频只重生该角');
+  assert.equal(generated, 4, '提示词变化时不能复用');
   await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'changed-model' });
-  assert.equal(generated, 8, '模型变化时不能复用');
+  assert.equal(generated, 6, '模型变化时不能复用');
 });
 
 test('九轴停止信号传入真实绘制 agent，已取消时不再启动', async t => {
