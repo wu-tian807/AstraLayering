@@ -100,7 +100,7 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
     preparation: 'low', part_draw: 'medium', part_review: 'medium',
     part_groups: 'high', part_reduce: 'high', part_completion: 'high', part_depth: 'high',
     raster_step01: 'xhigh', raster_step01_review: 'xhigh', raster_step02: 'medium',
-    raster_step03: 'medium', assembly: 'xhigh', shadow: 'medium', nine_axis_head: 'xhigh', nine_axis_outline_review: 'xhigh',
+    raster_step03: 'medium', assembly: 'xhigh', shadow: 'medium', nine_axis_head: 'xhigh', nine_axis_outline_review: 'medium',
   };
   for (const [step, role] of Object.entries(stepModelSlots)) {
     assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(`gpt-6.1-sol-${expected[role]}`, 'fixture'), step);
