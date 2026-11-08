@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox, type Box } from '../turn.ts';
-import { angleXYPrompt, angleYPrompt, createFitHead, headPrompt, jawLinePrompt, runWorkflow, videoPrompt } from '../run.ts';
+import { angleXYPrompt, angleYPrompt, cornerFramesPrompt, cornerOutlinePrompt, createFitHead, headPrompt, jawLinePrompt, outlinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { buildHead, writeBuilt, type FaceLeft, type HeadInput } from '../head.ts';
 import { axisGroups, type AxisGroup } from '../axis-groups.ts';
@@ -219,13 +219,20 @@ test('脸部步骤提示词以度数写出关键形', () => {
     assert.ok(prompt.includes(`/task/nine-axis/step02_angles/${group}/face-${group}.json`));
     assert.ok(prompt.includes('/task/nine-axis/step02_angles/neutral'));
     assert.ok(prompt.includes(`/task/nine-axis/step01_video/${group}.png`));
-    assert.ok(prompt.includes(`【${group} 先验】`) && prompt.includes('头发下面留足余量'));
+    assert.ok(prompt.includes(`【${group} 先验】`) && prompt.includes(`/task/nine-axis/step02_angles/${group}/outline`));
+    const outline = outlinePrompt(head, '/task', group);
+    assert.ok(outline.includes(`/task/nine-axis/step01_video/${group}.png`) && outline.includes(`/task/nine-axis/step02_angles/${group}/outline`));
   }
   assert.ok(xy.includes('/task/nine-axis/step02_angles/deformers.json'));
-  for (const corner of ['left-up', 'left-down']) assert.ok(xy.includes(`/task/nine-axis/step03_angle-xy/${corner}.mp4`));
   assert.ok(xy.includes('/task/nine-axis/step03_angle-xy/linear.json'));
-  assert.ok(xy.includes('【斜向先验】') && xy.includes('头发下面留足余量') && xy.includes('path（指向规范化后的 <corner>.png'));
-  for (const prompt of [x, up, down, xy, jaw]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
+  assert.ok(xy.includes('【斜向先验】') && xy.includes('/task/nine-axis/step03_angle-xy/outline'));
+  const frames = cornerFramesPrompt('/task');
+  assert.ok(frames.includes('path（指向规范化后的 <corner>.png'));
+  for (const corner of ['left-up', 'left-down']) assert.ok(frames.includes(`/task/nine-axis/step03_angle-xy/${corner}.mp4`));
+  const cornerOutlines = (['left-up', 'left-down'] as const).map(corner => cornerOutlinePrompt(head, '/task', corner));
+  for (const [i, corner] of (['left-up', 'left-down'] as const).entries())
+    assert.ok(cornerOutlines[i].includes(`【${corner}：`) && cornerOutlines[i].includes(`/task/nine-axis/step03_angle-xy/${corner}.png`) && cornerOutlines[i].includes(`/task/nine-axis/step03_angle-xy/outline/${corner}`));
+  for (const prompt of [x, up, down, xy, jaw, frames, ...cornerOutlines]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
 });
 
 test('连续四步：平层视频、三路真实并发、联合工程、斜角与下颌；完成后沿用', { timeout: 30_000 }, async t => {

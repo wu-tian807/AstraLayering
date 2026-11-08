@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
 import { angleKey, angleScale, type AngleScale } from './angles.ts';
@@ -9,6 +9,15 @@ export const cornerKey=(x:number,y:number)=>`${angleKey(x)},${angleKey(y)}`;
 export const corners=['left-up','left-down'] as const;
 export type Corner=typeof corners[number];
 export const cornerAngleValues=(scale:AngleScale=angleScale())=>({left_up:cornerKey(scale.x[0],scale.y[1]),left_down:cornerKey(scale.x[0],scale.y[0])});
+const frameFiles=['selected-frames.json',...corners.flatMap(corner=>[`${corner}.png`,`frames/${corner}.png`])];
+// Frames are chosen once; frames already delivered are kept as is.
+export async function runFrames(directory:string,run:()=>Promise<void>) {
+  const missing=async()=>(await Promise.all(frameFiles.map(file=>access(join(directory,file)).then(()=>undefined,()=>file)))).filter(Boolean);
+  if(!(await missing()).length)return;
+  await run();
+  const left=await missing();
+  if(left.length)throw Error(`选帧缺少交付：${left.map(file=>join(directory,file!)).join('、')}`);
+}
 // Selection belongs to the agent; completion only verifies that both fits
 // still refer to its recorded video frames and traces.
 export async function checkCornerReferences(directory:string,size:number) {

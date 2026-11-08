@@ -39,6 +39,7 @@ const agents: Record<AgentStep, { section: string; step: string; role?: Knowledg
   nine_axis_head: { section: 'nine-axis', step: 'step02_angles' },
   nine_axis_head_y: { section: 'nine-axis', step: 'step02_angles' },
   nine_axis_head_down: { section: 'nine-axis', step: 'step02_angles' },
+  nine_axis_frames: { section: 'nine-axis', step: 'step03_frames' },
   nine_axis_head_xy: { section: 'nine-axis', step: 'step03_angle-xy' },
   nine_axis_head_jaw: { section: 'nine-axis', step: 'step04_jaw-line' },
 };
