@@ -52,7 +52,7 @@ export const stepModelSlots = {
   raster_step03: 'raster_step03',
   clothing_raster_step01: 'raster_step01', clothing_raster_step02: 'raster_step02',
   clothing_raster_step01_review: 'raster_step01_review', clothing_raster_step01_repair: 'raster_step01',
-  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_outline: 'nine_axis_head',
+  assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_view_frames: 'nine_axis_head', nine_axis_outline: 'nine_axis_head',
   nine_axis_head: 'nine_axis_head', nine_axis_head_y: 'nine_axis_head', nine_axis_head_down: 'nine_axis_head', nine_axis_frames: 'nine_axis_head', nine_axis_head_xy: 'nine_axis_head', nine_axis_head_jaw: 'nine_axis_head',
 } as const satisfies Record<string, ModelSlot>;
 export type AgentStep = keyof typeof stepModelSlots;

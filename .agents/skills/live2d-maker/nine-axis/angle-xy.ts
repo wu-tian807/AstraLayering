@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
-import { access, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { checkSelectedFrames, runFrameSelection } from './turn.ts';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
 import { angleKey, angleScale, type AngleScale } from './angles.ts';
@@ -9,30 +10,13 @@ export const cornerKey=(x:number,y:number)=>`${angleKey(x)},${angleKey(y)}`;
 export const corners=['left-up','left-down'] as const;
 export type Corner=typeof corners[number];
 export const cornerAngleValues=(scale:AngleScale=angleScale())=>({left_up:cornerKey(scale.x[0],scale.y[1]),left_down:cornerKey(scale.x[0],scale.y[0])});
-const frameFiles=['selected-frames.json',...corners.flatMap(corner=>[`${corner}.png`,`frames/${corner}.png`])];
-// Frames are chosen once; frames already delivered are kept as is.
-export async function runFrames(directory:string,run:()=>Promise<void>) {
-  const missing=async()=>(await Promise.all(frameFiles.map(file=>access(join(directory,file)).then(()=>undefined,()=>file)))).filter(Boolean);
-  if(!(await missing()).length)return;
-  await run();
-  const left=await missing();
-  if(left.length)throw Error(`选帧缺少交付：${left.map(file=>join(directory,file!)).join('、')}`);
-}
+// Frames are chosen once by an agent; delivered frames are kept as is.
+export const runFrames=(directory:string,run:()=>Promise<void>)=>runFrameSelection(directory,corners,run);
 // Selection belongs to the agent; completion only verifies that both fits
 // still refer to its recorded video frames and traces.
 export async function checkCornerReferences(directory:string,size:number) {
-  const selected=JSON.parse(await readFile(join(directory,'selected-frames.json'),'utf8'));
-  if(selected.version!==1||!selected.frames||typeof selected.frames!=='object')throw Error('selected-frames.json 需要 version:1 和 frames 对象');
-  for(const corner of corners) {
-    const frame=selected.frames[corner];
-    const sameFile=(value:unknown,name:string)=>typeof value==='string'&&resolve(directory,value)===resolve(directory,name);
-    if(!frame||!sameFile(frame.video,`${corner}.mp4`)||!sameFile(frame.path,`${corner}.png`)||typeof frame.reason!=='string'||!frame.reason.trim())throw Error(`${corner}：缺少本步选帧路径或选择依据`);
-    if(!(Number.isSafeInteger(frame.frameIndex)&&frame.frameIndex>=0)&&!(Number.isFinite(frame.timeSeconds)&&frame.timeSeconds>=0))throw Error(`${corner}：记录实际 frameIndex 或 timeSeconds，不以估算角度代替`);
-    await readFile(join(directory,'frames',`${corner}.png`));
-    const meta=await sharp(resolve(directory,frame.path)).metadata();
-    if(meta.format!=='png'||meta.width!==size||meta.height!==size)throw Error(`${corner}：参考帧必须保留裁框并规范化为 ${size}×${size} PNG`);
-    await readFile(join(directory,`${corner}-fit-report.json`));
-  }
+  await checkSelectedFrames(directory,corners,size);
+  for(const corner of corners)await readFile(join(directory,`${corner}-fit-report.json`));
 }
 export async function writeLinearCorners(directory:string,angleY:string,scale:AngleScale=angleScale()) {
   const upstream=await readUpstream(angleY),doc=startContinuation(upstream.doc,upstream.hash,'xy',scale);

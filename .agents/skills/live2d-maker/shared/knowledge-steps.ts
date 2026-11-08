@@ -28,6 +28,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'shadow', step: 'step01_mask' },
   { section: 'shadow', step: 'step01_normal-depth' },
   { section: 'nine-axis', step: 'step01_video', references: ['angles.json'] },
+  { section: 'nine-axis', step: 'step01_frames' },
   { section: 'nine-axis', step: 'step02_outline', required: ['preview_svg'] },
   { section: 'nine-axis', step: 'step02_angles', required: ['preview_svg', 'fit_nine_axis'] },
   { section: 'nine-axis', step: 'step03_frames' },

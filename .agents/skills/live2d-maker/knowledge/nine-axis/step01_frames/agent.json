@@ -1,0 +1,10 @@
+{
+  "main": {
+    "initial": [
+      "prompts/选帧.md"
+    ],
+    "tools": [
+      "view_bitmap"
+    ]
+  }
+}

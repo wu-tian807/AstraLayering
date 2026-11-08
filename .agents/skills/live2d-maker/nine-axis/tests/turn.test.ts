@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox, type Box } from '../turn.ts';
-import { angleXYPrompt, angleYPrompt, cornerFramesPrompt, cornerOutlinePrompt, createFitHead, headPrompt, jawLinePrompt, outlinePrompt, runWorkflow, videoPrompt } from '../run.ts';
+import { angleXYPrompt, angleYPrompt, viewFramesPrompt, cornerFramesPrompt, cornerOutlinePrompt, createFitHead, headPrompt, jawLinePrompt, outlinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { buildHead, writeBuilt, type FaceLeft, type HeadInput } from '../head.ts';
 import { axisGroups, type AxisGroup } from '../axis-groups.ts';
@@ -149,8 +149,8 @@ test('阴影蒙版完成时用阴影角色图', async t => {
 test('转头提示词向左；生视频只用自己的接口，不读生图接口', async () => {
   assert.match(videoPrompt(), /转向画面左侧/);
   assert.doesNotMatch(videoPrompt(), /[{}]/);
-  assert.match(videoPrompt('up'), /仰视/);
-  assert.match(videoPrompt('down'), /俯视/);
+  assert.match(videoPrompt('up'), /抬头/);
+  assert.match(videoPrompt('down'), /低头/);
   assert.equal(loadWorkflowEnvironment({}).videoApi, undefined);
   assert.equal(loadWorkflowEnvironment({ openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'i' }).videoApi, undefined);
   assert.throws(() => loadWorkflowEnvironment({ video_base_url: 'https://video.example/v1' }), /video_api_key/);
@@ -196,6 +196,16 @@ async function testVideo(t: TestContext, path: string) {
   return ffmpeg;
 }
 
+// Stands in for the frame-selection agent: one frame per view at its target angle of a uniform turn.
+const pickViews = (ffmpeg: string) => async (directory: string) => {
+  const size = (await sharp(join(directory, 'upper-body.png')).metadata()).width!, frames: Record<string, unknown> = {};
+  for (const [view, angle] of [['left', 30], ['up', 25], ['down', 25]] as const) {
+    const chosen = await takeFrame(directory, `${view}.png`, join(directory, `${view}.mp4`), angle, size, { ffmpeg });
+    frames[view] = { video: `${view}.mp4`, path: chosen.path, frameIndex: chosen.frame.frameIndex, reason: 'Fixture agent; no visual acceptance claimed' };
+  }
+  await writeFile(join(directory, 'selected-frames.json'), JSON.stringify({ version: 1, frames }));
+};
+
 test('按帧序取出转到 30° 的帧（整段匀速转到 90°）', async t => {
   const root = await mkdtemp(join(tmpdir(), 'astra-turn-frame-'));
   t.after(() => rm(root, { recursive: true, force: true }));
@@ -226,13 +236,16 @@ test('脸部步骤提示词以度数写出关键形', () => {
   assert.ok(xy.includes('/task/nine-axis/step02_angles/deformers.json'));
   assert.ok(xy.includes('/task/nine-axis/step03_angle-xy/linear.json'));
   assert.ok(xy.includes('【斜向先验】') && xy.includes('/task/nine-axis/step03_angle-xy/outline'));
+  const viewFrames = viewFramesPrompt('/task');
+  assert.ok(viewFrames.includes('path（指向规范化后的 <view>.png'));
+  for (const view of ['left', 'up', 'down']) assert.ok(viewFrames.includes(`/task/nine-axis/step01_video/${view}.mp4`));
   const frames = cornerFramesPrompt('/task');
   assert.ok(frames.includes('path（指向规范化后的 <corner>.png'));
   for (const corner of ['left-up', 'left-down']) assert.ok(frames.includes(`/task/nine-axis/step03_angle-xy/${corner}.mp4`));
   const cornerOutlines = (['left-up', 'left-down'] as const).map(corner => cornerOutlinePrompt(head, '/task', corner));
   for (const [i, corner] of (['left-up', 'left-down'] as const).entries())
     assert.ok(cornerOutlines[i].includes(`【${corner}：`) && cornerOutlines[i].includes(`/task/nine-axis/step03_angle-xy/${corner}.png`) && cornerOutlines[i].includes(`/task/nine-axis/step03_angle-xy/outline/${corner}`));
-  for (const prompt of [x, up, down, xy, jaw, frames, ...cornerOutlines]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
+  for (const prompt of [x, up, down, xy, jaw, viewFrames, frames, ...cornerOutlines]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
 });
 
 test('连续四步：平层视频、三路真实并发、联合工程、斜角与下颌；完成后沿用', { timeout: 30_000 }, async t => {
@@ -310,7 +323,7 @@ test('连续四步：平层视频、三路真实并发、联合工程、斜角�
     doc.parts.push(fresh('face/jaw_mask', { role: 'mask' }), fresh('face/jaw_line', { clip: { by: ['face/jaw_mask'], invert: true } }));
     await writeFile(join(directory, 'jaw.json'), JSON.stringify(doc));
   };
-  const deps = { environment: loadWorkflowEnvironment({}), generate, ffmpeg, prepareNeutral,
+  const deps = { environment: loadWorkflowEnvironment({}), generate, viewFramesHead: pickViews(ffmpeg), prepareNeutral,
     fitHead: fit('left'), fitUp: fit('up'), fitDown: fit('down'), fitAngleXY, fitJawLine };
   assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step04_jaw-line 已完成：6 个部件的下颌线与脖子/);
   assert.deepEqual([...entered].sort(), ['down', 'left', 'up']);
@@ -394,7 +407,7 @@ test('单跑 step01 拥有全部三路视频与参考帧，不创建旧步骤或
   const firsts: Buffer[] = [];
   let generated = 0;
   await runWorkflow({ name: 'case', dir: root, step: 'step01_video' }, {
-    environment: loadWorkflowEnvironment({}), ffmpeg,
+    environment: loadWorkflowEnvironment({}), viewFramesHead: pickViews(ffmpeg),
     generate: async (_prompt, first) => { firsts.push(first); return { id: `view-${++generated}`, status: { status: 'completed' }, bytes: await readFile(sample) }; },
     prepareNeutral: unexpected, fitHead: unexpected, fitUp: unexpected, fitDown: unexpected, fitAngleXY: unexpected, fitJawLine: unexpected,
   });
@@ -421,7 +434,7 @@ test('俯仰续跑按模型和提示词复用已有视频，单改 up 不重生 
   await writeFile(join(front, 'upper-body.png'), await sharp({ create: { width: 96, height: 96, channels: 3, background: '#888' } }).png().toBuffer());
   let generated = 0;
   const generate = async () => ({ id: `v${++generated}`, status: { status: 'completed' }, bytes: await readFile(sample) });
-  const options = { ffmpeg, model: 'fixture', angles: { up: 25, down: 25 } };
+  const options = { model: 'fixture' };
   await producePitchVideos(pitch, front, generate, { up: 'up-a', down: 'down-a' }, options);
   const before = JSON.parse(await readFile(join(pitch, 'videos.json'), 'utf8')), down = await readFile(join(pitch, 'down.mp4'));
   await producePitchVideos(pitch, front, generate, { up: 'up-b', down: 'down-a' }, options);
@@ -471,7 +484,7 @@ test('九轴停止信号传入真实绘制 agent，已取消时不再启动', as
 test('视频失败时 step01 不完成', async t => {
   const { root, task } = await fixture(t);
   const generate = async () => { throw new Error('模型拒绝'); };
-  await assert.rejects(runWorkflow({ name: 'case', dir: root }, { environment: loadWorkflowEnvironment({}), generate, ffmpeg: '/bin/false' }), /模型拒绝/);
+  await assert.rejects(runWorkflow({ name: 'case', dir: root }, { environment: loadWorkflowEnvironment({}), generate }), /模型拒绝/);
   await assert.rejects(access(join(task, 'nine-axis/step01_video/.completed')));
 });
 

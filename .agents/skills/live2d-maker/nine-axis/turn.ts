@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { access, constants, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
-import { basename, delimiter, dirname, join, relative, sep } from 'node:path';
+import { basename, delimiter, dirname, join, relative, resolve, sep } from 'node:path';
 import sharp from 'sharp';
 import { MissingDependencyError } from '../shared/missing-dependency.ts';
 import { requireUpstream } from '../shared/upstream.ts';
@@ -194,7 +194,7 @@ export type VideoPrompts = { turn: string } & Record<ViewY, string>;
 // Left owns the original crop, video and reference frame. Each video record
 // names its first frame relative to the video step directory.
 export async function produceLeftVideo(directory: string, input: TurnInput, generate: GenerateVideo, prompt: string,
-  { signal, progress, ffmpeg, model, angle }: Run & { ffmpeg: string; model: string; angle: number }) {
+  { signal, progress, model }: Run & { model: string }) {
   const task = dirname(dirname(directory)), { width = 0, height = 0 } = await sharp(input.color).metadata();
   const box = await upperBodyBox(input, width, height), image = await cropUpperBody(input.color, box);
   await atomic(join(directory, 'upper-body.png'), image);
@@ -210,12 +210,11 @@ export async function produceLeftVideo(directory: string, input: TurnInput, gene
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     input: { path: 'upper-body.png' }, ...(cached ? { up: cached.up, down: cached.down } : {}), left,
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
-  await produceViews(directory, directory, [{ view: 'left', angle }], { signal, progress, ffmpeg });
   return box;
 }
 
 export async function producePitchVideos(directory: string, front: string, generate: GenerateVideo, prompts: Record<ViewY, string>,
-  { signal, progress, ffmpeg, model, angles }: Run & { ffmpeg: string; model: string; angles: Record<ViewY, number> }) {
+  { signal, progress, model }: Run & { model: string }) {
   const upperBody = join(front, 'upper-body.png'), image = await readFile(upperBody), started = Date.now();
   type Batch = { version: number; model: string; seconds: string; profileAngle: number } & Partial<Record<ViewY, Awaited<ReturnType<typeof takeVideo>>>>;
   const cached: Batch | undefined = await readFile(join(directory, 'videos.json'), 'utf8').then(text => JSON.parse(text), error => {
@@ -236,7 +235,6 @@ export async function producePitchVideos(directory: string, front: string, gener
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     input: { path: relative(directory, upperBody).split(sep).join('/') }, ...(directory === front && cached && 'left' in cached ? { left: cached.left } : {}), ...Object.fromEntries(records),
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
-  await produceViews(directory, directory, viewsY.map(view => ({ view, angle: angles[view] })), { signal, progress, ffmpeg, upperBody });
 }
 
 export async function produceCornerVideos(directory: string, pitch: string, generate: GenerateVideo, prompt: string,
@@ -260,18 +258,44 @@ export async function produceCornerVideos(directory: string, pitch: string, gene
     ...Object.fromEntries(records), elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
 }
 
-// Frame extraction is shared by the left and pitch video steps.
+// The reference frames are chosen by an agent from the left, up and down
+// videos and recorded in selected-frames.json; views.json is written from it.
+export const turnViews = ['left', ...viewsY] as const;
+export type TurnView = typeof turnViews[number];
 export const viewOutputs = (views: readonly string[]) => [...views.map(view => `${view}.png`), 'views.json'];
-export async function produceViews(directory: string, videos: string, views: { view: string; angle: number }[], { ffmpeg, signal, progress, upperBody = join(videos, 'upper-body.png') }: Run & { ffmpeg: string; upperBody?: string }) {
-  const task = dirname(dirname(directory));
+const selectionFiles = (names: readonly string[]) => ['selected-frames.json', ...names.flatMap(name => [`${name}.png`, `frames/${name}.png`])];
+
+// An agent picks each frame once; frames already delivered are kept as is.
+export async function runFrameSelection(directory: string, names: readonly string[], select: () => Promise<void>) {
+  const missing = async () => (await Promise.all(selectionFiles(names).map(file => exists(join(directory, file)).then(found => found ? undefined : file)))).filter(Boolean);
+  if (!(await missing()).length) return;
+  await select();
+  const left = await missing();
+  if (left.length) throw Error(`选帧缺少交付：${left.map(file => join(directory, file!)).join('、')}`);
+}
+
+// Each chosen frame names its own video and the normalized <name>.png, with a
+// recorded frame position and reason, at the upper body's square size.
+export async function checkSelectedFrames(directory: string, names: readonly string[], size: number) {
+  const selected = JSON.parse(await readFile(join(directory, 'selected-frames.json'), 'utf8'));
+  if (selected.version !== 1 || !selected.frames || typeof selected.frames !== 'object') throw Error('selected-frames.json 需要 version:1 和 frames 对象');
+  for (const name of names) {
+    const frame = selected.frames[name];
+    const sameFile = (value: unknown, file: string) => typeof value === 'string' && resolve(directory, value) === resolve(directory, file);
+    if (!frame || !sameFile(frame.video, `${name}.mp4`) || !sameFile(frame.path, `${name}.png`) || typeof frame.reason !== 'string' || !frame.reason.trim()) throw Error(`${name}：缺少本步选帧路径或选择依据`);
+    if (!(Number.isSafeInteger(frame.frameIndex) && frame.frameIndex >= 0) && !(Number.isFinite(frame.timeSeconds) && frame.timeSeconds >= 0)) throw Error(`${name}：记录实际 frameIndex 或 timeSeconds，不以估算角度代替`);
+    await readFile(join(directory, 'frames', `${name}.png`));
+    const meta = await sharp(resolve(directory, frame.path)).metadata();
+    if (meta.format !== 'png' || meta.width !== size || meta.height !== size) throw Error(`${name}：参考帧必须保留裁框并规范化为 ${size}×${size} PNG`);
+  }
+  return selected.frames as Record<string, { frameIndex?: number; timeSeconds?: number; reason: string }>;
+}
+
+export async function finishViews(directory: string, angles: Record<TurnView, number>) {
+  const task = dirname(dirname(directory)), upperBody = join(directory, 'upper-body.png');
   const { width = 0 } = await sharp(upperBody).metadata();
-  const records = await Promise.all(views.map(async ({ view, angle }) => {
-    const video = join(videos, `${view}.mp4`), taken = await takeFrame(directory, `${view}.png`, video, angle, width, { signal, ffmpeg });
-    progress?.(`${view}：第 ${taken.frame.frameIndex}/${taken.frame.frameCount - 1} 帧（约 ${taken.frame.angle.toFixed(1)}°）`);
-    return [view, { ...taken, video: { path: toTaskPath(task, video) } }] as const;
-  }));
-  const previous = await readFile(join(directory, 'views.json'), 'utf8').then(JSON.parse, error => { if (error.code !== 'ENOENT') throw error; });
-  const preserved = Object.fromEntries(videoNames.filter(view => !views.some(v => v.view === view) && previous?.[view]).map(view => [view, previous[view]]));
-  await atomic(join(directory, 'views.json'), JSON.stringify({ version: 1, profileAngle,
-    input: { path: toTaskPath(task, upperBody) }, ...preserved, ...Object.fromEntries(records) }, null, 2) + '\n');
+  const frames = await checkSelectedFrames(directory, turnViews, width);
+  await atomic(join(directory, 'views.json'), JSON.stringify({ version: 1, input: { path: toTaskPath(task, upperBody) },
+    ...Object.fromEntries(turnViews.map(view => { const { frameIndex, timeSeconds, reason } = frames[view]; return [view, { path: `${view}.png`, angle: angles[view],
+      frame: { frameIndex, timeSeconds }, reason, video: { path: toTaskPath(task, join(directory, `${view}.mp4`)) } }]; })) }, null, 2) + '\n');
 }

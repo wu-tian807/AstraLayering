@@ -35,6 +35,7 @@ const agents: Record<AgentStep, { section: string; step: string; role?: Knowledg
   assembly: { section: 'character-assembly', step: 'step01' },
   shadow_mask: { section: 'shadow', step: 'step01_mask' },
   shadow_maps: { section: 'shadow', step: 'step01_normal-depth' },
+  nine_axis_view_frames: { section: 'nine-axis', step: 'step01_frames' },
   nine_axis_outline: { section: 'nine-axis', step: 'step02_outline' },
   nine_axis_head: { section: 'nine-axis', step: 'step02_angles' },
   nine_axis_head_y: { section: 'nine-axis', step: 'step02_angles' },
