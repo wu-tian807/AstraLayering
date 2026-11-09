@@ -10,6 +10,38 @@ import type { Built } from '../head.ts';
 
 const grid = (x0: number, y0: number, x1: number, y1: number, dx = 0) => [[x0 + dx, y0], [x1 + dx, y0], [x0 + dx, y1], [x1 + dx, y1]];
 
+test('transparent texel colour cannot stain filtered edges or darken translucent paint', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'nine-view-alpha-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const textures = await Promise.all([0, 255].map(async hiddenColour => {
+    const data = Buffer.alloc(5 * 5 * 4);
+    for (let y = 0; y < 5; y++) for (let x = 0; x < 5; x++) {
+      const i = (y * 5 + x) * 4, painted = x > 0 && x < 4 && y > 0 && y < 4;
+      data.fill(painted ? 255 : hiddenColour, i, i + 3);
+      data[i + 3] = painted ? 128 : 0;
+    }
+    const texture = join(directory, `edge-${hiddenColour}.png`);
+    await sharp(data, { raw: { width: 5, height: 5, channels: 4 } }).png().toFile(texture);
+    return texture;
+  }));
+  const doc: Built['doc'] = { version: 2, kind: 'head-nine-axis', canvas: [80, 80], deformers: [],
+    levels: [{ id: 'face', name: '脸', includes: ['face'] }],
+    parts: [{ id: 'face/face_base', level: 'face', group: 'face', texture: 'layers/edge.png',
+      textureBounds: [20, 20, 40, 40], bbox: [20, 20, 60, 60], cols: 1, rows: 1,
+      keyforms: { '0': grid(20, 20, 60, 60) } }] };
+  const images = [];
+  for (const texture of textures) {
+    const tool = createNineAxisViewTool(directory, join(directory, 'observations'), async () => ({ doc, textures: new Map([['layers/edge.png', texture]]) }));
+    const result = await tool.execute({ crop: [0, 0, 80, 80], scale: 2 }, new AbortController().signal);
+    const saved = JSON.parse((result.contentItems[0] as { text: string }).text).savedPath;
+    images.push(await sharp(saved).removeAlpha().raw().toBuffer());
+  }
+  assert.deepEqual(images[0], images[1], 'invisible RGB must not enter the antialiased edge');
+  const centre = [...images[0].subarray((80 * 160 + 80) * 3, (80 * 160 + 80) * 3 + 3)];
+  const expected = [0x2b, 0x2e, 0x35].map(background => 128 + background * 127 / 255);
+  centre.forEach((value, channel) => assert.ok(Math.abs(value - expected[channel]) <= 1, `translucent paint channel ${channel}: ${value}`));
+});
+
 test('view_nine_axis 用工作台渲染器在工作台底色上画出本步交付', async t => {
   const directory = await mkdtemp(join(tmpdir(), 'nine-view-')); t.after(() => rm(directory, { recursive: true, force: true }));
   const texture = join(directory, 'red.png');

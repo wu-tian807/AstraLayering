@@ -23,10 +23,10 @@ const origin = 'http://nine-axis.local';
 const checker = 'background:#2b2e35;background-image:linear-gradient(45deg,#30333a 25%,transparent 25%,transparent 75%,#30333a 75%),linear-gradient(45deg,#30333a 25%,transparent 25%,transparent 75%,#30333a 75%);background-size:24px 24px;background-position:0 0,12px 12px';
 const page = (width: number, height: number, overlay: string) => `<!doctype html><html><head><style>html,body{margin:0}#view{position:relative;overflow:hidden;width:${width}px;height:${height}px;${checker}}canvas,svg{position:absolute;inset:0}#reference{position:absolute;display:none}.nine-grid{fill:none;stroke:#6fd1ff;stroke-width:1;opacity:.75}.nine-points circle{fill:#1d3a4a;stroke:#6fd1ff;stroke-width:1}</style>
 <script type="importmap">{"imports":{"three":"/three.module.js"}}</script></head><body><div id="view"><img id="reference"/><canvas></canvas>${overlay}</div><script type="module">
-import { HeadNineAxisRenderer, shownParts } from '/nine-axis-render.js';
+import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from '/nine-axis-render.js';
 try {
   const { doc, x, y, level, masks, only, hidden, frame } = await (await fetch('/args.json')).json();
-  const images = await Promise.all(doc.parts.map(async (p, i) => createImageBitmap(await (await fetch('/texture/' + i)).blob(), { premultiplyAlpha: 'none' })));
+  const images = await Promise.all(doc.parts.map(async (p, i) => createNineAxisBitmap(await (await fetch('/texture/' + i)).blob())));
   const view = new HeadNineAxisRenderer(document.querySelector('canvas'));
   view.renderer.setPixelRatio(1); view.renderer.setSize(${width}, ${height}, false);
   view.install(doc, images); const shown = shownParts(doc, level, { masks: new Set(masks), hidden: new Set(hidden) });

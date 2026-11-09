@@ -1,5 +1,5 @@
 import { validateHeadNineAxis, nineAxisCapabilities, keyformAt, keyValues, levelParts, nodes, descendants, evaluatePoints, parentPoint, dragKeyform } from './nine-axis-model.js';
-import { HeadNineAxisRenderer, shownParts } from './nine-axis-render.js';
+import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from './nine-axis-render.js';
 const $ = s => document.querySelector(s);
 const NS = 'http://www.w3.org/2000/svg';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -64,7 +64,7 @@ export class HeadNineAxisPanel {
       const url = path => './studio-artifact?' + new URLSearchParams({ folder: project.folder, path, version: entry.version });
       const r = await fetch(url(entry.path)); if (!r.ok) throw Error('头部九轴数据读取失败');
       const doc = validateHeadNineAxis(await r.json()), base = entry.path.replace(/[^/]+$/, '');
-      const images = await Promise.all(doc.parts.map(async p => { const b = await fetch(url(base + p.texture)); if (!b.ok) throw Error(p.id + '：贴图读取失败'); return createImageBitmap(await b.blob(), { premultiplyAlpha: 'none' }); }));
+      const images = await Promise.all(doc.parts.map(async p => { const b = await fetch(url(base + p.texture)); if (!b.ok) throw Error(p.id + '：贴图读取失败'); return createNineAxisBitmap(await b.blob()); }));
       if (epoch !== this.epoch) return;
       // Source composition belongs to the shared model/renderer. The merge's
       // neutral XY correction grids do not announce a completed corner stage.

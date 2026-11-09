@@ -4,6 +4,9 @@ import { evaluatePoints, refine, lattice, meshIndices, levelParts } from './nine
 // The head nine-axis drawing, shared by the workbench panel and the agents'
 // view_nine_axis tool, so an agent sees exactly what the workbench shows.
 export const SUB = 5;
+// Premultiply before filtering so transparent black texels cannot darken the
+// painted edge. ImageBitmap ignores Texture.premultiplyAlpha on GPU upload.
+export const createNineAxisBitmap = blob => createImageBitmap(blob, { premultiplyAlpha: 'premultiply' });
 // Premultiplied texel output without colour conversion keeps the source paint.
 // The grid (bbox) is larger than the texture; outside it clamp-to-edge would
 // smear the border texels into blocks, so those fragments are dropped.
@@ -14,8 +17,8 @@ const vertexShader = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projection
 // only its alpha, so overlapping sources add up to their union.
 const fragmentShader = 'uniform sampler2D map;uniform sampler2D clip;uniform float dim;uniform float clipMode;uniform float maskPass;uniform float tint;uniform vec2 res;varying vec2 vUv;'
   + 'void main(){if(any(lessThan(vUv,vec2(0.0)))||any(greaterThan(vUv,vec2(1.0))))discard;vec4 c=texture2D(map,vUv);if(c.a<0.002)discard;'
-  + 'if(maskPass>0.5){gl_FragColor=vec4(c.a);return;}float a=c.a*dim;if(clipMode>0.5){float m=texture2D(clip,gl_FragCoord.xy/res).a;a*=clipMode>1.5?1.0-m:m;}'
-  + 'gl_FragColor=vec4(mix(c.rgb,vec3(0.25,0.85,1.0),tint)*a,a);}';
+  + 'if(maskPass>0.5){gl_FragColor=vec4(c.a);return;}float opacity=dim;if(clipMode>0.5){float m=texture2D(clip,gl_FragCoord.xy/res).a;opacity*=clipMode>1.5?1.0-m:m;}'
+  + 'gl_FragColor=vec4(mix(c.rgb,vec3(0.25,0.85,1.0)*c.a,tint)*opacity,c.a*opacity);}';
 const clipKey = p => p.clip.by.join('|');
 
 // Parts the workbench draws at a level: the level's parts minus hidden ones,
@@ -44,7 +47,7 @@ export class HeadNineAxisRenderer {
       const g = new THREE.BufferGeometry();
       g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(uv.length / 2 * 3), 3));
       g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(new THREE.BufferAttribute(meshIndices(p.cols * SUB, p.rows * SUB), 1));
-      const t = new THREE.Texture(images[order]); t.flipY = false; t.colorSpace = THREE.NoColorSpace; t.premultiplyAlpha = true;
+      const t = new THREE.Texture(images[order]); t.flipY = false; t.colorSpace = THREE.NoColorSpace; t.premultiplyAlpha = false;
       t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; t.needsUpdate = true;
       const m = new THREE.Mesh(g, new THREE.ShaderMaterial({ uniforms: { map: { value: t }, dim: { value: 1 }, clip: { value: null }, clipMode: { value: 0 }, maskPass: { value: 0 }, tint: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } }, vertexShader, fragmentShader,
         transparent: true, depthTest: false, depthWrite: false, blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor, premultipliedAlpha: true }));
