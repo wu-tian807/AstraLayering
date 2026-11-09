@@ -21,6 +21,8 @@ export const nineAxisArtifacts = {
   mergedDeformers: 'nine-axis/step02_angles/merged/deformers.json',
   angleXYDeformers: 'nine-axis/step03_angle-xy/deformers.json',
   jawLineDeformers: 'nine-axis/step04_jaw-line/deformers.json',
+  jawLineDocument: 'nine-axis/step04_jaw-line/character-nine-axis.kra',
+  jawLineColor: 'nine-axis/step04_jaw-line/character-nine-axis.png',
 } as const;
 
 // Read/save compatibility for existing model folders; these are not steps in

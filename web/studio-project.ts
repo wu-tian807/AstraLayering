@@ -112,7 +112,9 @@ export async function studioProject(directory: string, name: string, dir: string
   }
   // The nine-axis steps work on their own copy of the KRA; once merged, the workbench opens that copy.
   let nineAxisDocument = false;
-  const [document, color] = await Promise.all([file(artifacts.headDocument), file(artifacts.headColor)]);
+  const useJaw = nested && selectedStage === 'jaw' && nineAxis.available;
+  let [document, color] = await Promise.all([file(useJaw ? nineAxisArtifacts.jawLineDocument : artifacts.headDocument), file(useJaw ? nineAxisArtifacts.jawLineColor : artifacts.headColor)]);
+  if (useJaw && (!document.available || !color.available)) [document, color] = await Promise.all([file(artifacts.headDocument), file(artifacts.headColor)]);
   if (mergeComplete && document.available && color.available) { files.document = document; files.color = color; nineAxisDocument = true; }
   return { name, dir, files, nineAxis: { ...nineAxis, stage: selectedStage, layout: nested ? 'nested' : 'legacy', mergeComplete }, nineAxisDocument, previewMode: mode, previewModes: availableModes, maskStale, mapsStale,
     previewDraft: useDraft, ...(useDraft ? { previewReview: draftRecord!.status, previewReviewReason: draftRecord!.reason } : {}),

@@ -8,7 +8,7 @@ import { inventory } from '../files.ts';
 import { snapshot } from '../snapshot.ts';
 import { sectionSteps, stepArtifacts } from '../progress.js';
 import { nineAxisSteps, nineAxisGroupSteps, nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
-import { evaluatePoints, validateHeadNineAxis } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
+import { evaluatePoints, validateHeadNineAxis, nineAxisCapabilities, keyformAt } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 import { saveNineAxis } from '../nine-axis-save.ts';
 import { lstat } from 'node:fs/promises';
 import { applyStepAction, applyTaskAction } from '../../.agents/skills/live2d-maker/workflow/step-actions.ts';
@@ -172,6 +172,20 @@ async function panelModule() {
     .replace("'./nine-axis-render.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-render.js', import.meta.url).href));
   return import('data:text/javascript,' + encodeURIComponent(source));
 }
+
+test('main corners enable the plane with sparse auxiliary keys; missing main corners and merged-only stages stay restricted', async () => {
+  const panel = await panelModule(), doc = composed(), part = doc.parts[0];
+  part.keyforms['-15'] = rest.map(([x, y]) => [x + 2, y]);
+  part.keyformsY['12.5'] = rest.map(([x, y]) => [x, y + 3]);
+  assert.equal(panel.nineAxisCapabilities, nineAxisCapabilities, 'workbench uses the model module for preview directions');
+  assert.equal(nineAxisCapabilities(doc).region, 'plane');
+  assert.deepEqual([...keyformAt(part, -15, 12.5)].slice(0, 2), [2, 3], 'unmade auxiliary intersections use the renderer composition');
+  assert.equal(nineAxisCapabilities(doc, false).region, 'cross', 'a merged single-axis phase cannot claim authored corners');
+  delete part.keyformsXY['-30,25'];
+  assert.equal(nineAxisCapabilities(doc).region, 'cross');
+  part.keyformsXY['-30,25'] = [[NaN, 0]];
+  assert.equal(nineAxisCapabilities(doc).plane, false);
+});
 
 test('workbench loads the embedded source composition unchanged and reloads same-version stage switches', async t => {
   const { HeadNineAxisPanel, nineAxisCapabilities } = await panelModule(), doc = composed(), requested: string[] = [], installed: any[] = [];

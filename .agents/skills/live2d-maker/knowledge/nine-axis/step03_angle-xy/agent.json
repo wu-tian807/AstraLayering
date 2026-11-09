@@ -3,7 +3,8 @@
     "initial": [
       "prompts/脸部与双耳斜向.md",
       "shared/prompts/nine-axis-face-contour.md",
-      "prompts/斜向先验.md"
+      "prompts/斜向先验.md",
+      "shared/prompts/nine-axis-delivery-scope.md"
     ],
     "tools": [
       "view_bitmap",

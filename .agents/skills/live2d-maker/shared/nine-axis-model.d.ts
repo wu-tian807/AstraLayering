@@ -7,6 +7,8 @@ export interface AxisSource { axis: IndependentAxis; doc: HeadNineAxis }
 export interface HeadNineAxis { version: 2; kind: 'head-nine-axis'; canvas?: number[]; axis?: number; source?: {document:string}; view?: { x: number; y: number; width: number; height: number }; parameters?: any[]; levels: { id: string; name?: string; includes: HeadLevel[] }[]; notes?: string; deformers: WarpGrid[]; parts: HeadDeformer[]; /** Complete protected nonrecursive sources; only root parts are drawn. */ axisSources?: AxisSource[] }
 export const levelNames: Record<HeadLevel, string>;
 export function validateHeadNineAxis(doc: any): HeadNineAxis;
+export type NineAxisCapabilities = { x: { keys: number[]; min: number; max: number }; y: { keys: number[]; min: number; max: number }; plane: boolean; region: string; cornerKeys: string[] };
+export function nineAxisCapabilities(doc: HeadNineAxis, allowPlane?: boolean): NineAxisCapabilities;
 export function keyValues(part: WarpGrid, axis?: 'x' | 'y'): number[];
 export function keyformAt(part: WarpGrid, x: number, y?: number, out?: Float32Array): Float32Array;
 export function lattice(part: WarpGrid): Float32Array;

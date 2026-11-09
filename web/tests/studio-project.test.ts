@@ -249,6 +249,18 @@ test('The project list reads task folders under a chosen base folder, the run di
   assert.equal((await list('relative')).status, 400);
 });
 
+test('jaw preview opens its delivered KRA and PNG; switching to XY uses the inherited document', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  await f.completeAngles();
+  for (const path of [a.headDeformers, a.headDocument, a.headColor, a.jawLineDocument, a.jawLineColor, a.angleXYDeformers, a.jawLineDeformers]) await f.put(path);
+  let data = await (await f.get()).json() as any;
+  assert.deepEqual([data.files.document.path, data.files.color.path], [a.jawLineDocument, a.jawLineColor]);
+  const response = await fetch(f.base + '/studio-artifact?' + new URLSearchParams({ folder: f.project, path: a.jawLineDocument }));
+  assert.equal(response.status, 200);
+  data = await (await f.get({ nineStage: 'xy' })).json() as any;
+  assert.deepEqual([data.files.document.path, data.files.color.path], [a.headDocument, a.headColor]);
+});
+
 test('Nine-axis preview prefers the merge over independent siblings, then corners and jaw', async t => {
   const f = await fixture(t), a = nineAxisArtifacts;
   const order = [a.angleXDeformers, a.headDeformers, a.angleXYDeformers, a.jawLineDeformers];

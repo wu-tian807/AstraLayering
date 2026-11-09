@@ -1,4 +1,4 @@
-import { validateHeadNineAxis, keyformAt, keyValues, levelParts, nodes, descendants, evaluatePoints, parentPoint, dragKeyform } from './nine-axis-model.js';
+import { validateHeadNineAxis, nineAxisCapabilities, keyformAt, keyValues, levelParts, nodes, descendants, evaluatePoints, parentPoint, dragKeyform } from './nine-axis-model.js';
 import { HeadNineAxisRenderer, shownParts } from './nine-axis-render.js';
 const $ = s => document.querySelector(s);
 const NS = 'http://www.w3.org/2000/svg';
@@ -6,29 +6,7 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;'
 const sign = k => (k > 0 ? '+' : '') + k;
 const clipLabel = p => p.clip ? `${p.clip.invert ? '反向裁切' : '裁切'} ← ${p.clip.by.map(id => short(id)).join('、')}` : '';
 const short = id => id.replace(/^(face|hair)\//, '').replace(/^features\//, '');
-// Only authored keys grant preview directions. Every node must have the Y
-// endpoint/corners, including additional local keys the renderer interpolates.
-export function nineAxisCapabilities(doc, allowPlane = true) {
-  const keys = id => [...new Set(doc.parameters?.find(p => p.id === id && !p.status)?.keys?.filter(Number.isFinite) ?? [0])].sort((a, b) => a - b);
-  const all = nodes(doc), form = (n, field, key) => {
-    const p = n[field]?.[String(key)];
-    return Array.isArray(p) && p.length === (n.cols + 1) * (n.rows + 1) && p.every(q => Array.isArray(q) && q.length === 2 && q.every(Number.isFinite));
-  };
-  const xKeys = keys('ParamAngleX'), yKeys = keys('ParamAngleY').filter(k => k === 0 || all.every(n => form(n, 'keyformsY', k)));
-  const axis = k => ({ keys: [...new Set([0, ...k])].sort((a, b) => a - b), min: Math.min(0, ...k), max: Math.max(0, ...k) });
-  const x = axis(xKeys), y = axis(yKeys);
-  const cornerKeys = [x.min, x.max].flatMap(a => [y.min, y.max].map(b => `${a},${b}`));
-  // Keep neighbouring local keys too: a parameter endpoint may lie between
-  // node keys, and the renderer evaluates both neighbours before blending.
-  const relevant = (ks, a) => ks.filter((k, i) => k && (k >= a.min && k <= a.max || k < a.min && (ks[i + 1] ?? Infinity) >= a.min || k > a.max && (ks[i - 1] ?? -Infinity) <= a.max));
-  const plane = allowPlane && x.min < 0 && x.max > 0 && y.min < 0 && y.max > 0 && all.every(n => {
-    const xs = [...new Set([...x.keys.filter(Boolean), ...relevant(keyValues(n), x)])];
-    const ys = [...new Set([...y.keys.filter(Boolean), ...relevant(keyValues(n, 'y'), y)])];
-    return xs.every(a => ys.every(b => form(n, 'keyformsXY', `${a},${b}`)));
-  });
-  const region = plane ? 'plane' : y.min < 0 && y.max > 0 ? 'cross' : y.max > 0 ? 'horizontal-plus-positive-y' : y.min < 0 ? 'horizontal-plus-negative-y' : 'horizontal';
-  return { x, y, plane, region, cornerKeys: plane ? cornerKeys : [] };
-}
+export { nineAxisCapabilities };
 export function projectNineAxisAngles(axes, x, y, preferredAxis) {
   if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
   const clamp = (v, a) => Math.max(a.min, Math.min(a.max, v)) || 0;

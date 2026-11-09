@@ -101,6 +101,27 @@ export function validateHeadNineAxis(doc) {
 export const axisForms = (part, axis = 'x') => axis === 'x' ? part.keyforms : { '0': part.keyforms['0'], ...part.keyformsY };
 export const keyValues = (part, axis = 'x') => Object.keys(axisForms(part, axis)).map(Number).sort((a, b) => a - b);
 
+// Readiness follows the delivered main poses. Extra local keys are optional
+// corrections: gridForm composes their X/Y offsets when no XY key was authored.
+// The four main corners still require explicit forms on every node.
+export function nineAxisCapabilities(doc, allowPlane = true) {
+  const all = nodes(doc), form = (n, field, key) => {
+    const p = n[field]?.[String(key)];
+    return Array.isArray(p) && p.length === (n.cols + 1) * (n.rows + 1) && p.every(q => Array.isArray(q) && q.length === 2 && q.every(Number.isFinite));
+  };
+  const axis = (id, field) => {
+    const keys = [...new Set([0, ...doc.parameters?.find(p => p.id === id && !p.status)?.keys?.filter(k =>
+      Number.isFinite(k) && (k === 0 || all.every(n => form(n, field, k)))) ?? []])].sort((a, b) => a - b);
+    return { keys, min: keys[0], max: keys.at(-1) };
+  };
+  const x = axis('ParamAngleX', 'keyforms'), y = axis('ParamAngleY', 'keyformsY');
+  const cornerKeys = [x.min, x.max].flatMap(a => [y.min, y.max].map(b => `${a},${b}`));
+  const plane = allowPlane && all.length > 0 && x.min < 0 && x.max > 0 && y.min < 0 && y.max > 0
+    && all.every(n => cornerKeys.every(key => form(n, 'keyformsXY', key)));
+  const region = plane ? 'plane' : y.min < 0 && y.max > 0 ? 'cross' : y.max > 0 ? 'horizontal-plus-positive-y' : y.min < 0 ? 'horizontal-plus-negative-y' : 'horizontal';
+  return { x, y, plane, region, cornerKeys: plane ? cornerKeys : [] };
+}
+
 // The neighbouring keys of a value and its fraction between them; values
 // outside the keys hold the end key.
 function span(keys, value) {
