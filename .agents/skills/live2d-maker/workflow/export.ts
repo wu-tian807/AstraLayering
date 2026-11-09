@@ -22,7 +22,7 @@ import { shadowMode } from '../shared/shadow.ts';
 import { acquireTaskLock, directoryFor, readRun, taskStatus, type TaskRun } from './state.ts';
 
 const slash = (path: string) => path.split(sep).join('/');
-// Export stops at shadow even when an installation adds a physics section.
+// The base static route ends at shadow; completed nine-axis artwork is included below.
 const exportSectionIds = sectionIds.slice(0, sectionIds.indexOf('shadow') + 1);
 const inside = (root: string, path: string) => path === root || path.startsWith(root + sep);
 const excluded = (path: string) => path.split(/[\\/]/).some(name =>
