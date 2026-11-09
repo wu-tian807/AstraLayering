@@ -9,16 +9,19 @@ import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import { angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { faceLevel, writeBuilt, type Built, type HeadInput } from './head.ts';
 import type { Box } from './turn.ts';
+import { headMaterialSelection } from './materials.ts';
 
 type Bounds = [number, number, number, number];
 export type NeutralLayer = {
   id: string; group: string; texture: string; textureBounds: Bounds; bbox: Bounds;
   uuid: string; layerName: string; nodeType: string; parentUuid: string;
   order: number; stackPath: number[]; visible: boolean; layerOpacity: number; blendingMode: string;
+  scope?: 'face' | 'hair' | 'accessory'; partId?: string; materialRole?: 'shadow'; casterPartId?: string; receiverPartIds?: string[]; receiverLayerUuids?: string[]; follow?: string;
 };
 export type NeutralManifest = {
   version: 1; sourceKra: string; sourceColor: string;
   canvas: [number, number]; method: string; order: 'top-to-bottom'; parts: NeutralLayer[]; referenceLayers: NeutralLayer[];
+  shadowLayers?: NeutralLayer[];
   preview: { texture: string; textureBounds: Bounds };
 };
 export type NeutralPart = Omit<HeadDeformer, 'keyforms' | 'keyformsY'> & NeutralLayer & {
@@ -33,14 +36,13 @@ export type NeutralBuilt = Omit<Built, 'doc'> & {
   preview: string; manifest: NeutralManifest; source: Record<string, string>;
 };
 
-// Keep node projections (including their child masks) and original bounds,
-// as in the successful export_layers.py. Only unlabelled containers recurse:
-// a semantic node is one asset, never exported again through its children.
-function exportScript(document: string, directory: string): string {
+// Selection follows the existing part/UUID relationships. Base projections
+// retain their own masks; independent shadows are exported before receiver clipping.
+function exportScript(document: string, directory: string, materialSelection: Awaited<ReturnType<typeof headMaterialSelection>>): string {
   return `from krita import Krita
 from PyQt5.QtGui import QImage
 import os, json, re
-config = json.loads(${JSON.stringify(JSON.stringify({ document, directory }))})
+config = json.loads(${JSON.stringify(JSON.stringify({ document, directory, ...materialSelection }))})
 doc = Krita.instance().openDocument(config['document'])
 if doc is None:
     raise RuntimeError('Cannot open source KRA: ' + config['document'])
@@ -49,50 +51,57 @@ try:
     doc.waitForDone()
     if doc.rootNode() is None or doc.colorModel() != 'RGBA' or doc.colorDepth() != 'U8':
         raise RuntimeError('Source KRA must have an RGBA/U8 projection')
-    parts, references, seen, uuids = [], [], set(), set()
-    for folder in ('layers', 'reference-layers'):
-        os.makedirs(os.path.join(config['directory'], folder), exist_ok=True)
-    def visit(parent, path):
+    parts, references, shadows, nodes, original = [], [], [], {}, {}
+    def collect(parent, path):
         for index, node in enumerate(reversed(parent.childNodes())):
-            stack = path + [index]
-            name = node.name().split(' | ', 1)[-1]
-            core = name.startswith('face/') or name == 'neck' or name.startswith('neck/')
-            reference = name.startswith('hair/') or re.match(r'^head_accessories(?:/|::|$)', name) is not None
-            if not core and not reference:
-                if node.type() == 'grouplayer':
-                    visit(node, stack)
-                continue
-            uuid = node.uniqueId().toString()
-            if name in seen or not uuid or uuid in uuids:
-                raise RuntimeError('Duplicate semantic id or UUID: ' + name)
+            key = node.uniqueId().toString().strip('{}').lower()
+            nodes[key] = (node, parent, path + [index])
+            original[key] = node.visible()
+            collect(node, path + [index])
+    collect(doc.rootNode(), [])
+    for key in config['shadowLayerUuids']:
+        if key in nodes:
+            nodes[key][0].setVisible(False)
+    doc.refreshProjection()
+    doc.waitForDone()
+    seen = set()
+    selections = {row['uuid']: row for row in config['selections']}
+    for folder in ('layers', 'reference-layers', 'shadow-layers'):
+        os.makedirs(os.path.join(config['directory'], folder), exist_ok=True)
+    for key, entry in nodes.items():
+        if key not in selections:
+            continue
+        row = selections[key]
+        node, parent, stack = entry
+        b = node.bounds()
+        x, y, w, h = b.x(), b.y(), b.width(), b.height()
+        if w <= 0 or h <= 0:
+            continue
+        is_shadow = row.get('role') == 'shadow'
+        raw = node.pixelData(x, y, w, h) if is_shadow else node.projectionPixelData(x, y, w, h)
+        if len(raw) != w * h * 4:
+            raise RuntimeError('Invalid RGBA/U8 pixels: ' + row['id'])
+        image = QImage(raw, w, h, QImage.Format_ARGB32).copy()
+        order = len(parts) + len(references) + len(shadows)
+        name = row['id']
+        if not is_shadow and name in seen:
+            raise RuntimeError('Duplicate semantic id: ' + name)
+        if not is_shadow:
             seen.add(name)
-            uuids.add(uuid)
-            b = node.bounds()
-            x, y, w, h = b.x(), b.y(), b.width(), b.height()
-            if w <= 0 or h <= 0:
-                raise RuntimeError('Empty original layer bounds: ' + name)
-            raw = node.projectionPixelData(x, y, w, h)
-            if len(raw) != w * h * 4:
-                raise RuntimeError('Invalid RGBA/U8 projection: ' + name)
-            image = QImage(raw, w, h, QImage.Format_ARGB32).copy()
-            order = len(parts) + len(references)
-            filename = str(order).zfill(4) + '-' + re.sub(r'[^A-Za-z0-9_-]', '_', name.replace('/', '__').replace('::', '--')) + '.png'
-            texture = ('layers/' if core else 'reference-layers/') + filename
-            destination = os.path.join(config['directory'], texture)
-            os.makedirs(os.path.dirname(destination), exist_ok=True)
-            if not image.save(destination, 'PNG'):
-                raise RuntimeError('PNG export failed: ' + name)
-            record = dict(id=name, group=name.rsplit('/', 1)[0] if '/' in name else 'body',
-                texture=texture, textureBounds=[x,y,w,h], bbox=[x,y,x+w,y+h], uuid=uuid,
-                layerName=node.name(), nodeType=node.type(), parentUuid=parent.uniqueId().toString(),
-                order=order, stackPath=stack, visible=node.visible(), layerOpacity=node.opacity(),
-                blendingMode=node.blendingMode())
-            (parts if core else references).append(record)
-    visit(doc.rootNode(), [])
-    if not any(p['id'] == 'face/face_base' for p in parts):
-        raise RuntimeError('Source KRA has no face/face_base')
-    exported = dict(canvas=[doc.width(), doc.height()],
-        parts=parts, referenceLayers=references)
+        filename = str(order).zfill(4) + '-' + re.sub(r'[^A-Za-z0-9_-]', '_', name.replace('/', '__').replace('::', '--')) + '.png'
+        folder = 'shadow-layers' if is_shadow else 'layers' if row['scope'] == 'face' else 'reference-layers'
+        texture = folder + '/' + filename
+        if not image.save(os.path.join(config['directory'], texture), 'PNG'):
+            raise RuntimeError('PNG export failed: ' + name)
+        record = dict(row, id=name, group=name.rsplit('/', 1)[0] if '/' in name else 'body',
+            texture=texture, textureBounds=[x,y,w,h], bbox=[x,y,x+w,y+h],
+            layerName=node.name(), nodeType=node.type(), parentUuid=parent.uniqueId().toString(),
+            order=order, stackPath=stack, visible=original[key], layerOpacity=node.opacity(), blendingMode=node.blendingMode())
+        record.pop('role', None)
+        if is_shadow:
+            record['materialRole'] = 'shadow'
+        (shadows if is_shadow else parts if row['scope'] == 'face' else references).append(record)
+    exported = dict(canvas=[doc.width(), doc.height()], parts=parts, referenceLayers=references, shadowLayers=shadows)
 finally:
     doc.close()
 result = exported
@@ -155,10 +164,10 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   await prepareNeutralBridge(krita, signal);
   signal?.throwIfAborted();
   const temporary = await mkdtemp(join(tmpdir(), 'nine-axis-neutral-'));
-  let exported: Pick<NeutralManifest, 'canvas' | 'parts' | 'referenceLayers'>;
+  let exported: Pick<NeutralManifest, 'canvas' | 'parts' | 'referenceLayers' | 'shadowLayers'>;
   try {
     const script = join(temporary, 'export_layers.py');
-    await writeFile(script, exportScript(document, output));
+    await writeFile(script, exportScript(document, output, await headMaterialSelection(document, root)));
     const reply = await submitJob(krita.bridge!, script, { signal });
     if (!reply.ok) throw bridgeFailure('原 KRA 导出', reply);
     exported = reply.result as typeof exported;
@@ -173,7 +182,7 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   const axis = box.x + box.size / 2;
   if (!(axis > 0 && axis < width)) throw Error('neutral：axis 须在原始画布内');
   if (!Array.isArray(exported.parts) || !Array.isArray(exported.referenceLayers)) throw Error('neutral：导出缺少图层 metadata');
-  for (const layer of [...exported.parts, ...exported.referenceLayers]) {
+  for (const layer of [...exported.parts, ...exported.referenceLayers, ...exported.shadowLayers ?? []]) {
     const meta = await sharp(join(output, layer.texture)).metadata();
     if (meta.width !== layer.textureBounds[2] || meta.height !== layer.textureBounds[3])
       throw Error(`neutral：原图层 PNG 尺寸不一致：${layer.id}`);
@@ -204,8 +213,8 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
     .png().toFile(preview);
   const manifest: NeutralManifest = { version: 1, sourceKra: doc.source.document,
     sourceColor: toTaskPath(root, color), canvas: [width, height],
-    method: 'Krita node.projectionPixelData; child masks included; RGBA/U8 ARGB32 PNG; original bounds; no view crop',
-    order: 'top-to-bottom', parts: exported.parts, referenceLayers: exported.referenceLayers,
+    method: 'Authored part/UUID selection; base projection with own masks; independent shadow pixels before receiver clipping; original bounds; no view crop',
+    order: 'top-to-bottom', parts: exported.parts, referenceLayers: exported.referenceLayers, shadowLayers: exported.shadowLayers ?? [],
     preview: { texture: 'original-full-face.png', textureBounds: [x0, y0, x1 - x0, y1 - y0] } };
   signal?.throwIfAborted();
   const textures = new Map(parts.map(p => [p.texture, join(output, p.texture)]));
@@ -216,7 +225,7 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   // top-first export. Both records retain the same unmodified texture metadata.
   const exportRecordPath = join(output, 'export-record.json'), sourcePath = join(output, 'source.json');
   await writeFile(exportRecordPath, JSON.stringify({ version: 1, sourceKra: doc.source.document,
-    canvas: doc.canvas, order: 'bottom-to-top', parts: doc.parts, referenceLayers: manifest.referenceLayers }, null, 2) + '\n');
+    canvas: doc.canvas, order: 'bottom-to-top', parts: doc.parts, referenceLayers: manifest.referenceLayers, shadowLayers: manifest.shadowLayers }, null, 2) + '\n');
   const source = { sourceDocument: doc.source.document, sourceColor: manifest.sourceColor };
   await writeFile(sourcePath, JSON.stringify({ version: 1, ...source }, null, 2) + '\n');
   return { doc: freeze(doc), textures, directory: output, path: join(output, 'deformers.json'),

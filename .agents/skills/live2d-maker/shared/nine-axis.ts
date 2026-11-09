@@ -1,7 +1,7 @@
 // Task-relative paths for the four-step nine-axis pipeline. The workbench
 // reads the newest completed deformers.json and, once merged, the KRA copy
 // that step02 made from shadow.
-export const nineAxisArtifacts = {
+export const previousNineAxisArtifacts = {
   turnUpperBody: 'nine-axis/step01_video/upper-body.png',
   turnLeft: 'nine-axis/step01_video/left.png',
   turnUp: 'nine-axis/step01_video/up.png',
@@ -37,14 +37,45 @@ export const legacyNineAxisArtifacts = {
   angleXYDeformers: 'nine-axis/step06_angle-xy/deformers.json',
   jawLineDeformers: 'nine-axis/step07_jaw-line/deformers.json',
 } as const;
+export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line'] as const;
+export const previousNineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line'] as const;
+export const nineAxisGroups = ['left', 'up', 'down'] as const;
+export const nineAxisBranches = ['model', 'video'] as const;
+export const nineAxisGroupSteps = nineAxisGroups.map(group => `step04_angles/model/${group}`);
+export const nineAxisBranchSteps = nineAxisBranches.map(branch => `step04_angles/${branch}`);
+export const nineAxisChildSteps = [...nineAxisBranchSteps, ...nineAxisGroupSteps];
+export const previousNineAxisGroupSteps = nineAxisGroups.map(group => `step02_angles/${group}`);
+export const nineAxisProgressSteps = [...nineAxisSteps.slice(0, 4), ...nineAxisBranchSteps.slice(0, 1), ...nineAxisGroupSteps,
+  ...nineAxisBranchSteps.slice(1), ...nineAxisSteps.slice(4)];
+export const nineAxisArtifacts = {
+  preparationDeformers: 'nine-axis/step01_preparation/deformers.json',
+  preparationManifest: 'nine-axis/step01_preparation/head_parts_manifest.json',
+  preparationPreview: 'nine-axis/step01_preparation/original-full-face.png',
+  turnUpperBody: 'nine-axis/step02_video/upper-body.png',
+  turnLeft: 'nine-axis/step03_frames/left.png', turnUp: 'nine-axis/step03_frames/up.png', turnDown: 'nine-axis/step03_frames/down.png',
+  turnLeftVideo: 'nine-axis/step02_video/left.mp4', turnUpVideo: 'nine-axis/step02_video/up.mp4', turnDownVideo: 'nine-axis/step02_video/down.mp4',
+  turnRecord: 'nine-axis/step03_frames/views.json',
+  headDocument: 'nine-axis/step01_preparation/character-nine-axis.kra', headColor: 'nine-axis/step01_preparation/character-nine-axis.png',
+  headDeformers: 'nine-axis/step04_angles/model/deformers.json', headSource: 'nine-axis/step01_preparation/source.json',
+  angleXDeformers: 'nine-axis/step04_angles/model/left/deformers.json',
+  angleUpDeformers: 'nine-axis/step04_angles/model/up/deformers.json', angleDownDeformers: 'nine-axis/step04_angles/model/down/deformers.json',
+  neutralDeformers: 'nine-axis/step01_preparation/deformers.json', mergedDeformers: 'nine-axis/step04_angles/model/merged/deformers.json',
+  cornerUpVideo: 'nine-axis/step04_angles/video/left-up.mp4', cornerDownVideo: 'nine-axis/step04_angles/video/left-down.mp4',
+  cornerVideoRecord: 'nine-axis/step04_angles/video/videos.json',
+  cornerUp: 'nine-axis/step05_frames/left-up.png', cornerDown: 'nine-axis/step05_frames/left-down.png',
+  angleXYDeformers: 'nine-axis/step06_angle-xy/deformers.json', jawLineDeformers: 'nine-axis/step07_jaw-line/deformers.json',
+  jawLineDocument: 'nine-axis/step07_jaw-line/character-nine-axis.kra', jawLineColor: 'nine-axis/step07_jaw-line/character-nine-axis.png',
+} as const;
 export const nineAxisStages = {
-  x: nineAxisArtifacts.angleXDeformers, up: nineAxisArtifacts.angleUpDeformers,
-  down: nineAxisArtifacts.angleDownDeformers, y: nineAxisArtifacts.headDeformers,
-  xy: nineAxisArtifacts.angleXYDeformers, jaw: nineAxisArtifacts.jawLineDeformers,
+  neutral: nineAxisArtifacts.preparationDeformers,
+  x: nineAxisArtifacts.angleXDeformers, up: nineAxisArtifacts.angleUpDeformers, down: nineAxisArtifacts.angleDownDeformers,
+  y: nineAxisArtifacts.headDeformers, xy: nineAxisArtifacts.angleXYDeformers, jaw: nineAxisArtifacts.jawLineDeformers,
+} as const;
+export const previousNineAxisStages = {
+  x: previousNineAxisArtifacts.angleXDeformers, up: previousNineAxisArtifacts.angleUpDeformers,
+  down: previousNineAxisArtifacts.angleDownDeformers, y: previousNineAxisArtifacts.headDeformers,
+  xy: previousNineAxisArtifacts.angleXYDeformers, jaw: previousNineAxisArtifacts.jawLineDeformers,
 } as const;
 export type NineAxisStage = keyof typeof nineAxisStages;
-export const nineAxisGroups = ['left', 'up', 'down'] as const;
-export const nineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line'] as const;
-export const nineAxisGroupSteps = nineAxisGroups.map(group => `step02_angles/${group}`);
-export const nineAxisDeformerPaths = new Set<string>([...Object.values(nineAxisStages), ...Object.values(legacyNineAxisArtifacts).filter(path => path.endsWith('/deformers.json'))]);
-
+export const nineAxisDeformerPaths = new Set<string>([...Object.values(nineAxisStages), ...Object.values(previousNineAxisStages),
+  ...Object.values(legacyNineAxisArtifacts).filter(path => path.endsWith('/deformers.json'))]);

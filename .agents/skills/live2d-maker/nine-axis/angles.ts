@@ -4,12 +4,12 @@ import { stepKnowledge } from '../shared/knowledge.ts';
 // ParamAngleX / ParamAngleY are in degrees everywhere: the step01 views, the
 // agents' prompts and deliveries, and deformers.json. The degrees of each view
 // (left about 30°, up and down about 25°) live only in knowledge/
-// nine-axis/step01_video/references/angles.json and are filled into the
+// nine-axis/step02_video/references/angles.json and are filled into the
 // prompts; mapping to another range (e.g. Cubism ±30) belongs to an exporter.
 export type AngleScale = { x: [number, number]; y: [number, number] };
 
 export function angleScale(): AngleScale {
-  const path = stepKnowledge('nine-axis', 'step01_video').reference('angles.json');
+  const path = stepKnowledge('nine-axis', 'step02_video').reference('angles.json');
   let raw: Record<string, unknown>;
   try { raw = JSON.parse(readFileSync(path, 'utf8')); } catch (error) { throw new Error(`先验知识缺少角度：${path}`, { cause: error }); }
   const degrees = (view: string): number => {

@@ -8,7 +8,7 @@ import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { fromTaskPath, toAgentPath } from '../shared/task-paths.ts';
 import { fitWarpToTraces, type FitFeature } from '../shared/nine-axis-fit.js';
 import { nodes, evaluatePoints } from '../shared/nine-axis-model.js';
-import { compileHead, type HeadInput, type FaceLeft, type Part } from './head.ts';
+import { compileHead, writeBuilt, type HeadInput, type FaceLeft, type Part } from './head.ts';
 import { cropUpperBody, type Box } from './turn.ts';
 import { angleScale, type AngleScale } from './angles.ts';
 import { authorFile, compileContinuation, type AuthoredHead, type PitchStage } from './continuation.ts';
@@ -28,7 +28,7 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
     if (!args || !['inspect', 'fit'].includes(args.action ?? '') || typeof args.trace !== 'string') throw Error('action 须为 inspect 或 fit，并提供 trace JSON 路径');
     const xy = continuation?.stage === 'xy';
     if (xy && !['left-up', 'left-down'].includes(args.corner ?? '')) throw Error('xy 阶段 corner 必须为 left-up 或 left-down；右侧由组合形变镜像');
-    const reference = xy ? join(directory, `${args.corner}.png`) : paths ? join(paths.referenceDirectory, `${continuation?.stage ?? 'left'}.png`) : join(task, continuation ? `nine-axis/step01_video/${continuation.stage}.png` : 'nine-axis/step01_video/left.png');
+    const reference = xy ? join(paths?.referenceDirectory ?? directory, `${args.corner}.png`) : paths ? join(paths.referenceDirectory, `${continuation?.stage ?? 'left'}.png`) : join(task, continuation ? `nine-axis/step03_frames/${continuation.stage}.png` : 'nine-axis/step03_frames/left.png');
     const x = !continuation || xy ? scale.x[0] : 0, y = xy ? (args.corner === 'left-up' ? scale.y[1] : scale.y[0]) : continuation ? (continuation.stage === 'up' ? scale.y[1] : scale.y[0]) : 0;
     const tracePath = fromTaskPath(task, args.trace), text = await readFile(tracePath, 'utf8');
     if (text.length > 1_000_000) throw Error('trace 文件过大');
@@ -127,6 +127,7 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
         throw error;
       })).equals(targetImage)) throw Error('拟合期间所选参考帧改变，未保存，请重新 inspect');
       const next = JSON.stringify(edited) + '\n', tmp = author + '.' + randomUUID() + '.tmp'; await writeFile(tmp, next); await rename(tmp, author); revision = revisionFor(next);
+      await writeBuilt(directory, built);
       report = { ...fitted.report, ...(xy ? { corner: args.corner } : {}), trace: args.trace, visibility: trace.curves.map(f => ({ id: f.id, visibility: f.visibility ?? 'visible' })) };
       await writeFile(join(directory, xy ? `${args.corner}-fit-report.json` : 'fit-report.json'), JSON.stringify(report, null, 2) + '\n');
     }

@@ -7,7 +7,7 @@ import { nineAxisProgress } from '../nine-axis-progress.ts';
 import { inventory } from '../files.ts';
 import { snapshot } from '../snapshot.ts';
 import { sectionSteps, stepArtifacts } from '../progress.js';
-import { nineAxisSteps, nineAxisGroupSteps, nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisSteps, nineAxisGroupSteps as stagedGroupSteps, previousNineAxisGroupSteps as nineAxisGroupSteps, previousNineAxisArtifacts as nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import { evaluatePoints, validateHeadNineAxis, nineAxisCapabilities, keyformAt } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 import { saveNineAxis } from '../nine-axis-save.ts';
 import { lstat } from 'node:fs/promises';
@@ -34,12 +34,13 @@ async function fixture(t: any) {
   return { root, put, get, errors, complete };
 }
 
-test('final four-step UI presents three parallel children and no retired video/pitch steps', () => {
-  assert.deepEqual(nineAxisSteps, ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line']);
+test('seven steps separate videos and frames, with model and video branches in step04', () => {
+  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line']);
   const steps = sectionSteps[6]; assert.deepEqual(steps.map(step => step.id), [...nineAxisSteps]);
-  assert.equal(steps[1].childrenMode, 'parallel');
-  assert.deepEqual(steps[1].children.map(step => step.id), nineAxisGroupSteps);
-  for (const id of nineAxisGroupSteps) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/deformers.json`));
+  assert.equal(steps[3].childrenMode, 'parallel');
+  assert.deepEqual(steps[3].children.map(step => step.id), ['step04_angles/model','step04_angles/video']);
+  assert.deepEqual(steps[3].children[0].children.map(step => step.id), stagedGroupSteps);
+  for (const id of stagedGroupSteps) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/deformers.json`));
 });
 
 test('independent waits and failures never mark running or completed siblings throttled', async t => {
@@ -80,7 +81,7 @@ test('child retry marker layout keeps completed siblings; retained XY waits for 
   assert.equal(value.mergeComplete, false); assert.equal(value.states['step02_angles/left'], 'done');
   assert.equal(value.states['step02_angles/down'], 'done'); assert.equal(value.states['step02_angles/up'], 'pending');
   assert.equal(value.states['step03_angle-xy'], 'available');
-  assert.match(value.messages['step03_angle-xy'], /父合并全部完成/);
+  assert.match(value.messages['step03_angle-xy'], /等待单轴模型完成/);
   assert.deepEqual(await readFile(join(f.root, 'nine-axis/step02_angles/down/deformers.json')), before);
   await f.put('step02_angles/up/.completed'); await f.put('step02_angles/up/deformers.json', '{}');
   await f.complete('step02_angles/up');
@@ -221,4 +222,52 @@ test('saving merged correction grids preserves every embedded source snapshot', 
   const edited = structuredClone(doc); edited.parts[0].keyforms['-30'] = rest.map(([x, y]) => [x + .5, y]);
   await saveNineAxis(f.root, { path: nineAxisArtifacts.headDeformers, version, document: edited });
   assert.deepEqual(JSON.parse(await readFile(file, 'utf8')).axisSources, doc.axisSources);
+});
+
+test('staged progress shows draft model and generated video before branches complete independently', async t => {
+  const f = await fixture(t);
+  await f.put('step01_preparation/.running');
+  await f.put('step04_angles/.running');
+  await f.put('step04_angles/model/.running');
+  await f.put('step04_angles/model/up/.running');
+  await f.put('step04_angles/model/up/deformers.json', composed());
+  await f.put('step04_angles/video/.running');
+  await f.put('step04_angles/video/left-up.mp4', 'generated video');
+  let value = await f.get();
+  assert.equal(value.layout, 'staged');
+  assert.equal(value.states['step04_angles/model/up'], 'available');
+  assert.equal(value.states['step04_angles/video'], 'available');
+  await f.complete('step04_angles/video');
+  value = await f.get({ active: true });
+  assert.equal(value.states['step04_angles/video'], 'done');
+  assert.equal(value.states['step04_angles/model/up'], 'running');
+  assert.equal(value.states.step04_angles, 'running');
+});
+
+test('dynamic studio preview preserves angles and defers refresh during user edits or swing', async t => {
+  const { HeadNineAxisPanel } = await panelModule();
+  const previous = (globalThis as any).location;
+  (globalThis as any).location = { search: '?nineStage=up' };
+  t.after(() => { if (previous) (globalThis as any).location = previous; else delete (globalThis as any).location; });
+  const panel = Object.create(HeadNineAxisPanel.prototype);
+  const initial = { folder: '/fixture', nineAxis: { path: 'nine-axis/step04_angles/model/up/deformers.json', version: '1' } };
+  let requests = 0, installs = 0;
+  Object.assign(panel, { active: true, project: initial, doc: {}, dirty: new Set(), value: 0, valueY: 12.5,
+    async load(next: any) { installs++; this.project = next; this.value = this.valueY = 0; },
+    setValue(x: number,y: number) { this.value=x; this.valueY=y; }, status(message: string) { assert.fail(message); } });
+  t.mock.method(globalThis, 'fetch', async (url: any) => {
+    requests++; assert.match(String(url), /nineStage=up/);
+    return Response.json({ ...initial, nineAxis: { ...initial.nineAxis, version: '2' } });
+  });
+  await panel.refresh();
+  assert.equal(installs, 1); assert.deepEqual([panel.value,panel.valueY], [0,12.5]);
+  panel.dirty.add('local edit'); await panel.refresh();
+  panel.dirty.clear(); panel.raf = 1; await panel.refresh();
+  assert.equal(requests,1);
+  panel.raf = 0;
+  t.mock.method(globalThis,'fetch',async () => { panel.raf = 1; return Response.json(initial); });
+  await panel.refresh(); assert.equal(installs,1, 'swing started during fetch also protects the current preview');
+  panel.raf = 0; panel.doc = null;
+  t.mock.method(globalThis,'fetch',async () => Response.json(panel.project));
+  await panel.refresh(); assert.equal(installs,2, 'an interrupted model load retries even when its revision is unchanged');
 });

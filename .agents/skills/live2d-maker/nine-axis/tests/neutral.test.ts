@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import { test, type TestContext } from 'node:test';
 import sharp from 'sharp';
+import { zipSync, strToU8 } from 'fflate';
 import { SectionKrita } from '../../shared/krita/section-krita.ts';
 import { submitJob, type BridgeResult } from '../../shared/krita/bridge/client.mjs';
 import { evaluatePoints, lattice } from '../../shared/nine-axis-model.js';
@@ -37,7 +38,6 @@ async function fixture(t: TestContext, nodes = layers, options: { failExport?: b
   const directory = join(root, 'nine-axis/step02_angle-x/neutral');
   await mkdir(sourceDirectory, { recursive: true });
   const document = join(sourceDirectory, 'original "doll".kra'), color = join(sourceDirectory, 'original.png');
-  await writeFile(document, 'original KRA fixture');
   await sharp({ create: { width: 16, height: 16, channels: 4, background: '#ffffffff' } }).png().toFile(color);
   const input: HeadInput = { document, color, source: { id: 'character-assembly/step01', directory: sourceDirectory }, parts: [] };
   let serial = 0;
@@ -55,6 +55,9 @@ async function fixture(t: TestContext, nodes = layers, options: { failExport?: b
     return node;
   };
   const config = { nodes: await Promise.all(nodes.map(bake)), document, depth: options.depth ?? 'U8', failExport: options.failExport ?? false };
+  const xmlEscape = (value: string) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+  const xml = (node: any): string => `<layer uuid="${node.uuid}" name="${xmlEscape(node.name)}" nodetype="${node.children.length ? 'grouplayer' : 'paintlayer'}">${node.children.map(xml).join('')}</layer>`;
+  await writeFile(document, zipSync({ 'maindoc.xml': strToU8(`<DOC><IMAGE><layers>${config.nodes.map(xml).join('')}</layers></IMAGE></DOC>`), 'mergedimage.png': await readFile(color) }));
   const bootstrap = `import sys, types, json, base64, traceback
 cfg = json.loads(${JSON.stringify(JSON.stringify(config))})
 events, pngs = [], {}
@@ -78,6 +81,7 @@ class Node:
     def bounds(self): return Rect(self.n['bounds'])
     def type(self): return 'grouplayer' if self.children else 'paintlayer'
     def visible(self): return self.n.get('visible', True)
+    def setVisible(self, value): self.n['visible'] = value
     def opacity(self): return 255
     def blendingMode(self): return 'normal'
     def projectionPixelData(self, x, y, w, h):
@@ -88,6 +92,7 @@ class Document:
     def __init__(self): self.root = Node(dict(name='root', children=cfg['nodes']))
     def setBatchmode(self, value): assert value
     def waitForDone(self): pass
+    def refreshProjection(self): pass
     def rootNode(self): return self.root
     def colorModel(self): return 'RGBA'
     def colorDepth(self): return cfg['depth']
@@ -205,7 +210,7 @@ test('one original KRA job preserves layers, metadata, identity and the merge ex
   assert.deepEqual(pixel(8, 6), [0, 255, 0, 255]); // top eye over face; reference hair excluded
   assert.deepEqual(await readFile(f.input.document), original);
   assert.deepEqual((await readdir(f.directory)).sort(), ['deformers.json', 'export-record.json', 'head_parts_manifest.json',
-    'layers', 'original-full-face.png', 'reference-layers', 'source.json']);
+    'layers', 'original-full-face.png', 'reference-layers', 'shadow-layers', 'source.json']);
 });
 
 test('left/up/down independently clone frozen neutral without changing baseline bytes', async t => {

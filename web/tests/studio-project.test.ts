@@ -8,7 +8,7 @@ import { createWorkbench } from "../server.ts";
 import { studioArtifacts } from "../../.agents/skills/live2d-maker/shared/studio-artifacts.ts";
 import { steps } from "../../.agents/skills/live2d-maker/character-assembly/steps.ts";
 import { shadowArtifacts } from '../../.agents/skills/live2d-maker/shared/shadow.ts';
-import { nineAxisArtifacts, legacyNineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { previousNineAxisArtifacts as nineAxisArtifacts, legacyNineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import sharp from 'sharp';
 
 async function fixture(t: any) {

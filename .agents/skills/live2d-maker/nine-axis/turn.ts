@@ -10,7 +10,7 @@ import { taskDirectory } from '../shared/paths.ts';
 import { toTaskPath } from '../shared/task-paths.ts';
 import type { VideoApi } from '../shared/codex/environment.ts';
 
-// Video production and frame extraction belong to the same step. Left crops
+// Video production and frame selection have separate step directories. Left crops
 // the front once; pitch and corners reuse that registration without recropping.
 export const profileAngle = 90, turnSeconds = '5';
 const background = 128, margin = 0.06, neckFaces = 0.5;
@@ -276,13 +276,13 @@ export async function runFrameSelection(directory: string, names: readonly strin
 
 // Each chosen frame names its own video and the normalized <name>.png, with a
 // recorded frame position and reason, at the upper body's square size.
-export async function checkSelectedFrames(directory: string, names: readonly string[], size: number) {
+export async function checkSelectedFrames(directory: string, names: readonly string[], size: number, videoDirectory = directory) {
   const selected = JSON.parse(await readFile(join(directory, 'selected-frames.json'), 'utf8'));
   if (selected.version !== 1 || !selected.frames || typeof selected.frames !== 'object') throw Error('selected-frames.json 需要 version:1 和 frames 对象');
   for (const name of names) {
     const frame = selected.frames[name];
     const sameFile = (value: unknown, file: string) => typeof value === 'string' && resolve(directory, value) === resolve(directory, file);
-    if (!frame || !sameFile(frame.video, `${name}.mp4`) || !sameFile(frame.path, `${name}.png`) || typeof frame.reason !== 'string' || !frame.reason.trim()) throw Error(`${name}：缺少本步选帧路径或选择依据`);
+    if (!frame || !sameFile(frame.video, join(videoDirectory, `${name}.mp4`)) || !sameFile(frame.path, `${name}.png`) || typeof frame.reason !== 'string' || !frame.reason.trim()) throw Error(`${name}：缺少本步选帧路径或选择依据`);
     if (!(Number.isSafeInteger(frame.frameIndex) && frame.frameIndex >= 0) && !(Number.isFinite(frame.timeSeconds) && frame.timeSeconds >= 0)) throw Error(`${name}：记录实际 frameIndex 或 timeSeconds，不以估算角度代替`);
     await readFile(join(directory, 'frames', `${name}.png`));
     const meta = await sharp(resolve(directory, frame.path)).metadata();
@@ -291,11 +291,11 @@ export async function checkSelectedFrames(directory: string, names: readonly str
   return selected.frames as Record<string, { frameIndex?: number; timeSeconds?: number; reason: string }>;
 }
 
-export async function finishViews(directory: string, angles: Record<TurnView, number>) {
-  const task = dirname(dirname(directory)), upperBody = join(directory, 'upper-body.png');
+export async function finishViews(directory: string, angles: Record<TurnView, number>, videoDirectory = directory) {
+  const task = dirname(dirname(directory)), upperBody = join(videoDirectory, 'upper-body.png');
   const { width = 0 } = await sharp(upperBody).metadata();
-  const frames = await checkSelectedFrames(directory, turnViews, width);
+  const frames = await checkSelectedFrames(directory, turnViews, width, videoDirectory);
   await atomic(join(directory, 'views.json'), JSON.stringify({ version: 1, input: { path: toTaskPath(task, upperBody) },
     ...Object.fromEntries(turnViews.map(view => { const { frameIndex, timeSeconds, reason } = frames[view]; return [view, { path: `${view}.png`, angle: angles[view],
-      frame: { frameIndex, timeSeconds }, reason, video: { path: toTaskPath(task, join(directory, `${view}.mp4`)) } }]; })) }, null, 2) + '\n');
+      frame: { frameIndex, timeSeconds }, reason, video: { path: toTaskPath(task, join(videoDirectory, `${view}.mp4`)) } }]; })) }, null, 2) + '\n');
 }

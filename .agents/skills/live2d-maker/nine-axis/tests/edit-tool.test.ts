@@ -21,7 +21,7 @@ test('mirror uses the complete source hierarchy even when only one eye has a par
 });
 test('edit tool imports source textures, persists artist groups, previews revision, and rejects stale writes',async t=>{
   const root = await mkdtemp(join(tmpdir(),'astra-edit-tool-'));t.after(()=>rm(root,{recursive:true,force:true}));
-  const dir=join(root,'nine-axis/step02_angles');await mkdir(join(dir,'layers'),{recursive:true});
+  const dir=join(root,'nine-axis/step04_angles');await mkdir(join(dir,'layers'),{recursive:true});
   const color=join(root,'source.png'),document=join(root,'source.kra');await writeFile(document,'source');
   await sharp({create:{width:200,height:200,channels:4,background:'#fff'}}).png().toFile(color);
   await sharp({create:{width:1,height:1,channels:4,background:'#fff'}}).png().toFile(join(dir,'layers/a.png'));

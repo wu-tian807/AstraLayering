@@ -1,5 +1,5 @@
 import { processFileList } from './process-files.js';
-import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts, groupArtifacts, shadowInspectionArtifacts,
+import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts, groupArtifacts, shadowInspectionArtifacts, previousNineAxisSectionSteps,
  groupSummary, groupPreviewArtifacts, groupStagePreviewArtifacts, groupReviewSteps, reviewReportText,
  latestKraPreview, statusNames, displayStatus, statusLabel } from './progress.js';
 import { selectedTask, rememberTask } from './task-selection.js';
@@ -140,6 +140,7 @@ function applySnapshot(next) {
   if(archivedFiles.has(published))state.asset={...state.asset,path:published,label:state.asset.label.replace(' · 中间产物','图')};
  }
  sectionSteps=structuredClone(stepTemplates);
+ if(data.sections[6]?.layout==='nested')sectionSteps[6]=structuredClone(previousNineAxisSectionSteps);
  for(const [index,stage] of stages.entries()) {
   stage.status=data.sections[index]?.status||'pending';
   const mark=steps=>steps.forEach(step=>{
@@ -208,6 +209,7 @@ function artifacts(items, index, stepId, className='') {
  const list=available(items);
  if(!list.length)return '';
  const view=item=>{
+  if(item.kind==='video')return `<figure class="artifact-video"><video controls preload="metadata" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video><figcaption>${esc(item.label)}${data.fileVersions?.[item.path]?` · ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}`:''}</figcaption><a href="${artifact(item.path)}" target="_blank" rel="noopener">打开视频</a></figure>`;
   if(item.path.endsWith('.kra')&&item.kind!=='image')return `<a class="artifact-file" href="${artifact(item.path).replace('&preview=kra','')}" target="_blank" rel="noopener">${icon('layers')}${esc(item.label)} ${icon('arrow')}</a>`;
   const key=item.reviewIndex===undefined?item.path:`${item.path}#${item.reviewMode}-${item.reviewIndex}`;
   assetLookup.set(key,item);
@@ -352,9 +354,9 @@ function stepNode(index,step,nested=false) {
  const key=`${index}:${step.id}`, closed=state.collapsedSteps.has(key);
  const alternative=step.childrenMode==='alternative', parallel=step.childrenMode==='parallel';
  const mode=stages[index].id==='shadow'&&['mask','normal-depth'].includes(step.id);
- const nineStage=stages[index].id==='nine-axis'?({'step02_angles':'y','step02_angles/left':'x','step02_angles/up':'up','step02_angles/down':'down','step03_angle-xy':'xy','step04_jaw-line':'jaw'}[step.id]):null;
+ const nineStage=stages[index].id==='nine-axis'?({'step01_preparation':'neutral','step04_angles/model':'y','step04_angles/model/left':'x','step04_angles/model/up':'up','step04_angles/model/down':'down','step06_angle-xy':'xy','step07_jaw-line':'jaw','step02_angles':'y','step02_angles/left':'x','step02_angles/up':'up','step02_angles/down':'down','step03_angle-xy':'xy','step04_jaw-line':'jaw'}[step.id]):null;
  const currentMode=mode&&step.id===(data.run?.shadowMode||'mask');
- const context=step.id==='layers'?groupCycle(index):step.children.length?`<div class="step-children ${alternative?'step-alternatives':parallel?'step-parallel':''}" ${alternative?'role="group" aria-label="阴影方式：二选一"':parallel?'role="group" aria-label="三个单轴并发制作"':''}>${isRasterSection(index)&&step.id==='step01'?reviewNodes(index,step.children):step.children.map((child,i)=>`${alternative&&i?'<span class="alternative-or">OR</span>':''}${stepNode(index,child,true)}`).join('')}</div>`:'';
+ const context=step.id==='layers'?groupCycle(index):step.children.length?`<div class="step-children ${alternative?'step-alternatives':parallel?'step-parallel':''}" ${alternative?'role="group" aria-label="阴影方式：二选一"':parallel?'role="group" aria-label="并发制作任务"':''}>${isRasterSection(index)&&step.id==='step01'?reviewNodes(index,step.children):step.children.map((child,i)=>`${alternative&&i?'<span class="alternative-or">OR</span>':''}${stepNode(index,child,true)}`).join('')}</div>`:'';
  return `<section class="step-node ${nested?'nested':''} ${step.children.length?'step-container':''} ${isRasterSection(index)&&step.id==='step01'?'raster-review':''} ${closed?'node-collapsed':''} ${step.status} ${selected?'selected':''}" data-node="${index}:${step.id}">
  ${mode?`<div class="mode-choice ${currentMode?'current':''}">${currentMode?'当前方式':'备选方式'}</div>`:''}
  <div class="step-heading"><button class="step-node-heading" data-step="${index}:${step.id}">${statusMark(status)}<h3>${esc(step.title)}</h3><small class="step-state" title="${esc(step.id)}">${esc(statusLabel(status))}</small></button><button class="icon-button" data-step-toggle="${key}" aria-label="${closed?'展开':'收起'}${esc(step.title)}" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>
@@ -385,7 +387,7 @@ function processArtifacts(index, step) {
  const cited=new Set(Object.values(reports).flatMap(report=>report.images.map(image=>image.path)).filter(path=>!own.includes(path)));
  const deliveries=filtered.filter(path=>!items.includes(path)&&cited.has(path));
  const listing=processFileList(items,roots,data.fileVersions);
- const render=paths=>artifacts(paths.map(path=>({path,label:path.split('/').at(-1),kind:/\.(png|jpe?g|webp|svg|kra)$/i.test(path)?'image':'file'})),index,step.id,'process-artifacts');
+ const render=paths=>artifacts(paths.map(path=>({path,label:path.split('/').at(-1),kind:/\.(png|jpe?g|webp|svg|kra)$/i.test(path)?'image':/\.mp4$/i.test(path)?'video':'file'})),index,step.id,'process-artifacts');
  const extra=deliveries.length?`<details class="process-files delivery-files" data-details="delivery:${index}:${step.id}"><summary>${deliveries.length} 个补充产物</summary>${render(deliveries)}</details>`:'';
  return extra+(items.length?`<details class="process-files" data-details="process:${index}:${step.id}"><summary>${listing.total} 个过程文件${listing.shown<listing.total?` · 显示 ${listing.shown} 个（按目录平分）`:''}</summary>${listing.folders.map(({folder,total,files})=>`<details class="process-group" data-details="process-folder:${index}:${step.id}:${esc(folder)}"><summary>${esc(folder||'workspace 根目录')} <small>${total} 个${files.length<total?` · 显示最新 ${files.length} 个`:''}</small></summary>${render(files)}</details>`).join('')}</details>`:'');
 }

@@ -6,7 +6,7 @@ import { toolDefinition } from '../shared/codex/tool-config.ts';
 import { textResult, type FunctionTool } from '../shared/codex/function-tools.ts';
 import { editNineAxis } from '../shared/nine-axis-edit.js';
 import { nodes, lattice, type HeadNineAxis } from '../shared/nine-axis-model.js';
-import { compileHead, stepTexture, type HeadInput, type FaceLeft, type Part } from './head.ts';
+import { compileHead, stepTexture, writeBuilt, type HeadInput, type FaceLeft, type Part } from './head.ts';
 import { angleParameter, angleScale, type AngleScale } from './angles.ts';
 import type { Box } from './turn.ts';
 import { checkAxisSource } from './axis-groups.ts';
@@ -55,6 +55,7 @@ export function createHeadEditTool(directory: string, input: HeadInput, box: Box
       const temporary = `${path}.${randomUUID()}.tmp`;
       await writeFile(temporary, JSON.stringify(edited) + '\n'); await rename(temporary, path); text = await readFile(path, 'utf8');
     }
+    if (built.doc.parts.length) await writeBuilt(directory, built);
     return textResult({ revision: hash(text), source: path, axis: doc.axis, nodes: nodes(built.doc as unknown as HeadNineAxis).map(n => ({
       id: n.id, name: n.name, kind: doc.deformers.some(p => p.id === n.id) ? 'warp' : 'part', parent: n.parent ?? null,
       bbox: n.bbox, cols: n.cols, rows: n.rows, keys: Object.keys(n.keyforms), interpolation: n.interpolation ?? 'linear', parameterInterpolation: n.parameterInterpolation,

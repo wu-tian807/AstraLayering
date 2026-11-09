@@ -106,13 +106,25 @@ export const sectionSteps = [
       { ...step('normal-depth-maps', '生成与验收贴图', 'pending'), processDirectory: 'shadow/step01_normal-depth' },
     ])],
     '启动时选择其中一种方式执行；另一种方式的已有产物保留。'), childrenMode: 'alternative' }],
-  [step('step01_video', '三向视频与参考帧', 'pending'),
+  [step('step01_preparation', '头部素材准备', 'pending', [], '脸、五官、脖子、头发、头饰及独立投影统一提取；保留原图层范围和来源关系。'),
+    step('step02_video', '单轴视频生成', 'pending'),
+    step('step03_frames', '单轴选帧', 'pending'),
+    { ...step('step04_angles', '单轴模型与斜角视频', 'pending', [
+      { ...step('step04_angles/model', '单轴模型制作与合并', 'pending', ['left', 'up', 'down'].map(group =>
+        step(`step04_angles/model/${group}`, { left: '左右转头', up: '抬头', down: '低头' }[group], 'pending'))), childrenMode: 'parallel' },
+      step('step04_angles/video', '斜角视频生成', 'pending'),
+    ], '模型制作与视频生成并发；各自保存进展和产物。'), childrenMode: 'parallel' },
+    step('step05_frames', '斜角选帧', 'pending', [], '使用上一步的视频。'),
+    step('step06_angle-xy', '斜角脸部制作', 'pending'),
+    step('step07_jaw-line', '下颌连接 · 脸部九轴中间交付', 'pending')],
+];
+
+export const previousNineAxisSectionSteps = [step('step01_video', '三向视频与参考帧', 'pending'),
     { ...step('step02_angles', '独立单轴与合并', 'pending', ['left', 'up', 'down'].map(group =>
       step(`step02_angles/${group}`, { left: '左右转头', up: '抬头', down: '低头' }[group], 'pending')),
       '三个子项并发制作；全部完成后合并单轴结果。'), childrenMode: 'parallel' },
     step('step03_angle-xy', '斜向四角', 'pending', [], '等待三个单轴和父合并全部完成。'),
-    step('step04_jaw-line', '下颌线与脖子', 'pending')],
-];
+    step('step04_jaw-line', '下颌线与脖子', 'pending')];
 
 export function groupLayers(groups) {
   const layers = [];
@@ -178,6 +190,20 @@ stepArtifacts.push({
   ...Object.fromEntries(['left', 'up', 'down'].map(group => [`step02_angles/${group}`, [file(`nine-axis/step02_angles/${group}/deformers.json`, `${group} 独立单轴`)]])),
   'step03_angle-xy': [file('nine-axis/step03_angle-xy/deformers.json', '斜向九轴结果')],
   'step04_jaw-line': [file('nine-axis/step04_jaw-line/deformers.json', '下颌线结果')],
+});
+const video = (path, label) => ({ path, label, kind: 'video' });
+const nineFrameArtifacts = (stepId, names) => [...names.flatMap(name => [image(`nine-axis/${stepId}/${name}.png`, `${name} 参考帧`)]), file(`nine-axis/${stepId}/selected-frames.json`, '选帧记录')];
+Object.assign(stepArtifacts[6], {
+  step01_preparation: [image('nine-axis/step01_preparation/original-full-face.png', '脸部底层素材'), file('nine-axis/step01_preparation/head_parts_manifest.json', '完整头部素材与投影关系')],
+  step02_video: ['left', 'up', 'down'].map(name => video(`nine-axis/step02_video/${name}.mp4`, `${name} 视频`)),
+  step03_frames: nineFrameArtifacts('step03_frames', ['left', 'up', 'down']),
+  step04_angles: [],
+  'step04_angles/model': [file('nine-axis/step04_angles/model/deformers.json', '合并单轴模型')],
+  ...Object.fromEntries(['left', 'up', 'down'].map(name => [`step04_angles/model/${name}`, [file(`nine-axis/step04_angles/model/${name}/deformers.json`, `${name} 模型`)]])),
+  'step04_angles/video': ['left-up', 'left-down'].map(name => video(`nine-axis/step04_angles/video/${name}.mp4`, `${name} 视频`)),
+  step05_frames: nineFrameArtifacts('step05_frames', ['left-up', 'left-down']),
+  'step06_angle-xy': [file('nine-axis/step06_angle-xy/deformers.json', '斜角模型')],
+  'step07_jaw-line': [file('nine-axis/step07_jaw-line/deformers.json', '脸部九轴模型'), image('nine-axis/step07_jaw-line/character-nine-axis.png', '可编辑工程合成图'), file('nine-axis/step07_jaw-line/notes.md', '制作说明')],
 });
 export function shadowInspectionArtifacts(files) {
   return files.filter(path => /^shadow\/step01_mask\/inspection\/relation-\d{3,}-review\.png$/.test(path)).sort()

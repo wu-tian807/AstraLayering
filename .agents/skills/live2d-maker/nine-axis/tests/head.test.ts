@@ -23,7 +23,7 @@ export async function writeFaceLeft(directory: string) {
   const parts = [base, part('face/eye_left', [110, 70, 130, 80], (x, y) => [x - 5, y]),
     part('face/ear_right', [50, 70, 60, 90], (x, y) => [x + 14, y]), part('face/ear_left', [140, 70, 150, 90], (x, y) => [x - 6, y])];
   await writeFile(join(directory, 'face-left.json'), JSON.stringify({ version: 2, deformers: [], axis: 100, notes: '测试', parts }));
-  const { box } = await readFile(join(directory, '../step01_video/crop.json'), 'utf8').then(JSON.parse).catch(() => ({ box: { x: 0, y: 0, size: 200 } }));
+  const { box } = await readFile(join(directory, '../step02_video/crop.json'), 'utf8').then(JSON.parse).catch(() => ({ box: { x: 0, y: 0, size: 200 } }));
 }
 
 test('左右配对只换整词 left/right', () => {

@@ -34,7 +34,7 @@ pnpm web --port 4387
 标题栏的继续／恢复／重试调用 `POST /api/task-action {name, action}`，一次作用于任务里全部中断或失败的步骤，随后重新运行任务；没有任何步骤记录时，继续打开运行对话框。
 单个步骤只在命令行处理：`pnpm start --name <任务名> --continue|--resume|--retry --section <管线> --step <步骤>`，`--step` 为管线目录下的步骤路径，如 `step11_completion/head/children/eye`、`step10_reduce/depth01`、`step02`、`step01_mask`；省略 `--section`／`--step` 时与标题栏相同。停止为 `pnpm start --name <任务名> --stop`。
 
-九轴子组使用 `--section nine-axis --step step02_angles/left|up|down`。既有 `POST /api/task-action` 接受 `{ name, dir, action, section? }`，`section` 填实际管线 ID（如 `nine-axis`）时仅恢复该管线并从该管线继续运行；省略时保持任务级操作。该接口不接受单个 `step`。
+九轴子组使用 `--section nine-axis --step step04_angles/model/left|up|down`。既有 `POST /api/task-action` 接受 `{ name, dir, action, section? }`，`section` 填实际管线 ID（如 `nine-axis`）时仅恢复该管线并从该管线继续运行；省略时保持任务级操作。该接口不接受单个 `step`。
 
 ## 任务执行与流程预览
 
@@ -190,3 +190,5 @@ pnpm web
 项目首页采用“原图 → 合成图 → 部件爆炸图”并排形式，同一案例绑定同一来源版本；原图与合成图共占左半，立体爆炸图占右半。当前静态展示素材见 [Jianma 对照](../showcase/jianma-reference-composite-exploded.png)。
 
 头部九轴 version 2 支持无贴图的组级与父子 Warp，部件保留局部控制点。树里选择组级节点可调整所有后代，选择部件则局部修正；保存使用 revision 防止覆盖并发修改。脖子保持固定。URL 的 `nineStage=x|y|xy|jaw` 可明确打开对应阶段，例如 `studio?project=pink-doll&workspace=nine-axis&nineStage=x`。
+
+九轴流程展示七个实际步骤，step04 展开单轴模型与斜角视频的并发分支。视频和目标帧保存后即可查看；模型编辑与拟合发布的中间结果可在九轴预览中查看，预览每 4 秒刷新，未保存的网页编辑保留。旧四步成果继续按原目录浏览。

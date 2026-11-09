@@ -5,7 +5,7 @@ import { toolDefinition } from '../shared/codex/tool-config.ts';
 import { textResult, type FunctionTool } from '../shared/codex/function-tools.ts';
 import { editNineAxis } from '../shared/nine-axis-edit.js';
 import { nodes, type HeadNineAxis } from '../shared/nine-axis-model.js';
-import { stepTexture } from './head.ts';
+import { stepTexture, writeBuilt } from './head.ts';
 import { angleScale, type AngleScale } from './angles.ts';
 import { readUpstream, startContinuation, compileContinuation, authorFile, sha256, type AuthoredHead, type Stage } from './continuation.ts';
 import { checkAxisSource } from './axis-groups.ts';
@@ -42,6 +42,7 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
       await mkdir(directory, { recursive: true }); const temporary = `${path}.${randomUUID()}.tmp`;
       text = JSON.stringify(doc) + '\n'; await writeFile(temporary, text); await rename(temporary, path);
     }
+    await writeBuilt(directory, built);
     return textResult({ revision: sha256(text), source: path, stage, nodes: nodes(built.doc as unknown as HeadNineAxis).map(n => ({
       id:n.id, kind:doc.deformers.some(p=>p.id===n.id)?'warp':'part', parent:n.parent??null, mirror:n.mirror??null,
       bbox:n.bbox, cols:n.cols, rows:n.rows, keys:Object.keys(n.keyforms), keysY:Object.keys(n.keyformsY??{}), keysXY:Object.keys(n.keyformsXY??{}),

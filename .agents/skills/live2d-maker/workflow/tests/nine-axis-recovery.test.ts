@@ -6,7 +6,7 @@ import { test, type TestContext } from 'node:test';
 import { readStep } from '../../shared/step-chain.ts';
 import { sessionPath } from '../../shared/agents/step-session.ts';
 import { missingDeliveries, stepDeliveries } from '../../shared/step-deliveries.ts';
-import { nineAxisGroups, nineAxisGroupSteps, nineAxisSteps } from '../../shared/nine-axis.ts';
+import { nineAxisGroups, nineAxisGroupSteps, nineAxisSteps, nineAxisBranchSteps } from '../../shared/nine-axis.ts';
 import { applyStepAction, applyTaskAction, listSteps, validStepId } from '../step-actions.ts';
 
 async function put(path: string, text = path) {
@@ -62,10 +62,10 @@ async function fixture(t: TestContext) {
   return { dir, task, root, act, all, deliver };
 }
 
-test('九轴只登记正式四步和三个 child，独立会话可见，neutral/merged 与旧 step 不可操作', async t => {
-  for (const id of [...nineAxisSteps, ...nineAxisGroupSteps]) assert.equal(validStepId('nine-axis', id), true, id);
+test('九轴登记正式七步和并发分支，独立会话可见，内部目录不可操作', async t => {
+  for (const id of [...nineAxisSteps, ...nineAxisGroupSteps, ...nineAxisBranchSteps]) assert.equal(validStepId('nine-axis', id), true, id);
   for (const id of ['step02_angles/neutral', 'step02_angles/merged', 'step02_angles/left/more',
-    'step02_angle-x', 'step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step06_angle-xy', 'step05', '../step02_angles']) {
+    'step02_angle-x', 'step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step06_retired-xy', 'step05', '../step02_angles']) {
     assert.equal(validStepId('nine-axis', id), false, id);
   }
   const f = await fixture(t), steps = await listSteps(f.root, 'nine-axis');
@@ -163,4 +163,40 @@ test('九轴独立 CLI 无 ongoing 时 continue 可新跑，resume/retry 要求�
   assert.match(await f.all('continue'), /从未完成处续跑/);
   await assert.rejects(f.all('resume'), /没有中断或失败的步骤/);
   await assert.rejects(f.all('retry'), /没有中断或失败的步骤/);
+});
+
+for (const retry of ['step04_angles/video', 'step04_angles/model/up', 'step04_angles/model']) test(`七步恢复 ${retry} 保留另一并发支、已完成方向和旧成果`, async t => {
+  const f = await fixture(t);
+  for (const id of ['step01_preparation', 'step04_angles', 'step04_angles/model', ...nineAxisGroupSteps, 'step04_angles/video']) await f.deliver(id);
+  const old = await snapshot(join(f.root, 'step02_angles'));
+  const preparation = await snapshot(join(f.root, 'step01_preparation'));
+  const other = retry.endsWith('/video') ? 'step04_angles/model' : 'step04_angles/video';
+  const otherBytes = await snapshot(join(f.root, other));
+  const preserved = await snapshot(join(f.root, 'step04_angles/model/down'));
+  if (retry === 'step04_angles/model') {
+    await rm(join(f.root, 'step04_angles/model/up/.completed'));
+    await put(join(f.root, 'step04_angles/model/up/.running'), '');
+  }
+  await f.act(retry, 'retry');
+  assert.deepEqual(await snapshot(join(f.root, other)), otherBytes);
+  assert.deepEqual(await snapshot(join(f.root, 'step01_preparation')), preparation);
+  assert.deepEqual(await snapshot(join(f.root, 'step02_angles')), old);
+  assert.equal((await readStep(join(f.root, 'step04_angles'))).status, 'running');
+  if (!retry.endsWith('/video')) {
+    assert.deepEqual(await snapshot(join(f.root, 'step04_angles/model/down')), preserved);
+    assert.equal((await readStep(join(f.root, 'step04_angles/model/up'))).status, 'absent');
+    assert.equal((await readStep(join(f.root, 'step04_angles/model'))).status, 'running');
+  }
+});
+
+test('总入口状态列出七步、两支和各方向自己的会话', async t => {
+  const f=await fixture(t);
+  await f.deliver('step01_preparation');
+  for(const id of ['step04_angles','step04_angles/model','step04_angles/model/up','step04_angles/video']) await put(join(f.root,id,'.running'),'');
+  await put(sessionPath(f.root,'step04_angles/model/up'),JSON.stringify({threadId:'up-thread'}));
+  await put(join(f.task,'run.json'),JSON.stringify({version:1,jobs:3,from:'nine-axis',to:'nine-axis',status:'running',sections:{'nine-axis':{status:'running'}}}));
+  const { taskStatus }=await import('../state.ts');
+  const value=await taskStatus({name:'case',dir:f.dir}), section=value.sections[0];
+  assert.equal(section.threadId,'up-thread');
+  for(const name of ['step01_preparation','step04_angles','step04_angles/model','step04_angles/model/up','step04_angles/video']) assert.ok(section.steps.some(s=>s.name===name),name);
 });

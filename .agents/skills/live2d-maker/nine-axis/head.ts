@@ -7,7 +7,7 @@ import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.
 import type { Box, TurnInput } from './turn.ts';
 import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry, warpPoint as sampleWarp, type WarpGrid, type HeadNineAxis, type HeadLevel } from '../shared/nine-axis-model.js';
 
-// step02_angles: the agent fits the face to the left view and delivers the
+// step04_angles: the agent fits the face to the left view and delivers the
 // ParamAngleX left keyform (−30 by default, degrees, see angles.ts) as
 // face-left.json + layers/. The right side is the mirror image: each part takes
 // its left/right pair's left field reflected about the face axis. The program

@@ -30,12 +30,12 @@ async function fixture(t: TestContext) {
   const section = join(root, 'case/nine-axis'), knowledge = join(root, 'knowledge');
   // One shared agent.json, with observable tool ordering and descriptions.
   // No group agent.json exists: a lookup under left/up/down must fail.
-  const configPath = join(knowledge, 'nine-axis/step02_angles/agent.json');
+  const configPath = join(knowledge, 'nine-axis/step04_angles/agent.json');
   await put(configPath, JSON.stringify({ main: { initial: ['prompts/main.md'], tools: ['view_bitmap', 'edit_nine_axis'] } }));
-  await put(join(knowledge, 'nine-axis/step02_angles/prompts/main.md'), 'shared nine-axis agent');
+  await put(join(knowledge, 'nine-axis/step04_angles/prompts/main.md'), 'shared nine-axis agent');
   await put(join(knowledge, 'shared/prompts/runtime/agent-turn.md'), 'Session task root: {uri:.}');
-  await put(join(knowledge, 'nine-axis/step02_angles/tools/view_bitmap/description.md'), 'single agent.json bitmap tool');
-  await put(join(knowledge, 'nine-axis/step02_angles/tools/edit_nine_axis/description.md'), 'single agent.json edit tool');
+  await put(join(knowledge, 'nine-axis/step04_angles/tools/view_bitmap/description.md'), 'single agent.json bitmap tool');
+  await put(join(knowledge, 'nine-axis/step04_angles/tools/edit_nine_axis/description.md'), 'single agent.json edit tool');
   useKnowledge(knowledge);
   const captures: Capture[] = [], toolSteps: string[] = [], plans = new Map<Group, Plan>();
   let fresh = 0;
@@ -65,7 +65,7 @@ async function fixture(t: TestContext) {
     return ['edit_nine_axis', 'unused_tool', 'view_bitmap'].map(name => ({ name, description: 'provided tool', inputSchema: { type: 'object' },
       async execute() { assert.fail('session tests never execute real tools or models'); } }));
   };
-  const step = (group: Group) => `step02_angles/${group}`;
+  const step = (group: Group) => `step04_angles/model/${group}`;
   const output = (group: Group) => join(section, step(group));
   const run = (group: Group) => createFitHead(agents, tools, step(group), `axis ${group}`, undefined, section)
     (output(group), `work only in ${output(group)}`);
@@ -165,7 +165,7 @@ test('clearStepSession resume starts only its own new thread, retaining sibling 
   assert.deepEqual(f.captures.slice(4).map(call => call.resumeThreadId), [saved[2]!.threadId, saved[0]!.threadId]);
 });
 
-test('removing agents/steps/step02_angles/<group> drops only its session and history; siblings still resume', async t => {
+test('removing agents/steps/step04_angles/model/<group> drops only its session and history; siblings still resume', async t => {
   const f = await fixture(t); await Promise.all(groups.map(f.run));
   const saved = await f.records(), before = await f.bytes();
   const own = dirname(sessionPath(f.section, f.step('left')));
@@ -206,4 +206,30 @@ test('actual child retry removes only its output and agents/steps/<group>, then 
   await f.run('left'); assert.equal(f.captures[3].resumeThreadId, undefined);
   for (const group of ['up', 'down'] as const) await f.run(group);
   assert.deepEqual(f.captures.slice(4).map(call => call.resumeThreadId), [saved[1]!.threadId, saved[2]!.threadId]);
+});
+
+for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} 单独选帧的会话归属本步，现有恢复可清除它并保留参考帧`, async t => {
+  const f=await fixture(t), knowledge=knowledgeDirectory(), output=join(f.section,step);
+  await put(join(knowledge,'nine-axis',step,'agent.json'),JSON.stringify({main:{initial:['prompts/main.md'],tools:[]}}));
+  await put(join(knowledge,'nine-axis',step,'prompts/main.md'),'choose frames');
+  await put(join(output,'.running'),'');
+  const { createFramesHead }=await import('../run.ts');
+  const names=step==='step03_frames'?['left','up','down']:['left-up','left-down'];
+  const agents={
+    async run(): Promise<AgentResult> {assert.fail('frames use their saved step session');},
+    createSession(id?:string,options:Callbacks={}) {return {
+      async run(): Promise<AgentResult> {
+        await options.onSessionStarted?.(id??'frames-thread','codex');
+        for(const name of names) for(const file of [`${name}.png`,`frames/${name}.png`]) await put(join(output,file),'selected image');
+        await put(join(output,'selected-frames.json'),'{}');
+        return {text:'{"error":null}',images:[],threadId:'frames-thread',harness:'codex'};
+      }, async close() {},
+    };},
+  };
+  await createFramesHead(agents,async()=>[],step,undefined,f.section)(output,'choose frames');
+  assert.equal((await readStepSession(f.section,step))?.threadId,'frames-thread');
+  assert.equal(await readStepSession(f.section,step+'/frames'),undefined);
+  await applyStepAction({name:'case',dir:f.root,section:'nine-axis',step,action:'resume'});
+  assert.equal(await readStepSession(f.section,step),undefined);
+  assert.equal(await readFile(join(output,names[0]+'.png'),'utf8'),'selected image');
 });

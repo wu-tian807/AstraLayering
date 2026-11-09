@@ -10,7 +10,7 @@ export interface ProgressGroup {
 export interface Artifact {
   path: string;
   label: string;
-  kind: 'image' | 'file';
+  kind: 'image' | 'file' | 'video';
   reviewIndex?: number;
   reviewMode?: 'review' | 'repair';
 }
@@ -40,3 +40,5 @@ export function groupArtifacts(section: string, group: { id: string }, depth: nu
 export const sectionSteps: ProgressStep[][];
 export const stepArtifacts: Record<string, Artifact[]>[];
 export function shadowInspectionArtifacts(files: string[]): Artifact[];
+
+export const previousNineAxisSectionSteps: ProgressStep[];

@@ -13,7 +13,7 @@ type Hooks = Parameters<typeof runAxisGroups>[1] & { merge?(): Promise<void> };
 async function fixture(t: TestContext) {
   const section = await mkdtemp(join(tmpdir(), 'astra-axis-groups-'));
   t.after(() => rm(section, { recursive: true, force: true }));
-  const directory = join(section, 'step02_angles');
+  const directory = join(section, 'step04_angles');
   const preparations: string[] = [], seeded: AxisGroup[] = [];
   const prepare = async () => {
     const neutral = join(directory, 'neutral'), { status } = await readStep(neutral);
@@ -36,7 +36,7 @@ async function fixture(t: TestContext) {
 // Exercise the real section markers around the scheduler. merge is an injected
 // scheduling hook; these tests neither fit artwork nor claim visual acceptance.
 async function runParent(section: string, hooks: Hooks, options: Parameters<typeof runAxisGroups>[2] = {}) {
-  return runSection({ directory: section, steps: [{ number: 2, note: 'angles' }],
+  return runSection({ directory: section, steps: [{ number: 4, note: 'angles' }],
     async step(step, status) {
       if (status === 'completed') return;
       return async () => { if (await runAxisGroups(step.directory, hooks, options)) await hooks.merge?.(); };

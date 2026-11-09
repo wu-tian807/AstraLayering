@@ -65,7 +65,7 @@ async function sourceFile(root: string, path: string): Promise<string | undefine
 // (a symlinked runs root); those aliases map onto root.
 export async function exportFiles(root: string, run: TaskRun, aliases: readonly string[] = []): Promise<{ entries: Map<string, Entry>; warnings: string[] }> {
   const entries = new Map<string, Entry>(), files: string[] = [], steps = new Set<string>(), warnings: string[] = [];
-  const nineAxis = !!await sourceFile(root, 'nine-axis/step04_jaw-line/.completed');
+  const nineAxis = !!(await sourceFile(root, 'nine-axis/step07_jaw-line/.completed') ?? await sourceFile(root, 'nine-axis/step04_jaw-line/.completed'));
   const selectedSections = [...exportSectionIds, ...nineAxis ? ['nine-axis'] : []];
   const roots = [...new Set(aliases.map(path => resolve(path)))].filter(path => path !== root);
   // Same conversion as toTaskPath, also accepting the aliases; an outside path stays absolute.

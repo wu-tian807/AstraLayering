@@ -58,7 +58,7 @@ export class HeadNineAxisPanel {
     this.stopSwing();
     if (!force && entry?.available && this.doc && this.project?.folder === project?.folder && this.project?.nineAxis?.path === entry?.path && this.version === entry?.version) return;
     this.project = project; this.version = entry?.version; this.clear();
-    if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step02_angles/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
+    if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step01_preparation/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
     this.status('正在读取头部九轴…');
     try {
       const url = path => './studio-artifact?' + new URLSearchParams({ folder: project.folder, path, version: entry.version });
@@ -68,7 +68,7 @@ export class HeadNineAxisPanel {
       if (epoch !== this.epoch) return;
       // Source composition belongs to the shared model/renderer. The merge's
       // neutral XY correction grids do not announce a completed corner stage.
-      this.install(doc, images, !['x', 'up', 'down', 'y'].includes(entry.stage));
+      this.install(doc, images, !['neutral', 'x', 'up', 'down', 'y'].includes(entry.stage));
     } catch (e) { if (epoch === this.epoch) { this.status(e.message); this.error(e.message); } }
   }
   clear() {
@@ -299,5 +299,29 @@ export class HeadNineAxisPanel {
   }
   swing() { cancelAnimationFrame(this.raf); $('#nine-axis-swing').checked = true; const t0 = performance.now(); const tick = t => { const wave = Math.sin((t - t0) / 1000 * Math.PI * .5); this.setValue(wave * (wave < 0 ? -this.axes.x.min : this.axes.x.max), 0, 'x', true); this.raf = requestAnimationFrame(tick); }; this.raf = requestAnimationFrame(tick); }
   stopSwing() { cancelAnimationFrame(this.raf); this.raf = 0; $('#nine-axis-swing').checked = false; }
-  activate(on) { if (on === this.active) return; this.active = on; this.view.hidden = !on; if (!on) { this.stopSwing(); this.endPadDrag(); } else requestAnimationFrame(() => this.resize()); }
+  async refresh() {
+    if (!this.active || this.refreshing || !this.project?.folder || this.dirty.size || this.padDrag || this.raf) return;
+    const project = this.project;
+    this.refreshing = true;
+    try {
+      const selected = new URLSearchParams(location.search).get('nineStage');
+      const query = new URLSearchParams({ folder: project.folder, ...(selected ? { nineStage: selected } : {}) });
+      const response = await fetch('./api/studio/project?' + query);
+      if (!response.ok) return;
+      const next = await response.json();
+      if (this.project !== project || !this.active || this.dirty.size || this.padDrag || this.raf) return;
+      if (this.doc && next.nineAxis?.path === project.nineAxis?.path && next.nineAxis?.version === project.nineAxis?.version) return;
+      const x = this.value, y = this.valueY;
+      await this.load(next);
+      this.setValue(x, y);
+    } catch (error) { if (this.project === project) this.status('动态预览更新失败：' + error.message); }
+    finally { this.refreshing = false; }
+  }
+  activate(on) {
+    if (on === this.active) return;
+    this.active = on; this.view.hidden = !on;
+    clearInterval(this.refreshTimer);
+    if (!on) { this.stopSwing(); this.endPadDrag(); }
+    else { requestAnimationFrame(() => this.resize()); this.refreshTimer = setInterval(() => void this.refresh(), 4000); }
+  }
 }
