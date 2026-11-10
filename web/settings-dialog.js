@@ -18,7 +18,7 @@ export function createSettings({ get, post, esc, icon, onSaved }) {
    const polling = new Map();
    try { await load(); } catch (failure) { error = failure.message; }
    const defaults = settings?.defaults ?? {};
-   dialog.innerHTML = `<div class="modal-heading"><div><span class="eyebrow">SETTINGS</span><h2>全局设置</h2><p>保存在服务器上，所有任务的启动都使用这里的设置。</p></div><button class="icon-button" data-close>${icon('close')}</button></div>
+   dialog.innerHTML = `<div class="modal-heading"><div><span class="eyebrow">SETTINGS</span><h2>全局设置</h2><p>保存在服务器上，作为新任务的默认值；已有任务在执行参数中调整。</p></div><button class="icon-button" data-close>${icon('close')}</button></div>
    <form class="settings-form">${error ? `<p class="form-error settings-reason">${esc(error)}</p>` : ''}
     ${software.map(({ name, label, note, placeholder }) => `<label class="field-label" for="settings-${name}">${label} 可执行文件 <span>${note}</span></label>
     <div class="path-field"><input id="settings-${name}" name="${name}" value="${esc(settings?.[name] ?? '')}" placeholder="${placeholder}"><button type="button" class="button" data-pick="${name}">浏览</button><button type="button" class="button" data-scan="${name}">${icon('search')}自动扫描</button></div>
@@ -27,7 +27,7 @@ export function createSettings({ get, post, esc, icon, onSaved }) {
     <div class="path-field"><input id="settings-directory" name="directory" value="${esc(settings?.directory ?? '')}" required><button type="button" class="button" data-pick="directory">浏览</button></div>
     <label class="field-label" for="settings-knowledge">默认先验知识目录 <span>新任务记录它；已有任务沿用创建时的目录</span></label>
     <div class="path-field"><input id="settings-knowledge" name="knowledge" value="${esc(settings?.knowledge ?? '')}" placeholder="${esc(defaults.knowledge ?? '')}"><button type="button" class="button" data-pick="knowledge">浏览</button></div>
-    <p class="dialog-note">运行目录默认是仓库下的 .run/；demos/ 用于导出与展示成果。FFmpeg 路径会传给九轴 agent。先验知识目录留空时使用 skill 自带的 knowledge/。</p>
+    <p class="dialog-note">运行目录默认是仓库下的 .run/；demos/ 用于导出与展示成果。九轴抽帧工具使用选定的 FFmpeg。先验知识目录留空时使用 skill 自带的 knowledge/。</p>
     <p class="form-error" role="alert"></p>
     <div class="modal-footer"><span></span><button type="button" class="button" data-close>取消</button><button class="primary">保存设置</button></div></form>`;
    const form = dialog.querySelector('form');
@@ -38,10 +38,10 @@ export function createSettings({ get, post, esc, icon, onSaved }) {
      if (!active) return;
      running = scan.running;
      button.innerHTML = running ? icon('stop') + '停止扫描' : icon('search') + '自动扫描';
-     const progress = running ? `正在扫描 ${esc(scan.current || '…')} · 已检查 ${scan.scanned} 项` : scan.finishedAt ? `扫描结束 · 共检查 ${scan.scanned} 项` : '';
+     const progress = running ? `正在扫描 ${esc(scan.current || '…')} · 已检查 ${scan.scanned} 项` : scan.finishedAt ? `${scan.stopped ? '扫描已停止，结果尚不完整' : scan.error ? '扫描失败' : '扫描结束'} · 共检查 ${scan.scanned} 项` : '';
      status.innerHTML = (progress ? `<small>${progress}</small>` : '') + (scan.error ? `<small class="status-error">${esc(scan.error)}</small>` : '')
       + scan.found.map(path => `<button type="button" class="found-software" data-found="${esc(path)}">${icon('check')}${esc(path)}</button>`).join('')
-      + (!running && scan.finishedAt && !scan.found.length ? `<small>没有找到 ${label}，请手动选择。</small>` : '');
+      + (!running && scan.finishedAt && !scan.stopped && !scan.error && !scan.found.length ? `<small>没有找到 ${label}，请手动选择。</small>` : '');
      status.querySelectorAll('[data-found]').forEach(found => found.onclick = () => { form.elements[name].value = found.dataset.found; });
      clearTimeout(polling.get(name));
      if (running && dialog.open) polling.set(name, setTimeout(loadScan, 700));
@@ -58,7 +58,10 @@ export function createSettings({ get, post, esc, icon, onSaved }) {
      button.disabled = true;
      clearTimeout(polling.get(name)); revision++;
      try { draw(await post(`${name}-scan`, { action: running ? 'stop' : 'start' })); }
-     catch (failure) { form.querySelector('[role="alert"]').textContent = failure.message; }
+     catch (failure) {
+      form.querySelector('[role="alert"]').textContent = failure.message;
+      if (active && dialog.open) await loadScan();
+     }
      finally { button.disabled = false; }
     };
     return loadScan;
@@ -89,13 +92,15 @@ export function createSettings({ get, post, esc, icon, onSaved }) {
 
  // A refused software path opens its global field before retrying the start.
  async function withSoftware(run) {
+  const selected = {};
   for (;;) {
-   try { return await run(); }
+   try { return await run(selected); }
    catch (error) {
     const focus = error.ffmpeg ? 'ffmpeg' : error.krita ? 'krita' : undefined;
     if (!focus || !await show({ focus, error: error.message })) throw error;
+    selected[focus] = settings[focus];
    }
   }
  }
- return { load, show, withSoftware, current: () => settings };
+ return { load, show, pick, withSoftware, current: () => settings };
 }

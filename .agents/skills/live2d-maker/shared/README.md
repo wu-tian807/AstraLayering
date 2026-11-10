@@ -6,7 +6,7 @@
 
 ## 工具与模型
 
-工具的 schema 是代码，放在 `shared/tools/<name>/schema.json`（参数为空也保留 json）；`shadow/tools/`、`clothing-part-layering/tools/` 可提供本管线专有或替换的 schema（如 `inspect_shadow_mask`、衣服的 `write_groups`）。工具说明是先验知识，放在 `knowledge/shared/tools/<name>/description.md`，步骤可用 `knowledge/<section>/<stepNN>/tools/<name>/description.md` 替换。每个 agent 实际注册的工具以该步骤 `agent.json` 的 `tools` 为准；程序靠工具收取结果的步骤（如 `write_outline_svg`、`submit_review`）必须列出这些工具，启动检查会拒绝缺项。启动时加载并固定本次调用定义；schema 无效直接报错，真正的路径与写入校验在实现中。生图能力也由 tools 中的 imagegen 声明统一控制；未列出则关闭，.env 只选择生图模型与服务，不能授予能力。Codex 使用 codex-native 时按声明设置原生工具开关，使用 GPT／Nano 自定义服务时才建立 patch 路由；其他 CLI 只为已声明的 agent 注册自定义 imagegen 工具。启动及恢复都重新核对声明，旧工具与模型配置不会重新打开未声明的生图能力。review 使用独立 thread 和自己的 tools；repair 续接 main 的绘制 thread，使用同一份 main.tools，repair 只配置提示词。模型、provider 与生图协议见[模型方案与配置](../references/model-presets.md)。
+工具的 schema 是代码，放在 `shared/tools/<name>/schema.json`（参数为空也保留 json）；`shadow/tools/`、`clothing-part-layering/tools/` 可提供本管线专有或替换的 schema（如 `inspect_shadow_mask`、衣服的 `write_groups`）。工具说明是先验知识，放在 `knowledge/shared/tools/<name>/description.md`，步骤可用 `knowledge/<section>/<stepNN>/tools/<name>/description.md` 替换。每个 agent 实际注册的工具以该步骤 `agent.json` 的 `tools` 为准；程序靠工具收取结果的步骤（如 `write_outline_svg`、`submit_review`）必须列出这些工具，启动检查会拒绝缺项。注册工具时读取本次定义，不保留跨运行缓存；缺少非原生工具实现或 schema 无效直接报错，真正的路径与写入校验在实现中。生图能力也由 tools 中的 imagegen 声明统一控制；未列出则关闭，.env 只选择生图模型与服务，不能授予能力。Codex 使用 codex-native 时按声明设置原生工具开关，使用 GPT／Nano 自定义服务时才建立 patch 路由；其他 CLI 只为已声明的 agent 注册自定义 imagegen 工具。启动及恢复都重新核对声明，旧工具与模型配置不会重新打开未声明的生图能力。review 使用独立 thread 和自己的 tools；repair 续接 main 的绘制 thread，使用同一份 main.tools，repair 只配置提示词。模型、provider 与生图协议见[模型方案与配置](../references/model-presets.md)。
 
 `preview_svg` 的生成图对照参数只在补全阶段开放，section 定义覆盖后仍保留阶段限制。`referenceRegion` 使用生成图坐标选取对应部件，工具将裁片等比居中到 SVG 实际内容范围；`referenceOffset` 使用原图像素微调，各轴上限为部件尺寸的 10%。生成图用 `edge` 检查形状，省略 reference 参数后用默认参考图 `blend` 检查定位；`crop` 仅控制最终查看窗口。生成图对照默认聚焦部件，普通对照默认全画布，输入文件保持原样。读取与预览接受可读本地路径及符号链接，参考图沿用生图工具返回的位置。自定义生图工具 `imagegen` 的 `input_images` 与可选 `output_path` 只接受绝对路径，`output_path` 省略时使用默认生图目录；原生 Codex 生图保留自身保存位置并返回绝对 `savedPath`。两类生图返回或 agent 回复的相对 `savedPath` 直接报错，不按任何目录猜测。
 
@@ -40,6 +40,8 @@ reviewer 只提交已经观察确认的问题；blocked 仅用于必要输入／
 
 工作流自己提供的任务文字以 `knowledge/` 下的 Markdown 为来源，每步由 `agent.json` 声明拼接的文件与工具。代码不在正文后临时拼接制作要求；占位符单次替换，输入正文或 JSON 数据里的花括号不会再次求值。
 
+每次调用绑定启动时的知识目录；同进程的其他调用不能改变它。Web 全局设置只提供新任务默认值，总控在任务根 run.json 保存本任务的 knowledge、Krita 等参数，已有任务可单独修改，section 每次接收这些启动值。
+
 ### 动态位置
 
 步骤提示词只使用以下变量：
@@ -59,6 +61,7 @@ reviewer 只提交已经观察确认的问题；blocked 仅用于必要输入／
 
 | 模板 | 用途 |
 | --- | --- |
+| `visual-context-summary.md` | 图片历史压缩辅助模型的底层维护指令；缺失或为空时快速报错。 |
 | `agent-turn.md` | 所有 CLI 共用的路径约定与工作区说明，无变量。 |
 | `interrupted-task.md` | 会话仍可接上时只发这一句。 |
 | `outline-repair-resume.md`、`raster-repair-resume.md` | 原 thread 不可用时，代码拼接原绘制任务、这一句固定提示与返修任务。 |

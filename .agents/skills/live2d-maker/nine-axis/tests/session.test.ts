@@ -4,6 +4,7 @@ import { access, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promise
 import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
 import { test, type TestContext } from 'node:test';
+import sharp from 'sharp';
 import type { AgentResult, AgentTask, CodexAgents } from '../../shared/codex/agents.ts';
 import type { FunctionTool } from '../../shared/codex/function-tools.ts';
 import type { Harness } from '../../shared/agents/models.ts';
@@ -67,15 +68,15 @@ async function fixture(t: TestContext) {
   };
   const step = (group: Group) => `step04_angles/model/${group}`;
   const output = (group: Group) => join(section, step(group));
-  const run = (group: Group) => createFitHead(agents, tools, step(group), `axis ${group}`, undefined, section)
-    (output(group), `work only in ${output(group)}`);
+  const run = (group: Group) => { useKnowledge(knowledge); return createFitHead(agents, tools, step(group), `axis ${group}`, undefined, section)
+    (output(group), `work only in ${output(group)}`); };
   const records = () => Promise.all(groups.map(group => readStepSession(section, step(group))));
   const bytes = () => Promise.all(groups.map(group => readFile(sessionPath(section, step(group)), 'utf8')));
   for (const group of groups) {
     await put(join(output(group), '.running'), '');
     await put(join(output(group), `face-${group}.json`), `original author ${group}`);
   }
-  return { root, section, configPath, captures, toolSteps, plans, run, records, bytes, step, output };
+  return { root, section, knowledge, configPath, captures, toolSteps, plans, run, records, bytes, step, output };
 }
 
 test('left/up/down concurrently start distinct sessions, share one agent.json, and resume their own saved threads', { timeout: 10_000 }, async t => {
@@ -209,12 +210,13 @@ test('actual child retry removes only its output and agents/steps/<group>, then 
 });
 
 for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} 单独选帧的会话归属本步，现有恢复可清除它并保留参考帧`, async t => {
-  const f=await fixture(t), knowledge=knowledgeDirectory(), output=join(f.section,step);
+  const f=await fixture(t), knowledge=f.knowledge, output=join(f.section,step); useKnowledge(knowledge);
   await put(join(knowledge,'nine-axis',step,'agent.json'),JSON.stringify({main:{initial:['prompts/main.md'],tools:[]}}));
   await put(join(knowledge,'nine-axis',step,'prompts/main.md'),'choose frames');
   await put(join(output,'.running'),'');
   const { createFramesHead }=await import('../run.ts');
   const names=step==='step03_frames'?['left','up','down']:['left-up','left-down'];
+  const png=await sharp({create:{width:4,height:4,channels:3,background:'#888'}}).png().toBuffer();
   const agents={
     async run(): Promise<AgentResult> {assert.fail('frames use their saved step session');},
     createSession(id?:string,options:Callbacks={}) {return {
@@ -222,8 +224,9 @@ for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} �
         assert.equal(task.prompt, workspacePrompt('choose frames', executionPaths({ cwd: f.section, outputDirectory: output }, f.section)));
         assert.doesNotMatch(task.prompt, /ASTRA_STUDIO_FFMPEG|FFmpeg 可执行文件|本次九轴使用的 FFmpeg/);
         await options.onSessionStarted?.(id??'frames-thread','codex');
-        for(const name of names) for(const file of [`${name}.png`,`frames/${name}.png`]) await put(join(output,file),'selected image');
-        await put(join(output,'selected-frames.json'),'{}');
+        for(const name of names) for(const file of [`${name}.png`,`frames/${name}.png`]) { await mkdir(dirname(join(output,file)),{recursive:true}); await writeFile(join(output,file),png); }
+        const videos=join(f.section,step==='step03_frames'?'step02_video':'step04_angles/video');
+        await put(join(output,'selected-frames.json'),JSON.stringify({version:1,frames:Object.fromEntries(names.map(name=>[name,{video:join(videos,name+'.mp4'),path:name+'.png',frameIndex:0,reason:'fixture'}]))}));
         return {text:'{"error":null}',images:[],threadId:'frames-thread',harness:'codex'};
       }, async close() {},
     };},
@@ -233,5 +236,12 @@ for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} �
   assert.equal(await readStepSession(f.section,step+'/frames'),undefined);
   await applyStepAction({name:'case',dir:f.root,section:'nine-axis',step,action:'resume'});
   assert.equal(await readStepSession(f.section,step),undefined);
-  assert.equal(await readFile(join(output,names[0]+'.png'),'utf8'),'selected image');
+  assert.deepEqual(await readFile(join(output,names[0]+'.png')),png);
+});
+
+for (const text of ['{}', '[]', '{"error":false}', '{"error":null,"extra":1}', '{"error":""}']) test(`nine-axis rejects invalid result ${text} without losing the session`, async t => {
+  const f=await fixture(t); f.plans.set('left',{result:{text}});
+  await assert.rejects(f.run('left'), /结果须为|空错误原因/);
+  assert.ok((await readStepSession(f.section,f.step('left')))?.threadId);
+  assert.equal(await readFile(join(f.output('left'),'face-left.json'),'utf8'),'original author left');
 });

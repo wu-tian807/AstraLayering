@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { spawn } from 'node:child_process';
-import { access, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { setTimeout as delay } from 'node:timers/promises';
 import { basename, dirname, join, relative, resolve, sep } from 'node:path';
 import sharp from 'sharp';
 export { ffmpegPath } from '../shared/ffmpeg.ts';
@@ -82,26 +83,22 @@ async function call(api: VideoApi, method: string, path: string, signal: AbortSi
   if (!response.ok) throw new Error(`生视频 ${method} ${path} HTTP ${response.status}：${redact(await response.text(), api)}`);
   return response;
 }
-const wait = (ms: number, signal?: AbortSignal) => new Promise<void>((resolve, reject) => {
-  const timer = setTimeout(resolve, ms);
-  signal?.addEventListener('abort', () => { clearTimeout(timer); reject(signal.reason); }, { once: true });
-});
 
 export type VideoResult = { id: string; status: Record<string, unknown>; bytes: Buffer };
 // OpenAI Videos API: the first frame goes as a data URL in JSON (the proxy
 // ignores multipart files); the result is polled, then downloaded.
 export async function generateVideo(api: VideoApi, prompt: string, image: Buffer,
   { signal, progress, poll = 10_000, timeout = 30 * 60_000 }: { signal?: AbortSignal; progress?: (message: string) => void; poll?: number; timeout?: number } = {}): Promise<VideoResult> {
+  signal = AbortSignal.any([AbortSignal.timeout(timeout), ...signal ? [signal] : []]);
+  signal.throwIfAborted();
   const created = await (await call(api, 'POST', '/videos', signal,
     { model: api.model, prompt, seconds: turnSeconds, input_reference: 'data:image/png;base64,' + image.toString('base64') })).json() as Record<string, unknown>;
   const id = String(created.id ?? '');
   if (!id) throw new Error(`生视频没有返回任务 id：${redact(JSON.stringify(created), api)}`);
   progress?.(`已提交生视频 ${id}（${api.model}）`);
-  const started = Date.now();
   let status = created;
   while (!terminal.has(String(status.status))) {
-    if (Date.now() - started > timeout) throw new Error(`生视频等待超时：${id} 仍为 ${status.status}`);
-    await wait(poll, signal);
+    await delay(poll, undefined, { signal });
     status = await (await call(api, 'GET', `/videos/${encodeURIComponent(id)}`, signal)).json() as Record<string, unknown>;
   }
   if (status.status !== 'completed') throw new Error(`生视频失败：${redact(JSON.stringify(status), api)}`);
@@ -110,6 +107,7 @@ export async function generateVideo(api: VideoApi, prompt: string, image: Buffer
     try {
       const response = await call(api, 'GET', `/videos/${encodeURIComponent(id)}/content`, signal);
       const bytes = Buffer.from(await response.arrayBuffer()), length = Number(response.headers.get('content-length'));
+      if (!bytes.length) throw new Error('下载没有产出视频内容');
       if (length && bytes.length !== length) throw new Error(`下载不完整（${bytes.length}/${length} 字节）`);
       return { id, status, bytes };
     } catch (error) {
@@ -138,6 +136,15 @@ export async function extractTurnFrame(ffmpeg: string, video: string, output: st
   return { frameCount: count, frameIndex: index, angle: index / (count - 1) * profileAngle };
 }
 
+// The agent chooses an actual frame or time after viewing candidates.
+export async function extractVideoFrame(ffmpeg: string, video: string, output: string,
+  position: { frameIndex?: number; timeSeconds?: number }, signal?: AbortSignal) {
+  const filter = position.frameIndex !== undefined ? ['-vf', `select=eq(n\\,${position.frameIndex})`] : ['-ss', String(position.timeSeconds)];
+  await mkdir(dirname(output), { recursive: true });
+  await rm(output, { force: true });
+  await run(ffmpeg, ['-y', '-i', video, ...filter, '-frames:v', '1', '-update', '1', output], signal);
+}
+
 async function exists(path: string) { return access(path).then(() => true, () => false); }
 async function atomic(path: string, bytes: Buffer | string) {
   await mkdir(dirname(path), { recursive: true });
@@ -147,6 +154,23 @@ async function atomic(path: string, bytes: Buffer | string) {
 
 export type GenerateVideo = (prompt: string, image: Buffer, options: { signal?: AbortSignal; progress?: (message: string) => void }) => Promise<VideoResult>;
 type Run = { signal?: AbortSignal; progress?: (message: string) => void };
+type VideoRecord = { path: string; bytes: number; first?: string; prompt?: string; videoId?: string; status?: Record<string, unknown> };
+
+async function videoRecords(directory: string): Promise<Partial<Record<VideoName, VideoRecord>> | undefined> {
+  try { return JSON.parse(await readFile(join(directory, 'videos.json'), 'utf8')); }
+  catch (error) {
+    // This file describes the outputs; its absence cannot erase an actual MP4.
+    if (error instanceof SyntaxError || (error as NodeJS.ErrnoException).code === 'ENOENT') return;
+    throw error;
+  }
+}
+
+async function allVideos<T>(tasks: Promise<T>[]): Promise<T[]> {
+  const results = await Promise.allSettled(tasks);
+  const failed = results.find(result => result.status === 'rejected');
+  if (failed?.status === 'rejected') throw failed.reason;
+  return results.map(result => (result as PromiseFulfilledResult<T>).value);
+}
 
 // A frame comes back at the video's size; it is brought to the upper body's square.
 export async function normalizeView(path: string, size: number): Promise<Buffer> {
@@ -157,10 +181,16 @@ export async function normalizeView(path: string, size: number): Promise<Buffer>
 
 // One video saved as <video>.mp4 in the step directory; the record's paths are
 // relative to it.
-async function takeVideo(directory: string, video: string, prompt: string, image: Buffer, first: string, generate: GenerateVideo, { signal, progress }: Run) {
+async function takeVideo(directory: string, video: string, prompt: string, image: Buffer, first: string, generate: GenerateVideo, { signal, progress }: Run, previous?: VideoRecord): Promise<VideoRecord> {
   const mp4 = join(directory, `${video}.mp4`);
+  const existing = await stat(mp4).catch(error => { if (error.code !== 'ENOENT') throw error; });
+  if (existing?.isFile() && existing.size > 0) {
+    progress?.(`${video}：沿用本步已产出的视频`);
+    return { ...previous, path: `${video}.mp4`, bytes: existing.size };
+  }
   await rm(mp4, { force: true });
   const result = await generate(prompt, image, { signal, progress: message => progress?.(`${video}：${message}`) });
+  if (!result.bytes.length) throw new Error(`${video} 没有产出视频内容`);
   await atomic(mp4, result.bytes);
   const { url: _url, ...status } = result.status;
   progress?.(`${video} 视频已完成`);
@@ -195,11 +225,8 @@ export async function produceLeftVideo(directory: string, input: TurnInput, gene
     parts: input.parts.map(path => toTaskPath(task, path)), canvas: [width, height], box, background }, null, 2) + '\n');
   const run = { signal, progress }, started = Date.now();
   progress?.(`头部裁切 ${box.size}×${box.size}，提交向左转头视频`);
-  const cached = await readFile(join(directory, 'videos.json'), 'utf8').then(JSON.parse, error => { if (error.code !== 'ENOENT') throw error; });
-  const previous = cached?.left;
-  const reusable = cached?.version === 1 && cached.model === model && cached.seconds === turnSeconds && cached.profileAngle === profileAngle
-    && previous?.prompt === prompt && previous.first === 'upper-body.png' && previous.path === 'left.mp4' && await exists(join(directory, previous.path));
-  const left = reusable ? previous : await takeVideo(directory, 'left', prompt, image, 'upper-body.png', generate, run);
+  const cached = await videoRecords(directory);
+  const left = await takeVideo(directory, 'left', prompt, image, 'upper-body.png', generate, run, cached?.left);
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     input: { path: 'upper-body.png' }, ...(cached ? { up: cached.up, down: cached.down } : {}), left,
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
@@ -209,43 +236,25 @@ export async function produceLeftVideo(directory: string, input: TurnInput, gene
 export async function producePitchVideos(directory: string, front: string, generate: GenerateVideo, prompts: Record<ViewY, string>,
   { signal, progress, model }: Run & { model: string }) {
   const upperBody = join(front, 'upper-body.png'), image = await readFile(upperBody), started = Date.now();
-  type Batch = { version: number; model: string; seconds: string; profileAngle: number } & Partial<Record<ViewY, Awaited<ReturnType<typeof takeVideo>>>>;
-  const cached: Batch | undefined = await readFile(join(directory, 'videos.json'), 'utf8').then(text => JSON.parse(text), error => {
-    if (error.code !== 'ENOENT') throw error;
-  });
-  const sameInput = cached?.version === 1 && cached.model === model && cached.seconds === turnSeconds
-    && cached.profileAngle === profileAngle;
+  const cached = await videoRecords(directory);
   progress?.('提交抬头、低头绕轴视频，沿用左转步骤的正面裁框');
-  const records = await Promise.all(viewsY.map(async view => {
-    const previous = cached?.[view], first = relative(directory, upperBody).split(sep).join('/');
-    if (sameInput && previous?.prompt === prompts[view] && previous.first === first && previous.path === `${view}.mp4`
-      && await exists(join(directory, previous.path))) {
-      progress?.(`${view}：沿用本步已生成的视频`);
-      return [view, previous] as const;
-    }
-    return [view, await takeVideo(directory, view, prompts[view], image, first, generate, { signal, progress })] as const;
+  const records = await allVideos(viewsY.map(async view => {
+    const first = relative(directory, upperBody).split(sep).join('/');
+    return [view, await takeVideo(directory, view, prompts[view], image, first, generate, { signal, progress }, cached?.[view])] as const;
   }));
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
-    input: { path: relative(directory, upperBody).split(sep).join('/') }, ...(directory === front && cached && 'left' in cached ? { left: cached.left } : {}), ...Object.fromEntries(records),
+    input: { path: relative(directory, upperBody).split(sep).join('/') }, ...(directory === front && cached?.left ? { left: cached.left } : {}), ...Object.fromEntries(records),
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
 }
 
 export async function produceCornerVideos(directory: string, pitch: string, generate: GenerateVideo, prompt: string,
   { signal, progress, model }: Run & { model: string }) {
   const started = Date.now();
-  type Batch = { version: number; model: string; seconds: string; profileAngle: number } & Partial<Record<`left-${ViewY}`, Awaited<ReturnType<typeof takeVideo>>>>;
-  const cached: Batch | undefined = await readFile(join(directory, 'videos.json'), 'utf8').then(text => JSON.parse(text), error => {
-    if (error.code !== 'ENOENT') throw error;
-  });
-  const sameSettings = cached?.version === 1 && cached.model === model && cached.seconds === turnSeconds && cached.profileAngle === profileAngle;
+  const cached = await videoRecords(directory);
   progress?.('提交左上、左下转头参考视频');
-  const records = await Promise.all(viewsY.map(async view => {
-    const corner = `left-${view}` as const, first = relative(directory, join(pitch, `${view}.png`)).split(sep).join('/'), previous = cached?.[corner];
-    if (sameSettings && previous?.prompt === prompt && previous.path === `${corner}.mp4` && await exists(join(directory, previous.path))) {
-      progress?.(`${corner}：沿用本步已生成的视频`);
-      return [corner, { ...previous, first }] as const;
-    }
-    return [corner, await takeVideo(directory, corner, prompt, await readFile(join(pitch, `${view}.png`)), first, generate, { signal, progress })] as const;
+  const records = await allVideos(viewsY.map(async view => {
+    const corner = `left-${view}` as const, first = relative(directory, join(pitch, `${view}.png`)).split(sep).join('/');
+    return [corner, await takeVideo(directory, corner, prompt, await readFile(join(pitch, `${view}.png`)), first, generate, { signal, progress }, cached?.[corner])] as const;
   }));
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     ...Object.fromEntries(records), elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
@@ -256,30 +265,28 @@ export async function produceCornerVideos(directory: string, pitch: string, gene
 export const turnViews = ['left', ...viewsY] as const;
 export type TurnView = typeof turnViews[number];
 export const viewOutputs = (views: readonly string[]) => [...views.map(view => `${view}.png`), 'views.json'];
-const selectionFiles = (names: readonly string[]) => ['selected-frames.json', ...names.flatMap(name => [`${name}.png`, `frames/${name}.png`])];
-
 // An agent picks each frame once; frames already delivered are kept as is.
-export async function runFrameSelection(directory: string, names: readonly string[], select: () => Promise<void>) {
-  const missing = async () => (await Promise.all(selectionFiles(names).map(file => exists(join(directory, file)).then(found => found ? undefined : file)))).filter(Boolean);
-  if (!(await missing()).length) return;
+export async function runFrameSelection(directory: string, names: readonly string[], select: () => Promise<void>, videoDirectory = directory) {
+  try { await checkSelectedFrames(directory, names, undefined, videoDirectory); return; }
+  catch (error) { if (['EACCES', 'EPERM'].includes((error as NodeJS.ErrnoException).code ?? '')) throw error; }
   await select();
-  const left = await missing();
-  if (left.length) throw Error(`选帧缺少交付：${left.map(file => join(directory, file!)).join('、')}`);
+  await checkSelectedFrames(directory, names, undefined, videoDirectory);
 }
 
 // Each chosen frame names its own video and the normalized <name>.png, with a
 // recorded frame position and reason, at the upper body's square size.
-export async function checkSelectedFrames(directory: string, names: readonly string[], size: number, videoDirectory = directory) {
+export async function checkSelectedFrames(directory: string, names: readonly string[], size?: number, videoDirectory = directory) {
   const selected = JSON.parse(await readFile(join(directory, 'selected-frames.json'), 'utf8'));
-  if (selected.version !== 1 || !selected.frames || typeof selected.frames !== 'object') throw Error('selected-frames.json 需要 version:1 和 frames 对象');
+  if (!selected || selected.version !== 1 || !selected.frames || typeof selected.frames !== 'object' || Array.isArray(selected.frames)) throw Error('selected-frames.json 需要 version:1 和 frames 对象');
   for (const name of names) {
     const frame = selected.frames[name];
     const sameFile = (value: unknown, file: string) => typeof value === 'string' && resolve(directory, value) === resolve(directory, file);
     if (!frame || !sameFile(frame.video, join(videoDirectory, `${name}.mp4`)) || !sameFile(frame.path, `${name}.png`) || typeof frame.reason !== 'string' || !frame.reason.trim()) throw Error(`${name}：缺少本步选帧路径或选择依据`);
     if (!(Number.isSafeInteger(frame.frameIndex) && frame.frameIndex >= 0) && !(Number.isFinite(frame.timeSeconds) && frame.timeSeconds >= 0)) throw Error(`${name}：记录实际 frameIndex 或 timeSeconds，不以估算角度代替`);
-    await readFile(join(directory, 'frames', `${name}.png`));
+    const raw = await sharp(join(directory, 'frames', `${name}.png`)).metadata();
+    if (raw.format !== 'png' || !raw.width || !raw.height) throw Error(`${name}：原帧须为非空 PNG`);
     const meta = await sharp(resolve(directory, frame.path)).metadata();
-    if (meta.format !== 'png' || meta.width !== size || meta.height !== size) throw Error(`${name}：参考帧必须保留裁框并规范化为 ${size}×${size} PNG`);
+    if (meta.format !== 'png' || !meta.width || meta.width !== meta.height || (size !== undefined && meta.width !== size)) throw Error(`${name}：参考帧必须保留裁框并规范化为 ${size === undefined ? '正方形' : `${size}×${size}`} PNG`);
   }
   return selected.frames as Record<string, { frameIndex?: number; timeSeconds?: number; reason: string }>;
 }

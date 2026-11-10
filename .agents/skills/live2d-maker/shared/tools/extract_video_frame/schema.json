@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "video": { "type": "string", "enum": ["left", "up", "down", "left-up", "left-down"] },
+    "output": { "type": "string" },
+    "frameIndex": { "type": "integer", "minimum": 0 },
+    "timeSeconds": { "type": "number", "minimum": 0 }
+  },
+  "required": ["video", "output"],
+  "oneOf": [
+    { "required": ["frameIndex"], "not": { "required": ["timeSeconds"] } },
+    { "required": ["timeSeconds"], "not": { "required": ["frameIndex"] } }
+  ],
+  "additionalProperties": false
+}

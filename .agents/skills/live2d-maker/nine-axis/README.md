@@ -1,6 +1,6 @@
 # 头部九轴
 
-独立入口：`pnpm nine-axis --name <任务名> --dir <绝对运行根目录> --knowledge <先验知识目录> --krita <Krita 可执行文件>`。总入口加 `--live` 可在阴影完成后自动继续，首次默认不启动；`--no-live` 关闭续接，继续／恢复／重试省略时沿用任务保存的选择。显式范围仍优先，单跑支持 `--from nine-axis --to nine-axis`。
+独立入口：`pnpm nine-axis --name <任务名> --dir <绝对运行根目录> --knowledge <先验知识目录> --krita <Krita 可执行文件> --ffmpeg <FFmpeg 可执行文件>`。总入口加 `--live` 可在阴影完成后自动继续，首次默认不启动；`--no-live` 关闭续接，继续／恢复／重试省略时沿用任务保存的选择。显式范围仍优先，单跑支持 `--from nine-axis --to nine-axis`。
 
 完整目标包含脸、五官、头发与头饰。当前实现到脸部＋五官九轴的中间交付，头发和头饰的九轴制作后续再做。
 
@@ -32,7 +32,7 @@ nine_axis_view_video_model=seedance-2.5
 
 **FFmpeg 仅九轴需要。** 在网页“全局设置 → FFmpeg 可执行文件”浏览或自动扫描后点选本机已安装或解压的 `ffmpeg`／`ffmpeg.exe`，或用 CLI `--ffmpeg <完整路径>` 指定。保存及启动时检查文件和 `-version`。Windows 支持正斜杠、反斜杠与含空格的路径；macOS、Linux 的文件须有执行权限。
 
-独立 section 启动无状态：每次启动及续跑都传 `--dir`、`--knowledge`、`--krita` 和 `--ffmpeg`，不从步骤产物读取启动配置。网页全局设置及总入口记录由调用方管理，每次传入。选中路径通过执行环境提供：`ASTRA_STUDIO_FFMPEG` 指向该文件，目录加入该 agent 的 PATH，不向制作提示词注入路径或软件说明；原有同名环境变量仍兼容。程序不自动下载 FFmpeg。
+独立 section 启动无状态：每次启动及续跑都传 `--dir`、`--knowledge`、`--krita` 和 `--ffmpeg`，不从步骤产物读取启动配置。网页全局设置及总入口记录由调用方管理，每次传入。选帧 agent 调用已声明的 `extract_video_frame` 工具，工具内部使用本次传入的完整 FFmpeg 路径，agent 无需查找软件路径。兼容的执行环境仍提供：`ASTRA_STUDIO_FFMPEG` 指向该文件，目录加入该 agent 的 PATH，不向制作提示词注入路径或软件说明；原有同名环境变量仍兼容。程序不自动下载 FFmpeg。
 
 默认运行目录是 `<仓库>/.run/<任务名>/`，`demos/` 用于导出和展示成果。
 
@@ -55,3 +55,5 @@ agent 确认部件与投影关系，程序根据上游已有的 part／图层对
 角度仍只读取 [angles.json](../knowledge/nine-axis/step02_video/references/angles.json)，表示制作关键形的度数标签。参考、SVG、trace 与模型使用共同裁框和原画布坐标。
 
 `--continue` 保留产物与原会话，`--resume` 保留产物并清除所选会话，`--retry` 重做所选未完成分支并保留已完成兄弟。重试单轴模型不会删除斜角视频，重试斜角制作不会重生视频。
+
+视频方向是否成功以本步骤实际产出的非空 MP4 为准；一支失败时保留其他方向文件，继续时只补缺失或空文件。videos.json 仅记录说明，缺失不会使已有 MP4 重新生成。暂不按提示词、模型或输入指纹自动废弃已生成产物，相关主动重生成规则另行统一设计。选帧只复用完整记录和可读 PNG，残缺结果交回本步处理。

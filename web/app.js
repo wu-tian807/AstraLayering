@@ -756,14 +756,24 @@ function showRunOptions() {
  const options=selected=>runnableStages.map(stage=>`<option value="${stage.id}" ${stage.id===selected?'selected':''}>${stage.name}</option>`).join('');
  const displayName=tasks.find(task=>task.name===state.name)?.displayName||'';
  dialog.innerHTML=`<div class="modal-heading"><div><h2>执行参数 · ${esc(state.name)}</h2><p>保存到本任务的调度记录，下一次继续、恢复或重试时使用。</p></div><button class="icon-button" data-close>${icon('close')}</button></div>
- <form id="task-options-form"><div class="new-task-columns"><div>${data.original?`<img class="resume-reference" src="${artifact(data.original)}" alt="当前任务原图">`:''}<label class="field-label" for="task-name">任务名</label><input id="task-name" value="${esc(state.name)}" readonly><label class="field-label" for="task-displayName">显示名称</label><input id="task-displayName" name="displayName" value="${esc(displayName)}"><label class="field-label" for="task-from">执行范围起点</label><select id="task-from" name="from">${options(from)}</select><label class="field-label" for="task-to">执行范围终点</label><select id="task-to" name="to">${options(to)}</select><p class="dialog-note">保留已有产物，由调度从未完成的步骤接续。明确修改执行范围时，以所选范围为准。</p></div><div>${executionFields(run)}</div></div>
+ <form id="task-options-form"><div class="new-task-columns"><div>${data.original?`<img class="resume-reference" src="${artifact(data.original)}" alt="当前任务原图">`:''}<label class="field-label" for="task-name">任务名</label><input id="task-name" value="${esc(state.name)}" readonly><label class="field-label" for="task-displayName">显示名称</label><input id="task-displayName" name="displayName" value="${esc(displayName)}"><label class="field-label" for="task-from">执行范围起点</label><select id="task-from" name="from">${options(from)}</select><label class="field-label" for="task-to">执行范围终点</label><select id="task-to" name="to">${options(to)}</select><p class="dialog-note">保留已有产物，由调度从未完成的步骤接续。明确修改执行范围时，以所选范围为准。</p></div><div>${executionFields(run)}
+ <label class="field-label" for="task-krita">本任务 Krita 可执行文件</label><div class="path-field"><input id="task-krita" name="krita" value="${esc(run?.krita||'')}"><button type="button" class="button" data-task-pick="krita">浏览</button></div>
+ <label class="field-label" for="task-knowledge">本任务先验知识目录</label><div class="path-field"><input id="task-knowledge" name="knowledge" value="${esc(run?.knowledge||'')}" placeholder="留空使用 skill 自带的 knowledge/"><button type="button" class="button" data-task-pick="knowledge">浏览</button></div>
+ <p class="dialog-note">保存在本任务，修改全局设置不会覆盖。相对路径以任务根目录为基准，绝对路径按原值使用。</p></div></div>
  <p class="form-error" role="alert"></p><div class="modal-footer"><span>保存参数不会启动制作。</span><button type="button" class="button" data-close>取消</button><button class="primary" type="submit">保存参数</button></div></form>`;
  dialog.showModal();dialog.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>dialog.close());
  const form=dialog.querySelector('form'),rangeEdited=bindExecutionFields(form,run);
+ form.querySelectorAll('[data-task-pick]').forEach(button=>button.onclick=async()=>{
+  const field=form.elements[button.dataset.taskPick];
+  const path=await settings.pick({kind:field.name==='krita'?'file':'dir',path:field.value.trim(),title:field.name==='krita'?'选择本任务 Krita':'选择本任务先验知识目录'});
+  if(path)field.value=path;
+ });
  form.onsubmit=async event=>{
   event.preventDefault();const button=form.querySelector('[type=submit]');button.disabled=true;form.querySelector('.form-error').textContent='';
   try{
    const payload={name:state.name};
+   if(form.elements.krita.value.trim()!==(run?.krita||''))payload.krita=form.elements.krita.value.trim();
+   if(form.elements.knowledge.value.trim()!==(run?.knowledge||''))payload.knowledge=form.elements.knowledge.value.trim();
    if(form.elements.displayName.value.trim()!==displayName)payload.displayName=form.elements.displayName.value.trim();
    if(rangeEdited()&&(form.elements.from.value!==from||form.elements.to.value!==to)){payload.from=form.elements.from.value;payload.to=form.elements.to.value;}
    if(form.elements.live.checked!==(run?.live===true))payload.live=form.elements.live.checked;
@@ -777,7 +787,7 @@ function showRunOptions() {
 function showNew() {
  const dialog=document.querySelector('#new-task');state.uploaded=null;
  dialog.innerHTML=`<div class="modal-heading"><div><h2>新建任务</h2><p>从角色参考图开始制作；人物与衣服并行，在组装后进入阴影。</p></div><button class="icon-button" data-close>${icon('close')}</button></div>
- <form id="new-task-form"><div class="new-task-columns"><div><label class="field-label">输入参考图</label><label class="upload-zone" id="upload-zone"><input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" hidden><span class="upload-icon">${icon('upload')}</span><b>选择或拖入角色图片</b><p>PNG、JPG、WebP · 最大 20 MB</p></label><label class="field-label" for="task-image">或填写服务器上的图片路径</label><input id="task-image" name="image" placeholder="绝对路径；相对路径基于任务目录"><label class="field-label" for="task-name">任务名</label><input id="task-name" name="name" required placeholder="角色任务名称"><label class="field-label" for="task-displayName">显示名称</label><input id="task-displayName" name="displayName" placeholder="可选"><p class="dialog-note">任务保存在 ${esc(state.directory)}。已有任务请从任务列表选择，调整执行参数后继续。</p></div><div>${executionFields()}</div></div><p class="form-error" role="alert"></p><div class="modal-footer"><span>关闭网页后仍会在后台执行。</span><button type="button" class="button" data-close>取消</button><button class="primary" type="submit">新建并开始</button></div></form>`;
+ <form id="new-task-form"><div class="new-task-columns"><div><label class="field-label">输入参考图</label><label class="upload-zone" id="upload-zone"><input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" hidden><span class="upload-icon">${icon('upload')}</span><b>选择或拖入角色图片</b><p>PNG、JPG、WebP · 最大 20 MB</p></label><label class="field-label" for="task-image">或填写服务器上的图片路径</label><input id="task-image" name="image" placeholder="绝对路径；相对路径基于任务目录"><label class="field-label" for="task-name">任务名</label><input id="task-name" name="name" required maxlength="128" pattern="[\\p{L}\\p{N}][\\p{L}\\p{N}._\\-]{0,127}" title="以字母或数字开头，只含字母、数字、点、下划线和短横线" placeholder="角色任务名称"><label class="field-label" for="task-displayName">显示名称</label><input id="task-displayName" name="displayName" placeholder="可选"><p class="dialog-note">任务保存在 ${esc(state.directory)}。已有任务请从任务列表选择，调整执行参数后继续。</p></div><div>${executionFields()}</div></div><p class="form-error" role="alert"></p><div class="modal-footer"><span>关闭网页后仍会在后台执行。</span><button type="button" class="button" data-close>取消</button><button class="primary" type="submit">新建并开始</button></div></form>`;
  dialog.showModal();dialog.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>dialog.close());
  let previewURL,created=false;
  const upload=file=>{if(created)return;if(!file?.type.startsWith('image/'))return toast('请选择图片文件');if(file.size>20*1024*1024)return toast('图片最大 20 MB');state.uploaded=file;if(previewURL)URL.revokeObjectURL(previewURL);previewURL=URL.createObjectURL(file);const zone=dialog.querySelector('#upload-zone');zone.classList.add('has-image');zone.style.backgroundImage=`url("${previewURL}")`;zone.querySelector('b').textContent=file.name;};
@@ -791,9 +801,9 @@ function showNew() {
    if(!created){
     payload.image=fields.get('image');
     if(state.uploaded)payload.upload=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result.split(',')[1]);reader.onerror=reject;reader.readAsDataURL(state.uploaded);});
-    await settings.withSoftware(()=>post('tasks',payload));created=true;form.elements.name.readOnly=true;form.elements.image.disabled=true;form.querySelector('#image-input').disabled=true;delete payload.image;delete payload.upload;
+    await settings.withSoftware(selected=>post('tasks',{...payload,...selected}));created=true;form.elements.name.readOnly=true;form.elements.image.disabled=true;form.querySelector('#image-input').disabled=true;delete payload.image;delete payload.upload;
    }
-   state.name=payload.name;rememberTask(state.directory,state.name);button.textContent='正在启动…';await settings.withSoftware(()=>post('start',payload));dialog.close();await refreshTask(true);toast('新任务已在后台启动。');
+   state.name=payload.name;rememberTask(state.directory,state.name);button.textContent='正在启动…';await settings.withSoftware(selected=>post('start',{...payload,...selected}));dialog.close();await refreshTask(true);toast('新任务已在后台启动。');
   }catch(error){form.querySelector('.form-error').textContent=error.message;if(created){button.textContent='继续启动';await refreshTask(true);}}finally{button.disabled=false;}
  };
 }
@@ -861,7 +871,7 @@ function bind() {
   if(!data.run){if(action==='continue')showRunOptions();return;}
   if(action==='retry'&&!confirm(`重试：删除以下步骤的产物、会话与 agent 尝试记录并重新运行。\n${broken.map(stepLabel).join('\n')}\n确定吗？`))return;
   b.disabled=true;
-  try{const result=await settings.withSoftware(()=>post('task-action',{name:state.name,action}));toast(result.message+' 已在后台重新运行。');await refreshTask(true);}
+  try{const result=await settings.withSoftware(selected=>post('task-action',{name:state.name,action,...selected}));toast(result.message+' 已在后台重新运行。');await refreshTask(true);}
   catch(error){toast(error.message);b.disabled=false;}
  });
  document.querySelectorAll('[data-page]').forEach(b=>b.onclick=async()=>{state.page=b.dataset.page;updateViewURL();if(state.page==='config')await loadConfig();render();});

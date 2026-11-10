@@ -74,9 +74,10 @@ test('real scan children support repeated start, stop and restart with independe
     const kritaPath = await binary(base, filename('krita')), ffmpegPath = await binary(base, filename('ffmpeg'));
     const first = krita.start(); assert.equal(krita.start(), first);
     ffmpeg.start(); krita.stop(); await waitFor(() => !krita.state().running);
-    assert.equal(krita.state().error, undefined); assert.ok(krita.state().finishedAt);
+    assert.equal(krita.state().error, undefined); assert.ok(krita.state().finishedAt); assert.equal(krita.state().stopped,true);
     krita.start(); await waitFor(() => !krita.state().running && !ffmpeg.state().running);
     assert.deepEqual(krita.state().found, [kritaPath]); assert.deepEqual(ffmpeg.state().found, [ffmpegPath]);
+    assert.equal(krita.state().stopped,undefined); assert.equal(ffmpeg.state().stopped,undefined);
     assert.ok(krita.state().scanned > 0); assert.equal(krita.state().current, '');
     await rm(ffmpegPath); ffmpeg.start(); await waitFor(() => !ffmpeg.state().running);
     assert.deepEqual(ffmpeg.state().found, []); assert.deepEqual(krita.state().found, [kritaPath]);

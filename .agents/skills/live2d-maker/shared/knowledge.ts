@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { isAbsolute, join, resolve } from 'node:path';
+import { isAbsolute, join, resolve, win32 } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { AsyncLocalStorage } from 'node:async_hooks';
 import type { FunctionTool } from './codex/function-tools.ts';
 import { toolSchemaNames } from './codex/tool-config.ts';
 import { knowledgeSteps, runtimePrompts } from './knowledge-steps.ts';
@@ -8,19 +9,19 @@ import { knowledgeSteps, runtimePrompts } from './knowledge-steps.ts';
 // Prior knowledge (prompts, references, tool descriptions) lives outside the
 // code. `--knowledge <dir>` replaces the whole directory; there is no fallback.
 export const defaultKnowledgeDirectory = fileURLToPath(new URL('../knowledge/', import.meta.url));
-let current = defaultKnowledgeDirectory;
-export function useKnowledge(directory: string): void { current = resolve(directory); }
+const selected = new AsyncLocalStorage<string>();
+export function useKnowledge(directory: string): void { selected.enterWith(resolve(directory)); }
 // A run checks the whole knowledge directory before it uses it, so a missing
 // file stops the run before any agent starts.
 export function selectKnowledge(directory: string): void {
   const path = resolve(directory);
   checkKnowledge(path);
-  current = path;
+  useKnowledge(path);
 }
-export function knowledgeDirectory(): string { return current; }
+export function knowledgeDirectory(): string { return selected.getStore() ?? defaultKnowledgeDirectory; }
 
 export type KnowledgeValues = Record<string, string>;
-export type KnowledgeRenderOptions = { taskRoot?: string; section?: string };
+export type KnowledgeRenderOptions = { taskRoot?: string; section?: string; knowledge?: string };
 export type KnowledgeRole = 'main' | 'review' | 'repair';
 
 const variable = /\{([a-z][a-z0-9_]*)\}/g;
@@ -30,6 +31,7 @@ const token = /\{(?:(uri|reference|shared_reference):((?:[^{}]|\{[a-z][a-z0-9_]*
 // replaced, any other brace text stays verbatim; inserted values are never
 // interpreted again. Path prefixes render absolute paths.
 export function renderKnowledge(template: string, values: KnowledgeValues, options: KnowledgeRenderOptions = {}): string {
+  const directory = options.knowledge ?? knowledgeDirectory();
   const known = (match: string, name: string) => Object.hasOwn(values, name) ? values[name] : match;
   return template.replace(token, (match, prefix: string | undefined, path: string, name: string | undefined) => {
     if (name) return known(match, name);
@@ -40,9 +42,9 @@ export function renderKnowledge(template: string, values: KnowledgeValues, optio
     }
     if (prefix === 'reference') {
       if (!options.section) throw new Error(`${match} 需要所属管线`);
-      return join(current, options.section, relative);
+      return join(directory, options.section, relative);
     }
-    return join(current, 'shared', 'references', relative);
+    return join(directory, 'shared', 'references', relative);
   });
 }
 
@@ -54,9 +56,11 @@ function read(path: string): string {
   }
 }
 
-export function runtimePromptPath(name: string): string { return join(current, 'shared', 'prompts', 'runtime', `${name}.md`); }
+export function runtimePromptPath(name: string, directory = knowledgeDirectory()): string { return join(directory, 'shared', 'prompts', 'runtime', `${name}.md`); }
 export function runtimePrompt(name: string, values: KnowledgeValues = {}, options: KnowledgeRenderOptions = {}): string {
-  return renderKnowledge(read(runtimePromptPath(name)), values, options);
+  const text = read(runtimePromptPath(name, options.knowledge));
+  if (!text.trim()) throw new Error(`先验知识文件为空：${runtimePromptPath(name, options.knowledge)}`);
+  return renderKnowledge(text, values, options);
 }
 
 type AgentRole = { initial: string[]; tools?: string[] };
@@ -81,7 +85,7 @@ function parseAgent(path: string, reviewDeclared: boolean): AgentConfig {
 const groupId = /^[\p{L}\p{N}_-]+(?:\/[\p{L}\p{N}_-]+)*$/u;
 
 export function stepKnowledge(section: string, step: string) {
-  const directory = join(current, section, step);
+  const root = knowledgeDirectory(), directory = join(root, section, step);
   const declared = knowledgeSteps.find(item => item.section === section && item.step === step);
   if (!declared) throw new Error(`未登记的先验知识步骤：${section}/${step}`);
   const agent = () => parseAgent(join(directory, 'agent.json'), Boolean(declared.review));
@@ -92,7 +96,8 @@ export function stepKnowledge(section: string, step: string) {
     return role === 'review' ? config.review.initial : config.review.repair.initial;
   };
   const filePath = (file: string, group?: string) => {
-    if (file.startsWith('shared/')) return join(current, file);
+    if (isAbsolute(file) || win32.isAbsolute(file) || file.split(/[\\/]/).includes('..')) throw new Error(`agent.json 的 initial 必须是知识目录内的相对路径：${file}`);
+    if (file.startsWith('shared/')) return join(root, file);
     if (group !== undefined && file.startsWith('prompts/')) {
       if (!groupId.test(group)) throw new Error('Invalid group prompt id');
       // A group prior replaces the step file of the same name, nothing else.
@@ -118,7 +123,7 @@ export function stepKnowledge(section: string, step: string) {
       return files(role, options.group).map(path => {
         const text = read(path);
         if (!text.trim()) throw new Error(`先验知识文件为空：${path}`);
-        return renderKnowledge(text, values, { taskRoot: options.taskRoot, section });
+        return renderKnowledge(text, values, { taskRoot: options.taskRoot, section, knowledge: root });
       }).join('');
     },
     // agent.json decides which provided tools the agent sees and in what
@@ -127,7 +132,11 @@ export function stepKnowledge(section: string, step: string) {
       const names = toolNames(role);
       return names.flatMap(name => {
         const tool = provided.find(item => item.name === name);
-        if (!tool) return [];
+        if (!tool) {
+          // imagegen is a native capability or is attached by the CLI adapter.
+          if (name === 'imagegen') return [];
+          throw new Error(`${section}/${step} 的 ${role} 声明了工具 ${name}，但没有提供执行实现`);
+        }
         const own = join(directory, 'tools', name, 'description.md');
         const description = (existsSync(own) ? read(own) : tool.description).trim();
         if (!description) throw new Error(`工具 ${name} 缺少说明：${own}`);
@@ -145,7 +154,7 @@ function checkReferences(path: string, section?: string): void {
     const [text, prefix, relative] = match;
     if ((prefix !== 'reference' && prefix !== 'shared_reference') || relative.includes('{')) continue;
     if (prefix === 'reference' && !section) throw new Error(`${text} 需要所属管线：${path}`);
-    const target = prefix === 'reference' ? join(current, section!, relative) : join(current, 'shared', 'references', relative);
+    const target = prefix === 'reference' ? join(knowledgeDirectory(), section!, relative) : join(knowledgeDirectory(), 'shared', 'references', relative);
     if (!existsSync(target)) throw new Error(`先验知识引用的文件不存在：${text}（${path}）`);
   }
 }
@@ -156,12 +165,14 @@ function markdownFiles(directory: string): string[] {
 }
 
 // Startup check for the whole knowledge directory, before any agent runs.
-export function checkKnowledge(directory = current): void {
+export function checkKnowledge(directory = knowledgeDirectory()): void {
   if (!isAbsolute(directory) || !existsSync(directory)) throw new Error(`先验知识目录不存在：${directory}`);
-  const previous = current;
-  current = directory;
-  try {
-    for (const name of runtimePrompts) checkReferences(runtimePromptPath(name));
+  selected.run(directory, () => {
+    for (const name of runtimePrompts) {
+      const path = runtimePromptPath(name);
+      if (!read(path).trim()) throw new Error(`先验知识文件为空：${path}`);
+      checkReferences(path);
+    }
     const schemas = new Set(toolSchemaNames());
     for (const declared of knowledgeSteps) {
       const step = stepKnowledge(declared.section, declared.step);
@@ -188,5 +199,5 @@ export function checkKnowledge(directory = current): void {
         for (const name of required) if (!tools.includes(name)) throw new Error(`${declared.section}/${declared.step} 的 ${role} 缺少必需工具：${name}`);
       }
     }
-  } finally { current = previous; }
+  });
 }

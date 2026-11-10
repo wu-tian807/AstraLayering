@@ -27,7 +27,7 @@ description: 从角色参考图制作人物与衣服分层 KRA、透明 PNG、�
 | `--image <参考图>` | 首次原图，推荐绝对路径 |
 | `--dir <运行根目录>` | 必须是绝对路径；数据在 `<dir>/<name>/`，`.runtime` 为保留名不能作任务名；默认完整仓库 `.run/`，独立安装为 skill 上一级的 `.run/`，不放 skill 内 |
 | `--krita <可执行文件>` | 绘制、组装与阴影需要；总入口续跑复用任务根 `run.json` 记录的值，单独运行 section 时每次都要传。路线含 Krita 时每次启动（含继续／恢复／重试）先检查：只核对可执行文件与显示环境（`DISPLAY`／`WAYLAND_DISPLAY`／`QT_QPA_PLATFORM` 或可用的 Xvfb），不启动 Krita；不通过即拒绝且不改动任何步骤，用 `--krita` 重新指定 |
-| `--ffmpeg <可执行文件>` | 仅九轴需要。网页在“全局设置”选择已安装或解压的 `ffmpeg`／`ffmpeg.exe`；总调度保存并在每次启动时传入。九轴执行环境设置 `ASTRA_STUDIO_FFMPEG` 和对应 PATH，不修改制作提示词；软件不会自动下载 |
+| `--ffmpeg <可执行文件>` | 仅九轴需要。网页在“全局设置”选择已安装或解压的 `ffmpeg`／`ffmpeg.exe`；总调度保存并在每次启动时传入。选帧 agent 使用 `extract_video_frame` 工具，工具内部消费完整路径；兼容环境保留 `ASTRA_STUDIO_FFMPEG` 和 PATH，不向制作提示词注入路径；软件不会自动下载 |
 | `--from / --to <section>` | 连续范围；默认完整六段，section ID 见下表 |
 | `--live / --no-live` | 阴影完成后是否自动继续头部九轴；首次默认关闭，续跑省略沿用。显式 `--from`／`--to` 优先限制本次范围，单独九轴仍可按下表运行 |
 | `--standard / --no-standard` | 是否标准化人物姿态；首次默认关闭，续跑沿用；本次路线须包含 part-layering；已有参考改选项需按 [workflow 规则](workflow/README.md#姿态与参考)重试 |
@@ -57,7 +57,7 @@ pnpm start --name my-character --stop
 
 单跑指使用真实输入制作某一段管线，会调用所选模型并保存该段成果。选择对应 README 检查上游，先用 `pnpm start --name <任务名> [--dir …] --stop` 停止同任务的总调度，再启动该 section。
 
-**独立 section 的启动无状态：** 每次启动、继续、恢复或重试都显式传入 `--dir`、`--knowledge` 及该段需要的可执行文件路径；九轴还须 `--ffmpeg`。完成标记、工程和绘制会话可沿用，启动配置不从 section 产物恢复。网页全局设置和总入口 `run.json` 由调用方管理，再传给 section。
+**独立 section 的启动无状态：** 每次启动、继续、恢复或重试都显式传入 `--dir`、`--knowledge` 及该段需要的可执行文件路径；九轴还须 `--ffmpeg`。完成标记、工程和绘制会话可沿用，启动配置不从 section 产物恢复。网页全局设置作为新任务默认值；总控 `run.json` 保存本任务参数，已有任务可在执行参数中修改 Krita 和 knowledge，再传给 section。
 
 | section ID／pnpm 入口 | 何时读取 |
 | --- | --- |

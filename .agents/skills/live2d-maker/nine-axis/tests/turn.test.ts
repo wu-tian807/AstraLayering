@@ -17,6 +17,7 @@ import { readStep } from '../../shared/step-chain.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { readUpstream, startContinuation } from '../continuation.ts';
+import { stepKnowledge } from '../../shared/knowledge.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
 
 // Most tests inject production handlers; startup still receives an explicit
@@ -426,7 +427,7 @@ test('单跑视频步骤只交付三路视频，选帧由后续步骤完成', as
   await assert.rejects(access(join(task,'nine-axis/step03_frames')), {code:'ENOENT'});
 });
 
-test('俯仰续跑按模型和提示词复用已有视频，单改 up 不重生 down', async t => {
+test('俯仰以实际 MP4 为准，修改提示词不自动废弃已有视频', async t => {
   const { root, task } = await fixture(t), nine = join(task, 'nine-axis'), front = join(nine, 'step02_video'), pitch = join(nine, 'pitch');
   const sample = join(root, 'sample.mp4'), ffmpeg = await testVideo(t, sample);
   if (!ffmpeg) return;
@@ -438,14 +439,14 @@ test('俯仰续跑按模型和提示词复用已有视频，单改 up 不重生 
   await producePitchVideos(pitch, front, generate, { up: 'up-a', down: 'down-a' }, options);
   const before = JSON.parse(await readFile(join(pitch, 'videos.json'), 'utf8')), down = await readFile(join(pitch, 'down.mp4'));
   await producePitchVideos(pitch, front, generate, { up: 'up-b', down: 'down-a' }, options);
-  assert.equal(generated, 3);
+  assert.equal(generated, 2);
   const after = JSON.parse(await readFile(join(pitch, 'videos.json'), 'utf8'));
   assert.equal(after.down.videoId, before.down.videoId);
-  assert.notEqual(after.up.videoId, before.up.videoId);
+  assert.equal(after.up.videoId, before.up.videoId);
   assert.deepEqual(await readFile(join(pitch, 'down.mp4')), down);
 });
 
-test('斜向续跑按模型和提示词复用已有视频', async t => {
+test('斜向以实际 MP4 为准，模型与提示词改变不触发自动重生成', async t => {
   const root = await mkdtemp(join(tmpdir(), 'astra-corner-reuse-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const pitch = join(root, 'pitch'), corner = join(root, 'corners');
@@ -462,9 +463,9 @@ test('斜向续跑按模型和提示词复用已有视频', async t => {
   assert.equal(reused['left-down'].videoId, initial['left-down'].videoId);
   assert.deepEqual(await readFile(join(corner, 'left-down.mp4')), down);
   await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'fixture' });
-  assert.equal(generated, 4, '提示词变化时不能复用');
+  assert.equal(generated, 2, '暂不实现提示词变化触发重生成');
   await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'changed-model' });
-  assert.equal(generated, 6, '模型变化时不能复用');
+  assert.equal(generated, 2, '暂不实现模型变化触发重生成');
 });
 
 test('九轴停止信号传入真实绘制 agent，已取消时不再启动', async t => {
@@ -474,7 +475,7 @@ test('九轴停止信号传入真实绘制 agent，已取消时不再启动', as
     started++; assert.equal(signal, controller.signal);
     controller.abort(new Error('cancel face fitting')); signal!.throwIfAborted();
     return { text: '{"error":null}', images: [] };
-  } }, async () => [], 'step06_angle-xy', '斜向', controller.signal);
+  } }, async () => stepKnowledge('nine-axis','step06_angle-xy').toolNames('main').filter(name=>name!=='imagegen').map(name=>({name,description:'fixture',inputSchema:{type:'object'},execute:async()=>assert.fail('cancel fixture')})), 'step06_angle-xy', '斜向', controller.signal);
   await assert.rejects(fit(join(task, 'nine-axis/step06_angle-xy'), 'test'), /cancel face fitting/);
   assert.equal(started, 1);
   await assert.rejects(fit(join(task, 'nine-axis/step06_angle-xy'), 'test'), /cancel face fitting/);

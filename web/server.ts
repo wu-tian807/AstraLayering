@@ -10,7 +10,7 @@ import { shadowMode } from '../.agents/skills/live2d-maker/shared/shadow.ts';
 import { referencePath } from '../.agents/skills/live2d-maker/shadow/preparation.ts';
 import { encodePng } from '../.agents/skills/live2d-maker/shared/png.ts';
 import { runsDirectory, sectionIds, workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
-import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, sectionId, taskStatus, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
+import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, sectionId, taskStatus, taskKrita, taskFFmpeg, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
 import { convertLayout } from '../.agents/skills/live2d-maker/workflow/layout.ts';
 import { applyTaskAction } from '../.agents/skills/live2d-maker/workflow/step-actions.ts';
 import { configAPI, configRaw, streamMediaFile } from './config.ts';
@@ -51,10 +51,10 @@ async function body(request: IncomingMessage) {
 function options(value: any, dir: string): TaskOptions {
   const result: TaskOptions = { name: value.name, dir };
   directoryFor(result);
-  for (const key of ['krita', 'ffmpeg', 'image'] as const) {
+  for (const key of ['krita', 'ffmpeg', 'image', 'knowledge'] as const) {
     if (value[key] !== undefined) {
       if (typeof value[key] !== 'string') throw new Error(key + ' 必须是路径');
-      if (value[key].trim()) result[key] = value[key].trim();
+      if (value[key].trim() || key === 'knowledge' || key === 'krita') result[key] = value[key].trim();
     }
   }
   if (value.from) result.from = sectionId(value.from);
@@ -231,12 +231,12 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         }
         if (path === '/api/studio/review') { json(await saveStudioReview(root, dirname(settingsPath), value), 201); return; }
         const opts = options(value, requestDir), directory = directoryFor(opts);
-        // Starts use the global Krita; a task records it, and the knowledge directory, when created.
-        if (!opts.krita && settings.krita) opts.krita = settings.krita;
-        if (!opts.ffmpeg && settings.ffmpeg) opts.ffmpeg = settings.ffmpeg;
         if (path === '/api/tasks') {
+          // Global settings are defaults for a new task. Existing tasks own their options.
+          if (!opts.krita && settings.krita) opts.krita = settings.krita;
+          if (!opts.ffmpeg && settings.ffmpeg) opts.ffmpeg = settings.ffmpeg;
           const displayName = validateDisplayName(value.displayName ?? '');
-          if (settings.knowledge) opts.knowledge = settings.knowledge;
+          if (opts.knowledge === undefined && settings.knowledge) opts.knowledge = settings.knowledge;
           // A route with Krita steps is refused before anything is created.
           try { await preflight(opts); }
           catch (error) { if (error instanceof KritaUnavailable || error instanceof FFmpegUnavailable) { json(softwareRefused(error), 409); return; } throw error; }
@@ -302,11 +302,16 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
             await saveRun(directory, configured);
             if (displayName !== undefined) await saveProjectDisplayName(directory, displayName);
             json({ name: opts.name, from: configured.from, to: configured.to, live: configured.live, jobs: configured.jobs,
-              standard: configured.standard, shadowMode: configured.shadowMode, status: configured.status });
+              standard: configured.standard, shadowMode: configured.shadowMode, status: configured.status,
+              krita: configured.krita, knowledge: configured.knowledge });
           } finally { await release(); }
           return;
         }
         if (path === '/api/start' || path === '/api/task-action') {
+          const recorded = await readRun(directory);
+          opts.krita = taskKrita(opts, recorded);
+          opts.ffmpeg = taskFFmpeg(opts, recorded);
+          opts.knowledge ??= recorded?.knowledge;
           // The same commands as pnpm start: plain start / continue, or --continue / --resume / --retry
           // for every step still marked .running (task-action). One step is acted on from the CLI.
           if (starts.has(directory)) { json({ error: '该任务正在启动，请等待启动结果' }, 409); return; }

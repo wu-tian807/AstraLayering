@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { runtimePrompt } from '../../shared/knowledge.ts';
 
 export type ImageBudget = { images?: number; bytes?: number; deduplicate?: boolean };
 export type VisualProtocol = 'genai' | 'anthropic';
@@ -141,8 +142,7 @@ export function deduplicateImages(body: any, protocol: VisualProtocol): number {
   return removed;
 }
 
-const summaryInstruction = 'Summarize the historical images actually provided below. This is internal visual context compaction, not a drawing or review task. For every image ID record visible geometry, colors, boundaries, defects and uncertainty, using its supplied source/crop/scale coordinates. Preserve completed observations and corrections; do not invent checks or assign ownership without evidence. Images not provided are still retained as originals, not unavailable or unread. Do not rerun tools or produce workflow deliverables. Return a concise factual visual memory, identifying each image ID.';
-function summaryBody(original: any, protocol: VisualProtocol, batch: Slot[]): any {
+function summaryBody(original: any, protocol: VisualProtocol, batch: Slot[], summaryInstruction: string): any {
   const body = { ...original };
   delete body.tools; delete body.tool_choice; delete body.toolConfig; delete body.tool_config;
   delete body.cachedContent; delete body.cached_content; delete body.context_management;
@@ -170,10 +170,14 @@ function summaryBody(original: any, protocol: VisualProtocol, batch: Slot[]): an
 
 export class VisualContext {
   #state?: State;
+  #summaryInstruction: string;
   #queue: Promise<unknown> = Promise.resolve();
   readonly options: { directory: string; protocol: VisualProtocol; budget: ImageBudget;
     observe?: (event: VisualContextEvent) => Promise<void> };
-  constructor(options: VisualContext['options']) { this.options = options; }
+  constructor(options: VisualContext['options']) {
+    this.options = options;
+    this.#summaryInstruction = options.budget.images || options.budget.bytes ? runtimePrompt('visual-context-summary') : '';
+  }
   prepare(original: any, summarize: (body: any) => Promise<string>): Promise<any> {
     const pending = this.#queue.catch(() => {}).then(() => this.#prepare(original, summarize));
     this.#queue = pending; return pending;
@@ -227,13 +231,13 @@ export class VisualContext {
         let low = 1, high = batchSize; batchSize = 0;
         while (low <= high) {
           const mid = low + Math.floor((high - low) / 2);
-          if (requestBytes(summaryBody(original, protocol, candidates.slice(0, mid))) <= budget.bytes) { batchSize = mid; low = mid + 1; }
+          if (requestBytes(summaryBody(original, protocol, candidates.slice(0, mid), this.#summaryInstruction)) <= budget.bytes) { batchSize = mid; low = mid + 1; }
           else high = mid - 1;
         }
       }
       const batch = candidates.slice(0, batchSize);
       if (!batch.length) throw new VisualContextError('单张历史图片及其文字已超过视觉压缩预算；原历史与图片保留，未发出超限压缩请求。', 413);
-      const wire = summaryBody(original, protocol, batch), checkpoint = digest(batch.map(slot => slot.key).join(':'));
+      const wire = summaryBody(original, protocol, batch, this.#summaryInstruction), checkpoint = digest(batch.map(slot => slot.key).join(':'));
       await mkdir(directory, { recursive: true, mode: 0o700 });
       const imagesDirectory = join(directory, 'images'); await mkdir(imagesDirectory, { recursive: true, mode: 0o700 });
       for (const slot of batch) await writeFile(join(imagesDirectory, `${slot.hash}.bin`), Buffer.from(slot.data, 'base64'), { mode: 0o600 });

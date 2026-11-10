@@ -246,10 +246,11 @@ test('--knowledge 记入 run.json，续跑省略沿用；缺失文件时拒绝�
   t.after(() => selectKnowledge(defaultKnowledgeDirectory));
   const knowledge = join(f.options.dir, 'knowledge');
   await cp(defaultKnowledgeDirectory, knowledge, { recursive: true });
-  const done = { preflight, execute: async () => ({ summary: 'ok' }) };
+  const callerKnowledge = knowledgeDirectory();
+  const done = { preflight, execute: async () => { assert.equal(knowledgeDirectory(), knowledge); return { summary: 'ok' }; } };
   await runTask({ ...f.options, image: 'reference.png', to: 'part-layering', knowledge }, done);
   assert.equal((await readRun(f.directory))!.knowledge, knowledge);
-  assert.equal(knowledgeDirectory(), knowledge);
+  assert.equal(knowledgeDirectory(), callerKnowledge);
   const before = await readFile(join(f.directory, 'run.json'), 'utf8');
   await rm(join(knowledge, 'shared/prompts/runtime/interrupted-task.md'));
   await assert.rejects(runTask({ name: 'case', dir: f.options.dir, to: 'part-layering' }, done), /先验知识缺少文件：.*interrupted-task\.md/);

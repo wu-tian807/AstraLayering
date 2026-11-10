@@ -47,7 +47,7 @@ test('both scan APIs use the same controls with separate states and stop on serv
   assert.deepEqual(stops, ['ffmpeg', 'krita', 'ffmpeg']);
 });
 
-test('global FFmpeg is required only for nine-axis, retained in settings and passed anew to each start', async t => {
+test('global FFmpeg supplies new task defaults; starts pass the task path without overwriting it', async t => {
   const started: any[] = [], b = await bench(t, started);
   await b.post('settings', { directory: b.dir, krita: '/opt/good-krita' });
   assert.equal((await b.post('tasks', { name: 'static', upload: await upload() })).status, 201);
@@ -64,7 +64,10 @@ test('global FFmpeg is required only for nine-axis, retained in settings and pas
   assert.equal(started[0].ffmpeg, first);
   await b.post('settings', { directory: b.dir, ffmpeg: second });
   assert.equal((await b.post('start', { name: 'head' })).status, 202);
-  assert.equal(started[1].ffmpeg, second);
+  assert.equal(started[1].ffmpeg, first);
+  assert.equal((await b.post('task-options',{name:'head',ffmpeg:second})).status,200);
+  assert.equal((await b.post('start',{name:'head'})).status,202);
+  assert.equal(started[2].ffmpeg,second);
   assert.equal((await b.post('settings', { directory: b.dir, ffmpeg: '' })).value.ffmpeg, undefined);
 });
 

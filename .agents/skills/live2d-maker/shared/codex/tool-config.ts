@@ -57,12 +57,8 @@ export class ToolCatalog {
   }
 }
 
-const catalogs = new Map<string, ToolCatalog>();
 export function toolCatalog(overrides?: string): ToolCatalog {
-  const key = `${knowledgeDirectory()}\0${overrides ?? ''}`;
-  let catalog = catalogs.get(key);
-  if (!catalog) { catalog = new ToolCatalog(toolsDirectory, overrides); catalogs.set(key, catalog); }
-  return catalog;
+  return new ToolCatalog(toolsDirectory, overrides);
 }
 
 export function toolDefinition(name: string, overrides?: string, omitParameters: readonly string[] = []): Definition {

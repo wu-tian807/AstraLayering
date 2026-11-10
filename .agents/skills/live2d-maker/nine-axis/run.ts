@@ -42,6 +42,7 @@ import { upperBodyBox } from './turn.ts';
 import { applyStepAction, applyTaskAction } from '../workflow/step-actions.ts';
 import { ffmpegEnvironment, type FFmpegCheck } from '../shared/ffmpeg.ts';
 import { requireFFmpeg } from '../workflow/ffmpeg.ts';
+import { createFrameTool } from './frame-tool.ts';
 
 export const help = `nine-axis — 头部九轴
 pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> --ffmpeg <可执行文件> [--dir <绝对运行根目录>] [--step <stepNN 或 step04_angles/model/left|up|down>] [--dry-run]
@@ -126,9 +127,11 @@ async function runAgentTurn(agents: Agents, nine: string, directory: string, tur
     if (error && typeof error === 'object' && 'threadId' in error && typeof error.threadId === 'string') await persist(error.threadId);
     throw error;
   } finally { await session?.close(); }
-  let error: unknown;
-  try { error = (JSON.parse(result.text) as { error?: unknown }).error; } catch { throw agentOutcomeError(`${turn.name}没有返回结果`, result); }
-  if (typeof error === 'string' && error) throw agentOutcomeError(`${turn.name}：${error}`, result);
+  let value: unknown;
+  try { value = JSON.parse(result.text); } catch { throw agentOutcomeError(`${turn.name}没有返回结果`, result); }
+  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).length !== 1 || !('error' in value)
+    || (value.error !== null && typeof value.error !== 'string')) throw agentOutcomeError(`${turn.name}结果须为 {"error":null} 或 {"error":"原因"}`, result);
+  if (typeof value.error === 'string') throw agentOutcomeError(`${turn.name}：${value.error || '返回了空错误原因'}`, result);
 }
 
 export type FitHead = (directory: string, prompt: string) => Promise<void>;
@@ -154,7 +157,8 @@ const frameAgents = { step03_frames: { agent: 'nine_axis_view_frames', knowledge
 export function createFramesHead(agents: Agents, tools: (directory: string) => Promise<FunctionTool[]>, step: keyof typeof frameAgents, signal?: AbortSignal, sectionDirectory?: string): FramesHead {
   const { agent, knowledge, name, names } = frameAgents[step];
   return async (directory, prompt) => runFrameSelection(directory, names, async () => { await runAgentTurn(agents, sectionDirectory ?? join(directory, '..'), directory, {
-    step: agent, knowledge, role: 'main', session: step, name, prompt, tools: await tools(directory) }, signal); });
+    step: agent, knowledge, role: 'main', session: step, name, prompt, tools: await tools(directory) }, signal); },
+    join(sectionDirectory ?? join(directory, '..'), step === 'step03_frames' ? 'step02_video' : 'step04_angles/video'));
 }
 
 export type NineAxisOptions = { name: string; dir?: string; krita?: string; ffmpeg?: string; step?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
@@ -222,7 +226,11 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     const observations = join(output, 'observations', 'outline'), box = await crop();
     return [createBitmapTool(directory, observations), createSvgPreviewTool({ directory: output, reference, canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' })];
   };
-  const framesTools = async (output: string): Promise<FunctionTool[]> => [createBitmapTool(directory, join(output, 'observations', 'frames'))];
+  const framesTools = async (output: string): Promise<FunctionTool[]> => [
+    createBitmapTool(directory, join(output, 'observations', 'frames')),
+    createFrameTool({ ffmpeg: ffmpeg!.executable, taskRoot: task, directory: output,
+      videos: output === frames ? videos : cornerVideos, names: output === frames ? turnViews : corners, size: (await crop()).size }),
+  ];
   const preview = (text: string) => { progress(`预览：${text}`); summary = '预览完成，未调用模型'; };
   try {
     await runSection({ directory, steps, dryRun: options.dryRun, signal: options.signal, progress,

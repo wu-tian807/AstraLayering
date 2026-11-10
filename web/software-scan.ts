@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 // Both selectors share this walker and child-process lifecycle. Discovery finds
 // executable files; saving settings validates the chosen program.
 export type Software = 'krita' | 'ffmpeg';
-export type SoftwareScanState = { running: boolean; scanned: number; current: string; found: string[]; startedAt?: string; finishedAt?: string; error?: string };
+export type SoftwareScanState = { running: boolean; scanned: number; current: string; found: string[]; startedAt?: string; finishedAt?: string; stopped?: boolean; error?: string };
 export type ScanPlan = { known: string[]; roots: string[]; depth: number };
 export type ScanMessage = { scanned: number; current: string } | { found: string } | { error: string };
 type PlanEnvironment = { platform?: NodeJS.Platform; home?: string; env?: NodeJS.ProcessEnv };
@@ -112,11 +112,11 @@ export function createSoftwareScan(software: Software, plan: () => ScanPlan = ()
         if (child !== process_) return;
         child = undefined;
         state = { ...state, running: false, current: '', finishedAt: new Date().toISOString(),
-          ...(code && !state.error ? { error: '扫描进程异常退出：' + code } : signal && signal !== 'SIGTERM' ? { error: '扫描进程被终止：' + signal } : {}) };
+          ...(code && !state.error ? { error: '扫描进程异常退出：' + code } : signal && !state.stopped ? { error: '扫描进程被终止：' + signal } : {}) };
       });
       return state;
     },
-    stop() { child?.kill(); return state; },
+    stop() { if (child) { state = { ...state, stopped: true }; child.kill(); } return state; },
   };
 }
 
