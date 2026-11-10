@@ -108,3 +108,12 @@ test('workbench saves keyforms; stale revisions and changed texture identities c
   const changed = structuredClone(edited); changed.parts[0].texture = 'layers/other.png';
   await assert.rejects(saveNineAxis(root, { path, version: saved.version, document: changed }), /不能替换图层/);
 });
+
+
+test('Validation accepts mask parts and clips that name other parts', () => {
+  const doc = (...parts: any[]) => ({ ...fixture(), parts });
+  const mask = { ...part('mask'), role: 'mask' };
+  assert.doesNotThrow(() => validateHeadNineAxis(doc(mask, { ...part('image'), clip: { by: ['mask'], invert: true } })));
+  assert.throws(() => validateHeadNineAxis(doc(mask, { ...part('image'), clip: { by: ['missing'] } })), /裁切来源无效/);
+  assert.throws(() => validateHeadNineAxis(doc({ ...part('image'), role: 'shadow' })), /未知角色/);
+});

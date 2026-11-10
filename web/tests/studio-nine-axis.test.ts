@@ -49,11 +49,3 @@ test('Validation rejects incomplete keyforms and unknown levels', () => {
   assert.throws(() => validateHeadNineAxis(doc(part({ '0': rest.slice(1) }))), /4 个控制点/);
   assert.throws(() => validateHeadNineAxis(doc(part({ '0': rest }, { level: 'body' }))), /未知层级/);
 });
-
-test('Validation accepts mask parts and clips that name other parts', () => {
-  const doc = (...parts: any[]) => ({ version: 2, deformers: [], kind: 'head-nine-axis', levels: [{ id: 'hair', includes: ['hair'] }], parts });
-  const mask = part({ '0': rest }, { id: 'hair/mask', role: 'mask' });
-  assert.doesNotThrow(() => validateHeadNineAxis(doc(mask, part({ '0': rest }, { clip: { by: ['hair/mask'], invert: true } }))));
-  assert.throws(() => validateHeadNineAxis(doc(mask, part({ '0': rest }, { clip: { by: ['hair/none'] } }))), /裁切来源无效/);
-  assert.throws(() => validateHeadNineAxis(doc(part({ '0': rest }, { role: 'shadow' }))), /未知角色/);
-});
