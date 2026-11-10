@@ -16,7 +16,7 @@ import { applyTaskAction } from '../.agents/skills/live2d-maker/workflow/step-ac
 import { configAPI, configRaw, streamMediaFile } from './config.ts';
 import { createEnvironmentConfig, EnvironmentConflict } from './environment-config.ts';
 import { atomicJSON, agentRecord, artifactExtensions, browse, inside, jsonFile, safePath } from './files.ts';
-import { createKritaScan } from './krita-scan.ts';
+import { createSoftwareScan } from './software-scan.ts';
 import { snapshot, summary } from './snapshot.ts';
 import { SVGThumbnails } from './svg-thumbnail.ts';
 import { KRAPreviews } from './kra-preview.ts';
@@ -80,11 +80,14 @@ function options(value: any, dir: string): TaskOptions {
 type Settings = { directory: string; krita?: string; ffmpeg?: string; knowledge?: string };
 export async function createWorkbench({ settingsPath = join(root, '.web/settings.json'), defaultDir = runsDirectory,
   start = launch, environment = createEnvironmentConfig(), kritaCheck = workflowKrita, ffmpegCheck = checkFFmpeg,
-  preflight = async (options: TaskOptions) => { await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck); }, kritaScan = createKritaScan(),
+  preflight = async (options: TaskOptions) => { await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck); },
+  kritaScan = createSoftwareScan('krita'), ffmpegScan = createSoftwareScan('ffmpeg'),
   updates = createUpdateCheck({ cachePath: join(dirname(settingsPath), 'update-check.json') }) }: {
   settingsPath?: string; defaultDir?: string; start?: typeof launch; environment?: ReturnType<typeof createEnvironmentConfig>;
-  kritaCheck?: KritaCheck; ffmpegCheck?: FFmpegCheck; preflight?: (options: TaskOptions) => Promise<unknown>; kritaScan?: ReturnType<typeof createKritaScan>;
+  kritaCheck?: KritaCheck; ffmpegCheck?: FFmpegCheck; preflight?: (options: TaskOptions) => Promise<unknown>;
+  kritaScan?: ReturnType<typeof createSoftwareScan>; ffmpegScan?: ReturnType<typeof createSoftwareScan>;
   updates?: ReturnType<typeof createUpdateCheck> } = {}) {
+  const scans = new Map([['/api/krita-scan', kritaScan], ['/api/ffmpeg-scan', ffmpegScan]]);
   async function validateDir(path: string) {
     if (typeof path !== 'string' || !isAbsolute(path)) throw new Error('运行目录必须是绝对路径');
     await mkdir(path, { recursive: true });
@@ -219,9 +222,10 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           const next = await validateSettings(value, settings);
           await atomicJSON(settingsPath, next); settings = next; json({ ...settings, defaults }); return;
         }
-        if (path === '/api/krita-scan') {
-          if (value.action === 'start') json(kritaScan.start());
-          else if (value.action === 'stop') json(kritaScan.stop());
+        const scan = scans.get(path);
+        if (scan) {
+          if (value.action === 'start') json(scan.start());
+          else if (value.action === 'stop') json(scan.stop());
           else json({ error: '未知的扫描操作' }, 400);
           return;
         }
@@ -332,7 +336,8 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       if (path === '/api/version') { json(await updates()); return; }
       if (path === '/api/settings') { json({ ...settings, defaults }); return; }
       if (path === '/api/fs') { json(await browse(url.searchParams.get('path'), url.searchParams.get('kind') === 'file' ? 'file' : 'dir')); return; }
-      if (path === '/api/krita-scan') { json(kritaScan.state()); return; }
+      const scan = scans.get(path);
+      if (scan) { json(scan.state()); return; }
       if (path === '/api/config/environment') { json(await environment.read()); return; }
       if (path === '/api/config/raw') { await configRaw(url.searchParams, settings.knowledge ?? defaults.knowledge, request, response); return; }
       if (path.startsWith('/api/config/')) { json(await configAPI(path, url.searchParams, settings.knowledge ?? defaults.knowledge)); return; }
@@ -464,8 +469,9 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       json({ error: (error as NodeJS.ErrnoException).code === 'EEXIST' ? '任务名已存在，请选择该任务续跑或使用新名称' : (error as Error).message }, 400);
     }
   });
-  server.once('close', () => { void compositor.dispose(); kritaScan.stop(); });
-  return Object.assign(server, { disposeLayers: () => compositor.dispose() });
+  const stopScans = () => { for (const scan of scans.values()) scan.stop(); };
+  server.once('close', () => { void compositor.dispose(); stopScans(); });
+  return Object.assign(server, { disposeLayers: () => compositor.dispose(), stopScans });
 }
 if (import.meta.main) {
   const { values } = parseArgs({ options: { port: { type: 'string', default: '4387' } } });
@@ -474,6 +480,7 @@ if (import.meta.main) {
   const server = await createWorkbench();
   server.listen(port, '127.0.0.1', () => console.log(`AstraLayering workbench: http://127.0.0.1:${port}`));
   const shutdown = async () => {
+    server.stopScans();
     server.close(); server.closeAllConnections();
     await server.disposeLayers();
     process.exit(0);

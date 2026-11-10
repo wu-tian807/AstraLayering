@@ -6,14 +6,15 @@ import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { createWorkbench } from '../server.ts';
 import { scan } from '../krita-scan.ts';
+import { createSoftwareScan } from '../software-scan.ts';
 import { defaultKnowledgeDirectory } from '../../.agents/skills/live2d-maker/shared/knowledge.ts';
 
-async function bench(t: any, started: any[] = []) {
+async function bench(t: any, started: any[] = [], scans: { kritaScan?: ReturnType<typeof createSoftwareScan>; ffmpegScan?: ReturnType<typeof createSoftwareScan> } = {}) {
   const base = await realpath(await mkdtemp(join(tmpdir(), 'layering-settings-')));
   const dir = join(base, 'runs');
   const kritaCheck = async (path: string) => { if (!path.endsWith('good-krita')) throw new Error('不存在或不可执行'); return { executable: path, version: 'test' }; };
   const ffmpegCheck = async (path: string) => { if (!path.endsWith('good-ffmpeg')) throw new Error('不是 FFmpeg'); return { executable: path, version: 'ffmpeg version test' }; };
-  const server = await createWorkbench({ defaultDir: dir, settingsPath: join(base, 'settings.json'), kritaCheck, ffmpegCheck, start: async options => { started.push(options); return 1; } });
+  const server = await createWorkbench({ defaultDir: dir, settingsPath: join(base, 'settings.json'), kritaCheck, ffmpegCheck, ...scans, start: async options => { started.push(options); return 1; } });
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(async () => { await new Promise<void>(resolve => server.close(() => resolve())); await rm(base, { recursive: true, force: true }); });
   const url = 'http://127.0.0.1:' + (server.address() as any).port;
@@ -21,9 +22,30 @@ async function bench(t: any, started: any[] = []) {
     const response = await fetch(url + '/api/' + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ dir, ...data }) });
     return { status: response.status, value: await response.json() as any };
   };
-  return { base, dir, url, post };
+  return { base, dir, url, post, server };
 }
 const upload = async () => (await sharp({ create: { width: 8, height: 8, channels: 3, background: '#cbbbaa' } }).png().toBuffer()).toString('base64');
+
+test('both scan APIs use the same controls with separate states and stop on service close', async t => {
+  const stops: string[] = [];
+  const scanner = (name: string) => {
+    let running = false;
+    const state = () => ({ running, scanned: 4, current: running ? '/test' : '', found: ['/test/' + name] });
+    return { state, start: () => { running = true; return state(); }, stop: () => { running = false; stops.push(name); return state(); } };
+  };
+  const b = await bench(t, [], { kritaScan: scanner('krita'), ffmpegScan: scanner('ffmpeg') });
+  const state = async (name: string) => (await (await fetch(b.url + '/api/' + name + '-scan')).json()) as any;
+  assert.equal((await state('ffmpeg')).running, false);
+  assert.equal((await b.post('ffmpeg-scan', { action: 'start' })).value.running, true);
+  assert.equal((await state('krita')).running, false);
+  assert.equal((await b.post('krita-scan', { action: 'start' })).value.running, true);
+  assert.equal((await b.post('ffmpeg-scan', { action: 'stop' })).value.running, false);
+  assert.equal((await state('krita')).running, true);
+  assert.deepEqual((await state('ffmpeg')).found, ['/test/ffmpeg']);
+  assert.equal((await b.post('ffmpeg-scan', { action: 'unknown' })).status, 400);
+  await new Promise<void>(resolve => b.server.close(() => resolve()));
+  assert.deepEqual(stops, ['ffmpeg', 'krita', 'ffmpeg']);
+});
 
 test('global FFmpeg is required only for nine-axis, retained in settings and passed anew to each start', async t => {
   const started: any[] = [], b = await bench(t, started);
