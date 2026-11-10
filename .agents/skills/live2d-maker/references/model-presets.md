@@ -165,7 +165,15 @@ part_review_agent_model=gemini-4-argon-high
 
 Claude 的已有 Bedrock／Vertex／Foundry 路由在统一连接留空时继承；填写统一连接与已启用的云平台路由冲突时明确报错。AGV 的 `openai` 模式可以透传，但本项目的 AGV 工具／原图转发及图片容量保护依赖 `genai`；配置保护却选 `openai` 时不会静默忽略。
 
-逐字段优先级为 shell 统一键、shell 旧别名、`.env` 统一键、`.env` 旧别名，最后继承 CLI 登录；空 shell 值屏蔽文件中的同名键。旧 Codex `custom_provider=true` 与 `provider_base_url/api_key`，Claude `ANTHROPIC_API_KEY/BASE_URL`，AGV `AGY_LLM_GATEWAY_API_KEY/URL/MODELS/WIRE_PROTOCOL` 继续兼容。统一 Codex 连接不再需要旧开关。CLI 接收转换后的原生字段，不修改 `process.env` 或全局配置；显式 Claude 连接的 key 优先于继承的 token／key helper，后者仅在本次私有配置中移除。
+每个字段按以下顺序读取：shell 新键 → shell 旧别名 → `.env` 新键 → `.env` 旧别名 → CLI 已有登录。空 shell 值会屏蔽文件中的同名键。
+
+| CLI | 兼容的旧配置 |
+| --- | --- |
+| Codex | `custom_provider=true`、`provider_base_url`、`provider_api_key`；使用新键时直接配置连接 |
+| Claude | `ANTHROPIC_API_KEY`、`ANTHROPIC_BASE_URL` |
+| AGV | `AGY_LLM_GATEWAY_API_KEY`、`AGY_LLM_GATEWAY_URL`、`AGY_LLM_GATEWAY_MODELS`、`AGY_LLM_GATEWAY_WIRE_PROTOCOL` |
+
+连接配置只作用于本次 CLI 请求。显式配置 Claude key 时，本次私有配置优先使用该 key；用户的全局配置保持原样。
 
 `pnpm env:check` 展示每个 CLI 的连接来源、地址、协议、模型列表和凭据是否填写，不输出 key／token 值。与 CLI 登录权限和版本检查一起核对，见[生效配置核对](../workflow/README.md#生效配置核对)。
 

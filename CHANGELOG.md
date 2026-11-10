@@ -1,54 +1,32 @@
 # 更新记录
 
-版本以 Git 标签 `vX.Y.Z` 为准；根目录 `package.json` 的 `version` 在打标签前改成同一编号，供没有 `.git` 的发布包识别。
-每个版本说明实际变化，以及**升级后已完成任务是否需要重做**：续跑时由各步骤的指纹决定，只改措辞的提示词修订不会让已完成步骤重做。
+## v0.2.0
 
-## 未发布
-- **头部九轴五官一致性与脖子清理：** step02 的 left/up/down 和 step03 斜向把五官一致性写成目标与验收标准：每个部件的大小、形状、内部结构和部件间相对位置只随透视变化，逐个和正面原画、视频帧对照。step04 不再单独画脖子侧边轮廓线；脖子阴影单独一层、用更深的阴影色、边缘柔和，原脖子图层已画阴影时先取出并把脖子清理成亮部底色，不再新旧叠加。只改提示词；想用新要求时从 step02 对应方向重试。
-- **头部九轴下颌线改为跟随视频运动：** step04 提示词重写：先逐帧看五个视频里下颌线、脖子交界和脖子阴影怎么变，再在 Krita 拆出完整下颌线、加高脖子顶部、画脖子阴影与线蒙版；下颌线在脸的层级下单独一个 Warp，线的消失靠蒙版形状推进、线头可接进脖子轮廓，中间值对照视频中间帧，不用淡入淡出。脖子阴影按 Live2D 常规做法随头移动、被脖子裁切、放在脸底下面，不再留给后续阴影步骤。只改提示词；想用新做法时重试 step04。
-- **头部九轴斜向改回单 agent 串行：** step03 不再拆成 left-up、left-down 两个并发子任务再合并；一个会话在同一份 face-xy.json 里先做完 left-up 再做 left-down，做第二角时回看第一角。两角共享同一组部件与网格，分开做时图层静态设置会不一致、无法合并。提示词保留按头发余量补全的新标准。已有分角目录的任务需重试 step03。
-- **头部九轴补全改为按头发余量判断：** step02 left/up/down 和 step03 斜角的补全不再以脸型为依据，被头发盖住的部分只要求与可见线连续顺滑，并在每条头发边下面留足余量，头发运动时不露空（额角、刘海与鬓发交界尤其要留足）；可见脸缘仍照视频描，left 远侧笔直陡线保留。斜角选帧记录写明 path 指向规范化后的参考图。只改提示词与知识文件；想用新标准时重试对应方向。
-- **头部九轴脸型先验改为文字：** step02 left/up/down 和 step03 斜角各有一份文字脸型先验，都以原画正面为主要参考：left 近侧保持正面的圆润脸型整体平顺形变、不刻意补后脑层次，重点是脸部边缘连续干净，远侧保持表达转向立体感的笔直陡线；up/down 体量与正面一致、不压扁；斜角结合两者。通用轮廓先验新增边缘干净、不碎裂不抖动的要求。删除教程截图、Live2D 模型脸型对照图和 round-face 视频。只改提示词与知识文件，已完成的九轴步骤不需重做；想用新先验时重试对应方向。
-- **分层局部修画与视觉验收：** 人物、衣服 step01 将原图作为形体和笔触依据，原始像素复用限定到 Krita 中确认需要恢复的局部；补充原生选区取样用法及每次局部操作后的独显、合成对照。step02 与 review 以轮廓清晰、部件干净和衔接连续为保留差异的前提，差异定位工具只负责定位。已完成成果沿用，现有瑕疵需要针对所属步骤返修。
-- **头部九轴拆出视频步骤，改为六步：** 新的 `step01_video` 生成全部视频：上半身特写为首帧的向左转头 left、镜头仰视 up、俯视 down，再以 up、down 的 25° 帧为首帧生成左上 left-up、左下 left-down 转头视频；`step02_views` 只从 left.mp4 取 left.png，`step04_views-y` 只从 up/down.mp4 取 up.png、down.png。原 step02_angle-x、step04_angle-y、step05_angle-xy 顺延为 `step03_angle-x`、`step05_angle-y`、`step06_angle-xy`。删除 corner_view 工具：step06 的 agent 需要斜向参考时自己用 ffmpeg 从 left-up.mp4、left-down.mp4 取帧。**旧任务的 `nine-axis/` 目录与新步骤名不对应，需删除后重跑。**
-- **生视频只用自己的接口：** 去掉生视频在未填写时沿用 OpenAI 生图代理的回退；须填写 `video_base_url` / `video_api_key`，缺少时 step01_video 报错。
-- **`.env` 键名去掉 `layering_` 前缀：** 接口、模型等键统一不带前缀（如 `layering_codex_api_key` → `codex_api_key`、`layering_video_base_url` → `video_base_url`）；旧键仍按去掉前缀后的同一键读取，两者都填时以新键为准。
-- **分件调度：** 人物与衣服分件在单个父组完成补全、自检和拆分后立即派发子组描边与 review；下一层去重仍等待全部父组拆分和全层轮廓齐备。
-- **生图能力由 agent.json 统一控制：** 仅为 tools 中声明 imagegen 的 agent 提供生图；Codex 内置工具、自定义 key 的 patch 路由和其他 CLI 的自定义工具共用声明检查。移除代码里的生图能力名单，默认关闭 review、边缘精修、人物 step03 与组装的生图能力，step03 使用 Krita 手工补绘。repair 与 main 续接同一绘制 thread，共用 main.tools；review 使用独立 thread 与自己的 tools。修复点号与嵌套配置覆盖顺序，避免全局开关重开被禁用的原生工具。已有成果不重做，下次启动或恢复按新声明执行。
-- **嘴部拆分补充上下嘴先验：** part-layering 嘴部直属拆分写明 upper_lip 是上唇线加线上方盖过口腔上半部的肤色，lower_lip 是下唇线加线下方包住嘴角的 U 形肤色，闭嘴时两条唇线贴合组装回参考；参考只有一条闭嘴线时上下各带一份。依据 Live2D 官方样例 Haru、Koharu、Momose 的分层。只改措辞，已完成步骤不重做。
-- **分层绘制提示词改为“目标 + 要保护的”：** 人物与衣服的 raster step01（含 review、repair）、step02、step03 及共享的绘制职责提示词，去掉逐条“先做什么、不许做什么”的流程限制，只写本步要达到的目标、要保护的内容（部件归属、部件自身连贯、上游结构、原图画风、已合格内容、内容安全线）、可用手段和交付契约；每一步发现的问题都在本步修好，方法由 agent 自选。step01 正文从约 8.5k 字缩到约 3k 字。step02 写清交付的是可直接绑定的最终部件：组装像原图，独显时每片画完整，外轮廓描边在补全区沿同一轮廓画完、与可见段粗细浓淡一致，部件交界处描边不断开、不重叠加粗。step01（含 review、repair）写清衔接归第一步：补全与可见区、贴原图与新画、深度分片、相邻部件之间，原尺寸下不能有台阶、错位、断线、粗细突变、色差、硬边或毛刺。step02 仍修好遗留下来的问题。工具、文件路径、报告格式与 blocked 条件不变。只改措辞，已完成步骤不重做。
-- **移除 clothed-man 案例：** 该案例分层质量太差，已从 demos 删除，demos 首页同步去掉对应条目。只删归档，不影响已有任务。
-- **头部九轴 step04_angle-y 恢复运行：** 工作流跑完 step03 后继续拟合脸部＋双耳的抬头 / 低头，目标是对齐 step03 视频帧里的脸型。教程先验改用教程原片里的正面、低头、抬头变形网格与 3D 模型眉眼对照（原 `up-face-base.png` 实为未变形的正面，已删）：头的大小不变、脸变扁，低头时头顶一圈饱满、下巴变尖，抬头时下半张脸饱满、下巴变圆润；整体变形由横轴圆柱改为绕横轴转动的球。已完成 step03 的任务续跑即接着做 step04。
-- **头部九轴 step02 加入头部体积先验与脸宽检查：** 脸贴在一个和脸差不多宽的头上，不是平板；转到约 45° 时外轮廓基本不动，变化的是五官移动、压缩和远侧侧脸轮廓。此前 agent 用圆柱把整张脸收窄，pink-doll 的 face_base 在 −45 时只剩正面宽度的 73.5%，脸被压扁。提示词在父级拟合中加入宽度约束，并写入【教程先验】；收尾程序检查 face_base 在 −30 时的外轮廓宽度，不到正面的 90% 就拒收。已交付的 step02 若不足 90% 需重做，step03 随之重做。
+相较 v0.1.3，新增七步头部九轴，并调整任务启动、软件配置和工作台操作。
 
-- **头部九轴预览不再出现方块脏污：** 每个部件的网格（bbox）比贴图大一圈，工作台按 clamp-to-edge 采样，网格超出贴图的部分把贴图边缘像素拉成方块（pink-doll 的眉、眼角、鼻、嘴和额头周围都有），像脸脏了。现在预览只绘制贴图范围内的片元。只改预览，产物与已完成步骤不重做。
-- **头部九轴 deformers.json 按绘制顺序写出：** `face-left.json` 的 parts 按 KRA 自上而下排列，工作台按数组顺序自下而上绘制，程序原样照抄，导致 face_base 最后绘制、盖住全部五官（pink-doll 只看到一张脸）。现在 step02 收尾时反转为自下而上，step03 沿用。已有 step02/step03 产物需重新运行收尾程序；agent 交付不需重做。
-- **头部九轴 step02 接受绝对贴图路径：** 共享提示词要求 agent 在交付 JSON 里写绝对路径，`face-left.json` 的 texture 校验却只认相对的 `layers/NNN.png`，agent 照共享约定交付后被拒收（pink-doll 连续两次复现）。现在按任务路径约定解析：绝对路径、相对任务根或以 `layers/` 开头的本步相对路径都接受，须落在本步 `layers/` 下，`deformers.json` 仍存为 `layers/NNN.png`。已完成步骤不重做；因此失败的 step02 可直接重跑收尾。
-- **头部九轴参数处处用度数：** ParamAngleX −45 / +45，ParamAngleY +25 抬头 / −20 低头（与 step01 视角一致），视角提示词、step02/step03 提示词、agent 交付的关键形键与 `deformers.json` 都写这些度数，不再有 "-30" / "30" 中间值。各视角度数只记在 `knowledge/nine-axis/step01_views/references/angles.json`（`{"left": 45, "up": 25, "down": 20}`），由程序填进提示词，工作台的滑杆、回摆与夹取范围读文档本身；换成 Cubism ±30 等范围留给以后的导出层。交付格式变化：旧的 step02/step03 交付（"-30" / "30" 键）需重新运行这两步；已写出的 `deformers.json` 本来就是度数，工作台照常显示。
-- **头部九轴没有耳朵时跳过耳朵：** step02、step03 提示词写明角色没有耳朵图层（如被头发完全遮住）时跳过耳朵、照常交付。此前 pink-doll 的 step03 已交付全部脸部关键形，agent 却以“缺少双耳输入”报失败。只改措辞，已完成步骤不重做。
-- **模型配置键去掉 `layering_` 前缀：** `layering_agent_<职责>_model` 改为 `<职责>_agent_model`，`layering_<步骤>_image_model` 改为 `<步骤>_image_model`，`layering_default_image_model` 改为 `default_image_model`；example.env、预设、WebUI 与文档只写新键。过渡期内已有 `.env` 只填旧键时照常读取，新旧都填时以新键为准，过渡期后移除旧键。连接、路径、预算等非模型键不变。已完成步骤不重做。
-- **Codex 工具改为直接调用：** 模型目录把 gpt-6.1-sol 等模型的 `tool_mode` 设为 `code_mode_only`，所有工具都藏在 code mode 的 exec 脚本后面；自定义工具的结果在脚本里被压成一串“JSON + data URL”文本，agent 常漏看图片或路径。现在每次启动 App Server 先导出同一配置下的模型目录、把 `tool_mode` 清空，再以 `model_catalog_json` 传入，所有模型直接调用原生生图与本流程工具，看图工具的图片直接进入上下文。已完成步骤不重做。
-- **生图结果由程序接收：** 原生生图回合（九轴视角、标准姿态、纯衣服准备）以本轮记录到的生成图片为准，agent 不再在回复里抄写 savedPath；只有本轮没有生成图片时才判失败，原因取 agent 回复的 error。此前 Codex code mode 下 agent 若没打印出工具结果，会把已生成的图误报为失败。复用参考与简化、素体换装的回复同样去掉 savedPath，只留 error 与 reason。已完成步骤不重做。
-- **头部九轴 step01 视角参考：** 新增独立入口 `pnpm nine-axis`（九轴全部完成前不接入总控流程与工作台阶段）。`step01_views` 按脸、头发、头饰形状截取正面上半身头部特写 `upper-body.png`，再以它为首帧生成一段只向左转头的视频（seedance；接口为 `layering_video_base_url` / `layering_video_api_key`，留空沿用 OpenAI 生图代理），用 ffmpeg 取转到 30° 的一帧写为 `left.png`；向右由 step02 镜像，不生成。此前改用生图 agent 画五个视角，人物与首帧对不齐，效果不如视频，已换回视频；上下视角由新的 `step03_views-y` 生成：以同一 `upper-body.png` 为首帧，人物不动、镜头分别降到下方仰视（up）和升到上方俯视（down），各取 25° 帧写为 `up.png`、`down.png`；ParamAngleY 低头由 −20 改为 −25。原来的脸部上下形变顺延为 `step04_angle-y`，暂停，工作流跑完 step03 即止，`nine_axis_view_image_model` 改为生视频模型 `nine_axis_view_video_model`（与其他模型键一样不带 `layering_` 前缀）。已用生图得到的 step01 需删除后重跑，step02 随之重做。
-- **头部九轴 step02 left 方向的脸部＋双耳透视形变：** `pnpm nine-axis` 新增 `step02_head`（需 `--krita`）。agent 按 pink-doll 的拟合方法与九轴教程先验，在 workspace 里自写脚本把脸部图层拟合成向左转头的父级＋子级 warp，交付 −45（step01 约 45° 的 left 视角）；程序按左右配对镜像出 +45，写出工作台读取的 `deformers.json` 与记录来源哈希的 `source.json`。只做脸与双耳，不含头发，不补绘；使用 shadow 模型。耳朵不拟合生图像素：近侧耳按父级在贴脸耳根处的位移平移与横向缩放，始终贴着脸缘；远侧耳整体转到脑后、排在脸底之下由脸遮挡，不用透明度隐藏，交付带 `opacity` 或耳朵排在脸底之上时报错。拟合流程、参考参数与易错点全部写在提示词里，由 agent 自写脚本并逐步看图检查，不提供固定的拟合库。脸部与五官九轴视频教程整理为 `tutorial/live2d-guidance/formal/头部九轴/01-脸部与五官九轴.md`。
-- **头部九轴产物目录：** 改为 `nine-axis/step02_head/`（变形器 `deformers.json`、`layers/`、补绘工程 `character-nine-axis.kra` / PNG 与 `source.json`），约定见 `shared/nine-axis.ts` 与 `nine-axis/README.md`。来源记录与当前 KRA 一致时，角色工作台优先载入九轴补绘工程。pink-doll 后发按官方样例补绘转头露出的内层与外轮廓线，阴影 KRA 保留不改。
-- **步骤与目录命名（不兼容变更）：** 步骤目录统一为 `stepNN_<说明>`，pipeline 改称 section。part 与衣服分层为 `step01_original`～`step14_occlusion`（衣服准备为 `step01_preparation`），分组步骤为 `step09_outline/<组>`、`step11_completion/<组>`、`step12_children/<组>`，去重为 `step10_reduce/depthNN`；阴影为 `shadow/step01_mask` 或 `shadow/step01_normal-depth`。命令行 `--pipeline` 改为 `--section`，网页单步操作参数同步改为 `section`。
-- **section 无状态（不兼容变更）：** 各 section 不再有自己的 `run.json`，Krita 路径与标准化选项只由任务根 `run.json` 记录并在每次启动时传入；单独运行 section 时每次都要带 `--krita`（part-layering 需要时带 `--standard`）。任务根 `run.json` 不再保存 `name`、`dir`、`image`、`lastMessage` 与 `runner.stopProtocol`，进度只写入 `workflow.log`；停止只用 `.stop-request.json`，旧的 `.web-worker.json`／`.web-cancel.json` 停止兼容已移除。旧任务残留的 section `run.json` 不读取也不改写，转换目录时直接舍弃。
-- **一键转换目录：** 旧布局任务打开时提示“需转换目录”，点击“转换目录”或运行 `pnpm convert-layout --name <任务名>`，先把原目录完整复制到 `<运行根目录>/.backups/<任务名>-<时间>`，再整体迁移；完成记录的路径与指纹随之改写，已完成步骤不重做。早于上一版本的布局、或出现无法识别的旧路径时拒绝转换且不做任何改动。
-- **先验知识目录（不兼容变更）：** 提示词、参考图和工具说明统一移入 skill 下的 `knowledge/`，按 `shared/` 与 `<section>/<stepNN>/` 归属，各自分为 `prompts`、`references`、`tools`；工具 schema 仍在代码的 `shared/tools/<工具名>/schema.json`。每个步骤用 `agent.json` 声明各 agent 拼接的提示词与注册的工具，组专项提示词放在 `prompts/groups/<完整ID>/`，存在时替换同名通用正文。网页“提示词与工具”页改名“先验知识”。
-- **`--knowledge` 自定义目录：** 所有单 section 命令每次启动（含续跑）都须带 `--knowledge`；完整运行可选，记入任务根 `run.json`，续跑省略时沿用。启动前检查整个目录：`agent.json` 引用的文件、程序靠其收取结果的必需工具、固定的恢复提示词，以及 `{reference:}`／`{shared_reference:}` 指向的文件；缺少任何一项都拒绝启动并写入 `workflow.log`，不回退默认目录。
-- **步骤提示词只用 7 个变量：** `{group_id}`、`{group_dir}`、`{layer_depth}`、`{review_round}`、`{width}`、`{height}`、`{input}`；其他路径用相对任务根目录的 `{uri:}`，knowledge 内的文件用 `{reference:}`／`{shared_reference:}`，都渲染为绝对路径。不再追加 `提示词来源：` 等运行时段落。
-- **图片只给路径：** 参考图不再作为附件发送，改为“说明 + 绝对路径”由 agent 自行查看；删除 `references.json`。框架复制的图片（原图、复用参考、直接沿用的交付等）一律转为 PNG 并以 `.png` 命名。
-- **review 以文件给出：** 轮廓返修作为绘制会话的下一轮，只指向 `review.json` 最后一条的 feedback；raster 返修指向 `review-NN.md`。
-- **恢复只保留 continue／resume／retry：** 会话仍在时只发固定的继续提示；`--resume` 新开会话自行读取已有产物；删除交接笔记机制（`--replace-thread`、`--handoff`、`raster-handoff.md`）。
-- **去重与遮挡规划：** 同层去重每层一个 agent，用 `list_reduction_groups` 按父组列出各组，只在同一父组的直属子组之间去重，每次重新判断；遮挡规划直接读取 `groups.json`。
-- **手指补全：** 与掌片相接处按“两边合起来组成一个圆”衔接，参考图改为文字路径。
-- **网页全局设置：** 标题栏新增“全局设置”，集中设置 Krita 可执行文件、默认运行目录与默认先验知识目录，取代原先的“工作目录”按钮与新建任务中的 Krita 字段。路径用服务器端选择框浏览，远端工作台同样可用；Krita 可在后台子进程中自动扫描全盘，可随时停止。缺少可用 Krita 时，新建与启动都返回 409 并打开该设置，保存后自动重试。
-- **先验知识预览：** “先验知识”页直接浏览所设置的先验知识目录，预览 Markdown、JSON、文本、图片、视频与音频，其他文件提供下载；工具说明旁显示随代码发布的 schema。目录不在 Git 仓库内时只显示当前文件。
-- **角色工作台统一加载入口：** 只保留“打开项目”一个入口（未指定项目时默认弹出）：上方选择基准文件夹，下方列出其中含 `run.json` 的任务。基准文件夹只保存在本浏览器（localStorage），不写入全局设置；未选择时跟随全局设置的运行目录，所选路径不存在或不再是文件夹时清除该记录并回到默认值。移除 KRA / PSD / PNG 文件选择与拖放、手动绑定法线／深度、载入参数文件与导入物理配置；导出 PNG、下载源文件、保存 KRA、保存光照参数与导出物理配置也暂时移除，之后统一设计输出；图层编辑只在本次会话内存中，不写回项目。服务器端选择框与全局设置共用。
-- **安装版本选择：** agent 首次拉取或更新仓库前先问用户是使用者还是开发者；使用者安装最新发布版本，只在有更新的发布版本时升级，不直接拉取 `main`；开发者使用 `main`，可能包含未完整验证的改动。
+### 新增与改进
 
-升级影响：旧布局任务必须先转换才能继续运行。转换不改写 `agents/` 内的调用记录，并删除 `run.json` 中旧的 thread 字段，因此转换前的 agent 会话不再续接，中断的步骤会在新会话中继续；已完成成果无需重做。先验知识目录调整不改变已完成步骤的指纹，已完成成果同样无需重做；未完成的步骤按新提示词继续。自行维护的提示词需按新的 `knowledge/` 结构放置，单独运行 section 的脚本需补上 `--knowledge`，使用 `--replace-thread`／`--handoff` 的脚本需改为 `--resume`。
+- **头部九轴**：从参考视频选择关键帧，制作左右转头、抬头、低头与斜角模型，再处理下颌和脖子的连接。流程分为素材准备、参考视频、单轴选帧、单轴模型与斜角视频、斜角选帧、斜角模型、下颌七步，交付模型、贴图、KRA 与 PNG。总流程加 `--live` 或在网页开启“阴影完成后制作头部九轴”即可继续制作；续跑沿用该选择。
+- **Krita 与 FFmpeg 配置**：网页全局设置统一浏览、扫描和选择软件，并设置新任务的默认运行目录与 knowledge。FFmpeg 仅供九轴使用，选帧 agent 通过工具抽帧。已有任务可修改自己的软件和知识目录参数。
+- **任务与恢复**：section 每次接收独立启动参数，任务根保存总调度配置；步骤目录与会话位置统一。继续保留会话，恢复换新会话，重试重做所选步骤。完成检查核对实际交付文件；配置无效时在重试删除前报错，并发失败等待同批任务结束、保留成功文件。
+- **分层制作**：精简绘制提示词，改进局部修画、全图复核和遮挡补全，补充眼睛、嘴、手指及多深度部件的规则。父组完成后及时派发子组，人物与衣服继续并行制作。
+- **Agent 工具**：提示词、参考与工具说明集中在 knowledge，由各步骤的 `agent.json` 声明；工具在启动时注册，生图能力按声明开启。Codex 直接调用工具，生成图片由程序接收。恢复与图片历史压缩使用 knowledge 中的 runtime 模板。
+- **工作台**：改进任务执行参数、先验知识预览、步骤状态、错误显示和扫描轮询。角色工作台按项目文件夹加载工程及贴图；九轴可查看和编辑各阶段模型，流程中用一个随鼠标运动的缩略头预览。成果从制作工作台导出。
+- **案例与文档**：新增狸猫女孩九轴案例，更新 Jianma 展示，移除质量较差的 clothed-man 归档。README 直接展示九轴 GIF，使用手册和 skill 说明同步精简。
+
+### 升级
+
+- 保留原来的 `.run/`、`.web/settings.json` 和 `.agents/skills/live2d-maker/.env`。制作数据默认放 `.run/`，导出案例放 `demos/`。
+- v0.1.3 的旧布局任务先停止，再用网页“转换目录”或 `pnpm convert-layout --name <任务名>` 转换。程序先备份，已完成成果保留；中断步骤在新会话中继续。更早的未知布局会提示无法转换。
+- 自定义知识目录按新的 `knowledge/` 结构维护。独立 section 的每次启动传入 `--dir`、`--knowledge`、所需的 `--krita`；九轴再传 `--ffmpeg`。路径继续支持相对任务目录和绝对路径。
+- 脚本中的 `--pipeline` 改为 `--section`；原 `--replace-thread`、`--handoff` 改用 `--resume`。单步参数使用当前的 `stepNN_<说明>` 路径。
+- 连接和模型配置使用去掉 `layering_` 前缀的新键。已有旧键继续兼容，同时填写时新键优先；具体映射见 [模型配置](.agents/skills/live2d-maker/references/model-presets.md)。
+
+### 九轴依赖
+
+九轴需要 Krita、FFmpeg 和独立视频服务。在运行环境中配置 `video_base_url`、`video_api_key` 与 `nine_axis_view_video_model`。支持 `seedance-2.5`、`seedance-2`、`seedance-2-fast`、`seedance-2-mini` 及对应的 `-las` 型号，默认 `seedance-2.5`；2.0 系列填写 `seedance-2` 等服务模型名。配置步骤见 [九轴说明](.agents/skills/live2d-maker/nine-axis/README.md#依赖与视频配置)。
+
+发布 ZIP 继续附带 `.run/pink-doll` 默认示例，狸猫女孩案例保存在仓库 `demos/tanuki-girl`。
 
 ## v0.1.3
 

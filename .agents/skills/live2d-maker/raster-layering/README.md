@@ -76,4 +76,4 @@ step02 沿用已确认结构，先把整图与原图并排看，列出部件瑕�
 普通中断按相同 name／dir 续跑。主动重做时先停止当前进程，使用网页“重试”或移除该步骤的完成标记；随后只重建该步骤目录；上游修正、前序工程和已完成的后续步骤保留，后续步骤不会自动重做。需要保留现有成果而更换损坏会话时，使用 `--resume`（网页“恢复”），见 [workflow](../workflow/README.md#恢复方式)。
 
 
-入口是 [run.ts](run.ts)，步骤与交付定义为 [steps.ts](steps.ts)；共享 runner、输入、会话与审核位于 `shared/raster/`。本 section 单测使用模拟 App Server、真实提示词和临时文件，真实绘图在任务流程中验收。
+入口是 [run.ts](run.ts)，步骤与交付定义为 [steps.ts](steps.ts)；共享 runner、输入、会话与审核位于 `shared/raster/`。相关检查见 [共享验证说明](../shared/VALIDATION.md)。
