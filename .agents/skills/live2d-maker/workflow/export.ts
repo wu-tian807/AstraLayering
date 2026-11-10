@@ -28,7 +28,8 @@ const inside = (root: string, path: string) => path === root || path.startsWith(
 const excluded = (path: string) => path.split(/[\\/]/).some(name =>
   ['workspace', 'agents', 'recovery', 'archive', 'node_modules'].includes(name) || name.startsWith('.'));
 export const completeRun = (run?: TaskRun) => !!run && run.status === 'completed'
-  && exportSectionIds.every(id => run.sections[id]?.status === 'completed');
+  && exportSectionIds.every(id => run.sections[id]?.status === 'completed')
+  && (run.to !== 'nine-axis' || run.sections['nine-axis']?.status === 'completed');
 
 // Completion facts are portable. CLI configuration, model selection and thread
 // records stay at the source; an export cannot accidentally resume old sessions.

@@ -403,6 +403,10 @@ export async function readKritaRecord(path: string): Promise<KritaRecord | undef
   try {
     const record = JSON.parse(await readFile(path, 'utf8'));
     if (!record.state) record.state = 'running';
-    return alive(record.state === 'running' ? record.pid : record.owner) ? record as KritaRecord : undefined;
+    if (!['waiting', 'reserved', 'running'].includes(record.state) || !Number.isSafeInteger(record.owner ?? record.pid) || (record.owner ?? record.pid) < 1 || !alive(record.owner ?? record.pid)) return;
+    // A crashed Krita does not release its section's slot. The producer will
+    // rewrite this as reserved; readers reflect that even before the rewrite.
+    if (record.state === 'running' && (!Number.isSafeInteger(record.pid) || record.pid < 1 || !alive(record.pid))) return { ...record, state: 'reserved' } as KritaRecord;
+    return record as KritaRecord;
   } catch { return; }
 }

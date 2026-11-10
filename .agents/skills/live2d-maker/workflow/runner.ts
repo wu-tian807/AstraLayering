@@ -195,7 +195,7 @@ export async function runTask(options: TaskOptions, dependencies: {
         progress(id + '：已完成');
       } catch (error) {
         stopped.add(id);
-        run!.sections[id] = { status: 'failed', updatedAt: now(), summary: formatAgentError(error) };
+        run!.sections[id] = { status: signal.aborted ? 'interrupted' : 'failed', updatedAt: now(), summary: formatAgentError(error) };
         throw error;
       } finally {
         delete run!.runner!.childPids?.[id];

@@ -7,6 +7,8 @@ import { renderReport } from './report-markdown.js';
 import { morph } from './dom-morph.js';
 import { createEnvEditor } from './env-editor.js';
 import { createSettings } from './settings-dialog.js';
+import { HeadPreview } from './head-preview.js';
+const headPreview = new HeadPreview();
 
 const icons = {
  layers:'<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/>',
@@ -97,7 +99,7 @@ function laneFailure(section){
 }
 const taskStatusNames = {ready:'待启动', running:'运行中', completed:'所选路线已完成', failed:'执行失败', interrupted:'已中断', untracked:'无总控记录', layout:'需转换目录'};
 function pageHeading() {
- return `<div class="page-heading"><div class="task-heading"><select id="task-select" aria-label="选择任务"><option value="" ${!state.name?'selected':''}>选择任务</option>${tasks.map(task=>`<option value="${esc(task.name)}" ${task.name===state.name?'selected':''}>${esc(task.displayName||task.name)} · ${taskStatusNames[task.status]||task.status}</option>`).join('')}</select></div><div class="heading-actions"><button class="button" data-action="new">${icon('plus')}新建任务</button>${state.name?`<button class="button" data-action="files">${icon('folder')}全部产物</button>${stepToolbar()}`:''}</div></div>`;
+ return `<div class="page-heading"><div class="task-heading"><select id="task-select" aria-label="选择任务"><option value="" ${!state.name?'selected':''}>选择任务</option>${tasks.map(task=>`<option value="${esc(task.name)}" ${task.name===state.name?'selected':''}>${esc(task.displayName||task.name)} · ${taskStatusNames[task.status]||task.status}</option>`).join('')}</select></div><div class="heading-actions"><button class="button" data-action="new">${icon('plus')}新建任务</button>${state.name?`${!data.archived&&!data.runnerAlive&&!data.lockHeld?'<button class="button" data-action="run-options">执行选项</button>':''}<button class="button" data-action="files">${icon('folder')}全部产物</button>${stepToolbar()}`:''}</div></div>`;
 }
 let archivedFiles = new Set();
 const assetLookup = new Map();
@@ -181,7 +183,8 @@ async function readTaskSnapshot(version,force) {
  if(version!==refreshVersion)return;
  const fingerprint=JSON.stringify({next,tasks});
  // Interaction may defer artifact redraws, but must never hide a stopped runner.
- const executionChanged=next.status!==data.status||next.runnerAlive!==data.runnerAlive||next.lockHeld!==data.lockHeld;
+ const executionState=value=>JSON.stringify([value.status,value.runnerAlive,value.lockHeld,(value.sections||[]).map(section=>[section.id,section.status,section.states,section.krita])]);
+ const executionChanged=executionState(next)!==executionState(data);
  const focused=document.activeElement;
  const treeControl=focused?.dataset?.treeSearch!==undefined?'data-tree-search':focused?.dataset?.treeDepth!==undefined?'data-tree-depth':null;
  if(!force&&!executionChanged&&(document.querySelector('dialog[open]')||(!treeControl&&focused?.id!=='task-select'&&focused?.matches('input,select'))||document.querySelector('.panning,.selecting')))return;
@@ -201,6 +204,7 @@ async function readTaskSnapshot(version,force) {
    if(focus){const input=document.querySelector(focus.selector);input?.focus({preventScroll:true});if(focus.start!=null)input?.setSelectionRange(focus.start,focus.end);}
   }
  }
+ void headPreview.update(document.querySelector('[data-head-preview]'),data.directory);
 }
 function taskLoading() {
  return `${pageHeading()}<div class="run-notice ${state.loadError?'error':''}" role="status">${icon(state.loadError?'info':'clock')}<span>${state.loadError?`读取失败：${esc(state.loadError)}`:`正在读取 ${esc(state.name)} 的进展…`}</span></div>`;
@@ -393,9 +397,12 @@ function processArtifacts(index, step) {
 }
 // A skipped lane (no dress-up, nothing to make) counts as complete.
 const finished=stage=>stage.status==='done'||stage.status==='skipped';
+function headThumbnail() {
+ return `<section class="kra-preview-panel head-preview-panel" data-head-preview aria-label="头部九轴最新预览"><h3>${icon('layers')}头部九轴最新画面</h3><canvas aria-label="随鼠标运动的九轴角色头"></canvas><p data-head-status role="status">等待头部九轴首次保存。</p><small>随页面鼠标运动 · 弧形边界内预览</small><a href="./studio?${new URLSearchParams({project:state.name,workspace:'nine-axis'})}">在角色工作台打开 ↗</a></section>`;
+}
 function flowCard(index) {
  const stage=stages[index],status=observedDisplayStatus(index,stage.status),closed=state.collapsedSections.has(index),wide=!closed&&groupViews[index]?.open&&!state.collapsedSteps.has(`${index}:layers`);
- return `<section class="section-lane ${stage.status} ${closed?'collapsed':''} ${wide?'group-expanded':''} ${stage.id==='shadow'?'shadow-lane':''}" data-section="${index}"><div class="section-heading"><button data-stage="${index}" aria-label="查看${stage.name}交付"><span class="node-number">${String(index+1).padStart(2,'0')}</span><h2>${stage.name}</h2>${statusMark(status)}${kritaBadge(index)}</button><button class="icon-button" data-section-toggle="${index}" aria-label="${closed?'展开':'收起'}${stage.name}栏目" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>${!closed&&stage.status==='skipped'?`<p class="lane-summary skipped-lane">${esc(data.sections[index]?.summary||'无需执行')}</p>`:''}${!closed&&stage.status==='failed'&&laneFailure(data.sections[index])?errorBox(laneFailure(data.sections[index]),'lane-error'):''}${closed?`<div class="lane-collapsed-body"><span>${esc(statusLabel(status))}</span><small>${sectionSteps[index].filter(finished).length} / ${sectionSteps[index].length} 步</small>${(()=>{const note=stage.status==='skipped'?data.sections[index]?.summary||'无需执行':stage.status==='failed'?laneFailure(data.sections[index]):'';return note?`<p class="${stage.status==='failed'?'status-error':''}" title="${esc(note)}">${esc(note)}</p>`:'';})()}</div>`:`<div class="section-steps">${kraPreviewPanel(index)}${stage.id==='shadow'?'<div class="shadow-references"><a href="./shadow-reference/skirt.png" target="_blank" rel="noopener">裙影参考 ↗</a><a href="./shadow-reference/hair.png" target="_blank" rel="noopener">发影参考 ↗</a></div>':''}${sectionSteps[index].map(step=>stepNode(index,step)).join('')}${data.sections[index]?.threadId?`<small class="thread-id" title="${esc(data.sections[index].threadId)}">thread · ${esc(data.sections[index].threadId)}</small>`:''}</div>`}</section>`;
+ return `<section class="section-lane ${stage.status} ${closed?'collapsed':''} ${wide?'group-expanded':''} ${stage.id==='shadow'?'shadow-lane':''}" data-section="${index}"><div class="section-heading"><button data-stage="${index}" aria-label="查看${stage.name}交付"><span class="node-number">${String(index+1).padStart(2,'0')}</span><h2>${stage.name}</h2>${statusMark(status)}${kritaBadge(index)}</button><button class="icon-button" data-section-toggle="${index}" aria-label="${closed?'展开':'收起'}${stage.name}栏目" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>${!closed&&stage.status==='skipped'?`<p class="lane-summary skipped-lane">${esc(data.sections[index]?.summary||'无需执行')}</p>`:''}${!closed&&stage.status==='failed'&&laneFailure(data.sections[index])?errorBox(laneFailure(data.sections[index]),'lane-error'):''}${closed?`<div class="lane-collapsed-body"><span>${esc(statusLabel(status))}</span><small>${sectionSteps[index].filter(finished).length} / ${sectionSteps[index].length} 步</small>${(()=>{const note=stage.status==='skipped'?data.sections[index]?.summary||'无需执行':stage.status==='failed'?laneFailure(data.sections[index]):'';return note?`<p class="${stage.status==='failed'?'status-error':''}" title="${esc(note)}">${esc(note)}</p>`:'';})()}</div>`:`<div class="section-steps">${stage.id==='nine-axis'?headThumbnail():kraPreviewPanel(index)}${stage.id==='shadow'?'<div class="shadow-references"><a href="./shadow-reference/skirt.png" target="_blank" rel="noopener">裙影参考 ↗</a><a href="./shadow-reference/hair.png" target="_blank" rel="noopener">发影参考 ↗</a></div>':''}${sectionSteps[index].map(step=>stepNode(index,step)).join('')}${data.sections[index]?.threadId?`<small class="thread-id" title="${esc(data.sections[index].threadId)}">thread · ${esc(data.sections[index].threadId)}</small>`:''}</div>`}</section>`;
 }
 function inspector() {
  const stage=stages[state.stage],step=selectedStep(),item=state.asset;
@@ -410,7 +417,7 @@ function overviewCard(stage,index) {
  return `<article class="overview-card ${status} ${state.stage===index?'selected':''}" data-overview="${index}">
  <button class="overview-stage" data-stage="${index}" aria-label="查看${esc(stage.name)}进展"><span class="node-number">${String(index+1).padStart(2,'0')}</span><h3>${esc(stage.name)}</h3>${kritaBadge(index)}</button>
  ${status==='failed'&&reason?`<p class="overview-reason status-error" title="${esc(reason)}">${esc(reason)}</p>`:''}
- <div class="overview-footer"><span class="execution-state ${status}">${statusMark(status)}${esc(statusLabel(status))}</span><div class="overview-actions"><button class="button" data-stage="${index}">${icon('eye')}预览</button></div></div>
+ ${stage.id==='nine-axis'?headThumbnail():''}<div class="overview-footer"><span class="execution-state ${status}">${statusMark(status)}${esc(statusLabel(status))}</span><div class="overview-actions"><button class="button" data-stage="${index}">${icon('eye')}预览</button></div></div>
  </article>`;
 }
 function projectPage() {
@@ -421,7 +428,7 @@ function projectPage() {
  const lanes=[{name:'人物线',stages:[1]},{name:'衣服线',stages:[2,3]}].map(lane=>({...lane,html:cards(lane.stages)})).filter(lane=>lane.html);
  return `${pageHeading()}${runNotice()}<section class="section-overview">
  <div class="overview-heading"><div><h2>管线执行</h2><p>人物分块准备完成后，人物线与衣服线并行执行，共用同一组 agent 名额，在穿戴组装合流。选择管线，打开完整进展图。</p></div></div>
- <div class="overview-flow">${column('overview-start','共同准备',cards([0]))}${lanes.length?`<div class="overview-lanes">${lanes.map(lane=>`<div class="overview-lane"><small class="overview-column-title">${lane.name}</small><div class="overview-lane-cards">${lane.html}</div></div>`).join('')}</div>`:''}${column('overview-merge','合流',cards(mergeStages))}</div></section>`;
+ <div class="overview-flow">${column('overview-start','共同准备',cards([0]))}${lanes.length?`<div class="overview-lanes">${lanes.map(lane=>`<div class="overview-lane"><small class="overview-column-title">${lane.name}</small><div class="overview-lane-cards">${lane.html}</div></div>`).join('')}</div>`:''}${column('overview-merge','合流',cards(mergeStages))}</div><p class="route-summary">${data.run?`本次路线：${esc(stages.find(stage=>stage.id===data.run.from)?.name)} → ${esc(stages.find(stage=>stage.id===data.run.to)?.name)}${data.run.to==='nine-axis'?' · 含头部九轴':' · 九轴未加入本次路线'}`:'尚未保存执行路线'}；运行前可在“执行选项”中调整。</p></section>`;
 }
 // The section's machine-wide Krita slot, beside its own execution state:
 // queued for a slot, or holding one (with Krita running or not yet started).
@@ -433,7 +440,7 @@ function kritaBadge(index) {
  const count=krita.limit?`<small>${esc(data.kritaInUse??'?')}/${esc(krita.limit)}</small>`:'';
  if(krita.state==='waiting')return `<span class="krita-badge waiting" title="${usage?usage+'，':'本机 Krita 名额'}已满，等待其他 section 释放 · 自 ${time(krita.since)} 起排队">Krita 排队中${count}</span>`;
  const detail=krita.state==='running'?`Krita ${esc(krita.version)} · pid ${esc(krita.pid)} · 启动于 ${time(krita.startedAt)}`:'已占名额，Krita 尚未启动或正在重启';
- return `<span class="krita-badge ${krita.state==='running'?'running':'reserved'}" title="${detail}${usage?' · '+usage:''}">占用 Krita${count}</span>`;
+ return `<span class="krita-badge ${krita.state==='running'?'running':'reserved'}" title="${detail}${usage?' · '+usage:''}">${krita.state==='running'?'正在使用 Krita':'已占用 Krita 名额'}${count}</span>`;
 }
 function graph() {
  if(!state.name)return '<section class="empty-workspace"><h2>尚未选择任务</h2><button class="button" data-page="project">选择任务</button></section>';
@@ -682,6 +689,7 @@ function render() {
  flowObserver?.disconnect();
  morph(document.querySelector('#app'),header()+`<main class="main ${state.page==='config'?'config-page':state.page==='preview'?'preview-main':'project-main'}">${state.page==='config'?configPage():state.loading||state.loadError?taskLoading():state.page==='preview'?graph():projectPage()}</main>`);
  bind();setConfigBusy(configBusy);
+ void headPreview.update(document.querySelector('[data-head-preview]'),data.directory);
  if(state.page==='config'&&state.configMode==='env')envEditor.bind();
  document.querySelectorAll('[data-details]').forEach(node=>{if(state.details.has(node.dataset.details))node.open=state.details.get(node.dataset.details);});
  // A run that newly stops opens its notice once; closing it afterwards sticks.
@@ -700,8 +708,9 @@ function render() {
  }
 }
 function showNew(single=false, existing=false) {
+ if(single&&existing){const index=stages.findIndex(stage=>stage.id===data.run?.from);if(index>=0)state.stage=index;}
  const dialog=document.querySelector('#new-task'); state.uploaded=null;
- dialog.innerHTML=`<div class="modal-heading"><div><span class="eyebrow">${existing?'CONTINUE CREATION':'NEW CREATION'}</span><h2>${existing?'继续 '+esc(state.name):'开始一次新的制作'}</h2><p>${existing?'沿用已有产物、完成标记与绘制 thread。':'提供一张角色图，制作分层素材。'}</p></div><button class="icon-button" data-close>${icon('close')}</button></div><form id="new-task-form"><div class="new-task-columns"><div>${!existing?`<label class="field-label">输入参考图</label><label class="upload-zone" id="upload-zone"><input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" hidden><span class="upload-icon">${icon('upload')}</span><b>选择或拖入角色图片</b><p>PNG、JPG、WebP · 最大 20 MB</p></label><label class="field-label">或填写服务器上的图片路径</label><input name="image" placeholder="绝对路径；相对路径基于任务目录">`:data.original?`<img class="resume-reference" src="${artifact(data.original)}" alt="已保存的原图">`:'<p>从该任务已有的上游产物继续。</p>'}<div class="input-note">${icon('folder')}${esc(state.directory)}</div></div><div class="task-form-fields"><label class="field-label" for="task-display-name">显示名称</label><input id="task-display-name" name="displayName" value="${existing?esc(data.displayName||state.name):''}" placeholder="可使用中文"><label class="field-label" for="task-name">任务目录名</label><input id="task-name" name="name" value="${existing?esc(state.name):''}" ${existing?'readonly':''} placeholder="例如 character-03" required><label class="field-label">执行范围</label><div class="scope-options"><label class="${!single?'selected':''}"><input type="radio" name="scope" value="all" ${!single?'checked':''}>整条流程<span>共同准备后人物线与衣服线并行，再合流组装与阴影</span></label><label class="${single?'selected':''}"><input type="radio" name="scope" value="single" ${single?'checked':''}>单条管线<span>读取本任务已有上游产物</span></label></div><select name="stage" id="new-stage" ${!single?'hidden':''}>${stages.flatMap((s,i)=>runnableStages.includes(s)?[`<option value="${i}" ${i===state.stage?'selected':''}>${s.name} · ${s.id}</option>`]:[]).join('')}</select><label class="standard-option"><div><b>标准化人物姿态</b><p>先判断是否需要调整，再按需生图。</p></div><input type="checkbox" name="standard" ${existing&&data.run?.standard?'checked':''} role="switch" aria-label="标准化人物姿态"></label><div class="standard-detail">嘴部张大、眼睛张开，正视站立，双手放在身体两侧。仅人物准备阶段使用。</div><label class="field-label">阴影方式</label><select name="shadowMode"><option value="mask" ${!existing||data.run?.shadowMode!=='normal-depth'?'selected':''}>Live2D 蒙版</option><option value="normal-depth" ${existing&&data.run?.shadowMode==='normal-depth'?'selected':''}>法线＋深度</option></select><label class="field-label">调度并发 jobs</label><input name="jobs" type="number" min="1" value="${existing?data.run?.jobs||3:3}"></div></div><p class="form-error" role="alert"></p><div class="modal-footer"><span>操作由服务器执行，关闭网页仍会继续。</span><button type="button" class="button" data-close>取消</button><button class="primary" type="submit">${icon('play')}${existing?'继续':'开始制作'}</button></div></form>`;
+ dialog.innerHTML=`<div class="modal-heading"><div><span class="eyebrow">${existing?'CONTINUE CREATION':'NEW CREATION'}</span><h2>${existing?'继续 '+esc(state.name):'开始一次新的制作'}</h2><p>${existing?'沿用已有产物、完成标记与绘制 thread。':'提供一张角色图，制作分层素材。'}</p></div><button class="icon-button" data-close>${icon('close')}</button></div><form id="new-task-form"><div class="new-task-columns"><div>${!existing?`<label class="field-label">输入参考图</label><label class="upload-zone" id="upload-zone"><input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" hidden><span class="upload-icon">${icon('upload')}</span><b>选择或拖入角色图片</b><p>PNG、JPG、WebP · 最大 20 MB</p></label><label class="field-label">或填写服务器上的图片路径</label><input name="image" placeholder="绝对路径；相对路径基于任务目录">`:data.original?`<img class="resume-reference" src="${artifact(data.original)}" alt="已保存的原图">`:'<p>从该任务已有的上游产物继续。</p>'}<div class="input-note">${icon('folder')}${esc(state.directory)}</div></div><div class="task-form-fields"><label class="field-label" for="task-display-name">显示名称</label><input id="task-display-name" name="displayName" value="${existing?esc(data.displayName||state.name):''}" placeholder="可使用中文"><label class="field-label" for="task-name">任务目录名</label><input id="task-name" name="name" value="${existing?esc(state.name):''}" ${existing?'readonly':''} placeholder="例如 character-03" required><label class="field-label">执行范围</label><div class="scope-options"><label class="${!single?'selected':''}"><input type="radio" name="scope" value="all" ${!single?'checked':''}>整条流程<span>共同准备后人物线与衣服线并行，再合流组装与阴影</span></label><label class="${single?'selected':''}"><input type="radio" name="scope" value="single" ${single?'checked':''}>单条管线<span>读取本任务已有上游产物</span></label></div><select name="stage" id="new-stage" ${!single?'hidden':''}>${stages.flatMap((s,i)=>runnableStages.includes(s)?[`<option value="${i}" ${i===state.stage?'selected':''}>${s.name} · ${s.id}</option>`]:[]).join('')}</select><label class="standard-option"><div><b>标准化人物姿态</b><p>先判断是否需要调整，再按需生图。</p></div><input type="checkbox" name="standard" ${existing&&data.run?.standard?'checked':''} role="switch" aria-label="标准化人物姿态"></label><div class="standard-detail">嘴部张大、眼睛张开，正视站立，双手放在身体两侧。仅人物准备阶段使用。</div><label class="standard-option live-option"><div><b>阴影完成后制作头部九轴</b><p>默认关闭；开启后由总调度继续执行七步九轴。</p></div><input type="checkbox" name="live" ${existing&&data.run?.live?'checked':''} role="switch" aria-label="阴影完成后制作头部九轴"></label><p class="live-detail">${existing&&data.run?.live?'本次整条流程含头部九轴。':'整条流程默认在阴影完成后结束。'} 当前制作脸部、五官、双耳与固定脖子；头发和头饰九轴暂不制作。</p><label class="field-label">阴影方式</label><select name="shadowMode"><option value="mask" ${!existing||data.run?.shadowMode!=='normal-depth'?'selected':''}>Live2D 蒙版</option><option value="normal-depth" ${existing&&data.run?.shadowMode==='normal-depth'?'selected':''}>法线＋深度</option></select><label class="field-label">调度并发 jobs</label><input name="jobs" type="number" min="1" value="${existing?data.run?.jobs||3:3}"></div></div><p class="form-error" role="alert"></p><div class="modal-footer"><span>操作由服务器执行，关闭网页仍会继续。</span><button type="button" class="button" data-close>取消</button><button class="primary" type="submit">${icon('play')}${existing?'继续':'开始制作'}</button></div></form>`;
  dialog.showModal();dialog.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>dialog.close());
  if(!existing) {
   let previewURL;
@@ -712,17 +721,19 @@ function showNew(single=false, existing=false) {
  const updateScope=()=>{
   const form=dialog.querySelector('form'),single=form.elements.scope.value==='single';
   form.elements.stage.hidden=!single;
+  form.elements.live.disabled=single;
+  dialog.querySelector('.live-detail').textContent=single?'单条管线使用所选已有上游产物；此开关只控制整条流程。':form.elements.live.checked?'整条流程：阴影完成后继续七步头部九轴；脸部、五官、双耳与固定脖子。':'整条流程：阴影完成后结束。头部九轴暂不启动。';
   form.elements.standard.disabled=single&&Number(form.elements.stage.value)!==0;
   form.elements.shadowMode.disabled=single&&stages[Number(form.elements.stage.value)].id!=='shadow';
   dialog.querySelectorAll('.scope-options label').forEach(l=>l.classList.toggle('selected',l.querySelector('input').checked));
  };
- dialog.querySelectorAll('[name=scope],[name=stage]').forEach(r=>r.onchange=updateScope); updateScope();
+ dialog.querySelectorAll('[name=scope],[name=stage],[name=live]').forEach(r=>r.onchange=updateScope); updateScope();
  let created=existing;
  dialog.querySelector('form').onsubmit=async e=>{
   e.preventDefault();const form=e.target,fields=new FormData(form),button=form.querySelector('[type=submit]');button.disabled=true;form.querySelector('.form-error').textContent='';
   try {
    const single=fields.get('scope')==='single',index=Number(fields.get('stage'));
-   const payload={name:fields.get('name').trim(),displayName:fields.get('displayName').trim(),jobs:Number(fields.get('jobs')),from:single?stages[index].id:stages[0].id,to:single?stages[index].id:runnableStages.at(-1).id};
+   const payload={name:fields.get('name').trim(),displayName:fields.get('displayName').trim(),jobs:Number(fields.get('jobs')),from:single?stages[index].id:stages[0].id,...(single?{to:stages[index].id}:{live:fields.get('live')==='on'})};
    if(!single||index===0)payload.standard=fields.get('standard')==='on';
    if(!single||stages[index].id==='shadow')payload.shadowMode=fields.get('shadowMode');
    if(!created) {
@@ -833,6 +844,7 @@ function bind() {
   const action=b.dataset.action;
   if(action==='new')showNew();
   else if(action==='run')showNew(false,true);
+  else if(action==='run-options')showNew(data.run?.from===data.run?.to,true);
   else if(action==='files')showFiles();
   else if(action==='stop'){b.disabled=true;post('stop',{name:state.name}).then(result=>{toast(result.message);return refreshTask(true);}).catch(error=>{toast(error.message);b.disabled=false;});}
   else if(action==='convert-layout'){b.disabled=true;toast('正在备份并转换目录…');post('convert-layout',{name:state.name}).then(result=>{toast(`已转换，原目录备份在 ${result.backup}`);return refreshTask(true);}).catch(error=>{toast(error.message);b.disabled=false;});}

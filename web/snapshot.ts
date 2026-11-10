@@ -100,7 +100,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
         reports[key] = await reportPreview(directory, source, text, fileSet);
       } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') errors.push(source + ': ' + String(error)); }
     };
-    const observed = (value?: string): Status => value === 'running' ? (active ? 'running' : failed ? 'failed' : 'unconfirmed') : statusOf(value);
+    const observed = (value?: string): Status => value === 'running' ? (active ? 'running' : failed ? 'failed' : 'interrupted') : statusOf(value);
     // Why the lane failed, for the step it left mid-way.
     const reason = !active && saved?.status === 'failed' && saved.summary ? saved.summary.split('\n')[0].slice(0, 400) : undefined;
     let groups: any[] = [];
@@ -210,6 +210,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
           if (variant === 'normal-depth') states['normal-depth-maps'] = state;
         }
         states[variant] = modeStates.includes('running') ? 'running' : modeStates.includes('throttled') ? 'throttled' : modeStates.includes('failed') ? 'failed'
+          : modeStates.includes('interrupted') ? 'interrupted'
           : modeStates.includes('unconfirmed') ? 'unconfirmed' : modeStates.every(v => v === 'done') ? 'done'
             : modeStates.some(v => v === 'available' || v === 'done') ? 'available' : 'pending';
       }
@@ -226,7 +227,9 @@ export async function snapshot(directory: string, name: string, dir: string) {
       ? (await currentAgentCalls(directory, id, fileSet, errors, record.run?.runner?.startedAt)).find(call => throttled(call)) : undefined;
     if (waiting) for (const key of Object.keys(states)) if (states[key] === 'running') { states[key] = 'throttled'; messages[key] = waiting.retryError!; }
     let status: Status = active ? 'running' : observed(saved?.status);
-    if (!saved) status = Object.values(states).includes('failed') ? 'failed' : Object.values(states).includes('unconfirmed') ? 'unconfirmed'
+    if (active && !Object.values(states).includes('running') && Object.values(states).includes('throttled')) status = 'throttled';
+    if (!active && !failed && Object.values(states).includes('interrupted')) status = 'interrupted';
+    if (!saved) status = Object.values(states).includes('failed') ? 'failed' : Object.values(states).includes('interrupted') ? 'interrupted' : Object.values(states).includes('unconfirmed') ? 'unconfirmed'
       : files.some(path => path.startsWith(id + '/')) ? 'available' : 'pending';
     if ((id === 'shadow' ? states.step01 === 'failed' : Object.values(states).includes('failed')) && !active) status = 'failed';
     if ((id in rasterDefinitions || id === 'shadow') && status === 'done' && Object.entries(states).some(([key, value]) => key.startsWith('step') && value !== 'done')) {
@@ -242,26 +245,31 @@ export async function snapshot(directory: string, name: string, dir: string) {
     // The thread of the running step, else of the last step that kept one.
     const threadId = (await currentSession(join(directory, id), steps).catch(() => undefined))?.threadId ?? null;
     // The section's machine-wide Krita slot: queued for, held, or held with Krita running.
-    const kritaRecord = await readKritaRecord(join(directory, id, kritaRecordFile));
-    const krita = !kritaRecord ? null : { state: kritaRecord.state, since: kritaRecord.since, limit: kritaRecord.limit,
-      ...(kritaRecord.state === 'running' ? { pid: kritaRecord.pid, version: kritaRecord.version, startedAt: kritaRecord.startedAt } : {}) };
-    if (krita) kritaInUse ??= await kritaSlotsInUse();
     sections.push({ id, ...(id === 'shadow' ? { mode } : {}), status, states, messages, previews, feedback, reports, groups, steps,
-      threadId, krita, summary: saved?.summary, ...(saved?.skipped ? { skipped: true } : {}) });
+      threadId, summary: saved?.summary, ...(saved?.skipped ? { skipped: true } : {}) });
   }
   // Nine-axis currently also has a standalone runner. Show its artifacts and
   // markers without registering or starting another workflow here.
   const nineSaved = record.run?.sections['nine-axis'];
-  if (!record.run?.archive || nineSaved) sections.push(await nineAxisProgress(directory, fileSet, errors, {
+  if (!record.run?.archive || nineSaved) sections.push({ ...await nineAxisProgress(directory, fileSet, errors, {
     active: record.runnerAlive && record.lockHeld && record.run?.activeSections?.includes('nine-axis') && nineSaved?.status !== 'failed',
     failed: nineSaved?.status === 'failed', archive: !!record.run?.archive,
     since: record.run?.runner?.startedAt, reason: nineSaved?.summary,
+  }), summary: nineSaved?.summary });
+  // Every section, including nine-axis, reads the existing machine-wide slot
+  // record. Artifacts and runner history cannot establish a Krita reservation.
+  const observedSections = await Promise.all(sections.map(async section => {
+    const record = await readKritaRecord(join(directory, section.id, kritaRecordFile));
+    const krita = !record ? null : { state: record.state, since: record.since, limit: record.limit,
+      ...(record.state === 'running' ? { pid: record.pid, version: record.version, startedAt: record.startedAt } : {}) };
+    return { ...section, krita };
   }));
+  if (observedSections.some(section => section.krita)) kritaInUse = await kritaSlotsInUse();
   const log = await readTaskLog(directory);
   // Server-side readers above may use agent records; the page only gets readable artifacts.
   const servedFiles = files.filter(path => !agentRecord(path));
   const servedVersions = Object.fromEntries(servedFiles.flatMap(path => fileVersions[path] ? [[path, fileVersions[path]]] : []));
-  return { ...record, files: servedFiles, ...(kritaInUse !== undefined ? { kritaInUse } : {}), fileVersions: servedVersions, sections, errors, logs: log.text,
+  return { ...record, files: servedFiles, ...(kritaInUse !== undefined ? { kritaInUse } : {}), fileVersions: servedVersions, sections: observedSections, errors, logs: log.text,
     archived: !!record.run?.archive,
     canExport: completeRun(record.run) && !record.runnerAlive && !record.lockHeld,
     logPath: log.path, logUpdatedAt: log.updatedAt, lastLogMessage: log.message,

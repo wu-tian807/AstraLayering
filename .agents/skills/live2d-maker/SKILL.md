@@ -1,11 +1,11 @@
 ---
 name: live2d-maker
-description: 从角色参考图制作人物与衣服分层 KRA、透明 PNG、穿戴组装及阴影素材。用于启动或恢复制作、打开工作台、安排巡检和调试单个 section；交付范围为后续绑定使用的静态素材。
+description: 从角色参考图制作人物与衣服分层 KRA、透明 PNG、穿戴组装及阴影素材。用于启动或恢复制作、打开工作台、安排巡检和调试单个 section；默认交付静态分层素材，按需继续制作头部九轴。
 ---
 
 # Live2D Maker
 
-从实际安装的 skill 根目录执行命令。整条路线为：人物 part 准备完成后，人物 raster 与衣服 part → 衣服 raster 两条线并行，均完成后进入穿戴组装 → 阴影；两条线共用 `--jobs` 个 agent 名额。
+从实际安装的 skill 根目录执行命令。整条路线为：人物 part 准备完成后，人物 raster 与衣服 part → 衣服 raster 两条线并行，均完成后进入穿戴组装 → 阴影；两条线共用 `--jobs` 个 agent 名额。默认在阴影结束；开启 `--live` 后，阴影完成再由同一总调度进入七步头部九轴。
 
 ## 执行流程
 
@@ -28,6 +28,7 @@ description: 从角色参考图制作人物与衣服分层 KRA、透明 PNG、�
 | `--dir <运行根目录>` | 必须是绝对路径；数据在 `<dir>/<name>/`，`.runtime` 为保留名不能作任务名；默认完整仓库 `.run/`，独立安装为 skill 上一级的 `.run/`，不放 skill 内 |
 | `--krita <可执行文件>` | 绘制、组装与阴影需要；总入口续跑复用任务根 `run.json` 记录的值，单独运行 section 时每次都要传。路线含 Krita 时每次启动（含继续／恢复／重试）先检查：只核对可执行文件与显示环境（`DISPLAY`／`WAYLAND_DISPLAY`／`QT_QPA_PLATFORM` 或可用的 Xvfb），不启动 Krita；不通过即拒绝且不改动任何步骤，用 `--krita` 重新指定 |
 | `--from / --to <section>` | 连续范围；默认完整六段，section ID 见下表 |
+| `--live / --no-live` | 阴影完成后是否自动继续头部九轴；首次默认关闭，续跑省略沿用。显式 `--from`／`--to` 优先限制本次范围，单独九轴仍可按下表运行 |
 | `--standard / --no-standard` | 是否标准化人物姿态；首次默认关闭，续跑沿用；本次路线须包含 part-layering；已有参考改选项需按 [workflow 规则](workflow/README.md#姿态与参考)重试 |
 | `--shadow-mode mask\|normal-depth` | 原生投影蒙版／法线深度；首次默认 `mask`，分支独立恢复 |
 | `--jobs <正整数>` | 整次运行所有管线（含 part、raster、组装、阴影）共用的 agent 名额，默认 3；两条并行线不增加总并发 |
@@ -61,6 +62,7 @@ pnpm start --name my-character --stop
 | [clothing-raster-layering](clothing-raster-layering/README.md) | 衣服分层绘制与精修 |
 | [character-assembly](character-assembly/README.md) | 已有两份 KRA，仅做穿戴组装 |
 | [shadow](shadow/README.md) | 阴影蒙版或法线／深度 |
+| [nine-axis](nine-axis/README.md) | 七步头部九轴；默认不自动启动，`--live` 接续阴影 |
 
 素体未换装时总调度跳过两条衣服管线，换装素体与组装直接复制人物成果，见 [总控](workflow/README.md#姿态与参考)。
 
@@ -77,7 +79,7 @@ pnpm start --name my-character --dir /绝对路径/运行根目录 --from charac
 
 ## 头部九轴
 
-已有组装／阴影 KRA 与角色图时，独立使用 `pnpm nine-axis --name <任务名> --dir <绝对运行根目录> --knowledge <先验知识目录> --krita <可执行文件>`，单步可加 `--step <步骤>`；输入与恢复方式见 [nine-axis/README.md](nine-axis/README.md)。七步为素材准备 `step01_preparation` → 单轴视频 `step02_video` → 单轴选帧 `step03_frames` → `step04_angles`（单轴模型与斜角视频两支并发）→ 斜角选帧 `step05_frames` → 斜角制作 `step06_angle-xy` → 下颌连接 `step07_jaw-line`。当前完成脸部＋五官九轴的中间交付，头发与头饰素材先保留，后续制作。角度仍只读取 step02_video 的 angles.json。
+总入口开启 `--live` 后在阴影完成时自动继续；网页执行选项使用同一参数。已有组装／阴影 KRA 与角色图时，也可独立使用 `pnpm nine-axis --name <任务名> --dir <绝对运行根目录> --knowledge <先验知识目录> --krita <可执行文件>`，单步可加 `--step <步骤>`；输入与恢复方式见 [nine-axis/README.md](nine-axis/README.md)。七步为素材准备 `step01_preparation` → 单轴视频 `step02_video` → 单轴选帧 `step03_frames` → `step04_angles`（单轴模型与斜角视频两支并发）→ 斜角选帧 `step05_frames` → 斜角制作 `step06_angle-xy` → 下颌连接 `step07_jaw-line`。当前完成脸部＋五官九轴的中间交付，头发与头饰素材先保留，后续制作。角度仍只读取 step02_video 的 angles.json。
 
 ## 其他按需参考
 

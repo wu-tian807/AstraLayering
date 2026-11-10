@@ -408,3 +408,47 @@ test('总入口状态读取九轴独立子会话，父步骤无会话时选择�
     ['step02_angles/down', 'running', 'down-thread'],
   ]);
 });
+
+test('--live opts into the native shadow dependency, persists on recovery, and --no-live ends at shadow', async t => {
+  const f = await fixture(t), first: SectionId[] = [];
+  const execute = async (id: SectionId) => { first.push(id); return { summary: id }; };
+  const baseline = await runTask(f.options, { preflight, execute });
+  assert.equal(baseline.to, 'shadow'); assert.equal(baseline.live, false); assert.ok(!first.includes('nine-axis'));
+  first.length = 0;
+  let shadowFinished = false;
+  const run = await runTask({ ...f.options, live: true }, { preflight, execute: async id => {
+    if (id === 'shadow') shadowFinished = true;
+    if (id === 'nine-axis') assert.equal(shadowFinished, true);
+    return execute(id);
+  } });
+  assert.equal(run.to, 'nine-axis'); assert.equal(run.live, true);
+  assert.deepEqual(first.at(-1), 'nine-axis');
+  const configured = await configureRun({ name: 'case', dir: f.options.dir }, f.directory);
+  assert.equal(configured.live, true); assert.equal(configured.to, 'nine-axis');
+  first.length = 0;
+  const closed = await runTask({ name: 'case', dir: f.options.dir, live: false }, { preflight, execute });
+  assert.equal(closed.to, 'shadow'); assert.ok(!first.includes('nine-axis'));
+  const narrow = await configureRun({ ...f.options, live: true, from: 'part-layering', to: 'part-layering' }, f.directory);
+  assert.equal(narrow.to, 'part-layering', 'an explicit narrow route remains narrow');
+  await saveRun(f.directory, await configureRun({ ...f.options, from: 'nine-axis', to: 'nine-axis' }, f.directory));
+  const whole = await configureRun({ ...f.options, from: 'part-layering', live: false }, f.directory);
+  assert.equal(whole.to, 'shadow', 'switching a nine-axis-only task to the default whole route keeps live off');
+});
+
+test('--live never starts nine-axis when the selected shadow section fails', async t => {
+  const f = await fixture(t), called: SectionId[] = [];
+  await assert.rejects(runTask({ ...f.options, from: 'shadow', live: true }, { preflight, execute: async id => {
+    called.push(id); throw Error('shadow failed');
+  } }), /shadow failed/);
+  assert.deepEqual(called, ['shadow']);
+  assert.equal((await readRun(f.directory))?.live, true);
+});
+
+test('CLI --live has an explicit off switch and cannot mutate a status query or stop', () => {
+  const args = ['--name', 'case'];
+  const on = parseArguments([...args, '--live']); const off = parseArguments([...args, '--no-live']);
+  assert.equal(on.mode !== 'help' && on.options.live, true);
+  assert.equal(off.mode !== 'help' && off.options.live, false);
+  assert.throws(() => parseArguments([...args, '--live', '--no-live']), /不能同时/);
+  for (const flag of ['--status', '--stop']) assert.throws(() => parseArguments([...args, flag, '--live']), /不修改/);
+});

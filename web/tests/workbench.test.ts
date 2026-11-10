@@ -108,7 +108,7 @@ test('web forwards shadow mode to the existing coordinator and shows artifacts o
   assert.equal((await snapshot(root, 'shadow-case', f.dir)).sections.find(stage => stage.id === 'shadow')!.states.mask, 'pending', 'an unmarked step is a leftover');
   await put(root, 'shadow/step01_mask/.running');
   const value = await snapshot(root, 'shadow-case', f.dir), stage = value.sections.find(stage => stage.id === 'shadow')!;
-  assert.equal(stage.states.mask, 'unconfirmed'); assert.equal(stage.states['normal-depth'], 'pending');
+  assert.equal(stage.states.mask, 'interrupted'); assert.equal(stage.states['normal-depth'], 'pending');
   for (const path of ['normal.png', 'depth.png', 'report.md', '.completed']) await put(root, 'shadow/step01_normal-depth/' + path);
   const finished = (await snapshot(root, 'shadow-case', f.dir)).sections.find(stage => stage.id === 'shadow')!;
   assert.equal(finished.states['normal-depth'], 'done');
@@ -349,4 +349,19 @@ test('existing task-action accepts the nine-axis section ID and keeps another la
   const wrongScope = await f.post('task-action', { name: 'case', action: 'retry', section: 'nine-axis', step: 'step02_angles/up' });
   assert.equal(wrongScope.status, 400); assert.match(wrongScope.value.error, /单步骤操作请使用 CLI/);
   assert.equal(started.length, 1);
+});
+
+test('web creation records opt-in live and start forwards it without extending explicit single-section ranges', async t => {
+  const starts: any[] = [], f = await fixture(t, async options => { starts.push(options); return 456; });
+  for (const live of [false, true]) {
+    const name = live ? 'live-on' : 'live-off';
+    assert.equal((await f.post('tasks', { name, upload: await upload(), live })).status, 201);
+    const run = await readRun(join(f.dir, name));
+    assert.equal(run?.live, live); assert.equal(run?.to, live ? 'nine-axis' : 'shadow');
+    assert.equal((await f.post('start', { name, live })).status, 202);
+    assert.equal(starts.at(-1).live, live);
+  }
+  assert.equal((await f.post('start', { name: 'live-on', live: 'true' })).status, 400);
+  assert.equal((await f.post('start', { name: 'live-on', from: 'shadow', to: 'shadow', live: true })).status, 202);
+  assert.equal(starts.at(-1).to, 'shadow');
 });

@@ -17,10 +17,10 @@ import { copyAsPng, pngBytes } from '../shared/png.ts';
 
 export type TaskOptions = {
   name: string; dir?: string; image?: string; krita?: string; knowledge?: string;
-  from?: SectionId; to?: SectionId; jobs?: number; standard?: boolean; shadowMode?: ShadowMode;
+  from?: SectionId; to?: SectionId; jobs?: number; standard?: boolean; shadowMode?: ShadowMode; live?: boolean;
 };
 export type SectionProgress = {
-  status: 'pending' | 'running' | 'completed' | 'failed';
+  status: 'pending' | 'running' | 'completed' | 'failed' | 'interrupted';
   updatedAt: string; summary?: string;
   // Completed without running: the base subject has no dress-up, so there is no clothing to make.
   skipped?: true;
@@ -28,7 +28,7 @@ export type SectionProgress = {
 export type TaskRun = {
   archive?: true;
   version: 1; from: SectionId; to: SectionId;
-  krita?: string; jobs: number; standard?: boolean; shadowMode?: ShadowMode;
+  krita?: string; jobs: number; standard?: boolean; shadowMode?: ShadowMode; live?: boolean;
   // The knowledge directory given with --knowledge; absent, the skill's own knowledge/.
   knowledge?: string;
   status: 'ready' | 'running' | 'completed' | 'failed' | 'interrupted';
@@ -67,6 +67,7 @@ export async function readRun(directory: string): Promise<TaskRun | undefined> {
   if (run.version !== 1 || !run.sections || typeof run.sections !== 'object'
     || !Number.isSafeInteger(run.jobs) || run.jobs < 1 || (run.standard !== undefined && typeof run.standard !== 'boolean')
     || (run.knowledge !== undefined && typeof run.knowledge !== 'string')
+    || (run.live !== undefined && typeof run.live !== 'boolean')
     || !['ready', 'running', 'completed', 'failed', 'interrupted'].includes(run.status)) {
     throw new Error('无效的总控记录：' + join(directory, 'run.json'));
   }
@@ -135,6 +136,18 @@ async function keepOriginal(directory: string, input?: string): Promise<void> {
   }
 }
 export const usesKrita = (selected: SectionId[]) => selected.some(id => id.includes('raster') || id === 'character-assembly' || id === 'shadow' || id === 'nine-axis');
+// The route is shared by startup and preflight. Explicit ranges still select
+// their own endpoint; --live changes the default shadow endpoint, including
+// that of an existing whole run. Narrow saved ranges remain narrow.
+export function taskRoute(options: Pick<TaskOptions, 'from' | 'to' | 'live'>, saved?: Pick<TaskRun, 'from' | 'to' | 'live'>) {
+  const live = options.live ?? saved?.live ?? false;
+  const from = options.from ?? saved?.from ?? 'part-layering';
+  const savedEnd = saved?.to;
+  const changeEnd = options.live !== undefined && (savedEnd === undefined || savedEnd === 'shadow' || savedEnd === 'nine-axis' && from !== savedEnd);
+  const to = options.to ?? (changeEnd ? live ? 'nine-axis' : 'shadow' : savedEnd ?? (live ? 'nine-axis' : 'shadow'));
+  selectedSections(from, to);
+  return { from, to, live };
+}
 // The Krita executable for this run: the one given now, else the one the task recorded.
 export function taskKrita(options: Pick<TaskOptions, 'name' | 'dir' | 'krita'>, saved: Pick<TaskRun, 'krita'> | undefined): string | undefined {
   return options.krita ? resolveInput(options.name, options.krita, options.dir) : saved?.krita;
@@ -142,8 +155,7 @@ export function taskKrita(options: Pick<TaskOptions, 'name' | 'dir' | 'krita'>, 
 export async function configureRun(options: TaskOptions, directory: string): Promise<TaskRun> {
   const saved = await readRun(directory);
   if (saved?.archive) throw new Error('这是导出的成果归档；请在原运行目录继续制作。');
-  const from = options.from ?? saved?.from ?? 'part-layering';
-  const to = options.to ?? saved?.to ?? 'shadow';
+  const { from, to, live } = taskRoute(options, saved);
   const selected = selectedSections(from, to);
   if (options.standard !== undefined && !selected.includes('part-layering')) {
     throw new Error('--standard / --no-standard 需要本次路线包含 part-layering；请用 --from part-layering 运行人物 preparation。');
@@ -155,7 +167,7 @@ export async function configureRun(options: TaskOptions, directory: string): Pro
   const run: TaskRun = saved ?? {
     version: 1, from, to, jobs, status: 'ready', createdAt: now(), updatedAt: now(), sections: {},
   };
-  Object.assign(run, { from, to, jobs, standard, shadowMode: shadowMode(options.shadowMode ?? saved?.shadowMode) });
+  Object.assign(run, { from, to, live, jobs, standard, shadowMode: shadowMode(options.shadowMode ?? saved?.shadowMode) });
   const { label } = await installedVersion();
   if (!saved) run.createdWith = label;
   run.lastRunWith = label;
@@ -196,11 +208,14 @@ export async function taskStatus(options: Pick<TaskOptions, 'name' | 'dir'>) {
         threadId = (await currentSession(path, steps.map(step => ({ id: step.name, status: step.status }))))?.threadId ?? null;
       }
     } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
-    return { id, ...(id === 'shadow' ? { mode: shadowMode(run.shadowMode) } : {}), ...run.sections[id], directory: path, ...(threadId === undefined ? {} : { threadId }), steps };
+    const saved = run.sections[id];
+    return { id, ...(id === 'shadow' ? { mode: shadowMode(run.shadowMode) } : {}), ...saved,
+      ...(saved?.status === 'running' && (!runnerAlive || !lockHeld) ? { status: 'interrupted' as const } : {}),
+      directory: path, ...(threadId === undefined ? {} : { threadId }), steps };
   }));
   const log = await readTaskLog(directory);
   return {
-    ...run, status: run.status === 'running' && !runnerAlive ? 'interrupted' : run.status,
+    ...run, status: run.status === 'running' && (!runnerAlive || !lockHeld) ? 'interrupted' : run.status,
     directory, runnerAlive: !!runnerAlive, lockHeld, sections,
     lastMessage: log.message, log: log.path, logUpdatedAt: log.updatedAt,
     monitor: join(directory, 'monitor.md'),

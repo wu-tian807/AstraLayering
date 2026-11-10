@@ -31,7 +31,8 @@ function patchChildren(live, next) {
 function patch(live, next) {
   if (live.nodeType !== 1) { if (live.nodeValue !== next.nodeValue) live.nodeValue = next.nodeValue; return; }
   // The open state of <details> belongs to the user once the element exists.
-  const keep = name => name === 'open' && live.tagName === 'DETAILS';
+  const keep = name => name === 'open' && live.tagName === 'DETAILS'
+    || live.tagName === 'CANVAS' && (name === 'width' || name === 'height');
   for (const { name } of [...live.attributes]) if (!next.hasAttribute(name) && !keep(name)) live.removeAttribute(name);
   for (const { name, value } of [...next.attributes]) if (live.getAttribute(name) !== value && !keep(name)) live.setAttribute(name, value);
   // Read the rendered control state first: patching moves unmatched children out of next.

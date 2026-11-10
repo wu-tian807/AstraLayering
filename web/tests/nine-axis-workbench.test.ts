@@ -235,8 +235,8 @@ test('staged progress shows draft model and generated video before branches comp
   await f.put('step04_angles/video/left-up.mp4', 'generated video');
   let value = await f.get();
   assert.equal(value.layout, 'staged');
-  assert.equal(value.states['step04_angles/model/up'], 'available');
-  assert.equal(value.states['step04_angles/video'], 'available');
+  assert.equal(value.states['step04_angles/model/up'], 'interrupted');
+  assert.equal(value.states['step04_angles/video'], 'interrupted');
   await f.complete('step04_angles/video');
   value = await f.get({ active: true });
   assert.equal(value.states['step04_angles/video'], 'done');
@@ -270,4 +270,25 @@ test('dynamic studio preview preserves angles and defers refresh during user edi
   panel.raf = 0; panel.doc = null;
   t.mock.method(globalThis,'fetch',async () => Response.json(panel.project));
   await panel.refresh(); assert.equal(installs,2, 'an interrupted model load retries even when its revision is unchanged');
+});
+
+test('empty tasks use seven-step progress and a live section reports startup before the first model call', async t => {
+  const f = await fixture(t);
+  const pending = await f.get(); assert.equal(pending.layout, 'staged'); assert.equal(pending.status, 'pending');
+  const active = await f.get({ active: true }); assert.equal(active.status, 'running');
+});
+
+test('nine-axis shows actual Krita queue/reservation/use and discards a dead owner record', async t => {
+  const f = await fixture(t), name = basename(f.root), dir = dirname(f.root);
+  const get = async () => (await snapshot(f.root, name, dir)).sections.find(section => section.id === 'nine-axis')!;
+  const base = { section: join(f.root, 'nine-axis'), owner: process.pid, since: new Date().toISOString(), limit: 4 };
+  for (const state of ['waiting', 'reserved', 'running']) {
+    await f.put('krita.json', { ...base, state, ...(state === 'running' ? { pid: process.pid, version: '5.3', startedAt: base.since, bridge: '/private/bridge' } : {}) });
+    assert.equal((await get()).krita?.state, state);
+  }
+  await f.put('krita.json', { ...base, state: 'running', owner: 2147483647, pid: process.pid });
+  assert.equal((await get()).krita, null);
+  await f.put('krita.json', { ...base, state: 'running', pid: 2147483647 });
+  assert.equal((await get()).krita?.state, 'reserved', 'a crashed application still holds the worker reservation');
+  await rm(join(f.root, 'nine-axis/krita.json')); assert.equal((await get()).krita, null);
 });

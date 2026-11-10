@@ -123,3 +123,11 @@ test('CLI arguments follow --name/--dir and provide directory/ZIP output without
   assert.throws(() => parseExportArguments([]), /--name/);
   assert.throws(() => parseExportArguments(['--name', 'case', '--model', 'anything']), /Unknown option/);
 });
+
+test('a live route cannot be exported as completed while its selected nine-axis section is unfinished', async t => {
+  const f = await exportFixture(t), path = join(f.root, 'run.json');
+  const run = JSON.parse(await readFile(path, 'utf8'));
+  run.to = 'nine-axis'; run.live = true; run.sections['nine-axis'].status = 'pending';
+  await f.put('run.json', JSON.stringify(run));
+  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.base, 'live-result') }), /全流程已完成/);
+});

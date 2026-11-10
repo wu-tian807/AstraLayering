@@ -12,7 +12,7 @@ pnpm start --name jianma --background
 
 参数含义（含 `--dir` 默认值、`--jobs`、`--step` 写法）只在 [SKILL.md](../SKILL.md#启动参数) 说明。自定义运行根目录时每次追加同一 `--dir`；所有相对输入（包括 image、groups 和 krita）从任务目录 `<dir>/<name>/` 解析。
 
-总控按依赖调度：人物 part 完成准备（简化参考）后，人物 raster 与衣服线（衣服 part → 衣服 raster）同时进行；两条线都完成后执行组装和阴影。`--from`／`--to` 选择连续范围并保存，路线范围之外的上游视为已就绪，后续阶段自动推进。一条线失败只阻塞依赖它的管线，另一条线继续跑完，随后整次运行记为 failed。素体未换装时两条衣服管线记为 `completed` 且 `skipped: true`，见[姿态与参考](#姿态与参考)。运行状态的 `activeSections` 列出正在执行的 section。已有两份 KRA 与简化参考时可从组装开始，不伪造上游完成记录。
+总控按依赖调度：人物 part 完成准备（简化参考）后，人物 raster 与衣服线（衣服 part → 衣服 raster）同时进行；两条线都完成后执行组装和阴影。首次默认到阴影结束；总入口加 `--live` 才自动继续 `nine-axis`，该段依赖阴影完成并复用既有总调度。`live` 与实际 `from`／`to` 保存在 `run.json`，继续／恢复／重试省略选项则沿用；`--no-live` 显式关闭整条流程的九轴续接。显式 `--from`／`--to` 优先限定范围，单独管线不因此扩大。`--from`／`--to` 选择连续范围并保存，路线范围之外的上游视为已就绪，后续阶段自动推进。一条线失败只阻塞依赖它的管线，另一条线继续跑完，随后整次运行记为 failed。素体未换装时两条衣服管线记为 `completed` 且 `skipped: true`，见[姿态与参考](#姿态与参考)。运行状态的 `activeSections` 列出正在执行的 section。九轴 step04 的 model／video 分支及 model 内三个方向并发，所有模型调用仍共用整次运行的 `--jobs` 名额。主动停止的 section 记为 interrupted，调用失败记为 failed；`.running` 仍只表示尚未交付。已有两份 KRA 与简化参考时可从组装开始，不伪造上游完成记录。
 
 后台返回启动确认后仍需查询状态与日志，Codex 补丁可能仍在准备。新任务或只有成果的旧任务没有总控 `run.json` 时，`--status` 报缺记录；按实际输入和范围首次启动即可。先核实活跃进程与锁，不能同时从 CLI、网页或独立 section 启动同一任务。总调度和恢复操作持有任务锁 `<dir>/<name>/.runner.lock`（每 10 秒刷新，30 秒无刷新即过期）。
 
@@ -51,7 +51,8 @@ pnpm env:check
 ├── clothing-part-layering/
 ├── clothing-raster-layering/  # step01～02
 ├── character-assembly/        # step01
-└── shadow/                   # mask/ 与 normal-depth/ 独立恢复
+├── shadow/                   # step01_mask 与 step01_normal-depth 独立恢复
+└── nine-axis/                # --live 可选续接；step01_preparation～step07_jaw-line
 ```
 
 请求目录继续保留 `prompt.md`、`request.json`、`events.jsonl`、`result.json` 和会话记录。任务日志统一写入 `workflow.log`（不再读取旧版的 `service.log`），不新增永久 native/transcript 日志。
@@ -82,7 +83,7 @@ pnpm web
 
 在页面“工作目录”选择与 CLI `--dir` 相同的根目录。程序连接先读 `GET api/settings`，再 `POST api/settings`，JSON 为 `{ "dir": "刚读取的旧目录", "directory": "目标运行根目录" }`；此设置为实例共享，不能擅自改掉无关服务。`?dir=` 不会改变设置。两个不同目录需要独立 checkout 和服务，只改端口仍共用设置。
 
-打开 `<根URL>/?name=<编码后的name>` 并检查实际选中任务与目录；再打开一项真实产物，或展示真实等待状态。流程定位 `?name=<name>&page=preview&stage=0`，stage 为 0..5。角色预览是 `studio?project=<name>`，读取该任务的组装、阴影、lighting 及已制作的九轴产物。九轴阶段的模型与工程使用该阶段交付，不从其他案例猜贴图。
+打开 `<根URL>/?name=<编码后的name>` 并检查实际选中任务与目录；再打开一项真实产物，或展示真实等待状态。流程定位 `?name=<name>&page=preview&stage=0`，stage 为 0..6。角色预览是 `studio?project=<name>`，读取该任务的组装、阴影、lighting 及已制作的九轴产物。九轴阶段的模型与工程使用该阶段交付，不从其他案例猜贴图。
 
 服务只监听本机，远程需使用已有转发／部署入口，不能把远端 localhost 当作用户地址。浏览器能力可用时打开并核对页面；不可用时给链接并说明。页面故障不重置绘图。关闭网页不停止制作；网页“停止”或 CLI `pnpm start --name <name> [--dir …] --stop` 可控制网页或 CLI 总入口启动的任务，按当前运行 ID 请求总调度取消并保留产物及 thread。停止请求不会影响下一次续跑。旧版网页 worker 仍用原入口，旧版终端调度在 macOS／Linux 上可通过原终止信号停止；Windows 旧终端任务仍需从原终端停止。独立 section 需停止原进程及子进程。完整 UI、原生合成器的 Krita／Xvfb 环境与部署见工作台 checkout 的 `web/README.md`。
 
@@ -122,7 +123,7 @@ Codex 泛化断流先读日志“错误详情”与请求 `result.json`，区分
 
 ## 交付与自动化测试
 
-最终文件位置由各 section README 约定，核对实际文件，特别是衣服 PNG 按实际导出位置提供。阴影默认交付 `shadow/step01_mask/character-shadowed.kra` 与 PNG；normal-depth 交付贴图并发布 `lighting/`。成果是静态素材，不能声称已完成绑定。
+最终文件位置由各 section README 约定，核对实际文件，特别是衣服 PNG 按实际导出位置提供。阴影默认交付 `shadow/step01_mask/character-shadowed.kra` 与 PNG；normal-depth 交付贴图并发布 `lighting/`。默认路线交付静态分层素材；开启 `--live` 后另交付现有工作台可读的头部九轴模型和贴图，Cubism 绑定／导出仍是后续工作。
 
 ```sh
 node --import ./shared/tests/ignore-local-env.ts --test workflow/tests/*.test.ts

@@ -319,3 +319,9 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 #settings-dialog form{padding:5px 32px 0}#settings-dialog .modal-footer{margin:24px -32px 0}
 
 .artifact-video{margin:0;min-width:240px;max-width:360px;padding:8px;border:1px solid var(--line);border-radius:8px}.artifact-video video{display:block;width:100%;max-height:260px}.artifact-video figcaption{font-size:12px;margin:6px 0}.artifact-video a{font-size:12px}
+
+.route-summary{margin:18px 0 0;font-size:12px;color:var(--muted)}
+.live-detail{font-size:12px;line-height:1.6;color:var(--muted)}
+.head-preview-panel{margin:12px;min-width:0}.head-preview-panel canvas{display:block;width:100%;height:210px;background:#f0f1f4;border-radius:7px}
+.head-preview-panel p{font-size:11px;margin:8px 0}.head-preview-panel small,.head-preview-panel a{display:block;font-size:10px;line-height:1.8;color:var(--muted)}
+.execution-state.interrupted{color:#b34b45}.execution-state.unconfirmed{color:#9a7331}.overview-card.interrupted,.overview-card.unconfirmed{border-color:#dfc9a5}

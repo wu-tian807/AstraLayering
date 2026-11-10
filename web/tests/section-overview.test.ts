@@ -43,8 +43,8 @@ test('section 占用或排队等 Krita 时，在原有执行状态旁加标识',
   const html = render(['running', 'running', 'running', 'pending'], [], true, true, undefined,
     [{ krita: running }, { krita: reserved }, { krita: waiting }, { krita: null }], 3);
   const card = (i: number) => html.match(new RegExp(`data-overview="${i}"[\\s\\S]*?</article>`))![0];
-  assert.match(card(0), /krita-badge running[^>]*pid 4242[^>]*本机 Krita 名额 3 \/ 3[^>]*>占用 Krita<small>3\/3<\/small>/);
-  assert.match(card(1), /krita-badge reserved[^>]*尚未启动[^>]*>占用 Krita/);
+  assert.match(card(0), /krita-badge running[^>]*pid 4242[^>]*本机 Krita 名额 3 \/ 3[^>]*>正在使用 Krita<small>3\/3<\/small>/);
+  assert.match(card(1), /krita-badge reserved[^>]*尚未启动[^>]*>已占用 Krita 名额/);
   assert.match(card(2), /krita-badge waiting[^>]*已满[^>]*>Krita 排队中<small>3\/3<\/small>/);
   // The badge sits beside the section's own state, which stays as it is.
   for (const i of [0, 1, 2]) assert.ok(card(i).includes('进行中'));
@@ -59,8 +59,8 @@ test('归档任务只展示实际运行过的管线', () => {
 
 test('停止后已有绘画仍是已有产物，不能误报完成或进行中', () => {
   const html = render(['interrupted', 'unconfirmed'], ['section-0/step01/draft.kra']);
-  assert.match(html, /execution-state available/);
-  assert.match(html, /execution-state pending/);
+  assert.match(html, /execution-state interrupted/);
+  assert.match(html, /execution-state unconfirmed/);
   assert.doesNotMatch(html, /已完成|进行中/);
 });
 

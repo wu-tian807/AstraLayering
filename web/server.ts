@@ -63,6 +63,10 @@ function options(value: any, dir: string): TaskOptions {
     if (typeof value.standard !== 'boolean') throw new Error('standard 必须是布尔值');
     result.standard = value.standard;
   }
+  if (value.live !== undefined) {
+    if (typeof value.live !== 'boolean') throw new Error('live 必须是布尔值');
+    result.live = value.live;
+  }
   if (value.jobs !== undefined) {
     if (!Number.isSafeInteger(value.jobs) || value.jobs < 1) throw new Error('jobs 必须是正整数');
     result.jobs = value.jobs;
@@ -412,7 +416,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         '/vendor/fflate.js': 'node_modules/fflate/umd/index.js',
       };
       if (vendor[path]) { response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8' }); response.end(await readFile(join(root, vendor[path]))); return; }
-      const staticFiles: Record<string, string> = { '/': 'index.html', '/app.js': 'app.js', '/process-files.js': 'process-files.js', '/progress.js': 'progress.js', '/report-markdown.js': 'report-markdown.js', '/task-selection.js': 'task-selection.js', '/dom-morph.js': 'dom-morph.js', '/env-editor.js': 'env-editor.js', '/settings-dialog.js': 'settings-dialog.js', '/server-picker.js': 'server-picker.js', '/styles.css': 'styles.css', '/studio': 'studio/index.html', '/studio/app.js': 'studio/app.js', '/studio/styles.css': 'studio/styles.css', '/studio/renderer.js': 'studio/renderer.js', '/studio/lighting-model.js': 'studio/lighting-model.js' };
+      const staticFiles: Record<string, string> = { '/': 'index.html', '/app.js': 'app.js', '/process-files.js': 'process-files.js', '/progress.js': 'progress.js', '/head-preview.js': 'head-preview.js', '/head-motion.js': 'head-motion.js', '/report-markdown.js': 'report-markdown.js', '/task-selection.js': 'task-selection.js', '/dom-morph.js': 'dom-morph.js', '/env-editor.js': 'env-editor.js', '/settings-dialog.js': 'settings-dialog.js', '/server-picker.js': 'server-picker.js', '/styles.css': 'styles.css', '/studio': 'studio/index.html', '/studio/app.js': 'studio/app.js', '/studio/styles.css': 'studio/styles.css', '/studio/renderer.js': 'studio/renderer.js', '/studio/lighting-model.js': 'studio/lighting-model.js' };
       staticFiles['/report-links.js'] = '../.agents/skills/live2d-maker/shared/report-links.js';
       staticFiles['/step-paths.js'] = '../.agents/skills/live2d-maker/shared/step-paths.js';
       for (const name of ['nine-axis-model.js', 'nine-axis-render.js']) staticFiles['/studio/' + name] = '../.agents/skills/live2d-maker/shared/' + name;

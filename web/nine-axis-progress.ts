@@ -15,7 +15,8 @@ type Observation = { active?: boolean; failed?: boolean; archive?: boolean; sinc
 // announcing completion; siblings keep their own activity and failure evidence.
 export async function nineAxisProgress(directory: string, files: Set<string>, errors: string[], observation: Observation = {}) {
   const root = join(directory, 'nine-axis'), states: Record<string, Status> = {}, messages: Record<string, string> = {};
-  const staged = [...files].some(path => /^nine-axis\/(?:step01_preparation|step04_angles)\//.test(path)) || (await readStep(join(root, 'step01_preparation'))).status !== 'absent';
+  const previous = [...files].some(path => previousNineAxisSteps.some(id => path.startsWith(`nine-axis/${id}/`)));
+  const staged = !previous || [...files].some(path => /^nine-axis\/(?:step01_preparation|step04_angles)\//.test(path)) || (await readStep(join(root, 'step01_preparation'))).status !== 'absent';
   const mainSteps = staged ? nineAxisSteps : previousNineAxisSteps;
   const ids = staged ? nineAxisProgressSteps : previousNineAxisSteps.flatMap(id => id === 'step02_angles' ? [id, ...previousNineAxisGroupSteps] : [id]);
   const groups = staged ? nineAxisGroupSteps : previousNineAxisGroupSteps;
@@ -34,11 +35,11 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
     const call = ownCalls.filter(call => !call.finished).at(-1) ?? ownCalls.at(-1);
     states[id] = status === 'completed' ? missing.length ? 'failed' : 'done'
       : status === 'running' ? observation.active ? call?.failed ? 'failed' : call && throttled(call) ? 'throttled' : 'running'
-        : staged ? present ? 'available' : 'unconfirmed' : observation.failed ? 'failed' : 'unconfirmed'
+        : observation.failed ? 'failed' : 'interrupted'
       : observation.active && call && !call.finished ? throttled(call) ? 'throttled' : 'running' : present ? 'available' : 'pending';
     if (missing.length) messages[id] = '.completed 存在但缺少交付：' + missing.join('、');
     else if (states[id] === 'throttled') messages[id] = call!.retryError!;
-    else if (states[id] === 'failed' && observation.reason) messages[id] = observation.reason;
+    else if (['failed', 'interrupted'].includes(states[id]) && observation.reason) messages[id] = observation.reason;
     if (status !== 'absent') {
       const session = await readStepSession(root, id).catch(error => { errors.push(prefix + ': ' + String(error)); return undefined; });
       steps.push({ id, status, session: !!session?.threadId, ...(session?.threadId ? { threadId: session.threadId } : {}), ...(missing.length ? { missing } : {}) });
@@ -58,6 +59,7 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
     if (values.includes('running')) states[parent] = 'running';
     else if (values.includes('throttled')) states[parent] = 'throttled';
     else if (values.includes('failed')) states[parent] = 'failed';
+    else if (values.includes('interrupted')) states[parent] = 'interrupted';
   }
   const mergeComplete = childrenDone && states[model] === 'done';
   if (!mergeComplete) for (const id of staged ? ['step06_angle-xy', 'step07_jaw-line'] : ['step03_angle-xy', 'step04_jaw-line']) {
@@ -65,8 +67,8 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
     if (states[id] !== 'pending') messages[id] = '等待单轴模型完成，已有成果可查看';
   }
   const values = Object.values(states), status: Status = values.includes('running') ? 'running' : values.includes('throttled') ? 'throttled'
-    : values.includes('failed') ? 'failed' : values.includes('unconfirmed') ? 'unconfirmed' : mainSteps.every(id => states[id] === 'done') ? 'done'
+    : observation.active ? 'running' : values.includes('failed') || observation.failed ? 'failed' : values.includes('interrupted') ? 'interrupted' : mainSteps.every(id => states[id] === 'done') ? 'done'
       : values.some(value => value === 'done' || value === 'available') ? 'available' : 'pending';
   return { id: 'nine-axis', layout: staged ? 'staged' : 'nested', status, states, messages, steps, groups: [], previews,
-    feedback: {} as Record<string, string>, reports, threadId: null, krita: null, mergeComplete };
+    feedback: {} as Record<string, string>, reports, threadId: [...steps].reverse().find(step => step.threadId)?.threadId ?? null, mergeComplete };
 }
