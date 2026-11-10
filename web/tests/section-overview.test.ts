@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
 import { runInNewContext } from 'node:vm';
-import { displayStatus, sectionSteps, shadowInspectionArtifacts, statusLabel, stepArtifacts } from '../progress.js';
+import { displayStatus, sectionSteps, previousNineAxisSectionSteps, shadowInspectionArtifacts, statusLabel, stepArtifacts } from '../progress.js';
 
 const source = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 const renderer = source.slice(source.indexOf('function overviewCard('), source.indexOf('function graph('));
@@ -11,14 +11,65 @@ const visibleStage = source.match(/^const visibleStage=.*$/m)![0];
 const lanes = source.match(/^const flowLanes = .*$/m)![0];
 const observed = source.slice(source.indexOf('function observedDisplayStatus('), source.indexOf('function rasterItems('));
 function render(statuses: string[], files: string[] = [], running = false, locked = false, archive?: { sections: Record<string, unknown> }, sections?: unknown[], kritaInUse?: number) {
+  const templates = structuredClone(sectionSteps);
+  if ((sections?.[6] as any)?.layout === 'nested') templates[6] = structuredClone(previousNineAxisSectionSteps);
+  for (const [i, steps] of templates.entries()) for (const step of steps) step.status = (sections?.[i] as any)?.states?.[step.id] ?? 'pending';
   return runInNewContext(lanes + '\n' + visibleStage + '\n' + observed + renderer + '\nprojectPage();', {
-    stages: statuses.map((status, i) => ({ name: '管线 ' + i, id: 'section-' + i, status })),
+    stages: statuses.map((status, i) => ({ name: '管线 ' + i, id: i === 6 ? 'nine-axis' : 'section-' + i, status })),
     state: { name: 'case', stage: 0 }, data: { files, runnerAlive: running, lockHeld: locked, ...(sections ? { sections } : {}), kritaInUse, ...(archive ? { archived: true, run: archive } : {}) },
     stepArtifacts: {}, available: () => [], pageHeading: () => '', runNotice: () => '',
     esc: String, icon: () => '', displayStatus, statusLabel,
+    sectionSteps: templates, finished: (step: { status: string }) => ['done', 'skipped'].includes(step.status),
     statusMark: (status: string) => `<i data-status="${status}"></i>`,
   }) as string;
 }
+
+test('九轴总览只展示七步进度，缩略头保留在流程预览页', () => {
+  const states = Object.fromEntries(sectionSteps[6].map(step => [step.id, 'done']));
+  const html = render(Array(7).fill('done'), [], false, false, undefined, Array(6).fill({}).concat({ states }));
+  const card = html.match(/data-overview="6"[\s\S]*?<\/article>/)![0];
+  assert.match(card, /已完成 7 \/ 7 步/);
+  assert.deepEqual([...card.matchAll(/data-nine-step="([^"]+)"/g)].map(match => match[1]), sectionSteps[6].map(step => step.id));
+  assert.doesNotMatch(card, /data-head-preview|<canvas|头部九轴最新画面/);
+  const preview = source.slice(source.indexOf('function flowCard('), source.indexOf('function inspector('));
+  assert.match(preview, /stage\.id==='nine-axis'\?headThumbnail\(\)/);
+});
+
+test('step04 并发分支仍计为一步，进度跟随父步骤状态', () => {
+  const states: Record<string, string> = Object.fromEntries(sectionSteps[6].map((step, index) => [step.id, index < 3 ? 'done' : index === 3 ? 'running' : 'pending']));
+  Object.assign(states, { 'step04_angles/model': 'running', 'step04_angles/model/left': 'done', 'step04_angles/video': 'done' });
+  let html = render(Array(7).fill('running'), [], true, true, undefined, Array(6).fill({}).concat({ states }));
+  let card = html.match(/data-overview="6"[\s\S]*?<\/article>/)![0];
+  assert.match(card, /已完成 3 \/ 7 步/);
+  assert.match(card, /step04_angles · 单轴模型与斜角视频 · 进行中/);
+  assert.equal((card.match(/data-nine-step=/g) ?? []).length, 7);
+  states.step04_angles = 'done';
+  html = render(Array(7).fill('running'), [], true, true, undefined, Array(6).fill({}).concat({ states }));
+  card = html.match(/data-overview="6"[\s\S]*?<\/article>/)![0];
+  assert.match(card, /已完成 4 \/ 7 步/);
+});
+
+test('旧任务的总览沿用其实际四步，不虚构七步完成记录', () => {
+  const states = Object.fromEntries(previousNineAxisSectionSteps.map(step => [step.id, 'done']));
+  const html = render(Array(7).fill('done'), [], false, false, undefined, Array(6).fill({}).concat({ layout: 'nested', states }));
+  assert.match(html, /已完成 4 \/ 4 步/);
+  assert.doesNotMatch(html, /data-nine-step="step07_jaw-line"/);
+});
+
+test('新旧九轴预览定位到真实步骤，并把唯一缩略头带入视野', () => {
+  const defaults = source.slice(source.indexOf('function defaultStep('), source.indexOf('if (Number.isInteger(requestedStage)'));
+  for (const steps of [sectionSteps[6], previousNineAxisSectionSteps]) {
+    assert.equal(runInNewContext(defaults + '\ndefaultStep(6);', { sectionSteps: [...sectionSteps.slice(0, 6), steps] }), steps[0].id);
+  }
+  const focus = source.slice(source.indexOf('function focusPreviewStep('), source.indexOf('function updateViewURL('));
+  const viewport = { scrollLeft: 0, scrollTop: 0, getBoundingClientRect: () => ({ left: 10 }) };
+  const queries: string[] = [], state = { stage: 6, selectedStep: 'step01_preparation', canvasLeft: 0, canvasTop: 0 };
+  runInNewContext(focus + '\nfocusPreviewStep();', { state, laneScrollTop: () => 0, document: {
+    querySelector(selector: string) { queries.push(selector); return selector === '.flow-scroll' ? viewport : selector === '[data-head-preview]' ? { getBoundingClientRect: () => ({ left: 400 }) } : null; },
+  } });
+  assert.equal(viewport.scrollLeft, 378);
+  assert.deepEqual(queries, ['.flow-scroll', '[data-head-preview]']);
+});
 
 test('执行面板逐管线展示真实状态，完成与失败不再显示为未运行', () => {
   const html = render(['done', 'running', 'available', 'pending', 'failed']);

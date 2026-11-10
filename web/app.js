@@ -68,9 +68,12 @@ async function post(path, value) {
 // anything; the global settings open, and the action runs again once they are saved.
 const settings=createSettings({get,post,esc,icon,onSaved:async()=>{await refreshTask(true);if(state.page==='config'&&state.configMode==='files')await loadConfig();render();}});
 const requestedStage = Number(new URLSearchParams(location.search).get('stage') ?? 0);
+function defaultStep(index) {
+ return index===0||index===2?'layers':sectionSteps[index]?.[0]?.id||'step01';
+}
 if (Number.isInteger(requestedStage) && requestedStage >= 0 && requestedStage < stages.length) {
  state.stage = requestedStage;
- state.selectedStep = requestedStage === 0 || requestedStage === 2 ? 'layers' : requestedStage >= 4 ? 'step01' : 'step02';
+ state.selectedStep = requestedStage===6?defaultStep(requestedStage):requestedStage===0||requestedStage===2?'layers':requestedStage>=4?'step01':'step02';
 }
 const taskParams = () => new URLSearchParams({name:state.name,dir:state.directory});
 const artifact = (path, thumbnail=false) => './artifact?'+new URLSearchParams({name:state.name,dir:state.directory,path,v:data.fileVersions?.[path]||'',...(/\.kra$/i.test(path)?{preview:'kra',...(thumbnail?{fit:'content'}:{})}:thumbnail&&/\.svg$/i.test(path)?{preview:'content'}:{})});
@@ -143,6 +146,7 @@ function applySnapshot(next) {
  }
  sectionSteps=structuredClone(stepTemplates);
  if(data.sections[6]?.layout==='nested')sectionSteps[6]=structuredClone(previousNineAxisSectionSteps);
+ if(state.stage===6&&!sectionSteps[6].some(step=>step.id===state.selectedStep||step.children.some(child=>child.id===state.selectedStep||child.children.some(group=>group.id===state.selectedStep))))state.selectedStep=defaultStep(6);
  for(const [index,stage] of stages.entries()) {
   stage.status=data.sections[index]?.status||'pending';
   const mark=steps=>steps.forEach(step=>{
@@ -363,7 +367,7 @@ function stepNode(index,step,nested=false) {
  const context=step.id==='layers'?groupCycle(index):step.children.length?`<div class="step-children ${alternative?'step-alternatives':parallel?'step-parallel':''}" ${alternative?'role="group" aria-label="阴影方式：二选一"':parallel?'role="group" aria-label="并发制作任务"':''}>${isRasterSection(index)&&step.id==='step01'?reviewNodes(index,step.children):step.children.map((child,i)=>`${alternative&&i?'<span class="alternative-or">OR</span>':''}${stepNode(index,child,true)}`).join('')}</div>`:'';
  return `<section class="step-node ${nested?'nested':''} ${step.children.length?'step-container':''} ${isRasterSection(index)&&step.id==='step01'?'raster-review':''} ${closed?'node-collapsed':''} ${step.status} ${selected?'selected':''}" data-node="${index}:${step.id}">
  ${mode?`<div class="mode-choice ${currentMode?'current':''}">${currentMode?'当前方式':'备选方式'}</div>`:''}
- <div class="step-heading"><button class="step-node-heading" data-step="${index}:${step.id}">${statusMark(status)}<h3>${esc(step.title)}</h3><small class="step-state" title="${esc(step.id)}">${esc(statusLabel(status))}</small></button><button class="icon-button" data-step-toggle="${key}" aria-label="${closed?'展开':'收起'}${esc(step.title)}" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>
+ <div class="step-heading"><button class="step-node-heading" data-step="${index}:${step.id}">${statusMark(status)}<h3>${stages[index].id==='nine-axis'?`<span class="step-code">${esc(step.id)}</span>`:''}${esc(step.title)}</h3><small class="step-state" title="${esc(step.id)}">${esc(statusLabel(status))}</small></button><button class="icon-button" data-step-toggle="${key}" aria-label="${closed?'展开':'收起'}${esc(step.title)}" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>
  ${closed?'':`<div class="step-content">
  ${step.id!=='layers'&&(step.note||['standard','simplified','base','clothing'].includes(step.id))?`<p class="step-summary" ${step.note?`title="${esc(step.note)}"`:'aria-hidden="true"'}>${esc(step.note)}</p>`:''}
  ${step.id==='standard'&&!available(stepArtifacts[index][step.id]).some(item=>item.kind==='image')?'<p class="archive-gap" title="人物准备阶段执行后展示标准参考图">尚无标准参考图</p>':''}
@@ -402,7 +406,7 @@ function headThumbnail() {
 }
 function flowCard(index) {
  const stage=stages[index],status=observedDisplayStatus(index,stage.status),closed=state.collapsedSections.has(index),wide=!closed&&groupViews[index]?.open&&!state.collapsedSteps.has(`${index}:layers`);
- return `<section class="section-lane ${stage.status} ${closed?'collapsed':''} ${wide?'group-expanded':''} ${stage.id==='shadow'?'shadow-lane':''}" data-section="${index}"><div class="section-heading"><button data-stage="${index}" aria-label="查看${stage.name}交付"><span class="node-number">${String(index+1).padStart(2,'0')}</span><h2>${stage.name}</h2>${statusMark(status)}${kritaBadge(index)}</button><button class="icon-button" data-section-toggle="${index}" aria-label="${closed?'展开':'收起'}${stage.name}栏目" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>${!closed&&stage.status==='skipped'?`<p class="lane-summary skipped-lane">${esc(data.sections[index]?.summary||'无需执行')}</p>`:''}${!closed&&stage.status==='failed'&&laneFailure(data.sections[index])?errorBox(laneFailure(data.sections[index]),'lane-error'):''}${closed?`<div class="lane-collapsed-body"><span>${esc(statusLabel(status))}</span><small>${sectionSteps[index].filter(finished).length} / ${sectionSteps[index].length} 步</small>${(()=>{const note=stage.status==='skipped'?data.sections[index]?.summary||'无需执行':stage.status==='failed'?laneFailure(data.sections[index]):'';return note?`<p class="${stage.status==='failed'?'status-error':''}" title="${esc(note)}">${esc(note)}</p>`:'';})()}</div>`:`<div class="section-steps">${stage.id==='nine-axis'?headThumbnail():kraPreviewPanel(index)}${stage.id==='shadow'?'<div class="shadow-references"><a href="./shadow-reference/skirt.png" target="_blank" rel="noopener">裙影参考 ↗</a><a href="./shadow-reference/hair.png" target="_blank" rel="noopener">发影参考 ↗</a></div>':''}${sectionSteps[index].map(step=>stepNode(index,step)).join('')}${data.sections[index]?.threadId?`<small class="thread-id" title="${esc(data.sections[index].threadId)}">thread · ${esc(data.sections[index].threadId)}</small>`:''}</div>`}</section>`;
+ return `<section class="section-lane ${stage.status} ${closed?'collapsed':''} ${wide?'group-expanded':''} ${stage.id==='shadow'?'shadow-lane':''}" data-section="${index}"><div class="section-heading"><button data-stage="${index}" aria-label="查看${stage.name}交付"><span class="node-number">${stage.id==='nine-axis'?icon('layers'):String(index+1).padStart(2,'0')}</span><h2>${stage.name}</h2>${statusMark(status)}${kritaBadge(index)}</button><button class="icon-button" data-section-toggle="${index}" aria-label="${closed?'展开':'收起'}${stage.name}栏目" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>${!closed&&stage.status==='skipped'?`<p class="lane-summary skipped-lane">${esc(data.sections[index]?.summary||'无需执行')}</p>`:''}${!closed&&stage.status==='failed'&&laneFailure(data.sections[index])?errorBox(laneFailure(data.sections[index]),'lane-error'):''}${closed?`<div class="lane-collapsed-body"><span>${esc(statusLabel(status))}</span><small>${sectionSteps[index].filter(finished).length} / ${sectionSteps[index].length} 步</small>${(()=>{const note=stage.status==='skipped'?data.sections[index]?.summary||'无需执行':stage.status==='failed'?laneFailure(data.sections[index]):'';return note?`<p class="${stage.status==='failed'?'status-error':''}" title="${esc(note)}">${esc(note)}</p>`:'';})()}</div>`:`<div class="section-steps">${stage.id==='nine-axis'?headThumbnail():kraPreviewPanel(index)}${stage.id==='shadow'?'<div class="shadow-references"><a href="./shadow-reference/skirt.png" target="_blank" rel="noopener">裙影参考 ↗</a><a href="./shadow-reference/hair.png" target="_blank" rel="noopener">发影参考 ↗</a></div>':''}${sectionSteps[index].map(step=>stepNode(index,step)).join('')}${data.sections[index]?.threadId?`<small class="thread-id" title="${esc(data.sections[index].threadId)}">thread · ${esc(data.sections[index].threadId)}</small>`:''}</div>`}</section>`;
 }
 function inspector() {
  const stage=stages[state.stage],step=selectedStep(),item=state.asset;
@@ -414,10 +418,11 @@ function inspector() {
 }
 function overviewCard(stage,index) {
  const status=observedDisplayStatus(index,stage.status),reason=String(data.sections?.[index]?.summary||'').split('\n')[0].trim();
+ const steps=stage.id==='nine-axis'?sectionSteps[index]:[],active=steps.filter(step=>['running','throttled'].includes(step.status));
  return `<article class="overview-card ${status} ${state.stage===index?'selected':''}" data-overview="${index}">
- <button class="overview-stage" data-stage="${index}" aria-label="查看${esc(stage.name)}进展"><span class="node-number">${String(index+1).padStart(2,'0')}</span><h3>${esc(stage.name)}</h3>${kritaBadge(index)}</button>
+ <button class="overview-stage" data-stage="${index}" aria-label="查看${esc(stage.name)}进展"><span class="node-number">${stage.id==='nine-axis'?icon('layers'):String(index+1).padStart(2,'0')}</span><h3>${esc(stage.name)}</h3>${kritaBadge(index)}</button>
  ${status==='failed'&&reason?`<p class="overview-reason status-error" title="${esc(reason)}">${esc(reason)}</p>`:''}
- ${stage.id==='nine-axis'?headThumbnail():''}<div class="overview-footer"><span class="execution-state ${status}">${statusMark(status)}${esc(statusLabel(status))}</span><div class="overview-actions"><button class="button" data-stage="${index}">${icon('eye')}预览</button></div></div>
+ ${steps.length?`<p class="overview-progress">已完成 ${steps.filter(finished).length} / ${steps.length} 步${active.length?`<span>${active.map(step=>`${esc(step.id)} · ${esc(step.title)} · ${esc(statusLabel(step.status))}`).join('<br>')}</span>`:''}</p><div class="overview-step-list" role="list" aria-label="头部九轴步骤">${steps.map(step=>`<span role="listitem" class="${displayStatus(step.status)}" data-nine-step="${esc(step.id)}" title="${esc(step.id)} · ${esc(step.title)} · ${esc(statusLabel(step.status))}">${esc(step.id.split('_')[0])}</span>`).join('')}</div>`:''}<div class="overview-footer"><span class="execution-state ${status}">${statusMark(status)}${esc(statusLabel(status))}</span><div class="overview-actions"><button class="button" data-stage="${index}">${icon('eye')}预览</button></div></div>
  </article>`;
 }
 function projectPage() {
@@ -762,7 +767,7 @@ function showHistory() {
  const dialog=document.querySelector('#directory-dialog');dialog.innerHTML=`<div class="modal-heading"><div><h2>提交历史</h2><p>选择一次提交，浏览当时的先验知识。</p></div><button class="icon-button" data-close>${icon('close')}</button></div><div class="commit-list">${(versions?.commits||[]).map((c,i)=>`<button data-commit="${c.sha}"><span class="commit-node">${icon('branch')}</span><div><b>${esc(c.title)}</b><small>${c.short}${i===0?' · 当前分支最新提交':''}</small></div>${icon('chevron')}</button>`).join('')}</div>`;dialog.showModal();dialog.querySelector('[data-close]').onclick=()=>dialog.close();dialog.querySelectorAll('[data-commit]').forEach(b=>b.onclick=async()=>{state.ref=b.dataset.commit;dialog.close();await loadConfig();render();});
 }
 function selectStage(index) {
- state.stage=index;state.selectedStep=index===0||index===2?'layers':'step01';
+ state.stage=index;state.selectedStep=defaultStep(index);
  state.asset=null;state.inspect=false;state.page='preview';state.autoHeight=true;
  // A lane stage brings its lane into focus; the merge stages keep the current one.
  if(laneOf(index)>=0){state.lane=laneOf(index);laneAnimation=null;}
@@ -770,7 +775,7 @@ function selectStage(index) {
  focusPreviewStep();
 }
 function focusPreviewStep() {
- const viewport=document.querySelector('.flow-scroll'),node=document.querySelector(`[data-kra-preview="${state.stage}"]`)||document.querySelector(`[data-node="${state.stage}:${state.selectedStep}"]`);
+ const viewport=document.querySelector('.flow-scroll'),node=state.stage===6?document.querySelector('[data-head-preview]')||document.querySelector(`[data-node="${state.stage}:${state.selectedStep}"]`):document.querySelector(`[data-kra-preview="${state.stage}"]`)||document.querySelector(`[data-node="${state.stage}:${state.selectedStep}"]`);
  if(!viewport||!node)return;
  viewport.scrollLeft+=node.getBoundingClientRect().left-viewport.getBoundingClientRect().left-12;
  viewport.scrollTop=laneScrollTop();state.canvasLeft=viewport.scrollLeft;state.canvasTop=0;
