@@ -13,7 +13,7 @@ import { runsDirectory, sectionIds, workflowsDirectory } from '../.agents/skills
 import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, sectionId, taskStatus, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
 import { convertLayout } from '../.agents/skills/live2d-maker/workflow/layout.ts';
 import { applyTaskAction } from '../.agents/skills/live2d-maker/workflow/step-actions.ts';
-import { configAPI, configRaw } from './config.ts';
+import { configAPI, configRaw, streamMediaFile } from './config.ts';
 import { createEnvironmentConfig, EnvironmentConflict } from './environment-config.ts';
 import { atomicJSON, agentRecord, artifactExtensions, browse, inside, jsonFile, safePath } from './files.ts';
 import { createKritaScan } from './krita-scan.ts';
@@ -28,6 +28,7 @@ import { checkKnowledge, defaultKnowledgeDirectory } from '../.agents/skills/liv
 import { exportCompletedRun } from '../.agents/skills/live2d-maker/workflow/export.ts';
 import { LayerCompositor } from './layer-compositor.ts';
 import { isStudioPath, studioProject } from './studio-project.ts';
+import { saveNineAxis } from './nine-axis-save.ts';
 import { studioCatalog, studioAsset, studioReviews, saveStudioReview } from './studio.ts';
 import { createUpdateCheck } from './update-check.ts';
 import { installedVersion } from '../.agents/skills/live2d-maker/shared/version.ts';
@@ -61,6 +62,10 @@ function options(value: any, dir: string): TaskOptions {
   if (value.standard !== undefined) {
     if (typeof value.standard !== 'boolean') throw new Error('standard 必须是布尔值');
     result.standard = value.standard;
+  }
+  if (value.live !== undefined) {
+    if (typeof value.live !== 'boolean') throw new Error('live 必须是布尔值');
+    result.live = value.live;
   }
   if (value.jobs !== undefined) {
     if (!Number.isSafeInteger(value.jobs) || value.jobs < 1) throw new Error('jobs 必须是正整数');
@@ -191,6 +196,10 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           return;
         }
         const value = await body(request);
+        if (path === '/api/studio/nine-axis/save') {
+          const { directory } = await studioFolder(value.folder ?? '');
+          json(await saveNineAxis(directory, value)); return;
+        }
         if (value.dir !== requestDir) { json({ error: '追踪目录已改变，请刷新页面后重试' }, 409); return; }
         if (path === '/api/config/environment' || path === '/api/config/environment/preview') {
           try { json(await (path.endsWith('/preview') ? environment.preview(value) : environment.save(value))); }
@@ -252,17 +261,43 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         }
         await task(opts.name, requestDir);
         if (path === '/api/convert-layout') { json(await convertLayout(directory)); return; }
-        if (['/api/start', '/api/task-action', '/api/stop'].includes(path) && (await readRun(directory))?.archive) {
+        if (['/api/start', '/api/task-action', '/api/stop', '/api/task-options'].includes(path) && (await readRun(directory))?.archive) {
           json({ error: '这是成果归档；请在原运行目录继续制作。' }, 409); return;
         }
         if (path === '/api/project-name') {
           await saveProjectDisplayName(directory, value.displayName);
           json({ name: opts.name, displayName: await projectDisplayName(directory, opts.name) }); return;
         }
+        if (path === '/api/task-options') {
+          if (starts.has(directory)) { json({ error: '任务正在启动，停止后再调整执行参数' }, 409); return; }
+          const previous = await readRun(directory);
+          const current = previous && await taskStatus({ name: opts.name, dir: requestDir });
+          if (current && (current.runnerAlive || current.lockHeld)) {
+            json({ error: '任务正在执行，停止后再调整执行参数' }, 409); return;
+          }
+          if (value.image !== undefined || value.upload !== undefined) throw new Error('执行参数不更换任务原图');
+          const displayName = value.displayName === undefined ? undefined : validateDisplayName(value.displayName);
+          if (value.krita === undefined) delete opts.krita;
+          const release = await acquireTaskLock(directory);
+          try {
+            const configured = await configureRun(opts, directory);
+            if (configured.status === 'completed' && selectedSections(configured.from, configured.to).some(id => configured.sections[id]?.status !== 'completed')) {
+              configured.status = 'ready';
+            }
+            await saveRun(directory, configured);
+            if (displayName !== undefined) await saveProjectDisplayName(directory, displayName);
+            json({ name: opts.name, from: configured.from, to: configured.to, live: configured.live, jobs: configured.jobs,
+              standard: configured.standard, shadowMode: configured.shadowMode, status: configured.status });
+          } finally { await release(); }
+          return;
+        }
         if (path === '/api/start' || path === '/api/task-action') {
           // The same commands as pnpm start: plain start / continue, or --continue / --resume / --retry
           // for every step still marked .running (task-action). One step is acted on from the CLI.
           if (starts.has(directory)) { json({ error: '该任务正在启动，请等待启动结果' }, 409); return; }
+          const actionSection = path === '/api/task-action' && value.section !== undefined ? sectionId(value.section) : undefined;
+          if (path === '/api/task-action' && value.step !== undefined) throw new Error('单步骤操作请使用 CLI --section 与 --step；task-action 作用于管线内所有待恢复步骤');
+          if (actionSection) opts.from = opts.to = actionSection;
           starts.add(directory);
           try {
             // Krita is checked before an action changes any step.
@@ -271,7 +306,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
               if (!(error instanceof KritaUnavailable)) throw error;
               json(kritaRefused(error), 409); return;
             }
-            const message = path === '/api/task-action' ? await applyTaskAction({ name: opts.name, dir: opts.dir, action: value.action }) : undefined;
+            const message = path === '/api/task-action' ? await applyTaskAction({ name: opts.name, dir: opts.dir, action: value.action, section: actionSection }) : undefined;
             json({ ...(message === undefined ? {} : { message }), pid: await start(opts), name: opts.name }, 202);
           } finally { starts.delete(directory); }
           return;
@@ -297,7 +332,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           try { const directory = await task(entry.name, requestDir); tasks.push(await summary(directory, entry.name, requestDir)); }
           catch (error) { tasks.push({ name: entry.name, status: 'failed', error: String(error) }); }
         }
-        json({ directory: requestDir, tasks }); return;
+        json({ directory: requestDir, tasks, sections: sectionIds }); return;
       }
       if (path === '/api/task' || path === '/artifact' || path === '/api/export') {
         if (url.searchParams.get('dir') !== requestDir) { json({ error: '追踪目录已改变，请刷新页面' }, 409); return; }
@@ -319,6 +354,9 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         const file = await safePath(directory, selected);
         const info = await lstat(file);
         if (!info.isFile()) throw new Error('产物不是文件');
+        if (extname(file).toLowerCase() === '.mp4') {
+          await streamMediaFile(file, 'video/mp4', request, response); return;
+        }
         if (url.searchParams.get('preview') === 'kra' && extname(file).toLowerCase() === '.kra') {
           const image = await kraPreviews.get(file, `${info.mtimeMs}:${info.ctimeMs}:${info.size}:${info.ino}`, url.searchParams.get('fit') === 'content');
           response.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control': 'no-cache' });
@@ -357,7 +395,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       if (path === '/api/studio/project' || path === '/studio-artifact') {
         const { directory, name, dir } = await studioFolder(url.searchParams.get('folder') ?? '');
         if (path === '/api/studio/project') {
-          json({ ...await studioProject(directory, name, dir, url.searchParams.get('preview')), folder: directory, displayName: await projectDisplayName(directory, name),
+          json({ ...await studioProject(directory, name, dir, url.searchParams.get('preview'), url.searchParams.get('nineStage')), folder: directory, displayName: await projectDisplayName(directory, name),
             inDirectory: dir === settings.directory }); return;
         }
         // Only the studio's fixed outputs are readable, wherever the folder is.
@@ -365,6 +403,9 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         if (!isStudioPath(selected)) throw new Error('工作台只读取角色组装、光照、投影与九轴产物');
         const file = await safePath(directory, selected);
         if (!(await lstat(file)).isFile()) throw new Error('产物不是文件');
+        if (extname(file).toLowerCase() === '.mp4') {
+          await streamMediaFile(file, 'video/mp4', request, response); return;
+        }
         response.writeHead(200, { 'Content-Type': extname(file).toLowerCase() === '.png' ? 'image/png' : extname(file).toLowerCase() === '.json' ? 'application/json' : 'application/octet-stream' });
         createReadStream(file).on('error', () => response.destroy()).pipe(response); return;
       }
@@ -398,10 +439,11 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         '/vendor/fflate.js': 'node_modules/fflate/umd/index.js',
       };
       if (vendor[path]) { response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8' }); response.end(await readFile(join(root, vendor[path]))); return; }
-      const staticFiles: Record<string, string> = { '/': 'index.html', '/app.js': 'app.js', '/process-files.js': 'process-files.js', '/progress.js': 'progress.js', '/report-markdown.js': 'report-markdown.js', '/task-selection.js': 'task-selection.js', '/dom-morph.js': 'dom-morph.js', '/env-editor.js': 'env-editor.js', '/settings-dialog.js': 'settings-dialog.js', '/server-picker.js': 'server-picker.js', '/styles.css': 'styles.css', '/studio': 'studio/index.html', '/studio/app.js': 'studio/app.js', '/studio/styles.css': 'studio/styles.css', '/studio/renderer.js': 'studio/renderer.js', '/studio/lighting-model.js': 'studio/lighting-model.js' };
+      const staticFiles: Record<string, string> = { '/': 'index.html', '/app.js': 'app.js', '/process-files.js': 'process-files.js', '/progress.js': 'progress.js', '/head-preview.js': 'head-preview.js', '/head-motion.js': 'head-motion.js', '/report-markdown.js': 'report-markdown.js', '/task-selection.js': 'task-selection.js', '/dom-morph.js': 'dom-morph.js', '/env-editor.js': 'env-editor.js', '/settings-dialog.js': 'settings-dialog.js', '/server-picker.js': 'server-picker.js', '/styles.css': 'styles.css', '/studio': 'studio/index.html', '/studio/app.js': 'studio/app.js', '/studio/styles.css': 'studio/styles.css', '/studio/renderer.js': 'studio/renderer.js', '/studio/lighting-model.js': 'studio/lighting-model.js' };
       staticFiles['/report-links.js'] = '../.agents/skills/live2d-maker/shared/report-links.js';
       staticFiles['/step-paths.js'] = '../.agents/skills/live2d-maker/shared/step-paths.js';
-      for (const name of ['document-loader.js', 'document-worker.js', 'layer-panel.js', 'layer-model.js', 'surface-preview.js', 'surface-worker.js', 'surface-coverage.js', 'part-maps.js', 'harmonic-fill.js', 'projection-model.js', 'projection-panel.js', 'physics-model.js', 'physics-panel.js', 'physics-recipe.js', 'physics-renderer.js', 'physics-cases.js', 'nine-axis-model.js', 'nine-axis-panel.js']) staticFiles['/studio/' + name] = 'studio/' + name;
+      for (const name of ['nine-axis-model.js', 'nine-axis-render.js']) staticFiles['/studio/' + name] = '../.agents/skills/live2d-maker/shared/' + name;
+      for (const name of ['document-loader.js', 'document-worker.js', 'layer-panel.js', 'layer-model.js', 'surface-preview.js', 'surface-worker.js', 'surface-coverage.js', 'part-maps.js', 'harmonic-fill.js', 'projection-model.js', 'projection-panel.js', 'physics-model.js', 'physics-panel.js', 'physics-recipe.js', 'physics-renderer.js', 'physics-cases.js', 'nine-axis-panel.js']) staticFiles['/studio/' + name] = 'studio/' + name;
       if (!staticFiles[path]) { json({ error: 'Not found' }, 404); return; }
       const type = path.endsWith('.js') ? 'text/javascript' : path.endsWith('.css') ? 'text/css' : 'text/html';
       response.writeHead(200, { 'Content-Type': type + '; charset=utf-8' });

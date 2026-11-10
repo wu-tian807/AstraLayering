@@ -117,12 +117,17 @@ export async function validateGroupSvg(path: string, id: string, canvas: Canvas,
 export function createSvgPreviewTool(options: {
   directory: string; reference: string; canvas: Canvas; observationDirectory: string; parent?: string;
   allowGeneratedReference?: boolean;
+  referenceAlignment?: 'content' | 'canvas';
   observed?: (observation: SvgObservation) => void;
 }): FunctionTool {
   let count = 0;
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
-  const omitParameters = options.allowGeneratedReference ? [] : ['reference', 'referenceRegion', 'referenceOffset'];
+  const fixedReference = options.referenceAlignment === 'canvas';
+  const omitParameters = fixedReference ? ['referenceRegion', 'referenceOffset']
+    : options.allowGeneratedReference ? [] : ['reference', 'referenceRegion', 'referenceOffset'];
   const definition = toolDefinition('preview_svg', undefined, omitParameters);
+  if (fixedReference) (definition.inputSchema.properties as Record<string, { description: string }>).reference.description =
+    '可选同画布参考 PNG/JPEG/WebP；保持像素坐标，不缩放或居中对齐。尺寸必须与 SVG 画布一致。';
   return {
     ...definition,
     omitParameters,
@@ -150,33 +155,39 @@ export function createSvgPreviewTool(options: {
         referenceBytes = await readFile(referencePath);
         const meta = await sharp(referenceBytes, { limitInputPixels: 100_000_000 }).metadata();
         if (!['png', 'jpeg', 'webp'].includes(meta.format ?? '')) throw new Error('对照图片须为 PNG、JPEG 或 WebP');
-        referenceRegion = (args.referenceRegion ?? [0, 0, meta.autoOrient.width, meta.autoOrient.height]) as number[];
-        if (!Array.isArray(referenceRegion) || referenceRegion.length !== 4 || referenceRegion.some(n => !Number.isSafeInteger(n) || n < 0) ||
-          !referenceRegion[2] || !referenceRegion[3] || referenceRegion[0] + referenceRegion[2] > meta.autoOrient.width ||
-          referenceRegion[1] + referenceRegion[3] > meta.autoOrient.height) throw new Error('referenceRegion 须为生成图内有效的 [x,y,width,height] 整数选框');
-        const mask = await alpha(source, options.canvas);
-        let x0 = options.canvas.width, y0 = options.canvas.height, x1 = -1, y1 = -1;
-        for (let i = 0; i < mask.length; i++) {
-          if (mask[i] < alphaThreshold) continue;
-          const x = i % options.canvas.width, y = Math.floor(i / options.canvas.width);
-          x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
+        if (fixedReference) {
+          if (meta.autoOrient.width !== options.canvas.width || meta.autoOrient.height !== options.canvas.height) {
+            throw new Error(`同坐标参考尺寸须为 ${options.canvas.width}×${options.canvas.height}，不能自动对齐`);
+          }
+        } else {
+          referenceRegion = (args.referenceRegion ?? [0, 0, meta.autoOrient.width, meta.autoOrient.height]) as number[];
+          if (!Array.isArray(referenceRegion) || referenceRegion.length !== 4 || referenceRegion.some(n => !Number.isSafeInteger(n) || n < 0) ||
+            !referenceRegion[2] || !referenceRegion[3] || referenceRegion[0] + referenceRegion[2] > meta.autoOrient.width ||
+            referenceRegion[1] + referenceRegion[3] > meta.autoOrient.height) throw new Error('referenceRegion 须为生成图内有效的 [x,y,width,height] 整数选框');
+          const mask = await alpha(source, options.canvas);
+          let x0 = options.canvas.width, y0 = options.canvas.height, x1 = -1, y1 = -1;
+          for (let i = 0; i < mask.length; i++) {
+            if (mask[i] < alphaThreshold) continue;
+            const x = i % options.canvas.width, y = Math.floor(i / options.canvas.width);
+            x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
+          }
+          if (x1 < x0) throw new Error('SVG 没有可见部件，须先绘制再与生成图对齐');
+          const w = x1 - x0 + 1, h = y1 - y0 + 1;
+          const offset = (args.referenceOffset ?? [0, 0]) as number[];
+          if (!Array.isArray(offset) || offset.length !== 2 || offset.some(n => typeof n !== 'number' || !Number.isFinite(n)) ||
+            Math.abs(offset[0]) > w * .1 || Math.abs(offset[1]) > h * .1) {
+            throw new Error(`referenceOffset 使用原图像素，须在部件宽高的 10% 内：dx ±${w * .1}，dy ±${h * .1}`);
+          }
+          const fitScale = Math.min(w / referenceRegion[2], h / referenceRegion[3]);
+          alignment = { svgBounds: [x0, y0, w, h], scale: fitScale, offset,
+            translation: [x0 + (w - referenceRegion[2] * fitScale) / 2 + offset[0],
+              y0 + (h - referenceRegion[3] * fitScale) / 2 + offset[1]] };
+          // 生成图对照默认聚焦部件；显式 crop 只改变观察窗口，不参与对齐计算。
+          const padX = Math.max(4, Math.ceil(w * .2)), padY = Math.max(4, Math.ceil(h * .2));
+          const left = Math.max(0, x0 - padX), top = Math.max(0, y0 - padY);
+          defaultCrop = [left, top, Math.min(options.canvas.width, x1 + 1 + padX) - left,
+            Math.min(options.canvas.height, y1 + 1 + padY) - top];
         }
-        if (x1 < x0) throw new Error('SVG 没有可见部件，须先绘制再与生成图对齐');
-        const w = x1 - x0 + 1, h = y1 - y0 + 1;
-        const offset = (args.referenceOffset ?? [0, 0]) as number[];
-        if (!Array.isArray(offset) || offset.length !== 2 || offset.some(n => typeof n !== 'number' || !Number.isFinite(n)) ||
-          Math.abs(offset[0]) > w * .1 || Math.abs(offset[1]) > h * .1) {
-          throw new Error(`referenceOffset 使用原图像素，须在部件宽高的 10% 内：dx ±${w * .1}，dy ±${h * .1}`);
-        }
-        const fitScale = Math.min(w / referenceRegion[2], h / referenceRegion[3]);
-        alignment = { svgBounds: [x0, y0, w, h], scale: fitScale, offset,
-          translation: [x0 + (w - referenceRegion[2] * fitScale) / 2 + offset[0],
-            y0 + (h - referenceRegion[3] * fitScale) / 2 + offset[1]] };
-        // 生成图对照默认聚焦部件；显式 crop 只改变观察窗口，不参与对齐计算。
-        const padX = Math.max(4, Math.ceil(w * .2)), padY = Math.max(4, Math.ceil(h * .2));
-        const left = Math.max(0, x0 - padX), top = Math.max(0, y0 - padY);
-        defaultCrop = [left, top, Math.min(options.canvas.width, x1 + 1 + padX) - left,
-          Math.min(options.canvas.height, y1 + 1 + padY) - top];
       }
       const crop = args.crop ?? defaultCrop;
       if (!Array.isArray(crop) || crop.length !== 4 || crop.some(n => !Number.isSafeInteger(n) || n < 0) || !crop[2] || !crop[3]) {
@@ -213,7 +224,7 @@ export function createSvgPreviewTool(options: {
           reference = await sharp(Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${outWidth}" height="${outHeight}" viewBox="${crop.join(' ')}"><image x="${x}" y="${y}" width="${rw * alignment.scale}" height="${rh * alignment.scale}" href="data:image/png;base64,${region.toString('base64')}"/></svg>`))
             .flatten({ background: 'white' }).png().toBuffer();
         } else {
-          reference = await sharp(referencePath).autoOrient().extract({ left, top, width, height })
+          reference = await sharp(referenceBytes ?? referencePath).autoOrient().extract({ left, top, width, height })
             .resize(outWidth, outHeight).png().toBuffer();
         }
         data = await sharp(reference).composite([{ input: overlay, raw: { width: outWidth, height: outHeight, channels: 4 } }])
@@ -235,6 +246,7 @@ export function createSvgPreviewTool(options: {
       const shownBounds = bounds && { ...bounds, parent: await toAgentPath(root, bounds.parent) };
       return { success: true, contentItems: [
         { type: 'inputText', text: JSON.stringify({ source: shown.source, mode, crop, scale, width: outWidth, height: outHeight, savedPath: shown.savedPath, bounds: shownBounds,
+          ...(fixedReference ? { referenceAlignment: 'canvas' } : {}),
           ...(args.reference === undefined ? {} : { reference: shown.reference, referenceHash: shown.referenceHash, referenceRegion, alignment }) }) },
         { type: 'inputImage', imageUrl: `data:image/png;base64,${data.toString('base64')}` },
       ] };

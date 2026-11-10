@@ -3,21 +3,62 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
 import { runInNewContext } from 'node:vm';
-import { displayStatus, sectionSteps, shadowInspectionArtifacts, statusLabel, stepArtifacts } from '../progress.js';
+import { displayStatus, sectionSteps, previousNineAxisSectionSteps, shadowInspectionArtifacts, statusLabel, stepArtifacts } from '../progress.js';
 
 const source = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 const renderer = source.slice(source.indexOf('function overviewCard('), source.indexOf('function graph('));
 const visibleStage = source.match(/^const visibleStage=.*$/m)![0];
+const lanes = source.match(/^const flowLanes = .*$/m)![0];
 const observed = source.slice(source.indexOf('function observedDisplayStatus('), source.indexOf('function rasterItems('));
 function render(statuses: string[], files: string[] = [], running = false, locked = false, archive?: { sections: Record<string, unknown> }, sections?: unknown[], kritaInUse?: number) {
-  return runInNewContext(visibleStage + '\n' + observed + renderer + '\nprojectPage();', {
-    stages: statuses.map((status, i) => ({ name: '管线 ' + i, id: 'section-' + i, status })),
+  return runInNewContext(lanes + '\n' + visibleStage + '\n' + observed + renderer + '\nprojectPage();', {
+    stages: statuses.map((status, i) => ({ name: '管线 ' + i, id: i === 6 ? 'nine-axis' : 'section-' + i, status })),
     state: { name: 'case', stage: 0 }, data: { files, runnerAlive: running, lockHeld: locked, ...(sections ? { sections } : {}), kritaInUse, ...(archive ? { archived: true, run: archive } : {}) },
     stepArtifacts: {}, available: () => [], pageHeading: () => '', runNotice: () => '',
     esc: String, icon: () => '', displayStatus, statusLabel,
     statusMark: (status: string) => `<i data-status="${status}"></i>`,
   }) as string;
 }
+
+test('九轴与其他管线共用总览卡片，编号、状态与预览入口一致', () => {
+  const html = render(Array(7).fill('done'));
+  const card = (index: number) => html.match(new RegExp(`data-overview="${index}"[\\s\\S]*?</article>`))![0];
+  assert.match(card(6), /class="node-number">07<\/span>/);
+  assert.match(card(6), /已完成/);
+  assert.doesNotMatch(card(6), /data-head-preview|<canvas|overview-progress|overview-step-list|data-nine-step/);
+  assert.equal(card(6).replace(/\d+/g, '#'), card(1).replace(/\d+/g, '#'));
+  const preview = source.slice(source.indexOf('function flowCard('), source.indexOf('function inspector('));
+  assert.match(preview, /stage\.id==='nine-axis'\?headThumbnail\(\)/);
+});
+
+test('新旧九轴预览定位到真实步骤，并把唯一缩略头带入视野', () => {
+  const defaults = source.slice(source.indexOf('function defaultStep('), source.indexOf('if (Number.isInteger(requestedStage)'));
+  for (const steps of [sectionSteps[6], previousNineAxisSectionSteps]) {
+    assert.equal(runInNewContext(defaults + '\ndefaultStep(6);', { sectionSteps: [...sectionSteps.slice(0, 6), steps] }), steps[0].id);
+  }
+  const focus = source.slice(source.indexOf('function focusPreviewStep('), source.indexOf('function updateViewURL('));
+  const viewport = { scrollLeft: 0, scrollTop: 0, getBoundingClientRect: () => ({ left: 10 }) };
+  const queries: string[] = [], state = { stage: 6, selectedStep: 'step01_preparation', canvasLeft: 0, canvasTop: 0 };
+  runInNewContext(focus + '\nfocusPreviewStep();', { state, laneScrollTop: () => 0, document: {
+    querySelector(selector: string) { queries.push(selector); return selector === '.flow-scroll' ? viewport : selector === '[data-head-preview]' ? { getBoundingClientRect: () => ({ left: 400 }) } : null; },
+  } });
+  assert.equal(viewport.scrollLeft, 378);
+  assert.deepEqual(queries, ['.flow-scroll', '[data-head-preview]']);
+});
+
+test('连线标签读取调度保存的 live 值，并区分显式范围和独立九轴', () => {
+  const component = source.slice(source.indexOf('function nineAxisConnection('), source.indexOf('function connectFlow('));
+  const observe = (run: unknown) => runInNewContext(component + '\nnineAxisConnection(run);', { run });
+  const whole = observe({ from: 'part-layering', to: 'nine-axis', live: true });
+  assert.equal(whole.label, '--live 开启'); assert.equal(whole.serial, true);
+  const explicit = observe({ from: 'shadow', to: 'nine-axis', live: false });
+  assert.equal(explicit.label, '--live 关闭'); assert.equal(explicit.serial, true); assert.equal(explicit.detail, '按所选范围串行');
+  const narrow = observe({ from: 'part-layering', to: 'shadow', live: true });
+  assert.equal(narrow.label, '--live 开启'); assert.equal(narrow.serial, false); assert.equal(narrow.detail, '本次止于阴影');
+  const independent = observe({ from: 'nine-axis', to: 'nine-axis' });
+  assert.equal(independent.label, '--live 关闭'); assert.equal(independent.serial, false); assert.equal(independent.detail, '本次独立九轴');
+  assert.equal(observe(undefined).serial, false);
+});
 
 test('执行面板逐管线展示真实状态，完成与失败不再显示为未运行', () => {
   const html = render(['done', 'running', 'available', 'pending', 'failed']);
@@ -42,8 +83,8 @@ test('section 占用或排队等 Krita 时，在原有执行状态旁加标识',
   const html = render(['running', 'running', 'running', 'pending'], [], true, true, undefined,
     [{ krita: running }, { krita: reserved }, { krita: waiting }, { krita: null }], 3);
   const card = (i: number) => html.match(new RegExp(`data-overview="${i}"[\\s\\S]*?</article>`))![0];
-  assert.match(card(0), /krita-badge running[^>]*pid 4242[^>]*本机 Krita 名额 3 \/ 3[^>]*>占用 Krita<small>3\/3<\/small>/);
-  assert.match(card(1), /krita-badge reserved[^>]*尚未启动[^>]*>占用 Krita/);
+  assert.match(card(0), /krita-badge running[^>]*pid 4242[^>]*本机 Krita 名额 3 \/ 3[^>]*>正在使用 Krita<small>3\/3<\/small>/);
+  assert.match(card(1), /krita-badge reserved[^>]*尚未启动[^>]*>已占用 Krita 名额/);
   assert.match(card(2), /krita-badge waiting[^>]*已满[^>]*>Krita 排队中<small>3\/3<\/small>/);
   // The badge sits beside the section's own state, which stays as it is.
   for (const i of [0, 1, 2]) assert.ok(card(i).includes('进行中'));
@@ -58,8 +99,8 @@ test('归档任务只展示实际运行过的管线', () => {
 
 test('停止后已有绘画仍是已有产物，不能误报完成或进行中', () => {
   const html = render(['interrupted', 'unconfirmed'], ['section-0/step01/draft.kra']);
-  assert.match(html, /execution-state available/);
-  assert.match(html, /execution-state pending/);
+  assert.match(html, /execution-state interrupted/);
+  assert.match(html, /execution-state unconfirmed/);
   assert.doesNotMatch(html, /已完成|进行中/);
 });
 

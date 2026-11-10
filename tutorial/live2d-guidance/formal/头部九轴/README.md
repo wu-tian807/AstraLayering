@@ -1,6 +1,11 @@
 # 头部九轴
 
-状态：**资料收集中**（2026-10-29 建立）。已整理 [01 脸部与五官九轴](01-脸部与五官九轴.md)；其余范围尚未形成正式教程，下面是用户梳理的范围与当前判断，供后续拆分、实验和撰写使用。摆动物理（[10](../10-component-physics-authoring.md)、[11](../11-secondary-physics-workflow.md)）的后续改造依赖这里先确定转头时的形变参数。
+状态：**资料收集中**（2026-10-29 建立）。已整理三份教程：[01 脸部与五官九轴](01-脸部与五官九轴.md)、[02 下巴消线与脖子阴影](02-下巴消线与脖子阴影.md)、[03 头发九轴物理](03-头发九轴物理.md)；其余范围尚未形成正式教程，下面是用户梳理的范围与当前判断，供后续拆分、实验和撰写使用。摆动物理（[10](../10-component-physics-authoring.md)、[11](../11-secondary-physics-workflow.md)）的后续改造依赖这里先确定转头时的形变参数。
+
+
+2026-11-04 补充：[04 left 脸型补全先验](04-left脸型补全先验.md)。包含用户圆脸视频、脸部 left 教程关键帧和 6 个已有模型的真实左转脸底/五官渲染，逐张标记脸型；只帮助补全遮挡结构，可见轮廓以当前角色视频为准。流程先检查完整素脸预测，再自动求 Warp；当前仍待用户验收。
+
+同日扩展：[05 up](05-up脸型补全先验.md)、[06 down](06-down脸型补全先验.md)、[07 斜向脸型补全先验](07-斜向脸型补全先验.md)。07 包含六模型真实左上／左下脸底与五官渲染，复用圆脸片段和已有斜向教程图片；agent 从本角色两段斜向视频分别选帧，可见轮廓以选中帧为准。示例参数不是物理角度测量。
 
 ## 为什么先做九轴
 
@@ -17,7 +22,7 @@
 
 ## 目标与已知问题
 
-- 目标转角：视角约 **45°**（step01 的 left 视角），即 ParamAngleX ±45° 边界关键形的形状；上下为抬头 +25°、低头 −20°。刻度见 `knowledge/nine-axis/step01_video/references/angles.json`，`deformers.json` 以度数记录。
+- 当前制作刻度：ParamAngleX −30° / +30°，抬头 +25°、低头 −25°，以 [angles.json](../../../../.agents/skills/live2d-maker/knowledge/nine-axis/step01_video/references/angles.json) 为准，`deformers.json` 以度数记录。left 帧在 `step01_video/left.png`，up/down 帧在 `step03_video-y/up.png`、`down.png`；对应 X、up、down、四角和下颌分别为 step02、step04、step05、step06、step07，详见 [七步流程](../../../../.agents/skills/live2d-maker/nine-axis/README.md)。
 - AI 自由形变通常只能做到约 15° 而不严重变形。
 - 转角更大时，AI 倾向于扭曲脖子来代替头部本身的透视形变。
 
@@ -34,10 +39,11 @@
 
 | 文件 | 内容 | 备注 |
 | --- | --- | --- |
-| [sources/hair-nine-axis-swing.mp4](sources/hair-nine-axis-swing.mp4) | 头发物理的九轴摆动形变视频教程，约 322 秒 | 用户 2026-10-29 提供；尚未解析。SHA-256 `89090e66288f19c4460a5f584444b9fd66548b1150700f7675c5f3c4b2909374` |
+| [sources/hair-nine-axis-swing.mp4](sources/hair-nine-axis-swing.mp4) | AUTO SAVE 长发 X/Y 物理形状与摆锤设置视频教程，5:22 | 用户 2026-10-29 提供；已整理为 [03](03-头发九轴物理.md)。SHA-256 `89090e66288f19c4460a5f584444b9fd66548b1150700f7675c5f3c4b2909374` |
 | [sources/face-nine-axis.mp4](sources/face-nine-axis.mp4) | 铁锭 Ferrum《五官九轴》脸部与五官透视变形视频教程，24:55 | 用户 2026-10-30 提供；已整理为 [01](01-脸部与五官九轴.md)，听写稿与关键帧同在 `sources/` |
+| [sources/jaw-neck-shadow.mp4](sources/jaw-neck-shadow.mp4) | 下巴消线、脸色扩展与脖子阴影视频教程，5:28 | 用户 2026-11-03 提供；已整理为 [02](02-下巴消线与脖子阴影.md)。SHA-256 `fbfa87eef99dc8d84830e387e623ad996847e9c21646b80423a74de31e2ec37c` |
 
-目前没有头发透视形变的教程。
+范围对应：01 覆盖第 1、2 项；02 覆盖第 3 项中的下巴消线与脖子阴影；03 覆盖第 5 项。头发透视形变（第 4 项）和挂饰（第 6 项）目前没有教程。
 
 ## 工具
 

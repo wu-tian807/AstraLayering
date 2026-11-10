@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["action", "trace"],
+  "properties": {
+    "action": {"enum": ["inspect", "fit"]},
+    "trace": {"type": "string"},
+    "corner": {"enum": ["left-up", "left-down"], "description": "斜向步骤必填，使用本步同名 PNG 的已选视频帧；其他步骤省略。"},
+    "id": {"type": "string"},
+    "features": {"type": "array", "items": {"type": "string"}},
+    "revision": {"type": "string"},
+    "smoothness": {"type": "number", "minimum": 0, "maximum": 10}
+  }
+}

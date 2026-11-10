@@ -1,0 +1,339 @@
+[
+  {
+    "id": "haru",
+    "model": "haru_greeter_ja/runtime/haru_greeter_t05.model3.json",
+    "angleX": {
+      "baseline": 0,
+      "left": -30
+    },
+    "angleParameter": "ParamAngleX",
+    "disabledInMemory": [
+      "Motions",
+      "Physics",
+      "Pose",
+      "Expressions"
+    ],
+    "fixedParameters": "Y/Z/body/gaze/mouth-open/all-transform=0; original other defaults",
+    "crop": [
+      570,
+      116,
+      815,
+      384
+    ],
+    "faceParts": [
+      "Part01Face001"
+    ],
+    "featureParts": [
+      "Part01Brow001",
+      "Part01Tear",
+      "Part01EyeBall001",
+      "Part01Eye001",
+      "Part01Nose001",
+      "Part01Mouth001"
+    ],
+    "excludedHairParts": [
+      "Part01HairFront001",
+      "Part01HairSide001",
+      "Part01HairBack001"
+    ],
+    "sourceHashes": {
+      "haru_greeter_ja/runtime/haru_greeter_t05.moc3": "597571191064a12ffe592bcb5fade586ef5876bbbcf78905c348a78a0991432a",
+      "haru_greeter_ja/runtime/haru_greeter_t05.model3.json": "fc9c2532e0a8142b542ae3e3a11417aae1d1ee998c73be0d792f8f078eff1a3e",
+      "haru_greeter_ja/runtime/haru_greeter_t05.2048/texture_00.png": "30fce81e6b2d69fb99e8d1b5f391a6e0240f671095e491e9bbe24ddd7c7f434d",
+      "haru_greeter_ja/runtime/haru_greeter_t05.2048/texture_01.png": "e1e977447ee7e6e347f1b96b9103ae269e6f4e4a8cf38068d161537415cc51c8"
+    },
+    "renderer": "live2d-py 1.0.0; SDK wrapper 5-r.5; actual Core 6.0.1; original runtime keyforms and masks; no image warp",
+    "faceType": "稍长鹅蛋脸",
+    "shapeNote": "颊部较直，下颌渐收，圆钝尖颏",
+    "baselineMeaning": "X=0 original model keyform; not a guarantee of zero baked inclination",
+    "boardFaceColumns": "flat recolor of rendered face alpha, no contour edits",
+    "files": {
+      "reference.jpg": "62fc11d1fd59c44bdca640b7705673c11f08c5409159d00ac43a7b352972856b",
+      "features_front.png": "d1278efb02c7b123e79b1c072743e19e4a5baa3849ebc01cece4549b3fb4345d",
+      "face_front.png": "cf9f0a85176de9a73ffbf620ed5ec6f8e291b4702f341e4ddc2861a9a5456e21",
+      "face_left.png": "549f24f2b9edec8587e2c093532665a72a5e2cccaf55c9e23746c050151196ed",
+      "features_left.png": "9d10cc9ab009b7f5059fedbd591a1e754e8f7d9d176eccb82ca592068128990e"
+    }
+  },
+  {
+    "id": "hiyori",
+    "model": "hiyori_en/hiyori_pro/runtime/hiyori_pro_t11.model3.json",
+    "angleX": {
+      "baseline": 0,
+      "left": -30
+    },
+    "angleParameter": "ParamAngleX",
+    "disabledInMemory": [
+      "Motions",
+      "Physics",
+      "Pose",
+      "Expressions"
+    ],
+    "fixedParameters": "Y/Z/body/gaze/mouth-open/all-transform=0; original other defaults",
+    "crop": [
+      548,
+      148,
+      843,
+      468
+    ],
+    "faceParts": [
+      "PartFace"
+    ],
+    "featureParts": [
+      "PartBrow",
+      "PartEye",
+      "PartNose",
+      "PartMouth",
+      "PartEar",
+      "PartEyeBall"
+    ],
+    "excludedHairParts": [
+      "PartHairSide",
+      "PartHairFront",
+      "PartHairBack"
+    ],
+    "sourceHashes": {
+      "hiyori_en/hiyori_pro/runtime/hiyori_pro_t11.moc3": "608d62c9a65cf537ac25ca9e710e687dbef98ee0a0575e0ee8e27bfdc446cd5e",
+      "hiyori_en/hiyori_pro/runtime/hiyori_pro_t11.model3.json": "9e40e4dd71beab5bef5c1df9e8223b111549bf1f836d276d1b471003cd754824",
+      "hiyori_en/hiyori_pro/runtime/hiyori_pro_t11.2048/texture_00.png": "a7d930d42814d8fb69e787b0aef5b60e5afd52b4d4557551c8a58e5bea3a4bb1",
+      "hiyori_en/hiyori_pro/runtime/hiyori_pro_t11.2048/texture_01.png": "87fe9ab7db81ab3025e0407229e449233581e00fa92c8e911923bc6c7d98ce84"
+    },
+    "renderer": "live2d-py 1.0.0; SDK wrapper 5-r.5; actual Core 6.0.1; original runtime keyforms and masks; no image warp",
+    "faceType": "圆润鹅蛋脸",
+    "shapeNote": "颊部饱满，下颌圆收，小尖颏",
+    "baselineMeaning": "X=0 original model keyform; not a guarantee of zero baked inclination",
+    "boardFaceColumns": "flat recolor of rendered face alpha, no contour edits",
+    "files": {
+      "reference.jpg": "92125ed9f12262fefe3612578dd21c31a191283b42f8f2e92ce5b60697df205a",
+      "features_front.png": "47c9c1d1f0d0b015731b35a80ac6b7395623b35ca3d70af199c39461367f1803",
+      "face_front.png": "b3ebd89b181da912e69558f7f17cc414c8bd46942044b07b8a71c5a0b2c3820f",
+      "face_left.png": "22b3e5bf43835526e6fffe63a885038d50bbb7a47724a373a2f34ea74f3a821b",
+      "features_left.png": "033aed8edf439011eb5000adab2a89a10d763801540d8eb46796ab2cb1e514f7"
+    }
+  },
+  {
+    "id": "miara",
+    "model": "miara_en/runtime/miara_pro_t03.model3.json",
+    "angleX": {
+      "baseline": 0,
+      "left": -30
+    },
+    "angleParameter": "ParamAngleX",
+    "disabledInMemory": [
+      "Motions",
+      "Physics",
+      "Pose",
+      "Expressions"
+    ],
+    "fixedParameters": "Y/Z/body/gaze/mouth-open/all-transform=0; original other defaults",
+    "crop": [
+      563,
+      138,
+      822,
+      412
+    ],
+    "faceParts": [
+      "PartFace"
+    ],
+    "featureParts": [
+      "PartBrow",
+      "PartEye",
+      "PartMouth"
+    ],
+    "excludedHairParts": [
+      "PartHairAccFront",
+      "PartHairFront",
+      "PartHairSideL",
+      "PartHairAhoge",
+      "PartHairSideR",
+      "PartHairL",
+      "PartHairR",
+      "PartHairBack",
+      "PartHairTwinL",
+      "PartHairTwinR",
+      "PartHairSideLBack",
+      "PartHairBackRBack",
+      "PartHairBackTail"
+    ],
+    "sourceHashes": {
+      "miara_en/runtime/miara_pro_t03.moc3": "e7c9614904068550f6083bbb8d7d3d559a1b33b2c6ed6ba9e4acd92b85f5647a",
+      "miara_en/runtime/miara_pro_t03.model3.json": "b98f63e7b0978c9cf0e6f065698594e6fdd56cf358301df98e2902d03fcfd1a2",
+      "miara_en/runtime/miara_pro_t03.4096/texture_00.png": "6c206f27d61e123df3ab7ac5eafe702dc91c3c125884a2886184f5dd8d3f9e68"
+    },
+    "renderer": "live2d-py 1.0.0; SDK wrapper 5-r.5; actual Core 6.0.1; original runtime keyforms and masks; no image warp",
+    "faceType": "圆颊小尖颏",
+    "shapeNote": "基准自带倾斜；只参考局部颊颌连续性",
+    "baselineMeaning": "X=0 original model keyform; not a guarantee of zero baked inclination",
+    "boardFaceColumns": "flat recolor of rendered face alpha, no contour edits",
+    "files": {
+      "reference.jpg": "5fc766b06645f5be638331a46ad1180e5a1644452525d0cc63b9428ef4cb2bdc",
+      "features_front.png": "67ade1716b555300be8b314d55278f9b66ea1d8362b5e7a0adca8fbff0fd6988",
+      "face_front.png": "6184a83af219adba2ed73ee64335cd621579b90fc0d60ef8c84057e517fab3b3",
+      "face_left.png": "171dc289327e7d0cd7151b719b9dea48487a5fa64f564c08ed99d0128c13abb4",
+      "features_left.png": "2c7f3ca43e96e86a47a78aab1ddc690274df5c1a0e211fc8bcb8c132351f2d8d"
+    }
+  },
+  {
+    "id": "natori",
+    "model": "natori_en/runtime/natori_pro_t06.model3.json",
+    "angleX": {
+      "baseline": 0,
+      "left": -30
+    },
+    "angleParameter": "ParamAngleX",
+    "disabledInMemory": [
+      "Motions",
+      "Physics",
+      "Pose",
+      "Expressions"
+    ],
+    "fixedParameters": "Y/Z/body/gaze/mouth-open/all-transform=0; original other defaults",
+    "crop": [
+      598,
+      144,
+      806,
+      367
+    ],
+    "faceParts": [
+      "PartHead"
+    ],
+    "featureParts": [
+      "PartEyeBlow",
+      "PartEyeR",
+      "PartEyeL",
+      "PartNose",
+      "PartMouth"
+    ],
+    "excludedHairParts": [
+      "PartHairFront",
+      "PartHairBack",
+      "PartHairLine",
+      "PartHairShadow"
+    ],
+    "sourceHashes": {
+      "natori_en/runtime/natori_pro_t06.moc3": "8f3122e2d3b5a30f79d95078ac756e45ea5df740f3e72f461cdec793303bf94f",
+      "natori_en/runtime/natori_pro_t06.model3.json": "8021d0762ec8f68f0ccab9d8c9b31f4fce57488da6a77c669768cd1ca9b4af1f",
+      "natori_en/runtime/natori_pro_t06.4096/texture_00.png": "0921cece25f7e702a07cec4b8aa8235ba8904f013cc4d921cffd445c07cb04a4"
+    },
+    "renderer": "live2d-py 1.0.0; SDK wrapper 5-r.5; actual Core 6.0.1; original runtime keyforms and masks; no image warp",
+    "faceType": "长窄脸",
+    "shapeNote": "颧颊偏直，下颌向小尖颏收束",
+    "baselineMeaning": "X=0 original model keyform; not a guarantee of zero baked inclination",
+    "boardFaceColumns": "flat recolor of rendered face alpha, no contour edits",
+    "files": {
+      "reference.jpg": "eb8f2ef7138af090ef516ec5f4fdca153764855bee182d64d63304b4a8ee29ba",
+      "features_front.png": "492f72de094d7e2babce335a57dec11939ba07e99ae64e6047759a23a1e3efa6",
+      "face_front.png": "3cd33ce302f2055786486a707622a1521d77e4e86c03eb56cd845e505fc09489",
+      "face_left.png": "86f36aa09f13e98ee434c4c8093e7a39aeb2870d6ed6447f4a009fb604632d59",
+      "features_left.png": "fe5f3d85846c37a21d16d5fa06347b6a8d215fe94af505808428a4a5ae0ebb5a"
+    }
+  },
+  {
+    "id": "koharu",
+    "model": "koharu_haruto_ja/koharu/runtime/koharu.model3.json",
+    "angleX": {
+      "baseline": 0,
+      "left": -30
+    },
+    "angleParameter": "PARAM_ANGLE_X",
+    "disabledInMemory": [
+      "Motions",
+      "Physics",
+      "Pose",
+      "Expressions"
+    ],
+    "fixedParameters": "Y/Z/body/gaze/mouth-open/all-transform=0; original other defaults",
+    "crop": [
+      354,
+      206,
+      1020,
+      851
+    ],
+    "faceParts": [
+      "PARTS_01_FACE_001"
+    ],
+    "featureParts": [
+      "PARTS_01_NOSE_001",
+      "PARTS_01_MOUTH_001",
+      "PARTS_01_BROW_001",
+      "PARTS_01_EYE_BALL_001",
+      "PARTS_01_EYE_001"
+    ],
+    "excludedHairParts": [
+      "PARTS_01_HAIR_BACK_001",
+      "PARTS_01_HAIR_SIDE_001",
+      "PARTS_01_HAIR_FRONT_001"
+    ],
+    "sourceHashes": {
+      "koharu_haruto_ja/koharu/runtime/koharu.moc3": "cb5d270b6aeea5cb2a70d8728f52db49cee833f2a66a53db7f80a9e34ed5e005",
+      "koharu_haruto_ja/koharu/runtime/koharu.model3.json": "317bef2e6c0b826283dd776fa4511532e8181b5eff5b48e9e8c0d03ca586a7cd",
+      "koharu_haruto_ja/koharu/runtime/koharu.2048/texture_00.png": "c6980d107bc9bab9a933b87c109f95aafbf16d8e364e49731b58beaedc42f2fc"
+    },
+    "renderer": "live2d-py 1.0.0; SDK wrapper 5-r.5; actual Core 6.0.1; original runtime keyforms and masks; no image warp",
+    "faceType": "短圆脸",
+    "shapeNote": "宽颊、短下脸，圆弧下颌",
+    "baselineMeaning": "X=0 original model keyform; not a guarantee of zero baked inclination",
+    "boardFaceColumns": "flat recolor of rendered face alpha, no contour edits",
+    "files": {
+      "reference.jpg": "0306b3d417926df66a0fa1351cb031abcd872d009fc4e9270181e23033d0df38",
+      "features_front.png": "75d297434e49716acfda669b0fb097a8751442227dc06bfa6c89dc47bae9ee73",
+      "face_front.png": "a6eeb732d4e0e7bb56d6685758817ca2ccb8480f4b89ca14a9270dd15ea86998",
+      "face_left.png": "caec25982c6aa5783e604e32adb6b82eab10e2751638cf02753234e7d93826d0",
+      "features_left.png": "39c2252306d9c0d46bc0f94a63bf1f49742313c7e9a6e0b9aa3a07f67d2fc99e"
+    }
+  },
+  {
+    "id": "haruto",
+    "model": "koharu_haruto_ja/haruto/runtime/haruto.model3.json",
+    "angleX": {
+      "baseline": 0,
+      "left": -30
+    },
+    "angleParameter": "PARAM_ANGLE_X",
+    "disabledInMemory": [
+      "Motions",
+      "Physics",
+      "Pose",
+      "Expressions"
+    ],
+    "fixedParameters": "Y/Z/body/gaze/mouth-open/all-transform=0; original other defaults",
+    "crop": [
+      354,
+      206,
+      1020,
+      850
+    ],
+    "faceParts": [
+      "PARTS_01_FACE_001"
+    ],
+    "featureParts": [
+      "PARTS_01_NOSE_001",
+      "PARTS_01_MOUTH_001",
+      "PARTS_01_BROW_001",
+      "PARTS_01_EYE_BALL_001",
+      "PARTS_01_EYE_001"
+    ],
+    "excludedHairParts": [
+      "PARTS_01_HAIR_BACK_001",
+      "PARTS_01_HAIR_SIDE_001",
+      "PARTS_01_HAIR_FRONT_001"
+    ],
+    "sourceHashes": {
+      "koharu_haruto_ja/haruto/runtime/haruto.moc3": "43f320a45f27777a2ab1aad9a53f06287ed18a274dc2d36951176dc8cc66abe5",
+      "koharu_haruto_ja/haruto/runtime/haruto.model3.json": "99e538e166c3e32cf7adf7c2192a71640662067cf1956a25acd79d246a528b7b",
+      "koharu_haruto_ja/haruto/runtime/haruto.2048/texture_00.png": "71ca06a6c1caeaa12684ea00cf748c91fa3e637620035d10b9a9f9584a74c63f"
+    },
+    "renderer": "live2d-py 1.0.0; SDK wrapper 5-r.5; actual Core 6.0.1; original runtime keyforms and masks; no image warp",
+    "faceType": "宽圆脸",
+    "shapeNote": "下巴短，颊部宽，底缘扁圆",
+    "baselineMeaning": "X=0 original model keyform; not a guarantee of zero baked inclination",
+    "boardFaceColumns": "flat recolor of rendered face alpha, no contour edits",
+    "files": {
+      "reference.jpg": "61fec6b7ba1ab37cbef93274cfea12c57f57d5dd3bc4bd70ca14dc9f759f842c",
+      "features_front.png": "2c19a18cd72239d5bd9c69f5d23d64e4f5eba5c6d9dc9e9a92aebb394e99fdef",
+      "face_front.png": "7605168c1550da5744901e56d342197b91475c1722e305cd92cd94c5a015fe5d",
+      "face_left.png": "a6e3b5993ffc4d219b6c3dd8bfaa1668d50140d5eeb0eb68e943fc0c71c65e8e",
+      "features_left.png": "95efc04ae7889000f6fa475c7fdbcf8b3da96abc33669709874952c36ae8368c"
+    }
+  }
+]

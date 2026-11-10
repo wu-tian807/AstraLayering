@@ -1,4 +1,4 @@
-import { readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 import { readStep, type StepStatus } from '../shared/step-chain.ts';
 import { missingDeliveries } from '../shared/step-deliveries.ts';
@@ -9,6 +9,7 @@ import { occlusionPath } from '../shared/part/occlusion-plan.ts';
 import { artifactPath, draftPath } from '../shared/part/artifact-facts.ts';
 import { partSteps, stepPattern } from '../shared/step-paths.js';
 import { sectionIds, type SectionId } from '../shared/paths.ts';
+import { nineAxisGroupSteps, nineAxisSteps, nineAxisBranchSteps, previousNineAxisGroupSteps, previousNineAxisSteps } from '../shared/nine-axis.ts';
 import { acquireTaskLock, directoryFor, sectionId, type TaskOptions } from './state.ts';
 
 // Step recovery, for one step (CLI --section/--step) or for every step still
@@ -34,8 +35,11 @@ const partSections: readonly SectionId[] = ['part-layering', 'clothing-part-laye
 const safeSegment = (segment: string) => !!segment && segment !== '.' && segment !== '..' && !/[\\\0]/.test(segment);
 // Step ids are the step directories relative to the section (see part-steps.ts and step-section.ts).
 const itemSteps: readonly string[] = [partSteps.outline, partSteps.completion, partSteps.children];
+const anglesStep = 'step04_angles/model';
+const axisChild = (step: string) => nineAxisGroupSteps.includes(step) || previousNineAxisGroupSteps.includes(step);
 export function validStepId(section: SectionId, id: string): boolean {
   if (typeof id !== 'string' || !id.split('/').every(safeSegment)) return false;
+  if (section === 'nine-axis') return (nineAxisSteps as readonly string[]).includes(id) || nineAxisBranchSteps.includes(id) || axisChild(id) || (previousNineAxisSteps as readonly string[]).includes(id) || previousNineAxisGroupSteps.includes(id);
   const [step, ...items] = id.split('/'), item = items.join('/');
   if (!stepPattern.test(step)) return false;
   if (!partSections.includes(section)) return !items.length;
@@ -82,16 +86,25 @@ export async function applyStepAction(options: Pick<TaskOptions, 'name' | 'dir'>
 // still marked .running in every section; interrupted and failed steps both
 // keep that marker. Retry also redoes completed steps that lost a delivery.
 // Continue with no such step just runs the task on from where it stopped.
-export async function applyTaskAction(options: Pick<TaskOptions, 'name' | 'dir'> & { action: string }): Promise<string> {
+export async function applyTaskAction(options: Pick<TaskOptions, 'name' | 'dir'> & { action: string; section?: SectionId }): Promise<string> {
   if (!(stepActions as readonly string[]).includes(options.action)) throw new Error('未知操作：' + options.action + '；可选：' + stepActions.join(', '));
   const action = options.action as StepAction, directory = directoryFor(options);
   const release = await acquireTaskLock(directory);
   try {
     const messages: string[] = [];
-    for (const section of sectionIds) {
+    for (const section of options.section ? [sectionId(options.section)] : sectionIds) {
       const root = sectionRoot(directory, section);
-      for (const step of await listSteps(root, section)) {
-        if (step.status === 'running' || action === 'retry' && step.missing) messages.push(`${section}/` + await actOnStep(root, section, step.id, action));
+      const steps = await listSteps(root, section);
+      const parentRunning = section === 'nine-axis' && steps.some(step => [anglesStep, 'step02_angles'].includes(step.id) && step.status === 'running');
+      const selected = steps.filter(step => step.status === 'running' || action === 'retry' && step.missing
+        || parentRunning && axisChild(step.id) && step.status !== 'completed');
+      const hasChild = section === 'nine-axis' && selected.some(step => axisChild(step.id));
+      for (const step of selected) {
+        // The parent contains neutral and completed siblings. Recover the
+        // selected children independently; they reopen the merge on retry.
+        if (hasChild && [anglesStep, 'step04_angles', 'step02_angles'].includes(step.id)) continue;
+        if (section === 'nine-axis' && step.id === 'step04_angles' && selected.some(child => child.id.startsWith(step.id + '/'))) continue;
+        messages.push(`${section}/` + await actOnStep(root, section, step.id, action));
       }
     }
     if (!messages.length) {
@@ -117,6 +130,23 @@ async function actOnStep(root: string, section: SectionId, step: string, action:
     if (!dropped) return `${step} 没有保存的会话，恢复等同继续：下次运行沿用产物。`;
     return `${step}：已清除会话${dropped.threadId ? ' ' + dropped.threadId : ''}，保留产物；下次运行在新会话中继续。`;
   }
+  if (section === 'nine-axis' && step === 'step04_angles') {
+    const branches = (await listSteps(root, section)).filter(child => nineAxisBranchSteps.includes(child.id) && (child.status !== 'completed' || child.missing));
+    const messages = [];
+    for (const child of branches) messages.push(await actOnStep(root, section, child.id, action));
+    await reopenStage(root);
+    return [...messages, `${step}：保留已完成分支，下次运行继续未完成分支。`].join('\n');
+  }
+  if (section === 'nine-axis' && [anglesStep, 'step02_angles'].includes(step)) {
+    // A parent retry means unfinished children plus a fresh merge, not deletion
+    // of the enclosing directory or every child's session/attempt history.
+    const children = (await listSteps(root, section)).filter(child => axisChild(child.id) && child.id.startsWith(step + '/')
+      && (child.status !== 'completed' || child.missing));
+    const messages: string[] = [];
+    for (const child of children) messages.push(await actOnStep(root, section, child.id, action));
+    await reopenAngles(root, step.startsWith('step02_angles') ? 'step02_angles' : anglesStep);
+    return [...messages, `${step}：保留共享素材和已完成单轴，已清除联合投影；下次运行重新合并。`].join('\n');
+  }
   // retry: the step directory holds its session; some part products live outside it.
   const outputs: string[] = [];
   const group = step.startsWith(partSteps.completion + '/') ? step.slice(partSteps.completion.length + 1).split('/children/').join('/') : undefined;
@@ -129,7 +159,29 @@ async function actOnStep(root: string, section: SectionId, step: string, action:
   await rm(stepDirectory, { recursive: true, force: true });
   await rm(join(root, 'agents', 'steps', step), { recursive: true, force: true });
   const attempts = await clearAgentAttempts(root, stepDirectory);
+  if (section === 'nine-axis' && axisChild(step)) await reopenAngles(root, step.startsWith('step02_angles') ? 'step02_angles' : anglesStep);
+  else if (section === 'nine-axis' && nineAxisBranchSteps.includes(step)) await reopenStage(root);
   return `${step}：已删除步骤产物、会话${attempts ? `和 ${attempts} 次 agent 尝试记录` : ''}；下次运行重做该步骤。`;
+}
+
+async function reopenAngles(root: string, modelStep = anglesStep): Promise<void> {
+  if (modelStep === anglesStep) await reopenStage(root);
+  const parent = join(root, modelStep);
+  await mkdir(parent, { recursive: true });
+  await rm(join(parent, '.completed'), { force: true });
+  await writeFile(join(parent, '.running'), '', { flag: 'wx' }).catch(error => {
+    if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
+  });
+  for (const file of ['merged', 'layers', 'deformers.json', 'axis-sources.json', 'source.json']) {
+    await rm(join(parent, file), { recursive: true, force: true });
+  }
+}
+
+async function reopenStage(root: string): Promise<void> {
+  const parent = join(root, 'step04_angles');
+  await mkdir(parent, { recursive: true });
+  await rm(join(parent, '.completed'), { force: true });
+  await writeFile(join(parent, '.running'), '', { flag: 'wx' }).catch(error => { if (error.code !== 'EEXIST') throw error; });
 }
 
 // Each agent call leaves agents/<time>-<name>-*/ (request, events, CLI data) and a

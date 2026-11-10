@@ -1,0 +1,17 @@
+{
+  "source": "user-provided 圆脸九轴.mp4",
+  "faceType": "短圆脸",
+  "frameSeconds": [
+    3.25,
+    6.7,
+    7.7,
+    8.7
+  ],
+  "sha256": {
+    "圆脸九轴.mp4": "4ff3c66b08b7bac23524a8853ac142a9e7a50f0fafc910683f48fc0564b6502d",
+    "x-3_25.png": "17321b3a81dd58e66b8ffc5cf36e957ac52beacbb9a437b46ba62d57a8b89236",
+    "x-6_7.png": "3c73a774359a3f5fa490265e64ab737adbca33cdfb7d927c4b3c766d22b83dce",
+    "x-7_7.png": "8e74c3c51efe192a585b44d5ee9a912f4bf783284c95a8bc39502baea37eb996",
+    "x-8_7.png": "79cb7401b24f44f58231d7b7cb309d672d2b71b765d180c9fb8024c5fcdd3767"
+  }
+}

@@ -10,7 +10,7 @@ import { sectionIds } from './paths.ts';
 // Reading is lenient: absolute paths are accepted as is, and a relative path
 // always means the task root.
 
-const sections = new Set<string>(sectionIds);
+const sections = new Set<string>([...sectionIds, 'nine-axis']);
 const inside = (root: string, path: string) => path === root || path.startsWith(root.endsWith(sep) ? root : root + sep);
 
 // The task root of a section directory. Every section directory is created

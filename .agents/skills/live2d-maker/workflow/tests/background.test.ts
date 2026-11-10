@@ -127,3 +127,14 @@ test('取消总调度会终止实际管线子进程及其工具进程，保留�
   // Cancelling keeps the existing upstream projects untouched.
   for (const path of Object.values(f.inputs)) assert.equal(await readFile(path, 'utf8'), 'upstream');
 });
+
+test('real background workers retain both explicit live values without expanding a narrow range', { skip: process.platform === 'win32' }, async t => {
+  const f = await fixture(t), previous = process.env.QT_QPA_PLATFORM;
+  process.env.QT_QPA_PLATFORM = 'offscreen'; t.after(() => { if (previous === undefined) delete process.env.QT_QPA_PLATFORM; else process.env.QT_QPA_PLATFORM = previous; });
+  for (const live of [true, false]) {
+    await startBackground({ ...f.options, live });
+    await until(async () => !(await taskStatus(f.options)).lockHeld);
+    const status = await taskStatus(f.options);
+    assert.equal(status.live, live); assert.equal(status.to, 'character-assembly'); assert.equal(status.status, 'completed');
+  }
+});

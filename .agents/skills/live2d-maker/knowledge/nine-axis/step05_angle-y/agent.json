@@ -1,6 +1,0 @@
-{
-  "main": {
-    "initial": ["prompts/脸部与双耳上下.md"],
-    "tools": ["view_bitmap"]
-  }
-}

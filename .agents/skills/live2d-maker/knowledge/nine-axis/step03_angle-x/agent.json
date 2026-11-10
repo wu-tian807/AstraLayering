@@ -1,6 +1,0 @@
-{
-  "main": {
-    "initial": ["prompts/脸部与双耳转向.md"],
-    "tools": ["krita", "view_bitmap"]
-  }
-}

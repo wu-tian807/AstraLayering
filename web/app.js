@@ -1,5 +1,5 @@
 import { processFileList } from './process-files.js';
-import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts, groupArtifacts, shadowInspectionArtifacts,
+import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts, groupArtifacts, shadowInspectionArtifacts, previousNineAxisSectionSteps,
  groupSummary, groupPreviewArtifacts, groupStagePreviewArtifacts, groupReviewSteps, reviewReportText,
  latestKraPreview, statusNames, displayStatus, statusLabel } from './progress.js';
 import { selectedTask, rememberTask } from './task-selection.js';
@@ -7,6 +7,8 @@ import { renderReport } from './report-markdown.js';
 import { morph } from './dom-morph.js';
 import { createEnvEditor } from './env-editor.js';
 import { createSettings } from './settings-dialog.js';
+import { HeadPreview } from './head-preview.js';
+const headPreview = new HeadPreview();
 
 const icons = {
  layers:'<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/>',
@@ -41,7 +43,7 @@ let tasks = initial.tasks, data = { files:[], sections:[] }, sectionSteps = stru
 const state = {
  page:new URLSearchParams(location.search).get('page')||'project', name:selectedTask(initial.directory,tasks,new URLSearchParams(location.search).get('name')),
  stage:0, selectedStep:'preparation', inspect:false, compare:false, asset:null, zoom:null, autoHeight:true, canvasLeft:0, canvasTop:0, lane:0, mergeShift:0,
- directory:initial.directory, ref:'worktree', file:'', diff:false, configFilter:'', configFolders:new Map(), uploaded:null, configMode:'env',
+ directory:initial.directory, ref:new URLSearchParams(location.search).get('ref')||'worktree', file:new URLSearchParams(location.search).get('file')||'', diff:false, configFilter:'', configFolders:new Map(), uploaded:null, configMode:new URLSearchParams(location.search).get('file')?'files':'env',
  collapsedSections:new Set(), collapsedSteps:new Set(), collapsedPhases:new Set(),
  details:new Map(),
 };
@@ -49,9 +51,11 @@ const stages = [
  {name:'人物分块',id:'part-layering'}, {name:'人物绘制',id:'raster-layering'},
  {name:'衣服分块',id:'clothing-part-layering'}, {name:'衣服绘制',id:'clothing-raster-layering'},
  {name:'穿戴组装',id:'character-assembly'}, {name:'阴影制作',id:'shadow'},
+ {name:'头部九轴',id:'nine-axis'},
 ];
+const runnableStages=stages.filter(stage=>initial.sections?initial.sections.includes(stage.id):stage.id!=='nine-axis');
 // After the character preparation the character and clothing lanes run side by side; both merge into the assembly.
-const flowLanes = [{name:'人物线',stages:[0,1]}, {name:'衣服线',stages:[2,3]}], mergeStages = [4,5];
+const flowLanes = [{name:'人物线',stages:[0,1]}, {name:'衣服线',stages:[2,3]}], mergeStages = [4,5,6];
 const laneOf = index => flowLanes.findIndex(lane=>lane.stages.includes(index));
 const isRasterSection = index => ['raster-layering','clothing-raster-layering'].includes(stages[index]?.id);
 const hasKraPreview = index => isRasterSection(index)||stages[index]?.id==='character-assembly'
@@ -64,9 +68,12 @@ async function post(path, value) {
 // anything; the global settings open, and the action runs again once they are saved.
 const settings=createSettings({get,post,esc,icon,onSaved:async()=>{await refreshTask(true);if(state.page==='config'&&state.configMode==='files')await loadConfig();render();}});
 const requestedStage = Number(new URLSearchParams(location.search).get('stage') ?? 0);
+function defaultStep(index) {
+ return index===0||index===2?'layers':sectionSteps[index]?.[0]?.id||'step01';
+}
 if (Number.isInteger(requestedStage) && requestedStage >= 0 && requestedStage < stages.length) {
  state.stage = requestedStage;
- state.selectedStep = requestedStage === 0 || requestedStage === 2 ? 'layers' : requestedStage >= 4 ? 'step01' : 'step02';
+ state.selectedStep = requestedStage===6?defaultStep(requestedStage):requestedStage===0||requestedStage===2?'layers':requestedStage>=4?'step01':'step02';
 }
 const taskParams = () => new URLSearchParams({name:state.name,dir:state.directory});
 const artifact = (path, thumbnail=false) => './artifact?'+new URLSearchParams({name:state.name,dir:state.directory,path,v:data.fileVersions?.[path]||'',...(/\.kra$/i.test(path)?{preview:'kra',...(thumbnail?{fit:'content'}:{})}:thumbnail&&/\.svg$/i.test(path)?{preview:'content'}:{})});
@@ -95,7 +102,7 @@ function laneFailure(section){
 }
 const taskStatusNames = {ready:'待启动', running:'运行中', completed:'所选路线已完成', failed:'执行失败', interrupted:'已中断', untracked:'无总控记录', layout:'需转换目录'};
 function pageHeading() {
- return `<div class="page-heading"><div class="task-heading"><select id="task-select" aria-label="选择任务"><option value="" ${!state.name?'selected':''}>选择任务</option>${tasks.map(task=>`<option value="${esc(task.name)}" ${task.name===state.name?'selected':''}>${esc(task.displayName||task.name)} · ${taskStatusNames[task.status]||task.status}</option>`).join('')}</select></div><div class="heading-actions"><button class="button" data-action="new">${icon('plus')}新建任务</button>${state.name?`<button class="button" data-action="files">${icon('folder')}全部产物</button>${stepToolbar()}`:''}</div></div>`;
+ return `<div class="page-heading"><div class="task-heading"><select id="task-select" aria-label="选择任务"><option value="" ${!state.name?'selected':''}>选择任务</option>${tasks.map(task=>`<option value="${esc(task.name)}" ${task.name===state.name?'selected':''}>${esc(task.displayName||task.name)} · ${taskStatusNames[task.status]||task.status}</option>`).join('')}</select></div><div class="heading-actions"><button class="button" data-action="new">${icon('plus')}新建任务</button>${state.name?`${!data.archived&&!data.runnerAlive&&!data.lockHeld?'<button class="button" data-action="run-options">执行参数</button>':''}<button class="button" data-action="files">${icon('folder')}全部产物</button>${stepToolbar()}`:''}</div></div>`;
 }
 let archivedFiles = new Set();
 const assetLookup = new Map();
@@ -124,6 +131,7 @@ const available = items => (items||[]).flatMap(item=> {
 });
 function applySnapshot(next) {
  data=next; archivedFiles=new Set(data.files); assetLookup.clear();
+ data.sections=stages.map(stage=>next.sections.find(section=>section.id===stage.id)||{id:stage.id,states:{},messages:{},reports:{},steps:[]});
  if(state.asset?.kind==='image'&&state.asset.path.endsWith('.kra')) {
   const source=state.asset.sharedPreview?latestKraPreview(data.sections[state.stage]?.previews):data.sections[state.stage]?.previews?.[state.selectedStep];
   if(source){state.asset={...state.asset,path:source.path};if(state.asset.sharedPreview)state.selectedStep=source.stepId;}
@@ -137,6 +145,8 @@ function applySnapshot(next) {
   if(archivedFiles.has(published))state.asset={...state.asset,path:published,label:state.asset.label.replace(' · 中间产物','图')};
  }
  sectionSteps=structuredClone(stepTemplates);
+ if(data.sections[6]?.layout==='nested')sectionSteps[6]=structuredClone(previousNineAxisSectionSteps);
+ if(state.stage===6&&!sectionSteps[6].some(step=>step.id===state.selectedStep||step.children.some(child=>child.id===state.selectedStep||child.children.some(group=>group.id===state.selectedStep))))state.selectedStep=defaultStep(6);
  for(const [index,stage] of stages.entries()) {
   stage.status=data.sections[index]?.status||'pending';
   const mark=steps=>steps.forEach(step=>{
@@ -177,7 +187,8 @@ async function readTaskSnapshot(version,force) {
  if(version!==refreshVersion)return;
  const fingerprint=JSON.stringify({next,tasks});
  // Interaction may defer artifact redraws, but must never hide a stopped runner.
- const executionChanged=next.status!==data.status||next.runnerAlive!==data.runnerAlive||next.lockHeld!==data.lockHeld;
+ const executionState=value=>JSON.stringify([value.status,value.runnerAlive,value.lockHeld,value.run?.live,value.run?.from,value.run?.to,(value.sections||[]).map(section=>[section.id,section.status,section.states,section.krita])]);
+ const executionChanged=executionState(next)!==executionState(data);
  const focused=document.activeElement;
  const treeControl=focused?.dataset?.treeSearch!==undefined?'data-tree-search':focused?.dataset?.treeDepth!==undefined?'data-tree-depth':null;
  if(!force&&!executionChanged&&(document.querySelector('dialog[open]')||(!treeControl&&focused?.id!=='task-select'&&focused?.matches('input,select'))||document.querySelector('.panning,.selecting')))return;
@@ -197,6 +208,7 @@ async function readTaskSnapshot(version,force) {
    if(focus){const input=document.querySelector(focus.selector);input?.focus({preventScroll:true});if(focus.start!=null)input?.setSelectionRange(focus.start,focus.end);}
   }
  }
+ void headPreview.update(document.querySelector('[data-head-preview]'),data.directory);
 }
 function taskLoading() {
  return `${pageHeading()}<div class="run-notice ${state.loadError?'error':''}" role="status">${icon(state.loadError?'info':'clock')}<span>${state.loadError?`读取失败：${esc(state.loadError)}`:`正在读取 ${esc(state.name)} 的进展…`}</span></div>`;
@@ -205,6 +217,7 @@ function artifacts(items, index, stepId, className='') {
  const list=available(items);
  if(!list.length)return '';
  const view=item=>{
+  if(item.kind==='video')return `<figure class="artifact-video"><video controls preload="metadata" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video><figcaption>${esc(item.label)}${data.fileVersions?.[item.path]?` · ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}`:''}</figcaption><a href="${artifact(item.path)}" target="_blank" rel="noopener">打开视频</a></figure>`;
   if(item.path.endsWith('.kra')&&item.kind!=='image')return `<a class="artifact-file" href="${artifact(item.path).replace('&preview=kra','')}" target="_blank" rel="noopener">${icon('layers')}${esc(item.label)} ${icon('arrow')}</a>`;
   const key=item.reviewIndex===undefined?item.path:`${item.path}#${item.reviewMode}-${item.reviewIndex}`;
   assetLookup.set(key,item);
@@ -254,7 +267,7 @@ function stepToolbar() {
  if(busy)return `<div class="step-toolbar" role="group" aria-label="任务控制"><button class="button" data-action="stop" title="${data.canStop?'停止运行，保留产物与续跑记录（命令行 --stop）':'当前运行未提供可用的停止入口'}" ${data.canStop?'':'disabled'}>${icon('stop')}停止</button></div>`;
  const allowed=action=>action==='continue'||brokenSteps(targets,action).length>0;
  const scope=action=>{const steps=brokenSteps(targets,action);return steps.length?`作用于 ${steps.length} 个中断 / 失败步骤：${steps.map(stepLabel).join('、')}`:'没有中断或失败的步骤，从未完成处续跑';};
- return `<div class="step-toolbar" role="group" aria-label="任务恢复">${Object.keys(stepActionNames).map(action=>`<span class="step-action"><button class="${action==='continue'?'primary':'button'}" data-step-toolbar="${action}" aria-describedby="step-tip-${action}" ${!allowed(action)?'disabled':''}>${stepActionNames[action]}</button><span class="step-tip" role="tooltip" id="step-tip-${action}"><b>${stepActionNames[action]}</b>${!targets.length?'<span>运行任务，可选择执行范围。</span>':stepActionHelp[action].map(line=>`<span>${line}</span>`).join('')}${!targets.length?'':!allowed(action)?'<small>当前没有中断或失败的步骤，不可用。</small>':`<small>${esc(scope(action))}。<span class="nowrap">命令行 --${action}</span></small>`}</span></span>`).join('')}${exportButton}</div>`;
+ return `<div class="step-toolbar" role="group" aria-label="任务恢复">${Object.keys(stepActionNames).map(action=>`<span class="step-action"><button class="${action==='continue'?'primary':'button'}" data-step-toolbar="${action}" aria-describedby="step-tip-${action}" ${!allowed(action)?'disabled':''}>${stepActionNames[action]}</button><span class="step-tip" role="tooltip" id="step-tip-${action}"><b>${stepActionNames[action]}</b>${!targets.length?'<span>使用保存的参数，从未完成处继续执行。</span>':stepActionHelp[action].map(line=>`<span>${line}</span>`).join('')}${!targets.length?'':!allowed(action)?'<small>当前没有中断或失败的步骤，不可用。</small>':`<small>${esc(scope(action))}。<span class="nowrap">命令行 --${action}</span></small>`}</span></span>`).join('')}${exportButton}</div>`;
 }
 function groupPhaseNode(index,id,label,status,detail,items,number,hasPreview=false) {
  const key=`${index}:${id}`,closed=state.collapsedPhases.has(key);
@@ -347,17 +360,19 @@ function stepNode(index,step,nested=false) {
  if(step.status==='skipped')return `<section class="step-node nested skipped-node" data-node="${index}:${step.id}"><div class="skipped-heading"><span class="phase-mark">${icon('arrow')}</span><h3>${esc(step.title)}</h3><small>无需执行</small></div></section>`;
  const selected=state.inspect&&state.stage===index&&state.selectedStep===step.id;
  const key=`${index}:${step.id}`, closed=state.collapsedSteps.has(key);
- const alternative=step.childrenMode==='alternative';
+ const alternative=step.childrenMode==='alternative', parallel=step.childrenMode==='parallel';
  const mode=stages[index].id==='shadow'&&['mask','normal-depth'].includes(step.id);
+ const nineStage=stages[index].id==='nine-axis'?({'step01_preparation':'neutral','step04_angles/model':'y','step04_angles/model/left':'x','step04_angles/model/up':'up','step04_angles/model/down':'down','step06_angle-xy':'xy','step07_jaw-line':'jaw','step02_angles':'y','step02_angles/left':'x','step02_angles/up':'up','step02_angles/down':'down','step03_angle-xy':'xy','step04_jaw-line':'jaw'}[step.id]):null;
  const currentMode=mode&&step.id===(data.run?.shadowMode||'mask');
- const context=step.id==='layers'?groupCycle(index):step.children.length?`<div class="step-children ${alternative?'step-alternatives':''}" ${alternative?'role="group" aria-label="阴影方式：二选一"':''}>${isRasterSection(index)&&step.id==='step01'?reviewNodes(index,step.children):step.children.map((child,i)=>`${alternative&&i?'<span class="alternative-or">OR</span>':''}${stepNode(index,child,true)}`).join('')}</div>`:'';
+ const context=step.id==='layers'?groupCycle(index):step.children.length?`<div class="step-children ${alternative?'step-alternatives':parallel?'step-parallel':''}" ${alternative?'role="group" aria-label="阴影方式：二选一"':parallel?'role="group" aria-label="并发制作任务"':''}>${isRasterSection(index)&&step.id==='step01'?reviewNodes(index,step.children):step.children.map((child,i)=>`${alternative&&i?'<span class="alternative-or">OR</span>':''}${stepNode(index,child,true)}`).join('')}</div>`:'';
  return `<section class="step-node ${nested?'nested':''} ${step.children.length?'step-container':''} ${isRasterSection(index)&&step.id==='step01'?'raster-review':''} ${closed?'node-collapsed':''} ${step.status} ${selected?'selected':''}" data-node="${index}:${step.id}">
  ${mode?`<div class="mode-choice ${currentMode?'current':''}">${currentMode?'当前方式':'备选方式'}</div>`:''}
- <div class="step-heading"><button class="step-node-heading" data-step="${index}:${step.id}">${statusMark(status)}<h3>${esc(step.title)}</h3><small class="step-state" title="${esc(step.id)}">${esc(statusLabel(status))}</small></button><button class="icon-button" data-step-toggle="${key}" aria-label="${closed?'展开':'收起'}${esc(step.title)}" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>
+ <div class="step-heading"><button class="step-node-heading" data-step="${index}:${step.id}">${statusMark(status)}<h3>${stages[index].id==='nine-axis'?`<span class="step-code">${esc(step.id)}</span>`:''}${esc(step.title)}</h3><small class="step-state" title="${esc(step.id)}">${esc(statusLabel(status))}</small></button><button class="icon-button" data-step-toggle="${key}" aria-label="${closed?'展开':'收起'}${esc(step.title)}" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>
  ${closed?'':`<div class="step-content">
  ${step.id!=='layers'&&(step.note||['standard','simplified','base','clothing'].includes(step.id))?`<p class="step-summary" ${step.note?`title="${esc(step.note)}"`:'aria-hidden="true"'}>${esc(step.note)}</p>`:''}
  ${step.id==='standard'&&!available(stepArtifacts[index][step.id]).some(item=>item.kind==='image')?'<p class="archive-gap" title="人物准备阶段执行后展示标准参考图">尚无标准参考图</p>':''}
  ${context}
+ ${nineStage?`<a class="artifact-file" href="./studio?${new URLSearchParams({project:state.name,nineStage})}" target="_blank" rel="noopener">${icon('eye')}九轴预览</a>`:''}
  ${reportEvidence(index,step.id)}
  ${artifacts(step.id==='mask'&&stages[index].id==='shadow'?[...rasterItems(index,step.id),...shadowInspectionArtifacts(data.files)]:rasterItems(index,step.id),index,step.id)}
  ${data.sections[index]?.messages[step.id]?(step.status==='throttled'?waitBox(data.sections[index].messages[step.id]):step.status==='running'?`<p class="step-activity">${esc(data.sections[index].messages[step.id])}</p>`:errorBox(data.sections[index].messages[step.id])):''}
@@ -380,15 +395,18 @@ function processArtifacts(index, step) {
  const cited=new Set(Object.values(reports).flatMap(report=>report.images.map(image=>image.path)).filter(path=>!own.includes(path)));
  const deliveries=filtered.filter(path=>!items.includes(path)&&cited.has(path));
  const listing=processFileList(items,roots,data.fileVersions);
- const render=paths=>artifacts(paths.map(path=>({path,label:path.split('/').at(-1),kind:/\.(png|jpe?g|webp|svg|kra)$/i.test(path)?'image':'file'})),index,step.id,'process-artifacts');
+ const render=paths=>artifacts(paths.map(path=>({path,label:path.split('/').at(-1),kind:/\.(png|jpe?g|webp|svg|kra)$/i.test(path)?'image':/\.mp4$/i.test(path)?'video':'file'})),index,step.id,'process-artifacts');
  const extra=deliveries.length?`<details class="process-files delivery-files" data-details="delivery:${index}:${step.id}"><summary>${deliveries.length} 个补充产物</summary>${render(deliveries)}</details>`:'';
  return extra+(items.length?`<details class="process-files" data-details="process:${index}:${step.id}"><summary>${listing.total} 个过程文件${listing.shown<listing.total?` · 显示 ${listing.shown} 个（按目录平分）`:''}</summary>${listing.folders.map(({folder,total,files})=>`<details class="process-group" data-details="process-folder:${index}:${step.id}:${esc(folder)}"><summary>${esc(folder||'workspace 根目录')} <small>${total} 个${files.length<total?` · 显示最新 ${files.length} 个`:''}</small></summary>${render(files)}</details>`).join('')}</details>`:'');
 }
 // A skipped lane (no dress-up, nothing to make) counts as complete.
 const finished=stage=>stage.status==='done'||stage.status==='skipped';
+function headThumbnail() {
+ return `<section class="kra-preview-panel head-preview-panel" data-head-preview aria-label="头部九轴最新预览"><h3>${icon('layers')}头部九轴最新画面</h3><canvas aria-label="随鼠标运动的九轴角色头"></canvas><p data-head-status role="status">等待头部九轴首次保存。</p><small>随页面鼠标运动 · 弧形边界内预览</small><a href="./studio?${new URLSearchParams({project:state.name,workspace:'nine-axis'})}">在角色工作台打开 ↗</a></section>`;
+}
 function flowCard(index) {
  const stage=stages[index],status=observedDisplayStatus(index,stage.status),closed=state.collapsedSections.has(index),wide=!closed&&groupViews[index]?.open&&!state.collapsedSteps.has(`${index}:layers`);
- return `<section class="section-lane ${stage.status} ${closed?'collapsed':''} ${wide?'group-expanded':''} ${stage.id==='shadow'?'shadow-lane':''}" data-section="${index}"><div class="section-heading"><button data-stage="${index}" aria-label="查看${stage.name}交付"><span class="node-number">${String(index+1).padStart(2,'0')}</span><h2>${stage.name}</h2>${statusMark(status)}${kritaBadge(index)}</button><button class="icon-button" data-section-toggle="${index}" aria-label="${closed?'展开':'收起'}${stage.name}栏目" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>${!closed&&stage.status==='skipped'?`<p class="lane-summary skipped-lane">${esc(data.sections[index]?.summary||'无需执行')}</p>`:''}${!closed&&stage.status==='failed'&&laneFailure(data.sections[index])?errorBox(laneFailure(data.sections[index]),'lane-error'):''}${closed?`<div class="lane-collapsed-body"><span>${esc(statusLabel(status))}</span><small>${sectionSteps[index].filter(finished).length} / ${sectionSteps[index].length} 步</small>${(()=>{const note=stage.status==='skipped'?data.sections[index]?.summary||'无需执行':stage.status==='failed'?laneFailure(data.sections[index]):'';return note?`<p class="${stage.status==='failed'?'status-error':''}" title="${esc(note)}">${esc(note)}</p>`:'';})()}</div>`:`<div class="section-steps">${kraPreviewPanel(index)}${stage.id==='shadow'?'<div class="shadow-references"><a href="./shadow-reference/skirt.png" target="_blank" rel="noopener">裙影参考 ↗</a><a href="./shadow-reference/hair.png" target="_blank" rel="noopener">发影参考 ↗</a></div>':''}${sectionSteps[index].map(step=>stepNode(index,step)).join('')}${data.sections[index]?.threadId?`<small class="thread-id" title="${esc(data.sections[index].threadId)}">thread · ${esc(data.sections[index].threadId)}</small>`:''}</div>`}</section>`;
+ return `<section class="section-lane ${stage.status} ${closed?'collapsed':''} ${wide?'group-expanded':''} ${stage.id==='shadow'?'shadow-lane':''}" data-section="${index}"><div class="section-heading"><button data-stage="${index}" aria-label="查看${stage.name}交付"><span class="node-number">${String(index+1).padStart(2,'0')}</span><h2>${stage.name}</h2>${statusMark(status)}${kritaBadge(index)}</button><button class="icon-button" data-section-toggle="${index}" aria-label="${closed?'展开':'收起'}${stage.name}栏目" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>${!closed&&stage.status==='skipped'?`<p class="lane-summary skipped-lane">${esc(data.sections[index]?.summary||'无需执行')}</p>`:''}${!closed&&stage.status==='failed'&&laneFailure(data.sections[index])?errorBox(laneFailure(data.sections[index]),'lane-error'):''}${closed?`<div class="lane-collapsed-body"><span>${esc(statusLabel(status))}</span><small>${sectionSteps[index].filter(finished).length} / ${sectionSteps[index].length} 步</small>${(()=>{const note=stage.status==='skipped'?data.sections[index]?.summary||'无需执行':stage.status==='failed'?laneFailure(data.sections[index]):'';return note?`<p class="${stage.status==='failed'?'status-error':''}" title="${esc(note)}">${esc(note)}</p>`:'';})()}</div>`:`<div class="section-steps">${stage.id==='nine-axis'?headThumbnail():kraPreviewPanel(index)}${stage.id==='shadow'?'<div class="shadow-references"><a href="./shadow-reference/skirt.png" target="_blank" rel="noopener">裙影参考 ↗</a><a href="./shadow-reference/hair.png" target="_blank" rel="noopener">发影参考 ↗</a></div>':''}${sectionSteps[index].map(step=>stepNode(index,step)).join('')}${data.sections[index]?.threadId?`<small class="thread-id" title="${esc(data.sections[index].threadId)}">thread · ${esc(data.sections[index].threadId)}</small>`:''}</div>`}</section>`;
 }
 function inspector() {
  const stage=stages[state.stage],step=selectedStep(),item=state.asset;
@@ -414,7 +432,7 @@ function projectPage() {
  const lanes=[{name:'人物线',stages:[1]},{name:'衣服线',stages:[2,3]}].map(lane=>({...lane,html:cards(lane.stages)})).filter(lane=>lane.html);
  return `${pageHeading()}${runNotice()}<section class="section-overview">
  <div class="overview-heading"><div><h2>管线执行</h2><p>人物分块准备完成后，人物线与衣服线并行执行，共用同一组 agent 名额，在穿戴组装合流。选择管线，打开完整进展图。</p></div></div>
- <div class="overview-flow">${column('overview-start','共同准备',cards([0]))}${lanes.length?`<div class="overview-lanes">${lanes.map(lane=>`<div class="overview-lane"><small class="overview-column-title">${lane.name}</small><div class="overview-lane-cards">${lane.html}</div></div>`).join('')}</div>`:''}${column('overview-merge','合流',cards([4,5]))}</div></section>`;
+ <div class="overview-flow">${column('overview-start','共同准备',cards([0]))}${lanes.length?`<div class="overview-lanes">${lanes.map(lane=>`<div class="overview-lane"><small class="overview-column-title">${lane.name}</small><div class="overview-lane-cards">${lane.html}</div></div>`).join('')}</div>`:''}${column('overview-merge','合流',cards(mergeStages))}</div><p class="route-summary">${data.run?`本次路线：${esc(stages.find(stage=>stage.id===data.run.from)?.name)} → ${esc(stages.find(stage=>stage.id===data.run.to)?.name)}${data.run.to==='nine-axis'?' · 含头部九轴':' · 九轴未加入本次路线'}`:'尚未保存执行路线'}；可在“执行参数”中保存下一次执行的设置。</p></section>`;
 }
 // The section's machine-wide Krita slot, beside its own execution state:
 // queued for a slot, or holding one (with Krita running or not yet started).
@@ -426,20 +444,20 @@ function kritaBadge(index) {
  const count=krita.limit?`<small>${esc(data.kritaInUse??'?')}/${esc(krita.limit)}</small>`:'';
  if(krita.state==='waiting')return `<span class="krita-badge waiting" title="${usage?usage+'，':'本机 Krita 名额'}已满，等待其他 section 释放 · 自 ${time(krita.since)} 起排队">Krita 排队中${count}</span>`;
  const detail=krita.state==='running'?`Krita ${esc(krita.version)} · pid ${esc(krita.pid)} · 启动于 ${time(krita.startedAt)}`:'已占名额，Krita 尚未启动或正在重启';
- return `<span class="krita-badge ${krita.state==='running'?'running':'reserved'}" title="${detail}${usage?' · '+usage:''}">占用 Krita${count}</span>`;
+ return `<span class="krita-badge ${krita.state==='running'?'running':'reserved'}" title="${detail}${usage?' · '+usage:''}">${krita.state==='running'?'正在使用 Krita':'已占用 Krita 名额'}${count}</span>`;
 }
 function graph() {
  if(!state.name)return '<section class="empty-workspace"><h2>尚未选择任务</h2><button class="button" data-page="project">选择任务</button></section>';
  const cards=indexes=>indexes.filter(visibleStage).map(flowCard).join('');
  const lanes=flowLanes.map((lane,i)=>({...lane,html:cards(lane.stages),i})).filter(lane=>lane.html),merge=cards(mergeStages);
  const switcher=lanes.length>1?`<nav class="lane-switch" aria-label="切换关注的管线">${lanes.map(lane=>`<button data-lane="${lane.i}" class="${state.lane===lane.i?'active':''}" aria-label="查看${lane.name}" aria-pressed="${state.lane===lane.i}" title="${lane.name}"><span></span><small>${lane.name}</small></button>`).join('')}</nav>`:'';
- return `<section class="workflow-shell"><div class="flow-area"><div class="flow-toolbar"><button class="button preview-back" data-page="project">${icon('branch')}执行控制</button><span>${esc(state.name)} · 完整流程</span><div class="flow-legend">${Object.keys(statusNames).map(status=>`<span>${statusMark(status)}${statusNames[status]}</span>`).join('')}</div><div class="canvas-tools"><button data-action="zoom-out" aria-label="缩小画布">−</button><button data-action="zoom-reset" id="zoom-label">100%</button><button data-action="zoom-in" aria-label="放大画布">＋</button><button data-action="zoom-fit">适合高度</button></div>${stepToolbar()}</div>
+ return `<section class="workflow-shell"><div class="flow-area"><div class="flow-toolbar"><button class="button preview-back" data-page="project">${icon('branch')}执行控制</button><span>${esc(state.name)} · ${data.run?esc(stages.find(stage=>stage.id===data.run.from)?.name)+' → '+esc(stages.find(stage=>stage.id===data.run.to)?.name):'已有产物'}</span><div class="flow-legend">${Object.keys(statusNames).map(status=>`<span>${statusMark(status)}${statusNames[status]}</span>`).join('')}</div><div class="canvas-tools"><button data-action="zoom-out" aria-label="缩小画布">−</button><button data-action="zoom-reset" id="zoom-label">100%</button><button data-action="zoom-in" aria-label="放大画布">＋</button><button data-action="zoom-fit">适合高度</button></div>${!data.archived&&!data.runnerAlive&&!data.lockHeld?'<button class="button" data-action="run-options">执行参数</button>':''}${stepToolbar()}</div>
  <div class="flow-scroll" tabindex="0" aria-label="完整流程画布：横向滚动或拖动浏览，上下拖动或 Ctrl/⌘ + 滚轮切换人物线与衣服线"><div class="flow-size"><div class="flow-world preview-world"><svg class="flow-connectors" aria-hidden="true"></svg><div class="flow-input">${data.original?`<a href="${artifact(data.original)}" target="_blank" rel="noopener"><img src="${artifact(data.original)}" alt="原始输入图"></a>`:icon('image')}<span><b>输入角色图</b><small>original → standard</small></span></div><div class="flow-grid"><div class="flow-lanes">${lanes.map(lane=>`<div class="flow-lane" data-lane-row="${lane.i}">${lane.html}</div>`).join('')}</div>${merge?`<div class="flow-merge" style="margin-top:${state.mergeShift}px">${merge}</div>`:''}</div></div></div></div>${switcher}
  <footer class="flow-footnote">人物分块准备完成后，人物线与衣服线并行，在穿戴组装合流 · 滚轮或左右拖动横向浏览 · 上下拖动、上下滑动或 Ctrl/⌘ + 滚轮切换两条线 · 点击产物放大查看</footer></div>${state.inspect?inspector():''}</section>`;
 }
 function runNotice() {
  if(data.status==='layout')return `<div class="run-notice error"><span>${icon('info')}${esc(data.message)}</span>${data.layout==='previous'?`<button class="button" data-action="convert-layout">${icon('folder')}转换目录</button>`:''}</div>`;
- const message=data.run?.error||data.lastLogMessage||'尚无总调度执行记录，可选择单条管线读取已有上游产物。';
+ const message=data.run?.error||data.lastLogMessage||'尚无总调度执行记录；可先保存本任务执行参数，再继续制作。';
  const stopped=data.status==='failed'||data.status==='interrupted';
  return `<details data-details="run-notice" class="run-notice ${data.status==='failed'?'error':''}" ${stopped?'open':''}><summary>${icon(data.status==='failed'?'info':'clock')}<span>${stopped?esc(taskStatusNames[data.status])+' · ':''}${esc(message.split('\n')[0])}</span><small>运行记录与日志</small></summary><div>${data.errors.length?`<pre class="status-error">${esc(data.errors.join('\n'))}</pre>`:''}<pre>${esc(message)}</pre><pre class="live-log">${esc(data.logs||'暂无日志')}</pre><small>日志：${esc(data.logPath||data.directory)}${data.logUpdatedAt?' · 日志更新：'+esc(new Date(data.logUpdatedAt).toLocaleString()):''}${data.run?.updatedAt?' · 状态保存：'+esc(new Date(data.run.updatedAt).toLocaleString()):''}</small></div></details>`;
 }
@@ -452,6 +470,11 @@ const laneScrollTop=(lane=state.lane)=>(laneMetrics.tops[lane]??0)*state.zoom;
 function laneRange(lane=state.lane) {
  const viewport=document.querySelector('.flow-scroll'),top=laneScrollTop(lane);
  return [top,top+Math.max(0,(laneMetrics.heights[lane]??0)*state.zoom-viewport.clientHeight)];
+}
+function nineAxisConnection(run) {
+ const enabled=run?.live===true,serial=run?.to==='nine-axis'&&run?.from!=='nine-axis';
+ const detail=!run?'尚未保存执行范围':run.from==='nine-axis'&&run.to==='nine-axis'?'本次独立九轴':serial?enabled?'阴影完成后继续':'按所选范围串行':run.to==='shadow'?'本次止于阴影':'本次范围未含九轴';
+ return {enabled,serial,label:`--live ${enabled?'开启':'关闭'}`,detail};
 }
 function connectFlow() {
  const world=document.querySelector('.flow-world');
@@ -480,13 +503,13 @@ function connectFlow() {
  // Labels sit on their line as pills, turned upright on a vertical run that is long enough.
  const status=done=>done?'done':'pending',labels=[];
  const textWidth=text=>[...text].reduce((sum,char)=>sum+(/[　-鿿]/.test(char)?11:6.4),0)+14;
- const path=(d,state)=>paths.push(`<path class="${state}" d="${d}" marker-end="url(#flow-arrow-${state})"/>`);
+ const path=(d,state,connection)=>paths.push(`<path class="${state}"${connection?` data-connection="${connection}"`:''} d="${d}" marker-end="url(#flow-arrow-${state})"/>`);
  const label=(text,x,y,state,upright=false)=>{const w=textWidth(text);labels.push(`<g class="flow-label ${state}"${upright?` transform="rotate(90 ${x} ${y})"`:''}><rect x="${x-w/2}" y="${y-8}" width="${w}" height="16" rx="8"/><text x="${x}" y="${y+4}">${text}</text></g>`);};
  // From the right of `a` to the left of `b`, turning at `turn` when they are not level.
- const link=(a,b,text,done,turn,from=a.y+a.h/2,to=b.y+b.h/2)=>{
+ const link=(a,b,text,done,turn,from=a.y+a.h/2,to=b.y+b.h/2,connection)=>{
   const state=status(done);
-  if(Math.abs(from-to)<2){path(`M${a.x+a.w} ${from} H${b.x-6}`,state);label(text,(a.x+a.w+b.x-6)/2,from,state);return;}
-  path(`M${a.x+a.w} ${from} H${turn} V${to} H${b.x-6}`,state);
+  if(Math.abs(from-to)<2){path(`M${a.x+a.w} ${from} H${b.x-6}`,state,connection);label(text,(a.x+a.w+b.x-6)/2,from,state);return;}
+  path(`M${a.x+a.w} ${from} H${turn} V${to} H${b.x-6}`,state,connection);
   if(Math.abs(from-to)>=textWidth(text)+24)label(text,turn,(from+to)/2,state,true);
   // Starts right of the source card: a pill wider than its run must not slide under that card.
   else label(text,Math.max((a.x+a.w+turn)/2,a.x+a.w+textWidth(text)/2+6),from,state);
@@ -497,6 +520,11 @@ function connectFlow() {
  }
  for(const [a,b,text,done] of [[cards[0],cards[1],'parts',finished(stages[0])],[cards[2],cards[3],'parts',finished(stages[2])],[cards[4],cards[5],'组装 KRA',finished(stages[4])]])
   if(a&&b)link(a,b,text,done);
+ if(cards[5]&&cards[6]){
+  const connection=nineAxisConnection(data.run),done=connection.serial&&finished(stages[5]);
+  link(cards[5],cards[6],connection.label,done,(cards[5].x+cards[5].w+cards[6].x-6)/2,undefined,undefined,'shadow-nine-axis');
+  label(connection.detail,(cards[5].x+cards[5].w+cards[6].x-6)/2,cards[5].y+cards[5].h/2+24,status(done));
+ }
  // The clothing lane hangs off the character preparation, down the left gutter.
  if(cards[0]&&cards[2]){
   const preparation=box('[data-node="0:preparation"]'),collapsed=box('[data-section="0"] .lane-collapsed-body'),from=preparation?preparation.y+40:collapsed?collapsed.y+collapsed.h/2:cards[0].y+cards[0].h+20,x=cards[0].x-34,to=cards[2].y+cards[2].h/2,state=status(!!data.reference);
@@ -604,7 +632,7 @@ function jsonLines(text) {
 // open by themselves; one the user opened or closed stays so until the page reloads.
 function configTree() {
  const scope=file=>file;
- const families=[['part-layering','人物分块'],['raster-layering','人物绘制'],['clothing-part-layering','衣服分块'],['clothing-raster-layering','衣服绘制'],['character-assembly','穿戴组装'],['shadow','阴影制作'],['shared','公共先验'],['','其他文件']];
+ const families=[['part-layering','人物分块'],['raster-layering','人物绘制'],['clothing-part-layering','衣服分块'],['clothing-raster-layering','衣服绘制'],['character-assembly','穿戴组装'],['shadow','阴影制作'],['nine-axis','头部九轴'],['shared','公共先验'],['','其他文件']];
  const query=state.configFilter.toLowerCase();
  const owned=file=>families.some(([prefix])=>prefix&&scope(file).startsWith(prefix+'/'));
  const count=node=>node.files.length+[...node.folders.values()].reduce((sum,child)=>sum+count(child),0);
@@ -675,6 +703,7 @@ function render() {
  flowObserver?.disconnect();
  morph(document.querySelector('#app'),header()+`<main class="main ${state.page==='config'?'config-page':state.page==='preview'?'preview-main':'project-main'}">${state.page==='config'?configPage():state.loading||state.loadError?taskLoading():state.page==='preview'?graph():projectPage()}</main>`);
  bind();setConfigBusy(configBusy);
+ void headPreview.update(document.querySelector('[data-head-preview]'),data.directory);
  if(state.page==='config'&&state.configMode==='env')envEditor.bind();
  document.querySelectorAll('[data-details]').forEach(node=>{if(state.details.has(node.dataset.details))node.open=state.details.get(node.dataset.details);});
  // A run that newly stops opens its notice once; closing it afterwards sticks.
@@ -692,41 +721,80 @@ function render() {
   flowObserver=new ResizeObserver(connectFlow);flowObserver.observe(document.querySelector('.flow-world'));flowObserver.observe(viewport);
  }
 }
-function showNew(single=false, existing=false) {
- const dialog=document.querySelector('#new-task'); state.uploaded=null;
- dialog.innerHTML=`<div class="modal-heading"><div><span class="eyebrow">${existing?'CONTINUE CREATION':'NEW CREATION'}</span><h2>${existing?'继续 '+esc(state.name):'开始一次新的制作'}</h2><p>${existing?'沿用已有产物、完成标记与绘制 thread。':'提供一张角色图，制作分层素材。'}</p></div><button class="icon-button" data-close>${icon('close')}</button></div><form id="new-task-form"><div class="new-task-columns"><div>${!existing?`<label class="field-label">输入参考图</label><label class="upload-zone" id="upload-zone"><input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" hidden><span class="upload-icon">${icon('upload')}</span><b>选择或拖入角色图片</b><p>PNG、JPG、WebP · 最大 20 MB</p></label><label class="field-label">或填写服务器上的图片路径</label><input name="image" placeholder="绝对路径；相对路径基于任务目录">`:data.original?`<img class="resume-reference" src="${artifact(data.original)}" alt="已保存的原图">`:'<p>从该任务已有的上游产物继续。</p>'}<div class="input-note">${icon('folder')}${esc(state.directory)}</div></div><div class="task-form-fields"><label class="field-label" for="task-display-name">显示名称</label><input id="task-display-name" name="displayName" value="${existing?esc(data.displayName||state.name):''}" placeholder="可使用中文"><label class="field-label" for="task-name">任务目录名</label><input id="task-name" name="name" value="${existing?esc(state.name):''}" ${existing?'readonly':''} placeholder="例如 character-03" required><label class="field-label">执行范围</label><div class="scope-options"><label class="${!single?'selected':''}"><input type="radio" name="scope" value="all" ${!single?'checked':''}>整条流程<span>共同准备后人物线与衣服线并行，再合流组装与阴影</span></label><label class="${single?'selected':''}"><input type="radio" name="scope" value="single" ${single?'checked':''}>单条管线<span>读取本任务已有上游产物</span></label></div><select name="stage" id="new-stage" ${!single?'hidden':''}>${stages.map((s,i)=>`<option value="${i}" ${i===state.stage?'selected':''}>${s.name} · ${s.id}</option>`).join('')}</select><label class="standard-option"><div><b>标准化人物姿态</b><p>先判断是否需要调整，再按需生图。</p></div><input type="checkbox" name="standard" ${existing&&data.run?.standard?'checked':''} role="switch" aria-label="标准化人物姿态"></label><div class="standard-detail">嘴部张大、眼睛张开，正视站立，双手放在身体两侧。仅人物准备阶段使用。</div><label class="field-label">阴影方式</label><select name="shadowMode"><option value="mask" ${!existing||data.run?.shadowMode!=='normal-depth'?'selected':''}>Live2D 蒙版</option><option value="normal-depth" ${existing&&data.run?.shadowMode==='normal-depth'?'selected':''}>法线＋深度</option></select><label class="field-label">调度并发 jobs</label><input name="jobs" type="number" min="1" value="${existing?data.run?.jobs||3:3}"></div></div><p class="form-error" role="alert"></p><div class="modal-footer"><span>操作由服务器执行，关闭网页仍会继续。</span><button type="button" class="button" data-close>取消</button><button class="primary" type="submit">${icon('play')}${existing?'继续':'开始制作'}</button></div></form>`;
- dialog.showModal();dialog.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>dialog.close());
- if(!existing) {
-  let previewURL;
-  const upload=file=>{if(!file?.type.startsWith('image/'))return toast('请选择图片文件');if(file.size>20*1024*1024)return toast('图片最大 20 MB');state.uploaded=file; if(previewURL)URL.revokeObjectURL(previewURL);previewURL=URL.createObjectURL(file);const zone=dialog.querySelector('#upload-zone');zone.classList.add('has-image');zone.style.backgroundImage=`url("${previewURL}")`;zone.querySelector('b').textContent=file.name;};
-  dialog.querySelector('#image-input').onchange=e=>upload(e.target.files[0]);const zone=dialog.querySelector('#upload-zone');zone.ondragover=e=>e.preventDefault();zone.ondrop=e=>{e.preventDefault();upload(e.dataTransfer.files[0]);};
-  dialog.addEventListener('close',()=>{if(previewURL)URL.revokeObjectURL(previewURL);},{once:true});
- }
- const updateScope=()=>{
-  const form=dialog.querySelector('form'),single=form.elements.scope.value==='single';
-  form.elements.stage.hidden=!single;
-  form.elements.standard.disabled=single&&Number(form.elements.stage.value)!==0;
-  form.elements.shadowMode.disabled=single&&stages[Number(form.elements.stage.value)].id!=='shadow';
-  dialog.querySelectorAll('.scope-options label').forEach(l=>l.classList.toggle('selected',l.querySelector('input').checked));
+function executionFields(run) {
+ return `<label class="standard-option"><div><b>标准化人物姿态</b><p>关闭时直接沿用输入姿态。</p></div><input type="checkbox" name="standard" ${run?.standard?'checked':''} role="switch" aria-label="标准化人物姿态"></label>
+ <label class="standard-option live-option"><div><b>阴影完成后制作头部九轴</b><p>由总调度的 --live 控制，默认关闭。</p></div><input type="checkbox" name="live" ${run?.live?'checked':''} role="switch" aria-label="阴影完成后制作头部九轴"></label><p class="live-detail"></p>
+ <label class="field-label" for="task-shadowMode">阴影方式</label><select id="task-shadowMode" name="shadowMode"><option value="mask" ${run?.shadowMode!=='normal-depth'?'selected':''}>Live2D 蒙版</option><option value="normal-depth" ${run?.shadowMode==='normal-depth'?'selected':''}>法线＋深度</option></select>
+ <label class="field-label" for="task-jobs">调度并发 jobs</label><input id="task-jobs" name="jobs" type="number" min="1" required value="${run?.jobs||3}">`;
+}
+function bindExecutionFields(form,run) {
+ let rangeEdited=false;
+ const update=()=>{
+  const from=form.elements.from?.value||'part-layering';
+  let to=form.elements.to?.value||(form.elements.live.checked?'nine-axis':'shadow');
+  if(form.elements.to&&!rangeEdited){
+   const savedTo=run?.to||'shadow',changedLive=form.elements.live.checked!==(run?.live===true);
+   to=changedLive&&(savedTo==='shadow'||savedTo==='nine-axis'&&from!=='nine-axis')?(form.elements.live.checked?'nine-axis':'shadow'):savedTo;
+   form.elements.to.value=to;
+  }
+  form.elements.standard.disabled=from!=='part-layering';
+  form.elements.shadowMode.disabled=stages.findIndex(stage=>stage.id===from)>5||stages.findIndex(stage=>stage.id===to)<5;
+  form.querySelector('.live-detail').textContent=form.elements.from?`${nineAxisConnection({from,to,live:form.elements.live.checked}).detail}。保存参数后，再使用继续、恢复或重试执行。`:form.elements.live.checked?'阴影完成后继续制作七步头部九轴；脸部、五官、双耳与固定脖子。':'本次在阴影完成后结束，头部九轴暂不启动。';
  };
- dialog.querySelectorAll('[name=scope],[name=stage]').forEach(r=>r.onchange=updateScope); updateScope();
- let created=existing;
- dialog.querySelector('form').onsubmit=async e=>{
-  e.preventDefault();const form=e.target,fields=new FormData(form),button=form.querySelector('[type=submit]');button.disabled=true;form.querySelector('.form-error').textContent='';
-  try {
-   const single=fields.get('scope')==='single',index=Number(fields.get('stage'));
-   const payload={name:fields.get('name').trim(),displayName:fields.get('displayName').trim(),jobs:Number(fields.get('jobs')),from:single?stages[index].id:stages[0].id,to:single?stages[index].id:stages.at(-1).id};
-   if(!single||index===0)payload.standard=fields.get('standard')==='on';
-   if(!single||stages[index].id==='shadow')payload.shadowMode=fields.get('shadowMode');
-   if(!created) {
+ form.querySelectorAll('[name=from],[name=to]').forEach(select=>select.onchange=()=>{
+  rangeEdited=true;
+  const from=stages.findIndex(stage=>stage.id===form.elements.from.value);
+  for(const option of form.elements.to.options)option.disabled=stages.findIndex(stage=>stage.id===option.value)<from;
+  if(stages.findIndex(stage=>stage.id===form.elements.to.value)<from)form.elements.to.value=form.elements.from.value;
+  update();
+ });
+ form.elements.live.onchange=update;update();
+ return ()=>rangeEdited;
+}
+function showRunOptions() {
+ const dialog=document.querySelector('#new-task'),run=data.run,from=run?.from||'part-layering',to=run?.to||'shadow';
+ const options=selected=>runnableStages.map(stage=>`<option value="${stage.id}" ${stage.id===selected?'selected':''}>${stage.name}</option>`).join('');
+ const displayName=tasks.find(task=>task.name===state.name)?.displayName||'';
+ dialog.innerHTML=`<div class="modal-heading"><div><h2>执行参数 · ${esc(state.name)}</h2><p>保存到本任务的调度记录，下一次继续、恢复或重试时使用。</p></div><button class="icon-button" data-close>${icon('close')}</button></div>
+ <form id="task-options-form"><div class="new-task-columns"><div>${data.original?`<img class="resume-reference" src="${artifact(data.original)}" alt="当前任务原图">`:''}<label class="field-label" for="task-name">任务名</label><input id="task-name" value="${esc(state.name)}" readonly><label class="field-label" for="task-displayName">显示名称</label><input id="task-displayName" name="displayName" value="${esc(displayName)}"><label class="field-label" for="task-from">执行范围起点</label><select id="task-from" name="from">${options(from)}</select><label class="field-label" for="task-to">执行范围终点</label><select id="task-to" name="to">${options(to)}</select><p class="dialog-note">保留已有产物，由调度从未完成的步骤接续。明确修改执行范围时，以所选范围为准。</p></div><div>${executionFields(run)}</div></div>
+ <p class="form-error" role="alert"></p><div class="modal-footer"><span>保存参数不会启动制作。</span><button type="button" class="button" data-close>取消</button><button class="primary" type="submit">保存参数</button></div></form>`;
+ dialog.showModal();dialog.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>dialog.close());
+ const form=dialog.querySelector('form'),rangeEdited=bindExecutionFields(form,run);
+ form.onsubmit=async event=>{
+  event.preventDefault();const button=form.querySelector('[type=submit]');button.disabled=true;form.querySelector('.form-error').textContent='';
+  try{
+   const payload={name:state.name};
+   if(form.elements.displayName.value.trim()!==displayName)payload.displayName=form.elements.displayName.value.trim();
+   if(rangeEdited()&&(form.elements.from.value!==from||form.elements.to.value!==to)){payload.from=form.elements.from.value;payload.to=form.elements.to.value;}
+   if(form.elements.live.checked!==(run?.live===true))payload.live=form.elements.live.checked;
+   if(!form.elements.standard.disabled&&form.elements.standard.checked!==(run?.standard===true))payload.standard=form.elements.standard.checked;
+   if(!form.elements.shadowMode.disabled&&form.elements.shadowMode.value!==(run?.shadowMode||'mask'))payload.shadowMode=form.elements.shadowMode.value;
+   if(Number(form.elements.jobs.value)!==(run?.jobs||3))payload.jobs=Number(form.elements.jobs.value);
+   await post('task-options',payload);dialog.close();await refreshTask(true);toast('执行参数已保存；下一次继续、恢复或重试时使用。');
+  }catch(error){form.querySelector('.form-error').textContent=error.message;}finally{button.disabled=false;}
+ };
+}
+function showNew() {
+ const dialog=document.querySelector('#new-task');state.uploaded=null;
+ dialog.innerHTML=`<div class="modal-heading"><div><h2>新建任务</h2><p>从角色参考图开始制作；人物与衣服并行，在组装后进入阴影。</p></div><button class="icon-button" data-close>${icon('close')}</button></div>
+ <form id="new-task-form"><div class="new-task-columns"><div><label class="field-label">输入参考图</label><label class="upload-zone" id="upload-zone"><input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" hidden><span class="upload-icon">${icon('upload')}</span><b>选择或拖入角色图片</b><p>PNG、JPG、WebP · 最大 20 MB</p></label><label class="field-label" for="task-image">或填写服务器上的图片路径</label><input id="task-image" name="image" placeholder="绝对路径；相对路径基于任务目录"><label class="field-label" for="task-name">任务名</label><input id="task-name" name="name" required placeholder="角色任务名称"><label class="field-label" for="task-displayName">显示名称</label><input id="task-displayName" name="displayName" placeholder="可选"><p class="dialog-note">任务保存在 ${esc(state.directory)}。已有任务请从任务列表选择，调整执行参数后继续。</p></div><div>${executionFields()}</div></div><p class="form-error" role="alert"></p><div class="modal-footer"><span>关闭网页后仍会在后台执行。</span><button type="button" class="button" data-close>取消</button><button class="primary" type="submit">新建并开始</button></div></form>`;
+ dialog.showModal();dialog.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>dialog.close());
+ let previewURL,created=false;
+ const upload=file=>{if(created)return;if(!file?.type.startsWith('image/'))return toast('请选择图片文件');if(file.size>20*1024*1024)return toast('图片最大 20 MB');state.uploaded=file;if(previewURL)URL.revokeObjectURL(previewURL);previewURL=URL.createObjectURL(file);const zone=dialog.querySelector('#upload-zone');zone.classList.add('has-image');zone.style.backgroundImage=`url("${previewURL}")`;zone.querySelector('b').textContent=file.name;};
+ dialog.querySelector('#image-input').onchange=event=>upload(event.target.files[0]);const zone=dialog.querySelector('#upload-zone');zone.ondragover=event=>event.preventDefault();zone.ondrop=event=>{event.preventDefault();upload(event.dataTransfer.files[0]);};
+ dialog.addEventListener('close',()=>{if(previewURL)URL.revokeObjectURL(previewURL);},{once:true});
+ const form=dialog.querySelector('form');bindExecutionFields(form);
+ form.onsubmit=async event=>{
+  event.preventDefault();const fields=new FormData(form),button=form.querySelector('[type=submit]');button.disabled=true;form.querySelector('.form-error').textContent='';
+  try{
+   const payload={name:fields.get('name').trim(),displayName:fields.get('displayName').trim(),from:'part-layering',live:fields.get('live')==='on',standard:fields.get('standard')==='on',shadowMode:fields.get('shadowMode'),jobs:Number(fields.get('jobs'))};
+   if(!created){
     payload.image=fields.get('image');
     if(state.uploaded)payload.upload=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result.split(',')[1]);reader.onerror=reject;reader.readAsDataURL(state.uploaded);});
-    await settings.withKrita(()=>post('tasks',payload));created=true;form.elements.name.readOnly=true;delete payload.upload;delete payload.image;
+    await settings.withKrita(()=>post('tasks',payload));created=true;form.elements.name.readOnly=true;form.elements.image.disabled=true;form.querySelector('#image-input').disabled=true;delete payload.image;delete payload.upload;
    }
-   if(existing)await post('project-name',{name:payload.name,displayName:payload.displayName});
-   state.name=payload.name;button.textContent='正在启动…';await settings.withKrita(()=>post('start',payload));dialog.close();await refreshTask(true);toast('任务已在后台启动');
-  } catch(error){form.querySelector('.form-error').textContent=error.message;if(created){button.textContent='重新启动';await refreshTask(true);}}
-  finally{button.disabled=false;}
+   state.name=payload.name;rememberTask(state.directory,state.name);button.textContent='正在启动…';await settings.withKrita(()=>post('start',payload));dialog.close();await refreshTask(true);toast('新任务已在后台启动。');
+  }catch(error){form.querySelector('.form-error').textContent=error.message;if(created){button.textContent='继续启动';await refreshTask(true);}}finally{button.disabled=false;}
  };
 }
 function showFiles() {
@@ -744,7 +812,7 @@ function showHistory() {
  const dialog=document.querySelector('#directory-dialog');dialog.innerHTML=`<div class="modal-heading"><div><h2>提交历史</h2><p>选择一次提交，浏览当时的先验知识。</p></div><button class="icon-button" data-close>${icon('close')}</button></div><div class="commit-list">${(versions?.commits||[]).map((c,i)=>`<button data-commit="${c.sha}"><span class="commit-node">${icon('branch')}</span><div><b>${esc(c.title)}</b><small>${c.short}${i===0?' · 当前分支最新提交':''}</small></div>${icon('chevron')}</button>`).join('')}</div>`;dialog.showModal();dialog.querySelector('[data-close]').onclick=()=>dialog.close();dialog.querySelectorAll('[data-commit]').forEach(b=>b.onclick=async()=>{state.ref=b.dataset.commit;dialog.close();await loadConfig();render();});
 }
 function selectStage(index) {
- state.stage=index;state.selectedStep=index===0||index===2?'layers':'step01';
+ state.stage=index;state.selectedStep=defaultStep(index);
  state.asset=null;state.inspect=false;state.page='preview';state.autoHeight=true;
  // A lane stage brings its lane into focus; the merge stages keep the current one.
  if(laneOf(index)>=0){state.lane=laneOf(index);laneAnimation=null;}
@@ -752,7 +820,7 @@ function selectStage(index) {
  focusPreviewStep();
 }
 function focusPreviewStep() {
- const viewport=document.querySelector('.flow-scroll'),node=document.querySelector(`[data-kra-preview="${state.stage}"]`)||document.querySelector(`[data-node="${state.stage}:${state.selectedStep}"]`);
+ const viewport=document.querySelector('.flow-scroll'),node=state.stage===6?document.querySelector('[data-head-preview]')||document.querySelector(`[data-node="${state.stage}:${state.selectedStep}"]`):document.querySelector(`[data-kra-preview="${state.stage}"]`)||document.querySelector(`[data-node="${state.stage}:${state.selectedStep}"]`);
  if(!viewport||!node)return;
  viewport.scrollLeft+=node.getBoundingClientRect().left-viewport.getBoundingClientRect().left-12;
  viewport.scrollTop=laneScrollTop();state.canvasLeft=viewport.scrollLeft;state.canvasTop=0;
@@ -790,7 +858,7 @@ function bind() {
  };
  document.querySelectorAll('[data-step-toolbar]').forEach(b=>b.onclick=async()=>{
   const targets=stepTargets(),action=b.dataset.stepToolbar,broken=brokenSteps(targets,action);
-  if(!targets.length){if(action==='continue')showNew(false,true);return;}
+  if(!data.run){if(action==='continue')showRunOptions();return;}
   if(action==='retry'&&!confirm(`重试：删除以下步骤的产物、会话与 agent 尝试记录并重新运行。\n${broken.map(stepLabel).join('\n')}\n确定吗？`))return;
   b.disabled=true;
   try{const result=await settings.withKrita(()=>post('task-action',{name:state.name,action}));toast(result.message+' 已在后台重新运行。');await refreshTask(true);}
@@ -825,7 +893,8 @@ function bind() {
  document.querySelectorAll('[data-action]').forEach(b=>b.onclick=()=> {
   const action=b.dataset.action;
   if(action==='new')showNew();
-  else if(action==='run')showNew(false,true);
+  else if(action==='run')showRunOptions();
+  else if(action==='run-options')showRunOptions();
   else if(action==='files')showFiles();
   else if(action==='stop'){b.disabled=true;post('stop',{name:state.name}).then(result=>{toast(result.message);return refreshTask(true);}).catch(error=>{toast(error.message);b.disabled=false;});}
   else if(action==='convert-layout'){b.disabled=true;toast('正在备份并转换目录…');post('convert-layout',{name:state.name}).then(result=>{toast(`已转换，原目录备份在 ${result.backup}`);return refreshTask(true);}).catch(error=>{toast(error.message);b.disabled=false;});}

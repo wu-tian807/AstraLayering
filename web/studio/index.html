@@ -269,17 +269,30 @@
             <section class="panel">
               <h3>预览层级</h3>
               <div class="segmented nine-levels">
-                <button data-nine-level="face">脸＋五官</button><button data-nine-level="hair">＋头发</button><button data-nine-level="accessory">＋头饰</button>
+                <button data-nine-level="face">脖子＋脸＋五官</button><button data-nine-level="hair">＋头发</button><button data-nine-level="accessory">＋头饰</button>
               </div>
             </section>
             <section class="panel">
               <h3>参数</h3>
-              <div class="nine-param"><span>角度 X</span><input id="nine-axis-angle" type="range" min="-30" max="30" step="0.1" value="0"><input id="nine-axis-angle-number" type="number" min="-30" max="30" step="0.1" value="0"></div>
+              <div id="nine-axis-pad" data-region="horizontal" tabindex="0" role="group" aria-label="头部角度" aria-describedby="nine-axis-pad-hint" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <rect id="nine-axis-pad-plane" x="10" y="10" width="80" height="80" />
+                  <path class="nine-pad-axis" d="M10 50 H90" />
+                  <path id="nine-axis-pad-axis-y" class="nine-pad-axis" d="M50 50 V50" />
+                  <g id="nine-axis-pad-keys"></g>
+                </svg>
+                <span class="nine-pad-label nine-pad-left" aria-hidden="true">左</span><span class="nine-pad-label nine-pad-right" aria-hidden="true">右</span>
+                <span class="nine-pad-label nine-pad-up" aria-hidden="true">抬头</span><span class="nine-pad-label nine-pad-down" aria-hidden="true">低头</span>
+                <span id="nine-axis-pad-handle" aria-hidden="true"></span>
+              </div>
+              <p id="nine-axis-pad-hint" class="muted"></p>
+              <div class="nine-param nine-angle-number"><label for="nine-axis-angle-number">角度 X</label><input id="nine-axis-angle-number" type="number" step="any" value="0"></div>
               <div class="nine-keys"><span class="muted">关键形</span><div id="nine-axis-keys"></div></div>
               <div id="nine-axis-y" hidden>
-                <div class="nine-param"><span>角度 Y</span><input id="nine-axis-angle-y" type="range" min="-30" max="30" step="0.1" value="0"><input id="nine-axis-angle-y-number" type="number" min="-30" max="30" step="0.1" value="0"></div>
+                <div class="nine-param nine-angle-number"><label for="nine-axis-angle-y-number">角度 Y</label><input id="nine-axis-angle-y-number" type="number" step="any" value="0"></div>
                 <div class="nine-keys"><span class="muted">关键形</span><div id="nine-axis-keys-y"></div></div>
               </div>
+              <div id="nine-axis-xy" class="nine-keys" hidden><span class="muted">斜角</span><div id="nine-axis-keys-xy"></div></div>
               <label class="toggle"><input id="nine-axis-swing" type="checkbox">自动摆动</label>
               <p id="nine-axis-other-params" class="muted"></p>
             </section>
@@ -298,7 +311,7 @@
             </section>
             <section class="panel">
               <p id="nine-axis-dirty" class="nine-dirty" hidden></p>
-              <div class="file-actions"><button id="nine-axis-restore">恢复项目数据</button></div>
+              <div class="file-actions"><button id="nine-axis-save">保存九轴变形</button><button id="nine-axis-restore">恢复项目数据</button></div>
             </section>
           </div>
         </div>

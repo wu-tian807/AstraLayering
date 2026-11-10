@@ -1,11 +1,11 @@
 import { parseArgs } from 'node:util';
 import { join } from 'node:path';
-import { readFile } from 'node:fs/promises';
+import { access, copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { selectKnowledge, stepKnowledge } from '../shared/knowledge.ts';
-import { runSection } from '../shared/step-section.ts';
+import { selectKnowledge, stepKnowledge, type KnowledgeRole } from '../shared/knowledge.ts';
+import { runSection, stepName } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type VideoApi, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { CodexAgents } from '../shared/codex/agents.ts';
 import { preflightAgentSteps } from '../shared/agents/preflight.ts';
@@ -14,153 +14,319 @@ import { checkKrita } from '../shared/raster/krita.ts';
 import { SectionKrita, kritaRecordFile } from '../shared/krita/section-krita.ts';
 import { createKritaTool } from '../shared/krita/tool.ts';
 import { createBitmapTool } from '../shared/part/bitmap-tool.ts';
+import { createSvgPreviewTool } from '../shared/part/svg-tools.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
-import { ffmpegPath, generateVideo, produceVideos, produceViews, resolveTurnInput, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
-import { finishHead, resolveHeadInput, type HeadInput } from './head.ts';
-import { finishAngleY } from './angle-y.ts';
-import { cornerAngleValues, finishAngleXY, writeLinearCorners } from './angle-xy.ts';
+import { finishViews, generateVideo, produceLeftVideo, producePitchVideos, produceCornerVideos, resolveTurnInput, runFrameSelection, checkSelectedFrames, turnViews, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
+import { buildHead, copyDocument, finishHead, stepDocument, type Built, type HeadInput } from './head.ts';
+import { buildAngleY, finishAngleY } from './angle-y.ts';
+import { buildAngleXY, checkCornerReferences, cornerAngleValues, corners, finishAngleXY, writeLinearCorners, type Corner } from './angle-xy.ts';
+import { buildJawLine, finishJawLine } from './jaw-line.ts';
+import { createNineAxisViewTool } from './view-tool.ts';
+import { createHeadEditTool } from './edit-tool.ts';
+import { createNineAxisFitTool } from './fit-tool.ts';
+import { createContinuationEditTool } from './continuation-edit-tool.ts';
+import type { PitchStage } from './continuation.ts';
 import { angleScale, angleValues } from './angles.ts';
+import { beginStep, completeStep, readStep } from '../shared/step-chain.ts';
+import { writeBuilt } from './head.ts';
+import { prepareNeutral } from './neutral.ts';
+import { mergeAxes } from './axis-merge.ts';
+import { axisGroups, checkAxisSource, runAxisGroups, seedAxis, type AxisGroup } from './axis-groups.ts';
+import { readStepSession, writeStepSession } from '../shared/agents/step-session.ts';
+import type { AgentStep, Harness } from '../shared/agents/models.ts';
+import { runOutline } from './outline.ts';
+import sharp from 'sharp';
+import { runWorkflow as runGroups } from '../shared/part/workflow.ts';
+import { nineAxisSteps, nineAxisBranches } from '../shared/nine-axis.ts';
+import { upperBodyBox } from './turn.ts';
+import { applyStepAction, applyTaskAction } from '../workflow/step-actions.ts';
 
 export const help = `nine-axis — 头部九轴
-pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> [--dir <绝对运行根目录>] [--dry-run]
-step01_video：生成本管线的全部视频。从工作台当前的角色图（阴影蒙版交付后为 shadow/step01_mask/character-shadowed.png，否则为组装图）
-按脸、头发、头饰形状截取头顶到肩线的方形正面头部特写 upper-body.png，以它为首帧同时生成三段 5 秒视频：left 身体与镜头不动、只有头匀速向左转到侧面（90°）；
-up 人物不动、镜头匀速降到下巴正下方仰视（脸看起来抬起）；down 镜头匀速升到头顶正上方俯视（脸看起来低下），都在最后一帧到 90°。
-随后取 up、down 转到 angles.json 度数的一帧（first/up.png、first/down.png）作首帧，用同一转头提示词生成 left-up、left-down 两段向左转头视频，供斜向参考。
-需要 .env 的 video_base_url / video_api_key（不使用生图接口，缺少时报错）、nine_axis_view_video_model 和 ffmpeg。
-step02_views：程序按帧序从 left.mp4 取出转到 angles.json left 度数（默认 30°）的一帧 left.png。
-step03_angle-x：left 方向的脸部＋双耳透视形变。agent 在 workspace 里按 pink-doll 的拟合方法自己写脚本，用 krita 工具
-导出脸部图层，拟合出向左（ParamAngleX −30，即 left 视角）的父级＋子级（眉眼、嘴、鼻）warp，耳朵随父级，交付 face-left.json 与 layers/；程序按左右配对镜像出 +30，写出工作台读取的 deformers.json
-与记录源 KRA/PNG 哈希的 source.json。
-step04_views-y：程序从 up.mp4、down.mp4 取出 angles.json up、down 度数（默认都是 25°）的一帧，写为 up.png、down.png。
-ParamAngleX / ParamAngleY 处处以度数为值：各视角的度数只记在 knowledge/nine-axis/step01_video/references/angles.json（默认 left 30、up 25、down 25），
-由程序填进各步提示词，agent 交付与 deformers.json 的关键形键都是这些度数；换成 Cubism ±30 等范围留给导出。只做脸与双耳，不含头发；不补绘。使用 nine_axis_head_agent_model。
-step05_angle-y：上下方向的脸部＋双耳形变。agent 沿用 step03 的图层与网格（脸底 32×32，其余 16×16），分别拟合 step04 的 up 视角（ParamAngleY +25）与
-down 视角（−25），交付 face-y.json；程序把 Y 关键形并入 step03 的变形器，写出工作台读取的 deformers.json。
-只做形变：轮廓线的出现与消失留给后续步骤。使用 nine_axis_head_agent_model。
-step06_angle-xy：斜向（四角）的脸部＋双耳形变。程序把 step03 的向左与 step05 的抬头、低头线性叠加，写成左上（X −30, Y +25）、左下（X −30, Y −25）的起始形 linear.json；
-agent 照提示词里的教程要点手动斜切，交付 face-xy.json；斜向参考由 agent 自己用 ffmpeg 从 step01 的 left-up.mp4、left-down.mp4 取帧。
-程序按左右配对镜像出右上、右下，写出工作台读取的 deformers.json；工作台在 3×3 关键形之间双线性插值。
-提示词：<knowledge>/nine-axis/step01_video/（left、left-up、left-down 用 prompts/视频.md，up、down 用 prompts/groups/<up|down>/视频.md）、step03_angle-x/、step05_angle-y/、step06_angle-xy/。
-上游产物重做后其后的步骤随之重做。总入口：pnpm start --name <任务名> --from nine-axis --to nine-axis。
+pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> [--dir <绝对运行根目录>] [--step <stepNN 或 step04_angles/model/left|up|down>] [--dry-run]
+step01_preparation：从上游工程一次整理完整头部素材与独立投影，保留头发和头饰供后续制作。
+step02_video：生成 left/up/down 视频。
+step03_frames：从视频提取并选择单轴参考帧。
+step04_angles：并发制作独立单轴模型和斜角视频；单轴的描边、补全、拟合与五官指引沿用。
+step05_frames：从 step04 的视频提取并选择斜角参考帧。
+step06_angle-xy：基于 step04 单轴模型与 step05 参考帧制作斜角。
+step07_jaw-line：完成下颌与固定脖子连接，交付脸部＋五官九轴的中间成果。
+部件与 Warp 组织方式由实际工程决定，角度配置见 knowledge/nine-axis/step02_video/references/angles.json。
 `;
 
 // The turns use the step file; up and down replace it through their groups.
-export const videoPrompt = (view?: ViewY) => stepKnowledge('nine-axis', 'step01_video').render('main', {}, view ? { group: view } : {}).trim();
+export const videoPrompt = (view?: ViewY) => stepKnowledge('nine-axis', 'step02_video').render('main', {}, view ? { group: view } : {}).trim();
 export const videoPrompts = (): VideoPrompts => ({ turn: videoPrompt(), ...Object.fromEntries(viewsY.map(view => [view, videoPrompt(view)])) as Record<ViewY, string> });
 // Checked before any step starts, so a run without the video service fails at once.
 export function requireVideoApi(environment: Pick<WorkflowEnvironment, 'videoApi'>): VideoApi {
-  if (!environment.videoApi) throw new Error('头部九轴转头视频需要生视频接口：请在 live2d-maker/.env 填写 video_base_url 与 video_api_key（不使用生图接口）。未配置时 step01_video 无法运行。');
+  if (!environment.videoApi) throw new Error('头部九轴转头视频需要生视频接口：请在 live2d-maker/.env 填写 video_base_url 与 video_api_key（不使用生图接口）。未配置时 step02_video 无法运行。');
   return environment.videoApi;
 }
 
 const outputSchema = { type: 'object', properties: { error: { type: ['string', 'null'] } }, required: ['error'], additionalProperties: false };
 
-export function headPrompt(input: HeadInput, taskRoot: string): string {
-  return stepKnowledge('nine-axis', 'step03_angle-x').render('main', { document: input.document, color: input.color, ...angleValues() }, { taskRoot }).trim();
+// The visible outline is drawn by its own agent, before completion.
+export const outlineGroups: readonly AxisGroup[] = axisGroups;
+function axisValues(input: HeadInput, taskRoot: string, group: AxisGroup) {
+  const nine = join(taskRoot, 'nine-axis'), output = join(nine, 'step04_angles/model', group), scale = angleScale();
+  return {
+    ...angleValues(), group, document: input.document, color: input.color, output, neutral: join(nine, 'step01_preparation'),
+    reference_frame: join(nine, 'step03_frames', `${group}.png`), source_frame: join(nine, 'step02_video/upper-body.png'),
+    target_x: String(group === 'left' ? scale.x[0] : 0), target_y: String(group === 'up' ? scale.y[1] : group === 'down' ? scale.y[0] : 0),
+    reference_video: join(nine, 'step02_video', `${group}.mp4`), reference_frames: '', continuity_reference: '',
+    author_file: join(output, `face-${group}.json`), outline: join(output, 'outline'),
+  };
 }
-export const angleYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step05_angle-y').render('main', angleValues(), { taskRoot }).trim();
+export function axisPrompt(input: HeadInput, taskRoot: string, group: AxisGroup): string {
+  return stepKnowledge('nine-axis', 'step04_angles').render('main', axisValues(input, taskRoot, group), { taskRoot, group }).trim();
+}
+export const outlinePrompt = (input: HeadInput, taskRoot: string, group: AxisGroup) =>
+  stepKnowledge('nine-axis', 'step04_outline').render('main', axisValues(input, taskRoot, group), { taskRoot, group }).trim();
+// Each corner's outline uses the same outline step, against the frame chosen for that corner.
+export function cornerOutlinePrompt(input: HeadInput, taskRoot: string, corner: Corner) {
+  const nine = join(taskRoot, 'nine-axis'), corners = join(nine, 'step06_angle-xy');
+  return stepKnowledge('nine-axis', 'step04_outline').render('main', { ...axisValues(input, taskRoot, 'left'), group: corner,
+    reference_frame: join(nine, 'step05_frames', `${corner}.png`), reference_video: join(nine, 'step04_angles/video', `${corner}.mp4`), outline: join(corners, 'outline', corner) }, { taskRoot }).trim();
+}
+export const viewFramesPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step03_frames').render('main', angleValues(), { taskRoot }).trim();
+export const cornerFramesPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step05_frames').render('main', { ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
+export const headPrompt = (input: HeadInput, taskRoot: string) => axisPrompt(input, taskRoot, 'left');
+export const angleYPrompt = (taskRoot: string, stage: PitchStage) => axisPrompt({ document: '', color: '' } as HeadInput, taskRoot, stage);
 export const angleXYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step06_angle-xy').render('main', { ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
+export const jawLinePrompt = (input: HeadInput, taskRoot: string) => stepKnowledge('nine-axis', 'step07_jaw-line')
+  .render('main', { document: input.document, color: input.color, ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
 
-// The face agents write their own fitting scripts in the section workspace,
-// which step03, step05 and step06 share; the step's knowledge picks their tools (Krita
-// to export the face layers, the bitmap viewer to look at them).
+type Agents = Pick<CodexAgents, 'run'> & Partial<Pick<CodexAgents, 'createSession'>>;
+// One agent turn. With `session` the turn continues that step's saved thread;
+// without it the turn is a fresh session that is never saved (a reviewer).
+// `recoveryPrompt` replaces the prompt when the saved thread is gone.
+type AgentTurn = { step: AgentStep; knowledge: string; role: KnowledgeRole; session?: string; name: string;
+  tools: FunctionTool[]; prompt: string; recoveryPrompt?: string };
+async function runAgentTurn(agents: Agents, nine: string, directory: string, turn: AgentTurn, signal?: AbortSignal) {
+  signal?.throwIfAborted();
+  const paths = await prepareWorkspace({ cwd: nine, outputDirectory: directory }, nine);
+  let saved = turn.session ? await readStepSession(nine, turn.session) ?? {} : {};
+  const persist = async (threadId: string | null, harness?: Harness) => {
+    if (!turn.session) return;
+    const next = { threadId: threadId || undefined, harness: harness ?? saved.harness };
+    if (next.threadId !== saved.threadId || next.harness !== saved.harness) await writeStepSession(nine, turn.session, next);
+    saved = next;
+  };
+  const session = turn.session ? agents.createSession?.(saved.threadId, { resumeHarness: saved.harness, onSessionStarted: persist, onThreadReplacement: async () => persist(null) }) : undefined;
+  const prompt = turn.recoveryPrompt && !saved.threadId ? turn.recoveryPrompt : turn.prompt;
+  let result;
+  try {
+    result = await (session ?? agents).run({ step: turn.step, name: turn.name, cwd: nine, outputDirectory: directory, outputSchema,
+      tools: stepKnowledge('nine-axis', turn.knowledge).tools(turn.role, turn.tools), prompt: workspacePrompt(prompt, paths),
+      ...(turn.recoveryPrompt ? { recoveryPrompt: workspacePrompt(turn.recoveryPrompt, paths) } : {}) }, signal);
+    if (result.threadId) await persist(result.threadId, result.harness);
+  } catch (error) {
+    if (error && typeof error === 'object' && 'threadId' in error && typeof error.threadId === 'string') await persist(error.threadId);
+    throw error;
+  } finally { await session?.close(); }
+  let error: unknown;
+  try { error = (JSON.parse(result.text) as { error?: unknown }).error; } catch { throw agentOutcomeError(`${turn.name}没有返回结果`, result); }
+  if (typeof error === 'string' && error) throw agentOutcomeError(`${turn.name}：${error}`, result);
+}
+
 export type FitHead = (directory: string, prompt: string) => Promise<void>;
-export function createFitHead(agents: Pick<CodexAgents, 'run'>, tools: (step: string) => Promise<FunctionTool[]>, step: string, name: string): FitHead {
+export function createFitHead(agents: Agents, tools: (step: string) => Promise<FunctionTool[]>, step: string, name: string, signal?: AbortSignal, sectionDirectory?: string): FitHead {
   return async (directory, prompt) => {
-    const nine = join(directory, '..'), paths = await prepareWorkspace({ cwd: nine, outputDirectory: directory }, nine);
-    const identity = { 'step03_angle-x': 'nine_axis_head', 'step05_angle-y': 'nine_axis_head_y', 'step06_angle-xy': 'nine_axis_head_xy' } as const;
-    const agentStep = identity[step as keyof typeof identity];
-    if (!agentStep) throw new Error(`未知头部九轴步骤：${step}`);
-    const result = await agents.run({ step: agentStep, name, cwd: nine, outputDirectory: directory, outputSchema,
-      tools: stepKnowledge('nine-axis', step).tools('main', await tools(step)), prompt: workspacePrompt(prompt, paths) });
-    let error: unknown;
-    try { error = (JSON.parse(result.text) as { error?: unknown }).error; } catch { throw agentOutcomeError(`${name}没有返回结果`, result); }
-    if (typeof error === 'string' && error) throw agentOutcomeError(`${name}：${error}`, result);
+    const group = step.split('/').length > 2 ? step.split('/').at(-1) : undefined;
+    const agentStep = group || step === 'step04_angles' ? 'nine_axis_head' : step === 'step06_angle-xy' ? 'nine_axis_head_xy' : 'nine_axis_head_jaw';
+    await runAgentTurn(agents, sectionDirectory ?? join(directory, '..'), directory, { step: agentStep, knowledge: group ? 'step04_angles' : step,
+      role: 'main', session: step, name, tools: await tools(step), prompt }, signal);
   };
 }
 
-export type NineAxisOptions = { name: string; dir?: string; krita?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
-export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; ffmpeg?: string; fitHead?: FitHead; fitAngleY?: FitHead; fitAngleXY?: FitHead;
+// The outline has its own thread under the step it feeds (agents/steps/<step>/outline[/<corner>]), so a retry of that step drops it.
+export type OutlineHead = (directory: string, prompt: string) => Promise<void>;
+export function createOutlineHead(agents: Agents, tools: (directory: string) => Promise<FunctionTool[]>, session: string, name: string, signal?: AbortSignal, sectionDirectory?: string): OutlineHead {
+  return async (directory, prompt) => runOutline(directory, async () => { await runAgentTurn(agents, sectionDirectory ?? join(directory, '../..'), directory, {
+    step: 'nine_axis_outline', knowledge: 'step04_outline', role: 'main', session, name, prompt, tools: await tools(directory) }, signal); });
+}
+// Reference frames are chosen from the videos by their own agent, so the outline and fit start from them.
+export type FramesHead = (directory: string, prompt: string) => Promise<void>;
+const frameAgents = { step03_frames: { agent: 'nine_axis_view_frames', knowledge: 'step03_frames', name: '单轴选帧', names: turnViews },
+  'step05_frames': { agent: 'nine_axis_frames', knowledge: 'step05_frames', name: '斜向选帧', names: corners } } as const;
+export function createFramesHead(agents: Agents, tools: (directory: string) => Promise<FunctionTool[]>, step: keyof typeof frameAgents, signal?: AbortSignal, sectionDirectory?: string): FramesHead {
+  const { agent, knowledge, name, names } = frameAgents[step];
+  return async (directory, prompt) => runFrameSelection(directory, names, async () => { await runAgentTurn(agents, sectionDirectory ?? join(directory, '..'), directory, {
+    step: agent, knowledge, role: 'main', session: step, name, prompt, tools: await tools(directory) }, signal); });
+}
+
+export type NineAxisOptions = { name: string; dir?: string; krita?: string; step?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
+export type NineAxisDependencies = { environment?: WorkflowEnvironment; generate?: GenerateVideo; fitHead?: FitHead; outlineHead?: OutlineHead; viewFramesHead?: FramesHead; framesHead?: FramesHead; fitUp?: FitHead; fitDown?: FitHead; fitAngleXY?: FitHead; fitJawLine?: FitHead;
+  prepareNeutral?: (directory: string, input: HeadInput, box: Box, taskRoot: string) => Promise<void>;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
-  const root = resolveRunsDirectory(options.dir), progress = options.progress ?? (() => {});
-  const task = taskDirectory(options.name, root), directory = join(task, 'nine-axis');
-  const environment = dependencies.environment ?? loadWorkflowEnvironment();
-  const scale = angleScale();
-  const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
-  const headLabel = `${environment.stepModels.nine_axis_head.model}-${environment.stepModels.nine_axis_head.effort}`;
-  let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined;
+  if (options.step && options.step.split('/').length > 3) throw Error('--step 须为已定义的九轴步骤或分支');
+  const requested = options.step?.split('/')[0], branch = options.step?.split('/')[1], group = options.step?.split('/')[2] as AxisGroup | undefined;
+  if (branch && (requested !== 'step04_angles' || !nineAxisBranches.includes(branch as 'model' | 'video') || group && (branch !== 'model' || !axisGroups.includes(group))))
+    throw Error('--step 子项支持 step04_angles/model、video 或 model/left、up、down');
+  const steps = nineAxisSteps.map((id, i) => ({ number: i + 1, note: id.slice(7) })).filter(step => !requested || stepName(step.number, step.note) === requested);
+  if (!steps.length) throw Error('--step 须为已定义的九轴步骤');
+  const root = resolveRunsDirectory(options.dir), progress = options.progress ?? (() => {}), task = taskDirectory(options.name, root), directory = join(task, 'nine-axis');
+  const preparation = join(directory, 'step01_preparation'), videos = join(directory, 'step02_video'), frames = join(directory, 'step03_frames');
+  const angles = join(directory, 'step04_angles'), modelDirectory = join(angles, 'model'), cornerVideos = join(angles, 'video');
+  const cornerFrames = join(directory, 'step05_frames'), xyDirectory = join(directory, 'step06_angle-xy');
+  const environment = dependencies.environment ?? loadWorkflowEnvironment(), scale = angleScale();
+  const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root), head = stepDocument(input, preparation);
+  const source = { document: input.color.replace(/\.png$/, '.kra'), color: input.color };
+  let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined, agentPool: CodexAgents | undefined;
+  const agents = () => agentPool ??= new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress, agentConcurrency: 3 });
+  let preflightPromise: Promise<unknown> | undefined;
+  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw'], { runsRoot: root, progress, env: environment.codex.env });
   const video = () => {
     const api = dependencies.generate ? undefined : requireVideoApi(environment);
     return { model: api?.model ?? 'injected', generate: dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o)) as GenerateVideo };
   };
-  const ffmpeg = async () => dependencies.ffmpeg ?? await ffmpegPath(environment.codex.env);
-  const videos = join(directory, 'step01_video'), angleY = { up: scale.y[1], down: -scale.y[0] };
-  // Krita is only needed by step03's agent, so only a run that reaches it asks for one.
-  const faceTools = async (stepId: string): Promise<FunctionTool[]> => {
-    const bitmap = createBitmapTool(directory, join(directory, stepId, 'observations'));
-    if (stepId !== 'step03_angle-x') return [bitmap];
+  const crop = async () => JSON.parse(await readFile(join(preparation, 'crop.json'), 'utf8')).box as Box;
+  const krita = async () => {
     if (!sectionKrita) {
-      if (!options.krita?.trim()) throw new Error('step03_angle-x 需要 --krita <已安装的 Krita 可执行文件路径>。');
-      const krita = await checkKrita(resolveInput(options.name, options.krita, root), environment.codex.env);
-      sectionKrita = new SectionKrita({ section: directory, krita: krita.executable, env: environment.codex.env, record: join(directory, kritaRecordFile) });
+      if (!options.krita?.trim()) throw Error('从原 KRA 导出需要 --krita <Krita 可执行文件路径>');
+      const checked = await checkKrita(resolveInput(options.name, options.krita, root), environment.codex.env);
+      sectionKrita = new SectionKrita({ section: directory, krita: checked.executable, env: environment.codex.env, record: join(directory, kritaRecordFile) });
     }
-    await sectionKrita.reserve(options.signal, waiting => progress(`step03_angle-x：${waiting}`));
-    return [createKritaTool(sectionKrita, task), bitmap];
+    await sectionKrita.reserve(options.signal, progress); return sectionKrita;
   };
-  const agents = () => new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress });
-  const preflight = () => preflightAgentSteps(environment, ['nine_axis_head', 'nine_axis_head_y', 'nine_axis_head_xy'], { runsRoot: root, progress, env: environment.codex.env });
+  const builds: Record<string, () => Promise<Built>> = {};
+  const faceTools = async (stepId: string): Promise<FunctionTool[]> => {
+    const output = join(directory, stepId), observations = join(output, 'observations'), box = await crop();
+    const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations, () => builds[stepId]());
+    const axis = stepId.startsWith('step04_angles/model/') ? stepId.split('/').at(-1) as AxisGroup : undefined;
+    const stage = axis === 'up' || axis === 'down' ? axis : undefined;
+    const upstream = axis ? preparation : stepId === 'step06_angle-xy' ? modelDirectory : xyDirectory;
+    if (stepId === 'step07_jaw-line') return [createKritaTool(await krita(), task), bitmap, view, createContinuationEditTool(output, upstream, 'jaw', scale, task)];
+    const continuation = stage ? { stage, upstreamDirectory: preparation } : axis ? undefined : { stage: 'xy' as const, upstreamDirectory: upstream };
+    const edit = axis === 'left' ? createHeadEditTool(output, head, box, scale, task, preparation) : createContinuationEditTool(output, upstream, stage ?? 'xy', scale, task);
+    const referenceDirectory = axis ? frames : cornerFrames;
+    const svg = createSvgPreviewTool({ directory: output, reference: join(referenceDirectory, axis ? `${axis}.png` : 'left-up.png'), canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' });
+    return [bitmap, view, edit, createNineAxisFitTool(output, head, box, scale, continuation, { taskRoot: task, referenceDirectory }), axis ? svg : { ...svg, async execute(value, signal, context) {
+      const args = value as { mode?: string; reference?: string };
+      if ((args?.mode === 'blend' || args?.mode === 'edge') && !args.reference) throw Error('斜向 blend/edge 必须指定所选 corner 参考帧');
+      return svg.execute(value, signal, context);
+    } }];
+  };
+  const outlineTools = (reference: string) => async (output: string): Promise<FunctionTool[]> => {
+    const observations = join(output, 'observations', 'outline'), box = await crop();
+    return [createBitmapTool(directory, observations), createSvgPreviewTool({ directory: output, reference, canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' })];
+  };
+  const framesTools = async (output: string): Promise<FunctionTool[]> => [createBitmapTool(directory, join(output, 'observations', 'frames'))];
   const preview = (text: string) => { progress(`预览：${text}`); summary = '预览完成，未调用模型'; };
-  try { await runSection({ directory,
-    steps: [{ number: 1, note: 'video' }, { number: 2, note: 'views' }, { number: 3, note: 'angle-x' }, { number: 4, note: 'views-y' }, { number: 5, note: 'angle-y' }, { number: 6, note: 'angle-xy' }],
-    dryRun: options.dryRun, signal: options.signal, progress,
-    async step(step, status) {
-      if (status === 'completed') return undefined;
-      if (step.id === 'step01_video') return async () => {
-        const { model, generate } = video(), prompts = videoPrompts();
-        if (options.dryRun) return preview(`从 ${input.color} 截取上半身，用 ${model} 生成 left、up、down 视频，再以 up、down 的 ${angleY.up}°、${angleY.down}° 帧为首帧生成 left-up、left-down 转头视频。\n转头提示词：\n${prompts.turn}\n\n${viewsY.map(v => `${v} 提示词：\n${prompts[v]}`).join('\n\n')}`);
-        const box = await produceVideos(step.directory, input, generate, prompts, { signal: options.signal, progress, ffmpeg: await ffmpeg(), model, angles: angleY });
-        summary = `nine-axis/step01_video 已完成：${box.size}×${box.size} 上半身的 5 段视频`;
-      };
-      if (step.id === 'step02_views' || step.id === 'step04_views-y') return async () => {
-        const views = step.id === 'step02_views' ? [{ view: 'left', angle: scale.x[1] }] : viewsY.map(view => ({ view, angle: angleY[view] }));
-        if (options.dryRun) return preview(`从 step01_video 取 ${views.map(v => `${v.view}（${v.angle}°）`).join('、')} 帧。`);
-        await produceViews(step.directory, videos, views, { signal: options.signal, progress, ffmpeg: await ffmpeg() });
-        summary = `nine-axis/${step.id} 已完成：${views.map(v => `${v.view} ${v.angle}°`).join('、')} 视角`;
-      };
-      if (step.id === 'step03_angle-x') return async () => {
-        const head = await resolveHeadInput(input);
-        if (options.dryRun) return preview(`用 ${headLabel} 拟合脸部向左转向，镜像出向右。\n提示词：\n${headPrompt(head, task)}`);
-        const box = JSON.parse(await readFile(join(videos, 'crop.json'), 'utf8')).box as Box;
-        const fit = dependencies.fitHead ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳转向'));
-        await fit(step.directory, headPrompt(head, task));
-        summary = `nine-axis/step03_angle-x 已完成：${await finishHead(step.directory, head, box, scale)} 个脸部图层的 ${scale.x[0]}° / +${scale.x[1]}° 转向`;
-      };
-      if (step.id === 'step05_angle-y') return async () => {
-        if (options.dryRun) return preview(`用 ${headLabel} 拟合脸部抬头与低头。\n提示词：\n${angleYPrompt(task)}`);
-        const fit = dependencies.fitAngleY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳上下'));
-        await fit(step.directory, angleYPrompt(task));
-        summary = `nine-axis/step05_angle-y 已完成：${await finishAngleY(step.directory, join(directory, 'step03_angle-x'), scale)} 个脸部图层的抬头与低头`;
-      };
-      return async () => {
-        if (options.dryRun) return preview(`用 ${headLabel} 从线性叠加起手斜切脸部四角。\n提示词：\n${angleXYPrompt(task)}`);
-        const angleYDirectory = join(directory, 'step05_angle-y');
-        await writeLinearCorners(step.directory, angleYDirectory, scale);
-        const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向'));
-        await fit(step.directory, angleXYPrompt(task));
-        summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(step.directory, angleYDirectory, scale)} 个脸部图层的斜向四角`;
-      };
-    } }); } finally { await sectionKrita?.release(); }
+  try {
+    await runSection({ directory, steps, dryRun: options.dryRun, signal: options.signal, progress,
+      async finished(step) { return step.id !== 'step04_angles' || (await Promise.all(nineAxisBranches.map(async b => (await readStep(join(angles, b))).status === 'completed'))).every(Boolean); },
+      async step(step, status) {
+        if (status === 'completed') return;
+        if (step.id === 'step01_preparation') return async () => {
+          if (options.dryRun) return preview('从上游原工程整理头部素材与投影关系，导出统一 neutral。');
+          await copyDocument(source, head);
+          const { width = 0, height = 0 } = await sharp(input.color).metadata(), box = await upperBodyBox(input, width, height);
+          await writeFile(join(preparation, 'crop.json'), JSON.stringify({ canvas: [width, height], box }) + '\n');
+          if (dependencies.prepareNeutral) await dependencies.prepareNeutral(preparation, head, box, task);
+          else { const instance = await krita(); await prepareNeutral(preparation, head, instance, box, scale, options.signal, task); await instance.release(); sectionKrita = undefined; }
+          summary = 'nine-axis/step01_preparation 已完成：完整头部共享素材';
+        };
+        if (step.id === 'step02_video') return async () => {
+          const prompts = videoPrompts();
+          if (options.dryRun) return preview([prompts.turn, prompts.up, prompts.down].join('\n\n'));
+          const { model, generate } = video();
+          await produceLeftVideo(videos, input, generate, prompts.turn, { signal: options.signal, progress, model });
+          await producePitchVideos(videos, videos, generate, prompts, { signal: options.signal, progress, model });
+          summary = 'nine-axis/step02_video 已完成：三向视频';
+        };
+        if (step.id === 'step03_frames') return async () => {
+          if (options.dryRun) return preview(viewFramesPrompt(task));
+          const select = dependencies.viewFramesHead ?? (await preflight(), createFramesHead(agents(), framesTools, 'step03_frames', options.signal, directory));
+          await select(frames, viewFramesPrompt(task));
+          await finishViews(frames, { left: scale.x[1], up: scale.y[1], down: -scale.y[0] }, videos);
+          summary = 'nine-axis/step03_frames 已完成：单轴参考帧';
+        };
+        if (step.id === 'step04_angles') return async () => {
+          if (options.dryRun) return preview([...(group ? [group] : axisGroups).flatMap(g => [outlinePrompt(head, task, g), axisPrompt(head, task, g)]), videoPrompt()].join('\n\n'));
+          const selected = branch ? [branch as 'model' | 'video'] : [...nineAxisBranches];
+          // The established group workflow handles both branches and the same
+          // direction workflow handles the model's three independent authors.
+          await runGroups(selected, {
+            async initialize() {},
+            async ready() { return (await Promise.all(selected.map(async b => (await readStep(join(angles, b))).status === 'completed' ? undefined : { id: b, group: b, depth: 0 }))).filter((item): item is NonNullable<typeof item> => !!item); },
+            async runRound(b) {
+              const output = join(angles, b), { status } = await readStep(output); await beginStep(output, status);
+              if (b === 'video') {
+                const { model, generate } = video(); await produceCornerVideos(output, frames, generate, videoPrompt(), { signal: options.signal, progress, model });
+              } else {
+                const box = await crop();
+                const finished = await runAxisGroups(output, {
+                  async prepare() {}, seed: (g, folder) => seedAxis(folder, preparation, g, scale),
+                  async run(g, folder) {
+                    const id = `step04_angles/model/${g}`;
+                    builds[id] = () => g === 'left' ? buildHead(folder, head, box, scale, task) : buildAngleY(folder, preparation, g, scale);
+                    const injected = g === 'left' ? dependencies.fitHead : g === 'up' ? dependencies.fitUp : dependencies.fitDown;
+                    const outline = dependencies.outlineHead ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools(join(frames, `${g}.png`)), `${id}/outline`, `描边 ${g}`, options.signal, directory)));
+                    if (outline) { const o = join(folder, 'outline'); await mkdir(o, { recursive: true }); await outline(o, outlinePrompt(head, task, g)); }
+                    const fit = injected ?? (await preflight(), createFitHead(agents(), faceTools, id, `单轴 ${g}`, options.signal, directory));
+                    await fit(folder, axisPrompt(head, task, g)); await checkAxisSource(preparation, await builds[id]());
+                    if (g === 'left') await finishHead(folder, head, box, scale, task); else await finishAngleY(folder, preparation, g, scale);
+                    progress(`${id} 已完成，其他分支独立继续`);
+                  },
+                }, { group, signal: options.signal });
+                if (!finished) return;
+                const mergedDirectory = join(output, 'merged'); await rm(mergedDirectory, { recursive: true, force: true });
+                const merged = await mergeAxes(mergedDirectory, preparation, Object.fromEntries(axisGroups.map(g => [g, join(output, g)])) as Record<AxisGroup, string>, scale, task);
+                await writeBuilt(output, merged); await copyFile(join(mergedDirectory, 'axis-sources.json'), join(output, 'axis-sources.json')); await copyFile(join(preparation, 'source.json'), join(output, 'source.json'));
+              }
+              options.signal?.throwIfAborted(); await completeStep(output);
+            },
+          });
+          summary = group ? `nine-axis/step04_angles/model/${group} 已完成` : 'nine-axis/step04_angles 已完成：单轴模型与斜角视频';
+        };
+        if (step.id === 'step05_frames') return async () => {
+          if (options.dryRun) return preview(cornerFramesPrompt(task));
+          const select = dependencies.framesHead ?? (await preflight(), createFramesHead(agents(), framesTools, 'step05_frames', options.signal, directory));
+          await select(cornerFrames, cornerFramesPrompt(task));
+          await checkSelectedFrames(cornerFrames, corners, (await crop()).size, cornerVideos);
+          summary = 'nine-axis/step05_frames 已完成：斜角参考帧';
+        };
+        if (step.id === 'step06_angle-xy') return async () => {
+          if (options.dryRun) return preview([...corners.map(c => cornerOutlinePrompt(head, task, c)), angleXYPrompt(task)].join('\n\n'));
+          await writeLinearCorners(xyDirectory, modelDirectory, scale); builds[step.id] = () => buildAngleXY(xyDirectory, modelDirectory, scale);
+          const injected = Boolean(dependencies.fitAngleXY);
+          await Promise.all(corners.map(async c => {
+            const outline = dependencies.outlineHead ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools(join(cornerFrames, `${c}.png`)), `${step.id}/outline/${c}`, `描边 ${c}`, options.signal, directory)));
+            if (outline) { const o = join(xyDirectory, 'outline', c); await mkdir(o, { recursive: true }); await outline(o, cornerOutlinePrompt(head, task, c)); }
+          }));
+          const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向', options.signal, directory));
+          await fit(xyDirectory, angleXYPrompt(task));
+          await checkCornerReferences(xyDirectory, (await crop()).size, cornerFrames, cornerVideos);
+          summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(xyDirectory, modelDirectory, scale, cornerFrames, cornerVideos)} 个原图层的斜向四角`;
+        };
+        return async () => {
+          const jaw = stepDocument(input, step.directory);
+          if (options.dryRun) return preview(jawLinePrompt(jaw, task));
+          if (!await exists(jaw.document)) await copyDocument(head, jaw);
+          builds[step.id] = () => buildJawLine(step.directory, xyDirectory, scale);
+          const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子', options.signal, directory));
+          await fit(step.directory, jawLinePrompt(jaw, task));
+          summary = `nine-axis/step07_jaw-line 已完成：${await finishJawLine(step.directory, xyDirectory, scale)} 个部件的下颌线与脖子`;
+        };
+      },
+    });
+  } finally { await sectionKrita?.release(); }
   return summary;
 }
 
+const exists = (path: string) => access(path).then(() => true, () => false);
+
 export function parseRunArguments(args: string[]) {
   const { values } = parseArgs({ args, options: { name: { type: 'string' }, dir: { type: 'string' }, knowledge: { type: 'string' },
-    krita: { type: 'string' }, 'dry-run': { type: 'boolean' }, help: { type: 'boolean', short: 'h' } }, allowPositionals: false });
+    krita: { type: 'string' }, step: { type: 'string' }, 'dry-run': { type: 'boolean' },
+    continue: { type: 'boolean' }, resume: { type: 'boolean' }, retry: { type: 'boolean' }, help: { type: 'boolean', short: 'h' } }, allowPositionals: false });
   if (!values.help && !values.name?.trim()) throw new Error('必须提供 --name <任务名>。');
   if (!values.help && !values.knowledge?.trim()) throw new Error('必须提供 --knowledge <先验知识目录>；独立 section 不保存配置，每次启动（含续跑）都须指定。');
   if (values.dir !== undefined) resolveRunsDirectory(values.dir);
+  const actions = ['continue', 'resume', 'retry'].filter(action => values[action as 'continue' | 'resume' | 'retry']);
+  if (actions.length > 1) throw Error('--continue、--resume、--retry 只能选一个');
+  if (actions.length && values['dry-run']) throw Error('恢复操作不能与 --dry-run 一起使用');
   return values;
 }
 if (import.meta.main) {
@@ -168,10 +334,16 @@ if (import.meta.main) {
     const args = parseRunArguments(process.argv.slice(2));
     if (args.help) { console.log(help); return; }
     selectKnowledge(resolveInput(args.name!, args.knowledge!, args.dir));
+    const action = args.retry ? 'retry' : args.resume ? 'resume' : args.continue ? 'continue' : undefined;
+    if (action) {
+      if (args.krita) await checkKrita(resolveInput(args.name!, args.krita, args.dir), loadWorkflowEnvironment().codex.env);
+      console.log(await (args.step ? applyStepAction({ name: args.name!, dir: args.dir, section: 'nine-axis', step: args.step, action })
+        : applyTaskAction({ name: args.name!, dir: args.dir, section: 'nine-axis', action })));
+    }
     const controller = new AbortController(), stop = () => controller.abort(new Error('头部九轴已中断；续跑会重新生成未完成的步骤。'));
     process.once('SIGINT', stop); process.once('SIGTERM', stop);
     const release = args['dry-run'] ? undefined : await acquireTaskLock(taskDirectory(args.name!, args.dir));
-    try { console.log(await runWorkflow({ name: args.name!, dir: args.dir, krita: args.krita, dryRun: args['dry-run'], signal: controller.signal, progress: console.log })); }
+    try { console.log(await runWorkflow({ name: args.name!, dir: args.dir, krita: args.krita, step: args.step, dryRun: args['dry-run'], signal: controller.signal, progress: console.log })); }
     finally { await release?.(); process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); }
   })().catch(error => { console.error(formatAgentError(error)); process.exitCode = 1; });
 }

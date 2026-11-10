@@ -48,12 +48,18 @@ importers:
       fflate:
         specifier: 0.8.2
         version: 0.8.2
+      playwright:
+        specifier: 1.60.0
+        version: 1.60.0
       proper-lockfile:
         specifier: 4.1.2
         version: 4.1.2
       sharp:
         specifier: 0.35.5
         version: 0.35.5(@types/node@24.19.1)
+      three:
+        specifier: 0.180.0
+        version: 0.180.0
     devDependencies:
       '@types/cross-spawn':
         specifier: 6.0.6

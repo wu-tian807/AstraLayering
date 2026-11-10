@@ -1,7 +1,7 @@
 import { loadWorkflowEnvironment } from '../shared/codex/environment.ts';
 import { checkKrita, type KritaInstallation } from '../shared/raster/krita.ts';
 import { MissingDependencyError } from '../shared/missing-dependency.ts';
-import { directoryFor, readRun, selectedSections, taskKrita, usesKrita, type TaskOptions, type TaskRun } from './state.ts';
+import { directoryFor, readRun, selectedSections, taskRoute, taskKrita, usesKrita, type TaskOptions, type TaskRun } from './state.ts';
 
 // Refused before any start, continue, resume or retry changes the task; the
 // path is given again with --krita (in the web, the Krita path field).
@@ -23,8 +23,7 @@ export const workflowKrita: KritaCheck = path => checkKrita(path, loadWorkflowEn
 export async function preflightKrita(options: TaskOptions, check: KritaCheck = workflowKrita): Promise<KritaInstallation | undefined> {
   const directory = directoryFor(options), saved = await readRun(directory);
   if (saved?.archive) return; // Refused as an archive by the caller.
-  const selected = selectedSections(options.from ?? saved?.from ?? 'part-layering', options.to ?? saved?.to ?? 'shadow');
-  try { return await requireKrita({ ...saved, from: selected[0]!, to: selected.at(-1)!, krita: taskKrita(options, saved) }, !!options.krita, check); }
+  try { return await requireKrita({ ...taskRoute(options, saved), krita: taskKrita(options, saved) }, !!options.krita, check); }
   catch (error) { if (!(error instanceof MissingDependencyError)) throw error; }
 }
 

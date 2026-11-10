@@ -1014,11 +1014,33 @@ canvas.disturb { cursor: crosshair; }
 .nine-points.editable circle:hover { fill: #ffcf5a; }
 #nine-axis-hud { position: absolute; left: 10px; top: 8px; padding: 3px 7px; border-radius: 4px; background: #000a; color: #cfe3ff; font-variant-numeric: tabular-nums; pointer-events: none; }
 .nine-levels { display: grid; grid-template-columns: repeat(3,1fr); }
-.nine-levels button.active, #nine-axis-keys button.active, #nine-axis-keys-y button.active { background: #414b66; border-color: #596e97; }
+.nine-levels button.active, #nine-axis-keys button.active, #nine-axis-keys-y button.active, #nine-axis-keys-xy button.active { background: #414b66; border-color: #596e97; }
 .nine-param { display: grid; grid-template-columns: 48px 1fr 64px; gap: 6px; align-items: center; margin: 6px 0; }
+.nine-angle-number { grid-template-columns: 48px minmax(0, 1fr); }
+.nine-angle-number input { width: 100%; min-width: 0; font-variant-numeric: tabular-nums; }
+#nine-axis-pad { position: relative; height: 220px; margin: 10px 0; border: 1px solid var(--line); border-radius: 6px; background: #20242d; touch-action: none; user-select: none; cursor: crosshair; }
+#nine-axis-pad[data-region="horizontal"] { height: 70px; }
+#nine-axis-pad:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+#nine-axis-pad svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+#nine-axis-pad-plane { display: none; fill: #58749a26; stroke: #58749a55; vector-effect: non-scaling-stroke; }
+#nine-axis-pad[data-region="plane"] #nine-axis-pad-plane { display: block; }
+.nine-pad-axis { fill: none; stroke: #7ba8d0; stroke-width: 2; vector-effect: non-scaling-stroke; }
+#nine-axis-pad-keys circle { fill: #b7cce0; }
+#nine-axis-pad[data-region="horizontal"] #nine-axis-pad-axis-y,
+#nine-axis-pad[data-region="horizontal"] .nine-pad-up,
+#nine-axis-pad[data-region="horizontal"] .nine-pad-down,
+#nine-axis-pad[data-region="horizontal-plus-positive-y"] .nine-pad-down,
+#nine-axis-pad[data-region="horizontal-plus-negative-y"] .nine-pad-up { display: none; }
+.nine-pad-label { position: absolute; pointer-events: none; font-size: 10px; color: var(--muted); }
+.nine-pad-left { left: 2%; top: 50%; transform: translateY(-50%); }
+.nine-pad-right { right: 2%; top: 50%; transform: translateY(-50%); }
+.nine-pad-up { left: 50%; top: 1%; transform: translateX(-50%); }
+.nine-pad-down { left: 50%; bottom: 1%; transform: translateX(-50%); }
+#nine-axis-pad-handle { position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; border: 2px solid #e4f3ff; border-radius: 50%; background: #4383b8; box-shadow: 0 0 0 3px #172b4299; transform: translate(-50%, -50%); pointer-events: none; }
+#nine-axis-pad-hint { font-size: 11px; }
 .nine-keys { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
-#nine-axis-keys, #nine-axis-keys-y { display: flex; gap: 4px; }
-#nine-axis-keys button, #nine-axis-keys-y button { min-width: 38px; }
+#nine-axis-keys, #nine-axis-keys-y, #nine-axis-keys-xy { display: flex; flex-wrap: wrap; gap: 4px; }
+#nine-axis-keys button, #nine-axis-keys-y button, #nine-axis-keys-xy button { min-width: 38px; }
 #nine-axis-tree { max-height: 340px; overflow: auto; border: 1px solid var(--line); border-radius: 4px; padding: 4px; }
 #nine-axis-tree summary { cursor: pointer; padding: 2px 0; color: #c3cad8; }
 #nine-axis-tree .nine-group { margin-left: 12px; }

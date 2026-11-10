@@ -29,8 +29,10 @@
     "@xmldom/xmldom": "0.9.12",
     "cross-spawn": "7.0.6",
     "fflate": "0.8.2",
+    "playwright": "1.60.0",
     "proper-lockfile": "4.1.2",
-    "sharp": "0.35.5"
+    "sharp": "0.35.5",
+    "three": "0.180.0"
   },
   "devDependencies": {
     "@types/cross-spawn": "6.0.6",

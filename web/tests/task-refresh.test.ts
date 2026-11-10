@@ -7,7 +7,7 @@ const source = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 const refresh = source.slice(source.indexOf('let refreshVersion='), source.indexOf('function artifacts('));
 
 function fixture(status: string, interaction: string) {
-  const next = { status, runnerAlive: status === 'running', lockHeld: status === 'running', files: [], sections: [] };
+  const next: any = { status, runnerAlive: status === 'running', lockHeld: status === 'running', files: [], sections: [] };
   const calls: string[] = [];
   const context: any = {
     data: { status: 'running', runnerAlive: true, lockHeld: true },
@@ -24,6 +24,7 @@ function fixture(status: string, interaction: string) {
     selectedTask: () => 'test',
     applySnapshot: (value: any) => { context.data = value; calls.push('apply'); },
     render: () => calls.push('render'),
+    headPreview: { update: () => {} },
   };
   return { calls, next, context, run: () => runInNewContext(refresh + '\nrefreshTask();', context) };
 }
@@ -167,6 +168,15 @@ test('loss of runner updates even before persisted status leaves running', async
   assert.deepEqual(f.calls, ['apply', 'render']);
 });
 
+test('调度保存的 live 与执行范围变化时同步刷新，即使输入框仍在使用', async () => {
+  for (const change of [{ live: true }, { to: 'nine-axis' }, { from: 'nine-axis', to: 'nine-axis' }]) {
+    const f = fixture('running', 'focus');
+    f.context.data.run = { from: 'part-layering', to: 'shadow', live: false };
+    f.next.run = { ...f.context.data.run, ...change };
+    await f.run(); assert.deepEqual(f.calls, ['apply', 'render']);
+  }
+});
+
 test('打开中的报告草稿发布后读取正式文件，避免刷新成旧路径的错误', async () => {
   const f = fixture('running', 'none'), draft = 'clothing-raster-layering/step01/review-01.md.tmp', published = draft.replace('.tmp', '');
   const selected = { kind: 'file', path: draft, text: '草稿内容' };
@@ -189,4 +199,11 @@ test('failure notice includes the last model message and stays visibly stopped',
   assert.match(html, /执行失败 · 未交付结果/);
   assert.match(html, /模型最后消息：工具不可用/);
   assert.match(html, /class="run-notice error" open/);
+});
+
+for (const state of ['waiting', 'reserved', 'running']) test(`Krita ${state} updates while an unrelated input is focused`, async () => {
+  const f = fixture('running', 'focus');
+  f.context.data.sections = [{ id: 'nine-axis', status: 'running', states: { step01_preparation: 'running' }, krita: null }];
+  f.next.sections = [{ id: 'nine-axis', status: 'running', states: { step01_preparation: 'running' }, krita: { state } }];
+  await f.run(); assert.deepEqual(f.calls, ['apply', 'render']);
 });

@@ -1,4 +1,4 @@
-export type ProgressStatus = 'pending' | 'running' | 'throttled' | 'available' | 'done' | 'failed';
+export type ProgressStatus = 'pending' | 'running' | 'throttled' | 'available' | 'done' | 'failed' | 'interrupted' | 'unconfirmed';
 export type GroupPhase = 'outline' | 'review' | 'reduction' | 'completion' | 'completionCheck' | 'children';
 export type ReviewPhase = 'review-1' | 'repair-1' | 'review-2' | 'repair-2';
 export interface ReviewObservation { status: ProgressStatus | 'skipped'; detail: string; reportIndex?: number }
@@ -10,7 +10,7 @@ export interface ProgressGroup {
 export interface Artifact {
   path: string;
   label: string;
-  kind: 'image' | 'file';
+  kind: 'image' | 'file' | 'video';
   reviewIndex?: number;
   reviewMode?: 'review' | 'repair';
 }
@@ -20,7 +20,7 @@ export interface ProgressStep {
   status: string;
   children: ProgressStep[];
   note: string;
-  childrenMode?: 'alternative';
+  childrenMode?: 'alternative' | 'parallel';
   processDirectory?: string;
 }
 export const groupPhases: [GroupPhase, string][];
@@ -40,3 +40,5 @@ export function groupArtifacts(section: string, group: { id: string }, depth: nu
 export const sectionSteps: ProgressStep[][];
 export const stepArtifacts: Record<string, Artifact[]>[];
 export function shadowInspectionArtifacts(files: string[]): Artifact[];
+
+export const previousNineAxisSectionSteps: ProgressStep[];

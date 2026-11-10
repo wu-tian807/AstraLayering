@@ -1,7 +1,7 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import sharp from 'sharp';
 import { checkFaceLeft, mirrorKeyform, pairId, stepTexture, type Part } from '../head.ts';
@@ -22,7 +22,8 @@ export async function writeFaceLeft(directory: string) {
   const base = { ...part('face/face_base', [60, 60, 140, 110], (x, y) => [x - 10, y]), texture: 'layers/001.png', textureBounds: [60, 60, 80, 50] };
   const parts = [base, part('face/eye_left', [110, 70, 130, 80], (x, y) => [x - 5, y]),
     part('face/ear_right', [50, 70, 60, 90], (x, y) => [x + 14, y]), part('face/ear_left', [140, 70, 150, 90], (x, y) => [x - 6, y])];
-  await writeFile(join(directory, 'face-left.json'), JSON.stringify({ axis: 100, notes: '测试', parts }));
+  await writeFile(join(directory, 'face-left.json'), JSON.stringify({ version: 2, deformers: [], axis: 100, notes: '测试', parts }));
+  const { box } = await readFile(join(directory, '../step02_video/crop.json'), 'utf8').then(JSON.parse).catch(() => ({ box: { x: 0, y: 0, size: 200 } }));
 }
 
 test('左右配对只换整词 left/right', () => {
@@ -44,21 +45,21 @@ test('+30 取配对图层的 −30 关于中轴的镜像', () => {
 
 test('交付检查：缺 face_base 或控制点数不对时报错', () => {
   const base = part('face/face_base', [60, 60, 140, 110], (x, y) => [x, y]);
-  assert.throws(() => checkFaceLeft({ axis: 100, parts: [part('face/nose', [90, 80, 110, 90], (x, y) => [x, y])] }, [200, 400], '-30'), /face_base/);
-  assert.throws(() => checkFaceLeft({ axis: 100, parts: [{ ...base, keyforms: { '0': base.keyforms['0'], '-30': [] } }] }, [200, 400], '-30'), /-30/);
-  assert.throws(() => checkFaceLeft({ axis: 300, parts: [base] }, [200, 400], '-30'), /axis/);
+  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [part('face/nose', [90, 80, 110, 90], (x, y) => [x, y])] }, [200, 400], '-30'), /face_base/);
+  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [{ ...base, keyforms: { '0': base.keyforms['0'], '-30': [] } }] }, [200, 400], '-30'), /-30/);
+  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 300, parts: [base] }, [200, 400], '-30'), /axis/);
   // Hiding goes through occlusion, not fading.
-  assert.throws(() => checkFaceLeft({ axis: 100, parts: [{ ...base, opacity: { '-30': 0 } }] }, [200, 400], '-30'), /不透明度/);
+  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [{ ...base, opacity: { '-30': 0 } }] }, [200, 400], '-30'), /不透明度/);
   const ear = part('face/ear_right', [50, 70, 60, 90], (x, y) => [x, y]);
-  assert.throws(() => checkFaceLeft({ axis: 100, parts: [ear, base] }, [200, 400], '-30'), /ear_right.*之下/);
-  assert.equal(checkFaceLeft({ axis: 100, parts: [base, ear] }, [200, 400], '-30').parts.length, 2);
-  assert.equal(checkFaceLeft({ axis: 100, parts: [base] }, [200, 400], '-30').parts.length, 1);
+  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [ear, base] }, [200, 400], '-30'), /ear_right.*之下/);
+  assert.equal(checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [base, ear] }, [200, 400], '-30').parts.length, 2);
+  assert.equal(checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [base] }, [200, 400], '-30').parts.length, 1);
 });
 
 test('贴图接受 agent 写的绝对路径，存为本步 layers/ 相对路径', () => {
-  const task = '/runs/doll', step = '/runs/doll/nine-axis/step03_angle-x';
+  const task = '/runs/doll', step = '/runs/doll/nine-axis/step02_angle-x';
   assert.equal(stepTexture(step, task, 'face/nose', `${step}/layers/003.png`), 'layers/003.png');
-  assert.equal(stepTexture(step, task, 'face/nose', 'nine-axis/step03_angle-x/layers/003.png'), 'layers/003.png');
+  assert.equal(stepTexture(step, task, 'face/nose', 'nine-axis/step02_angle-x/layers/003.png'), 'layers/003.png');
   assert.equal(stepTexture(step, task, 'face/nose', 'layers/003.png'), 'layers/003.png');
   assert.throws(() => stepTexture(step, task, 'face/nose', '/elsewhere/layers/003.png'), /本步 layers/);
   assert.throws(() => stepTexture(step, task, 'face/nose', `${step}/workspace/003.png`), /本步 layers/);

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdir, mkdtemp, realpath, writeFile, symlink, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, realpath, readFile, writeFile, symlink, rm } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { tmpdir } from "node:os";
 import { createHash } from 'node:crypto';
@@ -8,7 +8,7 @@ import { createWorkbench } from "../server.ts";
 import { studioArtifacts } from "../../.agents/skills/live2d-maker/shared/studio-artifacts.ts";
 import { steps } from "../../.agents/skills/live2d-maker/character-assembly/steps.ts";
 import { shadowArtifacts } from '../../.agents/skills/live2d-maker/shared/shadow.ts';
-import { nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { previousNineAxisArtifacts as nineAxisArtifacts, legacyNineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import sharp from 'sharp';
 
 async function fixture(t: any) {
@@ -38,7 +38,15 @@ async function fixture(t: any) {
     await mkdir(join(file, ".."), { recursive: true });
     await writeFile(file, value);
   };
-  return { root, dir, name, project, base, get, put };
+  const completeAngles = async () => {
+    for (const group of ['left', 'up', 'down']) {
+      await put(`nine-axis/step02_angles/${group}/.completed`, '');
+      const path = `nine-axis/step02_angles/${group}/deformers.json`;
+      try { await readFile(join(project, path)); } catch { await put(path, '{}'); }
+    }
+    await put('nine-axis/step02_angles/.completed', '');
+  };
+  return { root, dir, name, project, base, get, put, completeAngles };
 }
 test("Project preview reads only the fixed assembly and lighting outputs; absent maps are pending", async (t) => {
   const f = await fixture(t);
@@ -190,30 +198,20 @@ test('Unified studio discovers pending maps and prefers formal delivery', async 
 test('Project reports the head nine-axis document and prefers its KRA while the source is unchanged', async (t) => {
   const f = await fixture(t), a = nineAxisArtifacts;
   let data = (await (await f.get()).json()) as any;
-  assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.headDeformers, false]);
+  assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.angleXDeformers, false]);
   await f.put(a.headDeformers, '{}');
+  await f.completeAngles();
   data = (await (await f.get()).json()) as any;
   assert.equal(data.nineAxis.available, true);
   // The deformers and their numbered layer textures read through the studio route.
-  await f.put('nine-axis/step03_angle-x/layers/005.png', 'layer');
+  await f.put('nine-axis/step02_angles/layers/005.png', 'layer');
   const read = (path: string) => fetch(f.base + '/studio-artifact?' + new URLSearchParams({ folder: f.project, path }));
-  assert.equal(await (await read('nine-axis/step03_angle-x/layers/005.png')).text(), 'layer');
-  assert.equal((await read('nine-axis/step03_angle-x/layers/../source.json')).status, 400);
-  // Once step03 has added up/down, its deformers and textures are the ones shown.
-  await f.put(a.angleYDeformers, '{}'); await f.put('nine-axis/step05_angle-y/layers/005.png', 'layer y');
-  data = (await (await f.get()).json()) as any;
-  assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.angleYDeformers, true]);
-  assert.equal(await (await read('nine-axis/step05_angle-y/layers/005.png')).text(), 'layer y');
+  assert.equal(await (await read('nine-axis/step02_angles/layers/005.png')).text(), 'layer');
+  assert.equal((await read('nine-axis/step02_angles/layers/../source.json')).status, 400);
   await f.put(studioArtifacts.document, 'kra'); await f.put(studioArtifacts.color, 'png');
   await f.put(a.headDocument, 'nine kra'); await f.put(a.headColor, 'nine png');
-  const hash = (s: string) => createHash('sha256').update(s).digest('hex');
-  await f.put(a.headSource, JSON.stringify({ version: 1, sourceDocument: studioArtifacts.document, sourceColor: studioArtifacts.color, sourceKraHash: hash('kra'), sourceColorHash: hash('png'), updatedAt: 'x' }));
   data = (await (await f.get()).json()) as any;
   assert.deepEqual([data.files.document.path, data.files.color.path, data.nineAxisDocument], [a.headDocument, a.headColor, true]);
-  // A changed source KRA falls back to it and marks the nine-axis KRA stale.
-  await f.put(studioArtifacts.document, 'kra 2');
-  data = (await (await f.get()).json()) as any;
-  assert.deepEqual([data.files.document.path, data.nineAxisDocument, data.nineAxisStale], [studioArtifacts.document, false, true]);
 });
 test('An imported task folder outside the run directory opens; only studio outputs are readable', async t => {
   const f = await fixture(t), folder = join(f.root, 'elsewhere', 'imported');
@@ -249,4 +247,194 @@ test('The project list reads task folders under a chosen base folder, the run di
   const missing = await list(join(f.root, 'gone'));
   assert.equal(missing.status, 404); assert.equal((await missing.json() as any).missing, true);
   assert.equal((await list('relative')).status, 400);
+});
+
+test('jaw preview opens its delivered KRA and PNG; switching to XY uses the inherited document', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  await f.completeAngles();
+  for (const path of [a.headDeformers, a.headDocument, a.headColor, a.jawLineDocument, a.jawLineColor, a.angleXYDeformers, a.jawLineDeformers]) await f.put(path);
+  let data = await (await f.get()).json() as any;
+  assert.deepEqual([data.files.document.path, data.files.color.path], [a.jawLineDocument, a.jawLineColor]);
+  const response = await fetch(f.base + '/studio-artifact?' + new URLSearchParams({ folder: f.project, path: a.jawLineDocument }));
+  assert.equal(response.status, 200);
+  data = await (await f.get({ nineStage: 'xy' })).json() as any;
+  assert.deepEqual([data.files.document.path, data.files.color.path], [a.headDocument, a.headColor]);
+});
+
+test('Nine-axis preview prefers the merge over independent siblings, then corners and jaw', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  const order = [a.angleXDeformers, a.headDeformers, a.angleXYDeformers, a.jawLineDeformers];
+  for (const path of order) {
+    await f.put(path, '{}');
+    if (path === a.headDeformers) await f.completeAngles();
+    const data = await (await f.get()).json() as any;
+    assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [path, true]);
+  }
+  // Re-saving an earlier step must not make it win over a completed later one.
+  await f.put(a.angleUpDeformers, 'newer up');
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.jawLineDeformers);
+  await f.put(a.jawLineDeformers, '');
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.angleXYDeformers);
+  await rm(join(f.project, a.angleXYDeformers));
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.headDeformers);
+  await rm(join(f.project, a.headDeformers));
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.angleXDeformers);
+});
+
+test('Nine-axis links select independent children; Y selects the parent merge', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  const stages = { x: a.angleXDeformers, up: a.angleUpDeformers, down: a.angleDownDeformers,
+    y: a.headDeformers, xy: a.angleXYDeformers, jaw: a.jawLineDeformers };
+  for (const path of new Set(Object.values(stages))) await f.put(path, path);
+  await f.completeAngles();
+  for (const [nineStage, path] of Object.entries(stages)) {
+    const response = await f.get({ nineStage });
+    assert.equal(response.status, 200);
+    const data = await response.json() as any;
+    assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [path, true]);
+    assert.equal(await readFile(join(f.project, path), 'utf8'), path, 'Selecting a stage leaves its author document intact');
+  }
+  await rm(join(f.project, a.angleDownDeformers));
+  for (const nineStage of ['down']) {
+    const data = await (await f.get({ nineStage })).json() as any;
+    assert.deepEqual([data.nineAxis.path, data.nineAxis.available], [a.angleDownDeformers, false], 'Explicit stages never silently fall back to up or jaw');
+  }
+  assert.equal((await (await f.get({ nineStage: 'up' })).json() as any).nineAxis.available, true);
+  await rm(join(f.project, a.headDeformers));
+  const missingMerge = await (await f.get({ nineStage: 'y' })).json() as any;
+  assert.deepEqual([missingMerge.nineAxis.path, missingMerge.nineAxis.available], [a.headDeformers, false]);
+  for (const nineStage of ['invalid', 'toString', '__proto__', 'nine-axis/step04_angle-up/deformers.json']) {
+    const response = await f.get({ nineStage });
+    assert.equal(response.status, 400);
+    assert.match((await response.json() as any).error, /x、up、down、y、xy 或 jaw/);
+  }
+});
+
+test('Existing model folders keep their legacy preview routes without rewriting files', async t => {
+  const f = await fixture(t), a = legacyNineAxisArtifacts;
+  for (const path of [a.headDeformers, a.angleUpDeformers, a.angleDownDeformers, a.angleXYDeformers, a.jawLineDeformers]) {
+    await f.put(path, path);
+    assert.equal((await (await f.get()).json() as any).nineAxis.path, path);
+  }
+  for (const [nineStage, path] of Object.entries({ x: a.headDeformers, up: a.angleUpDeformers, down: a.angleDownDeformers,
+    y: a.angleDownDeformers, xy: a.angleXYDeformers, jaw: a.jawLineDeformers })) {
+    const project = await (await f.get({ nineStage })).json() as any;
+    assert.deepEqual([project.nineAxis.path, project.nineAxis.layout], [path, 'legacy']);
+    assert.equal(await readFile(join(f.project, path), 'utf8'), path);
+  }
+  // An empty new source group selects the new contract, never an old result.
+  await mkdir(join(f.project, 'nine-axis/step02_angles/up'), { recursive: true });
+  const project = await (await f.get({ nineStage: 'up' })).json() as any;
+  assert.deepEqual([project.nineAxis.path, project.nineAxis.available], [nineAxisArtifacts.angleUpDeformers, false]);
+});
+
+test('a retried child blocks stale merged, XY, jaw and KRA previews until parent merge completes again', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  for (const path of [a.headDeformers, a.angleXYDeformers, a.jawLineDeformers]) await f.put(path, 'old merged doc');
+  await f.completeAngles();
+  assert.equal((await (await f.get()).json() as any).nineAxis.path, a.jawLineDeformers);
+  await rm(join(f.project, 'nine-axis/step02_angles/up'), { recursive: true });
+  await rm(join(f.project, 'nine-axis/step02_angles/.completed'));
+  await f.put('nine-axis/step02_angles/.running', '');
+  const project = await (await f.get()).json() as any;
+  assert.equal(project.nineAxis.path, a.angleXDeformers);
+  assert.equal(project.nineAxis.mergeComplete, false);
+  for (const nineStage of ['y', 'xy', 'jaw']) assert.equal((await (await f.get({ nineStage })).json() as any).nineAxis.available, false);
+  await f.put('nine-axis/step02_angles/up/deformers.json', '{}');
+  await f.put('nine-axis/step02_angles/up/.completed', '');
+  assert.equal((await (await f.get({ nineStage: 'y' })).json() as any).nineAxis.available, false);
+  await rm(join(f.project, 'nine-axis/step02_angles/.running')); await f.put('nine-axis/step02_angles/.completed', '');
+  assert.equal((await (await f.get({ nineStage: 'y' })).json() as any).nineAxis.available, true);
+});
+
+test('Nested nine-axis artifact whitelist rejects extra nesting, foreign groups and symlinks', async t => {
+  const f = await fixture(t);
+  const read = (path: string) => fetch(f.base + '/studio-artifact?' + new URLSearchParams({ folder: f.project, path }));
+  for (const group of ['neutral', 'left', 'up', 'down', 'merged']) {
+    for (const suffix of ['deformers.json', 'layers/part-01.png']) {
+      const path = `nine-axis/step02_angles/${group}/${suffix}`;
+      await f.put(path, path);
+      assert.equal(await (await read(path)).text(), path);
+    }
+  }
+  for (const path of ['nine-axis/step02_angles/unknown/deformers.json', 'nine-axis/step02_angles/up/source.json',
+    'nine-axis/step02_angles/up/layers/sub/a.png', 'nine-axis/step02_angles/up/layers/a.jpg',
+    'nine-axis/step02_angles/up/layers/../deformers.json', 'nine-axis/step02_angles/left/../up/deformers.json']) {
+    assert.equal((await read(path)).status, 400, path);
+  }
+  await f.put('private.png', 'private');
+  await symlink(join(f.project, 'private.png'), join(f.project, 'nine-axis/step02_angles/up/layers/link.png'));
+  assert.equal((await read('nine-axis/step02_angles/up/layers/link.png')).status, 400);
+  for (const path of [nineAxisArtifacts.turnLeftVideo, nineAxisArtifacts.turnUpVideo, nineAxisArtifacts.turnDownVideo,
+    nineAxisArtifacts.turnLeft, nineAxisArtifacts.turnUp, nineAxisArtifacts.turnDown, nineAxisArtifacts.turnRecord]) {
+    await f.put(path, path);
+    assert.equal(await (await read(path)).text(), path);
+  }
+});
+
+test('Studio reads textures only from the explicit X, up, down, corners and jaw layer directories', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  const read = (path: string) => fetch(f.base + '/studio-artifact?' + new URLSearchParams({ folder: f.project, path }));
+  for (const path of [a.headDeformers, a.angleXDeformers, a.angleUpDeformers, a.angleDownDeformers, a.angleXYDeformers, a.jawLineDeformers]) {
+    await f.put(path, 'deformers');
+    assert.equal(await (await read(path)).text(), 'deformers');
+    for (const name of ['005', 'jaw_line', 'eye-left']) {
+      const texture = path.replace('deformers.json', `layers/${name}.png`);
+      await f.put(texture, texture);
+      assert.equal(await (await read(texture)).text(), texture);
+    }
+  }
+  for (const path of ['nine-axis/step05_angle-y/layers/005.png', 'nine-axis/step03_angle-x/layers/005.png',
+    'nine-axis/step08_jaw-line/layers/jaw_line.png', 'nine-axis/step03_video-y/layers/005.png',
+    'nine-axis/step09_private/layers/005.png', 'nine-axis/step04_angle-up/private.png',
+    'nine-axis/step05_angle-down/layers/nested/005.png', 'nine-axis/step04_angle-up/layers/005.jpg',
+    'nine-axis/step04_angle-up/source.json', 'nine-axis/step05_angle-down/notes.md', 'private.png']) {
+    await f.put(path, 'private');
+    assert.equal((await read(path)).status, 400, path);
+  }
+  assert.equal((await read('nine-axis/step04_angle-up/layers/../source.json')).status, 400);
+});
+
+test('Studio saves up and down keyforms independently while retaining X, earlier Y poses and save guards', async t => {
+  const f = await fixture(t), a = nineAxisArtifacts;
+  const rest = [[0, 0], [10, 0], [0, 10], [10, 10]];
+  const save = (value: any) => fetch(f.base + '/api/studio/nine-axis/save', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ folder: f.project, ...value }),
+  });
+  for (const [nineStage, path, yKeys, y] of [
+    ['up', a.angleUpDeformers, [0, 25], 25], ['down', a.angleDownDeformers, [-25, 0, 25], -25],
+  ] as const) {
+    const doc = { version: 2, kind: 'head-nine-axis', levels: [{ id: 'face', includes: ['face'] }], deformers: [],
+      parameters: [{ id: 'ParamAngleX', keys: [-30, 0, 30] }, { id: 'ParamAngleY', keys: [...yKeys] }],
+      parts: [{ id: 'face', level: 'face', texture: 'layers/005.png', textureBounds: [0, 0, 10, 10], bbox: [0, 0, 10, 10], cols: 1, rows: 1,
+        keyforms: { '-30': rest.map(([x, y]) => [x - 2, y]), '0': rest, '30': rest.map(([x, y]) => [x + 2, y]) },
+        keyformsY: Object.fromEntries(yKeys.map(key => [String(key), rest.map(([x, y]) => [x, y - key / 5])])) }] };
+    await f.put(path, JSON.stringify(doc));
+    const before = await (await f.get({ nineStage })).json() as any;
+    const edited = structuredClone(doc);
+    edited.parts[0].keyformsY[String(y)] = rest.map(([x, py]) => [x + 1, py - y / 5]);
+    const response = await save({ path, version: before.nineAxis.version, document: edited });
+    assert.equal(response.status, 200);
+    const saved = await response.json() as any;
+    assert.equal(saved.path, path);
+    assert.deepEqual(JSON.parse(await readFile(join(f.project, path), 'utf8')), edited);
+    assert.deepEqual(edited.parts[0].keyforms, doc.parts[0].keyforms, 'Y edits retain every X endpoint');
+    if (nineStage === 'down') assert.deepEqual(edited.parts[0].keyformsY['25'], doc.parts[0].keyformsY['25'], 'Down edits retain up');
+    const stale = await save({ path, version: before.nineAxis.version, document: doc });
+    assert.equal(stale.status, 400);
+    assert.match((await stale.json() as any).error, /已变化/);
+    const changed = structuredClone(edited); changed.parts[0].texture = 'layers/other.png';
+    const rejected = await save({ path, version: saved.version, document: changed });
+    assert.equal(rejected.status, 400);
+    assert.match((await rejected.json() as any).error, /不能替换图层/);
+    assert.deepEqual(JSON.parse(await readFile(join(f.project, path), 'utf8')), edited);
+  }
+  for (const path of ['nine-axis/step05_angle-y/deformers.json', 'nine-axis/step04_angle-up/source.json',
+    'nine-axis/step05_angle-down/other.json', 'nine-axis/step09_private/deformers.json', 'run.json']) {
+    await f.put(path, 'private');
+    const response = await save({ path, version: 'anything', document: {} });
+    assert.equal(response.status, 400);
+    assert.match((await response.json() as any).error, /只能保存工作台的九轴文件/);
+    assert.equal(await readFile(join(f.project, path), 'utf8'), 'private');
+  }
 });

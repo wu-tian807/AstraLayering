@@ -8,6 +8,9 @@ import { parseExportArguments } from '../export-run.ts';
 import { configureRun, acquireTaskLock } from '../state.ts';
 import { exportFixture } from './export-fixture.ts';
 import { reportPath } from '../../shared/part/artifact-facts.ts';
+import { stepDeliveries } from '../../shared/step-deliveries.ts';
+import { nineAxisSteps, previousNineAxisSteps } from '../../shared/nine-axis.ts';
+import { relative } from 'node:path';
 
 test('directory/ZIP exports retain artwork, completion facts and cited workspace images, without runtime files', async t => {
   const f = await exportFixture(t), destination = join(f.base, 'result');
@@ -55,6 +58,33 @@ test('records naming the task through a symlinked runs root still export task-re
   assert.match(await readFile(join(destination, 'raster-layering/step01/report.md'), 'utf8'), /\]\(report-assets\/inspect\/cited.png\)/);
 });
 
+for (const staged of [false, true]) test(`a completed ${staged ? 'seven-step' : 'previous'} nine-axis route exports its actual models, textures, KRA and evidence without shadow naming requirements`, async t => {
+  const jaw = staged ? 'step07_jaw-line' : 'step04_jaw-line';
+  const f = await exportFixture(t), nine = join(f.root, 'nine-axis');
+  for (const step of staged ? ['step01_preparation', 'step04_angles/model', 'step04_angles/model/merged', ...['left','up','down'].map(g => 'step04_angles/model/' + g), 'step06_angle-xy', jaw] : ['step02_angles', 'step02_angles/neutral', 'step02_angles/merged', 'step02_angles/left', 'step02_angles/up', 'step02_angles/down', 'step03_angle-xy', jaw]) {
+    await f.put(`nine-axis/${step}/deformers.json`, JSON.stringify({ parts: [{ texture: 'layers/face.png' }] }));
+  }
+  for (const id of staged ? nineAxisSteps : previousNineAxisSteps) {
+    for (const path of await stepDeliveries(nine, 'nine-axis', id)) {
+      try { await readFile(path); } catch { await f.put(relative(f.root, path), path.endsWith('.kra') ? f.kra : path.endsWith('.png') ? f.png : path.endsWith('.json') ? '{}' : 'delivery'); }
+    }
+    await f.put(`nine-axis/${id}/.completed`, '');
+  }
+  for (const file of ['character-nine-axis.kra', 'character-nine-axis.png', 'notes.md', 'jaw-check.png', 'review/left-up.png']) await f.put(`nine-axis/${jaw}/` + file, file.endsWith('.kra') ? f.kra : file.endsWith('.png') ? f.png : 'artwork note');
+  const output = join(f.base, 'nine-result');
+  await exportCompletedRun({ name: f.name, dir: f.dir, output });
+  const manifest = JSON.parse(await readFile(join(output, 'manifest.json'), 'utf8'));
+  for (const file of ['deformers.json', 'layers/face.png', 'character-nine-axis.kra', 'character-nine-axis.png', 'jaw-check.png', 'review/left-up.png']) assert.ok(manifest.files[`nine-axis/${jaw}/${file}`], file);
+  assert.equal(JSON.parse(await readFile(join(output, 'run.json'), 'utf8')).to, 'nine-axis');
+  await f.put(`nine-axis/${jaw}/layers/arbitrary-cast-name.png`, f.png);
+  await f.put(`nine-axis/${jaw}/workspace/draft.png`, f.png);
+  const second = join(f.base, 'nine-result-with-cast');
+  await exportCompletedRun({ name: f.name, dir: f.dir, output: second });
+  const actual = JSON.parse(await readFile(join(second, 'manifest.json'), 'utf8'));
+  assert.ok(actual.files[`nine-axis/${jaw}/layers/arbitrary-cast-name.png`]);
+  assert.equal(actual.files[`nine-axis/${jaw}/workspace/draft.png`], undefined);
+});
+
 test('incomplete, active, missing-delivery and missing-marker exports fail without leaving partial outputs', async t => {
   const f = await exportFixture(t), output = join(f.base, 'refused');
   const tryExport = () => exportCompletedRun({ name: f.name, dir: f.dir, output });
@@ -92,4 +122,12 @@ test('CLI arguments follow --name/--dir and provide directory/ZIP output without
   assert.throws(() => parseExportArguments(['--name', '../escape']), /--name/);
   assert.throws(() => parseExportArguments([]), /--name/);
   assert.throws(() => parseExportArguments(['--name', 'case', '--model', 'anything']), /Unknown option/);
+});
+
+test('a live route cannot be exported as completed while its selected nine-axis section is unfinished', async t => {
+  const f = await exportFixture(t), path = join(f.root, 'run.json');
+  const run = JSON.parse(await readFile(path, 'utf8'));
+  run.to = 'nine-axis'; run.live = true; run.sections['nine-axis'].status = 'pending';
+  await f.put('run.json', JSON.stringify(run));
+  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.base, 'live-result') }), /全流程已完成/);
 });

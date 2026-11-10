@@ -14,9 +14,10 @@ import { runTask } from '../../.agents/skills/live2d-maker/workflow/runner.ts';
 import { stopRequestPath } from '../../.agents/skills/live2d-maker/workflow/control.ts';
 
 type WorkbenchOptions = NonNullable<Parameters<typeof createWorkbench>[0]>;
-async function fixture(t: any, start?: WorkbenchOptions['start'], preflight: WorkbenchOptions['preflight'] = async () => {}) {
+async function fixture(t: any, start?: WorkbenchOptions['start'], preflight: WorkbenchOptions['preflight'] = async () => {}, initialKrita?: string) {
   const base = await realpath(await mkdtemp(join(tmpdir(), 'layering-web-')));
   const dir = join(base, 'runs'), settingsPath = join(base, 'settings.json');
+  if (initialKrita) await writeFile(settingsPath, JSON.stringify({ directory: dir, krita: initialKrita }));
   const server = await createWorkbench({ defaultDir: dir, settingsPath, start, preflight });
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(async () => { await new Promise<void>(resolve => server.close(() => resolve())); await rm(base, { recursive: true, force: true }); });
@@ -29,6 +30,69 @@ async function fixture(t: any, start?: WorkbenchOptions['start'], preflight: Wor
 }
 const upload = async () => (await sharp({ create: { width: 8, height: 8, channels: 3, background: '#cbbbaa' } }).png().toBuffer()).toString('base64');
 async function put(root: string, path: string, value = 'content') { const file = join(root, path); await mkdir(join(file, '..'), { recursive: true }); await writeFile(file, value); }
+
+test('已有任务保存参数不启动也不改产物，继续恢复重试读取保存值', async t => {
+  const starts: any[] = [];
+  let preflights = 0;
+  const f = await fixture(t, async options => {
+    starts.push(await readRun(join(f.dir, options.name)));
+    return 4242;
+  }, async () => { preflights++; });
+  assert.equal((await f.post('tasks', { name: 'test', upload: await upload(), jobs: 2 })).status, 201);
+  const task = join(f.dir, 'test');
+  await put(task, 'nine-axis/step01_preparation/author-note.txt', '保留已有作者内容');
+  const saved = await f.post('task-options', { name: 'test', jobs: 4, live: true });
+  assert.equal(saved.status, 200); assert.equal(saved.value.to, 'nine-axis');
+  assert.equal(preflights, 1); assert.equal(starts.length, 0);
+  assert.equal(await readFile(join(task, 'nine-axis/step01_preparation/author-note.txt'), 'utf8'), '保留已有作者内容');
+  for (const action of ['continue', 'resume', 'retry']) {
+    await put(task, 'character-assembly/step01/.running', '');
+    assert.equal((await f.post('task-action', { name: 'test', action })).status, 202);
+    const run = starts.at(-1);
+    assert.equal(run.jobs, 4); assert.equal(run.live, true); assert.equal(run.to, 'nine-axis');
+  }
+});
+
+test('参数保存沿用现有范围，字段未提交时保留原值，明确范围仍优先', async t => {
+  const f = await fixture(t, async () => assert.fail('保存参数不能启动制作'));
+  const task = join(f.dir, 'test'); await mkdir(task, { recursive: true });
+  await saveRun(task, await configureRun({ name: 'test', dir: f.dir, from: 'shadow', to: 'nine-axis', live: false, jobs: 2 }, task));
+  const saved = await f.post('task-options', { name: 'test', jobs: 3 });
+  assert.equal(saved.status, 200); assert.equal(saved.value.from, 'shadow'); assert.equal(saved.value.to, 'nine-axis');
+  assert.equal(saved.value.live, false);
+  const independent = await f.post('task-options', { name: 'test', from: 'nine-axis', to: 'nine-axis' });
+  assert.equal(independent.status, 200);
+  assert.equal((await f.post('task-options', { name: 'test', live: true })).value.to, 'nine-axis');
+  const narrow = await f.post('task-options', { name: 'test', from: 'part-layering', to: 'shadow', live: true });
+  assert.equal(narrow.status, 200); assert.equal(narrow.value.to, 'shadow'); assert.equal(narrow.value.live, true);
+});
+
+test('保存参数不要求当前 Krita 在线，运行或归档任务拒绝修改', async t => {
+  const f = await fixture(t, async () => assert.fail('不能启动制作'), async () => assert.fail('保存参数不执行启动检查'), '/global/krita');
+  const task = join(f.dir, 'test'); await mkdir(task, { recursive: true });
+  await saveRun(task, await configureRun({ name: 'test', dir: f.dir, krita: '/task/krita', knowledge: '/task/knowledge' }, task));
+  assert.equal((await f.post('task-options', { name: 'test', jobs: 4 })).status, 200);
+  assert.equal((await readRun(task))!.krita, '/task/krita', '仅改并发不把任务 Krita 替换为全局设置');
+  assert.equal((await readRun(task))!.knowledge, '/task/knowledge');
+  const before = await readFile(join(task, 'run.json'));
+  const release = await acquireTaskLock(task);
+  try { assert.equal((await f.post('task-options', { name: 'test', jobs: 5 })).status, 409); }
+  finally { await release(); }
+  assert.deepEqual(await readFile(join(task, 'run.json')), before);
+  const run = (await readRun(task))!; run.archive = true; await saveRun(task, run);
+  assert.equal((await f.post('task-options', { name: 'test', jobs: 5 })).status, 409);
+});
+
+test('调整完成路线后只登记待启动步骤，不删除或倒退已完成 section', async t => {
+  const f = await fixture(t), task = join(f.dir, 'test'); await mkdir(task, { recursive: true });
+  const run = await configureRun({ name: 'test', dir: f.dir }, task);
+  run.status = 'completed'; for (const section of Object.values(run.sections)) section!.status = 'completed';
+  await saveRun(task, run); await put(task, 'shadow/step01_mask/.completed', '已确认');
+  const saved = await f.post('task-options', { name: 'test', live: true });
+  assert.equal(saved.status, 200); assert.equal(saved.value.status, 'ready');
+  assert.equal((await readRun(task))!.sections.shadow!.status, 'completed');
+  assert.equal(await readFile(join(task, 'shadow/step01_mask/.completed'), 'utf8'), '已确认');
+});
 
 test('workspace text artifacts can be viewed and shared path/report modules load in the browser', async t => {
   const f = await fixture(t), path = 'character-assembly/step01/workspace/scripts/check.py';
@@ -108,7 +172,7 @@ test('web forwards shadow mode to the existing coordinator and shows artifacts o
   assert.equal((await snapshot(root, 'shadow-case', f.dir)).sections.find(stage => stage.id === 'shadow')!.states.mask, 'pending', 'an unmarked step is a leftover');
   await put(root, 'shadow/step01_mask/.running');
   const value = await snapshot(root, 'shadow-case', f.dir), stage = value.sections.find(stage => stage.id === 'shadow')!;
-  assert.equal(stage.states.mask, 'unconfirmed'); assert.equal(stage.states['normal-depth'], 'pending');
+  assert.equal(stage.states.mask, 'interrupted'); assert.equal(stage.states['normal-depth'], 'pending');
   for (const path of ['normal.png', 'depth.png', 'report.md', '.completed']) await put(root, 'shadow/step01_normal-depth/' + path);
   const finished = (await snapshot(root, 'shadow-case', f.dir)).sections.find(stage => stage.id === 'shadow')!;
   assert.equal(finished.states['normal-depth'], 'done');
@@ -325,4 +389,43 @@ test('任务操作接口：恢复、重试人物与衣服分块的未完成步�
   assert.equal(started.length, 2);
   // The removed single-step endpoint is gone; one step is acted on from the CLI.
   assert.equal((await f.post('step-action', { name: 'case', section: 'part-layering', step: 'step11_completion/head', action: 'retry' })).status, 404);
+});
+
+test('existing task-action accepts the nine-axis section ID and keeps another lane untouched', async t => {
+  const started: any[] = [];
+  const f = await fixture(t, async options => { started.push(options); return 456; }), task = join(f.dir, 'case');
+  await mkdir(task);
+  await saveRun(task, await configureRun({ name: 'case', dir: f.dir }, task));
+  await put(task, 'nine-axis/step02_angles/.running', '');
+  await put(task, 'nine-axis/step02_angles/up/.running', '');
+  await put(task, 'nine-axis/step02_angles/up/deformers.json', 'up author');
+  await put(task, 'nine-axis/agents/steps/step02_angles/up/session.json', JSON.stringify({ threadId: 'up-thread' }));
+  await put(task, 'part-layering/step11_completion/head/.running', '');
+  await put(task, 'part-layering/agents/steps/step11_completion/head/session.json', JSON.stringify({ threadId: 'part-thread' }));
+  const response = await f.post('task-action', { name: 'case', action: 'resume', section: 'nine-axis' });
+  assert.equal(response.status, 202);
+  assert.equal(started[0].from, 'nine-axis'); assert.equal(started[0].to, 'nine-axis');
+  assert.equal(await readFile(join(task, 'nine-axis/step02_angles/up/deformers.json'), 'utf8'), 'up author');
+  assert.equal((await jsonFile(task, 'part-layering/agents/steps/step11_completion/head/session.json'))!.threadId, 'part-thread');
+  assert.equal(await jsonFile(task, 'nine-axis/agents/steps/step02_angles/up/session.json'), undefined);
+  const wrongSection = await f.post('task-action', { name: 'case', action: 'retry', section: '6' });
+  assert.equal(wrongSection.status, 400); assert.match(wrongSection.value.error, /未知管线/);
+  const wrongScope = await f.post('task-action', { name: 'case', action: 'retry', section: 'nine-axis', step: 'step02_angles/up' });
+  assert.equal(wrongScope.status, 400); assert.match(wrongScope.value.error, /单步骤操作请使用 CLI/);
+  assert.equal(started.length, 1);
+});
+
+test('web creation records opt-in live and start forwards it without extending explicit single-section ranges', async t => {
+  const starts: any[] = [], f = await fixture(t, async options => { starts.push(options); return 456; });
+  for (const live of [false, true]) {
+    const name = live ? 'live-on' : 'live-off';
+    assert.equal((await f.post('tasks', { name, upload: await upload(), live })).status, 201);
+    const run = await readRun(join(f.dir, name));
+    assert.equal(run?.live, live); assert.equal(run?.to, live ? 'nine-axis' : 'shadow');
+    assert.equal((await f.post('start', { name, live })).status, 202);
+    assert.equal(starts.at(-1).live, live);
+  }
+  assert.equal((await f.post('start', { name: 'live-on', live: 'true' })).status, 400);
+  assert.equal((await f.post('start', { name: 'live-on', from: 'shadow', to: 'shadow', live: true })).status, 202);
+  assert.equal(starts.at(-1).to, 'shadow');
 });

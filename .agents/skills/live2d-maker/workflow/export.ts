@@ -22,21 +22,23 @@ import { shadowMode } from '../shared/shadow.ts';
 import { acquireTaskLock, directoryFor, readRun, taskStatus, type TaskRun } from './state.ts';
 
 const slash = (path: string) => path.split(sep).join('/');
-// Export stops at shadow even when an installation adds a physics section.
+// The base static route ends at shadow; completed nine-axis artwork is included below.
 const exportSectionIds = sectionIds.slice(0, sectionIds.indexOf('shadow') + 1);
 const inside = (root: string, path: string) => path === root || path.startsWith(root + sep);
 const excluded = (path: string) => path.split(/[\\/]/).some(name =>
   ['workspace', 'agents', 'recovery', 'archive', 'node_modules'].includes(name) || name.startsWith('.'));
 export const completeRun = (run?: TaskRun) => !!run && run.status === 'completed'
-  && exportSectionIds.every(id => run.sections[id]?.status === 'completed');
+  && exportSectionIds.every(id => run.sections[id]?.status === 'completed')
+  && (run.to !== 'nine-axis' || run.sections['nine-axis']?.status === 'completed');
 
 // Completion facts are portable. CLI configuration, model selection and thread
 // records stay at the source; an export cannot accidentally resume old sessions.
-export function archiveRun(run: TaskRun): TaskRun {
-  return { version: 1, archive: true, from: 'part-layering', to: 'shadow',
+export function archiveRun(run: TaskRun, nineAxis = false): TaskRun {
+  const sections = [...exportSectionIds, ...nineAxis ? ['nine-axis'] : []];
+  return { version: 1, archive: true, from: 'part-layering', to: nineAxis ? 'nine-axis' : 'shadow',
     jobs: run.jobs, standard: run.standard, shadowMode: run.shadowMode, status: run.status,
     createdAt: run.createdAt, updatedAt: run.updatedAt,
-    sections: Object.fromEntries(Object.entries(run.sections).filter(([id]) => (exportSectionIds as readonly string[]).includes(id)).map(([id, value]) => [id,
+    sections: Object.fromEntries(Object.entries(run.sections).filter(([id]) => sections.includes(id)).map(([id, value]) => [id,
       { status: value!.status, updatedAt: value!.updatedAt }])) };
 }
 
@@ -64,6 +66,8 @@ async function sourceFile(root: string, path: string): Promise<string | undefine
 // (a symlinked runs root); those aliases map onto root.
 export async function exportFiles(root: string, run: TaskRun, aliases: readonly string[] = []): Promise<{ entries: Map<string, Entry>; warnings: string[] }> {
   const entries = new Map<string, Entry>(), files: string[] = [], steps = new Set<string>(), warnings: string[] = [];
+  const nineAxis = !!(await sourceFile(root, 'nine-axis/step07_jaw-line/.completed') ?? await sourceFile(root, 'nine-axis/step04_jaw-line/.completed'));
+  const selectedSections = [...exportSectionIds, ...nineAxis ? ['nine-axis'] : []];
   const roots = [...new Set(aliases.map(path => resolve(path)))].filter(path => path !== root);
   // Same conversion as toTaskPath, also accepting the aliases; an outside path stays absolute.
   const taskPath = (path: string) => {
@@ -75,7 +79,7 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
       const child = slash(join(path, item.name));
       if (item.name === '.completed' && item.isFile()) { files.push(child); steps.add(path); }
       else if (!excluded(child) && !item.isSymbolicLink()) {
-        if (item.isDirectory() && (path || ['input', ...exportSectionIds].includes(item.name))) await walk(child);
+        if (item.isDirectory() && (path || ['input', ...selectedSections].includes(item.name))) await walk(child);
         else if (item.isFile()) files.push(child);
       }
     }
@@ -137,6 +141,11 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
       }
     }
   }
+  // Include the delivered nine-axis artwork as it is. Names and shadow
+  // organization belong to the author; this adds no completion requirements.
+  if (nineAxis) for (const path of files) {
+    if (path.startsWith('nine-axis/') && /\.(?:json|md|kra|png|svg|mp4)$/i.test(path)) await add(path);
+  }
   async function rewriteReport(text: string, path: string): Promise<string> {
     for (const ref of reportReferences(text).reverse()) {
       const candidates = reportTargets(root, path, ref.target, roots);
@@ -189,7 +198,7 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
       : JSON.stringify(await rewriteJSON(JSON.parse(original), path), null, 2) + '\n';
     if (text !== original) entries.set(path, { bytes: Buffer.from(text) });
   }
-  entries.set('run.json', { bytes: Buffer.from(JSON.stringify(archiveRun(run), null, 2) + '\n') });
+  entries.set('run.json', { bytes: Buffer.from(JSON.stringify(archiveRun(run, nineAxis), null, 2) + '\n') });
   return { entries, warnings: [...new Set(warnings)] };
 }
 
