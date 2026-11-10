@@ -27,6 +27,7 @@ import { FFmpegUnavailable, preflightFFmpeg } from '../.agents/skills/live2d-mak
 import { checkFFmpeg, type FFmpegCheck } from '../.agents/skills/live2d-maker/shared/ffmpeg.ts';
 import { MissingDependencyError } from '../.agents/skills/live2d-maker/shared/missing-dependency.ts';
 import { checkKnowledge, defaultKnowledgeDirectory } from '../.agents/skills/live2d-maker/shared/knowledge.ts';
+import { preflightTaskInputs } from '../.agents/skills/live2d-maker/workflow/preflight-inputs.ts';
 import { exportCompletedRun } from '../.agents/skills/live2d-maker/workflow/export.ts';
 import { LayerCompositor } from './layer-compositor.ts';
 import { isStudioPath, studioProject } from './studio-project.ts';
@@ -75,12 +76,11 @@ function options(value: any, dir: string): TaskOptions {
   }
   return result;
 }
-// Global web settings: the run directory, the Krita used by every start, and the
-// knowledge directory recorded by new tasks (absent: the skill's own knowledge/).
+// Global web settings supply defaults for new tasks.
 type Settings = { directory: string; krita?: string; ffmpeg?: string; knowledge?: string };
 export async function createWorkbench({ settingsPath = join(root, '.web/settings.json'), defaultDir = runsDirectory,
   start = launch, environment = createEnvironmentConfig(), kritaCheck = workflowKrita, ffmpegCheck = checkFFmpeg,
-  preflight = async (options: TaskOptions) => { await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck); },
+  preflight = async (options: TaskOptions) => { await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck); await preflightTaskInputs(options); },
   kritaScan = createSoftwareScan('krita'), ffmpegScan = createSoftwareScan('ffmpeg'),
   updates = createUpdateCheck({ cachePath: join(dirname(settingsPath), 'update-check.json') }) }: {
   settingsPath?: string; defaultDir?: string; start?: typeof launch; environment?: ReturnType<typeof createEnvironmentConfig>;

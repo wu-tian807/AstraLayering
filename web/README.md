@@ -66,7 +66,7 @@ SVG 小图预览按实际可见内容居中取景，等比放大并保留边距�
 
 ## 配置与版本
 
-开启任务的 `--live` 后，阴影完成会进入九轴 section；独立九轴也需要 ffmpeg 与视频服务。在“管线配置 → 环境与模型 → 运行环境”填写 `video_base_url`、`video_api_key` 和 `nine_axis_view_video_model`，视频模型支持 `seedance-2.5`、`seedance-2.0` 系列，默认 `seedance-2.5`。视频服务账号须有对应模型权限。FFmpeg 在“全局设置 → FFmpeg 可执行文件”浏览选择已安装或解压的文件，保存及九轴启动时检查版本；选帧 agent 直接调用 extract_video_frame，工具内部使用路径，不自动下载。只运行到阴影的默认路线不需要视频服务，详细配置见[九轴依赖说明](../.agents/skills/live2d-maker/nine-axis/README.md#依赖与视频配置)。
+开启任务的 `--live` 后，阴影完成会进入九轴 section；独立九轴也需要 ffmpeg 与视频服务。在“管线配置 → 环境与模型 → 运行环境”填写 `video_base_url`、`video_api_key` 和 `nine_axis_view_video_model`，视频模型支持 Seedance 2.5／2.0 系列，实际模型 ID 为 `seedance-2.5`／`seedance-2`，默认 `seedance-2.5`。视频服务账号须有对应模型权限。FFmpeg 在“全局设置 → FFmpeg 可执行文件”浏览选择已安装或解压的文件，保存及九轴启动时检查版本；选帧 agent 直接调用 extract_video_frame，工具内部使用路径，不自动下载。只运行到阴影的默认路线不需要视频服务，详细配置见[九轴依赖说明](../.agents/skills/live2d-maker/nine-axis/README.md#依赖与视频配置)。
 
 “管线配置”分为两个页签：
 

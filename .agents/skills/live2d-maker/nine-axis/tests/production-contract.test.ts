@@ -12,8 +12,72 @@ import { promisify } from 'node:util';
 import sharp from 'sharp';
 import { generateVideo, producePitchVideos, produceCornerVideos, runFrameSelection, ffmpegPath } from '../turn.ts';
 import { createFrameTool } from '../frame-tool.ts';
+import { runWorkflow } from '../run.ts';
+import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
+import { missingDeliveries } from '../../shared/step-deliveries.ts';
+import { joint } from './axis-fixtures.ts';
 
 async function fixture(t:any){const root=await mkdtemp(join(tmpdir(),'nine-production-'));t.after(()=>rm(root,{recursive:true,force:true}));return root;}
+
+const videoEnvironment = () => loadWorkflowEnvironment({ video_base_url: 'https://video.example/v1', video_api_key: 'fixture' });
+const mockInput = async () => ({ color: '/unused/character.png', parts: [], source: { id: 'fixture', directory: '/unused' } });
+const mockFFmpeg = async (executable: string) => ({ executable, version: 'ffmpeg version fixture' });
+
+test('missing video configuration refuses preparation before reading inputs or creating outputs', async t => {
+  const root = await fixture(t);
+  await assert.rejects(runWorkflow({ name: 'case', dir: root, ffmpeg: process.execPath, step: 'step01_preparation' }, {
+    environment: loadWorkflowEnvironment({}), ffmpegCheck: mockFFmpeg,
+    resolveInput: async () => assert.fail('startup must refuse before preparing inputs'),
+  }), /生视频接口/);
+  await assert.rejects(readFile(join(root, 'case/nine-axis/step01_preparation/.completed')), { code: 'ENOENT' });
+});
+
+for (const step of ['step02_video', 'step03_frames', 'step07_jaw-line', 'step04_angles/video', 'step04_angles/model']) {
+  test(`completed ${step} cannot hide missing deliveries`, async t => {
+    const root = await fixture(t), folder = join(root, 'case/nine-axis', step);
+    await mkdir(folder, { recursive: true }); await writeFile(join(folder, '.completed'), '');
+    if (step.includes('/')) await writeFile(join(root, 'case/nine-axis/step04_angles/.running'), '');
+    await assert.rejects(runWorkflow({ name: 'case', dir: root, ffmpeg: process.execPath, step }, {
+      environment: videoEnvironment(), ffmpegCheck: mockFFmpeg, resolveInput: mockInput,
+    }), /缺少非空交付文件/);
+    assert.equal(await readFile(join(folder, '.completed'), 'utf8'), '');
+  });
+}
+
+test('actual MP4s satisfy video delivery without the optional summary; empty files do not', async t => {
+  const root = await fixture(t), nine = join(root, 'case/nine-axis'), folder = join(nine, 'step02_video');
+  await mkdir(folder, { recursive: true });
+  for (const file of ['upper-body.png', 'crop.json', 'left.mp4', 'up.mp4', 'down.mp4']) await writeFile(join(folder, file), 'fixture bytes');
+  await writeFile(join(folder, '.completed'), '');
+  assert.deepEqual(await missingDeliveries(nine, 'nine-axis', 'step02_video'), []);
+  assert.match(await runWorkflow({ name: 'case', dir: root, ffmpeg: process.execPath, step: 'step02_video' }, {
+    environment: videoEnvironment(), ffmpegCheck: mockFFmpeg, resolveInput: mockInput,
+  }), /沿用/);
+  await writeFile(join(folder, 'up.mp4'), '');
+  assert.deepEqual(await missingDeliveries(nine, 'nine-axis', 'step02_video'), [join(folder, 'up.mp4')]);
+});
+
+test('a failed corner outline waits for its successful sibling before returning the failure', async t => {
+  const root = await fixture(t), model = join(root, 'case/nine-axis/step04_angles/model');
+  await mkdir(join(model, 'layers'), { recursive: true });
+  const doc = joint(); await writeFile(join(model, 'deformers.json'), JSON.stringify(doc));
+  const png = await sharp({ create: { width: 100, height: 100, channels: 4, background: '#888' } }).png().toBuffer();
+  for (const part of doc.parts) await writeFile(join(model, part.texture), png);
+  let entered = 0, siblingFinished = false;
+  const both = Promise.withResolvers<void>();
+  await assert.rejects(runWorkflow({ name: 'case', dir: root, ffmpeg: process.execPath, step: 'step06_angle-xy' }, {
+    environment: videoEnvironment(), ffmpegCheck: mockFFmpeg, resolveInput: mockInput,
+    fitAngleXY: async () => assert.fail('fit must not start after a failed outline'),
+    outlineHead: async directory => {
+      if (++entered === 2) both.resolve(); await both.promise;
+      if (directory.endsWith('left-up')) throw new Error('left-up failed');
+      await delay(30); await writeFile(join(directory, 'notes.md'), 'completed sibling'); siblingFinished = true;
+    },
+  }), /left-up failed/);
+  assert.equal(siblingFinished, true);
+  assert.equal(await readFile(join(root, 'case/nine-axis/step06_angle-xy/outline/left-down/notes.md'), 'utf8'), 'completed sibling');
+  await assert.rejects(readFile(join(root, 'case/nine-axis/step06_angle-xy/.completed')), { code: 'ENOENT' });
+});
 
 for(const kind of ['pitch','corner'])test(`${kind}: a failed branch does not discard or regenerate its sibling MP4`,async t=>{
   const root=await fixture(t),input=join(root,'input'),output=join(root,'output');await mkdir(input);

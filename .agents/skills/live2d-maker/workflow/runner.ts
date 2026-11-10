@@ -19,6 +19,7 @@ import { defaultKnowledgeDirectory, selectKnowledge } from '../shared/knowledge.
 import { MissingDependencyError } from '../shared/missing-dependency.ts';
 import { readDressup } from '../shared/part/dressup.ts';
 import { AgentSlotPool, agentSlotsVariable } from './agent-slots.ts';
+import { requireVideoApi } from '../shared/video.ts';
 
 export type SectionExecution = (id: SectionId, run: TaskRun, context: {
   // The task directory, <runs root>/<task name>.
@@ -135,6 +136,7 @@ export async function runTask(options: TaskOptions, dependencies: {
     // the scheduler's own preflight then reads the same directory as its section workers.
     selectKnowledge(configured.knowledge ?? defaultKnowledgeDirectory);
     const environment = !dependencies.execute || dependencies.environment ? dependencies.environment ?? loadWorkflowEnvironment() : undefined;
+    if (environment && selectedSections(configured.from, configured.to).includes('nine-axis')) requireVideoApi(environment);
     // A missing system dependency such as Xvfb is the exception: the run is recorded as failed with its install hint.
     const missing = await requireKrita(configured, !!options.krita, dependencies.preflight ?? (path => checkKrita(path, environment?.codex.env)))
       .then(() => undefined, error => { if (error instanceof MissingDependencyError) return error; throw error; });

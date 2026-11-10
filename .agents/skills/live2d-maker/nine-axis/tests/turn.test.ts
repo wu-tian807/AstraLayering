@@ -55,6 +55,7 @@ async function prepareNeutralFixture(directory: string, input: HeadInput, box: B
   await writeFile(join(directory, 'export-record.json'), JSON.stringify({ version: 1, sourceKra: built.doc.source!.document,
     canvas: built.doc.canvas, order: 'bottom-to-top', parts: built.doc.parts }));
   await writeFile(join(directory, 'source.json'), JSON.stringify({ version: 1, ...built.source }));
+  await writeFile(join(directory, 'head_parts_manifest.json'), JSON.stringify({ version: 1, parts: built.doc.parts }));
 }
 
 // Overlay only the fitted left pose on the seeded author. Keep original rest,
@@ -66,12 +67,16 @@ async function writeSeededFaceLeft(directory: string) {
   const byId = new Map(fitted.parts.map(p => [p.id, p]));
   seeded.parts = seeded.parts.map(p => ({ ...p, keyforms: { ...p.keyforms, '-30': structuredClone(byId.get(p.id)!.keyforms['-30']) } }));
   await writeFile(join(directory, 'face-left.json'), JSON.stringify(seeded));
+  await writeFile(join(directory, 'face-trace.json'), '{"fixture":"selected trace"}');
+  await writeFile(join(directory, 'fit-report.json'), '{"fixture":"injected fit"}');
 }
 
 async function writePitch(directory: string, group: 'up' | 'down') {
   const path = join(directory, `face-${group}.json`), doc: HeadNineAxis = JSON.parse(await readFile(path, 'utf8'));
   for (const p of doc.parts) p.keyformsY![group === 'up' ? '25' : '-25'] = p.keyforms['0'].map(([x, y]) => [x, y + (group === 'up' ? -3 : 5)]);
   await writeFile(path, JSON.stringify(doc));
+  await writeFile(join(directory, 'face-trace.json'), '{"fixture":"selected trace"}');
+  await writeFile(join(directory, 'fit-report.json'), '{"fixture":"injected fit"}');
 }
 
 function assertPoseEqual(actual: HeadNineAxis, expected: HeadNineAxis, x: number, y: number) {
@@ -87,7 +92,7 @@ function assertPoseEqual(actual: HeadNineAxis, expected: HeadNineAxis, x: number
 test('单跑 left 沿用共享素材和参考帧，不调用视频或兄弟方向', async t => {
   const { root, task } = await fixture(t), nine = join(task, 'nine-axis'), preparation = join(nine, 'step01_preparation');
   const unexpected = async () => { throw new Error('不应调用其他步骤'); };
-  await runWithFFmpeg({ name: 'case', dir: root, step: 'step01_preparation' }, { environment: loadWorkflowEnvironment({}), prepareNeutral: prepareNeutralFixture });
+  await runWithFFmpeg({ name: 'case', dir: root, step: 'step01_preparation' }, { environment: loadWorkflowEnvironment({ video_base_url: 'https://video.example/v1', video_api_key: 'fixture' }), prepareNeutral: prepareNeutralFixture });
   const before = await readFile(join(preparation, 'deformers.json'));
   const frames = join(nine, 'step03_frames'); await mkdir(frames);
   await copyFile(join(task, 'character-assembly/step01/character-assembled.png'), join(frames, 'left.png'));
@@ -155,8 +160,8 @@ test('转头提示词向左；生视频只用自己的接口，不读生图接�
   assert.deepEqual(loadWorkflowEnvironment({ layering_video_base_url: 'https://video.example/v1', layering_video_api_key: 'k' }).videoApi,
     { baseUrl: 'https://video.example/v1', apiKey: 'k', model: 'seedance-2.5' });
   assert.deepEqual(loadWorkflowEnvironment({ openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'i',
-    video_base_url: 'https://video.example/v1', video_api_key: 'k', nine_axis_view_video_model: 'm' }).videoApi,
-    { baseUrl: 'https://video.example/v1', apiKey: 'k', model: 'm' });
+    video_base_url: 'https://video.example/v1', video_api_key: 'k', nine_axis_view_video_model: 'seedance-2-fast' }).videoApi,
+    { baseUrl: 'https://video.example/v1', apiKey: 'k', model: 'seedance-2-fast' });
   await assert.rejects(ffmpegPath({ PATH: '' }), (error: unknown) => error instanceof MissingDependencyError);
 });
 

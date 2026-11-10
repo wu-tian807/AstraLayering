@@ -197,7 +197,7 @@ Nano 后处理保持第一张生成图的尺寸和比例；工作流仍负责后
 | --- | --- |
 | `video_base_url` | 视频服务地址，通常包含 `/v1`；支持 OpenAI Videos API 形式的图生视频 |
 | `video_api_key` | 视频服务密钥，账号须有相应模型权限 |
-| `nine_axis_view_video_model` | 支持 `seedance-2.5`、`seedance-2.0` 系列，默认 `seedance-2.5` |
+| `nine_axis_view_video_model` | 支持 Seedance 2.5／2.0 系列（模型 ID 为 `seedance-2.5`／`seedance-2`），默认 `seedance-2.5` |
 
 三个字段可在网页“管线配置 → 环境与模型 → 运行环境”编辑，也可在 skill 的 `.env` 设置。只运行到阴影时不要求视频配置；生图服务不能作为视频服务的后备。视频选帧还需要 ffmpeg，安装与便携路径见[九轴依赖说明](../nine-axis/README.md#依赖与视频配置)。
 

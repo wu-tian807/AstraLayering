@@ -13,6 +13,7 @@ import { preflightKrita } from './krita.ts';
 import { preflightFFmpeg } from './ffmpeg.ts';
 import { applyStepAction, applyTaskAction } from './step-actions.ts';
 import { taskLogName } from './log.ts';
+import { preflightTaskInputs } from './preflight-inputs.ts';
 
 export const help = [
   'live2d-maker — 制作、后台运行与恢复整条管线；与网页工作台的操作一一对应',
@@ -154,7 +155,8 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
     return;
   }
   if (parsed.action) {
-    // The same order as the workbench: Krita first, so a refused start changes no step.
+    await preflightTaskInputs(options);
+    // Complete startup checks before a recovery action changes any step.
     await preflightKrita(options);
     await preflightFFmpeg(options);
     console.log(parsed.action.section === undefined ? await applyTaskAction({ ...options, action: parsed.action.action })

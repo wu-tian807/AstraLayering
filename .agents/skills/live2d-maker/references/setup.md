@@ -42,9 +42,9 @@ pnpm install --frozen-lockfile
 | 人物／衣服 raster | 完整 part 输入、Krita、可用的显示环境与所选生图能力 |
 | 穿戴组装 | 人物素体 KRA、衣服 KRA、简化穿衣参考、Krita 与显示环境 |
 | 阴影 | 对应组装与参考、Krita 与显示环境；normal-depth 模式另需生图能力 |
-| 头部九轴 | 上游 KRA／PNG、Krita 与显示环境、ffmpeg；独立视频服务的 `video_base_url`、`video_api_key` 与 `nine_axis_view_video_model`，支持 `seedance-2.5`、`seedance-2.0` 系列 |
+| 头部九轴 | 上游 KRA／PNG、Krita 与显示环境、ffmpeg；独立视频服务的 `video_base_url`、`video_api_key` 与 `nine_axis_view_video_model`，支持 Seedance 2.5／2.0 系列（模型 ID 为 `seedance-2.5`／`seedance-2`） |
 
-总入口 `--live` 表示阴影完成后进入九轴 section。只有九轴需要 FFmpeg 和视频服务；网页在“全局设置 → FFmpeg 可执行文件”选择本机已安装或解压的文件，Krita 与 FFmpeg 均可手填路径、浏览或自动扫描后点选结果，扫描可查看进度并停止；CLI 使用 `--ffmpeg <完整路径>`。保存和启动时检查文件及 `-version`；程序不自动下载。视频配置支持 `seedance-2.5`／`seedance-2.0` 系列，见[九轴依赖与视频配置](../nine-axis/README.md#依赖与视频配置)。
+总入口 `--live` 表示阴影完成后进入九轴 section。只有九轴需要 FFmpeg 和视频服务；网页在“全局设置 → FFmpeg 可执行文件”选择本机已安装或解压的文件，Krita 与 FFmpeg 均可手填路径、浏览或自动扫描后点选结果，扫描可查看进度并停止；CLI 使用 `--ffmpeg <完整路径>`。保存和启动时检查文件及 `-version`；程序不自动下载。视频配置支持 Seedance 2.5／2.0 系列（模型 ID 为 `seedance-2.5`／`seedance-2`），见[九轴依赖与视频配置](../nine-axis/README.md#依赖与视频配置)。
 
 独立 section 的启动无状态：每次启动及续跑都传入 `--dir`、`--knowledge` 和该段需要的软件路径；九轴须传 `--krita` 与 `--ffmpeg`。全局设置由网页保存，作为新任务默认值；已有任务可在执行参数中修改 Krita 与 knowledge，由总控保存到任务根 `run.json`，调用方每次传给 section；section 只沿用工程、完成标记和绘制会话。九轴选帧使用 `extract_video_frame` 工具，由工具内部消费本次 FFmpeg 完整路径，agent 不查找可执行文件。本次路径也保留在兼容执行环境：`ASTRA_STUDIO_FFMPEG` 指向该文件，目录加入 PATH；不向制作提示词拼接路径或软件说明。
 

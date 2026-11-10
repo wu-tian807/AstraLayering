@@ -8,13 +8,21 @@ import { createWorkbench } from '../server.ts';
 import { scan } from '../krita-scan.ts';
 import { createSoftwareScan } from '../software-scan.ts';
 import { defaultKnowledgeDirectory } from '../../.agents/skills/live2d-maker/shared/knowledge.ts';
+import { preflightTaskInputs } from '../../.agents/skills/live2d-maker/workflow/preflight-inputs.ts';
+import { preflightKrita } from '../../.agents/skills/live2d-maker/workflow/krita.ts';
+import { preflightFFmpeg } from '../../.agents/skills/live2d-maker/workflow/ffmpeg.ts';
+import { loadWorkflowEnvironment } from '../../.agents/skills/live2d-maker/shared/codex/environment.ts';
 
 async function bench(t: any, started: any[] = [], scans: { kritaScan?: ReturnType<typeof createSoftwareScan>; ffmpegScan?: ReturnType<typeof createSoftwareScan> } = {}) {
   const base = await realpath(await mkdtemp(join(tmpdir(), 'layering-settings-')));
   const dir = join(base, 'runs');
   const kritaCheck = async (path: string) => { if (!path.endsWith('good-krita')) throw new Error('不存在或不可执行'); return { executable: path, version: 'test' }; };
   const ffmpegCheck = async (path: string) => { if (!path.endsWith('good-ffmpeg')) throw new Error('不是 FFmpeg'); return { executable: path, version: 'ffmpeg version test' }; };
-  const server = await createWorkbench({ defaultDir: dir, settingsPath: join(base, 'settings.json'), kritaCheck, ffmpegCheck, ...scans, start: async options => { started.push(options); return 1; } });
+  const server = await createWorkbench({ defaultDir: dir, settingsPath: join(base, 'settings.json'), kritaCheck, ffmpegCheck, ...scans,
+    preflight: async options => {
+      await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck);
+      await preflightTaskInputs(options, loadWorkflowEnvironment({ video_base_url: 'https://video.example/v1', video_api_key: 'fixture' }));
+    }, start: async options => { started.push(options); return 1; } });
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(async () => { await new Promise<void>(resolve => server.close(() => resolve())); await rm(base, { recursive: true, force: true }); });
   const url = 'http://127.0.0.1:' + (server.address() as any).port;
