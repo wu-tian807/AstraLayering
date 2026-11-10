@@ -1,6 +1,6 @@
 import { validateHeadNineAxis, nineAxisCapabilities, evaluatePoints } from './studio/nine-axis-model.js';
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from './studio/nine-axis-render.js';
-import { constrainHeadPoint, followHeadPointer, headPreviewAngles } from './head-motion.js';
+import { constrainHeadPoint, followHeadPointer, headPreviewAngles, headPointerPosition } from './head-motion.js';
 
 // One read-only thumbnail, using the same project selection and renderer as
 // Studio. The workflow's existing refresh supplies new intermediate products.
@@ -9,7 +9,7 @@ export class HeadPreview {
     this.current = { x: 0, y: 0 }; this.target = { x: 0, y: 0 }; this.epoch = 0;
     document.addEventListener('pointermove', event => {
       if (!this.doc || document.hidden || event.pointerType === 'touch') return;
-      const pointer = { x: event.clientX / innerWidth * 2 - 1, y: 1 - event.clientY / innerHeight * 2 };
+      const pointer = headPointerPosition(event.clientX, event.clientY, innerWidth, innerHeight);
       this.target = followHeadPointer(pointer, this.target, this.pointer); this.pointer = pointer; this.animate();
     }, { passive: true });
     document.addEventListener('pointerleave', () => { this.pointer = null; this.target = { x: 0, y: 0 }; this.animate(); });

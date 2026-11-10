@@ -1,6 +1,12 @@
 // Normalized display motion. Each half of Y bows the side limit inward;
 // cardinal and corner endpoints remain reachable. This never edits keyforms.
 const clamp = value => Math.max(-1, Math.min(1, value));
+export function headPointerPosition(x, y, width, height) {
+  // The edge poses can be reached within the page, without placing the
+  // pointer on the browser's outermost pixel or leaving the document.
+  const inset = Math.min(32, width / 4, height / 4);
+  return { x: clamp((x - width / 2) / (width / 2 - inset)), y: clamp((height / 2 - y) / (height / 2 - inset)) };
+}
 export const headSideLimit = y => 1 - 2 * Math.abs(y) * (1 - Math.abs(y));
 export function constrainHeadPoint(point) {
   const y = clamp(point.y), limit = headSideLimit(y);

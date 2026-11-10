@@ -1,8 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { constrainHeadPoint, followHeadPointer, headPreviewAngles, headSideLimit } from '../head-motion.js';
+import { constrainHeadPoint, followHeadPointer, headPreviewAngles, headSideLimit, headPointerPosition } from '../head-motion.js';
 
 test('display excludes side lobes while keeping neutral, cardinal and four corner poses', () => {
+  assert.deepEqual(headPointerPosition(720, 525, 1440, 1050), { x: 0, y: 0 });
+  for (const x of [1, 1439]) for (const y of [1, 1049]) {
+    assert.deepEqual(headPointerPosition(x, y, 1440, 1050), { x: x === 1 ? -1 : 1, y: y === 1 ? 1 : -1 });
+  }
   for (const x of [-1, 0, 1]) for (const y of [-1, 0, 1]) assert.deepEqual(constrainHeadPoint({ x, y }), { x, y });
   for (const y of [-.5, .5]) for (const x of [-1, 1]) assert.deepEqual(constrainHeadPoint({ x, y }), { x: x * .5, y });
   for (let i = 0; i <= 100; i++) {
