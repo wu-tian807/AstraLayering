@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/lotus_coupler/lower_ring_connector",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "1cbc4713cd57e18d43661dc4b81bacb3713172f0aebffe4c3a67b0e87a3101a6",
-  "afterHash": "0e2cf1ee61eede87603e1bd80bde4500ff974f032db6efc109723fe61e7902d6"
-}

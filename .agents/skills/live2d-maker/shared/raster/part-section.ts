@@ -5,7 +5,6 @@ import type { KritaSection } from './workflow.ts';
 import { dirname, join } from 'node:path';
 import { taskRootOf } from '../task-paths.ts';
 import { createReviewAnnotationTool } from './review-annotation.ts';
-import { createPixelTool } from './pixel-tool.ts';
 import { createStructureTools, validateRasterStructure } from './structure-tools.ts';
 import { readDressup } from '../part/dressup.ts';
 import { copyDelivery } from './passthrough.ts';
@@ -29,11 +28,7 @@ export function partRasterSection<T extends PartRasterDefinition>(definition: T)
     tools: (output, input, step, phase) => step.id === 'step01' && phase.startsWith('review-')
       ? [createReviewAnnotationTool(dirname(output), dirname(dirname(output)), join(output, 'review-evidence'))]
       : step.id === 'step01' && (phase === 'draw' || phase.startsWith('repair-'))
-        ? createStructureTools(input)
-      : step.id === 'step02' && phase === 'draw'
-        ? [createPixelTool(dirname(output), dirname(dirname(output)), join(output, 'pixel-review'), {
-          namespace: definition.id === 'raster-layering' ? 'character' : 'clothing',
-        })] : [],
+        ? createStructureTools(input) : [],
     deliveryWarnings: async (input, step) => {
       if (step.id !== 'step01') return [];
       try { await validateRasterStructure(input); return []; }

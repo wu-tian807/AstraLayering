@@ -1,108 +1,178 @@
-# 第二步逐层修改与复核记录
+# 第二步人物边缘精修与逐件验收
 
-2026-10-18。本表对应 `character-soft-edges-final.kra`，不对应旧阶段存档。
+交付：[KRA](character-soft-edges.kra) · [原尺寸透明 PNG](character-soft-edges.png) · [左参考／右最终整图](evidence/reference-final.png)。画布保持 **941×1672**，RGBA/U8；没有增加阴影、AO、投影或发光。第一步及上游文件未改写。本步没有调用生图。
 
-共 90 层；82 层有局部修画，8 层经放大对照后保留。两份日志合计 110 条操作、365 条手工选定笔刷路径。本次续作 77 条操作；历史存档已有 33 条。所有层均完成独显、隐藏上层和合成对照。
+## 实际输入与结构
 
-## 仍保留的限制
+- 输入 KRA：`../../raster-layering/step01/character-depth.kra`。
+- 先读的报告：`../../raster-layering/step01/report.md`，沿用 repair-02 后的有效版本。
+- 实际原图：`../../part-layering/references/base-subject.png`。始终使用原画布坐标，没有平移、缩放参考。
+- 形状及归属：`../../part-layering/parts/`。
+- 分组及深度：`../../part-layering/groups.json`、`../../part-layering/occlusion.json`。
+- 首次另存工作工程：`../../raster-layering/step02/workspace/character-soft-edges.kra`。各批实际修改均保存；正式工程是本目录的 `character-soft-edges.kra`。
 
-02、03 后长发的隐藏补全区，其发丝细节密度仍比原图可见发束略简化。局部硬接线、暖色残线已修整，已有柔光层次保留；没有为了增加密度重画整片发束。其他层本轮未发现需继续处理的明显残色或硬接缝。这里记录视觉判断，不把像素摘要或误差分数当作美术验收。
+65 个逻辑 part、69 个普通绘画分片、5 个眼口控制组及18个原生透明度蒙版沿用。61 个单深度件各保留一个完整绘画层；冠架、额饰、左右上睑四个多深度件仍分别含两个分片。同件 UUID、名称、层序、父级、继承透明度及默认显隐均保持。`neck`、`pelvis` 在上游 groups 中是无子项的可绘制 group ID，本步按输入 KRA 和 occlusion 中的原身份保留，没有改成新逻辑件。[结构核对](evidence/structure-verification.json)。
 
-参考图和工程均为 1024 × 1536；400% 图采用近邻放大，显示原始像素以便检查，不代表做过放大锐化。
+## 实际保留的修改
 
-## 图层明细
+1. **冠架、吊坠及髻饰。** 恢复冠面左右尖端、弧梁及角部原有银蓝笔触，补回先前 alpha 缺少的细尖；两侧冠吊饰恢复宝石、连接段和银边，降低生成纹理中的碎硬线。髻顶局部恢复原扇褶，髻饰和额饰可见面恢复本件金属细节。取样按本件局部选区原生 copy/paste，在原坐标接入；冠架61.5、额饰62的隐藏安装根均未修改。冠面和额饰前片与后根的搭接仍属于同一逻辑 part。
+2. **双上臂、前臂、掌部和十指，共16件。** 在本件原有肤色上续画细轮廓，对可见侧缘进行原生抗锯齿曲线修顺，局部包络变化约为亚像素至1px。用于补足极窄新增边的颜色只延续本件自己的邻近纹理，没有混入衣片、背景发面或相邻手指。指甲、掌褶及第一步修好的拇指根继续保留。肩、肘、腕和掌指的人工连接截面不新增横向暗线；连接根保留原始 alpha 与肤色，并通过原有蒙版自然拼接。
+3. **胸部、躯干和骨盆衣片。** 在实际外侧续接柔和灰蓝细边，并沿肩外缘局部补接柔和细线以消除亮边；胸片下方和 torso/pelvis 内部连接处不加重复轮廓。衣片自身明暗和原侧缝继续保留，骨盆腿口局部恢复原双边笔触。最后修顺衣片可见侧缘的单像素台阶，隐藏连接底图及18个蒙版不变。
+4. **双长发、双宽侧发及双细鬓发。** 长发和宽侧发的实际可见边缘局部恢复本件参考笔触，取样避开上层遮挡区。最终放大检查又修顺部分银发外缘的单像素台阶；只沿所属件轮廓调整 alpha 与极窄边色，保留内部发流、独立发梢、分叉和隐藏根。细鬓发保留第一步已经连续的灰边、亮芯和完整根梢，本步只修顺可见弯段的边界，不另贴背景发面。
 
-深度 00 为最底，89 为最顶。每行的「检查图」同时列出原图、Krita 独显及 Krita 隐藏上层状态。长发、腿部等大件拆成多段。
+最终共有 **31 个普通绘画层** 的像素发生修改；其余绘画层及全部原生蒙版的原始像素校验值未变。没有新增逻辑件或深度分片。
 
-| 深度 / 部件 | 状态 | 主要问题与处理 | 放大复核 / 保留项 |
-| --- | --- | --- | --- |
-| 00 [head_accessories/left_crown_ribbon/ribbon_tail](final-parts/head_accessories/left_crown_ribbon/ribbon_tail/full.png) | 已局部修画（2 条操作） | 飘带内缘肩部残褐线、长弧硬边；最终单层复查：飘带内缘残褐线的实际位置偏离上一笔<br>残褐线改为本带蓝色并局部混匀，长边分段柔化，带尖保留。；对照坐标放大图把短褐线改为该段蓝色，再柔化过渡。 | [检查图 1](review-final/00-0.png)<br>长边、弯折和带尖连续；内缘异色已清理，保留带面亮线。 未发现明显遗留问题。 |
-| 01 [head_accessories/right_crown_ribbon/ribbon_body](final-parts/head_accessories/right_crown_ribbon/ribbon_body/full.png) | 已局部修画（1 条操作） | 另一侧飘带边缘偏色与长弧阶梯<br>蓝色清理内缘残线，外缘按弯曲段落逐段轻扫。 | [检查图 1](review-final/01-0.png)<br>长边、弯折和带尖连续；内缘异色已清理，保留带面亮线。 未发现明显遗留问题。 |
-| 02 [hair/back_hair/main_right](final-parts/hair/back_hair/main_right/full.png) | 已局部修画（4 条操作） | 后长发三条补全接缝、偏色细线及长弧外缘；放大复核：长发三角补全区另一侧仍有细接线；最终单层复查：上部斜接线和手臂旁肤色残丝；最终复查：手指旁残色精确坐标修正<br>仅沿目视选出的接缝混合现有发色；外缘、细尾和内卷分段柔化，保留发丝明暗。；补处理未充分融开的左侧细线与根部短接线，保持长条发色变化。；按实际可见线逐段定位；斜线用局部模糊笔刷，肤色残丝手绘为本层紫灰色，补全交界补少量柔光。；逐个定位仍偏暖的像素段，以发束灰紫和亮部颜色覆盖后轻融。 | [检查图 1](review-final/02-0.png) · [检查图 2](review-final/02-1.png) · [检查图 3](review-final/02-2.png)<br>根部斜接线及臂手旁残色已复修；长弧、分叉和卷尾已对照。 **隐藏补全区的发丝细节密度仍比原图可见发束略简化；保留现有形体与发束布局，未整片重画。** |
-| 03 [hair/back_hair/main_left](final-parts/hair/back_hair/main_left/full.png) | 已局部修画（5 条操作） | 后长发补全接线、横向残线和边缘台阶；放大复核：三角接线另一侧及短横残线；最终单层复查：根部斜线与掌旁肤色点；最终复查：另一侧掌旁及前臂旁残色精确修正；最终复查：短横修补色痕偏深<br>独立处理左侧接线与残线，顺发束混色；细卷尾使用较窄过渡，不新增阴影。；逐条续接并清理短横残线，混合周围现有紫灰发色。；局部融开根部接线；逐笔替换灰紫发束上的暖色残片，保留发束自身明暗。；修正上一笔位于透明区的误差，直接覆盖仍可见暖色细线。；用周围紫灰发色替换偏深的短笔，再局部混合。 | [检查图 1](review-final/03-0.png) · [检查图 2](review-final/03-1.png) · [检查图 3](review-final/03-2.png)<br>根部斜接线及臂手旁残色已复修；长弧、分叉和卷尾已对照。 **隐藏补全区的发丝细节密度仍比原图可见发束略简化；保留现有形体与发束布局，未整片重画。** |
-| 04 [hair/back_hair/lock_right](final-parts/hair/back_hair/lock_right/full.png) | 已局部修画（1 条操作） | 右细长发束三处接缝及边缘台阶<br>逐条涂抹三处短接缝，长边与细尾分开使用不同笔宽。 | [检查图 1](review-final/04-0.png)<br>对照发丝线芯、外缘与隐藏根部；保留发束原有明暗和尖端。 未发现明显遗留问题。 |
-| 05 [hair/back_hair/lock_left](final-parts/hair/back_hair/lock_left/full.png) | 已局部修画（1 条操作） | 左细长发束补全接缝和发尾硬边<br>局部融开接线，按原图细发束保留线芯和尾尖。 | [检查图 1](review-final/05-0.png)<br>对照发丝线芯、外缘与隐藏根部；保留发束原有明暗和尖端。 未发现明显遗留问题。 |
-| 06 [hair/bun](final-parts/hair/bun/full.png) | 已局部修画（1 条操作） | 发髻外缘与底部补全连接碎线<br>柔化外缘，并局部融合底部碎线，不改变发髻轮廓。 | [检查图 1](review-final/06-0.png)<br>对照发丝线芯、外缘与隐藏根部；保留发束原有明暗和尖端。 未发现明显遗留问题。 |
-| 07 [hair/hair_cap](final-parts/hair/hair_cap/full.png) | 已局部修画（1 条操作） | 发底外缘深点、分缝线碎像素<br>清理底侧小深点；外缘和头顶分缝使用不同笔宽，保留补全发纹。 | [检查图 1](review-final/07-0.png)<br>对照发丝线芯、外缘与隐藏根部；保留发束原有明暗和尖端。 未发现明显遗留问题。 |
-| 08 [legs/leg_right/leg](final-parts/legs/leg_right/leg/full.png) | 已局部修画（2 条操作） | 腿部长弧外缘轻微台阶、踝端补全边过硬；最终单层复查：大腿补全区下缘细微亮度界线<br>按大腿、小腿及踝端不同段落使用窄过渡，不改变膝部已有明暗。；只在交界沿线混合已有肤色，保留原有亮部层次。 | [检查图 1](review-final/08-0.png) · [检查图 2](review-final/08-1.png) · [检查图 3](review-final/08-2.png)<br>上端补全、膝部、踝部和长边分段检查；交界保留连续肤色层次。 未发现明显遗留问题。 |
-| 09 [legs/leg_left/leg](final-parts/legs/leg_left/leg/full.png) | 已局部修画（2 条操作） | 腿部外缘阶梯、踝部横向衔接；最终单层复查：另一侧大腿补全交界<br>分段柔化长弧并在踝部小范围涂抹接线，保持原有肤色层次。；沿已确认交界局部涂抹，避免扩大到整条腿。 | [检查图 1](review-final/09-0.png) · [检查图 2](review-final/09-1.png) · [检查图 3](review-final/09-2.png)<br>上端补全、膝部、踝部和长边分段检查；交界保留连续肤色层次。 未发现明显遗留问题。 |
-| 10 [legs/leg_right/foot](final-parts/legs/leg_right/foot/full.png) | 已局部修画（1 条操作） | 脚背外缘台阶和趾尖硬边<br>脚背与脚趾分别采用不同窄笔宽，保留趾缝和甲面。 | [检查图 1](review-final/10-0.png)<br>踝部接入、趾尖和甲面分别检查，保留趾间线。 未发现明显遗留问题。 |
-| 11 [legs/leg_left/foot](final-parts/legs/leg_left/foot/full.png) | 已局部修画（1 条操作） | 脚踝直切补全端和外缘台阶<br>局部柔化踝端与脚缘，趾间深线只减弱过锐边缘。 | [检查图 1](review-final/11-0.png)<br>踝部接入、趾尖和甲面分别检查，保留趾间线。 未发现明显遗留问题。 |
-| 12 [pelvis](final-parts/pelvis/full.png) | 已局部修画（1 条操作） | 腰侧偏黑锯齿线及补全边硬切<br>腰侧残深色改为本衣灰紫色，保留原缝边；皮肤补全端只柔化边缘。 | [检查图 1](review-final/12-0.png) · [检查图 2](review-final/12-1.png)<br>服装缝边与拆分边分开检查；叠加后衣料轮廓和层次保持。 未发现明显遗留问题。 |
-| 13 [neck](final-parts/neck/full.png) | 已局部修画（1 条操作） | 颈部底缘和两侧半透明过渡不足<br>保留本层已有轻微柔光层次，仅柔化外缘。 | [检查图 1](review-final/13-0.png)<br>颈部独显和接入躯干均检查，原有浅肤色层次保留。 未发现明显遗留问题。 |
-| 14 [arms/arm_right/hand/index_finger](final-parts/arms/arm_right/hand/index_finger/full.png) | 已局部修画（3 条操作） | 食指外缘的残留深点和阶梯；400% 复查仍有零散深点；逐像素定位后复查：食指外侧尚余五个深色碎点<br>清理外侧碎点，保留本指弯曲处线条；逐段窄笔柔化。；提高局部覆盖和过渡力度，限于食指左侧边缘带。；只覆盖已目视定位的外侧碎点，内侧本指线保留。 | [检查图 1](review-final/14-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 15 [arms/arm_right/hand/middle_finger](final-parts/arms/arm_right/hand/middle_finger/full.png) | 已局部修画（3 条操作） | 中指根部深点与外缘台阶；400% 复查根部残色；逐像素定位后复查：中指根部外侧灰点<br>用本层肤色减淡根部碎点，柔化完整指缘。；对根部残线补画并融合外缘，不重复处理指甲。；补清顶侧灰点，不覆盖内侧弯曲线。 | [检查图 1](review-final/15-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 16 [arms/arm_right/hand/ring_finger](final-parts/arms/arm_right/hand/ring_finger/full.png) | 已局部修画（3 条操作） | 无名指根部原轮廓碎环；400% 复查指根碎环仍可辨；逐像素定位后复查：无名指根部外侧残环碎点<br>用柔笔覆盖碎环残色，并柔化两侧过渡；不改指节位置。；进一步用肤色减淡残环并融入周围指色。；沿原碎环位置补画肤色，再小范围柔化。 | [检查图 1](review-final/16-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 17 [arms/arm_right/hand/little_finger](final-parts/arms/arm_right/hand/little_finger/full.png) | 已局部修画（1 条操作） | 小指外缘硬阶梯<br>沿窄肤色边缘轻扫，保留原有轮廓和指尖。 | [检查图 1](review-final/17-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 18 [arms/arm_right/hand/thumb](final-parts/arms/arm_right/hand/thumb/full.png) | 已局部修画（1 条操作） | 拇指补全端硬边、甲缘过锐<br>仅在补全端减淡原线，保留指甲白色与外形。 | [检查图 1](review-final/18-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 19 [arms/arm_right/hand/palm](final-parts/arms/arm_right/hand/palm/full.png) | 已局部修画（2 条操作） | 手掌腕部残点、连接端硬边；最终单层复查：右掌腕侧一个灰紫残点<br>局部清点和掌缘柔化，掌内已有肤色层次保留。；小范围同肤色覆盖并柔化。 | [检查图 1](review-final/19-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 20 [arms/arm_right/forearm](final-parts/arms/arm_right/forearm/full.png) | 已局部修画（1 条操作） | 前臂补全区圆弧接缝、长边阶梯<br>只在肘部接缝小范围混色，沿长边分段柔化。 | [检查图 1](review-final/20-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 21 [arms/arm_right/upper_arm](final-parts/arms/arm_right/upper_arm/full.png) | 已局部修画（1 条操作） | 上臂腋下碎色和边缘阶梯<br>保留本臂腋侧线，局部回补碎色；柔化上下连接端。 | [检查图 1](review-final/21-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 22 [arms/arm_left/upper_arm](final-parts/arms/arm_left/upper_arm/full.png) | 已局部修画（1 条操作） | 上臂下端横向接缝、肩缘硬点<br>混合补全交界现有肤色，清理腋侧点状杂色并柔化轮廓。 | [检查图 1](review-final/22-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 23 [arms/arm_left/forearm](final-parts/arms/arm_left/forearm/full.png) | 已局部修画（1 条操作） | 左前臂腕端深色横线及外缘阶梯<br>用局部涂抹和浅肤色柔笔将硬线接顺，不新增光影。 | [检查图 1](review-final/23-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 24 [arms/arm_left/hand/little_finger](final-parts/arms/arm_left/hand/little_finger/full.png) | 已局部修画（1 条操作） | 小指外缘硬台阶<br>按原图指尖窄过渡处理两侧轮廓。 | [检查图 1](review-final/24-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 25 [arms/arm_left/hand/ring_finger](final-parts/arms/arm_left/hand/ring_finger/full.png) | 已局部修画（1 条操作） | 无名指补全根部硬点<br>本色减淡碎点，窄笔柔化指缘。 | [检查图 1](review-final/25-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 26 [arms/arm_left/hand/middle_finger](final-parts/arms/arm_left/hand/middle_finger/full.png) | 已局部修画（3 条操作） | 中指短边与残点；400% 复查中指根部孤立深点；逐像素定位后复查：中指外侧混入灰紫发色点<br>清理顶端碎线，并保留本指中段线芯。；局部回补肤色，柔化点状残线。；只替换外侧异物灰色，保留内侧属于本指的线。 | [检查图 1](review-final/26-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 27 [arms/arm_left/hand/index_finger](final-parts/arms/arm_left/hand/index_finger/full.png) | 已局部修画（1 条操作） | 食指弯曲处线条过锐<br>保留指弯浓淡，柔化线条外围及短端。 | [检查图 1](review-final/27-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 28 [arms/arm_left/hand/thumb](final-parts/arms/arm_left/hand/thumb/full.png) | 已局部修画（1 条操作） | 拇指根部杂色线及甲缘硬点<br>以本层肤色清理根部原轮廓残片，保留甲面。 | [检查图 1](review-final/28-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 29 [arms/arm_left/hand/palm](final-parts/arms/arm_left/hand/palm/full.png) | 已局部修画（1 条操作） | 手掌腕部直切口与外缘硬线<br>分别轻扫补全端与可见掌缘，不改变手掌形状。 | [检查图 1](review-final/29-0.png)<br>独显检查连接端及残色；隐藏上层检查补全，合成检查手臂与手指衔接。 未发现明显遗留问题。 |
-| 30 [body/torso](final-parts/body/torso/full.png) | 已局部修画（1 条操作） | 领根水平边和腰侧线条过锐<br>领根用窄过渡接入颈部；柔化肩缘、补全轮廓与衣领已有线。 | [检查图 1](review-final/30-0.png)<br>服装缝边与拆分边分开检查；叠加后衣料轮廓和层次保持。 未发现明显遗留问题。 |
-| 31 [body/breast](final-parts/body/breast/full.png) | 已局部修画（1 条操作） | 胸部拆分外缘过硬、衣领线锐利<br>柔化本层补全边和下缘衔接，只轻扫原有衣领线。 | [检查图 1](review-final/31-0.png)<br>服装缝边与拆分边分开检查；叠加后衣料轮廓和层次保持。 未发现明显遗留问题。 |
-| 32 [legs/leg_right/ankle_gem](final-parts/legs/leg_right/ankle_gem/full.png) | 已局部修画（1 条操作） | 踝部宝石边角的像素硬点<br>保留宝石切面和银边，只柔化周界。 | [检查图 1](review-final/32-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 33 [legs/leg_left/ankle_gem](final-parts/legs/leg_left/ankle_gem/full.png) | 已局部修画（1 条操作） | 踝部宝石外边硬点<br>按同位置原图的短过渡柔化边角。 | [检查图 1](review-final/33-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 34 [legs/leg_right/anklet/outer_chain](final-parts/legs/leg_right/anklet/outer_chain/full.png) | 已局部修画（1 条操作） | 外侧细链的端点与斜段硬点<br>低力度轻扫链边，不把链节混成粗线。 | [检查图 1](review-final/34-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 35 [legs/leg_right/anklet/inner_chain](final-parts/legs/leg_right/anklet/inner_chain/full.png) | 已局部修画（1 条操作） | 内侧细链的细小台阶<br>保留银色节奏，仅柔化斜向线边。 | [检查图 1](review-final/35-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 36 [legs/leg_right/anklet/gem_pendant](final-parts/legs/leg_right/anklet/gem_pendant/full.png) | 已局部修画（1 条操作） | 踝链泪滴外缘台阶<br>沿边缘处理，尖端用原有过渡保形。 | [检查图 1](review-final/36-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 37 [legs/leg_right/anklet/central_connector](final-parts/legs/leg_right/anklet/central_connector/full.png) | 已局部修画（1 条操作） | 链中央连接件尖点<br>仅轻扫连接件周界。 | [检查图 1](review-final/37-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 38 [legs/leg_left/anklet/ankle_chain](final-parts/legs/leg_left/anklet/ankle_chain/full.png) | 已局部修画（1 条操作） | 左踝链两侧细阶梯<br>两侧分开轻扫，保留链节间的透明空隙。 | [检查图 1](review-final/38-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 39 [legs/leg_left/anklet/center_link](final-parts/legs/leg_left/anklet/center_link/full.png) | 已局部修画（1 条操作） | 小连接环边缘硬点<br>不扩大连接环，轻柔处理外缘。 | [检查图 1](review-final/39-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 40 [legs/leg_left/anklet/teardrop_pendant](final-parts/legs/leg_left/anklet/teardrop_pendant/full.png) | 已局部修画（1 条操作） | 泪滴坠外缘台阶<br>保留银蓝层次并柔化短斜边。 | [检查图 1](review-final/40-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 41 [head_accessories/left_earring/suspension_chain](final-parts/head_accessories/left_earring/suspension_chain/full.png) | 已局部修画（1 条操作） | 耳链连接处的硬点<br>保留细链分节，只柔化连接端。 | [检查图 1](review-final/41-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 42 [head_accessories/right_earring/suspension_chain](final-parts/head_accessories/right_earring/suspension_chain/full.png) | 已局部修画（1 条操作） | 耳链连接处的硬点<br>按另一侧原画的细链宽度收敛端点硬度。 | [检查图 1](review-final/42-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 43 [head_accessories/left_earring/sapphire_pendant](final-parts/head_accessories/left_earring/sapphire_pendant/full.png) | 已局部修画（1 条操作） | 蓝坠外侧阶梯<br>仅沿银蓝外边缘处理，保留内部已有切面。 | [检查图 1](review-final/43-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 44 [head_accessories/right_earring/sapphire_pendant](final-parts/head_accessories/right_earring/sapphire_pendant/full.png) | 已局部修画（1 条操作） | 蓝坠外侧阶梯<br>按原图吊坠外缘的短过渡柔化。 | [检查图 1](review-final/44-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 45 [head_accessories/left_earring/ear_stud](final-parts/head_accessories/left_earring/ear_stud/full.png) | 已局部修画（1 条操作） | 耳钉外缘深色端点<br>保留银色中心，仅柔化周界。 | [检查图 1](review-final/45-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 46 [head_accessories/right_earring/ear_stud](final-parts/head_accessories/right_earring/ear_stud/full.png) | 已局部修画（1 条操作） | 耳钉外缘硬点<br>细小金属部件使用较窄过渡。 | [检查图 1](review-final/46-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 47 [face/ear_right](final-parts/face/ear_right/full.png) | 已局部修画（2 条操作） | 耳轮碎线与耳垂的偏色点；最终独显复核：耳垂仍有耳饰偏色点<br>耳垂杂点改为相邻耳皮肤颜色；耳轮原有线条局部柔化。；以耳皮肤颜色补清残点，再融合边缘。 | [检查图 1](review-final/47-0.png)<br>耳缘、脸颊和下颌柔化；补全区保持肤色渐变。 未发现明显遗留问题。 |
-| 48 [face/ear_left](final-parts/face/ear_left/full.png) | 已局部修画（2 条操作） | 耳轮硬边与耳垂杂色；最终独显复核：耳垂底部零碎残色<br>保留内耳原有明暗，不新增阴影；清理贴近耳钉的异色碎点。；局部补清耳饰残色，保留内耳线。 | [检查图 1](review-final/48-0.png)<br>耳缘、脸颊和下颌柔化；补全区保持肤色渐变。 未发现明显遗留问题。 |
-| 49 [face/face_base](final-parts/face/face_base/full.png) | 已局部修画（4 条操作） | 脸底横向补全接缝；下颌左侧台阶；脸底外缘阶梯、可见区与补全区交界；最终复核：颊侧残线和下颌斜段仍略硬<br>以局部 Blender Blur 沿已目视定位的交界轻扫，不处理整层。；沿原有下颌边缘局部柔化，不改下巴轮廓。；按额头、颊侧和下颌分别设定窄笔宽；只在横向接缝局部混色，保留腮红层次。；仅补清颊侧残线并柔化下颌；在原横向交界窄范围继续混色。 | [检查图 1](review-final/49-0.png)<br>耳缘、脸颊和下颌柔化；补全区保持肤色渐变。 未发现明显遗留问题。 |
-| 50 [face/eye_left/sclera](final-parts/face/eye_left/sclera/full.png) | 已局部修画（2 条操作） | 眼白杏仁外缘硬线；独显复核：眼白下沿残留眼睑杂色点<br>下眼白使用略宽过渡，保留杏仁形。；用眼白本色减淡残点，保留上部蓝灰层次。 | [检查图 1](review-final/50-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 51 [face/eye_right/sclera](final-parts/face/eye_right/sclera/full.png) | 已局部修画（2 条操作） | 眼白下沿阶梯；独显复核：眼白下沿少量偏灰残点<br>局部柔化上下边缘，不改变眼白色。；清理眼白底缘，不改变杏仁形及位置。 | [检查图 1](review-final/51-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 52 [face/eye_left/iris](final-parts/face/eye_left/iris/full.png) | 已局部修画（1 条操作） | 虹膜圆周过锐<br>只处理圆周，保留瞳孔及虹膜内部原有细节。 | [检查图 1](review-final/52-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 53 [face/eye_right/iris](final-parts/face/eye_right/iris/full.png) | 已局部修画（1 条操作） | 虹膜圆周过锐<br>沿同侧原画的圆周柔度处理。 | [检查图 1](review-final/53-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 54 [face/eye_left/highlight](final-parts/face/eye_left/highlight/full.png) | 检查后保留（0 条操作） | 高光已有柔和半透明过渡；继续涂抹会损失亮点，因此保留。<br>保留原像素。 | [检查图 1](review-final/54-0.png)<br>高光已有柔和半透明过渡；继续涂抹会损失亮点，因此保留。 未发现明显遗留问题。 |
-| 55 [face/eye_right/highlight](final-parts/face/eye_right/highlight/full.png) | 检查后保留（0 条操作） | 高光已有柔和半透明过渡；继续涂抹会损失亮点，因此保留。<br>保留原像素。 | [检查图 1](review-final/55-0.png)<br>高光已有柔和半透明过渡；继续涂抹会损失亮点，因此保留。 未发现明显遗留问题。 |
-| 56 [face/eye_left/lower_eyelashes](final-parts/face/eye_left/lower_eyelashes/full.png) | 已局部修画（1 条操作） | 下睫毛孤立深色像素<br>保持睫毛存在感，只轻扫短端点。 | [检查图 1](review-final/56-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 57 [face/eye_left/lower_eyelid](final-parts/face/eye_left/lower_eyelid/full.png) | 已局部修画（1 条操作） | 下眼睑细线台阶<br>浅色眼睑线比上睑用更窄更轻的笔。 | [检查图 1](review-final/57-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 58 [face/eye_right/lower_eyelid](final-parts/face/eye_right/lower_eyelid/full.png) | 已局部修画（1 条操作） | 下眼睑细线台阶<br>保留细线原有浓淡，柔化斜段。 | [检查图 1](review-final/58-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 59 [face/eye_left/upper_eyelid](final-parts/face/eye_left/upper_eyelid/full.png) | 已局部修画（1 条操作） | 上眼线外缘与眼尾过硬<br>保留深色线芯，外缘和两端分开轻扫。 | [检查图 1](review-final/59-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 60 [face/eye_right/upper_eyelid](final-parts/face/eye_right/upper_eyelid/full.png) | 已局部修画（1 条操作） | 上眼线硬轮廓<br>保留原有粗细，不扩大眼线或增加眼影。 | [检查图 1](review-final/60-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 61 [face/eye_left/eyelid_crease](final-parts/face/eye_left/eyelid_crease/full.png) | 已局部修画（1 条操作） | 双眼皮弧线碎点<br>浅色短弧以窄笔柔化。 | [检查图 1](review-final/61-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 62 [face/eye_right/eyelid_crease](final-parts/face/eye_right/eyelid_crease/full.png) | 已局部修画（1 条操作） | 双眼皮短线台阶<br>柔化现有线条，不加新褶皱。 | [检查图 1](review-final/62-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 63 [face/eyebrow_left](final-parts/face/eyebrow_left/full.png) | 已局部修画（1 条操作） | 眉弓和眉梢过硬<br>依原画灰紫眉毛的柔边收敛硬碎线。 | [检查图 1](review-final/63-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 64 [face/eyebrow_right](final-parts/face/eyebrow_right/full.png) | 已局部修画（1 条操作） | 眉梢台阶<br>眉梢较轻，保留原眉形和颜色。 | [检查图 1](review-final/64-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 65 [face/nose](final-parts/face/nose/full.png) | 已局部修画（1 条操作） | 鼻部高光和小线边缘<br>仅柔化已存在的高光及鼻部短线。 | [检查图 1](review-final/65-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 66 [face/mouth/mouth_interior](final-parts/face/mouth/mouth_interior/full.png) | 已局部修画（1 条操作） | 口腔外缘台阶<br>保留内部粉色层次和形状，只沿外缘处理。 | [检查图 1](review-final/66-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 67 [face/mouth/tongue](final-parts/face/mouth/tongue/full.png) | 已局部修画（1 条操作） | 舌部与口腔衔接硬边<br>局部混合现有舌色与其边缘透明度，不画新的明暗。 | [检查图 1](review-final/67-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 68 [face/mouth/lower_teeth](final-parts/face/mouth/lower_teeth/full.png) | 已局部修画（1 条操作） | 下牙带短边过直<br>隐藏牙带用窄笔处理，不改变位置。 | [检查图 1](review-final/68-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 69 [face/mouth/upper_teeth](final-parts/face/mouth/upper_teeth/full.png) | 已局部修画（1 条操作） | 上牙带尖端硬点<br>保留牙带和透明区域，只柔化端点。 | [检查图 1](review-final/69-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 70 [face/mouth/lower_lip](final-parts/face/mouth/lower_lip/full.png) | 已局部修画（2 条操作） | 下唇弧线过硬；合成复核：下唇线比参考略锐<br>让粉色唇缘向透明度轻柔过渡。；低力度柔化唇缘中段，保持颜色和表情。 | [检查图 1](review-final/70-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 71 [face/mouth/upper_lip](final-parts/face/mouth/upper_lip/full.png) | 已局部修画（1 条操作） | 上唇唇峰碎线<br>只柔化原线，不改变表情或开口。 | [检查图 1](review-final/71-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 72 [head_accessories/forehead_ornament/teardrop_pendant](final-parts/head_accessories/forehead_ornament/teardrop_pendant/full.png) | 已局部修画（1 条操作） | 额前泪滴外缘硬点<br>保留细吊坠尖端，过渡比皮肤边缘窄。 | [检查图 1](review-final/72-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 73 [head_accessories/forehead_ornament/upper_sapphire_mount](final-parts/head_accessories/forehead_ornament/upper_sapphire_mount/full.png) | 已局部修画（1 条操作） | 额前宝石边框台阶<br>只处理银蓝边框，内部明暗不重画。 | [检查图 1](review-final/73-0.png)<br>以原图同部位检查线条粗细、浓淡及边缘过渡；保留五官线芯。 未发现明显遗留问题。 |
-| 74 [head_accessories/left_crown_ribbon/jeweled_suspension/crown_connector](final-parts/head_accessories/left_crown_ribbon/jeweled_suspension/crown_connector/full.png) | 检查后保留（0 条操作） | 小连接件已具备半透明边缘；400% 对照后保留原像素。<br>保留原像素。 | [检查图 1](review-final/74-0.png)<br>小连接件已具备半透明边缘；400% 对照后保留原像素。 未发现明显遗留问题。 |
-| 75 [head_accessories/right_crown_ribbon/gem_suspension/crown_gem_link](final-parts/head_accessories/right_crown_ribbon/gem_suspension/crown_gem_link/full.png) | 检查后保留（0 条操作） | 小连接件已具备半透明边缘；400% 对照后保留原像素。<br>保留原像素。 | [检查图 1](review-final/75-0.png)<br>小连接件已具备半透明边缘；400% 对照后保留原像素。 未发现明显遗留问题。 |
-| 76 [head_accessories/left_crown_ribbon/jeweled_suspension/inter_gem_connector](final-parts/head_accessories/left_crown_ribbon/jeweled_suspension/inter_gem_connector/full.png) | 检查后保留（0 条操作） | 小连接件已具备半透明边缘；400% 对照后保留原像素。<br>保留原像素。 | [检查图 1](review-final/76-0.png)<br>小连接件已具备半透明边缘；400% 对照后保留原像素。 未发现明显遗留问题。 |
-| 77 [head_accessories/right_crown_ribbon/gem_suspension/inter_gem_link](final-parts/head_accessories/right_crown_ribbon/gem_suspension/inter_gem_link/full.png) | 检查后保留（0 条操作） | 小连接件已具备半透明边缘；400% 对照后保留原像素。<br>保留原像素。 | [检查图 1](review-final/77-0.png)<br>小连接件已具备半透明边缘；400% 对照后保留原像素。 未发现明显遗留问题。 |
-| 78 [head_accessories/left_crown_ribbon/jeweled_suspension/ribbon_connector](final-parts/head_accessories/left_crown_ribbon/jeweled_suspension/ribbon_connector/full.png) | 检查后保留（0 条操作） | 小连接件已具备半透明边缘；400% 对照后保留原像素。<br>保留原像素。 | [检查图 1](review-final/78-0.png)<br>小连接件已具备半透明边缘；400% 对照后保留原像素。 未发现明显遗留问题。 |
-| 79 [head_accessories/right_crown_ribbon/gem_suspension/gem_ribbon_link](final-parts/head_accessories/right_crown_ribbon/gem_suspension/gem_ribbon_link/full.png) | 检查后保留（0 条操作） | 小连接件已具备半透明边缘；400% 对照后保留原像素。<br>保留原像素。 | [检查图 1](review-final/79-0.png)<br>小连接件已具备半透明边缘；400% 对照后保留原像素。 未发现明显遗留问题。 |
-| 80 [head_accessories/left_crown_ribbon/jeweled_suspension/upper_gem](final-parts/head_accessories/left_crown_ribbon/jeweled_suspension/upper_gem/full.png) | 已局部修画（1 条操作） | 上吊宝石斜边硬点<br>只沿外缘处理，保留中心亮面。 | [检查图 1](review-final/80-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 81 [head_accessories/right_crown_ribbon/gem_suspension/upper_diamond_gem](final-parts/head_accessories/right_crown_ribbon/gem_suspension/upper_diamond_gem/full.png) | 已局部修画（1 条操作） | 上吊宝石外缘阶梯<br>窄笔降低尖角锯齿。 | [检查图 1](review-final/81-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 82 [head_accessories/left_crown_ribbon/jeweled_suspension/lower_gem](final-parts/head_accessories/left_crown_ribbon/jeweled_suspension/lower_gem/full.png) | 已局部修画（1 条操作） | 下吊宝石外缘硬点<br>保留小宝石清晰度，只处理尖端过渡。 | [检查图 1](review-final/82-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 83 [head_accessories/right_crown_ribbon/gem_suspension/lower_diamond_gem](final-parts/head_accessories/right_crown_ribbon/gem_suspension/lower_diamond_gem/full.png) | 已局部修画（1 条操作） | 下吊宝石斜边台阶<br>轻扫外边，不重画内部切面。 | [检查图 1](review-final/83-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 84 [head_accessories/left_crown_ribbon/ribbon_head](final-parts/head_accessories/left_crown_ribbon/ribbon_head/full.png) | 已局部修画（1 条操作） | 飘带头银边及 V 形线过锐<br>外缘与银色折线分开处理；保留亮线。 | [检查图 1](review-final/84-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 85 [head_accessories/right_crown_ribbon/ribbon_head](final-parts/head_accessories/right_crown_ribbon/ribbon_head/full.png) | 已局部修画（1 条操作） | 飘带头外缘及折线硬点<br>窄笔柔化银边，连接位置保持原样。 | [检查图 1](review-final/85-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 86 [head_accessories/crown_frame](final-parts/head_accessories/crown_frame/full.png) | 已局部修画（1 条操作） | 冠框弧线与尖角外缘偏硬<br>弧线、花纹尖端分开用窄笔，保留金属银边亮度。 | [检查图 1](review-final/86-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
-| 87 [hair/side_hair_right](final-parts/hair/side_hair_right/full.png) | 已局部修画（2 条操作） | 侧发根部深色残点、发丝外缘偏锐；最终单层复查：侧发边缘的额饰蓝色残片<br>清理冠饰交界残点，细发丝用更窄笔，保留原线芯。；蓝色残片改成邻近发束紫灰色，不改透明轮廓。 | [检查图 1](review-final/87-0.png)<br>对照发丝线芯、外缘与隐藏根部；保留发束原有明暗和尖端。 未发现明显遗留问题。 |
-| 88 [hair/side_hair_left](final-parts/hair/side_hair_left/full.png) | 已局部修画（1 条操作） | 侧发根部冠饰残点和发丝硬边<br>仅清除根部异色碎点，柔化发缘与细发丝，不改额前形状。 | [检查图 1](review-final/88-0.png)<br>对照发丝线芯、外缘与隐藏根部；保留发束原有明暗和尖端。 未发现明显遗留问题。 |
-| 89 [head_accessories/lotus_ornament](final-parts/head_accessories/lotus_ornament/full.png) | 已局部修画（1 条操作） | 莲花外缘细碎亮点和中心瓣线偏锐<br>保留瓣层次，外轮廓轻扫，中心银线更轻处理。 | [检查图 1](review-final/89-0.png)<br>宝石、金属边与连接处逐件检查；保留原有亮点，轻柔化硬点和外缘。 未发现明显遗留问题。 |
+## 局部对照与撤回试修
+
+下列四列均为同坐标、原尺寸：**参考／第一步组装／最终组装／最终本件独显**。报告概览仅用于导航，独显原文件保留完整画布和原始像素。
+
+- 冠架：[对照](evidence/crown.png)；髻饰：[对照](evidence/bun-ornament.png)；额饰：[对照](evidence/forehead.png)。
+- 右前臂：[对照](evidence/arm-right.png)；左前臂：[对照](evidence/arm-left.png)；双掌：[右](evidence/palm-right.png)／[左](evidence/palm-left.png)。
+- 衣片：[torso](evidence/torso.png)／[breast](evidence/breast.png)／[pelvis](evidence/pelvis.png)。
+- 长发：[右](evidence/hair-right.png)／[左](evidence/hair-left.png)；宽侧发：[右](evidence/side-right.png)／[左](evidence/side-left.png)。
+
+![冠架局部四列对照](evidence/crown.png)
+
+![右前臂局部四列对照](evidence/arm-right.png)
+
+试修中检查到的矩形接色、皮肤边条带、根部横向闭合描边均已撤回，没有作为最终绘画保留。双腿参考边条试贴也已撤回，原始腿层像素不变。两束长发隐藏根曾试用本件材质平移衔接，独显检查发现其发流不如输入自然，已撤回该平移试修；最终隐藏根仍沿用输入的本件笔触。最终保留的是明确属于本件的局部取样、侧线和边缘修顺。
+
+## 逐件检查覆盖
+
+每件均查看了完整独显（停用显隐蒙版、无底件时停用继承透明度）、默认组装以及隐藏其上层的局部关系；覆盖整圈轮廓、补全根端、尖梢和邻件接缝。原尺寸检查结构和线宽，放大检查细线、异色点及单像素边界。人工连接截面以连续自身材质为准，不人为加一圈会在组装时显出的横线。
+
+独显总览：[1](evidence/parts-01.jpg) · [2](evidence/parts-02.jpg) · [3](evidence/parts-03.jpg) · [4](evidence/parts-04.jpg) · [5](evidence/parts-05.jpg) · [6](evidence/parts-06.jpg) · [7](evidence/parts-07.jpg) · [8](evidence/parts-08.jpg) · [9](evidence/parts-09.jpg)。
+
+隐藏上层总览：[1](evidence/reveal-01.jpg) · [2](evidence/reveal-02.jpg) · [3](evidence/reveal-03.jpg) · [4](evidence/reveal-04.jpg) · [5](evidence/reveal-05.jpg) · [6](evidence/reveal-06.jpg) · [7](evidence/reveal-07.jpg) · [8](evidence/reveal-08.jpg) · [9](evidence/reveal-09.jpg)。后踝链、下牙在默认控制下仍隐藏，完整绘画在独显中可见。[全部蒙版停用检查](evidence/all-masks-off.png)。
+
+| 逻辑 part | 深度 | 覆盖及最终处理 | 原尺寸视图 |
+|---|---|---|---|
+| `hair/back_hair/long_hair_right` | 1 | 根、纵向发流、分叉、细梢、外缘；局部参考边色与曲线修顺 | [独显](evidence/parts/hair__back_hair__long_hair_right--isolated.png)／[隐藏上层](evidence/parts/hair__back_hair__long_hair_right--reveal.png) |
+| `hair/back_hair/long_hair_left` | 2 | 根、纵向发流、分叉、细梢、外缘；局部参考边色与曲线修顺 | [独显](evidence/parts/hair__back_hair__long_hair_left--isolated.png)／[隐藏上层](evidence/parts/hair__back_hair__long_hair_left--reveal.png) |
+| `hair/back_hair/cap` | 3 | 完整后枕、两侧及下摆；保留已合格纹理 | [独显](evidence/parts/hair__back_hair__cap--isolated.png)／[隐藏上层](evidence/parts/hair__back_hair__cap--reveal.png) |
+| `hair/bun` | 4 | 扇形外轮廓及底根；髻顶局部笔触恢复 | [独显](evidence/parts/hair__bun--isolated.png)／[隐藏上层](evidence/parts/hair__bun--reveal.png) |
+| `head_accessories/crown_pendants/crown_pendant_right` | 5 | 安装端、宝石、银边、下尖；可见段本件笔触恢复 | [独显](evidence/parts/head_accessories__crown_pendants__crown_pendant_right--isolated.png)／[隐藏上层](evidence/parts/head_accessories__crown_pendants__crown_pendant_right--reveal.png) |
+| `head_accessories/crown_pendants/crown_pendant_left` | 6 | 安装端、宝石、银边、下尖；可见段本件笔触恢复 | [独显](evidence/parts/head_accessories__crown_pendants__crown_pendant_left--isolated.png)／[隐藏上层](evidence/parts/head_accessories__crown_pendants__crown_pendant_left--reveal.png) |
+| `legs/leg_right/anklet_back` | 7 | 珠粒、细链及透明孔；保持前后链独立与默认控制 | [独显](evidence/parts/legs__leg_right__anklet_back--isolated.png)／[隐藏上层](evidence/parts/legs__leg_right__anklet_back--reveal.png) |
+| `legs/leg_left/anklet_back` | 8 | 珠粒、细链及透明孔；保持前后链独立与默认控制 | [独显](evidence/parts/legs__leg_left__anklet_back--isolated.png)／[隐藏上层](evidence/parts/legs__leg_left__anklet_back--reveal.png) |
+| `legs/leg_right/leg` | 9 | 大腿补根、膝踝、足侧、趾缝、足背链；保留原层像素 | [独显](evidence/parts/legs__leg_right__leg--isolated.png)／[隐藏上层](evidence/parts/legs__leg_right__leg--reveal.png) |
+| `legs/leg_left/leg` | 10 | 大腿补根、膝踝、足侧、趾缝、足背链；保留原层像素 | [独显](evidence/parts/legs__leg_left__leg--isolated.png)／[隐藏上层](evidence/parts/legs__leg_left__leg--reveal.png) |
+| `legs/leg_right/anklet_front` | 11 | 珠粒、细链及透明孔；保持前后链独立与默认控制 | [独显](evidence/parts/legs__leg_right__anklet_front--isolated.png)／[隐藏上层](evidence/parts/legs__leg_right__anklet_front--reveal.png) |
+| `legs/leg_left/anklet_front` | 12 | 珠粒、细链及透明孔；保持前后链独立与默认控制 | [独显](evidence/parts/legs__leg_left__anklet_front--isolated.png)／[隐藏上层](evidence/parts/legs__leg_left__anklet_front--reveal.png) |
+| `pelvis` | 13 | 隐藏上根、侧缝、双腿口及下尖；外缘与腿口细边修画 | [独显](evidence/parts/pelvis--isolated.png)／[隐藏上层](evidence/parts/pelvis--reveal.png) |
+| `arms/arm_right/hand/little_finger` | 14 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_right__hand__little_finger--isolated.png)／[隐藏上层](evidence/parts/arms__arm_right__hand__little_finger--reveal.png) |
+| `arms/arm_right/hand/ring_finger` | 15 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_right__hand__ring_finger--isolated.png)／[隐藏上层](evidence/parts/arms__arm_right__hand__ring_finger--reveal.png) |
+| `arms/arm_right/hand/middle_finger` | 16 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_right__hand__middle_finger--isolated.png)／[隐藏上层](evidence/parts/arms__arm_right__hand__middle_finger--reveal.png) |
+| `arms/arm_right/hand/index_finger` | 17 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_right__hand__index_finger--isolated.png)／[隐藏上层](evidence/parts/arms__arm_right__hand__index_finger--reveal.png) |
+| `arms/arm_right/hand/thumb` | 18 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_right__hand__thumb--isolated.png)／[隐藏上层](evidence/parts/arms__arm_right__hand__thumb--reveal.png) |
+| `arms/arm_right/upper_arm` | 19 | 整臂、完整补根、肩/肘/腕重叠；侧线续接且保留连接截面材质 | [独显](evidence/parts/arms__arm_right__upper_arm--isolated.png)／[隐藏上层](evidence/parts/arms__arm_right__upper_arm--reveal.png) |
+| `arms/arm_right/forearm` | 20 | 整臂、完整补根、肩/肘/腕重叠；侧线续接且保留连接截面材质 | [独显](evidence/parts/arms__arm_right__forearm--isolated.png)／[隐藏上层](evidence/parts/arms__arm_right__forearm--reveal.png) |
+| `arms/arm_right/hand/palm` | 21 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_right__hand__palm--isolated.png)／[隐藏上层](evidence/parts/arms__arm_right__hand__palm--reveal.png) |
+| `arms/arm_left/forearm` | 22 | 整臂、完整补根、肩/肘/腕重叠；侧线续接且保留连接截面材质 | [独显](evidence/parts/arms__arm_left__forearm--isolated.png)／[隐藏上层](evidence/parts/arms__arm_left__forearm--reveal.png) |
+| `arms/arm_left/upper_arm` | 23 | 整臂、完整补根、肩/肘/腕重叠；侧线续接且保留连接截面材质 | [独显](evidence/parts/arms__arm_left__upper_arm--isolated.png)／[隐藏上层](evidence/parts/arms__arm_left__upper_arm--reveal.png) |
+| `arms/arm_left/hand/index_finger` | 24 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_left__hand__index_finger--isolated.png)／[隐藏上层](evidence/parts/arms__arm_left__hand__index_finger--reveal.png) |
+| `arms/arm_left/hand/middle_finger` | 25 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_left__hand__middle_finger--isolated.png)／[隐藏上层](evidence/parts/arms__arm_left__hand__middle_finger--reveal.png) |
+| `arms/arm_left/hand/little_finger` | 26 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_left__hand__little_finger--isolated.png)／[隐藏上层](evidence/parts/arms__arm_left__hand__little_finger--reveal.png) |
+| `arms/arm_left/hand/ring_finger` | 27 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_left__hand__ring_finger--isolated.png)／[隐藏上层](evidence/parts/arms__arm_left__hand__ring_finger--reveal.png) |
+| `arms/arm_left/hand/thumb` | 28 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_left__hand__thumb--isolated.png)／[隐藏上层](evidence/parts/arms__arm_left__hand__thumb--reveal.png) |
+| `arms/arm_left/hand/palm` | 29 | 整件根梢、甲缘/掌褶、叠指与腕掌连接；本件侧缘修顺 | [独显](evidence/parts/arms__arm_left__hand__palm--isolated.png)／[隐藏上层](evidence/parts/arms__arm_left__hand__palm--reveal.png) |
+| `neck` | 30 | 完整颈根、两侧与底尖；保留原层像素 | [独显](evidence/parts/neck--isolated.png)／[隐藏上层](evidence/parts/neck--reveal.png) |
+| `body/torso` | 31 | 整片衣面、隐藏结构、领口/侧线及邻件衔接；可见外缘细线修画 | [独显](evidence/parts/body__torso--isolated.png)／[隐藏上层](evidence/parts/body__torso--reveal.png) |
+| `body/breast` | 32 | 整片衣面、隐藏结构、领口/侧线及邻件衔接；可见外缘细线修画 | [独显](evidence/parts/body__breast--isolated.png)／[隐藏上层](evidence/parts/body__breast--reveal.png) |
+| `head_accessories/earrings/earring_right` | 33 | 安装端、细节、长坠及尖梢；保留原层像素 | [独显](evidence/parts/head_accessories__earrings__earring_right--isolated.png)／[隐藏上层](evidence/parts/head_accessories__earrings__earring_right--reveal.png) |
+| `head_accessories/earrings/earring_left` | 34 | 安装端、细节、长坠及尖梢；保留原层像素 | [独显](evidence/parts/head_accessories__earrings__earring_left--isolated.png)／[隐藏上层](evidence/parts/head_accessories__earrings__earring_left--reveal.png) |
+| `face/ears/ear_right` | 35 | 完整耳廓、耳内面、耳垂和默认露出；保留原层及蒙版 | [独显](evidence/parts/face__ears__ear_right--isolated.png)／[隐藏上层](evidence/parts/face__ears__ear_right--reveal.png) |
+| `face/ears/ear_left` | 36 | 完整耳廓、耳内面、耳垂和默认露出；保留原层及蒙版 | [独显](evidence/parts/face__ears__ear_left--isolated.png)／[隐藏上层](evidence/parts/face__ears__ear_left--reveal.png) |
+| `face/face_base` | 37 | 额头、两颊、下颌、无五官连续底；保留原层像素 | [独显](evidence/parts/face__face_base--isolated.png)／[隐藏上层](evidence/parts/face__face_base--reveal.png) |
+| `face/eyes/eye_left/sclera` | 38 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_left__sclera--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_left__sclera--reveal.png) |
+| `face/eyes/eye_left/iris` | 39 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_left__iris--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_left__iris--reveal.png) |
+| `face/eyes/eye_left/highlight` | 40 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_left__highlight--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_left__highlight--reveal.png) |
+| `face/eyes/eye_left/lower_eyelid` | 41 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_left__lower_eyelid--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_left__lower_eyelid--reveal.png) |
+| `face/eyes/eye_left/upper_eyelid` | 42/66 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_left__upper_eyelid--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_left__upper_eyelid--reveal.png) |
+| `face/eyes/eye_left/eyelid_crease` | 43 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_left__eyelid_crease--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_left__eyelid_crease--reveal.png) |
+| `face/eyes/eye_right/sclera` | 44 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_right__sclera--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_right__sclera--reveal.png) |
+| `face/eyes/eye_right/iris` | 45 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_right__iris--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_right__iris--reveal.png) |
+| `face/eyes/eye_right/highlight` | 46 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_right__highlight--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_right__highlight--reveal.png) |
+| `face/eyes/eye_right/lower_eyelid` | 47 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_right__lower_eyelid--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_right__lower_eyelid--reveal.png) |
+| `face/eyes/eye_right/upper_eyelid` | 48/66.5 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_right__upper_eyelid--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_right__upper_eyelid--reveal.png) |
+| `face/eyes/eye_right/eyelid_crease` | 49 | 完整本件、上下睑/眼角关系、共享开口及剪贴；原层及分片均保留 | [独显](evidence/parts/face__eyes__eye_right__eyelid_crease--isolated.png)／[隐藏上层](evidence/parts/face__eyes__eye_right__eyelid_crease--reveal.png) |
+| `face/mouth/mouth_interior` | 50 | 完整本件、补根、嘴角、双唇开口及口内层序；原层及控制保留 | [独显](evidence/parts/face__mouth__mouth_interior--isolated.png)／[隐藏上层](evidence/parts/face__mouth__mouth_interior--reveal.png) |
+| `face/mouth/lower_teeth` | 51 | 完整本件、补根、嘴角、双唇开口及口内层序；原层及控制保留 | [独显](evidence/parts/face__mouth__lower_teeth--isolated.png)／[隐藏上层](evidence/parts/face__mouth__lower_teeth--reveal.png) |
+| `face/mouth/tongue` | 52 | 完整本件、补根、嘴角、双唇开口及口内层序；原层及控制保留 | [独显](evidence/parts/face__mouth__tongue--isolated.png)／[隐藏上层](evidence/parts/face__mouth__tongue--reveal.png) |
+| `face/mouth/upper_teeth` | 53 | 完整本件、补根、嘴角、双唇开口及口内层序；原层及控制保留 | [独显](evidence/parts/face__mouth__upper_teeth--isolated.png)／[隐藏上层](evidence/parts/face__mouth__upper_teeth--reveal.png) |
+| `face/mouth/lower_lip` | 54 | 完整本件、补根、嘴角、双唇开口及口内层序；原层及控制保留 | [独显](evidence/parts/face__mouth__lower_lip--isolated.png)／[隐藏上层](evidence/parts/face__mouth__lower_lip--reveal.png) |
+| `face/mouth/upper_lip` | 55 | 完整本件、补根、嘴角、双唇开口及口内层序；原层及控制保留 | [独显](evidence/parts/face__mouth__upper_lip--isolated.png)／[隐藏上层](evidence/parts/face__mouth__upper_lip--reveal.png) |
+| `face/eyebrows/eyebrow_right` | 56 | 眉身、隐藏眉尾及细亮芯；保留原层像素 | [独显](evidence/parts/face__eyebrows__eyebrow_right--isolated.png)／[隐藏上层](evidence/parts/face__eyebrows__eyebrow_right--reveal.png) |
+| `face/eyebrows/eyebrow_left` | 57 | 眉身、隐藏眉尾及细亮芯；保留原层像素 | [独显](evidence/parts/face__eyebrows__eyebrow_left--isolated.png)／[隐藏上层](evidence/parts/face__eyebrows__eyebrow_left--reveal.png) |
+| `face/nose` | 58 | 本鼻点与柔和明暗、脸底衔接；保留原层像素 | [独显](evidence/parts/face__nose--isolated.png)／[隐藏上层](evidence/parts/face__nose--reveal.png) |
+| `hair/sidelock/sidelock_right` | 59 | 完整根梢、灰边/银芯、可见弯段；局部曲线边界修顺 | [独显](evidence/parts/hair__sidelock__sidelock_right--isolated.png)／[隐藏上层](evidence/parts/hair__sidelock__sidelock_right--reveal.png) |
+| `hair/sidelock/sidelock_left` | 60 | 完整根梢、灰边/银芯、可见弯段；局部曲线边界修顺 | [独显](evidence/parts/hair__sidelock__sidelock_left--isolated.png)／[隐藏上层](evidence/parts/hair__sidelock__sidelock_left--reveal.png) |
+| `head_accessories/bun_ornament` | 61 | 完整轮廓、安装根与宝石翼片；可见本件笔触恢复 | [独显](evidence/parts/head_accessories__bun_ornament--isolated.png)／[隐藏上层](evidence/parts/head_accessories__bun_ornament--reveal.png) |
+| `head_accessories/crown_frame` | 61.5/67 | 两深度片共同独显、前冠尖端、弧梁与安装舌片搭接；只修改前片 | [独显](evidence/parts/head_accessories__crown_frame--isolated.png)／[隐藏上层](evidence/parts/head_accessories__crown_frame--reveal.png) |
+| `head_accessories/forehead_pendant` | 62/65 | 两深度片、短连接、菱形和水滴；只修改前片可见细节 | [独显](evidence/parts/head_accessories__forehead_pendant--isolated.png)／[隐藏上层](evidence/parts/head_accessories__forehead_pendant--reveal.png) |
+| `hair/side_hair/side_hair_right` | 63 | 完整发面、中央分缝、波纹外侧、尖梢；局部边缘笔触及曲线修顺 | [独显](evidence/parts/hair__side_hair__side_hair_right--isolated.png)／[隐藏上层](evidence/parts/hair__side_hair__side_hair_right--reveal.png) |
+| `hair/side_hair/side_hair_left` | 64 | 完整发面、中央分缝、波纹外侧、尖梢；局部边缘笔触及曲线修顺 | [独显](evidence/parts/hair__side_hair__side_hair_left--isolated.png)／[隐藏上层](evidence/parts/hair__side_hair__side_hair_left--reveal.png) |
+
+四个多深度逻辑件除整件独显外，另有八个原尺寸分片图，文件名为对应 `part--slice-深度.png`，保存在 `evidence/parts/`。冠架61.5/67、额饰62/65、左上睑42/66、右上睑48/66.5均维持输入组织。
+
+## 候选框补查
+
+整图使用同一画布，color=80、coarseColor=32、alpha=96、minRegionPixels=64。初查61框均查看了参考/当前局部；复查37框后追加冠角与髻饰细节，随后在32框放大检查中补修了银发及衣片单像素台阶。最后一次工具统计如下，候选数量和像素数只作定位，不作为质量评分。
+
+| 时点 | missing像素 | extra像素 | color像素 | 候选框 |
+|---|---:|---:|---:|---:|
+| 输入初查 | 8001 | 571 | 17250 | 61 |
+| 最终重开PNG | 3210 | 1269 | 14137 | 31 |
+
+初查候选框的过程补查图（右侧为当时工程）：[1](evidence/initial-candidates-01.jpg) · [2](evidence/initial-candidates-02.jpg) · [3](evidence/initial-candidates-03.jpg) · [4](evidence/initial-candidates-04.jpg) · [5](evidence/initial-candidates-05.jpg) · [6](evidence/initial-candidates-06.jpg)。最终逐框图：[1](evidence/final-candidates-01.jpg) · [2](evidence/final-candidates-02.jpg) · [3](evidence/final-candidates-03.jpg)。[最终框坐标及像素数](evidence/final-differences.json)／[标记整图](evidence/final-marked.png)。最终逐框图每格左参考、右最终；初查过程图右侧为当时的工作工程。所有候选均逐框看图，修过的位置再核对本件独显。
+
+| 最终框 | 种类与坐标 `[x,y,w,h]` | 看图确认及处置 |
+|---|---|---|
+| 1 | color `[401, 161, 146, 150]` | 五官与脸底色温、笔触差异；眼口完整且共享控制保留，见保留差异对照 |
+| 2 | color `[300, 492, 83, 402]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 3 | color `[570, 586, 55, 183]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 4 | color `[537, 427, 37, 217]` | 衣片外缘、原布面明暗；已续接细边并修顺轮廓，保留自身柔和材质 |
+| 5 | color `[596, 398, 43, 271]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 6 | color `[590, 712, 35, 113]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 7 | color `[307, 466, 30, 145]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 8 | missing `[346, 171, 7, 191]` | 长发细边/发梢的半透明过渡；局部曲线已修顺，余下为原尺寸抗锯齿覆盖及亮芯差异，未见断开的发段 |
+| 9 | color `[466, 873, 7, 181]` | 双腿接触/腿口及边色；核对连续形体，保留第一步腿层和完整内腿余量，未以裁腿来压低差异 |
+| 10 | color `[645, 727, 12, 116]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 11 | color `[329, 711, 20, 103]` | 双腿接触/腿口及边色；核对连续形体，保留第一步腿层和完整内腿余量，未以裁腿来压低差异 |
+| 12 | color `[281, 756, 11, 88]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 13 | extra `[467, 926, 4, 100]` | 双腿接触/腿口及边色；核对连续形体，保留第一步腿层和完整内腿余量，未以裁腿来压低差异 |
+| 14 | color `[496, 317, 42, 32]` | 颈后发面及耳坠周围的补绘纹理；独显归属干净，保留已有连贯发流和耳坠 |
+| 15 | color `[623, 828, 14, 55]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 16 | missing `[551, 231, 18, 81]` | 细鬓发弯段；完整本件根梢及亮芯保留，局部边界修顺；笔触排列差异见对照 |
+| 17 | color `[425, 306, 10, 36]` | 颈后发面及耳坠周围的补绘纹理；独显归属干净，保留已有连贯发流和耳坠 |
+| 18 | missing `[457, 812, 24, 60]` | 双腿接触/腿口及边色；核对连续形体，保留第一步腿层和完整内腿余量，未以裁腿来压低差异 |
+| 19 | missing `[372, 267, 18, 62]` | 细鬓发弯段；完整本件根梢及亮芯保留，局部边界修顺；笔触排列差异见对照 |
+| 20 | color `[492, 728, 57, 66]` | 衣片外缘、原布面明暗；已续接细边并修顺轮廓，保留自身柔和材质 |
+| 21 | missing `[548, 266, 7, 65]` | 细鬓发弯段；完整本件根梢及亮芯保留，局部边界修顺；笔触排列差异见对照 |
+| 22 | color `[622, 855, 30, 49]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 23 | color `[403, 320, 19, 28]` | 颈后发面及耳坠周围的补绘纹理；独显归属干净，保留已有连贯发流和耳坠 |
+| 24 | missing `[243, 881, 22, 69]` | 长发细边/发梢的半透明过渡；局部曲线已修顺，余下为原尺寸抗锯齿覆盖及亮芯差异，未见断开的发段 |
+| 25 | color `[570, 654, 18, 45]` | 衣片外缘、原布面明暗；已续接细边并修顺轮廓，保留自身柔和材质 |
+| 26 | color `[389, 563, 10, 41]` | 衣片外缘、原布面明暗；已续接细边并修顺轮廓，保留自身柔和材质 |
+| 27 | color `[435, 212, 16, 14]` | 右虹膜暗瞳/虹膜笔触差异；保留第一步已修复的连续暗瞳及独立高光，层内没有睑线 |
+| 28 | color `[334, 359, 28, 53]` | 本侧臂掌/手指侧线及皮肤明暗；原生侧缘已修顺，保留细微肤色差异与完整连接根 |
+| 29 | color `[461, 130, 18, 18]` | 中央额饰上端宝石的切面笔触不同；短连接连续，归属与前后片保持 |
+| 30 | missing `[370, 256, 15, 34]` | 细鬓发弯段；完整本件根梢及亮芯保留，局部边界修顺；笔触排列差异见对照 |
+| 31 | missing `[653, 936, 27, 42]` | 长发细边/发梢的半透明过渡；局部曲线已修顺，余下为原尺寸抗锯齿覆盖及亮芯差异，未见断开的发段 |
+
+## 保留差异及局部说明
+
+- [脸部对照](evidence/retained-face.png)：完整脸底、眼白/虹膜的补绘比原图更均匀，颊部、口周色温及虹膜内部亮暗笔触有细微差异；鼻口位置、眼角连接和上下睑开口仍使用同一画布控制。没有把整张参考脸贴入脸底，也没有将高光合入虹膜。
+- [细鬓发对照](evidence/retained-sidelocks.png)：保留原先完成的隐藏根与连续银芯，弯段内部细灰笔触排列不逐像素复刻；本轮修顺边界后仍为一束完整连贯的本件头发。
+- [内腿对照](evidence/retained-inner-legs.png)：保留第一步已经确认的完整双腿及自然前后接触关系，局部接触窄边和肤色与原图有细微差异。腿层原始像素校验值未变，没有为减少候选框削去绑定余量。
+- 隐藏根、耳朵、眼口内容和后踝链是原图不可见部分的合理补绘。独显以结构、材质和轮廓连续性检查，未把遮挡物的参考像素当成本件应当具备的内容。
+
+## 保存、重开与透明导出
+
+每批修画保存，正式工程保存后关闭，再重新打开核对；最终临时显隐检查全部恢复后，又完成一次保存—关闭—重开。92 个实际节点的层序、名称、UUID、实际父级、显隐、继承透明度、混合模式、不透明度与原始像素 SHA-256 前后一致，整图投影像素也一致。Krita 会为虚拟 ROOT 生成新的会话 UUID，核对时仅将该虚拟标识归一化为 ROOT，实际部件和控制组 UUID 没有变化。
+
+18个原生蒙版与输入的原始像素相同，眼内共享开口、虹膜/高光剪贴、口内共享开口、后踝链和下牙的默认隐藏均保留。最终 PNG 从最后重开工程导出，保持941×1672、透明背景，没有缩放或加底色。[重开核对记录](evidence/reopen-verification.json)。
+
+## 未解决的问题
+
+本轮自检未发现需要留待后续修复的断件、错层、外来部件残片或连接硬线。上述保留的补绘、细微色调与笔触差异有局部对照，最终画面不是逐像素复制原图。交付为静态绑定素材，未在本步制作绑定、变形或动画。

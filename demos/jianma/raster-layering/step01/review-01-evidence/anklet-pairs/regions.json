@@ -1,0 +1,63 @@
+{
+  "image": "raster-layering/step01/workspace/review-current/anklet-pairs.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/6e98dad1-3495-4d5c-87d1-7a932eac7e2e/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/6e98dad1-3495-4d5c-87d1-7a932eac7e2e/regions.json",
+  "regions": [
+    {
+      "id": "R12a",
+      "bounds": [
+        413,
+        1493,
+        51,
+        24
+      ],
+      "layers": [
+        "007.0 | legs/leg_right/anklet_back | complete",
+        "011.0 | legs/leg_right/anklet_front | complete"
+      ],
+      "description": "蒙版停用且隐藏腿后，踝链前后合看呈离散圆珠，多处珠间缺少清晰连续连接，侧端珠粒挤叠而无顺畅环接。依原可见前链的细银连接补齐珠间与前后交界，保留后链完整绘画和默认隐藏蒙版。",
+      "crop": [
+        403,
+        1483,
+        71,
+        44
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6e98dad1-3495-4d5c-87d1-7a932eac7e2e/R12a-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6e98dad1-3495-4d5c-87d1-7a932eac7e2e/R12a-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6e98dad1-3495-4d5c-87d1-7a932eac7e2e/R12a-comparison.png"
+      }
+    },
+    {
+      "id": "R12b",
+      "bounds": [
+        475,
+        1493,
+        51,
+        24
+      ],
+      "layers": [
+        "008.0 | legs/leg_left/anklet_back | complete",
+        "012.0 | legs/leg_left/anklet_front | complete"
+      ],
+      "description": "另一侧前后踝链也呈散珠，珠间和两侧转接缺少连续链体。补本件珠间细连接并接顺前后端点，保留珠链环绕范围及蒙版默认隐藏后段的职责。",
+      "crop": [
+        465,
+        1483,
+        71,
+        44
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/6e98dad1-3495-4d5c-87d1-7a932eac7e2e/R12b-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/6e98dad1-3495-4d5c-87d1-7a932eac7e2e/R12b-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/6e98dad1-3495-4d5c-87d1-7a932eac7e2e/R12b-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

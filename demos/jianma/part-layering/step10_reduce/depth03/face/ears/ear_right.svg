@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="941" height="1672" viewBox="0 0 941 1672" data-source-sha256="5a8a787a24e16d20b2361c25001de49a5e6a0c54b279dafd6fca8c4d832d763c" data-parent-region="370 205 65 70"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M406.1 227.7 C401.7 223.8 397.1 215.4 390.8 215.4 C382.5 215.4 379.5 223.1 383.7 236.3 C384.1 240 385.4 243.2 388.7 245.5 C396.1 254 405.6 261.9 416.9 263.1 C422.7 262.7 426.6 254.5 425.9 246 C425.3 237.8 420.2 229.4 413.4 227.7 C410.8 227 408.2 227.2 406.1 227.7 Z" fill-rule="nonzero"/></g>
+<g fill="#e8a398" stroke="none" data-group-path="face/ears/ear_right" id="ear-right-outline">
+<path id="ear-right-upper" d="M399.3 224.6 C395.9 229.4 389.7 234.3 383.7 236.3 C384.1 240 385.4 243.2 388.7 245.5 C392.6 239.9 396.2 231.2 399.3 224.6 Z"/>
+<path id="ear-right-lower" d="M409.6 231.7 C411.2 241.8 415.4 253.9 418 263.6 L416.9 263.1 C410.1 260.7 403.8 255.4 400.8 250.3 C402.8 245.1 406.1 239.7 408.2 234.4 Z"/>
+
+
+</g>
+</svg>

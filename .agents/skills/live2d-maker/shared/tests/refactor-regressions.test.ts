@@ -72,7 +72,7 @@ test('每次临时错误都记录等待截止时间供限流等待显示，429 �
   assert.equal(JSON.parse(await readFile(join(other.directory, retryWaitFile), 'utf8')).reason, 'transient');
 });
 
-test('首次分组拒绝非字符串 subject，错误参数不能写坏首次分组记录', async t => {
+test('首次分组拒绝 groups 以外的字段，错误参数不能写坏首次分组记录', async t => {
   for (const profile of [character, clothing]) {
     const f = await fixture(t);
     // Clothing preparation always provides the original clothed character.
@@ -81,12 +81,12 @@ test('首次分组拒绝非字符串 subject，错误参数不能写坏首次分
       const write = task.tools!.find(tool => tool.name === 'write_groups')!;
       const signal = new AbortController().signal;
       const groups = [{ name: 'shape', groups: [], note: '独立实体' }];
-      await assert.rejects(write.execute({ subject: ['other'], groups }, signal), /subject/);
+      await assert.rejects(write.execute({ subject: 'other', groups }, signal), /只包含组/);
       await assert.rejects(readFile(join(f.directory, 'step08_initial/groups.json')), { code: 'ENOENT' });
-      await write.execute({ subject: 'other', groups }, signal);
+      await write.execute({ groups }, signal);
       return { text: 'saved', images: [] };
     } });
-    assert.equal(JSON.parse(await readFile(join(f.directory, 'step08_initial/groups.json'), 'utf8')).subject, 'other');
+    assert.deepEqual(Object.keys(JSON.parse(await readFile(join(f.directory, 'step08_initial/groups.json'), 'utf8'))), ['groups']);
   }
 });
 

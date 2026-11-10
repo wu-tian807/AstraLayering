@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/upper_suspension/right_suspension_cord/front_arc_cord",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "716c178096d3ef94289dde6e6d0b64ebdc8a1eb543abf1ac1806abbf99c85c0d",
-  "afterHash": "d2e4e334be6f25c71342f8da1ba93c5d7fafef7d18109740965a5228625fdd9c"
-}

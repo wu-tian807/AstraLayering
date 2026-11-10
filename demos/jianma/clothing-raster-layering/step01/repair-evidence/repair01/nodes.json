@@ -1,0 +1,386 @@
+[
+  {
+    "id": "collar_shoulder_cape/standing_collar",
+    "level": 1,
+    "name": "001 | collar_shoulder_cape/standing_collar | back",
+    "uuid": "{448df4c9-96c7-40e9-b298-05c0674638f7}",
+    "pixel_sha256": "c1f209a16ac8db4272b98d5fd4b38b8e7aba3f5fe7c7e1b218dd4a811c97f265",
+    "native_mask": false
+  },
+  {
+    "id": "inner_long_dress/long_skirt",
+    "level": 2,
+    "name": "002 | inner_long_dress/long_skirt | back",
+    "uuid": "{0e35da44-fa87-4557-a9cd-3459aa7b6cdf}",
+    "pixel_sha256": "e3d91b20f2b643c042a3903a53c6e5687997b9208d06ae453a42d34399691602",
+    "native_mask": false
+  },
+  {
+    "id": "waist_sash_and_knot/waist_band",
+    "level": 3,
+    "name": "003 | waist_sash_and_knot/waist_band | back",
+    "uuid": "{ee430c3b-6a85-46ed-8e71-e15d8da3b6ab}",
+    "pixel_sha256": "2e9b2401a3eea5d1fbe12a8cfe118e39230243f862e4e46f0ed0d3d664d7a65e",
+    "native_mask": false
+  },
+  {
+    "id": "inner_long_dress/long_skirt",
+    "level": 10,
+    "name": "010 | inner_long_dress/long_skirt | front",
+    "uuid": "{8d550ac0-4c93-4c99-9c81-c6b710d0b095}",
+    "pixel_sha256": "f25efb4dcfb18c30b457333be399b7d63875847576c7d30b20347a757f334736",
+    "native_mask": false
+  },
+  {
+    "id": "central_blue_drapery/central_folded_tail",
+    "level": 10.1,
+    "name": "010.1 | central_blue_drapery/central_folded_tail | back waist root",
+    "uuid": "{78bc1e28-59ea-44e1-90ea-768e3988c410}",
+    "pixel_sha256": "bc32f50e002d114a023c8254b50d39386740cb88742e5446f09dd104f6a8774f",
+    "native_mask": false
+  },
+  {
+    "id": "central_blue_drapery/left_long_panel",
+    "level": 10.2,
+    "name": "010.2 | central_blue_drapery/left_long_panel | back waist root",
+    "uuid": "{a7b62523-83bd-4fc8-9770-82a707ca9001}",
+    "pixel_sha256": "87dec8004c13db94f0e29f30831075f364f1673b25d6a838ed86f2a053a3d626",
+    "native_mask": false
+  },
+  {
+    "id": "central_blue_drapery/right_long_panel",
+    "level": 10.3,
+    "name": "010.3 | central_blue_drapery/right_long_panel | back waist root",
+    "uuid": "{65fa757b-6b4a-4397-8c78-87f270678625}",
+    "pixel_sha256": "8becea87a87f00ba4b64c79b899b6ecf2abd46c25238b784c1271ec730945732",
+    "native_mask": false
+  },
+  {
+    "id": "inner_long_dress/bodice_and_waist",
+    "level": 11,
+    "name": "011 | inner_long_dress/bodice_and_waist",
+    "uuid": "{e49d9e03-ca99-444a-99ac-041e59dfb80b}",
+    "pixel_sha256": "40db6322c1251e3ae5d8d0adc79925b62c0bd3890dd76256d3209fe54afb0d77",
+    "native_mask": false
+  },
+  {
+    "id": "central_blue_drapery/central_folded_tail",
+    "level": 20,
+    "name": "020 | central_blue_drapery/central_folded_tail | front",
+    "uuid": "{b578d36e-4025-47d6-9587-ff6a0a52b4f0}",
+    "pixel_sha256": "a59ab6e12d889d1b7bc41325b0ca30fb4bdb4c4be0d824a984d82655483d3797",
+    "native_mask": false
+  },
+  {
+    "id": "central_blue_drapery/left_long_panel",
+    "level": 21,
+    "name": "021 | central_blue_drapery/left_long_panel | front",
+    "uuid": "{5570fda1-2f31-4d28-9c36-495eed12e654}",
+    "pixel_sha256": "fb717e4258679fc54debecb9cfeef1e9da759719385d1a82962b3737aff6f47e",
+    "native_mask": false
+  },
+  {
+    "id": "central_blue_drapery/right_long_panel",
+    "level": 22,
+    "name": "022 | central_blue_drapery/right_long_panel | front",
+    "uuid": "{9d0ff3e9-740b-44e5-a8b5-f2635a5dd3c2}",
+    "pixel_sha256": "c88d9b8149af9212e96e8a7d594c7f78116b25bff8a5cd8640a072859d3b7ee2",
+    "native_mask": false
+  },
+  {
+    "id": "waist_sash_and_knot/waist_band",
+    "level": 25,
+    "name": "025 | waist_sash_and_knot/waist_band | front",
+    "uuid": "{bbc07874-0300-4944-b323-a9c65cec3ef1}",
+    "pixel_sha256": "1cd91693319515c49cb27b087248a118cfc63dc4e26c5a5231eb9e3712f92526",
+    "native_mask": false
+  },
+  {
+    "id": "outer_robe_body/left_robe_panel",
+    "level": 30,
+    "name": "030 | outer_robe_body/left_robe_panel",
+    "uuid": "{937356d7-288f-4412-bcc7-e253d2ceb64b}",
+    "pixel_sha256": "6ce47130649677db66aed45ca746b04b451d334d71600aaee3722bf3f8ca334f",
+    "native_mask": false
+  },
+  {
+    "id": "outer_robe_body/right_robe_panel",
+    "level": 31,
+    "name": "031 | outer_robe_body/right_robe_panel",
+    "uuid": "{60bd2482-c7dc-4522-b270-022893b02486}",
+    "pixel_sha256": "9db2f6294fc7a4aa6178cc5464fb73e6ce1b758636fa5777076f4c42c067d62f",
+    "native_mask": false
+  },
+  {
+    "id": "sleeve_screen_left/right_hanging_drape",
+    "level": 40,
+    "name": "040 | sleeve_screen_left/right_hanging_drape | back",
+    "uuid": "{4bef1885-89fe-4c15-9abd-e68b37229d2d}",
+    "pixel_sha256": "c13aef1bf7d1f5b18fcbcd1c61ef17679d22ec46d88d77414e45f8911fe9b62e",
+    "native_mask": false
+  },
+  {
+    "id": "sleeve_screen_right/left_hanging_drape",
+    "level": 41,
+    "name": "041 | sleeve_screen_right/left_hanging_drape | back",
+    "uuid": "{77fcc592-d710-4d99-9b0c-1e2965f0bda5}",
+    "pixel_sha256": "763940d644563ce33e526730d757163401513120eb528eab5aefd667ca291b84",
+    "native_mask": false
+  },
+  {
+    "id": "sleeve_screen_left/right_sleeve_tube",
+    "level": 42,
+    "name": "042 | sleeve_screen_left/right_sleeve_tube | back",
+    "uuid": "{8f0002cf-03e5-4258-b427-9141b7d26219}",
+    "pixel_sha256": "c104d03aef5e88133c7f243bbebb262d78b9d6b8fc7500f4ed6fa126bbcd4739",
+    "native_mask": false
+  },
+  {
+    "id": "sleeve_screen_right/left_sleeve_tube",
+    "level": 43,
+    "name": "043 | sleeve_screen_right/left_sleeve_tube | back",
+    "uuid": "{15c1b420-3b4a-4eb0-927f-091161cf9407}",
+    "pixel_sha256": "9598d7706b7728945a7ba1bcfffa013d1d1a55451eb75aad2b110bd21d0e67c8",
+    "native_mask": false
+  },
+  {
+    "id": "sleeve_screen_left/right_sleeve_tube",
+    "level": 50,
+    "name": "050 | sleeve_screen_left/right_sleeve_tube | front",
+    "uuid": "{824ddbe3-c712-4e56-80e7-56b5b73315d5}",
+    "pixel_sha256": "b123cb8072cfba9c7f55a5c338ea85b8f9d7783f33ae5e7fb58f3476233dd4ef",
+    "native_mask": false
+  },
+  {
+    "id": "sleeve_screen_right/left_sleeve_tube",
+    "level": 51,
+    "name": "051 | sleeve_screen_right/left_sleeve_tube | front",
+    "uuid": "{a4a789c5-b72e-4e3d-b710-bab8bc4c5e5e}",
+    "pixel_sha256": "20e49e6c200b3cd94265d5d48a69bb9ca4879459bc2cc4dd4f86a366ff6ef0b4",
+    "native_mask": false
+  },
+  {
+    "id": "sleeve_screen_left/right_hanging_drape",
+    "level": 60,
+    "name": "060 | sleeve_screen_left/right_hanging_drape | front",
+    "uuid": "{9f8f53de-82b3-41a6-9560-a5a574d09aa8}",
+    "pixel_sha256": "127a745b4f27a02bde0eff4a51024b4ef078b335ff5f686260809f3d06da52b1",
+    "native_mask": false
+  },
+  {
+    "id": "sleeve_screen_right/left_hanging_drape",
+    "level": 61,
+    "name": "061 | sleeve_screen_right/left_hanging_drape | front",
+    "uuid": "{05b89668-8569-4537-a453-1254e2aa70c9}",
+    "pixel_sha256": "1ce30e228309b294ad9c5142be79bacb3dcdd9b843cecbedbbade316b6454fb9",
+    "native_mask": false
+  },
+  {
+    "id": "collar_shoulder_cape/left_shoulder_cape",
+    "level": 70,
+    "name": "070 | collar_shoulder_cape/left_shoulder_cape",
+    "uuid": "{e4e0616b-0fad-4a35-a593-c2225aba4402}",
+    "pixel_sha256": "14e15d55b245c840cc6593e7e2a90bb2f265e8ee9bdd82413ca98145db82180b",
+    "native_mask": false
+  },
+  {
+    "id": "collar_shoulder_cape/right_shoulder_cape",
+    "level": 71,
+    "name": "071 | collar_shoulder_cape/right_shoulder_cape",
+    "uuid": "{aed42338-b858-4645-ace8-6c6b6d552528}",
+    "pixel_sha256": "3b372c123d3b9ab6434a14284798b204b49bee1e580911d81e42539eb5e30f46",
+    "native_mask": false
+  },
+  {
+    "id": "collar_shoulder_cape/standing_collar",
+    "level": 72,
+    "name": "072 | collar_shoulder_cape/standing_collar | front",
+    "uuid": "{04d9238d-4429-4a5e-a569-8cf7e640b4c9}",
+    "pixel_sha256": "03dd4fed897422a929b1905c3ddaa7ba6b3180d588b34e0564df2c6f5cbc40cb",
+    "native_mask": false
+  },
+  {
+    "id": "collar_jewel_fastener/left_beaded_chain",
+    "level": 80,
+    "name": "080 | collar_jewel_fastener/left_beaded_chain",
+    "uuid": "{60533a4b-028a-4dd7-bcdd-4102ee092f68}",
+    "pixel_sha256": "f026a67ac883cd477e4038ba1e67418b69f90b3748b1a591e102f6dcf99de673",
+    "native_mask": false
+  },
+  {
+    "id": "collar_jewel_fastener/right_beaded_chain",
+    "level": 81,
+    "name": "081 | collar_jewel_fastener/right_beaded_chain",
+    "uuid": "{a25b734f-d758-457b-800a-f49d2a1aab33}",
+    "pixel_sha256": "5ddb744987e1ba6a818ade4fe60d722f6d0bfcec9bf0159d692207df6aa87ac1",
+    "native_mask": false
+  },
+  {
+    "id": "collar_jewel_fastener/central_pendant/hanging_bead",
+    "level": 82,
+    "name": "082 | collar_jewel_fastener/central_pendant/hanging_bead",
+    "uuid": "{e6610023-213a-4447-bb89-ba0ce5af38b7}",
+    "pixel_sha256": "aa54b20616e5ce90372fe1b3cb60fd2d0f68f8cdafadc1e81bc3aa5a0f88eae8",
+    "native_mask": false
+  },
+  {
+    "id": "collar_jewel_fastener/central_pendant/connecting_ring",
+    "level": 83,
+    "name": "083 | collar_jewel_fastener/central_pendant/connecting_ring",
+    "uuid": "{c640902f-61aa-4766-905f-e0c0dacc7673}",
+    "pixel_sha256": "8268869ebf089e528657aa8b3e42bbcc17d9b342128bc37c7cc155ae42ba4efc",
+    "native_mask": false
+  },
+  {
+    "id": "collar_jewel_fastener/fixed_jewel",
+    "level": 84,
+    "name": "084 | collar_jewel_fastener/fixed_jewel",
+    "uuid": "{a4dd0458-4ccd-4e78-b6bd-5e4e06d16833}",
+    "pixel_sha256": "f93aab05c48eb5d99db450f8a47fbfeb3e5a3f1ce5b89232dcf309512d90050e",
+    "native_mask": false
+  },
+  {
+    "id": "chest_ornament",
+    "level": 85,
+    "name": "085 | chest_ornament",
+    "uuid": "{7ff3e970-4f42-460e-8328-dc7d041a9189}",
+    "pixel_sha256": "3a69f6c25df10689a3c5a2a9ebe81c5c06f34fd9538eb81eacde648a7e8890ce",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/upper_suspension",
+    "level": 100,
+    "name": "100 | waist_pendant_and_tassel/upper_suspension",
+    "uuid": "{f44f66dc-eedc-40f8-9a23-c0877cfa04e6}",
+    "pixel_sha256": "46a82371dce055cde7d078b6f125e32a2800679e674eec8c5930256f649f5449",
+    "native_mask": true
+  },
+  {
+    "id": "waist_sash_and_knot/left_short_tail",
+    "level": 101,
+    "name": "101 | waist_sash_and_knot/left_short_tail",
+    "uuid": "{292dee11-7918-45c8-bee9-1b70459251b5}",
+    "pixel_sha256": "f67f6d20843f83cb0c0cd40670338eee80b5f45c23adcd9b62a1f0d32f022ec9",
+    "native_mask": false
+  },
+  {
+    "id": "waist_sash_and_knot/right_short_tail",
+    "level": 102,
+    "name": "102 | waist_sash_and_knot/right_short_tail",
+    "uuid": "{0597ced5-ffe5-4afa-8845-bb5fc07018fb}",
+    "pixel_sha256": "8e02c314196f73c6b9849771b2ccca6b5cda9ed4b87d0f6a8705fd4f4ce394c2",
+    "native_mask": false
+  },
+  {
+    "id": "waist_sash_and_knot/left_short_loop",
+    "level": 103,
+    "name": "103 | waist_sash_and_knot/left_short_loop",
+    "uuid": "{5c35cebf-839b-4adc-a114-ec59b7a0a273}",
+    "pixel_sha256": "7244558ef681e98c5f7e22486a97abe740dd6b002bd237e0316a1bdb8be1b39e",
+    "native_mask": false
+  },
+  {
+    "id": "waist_sash_and_knot/right_short_loop",
+    "level": 104,
+    "name": "104 | waist_sash_and_knot/right_short_loop",
+    "uuid": "{c587ec68-0faf-4d6b-a5b1-bc8edb2be27b}",
+    "pixel_sha256": "3fadebaeeba38d84393fbee6ed039832685e85b3118289bc0a4dc1a67eaf1deb",
+    "native_mask": false
+  },
+  {
+    "id": "waist_sash_and_knot/center_knot",
+    "level": 105,
+    "name": "105 | waist_sash_and_knot/center_knot",
+    "uuid": "{5d6a62d6-62c7-48d0-b743-55a54f63ad48}",
+    "pixel_sha256": "73a402140ffca21b877aec155ba5a0b5a283dbf4dc78f15bdaf989979c8baf12",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+    "level": 108,
+    "name": "108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+    "uuid": "{3e4bd53e-224e-42d6-b8c0-80a8b129d0cf}",
+    "pixel_sha256": "1997c9c93a567f05bcb965b06475c7b08dc21f26f3d08139e8b738bacf004374",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+    "level": 109,
+    "name": "109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+    "uuid": "{2d461cef-2627-4437-8154-850aeb4fb67b}",
+    "pixel_sha256": "ccf88ae16e4e97d794ced4185e2f6ff0f93329466b3750bde2ef0f570e70a3c2",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/snowflake_medallion",
+    "level": 110,
+    "name": "110 | waist_pendant_and_tassel/snowflake_medallion",
+    "uuid": "{198460c7-721d-46e7-9bcf-b917d4c47e05}",
+    "pixel_sha256": "a324947a9cc3639e3394c4c18e270b3dd8d8f0aacebcb1f75ee195e8a83b592d",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+    "level": 111,
+    "name": "111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+    "uuid": "{e03c594b-44fb-4b4f-8e44-0386680362bd}",
+    "pixel_sha256": "8356dc6d6c199c1ee28ad72afb4d2bacb61b29be0d35595ed33ba632c245e4a6",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+    "level": 112,
+    "name": "112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+    "uuid": "{c76f19bb-8a2c-49db-8e48-440281984bbc}",
+    "pixel_sha256": "d16fb5d1a659d7711620d97a8139b93e39f926645f3c6471939dc2fde6a33fe3",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant",
+    "level": 113,
+    "name": "113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+    "uuid": "{bb991b05-be97-4f43-a0e7-346a2dee2ed7}",
+    "pixel_sha256": "b1c51b325a3beaa4fa3a4592e00781b55d812a0f7114f01c678db63a53dc28ac",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+    "level": 114,
+    "name": "114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+    "uuid": "{6dc8cec9-3f4f-4f62-bc20-05d66a1a69de}",
+    "pixel_sha256": "ab1acdce8d3be9043eb9694586fbda2655659e86b622908be60089c90998633c",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant",
+    "level": 115,
+    "name": "115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front",
+    "uuid": "{44b87ac9-8c41-458d-892b-ffcb4bef2bca}",
+    "pixel_sha256": "728c9c597c43f704dedc82e62a7422505fc42ff31c8bb26769e4372e4626a2ef",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+    "level": 116,
+    "name": "116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+    "uuid": "{d24884f2-e02b-4c08-8d18-097a084644ee}",
+    "pixel_sha256": "e387e7c67671a5bdf6bf2528ade0c0416f36bda502af22f78d526a589177ae72",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+    "level": 117,
+    "name": "117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+    "uuid": "{9f773cfa-ef82-4ef9-a0dc-11542d706268}",
+    "pixel_sha256": "8adac83f3ff07459d02b6d9ce8fae7833443c979631a9380df3c5dd8eed8e35b",
+    "native_mask": false
+  },
+  {
+    "id": "waist_pendant_and_tassel/long_tassel",
+    "level": 118,
+    "name": "118 | waist_pendant_and_tassel/long_tassel",
+    "uuid": "{48ad6dd8-4994-4b64-80b3-964ce235dfbd}",
+    "pixel_sha256": "900419cd3772bc48602430d4ebe1d6623612749e3bd0f96593f98a1184c79b80",
+    "native_mask": false
+  }
+]

@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/left_crown_ribbon/ribbon_tail",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "158574f6fb7547c86a614a24468940be9c6ceb90bc6bb7e1798e538efaba5926",
-  "afterHash": "4edbdc160eba68af64328e8041597972291bda2f989e5e8d6daa9003b4c1c737"
-}

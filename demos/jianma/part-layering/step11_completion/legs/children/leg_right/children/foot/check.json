@@ -1,7 +1,0 @@
-{
-  "groupId": "legs/leg_right/foot",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "0812a96873f77b7d53c52ab7562b7474326d8444db6f6af9b54821ada528f703",
-  "afterHash": "d86701ec2963b42fa69af937690aadd48da6ea5a09e5db3c03a5f6d77e25da5c"
-}

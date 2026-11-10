@@ -1,7 +1,5 @@
 {
   "groupId": "hair/bun",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "ddb5056908f7bfe71b6ed26f6cf4732d170ace046f31677cfca69bf399a0fb8f",
-  "afterHash": "1025d79c61c69524c687fc9716d4e1a3e7e43d2989bc7bc3661043ea28d2d805"
+  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

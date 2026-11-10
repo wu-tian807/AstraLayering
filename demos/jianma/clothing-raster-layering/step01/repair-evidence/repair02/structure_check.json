@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "logical_parts": 37,
+  "paint_layers": 48,
+  "multi_depth_parts": 11,
+  "native_transparency_masks": 1,
+  "all_48_uuids_and_order_retained": true,
+  "changed_levels": [
+    10,
+    11,
+    20,
+    101
+  ],
+  "unchanged_paint_layers": 44,
+  "all_alpha_unchanged": true,
+  "groups_occlusion_and_svgs_unchanged": true,
+  "depth_table_matches_kra": true,
+  "native_mask_enabled_and_unchanged": true,
+  "reopen_pixels_unchanged": true,
+  "evidence_counts": {
+    "parts": 37,
+    "slices": 48,
+    "lower": 48,
+    "masks": 4,
+    "neighbors": 4
+  }
+}

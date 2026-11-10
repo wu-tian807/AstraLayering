@@ -1,8 +1,7 @@
 {
   "main": {
     "initial": [
-      "prompts/03-去除连体服.md",
-      "prompts/runtime.md"
+      "prompts/03-去除连体服.md"
     ],
     "tools": [
       "krita"

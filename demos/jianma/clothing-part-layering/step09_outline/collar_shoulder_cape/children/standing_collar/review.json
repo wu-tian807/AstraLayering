@@ -1,0 +1,38 @@
+{
+  "groupId": "collar_shoulder_cape/standing_collar",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第1轮独立审查通过。先查看纯衣服参考全图及 x390–555、y157–284 的4倍局部，再核对 note、候选源码与父完成稿；完成整体 blend、覆盖本片全部可见范围的6倍 edge、局部 blend 及纯色独显。\n\n确认本片实体为 x418–527、y173–254 附近的完整立领：上方低凹后领弧、两侧弯曲前领瓣及下方喉前连接衣料。参考中上缘内部蓝灰色区域为后领衣料，不能当作空洞删除；候选保留正确。两侧肩面及其卷曲披缘未误包入本片，胸前真实开口保持在本片之外。宝石扣区域下方的衣料覆盖属于合理隐藏搭接，无须按宝石轮廓挖洞；悬挂附件不在本片职责内。未发现确定的可见组件遗漏、人体填入、真实开口封堵或主要位置比例错误。\n\n局部边缘核对：上缘约 x431–511、y173–183，颈侧收束约 x430–434 / x508–513、y188–210，两侧领瓣外翻及下端约 x418–446 / x495–527、y220–242，与参考可见轮廓及接缝一致；喉前下边约 x449–494、y249–254 接胸前开口，未见需要返修的偏移。note 已传递围颈前后深度、随动、领根与肩披及宝石扣的遮挡关系，不需仅因跨深度继续拆分。\n\n父范围包含检查通过：4倍采样 outsidePixels=0，无上游范围限制。本轮没有确定需要修改的问题，不要求重画或边缘微调。\n\n图像证据：\n![整体叠加](review_evidence/round1_overall_blend.png)\n![全立领边缘覆盖](review_evidence/round1_collar_edge.png)\n![局部叠加](review_evidence/round1_collar_blend.png)\n![候选独显](review_evidence/round1_collar_solid.png)\n![父完成稿叠加](review_evidence/round1_parent_blend.png)",
+      "candidateHash": "924bdbbad8a7e1350a4013a8b4da596e4eafeaafcc9d5afd5a80e3f9ba7fe96f",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/standing_collar/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/standing_collar/previews/2026-11-02T16-25-04-872Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/standing_collar/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/standing_collar/previews/2026-11-02T16-25-04-872Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/collar_shoulder_cape.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/standing_collar/previews/2026-11-02T16-25-04-872Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/standing_collar/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/standing_collar/previews/2026-11-02T16-25-04-872Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/standing_collar/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/standing_collar/previews/2026-11-02T16-25-04-872Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:54:42.118Z"
+    }
+  ]
+}

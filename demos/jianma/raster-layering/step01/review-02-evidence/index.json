@@ -1,0 +1,1131 @@
+[
+  {
+    "id": "hair/back_hair/long_hair_right",
+    "index": 1,
+    "stem": "01-hair__back_hair__long_hair_right",
+    "layers": [
+      "001.0 | hair/back_hair/long_hair_right | complete"
+    ],
+    "levels": [
+      1
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/01-hair__back_hair__long_hair_right.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/01-hair__back_hair__long_hair_right.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/01-hair__back_hair__long_hair_right.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/01-hair__back_hair__long_hair_right.png"
+    }
+  },
+  {
+    "id": "hair/back_hair/long_hair_left",
+    "index": 2,
+    "stem": "02-hair__back_hair__long_hair_left",
+    "layers": [
+      "002.0 | hair/back_hair/long_hair_left | complete"
+    ],
+    "levels": [
+      2
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/02-hair__back_hair__long_hair_left.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/02-hair__back_hair__long_hair_left.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/02-hair__back_hair__long_hair_left.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/02-hair__back_hair__long_hair_left.png"
+    }
+  },
+  {
+    "id": "hair/back_hair/cap",
+    "index": 3,
+    "stem": "03-hair__back_hair__cap",
+    "layers": [
+      "003.0 | hair/back_hair/cap | complete"
+    ],
+    "levels": [
+      3
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/03-hair__back_hair__cap.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/03-hair__back_hair__cap.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/03-hair__back_hair__cap.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/03-hair__back_hair__cap.png"
+    }
+  },
+  {
+    "id": "hair/bun",
+    "index": 4,
+    "stem": "04-hair__bun",
+    "layers": [
+      "004.0 | hair/bun | complete"
+    ],
+    "levels": [
+      4
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/04-hair__bun.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/04-hair__bun.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/04-hair__bun.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/04-hair__bun.png"
+    }
+  },
+  {
+    "id": "head_accessories/crown_pendants/crown_pendant_right",
+    "index": 5,
+    "stem": "05-head_accessories__crown_pendants__crown_pendant_right",
+    "layers": [
+      "005.0 | head_accessories/crown_pendants/crown_pendant_right | complete"
+    ],
+    "levels": [
+      5
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/05-head_accessories__crown_pendants__crown_pendant_right.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/05-head_accessories__crown_pendants__crown_pendant_right.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/05-head_accessories__crown_pendants__crown_pendant_right.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/05-head_accessories__crown_pendants__crown_pendant_right.png"
+    }
+  },
+  {
+    "id": "head_accessories/crown_pendants/crown_pendant_left",
+    "index": 6,
+    "stem": "06-head_accessories__crown_pendants__crown_pendant_left",
+    "layers": [
+      "006.0 | head_accessories/crown_pendants/crown_pendant_left | complete"
+    ],
+    "levels": [
+      6
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/06-head_accessories__crown_pendants__crown_pendant_left.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/06-head_accessories__crown_pendants__crown_pendant_left.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/06-head_accessories__crown_pendants__crown_pendant_left.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/06-head_accessories__crown_pendants__crown_pendant_left.png"
+    }
+  },
+  {
+    "id": "legs/leg_right/anklet_back",
+    "index": 7,
+    "stem": "07-legs__leg_right__anklet_back",
+    "layers": [
+      "007.0 | legs/leg_right/anklet_back | complete"
+    ],
+    "levels": [
+      7
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/07-legs__leg_right__anklet_back.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/07-legs__leg_right__anklet_back.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/07-legs__leg_right__anklet_back.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/07-legs__leg_right__anklet_back.png"
+    }
+  },
+  {
+    "id": "legs/leg_left/anklet_back",
+    "index": 8,
+    "stem": "08-legs__leg_left__anklet_back",
+    "layers": [
+      "008.0 | legs/leg_left/anklet_back | complete"
+    ],
+    "levels": [
+      8
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/08-legs__leg_left__anklet_back.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/08-legs__leg_left__anklet_back.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/08-legs__leg_left__anklet_back.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/08-legs__leg_left__anklet_back.png"
+    }
+  },
+  {
+    "id": "legs/leg_right/leg",
+    "index": 9,
+    "stem": "09-legs__leg_right__leg",
+    "layers": [
+      "009.0 | legs/leg_right/leg | complete"
+    ],
+    "levels": [
+      9
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/09-legs__leg_right__leg.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/09-legs__leg_right__leg.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/09-legs__leg_right__leg.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/09-legs__leg_right__leg.png"
+    }
+  },
+  {
+    "id": "legs/leg_left/leg",
+    "index": 10,
+    "stem": "10-legs__leg_left__leg",
+    "layers": [
+      "010.0 | legs/leg_left/leg | complete"
+    ],
+    "levels": [
+      10
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/10-legs__leg_left__leg.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/10-legs__leg_left__leg.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/10-legs__leg_left__leg.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/10-legs__leg_left__leg.png"
+    }
+  },
+  {
+    "id": "legs/leg_right/anklet_front",
+    "index": 11,
+    "stem": "11-legs__leg_right__anklet_front",
+    "layers": [
+      "011.0 | legs/leg_right/anklet_front | complete"
+    ],
+    "levels": [
+      11
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/11-legs__leg_right__anklet_front.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/11-legs__leg_right__anklet_front.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/11-legs__leg_right__anklet_front.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/11-legs__leg_right__anklet_front.png"
+    }
+  },
+  {
+    "id": "legs/leg_left/anklet_front",
+    "index": 12,
+    "stem": "12-legs__leg_left__anklet_front",
+    "layers": [
+      "012.0 | legs/leg_left/anklet_front | complete"
+    ],
+    "levels": [
+      12
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/12-legs__leg_left__anklet_front.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/12-legs__leg_left__anklet_front.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/12-legs__leg_left__anklet_front.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/12-legs__leg_left__anklet_front.png"
+    }
+  },
+  {
+    "id": "pelvis",
+    "index": 13,
+    "stem": "13-pelvis",
+    "layers": [
+      "013.0 | pelvis | complete"
+    ],
+    "levels": [
+      13
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/13-pelvis.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/13-pelvis.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/13-pelvis.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/13-pelvis.png"
+    }
+  },
+  {
+    "id": "arms/arm_right/hand/little_finger",
+    "index": 14,
+    "stem": "14-arms__arm_right__hand__little_finger",
+    "layers": [
+      "014.0 | arms/arm_right/hand/little_finger | complete"
+    ],
+    "levels": [
+      14
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/14-arms__arm_right__hand__little_finger.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/14-arms__arm_right__hand__little_finger.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/14-arms__arm_right__hand__little_finger.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/14-arms__arm_right__hand__little_finger.png"
+    }
+  },
+  {
+    "id": "arms/arm_right/hand/ring_finger",
+    "index": 15,
+    "stem": "15-arms__arm_right__hand__ring_finger",
+    "layers": [
+      "015.0 | arms/arm_right/hand/ring_finger | complete"
+    ],
+    "levels": [
+      15
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/15-arms__arm_right__hand__ring_finger.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/15-arms__arm_right__hand__ring_finger.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/15-arms__arm_right__hand__ring_finger.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/15-arms__arm_right__hand__ring_finger.png"
+    }
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "index": 16,
+    "stem": "16-arms__arm_right__hand__middle_finger",
+    "layers": [
+      "016.0 | arms/arm_right/hand/middle_finger | complete"
+    ],
+    "levels": [
+      16
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/16-arms__arm_right__hand__middle_finger.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/16-arms__arm_right__hand__middle_finger.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/16-arms__arm_right__hand__middle_finger.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/16-arms__arm_right__hand__middle_finger.png"
+    }
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "index": 17,
+    "stem": "17-arms__arm_right__hand__index_finger",
+    "layers": [
+      "017.0 | arms/arm_right/hand/index_finger | complete"
+    ],
+    "levels": [
+      17
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/17-arms__arm_right__hand__index_finger.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/17-arms__arm_right__hand__index_finger.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/17-arms__arm_right__hand__index_finger.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/17-arms__arm_right__hand__index_finger.png"
+    }
+  },
+  {
+    "id": "arms/arm_right/hand/thumb",
+    "index": 18,
+    "stem": "18-arms__arm_right__hand__thumb",
+    "layers": [
+      "018.0 | arms/arm_right/hand/thumb | complete"
+    ],
+    "levels": [
+      18
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/18-arms__arm_right__hand__thumb.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/18-arms__arm_right__hand__thumb.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/18-arms__arm_right__hand__thumb.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/18-arms__arm_right__hand__thumb.png"
+    }
+  },
+  {
+    "id": "arms/arm_right/upper_arm",
+    "index": 19,
+    "stem": "19-arms__arm_right__upper_arm",
+    "layers": [
+      "019.0 | arms/arm_right/upper_arm | complete"
+    ],
+    "levels": [
+      19
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/19-arms__arm_right__upper_arm.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/19-arms__arm_right__upper_arm.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/19-arms__arm_right__upper_arm.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/19-arms__arm_right__upper_arm.png"
+    }
+  },
+  {
+    "id": "arms/arm_right/forearm",
+    "index": 20,
+    "stem": "20-arms__arm_right__forearm",
+    "layers": [
+      "020.0 | arms/arm_right/forearm | complete"
+    ],
+    "levels": [
+      20
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/20-arms__arm_right__forearm.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/20-arms__arm_right__forearm.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/20-arms__arm_right__forearm.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/20-arms__arm_right__forearm.png"
+    }
+  },
+  {
+    "id": "arms/arm_right/hand/palm",
+    "index": 21,
+    "stem": "21-arms__arm_right__hand__palm",
+    "layers": [
+      "021.0 | arms/arm_right/hand/palm | complete"
+    ],
+    "levels": [
+      21
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/21-arms__arm_right__hand__palm.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/21-arms__arm_right__hand__palm.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/21-arms__arm_right__hand__palm.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/21-arms__arm_right__hand__palm.png"
+    }
+  },
+  {
+    "id": "arms/arm_left/forearm",
+    "index": 22,
+    "stem": "22-arms__arm_left__forearm",
+    "layers": [
+      "022.0 | arms/arm_left/forearm | complete"
+    ],
+    "levels": [
+      22
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/22-arms__arm_left__forearm.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/22-arms__arm_left__forearm.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/22-arms__arm_left__forearm.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/22-arms__arm_left__forearm.png"
+    }
+  },
+  {
+    "id": "arms/arm_left/upper_arm",
+    "index": 23,
+    "stem": "23-arms__arm_left__upper_arm",
+    "layers": [
+      "023.0 | arms/arm_left/upper_arm | complete"
+    ],
+    "levels": [
+      23
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/23-arms__arm_left__upper_arm.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/23-arms__arm_left__upper_arm.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/23-arms__arm_left__upper_arm.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/23-arms__arm_left__upper_arm.png"
+    }
+  },
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "index": 24,
+    "stem": "24-arms__arm_left__hand__index_finger",
+    "layers": [
+      "024.0 | arms/arm_left/hand/index_finger | complete"
+    ],
+    "levels": [
+      24
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/24-arms__arm_left__hand__index_finger.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/24-arms__arm_left__hand__index_finger.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/24-arms__arm_left__hand__index_finger.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/24-arms__arm_left__hand__index_finger.png"
+    }
+  },
+  {
+    "id": "arms/arm_left/hand/middle_finger",
+    "index": 25,
+    "stem": "25-arms__arm_left__hand__middle_finger",
+    "layers": [
+      "025.0 | arms/arm_left/hand/middle_finger | complete"
+    ],
+    "levels": [
+      25
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/25-arms__arm_left__hand__middle_finger.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/25-arms__arm_left__hand__middle_finger.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/25-arms__arm_left__hand__middle_finger.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/25-arms__arm_left__hand__middle_finger.png"
+    }
+  },
+  {
+    "id": "arms/arm_left/hand/little_finger",
+    "index": 26,
+    "stem": "26-arms__arm_left__hand__little_finger",
+    "layers": [
+      "026.0 | arms/arm_left/hand/little_finger | complete"
+    ],
+    "levels": [
+      26
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/26-arms__arm_left__hand__little_finger.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/26-arms__arm_left__hand__little_finger.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/26-arms__arm_left__hand__little_finger.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/26-arms__arm_left__hand__little_finger.png"
+    }
+  },
+  {
+    "id": "arms/arm_left/hand/ring_finger",
+    "index": 27,
+    "stem": "27-arms__arm_left__hand__ring_finger",
+    "layers": [
+      "027.0 | arms/arm_left/hand/ring_finger | complete"
+    ],
+    "levels": [
+      27
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/27-arms__arm_left__hand__ring_finger.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/27-arms__arm_left__hand__ring_finger.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/27-arms__arm_left__hand__ring_finger.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/27-arms__arm_left__hand__ring_finger.png"
+    }
+  },
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "index": 28,
+    "stem": "28-arms__arm_left__hand__thumb",
+    "layers": [
+      "028.0 | arms/arm_left/hand/thumb | complete"
+    ],
+    "levels": [
+      28
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/28-arms__arm_left__hand__thumb.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/28-arms__arm_left__hand__thumb.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/28-arms__arm_left__hand__thumb.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/28-arms__arm_left__hand__thumb.png"
+    }
+  },
+  {
+    "id": "arms/arm_left/hand/palm",
+    "index": 29,
+    "stem": "29-arms__arm_left__hand__palm",
+    "layers": [
+      "029.0 | arms/arm_left/hand/palm | complete"
+    ],
+    "levels": [
+      29
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/29-arms__arm_left__hand__palm.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/29-arms__arm_left__hand__palm.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/29-arms__arm_left__hand__palm.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/29-arms__arm_left__hand__palm.png"
+    }
+  },
+  {
+    "id": "neck",
+    "index": 30,
+    "stem": "30-neck",
+    "layers": [
+      "030.0 | neck | complete"
+    ],
+    "levels": [
+      30
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/30-neck.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/30-neck.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/30-neck.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/30-neck.png"
+    }
+  },
+  {
+    "id": "body/torso",
+    "index": 31,
+    "stem": "31-body__torso",
+    "layers": [
+      "031.0 | body/torso | complete"
+    ],
+    "levels": [
+      31
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/31-body__torso.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/31-body__torso.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/31-body__torso.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/31-body__torso.png"
+    }
+  },
+  {
+    "id": "body/breast",
+    "index": 32,
+    "stem": "32-body__breast",
+    "layers": [
+      "032.0 | body/breast | complete"
+    ],
+    "levels": [
+      32
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/32-body__breast.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/32-body__breast.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/32-body__breast.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/32-body__breast.png"
+    }
+  },
+  {
+    "id": "head_accessories/earrings/earring_right",
+    "index": 33,
+    "stem": "33-head_accessories__earrings__earring_right",
+    "layers": [
+      "033.0 | head_accessories/earrings/earring_right | complete"
+    ],
+    "levels": [
+      33
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/33-head_accessories__earrings__earring_right.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/33-head_accessories__earrings__earring_right.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/33-head_accessories__earrings__earring_right.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/33-head_accessories__earrings__earring_right.png"
+    }
+  },
+  {
+    "id": "head_accessories/earrings/earring_left",
+    "index": 34,
+    "stem": "34-head_accessories__earrings__earring_left",
+    "layers": [
+      "034.0 | head_accessories/earrings/earring_left | complete"
+    ],
+    "levels": [
+      34
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/34-head_accessories__earrings__earring_left.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/34-head_accessories__earrings__earring_left.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/34-head_accessories__earrings__earring_left.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/34-head_accessories__earrings__earring_left.png"
+    }
+  },
+  {
+    "id": "face/ears/ear_right",
+    "index": 35,
+    "stem": "35-face__ears__ear_right",
+    "layers": [
+      "035.0 | face/ears/ear_right | complete"
+    ],
+    "levels": [
+      35
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/35-face__ears__ear_right.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/35-face__ears__ear_right.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/35-face__ears__ear_right.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/35-face__ears__ear_right.png"
+    }
+  },
+  {
+    "id": "face/ears/ear_left",
+    "index": 36,
+    "stem": "36-face__ears__ear_left",
+    "layers": [
+      "036.0 | face/ears/ear_left | complete"
+    ],
+    "levels": [
+      36
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/36-face__ears__ear_left.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/36-face__ears__ear_left.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/36-face__ears__ear_left.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/36-face__ears__ear_left.png"
+    }
+  },
+  {
+    "id": "face/face_base",
+    "index": 37,
+    "stem": "37-face__face_base",
+    "layers": [
+      "037.0 | face/face_base | complete"
+    ],
+    "levels": [
+      37
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/37-face__face_base.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/37-face__face_base.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/37-face__face_base.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/37-face__face_base.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_left/sclera",
+    "index": 38,
+    "stem": "38-face__eyes__eye_left__sclera",
+    "layers": [
+      "038.0 | face/eyes/eye_left/sclera | complete"
+    ],
+    "levels": [
+      38
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/38-face__eyes__eye_left__sclera.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/38-face__eyes__eye_left__sclera.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/38-face__eyes__eye_left__sclera.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/38-face__eyes__eye_left__sclera.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_left/iris",
+    "index": 39,
+    "stem": "39-face__eyes__eye_left__iris",
+    "layers": [
+      "039.0 | face/eyes/eye_left/iris | complete"
+    ],
+    "levels": [
+      39
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/39-face__eyes__eye_left__iris.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/39-face__eyes__eye_left__iris.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/39-face__eyes__eye_left__iris.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/39-face__eyes__eye_left__iris.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_left/highlight",
+    "index": 40,
+    "stem": "40-face__eyes__eye_left__highlight",
+    "layers": [
+      "040.0 | face/eyes/eye_left/highlight | complete"
+    ],
+    "levels": [
+      40
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/40-face__eyes__eye_left__highlight.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/40-face__eyes__eye_left__highlight.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/40-face__eyes__eye_left__highlight.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/40-face__eyes__eye_left__highlight.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_left/lower_eyelid",
+    "index": 41,
+    "stem": "41-face__eyes__eye_left__lower_eyelid",
+    "layers": [
+      "041.0 | face/eyes/eye_left/lower_eyelid | complete"
+    ],
+    "levels": [
+      41
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/41-face__eyes__eye_left__lower_eyelid.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/41-face__eyes__eye_left__lower_eyelid.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/41-face__eyes__eye_left__lower_eyelid.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/41-face__eyes__eye_left__lower_eyelid.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "index": 42,
+    "stem": "42-face__eyes__eye_left__upper_eyelid",
+    "layers": [
+      "042.0 | face/eyes/eye_left/upper_eyelid | main_lid",
+      "066.0 | face/eyes/eye_left/upper_eyelid | outer_lash_front"
+    ],
+    "levels": [
+      42,
+      66
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/42-face__eyes__eye_left__upper_eyelid.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/42-face__eyes__eye_left__upper_eyelid.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/42-face__eyes__eye_left__upper_eyelid.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/42-face__eyes__eye_left__upper_eyelid.png"
+    },
+    "slices": [
+      "raster-layering/step01/review-02-evidence/slices/42-face__eyes__eye_left__upper_eyelid--042.0.png",
+      "raster-layering/step01/review-02-evidence/slices/42-face__eyes__eye_left__upper_eyelid--066.0.png"
+    ]
+  },
+  {
+    "id": "face/eyes/eye_left/eyelid_crease",
+    "index": 43,
+    "stem": "43-face__eyes__eye_left__eyelid_crease",
+    "layers": [
+      "043.0 | face/eyes/eye_left/eyelid_crease | complete"
+    ],
+    "levels": [
+      43
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/43-face__eyes__eye_left__eyelid_crease.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/43-face__eyes__eye_left__eyelid_crease.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/43-face__eyes__eye_left__eyelid_crease.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/43-face__eyes__eye_left__eyelid_crease.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_right/sclera",
+    "index": 44,
+    "stem": "44-face__eyes__eye_right__sclera",
+    "layers": [
+      "044.0 | face/eyes/eye_right/sclera | complete"
+    ],
+    "levels": [
+      44
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/44-face__eyes__eye_right__sclera.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/44-face__eyes__eye_right__sclera.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/44-face__eyes__eye_right__sclera.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/44-face__eyes__eye_right__sclera.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_right/iris",
+    "index": 45,
+    "stem": "45-face__eyes__eye_right__iris",
+    "layers": [
+      "045.0 | face/eyes/eye_right/iris | complete"
+    ],
+    "levels": [
+      45
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/45-face__eyes__eye_right__iris.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/45-face__eyes__eye_right__iris.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/45-face__eyes__eye_right__iris.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/45-face__eyes__eye_right__iris.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_right/highlight",
+    "index": 46,
+    "stem": "46-face__eyes__eye_right__highlight",
+    "layers": [
+      "046.0 | face/eyes/eye_right/highlight | complete"
+    ],
+    "levels": [
+      46
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/46-face__eyes__eye_right__highlight.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/46-face__eyes__eye_right__highlight.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/46-face__eyes__eye_right__highlight.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/46-face__eyes__eye_right__highlight.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_right/lower_eyelid",
+    "index": 47,
+    "stem": "47-face__eyes__eye_right__lower_eyelid",
+    "layers": [
+      "047.0 | face/eyes/eye_right/lower_eyelid | complete"
+    ],
+    "levels": [
+      47
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/47-face__eyes__eye_right__lower_eyelid.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/47-face__eyes__eye_right__lower_eyelid.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/47-face__eyes__eye_right__lower_eyelid.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/47-face__eyes__eye_right__lower_eyelid.png"
+    }
+  },
+  {
+    "id": "face/eyes/eye_right/upper_eyelid",
+    "index": 48,
+    "stem": "48-face__eyes__eye_right__upper_eyelid",
+    "layers": [
+      "048.0 | face/eyes/eye_right/upper_eyelid | main_lid",
+      "066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front"
+    ],
+    "levels": [
+      48,
+      66.5
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/48-face__eyes__eye_right__upper_eyelid.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/48-face__eyes__eye_right__upper_eyelid.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/48-face__eyes__eye_right__upper_eyelid.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/48-face__eyes__eye_right__upper_eyelid.png"
+    },
+    "slices": [
+      "raster-layering/step01/review-02-evidence/slices/48-face__eyes__eye_right__upper_eyelid--048.0.png",
+      "raster-layering/step01/review-02-evidence/slices/48-face__eyes__eye_right__upper_eyelid--066.5.png"
+    ]
+  },
+  {
+    "id": "face/eyes/eye_right/eyelid_crease",
+    "index": 49,
+    "stem": "49-face__eyes__eye_right__eyelid_crease",
+    "layers": [
+      "049.0 | face/eyes/eye_right/eyelid_crease | complete"
+    ],
+    "levels": [
+      49
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/49-face__eyes__eye_right__eyelid_crease.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/49-face__eyes__eye_right__eyelid_crease.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/49-face__eyes__eye_right__eyelid_crease.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/49-face__eyes__eye_right__eyelid_crease.png"
+    }
+  },
+  {
+    "id": "face/mouth/mouth_interior",
+    "index": 50,
+    "stem": "50-face__mouth__mouth_interior",
+    "layers": [
+      "050.0 | face/mouth/mouth_interior | complete"
+    ],
+    "levels": [
+      50
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/50-face__mouth__mouth_interior.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/50-face__mouth__mouth_interior.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/50-face__mouth__mouth_interior.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/50-face__mouth__mouth_interior.png"
+    }
+  },
+  {
+    "id": "face/mouth/lower_teeth",
+    "index": 51,
+    "stem": "51-face__mouth__lower_teeth",
+    "layers": [
+      "051.0 | face/mouth/lower_teeth | complete"
+    ],
+    "levels": [
+      51
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/51-face__mouth__lower_teeth.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/51-face__mouth__lower_teeth.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/51-face__mouth__lower_teeth.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/51-face__mouth__lower_teeth.png"
+    }
+  },
+  {
+    "id": "face/mouth/tongue",
+    "index": 52,
+    "stem": "52-face__mouth__tongue",
+    "layers": [
+      "052.0 | face/mouth/tongue | complete"
+    ],
+    "levels": [
+      52
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/52-face__mouth__tongue.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/52-face__mouth__tongue.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/52-face__mouth__tongue.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/52-face__mouth__tongue.png"
+    }
+  },
+  {
+    "id": "face/mouth/upper_teeth",
+    "index": 53,
+    "stem": "53-face__mouth__upper_teeth",
+    "layers": [
+      "053.0 | face/mouth/upper_teeth | complete"
+    ],
+    "levels": [
+      53
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/53-face__mouth__upper_teeth.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/53-face__mouth__upper_teeth.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/53-face__mouth__upper_teeth.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/53-face__mouth__upper_teeth.png"
+    }
+  },
+  {
+    "id": "face/mouth/lower_lip",
+    "index": 54,
+    "stem": "54-face__mouth__lower_lip",
+    "layers": [
+      "054.0 | face/mouth/lower_lip | complete"
+    ],
+    "levels": [
+      54
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/54-face__mouth__lower_lip.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/54-face__mouth__lower_lip.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/54-face__mouth__lower_lip.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/54-face__mouth__lower_lip.png"
+    }
+  },
+  {
+    "id": "face/mouth/upper_lip",
+    "index": 55,
+    "stem": "55-face__mouth__upper_lip",
+    "layers": [
+      "055.0 | face/mouth/upper_lip | complete"
+    ],
+    "levels": [
+      55
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/55-face__mouth__upper_lip.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/55-face__mouth__upper_lip.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/55-face__mouth__upper_lip.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/55-face__mouth__upper_lip.png"
+    }
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "index": 56,
+    "stem": "56-face__eyebrows__eyebrow_right",
+    "layers": [
+      "056.0 | face/eyebrows/eyebrow_right | complete"
+    ],
+    "levels": [
+      56
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/56-face__eyebrows__eyebrow_right.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/56-face__eyebrows__eyebrow_right.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/56-face__eyebrows__eyebrow_right.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/56-face__eyebrows__eyebrow_right.png"
+    }
+  },
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "index": 57,
+    "stem": "57-face__eyebrows__eyebrow_left",
+    "layers": [
+      "057.0 | face/eyebrows/eyebrow_left | complete"
+    ],
+    "levels": [
+      57
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/57-face__eyebrows__eyebrow_left.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/57-face__eyebrows__eyebrow_left.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/57-face__eyebrows__eyebrow_left.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/57-face__eyebrows__eyebrow_left.png"
+    }
+  },
+  {
+    "id": "face/nose",
+    "index": 58,
+    "stem": "58-face__nose",
+    "layers": [
+      "058.0 | face/nose | complete"
+    ],
+    "levels": [
+      58
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/58-face__nose.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/58-face__nose.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/58-face__nose.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/58-face__nose.png"
+    }
+  },
+  {
+    "id": "hair/sidelock/sidelock_right",
+    "index": 59,
+    "stem": "59-hair__sidelock__sidelock_right",
+    "layers": [
+      "059.0 | hair/sidelock/sidelock_right | complete"
+    ],
+    "levels": [
+      59
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/59-hair__sidelock__sidelock_right.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/59-hair__sidelock__sidelock_right.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/59-hair__sidelock__sidelock_right.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/59-hair__sidelock__sidelock_right.png"
+    }
+  },
+  {
+    "id": "hair/sidelock/sidelock_left",
+    "index": 60,
+    "stem": "60-hair__sidelock__sidelock_left",
+    "layers": [
+      "060.0 | hair/sidelock/sidelock_left | complete"
+    ],
+    "levels": [
+      60
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/60-hair__sidelock__sidelock_left.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/60-hair__sidelock__sidelock_left.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/60-hair__sidelock__sidelock_left.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/60-hair__sidelock__sidelock_left.png"
+    }
+  },
+  {
+    "id": "head_accessories/bun_ornament",
+    "index": 61,
+    "stem": "61-head_accessories__bun_ornament",
+    "layers": [
+      "061.0 | head_accessories/bun_ornament | complete"
+    ],
+    "levels": [
+      61
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/61-head_accessories__bun_ornament.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/61-head_accessories__bun_ornament.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/61-head_accessories__bun_ornament.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/61-head_accessories__bun_ornament.png"
+    }
+  },
+  {
+    "id": "head_accessories/crown_frame",
+    "index": 62,
+    "stem": "62-head_accessories__crown_frame",
+    "layers": [
+      "061.5 | head_accessories/crown_frame | mounting_root",
+      "067.0 | head_accessories/crown_frame | visible_front"
+    ],
+    "levels": [
+      61.5,
+      67
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/62-head_accessories__crown_frame.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/62-head_accessories__crown_frame.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/62-head_accessories__crown_frame.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/62-head_accessories__crown_frame.png"
+    },
+    "slices": [
+      "raster-layering/step01/review-02-evidence/slices/62-head_accessories__crown_frame--061.5.png",
+      "raster-layering/step01/review-02-evidence/slices/62-head_accessories__crown_frame--067.0.png"
+    ]
+  },
+  {
+    "id": "head_accessories/forehead_pendant",
+    "index": 63,
+    "stem": "63-head_accessories__forehead_pendant",
+    "layers": [
+      "062.0 | head_accessories/forehead_pendant | mounting_root",
+      "065.0 | head_accessories/forehead_pendant | visible_front"
+    ],
+    "levels": [
+      62,
+      65
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/63-head_accessories__forehead_pendant.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/63-head_accessories__forehead_pendant.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/63-head_accessories__forehead_pendant.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/63-head_accessories__forehead_pendant.png"
+    },
+    "slices": [
+      "raster-layering/step01/review-02-evidence/slices/63-head_accessories__forehead_pendant--062.0.png",
+      "raster-layering/step01/review-02-evidence/slices/63-head_accessories__forehead_pendant--065.0.png"
+    ]
+  },
+  {
+    "id": "hair/side_hair/side_hair_right",
+    "index": 64,
+    "stem": "64-hair__side_hair__side_hair_right",
+    "layers": [
+      "063.0 | hair/side_hair/side_hair_right | complete"
+    ],
+    "levels": [
+      63
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/64-hair__side_hair__side_hair_right.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/64-hair__side_hair__side_hair_right.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/64-hair__side_hair__side_hair_right.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/64-hair__side_hair__side_hair_right.png"
+    }
+  },
+  {
+    "id": "hair/side_hair/side_hair_left",
+    "index": 65,
+    "stem": "65-hair__side_hair__side_hair_left",
+    "layers": [
+      "064.0 | hair/side_hair/side_hair_left | complete"
+    ],
+    "levels": [
+      64
+    ],
+    "files": {
+      "isolated": "raster-layering/step01/review-02-evidence/isolated/65-hair__side_hair__side_hair_left.png",
+      "masked": "raster-layering/step01/review-02-evidence/masked/65-hair__side_hair__side_hair_left.png",
+      "reveal": "raster-layering/step01/review-02-evidence/reveal/65-hair__side_hair__side_hair_left.png",
+      "reveal-off": "raster-layering/step01/review-02-evidence/reveal-off/65-hair__side_hair__side_hair_left.png"
+    }
+  }
+]

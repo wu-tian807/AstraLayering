@@ -2,10 +2,102 @@
   "groupId": "hair/bun",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "结论：pass。当前父范围内未发现需要本子组返修的问题；以下两侧可见边缘偏差属于已确认的上游父范围限制，并未补齐。\n\n核对范围：先查看整图 blend，再以 [468,20,55,60]、[508,20,47,61]、[469,60,86,39] 三个重叠选框，均使用 8 倍 blend 和 edge，覆盖圆髻顶部、左右外缘、冠饰遮挡交界、下半髻体及约 y90 的连接颈；另用 view_bitmap 查看参考 [466,19,91,82] 及左右局部。父 SVG 与候选在相同局部对照，并读取了两者源码。没有把莲花、冠环、宝石或髻内发纹当作本轮缺失组件。\n\n上游限制 1（画面左侧）：约 x475–481、y60–71，参考的圆髻外侧仍向下延伸，在左侧白色外花瓣后方保有较直的竖向边缘；候选过早向右下收圆，靠近 y69–71 处留下数像素宽的未覆盖可见发面。同框 edge 核对 [469,36,24,40] 表明父 hair.svg 的圆髻边界与候选一致，该参考边缘处在父范围外；需要上游扩大并校正父稿，不能要求 bun 越界恢复。证据：observations/review/hair/bun/2026-10-15T04-59-29-945Z-11.png（候选）与 -12.png（父稿），并参照 view_bitmap 左侧放大图 1d611dce-1bb0-42e6-8e8c-550af3edefe4.png。\n\n上游限制 2（画面右侧）：约 x544–549、y55–70，参考外缘较饱满，向下延至右侧白色外花瓣后方；候选更早向左收窄，尤其 y65–70 尚露有约 2–4 像素宽的参考发面。同框 edge 核对 [535,36,21,40] 及 [508,20,47,61]，父稿与候选使用相同外缘，所缺部分在父范围之外；需由上游修正父范围，当前不放宽父检查，也不声称该段已经贴合参考。证据：observations/review/hair/bun/2026-10-15T04-59-29-945Z-14.png（候选）与 -13.png（父稿），另见 -6.png 与 -10.png，以及 view_bitmap 右侧放大图 93efe88b-f715-4889-9587-b776eb8b762d.png。\n\n其余核对：顶部及上侧可见外缘未发现另有明确可修偏差；候选覆盖父稿圆髻主体并连续接入短颈，没有遗留属于本件的父内可见区域。下半部与连接颈为冠饰后的合理连续补形，不要求追随花瓣或内部阴影；未发现真实孔洞被填平、独立组件整段遗漏、孤立点、碎发片或形体归属混乱。父范围检查 pass：4 倍采样，outsideSamples=0，outsidePixels=0。",
-      "candidateHash": "ddb5056908f7bfe71b6ed26f6cf4732d170ace046f31677cfca69bf399a0fb8f",
-      "updatedAt": "2026-10-15T05:01:46.206Z"
+      "verdict": "revise",
+      "feedback": "已完成整图定位及覆盖髻顶、左右侧缘、下缘与中央饰件交接的重叠分区 blend/edge 放大核对，并查看父组 hair 完成稿及候选独显。实体归属、主要形体及可见组件覆盖正确，未见碎片噪音；无需重画整组。候选父范围检查通过（outsidePixels=0）。\n\n需修改：画面右侧发髻外缘，约 x=516–519、y=67–82。参考外侧银白发体在 y=70–80 的实边约止于 x=516；候选右侧弧线向右鼓出约 1–2 像素，edge 对照可见红线落在原髻体之外，blend 中形成向白底扩出的窄条。请收回该段外弧，贴合参考实际可见外缘，并平顺衔接上方圆弧和下方 y≈83–86 的饰件交接转折；不要追随更靠内的深色发纹。该修正可在父范围内完成，不涉及上游限制。\n\n图像证据：右半边缘对照 ![右半边缘](previews/2026-11-02T10-08-31-072Z-5.png)；右侧原图叠加 ![右侧叠加](previews/2026-11-02T10-08-31-072Z-7.png)。",
+      "candidateHash": "be4a35f530f187536492feadab097d5a26ee1fb8da13efca73bb1eb1040c5b92",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-08-31-072Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-08-31-072Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-08-31-072Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-08-31-072Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-08-31-072Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-08-31-072Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-08-31-072Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-08-31-072Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:20:32.094Z",
+      "repairedCandidateHash": "260babb0e47b64f5a6b9e48bffdd2c15bda08472999cc4fe1540734b75de7ede"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已核对整图叠加、完整发髻放大，以及左右重叠选框的 blend/edge；同时查看父组完成 SVG。主体归属、位置及主要比例正确，无需重画整组；未发现孤点、碎片或误包外侧饰架。候选父范围检查通过（outsidePixels=0）。\n\n需修正一处可见接缝：画面右侧前饰件外拱与髻体的交界，约 x490–501、y70–86。参考中蓝银饰件的银白外框之外仍有一条连续的浅色髻体；候选内凹弧向右挖得偏宽，edge 红线落在外框右侧的发面上，blend 中可见一条未覆盖的浅色窄带。请将此段内凹边向饰件外框收回，补足髻体至真实遮挡接缝，保持与下方 y86–88 已有髻体连续，勿把这条可见发面作为饰件或空白留下。这是当前父范围内可修的局部漏画，不涉及恢复大面积隐藏根部，也无父范围冲突。\n\n证据：右半边完整放大 [edge](previews/2026-11-02T10-26-54-368Z-5.png)，接缝放大 [blend](previews/2026-11-02T10-26-54-368Z-6.png)。",
+      "candidateHash": "260babb0e47b64f5a6b9e48bffdd2c15bda08472999cc4fe1540734b75de7ede",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-26-54-368Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-26-54-368Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-26-54-368Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-26-54-368Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-26-54-368Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-26-54-368Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-26-54-368Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bun/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/bun/previews/2026-11-02T10-26-54-368Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:35:08.408Z",
+      "repairedCandidateHash": "c145a4ba9549510862135b1442cacdf1add6030f8805eb54dc3e36cbad806937"
     }
   ]
 }

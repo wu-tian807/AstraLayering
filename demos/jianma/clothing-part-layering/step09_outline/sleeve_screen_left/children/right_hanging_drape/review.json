@@ -1,0 +1,43 @@
+{
+  "groupId": "sleeve_screen_left/right_hanging_drape",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮审查通过，无已确认需要修改的问题。已只读核对纯衣服原参考、groups.json 中本 part 与父组 note、候选 SVG 及父完成 SVG；先由原参考确认归属，再检查色块覆盖。\n\n核对范围及图像证据：\n1. 整体位置与归属：x75–374、y328–1455 的上部斜向前翻布幅、袖口外侧折返宽垂面、下方连续卷面、外侧尖垂端及长尾均有覆盖；没有误包外袍长前襟、肩披或袖筒主体。整体叠加见 ![整体叠加](review_evidence/round1_whole_blend.png)。\n2. 上段与袖口：对 x170–390、y310–830 原参考作 3 倍放大并逐边覆盖核对。上部内缘沿可见斜向翻卷布缘转至袖筒外侧，袖口下唇外缘下方接回后垂面；候选未填袖口椭圆开口，亦无人体实体。此处为布片间遮挡边界，保持单一连续布幅符合 note 所述前翻缘在筒身前、下垂面在筒口与手后的职责。见 ![上段边缘覆盖](review_evidence/round1_upper_edge.png)。\n3. 下段：对 x60–315、y800–1470 原参考放大，核对中部波浪外缘、约 x178 y1080 的分叉根、x75 y1218 的尖垂端、其与主长幅之间的真实空隙，以及约 x79 y1455 的尾尖和内侧连续边界；可见浅色衣料均保留，分叉空隙未封死，未发现可见组件遗漏或其他衣片误包。见 ![下段边缘覆盖](review_evidence/round1_lower_edge.png) 与 ![下段叠加](review_evidence/round1_lower_blend.png)。\n4. 父范围与独显：候选在父完成轮廓内，工具四倍采样检查 outsidePixels=0；父稿肩披下的新增袖根属于袖筒职责，不构成本垂布的可见缺漏。见 ![父完成稿叠加](review_evidence/round1_parent_blend.png)。纯色独显未见意外孔洞、断片或结构异常，见 ![纯色独显](review_evidence/round1_solid.png)。\n\n本轮只审查几何、归属、开口与结构职责，不把纹样、褶皱明暗及透明度绘画表现列作缺陷。无需重画当前 part；无上游父范围限制问题。候选及父稿未修改。",
+      "candidateHash": "1b26cc489d624a1e95958f88dc5f88ed90964f5baddf0137214e98337ec4226b",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/previews/2026-11-02T16-16-16-749Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/sleeve_screen_left.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/previews/2026-11-02T16-16-16-749Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/previews/2026-11-02T16-16-16-749Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/previews/2026-11-02T16-16-16-749Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/previews/2026-11-02T16-16-16-749Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/children/right_hanging_drape/previews/2026-11-02T16-16-16-749Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:48:59.056Z"
+    }
+  ]
+}

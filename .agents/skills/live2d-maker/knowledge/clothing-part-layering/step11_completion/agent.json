@@ -1,9 +1,7 @@
 {
   "main": {
     "initial": [
-      "prompts/9-正面遮挡补全.md",
-      "prompts/9-补全操作约定.md",
-      "prompts/参考图片.md"
+      "prompts/9-正面遮挡补全.md"
     ],
     "tools": [
       "preview_svg",

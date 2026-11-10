@@ -1,7 +1,0 @@
-{
-  "groupId": "outer_robe/right_front_panel",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "7799eb296b4d28553e600d95db59853d16d3c17af6e913219450e080164031c6",
-  "afterHash": "2a6130aa44c4789c714cff4ec29563c8f3a4681ed97495da044238d4bbdff0d8"
-}

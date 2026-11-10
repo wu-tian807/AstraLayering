@@ -1,7 +1,5 @@
 {
   "groupId": "chest_ornament",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "6b76bdc820b7483d699cb8b8a26493fba48adbcc3d4980542c24eb3ddc2b20a0",
-  "afterHash": "2a2680c9b5c4102d4b93af4aae899573cb588b5c446285fc42872fbe993ca020"
+  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

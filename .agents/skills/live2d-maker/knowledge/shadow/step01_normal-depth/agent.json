@@ -1,9 +1,7 @@
 {
   "main": {
     "initial": [
-      "prompts/normal-depth.md",
-      "prompts/runtime.md",
-      "prompts/runtime-output.md"
+      "prompts/normal-depth.md"
     ],
     "tools": [
       "imagegen"

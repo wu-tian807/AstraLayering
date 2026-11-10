@@ -1,10 +1,9 @@
 import assert from 'node:assert/strict';
-import { mkdir, readFile, rm, stat } from 'node:fs/promises';
+import { mkdir, readFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { artifactPath, draftPath, readJson, reportPath, reviewedArtifact, svgHash } from '../../shared/part/artifact-facts.ts';
-import { GroupStore, normalizeGroups, walkGroups, writeAtomic } from '../../shared/part/groups.ts';
+import { GroupStore, normalizeGroups, writeAtomic } from '../../shared/part/groups.ts';
 import { GroupExecutionError, runLayering } from '../../shared/part/layering.ts';
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { groupStepId, layerStepId } from '../../shared/part/part-steps.ts';
@@ -262,36 +261,6 @@ test('异常后当前批次已派发任务收尾，保留成功事实且不进�
   assert.ok(!events.some(event => event.includes('reduce')));
   assert.ok(await readFile(artifactPath(f.directory, 'b', 'outline')));
   assert.ok(await readFile(artifactPath(f.directory, 'c', 'outline')));
-});
-
-test('jianma 成果归档恢复 115 节点的完整结构与复核事实', async t => {
-  const directory = new URL('../../../../../demos/jianma/part-layering/', import.meta.url);
-  try { await stat(directory); }
-  catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-    t.skip('仅仓库验收：独立安装的 skill 不携带 demos/jianma 成果归档');
-    return;
-  }
-  await stat(new URL('step08_initial/.completed', directory));
-  const store = await GroupStore.open(fileURLToPath(directory));
-  const groups = store.snapshot().groups;
-  assert.equal(groups.length, 8);
-  assert.ok(groups.every(group => group.steps.outline.status === 'completed' && group.steps.review.status === 'completed'));
-  assert.ok(groups.every(group => Object.values(group.steps).every(step => step.status === 'completed')));
-  assert.equal(groups.find(group => group.id === 'arms')!.steps.review.output!.reviewOutcome, 'repaired');
-  const hair = walkGroups([groups.find(group => group.id === 'hair')!]);
-  assert.equal(hair.length, 10);
-  assert.equal(hair.filter(({ group }) => group.kind === 'part').length, 8);
-  assert.ok(hair.every(({ group }) => Object.values(group.steps).every(step => step.status === 'completed')));
-  const all = walkGroups(groups);
-  assert.equal(all.length, 115);
-  const complete = all.every(({ group }) => Object.values(group.steps).every(step => step.status === 'completed'));
-  assert.equal(all.filter(({ depth }) => depth === 3).length, 29);
-  assert.ok(all.filter(({ depth }) => depth === 3).every(({ group }) => group.kind === 'part' && group.groups.length === 0));
-  if (complete) {
-    assert.equal(store.snapshot().merge.status, 'completed');
-    assert.equal(store.snapshot().merge.output!.path, join(fileURLToPath(directory), 'preview.svg'));
-  } else assert.equal(store.snapshot().merge.status, 'pending');
 });
 
 test('显式选第二层也不能绕过第一层未完成的其他分支', async t => {

@@ -1,0 +1,33 @@
+{
+  "groupId": "central_blue_drapery",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第1轮审查通过。已先独立查看纯衣服参考及 groups.json 中 central_blue_drapery 的 note，再核对候选源码、整图 blend、SVG 独显和覆盖全部可见区域的两段3倍 edge 放大（x380–570/y450–990、x380–570/y960–1480），并以5倍原图局部复核腰口（x410–535/y445–595）。本节点无父组，无父范围限制。参考确认本组为腰口下的两侧蓝色长幅及连续折返卷尾；腰带短端、珠链和浅色流苏属于前方独立组件，两侧浅色波浪翻襟属于外袍。候选在约x448–498/y484的根部、y550–812两侧受外袍遮挡的分界、y812–1246的长直外缘、x394–554/y1246–1305的斜尖与折返阶口，以及x433–520/y1305–1467的卷尾外缘均与参考相符。中央珠链及流苏所在区域保留其后底布覆盖合理，不应按附件可见像素挖除；未发现需保留却被封闭的真实开口、薄纱或分离附件遗漏，也未发现误包其他衣片或人体。note 已交代实体范围、相邻分界、前后层叠、腰部随动与尾部摆动职责。本轮无确定需要修改的问题，无需重画。候选与输入均未修改。",
+      "candidateHash": "5fd299f0d7742fff89660c660a963a417a560bbde009ee2fac47e614c9e3e89f",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/central_blue_drapery/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/previews/2026-11-02T11-34-35-216Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/central_blue_drapery/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/previews/2026-11-02T11-34-35-216Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/central_blue_drapery/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/previews/2026-11-02T11-34-35-216Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/central_blue_drapery/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/central_blue_drapery/previews/2026-11-02T11-34-35-216Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:48:41.578Z"
+    }
+  ]
+}

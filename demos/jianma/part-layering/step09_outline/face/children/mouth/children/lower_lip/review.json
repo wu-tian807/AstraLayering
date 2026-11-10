@@ -3,9 +3,56 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "按本轮给定的 face/mouth/lower_lip 职责完成独立核对。先查看整图 blend 定位嘴部，再以 8 倍放大的左区 [501,233,12,15]、中央区 [507,236,11,13]、右区 [513,233,11,15]，分别使用参考图 view_bitmap、候选 blend 和 edge 检查；三个选框互相重叠，覆盖本组全部可见区域，并用整嘴 [498,227,29,24] 和下口缘 [501,233,23,16] 复核连续性。证据为本轮 observations/review/face/mouth/lower_lip 中候选预览 -3 至 -15 及三块参考放大图。\n左嘴角至中央、中央至右嘴角均为连续的下唇色块，覆盖参考中的下口缘、浅亮下唇区域及必要的窄肤色边；两端局部圆弧衔接余量符合组说明，未见需要以碎片或孤点补漏的区域。中央下弧完整，外缘与参考可辨认的唇缘走向相符，未将口下弥散阴影另立为组件。口腔开口保留，未发现真实孔洞被填平、接缝无依据留空或所属组件整段漏画。独显检查未见噪音、孤立碎片或形体归属混乱。内部明暗及最终着色不作为本轮问题。\n同时查看父组 mouth.svg 的局部 blend 与 edge。候选父范围检查 status=pass，outsideSamples=0、outsidePixels=0；本轮未发现需扩大父范围才可恢复的、具有明确参考边缘依据的上游限制。结论：pass。",
-      "candidateHash": "bca10e44374b57592a729237461a2d49eea92346c85ab277fd9a12563fda0cac",
-      "updatedAt": "2026-10-14T22:39:34.013Z"
+      "feedback": "已核对组说明、原图、候选及父组完成 SVG；完成整图 blend 定位，并以 [444,267,51,32] 全部局部、相互重叠的 [449,271,23,25] 左侧及 [467,271,22,25] 右侧选框进行 8 倍 blend、edge 对照，另检查 SVG 独显。下唇内缘沿口腔下沿连续连接两侧，中央下唇亮部及其周围唇缘均在色块范围内，未发现可见组件遗漏、误包独立相邻结构、缝隙或碎片。外围为 note 明确要求的 U 形局部肤色遮挡片，形体连续合理；allowOutsideParent=true，超出父嘴部轮廓符合职责。当前组通过，无需重画或局部返修。",
+      "candidateHash": "d41f188c0cd31d9a4ce436a8373f6976d4d9b4d9f12111350120434849255455",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/lower_lip/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/lower_lip/previews/2026-11-02T11-24-56-392Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/lower_lip/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/lower_lip/previews/2026-11-02T11-24-56-392Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/lower_lip/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/lower_lip/previews/2026-11-02T11-24-56-392Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/lower_lip/previews/2026-11-02T11-24-56-392Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/lower_lip/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/lower_lip/previews/2026-11-02T11-24-56-392Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/lower_lip/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/lower_lip/previews/2026-11-02T11-24-56-392Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/lower_lip/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/lower_lip/previews/2026-11-02T11-24-56-392Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/lower_lip/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/lower_lip/previews/2026-11-02T11-24-56-392Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/lower_lip/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/lower_lip/previews/2026-11-02T11-24-56-392Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:26:59.447Z"
     }
   ]
 }

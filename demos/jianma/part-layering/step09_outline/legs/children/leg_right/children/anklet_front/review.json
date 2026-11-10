@@ -1,0 +1,73 @@
+{
+  "groupId": "legs/leg_right/anklet_front",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已核对本组职责、参考图、候选及父完成 SVG；整图定位后，以左端 [410,1497,25,24]、中央 [428,1502,24,20]、右端 [445,1496,22,25] 的重叠选框逐块检查 blend 与 edge，并检查独显。可见形体确属绕踝珠链前段，下方足背链饰归 leg，未误包。父允许范围内珠排、两端转折及上下缘已覆盖，无确定的可修缺漏、孔洞误填或碎片噪音；无需重画当前组。父范围检测 outsidePixels=0。\n\n已确认的上游范围限制：画面左端约 x414–418、y1502–1508，参考中最左侧珠粒的上半部/外侧仍可见，但父 legs/leg_right.svg 的斜向左边界切入该珠粒。候选同处已贴合父边界，裁切后的斜边与父边界一致，未覆盖部分位于父范围外，只有扩大父轮廓才能恢复；该处并未补齐。本组未获 allowOutsideParent，不要求子组越界修复，也不修改父稿。此上游限制不阻止本轮 pass。\n\n证据：全珠排边缘核对 ![全珠排](review-evidence/anklet-all-edge.png)；左端候选 ![候选左端](review-evidence/anklet-left-edge.png)；同一局部父稿 ![父范围冲突](review-evidence/parent-left-edge.png)。",
+      "candidateHash": "b975a4b4d0b119c5b6085bc7b1576ac98c01f4c9f7e462cf3da4ddcb10466f77",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-10.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/anklet_front/previews/2026-11-02T11-24-56-395Z-12.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:36:52.368Z"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "groupId": "inner_long_dress/long_skirt",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，无确定需要修改的问题。\n\n先依据纯衣服参考确认归属：本片为宽腰下缘之后的内裙裙身；约 y800 以下蓝色长垂布两侧的窄露出裙料，以及约 x370–575、y1320–1469 的底部褶裥裙缘归本片。两侧波浪翻襟、中央蓝色垂布及悬饰均为前方其他组件。候选中这些组件背后的实心覆盖属于父完成稿已登记的隐藏裙料，不构成误包。\n\n已核对整体原图叠加、候选独显和全部裙身的分区边缘覆盖：\n1. x402–538、y478–485 的裙根接缝位置正确，向宽腰下缘后保留小幅搭接；其下左右边延续父完成轮廓，没有把可见外袍轮廓误作裙边。\n2. y800–1320 两侧露出窄裙料均被覆盖，中央遮挡部分与两侧隐藏衣料保持完整；没有因浅色衣料而误挖空，也没有需要独立收取而漏掉的可见附件。\n3. x370–575、y1450–1469 的可见裙口波浪边、两侧褶裥底缘及中央蓝色卷尾两侧露出的裙料，与参考位置和比例吻合；横接线、褶线为内部绘画表现，无须增设路径。\n4. 两侧隐藏展开至底部 x289–654 的范围承接父完成 SVG；四倍采样父范围检查 outsidePixels=0。裙身无人体填充、无错误封闭可见开口；note 已说明实体、腰部连接、前后遮挡、围腿深度区域及共同随动职责，符合终止 part 的范围。\n\n图像证据：\n![整体原图叠加](review-evidence/overall-blend.png)\n![裙根及上段边缘核对](review-evidence/waist-upper-edge.png)\n![中段及两侧可见裙料核对](review-evidence/middle-edge.png)\n![底部裙口三倍边缘核对](review-evidence/hem-edge.png)\n![候选纯色独显](review-evidence/candidate-solid.png)\n\n候选和父 SVG 均未修改；无需重画或局部返修，无上游父范围限制。",
+      "candidateHash": "0a84c14fc72efce2e11cd64df4ddb8e040a8cdb88d62590474dbd3d14e3a252a",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/previews/2026-11-02T16-15-12-458Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/inner_long_dress.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/previews/2026-11-02T16-15-12-458Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/previews/2026-11-02T16-15-12-458Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/previews/2026-11-02T16-15-12-458Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/previews/2026-11-02T16-15-12-458Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/long_skirt/previews/2026-11-02T16-15-12-458Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:47:13.404Z"
+    }
+  ]
+}

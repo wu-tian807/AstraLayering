@@ -1,7 +1,5 @@
 {
   "groupId": "pelvis",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "d26bb4decca18495ecabc0a25bedc189c29001991a970a5ee2554e226c6e1cfb",
-  "afterHash": "fee6951fb742350904ebe1e5f8f0ce4be3537b0e72b469ec42c8ae6e5420825f"
+  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

@@ -1,0 +1,63 @@
+{
+  "groupId": "hair/back_hair/cap",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已核对组说明、素体参考、候选及父组完成稿，完成整图叠加和覆盖头顶、左右耳后至颈根的重叠选框放大检查。本轮未发现确定需要修改的问题。\n\n归属与覆盖：耳后至颈侧的可见后发面均被联合色块覆盖；两侧外绕细长发丝为相邻侧发结构，不要求 cap 领取。头顶及脸、耳、颈肩下的连续底形属于既有遮挡补形，不沿遮挡物剪影挖空。未发现组件遗漏、孤立碎片、噪点或真实孔洞被填平。\n\n边缘与范围：分别对照左右耳后外缘、向肩侧的连续转向及颈根承接，候选在父组允许范围内覆盖完整；顶侧位于侧发下方的边界按遮挡底形处理。父范围检查 outsidePixels=0，无需上游范围修正。\n\n图像证据：[局部总览叠加](review-evidence/round1-overview-blend.png)、[画面左侧边缘核对，原图框355,205,120,175，4倍](review-evidence/round1-left-edge.png)、[画面右侧边缘核对，原图框465,205,120,175，4倍](review-evidence/round1-right-edge.png)、[父组同位置边缘对照](review-evidence/round1-parent-edge.png)。",
+      "candidateHash": "96ad7b1b4a96ad57b6fb89d99a67567d10488d9dc7968711675d2cac9d8c0aa4",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair/back_hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/hair/back_hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/cap/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/cap/previews/2026-11-02T11-24-56-395Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:36:42.110Z"
+    }
+  ]
+}

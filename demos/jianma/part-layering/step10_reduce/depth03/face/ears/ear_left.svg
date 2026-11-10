@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="941" height="1672" viewBox="0 0 941 1672" data-source-sha256="5a8a787a24e16d20b2361c25001de49a5e6a0c54b279dafd6fca8c4d832d763c" data-parent-region="500 205 65 70"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M532.5 227.7 C537.1 223.8 541.6 216 547.8 216 C555.9 216 558.6 224.1 554.1 236.8 C553.4 240.1 551.5 243.1 548.5 244.7 C541.7 253 532.9 261.5 521.7 263.1 C515.9 262.7 512 254.5 512.7 246 C513.3 237.8 518.4 229.4 525.2 227.7 C527.8 227 530.4 227.2 532.5 227.7 Z" fill-rule="nonzero"/></g>
+<g fill="#e8a398" stroke="none" data-group-path="face/ears/ear_left" id="ear-left-outline">
+
+
+<path id="ear-left-upper" transform="matrix(-1 0 0 1 938.6 0)" d="M399.3 224.6 C395.7 229.5 390 234.4 384.5 236.8 C385.2 240.1 387.1 243.1 390.1 244.7 C393.2 239.4 396.3 231.4 399.3 224.6 Z"/>
+<path id="ear-left-lower" transform="matrix(-1 0 0 1 938.6 0)" d="M409.6 231.7 C411.2 241.8 415.4 253.9 418 263.6 L416.9 263.1 C410.1 260.7 403.8 255.4 400.8 250.3 C402.8 245.1 406.1 239.7 408.2 234.4 Z"/>
+</g>
+</svg>

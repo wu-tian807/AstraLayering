@@ -46,12 +46,10 @@ export type GroupSeed = {
 };
 export type GroupInput = GroupSeed & { groups?: GroupInput[]; steps?: Partial<GroupProgress> };
 export type GroupNode = GroupSeed & { groups: GroupNode[]; steps: GroupProgress };
-export type Subject = 'character' | 'other';
-export type InitialGrouping = { groups: GroupSeed[]; subject?: Subject };
+export type InitialGrouping = { groups: GroupSeed[] };
 export type ChildrenAnalysis = { groups: GroupSeed[]; note?: string };
 export type GroupsDocument = {
   version: 1;
-  subject?: Subject;
   groups: GroupNode[];
   merge: StepProgress<SvgArtifact>;
 };

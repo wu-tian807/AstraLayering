@@ -1,0 +1,87 @@
+{
+  "groupId": "collar_shoulder_cape/left_shoulder_cape",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已独立核对纯衣服原图、当前 part note、候选源码与父完成 SVG，并完成整体 blend、覆盖全片的 4 倍 edge、内缘 8 倍原图/叠加、下缘 6 倍 edge 及 SVG 独显。角色左肩短披归属、肩顶和外披尖位置、袖体分界总体成立；候选四倍采样无越出父范围。当前只需局部修正，不需重画整片，也无须扩大父稿。胸饰后的已登记隐藏搭接可保留。\n\n1. 胸前真实开口被内缘多包一条衣料：位置约 x500–522、y249–270。纯衣服参考在领根下方至卷边上端具有明确透明开口，斜向衣料边缘约从 (506,249) 经 (514,255)、(519,261) 到 (521,264)；候选边缘偏向开口，局部多填约 4–7 像素。8 倍 edge 可见红线落在白色开口中，而非沿实际包边外侧。请将这一段内缘向画面右侧收回，沿原图实际衣料边界连接领根与卷边，保留真实开口；此处不是胸饰后的隐藏搭接，父稿同样存在的多包不应沿袭。证据：![原图内缘](review_evidence/reference_inner.png) ![内缘边缘叠加](review_evidence/inner_edge.png)。\n\n2. 下方补片与主体联合边缘产生不真实的小折口：约 (549,319)，范围 x548–552、y316–320。独显与全片 edge 均显示此处有一个明显尖角/台阶；参考中胸饰右下方通向外披尖的是连续斜披缘，没有该小缺口。请保留父稿补片承担的胸饰后搭接，调整两条路径的衔接，使联合可见轮廓在此连续平滑，不留锯齿状接缝。证据：![全片独显及折口](review_evidence/silhouette.png) ![下缘放大](review_evidence/lower_edge.png)。\n\n除此之外未发现有依据的可见组件遗漏、误包人体或独立附件问题。纯色、不透明填充和内部纹样省略不构成缺陷。",
+      "candidateHash": "4712ca614e0b8b30c44260aa95f9882dfb17f099a96ea67acf20ad315d21eeeb",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T16-11-44-113Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T16-11-44-113Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T16-11-44-113Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/collar_shoulder_cape.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T16-11-44-113Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T16-11-44-113Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T16-11-44-113Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T16-11-44-113Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:45:42.610Z",
+      "repairedCandidateHash": "07a6cd5c0a05110612c2e7a9e18558a33aca6c7fb1dbfc3360fa6f2fec52d352"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮：通过，无需重画或局部返修。已先依据纯衣服参考确认本片归属为画面右侧左肩短披，再核对 note、候选及父完成 SVG；未修改输入。\n\n核对证据：\n- 整体位置及比例：本片从领根约 (499,240) 接至肩顶 (527,224)，覆盖右侧肩面并延伸至 (651,421) 披尖；未误包下方长袖、袍身或人体，未发现本片可见组件遗漏。[整体叠加](review_evidence/round02_overall_blend.png)、[原参考局部](review_evidence/round02_reference.png)。\n- 全部可见外缘：肩顶至外肩 x527–654、y224–421，及内侧斜披边 x541–651、y307–421，已用 4 倍边缘覆盖和叠加核对；外轮廓、固定披缘覆盖及披尖形状符合参考，连续无异常断口。[整片边缘](review_evidence/round02_full_edge.png)、[局部叠加](review_evidence/round02_local_blend.png)。\n- 领根接缝和卷曲内缘 x499–541、y240–307 已用 8 倍边缘覆盖检查。胸前真实开口保留；内缘下段进入胸饰遮挡区的衣料符合 note 所述隐藏搭接，不应按胸饰像素交集删除。未因内部装饰缺少独立路径判缺失。[内缘放大](review_evidence/round02_inner_edge.png)。\n- 父范围及结构：父完成稿已只读对照，候选四倍采样范围检查 outsidePixels=0；本片连续，纯色独显无杂片或额外开口。note 已继承领根之后、袖根/上臂衣层之前、内缘位于胸饰之后的关系及随动职责，无需修改。[父稿叠加](review_evidence/round02_parent_blend.png)、[候选独显](review_evidence/round02_solid.png)。\n\n本阶段仅核对实体几何和归属，不将配色、纹样、明暗、透明度表现列为缺陷。无上游父范围限制。",
+      "candidateHash": "07a6cd5c0a05110612c2e7a9e18558a33aca6c7fb1dbfc3360fa6f2fec52d352",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T17-14-12-057Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/collar_shoulder_cape.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T17-14-12-057Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T17-14-12-057Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T17-14-12-057Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T17-14-12-057Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_shoulder_cape/children/left_shoulder_cape/previews/2026-11-02T17-14-12-057Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:17:07.189Z"
+    }
+  ]
+}

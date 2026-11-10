@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/upper_suspension/junction_linkage/short_bead_linkage",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "d981395f92741d0ec4b052e9eb832286e6c1a1f813a0723225dd7ff8df0960cf",
-  "afterHash": "16661879c68e064e502f37458e464600c83f0487e848dc031a1c2f24d947f53b"
-}

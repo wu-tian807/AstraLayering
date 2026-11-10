@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "logical_parts": 37,
+  "paint_layers": 48,
+  "multi_depth_parts": 11,
+  "native_masks": 1,
+  "original_layer_uuids_retained": 45,
+  "new_back_root_layers": 3,
+  "unmodified_paint_layers": 24,
+  "groups_and_terminal_ids_unchanged": true,
+  "depth_rows_match_kra": true,
+  "terminal_svgs_parse": true,
+  "native_mask_unchanged_from_initial": true,
+  "all_paint_layers_visible": true,
+  "native_mask_enabled": true,
+  "reopen_unchanged": true,
+  "visual_evidence_counts": {
+    "parts": 37,
+    "slices": 48,
+    "lower": 48,
+    "masks": 4
+  }
+}

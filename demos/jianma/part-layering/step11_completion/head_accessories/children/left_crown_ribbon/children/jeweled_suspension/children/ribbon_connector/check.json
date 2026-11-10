@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/left_crown_ribbon/jeweled_suspension/ribbon_connector",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "34dffd98d3a616a69daf50eb881a67e11f62e9a62ac1eccca5eed5c66b5410d4",
-  "afterHash": "5af8776388114533ae38890a88c2e3339358e7cb7c0bd11a533b1e1aaf8fa622"
-}

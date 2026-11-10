@@ -1,5 +1,13 @@
 # 生成当前人物的法线与深度数据贴图
 
+## 输入
+
+均只读：
+- 已组装、分层的角色 KRA：{uri:character-assembly/step01/character-assembled.kra}。
+- 对应原尺寸合成 PNG（几何配准基准）：{uri:character-assembly/step01/character-assembled.png}。
+- simplified 参考（分析画法与投影范围）：{uri:part-layering/references/simplified-subject.png}。
+- part 分组与遮挡顺序：{uri:part-layering/groups.json}、{uri:part-layering/occlusion.json}；穿衣时另有 {uri:clothing-part-layering/groups.json}、{uri:clothing-part-layering/occlusion.json}。人物 ID 记为 character:<原 part ID>，衣服 ID 记为 clothing:<原 part ID>。
+
 使用已配置的生图模型，从**组装原尺寸合成 PNG** 生成两张全图贴图：normal.png 和 depth.png。simplified 只辅助理解角色表面与材质，不以其不同轮廓替换组装图。一次生成一张，保留成功结果，失败或中断只继续缺失／不合格的贴图。无需逐个 part 调用生图。
 
 保持输入画布原尺寸、姿态、裁切、像素位置、人物轮廓与眼口边界。不改变原画、不压缩皮套、不生成示意缩略图，不用调整尺寸掩盖模型生成的错位。若模型输出尺寸或位置不符，修正生成请求或编辑配准，检查合格后才交付。可看放大局部和透明叠图对照，不以“看着像”替代配准。
@@ -12,3 +20,6 @@
 
 报告记录模型输出、原尺寸检查、逐处轮廓配准、法线方向、深度层次、估计区域与仍存在的问题；只有两图都生成并检查后才完成。后续部件形变仍沿用同 UV 映射、法线方向修正与按层补全方案，不把生成两张图宣称为完成了完整动画绑定。
 
+## 交付
+
+全部保存在 {uri:shadow/step01_normal-depth}/，不修改上游，也不操作另一阴影分支：normal.png、depth.png、report.md。交付齐全并完成以上检查后返回 completed；只有必要输入缺失、损坏或工具故障导致无法继续时返回 blocked，写明具体路径或错误、恢复尝试和已保存进度。

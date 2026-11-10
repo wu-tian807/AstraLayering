@@ -1,1 +1,0 @@
-Reference, parent completion, children latest, reference overlay, then individual parts. Colors identify ownership only. Source coordinates and geometry are unchanged. Provisional inspection order: finger roots behind palm; connectors behind gems; chains and pendant neck behind central hardware. This diagnostic is not a final full-tree composition.

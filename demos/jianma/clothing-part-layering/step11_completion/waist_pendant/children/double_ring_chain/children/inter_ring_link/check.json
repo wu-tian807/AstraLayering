@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/double_ring_chain/inter_ring_link",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "eb1e6f19be3ca84f0382358c468e17b13e8245debc09dc22a36fe9d871263f0c",
-  "afterHash": "ea0f211129ea9cbe0eff18b0dededa60bfe24a191519b1a20293eac68e5f1c14"
-}

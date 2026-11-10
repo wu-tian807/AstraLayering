@@ -2,8 +2,7 @@
   "main": {
     "initial": [
       "prompts/01-分层与补全.md",
-      "shared/prompts/raster-drawing-responsibilities.md",
-      "prompts/runtime.md"
+      "shared/prompts/raster-drawing-responsibilities.md"
     ],
     "tools": [
       "edit_groups",
@@ -15,7 +14,7 @@
   "review": {
     "initial": [
       "prompts/01-review.md",
-      "shared/prompts/raster-review-runtime.md"
+      "shared/prompts/raster-review-status.md"
     ],
     "tools": [
       "annotate_review_regions",
@@ -24,8 +23,7 @@
     "repair": {
       "initial": [
         "prompts/01-repair.md",
-        "shared/prompts/raster-drawing-responsibilities.md",
-        "shared/prompts/raster-review-runtime.md"
+        "shared/prompts/raster-review-status.md"
       ]
     }
   }

@@ -1,0 +1,38 @@
+{
+  "image": "clothing-raster-layering/step01/review-evidence/review02/slices/101.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    941,
+    1672
+  ],
+  "marked": "clothing-raster-layering/step01/workspace/review-regions/bf7a5fa0-bab3-434c-989b-0dc95af2cae6/marked.png",
+  "manifest": "clothing-raster-layering/step01/workspace/review-regions/bf7a5fa0-bab3-434c-989b-0dc95af2cae6/regions.json",
+  "regions": [
+    {
+      "id": "R3",
+      "bounds": [
+        477,
+        507,
+        22,
+        18
+      ],
+      "layers": [
+        "101 | waist_sash_and_knot/left_short_tail",
+        "103 | waist_sash_and_knot/left_short_loop（邻接遮挡复核）"
+      ],
+      "description": "画面右短尾101独显在约y514处出现横穿纵向明暗的细暗截线，截线两侧高光有小台阶，隐藏103后仍留在101本层，呈现补全段接回原可见段的横向拼接。应局部顺接纵向明暗和窄边，清掉截线；保留下方原有斜折、尾尖、完整上根及103独立层。参考该处部分由103遮住，不要求复制隐藏褶皱，只要求101自身连续。",
+      "crop": [
+        459,
+        489,
+        58,
+        54
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/bf7a5fa0-bab3-434c-989b-0dc95af2cae6/R3-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/bf7a5fa0-bab3-434c-989b-0dc95af2cae6/R3-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/bf7a5fa0-bab3-434c-989b-0dc95af2cae6/R3-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

@@ -1,0 +1,38 @@
+{
+  "groupId": "inner_long_dress/bodice_and_waist",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，无确定需修改的问题，无需重画。已只读核对纯衣服参考、groups 中本 part 及父组 note、候选源码与父完成 SVG，并完成整图 blend、覆盖候选全部范围的 4 倍局部参考/edge/blend/SVG 独显检查。\n\n归属依据：纯衣服参考中，胸饰下至 y421 的贴身衣料及 y421–约485 的连续宽腰面属于本片；胸饰、外袍胸缘和蓝色腰系带分别覆盖其前方，不因叠加投影中与这些前景件相交而删掉下层衣料。候选约 x402–539、y330–486 的上缘及侧缘承接父完成稿的隐藏搭接，覆盖中央衣身和两侧可见宽腰；未进入上方真实胸前镂空，未收取人体、独立悬饰或下方长垂布。参考中胸饰细长端和固定腰面接缝无须在本纯色轮廓内另画内部路径。\n\n位置与轮廓：上缘藏于胸饰后，侧缘藏于外袍内缘后；腰面下缘在约 y481–486 与参考横向下边界相符，中央被腰结遮住处保持连续衣料，符合与 long_skirt 根部连接职责。未发现实际可见组件遗漏、真实开口误封或分离附件误并。本片未见需另行表达的薄纱开口。note 已明确实体范围、相邻分界、前后关系、共同随动及隐藏搭接。\n\n父范围：工具以四倍采样核对通过，outsidePixels=0；无上游范围限制。\n\n图像证据：![纯衣服局部](review_evidence/reference_detail.png) ![整体叠加](review_evidence/whole_blend.png) ![全片局部边缘覆盖](review_evidence/detail_edge.png) ![全片局部叠加](review_evidence/detail_blend.png) ![轮廓独显](review_evidence/detail_svg.png)",
+      "candidateHash": "cd8b192ab3cee13e76d7bc589593b6363a512a8b76fc61d8ef960a100dd6f304",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/children/bodice_and_waist/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/bodice_and_waist/previews/2026-11-02T16-28-27-814Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/inner_long_dress.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/bodice_and_waist/previews/2026-11-02T16-28-27-814Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/children/bodice_and_waist/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/bodice_and_waist/previews/2026-11-02T16-28-27-814Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/children/bodice_and_waist/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/bodice_and_waist/previews/2026-11-02T16-28-27-814Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_long_dress/children/bodice_and_waist/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_long_dress/children/bodice_and_waist/previews/2026-11-02T16-28-27-814Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T16:57:12.762Z"
+    }
+  ]
+}

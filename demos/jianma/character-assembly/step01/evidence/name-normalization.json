@@ -1,0 +1,32 @@
+[
+  {
+    "document": "initial",
+    "old": "衣服 | 010.1 | central_blue_drapery/central_folded_tail | back waist root",
+    "new": "衣服 | 010 | central_blue_drapery/central_folded_tail | back waist root"
+  },
+  {
+    "document": "initial",
+    "old": "衣服 | 010.2 | central_blue_drapery/left_long_panel | back waist root",
+    "new": "衣服 | 010 | central_blue_drapery/left_long_panel | back waist root"
+  },
+  {
+    "document": "initial",
+    "old": "衣服 | 010.3 | central_blue_drapery/right_long_panel | back waist root",
+    "new": "衣服 | 010 | central_blue_drapery/right_long_panel | back waist root"
+  },
+  {
+    "document": "final",
+    "old": "衣服 | 010.1 | central_blue_drapery/central_folded_tail | back waist root",
+    "new": "衣服 | 010 | central_blue_drapery/central_folded_tail | back waist root"
+  },
+  {
+    "document": "final",
+    "old": "衣服 | 010.2 | central_blue_drapery/left_long_panel | back waist root",
+    "new": "衣服 | 010 | central_blue_drapery/left_long_panel | back waist root"
+  },
+  {
+    "document": "final",
+    "old": "衣服 | 010.3 | central_blue_drapery/right_long_panel | back waist root",
+    "new": "衣服 | 010 | central_blue_drapery/right_long_panel | back waist root"
+  }
+]

@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_sash/circumferential_band/side_back_band",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "6b6fb9ea9c1d3cc86b1257a5ec91f236fa61d64cc0e31b67a205fbe26f77fd25",
-  "afterHash": "56527fbaca273a0c1815bc091e99c5563661f6e5a91bbd93376e028dea8be1f9"
-}

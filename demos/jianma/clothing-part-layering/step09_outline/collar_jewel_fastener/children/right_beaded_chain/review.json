@@ -1,0 +1,38 @@
+{
+  "groupId": "collar_jewel_fastener/right_beaded_chain",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，无确定需要修改的问题。先从纯衣服参考确认本 part 为画面左侧、中央环至胸饰上内缘的斜向细链及两处小珠；随后以整体定位、覆盖全部候选的 x438–474、y257–283 局部 8 倍 blend／edge／独显及父完成稿叠加核对。候选约 x443–468、y263–278，链线方向、珠位、外轮廓和比例与参考对应；未误包中央环、中央垂珠、胸饰卷叶或开口区域，无可见组件遗漏。外端 x443–448 为 note 已登记的短隐藏接入段，内端止于中央环侧缘，保持合理接点搭接。note 已说明实体范围、相邻分界、双端随动及接点前后关系。父范围四倍采样检查 outsideSamples=0，无上游范围限制。无需重画或局部返修。\n\n证据：[整体定位](review_evidence/overall_blend.png)、[局部原图叠加](review_evidence/detail_blend.png)、[局部边缘覆盖](review_evidence/detail_edge.png)、[候选独显](review_evidence/detail_svg.png)、[父完成稿叠加](review_evidence/parent_blend.png)。",
+      "candidateHash": "716729d768127146b8669c7678993fbf82104cbd4ad3dfa252cc8669bdeec33a",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/right_beaded_chain/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/right_beaded_chain/previews/2026-11-02T16-41-47-542Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/right_beaded_chain/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/right_beaded_chain/previews/2026-11-02T16-41-47-542Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/right_beaded_chain/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/right_beaded_chain/previews/2026-11-02T16-41-47-542Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/right_beaded_chain/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/right_beaded_chain/previews/2026-11-02T16-41-47-542Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/collar_jewel_fastener.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/right_beaded_chain/previews/2026-11-02T16-41-47-542Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:12:00.180Z"
+    }
+  ]
+}

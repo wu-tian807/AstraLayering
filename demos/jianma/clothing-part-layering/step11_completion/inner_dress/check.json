@@ -1,7 +1,0 @@
-{
-  "groupId": "inner_dress",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "aa749163d77b4be6dae0b3ab692549b365ee65b398159660125a1819c50ba6ac",
-  "afterHash": "79f44974c2ce2dd0fbc877d79dfe2b681381d17f6a6632f8a6362c9cdde25528"
-}

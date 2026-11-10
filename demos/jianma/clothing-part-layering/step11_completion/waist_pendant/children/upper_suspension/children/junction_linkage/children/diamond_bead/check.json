@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/upper_suspension/junction_linkage/diamond_bead",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "29ee14ccbc84b260a5882676147a9dd275a54d34850ba5ab8e39db2b8f2602f3",
-  "afterHash": "8421982f997e251ae208fcb23a3ab124f02737d3107ca49597d6a8f075142c84"
-}

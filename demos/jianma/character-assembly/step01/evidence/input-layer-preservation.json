@@ -1,0 +1,821 @@
+{
+  "character_paint_layers": [
+    {
+      "source": "001.0 | hair/back_hair/long_hair_right | complete",
+      "assembly": "人物 | 001 | hair/back_hair/long_hair_right | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "002.0 | hair/back_hair/long_hair_left | complete",
+      "assembly": "人物 | 002 | hair/back_hair/long_hair_left | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "003.0 | hair/back_hair/cap | complete",
+      "assembly": "人物 | 003 | hair/back_hair/cap | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "004.0 | hair/bun | complete",
+      "assembly": "人物 | 004 | hair/bun | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "005.0 | head_accessories/crown_pendants/crown_pendant_right | complete",
+      "assembly": "人物 | 005 | head_accessories/crown_pendants/crown_pendant_right | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "006.0 | head_accessories/crown_pendants/crown_pendant_left | complete",
+      "assembly": "人物 | 006 | head_accessories/crown_pendants/crown_pendant_left | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "007.0 | legs/leg_right/anklet_back | complete",
+      "assembly": "人物 | 007 | legs/leg_right/anklet_back | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "008.0 | legs/leg_left/anklet_back | complete",
+      "assembly": "人物 | 008 | legs/leg_left/anklet_back | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "009.0 | legs/leg_right/leg | complete",
+      "assembly": "人物 | 009 | legs/leg_right/leg | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "010.0 | legs/leg_left/leg | complete",
+      "assembly": "人物 | 010 | legs/leg_left/leg | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "011.0 | legs/leg_right/anklet_front | complete",
+      "assembly": "人物 | 011 | legs/leg_right/anklet_front | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "012.0 | legs/leg_left/anklet_front | complete",
+      "assembly": "人物 | 012 | legs/leg_left/anklet_front | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "013.0 | pelvis | complete",
+      "assembly": "人物 | 013 | pelvis | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "014.0 | arms/arm_right/hand/little_finger | complete",
+      "assembly": "人物 | 014 | arms/arm_right/hand/little_finger | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "015.0 | arms/arm_right/hand/ring_finger | complete",
+      "assembly": "人物 | 015 | arms/arm_right/hand/ring_finger | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "016.0 | arms/arm_right/hand/middle_finger | complete",
+      "assembly": "人物 | 016 | arms/arm_right/hand/middle_finger | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "017.0 | arms/arm_right/hand/index_finger | complete",
+      "assembly": "人物 | 017 | arms/arm_right/hand/index_finger | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "018.0 | arms/arm_right/hand/thumb | complete",
+      "assembly": "人物 | 018 | arms/arm_right/hand/thumb | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "019.0 | arms/arm_right/upper_arm | complete",
+      "assembly": "人物 | 019 | arms/arm_right/upper_arm | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "020.0 | arms/arm_right/forearm | complete",
+      "assembly": "人物 | 020 | arms/arm_right/forearm | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "021.0 | arms/arm_right/hand/palm | complete",
+      "assembly": "人物 | 021 | arms/arm_right/hand/palm | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "022.0 | arms/arm_left/forearm | complete",
+      "assembly": "人物 | 022 | arms/arm_left/forearm | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "023.0 | arms/arm_left/upper_arm | complete",
+      "assembly": "人物 | 023 | arms/arm_left/upper_arm | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "024.0 | arms/arm_left/hand/index_finger | complete",
+      "assembly": "人物 | 024 | arms/arm_left/hand/index_finger | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "025.0 | arms/arm_left/hand/middle_finger | complete",
+      "assembly": "人物 | 025 | arms/arm_left/hand/middle_finger | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "026.0 | arms/arm_left/hand/little_finger | complete",
+      "assembly": "人物 | 026 | arms/arm_left/hand/little_finger | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "027.0 | arms/arm_left/hand/ring_finger | complete",
+      "assembly": "人物 | 027 | arms/arm_left/hand/ring_finger | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "028.0 | arms/arm_left/hand/thumb | complete",
+      "assembly": "人物 | 028 | arms/arm_left/hand/thumb | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "029.0 | arms/arm_left/hand/palm | complete",
+      "assembly": "人物 | 029 | arms/arm_left/hand/palm | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "030.0 | neck | complete",
+      "assembly": "人物 | 030 | neck | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "031.0 | body/torso | complete",
+      "assembly": "人物 | 031 | body/torso | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "032.0 | body/breast | complete",
+      "assembly": "人物 | 032 | body/breast | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "033.0 | head_accessories/earrings/earring_right | complete",
+      "assembly": "人物 | 033 | head_accessories/earrings/earring_right | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "034.0 | head_accessories/earrings/earring_left | complete",
+      "assembly": "人物 | 034 | head_accessories/earrings/earring_left | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "035.0 | face/ears/ear_right | complete",
+      "assembly": "人物 | 035 | face/ears/ear_right | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "036.0 | face/ears/ear_left | complete",
+      "assembly": "人物 | 036 | face/ears/ear_left | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "037.0 | face/face_base | complete",
+      "assembly": "人物 | 037 | face/face_base | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "038.0 | face/eyes/eye_left/sclera | complete",
+      "assembly": "人物 | 038 | face/eyes/eye_left/sclera | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "039.0 | face/eyes/eye_left/iris | complete",
+      "assembly": "人物 | 039 | face/eyes/eye_left/iris | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "040.0 | face/eyes/eye_left/highlight | complete",
+      "assembly": "人物 | 040 | face/eyes/eye_left/highlight | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "041.0 | face/eyes/eye_left/lower_eyelid | complete",
+      "assembly": "人物 | 041 | face/eyes/eye_left/lower_eyelid | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "042.0 | face/eyes/eye_left/upper_eyelid | main_lid",
+      "assembly": "人物 | 042 | face/eyes/eye_left/upper_eyelid | main_lid",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "043.0 | face/eyes/eye_left/eyelid_crease | complete",
+      "assembly": "人物 | 043 | face/eyes/eye_left/eyelid_crease | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "044.0 | face/eyes/eye_right/sclera | complete",
+      "assembly": "人物 | 044 | face/eyes/eye_right/sclera | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "045.0 | face/eyes/eye_right/iris | complete",
+      "assembly": "人物 | 045 | face/eyes/eye_right/iris | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "046.0 | face/eyes/eye_right/highlight | complete",
+      "assembly": "人物 | 046 | face/eyes/eye_right/highlight | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "047.0 | face/eyes/eye_right/lower_eyelid | complete",
+      "assembly": "人物 | 047 | face/eyes/eye_right/lower_eyelid | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "048.0 | face/eyes/eye_right/upper_eyelid | main_lid",
+      "assembly": "人物 | 048 | face/eyes/eye_right/upper_eyelid | main_lid",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "049.0 | face/eyes/eye_right/eyelid_crease | complete",
+      "assembly": "人物 | 049 | face/eyes/eye_right/eyelid_crease | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "050.0 | face/mouth/mouth_interior | complete",
+      "assembly": "人物 | 050 | face/mouth/mouth_interior | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "051.0 | face/mouth/lower_teeth | complete",
+      "assembly": "人物 | 051 | face/mouth/lower_teeth | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "052.0 | face/mouth/tongue | complete",
+      "assembly": "人物 | 052 | face/mouth/tongue | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "053.0 | face/mouth/upper_teeth | complete",
+      "assembly": "人物 | 053 | face/mouth/upper_teeth | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "054.0 | face/mouth/lower_lip | complete",
+      "assembly": "人物 | 054 | face/mouth/lower_lip | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "055.0 | face/mouth/upper_lip | complete",
+      "assembly": "人物 | 055 | face/mouth/upper_lip | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "056.0 | face/eyebrows/eyebrow_right | complete",
+      "assembly": "人物 | 056 | face/eyebrows/eyebrow_right | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "057.0 | face/eyebrows/eyebrow_left | complete",
+      "assembly": "人物 | 057 | face/eyebrows/eyebrow_left | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "058.0 | face/nose | complete",
+      "assembly": "人物 | 058 | face/nose | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "059.0 | hair/sidelock/sidelock_right | complete",
+      "assembly": "人物 | 059 | hair/sidelock/sidelock_right | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "060.0 | hair/sidelock/sidelock_left | complete",
+      "assembly": "人物 | 060 | hair/sidelock/sidelock_left | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "061.0 | head_accessories/bun_ornament | complete",
+      "assembly": "人物 | 061 | head_accessories/bun_ornament | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "061.5 | head_accessories/crown_frame | mounting_root",
+      "assembly": "人物 | 061.5 | head_accessories/crown_frame | mounting_root",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "062.0 | head_accessories/forehead_pendant | mounting_root",
+      "assembly": "人物 | 062 | head_accessories/forehead_pendant | mounting_root",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "063.0 | hair/side_hair/side_hair_right | complete",
+      "assembly": "人物 | 063 | hair/side_hair/side_hair_right | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "064.0 | hair/side_hair/side_hair_left | complete",
+      "assembly": "人物 | 064 | hair/side_hair/side_hair_left | complete",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "065.0 | head_accessories/forehead_pendant | visible_front",
+      "assembly": "人物 | 065 | head_accessories/forehead_pendant | visible_front",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "066.0 | face/eyes/eye_left/upper_eyelid | outer_lash_front",
+      "assembly": "人物 | 066 | face/eyes/eye_left/upper_eyelid | outer_lash_front",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front",
+      "assembly": "人物 | 066.5 | face/eyes/eye_right/upper_eyelid | outer_lash_front",
+      "exists": true,
+      "raw_paint_identical": true
+    },
+    {
+      "source": "067.0 | head_accessories/crown_frame | visible_front",
+      "assembly": "人物 | 067 | head_accessories/crown_frame | visible_front",
+      "exists": true,
+      "raw_paint_identical": true
+    }
+  ],
+  "clothing_paint_layers": [
+    {
+      "source": "001 | collar_shoulder_cape/standing_collar | back",
+      "assembly": "衣服 | 001 | collar_shoulder_cape/standing_collar | back",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "002 | inner_long_dress/long_skirt | back",
+      "assembly": "衣服 | 002 | inner_long_dress/long_skirt | back",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "003 | waist_sash_and_knot/waist_band | back",
+      "assembly": "衣服 | 003 | waist_sash_and_knot/waist_band | back",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "010 | inner_long_dress/long_skirt | front",
+      "assembly": "衣服 | 010 | inner_long_dress/long_skirt | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "010.1 | central_blue_drapery/central_folded_tail | back waist root",
+      "assembly": "衣服 | 010 | central_blue_drapery/central_folded_tail | back waist root",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "010.2 | central_blue_drapery/left_long_panel | back waist root",
+      "assembly": "衣服 | 010 | central_blue_drapery/left_long_panel | back waist root",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "010.3 | central_blue_drapery/right_long_panel | back waist root",
+      "assembly": "衣服 | 010 | central_blue_drapery/right_long_panel | back waist root",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "011 | inner_long_dress/bodice_and_waist",
+      "assembly": "衣服 | 011 | inner_long_dress/bodice_and_waist",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "020 | central_blue_drapery/central_folded_tail | front",
+      "assembly": "衣服 | 020 | central_blue_drapery/central_folded_tail | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "021 | central_blue_drapery/left_long_panel | front",
+      "assembly": "衣服 | 021 | central_blue_drapery/left_long_panel | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "022 | central_blue_drapery/right_long_panel | front",
+      "assembly": "衣服 | 022 | central_blue_drapery/right_long_panel | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "025 | waist_sash_and_knot/waist_band | front",
+      "assembly": "衣服 | 025 | waist_sash_and_knot/waist_band | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "030 | outer_robe_body/left_robe_panel",
+      "assembly": "衣服 | 030 | outer_robe_body/left_robe_panel",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "031 | outer_robe_body/right_robe_panel",
+      "assembly": "衣服 | 031 | outer_robe_body/right_robe_panel",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "040 | sleeve_screen_left/right_hanging_drape | back",
+      "assembly": "衣服 | 040 | sleeve_screen_left/right_hanging_drape | back",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "041 | sleeve_screen_right/left_hanging_drape | back",
+      "assembly": "衣服 | 041 | sleeve_screen_right/left_hanging_drape | back",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "042 | sleeve_screen_left/right_sleeve_tube | back",
+      "assembly": "衣服 | 042 | sleeve_screen_left/right_sleeve_tube | back",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "043 | sleeve_screen_right/left_sleeve_tube | back",
+      "assembly": "衣服 | 043 | sleeve_screen_right/left_sleeve_tube | back",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "050 | sleeve_screen_left/right_sleeve_tube | front",
+      "assembly": "衣服 | 050 | sleeve_screen_left/right_sleeve_tube | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "051 | sleeve_screen_right/left_sleeve_tube | front",
+      "assembly": "衣服 | 051 | sleeve_screen_right/left_sleeve_tube | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "060 | sleeve_screen_left/right_hanging_drape | front",
+      "assembly": "衣服 | 060 | sleeve_screen_left/right_hanging_drape | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "061 | sleeve_screen_right/left_hanging_drape | front",
+      "assembly": "衣服 | 061 | sleeve_screen_right/left_hanging_drape | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "070 | collar_shoulder_cape/left_shoulder_cape",
+      "assembly": "衣服 | 070 | collar_shoulder_cape/left_shoulder_cape",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "071 | collar_shoulder_cape/right_shoulder_cape",
+      "assembly": "衣服 | 071 | collar_shoulder_cape/right_shoulder_cape",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "072 | collar_shoulder_cape/standing_collar | front",
+      "assembly": "衣服 | 072 | collar_shoulder_cape/standing_collar | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "080 | collar_jewel_fastener/left_beaded_chain",
+      "assembly": "衣服 | 080 | collar_jewel_fastener/left_beaded_chain",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "081 | collar_jewel_fastener/right_beaded_chain",
+      "assembly": "衣服 | 081 | collar_jewel_fastener/right_beaded_chain",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "082 | collar_jewel_fastener/central_pendant/hanging_bead",
+      "assembly": "衣服 | 082 | collar_jewel_fastener/central_pendant/hanging_bead",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "083 | collar_jewel_fastener/central_pendant/connecting_ring",
+      "assembly": "衣服 | 083 | collar_jewel_fastener/central_pendant/connecting_ring",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "084 | collar_jewel_fastener/fixed_jewel",
+      "assembly": "衣服 | 084 | collar_jewel_fastener/fixed_jewel",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "085 | chest_ornament",
+      "assembly": "衣服 | 085 | chest_ornament",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "100 | waist_pendant_and_tassel/upper_suspension",
+      "assembly": "衣服 | 100 | waist_pendant_and_tassel/upper_suspension",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "101 | waist_sash_and_knot/left_short_tail",
+      "assembly": "衣服 | 101 | waist_sash_and_knot/left_short_tail",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "102 | waist_sash_and_knot/right_short_tail",
+      "assembly": "衣服 | 102 | waist_sash_and_knot/right_short_tail",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "103 | waist_sash_and_knot/left_short_loop",
+      "assembly": "衣服 | 103 | waist_sash_and_knot/left_short_loop",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "104 | waist_sash_and_knot/right_short_loop",
+      "assembly": "衣服 | 104 | waist_sash_and_knot/right_short_loop",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "105 | waist_sash_and_knot/center_knot",
+      "assembly": "衣服 | 105 | waist_sash_and_knot/center_knot",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+      "assembly": "衣服 | 108 | waist_pendant_and_tassel/middle_articulated_chain/upper_connector_segment",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+      "assembly": "衣服 | 109 | waist_pendant_and_tassel/middle_articulated_chain/elongated_link",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "110 | waist_pendant_and_tassel/snowflake_medallion",
+      "assembly": "衣服 | 110 | waist_pendant_and_tassel/snowflake_medallion",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+      "assembly": "衣服 | 111 | waist_pendant_and_tassel/middle_articulated_chain/teardrop_link",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+      "assembly": "衣服 | 112 | waist_pendant_and_tassel/lower_pendant_and_rings/main_pendant",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+      "assembly": "衣服 | 113 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | back",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+      "assembly": "衣服 | 114 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/ring_frame",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front",
+      "assembly": "衣服 | 115 | waist_pendant_and_tassel/lower_pendant_and_rings/lower_ring_assembly/inner_pendant | front",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+      "assembly": "衣服 | 116 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/inner_pendant",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+      "assembly": "衣服 | 117 | waist_pendant_and_tassel/lower_pendant_and_rings/upper_ring_assembly/ring_frame",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    },
+    {
+      "source": "118 | waist_pendant_and_tassel/long_tassel",
+      "assembly": "衣服 | 118 | waist_pendant_and_tassel/long_tassel",
+      "exists": true,
+      "paint_identical_to_uniformly_scaled_source": true
+    }
+  ],
+  "original_character_masks": [
+    {
+      "mask": "default_closed_or_back_occlusion",
+      "parent": "人物 | 007 | legs/leg_right/anklet_back | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "default_closed_or_back_occlusion",
+      "parent": "人物 | 008 | legs/leg_left/anklet_back | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "upper_arm_attachment_blend",
+      "parent": "人物 | 020 | arms/arm_right/forearm | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "wrist_attachment_blend",
+      "parent": "人物 | 021 | arms/arm_right/hand/palm | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "forearm_attachment_blend",
+      "parent": "人物 | 023 | arms/arm_left/upper_arm | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "wrist_attachment_blend",
+      "parent": "人物 | 029 | arms/arm_left/hand/palm | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "neck_and_shoulder_attachment_blend",
+      "parent": "人物 | 031 | body/torso | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "pelvis_attachment_blend",
+      "parent": "人物 | 031 | body/torso | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "torso_attachment_blend",
+      "parent": "人物 | 032 | body/breast | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "face_and_side_hair_default_occlusion",
+      "parent": "人物 | 035 | face/ears/ear_right | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "face_and_side_hair_default_occlusion",
+      "parent": "人物 | 036 | face/ears/ear_left | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "upper_and_lower_eyelid_opening",
+      "parent": "人物 | face/eyes/eye_left | opening_contents",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "upper_and_lower_eyelid_opening",
+      "parent": "人物 | face/eyes/eye_right | opening_contents",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "default_closed_or_back_occlusion",
+      "parent": "人物 | 051 | face/mouth/lower_teeth | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "upper_lip_root_occlusion",
+      "parent": "人物 | 053 | face/mouth/upper_teeth | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "upper_and_lower_lip_opening",
+      "parent": "人物 | face/mouth | opening_contents",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "side_hair_root_occlusion",
+      "parent": "人物 | 059 | hair/sidelock/sidelock_right | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    },
+    {
+      "mask": "side_hair_root_occlusion",
+      "parent": "人物 | 060 | hair/sidelock/sidelock_left | complete",
+      "original_mask_identical": true,
+      "enabled": true
+    }
+  ],
+  "all_character_paint_unchanged": true,
+  "all_clothing_paint_only_uniformly_resampled": true,
+  "all_original_character_masks_unchanged": true
+}

@@ -1,7 +1,0 @@
-{
-  "groupId": "outer_robe",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "78f452d16aca48ff7376fc995ef34be239eeff7db5808ed08c44967cb7a41214",
-  "afterHash": "2ae0fc68371552bce477205a1a7e5cff1415d27e6b324f61e1a4a2d23c9c5287"
-}

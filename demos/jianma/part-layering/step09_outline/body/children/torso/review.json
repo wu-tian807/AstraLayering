@@ -2,17 +2,57 @@
   "groupId": "body/torso",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "已完成当前 body/torso 全组核对：先看整图 blend，再以 [375,285,275,130]、[405,390,215,150]、[400,515,225,120] 三个重叠选框逐块查看 blend、edge 和参考；另放大双肩及下腹，并在同一局部叠加候选红边与父稿青边。父范围检查通过，outsidePixels=0。\n\n需返修的可见边缘：\n1. 画面左肩（角色右肩）：约 x410–451、y305–315 的肩上缘，以及约 x386–399、y326–365 的肩外弧，候选边缘相对参考的皮肤／后发分界缩入约 1 像素。6 倍肩部 edge 图中，红线落在参考肩缘深色描边内侧，blend 可见窄条肩缘未覆盖；父稿在其外侧仍有容纳范围。请沿参考恢复这段肩上缘和外弧，消除父范围内的可见内缩，保持与上臂根部连续搭接，不整体放大躯干。\n2. 画面右肩（角色左肩）：约 x575–613、y305–318 的肩上缘及 x630–638、y330–365 的外侧肩弧也有同类内缩。候选红线位于参考肩缘内侧，父稿青线更靠近参考的实际外缘，二者之间仍是父内可补的窄带。请局部向外校正肩峰宽度及转向，贴合参考的可靠可见边缘，并保持父范围检查通过。以上两项均可在现有父范围内改善，不属于只能扩大父稿才能处理的上游限制。\n\n其余已核对：颈根连接、肩与上臂的交接、胸廓至腹部的实体连续性、两侧腋下至腰线及下腹衔接均已覆盖检查；breast 后方有连续填充，没有沿乳房挖空。下腹圆弧属于当前父稿规定的衔接补形，附近临时连体服腿口不作为 torso 边界，不要求追到该衣物边缘。未发现独立组件漏段、孤点、碎片堆砌、无依据孔洞或形体归属混乱；本轮问题是双肩可见外缘内缩，不是最终着色或普通明暗未画。",
-      "candidateHash": "63491d46b6b5e21666e5e8656b958a46309784d9541d43fcb64598d5fbd04997",
-      "updatedAt": "2026-10-14T20:42:16.679Z",
-      "repairedCandidateHash": "d80fa047ab7b000443d619eed33895601a87be3b7cd6943e09ba63b382ce3346"
-    },
-    {
       "verdict": "pass",
-      "feedback": "已读取 body/torso 组说明、参考图、候选 SVG 和父组完成 SVG，仅审查当前 torso。先核对整图 blend，再以 4 倍 blend 与 edge 检查六个重叠选框（原图坐标）：[374,286,156,126]、[500,286,152,126]、[408,374,120,144]、[498,374,118,144]、[398,492,132,144]、[496,492,132,144]，完整覆盖双肩与颈根、上胸及胸廓两侧、腰腹和下缘；另用 view_bitmap 放大参考的双肩及领口内上胸。\n双肩可见外缘的位置、弧度和转向贴合参考，肩形完整，向上臂根部的分界连续，颈根和锁骨区域无漏空。领口内上胸覆盖完整，未将肩带、领口、衣服缝线或内部阴影描成躯干轮廓。被临时衣服及 breast 遮挡的胸廓底形为连续实体，与腹部连通，无沿乳房轮廓挖洞；下方圆弧承接至当前父范围的腹部下缘，保留合理的骨盆搭接形体，不要求贴向衣服腿口。\n轮廓干净，未见孤立点、碎片堆砌、无依据开口或形体归属混乱。父范围检查 pass：4 倍采样 outsideSamples=0、outsidePixels=0。未确认需要单列的上游父范围冲突；当前允许范围内未发现有明确图像依据的返修项。本轮 pass。",
-      "candidateHash": "d80fa047ab7b000443d619eed33895601a87be3b7cd6943e09ba63b382ce3346",
-      "updatedAt": "2026-10-14T20:52:55.860Z"
+      "feedback": "已读取 body/torso 与 body 职责说明、参考原图、候选及父完成 SVG。先检查整图 blend，再以相互重叠的选框 [325,330,290,210]、[350,490,240,160]、[345,610,250,140]，逐块完成 3–4 倍 blend 和 edge 对照，覆盖双肩、胸廓、两侧腋下转折、腰线、腹部及下端衔接；另检查了父完成稿局部叠加与候选独显。躯干联合色块完整连续，胸前未因 breast 覆盖而挖空，未发现所属可见组件遗漏、相邻实体误包、孤立碎片或噪点。肩臂及颈部衔接、左右可见外缘与参考相符，下端沿父完成稿的 pelvis 衔接底形连续收合。候选全部容纳于父完成轮廓内，范围检查 outsidePixels=0。当前未发现需要修改的确定问题。",
+      "candidateHash": "62282664e111dae974a86c1f99d5e6a5b4f8d5ada18f4a82f2b169e936243076",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/body/children/torso/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/torso/previews/2026-11-02T10-02-17-899Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/body.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/torso/previews/2026-11-02T10-02-17-899Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/torso/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/torso/previews/2026-11-02T10-02-17-899Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/torso/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/torso/previews/2026-11-02T10-02-17-899Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/torso/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/torso/previews/2026-11-02T10-02-17-899Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/torso/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/torso/previews/2026-11-02T10-02-17-899Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/torso/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/torso/previews/2026-11-02T10-02-17-899Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/torso/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/torso/previews/2026-11-02T10-02-17-899Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/torso/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/body/children/torso/previews/2026-11-02T10-02-17-899Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:11:43.851Z"
     }
   ]
 }

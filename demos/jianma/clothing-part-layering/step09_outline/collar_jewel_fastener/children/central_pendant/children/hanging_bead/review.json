@@ -1,0 +1,38 @@
+{
+  "groupId": "collar_jewel_fastener/central_pendant/hanging_bead",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第1轮独立审查通过。先查看纯衣服原参考全图及 x440–505、y248–286 的8倍局部，确认本片可见归属为中央镂空环底下方的短连接段与末端小珠；中央环及两侧链珠不属于本片。已只读核对当前 note、候选及父完成 SVG。\n\n对全画布整体叠加、x460–483、y256–283 的8倍 blend/edge 和纯 SVG 独显逐处核对：x470.8–471.7、y268.2–271.1 的连接段从环底接入并连续连接珠体；珠体约 x468.4–474.2、y271.1–277.4，位置、宽高比例与可确认外缘相符。未发现收取邻近链珠、环身或人体、遗漏可见附件、错误封孔或断开接缝。上接头保留环底遮盖搭接，珠周空隙透明；本片无薄纱及环绕身体的深度区域。note 已说明实体范围、相邻分界、前后关系、共同随动及隐藏搭接，无需修正。父范围4倍采样 outsideSamples=0，无上游范围限制。没有需要重画或局部返修的问题，候选及父稿均未改动。\n\n图像证据：\n![整体原图叠加](review-evidence/overall-blend.png)\n![全部悬件区域8倍边缘覆盖](review-evidence/local-edge.png)\n![同区域纯SVG独显](review-evidence/local-svg.png)",
+      "candidateHash": "7b02820037bc955f5d46fd9afe3e008fbfe13a5514139374fdd499c981177fa6",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/children/hanging_bead/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/children/hanging_bead/previews/2026-11-02T18-20-10-531Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/children/hanging_bead/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/children/hanging_bead/previews/2026-11-02T18-20-10-531Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/children/hanging_bead/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/children/hanging_bead/previews/2026-11-02T18-20-10-531Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/collar_jewel_fastener/central_pendant.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/children/hanging_bead/previews/2026-11-02T18-20-10-531Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/children/hanging_bead/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/collar_jewel_fastener/children/central_pendant/children/hanging_bead/previews/2026-11-02T18-20-10-531Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T18:24:46.966Z"
+    }
+  ]
+}

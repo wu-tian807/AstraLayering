@@ -69,27 +69,25 @@ test('dry-run 展开组装专用提示词与绝对路径，不混入拆层和深
     agent: async () => assert.fail('dry run must not call agent'),
   });
   // Agents are shown absolute task paths.
-  for (const input of Object.values(f.inputs)) assert.ok(prompt.includes(JSON.stringify(input)));
-  for (const file of steps[0].requiredFiles) assert.ok(prompt.includes(join(f.output, 'step01', file)));
-  assert.match(prompt, /局部修画/);
-  assert.match(prompt, /parts 填入要检查的衣物部件路径/);
-  assert.match(prompt, /已有部件的发色、材质、笔触、细发丝和描边差异保留/);
+  for (const input of Object.values(f.inputs)) assert.ok(prompt.includes(input));
+  assert.ok(prompt.includes(`全部保存在 ${join(f.output, 'step01')}/`));
+  for (const file of steps[0].requiredFiles) assert.ok(prompt.includes(file));
+  assert.match(prompt, /在衣片自己的图层上重画它的边缘/);
+  assert.match(prompt, /不用选区或透明度遮罩硬裁衣片轮廓/);
   assert.match(prompt, /可关闭的透明度遮罩/);
-  assert.match(prompt, /不要随意拆分现有部件或新增绘画层/);
+  assert.match(prompt, /不拆分现有部件，不合并成平面图/);
   assert.ok(!prompt.includes('occlusion.json'));
-  assert.ok(!prompt.includes('三色控制图'));
   await assert.rejects(stat(f.output), { code: 'ENOENT' });
 });
 
-test('只调一次组装 agent，提供像素比对且无 reviewer 和深度工具；完整交付才完成', async t => {
+test('只调一次组装 agent，只有 krita 工具且无 reviewer；完整交付才完成', async t => {
   const f = await fixture(t); let calls = 0;
   const agent = async (request: AgentRequest) => {
     calls++;
     assert.equal(request.directory, f.output);
     assert.equal(request.model, 'gpt-6.1-sol'); assert.equal(request.effort, 'xhigh');
     assert.equal(request.threadId, undefined);
-    assert.deepEqual(request.tools?.map(tool => tool.name), ['locate_pixel_differences', 'krita']);
-    assert.ok((request.tools?.[0].inputSchema.properties as any).parts);
+    assert.deepEqual(request.tools?.map(tool => tool.name), ['krita']);
 
     await stat(join(f.output, 'step01/.running'));
     return deliver(request);

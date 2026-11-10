@@ -3,16 +3,145 @@
   "reviews": [
     {
       "verdict": "revise",
-      "feedback": "已先查看整图 blend，再以重叠选框 A=[400,490,225,115]、B=[360,560,165,125]、C=[500,560,170,125]、D=[365,650,295,85] 的 blend/edge 完整覆盖 pelvis；另以 E=[485,678,55,60]、F=[370,620,40,105]、G=[620,620,40,105]、H=[408,505,55,90]、I=[562,505,65,110] 的 8 倍 blend/edge 复核中央开口及两侧外缘，并查看原始参考局部。无父组，父范围检查不适用。以下为本轮全部有明确图像依据的问题：\n\n1. 画面右侧腰髋外缘内缩：从约 (574,510) 经 (598,552)、(615,583) 至右髋约 (639,651)—(642,715)，若干连续段的候选边缘位于参考可见外缘内侧。I 的 edge 中红线与服装/头发交界之间仍有参考轮廓带；G 的 blend 中在色块右侧留有可见肤色窄条，G 的 edge 尤其在 y=620—675 清楚显示红线落在皮肤侧，未覆盖到皮肤与头发的真实边界，偏差约 1—2 原图像素。请按参考的真实外缘向右调整这些连续段及髋部弧度，使腰至髋的轮廓接续贴合；不能用内部肤色阴影的内缘代替外轮廓。证据：observations/review/pelvis/2026-10-14T12-01-50-452Z-18.png、-19.png（I edge/blend），-13.png、-15.png（G edge/blend）。\n\n2. 胯部中央开口两侧肩角挖入可见内腿根形体：约 x=499—505 与 x=521—525、y=692—708，尤其候选转折 (499.1,696.4) 与 (524.6,696.1)。E 的 blend/edge 与原始参考局部对照可见，参考服装下缘两侧的小三角形腿根应继续包住中间的灰蓝色间隙；候选开口的两处肩角偏向两侧皮肤，切掉了这些三角形的局部宽度，使开口肩部扩大，左侧最清楚，约 1—2 原图像素。请将两处肩角及相连短边向开口中央收回至实际皮肤/间隙交界，补回被切掉的连续局部形体；保留参考确有的转折、中央开口和服装下缘的小起伏，衔接现有下方内腿缘，不另添碎片。证据：observations/review/pelvis/2026-10-14T12-01-50-452Z-9.png、-10.png（E edge/blend），-8.png、-11.png（D edge/blend）。本项属于局部形体边界归属与宽度偏差。\n\n未发现来源不明的孤立点、碎发丝或碎片堆砌噪音。上方与 body、下方与 legs 的人为衔接裁切按组说明允许重叠，不因其没有对应参考明暗分界而要求返修。候选未修改。",
-      "candidateHash": "8e0ba491b563a82bc84918eccfd7ebb6a40dcb5c6943391b9dfb6ce3d051dc4a",
-      "updatedAt": "2026-10-14T12:12:28.542Z",
-      "repairedCandidateHash": "d26bb4decca18495ecabc0a25bedc189c29001991a970a5ee2554e226c6e1cfb"
+      "feedback": "已完成整图定位、上腹衔接区、左右髋缘、左右腿口及裆尖的重叠选框 blend/edge 放大核对，并检查 SVG 独显。pelvis 为顶层组，无父范围限制。主体归属、整体位置和主要形体成立，不需要整组重画；需修正以下可见外缘。未发现碎片噪音或形体归属混乱。\n\n1. 左右髋部外缘均缩入连体服内部：左侧约 x357–387、y625–690，右侧约 x550–585、y625–695。参考中连体服与后方头发之间的深色外边清楚可见，候选边缘却走在其内侧，留出连续未覆盖的白色窄带，右侧尤明显，约数个原图像素。应逐侧向外修正曲线，贴合真实衣服外缘并连续接到髋角，不要以内部浅色边或平滑近似线代替外轮廓。证据：[左髋放大](review-evidence/left-hip-edge.png)、[右髋放大](review-evidence/right-hip-edge.png)。\n\n2. 画面左腿口上半段约 x352–415、y713–753 越出衣服，覆盖到大腿皮肤：参考的深色衣服下边位于候选红线上方，尤其靠髋角往内一段可见连续肤色被包入。把该段向衣服侧收回，沿包边的真实下外缘重描，保留其与下方斜段的连续过渡；这里不是要求描内部包边线。证据：[左腿口放大](review-evidence/left-leg-opening.png)。\n\n3. 画面右腿口下半段至裆尖右肩约 x475–517、y765–812 明显缩入：参考中白色衣料及其深色外边仍在候选红线右侧，形成连续漏覆盖窄带；在约 x478–494、y790–809 最明显。应向右外侧补足该段可见衣料和外缘，顺接裆底，保持原图左右实际差异，不通过整体镜像调整。裆底中央已有的小转折应保留。证据：[右腿口](review-evidence/right-leg-opening.png)、[裆尖放大](review-evidence/crotch-edge.png)。",
+      "candidateHash": "0b8d65d7c81b1ff17366120cd1c638e8ed78c5152f43896e7fd769af6f46ddc5",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-14.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-04-55-597Z-15.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:13:04.004Z",
+      "repairedCandidateHash": "114d6f4d4819a2df2830810056d4956b64356408e152ff0798241cc707d58272"
     },
     {
       "verdict": "pass",
-      "feedback": "已完成 pelvis 全组可见区域的独立轮廓审查。先查看整图 blend 定位，再对 [365,490,165,130]、[510,490,155,130]、[365,600,170,145]、[510,600,155,145] 四个相互重叠的选框分别以 4 倍 blend 和 edge 核对，完整覆盖下腹、左右髋部及下端衔接；另以 8 倍 blend/edge 检查 [487,675,55,55] 胯部中央开口、两侧尖端，以及左右腰髋转向，并用 6 倍连续外缘选框复核上下接缝。左右腰髋外缘的位置、弧度与转向均贴合参考可见边界，髋部向腿部延伸连续；中央开口及小面积皮肤连接形体与参考中皮肤/身后头发的边界相符，无可确认的超出、缩入或漏画。上端及两侧下端为 body、legs 允许重叠范围内的分组截线，不要求贴合内部衣服缝线或明暗分界。候选为连续单一形体，未发现孤点、碎片、来源不明的噪音或形体归属混乱。无父组，父范围检查不适用。",
-      "candidateHash": "d26bb4decca18495ecabc0a25bedc189c29001991a970a5ee2554e226c6e1cfb",
-      "updatedAt": "2026-10-14T12:37:15.932Z"
+      "feedback": "第2轮已读取 pelvis 职责、参考图与候选 SVG；本组为顶层节点，无父范围约束。先检查整图 blend 定位，再用相互重叠的 [335,595,150,230]、[455,595,150,230] 左右区域，以及 [380,595,180,55] 上接区域、[430,775,80,65] 裆尖区域，逐块进行 4–6 倍 blend、edge 核对，并检查独显。候选覆盖连体服对应的下腹、髋部及裆部；左右髋外缘、腿口与中央裆部小转折均贴合参考可见边缘，腿间开口保留，无误包头发或大腿，无可见组件遗漏。上端 y=610 为与 body 的组间分界，未将内部缝线误作孔洞。轮廓连续干净，无孤点、碎片或无依据挖缝。全组核对通过，无需返修。",
+      "candidateHash": "114d6f4d4819a2df2830810056d4956b64356408e152ff0798241cc707d58272",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-02T09-19-54-676Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T09:24:08.891Z"
     }
   ]
 }

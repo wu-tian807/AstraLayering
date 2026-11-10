@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/lower_silver_strand/elongated_silver_link",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "2740b9231a3e3a3d61ea9c21971c98f1529ff67d0a3726350a60322a1c246303",
-  "afterHash": "27bc029d7a20fb40f4a501a6324422397e9f147c901305d4e9ff3c43e9506251"
-}

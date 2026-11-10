@@ -1,7 +1,0 @@
-{
-  "groupId": "collar_fastener/central_clasp/hanging_junction",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "7fda4ac3e80eb13dbc2d21662a259a45c8b39c4ca63fefed90a1881551545345",
-  "afterHash": "ef11e5d277881e0d5040ce933f87da2b2380e4bb8a6b2ddfc9beefa37a0355dd"
-}

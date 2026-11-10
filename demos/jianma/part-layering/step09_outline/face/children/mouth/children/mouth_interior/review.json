@@ -3,9 +3,46 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已完成当前组全覆盖核对：先看整图 blend 定位，再以 [495,225,34,28] 的 8 倍参考与候选叠加确认整体口腔；用相互重叠的 [500,228,15,22]、[510,228,15,22] 分别检查 blend 和 edge，覆盖上缘中央、左右弧线与嘴角、下缘及中线接续，并查看同一局部的父组 mouth 完成 SVG。参考中可辨认的口腔开口均被连续实心底形覆盖，左右转向和下部圆弧无可确认的父内漏画；唇缘背后的局部延伸符合本组底形职责，未因上唇浅亮区或牙舌遮挡挖洞。独显确认轮廓为单一完整形体，无孤点、碎片、噪音或形体归属混乱。内部深浅与暖色阶属于后续着色，本轮不据此判作组件缺失。父范围检查 pass，outsideSamples=0、outsidePixels=0；未发现需单列的上游范围冲突。",
-      "candidateHash": "5779fa70b7d84f260926629a0c579b246ce694000aeb66e3ad6d42ad5afad6dd",
-      "updatedAt": "2026-10-14T22:37:44.540Z"
+      "feedback": "已读取本组职责、参考图、候选及父组完成 SVG，并完成全图 blend 定位、嘴部完整区域 [449,255,41,41] 的 8 倍参考/blend/edge 对照，以及左右重叠选框 [452,259,20,32]、[467,259,20,32] 的边缘复核和独显检查。上部及左右口腔暗部均被连续底形覆盖，唇内侧可见边界的位置、宽度、弧度与转向吻合；无可见组件遗漏、误包相邻结构、孔洞填平、孤点或碎片。上牙与舌面属于前方遮挡物，底形延续到其后方符合本组职责，不要求沿内部明暗或舌面边界挖空。下方连续圆弧为合理的遮挡后底形。allowOutsideParent=true，按完整口腔底形职责核对，画布坐标及实体归属正确。当前未发现有明确图像依据的返修项。",
+      "candidateHash": "f97244380322d3cb1604397470a8dad0dc43d939690cd35ca6c065382e57156a",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-02T11-24-56-391Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-02T11-24-56-391Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-02T11-24-56-391Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-02T11-24-56-391Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-02T11-24-56-391Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-02T11-24-56-391Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-02T11-24-56-391Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T11:26:00.004Z"
     }
   ]
 }

@@ -1,7 +1,0 @@
-{
-  "groupId": "outer_robe/collar_shoulders/standing_collar/left_front_collar",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "82d1e36933b9c832c363cdfcc52d929ddde0774142b28cdc5e1f292b710661eb",
-  "afterHash": "093311e85aae521f5893be1feb00bdc6af5188a1fca77bc7c4a0f64788a10700"
-}

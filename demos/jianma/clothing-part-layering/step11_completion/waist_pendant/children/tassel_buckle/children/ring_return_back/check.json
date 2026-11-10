@@ -1,7 +1,0 @@
-{
-  "groupId": "waist_pendant/tassel_buckle/ring_return_back",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "ba5ed1e89f53d198359eb1ac5f77c2ee4498979f7926628a90708f3f0bf5067e",
-  "afterHash": "186bc3fa53b6594327db778c7a719e97a3832cf3584d56bc0c948c951c789033"
-}

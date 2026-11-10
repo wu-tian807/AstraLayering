@@ -2,10 +2,102 @@
   "groupId": "arms/arm_right/hand/little_finger",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已完成本组全段核对：先看整图 blend 定位，再以 8 倍的 [264,746,30,33]（指根与掌交接）、[263,765,35,31]（指身及弯折）、[276,785,29,26]（末段及指尖）三个相互重叠的选框逐一检查 blend、edge，并用参考原图及父 hand.svg 的同坐标局部复核。掌下圆弧指根连续，指身向下再向右下转折，与无名指的接界及末段覆盖连贯；父范围内未发现可明确要求返修的漏画、挖缝、无依据扩张或组件缺失。候选为干净的连续实体，未见孤点、碎片、噪音或形体归属混乱。父范围检查通过：outsideSamples=0、outsidePixels=0。\n上游范围限制（不计为当前子组返修）：小指最下端约 x=286–288、y=804–806，参考仍有圆钝指尖的实质边缘延至 y≈805–806；候选与父组同处止于 y≈804.95，局部 blend/edge 均可见尖端下方露出参考边缘。父组与候选的尖端边界重合，候选已覆盖该处父范围内的尾端，恢复这段参考边缘需要扩大父 hand.svg，当前子组无法在保持范围检查通过的条件下补齐。本轮未修改父稿或候选，也不声称这处上游缺口已补齐。其余当前允许范围内检查通过。",
-      "candidateHash": "ff10988ad0eed320babce79400ec4eefa947147bd0d62ac7dbe20ff9fe8a8323",
-      "updatedAt": "2026-10-16T18:30:10.508Z"
+      "verdict": "revise",
+      "feedback": "已检查整图叠加，并用相互重叠的放大框覆盖根部及上段（298,849,23,31）、完整候选（294,846,35,51）、末端与相邻指段（303,868,24,36），对照原图、blend、edge 及父完成 SVG。候选满足父范围约束，无孤点或碎片问题。\n\n1. 末端归属与主要形体错误，需重画当前小指的远端可见轮廓，不能仅微调边缘。参考中最上方后排短指在约 (318–319,881–883) 处圆钝收口，下方有明确斜向指间边界，随后是另一根手指向右下鼓出的独立指段。候选却延伸至 (320.8,890.7)，将下方相邻指段的一部分包入小指，并以尖角结束，造成小指过长、端部形状错误。请沿参考最上方短指的圆钝指端及其与下方手指的斜向接缝重画远端，去除误包的下方指段；根部被遮挡的合理连接可保留，无需本轮恢复隐藏完整指体。该修改可在现有父范围内完成。\n证据：参考末端放大见 bitmaps/8a55c191-56b3-4326-b987-1a24953b27e3.png；候选末端边缘叠加见 previews/2026-11-02T16-53-44-720Z-5.png。",
+      "candidateHash": "0ade7f223c59259e69740e8ad1736db801b84e31457909e9fe63e75cf58c8a6e",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T16-53-44-720Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T16-53-44-720Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T16-53-44-720Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T16-53-44-720Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T16-53-44-720Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T16-53-44-720Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T16-53-44-720Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:17:24.428Z",
+      "repairedCandidateHash": "6786a854140b6939f1482e62267f7e7b1bfd0512ae989e068c55fb1eb8c80e31"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已核对整图叠加、完整手部参考，并以 [299,850,17,25] 与 [304,869,21,20] 两个重叠选框在 8 倍 blend/edge 下覆盖本组全部区域，同时查看父 hand.svg 同区边缘及候选独显。小指归属与主要走向成立，无需整组重画；轮廓干净，无孤点或碎片，父范围检查通过。\n需修正一处：右下指端及其与下一根手指的接缝，约 x=310–321、y=876–886。参考中后排最上方短指段继续向右下形成圆钝指端，内侧以向右下延伸的暗色指间边界收合。候选在 (318.9,881.7) 附近即回转，末端落在参考可见肤色内部，右下仍有约 1–2 像素宽的可见指体未覆盖；从内侧斜缘到指端的闭合也偏早，切掉该短段末端。请沿参考把这段内侧接缝及圆钝末端补足，保留与下方手指的叠压关系。父 hand.svg 在同区仍包含这块可修区域，候选尚未贴到父边界，因此这是当前组父范围内的局部漏画，不属于上游限制；补足时继续保持父范围约束。其余已检查区域未发现确定需修改的问题。",
+      "candidateHash": "6786a854140b6939f1482e62267f7e7b1bfd0512ae989e068c55fb1eb8c80e31",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T17-21-21-968Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T17-21-21-968Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T17-21-21-968Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T17-21-21-968Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T17-21-21-968Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T17-21-21-968Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T17-21-21-968Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T17-21-21-968Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/little_finger/previews/2026-11-02T17-21-21-968Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T17:29:45.896Z",
+      "repairedCandidateHash": "6790a926cc8526183ccb0ecc7f590ff51e1dfcf944484b0a0b1803443d2141af"
     }
   ]
 }

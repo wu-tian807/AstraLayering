@@ -1,7 +1,0 @@
-{
-  "groupId": "face/eye_left/lower_eyelashes",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "3c6bb43a2ff329353e0cc74728f82e7331ed87b399cce78f2a8e960eb802de94",
-  "afterHash": "13e377b6d9c080b90956d6eb87111cdad0a7beb54298f11d1fc1a3835b80b36d"
-}

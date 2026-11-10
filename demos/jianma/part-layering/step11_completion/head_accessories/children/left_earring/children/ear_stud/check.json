@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/left_earring/ear_stud",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "b4a7de138e7a71f87fbf5d5f0d88360df5935c8ee07f585de5a8162675467773",
-  "afterHash": "6a8aebcb20dab7deeab58b72ecbcca77215a4b396c88091a8d2d085050d17f0e"
-}

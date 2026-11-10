@@ -1,7 +1,0 @@
-{
-  "groupId": "head_accessories/left_crown_ribbon/jeweled_suspension/inter_gem_connector",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "64f14d95e937abf5b0457f09bdb5ffd3c956d4a5d8b0ce8dcef8c236cc6ee07a",
-  "afterHash": "e4cf66abf75e4670f5e61ddfbb02c1c65df83f976bf5d9083a1615d0782e20ed"
-}

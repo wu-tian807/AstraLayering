@@ -1,0 +1,19 @@
+{
+  "final_active_records": [
+    "raster-layering/step01/workspace/repair02/hidden-roots-records.json",
+    "raster-layering/step01/workspace/repair02/join-strokes-records.json",
+    "raster-layering/step01/workspace/repair02/trim-and-ankle-finish-records.json",
+    "raster-layering/step01/workspace/repair02/final-local-records.json",
+    "raster-layering/step01/workspace/repair02/ear-fold-records.json",
+    "raster-layering/step01/workspace/repair02/pelvis-hidden-seam-records.json",
+    "raster-layering/step01/workspace/repair02/ankle-svg-records.json"
+  ],
+  "note": "Broad details-source test and row-profile test were discarded; see final-local-records for final wisp ownership and pupil ellipse in clean-details. Final KRA/tree and 19 changed paint hashes are authoritative.",
+  "pupil_record": "raster-layering/step01/workspace/repair02/clean-details-records.json",
+  "backups": [
+    "raster-layering/step01/workspace/repair02/before-character-depth.kra",
+    "raster-layering/step01/workspace/repair02/before-character-depth.png",
+    "raster-layering/step01/workspace/repair02/before-report.md"
+  ],
+  "original_reference": "part-layering/references/base-subject.png"
+}

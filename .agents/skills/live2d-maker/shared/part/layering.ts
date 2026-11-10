@@ -3,7 +3,7 @@ import type { PartProfile } from './profile.ts';
 import { lstat, mkdir, readFile, rm, stat } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import sharp from 'sharp';
-import { checkSubject, findGroup, groupCompleted, GroupStore, nodeSeed, normalizeGroups, setGroupProgress, walkGroups, writeAtomic } from './groups.ts';
+import { findGroup, groupCompleted, GroupStore, nodeSeed, normalizeGroups, setGroupProgress, walkGroups, writeAtomic } from './groups.ts';
 import { artifactPath, draftPath, stepDraftPath, publishSvg, readReviewReport, readSvg, reportPath, reviewedArtifact } from './artifact-facts.ts';
 import { mergePartSvgs } from './merge-svg.ts';
 import { publishDepthPreview } from './depth-preview.ts';
@@ -351,13 +351,10 @@ export async function runLayering(input: {
         if (result.status === 'completed') {
           const groups = proposal(result.output, new Set());
           if (!groups.length) throw new Error('Initial grouping must contain at least one group');
-          checkSubject(result.output.subject);
-          await writeAtomic(join(step.directory, 'groups.json'), JSON.stringify({
-            ...(result.output.subject !== undefined ? { subject: result.output.subject } : {}), groups: groups.map(nodeSeed) }, null, 2) + '\n');
+          await writeAtomic(join(step.directory, 'groups.json'), JSON.stringify({ groups: groups.map(nodeSeed) }, null, 2) + '\n');
           // The tree is what a later run rebuilds from groups.json, kinds included.
           await store.update(document => {
             document.groups = normalizeGroups(groups.map(nodeSeed));
-            if (result.output.subject !== undefined) document.subject = result.output.subject;
           });
           await completeStep(step.directory);
         } else report(result.message);

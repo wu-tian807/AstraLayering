@@ -3,17 +3,141 @@
   "reviews": [
     {
       "verdict": "revise",
-      "feedback": "已完成整图 blend 定位，并以重叠选框 [430,7,164,62]（6倍）、[384,45,101,77] 与 [539,45,102,77]（8倍）逐块查看参考、blend、edge，覆盖冠环、两端小尖饰、两侧冠翼、所有开口与安装根部；另以局部选框复核尖端、卷云开口和下缘。已查看父组完成 SVG。父范围检查 pass，outsidePixels=0；上方冠环未发现有明确依据的返修点，父组已有圆弧安装余量可保留。但两侧冠翼可见轮廓不通过，须一次修正以下全部问题：\n1. 翼尖缩短、主尖饰位置偏内。画面左外端约 x389,y62–64、右外端约 x635,y62–64，以及左上主尖约 x429,y57–60、右上主尖约 x595–597,y57–60，参考尖端和外缘仍露在候选红边外，右侧主尖尤其明显。候选尖端短约1–2像素，并使尖端附近的转向偏移。按参考恢复尖端位置、两边收尖与尖后的凹折，不以平滑近似替代。证据：8倍参考及 edge 选框 [385,53,66,44]、[573,53,66,44]。\n2. 两侧中间细立枝被削窄。左 x420–431,y71–88，右 x593–604,y71–88：参考细枝的银蓝实体外缘在候选之外形成连续露出的条带，左枝右缘、右枝左缘及枝尖均未被覆盖，宽度和弯折走向不一致。需补足实际枝宽，沿参考描回尖端和接入横向冠翼的连续边缘，保留可见折向。证据同上两张尖饰 edge，及左右冠翼完整 blend/edge。\n3. 外端回钩内口的尖端错位。左约 x399–402,y84–87、右约 x622–625,y84–87：参考回钩的内唇尖在候选尖端的上方且更靠本体；候选左尖偏左下、右尖偏右下约1–2像素，改变了开口大小和内侧弧度。应依据真实孔口及银边恢复内唇尖位置、弧线宽度，不能用现有尖三角覆盖代替。证据：[385,53,66,44] 与 [573,53,66,44] 的参考/edge。\n4. 中央卷云孔口被扩大并向下延长，错误挖掉本体。左约 x443–452,y95–102、右约 x572–581,y95–102，参考的真实孔洞在上部，下面可见连续银蓝卷边及沿卷边转向的内纹；候选负空间却拖入约 y98–102 的金属实体，红边切过参考卷边，导致银边缺失。需按真实负空间缩回开口，补回其下方及侧面的连续冠体；不要把普通亮边/暗纹当作孔洞边界。此项涉及局部形体被错误挖空。证据：8倍参考/edge [432,81,35,30]、[557,81,35,30]，以及两侧冠翼 blend。\n5. 两侧冠翼下缘整体缩入。左横向下缘约 x404–430,y97–101 与下垂卷瓣约 x431–452,y102–116；右对应约 x594–620,y97–101 与 x572–593,y102–116：edge 中参考下侧蓝灰外轮廓连续露在红边之外，卷瓣底部缺覆约1–2像素，接到横翼处的小折角也偏上。需覆盖完整可见外缘，恢复横翼到下垂卷瓣的宽度、转角及最低点；悬挂杆和宝石仍按组说明归 crown_ribbon。证据：8倍参考/edge [395,90,64,30]、[565,90,64,30]。\n未发现来源不明的孤点、碎片堆砌或整段独立组件遗漏；以上属于冠体可见轮廓缺覆、孔口与形体边界错误，不是最终着色未画。不要改动无参考边界的合理安装补形。",
-      "candidateHash": "dc2468281be5415c8d888c8858a6083238cd9d73c39a8bee19ea82b91e883800",
-      "updatedAt": "2026-10-14T20:06:24.766Z",
-      "repairedCandidateHash": "dc2468281be5415c8d888c8858a6083238cd9d73c39a8bee19ea82b91e883800"
+      "feedback": "已检查整图叠加，并以互相重叠的选框 [375,5,188,83]、[310,53,119,98]、[510,53,119,98] 完成弧梁、左右冠饰、连接凹口、尖端、下缘及发际接缝的 blend/edge 放大核对；另查看父完成稿和候选独显。本组实体归属及主要形体成立，无需整组重画；未发现独立组件整段漏画、碎片噪音或形体混乱。父范围检查通过（outsidePixels=0）。\n\n当前组可修问题：\n1. 画面左侧外伸冠片上缘，约 x331–348、y84–90：候选在外尖端回落后的浅凸段向白背景外扩，红边位于参考灰色实体上缘上方，尤其 x337–345 附近；参考边缘是更低的连续浅弧。请收回该段多包的背景，逐点贴合真实外缘，并顺接右侧凹口，不用整体平移冠片。证据：[左侧候选边缘](review-evidence/left-candidate-edge.png)。\n2. 画面右侧外伸冠片上缘，约 x591–608、y85–91：上缘浅凸段也包入了参考边缘上方的背景，局部出现不随原图走向的小折点。请按右侧自身的可见灰色外缘收窄并整理过渡，保持外端尖角，不用左侧镜像替代。证据：[右侧候选边缘](review-evidence/right-candidate-edge.png)。以上两处均可通过在现有父范围内收边修正。\n\n上游范围限制，须与上述当前组修正区分：\nA. 左侧短尖片的左上斜边约 x349–363、y79–90，参考尖峰和上升斜边位于候选边界左上方；候选的凹口更深，短尖片起峰偏右。父 SVG 同处边界与候选一致，未给这部分真实可见实体留出范围，不能要求本子组越界补齐。证据：[候选](review-evidence/left-candidate-edge.png)、[同局部父范围](review-evidence/left-parent-edge.png)。\nB. 右侧高尖片约 x563–567、y62–86，参考右外缘在候选竖向边缘右侧仍有可见实体；父完成稿同样截在当前候选边界，恢复这段宽度需要上游扩大父范围。证据：[候选](review-evidence/right-candidate-edge.png)、[同局部父范围](review-evidence/right-parent-edge.png)。这两处尚未补齐，不放宽父范围检查，也不要求本轮修改父稿。",
+      "candidateHash": "5e97de0b9cc99217f2d44d569a3cff8d68be58571727f57351e312f1cc8b6ac5",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-9.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-03-14-531Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:14:27.739Z",
+      "repairedCandidateHash": "a7d63aa7752b5d9a77c7b78d8b9f0abd08df7f74198ed41c57a2e25be969dc95"
     },
     {
       "verdict": "revise",
-      "feedback": "已完成全组分块放大核对。先看整图 blend，再以 [382,50,100,73]、[424,8,93,90]、[506,8,94,90]、[542,50,100,73] 四个重叠选框覆盖全部可见冠体，逐块查看参考、blend 和 edge；并对尖端、卷口、下缘、冠环连接及顶部弧段作 8 倍复核。父 SVG 已查看，父范围检查 pass：outsideSamples=0、outsidePixels=0。以下坐标均为原图像素坐标。\n1. 两侧最外端长尖及其下侧弧线不贴合：左端约 x389–409、y62–83，右端约 x615–637、y62–83。参考中连续的银蓝尖端仍伸出候选尖端，候选均偏短，右侧尤其明显；右侧长尖下侧红边还沿一段落在实体内部，漏掉外侧蓝灰边缘，改变尖部宽度与转向。按各侧实际边界补回长尖和下侧弧线，不直接镜像套用。证据：8 倍 edge 裁剪 [386,58,53,48]、[590,58,51,48]。\n2. 两侧冠翼中间向上的细竖尖偏短，约左 x420–429、y70–90，右 x595–604、y70–90。参考尖顶比候选更高，尖顶附近仍有可见银色实体未覆盖，候选侧弧和收尖位置也偏离参考。恢复原尖顶、两侧宽度和根部转向，保持与冠翼连续。证据同上述左右外端 8 倍参考/blend/edge。\n3. 冠环下转主干朝外斜出的尖角也缩短，约左 x429–440、y58–73，右 x583–596、y58–73；参考尖端位于候选红边外，右尖更靠右上，候选把尖角与主干之间的 V 形开口位置一并改变。右侧下转主干外弧约 x584–589、y53–67 还偏内，留下连续银蓝边缘。沿真实尖端、外弧及 V 形开口重描。证据：8 倍裁剪 [427,44,30,35]、[570,44,30,35]，以及 [432,28,48,51]、[548,28,52,51]。\n4. 两侧外端回卷的唇尖与开口弧度不准，约左 x399–415、y84–96，右 x609–626、y84–96。候选唇尖相对参考偏外、偏下；开口底弧也下挖过深，红边切入参考中的银色实体，令卷口下唇过薄。依据参考重定位唇尖和开口底弧，补回被挖掉的局部实体；保留真实开口，不将内部明暗分界另作轮廓。证据：上述左右外端 8 倍 edge。\n5. 外卷下缘至内侧连接段约左 x403–428、y96–100、右 x596–621、y96–100，候选下缘向上缩入，blend 中参考蓝灰外缘在候选下方连续露出。补足实际下缘宽度，并与卷口及内侧冠翼连续衔接。证据：8 倍裁剪 [386,58,53,48]、[590,58,51,48]。\n6. 两侧下部卷云尾的底弧及上方短折角偏移，约左 x429–450、y100–116，右 x574–595、y100–116。候选底弧止得偏高，参考中清晰的蓝灰外缘仍在其下方；上方朝外的短尖/折角也被收短，参考实体延伸到红边之外。补回可见下缘和短折角，按原图保留转折；与发际相接的可见段一起校准。证据：8 倍 edge [419,82,49,38]、[556,82,49,38]。父组已有的内侧圆弧安装余量合理，继续保留，不要求沿头发阴影截断。\n7. 左冠环端内侧小舌片约 x449–454、y48–55，候选收成偏左上的圆包，参考仍有向右下延出的短片边缘未覆盖。按其可见右缘和下缘补回局部轮廓，并与冠环连续连接。证据：8 倍 reference/blend/edge [432,28,48,51]、[427,44,30,35]。\n这些问题属于可见轮廓位置、宽度、弧度及局部实体覆盖偏差，不是最终着色或银边纹样未画。未见来源不明的噪点、孤立碎片或碎片堆砌，也未发现整段独立组件缺失；冠体归属清晰。顶部冠环主弧未发现有明确依据的返修项。候选及输入未修改。",
-      "candidateHash": "dc2468281be5415c8d888c8858a6083238cd9d73c39a8bee19ea82b91e883800",
-      "updatedAt": "2026-10-14T20:26:04.964Z",
-      "repairedCandidateHash": "dc2468281be5415c8d888c8858a6083238cd9d73c39a8bee19ea82b91e883800"
+      "feedback": "已核对组说明、原图、父完成稿及候选；整图定位后，以弧梁[374,7,190,80]、左冠饰[310,53,117,96]、右冠饰[511,53,117,96]三个重叠选框完成 blend/edge 放大检查，另放大左短尖[330,76,45,20]。候选父范围检查通过（outsidePixels=0）。归属正确，未发现整段组件遗漏、碎片噪音或需要整组重画的主要形体错误。\n\n当前范围内须返修：左侧中间短尖饰片（约 x358–373、y78–90）的尖顶及右肩画成偏右、圆钝的鼓包。参考尖顶约在 x360–361、y79–80，右侧是明确向右下转的斜缘；候选尖顶偏到 x364–365 附近，顶部及右肩包入白背景。请局部重描这段上缘，削除无参考依据的顶部/右肩多包，保留尖顶转折；不要把整个短尖继续圆化，也不要扩大到父范围外。此处多包位于父轮廓内，属于当前可修问题。证据：[短尖8倍边缘图](review-evidence/left-short-tip-edge.png)、[左侧父子同局部叠加](review-evidence/left-parent-blue-candidate-red.png)（红为候选，蓝为父稿不同于候选的边缘，重合处显示红）。\n\n单独记录上游范围限制：①上述左短尖的左侧上升边（约 x349–361、y79–88）在原图中比父稿/候选更靠左上；该段候选已经贴父边，完整恢复需扩大父范围。②右侧高尖饰片的右外缘（约 x565–568、y63–85）仍有原图可见的银灰窄边落在父稿外，候选亦已贴父边。③弧梁两端内侧连接凸缘（约 x399–404、y54–65及 x534–539、y54–65）有可见银灰凸出部分被父轮廓截掉，父子对应边重合。以上不要求当前子组越界补齐，亦不视为已经覆盖。证据：[左侧叠加](review-evidence/left-parent-blue-candidate-red.png)、[右侧叠加](review-evidence/right-parent-blue-candidate-red.png)、[弧梁叠加](review-evidence/arc-parent-blue-candidate-red.png)。其余已检查的外端尖部、下缘、发际接缝和弧梁开口未发现另需返修的问题。",
+      "candidateHash": "a7d63aa7752b5d9a77c7b78d8b9f0abd08df7f74198ed41c57a2e25be969dc95",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-10.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/crown_frame/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-12.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/crown_frame/previews/2026-11-02T10-23-53-065Z-13.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:31:00.451Z",
+      "repairedCandidateHash": "4d403d9fc6f9baf14b5297208fdc7e3e70f19e9762f206846e563b598b672296"
     }
   ]
 }

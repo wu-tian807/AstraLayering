@@ -1,7 +1,0 @@
-{
-  "groupId": "hair/side_hair_right",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "d26107bd83171957878b0567f202bd25ecf50d43895168fadb3e34f8773c2091",
-  "afterHash": "fdcbd6fa89330f1a8ebab7275e7840e8fef547a5e6e85d15681d79168fac77fe"
-}

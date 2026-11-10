@@ -39,7 +39,7 @@ async function deliver(request: AgentRequest, thread = request.threadId ?? 'draw
   } else {
     await request.onEvent({ type: 'thread.started', thread_id: thread });
     const id = request.prompt.startsWith('在 clothing-raster-layering/step01/') ? 'step02' : 'step01';
-    assert.deepEqual(request.tools?.map(tool => tool.name), id === 'step02' ? ['locate_pixel_differences', 'krita'] : ['edit_groups', 'edit_occlusion', 'krita']);
+    assert.deepEqual(request.tools?.map(tool => tool.name), id === 'step02' ? ['krita'] : ['edit_groups', 'edit_occlusion', 'krita']);
     const step = steps.find(step => step.id === id)!;
     for (const file of step.requiredFiles) await writeFile(join(request.directory, id, 'review' in step && step.review && file === 'report.md' ? 'report.md.tmp' : file), `${id} ${file}`);
   }
@@ -53,7 +53,7 @@ test('independent run directory, parts path normalization, and external-only pro
   assert.equal(parseRunArguments(['--name', 'test', '--knowledge', 'knowledge']).name, 'test');
   assert.throws(() => parseRunArguments(['--name', 'test', '--provider-config', 'secret.json']), /Unknown option/);
   const prompt = await runWorkflow({ ...f.options, dryRun: true }, { ...f.deps, agent: async () => assert.fail('dry run must not invoke Codex') });
-  assert.ok(prompt.includes('生图工具 imagegen'));
+  assert.ok(prompt.includes('每个衣片按以下流程画') && prompt.includes('用三色控制图'));
   assert.ok(prompt.includes('step02/clothing-soft-edges.kra'));
   assert.ok(!prompt.includes('wearing-order.md') && !prompt.includes('character-dressup-base'));
   await assert.rejects(readdir(f.output), { code: 'ENOENT' });

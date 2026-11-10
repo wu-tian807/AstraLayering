@@ -1,0 +1,102 @@
+{
+  "groupId": "head_accessories/earrings",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成全图 blend 定位，并以 8 倍原图、blend、edge 覆盖画面左侧 x400–425、右侧 x514–539、y252–351 的全部耳饰，另核对父 SVG 同区域 edge 和候选独显。两件耳饰归属正确，短节、菱形及长坠均有覆盖，无组件整段遗漏或孤立碎片；候选父范围检查通过。无需整组重画，但以下父内轮廓仍需返修：\n1. 菱形旁的银白侧饰：画面左侧约 x405–410、y280–288，候选在上外侧画出圆鼓包，参考为从菱形侧缘向左下折出的斜边及折角，圆弧上肩包入了背景；画面右侧约 x528–533、y281–289 也把侧饰外端圆化、略向外鼓。分别沿各自参考收整外缘，保留斜向转折，不能继续用近镜像的圆瓣替代。左侧需向父外延伸才能贴合的部分另见上游限制，当前先修父内多包区域。\n2. 长坠上端的浅色冠形连接饰：画面左侧约 x407–419、y290–298，右侧约 x519–531、y290–298。候选两侧末端均画成圆球状突起，尤其左饰右端、右饰左端的圆鼓轮廓过满；参考为较窄、带斜向转折的端部，与中间浅色主体之间有明确收颈。按各侧参考收掉多包背景的圆弧，保留端部实际结构，不把反光或阴影边界另拆成碎块。\n上游范围限制（不要求当前子组越界）：父稿与候选在耳饰可见区域基本共用同一外缘。画面左侧侧饰约 x404–406、y283–287，以及左长坠右外缘约 x416–419、y311–334、右长坠左外缘约 x519–522、y311–334，原图深色实体外缘仍在父轮廓之外。父、候选同局部 edge 已对照，候选在这些位置已贴父边界；恢复这些外缘需要上游扩大父范围，不能声称当前已覆盖。此限制不豁免以上父内可修的多包与折角问题。\n图像证据：左侧候选 edge：previews/2026-11-02T10-06-32-676Z-4.png；右侧候选 edge：previews/2026-11-02T10-06-32-676Z-6.png；对应父 edge：previews/2026-11-02T10-06-32-676Z-7.png、previews/2026-11-02T10-06-32-676Z-8.png；无叠加参考：bitmaps/3a1956c7-c585-4a58-9c3a-4294cedd5cc3.png、bitmaps/9c137def-30ed-4a09-859a-3f1976cb8e55.png。",
+      "candidateHash": "e6d9779a47eff2d420ca09f905c92062a33c50a226e5c68d03dbc016b18c6a9f",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-06-32-676Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-06-32-676Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-06-32-676Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-06-32-676Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-06-32-676Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-06-32-676Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-06-32-676Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-06-32-676Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-06-32-676Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:18:41.485Z",
+      "repairedCandidateHash": "3c13f71b94bacd7ad1ddb37aae01e1be03a869acbbaa28951a9fadd6f590dcf3"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮已完成全组核对：先查看整图 blend 定位，再分别以原图坐标 [398,251,29,99]、[513,251,28,99] 的 8 倍参考图、blend 与 edge 覆盖左右耳饰全部可见区域，并查看父完成 SVG 在 [393,246,151,106] 的局部叠加及候选独显。两件耳饰的附着端、上部短节、菱形饰件、下方连接部及细长硬坠均已覆盖；分别核对外缘、连接处凹口与尖端，未发现确定的组件遗漏、相邻耳部或头发误包、无依据孔洞及孤立碎片。左右局部差异有分别描绘，形体归属、位置与比例符合参考。候选父范围检查 outsidePixels=0，满足未启用 allowOutsideParent 的范围约束。本轮通过，无需重画。",
+      "candidateHash": "3c13f71b94bacd7ad1ddb37aae01e1be03a869acbbaa28951a9fadd6f590dcf3",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-26-12-119Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-26-12-119Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-26-12-119Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-26-12-119Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-26-12-119Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-26-12-119Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/earrings/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/earrings/previews/2026-11-02T10-26-12-119Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-02T10:32:23.524Z"
+    }
+  ]
+}
