@@ -8,7 +8,7 @@ import type { AgentResult, AgentTask, CodexAgents } from '../../shared/codex/age
 import type { FunctionTool } from '../../shared/codex/function-tools.ts';
 import type { Harness } from '../../shared/agents/models.ts';
 import { clearStepSession, readStepSession, sessionPath } from '../../shared/agents/step-session.ts';
-import { executionPaths } from '../../shared/agents/workspace.ts';
+import { executionPaths, workspacePrompt } from '../../shared/agents/workspace.ts';
 import { knowledgeDirectory, useKnowledge } from '../../shared/knowledge.ts';
 import { applyStepAction } from '../../workflow/step-actions.ts';
 import { createFitHead } from '../run.ts';
@@ -216,12 +216,11 @@ for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} �
   const { createFramesHead }=await import('../run.ts');
   const names=step==='step03_frames'?['left','up','down']:['left-up','left-down'];
   const agents={
-    ffmpeg: '/tools/custom ffmpeg/bin/ffmpeg',
     async run(): Promise<AgentResult> {assert.fail('frames use their saved step session');},
     createSession(id?:string,options:Callbacks={}) {return {
       async run(task: AgentTask): Promise<AgentResult> {
-        assert.ok(task.prompt.includes(JSON.stringify(agents.ffmpeg)));
-        assert.match(task.prompt, /ASTRA_STUDIO_FFMPEG/);
+        assert.equal(task.prompt, workspacePrompt('choose frames', executionPaths({ cwd: f.section, outputDirectory: output }, f.section)));
+        assert.doesNotMatch(task.prompt, /ASTRA_STUDIO_FFMPEG|FFmpeg 可执行文件|本次九轴使用的 FFmpeg/);
         await options.onSessionStarted?.(id??'frames-thread','codex');
         for(const name of names) for(const file of [`${name}.png`,`frames/${name}.png`]) await put(join(output,file),'selected image');
         await put(join(output,'selected-frames.json'),'{}');

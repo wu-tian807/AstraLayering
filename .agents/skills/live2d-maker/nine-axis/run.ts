@@ -40,7 +40,7 @@ import { runWorkflow as runGroups } from '../shared/part/workflow.ts';
 import { nineAxisSteps, nineAxisBranches } from '../shared/nine-axis.ts';
 import { upperBodyBox } from './turn.ts';
 import { applyStepAction, applyTaskAction } from '../workflow/step-actions.ts';
-import { ffmpegEnvironment, ffmpegInstructions, type FFmpegCheck } from '../shared/ffmpeg.ts';
+import { ffmpegEnvironment, type FFmpegCheck } from '../shared/ffmpeg.ts';
 import { requireFFmpeg } from '../workflow/ffmpeg.ts';
 
 export const help = `nine-axis — 头部九轴
@@ -98,7 +98,7 @@ export const angleXYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 's
 export const jawLinePrompt = (input: HeadInput, taskRoot: string) => stepKnowledge('nine-axis', 'step07_jaw-line')
   .render('main', { document: input.document, color: input.color, ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
 
-type Agents = Pick<CodexAgents, 'run'> & Partial<Pick<CodexAgents, 'createSession'>> & { ffmpeg?: string };
+type Agents = Pick<CodexAgents, 'run'> & Partial<Pick<CodexAgents, 'createSession'>>;
 // One agent turn. With `session` the turn continues that step's saved thread;
 // without it the turn is a fresh session that is never saved (a reviewer).
 // `recoveryPrompt` replaces the prompt when the saved thread is gone.
@@ -115,13 +115,12 @@ async function runAgentTurn(agents: Agents, nine: string, directory: string, tur
     saved = next;
   };
   const session = turn.session ? agents.createSession?.(saved.threadId, { resumeHarness: saved.harness, onSessionStarted: persist, onThreadReplacement: async () => persist(null) }) : undefined;
-  const instructions = agents.ffmpeg ? ffmpegInstructions(agents.ffmpeg) + '\n\n' : '';
-  const prompt = instructions + (turn.recoveryPrompt && !saved.threadId ? turn.recoveryPrompt : turn.prompt);
+  const prompt = turn.recoveryPrompt && !saved.threadId ? turn.recoveryPrompt : turn.prompt;
   let result;
   try {
     result = await (session ?? agents).run({ step: turn.step, name: turn.name, cwd: nine, outputDirectory: directory, outputSchema,
       tools: stepKnowledge('nine-axis', turn.knowledge).tools(turn.role, turn.tools), prompt: workspacePrompt(prompt, paths),
-      ...(turn.recoveryPrompt ? { recoveryPrompt: workspacePrompt(instructions + turn.recoveryPrompt, paths) } : {}) }, signal);
+      ...(turn.recoveryPrompt ? { recoveryPrompt: workspacePrompt(turn.recoveryPrompt, paths) } : {}) }, signal);
     if (result.threadId) await persist(result.threadId, result.harness);
   } catch (error) {
     if (error && typeof error === 'object' && 'threadId' in error && typeof error.threadId === 'string') await persist(error.threadId);
@@ -184,7 +183,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined, agentPool: CodexAgents | undefined;
   const agents = (): Agents => {
     const pool = agentPool ??= new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress, agentConcurrency: 3 });
-    return { run: pool.run.bind(pool), createSession: pool.createSession.bind(pool), ffmpeg: ffmpeg?.executable };
+    return { run: pool.run.bind(pool), createSession: pool.createSession.bind(pool) };
   };
   let preflightPromise: Promise<unknown> | undefined;
   const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw'], { runsRoot: root, progress, env: environment.codex.env });

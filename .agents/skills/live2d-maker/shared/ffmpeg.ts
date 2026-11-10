@@ -52,6 +52,3 @@ export function ffmpegEnvironment(executable: string, env: NodeJS.ProcessEnv = p
   result.ASTRA_STUDIO_FFMPEG = executable;
   return result;
 }
-
-export const ffmpegInstructions = (executable: string) =>
-  `本次九轴使用的 FFmpeg 可执行文件：${JSON.stringify(executable)}。运行环境 ASTRA_STUDIO_FFMPEG 指向此文件，其目录已加入 PATH。调用 FFmpeg 时使用该完整路径，并按当前 shell 正确引用；不要另找或安装其他版本。`;

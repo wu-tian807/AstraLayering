@@ -46,7 +46,7 @@ pnpm install --frozen-lockfile
 
 总入口 `--live` 表示阴影完成后进入九轴 section。只有九轴需要 FFmpeg 和视频服务；网页在“全局设置 → FFmpeg 可执行文件”选择本机已安装或解压的文件，Krita 与 FFmpeg 均可手填路径、浏览或自动扫描后点选结果，扫描可查看进度并停止；CLI 使用 `--ffmpeg <完整路径>`。保存和启动时检查文件及 `-version`；程序不自动下载。视频配置支持 `seedance-2.5`／`seedance-2.0` 系列，见[九轴依赖与视频配置](../nine-axis/README.md#依赖与视频配置)。
 
-独立 section 的启动无状态：每次启动及续跑都传入 `--dir`、`--knowledge` 和该段需要的软件路径；九轴须传 `--krita` 与 `--ffmpeg`。全局设置由网页保存，总入口参数可记入任务根 `run.json`，调用方每次传给 section；section 只沿用工程、完成标记和绘制会话。九轴 agent 的环境及提示词包含本次 FFmpeg 的完整路径，并将其目录加入该 agent 的 PATH。
+独立 section 的启动无状态：每次启动及续跑都传入 `--dir`、`--knowledge` 和该段需要的软件路径；九轴须传 `--krita` 与 `--ffmpeg`。全局设置由网页保存，总入口参数可记入任务根 `run.json`，调用方每次传给 section；section 只沿用工程、完成标记和绘制会话。本次 FFmpeg 路径只进入执行参数和 agent 环境：`ASTRA_STUDIO_FFMPEG` 指向该文件，目录加入 PATH；不向制作提示词拼接路径或软件说明。
 
 ```sh
 pnpm nine-axis --name my-character --dir /绝对路径/.run --knowledge /绝对路径/knowledge --krita /绝对路径/krita --ffmpeg /绝对路径/ffmpeg
