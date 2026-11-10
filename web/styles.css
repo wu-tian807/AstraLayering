@@ -150,8 +150,9 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 .step-children{flex-direction:row;align-items:flex-start;gap:22px}
 .step-children>.step-node{width:224px;height:calc(var(--step-height) - 118px)}
 .step-children.step-alternatives{grid-template-columns:224px 30px 224px}
-.step-children.step-parallel{display:grid;grid-template-columns:repeat(3,224px);gap:14px}
+.step-children.step-parallel{display:grid;grid-auto-flow:column;grid-auto-columns:224px;gap:14px}
 .step-parallel>.step-node:before{display:none}
+.flow-merge>[data-section="5"]+[data-section="6"]{margin-left:70px}
 .step-content>.group-cycle{padding:0 12px 12px;width:max-content;min-width:538px;height:100%;display:flex;flex-direction:column}
 .group-cycle>.cycle-rule{flex-shrink:0;margin-bottom:6px;padding:6px 10px}
 .group-cycle>.cycle-context{flex-shrink:0;margin:3px 0 10px}
@@ -186,8 +187,6 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 .overview-card.selected{box-shadow:0 0 0 1px var(--accent)}
 .overview-stage{display:flex;align-items:center;gap:8px;text-align:left;padding:12px}
 .overview-stage h3{flex:1;font-size:14px;font-weight:600}
-.overview-progress{margin:0 12px 8px;font-size:11px;line-height:1.6;color:var(--muted)}.overview-progress>span{display:block;margin-top:4px;overflow-wrap:anywhere}
-.overview-step-list{display:flex;gap:3px;margin:0 12px 12px}.overview-step-list>span{flex:1;min-width:0;text-align:center;padding:4px 0;border-radius:4px;font-size:9px;background:#eef2f6;color:var(--muted)}.overview-step-list>.done{background:#e4f2ec;color:#287c63}.overview-step-list>.running,.overview-step-list>.throttled{background:#eee8f6;color:var(--purple)}.overview-step-list>.failed,.overview-step-list>.interrupted{background:#f8e6e4;color:#b34b45}.overview-step-list>.available{background:#e5f0f3;color:#598086}
 .step-node-heading h3>.step-code{display:block;font-size:9px;font-weight:400;line-height:1.6;color:var(--muted);overflow-wrap:anywhere}
 .overview-reason{margin:0 12px 10px;padding:0;font-size:12px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 .overview-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 12px}

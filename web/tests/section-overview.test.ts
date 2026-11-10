@@ -11,49 +11,24 @@ const visibleStage = source.match(/^const visibleStage=.*$/m)![0];
 const lanes = source.match(/^const flowLanes = .*$/m)![0];
 const observed = source.slice(source.indexOf('function observedDisplayStatus('), source.indexOf('function rasterItems('));
 function render(statuses: string[], files: string[] = [], running = false, locked = false, archive?: { sections: Record<string, unknown> }, sections?: unknown[], kritaInUse?: number) {
-  const templates = structuredClone(sectionSteps);
-  if ((sections?.[6] as any)?.layout === 'nested') templates[6] = structuredClone(previousNineAxisSectionSteps);
-  for (const [i, steps] of templates.entries()) for (const step of steps) step.status = (sections?.[i] as any)?.states?.[step.id] ?? 'pending';
   return runInNewContext(lanes + '\n' + visibleStage + '\n' + observed + renderer + '\nprojectPage();', {
     stages: statuses.map((status, i) => ({ name: '管线 ' + i, id: i === 6 ? 'nine-axis' : 'section-' + i, status })),
     state: { name: 'case', stage: 0 }, data: { files, runnerAlive: running, lockHeld: locked, ...(sections ? { sections } : {}), kritaInUse, ...(archive ? { archived: true, run: archive } : {}) },
     stepArtifacts: {}, available: () => [], pageHeading: () => '', runNotice: () => '',
     esc: String, icon: () => '', displayStatus, statusLabel,
-    sectionSteps: templates, finished: (step: { status: string }) => ['done', 'skipped'].includes(step.status),
     statusMark: (status: string) => `<i data-status="${status}"></i>`,
   }) as string;
 }
 
-test('九轴总览只展示七步进度，缩略头保留在流程预览页', () => {
-  const states = Object.fromEntries(sectionSteps[6].map(step => [step.id, 'done']));
-  const html = render(Array(7).fill('done'), [], false, false, undefined, Array(6).fill({}).concat({ states }));
-  const card = html.match(/data-overview="6"[\s\S]*?<\/article>/)![0];
-  assert.match(card, /已完成 7 \/ 7 步/);
-  assert.deepEqual([...card.matchAll(/data-nine-step="([^"]+)"/g)].map(match => match[1]), sectionSteps[6].map(step => step.id));
-  assert.doesNotMatch(card, /data-head-preview|<canvas|头部九轴最新画面/);
+test('九轴与其他管线共用总览卡片，编号、状态与预览入口一致', () => {
+  const html = render(Array(7).fill('done'));
+  const card = (index: number) => html.match(new RegExp(`data-overview="${index}"[\\s\\S]*?</article>`))![0];
+  assert.match(card(6), /class="node-number">07<\/span>/);
+  assert.match(card(6), /已完成/);
+  assert.doesNotMatch(card(6), /data-head-preview|<canvas|overview-progress|overview-step-list|data-nine-step/);
+  assert.equal(card(6).replace(/\d+/g, '#'), card(1).replace(/\d+/g, '#'));
   const preview = source.slice(source.indexOf('function flowCard('), source.indexOf('function inspector('));
   assert.match(preview, /stage\.id==='nine-axis'\?headThumbnail\(\)/);
-});
-
-test('step04 并发分支仍计为一步，进度跟随父步骤状态', () => {
-  const states: Record<string, string> = Object.fromEntries(sectionSteps[6].map((step, index) => [step.id, index < 3 ? 'done' : index === 3 ? 'running' : 'pending']));
-  Object.assign(states, { 'step04_angles/model': 'running', 'step04_angles/model/left': 'done', 'step04_angles/video': 'done' });
-  let html = render(Array(7).fill('running'), [], true, true, undefined, Array(6).fill({}).concat({ states }));
-  let card = html.match(/data-overview="6"[\s\S]*?<\/article>/)![0];
-  assert.match(card, /已完成 3 \/ 7 步/);
-  assert.match(card, /step04_angles · 单轴模型与斜角视频 · 进行中/);
-  assert.equal((card.match(/data-nine-step=/g) ?? []).length, 7);
-  states.step04_angles = 'done';
-  html = render(Array(7).fill('running'), [], true, true, undefined, Array(6).fill({}).concat({ states }));
-  card = html.match(/data-overview="6"[\s\S]*?<\/article>/)![0];
-  assert.match(card, /已完成 4 \/ 7 步/);
-});
-
-test('旧任务的总览沿用其实际四步，不虚构七步完成记录', () => {
-  const states = Object.fromEntries(previousNineAxisSectionSteps.map(step => [step.id, 'done']));
-  const html = render(Array(7).fill('done'), [], false, false, undefined, Array(6).fill({}).concat({ layout: 'nested', states }));
-  assert.match(html, /已完成 4 \/ 4 步/);
-  assert.doesNotMatch(html, /data-nine-step="step07_jaw-line"/);
 });
 
 test('新旧九轴预览定位到真实步骤，并把唯一缩略头带入视野', () => {
@@ -69,6 +44,20 @@ test('新旧九轴预览定位到真实步骤，并把唯一缩略头带入视�
   } });
   assert.equal(viewport.scrollLeft, 378);
   assert.deepEqual(queries, ['.flow-scroll', '[data-head-preview]']);
+});
+
+test('连线标签读取调度保存的 live 值，并区分显式范围和独立九轴', () => {
+  const component = source.slice(source.indexOf('function nineAxisConnection('), source.indexOf('function connectFlow('));
+  const observe = (run: unknown) => runInNewContext(component + '\nnineAxisConnection(run);', { run });
+  const whole = observe({ from: 'part-layering', to: 'nine-axis', live: true });
+  assert.equal(whole.label, '--live 开启'); assert.equal(whole.serial, true);
+  const explicit = observe({ from: 'shadow', to: 'nine-axis', live: false });
+  assert.equal(explicit.label, '--live 关闭'); assert.equal(explicit.serial, true); assert.equal(explicit.detail, '按所选范围串行');
+  const narrow = observe({ from: 'part-layering', to: 'shadow', live: true });
+  assert.equal(narrow.label, '--live 开启'); assert.equal(narrow.serial, false); assert.equal(narrow.detail, '本次止于阴影');
+  const independent = observe({ from: 'nine-axis', to: 'nine-axis' });
+  assert.equal(independent.label, '--live 关闭'); assert.equal(independent.serial, false); assert.equal(independent.detail, '本次独立九轴');
+  assert.equal(observe(undefined).serial, false);
 });
 
 test('执行面板逐管线展示真实状态，完成与失败不再显示为未运行', () => {

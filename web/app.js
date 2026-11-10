@@ -187,7 +187,7 @@ async function readTaskSnapshot(version,force) {
  if(version!==refreshVersion)return;
  const fingerprint=JSON.stringify({next,tasks});
  // Interaction may defer artifact redraws, but must never hide a stopped runner.
- const executionState=value=>JSON.stringify([value.status,value.runnerAlive,value.lockHeld,(value.sections||[]).map(section=>[section.id,section.status,section.states,section.krita])]);
+ const executionState=value=>JSON.stringify([value.status,value.runnerAlive,value.lockHeld,value.run?.live,value.run?.from,value.run?.to,(value.sections||[]).map(section=>[section.id,section.status,section.states,section.krita])]);
  const executionChanged=executionState(next)!==executionState(data);
  const focused=document.activeElement;
  const treeControl=focused?.dataset?.treeSearch!==undefined?'data-tree-search':focused?.dataset?.treeDepth!==undefined?'data-tree-depth':null;
@@ -406,7 +406,7 @@ function headThumbnail() {
 }
 function flowCard(index) {
  const stage=stages[index],status=observedDisplayStatus(index,stage.status),closed=state.collapsedSections.has(index),wide=!closed&&groupViews[index]?.open&&!state.collapsedSteps.has(`${index}:layers`);
- return `<section class="section-lane ${stage.status} ${closed?'collapsed':''} ${wide?'group-expanded':''} ${stage.id==='shadow'?'shadow-lane':''}" data-section="${index}"><div class="section-heading"><button data-stage="${index}" aria-label="查看${stage.name}交付"><span class="node-number">${stage.id==='nine-axis'?icon('layers'):String(index+1).padStart(2,'0')}</span><h2>${stage.name}</h2>${statusMark(status)}${kritaBadge(index)}</button><button class="icon-button" data-section-toggle="${index}" aria-label="${closed?'展开':'收起'}${stage.name}栏目" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>${!closed&&stage.status==='skipped'?`<p class="lane-summary skipped-lane">${esc(data.sections[index]?.summary||'无需执行')}</p>`:''}${!closed&&stage.status==='failed'&&laneFailure(data.sections[index])?errorBox(laneFailure(data.sections[index]),'lane-error'):''}${closed?`<div class="lane-collapsed-body"><span>${esc(statusLabel(status))}</span><small>${sectionSteps[index].filter(finished).length} / ${sectionSteps[index].length} 步</small>${(()=>{const note=stage.status==='skipped'?data.sections[index]?.summary||'无需执行':stage.status==='failed'?laneFailure(data.sections[index]):'';return note?`<p class="${stage.status==='failed'?'status-error':''}" title="${esc(note)}">${esc(note)}</p>`:'';})()}</div>`:`<div class="section-steps">${stage.id==='nine-axis'?headThumbnail():kraPreviewPanel(index)}${stage.id==='shadow'?'<div class="shadow-references"><a href="./shadow-reference/skirt.png" target="_blank" rel="noopener">裙影参考 ↗</a><a href="./shadow-reference/hair.png" target="_blank" rel="noopener">发影参考 ↗</a></div>':''}${sectionSteps[index].map(step=>stepNode(index,step)).join('')}${data.sections[index]?.threadId?`<small class="thread-id" title="${esc(data.sections[index].threadId)}">thread · ${esc(data.sections[index].threadId)}</small>`:''}</div>`}</section>`;
+ return `<section class="section-lane ${stage.status} ${closed?'collapsed':''} ${wide?'group-expanded':''} ${stage.id==='shadow'?'shadow-lane':''}" data-section="${index}"><div class="section-heading"><button data-stage="${index}" aria-label="查看${stage.name}交付"><span class="node-number">${String(index+1).padStart(2,'0')}</span><h2>${stage.name}</h2>${statusMark(status)}${kritaBadge(index)}</button><button class="icon-button" data-section-toggle="${index}" aria-label="${closed?'展开':'收起'}${stage.name}栏目" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>${!closed&&stage.status==='skipped'?`<p class="lane-summary skipped-lane">${esc(data.sections[index]?.summary||'无需执行')}</p>`:''}${!closed&&stage.status==='failed'&&laneFailure(data.sections[index])?errorBox(laneFailure(data.sections[index]),'lane-error'):''}${closed?`<div class="lane-collapsed-body"><span>${esc(statusLabel(status))}</span><small>${sectionSteps[index].filter(finished).length} / ${sectionSteps[index].length} 步</small>${(()=>{const note=stage.status==='skipped'?data.sections[index]?.summary||'无需执行':stage.status==='failed'?laneFailure(data.sections[index]):'';return note?`<p class="${stage.status==='failed'?'status-error':''}" title="${esc(note)}">${esc(note)}</p>`:'';})()}</div>`:`<div class="section-steps">${stage.id==='nine-axis'?headThumbnail():kraPreviewPanel(index)}${stage.id==='shadow'?'<div class="shadow-references"><a href="./shadow-reference/skirt.png" target="_blank" rel="noopener">裙影参考 ↗</a><a href="./shadow-reference/hair.png" target="_blank" rel="noopener">发影参考 ↗</a></div>':''}${sectionSteps[index].map(step=>stepNode(index,step)).join('')}${data.sections[index]?.threadId?`<small class="thread-id" title="${esc(data.sections[index].threadId)}">thread · ${esc(data.sections[index].threadId)}</small>`:''}</div>`}</section>`;
 }
 function inspector() {
  const stage=stages[state.stage],step=selectedStep(),item=state.asset;
@@ -418,11 +418,10 @@ function inspector() {
 }
 function overviewCard(stage,index) {
  const status=observedDisplayStatus(index,stage.status),reason=String(data.sections?.[index]?.summary||'').split('\n')[0].trim();
- const steps=stage.id==='nine-axis'?sectionSteps[index]:[],active=steps.filter(step=>['running','throttled'].includes(step.status));
  return `<article class="overview-card ${status} ${state.stage===index?'selected':''}" data-overview="${index}">
- <button class="overview-stage" data-stage="${index}" aria-label="查看${esc(stage.name)}进展"><span class="node-number">${stage.id==='nine-axis'?icon('layers'):String(index+1).padStart(2,'0')}</span><h3>${esc(stage.name)}</h3>${kritaBadge(index)}</button>
+ <button class="overview-stage" data-stage="${index}" aria-label="查看${esc(stage.name)}进展"><span class="node-number">${String(index+1).padStart(2,'0')}</span><h3>${esc(stage.name)}</h3>${kritaBadge(index)}</button>
  ${status==='failed'&&reason?`<p class="overview-reason status-error" title="${esc(reason)}">${esc(reason)}</p>`:''}
- ${steps.length?`<p class="overview-progress">已完成 ${steps.filter(finished).length} / ${steps.length} 步${active.length?`<span>${active.map(step=>`${esc(step.id)} · ${esc(step.title)} · ${esc(statusLabel(step.status))}`).join('<br>')}</span>`:''}</p><div class="overview-step-list" role="list" aria-label="头部九轴步骤">${steps.map(step=>`<span role="listitem" class="${displayStatus(step.status)}" data-nine-step="${esc(step.id)}" title="${esc(step.id)} · ${esc(step.title)} · ${esc(statusLabel(step.status))}">${esc(step.id.split('_')[0])}</span>`).join('')}</div>`:''}<div class="overview-footer"><span class="execution-state ${status}">${statusMark(status)}${esc(statusLabel(status))}</span><div class="overview-actions"><button class="button" data-stage="${index}">${icon('eye')}预览</button></div></div>
+ <div class="overview-footer"><span class="execution-state ${status}">${statusMark(status)}${esc(statusLabel(status))}</span><div class="overview-actions"><button class="button" data-stage="${index}">${icon('eye')}预览</button></div></div>
  </article>`;
 }
 function projectPage() {
@@ -472,6 +471,11 @@ function laneRange(lane=state.lane) {
  const viewport=document.querySelector('.flow-scroll'),top=laneScrollTop(lane);
  return [top,top+Math.max(0,(laneMetrics.heights[lane]??0)*state.zoom-viewport.clientHeight)];
 }
+function nineAxisConnection(run) {
+ const enabled=run?.live===true,serial=run?.to==='nine-axis'&&run?.from!=='nine-axis';
+ const detail=!run?'尚未保存执行范围':run.from==='nine-axis'&&run.to==='nine-axis'?'本次独立九轴':serial?enabled?'阴影完成后继续':'按所选范围串行':run.to==='shadow'?'本次止于阴影':'本次范围未含九轴';
+ return {enabled,serial,label:`--live ${enabled?'开启':'关闭'}`,detail};
+}
 function connectFlow() {
  const world=document.querySelector('.flow-world');
  if(!world)return;
@@ -499,13 +503,13 @@ function connectFlow() {
  // Labels sit on their line as pills, turned upright on a vertical run that is long enough.
  const status=done=>done?'done':'pending',labels=[];
  const textWidth=text=>[...text].reduce((sum,char)=>sum+(/[　-鿿]/.test(char)?11:6.4),0)+14;
- const path=(d,state)=>paths.push(`<path class="${state}" d="${d}" marker-end="url(#flow-arrow-${state})"/>`);
+ const path=(d,state,connection)=>paths.push(`<path class="${state}"${connection?` data-connection="${connection}"`:''} d="${d}" marker-end="url(#flow-arrow-${state})"/>`);
  const label=(text,x,y,state,upright=false)=>{const w=textWidth(text);labels.push(`<g class="flow-label ${state}"${upright?` transform="rotate(90 ${x} ${y})"`:''}><rect x="${x-w/2}" y="${y-8}" width="${w}" height="16" rx="8"/><text x="${x}" y="${y+4}">${text}</text></g>`);};
  // From the right of `a` to the left of `b`, turning at `turn` when they are not level.
- const link=(a,b,text,done,turn,from=a.y+a.h/2,to=b.y+b.h/2)=>{
+ const link=(a,b,text,done,turn,from=a.y+a.h/2,to=b.y+b.h/2,connection)=>{
   const state=status(done);
-  if(Math.abs(from-to)<2){path(`M${a.x+a.w} ${from} H${b.x-6}`,state);label(text,(a.x+a.w+b.x-6)/2,from,state);return;}
-  path(`M${a.x+a.w} ${from} H${turn} V${to} H${b.x-6}`,state);
+  if(Math.abs(from-to)<2){path(`M${a.x+a.w} ${from} H${b.x-6}`,state,connection);label(text,(a.x+a.w+b.x-6)/2,from,state);return;}
+  path(`M${a.x+a.w} ${from} H${turn} V${to} H${b.x-6}`,state,connection);
   if(Math.abs(from-to)>=textWidth(text)+24)label(text,turn,(from+to)/2,state,true);
   // Starts right of the source card: a pill wider than its run must not slide under that card.
   else label(text,Math.max((a.x+a.w+turn)/2,a.x+a.w+textWidth(text)/2+6),from,state);
@@ -516,6 +520,11 @@ function connectFlow() {
  }
  for(const [a,b,text,done] of [[cards[0],cards[1],'parts',finished(stages[0])],[cards[2],cards[3],'parts',finished(stages[2])],[cards[4],cards[5],'组装 KRA',finished(stages[4])]])
   if(a&&b)link(a,b,text,done);
+ if(cards[5]&&cards[6]){
+  const connection=nineAxisConnection(data.run),done=connection.serial&&finished(stages[5]);
+  link(cards[5],cards[6],connection.label,done,undefined,undefined,undefined,'shadow-nine-axis');
+  label(connection.detail,(cards[5].x+cards[5].w+cards[6].x-6)/2,cards[5].y+cards[5].h/2+24,status(done));
+ }
  // The clothing lane hangs off the character preparation, down the left gutter.
  if(cards[0]&&cards[2]){
   const preparation=box('[data-node="0:preparation"]'),collapsed=box('[data-section="0"] .lane-collapsed-body'),from=preparation?preparation.y+40:collapsed?collapsed.y+collapsed.h/2:cards[0].y+cards[0].h+20,x=cards[0].x-34,to=cards[2].y+cards[2].h/2,state=status(!!data.reference);
