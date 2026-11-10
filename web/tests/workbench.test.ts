@@ -74,6 +74,13 @@ test('保存参数不要求当前 Krita 在线，运行或归档任务拒绝修�
   assert.equal((await f.post('task-options', { name: 'test', jobs: 4 })).status, 200);
   assert.equal((await readRun(task))!.krita, '/task/krita', '仅改并发不把任务 Krita 替换为全局设置');
   assert.equal((await readRun(task))!.knowledge, '/task/knowledge');
+  const modified=await f.post('task-options',{name:'test',krita:'/new/krita',knowledge:'/new/knowledge'});
+  assert.equal(modified.status,200);
+  assert.equal((await readRun(task))!.krita,'/new/krita');
+  assert.equal((await readRun(task))!.knowledge,'/new/knowledge');
+  assert.equal((await f.post('task-options',{name:'test',jobs:3})).status,200);
+  assert.equal((await readRun(task))!.krita,'/new/krita');
+  assert.equal((await readRun(task))!.knowledge,'/new/knowledge');
   const before = await readFile(join(task, 'run.json'));
   const release = await acquireTaskLock(task);
   try { assert.equal((await f.post('task-options', { name: 'test', jobs: 5 })).status, 409); }
@@ -350,7 +357,7 @@ test('开始、继续、恢复、重试先检查 Krita：不可用则 409 且不
   for (const [path, value] of [['start', {}], ['task-action', { action: 'retry' }], ['task-action', { action: 'resume' }]] as const) {
     const refused = await f.post(path, { name: 'case', ...value });
     assert.equal(refused.status, 409, path); assert.deepEqual(refused.value.krita, { path: '/opt/old-krita' });
-    assert.match(refused.value.error, /记录的 Krita 不可用：\/opt\/old-krita[\s\S]*全局设置/);
+    assert.match(refused.value.error, /(?:记录的|指定的) Krita 不可用：\/opt\/old-krita[\s\S]*全局设置/);
   }
   assert.equal(started.length, 0);
   assert.equal(JSON.parse(await readFile(join(task, 'part-layering/agents/steps/step11_completion/head/session.json'), 'utf8')).threadId, 'thread-1');

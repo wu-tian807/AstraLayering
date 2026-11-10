@@ -10,21 +10,24 @@ import { shadowMode } from '../.agents/skills/live2d-maker/shared/shadow.ts';
 import { referencePath } from '../.agents/skills/live2d-maker/shadow/preparation.ts';
 import { encodePng } from '../.agents/skills/live2d-maker/shared/png.ts';
 import { runsDirectory, sectionIds, workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
-import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, sectionId, taskStatus, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
+import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, sectionId, taskStatus, taskKrita, taskFFmpeg, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
 import { convertLayout } from '../.agents/skills/live2d-maker/workflow/layout.ts';
 import { applyTaskAction } from '../.agents/skills/live2d-maker/workflow/step-actions.ts';
 import { configAPI, configRaw, streamMediaFile } from './config.ts';
 import { createEnvironmentConfig, EnvironmentConflict } from './environment-config.ts';
 import { atomicJSON, agentRecord, artifactExtensions, browse, inside, jsonFile, safePath } from './files.ts';
-import { createKritaScan } from './krita-scan.ts';
+import { createSoftwareScan } from './software-scan.ts';
 import { snapshot, summary } from './snapshot.ts';
 import { SVGThumbnails } from './svg-thumbnail.ts';
 import { KRAPreviews } from './kra-preview.ts';
 import { launch } from './worker.ts';
 import { requestTaskStop } from '../.agents/skills/live2d-maker/workflow/control.ts';
 import { KritaUnavailable, preflightKrita, workflowKrita, type KritaCheck } from '../.agents/skills/live2d-maker/workflow/krita.ts';
+import { FFmpegUnavailable, preflightFFmpeg } from '../.agents/skills/live2d-maker/workflow/ffmpeg.ts';
+import { checkFFmpeg, type FFmpegCheck } from '../.agents/skills/live2d-maker/shared/ffmpeg.ts';
 import { MissingDependencyError } from '../.agents/skills/live2d-maker/shared/missing-dependency.ts';
 import { checkKnowledge, defaultKnowledgeDirectory } from '../.agents/skills/live2d-maker/shared/knowledge.ts';
+import { preflightTaskInputs } from '../.agents/skills/live2d-maker/workflow/preflight-inputs.ts';
 import { exportCompletedRun } from '../.agents/skills/live2d-maker/workflow/export.ts';
 import { LayerCompositor } from './layer-compositor.ts';
 import { isStudioPath, studioProject } from './studio-project.ts';
@@ -49,10 +52,10 @@ async function body(request: IncomingMessage) {
 function options(value: any, dir: string): TaskOptions {
   const result: TaskOptions = { name: value.name, dir };
   directoryFor(result);
-  for (const key of ['krita', 'image'] as const) {
+  for (const key of ['krita', 'ffmpeg', 'image', 'knowledge'] as const) {
     if (value[key] !== undefined) {
       if (typeof value[key] !== 'string') throw new Error(key + ' 必须是路径');
-      if (value[key].trim()) result[key] = value[key].trim();
+      if (value[key].trim() || key === 'knowledge' || key === 'krita') result[key] = value[key].trim();
     }
   }
   if (value.from) result.from = sectionId(value.from);
@@ -73,16 +76,18 @@ function options(value: any, dir: string): TaskOptions {
   }
   return result;
 }
-// Global web settings: the run directory, the Krita used by every start, and the
-// knowledge directory recorded by new tasks (absent: the skill's own knowledge/).
-type Settings = { directory: string; krita?: string; knowledge?: string };
+// Global web settings supply defaults for new tasks.
+type Settings = { directory: string; krita?: string; ffmpeg?: string; knowledge?: string };
 export async function createWorkbench({ settingsPath = join(root, '.web/settings.json'), defaultDir = runsDirectory,
-  start = launch, environment = createEnvironmentConfig(), kritaCheck = workflowKrita,
-  preflight = (options: TaskOptions) => preflightKrita(options, kritaCheck), kritaScan = createKritaScan(),
+  start = launch, environment = createEnvironmentConfig(), kritaCheck = workflowKrita, ffmpegCheck = checkFFmpeg,
+  preflight = async (options: TaskOptions) => { await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck); await preflightTaskInputs(options); },
+  kritaScan = createSoftwareScan('krita'), ffmpegScan = createSoftwareScan('ffmpeg'),
   updates = createUpdateCheck({ cachePath: join(dirname(settingsPath), 'update-check.json') }) }: {
   settingsPath?: string; defaultDir?: string; start?: typeof launch; environment?: ReturnType<typeof createEnvironmentConfig>;
-  kritaCheck?: KritaCheck; preflight?: (options: TaskOptions) => Promise<unknown>; kritaScan?: ReturnType<typeof createKritaScan>;
+  kritaCheck?: KritaCheck; ffmpegCheck?: FFmpegCheck; preflight?: (options: TaskOptions) => Promise<unknown>;
+  kritaScan?: ReturnType<typeof createSoftwareScan>; ffmpegScan?: ReturnType<typeof createSoftwareScan>;
   updates?: ReturnType<typeof createUpdateCheck> } = {}) {
+  const scans = new Map([['/api/krita-scan', kritaScan], ['/api/ffmpeg-scan', ffmpegScan]]);
   async function validateDir(path: string) {
     if (typeof path !== 'string' || !isAbsolute(path)) throw new Error('运行目录必须是绝对路径');
     await mkdir(path, { recursive: true });
@@ -102,10 +107,14 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
     checkKnowledge(directory);
     return directory;
   }
+  async function validateFFmpeg(path: string) {
+    if (!isAbsolute(path)) throw new Error('FFmpeg 路径必须是绝对路径');
+    return (await ffmpegCheck(path)).executable;
+  }
   // An empty string clears an optional field; an absent one keeps it.
   async function validateSettings(value: any, previous?: Settings): Promise<Settings> {
     const next: Settings = { directory: await validateDir(value.directory) };
-    for (const [key, validate] of [['krita', validateKrita], ['knowledge', validateKnowledge]] as const) {
+    for (const [key, validate] of [['krita', validateKrita], ['ffmpeg', validateFFmpeg], ['knowledge', validateKnowledge]] as const) {
       const given = value[key];
       if (given === undefined) { if (previous?.[key]) next[key] = previous[key]; continue; }
       if (typeof given !== 'string') throw new Error(key + ' 必须是路径');
@@ -120,11 +129,14 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
     const saved = JSON.parse(await readFile(settingsPath, 'utf8'));
     settings = { directory: await validateDir(saved.directory),
       ...(typeof saved.krita === 'string' && saved.krita ? { krita: saved.krita } : {}),
+      ...(typeof saved.ffmpeg === 'string' && saved.ffmpeg ? { ffmpeg: saved.ffmpeg } : {}),
       ...(typeof saved.knowledge === 'string' && saved.knowledge ? { knowledge: saved.knowledge } : {}) };
   }
   catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
   const kritaRefused = (error: KritaUnavailable) =>
     ({ error: error.reason + '\n请在「全局设置」中选择可用的 Krita 可执行文件。', krita: { path: error.path ?? null } });
+  const softwareRefused = (error: KritaUnavailable | FFmpegUnavailable) => error instanceof KritaUnavailable ? kritaRefused(error)
+    : ({ error: error.reason + '\n请在「全局设置」中选择可用的 FFmpeg 可执行文件。', ffmpeg: { path: error.path ?? null } });
   const starts = new Set<string>();
   async function task(name: string, dir = settings.directory) {
     const path = directoryFor({ name, dir });
@@ -210,22 +222,24 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           const next = await validateSettings(value, settings);
           await atomicJSON(settingsPath, next); settings = next; json({ ...settings, defaults }); return;
         }
-        if (path === '/api/krita-scan') {
-          if (value.action === 'start') json(kritaScan.start());
-          else if (value.action === 'stop') json(kritaScan.stop());
+        const scan = scans.get(path);
+        if (scan) {
+          if (value.action === 'start') json(scan.start());
+          else if (value.action === 'stop') json(scan.stop());
           else json({ error: '未知的扫描操作' }, 400);
           return;
         }
         if (path === '/api/studio/review') { json(await saveStudioReview(root, dirname(settingsPath), value), 201); return; }
         const opts = options(value, requestDir), directory = directoryFor(opts);
-        // Starts use the global Krita; a task records it, and the knowledge directory, when created.
-        if (!opts.krita && settings.krita) opts.krita = settings.krita;
         if (path === '/api/tasks') {
+          // Global settings are defaults for a new task. Existing tasks own their options.
+          if (!opts.krita && settings.krita) opts.krita = settings.krita;
+          if (!opts.ffmpeg && settings.ffmpeg) opts.ffmpeg = settings.ffmpeg;
           const displayName = validateDisplayName(value.displayName ?? '');
-          if (settings.knowledge) opts.knowledge = settings.knowledge;
+          if (opts.knowledge === undefined && settings.knowledge) opts.knowledge = settings.knowledge;
           // A route with Krita steps is refused before anything is created.
           try { await preflight(opts); }
-          catch (error) { if (error instanceof KritaUnavailable) { json(kritaRefused(error), 409); return; } throw error; }
+          catch (error) { if (error instanceof KritaUnavailable || error instanceof FFmpegUnavailable) { json(softwareRefused(error), 409); return; } throw error; }
           // Exclusive creation prevents changing the original of an existing named task.
           await mkdir(directory);
           let committed = false;
@@ -278,6 +292,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           if (value.image !== undefined || value.upload !== undefined) throw new Error('执行参数不更换任务原图');
           const displayName = value.displayName === undefined ? undefined : validateDisplayName(value.displayName);
           if (value.krita === undefined) delete opts.krita;
+          if (value.ffmpeg === undefined) delete opts.ffmpeg;
           const release = await acquireTaskLock(directory);
           try {
             const configured = await configureRun(opts, directory);
@@ -287,11 +302,16 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
             await saveRun(directory, configured);
             if (displayName !== undefined) await saveProjectDisplayName(directory, displayName);
             json({ name: opts.name, from: configured.from, to: configured.to, live: configured.live, jobs: configured.jobs,
-              standard: configured.standard, shadowMode: configured.shadowMode, status: configured.status });
+              standard: configured.standard, shadowMode: configured.shadowMode, status: configured.status,
+              krita: configured.krita, knowledge: configured.knowledge });
           } finally { await release(); }
           return;
         }
         if (path === '/api/start' || path === '/api/task-action') {
+          const recorded = await readRun(directory);
+          opts.krita = taskKrita(opts, recorded);
+          opts.ffmpeg = taskFFmpeg(opts, recorded);
+          opts.knowledge ??= recorded?.knowledge;
           // The same commands as pnpm start: plain start / continue, or --continue / --resume / --retry
           // for every step still marked .running (task-action). One step is acted on from the CLI.
           if (starts.has(directory)) { json({ error: '该任务正在启动，请等待启动结果' }, 409); return; }
@@ -303,8 +323,8 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
             // Krita is checked before an action changes any step.
             try { await preflight(opts); }
             catch (error) {
-              if (!(error instanceof KritaUnavailable)) throw error;
-              json(kritaRefused(error), 409); return;
+              if (!(error instanceof KritaUnavailable) && !(error instanceof FFmpegUnavailable)) throw error;
+              json(softwareRefused(error), 409); return;
             }
             const message = path === '/api/task-action' ? await applyTaskAction({ name: opts.name, dir: opts.dir, action: value.action, section: actionSection }) : undefined;
             json({ ...(message === undefined ? {} : { message }), pid: await start(opts), name: opts.name }, 202);
@@ -321,7 +341,8 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       if (path === '/api/version') { json(await updates()); return; }
       if (path === '/api/settings') { json({ ...settings, defaults }); return; }
       if (path === '/api/fs') { json(await browse(url.searchParams.get('path'), url.searchParams.get('kind') === 'file' ? 'file' : 'dir')); return; }
-      if (path === '/api/krita-scan') { json(kritaScan.state()); return; }
+      const scan = scans.get(path);
+      if (scan) { json(scan.state()); return; }
       if (path === '/api/config/environment') { json(await environment.read()); return; }
       if (path === '/api/config/raw') { await configRaw(url.searchParams, settings.knowledge ?? defaults.knowledge, request, response); return; }
       if (path.startsWith('/api/config/')) { json(await configAPI(path, url.searchParams, settings.knowledge ?? defaults.knowledge)); return; }
@@ -453,8 +474,9 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       json({ error: (error as NodeJS.ErrnoException).code === 'EEXIST' ? '任务名已存在，请选择该任务续跑或使用新名称' : (error as Error).message }, 400);
     }
   });
-  server.once('close', () => { void compositor.dispose(); kritaScan.stop(); });
-  return Object.assign(server, { disposeLayers: () => compositor.dispose() });
+  const stopScans = () => { for (const scan of scans.values()) scan.stop(); };
+  server.once('close', () => { void compositor.dispose(); stopScans(); });
+  return Object.assign(server, { disposeLayers: () => compositor.dispose(), stopScans });
 }
 if (import.meta.main) {
   const { values } = parseArgs({ options: { port: { type: 'string', default: '4387' } } });
@@ -463,6 +485,7 @@ if (import.meta.main) {
   const server = await createWorkbench();
   server.listen(port, '127.0.0.1', () => console.log(`AstraLayering workbench: http://127.0.0.1:${port}`));
   const shutdown = async () => {
+    server.stopScans();
     server.close(); server.closeAllConnections();
     await server.disposeLayers();
     process.exit(0);

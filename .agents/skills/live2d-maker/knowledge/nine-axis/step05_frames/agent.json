@@ -4,7 +4,8 @@
       "prompts/选帧.md"
     ],
     "tools": [
-      "view_bitmap"
+      "view_bitmap",
+      "extract_video_frame"
     ]
   }
 }

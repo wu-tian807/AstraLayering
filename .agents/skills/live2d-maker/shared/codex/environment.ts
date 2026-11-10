@@ -12,6 +12,7 @@ import { imageBudget, type ImageBudget } from '../../patches/shared/visual-conte
 import { withLegacyKeys } from '../legacy-keys.ts';
 import { resolveModelDefaults, modelSlotKey, legacyModelSlotKey, defaultImageModelKey, legacyDefaultImageModelKey, imageModelKey, legacyImageModelKey, resolveImageDefaults, stepModelSlots, imageSteps, imageModelProviders, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
 import { resolveHarnessProviders, validateApiUrl, type HarnessProviders } from '../agents/providers.ts';
+import { videoModel } from '../video.ts';
 export { validateApiUrl } from '../agents/providers.ts';
 
 export type ModelTier = 'medium' | 'high';
@@ -146,7 +147,7 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
   if (videoUrl || videoKey) {
     if (!videoUrl || !videoKey) throw new Error('生视频需要同时填写 video_base_url 和 video_api_key。');
     validateApiUrl(videoUrl, 'video_base_url');
-    videoApi = { baseUrl: videoUrl, apiKey: videoKey, model: get('nine_axis_view_video_model') || requiredDefault(defaults, 'nine_axis_view_video_model') };
+    videoApi = { baseUrl: videoUrl, apiKey: videoKey, model: videoModel(get('nine_axis_view_video_model') || requiredDefault(defaults, 'nine_axis_view_video_model')) };
   }
   const stepImages: WorkflowEnvironment['stepImages'] = {};
   const defaultImage = get(defaultImageModelKey) || get(legacyDefaultImageModelKey);

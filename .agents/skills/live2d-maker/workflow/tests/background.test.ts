@@ -132,9 +132,10 @@ test('real background workers retain both explicit live values without expanding
   const f = await fixture(t), previous = process.env.QT_QPA_PLATFORM;
   process.env.QT_QPA_PLATFORM = 'offscreen'; t.after(() => { if (previous === undefined) delete process.env.QT_QPA_PLATFORM; else process.env.QT_QPA_PLATFORM = previous; });
   for (const live of [true, false]) {
-    await startBackground({ ...f.options, live });
+    await startBackground({ ...f.options, live, ffmpeg: join(f.task, 'custom-ffmpeg') });
     await until(async () => !(await taskStatus(f.options)).lockHeld);
     const status = await taskStatus(f.options);
     assert.equal(status.live, live); assert.equal(status.to, 'character-assembly'); assert.equal(status.status, 'completed');
+    assert.equal(JSON.parse(await readFile(join(f.task, 'run.json'), 'utf8')).ffmpeg, join(f.task, 'custom-ffmpeg'));
   }
 });

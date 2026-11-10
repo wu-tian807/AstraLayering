@@ -58,7 +58,7 @@ test('all named agents read capability from their role; main and repair share to
   assert.equal(agentImageGeneration('raster_step01'), false);
   assert.equal(agentImageGeneration('raster_step01_review'), false);
   assert.equal(agentImageGeneration('raster_step01_repair'), false);
-  assert.ok(!stepKnowledge('raster-layering', 'step01').tools('repair', [{ name: 'imagegen' } as any]).length);
+  assert.throws(() => stepKnowledge('raster-layering', 'step01').tools('repair', [{ name: 'imagegen' } as any]), /没有提供执行实现/);
   config.main.tools.push('imagegen');
   await writeFile(path, JSON.stringify(config));
   assert.equal(agentImageGeneration('raster_step01'), true);

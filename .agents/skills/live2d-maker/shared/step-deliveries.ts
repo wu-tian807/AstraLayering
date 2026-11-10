@@ -21,7 +21,7 @@ const rasterSteps: Partial<Record<SectionId, readonly { id: string; requiredFile
 };
 const references = (root: string, name: string) => join(root, 'references', name);
 const itemGroup = (item: string) => item.split('/children/').join('/');
-const present = (path: string) => lstat(path).then(info => info.isFile(), () => false);
+const present = (path: string) => lstat(path).then(info => info.isFile() && info.size > 0, () => false);
 
 // These are recoverable file contracts, not visual acceptance; the user still reviews the art.
 const axisFiles = (group: string) => [`face-${group}.json`, 'deformers.json', 'source.json', 'face-trace.json', 'fit-report.json'];
@@ -65,10 +65,10 @@ async function previousNineAxisDeliveries(root: string, id: string): Promise<str
 async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
   const directory = join(root, id), files = (names: string[]) => names.map(name => join(directory, name));
   if (id === 'step01_preparation') return [...files(['character-nine-axis.kra', 'character-nine-axis.png', 'crop.json', 'deformers.json', 'source.json', 'export-record.json', 'head_parts_manifest.json']), ...await textureDeliveries(directory)];
-  if (id === 'step02_video') return files(['upper-body.png', 'crop.json', 'videos.json', ...nineAxisGroups.map(g => `${g}.mp4`)]);
+  if (id === 'step02_video') return files(['upper-body.png', 'crop.json', ...nineAxisGroups.map(g => `${g}.mp4`)]);
   if (id === 'step03_frames' || id === 'step05_frames') return files(['selected-frames.json', ...id === 'step03_frames' ? ['views.json'] : [],
     ...(id === 'step03_frames' ? nineAxisGroups : ['left-up', 'left-down']).flatMap(g => [`${g}.png`, `frames/${g}.png`])]);
-  if (id === 'step04_angles/video') return files(['videos.json', 'left-up.mp4', 'left-down.mp4']);
+  if (id === 'step04_angles/video') return files(['left-up.mp4', 'left-down.mp4']);
   if (id.startsWith('step04_angles/model/')) {
     const group = id.split('/')[2];
     if ((nineAxisGroups as readonly string[]).includes(group)) return [...files(axisFiles(group)), ...await textureDeliveries(directory)];

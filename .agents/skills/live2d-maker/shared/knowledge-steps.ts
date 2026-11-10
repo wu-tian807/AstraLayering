@@ -28,10 +28,10 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'shadow', step: 'step01_mask' },
   { section: 'shadow', step: 'step01_normal-depth' },
   { section: 'nine-axis', step: 'step02_video', references: ['angles.json'] },
-  { section: 'nine-axis', step: 'step03_frames' },
+  { section: 'nine-axis', step: 'step03_frames', required: ['extract_video_frame'] },
   { section: 'nine-axis', step: 'step04_outline', required: ['preview_svg'] },
   { section: 'nine-axis', step: 'step04_angles', required: ['preview_svg', 'fit_nine_axis'] },
-  { section: 'nine-axis', step: 'step05_frames' },
+  { section: 'nine-axis', step: 'step05_frames', required: ['extract_video_frame'] },
   { section: 'nine-axis', step: 'step06_angle-xy', required: ['preview_svg', 'fit_nine_axis'] },
   { section: 'nine-axis', step: 'step07_jaw-line', required: ['krita'] },
   { section: 'part-layering', step: 'step03_pose' },
@@ -48,4 +48,5 @@ export const runtimePrompts = [
   'agent-turn', 'interrupted-task',
   'image-blocked-multiple', 'image-blocked-placeholder', 'image-blocked-single', 'image-blocked-stop',
   'outline-repair-resume', 'raster-repair-resume',
+  'visual-context-summary',
 ] as const;
