@@ -25,6 +25,10 @@ test('pointer travel in an excluded region slides along the curve, including hor
     assert.equal(Math.abs(horizontal.x), headSideLimit(horizontal.y));
   }
   assert.deepEqual(followHeadPointer({ x: .1, y: .1 }, { x: .5, y: .5 }, { x: 1, y: .5 }), { x: .1, y: .1 });
+  const upper = followHeadPointer({ x: .9, y: .3 }, { x: headSideLimit(-.3), y: -.3 }, { x: .9, y: -.4 });
+  assert.ok(upper.y > 0, 'crossing the horizontal axis uses the pointer’s new arc');
+  const junction = followHeadPointer({ x: 1, y: .02 }, { x: headSideLimit(.02), y: .02 }, { x: .8, y: .02 });
+  assert.equal(junction.y, 0, 'a horizontal push stops at the cardinal junction rather than slipping into the opposite arc');
 });
 
 test('motion only uses axes present in the latest intermediate model', () => {

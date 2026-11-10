@@ -16,13 +16,13 @@ export function followHeadPointer(pointer, current, previous) {
   const desired = { x: clamp(pointer.x), y: clamp(pointer.y) };
   if (Math.abs(desired.x) <= headSideLimit(desired.y)) return desired;
   const side = Math.sign(desired.x);
-  if (!previous || Math.sign(current.x) !== side || Math.abs(Math.abs(current.x) - headSideLimit(current.y)) > 1e-5)
+  if (!previous || Math.sign(current.x) !== side || desired.y * current.y < 0 || Math.abs(Math.abs(current.x) - headSideLimit(current.y)) > 1e-5)
     return constrainHeadPoint(desired);
   // Project pointer travel onto the boundary tangent. Pushing further into
   // the excluded region still slides along the curve in the travel direction.
   const slope = side * Math.sign(current.y) * (4 * Math.abs(current.y) - 2);
   const travel = ((pointer.x - previous.x) * slope + pointer.y - previous.y) / (1 + slope * slope);
-  const y = clamp(current.y + travel);
+  const y = desired.y < 0 ? Math.max(-1, Math.min(0, current.y + travel)) : Math.max(0, Math.min(1, current.y + travel));
   return { x: side * headSideLimit(y), y };
 }
 export function headPreviewAngles(point, axes) {
