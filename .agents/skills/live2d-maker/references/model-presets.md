@@ -33,7 +33,7 @@
 | raster step03（仅人物） | `gpt-6.1-sol-medium` | `raster_step03_agent_model` |
 | 穿戴组装 | `gpt-6.1-sol-xhigh` | `assembly_agent_model` |
 | 阴影 | `gpt-6.1-sol-medium` | `shadow_agent_model` |
-| 九轴 step02 脸部与双耳转向 | `gpt-6.1-sol-xhigh` | `nine_axis_head_agent_model` |
+| 九轴 step04 单轴脸部与双耳建模 | `gpt-6.1-sol-xhigh` | `nine_axis_head_agent_model` |
 
 生图设置为 `default_image_model=codex-native`，全部步骤的生图覆盖键留空，继承宿主 Codex 内置生图工具。具体图像模型版本由宿主决定，复用当前 Codex 登录和 provider。逐步骤键与自定义服务配置见下方[生图表](#生图模型与配置键)。图片数 compact 留空时关闭，已有配置的启停与阈值保持原样。
 
@@ -60,7 +60,7 @@
 | raster step03（仅人物） | `claude-sonnet-5-5-xhigh` | `raster_step03_agent_model` |
 | 穿戴组装 | `claude-sonnet-5-5-xhigh` | `assembly_agent_model` |
 | 阴影 | `claude-sonnet-5-5-xhigh` | `shadow_agent_model` |
-| 九轴 step02 脸部与双耳转向 | `claude-sonnet-5-5-xhigh` | `nine_axis_head_agent_model` |
+| 九轴 step04 单轴脸部与双耳建模 | `claude-sonnet-5-5-xhigh` | `nine_axis_head_agent_model` |
 
 SVG 合并由程序执行，不配置 LLM。步骤职责、绘图提示词、review 轮次和会话恢复规则保留原有实现。
 
@@ -188,6 +188,18 @@ Claude／AGV 注册与 Codex 原生工具同名的共享 `imagegen` 函数工具
 差分使用 `C = alpha × F + (1-alpha) × B` 的已知背景公式，保留与背景同色的前景信息。仅将接近完全不透明的 alpha 收到 1；90% 和 95% 的材料仍保留半透明值。两张图的前景必须尽量一致，第二次请求仅更换背景；模型换背景时仍可能改变局部颜色或几何，存在 alpha 并不保证无损恢复。
 
 Nano 后处理保持第一张生成图的尺寸和比例；工作流仍负责后续等比缩放与配准。原始 RGB `original.png`、换背景图 `counterpart.png`、透明结果 `transparent.png`、alpha 和处理记录保存在本次请求的 `generated/image-processing/<id>/`。第二张分辨率变化或少量画布取整时，Sharp 等比适配到第一张画布，仅用于差分；适配图另存为 `counterpart-aligned.png`，尺寸变换写入 `counterpartAlignment`。第二次请求失败或取消、实际背景不可靠、画布比例明显不同都会明确报错并指出原图路径。两张图与请求记录完整保留，恢复时沿用这套 Node／Sharp 双背景流程。
+
+## 九轴视频服务
+
+总入口开启 `--live` 后，阴影完成进入九轴 section；独立九轴使用相同配置。除九轴 agent 的语言模型外，还须配置独立的视频生成模型与服务：
+
+| 配置键 | 要求 |
+| --- | --- |
+| `video_base_url` | 视频服务地址，通常包含 `/v1`；支持 OpenAI Videos API 形式的图生视频 |
+| `video_api_key` | 视频服务密钥，账号须有相应模型权限 |
+| `nine_axis_view_video_model` | 支持 `seedance-2.5`、`seedance-2.0` 系列，默认 `seedance-2.5` |
+
+三个字段可在网页“管线配置 → 环境与模型 → 运行环境”编辑，也可在 skill 的 `.env` 设置。只运行到阴影时不要求视频配置；生图服务不能作为视频服务的后备。视频选帧还需要 ffmpeg，安装与便携路径见[九轴依赖说明](../nine-axis/README.md#依赖与视频配置)。
 
 ## 配置覆盖与旧键迁移
 

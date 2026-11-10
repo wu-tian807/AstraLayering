@@ -41,6 +41,9 @@ pnpm install --frozen-lockfile
 | 人物／衣服 raster | 完整 part 输入、Krita、可用的显示环境与所选生图能力 |
 | 穿戴组装 | 人物素体 KRA、衣服 KRA、简化穿衣参考、Krita 与显示环境 |
 | 阴影 | 对应组装与参考、Krita 与显示环境；normal-depth 模式另需生图能力 |
+| 头部九轴 | 上游 KRA／PNG、Krita 与显示环境、ffmpeg；独立视频服务的 `video_base_url`、`video_api_key` 与 `nine_axis_view_video_model`，支持 `seedance-2.5`、`seedance-2.0` 系列 |
+
+总入口 `--live` 表示阴影完成后进入九轴 section，因此所选路线需要准备上述九轴依赖；独立执行九轴也相同。默认只运行到阴影时不要求视频服务。ffmpeg 可来自 PATH，也可用 `ASTRA_STUDIO_FFMPEG` 指定适配 Windows、macOS 或 Linux 的便携可执行文件，当前尚不自动下载。视频接口与具体配置见[九轴依赖与视频配置](../nine-axis/README.md#依赖与视频配置)。
 
 总入口在启动前检查整条所选路线的软件条件，上游成果在各 section 开始时验证。已有软件和仍有效的验证记录直接复用。每次启动检查所选 CLI 的本地版本；路线含 Krita 时还检查 Krita 路径与显示环境（不启动 Krita）；登录、工具和绘图能力在实际调用时核对。
 

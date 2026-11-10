@@ -66,6 +66,8 @@ SVG 小图预览按实际可见内容居中取景，等比放大并保留边距�
 
 ## 配置与版本
 
+开启任务的 `--live` 后，阴影完成会进入九轴 section；独立九轴也需要 ffmpeg 与视频服务。在“管线配置 → 环境与模型 → 运行环境”填写 `video_base_url`、`video_api_key` 和 `nine_axis_view_video_model`，视频模型支持 `seedance-2.5`、`seedance-2.0` 系列，默认 `seedance-2.5`。视频服务账号须有对应模型权限。ffmpeg 可以来自 PATH，或通过启动环境的 `ASTRA_STUDIO_FFMPEG` 指定便携可执行文件；当前尚不自动下载。只运行到阴影的默认路线不需要视频服务，详细配置见[九轴依赖说明](../.agents/skills/live2d-maker/nine-axis/README.md#依赖与视频配置)。
+
 “管线配置”分为两个页签：
 
 - **环境与模型**：按职责选择语言模型与思考力度、按步骤选择生图模型；编辑模型连接、生图服务、图片容量保护和运行环境（含本机 Krita 并发上限 `krita_max_instances`，默认 4）。CLI 检测仅查询本机入口与版本，未就绪的 CLI 对应模型会标注并禁用。填写 CLI 路径后可重新检测；登录、生图能力和账号权限在制作启动时检查。

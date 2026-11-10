@@ -12,6 +12,8 @@
 
 整条流程默认在阴影结束。**总入口加 `--live`，或在网页执行参数开启“阴影完成后制作头部九轴”**，才自动继续七步九轴；续跑沿用任务保存的选择，`--no-live` 显式关闭。九轴使用既有总调度及 step/group 机制。流程预览只显示一个随页面鼠标运动的缩略头，使用最新保存的模型；弧形边界收窄半抬头／半低头的侧转范围，禁区内沿边界滑动，不改动模型关键形。
 
+需要执行九轴时，须准备 **ffmpeg 和独立的 Seedance 视频服务**。开启 `--live` 后，阴影完成会进入九轴 section；该 section 需要 `video_base_url`、`video_api_key` 与 `nine_axis_view_video_model`，支持 `seedance-2.5`、`seedance-2.0` 系列，默认 `seedance-2.5`。独立运行九轴也需要这些条件；只执行到阴影的路线不要求视频服务。配置与便携 ffmpeg 的使用方式见[九轴依赖与视频配置](.agents/skills/live2d-maker/nine-axis/README.md#依赖与视频配置)。
+
 ## 人物分层成果
 
 人物与衣服分别完成结构拆分、隐藏补全、栅格绘制和边缘修画，再组装成完整角色。新的 KRA 分层路线已完成多个完整案例，是当前成熟的素材制作方案。
@@ -94,6 +96,8 @@ agent 首次拉取或更新本仓库前，先问一次用户是**使用者**还�
 | **GPT Image 生图服务** | **可选。** 生图想用 `gpt-image-2.5-sunburst`／`flare` 时，在 `.env` 填写 `openai_image_base_url` 与 `openai_image_api_key`。不用 Codex 时，生图步骤需在它和 Nano Banana 中选一个 |
 | **Nano Banana 生图服务** | **可选。** 想用 Gemini 生图（`gemini-nano-banana-2.1`）时，在 `.env` 填写 `google_image_base_url` 与 `google_image_api_key`，协议选 `gemini` 或 `openai` |
 | **Xvfb** | **Linux 无桌面时必选**，其他情况不需要。机器没有 `DISPLAY`／`WAYLAND_DISPLAY` 时，工作流用它启动共享虚拟显示给 Krita 使用；用 `apt install xvfb` 等安装 |
+| **ffmpeg** | **执行九轴时必选。** 用于读取视频和提取参考帧；可以使用已安装的版本，或通过 `ASTRA_STUDIO_FFMPEG` 指定便携可执行文件。当前版本尚不自动下载便携版 |
+| **Seedance 视频服务** | **执行九轴时必选。** 配置 `video_base_url`、`video_api_key` 和 `nine_axis_view_video_model`；支持 `seedance-2.5`、`seedance-2.0` 系列。需要服务提供相应模型权限；生图服务不能代替视频服务 |
 
 模型和生图的组合方式见 [模型方案](.agents/skills/live2d-maker/references/model-presets.md)；启动前可执行 `pnpm env:check` 核对实际生效的模型、CLI 与生图配置（不验证登录）。
 

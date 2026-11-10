@@ -16,6 +16,24 @@
 
 顺序使用共同 section 调度；step04 两支与 model 内三个方向使用共同 group 调度。没有单独的九轴调度系统。每个真实步骤／分支独立保存完成标记、会话、作者与草稿；中断后沿用已完成分支。单跑支持 `--step step04_angles/model/up`，也可选择 model 或 video。
 
+## 依赖与视频配置
+
+开启总入口 `--live` 后，阴影完成会进入九轴 section；独立运行 `pnpm nine-axis` 或选择九轴执行范围也使用同一依赖。需要 ffmpeg、Krita 与显示环境，以及可用的 Seedance 视频服务。默认只运行到阴影的路线不需要视频配置。
+
+在 skill 根目录 `.env` 配置下列三项；已有配置和 shell 覆盖仍按原有优先级生效：
+
+```dotenv
+video_base_url=https://video.example.com/v1
+video_api_key=<视频服务密钥>
+nine_axis_view_video_model=seedance-2.5
+```
+
+视频模型支持 `seedance-2.5`、`seedance-2.0` 系列，默认 `seedance-2.5`；使用 2.0 时将模型字段改为 `seedance-2.0`，并确认服务账号拥有该模型权限。视频服务需要支持图生视频的 OpenAI Videos API 形式：`POST /videos` 和 `GET /videos/<id>/content`。生图模型或生图 API 不能代替这项配置。网页可在“管线配置 → 环境与模型 → 运行环境”编辑同名字段，保存后用于下一次启动或恢复。
+
+ffmpeg 用于解码视频、读取帧数与提取参考帧。当前程序先使用启动环境变量 `ASTRA_STUDIO_FFMPEG` 指定的可执行文件，否则查找 PATH 中的 `ffmpeg`。Windows 使用解压后的 `ffmpeg.exe`，当前须指定正斜杠绝对路径，例如 `C:/Tools/ffmpeg/bin/ffmpeg.exe`：现有查找代码尚未处理 Windows PATH 中的 `.exe` 后缀或反斜杠显式路径。macOS、Linux 可指定适配本机 CPU 架构的便携二进制，具有执行权限即可。指定便携路径无需修改系统 PATH，也不需要管理员安装。
+
+当前版本尚未自动下载便携 ffmpeg。缺少可执行文件时会明确报错；手动安装或配置便携路径后再继续。
+
 ## 素材与投影
 
 agent 确认部件与投影关系，程序根据上游已有的 part／图层对应关系执行导出。已确认 UUID 优先于接收容器的名称。底层保留自身绘画与自身蒙版，外部独立投影单独导出；头发、头饰及其投影保留原尺寸和坐标，供后续继续制作。
