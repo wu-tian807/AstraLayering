@@ -20,11 +20,13 @@ export function createSettings({ get, post, esc, icon, onSaved }) {
     <label class="field-label" for="settings-krita">Krita 可执行文件 <span>绘制、组装与阴影需要</span></label>
     <div class="path-field"><input id="settings-krita" name="krita" value="${esc(settings?.krita ?? '')}" placeholder="例如 /usr/bin/krita"><button type="button" class="button" data-pick="krita">浏览</button><button type="button" class="button" data-scan>${icon('search')}自动扫描</button></div>
     <div class="scan-status" aria-live="polite"></div>
+    <label class="field-label" for="settings-ffmpeg">FFmpeg 可执行文件 <span>仅头部九轴需要；选择已安装或解压的文件</span></label>
+    <div class="path-field"><input id="settings-ffmpeg" name="ffmpeg" value="${esc(settings?.ffmpeg ?? '')}" placeholder="ffmpeg 或 ffmpeg.exe 的完整路径"><button type="button" class="button" data-pick="ffmpeg">浏览</button></div>
     <label class="field-label" for="settings-directory">默认运行目录 <span>新任务创建在这里，并追踪其中的任务</span></label>
     <div class="path-field"><input id="settings-directory" name="directory" value="${esc(settings?.directory ?? '')}" required><button type="button" class="button" data-pick="directory">浏览</button></div>
     <label class="field-label" for="settings-knowledge">默认先验知识目录 <span>新任务记录它；已有任务沿用创建时的目录</span></label>
     <div class="path-field"><input id="settings-knowledge" name="knowledge" value="${esc(settings?.knowledge ?? '')}" placeholder="${esc(defaults.knowledge ?? '')}"><button type="button" class="button" data-pick="knowledge">浏览</button></div>
-    <p class="dialog-note">先验知识目录留空时使用 skill 自带的 knowledge/。切换运行目录不会停止已运行的任务。</p>
+    <p class="dialog-note">运行目录默认是仓库下的 .run/；demos/ 用于导出与展示成果。FFmpeg 路径会传给九轴 agent。先验知识目录留空时使用 skill 自带的 knowledge/。</p>
     <p class="form-error" role="alert"></p>
     <div class="modal-footer"><span></span><button type="button" class="button" data-close>取消</button><button class="primary">保存设置</button></div></form>`;
    const form = dialog.querySelector('form'), status = dialog.querySelector('.scan-status'), scanButton = dialog.querySelector('[data-scan]');
@@ -42,10 +44,10 @@ export function createSettings({ get, post, esc, icon, onSaved }) {
     try { drawScan(await post('krita-scan', { action: scanButton.textContent.includes('停止') ? 'stop' : 'start' })); }
     catch (failure) { form.querySelector('.form-error').textContent = failure.message; }
    };
-   const titles = { krita: '选择 Krita 可执行文件', directory: '选择默认运行目录', knowledge: '选择先验知识目录' };
+   const titles = { krita: '选择 Krita 可执行文件', ffmpeg: '选择 FFmpeg 可执行文件', directory: '选择默认运行目录', knowledge: '选择先验知识目录' };
    dialog.querySelectorAll('[data-pick]').forEach(button => button.onclick = async () => {
     const field = form.elements[button.dataset.pick];
-    const path = await pick({ kind: field.name === 'krita' ? 'file' : 'dir', path: field.value.trim() || (field.name === 'knowledge' ? defaults.knowledge : ''), title: titles[field.name] });
+    const path = await pick({ kind: ['krita', 'ffmpeg'].includes(field.name) ? 'file' : 'dir', path: field.value.trim() || (field.name === 'knowledge' ? defaults.knowledge : ''), title: titles[field.name] });
     if (path) field.value = path;
    });
    form.onsubmit = async event => {
@@ -53,7 +55,7 @@ export function createSettings({ get, post, esc, icon, onSaved }) {
     const fields = new FormData(form), button = form.querySelector('.primary');
     button.disabled = true; form.querySelector('.form-error').textContent = '';
     try {
-     settings = await post('settings', { directory: fields.get('directory').trim(), krita: fields.get('krita').trim(), knowledge: fields.get('knowledge').trim() });
+     settings = await post('settings', { directory: fields.get('directory').trim(), krita: fields.get('krita').trim(), ffmpeg: fields.get('ffmpeg').trim(), knowledge: fields.get('knowledge').trim() });
      saved = true; await onSaved(settings); dialog.close();
     } catch (failure) { form.querySelector('.form-error').textContent = failure.message; }
     finally { button.disabled = false; }
@@ -66,14 +68,15 @@ export function createSettings({ get, post, esc, icon, onSaved }) {
   });
  }
 
- // Runs a start; a refused Krita opens the settings, and the start is tried again once saved.
- async function withKrita(run) {
+ // A refused software path opens its global field before retrying the start.
+ async function withSoftware(run) {
   for (;;) {
    try { return await run(); }
    catch (error) {
-    if (!error.krita || !await show({ focus: 'krita', error: error.message })) throw error;
+    const focus = error.ffmpeg ? 'ffmpeg' : error.krita ? 'krita' : undefined;
+    if (!focus || !await show({ focus, error: error.message })) throw error;
    }
   }
  }
- return { load, show, withKrita, current: () => settings };
+ return { load, show, withSoftware, current: () => settings };
 }

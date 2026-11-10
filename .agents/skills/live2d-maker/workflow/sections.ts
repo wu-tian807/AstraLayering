@@ -21,7 +21,7 @@ export async function executeSection(id: SectionId, directory: string, run: Task
   events: { prepared?(): void } = {}): Promise<SectionResult> {
   const name = basename(directory), dir = dirname(directory);
   if (id === 'nine-axis') {
-    const summary = await nineAxis({ name, dir, krita: run.krita, progress });
+    const summary = await nineAxis({ name, dir, krita: run.krita, ffmpeg: run.ffmpeg, progress });
     return { summary, output: 'nine-axis/step07_jaw-line/deformers.json' };
   }
   if (id === 'shadow') {

@@ -62,7 +62,7 @@ const hasKraPreview = index => isRasterSection(index)||stages[index]?.id==='char
  ||stages[index]?.id==='shadow'&&data.sections[index]?.mode==='mask';
 async function post(path, value) {
  const response = await fetch('./api/'+path, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({dir:state.directory,...value})});
- const result = await response.json(); if(!response.ok)throw Object.assign(new Error(result.error),{krita:result.krita}); return result;
+ const result = await response.json(); if(!response.ok)throw Object.assign(new Error(result.error),{krita:result.krita,ffmpeg:result.ffmpeg}); return result;
 }
 // Creating a task, start, continue, resume and retry refuse an unusable Krita before changing
 // anything; the global settings open, and the action runs again once they are saved.
@@ -791,9 +791,9 @@ function showNew() {
    if(!created){
     payload.image=fields.get('image');
     if(state.uploaded)payload.upload=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result.split(',')[1]);reader.onerror=reject;reader.readAsDataURL(state.uploaded);});
-    await settings.withKrita(()=>post('tasks',payload));created=true;form.elements.name.readOnly=true;form.elements.image.disabled=true;form.querySelector('#image-input').disabled=true;delete payload.image;delete payload.upload;
+    await settings.withSoftware(()=>post('tasks',payload));created=true;form.elements.name.readOnly=true;form.elements.image.disabled=true;form.querySelector('#image-input').disabled=true;delete payload.image;delete payload.upload;
    }
-   state.name=payload.name;rememberTask(state.directory,state.name);button.textContent='正在启动…';await settings.withKrita(()=>post('start',payload));dialog.close();await refreshTask(true);toast('新任务已在后台启动。');
+   state.name=payload.name;rememberTask(state.directory,state.name);button.textContent='正在启动…';await settings.withSoftware(()=>post('start',payload));dialog.close();await refreshTask(true);toast('新任务已在后台启动。');
   }catch(error){form.querySelector('.form-error').textContent=error.message;if(created){button.textContent='继续启动';await refreshTask(true);}}finally{button.disabled=false;}
  };
 }
@@ -861,7 +861,7 @@ function bind() {
   if(!data.run){if(action==='continue')showRunOptions();return;}
   if(action==='retry'&&!confirm(`重试：删除以下步骤的产物、会话与 agent 尝试记录并重新运行。\n${broken.map(stepLabel).join('\n')}\n确定吗？`))return;
   b.disabled=true;
-  try{const result=await settings.withKrita(()=>post('task-action',{name:state.name,action}));toast(result.message+' 已在后台重新运行。');await refreshTask(true);}
+  try{const result=await settings.withSoftware(()=>post('task-action',{name:state.name,action}));toast(result.message+' 已在后台重新运行。');await refreshTask(true);}
   catch(error){toast(error.message);b.disabled=false;}
  });
  document.querySelectorAll('[data-page]').forEach(b=>b.onclick=async()=>{state.page=b.dataset.page;updateViewURL();if(state.page==='config')await loadConfig();render();});

@@ -10,6 +10,7 @@
 - **默认必选：** Codex CLI 与登录；使用 Codex 时还需要 C/C++ 工具链，Rust 自动准备。
 - **可选：** Claude Code CLI（`claude-*` 模型）、Antigravity CLI（`gemini-4-argon`）、GPT Image 生图服务、Nano Banana 生图服务。
 - **Linux 无桌面时必选：** Xvfb。
+- **仅九轴必选：** FFmpeg 和独立 Seedance 视频服务；其他 section 不要求。
 
 缺少依赖时，说明实际需要安装、配置的软件，**确认所选方案后再执行**。已有针对该机器和方案的授权直接沿用，方案或范围改变时再确认。
 
@@ -30,7 +31,7 @@ pnpm --version
 pnpm install --frozen-lockfile
 ```
 
-六条管线共用一次安装，任务存放在 skill 外的运行根目录。独立 skill 的网页由完整仓库提供：已有服务直接复用，缺少时按 [workflow](../workflow/README.md#工作台启动与连接)在 skill 外准备工作台 checkout，保持版本、任务目录与原执行环境一致。
+各 section 共用一次安装，任务存放在 skill 外的运行根目录。完整仓库默认 `<仓库>/.run/<任务名>/`；独立 skill 默认其上一级的 `.run/`。`demos/` 用于导出与展示成果；网页的旧目录设置会覆盖默认值，可在“全局设置”改回 `.run/`。独立 skill 的网页由完整仓库提供：已有服务直接复用，缺少时按 [workflow](../workflow/README.md#工作台启动与连接)在 skill 外准备工作台 checkout，保持版本、任务目录与原执行环境一致。
 
 ## 按执行范围检查
 
@@ -43,7 +44,13 @@ pnpm install --frozen-lockfile
 | 阴影 | 对应组装与参考、Krita 与显示环境；normal-depth 模式另需生图能力 |
 | 头部九轴 | 上游 KRA／PNG、Krita 与显示环境、ffmpeg；独立视频服务的 `video_base_url`、`video_api_key` 与 `nine_axis_view_video_model`，支持 `seedance-2.5`、`seedance-2.0` 系列 |
 
-总入口 `--live` 表示阴影完成后进入九轴 section，因此所选路线需要准备上述九轴依赖；独立执行九轴也相同。默认只运行到阴影时不要求视频服务。ffmpeg 可来自 PATH，也可用 `ASTRA_STUDIO_FFMPEG` 指定适配 Windows、macOS 或 Linux 的便携可执行文件，当前尚不自动下载。视频接口与具体配置见[九轴依赖与视频配置](../nine-axis/README.md#依赖与视频配置)。
+总入口 `--live` 表示阴影完成后进入九轴 section。只有九轴需要 FFmpeg 和视频服务；网页在“全局设置 → FFmpeg 可执行文件”选择本机已安装或解压的文件，CLI 使用 `--ffmpeg <完整路径>`。保存和启动时检查文件及 `-version`；程序不自动下载。视频配置支持 `seedance-2.5`／`seedance-2.0` 系列，见[九轴依赖与视频配置](../nine-axis/README.md#依赖与视频配置)。
+
+独立 section 的启动无状态：每次启动及续跑都传入 `--dir`、`--knowledge` 和该段需要的软件路径；九轴须传 `--krita` 与 `--ffmpeg`。全局设置由网页保存，总入口参数可记入任务根 `run.json`，调用方每次传给 section；section 只沿用工程、完成标记和绘制会话。九轴 agent 的环境及提示词包含本次 FFmpeg 的完整路径，并将其目录加入该 agent 的 PATH。
+
+```sh
+pnpm nine-axis --name my-character --dir /绝对路径/.run --knowledge /绝对路径/knowledge --krita /绝对路径/krita --ffmpeg /绝对路径/ffmpeg
+```
 
 总入口在启动前检查整条所选路线的软件条件，上游成果在各 section 开始时验证。已有软件和仍有效的验证记录直接复用。每次启动检查所选 CLI 的本地版本；路线含 Krita 时还检查 Krita 路径与显示环境（不启动 Krita）；登录、工具和绘图能力在实际调用时核对。
 

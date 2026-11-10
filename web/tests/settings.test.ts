@@ -12,7 +12,8 @@ async function bench(t: any, started: any[] = []) {
   const base = await realpath(await mkdtemp(join(tmpdir(), 'layering-settings-')));
   const dir = join(base, 'runs');
   const kritaCheck = async (path: string) => { if (!path.endsWith('good-krita')) throw new Error('不存在或不可执行'); return { executable: path, version: 'test' }; };
-  const server = await createWorkbench({ defaultDir: dir, settingsPath: join(base, 'settings.json'), kritaCheck, start: async options => { started.push(options); return 1; } });
+  const ffmpegCheck = async (path: string) => { if (!path.endsWith('good-ffmpeg')) throw new Error('不是 FFmpeg'); return { executable: path, version: 'ffmpeg version test' }; };
+  const server = await createWorkbench({ defaultDir: dir, settingsPath: join(base, 'settings.json'), kritaCheck, ffmpegCheck, start: async options => { started.push(options); return 1; } });
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(async () => { await new Promise<void>(resolve => server.close(() => resolve())); await rm(base, { recursive: true, force: true }); });
   const url = 'http://127.0.0.1:' + (server.address() as any).port;
@@ -23,6 +24,42 @@ async function bench(t: any, started: any[] = []) {
   return { base, dir, url, post };
 }
 const upload = async () => (await sharp({ create: { width: 8, height: 8, channels: 3, background: '#cbbbaa' } }).png().toBuffer()).toString('base64');
+
+test('global FFmpeg is required only for nine-axis, retained in settings and passed anew to each start', async t => {
+  const started: any[] = [], b = await bench(t, started);
+  await b.post('settings', { directory: b.dir, krita: '/opt/good-krita' });
+  assert.equal((await b.post('tasks', { name: 'static', upload: await upload() })).status, 201);
+  const refused = await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await upload() });
+  assert.equal(refused.status, 409); assert.ok(refused.value.ffmpeg); assert.match(refused.value.error, /全局设置/);
+  await assert.rejects(readFile(join(b.dir, 'head', 'run.json')));
+  assert.equal((await b.post('settings', { directory: b.dir, ffmpeg: '/opt/bad-ffmpeg' })).status, 400);
+  const first = '/opt/one/good-ffmpeg', second = '/opt/two/good-ffmpeg';
+  assert.equal((await b.post('settings', { directory: b.dir, ffmpeg: first })).value.ffmpeg, first);
+  assert.equal((await b.post('settings', { directory: b.dir })).value.ffmpeg, first);
+  assert.equal((await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await upload() })).status, 201);
+  assert.equal(JSON.parse(await readFile(join(b.dir, 'head', 'run.json'), 'utf8')).ffmpeg, first);
+  assert.equal((await b.post('start', { name: 'head' })).status, 202);
+  assert.equal(started[0].ffmpeg, first);
+  await b.post('settings', { directory: b.dir, ffmpeg: second });
+  assert.equal((await b.post('start', { name: 'head' })).status, 202);
+  assert.equal(started[1].ffmpeg, second);
+  assert.equal((await b.post('settings', { directory: b.dir, ffmpeg: '' })).value.ffmpeg, undefined);
+});
+
+test('unavailable FFmpeg refuses resume before changing nine-axis markers', async t => {
+  const b = await bench(t);
+  await b.post('settings', { directory: b.dir, krita: '/opt/good-krita', ffmpeg: '/opt/good-ffmpeg' });
+  await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await upload() });
+  await b.post('settings', { directory: b.dir, ffmpeg: '' });
+  const record = join(b.dir, 'head', 'run.json'), run = JSON.parse(await readFile(record, 'utf8'));
+  run.ffmpeg = '/opt/removed-ffmpeg'; await writeFile(record, JSON.stringify(run));
+  const step = join(b.dir, 'head', 'nine-axis', 'step03_frames'); await mkdir(step, { recursive: true });
+  await writeFile(join(step, '.running'), 'unchanged');
+  const result = await b.post('task-action', { name: 'head', action: 'resume', section: 'nine-axis' });
+  assert.equal(result.status, 409); assert.ok(result.value.ffmpeg);
+  assert.equal(await readFile(join(step, '.running'), 'utf8'), 'unchanged');
+  assert.deepEqual(JSON.parse(await readFile(record, 'utf8')), run);
+});
 
 test('没有可用的全局 Krita 时创建任务返回 409 且不建目录；保存设置后新任务记录 Krita 与先验知识目录', async t => {
   const started: any[] = [], b = await bench(t, started);

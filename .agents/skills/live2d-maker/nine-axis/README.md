@@ -30,9 +30,11 @@ nine_axis_view_video_model=seedance-2.5
 
 视频模型支持 `seedance-2.5`、`seedance-2.0` 系列，默认 `seedance-2.5`；使用 2.0 时将模型字段改为 `seedance-2.0`，并确认服务账号拥有该模型权限。视频服务需要支持图生视频的 OpenAI Videos API 形式：`POST /videos` 和 `GET /videos/<id>/content`。生图模型或生图 API 不能代替这项配置。网页可在“管线配置 → 环境与模型 → 运行环境”编辑同名字段，保存后用于下一次启动或恢复。
 
-ffmpeg 用于解码视频、读取帧数与提取参考帧。当前程序先使用启动环境变量 `ASTRA_STUDIO_FFMPEG` 指定的可执行文件，否则查找 PATH 中的 `ffmpeg`。Windows 使用解压后的 `ffmpeg.exe`，当前须指定正斜杠绝对路径，例如 `C:/Tools/ffmpeg/bin/ffmpeg.exe`：现有查找代码尚未处理 Windows PATH 中的 `.exe` 后缀或反斜杠显式路径。macOS、Linux 可指定适配本机 CPU 架构的便携二进制，具有执行权限即可。指定便携路径无需修改系统 PATH，也不需要管理员安装。
+**FFmpeg 仅九轴需要。** 在网页“全局设置 → FFmpeg 可执行文件”浏览选择本机已安装或解压的 `ffmpeg`／`ffmpeg.exe`，或用 CLI `--ffmpeg <完整路径>` 指定。保存及启动时检查文件和 `-version`。Windows 支持正斜杠、反斜杠与含空格的路径；macOS、Linux 的文件须有执行权限。
 
-当前版本尚未自动下载便携 ffmpeg。缺少可执行文件时会明确报错；手动安装或配置便携路径后再继续。
+独立 section 启动无状态：每次启动及续跑都传 `--dir`、`--knowledge`、`--krita` 和 `--ffmpeg`，不从步骤产物读取启动配置。网页全局设置及总入口记录由调用方管理，每次传入。九轴 agent 的环境与提示词带有选中路径，`ASTRA_STUDIO_FFMPEG` 指向该文件，目录加入该 agent 的 PATH；原有同名环境变量仍兼容。程序不自动下载 FFmpeg。
+
+默认运行目录是 `<仓库>/.run/<任务名>/`，`demos/` 用于导出和展示成果。
 
 ## 素材与投影
 

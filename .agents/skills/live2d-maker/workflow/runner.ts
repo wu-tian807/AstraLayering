@@ -13,6 +13,8 @@ import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/cod
 import { sectionAgentSteps, preflightAgentSteps } from '../shared/agents/preflight.ts';
 import { clearTaskStop, watchTaskStop } from './control.ts';
 import { requireKrita } from './krita.ts';
+import { requireFFmpeg } from './ffmpeg.ts';
+import { type FFmpegCheck } from '../shared/ffmpeg.ts';
 import { defaultKnowledgeDirectory, selectKnowledge } from '../shared/knowledge.ts';
 import { MissingDependencyError } from '../shared/missing-dependency.ts';
 import { readDressup } from '../shared/part/dressup.ts';
@@ -106,6 +108,7 @@ export async function runTask(options: TaskOptions, dependencies: {
   preparing?: (run: TaskRun) => void;
   environment?: WorkflowEnvironment;
   preflight?: (path: string) => Promise<KritaInstallation>;
+  ffmpegCheck?: FFmpegCheck;
   save?: typeof saveRun;
 } = {}): Promise<TaskRun> {
   const directory = directoryFor(options);
@@ -135,6 +138,7 @@ export async function runTask(options: TaskOptions, dependencies: {
     // A missing system dependency such as Xvfb is the exception: the run is recorded as failed with its install hint.
     const missing = await requireKrita(configured, !!options.krita, dependencies.preflight ?? (path => checkKrita(path, environment?.codex.env)))
       .then(() => undefined, error => { if (error instanceof MissingDependencyError) return error; throw error; });
+    await requireFFmpeg(configured, dependencies.ffmpegCheck);
     run = configured;
     run.status = 'running'; delete run.error; delete run.output; delete run.activeSections;
     run.runner = { id: randomUUID(), pid: process.pid, startedAt: now() };

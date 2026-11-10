@@ -19,6 +19,12 @@ import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { readUpstream, startContinuation } from '../continuation.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
 
+// Most tests inject production handlers; startup still receives an explicit
+// executable and checker so missing-dependency failures cannot hide their assertions.
+const runWithFFmpeg: typeof runWorkflow = (options, dependencies = {}) => runWorkflow({ ...options, ffmpeg: process.execPath }, {
+  ...dependencies, ffmpegCheck: async executable => ({ executable, version: 'ffmpeg version fixture' }),
+});
+
 const rect = (w: number, h: number, x: number, y: number, rw: number, rh: number) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect x="${x}" y="${y}" width="${rw}" height="${rh}" fill="#000"/></svg>`;
 async function fixture(t: TestContext) {
@@ -80,11 +86,11 @@ function assertPoseEqual(actual: HeadNineAxis, expected: HeadNineAxis, x: number
 test('单跑 left 沿用共享素材和参考帧，不调用视频或兄弟方向', async t => {
   const { root, task } = await fixture(t), nine = join(task, 'nine-axis'), preparation = join(nine, 'step01_preparation');
   const unexpected = async () => { throw new Error('不应调用其他步骤'); };
-  await runWorkflow({ name: 'case', dir: root, step: 'step01_preparation' }, { environment: loadWorkflowEnvironment({}), prepareNeutral: prepareNeutralFixture });
+  await runWithFFmpeg({ name: 'case', dir: root, step: 'step01_preparation' }, { environment: loadWorkflowEnvironment({}), prepareNeutral: prepareNeutralFixture });
   const before = await readFile(join(preparation, 'deformers.json'));
   const frames = join(nine, 'step03_frames'); await mkdir(frames);
   await copyFile(join(task, 'character-assembly/step01/character-assembled.png'), join(frames, 'left.png'));
-  const summary = await runWorkflow({ name: 'case', dir: root, step: 'step04_angles/model/left' }, {
+  const summary = await runWithFFmpeg({ name: 'case', dir: root, step: 'step04_angles/model/left' }, {
     environment: loadWorkflowEnvironment({}), generate: unexpected, prepareNeutral: unexpected, fitHead: writeSeededFaceLeft,
     fitUp: unexpected, fitDown: unexpected, fitAngleXY: unexpected, fitJawLine: unexpected,
   });
@@ -330,7 +336,7 @@ test('连续七步：平层视频、三路真实并发、联合工程、斜角�
   };
   const deps = { environment: loadWorkflowEnvironment({}), generate, viewFramesHead: pickViews(ffmpeg), framesHead: pickCorners, prepareNeutral,
     fitHead: fit('left'), fitUp: fit('up'), fitDown: fit('down'), fitAngleXY, fitJawLine };
-  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /step07_jaw-line 已完成：6 个部件的下颌线与脖子/);
+  assert.match(await runWithFFmpeg({ name: 'case', dir: root }, deps), /step07_jaw-line 已完成：6 个部件的下颌线与脖子/);
   assert.deepEqual([...entered].sort(), ['down', 'left', 'up']);
   assert.deepEqual(fitted.sort(), ['down', 'left', 'up']);
   assert.equal(neutralPreparations, 1);
@@ -399,7 +405,7 @@ test('连续七步：平层视频、三路真实并发、联合工程、斜角�
   assert.deepEqual(jaw.parts.at(-1)!.clip, { by: ['face/jaw_mask'], invert: true });
   for (const p of neutral.doc.parts) for (const output of [axes, corners, join(nine, 'step07_jaw-line')])
     assert.deepEqual(await readFile(join(output, p.texture)), await readFile(join(preparation, p.texture)));
-  assert.match(await runWorkflow({ name: 'case', dir: root }, deps), /沿用/);
+  assert.match(await runWithFFmpeg({ name: 'case', dir: root }, deps), /沿用/);
   assert.equal(prompts.length, 5);
   assert.equal(fitted.length, 3);
   assert.equal(neutralPreparations, 1);
@@ -410,7 +416,7 @@ test('单跑视频步骤只交付三路视频，选帧由后续步骤完成', as
   const sample = join(root, 'sample.mp4'), ffmpeg = await testVideo(t, sample); if (!ffmpeg) return;
   const unexpected = async () => { throw Error('视频步骤不调用素材、选帧或模型 agent'); };
   let generated = 0;
-  await runWorkflow({ name: 'case', dir: root, step: 'step02_video' }, {
+  await runWithFFmpeg({ name: 'case', dir: root, step: 'step02_video' }, {
     environment: loadWorkflowEnvironment({}), viewFramesHead: unexpected, prepareNeutral: unexpected, fitHead: unexpected,
     generate: async () => ({ id: `v${++generated}`, status: { status: 'completed' }, bytes: await readFile(sample) }),
   });
@@ -478,11 +484,20 @@ test('九轴停止信号传入真实绘制 agent，已取消时不再启动', as
 test('视频失败时 step02 不完成', async t => {
   const { root, task } = await fixture(t);
   const generate = async () => { throw new Error('模型拒绝'); };
-  await assert.rejects(runWorkflow({ name: 'case', dir: root, step: 'step02_video' }, { environment: loadWorkflowEnvironment({}), generate }), /模型拒绝/);
+  await assert.rejects(runWithFFmpeg({ name: 'case', dir: root, step: 'step02_video' }, { environment: loadWorkflowEnvironment({}), generate }), /模型拒绝/);
   await assert.rejects(access(join(task, 'nine-axis/step02_video/.completed')));
 });
 
 test('没有生视频接口时 step02 报错', async t => {
   const { root } = await fixture(t);
-  await assert.rejects(runWorkflow({ name: 'case', dir: root, step: 'step02_video' }, { environment: loadWorkflowEnvironment({}) }), /生视频接口/);
+  await assert.rejects(runWithFFmpeg({ name: 'case', dir: root, step: 'step02_video' }, { environment: loadWorkflowEnvironment({}) }), /生视频接口/);
+});
+
+test('independent nine-axis startup does not recover software configuration from run.json', async t => {
+  const { root, task } = await fixture(t);
+  await writeFile(join(task, 'run.json'), JSON.stringify({ ffmpeg: process.execPath }));
+  await assert.rejects(runWorkflow({ name: 'case', dir: root, step: 'step02_video' }, {
+    environment: loadWorkflowEnvironment({}), generate: async () => { assert.fail('video must not start'); },
+  }), /没有配置 FFmpeg 路径/);
+  await assert.rejects(access(join(task, 'nine-axis', 'step02_video')), { code: 'ENOENT' });
 });

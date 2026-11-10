@@ -22,6 +22,8 @@ process.env.codex_path = await fakePatchedCodex();
 const png = (background: string) => sharp({ create: { width: 2, height: 2, channels: 4, background } }).png().toBuffer();
 const originalImage = await png('#f00');
 
+const ffmpegCheck = async (executable: string) => ({ executable, version: 'ffmpeg version fixture' });
+
 async function fixture(t: TestContext) {
   const dir = await mkdtemp(join(tmpdir(), 'live2d-runner-'));
   t.after(() => rm(dir, { recursive: true, force: true }));
@@ -376,13 +378,13 @@ test('总入口显式九轴路线独立执行，默认路线仍止于 shadow，�
     assert.equal(context.slots?.limit, 3);
     return { summary: 'nine-axis complete', output: 'nine-axis/step04_jaw-line/deformers.json' };
   };
-  await runTask({ ...f.options, from: 'nine-axis', to: 'nine-axis' }, { preflight, execute });
+  await runTask({ ...f.options, from: 'nine-axis', to: 'nine-axis', ffmpeg: process.execPath }, { preflight, ffmpegCheck, execute });
   assert.deepEqual(calls, ['nine-axis']);
   const saved = (await readRun(f.directory))!;
   assert.deepEqual(Object.keys(saved.sections), ['nine-axis']);
   assert.equal(saved.output, 'nine-axis/step04_jaw-line/deformers.json');
   calls.length = 0;
-  await runTask({ name: 'case', dir: f.options.dir }, { preflight, execute });
+  await runTask({ name: 'case', dir: f.options.dir }, { preflight, ffmpegCheck, execute });
   assert.deepEqual(calls, ['nine-axis']);
 });
 
@@ -416,7 +418,7 @@ test('--live opts into the native shadow dependency, persists on recovery, and -
   assert.equal(baseline.to, 'shadow'); assert.equal(baseline.live, false); assert.ok(!first.includes('nine-axis'));
   first.length = 0;
   let shadowFinished = false;
-  const run = await runTask({ ...f.options, live: true }, { preflight, execute: async id => {
+  const run = await runTask({ ...f.options, live: true, ffmpeg: process.execPath }, { preflight, ffmpegCheck, execute: async id => {
     if (id === 'shadow') shadowFinished = true;
     if (id === 'nine-axis') assert.equal(shadowFinished, true);
     return execute(id);
@@ -437,7 +439,7 @@ test('--live opts into the native shadow dependency, persists on recovery, and -
 
 test('--live never starts nine-axis when the selected shadow section fails', async t => {
   const f = await fixture(t), called: SectionId[] = [];
-  await assert.rejects(runTask({ ...f.options, from: 'shadow', live: true }, { preflight, execute: async id => {
+  await assert.rejects(runTask({ ...f.options, from: 'shadow', live: true, ffmpeg: process.execPath }, { preflight, ffmpegCheck, execute: async id => {
     called.push(id); throw Error('shadow failed');
   } }), /shadow failed/);
   assert.deepEqual(called, ['shadow']);
@@ -451,4 +453,24 @@ test('CLI --live has an explicit off switch and cannot mutate a status query or 
   assert.equal(off.mode !== 'help' && off.options.live, false);
   assert.throws(() => parseArguments([...args, '--live', '--no-live']), /不能同时/);
   for (const flag of ['--status', '--stop']) assert.throws(() => parseArguments([...args, flag, '--live']), /不修改/);
+});
+
+test('FFmpeg startup checks only nine-axis and preserves the run after a refused path', async t => {
+  const f = await fixture(t);
+  const execute = async () => ({ summary: 'fixture' });
+  await runTask({ ...f.options, from: 'shadow', to: 'shadow', ffmpeg: 'missing-ffmpeg' }, {
+    preflight, execute, ffmpegCheck: async () => { assert.fail('shadow must not check FFmpeg'); },
+  });
+  const before = await readFile(join(f.directory, 'run.json'), 'utf8');
+  await assert.rejects(runTask({ ...f.options, from: 'nine-axis', to: 'nine-axis' }, {
+    preflight, execute, ffmpegCheck: async () => { throw Error('missing'); },
+  }), /FFmpeg 不可用/);
+  assert.equal(await readFile(join(f.directory, 'run.json'), 'utf8'), before);
+  const chosen = process.execPath;
+  const run = await runTask({ ...f.options, from: 'nine-axis', to: 'nine-axis', ffmpeg: chosen }, {
+    preflight, ffmpegCheck, execute: async (_id, configuration) => { assert.equal(configuration.ffmpeg, chosen); return { summary: 'fixture' }; },
+  });
+  assert.equal(run.ffmpeg, chosen);
+  assert.equal((parseArguments(['--name', 'case', '--ffmpeg', chosen]) as any).options.ffmpeg, chosen);
+  for (const action of ['--status', '--stop']) assert.throws(() => parseArguments(['--name', 'case', action, '--ffmpeg', chosen]), /不修改启动配置/);
 });

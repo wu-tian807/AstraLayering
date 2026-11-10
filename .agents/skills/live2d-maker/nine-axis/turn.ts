@@ -1,9 +1,9 @@
 import { randomUUID } from 'node:crypto';
 import { spawn } from 'node:child_process';
-import { access, constants, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
-import { basename, delimiter, dirname, join, relative, resolve, sep } from 'node:path';
+import { access, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
+import { basename, dirname, join, relative, resolve, sep } from 'node:path';
 import sharp from 'sharp';
-import { MissingDependencyError } from '../shared/missing-dependency.ts';
+export { ffmpegPath } from '../shared/ffmpeg.ts';
 import { requireUpstream } from '../shared/upstream.ts';
 import { readStep, type ChainStep } from '../shared/step-chain.ts';
 import { taskDirectory } from '../shared/paths.ts';
@@ -119,13 +119,6 @@ export async function generateVideo(api: VideoApi, prompt: string, image: Buffer
   }
 }
 
-export async function ffmpegPath(env: NodeJS.ProcessEnv = process.env): Promise<string> {
-  const command = env.ASTRA_STUDIO_FFMPEG || 'ffmpeg';
-  const candidates = command.includes('/') ? [command] : (env.PATH ?? '').split(delimiter).filter(Boolean).map(directory => join(directory, command));
-  for (const candidate of candidates) if (await access(candidate, constants.X_OK).then(() => true, () => false)) return candidate;
-  throw new MissingDependencyError(`找不到 ffmpeg（${command}），无法从转头视频取出左右视角帧。`,
-    '请安装 ffmpeg：macOS 运行 brew install ffmpeg；Debian/Ubuntu 运行 sudo apt install ffmpeg；Windows 运行 winget install ffmpeg。已装在其他位置时用 ASTRA_STUDIO_FFMPEG 指定路径。');
-}
 function run(ffmpeg: string, args: string[], signal?: AbortSignal): Promise<string> {
   return new Promise((resolve, reject) => {
     const child = spawn(ffmpeg, ['-hide_banner', '-nostdin', ...args], { stdio: ['ignore', 'ignore', 'pipe'], signal });

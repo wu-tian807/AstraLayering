@@ -23,6 +23,8 @@ import { KRAPreviews } from './kra-preview.ts';
 import { launch } from './worker.ts';
 import { requestTaskStop } from '../.agents/skills/live2d-maker/workflow/control.ts';
 import { KritaUnavailable, preflightKrita, workflowKrita, type KritaCheck } from '../.agents/skills/live2d-maker/workflow/krita.ts';
+import { FFmpegUnavailable, preflightFFmpeg } from '../.agents/skills/live2d-maker/workflow/ffmpeg.ts';
+import { checkFFmpeg, type FFmpegCheck } from '../.agents/skills/live2d-maker/shared/ffmpeg.ts';
 import { MissingDependencyError } from '../.agents/skills/live2d-maker/shared/missing-dependency.ts';
 import { checkKnowledge, defaultKnowledgeDirectory } from '../.agents/skills/live2d-maker/shared/knowledge.ts';
 import { exportCompletedRun } from '../.agents/skills/live2d-maker/workflow/export.ts';
@@ -49,7 +51,7 @@ async function body(request: IncomingMessage) {
 function options(value: any, dir: string): TaskOptions {
   const result: TaskOptions = { name: value.name, dir };
   directoryFor(result);
-  for (const key of ['krita', 'image'] as const) {
+  for (const key of ['krita', 'ffmpeg', 'image'] as const) {
     if (value[key] !== undefined) {
       if (typeof value[key] !== 'string') throw new Error(key + ' 必须是路径');
       if (value[key].trim()) result[key] = value[key].trim();
@@ -75,13 +77,13 @@ function options(value: any, dir: string): TaskOptions {
 }
 // Global web settings: the run directory, the Krita used by every start, and the
 // knowledge directory recorded by new tasks (absent: the skill's own knowledge/).
-type Settings = { directory: string; krita?: string; knowledge?: string };
+type Settings = { directory: string; krita?: string; ffmpeg?: string; knowledge?: string };
 export async function createWorkbench({ settingsPath = join(root, '.web/settings.json'), defaultDir = runsDirectory,
-  start = launch, environment = createEnvironmentConfig(), kritaCheck = workflowKrita,
-  preflight = (options: TaskOptions) => preflightKrita(options, kritaCheck), kritaScan = createKritaScan(),
+  start = launch, environment = createEnvironmentConfig(), kritaCheck = workflowKrita, ffmpegCheck = checkFFmpeg,
+  preflight = async (options: TaskOptions) => { await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck); }, kritaScan = createKritaScan(),
   updates = createUpdateCheck({ cachePath: join(dirname(settingsPath), 'update-check.json') }) }: {
   settingsPath?: string; defaultDir?: string; start?: typeof launch; environment?: ReturnType<typeof createEnvironmentConfig>;
-  kritaCheck?: KritaCheck; preflight?: (options: TaskOptions) => Promise<unknown>; kritaScan?: ReturnType<typeof createKritaScan>;
+  kritaCheck?: KritaCheck; ffmpegCheck?: FFmpegCheck; preflight?: (options: TaskOptions) => Promise<unknown>; kritaScan?: ReturnType<typeof createKritaScan>;
   updates?: ReturnType<typeof createUpdateCheck> } = {}) {
   async function validateDir(path: string) {
     if (typeof path !== 'string' || !isAbsolute(path)) throw new Error('运行目录必须是绝对路径');
@@ -102,10 +104,14 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
     checkKnowledge(directory);
     return directory;
   }
+  async function validateFFmpeg(path: string) {
+    if (!isAbsolute(path)) throw new Error('FFmpeg 路径必须是绝对路径');
+    return (await ffmpegCheck(path)).executable;
+  }
   // An empty string clears an optional field; an absent one keeps it.
   async function validateSettings(value: any, previous?: Settings): Promise<Settings> {
     const next: Settings = { directory: await validateDir(value.directory) };
-    for (const [key, validate] of [['krita', validateKrita], ['knowledge', validateKnowledge]] as const) {
+    for (const [key, validate] of [['krita', validateKrita], ['ffmpeg', validateFFmpeg], ['knowledge', validateKnowledge]] as const) {
       const given = value[key];
       if (given === undefined) { if (previous?.[key]) next[key] = previous[key]; continue; }
       if (typeof given !== 'string') throw new Error(key + ' 必须是路径');
@@ -120,11 +126,14 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
     const saved = JSON.parse(await readFile(settingsPath, 'utf8'));
     settings = { directory: await validateDir(saved.directory),
       ...(typeof saved.krita === 'string' && saved.krita ? { krita: saved.krita } : {}),
+      ...(typeof saved.ffmpeg === 'string' && saved.ffmpeg ? { ffmpeg: saved.ffmpeg } : {}),
       ...(typeof saved.knowledge === 'string' && saved.knowledge ? { knowledge: saved.knowledge } : {}) };
   }
   catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
   const kritaRefused = (error: KritaUnavailable) =>
     ({ error: error.reason + '\n请在「全局设置」中选择可用的 Krita 可执行文件。', krita: { path: error.path ?? null } });
+  const softwareRefused = (error: KritaUnavailable | FFmpegUnavailable) => error instanceof KritaUnavailable ? kritaRefused(error)
+    : ({ error: error.reason + '\n请在「全局设置」中选择可用的 FFmpeg 可执行文件。', ffmpeg: { path: error.path ?? null } });
   const starts = new Set<string>();
   async function task(name: string, dir = settings.directory) {
     const path = directoryFor({ name, dir });
@@ -220,12 +229,13 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         const opts = options(value, requestDir), directory = directoryFor(opts);
         // Starts use the global Krita; a task records it, and the knowledge directory, when created.
         if (!opts.krita && settings.krita) opts.krita = settings.krita;
+        if (!opts.ffmpeg && settings.ffmpeg) opts.ffmpeg = settings.ffmpeg;
         if (path === '/api/tasks') {
           const displayName = validateDisplayName(value.displayName ?? '');
           if (settings.knowledge) opts.knowledge = settings.knowledge;
           // A route with Krita steps is refused before anything is created.
           try { await preflight(opts); }
-          catch (error) { if (error instanceof KritaUnavailable) { json(kritaRefused(error), 409); return; } throw error; }
+          catch (error) { if (error instanceof KritaUnavailable || error instanceof FFmpegUnavailable) { json(softwareRefused(error), 409); return; } throw error; }
           // Exclusive creation prevents changing the original of an existing named task.
           await mkdir(directory);
           let committed = false;
@@ -278,6 +288,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           if (value.image !== undefined || value.upload !== undefined) throw new Error('执行参数不更换任务原图');
           const displayName = value.displayName === undefined ? undefined : validateDisplayName(value.displayName);
           if (value.krita === undefined) delete opts.krita;
+          if (value.ffmpeg === undefined) delete opts.ffmpeg;
           const release = await acquireTaskLock(directory);
           try {
             const configured = await configureRun(opts, directory);
@@ -303,8 +314,8 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
             // Krita is checked before an action changes any step.
             try { await preflight(opts); }
             catch (error) {
-              if (!(error instanceof KritaUnavailable)) throw error;
-              json(kritaRefused(error), 409); return;
+              if (!(error instanceof KritaUnavailable) && !(error instanceof FFmpegUnavailable)) throw error;
+              json(softwareRefused(error), 409); return;
             }
             const message = path === '/api/task-action' ? await applyTaskAction({ name: opts.name, dir: opts.dir, action: value.action, section: actionSection }) : undefined;
             json({ ...(message === undefined ? {} : { message }), pid: await start(opts), name: opts.name }, 202);

@@ -16,7 +16,7 @@ import { installedVersion } from '../shared/version.ts';
 import { copyAsPng, pngBytes } from '../shared/png.ts';
 
 export type TaskOptions = {
-  name: string; dir?: string; image?: string; krita?: string; knowledge?: string;
+  name: string; dir?: string; image?: string; krita?: string; ffmpeg?: string; knowledge?: string;
   from?: SectionId; to?: SectionId; jobs?: number; standard?: boolean; shadowMode?: ShadowMode; live?: boolean;
 };
 export type SectionProgress = {
@@ -28,7 +28,7 @@ export type SectionProgress = {
 export type TaskRun = {
   archive?: true;
   version: 1; from: SectionId; to: SectionId;
-  krita?: string; jobs: number; standard?: boolean; shadowMode?: ShadowMode; live?: boolean;
+  krita?: string; ffmpeg?: string; jobs: number; standard?: boolean; shadowMode?: ShadowMode; live?: boolean;
   // The knowledge directory given with --knowledge; absent, the skill's own knowledge/.
   knowledge?: string;
   status: 'ready' | 'running' | 'completed' | 'failed' | 'interrupted';
@@ -67,6 +67,7 @@ export async function readRun(directory: string): Promise<TaskRun | undefined> {
   if (run.version !== 1 || !run.sections || typeof run.sections !== 'object'
     || !Number.isSafeInteger(run.jobs) || run.jobs < 1 || (run.standard !== undefined && typeof run.standard !== 'boolean')
     || (run.knowledge !== undefined && typeof run.knowledge !== 'string')
+    || (run.ffmpeg !== undefined && typeof run.ffmpeg !== 'string')
     || (run.live !== undefined && typeof run.live !== 'boolean')
     || !['ready', 'running', 'completed', 'failed', 'interrupted'].includes(run.status)) {
     throw new Error('无效的总控记录：' + join(directory, 'run.json'));
@@ -152,6 +153,12 @@ export function taskRoute(options: Pick<TaskOptions, 'from' | 'to' | 'live'>, sa
 export function taskKrita(options: Pick<TaskOptions, 'name' | 'dir' | 'krita'>, saved: Pick<TaskRun, 'krita'> | undefined): string | undefined {
   return options.krita ? resolveInput(options.name, options.krita, options.dir) : saved?.krita;
 }
+// The coordinator may retain startup options; independent sections receive the
+// path anew on every invocation and never recover it from their own outputs.
+export function taskFFmpeg(options: Pick<TaskOptions, 'name' | 'dir' | 'ffmpeg'>, saved: Pick<TaskRun, 'ffmpeg'> | undefined): string | undefined {
+  const path = options.ffmpeg || saved?.ffmpeg || process.env.ASTRA_STUDIO_FFMPEG;
+  return path ? resolveInput(options.name, path, options.dir) : undefined;
+}
 export async function configureRun(options: TaskOptions, directory: string): Promise<TaskRun> {
   const saved = await readRun(directory);
   if (saved?.archive) throw new Error('这是导出的成果归档；请在原运行目录继续制作。');
@@ -172,6 +179,7 @@ export async function configureRun(options: TaskOptions, directory: string): Pro
   if (!saved) run.createdWith = label;
   run.lastRunWith = label;
   run.krita = taskKrita(options, run);
+  run.ffmpeg = taskFFmpeg(options, run);
   if (options.knowledge) run.knowledge = resolveInput(options.name, options.knowledge, options.dir);
   for (const id of selected) run.sections[id] ??= { status: 'pending', updatedAt: now() };
   return run;

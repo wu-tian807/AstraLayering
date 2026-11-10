@@ -216,9 +216,12 @@ for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} Âç
   const { createFramesHead }=await import('../run.ts');
   const names=step==='step03_frames'?['left','up','down']:['left-up','left-down'];
   const agents={
+    ffmpeg: '/tools/custom ffmpeg/bin/ffmpeg',
     async run(): Promise<AgentResult> {assert.fail('frames use their saved step session');},
     createSession(id?:string,options:Callbacks={}) {return {
-      async run(): Promise<AgentResult> {
+      async run(task: AgentTask): Promise<AgentResult> {
+        assert.ok(task.prompt.includes(JSON.stringify(agents.ffmpeg)));
+        assert.match(task.prompt, /ASTRA_STUDIO_FFMPEG/);
         await options.onSessionStarted?.(id??'frames-thread','codex');
         for(const name of names) for(const file of [`${name}.png`,`frames/${name}.png`]) await put(join(output,file),'selected image');
         await put(join(output,'selected-frames.json'),'{}');
