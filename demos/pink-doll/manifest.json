@@ -11,9 +11,14 @@
   },
   "files": [
     {
-      "bytes": 5603,
-      "sha256": "91ab20abc8ac8c9a7b7bf0075d200188d37fcc2d130f524ec08639dbc283b0bd",
+      "bytes": 3820,
+      "sha256": "b54b54285da24f007ef556e19b9e9960ddda54f6fe0caccefadea24da100090d",
       "path": "README.md"
+    },
+    {
+      "path": "ARCHIVE.md",
+      "bytes": 1999,
+      "sha256": "35737e3d3f7b3ecf7eef6042c92baafb1129912552929f00e468fd0de9186d82"
     },
     {
       "path": "character-assembly/step01/character-assembled.kra",

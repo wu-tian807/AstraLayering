@@ -1,6 +1,6 @@
 # CLI 补丁与兼容行为
 
-本页说明 CLI 补丁、请求兼容层和会话恢复行为；并非每项都修改 CLI 本体。补丁源码、结构检查与模拟验证存放在这里，容量控制和视觉压缩共用实现位于 `shared/visual-context.ts`，Claude Messages 接入位于 `claude/gateway.ts`；会话恢复由工作流共享调用层实现。这些不是给制作 agent 新注册的执行工具。依赖安装、构建准备及缺少依赖时的处理统一见 [安装与前置](../references/setup.md)。
+本页维护 CLI 补丁、请求兼容和会话恢复。补丁源码与模拟验证在本目录，视觉压缩在 `shared/visual-context.ts`，Claude Messages 接入在 `claude/gateway.ts`，会话恢复由共享调用层处理。安装与构建见 [安装与前置](../references/setup.md)。
 
 | 功能 | .env 开关／选择 | 启动行为 |
 | --- | --- | --- |
@@ -55,7 +55,7 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 
 ### 行为
 
-- 标准 Responses 流在 `response.failed.error` 中给出失败原因，读取方式不变。LiteLLM 的流式失败先发 `error: null` 的 `response.failed`，再以独立 `error` 事件给出原因；补丁用后者替换空失败的通用提示，按同一错误码映射，不会让通用提示覆盖已有原因。`content_policy_violation`（如图片审查拒绝）报告为不可重试的请求错误并保留原文，不再以“stream disconnected… response.failed event received”重连 5 次。WebSocket 路径不变。工作流只按结构化错误码决定是否重试（见 [shared](../shared/README.md#自动检查)），因此这项修正与下文 [Responses 错误透传](#responses-错误透传) 直接决定失败是否被当作可重试错误。
+- 标准 Responses 流在 `response.failed.error` 中给出失败原因，读取方式不变。LiteLLM 的流式失败先发 `error: null` 的 `response.failed`，再以独立 `error` 事件给出原因；补丁用后者替换空失败的通用提示，按同一错误码映射，不会让通用提示覆盖已有原因。`content_policy_violation`（如图片审查拒绝）报告为不可重试的请求错误并保留原文，不再以“stream disconnected… response.failed event received”重连 5 次。WebSocket 路径不变。工作流只按结构化错误码决定是否重试（见 [shared](../shared/VALIDATION.md#自动检查)），因此这项修正与下文 [Responses 错误透传](#responses-错误透传) 直接决定失败是否被当作可重试错误。
 - 生图继续走原生 image generation extension 的工具、鉴权、重试、文件落盘及事件。独立配置不替换主模型 provider；每个请求的本地路由将 `/images/generations` JSON 和 `/images/edits` 标准 multipart 交给共享 OpenAI／Google 适配器。GPT／Nano 模型均由逐步骤配置选择，生图原稿保存到对应步骤的 `workspace/generated/`；报告引用的图片由发布流程复制到报告旁，`agents/` 只保留请求、会话与事件记录。旧 `image_base_url / api_key / model` 仅作为同一套配置的兼容输入，不再单独启动旧补丁通道。Claude／AGV 使用同一个适配器的函数工具 `imagegen`（Codex 侧的 feature 与补丁标识仍为 `image_generation`），配置见 [模型与 harness](../references/model-presets.md)。
 - Nano 的透明请求在共享适配器中先按目标参考颜色从红／绿／蓝里推荐背景色，再将明确的纯色要求交给模型；返回后保留原始 RGB，以它为唯一参考再生成一张仅换背景的白底或黑底图，由 Node／Sharp 差分恢复透明度与前景颜色，不改变第一张图像的尺寸；不需要抠图权重或额外 Python 包。选色评分、两张 RGB 图、alpha 及处理报告保存在对应步骤的 `workspace/generated/image-processing/`。GPT 原生 alpha、`codex-native` 路径及现有 Rust 补丁保持不变，本项无需重新构建 Codex。
 - 在每次普通模型请求前检查图片数，涵盖用户图片、工具图片与生图结果。阈值设为 49 时，恰好 49 张会全部参与原生带图 compact；不移除视觉能力，也不使用“不支持图片输入”的占位语。
@@ -76,7 +76,7 @@ python3 patches/codex/image-compaction-smoke.py --codex /absolute/codex
 
 `image-compaction-smoke.py` 只验证补丁二进制在 `codex exec`／`exec resume` 下的行为；工作流实际使用的 App Server 路径由 `native-image-smoke.ts` 覆盖。
 
-测试仅启动本机 HTTP 模拟服务，使用虚拟密钥与生成的测试 PNG。图片专项测试使用不同图片逐张比对原始数据，服务拒绝任何含 50 张及以上图片的请求；覆盖 48/49/50/52/120 张、一次工具批量输出、单次 Code Mode 从 44 跳到 52、关闭保护、失败/空摘要后的同 thread 恢复、工具配对和消息 ID 唯一性。字节专项还覆盖图片数未超限时的字节超限、双预算、批量工具和压缩失败后恢复；通用 smoke 另覆盖原生生图／编辑接口与分别鉴权。不调用真实模型、不消耗生图额度，也不修改已有作品；这些测试验证请求和恢复机制，不代替实际模型的视觉质量验收。
+测试使用本机模拟服务，覆盖生图路由、图片与请求体预算、会话压缩和失败恢复。详细测试矩阵见 [验证说明](VALIDATION.md)。
 
 `codex_request_compact_mib` 开启后，普通请求和视觉 compact 均使用真实 Responses 序列化器计算大小（含指令、工具和 Base64），预留传输元数据。HTTP／WebSocket 发包前还有最终字节检查。溢出时按图片数量与字节两种预算选择可实际总结的前缀，其余原图及工具配对保留；无法容纳文本和一张图时明确报错，不删除未总结的历史。关闭此项时原 49 张图片保护保持原行为。
 

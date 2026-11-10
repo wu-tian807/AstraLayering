@@ -75,10 +75,12 @@ preparation 使用当前配置的生图工具，将两张参考按顺序放入�
 pnpm check
 ```
 
-[run.ts](../shared/part/run.ts) 串联 [preparation.ts](preparation.ts) 与共享 [layering.ts](../shared/part/layering.ts)；[agents.ts](../shared/codex/agents.ts) 和 [tool-agent.ts](../shared/codex/tool-agent.ts) 按各步骤配置的 harness（codex／claude／agv）运行，Codex 步骤经 Codex App Server（CLI 版本由 `@openai/codex-sdk` 依赖固定），见 [模型方案](../references/model-presets.md)。首次分组和递归拆分分别在 [initial-groups.ts](../shared/part/initial-groups.ts)、[children-agent.ts](../shared/part/children-agent.ts)。所有衣服提示词都在 [knowledge/clothing-part-layering](../knowledge/clothing-part-layering/)，各步骤由 `agent.json` 声明拼接的文件与工具。
+[run.ts](../shared/part/run.ts) 串联 [preparation.ts](preparation.ts) 与共享 [layering.ts](../shared/part/layering.ts)；[agents.ts](../shared/codex/agents.ts) 和 [tool-agent.ts](../shared/codex/tool-agent.ts) 按各步骤配置的 harness（codex／claude／agv）运行，Codex 步骤经 Codex App Server（CLI 版本由 `@openai/codex-sdk` 依赖固定），见 [模型方案](../references/model-presets.md)。
 
-自动测试覆盖 preparation 的内置工具请求、缓存及失败恢复、穿插衣片的独立产物、分组调度与完成标记沿用。模型响应使用测试替身，不构成实际生图或视觉质量验收。
+首次分组和递归拆分分别在 [initial-groups.ts](../shared/part/initial-groups.ts)、[children-agent.ts](../shared/part/children-agent.ts)。
 
-现已完成 [2026-10-18—19 真实实跑](https://github.com/wu-tian807/AstraLayering/blob/main/demos/jianma/clothing-raster-layering/README.md)：原生 ImageGen 提取衣服，5 层、93 节点、68 个终止 part，最终交给栅格流程生成 KRA。最终深度检查曾两次由外部局部重开跨深度悬绳，再通过原流程制作；这不代表当前代码已具备自动回拆。案例仅保留关键 KRA、过程图片与简要说明，LLM 中间记录保留本地；该历史案例推动的多深度与 step01 拆层协议现已接入，说明见 [共享流程](../shared/README.md#多深度与上游修正)。
+所有衣服提示词都在 [knowledge/clothing-part-layering](../knowledge/clothing-part-layering/)，各步骤由 `agent.json` 声明拼接的文件与工具。
+
+共享测试覆盖衣服参考准备、分组调度与失败恢复。测试范围和历史案例见 [验证记录](VALIDATION.md)。
 
 共享安装、路径规则、工具配置和临时错误恢复见 [live2d-maker 使用说明](../SKILL.md)。所有相对输入路径从 `<运行根目录>/<name>/` 解析；本管线只管理自身目录。
