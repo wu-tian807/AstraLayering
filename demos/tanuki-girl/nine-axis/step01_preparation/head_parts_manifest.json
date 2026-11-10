@@ -1,0 +1,1948 @@
+{
+  "version": 1,
+  "sourceKra": "nine-axis/step01_preparation/character-nine-axis.kra",
+  "sourceColor": "nine-axis/step01_preparation/character-nine-axis.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "method": "Authored part/UUID selection; base projection with own masks; independent shadow pixels before receiver clipping; original bounds; no view crop",
+  "order": "top-to-bottom",
+  "parts": [
+    {
+      "uuid": "44e49bb0-7baf-4cec-9387-60d3ff31aab8",
+      "id": "face/eyebrows/eyebrow_right",
+      "partId": "character:face/eyebrows/eyebrow_right",
+      "scope": "face",
+      "group": "face/eyebrows",
+      "texture": "layers/0013-face__eyebrows__eyebrow_right.png",
+      "textureBounds": [
+        605,
+        352,
+        72,
+        23
+      ],
+      "bbox": [
+        605,
+        352,
+        677,
+        375
+      ],
+      "layerName": "D081.00 | face/eyebrows/eyebrow_right",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 13,
+      "stackPath": [
+        7
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "798a55c0-884f-4992-b34f-cd37774e99eb",
+      "id": "face/eyebrows/eyebrow_left",
+      "partId": "character:face/eyebrows/eyebrow_left",
+      "scope": "face",
+      "group": "face/eyebrows",
+      "texture": "layers/0014-face__eyebrows__eyebrow_left.png",
+      "textureBounds": [
+        730,
+        350,
+        84,
+        23
+      ],
+      "bbox": [
+        730,
+        350,
+        814,
+        373
+      ],
+      "layerName": "D080.00 | face/eyebrows/eyebrow_left",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 14,
+      "stackPath": [
+        8
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "eaaee9a5-5ea7-4902-9486-eae55c93678b",
+      "id": "face/mouth/upper_lip",
+      "partId": "character:face/mouth/upper_lip",
+      "scope": "face",
+      "group": "face/mouth",
+      "texture": "layers/0015-face__mouth__upper_lip.png",
+      "textureBounds": [
+        694,
+        492,
+        29,
+        19
+      ],
+      "bbox": [
+        694,
+        492,
+        723,
+        511
+      ],
+      "layerName": "D079.00 | face/mouth/upper_lip",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 15,
+      "stackPath": [
+        9
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "5dcee15f-5efa-4b9b-8ee7-675da6ed8732",
+      "id": "face/mouth/lower_lip",
+      "partId": "character:face/mouth/lower_lip",
+      "scope": "face",
+      "group": "face/mouth",
+      "texture": "layers/0016-face__mouth__lower_lip.png",
+      "textureBounds": [
+        695,
+        502,
+        27,
+        19
+      ],
+      "bbox": [
+        695,
+        502,
+        722,
+        521
+      ],
+      "layerName": "D078.00 | face/mouth/lower_lip",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 16,
+      "stackPath": [
+        10
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "3faf550e-bd88-4096-a327-938cc74b1c3b",
+      "id": "face/blush_right",
+      "partId": "character:face/blush_right",
+      "scope": "face",
+      "group": "face",
+      "texture": "layers/0017-face__blush_right.png",
+      "textureBounds": [
+        625,
+        466,
+        41,
+        28
+      ],
+      "bbox": [
+        625,
+        466,
+        666,
+        494
+      ],
+      "layerName": "D077.00 | face/blush_right",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 17,
+      "stackPath": [
+        11
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "0f0fca4d-647b-4391-ad2d-2e426d844464",
+      "id": "face/blush_left",
+      "partId": "character:face/blush_left",
+      "scope": "face",
+      "group": "face",
+      "texture": "layers/0018-face__blush_left.png",
+      "textureBounds": [
+        746,
+        463,
+        41,
+        26
+      ],
+      "bbox": [
+        746,
+        463,
+        787,
+        489
+      ],
+      "layerName": "D076.00 | face/blush_left",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 18,
+      "stackPath": [
+        12
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "27838092-c958-4853-9dfd-b604b596476c",
+      "id": "face/nose",
+      "partId": "character:face/nose",
+      "scope": "face",
+      "group": "face",
+      "texture": "layers/0019-face__nose.png",
+      "textureBounds": [
+        699,
+        460,
+        16,
+        17
+      ],
+      "bbox": [
+        699,
+        460,
+        715,
+        477
+      ],
+      "layerName": "D075.00 | face/nose",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 19,
+      "stackPath": [
+        13
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "731a4b73-2648-45ad-8367-ec733a223b4e",
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "partId": "character:face/eyes/eye_right/eyelid_crease",
+      "scope": "face",
+      "group": "face/eyes/eye_right",
+      "texture": "layers/0020-face__eyes__eye_right__eyelid_crease.png",
+      "textureBounds": [
+        629,
+        399,
+        39,
+        8
+      ],
+      "bbox": [
+        629,
+        399,
+        668,
+        407
+      ],
+      "layerName": "D074.00 | face/eyes/eye_right/eyelid_crease",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 20,
+      "stackPath": [
+        14
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "6950fceb-15cc-4d8b-9a8d-a1f2a00c5179",
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "partId": "character:face/eyes/eye_left/eyelid_crease",
+      "scope": "face",
+      "group": "face/eyes/eye_left",
+      "texture": "layers/0021-face__eyes__eye_left__eyelid_crease.png",
+      "textureBounds": [
+        732,
+        399,
+        42,
+        9
+      ],
+      "bbox": [
+        732,
+        399,
+        774,
+        408
+      ],
+      "layerName": "D073.00 | face/eyes/eye_left/eyelid_crease",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 21,
+      "stackPath": [
+        15
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "4bfc913d-62de-4400-a799-ab12cbfb3bc6",
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "partId": "character:face/eyes/eye_right/upper_eyelid",
+      "scope": "face",
+      "group": "face/eyes/eye_right",
+      "texture": "layers/0022-face__eyes__eye_right__upper_eyelid.png",
+      "textureBounds": [
+        611,
+        406,
+        68,
+        41
+      ],
+      "bbox": [
+        611,
+        406,
+        679,
+        447
+      ],
+      "layerName": "D072.00 | face/eyes/eye_right/upper_eyelid",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 22,
+      "stackPath": [
+        16
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "81d90871-b1fc-4b8a-ad8f-e9a017f6f48e",
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "partId": "character:face/eyes/eye_left/upper_eyelid",
+      "scope": "face",
+      "group": "face/eyes/eye_left",
+      "texture": "layers/0023-face__eyes__eye_left__upper_eyelid.png",
+      "textureBounds": [
+        735,
+        408,
+        69,
+        38
+      ],
+      "bbox": [
+        735,
+        408,
+        804,
+        446
+      ],
+      "layerName": "D071.00 | face/eyes/eye_left/upper_eyelid",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 23,
+      "stackPath": [
+        17
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "6a63b36b-c447-4067-a803-048a83d1e723",
+      "id": "face/eyes/eye_right/highlight",
+      "partId": "character:face/eyes/eye_right/highlight",
+      "scope": "face",
+      "group": "face/eyes/eye_right",
+      "texture": "layers/0024-face__eyes__eye_right__highlight.png",
+      "textureBounds": [
+        636,
+        420,
+        39,
+        31
+      ],
+      "bbox": [
+        636,
+        420,
+        675,
+        451
+      ],
+      "layerName": "D070.00 | face/eyes/eye_right/highlight",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 24,
+      "stackPath": [
+        18
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "37db0f80-acac-4643-9591-776003274687",
+      "id": "face/eyes/eye_right/iris",
+      "partId": "character:face/eyes/eye_right/iris",
+      "scope": "face",
+      "group": "face/eyes/eye_right",
+      "texture": "layers/0026-face__eyes__eye_right__iris.png",
+      "textureBounds": [
+        635,
+        410,
+        41,
+        48
+      ],
+      "bbox": [
+        635,
+        410,
+        676,
+        458
+      ],
+      "layerName": "D068.00 | face/eyes/eye_right/iris",
+      "nodeType": "paintlayer",
+      "parentUuid": "{054c00b0-181c-43b1-8161-b10c6415b9ca}",
+      "order": 26,
+      "stackPath": [
+        19,
+        1,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "b22dbaa9-e2b7-40fe-b44a-8e9b87766fcc",
+      "id": "face/eyes/eye_right/sclera",
+      "partId": "character:face/eyes/eye_right/sclera",
+      "scope": "face",
+      "group": "face/eyes/eye_right",
+      "texture": "layers/0027-face__eyes__eye_right__sclera.png",
+      "textureBounds": [
+        622,
+        415,
+        62,
+        45
+      ],
+      "bbox": [
+        622,
+        415,
+        684,
+        460
+      ],
+      "layerName": "D066.00 | face/eyes/eye_right/sclera",
+      "nodeType": "paintlayer",
+      "parentUuid": "{054c00b0-181c-43b1-8161-b10c6415b9ca}",
+      "order": 27,
+      "stackPath": [
+        19,
+        1,
+        1
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "cdbcf1fb-4d88-4cb7-822e-42abdcbcc555",
+      "id": "face/eyes/eye_left/highlight",
+      "partId": "character:face/eyes/eye_left/highlight",
+      "scope": "face",
+      "group": "face/eyes/eye_left",
+      "texture": "layers/0028-face__eyes__eye_left__highlight.png",
+      "textureBounds": [
+        741,
+        420,
+        38,
+        32
+      ],
+      "bbox": [
+        741,
+        420,
+        779,
+        452
+      ],
+      "layerName": "D069.00 | face/eyes/eye_left/highlight",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 28,
+      "stackPath": [
+        20
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "5be6bfb0-ed5d-4567-9724-5ca4ad872050",
+      "id": "face/eyes/eye_left/iris",
+      "partId": "character:face/eyes/eye_left/iris",
+      "scope": "face",
+      "group": "face/eyes/eye_left",
+      "texture": "layers/0030-face__eyes__eye_left__iris.png",
+      "textureBounds": [
+        741,
+        406,
+        41,
+        52
+      ],
+      "bbox": [
+        741,
+        406,
+        782,
+        458
+      ],
+      "layerName": "D067.00 | face/eyes/eye_left/iris",
+      "nodeType": "paintlayer",
+      "parentUuid": "{0c72e3f8-bf2a-4776-a075-6fc8a8cd97e1}",
+      "order": 30,
+      "stackPath": [
+        21,
+        1,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "49863ef6-0a5c-4506-926f-231c524cdb49",
+      "id": "face/eyes/eye_left/sclera",
+      "partId": "character:face/eyes/eye_left/sclera",
+      "scope": "face",
+      "group": "face/eyes/eye_left",
+      "texture": "layers/0031-face__eyes__eye_left__sclera.png",
+      "textureBounds": [
+        729,
+        415,
+        63,
+        44
+      ],
+      "bbox": [
+        729,
+        415,
+        792,
+        459
+      ],
+      "layerName": "D065.00 | face/eyes/eye_left/sclera",
+      "nodeType": "paintlayer",
+      "parentUuid": "{0c72e3f8-bf2a-4776-a075-6fc8a8cd97e1}",
+      "order": 31,
+      "stackPath": [
+        21,
+        1,
+        1
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "3a57b4ce-9f6b-4746-a5ec-6e6f53d08793",
+      "id": "face/mouth/upper_teeth",
+      "partId": "character:face/mouth/upper_teeth",
+      "scope": "face",
+      "group": "face/mouth",
+      "texture": "layers/0032-face__mouth__upper_teeth.png",
+      "textureBounds": [
+        690,
+        494,
+        36,
+        14
+      ],
+      "bbox": [
+        690,
+        494,
+        726,
+        508
+      ],
+      "layerName": "D064.00 | face/mouth/upper_teeth",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 32,
+      "stackPath": [
+        22
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "a211233b-ae02-45c7-8616-8cf87cb535ed",
+      "id": "face/mouth/lower_teeth",
+      "partId": "character:face/mouth/lower_teeth",
+      "scope": "face",
+      "group": "face/mouth",
+      "texture": "layers/0033-face__mouth__lower_teeth.png",
+      "textureBounds": [
+        695,
+        508,
+        28,
+        14
+      ],
+      "bbox": [
+        695,
+        508,
+        723,
+        522
+      ],
+      "layerName": "D063.00 | face/mouth/lower_teeth",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 33,
+      "stackPath": [
+        23
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "d3b3aa14-50b8-4c1a-9c47-c048d1a6e7d1",
+      "id": "face/mouth/tongue",
+      "partId": "character:face/mouth/tongue",
+      "scope": "face",
+      "group": "face/mouth",
+      "texture": "layers/0034-face__mouth__tongue.png",
+      "textureBounds": [
+        696,
+        503,
+        25,
+        17
+      ],
+      "bbox": [
+        696,
+        503,
+        721,
+        520
+      ],
+      "layerName": "D062.00 | face/mouth/tongue",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 34,
+      "stackPath": [
+        24
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "5dcbbd36-7beb-455f-975f-a157c995742f",
+      "id": "face/mouth/mouth_interior",
+      "partId": "character:face/mouth/mouth_interior",
+      "scope": "face",
+      "group": "face/mouth",
+      "texture": "layers/0035-face__mouth__mouth_interior.png",
+      "textureBounds": [
+        694,
+        494,
+        29,
+        24
+      ],
+      "bbox": [
+        694,
+        494,
+        723,
+        518
+      ],
+      "layerName": "D061.00 | face/mouth/mouth_interior",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 35,
+      "stackPath": [
+        25
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "b59364ca-e52c-46dd-a5b9-c24f09b553ce",
+      "id": "face/face_base",
+      "partId": "character:face/face_base",
+      "scope": "face",
+      "group": "face",
+      "texture": "layers/0039-face__face_base.png",
+      "textureBounds": [
+        600,
+        301,
+        217,
+        241
+      ],
+      "bbox": [
+        600,
+        301,
+        817,
+        542
+      ],
+      "layerName": "D060.00 | face/face_base",
+      "nodeType": "paintlayer",
+      "parentUuid": "{53ab3e21-e315-4b5e-801e-53c63161c576}",
+      "order": 39,
+      "stackPath": [
+        26,
+        3,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "9d62b2ab-fb2f-4dce-a681-ec69e26f03c7",
+      "id": "neck",
+      "partId": "character:neck",
+      "scope": "face",
+      "group": "body",
+      "texture": "layers/0046-neck.png",
+      "textureBounds": [
+        631,
+        486,
+        155,
+        153
+      ],
+      "bbox": [
+        631,
+        486,
+        786,
+        639
+      ],
+      "layerName": "D022.00 | neck",
+      "nodeType": "paintlayer",
+      "parentUuid": "{0fe2011c-a1c8-45ca-b208-5ceddcedb124}",
+      "order": 46,
+      "stackPath": [
+        86,
+        1,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "b58d6233-43ea-4abd-8e3d-0baf5327dbeb",
+      "id": "face/ears/ear_right/ear_shell",
+      "partId": "character:face/ears/ear_right/ear_shell",
+      "scope": "face",
+      "group": "face/ears/ear_right",
+      "texture": "layers/0047-face__ears__ear_right__ear_shell.png",
+      "textureBounds": [
+        517,
+        201,
+        114,
+        122
+      ],
+      "bbox": [
+        517,
+        201,
+        631,
+        323
+      ],
+      "layerName": "D021.00 | face/ears/ear_right/ear_shell",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 47,
+      "stackPath": [
+        87
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "8c50b290-f67e-4ef4-8062-0e0cf2b7e536",
+      "id": "face/ears/ear_left/ear_shell",
+      "partId": "character:face/ears/ear_left/ear_shell",
+      "scope": "face",
+      "group": "face/ears/ear_left",
+      "texture": "layers/0048-face__ears__ear_left__ear_shell.png",
+      "textureBounds": [
+        776,
+        201,
+        117,
+        122
+      ],
+      "bbox": [
+        776,
+        201,
+        893,
+        323
+      ],
+      "layerName": "D020.00 | face/ears/ear_left/ear_shell",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 48,
+      "stackPath": [
+        88
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "17505ce3-5c13-46cc-a6ed-9c2f90febe07",
+      "id": "face/ears/ear_right/ear_fur",
+      "partId": "character:face/ears/ear_right/ear_fur",
+      "scope": "face",
+      "group": "face/ears/ear_right",
+      "texture": "layers/0049-face__ears__ear_right__ear_fur.png",
+      "textureBounds": [
+        558,
+        237,
+        63,
+        72
+      ],
+      "bbox": [
+        558,
+        237,
+        621,
+        309
+      ],
+      "layerName": "D019.00 | face/ears/ear_right/ear_fur",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 49,
+      "stackPath": [
+        89
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "b88142ea-e37d-4705-b789-44da20b0c844",
+      "id": "face/ears/ear_left/ear_fur",
+      "partId": "character:face/ears/ear_left/ear_fur",
+      "scope": "face",
+      "group": "face/ears/ear_left",
+      "texture": "layers/0050-face__ears__ear_left__ear_fur.png",
+      "textureBounds": [
+        793,
+        239,
+        60,
+        71
+      ],
+      "bbox": [
+        793,
+        239,
+        853,
+        310
+      ],
+      "layerName": "D018.00 | face/ears/ear_left/ear_fur",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 50,
+      "stackPath": [
+        90
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "e011f040-3a64-417a-9d7c-480072a77003",
+      "id": "face/ears/ear_right/ear_interior",
+      "partId": "character:face/ears/ear_right/ear_interior",
+      "scope": "face",
+      "group": "face/ears/ear_right",
+      "texture": "layers/0051-face__ears__ear_right__ear_interior.png",
+      "textureBounds": [
+        534,
+        218,
+        79,
+        88
+      ],
+      "bbox": [
+        534,
+        218,
+        613,
+        306
+      ],
+      "layerName": "D017.00 | face/ears/ear_right/ear_interior",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 51,
+      "stackPath": [
+        91
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "c8dd94ab-223d-4792-93ef-f95319961fff",
+      "id": "face/ears/ear_left/ear_interior",
+      "partId": "character:face/ears/ear_left/ear_interior",
+      "scope": "face",
+      "group": "face/ears/ear_left",
+      "texture": "layers/0052-face__ears__ear_left__ear_interior.png",
+      "textureBounds": [
+        796,
+        220,
+        81,
+        89
+      ],
+      "bbox": [
+        796,
+        220,
+        877,
+        309
+      ],
+      "layerName": "D016.00 | face/ears/ear_left/ear_interior",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 52,
+      "stackPath": [
+        92
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    }
+  ],
+  "referenceLayers": [
+    {
+      "uuid": "5e7bd374-2655-4268-b44a-c9b84e6c9e9e",
+      "id": "head_accessories/hair_tie_front",
+      "partId": "character:head_accessories/hair_tie_front",
+      "scope": "accessory",
+      "group": "head_accessories",
+      "texture": "reference-layers/0000-head_accessories__hair_tie_front.png",
+      "textureBounds": [
+        582,
+        698,
+        28,
+        16
+      ],
+      "bbox": [
+        582,
+        698,
+        610,
+        714
+      ],
+      "layerName": "D088.00 | head_accessories/hair_tie_front",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 0,
+      "stackPath": [
+        1
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "d59b1e4d-0976-417f-8b99-0fe8f743d557",
+      "id": "head_accessories/tanuki_ornament/paw/paw_right",
+      "partId": "character:head_accessories/tanuki_ornament/paw/paw_right",
+      "scope": "accessory",
+      "group": "head_accessories/tanuki_ornament/paw",
+      "texture": "reference-layers/0001-head_accessories__tanuki_ornament__paw__paw_right.png",
+      "textureBounds": [
+        605,
+        196,
+        81,
+        62
+      ],
+      "bbox": [
+        605,
+        196,
+        686,
+        258
+      ],
+      "layerName": "D087.00 | head_accessories/tanuki_ornament/paw/paw_right",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 1,
+      "stackPath": [
+        2
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "15454282-995e-4629-9f7c-b6985d59d101",
+      "id": "head_accessories/tanuki_ornament/paw/paw_left",
+      "partId": "character:head_accessories/tanuki_ornament/paw/paw_left",
+      "scope": "accessory",
+      "group": "head_accessories/tanuki_ornament/paw",
+      "texture": "reference-layers/0002-head_accessories__tanuki_ornament__paw__paw_left.png",
+      "textureBounds": [
+        724,
+        196,
+        83,
+        62
+      ],
+      "bbox": [
+        724,
+        196,
+        807,
+        258
+      ],
+      "layerName": "D086.00 | head_accessories/tanuki_ornament/paw/paw_left",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 2,
+      "stackPath": [
+        3
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "831d9aad-19b0-49ef-8f5c-d1be06cd973e",
+      "id": "head_accessories/tanuki_ornament/tanuki_body::831d9aad-19b0-49ef-8f5c-d1be06cd973e",
+      "partId": "character:head_accessories/tanuki_ornament/tanuki_body",
+      "scope": "accessory",
+      "group": "head_accessories/tanuki_ornament",
+      "texture": "reference-layers/0003-head_accessories__tanuki_ornament__tanuki_body--831d9aad-19b0-49ef-8f5c-d1be06cd973e.png",
+      "textureBounds": [
+        610,
+        178,
+        192,
+        58
+      ],
+      "bbox": [
+        610,
+        178,
+        802,
+        236
+      ],
+      "layerName": "D085.50 | head_accessories/tanuki_ornament/tanuki_body | foreground jaw",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 3,
+      "stackPath": [
+        4
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "a8337694-2a38-4df6-b2d2-c6c37e2bc957",
+      "id": "head_accessories/hair_bell",
+      "partId": "character:head_accessories/hair_bell",
+      "scope": "accessory",
+      "group": "head_accessories",
+      "texture": "reference-layers/0004-head_accessories__hair_bell.png",
+      "textureBounds": [
+        522,
+        314,
+        86,
+        84
+      ],
+      "bbox": [
+        522,
+        314,
+        608,
+        398
+      ],
+      "layerName": "D085.00 | head_accessories/hair_bell",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 4,
+      "stackPath": [
+        5
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "1af29209-e953-4a75-8c41-3febfa35f8da",
+      "id": "hair/bangs",
+      "partId": "character:hair/bangs",
+      "scope": "hair",
+      "group": "hair",
+      "texture": "reference-layers/0009-hair__bangs.png",
+      "textureBounds": [
+        602,
+        192,
+        211,
+        255
+      ],
+      "bbox": [
+        602,
+        192,
+        813,
+        447
+      ],
+      "layerName": "D084.00 | hair/bangs",
+      "nodeType": "paintlayer",
+      "parentUuid": "{62bb43a1-6f95-442c-b748-d449c599907c}",
+      "order": 9,
+      "stackPath": [
+        6,
+        4,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "ea19e7a1-bfe6-4fb6-9a74-b4ecebf37fc8",
+      "id": "hair/side_hair/side_hair_right",
+      "partId": "character:hair/side_hair/side_hair_right",
+      "scope": "hair",
+      "group": "hair/side_hair",
+      "texture": "reference-layers/0011-hair__side_hair__side_hair_right.png",
+      "textureBounds": [
+        487,
+        208,
+        205,
+        296
+      ],
+      "bbox": [
+        487,
+        208,
+        692,
+        504
+      ],
+      "layerName": "D083.00 | hair/side_hair/side_hair_right",
+      "nodeType": "paintlayer",
+      "parentUuid": "{8deeef6c-8318-48ec-8618-49f454584480}",
+      "order": 11,
+      "stackPath": [
+        6,
+        4,
+        1,
+        1,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "2e0ad9b5-3b84-4c5e-943b-4c7d5ca3c042",
+      "id": "hair/side_hair/side_hair_left",
+      "partId": "character:hair/side_hair/side_hair_left",
+      "scope": "hair",
+      "group": "hair/side_hair",
+      "texture": "reference-layers/0012-hair__side_hair__side_hair_left.png",
+      "textureBounds": [
+        729,
+        216,
+        204,
+        294
+      ],
+      "bbox": [
+        729,
+        216,
+        933,
+        510
+      ],
+      "layerName": "D082.00 | hair/side_hair/side_hair_left",
+      "nodeType": "paintlayer",
+      "parentUuid": "{8deeef6c-8318-48ec-8618-49f454584480}",
+      "order": 12,
+      "stackPath": [
+        6,
+        4,
+        1,
+        1,
+        1
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "dd92a426-1cd5-4aec-871a-d0ee1e49bc7b",
+      "id": "hair/braid_right",
+      "partId": "character:hair/braid_right",
+      "scope": "hair",
+      "group": "hair",
+      "texture": "reference-layers/0041-hair__braid_right.png",
+      "textureBounds": [
+        529,
+        489,
+        104,
+        293
+      ],
+      "bbox": [
+        529,
+        489,
+        633,
+        782
+      ],
+      "layerName": "D057.00 | hair/braid_right | front",
+      "nodeType": "paintlayer",
+      "parentUuid": "{039cf01d-a1db-4e12-afef-5b7970adec6c}",
+      "order": 41,
+      "stackPath": [
+        29,
+        1,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "88c46423-0bc0-4178-9132-e82e26407572",
+      "id": "head_accessories/hair_tie_back",
+      "partId": "character:head_accessories/hair_tie_back",
+      "scope": "accessory",
+      "group": "head_accessories",
+      "texture": "reference-layers/0042-head_accessories__hair_tie_back.png",
+      "textureBounds": [
+        581,
+        688,
+        29,
+        21
+      ],
+      "bbox": [
+        581,
+        688,
+        610,
+        709
+      ],
+      "layerName": "D056.00 | head_accessories/hair_tie_back",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 42,
+      "stackPath": [
+        30
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "1babf92a-801c-4362-9b96-edfc0b3918c8",
+      "id": "hair/back_hair",
+      "partId": "character:hair/back_hair",
+      "scope": "hair",
+      "group": "hair",
+      "texture": "reference-layers/0055-hair__back_hair.png",
+      "textureBounds": [
+        514,
+        190,
+        390,
+        366
+      ],
+      "bbox": [
+        514,
+        190,
+        904,
+        556
+      ],
+      "layerName": "D014.00 | hair/back_hair",
+      "nodeType": "paintlayer",
+      "parentUuid": "{bdc7c18f-9954-476e-8388-d4df5cba253f}",
+      "order": 55,
+      "stackPath": [
+        94,
+        2,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    },
+    {
+      "uuid": "8022f9a1-4f05-4a31-952d-9565f88b6c0b",
+      "id": "head_accessories/tanuki_ornament/tanuki_body",
+      "partId": "character:head_accessories/tanuki_ornament/tanuki_body",
+      "scope": "accessory",
+      "group": "head_accessories/tanuki_ornament",
+      "texture": "reference-layers/0056-head_accessories__tanuki_ornament__tanuki_body.png",
+      "textureBounds": [
+        594,
+        22,
+        320,
+        214
+      ],
+      "bbox": [
+        594,
+        22,
+        914,
+        236
+      ],
+      "layerName": "D012.00 | head_accessories/tanuki_ornament/tanuki_body",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a6769915-14ed-4027-a7f1-e1de9838480c}",
+      "order": 56,
+      "stackPath": [
+        96
+      ],
+      "visible": true,
+      "layerOpacity": 255,
+      "blendingMode": "normal"
+    }
+  ],
+  "shadowLayers": [
+    {
+      "uuid": "8683eb06-d5a1-47c7-9ffc-6d19314fd967",
+      "id": "hair-bell-hair",
+      "partId": "character:head_accessories/hair_bell",
+      "scope": "accessory",
+      "casterPartId": "character:head_accessories/hair_bell",
+      "receiverPartIds": [
+        "character:hair/side_hair/side_hair_left",
+        "character:hair/side_hair/side_hair_right",
+        "character:hair/bangs"
+      ],
+      "receiverLayerUuids": [
+        "2e0ad9b5-3b84-4c5e-943b-4c7d5ca3c042",
+        "ea19e7a1-bfe6-4fb6-9a74-b4ecebf37fc8",
+        "1af29209-e953-4a75-8c41-3febfa35f8da"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0005-hair-bell-hair.png",
+      "textureBounds": [
+        521,
+        367,
+        88,
+        45
+      ],
+      "bbox": [
+        521,
+        367,
+        609,
+        412
+      ],
+      "layerName": "Cast | hair-bell-hair | character:head_accessories/hair_bell -> character:hair/side_hair/side_hair_left,character:hair/side_hair/side_hair_right,character:hair/bangs",
+      "nodeType": "paintlayer",
+      "parentUuid": "{0751d44f-ede8-47fb-b6f2-a37c7a9a292b}",
+      "order": 5,
+      "stackPath": [
+        6,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 110,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "921c990d-009e-48f0-b2ca-c51d8bec1dc4",
+      "id": "tanuki-jaw-hair",
+      "partId": "character:head_accessories/tanuki_ornament/tanuki_body",
+      "scope": "accessory",
+      "casterPartId": "character:head_accessories/tanuki_ornament/tanuki_body",
+      "receiverPartIds": [
+        "character:hair/side_hair/side_hair_left",
+        "character:hair/side_hair/side_hair_right",
+        "character:hair/bangs"
+      ],
+      "receiverLayerUuids": [
+        "2e0ad9b5-3b84-4c5e-943b-4c7d5ca3c042",
+        "ea19e7a1-bfe6-4fb6-9a74-b4ecebf37fc8",
+        "1af29209-e953-4a75-8c41-3febfa35f8da"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0006-tanuki-jaw-hair.png",
+      "textureBounds": [
+        669,
+        209,
+        72,
+        31
+      ],
+      "bbox": [
+        669,
+        209,
+        741,
+        240
+      ],
+      "layerName": "Cast | tanuki-jaw-hair | character:head_accessories/tanuki_ornament/tanuki_body -> character:hair/side_hair/side_hair_left,character:hair/side_hair/side_hair_right,character:hair/bangs",
+      "nodeType": "paintlayer",
+      "parentUuid": "{0751d44f-ede8-47fb-b6f2-a37c7a9a292b}",
+      "order": 6,
+      "stackPath": [
+        6,
+        1
+      ],
+      "visible": true,
+      "layerOpacity": 56,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "0d400cdd-d8a0-4151-8efa-74a61c3a65aa",
+      "id": "paw-right-hair",
+      "partId": "character:head_accessories/tanuki_ornament/paw/paw_right",
+      "scope": "accessory",
+      "casterPartId": "character:head_accessories/tanuki_ornament/paw/paw_right",
+      "receiverPartIds": [
+        "character:hair/side_hair/side_hair_left",
+        "character:hair/side_hair/side_hair_right",
+        "character:hair/bangs"
+      ],
+      "receiverLayerUuids": [
+        "2e0ad9b5-3b84-4c5e-943b-4c7d5ca3c042",
+        "ea19e7a1-bfe6-4fb6-9a74-b4ecebf37fc8",
+        "1af29209-e953-4a75-8c41-3febfa35f8da"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0007-paw-right-hair.png",
+      "textureBounds": [
+        607,
+        229,
+        82,
+        41
+      ],
+      "bbox": [
+        607,
+        229,
+        689,
+        270
+      ],
+      "layerName": "Cast | paw-right-hair | character:head_accessories/tanuki_ornament/paw/paw_right -> character:hair/side_hair/side_hair_left,character:hair/side_hair/side_hair_right,character:hair/bangs",
+      "nodeType": "paintlayer",
+      "parentUuid": "{0751d44f-ede8-47fb-b6f2-a37c7a9a292b}",
+      "order": 7,
+      "stackPath": [
+        6,
+        2
+      ],
+      "visible": true,
+      "layerOpacity": 87,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "b0e92acb-18d8-4f04-bf38-f65edbd31496",
+      "id": "paw-left-hair",
+      "partId": "character:head_accessories/tanuki_ornament/paw/paw_left",
+      "scope": "accessory",
+      "casterPartId": "character:head_accessories/tanuki_ornament/paw/paw_left",
+      "receiverPartIds": [
+        "character:hair/side_hair/side_hair_left",
+        "character:hair/side_hair/side_hair_right",
+        "character:hair/bangs"
+      ],
+      "receiverLayerUuids": [
+        "2e0ad9b5-3b84-4c5e-943b-4c7d5ca3c042",
+        "ea19e7a1-bfe6-4fb6-9a74-b4ecebf37fc8",
+        "1af29209-e953-4a75-8c41-3febfa35f8da"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0008-paw-left-hair.png",
+      "textureBounds": [
+        723,
+        223,
+        77,
+        45
+      ],
+      "bbox": [
+        723,
+        223,
+        800,
+        268
+      ],
+      "layerName": "Cast | paw-left-hair | character:head_accessories/tanuki_ornament/paw/paw_left -> character:hair/side_hair/side_hair_left,character:hair/side_hair/side_hair_right,character:hair/bangs",
+      "nodeType": "paintlayer",
+      "parentUuid": "{0751d44f-ede8-47fb-b6f2-a37c7a9a292b}",
+      "order": 8,
+      "stackPath": [
+        6,
+        3
+      ],
+      "visible": true,
+      "layerOpacity": 87,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "5e0e4162-c487-4206-8525-7365b3b71b04",
+      "id": "bangs-sidehair",
+      "partId": "character:hair/bangs",
+      "scope": "hair",
+      "casterPartId": "character:hair/bangs",
+      "receiverPartIds": [
+        "character:hair/side_hair/side_hair_left",
+        "character:hair/side_hair/side_hair_right"
+      ],
+      "receiverLayerUuids": [
+        "2e0ad9b5-3b84-4c5e-943b-4c7d5ca3c042",
+        "ea19e7a1-bfe6-4fb6-9a74-b4ecebf37fc8"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0010-bangs-sidehair.png",
+      "textureBounds": [
+        651,
+        236,
+        158,
+        175
+      ],
+      "bbox": [
+        651,
+        236,
+        809,
+        411
+      ],
+      "layerName": "Cast | bangs-sidehair | character:hair/bangs -> character:hair/side_hair/side_hair_left,character:hair/side_hair/side_hair_right",
+      "nodeType": "paintlayer",
+      "parentUuid": "{aa32b7ca-f58b-4234-9352-71d7441c5dbe}",
+      "order": 10,
+      "stackPath": [
+        6,
+        4,
+        1,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 61,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "be971629-a4a5-49cf-94b6-ed573a934d11",
+      "id": "upper-lid-right",
+      "partId": "character:face/eyes/eye_right/upper_eyelid",
+      "scope": "face",
+      "casterPartId": "character:face/eyes/eye_right/upper_eyelid",
+      "receiverPartIds": [
+        "character:face/eyes/eye_right/sclera",
+        "character:face/eyes/eye_right/iris"
+      ],
+      "receiverLayerUuids": [
+        "b22dbaa9-e2b7-40fe-b44a-8e9b87766fcc",
+        "37db0f80-acac-4643-9591-776003274687"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0025-upper-lid-right.png",
+      "textureBounds": [
+        588,
+        378,
+        131,
+        54
+      ],
+      "bbox": [
+        588,
+        378,
+        719,
+        432
+      ],
+      "layerName": "Cast | upper-lid-right | character:face/eyes/eye_right/upper_eyelid -> character:face/eyes/eye_right/sclera,character:face/eyes/eye_right/iris",
+      "nodeType": "paintlayer",
+      "parentUuid": "{42b0c86e-2f28-4cd7-9885-cc63828d0b23}",
+      "order": 25,
+      "stackPath": [
+        19,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 107,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "ae2664e2-2138-4882-80c4-3134f09cdcb9",
+      "id": "upper-lid-left",
+      "partId": "character:face/eyes/eye_left/upper_eyelid",
+      "scope": "face",
+      "casterPartId": "character:face/eyes/eye_left/upper_eyelid",
+      "receiverPartIds": [
+        "character:face/eyes/eye_left/sclera",
+        "character:face/eyes/eye_left/iris"
+      ],
+      "receiverLayerUuids": [
+        "49863ef6-0a5c-4506-926f-231c524cdb49",
+        "5be6bfb0-ed5d-4567-9724-5ca4ad872050"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0029-upper-lid-left.png",
+      "textureBounds": [
+        695,
+        378,
+        131,
+        54
+      ],
+      "bbox": [
+        695,
+        378,
+        826,
+        432
+      ],
+      "layerName": "Cast | upper-lid-left | character:face/eyes/eye_left/upper_eyelid -> character:face/eyes/eye_left/sclera,character:face/eyes/eye_left/iris",
+      "nodeType": "paintlayer",
+      "parentUuid": "{41cf78b1-e6fb-4943-b303-921372ffb3d7}",
+      "order": 29,
+      "stackPath": [
+        21,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 107,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "0055e60b-b3bd-463d-b5de-3ed3965a3316",
+      "id": "side-right-face",
+      "partId": "character:hair/side_hair/side_hair_right",
+      "scope": "hair",
+      "casterPartId": "character:hair/side_hair/side_hair_right",
+      "receiverPartIds": [
+        "character:face/face_base"
+      ],
+      "receiverLayerUuids": [
+        "b59364ca-e52c-46dd-a5b9-c24f09b553ce"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0036-side-right-face.png",
+      "textureBounds": [
+        595,
+        340,
+        64,
+        150
+      ],
+      "bbox": [
+        595,
+        340,
+        659,
+        490
+      ],
+      "layerName": "Cast | side-right-face | character:hair/side_hair/side_hair_right -> character:face/face_base",
+      "nodeType": "paintlayer",
+      "parentUuid": "{3675635a-b9c2-41b6-8c8e-aeebbf39cc04}",
+      "order": 36,
+      "stackPath": [
+        26,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 56,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "afdb33a7-53a6-444d-9880-b329b212dc65",
+      "id": "side-left-face",
+      "partId": "character:hair/side_hair/side_hair_left",
+      "scope": "hair",
+      "casterPartId": "character:hair/side_hair/side_hair_left",
+      "receiverPartIds": [
+        "character:face/face_base"
+      ],
+      "receiverLayerUuids": [
+        "b59364ca-e52c-46dd-a5b9-c24f09b553ce"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0037-side-left-face.png",
+      "textureBounds": [
+        762,
+        344,
+        61,
+        152
+      ],
+      "bbox": [
+        762,
+        344,
+        823,
+        496
+      ],
+      "layerName": "Cast | side-left-face | character:hair/side_hair/side_hair_left -> character:face/face_base",
+      "nodeType": "paintlayer",
+      "parentUuid": "{3675635a-b9c2-41b6-8c8e-aeebbf39cc04}",
+      "order": 37,
+      "stackPath": [
+        26,
+        1
+      ],
+      "visible": true,
+      "layerOpacity": 56,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "7516f056-59d2-4395-87ee-bdfe5cb4810d",
+      "id": "bangs-face",
+      "partId": "character:hair/bangs",
+      "scope": "hair",
+      "casterPartId": "character:hair/bangs",
+      "receiverPartIds": [
+        "character:face/face_base"
+      ],
+      "receiverLayerUuids": [
+        "b59364ca-e52c-46dd-a5b9-c24f09b553ce"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0038-bangs-face.png",
+      "textureBounds": [
+        621,
+        288,
+        183,
+        167
+      ],
+      "bbox": [
+        621,
+        288,
+        804,
+        455
+      ],
+      "layerName": "Cast | bangs-face | character:hair/bangs -> character:face/face_base",
+      "nodeType": "paintlayer",
+      "parentUuid": "{3675635a-b9c2-41b6-8c8e-aeebbf39cc04}",
+      "order": 38,
+      "stackPath": [
+        26,
+        2
+      ],
+      "visible": true,
+      "layerOpacity": 41,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "c2b35f69-ca8b-4359-91e8-1f131b7e4327",
+      "id": "tie-braid",
+      "partId": "character:head_accessories/hair_tie_front",
+      "scope": "accessory",
+      "casterPartId": "character:head_accessories/hair_tie_front",
+      "receiverPartIds": [
+        "character:hair/braid_right"
+      ],
+      "receiverLayerUuids": [
+        "dd92a426-1cd5-4aec-871a-d0ee1e49bc7b"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0040-tie-braid.png",
+      "textureBounds": [
+        571,
+        697,
+        50,
+        27
+      ],
+      "bbox": [
+        571,
+        697,
+        621,
+        724
+      ],
+      "layerName": "Cast | tie-braid | character:head_accessories/hair_tie_front -> character:hair/braid_right",
+      "nodeType": "paintlayer",
+      "parentUuid": "{5bf83433-abee-452b-8aaf-fae7e988e194}",
+      "order": 40,
+      "stackPath": [
+        29,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 97,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "71ba2058-e5bd-488c-bcf7-0ada974740ea",
+      "id": "braid-collar",
+      "partId": "character:hair/braid_right",
+      "scope": "hair",
+      "casterPartId": "character:hair/braid_right",
+      "receiverPartIds": [
+        "clothing:kimono_body/right_underlap_panel",
+        "clothing:kimono_body/left_overlap_panel"
+      ],
+      "receiverLayerUuids": [
+        "3dcfacc7-af45-4c7d-a938-6cf9a4e2ff8f",
+        "01287c20-5e74-4e36-89fa-2b920f94ad80"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0043-braid-collar.png",
+      "textureBounds": [
+        546,
+        709,
+        70,
+        78
+      ],
+      "bbox": [
+        546,
+        709,
+        616,
+        787
+      ],
+      "layerName": "Cast | braid-collar | character:hair/braid_right -> clothing:kimono_body/right_underlap_panel,clothing:kimono_body/left_overlap_panel",
+      "nodeType": "paintlayer",
+      "parentUuid": "{8ce0560c-42b0-4c50-abfc-71a18bf1b7cc}",
+      "order": 43,
+      "stackPath": [
+        59,
+        2
+      ],
+      "visible": true,
+      "layerOpacity": 64,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "f5d68c17-c502-4127-985a-aa41858ef605",
+      "id": "chin-torso-continuation",
+      "partId": "character:face/face_base",
+      "scope": "face",
+      "casterPartId": "character:face/face_base",
+      "receiverPartIds": [
+        "character:body/torso"
+      ],
+      "receiverLayerUuids": [
+        "fe6e0319-b2c4-4890-a680-59de66919aaa"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0044-chin-torso-continuation.png",
+      "textureBounds": [
+        607,
+        473,
+        196,
+        143
+      ],
+      "bbox": [
+        607,
+        473,
+        803,
+        616
+      ],
+      "layerName": "Cast | chin-torso-continuation | character:face/face_base -> character:body/torso",
+      "nodeType": "paintlayer",
+      "parentUuid": "{a00033d3-64b7-4192-8999-d615e5e44110}",
+      "order": 44,
+      "stackPath": [
+        66,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 242,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "61d2beea-f745-4aef-8681-2de1e537e00f",
+      "id": "chin-neck",
+      "partId": "character:face/face_base",
+      "scope": "face",
+      "casterPartId": "character:face/face_base",
+      "receiverPartIds": [
+        "character:neck"
+      ],
+      "receiverLayerUuids": [
+        "9d62b2ab-fb2f-4dce-a681-ec69e26f03c7"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0045-chin-neck.png",
+      "textureBounds": [
+        607,
+        473,
+        196,
+        143
+      ],
+      "bbox": [
+        607,
+        473,
+        803,
+        616
+      ],
+      "layerName": "Cast | chin-neck | character:face/face_base -> character:neck",
+      "nodeType": "paintlayer",
+      "parentUuid": "{74744fa3-7564-41f1-abb2-7ecbcf369ff0}",
+      "order": 45,
+      "stackPath": [
+        86,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 242,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "2986f639-5f08-480e-a8c9-3c917fff4ecc",
+      "id": "side-right-backhair",
+      "partId": "character:hair/side_hair/side_hair_right",
+      "scope": "hair",
+      "casterPartId": "character:hair/side_hair/side_hair_right",
+      "receiverPartIds": [
+        "character:hair/back_hair"
+      ],
+      "receiverLayerUuids": [
+        "1babf92a-801c-4362-9b96-edfc0b3918c8"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0053-side-right-backhair.png",
+      "textureBounds": [
+        548,
+        406,
+        89,
+        105
+      ],
+      "bbox": [
+        548,
+        406,
+        637,
+        511
+      ],
+      "layerName": "Cast | side-right-backhair | character:hair/side_hair/side_hair_right -> character:hair/back_hair",
+      "nodeType": "paintlayer",
+      "parentUuid": "{9a458869-c83d-4e7f-90be-47e6fb5d666f}",
+      "order": 53,
+      "stackPath": [
+        94,
+        0
+      ],
+      "visible": true,
+      "layerOpacity": 87,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    },
+    {
+      "uuid": "c246ee53-66a1-46fa-b2ab-fcff76966d7d",
+      "id": "side-left-backhair",
+      "partId": "character:hair/side_hair/side_hair_left",
+      "scope": "hair",
+      "casterPartId": "character:hair/side_hair/side_hair_left",
+      "receiverPartIds": [
+        "character:hair/back_hair"
+      ],
+      "receiverLayerUuids": [
+        "1babf92a-801c-4362-9b96-edfc0b3918c8"
+      ],
+      "follow": "caster",
+      "group": "body",
+      "texture": "shadow-layers/0054-side-left-backhair.png",
+      "textureBounds": [
+        759,
+        408,
+        104,
+        110
+      ],
+      "bbox": [
+        759,
+        408,
+        863,
+        518
+      ],
+      "layerName": "Cast | side-left-backhair | character:hair/side_hair/side_hair_left -> character:hair/back_hair",
+      "nodeType": "paintlayer",
+      "parentUuid": "{9a458869-c83d-4e7f-90be-47e6fb5d666f}",
+      "order": 54,
+      "stackPath": [
+        94,
+        1
+      ],
+      "visible": true,
+      "layerOpacity": 87,
+      "blendingMode": "multiply",
+      "materialRole": "shadow"
+    }
+  ],
+  "preview": {
+    "texture": "original-full-face.png",
+    "textureBounds": [
+      0,
+      0,
+      1376,
+      2048
+    ]
+  }
+}

@@ -38,6 +38,9 @@ demos/jianma/**/*.svg -text
 # Pink Elf snapshot and its SHA-256 manifest preserve original bytes.
 demos/pink-elf/** -text
 
+# Tanuki reference keeps the authored KRA, model and texture bytes across platforms.
+demos/tanuki-girl/** -text
+
 # Closed-face archive and its SHA-256 manifest preserve exported bytes.
 demos/closed-face-full-20261026/** -text
 

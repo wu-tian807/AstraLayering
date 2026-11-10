@@ -1,0 +1,87 @@
+{
+  "document": "nine-axis/step07_jaw-line/character-nine-axis.kra",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "parts": [
+    {
+      "id": "face/face_base",
+      "uuid": "{b59364ca-e52c-46dd-a5b9-c24f09b553ce}",
+      "name": "D060.00 | face/face_base",
+      "texture": "nine-axis/step07_jaw-line/layers/0039-face__face_base.png",
+      "textureBounds": [
+        600,
+        301,
+        217,
+        241
+      ],
+      "exactKraPixelMatch": true
+    },
+    {
+      "id": "jaw_line",
+      "uuid": "{c49f55fd-fc58-4073-a4a5-b959b3a861ca}",
+      "name": "Step07 | jaw_line | original lower ink",
+      "texture": "nine-axis/step07_jaw-line/layers/jaw-line.png",
+      "textureBounds": [
+        600,
+        301,
+        217,
+        241
+      ],
+      "exactKraPixelMatch": true
+    },
+    {
+      "id": "jaw_erase_mask",
+      "uuid": "{501d8b79-cacc-44d5-9272-37831994f992}",
+      "name": "Step07 | jaw_erase_mask | rest offset below line",
+      "texture": "nine-axis/step07_jaw-line/layers/jaw-erase-mask.png",
+      "textureBounds": [
+        600,
+        301,
+        217,
+        281
+      ],
+      "exactKraPixelMatch": true
+    },
+    {
+      "id": "neck",
+      "uuid": "{9d62b2ab-fb2f-4dce-a681-ec69e26f03c7}",
+      "name": "D022.00 | neck",
+      "texture": "nine-axis/step07_jaw-line/layers/0046-neck.png",
+      "textureBounds": [
+        631,
+        486,
+        155,
+        153
+      ],
+      "exactKraPixelMatch": true
+    },
+    {
+      "id": "neck_top_extension",
+      "uuid": "{9d62b2ab-fb2f-4dce-a681-ec69e26f03c7}",
+      "name": "D022.00 | neck",
+      "texture": "nine-axis/step07_jaw-line/layers/neck-top-extension.png",
+      "textureBounds": [
+        631,
+        420,
+        155,
+        66
+      ],
+      "exactKraPixelMatch": true
+    },
+    {
+      "id": "chin_shadow",
+      "uuid": "{6d2fa516-bc4c-4377-bf68-221c162e9ccb}",
+      "name": "Step07 | chin_shadow | normal receiver rendition",
+      "texture": "nine-axis/step07_jaw-line/layers/chin-shadow.png",
+      "textureBounds": [
+        595,
+        461,
+        220,
+        167
+      ],
+      "exactKraPixelMatch": true
+    }
+  ]
+}
