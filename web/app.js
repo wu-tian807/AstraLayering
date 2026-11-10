@@ -522,7 +522,7 @@ function connectFlow() {
   if(a&&b)link(a,b,text,done);
  if(cards[5]&&cards[6]){
   const connection=nineAxisConnection(data.run),done=connection.serial&&finished(stages[5]);
-  link(cards[5],cards[6],connection.label,done,undefined,undefined,undefined,'shadow-nine-axis');
+  link(cards[5],cards[6],connection.label,done,(cards[5].x+cards[5].w+cards[6].x-6)/2,undefined,undefined,'shadow-nine-axis');
   label(connection.detail,(cards[5].x+cards[5].w+cards[6].x-6)/2,cards[5].y+cards[5].h/2+24,status(done));
  }
  // The clothing lane hangs off the character preparation, down the left gutter.
