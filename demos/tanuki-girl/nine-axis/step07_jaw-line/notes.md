@@ -85,4 +85,3 @@ Krita 独显核对：`D060.00 | face/face_base` 原生底色与上游 `layers/00
 全片逐帧图：[left 全 121 帧](review/left-all-frames.jpg)、[up 全 121 帧](review/up-all-frames.jpg)、[down 全 121 帧](review/down-all-frames.jpg)、[left-up 全 121 帧](review/left-up-all-frames.jpg)、[left-down 全 121 帧](review/left-down-all-frames.jpg)。
 
 正式交付：[jaw.json](jaw.json)、[deformers.json](deformers.json)、[可编辑 KRA](character-nine-axis.kra)、[完整画布 PNG](character-nine-axis.png)、同目录全部 `layers/` 及本报告引用的 `review/` 图像。工作台与成果导出沿用这些正式文件；本步完成标记由管线程序管理。
-
