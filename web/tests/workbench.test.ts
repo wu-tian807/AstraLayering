@@ -14,9 +14,10 @@ import { runTask } from '../../.agents/skills/live2d-maker/workflow/runner.ts';
 import { stopRequestPath } from '../../.agents/skills/live2d-maker/workflow/control.ts';
 
 type WorkbenchOptions = NonNullable<Parameters<typeof createWorkbench>[0]>;
-async function fixture(t: any, start?: WorkbenchOptions['start'], preflight: WorkbenchOptions['preflight'] = async () => {}) {
+async function fixture(t: any, start?: WorkbenchOptions['start'], preflight: WorkbenchOptions['preflight'] = async () => {}, initialKrita?: string) {
   const base = await realpath(await mkdtemp(join(tmpdir(), 'layering-web-')));
   const dir = join(base, 'runs'), settingsPath = join(base, 'settings.json');
+  if (initialKrita) await writeFile(settingsPath, JSON.stringify({ directory: dir, krita: initialKrita }));
   const server = await createWorkbench({ defaultDir: dir, settingsPath, start, preflight });
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(async () => { await new Promise<void>(resolve => server.close(() => resolve())); await rm(base, { recursive: true, force: true }); });
@@ -29,6 +30,69 @@ async function fixture(t: any, start?: WorkbenchOptions['start'], preflight: Wor
 }
 const upload = async () => (await sharp({ create: { width: 8, height: 8, channels: 3, background: '#cbbbaa' } }).png().toBuffer()).toString('base64');
 async function put(root: string, path: string, value = 'content') { const file = join(root, path); await mkdir(join(file, '..'), { recursive: true }); await writeFile(file, value); }
+
+test('已有任务保存参数不启动也不改产物，继续恢复重试读取保存值', async t => {
+  const starts: any[] = [];
+  let preflights = 0;
+  const f = await fixture(t, async options => {
+    starts.push(await readRun(join(f.dir, options.name)));
+    return 4242;
+  }, async () => { preflights++; });
+  assert.equal((await f.post('tasks', { name: 'test', upload: await upload(), jobs: 2 })).status, 201);
+  const task = join(f.dir, 'test');
+  await put(task, 'nine-axis/step01_preparation/author-note.txt', '保留已有作者内容');
+  const saved = await f.post('task-options', { name: 'test', jobs: 4, live: true });
+  assert.equal(saved.status, 200); assert.equal(saved.value.to, 'nine-axis');
+  assert.equal(preflights, 1); assert.equal(starts.length, 0);
+  assert.equal(await readFile(join(task, 'nine-axis/step01_preparation/author-note.txt'), 'utf8'), '保留已有作者内容');
+  for (const action of ['continue', 'resume', 'retry']) {
+    await put(task, 'character-assembly/step01/.running', '');
+    assert.equal((await f.post('task-action', { name: 'test', action })).status, 202);
+    const run = starts.at(-1);
+    assert.equal(run.jobs, 4); assert.equal(run.live, true); assert.equal(run.to, 'nine-axis');
+  }
+});
+
+test('参数保存沿用现有范围，字段未提交时保留原值，明确范围仍优先', async t => {
+  const f = await fixture(t, async () => assert.fail('保存参数不能启动制作'));
+  const task = join(f.dir, 'test'); await mkdir(task, { recursive: true });
+  await saveRun(task, await configureRun({ name: 'test', dir: f.dir, from: 'shadow', to: 'nine-axis', live: false, jobs: 2 }, task));
+  const saved = await f.post('task-options', { name: 'test', jobs: 3 });
+  assert.equal(saved.status, 200); assert.equal(saved.value.from, 'shadow'); assert.equal(saved.value.to, 'nine-axis');
+  assert.equal(saved.value.live, false);
+  const independent = await f.post('task-options', { name: 'test', from: 'nine-axis', to: 'nine-axis' });
+  assert.equal(independent.status, 200);
+  assert.equal((await f.post('task-options', { name: 'test', live: true })).value.to, 'nine-axis');
+  const narrow = await f.post('task-options', { name: 'test', from: 'part-layering', to: 'shadow', live: true });
+  assert.equal(narrow.status, 200); assert.equal(narrow.value.to, 'shadow'); assert.equal(narrow.value.live, true);
+});
+
+test('保存参数不要求当前 Krita 在线，运行或归档任务拒绝修改', async t => {
+  const f = await fixture(t, async () => assert.fail('不能启动制作'), async () => assert.fail('保存参数不执行启动检查'), '/global/krita');
+  const task = join(f.dir, 'test'); await mkdir(task, { recursive: true });
+  await saveRun(task, await configureRun({ name: 'test', dir: f.dir, krita: '/task/krita', knowledge: '/task/knowledge' }, task));
+  assert.equal((await f.post('task-options', { name: 'test', jobs: 4 })).status, 200);
+  assert.equal((await readRun(task))!.krita, '/task/krita', '仅改并发不把任务 Krita 替换为全局设置');
+  assert.equal((await readRun(task))!.knowledge, '/task/knowledge');
+  const before = await readFile(join(task, 'run.json'));
+  const release = await acquireTaskLock(task);
+  try { assert.equal((await f.post('task-options', { name: 'test', jobs: 5 })).status, 409); }
+  finally { await release(); }
+  assert.deepEqual(await readFile(join(task, 'run.json')), before);
+  const run = (await readRun(task))!; run.archive = true; await saveRun(task, run);
+  assert.equal((await f.post('task-options', { name: 'test', jobs: 5 })).status, 409);
+});
+
+test('调整完成路线后只登记待启动步骤，不删除或倒退已完成 section', async t => {
+  const f = await fixture(t), task = join(f.dir, 'test'); await mkdir(task, { recursive: true });
+  const run = await configureRun({ name: 'test', dir: f.dir }, task);
+  run.status = 'completed'; for (const section of Object.values(run.sections)) section!.status = 'completed';
+  await saveRun(task, run); await put(task, 'shadow/step01_mask/.completed', '已确认');
+  const saved = await f.post('task-options', { name: 'test', live: true });
+  assert.equal(saved.status, 200); assert.equal(saved.value.status, 'ready');
+  assert.equal((await readRun(task))!.sections.shadow!.status, 'completed');
+  assert.equal(await readFile(join(task, 'shadow/step01_mask/.completed'), 'utf8'), '已确认');
+});
 
 test('workspace text artifacts can be viewed and shared path/report modules load in the browser', async t => {
   const f = await fixture(t), path = 'character-assembly/step01/workspace/scripts/check.py';

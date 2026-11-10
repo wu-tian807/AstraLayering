@@ -261,12 +261,35 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         }
         await task(opts.name, requestDir);
         if (path === '/api/convert-layout') { json(await convertLayout(directory)); return; }
-        if (['/api/start', '/api/task-action', '/api/stop'].includes(path) && (await readRun(directory))?.archive) {
+        if (['/api/start', '/api/task-action', '/api/stop', '/api/task-options'].includes(path) && (await readRun(directory))?.archive) {
           json({ error: '这是成果归档；请在原运行目录继续制作。' }, 409); return;
         }
         if (path === '/api/project-name') {
           await saveProjectDisplayName(directory, value.displayName);
           json({ name: opts.name, displayName: await projectDisplayName(directory, opts.name) }); return;
+        }
+        if (path === '/api/task-options') {
+          if (starts.has(directory)) { json({ error: '任务正在启动，停止后再调整执行参数' }, 409); return; }
+          const previous = await readRun(directory);
+          const current = previous && await taskStatus({ name: opts.name, dir: requestDir });
+          if (current && (current.runnerAlive || current.lockHeld)) {
+            json({ error: '任务正在执行，停止后再调整执行参数' }, 409); return;
+          }
+          if (value.image !== undefined || value.upload !== undefined) throw new Error('执行参数不更换任务原图');
+          const displayName = value.displayName === undefined ? undefined : validateDisplayName(value.displayName);
+          if (value.krita === undefined) delete opts.krita;
+          const release = await acquireTaskLock(directory);
+          try {
+            const configured = await configureRun(opts, directory);
+            if (configured.status === 'completed' && selectedSections(configured.from, configured.to).some(id => configured.sections[id]?.status !== 'completed')) {
+              configured.status = 'ready';
+            }
+            await saveRun(directory, configured);
+            if (displayName !== undefined) await saveProjectDisplayName(directory, displayName);
+            json({ name: opts.name, from: configured.from, to: configured.to, live: configured.live, jobs: configured.jobs,
+              standard: configured.standard, shadowMode: configured.shadowMode, status: configured.status });
+          } finally { await release(); }
+          return;
         }
         if (path === '/api/start' || path === '/api/task-action') {
           // The same commands as pnpm start: plain start / continue, or --continue / --resume / --retry
