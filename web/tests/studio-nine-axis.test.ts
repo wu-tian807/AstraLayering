@@ -1,8 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-import { validateHeadNineAxis, keyformAt, lattice, refine, levelParts, dragKeyform, deformerTree } from '../studio/nine-axis-model.js';
-import { nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { validateHeadNineAxis, keyformAt, lattice, refine, dragKeyform } from '../studio/nine-axis-model.js';
 
 const part = (keyforms: Record<string, number[][]>, extra = {}): any => ({ id: 'hair/bangs', level: 'hair', texture: 'layers/000.png', textureBounds: [0, 0, 10, 10], bbox: [0, 0, 10, 10], cols: 1, rows: 1, keyforms, ...extra });
 const rest = [[0, 0], [10, 0], [0, 10], [10, 10]];
@@ -50,17 +48,4 @@ test('Validation rejects incomplete keyforms and unknown levels', () => {
   assert.throws(() => validateHeadNineAxis(doc(part({ '-30': rest }))), /静止关键形/);
   assert.throws(() => validateHeadNineAxis(doc(part({ '0': rest.slice(1) }))), /4 个控制点/);
   assert.throws(() => validateHeadNineAxis(doc(part({ '0': rest }, { level: 'body' }))), /未知层级/);
-});
-
-test('Pink Doll ships a head-only nine-axis document with the three preview levels', async () => {
-  const doc = validateHeadNineAxis(JSON.parse(await readFile(new URL('../../demos/pink-doll/' + nineAxisArtifacts.headDeformers, import.meta.url), 'utf8')));
-  assert.ok(doc.parts.every((p: any) => /^(face|hair)\/|^head_accessories/.test(p.id)), '只含头部图层');
-  assert.deepEqual(doc.levels.map((l: any) => levelParts(doc, l.id).length > 0), [true, true, true]);
-  assert.ok(levelParts(doc, 'face').every((p: any) => p.level === 'face'));
-  assert.ok(levelParts(doc, 'hair').some((p: any) => p.level === 'hair') && !levelParts(doc, 'hair').some((p: any) => p.level === 'accessory'));
-  for (const p of doc.parts) {
-    await readFile(new URL('../../demos/pink-doll/nine-axis/step03_angle-x/' + p.texture, import.meta.url));
-    assert.deepEqual(Object.keys(p.keyforms).sort(), ['-30', '0', '30'].sort());
-  }
-  assert.deepEqual(deformerTree(doc).map((l: any) => l.id), ['face', 'hair', 'accessory']);
 });

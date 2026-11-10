@@ -1,10 +1,11 @@
 # 人物分层成果
 
-当前主线是 KRA 人物与衣服分层、穿戴组装、阴影蒙版和角色工作台研究。工程、PNG 和必要验收记录保存在各案例，具体美术差异以案例报告为准。
+当前案例包括 KRA 人物与衣服分层、穿戴组装、阴影蒙版，以及狸猫女孩的脸部九轴成果。工程、PNG 和必要验收记录保存在各案例，具体美术差异以案例报告为准。
 
 | 案例 | 当前成果 | 入口 |
 | --- | --- | --- |
-| Pink Doll | 姿态标准化；58 层人物、8 层衣装，66 个源绘画层组装，4 条原生投影 | [完整案例](pink-doll/README.md) · [最终 KRA](pink-doll/shadow/mask/step01/character-shadowed.kra) |
+| 狸猫女孩 | 完整角色来源素材；脸部、五官、双耳与固定脖子的九轴参考 | [完整案例](tanuki-girl/README.md) · [九轴模型](tanuki-girl/nine-axis/step07_jaw-line/deformers.json) · [可编辑 KRA](tanuki-girl/nine-axis/step07_jaw-line/character-nine-axis.kra) |
+| Pink Doll | 姿态标准化；58 层人物、8 层衣装，66 个源绘画层组装，4 条原生投影 | [完整案例](pink-doll/README.md) · [最终 KRA](pink-doll/shadow/step01_mask/character-shadowed.kra) |
 | Pink Elf | 70 层人物、32 层衣装，102 个源绘画层组装；人物三步、衣服两步、组装和阴影完整路线 | [完整案例](pink-elf/README.md) · [最终 KRA](pink-elf/shadow/mask/step01/character-shadowed.kra) |
 | Jianma | 人物、衣服分层，穿戴组装及阴影蒙版 | [完整案例](jianma/README.md) · [组装](jianma/character-assembly/step01/character-assembled.kra) · [最终 KRA](jianma/shadow/step01_mask/character-shadowed.kra) |
 | Closed Face | 保留半身闭眼闭嘴构图；49 个源绘画层组装、32 个蒙版、6 处投影，六段管线完整归档 | [完整案例](closed-face-full-20261026/README.md) · [最终 KRA](closed-face-full-20261026/shadow/mask/step01/character-shadowed.kra) |

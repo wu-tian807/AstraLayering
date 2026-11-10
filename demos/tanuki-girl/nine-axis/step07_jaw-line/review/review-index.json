@@ -1,0 +1,1232 @@
+[
+  {
+    "label": "full--30-25",
+    "x": -30,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      480,
+      175,
+      445,
+      485
+    ],
+    "scale": 1.25,
+    "width": 556,
+    "height": 606,
+    "savedPath": "nine-axis/step07_jaw-line/review/full--30-25.png"
+  },
+  {
+    "label": "full-0-25",
+    "x": 0,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      480,
+      175,
+      445,
+      485
+    ],
+    "scale": 1.25,
+    "width": 556,
+    "height": 606,
+    "savedPath": "nine-axis/step07_jaw-line/review/full-0-25.png"
+  },
+  {
+    "label": "full-30-25",
+    "x": 30,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      480,
+      175,
+      445,
+      485
+    ],
+    "scale": 1.25,
+    "width": 556,
+    "height": 606,
+    "savedPath": "nine-axis/step07_jaw-line/review/full-30-25.png"
+  },
+  {
+    "label": "full--30-0",
+    "x": -30,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      480,
+      175,
+      445,
+      485
+    ],
+    "scale": 1.25,
+    "width": 556,
+    "height": 606,
+    "savedPath": "nine-axis/step07_jaw-line/review/full--30-0.png"
+  },
+  {
+    "label": "full-0-0",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      480,
+      175,
+      445,
+      485
+    ],
+    "scale": 1.25,
+    "width": 556,
+    "height": 606,
+    "savedPath": "nine-axis/step07_jaw-line/review/full-0-0.png"
+  },
+  {
+    "label": "full-30-0",
+    "x": 30,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      480,
+      175,
+      445,
+      485
+    ],
+    "scale": 1.25,
+    "width": 556,
+    "height": 606,
+    "savedPath": "nine-axis/step07_jaw-line/review/full-30-0.png"
+  },
+  {
+    "label": "full--30--25",
+    "x": -30,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      480,
+      175,
+      445,
+      485
+    ],
+    "scale": 1.25,
+    "width": 556,
+    "height": 606,
+    "savedPath": "nine-axis/step07_jaw-line/review/full--30--25.png"
+  },
+  {
+    "label": "full-0--25",
+    "x": 0,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      480,
+      175,
+      445,
+      485
+    ],
+    "scale": 1.25,
+    "width": 556,
+    "height": 606,
+    "savedPath": "nine-axis/step07_jaw-line/review/full-0--25.png"
+  },
+  {
+    "label": "full-30--25",
+    "x": 30,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      480,
+      175,
+      445,
+      485
+    ],
+    "scale": 1.25,
+    "width": 556,
+    "height": 606,
+    "savedPath": "nine-axis/step07_jaw-line/review/full-30--25.png"
+  },
+  {
+    "label": "mask-0-0",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      625,
+      480,
+      160,
+      160
+    ],
+    "scale": 3,
+    "width": 480,
+    "height": 480,
+    "savedPath": "nine-axis/step07_jaw-line/review/mask-0-0.png"
+  },
+  {
+    "label": "mask--30-25",
+    "x": -30,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      625,
+      480,
+      160,
+      160
+    ],
+    "scale": 3,
+    "width": 480,
+    "height": 480,
+    "savedPath": "nine-axis/step07_jaw-line/review/mask--30-25.png"
+  },
+  {
+    "label": "mask-30-25",
+    "x": 30,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      625,
+      480,
+      160,
+      160
+    ],
+    "scale": 3,
+    "width": 480,
+    "height": 480,
+    "savedPath": "nine-axis/step07_jaw-line/review/mask-30-25.png"
+  },
+  {
+    "label": "mask--30--25",
+    "x": -30,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      625,
+      480,
+      160,
+      160
+    ],
+    "scale": 3,
+    "width": 480,
+    "height": 480,
+    "savedPath": "nine-axis/step07_jaw-line/review/mask--30--25.png"
+  },
+  {
+    "label": "mask-30--25",
+    "x": 30,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      625,
+      480,
+      160,
+      160
+    ],
+    "scale": 3,
+    "width": 480,
+    "height": 480,
+    "savedPath": "nine-axis/step07_jaw-line/review/mask-30--25.png"
+  },
+  {
+    "label": "mask--15-0",
+    "x": -15,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      625,
+      480,
+      160,
+      160
+    ],
+    "scale": 3,
+    "width": 480,
+    "height": 480,
+    "savedPath": "nine-axis/step07_jaw-line/review/mask--15-0.png"
+  },
+  {
+    "label": "mask-15-0",
+    "x": 15,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      625,
+      480,
+      160,
+      160
+    ],
+    "scale": 3,
+    "width": 480,
+    "height": 480,
+    "savedPath": "nine-axis/step07_jaw-line/review/mask-15-0.png"
+  },
+  {
+    "label": "solo-face",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      595,
+      420,
+      225,
+      225
+    ],
+    "scale": 3,
+    "width": 675,
+    "height": 675,
+    "savedPath": "nine-axis/step07_jaw-line/review/solo-face.png"
+  },
+  {
+    "label": "solo-line",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      595,
+      420,
+      225,
+      225
+    ],
+    "scale": 3,
+    "width": 675,
+    "height": 675,
+    "savedPath": "nine-axis/step07_jaw-line/review/solo-line.png"
+  },
+  {
+    "label": "solo-face-line",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      595,
+      420,
+      225,
+      225
+    ],
+    "scale": 3,
+    "width": 675,
+    "height": 675,
+    "savedPath": "nine-axis/step07_jaw-line/review/solo-face-line.png"
+  },
+  {
+    "label": "solo-fixed-neck",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      595,
+      420,
+      225,
+      225
+    ],
+    "scale": 3,
+    "width": 675,
+    "height": 675,
+    "savedPath": "nine-axis/step07_jaw-line/review/solo-fixed-neck.png"
+  },
+  {
+    "label": "solo-shadow",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      595,
+      420,
+      225,
+      225
+    ],
+    "scale": 3,
+    "width": 675,
+    "height": 675,
+    "savedPath": "nine-axis/step07_jaw-line/review/solo-shadow.png"
+  },
+  {
+    "label": "compare-left-0",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-0.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-0.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-0.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/left.mp4",
+    "frameIndex": 0
+  },
+  {
+    "label": "compare-left-1",
+    "x": -7.5,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-1.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-1.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-16.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/left.mp4",
+    "frameIndex": 16
+  },
+  {
+    "label": "compare-left-2",
+    "x": -15,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-2.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-2.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-29.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/left.mp4",
+    "frameIndex": 29
+  },
+  {
+    "label": "compare-left-3",
+    "x": -22.5,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-3.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-3.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-41.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/left.mp4",
+    "frameIndex": 41
+  },
+  {
+    "label": "compare-left-4",
+    "x": -30,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-4.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-4.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-50.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/left.mp4",
+    "frameIndex": 50
+  },
+  {
+    "label": "compare-up-0",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-up-0.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-up-0.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/up-0.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/up.mp4",
+    "frameIndex": 0
+  },
+  {
+    "label": "compare-up-1",
+    "x": 0,
+    "y": 6.25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-up-1.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-up-1.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/up-17.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/up.mp4",
+    "frameIndex": 17
+  },
+  {
+    "label": "compare-up-2",
+    "x": 0,
+    "y": 12.5,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-up-2.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-up-2.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/up-31.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/up.mp4",
+    "frameIndex": 31
+  },
+  {
+    "label": "compare-up-3",
+    "x": 0,
+    "y": 18.75,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-up-3.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-up-3.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/up-42.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/up.mp4",
+    "frameIndex": 42
+  },
+  {
+    "label": "compare-up-4",
+    "x": 0,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-up-4.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-up-4.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/up-51.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/up.mp4",
+    "frameIndex": 51
+  },
+  {
+    "label": "compare-down-0",
+    "x": 0,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-down-0.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-down-0.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/down-0.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/down.mp4",
+    "frameIndex": 0
+  },
+  {
+    "label": "compare-down-1",
+    "x": 0,
+    "y": -6.25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-down-1.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-down-1.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/down-14.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/down.mp4",
+    "frameIndex": 14
+  },
+  {
+    "label": "compare-down-2",
+    "x": 0,
+    "y": -12.5,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-down-2.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-down-2.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/down-26.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/down.mp4",
+    "frameIndex": 26
+  },
+  {
+    "label": "compare-down-3",
+    "x": 0,
+    "y": -18.75,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-down-3.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-down-3.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/down-39.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/down.mp4",
+    "frameIndex": 39
+  },
+  {
+    "label": "compare-down-4",
+    "x": 0,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-down-4.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-down-4.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/down-50.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step02_video/down.mp4",
+    "frameIndex": 50
+  },
+  {
+    "label": "compare-left-up-0",
+    "x": 0,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-0.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-0.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-up-0.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-up.mp4",
+    "frameIndex": 0
+  },
+  {
+    "label": "compare-left-up-1",
+    "x": -7.5,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-1.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-1.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-up-10.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-up.mp4",
+    "frameIndex": 10
+  },
+  {
+    "label": "compare-left-up-2",
+    "x": -15,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-2.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-2.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-up-21.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-up.mp4",
+    "frameIndex": 21
+  },
+  {
+    "label": "compare-left-up-3",
+    "x": -22.5,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-3.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-3.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-up-32.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-up.mp4",
+    "frameIndex": 32
+  },
+  {
+    "label": "compare-left-up-4",
+    "x": -30,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-4.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-up-4.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-up-42.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-up.mp4",
+    "frameIndex": 42
+  },
+  {
+    "label": "compare-left-down-0",
+    "x": 0,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-0.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-0.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-down-0.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-down.mp4",
+    "frameIndex": 0
+  },
+  {
+    "label": "compare-left-down-1",
+    "x": -7.5,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-1.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-1.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-down-10.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-down.mp4",
+    "frameIndex": 10
+  },
+  {
+    "label": "compare-left-down-2",
+    "x": -15,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-2.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-2.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-down-20.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-down.mp4",
+    "frameIndex": 20
+  },
+  {
+    "label": "compare-left-down-3",
+    "x": -22.5,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-3.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-3.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-down-30.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-down.mp4",
+    "frameIndex": 30
+  },
+  {
+    "label": "compare-left-down-4",
+    "x": -30,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-4.png",
+    "comparison": {
+      "savedPath": "nine-axis/step07_jaw-line/review/compare-left-down-4.png",
+      "reference": "nine-axis/step07_jaw-line/review/frames/left-down-40.png",
+      "bounds": [
+        319,
+        -21,
+        774,
+        774
+      ],
+      "registration": "none; same canvas coordinates",
+      "axis": 706
+    },
+    "video": "nine-axis/step04_angles/video/left-down.mp4",
+    "frameIndex": 40
+  },
+  {
+    "label": "right-transition-15-0",
+    "x": 15,
+    "y": 0,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/right-transition-15-0.png"
+  },
+  {
+    "label": "right-transition-7.5-25",
+    "x": 7.5,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/right-transition-7.5-25.png"
+  },
+  {
+    "label": "right-transition-15-25",
+    "x": 15,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/right-transition-15-25.png"
+  },
+  {
+    "label": "right-transition-22.5-25",
+    "x": 22.5,
+    "y": 25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/right-transition-22.5-25.png"
+  },
+  {
+    "label": "right-transition-7.5--25",
+    "x": 7.5,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/right-transition-7.5--25.png"
+  },
+  {
+    "label": "right-transition-15--25",
+    "x": 15,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/right-transition-15--25.png"
+  },
+  {
+    "label": "right-transition-22.5--25",
+    "x": 22.5,
+    "y": -25,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/right-transition-22.5--25.png"
+  },
+  {
+    "label": "right-transition-30-12.5",
+    "x": 30,
+    "y": 12.5,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/right-transition-30-12.5.png"
+  },
+  {
+    "label": "right-transition-30--12.5",
+    "x": 30,
+    "y": -12.5,
+    "level": "face",
+    "crop": [
+      590,
+      460,
+      240,
+      185
+    ],
+    "scale": 2,
+    "width": 480,
+    "height": 370,
+    "savedPath": "nine-axis/step07_jaw-line/review/right-transition-30--12.5.png"
+  }
+]
