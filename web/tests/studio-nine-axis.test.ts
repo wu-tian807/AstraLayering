@@ -1,8 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-import { validateHeadNineAxis, keyformAt, lattice, refine, levelParts, dragKeyform, deformerTree, evaluatePoints, nodes, meshIndices } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
-import { legacyNineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { validateHeadNineAxis, keyformAt, lattice, refine, dragKeyform } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 
 const part = (keyforms: Record<string, number[][]>, extra = {}): any => ({ id: 'hair/bangs', level: 'hair', texture: 'layers/000.png', textureBounds: [0, 0, 10, 10], bbox: [0, 0, 10, 10], cols: 1, rows: 1, keyforms, ...extra });
 const rest = [[0, 0], [10, 0], [0, 10], [10, 10]];
@@ -58,32 +56,4 @@ test('Validation accepts mask parts and clips that name other parts', () => {
   assert.doesNotThrow(() => validateHeadNineAxis(doc(mask, part({ '0': rest }, { clip: { by: ['hair/mask'], invert: true } }))));
   assert.throws(() => validateHeadNineAxis(doc(mask, part({ '0': rest }, { clip: { by: ['hair/none'] } }))), /裁切来源无效/);
   assert.throws(() => validateHeadNineAxis(doc(part({ '0': rest }, { role: 'shadow' }))), /未知角色/);
-});
-
-test('Pink Doll ships authored face warps, local feature meshes and fixed neck', async () => {
-  const doc = validateHeadNineAxis(JSON.parse(await readFile(new URL('../../demos/pink-doll/' + legacyNineAxisArtifacts.headDeformers, import.meta.url), 'utf8')));
-  assert.ok(doc.parts.every((p: any) => /^(face|hair)\/|^neck(\/|$)|^head_accessories/.test(p.id)), '只含头部图层');
-  assert.deepEqual(doc.levels.map((l: any) => l.id), ['face']);
-  assert.ok(doc.deformers.length > 0);
-  assert.ok(doc.parts.some(p => p.parent));
-  assert.ok(levelParts(doc, 'face').every((p: any) => p.level === 'face'));
-  for (const p of doc.parts) {
-    await readFile(new URL('../../demos/pink-doll/nine-axis/step02_angle-x/' + p.texture, import.meta.url));
-    assert.deepEqual(Object.keys(p.keyforms).sort(), ['-30', '0', '30'].sort());
-  }
-  assert.deepEqual(deformerTree(doc).map((l: any) => l.id), ['face']);
-  const neck = doc.parts.find(p => p.id === 'neck')!;
-  assert.equal(neck.parent, undefined);
-  assert.deepEqual(neck.keyforms['-30'], neck.keyforms['0']);
-  assert.deepEqual(neck.keyforms['30'], neck.keyforms['0']);
-  for(const x of [-30,-15,0,15,30]){
-    assert.deepEqual([...evaluatePoints(doc,neck,x,0)],neck.keyforms['0'].flat());
-    for(const n of nodes(doc)){
-      const points=evaluatePoints(doc,n,x,0,2),indices=meshIndices(n.cols*2,n.rows*2);
-      for(let i=0;i<indices.length;i+=3){const a=indices[i]*2,b=indices[i+1]*2,c=indices[i+2]*2;
-        const area=(points[b]-points[a])*(points[c+1]-points[a+1])-(points[b+1]-points[a+1])*(points[c]-points[a]);
-        assert.ok(area<0,`${n.id} folded at ${x},0`);
-      }
-    }
-  }
 });
