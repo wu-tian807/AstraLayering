@@ -17,7 +17,7 @@ const preflight = async (executable: string) => ({ executable });
 async function absent(path: string) { await assert.rejects(readFile(path), { code: 'ENOENT' }); }
 const isReview = (request: AgentRequest) => request.prompt.startsWith('你负责独立 review 第一步的交付');
 function reportName(request: AgentRequest): string {
-  const name = request.prompt.match(/step01\/((?:review|repair)-\d{2}\.md\.tmp)/)?.[1];
+  const name = request.prompt.match(/step01[\\/]((?:review|repair)-\d{2}\.md\.tmp)/)?.[1];
   assert.ok(name, 'a single concrete output filename must be injected');
   return name;
 }
@@ -188,11 +188,23 @@ test('第二次修复受阻不能按次数结束，下次只继续该次修复',
 
 test('修复交付缺失不发布 repair.md，恢复后能继续补齐文件', async t => {
   const f = await fixture(t);
+  let programRepairs = 0;
   await assert.rejects(runWorkflow(f.resume, { ...f.deps, agent: async request => {
     if (isReview(request)) return report(request, '需要修复');
+    assert.equal(request.threadId, 'drawing-thread');
+    if (request.prompt.includes('程序核对没有通过')) {
+      programRepairs++;
+      assert.match(request.prompt, /clothing-depth\.kra/);
+      await absent(join(f.output, 'step01/repair-01.md'));
+      return completed; // Leave the file missing to exhaust the bounded repair budget.
+    }
     await rm(join(f.output, 'step01/clothing-depth.kra'));
     return report(request, '已修复');
   } }), /缺少有效交付/);
+  assert.equal(programRepairs, 2, 'missing delivery gets two repairs in the producer thread');
+  assert.equal((await readStepSession(f.output, 'step01'))?.threadId, 'drawing-thread');
+  await readFile(join(f.output, 'step01/.running'));
+  await absent(join(f.output, 'step01/.completed'));
   await absent(join(f.output, 'step01/repair-01.md'));
   await runWorkflow(f.resume, { ...f.deps, agent: async request => {
     if (isReview(request)) return report(request, '通过');
