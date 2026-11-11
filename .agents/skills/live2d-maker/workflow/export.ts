@@ -158,20 +158,28 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
   }
   // Report images are review views, not deliverables: their image syntax is
   // dropped and the prose stays. Other path mentions remain as plain text.
+  // Prose and JSON strings may quote the task directory; that prefix is dropped.
+  const inTask = (text: string) => { for (const base of [root, ...roots]) text = text.split(base + sep).join(''); return text; };
+  // Absolute links and prose mentions into the task (a source KRA, for example)
+  // become task-relative; a path outside the task stays as written.
   async function rewriteReport(text: string): Promise<string> {
     for (const ref of reportReferences(text).reverse()) {
       if (text[ref.start] === '!') text = text.slice(0, ref.start) + text.slice(ref.end);
     }
-    return text;
+    text = inTask(text);
+    return text.replace(/\]\((\/[^)\s]+)\)/g, (link, target: string) => {
+      const local = taskPath(target);
+      return isAbsolute(local) ? link : '](' + local.split('/').map(encodeURIComponent).join('/') + ')';
+    });
   }
   async function rewriteJSON(value: any, path: string, key = ''): Promise<any> {
     if (typeof value === 'string') {
       if (key === 'feedback') return rewriteReport(value);
-      return isAbsolute(value) ? taskPath(value) : value;
+      return isAbsolute(value) ? taskPath(value) : inTask(value);
     }
     if (Array.isArray(value)) return Promise.all(value.map(item => rewriteJSON(item, path, key)));
     if (value && typeof value === 'object') return Object.fromEntries(await Promise.all(Object.entries(value)
-      .map(async ([name, item]) => [name, await rewriteJSON(item, path, name)])));
+      .map(async ([name, item]) => [isAbsolute(name) ? taskPath(name) : inTask(name), await rewriteJSON(item, path, name)])));
     return value;
   }
   for (const [path, entry] of [...entries]) {
@@ -208,7 +216,9 @@ async function writeZip(directory: string, path: string, name: string, paths: st
   } catch (error) { zip.terminate(); output.destroy(); throw error; }
 }
 
-export async function exportCompletedRun(options: { name: string; dir?: string; output: string }) {
+// aliases name other directories whose paths belong to this task (for example a
+// merged task whose parts were produced in separate runs); they export task-relative.
+export async function exportCompletedRun(options: { name: string; dir?: string; output: string; aliases?: string[] }) {
   const source = directoryFor(options), root = await realpath(source), output = resolve(options.output);
   if (await lstat(source).then(info => info.isSymbolicLink())) throw new Error('任务不能是符号链接');
   if (inside(root, output) || inside(output, root)) throw new Error('导出位置不能覆盖或嵌入原任务目录');
@@ -220,7 +230,7 @@ export async function exportCompletedRun(options: { name: string; dir?: string; 
   try {
     const run = await readRun(root);
     if (!completeRun(run)) throw new Error('任务状态已改变，请刷新后再导出');
-    const { entries, warnings } = await exportFiles(root, run!, [source]);
+    const { entries, warnings } = await exportFiles(root, run!, [source, ...options.aliases ?? []]);
     await mkdir(dirname(output), { recursive: true });
     staging = await mkdtemp(join(dirname(output), '.live2d-export-'));
     const content = join(staging, options.name);
