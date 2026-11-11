@@ -186,13 +186,12 @@ jobs:
           canonical="AstraLayering-$tag.zip"
           stage="AstraLayering-$tag-rebuild-${GITHUB_SHA:0:12}.zip"
           backup="AstraLayering-$tag-previous-${EXPECTED_TAG_SHA:0:12}.zip"
-          source_label="Rebuilt from $GITHUB_SHA"
           api="repos/$GITHUB_REPOSITORY/releases"
           mkdir -p .release
           gh api "$api/$RELEASE_ID" > .release/previous-release.json
           actual_tag="$(git ls-remote --exit-code --refs origin "refs/tags/$tag" | cut -f1)"
           if [[ "$actual_tag" == "$GITHUB_SHA" ]]; then
-            if gh api "$api/$RELEASE_ID" --jq ".assets[] | select(.name == \"$canonical\" and .label == \"$source_label\" and .state == \"uploaded\") | .id" | grep -q '[0-9]'; then
+            if gh api "$api/$RELEASE_ID" --jq ".assets[] | select(.name == \"$canonical\" and .id != $OLD_ASSET_ID and .state == \"uploaded\") | .id" | grep -q '[0-9]'; then
               echo "$tag has already been rebuilt from this commit."
               exit 0
             fi
@@ -259,8 +258,83 @@ jobs:
           tag_moved=true
           gh api --method PATCH "$api/assets/$OLD_ASSET_ID" -f name="$backup" -f label="Previous $tag build from $EXPECTED_TAG_SHA" >/dev/null
           old_renamed=true
-          gh api --method PATCH "$api/assets/$candidate_id" -f name="$canonical" -f label="$source_label" >/dev/null
+          gh api --method PATCH "$api/assets/$candidate_id" -f name="$canonical" -f label="" >/dev/null
           candidate_promoted=true
           gh release edit "$tag" --repo "$GITHUB_REPOSITORY" --notes-file .release/notes.md --latest
           trap - EXIT
-          echo "Rebuilt $tag from $GITHUB_SHA; previous asset retained as $backup"
+          echo "Rebuilt $tag from $GITHUB_SHA"
+      - name: Keep the published download clean
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="v$(node -p "JSON.parse(require('fs').readFileSync('package.json', 'utf8')).version")"
+          canonical="AstraLayering-$tag.zip"
+          api="repos/$GITHUB_REPOSITORY/releases"
+          mkdir -p .release/audit
+          gh api "$api/tags/$tag" > .release/audit/release.json
+          gh release download "$tag" --repo "$GITHUB_REPOSITORY" --pattern "$canonical" --dir .release/audit --clobber
+          python3 - "$tag" "$canonical" <<'PY'
+          import hashlib, json, pathlib, re, sys, zipfile
+          from collections import defaultdict
+          tag, canonical = sys.argv[1:]
+          folder = pathlib.Path('.release/audit')
+          release = json.loads((folder / 'release.json').read_text())
+          assets = release['assets']
+          matches = [asset for asset in assets if asset['name'] == canonical]
+          if release['tag_name'] != tag or release['draft'] or len(matches) != 1:
+              raise SystemExit('No unique published installation ZIP')
+          asset = matches[0]
+          data = (folder / canonical).read_bytes()
+          digest = 'sha256:' + hashlib.sha256(data).hexdigest()
+          if asset['state'] != 'uploaded' or asset['size'] != len(data) or asset.get('digest') != digest:
+              raise SystemExit('Published ZIP checksum mismatch')
+          prefix = 'AstraLayering-' + tag + '/'
+          sizes = defaultdict(int)
+          with zipfile.ZipFile(folder / canonical) as archive:
+              entries = archive.infolist()
+              names = set(entry.filename for entry in entries)
+              required = ['package.json', 'CHANGELOG.md', 'start-workbench.sh', 'start-workbench.cmd',
+                          'start-workbench.command', 'web/server.ts', '.agents/skills/live2d-maker/SKILL.md',
+                          '.run/pink-doll/run.json', 'LICENSE', 'COPYING']
+              if any(prefix + name not in names for name in required):
+                  raise SystemExit('Published ZIP is missing application files')
+              if json.loads(archive.read(prefix + 'package.json'))['version'] != tag[1:]:
+                  raise SystemExit('Published ZIP has the wrong version')
+              for entry in entries:
+                  if not entry.filename.startswith(prefix):
+                      raise SystemExit('Unexpected ZIP root')
+                  relative = entry.filename[len(prefix):]
+                  parts = pathlib.PurePosixPath(relative).parts
+                  if '..' in parts or (parts and parts[0] in {'.git', 'node_modules', '.web', 'tmp', '.release'}):
+                      raise SystemExit('Unexpected runtime or temporary file: ' + relative)
+                  if parts and parts[-1] == '.env':
+                      raise SystemExit('Private environment file in ZIP')
+                  if len(parts) > 1 and parts[0] == '.run' and parts[1] != 'pink-doll':
+                      raise SystemExit('Unexpected task in ZIP')
+                  if parts:
+                      sizes[parts[0]] += entry.file_size
+              print('Verified installation ZIP:', canonical, len(data), 'bytes;', len(entries), 'entries')
+              print('Uncompressed size by top-level path:', dict(sorted(sizes.items(), key=lambda item: -item[1])))
+          pattern = re.compile(r'^AstraLayering-' + re.escape(tag) + r'-(?:previous|rebuild)-[a-f0-9]+\.zip$')
+          stale = [str(item['id']) for item in assets if pattern.fullmatch(item['name'])]
+          (folder / 'asset-id').write_text(str(asset['id']))
+          (folder / 'stale-ids').write_text('\n'.join(stale))
+          PY
+          asset_id="$(cat .release/audit/asset-id)"
+          gh api --method PATCH "$api/assets/$asset_id" -f label="" >/dev/null
+          while IFS= read -r stale_id || [[ -n "$stale_id" ]]; do
+            [[ -z "$stale_id" ]] && continue
+            gh api --method DELETE "$api/assets/$stale_id"
+          done < .release/audit/stale-ids
+          gh api "$api/tags/$tag" > .release/audit/cleaned.json
+          python3 - "$canonical" <<'PY'
+          import json, pathlib, sys
+          release = json.loads(pathlib.Path('.release/audit/cleaned.json').read_text())
+          assets = release['assets']
+          if len(assets) != 1 or assets[0]['name'] != sys.argv[1] or assets[0].get('label'):
+              raise SystemExit('Published download list is not clean')
+          print('Published download:', assets[0]['name'])
+          PY
+
