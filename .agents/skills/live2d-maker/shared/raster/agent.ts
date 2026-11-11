@@ -1,5 +1,5 @@
 import { loadWorkflowEnvironment, type WorkflowEnvironment, type ModelSelection } from '../codex/environment.ts';
-import { validateAgentOutcome } from '../codex/diagnostics.ts';
+import { CheckFailure, checkedTurn } from '../codex/checked-turn.ts';
 import type { ThreadEvent } from '@openai/codex-sdk';
 import type { FunctionTool } from '../codex/function-tools.ts';
 import { CodexAgents } from '../codex/agents.ts';
@@ -45,18 +45,20 @@ export async function runAgent(request: AgentRequest, runtime = new AgentRuntime
     onEvent: request.onEvent, onThreadReplacement: request.onThreadReplacement });
   const session = agents.createSession(request.threadId);
   try {
-    const result = await session.run({ step: request.step, name: request.step || 'raster', prompt: request.prompt, recoveryPrompt: request.recoveryPrompt,
+    let value: StepResult | undefined;
+    const task = { step: request.step, name: request.step || 'raster', prompt: request.prompt, recoveryPrompt: request.recoveryPrompt,
       cwd: request.directory, outputDirectory: paths.outputDirectory, tools: request.tools,
       outputSchema: { type: 'object', additionalProperties: false, properties: {
-        status: { type: 'string', enum: ['completed', 'blocked'] }, summary: { type: 'string' } }, required: ['status', 'summary'] } }, request.signal);
-    return await validateAgentOutcome(result, () => {
-      let value;
-      try { value = JSON.parse(result.text); }
-      catch (error) { throw new Error('模型回合已结束，但没有返回有效的步骤结果 JSON。', { cause: error }); }
-      if (!value || !['completed', 'blocked'].includes(value.status) || typeof value.summary !== 'string' || !value.summary.trim()) {
-        throw new Error('步骤未返回有效的完成或受阻说明');
+        status: { type: 'string', enum: ['completed', 'blocked'] }, summary: { type: 'string' } }, required: ['status', 'summary'] } };
+    await checkedTurn({ agents: { run: (next, abort) => session.run(next, abort) }, task, signal: request.signal, check: result => {
+      let parsed;
+      try { parsed = JSON.parse(result.text); }
+      catch { throw new CheckFailure('bad-result', '没有返回有效的步骤结果 JSON', { detail: '没有返回有效的步骤结果 JSON' }); }
+      if (!parsed || !['completed', 'blocked'].includes(parsed.status) || typeof parsed.summary !== 'string' || !parsed.summary.trim()) {
+        throw new CheckFailure('bad-result', '步骤未返回有效的完成或受阻说明', { detail: '须返回 status（completed 或 blocked）和非空 summary' });
       }
-      return value as StepResult;
-    });
+      value = parsed as StepResult;
+    } });
+    return value!;
   } finally { await session.close(); }
 }

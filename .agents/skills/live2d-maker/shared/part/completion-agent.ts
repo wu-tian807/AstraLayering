@@ -1,6 +1,6 @@
 import { groupStepId } from './part-steps.ts';
 import { partStep } from '../agents/models.ts';
-import { agentOutcomeError } from '../codex/diagnostics.ts';
+import { checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { partProfile } from './profile.ts';
 import { readFile, realpath } from 'node:fs/promises';
@@ -8,12 +8,11 @@ import { join, resolve } from 'node:path';
 import sharp from 'sharp';
 import type { CodexAgents } from '../codex/agents.ts';
 import { createBitmapTool } from './bitmap-tool.ts';
-import { svgHash } from './artifact-facts.ts';
 import { assertCompletionPreserves, composeCompletion, completionPaths } from './completion-svg.ts';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import { groupValues, partKnowledge } from './group-prompts.ts';
 import { writeAtomic } from './groups.ts';
-import { dependenciesMatch, fileDependency } from './completion-inputs.ts';
+import { fileDependency } from './completion-inputs.ts';
 import type { DrawingContext, GroupContext, SvgArtifact, CompletionCheck } from './layering-types.ts';
 import { taskRootOf, toAgentPath } from '../task-paths.ts';
 import { createSvgPreviewTool, createSvgReadTool, observedPath, parentBoundsSource, validateGroupSvg, type SvgObservation } from './svg-tools.ts';
@@ -33,7 +32,7 @@ export async function completeGroupOcclusion(context: DrawingContext & { reviewe
   const root = taskRootOf(context.directory), task = (path: string) => toAgentPath(root, path);
   const dependencies = [await fileDependency(root, reference)];
   const observations: SvgObservation[] = [];
-  let submitted: SvgArtifact | undefined, submittedHash: string | undefined;
+  let submitted: SvgArtifact | undefined;
   // A continued step keeps the additions drawn so far when they still sit on the
   // unchanged source; otherwise the draft starts as the source itself.
   const resumed = !!context.resumeDraft && await readFile(draft).then(bytes => {
@@ -90,20 +89,20 @@ export async function completeGroupOcclusion(context: DrawingContext & { reviewe
         for (const dependency of checkedDependencies) if (!dependencies.some(item => item.path === dependency.path)) dependencies.push(dependency);
       }
       submitted = { path: draft, note: raw.note };
-      submittedHash = svgHash(bytes);
       return textResult({ ...submitted, path: await task(draft) });
     },
   };
-  const response = await agents.run({ step: partStep(partProfile(context).id, 'completion'), name: `正面遮挡补全-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'completion')),
-    tools: knowledge.tools('main', [preview, set, submit, createSvgReadTool(context.directory),
-      createBitmapTool(context.directory, join(context.directory, 'observations', 'completion', context.group.id, 'bitmaps'))]), prompt: knowledge.render('main', {
-      ...groupValues(context.group.id, canvas),
-    }, { taskRoot: root, group: context.group.id }) });
-  if (!submitted) throw agentOutcomeError('补全未通过 submit_completion 提交', response);
-  await verifySource();
-  if (svgHash(await readFile(draft)) !== submittedHash) throw agentOutcomeError('补全提交后草稿被修改', response);
-  if (!await dependenciesMatch(root, dependencies)) throw agentOutcomeError('补全过程参考输入发生变化', response);
-  return { ...submitted, dependencies };
+  return checkedTurn({ agents, records: join(context.directory, groupStepId(context.group.id, 'completion'), 'checks'),
+    task: { step: partStep(partProfile(context).id, 'completion'), name: `正面遮挡补全-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'completion')),
+      tools: knowledge.tools('main', [preview, set, submit, createSvgReadTool(context.directory),
+        createBitmapTool(context.directory, join(context.directory, 'observations', 'completion', context.group.id, 'bitmaps'))]), prompt: knowledge.render('main', {
+        ...groupValues(context.group.id, canvas),
+      }, { taskRoot: root, group: context.group.id }) },
+    // Everything about the draft was checked by submit_completion; later edits are blocked by the tools.
+    check: () => {
+      if (!submitted) throw missingSubmit('submit_completion', '补全未通过 submit_completion 提交');
+      return { ...submitted, dependencies };
+    } });
 }
 
 export async function checkGroupCompletion(context: GroupContext & { before: SvgArtifact; after: SvgArtifact }): Promise<CompletionCheck> {

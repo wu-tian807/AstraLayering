@@ -74,11 +74,11 @@ test('continuation tool initializes and writes source atomically, rejects stale 
   await assert.rejects(tool.execute({revision:first.revision,notes:'stale'},signal),/revision/);
   await assert.rejects(tool.execute({operations:[{action:'transform',id:'a',x:-30,translate:[2,0]}]},signal),/up 阶段只编辑/);
   assert.equal(await readFile(join(y,'face-up.json'),'utf8'),saved);
-  const ybuilt=await buildContinuation(y,x,'up');await writeFile(join(y,'deformers.json'),JSON.stringify(ybuilt.doc));await mkdir(join(y,'layers'));await writeFile(join(y,'layers/a.png'),'png');
+  const ybuilt=await buildContinuation(y,x,'up');await writeFile(join(y,'deformers.json'),JSON.stringify(ybuilt.doc));await mkdir(join(y,'layers'),{recursive:true});await writeFile(join(y,'layers/a.png'),'png');
   const down=join(root,'down');await createContinuationEditTool(down,y,'down').execute({},signal);
-  const downbuilt=await buildContinuation(down,y,'down');await writeFile(join(down,'deformers.json'),JSON.stringify(downbuilt.doc));await mkdir(join(down,'layers'));await writeFile(join(down,'layers/a.png'),'png');
+  const downbuilt=await buildContinuation(down,y,'down');await writeFile(join(down,'deformers.json'),JSON.stringify(downbuilt.doc));await mkdir(join(down,'layers'),{recursive:true});await writeFile(join(down,'layers/a.png'),'png');
   const xy=join(root,'xy');await createContinuationEditTool(xy,down,'xy').execute({},signal);
-  const xybuilt=await buildContinuation(xy,down,'xy');await writeFile(join(xy,'deformers.json'),JSON.stringify(xybuilt.doc));await mkdir(join(xy,'layers'));await writeFile(join(xy,'layers/a.png'),'png');
+  const xybuilt=await buildContinuation(xy,down,'xy');await writeFile(join(xy,'deformers.json'),JSON.stringify(xybuilt.doc));await mkdir(join(xy,'layers'),{recursive:true});await writeFile(join(xy,'layers/a.png'),'png');
   const jaw=join(root,'jaw');await createContinuationEditTool(jaw,xy,'jaw').execute({},signal);
   await assert.rejects(buildContinuation(jaw,xy,'jaw'),/没有蒙版/);
   await writeFile(join(x,'deformers.json'),JSON.stringify({...fixture(),notes:'new upstream'}));

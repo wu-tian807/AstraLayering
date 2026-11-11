@@ -12,9 +12,7 @@ import type { PreparationReferences } from './preparation-types.ts';
 import { runWorkflow, validateWorkflowOptions } from './workflow.ts';
 import { parentBoundsSource, validateGroupSvg } from './svg-tools.ts';
 import { copyParentRegion } from './parent-region.ts';
-import { assertCompletionPreserves } from './completion-svg.ts';
 import { occlusionPath, occlusionSourceHash, validateOcclusionPlan } from './occlusion-plan.ts';
-import { dependenciesMatch } from './completion-inputs.ts';
 import { beginStep, checkStep, completeStep, readStep, type ChainStep, type StepAction, type StepStatus } from '../step-chain.ts';
 import { taskRootOf } from '../task-paths.ts';
 import { copiedOutlineNote, groupStep, layerStep, readInitialGroups } from './part-steps.ts';
@@ -122,7 +120,6 @@ export async function runLayering(input: {
     action: (draft: string, resumeDraft: boolean) => Promise<StepResult<SvgArtifact>>) {
     return execute(id, stage, async () => {
       const output = artifactPath(directory, id, stage), draft = stepDraftPath(directory, id, stage);
-      const before = stage === 'completion' ? (await readSvg(artifact(id, 'reduction').path))! : undefined;
       await mkdir(dirname(draft), { recursive: true });
       const resumeDraft = continued && !!await readSvg(draft);
       if (!resumeDraft) await rm(draft, { force: true });
@@ -130,18 +127,6 @@ export async function runLayering(input: {
       const result = await action(draft, resumeDraft);
       if (result.status === 'pending') return result;
       const candidate = resolve(directory, result.output.path);
-      const meta = await sharp(resolve(directory, input.references.baseSubject)).metadata();
-      await validateGroupSvg(candidate, id, { width: meta.autoOrient.width, height: meta.autoOrient.height }, undefined,
-        stage !== 'completion' || !context(id).group.hiddenInReference);
-      const parent = context(id).parent?.steps.completion.output?.path;
-      const source = stage === 'completion' ? artifact(id, 'reduction').path : parent;
-      if (before) {
-        if (!(await readFile(source!)).equals(before)) throw new Error('补全过程修改了原轮廓');
-        assertCompletionPreserves(before.toString(), (await readFile(candidate)).toString());
-      }
-      if (stage === 'completion' && !await dependenciesMatch(root, result.output.dependencies ?? [])) {
-        throw new Error('补全输入已变化，不能发布');
-      }
       if (candidate !== draft) await writeAtomic(draft, await readFile(candidate));
       await publishSvg(draft, output);
       return { status: 'completed', output: { ...result.output, path: output } };

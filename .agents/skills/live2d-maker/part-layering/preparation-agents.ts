@@ -1,4 +1,4 @@
-import { validateAgentOutcome } from '../shared/codex/diagnostics.ts';
+import { asCheck, checkedTurn } from '../shared/codex/checked-turn.ts';
 import { randomUUID } from 'node:crypto';
 import { readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { stepKnowledge } from '../shared/knowledge.ts';
@@ -11,6 +11,12 @@ import { toolDefinition } from '../shared/codex/tool-config.ts';
 import type { PreparationSteps, ProcessGenerated, ReferenceChoice } from './preparation.ts';
 import { checkStandardJudgment } from './preparation-state.ts';
 import { copyAsPng, isPng } from '../shared/png.ts';
+
+async function readableImage(image: GeneratedImage | undefined): Promise<GeneratedImage> {
+  if (!image) throw new Error('imagegen did not produce an image');
+  if (!isPng(await readFile(image.savedPath))) throw new Error('imagegen did not produce a PNG image');
+  return image;
+}
 
 async function saveImage(image: GeneratedImage | undefined, output: string): Promise<void> {
   if (!image) throw new Error('imagegen did not produce an image');
@@ -29,7 +35,7 @@ async function saveImage(image: GeneratedImage | undefined, output: string): Pro
 
 async function prepareImage(agents: Pick<CodexAgents, 'run'>, knowledge: ReturnType<typeof stepKnowledge>, task: AgentTask, input: string, output: string, processGenerated?: ProcessGenerated): Promise<ReferenceChoice> {
   let reusedReason: string | undefined;
-  const result = await agents.run({ ...task, tools: knowledge.tools('main', [{
+  const checked = await checkedTurn({ agents, task: { ...task, tools: knowledge.tools('main', [{
     ...toolDefinition('reuse_reference', fileURLToPath(new URL('./tools/', import.meta.url))),
     async execute(value, signal, context) {
       if (!value || typeof value !== 'object' || Array.isArray(value)
@@ -44,17 +50,19 @@ async function prepareImage(agents: Pick<CodexAgents, 'run'>, knowledge: ReturnT
       reusedReason = (value as { reason: string }).reason;
       return textResult({ savedPath: await toAgentPath(context?.root ?? taskRootOf(dirname(output)), output), reason: reusedReason });
     },
-  }]) });
-  return validateAgentOutcome(result, async () => {
+  }]) }, check: result => asCheck('invalid-output', async () => {
     if (reusedReason !== undefined && result.images.length) throw new Error('本次参考同时执行了复制与生图，请只选择一种交付方式。');
     const reason: unknown = reusedReason ?? JSON.parse(result.text).reason;
     if (typeof reason !== 'string' || !reason.trim()) throw new Error('参考准备须说明复制或生图的判断依据。');
-    if (reusedReason === undefined) {
-      await saveImage(result.images.at(-1), output);
-      await processGenerated?.(output);
-    }
-    return { generated: reusedReason === undefined, reason };
-  });
+    const image = reusedReason === undefined ? await readableImage(result.images.at(-1)) : undefined;
+    return { image, reason };
+  }) });
+  // The product is written only after the checks pass.
+  if (checked.image) {
+    await saveImage(checked.image, output);
+    await processGenerated?.(output);
+  }
+  return { generated: checked.image !== undefined, reason: checked.reason };
 }
 
 export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): PreparationSteps {
@@ -69,25 +77,24 @@ export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): Prepar
   const simplified = stepKnowledge('part-layering', 'step05_simplified'), base = stepKnowledge('part-layering', 'step06_base');
   return {
     judgeStandard: async (image, prompt) => {
-      const result = await agents.run({
+      return checkedTurn({ agents, task: {
         step: 'part_pose_judgment', name: '姿态判断', prompt,
         outputSchema: {
           type: 'object', properties: { needsAdjustment: { type: 'boolean' }, reason: { type: 'string' } },
           required: ['needsAdjustment', 'reason'], additionalProperties: false,
         },
-      });
-      return validateAgentOutcome(result, () => {
+      }, check: result => asCheck('invalid-output', () => {
         const decision: unknown = JSON.parse(result.text);
         checkStandardJudgment(decision);
         return decision;
-      });
+      }) });
     },
     standardize: async (image, output, prompt) => {
-      const result = await agents.run({
+      const generated = await checkedTurn({ agents, task: {
         step: 'part_standardize', name: '标准姿态', outputSchema: imageOutputSchema,
         prompt,
-      });
-      await validateAgentOutcome(result, () => saveImage(result.images.at(-1), output));
+      }, check: result => asCheck('invalid-output', () => readableImage(result.images.at(-1))) });
+      await saveImage(generated, output);
     },
     simplify: async (image, output, prompt, processGenerated) => {
       await prepareImage(agents, simplified, {

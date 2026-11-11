@@ -66,11 +66,13 @@ export function createLayeringSteps(agents: Pick<CodexAgents, 'run'> & Partial<P
     },
     reviewOutline: async context => {
       try { return await reviewGroupOutline(context, agents, await stepSession(context, 'outline')); }
+      catch (error) { throw error; }
       finally { await closeSession(context, 'outline'); }
     },
     reduceOutlines: async context => ({ status: 'completed', output: await reduceGroupOutlines(context, agents) }),
     completeOcclusion: async context => {
       try { return { status: 'completed', output: await completeGroupOcclusion(context, await stepSession(context, 'completion')) }; }
+      catch (error) { throw error; }
       finally { await closeSession(context, 'completion'); }
     },
     checkCompletion: async context => ({ status: 'completed', output: await checkGroupCompletion(context) }),

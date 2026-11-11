@@ -1,5 +1,5 @@
 import { partStep } from '../agents/models.ts';
-import { agentOutcomeError } from '../codex/diagnostics.ts';
+import { checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { partProfile } from './profile.ts';
 import { join } from 'node:path';
@@ -56,11 +56,13 @@ export async function recognizeInitialGroups(
       return textResult({ path: await task(path), ids: result.groups.map(group => group.id) });
     },
   };
-  const response = await agents.run({ step: partStep(partProfile(context).id, 'initial_groups'),
-    name: '首次分组识别', cwd: context.directory,
-    prompt: knowledge.render('main', {}, { taskRoot: root }),
-    tools: knowledge.tools('main', [createBitmapTool(context.directory, join(context.directory, 'observations', 'initial-groups')), writeGroups]),
-  });
-  if (!submitted) throw agentOutcomeError('首次分组未通过 write_groups 保存', response);
-  return readInitialGroups(context.directory);
+  return checkedTurn({ agents, records: join(context.directory, partSteps.initial, 'checks'),
+    task: { step: partStep(partProfile(context).id, 'initial_groups'),
+      name: '首次分组识别', cwd: context.directory,
+      prompt: knowledge.render('main', {}, { taskRoot: root }),
+      tools: knowledge.tools('main', [createBitmapTool(context.directory, join(context.directory, 'observations', 'initial-groups')), writeGroups]) },
+    check: () => {
+      if (!submitted) throw missingSubmit('write_groups', '首次分组未通过 write_groups 保存');
+      return readInitialGroups(context.directory);
+    } });
 }

@@ -2,7 +2,7 @@ import { groupStepId } from './part-steps.ts';
 import { publishObservations, publishReportText } from '../report-assets.ts';
 import { runtimePrompt } from '../knowledge.ts';
 import { partStep } from '../agents/models.ts';
-import { agentOutcomeError, validateAgentOutcome } from '../codex/diagnostics.ts';
+import { asCheck, checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { partProfile } from './profile.ts';
 import { mkdir, readFile, readdir, realpath, rm } from 'node:fs/promises';
@@ -122,23 +122,22 @@ export async function drawGroupOutline(
   // 原 thread 不可用时 recoveryPrompt 在新会话中补上原绘制任务。
   const repairPrompt = repair && knowledge.render('repair', runtime(context, input, repair.round), { taskRoot: taskRootOf(context.directory), group: context.group.id });
   if (repairPrompt) await recordRepair(output, repair.round, repairPrompt);
-  const response = await agents.run({
-    step: partStep(profile.id, repair ? 'outline_repair' : 'outline'),
-    name: `${repair ? '组轮廓返修' : '组轮廓绘制'}-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
-    tools: knowledge.tools(repair ? 'repair' : 'main', [preview, write, createSvgReadTool(context.directory),
-      createBitmapTool(context.directory, join(context.directory, 'observations', 'outline', context.group.id)),
-      noteRepair]),
-    prompt: repairPrompt || drawingPrompt,
-    ...(repairPrompt ? { recoveryPrompt: `${drawingPrompt}\n\n${runtimePrompt('outline-repair-resume')}${repairPrompt}` } : {}),
-  });
-  const actualDraft = await validateAgentOutcome(response, async () => {
-    try { return await realpath(draft); }
-    catch (error) { throw new Error(`模型回合已结束，但没有生成轮廓文件：${draft}`, { cause: error }); }
-  });
-  if (!observations.some(entry => entry.source === actualDraft && entry.mode === 'blend')) {
-    throw agentOutcomeError('轮廓绘制未通过 preview_svg 完成混合叠加自检', response);
-  }
-  const bytes = await validateAgentOutcome(response, () => validateGroupSvg(draft, context.group.id, input.canvas, undefined, true));
+  await checkedTurn({ agents, records: join(context.directory, groupStepId(context.group.id, 'outline'), repair ? `repair-${repair.round}-checks` : 'checks'),
+    task: {
+      step: partStep(profile.id, repair ? 'outline_repair' : 'outline'),
+      name: `${repair ? '组轮廓返修' : '组轮廓绘制'}-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
+      tools: knowledge.tools(repair ? 'repair' : 'main', [preview, write, createSvgReadTool(context.directory),
+        createBitmapTool(context.directory, join(context.directory, 'observations', 'outline', context.group.id)),
+        noteRepair]),
+      prompt: repairPrompt || drawingPrompt,
+      ...(repairPrompt ? { recoveryPrompt: `${drawingPrompt}\n\n${runtimePrompt('outline-repair-resume')}${repairPrompt}` } : {}),
+    },
+    check: async () => {
+      await asCheck('missing-file', () => realpath(draft).catch(error => {
+        throw new Error(`模型回合已结束，但没有生成轮廓文件：${draft}`, { cause: error });
+      }));
+      await asCheck('invalid-output', () => validateGroupSvg(draft, context.group.id, input.canvas, parentBoundsSource(context.group, input.parent), true));
+    } });
   if (draft !== output) await publishSvg(draft, output);
   return { path: output };
 }
@@ -184,15 +183,16 @@ async function reviewOnce(
       return textResult({ path: await toAgentPath(taskRootOf(context.directory), reportPath), verdict: review.verdict });
     },
   };
-  const response = await agents.run({
-    step: partStep(profile.id, 'outline_review'), name: `组轮廓review-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
-    tools: knowledge.tools('review', [preview, submit, createSvgReadTool(context.directory),
-      createBitmapTool(context.directory, join(context.directory, 'observations', 'review', context.group.id))]),
-    prompt: knowledge.render('review', runtime(context, input, round), { taskRoot: taskRootOf(context.directory), group: context.group.id }),
-  });
-  if (!submitted) throw agentOutcomeError('独立 review 未通过 submit_review 保存结论', response);
-  if (hash(await readFile(candidate)) !== candidateHash) throw agentOutcomeError('独立 review 修改了候选 SVG', response);
-  return submitted;
+  await checkedTurn({ agents, records: join(context.directory, groupStepId(context.group.id, 'outline'), `review-${round}-checks`),
+    task: {
+      step: partStep(profile.id, 'outline_review'), name: `组轮廓review-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
+      tools: knowledge.tools('review', [preview, submit, createSvgReadTool(context.directory),
+        createBitmapTool(context.directory, join(context.directory, 'observations', 'review', context.group.id))]),
+      prompt: knowledge.render('review', runtime(context, input, round), { taskRoot: taskRootOf(context.directory), group: context.group.id }),
+    },
+    // submit_review already refuses a candidate that changed during the review.
+    check: () => { if (!submitted) throw missingSubmit('submit_review', '独立 review 未通过 submit_review 保存结论'); } });
+  return submitted!;
 }
 
 export async function reviewGroupOutline(

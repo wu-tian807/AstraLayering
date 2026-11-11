@@ -98,12 +98,6 @@ test('不可见子部件跳过描边、review 和同层去重，仍补出非空 
   assert.deepEqual(events, []);
 });
 
-test('自定义补全实现同样须为不可见部件交付非空 SVG', async t => {
-  const f = await fixture(t);
-  await assert.rejects(runLayering({ ...f, groups: null,
-    steps: workingSteps([], [{ id: 'face', hiddenInReference: true }]) }), /没有可见/);
-});
-
 for (const sourceWritten of [false, true]) test(`隐藏步骤在${sourceWritten ? '空底稿写入后' : '空底稿写入前'}中断，续跑完成跳过并进入补全`, async t => {
   const f = await fixture(t), events: string[] = [], id = 'iris';
   await seedInitialGroups(f.directory, [{ id, kind: 'part', hiddenInReference: true }]);
