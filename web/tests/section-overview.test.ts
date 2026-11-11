@@ -61,8 +61,8 @@ test('连线标签读取调度保存的 live 值，并区分显式范围和独�
 });
 
 test('执行面板逐管线展示真实状态，完成与失败不再显示为未运行', () => {
-  const html = render(['done', 'running', 'available', 'pending', 'failed']);
-  for (const [i, label] of ['已完成', '进行中', '已有产物', '待执行', '执行失败'].entries()) {
+  const html = render(['done', 'running', 'interrupted', 'pending', 'failed']);
+  for (const [i, label] of ['已完成', '进行中', '已中断', '待执行', '执行失败'].entries()) {
     const card = html.match(new RegExp(`data-overview="${i}"[\\s\\S]*?</article>`))![0];
     assert.ok(card.includes(label), card);
   }
@@ -97,10 +97,10 @@ test('归档任务只展示实际运行过的管线', () => {
   assert.deepEqual([...html.matchAll(/data-overview="(\d+)"/g)].map(match => match[1]), ['0', '2']);
 });
 
-test('停止后已有绘画仍是已有产物，不能误报完成或进行中', () => {
+test('停止后保留绘画与中断状态，不能误报完成或进行中', () => {
   const html = render(['interrupted', 'unconfirmed'], ['section-0/step01/draft.kra']);
   assert.match(html, /execution-state interrupted/);
-  assert.match(html, /execution-state unconfirmed/);
+  assert.match(html, /execution-state interrupted/);
   assert.doesNotMatch(html, /已完成|进行中/);
 });
 

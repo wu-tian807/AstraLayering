@@ -243,7 +243,7 @@ function svgPreviewPanel(index,group,phase,phaseFiles) {
 // Task recovery: 继续 keeps products and sessions, 恢复 drops the sessions and keeps
 // products, 重试 deletes the step products, sessions and agent attempt records.
 // Each acts on every interrupted or failed step of the task at once, then runs the
-// task again; 重试 also redoes completed steps that lost a delivery. Without any step record 继续 opens the run dialog instead. While the
+// task again. Without any step record 继续 opens the run dialog instead. While the
 // task runs they cannot apply, so the toolbar holds the stop button in their place.
 const stepActionNames={continue:'继续',resume:'恢复',retry:'重试'};
 // Shown on hover and focus: what the button keeps or drops, and when to choose it.
@@ -254,10 +254,10 @@ const stepActionHelp={
 };
 function stepTargets() {
  return (data.sections||[]).flatMap((section,index)=>[
-  ...(section.steps||[]).map(step=>({index,id:step.id,status:step.status,session:step.session,missing:step.missing}))]);
+  ...(section.steps||[]).map(step=>({index,id:step.id,status:step.status,session:step.session}))]);
 }
-const brokenSteps=(targets=stepTargets(),action='continue')=>targets.filter(target=>target.status==='running'||action==='retry'&&target.missing?.length);
-const stepLabel=target=>`${stages[target.index].name} ${target.id}${target.status==='completed'?'（缺少交付）':''}`;
+const brokenSteps=(targets=stepTargets(),action='continue')=>targets.filter(target=>target.status==='running');
+const stepLabel=target=>`${stages[target.index].name} ${target.id}`;
 const visibleStage=index=>!data.archived||Object.hasOwn(data.run?.sections||{},stages[index].id);
 function stepToolbar() {
  if(!state.name)return '';
@@ -314,9 +314,7 @@ function selectedStep() {
  return all(sectionSteps[state.stage]).find(step=>step.id===state.selectedStep)||sectionSteps[state.stage][0];
 }
 function observedDisplayStatus(index, status, stepId) {
- const prefix=stages[index].id+'/'+(stepId?stepId+'/':'');
- const hasArtifacts=available(stepArtifacts[index]?.[stepId]).length>0||data.files.some(path=>path.startsWith(prefix)&&!path.includes('/agents/')&&/\.(png|jpe?g|webp|svg|kra)$/i.test(path));
- return displayStatus(status,hasArtifacts);
+ return displayStatus(status);
 }
 function rasterItems(index, stepId) {
  const stage=stages[index].id, section=data.sections[index];
@@ -375,7 +373,8 @@ function stepNode(index,step,nested=false) {
  ${nineStage?`<a class="artifact-file" href="./studio?${new URLSearchParams({project:state.name,nineStage})}" target="_blank" rel="noopener">${icon('eye')}九轴预览</a>`:''}
  ${reportEvidence(index,step.id)}
  ${artifacts(step.id==='mask'&&stages[index].id==='shadow'?[...rasterItems(index,step.id),...shadowInspectionArtifacts(data.files)]:rasterItems(index,step.id),index,step.id)}
- ${data.sections[index]?.messages[step.id]?(step.status==='throttled'?waitBox(data.sections[index].messages[step.id]):step.status==='running'?`<p class="step-activity">${esc(data.sections[index].messages[step.id])}</p>`:errorBox(data.sections[index].messages[step.id])):''}
+ ${data.sections[index]?.products?.[step.id]?'<p class="step-activity">已有产物</p>':''}
+ ${data.sections[index]?.messages[step.id]?(step.status==='throttled'?waitBox(data.sections[index].messages[step.id]):['failed','interrupted'].includes(step.status)?errorBox(data.sections[index].messages[step.id]):`<p class="step-activity">${esc(data.sections[index].messages[step.id])}</p>`):''}
  ${processArtifacts(index,step)}
  </div>
  `}
@@ -452,7 +451,7 @@ function graph() {
  const lanes=flowLanes.map((lane,i)=>({...lane,html:cards(lane.stages),i})).filter(lane=>lane.html),merge=cards(mergeStages);
  const switcher=lanes.length>1?`<nav class="lane-switch" aria-label="切换关注的管线">${lanes.map(lane=>`<button data-lane="${lane.i}" class="${state.lane===lane.i?'active':''}" aria-label="查看${lane.name}" aria-pressed="${state.lane===lane.i}" title="${lane.name}"><span></span><small>${lane.name}</small></button>`).join('')}</nav>`:'';
  return `<section class="workflow-shell"><div class="flow-area"><div class="flow-toolbar"><button class="button preview-back" data-page="project">${icon('branch')}执行控制</button><span>${esc(state.name)} · ${data.run?esc(stages.find(stage=>stage.id===data.run.from)?.name)+' → '+esc(stages.find(stage=>stage.id===data.run.to)?.name):'已有产物'}</span><div class="flow-legend">${Object.keys(statusNames).map(status=>`<span>${statusMark(status)}${statusNames[status]}</span>`).join('')}</div><div class="canvas-tools"><button data-action="zoom-out" aria-label="缩小画布">−</button><button data-action="zoom-reset" id="zoom-label">100%</button><button data-action="zoom-in" aria-label="放大画布">＋</button><button data-action="zoom-fit">适合高度</button></div>${!data.archived&&!data.runnerAlive&&!data.lockHeld?'<button class="button" data-action="run-options">执行参数</button>':''}${stepToolbar()}</div>
- <div class="flow-scroll" tabindex="0" aria-label="完整流程画布：横向滚动或拖动浏览，上下拖动或 Ctrl/⌘ + 滚轮切换人物线与衣服线"><div class="flow-size"><div class="flow-world preview-world"><svg class="flow-connectors" aria-hidden="true"></svg><div class="flow-input">${data.original?`<a href="${artifact(data.original)}" target="_blank" rel="noopener"><img src="${artifact(data.original)}" alt="原始输入图"></a>`:icon('image')}<span><b>输入角色图</b><small>original → standard</small></span></div><div class="flow-grid"><div class="flow-lanes">${lanes.map(lane=>`<div class="flow-lane" data-lane-row="${lane.i}">${lane.html}</div>`).join('')}</div>${merge?`<div class="flow-merge" style="margin-top:${state.mergeShift}px">${merge}</div>`:''}</div></div></div></div>${switcher}
+ <div class="flow-scroll" tabindex="0" aria-label="完整流程画布：横向滚动或拖动浏览，上下拖动或 Ctrl/⌘ + 滚轮切换人物线与衣服线"><div class="flow-size" data-flow-layout><div class="flow-world preview-world" data-flow-layout><svg class="flow-connectors" aria-hidden="true"></svg><div class="flow-input">${data.original?`<a href="${artifact(data.original)}" target="_blank" rel="noopener"><img src="${artifact(data.original)}" alt="原始输入图"></a>`:icon('image')}<span><b>输入角色图</b><small>original → standard</small></span></div><div class="flow-grid"><div class="flow-lanes">${lanes.map(lane=>`<div class="flow-lane" data-lane-row="${lane.i}">${lane.html}</div>`).join('')}</div>${merge?`<div class="flow-merge" style="margin-top:${state.mergeShift}px">${merge}</div>`:''}</div></div></div></div>${switcher}
  <footer class="flow-footnote">人物分块准备完成后，人物线与衣服线并行，在穿戴组装合流 · 滚轮或左右拖动横向浏览 · 上下拖动、上下滑动或 Ctrl/⌘ + 滚轮切换两条线 · 点击产物放大查看</footer></div>${state.inspect?inspector():''}</section>`;
 }
 function runNotice() {
@@ -480,6 +479,8 @@ function connectFlow() {
  const world=document.querySelector('.flow-world');
  if(!world)return;
  const viewport=document.querySelector('.flow-scroll'),merge=world.querySelector('.flow-merge'),grid=world.querySelector('.flow-grid');
+ const left=viewport.scrollLeft,top=viewport.scrollTop,previousZoom=state.zoom;
+ const atEnd=left>0&&viewport.scrollWidth-viewport.clientWidth-left<2;
  // Layout in world units, independent of the current zoom and merge shift.
  const rows=[...world.querySelectorAll('[data-lane-row]')];
  const gridTop=grid.offsetTop,mergeHeight=merge?.offsetHeight||0,pad=12;
@@ -495,6 +496,10 @@ function connectFlow() {
  const size=document.querySelector('.flow-size');
  // The last lane can always scroll to the top of the viewport.
  size.style.width=`${world.offsetWidth*state.zoom}px`;size.style.height=`${Math.max(world.offsetHeight*state.zoom,laneScrollTop(laneCount()-1)+viewport.clientHeight)}px`;
+ // ResizeObserver also runs outside render(). Keep the user's location when
+ // artwork changes the fitted scale or the canvas bounds; stay at the right edge.
+ viewport.scrollLeft=atEnd?viewport.scrollWidth-viewport.clientWidth:left*(previousZoom?state.zoom/previousZoom:1);
+ viewport.scrollTop=top;
  document.querySelector('#zoom-label').textContent=Math.round(state.zoom*100)+'%';
  const bounds=world.getBoundingClientRect();
  const box=selector=>{const element=world.querySelector(selector);if(!element)return null;const r=element.getBoundingClientRect();return {x:(r.left-bounds.left)/state.zoom,y:(r.top-bounds.top)/state.zoom,w:r.width/state.zoom,h:r.height/state.zoom};};
