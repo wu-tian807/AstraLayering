@@ -3,7 +3,7 @@ import { publishReportAssets } from '../report-assets.ts';
 import { runtimePrompt, stepKnowledge } from '../knowledge.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../codex/environment.ts';
 import { formatAgentError, agentOutcomeError } from '../codex/diagnostics.ts';
-import { maxRepairs } from '../codex/checked-turn.ts';
+import { CheckFailure, maxRepairs } from '../codex/checked-turn.ts';
 import { retryDelays } from '../codex/agent-runtime.ts';
 import { sectionDirectory, resolveInput, resolveRunsDirectory, type SectionId } from '../paths.ts';
 import { appendFile, mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
@@ -43,11 +43,9 @@ export type Dependencies = {
 
 async function checkFiles(directory: string, files: readonly string[]): Promise<void> {
   for (const file of files) {
-    const path = join(directory, file);
-    try {
-      const info = await stat(path);
-      if (!info.isFile() || info.size === 0) throw new Error('交付文件为空或不是普通文件');
-    } catch (error) { throw new Error(`步骤尚不能完成，缺少有效交付：${file}`, { cause: error }); }
+    const info = await stat(join(directory, file)).catch(() => undefined);
+    if (!info) throw new CheckFailure('missing-file', `步骤尚不能完成，缺少有效交付：${file}`, { detail: `交付 ${file} 未生成` });
+    if (!info.isFile() || info.size === 0) throw new CheckFailure('invalid-output', `步骤尚不能完成，交付为空或不是普通文件：${file}`, { detail: `交付 ${file} 为空或不是普通文件` });
   }
 }
 
@@ -186,7 +184,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
     // The step's own drawing session (agents/steps/<step>/session.json).
     let session: StepSession = {};
     const saveSession = async (next: StepSession, reason?: string) => { await writeStepSession(directory, step.id, next, reason); session = next; };
-    const invoke = async (prompt: string, phase: string, fresh = false) => {
+    const invoke = async (prompt: string, phase: string, fresh = false, verify?: () => Promise<void>) => {
       lastAgentMessage = '';
       if (!fresh) session = await readStepSession(directory, step.id) ?? {};
       lastThreadId = fresh ? undefined : session.threadId;
@@ -224,7 +222,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
           ...(step.krita === false || !sectionKrita.reserved ? [] : [kritaTool])]),
         imageNormalization: { env: environment.codex.env, runsRoot: root, progress: options.progress },
         recoveryPrompt: session.threadId && !fresh && phase !== 'draw' ? workspacePrompt(await resumeRepair(repairPrompt), paths) : undefined,
-        threadId: fresh ? undefined : session.threadId, signal: options.signal,
+        threadId: fresh ? undefined : session.threadId, signal: options.signal, verify,
         onThreadReplacement: async (oldId, reason) => {
           await appendFile(join(records, 'attempts.jsonl'), JSON.stringify({ oldId, reason, phase, at: new Date().toISOString() }) + '\n');
           if (!fresh) await saveSession({}, reason);
@@ -253,9 +251,9 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
     if (step.krita !== false) await sectionKrita.reserve(options.signal, waiting => options.progress?.(`${step.id}：${waiting}`));
     // A failed program check goes back to the step's own thread as a repair turn
     // (at most maxRepairs per attempt).
-    const repairing = async (check: () => Promise<unknown>) => {
+    const repairing = async (check: () => Promise<void>) => {
       for (let round = 1; ; round++) {
-        try { return await check(); }
+        try { await check(); return; }
         catch (error) {
           options.signal?.throwIfAborted();
           const message = error instanceof Error ? error.message : String(error);
@@ -265,7 +263,9 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
             const reason = filtered ? '模型回合被内容过滤截断' : `已返修 ${maxRepairs} 次仍未通过`;
             throw new Error(`${message}（${reason}；继续仍接回同一会话，会话已无法推进时请用“恢复”换新会话）`, { cause: error });
           }
-          const problems = runtimePrompt('checks/invalid-output', { detail: message });
+          const code = error instanceof CheckFailure ? error.code : 'invalid-output';
+          const values = error instanceof CheckFailure ? error.values : { detail: message };
+          const problems = runtimePrompt(`checks/${code}`, values);
           const repair = runtimePrompt('check-repair', { problems, round: String(round), max: String(maxRepairs) });
           const result = await invoke(repair, `repair-check-${round}`);
           if (result.status !== 'completed') throw new Error(`步骤未完成：${result.summary}`);
@@ -289,10 +289,10 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
       }
       if (step.review) {
         // An interrupted repair may still need to regenerate a deliverable.
-        if (!drawingReady || reviewTask?.kind !== 'repair') await checkFiles(output, step.requiredFiles);
+        if (!drawingReady || reviewTask?.kind !== 'repair') await repairing(() => checkFiles(output, step.requiredFiles));
         await runReviews({ step, directory: output, signal: options.signal, progress: options.progress,
-          invoke: (prompt, task) => invoke(prompt, task.filename.slice(0, -3), task.kind === 'review'),
-          validate: () => checkFiles(output, step.requiredFiles),
+          invoke: (prompt, task, verify) => invoke(prompt, task.filename.slice(0, -3), task.kind === 'review', verify),
+          validate: () => repairing(() => checkFiles(output, step.requiredFiles)),
         });
       }
       await section.prepareDelivery?.(output, reference, step);
