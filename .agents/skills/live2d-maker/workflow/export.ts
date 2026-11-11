@@ -1,13 +1,12 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { createReadStream, createWriteStream } from 'node:fs';
 import { copyFile, lstat, mkdir, mkdtemp, readdir, readFile, realpath, rename, rm, utimes, writeFile } from 'node:fs/promises';
-import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { once } from 'node:events';
 import { finished } from 'node:stream/promises';
 import { Zip, ZipPassThrough, unzipSync } from 'fflate';
 import { sectionIds } from '../shared/paths.ts';
 import { reportReferences } from '../shared/report-links.js';
-import { reportTargets } from '../shared/report-paths.ts';
 import { toTaskPath } from '../shared/task-paths.ts';
 import { artifactPath, reportPath } from '../shared/part/artifact-facts.ts';
 import { normalizeGroups, walkGroups } from '../shared/part/groups.ts';
@@ -27,6 +26,11 @@ const exportSectionIds = sectionIds.slice(0, sectionIds.indexOf('shadow') + 1);
 const inside = (root: string, path: string) => path === root || path.startsWith(root + sep);
 const excluded = (path: string) => path.split(/[\\/]/).some(name =>
   ['workspace', 'agents', 'recovery', 'archive', 'node_modules'].includes(name) || name.startsWith('.'));
+// Relative PNG paths named anywhere inside a delivered JSON document.
+const pngReferences = (value: unknown): string[] => typeof value === 'string'
+  ? (/\.png$/i.test(value) && !isAbsolute(value) && !value.split(/[\\/]/).includes('..') ? [value] : [])
+  : Array.isArray(value) ? value.flatMap(pngReferences)
+  : value && typeof value === 'object' ? Object.values(value).flatMap(pngReferences) : [];
 export const completeRun = (run?: TaskRun) => !!run && run.status === 'completed'
   && exportSectionIds.every(id => run.sections[id]?.status === 'completed')
   && (run.to !== 'nine-axis' || run.sections['nine-axis']?.status === 'completed');
@@ -60,9 +64,8 @@ async function sourceFile(root: string, path: string): Promise<string | undefine
   } catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return; throw error; }
 }
 
-// Collect formal deliveries from receipts/contracts, then close over report
-// image references. A workspace image is published beside its citing report.
-// root is the real task directory. Records may name it through another prefix
+// Collect formal deliveries from receipts/contracts and their reports. Report
+// images are not exported. root is the real task directory. Records may name it through another prefix
 // (a symlinked runs root); those aliases map onto root.
 export async function exportFiles(root: string, run: TaskRun, aliases: readonly string[] = []): Promise<{ entries: Map<string, Entry>; warnings: string[] }> {
   const entries = new Map<string, Entry>(), files: string[] = [], steps = new Set<string>(), warnings: string[] = [];
@@ -141,49 +144,29 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
       }
     }
   }
-  // Include the delivered nine-axis artwork as it is. Names and shadow
-  // organization belong to the author; this adds no completion requirements.
+  // Keep the deliverables: KRA, JSON, Markdown, SVG and video, each step's
+  // character-nine-axis.png preview, and layer textures (layers/*.png, plus any texture a
+  // deformers.json names). Check and review images stay out of the export.
   if (nineAxis) for (const path of files) {
-    if (path.startsWith('nine-axis/') && /\.(?:json|md|kra|png|svg|mp4)$/i.test(path)) await add(path);
+    if (!path.startsWith('nine-axis/')) continue;
+    if (/\.(?:json|md|kra|svg|mp4)$/i.test(path) || /^nine-axis\/[^/]+\/character-nine-axis\.png$/i.test(path) || /\/layers\/[^/]+\.png$/i.test(path)) await add(path);
+    if (/(^|\/)deformers\.json$/i.test(path)) {
+      for (const texture of pngReferences(JSON.parse(await readFile(join(root, path), 'utf8')))) {
+        await add(slash(join(dirname(path), texture)));
+      }
+    }
   }
-  async function rewriteReport(text: string, path: string): Promise<string> {
+  // Report images are review views, not deliverables: their image syntax is
+  // dropped and the prose stays. Other path mentions remain as plain text.
+  async function rewriteReport(text: string): Promise<string> {
     for (const ref of reportReferences(text).reverse()) {
-      const candidates = reportTargets(root, path, ref.target, roots);
-      if (!candidates.length) continue;
-      let source: string | undefined, skipped = false;
-      // Report text is free prose: a cited path the file system cannot read is reported, not fatal.
-      // A symlinked image stays refused.
-      for (const candidate of candidates) {
-        try { source = await sourceFile(root, relative(root, candidate)); }
-        catch (error) {
-          const code = (error as NodeJS.ErrnoException).code;
-          if (!code) throw error;
-          skipped = true; warnings.push(path + '：跳过图片 ' + ref.target + '（' + code + '）');
-        }
-        if (source) break;
-      }
-      if (!source) {
-        if (!skipped) warnings.push(path + '：未找到图片 ' + (isAbsolute(ref.target) ? basename(ref.target) : ref.target));
-        continue;
-      }
-      const local = slash(relative(root, source)), segments = local.split('/'), workspace = segments.indexOf('workspace');
-      let target = local;
-      if (workspace >= 0) target = slash(join(dirname(path), 'report-assets', ...segments.slice(workspace + 1)));
-      else if (excluded(local)) continue;
-      const existing = entries.get(target);
-      if (existing?.source && existing.source !== source) {
-        const suffix = createHash('sha256').update(await readFile(source)).digest('hex').slice(0, 12);
-        target = slash(join(dirname(target), suffix + '-' + basename(target)));
-      }
-      entries.set(target, { source });
-      const link = slash(relative(dirname(path), target)).split('/').map(encodeURIComponent).join('/');
-      text = text.slice(0, ref.targetStart) + link + text.slice(ref.targetEnd);
+      if (text[ref.start] === '!') text = text.slice(0, ref.start) + text.slice(ref.end);
     }
     return text;
   }
   async function rewriteJSON(value: any, path: string, key = ''): Promise<any> {
     if (typeof value === 'string') {
-      if (key === 'feedback') return rewriteReport(value, path);
+      if (key === 'feedback') return rewriteReport(value);
       return isAbsolute(value) ? taskPath(value) : value;
     }
     if (Array.isArray(value)) return Promise.all(value.map(item => rewriteJSON(item, path, key)));
@@ -194,7 +177,7 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
   for (const [path, entry] of [...entries]) {
     if (!entry.source || !/\.(md|json)$/.test(path) || path.endsWith('/.completed')) continue;
     const original = await readFile(entry.source, 'utf8');
-    const text = path.endsWith('.md') ? (await rewriteReport(original, path)).replace(/\n{2,}$/, '\n')
+    const text = path.endsWith('.md') ? (await rewriteReport(original)).replace(/\n{2,}$/, '\n')
       : JSON.stringify(await rewriteJSON(JSON.parse(original), path), null, 2) + '\n';
     if (text !== original) entries.set(path, { bytes: Buffer.from(text) });
   }
