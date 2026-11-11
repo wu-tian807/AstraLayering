@@ -1,16 +1,42 @@
 {
   "version": 1,
-  "from": "nine-axis",
+  "archive": true,
+  "from": "part-layering",
   "to": "nine-axis",
   "jobs": 3,
+  "standard": false,
+  "shadowMode": "mask",
   "status": "completed",
-  "createdAt": "2026-11-09T15:51:36.647Z",
-  "updatedAt": "2026-11-10T04:03:20.272Z",
+  "createdAt": "2026-11-03T12:50:11.544Z",
+  "updatedAt": "2026-11-07T12:30:45.322Z",
   "sections": {
+    "part-layering": {
+      "status": "completed",
+      "updatedAt": "2026-11-05T15:47:33.808Z"
+    },
+    "raster-layering": {
+      "status": "completed",
+      "updatedAt": "2026-11-07T11:54:32.873Z"
+    },
+    "clothing-part-layering": {
+      "status": "completed",
+      "updatedAt": "2026-11-03T18:24:23.643Z"
+    },
+    "clothing-raster-layering": {
+      "status": "completed",
+      "updatedAt": "2026-11-07T11:54:32.853Z"
+    },
+    "character-assembly": {
+      "status": "completed",
+      "updatedAt": "2026-11-07T11:54:33.564Z"
+    },
+    "shadow": {
+      "status": "completed",
+      "updatedAt": "2026-11-07T12:30:45.321Z"
+    },
     "nine-axis": {
       "status": "completed",
       "updatedAt": "2026-11-10T04:03:20.271Z"
     }
-  },
-  "archive": true
+  }
 }

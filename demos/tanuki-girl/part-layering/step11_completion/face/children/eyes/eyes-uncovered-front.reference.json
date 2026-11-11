@@ -1,0 +1,25 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "pose": "same front pose; bangs swept upward to reveal eyes",
+  "reference": "part-layering/references/base-subject.png",
+  "sourceCrop": [
+    560,
+    290,
+    290,
+    270
+  ],
+  "sourceCropScale": 3,
+  "inputImage": "part-layering/step11_completion/face/children/eyes/workspace/bitmaps/938e0a78-da89-4666-b42f-297d5ba82886.png",
+  "auxiliaryImage": "part-layering/step11_completion/face/children/eyes/eyes-uncovered-front.png",
+  "generatedSize": [
+    1300,
+    1210
+  ],
+  "referenceRegion": [
+    230,
+    495,
+    875,
+    262
+  ],
+  "prompt": "Edit target image 1. ONE REQUIRED CHANGE: completely remove the central hanging bangs from the forehead and eye area, sweeping ALL central fringe upward to the top edge of this face crop. The forehead between the eyebrows and the top crop must be bare skin; NO pointed hair lock between the eyes, NO hair over either eyebrow, upper eyelid crease, or eye corner. Also sweep aside the thin side strands touching the outer canthi so a small clear skin margin surrounds each complete eye. This is an occlusion-reveal reference, the girl still has pink hair around the sides of her head but the fringe is pulled UP, outside the eye region. Keep the front-facing face, chin, nose, mouth, orange-brown open eyes, eye centers, eye sizes, original thick upper lashes, rounded lower eyelids, delicate separate eye crease arcs and original art style EXACTLY the same as image 1. Both eyes remain naturally fully open, with complete inner and outer corners visible, not exaggerated. Natural normal full face, no side view, no diagram, no new accessories, no hands, no text."
+}

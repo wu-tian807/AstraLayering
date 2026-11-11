@@ -1,0 +1,407 @@
+[
+  {
+    "view": "default-standard",
+    "id": "R01",
+    "bounds": [
+      734,
+      400,
+      75,
+      51
+    ],
+    "layers": [
+      "D071.00 | face/eyes/eye_left/upper_eyelid"
+    ],
+    "description": "左上睑黑睫缘上方多出悬空灰棕短弧，外眼角另有粉棕色碎线和突刺；参考对应位置为单一连贯睑缘。清掉额外短弧及外缘碎线，依本侧参考接顺睫尖；保留D073独立眼褶。",
+    "crop": [
+      720,
+      386,
+      103,
+      79
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R01-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R01-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R01-comparison.png"
+    }
+  },
+  {
+    "view": "default-standard",
+    "id": "R06",
+    "bounds": [
+      1054,
+      1014,
+      36,
+      48
+    ],
+    "layers": [
+      "D046.00 | arms/arm_left/hand/palm",
+      "D044.00 | arms/arm_left/hand/index_finger"
+    ],
+    "description": "左掌通往食指的上缘出现平行短线和碎阶；完整掌独显还能看到指根下侧棕色三角刺。清理掌层多余线刺，接顺掌指外缘及线宽，保留各指根和掌部原有覆盖范围；接触内不增加额外横线。",
+    "crop": [
+      1040,
+      1000,
+      64,
+      76
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R06-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R06-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R06-comparison.png"
+    }
+  },
+  {
+    "view": "default-standard",
+    "id": "R07",
+    "bounds": [
+      335,
+      997,
+      79,
+      75
+    ],
+    "layers": [
+      "D047.00 | arms/arm_right/hand/palm",
+      "D043.00 | arms/arm_right/hand/thumb",
+      "D045.00 | arms/arm_right/hand/index_finger"
+    ],
+    "description": "右掌上侧外缘呈碎段，掌侧接拇指处棕线分成尖刺与错开的细线，合成线宽突变。清理掌层分叉及多余线端，接顺参考中单一连续外缘，保留各指根、真实指缝和本件体积暗部，不补回腕饰投影。",
+    "crop": [
+      321,
+      983,
+      107,
+      103
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R07-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R07-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R07-comparison.png"
+    }
+  },
+  {
+    "view": "default-standard",
+    "id": "R08",
+    "bounds": [
+      1127,
+      1067,
+      18,
+      11
+    ],
+    "layers": [
+      "D040.00 | arms/arm_left/hand/middle_finger"
+    ],
+    "description": "左中指指尖下方有不接触本件轮廓的浅棕色短划，独显及默认合成都可见，参考没有。清除孤立短划，保留连续指腹描边和明暗。",
+    "crop": [
+      1113,
+      1053,
+      46,
+      39
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R08-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R08-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R08-comparison.png"
+    }
+  },
+  {
+    "view": "default-standard",
+    "id": "R10",
+    "bounds": [
+      564,
+      482,
+      70,
+      112
+    ],
+    "layers": [
+      "D013.00 | hair/braid_right | root",
+      "D057.00 | hair/braid_right | front"
+    ],
+    "description": "辫根多出向上抬起的尖束，改变参考中后发间的白色开口；下方辫外缘另有平行碎线。两深度分片联合完整图是连续的，修复应校正默认显露轮廓及双线，保留两片完整辫根和搭接。",
+    "crop": [
+      550,
+      468,
+      98,
+      140
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R10-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R10-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R10-comparison.png"
+    }
+  },
+  {
+    "view": "default-standard",
+    "id": "R11",
+    "bounds": [
+      668,
+      216,
+      78,
+      16
+    ],
+    "layers": [
+      "D012.00 | head_accessories/tanuki_ornament/tanuki_body",
+      "D085.50 | head_accessories/tanuki_ornament/tanuki_body | foreground jaw"
+    ],
+    "description": "双爪之间狸猫下颌原本连续的深棕弧线变成数段水平短线和浅色断段。按本件参考续成连续下颌弧线并修正D85.5显露边，不补回投在头发上的粉暗色带，保留同part两分片。",
+    "crop": [
+      654,
+      202,
+      106,
+      44
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R11-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R11-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R11-comparison.png"
+    }
+  },
+  {
+    "view": "default-standard",
+    "id": "R13",
+    "bounds": [
+      746,
+      456,
+      51,
+      40
+    ],
+    "layers": [
+      "D076.00 | face/blush_left"
+    ],
+    "description": "左红晕细线比本侧参考明显宽而浓，软化后成为厚桃色条带，原尺寸并排也可见。按本侧参考收窄线心和渐细尾端，保留弥散红底并平滑融色。",
+    "crop": [
+      732,
+      442,
+      79,
+      68
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R13-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R13-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R13-comparison.png"
+    }
+  },
+  {
+    "view": "default-standard",
+    "id": "R14",
+    "bounds": [
+      619,
+      459,
+      52,
+      42
+    ],
+    "layers": [
+      "D077.00 | face/blush_right"
+    ],
+    "description": "右红晕线群被加宽加浓，线间红色黏连，呈宽软条带；参考是分明的细线与弥散红底。按右侧自身参考减窄、减浓并修尾端，保留红底，不镜像另一侧。",
+    "crop": [
+      605,
+      445,
+      80,
+      70
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R14-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R14-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R14-comparison.png"
+    }
+  },
+  {
+    "view": "default-body",
+    "id": "R03",
+    "bounds": [
+      903,
+      773,
+      55,
+      84
+    ],
+    "layers": [
+      "D025.00 | arms/arm_left/upper_arm"
+    ],
+    "description": "左上臂肘侧外缘有一串平行碎线、短刺与主轮廓并行，独显及默认可见；身体参考对应处是单一连续外线。去掉轮廓外重复笔迹，沿实际本件边缘接成同宽连续描边，保留肘端完整补形。",
+    "crop": [
+      889,
+      759,
+      83,
+      112
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-body/R03-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-body/R03-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-body/R03-comparison.png"
+    }
+  },
+  {
+    "view": "default-body",
+    "id": "R04",
+    "bounds": [
+      520,
+      773,
+      55,
+      56
+    ],
+    "layers": [
+      "D026.00 | arms/arm_right/upper_arm"
+    ],
+    "description": "右上臂肘侧内缘有第二条碎线与主线并行，轮廓局部增粗、毛刺；独显可定位在本层。参考为连贯单线。清除平行残线和刺，接顺肘侧轮廓，保留自身桃色体积暗部。",
+    "crop": [
+      506,
+      759,
+      83,
+      84
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/default-body/R04-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/default-body/R04-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/default-body/R04-comparison.png"
+    }
+  },
+  {
+    "view": "sclera-left",
+    "id": "R02",
+    "bounds": [
+      729,
+      415,
+      64,
+      45
+    ],
+    "layers": [
+      "D065.00 | face/eyes/eye_left/sclera"
+    ],
+    "description": "完整左眼白中央米色补全与内眼角白区之间存在近乎竖直的硬分界，外围另有一圈浅色过渡带，独显呈拼块感。参考可见眼白是连贯的明暗过渡；隐藏中心本身没有可直接照抄的参考。以本侧可见眼白取色和笔触重融补全区，消除块边，保留眼白开合轮廓及原生蒙版。",
+    "crop": [
+      717,
+      403,
+      88,
+      69
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/sclera-left/R02-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/sclera-left/R02-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/sclera-left/R02-comparison.png"
+    }
+  },
+  {
+    "view": "upper-arm-right",
+    "id": "R05",
+    "bounds": [
+      483,
+      808,
+      45,
+      37
+    ],
+    "layers": [
+      "D026.00 | arms/arm_right/upper_arm"
+    ],
+    "description": "右上臂完整肘端的下圆弧没有续画棕色描边，左右两侧现有线停在浅色透明边之前；不是缺少形体，而是补全区收口描线未完成。沿本件实际圆帽继续绘制同粗细轮廓，融接自身肤色和暗部；合成中保持肘关节接合，不暴露新增闭合线。",
+    "crop": [
+      469,
+      794,
+      73,
+      65
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/upper-arm-right/R05-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/upper-arm-right/R05-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/upper-arm-right/R05-comparison.png"
+    }
+  },
+  {
+    "view": "palm-left",
+    "id": "R06",
+    "bounds": [
+      1054,
+      1014,
+      36,
+      48
+    ],
+    "layers": [
+      "D046.00 | arms/arm_left/hand/palm"
+    ],
+    "description": "左掌完整独显：食指根上缘有平行短描线，下缘多出棕色三角刺。清理多余线刺并接顺掌本件外缘的线宽、颜色、切线；保持掌部作为指根覆盖侧的范围，不沿接触边增加额外闭合横线。",
+    "crop": [
+      1040,
+      1000,
+      64,
+      76
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/palm-left/R06-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/palm-left/R06-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/palm-left/R06-comparison.png"
+    }
+  },
+  {
+    "view": "palm-right",
+    "id": "R07",
+    "bounds": [
+      335,
+      997,
+      79,
+      75
+    ],
+    "layers": [
+      "D047.00 | arms/arm_right/hand/palm"
+    ],
+    "description": "右掌独显：上侧可见外缘是多段碎线，掌侧长轮廓约x402/y1041处分叉成尖刺与错开的细线，默认接拇指时出现线宽突变。清理分叉与残线，续成单一贴合形体的外轮廓；保留掌作为覆盖侧的接触边，不额外增加接触内的横向闭合线。",
+    "crop": [
+      321,
+      983,
+      107,
+      103
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/palm-right/R07-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/palm-right/R07-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/palm-right/R07-comparison.png"
+    }
+  },
+  {
+    "view": "ear-fur-left",
+    "id": "R09",
+    "bounds": [
+      793,
+      280,
+      40,
+      32
+    ],
+    "layers": [
+      "D018.00 | face/ears/ear_left/ear_fur"
+    ],
+    "description": "左耳毛完整隐藏根部下侧拉成尖薄三角，已有棕色毛簇轮廓到根部停止，斜边和尖端只剩浅色透明外缘。按本件可见毛簇的体积、色层和描线续完根部，收顺斜边及端部；保留原可见尖簇与耳壳开口，不把另一侧毛簇镜像替代。",
+    "crop": [
+      779,
+      266,
+      68,
+      60
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/ear-fur-left/R09-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/ear-fur-left/R09-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/ear-fur-left/R09-comparison.png"
+    }
+  },
+  {
+    "view": "anklet-back",
+    "id": "R12",
+    "bounds": [
+      571,
+      1768,
+      21,
+      31
+    ],
+    "layers": [
+      "D011.00 | legs/leg_right/anklet_back"
+    ],
+    "description": "后粉色踝环完整左端在回转后突然收窄成颈口，再伸出扁平尖斜片；端部厚度和粉色管状体积没有自然延续。保留现有后弧与前弧搭接，按本件可见粉管的厚度和明暗重画该小回转及圆顺端部，消除急窄口；米色弧与腿、前环均保留。",
+    "crop": [
+      557,
+      1754,
+      49,
+      59
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-02-evidence/regions/anklet-back/R12-current.png",
+      "reference": "raster-layering/step01/review-02-evidence/regions/anklet-back/R12-reference.png",
+      "comparison": "raster-layering/step01/review-02-evidence/regions/anklet-back/R12-comparison.png"
+    }
+  }
+]

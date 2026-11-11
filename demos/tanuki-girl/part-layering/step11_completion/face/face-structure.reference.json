@@ -1,0 +1,20 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "pose": "same frontal pose; obstructing bangs and cheek strands swept aside",
+  "sourceCrop": [
+    470,
+    0,
+    465,
+    650
+  ],
+  "sourceCropScale": 2,
+  "reference": "part-layering/step11_completion/face/face-structure.front.png",
+  "edgeReferenceRegion": [
+    85,
+    425,
+    892,
+    770
+  ],
+  "constraintsUsed": "原图可见轮廓和比例为锚；生成图读取完整额弧、颊缘与原有圆形兽耳内侧走向。生成图误生的普通耳样结构不采用。",
+  "finalPrompt": "Make one exact local correction: this character has ONLY the two large pink circular animal ears high on her head. Erase the incorrectly added small flesh-colored human ears beside the cheeks on BOTH sides (around eye-to-cheek level). Replace those two incorrect ear locations with the existing pink back hair sitting behind the face. Retain the entire smooth fully exposed face outline, exact eyes, cheek width, jaw, chin, forehead, hairstyle, ornament, headphones and BOTH LARGE PINK ANIMAL EARS at top left and top right unchanged. Keep exact image framing and front orientation, preserve anime rendering. Do not add any human ears again. TWO ears total: the original large pink round animal ears. No other changes."
+}

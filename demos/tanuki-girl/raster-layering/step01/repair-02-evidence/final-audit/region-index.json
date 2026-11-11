@@ -1,0 +1,184 @@
+[
+  {
+    "issue": "R01",
+    "box": [
+      730,
+      398,
+      811,
+      453
+    ],
+    "part_id": "face/eyes/eye_left/upper_eyelid",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R01-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R01-states.png"
+  },
+  {
+    "issue": "R02",
+    "box": [
+      724,
+      407,
+      803,
+      458
+    ],
+    "part_id": "face/eyes/eye_left/sclera",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R02-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R02-states.png"
+  },
+  {
+    "issue": "R03",
+    "box": [
+      902,
+      773,
+      959,
+      858
+    ],
+    "part_id": "arms/arm_left/upper_arm",
+    "reference": "part-layering/references/base-subject.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R03-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R03-states.png"
+  },
+  {
+    "issue": "R04",
+    "box": [
+      520,
+      773,
+      578,
+      831
+    ],
+    "part_id": "arms/arm_right/upper_arm",
+    "reference": "part-layering/references/base-subject.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R04-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R04-states.png"
+  },
+  {
+    "issue": "R05",
+    "box": [
+      482,
+      804,
+      553,
+      843
+    ],
+    "part_id": "arms/arm_right/upper_arm",
+    "reference": "part-layering/references/base-subject.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R05-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R05-states.png"
+  },
+  {
+    "issue": "R06",
+    "box": [
+      1054,
+      1014,
+      1090,
+      1063
+    ],
+    "part_id": "arms/arm_left/hand/palm",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R06-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R06-states.png"
+  },
+  {
+    "issue": "R07",
+    "box": [
+      334,
+      996,
+      415,
+      1073
+    ],
+    "part_id": "arms/arm_right/hand/palm",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R07-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R07-states.png"
+  },
+  {
+    "issue": "R08",
+    "box": [
+      1126,
+      1064,
+      1147,
+      1080
+    ],
+    "part_id": "arms/arm_left/hand/middle_finger",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R08-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R08-states.png"
+  },
+  {
+    "issue": "R09",
+    "box": [
+      768,
+      235,
+      847,
+      316
+    ],
+    "part_id": "face/ears/ear_left/ear_fur",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R09-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R09-states.png"
+  },
+  {
+    "issue": "R10",
+    "box": [
+      553,
+      476,
+      638,
+      595
+    ],
+    "part_id": "hair/braid_right",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R10-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R10-states.png"
+  },
+  {
+    "issue": "R11",
+    "box": [
+      661,
+      197,
+      749,
+      237
+    ],
+    "part_id": "head_accessories/tanuki_ornament/tanuki_body",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R11-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R11-states.png"
+  },
+  {
+    "issue": "R12",
+    "box": [
+      568,
+      1754,
+      622,
+      1804
+    ],
+    "part_id": "legs/leg_right/anklet_back",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R12-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R12-states.png"
+  },
+  {
+    "issue": "R13",
+    "box": [
+      742,
+      452,
+      804,
+      504
+    ],
+    "part_id": "face/blush_left",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R13-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R13-states.png"
+  },
+  {
+    "issue": "R14",
+    "box": [
+      613,
+      455,
+      677,
+      507
+    ],
+    "part_id": "face/blush_right",
+    "reference": "part-layering/references/standard.png",
+    "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R14-comparison.png",
+    "states": "raster-layering/step01/repair-02-evidence/final-audit/R14-states.png"
+  }
+]

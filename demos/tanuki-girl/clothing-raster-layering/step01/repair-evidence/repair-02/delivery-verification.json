@@ -1,0 +1,206 @@
+{
+  "savedKra": "clothing-raster-layering/step01/clothing-depth.kra",
+  "kraSHA256": "3e322d90c58712da60e69271013af9d486795d29a07c309948f414c268c49187",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "paintLayers": 25,
+  "logicalParts": 18,
+  "nativeTransparencyMasks": 4,
+  "savedReopenPassed": true,
+  "defaultPNGEqualsReopenedRGBA": true,
+  "frontCordPaintingPreserved": true,
+  "posteriorMaskPreserved": true,
+  "posteriorRepaintedAsCompleteInwardReturn": true,
+  "changes": [
+    {
+      "depth": 1,
+      "id": "rear_drape_screen_left",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{a9feb87a-9ee2-4b4d-b3d7-a03b3024d30a}"
+    },
+    {
+      "depth": 2,
+      "id": "rear_drape_screen_right",
+      "paintChanged": true,
+      "maskChanged": false,
+      "uuid": "{03b3eeeb-d709-413c-8a75-6e4c35ad166a}"
+    },
+    {
+      "depth": 3,
+      "id": "rear_waist_bow/right_bow_wing",
+      "paintChanged": true,
+      "maskChanged": false,
+      "uuid": "{8d09ad13-0794-4196-a74f-40cfa284ac90}"
+    },
+    {
+      "depth": 4,
+      "id": "rear_waist_bow/left_bow_wing",
+      "paintChanged": true,
+      "maskChanged": false,
+      "uuid": "{d7904da0-c4bb-42f0-aa90-316ccd2361cf}"
+    },
+    {
+      "depth": 5,
+      "id": "rear_waist_bow/central_knot_root",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{9b5dfbd5-24ce-408b-aa43-3ca726a49fe0}"
+    },
+    {
+      "depth": 6,
+      "id": "kimono_body/right_underlap_panel",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{b9264b56-1103-4e9d-a819-f2261d582a3f}"
+    },
+    {
+      "depth": 7,
+      "id": "kimono_body/left_overlap_panel",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{df56147f-b986-44b7-8615-6701bac4f2a7}"
+    },
+    {
+      "depth": 8,
+      "id": "sleeve_screen_left",
+      "paintChanged": true,
+      "maskChanged": true,
+      "uuid": "{28eda41a-af13-4b31-98bc-43e43e04e833}"
+    },
+    {
+      "depth": 9,
+      "id": "sleeve_screen_right",
+      "paintChanged": false,
+      "maskChanged": true,
+      "uuid": "{e6a205f4-b174-443a-b99f-bf37639b08ef}"
+    },
+    {
+      "depth": 10,
+      "id": "inner_waist_wrap",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{c512849c-10cc-40a4-9517-8842bc1da9e8}"
+    },
+    {
+      "depth": 11,
+      "id": "outer_waist_band",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{65216b2a-3cd0-4d40-af02-b38d60c8e6e5}"
+    },
+    {
+      "depth": 12,
+      "id": "front_waist_cord_knot",
+      "paintChanged": true,
+      "maskChanged": false,
+      "uuid": "{1e2981d5-978b-42d0-8f72-a8e64d0908b8}"
+    },
+    {
+      "depth": 13,
+      "id": "kimono_body/right_underlap_panel",
+      "paintChanged": true,
+      "maskChanged": false,
+      "uuid": "{5769b9f7-a47f-42a4-a475-ccf927a52db8}"
+    },
+    {
+      "depth": 14,
+      "id": "kimono_body/left_overlap_panel",
+      "paintChanged": true,
+      "maskChanged": false,
+      "uuid": "{70c4647b-e66c-452e-a0f0-69ab1c6edec7}"
+    },
+    {
+      "depth": 15,
+      "id": "sleeve_screen_left",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{6c2f726e-95fa-4d85-a438-4eb37967f2b5}"
+    },
+    {
+      "depth": 16,
+      "id": "sleeve_screen_right",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{1d1e93f1-2ee2-490e-a2ad-3dab2ae3d18c}"
+    },
+    {
+      "depth": 17,
+      "id": "inner_waist_wrap",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{2f7649d6-faf5-4fab-9962-4facae789df6}"
+    },
+    {
+      "depth": 18,
+      "id": "outer_waist_band",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{ae256aa9-e4ce-4bb4-9a3e-93a59812d17e}"
+    },
+    {
+      "depth": 19,
+      "id": "front_pendant_screen_left/right_free_cord",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{354894aa-d98d-4480-bc14-1c9f2d3f2f4e}"
+    },
+    {
+      "depth": 20,
+      "id": "front_pendant_screen_right/left_free_cord",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{effe9c2e-9005-4a3f-848d-d1f07a973fff}"
+    },
+    {
+      "depth": 21,
+      "id": "front_pendant_screen_left/right_tassel",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{7791f227-c497-4af3-9f76-a64da8534aff}"
+    },
+    {
+      "depth": 22,
+      "id": "front_pendant_screen_right/left_tassel",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{5bd96b03-31e5-40fd-9bad-c7f8d85e3f14}"
+    },
+    {
+      "depth": 23,
+      "id": "front_waist_cord_knot",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{b43276ac-19ee-4a09-8d7c-d67e806324f5}"
+    },
+    {
+      "depth": 24,
+      "id": "front_pendant_screen_left/right_terminal_bead",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{41d13dc4-1e3d-48f7-b114-50372ccdde98}"
+    },
+    {
+      "depth": 25,
+      "id": "front_pendant_screen_right/left_terminal_bead",
+      "paintChanged": false,
+      "maskChanged": false,
+      "uuid": "{6128f6c6-91e0-43bf-84f0-3ab6d170581f}"
+    }
+  ],
+  "qualityConclusion": "已修复",
+  "fixed": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8",
+    "R9"
+  ],
+  "remaining": []
+}

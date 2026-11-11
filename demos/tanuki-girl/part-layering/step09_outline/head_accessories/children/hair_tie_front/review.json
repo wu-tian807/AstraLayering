@@ -1,0 +1,58 @@
+{
+  "groupId": "head_accessories/hair_tie_front",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已核对本组 note、参考图、候选及父组完成 SVG。本组可见范围为画面左侧辫体与散尾衔接处 x≈584–607、y≈699–713 的唯一黑色发圈前段，候选归属正确，未误包辫体、辫尾或父稿隐藏后侧搭接。完成整图 blend 定位，并以 [555,670,80,65] 查看邻接关系，以 [578,692,36,27] 全区域 8 倍 reference/blend/edge 核对，再以相互重叠的 [581,696,17,20] 与 [593,696,18,20] 分别检查左右边缘、转角及上下接缝。上缘浅凹弧、下缘凸弧、两侧收束轮廓及转折均贴合参考可见边界；可见环带完整连续，没有真实孔洞被填平，也未见组件缺失、孤点或碎片噪音。独显轮廓干净。allowOutsideParent 未开启，四倍采样父范围检查 outsidePixels=0；候选位于父完成轮廓内，未发现需要另报的上游范围冲突。\n\n图像依据：\n\n\n",
+      "candidateHash": "55402da351d32634263c3f47254e76c546e5ed80453a68d8828b7849064ced1d",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_tie_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_tie_front/previews/2026-11-03T17-48-28-511Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_tie_front/previews/2026-11-03T17-48-28-511Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_tie_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_tie_front/previews/2026-11-03T17-48-28-511Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_tie_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_tie_front/previews/2026-11-03T17-48-28-511Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_tie_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_tie_front/previews/2026-11-03T17-48-28-511Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_tie_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_tie_front/previews/2026-11-03T17-48-28-511Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_tie_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_tie_front/previews/2026-11-03T17-48-28-511Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_tie_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_tie_front/previews/2026-11-03T17-48-28-511Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_tie_front/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_tie_front/previews/2026-11-03T17-48-28-511Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T18:14:28.611Z"
+    }
+  ]
+}

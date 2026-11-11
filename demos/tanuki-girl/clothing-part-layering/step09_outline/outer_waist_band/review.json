@@ -1,0 +1,33 @@
+{
+  "groupId": "outer_waist_band",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立检查通过，无确定需要修改的问题，无须重画当前组。\n\n归属先由纯衣服参考确认：本组是腰中央、深色内环腰层上下露带之间的金色宽腰带，约 x491–888、y643–806；横系绳、双绳环、结芯及两支垂饰另有归属。候选是连续带面，未把后结翼、袖片、深色上下露带或人体纳入实体。被前系绳、结芯和自由绳端遮挡处的连续覆盖属于合理隐藏重叠；绳环中露出的金色区域是本带实体，不是腰带开口，不应挖空。参考中本组没有薄纱或独立附件遗漏。证据：[纯衣服腰部放大](review_evidence/reference_waist.png)。\n\n整体位置和比例已用全图 blend 核对，画布为1376×2048，候选范围和腰带位置一致，无游离色块。证据：[整体叠加](review_evidence/blend_full.png)。\n\n全部可见边缘已在 x475–905、y630–820 的4倍 edge与blend中覆盖核对：上边从左端(491,650)经中央约(686,643)至右端(888,650)，贴合深色上露带与金色带的分界；下边由左下约(498,784)经中央(689,806)至右下(876,782)，与下露带分界吻合。左侧上段斜收、横绳遮挡处及下段内收后外展，右侧收窄弧段与右下转角均与参考一致；偏差处落在参考边线宽度内，未发现可见缺口、越界包入或需要修正的接缝。证据：[全腰带边缘覆盖](review_evidence/edge_waist.png)、[全腰带局部叠加](review_evidence/blend_waist.png)。\n\n独显确认闭合实体连续，无错误孔洞或多余附件路径。证据：[候选独显](review_evidence/svg_waist.png)。note 已明确实体范围、与深色环腰层和前系绳的相邻/遮挡关系、随腰躯干控制、腰侧连续转折的前后关系及必要隐藏搭接，未发现需要修正的说明。此节点为顶层 group，parentGroup=null，无父完成SVG及父范围约束。候选及groups均只读，未作修改。",
+      "candidateHash": "c1d27f31e3cf82f55449a4f43f0928ef79c0e8a70038fee64cc121c668662de4",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/outer_waist_band/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_waist_band/previews/2026-11-03T14-03-02-106Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_waist_band/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_waist_band/previews/2026-11-03T14-03-02-106Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_waist_band/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_waist_band/previews/2026-11-03T14-03-02-106Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_waist_band/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/outer_waist_band/previews/2026-11-03T14-03-02-106Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:27:33.191Z"
+    }
+  ]
+}

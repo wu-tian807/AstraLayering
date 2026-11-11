@@ -1,0 +1,191 @@
+{
+  "author": "nine-axis/step06_angle-xy/face-xy.json",
+  "authorSha256": "ccf6a6da0bcc3a3d2f0297d36582e22ab7d6ba66d8d084a54cd6be7749335dd2",
+  "modelSha256": "b979e7b15c3259c544df1b3552c30a4509891c8426af744c580f65ba7cf2ee80",
+  "poseImages": [
+    {
+      "path": "nine-axis/step06_angle-xy/review/left-up.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/22b46ed1-e67a-4559-8c5c-5845713b89c7.png",
+      "x": -30,
+      "y": 25,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/up.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/d4aa22c7-76bf-4a4a-9624-d1a3b01ff097.png",
+      "x": 0,
+      "y": 25,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/right-up.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/6c6cb294-09e8-43ed-bb66-c15ea58f2fd7.png",
+      "x": 30,
+      "y": 25,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/left.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/c568a58a-fe47-4774-8408-87fb326afffc.png",
+      "x": -30,
+      "y": 0,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/front.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/0b05af67-26a6-445d-85b1-07c47fc22fb5.png",
+      "x": 0,
+      "y": 0,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/right.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/27a4216a-c4c1-44bf-95f7-5c5e86a252fa.png",
+      "x": 30,
+      "y": 0,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/left-down.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/1e4e544c-b845-44a3-a1fd-dc7b5fee69de.png",
+      "x": -30,
+      "y": -25,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/down.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/7672c4d3-8d7e-4ba1-bb25-f73dcc9a72be.png",
+      "x": 0,
+      "y": -25,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/right-down.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/7e3a84f3-e887-479f-a510-1b76fe1e360f.png",
+      "x": 30,
+      "y": -25,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/half-left-up.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/4f0a5684-d4a0-41ac-9868-386ebaf97876.png",
+      "x": -15,
+      "y": 25,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/left-half-up.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/429c5a85-1a71-4dde-8c0e-e97febcc76dc.png",
+      "x": -30,
+      "y": 12.5,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/left-half-down.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/e3305ae2-3998-4ed9-a582-7e00d67755cd.png",
+      "x": -30,
+      "y": -12.5,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/review/half-left-down.png",
+      "source": "nine-axis/step06_angle-xy/workspace/bitmaps/fee466f3-50d1-496a-a4f0-4f5d6dbad450.png",
+      "x": -15,
+      "y": -25,
+      "crop": [
+        505,
+        180,
+        395,
+        430
+      ],
+      "scale": 2,
+      "renderer": "view_nine_axis"
+    }
+  ],
+  "comparisonRegistration": "same original canvas coordinates; no automatic alignment",
+  "montageMethod": "Uniform 2x-to-1x downsample of identically cropped actual renders; labels added outside the image area."
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "head_accessories/tanuki_ornament/tanuki_body",
+    "level": 12,
+    "region": "狸饰主体后部与完整下颌底形，在后发和前发后；下颌可见前缘另由同件D85.5分片承接。",
+    "preannotated": false,
+    "layer": "D012.00 | head_accessories/tanuki_ornament/tanuki_body",
+    "uuid": "{9aee0d16-dbe7-4cf6-9b3f-0d333c289ae5}",
+    "painted": true,
+    "discovered_split": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/head_accessories__tanuki_ornament__tanuki_body-D12-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/head_accessories__tanuki_ornament__tanuki_body-D12-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/head_accessories__tanuki_ornament__tanuki_body-D12-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/head_accessories__tanuki_ornament__tanuki_body-D12-upper-hidden-complete.png"
+  },
+  {
+    "id": "head_accessories/tanuki_ornament/tanuki_body",
+    "level": 85.5,
+    "region": "同一狸饰的完整下颌前缘与隐藏接合片，在完整前发之后、双爪之前；原生接合蒙版只露出原图下颌范围，补全发根保留在后。",
+    "preannotated": false,
+    "discovered_split": true,
+    "layer": "D085.50 | head_accessories/tanuki_ornament/tanuki_body | foreground jaw",
+    "uuid": "{81b543f2-3b44-45b5-bffc-95a0a600e5d5}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/head_accessories__tanuki_ornament__tanuki_body-D85.5-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/head_accessories__tanuki_ornament__tanuki_body-D85.5-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/head_accessories__tanuki_ornament__tanuki_body-D85.5-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/head_accessories__tanuki_ornament__tanuki_body-D85.5-upper-hidden-complete.png"
+  },
+  {
+    "id": "hair/braid_right",
+    "level": 13,
+    "region": "完整辫根后片延续到y586，在短后发、脸与颈后；与前片沿原图前景发束轮廓搭接，保留隐藏根部。",
+    "preannotated": true,
+    "layer": "D013.00 | hair/braid_right | root",
+    "uuid": "{23aa9bc6-b545-4a55-82e2-43e14821b638}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/hair__braid_right-D13-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/hair__braid_right-D13-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/hair__braid_right-D13-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/hair__braid_right-D13-upper-hidden-complete.png"
+  },
+  {
+    "id": "hair/braid_right",
+    "level": 57,
+    "region": "前辫上界沿原图前景发束曲线，隐藏补全根部仍在D13；y580–586接到完整前辫，胸肩前、右耳罩后，无水平截边。",
+    "preannotated": true,
+    "layer": "D057.00 | hair/braid_right | front",
+    "uuid": "{9cbf362a-bc38-461f-8385-446c0b842245}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/hair__braid_right-D57-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/hair__braid_right-D57-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/hair__braid_right-D57-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/R13-R14-root-02/hair__braid_right-D57-upper-hidden-complete.png"
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "groupId": "face/face_base",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，仅审 face/face_base。已读取本组及父组说明、原图、候选和父完成 SVG，并完成整图定位与覆盖全部脸部的重叠分块 blend/edge 核对。\n\n归属与覆盖：本件职责为连续脸底，五官下保留完整填色。额头及左右脸颊的可见肤色、眼下和鼻口区域全部被联合色块覆盖；无误认兽耳、颈部或独立头发组件。上缘及两侧被头发遮挡的完整底形与父完成脸型一致，属于已有合理补形，无需沿刘海挖缺口。证据：[整图叠加](review-evidence/round1/full-blend.png)、[父完成稿局部](review-evidence/round1/parent-blend.png)。\n\n分块检查：左上区 [595,300,125,190] 与右上区 [700,300,125,200]（4 倍）覆盖额头、左右眼周至侧发尖端，接缝有连续脸底，无可见肤色缺漏；左下区 [610,470,110,80] 与右下区 [695,480,110,75]（6 倍）相互重叠且与上区重叠，检查两侧侧发下方露出的脸缘、下颌及下巴。下颌轮廓跟随原图弧度，下巴转折位置与颈部交界吻合，无确定的外扩、缩入或缝隙。证据：[左上 blend](review-evidence/round1/left-upper-blend.png)、[左上 edge](review-evidence/round1/left-upper-edge.png)、[右上 blend](review-evidence/round1/right-upper-blend.png)、[右上 edge](review-evidence/round1/right-upper-edge.png)、[左下 blend](review-evidence/round1/left-jaw-blend.png)、[左下 edge](review-evidence/round1/left-jaw-edge.png)、[右下 blend](review-evidence/round1/right-jaw-blend.png)、[右下 edge](review-evidence/round1/right-jaw-edge.png)。\n\n轮廓与父范围：独显为单一干净连续脸底，无孤点、碎片、无依据孔洞或刻意挖缝；不要求提前拆分或显示五官内部边界。未设置 allowOutsideParent，四倍采样范围检查 outsideSamples=0、outsidePixels=0，候选完全容纳在父完成范围内。未发现需单独报告的父范围冲突。证据：[候选独显](review-evidence/round1/shape.png)。本轮通过，无需重画或局部返修；输入、候选和父稿保持只读。",
+      "candidateHash": "5e54398ff6d3d36855e310d672f682c7a9a2a1067e1c773a624b55788977254d",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/face_base/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/face_base/previews/2026-11-03T17-29-27-850Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T18:03:00.365Z"
+    }
+  ]
+}

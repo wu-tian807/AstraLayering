@@ -1,0 +1,15 @@
+{
+  "closed_and_reopened": true,
+  "width": 1376,
+  "height": 2048,
+  "paint_layers": 81,
+  "native_masks": 35,
+  "all_layer_and_mask_properties_equal": true,
+  "all_raw_paint_and_mask_pixels_equal": true,
+  "default_png_pixels_equal": true,
+  "kra_unchanged_by_reopen": true,
+  "kra_sha256": "726622bcf332e5668a3cf09c824b6fb13af32660e94fdb06413d0e0ee7c15b83",
+  "png_pixel_sha256": "600d66145047ee59bf5b1b2ff70a738ffa703c9d322bb7566bf6f1a33953eefc",
+  "saved_file": "raster-layering/step02/character-soft-edges.kra",
+  "png_file": "raster-layering/step02/character-soft-edges.png"
+}

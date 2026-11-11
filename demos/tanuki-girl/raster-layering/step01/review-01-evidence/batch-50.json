@@ -1,0 +1,62 @@
+[
+  {
+    "index": 50,
+    "name": "D061.00 | face/mouth/mouth_interior",
+    "directory": "raster-layering/step01/review-01-evidence/layers/50",
+    "mask_count": 1
+  },
+  {
+    "index": 51,
+    "name": "D062.00 | face/mouth/tongue",
+    "directory": "raster-layering/step01/review-01-evidence/layers/51",
+    "mask_count": 1
+  },
+  {
+    "index": 52,
+    "name": "D063.00 | face/mouth/lower_teeth",
+    "directory": "raster-layering/step01/review-01-evidence/layers/52",
+    "mask_count": 1
+  },
+  {
+    "index": 53,
+    "name": "D064.00 | face/mouth/upper_teeth",
+    "directory": "raster-layering/step01/review-01-evidence/layers/53",
+    "mask_count": 1
+  },
+  {
+    "index": 54,
+    "name": "D065.00 | face/eyes/eye_left/sclera",
+    "directory": "raster-layering/step01/review-01-evidence/layers/54",
+    "mask_count": 1
+  },
+  {
+    "index": 55,
+    "name": "D066.00 | face/eyes/eye_right/sclera",
+    "directory": "raster-layering/step01/review-01-evidence/layers/55",
+    "mask_count": 1
+  },
+  {
+    "index": 56,
+    "name": "D067.00 | face/eyes/eye_left/iris",
+    "directory": "raster-layering/step01/review-01-evidence/layers/56",
+    "mask_count": 1
+  },
+  {
+    "index": 57,
+    "name": "D068.00 | face/eyes/eye_right/iris",
+    "directory": "raster-layering/step01/review-01-evidence/layers/57",
+    "mask_count": 1
+  },
+  {
+    "index": 58,
+    "name": "D069.00 | face/eyes/eye_left/highlight",
+    "directory": "raster-layering/step01/review-01-evidence/layers/58",
+    "mask_count": 1
+  },
+  {
+    "index": 59,
+    "name": "D070.00 | face/eyes/eye_right/highlight",
+    "directory": "raster-layering/step01/review-01-evidence/layers/59",
+    "mask_count": 1
+  }
+]

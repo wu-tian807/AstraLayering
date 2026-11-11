@@ -1,0 +1,38 @@
+{
+  "groupId": "front_pendant_screen_right",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。先只读纯衣服参考确认归属，再读取 groups.json 中本组 note 及候选源码；front_pendant_screen_right 为顶层 group，没有父完成 SVG 或父范围包含检查。\n\n检查范围与证据：\n1. 整体位置和完整职责：原参考右侧前垂饰位于中央结右下、短下摆前，含自由绳端、圆珠及流苏。候选覆盖约 x701–775、y740–1033，与原参考位置、长度、宽度和倾斜一致；未误包腰带、右绳环、短下摆或左侧垂饰，没有可见组件遗漏。整体叠加：[整体 blend](review-evidence/overall-blend.png)。\n2. 绳根和邻接分界（约 x701–725、y740–770）：原图自由绳端从右绳环下方露出，候选上边沿该遮挡分界结束，未将固定绳环并入本组。note 已说明绳根在结芯下与固定系绳连续搭接，隐藏连接交由后续补全。局部证据：[绳根 blend](review-evidence/root-blend.png)。\n3. 绳身两侧（约 y766–912）、圆珠外缘（约 x722–769、y909–950）、流苏两侧及弧形底缘（约 x724–775、y948–1033）均逐段通过放大边缘覆盖和半透明叠加核对，轮廓贴合实际实体外边缘；未把流苏外侧投影当作实体，也未将浅色流苏删空。珠与绳、流苏连接处的联合轮廓完整。本组无须保留的真实孔洞、薄纱或其他分离附件。证据：[完整局部 edge](review-evidence/pendant-edge.png)、[完整局部 blend](review-evidence/pendant-blend.png)、[SVG 独显](review-evidence/pendant-svg.png)。\n4. note 已明确绳身在金色腰带、深色内腰层及短下摆前，珠体遮住绳端与流苏连接，整支随结根悬挂并与左支独立摆动，符合本组实体及控制职责。单一路径的联合覆盖满足 group 审查要求，不要求额外内部路径或表面纹样。\n\n未发现有图像依据的返修问题；候选及输入文件均未修改。",
+      "candidateHash": "7618930a3c75942cc75efbc7eef83d61c2a200a62b88d867f6438c533bf5f839",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/previews/2026-11-03T14-06-28-758Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/previews/2026-11-03T14-06-28-758Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/previews/2026-11-03T14-06-28-758Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/previews/2026-11-03T14-06-28-758Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/previews/2026-11-03T14-06-28-758Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:31:05.339Z"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "groupId": "arms",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已按整图 blend 定位，随后用相互重叠的肩臂、前臂、腕手选框完成两侧全部可见区域的 blend/edge 放大核对，并检查独显。arms 为顶层组，无父范围约束。双肩臂、双手、腕带和右腕铃铛的实体归属正确，未发现整件组件遗漏或孤立碎片；不需要整组重画，但双手局部形体需重新描轮廓，其余为明确的边缘修正。\n\n1. 画面左手指端与指腹（x253–333，y1050–1078）：候选上方长指的尖端向左、向下鼓出，下一根长指下缘整体低于参考，后方短指末端也多出圆鼓块；参考中这些指端更扁、更收敛，指间外缘凹口的位置也不同。须重新描这段联合外轮廓，收回参考外的凸出，保持真实指端与指间转折，不能仅平滑现有曲线。左拇指内缘（x364–372，y1060–1100）向左外扩，虎口弧线与参考不重合；手掌至拇指右缘（约x393–405，y1033–1080）又偏右，须同步校正宽度与两侧弧度。证据：[左腕手 edge](review-evidence/left-wrist-hand-edge.png)、[左手指放大](review-evidence/left-fingers-detail.png)。\n\n2. 画面右手下方两段指腹（x1080–1140，y1064–1080）：候选明显向下扩出参考，较短的后方手指被画得更圆、更厚，长指下缘亦低于原图；须收回下缘并重新对齐两指交接处的凹口。右拇指外侧及末端（x1018–1038，y1080–1116）向左、向下外扩，须按参考修正尖端位置和侧边收束。右手上方长指尖端基本对应，不应为修下缘而整体平移双手。证据：[右腕手 edge](review-evidence/right-wrist-hand-edge.png)。\n\n3. 画面右腕两环带之间靠左的开口（约x982–994，y1005–1019）：候选以斜直线跨过参考的白色开口，填入了一小块无实体依据的三角区域。须沿上环带下缘、实际腕部和下环带边缘重走这段凹口，保留原图开口，不用直线桥接。右侧粉色腕带左下端（约x981–989，y1024–1035）还存在向左鼓出而下缘缩入的问题，须逐段对齐其实际端部。证据：[右腕铃铛局部](review-evidence/right-wrist-bell-detail.png)。\n\n4. 画面右腕金铃顶部及右上凸起（x1028–1077，y947–962）：候选把顶部至凸起画成较平的宽台，右上缘向外扩出；参考铃体顶部为拱弧，斜向环筋的右上端有明确局部凸起与转向。须重描顶部、凸起及其接入右侧弧线的形状，不将二者包成宽平圆角。铃铛已覆盖，问题是局部外形，内部黑色孔纹留给后续。证据：[右腕铃铛局部](review-evidence/right-wrist-bell-detail.png)。\n\n5. 画面左腕环带外缘：浅色上环带左上端（约x377–390，y960–975）及右下端（x427–439，y998–1009）、粉色下环带右端（x412–423，y1027–1037），候选局部缩入参考的实体外缘，环带端部厚度和弧度不足。须分别沿参考外边修正两环带的端部，保留其不同倾角和实际凹口。证据：[左腕手 edge](review-evidence/left-wrist-hand-edge.png)。\n\n6. 臂部曲线还需校正：左前臂外侧斜缘（约x462–497，y799–848）及内侧至腕上段（约x423–474，y933–984）存在连续缩入，参考外边仍在候选之外，须外移对应曲线而非整臂加粗；右肩圆弧（约x835–857，y610–645）缩入参考，应恢复肩峰弧度；右前臂外侧（约x973–1003，y882–941）则向外鼓出，须收回并保持到腕部的原有转向。上述偏差在局部放大中均超出单纯内部明暗分界，需按实体外缘逐段对齐。证据：[左前臂 edge](review-evidence/left-forearm-edge.png)、[右肩 edge](review-evidence/right-shoulder-edge.png)、[右前臂 edge](review-evidence/right-forearm-edge.png)。\n\n上述问题为形体与边缘偏差，其中右腕开口有无依据填色；未发现需要清理的孤点或碎片堆砌。辫子遮挡下的大范围隐藏手臂不要求本轮补全。",
+      "candidateHash": "57c28da3279b92a2af41e046f293d3074a187ad61425a8e86bc35bb706f1efe1",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-14.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-15.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-16.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-17.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T13-49-28-918Z-18.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:18:43.410Z",
+      "repairedCandidateHash": "53bd77a3d74015744e26531d294c875327535f58befff8dcf0782e6ee9fece09"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已完成整图 blend 定位，并以重叠选框逐块完成左肩及辫子接缝、左臂、左腕和全部手指、右肩及衣服接缝、右臂、右腕环带与铃铛、右手全部外缘和指间开口的 blend/edge 放大核对，另查看 SVG 独显。arms 无父组。左右臂、双手、腕带和右腕铃铛的实体归属及主要形体成立，没有需要整组重画的误认，也未见孤立噪点；本轮需局部返修以下已确认的轮廓问题。\n\n1. 画面左肩臂贴辫子的可见皮肤边缘缩入。约 x568–584、y632–708，候选凹曲线多处停在皮肤内部，blend 留出细长未覆盖皮肤带；尤其辫子两段之间的转向及下段靠近发圈处，原图皮肤一直延伸到粉色辫子的实际边界，不能以皮肤高光/暗边作为轮廓。辫尾旁约 x548–578、y769–783 同样留下可见皮肤，候选在尾端的短折线没有贴到实际遮挡边缘。沿可靠的发丝实体边界补足本组可见皮肤，保留原图转折，不增画发丝。证据：[左臂辫子接缝 edge](review-evidence/left-braid-edge.png)。\n\n2. 左臂约 x529–543、y720–740 的两块交接存在无依据皮肤留缝。上段结束与下段起笔分离，blend 可见白色弯月状空带；参考这里是粉色辫梢左侧连续的肤色肩臂，并非背景孔洞。连接或适当重叠两段轮廓，补上这段实际可见皮肤；不要求恢复辫子下面的大面积隐藏形体。证据：[左肩臂留缝 blend，8 倍](review-evidence/left-skin-gap.png)。\n\n3. 左腕粉色环带朝画面右侧伸出的远侧边缘漏覆盖，约 x409–424、y1016–1035。候选从 (409,1017) 向末端的曲线落在环带内部，edge 显示其外侧连续的深灰/紫色实体边沿仍在红线之外，局部相差约 2–4 原图像素。补足环带这段远侧厚度及圆端，沿实际外缘调整弧度；这是腕带组件覆盖不足，不是要求提前画内部着色。证据：[左腕带 edge，8 倍](review-evidence/left-wrist-band-edge.png)。\n\n4. 右前臂朝画面右侧的长外缘缩入，约 (948,841) 至 (1009,959)，尤其下段接近腕带处。放大 edge 中，红线持续位于实体棕色外轮廓内侧，原图臂缘在其右侧，约有 2–3 原图像素未覆盖；腕带上方连接处也因此偏窄。将这段长曲线向真实外缘校准并顺接腕带，不能沿内部明暗分界收窄手臂。证据：[右前臂 edge，5 倍](review-evidence/right-forearm-edge.png)。",
+      "candidateHash": "53bd77a3d74015744e26531d294c875327535f58befff8dcf0782e6ee9fece09",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-14.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-15.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-16.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-17.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-03T14-49-47-946Z-18.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T15:22:34.135Z",
+      "repairedCandidateHash": "614d337b0cae8f7693f854330f77c3db5719ce53ebcff0063fa80e0bdd0a434e"
+    }
+  ]
+}

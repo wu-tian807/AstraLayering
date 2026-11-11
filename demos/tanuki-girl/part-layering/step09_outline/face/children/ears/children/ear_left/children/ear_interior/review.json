@@ -1,0 +1,58 @@
+{
+  "groupId": "face/ears/ear_left/ear_interior",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，候选为本次 ear_interior/outline.svg。已读取本组及父组说明、候选和父完成 SVG，先全画布 blend 定位，再查看参考耳部 [775,200,120,125]，并以全局部 [795,215,90,95]、上半部 [798,217,82,53]、下半部 [825,254,61,58] 的重叠选框完成参考、blend 和 edge 核对，另检查 SVG 独显。参考中的本组为圆厚粉色耳缘内、耳毛上方及外侧的连续浅色凹入面；候选归属正确，没有把耳毛或粉色耳缘误包入主体。上方开口弧、外侧弧至底部收口及耳毛接缝的尖端、凹口和转折与参考可见边界贴合，可见区域覆盖完整，无独立组件遗漏、无孤点碎片或无依据孔洞。内部阴影分界未误作轮廓。上、下局部覆盖有重叠，接缝连续。父范围检查为 pass，四倍采样 outsideSamples=0，无需报告上游范围限制。没有确定需要修改的问题。\n\n图像证据：\n\n",
+      "candidateHash": "b9beefaba45b21fec3430ea021786a6aa0520e02c20c14518dc8598cee301193",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/previews/2026-11-03T23-16-11-254Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face/ears/ear_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/previews/2026-11-03T23-16-11-254Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/previews/2026-11-03T23-16-11-254Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/previews/2026-11-03T23-16-11-254Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/previews/2026-11-03T23-16-11-254Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/previews/2026-11-03T23-16-11-254Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/previews/2026-11-03T23-16-11-254Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/previews/2026-11-03T23-16-11-254Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_left/children/ear_interior/previews/2026-11-03T23-16-11-254Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T23:35:40.914Z"
+    }
+  ]
+}

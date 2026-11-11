@@ -1,0 +1,58 @@
+{
+  "groupId": "face/ears/ear_right/ear_fur",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "本轮已读取本组及父组说明、原始参考、候选与父完成 SVG，并完成整图 blend 定位及覆盖全部可见耳毛的分块放大核对。归属正确：画面左上侧右兽耳内，x≈559–611、y≈240–303 的连续浅色毛簇为本组；外围浅色耳内面、粉色耳缘、头发和头饰均未误领。上部 [554,237,62,42] 与下部 [552,266,51,43] 选框重叠，分别以原图、blend、edge 核对毛尖、左侧折角、下垂毛瓣及右侧头发遮挡接缝；整体 [550,232,70,78] 核对连续性。可见区域覆盖完整，尖簇与折角保留，边缘与参考吻合，无真实孔洞被填平、无无依据孤点或碎片。右侧沿耳缘开口及头发的遮挡边界合理连续；内部浅深色变化为毛簇自身明暗，无须本轮另拆轮廓。父组局部 blend 已查看，本组未设置 allowOutsideParent，候选在父完成轮廓内，四倍采样 outsidePixels=0；未发现本组可见区域受父范围限制。当前无需重画或局部返修。\n\n图像证据：    ",
+      "candidateHash": "904d504a59e78a4c6097c711a9763bed476e90514f6784b73eb9eec3e80943a6",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/previews/2026-11-03T23-33-18-512Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face/ears/ear_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/previews/2026-11-03T23-33-18-512Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/previews/2026-11-03T23-33-18-512Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/previews/2026-11-03T23-33-18-512Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/previews/2026-11-03T23-33-18-512Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/previews/2026-11-03T23-33-18-512Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/previews/2026-11-03T23-33-18-512Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/previews/2026-11-03T23-33-18-512Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/ears/children/ear_right/children/ear_fur/previews/2026-11-03T23-33-18-512Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T23:54:49.880Z"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "groupId": "neck",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取 neck 组说明、参考图及候选 SVG；neck 为顶层组，无父 SVG 范围约束。整图 blend 定位后，以 [650,515,112,65] 和 [650,557,112,70] 两个重叠选框分别进行了 6 倍 blend、edge 核对，覆盖全部可见颈部及上下、左右接缝；另查看了参考图 [620,490,175,160] 的 4 倍局部和 SVG 独显。下颌下缘约 (677,529)→(708,540)→(743,528) 的走向与转折吻合；两侧颈缘沿耳机连接件及耳罩遮挡边界连续衔接，没有将白色连接件或深色耳罩误归颈部。下界约 (673,600)→(710,611)→(742,602) 位于颈部与躯干交接区域，锁骨归 body；没有把内部斜向明暗分界误作可见外缘。中央可见颈部完整覆盖，轮廓位置、比例及局部转向与参考一致，无实际可见组件遗漏、无无依据孔洞、孤点或碎片。当前候选通过，无需重画或局部返修。",
+      "candidateHash": "ee243bfc5670f32caa6c9eff3ab03a8d116ce125a21cbcab0d3c6e89345dac00",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-03T13-28-42-234Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-03T13-28-42-234Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-03T13-28-42-234Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-03T13-28-42-234Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-03T13-28-42-234Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-03T13-28-42-234Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:08:06.625Z"
+    }
+  ]
+}

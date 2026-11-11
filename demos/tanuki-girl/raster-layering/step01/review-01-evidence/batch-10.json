@@ -1,0 +1,62 @@
+[
+  {
+    "index": 10,
+    "name": "D019.00 | face/ears/ear_right/ear_fur",
+    "directory": "raster-layering/step01/review-01-evidence/layers/10",
+    "mask_count": 1
+  },
+  {
+    "index": 11,
+    "name": "D020.00 | face/ears/ear_left/ear_shell",
+    "directory": "raster-layering/step01/review-01-evidence/layers/11",
+    "mask_count": 0
+  },
+  {
+    "index": 12,
+    "name": "D021.00 | face/ears/ear_right/ear_shell",
+    "directory": "raster-layering/step01/review-01-evidence/layers/12",
+    "mask_count": 0
+  },
+  {
+    "index": 13,
+    "name": "D022.00 | neck",
+    "directory": "raster-layering/step01/review-01-evidence/layers/13",
+    "mask_count": 0
+  },
+  {
+    "index": 14,
+    "name": "D022.50 | pelvis | rear hip skin",
+    "directory": "raster-layering/step01/review-01-evidence/layers/14",
+    "mask_count": 0
+  },
+  {
+    "index": 15,
+    "name": "D023.00 | legs/leg_left/leg",
+    "directory": "raster-layering/step01/review-01-evidence/layers/15",
+    "mask_count": 0
+  },
+  {
+    "index": 16,
+    "name": "D024.00 | legs/leg_right/leg",
+    "directory": "raster-layering/step01/review-01-evidence/layers/16",
+    "mask_count": 0
+  },
+  {
+    "index": 17,
+    "name": "D025.00 | arms/arm_left/upper_arm",
+    "directory": "raster-layering/step01/review-01-evidence/layers/17",
+    "mask_count": 0
+  },
+  {
+    "index": 18,
+    "name": "D026.00 | arms/arm_right/upper_arm",
+    "directory": "raster-layering/step01/review-01-evidence/layers/18",
+    "mask_count": 0
+  },
+  {
+    "index": 19,
+    "name": "D027.00 | arms/arm_left/bracelet_green_back",
+    "directory": "raster-layering/step01/review-01-evidence/layers/19",
+    "mask_count": 1
+  }
+]

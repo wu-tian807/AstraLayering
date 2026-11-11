@@ -1,0 +1,135 @@
+[
+  {
+    "tag": "p01",
+    "part": "rear_drape_screen_left",
+    "depths": [
+      1
+    ]
+  },
+  {
+    "tag": "p02",
+    "part": "rear_drape_screen_right",
+    "depths": [
+      2
+    ]
+  },
+  {
+    "tag": "p03",
+    "part": "rear_waist_bow/right_bow_wing",
+    "depths": [
+      3
+    ]
+  },
+  {
+    "tag": "p04",
+    "part": "rear_waist_bow/left_bow_wing",
+    "depths": [
+      4
+    ]
+  },
+  {
+    "tag": "p05",
+    "part": "rear_waist_bow/central_knot_root",
+    "depths": [
+      5
+    ]
+  },
+  {
+    "tag": "p06",
+    "part": "kimono_body/right_underlap_panel",
+    "depths": [
+      6,
+      13
+    ]
+  },
+  {
+    "tag": "p07",
+    "part": "kimono_body/left_overlap_panel",
+    "depths": [
+      7,
+      14
+    ]
+  },
+  {
+    "tag": "p08",
+    "part": "sleeve_screen_left",
+    "depths": [
+      8,
+      15
+    ]
+  },
+  {
+    "tag": "p09",
+    "part": "sleeve_screen_right",
+    "depths": [
+      9,
+      16
+    ]
+  },
+  {
+    "tag": "p10",
+    "part": "inner_waist_wrap",
+    "depths": [
+      10,
+      17
+    ]
+  },
+  {
+    "tag": "p11",
+    "part": "outer_waist_band",
+    "depths": [
+      11,
+      18
+    ]
+  },
+  {
+    "tag": "p12",
+    "part": "front_waist_cord_knot",
+    "depths": [
+      12,
+      23
+    ]
+  },
+  {
+    "tag": "p13",
+    "part": "front_pendant_screen_left/right_free_cord",
+    "depths": [
+      19
+    ]
+  },
+  {
+    "tag": "p14",
+    "part": "front_pendant_screen_right/left_free_cord",
+    "depths": [
+      20
+    ]
+  },
+  {
+    "tag": "p15",
+    "part": "front_pendant_screen_left/right_tassel",
+    "depths": [
+      21
+    ]
+  },
+  {
+    "tag": "p16",
+    "part": "front_pendant_screen_right/left_tassel",
+    "depths": [
+      22
+    ]
+  },
+  {
+    "tag": "p17",
+    "part": "front_pendant_screen_left/right_terminal_bead",
+    "depths": [
+      24
+    ]
+  },
+  {
+    "tag": "p18",
+    "part": "front_pendant_screen_right/left_terminal_bead",
+    "depths": [
+      25
+    ]
+  }
+]

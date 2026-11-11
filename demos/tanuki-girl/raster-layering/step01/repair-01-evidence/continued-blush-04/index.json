@@ -1,0 +1,28 @@
+[
+  {
+    "id": "face/blush_left",
+    "level": 76,
+    "region": "完整部件",
+    "preannotated": false,
+    "layer": "D076.00 | face/blush_left",
+    "uuid": "{ca37add8-d856-488a-b759-0b232721ea78}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/continued-blush-04/face__blush_left-D76-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/continued-blush-04/face__blush_left-D76-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/continued-blush-04/face__blush_left-D76-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/continued-blush-04/face__blush_left-D76-upper-hidden-complete.png"
+  },
+  {
+    "id": "face/blush_right",
+    "level": 77,
+    "region": "完整部件",
+    "preannotated": false,
+    "layer": "D077.00 | face/blush_right",
+    "uuid": "{46a2ebd3-7d04-4147-9e1f-b7e1a632c2a3}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/continued-blush-04/face__blush_right-D77-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/continued-blush-04/face__blush_right-D77-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/continued-blush-04/face__blush_right-D77-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/continued-blush-04/face__blush_right-D77-upper-hidden-complete.png"
+  }
+]

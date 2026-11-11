@@ -1,0 +1,73 @@
+{
+  "groupId": "legs/leg_left/leg",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已完成整图 blend 定位，并以相互重叠的选框 [695,915,190,315]、[700,1200,175,300]、[715,1465,140,315]、[690,1745,135,280] 分别进行 3–4 倍 blend 与 edge 核对，覆盖腿根、大腿与环带接缝、膝、小腿、脚踝、完整足部和五趾；另检查 SVG 独显。实体归属正确，腿袜联合范围连续，环带处未人为挖缝，未见组件缺失、误包尾巴、孔洞误填、孤点或碎片。上部为与父稿一致的合理遮挡补形，无须按连体服内部线条裁去。当前允许父范围内无须返修，父范围检查 outsidePixels=0。\n\n上游范围限制（尚未补齐）：脚踝两侧约 y=1810–1880，画面左侧 x≈730–741、右侧 x≈796–803，参考的棕色可见外缘比候选边界向外约 2–3 像素，左侧最明显。已在完全相同的 [690,1745,135,280] 局部以 4 倍 edge 核对父 SVG 与候选；两者该段边界重合，源码也使用相同腿脚路径，当前候选已覆盖至父边界。因此恢复这段可见外缘需要扩大上游父范围，不能要求当前受约束子组越界。此限制单独记录，不声称参考外缘已完整补齐；父稿未修改。\n\n证据：     ",
+      "candidateHash": "3f4721ee6b85016cc0c15ba9784e0412c28741d4a092ae1c5074caa6990598fe",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-10.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_left.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/leg/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/leg/previews/2026-11-03T20-15-56-389Z-12.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T20:48:48.997Z"
+    }
+  ]
+}

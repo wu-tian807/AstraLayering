@@ -1,0 +1,58 @@
+{
+  "groupId": "face/eyes/eye_left/eyelid_crease",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组及父组说明、候选与父完成 SVG，并先查看全画布叠加，再以 8 倍检查整条眼褶线及重叠分区：[729,397,31,18]（内端至中央）、[752,395,35,18]（中央至外端）。本组属于画面右眼上方与睫毛分离的浅棕色眼褶线；候选连续覆盖其可见范围，未误包眉毛、头发、睫毛或弥散眼影。内端约 (733.6,409.9) 收尖、中央上下弧及宽度、外端约 (776.5,402.1) 至 (778.1,404.2) 的刘海遮挡交界均与参考吻合，眼褶线与睫毛之间的真实肤色间隙保留。已结合父完成稿核对外端：父稿额外向 (781.8,404.8) 延伸的是遮挡补形，本轮不要求恢复该隐藏段；未发现实际可见漏段或父内可修缺漏。SVG 独显为干净的连续单块，无孤点、碎片或无依据挖缝。allowOutsideParent 未启用，工具四倍采样检查 outsidePixels=0，满足父范围要求。无需重画或局部返修。\n\n图像证据：\n- [整图定位叠加](review-evidence/2026-11-05T12-44-36-563Z-1.png)\n- [完整眼褶线边缘对照](review-evidence/2026-11-05T12-44-36-563Z-3.png)\n- [父完成稿同局部叠加](review-evidence/2026-11-05T12-44-36-563Z-4.png)\n- [内端与中央边缘](review-evidence/2026-11-05T12-44-36-563Z-6.png)\n- [中央与外端边缘](review-evidence/2026-11-05T12-44-36-563Z-8.png)\n- [候选独显](review-evidence/2026-11-05T12-44-36-563Z-9.png)",
+      "candidateHash": "d03dbe7007f671160abecef27dd2321f4a08042e1e36b3976533fb36a5e3923a",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-05T12-44-36-563Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-05T12-44-36-563Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-05T12-44-36-563Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-05T12-44-36-563Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-05T12-44-36-563Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-05T12-44-36-563Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-05T12-44-36-563Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-05T12-44-36-563Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-05T12-44-36-563Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-05T12:53:17.971Z"
+    }
+  ]
+}

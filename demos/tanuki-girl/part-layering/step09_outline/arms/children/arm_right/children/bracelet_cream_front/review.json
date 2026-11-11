@@ -1,0 +1,123 @@
+{
+  "groupId": "arms/arm_right/bracelet_cream_front",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已检查整图叠加，并以左侧选框 [367,952,49,58]、右侧选框 [400,979,49,42] 的 8 倍 blend/edge 覆盖全部可见前段，重叠核对中段连续性；另以 [367,952,82,69] 同时叠加父稿蓝线与候选红线。职责归属正确：上方绕至腕后的回转段归 bracelet_cream_back，不要求本件包下整个环带。未发现独立组件遗漏、碎片噪音或主要形体误认，无需整体重画。\n\n1. 当前组可修：前段下缘约 (380,978) 经 (394,990)、(405,997) 至 (416,1004)，候选红线沿参考深色轮廓的内侧走，浅米色实体及其清晰外缘仍有约 1–2 像素宽的连续区域未覆盖。该边是手镯与腕部皮肤的真实接缝，不是内部明暗分界；父组在这一段还覆盖下方皮肤，允许修正。请向下缘外侧补足连续弧带，逐段贴合参考手镯外轮廓，保持与左端及右端的连续转向，不通过独立碎片补缝。证据：[左段边缘对照](review-evidence/left-edge.png)、[右段边缘对照](review-evidence/right-edge.png)。\n\n2. 已确认的上游限制：约 (418,1005) 至 (438,1008) 的右下外缘，参考深色实体边缘还向下延伸约 1–2 像素，但父完成轮廓已缩入；候选的 M417 1004 后 C427 1010 436 1011 439 1006 与父稿这一段完全相同，同局部叠加显示两线重合。此段只有扩大父范围才能恢复，不能要求当前子组越界，也不声称已补齐。应单独记录父边界限制；本轮 revise 的依据是第 1 项仍有父内可修缺漏。证据：[父蓝线与候选红线同局部叠加](review-evidence/parent-candidate.png)。候选自身父范围检查通过，outsidePixels=0；比较图的线描辅助笔画不作为候选范围检查对象。",
+      "candidateHash": "c81969ada9893a228d5ce3af18235c79b01f3f092c0341069b4c899042dcb601",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T20-29-54-063Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T20-29-54-063Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T20-29-54-063Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T20-29-54-063Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T20-29-54-063Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T20-29-54-063Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T20-29-54-063Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/workspace/parent-candidate-comparison.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T20-29-54-063Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T20-29-54-063Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T21:06:00.861Z",
+      "repairedCandidateHash": "ef39cac50adfdf2db37abe118eba247e7ca786811eed6d2715b647d39e7d92c4"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已完成整图定位，以及覆盖全部可见前段的 8 倍 blend/edge 对照：总框 [365,950,85,70]，重叠分框 [370,956,45,45] 和 [398,978,48,39]；同时检查父完成 SVG 与候选同坐标叠加、候选独显。实体归属正确，前段主体无遗漏，无孤点或碎片；无需整体重画，但下缘须局部修正。候选本身父范围检查通过（outsidePixels=0）。\n\n1. 当前组可修问题：前段朝手掌一侧的下长边，约 x382–414、y981–1003，候选弧线明显越过参考中的深色环带/皮肤接缝，包入下方腕部肤色；中段约 x390–405 处向下偏出约 2–4 像素，导致带宽偏厚。参考中该段有连续、清晰的深色轮廓，不是带内明暗分界。请将这段下缘向上收回到实际接缝，保留轮廓线覆盖并顺接左右端，不能沿目前包入皮肤的弧线保留。此段在父范围内，可以由当前组修正。证据： 。\n\n2. 已确认的上游父范围限制（不要求当前子组越界）：右端下外缘约 x417–437、y1004–1010，参考深色外轮廓比父完成 SVG 的下边界更向下约 1–2 像素。父蓝线与候选红线同局部叠加显示，两者在这段下弧重合，候选已经贴合父边界；恢复剩余参考外缘需要扩大父范围。本轮不能声称这段已经完整覆盖，也不应让当前组越界补齐。证据：。本轮 revise 原因是第 1 项父内可修的皮肤误包；第 2 项单独记录上游限制。",
+      "candidateHash": "ef39cac50adfdf2db37abe118eba247e7ca786811eed6d2715b647d39e7d92c4",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/workspace/parent-candidate-comparison.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_cream_front/previews/2026-11-03T21-28-11-843Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T21:50:51.514Z",
+      "repairedCandidateHash": "af5d3e77c776f79f171d9538dfca38c2015be6c5693bbc3bd07085edb7fbf625"
+    }
+  ]
+}

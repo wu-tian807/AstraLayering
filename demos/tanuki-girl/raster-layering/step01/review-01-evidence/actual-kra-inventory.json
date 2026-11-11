@@ -1,0 +1,1364 @@
+{
+  "width": 1376,
+  "height": 2048,
+  "nodes": [
+    {
+      "name": "D000.00 | tail",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        425,
+        992,
+        473,
+        687
+      ],
+      "children": []
+    },
+    {
+      "name": "D010.00 | legs/leg_left/thigh_band_back",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        719,
+        1164,
+        131,
+        39
+      ],
+      "children": [
+        {
+          "name": "Native occlusion | thigh band back occlusion | default closed",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D011.00 | legs/leg_right/anklet_back",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        566,
+        1755,
+        88,
+        55
+      ],
+      "children": [
+        {
+          "name": "Native occlusion | partial rear turnover",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D012.00 | head_accessories/tanuki_ornament/tanuki_body",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        594,
+        22,
+        320,
+        214
+      ],
+      "children": []
+    },
+    {
+      "name": "D013.00 | hair/braid_right | root",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        564,
+        456,
+        65,
+        54
+      ],
+      "children": []
+    },
+    {
+      "name": "D014.00 | hair/back_hair",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        514,
+        190,
+        390,
+        366
+      ],
+      "children": []
+    },
+    {
+      "name": "D015.00 | headphones/headband",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        642,
+        489,
+        159,
+        91
+      ],
+      "children": []
+    },
+    {
+      "name": "D016.00 | face/ears/ear_left/ear_interior",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        796,
+        220,
+        81,
+        89
+      ],
+      "children": [
+        {
+          "name": "Ear aperture | left shell inner rim",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D017.00 | face/ears/ear_right/ear_interior",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        534,
+        218,
+        79,
+        88
+      ],
+      "children": [
+        {
+          "name": "Ear aperture | right shell inner rim",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D018.00 | face/ears/ear_left/ear_fur",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        796,
+        233,
+        61,
+        79
+      ],
+      "children": [
+        {
+          "name": "Ear aperture | left shell inner rim",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D019.00 | face/ears/ear_right/ear_fur",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        558,
+        237,
+        63,
+        72
+      ],
+      "children": [
+        {
+          "name": "Ear aperture | right shell inner rim",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D020.00 | face/ears/ear_left/ear_shell",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        776,
+        201,
+        117,
+        122
+      ],
+      "children": []
+    },
+    {
+      "name": "D021.00 | face/ears/ear_right/ear_shell",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        517,
+        201,
+        114,
+        122
+      ],
+      "children": []
+    },
+    {
+      "name": "D022.00 | neck",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        631,
+        486,
+        155,
+        153
+      ],
+      "children": []
+    },
+    {
+      "name": "D022.50 | pelvis | rear hip skin",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        543,
+        857,
+        322,
+        243
+      ],
+      "children": []
+    },
+    {
+      "name": "D023.00 | legs/leg_left/leg",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        699,
+        920,
+        225,
+        1085
+      ],
+      "children": []
+    },
+    {
+      "name": "D024.00 | legs/leg_right/leg",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        420,
+        912,
+        394,
+        1095
+      ],
+      "children": []
+    },
+    {
+      "name": "D025.00 | arms/arm_left/upper_arm",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        765,
+        591,
+        190,
+        279
+      ],
+      "children": []
+    },
+    {
+      "name": "D026.00 | arms/arm_right/upper_arm",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        486,
+        588,
+        159,
+        254
+      ],
+      "children": []
+    },
+    {
+      "name": "D027.00 | arms/arm_left/bracelet_green_back",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        966,
+        949,
+        64,
+        62
+      ],
+      "children": [
+        {
+          "name": "Native occlusion | partial rear turnover",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D028.00 | arms/arm_left/bracelet_pink_back",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        987,
+        972,
+        38,
+        47
+      ],
+      "children": [
+        {
+          "name": "Native occlusion | left pink bracelet back occlusion | default closed",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D029.00 | arms/arm_right/bracelet_cream_back",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        372,
+        955,
+        68,
+        50
+      ],
+      "children": [
+        {
+          "name": "Native occlusion | partial rear turnover",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D030.00 | arms/arm_right/bracelet_pink_back",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        371,
+        974,
+        62,
+        65
+      ],
+      "children": [
+        {
+          "name": "Native occlusion | partial rear turnover",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D031.00 | arms/arm_left/forearm",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        872,
+        791,
+        165,
+        242
+      ],
+      "children": []
+    },
+    {
+      "name": "D032.00 | arms/arm_right/forearm",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        365,
+        800,
+        179,
+        232
+      ],
+      "children": []
+    },
+    {
+      "name": "D033.00 | pelvis | front lower garment",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        565,
+        858,
+        277,
+        240
+      ],
+      "children": [
+        {
+          "name": "Torso-pelvis overlap | upper cap retained | default assembled",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D034.00 | body/torso",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        583,
+        593,
+        243,
+        383
+      ],
+      "children": []
+    },
+    {
+      "name": "D035.00 | body/breast",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        588,
+        643,
+        238,
+        148
+      ],
+      "children": [
+        {
+          "name": "Native contact | torso shoulder straps",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D036.00 | arms/arm_left/hand/little_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        1053,
+        1036,
+        51,
+        31
+      ],
+      "children": [
+        {
+          "name": "Native occlusion | left stacked finger occlusion | default closed",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D037.00 | arms/arm_right/hand/little_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        311,
+        1023,
+        55,
+        39
+      ],
+      "children": [
+        {
+          "name": "Native occlusion | right stacked finger occlusion | default closed",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D038.00 | arms/arm_left/hand/ring_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        1061,
+        1042,
+        39,
+        30
+      ],
+      "children": []
+    },
+    {
+      "name": "D039.00 | arms/arm_right/hand/ring_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        305,
+        1033,
+        55,
+        38
+      ],
+      "children": []
+    },
+    {
+      "name": "D040.00 | arms/arm_left/hand/middle_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        1054,
+        1030,
+        89,
+        43
+      ],
+      "children": []
+    },
+    {
+      "name": "D041.00 | arms/arm_right/hand/middle_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        260,
+        1030,
+        107,
+        47
+      ],
+      "children": [
+        {
+          "name": "Native contact | middle hidden root cap",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D042.00 | arms/arm_left/hand/thumb",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        1015,
+        1053,
+        31,
+        63
+      ],
+      "children": [
+        {
+          "name": "Native contact | thumb root cap",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D043.00 | arms/arm_right/hand/thumb",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        356,
+        1033,
+        44,
+        83
+      ],
+      "children": []
+    },
+    {
+      "name": "D044.00 | arms/arm_left/hand/index_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        1047,
+        1023,
+        106,
+        44
+      ],
+      "children": []
+    },
+    {
+      "name": "D045.00 | arms/arm_right/hand/index_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        257,
+        1017,
+        109,
+        49
+      ],
+      "children": [
+        {
+          "name": "Native contact | index root cap",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D046.00 | arms/arm_left/hand/palm",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        991,
+        979,
+        94,
+        102
+      ],
+      "children": [
+        {
+          "name": "Native contact | palm finger roots",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D047.00 | arms/arm_right/hand/palm",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        337,
+        961,
+        90,
+        108
+      ],
+      "children": [
+        {
+          "name": "Native contact | index root overlap",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D048.00 | arms/arm_left/bracelet_pink_front",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        980,
+        964,
+        48,
+        76
+      ],
+      "children": []
+    },
+    {
+      "name": "D049.00 | arms/arm_right/bracelet_pink_front",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        367,
+        967,
+        61,
+        71
+      ],
+      "children": []
+    },
+    {
+      "name": "D050.00 | arms/arm_left/bell",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        1010,
+        946,
+        71,
+        68
+      ],
+      "children": []
+    },
+    {
+      "name": "D051.00 | arms/arm_left/bracelet_green_front",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        965,
+        948,
+        65,
+        63
+      ],
+      "children": []
+    },
+    {
+      "name": "D052.00 | arms/arm_right/bracelet_cream_front",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        373,
+        959,
+        68,
+        55
+      ],
+      "children": []
+    },
+    {
+      "name": "D056.00 | head_accessories/hair_tie_back",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        581,
+        688,
+        29,
+        21
+      ],
+      "children": [
+        {
+          "name": "Native occlusion | braid tie back occlusion | default closed",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D057.00 | hair/braid_right | front",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        529,
+        502,
+        107,
+        280
+      ],
+      "children": []
+    },
+    {
+      "name": "D058.00 | headphones/earcups/earcup_left",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        739,
+        522,
+        81,
+        107
+      ],
+      "children": []
+    },
+    {
+      "name": "D059.00 | headphones/earcups/earcup_right",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        597,
+        520,
+        78,
+        109
+      ],
+      "children": []
+    },
+    {
+      "name": "D060.00 | face/face_base",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        600,
+        301,
+        217,
+        241
+      ],
+      "children": []
+    },
+    {
+      "name": "D061.00 | face/mouth/mouth_interior",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        694,
+        494,
+        29,
+        24
+      ],
+      "children": [
+        {
+          "name": "Mouth opening | upper + lower lip | default closed",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D062.00 | face/mouth/tongue",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        696,
+        503,
+        25,
+        17
+      ],
+      "children": [
+        {
+          "name": "Mouth opening | upper + lower lip | default closed",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D063.00 | face/mouth/lower_teeth",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        695,
+        508,
+        28,
+        14
+      ],
+      "children": [
+        {
+          "name": "Mouth opening | upper + lower lip | default closed",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D064.00 | face/mouth/upper_teeth",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        690,
+        494,
+        36,
+        14
+      ],
+      "children": [
+        {
+          "name": "Mouth opening | upper + lower lip | default closed",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D065.00 | face/eyes/eye_left/sclera",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        728,
+        415,
+        65,
+        44
+      ],
+      "children": [
+        {
+          "name": "Opening | left upper_eyelid inner + sclera lower | default open",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D066.00 | face/eyes/eye_right/sclera",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        621,
+        415,
+        63,
+        45
+      ],
+      "children": [
+        {
+          "name": "Opening | upper_eyelid inner edge + sclera lower edge | default open",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D067.00 | face/eyes/eye_left/iris",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        741,
+        406,
+        41,
+        52
+      ],
+      "children": [
+        {
+          "name": "Opening | left upper_eyelid inner + sclera lower | default open",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D068.00 | face/eyes/eye_right/iris",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        635,
+        410,
+        40,
+        48
+      ],
+      "children": [
+        {
+          "name": "Opening | upper_eyelid inner edge + sclera lower edge | default open",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D069.00 | face/eyes/eye_left/highlight",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        739,
+        417,
+        36,
+        32
+      ],
+      "children": [
+        {
+          "name": "Opening | left upper_eyelid inner + sclera lower | default open",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D070.00 | face/eyes/eye_right/highlight",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        634,
+        413,
+        41,
+        39
+      ],
+      "children": [
+        {
+          "name": "Opening | upper_eyelid inner edge + sclera lower edge | default open",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D071.00 | face/eyes/eye_left/upper_eyelid",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        735,
+        405,
+        68,
+        43
+      ],
+      "children": []
+    },
+    {
+      "name": "D072.00 | face/eyes/eye_right/upper_eyelid",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        613,
+        407,
+        68,
+        42
+      ],
+      "children": []
+    },
+    {
+      "name": "D073.00 | face/eyes/eye_left/eyelid_crease",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        735,
+        399,
+        46,
+        12
+      ],
+      "children": []
+    },
+    {
+      "name": "D074.00 | face/eyes/eye_right/eyelid_crease",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        632,
+        399,
+        47,
+        13
+      ],
+      "children": []
+    },
+    {
+      "name": "D075.00 | face/nose",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        699,
+        460,
+        16,
+        17
+      ],
+      "children": []
+    },
+    {
+      "name": "D076.00 | face/blush_left",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        752,
+        461,
+        40,
+        30
+      ],
+      "children": []
+    },
+    {
+      "name": "D077.00 | face/blush_right",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        626,
+        462,
+        39,
+        38
+      ],
+      "children": []
+    },
+    {
+      "name": "D078.00 | face/mouth/lower_lip",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        695,
+        502,
+        27,
+        19
+      ],
+      "children": []
+    },
+    {
+      "name": "D079.00 | face/mouth/upper_lip",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        694,
+        492,
+        29,
+        19
+      ],
+      "children": []
+    },
+    {
+      "name": "D080.00 | face/eyebrows/eyebrow_left",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        730,
+        350,
+        84,
+        23
+      ],
+      "children": []
+    },
+    {
+      "name": "D081.00 | face/eyebrows/eyebrow_right",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        605,
+        352,
+        72,
+        23
+      ],
+      "children": []
+    },
+    {
+      "name": "D082.00 | hair/side_hair/side_hair_left",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        729,
+        216,
+        204,
+        294
+      ],
+      "children": [
+        {
+          "name": "Brow intersection | selective front hair transparency",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D083.00 | hair/side_hair/side_hair_right",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        487,
+        208,
+        205,
+        296
+      ],
+      "children": [
+        {
+          "name": "Brow intersection | selective front hair transparency",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D084.00 | hair/bangs",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        602,
+        192,
+        211,
+        255
+      ],
+      "children": [
+        {
+          "name": "Brow intersection | selective front hair transparency",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D085.00 | head_accessories/hair_bell",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        522,
+        314,
+        86,
+        84
+      ],
+      "children": []
+    },
+    {
+      "name": "D086.00 | head_accessories/tanuki_ornament/paw/paw_left",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        724,
+        196,
+        83,
+        62
+      ],
+      "children": []
+    },
+    {
+      "name": "D087.00 | head_accessories/tanuki_ornament/paw/paw_right",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        605,
+        196,
+        81,
+        62
+      ],
+      "children": []
+    },
+    {
+      "name": "D088.00 | head_accessories/hair_tie_front",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        582,
+        698,
+        28,
+        16
+      ],
+      "children": []
+    },
+    {
+      "name": "D089.00 | legs/leg_left/thigh_band_front",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        716,
+        1109,
+        138,
+        112
+      ],
+      "children": []
+    },
+    {
+      "name": "D090.00 | legs/leg_right/anklet_front",
+      "type": "paintlayer",
+      "visible": true,
+      "bounds": [
+        529,
+        1767,
+        126,
+        80
+      ],
+      "children": []
+    }
+  ],
+  "masks": [
+    {
+      "parent": "D010.00 | legs/leg_left/thigh_band_back",
+      "mask": "Native occlusion | thigh band back occlusion | default closed",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D011.00 | legs/leg_right/anklet_back",
+      "mask": "Native occlusion | partial rear turnover",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D016.00 | face/ears/ear_left/ear_interior",
+      "mask": "Ear aperture | left shell inner rim",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D017.00 | face/ears/ear_right/ear_interior",
+      "mask": "Ear aperture | right shell inner rim",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D018.00 | face/ears/ear_left/ear_fur",
+      "mask": "Ear aperture | left shell inner rim",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D019.00 | face/ears/ear_right/ear_fur",
+      "mask": "Ear aperture | right shell inner rim",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D027.00 | arms/arm_left/bracelet_green_back",
+      "mask": "Native occlusion | partial rear turnover",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D028.00 | arms/arm_left/bracelet_pink_back",
+      "mask": "Native occlusion | left pink bracelet back occlusion | default closed",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D029.00 | arms/arm_right/bracelet_cream_back",
+      "mask": "Native occlusion | partial rear turnover",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D030.00 | arms/arm_right/bracelet_pink_back",
+      "mask": "Native occlusion | partial rear turnover",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D033.00 | pelvis | front lower garment",
+      "mask": "Torso-pelvis overlap | upper cap retained | default assembled",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D035.00 | body/breast",
+      "mask": "Native contact | torso shoulder straps",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D036.00 | arms/arm_left/hand/little_finger",
+      "mask": "Native occlusion | left stacked finger occlusion | default closed",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D037.00 | arms/arm_right/hand/little_finger",
+      "mask": "Native occlusion | right stacked finger occlusion | default closed",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D041.00 | arms/arm_right/hand/middle_finger",
+      "mask": "Native contact | middle hidden root cap",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D042.00 | arms/arm_left/hand/thumb",
+      "mask": "Native contact | thumb root cap",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D045.00 | arms/arm_right/hand/index_finger",
+      "mask": "Native contact | index root cap",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D046.00 | arms/arm_left/hand/palm",
+      "mask": "Native contact | palm finger roots",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D047.00 | arms/arm_right/hand/palm",
+      "mask": "Native contact | index root overlap",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D056.00 | head_accessories/hair_tie_back",
+      "mask": "Native occlusion | braid tie back occlusion | default closed",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D061.00 | face/mouth/mouth_interior",
+      "mask": "Mouth opening | upper + lower lip | default closed",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D062.00 | face/mouth/tongue",
+      "mask": "Mouth opening | upper + lower lip | default closed",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D063.00 | face/mouth/lower_teeth",
+      "mask": "Mouth opening | upper + lower lip | default closed",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D064.00 | face/mouth/upper_teeth",
+      "mask": "Mouth opening | upper + lower lip | default closed",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D065.00 | face/eyes/eye_left/sclera",
+      "mask": "Opening | left upper_eyelid inner + sclera lower | default open",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D066.00 | face/eyes/eye_right/sclera",
+      "mask": "Opening | upper_eyelid inner edge + sclera lower edge | default open",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D067.00 | face/eyes/eye_left/iris",
+      "mask": "Opening | left upper_eyelid inner + sclera lower | default open",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D068.00 | face/eyes/eye_right/iris",
+      "mask": "Opening | upper_eyelid inner edge + sclera lower edge | default open",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D069.00 | face/eyes/eye_left/highlight",
+      "mask": "Opening | left upper_eyelid inner + sclera lower | default open",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D070.00 | face/eyes/eye_right/highlight",
+      "mask": "Opening | upper_eyelid inner edge + sclera lower edge | default open",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D082.00 | hair/side_hair/side_hair_left",
+      "mask": "Brow intersection | selective front hair transparency",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D083.00 | hair/side_hair/side_hair_right",
+      "mask": "Brow intersection | selective front hair transparency",
+      "type": "transparencymask",
+      "visible": true
+    },
+    {
+      "parent": "D084.00 | hair/bangs",
+      "mask": "Brow intersection | selective front hair transparency",
+      "type": "transparencymask",
+      "visible": true
+    }
+  ]
+}

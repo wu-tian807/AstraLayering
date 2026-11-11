@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/layers/54/solo-complete.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/4dc70d71-acba-44ba-b10a-3f2522931e84/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/4dc70d71-acba-44ba-b10a-3f2522931e84/regions.json",
+  "regions": [
+    {
+      "id": "R02",
+      "bounds": [
+        729,
+        415,
+        64,
+        45
+      ],
+      "layers": [
+        "D065.00 | face/eyes/eye_left/sclera"
+      ],
+      "description": "完整左眼白中央米色补全与内眼角白区之间存在近乎竖直的硬分界，外围另有一圈浅色过渡带，独显呈拼块感。参考可见眼白是连贯的明暗过渡；隐藏中心本身没有可直接照抄的参考。以本侧可见眼白取色和笔触重融补全区，消除块边，保留眼白开合轮廓及原生蒙版。",
+      "crop": [
+        717,
+        403,
+        88,
+        69
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/sclera-left/R02-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/sclera-left/R02-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/sclera-left/R02-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

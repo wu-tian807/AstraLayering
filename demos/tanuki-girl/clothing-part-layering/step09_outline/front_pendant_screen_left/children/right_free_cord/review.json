@@ -1,0 +1,38 @@
+{
+  "groupId": "front_pendant_screen_left/right_free_cord",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，无已确认需修改的问题。已只读核对纯衣服参考、groups.json 中本 part 与父组 note、候选及父完成 SVG，并完成整图 blend、覆盖整条绳端的局部 4–5 倍放大、edge 和 SVG 独显。\n\n归属：参考中画面左侧垂饰的自由绳端由前结下方沿 x623–681、y740–910 向圆珠连续延伸，绳环、固定横绳、结芯、圆珠和流苏不属于本片。候选露出部分与该绳身一致，无误包相邻衣面、人体或可见组件遗漏。本片没有薄纱、真实环绕开口或需要另含的分离附件。\n\n轮廓与连接：局部 edge 对照覆盖绳身全部可见左右边缘，弯曲方向、渐收宽度、位置比例与参考吻合；上端约 x650–693、y711–784 是父完成稿已登记的连接补形，被结芯及左绳环遮住，note 已传递该深度关系，不能把叠加时覆盖结芯或绳环的隐藏搭接误判为其实体归属。下端 x623–642、y910–917 保留圆珠内的短插入段，由圆珠遮住，连接连续；候选独显无断裂或异常开口。note 对前腹衣面、腰带、环腰层及下摆之前的露出区、结后绳根和珠后插入段、固定点随动及柔性控制职责均有说明。\n\n父范围与画布：1376×2048 坐标正确；四倍采样父范围检查通过，outsideSamples=0，无上游范围限制。无需重画或局部返修。\n\n图像证据：\n\n\n\n\n\n",
+      "candidateHash": "d2fd0a014ffebcfafa3677c1b790adaa6c134d16e8a6d98359c9313e617d08e8",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_free_cord/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_free_cord/previews/2026-11-03T16-18-26-874Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/front_pendant_screen_left.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_free_cord/previews/2026-11-03T16-18-26-874Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_free_cord/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_free_cord/previews/2026-11-03T16-18-26-874Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_free_cord/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_free_cord/previews/2026-11-03T16-18-26-874Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_free_cord/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_free_cord/previews/2026-11-03T16-18-26-874Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T16:58:07.758Z"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "groupId": "kimono_body",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。已只读核对 clothing.png、groups.json 中 kimono_body 的 note 和当前 outline.svg（sha256: 84f18819b41330d573167147f82e16cd313df89f41808f65a1cf982f3da91c6f）。本节点为顶层 group，parentGroup=null，无父 SVG 或父范围限制。\n\n先从纯衣服参考确认归属：本组可见实体为胸前两幅交叠衣片及连属领缘（约 x341–1037、y407–610），以及腰带下两幅短下摆及连属襟边（约 x367–1009、y837–1212）。两袖、腰带、后结翼、长后垂片和前绳珠流苏均为其他组。候选按 group 联合覆盖上述衣身，不需用内部路径重复证明领缘、襟边或固定花纹的存在。\n\n检查结果：\n1. 整体：原图叠加与独显确认画布 1376×2048、位置和衣身比例正确，未见误包人体、袖子、后结或长垂片，也未见实际可见衣身组件遗漏。前垂饰所在位置保留其后连续下摆属于合理遮挡覆盖。证据： \n2. 上衣：在 [320,390,740,250] 范围以 3 倍边缘覆盖检查两侧领缘终端、整段上缘、中央低位 V 形敞口和两侧胸衣袖根接缝；另在 [430,490,530,155] 以 4 倍叠加复核接缝。候选覆盖胸衣与领缘，裸肩胸口空间保持开放；胸衣下端稍延入深色腰层遮挡区是必要隐藏搭接，未将腰层认作本组可见实体。证据：  \n3. 下摆：在 [345,825,685,405] 范围以 3 倍边缘覆盖检查完整两侧斜边、左窄幅终边、约 (510,1107) 的开叉尖点、右大幅襟边底端及完整弧形底边，并以 2 倍原图和叠加复核。轮廓与参考实体边界吻合，真实开叉保留，未纳入后长垂片；腰带下根部覆盖是合理隐藏搭接。证据：  \n4. note 已说明实体范围、两幅交叠顺序、相邻袖子与腰带等归属、随躯干和腰髋共同变形、前幅与侧后区域的相对深度及转换位置，并保留必要隐藏搭接。未发现有图像依据的说明错误。本组无需额外登记的可见薄纱或分离附件；纯色填充及缺少内部配色、花纹、明暗不构成本阶段缺陷。\n\n未发现确定需要修改的问题，无需重画或返修。完全被腰带遮挡的上衣与下摆连接形状由后续补全处理。候选及所有输入未修改。",
+      "candidateHash": "84f18819b41330d573167147f82e16cd313df89f41808f65a1cf982f3da91c6f",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/previews/2026-11-03T13-46-21-696Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/previews/2026-11-03T13-46-21-696Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/previews/2026-11-03T13-46-21-696Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/previews/2026-11-03T13-46-21-696Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/previews/2026-11-03T13-46-21-696Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/previews/2026-11-03T13-46-21-696Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:16:32.145Z"
+    }
+  ]
+}

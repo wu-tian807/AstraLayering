@@ -1,0 +1,215 @@
+[
+  {
+    "issue": "R01",
+    "box_xyxy": [
+      729,
+      395,
+      812,
+      455
+    ],
+    "part_ids": [
+      "face/eyes/eye_left/upper_eyelid"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 4,
+    "grayscale": false
+  },
+  {
+    "issue": "R02",
+    "box_xyxy": [
+      725,
+      410,
+      800,
+      466
+    ],
+    "part_ids": [
+      "face/eyes/eye_left/sclera"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 4,
+    "grayscale": false
+  },
+  {
+    "issue": "R03",
+    "box_xyxy": [
+      899,
+      770,
+      964,
+      861
+    ],
+    "part_ids": [
+      "arms/arm_left/upper_arm"
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "scale": 3,
+    "grayscale": false
+  },
+  {
+    "issue": "R04",
+    "box_xyxy": [
+      516,
+      770,
+      578,
+      838
+    ],
+    "part_ids": [
+      "arms/arm_right/upper_arm"
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "scale": 4,
+    "grayscale": false
+  },
+  {
+    "issue": "R05",
+    "box_xyxy": [
+      479,
+      803,
+      533,
+      850
+    ],
+    "part_ids": [
+      "arms/arm_right/upper_arm"
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "scale": 4,
+    "grayscale": false
+  },
+  {
+    "issue": "R06",
+    "box_xyxy": [
+      1048,
+      1006,
+      1125,
+      1071
+    ],
+    "part_ids": [
+      "arms/arm_left/hand/palm",
+      "arms/arm_left/hand/index_finger"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 4,
+    "grayscale": false
+  },
+  {
+    "issue": "R07",
+    "box_xyxy": [
+      330,
+      990,
+      420,
+      1078
+    ],
+    "part_ids": [
+      "arms/arm_right/hand/palm",
+      "arms/arm_right/hand/thumb",
+      "arms/arm_right/hand/index_finger"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 3,
+    "grayscale": false
+  },
+  {
+    "issue": "R08",
+    "box_xyxy": [
+      1120,
+      1055,
+      1149,
+      1084
+    ],
+    "part_ids": [
+      "arms/arm_left/hand/middle_finger"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 8,
+    "grayscale": false
+  },
+  {
+    "issue": "R09",
+    "box_xyxy": [
+      785,
+      272,
+      838,
+      319
+    ],
+    "part_ids": [
+      "face/ears/ear_left/ear_fur"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 4,
+    "grayscale": false
+  },
+  {
+    "issue": "R10",
+    "box_xyxy": [
+      558,
+      475,
+      631,
+      600
+    ],
+    "part_ids": [
+      "hair/braid_right"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 4,
+    "grayscale": false
+  },
+  {
+    "issue": "R11",
+    "box_xyxy": [
+      662,
+      208,
+      753,
+      240
+    ],
+    "part_ids": [
+      "head_accessories/tanuki_ornament/tanuki_body"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 5,
+    "grayscale": true
+  },
+  {
+    "issue": "R12",
+    "box_xyxy": [
+      548,
+      1736,
+      623,
+      1806
+    ],
+    "part_ids": [
+      "legs/leg_right/anklet_back"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 4,
+    "grayscale": true
+  },
+  {
+    "issue": "R13",
+    "box_xyxy": [
+      741,
+      451,
+      801,
+      503
+    ],
+    "part_ids": [
+      "face/blush_left"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 4,
+    "grayscale": false
+  },
+  {
+    "issue": "R14",
+    "box_xyxy": [
+      614,
+      454,
+      675,
+      506
+    ],
+    "part_ids": [
+      "face/blush_right"
+    ],
+    "reference": "part-layering/references/standard.png",
+    "scale": 4,
+    "grayscale": false
+  }
+]

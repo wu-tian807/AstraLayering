@@ -1,0 +1,38 @@
+{
+  "groupId": "rear_waist_bow",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，无已核实的修改项。只读核对了纯衣服参考、groups.json 中 rear_waist_bow 的 note 及当前候选源码；该节点为顶层 group，parentGroup=null，无父 SVG 或父范围限制。\n\n先从纯衣服参考确认归属：本组可见范围为左侧约 x312–505、y640–928 及右侧约 x870–1068、y641–928 的两片短后腰结翼。袖口白色翻边、袖内深色面与靠腰小白折角归袖；中央金色带、深色上下露带和前系绳另组；向下延伸的两片长后垂片另组。候选联合覆盖两片可见结翼，没有漏掉独立可见组件，也未误包这些相邻实体或人体。参考证据：。\n\n整体位置与比例：1376×2048 画布坐标正确，两翼展开宽度、腰侧高度及下方尖角与参考一致，画布其余区域无额外实体。；。\n\n局部逐边核对：左翼顶部沿小白折角下缘及腰带侧缘，外上缘沿袖口遮挡边，外侧折角约(313,773)、片尖约(370,927)，下内缘回接下露带旁；右翼对应顶部折角、袖口遮挡边、腰带与横绳相邻边，外侧折角约(1067,770)、片尖约(1010,927)及下内缘均吻合参考。两张三倍边缘图覆盖两翼全部可见区域，未见需要修正的轮廓、接缝或覆盖偏差。；；。\n\n本组无可见薄纱或自身真实贯通开口；袖口开口属于袖组，候选未填入。结翼深浅折面属于表面绘画，不要求内部路径。中央共同结根被衣身和腰带完全遮挡，本轮无可见遗漏，隐藏连接留补全阶段落实。note 已说明实体范围、相邻归属、位于躯干/腰带/袖及上臂后、共同腰部随动及隐藏搭接，无需返修说明或重画当前组。",
+      "candidateHash": "999ca2f1565e0f2e718ac54112d5111229a6bdb66058d835b65a9277b5885c19",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/previews/2026-11-03T13-49-35-351Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/previews/2026-11-03T13-49-35-351Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/previews/2026-11-03T13-49-35-351Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/previews/2026-11-03T13-49-35-351Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/previews/2026-11-03T13-49-35-351Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:19:07.297Z"
+    }
+  ]
+}

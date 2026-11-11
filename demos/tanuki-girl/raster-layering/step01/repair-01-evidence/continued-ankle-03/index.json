@@ -1,0 +1,28 @@
+[
+  {
+    "id": "legs/leg_right/anklet_back",
+    "level": 11,
+    "region": "完整部件",
+    "preannotated": false,
+    "layer": "D011.00 | legs/leg_right/anklet_back",
+    "uuid": "{983e52d0-a0a3-42ed-8e7e-e40049314823}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/continued-ankle-03/legs__leg_right__anklet_back-D11-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/continued-ankle-03/legs__leg_right__anklet_back-D11-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/continued-ankle-03/legs__leg_right__anklet_back-D11-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/continued-ankle-03/legs__leg_right__anklet_back-D11-upper-hidden-complete.png"
+  },
+  {
+    "id": "legs/leg_right/anklet_front",
+    "level": 90,
+    "region": "完整部件",
+    "preannotated": false,
+    "layer": "D090.00 | legs/leg_right/anklet_front",
+    "uuid": "{63b4683f-f2bc-4412-93eb-a40d6ab911f1}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/continued-ankle-03/legs__leg_right__anklet_front-D90-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/continued-ankle-03/legs__leg_right__anklet_front-D90-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/continued-ankle-03/legs__leg_right__anklet_front-D90-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/continued-ankle-03/legs__leg_right__anklet_front-D90-upper-hidden-complete.png"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "frames": {
+    "left-up": {
+      "video": "nine-axis/step04_angles/video/left-up.mp4",
+      "path": "nine-axis/step05_frames/left-up.png",
+      "frameIndex": 42,
+      "timeSeconds": 1.75,
+      "reason": "用 ffmpeg 抽取全片起止及每 12 帧的运动参考，并在第 28–50 帧每 2 帧加密，以 view_bitmap 对照原正面、left 和 up 后按画面选取。此帧面部朝画面左侧，远侧眼适度压缩，鼻尖、双眼间距和两侧脸颊的不对称程度接近 left；眼鼻口的高度关系、下巴与颈部露出保留 up 的抬头特征。比前段正面帧侧转更充分，又未进入后段远侧眼被遮挡的强侧面；双眼、鼻口和下颌清楚，无明显滚转、推近或叠影。原帧完整保留，仅用 normalizeView 等比规范化为 box.size=774 的方图。"
+    },
+    "left-down": {
+      "video": "nine-axis/step04_angles/video/left-down.mp4",
+      "path": "nine-axis/step05_frames/left-down.png",
+      "frameIndex": 40,
+      "timeSeconds": 1.6666666666666667,
+      "reason": "独立从对应视频用 ffmpeg 抽取全片起止及每 12 帧的运动参考，并在第 28–50 帧每 2 帧加密，以 view_bitmap 对照原正面、left 和 down 后按画面选取。此帧面部朝画面左侧，远侧眼的压缩、鼻尖左偏和脸颊轮廓的侧转幅度接近 left；刘海相对眼睛的位置、眼鼻口与下巴的关系及较短的颈部露出保留 down 的低头特征。比前段正面帧侧转更充分，又未进入后段刘海遮住远侧眼的强侧面；双眼、鼻口和下颌仍可辨认，无明显滚转、推近或叠影。原帧完整保留，仅用 normalizeView 等比规范化为 box.size=774 的方图。"
+    }
+  }
+}

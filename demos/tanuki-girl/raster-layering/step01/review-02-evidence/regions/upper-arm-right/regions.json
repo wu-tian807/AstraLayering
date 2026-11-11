@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/layers/18/solo-complete.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/8d4d7ae4-c596-42ce-a171-619f5be018f4/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/8d4d7ae4-c596-42ce-a171-619f5be018f4/regions.json",
+  "regions": [
+    {
+      "id": "R05",
+      "bounds": [
+        483,
+        808,
+        45,
+        37
+      ],
+      "layers": [
+        "D026.00 | arms/arm_right/upper_arm"
+      ],
+      "description": "右上臂完整肘端的下圆弧没有续画棕色描边，左右两侧现有线停在浅色透明边之前；不是缺少形体，而是补全区收口描线未完成。沿本件实际圆帽继续绘制同粗细轮廓，融接自身肤色和暗部；合成中保持肘关节接合，不暴露新增闭合线。",
+      "crop": [
+        469,
+        794,
+        73,
+        65
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/upper-arm-right/R05-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/upper-arm-right/R05-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/upper-arm-right/R05-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

@@ -1,0 +1,58 @@
+{
+  "groupId": "arms/arm_left/upper_arm",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮已完整核对当前 upper_arm，不需重画或局部返修。独立依据参考确认职责为画面右侧肩部至肘部的皮肤本体；未将耳机、肩带或前臂误认作独立可见上臂组件。肩根在遮挡物下的圆弧为父完成稿已有合理补形，保留。\n\n检查覆盖：先看整图 blend 定位，再以肩部 [755,580,145,150]、中段 [800,690,140,145]、肘端 [835,770,145,115] 三个重叠选框分别进行 4 倍 blend 与 edge 对照。肩顶及外侧下行弧线贴合参考；肩带邻接处、腋侧转向和上臂内缘连续，未见父内可见皮肤漏画；中段内外缘宽度、走向及肘端两侧外缘与参考相符。肘端横向圆弧为关节分件连接边界，位于连续肢体内部，符合本件伸入 forearm 的局部搭接职责，不按内部明暗划界。独显检查未见孔洞、孤点、碎片或形体混乱。\n\nallowOutsideParent 未设置，适用父范围约束。已查看父完成 SVG 同区叠加；候选四倍采样 outsidePixels=0，画布为 1376×2048，无已确认的上游范围冲突。\n\n图像证据：\n\n\n\n\n",
+      "candidateHash": "53f878e927d67c4e693feae8e87912ddbf3cf654716f9c45ad2ca633dd78f40b",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/previews/2026-11-03T20-05-51-135Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/previews/2026-11-03T20-05-51-135Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/previews/2026-11-03T20-05-51-135Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/previews/2026-11-03T20-05-51-135Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/previews/2026-11-03T20-05-51-135Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/previews/2026-11-03T20-05-51-135Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/previews/2026-11-03T20-05-51-135Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/previews/2026-11-03T20-05-51-135Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/upper_arm/previews/2026-11-03T20-05-51-135Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T20:38:01.028Z"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "method": "image_gen.imagegen (built-in)",
+  "orientation": "same-pose, frontal; braid occlusion removed",
+  "inputImage": "part-layering/step11_completion/body/children/breast/workspace/bitmaps/88032a02-3226-4cc8-ae23-ef7221f696f6.png",
+  "sourceCrop": [
+    470,
+    485,
+    450,
+    470
+  ],
+  "inputCropScale": 2,
+  "generatedImage": "part-layering/step11_completion/body/children/breast/structure-reference.same-pose.png",
+  "edgeReferenceRegion": [
+    323,
+    435,
+    637,
+    394
+  ],
+  "prompt": "Use case: precise-object-edit. Asset type: same-pose structural reference for an editable Live2D torso part. Edit this cropped front-view anime character reference. Remove only the long pink braid and its black hair tie that hang over the image-left shoulder and chest, revealing the naturally continuous shoulder and side of the clothed chest beneath. Keep the character's original frontal pose, exact body proportions, chest volume, neckline, white opaque temporary bodysuit, shoulders, neck headphones, arms, torso and waist placement, colors, and drawing style. The white bodysuit stays fully in place, same coverage and shape; do not undress the character or enlarge chest volume. Show a smooth, normal uninterrupted image-left chest silhouette beneath where the braid was. Keep the same crop and enough adjacent shoulder and torso to understand the structure. Background plain white; clean any colored fringe at the former transparent background edge. No diagram, no text, no labels. This is a same-orientation occlusion-removal reference, not a side view."
+}

@@ -46,11 +46,11 @@ Krita 独显核对：`D060.00 | face/face_base` 原生底色与上游 `layers/00
 
 九个主姿态：
 
-![九个主姿态，统一画布位置](review/nine-poses.png)
 
-![下颌与固定脖子九姿态](review/nine-jaw.png)
 
-![拆线前、脸底、独立线、静止复合](review/face-layer-comparison.png)
+
+
+
 
 [原生脸底](review/face-native.png)、[原受影组](review/face-receiver.png)、[刘海投影](review/bangs-shadow.png)、[左鬓发投影](review/side-left-shadow.png)、[右鬓发投影](review/side-right-shadow.png) 均独立保留，展示底色与投影内容的区别。
 
@@ -70,17 +70,17 @@ Krita 独显核对：`D060.00 | face/face_base` 原生底色与上游 `layers/00
 
 这些中间配对依据姿态外观作近似登记，不是由视频时长线性换算角度；斜角片起点已带俯仰。原帧按 960→774 等比缩放留在正式 `review/frames/`，登记见 [检查索引](review/review-index.json)。
 
-![左转连续对照](review/left-video-transition.jpg)
 
-![抬头连续对照](review/up-video-transition.jpg)
 
-![低头连续对照](review/down-video-transition.jpg)
 
-![左上连续对照](review/left-up-video-transition.jpg)
 
-![左下连续对照](review/left-down-video-transition.jpg)
 
-![右侧过渡回看](review/right-transitions.png)
+
+
+
+
+
+
 
 全片逐帧图：[left 全 121 帧](review/left-all-frames.jpg)、[up 全 121 帧](review/up-all-frames.jpg)、[down 全 121 帧](review/down-all-frames.jpg)、[left-up 全 121 帧](review/left-up-all-frames.jpg)、[left-down 全 121 帧](review/left-down-all-frames.jpg)。
 

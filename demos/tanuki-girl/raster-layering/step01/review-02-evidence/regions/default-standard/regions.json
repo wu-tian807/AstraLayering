@@ -1,0 +1,210 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/default.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/93d7fc99-4dc8-4a73-bdc9-8413ddfdf037/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/93d7fc99-4dc8-4a73-bdc9-8413ddfdf037/regions.json",
+  "regions": [
+    {
+      "id": "R01",
+      "bounds": [
+        734,
+        400,
+        75,
+        51
+      ],
+      "layers": [
+        "D071.00 | face/eyes/eye_left/upper_eyelid"
+      ],
+      "description": "左上睑黑睫缘上方多出悬空灰棕短弧，外眼角另有粉棕色碎线和突刺；参考对应位置为单一连贯睑缘。清掉额外短弧及外缘碎线，依本侧参考接顺睫尖；保留D073独立眼褶。",
+      "crop": [
+        720,
+        386,
+        103,
+        79
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R01-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R01-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R01-comparison.png"
+      }
+    },
+    {
+      "id": "R06",
+      "bounds": [
+        1054,
+        1014,
+        36,
+        48
+      ],
+      "layers": [
+        "D046.00 | arms/arm_left/hand/palm",
+        "D044.00 | arms/arm_left/hand/index_finger"
+      ],
+      "description": "左掌通往食指的上缘出现平行短线和碎阶；完整掌独显还能看到指根下侧棕色三角刺。清理掌层多余线刺，接顺掌指外缘及线宽，保留各指根和掌部原有覆盖范围；接触内不增加额外横线。",
+      "crop": [
+        1040,
+        1000,
+        64,
+        76
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R06-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R06-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R06-comparison.png"
+      }
+    },
+    {
+      "id": "R07",
+      "bounds": [
+        335,
+        997,
+        79,
+        75
+      ],
+      "layers": [
+        "D047.00 | arms/arm_right/hand/palm",
+        "D043.00 | arms/arm_right/hand/thumb",
+        "D045.00 | arms/arm_right/hand/index_finger"
+      ],
+      "description": "右掌上侧外缘呈碎段，掌侧接拇指处棕线分成尖刺与错开的细线，合成线宽突变。清理掌层分叉及多余线端，接顺参考中单一连续外缘，保留各指根、真实指缝和本件体积暗部，不补回腕饰投影。",
+      "crop": [
+        321,
+        983,
+        107,
+        103
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R07-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R07-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R07-comparison.png"
+      }
+    },
+    {
+      "id": "R08",
+      "bounds": [
+        1127,
+        1067,
+        18,
+        11
+      ],
+      "layers": [
+        "D040.00 | arms/arm_left/hand/middle_finger"
+      ],
+      "description": "左中指指尖下方有不接触本件轮廓的浅棕色短划，独显及默认合成都可见，参考没有。清除孤立短划，保留连续指腹描边和明暗。",
+      "crop": [
+        1113,
+        1053,
+        46,
+        39
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R08-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R08-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R08-comparison.png"
+      }
+    },
+    {
+      "id": "R10",
+      "bounds": [
+        564,
+        482,
+        70,
+        112
+      ],
+      "layers": [
+        "D013.00 | hair/braid_right | root",
+        "D057.00 | hair/braid_right | front"
+      ],
+      "description": "辫根多出向上抬起的尖束，改变参考中后发间的白色开口；下方辫外缘另有平行碎线。两深度分片联合完整图是连续的，修复应校正默认显露轮廓及双线，保留两片完整辫根和搭接。",
+      "crop": [
+        550,
+        468,
+        98,
+        140
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R10-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R10-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R10-comparison.png"
+      }
+    },
+    {
+      "id": "R11",
+      "bounds": [
+        668,
+        216,
+        78,
+        16
+      ],
+      "layers": [
+        "D012.00 | head_accessories/tanuki_ornament/tanuki_body",
+        "D085.50 | head_accessories/tanuki_ornament/tanuki_body | foreground jaw"
+      ],
+      "description": "双爪之间狸猫下颌原本连续的深棕弧线变成数段水平短线和浅色断段。按本件参考续成连续下颌弧线并修正D85.5显露边，不补回投在头发上的粉暗色带，保留同part两分片。",
+      "crop": [
+        654,
+        202,
+        106,
+        44
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R11-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R11-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R11-comparison.png"
+      }
+    },
+    {
+      "id": "R13",
+      "bounds": [
+        746,
+        456,
+        51,
+        40
+      ],
+      "layers": [
+        "D076.00 | face/blush_left"
+      ],
+      "description": "左红晕细线比本侧参考明显宽而浓，软化后成为厚桃色条带，原尺寸并排也可见。按本侧参考收窄线心和渐细尾端，保留弥散红底并平滑融色。",
+      "crop": [
+        732,
+        442,
+        79,
+        68
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R13-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R13-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R13-comparison.png"
+      }
+    },
+    {
+      "id": "R14",
+      "bounds": [
+        619,
+        459,
+        52,
+        42
+      ],
+      "layers": [
+        "D077.00 | face/blush_right"
+      ],
+      "description": "右红晕线群被加宽加浓，线间红色黏连，呈宽软条带；参考是分明的细线与弥散红底。按右侧自身参考减窄、减浓并修尾端，保留红底，不镜像另一侧。",
+      "crop": [
+        605,
+        445,
+        80,
+        70
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-standard/R14-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-standard/R14-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-standard/R14-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

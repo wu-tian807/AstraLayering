@@ -1,0 +1,197 @@
+{
+  "scope": "repair-02 最终看图自检；不是数值绘画评分",
+  "source_kra": "raster-layering/step01/character-depth.kra",
+  "source_kra_sha256": "0bbc778f0a5a1e0e17e434ec03e5906bb8bf7f13fa3b876234a3b5cd71cc733d",
+  "logical_parts": 78,
+  "paint_layers": 81,
+  "native_masks": 35,
+  "viewed_atlas_pages": [
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-01.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-02.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-03.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-04.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-05.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-06.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-07.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-08.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-09.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-10.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/atlas-11.png"
+  ],
+  "viewed_four_states": [
+    "solo-default",
+    "solo-complete",
+    "upper-hidden-default",
+    "upper-hidden-complete"
+  ],
+  "issues": [
+    {
+      "issue": "R01",
+      "conclusion": "已修复",
+      "actual_depths": [
+        71
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R01-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R01-states.png"
+    },
+    {
+      "issue": "R02",
+      "conclusion": "已修复",
+      "actual_depths": [
+        65
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R02-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R02-states.png"
+    },
+    {
+      "issue": "R03",
+      "conclusion": "已修复",
+      "actual_depths": [
+        25
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R03-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R03-states.png"
+    },
+    {
+      "issue": "R04",
+      "conclusion": "已修复",
+      "actual_depths": [
+        26
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R04-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R04-states.png"
+    },
+    {
+      "issue": "R05",
+      "conclusion": "已修复",
+      "actual_depths": [
+        26
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R05-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R05-states.png"
+    },
+    {
+      "issue": "R06",
+      "conclusion": "已修复",
+      "actual_depths": [
+        46,
+        44
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R06-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R06-states.png"
+    },
+    {
+      "issue": "R07",
+      "conclusion": "已修复",
+      "actual_depths": [
+        47,
+        43,
+        45
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R07-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R07-states.png"
+    },
+    {
+      "issue": "R08",
+      "conclusion": "已修复",
+      "actual_depths": [
+        40
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R08-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R08-states.png"
+    },
+    {
+      "issue": "R09",
+      "conclusion": "已修复",
+      "actual_depths": [
+        18
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R09-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R09-states.png"
+    },
+    {
+      "issue": "R10",
+      "conclusion": "已修复",
+      "actual_depths": [
+        13,
+        57
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R10-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R10-states.png"
+    },
+    {
+      "issue": "R11",
+      "conclusion": "已修复",
+      "actual_depths": [
+        12,
+        85.5
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R11-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R11-states.png"
+    },
+    {
+      "issue": "R12",
+      "conclusion": "已修复",
+      "actual_depths": [
+        11
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R12-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R12-states.png"
+    },
+    {
+      "issue": "R13",
+      "conclusion": "已修复",
+      "actual_depths": [
+        76
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R13-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R13-states.png"
+    },
+    {
+      "issue": "R14",
+      "conclusion": "已修复",
+      "actual_depths": [
+        77
+      ],
+      "comparison": "raster-layering/step01/repair-02-evidence/final-audit/R14-comparison.png",
+      "states": "raster-layering/step01/repair-02-evidence/final-audit/R14-states.png"
+    }
+  ],
+  "final_additional_residue_batches": [
+    "R06-root-continuity",
+    "final-residue-clean",
+    "R04-last-edge-continuity",
+    "R04-last-edge-reblend",
+    "R04-last-edge-tone",
+    "R01-last-corner-branch"
+  ],
+  "final_additional_residue_included_in_issues": [
+    "R01",
+    "R04",
+    "R06",
+    "R08",
+    "R10"
+  ],
+  "same_coordinate_1x_and_3x_viewed": [
+    "raster-layering/step01/repair-02-evidence/final-audit/eyes-left-1x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/eyes-left-3x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/eyes-right-1x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/eyes-right-3x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/hand-left-1x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/hand-left-3x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/hand-right-1x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/hand-right-3x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/blush-left-1x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/blush-left-3x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/blush-right-1x.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/blush-right-3x.png"
+  ],
+  "whole_reference_comparisons_viewed": [
+    "raster-layering/step01/repair-02-evidence/final-audit/whole-standard-gray.png",
+    "raster-layering/step01/repair-02-evidence/final-audit/whole-base-gray.png"
+  ],
+  "default_restored": true,
+  "reopen_check": "raster-layering/step01/repair-02-evidence/final-audit/reopen-check.json",
+  "reference_moved_or_registered": false,
+  "note": "沿用本绘制会话已完成的实际看图记录；最后眼角修改后刷新并再看受影响第8页。所有图集已完成查看。哈希仅关联文件版本。"
+}

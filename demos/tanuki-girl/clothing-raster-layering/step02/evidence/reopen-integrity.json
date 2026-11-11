@@ -1,0 +1,1509 @@
+{
+  "originalInput": "clothing-raster-layering/step01/clothing-depth.kra",
+  "output": "clothing-raster-layering/step02/clothing-soft-edges.kra",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "originalMetadataUnchanged": true,
+  "changedPaintLayers": [
+    2,
+    8,
+    9,
+    13,
+    14,
+    15,
+    16,
+    17,
+    21,
+    22,
+    24,
+    25
+  ],
+  "untouchedPaintLayers": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    18,
+    19,
+    20,
+    23
+  ],
+  "nativeMasksUnchanged": [
+    [
+      4,
+      0
+    ],
+    [
+      7,
+      0
+    ],
+    [
+      8,
+      0
+    ],
+    [
+      11,
+      0
+    ]
+  ],
+  "reopenMetadataPixelsMasksProjectionExact": true,
+  "original": {
+    "canvas": [
+      1376,
+      2048
+    ],
+    "colorModel": "RGBA",
+    "colorDepth": "U8",
+    "colorProfile": "sRGB-elle-V2-srgbtrc.icc",
+    "nodes": [
+      {
+        "path": [
+          0
+        ],
+        "name": "d01 | rear_drape_screen_left | complete",
+        "type": "paintlayer",
+        "uuid": "{a9feb87a-9ee2-4b4d-b3d7-a03b3024d30a}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "57d1bafcc0f869cacb228bc69f6de0917157ff6dcabf0d8776bbcfd8896066ed"
+      },
+      {
+        "path": [
+          1
+        ],
+        "name": "d02 | rear_drape_screen_right | complete",
+        "type": "paintlayer",
+        "uuid": "{03b3eeeb-d709-413c-8a75-6e4c35ad166a}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "facbf1aa93e60ce10fb647d705d51521af38b773445923a3a957abe357599946"
+      },
+      {
+        "path": [
+          2
+        ],
+        "name": "d03 | rear_waist_bow/right_bow_wing | complete",
+        "type": "paintlayer",
+        "uuid": "{8d09ad13-0794-4196-a74f-40cfa284ac90}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "44196f6069616106b85cd90e2ce7ffcc9dae98f6b251f75a94a82aea10a3f970"
+      },
+      {
+        "path": [
+          3
+        ],
+        "name": "d04 | rear_waist_bow/left_bow_wing | complete",
+        "type": "paintlayer",
+        "uuid": "{d7904da0-c4bb-42f0-aa90-316ccd2361cf}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "cd0782e33842dde0b8cef58d32adb813787c171b8036d3eaaf53a8019b299a8c"
+      },
+      {
+        "path": [
+          4
+        ],
+        "name": "d05 | rear_waist_bow/central_knot_root | complete hidden root",
+        "type": "paintlayer",
+        "uuid": "{9b5dfbd5-24ce-408b-aa43-3ca726a49fe0}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "0e4bc3b1a298d5bbf50b375f397477065ea6626a8f612c6ed9f6bf4735e30408"
+      },
+      {
+        "path": [
+          4,
+          0
+        ],
+        "name": "default hidden | rear_waist_bow/central_knot_root",
+        "type": "transparencymask",
+        "uuid": "{01098352-4f7a-4279-8e9e-86a0bb7ba111}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          5
+        ],
+        "name": "d06 | kimono_body/right_underlap_panel | left side/back returns y618-845",
+        "type": "paintlayer",
+        "uuid": "{b9264b56-1103-4e9d-a819-f2261d582a3f}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "855644a3e11c5ab53d1380182e2dad3b85ae284e90f82923ca7f146d063bfa89"
+      },
+      {
+        "path": [
+          6
+        ],
+        "name": "d07 | kimono_body/left_overlap_panel | right side/back returns y612-839",
+        "type": "paintlayer",
+        "uuid": "{df56147f-b986-44b7-8615-6701bac4f2a7}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "1685150bf6b9f25deeac6b0cbecee1d0efad3141e689d429a6476fad933647e6"
+      },
+      {
+        "path": [
+          7
+        ],
+        "name": "d08 | sleeve_screen_left | complete far sleeve wall; native worn-range mask",
+        "type": "paintlayer",
+        "uuid": "{28eda41a-af13-4b31-98bc-43e43e04e833}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "71c29aae20ab436885f601a880901890b71cb235ed0e773ede1e24dec68cec68"
+      },
+      {
+        "path": [
+          7,
+          0
+        ],
+        "name": "worn range | sleeve_screen_left",
+        "type": "transparencymask",
+        "uuid": "{a37cc6be-6e01-4d2f-8adc-cd6b3e24660a}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "6e957388ae4c337f374ae5d846a296705fcba74c2220357f61cde3307f71d900",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          8
+        ],
+        "name": "d09 | sleeve_screen_right | complete far sleeve wall; native worn-range mask",
+        "type": "paintlayer",
+        "uuid": "{e6a205f4-b174-443a-b99f-bf37639b08ef}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "9da8898f23cac7a6ae7bf6ae92ce6e5a4b22d3c3862ba0d87bd372d965728f2d"
+      },
+      {
+        "path": [
+          8,
+          0
+        ],
+        "name": "worn range | sleeve_screen_right",
+        "type": "transparencymask",
+        "uuid": "{b3fe5f8b-f9c5-444a-99b8-94f0d43f1e90}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "6dfd21934fd4abc49d00774e44cdd73d04aae50c45323fe3ec0882795ea17129",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          9
+        ],
+        "name": "d10 | inner_waist_wrap | both side/back returns y620-847",
+        "type": "paintlayer",
+        "uuid": "{c512849c-10cc-40a4-9517-8842bc1da9e8}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "0d639107bd3e4921a87316354b48c88978806699dbb29c068983486c96b5b4a6"
+      },
+      {
+        "path": [
+          10
+        ],
+        "name": "d11 | outer_waist_band | both side/back returns y670-781",
+        "type": "paintlayer",
+        "uuid": "{65216b2a-3cd0-4d40-af02-b38d60c8e6e5}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "0649a3353edcda860a81f7c3e78f44b3d3eaa3e8c6290858321a358f9e77db42"
+      },
+      {
+        "path": [
+          11
+        ],
+        "name": "d12 | front_waist_cord_knot | complete posterior waist return",
+        "type": "paintlayer",
+        "uuid": "{1e2981d5-978b-42d0-8f72-a8e64d0908b8}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "02452f627b78b16b1b37b66034968d32979a16c49a78635f50c547ad79ae69bf"
+      },
+      {
+        "path": [
+          11,
+          0
+        ],
+        "name": "default hidden | front_waist_cord_knot",
+        "type": "transparencymask",
+        "uuid": "{c06943d1-bd1a-4dc6-aa54-662586599244}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          12
+        ],
+        "name": "d13 | kimono_body/right_underlap_panel | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{5769b9f7-a47f-42a4-a475-ccf927a52db8}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "3e7041f2b4764e9d42e1baaa577679c830f7701496c54e371e91733a20412744"
+      },
+      {
+        "path": [
+          13
+        ],
+        "name": "d14 | kimono_body/left_overlap_panel | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{70c4647b-e66c-452e-a0f0-69ab1c6edec7}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "4764003920feac56c7275394859b3aee93265849693ef21db4e79c990f25f5e9"
+      },
+      {
+        "path": [
+          14
+        ],
+        "name": "d15 | sleeve_screen_left | near white folds and gathered cuff x253-486",
+        "type": "paintlayer",
+        "uuid": "{6c2f726e-95fa-4d85-a438-4eb37967f2b5}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "6ebce48370d5bccd19f8b40eb16c419e7269ada3d6f9aa9d78a4695df175a930"
+      },
+      {
+        "path": [
+          15
+        ],
+        "name": "d16 | sleeve_screen_right | near white folds and gathered cuff x896-1126",
+        "type": "paintlayer",
+        "uuid": "{1d1e93f1-2ee2-490e-a2ad-3dab2ae3d18c}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "8ef6fe0b66decfefe314642c112440d0627a6812ddc3cf3eacd3a1ca296ddcf6"
+      },
+      {
+        "path": [
+          16
+        ],
+        "name": "d17 | inner_waist_wrap | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{2f7649d6-faf5-4fab-9962-4facae789df6}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "5d13aba0f517f2a6ee2fa261868d93e422e67e00637fa119820f271be96e1f20"
+      },
+      {
+        "path": [
+          17
+        ],
+        "name": "d18 | outer_waist_band | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{ae256aa9-e4ce-4bb4-9a3e-93a59812d17e}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "af120a622febc482dbed3009a835fc4ff8a79f56364b309868bbc8cbe9a2c20e"
+      },
+      {
+        "path": [
+          18
+        ],
+        "name": "d19 | front_pendant_screen_left/right_free_cord | complete",
+        "type": "paintlayer",
+        "uuid": "{354894aa-d98d-4480-bc14-1c9f2d3f2f4e}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "fde9d1ad3cb6838319e5ab27d07c55c50783172317be0652e7d6483eefd4e7bd"
+      },
+      {
+        "path": [
+          19
+        ],
+        "name": "d20 | front_pendant_screen_right/left_free_cord | complete",
+        "type": "paintlayer",
+        "uuid": "{effe9c2e-9005-4a3f-848d-d1f07a973fff}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "cf7196f6bee9dd424dc6431f29be76765709ed25e715d0e5b4dba96c7684a752"
+      },
+      {
+        "path": [
+          20
+        ],
+        "name": "d21 | front_pendant_screen_left/right_tassel | complete",
+        "type": "paintlayer",
+        "uuid": "{7791f227-c497-4af3-9f76-a64da8534aff}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "d04fe7ce003b0e0ba080594fa76b090cc29a32cc04122ca84f537b2875b969ec"
+      },
+      {
+        "path": [
+          21
+        ],
+        "name": "d22 | front_pendant_screen_right/left_tassel | complete",
+        "type": "paintlayer",
+        "uuid": "{5bd96b03-31e5-40fd-9bad-c7f8d85e3f14}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "e4e5223eb327a1f30a1cd0d067431995871fd06b8d1c4da66674530f187f731f"
+      },
+      {
+        "path": [
+          22
+        ],
+        "name": "d23 | front_waist_cord_knot | front cord turns, horizontal cord, loops and knot",
+        "type": "paintlayer",
+        "uuid": "{b43276ac-19ee-4a09-8d7c-d67e806324f5}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "c305bbbbcee22c3cd50946297cb251d10b149a2c3fe86e3bdcc60a17d3f4f81a"
+      },
+      {
+        "path": [
+          23
+        ],
+        "name": "d24 | front_pendant_screen_left/right_terminal_bead | complete",
+        "type": "paintlayer",
+        "uuid": "{41d13dc4-1e3d-48f7-b114-50372ccdde98}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "2de663cb61865b19ef06f3eded307f49c7e65c5311fd054663696c844ce652fa"
+      },
+      {
+        "path": [
+          24
+        ],
+        "name": "d25 | front_pendant_screen_right/left_terminal_bead | complete",
+        "type": "paintlayer",
+        "uuid": "{6128f6c6-91e0-43bf-84f0-3ab6d170581f}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "a36f1dd11cf1968ff91252cb661158ed1c5c32356229c8a894cfe68583b8d64a"
+      }
+    ],
+    "projection": "6cea378e86bf73bc05f125a0b6892401af38cbe9401d1cb462e65bba6def9f17"
+  },
+  "beforeSave": {
+    "canvas": [
+      1376,
+      2048
+    ],
+    "colorModel": "RGBA",
+    "colorDepth": "U8",
+    "colorProfile": "sRGB-elle-V2-srgbtrc.icc",
+    "nodes": [
+      {
+        "path": [
+          0
+        ],
+        "name": "d01 | rear_drape_screen_left | complete",
+        "type": "paintlayer",
+        "uuid": "{a9feb87a-9ee2-4b4d-b3d7-a03b3024d30a}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "57d1bafcc0f869cacb228bc69f6de0917157ff6dcabf0d8776bbcfd8896066ed"
+      },
+      {
+        "path": [
+          1
+        ],
+        "name": "d02 | rear_drape_screen_right | complete",
+        "type": "paintlayer",
+        "uuid": "{03b3eeeb-d709-413c-8a75-6e4c35ad166a}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "66b0add262587b75e7b2d91cc20f52eb19bf785526c3613885e53e497da98064"
+      },
+      {
+        "path": [
+          2
+        ],
+        "name": "d03 | rear_waist_bow/right_bow_wing | complete",
+        "type": "paintlayer",
+        "uuid": "{8d09ad13-0794-4196-a74f-40cfa284ac90}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "44196f6069616106b85cd90e2ce7ffcc9dae98f6b251f75a94a82aea10a3f970"
+      },
+      {
+        "path": [
+          3
+        ],
+        "name": "d04 | rear_waist_bow/left_bow_wing | complete",
+        "type": "paintlayer",
+        "uuid": "{d7904da0-c4bb-42f0-aa90-316ccd2361cf}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "cd0782e33842dde0b8cef58d32adb813787c171b8036d3eaaf53a8019b299a8c"
+      },
+      {
+        "path": [
+          4
+        ],
+        "name": "d05 | rear_waist_bow/central_knot_root | complete hidden root",
+        "type": "paintlayer",
+        "uuid": "{9b5dfbd5-24ce-408b-aa43-3ca726a49fe0}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "0e4bc3b1a298d5bbf50b375f397477065ea6626a8f612c6ed9f6bf4735e30408"
+      },
+      {
+        "path": [
+          4,
+          0
+        ],
+        "name": "default hidden | rear_waist_bow/central_knot_root",
+        "type": "transparencymask",
+        "uuid": "{01098352-4f7a-4279-8e9e-86a0bb7ba111}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          5
+        ],
+        "name": "d06 | kimono_body/right_underlap_panel | left side/back returns y618-845",
+        "type": "paintlayer",
+        "uuid": "{b9264b56-1103-4e9d-a819-f2261d582a3f}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "855644a3e11c5ab53d1380182e2dad3b85ae284e90f82923ca7f146d063bfa89"
+      },
+      {
+        "path": [
+          6
+        ],
+        "name": "d07 | kimono_body/left_overlap_panel | right side/back returns y612-839",
+        "type": "paintlayer",
+        "uuid": "{df56147f-b986-44b7-8615-6701bac4f2a7}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "1685150bf6b9f25deeac6b0cbecee1d0efad3141e689d429a6476fad933647e6"
+      },
+      {
+        "path": [
+          7
+        ],
+        "name": "d08 | sleeve_screen_left | complete far sleeve wall; native worn-range mask",
+        "type": "paintlayer",
+        "uuid": "{28eda41a-af13-4b31-98bc-43e43e04e833}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "221b96abeabfa379e3768d79c172b224700f43cf2087c7fac666a55f93d83a1b"
+      },
+      {
+        "path": [
+          7,
+          0
+        ],
+        "name": "worn range | sleeve_screen_left",
+        "type": "transparencymask",
+        "uuid": "{a37cc6be-6e01-4d2f-8adc-cd6b3e24660a}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "6e957388ae4c337f374ae5d846a296705fcba74c2220357f61cde3307f71d900",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          8
+        ],
+        "name": "d09 | sleeve_screen_right | complete far sleeve wall; native worn-range mask",
+        "type": "paintlayer",
+        "uuid": "{e6a205f4-b174-443a-b99f-bf37639b08ef}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "a54d4c6d99947dbe494ea2bdc510deecaa71a6b21346eaf94695e2905fae418b"
+      },
+      {
+        "path": [
+          8,
+          0
+        ],
+        "name": "worn range | sleeve_screen_right",
+        "type": "transparencymask",
+        "uuid": "{b3fe5f8b-f9c5-444a-99b8-94f0d43f1e90}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "6dfd21934fd4abc49d00774e44cdd73d04aae50c45323fe3ec0882795ea17129",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          9
+        ],
+        "name": "d10 | inner_waist_wrap | both side/back returns y620-847",
+        "type": "paintlayer",
+        "uuid": "{c512849c-10cc-40a4-9517-8842bc1da9e8}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "0d639107bd3e4921a87316354b48c88978806699dbb29c068983486c96b5b4a6"
+      },
+      {
+        "path": [
+          10
+        ],
+        "name": "d11 | outer_waist_band | both side/back returns y670-781",
+        "type": "paintlayer",
+        "uuid": "{65216b2a-3cd0-4d40-af02-b38d60c8e6e5}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "0649a3353edcda860a81f7c3e78f44b3d3eaa3e8c6290858321a358f9e77db42"
+      },
+      {
+        "path": [
+          11
+        ],
+        "name": "d12 | front_waist_cord_knot | complete posterior waist return",
+        "type": "paintlayer",
+        "uuid": "{1e2981d5-978b-42d0-8f72-a8e64d0908b8}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "02452f627b78b16b1b37b66034968d32979a16c49a78635f50c547ad79ae69bf"
+      },
+      {
+        "path": [
+          11,
+          0
+        ],
+        "name": "default hidden | front_waist_cord_knot",
+        "type": "transparencymask",
+        "uuid": "{c06943d1-bd1a-4dc6-aa54-662586599244}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          12
+        ],
+        "name": "d13 | kimono_body/right_underlap_panel | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{5769b9f7-a47f-42a4-a475-ccf927a52db8}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "9360907c70b58654b3e8e2492ba9c77c01c0178eda22dd0ee3d88e722339fff8"
+      },
+      {
+        "path": [
+          13
+        ],
+        "name": "d14 | kimono_body/left_overlap_panel | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{70c4647b-e66c-452e-a0f0-69ab1c6edec7}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "7542d2865274a4044338e53a9fca8f258e3add982da47aa1518d4630ed02c185"
+      },
+      {
+        "path": [
+          14
+        ],
+        "name": "d15 | sleeve_screen_left | near white folds and gathered cuff x253-486",
+        "type": "paintlayer",
+        "uuid": "{6c2f726e-95fa-4d85-a438-4eb37967f2b5}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "d25b8cf40d5eb74165b8cc13a15281df686c0405ec884f8d906c1215a9040928"
+      },
+      {
+        "path": [
+          15
+        ],
+        "name": "d16 | sleeve_screen_right | near white folds and gathered cuff x896-1126",
+        "type": "paintlayer",
+        "uuid": "{1d1e93f1-2ee2-490e-a2ad-3dab2ae3d18c}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "92ad821352936bc90338ab9ea7b9b9cb4d94fe5c11a1f9e4ebaf106f2836de72"
+      },
+      {
+        "path": [
+          16
+        ],
+        "name": "d17 | inner_waist_wrap | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{2f7649d6-faf5-4fab-9962-4facae789df6}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "b01e800508829d408e7675f883020141298463cd126b1078598853a35b9e16ad"
+      },
+      {
+        "path": [
+          17
+        ],
+        "name": "d18 | outer_waist_band | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{ae256aa9-e4ce-4bb4-9a3e-93a59812d17e}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "af120a622febc482dbed3009a835fc4ff8a79f56364b309868bbc8cbe9a2c20e"
+      },
+      {
+        "path": [
+          18
+        ],
+        "name": "d19 | front_pendant_screen_left/right_free_cord | complete",
+        "type": "paintlayer",
+        "uuid": "{354894aa-d98d-4480-bc14-1c9f2d3f2f4e}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "fde9d1ad3cb6838319e5ab27d07c55c50783172317be0652e7d6483eefd4e7bd"
+      },
+      {
+        "path": [
+          19
+        ],
+        "name": "d20 | front_pendant_screen_right/left_free_cord | complete",
+        "type": "paintlayer",
+        "uuid": "{effe9c2e-9005-4a3f-848d-d1f07a973fff}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "cf7196f6bee9dd424dc6431f29be76765709ed25e715d0e5b4dba96c7684a752"
+      },
+      {
+        "path": [
+          20
+        ],
+        "name": "d21 | front_pendant_screen_left/right_tassel | complete",
+        "type": "paintlayer",
+        "uuid": "{7791f227-c497-4af3-9f76-a64da8534aff}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "b69fbaea168d88908fa18f5e3d88760775f76d4f46519199c265d49a417267a4"
+      },
+      {
+        "path": [
+          21
+        ],
+        "name": "d22 | front_pendant_screen_right/left_tassel | complete",
+        "type": "paintlayer",
+        "uuid": "{5bd96b03-31e5-40fd-9bad-c7f8d85e3f14}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "79a4d30e1a1793d16571ee72a5ca60020664e0945523931a8f61c2a3c50aab58"
+      },
+      {
+        "path": [
+          22
+        ],
+        "name": "d23 | front_waist_cord_knot | front cord turns, horizontal cord, loops and knot",
+        "type": "paintlayer",
+        "uuid": "{b43276ac-19ee-4a09-8d7c-d67e806324f5}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "c305bbbbcee22c3cd50946297cb251d10b149a2c3fe86e3bdcc60a17d3f4f81a"
+      },
+      {
+        "path": [
+          23
+        ],
+        "name": "d24 | front_pendant_screen_left/right_terminal_bead | complete",
+        "type": "paintlayer",
+        "uuid": "{41d13dc4-1e3d-48f7-b114-50372ccdde98}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "69b21f282a2fd0092a7b6ef9bb4c6ffe2c47b50c10b6d08b01ec3ce8e6651993"
+      },
+      {
+        "path": [
+          24
+        ],
+        "name": "d25 | front_pendant_screen_right/left_terminal_bead | complete",
+        "type": "paintlayer",
+        "uuid": "{6128f6c6-91e0-43bf-84f0-3ab6d170581f}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "65b2f79f08c8df23cbc780de4854c4d050825325043fe2bc38eeeeb1c4040263"
+      }
+    ],
+    "projection": "ff08cfe58542b2d9d052b1711e936cd7f3fc368ea2e15fbe69b855ced944e806"
+  },
+  "afterReopen": {
+    "canvas": [
+      1376,
+      2048
+    ],
+    "colorModel": "RGBA",
+    "colorDepth": "U8",
+    "colorProfile": "sRGB-elle-V2-srgbtrc.icc",
+    "nodes": [
+      {
+        "path": [
+          0
+        ],
+        "name": "d01 | rear_drape_screen_left | complete",
+        "type": "paintlayer",
+        "uuid": "{a9feb87a-9ee2-4b4d-b3d7-a03b3024d30a}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "57d1bafcc0f869cacb228bc69f6de0917157ff6dcabf0d8776bbcfd8896066ed"
+      },
+      {
+        "path": [
+          1
+        ],
+        "name": "d02 | rear_drape_screen_right | complete",
+        "type": "paintlayer",
+        "uuid": "{03b3eeeb-d709-413c-8a75-6e4c35ad166a}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "66b0add262587b75e7b2d91cc20f52eb19bf785526c3613885e53e497da98064"
+      },
+      {
+        "path": [
+          2
+        ],
+        "name": "d03 | rear_waist_bow/right_bow_wing | complete",
+        "type": "paintlayer",
+        "uuid": "{8d09ad13-0794-4196-a74f-40cfa284ac90}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "44196f6069616106b85cd90e2ce7ffcc9dae98f6b251f75a94a82aea10a3f970"
+      },
+      {
+        "path": [
+          3
+        ],
+        "name": "d04 | rear_waist_bow/left_bow_wing | complete",
+        "type": "paintlayer",
+        "uuid": "{d7904da0-c4bb-42f0-aa90-316ccd2361cf}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "cd0782e33842dde0b8cef58d32adb813787c171b8036d3eaaf53a8019b299a8c"
+      },
+      {
+        "path": [
+          4
+        ],
+        "name": "d05 | rear_waist_bow/central_knot_root | complete hidden root",
+        "type": "paintlayer",
+        "uuid": "{9b5dfbd5-24ce-408b-aa43-3ca726a49fe0}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "0e4bc3b1a298d5bbf50b375f397477065ea6626a8f612c6ed9f6bf4735e30408"
+      },
+      {
+        "path": [
+          4,
+          0
+        ],
+        "name": "default hidden | rear_waist_bow/central_knot_root",
+        "type": "transparencymask",
+        "uuid": "{01098352-4f7a-4279-8e9e-86a0bb7ba111}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          5
+        ],
+        "name": "d06 | kimono_body/right_underlap_panel | left side/back returns y618-845",
+        "type": "paintlayer",
+        "uuid": "{b9264b56-1103-4e9d-a819-f2261d582a3f}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "855644a3e11c5ab53d1380182e2dad3b85ae284e90f82923ca7f146d063bfa89"
+      },
+      {
+        "path": [
+          6
+        ],
+        "name": "d07 | kimono_body/left_overlap_panel | right side/back returns y612-839",
+        "type": "paintlayer",
+        "uuid": "{df56147f-b986-44b7-8615-6701bac4f2a7}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "1685150bf6b9f25deeac6b0cbecee1d0efad3141e689d429a6476fad933647e6"
+      },
+      {
+        "path": [
+          7
+        ],
+        "name": "d08 | sleeve_screen_left | complete far sleeve wall; native worn-range mask",
+        "type": "paintlayer",
+        "uuid": "{28eda41a-af13-4b31-98bc-43e43e04e833}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "221b96abeabfa379e3768d79c172b224700f43cf2087c7fac666a55f93d83a1b"
+      },
+      {
+        "path": [
+          7,
+          0
+        ],
+        "name": "worn range | sleeve_screen_left",
+        "type": "transparencymask",
+        "uuid": "{a37cc6be-6e01-4d2f-8adc-cd6b3e24660a}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "6e957388ae4c337f374ae5d846a296705fcba74c2220357f61cde3307f71d900",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          8
+        ],
+        "name": "d09 | sleeve_screen_right | complete far sleeve wall; native worn-range mask",
+        "type": "paintlayer",
+        "uuid": "{e6a205f4-b174-443a-b99f-bf37639b08ef}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "a54d4c6d99947dbe494ea2bdc510deecaa71a6b21346eaf94695e2905fae418b"
+      },
+      {
+        "path": [
+          8,
+          0
+        ],
+        "name": "worn range | sleeve_screen_right",
+        "type": "transparencymask",
+        "uuid": "{b3fe5f8b-f9c5-444a-99b8-94f0d43f1e90}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "6dfd21934fd4abc49d00774e44cdd73d04aae50c45323fe3ec0882795ea17129",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          9
+        ],
+        "name": "d10 | inner_waist_wrap | both side/back returns y620-847",
+        "type": "paintlayer",
+        "uuid": "{c512849c-10cc-40a4-9517-8842bc1da9e8}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "0d639107bd3e4921a87316354b48c88978806699dbb29c068983486c96b5b4a6"
+      },
+      {
+        "path": [
+          10
+        ],
+        "name": "d11 | outer_waist_band | both side/back returns y670-781",
+        "type": "paintlayer",
+        "uuid": "{65216b2a-3cd0-4d40-af02-b38d60c8e6e5}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "0649a3353edcda860a81f7c3e78f44b3d3eaa3e8c6290858321a358f9e77db42"
+      },
+      {
+        "path": [
+          11
+        ],
+        "name": "d12 | front_waist_cord_knot | complete posterior waist return",
+        "type": "paintlayer",
+        "uuid": "{1e2981d5-978b-42d0-8f72-a8e64d0908b8}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "02452f627b78b16b1b37b66034968d32979a16c49a78635f50c547ad79ae69bf"
+      },
+      {
+        "path": [
+          11,
+          0
+        ],
+        "name": "default hidden | front_waist_cord_knot",
+        "type": "transparencymask",
+        "uuid": "{c06943d1-bd1a-4dc6-aa54-662586599244}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "selection": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+        "selectionBytes": 2818048
+      },
+      {
+        "path": [
+          12
+        ],
+        "name": "d13 | kimono_body/right_underlap_panel | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{5769b9f7-a47f-42a4-a475-ccf927a52db8}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "9360907c70b58654b3e8e2492ba9c77c01c0178eda22dd0ee3d88e722339fff8"
+      },
+      {
+        "path": [
+          13
+        ],
+        "name": "d14 | kimono_body/left_overlap_panel | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{70c4647b-e66c-452e-a0f0-69ab1c6edec7}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "7542d2865274a4044338e53a9fca8f258e3add982da47aa1518d4630ed02c185"
+      },
+      {
+        "path": [
+          14
+        ],
+        "name": "d15 | sleeve_screen_left | near white folds and gathered cuff x253-486",
+        "type": "paintlayer",
+        "uuid": "{6c2f726e-95fa-4d85-a438-4eb37967f2b5}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "d25b8cf40d5eb74165b8cc13a15281df686c0405ec884f8d906c1215a9040928"
+      },
+      {
+        "path": [
+          15
+        ],
+        "name": "d16 | sleeve_screen_right | near white folds and gathered cuff x896-1126",
+        "type": "paintlayer",
+        "uuid": "{1d1e93f1-2ee2-490e-a2ad-3dab2ae3d18c}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "92ad821352936bc90338ab9ea7b9b9cb4d94fe5c11a1f9e4ebaf106f2836de72"
+      },
+      {
+        "path": [
+          16
+        ],
+        "name": "d17 | inner_waist_wrap | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{2f7649d6-faf5-4fab-9962-4facae789df6}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "b01e800508829d408e7675f883020141298463cd126b1078598853a35b9e16ad"
+      },
+      {
+        "path": [
+          17
+        ],
+        "name": "d18 | outer_waist_band | complete front cloth and outline",
+        "type": "paintlayer",
+        "uuid": "{ae256aa9-e4ce-4bb4-9a3e-93a59812d17e}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "af120a622febc482dbed3009a835fc4ff8a79f56364b309868bbc8cbe9a2c20e"
+      },
+      {
+        "path": [
+          18
+        ],
+        "name": "d19 | front_pendant_screen_left/right_free_cord | complete",
+        "type": "paintlayer",
+        "uuid": "{354894aa-d98d-4480-bc14-1c9f2d3f2f4e}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "fde9d1ad3cb6838319e5ab27d07c55c50783172317be0652e7d6483eefd4e7bd"
+      },
+      {
+        "path": [
+          19
+        ],
+        "name": "d20 | front_pendant_screen_right/left_free_cord | complete",
+        "type": "paintlayer",
+        "uuid": "{effe9c2e-9005-4a3f-848d-d1f07a973fff}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "cf7196f6bee9dd424dc6431f29be76765709ed25e715d0e5b4dba96c7684a752"
+      },
+      {
+        "path": [
+          20
+        ],
+        "name": "d21 | front_pendant_screen_left/right_tassel | complete",
+        "type": "paintlayer",
+        "uuid": "{7791f227-c497-4af3-9f76-a64da8534aff}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "b69fbaea168d88908fa18f5e3d88760775f76d4f46519199c265d49a417267a4"
+      },
+      {
+        "path": [
+          21
+        ],
+        "name": "d22 | front_pendant_screen_right/left_tassel | complete",
+        "type": "paintlayer",
+        "uuid": "{5bd96b03-31e5-40fd-9bad-c7f8d85e3f14}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "79a4d30e1a1793d16571ee72a5ca60020664e0945523931a8f61c2a3c50aab58"
+      },
+      {
+        "path": [
+          22
+        ],
+        "name": "d23 | front_waist_cord_knot | front cord turns, horizontal cord, loops and knot",
+        "type": "paintlayer",
+        "uuid": "{b43276ac-19ee-4a09-8d7c-d67e806324f5}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "c305bbbbcee22c3cd50946297cb251d10b149a2c3fe86e3bdcc60a17d3f4f81a"
+      },
+      {
+        "path": [
+          23
+        ],
+        "name": "d24 | front_pendant_screen_left/right_terminal_bead | complete",
+        "type": "paintlayer",
+        "uuid": "{41d13dc4-1e3d-48f7-b114-50372ccdde98}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "69b21f282a2fd0092a7b6ef9bb4c6ffe2c47b50c10b6d08b01ec3ce8e6651993"
+      },
+      {
+        "path": [
+          24
+        ],
+        "name": "d25 | front_pendant_screen_right/left_terminal_bead | complete",
+        "type": "paintlayer",
+        "uuid": "{6128f6c6-91e0-43bf-84f0-3ab6d170581f}",
+        "visible": true,
+        "opacity": 255,
+        "locked": false,
+        "alphaLocked": false,
+        "inheritAlpha": false,
+        "blendingMode": "normal",
+        "colorLabel": 0,
+        "pixels": "65b2f79f08c8df23cbc780de4854c4d050825325043fe2bc38eeeeb1c4040263"
+      }
+    ],
+    "projection": "ff08cfe58542b2d9d052b1711e936cd7f3fc368ea2e15fbe69b855ced944e806"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "groupId": "arms/arm_right/forearm",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已读取本组及父组说明、参考图、候选和父完成 SVG；整图 blend 定位后，用肘端 [435,785,125,115]、中段 [397,865,120,110]、腕端 [365,945,85,85] 三个重叠选框完成 blend/edge 放大检查，并查看候选独显。候选父范围检查通过（outsidePixels=0）。主要前臂的实体归属、位置与比例合理，无须重画整个前臂；未发现需清理的孤点或碎片噪音。\n\n需返修：腕端两只环带之间的可见皮肤覆盖不完整，约 x378–413、y977–1015。参考中浅米色环带下缘与粉色环带上缘之间是一块有明确宽度、连续的皮肤楔形；候选第二个 path 从 M381 980 经 C391 992 404 1000 413 1005 的上边穿过该皮肤内部，在靠浅米色环带的一侧留下连续未覆盖条带，左侧及中段尤明显。此处不是普通明暗分界，也不是只露出细线的结构。请将该小色块沿浅米色环带的实际遮挡边界扩足宽度，并核对其与粉色环带及右下端的接缝，完整覆盖可见皮肤；可合理向环带下方重叠，不必恢复大面积隐藏结构。父稿同局部检查确认该遗漏位于父联合色块内部，属于当前节点可修问题，不是上游范围限制。两块之间被浅米色环带遮挡的分离本身合理，无须为消除分离而填画整个腕饰。\n\n图像依据：  ",
+      "candidateHash": "fa2e892b8fb632c8b384a0100fbd28f6345fc7ac9c12322e78480d7dca33c1e6",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T20-29-51-783Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T21:01:35.450Z",
+      "repairedCandidateHash": "73f8b7ac4e466dc7f6dfc2ee08bfffd08ee50b8ee22c8bc8482bfc1d6c75ac91"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮独立核对通过。已读取本组及父组说明、候选 SVG 和父完成 SVG，先以整图 blend 定位，再以三个相互重叠的选框完整检查可见前臂：肘端 [435,785,125,125]（5 倍）、中段 [390,875,135,105]（5 倍）、腕端 [365,950,85,85]（7 倍），每块均完成 blend 和 edge 对照，并查看候选独显。\n归属与覆盖：主体为角色自身右侧肘至腕的前臂；两只环带之间的分离皮肤区域有明确参考依据，已覆盖，非来源不明碎片。环带、手掌、上臂未被误包；腕饰遮挡形成的分离不属于无依据挖缝，本轮不要求补出遮挡下完整腕部。\n形体与边缘：肘端关节分界合理；主体两侧可见外缘的宽度、转向、收束及腕端与浅色环带的接缝对齐参考。两环带间皮肤的上下边缘及侧端完整覆盖，未发现确定的可见缺漏、错误孔洞、孤点或碎片堆砌。无需重画或局部返修。\n父范围：allowOutsideParent 未设置，按父内约束审查；父稿局部叠加已核对，工具四倍采样 outsidePixels=0，未发现需单独报告的上游范围限制。\n图像证据：[整图叠加](review-evidence-r2/full-blend.png)、[父组局部叠加](review-evidence-r2/parent-blend.png)、[肘端叠加](review-evidence-r2/elbow-blend.png)、[肘端边缘](review-evidence-r2/elbow-edge.png)、[中段叠加](review-evidence-r2/middle-blend.png)、[中段边缘](review-evidence-r2/middle-edge.png)、[腕端叠加](review-evidence-r2/wrist-blend.png)、[腕端边缘](review-evidence-r2/wrist-edge.png)、[独显](review-evidence-r2/outline.png)。",
+      "candidateHash": "73f8b7ac4e466dc7f6dfc2ee08bfffd08ee50b8ee22c8bc8482bfc1d6c75ac91",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T21-27-24-164Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T21-27-24-164Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T21-27-24-164Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T21-27-24-164Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T21-27-24-164Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T21-27-24-164Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T21-27-24-164Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T21-27-24-164Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/forearm/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/forearm/previews/2026-11-03T21-27-24-164Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T21:48:03.226Z"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tool": "image_gen.imagegen",
+  "pose": "same-pose",
+  "input": "part-layering/step11_completion/arms/children/arm_left/children/upper_arm/workspace/bitmaps/957ab609-56f7-4f54-a783-e7557d3062f5.png",
+  "inputCrop": [
+    625,
+    510,
+    420,
+    520
+  ],
+  "inputCropScale": 2,
+  "generatedReference": "part-layering/step11_completion/arms/children/arm_left/children/upper_arm/structure-reference.png",
+  "edgeReferenceRegion": [
+    380,
+    200,
+    493,
+    744
+  ],
+  "prompt": "Use case: precise-object-edit. Create an anatomical structure reference for the same anime character's left shoulder and upper arm on the RIGHT side of the image. Input is a cropped original character reference including neck, torso, shoulder, upper arm, elbow, forearm. Keep the current front view, same arm down-and-out diagonal pose, same slim proportions, same reliable visible arm outer and inner contours, same anime rendering and skin color. Do not turn the body or arm. Naturally reveal the shoulder root by removing the headphones completely and replacing the high shoulder-strap garment with a modest strapless bodysuit that covers the torso but ends below the armpit, leaving shoulder and its natural attachment to torso visible. Show the shoulder as one continuous natural rounded deltoid and upper arm, with the elbow and adjacent forearm intact. Keep crop composition and locations exactly. White clean background; remove the colored transparency-edge artifacts. No diagram, no separated parts, no outlines of rigging glue, no text or arrows, no added accessories. This is a same-pose uncluttered structural guide, not a different pose or a side view."
+}

@@ -1,0 +1,628 @@
+[
+  {
+    "depth": 1,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d01.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d01.png"
+  },
+  {
+    "depth": 2,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d02.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d02.png"
+  },
+  {
+    "depth": 3,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d03.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d03.png"
+  },
+  {
+    "depth": 4,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d04.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d04.png"
+  },
+  {
+    "depth": 5,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d05.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d05.png"
+  },
+  {
+    "depth": 6,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d06.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d06.png"
+  },
+  {
+    "depth": 7,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d07.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d07.png"
+  },
+  {
+    "depth": 8,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d08.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d08.png"
+  },
+  {
+    "depth": 9,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d09.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d09.png"
+  },
+  {
+    "depth": 10,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d10.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d10.png"
+  },
+  {
+    "depth": 11,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d11.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d11.png"
+  },
+  {
+    "depth": 12,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d12.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d12.png"
+  },
+  {
+    "depth": 13,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d13.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d13.png"
+  },
+  {
+    "depth": 14,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d14.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d14.png"
+  },
+  {
+    "depth": 15,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d15.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d15.png"
+  },
+  {
+    "depth": 16,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d16.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d16.png"
+  },
+  {
+    "depth": 17,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d17.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d17.png"
+  },
+  {
+    "depth": 18,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d18.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d18.png"
+  },
+  {
+    "depth": 19,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d19.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d19.png"
+  },
+  {
+    "depth": 20,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d20.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d20.png"
+  },
+  {
+    "depth": 21,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d21.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d21.png"
+  },
+  {
+    "depth": 22,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d22.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d22.png"
+  },
+  {
+    "depth": 23,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d23.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d23.png"
+  },
+  {
+    "depth": 24,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d24.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d24.png"
+  },
+  {
+    "depth": 25,
+    "state": "off",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-off/d25.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-off/d25.png"
+  },
+  {
+    "part": "rear_drape_screen_left",
+    "depths": [
+      1
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p01.png"
+  },
+  {
+    "part": "rear_drape_screen_right",
+    "depths": [
+      2
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p02.png"
+  },
+  {
+    "part": "rear_waist_bow/right_bow_wing",
+    "depths": [
+      3
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p03.png"
+  },
+  {
+    "part": "rear_waist_bow/left_bow_wing",
+    "depths": [
+      4
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p04.png"
+  },
+  {
+    "part": "rear_waist_bow/central_knot_root",
+    "depths": [
+      5
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p05.png"
+  },
+  {
+    "part": "kimono_body/right_underlap_panel",
+    "depths": [
+      6,
+      13
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p06.png"
+  },
+  {
+    "part": "kimono_body/left_overlap_panel",
+    "depths": [
+      7,
+      14
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p07.png"
+  },
+  {
+    "part": "sleeve_screen_left",
+    "depths": [
+      8,
+      15
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p08.png"
+  },
+  {
+    "part": "sleeve_screen_right",
+    "depths": [
+      9,
+      16
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p09.png"
+  },
+  {
+    "part": "inner_waist_wrap",
+    "depths": [
+      10,
+      17
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p10.png"
+  },
+  {
+    "part": "outer_waist_band",
+    "depths": [
+      11,
+      18
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p11.png"
+  },
+  {
+    "part": "front_waist_cord_knot",
+    "depths": [
+      12,
+      23
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p12.png"
+  },
+  {
+    "part": "front_pendant_screen_left/right_free_cord",
+    "depths": [
+      19
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p13.png"
+  },
+  {
+    "part": "front_pendant_screen_right/left_free_cord",
+    "depths": [
+      20
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p14.png"
+  },
+  {
+    "part": "front_pendant_screen_left/right_tassel",
+    "depths": [
+      21
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p15.png"
+  },
+  {
+    "part": "front_pendant_screen_right/left_tassel",
+    "depths": [
+      22
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p16.png"
+  },
+  {
+    "part": "front_pendant_screen_left/right_terminal_bead",
+    "depths": [
+      24
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p17.png"
+  },
+  {
+    "part": "front_pendant_screen_right/left_terminal_bead",
+    "depths": [
+      25
+    ],
+    "state": "off",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-off/p18.png"
+  },
+  {
+    "depth": 1,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d01.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d01.png"
+  },
+  {
+    "depth": 2,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d02.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d02.png"
+  },
+  {
+    "depth": 3,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d03.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d03.png"
+  },
+  {
+    "depth": 4,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d04.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d04.png"
+  },
+  {
+    "depth": 5,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d05.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d05.png"
+  },
+  {
+    "depth": 6,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d06.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d06.png"
+  },
+  {
+    "depth": 7,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d07.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d07.png"
+  },
+  {
+    "depth": 8,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d08.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d08.png"
+  },
+  {
+    "depth": 9,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d09.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d09.png"
+  },
+  {
+    "depth": 10,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d10.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d10.png"
+  },
+  {
+    "depth": 11,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d11.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d11.png"
+  },
+  {
+    "depth": 12,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d12.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d12.png"
+  },
+  {
+    "depth": 13,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d13.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d13.png"
+  },
+  {
+    "depth": 14,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d14.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d14.png"
+  },
+  {
+    "depth": 15,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d15.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d15.png"
+  },
+  {
+    "depth": 16,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d16.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d16.png"
+  },
+  {
+    "depth": 17,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d17.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d17.png"
+  },
+  {
+    "depth": 18,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d18.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d18.png"
+  },
+  {
+    "depth": 19,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d19.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d19.png"
+  },
+  {
+    "depth": 20,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d20.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d20.png"
+  },
+  {
+    "depth": 21,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d21.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d21.png"
+  },
+  {
+    "depth": 22,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d22.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d22.png"
+  },
+  {
+    "depth": 23,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d23.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d23.png"
+  },
+  {
+    "depth": 24,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d24.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d24.png"
+  },
+  {
+    "depth": 25,
+    "state": "on",
+    "solo": "clothing-raster-layering/step01/repair-evidence/repair-02/solo-on/d25.png",
+    "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair-02/cumulative-on/d25.png"
+  },
+  {
+    "part": "rear_drape_screen_left",
+    "depths": [
+      1
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p01.png"
+  },
+  {
+    "part": "rear_drape_screen_right",
+    "depths": [
+      2
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p02.png"
+  },
+  {
+    "part": "rear_waist_bow/right_bow_wing",
+    "depths": [
+      3
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p03.png"
+  },
+  {
+    "part": "rear_waist_bow/left_bow_wing",
+    "depths": [
+      4
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p04.png"
+  },
+  {
+    "part": "rear_waist_bow/central_knot_root",
+    "depths": [
+      5
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p05.png"
+  },
+  {
+    "part": "kimono_body/right_underlap_panel",
+    "depths": [
+      6,
+      13
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p06.png"
+  },
+  {
+    "part": "kimono_body/left_overlap_panel",
+    "depths": [
+      7,
+      14
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p07.png"
+  },
+  {
+    "part": "sleeve_screen_left",
+    "depths": [
+      8,
+      15
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p08.png"
+  },
+  {
+    "part": "sleeve_screen_right",
+    "depths": [
+      9,
+      16
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p09.png"
+  },
+  {
+    "part": "inner_waist_wrap",
+    "depths": [
+      10,
+      17
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p10.png"
+  },
+  {
+    "part": "outer_waist_band",
+    "depths": [
+      11,
+      18
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p11.png"
+  },
+  {
+    "part": "front_waist_cord_knot",
+    "depths": [
+      12,
+      23
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p12.png"
+  },
+  {
+    "part": "front_pendant_screen_left/right_free_cord",
+    "depths": [
+      19
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p13.png"
+  },
+  {
+    "part": "front_pendant_screen_right/left_free_cord",
+    "depths": [
+      20
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p14.png"
+  },
+  {
+    "part": "front_pendant_screen_left/right_tassel",
+    "depths": [
+      21
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p15.png"
+  },
+  {
+    "part": "front_pendant_screen_right/left_tassel",
+    "depths": [
+      22
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p16.png"
+  },
+  {
+    "part": "front_pendant_screen_left/right_terminal_bead",
+    "depths": [
+      24
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p17.png"
+  },
+  {
+    "part": "front_pendant_screen_right/left_terminal_bead",
+    "depths": [
+      25
+    ],
+    "state": "on",
+    "logical": "clothing-raster-layering/step01/repair-evidence/repair-02/logical-on/p18.png"
+  },
+  {
+    "depth": 5,
+    "mask": "default hidden | rear_waist_bow/central_knot_root",
+    "maskUUID": "{01098352-4f7a-4279-8e9e-86a0bb7ba111}",
+    "selectionHash": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+  },
+  {
+    "depth": 8,
+    "mask": "worn range | sleeve_screen_left",
+    "maskUUID": "{a37cc6be-6e01-4d2f-8adc-cd6b3e24660a}",
+    "selectionHash": "6e957388ae4c337f374ae5d846a296705fcba74c2220357f61cde3307f71d900"
+  },
+  {
+    "depth": 9,
+    "mask": "worn range | sleeve_screen_right",
+    "maskUUID": "{b3fe5f8b-f9c5-444a-99b8-94f0d43f1e90}",
+    "selectionHash": "6dfd21934fd4abc49d00774e44cdd73d04aae50c45323fe3ec0882795ea17129"
+  },
+  {
+    "depth": 12,
+    "mask": "default hidden | front_waist_cord_knot",
+    "maskUUID": "{c06943d1-bd1a-4dc6-aa54-662586599244}",
+    "selectionHash": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+  }
+]

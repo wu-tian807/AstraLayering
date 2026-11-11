@@ -1,0 +1,44 @@
+{
+  "box": [
+    480,
+    650,
+    902,
+    808
+  ],
+  "source": "clothing-raster-layering/step01/repair-evidence/repair-02/cord-continuation/neutral-input.png",
+  "control": "clothing-raster-layering/step01/workspace/repair02/cord-continuation/control.png",
+  "style": "clothing-raster-layering/step01/repair-evidence/repair-02/cord-continuation/material-reference.png",
+  "part": "front_waist_cord_knot",
+  "depth": 12,
+  "geometryReason": "后返沿腰侧转入腰身后方，投影应位于前绳内侧；原外伸翼错误造成内部封口线。完整后带独立绘制，不删底料或合层。",
+  "generated": "clothing-raster-layering/step01/repair-evidence/repair-02/cord-continuation/generated.png",
+  "generatedSize": [
+    2050,
+    767
+  ],
+  "sourceCrop": [
+    97,
+    233,
+    1953,
+    435
+  ],
+  "uniformScale": 0.185,
+  "placement": [
+    522,
+    704
+  ],
+  "registered": "clothing-raster-layering/step01/repair-evidence/repair-02/cord-continuation/registered.png",
+  "registeredMainBounds": [
+    522,
+    704,
+    865,
+    741
+  ],
+  "issue": "R3/R4",
+  "tool": "image_gen.imagegen",
+  "partID": "front_waist_cord_knot",
+  "threeColorControl": "clothing-raster-layering/step01/repair-evidence/repair-02/cord-continuation/control.png",
+  "promptSummary": "全黄补全完整向内回绕后绳，绿色输出透明，输入全灰；粉白斜条纹、自身轻柔体积和连续深色细外线依据本系绳；不画绳环、结芯、金带、人体或外物投影。",
+  "alphaRegistration": "含整圈外线及缓冲的源框(97,233)-(1953,435)，等比0.185缩小后放至(522,704)；不拉伸、不沿SVG填色、不裁掉细包边。",
+  "maskHandling": "整幅替换d12自有绘画缓冲；原生默认显隐蒙版的UUID、选区缓冲和启用状态均保留，未烘焙底纹。"
+}

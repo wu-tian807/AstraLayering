@@ -1,0 +1,212 @@
+{
+  "version": 1,
+  "kind": "nine-axis-independent-sources",
+  "baseline": {
+    "source": {
+      "document": "nine-axis/step01_preparation/character-nine-axis.kra"
+    }
+  },
+  "sources": [
+    {
+      "axis": "x",
+      "file": "nine-axis/step04_angles/model/left/deformers.json"
+    },
+    {
+      "axis": "up",
+      "file": "nine-axis/step04_angles/model/up/deformers.json"
+    },
+    {
+      "axis": "down",
+      "file": "nine-axis/step04_angles/model/down/deformers.json"
+    }
+  ],
+  "textures": [
+    {
+      "texture": "layers/0052-face__ears__ear_left__ear_interior.png"
+    },
+    {
+      "texture": "layers/0051-face__ears__ear_right__ear_interior.png"
+    },
+    {
+      "texture": "layers/0050-face__ears__ear_left__ear_fur.png"
+    },
+    {
+      "texture": "layers/0049-face__ears__ear_right__ear_fur.png"
+    },
+    {
+      "texture": "layers/0048-face__ears__ear_left__ear_shell.png"
+    },
+    {
+      "texture": "layers/0047-face__ears__ear_right__ear_shell.png"
+    },
+    {
+      "texture": "layers/0046-neck.png"
+    },
+    {
+      "texture": "layers/0039-face__face_base.png"
+    },
+    {
+      "texture": "layers/0035-face__mouth__mouth_interior.png"
+    },
+    {
+      "texture": "layers/0034-face__mouth__tongue.png"
+    },
+    {
+      "texture": "layers/0033-face__mouth__lower_teeth.png"
+    },
+    {
+      "texture": "layers/0032-face__mouth__upper_teeth.png"
+    },
+    {
+      "texture": "layers/0031-face__eyes__eye_left__sclera.png"
+    },
+    {
+      "texture": "layers/0030-face__eyes__eye_left__iris.png"
+    },
+    {
+      "texture": "layers/0028-face__eyes__eye_left__highlight.png"
+    },
+    {
+      "texture": "layers/0027-face__eyes__eye_right__sclera.png"
+    },
+    {
+      "texture": "layers/0026-face__eyes__eye_right__iris.png"
+    },
+    {
+      "texture": "layers/0024-face__eyes__eye_right__highlight.png"
+    },
+    {
+      "texture": "layers/0023-face__eyes__eye_left__upper_eyelid.png"
+    },
+    {
+      "texture": "layers/0022-face__eyes__eye_right__upper_eyelid.png"
+    },
+    {
+      "texture": "layers/0021-face__eyes__eye_left__eyelid_crease.png"
+    },
+    {
+      "texture": "layers/0020-face__eyes__eye_right__eyelid_crease.png"
+    },
+    {
+      "texture": "layers/0019-face__nose.png"
+    },
+    {
+      "texture": "layers/0018-face__blush_left.png"
+    },
+    {
+      "texture": "layers/0017-face__blush_right.png"
+    },
+    {
+      "texture": "layers/0016-face__mouth__lower_lip.png"
+    },
+    {
+      "texture": "layers/0015-face__mouth__upper_lip.png"
+    },
+    {
+      "texture": "layers/0014-face__eyebrows__eyebrow_left.png"
+    },
+    {
+      "texture": "layers/0013-face__eyebrows__eyebrow_right.png"
+    }
+  ],
+  "checks": {
+    "neutral": true,
+    "samples": [
+      {
+        "axis": "x",
+        "angle": -30,
+        "maxError": 0
+      },
+      {
+        "axis": "x",
+        "angle": -22.5,
+        "maxError": 0
+      },
+      {
+        "axis": "x",
+        "angle": -15,
+        "maxError": 0
+      },
+      {
+        "axis": "x",
+        "angle": -7.5,
+        "maxError": 0
+      },
+      {
+        "axis": "x",
+        "angle": 0,
+        "maxError": 0
+      },
+      {
+        "axis": "x",
+        "angle": 7.5,
+        "maxError": 0
+      },
+      {
+        "axis": "x",
+        "angle": 15,
+        "maxError": 0
+      },
+      {
+        "axis": "x",
+        "angle": 22.5,
+        "maxError": 0
+      },
+      {
+        "axis": "x",
+        "angle": 30,
+        "maxError": 0
+      },
+      {
+        "axis": "up",
+        "angle": 0,
+        "maxError": 0
+      },
+      {
+        "axis": "up",
+        "angle": 6.25,
+        "maxError": 0
+      },
+      {
+        "axis": "up",
+        "angle": 12.5,
+        "maxError": 0
+      },
+      {
+        "axis": "up",
+        "angle": 18.75,
+        "maxError": 0
+      },
+      {
+        "axis": "up",
+        "angle": 25,
+        "maxError": 0
+      },
+      {
+        "axis": "down",
+        "angle": -25,
+        "maxError": 0
+      },
+      {
+        "axis": "down",
+        "angle": -18.75,
+        "maxError": 0
+      },
+      {
+        "axis": "down",
+        "angle": -12.5,
+        "maxError": 0
+      },
+      {
+        "axis": "down",
+        "angle": -6.25,
+        "maxError": 0
+      },
+      {
+        "axis": "down",
+        "angle": 0,
+        "maxError": 0
+      }
+    ]
+  }
+}

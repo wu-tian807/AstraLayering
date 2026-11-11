@@ -1,0 +1,41 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "type": "oblique-side; structure only, not coordinate tracing",
+  "sourceCrop": [
+    900,
+    830,
+    275,
+    310
+  ],
+  "sourceCropScale": 3,
+  "referenceImage": "part-layering/step11_completion/arms/children/arm_left/children/bracelet_green_back/auxiliary/wrist-oblique-reference.png",
+  "finalPrompt": "Use case: identity-preserve. Create a STRUCTURAL SIDE-VIEW reference of the same anime girl's forearm, wrist accessories, and entire hand in the provided cropped reference. Change the viewpoint distinctly: view the wrist from a 60-degree oblique side angle, with the hand's thin side presented to the viewer, fingers foreshortened and overlapping naturally. Tilt the lower forearm toward the viewer slightly so the rear curved half of the green bangle becomes exposed above/beside the forearm. This must visibly be a changed three-dimensional angle, not the original flat front view. Target is the single pale ivory-green round tubular bangle nearest the forearm; show its continuous far/rear half arc naturally going around the wrist, its tube thickness and rounded U-shaped turn at the side where it joins the front arc. Keep the wrist inside its open ring and keep the pink bangle and golden bell naturally attached together on the hand side. Keep same anime rendering, slender hand and wrist proportions, ring design and accessory relative sizes. Include entire hand and generous lower forearm context. White background. No labels, no extra rings, no detached bangle, no exploded diagram, no rear body view. Source image controls the same character and accessory design, but the new camera angle must reveal the formerly hidden green rear arc.",
+  "edgeReferenceRegions": [
+    [
+      499,
+      349,
+      99,
+      94
+    ],
+    [
+      317,
+      532,
+      76,
+      123
+    ]
+  ],
+  "svgCheckCrop": [
+    958,
+    942,
+    80,
+    75
+  ],
+  "svgCheckScale": 8,
+  "blendCheckCrop": [
+    945,
+    932,
+    152,
+    128
+  ],
+  "blendCheckScale": 5
+}

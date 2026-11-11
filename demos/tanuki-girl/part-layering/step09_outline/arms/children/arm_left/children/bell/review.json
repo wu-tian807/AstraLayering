@@ -1,0 +1,112 @@
+{
+  "groupId": "arms/arm_left/bell",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成全图定位、铃铛全区域 8 倍 blend/edge 对照，以及上半区 [1015,943,70,40] 与下半区 [1015,973,70,45] 的重叠放大核对，并查看父完成 SVG 与候选独显。主体、凸起斜条及下端均已覆盖，无组件缺失、碎片噪音或主要形体归属错误；黑色铃口属于本体内部绘画，本轮不要求挖孔。父范围检查通过（outsidePixels=0）。\n\n需修改：左上连接根部约 x1027–1036、y950–958。参考中铃铛外缘从浅绿环带右侧较低处接出，再向右上转成圆顶；候选以 M1027 953 起笔，在环带右上侧至圆顶起段覆盖了参考外缘上方的白底，形成尖角和小楔形外扩。请将起点及紧邻的上缘曲线收回参考铃铛实有外缘，平顺接到圆顶，同时保留环带遮挡下方已有合理连接形体。属于当前组可修的局部边缘问题，不需要重画整个铃铛。父稿在此也覆盖到较高位置，但本次修改为父范围内收缩，无需修改父稿或越界。\n\n证据：全区域叠加与边缘图分别见  ；左上根部及圆顶放大见 。下半区检查见 ，未发现其他确定需要修改的问题。",
+      "candidateHash": "e3fa9418669de481ab9f7b4b96882099f7817913d71975a7ee835aa6db29cd16",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T20-13-43-772Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T20-13-43-772Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T20-13-43-772Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T20-13-43-772Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T20-13-43-772Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T20-13-43-772Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T20-13-43-772Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T20-13-43-772Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T20:45:13.206Z",
+      "repairedCandidateHash": "556af667e17cfb3b290a1a1450065792c7059c02f27e5f749224b329c27eb040"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮独立审查通过。已读取本组 note、候选及父完成 SVG，先整图 blend 定位，再对 [1008,938,80,84] 全铃铛范围及相互重叠的上半区 [1017,944,65,36]、下半区 [1015,972,70,46] 做 6–8 倍 blend/edge 核对，并检查 SVG 独显。可见金色主体、右上斜条凸端、左下斜条末端均由连续色块覆盖；左侧与浅绿环带及粉色环带的遮挡接缝、顶部圆弧、右侧至底部外缘与参考对应。斜条和黑色铃口均处于主体联合覆盖范围内，未发现独立可见组件漏画、误包相邻结构、无依据孔洞、孤立碎片或形体混乱。候选画布坐标正确，父范围四倍采样检查 outsideSamples=0；未发现需单独报告的上游范围限制。无需重画或局部返修。",
+      "candidateHash": "556af667e17cfb3b290a1a1450065792c7059c02f27e5f749224b329c27eb040",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-2.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/bell/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/bell/previews/2026-11-03T21-16-45-691Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T21:35:10.837Z"
+    }
+  ]
+}

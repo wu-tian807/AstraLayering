@@ -1,0 +1,194 @@
+{
+  "image": "clothing-raster-layering/step01/review-evidence/review-02/full-default.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/marked.png",
+  "manifest": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        610,
+        530,
+        190,
+        145
+      ],
+      "layers": [
+        "d13 | kimono_body/right_underlap_panel | complete front cloth and outline"
+      ],
+      "description": "内襟两条粉色领缘在续画接点出现方形台阶、宽度和接位突变；上接点约(668,545)，下接点约(627,574)。需在本衣片上顺接两条粉线及附近领料，保留真实外边与外襟覆盖关系。",
+      "crop": [
+        594,
+        514,
+        222,
+        177
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R1-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R1-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R1-comparison.png",
+        "comparison_checker": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R1-comparison-checker.png"
+      }
+    },
+    {
+      "id": "R2",
+      "bounds": [
+        921,
+        1200,
+        85,
+        180
+      ],
+      "layers": [
+        "d02 | rear_drape_screen_right | complete"
+      ],
+      "description": "右后垂片y1200–1320接回区，画面左侧外轮廓从近竖直突折到斜向并有小台阶，浅紫翻面内缘线局部毛糙。需连续修顺外缘和翻面内缘，保留已恢复的花草纹与完整根。",
+      "crop": [
+        905,
+        1184,
+        117,
+        212
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R2-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R2-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R2-comparison.png",
+        "comparison_checker": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R2-comparison-checker.png"
+      }
+    },
+    {
+      "id": "R5",
+      "bounds": [
+        310,
+        750,
+        220,
+        180
+      ],
+      "layers": [
+        "d03 | rear_waist_bow/right_bow_wing | complete"
+      ],
+      "description": "画面左后结翼下半部的宽缓灰紫折面被改为偏亮紫的窄折面及尖锐深色斜三角，褶面宽度和明暗分区与本侧参考不符。按本侧自身折面修画，避免带入袖子或腰带投影。",
+      "crop": [
+        294,
+        734,
+        252,
+        212
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R5-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R5-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R5-comparison.png",
+        "comparison_checker": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R5-comparison-checker.png"
+      }
+    },
+    {
+      "id": "R6",
+      "bounds": [
+        866,
+        750,
+        209,
+        180
+      ],
+      "layers": [
+        "d04 | rear_waist_bow/left_bow_wing | complete"
+      ],
+      "description": "画面右后结翼下半部出现尖锐深色斜三角和亮紫窄折面，本侧参考的宽缓灰紫折面布局未还原。按右侧参考独立恢复本衣片褶面，不仅镜像另一侧。",
+      "crop": [
+        850,
+        734,
+        241,
+        212
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R6-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R6-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R6-comparison.png",
+        "comparison_checker": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R6-comparison-checker.png"
+      }
+    },
+    {
+      "id": "R7",
+      "bounds": [
+        439,
+        605,
+        63,
+        67
+      ],
+      "layers": [
+        "d08 | sleeve_screen_left | complete far sleeve wall; native worn-range mask",
+        "worn range | sleeve_screen_left",
+        "d15 | sleeve_screen_left | near white folds and gathered cuff x253-486"
+      ],
+      "description": "左袖收拢蒙版启用后，内侧白折角的左斜边没有连续深色描边，底角边线过淡；默认合成显出白剪口。需恢复收拢姿态真实边线与内壁，蒙版停用时也不能在布面内部留下多余截线。",
+      "crop": [
+        423,
+        589,
+        95,
+        99
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R7-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R7-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R7-comparison.png",
+        "comparison_checker": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R7-comparison-checker.png"
+      }
+    },
+    {
+      "id": "R8",
+      "bounds": [
+        895,
+        605,
+        50,
+        65
+      ],
+      "layers": [
+        "d09 | sleeve_screen_right | complete far sleeve wall; native worn-range mask",
+        "worn range | sleeve_screen_right",
+        "d16 | sleeve_screen_right | near white folds and gathered cuff x896-1126"
+      ],
+      "description": "右袖蒙版启用后，白折角右斜边缺少描线，底端被截成短平边且两端残留深色小尖点；停用时原边完整。需独立修正本侧收拢边形和连续描线，保留完整内壁。",
+      "crop": [
+        879,
+        589,
+        82,
+        97
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R8-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R8-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R8-comparison.png",
+        "comparison_checker": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R8-comparison-checker.png"
+      }
+    },
+    {
+      "id": "R9",
+      "bounds": [
+        565,
+        1075,
+        60,
+        138
+      ],
+      "layers": [
+        "d14 | kimono_body/left_overlap_panel | complete front cloth and outline"
+      ],
+      "description": "外襟下摆的深色襟边与白料交界，白料内残留一条细亮带和断续灰点线，与真实深色边线平行直到近底缘；d14独显中同样存在，参考白料没有这条拼接残线。需局部修画并融色，保留真正襟边及粉线。",
+      "crop": [
+        549,
+        1059,
+        92,
+        170
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R9-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R9-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R9-comparison.png",
+        "comparison_checker": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/R9-comparison-checker.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。",
+  "annotation_source_directory": "clothing-raster-layering/step01/workspace/review-regions/e652d666-bf5e-486f-9069-a714fd8f8d94",
+  "marked_checker": "clothing-raster-layering/step01/review-evidence/review-02/regions-default/marked-checker.png"
+}

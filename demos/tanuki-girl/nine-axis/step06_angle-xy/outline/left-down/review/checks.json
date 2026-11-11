@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "previews": [
+    {
+      "image": "nine-axis/step06_angle-xy/outline/left-down/review/source-full-blend.png",
+      "svg": "nine-axis/step06_angle-xy/outline/left-down/source-face.svg",
+      "svgSha256": "ba3c09d908c601b6266d7df5336b2718106201806d21d2925bf8d2eb5ebc97cf",
+      "reference": "nine-axis/step06_angle-xy/outline/left-down/source-face-reference.png",
+      "referenceSha256": "e27ff4468b3fed65f8744819f5157b4ff5b2de1ea6f8e580b6fbf670e3b5f76f",
+      "mode": "blend",
+      "crop": [
+        0,
+        0,
+        774,
+        774
+      ],
+      "scale": 1,
+      "referenceAlignment": "canvas"
+    },
+    {
+      "image": "nine-axis/step06_angle-xy/outline/left-down/review/source-alpha-edge.png",
+      "svg": "nine-axis/step06_angle-xy/outline/left-down/source-face.svg",
+      "svgSha256": "ba3c09d908c601b6266d7df5336b2718106201806d21d2925bf8d2eb5ebc97cf",
+      "reference": "nine-axis/step06_angle-xy/outline/left-down/source-face-reference.png",
+      "referenceSha256": "e27ff4468b3fed65f8744819f5157b4ff5b2de1ea6f8e580b6fbf670e3b5f76f",
+      "mode": "edge",
+      "crop": [
+        277,
+        319,
+        225,
+        247
+      ],
+      "scale": 4,
+      "referenceAlignment": "canvas"
+    },
+    {
+      "image": "nine-axis/step06_angle-xy/outline/left-down/review/target-full-blend.png",
+      "svg": "nine-axis/step06_angle-xy/outline/left-down/target-face.svg",
+      "svgSha256": "56cbb4621a21630ef5264f5f65fccfd1565ad994531168924634cf3639f095ee",
+      "reference": "nine-axis/step05_frames/left-down.png",
+      "referenceSha256": "a15414d1be6470a8ba98827975e467393d941dfb5e6362cb4fe3fa6717d325a8",
+      "mode": "blend",
+      "crop": [
+        0,
+        0,
+        774,
+        774
+      ],
+      "scale": 1,
+      "referenceAlignment": "canvas"
+    },
+    {
+      "image": "nine-axis/step06_angle-xy/outline/left-down/review/target-left-edge.png",
+      "svg": "nine-axis/step06_angle-xy/outline/left-down/target-face.svg",
+      "svgSha256": "56cbb4621a21630ef5264f5f65fccfd1565ad994531168924634cf3639f095ee",
+      "reference": "nine-axis/step05_frames/left-down.png",
+      "referenceSha256": "a15414d1be6470a8ba98827975e467393d941dfb5e6362cb4fe3fa6717d325a8",
+      "mode": "edge",
+      "crop": [
+        258,
+        401,
+        86,
+        148
+      ],
+      "scale": 6,
+      "referenceAlignment": "canvas"
+    },
+    {
+      "image": "nine-axis/step06_angle-xy/outline/left-down/review/target-left-blend.png",
+      "svg": "nine-axis/step06_angle-xy/outline/left-down/target-face.svg",
+      "svgSha256": "56cbb4621a21630ef5264f5f65fccfd1565ad994531168924634cf3639f095ee",
+      "reference": "nine-axis/step05_frames/left-down.png",
+      "referenceSha256": "a15414d1be6470a8ba98827975e467393d941dfb5e6362cb4fe3fa6717d325a8",
+      "mode": "blend",
+      "crop": [
+        258,
+        401,
+        86,
+        148
+      ],
+      "scale": 6,
+      "referenceAlignment": "canvas"
+    },
+    {
+      "image": "nine-axis/step06_angle-xy/outline/left-down/review/target-right-edge.png",
+      "svg": "nine-axis/step06_angle-xy/outline/left-down/target-face.svg",
+      "svgSha256": "56cbb4621a21630ef5264f5f65fccfd1565ad994531168924634cf3639f095ee",
+      "reference": "nine-axis/step05_frames/left-down.png",
+      "referenceSha256": "a15414d1be6470a8ba98827975e467393d941dfb5e6362cb4fe3fa6717d325a8",
+      "mode": "edge",
+      "crop": [
+        336,
+        389,
+        119,
+        169
+      ],
+      "scale": 5,
+      "referenceAlignment": "canvas"
+    },
+    {
+      "image": "nine-axis/step06_angle-xy/outline/left-down/review/target-right-blend.png",
+      "svg": "nine-axis/step06_angle-xy/outline/left-down/target-face.svg",
+      "svgSha256": "56cbb4621a21630ef5264f5f65fccfd1565ad994531168924634cf3639f095ee",
+      "reference": "nine-axis/step05_frames/left-down.png",
+      "referenceSha256": "a15414d1be6470a8ba98827975e467393d941dfb5e6362cb4fe3fa6717d325a8",
+      "mode": "blend",
+      "crop": [
+        336,
+        389,
+        119,
+        169
+      ],
+      "scale": 5,
+      "referenceAlignment": "canvas"
+    },
+    {
+      "image": "nine-axis/step06_angle-xy/outline/left-down/review/target-jaw-edge.png",
+      "svg": "nine-axis/step06_angle-xy/outline/left-down/target-face.svg",
+      "svgSha256": "56cbb4621a21630ef5264f5f65fccfd1565ad994531168924634cf3639f095ee",
+      "reference": "nine-axis/step05_frames/left-down.png",
+      "referenceSha256": "a15414d1be6470a8ba98827975e467393d941dfb5e6362cb4fe3fa6717d325a8",
+      "mode": "edge",
+      "crop": [
+        280,
+        530,
+        165,
+        60
+      ],
+      "scale": 6,
+      "referenceAlignment": "canvas"
+    },
+    {
+      "image": "nine-axis/step06_angle-xy/outline/left-down/review/target-jaw-blend.png",
+      "svg": "nine-axis/step06_angle-xy/outline/left-down/target-face.svg",
+      "svgSha256": "56cbb4621a21630ef5264f5f65fccfd1565ad994531168924634cf3639f095ee",
+      "reference": "nine-axis/step05_frames/left-down.png",
+      "referenceSha256": "a15414d1be6470a8ba98827975e467393d941dfb5e6362cb4fe3fa6717d325a8",
+      "mode": "blend",
+      "crop": [
+        280,
+        530,
+        165,
+        60
+      ],
+      "scale": 6,
+      "referenceAlignment": "canvas"
+    }
+  ]
+}

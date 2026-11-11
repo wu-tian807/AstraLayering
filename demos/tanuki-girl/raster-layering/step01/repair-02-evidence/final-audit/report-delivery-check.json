@@ -1,0 +1,44 @@
+{
+  "report.md": {
+    "bytes": 68779,
+    "first_line": "修复结论：已修复。review-02的14项及本轮完整巡检发现的残笔均已修画并通过看图自检；正式工程与默认PNG已保存并通过实际关闭重开检查。",
+    "links": 124,
+    "missing_links": [],
+    "missing_record_paths": []
+  },
+  "repair-02.md.tmp": {
+    "bytes": 38354,
+    "first_line": "结论：已修复",
+    "links": 150,
+    "missing_links": [],
+    "missing_record_paths": []
+  },
+  "repair_issue_sections": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14"
+  ],
+  "mapping_rows": 81,
+  "mask_rows": 35,
+  "png_size": [
+    1376,
+    2048
+  ],
+  "kra_native_node_types": {
+    "paintlayer": 81,
+    "transparencymask": 35
+  },
+  "final_file_hashes_match_reopen": true,
+  "formal_repair_written": false
+}

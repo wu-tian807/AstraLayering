@@ -1,0 +1,43 @@
+{
+  "groupId": "rear_drape_screen_left",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，rear_drape_screen_left：通过；没有已核实需要修改的问题，当前组不需重画。\n\n只读核对 reference clothing.png、groups.json 中本节点 note 和候选 outline.svg（SHA256：26fec3ff1737ada0f956d358ede8cd62b9d0e493bfcd339f2cdc6d9279616029）。本节点为顶层 group，parentGroup=null，无父 SVG 或父范围限制。先独立查看纯衣服整图及上端原图放大，再完成整图 blend、覆盖本片全部可见范围的局部 blend、上中下三段 3 倍 edge 和 SVG 独显。\n\n归属与主要形状：参考可见实体是左后长垂片，自后结翼下方、短白下摆左侧后方露出，向左下展开；内侧浅色三角翻折面与下段深色长身连续，属于同片。候选联合覆盖这些可见区域，没有把白短下摆、粉线襟边、后结翼、右长片或人体计入本组；位置、长度、展开宽度及底部折角与参考一致。证据： 。\n\n上段（约 x=293–464，y=878–1218）：后结翼下露出的窄条、短下摆左侧斜边邻接、下摆终边后方的垂片连接均已核对。候选上端内边沿前短下摆遮挡分界，不是实际开洞，不要求在本轮补画完全隐藏的根部。无可见漏片或误归属。证据： 。\n\n中段（约 x=175–456，y=1190–1530）：左外缘弧线和右内缘完整覆盖参考，浅色翻折面没有被当空白删除；翻折面在约 (426,1496) 收窄并与下段连续，此处无真实开口。证据：。\n\n下段（约 x=135–428，y=1480–1750）：外侧底尖约 (135,1721)、底边向上折角约 (283,1689)、内侧底尖约 (406,1750)，以及两侧收边均与参考对应；固定花纹与底边框线位于同一实体范围，无分离附件或可见组件遗漏。它们的内部纹样与明暗不属于当前纯色轮廓审查要求。证据： 。\n\nnote 明确了实体范围、与左后结翼及前短下摆的分界、在短下摆与腿后方的深度关系、左后腰根部随动以及长身独立摆动和必要隐藏搭接，未发现需要修正的说明错误。",
+      "candidateHash": "26fec3ff1737ada0f956d358ede8cd62b9d0e493bfcd339f2cdc6d9279616029",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/rear_drape_screen_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/rear_drape_screen_left/previews/2026-11-03T13-55-00-244Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_drape_screen_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/rear_drape_screen_left/previews/2026-11-03T13-55-00-244Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_drape_screen_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/rear_drape_screen_left/previews/2026-11-03T13-55-00-244Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_drape_screen_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/rear_drape_screen_left/previews/2026-11-03T13-55-00-244Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_drape_screen_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/rear_drape_screen_left/previews/2026-11-03T13-55-00-244Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_drape_screen_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/rear_drape_screen_left/previews/2026-11-03T13-55-00-244Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:22:12.675Z"
+    }
+  ]
+}

@@ -19,10 +19,11 @@ test('directory/ZIP exports retain artwork, completion facts and cited workspace
   const manifest = JSON.parse(await readFile(join(destination, 'manifest.json'), 'utf8'));
   assert.equal(manifest.files['raster-layering/step01/character-depth.kra'].sha256, f.artHash);
   assert.deepEqual(await readFile(join(destination, 'raster-layering/step01/composite.png')), f.png);
-  assert.deepEqual(await readFile(join(destination, 'raster-layering/step01/report-assets/inspect/cited.png')), f.png);
-  assert.match(await readFile(join(destination, 'raster-layering/step01/report.md'), 'utf8'), /report-assets\/inspect\/cited.png/);
+  assert.equal(manifest.files['raster-layering/step01/report-assets/inspect/cited.png'], undefined);
+  assert.doesNotMatch(await readFile(join(destination, 'raster-layering/step01/report.md'), 'utf8'), /cited\.png/);
   assert.ok(Object.keys(manifest.files).some(path => path.endsWith('/.completed')));
   assert.ok(!Object.keys(manifest.files).some(path => /workspace|agents|unused|orphan|workflow\.log|\.runtime|physics/.test(path)));
+  // Shadow inspection images are previewFiles declared by the step definition, so they stay.
   assert.ok(manifest.files['shadow/step01_mask/inspection/overview.png']);
   assert.ok(manifest.files['shadow/step01_mask/inspection/relation-000-review.png']);
   const run = JSON.parse(await readFile(join(destination, 'run.json'), 'utf8'));
@@ -55,7 +56,9 @@ test('records naming the task through a symlinked runs root still export task-re
   await exportCompletedRun({ name: f.name, dir: link, output: destination });
   const exported = JSON.parse(await readFile(join(destination, review), 'utf8'));
   assert.deepEqual(exported.reviews[0].observations, [cited, cited, '/outside/resource.png']);
-  assert.match(await readFile(join(destination, 'raster-layering/step01/report.md'), 'utf8'), /\]\(report-assets\/inspect\/cited.png\)/);
+  const report = await readFile(join(destination, 'raster-layering/step01/report.md'), 'utf8');
+  assert.match(report, /结论：已完成/);
+  assert.doesNotMatch(report, /!\[检查图\]/);
 });
 
 for (const staged of [false, true]) test(`a completed ${staged ? 'seven-step' : 'previous'} nine-axis route exports its actual models, textures, KRA and evidence without shadow naming requirements`, async t => {
@@ -74,7 +77,8 @@ for (const staged of [false, true]) test(`a completed ${staged ? 'seven-step' : 
   const output = join(f.base, 'nine-result');
   await exportCompletedRun({ name: f.name, dir: f.dir, output });
   const manifest = JSON.parse(await readFile(join(output, 'manifest.json'), 'utf8'));
-  for (const file of ['deformers.json', 'layers/face.png', 'character-nine-axis.kra', 'character-nine-axis.png', 'jaw-check.png', 'review/left-up.png']) assert.ok(manifest.files[`nine-axis/${jaw}/${file}`], file);
+  for (const file of ['deformers.json', 'layers/face.png', 'character-nine-axis.kra', 'character-nine-axis.png']) assert.ok(manifest.files[`nine-axis/${jaw}/${file}`], file);
+  for (const file of ['jaw-check.png', 'review/left-up.png']) assert.equal(manifest.files[`nine-axis/${jaw}/${file}`], undefined, file);
   assert.equal(JSON.parse(await readFile(join(output, 'run.json'), 'utf8')).to, 'nine-axis');
   await f.put(`nine-axis/${jaw}/layers/arbitrary-cast-name.png`, f.png);
   await f.put(`nine-axis/${jaw}/workspace/draft.png`, f.png);
@@ -106,11 +110,13 @@ test('export refuses symlink evidence, existing output and destinations inside t
   const f = await exportFixture(t), output = join(f.base, 'out');
   await f.put('raster-layering/step01/report.md', '![private](workspace/inspect/link.png)');
   await symlink(join(f.root, 'input/original.png'), join(f.root, 'raster-layering/step01/workspace/inspect/link.png'));
-  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output }), /符号链接/);
-  // Prose the file system cannot resolve is a warning, not a failed export.
+  // Report images are no longer read or exported, so a symlinked image is not refused.
+  await exportCompletedRun({ name: f.name, dir: f.dir, output });
+  await rm(output, { recursive: true, force: true });
+  // Prose is kept as text: paths in it are not resolved, so they cannot warn.
   await f.put('raster-layering/step01/report.md', `\`${'很长的说明'.repeat(60)}.png\` 与 \`input/original.png/zoom.png\``);
   const exported = await exportCompletedRun({ name: f.name, dir: f.dir, output });
-  assert.deepEqual(exported.warnings.map(warning => warning.match(/（(\w+)）/)?.[1]), ['ENOTDIR', 'ENAMETOOLONG']);
+  assert.deepEqual(exported.warnings, []);
   await rm(output, { recursive: true, force: true });
   await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.root, 'out') }), /原任务目录/);
   await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.root, 'input/original.png') }), /原任务目录/);

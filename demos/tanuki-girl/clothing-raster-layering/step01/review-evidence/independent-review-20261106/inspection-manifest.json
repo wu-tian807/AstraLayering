@@ -1,0 +1,986 @@
+{
+  "canvas": [
+    1376,
+    2048
+  ],
+  "source_kra": "clothing-raster-layering/step01/clothing-depth.kra",
+  "inputs_at_report": [
+    {
+      "path": "clothing-raster-layering/step01/clothing-depth.kra",
+      "size": 9864835,
+      "mtime_ns": 1793900151318317000,
+      "sha256": "a5d1e922b4bd7966004e0d15a4d9e9ab62f0d47f5ce77de7e922b6109f567f1b"
+    },
+    {
+      "path": "clothing-part-layering/references/clothing.png",
+      "size": 1499159,
+      "mtime_ns": 1793710991079397400,
+      "sha256": "624f4807937313d756ff4129bdb808f63a364d570634077db372e2a01addcd7a"
+    },
+    {
+      "path": "part-layering/references/simplified-subject.png",
+      "size": 2072573,
+      "mtime_ns": 1793710629472254700,
+      "sha256": "7bd8a94260e4d6b27a815214c9d89304956a42589b16fea210b074d8895ac9a3"
+    },
+    {
+      "path": "clothing-part-layering/groups.json",
+      "size": 23200,
+      "mtime_ns": 1793721672819128300,
+      "sha256": "e0284cd7a4a49b218e85cfa372f86ada5d94d09cd186fb7a44bf4a56b32d3189"
+    },
+    {
+      "path": "clothing-part-layering/occlusion.json",
+      "size": 17091,
+      "mtime_ns": 1793899624545205200,
+      "sha256": "aa1daf29cc581eae30a8a0fbaf0dbad0fba11587d429396d95f30c774a7f6e4a"
+    },
+    {
+      "path": "clothing-part-layering/parts/front_pendant_screen_left/right_free_cord.svg",
+      "size": 737,
+      "mtime_ns": 1793727691387075800,
+      "sha256": "2e31b5d83c840a18170162127c9153419c1990c14081e3c141fa59cf3c76871e"
+    },
+    {
+      "path": "clothing-part-layering/parts/front_pendant_screen_left/right_tassel.svg",
+      "size": 438,
+      "mtime_ns": 1793727361860509700,
+      "sha256": "8046e01794084a8b4abc4d13c97649e60a5ffc189b15b16d03b66ba6c12c41c8"
+    },
+    {
+      "path": "clothing-part-layering/parts/front_pendant_screen_left/right_terminal_bead.svg",
+      "size": 367,
+      "mtime_ns": 1793727048197730000,
+      "sha256": "95326b67d6fcc51176d848cbbb42203d933c266b2fac2fe3adc8c8763f3f0f00"
+    },
+    {
+      "path": "clothing-part-layering/parts/front_pendant_screen_left.svg",
+      "size": 896,
+      "mtime_ns": 1793719107241534700,
+      "sha256": "fa34832f84e29be5f57cb255b9aae1e494ce4bf2764d8e5f87205288f3a4feae"
+    },
+    {
+      "path": "clothing-part-layering/parts/front_pendant_screen_right/left_free_cord.svg",
+      "size": 620,
+      "mtime_ns": 1793726698459431200,
+      "sha256": "fe09c493b528b5bc46c64b7ebc11c9e877bb4b31ade7ef276063e13f67950b27"
+    },
+    {
+      "path": "clothing-part-layering/parts/front_pendant_screen_right/left_tassel.svg",
+      "size": 659,
+      "mtime_ns": 1793728082289804500,
+      "sha256": "e387c8b9b54d8bd9fb1d02bf13b20201269b1f018d11e2f2933dcd45440af340"
+    },
+    {
+      "path": "clothing-part-layering/parts/front_pendant_screen_right/left_terminal_bead.svg",
+      "size": 435,
+      "mtime_ns": 1793727699370968300,
+      "sha256": "a59ecfb3b462727b7f7352e0821724f67a1744ddf99f2e123d2f0c48972bfe6c"
+    },
+    {
+      "path": "clothing-part-layering/parts/front_pendant_screen_right.svg",
+      "size": 873,
+      "mtime_ns": 1793719859423449300,
+      "sha256": "17d529ad1d0b6dcf27bfbfad98180621efce2d2e04b56618456600baaa27ca5f"
+    },
+    {
+      "path": "clothing-part-layering/parts/front_waist_cord_knot.svg",
+      "size": 1628,
+      "mtime_ns": 1793718921134041000,
+      "sha256": "e4e6ce332fdd833b806857dbd8809318495ba1264dcb6f379eba3b2706997f9d"
+    },
+    {
+      "path": "clothing-part-layering/parts/inner_waist_wrap.svg",
+      "size": 924,
+      "mtime_ns": 1793720701038257000,
+      "sha256": "1344b3e0a1c2c64bb26341b66ba7ae5d4754224baa2c4dd3d87dad4dc29da182"
+    },
+    {
+      "path": "clothing-part-layering/parts/kimono_body/left_overlap_panel.svg",
+      "size": 609,
+      "mtime_ns": 1793726314467584000,
+      "sha256": "1c4b087b2cad21610b58b020a596b5a6c705eba2a4e79d19935b6e5e35a12b8f"
+    },
+    {
+      "path": "clothing-part-layering/parts/kimono_body/right_underlap_panel.svg",
+      "size": 1078,
+      "mtime_ns": 1793726840458525200,
+      "sha256": "72ceeab535545a1f884ee00d7bf6fb34c124e1ac6689a9e2ad7f9f0ce8479fe3"
+    },
+    {
+      "path": "clothing-part-layering/parts/kimono_body.svg",
+      "size": 1262,
+      "mtime_ns": 1793718135253662000,
+      "sha256": "a3c30fd1162be2cfbdd6f1fe78f23e9b8d03b46ef9c56a09df388940bd511030"
+    },
+    {
+      "path": "clothing-part-layering/parts/outer_waist_band.svg",
+      "size": 517,
+      "mtime_ns": 1793718884988527900,
+      "sha256": "c1d27f31e3cf82f55449a4f43f0928ef79c0e8a70038fee64cc121c668662de4"
+    },
+    {
+      "path": "clothing-part-layering/parts/rear_drape_screen_left.svg",
+      "size": 885,
+      "mtime_ns": 1793719867682339600,
+      "sha256": "0fea3554dbd8a401c2127a0f03425ccf05c2f6c8116f06353c7630ce91a401cd"
+    },
+    {
+      "path": "clothing-part-layering/parts/rear_drape_screen_right.svg",
+      "size": 1071,
+      "mtime_ns": 1793719899756913700,
+      "sha256": "6e02d6a6ec73b8e6126ab54f0e907edc0861d1d23ff3cc3885f7aab2e734fd22"
+    },
+    {
+      "path": "clothing-part-layering/parts/rear_waist_bow/central_knot_root.svg",
+      "size": 503,
+      "mtime_ns": 1793728193225305900,
+      "sha256": "587bd54534caf48c32ae8e48de371bf777bed725af5fcbc80c32824cb9b2398b"
+    },
+    {
+      "path": "clothing-part-layering/parts/rear_waist_bow/left_bow_wing.svg",
+      "size": 935,
+      "mtime_ns": 1793727157847254800,
+      "sha256": "7856d2c1532f27382605373a2f7b954484bab94e02d1a3902489a6e567034b5c"
+    },
+    {
+      "path": "clothing-part-layering/parts/rear_waist_bow/right_bow_wing.svg",
+      "size": 927,
+      "mtime_ns": 1793727514864451000,
+      "sha256": "be5e03d8f2ebe54b25085277dbf5ebd898525bbb1849ae0a6eb547a15943a2e3"
+    },
+    {
+      "path": "clothing-part-layering/parts/rear_waist_bow.svg",
+      "size": 1947,
+      "mtime_ns": 1793718061067667200,
+      "sha256": "41b17660c96c08375baa678ff004dd75b79695deadd6f9b7b61ef9935162b017"
+    },
+    {
+      "path": "clothing-part-layering/parts/sleeve_screen_left.svg",
+      "size": 933,
+      "mtime_ns": 1793720632391181800,
+      "sha256": "71ae7fa00f0c82b19ac6dfac0ebf5b69bd4cb2d3b90325a6ee7f31f455a66087"
+    },
+    {
+      "path": "clothing-part-layering/parts/sleeve_screen_right.svg",
+      "size": 1190,
+      "mtime_ns": 1793828324538678000,
+      "sha256": "610abf50cbb57e38de4b231ba07b0da41405c4e7397605bd64dc6c20c9b087ae"
+    }
+  ],
+  "paint_layers": [
+    {
+      "name": "d01 | rear_drape_screen_left | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        132,
+        779,
+        418,
+        969
+      ],
+      "children": []
+    },
+    {
+      "name": "d02 | rear_drape_screen_right | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        845,
+        761,
+        399,
+        990
+      ],
+      "children": []
+    },
+    {
+      "name": "d03 | rear_waist_bow/right_bow_wing | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        311,
+        573,
+        355,
+        354
+      ],
+      "children": []
+    },
+    {
+      "name": "d04 | rear_waist_bow/left_bow_wing | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        714,
+        573,
+        355,
+        354
+      ],
+      "children": []
+    },
+    {
+      "name": "d05 | rear_waist_bow/central_knot_root | complete hidden root",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        643,
+        677,
+        96,
+        94
+      ],
+      "children": [
+        {
+          "name": "default hidden | rear_waist_bow/central_knot_root",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "d06 | kimono_body/right_underlap_panel | left side/back returns y618-845",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        485,
+        618,
+        59,
+        228
+      ],
+      "children": []
+    },
+    {
+      "name": "d07 | kimono_body/left_overlap_panel | right side/back returns y612-839",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        823,
+        612,
+        66,
+        228
+      ],
+      "children": []
+    },
+    {
+      "name": "d08 | sleeve_screen_left | complete far sleeve wall; native worn-range mask",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        252,
+        469,
+        302,
+        258
+      ],
+      "children": [
+        {
+          "name": "worn range | sleeve_screen_left",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "d09 | sleeve_screen_right | complete far sleeve wall; native worn-range mask",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        879,
+        486,
+        249,
+        239
+      ],
+      "children": [
+        {
+          "name": "worn range | sleeve_screen_right",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "d10 | inner_waist_wrap | both side/back returns y620-847",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        478,
+        620,
+        424,
+        228
+      ],
+      "children": []
+    },
+    {
+      "name": "d11 | outer_waist_band | both side/back returns y670-781",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        498,
+        670,
+        384,
+        112
+      ],
+      "children": []
+    },
+    {
+      "name": "d12 | front_waist_cord_knot | side/back cord returns",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        465,
+        686,
+        450,
+        46
+      ],
+      "children": [
+        {
+          "name": "default hidden | front_waist_cord_knot",
+          "type": "transparencymask",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "d13 | kimono_body/right_underlap_panel | complete front cloth and outline",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        338,
+        413,
+        481,
+        762
+      ],
+      "children": []
+    },
+    {
+      "name": "d14 | kimono_body/left_overlap_panel | complete front cloth and outline",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        497,
+        407,
+        543,
+        805
+      ],
+      "children": []
+    },
+    {
+      "name": "d15 | sleeve_screen_left | near white folds and gathered cuff x253-486",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        252,
+        470,
+        235,
+        193
+      ],
+      "children": []
+    },
+    {
+      "name": "d16 | sleeve_screen_right | near white folds and gathered cuff x896-1126",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        895,
+        486,
+        232,
+        173
+      ],
+      "children": []
+    },
+    {
+      "name": "d17 | inner_waist_wrap | complete front cloth and outline",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        474,
+        604,
+        435,
+        266
+      ],
+      "children": []
+    },
+    {
+      "name": "d18 | outer_waist_band | complete front cloth and outline",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        488,
+        642,
+        404,
+        165
+      ],
+      "children": []
+    },
+    {
+      "name": "d19 | front_pendant_screen_left/right_free_cord | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        622,
+        711,
+        72,
+        214
+      ],
+      "children": []
+    },
+    {
+      "name": "d20 | front_pendant_screen_right/left_free_cord | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        686,
+        711,
+        72,
+        214
+      ],
+      "children": []
+    },
+    {
+      "name": "d21 | front_pendant_screen_left/right_tassel | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        602,
+        946,
+        51,
+        86
+      ],
+      "children": []
+    },
+    {
+      "name": "d22 | front_pendant_screen_right/left_tassel | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        727,
+        946,
+        51,
+        86
+      ],
+      "children": []
+    },
+    {
+      "name": "d23 | front_waist_cord_knot | front cord turns, horizontal cord, loops and knot",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        493,
+        672,
+        394,
+        118
+      ],
+      "children": []
+    },
+    {
+      "name": "d24 | front_pendant_screen_left/right_terminal_bead | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        609,
+        910,
+        44,
+        41
+      ],
+      "children": []
+    },
+    {
+      "name": "d25 | front_pendant_screen_right/left_terminal_bead | complete",
+      "type": "paintlayer",
+      "visible": true,
+      "opacity": 255,
+      "bounds": [
+        723,
+        909,
+        44,
+        41
+      ],
+      "children": []
+    }
+  ],
+  "logical_parts": [
+    {
+      "tag": "p01",
+      "part": "rear_drape_screen_left",
+      "depths": [
+        1
+      ]
+    },
+    {
+      "tag": "p02",
+      "part": "rear_drape_screen_right",
+      "depths": [
+        2
+      ]
+    },
+    {
+      "tag": "p03",
+      "part": "rear_waist_bow/right_bow_wing",
+      "depths": [
+        3
+      ]
+    },
+    {
+      "tag": "p04",
+      "part": "rear_waist_bow/left_bow_wing",
+      "depths": [
+        4
+      ]
+    },
+    {
+      "tag": "p05",
+      "part": "rear_waist_bow/central_knot_root",
+      "depths": [
+        5
+      ]
+    },
+    {
+      "tag": "p06",
+      "part": "kimono_body/right_underlap_panel",
+      "depths": [
+        6,
+        13
+      ]
+    },
+    {
+      "tag": "p07",
+      "part": "kimono_body/left_overlap_panel",
+      "depths": [
+        7,
+        14
+      ]
+    },
+    {
+      "tag": "p08",
+      "part": "sleeve_screen_left",
+      "depths": [
+        8,
+        15
+      ]
+    },
+    {
+      "tag": "p09",
+      "part": "sleeve_screen_right",
+      "depths": [
+        9,
+        16
+      ]
+    },
+    {
+      "tag": "p10",
+      "part": "inner_waist_wrap",
+      "depths": [
+        10,
+        17
+      ]
+    },
+    {
+      "tag": "p11",
+      "part": "outer_waist_band",
+      "depths": [
+        11,
+        18
+      ]
+    },
+    {
+      "tag": "p12",
+      "part": "front_waist_cord_knot",
+      "depths": [
+        12,
+        23
+      ]
+    },
+    {
+      "tag": "p13",
+      "part": "front_pendant_screen_left/right_free_cord",
+      "depths": [
+        19
+      ]
+    },
+    {
+      "tag": "p14",
+      "part": "front_pendant_screen_right/left_free_cord",
+      "depths": [
+        20
+      ]
+    },
+    {
+      "tag": "p15",
+      "part": "front_pendant_screen_left/right_tassel",
+      "depths": [
+        21
+      ]
+    },
+    {
+      "tag": "p16",
+      "part": "front_pendant_screen_right/left_tassel",
+      "depths": [
+        22
+      ]
+    },
+    {
+      "tag": "p17",
+      "part": "front_pendant_screen_left/right_terminal_bead",
+      "depths": [
+        24
+      ]
+    },
+    {
+      "tag": "p18",
+      "part": "front_pendant_screen_right/left_terminal_bead",
+      "depths": [
+        25
+      ]
+    }
+  ],
+  "checked": {
+    "independent_raw": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "independent_masked": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "upper_layers_hidden_masks_off": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "upper_layers_hidden_masks_on": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "logical_combined_masks_off": [
+      "rear_drape_screen_left",
+      "rear_drape_screen_right",
+      "rear_waist_bow/right_bow_wing",
+      "rear_waist_bow/left_bow_wing",
+      "rear_waist_bow/central_knot_root",
+      "kimono_body/right_underlap_panel",
+      "kimono_body/left_overlap_panel",
+      "sleeve_screen_left",
+      "sleeve_screen_right",
+      "inner_waist_wrap",
+      "outer_waist_band",
+      "front_waist_cord_knot",
+      "front_pendant_screen_left/right_free_cord",
+      "front_pendant_screen_right/left_free_cord",
+      "front_pendant_screen_left/right_tassel",
+      "front_pendant_screen_right/left_tassel",
+      "front_pendant_screen_left/right_terminal_bead",
+      "front_pendant_screen_right/left_terminal_bead"
+    ],
+    "logical_combined_masks_on": [
+      "rear_drape_screen_left",
+      "rear_drape_screen_right",
+      "rear_waist_bow/right_bow_wing",
+      "rear_waist_bow/left_bow_wing",
+      "rear_waist_bow/central_knot_root",
+      "kimono_body/right_underlap_panel",
+      "kimono_body/left_overlap_panel",
+      "sleeve_screen_left",
+      "sleeve_screen_right",
+      "inner_waist_wrap",
+      "outer_waist_band",
+      "front_waist_cord_knot",
+      "front_pendant_screen_left/right_free_cord",
+      "front_pendant_screen_right/left_free_cord",
+      "front_pendant_screen_left/right_tassel",
+      "front_pendant_screen_right/left_tassel",
+      "front_pendant_screen_left/right_terminal_bead",
+      "front_pendant_screen_right/left_terminal_bead"
+    ]
+  },
+  "exports": {
+    "raw": [
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d01.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d02.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d03.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d04.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d05.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d06.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d07.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d08.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d09.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d10.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d11.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d12.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d13.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d14.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d15.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d16.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d17.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d18.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d19.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d20.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d21.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d22.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d23.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d24.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/raw/d25.png"
+    ],
+    "masked": [
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d01.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d02.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d03.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d04.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d05.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d06.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d07.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d08.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d09.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d10.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d11.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d12.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d13.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d14.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d15.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d16.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d17.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d18.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d19.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d20.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d21.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d22.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d23.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d24.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/masked/d25.png"
+    ],
+    "cumulative-off": [
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d01.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d02.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d03.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d04.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d05.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d06.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d07.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d08.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d09.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d10.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d11.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d12.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d13.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d14.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d15.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d16.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d17.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d18.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d19.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d20.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d21.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d22.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d23.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d24.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-off/d25.png"
+    ],
+    "cumulative-on": [
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d01.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d02.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d03.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d04.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d05.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d06.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d07.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d08.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d09.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d10.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d11.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d12.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d13.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d14.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d15.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d16.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d17.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d18.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d19.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d20.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d21.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d22.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d23.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d24.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/cumulative-on/d25.png"
+    ],
+    "logical-off": [
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p01.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p02.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p03.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p04.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p05.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p06.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p07.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p08.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p09.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p10.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p11.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p12.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p13.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p14.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p15.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p16.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p17.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-off/p18.png"
+    ],
+    "logical-on": [
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p01.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p02.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p03.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p04.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p05.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p06.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p07.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p08.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p09.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p10.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p11.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p12.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p13.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p14.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p15.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p16.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p17.png",
+      "clothing-raster-layering/step01/review-evidence/independent-review-20261106/logical-on/p18.png"
+    ]
+  },
+  "inspection_sheets": [
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/raw-sheet-01-05.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/raw-sheet-06-09.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/raw-sheet-10-14.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/raw-sheet-15-18.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/raw-sheet-19-25.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/logical-body.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/logical-sleeves.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/logical-waist.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/logical-root.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/sleeve-fragments.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/collar-source.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/comparison-upper.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/comparison-hem.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/comparison-drape-left.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/comparison-drape-right.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-off-01.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-off-06.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-off-11.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-off-16.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-off-21.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-on-01.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-on-06.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-on-11.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-on-16.png",
+    "clothing-raster-layering/step01/review-evidence/independent-review-20261106/inspection/cumulative-on-21.png"
+  ],
+  "art_judgment": "visual inspection, no similarity metrics",
+  "disk_mutation": "No save/saveAs or pixel editing was performed; visibility was changed only in memory for exports."
+}

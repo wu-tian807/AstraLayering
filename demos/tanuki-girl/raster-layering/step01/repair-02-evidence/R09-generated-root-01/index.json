@@ -1,0 +1,15 @@
+[
+  {
+    "id": "face/ears/ear_left/ear_fur",
+    "level": 18,
+    "region": "完整部件",
+    "preannotated": false,
+    "layer": "D018.00 | face/ears/ear_left/ear_fur",
+    "uuid": "{6412279f-d25f-41c7-9392-cb48663e8821}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-02-evidence/R09-generated-root-01/face__ears__ear_left__ear_fur-D18-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-02-evidence/R09-generated-root-01/face__ears__ear_left__ear_fur-D18-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-02-evidence/R09-generated-root-01/face__ears__ear_left__ear_fur-D18-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-02-evidence/R09-generated-root-01/face__ears__ear_left__ear_fur-D18-upper-hidden-complete.png"
+  }
+]

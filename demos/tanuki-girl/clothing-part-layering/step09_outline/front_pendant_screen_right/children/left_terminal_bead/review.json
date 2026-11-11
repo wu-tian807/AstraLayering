@@ -1,0 +1,38 @@
+{
+  "groupId": "front_pendant_screen_right/left_terminal_bead",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过。已只读检查纯衣服参考、groups.json 中当前 part 与父组 note、候选及父完成 SVG，并完成全图 blend、局部 6 倍 blend、覆盖珠体全部周边的 8 倍 edge、8 倍 SVG 独显及父稿局部对照。\n\n独立归属：纯衣服参考 x723–769、y909–951 可见的是画面右侧自由绳端与流苏束根之间的完整珠体及固定外缘；珠体左下方紫灰投影属于衣面绘画，绳身及珠下流苏属于相邻 part。候选覆盖珠体，没有误包这些相邻实体或人体，也没有遗漏可见的独立附件。\n\n轮廓与接缝：edge 放大核对上缘、左右弧缘、右下连接转折与底缘，候选外形、位置及比例与参考一致；上缘截在绳端连接处，下缘保留完整珠体外缘，符合珠体遮住绳端与流苏短插入区的关系。珠体没有参考可见的真实孔洞、薄纱或需另作深度区域的环绕结构。独显为完整闭合实体，无杂片。高光、配色和固定外缘内部颜色不属于本轮纯色轮廓缺陷。\n\n父范围及说明：四倍采样包含检查 outsidePixels=0。当前 note 已继承珠体与绳端、流苏、短下摆和身体的前后关系，以及随绳端末端移动、珠体保持相对刚性、流苏共同悬挂与必要隐藏搭接的职责；未发现需要修正的说明或上游范围限制。\n\n图像证据：\n- [整体位置叠加](review-evidence/2026-11-03T16-37-58-516Z-1.png)\n- [全部珠缘 8 倍边缘对照](review-evidence/2026-11-03T16-37-58-516Z-2.png)\n- [父完成稿及邻接关系](review-evidence/2026-11-03T16-37-58-516Z-3.png)\n- [上下连接与珠体 6 倍叠加](review-evidence/2026-11-03T16-37-58-516Z-4.png)\n- [珠体 8 倍独显](review-evidence/2026-11-03T16-37-58-516Z-5.png)\n\n没有核对后确定需要修改的问题；无需重画或返修。",
+      "candidateHash": "a59ecfb3b462727b7f7352e0821724f67a1744ddf99f2e123d2f0c48972bfe6c",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_terminal_bead/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_terminal_bead/previews/2026-11-03T16-37-58-516Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_terminal_bead/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_terminal_bead/previews/2026-11-03T16-37-58-516Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/front_pendant_screen_right.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_terminal_bead/previews/2026-11-03T16-37-58-516Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_terminal_bead/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_terminal_bead/previews/2026-11-03T16-37-58-516Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_terminal_bead/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_terminal_bead/previews/2026-11-03T16-37-58-516Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T17:05:43.839Z"
+    }
+  ]
+}

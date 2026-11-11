@@ -1,0 +1,271 @@
+{
+  "originalNodes": 143,
+  "originalMaskCount": 37,
+  "allOriginalUuidsPreserved": true,
+  "maskUuidParentAndStatePreserved": true,
+  "withoutCastMaxChannelDifference": 1,
+  "withoutCastChangedPixels": 843,
+  "withoutCastAlphaDifference": 0,
+  "pngMatchesNativeKra": true,
+  "masks": [
+    {
+      "uuid": "5f7b00e0-1342-49fb-a3cd-bb942c3ddfe7",
+      "parentUuid": "831d9aad-19b0-49ef-8f5c-d1be06cd973e",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "940ee8cb-6da0-4176-bd39-14cb1f0471dc",
+      "parentUuid": "1af29209-e953-4a75-8c41-3febfa35f8da",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "91c28e0d-4e48-4156-bdc4-6bae1e2ac156",
+      "parentUuid": "ea19e7a1-bfe6-4fb6-9a74-b4ecebf37fc8",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "1dfdf9f2-fe2f-4a16-a8e2-13f9018ad597",
+      "parentUuid": "2e0ad9b5-3b84-4c5e-943b-4c7d5ca3c042",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "287e7f35-a3d9-4d43-82f5-f56bb0c5af52",
+      "parentUuid": "6a63b36b-c447-4067-a803-048a83d1e723",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "1660931e-a2fe-456a-882b-6922c19e9ada",
+      "parentUuid": "cdbcf1fb-4d88-4cb7-822e-42abdcbcc555",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "cd440624-c01c-40f7-b5a1-6a9232735a1d",
+      "parentUuid": "37db0f80-acac-4643-9591-776003274687",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "34328c05-422f-4ad0-a3e4-61483d304f57",
+      "parentUuid": "5be6bfb0-ed5d-4567-9724-5ca4ad872050",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "271c8343-3120-4962-a24e-f74e4a682da2",
+      "parentUuid": "b22dbaa9-e2b7-40fe-b44a-8e9b87766fcc",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "f2227a47-e878-4ab6-a355-f2898c968dbf",
+      "parentUuid": "49863ef6-0a5c-4506-926f-231c524cdb49",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "13d26276-468d-4471-ab3c-dc54ecccc4e2",
+      "parentUuid": "3a57b4ce-9f6b-4746-a5ec-6e6f53d08793",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "008d338c-151d-4148-bc9d-eba45712fc34",
+      "parentUuid": "a211233b-ae02-45c7-8616-8cf87cb535ed",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "6db435ea-0bee-405f-ab9a-ae384bec2606",
+      "parentUuid": "d3b3aa14-50b8-4c1a-9c47-c048d1a6e7d1",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "f7ffff7e-fe8c-4ea2-adf7-8af0c242fc80",
+      "parentUuid": "5dcbbd36-7beb-455f-975f-a157c995742f",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "e328e1d2-63d3-4ccc-a033-d28ea6b89035",
+      "parentUuid": "dd92a426-1cd5-4aec-871a-d0ee1e49bc7b",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "247963b1-8245-4b82-acc4-e18ef57193cc",
+      "parentUuid": "88c46423-0bc0-4178-9132-e82e26407572",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "44e1fa1b-c386-4408-8464-dab89bccb81c",
+      "parentUuid": "35a1d122-a10e-4710-9f6f-2f747bb82dd1",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "715a2422-82de-4c55-893c-116fef88cbf3",
+      "parentUuid": "632c526e-bcce-4b24-88be-fc86338f594e",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "e7fc4908-710c-48c9-8c83-d1314ae2e5f2",
+      "parentUuid": "16af6209-ac78-4f6b-a0c1-d2182bcaac40",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "3ff51e11-4852-4b7b-b970-aeb2337c95b3",
+      "parentUuid": "8d64c348-4054-43e2-bbf9-b54270961399",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "91d6b797-7b14-42cc-b249-74e6864e1e8a",
+      "parentUuid": "ca251813-aa19-4875-b0d6-bbfb8fe83576",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "3794c225-351f-47d3-8057-87ba5c503be6",
+      "parentUuid": "dcff1aec-4af7-4ee2-8789-6ddfc7d72ed5",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "d842014f-e347-4bd8-88b1-72258fe5440c",
+      "parentUuid": "3c9d7358-0751-4499-9522-f5155031db05",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "8b336f8b-6706-4aaf-adb0-b56faeb87bca",
+      "parentUuid": "e87b0a48-92ca-4af7-87a9-fffb9848f5cb",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "e0af132c-1b01-4638-82cf-5b4c0c2cfad9",
+      "parentUuid": "07c78862-c28b-43f3-89a6-b2e0840772a7",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "ce830b06-b775-4388-b9ce-68269a78e7b8",
+      "parentUuid": "187c7b70-f80b-4750-8245-a719339af79f",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "f5eb3445-5145-4656-b1c6-f69ad49df9de",
+      "parentUuid": "692330f0-91de-4d00-9e4b-f39b10b128b1",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "4ae53544-2b5c-4a73-9260-59232eaca265",
+      "parentUuid": "ce81fd9c-105d-4dde-928a-258cd97c8f12",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "af728d2e-b29c-4cac-92ef-abd871a2e34d",
+      "parentUuid": "88d85685-e2d5-4be3-89f3-ee57d99f525a",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "7527e649-8c77-4f8d-9a49-c5b87a0cfe8f",
+      "parentUuid": "0efe08b0-e36a-47d8-853a-0bd077fdfeb3",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "8eeaabbc-1120-4327-ba02-b5c313bc05ad",
+      "parentUuid": "a26b8b32-dec7-4a7c-8e27-6573369d6631",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "9c126e96-bf94-4f6b-8300-a09810a89d36",
+      "parentUuid": "17505ce3-5c13-46cc-a6ed-9c2f90febe07",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "47303b87-b246-4d0c-8922-263effad952f",
+      "parentUuid": "b88142ea-e37d-4705-b789-44da20b0c844",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "2990c312-a837-4341-9638-f7ab5986fc8e",
+      "parentUuid": "e011f040-3a64-417a-9d7c-480072a77003",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "0ae72211-06c5-4ab8-bb8f-f5234a8a99a9",
+      "parentUuid": "c8dd94ab-223d-4792-93ef-f95319961fff",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "97d71a02-bc85-4e27-b339-d29343a81c66",
+      "parentUuid": "5ec855f7-b65f-49ca-b7b7-63dd57f602f1",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "uuid": "8ed70c60-7431-4abf-8098-9898927c1c2a",
+      "parentUuid": "169a9bd9-ebc1-4032-a829-a52505abe7c9",
+      "visible": "1",
+      "x": "0",
+      "y": "0"
+    }
+  ]
+}

@@ -1,0 +1,766 @@
+{
+  "version": 3,
+  "direction": "back-to-front",
+  "sourceHash": "d88c5692b93f348be4eedf0e9e1e1ef0a63e3007fe044b47898df090a1588c15",
+  "layers": [
+    {
+      "id": "tail",
+      "level": 0,
+      "note": "完整粉色尾巴在 pelvis、legs/leg_left/leg、legs/leg_right/leg 后方；默认仅身体与双腿轮廓外显露，根部保留，由上述前景自然遮挡。",
+      "check": {
+        "passed": true,
+        "note": "独显尾根、整圈轮廓及隐藏上层检查完成；尾巴位于骨盆和双腿后，默认露出与参考相符。"
+      }
+    },
+    {
+      "id": "legs/leg_left/thigh_band_back",
+      "level": 10,
+      "note": "后环带在 legs/leg_left/leg 后、thigh_band_front 前段之后。默认完全隐藏；若完整补形越出腿边，给本层附由 legs/leg_left/leg 与 legs/leg_left/thigh_band_front 控制的后侧显隐蒙版，原姿势全遮，转面可揭示，保留完整纹理。",
+      "check": {
+        "passed": true,
+        "note": "原生透明度蒙版默认全遮，关闭蒙版后完整后带连续；D10 位于腿和前带后，切换证据已导出并查看。"
+      }
+    },
+    {
+      "id": "legs/leg_right/anklet_back",
+      "level": 11,
+      "note": "两条踝环后段在 legs/leg_right/leg 与 legs/leg_right/anklet_front 后方，默认仅原图踝侧回转处可见，其他范围由腿、前环及铃体遮挡；后层蒙版按这两个完整 ID 的投影控制。",
+      "check": {
+        "passed": true,
+        "note": "两条完整后环独显连续，原生蒙版只保留踝侧回转；组装前环与铃体在其前，原图接合位置已核对。"
+      }
+    },
+    {
+      "id": "head_accessories/tanuki_ornament/tanuki_body",
+      "levels": [
+        {
+          "level": 12,
+          "region": "狸饰完整后主体与下颌底形，在完整后发、前发与兽耳后；保留完整补形，与同件D85.5下颌前缘共用归属和运动。"
+        },
+        {
+          "level": 85.5,
+          "region": "同一狸饰的完整下颌前缘与隐藏搭接片，在前发、侧发及发铃D85之后，双爪D86/D87之前；原生透明度接合蒙版只显露原图下颌范围，使完整补全发根留在下颌后。"
+        }
+      ],
+      "note": "R13组装中新发现的同一逻辑part多深度穿插。完整主体仍在D12，连续下颌前缘以D85.5普通绘画分片承接；逻辑ID、SVG形体与运动职责不变，完整发根和下颌底形均保留。",
+      "check": {
+        "passed": true,
+        "note": "两片分别独显、停用蒙版和隐藏上层导出，合并完整主体及同坐标灰度头顶对照已查看；下颌盖住补全发冠，双爪仍在前。",
+        "regions": [
+          {
+            "level": 12,
+            "note": "后主体独显保持完整下颌底形，狸脸、叶片和尾部默认关系未变；后发与前发的完整根部没有删改。"
+          },
+          {
+            "level": 85.5,
+            "note": "原生接合蒙版只露原参考下颌前缘，停用后完整搭接片保留；前发后、双爪前的实际穿插已在组合中核对。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hair/braid_right",
+      "levels": [
+        {
+          "level": 13,
+          "region": "完整辫根后片延续到原画y586，在短后发、脸与颈后；与前片沿原图前景发束轮廓搭接，保留完整隐藏根部。"
+        },
+        {
+          "level": 57,
+          "region": "前辫上界沿原图前景发束曲线进入短后发前，隐藏补全根部仍在D13；y580–586接到完整前辫，胸肩前、右耳罩后，发圈前后职责不变。"
+        }
+      ],
+      "note": "上游预先标注的同一逻辑辫子两个深度分片，共同归属hair/braid_right。R14修复将暴露的y502水平切口改为沿原图前景发束曲面分界，后片延长并保留隐藏搭接；未拆逻辑节点或改变整体运动。",
+      "check": {
+        "passed": true,
+        "note": "两片分别独显、停用蒙版和隐藏上层检查，整辫合并完整独显及默认组装对照已查看；水平截边消失，短后发结构线和前辫发流相接。",
+        "regions": [
+          {
+            "level": 13,
+            "note": "完整后根在短后发、脸底、颈部及右侧发后，延伸到y586并与前片合理搭接，不删除隐藏辫根。"
+          },
+          {
+            "level": 57,
+            "note": "前片曲面上界藏入前景发束和侧发的合理覆盖，前辫在胸肩前、右耳罩后；整辫联合独显连续，前后发圈关系保留。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hair/back_hair",
+      "level": 14,
+      "note": "短后发与后枕外壳在 face/face_base、neck、双兽耳、body/torso 及前发后，覆盖 hair/braid_right 的根部分片13；下缘由 headphones/earcups 两耳罩遮挡。默认外侧回卷、红色内面与短梢显露，中央完整形体保留。",
+      "check": {
+        "passed": true,
+        "note": "完整后发中央补形、外侧回卷与红色内面已独显查看；D14盖辫根，脸、颈、耳和前发在前，组装无新增穿插。"
+      }
+    },
+    {
+      "id": "headphones/headband",
+      "level": 15,
+      "note": "整条连接带在 neck、face/face_base、body/torso、headphones/earcups/earcup_left 与 headphones/earcups/earcup_right 后，默认只露颈侧接头；若补出的中带突出原图可见区，在本层附以上述完整 ID 为控制的遮挡蒙版，中段默认隐藏，完整连接结构保留。",
+      "check": {
+        "passed": true,
+        "note": "连接带完整独显与隐藏上层证据已核对，当前中带被前方身体和耳罩遮挡，默认颈侧接头正确。"
+      }
+    },
+    {
+      "id": "face/ears/ear_left/ear_interior",
+      "level": 16,
+      "note": "左耳凹面在 face/ears/ear_left/ear_fur 与 face/ears/ear_left/ear_shell 后、hair/back_hair 前；本层和耳毛共用由 face/ears/ear_left/ear_shell 内缘控制的耳内开口蒙版，默认开口内可见，耳缘外隐藏，根部另受 hair/side_hair/side_hair_left 遮挡。",
+      "check": {
+        "passed": true,
+        "note": "完整内面和原生开口切换已查看；内面位于耳毛及耳缘后，约2像素隐藏搭接避免开口接缝。"
+      }
+    },
+    {
+      "id": "face/ears/ear_right/ear_interior",
+      "level": 17,
+      "note": "右耳凹面在 face/ears/ear_right/ear_fur 与 face/ears/ear_right/ear_shell 后；与耳毛共用由 face/ears/ear_right/ear_shell 内缘定义的开口裁切，默认开口内可见，耳缘外隐藏，根部受 hair/side_hair/side_hair_right 遮挡。",
+      "check": {
+        "passed": true,
+        "note": "复用后按本侧配准并修接，完整内面和蒙版切换已查看；耳缘及耳毛在其前，默认没有开口空缝。"
+      }
+    },
+    {
+      "id": "face/ears/ear_left/ear_fur",
+      "level": 18,
+      "note": "左耳毛在 face/ears/ear_left/ear_interior 前、face/ears/ear_left/ear_shell 后，使用 ear_shell 完整 ID face/ears/ear_left/ear_shell 的内缘开口蒙版；默认尖簇在开口内可见，下端受 hair/side_hair/side_hair_left 遮挡，完整毛根保留。",
+      "check": {
+        "passed": true,
+        "note": "完整连续毛簇和根部描线已独显查看，原生开口只控制显露；D18在内面前耳缘后，组装符合参考。"
+      }
+    },
+    {
+      "id": "face/ears/ear_right/ear_fur",
+      "level": 19,
+      "note": "右耳毛在 face/ears/ear_right/ear_interior 前、face/ears/ear_right/ear_shell 后；与内面共享由 face/ears/ear_right/ear_shell 内缘定义的开口裁切，默认尖簇可见，下内端由 hair/side_hair/side_hair_right 遮挡。",
+      "check": {
+        "passed": true,
+        "note": "本侧毛簇自身颜色和完整外轮廓已修接，切换蒙版确认毛根保留；内面在后耳缘在前，默认没有异物或空缝。"
+      }
+    },
+    {
+      "id": "face/ears/ear_left/ear_shell",
+      "level": 20,
+      "note": "完整左耳缘与耳根在 face/ears/ear_left/ear_interior、face/ears/ear_left/ear_fur 前，前发与 head_accessories/tanuki_ornament/paw/paw_left 后；绘画纹理保留凹入开口，不能将控制 SVG 的实心底形画成封闭耳面。内缘控制上述内面与耳毛的共享开口蒙版，默认耳缘可见。",
+      "check": {
+        "passed": true,
+        "note": "完整耳缘和耳根独显连续，凹入开口没有画成实心底；默认前发和狸爪盖根，原尺寸接缝已核对。"
+      }
+    },
+    {
+      "id": "face/ears/ear_right/ear_shell",
+      "level": 21,
+      "note": "右耳缘在 face/ears/ear_right/ear_interior 与 face/ears/ear_right/ear_fur 前，hair/side_hair/side_hair_right、head_accessories/hair_bell 与头饰前爪后；纹理内缘保留耳内开口，并控制该侧内面和耳毛裁切，默认耳缘可见、根部局部隐藏。",
+      "check": {
+        "passed": true,
+        "note": "镜像基础已按本侧参考配准并修接，完整耳缘保留开口；铃、前发和狸爪在前，组装与独显均已查看。"
+      }
+    },
+    {
+      "id": "neck",
+      "level": 22,
+      "note": "颈部在 hair/back_hair、headphones/headband 前，face/face_base、body/torso、headphones/earcups 双耳罩后；默认中央露肤，顶部伸入下颌、底部伸入锁骨承接区，连接余量完整，接缝在 raster step01 已修接。",
+      "check": {
+        "passed": true,
+        "note": "独显颈部完整，去除下颌投影后保留自身明暗；上下接合和双耳罩遮挡已在原尺寸组装核对。"
+      }
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "level": 23,
+      "note": "完整左腿含露趾长袜在 tail、legs/leg_left/thigh_band_back、pelvis的D22.5髋肤后片前，在pelvis的D33白服前片与 legs/leg_left/thigh_band_front 后；腿根由白服前片覆盖，完整内侧腿根保留。默认腿与足部可见，对后带全遮，足趾不另设层。",
+      "check": {
+        "passed": true,
+        "note": "腿根透明楔口已用本件原生修画补齐并续画轮廓；整腿、袜口、膝足独显及隐藏上层已查看，配准不变。髋肤后片在腿后，白服和前带在腿前。"
+      }
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "level": 24,
+      "note": "完整右腿裸足在 tail、legs/leg_right/anklet_back、pelvis的D22.5髋肤后片前，在pelvis的D33白服前片与 legs/leg_right/anklet_front 后；腿根伸入白服前片下，默认腿足可见，后踝环只许侧回转边显露。",
+      "check": {
+        "passed": true,
+        "note": "完整腿根、膝部与裸足独显已查看，去除衣裙投影并保留腿自身明暗；前后骨盆分片及踝环夹腿关系正确。"
+      }
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "level": 25,
+      "note": "左上臂肩根在 body/torso 与耳罩后，肘伸入 arms/arm_left/forearm 下；默认外侧上臂可见，肩根及肘端保留局部搭接，不用肩带另建 part。",
+      "check": {
+        "passed": true,
+        "note": "完整肩根和肘端独显无缺口，原生修接后肩带与上臂、肘与前臂的原尺寸边缘连续；单深度符合覆盖关系。"
+      }
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "level": 26,
+      "note": "右上臂在 body/torso、body/breast、hair/braid_right 前辫分片57与 headphones/earcups/earcup_right 后，肘端由 arms/arm_right/forearm 覆盖；默认外侧皮肤可见，连接余量归伸入端。",
+      "check": {
+        "passed": true,
+        "note": "肩根和肘端完整保留，辫与耳罩在前，前臂覆盖肘端；独显和组装接缝已查看，无新增深度穿插。"
+      }
+    },
+    {
+      "id": "arms/arm_left/bracelet_green_back",
+      "level": 27,
+      "note": "浅绿环后段在 arms/arm_left/forearm、arms/arm_left/hand/palm 与 arms/arm_left/bracelet_green_front 后；默认腕侧回转少量可见。后侧显隐蒙版附本层，由这三个完整 ID 的投影控制，保持夹腕关系。",
+      "check": {
+        "passed": true,
+        "note": "原生蒙版只留腕侧回转，关闭后完整绿后环连续；同坐标腕部组装已查看，前环和腕掌皮肤在前。"
+      }
+    },
+    {
+      "id": "arms/arm_left/bracelet_pink_back",
+      "level": 28,
+      "note": "粉环后段在 arms/arm_left/forearm、arms/arm_left/hand/palm、arms/arm_left/bracelet_pink_front 后；虽节点未标 hiddenInReference，note 明确原姿势全遮。本层附由这三个完整 ID 及 arms/arm_left/bell 控制的后侧显隐蒙版，默认完全隐藏，转动再揭示完整后段。",
+      "check": {
+        "passed": true,
+        "note": "完整粉后环独显连续，原生蒙版默认全遮；腕掌、粉前环和铃体在前，切换证据已查看。"
+      }
+    },
+    {
+      "id": "arms/arm_right/bracelet_cream_back",
+      "level": 29,
+      "note": "米色环后段在 arms/arm_right/forearm、arms/arm_right/hand/palm、arms/arm_right/bracelet_cream_front 后，默认仅腕侧回转可见；本层后侧显隐由这些完整 ID 的遮挡投影控制。",
+      "check": {
+        "passed": true,
+        "note": "完整米色后环保留，原生蒙版裁限回转两端；前后环夹腕关系和实际可见范围已与参考对照。"
+      }
+    },
+    {
+      "id": "arms/arm_right/bracelet_pink_back",
+      "level": 30,
+      "note": "粉环后段在 arms/arm_right/forearm、arms/arm_right/hand/palm、arms/arm_right/bracelet_pink_front 与 arms/arm_right/bracelet_cream_front 后；默认只留可辨腕侧回转边，本层可用上述完整 ID 投影蒙版遮住补形外露。",
+      "check": {
+        "passed": true,
+        "note": "完整后环及隐藏上层已查看，默认蒙版只留原图可辨回转边；米色前环和粉前环在前，未领前环像素。"
+      }
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "level": 31,
+      "note": "左前臂覆盖 arms/arm_left/upper_arm 的肘端，腕端伸入 arms/arm_left/hand/palm 下；在两腕环后段前、前段后，默认皮肤可见、腕部局部遮挡。",
+      "check": {
+        "passed": true,
+        "note": "完整前臂独显干净，肘接缝原生软接，腕端在掌和前环下；组装比例位置及描线接续已查看。"
+      }
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "level": 32,
+      "note": "右前臂覆盖 arms/arm_right/upper_arm 肘端，腕端在 arms/arm_right/hand/palm 下；位于右腕两后环前、两前环后，内侧上端受 hair/braid_right 分片57遮挡。",
+      "check": {
+        "passed": true,
+        "note": "完整肘腕延续与自身肤色保留，前臂盖肘端、前环盖腕端；同坐标组装及隐藏上层检查无新增穿插。"
+      }
+    },
+    {
+      "id": "pelvis",
+      "levels": [
+        {
+          "level": 22.5,
+          "region": "同一 pelvis 的两侧完整髋部肤色后片，位于 tail 前、legs/leg_left/leg 与 legs/leg_right/leg 后；与D33白服前片的材料分界藏在本件腿口描线内，保持同一骨盆归属和运动。"
+        },
+        {
+          "level": 33,
+          "region": "同一 pelvis 的完整白色连体服前片、腿口线和上接服装帽盖，位于双腿前、body/torso 后；原生 torso-pelvis 接合蒙版默认隐藏多余帽盖边缘，完整绘画与续接结构线保留。"
+        }
+      ],
+      "note": "组装中新发现需要两个绘画深度：完整髋肤后片放在双腿后，白服前片及腿口线放在双腿前，避免骨盆肤色帽盖压住大腿。两个普通绘画分片共同归属 pelvis，不新增逻辑节点；腰腹接合已在生成画面上原生修接。",
+      "check": {
+        "passed": true,
+        "note": "两分片分别独显、关闭接合蒙版和隐藏上层检查已查看；髋肤与白服材料分界藏在腿口线内，腰线续接与组装无空缝，完整骨盆联合独显已核对。",
+        "regions": [
+          {
+            "level": 22.5,
+            "note": "髋肤后片在D23/D24双腿后，避免肤色帽盖覆盖腿自身明暗；完整肤色和自身轮廓保留。"
+          },
+          {
+            "level": 33,
+            "note": "白服和腿口线在双腿前、D34躯干后，上接帽盖原生显隐不删原画；两侧腰腹结构线已续画并核对。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "body/torso",
+      "level": 34,
+      "note": "躯干覆盖 neck 下端、双上臂肩根及 pelvis 上端，位于 body/breast、hair/braid_right 分片57与 headphones/earcups 双耳罩后；默认肩锁骨腹腰可见，乳房后完整胸廓不挖空。",
+      "check": {
+        "passed": true,
+        "note": "完整胸廓与肩锁骨腹腰独显已查看，肩带采用本件衣料和线条原生修接并清除鬼影；胸部前、骨盆后，腰线及帽盖接合无断口。"
+      }
+    },
+    {
+      "id": "body/breast",
+      "level": 35,
+      "note": "胸部整体在 body/torso 前，hair/braid_right 分片57与 headphones/earcups 双耳罩后；默认领口内及贴合连体服的体积可见，前方头发耳罩自然遮挡，不按左右分层。",
+      "check": {
+        "passed": true,
+        "note": "完整胸部生成画面保留，原生接合蒙版控制下沿和肩带隐藏搭接；独显体积色、领口描线及原尺寸组装已查看，未加入耳罩辫子像素。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/little_finger",
+      "level": 36,
+      "note": "完整左小指在 arms/arm_left/hand/ring_finger、middle_finger、index_finger、palm 后（完整前缀均为 arms/arm_left/hand/）。本层附由 arms/arm_left/hand/palm、arms/arm_left/hand/index_finger、arms/arm_left/hand/middle_finger、arms/arm_left/hand/ring_finger 控制的叠指显隐蒙版，原姿势完全隐藏，保留完整小指供转动显露。",
+      "check": {
+        "passed": true,
+        "note": "小指完整生成底纹独显连续，默认原生蒙版全隐藏；掌与前方三指在前，未合并无名指或删掉隐藏内容。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/little_finger",
+      "level": 37,
+      "note": "完整右小指在 arms/arm_right/hand/ring_finger、arms/arm_right/hand/middle_finger、arms/arm_right/hand/index_finger、arms/arm_right/hand/palm 后；本层叠指蒙版以这四个完整 ID 控制，原姿势全隐藏，不删形体、不归并无名指。",
+      "check": {
+        "passed": true,
+        "note": "完整小指形体与自身色彩已独显查看，原生蒙版默认全遮；D37在无名指、中指、食指与掌后，归属独立。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/ring_finger",
+      "level": 38,
+      "note": "左无名指在 arms/arm_left/hand/little_finger 前，arms/arm_left/hand/middle_finger、arms/arm_left/hand/index_finger、arms/arm_left/hand/palm 后；默认短指端与下缘露出，完整指根受 palm 覆盖，补形多露处以这些前指/palm 的投影蒙版控制。",
+      "check": {
+        "passed": true,
+        "note": "完整指根和短指端保留，各指自己的局部取样已核对归属；默认露出下缘在中指后，原尺寸手部组装连续。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/ring_finger",
+      "level": 39,
+      "note": "右无名指在 arms/arm_right/hand/little_finger 前、arms/arm_right/hand/middle_finger、arms/arm_right/hand/index_finger、arms/arm_right/hand/palm 后；默认仅原图短圆露出段可见，其余受前指和 palm 投影遮挡。",
+      "check": {
+        "passed": true,
+        "note": "完整无名指独显与短斜露出段已对照SVG及原图，保留合法桃色下缘；中指食指掌在前，没有为修接缝误删本件。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "level": 40,
+      "note": "左中指在 arms/arm_left/hand/ring_finger 与 arms/arm_left/hand/little_finger 前，arms/arm_left/hand/index_finger 和 arms/arm_left/hand/palm 后；默认食指下方长指端及下缘可见，指根局部搭接保持隐藏。",
+      "check": {
+        "passed": true,
+        "note": "完整中指及根部续接已独显查看，第二长指端处在食指下、无名指前；手部组装无额外描线或缺口。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/middle_finger",
+      "level": 41,
+      "note": "右中指在 arms/arm_right/hand/ring_finger、arms/arm_right/hand/little_finger 前，arms/arm_right/hand/index_finger、arms/arm_right/hand/palm 后；默认第二长指端与下缘可见，上侧被食指遮挡，根部在 palm 下。",
+      "check": {
+        "passed": true,
+        "note": "完整中指帽盖保留，原生根部蒙版隐藏完成区的多余露出；默认第二指下缘连续，食指和掌在前，切换蒙版证据已查看。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "level": 42,
+      "note": "左完整拇指伸出段无其他指遮挡，指根在 arms/arm_left/hand/palm 后；默认拇指与指甲可见，虎口开放，根部余量仅在 palm 覆盖内。",
+      "check": {
+        "passed": true,
+        "note": "完整拇指与甲面独显已查看，原生根部蒙版保留完整帽盖；与掌接合的小台阶已修，虎口原尺寸保持开放。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "level": 43,
+      "note": "右拇指在 arms/arm_right/hand/palm 后仅承担根部覆盖，伸出段默认可见；保持与 arms/arm_right/hand/index_finger 之间真实虎口，不用蒙版封住指缝。",
+      "check": {
+        "passed": true,
+        "note": "完整拇指和自身甲面色保留，掌盖根、食指邻接虎口；原尺寸及局部灰度检查确认轮廓接续与指缝开放。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "level": 44,
+      "note": "左食指在 arms/arm_left/hand/middle_finger、arms/arm_left/hand/ring_finger、arms/arm_left/hand/little_finger 前，指根在 arms/arm_left/hand/palm 后；默认最上长轮廓可见，两指接触暗线随食指纹理。",
+      "check": {
+        "passed": true,
+        "note": "完整食指及掌侧根部独显已查看，最上指束外缘连续；中指无名指在后，原尺寸接合没有新增指形或缺口。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "level": 45,
+      "note": "右食指覆盖 arms/arm_right/hand/middle_finger、arms/arm_right/hand/ring_finger、arms/arm_right/hand/little_finger，指根由 arms/arm_right/hand/palm 覆盖；默认横向指束上层可见，连接余量由掌部遮住。",
+      "check": {
+        "passed": true,
+        "note": "完整食指帽盖和单条根部外缘保留，清除错位第二线并补上最终检查发现的约3像素外缘断线；根部较补全SVG局部缩小1–4像素，掌侧原生蒙版接合已核对。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "level": 46,
+      "note": "左掌覆盖 arms/arm_left/forearm 腕端及同手五指根，位于 arms/arm_left/bracelet_green_front、arms/arm_left/bracelet_pink_front、arms/arm_left/bell 后；默认掌部可见、腕根局部隐藏，掌部投影参与小指及后环的显隐控制。",
+      "check": {
+        "passed": true,
+        "note": "完整生成掌帽盖保留，清除腕饰投影、根部色阶及拇指接点灰色残留；原生接合蒙版切换已查看，五指根在掌后，前环和铃在掌前。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "level": 47,
+      "note": "右掌覆盖 arms/arm_right/forearm 腕端与同手五指根，在 arms/arm_right/bracelet_cream_front、arms/arm_right/bracelet_pink_front 后；默认掌部可见、腕根局部隐藏，真实虎口不封闭。",
+      "check": {
+        "passed": true,
+        "note": "完整生成掌部及原生根部蒙版已查看，局部隐藏竖帽盖尖并保留下曲线；掌与食指、拇指接合连续，合法无名指露出保留，前环在前。"
+      }
+    },
+    {
+      "id": "arms/arm_left/bracelet_pink_front",
+      "level": 48,
+      "note": "左粉环前段覆盖 arms/arm_left/forearm 与 arms/arm_left/hand/palm，位于 arms/arm_left/bell 与 arms/arm_left/bracelet_green_front 后；默认前弧可见，和粉后环之间夹着皮肤，普通描边不另作后环。",
+      "check": {
+        "passed": true,
+        "note": "完整粉前环独显及腕部组装已查看，颜色轮廓与参考相符；夹腕关系正确，绿前环和铃在前。"
+      }
+    },
+    {
+      "id": "arms/arm_right/bracelet_pink_front",
+      "level": 49,
+      "note": "右粉环前段在腕掌皮肤与 arms/arm_right/bracelet_pink_back 前、arms/arm_right/bracelet_cream_front 后；默认前弧可见，邻接处米色环压住粉环。",
+      "check": {
+        "passed": true,
+        "note": "完整前弧及回转接点已查看，米色环在交叉处压住粉环，皮肤在后；没有领米色环或肤色投影。"
+      }
+    },
+    {
+      "id": "arms/arm_left/bell",
+      "level": 50,
+      "note": "左腕金铃主体在 arms/arm_left/hand/palm、arms/arm_left/forearm、arms/arm_left/bracelet_pink_front 前；连接根部在 arms/arm_left/bracelet_green_front 后。默认铃体可见、根部局部遮挡，同体凸缘铃口随件，单深度可满足该接触顺序。",
+      "check": {
+        "passed": true,
+        "note": "完整金铃、凸缘和铃口独显干净，组装掌和粉环在后、绿前环盖接根；单深度没有外部件内部穿插。"
+      }
+    },
+    {
+      "id": "arms/arm_left/bracelet_green_front",
+      "level": 51,
+      "note": "浅绿环前段在 arms/arm_left/forearm、arms/arm_left/hand/palm、arms/arm_left/bracelet_green_back 前，邻接处覆盖 arms/arm_left/bracelet_pink_front 及 arms/arm_left/bell 连接根部；默认完整前弧可见，保持两环原图交叉。",
+      "check": {
+        "passed": true,
+        "note": "完整绿前弧和腕侧回转已查看，粉前环及铃接根在其后；原尺寸交叉、轮廓和比例与参考相符。"
+      }
+    },
+    {
+      "id": "arms/arm_right/bracelet_cream_front",
+      "level": 52,
+      "note": "米色环前段在 arms/arm_right/forearm、arms/arm_right/hand/palm、arms/arm_right/bracelet_cream_back、arms/arm_right/bracelet_pink_front 前；默认前弧可见，两环交接米色在前，后段与其间夹腕皮肤。",
+      "check": {
+        "passed": true,
+        "note": "完整米色前环独显连续，腕部组装已核对前后环与皮肤夹层；交叉处米色在前，回转没有额外缺口。"
+      }
+    },
+    {
+      "id": "head_accessories/hair_tie_back",
+      "level": 56,
+      "note": "后发圈在 hair/braid_right 的胸前分片57后、head_accessories/hair_tie_front 后；本层附由 hair/braid_right（收束处）与 head_accessories/hair_tie_front 控制的后侧显隐蒙版，原姿势全隐藏，转动允许揭示完整后段；allowOutsideParent 补形按环绕发束职责核对。",
+      "check": {
+        "passed": true,
+        "note": "完整后发圈独显连续，原生蒙版默认全遮；D56在前辫和前圈后，完整补形与环绕职责相符。"
+      }
+    },
+    {
+      "id": "headphones/earcups/earcup_left",
+      "level": 58,
+      "note": "左耳罩在 neck、body/torso、body/breast、headphones/headband、hair/back_hair 前，face/face_base 与前发后；默认颈侧罩体可见，带体接缝由罩体覆盖。",
+      "check": {
+        "passed": true,
+        "note": "完整耳罩独显保留轮廓、色带和自身明暗，颈肩组装接合已查看；脸与前发在前，带体接缝被罩盖住。"
+      }
+    },
+    {
+      "id": "headphones/earcups/earcup_right",
+      "level": 59,
+      "note": "右耳罩在 neck、body/torso、body/breast、headphones/headband 与 hair/braid_right 分片57前；face/face_base 及前发后，默认罩体可见，外侧与辫体邻接并遮辫上段内侧。",
+      "check": {
+        "passed": true,
+        "note": "镜像基础按本侧参考配准，完整耳罩和自身色带独显已查看；盖住前辫内侧与颈肩，脸前发在前。"
+      }
+    },
+    {
+      "id": "face/face_base",
+      "level": 60,
+      "note": "完整脸底在 hair/back_hair、neck、辫根13及耳罩上缘前、所有五官与前发后；默认额颊下颌露出部分可见，不挖眼口洞。face/mouth/upper_lip、face/mouth/lower_lip 的越界肤色遮挡片保留各自完整形体，当前范围在完整脸轮廓内。",
+      "check": {
+        "passed": true,
+        "note": "脸底独显为连续普通肤色，无眉眼红晕鬼影、眼口洞或刘海投影；前后发、五官和颈接合均与参考同坐标核对。"
+      }
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "level": 61,
+      "note": "口腔底在 face/face_base 前、face/mouth/tongue、face/mouth/lower_teeth、face/mouth/upper_teeth 与双唇后。口内四件共同受 face/mouth/upper_lip 下内缘、face/mouth/lower_lip 上内缘及两嘴角围成的同一开口几何控制；实际为各口内绘画层所附的原生透明度蒙版，默认闭嘴为空，完整纹理保留。",
+      "check": {
+        "passed": true,
+        "note": "关闭原生蒙版后完整口腔底形已独显查看，默认空开口全隐藏；与牙舌共有相同开口职责，D61在脸前及牙舌双唇后。"
+      }
+    },
+    {
+      "id": "face/mouth/tongue",
+      "level": 62,
+      "note": "舌头在 face/mouth/mouth_interior 前、face/mouth/lower_teeth、face/mouth/upper_teeth 及双唇后；与口腔牙列共用由上下唇内缘和嘴角定义的开口几何，各层附原生透明度蒙版，默认闭嘴全隐藏，张嘴在开口内受牙列遮挡。",
+      "check": {
+        "passed": true,
+        "note": "完整舌根、舌尖及自身明暗已独显查看，默认原生开口全遮；口腔底在后，牙列和唇在前，颜色与角色协调。"
+      }
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "level": 63,
+      "note": "整体下牙列在 face/mouth/mouth_interior 与 face/mouth/tongue 前、face/mouth/upper_teeth 与 face/mouth/lower_lip 后；由上下唇内缘及嘴角的共享开口几何控制，各口内层附原生透明度蒙版，默认全隐藏，牙根随下唇遮挡，纹理不逐牙拆分。",
+      "check": {
+        "passed": true,
+        "note": "完整整体下牙列独显连续，默认闭嘴蒙版全遮；牙列位于舌前、上牙和下唇后，未拆逐牙或引入不协调设计。"
+      }
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "level": 64,
+      "note": "整体上牙列在 face/mouth/mouth_interior、face/mouth/tongue 与 face/mouth/lower_teeth 前、face/mouth/upper_lip 后；共用上下唇内缘及嘴角的开口几何，本层原生透明度蒙版默认闭嘴全隐藏，完整牙根保留并受上唇遮挡。",
+      "check": {
+        "passed": true,
+        "note": "完整上牙列及牙根独显已查看，默认原生蒙版全遮；上牙在口底舌下牙前、上唇后，与下牙材质协调。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "level": 65,
+      "note": "左眼白在 face/face_base 前、face/eyes/eye_left/iris、face/eyes/eye_left/highlight、face/eyes/eye_left/upper_eyelid 后。眼内三件共用由 upper_eyelid 内缘、sclera 下沿和两眼角围成的开口几何，各层附原生透明度蒙版；默认睁眼开口内可见，闭眼为空，不包含眼睑和眼褶。",
+      "check": {
+        "passed": true,
+        "note": "完整眼白已去除上睑投影和低透明度灰边；独显及同尺寸双眼对照已查看，睫毛直接压眼白，开口切换确认完整底纹保留。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "level": 66,
+      "note": "右眼白在 face/face_base 前、face/eyes/eye_right/iris、face/eyes/eye_right/highlight、face/eyes/eye_right/upper_eyelid 后。眼内三件共用由 upper_eyelid 内缘、sclera 下沿及两眼角围成的开口几何，各绘画层附原生透明度蒙版，默认睁眼内可见、闭眼全隐藏，不包含眼褶。",
+      "check": {
+        "passed": true,
+        "note": "完整右眼白连续干净，去除投影及灰边后原尺寸眼形已对照；虹膜睫毛在前，开口蒙版切换保留完整底纹。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "level": 67,
+      "note": "左虹膜在 face/eyes/eye_left/sclera 前、face/eyes/eye_left/highlight 与 face/eyes/eye_left/upper_eyelid 后；本层原生透明度蒙版采用与眼白、高光相同的上睑内缘及眼白下沿开口几何，当前显露在眼白开口内。完整虹膜允许越父，上部保留于睑后，后续视线控制保持其眼白有效活动范围。",
+      "check": {
+        "passed": true,
+        "note": "完整虹膜外圈暗边、竖瞳、内部橙黄层次已独显查看，保留本侧差异并同尺寸对照；配准未裁掉细边，默认隐藏上部，闭眼测试已恢复。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "level": 68,
+      "note": "右虹膜在 face/eyes/eye_right/sclera 前、face/eyes/eye_right/highlight、face/eyes/eye_right/upper_eyelid 后；本层原生透明度蒙版与眼白、高光共用上睑内缘及眼白下沿开口几何，默认只露眼白开口内，完整隐藏上部保留，后续视线保持在完整眼白有效范围内。",
+      "check": {
+        "passed": true,
+        "note": "完整右虹膜、瞳孔和暗边已独显及参考同尺寸查看，自身橙黄层次保留，无额外白瞳孔鬼影；开口内显露与睑前后关系正确。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "level": 69,
+      "note": "左高光在 face/eyes/eye_left/iris 前、face/eyes/eye_left/upper_eyelid 后，随虹膜运动；本层原生透明度蒙版共用上睑内缘与眼白下沿开口几何，当前亮点在虹膜有效范围内，默认开口内可见、开口外隐藏，可整体关显隐。",
+      "check": {
+        "passed": true,
+        "note": "高光上亮点与下侧短斑独立保留，已按本侧原图局部配准，黄色亮区留在虹膜；默认和闭眼切换证据已查看。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "level": 70,
+      "note": "右高光在 face/eyes/eye_right/iris 前、face/eyes/eye_right/upper_eyelid 后，随虹膜并保持在虹膜及眼白有效活动范围内；本层原生透明度蒙版共用上睑内缘和眼白下沿开口几何，默认亮点可见，闭眼全隐藏。",
+      "check": {
+        "passed": true,
+        "note": "本侧上亮点、两侧短反光及细小亮斑已独显对照，完整原画高光保留；虹膜前、睑后及共用开口切换正确。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "level": 71,
+      "note": "左上睑睫毛在同侧 sclera、iris、highlight 前，hair/bangs、hair/side_hair/side_hair_left 后；本件内缘控制 face/eyes/eye_left/sclera、face/eyes/eye_left/iris、face/eyes/eye_left/highlight 的共享开口上界，配 sclera 下沿；默认睁眼睫毛可见，不将本件纳入眼内剪贴。",
+      "check": {
+        "passed": true,
+        "note": "完整上睑、连体睫尖和外尾独显已查看，并同尺寸对照两眼；睫毛直接压眼白，补全内缘在前发后，无重复睫毛层。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "level": 72,
+      "note": "右上睑睫毛在 face/eyes/eye_right/sclera、face/eyes/eye_right/iris、face/eyes/eye_right/highlight 前，hair/bangs、hair/side_hair/side_hair_right 后；内缘与 sclera 下沿控制三件眼内内容开口蒙版，默认睁眼，不把眼尾连体线另拆。",
+      "check": {
+        "passed": true,
+        "note": "完整深色上睑线、眼尾与睫尖保留本侧原形，原尺寸及放大对照已查看；眼内在后，前发在前，内缘控制开口正确。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "level": 73,
+      "note": "左眼褶在 face/face_base 前、hair/bangs 与 hair/side_hair/side_hair_left 后，开口之外独立可见；不加入眼内共享蒙版，不承担裁切，默认露出的浅弧线可见、发后部分自然隐藏。",
+      "check": {
+        "passed": true,
+        "note": "完整浅褶线独显连续，与上睑之间真实肤色间隙保留；前发遮外端，不参与眼内裁切，已同尺寸对照。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "level": 74,
+      "note": "右眼褶在脸底前、hair/bangs 与 hair/side_hair/side_hair_right 后，与上睑隔肤色间隙；默认开口外线形可见，不受眼内开口裁切，发后部分自然遮挡。",
+      "check": {
+        "passed": true,
+        "note": "独立右眼褶浅线与上睑间隙已核对，补全内端在前发后；眼内蒙版不影响本件，单深度成立。"
+      }
+    },
+    {
+      "id": "face/nose",
+      "level": 75,
+      "note": "鼻点与同动鼻影在 face/face_base 前、hair/bangs 后；默认鼻点可见，不另设鼻梁深度或开口蒙版。",
+      "check": {
+        "passed": true,
+        "note": "柔和桃色鼻底已以本件参考色原生加强并展宽，生成鼻点保留；独显及同尺寸组装已查看，没有硬圆边或脸底像素掩盖缺口。"
+      }
+    },
+    {
+      "id": "face/blush_left",
+      "level": 76,
+      "note": "左颊整团红晕在 face/face_base 前、hair/side_hair/side_hair_left 后；可剪贴于 face/face_base，默认可见并可独立调浓淡，发外及脸外隐藏，不分斜线。",
+      "check": {
+        "passed": true,
+        "note": "完整红晕含红色底与斜线，柔边及原尺寸组装已对照；本件在脸前侧发后，不将紅底归脸底。"
+      }
+    },
+    {
+      "id": "face/blush_right",
+      "level": 77,
+      "note": "右颊整团红晕在 face/face_base 前、hair/side_hair/side_hair_right 后；剪贴脸底 face/face_base，默认可见，外侧发后自然隐藏，红底斜线共用显隐。",
+      "check": {
+        "passed": true,
+        "note": "右颊红底、斜线和弥散边独显已查看，保留参考本侧形状；当前完整红晕位于脸轮廓内并由侧发遮外缘，组装正确。"
+      }
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "level": 78,
+      "note": "下嘴肤色遮挡片在四件口内内容前、face/mouth/upper_lip 后；完整 allowOutsideParent 形体保留，当前位于完整脸轮廓内。本件上内缘与上唇下内缘及嘴角控制四个口内层相同开口几何的原生蒙版，默认闭合；唇线重合只呈一条，肤色与脸底已局部修接。",
+      "check": {
+        "passed": true,
+        "note": "完整下嘴U形覆盖片及自身闭嘴线独显已查看，脸部色差与片边已原生融接；默认口内全遮、上下线只有一条可见。"
+      }
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "level": 79,
+      "note": "上嘴肤色片在口内四件与 face/mouth/lower_lip 前，完整越父遮挡形体保留且当前位于脸轮廓内；下内缘与下嘴上内缘、两嘴角控制口内四层共享开口几何的原生透明度蒙版。默认闭嘴开口为空，口内全隐藏，重合唇线仅一份可见。",
+      "check": {
+        "passed": true,
+        "note": "完整上嘴覆盖片已与脸底色和原闭嘴线原生修接，独显及默认组装已查看；四口内蒙版为空，完整牙舌纹理仍保留。"
+      }
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left",
+      "level": 80,
+      "note": "左眉实体在 face/face_base 前、hair/bangs 与 hair/side_hair/side_hair_left 后；默认裸肤眉线可见，发面相交段按原图保留微弱透见。由这两个完整发 part 的局部透明度蒙版控制透见范围，仅沿眉线投影小范围降低前发覆盖度，主体发面仍覆盖眼睑；眉线本身不提到头发前方。",
+      "check": {
+        "passed": true,
+        "note": "完整左眉独显连续，深度仍为80；前发原生蒙版只在眉交集降低覆盖，原尺寸透见浓度已对照，眉像素未写入头发。"
+      }
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right",
+      "level": 81,
+      "note": "右眉在脸底前、hair/bangs 和 hair/side_hair/side_hair_right 後，默认肤区可见、发后相交段微弱透见；对应两个发层沿本件 face/eyebrows/eyebrow_right 投影的局部透明度蒙版控制透见，避免全发透明，保持实体前后顺序。",
+      "check": {
+        "passed": true,
+        "note": "完整本侧眉长、弧度和原深度81保留，局部原生透明度蒙版及独立眉图层已核对；未整眉镜像替代本侧差异。"
+      }
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "level": 82,
+      "note": "左宽侧发在 face/face_base、face/ears/ear_left 各件、hair/back_hair、五官与红晕前，hair/bangs 及头饰前爪后；默认完整发面可见，根部隐藏。若需原图左眉微弱透见，本层附以 face/eyebrows/eyebrow_left 投影限定的局部透明度蒙版，仅眉相交段低幅透见，其他范围不透。",
+      "check": {
+        "passed": true,
+        "note": "完整发面从补全根至卷梢和外翘尖连续，发缕没有拆成断片；眉交集蒙版与默认组装已查看，耳和脸在后。"
+      }
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "level": 83,
+      "note": "右宽侧发在脸底、右兽耳、短后发与辫根13前，hair/bangs、head_accessories/hair_bell 与头饰前爪后；默认侧面可见、铃下根部隐藏。眉透见由 face/eyebrows/eyebrow_right 限定本层局部透明度蒙版，与 bangs 共用同侧控制，主体继续遮脸缘及睫毛。",
+      "check": {
+        "passed": true,
+        "note": "完整侧发根、卷梢和发缕连接已独显查看，铃下补面未含铃和其他像素；眉交集之外保持遮挡，组装及发梢放大检查正确。"
+      }
+    },
+    {
+      "id": "hair/bangs",
+      "level": 84,
+      "note": "额前刘海在脸底、双眼、双眉、两侧发的接缝前，head_accessories/tanuki_ornament/paw 双爪后；默认发面可见、发根在爪下。为原图弱透见眉线，本层附由 face/eyebrows/eyebrow_left、face/eyebrows/eyebrow_right 投影限定的局部透明度蒙版，仅眉线发面交集低幅透见；不降低眼睑相交区域覆盖，不将眼内隐藏上部露出。",
+      "check": {
+        "passed": true,
+        "note": "完整刘海根、中央尖束和相连发面独显干净，前爪盖根；局部眉透见蒙版已切换查看，不露出眼内补全区，原尺寸脸部对照完成。"
+      }
+    },
+    {
+      "id": "head_accessories/hair_bell",
+      "level": 85,
+      "note": "头侧金铃在 hair/side_hair/side_hair_right、hair/back_hair、face/ears/ear_right/ear_shell 前；默认铃体与凸缘可见，所附头发在后，单件不按高光铃口拆层。",
+      "check": {
+        "passed": true,
+        "note": "完整铃体、凸缘、铃口和原高光独显已查看，侧发和耳壳在后；材质未引入新发光或纹理，单深度成立。"
+      }
+    },
+    {
+      "id": "head_accessories/tanuki_ornament/paw/paw_left",
+      "level": 86,
+      "note": "左前爪在 head_accessories/tanuki_ornament/tanuki_body、hair/bangs、hair/side_hair/side_hair_left 与左兽耳前；默认爪体可见，隐藏接根连续伸入头饰主体接合区。",
+      "check": {
+        "passed": true,
+        "note": "完整爪根、棕色体积和短爪纹独显已查看，前爪在主体前且盖发根；放大组装对照没有接缝缺口。"
+      }
+    },
+    {
+      "id": "head_accessories/tanuki_ornament/paw/paw_right",
+      "level": 87,
+      "note": "右前爪在 head_accessories/tanuki_ornament/tanuki_body、hair/bangs、hair/side_hair/side_hair_right 与右兽耳前；默认爪体覆盖发根，接根连续，固定爪纹随件。",
+      "check": {
+        "passed": true,
+        "note": "复用基础按本侧配准，完整爪体与接根独显干净；盖发根及耳上缘的关系与参考一致，无新深度穿插。"
+      }
+    },
+    {
+      "id": "head_accessories/hair_tie_front",
+      "level": 88,
+      "note": "黑发圈前段在 hair/braid_right 前辫分片57、head_accessories/hair_tie_back 前，默认收束处黑前弧可见；本件与辫体控制后圈56的原姿势全隐藏蒙版，不裁掉发圈两侧连续辫体与辫尾。",
+      "check": {
+        "passed": true,
+        "note": "完整前圈与辫束接合已查看，D88在前辫和后圈前，后圈默认原生全遮；辫体及散尾发流未被裁断。"
+      }
+    },
+    {
+      "id": "legs/leg_left/thigh_band_front",
+      "level": 89,
+      "note": "大腿前带含竖带与扣在 legs/leg_left/leg、legs/leg_left/thigh_band_back 前；默认正面可见，与腿共同控制后带原姿势全隐藏，竖带不另拆运动或深度。",
+      "check": {
+        "passed": true,
+        "note": "完整前带、竖带和扣独显与参考组装已查看，D89高于腿和后带；前后回转连续，竖带没有误用后侧蒙版。"
+      }
+    },
+    {
+      "id": "legs/leg_right/anklet_front",
+      "level": 90,
+      "note": "踝饰两前环与同动铃体在 legs/leg_right/leg、legs/leg_right/anklet_back 前，默认前弧铃体可见；共同控制后环仅踝侧回转处显露，内部无外部实体穿插，保持一件。",
+      "check": {
+        "passed": true,
+        "note": "完整双前弧和金铃独显、踝部组装及回转检查已查看，后环与腿在后；单深度同动结构无新增穿插。"
+      }
+    }
+  ]
+}

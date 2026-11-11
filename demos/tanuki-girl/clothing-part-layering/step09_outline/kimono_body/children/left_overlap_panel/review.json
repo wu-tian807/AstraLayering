@@ -1,0 +1,53 @@
+{
+  "groupId": "kimono_body/left_overlap_panel",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，无已确认需要修改的问题；无需重画。候选及父完成 SVG 均保持只读。\n\n从 clothing.png 独立确认归属：本片为画面右上向左下的外襟领缘及右胸白衣面，经腰带遮挡的连续腰段连接中央至右侧的大幅短下摆，包含偏左长襟边及右下摆固定花纹所在衣面。袖料、袖口、腰侧小折角、两层腰带、前绳与垂饰、后结翼和后长片不归本片。已逐区以整体 blend/edge、局部放大和 SVG 独显核对全部可见区域。\n\n1. 领口与胸片（约 x609–1037、y407–621）：右上领缘完整，沿真实敞领边延伸到交叉点 (696,529)，继续向左下进入腰带后；没有填入裸肩胸口空间或误包画面左上内襟。右侧白胸片外缘沿约 (915,516) 至 (895,610) 的弧形袖根接缝，保留独立袖子的归属。位置、比例与参考一致。证据：。\n2. 腰段（约 y612–861）：候选在两层腰带遮挡区保持上下连续，左右收束边位于遮挡范围内；叠到带面、绳结上的色块是后方衣面的必要隐藏覆盖，不是把前附件收入本片。没有可见衣面遗漏或超出衣身的异常突出。证据：。\n3. 大幅短下摆（约 x500–1009、y837–1212）：长襟边、右侧斜外缘、右下角 (1009,1115) 和左下角 (526,1212) 及完整弧形底边与参考吻合；白衣面及固定花纹所在实体覆盖完整。垂饰后衣面连续合理，没有把前垂饰的形状切成孔洞，也未误包后长片。约 (510,1107) 的开叉和两幅真实终边关系保留，未填封下方开口。证据： 。\n4. 父包含关系：group 未设置 allowOutsideParent=true，四倍采样检查 outsideSamples=0、outsidePixels=0；候选完整包含于父 kimono_body.svg 范围，无上游扩大限制。证据：。\n5. note 已将完整实体范围、相邻袖根/内襟分界、腰段隐藏搭接、前衣幅与侧后返回区域相对躯干的深度、前后附件关系及共同随动职责传递到当前终止 part，未发现需要修正的说明。当前为纯色轮廓控制图，未将花纹、褶皱明暗、颜色和透明度表现作为缺陷；本片无应单列的可见薄纱或分离附件。\n\n整体及独显证据：  。",
+      "candidateHash": "1c4b087b2cad21610b58b020a596b5a6c705eba2a4e79d19935b6e5e35a12b8f",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/previews/2026-11-03T16-16-09-429Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/kimono_body.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/previews/2026-11-03T16-16-09-429Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/previews/2026-11-03T16-16-09-429Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/previews/2026-11-03T16-16-09-429Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/previews/2026-11-03T16-16-09-429Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/previews/2026-11-03T16-16-09-429Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/previews/2026-11-03T16-16-09-429Z-7.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/kimono_body/children/left_overlap_panel/previews/2026-11-03T16-16-09-429Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T16:47:48.461Z"
+    }
+  ]
+}

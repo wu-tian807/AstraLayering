@@ -1,0 +1,218 @@
+{
+  "image": "raster-layering/step01/review-01-evidence/current-default.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/review-01-evidence/marked-body/marked.png",
+  "manifest": "raster-layering/step01/review-01-evidence/marked-body/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        477,
+        785,
+        78,
+        61
+      ],
+      "layers": [
+        "D026.00 | arms/arm_right/upper_arm",
+        "D032.00 | arms/arm_right/forearm"
+      ],
+      "description": "右肘上臂与前臂在斜直边处突然变色，内侧暗色带到接点变宽，轮廓有小折点。辅助参考同处为连续肤色与平滑轮廓。按各自本件取样重画渐变与轮廓，消除接片直边。",
+      "crop": [
+        461,
+        769,
+        110,
+        93
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/marked-body/R1-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/marked-body/R1-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/marked-body/R1-comparison.png"
+      }
+    },
+    {
+      "id": "R2",
+      "bounds": [
+        864,
+        784,
+        90,
+        64
+      ],
+      "layers": [
+        "D025.00 | arms/arm_left/upper_arm",
+        "D031.00 | arms/arm_left/forearm"
+      ],
+      "description": "左肘前臂上接边形成明亮斜切面和深桃色条带，外轮廓拐折，原尺寸可见拼接。参考为连续臂面；重画本件接色和相切轮廓，避免用蒙版仅掩盖色差。",
+      "crop": [
+        848,
+        768,
+        122,
+        96
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/marked-body/R2-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/marked-body/R2-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/marked-body/R2-comparison.png"
+      }
+    },
+    {
+      "id": "R3",
+      "bounds": [
+        605,
+        619,
+        47,
+        83
+      ],
+      "layers": [
+        "D034.00 | body/torso",
+        "D035.00 | body/breast",
+        "Native contact | torso shoulder straps"
+      ],
+      "description": "画面左肩带上下接点有横短线、角折和宽度突变，领口双线在接点不顺。参考肩带到领口连续。用两件自身衣料取样和线条修接，蒙版启停都保留完整肩带。",
+      "crop": [
+        589,
+        603,
+        79,
+        115
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/marked-body/R3-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/marked-body/R3-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/marked-body/R3-comparison.png"
+      }
+    },
+    {
+      "id": "R4",
+      "bounds": [
+        770,
+        619,
+        48,
+        83
+      ],
+      "layers": [
+        "D034.00 | body/torso",
+        "D035.00 | body/breast",
+        "Native contact | torso shoulder straps"
+      ],
+      "description": "画面右肩带与胸部接处有侧向凸折、浅色片边及错开描线。参考该处为顺滑连续的细肩带和领口。恢复本件肩带轮廓、内外线与衣料明暗，配合原生接合蒙版融接。",
+      "crop": [
+        754,
+        603,
+        80,
+        115
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/marked-body/R4-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/marked-body/R4-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/marked-body/R4-comparison.png"
+      }
+    },
+    {
+      "id": "R5",
+      "bounds": [
+        640,
+        622,
+        136,
+        58
+      ],
+      "layers": [
+        "D022.00 | neck",
+        "D034.00 | body/torso",
+        "D035.00 | body/breast",
+        "Native contact | torso shoulder straps"
+      ],
+      "description": "上胸肤色出现浅色水平边和向中央下凹的三角接片边界，参考此处为连续上胸面。将颈下、躯干上胸与胸部肤色按本件体积渐变接顺，保留锁骨和胸部自身体积，不恢复耳罩或下颌投影。",
+      "crop": [
+        624,
+        606,
+        168,
+        90
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/marked-body/R5-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/marked-body/R5-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/marked-body/R5-comparison.png"
+      }
+    },
+    {
+      "id": "R6",
+      "bounds": [
+        625,
+        876,
+        43,
+        86
+      ],
+      "layers": [
+        "D034.00 | body/torso",
+        "D033.00 | pelvis | front lower garment",
+        "Torso-pelvis overlap | upper cap retained | default assembled"
+      ],
+      "description": "画面左腰腹结构线在躯干与骨盆接合范围内断成多段，粗细和方向突变。辅助参考同线连贯。沿参考弧线在各层接合帽盖续画并调整显隐，使默认原尺寸呈单一连续线。",
+      "crop": [
+        609,
+        860,
+        75,
+        118
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/marked-body/R6-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/marked-body/R6-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/marked-body/R6-comparison.png"
+      }
+    },
+    {
+      "id": "R7",
+      "bounds": [
+        753,
+        876,
+        39,
+        86
+      ],
+      "layers": [
+        "D034.00 | body/torso",
+        "D033.00 | pelvis | front lower garment",
+        "Torso-pelvis overlap | upper cap retained | default assembled"
+      ],
+      "description": "画面右腰腹结构线有两处明显空隙和接线错位，参考为连续弧线。补齐各自完整线条，接顺线宽、颜色与切线，避免帽盖蒙版把续线遮断。",
+      "crop": [
+        737,
+        860,
+        71,
+        118
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/marked-body/R7-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/marked-body/R7-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/marked-body/R7-comparison.png"
+      }
+    },
+    {
+      "id": "R12",
+      "bounds": [
+        711,
+        1052,
+        161,
+        82
+      ],
+      "layers": [
+        "D023.00 | legs/leg_left/leg"
+      ],
+      "description": "左腿大腿接色区仍有矩形淡色边界，内侧桃色暗部呈横阶，两侧外缘在同高度有台阶。该腿应为连续自身肤色与平滑轮廓，不能保留原裙投影或修补块边。用本腿取样及画笔重画过渡和边线，保留腿根补形、袜口及整体位置。",
+      "crop": [
+        695,
+        1036,
+        193,
+        114
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/marked-body/R12-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/marked-body/R12-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/marked-body/R12-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}
