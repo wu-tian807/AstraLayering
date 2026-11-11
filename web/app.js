@@ -8,6 +8,7 @@ import { morph } from './dom-morph.js';
 import { createEnvEditor } from './env-editor.js';
 import { createSettings } from './settings-dialog.js';
 import { HeadPreview } from './head-preview.js';
+import { nineAxisStepCard } from './nine-axis-flow.js';
 const headPreview = new HeadPreview();
 
 const icons = {
@@ -217,7 +218,7 @@ function artifacts(items, index, stepId, className='') {
  const list=available(items);
  if(!list.length)return '';
  const view=item=>{
-  if(item.kind==='video')return `<figure class="artifact-video"><video controls preload="metadata" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video><figcaption>${esc(item.label)}${data.fileVersions?.[item.path]?` · ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}`:''}</figcaption><a href="${artifact(item.path)}" target="_blank" rel="noopener">打开视频</a></figure>`;
+  if(item.kind==='video')return `<figure class="artifact-video"><video controls preload="metadata" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video><figcaption>${esc(item.label)}${className!=='nine-artifacts'&&data.fileVersions?.[item.path]?` · ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}`:''}</figcaption>${className==='nine-artifacts'?'':`<a href="${artifact(item.path)}" target="_blank" rel="noopener">打开视频</a>`}</figure>`;
   if(item.path.endsWith('.kra')&&item.kind!=='image')return `<a class="artifact-file" href="${artifact(item.path).replace('&preview=kra','')}" target="_blank" rel="noopener">${icon('layers')}${esc(item.label)} ${icon('arrow')}</a>`;
   const key=item.reviewIndex===undefined?item.path:`${item.path}#${item.reviewMode}-${item.reviewIndex}`;
   assetLookup.set(key,item);
@@ -356,21 +357,21 @@ function reviewNodes(index,children) {
 function stepNode(index,step,nested=false) {
  const status=observedDisplayStatus(index,step.status,step.id);
  if(step.status==='skipped')return `<section class="step-node nested skipped-node" data-node="${index}:${step.id}"><div class="skipped-heading"><span class="phase-mark">${icon('arrow')}</span><h3>${esc(step.title)}</h3><small>无需执行</small></div></section>`;
+ if(stages[index].id==='nine-axis')return nineAxisStepCard(step,{esc,icon,statusMark,statusLabel,content:nineAxisContent,
+  collapsed:state.collapsedSteps,selected:state.inspect&&state.stage===index?state.selectedStep:null});
  const selected=state.inspect&&state.stage===index&&state.selectedStep===step.id;
  const key=`${index}:${step.id}`, closed=state.collapsedSteps.has(key);
  const alternative=step.childrenMode==='alternative', parallel=step.childrenMode==='parallel';
  const mode=stages[index].id==='shadow'&&['mask','normal-depth'].includes(step.id);
- const nineStage=stages[index].id==='nine-axis'?({'step01_preparation':'neutral','step04_angles/model':'y','step04_angles/model/left':'x','step04_angles/model/up':'up','step04_angles/model/down':'down','step06_angle-xy':'xy','step07_jaw-line':'jaw','step02_angles':'y','step02_angles/left':'x','step02_angles/up':'up','step02_angles/down':'down','step03_angle-xy':'xy','step04_jaw-line':'jaw'}[step.id]):null;
  const currentMode=mode&&step.id===(data.run?.shadowMode||'mask');
  const context=step.id==='layers'?groupCycle(index):step.children.length?`<div class="step-children ${alternative?'step-alternatives':parallel?'step-parallel':''}" ${alternative?'role="group" aria-label="阴影方式：二选一"':parallel?'role="group" aria-label="并发制作任务"':''}>${isRasterSection(index)&&step.id==='step01'?reviewNodes(index,step.children):step.children.map((child,i)=>`${alternative&&i?'<span class="alternative-or">OR</span>':''}${stepNode(index,child,true)}`).join('')}</div>`:'';
  return `<section class="step-node ${nested?'nested':''} ${step.children.length?'step-container':''} ${isRasterSection(index)&&step.id==='step01'?'raster-review':''} ${closed?'node-collapsed':''} ${step.status} ${selected?'selected':''}" data-node="${index}:${step.id}">
  ${mode?`<div class="mode-choice ${currentMode?'current':''}">${currentMode?'当前方式':'备选方式'}</div>`:''}
- <div class="step-heading"><button class="step-node-heading" data-step="${index}:${step.id}">${statusMark(status)}<h3>${stages[index].id==='nine-axis'?`<span class="step-code">${esc(step.id)}</span>`:''}${esc(step.title)}</h3><small class="step-state" title="${esc(step.id)}">${esc(statusLabel(status))}</small></button><button class="icon-button" data-step-toggle="${key}" aria-label="${closed?'展开':'收起'}${esc(step.title)}" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>
+ <div class="step-heading"><button class="step-node-heading" data-step="${index}:${step.id}">${statusMark(status)}<h3>${esc(step.title)}</h3><small class="step-state" title="${esc(step.id)}">${esc(statusLabel(status))}</small></button><button class="icon-button" data-step-toggle="${key}" aria-label="${closed?'展开':'收起'}${esc(step.title)}" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>
  ${closed?'':`<div class="step-content">
  ${step.id!=='layers'&&(step.note||['standard','simplified','base','clothing'].includes(step.id))?`<p class="step-summary" ${step.note?`title="${esc(step.note)}"`:'aria-hidden="true"'}>${esc(step.note)}</p>`:''}
  ${step.id==='standard'&&!available(stepArtifacts[index][step.id]).some(item=>item.kind==='image')?'<p class="archive-gap" title="人物准备阶段执行后展示标准参考图">尚无标准参考图</p>':''}
  ${context}
- ${nineStage?`<a class="artifact-file" href="./studio?${new URLSearchParams({project:state.name,nineStage})}" target="_blank" rel="noopener">${icon('eye')}九轴预览</a>`:''}
  ${reportEvidence(index,step.id)}
  ${artifacts(step.id==='mask'&&stages[index].id==='shadow'?[...rasterItems(index,step.id),...shadowInspectionArtifacts(data.files)]:rasterItems(index,step.id),index,step.id)}
  ${data.sections[index]?.products?.[step.id]?'<p class="step-activity">已有产物</p>':''}
@@ -379,6 +380,18 @@ function stepNode(index,step,nested=false) {
  </div>
  `}
  </section>`;
+}
+function nineAxisContent(step) {
+ const section=data.sections[6],report=section?.reports?.[step.id];
+ let items=available(stepArtifacts[6][step.id]);
+ if(step.id==='step01_preparation') {
+  const image=items.find(item=>item.kind==='image');
+  items=items.filter(item=>item.kind!=='image'||item===image);
+ }
+ if(report&&!items.some(item=>item.path===report.path))items.push({path:report.path,label:'阶段报告',kind:'file'});
+ const message=section?.messages?.[step.id];
+ const notice=!message?'':step.status==='throttled'?waitBox(message):['failed','interrupted'].includes(step.status)?errorBox(message):`<p class="step-activity">${esc(message)}</p>`;
+ return artifacts(items,6,step.id,'nine-artifacts')+notice+processArtifacts(6,step);
 }
 function processArtifacts(index, step) {
  const directory=step.processDirectory||(step.id.startsWith('step')?stages[index].id+'/'+step.id:null);
@@ -401,7 +414,7 @@ function processArtifacts(index, step) {
 // A skipped lane (no dress-up, nothing to make) counts as complete.
 const finished=stage=>stage.status==='done'||stage.status==='skipped';
 function headThumbnail() {
- return `<section class="kra-preview-panel head-preview-panel" data-head-preview aria-label="头部九轴最新预览"><h3>${icon('layers')}头部九轴最新画面</h3><canvas aria-label="随鼠标运动的九轴角色头"></canvas><p data-head-status role="status">等待头部九轴首次保存。</p><small>随页面鼠标运动 · 弧形边界内预览</small><a href="./studio?${new URLSearchParams({project:state.name,workspace:'nine-axis'})}">在角色工作台打开 ↗</a></section>`;
+ return `<section class="kra-preview-panel head-preview-panel" data-head-preview data-model="${headPreview.folder===data.directory&&headPreview.available?'available':'pending'}" aria-label="头部九轴最新预览"><h3>${icon('layers')}九轴效果</h3><canvas aria-label="随鼠标运动的九轴角色头"></canvas><p data-head-status role="status">等待模型保存</p><a href="./studio?${new URLSearchParams({project:state.name,workspace:'nine-axis'})}">${icon('eye')}打开九轴工作台</a></section>`;
 }
 function flowCard(index) {
  const stage=stages[index],status=observedDisplayStatus(index,stage.status),closed=state.collapsedSections.has(index),wide=!closed&&groupViews[index]?.open&&!state.collapsedSteps.has(`${index}:layers`);

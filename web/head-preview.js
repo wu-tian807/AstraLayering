@@ -29,7 +29,9 @@ export class HeadPreview {
       if (!response.ok) throw Error('头部预览读取失败');
       const project = await response.json(), entry = project.nineAxis;
       if (epoch !== this.epoch) return;
-      if (!entry?.available) { this.label.textContent = '等待头部九轴首次保存；已有步骤产物可继续查看。'; return; }
+      this.available = !!entry?.available;
+      if (!entry?.available) { element.dataset.model = 'pending'; this.label.textContent = '模型保存后显示预览'; return; }
+      element.dataset.model = 'available';
       const version = `${entry.path}:${entry.version}`;
       if (this.version === version) { this.draw(); return; }
       this.label.textContent = '正在读取最新头部…';
@@ -99,6 +101,6 @@ export class HeadPreview {
     cancelAnimationFrame(this.frame); this.frame = null; this.observer?.disconnect();
     this.renderer?.clear(); this.renderer?.renderer.dispose(); this.renderer = null;
     this.images?.forEach(image => image.close()); this.images = null; this.doc = null; this.version = null; this.size = null; this.view = null;
-    this.pointer = null; this.current = { x: 0, y: 0 }; this.target = { x: 0, y: 0 };
+    this.available = false; this.pointer = null; this.current = { x: 0, y: 0 }; this.target = { x: 0, y: 0 };
   }
 }
