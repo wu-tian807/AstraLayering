@@ -59,7 +59,7 @@ test('first pass skips the remaining work; a second pass skips only its repair',
 test('blocked inspections do not consume either quality round or hide their feedback', () => {
   let reviews = [review(initial, 'blocked', 20)];
   let rounds = observe(reviews);
-  assert.equal(rounds[0].review.status, 'available');
+  assert.equal(rounds[0].review.status, 'pending');
   assert.match(rounds[0].review.detail, /不消耗/);
   assert.deepEqual(states(observe(reviews, initial, [call('review', 30)], true)), ['running', 'pending', 'pending', 'pending']);
   reviews.push(review(initial, 'revise', 40, repaired1), review(repaired1, 'blocked', 60));
@@ -73,9 +73,9 @@ test('blocked inspections do not consume either quality round or hide their feed
 });
 
 test('stale or mismatched reports cannot mark current artwork complete or skip work', () => {
-  assert.deepEqual(states(observe([review(initial, 'pass', 20)], repaired2)), ['available', 'pending', 'pending', 'pending']);
+  assert.deepEqual(states(observe([review(initial, 'pass', 20)], repaired2)), ['pending', 'pending', 'pending', 'pending']);
   const reviews = [review(initial, 'revise', 20, repaired1), review(repaired1, 'revise', 50, repaired2)];
-  assert.deepEqual(states(observe(reviews, Buffer.from('<svg>unrelated</svg>'))), ['available', 'available', 'available', 'available']);
+  assert.deepEqual(states(observe(reviews, Buffer.from('<svg>unrelated</svg>'))), ['pending', 'pending', 'pending', 'pending']);
   assert.deepEqual(states(partReviewRounds('face', { groupId: 'other', reviews }, repaired2, [], false)), ['pending', 'pending', 'pending', 'pending']);
 });
 

@@ -1,4 +1,4 @@
-export type ProgressStatus = 'pending' | 'running' | 'throttled' | 'available' | 'done' | 'failed' | 'interrupted' | 'unconfirmed';
+export type ProgressStatus = 'pending' | 'running' | 'throttled' | 'done' | 'failed' | 'interrupted';
 export type GroupPhase = 'outline' | 'review' | 'reduction' | 'completion' | 'completionCheck' | 'children';
 export type ReviewPhase = 'review-1' | 'repair-1' | 'review-2' | 'repair-2';
 export interface ReviewObservation { status: ProgressStatus | 'skipped'; detail: string; reportIndex?: number }

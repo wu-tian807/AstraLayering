@@ -90,7 +90,7 @@ test('review 草稿展示引用图片，经 HTTP 可读，发布后采用正式�
   await writeFile(join(root, draft.replace('.tmp', '')), '结论：通过\n![标注](evidence/marked.png)');
   value = await snapshot(root, 'case', base); report = value.sections[3].reports['review-01'];
   assert.equal(report.draft, false); assert.equal(report.summary, '结论：通过');
-  assert.equal(value.sections[3].states['review-01'], 'done');
+  assert.equal(value.sections[3].states['review-01'], 'pending', 'a report without an execution marker is only an artifact');
 });
 
 test('report links try the report directory, then the task root, and only then legacy ancestors', () => {

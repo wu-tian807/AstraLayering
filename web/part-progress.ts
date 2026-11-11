@@ -6,6 +6,8 @@ import { safePath, webFilePath } from './files.ts';
 import { currentAgentCalls, throttled, type AgentCall } from './agent-progress.ts';
 import { partStages } from './part-stages.ts';
 import { partReviewRounds, partReviewSkip } from './part-review.ts';
+import { executionStatus } from './execution-state.js';
+import { statusLabel } from './progress.js';
 
 export const phases = ['outline', 'review', 'reduction', 'completion', 'completionCheck', 'children'] as const;
 type Phase = typeof phases[number];
@@ -16,12 +18,10 @@ export async function stepStatus(directory: string, section: string, id: string)
   catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return 'absent'; throw error; }
 }
 
-// These are file observations for display, not a second scheduler or a resume check.
-// They follow the run's marker rule: a product counts only in a step marked .running
-// or .completed (an unmarked or missing step is rerun from scratch), and a completed
-// step whose product is missing is shown failed.
+// Markers own execution status. Saved artwork and review findings only supply
+// previews and details, including when an export omitted intermediate files.
 export async function partProgress(directory: string, section: string, groups: any[], files: Set<string>,
-  json: (path: string) => Promise<any>, errors: string[], activeSince?: string, failedSince?: string) {
+  json: (path: string) => Promise<any>, errors: string[], activeSince?: string, failedSince?: string, failed = !!failedSince) {
   const bytes = new Map<string, Promise<Buffer | undefined>>();
   const read = (path: string) => {
     if (!bytes.has(path)) bytes.set(path, (async () => {
@@ -46,16 +46,13 @@ export async function partProgress(directory: string, section: string, groups: a
     node.webPhases = Object.fromEntries(phases.map(phase => [phase, 'pending']));
     node.webMessages = {};
     node.webDetails = {};
-    const mark = (phase: Phase, done: boolean, present: boolean, message: string, missing?: string) => {
-      if (!done && missing) {
-        node.webPhases[phase] = 'failed'; node.webMessages[phase] = '执行失败';
-        node.webDetails[phase] = '.completed 存在但缺少交付：' + missing; return;
-      }
-      node.webPhases[phase] = done ? 'done' : present ? 'available' : 'pending';
-      node.webMessages[phase] = done ? '已完成' : present ? '已有产物' : '待执行';
-      if (done || present) node.webDetails[phase] = message;
+    node.webHasProducts = {};
+    const mark = (phase: Phase, marker: StepStatus, present: boolean, message: string) => {
+      node.webPhases[phase] = executionStatus(marker, { active: !!activeSince, failed });
+      node.webMessages[phase] = statusLabel(node.webPhases[phase]);
+      node.webHasProducts[phase] = marker === 'running' && present;
+      if (marker === 'completed' || present) node.webDetails[phase] = message;
     };
-    const marked = (status: StepStatus) => status === 'running' || status === 'completed';
     const outline = await read(path('outline'));
     const reduced = await read(path('reduction'));
     const completed = await read(path('completion'));
@@ -63,33 +60,28 @@ export async function partProgress(directory: string, section: string, groups: a
       step(groupStepId(node.id, 'completion')), step(groupStepId(node.id, 'children'))]);
     node.webReviewSkip = partReviewSkip(node, prepared, !!outline);
     const { skip: skipped, reason: skipDetail } = node.webReviewSkip;
-    mark('outline', !!outline && marked(prepared), marked(prepared) && (!!outline || draft('outline')),
-      skipped ? skipDetail : outline ? '已落稿' : '草稿 · 未落稿', prepared === 'completed' && !outline ? path('outline') : undefined);
+    mark('outline', prepared, !!outline || draft('outline'), skipped ? skipDetail : outline ? '已落稿' : '草稿 · 未落稿');
 
     const report = await json(webFilePath(reportPath(section, node.id, 'review')));
     const validReport = report?.groupId === node.id && Array.isArray(report.reviews);
     reviewInputs.set(node, { report: validReport ? report : undefined, outline });
     const reviewed = outline && validReport ? reviewedArtifact(outline, path('outline'), report) : undefined;
     const last = validReport ? report.reviews.at(-1) : undefined;
-    mark('review', skipped || !!reviewed && prepared === 'completed', skipped || marked(prepared) && !!report, skipped ? skipDetail : reviewed ? reviewed.note ?? '复核通过'
+    mark('review', prepared, !!report, skipped ? skipDetail : reviewed ? reviewed.note ?? '复核通过'
       : last && outline && matchesHash(outline, last.candidateHash)
         ? last.verdict === 'revise' ? '需要返修' : last.verdict === 'blocked' ? '复核受阻' : '记录待确认'
         : '复核记录与当前稿未匹配');
 
-    const reductionDone = !!reduced && layer === 'completed';
+    const reductionDone = layer === 'completed';
     // A group added later (a drawing-stage split) had no outline when its layer was reduced.
-    mark('reduction', reductionDone, layer === 'running' && (!!reduced || draft('reduction')),
-      reductionDone ? '已落稿 · 本层去重完成' : reduced ? '已有正式稿 · 本层去重未完成' : '草稿 · 未落稿',
-      layer === 'completed' && prepared === 'completed' && !reduced ? path('reduction') : undefined);
-    const completionDone = !!completed && marked(finished);
-    mark('completion', completionDone, finished === 'running' && draft('completion'), completionDone ? '已落稿' : '草稿 · 未落稿',
-      finished === 'completed' && !completed ? path('completion') : undefined);
+    mark('reduction', layer, !!reduced || draft('reduction'),
+      reductionDone ? '已落稿 · 本层去重完成' : reduced ? '已有正式稿 · 本层去重未完成' : '草稿 · 未落稿');
+    mark('completion', finished, !!completed || draft('completion'), completed ? '已落稿' : '草稿 · 未落稿');
     const check = await json(webFilePath(reportPath(section, node.id, 'completion-check')));
     const checked = !!check && finished === 'completed';
-    mark('completionCheck', checked, finished === 'running' && !!check, checked ? '补全检查通过' : '检查记录待确认',
-      finished === 'completed' && !check ? webFilePath(reportPath(section, node.id, 'completion-check')) : undefined);
+    mark('completionCheck', finished, !!check, checked ? '补全检查通过' : '检查记录待确认');
     const childrenDone = split === 'completed';
-    mark('children', childrenDone, childrenDone || !!node.groups?.length, childrenDone ? `已分析 · ${node.groups?.length ?? 0} 个直属节点` : '已有分组 · 待重新分析');
+    mark('children', split, !!node.groups?.length, childrenDone ? `已分析 · ${node.groups?.length ?? 0} 个直属节点` : '已有分组 · 待重新分析');
     if (node.kind === 'part') node.webDetails.children = '终止 part，不再拆分';
   };
   // Each node reads independent evidence; bound parallel reads so a large tree
@@ -103,7 +95,7 @@ export async function partProgress(directory: string, section: string, groups: a
   const calls = await currentAgentCalls(directory, section, files, errors, activeSince ?? failedSince, !!failedSince);
   for (const { node } of entries) {
     const { report, outline } = reviewInputs.get(node)!;
-    node.webReviewRounds = partReviewRounds(node.id, report, outline, calls, !!activeSince, node.webReviewSkip);
+    node.webReviewRounds = partReviewRounds(node.id, report, outline, calls, !!activeSince, node.webReviewSkip, node.webPhases.review);
   }
   const latest = new Map<string, { call: AgentCall; phase: Phase; targets: any[] }>();
   for (const call of calls) {
@@ -113,6 +105,7 @@ export async function partProgress(directory: string, section: string, groups: a
       '正面遮挡补全': 'completion', '直属结构拆分': 'children', '同层轮廓去重': 'reduction' } as const)[match[1]]!;
     const targets = entries.filter(({ node, depth }) => phase === 'reduction' ? String(depth) === match[2] : node.id === match[2]).map(entry => entry.node);
     for (const node of targets) {
+      if (node.webPhases[phase] === 'done' || node.webPhases[phase] === 'pending') continue;
       if (node.webReviewSkip.skip && (phase === 'outline' || phase === 'review')) continue;
       const id = `${node.id}:${phase}`;
       latest.set(id, { call, phase, targets: [node] });
@@ -142,5 +135,5 @@ export async function partProgress(directory: string, section: string, groups: a
         : ({ outline: '正在绘制 / 自检', review: '正在复核', reduction: '正在同层去重', completion: '正在补全 / 自检', children: '正在分析直属结构' } as any)[phase];
     }
   }
-  return partStages(directory, section, groups, files, json, calls, errors, !!activeSince, step);
+  return partStages(section, calls, !!activeSince, step, failed);
 }

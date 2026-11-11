@@ -2,11 +2,11 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { displayStatus, groupArtifacts, groupPhases, groupPreviewArtifacts, groupSummary, statusNames, stepArtifacts } from '../progress.js';
 
-test('normal progress labels, with 限流等待 apart from running; a partly finished group remains available', () => {
-  assert.deepEqual(Object.values(statusNames), ['待执行', '进行中', '限流等待', '已有产物', '已完成', '执行失败', '已中断', '待续跑']);
+test('normal progress labels, with 限流等待 apart from running; a partly finished group remains pending', () => {
+  assert.deepEqual(Object.values(statusNames), ['待执行', '进行中', '限流等待', '已完成', '执行失败', '已中断']);
   const group = { webPhases: Object.fromEntries(groupPhases.map(([id]) => [id, 'pending'])) };
   assert.equal(groupSummary(group).text, '待执行');
-  group.webPhases.outline = 'done'; assert.equal(groupSummary(group).text, '已有产物');
+  group.webPhases.outline = 'done'; assert.equal(groupSummary(group).text, '待执行');
   group.webPhases.review = 'throttled'; assert.equal(groupSummary(group).text, '限流等待');
   group.webPhases.completion = 'running'; assert.equal(groupSummary(group).text, '进行中');
   group.webPhases = Object.fromEntries(groupPhases.map(([id]) => [id, 'done']));
@@ -23,8 +23,8 @@ test('failure is explicit, while interrupted execution keeps its intermediate ar
   assert.equal(statusNames.failed, '执行失败');
   assert.equal(groupSummary({ webPhases: { outline: 'failed', completion: 'available' } }).status, 'failed');
   for (const state of ['interrupted', 'unconfirmed']) {
-    assert.equal(displayStatus(state, true), state);
-    assert.equal(displayStatus(state, false), state);
+    assert.equal(displayStatus(state, true), 'interrupted');
+    assert.equal(displayStatus(state, false), 'interrupted');
   }
 });
 

@@ -21,17 +21,16 @@ test('archive snapshot preserves all section/group states, reports and KRA previ
     assert.deepEqual(section.groups.map(group => group.webPhases), before.sections[index].groups.map(group => group.webPhases));
     assert.equal(Object.keys(section.previews).length, Object.keys(before.sections[index].previews).length);
   }
-  assert.equal(after.sections[1].reports.step01.images[0].path, 'raster-layering/step01/report-assets/inspect/cited.png');
-  // Earlier archives omitted raster receipts. Their explicit archived facts
-  // still show completion, provided the formal deliveries remain present.
+  assert.deepEqual(after.sections[1].reports.step01.images, [], 'exports omit report images');
+  // Archive metadata and files cannot replace a missing completion marker.
   await rm(join(destination, 'raster-layering/step01/.completed'));
   await rm(join(destination, 'shadow/step01_mask/.completed'));
   const legacy = await snapshot(destination, f.name, join(f.base, 'archive'));
-  assert.equal(legacy.sections[1].states.step01, 'done');
-  assert.equal(legacy.sections[5].states.mask, 'done');
+  assert.equal(legacy.sections[1].states.step01, 'pending');
+  assert.equal(legacy.sections[5].states.mask, 'pending');
   await rm(join(destination, 'raster-layering/step01/character-depth.kra'));
   const missing = await snapshot(destination, f.name, join(f.base, 'archive'));
-  assert.notEqual(missing.sections[1].states.step01, 'done');
+  assert.equal(missing.sections[1].states.step01, 'pending');
 });
 
 test('HTTP export downloads the shared ZIP; incomplete and stale-directory requests are refused', async t => {

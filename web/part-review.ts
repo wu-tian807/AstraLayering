@@ -1,6 +1,7 @@
 import { matchesHash, type ReviewReport } from '../.agents/skills/live2d-maker/shared/part/artifact-facts.ts';
 import { throttled, type AgentCall } from './agent-progress.ts';
 import type { PartReviewRound, ReviewPhase } from './progress.js';
+import type { ExecutionStatus } from './execution-state.js';
 
 export type ReviewSkip = { skip: boolean; reason: string };
 
@@ -16,7 +17,7 @@ export function partReviewSkip(group: { hiddenInReference?: boolean; outlineFrom
 // Read-only observations of the existing two-round review chain. Retries and
 // blocked inspections are not additional quality rounds.
 export function partReviewRounds(groupId: string, report: ReviewReport | undefined, outline: Buffer | undefined,
-  calls: AgentCall[], active: boolean, skip: ReviewSkip = { skip: false, reason: '' }): PartReviewRound[] {
+  calls: AgentCall[], active: boolean, skip: ReviewSkip = { skip: false, reason: '' }, markerStatus?: ExecutionStatus): PartReviewRound[] {
   const rounds: PartReviewRound[] = [1, 2].map(round => ({ round,
     review: { status: 'pending', detail: '等待轮廓复核' },
     repair: { status: 'pending', detail: '等待本轮复核意见' },
@@ -44,13 +45,13 @@ export function partReviewRounds(groupId: string, report: ReviewReport | undefin
   for (const { review, index } of reviews) {
     if (count >= 2) break;
     const round = rounds[count];
-    round.review = { status: confirmed.has(index) ? 'done' : 'available', reportIndex: index,
+    round.review = { status: confirmed.has(index) ? 'done' : markerStatus ?? 'pending', reportIndex: index,
       detail: review.verdict === 'blocked' ? '复核受阻，本次不消耗质量轮次' : review.verdict === 'pass' ? '复核通过' : '已提交返修意见' };
     if (!confirmed.has(index) && review.verdict !== 'blocked') round.review.detail += ' · 与当前稿未匹配';
     if (review.verdict === 'blocked') continue;
     round.repair = review.verdict === 'pass' && confirmed.has(index)
       ? { status: 'skipped', detail: '本轮通过，无需返修' }
-      : { status: repaired.has(index) ? 'done' : review.repairedCandidateHash ? 'available' : 'pending',
+      : { status: repaired.has(index) ? 'done' : review.repairedCandidateHash ? markerStatus ?? 'pending' : 'pending',
         reportIndex: index, detail: repaired.has(index) ? '已按本轮意见返修并自检'
           : review.repairedCandidateHash ? '已记录返修 · 与当前稿未匹配' : '等待返修并自检' };
     count++;
@@ -78,11 +79,21 @@ export function partReviewRounds(groupId: string, report: ReviewReport | undefin
   for (const [key, call] of latest) {
     const [mode, number] = key.split('-') as ['review' | 'repair', string];
     const observation = rounds[Number(number) - 1][mode];
+    if (markerStatus === 'done' || markerStatus === 'pending') continue;
     if (call.failed) { observation.status = 'failed'; observation.detail = '调用失败，请查看运行记录'; }
     else if (active && throttled(call)) { observation.status = 'throttled'; observation.detail = call.retryError!; }
     else if (active && !call.finished) {
       observation.status = 'running'; observation.detail = mode === 'review' ? '正在复核轮廓' : '正在按本轮意见返修';
     }
+  }
+  // These rounds share the outline step's marker. An old or omitted report
+  // cannot reopen a completed step or leave an unfinished round running forever.
+  if (markerStatus) for (const round of rounds) for (const mode of ['review', 'repair'] as const) {
+    const observation = round[mode];
+    if (markerStatus === 'done') {
+      if (observation.status !== 'skipped') observation.status = observation.reportIndex === undefined ? 'skipped' : 'done';
+    } else if (markerStatus === 'pending') observation.status = 'pending';
+    else if (['running', 'pending'].includes(observation.status) && ['failed', 'interrupted'].includes(markerStatus)) observation.status = markerStatus;
   }
   return rounds;
 }
