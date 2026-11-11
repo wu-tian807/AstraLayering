@@ -44,7 +44,7 @@ test('other errors propagate unchanged', async () => {
 });
 
 test('check prompts are registered knowledge', () => {
-  for (const name of ['check-repair', 'check-repair-resume', 'checks/missing-submit', 'checks/invalid-output', 'checks/missing-file', 'checks/bad-result'])
+  for (const name of ['check-repair', 'checks/missing-submit', 'checks/invalid-output', 'checks/missing-file', 'checks/bad-result'])
     assert.ok((runtimePrompts as readonly string[]).includes(name), name);
   assert.match(runtimePrompt('checks/invalid-output', { detail: 'D' }), /D/);
   void CheckFailure; void mkdir; void readFile;

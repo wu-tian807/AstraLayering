@@ -35,7 +35,7 @@ async function fixture(t: TestContext) {
   await put(configPath, JSON.stringify({ main: { initial: ['prompts/main.md'], tools: ['view_bitmap', 'edit_nine_axis'] } }));
   await put(join(knowledge, 'nine-axis/step04_angles/prompts/main.md'), 'shared nine-axis agent');
   await put(join(knowledge, 'shared/prompts/runtime/agent-turn.md'), 'Session task root: {uri:.}');
-  for (const name of ['check-repair', 'check-repair-resume', 'checks/bad-result']) await put(join(knowledge, `shared/prompts/runtime/${name}.md`), '{problems}{detail}');
+  for (const name of ['check-repair', 'checks/bad-result']) await put(join(knowledge, `shared/prompts/runtime/${name}.md`), '{problems}{detail}');
   await put(join(knowledge, 'nine-axis/step04_angles/tools/view_bitmap/description.md'), 'single agent.json bitmap tool');
   await put(join(knowledge, 'nine-axis/step04_angles/tools/edit_nine_axis/description.md'), 'single agent.json edit tool');
   useKnowledge(knowledge);

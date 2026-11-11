@@ -29,7 +29,7 @@ type Runtime = { group: { id: string }; parentGroup: string | null; outputSvg?: 
 // A repair turn carries no input of its own: the drawing turn of the same thread gave it.
 // The mock holds no thread, so it reads that input from the recovery text's drawing task.
 function runtime(task: AgentTask): Runtime {
-  const prompt = task.prompt.includes('【本次输入】') ? task.prompt : task.recoveryPrompt;
+  const prompt = task.prompt.includes('【本次输入】') ? task.prompt : (task.resumeContext ?? task.recoveryPrompt);
   assert.ok(prompt?.includes('【本次输入】'));
   return promptInput(prompt!) as Runtime;
 }

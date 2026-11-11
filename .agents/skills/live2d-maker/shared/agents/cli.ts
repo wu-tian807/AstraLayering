@@ -1,5 +1,6 @@
 import { knowledgeDirectory } from '../knowledge.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
+import { freshPrompt } from '../codex/fresh-prompt.ts';
 import { access, mkdir, readFile, writeFile, copyFile, rename, chmod, realpath, stat } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { homedir } from 'node:os';
@@ -241,7 +242,7 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
     try {
       child.stderr!.on('data', chunk => { stderr = (stderr + chunk.toString()).slice(-16000); });
       child.stdin!.on('error', error => { spawnError ||= error; });
-      const prompt = !resumed && requestedSession && task.recoveryPrompt ? task.recoveryPrompt : task.prompt;
+      const prompt = !resumed && requestedSession && (task.recoveryPrompt || task.resumeContext) ? freshPrompt(task) : task.prompt;
       const input: any[] = [{ type: 'text', text: workspacePrompt(prompt, paths) }];
       await writeFile(join(log.directory,'prompt.md'),input[0].text);
       child.stdin!.end(JSON.stringify(model.harness === 'agv' ? { event: 'user', message: { role: 'user', content: input } } : { type: 'user', message: { role: 'user', content: input } }) + '\n');

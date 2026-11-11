@@ -17,6 +17,7 @@ import { randomUUID } from 'node:crypto';
 import type { ThreadEvent } from '@openai/codex-sdk';
 import type { ImageProcessingOptions } from '../image-processing.ts';
 import { executionPaths } from '../agents/workspace.ts';
+import { freshPrompt } from './fresh-prompt.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
 
 export const agentDefaults = defaultModels.medium;
@@ -26,6 +27,8 @@ export type AgentTask = {
   name: string;
   prompt: string;
   recoveryPrompt?: string;
+  // Original task text a follow-up turn is preceded by when its thread is new.
+  resumeContext?: string;
   imageGeneration?: boolean;
   outputSchema?: Record<string, unknown>;
   timeoutMs?: number;
@@ -165,7 +168,7 @@ export class CodexAgents {
             try {
               const result = await session!.run(blocked ? { ...task, prompt: blockedImagesPrompt(blocked) }
                 : interrupted ? { ...task, prompt: interruptedTaskPrompt() }
-                : fresh ? { ...task, prompt: task.recoveryPrompt || task.prompt } : task, signal);
+                : fresh ? { ...task, prompt: freshPrompt(task) } : task, signal);
               id = result.threadId || id;
               for (const image of result.images) savedImages.add(image.savedPath);
               return { ...result, images: [...savedImages].map(savedPath => ({ savedPath })) };
@@ -260,7 +263,7 @@ export class CodexAgents {
             };
           }
           let task = image ? { ...original, imageGeneration: false, tools: [...original.tools || [], image] } : original;
-          if (!id && original.recoveryPrompt) task = { ...task, prompt: original.recoveryPrompt };
+          if (!id && (original.recoveryPrompt || original.resumeContext)) task = { ...task, prompt: freshPrompt(original) };
           const signal = taskSignal(task, [closing.signal, ...(externalSignal ? [externalSignal] : [])]);
           let result: AgentResult;
           try {
@@ -284,7 +287,7 @@ export class CodexAgents {
                 // CLI 会话里被拦截的图片无法替换，只能按致命错误结束；replace 对它返回 false。
                 if (!await replace(error, id)) return false;
                 id = undefined; interrupted = false;
-                if (original.recoveryPrompt) task = { ...task, prompt: original.recoveryPrompt };
+                if (original.recoveryPrompt || original.resumeContext) task = { ...task, prompt: freshPrompt(original) };
                 return true;
               });
             }
