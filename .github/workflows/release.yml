@@ -20,7 +20,7 @@ permissions:
 
 concurrency:
   group: release-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   verify:
@@ -44,7 +44,19 @@ jobs:
       - name: Check workbench types
         run: pnpm check:web
       - name: Test workflows
-        run: pnpm --dir .agents/skills/live2d-maker test
+        timeout-minutes: 10
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          import { spawn } from 'node:child_process';
+          const cwd = '.agents/skills/live2d-maker';
+          const script = JSON.parse(readFileSync(cwd + '/package.json', 'utf8')).scripts.test;
+          if (!script.startsWith('node ')) throw new Error('Expected a Node test script');
+          const args = ['--test-force-exit', '--test-timeout=120000', ...script.slice(5).split(/\s+/)];
+          const child = spawn(process.execPath, args, { cwd, stdio: 'inherit' });
+          child.on('error', error => { console.error(error); process.exitCode = 1; });
+          child.on('exit', (code, signal) => { process.exitCode = signal ? 1 : (code ?? 1); });
+          NODE
       - name: Test workbench
         run: pnpm test:web
       - name: Test release packaging
