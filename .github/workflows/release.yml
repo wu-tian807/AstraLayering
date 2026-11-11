@@ -44,6 +44,25 @@ jobs:
         run: |
           npm install --global pnpm@10.33.0
           pnpm install --frozen-lockfile
+      - name: Check publication shell syntax
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          import { spawnSync } from 'node:child_process';
+          const lines = readFileSync('.github/workflows/release.yml', 'utf8').split('\n');
+          let checked = 0;
+          for (let i = 0; i < lines.length; i++) {
+            if (lines[i] !== '        run: |') continue;
+            const script = [];
+            while (++i < lines.length && (lines[i].startsWith('          ') || !lines[i].trim())) script.push(lines[i].slice(10));
+            i--;
+            const result = spawnSync('bash', ['-n'], { input: script.join('\n'), encoding: 'utf8' });
+            if (result.error || result.status !== 0) throw new Error(result.stderr || String(result.error));
+            checked++;
+          }
+          if (checked < 5) throw new Error('Publication scripts were not found');
+          console.log('Publication shell scripts checked:', checked);
+          NODE
       - name: Install browser test dependencies
         run: pnpm exec playwright install --with-deps chromium
       - name: Check workflow types
