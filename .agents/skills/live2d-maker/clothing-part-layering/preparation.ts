@@ -1,7 +1,7 @@
 import { stepKnowledge } from '../shared/knowledge.ts';
 import { normalizeGeneratedReference } from '../shared/part/reference-normalization.ts';
 import type { ImageProcessingOptions } from '../shared/image-processing.ts';
-import { validateAgentOutcome } from '../shared/codex/diagnostics.ts';
+import { asCheck, checkedTurn } from '../shared/codex/checked-turn.ts';
 import { sectionDirectory, taskDirectory } from '../shared/paths.ts';
 import { inspectSection, runSection } from '../shared/step-section.ts';
 import { readStep } from '../shared/step-chain.ts';
@@ -40,17 +40,17 @@ async function checkImage(image: string, input: string): Promise<void> {
 
 export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): PreparationSteps {
   return { async extract(image, baseImage, output, prompt) {
-    const result = await agents.run({
+    const imagePath = await checkedTurn({ agents, task: {
       step: 'clothing_preparation', name: '纯衣服参考准备',
       prompt,
       outputSchema: { type: 'object', additionalProperties: false, required: ['error'], properties: { error: { type: ['string', 'null'] } } },
-    });
-    await validateAgentOutcome(result, async () => {
-    const imageResult = result.images.at(-1);
-    if (!imageResult) throw new Error('imagegen 未返回生成图片。');
-    await sharp(imageResult.savedPath).metadata();
-    await copyAsPng(imageResult.savedPath, output);
-    });
+    }, check: result => asCheck('invalid-output', async () => {
+      const imageResult = result.images.at(-1);
+      if (!imageResult) throw new Error('imagegen 未返回生成图片。');
+      await sharp(imageResult.savedPath).metadata();
+      return imageResult.savedPath;
+    }) });
+    await copyAsPng(imagePath, output);
   } };
 }
 

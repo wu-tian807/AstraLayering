@@ -162,8 +162,9 @@ test('模型仅返回已有路径而未执行工具时，拒绝冒充已完成�
 
 test('复制与生图互斥，混合分支保留输入并阻止正式参考发布', async t => {
   const f = await fixture(t, false);
+  let reused = false;
   const mixed = createPreparationSteps({ async run(task) {
-    await task.tools![0].execute({ reason: '先复用' }, new AbortController().signal);
+    if (!reused) { reused = true; await task.tools![0].execute({ reason: '先复用' }, new AbortController().signal); }
     return { text: JSON.stringify({ error: null, reason: '又生图' }), images: [{ savedPath: f.generated }] };
   } });
   await assert.rejects(prepareReferences({ runName: f.runName, image: f.original },
