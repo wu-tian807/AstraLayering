@@ -340,7 +340,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           const failed = outlines.find(result => result.status === 'rejected');
           if (failed?.status === 'rejected') throw failed.reason;
           const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向', options.signal, directory));
-          await fit(xyDirectory, angleXYPrompt(task), async () => checkCornerReferences(xyDirectory, (await crop()).size, cornerFrames, cornerVideos));
+          await fit(xyDirectory, angleXYPrompt(task), async () => { await checkCornerReferences(xyDirectory, (await crop()).size, cornerFrames, cornerVideos); await builds[step.id](); });
           summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(xyDirectory, modelDirectory, scale, cornerFrames, cornerVideos)} 个原图层的斜向四角`;
         };
         return async () => {
@@ -349,7 +349,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           if (!await exists(jaw.document)) await copyDocument(head, jaw);
           builds[step.id] = () => buildJawLine(step.directory, xyDirectory, scale);
           const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子', options.signal, directory));
-          await fit(step.directory, jawLinePrompt(jaw, task));
+          await fit(step.directory, jawLinePrompt(jaw, task), async () => { await builds[step.id](); });
           summary = `nine-axis/step07_jaw-line 已完成：${await finishJawLine(step.directory, xyDirectory, scale)} 个部件的下颌线与脖子`;
         };
       },
