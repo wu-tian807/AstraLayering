@@ -17,6 +17,8 @@ export type AgentRequest = {
   onThreadReplacement?: (oldId: string, reason: string) => Promise<void>;
   prompt: string;
   recoveryPrompt?: string;
+  // Program check of the report a completed turn wrote; a failure repairs in this same turn's thread.
+  verify?: () => Promise<void>;
   directory: string;
   outputDirectory?: string;
   model: string;
@@ -50,7 +52,7 @@ export async function runAgent(request: AgentRequest, runtime = new AgentRuntime
       cwd: request.directory, outputDirectory: paths.outputDirectory, tools: request.tools,
       outputSchema: { type: 'object', additionalProperties: false, properties: {
         status: { type: 'string', enum: ['completed', 'blocked'] }, summary: { type: 'string' } }, required: ['status', 'summary'] } };
-    await checkedTurn({ agents: { run: (next, abort) => session.run(next, abort) }, task, signal: request.signal, check: result => {
+    await checkedTurn({ agents: { run: (next, abort) => session.run(next, abort) }, task, signal: request.signal, check: async result => {
       let parsed;
       try { parsed = JSON.parse(result.text); }
       catch { throw new CheckFailure('bad-result', '没有返回有效的步骤结果 JSON', { detail: '没有返回有效的步骤结果 JSON' }); }
@@ -58,6 +60,7 @@ export async function runAgent(request: AgentRequest, runtime = new AgentRuntime
         throw new CheckFailure('bad-result', '步骤未返回有效的完成或受阻说明', { detail: '须返回 status（completed 或 blocked）和非空 summary' });
       }
       value = parsed as StepResult;
+      if (parsed.status === 'completed') await request.verify?.();
     } });
     return value!;
   } finally { await session.close(); }

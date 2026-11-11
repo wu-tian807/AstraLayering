@@ -1,4 +1,5 @@
 import { stepKnowledge } from '../knowledge.ts';
+import { CheckFailure, asCheck } from '../codex/checked-turn.ts';
 import { readFile, rename, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { StepResult } from './agent.ts';
@@ -20,6 +21,13 @@ async function verdict(directory: string, filename: string, kind: ReviewTask['ki
     throw new Error(`报告缺少有效结论或正文：${path}`);
   }
   return value;
+}
+
+// The program check of a report the agent has just written. A failure is repaired
+// in that agent's own turn (runAgent), so a reviewer thread stays unsaved.
+export async function checkReport(directory: string, filename: string, kind: ReviewTask['kind']): Promise<void> {
+  if (!await fileInfo(join(directory, filename))) throw new CheckFailure('missing-file', `缺少完整报告：${filename}`, { detail: `报告 ${filename} 未写出` });
+  await asCheck('invalid-output', () => verdict(directory, filename, kind));
 }
 
 // Only finalized Markdown reports advance the sequence. A repair report is final
@@ -55,7 +63,7 @@ type ReviewOptions = {
   directory: string;
   signal?: AbortSignal;
   progress?: (message: string) => void;
-  invoke: (prompt: string, task: ReviewTask) => Promise<StepResult>;
+  invoke: (prompt: string, task: ReviewTask, verify: () => Promise<void>) => Promise<StepResult>;
   validate: () => Promise<void>;
 };
 
@@ -67,7 +75,8 @@ export async function runReviews(options: ReviewOptions): Promise<void> {
     await discardReviewReports(options.directory, task.index + 1);
     const draft = `${task.filename}.tmp`;
     await rm(join(options.directory, draft), { force: true });
-    const result = await options.invoke(await buildReviewPrompt(options.step, task), task);
+    const current = task;
+    const result = await options.invoke(await buildReviewPrompt(options.step, current), current, () => checkReport(options.directory, draft, current.kind));
     if (result.status !== 'completed') throw new Error(`本次${task.kind === 'review' ? '检查' : '修复'}未完成：${result.summary}`);
     const conclusion = await verdict(options.directory, draft, task.kind);
     if (!conclusion) throw new Error(`缺少完整报告：${draft}`);
