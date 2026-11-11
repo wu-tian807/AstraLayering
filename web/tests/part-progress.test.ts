@@ -507,5 +507,8 @@ test('after a run fails, a step another lane left running is not shown as failed
   const { sections } = await f.get();
   assert.equal(sections.find(item => item.id === 'clothing-raster-layering')!.states.step01, 'failed');
   // Stopped or interrupted, it continues on the next run.
-  assert.equal(sections.find(item => item.id === 'raster-layering')!.states.step01, 'unconfirmed');
+  const interrupted = sections.find(item => item.id === 'raster-layering')!;
+  assert.equal(interrupted.states.step01, 'interrupted');
+  assert.notEqual(interrupted.status, 'failed');
+  assert.ok(!Object.values(interrupted.messages).includes('ENAMETOOLONG'), 'another lane does not inherit the failure');
 });
