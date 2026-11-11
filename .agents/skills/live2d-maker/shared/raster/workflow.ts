@@ -252,8 +252,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
     };
     if (step.krita !== false) await sectionKrita.reserve(options.signal, waiting => options.progress?.(`${step.id}：${waiting}`));
     // A failed program check goes back to the step's own thread as a repair turn
-    // (at most maxRepairs); a filtered or exhausted thread is dropped so that
-    // continuing starts a fresh one.
+    // (at most maxRepairs per attempt).
     const repairing = async (check: () => Promise<unknown>) => {
       for (let round = 1; ; round++) {
         try { return await check(); }
@@ -264,8 +263,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
             .split('\n').some(line => line.includes(lastAttempt) && line.includes('content_filter'));
           if (filtered || round > maxRepairs) {
             const reason = filtered ? '模型回合被内容过滤截断' : `已返修 ${maxRepairs} 次仍未通过`;
-            await clearStepSession(directory, step.id, reason);
-            throw new Error(`${message}（${reason}；继续时将新建会话）`, { cause: error });
+            throw new Error(`${message}（${reason}；继续仍接回同一会话，会话已无法推进时请用“恢复”换新会话）`, { cause: error });
           }
           const problems = runtimePrompt('checks/invalid-output', { detail: message });
           const repair = runtimePrompt('check-repair', { problems, round: String(round), max: String(maxRepairs) });

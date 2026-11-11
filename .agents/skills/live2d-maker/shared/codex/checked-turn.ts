@@ -34,13 +34,6 @@ export async function asCheck<T>(code: CheckCode, check: () => T | Promise<T>): 
 export const missingSubmit = (tool: string, message: string, detail = '') =>
   new CheckFailure('missing-submit', message, { tool, detail });
 
-const discarded = new WeakMap<object, string>();
-// Set on a failure whose thread could not be repaired; the owner of a saved session
-// clears it so that continuing starts a fresh thread instead of the stuck one.
-export function discardedSessionReason(error: unknown): string | undefined {
-  return error && typeof error === 'object' ? discarded.get(error) : undefined;
-}
-
 // The model service cut the turn off (content filter); the thread's own history then
 // holds a refusal that repeats on every later turn.
 async function contentFiltered(logDirectory: string | undefined): Promise<boolean> {
@@ -74,9 +67,8 @@ export async function checkedTurn<T>(turn: CheckedTurn<T>): Promise<T> {
         const filtered = await contentFiltered(response.logDirectory);
         if (filtered || round > maxRepairs) {
           const reason = filtered ? '模型回合被内容过滤截断' : `已返修 ${maxRepairs} 次仍未通过`;
-          const failure = agentOutcomeError(`${error.message}（${reason}；继续时将新建会话）`, response, error);
-          discarded.set(failure, reason);
-          throw failure;
+          // Only the user reads this: the agent's prompts never mention it.
+          throw agentOutcomeError(`${error.message}（${reason}；继续仍接回同一会话，会话已无法推进时请用“恢复”换新会话）`, response, error);
         }
         const problems = runtimePrompt(`checks/${error.code}`, error.values);
         const repair = runtimePrompt('check-repair', { problems, round: String(round), max: String(maxRepairs) });

@@ -240,10 +240,10 @@ for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} �
   assert.deepEqual(await readFile(join(output,names[0]+'.png')),png);
 });
 
-for (const text of ['{}', '[]', '{"error":false}', '{"error":null,"extra":1}', '{"error":""}']) test(`nine-axis rejects invalid result ${text} (repaired twice unless the model reported an error itself) and keeps the author file`, async t => {
+for (const text of ['{}', '[]', '{"error":false}', '{"error":null,"extra":1}', '{"error":""}']) test(`nine-axis rejects invalid result ${text} (repaired twice) and keeps the author file and the session`, async t => {
   const f=await fixture(t); f.plans.set('left',{result:{text}});
   await assert.rejects(f.run('left'), /结果须为|空错误原因/);
   const kept = !!(await readStepSession(f.section,f.step('left')))?.threadId;
-  assert.equal(kept, text === '{"error":""}');
+  assert.equal(kept, true);
   assert.equal(await readFile(join(f.output('left'),'face-left.json'),'utf8'),'original author left');
 });

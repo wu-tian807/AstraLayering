@@ -8,7 +8,7 @@ import { selectKnowledge, stepKnowledge, type KnowledgeRole } from '../shared/kn
 import { runSection, stepName } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { CodexAgents, type AgentResult, type AgentTask } from '../shared/codex/agents.ts';
-import { CheckFailure, asCheck, checkedTurn, discardedSessionReason } from '../shared/codex/checked-turn.ts';
+import { CheckFailure, asCheck, checkedTurn } from '../shared/codex/checked-turn.ts';
 import { preflightAgentSteps } from '../shared/agents/preflight.ts';
 import { prepareWorkspace, workspacePrompt } from '../shared/agents/workspace.ts';
 import { checkKrita } from '../shared/raster/krita.ts';
@@ -33,7 +33,7 @@ import { writeBuilt } from './head.ts';
 import { prepareNeutral } from './neutral.ts';
 import { mergeAxes } from './axis-merge.ts';
 import { axisGroups, checkAxisSource, runAxisGroups, seedAxis, type AxisGroup } from './axis-groups.ts';
-import { clearStepSession, readStepSession, writeStepSession } from '../shared/agents/step-session.ts';
+import { readStepSession, writeStepSession } from '../shared/agents/step-session.ts';
 import type { AgentStep, Harness } from '../shared/agents/models.ts';
 import { checkOutlineFiles, runOutline } from './outline.ts';
 import sharp from 'sharp';
@@ -138,8 +138,6 @@ async function runAgentTurn(agents: Agents, nine: string, directory: string, tur
     } } : agents, task, check, records: join(directory, 'checks'), signal });
   } catch (error) {
     if (error && typeof error === 'object' && 'threadId' in error && typeof error.threadId === 'string') await persist(error.threadId);
-    // An unrepairable thread is dropped so that continuing starts a fresh one.
-    if (turn.session && discardedSessionReason(error)) { await clearStepSession(nine, turn.session, discardedSessionReason(error)!); }
     throw error;
   } finally { await session?.close(); }
 }

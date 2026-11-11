@@ -3,7 +3,7 @@ import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
-import { CheckFailure, checkedTurn, discardedSessionReason, missingSubmit } from '../codex/checked-turn.ts';
+import { CheckFailure, checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { runtimePrompts } from '../knowledge-steps.ts';
 import { runtimePrompt } from '../knowledge.ts';
 
@@ -21,11 +21,12 @@ test('a failed check is fed back to the same agent and then passes', async () =>
   assert.match(prompts[1], /submit_x/);
 });
 
-test('three failures end the step and drop the saved session', async () => {
+test('three failures end the step with a user hint and keep the session', async () => {
   const prompts: string[] = [];
   const error = await checkedTurn({ agents: agentsFor(prompts), task, check: () => { throw missingSubmit('submit_x', '未提交'); } }).catch(e => e);
   assert.equal(prompts.length, 3);
-  assert.ok(discardedSessionReason(error));
+  assert.match(error.message, /已返修 \d+ 次仍未通过.*继续仍接回同一会话/);
+  assert.doesNotMatch(prompts.join('\n'), /恢复|新建会话/);
 });
 
 test('a content-filtered turn is not repaired in its thread', async () => {
@@ -34,7 +35,7 @@ test('a content-filtered turn is not repaired in its thread', async () => {
   const prompts: string[] = [];
   const error = await checkedTurn({ agents: agentsFor(prompts, async () => dir), task, check: () => { throw missingSubmit('submit_x', '未提交'); } }).catch(e => e);
   assert.equal(prompts.length, 1);
-  assert.match(discardedSessionReason(error) ?? '', /内容过滤/);
+  assert.match(error.message, /内容过滤/);
 });
 
 test('other errors propagate unchanged', async () => {
