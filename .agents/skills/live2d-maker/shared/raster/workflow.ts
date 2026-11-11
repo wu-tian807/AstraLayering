@@ -3,9 +3,10 @@ import { publishReportAssets } from '../report-assets.ts';
 import { runtimePrompt, stepKnowledge } from '../knowledge.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../codex/environment.ts';
 import { formatAgentError, agentOutcomeError } from '../codex/diagnostics.ts';
+import { maxRepairs } from '../codex/checked-turn.ts';
 import { retryDelays } from '../codex/agent-runtime.ts';
 import { sectionDirectory, resolveInput, resolveRunsDirectory, type SectionId } from '../paths.ts';
-import { appendFile, mkdir, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { runAgent, type Agent, type AgentRequest } from './agent.ts';
@@ -181,7 +182,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
       return async () => {};
     }
     let lastAgentMessage = '';
-    let lastThreadId: string | undefined;
+    let lastThreadId: string | undefined, lastAttempt = '';
     // The step's own drawing session (agents/steps/<step>/session.json).
     let session: StepSession = {};
     const saveSession = async (next: StepSession, reason?: string) => { await writeStepSession(directory, step.id, next, reason); session = next; };
@@ -190,6 +191,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
       if (!fresh) session = await readStepSession(directory, step.id) ?? {};
       lastThreadId = fresh ? undefined : session.threadId;
       const attempt = randomUUID();
+      lastAttempt = attempt;
       const key = fresh ? step.review?.modelStep : phase.startsWith('repair') ? step.review?.repairModelStep : step.modelStep;
       const selected = key ? environment.stepModels[key] : fresh ? step.review! : model;
       const harness = 'harness' in selected ? selected.harness : modelHarnesses[selected.model as keyof typeof modelHarnesses] || 'codex';
@@ -249,6 +251,29 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
       return result;
     };
     if (step.krita !== false) await sectionKrita.reserve(options.signal, waiting => options.progress?.(`${step.id}：${waiting}`));
+    // A failed program check goes back to the step's own thread as a repair turn
+    // (at most maxRepairs); a filtered or exhausted thread is dropped so that
+    // continuing starts a fresh one.
+    const repairing = async (check: () => Promise<unknown>) => {
+      for (let round = 1; ; round++) {
+        try { return await check(); }
+        catch (error) {
+          options.signal?.throwIfAborted();
+          const message = error instanceof Error ? error.message : String(error);
+          const filtered = (await readFile(join(records, 'events.jsonl'), 'utf8').catch(() => ''))
+            .split('\n').some(line => line.includes(lastAttempt) && line.includes('content_filter'));
+          if (filtered || round > maxRepairs) {
+            const reason = filtered ? '模型回合被内容过滤截断' : `已返修 ${maxRepairs} 次仍未通过`;
+            await clearStepSession(directory, step.id, reason);
+            throw new Error(`${message}（${reason}；继续时将新建会话）`, { cause: error });
+          }
+          const problems = runtimePrompt('checks/invalid-output', { detail: message });
+          const repair = runtimePrompt('check-repair', { problems, round: String(round), max: String(maxRepairs) });
+          const result = await invoke(repair, `repair-check-${round}`);
+          if (result.status !== 'completed') throw new Error(`步骤未完成：${result.summary}`);
+        }
+      }
+    };
     return async () => { try {
       await section.prepareStep?.(output, reference, step, krita);
       if (!drawingReady) {
@@ -260,7 +285,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
         if (result.status !== 'completed') throw new Error(`步骤未完成：${result.summary}`);
         if (!session.threadId) throw new Error('SDK 未返回 threadId，不能完成步骤。');
         const required = step.requiredFiles.map(file => step.review && file === 'report.md' ? 'report.md.tmp' : file);
-        await checkFiles(output, required);
+        await repairing(() => checkFiles(output, required));
         options.signal?.throwIfAborted();
         if (step.review) await rename(join(output, 'report.md.tmp'), join(output, 'report.md'));
       }
@@ -274,8 +299,10 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
       }
       await section.prepareDelivery?.(output, reference, step);
       await publishReportAssets(join(output, 'report.md'), join(output, 'workspace'));
-      await checkFiles(output, step.requiredFiles);
-      await section.validateDelivery?.(output, reference, step, krita);
+      await repairing(async () => {
+        await checkFiles(output, step.requiredFiles);
+        await section.validateDelivery?.(output, reference, step, krita);
+      });
       await logDeliveryWarnings(step);
       options.signal?.throwIfAborted();
       options.progress?.(`${step.id}：交付检查通过，写入 .completed`);

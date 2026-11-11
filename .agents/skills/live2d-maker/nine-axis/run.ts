@@ -7,7 +7,8 @@ import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/pat
 import { selectKnowledge, stepKnowledge, type KnowledgeRole } from '../shared/knowledge.ts';
 import { runSection, stepName } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
-import { CodexAgents } from '../shared/codex/agents.ts';
+import { CodexAgents, type AgentResult, type AgentTask } from '../shared/codex/agents.ts';
+import { CheckFailure, asCheck, checkedTurn, discardedSessionReason } from '../shared/codex/checked-turn.ts';
 import { preflightAgentSteps } from '../shared/agents/preflight.ts';
 import { prepareWorkspace, workspacePrompt } from '../shared/agents/workspace.ts';
 import { checkKrita } from '../shared/raster/krita.ts';
@@ -32,9 +33,9 @@ import { writeBuilt } from './head.ts';
 import { prepareNeutral } from './neutral.ts';
 import { mergeAxes } from './axis-merge.ts';
 import { axisGroups, checkAxisSource, runAxisGroups, seedAxis, type AxisGroup } from './axis-groups.ts';
-import { readStepSession, writeStepSession } from '../shared/agents/step-session.ts';
+import { clearStepSession, readStepSession, writeStepSession } from '../shared/agents/step-session.ts';
 import type { AgentStep, Harness } from '../shared/agents/models.ts';
-import { runOutline } from './outline.ts';
+import { checkOutlineFiles, runOutline } from './outline.ts';
 import sharp from 'sharp';
 import { runWorkflow as runGroups } from '../shared/part/workflow.ts';
 import { nineAxisSteps, nineAxisBranches } from '../shared/nine-axis.ts';
@@ -102,7 +103,9 @@ type Agents = Pick<CodexAgents, 'run'> & Partial<Pick<CodexAgents, 'createSessio
 // without it the turn is a fresh session that is never saved (a reviewer).
 // `recoveryPrompt` replaces the prompt when the saved thread is gone.
 type AgentTurn = { step: AgentStep; knowledge: string; role: KnowledgeRole; session?: string; name: string;
-  tools: FunctionTool[]; prompt: string; recoveryPrompt?: string };
+  tools: FunctionTool[]; prompt: string; recoveryPrompt?: string;
+  // Program check of the delivered files; a failure goes back to the same thread as a repair turn.
+  verify?: () => Promise<unknown> };
 async function runAgentTurn(agents: Agents, nine: string, directory: string, turn: AgentTurn, signal?: AbortSignal) {
   signal?.throwIfAborted();
   const paths = await prepareWorkspace({ cwd: nine, outputDirectory: directory }, nine);
@@ -115,30 +118,39 @@ async function runAgentTurn(agents: Agents, nine: string, directory: string, tur
   };
   const session = turn.session ? agents.createSession?.(saved.threadId, { resumeHarness: saved.harness, onSessionStarted: persist, onThreadReplacement: async () => persist(null) }) : undefined;
   const prompt = turn.recoveryPrompt && !saved.threadId ? turn.recoveryPrompt : turn.prompt;
-  let result;
+  const task = { step: turn.step, name: turn.name, cwd: nine, outputDirectory: directory, outputSchema,
+    tools: stepKnowledge('nine-axis', turn.knowledge).tools(turn.role, turn.tools), prompt: workspacePrompt(prompt, paths),
+    ...(turn.recoveryPrompt ? { recoveryPrompt: workspacePrompt(turn.recoveryPrompt, paths) } : {}) };
+  const checkResult = (result: AgentResult) => {
+    let value: unknown;
+    try { value = JSON.parse(result.text); } catch { throw new CheckFailure('bad-result', `${turn.name}没有返回结果`, { detail: '没有返回结果' }); }
+    if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).length !== 1 || !('error' in value)
+      || (value.error !== null && typeof value.error !== 'string'))
+      throw new CheckFailure('bad-result', `${turn.name}结果须为 {"error":null} 或 {"error":"原因"}`, { detail: '结果须为 {"error":null} 或 {"error":"原因"}' });
+    if (typeof value.error === 'string') throw agentOutcomeError(`${turn.name}：${value.error || '返回了空错误原因'}`, result);
+  };
+  const check = async (result: AgentResult) => { checkResult(result); if (turn.verify) await asCheck('invalid-output', turn.verify); };
   try {
-    result = await (session ?? agents).run({ step: turn.step, name: turn.name, cwd: nine, outputDirectory: directory, outputSchema,
-      tools: stepKnowledge('nine-axis', turn.knowledge).tools(turn.role, turn.tools), prompt: workspacePrompt(prompt, paths),
-      ...(turn.recoveryPrompt ? { recoveryPrompt: workspacePrompt(turn.recoveryPrompt, paths) } : {}) }, signal);
-    if (result.threadId) await persist(result.threadId, result.harness);
+    await checkedTurn({ agents: session ? { async run(next: AgentTask, abort?: AbortSignal) {
+      const result = await session.run(next, abort);
+      if (result.threadId) await persist(result.threadId, result.harness);
+      return result;
+    } } : agents, task, check, records: join(directory, 'checks'), signal });
   } catch (error) {
     if (error && typeof error === 'object' && 'threadId' in error && typeof error.threadId === 'string') await persist(error.threadId);
+    // An unrepairable thread is dropped so that continuing starts a fresh one.
+    if (turn.session && discardedSessionReason(error)) { await clearStepSession(nine, turn.session, discardedSessionReason(error)!); }
     throw error;
   } finally { await session?.close(); }
-  let value: unknown;
-  try { value = JSON.parse(result.text); } catch { throw agentOutcomeError(`${turn.name}没有返回结果`, result); }
-  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).length !== 1 || !('error' in value)
-    || (value.error !== null && typeof value.error !== 'string')) throw agentOutcomeError(`${turn.name}结果须为 {"error":null} 或 {"error":"原因"}`, result);
-  if (typeof value.error === 'string') throw agentOutcomeError(`${turn.name}：${value.error || '返回了空错误原因'}`, result);
 }
 
-export type FitHead = (directory: string, prompt: string) => Promise<void>;
+export type FitHead = (directory: string, prompt: string, verify?: () => Promise<unknown>) => Promise<void>;
 export function createFitHead(agents: Agents, tools: (step: string) => Promise<FunctionTool[]>, step: string, name: string, signal?: AbortSignal, sectionDirectory?: string): FitHead {
-  return async (directory, prompt) => {
+  return async (directory, prompt, verify) => {
     const group = step.split('/').length > 2 ? step.split('/').at(-1) : undefined;
     const agentStep = group || step === 'step04_angles' ? 'nine_axis_head' : step === 'step06_angle-xy' ? 'nine_axis_head_xy' : 'nine_axis_head_jaw';
     await runAgentTurn(agents, sectionDirectory ?? join(directory, '..'), directory, { step: agentStep, knowledge: group ? 'step04_angles' : step,
-      role: 'main', session: step, name, tools: await tools(step), prompt }, signal);
+      role: 'main', session: step, name, tools: await tools(step), prompt, verify }, signal);
   };
 }
 
@@ -146,7 +158,8 @@ export function createFitHead(agents: Agents, tools: (step: string) => Promise<F
 export type OutlineHead = (directory: string, prompt: string) => Promise<void>;
 export function createOutlineHead(agents: Agents, tools: (directory: string) => Promise<FunctionTool[]>, session: string, name: string, signal?: AbortSignal, sectionDirectory?: string): OutlineHead {
   return async (directory, prompt) => runOutline(directory, async () => { await runAgentTurn(agents, sectionDirectory ?? join(directory, '../..'), directory, {
-    step: 'nine_axis_outline', knowledge: 'step04_outline', role: 'main', session, name, prompt, tools: await tools(directory) }, signal); });
+    step: 'nine_axis_outline', knowledge: 'step04_outline', role: 'main', session, name, prompt, tools: await tools(directory),
+    verify: () => checkOutlineFiles(directory) }, signal); });
 }
 // Reference frames are chosen from the videos by their own agent, so the outline and fit start from them.
 export type FramesHead = (directory: string, prompt: string) => Promise<void>;
@@ -154,9 +167,10 @@ const frameAgents = { step03_frames: { agent: 'nine_axis_view_frames', knowledge
   'step05_frames': { agent: 'nine_axis_frames', knowledge: 'step05_frames', name: '斜向选帧', names: corners } } as const;
 export function createFramesHead(agents: Agents, tools: (directory: string) => Promise<FunctionTool[]>, step: keyof typeof frameAgents, signal?: AbortSignal, sectionDirectory?: string): FramesHead {
   const { agent, knowledge, name, names } = frameAgents[step];
-  return async (directory, prompt) => runFrameSelection(directory, names, async () => { await runAgentTurn(agents, sectionDirectory ?? join(directory, '..'), directory, {
-    step: agent, knowledge, role: 'main', session: step, name, prompt, tools: await tools(directory) }, signal); },
-    join(sectionDirectory ?? join(directory, '..'), step === 'step03_frames' ? 'step02_video' : 'step04_angles/video'));
+  const videoDirectory = (directory: string) => join(sectionDirectory ?? join(directory, '..'), step === 'step03_frames' ? 'step02_video' : 'step04_angles/video');
+  return async (directory, prompt) => { const video = videoDirectory(directory); return runFrameSelection(directory, names, async () => { await runAgentTurn(agents, sectionDirectory ?? join(directory, '..'), directory, {
+    step: agent, knowledge, role: 'main', session: step, name, prompt, tools: await tools(directory),
+    verify: () => checkSelectedFrames(directory, names, undefined, video) }, signal); }, video); };
 }
 
 export type NineAxisOptions = { name: string; dir?: string; krita?: string; ffmpeg?: string; step?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
@@ -295,7 +309,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
                     const outline = dependencies.outlineHead ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools(join(frames, `${g}.png`)), `${id}/outline`, `描边 ${g}`, options.signal, directory)));
                     if (outline) { const o = join(folder, 'outline'); await mkdir(o, { recursive: true }); await outline(o, outlinePrompt(head, task, g)); }
                     const fit = injected ?? (await preflight(), createFitHead(agents(), faceTools, id, `单轴 ${g}`, options.signal, directory));
-                    await fit(folder, axisPrompt(head, task, g)); await checkAxisSource(preparation, await builds[id]());
+                    await fit(folder, axisPrompt(head, task, g), async () => checkAxisSource(preparation, await builds[id]()));
                     if (g === 'left') await finishHead(folder, head, box, scale, task); else await finishAngleY(folder, preparation, g, scale);
                     await checkDelivery(id); progress(`${id} 已完成，其他分支独立继续`);
                   },
@@ -328,8 +342,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           const failed = outlines.find(result => result.status === 'rejected');
           if (failed?.status === 'rejected') throw failed.reason;
           const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向', options.signal, directory));
-          await fit(xyDirectory, angleXYPrompt(task));
-          await checkCornerReferences(xyDirectory, (await crop()).size, cornerFrames, cornerVideos);
+          await fit(xyDirectory, angleXYPrompt(task), async () => checkCornerReferences(xyDirectory, (await crop()).size, cornerFrames, cornerVideos));
           summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(xyDirectory, modelDirectory, scale, cornerFrames, cornerVideos)} 个原图层的斜向四角`;
         };
         return async () => {

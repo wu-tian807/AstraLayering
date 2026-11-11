@@ -35,6 +35,7 @@ async function fixture(t: TestContext) {
   await put(configPath, JSON.stringify({ main: { initial: ['prompts/main.md'], tools: ['view_bitmap', 'edit_nine_axis'] } }));
   await put(join(knowledge, 'nine-axis/step04_angles/prompts/main.md'), 'shared nine-axis agent');
   await put(join(knowledge, 'shared/prompts/runtime/agent-turn.md'), 'Session task root: {uri:.}');
+  for (const name of ['check-repair', 'check-repair-resume', 'checks/bad-result']) await put(join(knowledge, `shared/prompts/runtime/${name}.md`), '{problems}{detail}');
   await put(join(knowledge, 'nine-axis/step04_angles/tools/view_bitmap/description.md'), 'single agent.json bitmap tool');
   await put(join(knowledge, 'nine-axis/step04_angles/tools/edit_nine_axis/description.md'), 'single agent.json edit tool');
   useKnowledge(knowledge);
@@ -239,9 +240,10 @@ for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} �
   assert.deepEqual(await readFile(join(output,names[0]+'.png')),png);
 });
 
-for (const text of ['{}', '[]', '{"error":false}', '{"error":null,"extra":1}', '{"error":""}']) test(`nine-axis rejects invalid result ${text} without losing the session`, async t => {
+for (const text of ['{}', '[]', '{"error":false}', '{"error":null,"extra":1}', '{"error":""}']) test(`nine-axis rejects invalid result ${text} (repaired twice unless the model reported an error itself) and keeps the author file`, async t => {
   const f=await fixture(t); f.plans.set('left',{result:{text}});
   await assert.rejects(f.run('left'), /结果须为|空错误原因/);
-  assert.ok((await readStepSession(f.section,f.step('left')))?.threadId);
+  const kept = !!(await readStepSession(f.section,f.step('left')))?.threadId;
+  assert.equal(kept, text === '{"error":""}');
   assert.equal(await readFile(join(f.output('left'),'face-left.json'),'utf8'),'original author left');
 });

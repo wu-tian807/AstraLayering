@@ -2,7 +2,7 @@ import { layerStepId } from './part-steps.ts';
 import { layerItem } from '../step-paths.js';
 import { partKnowledge } from './group-prompts.ts';
 import { partStep } from '../agents/models.ts';
-import { agentOutcomeError } from '../codex/diagnostics.ts';
+import { checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { partProfile } from './profile.ts';
 import { readFile } from 'node:fs/promises';
@@ -107,12 +107,14 @@ export async function reduceGroupOutlines(context: OutlineReductionContext, agen
     },
   };
   const knowledge = partKnowledge(partProfile(context), 'reduction');
-  const response = await agents.run({ step: partStep(partProfile(context).id, 'reduce'), name: `同层轮廓去重-${context.depth}`, cwd: context.directory, outputDirectory: join(context.directory, layerStepId(context.depth)),
-    tools: knowledge.tools('main', [list, preview, write, submit, createSvgReadTool(context.directory)]),
-    // Fixed paths are spelled in the prompt; the groups come from list_reduction_groups.
-    prompt: knowledge.render('main', { layer_depth: layerItem(context.depth).slice('depth'.length),
-      width: String(canvas.width), height: String(canvas.height) }, { taskRoot: root }),
-  });
-  if (!submitted) throw agentOutcomeError('同层去重未通过 submit_reduction 提交', response);
-  return submitted;
+  return checkedTurn({ agents, records: join(context.directory, layerStepId(context.depth), 'checks'),
+    task: { step: partStep(partProfile(context).id, 'reduce'), name: `同层轮廓去重-${context.depth}`, cwd: context.directory, outputDirectory: join(context.directory, layerStepId(context.depth)),
+      tools: knowledge.tools('main', [list, preview, write, submit, createSvgReadTool(context.directory)]),
+      // Fixed paths are spelled in the prompt; the groups come from list_reduction_groups.
+      prompt: knowledge.render('main', { layer_depth: layerItem(context.depth).slice('depth'.length),
+        width: String(canvas.width), height: String(canvas.height) }, { taskRoot: root }) },
+    check: () => {
+      if (!submitted) throw missingSubmit('submit_reduction', '同层去重未通过 submit_reduction 提交');
+      return submitted;
+    } });
 }

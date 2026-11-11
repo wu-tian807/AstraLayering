@@ -110,16 +110,17 @@ test('独立字节预算保留 env 控制权，Codex 明确拒绝缺少字节保
   assert.equal(disabled.codex.env!.LAYERING_REQUEST_COMPACT_BYTES, undefined);
 });
 
-test('两套 raster 续跑读取当前环境模型，仍恢复原 threadId，缺产物诊断带最后消息', async t => {
+test('两套 raster 缺产物先返修两次，仍失败则丢弃该会话；继续时读取当前环境模型并新建线程，诊断带最后消息', async t => {
   for (const section of [character, clothing]) await t.test(section.id, async t => {
     const root = await fixture(t); await seedUpstream('case', section.inputSection, root);
     const environment = loadWorkflowEnvironment({ high_model: 'gpt-6-astra-high' }, root);
     const directory = join(root, 'case', section.id);
     const deps = { runsDirectory: root, steps: [section.steps[0]], environment,
       preflight: async (executable: string) => ({ executable }) };
-    let failure: unknown;
+    let failure: unknown, turns = 0;
     try {
       await runWorkflow(section, { name: 'case', krita: process.execPath }, { ...deps, agent: async request => {
+        turns++;
         assert.equal(request.model, 'gpt-6-astra'); assert.equal(request.effort, 'high');
         await request.onEvent({ type: 'thread.started', thread_id: 'persistent-thread' });
         await request.onEvent({ type: 'item.completed', item: { type: 'agent_message', id: 'message', text: '当前没有 image_generation 工具，无法绘制。' } });
@@ -127,6 +128,8 @@ test('两套 raster 续跑读取当前环境模型，仍恢复原 threadId，缺
       } });
     } catch (error) { failure = error; }
     assert.ok(failure);
+    assert.equal(turns, 3); // the draw and two repairs
+    assert.equal((await readStepSession(directory, 'step01'))?.threadId, undefined);
     assert.match(formatAgentError(failure), /缺少有效交付/);
     assert.match(formatAgentError(failure), /没有 image_generation 工具/);
     assert.match(formatAgentError(failure), /persistent-thread/);
@@ -135,7 +138,7 @@ test('两套 raster 续跑读取当前环境模型，仍恢复原 threadId，缺
     const changed = loadWorkflowEnvironment({ high_model: 'gpt-6.1-sol-low' }, root);
     await runWorkflow(section, { name: 'case', krita: process.execPath }, { ...deps, environment: changed, agent: async request => {
       if (isRasterReview(request)) return deliverRasterStep(request, section.steps[0]);
-      assert.equal(request.threadId, 'persistent-thread');
+      assert.equal(request.threadId, undefined);
       assert.equal(request.model, 'gpt-6.1-sol'); assert.equal(request.effort, 'low');
       return deliverRasterStep(request, section.steps[0], 'persistent-thread');
     } });

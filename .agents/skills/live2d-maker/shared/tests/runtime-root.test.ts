@@ -95,7 +95,7 @@ test('两套 raster 的 --dir 定位上游与续跑 thread，覆盖测试注入 
     await run({ name: 'case', dir, krita: 'krita' }, { ...deps, agent: async request => {
       if (!isRasterReview(request)) assert.equal(request.threadId, 'kept-thread');
       // The upstream located under --dir is shown to the agent as an absolute path.
-      if (!isRasterReview(request)) assert.ok(request.prompt.includes(JSON.stringify(sectionDirectory('case', input, dir))));
+      if (!isRasterReview(request)) assert.ok(request.prompt.includes(`${sectionDirectory("case", input, dir)}/parts/`));
       return deliverRasterStep(request, definitions[0], 'kept-thread');
     } });
     await stat(join(output, 'step01/.completed'));

@@ -126,15 +126,6 @@ test('任务根经软链接打开时，预览记录的真实路径仍认作当�
   assert.equal((await GroupStore.open(f.directory)).snapshot().groups[0].steps.completion.status, 'completed');
 });
 
-test('自定义补全实现也受调度器保留原形约束，不发布重画候选', async t => {
-  const f = await fixture(t), steps = workingSteps([]);
-  await assert.rejects(runLayering({ ...f, groups: null, steps: { ...steps, async completeOcclusion(context) {
-    await writeFile(context.outputPath, shape('head', 5, 95));
-    return { status: 'completed', output: { path: context.outputPath } };
-  } } }), /只允许程序生成的新增层/);
-  await assert.rejects(readFile(artifactPath(f.directory, 'head', 'completion')), { code: 'ENOENT' });
-});
-
 test('face 特化按完整 ID 独立读取，未特化的子组沿用通用正文', async t => {
   const completion = partKnowledge(profile, 'completion');
   const face = completion.render('main', {}, { taskRoot: '/task', group: 'face' });

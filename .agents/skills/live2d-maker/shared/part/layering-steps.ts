@@ -7,7 +7,8 @@ import { analyzeChildren } from './children-agent.ts';
 import { planPartOcclusion } from './occlusion-agent.ts';
 import type { LayeringSteps } from './layering-types.ts';
 import type { GroupContext } from './layering-types.ts';
-import { readStepSession, writeStepSession, type StepSession } from '../agents/step-session.ts';
+import { discardedSessionReason } from '../codex/checked-turn.ts';
+import { clearStepSession, readStepSession, writeStepSession, type StepSession } from '../agents/step-session.ts';
 import type { Harness } from '../agents/models.ts';
 import { groupStepId } from './part-steps.ts';
 
@@ -48,6 +49,12 @@ export function createLayeringSteps(agents: Pick<CodexAgents, 'run'> & Partial<P
     }
     return session;
   }
+  // A thread whose checks could not be repaired is dropped from the saved session, so 继续
+  // keeps the draft and products but starts a new thread instead of the stuck one.
+  async function discardSession(context: GroupContext, step: 'outline' | 'completion', error: unknown) {
+    const reason = discardedSessionReason(error);
+    if (reason) await clearStepSession(context.directory, groupStepId(context.group.id, step), reason);
+  }
   async function closeSession(context: GroupContext, step: 'outline' | 'completion') {
     const key = groupStepId(context.group.id, step), session = sessions.get(key);
     sessions.delete(key);
@@ -62,15 +69,17 @@ export function createLayeringSteps(agents: Pick<CodexAgents, 'run'> & Partial<P
     initialGroups: async context => ({ status: 'completed', output: await recognizeInitialGroups(context, agents) }),
     drawOutline: async context => {
       try { return { status: 'completed', output: await drawGroupOutline(context, await stepSession(context, 'outline')) }; }
-      catch (error) { await closeSession(context, 'outline'); throw error; }
+      catch (error) { await closeSession(context, 'outline'); await discardSession(context, 'outline', error); throw error; }
     },
     reviewOutline: async context => {
       try { return await reviewGroupOutline(context, agents, await stepSession(context, 'outline')); }
+      catch (error) { await discardSession(context, 'outline', error); throw error; }
       finally { await closeSession(context, 'outline'); }
     },
     reduceOutlines: async context => ({ status: 'completed', output: await reduceGroupOutlines(context, agents) }),
     completeOcclusion: async context => {
       try { return { status: 'completed', output: await completeGroupOcclusion(context, await stepSession(context, 'completion')) }; }
+      catch (error) { await discardSession(context, 'completion', error); throw error; }
       finally { await closeSession(context, 'completion'); }
     },
     checkCompletion: async context => ({ status: 'completed', output: await checkGroupCompletion(context) }),

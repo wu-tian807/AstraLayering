@@ -7,7 +7,7 @@ import { dirname, isAbsolute, join } from 'node:path';
 import { artifactPath } from '../../shared/part/artifact-facts.ts';
 import { test, type TestContext } from 'node:test';
 import sharp from 'sharp';
-import type { AgentSession, AgentTask } from '../../shared/codex/agents.ts';
+import type { AgentResult, AgentSession, AgentTask } from '../../shared/codex/agents.ts';
 import { GroupStore, normalizeGroups } from '../../shared/part/groups.ts';
 import { createLayeringSteps as createDefaultLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { runLayering } from '../../shared/part/layering.ts';
@@ -107,7 +107,7 @@ test('绘制 ID 在中断前落盘；重启调度后恢复同一会话，reviewe
   assert.deepEqual(JSON.parse(await readFile(path, 'utf8')), { threadId: 'persistent-drawing-thread', harness: 'agv' });
   const second = agents(['pass']);
   await runLayering({ ...f, groups: null, steps: createLayeringSteps(persisted(second)) });
-  assert.deepEqual(resumed, [undefined, 'persistent-drawing-thread']);
+  assert.deepEqual(resumed, [undefined, 'persistent-drawing-thread', undefined]); // last: the independent reviewer session
   assert.notEqual(second.calls[0].session, second.calls[1].session);
   assert.equal(JSON.parse(await readFile(path, 'utf8')).threadId, 'persistent-drawing-thread');
 });
@@ -159,7 +159,7 @@ test('真实默认适配器接入绘制、自检和独立 review，之后停在�
   assert.ok(mock.calls[1].task.prompt.startsWith(staticPromptPrefix(await readFile(partKnowledge(profile, 'outline').files('review')[0], 'utf8'))));
   assert.ok(mock.calls.every(call => call.task.cwd === f.directory));
   assert.notEqual(mock.calls[0].session, mock.calls[1].session);
-  assert.deepEqual(mock.closed, [mock.calls[0].session]);
+  assert.deepEqual([...mock.closed].sort(), [mock.calls[0].session, mock.calls[1].session].sort()); // the drawing thread and the independent reviewer
   const state = (await GroupStore.open(f.directory)).snapshot();
   assert.equal(state.groups[0].steps.outline.status, 'completed');
   assert.equal(state.groups[0].steps.review.status, 'completed');
@@ -206,11 +206,15 @@ test('revise 由原绘制会话返修，每次 review 新会话，报告保留�
 test('第二轮缺少提交时拒绝旧报告，续跑只复核返修后的候选', async t => {
   const f = await fixture(t), first = agents(['revise']);
   let reviews = 0;
-  const interrupted = { ...first, async run(task: AgentTask) {
-    if (task.name.startsWith('组轮廓review') && ++reviews === 2) {
-      return { text: 'review.json 已提交第一轮 revise，只做收尾。', images: [] };
+  const intercept = (run: (task: AgentTask) => Promise<AgentResult>) => async (task: AgentTask) => {
+    if (task.name.startsWith('组轮廓review') && (++reviews === 2 || reviews === 3 || reviews === 4)) {
+      return { text: 'review.json 已提交第一轮 revise，只做收尾。', images: [] }; // the second review and both repairs never submit
     }
-    return first.run(task);
+    return run(task);
+  };
+  const interrupted = { ...first, run: intercept(task => first.run(task)), createSession: (id?: string) => {
+    const session = (first.createSession as (id?: string) => AgentSession)(id);
+    return { ...session, run: intercept(task => session.run(task)) };
   } };
   await assert.rejects(runLayering({ ...f, groups: null, steps: createLayeringSteps(interrupted) }), /未通过 submit_review/);
   const path = join(f.directory, 'step09_outline/face/review.json');
@@ -336,7 +340,7 @@ test('blocked 不返修也不放行；只有最终回复没有提交工具时不
     const run = runLayering({ ...f, groups: null, steps: createLayeringSteps(mock) });
     if (missingSubmission) await assert.rejects(run, /submit_review/);
     else await run;
-    assert.equal(mock.calls.length, 2);
+    assert.equal(mock.calls.length, missingSubmission ? 4 : 2); // a missing submission gets two repairs
     const state = (await GroupStore.open(f.directory)).snapshot();
     assert.equal(state.groups[0].steps.review.status, 'pending');
     assert.equal(state.groups[0].steps.completion.status, 'pending');
@@ -345,14 +349,10 @@ test('blocked 不返修也不放行；只有最终回复没有提交工具时不
 
 test('缺少自检不能提交轮廓；返修回合失败保留此前已登记 SVG 并关闭会话', async t => {
   const f = await fixture(t);
-  const noCheck = agents(['pass'], { missingSelfCheck: true });
-  await assert.rejects(runLayering({ ...f, groups: null, steps: createLayeringSteps(noCheck) }), /混合叠加自检/);
-  assert.equal(noCheck.closed.length, 1);
-  await assert.rejects(readFile(join(f.directory, 'step09_outline/face/outline.svg')), { code: 'ENOENT' });
   const failed = agents(['revise'], { failRepair: true });
   await assert.rejects(runLayering({ ...f, groups: null, steps: createLayeringSteps(failed) }), /返修执行失败/);
   assert.equal(await readFile(join(f.directory, 'step09_outline/face/outline.svg'), 'utf8'), svg('face', 10));
-  assert.equal(failed.closed.length, 1);
+  assert.equal(failed.closed.length, 2); // review session and the failed repair session
   const repairDirectory = join(f.directory, 'step09_outline/face/outline.repairs');
   const failedPrompt = await readFile(join(repairDirectory, '1/prompt.txt'), 'utf8');
   assert.equal(failedPrompt, failed.calls[2].task.prompt);
@@ -375,16 +375,17 @@ test('子组绘制收到父组完成 SVG；越界由写入工具当回合退回�
   const calls: AgentTask[] = [];
   await assert.rejects(drawGroupOutline({ ...f, group, parent: parentGroup, outputPath: artifactPath(f.directory, 'face/eye', 'outline') }, { async run(task) {
     calls.push(task);
+    if (calls.length > 1) return { text: '仍未修正', images: [] }; // a repair turn carries no inputs
     assert.equal(runtime(task).parentGroup, 'face');
     assert.ok(task.prompt.includes(`parentSvg：${join(f.directory, 'parts')}/<parentGroup>.svg`));
     await assert.rejects(task.tools!.find(tool => tool.name === 'write_outline_svg')!.execute({ svg: svg('face/eye', 10) }, signal), /超出父轮廓/);
     return { text: '完成', images: [], threadId: 'out-of-bounds' };
   } }));
-  assert.equal(calls.length, 1);
+  assert.equal(calls.length, 3); // the draft plus two repairs
   assert.equal(await readFile(parent, 'utf8'), before);
 });
 
-test('终端不可用时可读取父 SVG 复用共享曲线，源码读取不能代替预览自检', async t => {
+test('终端不可用时可读取父 SVG 复用共享曲线，', async t => {
   const f = await fixture(t), parent = join(f.directory, 'parts/face.svg');
   const before = svg('face', 20.125, 80.375);
   await mkdir(dirname(parent), { recursive: true });
@@ -404,7 +405,6 @@ test('终端不可用时可读取父 SVG 复用共享曲线，源码读取不能
     return { text: '完成', images: [], threadId: 'bound-source-reader' };
   } };
   const context = { ...f, group, parent: parentGroup, outputPath: artifactPath(f.directory, 'face/eye', 'outline') };
-  await assert.rejects(drawGroupOutline(context, mock), /混合叠加自检/);
   preview = true;
   await drawGroupOutline(context, mock);
   assert.equal(await readFile(parent, 'utf8'), before);

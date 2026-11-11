@@ -1,6 +1,6 @@
 import { groupStepId } from './part-steps.ts';
 import { partStep } from '../agents/models.ts';
-import { agentOutcomeError } from '../codex/diagnostics.ts';
+import { checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { toolCatalog, toolDefinition } from '../codex/tool-config.ts';
 import { partProfile } from './profile.ts';
 import { readFile, realpath } from 'node:fs/promises';
@@ -75,14 +75,16 @@ export async function analyzeChildren(context: GroupContext & { completed: SvgAr
   const copy = toolCatalog(profile.toolsDirectory).names().includes('copy_parent_region')
     ? [createParentRegionTool({ directory: context.directory, parentPath: sourceSvg, canvas, groupId: context.group.id,
       observationDirectory: directory, overrides: profile.toolsDirectory, copies })] : [];
-  const response = await agents.run({ step: partStep(partProfile(context).id, 'children'), name: `直属结构拆分-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'children')),
-    tools: knowledge.tools('main', [createBitmapTool(context.directory, directory), createSvgPreviewTool({ directory: context.directory, reference, canvas,
-      observationDirectory: directory, observed: entry => observations.push(entry) }), ...copy, submit]),
-    prompt: knowledge.render('main', {
-      ...groupValues(context.group.id, canvas),
-    }, { taskRoot: root, group: context.group.id }),
-  });
-  await verifySource();
-  if (!submitted) throw agentOutcomeError('子组分析未通过 submit_children 提交', response);
-  return submitted;
+  return checkedTurn({ agents, records: join(context.directory, groupStepId(context.group.id, 'children'), 'checks'),
+    task: { step: partStep(partProfile(context).id, 'children'), name: `直属结构拆分-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'children')),
+      tools: knowledge.tools('main', [createBitmapTool(context.directory, directory), createSvgPreviewTool({ directory: context.directory, reference, canvas,
+        observationDirectory: directory, observed: entry => observations.push(entry) }), ...copy, submit]),
+      prompt: knowledge.render('main', {
+        ...groupValues(context.group.id, canvas),
+      }, { taskRoot: root, group: context.group.id }) },
+    check: async () => {
+      await verifySource();
+      if (!submitted) throw missingSubmit('submit_children', '子组分析未通过 submit_children 提交');
+      return submitted;
+    } });
 }

@@ -1,6 +1,6 @@
 import { partSteps } from '../step-paths.js';
 import { partStep } from '../agents/models.ts';
-import { agentOutcomeError } from '../codex/diagnostics.ts';
+import { checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { partProfile } from './profile.ts';
 import { partKnowledge } from './group-prompts.ts';
@@ -104,14 +104,16 @@ export async function planPartOcclusion(context: OcclusionContext, agents: Pick<
       return textResult({ completed: false, message });
     },
   };
-  const response = await agents.run({ step: partStep(partProfile(context).id, 'occlusion'), name: '最终遮挡层级规划', cwd: context.directory,
-    tools: knowledge.tools('main', [createSvgPreviewTool({ directory: context.directory, reference,
-      canvas: { width: meta.autoOrient.width, height: meta.autoOrient.height }, observationDirectory: directory,
-      observed: entry => observations.push(entry) }), propose, check, submit, problem]),
-    // Paths are spelled in the prompt with {uri:}; the agent reads groups.json itself.
-    prompt: knowledge.render('main', { width: String(meta.autoOrient.width), height: String(meta.autoOrient.height) }, { taskRoot: root }),
-  });
-  await verify();
-  if (!result) throw agentOutcomeError('层级规划未提交完整表或具体阻断', response);
-  return result;
+  return checkedTurn({ agents, records: join(context.directory, partSteps.occlusion, 'checks'),
+    task: { step: partStep(partProfile(context).id, 'occlusion'), name: '最终遮挡层级规划', cwd: context.directory,
+      tools: knowledge.tools('main', [createSvgPreviewTool({ directory: context.directory, reference,
+        canvas: { width: meta.autoOrient.width, height: meta.autoOrient.height }, observationDirectory: directory,
+        observed: entry => observations.push(entry) }), propose, check, submit, problem]),
+      // Paths are spelled in the prompt with {uri:}; the agent reads groups.json itself.
+      prompt: knowledge.render('main', { width: String(meta.autoOrient.width), height: String(meta.autoOrient.height) }, { taskRoot: root }) },
+    check: async () => {
+      await verify();
+      if (!result) throw missingSubmit('submit_occlusion', '层级规划未提交完整表或具体阻断', '无法完成时用 report_occlusion_problem 说明具体部件、位置和矛盾原因。');
+      return result;
+    } });
 }

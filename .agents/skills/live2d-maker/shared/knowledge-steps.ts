@@ -49,4 +49,6 @@ export const runtimePrompts = [
   'image-blocked-multiple', 'image-blocked-placeholder', 'image-blocked-single', 'image-blocked-stop',
   'outline-repair-resume', 'raster-repair-resume',
   'visual-context-summary',
+  'check-repair', 'check-repair-resume',
+  'checks/missing-submit', 'checks/invalid-output', 'checks/missing-file', 'checks/bad-result',
 ] as const;
