@@ -1,0 +1,147 @@
+[
+  {
+    "name": "d01 | rear_drape_screen_left | complete",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d02 | rear_drape_screen_right | complete",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d03 | rear_waist_bow/right_bow_wing | complete",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d04 | rear_waist_bow/left_bow_wing | complete",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d05 | rear_waist_bow/central_knot_root | complete hidden root",
+    "visible": true,
+    "masks": [
+      {
+        "name": "default hidden | rear_waist_bow/central_knot_root",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "name": "d06 | kimono_body/right_underlap_panel | left side/back returns y618-845",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d07 | kimono_body/left_overlap_panel | right side/back returns y612-839",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d08 | sleeve_screen_left | complete far sleeve wall; native worn-range mask",
+    "visible": true,
+    "masks": [
+      {
+        "name": "worn range | sleeve_screen_left",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "name": "d09 | sleeve_screen_right | complete far sleeve wall; native worn-range mask",
+    "visible": true,
+    "masks": [
+      {
+        "name": "worn range | sleeve_screen_right",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "name": "d10 | inner_waist_wrap | both side/back returns y620-847",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d11 | outer_waist_band | both side/back returns y670-781",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d12 | front_waist_cord_knot | side/back cord returns",
+    "visible": true,
+    "masks": [
+      {
+        "name": "default hidden | front_waist_cord_knot",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "name": "d13 | kimono_body/right_underlap_panel | complete front cloth and outline",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d14 | kimono_body/left_overlap_panel | complete front cloth and outline",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d15 | sleeve_screen_left | near white folds and gathered cuff x253-486",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d16 | sleeve_screen_right | near white folds and gathered cuff x896-1126",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d17 | inner_waist_wrap | complete front cloth and outline",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d18 | outer_waist_band | complete front cloth and outline",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d19 | front_pendant_screen_left/right_free_cord | complete",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d20 | front_pendant_screen_right/left_free_cord | complete",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d21 | front_pendant_screen_left/right_tassel | complete",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d22 | front_pendant_screen_right/left_tassel | complete",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d23 | front_waist_cord_knot | front cord turns, horizontal cord, loops and knot",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d24 | front_pendant_screen_left/right_terminal_bead | complete",
+    "visible": true,
+    "masks": []
+  },
+  {
+    "name": "d25 | front_pendant_screen_right/left_terminal_bead | complete",
+    "visible": true,
+    "masks": []
+  }
+]

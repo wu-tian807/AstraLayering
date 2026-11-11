@@ -1,0 +1,139 @@
+{
+  "axisSourcesUnchanged": true,
+  "axisUnchanged": true,
+  "neckAuthorUnchanged": true,
+  "singleAxes": [
+    {
+      "x": 0,
+      "y": 0,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": -30,
+      "y": 0,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 30,
+      "y": 0,
+      "maxCoordinateDifference": 0.000030517578125
+    },
+    {
+      "x": 0,
+      "y": 25,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 0,
+      "y": -25,
+      "maxCoordinateDifference": 0.000030517578125
+    },
+    {
+      "x": -15,
+      "y": 0,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 15,
+      "y": 0,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 0,
+      "y": 12.5,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 0,
+      "y": -12.5,
+      "maxCoordinateDifference": 0
+    }
+  ],
+  "compiledSingleAxes": [
+    {
+      "x": 0,
+      "y": 0,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": -30,
+      "y": 0,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 30,
+      "y": 0,
+      "maxCoordinateDifference": 0.000030517578125
+    },
+    {
+      "x": 0,
+      "y": 25,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 0,
+      "y": -25,
+      "maxCoordinateDifference": 0.000030517578125
+    },
+    {
+      "x": -15,
+      "y": 0,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 15,
+      "y": 0,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 0,
+      "y": 12.5,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": 0,
+      "y": -12.5,
+      "maxCoordinateDifference": 0
+    }
+  ],
+  "leftUpFeaturesPreservedMaxPixels": 0,
+  "leftUpFaceNote": "Only final local hidden forehead smoothing differs from the completed first-corner snapshot.",
+  "leftUpAllPartsUnchangedByFinalDownEditMaxPixels": 0,
+  "sampledFinitePoses": 143,
+  "authorValidated": true,
+  "compiledAuthoredPoseChecks": [
+    {
+      "x": -30,
+      "y": 25,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": -30,
+      "y": -25,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": -30,
+      "y": 12.5,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": -30,
+      "y": -12.5,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": -15,
+      "y": 25,
+      "maxCoordinateDifference": 0
+    },
+    {
+      "x": -15,
+      "y": -25,
+      "maxCoordinateDifference": 0
+    }
+  ],
+  "compiledMirrorNote": "Positive-X corner keyforms are expanded by the compiler; raw right-corner author grids are not compared for equality.",
+  "authorSha256": "ccf6a6da0bcc3a3d2f0297d36582e22ab7d6ba66d8d084a54cd6be7749335dd2",
+  "modelSha256": "b979e7b15c3259c544df1b3552c30a4509891c8426af744c580f65ba7cf2ee80"
+}

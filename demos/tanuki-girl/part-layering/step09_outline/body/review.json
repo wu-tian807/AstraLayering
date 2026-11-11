@@ -1,0 +1,127 @@
+{
+  "groupId": "body",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已读取 body 的 note、参考图及候选源码，并完成整图 blend 定位；以 [580,575,255,200] 和 [570,735,275,200] 两个重叠选框逐块检查 blend/edge，另放大辫尾、左右腰缘和右胸臂接缝，并检查 SVG 独显。body 为顶层组，无父范围限制。锁骨、胸口、连体服胸廓和上腹腰归属正确，未发现可见独立组件遗漏、碎片噪音或主要形体混乱；无需重画全组，以下两侧外轮廓须局部返修。\n\n1. 画面右侧腰缘，约 x793–825、y790–919：参考中胸廓向腰窝收束，再向下外展的可见外缘与候选曲线不完全吻合。6 倍 edge 图显示腰窝上方约 y795–838 红线偏在真实外缘右侧，带出窄条背景；腰窝下方约 y866–906 红线转到真实外缘左侧，连续一段深色实体外缘未覆盖，偏差约 1–3 原图像素。请重新校准这段收腰与外展曲线，按参考实际外缘调整控制点，不沿衣内阴影线描绘，保留腰窝位置及向下转出的连续性。证据：。\n\n2. 画面左侧腰缘，约 x586–617、y783–919：辫尾下方到腰窝上方约 y788–825，候选红线位于参考实体边缘外侧，出现窄条多包背景；腰窝以下约 y874–919，候选又偏向躯干内部，参考外缘留在填色范围之外。放大图可见偏差约 1–2 原图像素，尤其下段一直延续到与 pelvis 的水平交界。请校正左侧整段曲线：上段向实体边缘收回，下段向参考外缘扩出，并保持腰窝及下界端点连续衔接。证据：。\n\n两侧上下段及下界的整体定位对照：。胸口衣领属于组内界面，不要求挖孔；辫尾遮挡形成的局部轮廓已有参考依据，不列为噪音或要求恢复大片隐藏躯干。输入与候选保持只读。",
+      "candidateHash": "eda5a5dabed58f6a3f042b3e0956fdba078cf689d07e846625cdcb7c5d7842c7",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T13-36-19-849Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:11:56.033Z",
+      "repairedCandidateHash": "b0b6adc982638c4c702a1224760150e6112c63ed758ebeb151d4d4996e315ee5"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮已独立核对 body 的 note、素体参考图和当前候选 SVG。body 为顶层组，无父 SVG 或父范围约束。先检查整图 blend，再以 [570,570,270,160]、[570,690,275,150]、[570,805,275,140] 三个相互重叠的选框完成全部可见区域的 4 倍 blend 与 edge 对照；另以 6–8 倍核对左侧辫子上缘、辫尾尖端和右侧胸廓接缝，并查看 SVG 独显。\n归属与覆盖：锁骨、胸口露肤、连体服所标示的胸廓和腹腰均由连续联合色块覆盖；没有误包肩臂、耳机或辫子，没有遗漏本组可见独立组件。领口及服装内部明暗和线条位于联合色块内部，不要求本轮拆分。上方 y≈592 是与 neck 的结构分组接缝，下方 y=919 是肚脐附近与 pelvis 的分组接缝。\n边缘：耳机下缘、左侧辫子及辫尾遮挡边缘、右侧连体服与肩臂接缝、两侧胸廓至腰部的转向及下部外展均已逐段对照；可见边缘贴合参考，辫尾附近真实尖端和局部转折得到保留。色块连续，无孤立噪点、碎片或无依据孔洞。未发现确定需要修改的问题，本轮通过。\n图像证据：\n\n\n\n\n\n\n\n",
+      "candidateHash": "b0b6adc982638c4c702a1224760150e6112c63ed758ebeb151d4d4996e315ee5",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-03T14-34-38-957Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T15:08:21.106Z"
+    }
+  ]
+}

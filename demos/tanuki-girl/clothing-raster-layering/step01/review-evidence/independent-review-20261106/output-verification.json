@@ -1,0 +1,15 @@
+{
+  "report": "clothing-raster-layering/step01/review-01.md.tmp",
+  "first_line": "结论：需要修复",
+  "issues": 9,
+  "logical_parts": 18,
+  "depth_layers": 25,
+  "broken_links": [],
+  "changed_input_files": [],
+  "restored_visibility": true,
+  "checked_png_dimensions": [
+    1376,
+    2048
+  ],
+  "art_metrics_used": false
+}

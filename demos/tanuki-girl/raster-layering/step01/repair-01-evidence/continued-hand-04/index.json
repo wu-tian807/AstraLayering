@@ -1,0 +1,54 @@
+[
+  {
+    "id": "arms/arm_right/hand/ring_finger",
+    "level": 39,
+    "region": "完整部件",
+    "preannotated": false,
+    "layer": "D039.00 | arms/arm_right/hand/ring_finger",
+    "uuid": "{cd975b2d-9451-43a5-922c-d72fa6128c46}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__ring_finger-D39-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__ring_finger-D39-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__ring_finger-D39-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__ring_finger-D39-upper-hidden-complete.png"
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "level": 41,
+    "region": "完整部件",
+    "preannotated": false,
+    "layer": "D041.00 | arms/arm_right/hand/middle_finger",
+    "uuid": "{c0c60567-b7b4-4514-9943-bb47233fa084}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__middle_finger-D41-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__middle_finger-D41-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__middle_finger-D41-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__middle_finger-D41-upper-hidden-complete.png"
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "level": 45,
+    "region": "完整部件",
+    "preannotated": false,
+    "layer": "D045.00 | arms/arm_right/hand/index_finger",
+    "uuid": "{ebcc56c8-fa53-4b44-87ca-dc93520ae00a}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__index_finger-D45-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__index_finger-D45-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__index_finger-D45-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__index_finger-D45-upper-hidden-complete.png"
+  },
+  {
+    "id": "arms/arm_right/hand/palm",
+    "level": 47,
+    "region": "完整部件",
+    "preannotated": false,
+    "layer": "D047.00 | arms/arm_right/hand/palm",
+    "uuid": "{7956daa1-c37d-405c-a2f5-a3301d9a40bd}",
+    "painted": true,
+    "solo-default": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__palm-D47-solo-default.png",
+    "solo-complete": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__palm-D47-solo-complete.png",
+    "upper-hidden-default": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__palm-D47-upper-hidden-default.png",
+    "upper-hidden-complete": "raster-layering/step01/repair-01-evidence/continued-hand-04/arms__arm_right__hand__palm-D47-upper-hidden-complete.png"
+  }
+]

@@ -1,0 +1,123 @@
+{
+  "groupId": "face/eyes",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成整图 blend 定位、父组完成稿局部叠加，以及画面左眼 [602,393,100,77]、画面右眼 [718,393,97,77] 的 8 倍 blend/edge 全区域核对；另以 [670,395,77,69] 重叠检查两侧内眼角与刘海接缝，并查看 SVG 独显。两眼主体与两条独立眼褶线均已登记覆盖，未发现组件整段遗漏、碎片噪音或主要形体归属混乱，不需要整组重画。当前候选父范围检查通过（outsidePixels=0），没有已确认的上游范围限制。\n\n需要修改：\n1. 画面左眼上睫毛主体上缘，约 x=637–670、y=407–415。8 倍 edge 中，红色轮廓下方才开始候选填色，而参考深色睫毛的连续上边缘仍露在红线外侧；弧顶附近约缩入 1–2 个原图像素。这是睫毛实体外缘漏覆盖，不是眼影或内部明暗。请沿参考深色睫毛与上方肤色间隙的真实分界，上移并调整这一段上缘弧线，接回外侧睫毛尖根及内侧头发遮挡边，保留与独立眼褶线之间的肤色间隙。证据：。\n2. 画面右眼上睫毛主体上缘，约 x=747–779、y=407–412。同样可见参考睫毛上缘有连续深色窄带留在红色轮廓上方，中央近平缓的一段约缩入 1–2 个原图像素。请按本侧原图分别调整弧顶高度、宽度和外侧转向，使上缘覆盖到真实睫毛外边，不以两侧复制形状代替对照；保留原有局部小转折及眼褶线间的肤色空隙。证据：。\n\n以上为局部可见外缘修正，均处于父组允许范围内。",
+      "candidateHash": "06e80390354fe1aa37774a020f7037462936407a98ecc48027a297083fe96d76",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T17-54-44-120Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-04T17:58:00.818Z",
+      "repairedCandidateHash": "84b132a24cc691489bf97fea87d53ccfeeb8a5b82d3bfa92d7945bf4433e6c4f"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已读取 face/eyes 职责、参考、候选及父完成 SVG，完成整图定位、左右眼各自完整放大 blend/edge 对照、重叠中部眼角检查和 SVG 独显。被显示策略拦截的局部已改用灰度图成功核对。双眼主体及两条独立眼褶线齐全，未发现误包眉线、组件整段遗漏或碎片形体混乱；真实眼褶线与睫毛之间的肤色间隙已保留。父范围四倍采样检查 outsidePixels=0，无已确认的上游范围限制。本轮为局部修边，不需重画整组。\n\n1. 画面左眼上睫毛外侧弧段，约 x=617–632、y=416–430：参考的连续深色睫毛上缘位于候选轮廓外侧，blend 放大可见未被色块覆盖的一条深色带，edge 也显示候选沿弧段缩入睫毛内部。应将该段外缘向参考上缘调整约 1 像素（局部按实际边缘），顺接上方尖睫毛根部与外眼角，保留尖端和折角；不要新增分离细丝。此为眼睑睫毛本体的覆盖不足，不是最终着色问题。证据：选框 [600,390,105,80]，8 倍。\n\n\n\n2. 画面右眼上睫毛从上方尖睫毛根部向外眼角延伸的弧段，约 x=783–799、y=413–429：同样有连续深色上缘露在候选外侧，尤其弧段中部；本侧应独立沿参考调整，不能按另一眼对称套用。将该段局部外扩至实际睫毛边缘，顺接尖睫毛根部及外眼角，维持原有转向，不把附近头发轮廓并入。其余可见区域已核对，本项属于父范围内可修的局部边缘偏差。证据：选框 [715,390,100,80]，8 倍。\n\n",
+      "candidateHash": "84b132a24cc691489bf97fea87d53ccfeeb8a5b82d3bfa92d7945bf4433e6c4f",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-04T18-02-11-630Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-04T18:07:33.299Z",
+      "repairedCandidateHash": "872578ae57605a8b0de524a5fa4fe1e92610294abc2b0fdf77afd4530602789e"
+    }
+  ]
+}

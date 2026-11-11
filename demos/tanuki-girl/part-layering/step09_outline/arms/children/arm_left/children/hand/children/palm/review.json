@@ -1,0 +1,112 @@
+{
+  "groupId": "arms/arm_left/hand/palm",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已核对整图定位，并以 8 倍 blend/edge 覆盖腕根与铃铛下缘、掌部两侧外缘、虎口及拇指/四指根连接区；同时查看父完成 SVG 和候选独显。掌部归属与主要形体合理，无误包伸出手指、组件遗漏、孤点或碎片；不需要重画整个掌部。父范围四倍采样检查通过。\n\n需局部修改：铃铛下方掌部上缘，约 x=1029–1048、y=1008–1013。在选框 [997,995,67,52] 的 8 倍 edge/blend 中，候选上缘弧线落在铃铛下方已露出的肤色内，弧线与铃铛实际下缘之间仍留有约 1–2 像素的窄肤色带未覆盖，中段最明显。这是可见掌部的接缝缺漏，不应把铃铛下方的阴影肤色作为轮廓边界。请将这一小段掌部上缘向上调整，连续覆盖至真实遮挡接缝，可在父范围内作少量局部搭接；保留两端可靠的转折和其余已对齐边缘。相同选框的父 SVG edge 已核对，父完成轮廓覆盖该窄带，此处是当前子组父内可修问题，不属于上游范围限制。其余可见区域本轮未发现确定需要修改的问题。",
+      "candidateHash": "fb5a3e47d8e9aba8c2e459c89f371c72710b5faeedba301c3da003f578eb931c",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-03T23-24-39-277Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T23:45:30.164Z",
+      "repairedCandidateHash": "d1564eaadc36e9eae689e40f54f1fef3b390caf8c39d2d2287fd874713c647fc"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "已独立核对 groups 中 palm 的职责、素体参考及父组 hand 完成 SVG，并完成整图 blend 定位、上区 [994,994,98,55] 与下区 [997,1033,96,55] 的 6 倍 blend/edge 重叠检查，以及父组同区 edge 和候选独显检查。可见腕根至掌部主体覆盖完整；腕饰及铃铛下的接缝、掌背上缘、掌部左外缘、虎口横缘与向拇指根转折均贴合参考。右侧收口位于四指根连接区，未将伸出的指身归入掌部；下侧为拇指根搭接边界，不要求本组覆盖拇指伸出段。色块连续、无无依据孔洞、孤点或碎片，未发现所属可见组件遗漏。父范围四倍采样检查 outsidePixels=0；同区父候选对照未发现需单列的上游限制。当前组通过，无需重画或返修。",
+      "candidateHash": "d1564eaadc36e9eae689e40f54f1fef3b390caf8c39d2d2287fd874713c647fc",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-04T00-00-00-352Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-04T00-00-00-352Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-04T00-00-00-352Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-04T00-00-00-352Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-04T00-00-00-352Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-04T00-00-00-352Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-04T00-00-00-352Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/palm/previews/2026-11-04T00-00-00-352Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-04T00:08:21.272Z"
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "groupId": "tail",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成整图 blend 定位及全部可见区域的重叠分块 blend/edge 放大检查：腿间上段 [630,1080,125,350]、腿间下段 [620,1395,140,295]、右侧上段 [805,1140,105,230]、右侧下段 [795,1320,110,210]、左侧上段 [410,1390,180,180]、左侧下段 [410,1535,180,155]，并检查 SVG 独显。tail 为顶层组，无父范围约束。三片可见粉色区域均属于同一条身后尾巴，未发现误包腿部、可见组件整体遗漏或主要形体错误；无需整组重画。以下两处确定的局部轮廓问题须修正：\n\n1. 左侧尾巴上缘，约 x482–489、y1456–1463：参考在较大毛尖左下方还有一个小而明确的凸起折角，外边缘先抬起再转向左下；候选用连续平滑曲线穿过该处，将折角磨平，局部缩入真实毛缘。这是可见外缘的转折，并非内部阴影。请按参考恢复这一小折角及两侧连续边缘，保留原有大毛尖，不增加孤立碎块。8 倍局部证据： \n\n2. 左侧尾巴下缘，约 x477–490、y1643–1654：候选第三个 path 的“Q 462 1640 484 1646 L 477 1646”向左退回后形成一枚额外尖角。参考在这里是上方圆弧接向右下的连续毛瓣转折，未出现伸到 x477 的水平尖刺；edge 对照可见候选在白色背景中多出三角形填色。请去掉这枚无依据尖角，依据参考重接圆弧与右下毛瓣边缘；保留更右侧约 x528–537、y1661–1668 的真实尖角。此处属于局部无依据形体突出，不是独立饰件，也无需拆块。证据： \n\n其余已核对区域未发现需要修改的归属或轮廓问题；输入和候选保持只读。",
+      "candidateHash": "38c06b22ec1393c945977c25743cb53d872afbb3af100e90432cf11c03ce2f1c",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-14.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T13-59-20-808Z-15.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:27:00.422Z",
+      "repairedCandidateHash": "4286763e46be993a03f29ebeab3b61e17458ba80c5188245e48948c5da372e84"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮已完成全组独立核对。tail 为顶层组，无父 SVG 范围约束。参考中的大型粉色尾巴分别露在双腿之间、画面右腿外侧及左小腿后方；候选三块对应这些真实可见区域，没有误收头顶饰物、腿部或其他相邻实体，未发现可见组件遗漏，不需要重画。\n\n先检查整图 blend，再以重叠选框逐块检查 blend 与 edge：根部及上段 [620,1070,145,310]、中央下段及底缘 [615,1330,150,370]、右侧毛缘 [795,1135,120,400]、左侧尾端 [405,1390,205,310]；另以 6 倍放大复核根部右接缝 [700,1090,35,135]。全部可见区域均已覆盖，腿部遮挡接缝、外缘弧度、毛尖及折角与参考相符；未见需要修正的漏画、无依据孔洞、孤点或碎片。SVG 独显轮廓干净，三处分离由双腿遮挡形成，隐藏的尾巴连接与完整补形留给后续阶段。\n\n图像证据：\n\n\n\n\n\n",
+      "candidateHash": "4286763e46be993a03f29ebeab3b61e17458ba80c5188245e48948c5da372e84",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/tail/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/tail/previews/2026-11-03T14-54-47-233Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T15:36:30.691Z"
+    }
+  ]
+}

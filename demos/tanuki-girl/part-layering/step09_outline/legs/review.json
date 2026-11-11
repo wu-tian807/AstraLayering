@@ -1,0 +1,153 @@
+{
+  "groupId": "legs",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已读取 legs 说明、原图和本轮候选；本组为顶层节点，无父范围约束。已先查看整图 blend，再以互相重叠的选框逐块检查腿根/大腿 [520,930,370,320]、膝部 [530,1200,340,320]、小腿 [520,1470,330,330]、踝饰/双脚 [510,1735,320,285] 的 blend 与 edge，并进一步放大内侧腿缘、左踝上方和双脚趾缘；也检查了 SVG 独显。双腿、右长袜和大腿带、左踝环带及铃铛均属于本组且已有联合色块覆盖；无需提前拆分内部饰件。未发现主要形体误认、独立组件整段遗漏或碎片噪音，不需要重画整个组，但以下可见外缘须局部返修：\n\n1. 大腿内侧与粉色尾巴的接缝：画面左腿约 x=670–685、y=1120–1330，候选边缘持续落在原图深色腿缘右侧的粉色尾巴内，尤其 y=1190–1290 约多包入 2–4 像素；画面右腿约 x=713–720、y=1110–1180，候选内缘也偏向左侧尾巴。这里是清晰的腿/尾巴实体交界，不是腿内明暗。将左腿内缘向左、右腿该段内缘向右收回到参考的真实腿缘，保持下接膝部的连续走向，避免侵占两腿之间的尾巴。证据：。\n\n2. 画面左小腿外侧至踝环上方，约 x=567–580、y=1680–1778：候选边缘向腿内缩入，原图棕色外缘仍露在色块左侧；接近 (580,1760) 时还出现原图没有的局部折转。参考此处是连续缓弯的腿缘，再接入踝饰遮挡。向左补足约 2–3 像素的可靠边缘范围，并调整这一段曲线与踝环上方的接续，消除无依据的折转；不用沿外侧彩色抠图噪点扩张。证据：。\n\n3. 画面左脚的趾端外缘，尤其右侧大脚趾约 x=644–672、y=1984–2001，以及左侧小脚趾约 x=585–602、y=1979–1992：候选趾底弧线缩在原图可靠棕色轮廓之内，blend 中趾底仍留下未覆盖的棕色边带，五倍 edge 可见候选切掉了趾端下缘约 1–2 像素。补足这些趾端底部及大脚趾右下转弯，按原图保持各趾间的小凹口，不沿外围彩色孤点作形。证据：。\n\n全组其余覆盖核对图：   。候选和输入均保持只读。",
+      "candidateHash": "02ace5cd34f99dbd4f6b48b7d1ff7b871e45afe536539161f35304087251c2bf",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T13-45-24-564Z-14.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:16:27.807Z",
+      "repairedCandidateHash": "03b83062278b2e692613184e625258b0f809c334d7d7aac41f44164e9e3f734a"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮已读取 legs 职责、参考图与当前候选源码，完成整图 blend 定位；以 [520,930,370,410]、[520,1290,350,440]、[510,1680,320,345] 三个重叠选框逐块进行 3 倍 blend/edge 核对，并对踝饰及双脚追加 5–6 倍检查，查看 SVG 独显。legs 为顶层节点，无父范围限制。双腿、袜子、大腿带、铃铛及脚趾的主要归属和形体正确，未发现碎片噪音；无需重画全组，以下两处须局部返修。\n\n1. 画面左踝，约 x=568–576、y=1776–1783：铃铛上缘后方、腿外侧左边有一小段明确可见的粉色环带，呈斜向上连接腿侧的楔形。当前轮廓从铃铛上缘直接转为 x≈576 的腿侧竖边，漏掉竖边左侧这一粉色露出段；blend 中该段仍为未覆盖的原始粉色，edge 中位于红线外。这是可见饰件局部覆盖缺漏，不是内部着色未画。须沿该段真实斜边补入联合色块，与环带/踝部连续连接，不能单独加孤点或碎片，也不要求恢复被腿或铃铛遮挡的整圈。证据： \n\n2. 画面右脚内侧，约 y=1900–1950、x=710–725：踝部斜向脚背收放的边缘在原图中有明确棕色外描线，当前红边在这段向画面左侧偏出，尤其 y≈1910–1935 处，blend 显示原图描线外还有一条候选填色带，局部约外扩 2–3 个原图像素。须收回此段曲线，使其贴合真实可见外缘及向大脚趾的过渡；保留已对齐的脚趾底缘，不能把袜口内部线当外轮廓。证据： \n\n其余已核对区域不提出修改要求；候选与输入均保持只读。",
+      "candidateHash": "03b83062278b2e692613184e625258b0f809c334d7d7aac41f44164e9e3f734a",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-03T14-43-18-455Z-12.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T15:09:59.594Z",
+      "repairedCandidateHash": "d16c9e1dce4186992014abf3c2ad38a7484462c92039885ab1de717532c8993f"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "groupId": "front_waist_cord_knot",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。已只读核对纯衣服参考、groups.json 中 front_waist_cord_knot 的 note 和当前候选完整源码；本节点为顶层 group，parentGroup=null，无父 SVG 或父范围限制。\n\n从参考独立确认可见归属为 x≈493–887、y≈670–790 的腰前横绳、中央结芯和左右闭合绳环；下垂自由绳端、圆珠和流苏归相邻垂饰组。候选联合覆盖包含全部上述固定系绳组件，未误包金色腰带、深色腰层、衣身或人体，未将下垂组件纳入本组。\n\n整体叠加确认画布坐标、位置和左右环比例正确。对 [480,660,415,140] 区域作 4 倍边缘、叠加与独显检查，覆盖本组全部可见范围：左右横绳端、两个绳环外缘与内缘、中央结芯及绳路汇入处均与参考实体边界相符；横绳穿过环后形成的四块可见腰带开口均保留，没有填平真实开口。结芯下方与垂绳根部的接界及必要重叠合理，未发现需要修改的轮廓或归属问题。note 已描述实体范围、相邻分界、前后关系、共同随动和隐藏搭接。本组无薄纱。\n\n图像证据：\n\n\n\n\n\n无需重画或局部返修。候选保持只读，未修改。",
+      "candidateHash": "2ed82d162045547c757c0718833410cfabfadeac340e582cad9ebac9020024e5",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/front_waist_cord_knot/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_waist_cord_knot/previews/2026-11-03T14-00-18-199Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_waist_cord_knot/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/front_waist_cord_knot/previews/2026-11-03T14-00-18-199Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_waist_cord_knot/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_waist_cord_knot/previews/2026-11-03T14-00-18-199Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_waist_cord_knot/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/front_waist_cord_knot/previews/2026-11-03T14-00-18-199Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:25:07.910Z"
+    }
+  ]
+}

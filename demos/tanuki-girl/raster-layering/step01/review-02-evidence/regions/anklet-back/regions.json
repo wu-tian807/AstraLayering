@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/layers/02/solo-complete.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/bcc3e92e-e0e8-4ce9-838c-71ea5d0be584/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/bcc3e92e-e0e8-4ce9-838c-71ea5d0be584/regions.json",
+  "regions": [
+    {
+      "id": "R12",
+      "bounds": [
+        571,
+        1768,
+        21,
+        31
+      ],
+      "layers": [
+        "D011.00 | legs/leg_right/anklet_back"
+      ],
+      "description": "后粉色踝环完整左端在回转后突然收窄成颈口，再伸出扁平尖斜片；端部厚度和粉色管状体积没有自然延续。保留现有后弧与前弧搭接，按本件可见粉管的厚度和明暗重画该小回转及圆顺端部，消除急窄口；米色弧与腿、前环均保留。",
+      "crop": [
+        557,
+        1754,
+        49,
+        59
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/anklet-back/R12-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/anklet-back/R12-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/anklet-back/R12-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

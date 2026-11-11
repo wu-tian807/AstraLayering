@@ -1,0 +1,62 @@
+[
+  {
+    "index": 0,
+    "name": "D000.00 | tail",
+    "directory": "raster-layering/step01/review-01-evidence/layers/00",
+    "mask_count": 0
+  },
+  {
+    "index": 1,
+    "name": "D010.00 | legs/leg_left/thigh_band_back",
+    "directory": "raster-layering/step01/review-01-evidence/layers/01",
+    "mask_count": 1
+  },
+  {
+    "index": 2,
+    "name": "D011.00 | legs/leg_right/anklet_back",
+    "directory": "raster-layering/step01/review-01-evidence/layers/02",
+    "mask_count": 1
+  },
+  {
+    "index": 3,
+    "name": "D012.00 | head_accessories/tanuki_ornament/tanuki_body",
+    "directory": "raster-layering/step01/review-01-evidence/layers/03",
+    "mask_count": 0
+  },
+  {
+    "index": 4,
+    "name": "D013.00 | hair/braid_right | root",
+    "directory": "raster-layering/step01/review-01-evidence/layers/04",
+    "mask_count": 0
+  },
+  {
+    "index": 5,
+    "name": "D014.00 | hair/back_hair",
+    "directory": "raster-layering/step01/review-01-evidence/layers/05",
+    "mask_count": 0
+  },
+  {
+    "index": 6,
+    "name": "D015.00 | headphones/headband",
+    "directory": "raster-layering/step01/review-01-evidence/layers/06",
+    "mask_count": 0
+  },
+  {
+    "index": 7,
+    "name": "D016.00 | face/ears/ear_left/ear_interior",
+    "directory": "raster-layering/step01/review-01-evidence/layers/07",
+    "mask_count": 1
+  },
+  {
+    "index": 8,
+    "name": "D017.00 | face/ears/ear_right/ear_interior",
+    "directory": "raster-layering/step01/review-01-evidence/layers/08",
+    "mask_count": 1
+  },
+  {
+    "index": 9,
+    "name": "D018.00 | face/ears/ear_left/ear_fur",
+    "directory": "raster-layering/step01/review-01-evidence/layers/09",
+    "mask_count": 1
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/layers/39/solo-complete.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/ae49ecb8-b3ee-429b-bf8a-5ae1a8d92b53/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/ae49ecb8-b3ee-429b-bf8a-5ae1a8d92b53/regions.json",
+  "regions": [
+    {
+      "id": "R07",
+      "bounds": [
+        335,
+        997,
+        79,
+        75
+      ],
+      "layers": [
+        "D047.00 | arms/arm_right/hand/palm"
+      ],
+      "description": "右掌独显：上侧可见外缘是多段碎线，掌侧长轮廓约x402/y1041处分叉成尖刺与错开的细线，默认接拇指时出现线宽突变。清理分叉与残线，续成单一贴合形体的外轮廓；保留掌作为覆盖侧的接触边，不额外增加接触内的横向闭合线。",
+      "crop": [
+        321,
+        983,
+        107,
+        103
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/palm-right/R07-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/palm-right/R07-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/palm-right/R07-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

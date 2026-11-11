@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "frames": {
+    "left": {
+      "video": "nine-axis/step02_video/left.mp4",
+      "path": "nine-axis/step03_frames/left.png",
+      "frameIndex": 50,
+      "timeSeconds": 2.0833333333333335,
+      "reason": "先查看从正面到侧面的完整运动，再比较第44～60帧，并逐帧比较第47～53帧。此帧脸朝画面左侧，目测接近30°并取偏小侧；远侧眼已有透视压缩，双眼、鼻和嘴仍清晰，下巴与眼线没有明显滚转。更后面的帧侧转更大，因此不选。"
+    },
+    "up": {
+      "video": "nine-axis/step02_video/up.mp4",
+      "path": "nine-axis/step03_frames/up.png",
+      "frameIndex": 51,
+      "timeSeconds": 2.125,
+      "reason": "先查看完整抬头过程，再比较第36～90帧，并逐帧比较第51～57帧。此帧鼻口、下颌与耳位相对首帧已显示抬头，目测接近25°的偏小侧；双眼、鼻和嘴清楚，左右保持对称。优先控制新增露颈，选这一较早帧；第60帧以后下巴继续上移、脖子露出更多。角度按画面判断，不由视频时长或末帧幅度线性换算。"
+    },
+    "down": {
+      "video": "nine-axis/step02_video/down.mp4",
+      "path": "nine-axis/step03_frames/down.png",
+      "frameIndex": 50,
+      "timeSeconds": 2.0833333333333335,
+      "reason": "先查看完整低头过程，再比较第42～60帧，并逐帧比较第47～53帧。此帧额顶显露增加，眼鼻口随头下降、下半脸缩短，下巴收向脖子，目测接近25°并取偏小侧；双眼、鼻和嘴仍能清楚辨认，没有明显左右转或滚转。后段刘海逐渐遮住眼睛、低头更深，因此不选。"
+    }
+  }
+}

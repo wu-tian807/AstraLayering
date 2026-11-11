@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "source": "shadow/step01_mask/character-shadowed.png",
+  "parts": [
+    "part-layering/parts/face.svg",
+    "part-layering/parts/hair.svg",
+    "part-layering/parts/head_accessories.svg"
+  ],
+  "canvas": [
+    1376,
+    2048
+  ],
+  "box": {
+    "x": 319,
+    "y": -21,
+    "size": 774
+  },
+  "background": 128
+}

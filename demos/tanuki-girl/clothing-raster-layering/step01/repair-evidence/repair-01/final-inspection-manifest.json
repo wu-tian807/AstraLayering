@@ -1,0 +1,459 @@
+{
+  "canvas": [
+    1376,
+    2048
+  ],
+  "finalLayers": [
+    {
+      "id": "rear_drape_screen_left",
+      "level": 1,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d01.png",
+      "name": "d01 | rear_drape_screen_left | complete",
+      "uuid": "{a9feb87a-9ee2-4b4d-b3d7-a03b3024d30a}",
+      "pixelHash": "57d1bafcc0f869cacb228bc69f6de0917157ff6dcabf0d8776bbcfd8896066ed",
+      "bounds": [
+        132,
+        779,
+        418,
+        969
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d01-rear_drape_screen_left.png"
+    },
+    {
+      "id": "rear_drape_screen_right",
+      "level": 2,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d02.png",
+      "name": "d02 | rear_drape_screen_right | complete",
+      "uuid": "{9c9872c9-d447-4bd9-9941-ab54b40a9f26}",
+      "pixelHash": "8b068073ddc9b1a30559525e308a0dc47e4d431b6224579c222f25ac16656ddd",
+      "bounds": [
+        845,
+        761,
+        403,
+        991
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d02-rear_drape_screen_right.png"
+    },
+    {
+      "id": "rear_waist_bow/right_bow_wing",
+      "level": 3,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d03.png",
+      "name": "d03 | rear_waist_bow/right_bow_wing | complete",
+      "uuid": "{bb70e9ea-f939-408c-901b-08b3dc74b6f5}",
+      "pixelHash": "956282d3da39a951ec0faab762cfd2bd40cf614f399fce22eadc6aba4e57d2cf",
+      "bounds": [
+        311,
+        573,
+        355,
+        354
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d03-rear_waist_bow__right_bow_wing.png"
+    },
+    {
+      "id": "rear_waist_bow/left_bow_wing",
+      "level": 4,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d04.png",
+      "name": "d04 | rear_waist_bow/left_bow_wing | complete",
+      "uuid": "{225ad363-207f-4c08-8a6f-16cedcf2604b}",
+      "pixelHash": "8d7c4fdc2f1ba78a4aca22e31a62203e71e76675fd28d0a75e8bad96ea719415",
+      "bounds": [
+        714,
+        573,
+        355,
+        354
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d04-rear_waist_bow__left_bow_wing.png"
+    },
+    {
+      "id": "rear_waist_bow/central_knot_root",
+      "level": 5,
+      "region": "complete hidden root",
+      "path": "clothing-raster-layering/step01/evidence/raw/d05.png",
+      "mask": "clothing-raster-layering/step01/evidence/masks/d05.bin",
+      "name": "d05 | rear_waist_bow/central_knot_root | complete hidden root",
+      "uuid": "{9b5dfbd5-24ce-408b-aa43-3ca726a49fe0}",
+      "maskName": "default hidden | rear_waist_bow/central_knot_root",
+      "maskUuid": "{01098352-4f7a-4279-8e9e-86a0bb7ba111}",
+      "pixelHash": "0e4bc3b1a298d5bbf50b375f397477065ea6626a8f612c6ed9f6bf4735e30408",
+      "bounds": [
+        643,
+        677,
+        96,
+        94
+      ],
+      "maskHash": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d05-rear_waist_bow__central_knot_root.png",
+      "maskPreview": "clothing-raster-layering/step01/evidence/masks/d05.png"
+    },
+    {
+      "id": "kimono_body/right_underlap_panel",
+      "level": 6,
+      "region": "left side/back returns y618-845",
+      "path": "clothing-raster-layering/step01/evidence/raw/d06.png",
+      "name": "d06 | kimono_body/right_underlap_panel | left side/back returns y618-845",
+      "uuid": "{b9264b56-1103-4e9d-a819-f2261d582a3f}",
+      "pixelHash": "855644a3e11c5ab53d1380182e2dad3b85ae284e90f82923ca7f146d063bfa89",
+      "bounds": [
+        485,
+        618,
+        59,
+        228
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d06-kimono_body__right_underlap_panel.png"
+    },
+    {
+      "id": "kimono_body/left_overlap_panel",
+      "level": 7,
+      "region": "right side/back returns y612-839",
+      "path": "clothing-raster-layering/step01/evidence/raw/d07.png",
+      "name": "d07 | kimono_body/left_overlap_panel | right side/back returns y612-839",
+      "uuid": "{df56147f-b986-44b7-8615-6701bac4f2a7}",
+      "pixelHash": "1685150bf6b9f25deeac6b0cbecee1d0efad3141e689d429a6476fad933647e6",
+      "bounds": [
+        823,
+        612,
+        66,
+        228
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d07-kimono_body__left_overlap_panel.png"
+    },
+    {
+      "id": "sleeve_screen_left",
+      "level": 8,
+      "region": "complete far sleeve wall; native worn-range mask",
+      "path": "clothing-raster-layering/step01/evidence/raw/d08.png",
+      "mask": "clothing-raster-layering/step01/evidence/masks/d08.bin",
+      "name": "d08 | sleeve_screen_left | complete far sleeve wall; native worn-range mask",
+      "uuid": "{28eda41a-af13-4b31-98bc-43e43e04e833}",
+      "maskName": "worn range | sleeve_screen_left",
+      "maskUuid": "{a37cc6be-6e01-4d2f-8adc-cd6b3e24660a}",
+      "pixelHash": "a0ea2c31a57677e536023efe87d3a2408e344e796ec8a6a21ee69d95e06a9e20",
+      "bounds": [
+        252,
+        469,
+        302,
+        258
+      ],
+      "maskHash": "092a439d8f14d24615360323d975771e96b267144689b36488018cb142c37097",
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d08-sleeve_screen_left.png",
+      "maskPreview": "clothing-raster-layering/step01/evidence/masks/d08.png"
+    },
+    {
+      "id": "sleeve_screen_right",
+      "level": 9,
+      "region": "complete far sleeve wall; native worn-range mask",
+      "path": "clothing-raster-layering/step01/evidence/raw/d09.png",
+      "mask": "clothing-raster-layering/step01/evidence/masks/d09.bin",
+      "name": "d09 | sleeve_screen_right | complete far sleeve wall; native worn-range mask",
+      "uuid": "{e6a205f4-b174-443a-b99f-bf37639b08ef}",
+      "maskName": "worn range | sleeve_screen_right",
+      "maskUuid": "{b3fe5f8b-f9c5-444a-99b8-94f0d43f1e90}",
+      "pixelHash": "9da8898f23cac7a6ae7bf6ae92ce6e5a4b22d3c3862ba0d87bd372d965728f2d",
+      "bounds": [
+        879,
+        486,
+        249,
+        239
+      ],
+      "maskHash": "0763a8abc125823a8a33d11de8abec7d95b4b8b1edd2ce2af137a7bd3d572404",
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d09-sleeve_screen_right.png",
+      "maskPreview": "clothing-raster-layering/step01/evidence/masks/d09.png"
+    },
+    {
+      "id": "inner_waist_wrap",
+      "level": 10,
+      "region": "both side/back returns y620-847",
+      "path": "clothing-raster-layering/step01/evidence/raw/d10.png",
+      "name": "d10 | inner_waist_wrap | both side/back returns y620-847",
+      "uuid": "{c512849c-10cc-40a4-9517-8842bc1da9e8}",
+      "pixelHash": "0d639107bd3e4921a87316354b48c88978806699dbb29c068983486c96b5b4a6",
+      "bounds": [
+        478,
+        620,
+        424,
+        228
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d10-inner_waist_wrap.png"
+    },
+    {
+      "id": "outer_waist_band",
+      "level": 11,
+      "region": "both side/back returns y670-781",
+      "path": "clothing-raster-layering/step01/evidence/raw/d11.png",
+      "name": "d11 | outer_waist_band | both side/back returns y670-781",
+      "uuid": "{65216b2a-3cd0-4d40-af02-b38d60c8e6e5}",
+      "pixelHash": "0649a3353edcda860a81f7c3e78f44b3d3eaa3e8c6290858321a358f9e77db42",
+      "bounds": [
+        498,
+        670,
+        384,
+        112
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d11-outer_waist_band.png"
+    },
+    {
+      "id": "front_waist_cord_knot",
+      "level": 12,
+      "region": "side/back cord returns",
+      "path": "clothing-raster-layering/step01/evidence/raw/d12.png",
+      "mask": "clothing-raster-layering/step01/evidence/masks/d12.bin",
+      "name": "d12 | front_waist_cord_knot | side/back cord returns",
+      "uuid": "{1e2981d5-978b-42d0-8f72-a8e64d0908b8}",
+      "maskName": "default hidden | front_waist_cord_knot",
+      "maskUuid": "{c06943d1-bd1a-4dc6-aa54-662586599244}",
+      "pixelHash": "8cc74a149729b020fa6ef0e3a5b704f177e215f4041ea96e0ea1c1e8b2190b3a",
+      "bounds": [
+        465,
+        686,
+        450,
+        46
+      ],
+      "maskHash": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d12-front_waist_cord_knot.png",
+      "maskPreview": "clothing-raster-layering/step01/evidence/masks/d12.png"
+    },
+    {
+      "id": "kimono_body/right_underlap_panel",
+      "level": 13,
+      "region": "complete front cloth and outline",
+      "path": "clothing-raster-layering/step01/evidence/raw/d13.png",
+      "name": "d13 | kimono_body/right_underlap_panel | complete front cloth and outline",
+      "uuid": "{4fd109d2-d07b-4499-a67f-622d91dc1f4a}",
+      "pixelHash": "d3b8eb0105ba453d70429701de65c07a58246ba952ca586c01063b0071f361ec",
+      "bounds": [
+        338,
+        413,
+        481,
+        762
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d13-kimono_body__right_underlap_panel.png"
+    },
+    {
+      "id": "kimono_body/left_overlap_panel",
+      "level": 14,
+      "region": "complete front cloth and outline",
+      "path": "clothing-raster-layering/step01/evidence/raw/d14.png",
+      "name": "d14 | kimono_body/left_overlap_panel | complete front cloth and outline",
+      "uuid": "{794546ce-ec7e-418d-bf0e-005e4d8cb8f8}",
+      "pixelHash": "a6dcf4e9f2d16f6c6d542ab7b85b390812a81c0ef236dd9d450f83309b0b3904",
+      "bounds": [
+        497,
+        407,
+        543,
+        805
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d14-kimono_body__left_overlap_panel.png"
+    },
+    {
+      "id": "sleeve_screen_left",
+      "level": 15,
+      "region": "near white folds and gathered cuff x253-486",
+      "path": "clothing-raster-layering/step01/evidence/raw/d15.png",
+      "name": "d15 | sleeve_screen_left | near white folds and gathered cuff x253-486",
+      "uuid": "{6c2f726e-95fa-4d85-a438-4eb37967f2b5}",
+      "pixelHash": "6ebce48370d5bccd19f8b40eb16c419e7269ada3d6f9aa9d78a4695df175a930",
+      "bounds": [
+        252,
+        470,
+        235,
+        193
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d15-sleeve_screen_left.png"
+    },
+    {
+      "id": "sleeve_screen_right",
+      "level": 16,
+      "region": "near white folds and gathered cuff x896-1126",
+      "path": "clothing-raster-layering/step01/evidence/raw/d16.png",
+      "name": "d16 | sleeve_screen_right | near white folds and gathered cuff x896-1126",
+      "uuid": "{1d1e93f1-2ee2-490e-a2ad-3dab2ae3d18c}",
+      "pixelHash": "8ef6fe0b66decfefe314642c112440d0627a6812ddc3cf3eacd3a1ca296ddcf6",
+      "bounds": [
+        895,
+        486,
+        232,
+        173
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d16-sleeve_screen_right.png"
+    },
+    {
+      "id": "inner_waist_wrap",
+      "level": 17,
+      "region": "complete front cloth and outline",
+      "path": "clothing-raster-layering/step01/evidence/raw/d17.png",
+      "name": "d17 | inner_waist_wrap | complete front cloth and outline",
+      "uuid": "{2f7649d6-faf5-4fab-9962-4facae789df6}",
+      "pixelHash": "5d13aba0f517f2a6ee2fa261868d93e422e67e00637fa119820f271be96e1f20",
+      "bounds": [
+        474,
+        604,
+        435,
+        266
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d17-inner_waist_wrap.png"
+    },
+    {
+      "id": "outer_waist_band",
+      "level": 18,
+      "region": "complete front cloth and outline",
+      "path": "clothing-raster-layering/step01/evidence/raw/d18.png",
+      "name": "d18 | outer_waist_band | complete front cloth and outline",
+      "uuid": "{ae256aa9-e4ce-4bb4-9a3e-93a59812d17e}",
+      "pixelHash": "af120a622febc482dbed3009a835fc4ff8a79f56364b309868bbc8cbe9a2c20e",
+      "bounds": [
+        483,
+        639,
+        413,
+        169
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d18-outer_waist_band.png"
+    },
+    {
+      "id": "front_pendant_screen_left/right_free_cord",
+      "level": 19,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d19.png",
+      "name": "d19 | front_pendant_screen_left/right_free_cord | complete",
+      "uuid": "{354894aa-d98d-4480-bc14-1c9f2d3f2f4e}",
+      "pixelHash": "fde9d1ad3cb6838319e5ab27d07c55c50783172317be0652e7d6483eefd4e7bd",
+      "bounds": [
+        622,
+        711,
+        71,
+        214
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d19-front_pendant_screen_left__right_free_cord.png"
+    },
+    {
+      "id": "front_pendant_screen_right/left_free_cord",
+      "level": 20,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d20.png",
+      "name": "d20 | front_pendant_screen_right/left_free_cord | complete",
+      "uuid": "{effe9c2e-9005-4a3f-848d-d1f07a973fff}",
+      "pixelHash": "cf7196f6bee9dd424dc6431f29be76765709ed25e715d0e5b4dba96c7684a752",
+      "bounds": [
+        685,
+        710,
+        72,
+        215
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d20-front_pendant_screen_right__left_free_cord.png"
+    },
+    {
+      "id": "front_pendant_screen_left/right_tassel",
+      "level": 21,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d21.png",
+      "name": "d21 | front_pendant_screen_left/right_tassel | complete",
+      "uuid": "{7791f227-c497-4af3-9f76-a64da8534aff}",
+      "pixelHash": "d04fe7ce003b0e0ba080594fa76b090cc29a32cc04122ca84f537b2875b969ec",
+      "bounds": [
+        602,
+        946,
+        51,
+        86
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d21-front_pendant_screen_left__right_tassel.png"
+    },
+    {
+      "id": "front_pendant_screen_right/left_tassel",
+      "level": 22,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d22.png",
+      "name": "d22 | front_pendant_screen_right/left_tassel | complete",
+      "uuid": "{5bd96b03-31e5-40fd-9bad-c7f8d85e3f14}",
+      "pixelHash": "e4e5223eb327a1f30a1cd0d067431995871fd06b8d1c4da66674530f187f731f",
+      "bounds": [
+        727,
+        946,
+        51,
+        86
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d22-front_pendant_screen_right__left_tassel.png"
+    },
+    {
+      "id": "front_waist_cord_knot",
+      "level": 23,
+      "region": "front cord turns, horizontal cord, loops and knot",
+      "path": "clothing-raster-layering/step01/evidence/raw/d23.png",
+      "name": "d23 | front_waist_cord_knot | front cord turns, horizontal cord, loops and knot",
+      "uuid": "{35a3bfc8-1741-46ba-9537-a2e94a98dded}",
+      "pixelHash": "c305bbbbcee22c3cd50946297cb251d10b149a2c3fe86e3bdcc60a17d3f4f81a",
+      "bounds": [
+        493,
+        672,
+        394,
+        118
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d23-front_waist_cord_knot.png"
+    },
+    {
+      "id": "front_pendant_screen_left/right_terminal_bead",
+      "level": 24,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d24.png",
+      "name": "d24 | front_pendant_screen_left/right_terminal_bead | complete",
+      "uuid": "{41d13dc4-1e3d-48f7-b114-50372ccdde98}",
+      "pixelHash": "2de663cb61865b19ef06f3eded307f49c7e65c5311fd054663696c844ce652fa",
+      "bounds": [
+        609,
+        910,
+        44,
+        41
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d24-front_pendant_screen_left__right_terminal_bead.png"
+    },
+    {
+      "id": "front_pendant_screen_right/left_terminal_bead",
+      "level": 25,
+      "region": "complete",
+      "path": "clothing-raster-layering/step01/evidence/raw/d25.png",
+      "name": "d25 | front_pendant_screen_right/left_terminal_bead | complete",
+      "uuid": "{6128f6c6-91e0-43bf-84f0-3ab6d170581f}",
+      "pixelHash": "a36f1dd11cf1968ff91252cb661158ed1c5c32356229c8a894cfe68583b8d64a",
+      "bounds": [
+        723,
+        909,
+        44,
+        41
+      ],
+      "splitInput": "clothing-raster-layering/step01/workspace/depth-prep/d25-front_pendant_screen_right__left_terminal_bead.png"
+    }
+  ],
+  "logicalParts": [
+    "rear_drape_screen_left",
+    "rear_drape_screen_right",
+    "rear_waist_bow/right_bow_wing",
+    "rear_waist_bow/left_bow_wing",
+    "rear_waist_bow/central_knot_root",
+    "kimono_body/right_underlap_panel",
+    "kimono_body/left_overlap_panel",
+    "sleeve_screen_left",
+    "sleeve_screen_right",
+    "inner_waist_wrap",
+    "outer_waist_band",
+    "front_waist_cord_knot",
+    "front_pendant_screen_left/right_free_cord",
+    "front_pendant_screen_right/left_free_cord",
+    "front_pendant_screen_left/right_tassel",
+    "front_pendant_screen_right/left_tassel",
+    "front_pendant_screen_left/right_terminal_bead",
+    "front_pendant_screen_right/left_terminal_bead"
+  ],
+  "finalImage": "clothing-raster-layering/step01/clothing-depth.png",
+  "raw": "clothing-raster-layering/step01/evidence/raw",
+  "masked": "clothing-raster-layering/step01/evidence/masked",
+  "cumulative": "clothing-raster-layering/step01/evidence/cumulative",
+  "logical": "clothing-raster-layering/step01/evidence/logical",
+  "nativeMaskDepths": [
+    5,
+    8,
+    9,
+    12
+  ]
+}

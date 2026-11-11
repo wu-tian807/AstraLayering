@@ -1,0 +1,284 @@
+{
+  "exports": [
+    "clothing-raster-layering/step01/review-evidence/review-02/full-off.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d01.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d02.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d03.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d04.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d05.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d06.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d07.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d08.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d09.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d10.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d11.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d12.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d13.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d14.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d15.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d16.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d17.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d18.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d19.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d20.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d21.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d22.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d23.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d24.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-off/d25.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d01.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d02.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d03.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d04.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d05.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d06.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d07.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d08.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d09.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d10.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d11.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d12.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d13.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d14.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d15.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d16.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d17.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d18.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d19.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d20.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d21.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d22.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d23.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d24.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-off/d25.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p01.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p02.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p03.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p04.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p05.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p06.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p07.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p08.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p09.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p10.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p11.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p12.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p13.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p14.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p15.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p16.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p17.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-off/p18.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/full-on.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d01.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d02.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d03.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d04.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d05.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d06.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d07.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d08.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d09.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d10.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d11.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d12.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d13.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d14.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d15.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d16.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d17.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d18.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d19.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d20.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d21.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d22.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d23.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d24.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/solo-on/d25.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d01.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d02.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d03.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d04.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d05.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d06.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d07.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d08.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d09.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d10.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d11.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d12.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d13.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d14.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d15.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d16.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d17.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d18.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d19.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d20.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d21.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d22.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d23.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d24.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/cumulative-on/d25.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p01.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p02.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p03.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p04.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p05.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p06.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p07.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p08.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p09.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p10.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p11.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p12.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p13.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p14.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p15.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p16.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p17.png",
+    "clothing-raster-layering/step01/review-evidence/review-02/logical-on/p18.png"
+  ],
+  "logical": [
+    {
+      "id": "p01",
+      "part": "rear_drape_screen_left",
+      "depths": [
+        1
+      ]
+    },
+    {
+      "id": "p02",
+      "part": "rear_drape_screen_right",
+      "depths": [
+        2
+      ]
+    },
+    {
+      "id": "p03",
+      "part": "rear_waist_bow/right_bow_wing",
+      "depths": [
+        3
+      ]
+    },
+    {
+      "id": "p04",
+      "part": "rear_waist_bow/left_bow_wing",
+      "depths": [
+        4
+      ]
+    },
+    {
+      "id": "p05",
+      "part": "rear_waist_bow/central_knot_root",
+      "depths": [
+        5
+      ]
+    },
+    {
+      "id": "p06",
+      "part": "kimono_body/right_underlap_panel",
+      "depths": [
+        6,
+        13
+      ]
+    },
+    {
+      "id": "p07",
+      "part": "kimono_body/left_overlap_panel",
+      "depths": [
+        7,
+        14
+      ]
+    },
+    {
+      "id": "p08",
+      "part": "sleeve_screen_left",
+      "depths": [
+        8,
+        15
+      ]
+    },
+    {
+      "id": "p09",
+      "part": "sleeve_screen_right",
+      "depths": [
+        9,
+        16
+      ]
+    },
+    {
+      "id": "p10",
+      "part": "inner_waist_wrap",
+      "depths": [
+        10,
+        17
+      ]
+    },
+    {
+      "id": "p11",
+      "part": "outer_waist_band",
+      "depths": [
+        11,
+        18
+      ]
+    },
+    {
+      "id": "p12",
+      "part": "front_waist_cord_knot",
+      "depths": [
+        12,
+        23
+      ]
+    },
+    {
+      "id": "p13",
+      "part": "front_pendant_screen_left/right_free_cord",
+      "depths": [
+        19
+      ]
+    },
+    {
+      "id": "p14",
+      "part": "front_pendant_screen_right/left_free_cord",
+      "depths": [
+        20
+      ]
+    },
+    {
+      "id": "p15",
+      "part": "front_pendant_screen_left/right_tassel",
+      "depths": [
+        21
+      ]
+    },
+    {
+      "id": "p16",
+      "part": "front_pendant_screen_right/left_tassel",
+      "depths": [
+        22
+      ]
+    },
+    {
+      "id": "p17",
+      "part": "front_pendant_screen_left/right_terminal_bead",
+      "depths": [
+        24
+      ]
+    },
+    {
+      "id": "p18",
+      "part": "front_pendant_screen_right/left_terminal_bead",
+      "depths": [
+        25
+      ]
+    }
+  ],
+  "mask_depths": [
+    5,
+    8,
+    9,
+    12
+  ],
+  "restored": true
+}

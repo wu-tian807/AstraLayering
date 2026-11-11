@@ -1,0 +1,38 @@
+{
+  "groupId": "face/mouth",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取 face/mouth 与父组 face 的说明、候选及父组完成 SVG，并完成整图 blend 定位。以原图选框 [684,487,49,40]、8 倍原图/ blend / edge 对照覆盖本组全部可见区域，再以 [698,500,22,15]、8 倍独显核对轮廓清洁度。参考中的嘴为约 x704–713、y505–509 的单一闭合弧形口线；候选覆盖其上缘拱弧、下缘内凹及左右圆钝端点，位置、宽度、弧度和端点转向与参考吻合，未误包鼻部或周围肤色。弧线下方浅色为局部明暗，不构成漏画的独立口腔组件；未见可见口腔、独立分离嘴部组件、孔洞或接缝遗漏。独显为连续干净色块，无孤点、碎片或人为挖缝。group.allowOutsideParent 未设置，适用父范围约束；已查看父组局部叠加，嘴部位于完成脸形内部，工具四倍范围检查 outsidePixels=0，无上游范围冲突。当前组通过。",
+      "candidateHash": "0b1174dd4c72e7022666dd8d53e8ff66dd30c4742969020feb83aabc2d9422ee",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-03T17-32-40-001Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-03T17-32-40-001Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-03T17-32-40-001Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-03T17-32-40-001Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-03T17-32-40-001Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T18:01:10.225Z"
+    }
+  ]
+}

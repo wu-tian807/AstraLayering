@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "reports": [
+    "report.md",
+    "repair-01.md.tmp"
+  ],
+  "repairConclusion": "已修复",
+  "paintLayers": 25,
+  "logicalParts": 18,
+  "nativeMasks": 4,
+  "depths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "reopenedIdentical": true,
+  "finalPNGMatchesReopened": true,
+  "missingReportLinks": [],
+  "kraBytes": 9909173
+}

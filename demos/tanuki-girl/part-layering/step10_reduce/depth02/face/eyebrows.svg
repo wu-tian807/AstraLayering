@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048">
+  <g id="face-eyebrows-outline" data-group-path="face/eyebrows" fill="#8c5651" stroke="none">
+    <path id="eyebrow-right-visible" d="M 606,372.5 C 612,368.5 620,365.1 630.185185,361.055556 C 643.888889,355.388889 658.333333,352.166667 675,354.5 C 661,354.166667 647.888889,357.166667 633.962963,362.166667 C 624.9,365.4 614.1,369.5 606,372.5 Z"/>
+    <path id="eyebrow-left-visible" d="M 812,370 C 789,358 758,349 733,355 C 758,352 787,361 812,370 Z"/>
+  </g>
+</svg>

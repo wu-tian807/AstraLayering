@@ -1,0 +1,123 @@
+{
+  "groupId": "arms/arm_right/bracelet_pink_front",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "本轮已核对全图定位、[365,965,42,47] 与 [380,990,52,52] 两个重叠选框的 8 倍 blend/edge、父完成稿同区对照及候选独显。粉色前弧段的实体归属正确，无独立组件遗漏、碎片或噪音；不需要重画整组，需局部修正边缘。候选父范围检查通过（outsidePixels=0）。\n\n1. 父内可修：前弧段靠手掌的长外缘，约 (377,995) 经 (389,1012) 至 (406,1030)，候选边缘偏向粉色填色内侧，参考中连续的深色实体轮廓仍有约 1–2 px 宽未被覆盖，导致环带这一侧整体偏窄。该段外侧仍在父手掌联合色块内，不能归为父范围限制。沿参考深色轮廓的可靠外缘向手掌一侧扩展，保持整段连续弧度，并平顺接入末端；不要把深色描边当成普通内部明暗而漏掉结构范围。证据：[下半段 edge](review-evidence/round1-lower-edge.png)、[父蓝线与候选红线对照](review-evidence/round1-parent-candidate.png)。\n\n2. 父内可修：前弧段靠腕根皮肤的长内缘，约 (382,986) 至 (408,1016)，红边沿粉色与深色边线的内侧走，皮肤一侧仍留出参考明确可见的窄深色边线，约 1 px。应向腕根皮肤一侧适当扩展以覆盖该连续可见边界，保留与浅米色环带的接缝，以及末端上方属于粉色后段的回转区域；不能把后段整个并入前段。证据：[上半段 edge](review-evidence/round1-upper-edge.png)、[下半段 edge](review-evidence/round1-lower-edge.png)。\n\n上游范围限制（单独记录，不要求本子组越界）：起端左侧约 x369–375、y975–990，及末端下外缘约 x412–424、y1031–1036，参考深色外轮廓比父完成边界略向外延伸。父蓝线与候选红线在这些外缘重合，候选已贴合父范围；恢复父外部分需要上游扩大父轮廓。此部分尚未补齐，本轮保持父范围约束。证据：[父蓝线与候选红线同区叠加](review-evidence/round1-parent-candidate.png)。由于上述两处仍存在父内可修问题，本轮 revise。",
+      "candidateHash": "b71feea8718455b3ee6ac68b08e73871e63dec9cc3bab87e92822d5037dea746",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T20-26-50-666Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T20-26-50-666Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T20-26-50-666Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T20-26-50-666Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T20-26-50-666Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T20-26-50-666Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T20-26-50-666Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T20-26-50-666Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/workspace/parent-candidate-check.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T20-26-50-666Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T20:57:57.710Z",
+      "repairedCandidateHash": "642bec5392e629e753b7b7d751c0a8c5e2d5c10b9e1f44fb9308eeca575334c7"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已核对整图 blend，以及覆盖全部环带的 [355,955,80,90] 8×放大，并以相互重叠的 [362,965,42,47]、[382,992,50,49] 分别检查 blend/edge；同时查看父完成稿、父与候选同坐标叠加和候选独显。归属正确：本件为画面左腕靠手掌侧粉色环带前段，没有误包米色环带，没有独立可见组件遗漏或碎片噪音。主体位置、斜向走势合理，无需整体重画，但以下父内边缘漏覆盖须局部返修。\n\n1. 靠手掌的下左外缘，约 (378,996) 至 (405,1030)：参考中粉色环带与肤色之间有连续、清楚的深色实体外缘；候选边界沿深色轮廓的内侧通过，沿中段缩入约 1–3 原图像素，留下未覆盖的连续窄带。此段父稿覆盖手掌，漏掉的边缘位于父范围内，不能归为上游限制。向下左侧扩展当前外弧，覆盖参考实际外缘并保持连续弧度，不描内部高光或明暗线。证据：[完整边缘对照](review-evidence/round2-full-edge.png)、[右半段边缘](review-evidence/round2-right-edge.png)、[父蓝/候选红叠加](review-evidence/round2-parent-candidate.png)。\n\n2. 靠腕根的上右内缘，约 (381,983) 经 (398,1005) 至 (410,1016)，以及右端上缘约 (412,1018) 至 (424,1030)：参考的粉色环带/肤色接缝及右端外缘可见，候选红边偏向粉色内部，未覆盖接缝深色实体边缘；右端上弧尤其留有明显窄带，候选转入端帽的位置偏内。按参考扩展这段上右边界，修正端帽上弧；父蓝线与候选红线间仍有允许覆盖的区域，应先补齐父内部分，不要求越过父边界。证据：[左半段边缘](review-evidence/round2-left-edge.png)、[右半段边缘](review-evidence/round2-right-edge.png)、[父蓝/候选红叠加](review-evidence/round2-parent-candidate.png)。\n\n上游范围限制（单独记录，不要求本子组越界）：左端外侧约 x369–375、y975–991，及右端底缘约 x413–423、y1033–1036，参考的深色外轮廓还有部分位于父完成轮廓外；同坐标叠加显示这些位置候选已贴合父边界，仅扩大父范围才能恢复外侧剩余边缘。该部分尚未补齐，父稿保持只读。当前候选四倍采样父范围检查通过，outsidePixels=0；本轮 revise 是因为上述仍存在的父内可修问题，而非要求突破父范围。",
+      "candidateHash": "642bec5392e629e753b7b7d751c0a8c5e2d5c10b9e1f44fb9308eeca575334c7",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/workspace/parent-candidate-overlay.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_front/previews/2026-11-03T21-25-24-706Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T21:46:06.459Z",
+      "repairedCandidateHash": "81037ce90d3a7da1a29b9e73b31be91d00d0d175a2b8d7d3d91af577af569725"
+    }
+  ]
+}

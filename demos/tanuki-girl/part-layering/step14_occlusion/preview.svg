@@ -1,0 +1,509 @@
+<svg data-depth-plan-sha256="4738fa97811097d2f02659294181baca0321797f759e0db936882b6f6d76cf65" data-depth-preview="whole-parts" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1376" height="2048" viewBox="0 0 1376 2048" data-part-preview="1">
+<metadata id="part-preview-groups">{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;id&quot;:&quot;tail&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;legs/leg_left/thigh_band_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_right/anklet_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;head_accessories/tanuki_ornament/tanuki_body&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;hair/braid_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;hair/back_hair&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;headphones/headband&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/ears/ear_left/ear_interior&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/ears/ear_right/ear_interior&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/ears/ear_left/ear_fur&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/ears/ear_right/ear_fur&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/ears/ear_left/ear_shell&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/ears/ear_right/ear_shell&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;neck&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;pelvis&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;legs/leg_left/leg&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_right/leg&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/upper_arm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/upper_arm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/bracelet_green_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/bracelet_pink_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/bracelet_cream_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/bracelet_pink_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/forearm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/forearm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;body/torso&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;body/breast&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/little_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/little_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/ring_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/ring_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/middle_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/middle_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/thumb&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/thumb&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/index_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/index_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/palm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/palm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/bracelet_pink_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/bracelet_pink_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/bell&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/bracelet_green_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/bracelet_cream_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;head_accessories/hair_tie_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;headphones/earcups/earcup_left&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;headphones/earcups/earcup_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/face_base&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/mouth_interior&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/tongue&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/lower_teeth&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/upper_teeth&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/sclera&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/sclera&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/iris&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/iris&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/highlight&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/highlight&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/upper_eyelid&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/upper_eyelid&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/eyelid_crease&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/eyelid_crease&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/nose&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/blush_left&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/blush_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/lower_lip&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/upper_lip&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyebrows/eyebrow_left&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyebrows/eyebrow_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;hair/side_hair/side_hair_left&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;hair/side_hair/side_hair_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;hair/bangs&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;head_accessories/hair_bell&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;head_accessories/tanuki_ornament/paw/paw_left&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;head_accessories/tanuki_ornament/paw/paw_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;head_accessories/hair_tie_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_left/thigh_band_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_right/anklet_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;}]}</metadata>
+<g id="node-0" data-group-path="tail" data-node-kind="group" data-name="tail">
+<g id="part-source-0"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 665 1055 C 659 1028 674 1000 699 998 C 725 996 746 1016 746 1040 C 746 1060 738 1072 740 1088 C 743 1108 830 1124 856 1164 L 859 1172 C 853 1195 849 1220 845 1245 C 840 1274 830 1309 824 1335 C 818 1363 818 1386 822 1412 C 827 1445 834 1480 837 1497 C 813 1538 775 1577 736 1609 C 710 1636 675 1650 645 1656 C 642 1658 641 1661 639 1662 C 620 1671 587 1675 559 1665 C 552 1632 547 1588 547 1547 C 547 1506 558 1459 571 1420 C 580 1393 583 1357 594 1320 C 605 1285 613 1268 629 1240 C 647 1208 655 1176 664 1147 C 675 1111 676 1082 665 1055 Z" fill-rule="nonzero"/></g>
+<g data-group-path="tail" fill="#EA91A6" stroke="none" id="part-source-0-tail-outline">
+<path d="M 684 1096 C 692 1098 698 1093 705 1096 Q 711 1098 718 1096 C 716 1117 713 1144 716 1172 Q 717 1186 722 1198 C 721 1257 724 1333 723 1388 C 722 1422 728 1454 733 1490 C 736 1526 738 1563 740 1606 Q 729 1625 697 1644 L 703 1634 Q 681 1653 655 1658 Q 647 1658 639 1662 C 642 1605 647 1536 655 1488 C 663 1450 668 1420 668 1386 C 667 1323 673 1250 677 1188 C 681 1146 683 1115 684 1096 Z"/>
+<path d="M 856 1164 Q 871 1187 878 1211 Q 882 1224 882 1235 L 877 1229 Q 886 1253 892 1295 L 887 1289 Q 890 1310 891 1333 Q 892 1342 889 1345 L 887 1338 Q 890 1367 886 1380 L 884 1373 Q 885 1395 880 1413 Q 877 1427 871 1436 L 869 1427 Q 864 1459 848 1480 L 849 1474 Q 841 1493 833 1504 C 830 1480 823 1444 818 1413 C 814 1388 814 1361 820 1333 C 826 1307 836 1272 841 1244 C 846 1217 850 1190 856 1164 Z"/>
+<path d="M 574 1416 C 563 1433 553 1441 538 1444 Q 520 1446 501 1445 L 511 1452 Q 497 1451 484 1457 L 487 1460 Q 484 1459.5 481 1461 C 460 1471 446 1489 435 1514 C 432 1528 429 1546 429 1562 C 429 1585 438 1609 454 1629 Q 464 1641 483 1645 C 484 1650 497 1660 514 1661 Q 525 1663 537 1661 L 528 1668 Q 545 1673 563 1668 C 557 1634 553 1588 553 1547 C 553 1507 564 1457 574 1416 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-1" data-group-path="legs/leg_left/thigh_band_back" data-node-kind="part" data-name="thigh_band_back">
+<g id="part-source-1"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 726,1181 C 747,1164 817,1164 841,1178 C 846,1181 848,1186 847,1191 C 846,1197 842,1202 837,1201 C 834,1200 833,1196 830,1194 C 809,1184 760,1184 739,1195 C 736,1196 735,1200 731,1201 C 725,1203 722,1198 722,1192 C 721,1188 722,1184 726,1181 Z" fill-rule="nonzero"/></g><g data-group-path="legs/leg_left/thigh_band_back" id="part-source-1-source"/></svg>
+</g>
+</g>
+<g id="node-2" data-group-path="legs/leg_right/anklet_back" data-node-kind="part" data-name="anklet_back">
+<g id="part-source-2"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 576,1778 C 576,1771 578.5,1766.5 584,1763.5 C 598,1756 622,1756.5 633,1764 C 635,1765.5 636,1767 638,1768 L 639,1772.8 C 635,1773.4 632,1770.7 629,1768.8 C 618,1762.3 598,1763.4 586,1770.8 C 582,1773.2 581,1777.5 580,1781 C 579,1784 575,1783 576,1778 Z" fill-rule="nonzero"/><path d="M 571.5,1779.5 C 574,1779.5 577,1780.9 579,1783 C 581,1785.2 580.8,1788.4 578.6,1789.2 C 576.4,1790 573.7,1787.7 572.2,1785.7 C 570.8,1784 570.1,1781.4 571.5,1779.5 Z" fill-rule="nonzero"/><path d="M 646.6,1774.2 C 648.1,1773.6 649.3,1774.5 649,1776 C 648.7,1777.8 647.5,1779.5 645.8,1780.2 C 644.2,1780.9 642.8,1779.8 643.2,1778.2 C 643.6,1776.4 644.8,1775 646.6,1774.2 Z" fill-rule="nonzero"/><path d="M 577,1800 C 579,1788 592,1783 612,1784 C 625,1784.8 633,1788 639,1791.6 L 640.8,1796.9 C 635,1797.1 632,1793.4 627,1792.1 C 617,1788.4 599,1789.6 589,1795 C 586,1797 585,1800 584,1803 C 582,1807 576,1805 577,1800 Z" fill-rule="nonzero"/><path d="M 582,1797.5 C 585.6,1798 589,1799 592,1800.5 C 595,1801.7 596,1804.8 594,1806.7 C 592,1808.7 589,1807.3 586,1806 C 583,1804.8 580,1804.4 579,1802.8 C 577.8,1800.8 579.6,1797.2 582,1797.5 Z" fill-rule="nonzero"/><path d="M 646.8,1799.8 C 648.2,1800 649.5,1801.5 650,1803 C 650.8,1805.2 649.3,1807.8 647.3,1808 C 645.2,1808.2 644.5,1806.4 645.3,1804.5 C 646.2,1802.8 646.3,1801.3 646.8,1799.8 Z" fill-rule="nonzero"/></g><g data-group-path="legs/leg_right/anklet_back" fill="#58b8a9" stroke="none" id="part-source-2-anklet-back-outline"><path d="M 636,1767 C 641,1763 648,1766 650,1772 C 650.8,1773.2 650.5,1774.8 649.5,1776.5 L 646.5,1776 C 644.8,1772.8 641.7,1771.5 637.2,1773.8 Z"/><path d="M 576,1775 L 568.8,1781.1 C 571.8,1781.8 574.8,1783.2 578,1785 L 577.3,1779.8 Z"/><path d="M 638.2,1791.3 C 644.1,1791.8 650.5,1797 652,1803 L 648.5,1804 C 648.2,1799.5 644.3,1797 639.6,1797 L 638.2,1798 Z"/></g></svg></g>
+</g>
+<g id="node-3" data-group-path="head_accessories/tanuki_ornament/tanuki_body" data-node-kind="part" data-name="tanuki_body">
+<g id="part-source-3"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+<g data-group-path="head_accessories/tanuki_ornament/tanuki_body" fill="#bd884f" stroke="none" id="part-source-3-tanuki-body-outline">
+<path d="M648 32 C656 36 670 35 680 35 C688 35 695 39 699 44 Q700 46 704 41 C708 38 706 36 713 34 C722 32 738 35 747 30 Q750 27 751 26 Q754 23 751 31 C747 41 745 44 744 50 Q743 55 737 56 Q729 57 733 63 L736 66 Q744 67 752 72 C757 61 770 54 783 55 L785 56 C800 37 820 27 840 26 C866 23 887 33 897 53 C908 71 909 87 908 105 C909 147 887 184 856 210 C839 224 814 227 796 233 C781 238 757 240 737 239 C717 242 696 242 676 239 C660 239 644 241 625 237 C608 231 599 221 600 211 L602 206 L611 188 C600 175 597 164 598 151 C599 133 606 119 617 107 C607 103 602 94 603 83 C603 69 613 57 625 54 C639 52 650 59 659 71 L663 69 C655 60 652 49 649 39 Q646 32 648 32 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-4" data-group-path="hair/braid_right" data-node-kind="part" data-name="braid_right">
+<g id="part-source-4"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M573 503 C572 490 575 478 582 470 C590 460 602 458 612 463 C624 469 628 481 623 493 C618 505 617 517 623 529 C630 540 634 551 632 564 C632 579 625 593 615 607 C615 612 616 618 619 623 L611 631 C602 624 592 608 588 594 C584 578 586 558 596 542 C591 527 582 512 573 503 Z" fill-rule="nonzero"/><path d="M589 697 C594 701 602 701 605 697 C604 704 605 711 608 718 C602 721 594 722 585 723 C590 714 591 706 589 697 Z" fill-rule="nonzero"/></g>
+<g data-group-path="hair/braid_right" fill="#ed91a4" stroke="none" id="part-source-4-braid-right-outline">
+<path d="M573 494 L578 490 C590 505 598 524 603 543 C594 552 596 567 602 578 C606 589 609 599 615 607 C615 612 616 618 619 623 C624 639 622 653 615 663 C623 679 614 693 602 700 C602 704 604 709 606 712 L606 715 L589 715 C589 708 589 703 588 699 C575 687 572 672 580 660 C572 646 570 630 579 617 C571 607 568 597 573 585 C576 579 575 576 574 573 C568 560 569 550 574 542 C570 535 567 529 568 523 C567 513 568 502 573 494 Z"/>
+<path d="M587 712 C572 726 543 735 532 716 C531 731 539 737 551 739 C561 742 569 737 574 733 C564 742 553 744 539 740 C548 750 558 752 566 749 C562 753 559 758 556 766 C552 771 550 774 551 777 C552 781 578 780 599 762 C598 769 595 775 593 778 C604 773 610 762 611 752 C611 759 611 764 609 768 C620 759 620 744 617 731 C613 723 609 716 606 712 C600 714 593 714 587 712 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-5" data-group-path="hair/back_hair" data-node-kind="part" data-name="back_hair">
+<g id="part-source-5"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M618 255 C635 232 654 211 677 202 C696 195 719 195 740 202 C760 210 777 229 792 254 C809 278 825 303 838 320 L849 322 C853 336 860 349 865 358 C868 372 871 386 873 400 C881 423 889 447 888 465 C885 465 880 465 875 466 C869 486 846 504 815 505 C805 513 793 519 782 522 C771 526 762 528 754 538 C747 544 725 550 704 552 C681 551 660 543 644 529 C632 524 619 527 609 536 C603 540 600 545 597 550 C594 536 591 523 588 510 C584 501 577 492 571 484 C568 477 566 468 566 457 C566 441 567 423 566 404 C557 405 549 408 541 411 C549 389 559 370 571 350 C576 342 580 336 582 326 C584 299 603 273 618 255 Z" fill-rule="nonzero"/></g>
+<g data-group-path="hair/back_hair" fill="#c96f91" stroke="none" id="part-source-5-back-hair-outline">
+<path fill-rule="evenodd" d="M537 411 C545 407 556 402 567 399 C566 419 568 442 576 460 C580 474 589 487 599 495 C589 491 578 484 573 475 C568 463 566 451 566 442 C563 455 561 469 565 478 C564 483 564 490 565 498 C565 506 564 514 563 519 L568 523 C551 534 541 530 532 522 C518 508 516 486 519 466 C521 447 530 425 537 411 Z M540 476 C535 487 534 501 542 510 C547 518 555 521 563 519 C552 510 545 493 542 482 Z"/>
+<path d="M586 494 C600 503 613 509 625 511 C620 506 615 501 610 496 C621 503 629 504 636 505 C646 513 659 520 669 524 C664 527 660 529 656 530 C650 526 645 523 641 524 C633 524 628 529 620 529 C611 532 603 540 597 554 C594 540 592 528 588 516 C586 508 585 501 586 494 Z"/>
+<path d="M840 319 L854 321 C857 334 861 345 868 355 C856 346 849 333 840 319 Z"/>
+<path d="M846 389 C855 393 865 396 874 397 C886 424 895 458 895 479 C898 500 884 523 864 534 C877 522 882 502 880 484 C880 477 879 472 878 469 L875 468 C870 498 850 524 814 532 C823 526 829 515 831 505 C826 514 813 525 801 529 C797 529 793 529 790 529 C789 526 790 523 790 521 C787 524 786 527 784 529 L782 529 C771 522 762 524 755 538 L743 545 L741 529 C758 522 772 511 782 497 C794 491 807 480 816 470 C811 483 802 494 792 499 C811 488 826 463 833 432 C840 467 827 494 815 505 C839 486 848 451 842 420 C855 442 867 459 878 466 C863 452 852 426 846 389 Z"/>
+</g>
+</svg>
+</g>
+</g>
+<g id="node-6" data-group-path="headphones/headband" data-node-kind="part" data-name="headband">
+<g id="part-source-6"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 654,543 C 656,550 660,556 660,560 C 660,565 656,568 656,572 C 656,577 660,580 664,580 C 668,580 670,576 670,571 C 670,565 676,562 676,556 C 671,547 664,542 654,543 Z" fill-rule="nonzero"/><path d="M 740,551 C 746,549 752,552 757,557 C 761,561 765,565 766,570 C 767,575 763,580 758,581 C 753,582 749,579 747,574 C 745,569 745,566 742,563 C 739,560 738,555 740,551 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="headphones/headband" fill="#59647f" stroke="none" id="part-source-6-headphones-headband-outline">
+    <path d="M 652,536 C 646,524 650,514 662,507 C 680,497 700,494 720,495 C 744,495 771,500 785,512 C 793,519 795,531 787,541 C 780,549 768,557 759,562 C 751,568 741,570 735,561 C 730,554 734,544 743,539 C 755,534 772,532 776,526 C 776,520 766,516 756,513 C 743,509 731,509 716,510 C 700,510 688,517 682,528 C 678,536 685,547 679,559 C 675,568 666,569 662,560 C 657,552 654,543 652,536 Z"/>
+    <path d="M 661.8,531.1 L 675.9,527.6 L 679,531.2 C 680.6,539.6 681.5,550.9 680.1,558 C 678.7,563 675,566.8 670.2,569 C 669.9,556.3 666.2,540.1 661.8,531.1 Z"/>
+    <path d="M 748.3,544 L 740.3,544.8 C 740.1,552 739.8,561 743.8,564.2 C 744.8,557.5 746.4,550.3 748.3,544 Z"/>
+    <path d="M 785.7,528.5 C 787.2,524.7 788.8,522.8 790.5,520.9 L 789.7,529.4 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-7" data-group-path="face/ears/ear_left/ear_interior" data-node-kind="part" data-name="ear_interior">
+<g id="part-source-7"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 812,234 C 803,241 796.5,253.5 796.5,266.5 C 796.5,282 804.5,296 818,303 C 825,307 834,308 843,303.5 C 851,298 856,288 858,275 C 859,263 853,251 843,243 C 833,236 821,231 812,234 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/ears/ear_left/ear_interior" fill="#f4ecd3" stroke="none" id="part-source-7-ear-left-interior-outline">
+    <path d="M 803.5,245 C 809,231 821,223 834,222.8 C 853,222.3 868,237 874,255 C 878.2,268 877,280.5 870.5,290 C 863,300 851.5,304 839.5,302.5 C 842,299.9 843.6,297 843.8,293.8 L 846.3,295.8 C 847.5,290.2 848.5,285 848.2,278.9 L 851.7,280.1 C 850.2,276 848,272.2 847.6,268.6 L 851.6,265 C 851.5,262.8 850,261.5 848.7,260.9 C 850,257.4 847,254.8 843.8,252.9 C 838.6,249.9 832.4,247.6 828,247.3 L 832.3,244.5 C 827,239.4 819.5,239.8 813.6,241.1 C 809.3,242 806,243.4 803.5,245 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-8" data-group-path="face/ears/ear_right/ear_interior" data-node-kind="part" data-name="ear_interior">
+<g id="part-source-8"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 607.8,244 C 611.9,256.9 613.1,270.8 606.9,282.6 C 601.2,294.3 591.0,301.2 578.5,302.3 C 570.5,302.4 560.0,298.0 560.0,286.0 C 557.2,278.0 553.9,271.8 557.5,265.0 C 562.0,255.0 566.4,248.3 575.0,245.0 C 579.0,241.0 581.0,238.0 588.0,238.0 C 593.0,238.0 600.0,241.0 607.8,244 Z" fill-rule="nonzero"/></g>
+<g data-group-path="face/ears/ear_right/ear_interior" fill="#f4eedb" stroke="none" id="part-source-8-ear-right-interior-outline">
+<path d="M 607.8,244 C 603.7,231.1 591.2,222.1 577.4,221.8 C 560.6,220.9 546.7,230.7 539.9,244.5 C 533.8,256.9 533.4,273.3 539.8,285.3 C 546.9,297.7 560.8,303.8 578.5,302.3 L 579.7,300.6 C 576.8,300.5 573.8,299.8 572.2,298.5 C 570.9,296.9 570.4,293.4 569.7,291.9 L 567.8,293.3 C 564.2,292.9 563.8,289.5 563.5,285.4 C 563.1,279.9 563.5,275.8 564.4,271.8 L 562.2,273.4 L 561.6,271.4 L 560.0,271.2 L 561.0,269.4 L 559.1,269.0 C 561.0,266.4 564.1,263.8 566.0,260.6 C 566.8,259.6 564.8,258.7 563.8,257.7 C 562.4,256.4 563.7,255.0 565.2,253.9 C 569.5,250.7 575.0,248.2 580.7,246.4 L 577.8,245.0 L 582.1,241.6 L 585.0,242.5 L 583.8,240.3 C 591.3,240.2 599.1,242.4 607.8,244 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-9" data-group-path="face/ears/ear_left/ear_fur" data-node-kind="part" data-name="ear_fur">
+<g id="part-source-9"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 807.0,243.6 C 801.2,244.7 797.5,248.6 795.0,254.5 C 790.7,267.8 794.1,284.0 803.3,295.3 C 807.9,301.0 812.5,305.2 818.0,308.0 C 826.0,312.0 835.2,308.8 837.2,302.2 C 837.6,300.6 836.5,299.3 835.2,298.2 L 830.0,298.0 C 822.0,283.2 811.3,268.1 802.0,257.9 C 802.6,252.5 804.3,247.4 807.0,243.6 Z" fill-rule="nonzero"/></g>
+<g data-group-path="face/ears/ear_left/ear_fur" fill="#e6bd8f" stroke="none" id="part-source-9-ear-left-fur-outline">
+<path d="M 803.9,243.4 C 810.1,241.4 817.1,239.6 822.3,240.1 C 826.8,240.4 830.8,241.9 833.6,243.9 C 834.2,245.2 832.8,247.2 830.9,248.2 C 838.1,249.2 844.4,253.2 849.1,256.8 C 850.2,258.0 849.8,260.0 849.1,261.1 C 851.0,261.9 852.4,263.3 852.3,264.6 C 852.0,266.2 849.6,267.6 847.9,268.4 C 848.7,271.2 850.9,274.4 852.2,277.1 L 852.4,279.0 L 848.8,278.2 C 849.4,284.0 849.1,289.7 847.8,294.7 C 846.1,294.4 844.6,293.6 843.3,292.5 C 843.8,296.5 841.6,299.5 838.9,302.0 C 835.9,302.4 832.8,301.9 830.2,301.3 C 822.1,286.3 811.9,271.3 800.4,258.9 C 800.9,253.7 802.0,248.1 803.9,243.4 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-10" data-group-path="face/ears/ear_right/ear_fur" data-node-kind="part" data-name="ear_fur">
+<g id="part-source-10"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 605.4,245.0 C 608.2,245.3 610.1,248.8 612.4,253.1 C 615.2,258.2 617.4,263.1 618.4,268.4 C 620.0,277.2 616.9,286.0 612.0,292.8 C 606.2,301.0 595.0,306.1 584.2,304.2 C 581.0,303.6 579.0,302.9 577.8,302.0 L 580.0,297.8 C 588.8,280.5 600.4,267.4 608.4,257.0 C 607.8,252.4 606.5,248.0 605.4,245.0 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/ears/ear_right/ear_fur" fill="#f4e9d0" stroke="none" id="part-source-10-ear-right-fur-outline">
+    <path d="M 583.1,240.1 C 589.7,240.3 601.1,243.1 607.5,244.5 C 608.8,248.4 609.8,253.2 610.5,257.6 C 600.5,268 588.8,281.5 580.1,299.3 L 578.8,302.4 C 575.6,302.4 573,301.4 571.6,299.2 C 570.2,297.4 569.8,294.2 569.2,291.8 L 567.5,292.5 L 567.5,294.5 C 564.3,294.3 562.9,291.6 562.5,287.9 C 562,284.5 562.3,279.7 562.8,276.2 L 561.1,275.6 L 561.4,272.9 L 563.2,272.2 C 561.3,271.8 559.1,270.7 559.2,269.5 C 559.6,267.9 563.2,264.5 565.1,261.4 C 564.4,260.3 562.1,259.7 562.4,258.5 C 562.9,256 570.8,250.9 581.3,247.5 C 579.6,246.9 577.5,246.5 577.9,245.3 L 580.5,243.1 L 585.8,243.4 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-11" data-group-path="face/ears/ear_left/ear_shell" data-node-kind="part" data-name="ear_shell">
+<g id="part-source-11"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="face/ears/ear_left/ear_shell" fill="#e8a0aa" stroke="none" id="part-source-11-ear-left-shell-outline">
+    <path fill-rule="evenodd" d="M 840,320 C 862,318 877,308 886,291 C 892,274 890,254 884,238 C 875,219 859,209 844,206 C 829,203 808,209 794,222 C 790,229 786,239 783,245 C 773,265 782,291 799,305 C 810,315 825,320 840,320 Z M 803,258 C 802,242 808,231 820,225.7 C 831,220.5 846,221 857,227 C 870,235 875.5,250 875.5,267 C 875.5,281 870,291 860,298.5 C 851,304.5 841,305.5 830,302.5 C 823,288 813,272 803,258 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-12" data-group-path="face/ears/ear_right/ear_shell" data-node-kind="part" data-name="ear_shell">
+<g id="part-source-12"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 624.965,241.66775 C 625.355,242.8325 625.7,243.95 626,245 C 632,266 623,291 609,305 C 599,314 588,321 574,320 C 571.8,319.8 569.67,319.52 567.609,319.161 L 573.72,303.1288 C 575.44,303.184 577.2,303.14 579,303 C 590.5,302.2 600.4,295.4 606,284 C 610,276.3 611.2,267.5 610,258 C 609.76,255.4 609.368,252.86 608.816,250.408 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/ears/ear_right/ear_shell" fill="#e8a0aa" stroke="none" id="part-source-12-ear-right-shell-outline">
+    <path d="M 574,320 C 552,318 537,308 528,291 C 519,274 519,254 526,237 C 536,219 552,208 568,206 C 584,203.5 603,208 614,221 C 620,228 624,238 626,245 C 620.5,249 615,253.5 610,258 C 608.8,245 603.8,233.5 594,227 C 584,220.5 571,220 559,225 C 544,231 536.5,245 536.5,261 C 536.5,277 543,290 555,297.5 C 562,302 570,303.7 579,303 C 576.9,308.6 575.2,314.2 574,320 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-13" data-group-path="neck" data-node-kind="group" data-name="neck">
+<g id="part-source-13"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 677.2,528.9 C 675.0,514.8 678.6,505.2 688.6,497.7 C 700.0,489.4 717.7,489.7 730.0,498.4 C 740.0,505.9 742.9,516.7 742.5,527.6 C 742.2,534.3 742.1,540.4 742.2,546.0 C 722.4,550.8 699.7,551.7 678.8,546.5 C 678.5,539.9 677.9,533.6 677.2,528.9 Z" fill-rule="nonzero"/><path d="M 678.7,555.7 C 678.1,561.4 675.0,565.4 670.2,567.8 C 664.6,570.6 653.6,575.6 644.0,579.5 C 640.0,581.1 636.1,582.1 635.4,585.6 C 632.7,600.0 642.2,612.3 657.0,621.2 C 671.4,629.9 690.6,633.8 709.0,633.8 C 728.0,633.8 747.4,629.4 762.1,620.0 C 775.5,611.5 783.1,600.0 782.7,587.6 C 782.6,584.6 782.1,582.8 779.4,581.2 C 768.6,577.2 751.4,569.8 746.2,564.0 C 744.4,562.0 743.5,559.3 742.9,554.2 L 739.4,571.2 L 738.6,591.5 C 717.4,599.1 695.5,597.4 675.6,589.6 L 678.7,555.7 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="neck" fill="#E9AD97" stroke="none" id="part-source-13-neck-outline">
+    <path d="M 677.2,528.9 C 687.6,533.3 698.4,537.7 707.7,539.5 C 719.1,536.1 730.9,532.3 742.5,527.6 C 742.1,538.0 741.9,546.5 742.9,554.2 C 743.5,559.3 744.4,562.0 746.2,564.0 C 744.1,573.4 742.5,584.2 742.2,593.8 L 742.2,601.7 C 731.8,602.3 719.9,606.0 711.7,610.8 Q 710.0,611.8 708.2,610.9 C 697.6,605.9 685.5,603.0 672.6,600.3 C 672.9,589.6 672.2,578.1 670.2,567.8 C 675.0,565.4 678.1,561.4 678.7,555.7 C 679.5,547.9 678.5,537.2 677.2,528.9 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-14" data-group-path="pelvis" data-node-kind="group" data-name="pelvis">
+<g id="part-source-14"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 583.5,919 C 602.5,882.5 648,861 702,861 C 756,861 804,882.5 824,919 L 827,925 C 747,928 656,928 580,925 Z" fill-rule="nonzero"/><path d="M 566.7,952.3 C 555.3,977.5 549.2,998.5 548,1016 C 546.5,1035 566,1052 590,1058 C 613,1064 639,1060 659,1069 C 674,1076 675.5,1086.5 683,1092.7 C 685.5,1095 688.3,1096.3 691,1096.3 L 702,1085 C 686,1074 670,1047 650,1020 C 629,992 601,963 578,951 Z" fill-rule="nonzero"/><path d="M 841.5,956.3 C 851,979 857.6,1000.5 860,1020 C 862,1039 846,1052.5 821,1058 C 799,1063 774,1060.5 753,1069 C 738,1075 732,1086 724,1089.8 L 711,1081 C 728,1061 742,1034 765,1008 C 785,985 813,964 832,953 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="pelvis" fill="#dfabb6" stroke="none" id="part-source-14-pelvis-outline">
+    <path d="M 583.5,919 C 660,922 747,922 824,919 C 831,932 837,945 841.5,956.3 C 822,966.6 803.4,983.7 789.4,997.2 C 782.1,1004.3 777,1013.7 770.4,1021.7 C 750.5,1045.8 737.5,1072.8 724,1089.8 C 718,1097.3 712,1098.3 705,1096.3 C 700,1094.3 698,1098.3 691,1096.3 C 683.2,1096.3 677.8,1086.8 672.7,1077.8 C 658.7,1053.8 642.7,1027.8 624.7,1003.8 C 605.2,977.6 587.5,961.3 566.7,952.3 C 571.6,941 577.6,930 583.5,919 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-15" data-group-path="legs/leg_left/leg" data-node-kind="part" data-name="leg">
+<g id="part-source-15"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="legs/leg_left/leg" fill="#8ca4db" stroke="none" id="part-source-15-leg-left-body-outline">
+    <path d="M 841,958 C 829,931 803,920 777,924 C 744,929 720,953 713,985 C 707,1017 707,1047 711,1075 C 714,1088 716,1098 718,1115 L 738,1090 L 784,1021 L 846,974 Z"/>
+    <path d="M 841,958 C 853,986 862,1021 865,1054 C 866,1092 861,1138 851,1178 C 847,1219 838,1262 828,1303 C 819,1344 815,1374 817,1410 C 820,1442 827,1470 832,1497 C 837,1552 831,1606 822,1654 C 814,1697 806,1728 802,1760 C 798,1784 798,1801 800,1820 C 803,1841 798,1864 795,1885 C 793,1906 796,1929 798,1947 C 801,1961 795,1970 790,1981 C 786,1990 780,1994 774,1993 C 771,1998 765,1999 759,1996 C 755,2002 747,2001 743,1998 C 739,2004 729,2004 724,1996 C 719,2002 708,2001 705,1992 C 702,1984 707,1970 708,1959 C 713,1938 720,1916 726,1900 C 731,1879 735,1856 739,1826 C 743,1805 744,1780 744,1756 C 744,1720 744,1693 742,1667 C 740,1635 739,1610 738,1584 C 737,1536 735,1494 729,1453 C 725,1428 721,1402 722,1377 C 722,1335 721,1283 721,1241 C 720,1221 720,1207 720,1193 C 718,1176 716,1154 716,1129 C 715,1116 717,1100 716,1094 C 727,1076 739,1054 756,1033 C 782,998 811,974 841,958 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-16" data-group-path="legs/leg_right/leg" data-node-kind="part" data-name="leg">
+<g id="part-source-16"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 570,948 C 583,922 611,911 636,915 C 671,921 693,950 694,982 C 695,1013 692,1042 687,1068 C 685,1082 683,1094 681,1106 L 666,1080 L 616,1008 L 565,963 Z" fill-rule="nonzero"/></g>
+ <g data-group-path="legs/leg_right/leg" fill="#8ca4db" stroke="none" id="part-source-16-leg-right-leg-outline">
+  <path d="M 570,948 C 596,960 624,987 646,1017 C 663,1039 674,1066 684,1087 C 686,1095 682,1110 682,1126 C 679,1192 670,1252 670,1312 C 669,1345 673,1377 668,1408 C 665,1431 658,1455 654,1480 C 644,1544 642,1620 638,1687 C 636,1716 635,1745 636,1767 C 636,1782 637.5,1797 643,1813.5 C 643,1845 642,1863 647,1875 C 650,1892 654,1907 659,1925 C 664,1944 675,1975 674,1989 C 673,2001 660,2004 652,1998 C 648,2004 639,2004 636,2000 C 631,2004 623,2004 620,1998 C 614,2003 606,1999 602,1993 C 596,1997 588,1993 585,1984 C 577,1965 576,1951 579,1929 C 582,1905 582,1881 579,1852 C 578,1830 578,1804 578,1787 C 578,1776 578,1764 575.5,1755 C 571.5,1729 568.5,1700 564,1670 C 558,1630 551,1586 550,1554 C 549,1520 555,1488 563,1457 C 570,1431 577,1404 578,1377 C 580,1349 576,1327 571,1300 C 565,1258 555,1215 551,1177 C 543,1135 539,1090 542,1050 C 545,1012 555,977 570,948 Z"/>
+ </g>
+</svg></g>
+</g>
+<g id="node-17" data-group-path="arms/arm_left/upper_arm" data-node-kind="part" data-name="upper_arm">
+<g id="part-source-17"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M932.257 815.537 C937.3285 823.3035 942.31425 830.49425 947.257125 837.580875 C953.19 846.085 953 855 943 861 C927 871 891 870 877.337 842.716 C876.21 840.44 875.1 838.2 874 836 C870.4 830 866.7424 824.4032 863.09632 819.057536 C879 810 912 808 932.257 815.537 Z" fill-rule="nonzero"/></g>
+<g data-group-path="arms/arm_left/upper_arm" fill="#e7aa89" stroke="none" id="part-source-17-arm-left-upper-arm-outline">
+<path d="M805 594 C830 596 846 607 854 628 C864 650 869 678 878 706 C890 739 904 766 919 794 C924.25 803.1 929.3775 811.22 934.425375 818.831625 C923 839 892 842 865.850392 823.128464 C853.3696 804.3904 840.84 789.04 831 771 C823 757 819 746 823 730 C825 714 819 705 815 691 C809 671 804 643 805 619 Z"/>
+<path d="M805 594 C791 594 777 602 772 615 C766 629 768 646 778 656 C786 666 797 669 804 672 C810 675 812 684 816 696 L823 699 C818 678 812 650 810 626 L810 601 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-18" data-group-path="arms/arm_right/upper_arm" data-node-kind="part" data-name="upper_arm">
+<g id="part-source-18"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-group-path="arms/arm_right/upper_arm" fill="#e7aa89" stroke="none" id="part-source-18-arm-right-upper-arm-outline"><path d="M572 605 C583 597 595 592 607 594 C625 593 638 608 639 626 C640 646 629 660 615 665 C609 667 606 674 607 681 C610 697 611 710 606 725 C601 747 590 768 574 783 C570 789 565 795 559.28 802.008 C555.6 805.8 552.4 809.4 550 813 L542 814 C542 801 546 788 545 776 C542 765 537 754 533 745 C529 737 528 726 532 716 C547 723 562 720 577 709 C581 702 577 694 574 687 C570 678 571 668 576 659 C571 650 570 639 575 622 C573 616 571 610 572 605 Z"/><path d="M572 605 C562 616 556 636 550 658 C544 680 537 703 531 720 C543 729 555 730 567 724 C575 720 581 716 584 712 L586 706 C586 701 582 695 579 690 C574 681 573 670 580 660 C575 654 573 647 574 640 C574 633 576 626 579 622 C576 616 574 610 572 605 Z"/><path d="M531 719 C531 732 545 740 558 739 C552 741 545 741 539 740 C544 750 556 752 566 749 C558 759 551 769 550 775 L550 777 C558 777 568 774 576 772 L573 778 L579 775 L574 783 C570 789 564 796 557.875 802.75 C552.25 808.75 547.5 814.5 544 821 C538 833 524 841 513 835 C503 830 493 817 489 804 C505 782 518 751 531 719 Z"/></g></svg></g>
+</g>
+<g id="node-19" data-group-path="arms/arm_left/bracelet_green_back" data-node-kind="part" data-name="bracelet_green_back">
+<g id="part-source-19"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M978.4 987.1 C985.5 982.7 989.4 975.4 995.4 970.0 C1001.4 964.6 1006.7 964.5 1013.4 956.3 L1015.5 958.0 C1013.5 959.7 1012.8 961.5 1011.7 962.8 C1008.4 966.7 1004.9 968.1 998.2 975.3 C991.5 982.5 987.0 987.3 982.8 990.3 C980.8 991.8 979.5 992.5 978.8 993.0 Z" fill-rule="nonzero"/><path d="M966.9 1002.9 C967.9 1001.9 969.0 1001.2 970.3 1000.8 C973.9 999.5 976.1 1003.1 974.1 1005.7 C972.6 1007.7 969.6 1008.0 968.0 1006.3 C967.2 1005.4 966.9 1004.1 966.9 1002.9 Z" fill-rule="nonzero"/><path d="M1020.0 952.8 C1022.1 952.2 1024.3 952.9 1025.4 954.6 C1027.2 957.3 1025.3 960.9 1022.4 961.2 C1019.9 961.4 1018.1 959.5 1018.3 957.3 C1018.4 955.4 1019.0 954.2 1020.0 952.8 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_left/bracelet_green_back" fill="#58b8a9" stroke="none" id="part-source-19-bracelet-green-back-outline"><path d="M980 986 C973.2 990.25 964.955 998.1125 965.705125 1004.060375 C966.3 1005.4 968.2 1004.7 970 1003.8 C971.4 1000.1 975.7 995.2 982.8 990 Z"/><path d="M1011 959 C1015 953 1021 948 1027 953 L1024.6 955 C1022.5 953.8 1020.5 954 1018.8 954.9 C1015.6 956.6 1013.5 959.2 1012.5 961.5 Z"/></g></svg></g>
+</g>
+<g id="node-20" data-group-path="arms/arm_left/bracelet_pink_back" data-node-kind="part" data-name="bracelet_pink_back">
+<g id="part-source-20"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 992.1 1010.7 C 990.4 1006.1 988.9 1000.7 990.3 994.5 C 992.3 985.2 1002.1 977 1011.2 974.9 C 1015.8 973.8 1020.1 975.2 1021.8 978.7 C 1023.5 982 1021.8 985.2 1018.9 984.5 C 1017.5 984.1 1016.4 981.9 1013.2 981.9 C 1006.6 981.9 999 988.8 997.3 995.8 C 995.8 1001.7 997.2 1005.7 998.6 1010.6 C 999.4 1013.7 998.6 1016.1 996.2 1016.7 C 993.8 1017.3 992.8 1014.4 992.1 1010.7 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_left/bracelet_pink_back" fill="#c785a1" stroke="none" id="part-source-20-bracelet-pink-back-outline"/>
+</svg></g>
+</g>
+<g id="node-21" data-group-path="arms/arm_right/bracelet_cream_back" data-node-kind="part" data-name="bracelet_cream_back">
+<g id="part-source-21"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M384 963 C396 957 407 958 417 965 C423 971 425 977 425.8 983.5 C427.2 985.1 427.2 987 425.9 988.2 C424.8 989.2 423.3 988.7 423 987 C422 979 416 972 409 967 C400 962 391 963 387 969 C384 973 380 967 384 963 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_right/bracelet_cream_back" fill="#c8d0b8" stroke="none" id="part-source-21-bracelet-cream-back-outline"><path d="M376 972 C375 965 377 958 382 957 C386 956 389 958 394 959 L391 965 C387 963 384 962 381 965 C378 967 377 970 376 972 Z"/><path d="M427 984 C426.2 985.2 426 986.5 426.3 987.4 C430.5 990.5 435 995.5 438 1001.5 C434.5 998 428 994 422 991.5 Z"/></g></svg></g>
+</g>
+<g id="node-22" data-group-path="arms/arm_right/bracelet_pink_back" data-node-kind="part" data-name="bracelet_pink_back">
+<g id="part-source-22"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M376 983 C385 978 395 980 404 990 C411 1000 411 1009 410 1017 C412 1021 409 1025 407 1020 C406 1012 405 1004 399 996 C392 986 385 985 380 990 C377 993 373 988 376 983 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_right/bracelet_pink_back" fill="#d77f9e" stroke="none" id="part-source-22-bracelet-pink-back-outline"><path d="M408.5 1012.8 C409.3 1012.6 410.4 1012.9 411.4 1013.6 L410 1016 C422 1023 428 1027 424 1031 C423.5 1032 422.5 1032.8 421.6 1033.2 L420.2 1030.4 C417.3 1025.9 413.8 1021.2 409.2 1017.4 C408.5 1016.9 407.7 1016.1 407.2 1015.6 C407.5 1014.5 408 1013.4 408.5 1012.8 Z"/></g></svg></g>
+</g>
+<g id="node-23" data-group-path="arms/arm_left/forearm" data-node-kind="part" data-name="forearm">
+<g id="part-source-23"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M1002 945 C1005 952 1008 957 1011 959 C1015 970 1018 972.6 1019.5 976 C1022.5 982.8 1020 987 1026 1001 C1032 1015 1035 1021 1028 1026 C1021 1031 1011 1032 1003 1024 C995 1016 992.5 1007.5 988.5 1002.5 C985.3 998.5 984 991.2 983 990 C980 986 977 982 974 979 C984 968 996 955 1002 945 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_left/forearm" fill="#e7aa89" stroke="none" id="part-source-23-arm-left-forearm-outline"><path d="M874 836 C879 817 896 800 919 794 C934 820 948 838 962 859 C979 889 997 921 1011 959 C1004 970 993 980 983 990 C959 961 936 935 917 910 C897 884 885 858 874 836 Z"/><path d="M989 1002 C1001 992 1012 982 1019 976 C1015 990 1005 1005 997 1013 Z"/></g></svg></g>
+</g>
+<g id="node-24" data-group-path="arms/arm_right/forearm" data-node-kind="part" data-name="forearm">
+<g id="part-source-24"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M403 953 C412 964 420 976 428 982 C422 989 418 996 414 1004 C411 1010 408 1016 404 1021 C397 1030 384 1033 375 1026 C366 1019 366 1007 371 999 C375 993 377 986 378 976 C379 971 386 972 389 967 L403 953 Z" fill-rule="nonzero"/></g>
+<g data-group-path="arms/arm_right/forearm" fill="#e7aa89" stroke="none" id="part-source-24-arm-right-forearm-outline">
+<path d="M489 804 C507 806 525 814 544 821 C532 850 518 877 499 901 C479 930 454 958 427 984 L421 993 C408 985 397 976 389 967 L394 959 C410 933 425 905 441 877 C455 847 472 824 489 804 Z"/>
+<path d="M378 976 C386 984 400 995 414 1004 L408 1014 C396 1003 385 990 379 981 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-25" data-group-path="body/torso" data-node-kind="part" data-name="torso">
+<g id="part-source-25"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="body/torso" fill="#e7b5a7" stroke="none" id="part-source-25-body-torso-outline">
+    <path d="M 672,592 C 691,591 727,591 744,592 C 744,609 751,622 765,624 C 778,627 793,624 804,613 C 804,639 804,661 810,684 C 814,700 821,717 823,731 C 826,746 817,766 812,783 C 802,807 794,831 794,851 C 794,864 802,879 808,891 C 814,901 820,911 826,919 L 584,919 C 592,904 600,892 608,877 C 616,863 620,851 616,832 C 612,814 606,795 601,782 L 596,776 C 603,770 607,762 610,753 C 609,759 608,764 608,767 C 614,763 618,755 618,745 C 619,733 612,718 605,711 L 606,701 C 614,692 619,680 616,671 C 622,660 625,647 623,635 C 622,629 620,623 619,620 C 631,625 645,627 657,623 C 667,620 672,608 672,592 Z"/>
+    <path d="M 673,592 C 654,591 634,595 617,599 C 615,625 616,652 610,680 C 606,700 595,716 591,733 C 588,747 587,765 596,776 L 607,784 C 613,772 622,754 627,735 L 633,661 L 684,638 L 683,601 Z"/>
+    <path d="M 738,592 C 758,590 785,590 805,594 C 804,600 804,607 804,613 L 795,640 L 744,643 L 734,608 Z"/>
+    <path d="M 643,913 C 643,878.758 670.758,851 705,851 C 739.242,851 767,878.758 767,913 C 767,947.242 739.242,975 705,975 C 670.758,975 643,947.242 643,913 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-26" data-group-path="body/breast" data-node-kind="part" data-name="breast">
+<g id="part-source-26"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 622,660 C 618,666 612,670 610,680 C 606,700 595,716 591,733 C 588,747 587,765 596,776 L 605,783 C 618,784 631,774 632,758 L 638,693 C 637,678 629,665 622,660 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="body/breast" fill="#e7a49d" stroke="none" id="part-source-26-body-breast-outline">
+    <path d="M 622,660 C 646,640 676,644 696,660 C 699,662 702,666 704,666 C 706,666 709,662 712,660 C 734,644 766,641 797,660 C 803,666 807,676 810,684 C 814,700 821,717 823,731 C 826,746 817,766 812,783 C 793,792 772,789 750,782 C 731,776 716,770 704,770 C 692,770 677,776 658,782 C 639,788 621,789 605,783 L 596,776 C 603,770 607,762 610,753 C 609,759 608,764 608,767 C 614,763 618,755 618,745 C 619,733 612,718 605,711 L 606,701 C 614,692 619,680 616,671 C 618,667 620,663 622,660 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-27" data-group-path="arms/arm_left/hand/little_finger" data-node-kind="part" data-name="little_finger">
+<g id="part-source-27"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M1068.8 1035.8 C1074.6 1035.8 1078.4 1041.2 1082.1 1046.9 C1085.6 1052.2 1089.8 1056.2 1093.1 1058.9 C1095.5 1060.9 1096.0 1063.0 1094.4 1064.7 C1092.6 1066.7 1089.5 1066.4 1085.9 1064.7 C1080.8 1062.2 1077.5 1058.2 1073.5 1054.6 C1070.0 1051.4 1064.4 1051.1 1062.3 1047.3 C1059.4 1042.3 1062.7 1035.9 1068.8 1035.8 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_left/hand/little_finger" id="part-source-27-source"/></svg>
+</g>
+</g>
+<g id="node-28" data-group-path="arms/arm_right/hand/little_finger" data-node-kind="part" data-name="little_finger">
+<g id="part-source-28"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M316 1053 C313.4 1051.8 314.2 1048.3 317.8 1045.1 C323.8 1040.4 330.8 1036.3 337.9 1031.5 C341.9 1028.8 345.5 1026.9 349.4 1026.7 C354 1026.3 358.2 1029.4 358.7 1033.8 C359.2 1038.3 355.9 1042.2 351.7 1042.9 C347.4 1043.5 343.1 1044.2 339.2 1045.9 C332.2 1048.9 325.7 1053 320.2 1054 C318.6 1054.4 317.2 1054 316 1053 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_right/hand/little_finger" id="part-source-28-source"/></svg>
+</g>
+</g>
+<g id="node-29" data-group-path="arms/arm_left/hand/ring_finger" data-node-kind="part" data-name="ring_finger">
+<g id="part-source-29"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M1071 1058 C1069.2 1056.2 1068.2 1054.2 1066.6 1052.9 C1063.8 1051.7 1061 1051.4 1061 1048 C1061 1044.4 1064.4 1042.2 1068 1043 C1074.5 1044.4 1079.6 1049.2 1084 1053.4 C1090 1059 1095.8 1064.9 1100 1068 C1098.2 1068.5 1095.8 1067.9 1093.6 1066.9 C1087.3 1063.4 1078.7 1060.4 1071 1058 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_left/hand/ring_finger" fill="#e7aa89" stroke="none" id="part-source-29-arm-left-ring-finger-outline">
+    <path d="M1069 1055 C1075 1056 1083 1057.5 1089 1059 C1089.5 1063 1095 1066 1100 1068 C1100 1071.5 1096 1072.5 1092 1071.5 C1082 1070 1078 1065 1071 1058 C1070.3 1057.3 1069.6 1056.2 1069 1055 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-30" data-group-path="arms/arm_right/hand/ring_finger" data-node-kind="part" data-name="ring_finger">
+<g id="part-source-30"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M310 1063.55 C314.5 1058.8 321.5 1051 329 1045.2 C333.5 1041.7 338 1037.8 341.8 1035.7 C346 1033 351.5 1034.1 354.7 1038.2 C358 1042.5 356.8 1047.3 352.5 1049.8 C348.6 1052.4 340.3 1053 335.269 1054.377 C331.5 1054.5 326.7 1056 321 1057.7 C317.4 1060.6 313.8 1063.5 310 1065 C309.6 1064.3 309.6 1063.95 310 1063.55 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_right/hand/ring_finger" fill="#e7aa89" stroke="none" id="part-source-30-arm-right-ring-finger-outline">
+    <path d="M306 1066 C310 1063.5 316 1060 320 1056 C324 1055 330 1053.9 335.269 1053.1 L335.269 1054.377 C334.19 1054.59 333.1 1054.8 332 1055 C324 1064 318 1070 310 1070 C308 1070 306.5 1068 306 1066 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-31" data-group-path="arms/arm_left/hand/middle_finger" data-node-kind="part" data-name="middle_finger">
+<g id="part-source-31"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M1055.8 1042.5 C1055.8 1034.2 1064.4 1029.9 1071.6 1033.8 C1085.2 1041.2 1102.1 1050.3 1121.8 1055.8 C1128.3 1057.6 1135.2 1059.1 1137.2 1062.4 C1137.6 1063.3 1137.7 1064.3 1137.8 1065.3 C1133.5 1067.6 1114 1069.8 1100 1068 C1093 1065.1 1084.1 1059.7 1080.2 1055.6 C1076.3 1051.5 1071.2 1052.2 1066.4 1052.9 C1060.2 1053.8 1055.8 1049.1 1055.8 1042.5 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_left/hand/middle_finger" fill="#e7aa89" stroke="none" id="part-source-31-arm-left-middle-finger-outline">
+    <path d="M1080.2 1055.6 C1094 1060.4 1111 1064.7 1124 1065.3 C1129.4 1065.6 1134.4 1065.3 1137.8 1065.3 C1137.5 1065.9 1137.6 1066.5 1138 1067 C1143 1069 1139 1073 1131 1074.5 C1117 1075.5 1102 1070 1100 1068 C1093 1065.1 1084.1 1059.7 1080.2 1055.6 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-32" data-group-path="arms/arm_right/hand/middle_finger" data-node-kind="part" data-name="middle_finger">
+<g id="part-source-32"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M266 1065 C275 1065.3 280 1060.5 289 1057.5 C302 1053 317 1042 334 1036 C341 1033 347 1031.5 352 1033.5 C358 1036 361 1043 357 1047.5 C355 1050 353 1050.8 351 1051 C340 1052 323.5 1049.6 320 1055.3 C317.5 1059.4 312 1063.4 306 1066 C295 1070.9 282 1074 273 1071.7 C269 1070.5 267 1068 266 1065 Z" fill-rule="nonzero"/></g>
+<g data-group-path="arms/arm_right/hand/middle_finger" fill="#e7aa89" stroke="none" id="part-source-32-arm-right-middle-finger-outline">
+<path d="M266 1065 C278 1065.5 297 1062.4 320 1055.3 C317.5 1059.4 312 1063.4 306 1066 C293 1072 279 1077 269 1072 C264.5 1070 263.5 1067 266 1065 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-33" data-group-path="arms/arm_left/hand/thumb" data-node-kind="part" data-name="thumb">
+<g id="part-source-33"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="arms/arm_left/hand/thumb" fill="#e7aa89" stroke="none" id="part-source-33-arm-left-hand-thumb-outline">
+    <path d="M1040 1056 C1036 1058 1037 1065 1039 1077 C1041 1089 1044 1100 1040 1108 C1038 1114 1034 1115 1031 1112.5 C1027 1110 1026 1105 1025 1100 C1023 1092 1023 1085 1020 1078 C1019.67 1074.65 1018.44 1071.19 1016.83 1067.69 C1022 1061 1030 1055 1040 1056 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-34" data-group-path="arms/arm_right/hand/thumb" data-node-kind="part" data-name="thumb">
+<g id="part-source-34"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M362 1053 C358.8 1051.8 358.1 1048 359.9 1044.4 C363.2 1037.9 370.1 1035.6 377 1036.7 C385.1 1038 391.9 1042.5 395.2 1047 C396.5 1048.7 397.292 1050.859 396.605 1052.859 L393.8 1060.6 C388.7 1064 377.4 1062.9 369.9 1060.7 C369.3 1057.2 366.9 1054.8 362 1053 Z" fill-rule="nonzero"/></g>
+<g data-group-path="arms/arm_right/hand/thumb" fill="#e7aa89" stroke="none" id="part-source-34-arm-right-hand-thumb-outline">
+<path d="M362 1053 C373 1051 386 1051 396.605 1052.859 C393.402 1062.189 389.528 1070.768 386 1079 C382 1094 382 1105 377 1110 C374 1115.2 370.7 1114 367.8 1108.3 C363.6 1099 365 1087 369 1073 C371 1060 370 1056 362 1053 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-35" data-group-path="arms/arm_left/hand/index_finger" data-node-kind="part" data-name="index_finger">
+<g id="part-source-35"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M1080 1031 C1066.5 1021.5 1054.5 1019.8 1050.5 1028 C1046.5 1037 1050 1053.25 1065 1054.5 C1068 1053 1072 1048 1075 1040 C1077 1035 1079 1033 1080 1031 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_left/hand/index_finger" fill="#e7aa89" stroke="none" id="part-source-35-left-index-finger-outline">
+    <path d="M1071.25 1024.53125 C1088.5 1036.625 1105.75 1044.5 1123 1049 C1136 1052 1146 1053 1151 1057 C1151 1060 1140 1064.5 1127 1064.5 C1114 1064.5 1101 1061.875 1089 1058.5 C1080 1056 1071 1055 1065 1054.5 C1063 1047 1066 1033 1071.25 1024.53125 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-36" data-group-path="arms/arm_right/hand/index_finger" data-node-kind="part" data-name="index_finger">
+<g id="part-source-36"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M331 1029 C334.74 1025.92 338.3348 1022.84 341.805696 1019.802592 C348.4 1014.033 359.1 1022 360.9 1033.5 C362.4 1043.5 355.1 1050.958 344.552 1052.568 C338.5 1053.05 332.5 1054.07 327 1055.2 C330 1047 329 1039 326.113 1032.368 C327.77 1031.32 329.4 1030.2 331 1029 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_right/hand/index_finger" fill="#e7aa89" stroke="none" id="part-source-36-arm-right-index-finger-outline">
+    <path d="M331 1029 C315 1041 296 1045 278 1049 C265 1051 255.5 1053.5 256 1056 C256.8 1059.4 261.5 1062.2 268 1063.5 C280 1066.3 301 1061.9 317 1058 C327 1055.5 335 1053.8 343 1053 C343.5 1044.2 338 1035 331 1029 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-37" data-group-path="arms/arm_left/hand/palm" data-node-kind="part" data-name="palm">
+<g id="part-source-37"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M994 1009 C1003 1002 1015 990 1023 983 C1028 992 1041 1000 1054 1011 C1048 1016 1040 1022 1034 1027 C1024 1035 1016 1040 1007 1041 C1005 1029 1001 1019 994 1009 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_left/hand/palm" fill="#e7aa89" stroke="none" id="part-source-37-arm-left-hand-palm-outline">
+    <path d="M1003 1024 C1009 1017 1015 1010 1020 1004 C1029 1007.5 1043 1010.5 1054 1011 C1063 1019 1072 1026 1081 1032 C1082 1040 1078 1050 1071 1058 C1067 1054 1048 1052 1040 1056 C1036.8 1057.6 1036.8 1062.4 1037.952 1070.4 C1034 1075 1027 1078 1020 1078 C1019 1068 1010 1057 1007 1047 C1005 1039 1004 1031 1003 1024 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-38" data-group-path="arms/arm_right/hand/palm" data-node-kind="part" data-name="palm">
+<g id="part-source-38"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M389 967 C397 975 410 985 421 993 C420 997 419 1001 417 1004 L410 1016 C408 1021 406 1026 403 1031 L397 1032 C388 1023 380 1012 375 1000 L375 991 C377 987 379 982 381 979 C384 975 386 971 389 967 Z" fill-rule="nonzero"/></g>
+<g data-group-path="arms/arm_right/hand/palm" fill="#e7aa89" stroke="none" id="part-source-38-arm-right-palm-outline">
+<path d="M375 991 C380 1003 392 1017 404 1030 L402 1032 C400.05 1043.7 396.41 1054.1325 392.453125 1063.84675 L369.704 1061.208 C369.08 1056.96 366.8 1054.8 362 1053 C356.6 1051.2 350.84 1051.56 344.552 1052.568 C344 1042 342.5 1029 341.805696 1019.802592 C354.1116 1009.0336 364.86 998.8 375 991 Z"/>
+<path d="M381 979 C390 986 403 997 417 1004 L410 1016 C398 1006 387 992 381 979 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-39" data-group-path="arms/arm_left/bracelet_pink_front" data-node-kind="part" data-name="bracelet_pink_front">
+<g id="part-source-39"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M1015.6 978 C1016.2 976.4 1016.5 975.1 1016.8 974 C1015.8 973.5 1014.8 973.2 1014.2 972.6 C1013.2 971.6 1014.2 970.3 1015.8 970.1 C1017.4 969.9 1019.1 970.7 1020.5 972 C1022.2 973.5 1023.7 975.6 1024.7 978 L1022 980.5 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_left/bracelet_pink_front" fill="#e78fab" stroke="none" id="part-source-39-bracelet-pink-front-outline"><path d="M1020.5 972 C1024.7 975.7 1027.1 982.8 1027.1 990 C1027.1 995.8 1022.5 1002.5 1016.5 1010.5 C1010 1019 1003 1026 998 1029 C993 1035 989 1039 986 1037 C981 1036 980 1031 983 1027 C985 1023 988 1020 989 1018 C990 1015 992 1012 992 1011 L995.2 1013.5 C1001.5 1005.8 1006.2 998.5 1010 991.4 C1013.1 985.2 1015.5 978.9 1016.8 974 C1018 973.1 1019.3 972.5 1020.5 972 Z"/></g></svg></g>
+</g>
+<g id="node-40" data-group-path="arms/arm_right/bracelet_pink_front" data-node-kind="part" data-name="bracelet_pink_front">
+<g id="part-source-40"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M374 976 C374.7 973.1 377.5 970.6 379.6 970.4 C381.2 970.2 382.9 971.4 382.7 972.8 C382.5 974.4 378.5 973.6 378 975.1 C377.8 976.1 378.5 977.1 379.4 978.9 C377.6 980.1 375.4 979.1 374 976 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_right/bracelet_pink_front" fill="#ed9daf" stroke="none" id="part-source-40-bracelet-pink-front-outline"><path d="M376 972 C369 975 369 983 375 991 C377 994 379 1002 382 1007 C389 1017 400 1027 413 1034 C417 1036 422 1035 424 1031 C428 1027 422 1023 410 1016 C405.5 1009 398.2 1002.4 388.4 990 C383.4 983.7 379.4 978.7 376 972 Z"/></g></svg></g>
+</g>
+<g id="node-41" data-group-path="arms/arm_left/bell" data-node-kind="part" data-name="bell">
+<g id="part-source-41"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M1027.3 955.5 C1022.1 960.6 1016.1 969.3 1015.5 979 C1014.9 989.1 1018 998.5 1025 1006 L1030 1003 C1028 996 1032 987 1029 975 L1032 958 Z" fill-rule="nonzero"/><path d="M1023 965 C1020.8 963.8 1018.5 962.2 1016.5 961.8 C1013.6 960.7 1011.5 962.8 1011.8 965.3 C1012.1 967.8 1014.9 969.1 1017 970.3 L1021.5 972.4 C1024.1 973.8 1026.3 967.3 1023 965 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_left/bell" fill="#e7b957" stroke="none" id="part-source-41-arm-left-bell-outline">
+    <path d="M1027.3 955.5 C1032.5 950.4 1040 948.5 1049 949.2 C1055.5 949.4 1062 951.2 1068 953 C1071 950 1076 953 1076 956 L1073 960 C1079 970 1081 983 1077 994 C1073 1006 1062 1012 1054 1011 C1044 1013 1035 1010 1028 1007 C1025 1007 1022 1006 1021 1004 C1022 1000 1024 995 1026 989 C1029 982 1026 974 1022 970 C1026 964 1027.5 959.5 1027.3 955.5 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-42" data-group-path="arms/arm_left/bracelet_green_front" data-node-kind="part" data-name="bracelet_green_front">
+<g id="part-source-42"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-group-path="arms/arm_left/bracelet_green_front" fill="#cbd4b9" stroke="none" id="part-source-42-bracelet-green-front-outline"><path d="M 970 1000 C 979 994 998 978 1011 962 C 1015 957 1016 954 1019 952 C 1021.7 951 1024.3 951.5 1025.7 953.2 C 1027.4 956 1027.8 963.933333 1024 969 C 1013.5 983 996 997 987 1003 C 980 1008 970 1011 967 1007 C 966 1005.8 965.6 1004.44 965.704 1003.016 C 965.85 1001.3 968 1001.333 970 1000 Z"/></g></svg></g>
+</g>
+<g id="node-43" data-group-path="arms/arm_right/bracelet_cream_front" data-node-kind="part" data-name="bracelet_cream_front">
+<g id="part-source-43"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-group-path="arms/arm_right/bracelet_cream_front" fill="#e5dfc5" stroke="none" id="part-source-43-bracelet-cream-front-outline"><path d="M383 963 C379 962 377 964 376.5 968 C376 972 378 976 382 979.5 C386 983.5 390 987.5 395 991 C402 996 409 1001 417 1004 C427 1010 436 1011 439 1006 C439 1002 437 999 434 997 C419 992 401 979 389 969 C386.5 966.5 385 964 383 963 Z"/></g></svg></g>
+</g>
+<g id="node-44" data-group-path="head_accessories/hair_tie_back" data-node-kind="part" data-name="hair_tie_back">
+<g id="part-source-44"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M584.2 701.4 C583.5 698.1 584.1 694.6 588.1 692.3 C592.0 690.1 598.5 690.1 602.6 692.3 C606.4 694.3 606.8 698.3 606.0 701.6 C605.7 703.1 605.7 704.7 605.4 706.0 C604.9 708.7 601.0 708.7 600.6 706.0 C600.4 704.5 601.2 702.8 601.7 701.1 C602.4 698.8 599.2 697.6 595.3 697.6 C591.4 697.6 588.0 698.7 588.7 701.1 C589.2 702.8 589.8 704.5 589.5 706.0 C589.0 708.7 585.1 708.7 584.8 706.0 C584.6 704.7 584.5 703.1 584.2 701.4 Z" fill-rule="nonzero"/></g><g data-group-path="head_accessories/hair_tie_back" id="part-source-44-source"/></svg>
+</g>
+</g>
+<g id="node-45" data-group-path="headphones/earcups/earcup_left" data-node-kind="part" data-name="earcup_left">
+<g id="part-source-45"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="3154aba1ee0b4c0239f770b0314b9e8d3fee1b04acd4eb71adf6fc5a38c19fc0" data-parent-region="730 515 100 120" x="0" y="0">
+  <g fill="#59647f" stroke="none" data-group-path="headphones/earcups/earcup_left" id="part-source-45-earcup-left-outline">
+    
+    <path d="M 777.4,529.0 C 769.0,524.7 764.4,524.4 758.5,527.9 C 754.0,531.5 750.7,537.3 748.3,544.0 C 746.5,550.2 745.0,557.6 743.8,564.2 C 741.2,577.7 739.6,594.1 743.0,608.0 C 745.0,617.0 749.4,623.6 755.4,625.2 C 760.3,626.5 764.3,625.8 768.2,625.4 L 770.0,625.1 C 771.4,627.0 774.0,627.3 777.1,626.3 C 780.0,625.5 783.4,624.0 785.6,622.7 C 790.1,620.8 795.0,618.1 799.3,612.5 C 806.8,602.5 810.1,588.3 814.0,576.1 C 818.3,565.6 819.3,553.4 816.5,545.5 C 813.8,536.9 805.7,532.4 792.5,531.8 C 787.4,527.7 782.3,527.5 777.4,529.0 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-46" data-group-path="headphones/earcups/earcup_right" data-node-kind="part" data-name="earcup_right">
+<g id="part-source-46"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="3154aba1ee0b4c0239f770b0314b9e8d3fee1b04acd4eb71adf6fc5a38c19fc0" data-parent-region="590 515 95 120" x="0" y="0">
+  <g fill="#59647f" stroke="none" data-group-path="headphones/earcups/earcup_right" id="part-source-46-earcup-right-outline">
+    <path d="M 621.5,531.8 C 626.4,527.1 631.8,527.3 637.2,528.2 C 644.2,523.4 650.7,521.9 656.7,526.1 L 661.8,531.1 C 666.2,542.0 668.7,555.8 670.2,569.0 C 672.0,582.7 673.2,597.5 670.1,609.1 C 668.3,616.6 664.1,623.5 657.8,625.4 C 652.5,626.6 647.5,626.4 643.3,625.8 C 641.5,627.4 637.3,624.1 633.0,622.9 C 630.0,621.9 627.4,620.0 625.1,619.3 C 621.5,618.0 619.5,616.0 617.6,613.5 C 612.6,605.8 608.5,592.7 605.2,582.6 L 604.2,578.0 C 604.8,576.4 604.2,574.1 603.4,571.7 C 600.6,562.9 597.8,557.7 599.2,553.5 C 600.2,542.5 609.0,531.5 621.5,531.8 Z"/>
+    
+  </g>
+</svg></g>
+</g>
+<g id="node-47" data-group-path="face/face_base" data-node-kind="part" data-name="face_base">
+<g id="part-source-47"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+<g data-group-path="face/face_base" fill="#f6dfc9" stroke="none" id="part-source-47-face-base-outline">
+<path d="M 708,305 C 754,305 791,319 805,347 C 815,365 817,402 810,434 C 805,457 797,469 791,489 C 788,496 781,502 770,510 C 751,523.4 729,533.4 708,539.5 C 697,536.4 679,530.6 666,523 C 646,512 629,500 623,480.5 C 617,461 612,454 608,434 C 600,402 601,365 611,347 C 625,319 662,305 708,305 Z" id="part-source-47-face-base-shape"/>
+</g>
+</svg></g>
+</g>
+<g id="node-48" data-group-path="face/mouth/mouth_interior" data-node-kind="part" data-name="mouth_interior">
+<g id="part-source-48"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 708.4,495.5 C 716.35,495.5 720.45,499.45 720.45,506.65 C 720.45,513.95 716.4,517.8 708.4,517.8 C 700.4,517.8 696.35,513.95 696.35,506.65 C 696.35,499.45 700.45,495.5 708.4,495.5 Z" fill-rule="nonzero"/></g><g data-group-path="face/mouth/mouth_interior" id="part-source-48-source"/></svg>
+</g>
+</g>
+<g id="node-49" data-group-path="face/mouth/tongue" data-node-kind="part" data-name="tongue">
+<g id="part-source-49"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 708.4,502.5 C 711.1,501.8 714.1,503.0 716.0,505.0 C 718.0,507.2 718.7,509.6 718.3,512.0 C 717.8,516.2 713.7,518.65 708.4,518.65 C 703.15,518.65 699.0,516.2 698.5,512.0 C 698.1,509.6 698.8,507.2 700.8,505.0 C 702.7,503.0 705.7,501.8 708.4,502.5 Z" fill-rule="nonzero"/></g><g data-group-path="face/mouth/tongue" id="part-source-49-source"/></svg>
+</g>
+</g>
+<g id="node-50" data-group-path="face/mouth/lower_teeth" data-node-kind="part" data-name="lower_teeth">
+<g id="part-source-50"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 697.55,511.55 C 697.28,510.95 697.62,510.28 698.18,510.16 C 698.70,510.02 699.25,510.22 699.27,510.79 C 699.78,510.84 700.10,511.24 700.00,511.75 C 700.57,511.75 701.13,512.26 701.01,512.86 C 701.72,512.88 702.52,513.36 702.50,514.04 C 703.27,513.78 704.37,514.22 704.45,514.91 C 705.12,514.61 706.67,514.59 707.10,514.95 C 707.39,515.13 707.44,515.32 707.45,515.50 C 707.73,515.02 709.13,514.78 709.71,514.93 C 710.06,515.01 710.22,515.15 710.25,515.41 C 710.43,514.76 711.72,514.40 712.37,514.60 C 712.68,514.66 712.82,514.78 712.86,514.96 C 713.02,514.27 714.20,513.69 714.78,513.90 C 714.98,513.96 715.08,514.04 715.13,514.16 C 715.13,513.42 715.80,512.76 716.42,512.81 C 716.40,512.21 716.96,511.66 717.49,511.76 C 717.36,511.19 717.79,510.68 718.32,510.71 C 718.26,510.17 718.64,509.97 719.06,510.15 C 719.62,510.38 719.59,511.02 719.30,511.69 C 718.35,514.12 716.58,516.06 714.29,517.23 C 712.52,518.19 710.66,518.72 708.42,518.76 C 706.26,518.73 704.24,518.18 702.48,517.25 C 700.15,516.01 698.34,514.00 697.55,511.55 Z" fill-rule="nonzero"/></g><g data-group-path="face/mouth/lower_teeth" id="part-source-50-source"/></svg>
+</g>
+</g>
+<g id="node-51" data-group-path="face/mouth/upper_teeth" data-node-kind="part" data-name="upper_teeth">
+<g id="part-source-51"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 697.9,500.6 C 698.7,498.0 703.2,496.4 708.4,496.4 C 713.6,496.4 718.1,498.0 718.9,500.6 C 719.25,501.75 718.65,502.7 717.3,503.05 C 711.65,504.4 705.15,504.4 699.5,503.05 C 698.15,502.7 697.55,501.75 697.9,500.6 Z" fill-rule="nonzero"/></g><g data-group-path="face/mouth/upper_teeth" id="part-source-51-source"/></svg>
+</g>
+</g>
+<g id="node-52" data-group-path="face/eyes/eye_left/sclera" data-node-kind="part" data-name="sclera">
+<g id="part-source-52"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="face/eyes/eye_left/sclera" fill="#86b8dc" stroke="none" id="part-source-52-eye-left-sclera-outline">
+    <path d="M 738.5,422.2 C 748.2,418.1 763.7,412.5 776.7,416.9 C 782.7,421.0 789.0,427.0 791.4,433.3 C 794.4,440.0 790.3,447.4 785.1,452.0 C 780.4,456.4 775.2,458.2 767.6,458.8 C 759.0,459.4 750.0,458.1 745.0,455.8 C 740.5,452.8 738.9,449.3 736.8,445.7 C 733.5,441.9 731.1,438.0 728.8,433.4 L 730.7,429.1 L 732.6,425.8 C 734.6,424.1 736.6,422.9 738.5,422.2 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-53" data-group-path="face/eyes/eye_right/sclera" data-node-kind="part" data-name="sclera">
+<g id="part-source-53"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="face/eyes/eye_right/sclera" fill="#f5f2df" stroke="none" id="part-source-53-right-sclera-outline">
+    <path d="M 638.1,417.4 C 631.8,421.9 625.9,427.8 622.9,434.1 C 621.8,436.4 621.5,438.4 622.4,441.1 C 625.6,447.7 630.7,453.1 637,456.8 C 645.4,461.8 668.2,460.5 673.6,456.3 C 679.8,451.4 683.7,443 684.1,435.2 C 680.7,431.3 677.5,427.4 674.5,423.2 C 665.3,416.9 651.1,411.7 638.1,417.4 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-54" data-group-path="face/eyes/eye_left/iris" data-node-kind="part" data-name="iris">
+<g id="part-source-54"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 741.4112,429.0952 C 742.9412,418.4000 749.7,406.8 760.3,406.8 C 768.0,406.8 774.7433,417.1488 778.5433,424.0438 C 777.7,426.3 775.5,428.4 772.0,429.5 C 761.0,434.5 749.4,434.9 741.4112,429.0952 Z" fill-rule="nonzero"/></g>
+<g data-group-path="face/eyes/eye_left/iris" fill="#bc6329" stroke="none" id="part-source-54-iris-left-outline">
+<path d="M 743.8,421.1 C 748.8,417.8 755.8,415.2 762.2,414.0 C 766.9,413.8 771.6,415.5 775.0,419.2 C 779.6,424.0 782.1,431.0 781.4,437.6 C 780.9,444.0 778.1,449.3 773.8,453.5 C 770.6,456.4 766.4,457.3 761.8,457.2 C 756.5,457.2 751.3,456.4 748.3,453.9 C 744.9,450.8 742.8,446.6 741.8,441.4 C 740.6,434.6 740.7,427.6 743.8,421.1 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-55" data-group-path="face/eyes/eye_right/iris" data-node-kind="part" data-name="iris">
+<g id="part-source-55"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 636.0,428.1 C 637.0,420.7 640.7,412.0 649.6,410.7 C 659.5,409.3 668.8,415.4 672.1,423.1 C 666.0,425.0 642.6,431.6 636.0,428.1 Z" fill-rule="nonzero"/><path d="M 636.5696,443.472 C 637.0,445.1 638.1,445.4 639.4,447.0 L 641.0,446.5 L 638.0,442.8 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/eyes/eye_right/iris" fill="#ca692e" stroke="none" id="part-source-55-eye-right-iris-outline">
+    <path d="M 640.5,419.3 C 646.6,415.2 653.9,414.1 660.8,416.4 C 665.4,417.8 669.7,420.3 672.1,423.1 C 675.2,430.2 675.9,439.6 673.8,446.6 C 672.9,450.0 670.8,453.3 667.6,455.0 C 662.0,458.0 651.8,458.5 646.0,456.6 C 644.6,456.2 644.3,454.5 643.2,453.0 C 642.2,451.5 640.7,449.1 639.4,447.0 C 638.3,445.3 637.1,444.5 636.5696,443.472 C 635.424,438.464 635.2,432.88 636.0,428.1 C 636.7,424.4 638.2,421.3 640.5,419.3 Z"/>
+  </g>
+</svg>
+</g>
+</g>
+<g id="node-56" data-group-path="face/eyes/eye_left/highlight" data-node-kind="part" data-name="highlight">
+<g id="part-source-56"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="face/eyes/eye_left/highlight" fill="#78b9dd" stroke="none" id="part-source-56-eye-left-highlight-outline">
+    <path d="M 758.5,418.1 C 759.7,417.5 761.9,417.7 763.1,418.2 C 763.5,419.3 762.7,420.6 761.7,421.3 C 761.0,421.9 761.2,422.8 761.8,423.4 C 762.4,424.1 762.6,425.0 761.9,425.5 C 760.9,426.0 759.2,426.0 758.7,425.4 C 758.5,424.6 759.3,423.7 759.8,423.1 C 760.2,422.6 760.0,421.9 759.3,421.4 C 758.3,420.8 758.0,419.2 758.5,418.1 Z"/>
+    <path d="M 739.4,442.3 C 740.7,442.5 741.9,442.0 743.0,441.2 C 744.3,441.0 745.0,442.0 746.0,442.3 C 747.3,442.5 748.6,442.5 748.7,443.4 C 748.7,444.3 747.5,445.0 746.1,445.2 C 744.8,445.5 743.3,445.5 742.1,445.5 C 741.3,445.6 740.5,445.7 739.8,445.6 C 739.6,444.6 739.4,443.5 739.4,442.3 Z"/>
+    <path d="M 769.1,446.0 C 770.7,446.4 772.4,447.4 773.8,448.1 C 774.5,448.4 774.9,449.2 774.5,449.8 C 774.1,450.5 773.1,450.1 772.2,449.7 C 770.8,449.0 769.6,447.9 769.1,446.0 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-57" data-group-path="face/eyes/eye_right/highlight" data-node-kind="part" data-name="highlight">
+<g id="part-source-57"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+<g data-group-path="face/eyes/eye_right/highlight" fill="#f9f5df" stroke="none" id="part-source-57-eye-right-highlight-outline">
+<path d="M 652.5,414.8 C 653.2,414.2 654.3,414.8 655.1,415.7 C 655.8,416.4 655.8,417.2 655.2,417.6 C 654.4,418 653.5,417.3 652.8,416.6 C 652.3,416 652.1,415.3 652.5,414.8 Z"/>
+<path d="M 658.7,419.1 C 659.8,418.7 660.8,419.3 660.8,420.4 C 660.8,421.6 660.1,423 659.1,423.8 C 658.2,424.4 657.2,424.4 656.8,423.6 C 656.3,422.6 656.8,421.3 657.4,420.4 C 657.8,419.8 658.2,419.3 658.7,419.1 Z" id="part-source-57-upper-main-glint"/>
+<path d="M 659.9,423.8 C 660.7,423.1 661.8,423.3 662.1,424.1 C 662.4,425 661.6,426.2 660.7,426.7 C 659.9,427.2 659.1,427.1 658.9,426.4 C 658.7,425.5 659.2,424.5 659.9,423.8 Z"/>
+<path d="M 636.8,443.5 C 638.1,443.7 639.4,442.7 640.8,441.9 C 641.6,441.5 642.3,442.1 642.9,443.2 C 643.6,444.5 644,446.1 643.5,447.3 C 643,448.4 641.5,449.1 639.9,449.5 L 637.7,449.2 C 637.1,447.5 636.7,445.5 636.8,443.5 Z" id="part-source-57-lower-outer-glint"/>
+<path d="M 668.9,446.6 C 670.2,446.6 671.9,447.1 673.1,447.9 L 672.6,450.3 C 671.5,449.5 670.1,449.3 668.7,449.3 C 667.9,449.2 667.6,448.8 667.7,448.2 C 667.8,447.5 668.2,446.9 668.9,446.6 Z" id="part-source-57-lower-inner-glint"/>
+</g>
+</svg></g>
+</g>
+<g id="node-58" data-group-path="face/eyes/eye_left/upper_eyelid" data-node-kind="part" data-name="upper_eyelid">
+<g id="part-source-58"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 777.8,408.8 L 778.7,408.1 C 780.8,407.1 782.6,405.8 784,404.7 C 783.2,406.0 781.6,408.6 780.4,411.5 L 779.5,412.0 C 778.9,411.2 778.9,410.0 777.8,408.8 Z" fill-rule="nonzero"/></g>
+<g data-group-path="face/eyes/eye_left/upper_eyelid" fill="#50312e" stroke="none" id="part-source-58-upper-eyelid-left-outline">
+<path d="M 732.6,425.8 C 735.6,421.9 738.9,418.9 741.5,417.3 L 738,417.2 C 744.8,412.3 752.5,408.2 758.3,407.5 L 759,406.8 L 760.9,407.4 C 768.7,406.2 773.1,406.8 778.7,408.1 C 779.3,408.6 779.7,410.4 780.4,411.5 C 791.7,415.2 799.3,423.1 801.1,430.2 L 805,435.7 L 800,433.3 C 800,438.5 795.5,444.4 788.6,448.4 C 793,442.7 795.2,436.9 792.3,430 C 789.3,423.7 783.9,418.6 778.2,415.3 C 772.4,412.3 767.3,412.6 762.4,413.3 C 752.1,414.7 742.2,419.7 732.6,425.8 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-59" data-group-path="face/eyes/eye_right/upper_eyelid" data-node-kind="part" data-name="upper_eyelid">
+<g id="part-source-59"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 671.7,415.3 C 677.7,418.7 682.6,425.1 684.7,431.1 C 684.9,432.5 684.2,433.25 684.1,435.2 C 681.6,431.8 678.5,424.8 676.2,423.1 C 674.8,420.7 673.4,418.3 671.7,415.3 Z" fill-rule="nonzero"/></g><g data-group-path="face/eyes/eye_right/upper_eyelid" fill="#504057" stroke="none" id="part-source-59-upper-eyelid-right-outline"><path d="M 612.2,435.7 C 615.2,430.3 618.4,424.8 623.4,420.4 C 626.7,417.1 630.5,413.9 634.3,413.2 L 630.1,407.3 L 636.1,409.6 C 646,405 661.4,406.5 673.3,415.9 C 674.1,418.4 675.1,420.8 676.2,423.1 C 671.8,419.6 667.7,416.5 660.9,414.9 C 652.4,412.3 645.1,413.6 638.3,417.1 C 631.5,420.9 625.8,427.2 622.6,433.2 C 619.9,438.9 624.4,445.1 630.1,449.7 C 627.9,448.2 625.9,446.6 624.4,445.2 C 620.8,441.1 617.9,437.5 617.4,434.4 Z"/></g></svg></g>
+</g>
+<g id="node-60" data-group-path="face/eyes/eye_left/eyelid_crease" data-node-kind="part" data-name="eyelid_crease">
+<g id="part-source-60"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 774.2,401.7 C 777.2,402.2 779.9,403.4 781.8,404.8 C 782.2,405.1 782.0,405.4 781.5,405.2 C 779.9,404.7 778.2,404.3 776.5,403.9 L 774.6,403.5 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/eyes/eye_left/eyelid_crease" fill="#ad7963" stroke="none" id="part-source-60-eye-left-eyelid-crease-outline">
+    <path d="M 733.6,409.9 C 744.4,401.6 761.9,398.9 776.5,402.1 L 778.1,404.2 C 762.4,401.4 745.9,403.3 733.6,409.9 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-61" data-group-path="face/eyes/eye_right/eyelid_crease" data-node-kind="part" data-name="eyelid_crease">
+<g id="part-source-61"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 663.8,402.2 C 669.4,403.6 674.1,406.8 678.0,410.6 C 678.5,411.1 678.1,411.5 677.5,411.1 C 674.4,408.6 670.4,406.5 666.5,405.0 L 663.5,404.0 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/eyes/eye_right/eyelid_crease" fill="#b97f67" stroke="none" id="part-source-61-eye-right-eyelid-crease">
+    <path d="M 631.8,406.1 C 641,400.9 655.7,399.3 665.8,402.8 L 666.5,405 C 655.2,401.4 642.4,402.4 631.8,406.1 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-62" data-group-path="face/nose" data-node-kind="part" data-name="nose">
+<g id="part-source-62"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-group-path="face/nose" fill="#d99d85" stroke="none" id="part-source-62-nose-outline"><path d="M 706.4,460.1 C 710.2,460.0 713.5,462.8 714.1,466.3 C 714.7,469.4 713.6,472.0 711.5,473.6 C 711.0,475.0 710.2,476.5 708.8,477.0 C 707.5,477.4 706.5,476.9 705.5,476.6 C 704.2,476.4 703.3,475.4 702.8,473.9 C 700.4,472.4 699.5,469.8 699.8,467.0 C 700.1,463.7 702.6,460.6 706.4,460.1 Z" id="part-source-62-nose-visible"/></g></svg></g>
+</g>
+<g id="node-63" data-group-path="face/blush_left" data-node-kind="part" data-name="blush_left">
+<g id="part-source-63"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 780,467 L 785.7,466 C 789.9,469.1 792.4,474.4 791.6,479 C 790.7,485 785.8,489.3 779.9,490 C 772.2,490.8 766,490.2 759,490.2 L 758.8,487.6 C 767.2,483.2 775.9,475.3 780,467 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/blush_left" fill="#efa997" stroke="none" id="part-source-63-blush-left-outline">
+    <path d="M 754,463 C 758,460.8 767,460.4 773,461.8 C 778,462.5 782.3,464 785.7,466 C 780.7,475.2 771.3,484.3 760.3,490 C 758.8,490.5 757.6,490 756.7,489 C 753.6,487.8 752.2,482.8 752.1,477.1 C 751.8,471.5 752.3,466.5 754,463 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-64" data-group-path="face/blush_right" data-node-kind="part" data-name="blush_right">
+<g id="part-source-64"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 638,464.5 C 631.8,467.6 625.5,471.1 625.5,477.1 C 625.5,479.4 626.1,481.4 627,483.1 L 629,487 C 636,489 645,487.5 652,484.5 L 652,480 C 646,478 641.5,474 640,470 L 641,465 L 640,463.9 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/blush_right" fill="#eeb0a7" stroke="none" id="part-source-64-blush-right-outline">
+    <path d="M 638,464.5 C 643,462 650,462 656,464 C 662,466 665,471 665,479 C 665,487 662,494 656,498 C 650,501 641,500.5 635,497 C 631,494 628.5,489 627,483.1 C 634,484 642,484.3 649,483.5 C 643.8,481.4 639.4,478.8 635.2,475.4 C 635.4,470.7 636.2,467 638,464.5 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-65" data-group-path="face/mouth/lower_lip" data-node-kind="part" data-name="lower_lip">
+<g id="part-source-65"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="face/mouth/lower_lip" fill="#edb49e" stroke="none" id="part-source-65-lower-lip-outline">
+    <path d="M 698.2,503.6 C 700.1,503.3 701.7,505.6 704.05,508.65 C 703.65,507.8 704.2,506.3 705.45,505.6 C 707.3,504.55 709.6,504.65 711.2,505.55 C 712.55,506.3 713.25,507.5 713.05,508.4 C 715.1,505.6 716.8,503.3 718.5,503.6 C 720.1,503.9 720.7,506.1 720.3,509.1 C 719.65,515.3 715.45,519.55 708.4,519.55 C 701.4,519.55 697.15,515.4 696.5,509.1 C 696.15,506.2 696.6,503.9 698.2,503.6 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-66" data-group-path="face/mouth/upper_lip" data-node-kind="part" data-name="upper_lip">
+<g id="part-source-66"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="face/mouth/upper_lip" fill="#b67e6f" stroke="none" id="part-source-66-upper-lip-outline">
+    <path d="M 708.4,493.4 C 715.55,493.4 721.6,499.95 721.6,507.1 C 721.6,508.25 721.35,509.15 720.7,509.5 C 718.75,510.15 715.6,509.6 713.05,508.4 C 712.95,509.1 712.3,509.15 711.65,508.65 C 710.45,507.7 709.5,507.1 708.55,507.15 C 707.35,507.15 706.35,507.95 705.45,508.65 C 704.85,509.15 704.3,509.2 704.05,508.65 C 701.5,509.75 698.2,510.15 696.1,509.5 C 695.45,509.15 695.2,508.25 695.2,507.1 C 695.2,499.95 701.2,493.4 708.4,493.4 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-67" data-group-path="face/eyebrows/eyebrow_left" data-node-kind="part" data-name="eyebrow_left">
+<g id="part-source-67"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="09e83b660057f34ff043ddd1cccbc5c5dc025eba3907be3425f9e59e5fb44ff0" data-parent-region="720 340 105 45" x="0" y="0">
+  <g fill="#8c5651" stroke="none" data-group-path="face/eyebrows/eyebrow_left" id="part-source-67-eyebrow-left-outline">
+    
+    <path d="M 812,370 C 789,358 758,349 733,355 C 758,352 787,361 812,370 Z" id="part-source-67-eyebrow-left-visible"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-68" data-group-path="face/eyebrows/eyebrow_right" data-node-kind="part" data-name="eyebrow_right">
+<g id="part-source-68"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="09e83b660057f34ff043ddd1cccbc5c5dc025eba3907be3425f9e59e5fb44ff0" data-parent-region="595 340 95 45" x="0" y="0">
+  <g fill="#8c5651" stroke="none" data-group-path="face/eyebrows/eyebrow_right" id="part-source-68-eyebrow-right-outline">
+    <path d="M 606,372.5 C 612,368.5 620,365.1 630.185185,361.055556 C 643.888889,355.388889 658.333333,352.166667 675,354.5 C 661,354.166667 647.888889,357.166667 633.962963,362.166667 C 624.9,365.4 614.1,369.5 606,372.5 Z" id="part-source-68-eyebrow-right-visible"/>
+    
+  </g>
+</svg></g>
+</g>
+<g id="node-69" data-group-path="hair/side_hair/side_hair_left" data-node-kind="part" data-name="side_hair_left">
+<g id="part-source-69"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="557cce3ce42b51ab02621b7ff24f1103355f2871c26f361887a7a3ef5ca5d7ca" data-parent-region="710 200 230 330" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M784 245 C771 235 763 222 750 216 C738 210 725 214 726 226 C727 237 750 247 758 259 C764 268 774 279 782 287 C787 271 788 258 784 245 Z" fill-rule="nonzero"/></g>
+<g fill="#ed91a4" stroke="none" data-group-path="hair/side_hair/side_hair_left" id="part-source-69-side-hair-left-outline">
+<path d="M784 245 C774 254 766 257 758 259 C780 292 795 340 800 380 C802 400 802 419 799 433 C801 437 801 442 799 449 C794 466 780 484 760 491 C775 492 791 490 805 484 C802 490 798 496 793 500 C809 493 820 479 827 459 C827 480 819 498 810 509 C832 493 840 463 838 430 C850 455 864 467 875 468 L878 469 C861 453 850 425 848 391 C857 395 866 397 874 397 C892 400 918 391 928 375 C917 382 901 381 887 374 C865 358 853 343 840 319 C831 294 814 269 784 245 Z" id="part-source-69-side-hair-left"/>
+
+</g>
+</svg></g>
+</g>
+<g id="node-70" data-group-path="hair/side_hair/side_hair_right" data-node-kind="part" data-name="side_hair_right">
+<g id="part-source-70"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="557cce3ce42b51ab02621b7ff24f1103355f2871c26f361887a7a3ef5ca5d7ca" data-parent-region="475 200 225 330" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M630 255 C642 248 654 221 664 216 C676 210 687 214 686 223 C685 232 671 235 660 254 C656 261 649 270 641 278 C632 276 625 270 622 264 C628 260 632 257 630 255 Z" fill-rule="nonzero"/><path d="M578 326 C559 338 542 356 528 378 C537 394 550 400 565 398 C584 401 598 394 607 382 C612 375 611 369 610 363 C610 347 603 333 593 326 C588 323 583 323 578 326 Z" fill-rule="nonzero"/></g>
+<g fill="#ed91a4" stroke="none" data-group-path="hair/side_hair/side_hair_right" id="part-source-70-side-hair-right-outline">
+
+<path d="M630 255 C640 258 651 257 660 254 C645 280 630 324 621 356 C612 388 609 414 615 433 C617 452 628 473 648 483 C639 486 631 484 623 483 C626 490 630 497 634 502 L630 500 L627 502 C617 500 607 492 598 482 C600 489 602 495 605 500 C587 493 577 476 572 453 C568 436 566 416 568 402 C558 403 548 408 537 411 C531 414 520 412 516 408 L529 404 C511 403 497 396 490 386 C506 392 518 384 528 378 C537 394 550 400 565 398 L568 398 C584 399 597 392 603 382 C606 378 604 375 602 372 C608 353 599 337 585 329 C589 300 610 267 630 255 Z" id="part-source-70-side-hair-right"/>
+</g>
+</svg></g>
+</g>
+<g id="node-71" data-group-path="hair/bangs" data-node-kind="part" data-name="bangs">
+<g id="part-source-71"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M668 251 C675 240 674 226 678 218 C682 207 691 202 702 201 C715 200 727 205 732 216 C738 229 745 244 753 257 L749 274 C722 280 686 278 659 267 L668 251 Z" fill-rule="nonzero"/></g>
+<g data-group-path="hair/bangs" fill="#ed91a4" stroke="none" id="part-source-71-hair-bangs-outline">
+<path d="M678 218 C694 221 714 221 731 218 C724 228 722 242 729 248 C736 253 746 256 753 257 C762 272 773 294 781 310 C791 334 797 362 800 389 C802 407 802 422 800 434 C798 429 798 424 796 420 C779 406 756 370 746 340 C747 358 743 379 739 390 C743 392 748 394 752 395 C747 397 742 397 737 395 C734 411 729 421 725 428 C729 437 734 443 740 448 C709 443 686 420 678 383 C679 412 688 434 701 443 C674 429 656 389 658 337 C647 365 629 397 617 420 L615 433 C614 410 616 380 623 344 C627 326 632 310 638 297 C646 281 657 263 668 251 C680 245 687 232 678 218 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-72" data-group-path="head_accessories/hair_bell" data-node-kind="part" data-name="hair_bell">
+<g id="part-source-72"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="7e46956a98be1c619ef5cb286091b3ecd7ae3ca95bfd6c0fc6b0133d570e203e" data-parent-region="515 310 100 95" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"></g>
+<g fill="#bd884f" stroke="none" data-group-path="head_accessories/hair_bell" id="part-source-72-hair-bell-outline">
+
+<path d="M550 320 C563 318 581 324 591 335 C599 345 604 357 602 369 Q606 375 603 378 Q602 380 599 380 C590 390 579 395 565 395 C550 395 537 388 531 377 C524 366 523 353 527 342 Q525 341 526 337 Q526 334 530 334 C535 329 543 322 550 320 Z"/>
+
+</g>
+</svg></g>
+</g>
+<g id="node-73" data-group-path="head_accessories/tanuki_ornament/paw/paw_left" data-node-kind="part" data-name="paw_left">
+<g id="part-source-73"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="f6ce25c4f96c86e4ab75c113f8082fa8cf2ce35c3d9476bc6861b296cebfe79d" data-parent-region="715 185 105 85" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M803.36 211.672 C807 216.5 793.2 218.4 786 234 C783 238 776 236 777 226 L791 208 Z" fill-rule="nonzero"/></g>
+<g fill="#68452e" stroke="none" data-group-path="head_accessories/tanuki_ornament/paw/paw_left" id="part-source-73-paw-left-outline">
+
+<path d="M803.36 211.672 C796 202 781 198 767 200 C751 200 739 207 733 217 L730 222 C726 228 725 237 729 244 C732 251 743 256 756 255 C771 253 780 247 786 234 C789.6 226.8 795.63 217.17 803.36 211.672 Z" id="part-source-73-paw-right"/>
+</g>
+</svg></g>
+</g>
+<g id="node-74" data-group-path="head_accessories/tanuki_ornament/paw/paw_right" data-node-kind="part" data-name="paw_right">
+<g id="part-source-74"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="f6ce25c4f96c86e4ab75c113f8082fa8cf2ce35c3d9476bc6861b296cebfe79d" data-parent-region="598 185 97 85" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M609 213 C605 220 614 221 620.563 234.487 C624 238 631 234 630 228 L619 211 Z" fill-rule="nonzero"/></g>
+<g fill="#68452e" stroke="none" data-group-path="head_accessories/tanuki_ornament/paw/paw_right" id="part-source-74-paw-right-outline">
+<path d="M609 213 C615 202 631 198 646 200 C660 202.7 672 209.5 677 217 C682 225 684 237 680 244 C676 252 665 256 653 256 C638 256 630 252 625 243 C620 235 617 224 609 213 Z" id="part-source-74-paw-left"/>
+
+</g>
+</svg></g>
+</g>
+<g id="node-75" data-group-path="head_accessories/hair_tie_front" data-node-kind="part" data-name="hair_tie_front">
+<g id="part-source-75"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="head_accessories/hair_tie_front" fill="#34495e" stroke="none" id="part-source-75-hair_tie_front_outline">
+    <path d="M585 699 Q594 702 605 699 Q607 702 607 706 L606 711 Q596 714 585 711 Q583 707 585 699 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-76" data-group-path="legs/leg_left/thigh_band_front" data-node-kind="part" data-name="thigh_band_front">
+<g id="part-source-76"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+  <g data-group-path="legs/leg_left/thigh_band_front" fill="#dc729e" stroke="none" id="part-source-76-thigh-band-front-outline">
+    <path d="M 770.4,1172.8 L 773.1,1120.3 C 773.3,1116.2 776.2,1112.6 780.4,1112.2 L 787.7,1112.6 C 791.8,1113.1 794.1,1116.3 794.1,1120.1 L 791.3,1173.8 C 793.2,1174.3 794.3,1175.3 794.2,1177.2 L 793.9,1183.9 C 793.8,1185 792.6,1185.5 791.1,1185.6 L 790.9,1189.3 C 815.4,1188.9 836.7,1186 846.4,1181 C 848.2,1180.2 849.3,1179.3 850.1,1178 L 847.2,1200.6 C 835.1,1205.5 810.6,1208.7 787.6,1208.7 L 787.2,1215.6 C 787.1,1217.4 785.8,1218.9 784,1218.9 L 770,1218.4 C 768.6,1218.3 767.8,1217.2 767.9,1215.5 L 768.3,1208.1 C 749.1,1207 731.8,1204.3 720.4,1200.1 L 719.4,1177.4 C 721.1,1180.1 723.4,1181.3 727.2,1182.7 C 739,1186.4 753,1188.3 768.5,1188.8 L 768.6,1185.2 C 766.7,1184.9 765.8,1184 765.9,1182.4 L 766.1,1176.4 C 766.2,1174.2 768,1173 770.4,1172.8 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-77" data-group-path="legs/leg_right/anklet_front" data-node-kind="part" data-name="anklet_front">
+<g id="part-source-77"><svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" x="0" y="0">
+<g data-group-path="legs/leg_right/anklet_front" fill="#e5b65d" stroke="none" id="part-source-77-anklet-front-outline">
+<path d="M 567,1782.5 C 571,1783.2 574,1784.5 578,1786 C 598,1788 621,1780 637,1773 C 641,1771 644,1770 647,1771 C 649,1771 650,1772 650,1773 C 652,1777 647,1781 642,1784 C 632,1791 609,1797 590,1798 L 591,1799 C 606,1801.5 626,1802.5 638,1800.5 C 642,1799.5 644,1798 644,1798 C 648,1799 651,1800 652,1803 C 652,1809 649,1812.5 643,1814.2 C 633,1815 610,1813.5 595.5,1810 C 596,1814 596.5,1819 596,1822 C 598,1824 600,1827 597,1830 C 596,1831 594,1831 592,1830 C 587,1844 575,1848.9 562.8125,1846.21875 C 549.875,1843.5 537.5,1833.75 533,1824 C 530,1814 530,1805 531,1801 C 529,1799 530,1797 535,1797 L 538,1791 C 546,1782 558,1780.8 567,1782.5 Z"/>
+</g>
+</svg></g>
+</g>
+</svg>

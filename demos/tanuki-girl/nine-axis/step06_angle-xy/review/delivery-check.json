@@ -1,0 +1,49 @@
+{
+  "requiredFiles": [
+    {
+      "path": "nine-axis/step06_angle-xy/face-xy.json",
+      "sha256": "ccf6a6da0bcc3a3d2f0297d36582e22ab7d6ba66d8d084a54cd6be7749335dd2"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/deformers.json",
+      "sha256": "b979e7b15c3259c544df1b3552c30a4509891c8426af744c580f65ba7cf2ee80"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/left-up-face-trace.json",
+      "sha256": "664e3423668be2b66f7302410907fea6f02a2cb0ab958202f69790d509b7ccb9"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/left-down-face-trace.json",
+      "sha256": "34e64af39fb06f5bf0106bee7e4c8240c9de8983cc8b160c6570223abb7e3a21"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/left-up-fit-report.json",
+      "sha256": "1423b3c026402d532ac1a5d392ae9e21da6702f746103b47e3d1b7beac47810e"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/left-down-fit-report.json",
+      "sha256": "00342349ab913bbe8b670f3e3c648a3ff9025f5aa1ff546c2d30797e75c031d8"
+    },
+    {
+      "path": "nine-axis/step06_angle-xy/notes.md",
+      "sha256": "2df4525311db88800946624075c112df5234fe915d5ce7e8c48fe88c4472e1e5"
+    }
+  ],
+  "referencedTextures": 29,
+  "inputsUnchanged": true,
+  "sourceTraceChecks": [
+    {
+      "corner": "left-up",
+      "sourcePathMatchesOriginal": true,
+      "maxNumericDifference": 0
+    },
+    {
+      "corner": "left-down",
+      "sourcePathMatchesOriginal": true,
+      "maxNumericDifference": 0
+    }
+  ],
+  "notesLinksResolve": 10,
+  "reviewPngsReadable": 33,
+  "cornerKeysPresentInAllNodes": true
+}

@@ -1,0 +1,13 @@
+{
+  "closed_and_reopened": true,
+  "paint_layers": 81,
+  "native_masks": 35,
+  "all_layer_and_mask_properties_equal": true,
+  "all_raw_paint_and_mask_pixels_equal": true,
+  "default_png_pixels_equal": true,
+  "kra_unchanged_by_reopen": true,
+  "kra_sha256": "0bbc778f0a5a1e0e17e434ec03e5906bb8bf7f13fa3b876234a3b5cd71cc733d",
+  "png_pixel_sha256": "de97d68d51d058b30d9b63f259b5b21296dd0e4e589f05f7d5a9fb7a7612bf35",
+  "saved_file": "raster-layering/step01/character-depth.kra",
+  "png_file": "raster-layering/step01/character-depth.png"
+}

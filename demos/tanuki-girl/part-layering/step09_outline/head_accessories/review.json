@@ -1,0 +1,83 @@
+{
+  "groupId": "head_accessories",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。已读取 head_accessories 的 note、素体参考和候选 SVG；本组为顶层节点，无父 SVG 或父范围约束。依据参考确认本组包含头顶狸形饰物整体（自身双耳、绿色叶片、双爪、向右上伸出的棕色尾形部分）、画面左侧金色铃铛和辫尾黑色发圈；角色粉色兽耳及头发不属于本组。\n\n完成整图 blend 定位后，以重叠选框逐块检查：头饰整体 [580,10,350,270] 3 倍；叶片与狸饰双耳 [590,20,215,130] 5 倍；尾形部分 [770,15,155,210] 4 倍；脸侧、双爪及与头发/角色兽耳的下缘接缝 [585,125,290,150] 4 倍；铃铛 [510,305,110,110] 5 倍；发圈 [565,680,65,55] 8 倍。各选框均核对 blend 与 edge，另查看 SVG 独显。\n\n可见组件联合范围完整，叶片顶部凹口、左右尖端和右侧回折、狸饰双耳与脸侧转向、尾形顶弧与右外缘、两爪下缘及两爪之间露出头发的开口均贴合参考。双爪逐件核对，无误包角色兽耳。铃铛两端凸缘与主体连续，底部黑色开槽已有联合色块覆盖，属于内部结构；发圈上下弧线及两侧收口贴合参考。未发现需要返修的可见缺漏、真实孔洞填平、孤立碎片或噪音，无需重画。\n\n图像证据：[整图叠加](review-evidence/overall-blend.png)、[叶片及双耳](review-evidence/leaf-ears-edge.png)、[尾形外缘](review-evidence/tail-edge.png)、[双爪与下缘接缝](review-evidence/paws-seams-edge.png)、[铃铛](review-evidence/bell-edge.png)、[发圈](review-evidence/hair-tie-edge.png)、[色块独显](review-evidence/standalone.png)。输入与候选未修改。",
+      "candidateHash": "35604bc60fc6644f5832a647fcc7dc0d9004be0defa77338f3cc317fac114aa4",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-03T13-24-07-922Z-14.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:03:08.898Z"
+    }
+  ]
+}

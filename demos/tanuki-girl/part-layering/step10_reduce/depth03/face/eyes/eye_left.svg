@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1376" height="2048" viewBox="0 0 1376 2048" data-source-sha256="a164111e461cf2be4040723e6df10df5df8cd288502bc9dd18dd90882631ace7" data-parent-region="720 390 95 80"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 774.2,401.7 C 777.2,402.2 779.9,403.4 781.8,404.8 C 782.2,405.1 782.0,405.4 781.5,405.2 C 779.9,404.7 778.2,404.3 776.5,403.9 L 774.6,403.5 Z" fill-rule="nonzero"/></g>
+<g fill="#658fcb" stroke="none" data-group-path="face/eyes/eye_left" id="eye-left-outline">
+
+
+<!-- Mirrored about x=707.5, then adjusted for this eye's crease, inner lash and hair occlusion. -->
+<path id="eye-screen-right" d="M 805,435.7 L 800,433.3 C 800.7,439.1 796.6,445.4 792,449.1 C 787.3,453.6 782.9,456.6 776.2,458.2 C 767.7,460.6 751.1,459.8 745,455.8 C 740.5,452.8 738.9,449.3 736.8,445.7 C 733.5,441.9 731.1,438 728.8,433.4 L 730.7,429.1 L 732.6,425.8 C 735.6,421.9 738.9,418.9 741.5,417.3 L 738,417.2 C 744.8,412.3 752.5,408.2 758.3,407.5 L 759,406.8 L 760.9,407.4 C 768.7,406.2 773.1,406.8 778.7,408.1 L 784,404.7 L 780.4,411.5 C 791.7,415.2 799.3,423.1 801.1,430.2 Z"/>
+<path id="fold-screen-right" d="M 733.6,409.9 C 744.4,401.6 761.9,398.9 776.5,402.1 L 778.1,404.2 C 762.4,401.4 745.9,403.3 733.6,409.9 Z"/>
+</g>
+</svg>

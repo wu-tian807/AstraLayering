@@ -1,0 +1,102 @@
+{
+  "groupId": "arms/arm_right/hand/middle_finger",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成整图定位、父组完成稿核对，以及覆盖全部可见中指的重叠放大检查（指端选框 [258,1054,38,25]，指身及右侧接缝选框 [285,1049,43,29]，均结合 blend/edge）。归属正确：候选是食指下方的第二条长指露出面，没有误包下方无名指；可见组件未整段遗漏，轮廓连续且无碎片噪音。父范围检查通过，outsidePixels=0。\n\n需要局部返修，不需重画整个中指：指端左侧圆转弧（约 x264–269、y1065–1071）向画面左侧外扩约 1 个原图像素。8 倍 edge 中红线落在参考实体外侧的浅色过渡/背景内，尤以 y1067–1069 的最左端清楚；参考实际圆转外缘约在 x264.5–265，而候选最左端约 x263.7。请将此段左端弧向右收回约 1 像素，并平顺接回上侧接缝与下缘，保留其圆转和现有指身走势，勿整体缩小色块。证据：。父稿同局部外缘也较宽，但本处可在父内收窄，属于当前候选可修问题，不是需扩大父范围的上游限制。\n\n其余指身下缘、与食指的上侧遮叠边界及右侧与无名指交会处已逐段核对，未发现其他确定需修改的问题。被遮挡的完整后段属于后续补全，本轮不要求恢复。",
+      "candidateHash": "bf655f400f83d07ce9a02d889da377bfcc54d6c2c1ebca1db4233e7af8b85e0f",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-25-00-572Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-25-00-572Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-25-00-572Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-25-00-572Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-25-00-572Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-25-00-572Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-25-00-572Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-25-00-572Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-25-00-572Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T23:46:17.871Z",
+      "repairedCandidateHash": "e1805c054d97ec493a6aab6484bbae6e04516286db248c1aed68691296cc3d03"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "已读取当前中指及父手部说明、候选和父完成 SVG，并完成整图 blend 定位；以相互重叠的 [258,1047,40,35]、[286,1046,45,34] 选框进行 8 倍 blend/edge 核对，覆盖全部可见中指区域，另查看参考手部及候选独显。参考中食指下方第二条长指露出面归本组，右侧较短圆转露出段归无名指，候选归属正确且未误包。中指左端圆转、连续下缘、与食指的上侧遮叠接缝及右端消失处均贴合参考，无可见组件缺漏、无依据孔隙或孤立碎片。被食指和掌部遮挡的后段属于后续补全，本轮不要求恢复。候选父范围检查 outsidePixels=0，符合未开启 allowOutsideParent 的约束。当前可见轮廓检查通过，无确定需修改问题。",
+      "candidateHash": "e1805c054d97ec493a6aab6484bbae6e04516286db248c1aed68691296cc3d03",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-59-22-725Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-59-22-725Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-59-22-725Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-59-22-725Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-59-22-725Z-5.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-59-22-725Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-03T23-59-22-725Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-04T00:07:31.935Z"
+    }
+  ]
+}

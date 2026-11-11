@@ -1,0 +1,158 @@
+{
+  "groupId": "headphones",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成整图 blend 定位，并分别以 5 倍 blend/edge 检查左侧 [588,514,112,124]、右侧 [720,510,112,128] 全部可见区域，再以 8 倍、上下重叠选框核对两件的外缘、下缘、连接件接缝和右上尖端，同时查看原图局部与 SVG 独显。headphones 为顶层组，无父范围限制。两侧耳罩、颈侧连接件以及右上小连接尖端都有参考依据，未发现组件归属错误、可见组件整段遗漏或孤立噪点；耳罩内部深色面不是贯穿孔洞。本轮不需要重画整个组，但以下可见外缘需返修。\n\n1. 左耳罩左上斜缘，约 x=607–623、y=532–548：原图浅色外壳窄边及其外侧深色描边位于候选红线外侧，红线沿浅色窄边内部切过，造成上左缘缩入。请沿耳机与粉色头发的真实外轮廓向左上补足这段窄边，保留它向上方壳体过渡的转向，不沿青色圈线或内部明暗分界描边。证据：\n\n2. 左耳罩左侧至左下转弯，约 x=600–619、y=570–615：候选轮廓在原图耳罩外缘左侧，尤其 y=582–607 段红线落在粉色辫发上，包入了耳机与辫发接缝外的头发区域。请收回该段过鼓的弧线，逐段贴合白/深色耳罩与辫发之间的可见边界，并与上方外壳窄边和下方圈线外缘连续衔接。证据：\n\n3. 两侧耳罩底缘均缩入：左侧约 x=626–661、y=623–628，右侧约 x=749–786、y=621–628。放大 edge 可见原图白色壳体底部和深色耳垫底部的黑色外轮廓继续露在红线下方，候选沿壳体内部或描边内侧截断，遗漏约 1–2 像素的可见边缘。请分别补到原图耳罩与肤色/衣领交界的真实外缘，保留白壳底部的小凸出和壳体与耳垫相接处的转折，不能用同一条平滑底弧削平两件各自的起伏；无需增加内部拆分或最终着色。证据： ",
+      "candidateHash": "fa5c82dabc3787d3f0af886e964787a49ac7dfd4443011c4ee85413a0e1711c4",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T13-52-26-989Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:20:15.427Z",
+      "repairedCandidateHash": "d28c970aee0a3c8233ed7480c19e696c55ca44de2f17b8155ff4f0cd9123ca35"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已读取 headphones 组说明、原图和本轮候选源码；本组为根组，无父范围约束。已用耳机整体叠加及相互重叠的左右上部、下部选框核对两侧耳罩、可见连接处、外侧转向、下缘与相邻头发/皮肤的接缝，并对下缘和顶部小突起追加放大检查。当前需要局部返修，不需要重画整个耳机组；未确认主要形体错误、组件遗漏或碎片堆砌。\n\n1. 图像左侧耳罩下缘，约 x=619–638、y=615–627：候选将粉色/青色圈线下方至白色外壳左下缘连成过于向外鼓出的圆弧。原图中该段耳机黑色外沿沿圈线底部斜向右下接入白色壳体底边；其下方已是粉色头发、竖向白灰邻接结构和肤色。红色候选边缘在这段落到实际外沿之外，局部多包约 2–4 像素，形成无依据的宽带；尤其圈线下方到白壳左下侧的接缝不贴合。请将这段下缘收回到参考耳机黑色外沿，保留圈线底部转入壳体的斜向转折及随后壳体底部弧度，不要用更宽的圆弧包住相邻结构。保留两侧主体及其余已贴合的可见外缘。\n\n图像证据（原图选框 [615,607,54,25]，8 倍）：\n\n",
+      "candidateHash": "d28c970aee0a3c8233ed7480c19e696c55ca44de2f17b8155ff4f0cd9123ca35",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-14.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-15.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-16.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/previews/2026-11-03T14-56-07-787Z-17.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T15:39:35.269Z",
+      "repairedCandidateHash": "d2cf3dc226ef5fea94e981894b7f917da51ba7b0c67d95eca7bd05773582f3c7"
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "id": "diagonal_face_warp",
+  "x": -30,
+  "y": 25,
+  "units": "original canvas pixels",
+  "before": [
+    {
+      "id": "near-forehead",
+      "samples": 60,
+      "weight": 0.03,
+      "meanPixels": 1.0665410818294632,
+      "maxPixels": 1.944135565515031
+    },
+    {
+      "id": "near-temple",
+      "samples": 43,
+      "weight": 0.03,
+      "meanPixels": 0.9721761092985469,
+      "maxPixels": 2.047565379644528
+    },
+    {
+      "id": "near-cheek-under-lock",
+      "samples": 43,
+      "weight": 0.03,
+      "meanPixels": 1.1092048974629092,
+      "maxPixels": 2.047565379644528
+    },
+    {
+      "id": "near-jaw-upper",
+      "samples": 24,
+      "weight": 30,
+      "meanPixels": 0.11476780599009671,
+      "maxPixels": 0.37770586429547254
+    },
+    {
+      "id": "near-jaw-lower",
+      "samples": 20,
+      "weight": 30,
+      "meanPixels": 0.19459855973576626,
+      "maxPixels": 0.5223171054867416
+    },
+    {
+      "id": "chin-near",
+      "samples": 16,
+      "weight": 30,
+      "meanPixels": 0.3090281093006428,
+      "maxPixels": 0.7842993961565625
+    },
+    {
+      "id": "chin-far",
+      "samples": 25,
+      "weight": 30,
+      "meanPixels": 0.280141591721681,
+      "maxPixels": 0.7842993961565625
+    },
+    {
+      "id": "far-cheek-steep",
+      "samples": 21,
+      "weight": 30,
+      "meanPixels": 0.7366646076629912,
+      "maxPixels": 1.9180660916705432
+    },
+    {
+      "id": "far-eye-socket-steep",
+      "samples": 16,
+      "weight": 30,
+      "meanPixels": 2.0760882248649266,
+      "maxPixels": 2.7817992388315416
+    },
+    {
+      "id": "far-temple-under-hair",
+      "samples": 45,
+      "weight": 0.03,
+      "meanPixels": 4.174107600289646,
+      "maxPixels": 9.297197760906945
+    },
+    {
+      "id": "forehead-crown",
+      "samples": 53,
+      "weight": 0.03,
+      "meanPixels": 2.0177441031059042,
+      "maxPixels": 4.125844410359368
+    }
+  ],
+  "after": [
+    {
+      "id": "near-forehead",
+      "samples": 60,
+      "weight": 0.03,
+      "meanPixels": 0.6294153588149226,
+      "maxPixels": 1.312073909344818
+    },
+    {
+      "id": "near-temple",
+      "samples": 43,
+      "weight": 0.03,
+      "meanPixels": 0.5159431911341716,
+      "maxPixels": 1.363133956408136
+    },
+    {
+      "id": "near-cheek-under-lock",
+      "samples": 43,
+      "weight": 0.03,
+      "meanPixels": 0.9312020368094305,
+      "maxPixels": 1.817003041832535
+    },
+    {
+      "id": "near-jaw-upper",
+      "samples": 24,
+      "weight": 30,
+      "meanPixels": 0.11174258945316579,
+      "maxPixels": 0.3379474454044969
+    },
+    {
+      "id": "near-jaw-lower",
+      "samples": 20,
+      "weight": 30,
+      "meanPixels": 0.17877666594361327,
+      "maxPixels": 0.418035793783037
+    },
+    {
+      "id": "chin-near",
+      "samples": 16,
+      "weight": 30,
+      "meanPixels": 0.2275096348528503,
+      "maxPixels": 0.6234118350022853
+    },
+    {
+      "id": "chin-far",
+      "samples": 25,
+      "weight": 30,
+      "meanPixels": 0.23594173911564784,
+      "maxPixels": 0.6725092491851145
+    },
+    {
+      "id": "far-cheek-steep",
+      "samples": 21,
+      "weight": 30,
+      "meanPixels": 0.11526297512434713,
+      "maxPixels": 0.21159967426697154
+    },
+    {
+      "id": "far-eye-socket-steep",
+      "samples": 16,
+      "weight": 30,
+      "meanPixels": 0.15077981999963722,
+      "maxPixels": 0.4324943479676279
+    },
+    {
+      "id": "far-temple-under-hair",
+      "samples": 45,
+      "weight": 0.03,
+      "meanPixels": 3.724231908379451,
+      "maxPixels": 8.46068089488641
+    },
+    {
+      "id": "forehead-crown",
+      "samples": 53,
+      "weight": 0.03,
+      "meanPixels": 1.374958333707424,
+      "maxPixels": 3.3731424212677155
+    }
+  ],
+  "controls": 117,
+  "smoothness": 0.12,
+  "occludedWeightScale": 1,
+  "corner": "left-up",
+  "trace": "nine-axis/step06_angle-xy/left-up-face-trace.json",
+  "visibility": [
+    {
+      "id": "near-forehead",
+      "visibility": "occluded"
+    },
+    {
+      "id": "near-temple",
+      "visibility": "occluded"
+    },
+    {
+      "id": "near-cheek-under-lock",
+      "visibility": "occluded"
+    },
+    {
+      "id": "near-jaw-upper",
+      "visibility": "visible"
+    },
+    {
+      "id": "near-jaw-lower",
+      "visibility": "visible"
+    },
+    {
+      "id": "chin-near",
+      "visibility": "visible"
+    },
+    {
+      "id": "chin-far",
+      "visibility": "visible"
+    },
+    {
+      "id": "far-jaw-lower",
+      "visibility": "visible"
+    },
+    {
+      "id": "far-jaw-upper",
+      "visibility": "visible"
+    },
+    {
+      "id": "far-cheek-under-lock",
+      "visibility": "occluded"
+    },
+    {
+      "id": "far-cheek-steep",
+      "visibility": "visible"
+    },
+    {
+      "id": "far-eye-socket-steep",
+      "visibility": "visible"
+    },
+    {
+      "id": "far-temple-under-hair",
+      "visibility": "occluded"
+    },
+    {
+      "id": "forehead-crown",
+      "visibility": "occluded"
+    }
+  ]
+}

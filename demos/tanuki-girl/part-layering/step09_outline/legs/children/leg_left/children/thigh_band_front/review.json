@@ -1,0 +1,68 @@
+{
+  "groupId": "legs/leg_left/thigh_band_front",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已完成整图 blend 定位、父完成 SVG 局部叠加，以及覆盖全部可见区域的重叠选框核对：竖带与扣件 [758,1105,48,120]、横带左段 [710,1165,80,60]、横带右段 [780,1165,80,60]，各区均以 8 倍 blend 和 edge 对照参考；另以 SVG 独显检查轮廓清洁度。\n\n参考中本组可见实体为黑粉横向环带、正面竖向带和扣状结构，候选联合色块完整覆盖，归属正确。竖带顶端弧角、两侧倾斜、扣件两侧凸出及下端收角、横带上下弧线和两侧与腿袜/尾巴的接缝均贴合参考；未见组件遗漏、真实孔洞被填平、孤立碎片或无依据挖缝。扣件内部明暗与粉色纹样属于后续着色，不要求本轮独立拆分。\n\n未设置 allowOutsideParent，按父范围约束检查；工具四倍采样 outsidePixels=0，候选全部位于父完成轮廓内，未发现需要单列的上游范围冲突。无需重画或局部返修。\n\n图像证据：[竖带与扣件 edge](previews/2026-11-03T20-18-42-521Z-6.png)、[横带左段 edge](previews/2026-11-03T20-18-42-521Z-8.png)、[横带右段 edge](previews/2026-11-03T20-18-42-521Z-10.png)、[父完成轮廓局部 blend](previews/2026-11-03T20-18-42-521Z-2.png)、[候选独显](previews/2026-11-03T20-18-42-521Z-11.png)。",
+      "candidateHash": "d3a51a9d950b764c42c0b863652f3154b9533fe511b5e7a36f236a2749f0aa9f",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/thigh_band_front/previews/2026-11-03T20-18-42-521Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T20:49:39.332Z"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "tool": "image_gen.imagegen",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "prompt": "Use case: precise-object-edit. Asset type: structural auxiliary reference for hidden clothing completion, not a redesign. Input image is the full outfit and the edit target. Show this SAME outfit in the SAME straight front-facing pose and proportions, as an empty garment with NO body. Preserve the off-shoulder low crossed V neckline, both short white pleated sleeves and their real openings, short white asymmetrical overlapped skirt hem with screen-left slit, navy/pink collar and lapel bindings, gold flower on screen-right short skirt panel, and both long navy rear drapes. Preserve overall placement, scale, illustration style, materials, and every reliable visible outline. ONLY temporarily remove the GOLD waist belt, its DARK inner waist wrap above/below, the FRONT striped waist rope knot and BOTH dangling pendants; reveal the short kimono body fabric naturally underneath those removed occluders. Keep the dark rear bow wings behind the waist as context. The WHITE short kimono torso and short skirt are ONE continuous short wrap garment through the cinched waist, with two overlapping front panels. The screen-right shoulder's navy-pink bound diagonal front edge runs down across the chest toward the screen-left waist and continues downward into the screen-left edge of the wide screen-right skirt panel. That outer front panel overlaps the screen-left shoulder's inner panel. Draw plausible smooth fitted white fabric side seams from existing chest edges to existing hip/skirt edges, keeping the waist about the existing belt width. Do not create a bare midriff, waist gap, horizontal replacement belt, body/skin, high collar, new sleeves, extra rear garment across the torso, or extend skirt down. Keep the actual neckline and skirt slit OPEN and transparent. Full outfit, isolated on transparent background, no annotations or text. This auxiliary image should clearly expose the hidden white waist fabric and continuous diagonal overlap, while retaining the unchanged complete surrounding outfit.",
+  "transparent_background": true,
+  "image": "clothing-part-layering/step11_completion/kimono_body/checks/waist-revealed.png",
+  "referenceRegion": [
+    199,
+    173,
+    634,
+    729
+  ],
+  "alignmentScale": 1.0977917981072556,
+  "referenceOffset": [
+    0,
+    0
+  ]
+}

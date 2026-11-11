@@ -1,0 +1,117 @@
+{
+  "groupId": "face/eyes/eye_right/iris",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已读取本组及父组说明、参考图、候选与父完成 SVG；整图 blend 定位后，以重叠选框 [630,411,50,30]、[630,435,50,28] 的 8 倍 blend/edge 覆盖全部可见区域，并追加下缘细查及 SVG 独显。归属正确，瞳孔及黄色亮区已有联合色块覆盖，高光遮挡处保持连续主体合理；没有组件遗漏、碎片或噪音。父范围检查通过，outsidePixels=0，无上游范围限制。\n\n需局部返修，无需重画整个虹膜：画面左侧虹膜左下缘，约 x=639–645、y=449–455。参考中左侧白色高光下方重新露出的暗红外缘沿约 (641.5,450)→(643,452)→(644,454) 较快向右下转入底缘；候选在同段位于约 x=639–642，向左扩进真实眼白约 2–3 像素。8 倍 edge 中红线与暗红外缘之间有明确浅白楔形区域。请将这一可见下转边缘局部向右收窄，贴合暗红主体与眼白的实际交界，再平顺接回现有底缘；保留高光覆盖处的合理连续补形，不为高光挖孔。其余上缘、右侧边缘及底缘已核对，无其他确定缺陷。\n\n证据：\n",
+      "candidateHash": "47fe5093f30650bcf448d89c28f1a3936fda89bdfbe1eaa5ba7fb5fe2c577560",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-36-34-894Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-05T12:48:42.202Z",
+      "repairedCandidateHash": "8f335638a2cdbea933a584dddaceab5e150199b3138bff0098abd5996a40ac58"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮已完整核对。依据组说明和参考，当前范围为画面左侧右眼虹膜主体，含深色瞳孔、内部明暗及下部黄色亮区；未误包眼白、睫毛、眼褶线或头发。整图 blend 定位后，以 [631,412,49,29] 与 [631,435,49,28] 两个重叠选框，8 倍 blend/edge 覆盖上缘、左右侧缘、下缘与接缝。上缘贴合眼睑下的可见虹膜边界，左右弧度与底部收圆对齐参考；左下高光覆盖处的连续主体补形合理，不应按白色反光挖孔。瞳孔和黄色亮区均已位于联合色块内，无组件缺失。独显轮廓连续干净，无孤点、碎片或无依据孔洞。父完成稿同局部核对及四倍范围检查通过：outsidePixels=0，无已确认上游范围限制；无需重画或局部返修。\n证据：    ",
+      "candidateHash": "8f335638a2cdbea933a584dddaceab5e150199b3138bff0098abd5996a40ac58",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-59-31-255Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-59-31-255Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-59-31-255Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-59-31-255Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-59-31-255Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-59-31-255Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-59-31-255Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-59-31-255Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-05T12-59-31-255Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-05T13:02:39.290Z"
+    }
+  ]
+}

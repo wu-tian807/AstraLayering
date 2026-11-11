@@ -1,0 +1,11 @@
+{
+  "changed_paint_layers": [
+    "D011.00 | legs/leg_right/anklet_back"
+  ],
+  "changed_native_masks": [
+    "Native occlusion | partial rear turnover"
+  ],
+  "other_80_paint_raw_bytes_equal": true,
+  "other_33_mask_selection_bytes_equal": true,
+  "logical_ids_and_layer_uuids_unchanged": true
+}

@@ -1,0 +1,61 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/default.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/c3a1861b-e8fc-4f3e-89fa-a7e725532ce9/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/c3a1861b-e8fc-4f3e-89fa-a7e725532ce9/regions.json",
+  "regions": [
+    {
+      "id": "R03",
+      "bounds": [
+        903,
+        773,
+        55,
+        84
+      ],
+      "layers": [
+        "D025.00 | arms/arm_left/upper_arm"
+      ],
+      "description": "左上臂肘侧外缘有一串平行碎线、短刺与主轮廓并行，独显及默认可见；身体参考对应处是单一连续外线。去掉轮廓外重复笔迹，沿实际本件边缘接成同宽连续描边，保留肘端完整补形。",
+      "crop": [
+        889,
+        759,
+        83,
+        112
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-body/R03-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-body/R03-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-body/R03-comparison.png"
+      }
+    },
+    {
+      "id": "R04",
+      "bounds": [
+        520,
+        773,
+        55,
+        56
+      ],
+      "layers": [
+        "D026.00 | arms/arm_right/upper_arm"
+      ],
+      "description": "右上臂肘侧内缘有第二条碎线与主线并行，轮廓局部增粗、毛刺；独显可定位在本层。参考为连贯单线。清除平行残线和刺，接顺肘侧轮廓，保留自身桃色体积暗部。",
+      "crop": [
+        506,
+        759,
+        83,
+        84
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/regions/default-body/R04-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/regions/default-body/R04-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/regions/default-body/R04-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

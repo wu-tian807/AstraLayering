@@ -1,0 +1,102 @@
+{
+  "groupId": "face/eyebrows",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成整图叠加、两侧眉毛全长的局部 blend/edge 对照、参考局部放大、父 SVG 局部叠加与候选独显。两条额部眉线归属正确，眼睑附近的短弧线归 eyes，不是本组遗漏；没有误包头发、孤点或碎片，也不需要重画整个组。候选父范围检查通过（outsidePixels=0）。\n\n需修改：角色右眉（画面左侧）外梢，约 x605–625、y364–372。参考中的连续斜向眉线在侧发上仍延伸至约 x605–607；候选在 (610,371) 提前收成零宽尖端，且邻近外梢段收细过早，留下未覆盖的连续眉线。请沿现有眉线走向补足这段外梢，调整局部上下缘与收尖位置，覆盖有依据的线体；不要把柔化晕边扩成粗眉或补成孤立碎片。这是局部可见轮廓缺漏，不是隐藏结构补全。父稿在同一局部的脸型范围覆盖该段，属于当前组父内可修问题，无须扩大父范围。\n图像依据：[右眉外梢及全长 edge](review-evidence/right-brow-edge.png)，[同局部父范围 edge](review-evidence/parent-at-right-brow.png)。\n\n角色左眉（画面右侧）全长、两端及穿过刘海处已逐段核对，未发现另外确定需要修改的问题：[左眉全长 edge](review-evidence/left-brow-edge.png)。",
+      "candidateHash": "a0e3d04299ec692c16cf270d0407da5970404ec9d07c630364ad2c63605a5647",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T17-41-34-173Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T17-41-34-173Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T17-41-34-173Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T17-41-34-173Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T17-41-34-173Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T17-41-34-173Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T17-41-34-173Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T17-41-34-173Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T17-41-34-173Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T18:09:39.255Z",
+      "repairedCandidateHash": "09e83b660057f34ff043ddd1cccbc5c5dc025eba3907be3425f9e59e5fb44ff0"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮独立核对完成。依据组说明及参考，当前组覆盖额部两条眉毛；眼睑附近的弧线属于 eyes，未误纳。已查看本组整体定位叠加及父组 face 完成稿，并逐块检查画面左眉 [595,342,110,42]、画面右眉 [695,342,130,42] 的放大叠加，结合边缘图、原图及 SVG 独显核对两端尖梢、上下缘、弧度与穿过刘海处的连续性。被拦截的预览已通过灰度局部图重新读取。两侧眉体的可见范围均已覆盖，位置、长度、宽度和弧线转向与参考一致，未发现组件遗漏、相邻结构误包、孤点碎片或无依据挖缝；无需重画。本组未设置 allowOutsideParent，工具四倍采样父范围检查为 pass，outsidePixels=0；候选满足父范围约束，无需报告上游范围限制。",
+      "candidateHash": "09e83b660057f34ff043ddd1cccbc5c5dc025eba3907be3425f9e59e5fb44ff0",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T18-24-43-434Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T18-24-43-434Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T18-24-43-434Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T18-24-43-434Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T18-24-43-434Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T18-24-43-434Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-03T18-24-43-434Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T18:34:13.413Z"
+    }
+  ]
+}

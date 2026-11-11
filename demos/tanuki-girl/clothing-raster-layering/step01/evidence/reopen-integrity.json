@@ -1,0 +1,545 @@
+{
+  "passed": true,
+  "before": {
+    "size": [
+      1376,
+      2048
+    ],
+    "color": [
+      "RGBA",
+      "U8",
+      "sRGB-elle-V2-srgbtrc.icc"
+    ],
+    "layers": [
+      {
+        "name": "d01 | rear_drape_screen_left | complete",
+        "uuid": "{a9feb87a-9ee2-4b4d-b3d7-a03b3024d30a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "57d1bafcc0f869cacb228bc69f6de0917157ff6dcabf0d8776bbcfd8896066ed",
+        "masks": []
+      },
+      {
+        "name": "d02 | rear_drape_screen_right | complete",
+        "uuid": "{03b3eeeb-d709-413c-8a75-6e4c35ad166a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "facbf1aa93e60ce10fb647d705d51521af38b773445923a3a957abe357599946",
+        "masks": []
+      },
+      {
+        "name": "d03 | rear_waist_bow/right_bow_wing | complete",
+        "uuid": "{8d09ad13-0794-4196-a74f-40cfa284ac90}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "44196f6069616106b85cd90e2ce7ffcc9dae98f6b251f75a94a82aea10a3f970",
+        "masks": []
+      },
+      {
+        "name": "d04 | rear_waist_bow/left_bow_wing | complete",
+        "uuid": "{d7904da0-c4bb-42f0-aa90-316ccd2361cf}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "cd0782e33842dde0b8cef58d32adb813787c171b8036d3eaaf53a8019b299a8c",
+        "masks": []
+      },
+      {
+        "name": "d05 | rear_waist_bow/central_knot_root | complete hidden root",
+        "uuid": "{9b5dfbd5-24ce-408b-aa43-3ca726a49fe0}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "0e4bc3b1a298d5bbf50b375f397477065ea6626a8f612c6ed9f6bf4735e30408",
+        "masks": [
+          {
+            "name": "default hidden | rear_waist_bow/central_knot_root",
+            "uuid": "{01098352-4f7a-4279-8e9e-86a0bb7ba111}",
+            "type": "transparencymask",
+            "visible": true,
+            "selectionHash": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+          }
+        ]
+      },
+      {
+        "name": "d06 | kimono_body/right_underlap_panel | left side/back returns y618-845",
+        "uuid": "{b9264b56-1103-4e9d-a819-f2261d582a3f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "855644a3e11c5ab53d1380182e2dad3b85ae284e90f82923ca7f146d063bfa89",
+        "masks": []
+      },
+      {
+        "name": "d07 | kimono_body/left_overlap_panel | right side/back returns y612-839",
+        "uuid": "{df56147f-b986-44b7-8615-6701bac4f2a7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "1685150bf6b9f25deeac6b0cbecee1d0efad3141e689d429a6476fad933647e6",
+        "masks": []
+      },
+      {
+        "name": "d08 | sleeve_screen_left | complete far sleeve wall; native worn-range mask",
+        "uuid": "{28eda41a-af13-4b31-98bc-43e43e04e833}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "71c29aae20ab436885f601a880901890b71cb235ed0e773ede1e24dec68cec68",
+        "masks": [
+          {
+            "name": "worn range | sleeve_screen_left",
+            "uuid": "{a37cc6be-6e01-4d2f-8adc-cd6b3e24660a}",
+            "type": "transparencymask",
+            "visible": true,
+            "selectionHash": "6e957388ae4c337f374ae5d846a296705fcba74c2220357f61cde3307f71d900"
+          }
+        ]
+      },
+      {
+        "name": "d09 | sleeve_screen_right | complete far sleeve wall; native worn-range mask",
+        "uuid": "{e6a205f4-b174-443a-b99f-bf37639b08ef}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "9da8898f23cac7a6ae7bf6ae92ce6e5a4b22d3c3862ba0d87bd372d965728f2d",
+        "masks": [
+          {
+            "name": "worn range | sleeve_screen_right",
+            "uuid": "{b3fe5f8b-f9c5-444a-99b8-94f0d43f1e90}",
+            "type": "transparencymask",
+            "visible": true,
+            "selectionHash": "6dfd21934fd4abc49d00774e44cdd73d04aae50c45323fe3ec0882795ea17129"
+          }
+        ]
+      },
+      {
+        "name": "d10 | inner_waist_wrap | both side/back returns y620-847",
+        "uuid": "{c512849c-10cc-40a4-9517-8842bc1da9e8}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "0d639107bd3e4921a87316354b48c88978806699dbb29c068983486c96b5b4a6",
+        "masks": []
+      },
+      {
+        "name": "d11 | outer_waist_band | both side/back returns y670-781",
+        "uuid": "{65216b2a-3cd0-4d40-af02-b38d60c8e6e5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "0649a3353edcda860a81f7c3e78f44b3d3eaa3e8c6290858321a358f9e77db42",
+        "masks": []
+      },
+      {
+        "name": "d12 | front_waist_cord_knot | complete posterior waist return",
+        "uuid": "{1e2981d5-978b-42d0-8f72-a8e64d0908b8}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "02452f627b78b16b1b37b66034968d32979a16c49a78635f50c547ad79ae69bf",
+        "masks": [
+          {
+            "name": "default hidden | front_waist_cord_knot",
+            "uuid": "{c06943d1-bd1a-4dc6-aa54-662586599244}",
+            "type": "transparencymask",
+            "visible": true,
+            "selectionHash": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+          }
+        ]
+      },
+      {
+        "name": "d13 | kimono_body/right_underlap_panel | complete front cloth and outline",
+        "uuid": "{5769b9f7-a47f-42a4-a475-ccf927a52db8}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "3e7041f2b4764e9d42e1baaa577679c830f7701496c54e371e91733a20412744",
+        "masks": []
+      },
+      {
+        "name": "d14 | kimono_body/left_overlap_panel | complete front cloth and outline",
+        "uuid": "{70c4647b-e66c-452e-a0f0-69ab1c6edec7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "4764003920feac56c7275394859b3aee93265849693ef21db4e79c990f25f5e9",
+        "masks": []
+      },
+      {
+        "name": "d15 | sleeve_screen_left | near white folds and gathered cuff x253-486",
+        "uuid": "{6c2f726e-95fa-4d85-a438-4eb37967f2b5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "6ebce48370d5bccd19f8b40eb16c419e7269ada3d6f9aa9d78a4695df175a930",
+        "masks": []
+      },
+      {
+        "name": "d16 | sleeve_screen_right | near white folds and gathered cuff x896-1126",
+        "uuid": "{1d1e93f1-2ee2-490e-a2ad-3dab2ae3d18c}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "8ef6fe0b66decfefe314642c112440d0627a6812ddc3cf3eacd3a1ca296ddcf6",
+        "masks": []
+      },
+      {
+        "name": "d17 | inner_waist_wrap | complete front cloth and outline",
+        "uuid": "{2f7649d6-faf5-4fab-9962-4facae789df6}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "5d13aba0f517f2a6ee2fa261868d93e422e67e00637fa119820f271be96e1f20",
+        "masks": []
+      },
+      {
+        "name": "d18 | outer_waist_band | complete front cloth and outline",
+        "uuid": "{ae256aa9-e4ce-4bb4-9a3e-93a59812d17e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "af120a622febc482dbed3009a835fc4ff8a79f56364b309868bbc8cbe9a2c20e",
+        "masks": []
+      },
+      {
+        "name": "d19 | front_pendant_screen_left/right_free_cord | complete",
+        "uuid": "{354894aa-d98d-4480-bc14-1c9f2d3f2f4e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "fde9d1ad3cb6838319e5ab27d07c55c50783172317be0652e7d6483eefd4e7bd",
+        "masks": []
+      },
+      {
+        "name": "d20 | front_pendant_screen_right/left_free_cord | complete",
+        "uuid": "{effe9c2e-9005-4a3f-848d-d1f07a973fff}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "cf7196f6bee9dd424dc6431f29be76765709ed25e715d0e5b4dba96c7684a752",
+        "masks": []
+      },
+      {
+        "name": "d21 | front_pendant_screen_left/right_tassel | complete",
+        "uuid": "{7791f227-c497-4af3-9f76-a64da8534aff}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "d04fe7ce003b0e0ba080594fa76b090cc29a32cc04122ca84f537b2875b969ec",
+        "masks": []
+      },
+      {
+        "name": "d22 | front_pendant_screen_right/left_tassel | complete",
+        "uuid": "{5bd96b03-31e5-40fd-9bad-c7f8d85e3f14}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "e4e5223eb327a1f30a1cd0d067431995871fd06b8d1c4da66674530f187f731f",
+        "masks": []
+      },
+      {
+        "name": "d23 | front_waist_cord_knot | front cord turns, horizontal cord, loops and knot",
+        "uuid": "{b43276ac-19ee-4a09-8d7c-d67e806324f5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "c305bbbbcee22c3cd50946297cb251d10b149a2c3fe86e3bdcc60a17d3f4f81a",
+        "masks": []
+      },
+      {
+        "name": "d24 | front_pendant_screen_left/right_terminal_bead | complete",
+        "uuid": "{41d13dc4-1e3d-48f7-b114-50372ccdde98}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "2de663cb61865b19ef06f3eded307f49c7e65c5311fd054663696c844ce652fa",
+        "masks": []
+      },
+      {
+        "name": "d25 | front_pendant_screen_right/left_terminal_bead | complete",
+        "uuid": "{6128f6c6-91e0-43bf-84f0-3ab6d170581f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "a36f1dd11cf1968ff91252cb661158ed1c5c32356229c8a894cfe68583b8d64a",
+        "masks": []
+      }
+    ],
+    "projectionHash": "6cea378e86bf73bc05f125a0b6892401af38cbe9401d1cb462e65bba6def9f17"
+  },
+  "after": {
+    "size": [
+      1376,
+      2048
+    ],
+    "color": [
+      "RGBA",
+      "U8",
+      "sRGB-elle-V2-srgbtrc.icc"
+    ],
+    "layers": [
+      {
+        "name": "d01 | rear_drape_screen_left | complete",
+        "uuid": "{a9feb87a-9ee2-4b4d-b3d7-a03b3024d30a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "57d1bafcc0f869cacb228bc69f6de0917157ff6dcabf0d8776bbcfd8896066ed",
+        "masks": []
+      },
+      {
+        "name": "d02 | rear_drape_screen_right | complete",
+        "uuid": "{03b3eeeb-d709-413c-8a75-6e4c35ad166a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "facbf1aa93e60ce10fb647d705d51521af38b773445923a3a957abe357599946",
+        "masks": []
+      },
+      {
+        "name": "d03 | rear_waist_bow/right_bow_wing | complete",
+        "uuid": "{8d09ad13-0794-4196-a74f-40cfa284ac90}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "44196f6069616106b85cd90e2ce7ffcc9dae98f6b251f75a94a82aea10a3f970",
+        "masks": []
+      },
+      {
+        "name": "d04 | rear_waist_bow/left_bow_wing | complete",
+        "uuid": "{d7904da0-c4bb-42f0-aa90-316ccd2361cf}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "cd0782e33842dde0b8cef58d32adb813787c171b8036d3eaaf53a8019b299a8c",
+        "masks": []
+      },
+      {
+        "name": "d05 | rear_waist_bow/central_knot_root | complete hidden root",
+        "uuid": "{9b5dfbd5-24ce-408b-aa43-3ca726a49fe0}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "0e4bc3b1a298d5bbf50b375f397477065ea6626a8f612c6ed9f6bf4735e30408",
+        "masks": [
+          {
+            "name": "default hidden | rear_waist_bow/central_knot_root",
+            "uuid": "{01098352-4f7a-4279-8e9e-86a0bb7ba111}",
+            "type": "transparencymask",
+            "visible": true,
+            "selectionHash": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+          }
+        ]
+      },
+      {
+        "name": "d06 | kimono_body/right_underlap_panel | left side/back returns y618-845",
+        "uuid": "{b9264b56-1103-4e9d-a819-f2261d582a3f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "855644a3e11c5ab53d1380182e2dad3b85ae284e90f82923ca7f146d063bfa89",
+        "masks": []
+      },
+      {
+        "name": "d07 | kimono_body/left_overlap_panel | right side/back returns y612-839",
+        "uuid": "{df56147f-b986-44b7-8615-6701bac4f2a7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "1685150bf6b9f25deeac6b0cbecee1d0efad3141e689d429a6476fad933647e6",
+        "masks": []
+      },
+      {
+        "name": "d08 | sleeve_screen_left | complete far sleeve wall; native worn-range mask",
+        "uuid": "{28eda41a-af13-4b31-98bc-43e43e04e833}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "71c29aae20ab436885f601a880901890b71cb235ed0e773ede1e24dec68cec68",
+        "masks": [
+          {
+            "name": "worn range | sleeve_screen_left",
+            "uuid": "{a37cc6be-6e01-4d2f-8adc-cd6b3e24660a}",
+            "type": "transparencymask",
+            "visible": true,
+            "selectionHash": "6e957388ae4c337f374ae5d846a296705fcba74c2220357f61cde3307f71d900"
+          }
+        ]
+      },
+      {
+        "name": "d09 | sleeve_screen_right | complete far sleeve wall; native worn-range mask",
+        "uuid": "{e6a205f4-b174-443a-b99f-bf37639b08ef}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "9da8898f23cac7a6ae7bf6ae92ce6e5a4b22d3c3862ba0d87bd372d965728f2d",
+        "masks": [
+          {
+            "name": "worn range | sleeve_screen_right",
+            "uuid": "{b3fe5f8b-f9c5-444a-99b8-94f0d43f1e90}",
+            "type": "transparencymask",
+            "visible": true,
+            "selectionHash": "6dfd21934fd4abc49d00774e44cdd73d04aae50c45323fe3ec0882795ea17129"
+          }
+        ]
+      },
+      {
+        "name": "d10 | inner_waist_wrap | both side/back returns y620-847",
+        "uuid": "{c512849c-10cc-40a4-9517-8842bc1da9e8}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "0d639107bd3e4921a87316354b48c88978806699dbb29c068983486c96b5b4a6",
+        "masks": []
+      },
+      {
+        "name": "d11 | outer_waist_band | both side/back returns y670-781",
+        "uuid": "{65216b2a-3cd0-4d40-af02-b38d60c8e6e5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "0649a3353edcda860a81f7c3e78f44b3d3eaa3e8c6290858321a358f9e77db42",
+        "masks": []
+      },
+      {
+        "name": "d12 | front_waist_cord_knot | complete posterior waist return",
+        "uuid": "{1e2981d5-978b-42d0-8f72-a8e64d0908b8}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "02452f627b78b16b1b37b66034968d32979a16c49a78635f50c547ad79ae69bf",
+        "masks": [
+          {
+            "name": "default hidden | front_waist_cord_knot",
+            "uuid": "{c06943d1-bd1a-4dc6-aa54-662586599244}",
+            "type": "transparencymask",
+            "visible": true,
+            "selectionHash": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+          }
+        ]
+      },
+      {
+        "name": "d13 | kimono_body/right_underlap_panel | complete front cloth and outline",
+        "uuid": "{5769b9f7-a47f-42a4-a475-ccf927a52db8}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "3e7041f2b4764e9d42e1baaa577679c830f7701496c54e371e91733a20412744",
+        "masks": []
+      },
+      {
+        "name": "d14 | kimono_body/left_overlap_panel | complete front cloth and outline",
+        "uuid": "{70c4647b-e66c-452e-a0f0-69ab1c6edec7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "4764003920feac56c7275394859b3aee93265849693ef21db4e79c990f25f5e9",
+        "masks": []
+      },
+      {
+        "name": "d15 | sleeve_screen_left | near white folds and gathered cuff x253-486",
+        "uuid": "{6c2f726e-95fa-4d85-a438-4eb37967f2b5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "6ebce48370d5bccd19f8b40eb16c419e7269ada3d6f9aa9d78a4695df175a930",
+        "masks": []
+      },
+      {
+        "name": "d16 | sleeve_screen_right | near white folds and gathered cuff x896-1126",
+        "uuid": "{1d1e93f1-2ee2-490e-a2ad-3dab2ae3d18c}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "8ef6fe0b66decfefe314642c112440d0627a6812ddc3cf3eacd3a1ca296ddcf6",
+        "masks": []
+      },
+      {
+        "name": "d17 | inner_waist_wrap | complete front cloth and outline",
+        "uuid": "{2f7649d6-faf5-4fab-9962-4facae789df6}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "5d13aba0f517f2a6ee2fa261868d93e422e67e00637fa119820f271be96e1f20",
+        "masks": []
+      },
+      {
+        "name": "d18 | outer_waist_band | complete front cloth and outline",
+        "uuid": "{ae256aa9-e4ce-4bb4-9a3e-93a59812d17e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "af120a622febc482dbed3009a835fc4ff8a79f56364b309868bbc8cbe9a2c20e",
+        "masks": []
+      },
+      {
+        "name": "d19 | front_pendant_screen_left/right_free_cord | complete",
+        "uuid": "{354894aa-d98d-4480-bc14-1c9f2d3f2f4e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "fde9d1ad3cb6838319e5ab27d07c55c50783172317be0652e7d6483eefd4e7bd",
+        "masks": []
+      },
+      {
+        "name": "d20 | front_pendant_screen_right/left_free_cord | complete",
+        "uuid": "{effe9c2e-9005-4a3f-848d-d1f07a973fff}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "cf7196f6bee9dd424dc6431f29be76765709ed25e715d0e5b4dba96c7684a752",
+        "masks": []
+      },
+      {
+        "name": "d21 | front_pendant_screen_left/right_tassel | complete",
+        "uuid": "{7791f227-c497-4af3-9f76-a64da8534aff}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "d04fe7ce003b0e0ba080594fa76b090cc29a32cc04122ca84f537b2875b969ec",
+        "masks": []
+      },
+      {
+        "name": "d22 | front_pendant_screen_right/left_tassel | complete",
+        "uuid": "{5bd96b03-31e5-40fd-9bad-c7f8d85e3f14}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "e4e5223eb327a1f30a1cd0d067431995871fd06b8d1c4da66674530f187f731f",
+        "masks": []
+      },
+      {
+        "name": "d23 | front_waist_cord_knot | front cord turns, horizontal cord, loops and knot",
+        "uuid": "{b43276ac-19ee-4a09-8d7c-d67e806324f5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "c305bbbbcee22c3cd50946297cb251d10b149a2c3fe86e3bdcc60a17d3f4f81a",
+        "masks": []
+      },
+      {
+        "name": "d24 | front_pendant_screen_left/right_terminal_bead | complete",
+        "uuid": "{41d13dc4-1e3d-48f7-b114-50372ccdde98}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "2de663cb61865b19ef06f3eded307f49c7e65c5311fd054663696c844ce652fa",
+        "masks": []
+      },
+      {
+        "name": "d25 | front_pendant_screen_right/left_terminal_bead | complete",
+        "uuid": "{6128f6c6-91e0-43bf-84f0-3ab6d170581f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "paintHash": "a36f1dd11cf1968ff91252cb661158ed1c5c32356229c8a894cfe68583b8d64a",
+        "masks": []
+      }
+    ],
+    "projectionHash": "6cea378e86bf73bc05f125a0b6892401af38cbe9401d1cb462e65bba6def9f17"
+  }
+}

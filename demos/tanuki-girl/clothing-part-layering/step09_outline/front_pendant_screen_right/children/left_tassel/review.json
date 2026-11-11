@@ -1,0 +1,38 @@
+{
+  "groupId": "front_pendant_screen_right/left_tassel",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过。已只读检查纯衣服参考、groups.json 中当前 part 及父组 note、候选 SVG 和父完成 SVG，并完成整图 blend、覆盖全部束体的局部参考放大、局部 blend、6 倍 edge 及 SVG 独显。\n\n独立归属核对：本片为角色自身左侧、画面右侧圆珠下方流苏，约 x724–775、y944–1033。参考显示一束连续收束后向下展开的实体，左右边缘和弧形底缘可辨；左侧及底部紫灰区域为衣面投影，不属于流苏。候选覆盖完整可见束体，没有包入投影、相邻短下摆、圆珠或另一支垂饰，无可见组件遗漏或真实开口需补留。\n\n位置、比例与边缘：整图叠加位置正确；局部 edge 显示左右外缘和真实弧形底缘与参考实体轮廓一致，未见需要修改的主要形状或局部边缘。上端约 x735–759、y946–951 的短搭接位于圆珠覆盖区内，符合束根在圆珠之后、束身在短下摆及身体之前的连续关系。note 已明确实体范围、相邻分界、深度关系、随动及隐藏搭接，无需修改说明。候选在父完成 SVG 范围内，4 倍采样 outsideSamples=0；无上游范围限制。无须重画或返修。\n\n图像证据：\n- [纯衣服参考局部](review-evidence/reference-detail.png)\n- [整体原图叠加](review-evidence/blend-full.png)\n- [完整束体局部叠加](review-evidence/blend-detail.png)\n- [完整束体边缘覆盖](review-evidence/edge-detail.png)\n- [候选独显](review-evidence/svg-detail.png)",
+      "candidateHash": "87469d24556539b2ddc2bca67eede74251ef977cdef36ce24c9acb45c62753ca",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_tassel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_tassel/previews/2026-11-03T16-35-21-866Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_tassel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_tassel/previews/2026-11-03T16-35-21-866Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_tassel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_tassel/previews/2026-11-03T16-35-21-866Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/front_pendant_screen_right.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_tassel/previews/2026-11-03T16-35-21-866Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_tassel/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_right/children/left_tassel/previews/2026-11-03T16-35-21-866Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T17:02:19.306Z"
+    }
+  ]
+}

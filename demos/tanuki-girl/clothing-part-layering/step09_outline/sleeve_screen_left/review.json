@@ -1,0 +1,48 @@
+{
+  "groupId": "sleeve_screen_left",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，无已确定需修改的问题，当前组不需要重画。\n\n先独立查看纯衣服参考及 groups.json 中 sleeve_screen_left 的 note，再查看候选源码、整体 blend、覆盖全袖的 4 倍 edge、局部 blend、SVG 独显，以及袖根/折角 6 倍、袖口 5 倍、上外缘 4 倍 edge。本节点为顶层 group，parentGroup=null，无父 SVG 和父范围限制。\n\n归属与联合覆盖：本袖的可见范围约 x253–490、y494–730；白色褶叠袖身、深色粉线袖口包边、白色翻口、实际可见深色袖内面及腰带旁白色短折角均被联合覆盖。主体领缘、胸前衣片、深色环腰层及下方后腰结翼没有被误归入本袖。位置、宽高比例及与邻片接缝一致。\n\n上缘及外侧阶梯轮廓（x280–477、y494–604）逐段对照参考吻合；袖根弧形接缝及口沿内侧转折（x474–490、y513–614）沿衣身相邻边界保留合理搭接。靠腰带白色折角（x440–486、y614–665）完整保留，并沿其外边与后腰结翼分界。下外侧袖口/翻口（x253–440、y658–730）的尖端、弧形底缘及内侧斜边吻合，深色内面是参考可见袖内衣料，不应挖空；未发现真实透明开口被填人体。参考中本组没有另需覆盖的薄纱或分离附件。\n\nnote 已说明实体范围、相邻归属、随左上臂独立运动、必要袖根搭接，以及远侧袖壁/口沿在上臂后、近侧袖壁/口沿在上臂前的连续区域和共同控制，未发现需更正的职责说明。纯色内无纹样、褶皱明暗或透明度表现不作为缺陷。\n\n图像证据：\n\n\n\n\n\n",
+      "candidateHash": "590578a7457e3881551a7bfdc852a27ef1cd2698af654a9afb9bf6f892cc8a4b",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/previews/2026-11-03T14-09-17-468Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/previews/2026-11-03T14-09-17-468Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/previews/2026-11-03T14-09-17-468Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/previews/2026-11-03T14-09-17-468Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/previews/2026-11-03T14-09-17-468Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/previews/2026-11-03T14-09-17-468Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_left/previews/2026-11-03T14-09-17-468Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:35:42.891Z"
+    }
+  ]
+}

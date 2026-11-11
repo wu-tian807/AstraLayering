@@ -1,0 +1,43 @@
+{
+  "groupId": "inner_waist_wrap",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过。先独立查看纯衣服参考及 groups.json 中 inner_waist_wrap 的 note，再检查候选；本节点为顶层 group，parentGroup=null，无父 SVG 或父范围限制。候选 1376×2048 画布与参考一致，未改动输入。\n\n归属和完整性：参考明确显示上缘折带约 x477–908、y603–658，以及下缘宽带约 x477–894、y783–868，均为金色外腰带后方的深色环腰层。候选联合覆盖这两段可见区域，没有纳入相邻胸衣、袖内折角、腰后结翼或白色短下摆；前垂绳处保留连续带面属于合理遮挡搭接，不应沿绳的像素交集挖洞。金色腰带遮住的中央连接由补全阶段负责，本轮两段分离的可见轮廓可接受。参考中的斜褶属于带面，未发现属于本组但遗漏的附件、薄纱或真实开口。证据：；。\n\n形状、比例及接缝：已以三倍局部 blend 和 edge 覆盖全部可见区域，核对上带的中央浅凹、左右折收端、与胸前衣片的边界及金色带上缘接缝；核对下带的上缘弧线、两侧外张轮廓、左右角点及压住短下摆的连续下缘。候选边缘与参考实体边界吻合，局部误差处于原图描边范围内，无确定需要返修的缺陷。两端再以五倍 edge 检查，没有把后结翼当作本组延伸。证据：；；；。\n\n独显检查：两段闭合纯色轮廓，无额外离散碎片或错误开孔。note 已说明完整环腰实体、上下相邻边界、位于衣身前和金色带后、侧后绕躯干关系、共同随动及隐藏连接，符合当前 group 职责。无需重画或修订 note。证据：。",
+      "candidateHash": "68223868eaa7aa9af2257f8e9111f006c1420e3818cae138173c1e2759265abd",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_waist_wrap/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_waist_wrap/previews/2026-11-03T14-13-07-300Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_waist_wrap/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_waist_wrap/previews/2026-11-03T14-13-07-300Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_waist_wrap/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_waist_wrap/previews/2026-11-03T14-13-07-300Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_waist_wrap/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_waist_wrap/previews/2026-11-03T14-13-07-300Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_waist_wrap/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_waist_wrap/previews/2026-11-03T14-13-07-300Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_waist_wrap/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_waist_wrap/previews/2026-11-03T14-13-07-300Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:38:25.886Z"
+    }
+  ]
+}

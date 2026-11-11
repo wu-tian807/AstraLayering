@@ -1,0 +1,17 @@
+{
+  "before": {
+    "d23": "c305bbbbcee22c3cd50946297cb251d10b149a2c3fe86e3bdcc60a17d3f4f81a",
+    "mask": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+    "uuid": "{1e2981d5-978b-42d0-8f72-a8e64d0908b8}",
+    "maskUUID": "{c06943d1-bd1a-4dc6-aa54-662586599244}"
+  },
+  "after": {
+    "d12": "02452f627b78b16b1b37b66034968d32979a16c49a78635f50c547ad79ae69bf",
+    "d23": "c305bbbbcee22c3cd50946297cb251d10b149a2c3fe86e3bdcc60a17d3f4f81a",
+    "mask": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab",
+    "uuid": "{1e2981d5-978b-42d0-8f72-a8e64d0908b8}",
+    "maskUUID": "{c06943d1-bd1a-4dc6-aa54-662586599244}"
+  },
+  "nativeMaskPreserved": true,
+  "frontPaintingPreserved": true
+}

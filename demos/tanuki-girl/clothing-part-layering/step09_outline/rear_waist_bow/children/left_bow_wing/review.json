@@ -1,0 +1,48 @@
+{
+  "groupId": "rear_waist_bow/left_bow_wing",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，当前候选无需重画或局部返修。已只读核对 clothing.png、groups.json 中本 part 及父组 note、候选源码、父完成 SVG，并完成整体 blend、全片局部 3 倍 blend/edge、上下缘 4 倍 edge 与 SVG 独显。\n\n归属依据：纯衣服参考中，本片为画面右侧短袖下方、腰带外侧的深色折叠结翼，可见范围主要在 x874–1068、y641–927；止于腰髋尖角。袖口白边及袖内深色面属于短袖，下方继续延伸的长后垂片属于其他衣片。候选完整覆盖该结翼可见区域，未把长垂片并入；折面明暗不要求内部路径。参考证据：。\n\n位置、比例及边缘：袖下露出点约 (1030,719)、外侧折角约 (1067,770)、下尖角约 (1010,926)、与衣身短下摆邻接处约 (890,840) 均与原图匹配。全片覆盖连续，无可见组件遗漏；下缘和长垂片之间的真实空白保持在轮廓之外。未见属于本片的薄纱、独立附件或需要挖除的真实开口，袖口开口属于前方短袖。证据：    。\n\n隐藏搭接与父范围：候选两路径的联合覆盖保留父完成稿画面右翼及向中央接口 x717–735 延伸的隐藏翼根；叠加到衣身、腰带及短袖上的部分符合 note 所述后方隐藏搭接，不能按可见像素交集删除。候选未包含中央结根整体或对侧翼。父范围四倍采样 outsideSamples=0、outsidePixels=0；画布 1376×2048 正确，无上游范围限制。证据： 。\n\n本 part note 已明确实体范围、中央接口、袖/衣身/腰带前后关系、长垂片排除及覆盖其根部的关系、随腰部共同移动与翼面独立变形控制，职责传递完整。无确定需要修改的问题。",
+      "candidateHash": "7856d2c1532f27382605373a2f7b954484bab94e02d1a3902489a6e567034b5c",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/previews/2026-11-03T16-05-49-622Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/rear_waist_bow.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/previews/2026-11-03T16-05-49-622Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/previews/2026-11-03T16-05-49-622Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/previews/2026-11-03T16-05-49-622Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/previews/2026-11-03T16-05-49-622Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/previews/2026-11-03T16-05-49-622Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/rear_waist_bow/children/left_bow_wing/previews/2026-11-03T16-05-49-622Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T16:38:36.752Z"
+    }
+  ]
+}

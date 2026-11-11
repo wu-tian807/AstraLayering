@@ -1,0 +1,62 @@
+[
+  {
+    "index": 70,
+    "name": "D081.00 | face/eyebrows/eyebrow_right",
+    "directory": "raster-layering/step01/review-01-evidence/layers/70",
+    "mask_count": 0
+  },
+  {
+    "index": 71,
+    "name": "D082.00 | hair/side_hair/side_hair_left",
+    "directory": "raster-layering/step01/review-01-evidence/layers/71",
+    "mask_count": 1
+  },
+  {
+    "index": 72,
+    "name": "D083.00 | hair/side_hair/side_hair_right",
+    "directory": "raster-layering/step01/review-01-evidence/layers/72",
+    "mask_count": 1
+  },
+  {
+    "index": 73,
+    "name": "D084.00 | hair/bangs",
+    "directory": "raster-layering/step01/review-01-evidence/layers/73",
+    "mask_count": 1
+  },
+  {
+    "index": 74,
+    "name": "D085.00 | head_accessories/hair_bell",
+    "directory": "raster-layering/step01/review-01-evidence/layers/74",
+    "mask_count": 0
+  },
+  {
+    "index": 75,
+    "name": "D086.00 | head_accessories/tanuki_ornament/paw/paw_left",
+    "directory": "raster-layering/step01/review-01-evidence/layers/75",
+    "mask_count": 0
+  },
+  {
+    "index": 76,
+    "name": "D087.00 | head_accessories/tanuki_ornament/paw/paw_right",
+    "directory": "raster-layering/step01/review-01-evidence/layers/76",
+    "mask_count": 0
+  },
+  {
+    "index": 77,
+    "name": "D088.00 | head_accessories/hair_tie_front",
+    "directory": "raster-layering/step01/review-01-evidence/layers/77",
+    "mask_count": 0
+  },
+  {
+    "index": 78,
+    "name": "D089.00 | legs/leg_left/thigh_band_front",
+    "directory": "raster-layering/step01/review-01-evidence/layers/78",
+    "mask_count": 0
+  },
+  {
+    "index": 79,
+    "name": "D090.00 | legs/leg_right/anklet_front",
+    "directory": "raster-layering/step01/review-01-evidence/layers/79",
+    "mask_count": 0
+  }
+]

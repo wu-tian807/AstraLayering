@@ -1,0 +1,15 @@
+{
+  "textureCount": 29,
+  "textureHashes": "unchanged from original KRA exports",
+  "maxNeutralError": 0,
+  "maxNeckError": 0,
+  "transitionSamples": 21,
+  "range": {
+    "x": 0,
+    "y": [
+      0,
+      25
+    ]
+  },
+  "validated": true
+}

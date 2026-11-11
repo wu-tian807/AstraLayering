@@ -1,0 +1,63 @@
+{
+  "rear_drape_screen_left": [
+    1
+  ],
+  "rear_drape_screen_right": [
+    2
+  ],
+  "rear_waist_bow/right_bow_wing": [
+    3
+  ],
+  "rear_waist_bow/left_bow_wing": [
+    4
+  ],
+  "rear_waist_bow/central_knot_root": [
+    5
+  ],
+  "kimono_body/right_underlap_panel": [
+    6,
+    13
+  ],
+  "kimono_body/left_overlap_panel": [
+    7,
+    14
+  ],
+  "sleeve_screen_left": [
+    8,
+    15
+  ],
+  "sleeve_screen_right": [
+    9,
+    16
+  ],
+  "inner_waist_wrap": [
+    10,
+    17
+  ],
+  "outer_waist_band": [
+    11,
+    18
+  ],
+  "front_waist_cord_knot": [
+    12,
+    23
+  ],
+  "front_pendant_screen_left/right_free_cord": [
+    19
+  ],
+  "front_pendant_screen_right/left_free_cord": [
+    20
+  ],
+  "front_pendant_screen_left/right_tassel": [
+    21
+  ],
+  "front_pendant_screen_right/left_tassel": [
+    22
+  ],
+  "front_pendant_screen_left/right_terminal_bead": [
+    24
+  ],
+  "front_pendant_screen_right/left_terminal_bead": [
+    25
+  ]
+}

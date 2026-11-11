@@ -1,0 +1,172 @@
+{
+  "groupId": "legs/leg_right/leg",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已读取本组与父组说明、参考图、候选及父完成 SVG；完成整图 blend 定位，并以重叠选框 [520,930,185,340]、[530,1230,175,330]、[530,1510,150,320]、[520,1740,180,280] 逐块检查 blend 与 edge，另以 6 倍检查小腿下缘和踝部参考。主体归属、整腿位置与比例正确，全部脚趾已覆盖，未发现孤点或来源不明的碎片；无需重画整腿，但以下两处须局部返修。\n\n1. 踝部连续形体被人为切断，约 x576–643、y1773–1816。参考显示粉色与浅绿色环带绕在同一连续脚踝上，本组 note 也明确遮挡下腿本体仍属本件。候选却沿两条环带挖出贯穿踝宽的横缝，将小腿、环带间皮肤小片和足部分成三个不相连色块。这不是独立组件，也不是实际孔洞。请仅在踝部局部延续可靠的两侧腿体走向，连接三段为连续腿本体，保留真实可见边缘；不把铃铛或环带向外伸出的附件形状并入腿体。这里是局部连续性修正，不要求恢复大片不可见腿根。父完成 SVG 在同一局部已有连续覆盖，所需连接位于父范围内。证据：[踝部 edge](review-evidence/ankle-edge.png)、[候选独显](review-evidence/candidate-silhouette.png)、[父组同局部 blend](review-evidence/parent-ankle-blend.png)。\n\n2. 小腿下段画面左外缘，约 x562–575、y1670–1755，候选边缘向背景外扩约 1–2 个原图像素。6 倍 blend 可见原图棕色外轮廓左侧有连续浅蓝窄带伸入白底，edge 红线也位于可靠外缘之外，越靠近踝上方越明显。请将这一段左边界局部右移，贴合参考实际外缘，并平顺接回上下已对齐轮廓；不要改变右侧踝缘及环带间可见皮肤。该修正为向父范围内收缩，不涉及上游范围限制。证据：[小腿下段 blend](review-evidence/shin-blend.png)、[同局部 edge](review-evidence/shin-edge.png)。\n\n候选四倍父范围检查 outsidePixels=0；以上问题均可在当前允许范围内修正。其余已核对区域没有确定需修改的问题。",
+      "candidateHash": "ceaa9073343a31f551d4bf6c93e2e76e5524349ec3e7ed51ad16cafe7cdc303b",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-13.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T20-19-29-299Z-14.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T20:52:03.491Z",
+      "repairedCandidateHash": "ba8c0d8f7af163c57ccb284b222f0739a1c24d674b966c1609d97dd0df8ab912"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮独立审查完成：已读取本组与父组说明、参考图、候选 SVG 和父完成 SVG。整图 blend 定位后，以相互重叠的选框 [510,920,200,380]、[520,1250,180,350]、[520,1550,170,330]、[555,1825,140,195] 对全部可见腿根、大腿、膝、小腿、踝部及五个脚趾进行了 3–5 倍 blend/edge 核对，另对小腿左缘与膝内侧进行了 6 倍检查。腿本体归属正确，未将尾巴或独立踝饰伸出部分误包为腿；踝饰下方的本体连续，五个趾尖及趾间外缘转折完整，无孤点、碎片、无依据挖缝或组件遗漏。腿根与连体服的局部重叠属于合理遮挡下延伸，不要求缩到衣服边线。当前允许范围内未发现确定需要修改的问题，不需重画本组。父范围四倍采样检查 outsidePixels=0。\n\n单独记录上游限制：画面右侧踝饰下缘至足背上段，约 x=642–655、y=1820–1905，参考图的连续棕色外轮廓有约 1–3 像素位于父完成范围之外。候选与父稿在该段复用相同曲线；已将父稿和候选在同一局部、同一原图上 8 倍叠加核对，二者边界重合，未留出尚可填入的父内区域。此段不能通过当前子组扩大范围恢复，需上游父轮廓向真实可见外缘调整；不声称已补齐，不要求子组越界，也未修改父稿。只有此项已确认的上游限制，故本轮 pass。\n\n图像证据：\n\n\n\n\n\n",
+      "candidateHash": "ba8c0d8f7af163c57ccb284b222f0739a1c24d674b966c1609d97dd0df8ab912",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-10.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-12.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-14.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-15.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/leg/workspace/parent-candidate-check.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/leg/previews/2026-11-03T21-20-22-764Z-16.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T21:40:46.804Z"
+    }
+  ]
+}

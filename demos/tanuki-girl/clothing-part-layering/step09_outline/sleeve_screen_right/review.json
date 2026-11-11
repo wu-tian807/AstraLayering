@@ -1,0 +1,33 @@
+{
+  "groupId": "sleeve_screen_right",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过。已只读检查纯衣服参考、groups.json 中 sleeve_screen_right 的 note 和当前候选完整源码，并完成全图 blend、覆盖本组全部可见范围的 3 倍参考局部、edge、blend 和 SVG 独显。本节点为顶层 group，parentGroup=null，无父稿包含限制。\n\n归属先由纯衣服参考独立确认：本组可见范围约 x=899–1126、y=491–726，包含右白色褶叠短袖、深色粉线袖口包边、白色翻口、可见深色袖内面以及腰带旁短小白色内侧折角。上方深色主体领缘、袖根左侧胸衣和下方后腰结翼不属本组；候选未明显误包这些相邻实体，无可见组件遗漏。\n\n逐区核对：袖根 x=899–920、y=514–614 的弧形接缝贴合右胸衣分界；上缘 x=913–1057、y=491–527 及外侧 x=1057–1126、y=527–659 的两次阶梯转折与参考相符；袖口外端至下侧弧边 x=979–1126、y=659–726 保留完整翻口和可见内面；内侧折角 x=899–945、y=630–665 的终边、凹口与邻接位置相符。整体位置、比例和连续轮廓通过。参考下外侧深色区域是实际可见袖内面，属于本组实体覆盖，不能按色差挖空；未见候选填入人体或其他真实空白开口。无薄纱或独立分离附件需要另补。group 按联合覆盖检查，不要求为包边、翻口或内面新增内部路径。\n\nnote 已说明完整实体职责、相邻分界、袖根必要隐藏搭接、独立随右上臂运动、袖壁及口沿相对上臂的前后区域，以及后腰结位于袖后；当前说明无确定需要返修的问题。无需重画或边缘修改。\n\n图像证据：\n\n\n\n\n",
+      "candidateHash": "4e721667b81acc25367d9fcd899fd07393abe756bd42fee35019c23fcc22fe70",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_right/previews/2026-11-03T13-39-45-275Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_right/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_right/previews/2026-11-03T13-39-45-275Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_right/previews/2026-11-03T13-39-45-275Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/sleeve_screen_right/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/sleeve_screen_right/previews/2026-11-03T13-39-45-275Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:12:45.075Z"
+    }
+  ]
+}

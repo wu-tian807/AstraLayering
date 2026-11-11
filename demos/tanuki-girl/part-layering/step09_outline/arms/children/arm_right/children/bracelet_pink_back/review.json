@@ -1,0 +1,118 @@
+{
+  "groupId": "arms/arm_right/bracelet_pink_back",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已按整图定位、腕饰全域 [350,955,100,100]、相互重叠的左侧 [365,969,47,53] 与右侧 [398,1004,33,34] 完成 8 倍 blend/edge 核对，并查看父完成 SVG 及候选独显。本组归属为粉色环带后段，右下回转窄段归属成立；左上端未发现应单独归入后段的额外可见块，不要求恢复被遮住的完整环。候选无孤点或碎片，父范围检查通过。\n\n1. 当前组可修：右下回转段与腕侧连接的起端，约 x407–411、y1013–1017，参考中可见灰紫色回转颈部，从腕侧下缘连续接入右下的弧段。候选却直接从 (410,1016) 起笔，漏掉其上方靠腕侧的可见颈部，使后段被截成脱离真实接缝的窄片。父图同局部显示，这段颈部有位于父范围内的区域，不能全归为上游限制。请沿参考把父内可见颈部连续接入现有后段，保留与前段的合理重叠，不以普通阴影或后续补全为由留空。这是局部形体覆盖缺漏，需要修正该回转段，不需要整组按另一部件重画。证据：；。\n\n2. 上游范围限制，单独记录：同一回转段的上外缘，约 x411–420、y1016–1023，参考可见的深色外缘/灰紫色实体带局部位于父 SVG 从 (410,1016) 向右下弯出的边界之外。候选该段已接近父边界；恢复父外那部分须扩大父范围，本轮不要求子组越界，也不声称这部分已覆盖。修正第 1 项时仍须严格容纳在父轮廓内。证据见上述父图与候选同局部对照。\n\n左侧遮挡检查证据：。",
+      "candidateHash": "5a6b99c257c31d0ff340be1a9e66983e82a98e58b21f315601ba6ea8a490ee3e",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T20-27-01-227Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T20-27-01-227Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T20-27-01-227Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T20-27-01-227Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T20-27-01-227Z-5.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T20-27-01-227Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T20-27-01-227Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T20-27-01-227Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T20-27-01-227Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T21:01:59.929Z",
+      "repairedCandidateHash": "71d1c0d3d9fc8c981208052abdccea935730bb7e67093b0766d7f20daf28da15"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第2轮：已先核对整图叠加，再以腕部整区（355,950,95,105）、左侧及接缝区（366,965,46,54）、右侧回转区（399,1004,32,35）的重叠选框完成 blend/edge 放大检查，并查看父完成 SVG 与候选独显。归属判断：本组可见部分为粉色环带右侧绕向腕后的小段；左侧连续粉色主体属于前段，未发现另一个明确分离的后段组件。候选无孤点或碎片，父范围检查 outsidePixels=0。\n\n需修改：右侧回转段外缘约 x410–425、y1015–1030。参考中，从腕根接缝向右下延伸的灰暗回转边缘有连续的外弧，候选由 (410,1016) 经 (420.7,1023.7) 至 (422.4,1027.6) 的外缘却位于这条可见弧带内部，尤其右下弯头处明显缩入，漏掉其右上侧灰暗实体范围。应重描这一段外弧与弯头，覆盖参考中确属后段的可见边缘，并连续接回前段遮挡处；不要沿粉色/灰色内部明暗交界收边。本问题需要局部重描回转段，不需要整组实体重新认定或恢复不可见完整环带。证据：[腕部整体 edge](review-evidence/round-2/wrist-edge.png)、[回转段 8 倍 edge](review-evidence/round-2/back-turn-edge.png)。\n\n父范围核对：同一区域父完成轮廓明显比候选更向右外伸，候选与父边界之间仍有可覆盖的连续弧带，因此这是当前子组父内可修问题，不能归为上游范围限制；调整后仍须保持在父范围内。证据：[同一区域父轮廓 edge](review-evidence/round-2/parent-edge.png)。另一侧已逐块核对，未列无依据的缺漏：[左侧与接缝 edge](review-evidence/round-2/opposite-side-edge.png)。",
+      "candidateHash": "71d1c0d3d9fc8c981208052abdccea935730bb7e67093b0766d7f20daf28da15",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_pink_back/previews/2026-11-03T21-26-15-485Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T21:48:20.037Z",
+      "repairedCandidateHash": "a63c43f5c13655ada60a967f6cf386f67b47917c32b6e724a7b311dee6a537e3"
+    }
+  ]
+}

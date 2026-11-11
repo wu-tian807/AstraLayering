@@ -1,0 +1,63 @@
+{
+  "groupId": "arms/arm_left/hand/ring_finger",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立核对通过。已读取本组及父手掌组说明、参考图、候选和父完成 SVG；allowOutsideParent 未设置，按父范围约束检查。\n\n归属：参考中本组可见区域为中指下方、靠近掌部的短圆指端及下缘（约 x1069–1100、y1055–1072）。候选未误包右侧较长中指或拇指；未发现其他属于无名指且漏画的可见区域。遮挡后的完整指身属于后续补全，本轮不要求恢复。\n\n覆盖与边缘：先看全画布 blend，再查看手部参考局部 [1000,1010,165,112]，以全可见区域 [1062,1049,45,30] 的 8 倍 blend/edge 核对；另用相互重叠的根侧 [1058,1048,33,29] 和指端 [1081,1053,28,25] 的 8 倍 blend/edge 覆盖全部边缘。根侧与掌部/前方指的接缝、沿中指遮挡处的转向、斜向下缘及短圆指端均与参考吻合，未发现无依据孔洞、碎片或孤点；独显为连续干净色块。\n\n父范围：同局部查看父完成 SVG edge，候选下缘与圆指端沿父边界容纳，四倍采样 outsidePixels=0。未确认需要单列的上游范围问题。\n\n证据：[整图叠加](review-evidence/round1-whole-blend.png)、[完整可见区 edge](review-evidence/round1-full-edge.png)、[根侧 edge](review-evidence/round1-root-edge.png)、[指端 edge](review-evidence/round1-tip-edge.png)、[父稿同局部 edge](review-evidence/round1-parent-edge.png)、[候选独显](review-evidence/round1-isolated.png)。",
+      "candidateHash": "4ce7e279818b4dd5b4e743a3dc80893b6a665041ddee000397ebe277f7fe4214",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-03T23-22-20-132Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T23:43:10.201Z"
+    }
+  ]
+}

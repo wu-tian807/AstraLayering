@@ -1,0 +1,58 @@
+{
+  "groupId": "headphones/earcups",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮完成全组核对，通过。已读取本组及父组说明、原图、候选和父完成 SVG，先查看整图 blend，再逐件检查左耳罩 [592,517,94,117]、右耳罩 [733,517,92,117] 的 blend 与 edge（6 倍）；另以 8 倍复核两侧上部参考和底缘，底部选框与上部重叠。\n\n归属与覆盖：两块分别对应颈侧两只耳罩的耳垫、壳体与固定色圈联合范围；可见主体均覆盖，未误包头发、皮肤或连接带端部。接合处左侧约 (662,531)–(670,569)、右侧约 (748,544)–(744,564) 与参考中的耳垫边界一致，连接带及其侧端按 note 留在 headband。父稿中的后方补形不属于本组可见轮廓要求。\n\n边缘：已逐件核对顶缘层间转折、外侧弧线、颈侧边缘、下缘壳层接缝及与头发、肩胸的邻接；可见边缘对齐参考，无明确组件遗漏、真实孔洞填平、孤立碎片或形体混乱。内部色圈、材质和明暗已由联合色块覆盖，无需本轮拆出内边。证据：[左耳罩 edge](review-evidence/round1-left-edge.png)、[右耳罩 edge](review-evidence/round1-right-edge.png)、[左下缘放大](review-evidence/round1-left-bottom-edge.png)、[右下缘放大](review-evidence/round1-right-bottom-edge.png)。\n\n父范围：allowOutsideParent 省略，按受约束节点检查。候选画布为 1376×2048；4 倍采样父范围检查 outsidePixels=0。父局部叠加与候选核对无需要单列的上游范围冲突。证据：[父组 blend](review-evidence/round1-parent-blend.png)、[候选独显](review-evidence/round1-candidate-svg.png)。无需要返修的问题。",
+      "candidateHash": "3154aba1ee0b4c0239f770b0314b9e8d3fee1b04acd4eb71adf6fc5a38c19fc0",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/headphones/children/earcups/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/children/earcups/previews/2026-11-03T17-59-53-253Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/headphones.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/children/earcups/previews/2026-11-03T17-59-53-253Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/children/earcups/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/children/earcups/previews/2026-11-03T17-59-53-253Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/children/earcups/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/children/earcups/previews/2026-11-03T17-59-53-253Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/children/earcups/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/headphones/children/earcups/previews/2026-11-03T17-59-53-253Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/children/earcups/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/children/earcups/previews/2026-11-03T17-59-53-253Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/children/earcups/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/children/earcups/previews/2026-11-03T17-59-53-253Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/children/earcups/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/headphones/children/earcups/previews/2026-11-03T17-59-53-253Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/headphones/children/earcups/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/headphones/children/earcups/previews/2026-11-03T17-59-53-253Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T18:22:30.041Z"
+    }
+  ]
+}

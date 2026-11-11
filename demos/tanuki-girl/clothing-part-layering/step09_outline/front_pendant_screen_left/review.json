@@ -1,0 +1,38 @@
+{
+  "groupId": "front_pendant_screen_left",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过。已先从纯衣服参考独立确认归属，再读取 groups.json 中 front_pendant_screen_left 的 note 与当前候选源码，完成整图 blend、整图 edge，以及 [590,715,115,335] 区域四倍参考、blend、edge 和 SVG 独显检查，覆盖本组全部可见范围。本节点为顶层 group，parentGroup=null，无父 SVG 包含限制。\n\n核对结果：\n1. 绳根约 x651–681、y740–780：参考左自由绳端从中央结芯左下、左绳环后方伸出；候选根端在结芯／绳环下保留小段合理隐藏搭接，没有将固定绳环归入本组。note 已明确连接、深度及独立悬挂随动职责。\n2. 绳身约 x623–674、y768–917：候选向左下弯曲的走向、宽度和两侧终边贴合参考，完整覆盖腰带、内腰层及短下摆前的可见绳端，没有误包相邻带面或右支。\n3. 圆珠约 x608–654、y910–952：外圈实际轮廓、位置和尺寸与参考一致，完整包含圆珠外缘；绳端及流苏上端在珠下连续搭接，无连接缺口。\n4. 流苏约 x603–653、y946–1031：上窄下宽的外形、左右弧边及圆弧底缘与参考一致。参考底缘以下的投影不属于实体，候选正确排除；浅色流苏实体没有被删空。本组无需要挖除的真实开口、无薄纱覆盖或其他分离可见附件遗漏。\n5. 纯色联合覆盖与 note 职责一致，未发现必须修改的归属、主要形状、位置比例或局部边缘问题；内部条纹、高光、流苏线纹属于后续绘画表现，不作为本轮缺陷。\n\n图像证据：\n\n\n\n\n\n\n\n无需修改或重画。候选及输入均未改动。",
+      "candidateHash": "fc906eb4718af37f3bcc5289e7f7a4da48da98dabbf192d2dc7c5756c80ffa0f",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/previews/2026-11-03T14-06-30-215Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/previews/2026-11-03T14-06-30-215Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/previews/2026-11-03T14-06-30-215Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/previews/2026-11-03T14-06-30-215Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/previews/2026-11-03T14-06-30-215Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T14:32:34.327Z"
+    }
+  ]
+}

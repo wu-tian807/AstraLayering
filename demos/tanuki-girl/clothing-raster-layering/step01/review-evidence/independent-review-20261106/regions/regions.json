@@ -1,0 +1,231 @@
+{
+  "image": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/default.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/marked.png",
+  "manifest": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        595,
+        525,
+        130,
+        95
+      ],
+      "layers": [
+        "d13 | kimono_body/right_underlap_panel | complete front cloth and outline",
+        "d14 | kimono_body/left_overlap_panel | complete front cloth and outline"
+      ],
+      "description": "领缘交叠处出现连续细白边，参考为深色领缘直接交叠。内襟领缘补全端露出的白料与外襟边界未接顺；续完内襟深色包边及粉线的隐藏搭接，并在原尺寸消除白缝，保留正常低位敞领。",
+      "crop": [
+        575,
+        505,
+        170,
+        135
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R1-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R1-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R1-comparison.png"
+      }
+    },
+    {
+      "id": "R2",
+      "bounds": [
+        155,
+        1490,
+        300,
+        255
+      ],
+      "layers": [
+        "d01 | rear_drape_screen_left | complete"
+      ],
+      "description": "左后垂片下部三条浅色草叶的弧线布局与参考不符：上方短弧和中部长弧抬高，中部长弧右端延伸得更远，左下草叶也更宽长。按参考同坐标恢复各草叶的端点、长短、宽度和弧度；保留花朵、底角、外缘和浅色翻面。",
+      "crop": [
+        135,
+        1470,
+        340,
+        295
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R2-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R2-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R2-comparison.png"
+      }
+    },
+    {
+      "id": "R3",
+      "bounds": [
+        920,
+        1380,
+        320,
+        355
+      ],
+      "layers": [
+        "d02 | rear_drape_screen_right | complete"
+      ],
+      "description": "右后垂片两朵花及下部草弧被放大、上移，靠内侧花的位置也偏向画面左侧；参考两朵花与边缘、底角的相对间距不同。分别按本侧参考恢复大小、位置与弧线布局，保留本侧不对称图案。",
+      "crop": [
+        900,
+        1360,
+        360,
+        395
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R3-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R3-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R3-comparison.png"
+      }
+    },
+    {
+      "id": "R4",
+      "bounds": [
+        485,
+        640,
+        410,
+        170
+      ],
+      "layers": [
+        "d11 | outer_waist_band | both side/back returns y670-781",
+        "d18 | outer_waist_band | complete front cloth and outline"
+      ],
+      "description": "金色腰带缺少参考的深色外轮廓线，侧缘和下缘只剩浅褐细线；明暗改为强烈亮黄连续反光，参考为较平缓的金色块面。补回连续深色描边并调整明暗，侧返和前面接顺，保留完整隐藏带面。",
+      "crop": [
+        465,
+        620,
+        450,
+        210
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R4-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R4-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R4-comparison.png"
+      }
+    },
+    {
+      "id": "R5",
+      "bounds": [
+        620,
+        750,
+        70,
+        175
+      ],
+      "layers": [
+        "d19 | front_pendant_screen_left/right_free_cord | complete"
+      ],
+      "description": "左自由绳被改画为多段均匀螺旋斜纹，参考是较长、较疏的粉白色带；外轮廓也较参考明显偏细。按参考恢复本侧纹样走向与节奏、连续深色外线，保持结下绳根和珠内插入端。",
+      "crop": [
+        600,
+        730,
+        110,
+        215
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R5-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R5-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R5-comparison.png"
+      }
+    },
+    {
+      "id": "R6",
+      "bounds": [
+        690,
+        750,
+        70,
+        175
+      ],
+      "layers": [
+        "d20 | front_pendant_screen_right/left_free_cord | complete"
+      ],
+      "description": "右自由绳沿用镜像后的多段螺旋斜纹，未保留参考本侧较长的粉白色带走向；外线较参考偏细。独立按右侧参考重画条纹和轮廓，保留连续绳身及两端搭接。",
+      "crop": [
+        670,
+        730,
+        110,
+        215
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R6-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R6-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R6-comparison.png"
+      }
+    },
+    {
+      "id": "R7",
+      "bounds": [
+        598,
+        945,
+        61,
+        91
+      ],
+      "layers": [
+        "d21 | front_pendant_screen_left/right_tassel | complete"
+      ],
+      "description": "左流苏的左右外缘和弧形底缘缺少参考的深色完整描边，只剩极细浅灰线，珠体描边到流苏处粗细突变。按参考补齐深色外线，保留白粉束纹和珠后的束根。",
+      "crop": [
+        578,
+        925,
+        101,
+        131
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R7-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R7-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R7-comparison.png"
+      }
+    },
+    {
+      "id": "R8",
+      "bounds": [
+        721,
+        944,
+        61,
+        92
+      ],
+      "layers": [
+        "d22 | front_pendant_screen_right/left_tassel | complete"
+      ],
+      "description": "右流苏外缘及底缘同样仅有浅灰细线，与参考的深色描边和珠体线宽不一致。按本侧参考重画连续外线，保留柔性束纹、实际底缘及珠后搭接。",
+      "crop": [
+        701,
+        924,
+        101,
+        132
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R8-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R8-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R8-comparison.png"
+      }
+    },
+    {
+      "id": "R9",
+      "bounds": [
+        560,
+        990,
+        225,
+        218
+      ],
+      "layers": [
+        "d14 | kimono_body/left_overlap_panel | complete front cloth and outline"
+      ],
+      "description": "外襟下摆中央新增多道清晰的斜向折面和灰紫三角色块，参考对应下部白料为大面积平缓的浅色布面。减掉新添的折线与深色块，以画笔或本片参考取样恢复自然浅色过渡，保留上方原有褶皱、金花、襟边和真实下摆外缘，不带回垂饰投影。",
+      "crop": [
+        540,
+        970,
+        265,
+        258
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R9-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R9-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/independent-review-20261106/regions/R9-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

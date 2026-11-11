@@ -1,0 +1,21 @@
+{
+  "source_index": "raster-layering/step01/repair-01-evidence/final-audit/index.json",
+  "source_kra_sha256": "499882b60ffc355e81be2e48816794de7e0a780fcb7ee85853190faf7141360f",
+  "pages": 11,
+  "paint_layers": 81,
+  "states": [
+    "solo-default",
+    "solo-complete",
+    "upper-hidden-default",
+    "upper-hidden-complete"
+  ],
+  "all_pages_refreshed_after_final_left_palm_repair": true,
+  "grayscale_parts": [
+    "hair/back_hair",
+    "hair/bangs",
+    "head_accessories/tanuki_ornament/tanuki_body",
+    "legs/leg_right/anklet_back",
+    "legs/leg_right/anklet_front"
+  ],
+  "all_pages_refreshed_after_final_R18_repair": true
+}

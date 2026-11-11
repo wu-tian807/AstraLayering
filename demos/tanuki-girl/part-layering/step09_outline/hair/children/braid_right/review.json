@@ -1,0 +1,78 @@
+{
+  "groupId": "hair/braid_right",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已完成整图定位及三个重叠选框的 blend、edge 核对：上段 [520,465,120,150]、中下段 [550,575,85,145]、辫尾 [515,695,120,100]，另以 8 倍放大复查右侧辫节外缘和辫尾下缘，并查看父完成 SVG 与候选独显。本组归属为画面左侧唯一长辫，未发现误包其他实体、可见组件整段遗漏、孤点或碎片。耳机附近与发圈下的连接为合理连续发束；发圈处的覆盖属遮挡下连接，不是误领发圈。父范围检查 outsidePixels=0。当前允许范围内未发现需要子组返修的确定问题，不需重画本组。\n\n单独记录已确认的上游限制：辫尾主宽尖下缘，约 x548–580、y774–782，参考可见深色外轮廓带有向左下伸出的尖锐收尾和局部转折；父 hair.svg 的边界在这里用较平滑的弧线收拢，未容纳其下方全部可见尖缘。候选已与父边界完全重合，父内没有留下可补空区。候选和父稿同一局部的 8 倍 edge 图证实此限制；恢复这一小段须上游扩大并校准父轮廓，不能要求当前子组越界。该段没有声称已经补齐，按上游限制规则本轮 pass。\n\n图像证据：\n\n\n\n\n\n",
+      "candidateHash": "3e35b6962f8e4130de877b9bad90c44f927bfb74a32e35fe01d4ac547fb2e00e",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-11.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/braid_right/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/braid_right/previews/2026-11-03T17-19-58-469Z-13.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T17:57:19.964Z"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "groupId": "head_accessories/tanuki_ornament/tanuki_body",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已完成本组全部可见区域的独立审查，无确定需返修的问题。\n\n职责与形体：参考中的狸脸、小耳、顶部叶片及右上棕色尾形均为同一头饰主体，候选联合色块完整覆盖；固定五官与叶脉已位于主体范围内，本轮不要求内部拆分。前侧两处爪形属于相邻组，候选下缘保留的是 note 明确领取的父稿已有隐藏本体搭接；其与爪形、角色头发和兽耳的合理重叠不构成误包。\n\n覆盖检查：先查看整图叠加定位，再以相互重叠的选框逐块核对。上部 [590,20,215,120] 检查叶片两端尖角、顶部凹口、右侧折返凹口、两只小耳外弧及耳根接合；尾部 [775,15,150,210] 检查耳尾连接、尾顶弧、右侧外缘及下端兽耳遮挡处；中下部 [585,105,280,160] 检查狸脸左外缘、左下转折、两侧可见本体和爪形接合、脸底与头发邻接及隐藏搭接连续性。各区均进行了 blend 与 edge 放大对照，可见边缘与参考吻合，无可见组件缺漏、真实孔洞被填平、无依据挖缝或碎片噪音。\n\n父范围：allowOutsideParent 未设置，按父范围约束检查。候选与父完成稿局部叠加及四倍采样范围检查均通过，outsidePixels=0；下缘隐藏搭接保持父稿已有范围。独显检查轮廓连续、干净，画布坐标正确。\n\n图像证据：\n\n\n\n\n\n\n\n",
+      "candidateHash": "701e93560b163ac7e4e3771c53d643d063fdd80002077fb3d3249b7f97cfbee2",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/previews/2026-11-03T20-01-31-606Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories/tanuki_ornament.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/previews/2026-11-03T20-01-31-606Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/previews/2026-11-03T20-01-31-606Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/previews/2026-11-03T20-01-31-606Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/previews/2026-11-03T20-01-31-606Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/previews/2026-11-03T20-01-31-606Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/previews/2026-11-03T20-01-31-606Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/previews/2026-11-03T20-01-31-606Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/tanuki_ornament/children/tanuki_body/previews/2026-11-03T20-01-31-606Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T20:31:51.450Z"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "groupId": "front_pendant_screen_left/right_terminal_bead",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过，无确定需要修改的问题。\n\n独立归属确认：纯衣服参考 x608–654、y910–952 处为画面左侧垂饰的完整圆珠，含白色固定外缘及最外黑色轮廓；上接自由绳端，下接流苏束根。参考未显示本片另有分离附件或真实开口，绳身、流苏和背景衣身均不归珠体。证据：。\n\n整体定位与完整覆盖：全画布叠加确认候选位于正确一支绳端，只有该珠体一个可见实体；未误包另一支垂饰、衣片或人体，未遗漏可见固定外缘。。\n\n局部轮廓与接缝：8 倍 blend、edge 覆盖整珠周缘及上下接点，候选约 x608.5–653.5、y910–950.5；顶弧、两侧及底弧均沿参考珠体最外轮廓，位置和宽高比例吻合。底缘落在参考黑色外轮廓范围内，没有实质珠体遗漏；上缘连接绳端、下缘覆盖流苏束根的关系合理，未把插入衣料归入珠体。 。\n\n父稿与独显：只读查看父完成稿及其本支整体叠加；四倍采样父范围检查 outsideSamples=0、outsidePixels=0。候选独显为完整闭合珠形，无游离碎片或错误开口。 。\n\nnote 已向本 part 传递实体范围、相邻分界、珠体在绳端及流苏连接区之前、在短下摆及身体之前、随绳端运动并承接流苏、保持珠体形状的控制职责；不需要补充跨深度或人体插层说明。高光与表面颜色不作为本阶段轮廓缺陷。无需重画或边缘返修，无上游父范围限制。",
+      "candidateHash": "95326b67d6fcc51176d848cbbb42203d933c266b2fac2fe3adc8c8763f3f0f00",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_terminal_bead/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_terminal_bead/previews/2026-11-03T16-21-23-211Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_terminal_bead/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_terminal_bead/previews/2026-11-03T16-21-23-211Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_terminal_bead/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_terminal_bead/previews/2026-11-03T16-21-23-211Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/front_pendant_screen_left.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_terminal_bead/previews/2026-11-03T16-21-23-211Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_terminal_bead/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/front_pendant_screen_left/children/right_terminal_bead/previews/2026-11-03T16-21-23-211Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-03T17:00:11.276Z"
+    }
+  ]
+}

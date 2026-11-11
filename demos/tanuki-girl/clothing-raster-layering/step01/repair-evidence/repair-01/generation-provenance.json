@@ -1,0 +1,48 @@
+{
+  "R2": {
+    "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1ac69-c166-7af2-8dcd-3819fd497137/call_C10wIQdSsRPxijsmvhipB6eB.png",
+    "evidenceCopy": "clothing-raster-layering/step01/repair-evidence/repair-01/provenance/R2-generation.png",
+    "usedInFinal": true
+  },
+  "R3-attempt-1": {
+    "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1ac69-c166-7af2-8dcd-3819fd497137/call_DVetjKqvZRpT7oUtWqEdjXAR.png",
+    "evidenceCopy": "clothing-raster-layering/step01/repair-evidence/repair-01/provenance/R3-attempt-1-generation.png",
+    "usedInFinal": false
+  },
+  "R3-attempt-2": {
+    "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1ac69-c166-7af2-8dcd-3819fd497137/call_Tu5VaYvElyQ8yun3w4a4O7oW.png",
+    "evidenceCopy": "clothing-raster-layering/step01/repair-evidence/repair-01/provenance/R3-attempt-2-generation.png",
+    "usedInFinal": false
+  },
+  "R4": {
+    "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1ac69-c166-7af2-8dcd-3819fd497137/call_6uDgC3R4PBnWqYtlUSJJnPbB.png",
+    "evidenceCopy": "clothing-raster-layering/step01/repair-evidence/repair-01/provenance/R4-generation.png",
+    "usedInFinal": true
+  },
+  "R5": {
+    "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1ac69-c166-7af2-8dcd-3819fd497137/call_u3Yl117XM6tWjweh93k4feFt.png",
+    "evidenceCopy": "clothing-raster-layering/step01/repair-evidence/repair-01/provenance/R5-generation.png",
+    "usedInFinal": true
+  },
+  "R6": {
+    "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1ac69-c166-7af2-8dcd-3819fd497137/call_DnNqFfRRssRr4QLDpME5RAMt.png",
+    "evidenceCopy": "clothing-raster-layering/step01/repair-evidence/repair-01/provenance/R6-generation.png",
+    "usedInFinal": true
+  },
+  "R9": {
+    "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1ac69-c166-7af2-8dcd-3819fd497137/call_UdHOjwGf5UEhXhHE81PtNSSr.png",
+    "evidenceCopy": "clothing-raster-layering/step01/repair-evidence/repair-01/provenance/R9-generation.png",
+    "usedInFinal": true
+  },
+  "R3-final": {
+    "painting": "本侧参考料面局部取样，保留原生成上段与补全根",
+    "source": "clothing-part-layering/references/clothing.png",
+    "registeredSource": "clothing-raster-layering/step01/workspace/repair-patches/R3-reference-registered.png",
+    "evidenceCopy": "clothing-raster-layering/step01/repair-evidence/repair-01/provenance/R3-own-reference-registered.png",
+    "transition": [
+      1200,
+      1320
+    ],
+    "usedInFinal": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "tool": "image_gen.imagegen",
+  "input": "clothing-part-layering/references/clothing.png",
+  "front": {
+    "path": "clothing-part-layering/step11_completion/front_waist_cord_knot/structure/front.png",
+    "prompt": "Use case: precise-object-edit. Asset type: structural auxiliary reference for a single clothing cord piece, not a new design. Use the supplied full clothing illustration as the edit target. Show the complete same outfit at the same front-facing orientation and proportions on a white background, no human body. Preserve the navy/pink crossed neckline, white off-shoulder sleeves, gold obi belt, apron, long navy tails, artwork style, materials, and especially the exact front pink-white striped waist cord with its horizontal narrow cord, central wrapped knot and two rounded closed loops with open interiors. The two hanging tassel cord ends remain distinct and unchanged. Only move the adjacent navy rear bow wings and the nearby sleeve edges slightly away from the waist sides so both left and right waist side turns of the pink-white horizontal cord can be seen naturally: the narrow cord follows the gold belt around each curved flank and disappears behind the belt, rather than ending in a free dangling tip. Show just a short smooth side return of constant cord width, no extra bow, no extra hanging cord, no new vertical straps. Keep the gold belt front, central knot and both loop shapes and their positions intact. Full outfit framing with reliable neighboring context; no exploded isolated objects, no diagram labels, no added skin, no transparency effect on the clothes. This is the same frontal pose with minimal occluder displacement to expose the target side cord continuation.",
+    "referenceRegion": [
+      318,
+      441,
+      386,
+      101
+    ]
+  },
+  "side": {
+    "path": "clothing-part-layering/step11_completion/front_waist_cord_knot/structure/side.png",
+    "prompt": "Use case: precise-object-edit. Asset type: auxiliary clothing construction reference. Input is the FULL reliable costume reference, preserve this exact same garment design and anime illustration style. Make a full outfit illustration viewed from a modest three-quarter front angle, about 35 degrees turned so the viewer can clearly see ONE SIDE of the gold obi waist belt as well as its front central pink-white cord knot and two closed loop bows. This is a clothing-only invisible-mannequin garment on white, absolutely no human skin or body. Keep full upper neckline, off-shoulder white sleeves, gold obi, navy rear bow, apron and long navy panels present in overall context with same relative proportions and materials. The target is the narrow pink-white striped waist cord fixed across the gold obi front, NOT the wide navy obi bow or the hanging tassels. Move only the near sleeve and near navy rear bow wing slightly away from the belt side to expose the target cord side return. Clearly show the narrow pink-white horizontal cord wrapping smoothly around the curved near side of the gold belt and continuing toward the back behind the large navy bow, with uniform ribbon-cord thickness about the same as the original front cord. It is one wrap around the belt, not two stacked cords, not a free end and not a third bow loop. Preserve front knot and two large front closed loops with real open interiors, preserve both descending free tassel ends as separate cord branches. Show the side waist segment sufficiently clearly to read its direction, thickness and occlusion as it goes behind the belt wearer and large navy rear bow. No exploded diagram, no isolated accessories, no anatomy, no added ornaments, no redesign.",
+    "referenceRegion": [
+      571,
+      397,
+      98,
+      56
+    ]
+  }
+}

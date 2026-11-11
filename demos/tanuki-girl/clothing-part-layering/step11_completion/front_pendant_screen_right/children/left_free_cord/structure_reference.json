@@ -1,0 +1,14 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "input": "clothing-part-layering/references/clothing.png",
+  "output": "clothing-part-layering/step11_completion/front_pendant_screen_right/children/left_free_cord/structure_reference.png",
+  "prompt": "Use case: precise-object-edit. Structural occlusion-removal reference, exactly the SAME FRONT VIEW AND POSE as input. Keep the FULL outfit visible in its original composition, proportions and anime style, all gold belt, sleeves, dark waist layer, skirt, long panels, pink-white striped waist tie and screen-left hanging bead-and-tassel completely unchanged. Target material is the SCREEN-RIGHT free hanging pink-white striped cord (wearer's left), the narrow cord descending down-right from just under center bow to the screen-right red bead. REMOVE the three objects that cover this target: remove the small central bow knot wrapper, remove the SCREEN-RIGHT closed bow loop, and remove the SCREEN-RIGHT red terminal bead. Remove that bead's tassel only because it is not attached in this view. Keep the left closed bow loop and left pendant unchanged, and keep the fixed horizontal waist cord unchanged. Do not reposition, tilt, widen or lengthen the target free hanging cord. Reveal just its modest smooth rounded root originally hidden under the center knot, and its short rounded insertion tip originally hidden by the bead's TOP edge. Exact original cord location in original 1376x2048 image: rounded root around x690 y725, bend to x714 y755, then narrow tapering length with left edge about x713 y807 to x734 y911 and right edge x732 y807 to x755 y909, short tip ends about x745 y917. The width is approximately 18–22 original image pixels. Show the cord as ONE separate narrow pink-white textile cord with diagonal stripes, continuous from hidden root to short tip, not a bow loop and not a flat broad sash. Keep its original curve and narrowness. No new knots, beads, tassels, holes, handles or loops. Do not reconnect it to the remaining left bow loop or horizontal cord. Same full outfit, same front orientation, original visible contours stay fixed except specifically removed occluding objects, no body or skin, no annotations, transparent background.",
+  "transparent_background": true,
+  "referenceRegion": [
+    516,
+    429,
+    64,
+    201
+  ],
+  "limitations": "辅助图主体为同姿态窄绳、圆滑根和短末端；生成图重排了少量腰结外观与局部曲率，仅作隐藏结构依据，不替代纯衣服参考的坐标和可见边缘。第一张未充分显露末端，未采用。"
+}

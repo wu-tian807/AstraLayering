@@ -1,0 +1,15 @@
+{
+  "source": "nine-axis/step02_video/upper-body.png",
+  "crop": [
+    140,
+    0,
+    565,
+    565
+  ],
+  "canvasBounds": [
+    459,
+    -21,
+    565,
+    565
+  ]
+}
