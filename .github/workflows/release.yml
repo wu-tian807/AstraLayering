@@ -1,0 +1,124 @@
+name: Verify and publish release
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - package.json
+      - CHANGELOG.md
+      - .github/workflows/release.yml
+  push:
+    branches: [main]
+    paths:
+      - package.json
+      - CHANGELOG.md
+      - .github/workflows/release.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24.16.0
+      - name: Install dependencies
+        run: |
+          npm install --global pnpm@10.33.0
+          pnpm install --frozen-lockfile
+      - name: Install browser test dependencies
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Check workflow types
+        run: pnpm --dir .agents/skills/live2d-maker check
+      - name: Check workbench types
+        run: pnpm check:web
+      - name: Test workflows
+        timeout-minutes: 10
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          import { spawn } from 'node:child_process';
+          const cwd = '.agents/skills/live2d-maker';
+          const script = JSON.parse(readFileSync(cwd + '/package.json', 'utf8')).scripts.test;
+          if (!script.startsWith('node ')) throw new Error('Expected a Node test script');
+          const args = ['--test-force-exit', '--test-timeout=120000', ...script.slice(5).split(/\s+/)];
+          const child = spawn(process.execPath, args, { cwd, stdio: 'inherit' });
+          child.on('error', error => { console.error(error); process.exitCode = 1; });
+          child.on('exit', (code, signal) => { process.exitCode = signal ? 1 : (code ?? 1); });
+          NODE
+      - name: Test workbench
+        run: pnpm test:web
+      - name: Test release packaging
+        run: pnpm test:release
+
+  publish:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24.16.0
+      - name: Install dependencies
+        run: |
+          npm install --global pnpm@10.33.0
+          pnpm install --frozen-lockfile
+      - name: Pack and publish the version in package.json
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="v$(node -p "JSON.parse(require('fs').readFileSync('package.json', 'utf8')).version")"
+          if [[ ! "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Invalid release version: $tag"
+            exit 1
+          fi
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "$tag is already published."
+            exit 0
+          fi
+          mkdir -p .release
+          node --input-type=module <<'NODE'
+          import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+          const version = JSON.parse(readFileSync('package.json', 'utf8')).version;
+          const text = readFileSync('CHANGELOG.md', 'utf8').replaceAll('\r\n', '\n');
+          const heading = '## v' + version + '\n';
+          const start = text.indexOf(heading);
+          if (start < 0) throw new Error('Missing release notes for v' + version);
+          const notes = text.slice(start + heading.length).split('\n## ')[0].trim();
+          if (!notes) throw new Error('Empty release notes');
+          mkdirSync('.release', { recursive: true });
+          writeFileSync('.release/notes.md', notes + '\n');
+          NODE
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" > .release/tag-ref; then
+            git fetch --depth=1 origin "refs/tags/$tag:refs/tags/$tag"
+            if [[ "$(git rev-parse "$tag^{commit}")" != "$GITHUB_SHA" ]]; then
+              echo "::error::$tag already points to a different commit."
+              exit 1
+            fi
+          else
+            status=$?
+            if [[ "$status" != 2 ]]; then exit "$status"; fi
+            git tag "$tag" "$GITHUB_SHA"
+          fi
+          pnpm release:pack "$tag"
+          git push origin "refs/tags/$tag"
+          gh release create "$tag" ".release/AstraLayering-$tag.zip" \
+            --repo "$GITHUB_REPOSITORY" --verify-tag --title "$tag" \
+            --notes-file .release/notes.md --latest
