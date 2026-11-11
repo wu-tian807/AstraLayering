@@ -37,6 +37,8 @@ jobs:
         run: |
           npm install --global pnpm@10.33.0
           pnpm install --frozen-lockfile
+      - name: Install browser test dependencies
+        run: pnpm exec playwright install --with-deps chromium
       - name: Check workflow types
         run: pnpm --dir .agents/skills/live2d-maker check
       - name: Check workbench types

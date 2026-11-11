@@ -101,6 +101,7 @@ test('缺少 parts 时在前置检查和模型调用前报错', async t => {
 test('step01 绘制和 review 完成后才执行 step02；缺 PNG 保留中断，各步骤各自新建绘制会话，续跑恢复本步骤会话', async t => {
   const f = await fixture(t), deps = { ...f.deps, steps };
   const calls: string[] = [];
+  let step02Calls = 0;
   await assert.rejects(runWorkflow(f.options, { ...deps, agent: async request => {
     if (request.prompt.startsWith('你负责独立 review 第一步的交付')) {
       calls.push('review'); assert.equal(request.threadId, undefined);
@@ -112,13 +113,22 @@ test('step01 绘制和 review 完成后才执行 step02；缺 PNG 保留中断�
       return complete;
     }
     if (calls.length === 0) { calls.push('step01'); assert.deepEqual(request.tools?.map(tool => tool.name), ['edit_groups', 'edit_occlusion', 'krita']); return deliver(request, steps[0]); }
-    calls.push('step02'); assert.equal(request.threadId, undefined); assert.deepEqual(request.tools?.map(tool => tool.name), ['krita']);
-    await request.onEvent({ type: 'thread.started', thread_id: 'thread-step02' });
+    const first = step02Calls++ === 0;
+    calls.push(first ? 'step02' : 'repair-step02');
+    assert.equal(request.threadId, first ? undefined : 'thread-step02');
+    assert.deepEqual(request.tools?.map(tool => tool.name), ['krita']);
+    if (first) await request.onEvent({ type: 'thread.started', thread_id: 'thread-step02' });
+    else {
+      assert.match(request.prompt, /character-soft-edges\.png/);
+      assert.equal(await readFile(join(f.output, 'step02/character-soft-edges.kra'), 'utf8'), 'partially softened artwork');
+    }
     await readFile(join(f.output, 'step01/.completed'));
     await writeFile(join(f.output, 'step02/character-soft-edges.kra'), 'partially softened artwork');
     await writeFile(join(f.output, 'step02/report.md'), 'PNG missing'); return complete;
   } }), /缺少有效交付：character-soft-edges.png/);
-  assert.deepEqual(calls, ['step01', 'review', 'step02']);
+  assert.deepEqual(calls, ['step01', 'review', 'step02', 'repair-step02', 'repair-step02']);
+  assert.equal(step02Calls, 3, 'the initial turn has at most two program-check repairs');
+  assert.equal(await threadOf(f.output, 'step02'), 'thread-step02', 'exhausted repairs keep the saved session');
   await readFile(join(f.output, 'step02/.running'));
   await runWorkflow(f.resume, { ...deps, agent: async request => {
     if (request.step === 'raster_step03') {
@@ -130,7 +140,7 @@ test('step01 绘制和 review 完成后才执行 step02；缺 PNG 保留中断�
     assert.equal(await readFile(join(f.output, 'step02/character-soft-edges.kra'), 'utf8'), 'partially softened artwork');
     return deliver(request, steps[1]);
   } });
-  assert.deepEqual(calls, ['step01', 'review', 'step02', 'resume-step02', 'step03']);
+  assert.deepEqual(calls, ['step01', 'review', 'step02', 'repair-step02', 'repair-step02', 'resume-step02', 'step03']);
   await absent(join(f.output, 'step02/review-01.md'));
   await readFile(join(f.output, 'step03/.completed'));
   await runWorkflow(f.resume, { ...deps, agent: forbidden });
