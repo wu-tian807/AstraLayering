@@ -257,11 +257,8 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
         catch (error) {
           options.signal?.throwIfAborted();
           const message = error instanceof Error ? error.message : String(error);
-          const filtered = (await readFile(join(records, 'events.jsonl'), 'utf8').catch(() => ''))
-            .split('\n').some(line => line.includes(lastAttempt) && line.includes('content_filter'));
-          if (filtered || round > maxRepairs) {
-            const reason = filtered ? '模型回合被内容过滤截断' : `已返修 ${maxRepairs} 次仍未通过`;
-            throw new Error(`${message}（${reason}；继续仍接回同一会话，会话已无法推进时请用“恢复”换新会话）`, { cause: error });
+          if (round > maxRepairs) {
+            throw new Error(`${message}（已返修 ${maxRepairs} 次仍未通过；继续仍接回同一会话，会话已无法推进时请用“恢复”换新会话）`, { cause: error });
           }
           const code = error instanceof CheckFailure ? error.code : 'invalid-output';
           const values = error instanceof CheckFailure ? error.values : { detail: message };

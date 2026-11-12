@@ -4,7 +4,7 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { errorDetails, errorMessage } from '../agents/errors.ts';
-import { agentCallError, agentOutcomeError, formatAgentError } from '../codex/diagnostics.ts';
+import { agentCallError, codexContentFilterInfo, agentOutcomeError, formatAgentError } from '../codex/diagnostics.ts';
 import { AgentCallError, AgentRuntime, recoverableAgentError, retryableAgentError } from '../codex/agent-runtime.ts';
 import { CodexAgents } from '../codex/agents.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
@@ -160,6 +160,15 @@ process.exit(3);
   const record = await savedFailure(failure!, f.cwd);
   assert.equal(record.processExitCode, 3);
   assert.equal(record.finalResponse, '当前草稿已保存');
+});
+
+test('Codex content filter is recognised only from the structured terminal failure', () => {
+  const failure = { message: 'stream disconnected', codexErrorInfo: { responseStreamDisconnected: { httpStatusCode: null } }, additionalDetails: 'reason: content_filter' };
+  const info = codexContentFilterInfo(failure);
+  assert.equal(recoverableAgentError(new AgentCallError('x', info)), 'modelRefusal');
+  assert.equal(codexContentFilterInfo({ ...failure, additionalDetails: 'network reset' }), undefined);
+  assert.equal(codexContentFilterInfo({ ...failure, codexErrorInfo: 'other' }), undefined);
+  assert.equal(codexContentFilterInfo({ message: 'reason: content_filter' }), undefined);
 });
 
 test('known errors with a remedy are recovered at once without the retry budget; without one they fail fast', async () => {

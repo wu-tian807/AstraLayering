@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { runtimePrompt, type KnowledgeValues } from '../knowledge.ts';
 import { agentOutcomeError } from './diagnostics.ts';
@@ -34,14 +34,6 @@ export async function asCheck<T>(code: CheckCode, check: () => T | Promise<T>): 
 export const missingSubmit = (tool: string, message: string, detail = '') =>
   new CheckFailure('missing-submit', message, { tool, detail });
 
-// The model service cut the turn off (content filter); the thread's own history then
-// holds a refusal that repeats on every later turn.
-async function contentFiltered(logDirectory: string | undefined): Promise<boolean> {
-  if (!logDirectory) return false;
-  try { return (await readFile(join(logDirectory, 'events.jsonl'), 'utf8')).includes('content_filter'); }
-  catch { return false; }
-}
-
 type Runner = { run: AgentSession['run'] } & Partial<Pick<CodexAgents, 'createSession'>>;
 export type CheckedTurn<T> = {
   // A real CodexAgents opens one session for the turn and its repairs. A caller that
@@ -64,11 +56,9 @@ export async function checkedTurn<T>(turn: CheckedTurn<T>): Promise<T> {
       try { return await turn.check(response); }
       catch (error) {
         if (!(error instanceof CheckFailure)) throw error;
-        const filtered = await contentFiltered(response.logDirectory);
-        if (filtered || round > maxRepairs) {
-          const reason = filtered ? '模型回合被内容过滤截断' : `已返修 ${maxRepairs} 次仍未通过`;
+        if (round > maxRepairs) {
           // Only the user reads this: the agent's prompts never mention it.
-          throw agentOutcomeError(`${error.message}（${reason}；继续仍接回同一会话，会话已无法推进时请用“恢复”换新会话）`, response, error);
+          throw agentOutcomeError(`${error.message}（已返修 ${maxRepairs} 次仍未通过；继续仍接回同一会话，会话已无法推进时请用“恢复”换新会话）`, response, error);
         }
         const problems = runtimePrompt(`checks/${error.code}`, error.values);
         const repair = runtimePrompt('check-repair', { problems, round: String(round), max: String(maxRepairs) });
