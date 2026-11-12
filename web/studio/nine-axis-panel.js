@@ -61,17 +61,18 @@ export class HeadNineAxisPanel {
     if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step01_preparation/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
     this.status('正在读取头部九轴…');
     try {
-      const url = path => './studio-artifact?' + new URLSearchParams({ folder: project.folder, path, version: entry.version });
-      const r = await fetch(url(entry.path)); if (!r.ok) throw Error('头部九轴数据读取失败');
-      const doc = validateHeadNineAxis(await r.json()), base = entry.path.replace(/[^/]+$/, '');
-      const images = await Promise.all(doc.parts.map(async p => { const b = await fetch(url(base + p.texture)); if (!b.ok) throw Error(p.id + '：贴图读取失败'); return createNineAxisBitmap(await b.blob()); }));
+      const r = await fetch('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder: project.folder, path: entry.path })); if (!r.ok) throw Error((await r.json()).error ?? '头部九轴数据读取失败');
+      const material = await r.json(), doc = validateHeadNineAxis(material.doc);
+      const images = await Promise.all(doc.parts.map(async (p, index) => { const b = await fetch(material.textures[index]); if (!b.ok) throw Error(p.id + '：贴图读取失败'); return createNineAxisBitmap(await b.blob()); }));
       if (epoch !== this.epoch) return;
       // Source composition belongs to the shared model/renderer. The merge's
       // neutral XY correction grids do not announce a completed corner stage.
       this.install(doc, images, !['neutral', 'x', 'up', 'down', 'y'].includes(entry.stage));
+      this.author = material.author; this.version = material.version;
     } catch (e) { if (epoch === this.epoch) { this.status(e.message); this.error(e.message); } }
   }
   clear() {
+    this.author = null;
     this.endPadDrag();
     this.view3?.clear(); this.doc = null; this.original = new Map(); this.dirty.clear(); this.selected = null; this.hidden.clear(); this.shownMasks.clear();
     $('#nine-axis-tree').replaceChildren(); $('#nine-axis-controls').hidden = true; this.overlay.replaceChildren();
@@ -186,6 +187,7 @@ export class HeadNineAxisPanel {
   // The keyform being edited: an X key while Y is 0, a Y key while X is 0, or a corner both are on.
   onKey() {
     const p = this.part(); if (!p) return undefined;
+    if (p.id.startsWith('__kra__/')) return undefined;
     if (/^neck(?:\/|$)/.test(p.id)) return undefined;
     const on = (axis, v) => keyValues(p, axis).find(k => Math.abs(k - v) < 1e-6);
     if (!this.valueY) { const key = on('x', this.value); return key === undefined ? undefined : { forms: p.keyforms, key, label: 'X ' + sign(key) }; }
@@ -290,8 +292,11 @@ export class HeadNineAxisPanel {
     if (!this.project || !this.dirty.size) return;
     try {
       validateHeadNineAxis(this.doc);
+      const geometry = new Map(nodes(this.doc).map(node => [node.id, node]));
+      const apply = node => { const rendered = geometry.get(node.id); return { ...node, keyforms: rendered.keyforms, ...(rendered.keyformsY ? { keyformsY: rendered.keyformsY } : {}), ...(rendered.keyformsXY ? { keyformsXY: rendered.keyformsXY } : {}) }; };
+      const document = this.author ? { ...this.author, parts: this.author.parts.map(apply), deformers: this.author.deformers.map(apply) } : this.doc;
       const response = await fetch('./api/studio/nine-axis/save', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({
-        folder: this.project.folder, dir: this.project.dir, path: this.project.nineAxis.path, version: this.version, document: this.doc,
+        folder: this.project.folder, dir: this.project.dir, path: this.project.nineAxis.path, version: this.version, document,
       }) });
       const saved = await response.json(); if (!response.ok) throw Error(saved.error ?? '九轴保存失败');
       this.version = saved.version; this.project.nineAxis.version = saved.version; this.dirty.clear(); this.original.clear(); this.sync(); this.status('九轴变形已保存');

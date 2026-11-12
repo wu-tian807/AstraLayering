@@ -44,7 +44,15 @@ pnpm nine-axis --name my-character --dir /绝对路径/运行根目录 --knowled
 
 素材沿用上游工程的尺寸、图层与投影关系。制作角度见 [angles.json](../knowledge/nine-axis/step02_video/references/angles.json)。
 
+KRA 是画稿依据，阶段 JSON 是累计变形与图层绑定。`step01_preparation` 只读取上游 shadow（缺省为 assembly）KRA，记录实际来源和 UUID，导出固定 neutral 数据，不复制未修改的 KRA。left／up／down 各自从 neutral 独立制作，程序合并后供 xy、jaw 继续；每步 JSON 已含上游效果，渲染时只应用一次。
+
+下颌线阶段才建立本步可编辑 KRA，保存后将 `source.document` 切到这份工程，`source.geometryDocument` 保留原始单轴几何来源。`edit_nine_axis` 通过 UUID 绑定原生图层并自动导出对应素材；面部阶段暂不开放修改 KRA。工作台与 `view_nine_axis` 共用 KRA 图层解析与内容缓存，KRA 保存后会刷新九轴贴图，即使 JSON 与旧导出 PNG 未变化。未参与变形的头发、头饰仍以静态图层参与预览。
+
+预览可用 `frames:[{x:0,y:0},{x:-15,y:0},{x:-30,y:0}]` 直接输出同一 KRA／JSON 版本的多帧拼图；`only`／`hidden` 用于局部观察，不改变完整的累计模型。正式输出仍保留导出 PNG，供交付与不支持 KRA 的消费端使用。
+
 ## 查看与继续
+
+阶段权限、来源链、图层绑定和多帧预览的实现约定见 [KRA 引用与预览](kra-source.md)。
 
 在流程预览中播放视频、查看选帧和模型；进入角色工作台可以调整角度和关键形。完成后通过“导出成果”保存模型、贴图、工程和说明。
 

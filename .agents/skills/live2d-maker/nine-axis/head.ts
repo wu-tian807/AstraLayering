@@ -15,11 +15,11 @@ import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry,
 export const headOutputs = ['face-left.json', 'deformers.json', 'source.json'] as const;
 export type HeadInput = TurnInput & { document: string };
 
-// Each step that uses the KRA works on its own copy in its own directory.
+// Only stages that actually edit artwork receive an owned document path.
 export const stepDocument = (turn: TurnInput, directory: string): HeadInput =>
   ({ ...turn, document: join(directory, 'character-nine-axis.kra'), color: join(directory, 'character-nine-axis.png') });
 
-// Copy the KRA and its composite from the step before (shadow for step02).
+// Legacy helper for callers explicitly requesting a document copy.
 export async function copyDocument(from: { document: string; color: string }, to: HeadInput) {
   for (const file of [from.document, from.color]) await access(file).catch(error => { throw new Error(`缺少源文件：${file}`, { cause: error }); });
   await mkdir(dirname(to.document), { recursive: true });

@@ -5,6 +5,7 @@
     "revision": {"type": "string"},
     "axis": {"type": "number"},
     "notes": {"type": "string"},
+    "bindings": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id"], "properties": {"id": {"type": "string"}, "uuid": {"type": "string"}, "material": {"enum": ["transparent"]}}}},
     "importParts": {"type": "array", "items": {"type": "object"}},
     "operations": {
       "type": "array", "minItems": 1,

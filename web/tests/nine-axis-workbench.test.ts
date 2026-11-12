@@ -193,7 +193,7 @@ test('workbench loads the embedded source composition unchanged and reloads same
   const { HeadNineAxisPanel, nineAxisCapabilities } = await panelModule(), doc = composed(), requested: string[] = [], installed: any[] = [];
   t.mock.method(globalThis, 'fetch', async (url: any) => {
     const path = new URL(String(url), 'http://local/').searchParams.get('path')!; requested.push(path);
-    return path.endsWith('.json') ? Response.json(doc) : new Response('texture');
+    return path.endsWith('.json') ? Response.json({ doc, author: doc, version: '1', textures: ['./texture?path=' + path.replace(/[^/]+$/, 'layers/face.png')] }) : new Response('texture');
   });
   const previous = (globalThis as any).createImageBitmap;
   (globalThis as any).createImageBitmap = async () => ({});

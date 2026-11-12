@@ -4,6 +4,10 @@ import { join } from 'node:path';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { mirrorDocument, type Built } from './head.ts';
 import { nodes, validateHeadNineAxis, checkWarpGeometry, evaluatePoints, type HeadNineAxis } from '../shared/nine-axis-model.js';
+import { modelDocument, withDocument } from './source.ts';
+import { taskRootOf } from '../shared/task-paths.ts';
+import { dirname } from 'node:path';
+import type { MaterialLoader } from './kra-materials.ts';
 
 export type PitchStage = 'up' | 'down';
 export type Stage = PitchStage | 'xy' | 'jaw';
@@ -44,10 +48,16 @@ export function startContinuation(upstream: HeadNineAxis & { axis: number }, has
 export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axis: number }, hash: string, stage: Stage, scale: AngleScale = angleScale()): AuthoredHead {
   const doc = validateHeadNineAxis(value) as AuthoredHead;
   if (doc.authoring?.stage !== stage || doc.authoring?.upstreamSha256 !== hash) throw Error(`${authorFile(stage)}：上游已变化或来源记录不匹配，请从当前上游重新制作`);
-  if (doc.axis !== upstream.axis || JSON.stringify(doc.canvas) !== JSON.stringify(upstream.canvas) || JSON.stringify(doc.source) !== JSON.stringify((upstream as any).source)) throw Error('不能替换上游画布、中轴或角色来源');
+  const sameSource = JSON.stringify(doc.source) === JSON.stringify(upstream.source);
+  const inheritedGeometry = stage === 'jaw' && doc.source?.geometryDocument === (upstream.source?.geometryDocument ?? upstream.source?.document);
+  if (doc.axis !== upstream.axis || JSON.stringify(doc.canvas) !== JSON.stringify(upstream.canvas) || (!sameSource && !inheritedGeometry)) throw Error('不能替换上游画布、中轴或角色来源');
   if (JSON.stringify(doc.axisSources) !== JSON.stringify(upstream.axisSources)) throw Error('不能替换已完成单轴的形变来源；本阶段只编辑当前方向');
   const ids = new Map(nodes(doc).map(n => [n.id, n]));
   for (const n of upstream.parts) if (!ids.has(n.id)) throw Error(`${authorFile(stage)}：缺少上游节点 ${n.id}`);
+  if (stage !== 'jaw') for (const part of upstream.parts) {
+    const current = doc.parts.find(p => p.id === part.id)!;
+    if (current.uuid !== part.uuid || current.material !== part.material) throw Error(`${part.id}：本阶段不能替换上游 KRA 图层绑定`);
+  }
   // Existing poses stay in canvas space even if an artist adds or reparents a
   // local warp. A later phase must not silently overwrite an earlier axis.
   if (stage !== 'jaw') for (const n of upstream.parts) {
@@ -70,12 +80,18 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
   return doc;
 }
 
-export async function compileContinuation(directory: string, upstreamDirectory: string, value: AuthoredHead, stage: Stage, scale: AngleScale = angleScale()): Promise<Built> {
+export async function compileContinuation(directory: string, upstreamDirectory: string, value: AuthoredHead, stage: Stage, scale: AngleScale = angleScale(), materialize?: MaterialLoader, signal?: AbortSignal): Promise<Built> {
   const upstream = await readUpstream(upstreamDirectory);
-  const checked = checkContinuation(value, upstream.doc, upstream.hash, stage, scale);
+  let author = value;
+  if (stage === 'jaw') {
+    const root = taskRootOf(dirname(directory)), document = await modelDocument(root, directory, value);
+    if (document) author = withDocument(value, root, document) as AuthoredHead;
+  }
+  const checked = checkContinuation(author, upstream.doc, upstream.hash, stage, scale);
   const mirrored = stage === 'up' || stage === 'down' ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY');
   const doc = stage === 'jaw' ? mirrorDocument(mirrored, checked.axis, 'keyforms') : mirrored;
   validateHeadNineAxis(doc); for (const n of nodes(doc)) checkWarpGeometry(n);
+  if (materialize) return materialize(directory, { doc, textures: new Map() }, signal, false);
   const textures = new Map<string,string>();
   for (const p of doc.parts) {
     const own = join(directory, p.texture), inherited = join(upstreamDirectory, p.texture);
@@ -86,11 +102,11 @@ export async function compileContinuation(directory: string, upstreamDirectory: 
   }
   return { doc: doc as unknown as Built['doc'], textures };
 }
-export async function buildContinuation(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale()): Promise<Built> {
+export async function buildContinuation(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), materialize?: MaterialLoader): Promise<Built> {
   const path = join(directory, authorFile(stage)); let raw: AuthoredHead;
   try { raw = JSON.parse(await readFile(path, 'utf8')); }
   catch (error) { throw Error(`agent 未交付可读的 ${authorFile(stage)}`, { cause: error }); }
-  const built = await compileContinuation(directory, upstreamDirectory, raw, stage, scale);
+  const built = await compileContinuation(directory, upstreamDirectory, raw, stage, scale, materialize);
   if (stage === 'jaw' && !built.doc.parts.some(p => p.role === 'mask')) throw Error('jaw.json：没有蒙版部件');
   return built;
 }

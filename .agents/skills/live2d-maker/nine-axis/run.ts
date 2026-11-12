@@ -18,7 +18,7 @@ import { createBitmapTool } from '../shared/part/bitmap-tool.ts';
 import { createSvgPreviewTool } from '../shared/part/svg-tools.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { finishViews, generateVideo, produceLeftVideo, producePitchVideos, produceCornerVideos, resolveTurnInput, runFrameSelection, checkSelectedFrames, turnViews, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
-import { buildHead, copyDocument, finishHead, stepDocument, type Built, type HeadInput } from './head.ts';
+import { buildHead, finishHead, stepDocument, type Built, type HeadInput } from './head.ts';
 import { buildAngleY, finishAngleY } from './angle-y.ts';
 import { buildAngleXY, checkCornerReferences, cornerAngleValues, corners, finishAngleXY, writeLinearCorners, type Corner } from './angle-xy.ts';
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
@@ -31,6 +31,10 @@ import { angleScale, angleValues } from './angles.ts';
 import { beginStep, completeStep, readStep } from '../shared/step-chain.ts';
 import { writeBuilt } from './head.ts';
 import { prepareNeutral } from './neutral.ts';
+import { kraContents } from '../shadow/delivery.ts';
+import { KraMaterials, nativeMaterialExport, type MaterialLoader } from './kra-materials.ts';
+import { modelDocument } from './source.ts';
+import { fromTaskPath } from '../shared/task-paths.ts';
 import { mergeAxes } from './axis-merge.ts';
 import { axisGroups, checkAxisSource, runAxisGroups, seedAxis, type AxisGroup } from './axis-groups.ts';
 import { readStepSession, writeStepSession } from '../shared/agents/step-session.ts';
@@ -173,6 +177,7 @@ export function createFramesHead(agents: Agents, tools: (directory: string) => P
 
 export type NineAxisOptions = { name: string; dir?: string; krita?: string; ffmpeg?: string; step?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
 export type NineAxisDependencies = { environment?: WorkflowEnvironment; ffmpegCheck?: FFmpegCheck; generate?: GenerateVideo; fitHead?: FitHead; outlineHead?: OutlineHead; viewFramesHead?: FramesHead; framesHead?: FramesHead; fitUp?: FitHead; fitDown?: FitHead; fitAngleXY?: FitHead; fitJawLine?: FitHead;
+  materialize?: MaterialLoader;
   prepareNeutral?: (directory: string, input: HeadInput, box: Box, taskRoot: string) => Promise<void>;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
@@ -193,8 +198,16 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     ffmpeg: requestedFFmpeg ? resolveInput(options.name, requestedFFmpeg, root) : undefined }, dependencies.ffmpegCheck);
   const environment = ffmpeg ? { ...baseEnvironment, codex: { ...baseEnvironment.codex,
     env: ffmpegEnvironment(ffmpeg.executable, baseEnvironment.codex.env) } } : baseEnvironment;
-  const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root), head = stepDocument(input, preparation);
-  const source = { document: input.color.replace(/\.png$/, '.kra'), color: input.color };
+  const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
+  const head: HeadInput = { ...input, document: input.document ?? input.color.replace(/\.png$/, '.kra') };
+  // Resume the neutral's declared source, including legacy tasks that already
+  // own a preparation copy. A retried child must keep its siblings' provenance.
+  const neutralPath = join(preparation, 'deformers.json');
+  if (await exists(neutralPath)) {
+    const neutral = JSON.parse(await readFile(neutralPath, 'utf8'));
+    if (neutral.source?.document) head.document = fromTaskPath(task, neutral.source.document);
+  }
+  if (input.document && await exists(join(preparation, 'source-composite.png'))) head.color = join(preparation, 'source-composite.png');
   let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined, agentPool: CodexAgents | undefined;
   const agents = (): Agents => {
     const pool = agentPool ??= new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress, agentConcurrency: 3 });
@@ -216,13 +229,16 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     await sectionKrita.reserve(options.signal, progress); return sectionKrita;
   };
   const builds: Record<string, () => Promise<Built>> = {};
+  const materials = new KraMaterials(nativeMaterialExport(krita));
+  const materialize: MaterialLoader = dependencies.materialize ?? ((output, built, signal, context = true) => materials.resolve(task, output, built, signal ?? options.signal, context));
   const faceTools = async (stepId: string): Promise<FunctionTool[]> => {
     const output = join(directory, stepId), observations = join(output, 'observations'), box = await crop();
-    const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations, () => builds[stepId]());
+    const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations,
+      async () => materialize(output, await builds[stepId](), options.signal));
     const axis = stepId.startsWith('step04_angles/model/') ? stepId.split('/').at(-1) as AxisGroup : undefined;
     const stage = axis === 'up' || axis === 'down' ? axis : undefined;
     const upstream = axis ? preparation : stepId === 'step06_angle-xy' ? modelDirectory : xyDirectory;
-    if (stepId === 'step07_jaw-line') return [createKritaTool(await krita(), task), bitmap, view, createContinuationEditTool(output, upstream, 'jaw', scale, task)];
+    if (stepId === 'step07_jaw-line') return [createKritaTool(await krita(), task), bitmap, view, createContinuationEditTool(output, upstream, 'jaw', scale, task, materialize)];
     const continuation = stage ? { stage, upstreamDirectory: preparation } : axis ? undefined : { stage: 'xy' as const, upstreamDirectory: upstream };
     const edit = axis === 'left' ? createHeadEditTool(output, head, box, scale, task, preparation) : createContinuationEditTool(output, upstream, stage ?? 'xy', scale, task);
     const referenceDirectory = axis ? frames : cornerFrames;
@@ -258,8 +274,14 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         if (status === 'completed') return;
         if (step.id === 'step01_preparation') return async () => {
           if (options.dryRun) return preview('从上游原工程整理头部素材与投影关系，导出统一 neutral。');
-          await copyDocument(source, head);
-          const { width = 0, height = 0 } = await sharp(input.color).metadata(), box = await upperBodyBox(input, width, height);
+          // Preparation only reads artwork. Keep the upstream KRA reference;
+          // the saved projection is a derived snapshot, never a second master.
+          if (input.document) {
+            head.color = join(preparation, 'source-composite.png');
+            await mkdir(preparation, { recursive: true });
+            await writeFile(head.color, kraContents(await readFile(head.document)).merged);
+          }
+          const { width = 0, height = 0 } = await sharp(head.color).metadata(), box = await upperBodyBox(head, width, height);
           await writeFile(join(preparation, 'crop.json'), JSON.stringify({ canvas: [width, height], box }) + '\n');
           if (dependencies.prepareNeutral) await dependencies.prepareNeutral(preparation, head, box, task);
           else { const instance = await krita(); await prepareNeutral(preparation, head, instance, box, scale, options.signal, task); await instance.release(); sectionKrita = undefined; }
@@ -269,7 +291,13 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           const prompts = videoPrompts();
           if (options.dryRun) return preview([prompts.turn, prompts.up, prompts.down].join('\n\n'));
           const { model, generate } = video();
-          await produceLeftVideo(videos, input, generate, prompts.turn, { signal: options.signal, progress, model });
+          // Read the saved KRA composite even when resuming after preparation.
+          if (input.document) {
+            head.color = join(preparation, 'source-composite.png');
+            await mkdir(preparation, { recursive: true });
+            await writeFile(head.color, kraContents(await readFile(head.document)).merged);
+          }
+          await produceLeftVideo(videos, head, generate, prompts.turn, { signal: options.signal, progress, model });
           await producePitchVideos(videos, videos, generate, prompts, { signal: options.signal, progress, model });
           summary = 'nine-axis/step02_video 已完成：三向视频';
         };
@@ -346,11 +374,16 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         return async () => {
           const jaw = stepDocument(input, step.directory);
           if (options.dryRun) return preview(jawLinePrompt(jaw, task));
-          if (!await exists(jaw.document)) await copyDocument(head, jaw);
-          builds[step.id] = () => buildJawLine(step.directory, xyDirectory, scale);
+          if (!await exists(jaw.document)) {
+            const upstream = JSON.parse(await readFile(join(xyDirectory, 'deformers.json'), 'utf8'));
+            const document = await modelDocument(task, xyDirectory, upstream) ?? head.document;
+            await copyFile(document, jaw.document);
+          }
+          builds[step.id] = () => buildJawLine(step.directory, xyDirectory, scale, materialize);
           const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子', options.signal, directory));
           await fit(step.directory, jawLinePrompt(jaw, task), async () => { await builds[step.id](); });
-          summary = `nine-axis/step07_jaw-line 已完成：${await finishJawLine(step.directory, xyDirectory, scale)} 个部件的下颌线与脖子`;
+          await writeFile(jaw.color, kraContents(await readFile(jaw.document)).merged);
+          summary = `nine-axis/step07_jaw-line 已完成：${await finishJawLine(step.directory, xyDirectory, scale, materialize)} 个部件的下颌线与脖子`;
         };
       },
     });

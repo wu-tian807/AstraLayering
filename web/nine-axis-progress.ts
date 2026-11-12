@@ -1,5 +1,5 @@
 import { lstat, readFile } from 'node:fs/promises';
-import { join, relative } from 'node:path';
+import { dirname, join, relative } from 'node:path';
 import { readStep } from '../.agents/skills/live2d-maker/shared/step-chain.ts';
 import { stepDeliveries } from '../.agents/skills/live2d-maker/shared/step-deliveries.ts';
 import { readStepSession } from '../.agents/skills/live2d-maker/shared/agents/step-session.ts';
@@ -9,6 +9,8 @@ import { currentAgentCalls, throttled } from './agent-progress.ts';
 import { reportPreview, type ReportPreview } from './report.ts';
 import type { Status } from './snapshot.ts';
 import { executionStatus, aggregateStatus } from './execution-state.js';
+import { modelDocument } from '../.agents/skills/live2d-maker/nine-axis/source.ts';
+import { isStudioPath } from './studio-project.ts';
 
 type Observation = { active?: boolean; failed?: boolean; archive?: boolean; since?: string; reason?: string };
 
@@ -47,6 +49,17 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
     }
     const image = ['original-full-face.png', 'character-nine-axis.png'].map(name => prefix + '/' + name).find(path => files.has(path));
     if (image) previews[id] = { path: image, savedAt: (await lstat(await safePath(directory, image))).mtime.toISOString() };
+    const model = prefix + '/deformers.json';
+    if (files.has(model)) {
+      try {
+        const path = await safePath(directory, model), doc = JSON.parse(await readFile(path, 'utf8'));
+        const document = await modelDocument(directory, dirname(path), doc);
+        const source = document && relative(directory, document).replaceAll('\\','/');
+        if (source && isStudioPath(source) && files.has(source) && source.endsWith('.kra')) previews[id] = {
+          path: source, savedAt: (await lstat(await safePath(directory,source))).mtime.toISOString(),
+        };
+      } catch (error) { if (!(error instanceof SyntaxError) && (error as NodeJS.ErrnoException).code !== 'ENOENT') errors.push(model + ': ' + String(error)); }
+    }
   }
   const parents = staged ? [[model, groups], ['step04_angles', [model, 'step04_angles/video']]] as const : [[model, groups]] as const;
   for (const [parent, children] of parents) if (states[parent] !== 'done' && states[parent] !== 'pending') {
