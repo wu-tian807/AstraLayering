@@ -29,13 +29,14 @@ test('three failures end the step with a user hint and keep the session', async 
   assert.doesNotMatch(prompts.join('\n'), /恢复|新建会话/);
 });
 
-test('a content-filtered turn is not repaired in its thread', async () => {
+test('source text mentioning content_filter does not stop the repair rounds', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'check-'));
-  await writeFile(join(dir, 'events.jsonl'), '{"reason":"content_filter"}\n');
+  await writeFile(join(dir, 'events.jsonl'), '{"text":"reason: content_filter"}\n');
   const prompts: string[] = [];
   const error = await checkedTurn({ agents: agentsFor(prompts, async () => dir), task, check: () => { throw missingSubmit('submit_x', '未提交'); } }).catch(e => e);
-  assert.equal(prompts.length, 1);
-  assert.match(error.message, /内容过滤/);
+  assert.equal(prompts.length, 3);
+  assert.match(error.message, /已返修 \d+ 次仍未通过/);
+  assert.doesNotMatch(error.message, /内容过滤/);
 });
 
 test('other errors propagate unchanged', async () => {
