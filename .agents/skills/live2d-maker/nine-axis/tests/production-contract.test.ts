@@ -32,7 +32,7 @@ test('missing video configuration refuses preparation before reading inputs or c
   await assert.rejects(readFile(join(root, 'case/nine-axis/step01_preparation/.completed')), { code: 'ENOENT' });
 });
 
-for (const step of ['step02_video', 'step03_frames', 'step07_jaw-line', 'step04_angles/video', 'step04_angles/model']) {
+for (const step of ['step02_video', 'step03_frames', 'step07_jaw-line', 'step08_hair', 'step04_angles/video', 'step04_angles/model']) {
   test(`completed ${step} cannot hide missing deliveries`, async t => {
     const root = await fixture(t), folder = join(root, 'case/nine-axis', step);
     await mkdir(folder, { recursive: true }); await writeFile(join(folder, '.completed'), '');

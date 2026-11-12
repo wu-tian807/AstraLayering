@@ -6,7 +6,8 @@
     ],
     "tools": [
       "view_bitmap",
-      "preview_svg"
+      "preview_svg",
+      "view_nine_axis"
     ]
   }
 }

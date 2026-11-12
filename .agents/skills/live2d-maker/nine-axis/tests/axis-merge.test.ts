@@ -104,3 +104,18 @@ test('existing scheduled parent keeps its axis authors and other files; only new
   assert.equal(made.manifest.sources[0].file, 'left/deformers.json');
   await assert.rejects(mergeAxes(f.root, d.baseline, d, scale, f.root), /已存在/);
 });
+
+test('UUID-only independent authors merge without any material PNGs or layers directories',async t=>{
+  const f=await fixture(t);
+  for(const dir of Object.values(f.directories)){
+    await update(dir,doc=>doc.parts.forEach((p,i)=>{p.uuid=`native-${i}`;delete p.texture;}));
+    await rm(join(dir,'layers'),{recursive:true});
+  }
+  const neutral=JSON.parse(await readFile(join(f.directories.baseline,'deformers.json'),'utf8'));
+  await writeFile(join(f.directories.baseline,'export-record.json'),JSON.stringify({canvas:neutral.canvas,parts:neutral.parts}));
+  const merged=await mergeAxes(f.output,f.directories.baseline,f.directories,scale,f.root);
+  assert.equal(merged.textures.size,0);assert.deepEqual(merged.manifest.textures,[]);
+  assert.ok(merged.doc.parts.every(p=>p.uuid&&!p.texture));
+  assert.ok(merged.manifest.checks.samples.every(p=>p.maxError<=1e-5));
+  await assert.rejects(stat(join(f.output,'layers')),{code:'ENOENT'});
+});

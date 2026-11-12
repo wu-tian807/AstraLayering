@@ -79,7 +79,7 @@ export class HeadPreview {
       width: rect.width * scale, height: rect.height * scale }, angles.x, angles.y, shownParts(this.doc, this.doc.levels.at(-1).id));
     this.element.dataset.angleX = angles.x; this.element.dataset.angleY = angles.y;
     this.element.dataset.motionX = this.current.x; this.element.dataset.motionY = this.current.y;
-    this.label.textContent = `${({ neutral: '素材准备', x: '左右转头', up: '抬头', down: '低头', y: '单轴模型', xy: '斜角模型', jaw: '下颌连接' })[this.stage] ?? this.stage} · X ${angles.x.toFixed(1)} / Y ${angles.y.toFixed(1)}`;
+    this.label.textContent = `${({ neutral: '素材准备', x: '左右转头', up: '抬头', down: '低头', y: '单轴模型', xy: '斜角模型', jaw: '下颌连接', hair: '头发制作' })[this.stage] ?? this.stage} · X ${angles.x.toFixed(1)} / Y ${angles.y.toFixed(1)}`;
   }
   animate() {
     if (this.frame || !this.doc || document.hidden) return;

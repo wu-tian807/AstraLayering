@@ -16,8 +16,10 @@ function initialForms(doc, n) {
   if (Y.length) n.keyformsY ??= {};
   for (const key of Y) n.keyformsY[String(key)] ??= structuredClone(rest);
   const corners=new Set(nodes(doc).flatMap(p=>Object.keys(p.keyformsXY??{})));
-  if (corners.size) n.keyformsXY ??= {};
-  for (const key of corners) n.keyformsXY[key] ??= structuredClone(rest);
+  if (Y.length && corners.size) {
+    n.keyformsXY ??= {};
+    for (const key of corners) n.keyformsXY[key] ??= structuredClone(rest);
+  }
 }
 
 function ensureKey(n, x = 0, y = 0) {
@@ -39,12 +41,16 @@ export function editNineAxis(document, operations) {
     if (op.action === 'add_part') {
       const p = op.part;
       if (!p || typeof p.id !== 'string' || !p.id || nodes(doc).some(n => n.id === p.id)) throw Error('新部件 id 无效或重复');
-      const n = { ...grid(p.id, p.bbox, p.cols ?? 4, p.rows ?? 4), ...p, level: p.level ?? 'face' };
+      const n = { ...grid(p.id, p.bbox, p.cols ?? 4, p.rows ?? 4), textureBounds: [p.bbox[0],p.bbox[1],p.bbox[2]-p.bbox[0],p.bbox[3]-p.bbox[1]], ...p, level: p.level ?? 'face' };
       initialForms(doc,n);
-      doc.parts.push(n);
+      if (op.before !== undefined && op.after !== undefined) throw Error('before 与 after 只能指定一个');
+      const anchor = op.before ?? op.after;
+      const at = anchor === undefined ? doc.parts.length : doc.parts.findIndex(q => q.id === anchor);
+      if (at < 0) throw Error('绘制顺序参照部件不存在：' + anchor);
+      doc.parts.splice(at + (op.after === undefined ? 0 : 1), 0, n);
     } else if (op.action === 'create_warp') {
       if (typeof op.id !== 'string' || !op.id || nodes(doc).some(n => n.id === op.id)) throw Error('新变形器 id 无效或重复');
-      const targets = op.targets ?? []; if (!Array.isArray(targets)) throw Error('targets 须为 id 数组');
+      const targets = op.targets ?? [];
       const children = targets.map(get), all = children.flatMap(n => {
         const poses = [...Object.keys(n.keyforms).map(k => [Number(k), 0]),
           ...Object.keys(n.keyformsY ?? {}).map(k => [0, Number(k)]),

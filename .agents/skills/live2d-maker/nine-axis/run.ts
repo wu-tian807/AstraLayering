@@ -1,10 +1,11 @@
 import { parseArgs } from 'node:util';
 import { join } from 'node:path';
+import { readFileSync } from 'node:fs';
 import { access, copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { selectKnowledge, stepKnowledge, type KnowledgeRole } from '../shared/knowledge.ts';
+import { renderKnowledge, selectKnowledge, stepKnowledge, type KnowledgeRole } from '../shared/knowledge.ts';
 import { runSection, stepName } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { CodexAgents, type AgentResult, type AgentTask } from '../shared/codex/agents.ts';
@@ -22,11 +23,12 @@ import { buildHead, finishHead, stepDocument, type Built, type HeadInput } from 
 import { buildAngleY, finishAngleY } from './angle-y.ts';
 import { buildAngleXY, checkCornerReferences, cornerAngleValues, corners, finishAngleXY, writeLinearCorners, type Corner } from './angle-xy.ts';
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
+import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundAllows, hairRoundLabel, readHairProgress, completeHairRound, checkHairRound, type HairRound } from './hair.ts';
 import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
 import { createNineAxisFitTool } from './fit-tool.ts';
 import { createContinuationEditTool } from './continuation-edit-tool.ts';
-import type { PitchStage } from './continuation.ts';
+import { readUpstream, type PitchStage } from './continuation.ts';
 import { angleScale, angleValues } from './angles.ts';
 import { beginStep, completeStep, readStep } from '../shared/step-chain.ts';
 import { writeBuilt } from './head.ts';
@@ -63,6 +65,7 @@ step04_angles：并发制作独立单轴模型和斜角视频；单轴的描边�
 step05_frames：从 step04 的视频提取并选择斜角参考帧。
 step06_angle-xy：基于 step04 单轴模型与 step05 参考帧制作斜角。
 step07_jaw-line：完成下颌与固定脖子连接，交付脸部＋五官九轴的中间成果。
+step08_hair：left/right，Y=0；同一 KRA、同一会话，每次操作派发一轮：前发、侧发、后发与整体协调。
 部件与 Warp 组织方式由实际工程决定，角度配置见 knowledge/nine-axis/step02_video/references/angles.json。
 `;
 
@@ -101,6 +104,14 @@ export const angleYPrompt = (taskRoot: string, stage: PitchStage) => axisPrompt(
 export const angleXYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step06_angle-xy').render('main', { ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
 export const jawLinePrompt = (input: HeadInput, taskRoot: string) => stepKnowledge('nine-axis', 'step07_jaw-line')
   .render('main', { document: input.document, color: input.color, ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
+export const hairPrompt = (input: HeadInput, taskRoot: string, round: HairRound = 'front') => {
+  const knowledge=stepKnowledge('nine-axis','step08_hair');
+  const values={document:input.document,color:input.color,...angleValues(),...cornerAngleValues()};
+  // initial remains the first turn. Later hair rounds are workflow dispatches,
+  // not additional agent.json initials or separate step/thread identities.
+  return (round==='front' ? knowledge.render('main',values,{taskRoot}) : renderKnowledge(
+    readFileSync(join(knowledge.directory,'prompts',round==='side'?'侧发制作.md':'后发制作.md'),'utf8'),values,{taskRoot,section:'nine-axis'})).trim();
+};
 
 type Agents = Pick<CodexAgents, 'run'> & Partial<Pick<CodexAgents, 'createSession'>>;
 // One agent turn. With `session` the turn continues that step's saved thread;
@@ -156,6 +167,18 @@ export function createFitHead(agents: Agents, tools: (step: string) => Promise<F
   };
 }
 
+// One dispatch is one hair round. All later prompts resume the same step key;
+// the scheduler, not a single overall prompt, advances the production order.
+export function createHairHead(agents: Agents, tools: (step: string) => Promise<FunctionTool[]>, signal?: AbortSignal, sectionDirectory?: string): FitHead {
+  return async (directory,prompt,verify) => {
+    const {next}=await readHairProgress(directory);
+    if(next==='done')throw Error('头发轮次已全部完成');
+    return runAgentTurn(agents,sectionDirectory ?? join(directory,'..'),directory,{
+      step:'nine_axis_head_hair',knowledge:'step08_hair',role:'main',session:'step08_hair',name:`${hairRoundLabel(next)}左右制作`,tools:await tools('step08_hair'),prompt,verify,
+    },signal);
+  };
+}
+
 // The outline has its own thread under the step it feeds (agents/steps/<step>/outline[/<corner>]), so a retry of that step drops it.
 export type OutlineHead = (directory: string, prompt: string) => Promise<void>;
 export function createOutlineHead(agents: Agents, tools: (directory: string) => Promise<FunctionTool[]>, session: string, name: string, signal?: AbortSignal, sectionDirectory?: string): OutlineHead {
@@ -179,6 +202,7 @@ export type NineAxisOptions = { name: string; dir?: string; krita?: string; ffmp
 export type NineAxisDependencies = { environment?: WorkflowEnvironment; ffmpegCheck?: FFmpegCheck; generate?: GenerateVideo; fitHead?: FitHead; outlineHead?: OutlineHead; viewFramesHead?: FramesHead; framesHead?: FramesHead; fitUp?: FitHead; fitDown?: FitHead; fitAngleXY?: FitHead; fitJawLine?: FitHead;
   materialize?: MaterialLoader;
   prepareNeutral?: (directory: string, input: HeadInput, box: Box, taskRoot: string) => Promise<void>;
+  prepareHair?: typeof prepareHair; fitHair?: FitHead;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
   if (options.step && options.step.split('/').length > 3) throw Error('--step 须为已定义的九轴步骤或分支');
@@ -192,9 +216,9 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const angles = join(directory, 'step04_angles'), modelDirectory = join(angles, 'model'), cornerVideos = join(angles, 'video');
   const cornerFrames = join(directory, 'step05_frames'), xyDirectory = join(directory, 'step06_angle-xy');
   const baseEnvironment = dependencies.environment ?? loadWorkflowEnvironment(), scale = angleScale();
-  if (!options.dryRun && !dependencies.generate) requireVideoApi(baseEnvironment);
+  if (!options.dryRun && !dependencies.generate && requested!=='step08_hair') requireVideoApi(baseEnvironment);
   const requestedFFmpeg = options.ffmpeg || baseEnvironment.codex.env?.ASTRA_STUDIO_FFMPEG;
-  const ffmpeg = options.dryRun ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
+  const ffmpeg = options.dryRun || requested==='step08_hair' ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
     ffmpeg: requestedFFmpeg ? resolveInput(options.name, requestedFFmpeg, root) : undefined }, dependencies.ffmpegCheck);
   const environment = ffmpeg ? { ...baseEnvironment, codex: { ...baseEnvironment.codex,
     env: ffmpegEnvironment(ffmpeg.executable, baseEnvironment.codex.env) } } : baseEnvironment;
@@ -214,7 +238,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     return { run: pool.run.bind(pool), createSession: pool.createSession.bind(pool) };
   };
   let preflightPromise: Promise<unknown> | undefined;
-  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw'], { runsRoot: root, progress, env: environment.codex.env });
+  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw', 'nine_axis_head_hair'], { runsRoot: root, progress, env: environment.codex.env });
   const video = () => {
     const api = dependencies.generate ? undefined : requireVideoApi(environment);
     return { model: api?.model ?? 'injected', generate: dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o)) as GenerateVideo };
@@ -232,26 +256,32 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const materials = new KraMaterials(nativeMaterialExport(krita));
   const materialize: MaterialLoader = dependencies.materialize ?? ((output, built, signal, context = true) => materials.resolve(task, output, built, signal ?? options.signal, context));
   const faceTools = async (stepId: string): Promise<FunctionTool[]> => {
-    const output = join(directory, stepId), observations = join(output, 'observations'), box = await crop();
+    const output = join(directory, stepId), observations = join(output, 'observations');
+    const hairRound=stepId==='step08_hair'?(await readHairProgress(output)).next:undefined;
+    if(hairRound==='done')throw Error('头发轮次已全部完成');
     const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations,
-      async () => materialize(output, await builds[stepId](), options.signal));
+      async () => materialize(output, await builds[stepId](), options.signal), undefined, hairRound ? hairPreviewScope(hairRound) : undefined);
     const axis = stepId.startsWith('step04_angles/model/') ? stepId.split('/').at(-1) as AxisGroup : undefined;
     const stage = axis === 'up' || axis === 'down' ? axis : undefined;
     const upstream = axis ? preparation : stepId === 'step06_angle-xy' ? modelDirectory : xyDirectory;
+    if (stepId === 'step08_hair') return [createKritaTool(await krita(),task),bitmap,view,
+      createContinuationEditTool(output,join(directory,'step07_jaw-line'),'hair',scale,task,materialize,{label:`${hairRoundLabel(hairRound!)}轮次`,allows:hairRoundAllows(hairRound!)})];
     if (stepId === 'step07_jaw-line') return [createKritaTool(await krita(), task), bitmap, view, createContinuationEditTool(output, upstream, 'jaw', scale, task, materialize)];
+    const box=await crop();
     const continuation = stage ? { stage, upstreamDirectory: preparation } : axis ? undefined : { stage: 'xy' as const, upstreamDirectory: upstream };
-    const edit = axis === 'left' ? createHeadEditTool(output, head, box, scale, task, preparation) : createContinuationEditTool(output, upstream, stage ?? 'xy', scale, task);
+    const edit = axis === 'left' ? createHeadEditTool(output, head, box, scale, task, preparation) : createContinuationEditTool(output, upstream, stage ?? 'xy', scale, task, materialize);
     const referenceDirectory = axis ? frames : cornerFrames;
-    const svg = createSvgPreviewTool({ directory: output, reference: join(referenceDirectory, axis ? `${axis}.png` : 'left-up.png'), canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' });
+    const svg = createSvgPreviewTool({ directory: output, reference: join(referenceDirectory, axis ? `${axis}.png` : 'left-up.png'), canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas', comparisonModes: ['edge'] });
     return [bitmap, view, edit, createNineAxisFitTool(output, head, box, scale, continuation, { taskRoot: task, referenceDirectory }), axis ? svg : { ...svg, async execute(value, signal, context) {
       const args = value as { mode?: string; reference?: string };
-      if ((args?.mode === 'blend' || args?.mode === 'edge') && !args.reference) throw Error('斜向 blend/edge 必须指定所选 corner 参考帧');
+      if (args?.mode === 'edge' && !args.reference) throw Error('斜向 edge 必须指定所选 corner 参考帧');
       return svg.execute(value, signal, context);
     } }];
   };
   const outlineTools = (reference: string) => async (output: string): Promise<FunctionTool[]> => {
     const observations = join(output, 'observations', 'outline'), box = await crop();
-    return [createBitmapTool(directory, observations), createSvgPreviewTool({ directory: output, reference, canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas' })];
+    const neutralView=createNineAxisViewTool(directory,observations,async()=>materialize(preparation,{doc:(await readUpstream(preparation)).doc,textures:new Map()}));
+    return [createBitmapTool(directory, observations),neutralView, createSvgPreviewTool({ directory: output, reference, canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas', comparisonModes: ['edge'] })];
   };
   const framesTools = async (output: string): Promise<FunctionTool[]> => [
     createBitmapTool(directory, join(output, 'observations', 'frames')),
@@ -265,8 +295,12 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   };
   try {
     await runSection({ directory, steps, dryRun: options.dryRun, signal: options.signal, progress,
-      async keep(step) { await checkDelivery(step.id); },
+      async keep(step) {
+        await checkDelivery(step.id);
+        if(step.id==='step08_hair'&&(await readHairProgress(step.directory)).next!=='done')throw Error('头发轮次尚未全部完成，不能沿用整个步骤的完成标记');
+      },
       async finished(step) {
+        if(step.id==='step08_hair'&&(await readHairProgress(step.directory)).next!=='done') return false;
         if (step.id === 'step04_angles' && !(await Promise.all(nineAxisBranches.map(async b => (await readStep(join(angles, b))).status === 'completed'))).every(Boolean)) return false;
         await checkDelivery(step.id); return true;
       },
@@ -371,6 +405,31 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           await fit(xyDirectory, angleXYPrompt(task), async () => { await checkCornerReferences(xyDirectory, (await crop()).size, cornerFrames, cornerVideos); await builds[step.id](); });
           summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(xyDirectory, modelDirectory, scale, cornerFrames, cornerVideos)} 个原图层的斜向四角`;
         };
+        if (step.id === 'step08_hair') return async () => {
+          const hair=stepDocument(input,step.directory), upstream=join(directory,'step07_jaw-line');
+          const {next:round}=await readHairProgress(step.directory);
+          if(round!=='front')await checkDelivery(step.id);
+          if(round==='done') { summary='nine-axis/step08_hair：前发、侧发、后发与整体协调已完成'; return; }
+          if(options.dryRun) return preview(hairPrompt(hair,task,round));
+          await (dependencies.prepareHair ?? prepareHair)(step.directory,upstream,task,materialize,scale,options.signal);
+          builds[step.id]=()=>buildHair(step.directory,upstream,scale,materialize);
+          const before=await materialize(step.directory,await builds[step.id](),options.signal);
+          const fit=dependencies.fitHair ?? (await preflight(),createHairHead(agents(),faceTools,options.signal,directory));
+          let verified=false;
+          const verify=async()=>{
+            await checkHairRound(before,await materialize(step.directory,await builds[step.id](),options.signal),round);
+            await writeFile(hair.color,kraContents(await readFile(hair.document)).merged);
+            await finishHair(step.directory,upstream,scale,materialize);
+            await checkDelivery(step.id);
+            verified=true;
+          };
+          // Deliveries belong to the checked turn: a missing or empty product
+          // gets the same two repair rounds before progress can advance.
+          await fit(step.directory,hairPrompt(hair,task,round),verify);
+          if(!verified)await verify();
+          await completeHairRound(step.directory,round);
+          summary=round==='back'?'nine-axis/step08_hair：后发与整体协调轮次已完成并保存，头发步骤完成':`nine-axis/step08_hair：${hairRoundLabel(round)}轮次已完成并保存，等待同一会话的${round==='front'?'侧发':'后发'}提示词`;
+        };
         return async () => {
           const jaw = stepDocument(input, step.directory);
           if (options.dryRun) return preview(jawLinePrompt(jaw, task));
@@ -411,10 +470,10 @@ if (import.meta.main) {
     if (args.help) { console.log(help); return; }
     selectKnowledge(resolveInput(args.name!, args.knowledge!, args.dir));
     const action = args.retry ? 'retry' : args.resume ? 'resume' : args.continue ? 'continue' : undefined;
-    const startupFFmpeg = args['dry-run'] ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
+    const startupFFmpeg = args['dry-run'] || args.step==='step08_hair' ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
       ffmpeg: args.ffmpeg ? resolveInput(args.name!, args.ffmpeg, args.dir) : loadWorkflowEnvironment().codex.env?.ASTRA_STUDIO_FFMPEG });
     if (action) {
-      await preflightTaskInputs({ name: args.name!, dir: args.dir, knowledge: args.knowledge, from: 'nine-axis', to: 'nine-axis' });
+      await preflightTaskInputs({ name: args.name!, dir: args.dir, knowledge: args.knowledge, from: 'nine-axis', to: 'nine-axis' },undefined,{video:args.step!=='step08_hair'});
       if (args.krita) await checkKrita(resolveInput(args.name!, args.krita, args.dir), loadWorkflowEnvironment().codex.env);
       console.log(await (args.step ? applyStepAction({ name: args.name!, dir: args.dir, section: 'nine-axis', step: args.step, action })
         : applyTaskAction({ name: args.name!, dir: args.dir, section: 'nine-axis', action })));

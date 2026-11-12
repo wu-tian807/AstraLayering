@@ -1,0 +1,1 @@
+本轮只允许编辑 hair/back_hair 及专用 hair/back_hair/ Warp 的 X=-30、Y=0；默认保持后发原形，必要时才局部微调，无需强行产生形变。刘海、侧发及其 Warp、辫子和脸部保持现有结果，正面与 right 保持原形。查看整头时显示后发，只隐藏 hair/braid_right；后发独显用 only=["hair/back_hair"]。参考为辅助观察，自然感与原发型优先。

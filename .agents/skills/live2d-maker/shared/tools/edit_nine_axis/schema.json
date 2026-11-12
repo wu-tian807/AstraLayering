@@ -2,31 +2,217 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "revision": {"type": "string"},
-    "axis": {"type": "number"},
-    "notes": {"type": "string"},
-    "bindings": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id"], "properties": {"id": {"type": "string"}, "uuid": {"type": "string"}, "material": {"enum": ["transparent"]}}}},
-    "importParts": {"type": "array", "items": {"type": "object"}},
-    "operations": {
-      "type": "array", "minItems": 1,
+    "revision": {
+      "type": "string"
+    },
+    "axis": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "bindings": {
+      "type": "array",
       "items": {
-        "type": "object", "additionalProperties": false, "required": ["action"],
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ],
         "properties": {
-          "action": {"enum": ["create_warp", "add_part", "reparent", "remove_warp", "interpolation", "mirror_pair", "clip", "points", "drag", "transform"]},
-          "id": {"type": "string"}, "name": {"type": "string"}, "level": {"type": "string"},
-          "targets": {"type": "array", "items": {"type": "string"}},
-          "parent": {"type": ["string", "null"]},
-          "bbox": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}},
-          "cols": {"type": "integer", "minimum": 1, "maximum": 32}, "rows": {"type": "integer", "minimum": 1, "maximum": 32},
-          "x": {"type": ["number", "string"]}, "y": {"type": "number"},
-          "spatial": {"enum": ["linear", "smooth"]},
-          "translate": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}},
-          "scale": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}},
-          "origin": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}},
-          "row": {"type": "integer", "minimum": 0}, "col": {"type": "integer", "minimum": 0}, "radius": {"type": "number", "minimum": 0},
-          "delta": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}},
-          "points": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["row", "col", "to"], "properties": {"row": {"type": "integer", "minimum": 0}, "col": {"type": "integer", "minimum": 0}, "to": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}}}}},
-          "by": {"type": ["array", "null"], "items": {"type": "string"}}, "invert": {"type": "boolean"}, "part": {"type": "object"}
+          "id": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "material": {
+            "enum": [
+              "transparent"
+            ]
+          }
+        }
+      }
+    },
+    "importParts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "enum": [
+              "create_warp",
+              "add_part",
+              "reparent",
+              "remove_warp",
+              "interpolation",
+              "mirror_pair",
+              "clip",
+              "points",
+              "drag",
+              "transform"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "parent": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "bbox": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "number"
+            }
+          },
+          "cols": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 32
+          },
+          "rows": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 32
+          },
+          "x": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "y": {
+            "type": "number"
+          },
+          "spatial": {
+            "enum": [
+              "linear",
+              "smooth"
+            ]
+          },
+          "translate": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number"
+            }
+          },
+          "scale": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number"
+            }
+          },
+          "origin": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number"
+            }
+          },
+          "row": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "col": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "radius": {
+            "type": "number",
+            "minimum": 0
+          },
+          "delta": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number"
+            }
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "row",
+                "col",
+                "to"
+              ],
+              "properties": {
+                "row": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "col": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "to": {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "by": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "invert": {
+            "type": "boolean"
+          },
+          "part": {
+            "type": "object"
+          },
+          "before": {
+            "type": "string"
+          },
+          "after": {
+            "type": "string"
+          }
         }
       }
     }

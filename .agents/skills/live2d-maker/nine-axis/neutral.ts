@@ -13,7 +13,7 @@ import { headMaterialSelection } from './materials.ts';
 
 type Bounds = [number, number, number, number];
 export type NeutralLayer = {
-  id: string; group: string; texture: string; textureBounds: Bounds; bbox: Bounds;
+  id: string; group: string; textureBounds: Bounds; bbox: Bounds;
   uuid: string; layerName: string; nodeType: string; parentUuid: string;
   order: number; stackPath: number[]; visible: boolean; layerOpacity: number; blendingMode: string;
   scope?: 'face' | 'hair' | 'accessory'; partId?: string; materialRole?: 'shadow'; casterPartId?: string; receiverPartIds?: string[]; receiverLayerUuids?: string[]; follow?: string;
@@ -22,7 +22,7 @@ export type NeutralManifest = {
   version: 1; sourceKra: string; sourceColor: string;
   canvas: [number, number]; method: string; order: 'top-to-bottom'; parts: NeutralLayer[]; referenceLayers: NeutralLayer[];
   shadowLayers?: NeutralLayer[];
-  preview: { texture: string; textureBounds: Bounds };
+  preview?: { texture: string; textureBounds: Bounds };
 };
 export type NeutralPart = Omit<HeadDeformer, 'keyforms' | 'keyformsY'> & NeutralLayer & {
   keyforms: Record<string, Point[]>; keyformsY: Record<string, Point[]>;
@@ -33,14 +33,13 @@ export type NeutralDocument = Omit<HeadNineAxis, 'parts' | 'source'> & {
 };
 export type NeutralBuilt = Omit<Built, 'doc'> & {
   doc: NeutralDocument; directory: string; path: string; manifestPath: string; exportRecordPath: string; sourcePath: string;
-  preview: string; manifest: NeutralManifest; source: Record<string, string>;
+  manifest: NeutralManifest; source: Record<string, string>;
 };
 
 // Selection follows the existing part/UUID relationships. Base projections
 // retain their own masks; independent shadows are exported before receiver clipping.
 function exportScript(document: string, directory: string, materialSelection: Awaited<ReturnType<typeof headMaterialSelection>>): string {
   return `from krita import Krita
-from PyQt5.QtGui import QImage
 import os, json, re
 config = json.loads(${JSON.stringify(JSON.stringify({ document, directory, ...materialSelection }))})
 doc = Krita.instance().openDocument(config['document'])
@@ -59,15 +58,8 @@ try:
             original[key] = node.visible()
             collect(node, path + [index])
     collect(doc.rootNode(), [])
-    for key in config['shadowLayerUuids']:
-        if key in nodes:
-            nodes[key][0].setVisible(False)
-    doc.refreshProjection()
-    doc.waitForDone()
     seen = set()
     selections = {row['uuid']: row for row in config['selections']}
-    for folder in ('layers', 'reference-layers', 'shadow-layers'):
-        os.makedirs(os.path.join(config['directory'], folder), exist_ok=True)
     for key, entry in nodes.items():
         if key not in selections:
             continue
@@ -78,23 +70,14 @@ try:
         if w <= 0 or h <= 0:
             continue
         is_shadow = row.get('role') == 'shadow'
-        raw = node.pixelData(x, y, w, h) if is_shadow else node.projectionPixelData(x, y, w, h)
-        if len(raw) != w * h * 4:
-            raise RuntimeError('Invalid RGBA/U8 pixels: ' + row['id'])
-        image = QImage(raw, w, h, QImage.Format_ARGB32).copy()
         order = len(parts) + len(references) + len(shadows)
         name = row['id']
         if not is_shadow and name in seen:
             raise RuntimeError('Duplicate semantic id: ' + name)
         if not is_shadow:
             seen.add(name)
-        filename = str(order).zfill(4) + '-' + re.sub(r'[^A-Za-z0-9_-]', '_', name.replace('/', '__').replace('::', '--')) + '.png'
-        folder = 'shadow-layers' if is_shadow else 'layers' if row['scope'] == 'face' else 'reference-layers'
-        texture = folder + '/' + filename
-        if not image.save(os.path.join(config['directory'], texture), 'PNG'):
-            raise RuntimeError('PNG export failed: ' + name)
         record = dict(row, id=name, group=name.rsplit('/', 1)[0] if '/' in name else 'body',
-            texture=texture, textureBounds=[x,y,w,h], bbox=[x,y,x+w,y+h],
+            textureBounds=[x,y,w,h], bbox=[x,y,x+w,y+h],
             layerName=node.name(), nodeType=node.type(), parentUuid=parent.uniqueId().toString(),
             order=order, stackPath=stack, visible=original[key], layerOpacity=node.opacity(), blendingMode=node.blendingMode())
         record.pop('role', None)
@@ -182,11 +165,6 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   const axis = box.x + box.size / 2;
   if (!(axis > 0 && axis < width)) throw Error('neutral：axis 须在原始画布内');
   if (!Array.isArray(exported.parts) || !Array.isArray(exported.referenceLayers)) throw Error('neutral：导出缺少图层 metadata');
-  for (const layer of [...exported.parts, ...exported.referenceLayers, ...exported.shadowLayers ?? []]) {
-    const meta = await sharp(join(output, layer.texture)).metadata();
-    if (meta.width !== layer.textureBounds[2] || meta.height !== layer.textureBounds[3])
-      throw Error(`neutral：原图层 PNG 尺寸不一致：${layer.id}`);
-  }
   // Identical to importParts initialization, without compileHead's mirror or
   // anatomical ordering rules. Original metadata and pixels remain untouched.
   const parts = exported.parts.toReversed().map(layer => {
@@ -203,21 +181,12 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
     notes: '原 KRA immutable neutral；原图 identity 网格，X/Y 尚未制作。各方向须独立克隆。', deformers: [], parts };
   validateHeadNineAxis(doc);
   for (const part of parts) checkWarpGeometry(part);
-  // Full canvas, extended for any original off-canvas pixels. box is only the
-  // workbench view; neither original PNGs nor the full face preview use its crop.
-  const x0 = Math.min(0, ...parts.map(p => p.bbox[0])), y0 = Math.min(0, ...parts.map(p => p.bbox[1]));
-  const x1 = Math.max(width, ...parts.map(p => p.bbox[2])), y1 = Math.max(height, ...parts.map(p => p.bbox[3]));
-  const preview = join(output, 'original-full-face.png');
-  await sharp({ create: { width: x1 - x0, height: y1 - y0, channels: 4, background: '#00000000' } })
-    .composite(parts.map(p => ({ input: join(output, p.texture), left: p.textureBounds[0] - x0, top: p.textureBounds[1] - y0 })))
-    .png().toFile(preview);
   const manifest: NeutralManifest = { version: 1, sourceKra: doc.source.document,
     sourceColor: toTaskPath(root, color), canvas: [width, height],
-    method: 'Authored part/UUID selection; base projection with own masks; independent shadow pixels before receiver clipping; original bounds; no view crop',
-    order: 'top-to-bottom', parts: exported.parts, referenceLayers: exported.referenceLayers, shadowLayers: exported.shadowLayers ?? [],
-    preview: { texture: 'original-full-face.png', textureBounds: [x0, y0, x1 - x0, y1 - y0] } };
+    method: 'Saved KRA layer UUIDs and metadata only; no pixel export',
+    order: 'top-to-bottom', parts: exported.parts, referenceLayers: exported.referenceLayers, shadowLayers: exported.shadowLayers ?? [] };
   signal?.throwIfAborted();
-  const textures = new Map(parts.map(p => [p.texture, join(output, p.texture)]));
+  const textures = new Map<string,string>();
   await writeBuilt(output, { doc, textures });
   const manifestPath = join(output, 'head_parts_manifest.json');
   await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
@@ -229,5 +198,5 @@ export async function prepareNeutral(directory: string, input: HeadInput, krita:
   const source = { sourceDocument: doc.source.document, sourceColor: manifest.sourceColor };
   await writeFile(sourcePath, JSON.stringify({ version: 1, ...source }, null, 2) + '\n');
   return { doc: freeze(doc), textures, directory: output, path: join(output, 'deformers.json'),
-    manifest: freeze(manifest), manifestPath, exportRecordPath, sourcePath, source: freeze(source), preview };
+    manifest: freeze(manifest), manifestPath, exportRecordPath, sourcePath, source: freeze(source) };
 }

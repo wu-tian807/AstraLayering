@@ -5,6 +5,7 @@ import { mkdtemp, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sharp from 'sharp';
+import {zipSync,strToU8} from 'fflate';
 import { createHeadEditTool } from '../edit-tool.ts';
 import { buildHead, mirrorHierarchy, type FaceLeft } from '../head.ts';
 import { evaluatePoints } from '../../shared/nine-axis-model.js';
@@ -24,6 +25,7 @@ test('edit tool imports source textures, persists artist groups, previews revisi
   const dir=join(root,'nine-axis/step04_angles');await mkdir(join(dir,'layers'),{recursive:true});
   const color=join(root,'source.png'),document=join(root,'source.kra');await writeFile(document,'source');
   await sharp({create:{width:200,height:200,channels:4,background:'#fff'}}).png().toFile(color);
+  await writeFile(document,zipSync({'maindoc.xml':strToU8('<DOC/>'),'mergedimage.png':await readFile(color)}));
   await sharp({create:{width:1,height:1,channels:4,background:'#fff'}}).png().toFile(join(dir,'layers/a.png'));
   const tool=createHeadEditTool(dir,{color,document} as any,{x:0,y:0,size:200}),signal=new AbortController().signal;
   const read = (r: any) => JSON.parse(r.contentItems[0].text);

@@ -1,43 +1,42 @@
 # 九轴工程引用与预览
 
-画稿来源是保存的 KRA；作者 JSON 保存图层绑定、层级、裁切与累计变形。PNG 是固定面部制作素材、渲染缓存或导出交付，不能代替画稿来源。KRA 保持可编辑的静止素材，不烘入某个转头姿态。
+画稿只引用保存的 KRA 与图层 UUID。作者 JSON 保存网格、关键形、层级、裁切和部件关系，不保存派生 PNG 路径。`textureBounds` 是原画布上的取样区域，`bbox` 是网格范围，都不是素材文件。KRA 保持静止画稿；JSON 在渲染时应用一次，不把转头姿态烘入 KRA。
 
-## 各阶段的上下文
+## 各阶段
 
-| 阶段 | KRA | edit_nine_axis | view_nine_axis |
-| --- | --- | --- | --- |
-| step01_preparation | 直接引用已完成 shadow，否则 assembly | 程序整理 UUID、原始范围和固定 neutral，无编辑 agent | 发布未制作角度的 neutral |
-| step02_video、step03_frames、step05_frames | 沿用来源，不复制工程 | 使用视频／选帧工具 | 不提供九轴工具 |
-| step04_angles/model/left | 同一来源 KRA | face-left.json；固定素材，制作左形，镜像右形 | 当前左右及中间值，不引入兄弟作者 |
-| step04_angles/model/up、down | 同一来源 KRA | 独立 face-up.json／face-down.json，各从 neutral 开始 | 对应方向及中间值，不混入兄弟作者 |
-| step04_angles/model | 同一来源 KRA | 程序合并，不加 maker | 保留独立作者函数的单轴模型 |
-| step06_angle-xy | 继承合并模型的 KRA | face-xy.json；补左上／左下，镜像右侧，保护单轴 | 全部单轴、四角和中间值 |
-| step07_jaw-line | 建立本步可编辑 KRA | Krita 保存画稿；jaw.json 绑定 UUID、设置蒙版和变形 | 当前 KRA + 全部继承形变 + 本步处理 |
+| 阶段 | 工程与制作范围 |
+| --- | --- |
+| step01_preparation | 引用 shadow，缺省 assembly；只查询图层 UUID、原始范围、顺序与投影关系，建立 neutral，不读取像素、不复制 KRA |
+| step04_angles/model/left、up、down | 各从 neutral 独立克隆几何与绑定，不复制素材；脸部画稿和图层绑定固定 |
+| step04_angles/model | 合并独立轴，保留三份作者函数，不读取或复制像素 |
+| step06_angle-xy | 继承合并模型，补组合关键形，保护单轴 |
+| step07_jaw-line | 首次建立本步可编辑 KRA；Krita 保存画稿，jaw.json 绑定真实 UUID |
+| step08_hair | left＋right，Y=0；首次复制上游实际 KRA，同一会话按操作依次派发前发、侧发、后发与整体协调 |
 
-调度绑定作者文件、上游模型、KRA 来源、输出位置和权限，agent 不根据文件时间寻找工程。面部阶段禁止换图层绑定，保持固定静止素材与导出；下颌线阶段才开放 Krita 修改。
+调度绑定当前作者、上游模型、KRA 和编辑/预览范围，不按文件修改时间寻找工程。`source.document` 指定实际 KRA；切换画稿所有权时，`source.geometryDocument` 保留单轴几何的来源，`axisSources` 保留独立作者函数。
 
-## 来源链
+头发使用 step08_hair 的一个持久化 thread。agent 在 Krita 确认当前需要的图层与对应投影，显式注册 UUID，描边后用 edit 制作 X 轴形变；不提供 fit。编辑、单帧及多帧预览均限制 Y=0，新头发节点不生成 Y/XY 关键形，保存时拒绝越界数据。上游脸部的已有 Y/XY 几何保持原样，仅本步暴露的 Y 参数固定为 0。
 
-shadow KRA → neutral → 三个独立轴 → merged → face-xy.json → 本步新 KRA + jaw.json。
+`agent.json initial` 只派发前发。检查通过且交付齐全后保存 `hair-progress.json`，本次操作结束；下次继续时，程序读取下一轮提示词，通过同一个通用 session 发送到原 thread。侧发只编辑自己的节点，保留前发与脸部；后发轮可协调前发、侧发、后发及关联阴影，保护脸部和其他内容。所有轮次允许在自己的编辑范围内按需修改 KRA，后发不强制改画稿；后发小幅形变与遮挡显露是拟合参考的优先方法。
 
-source.document 是当前阶段实际读取的 KRA，路径以任务根目录为基准。切换画稿后，source.geometryDocument 保留原始单轴几何来源，axisSources 的独立作者快照继续保留。不能为了换画稿而重写历史几何，也不能依次重复应用历史 JSON。
+前发、侧发完成时不完成整个步骤；最后一轮检查通过且交付齐全后记录 `completed:["front","side","back"], next:"done"`，才标记步骤完成。交付缺失会拦截续轮，中断仍继续尚未通过的轮次。继续保留工程与 thread，恢复换 thread 但保留产物，重试重做本步。
 
-准备不生成 character-nine-axis.kra／character-nine-axis.png。source-composite.png 从 KRA 的 mergedimage 取得，用于视频输入；layers/ 是固定 neutral 素材。下颌线交付包含本步 KRA、对应合成图、绑定记录和完整模型。
+## 绑定与读取
 
-旧交付保留兼容：旧下颌线的本步 KRA 优先于遗留的准备来源，export-record 的 UUID 映射可恢复到模型。不会自动删除旧工程。新增绑定写进 JSON。
+`edit_nine_axis {}` 返回模型索引和已保存 KRA 目录/关系。目录提供候选，不自动挑选制作对象。`add_part` 接受 UUID 与网格范围，不要求 PNG；`bindings` 重绑已有节点。纯构造节点使用 `material="transparent"`。关联节点的分组、重挂、显示/隐藏均由明确的 targets、only、hidden 或现有父子关系决定，不自动捎带投影。
 
-## 图层绑定与渲染
+独立投影通过 `shadow.casters`、`shadow.receivers` 和 `clip.by` 关联已有部件。它读取 KRA 的原始投影像素、混合模式与不透明度，在渲染时按变形后的接收部件裁切。投影可以共享父 Warp，也可独立修正；不会复制投射部件的局部网格。
 
-部件 uuid 指向原生图层；textureBounds=[x,y,width,height] 是整数像素导出范围。已有绑定优先，兼容缺失绑定时沿用上游部件／阴影 UUID 关系，最后才尝试唯一名称匹配。不存在或有歧义时报错，不读取旧 PNG 顶替。
+KraMaterials 为 view、fit 的图像检查和工作台提供统一读取。只有需要图像时才从保存的 KRA 取像素；缓存键包含 KRA 内容哈希、UUID、取样范围和读取方式。多帧共用同一 KRA/JSON 快照。KRA 保存后失效旧缓存，导出期间版本变化则拒绝混用。缺失/歧义 UUID 报错，不读取旧 PNG 顶替。
 
-下颌线通过 bindings:[{id,uuid}] 重绑；add_part.part 也可携带 uuid。无画面内容的构造部件显式标记 material="transparent"。Krita 修改像素，edit 工具处理绑定、网格和累计 JSON，并导出 layers/。
+旧交付可以通过已有 UUID、旧绑定记录及唯一名称恢复原生引用。旧图片工程仍保留读取兼容；新 KRA 产物不依赖 layers/，缓存清空后能由 KRA 与 JSON 重建。历史工程不会被迁移测试覆盖。
 
-KraMaterials 由正式 agent 工具和工作台共用。缓存键包含 KRA 内容哈希、绑定、裁框与导出规则；保存或绑定变化后重新导出，同内容复用缓存，不反复启动 Krita。导出过程中 KRA 变化则拒绝混用版本。工作台的刷新版本同时包含 JSON 和 KRA 保存状态，单独保存 KRA 也会刷新。
+`source-composite.png`、视频输入和预览 PNG 是工具输出或参考，不是画稿来源。最终交付可保留检查图、视频和完整合成图。
 
-预览加入未变形的头发和头饰，依据原生图层顺序插入，保留 JSON 部件的相对绘制顺序。已绑定发片沿用累计形变，不再补静态副本。静态参考 id 为 __kra__/<uuid>，不写回作者 JSON，也不作为可编辑关键形。
+## 预览与验收
 
-## 多帧与验证基线
+当前累计 JSON 已包含上游形变，渲染时不重复叠加历史 JSON。脸部阶段可用未绑定的静态图层辅助观察；头发制作的默认范围是已完成脸部、此前完成的发片与本轮明确注册的发片/投影，未制作发片和头饰不参与判断。
 
-frames:[{x:0,y:0},{x:-15,y:0},{x:-30,y:0}] 一次解析 KRA 和累计模型，共用浏览器会话，输出单帧路径、各帧网格和拼图。每帧可指定 reference；edge／blend、only／hidden、grid、crop 继续可用。
+`frames` 输出同一版本的端点、中间值及拼图；`only`/`hidden`、网格、edge 与原色预览只改变查看方式。参考叠加仅提供 edge。工作台与 agent 使用相同的原生读取及渲染器。
 
-读取正确与造型正确分别验证。某阶段尚未含头发变形时，静态头发只代表该阶段，不能代替后续已完成头发版本验收。对照已确认版本时，同时沿用该版本的累计模型与实际画稿，检查眼睛等已有部件的几何、可见像素和遮挡关系没有退化。
+回归检查必须保持相同 KRA、累计阶段、坐标与显示范围。将 KRA 部件改为纯 UUID 引用并清空素材目录后，对比脸部端点、俯仰、四角和中间值；几何/像素未退化后才重跑制作。造型是否合格另行看原色、轮廓、内部纹理、投影及运动，不能以文件或网格校验代替。

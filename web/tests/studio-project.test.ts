@@ -9,6 +9,7 @@ import { studioArtifacts } from "../../.agents/skills/live2d-maker/shared/studio
 import { steps } from "../../.agents/skills/live2d-maker/character-assembly/steps.ts";
 import { shadowArtifacts } from '../../.agents/skills/live2d-maker/shared/shadow.ts';
 import { previousNineAxisArtifacts as nineAxisArtifacts, legacyNineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisArtifacts as currentNineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import sharp from 'sharp';
 
 async function fixture(t: any) {
@@ -48,6 +49,26 @@ async function fixture(t: any) {
   };
   return { root, dir, name, project, base, get, put, completeAngles };
 }
+test('the unfinished front round previews its own KRA and cumulative model while jaw remains selectable', async t => {
+  const f = await fixture(t), paths = currentNineAxisArtifacts;
+  await f.put(paths.neutralDeformers, '{}');
+  await f.put(paths.jawLineDocument, 'upstream artwork');
+  await f.put(paths.jawLineDeformers, JSON.stringify({ source: { document: paths.jawLineDocument } }));
+  await f.put(paths.hairDocument, 'front artwork');
+  await f.put(paths.hairDeformers, JSON.stringify({ source: { document: paths.hairDocument } }));
+  await f.put('nine-axis/step08_hair/.running', '');
+  await f.put('nine-axis/step08_hair/hair-progress.json', JSON.stringify({ version: 1, completed: ['front'], next: 'side' }));
+  const front = await (await f.get()).json() as any;
+  assert.equal(front.nineAxis.stage, 'hair');
+  assert.equal(front.nineAxis.path, paths.hairDeformers);
+  assert.equal(front.files.document.path, paths.hairDocument);
+  assert.equal(front.nineAxisDocument, true);
+  assert.equal(front.files.color.available, false, 'the KRA remains usable without a composite PNG');
+  const jaw = await (await f.get({ nineStage: 'jaw' })).json() as any;
+  assert.equal(jaw.files.document.path, paths.jawLineDocument);
+  await f.put(paths.hairDocument, 'saved front artwork');
+  assert.notEqual((await (await f.get()).json() as any).nineAxis.version, front.nineAxis.version);
+});
 test("Project preview reads only the fixed assembly and lighting outputs; absent maps are pending", async (t) => {
   const f = await fixture(t);
   await f.put("backups/character-assembled.kra");
@@ -306,7 +327,7 @@ test('Nine-axis links select independent children; Y selects the parent merge', 
   for (const nineStage of ['invalid', 'toString', '__proto__', 'nine-axis/step04_angle-up/deformers.json']) {
     const response = await f.get({ nineStage });
     assert.equal(response.status, 400);
-    assert.match((await response.json() as any).error, /x、up、down、y、xy 或 jaw/);
+    assert.match((await response.json() as any).error, /x、up、down、y、xy、jaw 或 hair/);
   }
 });
 

@@ -9,18 +9,19 @@ import sharp from 'sharp';
 const [repo, task] = process.argv.slice(2);
 const bangsLeft = process.argv[4] === 'bangs-left';
 const sideHairLeft = process.argv[4] === 'side-hair-left';
-const leftOnly = bangsLeft || sideHairLeft;
+const backHairLeft = process.argv[4] === 'back-hair-left';
+const leftOnly = bangsLeft || sideHairLeft || backHairLeft;
 if (!repo || !task) throw new Error('Pass repository and task directories.');
 const output = join(task, 'nine-axis/step08_hair');
 const shared = join(repo, '.agents/skills/live2d-maker/shared');
 const three = dirname(fileURLToPath(import.meta.resolve('three')));
 const doc = JSON.parse(await readFile(process.argv[6] ?? join(output, 'deformers.json'), 'utf8'));
 const frame = bangsLeft ? { x0: 550, y0: 175, width: 335, height: 395 }
-  : sideHairLeft ? { x0: 460, y0: 175, width: 500, height: 570 } : { x0: 444, y0: 155, width: 530, height: 650 };
-const width = 572, height = bangsLeft ? 674 : sideHairLeft ? 652 : 702;
-const prefix = process.argv[5] ?? (bangsLeft ? 'left-bangs' : sideHairLeft ? 'left-side-hair' : 'hair-left-right');
+  : sideHairLeft || backHairLeft ? { x0: 460, y0: 175, width: 500, height: 570 } : { x0: 444, y0: 155, width: 530, height: 650 };
+const width = 572, height = bangsLeft ? 674 : sideHairLeft || backHairLeft ? 652 : 702;
+const prefix = process.argv[5] ?? (bangsLeft ? 'left-bangs' : sideHairLeft ? 'left-side-hair' : backHairLeft ? 'left-back-hair' : 'hair-left-right');
 if (!/^[a-z0-9-]+$/.test(prefix)) throw new Error('Preview name must use lowercase letters, numbers or hyphens.');
-const poseFile = x => join(output, sideHairLeft ? `${prefix}-x${x}.png` : `preview-x${x}.png`);
+const poseFile = x => join(output, sideHairLeft || backHairLeft ? `${prefix}-x${x}.png` : `preview-x${x}.png`);
 const frames = join(output, `workspace/${prefix}-frames`);
 await mkdir(frames, { recursive: true });
 const origin = 'http://hair-preview.local';
@@ -32,13 +33,14 @@ background-size:24px 24px;background-position:0 0,12px 12px}canvas{display:block
 <body><div id="view"><canvas></canvas></div><script type="module">
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from '/nine-axis-render.js';
 try {
- const {doc,frame,bangsLeft,sideHairLeft}=await (await fetch('/args.json')).json();
+ const {doc,frame,bangsLeft,sideHairLeft,backHairLeft}=await (await fetch('/args.json')).json();
  const images=await Promise.all(doc.parts.map(async(p,i)=>createNineAxisBitmap(await(await fetch('/texture/'+i)).blob())));
  const view=new HeadNineAxisRenderer(document.querySelector('canvas'));
  view.renderer.setPixelRatio(1);view.renderer.setSize(${width},${height},false);view.install(doc,images);
  const shown=shownParts(doc,'hair');
  if(bangsLeft)for(const p of doc.parts)if(p.id.startsWith('hair/')&&p.id!=='hair/bangs')shown.delete(p.id);
  if(sideHairLeft)for(const p of doc.parts)if(p.id==='hair/back_hair'||p.id.startsWith('hair/braid'))shown.delete(p.id);
+ if(backHairLeft)for(const p of doc.parts)if(p.id.startsWith('hair/braid'))shown.delete(p.id);
  window.draw=async x=>{view.draw(frame,x,0,shown);await new Promise(requestAnimationFrame)};
  await window.draw(0);window.ready='ok';
 }catch(error){window.ready=String(error?.stack??error)}
@@ -49,7 +51,7 @@ try {
  await page.route(origin + '/**', async route => {
   const path = new URL(route.request().url()).pathname;
   if (path === '/') return route.fulfill({ contentType: 'text/html', body: html });
-  if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, frame, bangsLeft, sideHairLeft }) });
+  if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, frame, bangsLeft, sideHairLeft, backHairLeft }) });
   if (path.startsWith('/texture/')) return route.fulfill({ contentType: 'image/png', body: await readFile(join(output, doc.parts[Number(path.slice(9))].texture)) });
   if (path === '/three.module.js' || path === '/three.core.js') return route.fulfill({ contentType: 'text/javascript', body: await readFile(join(three, path)) });
   if (path === '/nine-axis-render.js' || path === '/nine-axis-model.js') return route.fulfill({ contentType: 'text/javascript', body: await readFile(join(shared, path)) });
@@ -71,7 +73,7 @@ try {
   await page.locator('#view').screenshot({ path: join(frames, `frame${String(i).padStart(3, '0')}.png`) });
  }
 } finally { await browser.close(); }
-const titles = leftOnly ? ['Reference', 'Neutral', sideHairLeft ? 'Left side hair' : 'Left bangs'] : ['left', 'neutral', 'right'];
+const titles = leftOnly ? ['Reference', 'Neutral', backHairLeft ? 'Left with back hair' : sideHairLeft ? 'Left side hair' : 'Left bangs'] : ['left', 'neutral', 'right'];
 const reference = leftOnly ? await sharp(join(output, 'references/left.png')).extract({ left: frame.x0 - 319, top: frame.y0 + 21, width: frame.width, height: frame.height }).resize(width, height).png().toBuffer() : undefined;
 const label = Buffer.from(`<svg width="${width * 3}" height="${height + 30}"><g fill="white" font-family="sans-serif" font-size="17">${titles.map((title, i) => `<text x="${width * i + 12}" y="22">${title}</text>`).join('')}</g></svg>`);
 await sharp({ create: { width: width * 3, height: height + 30, channels: 4, background: '#20242b' } }).composite([

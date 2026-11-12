@@ -15,9 +15,9 @@ const vertexShader = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projection
 // offscreen target of the canvas size; a clipped part multiplies its alpha by
 // that coverage, or by 1 − coverage when inverted. In the mask pass a part writes
 // only its alpha, so overlapping sources add up to their union.
-const fragmentShader = 'uniform sampler2D map;uniform sampler2D clip;uniform float dim;uniform float clipMode;uniform float maskPass;uniform float tint;uniform vec2 res;varying vec2 vUv;'
+const fragmentShader = 'uniform sampler2D map;uniform sampler2D clip;uniform float dim;uniform float paintOpacity;uniform float clipMode;uniform float maskPass;uniform float tint;uniform vec2 res;varying vec2 vUv;'
   + 'void main(){if(any(lessThan(vUv,vec2(0.0)))||any(greaterThan(vUv,vec2(1.0))))discard;vec4 c=texture2D(map,vUv);if(c.a<0.002)discard;'
-  + 'if(maskPass>0.5){gl_FragColor=vec4(c.a);return;}float opacity=dim;if(clipMode>0.5){float m=texture2D(clip,gl_FragCoord.xy/res).a;opacity*=clipMode>1.5?1.0-m:m;}'
+  + 'if(maskPass>0.5){gl_FragColor=vec4(c.a*paintOpacity);return;}float opacity=dim*paintOpacity;if(clipMode>0.5){float m=texture2D(clip,gl_FragCoord.xy/res).a;opacity*=clipMode>1.5?1.0-m:m;}'
   + 'gl_FragColor=vec4(mix(c.rgb,vec3(0.25,0.85,1.0)*c.a,tint)*opacity,c.a*opacity);}';
 const clipKey = p => p.clip.by.join('|');
 
@@ -49,7 +49,7 @@ export class HeadNineAxisRenderer {
       g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(new THREE.BufferAttribute(meshIndices(p.cols * SUB, p.rows * SUB), 1));
       const t = new THREE.Texture(images[order]); t.flipY = false; t.colorSpace = THREE.NoColorSpace; t.premultiplyAlpha = false;
       t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; t.needsUpdate = true;
-      const m = new THREE.Mesh(g, new THREE.ShaderMaterial({ uniforms: { map: { value: t }, dim: { value: 1 }, clip: { value: null }, clipMode: { value: 0 }, maskPass: { value: 0 }, tint: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } }, vertexShader, fragmentShader,
+      const m = new THREE.Mesh(g, new THREE.ShaderMaterial({ uniforms: { map: { value: t }, dim: { value: 1 }, paintOpacity: { value: p.shadow?.opacity ?? 1 }, clip: { value: null }, clipMode: { value: 0 }, maskPass: { value: 0 }, tint: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } }, vertexShader, fragmentShader,
         transparent: true, depthTest: false, depthWrite: false, blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor, premultipliedAlpha: true }));
       m.renderOrder = order; m.frustumCulled = false; this.scene.add(m); this.meshes.set(p.id, m);
     });
@@ -68,6 +68,7 @@ export class HeadNineAxisRenderer {
       m.geometry.attributes.position.needsUpdate = true;
       const u = m.material.uniforms, mask = p.role === 'mask';
       u.tint.value = mask ? 1 : 0; u.dim.value = (mask ? .55 : 1) * dim(p);
+      u.paintOpacity.value = p.shadow?.opacity ?? 1;
     }
     const size = this.renderer.getDrawingBufferSize(new THREE.Vector2()), keys = new Map(clipped.map(p => [clipKey(p), p.clip.by]));
     for (const [key, t] of this.targets) if (!keys.has(key)) { t.dispose(); this.targets.delete(key); }
@@ -75,12 +76,21 @@ export class HeadNineAxisRenderer {
       let t = this.targets.get(key);
       if (!t) this.targets.set(key, t = new THREE.WebGLRenderTarget(size.x, size.y, { depthBuffer: false }));
       else if (t.width !== size.x || t.height !== size.y) t.setSize(size.x, size.y);
-      for (const [id, m] of this.meshes) { m.visible = by.includes(id); m.material.uniforms.maskPass.value = 1; }
+      for (const [id, m] of this.meshes) {
+        m.visible = by.includes(id); m.material.uniforms.maskPass.value = 1;
+        m.material.blendSrc = THREE.OneFactor; m.material.blendDst = THREE.OneMinusSrcAlphaFactor;
+        m.material.blendSrcAlpha = THREE.OneFactor; m.material.blendDstAlpha = THREE.OneMinusSrcAlphaFactor;
+      }
       this.renderer.setRenderTarget(t); this.renderer.render(this.scene, this.camera);
     }
     this.renderer.setRenderTarget(null);
     for (const p of this.doc.parts) {
       const m = this.meshes.get(p.id), u = m.material.uniforms; m.visible = shown.has(p.id); u.maskPass.value = 0;
+      m.material.blendSrc = p.shadow?.blendMode === 'multiply' ? THREE.DstColorFactor : THREE.OneFactor;
+      m.material.blendDst = THREE.OneMinusSrcAlphaFactor;
+      // A receiver-clipped shadow shades existing paint without changing its silhouette.
+      m.material.blendSrcAlpha = p.shadow ? THREE.ZeroFactor : THREE.OneFactor;
+      m.material.blendDstAlpha = p.shadow ? THREE.OneFactor : THREE.OneMinusSrcAlphaFactor;
       u.clipMode.value = shown.has(p.id) && p.clip && !(p.role === 'mask') ? (p.clip.invert ? 2 : 1) : 0;
       if (u.clipMode.value) { u.clip.value = this.targets.get(clipKey(p)).texture; u.res.value.copy(size); }
     }

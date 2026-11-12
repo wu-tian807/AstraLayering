@@ -9,7 +9,7 @@ export const exists = (file: string) => access(file).then(() => true, error => {
 /** Sources follow stage provenance, never file modification order. The local
  * jaw document is also understood for deliveries made before source was fixed. */
 export async function modelDocument(root: string, directory: string, doc: HeadNineAxis): Promise<string | undefined> {
-  if (['step07_jaw-line', 'step04_jaw-line'].includes(basename(directory)) && await exists(editableKra(directory))) return editableKra(directory);
+  if (['step07_jaw-line', 'step04_jaw-line', 'step08_hair'].includes(basename(directory)) && await exists(editableKra(directory))) return editableKra(directory);
   return doc.source?.document ? fromTaskPath(root, doc.source.document) : undefined;
 }
 

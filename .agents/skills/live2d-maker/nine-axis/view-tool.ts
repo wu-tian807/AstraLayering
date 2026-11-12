@@ -7,7 +7,7 @@ import { toolDefinition } from '../shared/codex/tool-config.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { fromTaskPath, taskRootOf, toAgentPath } from '../shared/task-paths.ts';
 import sharp from 'sharp';
-import { validateHeadNineAxis, keyformAt, evaluatePoints, nodes, descendants } from '../shared/nine-axis-model.js';
+import { validateHeadNineAxis, keyformAt, evaluatePoints, nodes, descendants, type HeadDeformer } from '../shared/nine-axis-model.js';
 import type { Built } from './head.ts';
 import type { MaterialBuilt } from './kra-materials.ts';
 
@@ -27,11 +27,11 @@ const page = (width: number, height: number, overlay: string) => `<!doctype html
 <script type="importmap">{"imports":{"three":"/three.module.js"}}</script></head><body><div id="view"><img id="reference"/><canvas></canvas>${overlay}</div><script type="module">
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from '/nine-axis-render.js';
 try {
-  const { doc, x, y, level, masks, only, hidden, frame, mode } = await (await fetch('/args.json')).json();
+  const { doc, x, y, level, masks, only, hidden, allowed, frame, mode } = await (await fetch('/args.json')).json();
   const images = await Promise.all(doc.parts.map(async (p, i) => createNineAxisBitmap(await (await fetch('/texture/' + i)).blob())));
   const view = new HeadNineAxisRenderer(document.querySelector('canvas'));
   view.renderer.setPixelRatio(1); view.renderer.setSize(${width}, ${height}, false);
-  view.install(doc, images); const shown = shownParts(doc, level, { masks: new Set(masks), hidden: new Set(hidden) });
+  view.install(doc, images); const shown = new Set([...shownParts(doc, level, { masks: new Set(masks), hidden: new Set(hidden) })].filter(id => allowed.includes(id)));
   view.draw(frame, x, y, only.length ? new Set([...shown].filter(id => only.includes(id))) : shown);
   if (mode === 'edge') window.modelPng = document.querySelector('canvas').toDataURL('image/png');
   await new Promise(requestAnimationFrame); window.rendered = 'ok';
@@ -57,21 +57,33 @@ async function silhouette(png: Buffer, scale: number): Promise<Buffer> {
   return sharp(pixels, { raw: { width, height, channels: 4 } }).png().toBuffer();
 }
 
-export function createNineAxisViewTool(directory: string, observationDirectory: string, build: () => Promise<Built>, session?: Browser): FunctionTool {
+export type PreviewScope = {
+  includes: (part: HeadDeformer) => boolean;
+  allowsPose?: (x: number, y: number) => boolean;
+  label?: string;
+};
+export function createNineAxisViewTool(directory: string, observationDirectory: string, build: () => Promise<Built>, session?: Browser, scope?: PreviewScope): FunctionTool {
   return {
     ...toolDefinition('view_nine_axis'),
     async execute(value, signal, context) {
       if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('参数须为对象');
+      if ((value as Args).mode !== undefined && (value as Args).mode !== 'edge') throw new Error('叠加比较仅支持 mode=edge；原色预览请省略 mode 和 reference');
+      const checkPose = (frame: Args) => {
+        const x = frame.x ?? 0, y = frame.y ?? 0;
+        if (typeof x !== 'number' || !Number.isFinite(x) || typeof y !== 'number' || !Number.isFinite(y)) throw Error('x/y 须为有限数字');
+        if (scope?.allowsPose && !scope.allowsPose(x,y)) throw Error(scope.label ?? '该角度不在当前步骤的预览范围内');
+      };
       if ((value as Args).frames !== undefined) {
         const { frames, x, y, ...common } = value as Args;
         if (x !== undefined || y !== undefined) throw Error('frames 和顶层 x/y 不能同时使用');
         if (!Array.isArray(frames) || !frames.length || frames.length > 16 || frames.some(f => !f || typeof f !== 'object' || Array.isArray(f))) throw Error('frames 须为 1 至 16 个 {x,y,reference?}');
+        for (const frame of frames) checkPose(frame);
         // Resolve KRA and the cumulative model exactly once for the whole batch.
         const snapshot = await build() as MaterialBuilt;
         const results: any[] = [];
         const browser = session ?? await chromium.launch({ args: browserArgs });
         try {
-          const single = createNineAxisViewTool(directory, observationDirectory, async () => snapshot, browser);
+          const single = createNineAxisViewTool(directory, observationDirectory, async () => snapshot, browser, scope);
           for (const frame of frames) {
             signal.throwIfAborted();
             if (Object.keys(frame).some(key => !['x', 'y', 'reference'].includes(key))) throw Error('frame 只接受 x、y、reference');
@@ -96,9 +108,9 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
           { type: 'inputImage', imageUrl: `data:image/png;base64,${sheet.toString('base64')}` },
         ] };
       }
-      const args = value as Args, mode = args.mode ?? (args.reference === undefined ? 'blend' : 'edge');
-      if (mode !== 'blend' && mode !== 'edge') throw new Error('mode 须为 blend 或 edge');
-      if (mode === 'edge' && args.reference === undefined) throw new Error('mode=edge 须提供 reference');
+      checkPose(value as Args);
+      const args = value as Args, mode = args.reference === undefined ? 'color' : 'edge';
+      if (args.mode === 'edge' && args.reference === undefined) throw new Error('mode=edge 须提供 reference');
       const built = await build() as MaterialBuilt, doc = validateHeadNineAxis(structuredClone(built.doc)) as Built['doc'] & {
         parameters?: Parameter[]; levels: { id: string }[]; view?: { x: number; y: number; width: number; height: number }; canvas: [number, number] };
       const angle = (v: unknown, id: string, name: string) => {
@@ -131,7 +143,10 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         reference = { path, bounds, bytes };
       }
       const allNodes = nodes(doc), partIds = new Set(allNodes.map(p => p.id)), gridIds = args.grid ?? [];
+      const allowed = doc.parts.filter(part => !scope || scope.includes(part)).map(part => part.id);
+      const available = (id: string) => [...descendants(doc,id)].some(child => allowed.includes(child));
       if (!Array.isArray(gridIds) || gridIds.some(g => !partIds.has(g))) throw new Error('grid 须为部件 id 列表');
+      if (scope && (gridIds as string[]).some(id => !available(id))) throw Error('grid 包含当前制作阶段尚未开放预览的部件');
       const curves = new Map<string, Float32Array>();
       const grids = (gridIds as string[]).map(id => {
         const p = allNodes.find(q => q.id === id)!, pts = evaluatePoints(doc, p, x, y), points: number[][] = [];
@@ -146,6 +161,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         return [...new Set(value.flatMap(id => [...descendants(doc, id)]))];
       };
       const only = selection(args.only, 'only'), hidden = selection(args.hidden, 'hidden');
+      if (scope && Array.isArray(args.only) && args.only.some(id => !available(id))) throw Error('only 包含当前制作阶段尚未开放预览的部件');
       const sx = (v: number) => ((v - x0) * scale).toFixed(1), sy = (v: number) => ((v - y0) * scale).toFixed(1);
       const overlay = grids.length ? `<svg width="${width}" height="${height}">${grids.map(({ id, cols, rows, points }) => {
         const curve = curves.get(id)!, c = cols * 5 + 1, at = (i: number) => `${sx(curve[i * 2])},${sy(curve[i * 2 + 1])}`;
@@ -154,7 +170,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         for (let i = 0; i <= cols; i++) { d += 'M'; for (let j = 0; j <= rows * 5; j++) d += at(j * c + i * 5) + ' '; }
         return `<path class="nine-grid" d="${d}"/><g class="nine-points">${points.map(([px, py]) => `<circle cx="${sx(px)}" cy="${sy(py)}" r="3"/>`).join('')}</g>`;
       }).join('')}</svg>` : '';
-      const textures = doc.parts.map(p => built.textures.get(p.texture)!);
+      const textures = doc.parts.map(p => built.textures.get(p.texture!)!);
       signal.throwIfAborted();
       const browser = session ?? await chromium.launch({ args: browserArgs });
       let tab: Page | undefined;
@@ -165,7 +181,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         await tab.route(origin + '/**', async route => {
           const path = new URL(route.request().url()).pathname, js = 'text/javascript';
           if (path === '/') return route.fulfill({ contentType: 'text/html', body: page(width, height, overlay) });
-          if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, x, y, level, masks, only, hidden, mode, frame: { x0, y0, width: cw, height: ch } }) });
+          if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, x, y, level, masks, only, hidden, allowed, mode, frame: { x0, y0, width: cw, height: ch } }) });
           if (path === '/reference.png' && reference) return route.fulfill({ contentType: 'image/png', body: reference.bytes });
           if (path.startsWith('/texture/')) return route.fulfill({ contentType: 'image/png', body: await readFile(textures[Number(path.slice(9))]) });
           if (path === '/three.module.js' || path === '/three.core.js') return route.fulfill({ contentType: js, body: await readFile(join(three, path)) });
@@ -187,18 +203,12 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
             document.querySelectorAll<HTMLElement>('canvas,svg').forEach(el => { el.style.visibility = 'hidden'; });
           }, { bounds: reference.bounds, crop: [x0, y0], scale });
           const target = await tab.locator('#view').screenshot({ type: 'png' });
-          let compared: Buffer;
-          if (mode === 'edge') {
-            const png = await tab.evaluate(() => (globalThis as { modelPng?: string }).modelPng!);
-            const edges = await silhouette(Buffer.from(png.split(',')[1], 'base64'), scale);
-            compared = await sharp(target).composite([{ input: edges }]).png().toBuffer();
-          } else {
-            await tab.evaluate(() => { const canvas = document.querySelector('canvas')!; canvas.style.visibility = 'visible'; canvas.style.opacity = '0.5'; });
-            compared = await tab.locator('#view').screenshot({ type: 'png' });
-          }
+          const png = await tab.evaluate(() => (globalThis as { modelPng?: string }).modelPng!);
+          const edges = await silhouette(Buffer.from(png.split(',')[1], 'base64'), scale);
+          const compared = await sharp(target).composite([{ input: edges }]).png().toBuffer();
           const axis = (doc as { axis?: number }).axis, guideX = axis === undefined ? undefined : (axis - x0) * scale;
           const guide = guideX !== undefined && guideX >= 0 && guideX < width ? `<path d="M ${guideX} 28 V ${height + 28}" stroke="#35c9ff" stroke-dasharray="5 5"/>` : '';
-          const label = mode === 'edge' ? 'Cyan silhouette / fixed front axis' : 'Overlay 50% / fixed front axis';
+          const label = 'Cyan silhouette / fixed front axis';
           const labels = Buffer.from(`<svg width="${width * 3}" height="${height + 28}"><g fill="white" font-family="sans-serif" font-size="14"><text x="8" y="19">Reference</text><text x="${width + 8}" y="19">Current X=${x}</text><text x="${width * 2 + 8}" y="19">${label}</text></g><g>${[0, width, width * 2].map(offset => `<g transform="translate(${offset},0)">${guide}</g>`).join('')}</g></svg>`);
           comparison = await sharp({ create: { width: width * 3, height: height + 28, channels: 4, background: '#20242b' } }).composite([
             { input: target, left: 0, top: 28 }, { input: data, left: width, top: 28 }, { input: compared, left: width * 2, top: 28 }, { input: labels, left: 0, top: 0 },
@@ -213,7 +223,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
       const comparisonPath = comparison ? join(destination, `${randomUUID()}-comparison.png`) : undefined;
       if (comparisonPath) await writeFile(comparisonPath, comparison!);
       return { success: true, contentItems: [
-        { type: 'inputText', text: JSON.stringify({ x, y, level: ids.includes(level) ? level : ids[0], document: built.sourceDocument ?? doc.source?.document, revision: built.sourceRevision, crop, scale, mode, width, height, savedPath: await toAgentPath(root, savedPath), ...(grids.length ? { grid: grids } : {}), ...(reference && comparisonPath ? { comparison: { savedPath: await toAgentPath(root, comparisonPath), reference: await toAgentPath(root, reference.path), bounds: reference.bounds, mode, ...(mode === 'edge' ? { edgeSource: 'visible alpha boundary; no grid or checkerboard', edgeColor: '#00cdff' } : {}), registration: 'none; same canvas coordinates', axis: (doc as { axis?: number }).axis } } : {}) }) },
+        { type: 'inputText', text: JSON.stringify({ x, y, level: ids.includes(level) ? level : ids[0], document: built.sourceDocument ?? doc.source?.document, revision: built.sourceRevision, crop, scale, mode, width, height, savedPath: await toAgentPath(root, savedPath), ...(grids.length ? { grid: grids } : {}), ...(reference && comparisonPath ? { comparison: { savedPath: await toAgentPath(root, comparisonPath), reference: await toAgentPath(root, reference.path), bounds: reference.bounds, mode: 'edge', edgeSource: 'visible alpha boundary; no grid or checkerboard', edgeColor: '#00cdff', registration: 'none; same canvas coordinates', axis: (doc as { axis?: number }).axis } } : {}) }) },
         { type: 'inputImage', imageUrl: `data:image/png;base64,${data.toString('base64')}` },
         ...(comparison ? [{ type: 'inputImage' as const, imageUrl: `data:image/png;base64,${comparison.toString('base64')}` }] : []),
       ] };

@@ -153,14 +153,14 @@ export async function runTask(options: TaskOptions, dependencies: {
     if (environment) {
       const standard = run.standard;
       await preflightAgentSteps(environment, selected.flatMap(id => id === 'nine-axis'
-        ? ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw'] as const
+        ? ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw', 'nine_axis_head_hair'] as const
         : sectionAgentSteps(id, standard, run!.shadowMode)), { runsRoot: dirname(directory), progress,
         building: () => { progress('准备中：构建补丁版 Codex，完成后自动开始；构建期间的停止请求在构建结束后生效。'); dependencies.preparing?.(run!); } });
     }
     signal.throwIfAborted();
     dependencies.ready?.(run);
     progress('总调度启动：' + directory + '；路线：' + routeText(selected));
-    const done = new Set<SectionId>(), prepared = new Set<SectionId>(), stopped = new Set<SectionId>();
+    const done = new Set<SectionId>(), prepared = new Set<SectionId>(), stopped = new Set<SectionId>(), unfinished = new Set<SectionId>();
     const errors: unknown[] = [];
     let delivered = -1;
     const reached = (dependency: { id: SectionId; prepared?: true }) => !selected.includes(dependency.id)
@@ -195,6 +195,11 @@ export async function runTask(options: TaskOptions, dependencies: {
           started: async pid => { (run!.runner!.childPids ??= {})[id] = pid; await persist(); },
           prepared: () => { if (!prepared.has(id)) { prepared.add(id); schedule(); } },
         });
+        if(result.completed===false) {
+          unfinished.add(id);
+          run!.sections[id]={status:'interrupted',updatedAt:now(),summary:result.summary};
+          progress(id+'：'+result.summary); return;
+        }
         run!.sections[id] = { status: 'completed', updatedAt: now(), summary: result.summary };
         // The delivery is the one of the furthest section completed.
         if (sectionIds.indexOf(id) > delivered) { delivered = sectionIds.indexOf(id); run!.output = result.output && toTaskPath(directory, result.output); }
@@ -222,7 +227,7 @@ export async function runTask(options: TaskOptions, dependencies: {
           }
           if (!sectionDependencies[id].every(reached)) continue;
           waiting.delete(id); running++;
-          void lane(id).then(() => { done.add(id); }, error => { blocked.add(id); errors.push(error); })
+          void lane(id).then(() => { if(!unfinished.has(id)) done.add(id); }, error => { blocked.add(id); errors.push(error); })
             .finally(() => { running--; schedule(); });
         }
         if (!running) resolve();
@@ -235,6 +240,10 @@ export async function runTask(options: TaskOptions, dependencies: {
       throw signal.aborted ? signal.reason : errors[0];
     }
     signal.throwIfAborted();
+    if(unfinished.size) {
+      run.status='interrupted'; delete run.activeSections;
+      progress('当前轮次已保存，所选路线尚有后续制作任务。'); return run;
+    }
     run.status = 'completed'; delete run.activeSections;
     progress('所选路线已完成。交付：' + (run.output ? fromTaskPath(directory, run.output) : directory));
     return run;

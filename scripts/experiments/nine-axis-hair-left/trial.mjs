@@ -4,11 +4,13 @@ import { pathToFileURL } from 'node:url';
 
 const [repo, task, knowledge, mode = 'prepare'] = process.argv.slice(2);
 const scope = process.argv[7] ?? 'all-hair';
-if (!['all-hair', 'bangs-left', 'side-hair-left'].includes(scope)) throw new Error('Unknown hair scope: ' + scope);
+if (!['all-hair', 'bangs-left', 'side-hair-left', 'back-hair-left'].includes(scope)) throw new Error('Unknown hair scope: ' + scope);
 const leftOnly = scope !== 'all-hair';
 const editableXs = leftOnly ? [-30] : [-30, 30];
 if (!repo || !task || !knowledge) throw new Error('Pass repository, task and knowledge directories.');
 const skill = join(repo, '.agents/skills/live2d-maker');
+const workspace = join(task, 'nine-axis/step08_hair/workspace');
+const scopedFile = name => join(workspace, `${scope}-${name}.md`);
 const load = file => import(pathToFileURL(join(skill, file)));
 const { selectKnowledge } = await load('shared/knowledge.ts');
 selectKnowledge(knowledge);
@@ -35,7 +37,8 @@ const build = async () => {
 };
 const allowed = id => typeof id === 'string' && (id === 'hair' || id.startsWith('hair/'));
 const editable = id => allowed(id) && (scope === 'bangs-left' ? id === 'hair/bangs' || id.startsWith('hair/bangs/')
-  : scope === 'side-hair-left' ? id.startsWith('hair/side_hair/') : true);
+  : scope === 'side-hair-left' ? id.startsWith('hair/side_hair/')
+  : scope === 'back-hair-left' ? id === 'hair/back_hair' || id.startsWith('hair/back_hair/') : true);
 let fixedHair = new Map();
 function protect(doc) {
   for (const [id, before] of originalParts) {
@@ -89,8 +92,9 @@ delete editSchema.properties.axis;
 delete editSchema.properties.importParts;
 editSchema.properties.operations.items.properties.action.enum = ['create_warp', 'reparent', 'remove_warp', 'interpolation', 'points', 'drag', 'transform'];
 const edit = { ...editDefinition, inputSchema: editSchema,
-  description: await readFile(scope === 'side-hair-left' ? join(output, 'workspace/side-hair-left-tools.md')
-    : join(task, 'knowledge/nine-axis/step08_hair/tools', scope === 'bangs-left' ? 'edit_bangs.md' : 'edit_nine_axis.md'), 'utf8'),
+  description: leftOnly
+    ? (await Promise.all([scopedFile('tools'), join(workspace, 'hair-left-tools.md')].map(file => readFile(file, 'utf8')))).join('\n\n')
+    : await readFile(join(task, 'knowledge/nine-axis/step08_hair/tools/edit_nine_axis.md'), 'utf8'),
   async execute(args, signal) {
     const before = await read();
     if (args.operations) for (const op of args.operations) {
@@ -128,9 +132,11 @@ const { CodexAgents } = await load('shared/codex/agents.ts');
 const { loadWorkflowEnvironment } = await load('shared/codex/environment.ts');
 const { readStepSession, writeStepSession } = await load('shared/agents/step-session.ts');
 const environment = loadWorkflowEnvironment(process.env, skill);
-const promptPath = process.argv[6] ?? join(task, 'knowledge/nine-axis/step08_hair/prompts/左右头发.md');
-const prompt = await readFile(promptPath, 'utf8');
-if (!prompt.trim()) throw new Error('The hair trial prompt is empty.');
+const promptPath = process.argv[6] ?? (leftOnly ? scopedFile('task') : join(task, 'knowledge/nine-axis/step08_hair/prompts/左右头发.md'));
+const taskPrompt = await readFile(promptPath, 'utf8');
+if (!taskPrompt.trim()) throw new Error('The hair trial prompt is empty.');
+const prompt = leftOnly ? taskPrompt + '\n\n' + await readFile(join(workspace, 'hair-reference-review.md'), 'utf8') : taskPrompt;
+if (leftOnly) await writeFile(join(workspace, 'effective-task.md'), prompt + '\n');
 await access(join(output, 'references/left.png'));
 const saved = await readStepSession(nine, 'step08_hair') ?? {};
 const agents = new CodexAgents({ environment, selectedModel: environment.stepModels.nine_axis_head,
@@ -143,7 +149,7 @@ await writeFile(join(output, '.running'), '');
 await rm(join(output, '.completed'), { force: true });
 try {
   const result = await checkedTurn({ agents: { run: (task, abort) => session.run(task, abort) }, signal,
-    records: join(output, 'checks'), task: { name: scope === 'side-hair-left' ? 'left侧发逐件制作' : scope === 'bangs-left' ? 'left刘海逐件制作' : '头发-left与right独立形变试验', cwd: nine, outputDirectory: output,
+    records: join(output, 'checks'), task: { name: scope === 'side-hair-left' ? 'left侧发逐件制作' : scope === 'bangs-left' ? 'left刘海逐件制作' : scope === 'back-hair-left' ? 'left后发制作' : '头发-left与right独立形变试验', cwd: nine, outputDirectory: output,
       shell: false, imageGeneration: false, prompt, tools: [createBitmapTool(nine, join(output, 'observations')), view, edit],
       outputSchema: { type: 'object', additionalProperties: false, properties: { error: { type: ['string', 'null'] } }, required: ['error'] } },
     check: async response => {
@@ -151,6 +157,7 @@ try {
       try { result = JSON.parse(response.text); } catch { throw new CheckFailure('bad-result', 'Invalid result JSON.', { detail: response.text }); }
       if (result.error) throw new Error(result.error);
       const { doc } = await build(); protect(doc);
+      // A stable back-hair shell is valid; foreground motion changes its exposure.
       const front = doc.parts.filter(p => editable(p.id) && /bangs|side_hair/.test(p.id));
       for (const p of front) for (const x of editableXs) {
         const moved = evaluatePoints(doc, p, x, 0), rest = evaluatePoints(doc, p, 0, 0);
@@ -164,7 +171,9 @@ try {
     const info = JSON.parse(rendered.contentItems.find(p => p.type === 'inputText').text);
     await copyFile(fromTaskPath(task, info.savedPath), join(output, x < 0 ? 'left.png' : x > 0 ? 'right.png' : 'neutral.png'));
   }
-  await rm(join(output, '.running'), { force: true });
   await writeFile(join(output, '.completed'), '');
   console.log(leftOnly ? 'Produced the ' + scope + ' trial and neutral render.' : 'Trial produced left, neutral and independently authored right renders.');
-} finally { await session.close(); }
+} finally {
+  await rm(join(output, '.running'), { force: true });
+  await session.close();
+}

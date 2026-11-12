@@ -35,9 +35,13 @@ test('九轴复用 SVG 预览时，同画布参考保持原坐标、局部矢量
   const supplied = join(f.directory, 'source-face.png');
   await sharp({ create: { ...canvas, channels: 4, background: '#00ff00' } }).png().toFile(supplied);
   const suppliedBytes = await readFile(supplied);
-  const tool = createSvgPreviewTool({ ...f, canvas, referenceAlignment: 'canvas' });
-  const properties = tool.inputSchema.properties as Record<string, unknown>;
+  const tool = createSvgPreviewTool({ ...f, canvas, referenceAlignment: 'canvas', comparisonModes: ['edge'] });
+  const properties = tool.inputSchema.properties as Record<string, { enum?: string[]; description?: string }>;
   assert.ok(properties.reference); assert.ok(!properties.referenceRegion); assert.ok(!properties.referenceOffset);
+  assert.deepEqual(properties.mode.enum, ['svg', 'edge']);
+  assert.ok(!properties.mode.description?.includes('blend'));
+  await assert.rejects(tool.execute({ path: f.path, mode: 'blend' }, signal), /mode/);
+  assert.equal(info(await tool.execute({ path: f.path }, signal)).mode, 'svg');
   for (const [reference, background] of [[undefined, [0, 0, 255]], [supplied, [0, 255, 0]]] as const) {
     const result = await tool.execute({ path: f.path, mode: 'edge', crop: [10, 10, 80, 80], scale: 4, ...(reference ? { reference } : {}) }, signal);
     const metadata = info(result);

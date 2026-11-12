@@ -16,12 +16,12 @@ const { selection: _selection, ...shadowOutputs } = shadowArtifacts;
 export const studioPaths = new Set<string>([...Object.values(studioArtifacts), ...Object.values(shadowOutputs), ...Object.values(nineAxisArtifacts), ...Object.values(previousNineAxisArtifacts), ...Object.values(legacyNineAxisArtifacts)]);
 // Nine-axis layer textures: numbered by draw order, or named by the jaw step's new parts.
 export const isStudioPath = (path: string) => studioPaths.has(path)
-  || /^nine-axis\/(?:step01_preparation|step04_angles\/model(?:\/(?:left|up|down|merged))?|step06_angle-xy|step07_jaw-line)\/layers\/[\w-]+\.png$/.test(path)
+  || /^nine-axis\/(?:step01_preparation|step04_angles\/model(?:\/(?:left|up|down|merged))?|step06_angle-xy|step07_jaw-line|step08_hair)\/layers\/[\w-]+\.png$/.test(path)
   || /^nine-axis\/(?:step02_angles(?:\/(?:neutral|left|up|down|merged))?|step03_angle-xy|step04_jaw-line|step02_angle-x|step04_angle-up|step05_angle-down|step06_angle-xy|step07_jaw-line)\/layers\/[\w-]+\.png$/.test(path);
 
 export async function studioProject(directory: string, name: string, dir: string, preview?: string | null, nineStage?: string | null) {
   if (preview && !previewModes.includes(preview as any)) throw Error('预览方式必须为 mask、normal-depth 或 mixed');
-  if (nineStage && !Object.hasOwn(nineAxisStages, nineStage)) throw Error('九轴阶段必须为 neutral、x、up、down、y、xy 或 jaw');
+  if (nineStage && !Object.hasOwn(nineAxisStages, nineStage)) throw Error('九轴阶段必须为 neutral、x、up、down、y、xy、jaw 或 hair');
   async function record(path: string, expectedMode?: Selection['mode']): Promise<Selection | undefined> {
     try {
       const value = JSON.parse(await readFile(await safePath(directory, path), 'utf8'));
@@ -97,7 +97,7 @@ export async function studioProject(directory: string, name: string, dir: string
   const stages = staged ? nineAxisStages : nested ? previousNineAxisStages : { x: legacyNineAxisArtifacts.headDeformers,
     up: legacyNineAxisArtifacts.angleUpDeformers, down: legacyNineAxisArtifacts.angleDownDeformers, y: legacyNineAxisArtifacts.angleDownDeformers,
     xy: legacyNineAxisArtifacts.angleXYDeformers, jaw: legacyNineAxisArtifacts.jawLineDeformers };
-  const order: NineAxisStage[] = staged ? ['jaw', 'xy', 'y', 'x', 'up', 'down', 'neutral'] : nested ? ['jaw', 'xy', 'y', 'x', 'up', 'down'] : ['jaw', 'xy', 'down', 'up', 'x'];
+  const order: NineAxisStage[] = staged ? ['hair', 'jaw', 'xy', 'y', 'x', 'up', 'down', 'neutral'] : nested ? ['jaw', 'xy', 'y', 'x', 'up', 'down'] : ['jaw', 'xy', 'down', 'up', 'x'];
   const modelPath = staged ? 'nine-axis/step04_angles/model' : 'nine-axis/step02_angles';
   const mergeComplete = !nested || (await Promise.all(['', '/left', '/up', '/down'].map(async suffix => {
     try {
@@ -122,8 +122,10 @@ export async function studioProject(directory: string, name: string, dir: string
   // New models name their actual KRA. PNG availability never selects artwork.
   // Retain explicit legacy stage paths only for pre-provenance deliveries.
   let nineAxisDocument = false;
+  const useHair = staged && selectedStage === 'hair' && nineAxis.available;
   const useJaw = nested && selectedStage === 'jaw' && nineAxis.available;
   let [document, color] = await Promise.all([file(useJaw ? staged ? nineAxisArtifacts.jawLineDocument : previousNineAxisArtifacts.jawLineDocument : artifacts.headDocument), file(useJaw ? staged ? nineAxisArtifacts.jawLineColor : previousNineAxisArtifacts.jawLineColor : artifacts.headColor)]);
+  if(useHair) [document,color]=await Promise.all([file(nineAxisArtifacts.hairDocument),file(nineAxisArtifacts.hairColor)]);
   if (useJaw && !document.available) [document, color] = await Promise.all([file(artifacts.headDocument), file(artifacts.headColor)]);
   if (nineAxis.available) {
     // Metadata can still describe a legacy/incomplete delivery; the renderer

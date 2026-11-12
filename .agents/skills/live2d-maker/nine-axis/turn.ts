@@ -66,8 +66,8 @@ export async function upperBodyBox(input: TurnInput, width: number, height: numb
 }
 
 // Outside the canvas and behind the character is plain grey, as the prompt says.
-export async function cropUpperBody(color: string, box: Box): Promise<Buffer> {
-  const image = sharp(await readFile(color)), { width = 0, height = 0 } = await image.metadata();
+export async function cropUpperBody(color: string | Buffer, box: Box): Promise<Buffer> {
+  const image = sharp(Buffer.isBuffer(color) ? color : await readFile(color)), { width = 0, height = 0 } = await image.metadata();
   const left = Math.max(0, box.x), top = Math.max(0, box.y);
   const right = Math.min(width, box.x + box.size), bottom = Math.min(height, box.y + box.size);
   if (right <= left || bottom <= top) throw new Error('上半身裁切框落在画布之外');

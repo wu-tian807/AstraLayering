@@ -37,7 +37,7 @@ export const legacyNineAxisArtifacts = {
   angleXYDeformers: 'nine-axis/step06_angle-xy/deformers.json',
   jawLineDeformers: 'nine-axis/step07_jaw-line/deformers.json',
 } as const;
-export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line'] as const;
+export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line', 'step08_hair'] as const;
 export const previousNineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line'] as const;
 export const nineAxisGroups = ['left', 'up', 'down'] as const;
 export const nineAxisBranches = ['model', 'video'] as const;
@@ -65,11 +65,14 @@ export const nineAxisArtifacts = {
   cornerUp: 'nine-axis/step05_frames/left-up.png', cornerDown: 'nine-axis/step05_frames/left-down.png',
   angleXYDeformers: 'nine-axis/step06_angle-xy/deformers.json', jawLineDeformers: 'nine-axis/step07_jaw-line/deformers.json',
   jawLineDocument: 'nine-axis/step07_jaw-line/character-nine-axis.kra', jawLineColor: 'nine-axis/step07_jaw-line/character-nine-axis.png',
+  hairAuthor: 'nine-axis/step08_hair/hair.json', hairDeformers: 'nine-axis/step08_hair/deformers.json',
+  hairDocument: 'nine-axis/step08_hair/character-nine-axis.kra', hairColor: 'nine-axis/step08_hair/character-nine-axis.png',
+  hairSource: 'nine-axis/step08_hair/source.json', hairExportRecord: 'nine-axis/step08_hair/export-record.json', hairNotes: 'nine-axis/step08_hair/notes.md',
 } as const;
 export const nineAxisStages = {
   neutral: nineAxisArtifacts.preparationDeformers,
   x: nineAxisArtifacts.angleXDeformers, up: nineAxisArtifacts.angleUpDeformers, down: nineAxisArtifacts.angleDownDeformers,
-  y: nineAxisArtifacts.headDeformers, xy: nineAxisArtifacts.angleXYDeformers, jaw: nineAxisArtifacts.jawLineDeformers,
+  y: nineAxisArtifacts.headDeformers, xy: nineAxisArtifacts.angleXYDeformers, jaw: nineAxisArtifacts.jawLineDeformers, hair: nineAxisArtifacts.hairDeformers,
 } as const;
 export const previousNineAxisStages = {
   x: previousNineAxisArtifacts.angleXDeformers, up: previousNineAxisArtifacts.angleUpDeformers,
