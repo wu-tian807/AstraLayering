@@ -17,7 +17,7 @@ export const profileAngle = 90, turnSeconds = '5';
 const background = 128, margin = 0.06, neckFaces = 0.5;
 const terminal = new Set(['completed', 'failed', 'cancelled', 'expired']);
 
-export type TurnInput = { color: string; source: ChainStep; parts: string[] };
+export type TurnInput = { color: string; document?: string; source: ChainStep; parts: string[] };
 export type Box = { x: number; y: number; size: number };
 
 // The same colour the workbench shows: the delivered shadow mask when it is
@@ -26,15 +26,16 @@ export async function resolveTurnInput(name: string, root: string): Promise<Turn
   const task = taskDirectory(name, root), shadow = join(task, 'shadow/step01_mask');
   const color = join(shadow, 'character-shadowed.png');
   let source: ChainStep;
-  if ((await readStep(shadow)).status === 'completed' && await exists(color)) {
+  if ((await readStep(shadow)).status === 'completed' && await exists(join(shadow, 'character-shadowed.kra'))) {
     source = { id: 'shadow/step01_mask', directory: shadow };
   } else {
-    const assembly = join(await requireUpstream(name, 'character-assembly', [{ path: 'step01/character-assembled.png' }], root), 'step01');
+    const assembly = join(await requireUpstream(name, 'character-assembly', [{ path: 'step01/character-assembled.kra' }], root), 'step01');
     source = { id: 'character-assembly/step01', directory: assembly };
   }
   const parts = await requireUpstream(name, 'part-layering', [{ path: 'parts/face.svg' }], root);
   const optional = ['hair.svg', 'head_accessories.svg'].map(file => join(parts, 'parts', file));
-  return { color: source.id.startsWith('shadow') ? color : join(source.directory, 'character-assembled.png'), source,
+  return { document: join(source.directory, source.id.startsWith('shadow') ? 'character-shadowed.kra' : 'character-assembled.kra'),
+    color: source.id.startsWith('shadow') ? color : join(source.directory, 'character-assembled.png'), source,
     parts: [join(parts, 'parts/face.svg'), ...(await Promise.all(optional.map(async path => await exists(path) ? path : ''))).filter(Boolean)] };
 }
 

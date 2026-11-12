@@ -32,6 +32,7 @@ import { exportCompletedRun } from '../.agents/skills/live2d-maker/workflow/expo
 import { LayerCompositor } from './layer-compositor.ts';
 import { isStudioPath, studioProject } from './studio-project.ts';
 import { saveNineAxis } from './nine-axis-save.ts';
+import { NineAxisMaterials } from './nine-axis-materials.ts';
 import { studioCatalog, studioAsset, studioReviews, saveStudioReview } from './studio.ts';
 import { createUpdateCheck } from './update-check.ts';
 import { installedVersion } from '../.agents/skills/live2d-maker/shared/version.ts';
@@ -176,6 +177,11 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
   const compositor = new LayerCompositor(root);
   const thumbnails = new SVGThumbnails();
   const kraPreviews = new KRAPreviews();
+  const nineMaterials = new NineAxisMaterials(async directory => {
+    const saved = await readRun(directory), executable = saved?.krita || settings.krita || process.env.ASTRA_STUDIO_KRITA;
+    if (!executable) throw Error('从 KRA 生成九轴预览需要配置 Krita');
+    return executable;
+  });
   const server = createServer(async (request, response) => {
     const url = new URL(request.url ?? '/', 'http://localhost'), path = url.pathname;
     const requestDir = settings.directory;
@@ -413,6 +419,17 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         response.writeHead(200, { 'Content-Type': kind === 'png' ? 'image/png' : 'application/octet-stream' });
         createReadStream(file).on('error', () => response.destroy()).pipe(response); return;
       }
+      if (path === '/api/studio/nine-axis/materials' || path === '/api/studio/nine-axis/texture') {
+        const { directory } = await studioFolder(url.searchParams.get('folder') ?? '');
+        if (path.endsWith('/materials')) {
+          const built = await nineMaterials.get(directory, url.searchParams.get('path') ?? '');
+          json({ doc: built.doc, author: built.author, version: built.version, document: built.doc.source?.document, revision: built.sourceRevision,
+            textures: built.doc.parts.map((_, index) => './api/studio/nine-axis/texture?' + new URLSearchParams({ folder: directory, key: built.key, index: String(index) })) });
+          return;
+        }
+        const file = nineMaterials.texture(directory, url.searchParams.get('key') ?? '', Number(url.searchParams.get('index')));
+        response.writeHead(200, { 'Content-Type': 'image/png' }); createReadStream(file).on('error', () => response.destroy()).pipe(response); return;
+      }
       if (path === '/api/studio/project' || path === '/studio-artifact') {
         const { directory, name, dir } = await studioFolder(url.searchParams.get('folder') ?? '');
         if (path === '/api/studio/project') {
@@ -462,6 +479,8 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       if (vendor[path]) { response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8' }); response.end(await readFile(join(root, vendor[path]))); return; }
       const staticFiles: Record<string, string> = { '/': 'index.html', '/app.js': 'app.js', '/process-files.js': 'process-files.js', '/progress.js': 'progress.js', '/head-preview.js': 'head-preview.js', '/head-motion.js': 'head-motion.js', '/report-markdown.js': 'report-markdown.js', '/task-selection.js': 'task-selection.js', '/dom-morph.js': 'dom-morph.js', '/env-editor.js': 'env-editor.js', '/settings-dialog.js': 'settings-dialog.js', '/server-picker.js': 'server-picker.js', '/styles.css': 'styles.css', '/studio': 'studio/index.html', '/studio/app.js': 'studio/app.js', '/studio/styles.css': 'studio/styles.css', '/studio/renderer.js': 'studio/renderer.js', '/studio/lighting-model.js': 'studio/lighting-model.js' };
       staticFiles['/report-links.js'] = '../.agents/skills/live2d-maker/shared/report-links.js';
+      staticFiles['/execution-state.js'] = 'execution-state.js';
+      staticFiles['/nine-axis-flow.js'] = 'nine-axis-flow.js';
       staticFiles['/step-paths.js'] = '../.agents/skills/live2d-maker/shared/step-paths.js';
       for (const name of ['nine-axis-model.js', 'nine-axis-render.js']) staticFiles['/studio/' + name] = '../.agents/skills/live2d-maker/shared/' + name;
       for (const name of ['document-loader.js', 'document-worker.js', 'layer-panel.js', 'layer-model.js', 'surface-preview.js', 'surface-worker.js', 'surface-coverage.js', 'part-maps.js', 'harmonic-fill.js', 'projection-model.js', 'projection-panel.js', 'physics-model.js', 'physics-panel.js', 'physics-recipe.js', 'physics-renderer.js', 'physics-cases.js', 'nine-axis-panel.js']) staticFiles['/studio/' + name] = 'studio/' + name;
@@ -475,7 +494,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
     }
   });
   const stopScans = () => { for (const scan of scans.values()) scan.stop(); };
-  server.once('close', () => { void compositor.dispose(); stopScans(); });
+  server.once('close', () => { void compositor.dispose(); void nineMaterials.dispose(); stopScans(); });
   return Object.assign(server, { disposeLayers: () => compositor.dispose(), stopScans });
 }
 if (import.meta.main) {

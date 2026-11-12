@@ -80,10 +80,9 @@ test('旧第一步交付直接补 review；无问题时一次结束，reviewer I
   await runWorkflow(f.resume, { ...f.deps, agent: forbidden });
 });
 
-test('每轮全部修完再推进；第二轮允许继续修复直到解决，随后直接结束而不追加 reviewer', async t => {
+test('每轮修复只调用一次，由下一次 review 判断；第二轮修复后直接结束而不追加 reviewer', async t => {
   const f = await fixture(t);
   const calls: string[] = [];
-  let lastRepairs = 0;
   await runWorkflow(f.resume, { ...f.deps, agent: async request => {
     const name = reportName(request);
     calls.push(name);
@@ -96,13 +95,9 @@ test('每轮全部修完再推进；第二轮允许继续修复直到解决，�
     assert.equal(request.threadId, 'drawing-thread');
     await request.onEvent({ type: 'thread.started', thread_id: 'drawing-thread' });
     await absent(join(f.output, 'step01/.completed'));
-    if (name === 'repair-02.md.tmp' && ++lastRepairs === 1) {
-      await absent(join(f.output, 'step01/repair-02.md'));
-      return report(request, '仍有问题');
-    }
     return report(request, '已修复');
   } });
-  assert.deepEqual(calls, ['review-01.md.tmp', 'repair-01.md.tmp', 'review-02.md.tmp', 'repair-02.md.tmp', 'repair-02.md.tmp']);
+  assert.deepEqual(calls, ['review-01.md.tmp', 'repair-01.md.tmp', 'review-02.md.tmp', 'repair-02.md.tmp']);
   assert.equal((await readStepSession(f.output, 'step01'))?.threadId, 'drawing-thread');
   await readFile(join(f.output, 'step01/repair-02.md'));
   await absent(join(f.output, 'step01/review-03.md'));

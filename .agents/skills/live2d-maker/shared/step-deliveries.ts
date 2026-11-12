@@ -64,7 +64,7 @@ async function previousNineAxisDeliveries(root: string, id: string): Promise<str
 
 async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
   const directory = join(root, id), files = (names: string[]) => names.map(name => join(directory, name));
-  if (id === 'step01_preparation') return [...files(['character-nine-axis.kra', 'character-nine-axis.png', 'crop.json', 'deformers.json', 'source.json', 'export-record.json', 'head_parts_manifest.json']), ...await textureDeliveries(directory)];
+  if (id === 'step01_preparation') return [...files(['crop.json', 'deformers.json', 'source.json', 'export-record.json', 'head_parts_manifest.json']), ...await textureDeliveries(directory)];
   if (id === 'step02_video') return files(['upper-body.png', 'crop.json', ...nineAxisGroups.map(g => `${g}.mp4`)]);
   if (id === 'step03_frames' || id === 'step05_frames') return files(['selected-frames.json', ...id === 'step03_frames' ? ['views.json'] : [],
     ...(id === 'step03_frames' ? nineAxisGroups : ['left-up', 'left-down']).flatMap(g => [`${g}.png`, `frames/${g}.png`])]);
@@ -80,7 +80,7 @@ async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
   }
   if (id === 'step04_angles') return [...await nineAxisDeliveries(root, id + '/model'), ...await nineAxisDeliveries(root, id + '/video')];
   if (id === 'step06_angle-xy') return [...files(['face-xy.json', 'linear.json', 'deformers.json', ...['left-up', 'left-down'].flatMap(c => [`${c}-face-trace.json`, `${c}-fit-report.json`])]), ...await textureDeliveries(directory)];
-  if (id === 'step07_jaw-line') return [...files(['jaw.json', 'deformers.json']), ...await textureDeliveries(directory)];
+  if (id === 'step07_jaw-line') return [...files(['jaw.json', 'deformers.json', 'character-nine-axis.kra', 'character-nine-axis.png', 'export-record.json']), ...await textureDeliveries(directory)];
   return previousNineAxisDeliveries(root, id);
 }
 

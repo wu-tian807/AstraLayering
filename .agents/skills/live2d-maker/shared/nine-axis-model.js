@@ -88,7 +88,9 @@ export function validateHeadNineAxis(doc) {
         if (root.keyforms['0'].some((q, i) => q.some((v, k) => Math.abs(v - rest[i * 2 + k]) > 1e-5)) || neutral.some((v, i) => Math.abs(v - samples[i]) > 1e-5))
           throw Error(source.axis + '/' + p.id + '：共同中性原形或源父链静止姿态已改变');
       }
-      for (const k of ['source', 'canvas', 'view', 'axis']) if (JSON.stringify(source.doc[k]) !== JSON.stringify(doc[k])) throw Error(source.axis + '：共同中性输入 ' + k + ' 不一致');
+      const geometrySource = doc.source?.geometryDocument ? { document: doc.source.geometryDocument } : doc.source;
+      if (JSON.stringify(source.doc.source) !== JSON.stringify(geometrySource)) throw Error(source.axis + '：共同中性输入 source 不一致');
+      for (const k of ['canvas', 'view', 'axis']) if (JSON.stringify(source.doc[k]) !== JSON.stringify(doc[k])) throw Error(source.axis + '：共同中性输入 ' + k + ' 不一致');
       // Source docs are protected snapshots. Drop any previously prepared
       // mapping when an explicit validation occurs, including after reopening.
       sourceMappings.delete(source.doc);

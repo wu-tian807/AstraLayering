@@ -1,7 +1,7 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sharp from 'sharp';
@@ -71,7 +71,7 @@ test('view_nine_axis 用工作台渲染器在工作台底色上画出本步交�
   await sharp({ create: { width: 100, height: 100, channels: 3, background: '#00f' } }).composite([
     { input: await sharp({ create: { width: 10, height: 100, channels: 3, background: '#0f0' } }).png().toBuffer(), left: 30, top: 0 },
   ]).png().toFile(reference);
-  const compared = await tool.execute({ x: -30, crop: [10, 20, 60, 60], scale: 2, reference: { path: reference, bounds: [0, 0, 100, 100] } }, signal);
+  const compared = await tool.execute({ x: -30, crop: [10, 20, 60, 60], scale: 2, mode: 'blend', reference: { path: reference, bounds: [0, 0, 100, 100] } }, signal);
   const comparison = JSON.parse((compared.contentItems[0] as { text: string }).text).comparison;
   assert.equal(compared.contentItems.length, 3);
   assert.equal(comparison.registration, 'none; same canvas coordinates');
@@ -83,7 +83,8 @@ test('view_nine_axis 用工作台渲染器在工作台底色上画出本步交�
   // The shifted red model overlays the green strip there, without recentering.
   assert.deepEqual(at(50, 88), [0, 255, 0]);
   assert.deepEqual(at(170, 88), [255, 0, 0]);
-  assert.deepEqual(at(290, 88), [128, 127, 0]);
+  // Half-alpha CSS compositing can round a channel up by one across browsers.
+  at(290, 88).forEach((value, channel) => assert.ok(Math.abs(value - [128, 127, 0][channel]) <= 1));
   // Original x=60 remains outside the shifted model: reference blue stays blue.
   assert.deepEqual(at(340, 88), [0, 0, 255]);
   await assert.rejects(tool.execute({ reference: { path: reference, bounds: [0, 0, 0, 100] } }, signal), /reference.bounds/);
@@ -105,4 +106,62 @@ test('isolated clipped parts retain mask coverage; hidden clipped layers need no
   const {data}=await sharp(saved).removeAlpha().raw().toBuffer({resolveWithObject:true});
   assert.deepEqual([...data.subarray((50*100+40)*3,(50*100+40)*3+3)],[255,0,0]);
   assert.deepEqual([...data.subarray((50*100+60)*3,(50*100+60)*3+3)],[0x30,0x33,0x3a]);
+});
+
+test('edge compares only the visible silhouette at fixed canvas coordinates without grid, checkerboard or crop edges', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'nine-view-edge-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const texture = join(directory, 'red.png'), reference = join(directory, 'reference.png');
+  await sharp({ create: { width: 40, height: 40, channels: 4, background: '#f00' } }).png().toFile(texture);
+  await sharp({ create: { width: 100, height: 100, channels: 3, background: '#00f' } }).png().toFile(reference);
+  const part = (id: string, left: number): Built['doc']['parts'][number] => ({
+    id, group: 'hair', level: 'hair', texture: 'layers/red.png', textureBounds: [left, 20, 40, 40],
+    bbox: [left, 20, left + 40, 60], cols: 1, rows: 1,
+    keyforms: { '-30': grid(left, 20, left + 40, 60, -5), '0': grid(left, 20, left + 40, 60), '30': grid(left, 20, left + 40, 60) },
+  });
+  const doc: Built['doc'] = { version: 2, kind: 'head-nine-axis', canvas: [100, 100], deformers: [],
+    levels: [{ id: 'hair', name: '头发', includes: ['hair'] }],
+    parameters: [{ id: 'ParamAngleX', name: '角度 X', min: -30, max: 30, keys: [-30, 0, 30] }],
+    parts: [part('hair/bangs', 20), part('hair/side_hair/side_hair_left', 60)] };
+  const before = structuredClone(doc), originalReference = await readFile(reference);
+  const tool = createNineAxisViewTool(directory, join(directory, 'observations'), async () => ({ doc, textures: new Map([['layers/red.png', texture]]) }));
+  assert.deepEqual((tool.inputSchema.properties as Record<string, { enum?: string[] }>).mode.enum, ['edge', 'blend']);
+  const signal = new AbortController().signal;
+  await assert.rejects(tool.execute({ mode: 'edge' }, signal), /reference/);
+  await assert.rejects(tool.execute({ mode: 'unsupported' }, signal), /mode/);
+  const result = await tool.execute({ x: -30, level: 'hair', crop: [30, 10, 60, 70], scale: 2,
+    only: ['hair/bangs'], grid: ['hair/side_hair/side_hair_left'], reference: { path: reference, bounds: [0, 0, 100, 100] } }, signal);
+  const metadata = JSON.parse((result.contentItems[0] as { text: string }).text);
+  assert.equal(metadata.comparison.mode, 'edge');
+  assert.equal(metadata.comparison.registration, 'none; same canvas coordinates');
+  const { data, info } = await sharp(metadata.comparison.savedPath).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  assert.equal(info.width, 360); assert.equal(info.height, 168);
+  const at = (x: number, y: number) => [...data.subarray(((y + 28) * info.width + 240 + x) * 3, ((y + 28) * info.width + 240 + x) * 3 + 3)];
+  assert.deepEqual(at(49, 60), [0, 205, 255], 'shifted edge x=55 stays at the same canvas coordinate after crop and zoom');
+  assert.deepEqual(at(30, 60), [0, 0, 255], 'paint inside the contour does not cover the reference');
+  assert.deepEqual(at(0, 60), [0, 0, 255], 'cropping through a painted area does not create a false silhouette');
+  assert.deepEqual(at(100, 60), [0, 0, 255], 'hidden side hair and checkerboard do not enter the edge image');
+  assert.deepEqual(at(100, 20), [0, 0, 255], 'control-grid lines do not enter the edge image');
+  assert.deepEqual(doc, before);
+  assert.deepEqual(await readFile(reference), originalReference);
+});
+
+test('multi-frame preview resolves one cumulative model snapshot and returns per-frame grids and a contact sheet', async t => {
+  const directory=await mkdtemp(join(tmpdir(),'nine-view-batch-')); t.after(()=>rm(directory,{recursive:true,force:true}));
+  const texture=join(directory,'red.png');
+  await sharp({create:{width:10,height:10,channels:4,background:'#f00'}}).png().toFile(texture);
+  const doc:Built['doc']={version:2,kind:'head-nine-axis',canvas:[60,60],deformers:[],levels:[{id:'face',includes:['face']}],
+    parameters:[{id:'ParamAngleX',min:-30,max:30,keys:[-30,0,30]}],
+    parts:[{id:'face/face_base',level:'face',texture:'layers/face.png',textureBounds:[20,20,10,10],bbox:[20,20,30,30],cols:1,rows:1,
+      keyforms:{'0':grid(20,20,30,30),'-30':grid(20,20,30,30,-10),'30':grid(20,20,30,30,10)}}]};
+  let builds=0;
+  const tool=createNineAxisViewTool(directory,join(directory,'observations'),async()=>{
+    builds++; return {doc,textures:new Map([['layers/face.png',texture]]),sourceRevision:'saved-kra-revision'};
+  });
+  const result=await tool.execute({frames:[{x:0},{x:-15},{x:-30}],grid:['face/face_base']},new AbortController().signal);
+  const info=JSON.parse((result.contentItems[0] as {text:string}).text);
+  assert.equal(builds,1); assert.equal(info.revision,'saved-kra-revision');
+  assert.deepEqual(info.frames.map((frame:any)=>[frame.x,frame.grid[0].points[0][0],frame.revision]),[[0,20,'saved-kra-revision'],[-15,15,'saved-kra-revision'],[-30,10,'saved-kra-revision']]);
+  const meta=await sharp(info.savedPath).metadata(); assert.deepEqual([meta.width,meta.height],[180,88]);
+  await assert.rejects(tool.execute({frames:[{}],x:0},new AbortController().signal),/不能同时/);
 });

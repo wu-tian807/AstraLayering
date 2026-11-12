@@ -7,6 +7,16 @@ export function agentCallError(payload: unknown, fallback: string, info?: unknow
   return error;
 }
 
+// Codex reports a content-filter cut as a terminal turn failure: the response stream
+// disconnected and the failure details name `reason: content_filter`. Only that
+// structured pair counts; text anywhere else (echoed source, logs) is not evidence.
+export function codexContentFilterInfo(error: any): { refusal: { category: string; turns: null } } | undefined {
+  const info = error?.codexErrorInfo;
+  if (!info || typeof info !== 'object' || !('responseStreamDisconnected' in info)) return undefined;
+  if (typeof error.additionalDetails !== 'string' || !/reason:\s*content_filter\b/.test(error.additionalDetails)) return undefined;
+  return { refusal: { category: 'content_filter', turns: null } };
+}
+
 type AgentContext = { text?: string; threadId?: string | null; logDirectory?: string };
 
 export function agentOutcomeError(message: string, context: AgentContext = {}, cause?: unknown): AgentCallError {

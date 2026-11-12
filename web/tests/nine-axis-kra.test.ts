@@ -1,0 +1,52 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { zipSync, strToU8 } from 'fflate';
+import sharp from 'sharp';
+import { createWorkbench } from '../server.ts';
+import { KraMaterials } from '../../.agents/skills/live2d-maker/nine-axis/kra-materials.ts';
+import { kraContents } from '../../.agents/skills/live2d-maker/shadow/delivery.ts';
+import { nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { saveNineAxis } from '../nine-axis-save.ts';
+
+test('workbench follows KRA without a composite PNG, serves KRA exports, and refreshes on KRA-only saves', async t => {
+  const root=await mkdtemp(join(tmpdir(),'web-nine-kra-')), project=join(root,'case');
+  const path=nineAxisArtifacts.neutralDeformers, stage=join(project,dirname(path));
+  const source='shadow/step01_mask/character-shadowed.kra', kra=join(project,source), uuid='11111111-1111-1111-1111-111111111111';
+  await mkdir(stage,{recursive:true}); await mkdir(dirname(kra),{recursive:true}); await writeFile(join(project,'run.json'),'{}');
+  const doc={version:2,kind:'head-nine-axis',canvas:[12,12],source:{document:source},levels:[{id:'face',includes:['face']}],deformers:[],parts:[{id:'face/face_base',uuid,level:'face',texture:'layers/face.png',textureBounds:[0,0,12,12],bbox:[0,0,12,12],cols:1,rows:1,keyforms:{'0':[[0,0],[12,0],[0,12],[12,12]]}}]} as any;
+  await writeFile(join(project,path),JSON.stringify(doc));
+  const materializer=new KraMaterials(async (document,directory,rows)=>Promise.all(rows.map(async row=>{
+    await writeFile(join(directory,row.texture),kraContents(await readFile(document)).merged);
+    return {...row,bounds:row.bounds!};
+  })));
+  const saveKra=async(colour:string)=>{
+    const png=await sharp({create:{width:12,height:12,channels:4,background:colour}}).png().toBuffer();
+    await writeFile(kra,zipSync({'maindoc.xml':strToU8(`<DOC><IMAGE><layers><layer uuid="{${uuid}}" name="face/face_base" nodetype="paintlayer" visible="1"/></layers></IMAGE></DOC>`),'mergedimage.png':png}));
+    await materializer.resolve(project,stage,{doc,textures:new Map()});
+  };
+  await saveKra('#f00');
+  const server=await createWorkbench({defaultDir:root,settingsPath:join(root,'settings.json')});
+  await new Promise<void>(resolve=>server.listen(0,'127.0.0.1',resolve));
+  t.after(async()=>{await new Promise<void>(resolve=>server.close(()=>resolve()));await rm(root,{recursive:true,force:true});});
+  const base='http://127.0.0.1:'+(server.address() as any).port;
+  const get=async(route:string,extra:Record<string,string>={})=>fetch(base+route+'?'+new URLSearchParams({folder:project,...extra}));
+  const first=await(await get('/api/studio/project')).json() as any;
+  assert.equal(first.files.document.path,source); assert.equal(first.files.document.available,true);
+  assert.equal(first.nineAxisDocument,true); assert.equal(first.files.color.available,false);
+  const initial=await(await get('/api/studio/nine-axis/materials',{path})).json() as any;
+  assert.equal(initial.document,source); assert.equal(initial.version,first.nineAxis.version);
+  const readTexture=async(url:string)=>[...(await sharp(Buffer.from(await(await fetch(new URL(url,base+'/'))).arrayBuffer())).raw().toBuffer()).subarray(0,4)];
+  assert.deepEqual(await readTexture(initial.textures[0]),[255,0,0,255]);
+  await saveKra('#0f0');
+  const next=await(await get('/api/studio/project')).json() as any;
+  assert.notEqual(next.nineAxis.version,first.nineAxis.version);
+  await assert.rejects(saveNineAxis(project,{path,version:first.nineAxis.version,document:doc}),/KRA 已变化/);
+  const latest=await(await get('/api/studio/nine-axis/materials',{path})).json() as any;
+  assert.deepEqual(await readTexture(latest.textures[0]),[0,255,0,255]);
+  assert.deepEqual(await readTexture(initial.textures[0]),[255,0,0,255],'a batch keeps its original immutable KRA snapshot');
+  assert.equal((await get('/api/studio/nine-axis/materials',{path:'../../outside.json'})).status,400);
+  assert.equal((await get('/api/studio/nine-axis/texture',{key:initial.revision,index:'0'})).status,400);
+});

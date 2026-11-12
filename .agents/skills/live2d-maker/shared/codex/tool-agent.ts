@@ -1,6 +1,6 @@
 import { runtimePrompt } from '../knowledge.ts';
 import { loadWorkflowEnvironment, workflowCodexOptions } from './environment.ts';
-import { agentCallError, formatAgentError } from './diagnostics.ts';
+import { agentCallError, codexContentFilterInfo, formatAgentError } from './diagnostics.ts';
 import { errorDetails, errorMessage } from '../agents/errors.ts';
 import { workflowsDirectory } from '../paths.ts';
 import { execFile, spawn } from 'node:child_process';
@@ -254,7 +254,7 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
       const turn = message.params?.turn;
       if (turn?.status !== 'completed') {
         // A failed turn without a code is still a channel failure, unlike a local error.
-        failTurn(agentCallError(turn?.error, `回合状态：${turn?.status}`, turn?.error?.codexErrorInfo ?? 'turnFailed'));
+        failTurn(agentCallError(turn?.error, `回合状态：${turn?.status}`, codexContentFilterInfo(turn?.error) ?? turn?.error?.codexErrorInfo ?? 'turnFailed'));
       }
       else { current.done = true; current.completion.resolve(); }
     } else if (message.method === 'error' && current && ownTurn) {

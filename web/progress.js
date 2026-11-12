@@ -1,21 +1,21 @@
 // Display-only definitions, matched to the existing preparation, part and raster runners.
 // Execution states are supplied by the read-only task snapshot; these are labels only.
 import { groupStepId, layerStepId } from './step-paths.js';
+import { aggregateStatus } from './execution-state.js';
 export const groupPhases = [
   ['outline', '轮廓绘制'], ['review', '轮廓复核'], ['reduction', '同层去重'],
   ['completion', '遮挡补全'], ['completionCheck', '补全检查'], ['children', '直属结构拆分'],
 ];
 // throttled: waiting to retry after a 429 or other temporary error; the agent keeps its slot and resumes on its own.
 // A summary stays running or throttled while any part still is, and only then shows a failure.
-export const statusNames = {pending:'待执行', running:'进行中', throttled:'限流等待', available:'已有产物', done:'已完成', failed:'执行失败', interrupted:'已中断', unconfirmed:'待续跑'};
+export const statusNames = {pending:'待执行', running:'进行中', throttled:'限流等待', done:'已完成', failed:'执行失败', interrupted:'已中断'};
 export const displayStatus = (status, hasArtifacts = false) => status === 'skipped' ? 'done'
-  : Object.hasOwn(statusNames, status) ? status : hasArtifacts ? 'available' : 'pending';
+  : status === 'unconfirmed' ? 'interrupted' : Object.hasOwn(statusNames, status) ? status : 'pending';
 export const statusLabel = status => statusNames[displayStatus(status)];
 
 export function groupSummary(group) {
   const values = groupPhases.map(([id]) => group.webPhases?.[id]);
-  const status = values.includes('running') ? 'running' : values.includes('throttled') ? 'throttled' : values.includes('failed') ? 'failed' : values.includes('interrupted') ? 'interrupted' : values.includes('unconfirmed') ? 'unconfirmed' : values.every(value => value === 'done') ? 'done'
-    : values.some(value => value === 'done' || value === 'available') ? 'available' : 'pending';
+  const status = aggregateStatus(values);
   return { status, text: statusNames[status] };
 }
 
@@ -108,15 +108,15 @@ export const sectionSteps = [
     '启动时选择其中一种方式执行；另一种方式的已有产物保留。'), childrenMode: 'alternative' }],
   [step('step01_preparation', '头部素材准备', 'pending', [], '脸、五官、脖子、头发、头饰及独立投影统一提取；保留原图层范围和来源关系。'),
     step('step02_video', '单轴视频生成', 'pending'),
-    step('step03_frames', '单轴选帧', 'pending'),
+    step('step03_frames', '单轴参考帧', 'pending'),
     { ...step('step04_angles', '单轴模型与斜角视频', 'pending', [
       { ...step('step04_angles/model', '单轴模型制作与合并', 'pending', ['left', 'up', 'down'].map(group =>
         step(`step04_angles/model/${group}`, { left: '左右转头', up: '抬头', down: '低头' }[group], 'pending'))), childrenMode: 'parallel' },
       step('step04_angles/video', '斜角视频生成', 'pending'),
     ], '模型制作与视频生成并发；各自保存进展和产物。'), childrenMode: 'parallel' },
-    step('step05_frames', '斜角选帧', 'pending', [], '使用上一步的视频。'),
-    step('step06_angle-xy', '斜角脸部制作', 'pending'),
-    step('step07_jaw-line', '下颌连接 · 脸部九轴中间交付', 'pending')],
+    step('step05_frames', '斜角参考帧', 'pending', [], '使用上一步的视频。'),
+    step('step06_angle-xy', '斜角模型', 'pending'),
+    step('step07_jaw-line', '下颌与颈部衔接', 'pending')],
 ];
 
 export const previousNineAxisSectionSteps = [step('step01_video', '三向视频与参考帧', 'pending'),
@@ -141,6 +141,8 @@ export function groupLayers(groups) {
 // Known artifact contracts; the UI only displays files present in the selected task.
 const image = (path, label) => ({ path, label, kind: 'image' });
 const file = (path, label) => ({ path, label, kind: 'file' });
+const video = (path, label) => ({ path, label, kind: 'video' });
+const viewName = name => ({ left: '左右转头', up: '抬头', down: '低头', 'left-up': '左上', 'left-down': '左下' })[name] || name;
 const rasterDelivery = (section, stepId, png, kra) => [
   image(`${section}/${stepId}/${png}`, '合成 PNG'),
   file(`${section}/${stepId}/${kra}`, '分层 KRA'),
@@ -184,26 +186,25 @@ stepArtifacts.push({
   'normal-depth-maps': [image('shadow/step01_normal-depth/normal.png', '法线'), image('shadow/step01_normal-depth/depth.png', '深度'), file('shadow/step01_normal-depth/report.md', '贴图报告')],
 });
 stepArtifacts.push({
-  step01_video: [...['left', 'up', 'down'].flatMap(group => [image(`nine-axis/step01_video/${group}.png`, `${group} 参考帧`),
-    file(`nine-axis/step01_video/${group}.mp4`, `${group} 视频`)]), file('nine-axis/step01_video/views.json', '三向取帧记录')],
+  step01_video: [...['left', 'up', 'down'].flatMap(group => [image(`nine-axis/step01_video/${group}.png`, `${viewName(group)}参考帧`),
+    video(`nine-axis/step01_video/${group}.mp4`, `${viewName(group)}视频`)]), file('nine-axis/step01_video/views.json', '三向取帧记录')],
   'step02_angles': [file('nine-axis/step02_angles/deformers.json', '合并单轴结果')],
-  ...Object.fromEntries(['left', 'up', 'down'].map(group => [`step02_angles/${group}`, [file(`nine-axis/step02_angles/${group}/deformers.json`, `${group} 独立单轴`)]])),
+  ...Object.fromEntries(['left', 'up', 'down'].map(group => [`step02_angles/${group}`, [file(`nine-axis/step02_angles/${group}/deformers.json`, `${viewName(group)}模型`)]])),
   'step03_angle-xy': [file('nine-axis/step03_angle-xy/deformers.json', '斜向九轴结果')],
   'step04_jaw-line': [file('nine-axis/step04_jaw-line/deformers.json', '下颌线结果')],
 });
-const video = (path, label) => ({ path, label, kind: 'video' });
-const nineFrameArtifacts = (stepId, names) => [...names.flatMap(name => [image(`nine-axis/${stepId}/${name}.png`, `${name} 参考帧`)]), file(`nine-axis/${stepId}/selected-frames.json`, '选帧记录')];
+const nineFrameArtifacts = (stepId, names) => [...names.flatMap(name => [image(`nine-axis/${stepId}/${name}.png`, `${viewName(name)}参考帧`)]), file(`nine-axis/${stepId}/selected-frames.json`, '选帧记录')];
 Object.assign(stepArtifacts[6], {
-  step01_preparation: [image('nine-axis/step01_preparation/original-full-face.png', '脸部底层素材'), file('nine-axis/step01_preparation/head_parts_manifest.json', '完整头部素材与投影关系')],
-  step02_video: ['left', 'up', 'down'].map(name => video(`nine-axis/step02_video/${name}.mp4`, `${name} 视频`)),
+  step01_preparation: [image('nine-axis/step01_preparation/original-full-face.png', '固定面部素材'), file('nine-axis/step01_preparation/source.json', '工程来源'), file('nine-axis/step01_preparation/head_parts_manifest.json', '素材清单')],
+  step02_video: ['left', 'up', 'down'].map(name => video(`nine-axis/step02_video/${name}.mp4`, `${viewName(name)}视频`)),
   step03_frames: nineFrameArtifacts('step03_frames', ['left', 'up', 'down']),
   step04_angles: [],
   'step04_angles/model': [file('nine-axis/step04_angles/model/deformers.json', '合并单轴模型')],
-  ...Object.fromEntries(['left', 'up', 'down'].map(name => [`step04_angles/model/${name}`, [file(`nine-axis/step04_angles/model/${name}/deformers.json`, `${name} 模型`)]])),
-  'step04_angles/video': ['left-up', 'left-down'].map(name => video(`nine-axis/step04_angles/video/${name}.mp4`, `${name} 视频`)),
+  ...Object.fromEntries(['left', 'up', 'down'].map(name => [`step04_angles/model/${name}`, [file(`nine-axis/step04_angles/model/${name}/deformers.json`, `${viewName(name)}模型`)]])),
+  'step04_angles/video': ['left-up', 'left-down'].map(name => video(`nine-axis/step04_angles/video/${name}.mp4`, `${viewName(name)}视频`)),
   step05_frames: nineFrameArtifacts('step05_frames', ['left-up', 'left-down']),
   'step06_angle-xy': [file('nine-axis/step06_angle-xy/deformers.json', '斜角模型')],
-  'step07_jaw-line': [file('nine-axis/step07_jaw-line/deformers.json', '脸部九轴模型'), image('nine-axis/step07_jaw-line/character-nine-axis.png', '可编辑工程合成图'), file('nine-axis/step07_jaw-line/notes.md', '制作说明')],
+  'step07_jaw-line': [file('nine-axis/step07_jaw-line/deformers.json', '脸部九轴模型'), image('nine-axis/step07_jaw-line/character-nine-axis.png', '合成图'), file('nine-axis/step07_jaw-line/character-nine-axis.kra', '分层 KRA'), file('nine-axis/step07_jaw-line/notes.md', '制作说明')],
 });
 export function shadowInspectionArtifacts(files) {
   return files.filter(path => /^shadow\/step01_mask\/inspection\/relation-\d{3,}-review\.png$/.test(path)).sort()

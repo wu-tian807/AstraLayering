@@ -65,7 +65,7 @@ test('independent waits and failures never mark running or completed siblings th
   assert.deepEqual(f.errors, []);
 });
 
-test('child retry marker layout keeps completed siblings; retained XY waits for all children and parent merge', async t => {
+test('child retry marker layout keeps completed siblings; retained XY keeps its own completed result', async t => {
   const f = await fixture(t);
   for (const id of [...nineAxisGroupSteps, 'step02_angles', 'step03_angle-xy']) {
     await f.put(`${id}/.completed`); await f.put(`${id}/deformers.json`, '{}');
@@ -80,8 +80,8 @@ test('child retry marker layout keeps completed siblings; retained XY waits for 
   let value = await f.get();
   assert.equal(value.mergeComplete, false); assert.equal(value.states['step02_angles/left'], 'done');
   assert.equal(value.states['step02_angles/down'], 'done'); assert.equal(value.states['step02_angles/up'], 'pending');
-  assert.equal(value.states['step03_angle-xy'], 'available');
-  assert.match(value.messages['step03_angle-xy'], /等待单轴模型完成/);
+  assert.equal(value.states['step03_angle-xy'], 'done');
+  assert.equal(value.messages['step03_angle-xy'], undefined);
   assert.deepEqual(await readFile(join(f.root, 'nine-axis/step02_angles/down/deformers.json')), before);
   await f.put('step02_angles/up/.completed'); await f.put('step02_angles/up/deformers.json', '{}');
   await f.complete('step02_angles/up');
@@ -90,13 +90,14 @@ test('child retry marker layout keeps completed siblings; retained XY waits for 
   value = await f.get(); assert.equal(value.mergeComplete, true); assert.equal(value.states['step03_angle-xy'], 'done');
 });
 
-test('parent completion cannot hide a missing child delivery; snapshot exposes exact child recovery IDs', async t => {
+test('completion markers remain authoritative when intermediate deliveries are missing', async t => {
   const f = await fixture(t);
   for (const id of [...nineAxisGroupSteps, 'step02_angles']) await f.complete(id);
   await rm(join(f.root, 'nine-axis/step02_angles/up/deformers.json'));
   const value = await f.get();
-  assert.equal(value.states.step02_angles, 'failed');
-  assert.deepEqual(value.steps.find(step => step.id === 'step02_angles/up')!.missing, ['step02_angles/up/deformers.json']);
+  assert.equal(value.states.step02_angles, 'done');
+  assert.equal(value.states['step02_angles/up'], 'done');
+  assert.deepEqual(value.messages, {});
   const result = await snapshot(f.root, 'case', dirname(f.root));
   assert.deepEqual(result.sections.find(section => section.id === 'nine-axis')!.steps.map(step => step.id), ['step02_angles', ...nineAxisGroupSteps]);
 });
@@ -192,7 +193,7 @@ test('workbench loads the embedded source composition unchanged and reloads same
   const { HeadNineAxisPanel, nineAxisCapabilities } = await panelModule(), doc = composed(), requested: string[] = [], installed: any[] = [];
   t.mock.method(globalThis, 'fetch', async (url: any) => {
     const path = new URL(String(url), 'http://local/').searchParams.get('path')!; requested.push(path);
-    return path.endsWith('.json') ? Response.json(doc) : new Response('texture');
+    return path.endsWith('.json') ? Response.json({ doc, author: doc, version: '1', textures: ['./texture?path=' + path.replace(/[^/]+$/, 'layers/face.png')] }) : new Response('texture');
   });
   const previous = (globalThis as any).createImageBitmap;
   (globalThis as any).createImageBitmap = async () => ({});

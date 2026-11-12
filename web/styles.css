@@ -299,7 +299,7 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 
 /* Vertical movement goes lane to lane, never free: the scrollbar is horizontal only and touch pans sideways natively. */
 .flow-area{position:relative}
-.flow-scroll{overflow-x:auto;overflow-y:hidden;touch-action:pan-x}
+.flow-scroll{overflow-x:auto;overflow-y:hidden;touch-action:pan-x;overflow-anchor:none}
 .lane-switch{position:absolute;right:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;padding:6px;border:1px solid var(--line);border-radius:999px;background:#ffffffe6;box-shadow:0 2px 10px #29485718;z-index:3}
 .lane-switch button{position:relative;display:grid;place-items:center;width:22px;height:22px;border-radius:50%}
 .lane-switch span{width:8px;height:8px;border-radius:50%;background:#c3ced6;transition:transform .2s,background .2s}
@@ -357,3 +357,42 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 .head-preview-panel{margin:12px;min-width:0}.head-preview-panel canvas{display:block;width:100%;height:210px;background:#f0f1f4;border-radius:7px}
 .head-preview-panel p{font-size:11px;margin:8px 0}.head-preview-panel small,.head-preview-panel a{display:block;font-size:10px;line-height:1.8;color:var(--muted)}
 .execution-state.interrupted{color:#b34b45}.execution-state.unconfirmed{color:#9a7331}.overview-card.interrupted,.overview-card.unconfirmed{border-color:#dfc9a5}
+
+/* One surface per nine-axis stage; branches use rows with optional outputs. */
+.section-lane[data-section="6"]>.section-heading{width:max-content;min-width:288px}
+.step-node.nine-axis-step{width:288px;height:auto;overflow:hidden}
+.step-node.nine-axis-branches{width:360px}
+.nine-axis-step.node-collapsed{width:248px}
+.nine-step-heading{display:grid;grid-template-columns:24px minmax(0,1fr) auto auto;align-items:start;gap:8px;padding:16px 14px;min-height:72px}
+.nine-step-heading h3{font-size:14px;line-height:22px;font-weight:600;margin:0;overflow-wrap:break-word}
+.nine-step-number{font-size:11px;line-height:22px;color:var(--muted);font-variant-numeric:tabular-nums}
+.nine-step-status{display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:10px;line-height:22px;color:var(--muted)}
+.nine-step-heading>.icon-button{width:22px;height:22px;padding:2px}
+.nine-step-content{flex:0 1 auto;max-height:calc(var(--step-height) - 76px);padding:0 14px 14px}
+.nine-task-group+.nine-task-group{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.nine-group-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 0 8px}
+.nine-group-heading h4{font-size:12px;line-height:20px;margin:0;font-weight:600}
+.nine-group-heading>span{font-size:10px;line-height:18px;color:var(--muted)}
+.nine-task{margin:0;border:0}
+.nine-task+.nine-task{border-top:1px solid #edf1f3}
+.nine-task-heading{display:flex;align-items:center;gap:8px;min-height:42px;padding:10px 0;list-style:none}
+summary.nine-task-heading{cursor:pointer}
+.nine-task-heading::-webkit-details-marker{display:none}
+.nine-task-title{flex:1;min-width:0;font-size:13px;line-height:20px;font-weight:500}
+.nine-task-status{flex:none;white-space:nowrap;font-size:11px;color:var(--muted)}
+.nine-task-heading>.icon{width:13px;height:13px;flex:none;color:var(--muted)}
+.nine-task[open]>.nine-task-heading>.icon{transform:rotate(180deg)}
+.nine-task-body{padding:0 0 10px 22px}
+.nine-task-body .process-files{margin:8px 0 0}
+.nine-task-group+.nine-step-outputs{padding-top:14px;margin-top:12px;border-top:1px solid var(--line)}
+.nine-artifacts{padding:0;gap:8px}
+.nine-artifacts .artifact-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));width:100%;gap:8px}
+.nine-artifacts .artifact-image img{height:140px;max-height:160px}
+.nine-artifacts>.artifact-video{flex:1 1 116px;min-width:0;max-width:none;padding:6px}
+.nine-artifacts .artifact-video video{height:100px;object-fit:contain;background:#f3f6f7;border-radius:4px}
+.nine-artifacts .artifact-video figcaption{font-size:11px;line-height:17px}
+.nine-artifacts .artifact-file{font-size:11px;padding:7px 8px}
+.head-preview-panel{width:288px;height:auto;max-height:var(--step-height)}
+.head-preview-panel[data-model="pending"] canvas{display:none}
+.head-preview-panel[data-model="pending"]{height:auto}
+.head-preview-panel>a{display:flex;align-items:center;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);color:var(--accent);font-size:12px}
