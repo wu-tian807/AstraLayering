@@ -7,6 +7,7 @@ import { createServer } from 'node:http';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
+import { zipSync, strToU8 } from 'fflate';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox, type Box } from '../turn.ts';
 import { angleXYPrompt, angleYPrompt, viewFramesPrompt, cornerFramesPrompt, cornerOutlinePrompt, createFitHead, headPrompt, jawLinePrompt, outlinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
@@ -34,14 +35,14 @@ async function fixture(t: TestContext) {
   const task = join(root, 'case'), assembly = join(task, 'character-assembly/step01'), parts = join(task, 'part-layering/parts');
   await mkdir(assembly, { recursive: true }); await mkdir(parts, { recursive: true });
   await writeFile(join(assembly, 'character-assembled.png'), await sharp({ create: { width: 200, height: 400, channels: 4, background: { r: 200, g: 100, b: 50, alpha: 1 } } }).png().toBuffer());
-  await writeFile(join(assembly, 'character-assembled.kra'), 'kra');
+  await writeFile(join(assembly, 'character-assembled.kra'), zipSync({ 'maindoc.xml': strToU8('<DOC/>'), 'mergedimage.png': await readFile(join(assembly, 'character-assembled.png')) }));
   await writeFile(join(assembly, '.completed'), JSON.stringify({ stamp: 'assembly-1', inputs: {} }));
   await writeFile(join(parts, 'face.svg'), rect(200, 400, 80, 60, 40, 50));
   await writeFile(join(parts, 'hair.svg'), rect(200, 400, 60, 30, 70, 70));
   return { root, task };
 }
 
-// The dummy KRA above is never sent to Krita. Build an identity version of
+// The synthetic KRA above is never sent to Krita. Build an identity version of
 // the same four original layers used by writeFaceLeft, with the merge contract.
 async function prepareNeutralFixture(directory: string, input: HeadInput, box: Box, taskRoot: string) {
   await writeFaceLeft(directory);
@@ -142,6 +143,7 @@ test('阴影蒙版完成时用阴影角色图', async t => {
   const shadow = join(task, 'shadow/step01_mask');
   await mkdir(shadow, { recursive: true });
   await writeFile(join(shadow, 'character-shadowed.png'), await readFile(join(task, 'character-assembly/step01/character-assembled.png')));
+  await copyFile(join(task, 'character-assembly/step01/character-assembled.kra'), join(shadow, 'character-shadowed.kra'));
   assert.equal((await resolveTurnInput('case', root)).source.id, 'character-assembly/step01', '未完成的阴影不作来源');
   await writeFile(join(shadow, '.completed'), JSON.stringify({ stamp: 'shadow-1', inputs: {} }));
   const input = await resolveTurnInput('case', root);
@@ -341,6 +343,10 @@ test('连续七步：平层视频、三路真实并发、联合工程、斜角�
     await writeFile(join(directory, 'jaw.json'), JSON.stringify(doc));
   };
   const deps = { environment: loadWorkflowEnvironment({}), generate, viewFramesHead: pickViews(ffmpeg), framesHead: pickCorners, prepareNeutral,
+    materialize: async (directory: string, built: import('../head.ts').Built) => ({ ...built, textures: new Map(await Promise.all(built.doc.parts.map(async part => {
+      const own = join(directory, part.texture), inherited = join(nine, 'step06_angle-xy', part.texture);
+      return [part.texture, await access(own).then(() => own, () => inherited)] as [string,string];
+    }))) }),
     fitHead: fit('left'), fitUp: fit('up'), fitDown: fit('down'), fitAngleXY, fitJawLine };
   assert.match(await runWithFFmpeg({ name: 'case', dir: root }, deps), /step07_jaw-line 已完成：6 个部件的下颌线与脖子/);
   assert.deepEqual([...entered].sort(), ['down', 'left', 'up']);
@@ -370,7 +376,9 @@ test('连续七步：平层视频、三路真实并发、联合工程、斜角�
   for (const step of ['step02_angle-x', 'step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line']) await assert.rejects(access(join(nine, step)), { code: 'ENOENT' });
   for (const step of ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line']) assert.equal((await readStep(join(nine, step))).status, 'completed');
   const source = JSON.parse(await readFile(join(axes, 'source.json'), 'utf8'));
-  assert.equal(source.sourceDocument, 'nine-axis/step01_preparation/character-nine-axis.kra');
+  assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
+  await assert.rejects(access(join(preparation, 'character-nine-axis.kra')), { code: 'ENOENT' });
+  await assert.rejects(access(join(preparation, 'character-nine-axis.png')), { code: 'ENOENT' });
   assert.deepEqual(await readFile(join(task, source.sourceDocument)), await readFile(join(task, 'character-assembly/step01/character-assembled.kra')));
   assert.deepEqual(await readFile(join(nine, 'step07_jaw-line/character-nine-axis.kra')), await readFile(join(task, source.sourceDocument)));
   const neutral = await readUpstream(preparation), merged = await readUpstream(axes);

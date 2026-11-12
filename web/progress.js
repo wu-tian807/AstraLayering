@@ -195,7 +195,7 @@ stepArtifacts.push({
 });
 const nineFrameArtifacts = (stepId, names) => [...names.flatMap(name => [image(`nine-axis/${stepId}/${name}.png`, `${viewName(name)}参考帧`)]), file(`nine-axis/${stepId}/selected-frames.json`, '选帧记录')];
 Object.assign(stepArtifacts[6], {
-  step01_preparation: [image('nine-axis/step01_preparation/original-full-face.png', '头部素材'), image('nine-axis/step01_preparation/character-nine-axis.png', '头部合成图'), file('nine-axis/step01_preparation/character-nine-axis.kra', '分层 KRA'), file('nine-axis/step01_preparation/head_parts_manifest.json', '素材清单')],
+  step01_preparation: [image('nine-axis/step01_preparation/original-full-face.png', '固定面部素材'), file('nine-axis/step01_preparation/source.json', '工程来源'), file('nine-axis/step01_preparation/head_parts_manifest.json', '素材清单')],
   step02_video: ['left', 'up', 'down'].map(name => video(`nine-axis/step02_video/${name}.mp4`, `${viewName(name)}视频`)),
   step03_frames: nineFrameArtifacts('step03_frames', ['left', 'up', 'down']),
   step04_angles: [],

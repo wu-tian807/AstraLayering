@@ -2,13 +2,14 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { chromium } from 'playwright';
+import { chromium, type Browser, type Page } from 'playwright';
 import { toolDefinition } from '../shared/codex/tool-config.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { fromTaskPath, taskRootOf, toAgentPath } from '../shared/task-paths.ts';
 import sharp from 'sharp';
 import { validateHeadNineAxis, keyformAt, evaluatePoints, nodes, descendants } from '../shared/nine-axis-model.js';
 import type { Built } from './head.ts';
+import type { MaterialBuilt } from './kra-materials.ts';
 
 // view_nine_axis: the step's current delivery, built as the program will build
 // it, drawn by the workbench's own renderer (shared/nine-axis-render.js) in a
@@ -20,30 +21,85 @@ import type { Built } from './head.ts';
 const shared = join(dirname(fileURLToPath(import.meta.url)), '..', 'shared');
 const three = dirname(fileURLToPath(import.meta.resolve('three')));
 const origin = 'http://nine-axis.local';
+const browserArgs = ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'];
 const checker = 'background:#2b2e35;background-image:linear-gradient(45deg,#30333a 25%,transparent 25%,transparent 75%,#30333a 75%),linear-gradient(45deg,#30333a 25%,transparent 25%,transparent 75%,#30333a 75%);background-size:24px 24px;background-position:0 0,12px 12px';
 const page = (width: number, height: number, overlay: string) => `<!doctype html><html><head><style>html,body{margin:0}#view{position:relative;overflow:hidden;width:${width}px;height:${height}px;${checker}}canvas,svg{position:absolute;inset:0}#reference{position:absolute;display:none}.nine-grid{fill:none;stroke:#6fd1ff;stroke-width:1;opacity:.75}.nine-points circle{fill:#1d3a4a;stroke:#6fd1ff;stroke-width:1}</style>
 <script type="importmap">{"imports":{"three":"/three.module.js"}}</script></head><body><div id="view"><img id="reference"/><canvas></canvas>${overlay}</div><script type="module">
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from '/nine-axis-render.js';
 try {
-  const { doc, x, y, level, masks, only, hidden, frame } = await (await fetch('/args.json')).json();
+  const { doc, x, y, level, masks, only, hidden, frame, mode } = await (await fetch('/args.json')).json();
   const images = await Promise.all(doc.parts.map(async (p, i) => createNineAxisBitmap(await (await fetch('/texture/' + i)).blob())));
   const view = new HeadNineAxisRenderer(document.querySelector('canvas'));
   view.renderer.setPixelRatio(1); view.renderer.setSize(${width}, ${height}, false);
   view.install(doc, images); const shown = shownParts(doc, level, { masks: new Set(masks), hidden: new Set(hidden) });
   view.draw(frame, x, y, only.length ? new Set([...shown].filter(id => only.includes(id))) : shown);
+  if (mode === 'edge') window.modelPng = document.querySelector('canvas').toDataURL('image/png');
   await new Promise(requestAnimationFrame); window.rendered = 'ok';
 } catch (error) { window.rendered = String(error?.message ?? error); }
 </script></body></html>`;
 
-type Args = { x?: unknown; y?: unknown; level?: unknown; crop?: unknown; scale?: unknown; masks?: unknown; grid?: unknown; only?: unknown; hidden?: unknown; reference?: unknown };
+type Args = { x?: unknown; y?: unknown; frames?: unknown; level?: unknown; crop?: unknown; scale?: unknown; mode?: unknown; masks?: unknown; grid?: unknown; only?: unknown; hidden?: unknown; reference?: unknown };
 type Parameter = { id: string; min?: number; max?: number; keys?: number[]; status?: string };
 
-export function createNineAxisViewTool(directory: string, observationDirectory: string, build: () => Promise<Built>): FunctionTool {
+// Use the transparent render, never the checkerboard or control-grid screenshot.
+// Only an observed transparent neighbour creates an edge: cropping through a
+// painted area must not invent a contour at the viewport boundary.
+async function silhouette(png: Buffer, scale: number): Promise<Buffer> {
+  const { data: alpha, info: { width, height } } = await sharp(png).ensureAlpha().extractChannel('alpha').raw().toBuffer({ resolveWithObject: true });
+  const pixels = Buffer.alloc(width * height * 4), radius = Math.max(1, Math.round(scale / 2));
+  for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+    const i = y * width + x;
+    if (alpha[i] < 128) continue;
+    const edge = x >= radius && alpha[i - radius] < 128 || x + radius < width && alpha[i + radius] < 128
+      || y >= radius && alpha[i - width * radius] < 128 || y + radius < height && alpha[i + width * radius] < 128;
+    if (edge) { pixels[i * 4] = 0; pixels[i * 4 + 1] = 205; pixels[i * 4 + 2] = 255; pixels[i * 4 + 3] = 255; }
+  }
+  return sharp(pixels, { raw: { width, height, channels: 4 } }).png().toBuffer();
+}
+
+export function createNineAxisViewTool(directory: string, observationDirectory: string, build: () => Promise<Built>, session?: Browser): FunctionTool {
   return {
     ...toolDefinition('view_nine_axis'),
     async execute(value, signal, context) {
       if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('参数须为对象');
-      const args = value as Args, built = await build(), doc = validateHeadNineAxis(structuredClone(built.doc)) as Built['doc'] & {
+      if ((value as Args).frames !== undefined) {
+        const { frames, x, y, ...common } = value as Args;
+        if (x !== undefined || y !== undefined) throw Error('frames 和顶层 x/y 不能同时使用');
+        if (!Array.isArray(frames) || !frames.length || frames.length > 16 || frames.some(f => !f || typeof f !== 'object' || Array.isArray(f))) throw Error('frames 须为 1 至 16 个 {x,y,reference?}');
+        // Resolve KRA and the cumulative model exactly once for the whole batch.
+        const snapshot = await build() as MaterialBuilt;
+        const results: any[] = [];
+        const browser = session ?? await chromium.launch({ args: browserArgs });
+        try {
+          const single = createNineAxisViewTool(directory, observationDirectory, async () => snapshot, browser);
+          for (const frame of frames) {
+            signal.throwIfAborted();
+            if (Object.keys(frame).some(key => !['x', 'y', 'reference'].includes(key))) throw Error('frame 只接受 x、y、reference');
+            const rendered = await single.execute({ ...common, ...frame }, signal, context);
+            const info = rendered.contentItems[0];
+            if (info.type !== 'inputText') throw Error('九轴预览没有返回帧信息');
+            results.push(JSON.parse(info.text));
+          }
+        } finally { if (!session) await browser.close(); }
+        const root = context?.root ?? taskRootOf(directory), columns = Math.min(3, results.length);
+        const cellWidth = Math.max(...results.map(r => r.width)), cellHeight = Math.max(...results.map(r => r.height)) + 28;
+        if (cellWidth * columns * cellHeight * Math.ceil(results.length / columns) > 32_000_000) throw Error('多帧预览过大，请降低 scale 或减少帧数');
+        const sheet = await sharp({ create: { width: cellWidth * columns, height: cellHeight * Math.ceil(results.length / columns), channels: 4, background: '#20242b' } }).composite([
+          ...results.map((result, i) => ({ input: fromTaskPath(root, result.savedPath), left: i % columns * cellWidth, top: Math.floor(i / columns) * cellHeight + 28 })),
+          { input: Buffer.from(`<svg width="${cellWidth * columns}" height="${cellHeight * Math.ceil(results.length / columns)}"><g fill="white" font-family="sans-serif" font-size="14">${results.map((r,i) => `<text x="${i % columns * cellWidth + 8}" y="${Math.floor(i / columns) * cellHeight + 19}">X=${r.x} Y=${r.y}</text>`).join('')}</g></svg>`), left: 0, top: 0 },
+        ]).png().toBuffer();
+        const destination = context ? join(context.workspace, 'bitmaps') : observationDirectory;
+        await mkdir(destination, { recursive: true });
+        const path = join(destination, `${randomUUID()}-frames.png`); await writeFile(path, sheet);
+        return { success: true, contentItems: [
+          { type: 'inputText', text: JSON.stringify({ frames: results, savedPath: await toAgentPath(root, path), document: snapshot.sourceDocument ?? snapshot.doc.source?.document, revision: snapshot.sourceRevision }) },
+          { type: 'inputImage', imageUrl: `data:image/png;base64,${sheet.toString('base64')}` },
+        ] };
+      }
+      const args = value as Args, mode = args.mode ?? (args.reference === undefined ? 'blend' : 'edge');
+      if (mode !== 'blend' && mode !== 'edge') throw new Error('mode 须为 blend 或 edge');
+      if (mode === 'edge' && args.reference === undefined) throw new Error('mode=edge 须提供 reference');
+      const built = await build() as MaterialBuilt, doc = validateHeadNineAxis(structuredClone(built.doc)) as Built['doc'] & {
         parameters?: Parameter[]; levels: { id: string }[]; view?: { x: number; y: number; width: number; height: number }; canvas: [number, number] };
       const angle = (v: unknown, id: string, name: string) => {
         const q = doc.parameters?.find(p => p.id === id && !p.status && (p.keys?.length ?? 0) > 1), n = v ?? 0;
@@ -100,15 +156,16 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
       }).join('')}</svg>` : '';
       const textures = doc.parts.map(p => built.textures.get(p.texture)!);
       signal.throwIfAborted();
-      const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
+      const browser = session ?? await chromium.launch({ args: browserArgs });
+      let tab: Page | undefined;
       let data: Buffer;
       let comparison: Buffer | undefined;
       try {
-        const tab = await browser.newPage({ viewport: { width, height } });
+        tab = await browser.newPage({ viewport: { width, height } });
         await tab.route(origin + '/**', async route => {
           const path = new URL(route.request().url()).pathname, js = 'text/javascript';
           if (path === '/') return route.fulfill({ contentType: 'text/html', body: page(width, height, overlay) });
-          if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, x, y, level, masks, only, hidden, frame: { x0, y0, width: cw, height: ch } }) });
+          if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, x, y, level, masks, only, hidden, mode, frame: { x0, y0, width: cw, height: ch } }) });
           if (path === '/reference.png' && reference) return route.fulfill({ contentType: 'image/png', body: reference.bytes });
           if (path.startsWith('/texture/')) return route.fulfill({ contentType: 'image/png', body: await readFile(textures[Number(path.slice(9))]) });
           if (path === '/three.module.js' || path === '/three.core.js') return route.fulfill({ contentType: js, body: await readFile(join(three, path)) });
@@ -130,16 +187,24 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
             document.querySelectorAll<HTMLElement>('canvas,svg').forEach(el => { el.style.visibility = 'hidden'; });
           }, { bounds: reference.bounds, crop: [x0, y0], scale });
           const target = await tab.locator('#view').screenshot({ type: 'png' });
-          await tab.evaluate(() => { const canvas = document.querySelector('canvas')!; canvas.style.visibility = 'visible'; canvas.style.opacity = '0.5'; });
-          const blended = await tab.locator('#view').screenshot({ type: 'png' });
+          let compared: Buffer;
+          if (mode === 'edge') {
+            const png = await tab.evaluate(() => (globalThis as { modelPng?: string }).modelPng!);
+            const edges = await silhouette(Buffer.from(png.split(',')[1], 'base64'), scale);
+            compared = await sharp(target).composite([{ input: edges }]).png().toBuffer();
+          } else {
+            await tab.evaluate(() => { const canvas = document.querySelector('canvas')!; canvas.style.visibility = 'visible'; canvas.style.opacity = '0.5'; });
+            compared = await tab.locator('#view').screenshot({ type: 'png' });
+          }
           const axis = (doc as { axis?: number }).axis, guideX = axis === undefined ? undefined : (axis - x0) * scale;
           const guide = guideX !== undefined && guideX >= 0 && guideX < width ? `<path d="M ${guideX} 28 V ${height + 28}" stroke="#35c9ff" stroke-dasharray="5 5"/>` : '';
-          const labels = Buffer.from(`<svg width="${width * 3}" height="${height + 28}"><g fill="white" font-family="sans-serif" font-size="14"><text x="8" y="19">Reference</text><text x="${width + 8}" y="19">Current X=${x}</text><text x="${width * 2 + 8}" y="19">Overlay 50% / fixed front axis</text></g><g>${[0, width, width * 2].map(offset => `<g transform="translate(${offset},0)">${guide}</g>`).join('')}</g></svg>`);
+          const label = mode === 'edge' ? 'Cyan silhouette / fixed front axis' : 'Overlay 50% / fixed front axis';
+          const labels = Buffer.from(`<svg width="${width * 3}" height="${height + 28}"><g fill="white" font-family="sans-serif" font-size="14"><text x="8" y="19">Reference</text><text x="${width + 8}" y="19">Current X=${x}</text><text x="${width * 2 + 8}" y="19">${label}</text></g><g>${[0, width, width * 2].map(offset => `<g transform="translate(${offset},0)">${guide}</g>`).join('')}</g></svg>`);
           comparison = await sharp({ create: { width: width * 3, height: height + 28, channels: 4, background: '#20242b' } }).composite([
-            { input: target, left: 0, top: 28 }, { input: data, left: width, top: 28 }, { input: blended, left: width * 2, top: 28 }, { input: labels, left: 0, top: 0 },
+            { input: target, left: 0, top: 28 }, { input: data, left: width, top: 28 }, { input: compared, left: width * 2, top: 28 }, { input: labels, left: 0, top: 0 },
           ]).png().toBuffer();
         }
-      } finally { await browser.close(); }
+      } finally { if (session) await tab?.close(); else await browser.close(); }
       signal.throwIfAborted();
       const destination = context ? join(context.workspace, 'bitmaps') : observationDirectory;
       await mkdir(destination, { recursive: true });
@@ -148,7 +213,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
       const comparisonPath = comparison ? join(destination, `${randomUUID()}-comparison.png`) : undefined;
       if (comparisonPath) await writeFile(comparisonPath, comparison!);
       return { success: true, contentItems: [
-        { type: 'inputText', text: JSON.stringify({ x, y, level: ids.includes(level) ? level : ids[0], crop, scale, width, height, savedPath: await toAgentPath(root, savedPath), ...(grids.length ? { grid: grids } : {}), ...(reference && comparisonPath ? { comparison: { savedPath: await toAgentPath(root, comparisonPath), reference: await toAgentPath(root, reference.path), bounds: reference.bounds, registration: 'none; same canvas coordinates', axis: (doc as { axis?: number }).axis } } : {}) }) },
+        { type: 'inputText', text: JSON.stringify({ x, y, level: ids.includes(level) ? level : ids[0], document: built.sourceDocument ?? doc.source?.document, revision: built.sourceRevision, crop, scale, mode, width, height, savedPath: await toAgentPath(root, savedPath), ...(grids.length ? { grid: grids } : {}), ...(reference && comparisonPath ? { comparison: { savedPath: await toAgentPath(root, comparisonPath), reference: await toAgentPath(root, reference.path), bounds: reference.bounds, mode, ...(mode === 'edge' ? { edgeSource: 'visible alpha boundary; no grid or checkerboard', edgeColor: '#00cdff' } : {}), registration: 'none; same canvas coordinates', axis: (doc as { axis?: number }).axis } } : {}) }) },
         { type: 'inputImage', imageUrl: `data:image/png;base64,${data.toString('base64')}` },
         ...(comparison ? [{ type: 'inputImage' as const, imageUrl: `data:image/png;base64,${comparison.toString('base64')}` }] : []),
       ] };

@@ -1,4 +1,4 @@
-编辑本步的真实 version 2 作者源。左右为 face-left.json，上下为 face-y.json，四角为 face-xy.json，下颌为 jaw.json。首次用 importParts 导入 KRA 从上到下的贴图部件列表：每项有 id、group、texture（本步 layers/ 的 PNG）、textureBounds=[x,y,width,height]、bbox=[x0,y0,x1,y1]，可选 cols、rows（默认 4×4）；工具创建静止与左右端点的规则网格，不创建任何预设分组。axis 是原画布像素中的镜像中轴。已有源时调用 {} 读取 revision 和变形器/部件索引。上下、四角、下颌首次调用 {} 时自动从当前上游建立完整文档，保留层级、裁切和贴图，记录上游哈希；不再交付只包含部件关键形的补丁。上下只编辑 X=0、Y 上下端点，四角只编辑左上/左下；程序生成右侧。上游变动时拒绝沿用旧作者文件，须以新上游重新制作。后续阶段不能重新 importParts 或更换 axis。
+编辑本步的真实 version 2 作者源。左右为 face-left.json，上下分别为 face-up.json、face-down.json，四角为 face-xy.json，下颌为 jaw.json。首次用 importParts 导入 KRA 从上到下的贴图部件列表：每项有 id、group、texture（本步 layers/ 的 PNG）、textureBounds=[x,y,width,height]、bbox=[x0,y0,x1,y1]，可选 cols、rows（默认 4×4）；工具创建静止与左右端点的规则网格，不创建任何预设分组。axis 是原画布像素中的镜像中轴。已有源时调用 {} 读取 revision 和变形器/部件索引。上下、四角、下颌首次调用 {} 时自动从当前上游建立完整文档，保留层级、裁切和贴图，记录上游哈希；不再交付只包含部件关键形的补丁。上下只编辑 X=0、Y 上下端点，四角只编辑左上/左下；程序生成右侧。上游变动时拒绝沿用旧作者文件，须以新上游重新制作。后续阶段不能重新 importParts 或更换 axis。
 
 operations 可以一次提交多项。每项 action：
 - create_warp：id、可选 name、targets（你选择的部件或变形器 id）、可选 parent、bbox、cols/rows（默认 2×2）。建立无贴图的父变形器并把 targets 放进去；分组与层级由你决定。支持平级变形器，也支持再加子变形器做细节。新 Warp/部件自动获得当前阶段已有 X、Y 与四角的初始形。范围默认包住选中对象已有 X、Y 和四角的实际画布关键形；有父级时可明确提供 bbox。
@@ -13,3 +13,7 @@ operations 可以一次提交多项。每项 action：
 父级改大形，子级或独立部件修局部。不要把所有贴图分别复制一份相同变形，也不要为层级套用固定解剖树。左右成对的 id 用完整 left/right 词（如 eye_left），程序以配对的左形镜像右形。编辑左侧和中间负角度后，用 view_nine_axis 同时检查左右，尤其是脸缘、瞳孔、嘴层和脖子连接。
 
 成功返回新 revision 与节点索引；后续传 revision 可防止覆盖新改动。整个批次验证引用、父子循环、网格折叠与贴图后才保存，失败不写入。notes 可记录你的分组理由和造型调整。图片检查请继续使用 view_nine_axis。
+
+阶段权限由调度绑定：left 写 face-left.json；up、down 分别写 face-up.json、face-down.json，三者独立从 neutral 开始；xy 写 face-xy.json，继承已合并单轴；jaw 写 jaw.json，继承全部九轴并使用本步可编辑 KRA。准备不调度编辑 agent。面部阶段保持固定 KRA 导出数据，不改画稿、不换图层绑定。
+
+下颌线阶段先在 Krita 保存本步工程，再用 `bindings:[{"id":"jaw_line","uuid":"<KRA图层UUID>"}]` 绑定新画稿；add_part 的 part 也可直接携带 uuid。已有部件重绑同理。无绘画内容的纯构造部件可显式绑定 `{"id":"driver","material":"transparent"}`。textureBounds 指定原画布整数像素范围，工具自动从 KRA 导出到本步 layers/，不以旧 PNG 作为素材依据。新图层的形状、颜色、蒙版像素仍由 Krita 修改；本工具负责绑定、层级和关键形，不把某个转头姿态烘进 KRA。调用 {} 也会同步保存后的 KRA 贴图与来源。

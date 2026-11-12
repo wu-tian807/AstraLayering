@@ -1,4 +1,5 @@
 import { lstat, readFile } from 'node:fs/promises';
+import { dirname, relative } from 'node:path';
 import { createHash } from 'node:crypto';
 import { studioArtifacts } from '../.agents/skills/live2d-maker/shared/studio-artifacts.ts';
 import { shadowArtifacts, shadowMode } from '../.agents/skills/live2d-maker/shared/shadow.ts';
@@ -6,6 +7,7 @@ import { inspectDraftPreview } from '../.agents/skills/live2d-maker/shadow/previ
 import { safePath } from './files.ts';
 import { readStep } from '../.agents/skills/live2d-maker/shared/step-chain.ts';
 import { nineAxisArtifacts, previousNineAxisArtifacts, legacyNineAxisArtifacts, nineAxisStages, previousNineAxisStages, type NineAxisStage } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { modelDocument, modelVersion } from '../.agents/skills/live2d-maker/nine-axis/source.ts';
 
 type Selection = { version: number; mode: 'mask' | 'normal-depth'; sourceKraHash: string; sourceColorHash: string };
 const previewModes = ['mask', 'normal-depth', 'mixed'] as const;
@@ -54,7 +56,7 @@ export async function studioProject(directory: string, name: string, dir: string
   const paths = { ...studioArtifacts, maskDocument: shadowArtifacts.maskDocument, maskColor: shadowArtifacts.maskColor, bindings: shadowArtifacts.bindings,
     draftNormal: shadowArtifacts.draftNormal, draftDepth: shadowArtifacts.draftDepth };
   const all = Object.fromEntries(await Promise.all(Object.entries(paths).map(async ([key, path]) => [key, await file(path)])));
-  const maskAvailable = !!maskSource && !maskStale && all.maskDocument.available && all.maskColor.available && all.bindings.available;
+  const maskAvailable = !!maskSource && !maskStale && all.maskDocument.available && all.bindings.available;
   const publishedMaps = !mapsStale && (!!mapsSource || !selection) && all.normal.available && all.depth.available;
   let draftRecord;
   if (!mapsSource && !publishedMaps && all.draftNormal.available && all.draftDepth.available) {
@@ -117,12 +119,29 @@ export async function studioProject(directory: string, name: string, dir: string
     const candidate = await stageFile(stage);
     if (candidate.available) { selectedStage = stage; nineAxis = candidate; break; }
   }
-  // The nine-axis steps work on their own copy of the KRA; once merged, the workbench opens that copy.
+  // New models name their actual KRA. PNG availability never selects artwork.
+  // Retain explicit legacy stage paths only for pre-provenance deliveries.
   let nineAxisDocument = false;
   const useJaw = nested && selectedStage === 'jaw' && nineAxis.available;
   let [document, color] = await Promise.all([file(useJaw ? staged ? nineAxisArtifacts.jawLineDocument : previousNineAxisArtifacts.jawLineDocument : artifacts.headDocument), file(useJaw ? staged ? nineAxisArtifacts.jawLineColor : previousNineAxisArtifacts.jawLineColor : artifacts.headColor)]);
-  if (useJaw && (!document.available || !color.available)) [document, color] = await Promise.all([file(artifacts.headDocument), file(artifacts.headColor)]);
-  if ((staged || mergeComplete) && document.available && color.available) { files.document = document; files.color = color; nineAxisDocument = true; }
+  if (useJaw && !document.available) [document, color] = await Promise.all([file(artifacts.headDocument), file(artifacts.headColor)]);
+  if (nineAxis.available) {
+    // Metadata can still describe a legacy/incomplete delivery; the renderer
+    // reports malformed models when opened rather than hiding the whole task.
+    let model;
+    try { model = JSON.parse(await readFile(await safePath(directory, nineAxis.path), 'utf8')); }
+    catch (error) { if (!(error instanceof SyntaxError)) throw error; model = {}; }
+    const modelDirectory = dirname(await safePath(directory, nineAxis.path));
+    const source = await modelDocument(directory, modelDirectory, model);
+    if (source) {
+      const sourcePath = relative(directory, source).split('\\').join('/');
+      if (!isStudioPath(sourcePath) || !sourcePath.endsWith('.kra')) throw Error('九轴来源必须是任务内已知的 KRA 工程');
+      document = await file(sourcePath);
+      if (!document.available) throw Error('九轴引用的 KRA 不存在：' + sourcePath);
+      nineAxis = { ...nineAxis, version: await modelVersion(directory, modelDirectory, model, nineAxis.version!) };
+    }
+  }
+  if ((staged || mergeComplete) && document.available) { files.document = document; files.color = color; nineAxisDocument = true; }
   return { name, dir, files, nineAxis: { ...nineAxis, stage: selectedStage, layout: staged ? 'staged' : nested ? 'nested' : 'legacy', mergeComplete }, nineAxisDocument, previewMode: mode, previewModes: availableModes, maskStale, mapsStale,
     previewDraft: useDraft, ...(useDraft ? { previewReview: draftRecord!.status, previewReviewReason: draftRecord!.reason } : {}),
     ...(selection ? { shadowMode: selection.mode, shadowStale: stale(selection) } : {}) };

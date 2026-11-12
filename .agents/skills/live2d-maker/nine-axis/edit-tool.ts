@@ -17,7 +17,8 @@ const hash = (s: string) => createHash('sha256').update(s).digest('hex');
 export function createHeadEditTool(directory: string, input: HeadInput, box: Box, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory)), neutralDirectory?: string): FunctionTool {
   return { ...toolDefinition('edit_nine_axis'), async execute(value, signal) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('参数须为对象');
-    const args = value as { revision?: string; axis?: number; importParts?: Part[]; operations?: any[]; notes?: string };
+    const args = value as { revision?: string; axis?: number; importParts?: Part[]; operations?: any[]; notes?: string; bindings?: unknown };
+    if (args.bindings !== undefined) throw Error('本阶段使用固定 KRA 导出素材，不能更换图层绑定');
     const path = join(directory, 'face-left.json'); let text = '', raw: FaceLeft;
     try { text = await readFile(path, 'utf8'); raw = JSON.parse(text); }
     catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; raw = { version: 2, axis: box.x + box.size / 2, deformers: [], parts: [] }; }

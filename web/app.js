@@ -388,6 +388,12 @@ function nineAxisContent(step) {
   const image=items.find(item=>item.kind==='image');
   items=items.filter(item=>item.kind!=='image'||item===image);
  }
+ const preview=section?.previews?.[step.id];
+ if(['step01_preparation','step07_jaw-line'].includes(step.id)&&preview?.path.endsWith('.kra')) {
+  items=items.filter(item=>item.kind!=='image');
+  items.unshift({path:preview.path,label:'最新保存画面',kind:'image'});
+  if(!items.some(item=>item.path===preview.path&&item.kind==='file'))items.push({path:preview.path,label:'分层 KRA',kind:'file'});
+ }
  if(report&&!items.some(item=>item.path===report.path))items.push({path:report.path,label:'阶段报告',kind:'file'});
  const message=section?.messages?.[step.id];
  const notice=!message?'':step.status==='throttled'?waitBox(message):['failed','interrupted'].includes(step.status)?errorBox(message):`<p class="step-activity">${esc(message)}</p>`;

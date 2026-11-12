@@ -64,7 +64,7 @@ export async function checkAxisSource(neutral: string, built: Built) {
   for (const p of upstream.doc.parts) {
     const target = built.doc.parts.find(n => n.id === p.id);
     if (!target) throw Error(`单轴缺少共享原图层 ${p.id}`);
-    for (const field of ['bbox', 'cols', 'rows', 'texture', 'textureBounds', 'level', 'role', 'clip'] as const) if (JSON.stringify(target[field]) !== JSON.stringify(p[field])) throw Error(`${p.id}：不能替换共享原图层的 ${field}；保留 neutral 的静态图层配置，使用独立 Warp 和局部关键形拟合本方向`);
+    for (const field of ['bbox', 'cols', 'rows', 'texture', 'textureBounds', 'uuid', 'material', 'level', 'role', 'clip'] as const) if (JSON.stringify(target[field]) !== JSON.stringify(p[field])) throw Error(`${p.id}：不能替换共享原图层的 ${field}；保留 neutral 的静态图层配置，使用独立 Warp 和局部关键形拟合本方向`);
     if (JSON.stringify(target.keyforms['0']) !== JSON.stringify(p.keyforms['0'])) throw Error(`${p.id}：不能替换共享静止形`);
     const source = built.textures.get(target.texture);
     if (!source || !(await readFile(source)).equals(await readFile(join(neutral, p.texture)))) throw Error(`${p.id}：原贴图已变化`);

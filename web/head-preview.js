@@ -35,19 +35,18 @@ export class HeadPreview {
       const version = `${entry.path}:${entry.version}`;
       if (this.version === version) { this.draw(); return; }
       this.label.textContent = '正在读取最新头部…';
-      const url = path => './studio-artifact?' + new URLSearchParams({ folder, path, version: entry.version });
-      const result = await fetch(url(entry.path), { signal: controller.signal });
+      const result = await fetch('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder, path: entry.path }), { signal: controller.signal });
       if (!result.ok) throw Error('九轴模型读取失败');
-      const doc = validateHeadNineAxis(await result.json()), base = entry.path.replace(/[^/]+$/, '');
-      const images = await Promise.all(doc.parts.map(async part => {
-        const texture = await fetch(url(base + part.texture), { signal: controller.signal });
+      const material = await result.json(), doc = validateHeadNineAxis(material.doc);
+      const images = await Promise.all(doc.parts.map(async (part, index) => {
+        const texture = await fetch(material.textures[index], { signal: controller.signal });
         if (!texture.ok) throw Error('九轴贴图读取失败：' + part.id);
         return createNineAxisBitmap(await texture.blob());
       }));
       if (epoch !== this.epoch) { images.forEach(image => image.close()); return; }
       this.renderer ??= new HeadNineAxisRenderer(this.canvas);
       this.renderer.clear(); this.images?.forEach(image => image.close()); this.images = images;
-      this.renderer.install(doc, images); this.doc = doc; this.version = version;
+      this.renderer.install(doc, images); this.doc = doc; this.version = `${entry.path}:${material.version}`;
       this.axes = nineAxisCapabilities(doc, !['neutral', 'x', 'up', 'down', 'y'].includes(entry.stage));
       // Fit the actual displayed head, retaining space for all currently
       // available endpoints, rather than the source's large empty crop.
