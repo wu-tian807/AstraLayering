@@ -39,9 +39,6 @@ export class KRAPreviews {
       return png;
     })();
     this.pending.set(key, request);
-    try { return await request; }
-    // Krita rewrites the KRA in place, so a read can land mid-save. Keep showing the last good projection.
-    catch (error) { const last = this.cache.get(file); if (last) return last.png; throw error; }
-    finally { this.pending.delete(key); }
+    try { return await request; } finally { this.pending.delete(key); }
   }
 }
