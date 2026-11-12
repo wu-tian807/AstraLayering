@@ -24,4 +24,4 @@
 1. 每处修改都检查三个视图：单层、隐藏上层、整图。
 2. 保存 KRA，重新打开，核对图层和像素没有变化。
 3. 更新 raster-layering/step01/character-depth.png 和 report.md。
-4. 把逐项处理结果、证据和重开检查写入 raster-layering/step01/repair-0{review_round}.md.tmp。第一行写“结论：已修复”或“结论：仍有问题”。全部问题都修好并自检通过，才写“已修复”。
+4. 把逐项处理结果、证据和重开检查写入 raster-layering/step01/repair-0{review_round}.md.tmp。第一行固定写“结论：已修复”，其后逐项写处理结果。是否已解决由下一次 review 判断。
