@@ -124,7 +124,8 @@ export async function snapshot(directory: string, name: string, dir: string) {
           .map(path => resolve(directory, path))];
         const candidates = await Promise.all(files.filter(path => /\.kra$/i.test(path) &&
           path.startsWith(prefix + '/')
-          && !path.split('/').some(segment => segment.startsWith('.') || ['recovery', 'archive'].includes(segment)))
+          && !path.split('/').some(segment => segment.startsWith('.') || ['recovery', 'archive'].includes(segment))
+          && !/-autosave\.kra$/i.test(path))
           .map(async path => ({ path, info: await lstat(await safePath(directory, path)),
             inputCopy: await copiedInput(await safePath(directory, path), previewInputs) })));
         for (let index = candidates.length - 1; index >= 0; index--) if (candidates[index].inputCopy) candidates.splice(index, 1);
