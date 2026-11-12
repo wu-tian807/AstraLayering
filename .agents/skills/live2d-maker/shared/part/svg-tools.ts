@@ -118,6 +118,7 @@ export function createSvgPreviewTool(options: {
   directory: string; reference: string; canvas: Canvas; observationDirectory: string; parent?: string;
   allowGeneratedReference?: boolean;
   referenceAlignment?: 'content' | 'canvas';
+  comparisonModes?: readonly ('blend' | 'edge')[];
   observed?: (observation: SvgObservation) => void;
 }): FunctionTool {
   let count = 0;
@@ -126,6 +127,13 @@ export function createSvgPreviewTool(options: {
   const omitParameters = fixedReference ? ['referenceRegion', 'referenceOffset']
     : options.allowGeneratedReference ? [] : ['reference', 'referenceRegion', 'referenceOffset'];
   const definition = toolDefinition('preview_svg', undefined, omitParameters);
+  const modes = ['svg', ...(options.comparisonModes ?? ['blend', 'edge'])];
+  if (options.comparisonModes) {
+    const property = (definition.inputSchema.properties as Record<string, { enum: string[]; description: string }>).mode;
+    property.enum = modes;
+    const descriptions: Record<string, string> = { svg: 'svg 白底独显', blend: 'blend 半透明叠加', edge: 'edge 用红色 SVG 边缘对照底图' };
+    property.description = modes.map(mode => descriptions[mode]).join('；');
+  }
   if (fixedReference) (definition.inputSchema.properties as Record<string, { description: string }>).reference.description =
     '可选同画布参考 PNG/JPEG/WebP；保持像素坐标，不缩放或居中对齐。尺寸必须与 SVG 画布一致。';
   return {
@@ -140,7 +148,7 @@ export function createSvgPreviewTool(options: {
       const root = context?.root ?? taskRootOf(options.directory);
       const source = await realpath(fromTaskPath(root, args.path));
       const mode = args.mode ?? 'svg', scale = args.scale ?? 1;
-      if (typeof mode !== 'string' || !['svg', 'blend', 'edge'].includes(mode) || typeof scale !== 'number' || !Number.isFinite(scale) || scale < 1 || scale > 8) {
+      if (typeof mode !== 'string' || !modes.includes(mode) || typeof scale !== 'number' || !Number.isFinite(scale) || scale < 1 || scale > 8) {
         throw new Error('无效 mode 或 scale');
       }
       if ((args.referenceRegion !== undefined || args.referenceOffset !== undefined) && args.reference === undefined) {
@@ -150,7 +158,7 @@ export function createSvgPreviewTool(options: {
       let alignment: { svgBounds: number[]; scale: number; offset: number[]; translation: number[] } | undefined;
       let defaultCrop = [0, 0, options.canvas.width, options.canvas.height];
       if (args.reference !== undefined) {
-        if (typeof args.reference !== 'string' || !args.reference.trim() || mode === 'svg') throw new Error('reference 须为 blend/edge 对照的图片路径');
+        if (typeof args.reference !== 'string' || !args.reference.trim() || mode === 'svg') throw new Error('reference 须为叠加对照的图片路径');
         referencePath = await realpath(fromTaskPath(root, args.reference));
         referenceBytes = await readFile(referencePath);
         const meta = await sharp(referenceBytes, { limitInputPixels: 100_000_000 }).metadata();

@@ -13,8 +13,9 @@ export type AxisGroup = typeof axisGroups[number];
 // the same neutral document, never from another group's fitted result.
 export async function seedAxis(directory: string, neutral: string, group: AxisGroup, scale: AngleScale = angleScale()) {
   const upstream = await readUpstream(neutral);
-  await mkdir(join(directory, 'layers'), { recursive: true });
-  for (const p of upstream.doc.parts) await copyFile(join(neutral, p.texture), join(directory, p.texture));
+  await mkdir(directory, { recursive: true });
+  if (upstream.doc.parts.some(p => p.texture && !p.uuid)) await mkdir(join(directory, 'layers'), { recursive: true });
+  for (const p of upstream.doc.parts) if (p.texture && !p.uuid) await copyFile(join(neutral, p.texture), join(directory, p.texture));
   const name = `face-${group}.json`;
   const value = group === 'left'
     ? { version: 2, axis: upstream.doc.axis, deformers: [], parts: upstream.doc.parts.toReversed() } as FaceLeft
@@ -64,9 +65,10 @@ export async function checkAxisSource(neutral: string, built: Built) {
   for (const p of upstream.doc.parts) {
     const target = built.doc.parts.find(n => n.id === p.id);
     if (!target) throw Error(`单轴缺少共享原图层 ${p.id}`);
-    for (const field of ['bbox', 'cols', 'rows', 'texture', 'textureBounds', 'uuid', 'material', 'level', 'role', 'clip'] as const) if (JSON.stringify(target[field]) !== JSON.stringify(p[field])) throw Error(`${p.id}：不能替换共享原图层的 ${field}；保留 neutral 的静态图层配置，使用独立 Warp 和局部关键形拟合本方向`);
+    for (const field of ['bbox', 'cols', 'rows', 'textureBounds', 'uuid', 'material', 'level', 'role', 'clip'] as const) if (JSON.stringify(target[field]) !== JSON.stringify(p[field])) throw Error(`${p.id}：不能替换共享原图层的 ${field}；保留 neutral 的静态图层配置，使用独立 Warp 和局部关键形拟合本方向`);
     if (JSON.stringify(target.keyforms['0']) !== JSON.stringify(p.keyforms['0'])) throw Error(`${p.id}：不能替换共享静止形`);
-    const source = built.textures.get(target.texture);
-    if (!source || !(await readFile(source)).equals(await readFile(join(neutral, p.texture)))) throw Error(`${p.id}：原贴图已变化`);
+    if (p.uuid) continue;
+    const source = built.textures.get(target.texture!);
+    if (!source || !(await readFile(source)).equals(await readFile(join(neutral, p.texture!)))) throw Error(`${p.id}：原贴图已变化`);
   }
 }

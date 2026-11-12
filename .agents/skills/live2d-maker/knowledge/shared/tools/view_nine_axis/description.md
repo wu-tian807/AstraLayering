@@ -1,15 +1,13 @@
-按本步当前交付构建头部九轴文档（与步骤完成时程序写出的相同），用工作台的同一渲染器在工作台深色棋盘底上画出并直接返回图片，即用户在工作台看到的样子。x、y 为角度 X、Y（默认 0，本步尚无的角度只能为 0）；level 为工作台层级 id（默认同工作台）；crop=[x,y,width,height] 为原画布像素选框（默认工作台初始视框）；scale 为每原画布像素对应的屏幕像素，默认 1，可取 0.25 至 8；masks 为要以青色显示的蒙版部件 id（同工作台勾选显示蒙版）。grid 为要叠出网格的部件 id 列表（同工作台选中部件并打开网格）：图上画出这些部件在该角度下的网格线与控制点，返回文本的 grid 里给出每个部件的 cols、rows 与 points，points 按行从上到下、每行从左到右排列，第 j 行第 i 列是 points[j×(cols+1)+i]，坐标为原画布像素；有父级时这些点包含父级形变，另返回 localPoints 与 parent；编辑工具接受 points 所用的画布坐标。交付有误时返回错误。预览会保存。
+从当前工程引用的已保存 KRA 按 UUID 读取像素，应用当前累计九轴 JSON，用工作台同一渲染器返回图片。无需自行导出或刷新素材；读取结果按 KRA 内容版本缓存，缺失图层时报错。未保存的 Krita 修改不进入预览。返回 document、revision 和 savedPath。
 
-`grid` 可以指定部件或组级 Warp，网格曲线按实际平滑形变采样。返回 `points` 是画布位置；有父级时另返回 `parent` 和 `localPoints`。`only`、`hidden` 可以指定部件或 Warp，Warp 会展开到后代；可临时只看眉眼或嘴鼻，再恢复带固定脖子的完整脸。
+x/y 为参数角度，默认 0；level 为当前工程的预览层级。crop=[x,y,width,height] 使用原画布坐标，默认工程视框；scale 为每画布像素对应的屏幕像素，范围 0.25..8。可预览范围由运行环境提供，不改变作者数据。
 
-`reference: {path, bounds?: [x,y,width,height]}` 另外返回完整的参考／当前／青色轮廓叠参考三联图和 `comparison.savedPath`，默认使用 `mode="edge"`。bounds 是参考图片覆盖的原画布范围，默认文档的初始视框；例如 step02 的 left.png 使用 crop.json 的 box，原始同画布合成 PNG 使用 [0,0,画布宽,画布高]。工具不会自动对齐、重居中或按五官修改参考；青色虚线始终标出文档正面的 axis。配合 crop 放大整张脸、左侧眼窝至脸缘和两眼，逐轮检查偏差。比较图可以复制为交付检查图。参考图不会替换贴图或修改作者数据。
+only、hidden 指定部件或 Warp；Warp 展开到后代，部件选择不自动包含关联节点。masks 可用青色显示指定蒙版。grid 指定要显示网格的部件或 Warp，另返回 cols、rows、points；points 是变形后的画布坐标，按行排列，索引为 row×(cols+1)+col。有父级时另返回 parent 和 localPoints；edit_nine_axis 接受画布坐标。
 
-edge 提取实际渲染的可见透明边界，不包含棋盘背景、控制网格或裁剪窗口的假边，轮廓内部保留参考原图。`only` 单独显示刘海或一片侧发时，可以检查该片的外缘与内弧；组合显示时检查整体头型与可见发际线。被其他发片盖住的边不出现在组合轮廓中，要单片与组合对照。轮廓校对使用 edge；需要检查内部发束线、高光和颜色时，可显式设置 `mode="blend"` 查看 50% 叠加。两种模式都沿用同一 bounds、crop、scale，不移动或缩放参考去迁就模型。比较方式记录在 `comparison.mode`。不提供 reference 时仍返回原色预览；显式 mode=edge 须提供 reference。
+reference:{path,bounds?:[x,y,width,height]} 返回参考、当前及叠加比较图。bounds 表示参考图片覆盖的原画布范围，默认工程视框。工具不自动对齐、重居中或缩放参考去迁就模型。
 
-edge 贴合不能单独证明发面体积正确。还需看当前原色模型的外弧曲率、不同高度的发面宽度、内外缘间距及高光展开；发根高度、头型连续性和局部体积分别检查。
+提供 reference 时只使用 edge，将当前渲染的可见 alpha 边界以青色叠到参考上；不包含棋盘、网格或裁剪窗口产生的假边。无 reference 时省略 mode，返回原色预览；显式 mode="edge" 必须提供 reference。返回 mode 为 edge 或 color，比较信息保存在 comparison。
 
-正式流程由工具解析本步的 KRA 引用和当前累积 JSON，再从保存的 KRA 按图层 UUID、textureBounds 导出素材并渲染。准备与面部阶段引用上游 shadow／assembly KRA，下颌线阶段引用本步保存的新 KRA；不用自己复制工程、寻找最新 PNG 或手工刷新导出。保存 KRA 后再次调用会按内容版本刷新缓存。返回 document、revision 标明实际工程和版本。Krita 尚未保存的修改不进入预览。
+独立投影沿用 KRA 混合方式和不透明度，按当前接收部件裁切。投影不扩大接收部件的 alpha 外轮廓。edge 用于轮廓比较，原色预览用于检查内部线条、纹理和明暗。
 
-默认预览包含当前 JSON 继承的全部形变，以及 KRA 中尚未绑定形变的头发、头饰静态图层，按原绘制顺序衔接。静态参考 id 为 __kra__/<uuid>；only／hidden 只影响当前查看，不改变交付。left、up、down 各从同一 neutral 独立制作，合并前不混入兄弟方向；xy、jaw 已继承完整上游模型，不再重复叠加历史 JSON。
-
-`frames:[{x:0,y:0},{x:-15,y:0},{x:-30,y:0}]` 一次输出多帧和拼图（最多 16 帧），同批共用同一份 KRA 与累积模型。不能同时传顶层 x/y；其余 crop、scale、grid、only 等共用，每帧可单独提供 reference。返回 frames 中各帧的路径和网格、拼图 savedPath；原有单帧调用继续可用。
+frames:[{x:0,y:0},{x:-15,y:0},{x:-30,y:0}] 一次返回多帧及拼图，最多 16 帧。共用同一份 KRA、JSON 和 crop/scale/only 等参数，每帧可单独提供 reference；不能同时传顶层 x/y。

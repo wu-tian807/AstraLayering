@@ -34,25 +34,46 @@ pnpm nine-axis --name my-character --dir /绝对路径/运行根目录 --knowled
 
 | 步骤 | 内容 |
 | --- | --- |
-| `step01_preparation` | 整理头部素材、贴图与投影关系 |
+| `step01_preparation` | 整理 KRA 图层 UUID、几何范围与投影关系 |
 | `step02_video` | 生成左右转头、抬头和低头的参考视频 |
 | `step03_frames` | 选择单轴参考帧 |
 | `step04_angles` | 制作单轴模型，同时生成斜角视频 |
 | `step05_frames` | 选择斜角参考帧 |
 | `step06_angle-xy` | 制作斜角模型 |
-| `step07_jaw-line` | 处理下颌与脖子的连接，交付模型、贴图、KRA 和 PNG |
+| `step07_jaw-line` | 处理下颌与脖子的连接，交付 UUID 模型、KRA 和合成预览 |
+| `step08_hair` | left＋right，Y=0；同一 KRA、同一持续会话，按操作依次制作前发、侧发、后发与整体协调 |
 
 素材沿用上游工程的尺寸、图层与投影关系。制作角度见 [angles.json](../knowledge/nine-axis/step02_video/references/angles.json)。
 
-KRA 是画稿依据，阶段 JSON 是累计变形与图层绑定。`step01_preparation` 只读取上游 shadow（缺省为 assembly）KRA，记录实际来源和 UUID，导出固定 neutral 数据，不复制未修改的 KRA。left／up／down 各自从 neutral 独立制作，程序合并后供 xy、jaw 继续；每步 JSON 已含上游效果，渲染时只应用一次。
+KRA 是画稿依据，阶段 JSON 是累计变形与图层绑定。`step01_preparation` 只读取上游 shadow（缺省为 assembly）KRA，记录实际来源和 UUID，记录 neutral 几何与原生图层绑定，不预导出像素，不复制未修改的 KRA。left／up／down 各自从 neutral 独立制作，程序合并后供 xy、jaw 继续；每步 JSON 已含上游效果，渲染时只应用一次。
 
-下颌线阶段才建立本步可编辑 KRA，保存后将 `source.document` 切到这份工程，`source.geometryDocument` 保留原始单轴几何来源。`edit_nine_axis` 通过 UUID 绑定原生图层并自动导出对应素材；面部阶段暂不开放修改 KRA。工作台与 `view_nine_axis` 共用 KRA 图层解析与内容缓存，KRA 保存后会刷新九轴贴图，即使 JSON 与旧导出 PNG 未变化。未参与变形的头发、头饰仍以静态图层参与预览。
+下颌线阶段建立本步可编辑 KRA，保存后将 `source.document` 切到这份工程，`source.geometryDocument` 保留原始单轴几何来源。`edit_nine_axis` 通过 UUID 绑定原生图层，素材由预览工具按需读取；面部阶段暂不开放修改 KRA。工作台与 `view_nine_axis` 共用 KRA 图层解析与内容缓存，KRA 保存后会刷新九轴贴图，即使 JSON 与旧导出 PNG 未变化。面部阶段可用静态头发、头饰辅助观察；头发阶段 agent 的预览只显示已完成脸部、此前完成的发片及当前轮次，尚未制作的其他发片不参与判断。
 
-预览可用 `frames:[{x:0,y:0},{x:-15,y:0},{x:-30,y:0}]` 直接输出同一 KRA／JSON 版本的多帧拼图；`only`／`hidden` 用于局部观察，不改变完整的累计模型。正式输出仍保留导出 PNG，供交付与不支持 KRA 的消费端使用。
+预览可用 `frames:[{x:0,y:0},{x:-15,y:0},{x:-30,y:0}]` 直接输出同一 KRA／JSON 版本的多帧拼图；`only`／`hidden` 用于局部观察，不改变完整的累计模型。检查图与合成预览可输出 PNG，作者模型不引用素材 PNG。
 
 ## 查看与继续
 
 阶段权限、来源链、图层绑定和多帧预览的实现约定见 [KRA 引用与预览](kra-source.md)。
+
+头发步骤只制作 left＋right（X 轴），编辑和预览固定 Y=0；上游脸部的上下、四角几何保留。本步不生成头发的 Y/XY 关键形，交付暴露的 Y 范围为 0。首次复制上游实际 KRA，同一个 agent 先用 Krita 确认发片及对应投影并显式绑定 UUID，再描边、用 edit 做左右形变，不提供 fit。
+
+`agent.json` 的 `initial` 只用于前发首轮。程序在本轮检查通过、KRA 与累计模型等交付齐全后更新 `hair-progress.json`，本次操作即返回；下一次继续 `step08_hair` 时，向同一 `step08_hair` thread 发送下一轮提示词。侧发轮使用 `prompts/侧发制作.md`，仅编辑自己的节点，预览包含已完成前发与脸部。
+
+后发轮使用 `prompts/后发制作.md`，开放前发、侧发、后发及关联投影的协调，脸部及其他未制作内容继续保护。目标是拟合左右参考动画，优先尝试较小形变与遮挡显露，并协调头顶的完整体积；KRA 是否需要改形、补绘或调纹理，由实际画稿和参考决定，不强制每例重画后发。预览包含三个发区与已完成脸部，叠加比较用 edge，纹理与明暗看原色。
+
+三轮使用同一份 KRA 和通用 `session.json`，不中途新建 thread；中断仍继续当前轮次，不跳过未通过的产物。前发、侧发完成时保持头发步骤未完成；后发与整体协调通过且交付齐全后，进度记为 `next:"done"`，才完成整个头发步骤。
+
+整个步骤的 `.running`／`.completed`、轮次的 `hair-progress.json`、会话的 `agents/steps/step08_hair/session.json` 分别记录完成状态、待制作轮次和 thread。`hair-progress.json` 的 `completed` 只能按前发→侧发→后发累积，`next` 依次为 `front`、`side`、`back`、`done`，通过全部交付检查后才原子更新。每次派发都按 `next` 选择提示词，不根据有没有旧会话退回 `agent.json` 的前发 initial。
+
+| 操作 | 头发步骤中的行为 |
+| --- | --- |
+| continue | 保留 KRA、模型、轮次和 thread；本轮未通过就继续本轮，已通过就派发下一轮 |
+| resume | 保留 KRA、模型和轮次，只清除 thread；新会话仍收到 `next` 对应的前发、侧发或后发提示词 |
+| retry | 删除整个 `step08_hair` 的产物、轮次、会话和对应尝试记录；从上游 KRA 重新制作前发，不是只重跑后发 |
+
+本轮返回后，作者模型可读、KRA 可读取、当前发片及保护检查、合成导出、非空说明和完整交付检查都在通用 `checkedTurn` 中执行。检查失败时，同一会话最多追加两次修正回合，即首次制作加两次修正；仍失败则保留当前轮次，不标记完成、不派发下一轮。每次手动继续／恢复开始新的操作，重新计算这两次检查修正预算。上轮已通过后丢失产物会在派发前拦截，不自动重做此前已完成的发片；agent 明确返回 error 或调用异常也不等同于交付检查失败。
+
+若后发交付和 `next:"done"` 已保存，但进程在写 `.completed` 前中断，继续时只补全整个步骤的完成标记，不再派发 agent。已标记完成的步骤若轮次或交付不一致，会拒绝沿用。
 
 在流程预览中播放视频、查看选帧和模型；进入角色工作台可以调整角度和关键形。完成后通过“导出成果”保存模型、贴图、工程和说明。
 

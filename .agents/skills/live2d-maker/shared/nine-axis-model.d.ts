@@ -1,7 +1,8 @@
 export type Point = [number, number];
 export type HeadLevel = 'face' | 'hair' | 'accessory';
 export interface WarpGrid { id: string; name?: string; level: HeadLevel; parent?: string; mirror?: string; bbox: number[]; cols: number; rows: number; keyforms: Record<string, Point[] | number[][]>; keyformsY?: Record<string, Point[] | number[][]>; keyformsXY?: Record<string, Point[] | number[][]>; interpolation?: 'linear' | 'smooth'; parameterInterpolation?: { x?: 'linear' | 'ellipse' }; status?: string }
-export interface HeadDeformer extends WarpGrid { group?: string; texture: string; textureBounds: number[]; uuid?: string; material?: 'transparent'; role?: 'mask'; clip?: { by: string[]; invert?: boolean } }
+export type CastShadow = { casters: string[]; receivers: string[]; blendMode: 'normal' | 'multiply'; opacity: number };
+export interface HeadDeformer extends WarpGrid { group?: string; texture?: string; textureBounds: number[]; uuid?: string; material?: 'transparent'; role?: 'mask'; clip?: { by: string[]; invert?: boolean }; shadow?: CastShadow }
 export type IndependentAxis = 'x' | 'up' | 'down';
 export interface AxisSource { axis: IndependentAxis; doc: HeadNineAxis }
 export interface HeadNineAxis { version: 2; kind: 'head-nine-axis'; canvas?: number[]; axis?: number; source?: {document:string; geometryDocument?:string}; view?: { x: number; y: number; width: number; height: number }; parameters?: any[]; levels: { id: string; name?: string; includes: HeadLevel[] }[]; notes?: string; deformers: WarpGrid[]; parts: HeadDeformer[]; /** Complete protected nonrecursive sources; only root parts are drawn. */ axisSources?: AxisSource[] }
@@ -17,6 +18,8 @@ export function inverseWarpPoint(part: WarpGrid, points: ArrayLike<number>, x: n
 export function inversePoint(transform: (x: number, y: number) => Point, x: number, y: number, label?: string): Point;
 export function nodes(doc: HeadNineAxis): WarpGrid[];
 export function descendants(doc: HeadNineAxis, id: string): Set<string>;
+/** Strip derived image paths from KRA-backed author data, including axis snapshots. */
+export function kraReferences<T>(doc: T): T;
 export function evaluatePoints(doc: HeadNineAxis, node: WarpGrid, x: number, y?: number, subdivision?: number): Float32Array;
 /** Independent source pose of one leaf, before current canvas Warp parents. */
 export function axisPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number): Point;

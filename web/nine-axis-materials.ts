@@ -59,7 +59,7 @@ export class NineAxisMaterials {
     if (!snapshot || snapshot.root !== root || !Number.isSafeInteger(index) || index < 0) throw Error('九轴预览版本已失效，请刷新');
     const part = snapshot.built.doc.parts[index];
     if (!part) throw Error('九轴贴图索引无效');
-    return snapshot.built.textures.get(part.texture)!;
+    return snapshot.built.textures.get(part.texture!)!;
   }
   async dispose() { this.closed = true; await Promise.allSettled([...this.instances].map(instance => instance.release())); }
 }

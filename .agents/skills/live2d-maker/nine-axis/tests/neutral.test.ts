@@ -169,9 +169,7 @@ test('one original KRA job preserves layers, metadata, identity and the merge ex
   const f = await fixture(t), original = await readFile(f.input.document);
   const built = await prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root);
   const { doc, manifest } = built;
-  assert.deepEqual(f.calls, { reserve: 1, start: 1, release: 0, jobs: 2, events: ['open',
-    'projection:head_accessories::front', 'projection:hair/bangs', 'projection:0001 | face/eye_left/iris',
-    'projection:0002 | face/face_base', 'projection:neck', 'close'] });
+  assert.deepEqual(f.calls, { reserve: 1, start: 1, release: 0, jobs: 2, events: ['open','close'] });
   assert.deepEqual(doc.parts.map(p => p.id), ['neck', 'face/face_base', 'face/eye_left/iris']);
   assert.deepEqual(manifest.parts.map(p => p.id), doc.parts.map(p => p.id).toReversed());
   assert.deepEqual(manifest.referenceLayers.map(p => p.id), ['head_accessories::front', 'hair/bangs']);
@@ -192,7 +190,8 @@ test('one original KRA job preserves layers, metadata, identity and the merge ex
       assert.deepEqual(Array.from(evaluatePoints(doc, p, x, y)), identity);
     assert.deepEqual(Object.keys(p.keyformsY!), ['0']);
     assert.notEqual(p.keyforms['0'], p.keyforms['-30']);
-    await access(built.textures.get(p.texture)!);
+    assert.equal(p.texture,undefined);
+    assert.equal(built.textures.size,0);
   }
   assert.deepEqual(JSON.parse(await readFile(built.path, 'utf8')), doc);
   const record = JSON.parse(await readFile(built.exportRecordPath, 'utf8'));
@@ -202,15 +201,9 @@ test('one original KRA job preserves layers, metadata, identity and the merge ex
   assert.deepEqual(JSON.parse(await readFile(built.sourcePath, 'utf8')), { version: 1, sourceDocument: doc.source.document,
     sourceColor: manifest.sourceColor });
   assert.deepEqual(JSON.parse(await readFile(built.manifestPath, 'utf8')), manifest);
-  assert.deepEqual(manifest.preview.textureBounds, [-2, 0, 20, 16]);
-  const { data, info } = await sharp(built.preview).raw().toBuffer({ resolveWithObject: true });
-  assert.deepEqual([info.width, info.height], [20, 16]);
-  const pixel = (x: number, y: number) => Array.from(data.subarray((y * info.width + x) * 4, (y * info.width + x) * 4 + 4));
-  assert.deepEqual(pixel(0, 4), [255, 0, 0, 255]); // outside original canvas and view survives
-  assert.deepEqual(pixel(8, 6), [0, 255, 0, 255]); // top eye over face; reference hair excluded
   assert.deepEqual(await readFile(f.input.document), original);
   assert.deepEqual((await readdir(f.directory)).sort(), ['deformers.json', 'export-record.json', 'head_parts_manifest.json',
-    'layers', 'original-full-face.png', 'reference-layers', 'shadow-layers', 'source.json']);
+    'source.json']);
 });
 
 test('left/up/down independently clone frozen neutral without changing baseline bytes', async t => {
@@ -268,9 +261,8 @@ test('abort before export leaves Krita and output untouched', async t => {
   await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
 });
 
-test('PNG export failure, duplicate ids and unsupported projection always close only the opened doc', async t => {
+test('invalid layer selection and unsupported artwork metadata close only the opened doc', async t => {
   for (const [nodes, options, error] of [
-    [layers, { failExport: true }, /PNG export failed/],
     [[...layers, { ...layers[1], name: 'face/face_base' }], {}, /Duplicate semantic id/],
     [layers, { depth: 'U16' }, /RGBA\/U8/],
   ] as const) {
@@ -325,3 +317,10 @@ test('ok:false with a complete export result and empty stderr remains an export 
   assert.equal(f.replies.filter(r => !r.startup).length, 1);
   await assert.rejects(access(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
 });
+
+ test('preparation reads no pixels even when image export is unavailable',async t=>{
+  const f=await fixture(t,layers,{failExport:true});
+  const built=await prepareNeutral(f.directory,f.input,f.krita,box,scale,undefined,f.root);
+  assert.equal(built.textures.size,0);assert.deepEqual(f.calls.events,['open','close']);
+  assert.ok(built.doc.parts.every(p=>p.uuid&&!p.texture));
+ });

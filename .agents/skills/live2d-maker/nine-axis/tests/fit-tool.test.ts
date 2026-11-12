@@ -6,6 +6,7 @@ import { mkdtemp, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sharp from 'sharp';
+import {zipSync,strToU8} from 'fflate';
 import { fitWarpToTraces } from '../../shared/nine-axis-fit.js';
 import { lattice, keyformAt, warpPoint, parentPoint, evaluatePoints, nodes, type HeadNineAxis } from '../../shared/nine-axis-model.js';
 import { createNineAxisFitTool } from '../fit-tool.ts';
@@ -57,6 +58,7 @@ test('trace inspection is read-only; SVG fitting persists real left geometry and
   const directory = join(root, 'nine-axis/step04_angles'); await mkdir(join(directory, 'layers'), { recursive: true }); await mkdir(join(root, 'nine-axis/step03_frames'), { recursive: true });
   const color = join(root, 'source.png'), document = join(root, 'source.kra'), reference = join(root, 'nine-axis/step03_frames/left.png');
   await writeFile(document, 'source'); await sharp({ create: { width: 200, height: 200, channels: 4, background: '#fff' } }).png().toFile(color);
+  await writeFile(document,zipSync({'maindoc.xml':strToU8('<DOC/>'),'mergedimage.png':await readFile(color)}));
   await sharp({ create: { width: 100, height: 100, channels: 4, background: '#888' } }).png().toFile(reference);
   await sharp({ create: { width: 80, height: 80, channels: 4, background: '#ffe4d2' } }).png().toFile(join(directory, 'layers/base.png'));
   const input: any = { color, document }, box = { x: 50, y: 40, size: 100 }, signal = new AbortController().signal;
@@ -94,6 +96,7 @@ test('up and down trace fitting saves independent Y endpoints and preserves comp
   await mkdir(join(root, 'nine-axis/step03_frames'), { recursive: true });
   const color = join(root, 'source.png'), document = join(root, 'source.kra'); await writeFile(document, 'source');
   await sharp({ create: { width: 200, height: 200, channels: 4, background: '#fff' } }).png().toFile(color);
+  await writeFile(document,zipSync({'maindoc.xml':strToU8('<DOC/>'),'mergedimage.png':await readFile(color)}));
   for (const direction of ['up', 'down']) await sharp({ create: { width: 100, height: 100, channels: 4, background: '#888' } }).png().toFile(join(root, `nine-axis/step03_frames/${direction}.png`));
   await sharp({ create: { width: 80, height: 80, channels: 4, background: '#ffe4d2' } }).png().toFile(join(xdir, 'layers/base.png'));
   const input: any = { color, document }, box = { x: 50, y: 40, size: 100 }, signal = new AbortController().signal;
@@ -127,6 +130,7 @@ const xyFixture = async (t: TestContext) => {
   await mkdir(join(upstreamDirectory, 'layers'), { recursive: true });
   const color = join(root, 'source.png'), document = join(root, 'source.kra'); await writeFile(document, 'source');
   await sharp({ create: { width: 200, height: 200, channels: 4, background: '#fff' } }).png().toFile(color);
+  await writeFile(document,zipSync({'maindoc.xml':strToU8('<DOC/>'),'mergedimage.png':await readFile(color)}));
   const scale: { x: [number, number]; y: [number, number] } = { x: [-40, 40], y: [-20, 35] };
   const grid = (id: string, bbox: number[], x: [number, number] = [0, 0], up: [number, number] = [0, 0], down: [number, number] = [0, 0]) => {
     const n = node(id, bbox), rest = n.keyforms['0'];

@@ -25,7 +25,7 @@
       "minimum": 0.25,
       "maximum": 8
     },
-    "mode": {"type": "string", "enum": ["edge", "blend"], "description": "有 reference 时默认 edge，将当前可见模型的青色轮廓叠到参考上；显式 blend 才使用 50% 叠加。无 reference 时返回原色预览"},
+    "mode": {"type": "string", "enum": ["edge"], "description": "叠加比较仅提供 edge，将当前可见模型的青色轮廓叠到 reference 上。提供 reference 时自动使用；无 reference 时省略 mode，返回原色预览"},
     "masks": {
       "type": "array",
       "items": {

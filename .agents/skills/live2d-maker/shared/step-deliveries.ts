@@ -30,7 +30,7 @@ async function textureDeliveries(directory: string): Promise<string[]> {
   try { document = JSON.parse(await readFile(join(directory, 'deformers.json'), 'utf8')); }
   catch { return []; } // The document itself is already a required delivery.
   return [...new Set<string>((Array.isArray(document.parts) ? document.parts : [])
-    .flatMap((part: { texture?: unknown }) => typeof part?.texture === 'string' ? [join(directory, part.texture)] : []))];
+    .flatMap((part: { texture?: unknown; uuid?: unknown; material?: unknown }) => !part?.uuid && part?.material !== 'transparent' && typeof part?.texture === 'string' ? [join(directory, part.texture)] : []))];
 }
 async function previousNineAxisDeliveries(root: string, id: string): Promise<string[]> {
   const [step, group] = id.split('/'), directory = join(root, id);
@@ -81,6 +81,7 @@ async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
   if (id === 'step04_angles') return [...await nineAxisDeliveries(root, id + '/model'), ...await nineAxisDeliveries(root, id + '/video')];
   if (id === 'step06_angle-xy') return [...files(['face-xy.json', 'linear.json', 'deformers.json', ...['left-up', 'left-down'].flatMap(c => [`${c}-face-trace.json`, `${c}-fit-report.json`])]), ...await textureDeliveries(directory)];
   if (id === 'step07_jaw-line') return [...files(['jaw.json', 'deformers.json', 'character-nine-axis.kra', 'character-nine-axis.png', 'export-record.json']), ...await textureDeliveries(directory)];
+  if (id === 'step08_hair') return [...files(['hair.json', 'deformers.json', 'character-nine-axis.kra', 'character-nine-axis.png', 'source.json', 'export-record.json', 'notes.md']), ...await textureDeliveries(directory)];
   return previousNineAxisDeliveries(root, id);
 }
 

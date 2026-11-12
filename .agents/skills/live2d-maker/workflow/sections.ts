@@ -12,9 +12,10 @@ import { runWorkflow as assemble } from '../character-assembly/run.ts';
 import { runWorkflow as nineAxis } from '../nine-axis/run.ts';
 import type { SectionId } from '../shared/paths.ts';
 import { taskOriginal, type TaskRun } from './state.ts';
+import { readStep } from '../shared/step-chain.ts';
 
 // output is the delivered file relative to the task root.
-export type SectionResult = { summary: string; output?: string };
+export type SectionResult = { summary: string; output?: string; completed?: boolean };
 // prepared(): part-layering has its references; the clothing lane may start.
 // directory is the task directory, <runs root>/<task name>; the run's settings come from its run.json.
 export async function executeSection(id: SectionId, directory: string, run: TaskRun, progress: (message: string) => void,
@@ -22,7 +23,7 @@ export async function executeSection(id: SectionId, directory: string, run: Task
   const name = basename(directory), dir = dirname(directory);
   if (id === 'nine-axis') {
     const summary = await nineAxis({ name, dir, krita: run.krita, ffmpeg: run.ffmpeg, progress });
-    return { summary, output: 'nine-axis/step07_jaw-line/deformers.json' };
+    return { summary, output: 'nine-axis/step08_hair/deformers.json', completed: (await readStep(join(directory,'nine-axis/step08_hair'))).status==='completed' };
   }
   if (id === 'shadow') {
     const mode = shadowMode(run.shadowMode);

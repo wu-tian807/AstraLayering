@@ -1,6 +1,6 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { test } from 'node:test';
@@ -11,7 +11,7 @@ import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { createWorkbench } from '../../../../../web/server.ts';
 
 async function fixture(t: any) {
-  const dir = await mkdtemp(join(tmpdir(), 'astra-preflight-')), task = join(dir, 'case');
+  const dir = await realpath(await mkdtemp(join(tmpdir(), 'astra-preflight-'))), task = join(dir, 'case');
   t.after(() => rm(dir, { recursive: true, force: true }));
   const step = join(task, 'part-layering/step13_merge'), output = join(task, 'part-layering/preview.svg');
   await mkdir(step, { recursive: true }); await writeFile(join(step, '.running'), ''); await writeFile(output, 'existing output');
@@ -33,6 +33,7 @@ test('video configuration is required only for a route containing nine-axis', as
   const f = await fixture(t), environment = loadWorkflowEnvironment({});
   await preflightTaskInputs(f.options, environment);
   await assert.rejects(preflightTaskInputs({ ...f.options, to: 'nine-axis' }, environment), /生视频接口/);
+  await preflightTaskInputs({ ...f.options, to: 'nine-axis' }, environment, { video: false });
 });
 
 test('CLI recovery refuses an exported archive before deleting its files', async t => {
@@ -47,13 +48,15 @@ test('web retry uses the saved task knowledge and preserves files when it is una
   const f = await fixture(t);
   await saveRun(f.task, await configureRun({ ...f.options, knowledge: join(f.dir, 'missing') }, f.task));
   const server = await createWorkbench({ defaultDir: f.dir, settingsPath: join(f.dir, 'settings.json'),
+    preflight: options => preflightTaskInputs(options),
     start: async () => assert.fail('invalid knowledge must refuse before launch') });
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
   const port = (server.address() as { port: number }).port;
   const response = await fetch(`http://127.0.0.1:${port}/api/task-action`, { method: 'POST',
     headers: { 'content-type': 'application/json' }, body: JSON.stringify({ dir: f.dir, name: 'case', action: 'retry' }) });
-  assert.equal(response.status, 400); assert.match((await response.json() as { error: string }).error, /先验知识目录不存在/);
+  const result = await response.json() as { error: string };
+  assert.equal(response.status, 400, result.error); assert.match(result.error, /先验知识目录不存在/);
   assert.equal(await readFile(f.output, 'utf8'), 'existing output');
   assert.equal(await readFile(join(f.step, '.running'), 'utf8'), '');
 });

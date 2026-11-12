@@ -7,8 +7,9 @@ import { toolDefinition } from '../shared/codex/tool-config.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { fromTaskPath, toAgentPath } from '../shared/task-paths.ts';
 import { fitWarpToTraces, type FitFeature } from '../shared/nine-axis-fit.js';
-import { nodes, evaluatePoints } from '../shared/nine-axis-model.js';
+import { nodes, evaluatePoints, kraReferences } from '../shared/nine-axis-model.js';
 import { compileHead, writeBuilt, type HeadInput, type FaceLeft, type Part } from './head.ts';
+import { kraContents } from '../shadow/delivery.ts';
 import { cropUpperBody, type Box } from './turn.ts';
 import { angleScale, type AngleScale } from './angles.ts';
 import { authorFile, compileContinuation, type AuthoredHead, type PitchStage } from './continuation.ts';
@@ -88,7 +89,8 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
       ...(trace.landmarks ?? []).map(f => ({ id: f.id, part: f.part, visibility: f.visibility, weight: weight(f), samples: [{ from: toCanvas(f.source), to: toCanvas(f.target) }] })),
     ].filter(f => selectedIds.includes(f.id));
     const destination = context ? join(context.workspace, 'bitmaps') : join(directory, 'observations'); await mkdir(destination, { recursive: true });
-    const sourceImage = await cropUpperBody(input.color, box);
+    const sourcePixels = await readFile(input.document).then(bytes=>kraContents(bytes).merged,error=>{if(error.code==='ENOENT')return readFile(input.color);throw error;});
+    const sourceImage = await cropUpperBody(Buffer.from(sourcePixels), box);
     const overlay = (side: 'source' | 'target') => Buffer.from(`<svg width="${box.size * 2}" height="${box.size * 2}" viewBox="${trace.space === 'view' ? `0 0 ${box.size} ${box.size}` : `${box.x} ${box.y} ${box.size} ${box.size}`}">${trace.curves.map(f => `<path d="${esc(f[side])}" fill="none" stroke="${f.visibility === 'occluded' ? '#54c9ff' : '#ff315d'}" stroke-width="0.7"${f.visibility === 'occluded' ? ' stroke-dasharray="3 2"' : ''}/>`).join('')}${(trace.landmarks ?? []).map(f => `<circle cx="${f[side][0]}" cy="${f[side][1]}" r="1.5" fill="#ffeb55"/>`).join('')}</svg>`);
     const panels = await Promise.all(([sourceImage, targetImage] as const).map((image, i) => sharp(image).resize(box.size * 2, box.size * 2).composite([{ input: overlay(i ? 'target' : 'source') }]).png().toBuffer()));
     const viewBox = trace.space === 'view' ? `0 0 ${box.size} ${box.size}` : `${box.x} ${box.y} ${box.size} ${box.size}`;
@@ -126,7 +128,7 @@ export function createNineAxisFitTool(directory: string, input: HeadInput, box: 
         if ((error as NodeJS.ErrnoException).code === 'ENOENT') throw Error('拟合期间所选参考帧被删除，未保存，请重新选帧并 inspect');
         throw error;
       })).equals(targetImage)) throw Error('拟合期间所选参考帧改变，未保存，请重新 inspect');
-      const next = JSON.stringify(edited) + '\n', tmp = author + '.' + randomUUID() + '.tmp'; await writeFile(tmp, next); await rename(tmp, author); revision = revisionFor(next);
+      const next = JSON.stringify(kraReferences(edited)) + '\n', tmp = author + '.' + randomUUID() + '.tmp'; await writeFile(tmp, next); await rename(tmp, author); revision = revisionFor(next);
       await writeBuilt(directory, built);
       report = { ...fitted.report, ...(xy ? { corner: args.corner } : {}), trace: args.trace, visibility: trace.curves.map(f => ({ id: f.id, visibility: f.visibility ?? 'visible' })) };
       await writeFile(join(directory, xy ? `${args.corner}-fit-report.json` : 'fit-report.json'), JSON.stringify(report, null, 2) + '\n');

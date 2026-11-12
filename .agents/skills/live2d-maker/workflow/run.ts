@@ -35,7 +35,7 @@ export const help = [
   '--knowledge <目录> 用该目录完整替换 skill 自带的 knowledge/ 先验知识，不回退；记录在 run.json，续跑省略沿用。',
   '  启动、继续、恢复、重试前先检查其中全部文件，缺失则拒绝运行并写入 workflow.log。',
   '--from / --to <管线> 选择连续范围，默认从人物 part 到阴影制作；只制作一个管线时两者相同。',
-  '--live 开启阴影完成后的七步头部九轴；首次默认关闭，续跑沿用，--no-live 显式关闭。',
+  '--live 开启阴影完成后的八步头部九轴（含头发整体制作）；首次默认关闭，续跑沿用，--no-live 显式关闭。',
   '  仅九轴需要 --ffmpeg <可执行文件路径>；总调度记录该启动参数，其他 section 不检查 FFmpeg。',
   '  显式 --from / --to 仍优先限制本次范围。不会另启调度系统。',
   '管线：part-layering、raster-layering、clothing-part-layering、clothing-raster-layering、character-assembly、shadow、nine-axis',

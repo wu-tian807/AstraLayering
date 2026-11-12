@@ -98,7 +98,7 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
     identity(p, '中性原形 ' + p.id);
     const original = exported.get(p.id);
     if (!original) throw new Error('原 KRA 图层缺少导出记录：' + p.id);
-    for (const k of ['texture', 'textureBounds', 'bbox', 'cols', 'rows']) same((p as any)[k], original[k], '原 KRA ' + p.id + '/' + k);
+    for (const k of ['uuid', 'textureBounds', 'bbox', 'cols', 'rows', ...(p.uuid ? [] : ['texture'])]) same((p as any)[k], original[k], '原 KRA ' + p.id + '/' + k);
   }
   for (const [i, s] of sources.entries()) {
     for (const k of ['source', 'canvas', 'axis', 'view', 'levels'] as const) same(s.doc[k], baseline.doc[k], axes[i] + '/' + k);
@@ -106,18 +106,19 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
     checkDirection(s.doc, axes[i], scale);
     for (const p of s.doc.parts) {
       const base = baseline.doc.parts.find(n => n.id === p.id)!;
-      for (const k of ['texture', 'textureBounds', 'bbox', 'cols', 'rows', 'level', 'role', 'clip'] as const) same(p[k], base[k], axes[i] + '/' + p.id + '/' + k);
+      for (const k of ['uuid', 'textureBounds', 'bbox', 'cols', 'rows', 'level', 'role', 'clip', ...(p.uuid ? [] : ['texture'])] as const) same((p as any)[k], (base as any)[k], axes[i] + '/' + p.id + '/' + k);
       close(p.keyforms['0'].flat(), base.keyforms['0'].flat(), axes[i] + '/' + p.id + ' 原形');
       close(evaluatePoints(s.doc, p, 0, 0, 4), refine(lattice(base), base.cols, base.rows, 4), axes[i] + '/' + p.id + ' 父链中性姿态');
     }
   }
   const textures: string[] = [];
   for (const p of baseline.doc.parts) {
-    const bytes = await readFile(join(baselineDirectory, p.texture));
+    if (p.uuid || p.material === 'transparent') continue;
+    const bytes = await readFile(join(baselineDirectory, p.texture!));
     const meta = await sharp(bytes).metadata();
     if (meta.width !== p.textureBounds[2] || meta.height !== p.textureBounds[3]) throw new Error(p.id + '：原贴图尺寸不一致');
-    textures.push(p.texture);
-    for (const [i, dir] of inputs.slice(1).entries()) if (!(await readFile(join(dir, p.texture))).equals(bytes)) throw new Error(axes[i] + '/' + p.id + '：原贴图与 neutral 不同，需重跑该方向');
+    textures.push(p.texture!);
+    for (const [i, dir] of inputs.slice(1).entries()) if (!(await readFile(join(dir, p.texture!))).equals(bytes)) throw new Error(axes[i] + '/' + p.id + '：原贴图与 neutral 不同，需重跑该方向');
   }
   const doc = structuredClone(baseline.doc);
   // Retain baseline presentation/UV, remove stale author-specific metadata.
@@ -155,7 +156,8 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
   const staging = output + '.' + randomUUID() + '.tmp';
   const installed: string[] = [];
   try {
-    await mkdir(join(staging, 'layers'), { recursive: true });
+    await mkdir(staging, { recursive: true });
+    if (textures.length) await mkdir(join(staging, 'layers'), { recursive: true });
     for (const texture of textures) await copyFile(join(baselineDirectory, texture), join(staging, texture));
     await writeFile(join(staging, 'deformers.json'), JSON.stringify(doc) + '\n', { flag: 'wx' });
     await writeFile(join(staging, 'axis-sources.json'), JSON.stringify(manifest, null, 2) + '\n', { flag: 'wx' });
@@ -163,8 +165,8 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
     else {
       // Reserve the new layers namespace exclusively; rename installs the
       // verified textures. JSON hard links cannot replace a raced-in file.
-      const layers = join(output, 'layers'); await mkdir(layers); installed.push(layers);
-      await rename(join(staging, 'layers'), layers);
+      if (textures.length) { const layers = join(output, 'layers'); await mkdir(layers); installed.push(layers);
+      await rename(join(staging, 'layers'), layers); }
       for (const name of ['axis-sources.json', 'deformers.json']) {
         const path = join(output, name); await link(join(staging, name), path); installed.push(path);
       }
@@ -175,5 +177,5 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
     for (const path of installed.reverse()) await rm(path, { recursive: true, force: true });
     await rm(staging, { recursive: true, force: true }); throw error;
   }
-  return { doc, textures: new Map(doc.parts.map(p => [p.texture, join(output, p.texture)])), manifest };
+  return { doc, textures: new Map(textures.map(texture => [texture, join(output, texture)])), manifest };
 }

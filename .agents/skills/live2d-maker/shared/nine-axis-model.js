@@ -25,7 +25,7 @@ export function validateHeadNineAxis(doc) {
     if (typeof p.id !== 'string' || ids.has(p.id)) throw Error('部件编号无效或重复：' + p.id);
     ids.add(p.id);
     if (!levelNames[p.level]) throw Error(p.id + '：未知层级 ' + p.level);
-    if (partIds.has(p.id) && !/^layers\/[\w-]+\.png$/.test(p.texture)) throw Error(p.id + '：贴图路径无效');
+    if (partIds.has(p.id) && !(p.uuid || p.material === 'transparent') && !/^layers\/[\w-]+\.png$/.test(p.texture)) throw Error(p.id + '：贴图路径无效');
     if (!Number.isInteger(p.cols) || !Number.isInteger(p.rows) || p.cols < 1 || p.rows < 1) throw Error(p.id + '：网格尺寸无效');
     if (!Array.isArray(p.bbox) || p.bbox.length !== 4 || !(p.bbox[2] > p.bbox[0] && p.bbox[3] > p.bbox[1])) throw Error(p.id + '：网格范围无效');
     if (partIds.has(p.id) && (!Array.isArray(p.textureBounds) || p.textureBounds.length !== 4 || !p.textureBounds.every(Number.isFinite) || p.textureBounds[2] <= 0 || p.textureBounds[3] <= 0)) throw Error(p.id + '：贴图范围无效');
@@ -61,6 +61,16 @@ export function validateHeadNineAxis(doc) {
   }
   for (const p of doc.parts) {
     if (p.role !== undefined && p.role !== 'mask') throw Error(p.id + '：未知角色 ' + p.role);
+    if (p.shadow !== undefined) {
+      const s = p.shadow;
+      if (!s || !['normal','multiply'].includes(s.blendMode) || !Number.isFinite(s.opacity) || s.opacity < 0 || s.opacity > 1)
+        throw Error(p.id + '：阴影需要 normal/multiply 混合模式与 0..1 不透明度');
+      for (const key of ['casters','receivers']) if (!Array.isArray(s[key]) || !s[key].length || s[key].some(id => !partIds.has(id) || id === p.id))
+        throw Error(p.id + '：阴影的投射者和接收者必须是已有贴图部件');
+      if (s.casters.some(id => doc.parts.find(q => q.id === id).shadow)) throw Error(p.id + '：阴影不能作为另一阴影的投射者');
+      if (!p.clip || !Array.isArray(p.clip.by) || p.clip.invert || p.clip.by.length !== s.receivers.length || s.receivers.some(id => !p.clip.by.includes(id)))
+        throw Error(p.id + '：阴影须裁切到当前接收部件');
+    }
     if (p.clip === undefined) continue;
     const by = p.clip?.by;
     if (!Array.isArray(by) || !by.length || by.some(id => !partIds.has(id) || id === p.id)) throw Error(p.id + '：裁切来源无效：须为其他贴图部件，组级 Warp 没有蒙版像素');
@@ -80,7 +90,7 @@ export function validateHeadNineAxis(doc) {
       if (source.doc.parts.length !== originalIds.size || source.doc.parts.some(p => !originalIds.has(p.id))) throw Error(source.axis + '：三份源部件集合须一致');
       for (const p of source.doc.parts) {
         const root = parts.get(p.id);
-        if (!root || ['texture', 'textureBounds', 'bbox', 'cols', 'rows'].some(k => JSON.stringify(p[k]) !== JSON.stringify(root[k])))
+        if (!root || ['textureBounds', 'bbox', 'cols', 'rows', ...(p.uuid || root.uuid ? [] : ['texture'])].some(k => JSON.stringify(p[k]) !== JSON.stringify(root[k])))
           throw Error(source.axis + '/' + p.id + '：原图层、贴图范围或 UV 网格不一致');
         if (p.keyforms['0'].some((q, i) => q.some((v, k) => Math.abs(v - root.keyforms['0'][i][k]) > 1e-5)))
           throw Error(source.axis + '/' + p.id + '：原形不一致');
@@ -158,6 +168,14 @@ export function keyformAt(part, x, y = 0, out = new Float32Array((part.cols + 1)
 }
 
 export const nodes = doc => [...doc.deformers, ...doc.parts];
+export function kraReferences(document) {
+  const doc = structuredClone(document);
+  const strip = value => {
+    for (const part of value.parts ?? []) if (part.uuid || part.material === 'transparent') delete part.texture;
+    for (const axis of value.axisSources ?? []) strip(axis.doc);
+  };
+  strip(doc); return doc;
+}
 export function descendants(doc, id) {
   const found = new Set([id]);
   for (let changed = true; changed;) { changed = false; for (const n of nodes(doc)) if (found.has(n.parent) && !found.has(n.id)) { found.add(n.id); changed = true; } }

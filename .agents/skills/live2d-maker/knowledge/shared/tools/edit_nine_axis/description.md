@@ -1,19 +1,18 @@
-编辑本步的真实 version 2 作者源。左右为 face-left.json，上下分别为 face-up.json、face-down.json，四角为 face-xy.json，下颌为 jaw.json。首次用 importParts 导入 KRA 从上到下的贴图部件列表：每项有 id、group、texture（本步 layers/ 的 PNG）、textureBounds=[x,y,width,height]、bbox=[x0,y0,x1,y1]，可选 cols、rows（默认 4×4）；工具创建静止与左右端点的规则网格，不创建任何预设分组。axis 是原画布像素中的镜像中轴。已有源时调用 {} 读取 revision 和变形器/部件索引。上下、四角、下颌首次调用 {} 时自动从当前上游建立完整文档，保留层级、裁切和贴图，记录上游哈希；不再交付只包含部件关键形的补丁。上下只编辑 X=0、Y 上下端点，四角只编辑左上/左下；程序生成右侧。上游变动时拒绝沿用旧作者文件，须以新上游重新制作。后续阶段不能重新 importParts 或更换 axis。
+编辑当前工程的图层绑定、Warp 层级和九轴关键形。作者文件、KRA 来源、可编辑节点和角度由运行环境绑定。调用 {} 返回 revision、作者路径、节点索引；有 KRA 时另返回已保存图层目录、UUID 和已有关系。目录中的关系供检查，不会自动选中或修改关联节点。
 
-operations 可以一次提交多项。每项 action：
-- create_warp：id、可选 name、targets（你选择的部件或变形器 id）、可选 parent、bbox、cols/rows（默认 2×2）。建立无贴图的父变形器并把 targets 放进去；分组与层级由你决定。支持平级变形器，也支持再加子变形器做细节。新 Warp/部件自动获得当前阶段已有 X、Y 与四角的初始形。范围默认包住选中对象已有 X、Y 和四角的实际画布关键形；有父级时可明确提供 bbox。
-- reparent：targets、parent（null 表示解除父级）；remove_warp：id。改挂/拆分保留已有关键形的画布位置，不清空局部修正。
-- mirror_pair：targets=[节点A,节点B]。显式指定两个部件或两个 Warp 的镜像对应，适用于自定义名称。
-- transform：id、x（角度）、可选 y、translate=[dx,dy]、scale=[sx,sy]、origin=[cx,cy]。对整个选中变形器或独立部件进行平移/缩放；父变形器会带动子级。scale 须为正数。origin 默认是当前网格中心。斜角工程中，当前 Warp 作用于单轴组合后的实际画布，整眼或整嘴的调整不会被已有单轴形变再扭一次；直接按预览中的位置调整。
-- drag：id、x、row、col、delta=[dx,dy]、radius（原画布像素）。软选择拖点；半径范围内的点一起平滑移动。
-- points：id、x、points=[{row,col,to:[x,y]},…]。只写需要改的控制点；to 是 view_nine_axis 返回的画布坐标，工具处理父级反解，不必手算局部坐标。
-- interpolation：id、spatial=linear/smooth（控制网格内部的直线/平滑曲线），x=linear/ellipse（参数运动轨迹）。ellipse 用负值/0/正值三个关键形形成椭圆轨迹；若需额外中间形，直接在该角度编辑，工具先采样当前形，再切到 linear，保留新控制的形状。此实现借鉴 Cubism 的曲线轨迹，不是 Cubism 文件导入器。
-- add_part：part，字段同 importParts，可带 role="mask"、parent；clip：id、by=[蒙版部件 id]、invert。用来增加必要的下颌线/蒙版与覆盖部件，普通裁切取来源 alpha 的并集，invert 为反向裁切，by=null 解除裁切。
+画稿用 KRA 图层 UUID 引用，不需要提供或维护 PNG。节点 id 标识独立几何，同一 UUID 可以供多个不同取样范围的部件使用。新部件通过 add_part 注册：part 包含 id、uuid、bbox=[x0,y0,x1,y1]，可选 level、group、cols、rows、parent；工具初始化当前参数范围内的静止网格。bbox 是原画布上的网格范围，textureBounds=[x,y,width,height] 可指定读取区域，默认 bbox 对应区域。已有部件通过 bindings:[{id,uuid}] 重绑；纯构造部件用 material="transparent"。像素修改在 Krita 保存后生效。
 
-父级改大形，子级或独立部件修局部。不要把所有贴图分别复制一份相同变形，也不要为层级套用固定解剖树。左右成对的 id 用完整 left/right 词（如 eye_left），程序以配对的左形镜像右形。编辑左侧和中间负角度后，用 view_nine_axis 同时检查左右，尤其是脸缘、瞳孔、嘴层和脖子连接。
+operations 接受一批操作，按顺序执行：
+- create_warp：id、targets、可选 name、parent、bbox、cols/rows。建立父 Warp 并挂入明确列出的对象，默认网格 2×2，范围包住这些对象已有关键形。
+- reparent：targets、parent（null 解除父级）；remove_warp：id。改挂或移除 Warp，保留已有关键形的画布位置。
+- transform：id、x、可选 y、translate=[dx,dy]、scale=[sx,sy]、origin=[cx,cy]。在该角度平移、缩放选定节点，父 Warp 带动其后代。缩放须为正数，origin 默认当前网格中心。
+- drag：id、x、可选 y、row、col、delta=[dx,dy]、radius。按原画布像素进行软选择拖点。
+- points：id、x、可选 y、points=[{row,col,to:[x,y]},…]。to 为 view_nine_axis 返回的画布坐标，工具处理父级反解。
+- interpolation：id、spatial=linear/smooth、x=linear/ellipse，分别设置网格内部插值和参数运动轨迹。ellipse 需要负值、0、正值三个 X 关键形；编辑新的中间形时转为 linear。
+- mirror_pair：targets=[节点A,节点B]，显式指定同类节点的镜像对应。是否发布镜像关键形由当前工程决定。
+- add_part：part，可选 before 或 after 指定绘制顺序参照部件，二者不能同时给出。
+- clip：id、by=[部件id]、可选 invert；by=null 解除裁切。裁切取来源当前 alpha 的并集。
 
-成功返回新 revision 与节点索引；后续传 revision 可防止覆盖新改动。整个批次验证引用、父子循环、网格折叠与贴图后才保存，失败不写入。notes 可记录你的分组理由和造型调整。图片检查请继续使用 view_nine_axis。
+独立投影部件可在 part 中声明 shadow:{casters:[部件id],receivers:[部件id]}，并用 clip.by 明确接收部件。混合方式和不透明度读取所绑定的 KRA 图层。关系不会扩展 targets，也不会自动复制其他部件的局部网格修正。
 
-阶段权限由调度绑定：left 写 face-left.json；up、down 分别写 face-up.json、face-down.json，三者独立从 neutral 开始；xy 写 face-xy.json，继承已合并单轴；jaw 写 jaw.json，继承全部九轴并使用本步可编辑 KRA。准备不调度编辑 agent。面部阶段保持固定 KRA 导出数据，不改画稿、不换图层绑定。
-
-下颌线阶段先在 Krita 保存本步工程，再用 `bindings:[{"id":"jaw_line","uuid":"<KRA图层UUID>"}]` 绑定新画稿；add_part 的 part 也可直接携带 uuid。已有部件重绑同理。无绘画内容的纯构造部件可显式绑定 `{"id":"driver","material":"transparent"}`。textureBounds 指定原画布整数像素范围，工具自动从 KRA 导出到本步 layers/，不以旧 PNG 作为素材依据。新图层的形状、颜色、蒙版像素仍由 Krita 修改；本工具负责绑定、层级和关键形，不把某个转头姿态烘进 KRA。调用 {} 也会同步保存后的 KRA 贴图与来源。
+x/y 是参数角度；位移、范围与控制点坐标使用原画布像素。新 Warp 继承当前工程已有参数关键形。传 revision 可防止覆盖新改动；整批通过引用、层级、网格和绑定校验后才保存，失败不写作者数据。返回新 revision 和节点索引。notes 可记录编辑理由，图像检查使用 view_nine_axis。

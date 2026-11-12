@@ -116,7 +116,8 @@ export const sectionSteps = [
     ], '模型制作与视频生成并发；各自保存进展和产物。'), childrenMode: 'parallel' },
     step('step05_frames', '斜角参考帧', 'pending', [], '使用上一步的视频。'),
     step('step06_angle-xy', '斜角模型', 'pending'),
-    step('step07_jaw-line', '下颌与颈部衔接', 'pending')],
+    step('step07_jaw-line', '下颌与颈部衔接', 'pending'),
+    step('step08_hair', '头发制作', 'pending', [], '使用本步 KRA，首轮只制作前发；保存后等待同一会话的下一轮提示词。')],
 ];
 
 export const previousNineAxisSectionSteps = [step('step01_video', '三向视频与参考帧', 'pending'),
@@ -205,6 +206,7 @@ Object.assign(stepArtifacts[6], {
   step05_frames: nineFrameArtifacts('step05_frames', ['left-up', 'left-down']),
   'step06_angle-xy': [file('nine-axis/step06_angle-xy/deformers.json', '斜角模型')],
   'step07_jaw-line': [file('nine-axis/step07_jaw-line/deformers.json', '脸部九轴模型'), image('nine-axis/step07_jaw-line/character-nine-axis.png', '合成图'), file('nine-axis/step07_jaw-line/character-nine-axis.kra', '分层 KRA'), file('nine-axis/step07_jaw-line/notes.md', '制作说明')],
+  'step08_hair': [file('nine-axis/step08_hair/deformers.json','头发累计模型'),file('nine-axis/step08_hair/character-nine-axis.kra','分层 KRA'),file('nine-axis/step08_hair/notes.md','制作说明')],
 });
 export function shadowInspectionArtifacts(files) {
   return files.filter(path => /^shadow\/step01_mask\/inspection\/relation-\d{3,}-review\.png$/.test(path)).sort()

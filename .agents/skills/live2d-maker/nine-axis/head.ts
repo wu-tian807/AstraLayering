@@ -2,10 +2,15 @@ import { randomUUID } from 'node:crypto';
 import { access, copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, relative, sep } from 'node:path';
 import sharp from 'sharp';
+import { kraContents } from '../shadow/delivery.ts';
+export async function artworkCanvas(input: HeadInput) {
+  const image = await readFile(input.document).then(bytes => kraContents(bytes).merged, error => { if (error.code === 'ENOENT') return readFile(input.color); throw error; });
+  return sharp(image).metadata();
+}
 import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
 import type { Box, TurnInput } from './turn.ts';
-import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry, warpPoint as sampleWarp, type WarpGrid, type HeadNineAxis, type HeadLevel } from '../shared/nine-axis-model.js';
+import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry, kraReferences, warpPoint as sampleWarp, type WarpGrid, type HeadNineAxis, type HeadLevel } from '../shared/nine-axis-model.js';
 
 // step04_angles: the agent fits the face to the left view and delivers the
 // ParamAngleX left keyform (−30 by default, degrees, see angles.ts) as
@@ -28,7 +33,7 @@ export async function copyDocument(from: { document: string; color: string }, to
 }
 
 type Point = [number, number];
-export type Part = { level?: HeadLevel; mirror?: string; id: string; group: string; texture: string; textureBounds: number[]; bbox: number[];
+export type Part = { level?: HeadLevel; mirror?: string; id: string; group: string; uuid?: string; material?: 'transparent'; texture?: string; textureBounds: number[]; bbox: number[];
   cols: number; rows: number; keyforms: Record<string, Point[]>; parent?: string; interpolation?: 'linear' | 'smooth'; parameterInterpolation?: { x?: 'linear' | 'ellipse' }; role?: 'mask'; clip?: { by: string[]; invert?: boolean } };
 export type FaceLeft = { version: 2; axis: number; notes?: string; deformers: WarpGrid[]; parts: Part[] };
 
@@ -42,7 +47,7 @@ export function checkFaceLeft(value: unknown, canvas: [number, number], left: st
     if (typeof p?.id !== 'string' || !isHeadPartId(p.id) || ids.has(p.id)) throw new Error(`face-left.json：部件 id 须为不重复的 face/ 路径或脖子 neck：${p?.id}`);
     ids.add(p.id);
     if (typeof p.group !== 'string' || !p.group) throw new Error(`${p.id}：缺少 group`);
-    if (typeof p.texture !== 'string' || !p.texture) throw new Error(`${p.id}：缺少 texture`);
+    if (!p.uuid && p.material !== 'transparent' && (typeof p.texture !== 'string' || !p.texture)) throw new Error(`${p.id}：缺少 texture`);
     if (!Array.isArray(p.textureBounds) || p.textureBounds.length !== 4 || !p.textureBounds.every(Number.isFinite)) throw new Error(`${p.id}：textureBounds 无效`);
     if (!Array.isArray(p.bbox) || p.bbox.length !== 4 || !p.bbox.every(Number.isFinite) || !(p.bbox[2] > p.bbox[0] && p.bbox[3] > p.bbox[1])) throw new Error(`${p.id}：bbox 无效`);
     if (!Number.isInteger(p.cols) || !Number.isInteger(p.rows) || p.cols < 1 || p.rows < 1) throw new Error(`${p.id}：网格尺寸无效`);
@@ -144,9 +149,11 @@ async function atomic(path: string, text: string) {
 // comes from: view_nine_axis renders it as it is, finish writes it into the step.
 export type Built = { doc: HeadNineAxis; textures: Map<string, string> };
 export async function writeBuilt(directory: string, { doc, textures }: Built) {
-  await mkdir(join(directory, 'layers'), { recursive: true });
-  for (const [texture, source] of textures) if (source !== join(directory, texture)) await copyFile(source, join(directory, texture));
-  await atomic(join(directory, 'deformers.json'), JSON.stringify(doc) + '\n');
+  const references = kraReferences(doc);
+  const legacy = new Set(references.parts.flatMap(p => p.texture ? [p.texture] : []));
+  if (legacy.size) await mkdir(join(directory, 'layers'), { recursive: true });
+  for (const [texture, source] of textures) if (legacy.has(texture) && source !== join(directory, texture)) await copyFile(source, join(directory, texture));
+  await atomic(join(directory, 'deformers.json'), JSON.stringify(references) + '\n');
 }
 
 // Check the agent's delivery and mirror it into the workbench document.
@@ -157,11 +164,11 @@ export async function buildHead(directory: string, input: HeadInput, box: Box, s
   return compileHead(directory, input, box, raw as FaceLeft, scale, taskRoot);
 }
 export async function compileHead(directory: string, input: HeadInput, box: Box, value: FaceLeft, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory))): Promise<Built & { source: Record<string, string> }> {
-  const task = taskRoot, { width = 0, height = 0 } = await sharp(input.color).metadata(), left = angleKey(scale.x[0]);
+  const task = taskRoot, { width = 0, height = 0 } = await artworkCanvas(input), left = angleKey(scale.x[0]);
   const local = structuredClone(value);
-  for (const p of local.parts ?? []) p.texture = stepTexture(directory, task, p.id, p.texture);
+  for (const p of local.parts ?? []) if (p.texture && !p.uuid && p.material !== 'transparent') p.texture = stepTexture(directory, task, p.id, p.texture);
   const face = checkFaceLeft(local, [width, height], left);
-  for (const p of face.parts) await access(join(directory, p.texture)).catch(error => { throw new Error(`${p.id}：缺少贴图 ${p.texture}`, { cause: error }); });
+  for (const p of face.parts.filter(p => !p.uuid && p.material !== 'transparent')) await access(join(directory, p.texture!)).catch(error => { throw new Error(`${p.id}：缺少贴图 ${p.texture}`, { cause: error }); });
   const mirrored = mirrorHierarchy(face);
   // face-left.json lists parts top to bottom (KRA order); deformers.json lists
   // them in drawing order, bottom first, as the workbench renders them.
@@ -176,7 +183,7 @@ export async function compileHead(directory: string, input: HeadInput, box: Box,
     notes: [face.notes?.trim(), `${sign(scale.x[0])}° 为向左视角，${sign(scale.x[1])}° 为左右成对镜像。`].filter(Boolean).join(' '), deformers, parts };
   validateHeadNineAxis(doc);
   for (const n of [...deformers, ...parts]) checkWarpGeometry(n);
-  return { doc, textures: new Map(parts.map(p => [p.texture, join(directory, p.texture)])),
+  return { doc, textures: new Map(parts.flatMap(p => p.texture && !p.uuid ? [[p.texture, join(directory, p.texture)] as [string,string]] : [])),
     source: { sourceDocument: document, sourceColor: color } };
 }
 

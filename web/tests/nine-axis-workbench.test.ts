@@ -34,13 +34,14 @@ async function fixture(t: any) {
   return { root, put, get, errors, complete };
 }
 
-test('seven steps separate videos and frames, with model and video branches in step04', () => {
-  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line']);
+test('eight steps keep independent face branches and one hair step without per-piece child steps', () => {
+  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line','step08_hair']);
   const steps = sectionSteps[6]; assert.deepEqual(steps.map(step => step.id), [...nineAxisSteps]);
   assert.equal(steps[3].childrenMode, 'parallel');
   assert.deepEqual(steps[3].children.map(step => step.id), ['step04_angles/model','step04_angles/video']);
   assert.deepEqual(steps[3].children[0].children.map(step => step.id), stagedGroupSteps);
   for (const id of stagedGroupSteps) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/deformers.json`));
+  assert.deepEqual(steps[7].children,[]);
 });
 
 test('independent waits and failures never mark running or completed siblings throttled', async t => {
