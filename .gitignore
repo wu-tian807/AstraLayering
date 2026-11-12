@@ -5,10 +5,6 @@ __pycache__/
 .options.yaml.lock
 .options.json.lock
 
-# Local collaboration instructions and progress notes.
-/AGENTS.md
-/docs/nine-axis-milestone-*.md
-
 # Reinstall JavaScript dependencies from the saved package manifests.
 node_modules/
 
