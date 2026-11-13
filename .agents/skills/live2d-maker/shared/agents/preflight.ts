@@ -13,6 +13,7 @@ import { withNodePath } from '../process-environment.ts';
 import type { Harness } from './models.ts';
 
 export async function checkAgentCli(settings: WorkflowEnvironment, harness: Harness, runsRoot?: string): Promise<string> {
+  if (harness === 'codex' && !settings.codex.codexPathOverride) await checkCodexCapabilities(settings);
   const launch = harness === 'codex' ? appServerCommand(settings.codex.codexPathOverride)
     : { command: await cliExecutable(settings, harness, runsRoot), args: [] };
   const args = [...(harness === 'codex' ? launch.args.slice(0, -1) : launch.args), '--version'];

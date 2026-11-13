@@ -14,7 +14,7 @@ test('effective configuration reports shell overrides and disabled/enabled compa
   assert.deepEqual(disabled.codex.imageCompaction, { enabled: false, threshold: null, childThreshold: null });
   assert.equal(disabled.codex.patchAutoBuild, true);
   assert.deepEqual(disabled.agvPatch, {enabled: false});
-  assert.equal(configurationReport({agv_unlimited_response_header_timeout: 'true', codex_path: '/fixture/codex'}, directory).codex.patchAutoBuild, false);
+  assert.equal(configurationReport({agv_unlimited_response_header_timeout: 'true', codex_path: '/fixture/codex'}, directory).codex.patchAutoBuild, true);
   assert.deepEqual(configurationReport({agv_unlimited_response_header_timeout: 'true'}, directory).agvPatch, {enabled: true});
   const enabled = configurationReport({ image_compact_threshold: '49', part_review_agent_model: 'gemini-4-argon-high' }, directory);
   assert.deepEqual(enabled.codex.imageCompaction, { enabled: true, threshold: 49, childThreshold: '49' });

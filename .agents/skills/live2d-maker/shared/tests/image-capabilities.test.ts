@@ -1,3 +1,4 @@
+import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile, writeFile } from 'node:fs/promises';
@@ -76,11 +77,11 @@ for (const model of ['codex-native', 'gpt-image-2.5-flare', 'gemini-nano-banana-
     const knowledge = await temporaryKnowledge(t);
     await setImages(knowledge, true);
     const server = await fakeAppServer(knowledge, [], 'completed', [], { finalText: 'done' });
-    const settings = loadWorkflowEnvironment({ layering_codex_path: server.executable,
+    const settings = withCodex(loadWorkflowEnvironment({
       raster_step02_image_model: model,
       layering_openai_image_base_url: 'http://127.0.0.1:1/v1', layering_openai_image_api_key: 'fixture',
       layering_google_image_base_url: 'http://127.0.0.1:1/v1', layering_google_image_api_key: 'fixture',
-    }, knowledge);
+    }, knowledge), server.executable);
     settings.codex.config = { 'features.image_generation': true, features: { image_generation: true } };
     const agents = new CodexAgents({ environment: settings, cwd: knowledge });
     const session = agents.createSession();

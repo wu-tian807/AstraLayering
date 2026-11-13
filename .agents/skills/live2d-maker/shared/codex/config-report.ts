@@ -18,8 +18,8 @@ export function configurationReport(env: NodeJS.ProcessEnv = process.env, direct
     configuration: path,
     shellOverrides: Object.keys(file).filter(key => env[key] !== undefined).sort(),
     codex: {
-      executable: settings.codex.codexPathOverride ?? 'SDK default',
-      patchAutoBuild: !settings.codex.codexPathOverride,
+      executable: 'managed patched Codex (prepared at startup)',
+      patchAutoBuild: true,
       home: settings.codex.env?.CODEX_HOME ?? '~/.codex',
       provider: settings.codex.config?.model_provider ?? 'inherited',
       imageCompaction: {

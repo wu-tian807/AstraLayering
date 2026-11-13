@@ -6,7 +6,6 @@ import { workflowsDirectory } from '../paths.ts';
 import { execFile, spawn } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, rename, writeFile } from 'node:fs/promises';
-import { createRequire } from 'node:module';
 import { once } from 'node:events';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
@@ -23,15 +22,13 @@ import { agentImageGeneration } from '../agent-knowledge.ts';
 import { readSessions, rememberSession, resolveSession, type StoredSession } from '../agents/session-data.ts';
 import { codexSessionEnvironment, prepareCodexWorkspace, productionCodexConfig } from './session-data.ts';
 
-// Only the protocol subset used here is maintained. The CLI is pinned by codex-sdk.
+// Only the protocol subset used by the managed, pinned Codex build is maintained.
 type Message = { id?: number | string; method?: string; params?: Record<string, any>;
   result?: Record<string, any>; error?: { code: number; message: string; data?: unknown } };
 
 export function appServerCommand(override?: string): { command: string; args: string[] } {
-  if (override) return { command: override, args: ['app-server'] };
-  const sdkRequire = createRequire(import.meta.resolve('@openai/codex-sdk'));
-  const packagePath = sdkRequire.resolve('@openai/codex/package.json');
-  return { command: process.execPath, args: [join(dirname(packagePath), 'bin/codex.js'), 'app-server'] };
+  if (!override) throw new Error('Codex 补丁运行时尚未准备');
+  return { command: override, args: ['app-server'] };
 }
 
 // The model catalog's tool_mode puts every tool behind code mode's exec script, which outranks

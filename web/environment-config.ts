@@ -7,7 +7,6 @@ import { execFile } from 'node:child_process';
 import { workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
 import { modelHarnesses, modelSlots, modelSlotKey, isModelSlotKey, defaultImageModelKey, imageModelKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
 import { parseWorkflowEnvironment, type WorkflowEnvironment } from '../.agents/skills/live2d-maker/shared/codex/environment.ts';
-import { appServerCommand } from '../.agents/skills/live2d-maker/shared/codex/tool-agent.ts';
 import { validateImageSelection } from '../.agents/skills/live2d-maker/shared/agents/images.ts';
 import { validateProviderModel } from '../.agents/skills/live2d-maker/shared/agents/providers.ts';
 import { legacyPrefix, withLegacyKeys } from '../.agents/skills/live2d-maker/shared/legacy-keys.ts';
@@ -24,11 +23,15 @@ export class EnvironmentConflict extends Error { }
 function scalarFields(defaults: Record<string,string>): Field[] {
   const result: Field[] = [];
   for (const harness of ['codex','claude','agv']) {
-    for (const [suffix,label,type] of [['api_key','API 密钥','secret'],['base_url','服务地址','text'],['models','可用模型列表','text'],['path','CLI 路径','text']]) result.push({key:`${harness}_${suffix}`,label:`${harness} ${label}`,section:'connection',type,hint:suffix==='models'?'逗号分隔模型 ID；留空沿用已有范围':suffix==='api_key'?'留空复用已有登录；填入新值可替换本地密钥':undefined});
+    for (const [suffix,label,type] of [['api_key','API 密钥','secret'],['base_url','服务地址','text'],['models','可用模型列表','text'],['path','CLI 路径','text']]) {
+      if(harness==='codex'&&suffix==='path')continue;
+      result.push({key:`${harness}_${suffix}`,label:`${harness} ${label}`,section:'connection',type,hint:suffix==='models'?'逗号分隔模型 ID；留空沿用已有范围':suffix==='api_key'?'留空复用已有登录；填入新值可替换本地密钥':undefined});
+    }
   }
-  const labels: Record<string,string> = {agv_protocol:'AGV 网关协议',codex_home:'Codex 配置目录',openai_image_base_url:'GPT 生图服务地址',openai_image_api_key:'GPT 生图 API 密钥',google_image_base_url:'Nano 生图服务地址',google_image_api_key:'Nano 生图 API 密钥',google_image_protocol:'Nano 生图协议',agv_unlimited_response_header_timeout:'AGV 响应头期限兼容',agv_minimal_thinking_level:'AGV MINIMAL 兼容',image_compact_threshold:'Codex 图片数量预算（兼容键）',krita_max_instances:'本机 Krita 并发上限',update_check:'检查新版本'};
+  const labels: Record<string,string> = {agv_protocol:'AGV 网关协议',codex_home:'Codex 认证来源目录',openai_image_base_url:'GPT 生图服务地址',openai_image_api_key:'GPT 生图 API 密钥',google_image_base_url:'Nano 生图服务地址',google_image_api_key:'Nano 生图 API 密钥',google_image_protocol:'Nano 生图协议',agv_unlimited_response_header_timeout:'AGV 响应头期限兼容',agv_minimal_thinking_level:'AGV MINIMAL 兼容',image_compact_threshold:'Codex 图片数量预算（兼容键）',krita_max_instances:'本机 Krita 并发上限',update_check:'检查新版本'};
   const choices: Record<string,string[]> = {agv_protocol:['','genai','openai'],google_image_protocol:['gemini','openai'],agv_minimal_thinking_level:['','LOW','MEDIUM','HIGH']};
   for (const key of Object.keys(defaults)) {
+    if(key==='codex_path'||key==='layering_codex_path')continue;
     if (result.some(f=>f.key===key)||isModelSlotKey(key)||key.endsWith('_image_model')||key==='image_model') continue;
     const type = secretKey(key)?'secret':choices[key]?'select':/deduplicate$|unlimited_response_header_timeout$|update_check$/.test(key)?'boolean':/compact_threshold$|compact_mib$|_max_instances$/.test(key)?'number':'text';
     result.push({ key,label:labels[key]??key.replaceAll('_',' '), section:key==='agv_protocol'?'connection':key.includes('compact')||key.includes('deduplicate')?'budget':key.includes('_image_')?'image-api':'advanced',type,options:choices[key],fallback:defaults[key] });
@@ -79,6 +82,7 @@ function redactedPreview(text: string) {
 
 // Probe executable versions only. Never install CLIs, build Codex, or contact a model.
 export async function probeEnvironmentCli(harness: Harness, values: Record<string,string>, env: NodeJS.ProcessEnv, directory: string) {
+  if (harness === 'codex') return {available:true,detail:'使用管线内置补丁版 Codex，任务启动时自动准备',path:''};
   const explicit=withLegacyKeys(env)[`${harness}_path`]??withLegacyKeys(values)[`${harness}_path`];
   const names=harness==='agv'?['agy','agv','antigravity']:[harness];
   const paths=explicit?[resolve(directory,explicit)]:(env.PATH??'').split(delimiter).flatMap(p=>names.flatMap(n=>process.platform==='win32'?[join(p,n+'.exe'),join(p,n+'.cmd')]:[join(p,n)]));
@@ -90,9 +94,6 @@ export async function probeEnvironmentCli(harness: Harness, values: Record<strin
       const r=await exec(path,['--version'],{env,timeout:3500,maxBuffer:16000});
       if(/\d+\.\d+/.test(r.stdout+r.stderr))return {available:true,detail:(r.stdout||r.stderr).trim().split('\n')[0],path};
     } catch { /* Check the next installed entrypoint. */ }
-  }
-  if(harness==='codex'&&!explicit) {
-    try {const command=appServerCommand();const r=await exec(command.command,[...command.args.slice(0,-1),'--version'],{env,timeout:3500,maxBuffer:16000});if(/\d+\.\d+/.test(r.stdout+r.stderr))return {available:true,detail:'使用项目内 Codex CLI；补丁由任务启动时准备',path:command.args[0]};} catch { /* SDK CLI unavailable too. */ }
   }
   return {available:false,detail:`当前服务环境未检测到可用 ${harness} CLI，请安装后登录或填写 CLI 路径`,path:explicit||''};
 }

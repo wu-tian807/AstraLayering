@@ -4,8 +4,8 @@
 
 | 功能 | .env 开关／选择 | 启动行为 |
 | --- | --- | --- |
-| Codex 失败流错误读取 | 使用 Codex 即生效，无开关 | 未指定 `codex_path` 时自动构建并复用缓存；读取 LiteLLM 在空 `response.failed` 后单独发送的 `error` 事件 |
-| Codex 图片数 compact | `image_compact_threshold=<正整数>` | 未指定 `codex_path` 时自动构建并复用缓存 |
+| Codex 失败流错误读取 | 使用 Codex 即生效，无开关 | 自动构建并复用管线缓存；读取 LiteLLM 在空 `response.failed` 后单独发送的 `error` 事件 |
+| Codex 图片数 compact | `image_compact_threshold=<正整数>` | 自动构建并复用管线缓存 |
 | 三种 CLI 图片／请求体预算 | `<codex/claude/agv>_image_compact_threshold` / `<codex/claude/agv>_request_compact_mib` | 留空关闭；按实际发送内容检查，带图分批压缩，保留最新图与恢复记录 |
 | Claude 拒绝后的会话恢复 | 自动处理结构化 refusal，无开关 | 保留记录与产物，从恢复提示词新建会话；边界见下文 |
 | Codex 自定义生图 | 对应步骤选择 GPT／Nano，并填写对应 API | 与 compact 共用同一补丁，按所选路线实际需要准备 |
@@ -49,7 +49,7 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 
 ### 补丁入口与缓存校验
 
-使用 Codex harness 时始终需要补丁版：错误读取修正对所有请求生效。`codex_path` 留空时，启动预检自动准备并复用缓存；显式指定入口时只检查该入口，不自动替换。构建命令、平台依赖与恢复办法见 [setup · Codex 补丁构建与恢复](../references/setup.md#codex-补丁构建与恢复)。
+使用 Codex harness 时始终需要补丁版：错误读取修正对所有请求生效。启动预检自动准备并复用管线补丁缓存。构建命令、平台依赖与恢复办法见 [setup · Codex 补丁构建与恢复](../references/setup.md#codex-补丁构建与恢复)。
 
 缓存为 `.codex-build/<平台-架构>/<源码与补丁指纹>/`。进程锁防止并发重复构建，产物和官方 Code Mode companion 的 SHA-256 校验通过后才复用；失败不写成功标记，中断后可直接续跑。补丁更新使用新指纹目录，旧文件保留。所有入口要求 `failed_error_event_version: 1`；生图要求 `image_provider_version: 2`，按图片数压缩要求 `image_compaction_version: 2`，请求体预算另外要求 `request_compaction_version: 1`。
 

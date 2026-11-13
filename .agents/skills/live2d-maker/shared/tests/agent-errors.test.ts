@@ -1,3 +1,4 @@
+import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
@@ -127,7 +128,7 @@ for (const mode of ['rpc', 'turn', 'eof', 'recovered']) test(`Codex App Server $
 
 test('raster steps keep turn failure details without retrying', async t => {
   const f = await fixture(t);
-  const environment = loadWorkflowEnvironment({ codex_path: await errorServer(f.root, 'turn') }, f.root);
+  const environment = withCodex(loadWorkflowEnvironment({}, f.root), await errorServer(f.root, 'turn'));
   await assert.rejects(runAgent({ prompt: 'same task', directory: f.cwd, model: 'gpt-6.1-sol', effort: 'low', environment, onEvent: async () => {} },
     new AgentRuntime(1, async () => assert.fail('must not retry'))), error => {
     assert.ok(error instanceof AgentCallError);

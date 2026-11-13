@@ -83,7 +83,7 @@ SVG 合并由程序执行，不配置 LLM。步骤职责、绘图提示词、rev
 
 OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/generations` 或 `/images/edits`；Gemini 原生服务的 base URL 通常包含 `/v1beta`，程序追加 `/models/<模型>:generateContent`。按服务提供的地址和协议填写，API 密钥在本机保存。
 
-所有 Codex 步骤都使用补丁版 Codex（`codex_path` 留空即自动准备，构建见 [setup](setup.md#codex-补丁构建与恢复)）；Codex 步骤选具体 GPT／Nano 生图模型时，补丁还须具备原生 image provider v2。Claude／AGV 使用共享生图函数工具。为 Claude／AGV 步骤选择上述 GPT／Nano 服务，并准备对应 API；`codex-native` 对应 Codex 步骤。
+所有 Codex 步骤都使用补丁版 Codex（管线自动准备并复用缓存，构建见 [setup](setup.md#codex-补丁构建与恢复)）；Codex 步骤选具体 GPT／Nano 生图模型时，补丁还须具备原生 image provider v2。Claude／AGV 使用共享生图函数工具。为 Claude／AGV 步骤选择上述 GPT／Nano 服务，并准备对应 API；`codex-native` 对应 Codex 步骤。
 
 ### 全局默认与逐步骤覆盖
 
@@ -133,7 +133,7 @@ raster_step01_repair_image_model=gpt-image-2.5-flare
 
 | CLI | 模型枚举 | 入口 |
 | --- | --- | --- |
-| Codex | `gpt-6.1-sol`、`gpt-6-astra` | `codex_path` 留空自动准备补丁版，填写时检查指定入口的补丁能力；`codex_home` 仅指定登录认证 `auth.json` 的来源（留空取 shell 的 `CODEX_HOME`／`~/.codex`）；实际配置和历史保存在本管线 `agents/` 中 |
+| Codex | `gpt-6.1-sol`、`gpt-6-astra` | 管线自动准备并使用补丁版；`codex_home` 仅指定登录认证 `auth.json` 的来源（留空取 shell 的 `CODEX_HOME`／`~/.codex`）；实际配置和历史保存在本管线 `agents/` 中 |
 | Claude Code | `claude-sonnet-5-5`、`claude-opus-5-5`、`claude-haiku-5-5` | `claude_path`，未填则找全局 `claude` |
 | Antigravity（agv） | `gemini-4-argon` | `agv_path`，未填则找全局 `agy`／`agv`／`antigravity` |
 

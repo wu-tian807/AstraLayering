@@ -23,7 +23,7 @@ function runCli(args: string[], { knowledge = true } = {}) {
     '--import', new URL('./forbid-model-processes.ts', import.meta.url).href,
     fileURLToPath(new URL('../run.ts', import.meta.url)), ...args,
     ...(knowledge ? ['--knowledge', defaultKnowledgeDirectory] : []),
-  ], { timeout: 10000, env: { ...process.env, codex_path: process.execPath } });
+  ], { timeout: 10000, env: { ...process.env, ASTRA_TEST_CODEX_EXECUTABLE: process.execPath } });
 }
 
 test('独立 section 每次启动都须提供 --knowledge；目录缺失文件时启动前即失败', async () => {
