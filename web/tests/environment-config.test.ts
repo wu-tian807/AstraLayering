@@ -138,9 +138,11 @@ test('head configuration names the shared maker role and exposes the actual vide
  const f=await fixture(t),data=await f.environment.read();
  const maker=data.fields.find(field=>field.key==='nine_axis_head_agent_model')!;
  assert.equal(maker.label,'头部九轴制作');assert.match(maker.hint!,/脸部、头发与头饰/);
- const fields=data.fields.filter(field=>field.section==='video');
- assert.deepEqual(fields.map(field=>field.key),['video_base_url','video_api_key','nine_axis_view_video_model']);
- assert.equal(fields[1].secret,true);assert.equal(fields[2].type,'select');assert.deepEqual(fields[2].options,[...videoModels]);
+ const services=data.fields.filter(field=>field.section==='video-api'),models=data.fields.filter(field=>field.section==='video');
+ assert.deepEqual(services.map(field=>field.key),['video_base_url','video_api_key']);
+ assert.deepEqual(models.map(field=>field.key),['nine_axis_view_video_model']);
+ assert.equal(services[1].secret,true);assert.equal(models[0].type,'select');assert.deepEqual(models[0].options,[...videoModels]);
+ assert.ok(!data.fields.some(field=>field.section==='advanced'&&['video_base_url','video_api_key','nine_axis_view_video_model'].includes(field.key)));
  const saved=await f.environment.save({revision:data.revision,changes:{nine_axis_head_agent_model:'gpt-6-astra-high',video_base_url:'https://video.example/v1',video_api_key:'video-test-secret',nine_axis_view_video_model:'seedance-2-fast'}});
  assert.ok(!JSON.stringify(saved).includes('video-test-secret'));
  const settings=loadWorkflowEnvironment({},f.directory);

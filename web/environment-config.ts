@@ -22,6 +22,36 @@ const queues = new Map<string,Promise<unknown>>();
 type Field = { key:string; label:string; section:string; type:string; options?:string[]; fallback?:string; hint?:string };
 export class EnvironmentConflict extends Error { }
 
+const scalarDescriptions: Record<string,{label?:string;hint:string}> = {
+  agv_protocol:{hint:'选择与服务端匹配的接口格式：genai 或 openai。留空使用 genai；图片容量保护需要 genai。'},
+  codex_home:{hint:'供 Codex 读取登录认证的目录；留空使用 CODEX_HOME 或用户目录下的 .codex。'},
+  openai_image_base_url:{hint:'GPT 生图接口的基础地址，通常以 /v1 结尾；与语言模型服务分别配置。'},
+  openai_image_api_key:{hint:'调用 GPT 生图服务的密钥，与语言模型密钥分别配置。'},
+  google_image_base_url:{hint:'Nano 生图接口的基础地址；Gemini 格式通常以 /v1beta 结尾，OpenAI 格式通常以 /v1 结尾。'},
+  google_image_api_key:{hint:'调用 Nano 生图服务的密钥，与语言模型密钥分别配置。'},
+  google_image_protocol:{hint:'选择生图服务使用的接口格式：gemini 为 Google 原生格式，openai 为 OpenAI 兼容格式。'},
+  agv_unlimited_response_header_timeout:{label:'Antigravity 响应等待超时兼容',hint:'为已安装的 CLI 准备补丁副本，解除其 60 秒响应头等待限制；默认关闭。'},
+  agv_minimal_thinking_level:{label:'Antigravity 最低思考级别兼容',hint:'服务不支持 MINIMAL 时，选择替换级别；仅替换 MINIMAL 请求，留空保持原值。'},
+  image_compact_threshold:{label:'Codex 图片张数阈值（旧配置）',hint:'旧版图片张数阈值，Codex 专用阈值优先于此项。单位：张；填正整数，留空不启用此项。'},
+  krita_max_instances:{label:'Krita 同时运行上限',hint:'限制本机所有制作任务同时占用的 Krita 名额，满额时排队。填正整数，默认 4。'},
+  update_check:{hint:'定期检查新发布版本并在工作台提示，不自动下载或更新；默认开启。'},
+  video_base_url:{label:'视频服务地址',hint:'头部九轴参考视频服务的基础地址，通常以 /v1 结尾；与生图服务分别配置。'},
+  video_api_key:{label:'视频服务 API 密钥',hint:'调用参考视频服务的密钥，需与视频服务地址一起填写。'},
+  nine_axis_view_video_model:{label:'头部九轴参考视频模型',hint:'将角色正面图生成为转头参考视频时使用的模型。'},
+  DISPLAY:{label:'X11 显示地址',hint:'Linux 下 Krita 连接的 X11 显示服务，例如 :0；通常留空，使用启动环境的设置。'},
+  WAYLAND_DISPLAY:{label:'Wayland 显示连接',hint:'Linux 下 Krita 使用的 Wayland 显示连接，例如 wayland-0；通常留空，使用启动环境的设置。'},
+  QT_QPA_PLATFORM:{label:'Qt 图形后端',hint:'指定 Krita 的 Qt 图形后端，例如 xcb 或 wayland；通常留空，由桌面环境决定。'},
+};
+for (const [harness,label] of Object.entries({codex:'Codex',claude:'Claude Code',agv:'Antigravity'})) {
+  scalarDescriptions[`${harness}_api_key`]={label:`${label} API 密钥`,hint:'调用语言模型服务的密钥；留空使用已有登录，填写后使用此密钥。'};
+  scalarDescriptions[`${harness}_base_url`]={label:`${label} 服务地址`,hint:harness==='agv'?'语言模型接口的基础地址，自定义连接需同时填写 API 密钥。':'语言模型接口的基础地址；仅填写 API 密钥时使用官方地址，均留空使用已有连接。'};
+  scalarDescriptions[`${harness}_models`]={label:`${label} 可用模型列表`,hint:'此连接允许使用的模型 ID，用逗号分隔，不带思考力度后缀；留空不额外限制模型范围。'};
+  if(harness!=='codex')scalarDescriptions[`${harness}_path`]={label:`${label} 执行文件路径`,hint:'CLI 可执行文件的位置；留空从系统 PATH 查找，相对路径以 skill 目录为准。'};
+  scalarDescriptions[`${harness}_image_compact_threshold`]={label:`${label} 图片张数阈值`,hint:'请求中的图片数达到此值时，先整理视觉上下文以减少图片数量。单位：张；填正整数，留空不按张数触发。'};
+  scalarDescriptions[`${harness}_request_compact_mib`]={label:`${label} 请求大小阈值`,hint:'整个请求体（含文字与图片）达到此大小时，先整理上下文。单位：MiB；填正整数，留空不按大小触发。'};
+  if(harness!=='codex')scalarDescriptions[`${harness}_image_deduplicate`]={label:`${label} 重复图片去重`,hint:'移除内容及来源相同的重复图片，保留最新原图和全部文字记录；默认关闭。'};
+}
+
 function scalarFields(defaults: Record<string,string>): Field[] {
   const result: Field[] = [];
   for (const harness of ['codex','claude','agv']) {
@@ -39,9 +69,10 @@ function scalarFields(defaults: Record<string,string>): Field[] {
     if (result.some(f=>f.key===key)||isModelSlotKey(key)||key.endsWith('_image_model')||key==='image_model') continue;
     const type = secretKey(key)?'secret':choices[key]?'select':/deduplicate$|unlimited_response_header_timeout$|update_check$/.test(key)?'boolean':/compact_threshold$|compact_mib$|_max_instances$/.test(key)?'number':'text';
     const video=videoFields.includes(key);
-    result.push({ key,label:labels[key]??key.replaceAll('_',' '), section:video?'video':key==='agv_protocol'?'connection':key.includes('compact')||key.includes('deduplicate')?'budget':key.includes('_image_')?'image-api':'advanced',type,options:choices[key],fallback:defaults[key],...(key==='video_api_key'?{hint:'填写视频服务的 API 密钥'}:{}) });
+    result.push({ key,label:labels[key]??key.replaceAll('_',' '), section:video?(key==='nine_axis_view_video_model'?'video':'video-api'):key==='agv_protocol'?'connection':key.includes('compact')||key.includes('deduplicate')?'budget':key.includes('_image_')?'image-api':'advanced',type,options:choices[key],fallback:defaults[key],...(key==='video_api_key'?{hint:'填写视频服务的 API 密钥'}:{}) });
   }
   for(const [key,label] of Object.entries({DISPLAY:'Linux 显示入口 DISPLAY',WAYLAND_DISPLAY:'Wayland 显示入口',QT_QPA_PLATFORM:'Qt 显示方式'})) result.push({key,label,section:'advanced',type:'text'});
+  for(const field of result)Object.assign(field,scalarDescriptions[field.key]);
   return [...result.filter(field=>!videoFields.includes(field.key)),...videoFields.flatMap(key=>result.filter(field=>field.key===key))];
 }
 
