@@ -1,0 +1,95 @@
+{
+  "description": "四份角色演示原视频与原帧裁切对照；尺寸、帧数与时长复用本组原视频的逐帧解析记录，复制后核对原文件SHA-256。",
+  "videos": [
+    {
+      "id": 1,
+      "title": "演示一",
+      "file": "01-product-turn.mp4",
+      "originalFilename": "f0caa273bd61501e1d4029a862a9c513.mp4",
+      "sha256": "1d7299ced3135def3c9e60d5d7ef699a8e2d6a0c5ded62c5cbc488f83bd6cede",
+      "bytes": 8796763,
+      "width": 1280,
+      "height": 720,
+      "fps": 30.00001717820498,
+      "frames": 2183,
+      "durationSeconds": 72.766625,
+      "observedWindowsSeconds": [
+        [
+          8.267,
+          9.6
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "title": "大肥鱼",
+      "file": "02-da-fei-yu.mp4",
+      "originalFilename": "a621a32adff35a2d29838900c130475a.mp4",
+      "sha256": "e31f356dda708fc82fa74f2b92f44e8e39138e34e5a1aacc1573f406faf5730b",
+      "bytes": 4490215,
+      "width": 1280,
+      "height": 720,
+      "fps": 30.000009464919696,
+      "frames": 1981,
+      "durationSeconds": 66.0333125,
+      "observedWindowsSeconds": [
+        [
+          0,
+          4.5
+        ],
+        [
+          3.133,
+          3.8
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "title": "演示三：去头饰",
+      "file": "03-uncovered-crown.mp4",
+      "originalFilename": "de965a49d68c2f0fa8ee72d27df59d45.mp4",
+      "sha256": "9635717f8ebda239676cd16c568b955372157264cfba17c08a7db8d233eab914",
+      "bytes": 10609985,
+      "width": 720,
+      "height": 720,
+      "fps": 30.00000770337092,
+      "frames": 2434,
+      "durationSeconds": 81.1333125,
+      "observedWindowsSeconds": [
+        [
+          9.833,
+          11.333
+        ],
+        [
+          58,
+          63
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "title": "演示四：短发",
+      "file": "04-short-hair.mp4",
+      "originalFilename": "934f0bfebc1b99892cd4e74883f01db2.mp4",
+      "sha256": "5edd0aa9258873f66b4415ac6e1256fe3108922ff5b0b1bceebfd427af84ccf7",
+      "bytes": 14635570,
+      "width": 1280,
+      "height": 720,
+      "fps": 30.00000785834238,
+      "frames": 2386,
+      "durationSeconds": 79.5333125,
+      "observedWindowsSeconds": [
+        [
+          7.433,
+          8.433
+        ]
+      ]
+    }
+  ],
+  "frameSheets": [
+    "01-turn-frames.webp",
+    "02-da-fei-yu-opening.webp",
+    "03-uncovered-crown-frames.webp",
+    "04-short-hair-frames.webp"
+  ]
+}
