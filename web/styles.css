@@ -359,16 +359,8 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 .execution-state.interrupted{color:#b34b45}.execution-state.unconfirmed{color:#9a7331}.overview-card.interrupted,.overview-card.unconfirmed{border-color:#dfc9a5}
 
 /* One surface per nine-axis stage; branches use rows with optional outputs. */
-.section-lane[data-section="6"]>.section-heading{width:max-content;min-width:288px}
-.step-node.nine-axis-step{width:288px;height:auto;overflow:hidden}
 .step-node.nine-axis-branches{width:360px}
-.nine-axis-step.node-collapsed{width:248px}
-.nine-step-heading{display:grid;grid-template-columns:24px minmax(0,1fr) auto auto;align-items:start;gap:8px;padding:16px 14px;min-height:72px}
-.nine-step-heading h3{font-size:14px;line-height:22px;font-weight:600;margin:0;overflow-wrap:break-word}
-.nine-step-number{font-size:11px;line-height:22px;color:var(--muted);font-variant-numeric:tabular-nums}
-.nine-step-status{display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:10px;line-height:22px;color:var(--muted)}
-.nine-step-heading>.icon-button{width:22px;height:22px;padding:2px}
-.nine-step-content{flex:0 1 auto;max-height:calc(var(--step-height) - 76px);padding:0 14px 14px}
+.nine-step-content{padding:0 11px 12px}
 .nine-task-group+.nine-task-group{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
 .nine-group-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 0 8px}
 .nine-group-heading h4{font-size:12px;line-height:20px;margin:0;font-weight:600}
@@ -392,7 +384,19 @@ summary.nine-task-heading{cursor:pointer}
 .nine-artifacts .artifact-video video{height:100px;object-fit:contain;background:#f3f6f7;border-radius:4px}
 .nine-artifacts .artifact-video figcaption{font-size:11px;line-height:17px}
 .nine-artifacts .artifact-file{font-size:11px;padding:7px 8px}
-.head-preview-panel{width:288px;height:auto;max-height:var(--step-height)}
 .head-preview-panel[data-model="pending"] canvas{display:none}
-.head-preview-panel[data-model="pending"]{height:auto}
 .head-preview-panel>a{display:flex;align-items:center;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);color:var(--accent);font-size:12px}
+
+/* Nine-axis uses the existing card and preview-panel geometry. */
+.head-preview-panel{margin:0}
+.head-preview-panel .preview-step-plan{flex:1;min-height:0;padding:0 12px 12px;overflow:auto;scrollbar-width:thin}
+.flow-step-list{list-style:none;margin:0;padding:0}
+.flow-step-children{margin-left:8px;padding-left:8px;border-left:1px solid var(--line)}
+.flow-plan-step{display:flex;align-items:center;gap:7px;width:100%;padding:7px 4px;border-radius:5px;text-align:left}
+.flow-plan-step:hover,.flow-plan-step:focus-visible{background:#eaf3f1}
+.flow-plan-step:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.flow-plan-title{flex:1;min-width:0;font-size:12px;line-height:18px;overflow-wrap:break-word}
+.flow-plan-step>.phase-mark{flex:none}
+.flow-plan-step>.step-ordinal{flex:0 0 20px;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.head-preview-panel canvas{flex-shrink:0}
+.head-preview-panel>[data-head-status],.head-preview-panel>a{flex-shrink:0;margin-left:12px;margin-right:12px}

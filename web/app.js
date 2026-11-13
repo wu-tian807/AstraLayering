@@ -9,6 +9,7 @@ import { createEnvEditor } from './env-editor.js';
 import { createSettings } from './settings-dialog.js';
 import { HeadPreview } from './head-preview.js';
 import { nineAxisStepCard } from './nine-axis-flow.js';
+import { flowStepHeading, flowStepList } from './flow-step-ui.js';
 const headPreview = new HeadPreview();
 
 const icons = {
@@ -367,7 +368,7 @@ function stepNode(index,step,nested=false) {
  const context=step.id==='layers'?groupCycle(index):step.children.length?`<div class="step-children ${alternative?'step-alternatives':parallel?'step-parallel':''}" ${alternative?'role="group" aria-label="阴影方式：二选一"':parallel?'role="group" aria-label="并发制作任务"':''}>${isRasterSection(index)&&step.id==='step01'?reviewNodes(index,step.children):step.children.map((child,i)=>`${alternative&&i?'<span class="alternative-or">OR</span>':''}${stepNode(index,child,true)}`).join('')}</div>`:'';
  return `<section class="step-node ${nested?'nested':''} ${step.children.length?'step-container':''} ${isRasterSection(index)&&step.id==='step01'?'raster-review':''} ${closed?'node-collapsed':''} ${step.status} ${selected?'selected':''}" data-node="${index}:${step.id}">
  ${mode?`<div class="mode-choice ${currentMode?'current':''}">${currentMode?'当前方式':'备选方式'}</div>`:''}
- <div class="step-heading"><button class="step-node-heading" data-step="${index}:${step.id}">${statusMark(status)}<h3>${esc(step.title)}</h3><small class="step-state" title="${esc(step.id)}">${esc(statusLabel(status))}</small></button><button class="icon-button" data-step-toggle="${key}" aria-label="${closed?'展开':'收起'}${esc(step.title)}" aria-expanded="${!closed}">${icon(closed?'chevron':'down')}</button></div>
+ ${flowStepHeading(step,{index,status,closed,esc,icon,statusMark,statusLabel})}
  ${closed?'':`<div class="step-content">
  ${step.id!=='layers'&&(step.note||['standard','simplified','base','clothing'].includes(step.id))?`<p class="step-summary" ${step.note?`title="${esc(step.note)}"`:'aria-hidden="true"'}>${esc(step.note)}</p>`:''}
  ${step.id==='standard'&&!available(stepArtifacts[index][step.id]).some(item=>item.kind==='image')?'<p class="archive-gap" title="人物准备阶段执行后展示标准参考图">尚无标准参考图</p>':''}
@@ -420,7 +421,7 @@ function processArtifacts(index, step) {
 // A skipped lane (no dress-up, nothing to make) counts as complete.
 const finished=stage=>stage.status==='done'||stage.status==='skipped';
 function headThumbnail() {
- return `<section class="kra-preview-panel head-preview-panel" data-head-preview data-model="${headPreview.folder===data.directory&&headPreview.available?'available':'pending'}" aria-label="头部九轴最新预览"><h3>${icon('layers')}九轴效果</h3><canvas aria-label="随鼠标运动的九轴角色头"></canvas><p data-head-status role="status">等待模型保存</p><a href="./studio?${new URLSearchParams({project:state.name,workspace:'nine-axis'})}">${icon('eye')}打开九轴工作台</a></section>`;
+ return `<section class="kra-preview-panel head-preview-panel" data-head-preview data-model="${headPreview.folder===data.directory&&headPreview.available?'available':'pending'}" aria-label="头部九轴步骤与预览"><h3>${icon('layers')}九轴步骤</h3><div class="preview-step-plan">${flowStepList(sectionSteps[6],{index:6,esc,icon,statusMark,statusLabel})}</div><canvas aria-label="随鼠标运动的九轴角色头"></canvas><p data-head-status role="status">等待模型保存</p><a href="./studio?${new URLSearchParams({project:state.name,workspace:'nine-axis'})}">${icon('eye')}打开九轴工作台</a></section>`;
 }
 function flowCard(index) {
  const stage=stages[index],status=observedDisplayStatus(index,stage.status),closed=state.collapsedSections.has(index),wide=!closed&&groupViews[index]?.open&&!state.collapsedSteps.has(`${index}:layers`);
