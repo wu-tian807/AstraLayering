@@ -44,6 +44,7 @@ const agents: Record<AgentStep, { section: string; step: string; role?: Knowledg
   nine_axis_head_xy: { section: 'nine-axis', step: 'step06_angle-xy' },
   nine_axis_head_jaw: { section: 'nine-axis', step: 'step07_jaw-line' },
   nine_axis_head_hair: { section: 'nine-axis', step: 'step08_hair' },
+  nine_axis_head_accessories: { section: 'nine-axis', step: 'step09_head-accessories' },
 };
 
 export function agentImageGeneration(step: AgentStep): boolean {

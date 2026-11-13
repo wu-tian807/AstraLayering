@@ -260,6 +260,7 @@ async function panelModule() {
   // same modules for Node, retaining the actual model and renderer functions.
   const source = (await readFile(new URL('../studio/nine-axis-panel.js', import.meta.url), 'utf8'))
     .replace("'./nine-axis-model.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-model.js', import.meta.url).href))
+    .replace("'./nine-axis-preview.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-preview.js', import.meta.url).href))
     .replace("'./nine-axis-render.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-render.js', import.meta.url).href));
   return import('data:text/javascript,' + encodeURIComponent(source));
 }

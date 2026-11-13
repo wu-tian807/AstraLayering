@@ -400,3 +400,6 @@ summary.nine-task-heading{cursor:pointer}
 .flow-plan-step>.step-ordinal{flex:0 0 20px;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
 .head-preview-panel canvas{flex-shrink:0}
 .head-preview-panel>[data-head-status],.head-preview-panel>a{flex-shrink:0;margin-left:12px;margin-right:12px}
+.head-preview-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:0 12px 8px;flex-shrink:0}
+.head-preview-levels button{font-size:10px;padding:6px 2px;border:1px solid var(--line);border-radius:5px;white-space:nowrap}
+.head-preview-levels button.active{background:#eaf3f1;border-color:var(--accent);color:var(--accent)}
