@@ -3,12 +3,12 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { profile as clothing } from '../../clothing-part-layering/profile.ts';
+import type { AgentTask } from '../../shared/codex/agents.ts';
 import { toolCatalog } from '../../shared/codex/tool-config.ts';
 import { artifactPath } from '../../shared/part/artifact-facts.ts';
-import { decodeChildren } from '../../shared/part/children-agent.ts';
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { runLayering } from '../../shared/part/layering.ts';
-import { checkParentMask, copiedOutlinePath, copyParentRegion } from '../../shared/part/parent-region.ts';
+import { checkParentMask, copyParentRegion } from '../../shared/part/parent-region.ts';
 import { profile } from '../profile.ts';
 import { promptInput } from '../../shared/tests/prompt-input.ts';
 import { fixture, workingSteps } from './layering-fixture.ts';
@@ -38,38 +38,41 @@ test('框选复制只取整块落在框内的独立形状，切线、相连、�
   await assert.rejects(copyParentRegion(parent, 'face/x', { x: 5, y: 5, width: 45, height: 45 }, canvas), /切过|切分/);
 });
 
-test('复制的子节点跳过描边与 review，相邻子节点照常描边，补全照常运行；服装段不提供该工具', async t => {
+test('描边 agent 复制父组完成稿的轮廓跳过 review 与补全，改写后照常 review；服装段不提供该工具', async t => {
   assert.ok(toolCatalog(profile.toolsDirectory).names().includes('copy_parent_region'));
   assert.ok(!toolCatalog(clothing.toolsDirectory).names().includes('copy_parent_region'));
-  assert.throws(() => decodeChildren('face', { children: [{ name: 'a', kind: 'part', note: 'n', hiddenInReference: true },
-    { name: 'b', kind: 'part', note: 'n' }], note: 'n' }, new Map([['a', { x: 0, y: 0, width: 1, height: 1 }]])));
 
   const f = await fixture(t), events: string[] = [];
-  const base = workingSteps(events, [{ id: 'face' }]);
-  const adapter = createLayeringSteps({ async run(task) {
-    assert.ok(task.tools!.some(tool => tool.name === 'copy_parent_region'));
+  const base = workingSteps(events, [{ id: 'face' }], { face: [{ id: 'face/eye_left', kind: 'part', note: '左眼' }, { id: 'face/rest', kind: 'part', note: '其余' }] });
+  const run = async (task: AgentTask) => {
     const tool = (name: string) => task.tools!.find(entry => entry.name === name)!;
-    const input = promptInput(task.prompt);
-    await tool('preview_svg').execute({ path: input.sourceSvg, mode: 'svg' }, signal);
-    await tool('preview_svg').execute({ path: input.sourceSvg, mode: 'blend' }, signal);
-    await assert.rejects(tool('copy_parent_region').execute({ name: 'eye_left', region: { x: 20, y: 5, width: 30, height: 45 } }, signal), /切过/);
-    await tool('copy_parent_region').execute({ name: 'eye_left', region: { x: 5, y: 5, width: 45, height: 45 } }, signal);
-    await assert.rejects(tool('copy_parent_region').execute({ name: 'other', region: { x: 0, y: 0, width: 50, height: 50 } }, signal), /重叠/);
-    await tool('submit_children').execute({ children: [{ name: 'eye_left', kind: 'part', note: '左眼' },
-      { name: 'rest', kind: 'part', note: '其余' }], note: '左眼独立' }, signal);
+    if (task.name.includes('face/eye_left')) {
+      await assert.rejects(tool('copy_parent_region').execute({ region: { x: 20, y: 5, width: 30, height: 45 } }, signal), /切过/);
+      await tool('copy_parent_region').execute({ region: { x: 5, y: 5, width: 45, height: 45 } }, signal);
+    } else {
+      // Starting from a copy and then rewriting it is ordinary drawing.
+      await tool('copy_parent_region').execute({ region: { x: 0, y: 50, width: 100, height: 50 } }, signal);
+      await tool('write_outline_svg').execute({ svg: (await readFile(promptInput(task.prompt).outputSvg, 'utf8')).replace('#55b9ad', '#55b9ae') }, signal);
+    }
     return { text: 'done', images: [] };
-  } });
-  const steps = { ...base, splitChildren: adapter.splitChildren, async drawOutline(context: Parameters<typeof base.drawOutline>[0]) {
-    if (context.group.id !== 'face') return base.drawOutline(context);
-    events.push('face:outline'); await writeAtomic(context.outputPath, pair('face'));
-    return { status: 'completed' as const, output: { path: context.outputPath } };
+  };
+  const adapter = createLayeringSteps({ run, createSession: () => ({ run, async close() {} }) });
+  const steps = { ...base, async drawOutline(context: Parameters<typeof base.drawOutline>[0]) {
+    if (context.group.id === 'face') {
+      events.push('face:outline'); await writeAtomic(context.outputPath, pair('face'));
+      return { status: 'completed' as const, output: { path: context.outputPath } };
+    }
+    events.push(`${context.group.id}:outline`);
+    return adapter.drawOutline(context);
   } };
   await runLayering({ ...f, groups: null, steps, maxDepth: 2 });
-  assert.ok(!events.includes('face/eye_left:outline') && !events.includes('face/eye_left:review'));
-  assert.ok(events.includes('face/rest:outline') && events.includes('face/eye_left:completion'));
+  for (const stage of ['review', 'completion', 'check']) assert.ok(!events.includes(`face/eye_left:${stage}`), stage);
+  for (const stage of ['outline', 'review', 'completion', 'check']) assert.ok(events.includes(`face/rest:${stage}`), stage);
   const outline = await readFile(artifactPath(f.directory, 'face/eye_left', 'outline'), 'utf8');
   assert.match(outline, /data-group-path="face\/eye_left"/);
   assert.doesNotMatch(outline, /M60|<rect/);
+  assert.equal(await readFile(artifactPath(f.directory, 'face/eye_left', 'completion'), 'utf8'), outline);
+  assert.doesNotMatch(await readFile(artifactPath(f.directory, 'face/rest', 'outline'), 'utf8'), /data-parent-region/);
 });
 
 test('遮罩方式沿分界线裁剪相连形状，去掉父稿补全层标记，并拒绝无效遮罩', async t => {
@@ -104,7 +107,4 @@ test('遮罩方式沿分界线裁剪相连形状，去掉父稿补全层标记�
   // Marker stripping also applies to box copies.
   const boxed = await copyParentRegion(parent, 'arm/hand', { x: 5, y: 65, width: 40, height: 30 }, canvas);
   assert.doesNotMatch(boxed.svg, /data-completion-additions/);
-  assert.throws(() => decodeChildren('arm', { children: [{ name: 'upper_arm', kind: 'part', note: 'n', hiddenInReference: true }, { name: 'forearm', kind: 'part', note: 'n' }], note: 'n' },
-    new Map([['upper_arm', upper]])), /hiddenInReference/);
-  assert.equal(copiedOutlinePath(f.directory, 'arm/upper_arm'), join(f.directory, 'observations', 'children', 'arm', 'copy-upper_arm.svg'));
 });

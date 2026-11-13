@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { dirname } from 'node:path';
 import sharp from 'sharp';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
@@ -210,39 +210,37 @@ export async function copyParentRegion(parentPath: string, id: string, region: P
   return { svg, pieces: kept, total: found.length };
 }
 
-// The copy written by copy_parent_region; its presence makes the child's outline step adopt it.
-export function copiedOutlinePath(directory: string, id: string): string | undefined {
-  const cut = id.lastIndexOf('/');
-  return cut < 0 ? undefined : join(directory, 'observations', 'children', id.slice(0, cut), `copy-${id.slice(cut + 1)}.svg`);
+// Root attributes a copy carries; an outline the agent writes itself drops them.
+export const copyAttributes = ['data-source-sha256', 'data-parent-region', 'data-parent-mask'] as const;
+export const withoutCopyAttributes = (svg: string) => updateSvgRoot(svg, Object.fromEntries(copyAttributes.map(key => [key, null])));
+// An outline is a copy when its root still names the parent's current completion.
+export function isParentCopy(outline: Buffer | string, parent: Buffer): boolean {
+  const root = svgSource(outline.toString()).root.element;
+  return root.getAttribute('data-source-sha256') === createHash('sha256').update(parent).digest('hex') &&
+    (root.hasAttribute('data-parent-region') || root.hasAttribute('data-parent-mask'));
 }
 
-// The step12 tool: writes copy-<name>.svg; the region is kept only for overlap checks.
-export function createParentRegionTool(options: { directory: string; parentPath: string; canvas: Canvas; groupId: string;
-  overrides?: string; copies: Map<string, ParentRegion & { pieces: number[] }> }): FunctionTool {
+// The outline tool: writes the copied part of the parent's completion as the group's outline draft.
+export function createParentRegionTool(options: { directory: string; parentPath: string; canvas: Canvas; groupId: string; draft: string;
+  overrides?: string }): FunctionTool {
   return {
     ...toolDefinition('copy_parent_region', options.overrides),
     async execute(value, signal, context) {
       signal.throwIfAborted();
       if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('参数须为对象');
-      const { name, region: raw, maskSvg, ...rest } = value as Record<string, unknown>;
-      if (Object.keys(rest).length || typeof name !== 'string' || !/^[a-z][a-z0-9_]*$/.test(name)) throw new Error('须提供 snake_case name，以及 region 或 maskSvg 之一');
-      if ((raw === undefined) === (maskSvg === undefined)) throw new Error('region 与 maskSvg 须二选一');
+      const { region: raw, maskSvg, ...rest } = value as Record<string, unknown>;
+      if (Object.keys(rest).length || (raw === undefined) === (maskSvg === undefined)) throw new Error('region 与 maskSvg 须二选一');
       const root = context?.root ?? taskRootOf(options.directory);
       let region: ParentRegion;
       if (maskSvg !== undefined) {
         if (typeof maskSvg !== 'string' || !maskSvg.trim()) throw new Error('maskSvg 须为遮罩 SVG 路径');
         region = checkParentMask(await readFile(await realpath(fromTaskPath(root, maskSvg)), 'utf8'), options.canvas);
       } else region = checkParentRegion(raw, options.canvas);
-      const copy = await copyParentRegion(options.parentPath, `${options.groupId}/${name}`, region, options.canvas);
-      for (const [other, entry] of options.copies) {
-        if (other !== name && entry.pieces.some(piece => copy.pieces.includes(piece))) throw new Error(`选框与 ${other} 的复制范围重叠`);
-      }
-      const path = copiedOutlinePath(options.directory, `${options.groupId}/${name}`)!;
-      await mkdir(dirname(path), { recursive: true });
-      await writeFile(path, copy.svg);
-      options.copies.set(name, { ...region, pieces: copy.pieces });
-      return textResult({ name, ...('mask' in region ? { maskSvg } : { region }), path: await toAgentPath(root, path), shapes: copy.pieces.length || undefined, parentShapes: copy.total,
-        note: '提交同名子节点后，其轮廓直接取自此复制，跳过描边与轮廓 review；请用 preview_svg 的 edge 模式查看此文件确认范围' });
+      const copy = await copyParentRegion(options.parentPath, options.groupId, region, options.canvas);
+      await mkdir(dirname(options.draft), { recursive: true });
+      await writeFile(options.draft, copy.svg);
+      return textResult({ ...('mask' in region ? { maskSvg } : { region }), path: await toAgentPath(root, options.draft), shapes: copy.pieces.length || undefined, parentShapes: copy.total,
+        note: '复制结果已写入轮廓草稿；保持不改即作为本组轮廓，跳过轮廓 review 与补全。请用 preview_svg 的 edge 模式核对范围' });
     },
   };
 }
