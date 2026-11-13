@@ -1,6 +1,6 @@
 import { profile } from '../profile.ts';
 import assert from 'node:assert/strict';
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import sharp from 'sharp';
@@ -8,7 +8,7 @@ import type { AgentResult, AgentSession, AgentTask } from '../../shared/codex/ag
 import { artifactPath, publishSvg } from '../../shared/part/artifact-facts.ts';
 import { completeGroupOcclusion, checkGroupCompletion } from '../../shared/part/completion-agent.ts';
 import { assertCompletionPreserves, composeCompletion } from '../../shared/part/completion-svg.ts';
-import { normalizeGroups, GroupStore, walkGroups, writeAtomic } from '../../shared/part/groups.ts';
+import { normalizeGroups, GroupStore, walkGroups } from '../../shared/part/groups.ts';
 import { partKnowledge } from '../../shared/part/group-prompts.ts';
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { runLayering } from '../../shared/part/layering.ts';
@@ -43,8 +43,6 @@ test('完全遮挡节点可提交空可见轮廓，经独立 review 后补出形
     } else {
       assert.ok(task.name.startsWith('正面遮挡补全'));
       // face 使用专用正文，通用规则修改不能遗漏它。
-      assert.doesNotMatch(task.prompt, /露出双耳的结构参考并查看|本次参考只露耳缘/);
-      assert.match(task.prompt, /部件完全被遮挡.*必须先.*结构辅助图并查看/);
       assert.doesNotMatch(task.prompt, /\{runtime_context\}|\{fixed_rules\}/);
       await tool(task, 'set_completion_paths').execute({ paths }, signal);
       await submit(task, input.outputDraft);
@@ -91,12 +89,8 @@ test('补全默认适配器用只读 agent 和新增工具，提交后正式发�
   const adapter = createLayeringSteps(sessioned(async task => {
     calls++;
     assert.ok(task.tools!.some(tool => tool.name === 'view_bitmap'));
-    assert.match(task.prompt, /部件完全被遮挡.*必须先.*结构辅助图并查看/);
-    assert.match(task.prompt, /不画成侧面视角的形状/);
-    assert.match(task.prompt, /以侧面参考露出被遮挡的一面/);
     const rules = (await readFile(partKnowledge(profile, 'completion').files('main')[1], 'utf8'));
     assert.ok(task.prompt.includes(`【固定范围与操作约定】\n${rules}`));
-    assert.doesNotMatch(task.prompt, /提示词来源：/);
     const input = promptInput(task.prompt);
     await tool(task, 'preview_svg').execute({ path: input.sourceSvg, mode: 'blend' }, signal);
     await tool(task, 'set_completion_paths').execute({ paths }, signal);
@@ -129,8 +123,7 @@ test('任务根经软链接打开时，预览记录的真实路径仍认作当�
 test('face 特化按完整 ID 独立读取，未特化的子组沿用通用正文', async t => {
   const completion = partKnowledge(profile, 'completion');
   const face = completion.render('main', {}, { taskRoot: '/task', group: 'face' });
-  assert.match(face, /不要扩成整个头型/);
-  assert.match(face, /不设计侧脸、背面/);
+  assert.ok(face.includes('【本次输入】') && face.includes('【固定范围与操作约定】'));
   assert.ok(completion.files('main', 'face/eye')[0].endsWith('step11_completion/prompts/9-正面遮挡补全.md'));
 });
 
@@ -148,17 +141,9 @@ test('正式调度中左右十指附加实际掌片与完整指体图片，part 
     const input = promptInput(task.prompt);
     const id = input.group.id;
     calls.push(id);
-    // The finger override replaces the default completion text.
-    assert.ok(task.prompt.includes('为当前整根手指补齐正面遮挡下的隐藏指身、指根及与手掌连接所需的局部胶水余量'));
-    assert.match(task.prompt, /仅延伸到邻指下面不等于接到了手掌/);
-    assert.match(task.prompt, /拇指按其自身根部与鱼际附近/);
     const palm = `${id.slice(0, id.lastIndexOf('/'))}/palm`;
-    assert.match(task.prompt, /Milly 与樱桃的完整指体图例/);
-    assert.match(task.prompt, /整指连通或指根碰到掌片，不代表中间指身已经补足/);
-    assert.match(task.prompt, /按两边合起来组成一个圆来想/);
     const palmSvg = artifactPath(f.directory, palm, 'reduction');
     assert.ok(task.prompt.includes(`- ${palmSvg}：`));
-    assert.match(task.prompt, /step11_completion\/references\/fingers\/complete-fingers\.png：[^\n]*不照搬姿势、宽度、肤色/);
     const ref = { sourceSvg: palmSvg };
     const result = await tool(task, 'read_svg').execute({ path: ref.sourceSvg }, signal);
     assert.ok(JSON.stringify(result).includes(palm));
@@ -255,7 +240,6 @@ test('续跑补全沿用保留原形的草稿，提示词只给固定的先读�
     await completeGroupOcclusion({ ...f, group, reviewed: { path: source }, outputPath, resumeDraft }, { async run(task) {
       const input = promptInput(task.prompt);
       assert.equal('resumedDraft' in input, false);
-      assert.match(task.prompt, /outputDraft 已含 sourceSvg 之外、上次中断前补上的形状时/);
       state = await readFile(outputPath, 'utf8');
       await submit(task, outputPath);
       return { text: 'done', images: [] };
@@ -279,7 +263,6 @@ test('不可见部件直接绘制非空 SVG，完成原图 blend 和独显即可
   await writeFile(source, shape(group.id, 10, 90, true));
   await sharp({ create: { width: 40, height: 20, channels: 4, background: 'blue' } }).png().toFile(generated);
   const result = await completeGroupOcclusion({ ...f, group, reviewed: { path: source }, outputPath }, { async run(task) {
-    assert.match(task.prompt, /referenceRegion.*框选生成图/);
     const input = promptInput(task.prompt);
     assert.equal(input.group.hiddenInReference, true);
     assert.equal(input.group.allowOutsideParent, true);

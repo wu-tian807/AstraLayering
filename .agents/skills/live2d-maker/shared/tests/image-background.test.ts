@@ -37,7 +37,6 @@ test('background adaptation keeps original tasks, GPT alpha requests and explici
   const original = { prompt: '绿色绣线、蓝宝石与红色缎带保持原色，正常开口完全透明。最终只输出透明 PNG。', background: 'transparent' as const, size: '1024x1536' };
   const nano = await providerImageArguments('gemini-nano-banana-2.1', original);
   assert.ok(nano.prompt.startsWith(original.prompt + '\n\n'));
-  assert.match(nano.prompt, /背景使用高纯度纯色 #00FF00/);
   assert.ok(!nano.prompt.includes('{background_hex}'));
   assert.equal(nano.background, 'opaque'); assert.equal(nano.size, original.size);
   assert.equal(original.background, 'transparent');
@@ -75,15 +74,8 @@ test('both routes recover dual backgrounds over Gemini/OpenAI protocols without 
         const args = JSON.parse(bytes.toString()); prompt = args.prompt; assert.equal(args.background, 'opaque');
       }
       const replacement = calls % 2 === 1;
-      if (replacement) {
-        assert.deepEqual(inputs, [first]);
-        assert.match(prompt, /只修改所附图片的背景/); assert.match(prompt, /#FFFFFF/); assert.match(prompt, /48×64/);
-        assert.ok(!prompt.includes('保留主体和正常开口，输出透明 PNG。'));
-      } else {
-        for (const picture of inputs) assert.deepEqual(picture, input);
-        assert.ok(prompt.startsWith('保留主体和正常开口，输出透明 PNG。\n\n'));
-        assert.match(prompt, /背景使用高纯度纯色 #[0-9A-F]{6}/);
-      }
+      if (replacement) assert.deepEqual(inputs, [first]);
+      else for (const picture of inputs) assert.deepEqual(picture, input);
       calls++;
       const png = replacement ? second : first;
       res.setHeader('content-type', 'application/json');

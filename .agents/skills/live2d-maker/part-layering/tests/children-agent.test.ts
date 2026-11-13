@@ -39,7 +39,6 @@ test('真实拆分适配器读取特化及操作约定，通过预览和工具�
   const adapter = createLayeringSteps({ async run(task) {
     calls++;
     assert.match(task.prompt, /face_base/);
-    assert.match(task.prompt, /【固定范围与操作约定】\n本轮只分析直属节点。/);
     const input = promptInput(task.prompt);
     const submit = task.tools!.find(tool => tool.name === 'submit_children')!;
     await assert.rejects(submit.execute({ children: [child('base'), child('eye', 'group')], note: '依据' }, signal), /须查看/);

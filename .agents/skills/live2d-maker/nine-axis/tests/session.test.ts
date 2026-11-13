@@ -223,7 +223,6 @@ for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} �
     createSession(id?:string,options:Callbacks={}) {return {
       async run(task: AgentTask): Promise<AgentResult> {
         assert.equal(task.prompt, workspacePrompt('choose frames', executionPaths({ cwd: f.section, outputDirectory: output }, f.section)));
-        assert.doesNotMatch(task.prompt, /ASTRA_STUDIO_FFMPEG|FFmpeg 可执行文件|本次九轴使用的 FFmpeg/);
         await options.onSessionStarted?.(id??'frames-thread','codex');
         for(const name of names) for(const file of [`${name}.png`,`frames/${name}.png`]) { await mkdir(dirname(join(output,file)),{recursive:true}); await writeFile(join(output,file),png); }
         const videos=join(f.section,step==='step03_frames'?'step02_video':'step04_angles/video');

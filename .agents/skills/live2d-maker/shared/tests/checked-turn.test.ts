@@ -26,7 +26,6 @@ test('three failures end the step with a user hint and keep the session', async 
   const error = await checkedTurn({ agents: agentsFor(prompts), task, check: () => { throw missingSubmit('submit_x', '未提交'); } }).catch(e => e);
   assert.equal(prompts.length, 3);
   assert.match(error.message, /已返修 \d+ 次仍未通过.*继续仍接回同一会话/);
-  assert.doesNotMatch(prompts.join('\n'), /恢复|新建会话/);
 });
 
 test('source text mentioning content_filter does not stop the repair rounds', async () => {

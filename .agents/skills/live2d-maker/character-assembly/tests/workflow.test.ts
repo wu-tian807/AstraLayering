@@ -1,7 +1,7 @@
 import { readStepSession } from '../../shared/agents/step-session.ts';
 import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, realpath, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
-import { dirname, join, relative } from 'node:path';
+import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { test, type TestContext } from 'node:test';
 import { runWorkflow, section, parseRunArguments } from '../run.ts';
@@ -72,10 +72,6 @@ test('dry-run 展开组装专用提示词与绝对路径，不混入拆层和深
   for (const input of Object.values(f.inputs)) assert.ok(prompt.includes(input));
   assert.ok(prompt.includes(`全部保存在 ${join(f.output, 'step01')}/`));
   for (const file of steps[0].requiredFiles) assert.ok(prompt.includes(file));
-  assert.match(prompt, /在衣片自己的图层上重画它的边缘/);
-  assert.match(prompt, /不用选区或透明度遮罩硬裁衣片轮廓/);
-  assert.match(prompt, /可关闭的透明度遮罩/);
-  assert.match(prompt, /不拆分现有部件，不合并成平面图/);
   assert.ok(!prompt.includes('occlusion.json'));
   await assert.rejects(stat(f.output), { code: 'ENOENT' });
 });

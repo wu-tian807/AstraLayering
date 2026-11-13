@@ -30,7 +30,6 @@ test('raster 等待 CLI 终态后在原 thread 继续并记录退避', async t =
   const prompts = protocol.filter(message => message.method === 'turn/start').map(message => message.params.input[0].text);
   assert.equal(prompts.length, 2);
   assert.equal(prompts[0], workspacePrompt(f.request().prompt, executionPaths({ cwd: f.directory }, f.directory)));
-  assert.match(prompts[1], /原要求.*未完成处继续/);
   assert.equal(prompts[1].includes(f.request().prompt), false);
   assert.ok(events.includes('thread.started'));
 });

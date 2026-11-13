@@ -2,26 +2,36 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "name",
-    "region"
+    "maskSvg"
   ],
   "properties": {
-    "name": {
+    "maskSvg": {
       "type": "string",
-      "pattern": "^[a-z][a-z0-9_]*$",
-      "description": "将要在 submit_children 中提交的直属子节点 name。"
+      "description": "你自己画的同画布 SVG 的路径（width、height 与 viewBox 同父组完成稿）。其中全部封闭形状（path、rect、circle、ellipse、polygon）的并集是子节点的范围，父组完成稿按此范围裁剪。"
     },
-    "region": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["x", "y", "width", "height"],
-      "description": "父组完成稿原画布坐标中的整数选框。框线须落在空白处，框内形状整体复制，框外形状整体排除。",
-      "properties": {
-        "x": { "type": "integer", "minimum": 0 },
-        "y": { "type": "integer", "minimum": 0 },
-        "width": { "type": "integer", "minimum": 1 },
-        "height": { "type": "integer", "minimum": 1 }
-      }
+    "mode": {
+      "type": "string",
+      "enum": [
+        "preview",
+        "crop"
+      ],
+      "description": "preview（默认）：只预览，不写草稿。在原图上用红色标出遮罩选中的父稿部分、蓝色标出被排除的部分、绿线标出遮罩边界。crop：按遮罩裁剪父稿并写入本组轮廓草稿，再次调用会替换草稿。"
+    },
+    "crop": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "minItems": 4,
+      "maxItems": 4,
+      "description": "仅 preview：原图坐标的查看窗口 [x,y,width,height]；默认为父稿范围加边距。"
+    },
+    "scale": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8,
+      "description": "仅 preview：放大倍数；默认按窗口大小自动选取。"
     }
   }
 }
