@@ -46,6 +46,14 @@ step01 绘制与返修对轮廓、隐藏补全、画风和结构负责。读取�
 
 各环节的流程工具见 [raster 工具表](../raster-layering/README.md#三步交付)：结构编辑工具仅提供给两套 raster step01 绘制／返修，reviewer 只用框选工具，step02、step03 只用 Krita；需要 Krita 的步骤中，绘制、review 与返修 agent 都另有 `krita` 工具。各 CLI 沿用共用函数工具通道和原有会话恢复能力。职责约定与受控工具校验之外没有写入沙箱：Codex 使用 `danger-full-access`，Claude／AGV 使用 `--dangerously-skip-permissions`。
 
+三种 harness 的原生配置与历史统一存放于本管线 `agents/<首次请求>/cli-data/`，通过 `agents/sessions.json` 注册 thread/session 与数据目录。注册路径相对任务根目录保存；恢复时校验数据目录与 workspace 的实际路径，不能借绝对路径或符号链接越出任务。后续请求复用首次会话目录，换新会话创建新目录；旧宿主会话没有管线数据时不回读宿主历史，按既有会话不可用机制接续产物。
+
+Codex 的 rollout 文件也按任务相对路径登记，恢复时只使用该会话内的文件。任务移动后管线路径仍可解析；若原生分页历史索引保留旧绝对路径并拒绝恢复，则归入会话不可用，保留产物并按既有有界替换机制新建会话，不改写 CLI 内部数据库，也不回退到个人历史。
+
+Codex 子进程使用 `cli-data/codex/` 作为自己的配置根，只读取指定认证源的 `auth.json`，不复制个人 `config.toml`、AGENTS、记忆、插件或 Hooks；模型和服务连接仍由 `WorkflowEnvironment` 显式传入。生产启动及 thread/start 都关闭自动项目指令、技能目录注入、记忆、Hooks 和外部 Apps，功能工具继续由管线注册。配置隔离不改变工具已有的文件访问能力；不加载个人上下文的约定也适用于 Claude／AGV。原生配置和认证位于 `agents/`，不进入成果导出包。
+
+Codex 的 workspace 带 `.astra-layering-workspace-root` 边界标记，原生项目配置发现止于此处，不沿 `.run/` 的父目录加载开发仓库的 `.codex` 配置；参考、KRA、knowledge 等仍按任务给出的路径读取。
+
 raster 中断、主动重跑及已进入 raster 的总控续跑保留上游修正。独立重跑 part 会从首次分组与各步骤事实重建树；仅写在根 groups.json 的树结构调整需事先留档核对。历史核查见 [结构写回审计](STRUCTURE-AUDIT-20261026.md)。
 
 reviewer 只提交已经观察确认的问题；blocked 仅用于必要输入／工具等执行障碍，不消耗正式质量审核轮数。文件、像素统计与测试不能代替逐层视觉验收。
