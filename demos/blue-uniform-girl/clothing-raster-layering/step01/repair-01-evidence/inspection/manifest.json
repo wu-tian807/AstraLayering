@@ -1,0 +1,192 @@
+{
+  "fragments": [
+    {
+      "id": "outer_jacket/jacket_body/back_panel",
+      "depth": 1,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__back_panel__d1__uncover.png"
+    },
+    {
+      "id": "inner_shirt/shirt_body",
+      "depth": 2,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_body__d2__uncover.png"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/collar_root",
+      "depth": 3,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_collar__collar_root__d3__uncover.png"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/left_collar_flap",
+      "depth": 4,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_collar__left_collar_flap__d4__uncover.png"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/right_collar_flap",
+      "depth": 5,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_collar__right_collar_flap__d5__uncover.png"
+    },
+    {
+      "id": "outer_jacket/left_sleeve",
+      "depth": 6,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__left_sleeve__d6__uncover.png"
+    },
+    {
+      "id": "outer_jacket/right_sleeve",
+      "depth": 7,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__right_sleeve__d7__uncover.png"
+    },
+    {
+      "id": "inner_shirt/left_sleeve",
+      "depth": 8,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__left_sleeve__d8__uncover.png"
+    },
+    {
+      "id": "inner_shirt/right_sleeve",
+      "depth": 9,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__right_sleeve__d9__uncover.png"
+    },
+    {
+      "id": "inner_shirt/shirt_collar/collar_base",
+      "depth": 10,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_collar__collar_base__d10__uncover.png"
+    },
+    {
+      "id": "pleated_skirt/skirt_body",
+      "depth": 11,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/pleated_skirt__skirt_body__d11__uncover.png"
+    },
+    {
+      "id": "inner_shirt/left_sleeve",
+      "depth": 20,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__left_sleeve__d20__uncover.png"
+    },
+    {
+      "id": "inner_shirt/right_sleeve",
+      "depth": 21,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__right_sleeve__d21__uncover.png"
+    },
+    {
+      "id": "inner_shirt/shirt_body",
+      "depth": 22,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_body__d22__uncover.png"
+    },
+    {
+      "id": "inner_shirt/shirt_collar/collar_base",
+      "depth": 23,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_collar__collar_base__d23__uncover.png"
+    },
+    {
+      "id": "pleated_skirt/skirt_body",
+      "depth": 24,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/pleated_skirt__skirt_body__d24__uncover.png"
+    },
+    {
+      "id": "pleated_skirt/waistband",
+      "depth": 25,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/pleated_skirt__waistband__d25__uncover.png"
+    },
+    {
+      "id": "short_necktie/hanging_blade",
+      "depth": 26,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/short_necktie__hanging_blade__d26__uncover.png"
+    },
+    {
+      "id": "short_necktie/knot_and_attachment",
+      "depth": 27,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/short_necktie__knot_and_attachment__d27__uncover.png"
+    },
+    {
+      "id": "inner_shirt/shirt_collar/left_collar_leaf",
+      "depth": 28,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_collar__left_collar_leaf__d28__uncover.png"
+    },
+    {
+      "id": "inner_shirt/shirt_collar/right_collar_leaf",
+      "depth": 29,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_collar__right_collar_leaf__d29__uncover.png"
+    },
+    {
+      "id": "jacket_front_clasp/left_clasp_wing",
+      "depth": 30,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/jacket_front_clasp__left_clasp_wing__d30__uncover.png"
+    },
+    {
+      "id": "jacket_front_clasp/right_clasp_wing",
+      "depth": 31,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/jacket_front_clasp__right_clasp_wing__d31__uncover.png"
+    },
+    {
+      "id": "outer_jacket/left_sleeve",
+      "depth": 32,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__left_sleeve__d32__uncover.png"
+    },
+    {
+      "id": "outer_jacket/right_sleeve",
+      "depth": 33,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__right_sleeve__d33__uncover.png"
+    },
+    {
+      "id": "outer_jacket/jacket_body/left_front/front_panel",
+      "depth": 34,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__left_front__front_panel__d34__uncover.png"
+    },
+    {
+      "id": "outer_jacket/jacket_body/right_front/front_panel",
+      "depth": 35,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__right_front__front_panel__d35__uncover.png"
+    },
+    {
+      "id": "outer_jacket/jacket_body/left_front/lapel",
+      "depth": 36,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__left_front__lapel__d36__uncover.png"
+    },
+    {
+      "id": "outer_jacket/jacket_body/right_front/lapel",
+      "depth": 37,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__right_front__lapel__d37__uncover.png"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/left_collar_flap",
+      "depth": 38,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_collar__left_collar_flap__d38__uncover.png"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/right_collar_flap",
+      "depth": 39,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_collar__right_collar_flap__d39__uncover.png"
+    },
+    {
+      "id": "jacket_front_clasp/center_buckle",
+      "depth": 40,
+      "uncover": "clothing-raster-layering/step01/repair-01-evidence/inspection/jacket_front_clasp__center_buckle__d40__uncover.png"
+    }
+  ],
+  "parts": {
+    "inner_shirt/left_sleeve": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__left_sleeve__part.png",
+    "inner_shirt/right_sleeve": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__right_sleeve__part.png",
+    "inner_shirt/shirt_body": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_body__part.png",
+    "inner_shirt/shirt_collar/collar_base": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_collar__collar_base__part.png",
+    "inner_shirt/shirt_collar/left_collar_leaf": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_collar__left_collar_leaf__part.png",
+    "inner_shirt/shirt_collar/right_collar_leaf": "clothing-raster-layering/step01/repair-01-evidence/inspection/inner_shirt__shirt_collar__right_collar_leaf__part.png",
+    "jacket_front_clasp/center_buckle": "clothing-raster-layering/step01/repair-01-evidence/inspection/jacket_front_clasp__center_buckle__part.png",
+    "jacket_front_clasp/left_clasp_wing": "clothing-raster-layering/step01/repair-01-evidence/inspection/jacket_front_clasp__left_clasp_wing__part.png",
+    "jacket_front_clasp/right_clasp_wing": "clothing-raster-layering/step01/repair-01-evidence/inspection/jacket_front_clasp__right_clasp_wing__part.png",
+    "outer_jacket/jacket_body/back_panel": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__back_panel__part.png",
+    "outer_jacket/jacket_body/left_front/front_panel": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__left_front__front_panel__part.png",
+    "outer_jacket/jacket_body/left_front/lapel": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__left_front__lapel__part.png",
+    "outer_jacket/jacket_body/right_front/front_panel": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__right_front__front_panel__part.png",
+    "outer_jacket/jacket_body/right_front/lapel": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_body__right_front__lapel__part.png",
+    "outer_jacket/jacket_collar/collar_root": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_collar__collar_root__part.png",
+    "outer_jacket/jacket_collar/left_collar_flap": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_collar__left_collar_flap__part.png",
+    "outer_jacket/jacket_collar/right_collar_flap": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__jacket_collar__right_collar_flap__part.png",
+    "outer_jacket/left_sleeve": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__left_sleeve__part.png",
+    "outer_jacket/right_sleeve": "clothing-raster-layering/step01/repair-01-evidence/inspection/outer_jacket__right_sleeve__part.png",
+    "pleated_skirt/skirt_body": "clothing-raster-layering/step01/repair-01-evidence/inspection/pleated_skirt__skirt_body__part.png",
+    "pleated_skirt/waistband": "clothing-raster-layering/step01/repair-01-evidence/inspection/pleated_skirt__waistband__part.png",
+    "short_necktie/hanging_blade": "clothing-raster-layering/step01/repair-01-evidence/inspection/short_necktie__hanging_blade__part.png",
+    "short_necktie/knot_and_attachment": "clothing-raster-layering/step01/repair-01-evidence/inspection/short_necktie__knot_and_attachment__part.png"
+  },
+  "allMasksOff": "clothing-raster-layering/step01/repair-01-evidence/inspection/all-masks-off.png",
+  "default": "clothing-raster-layering/step01/repair-01-evidence/inspection/default.png",
+  "masksRestoredEnabled": true
+}

@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "repairConclusion": "仍有问题",
+  "reviewIssues": 35,
+  "passedIssues": 28,
+  "pendingIssues": 7,
+  "newPassedIssues": [
+    "R5",
+    "R13"
+  ],
+  "logicalParts": 59,
+  "paintLayers": 60,
+  "nativeMasks": 10,
+  "nativeGroups": 3,
+  "changedLogicalPaints": 6,
+  "unchangedLogicalPaints": 53,
+  "modifiedNativeMasks": [],
+  "retainedMultiDepthPart": {
+    "face/eyes/eye_left/upper_eyelid": [
+      40,
+      57.5
+    ]
+  },
+  "UpstreamUnchangedThisBatch": true,
+  "all59LogicalAlphaUnchanged": true,
+  "saveReopenPassed": true,
+  "PNGMatchesReopen": true,
+  "KRAZipPassed": true,
+  "all37IssueRegionsPresent": true,
+  "all59PartAnd2FragmentViewsPresent": true,
+  "reportLinksExist": true,
+  "kraSHA256": "faabcd033d342d5d51c853e599099953c3e16b36feec55b49decdb8f7b6ea6b2",
+  "kraBytes": 11305561,
+  "report": "raster-layering/step01/repair-01.md.tmp"
+}

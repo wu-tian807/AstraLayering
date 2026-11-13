@@ -1,0 +1,1837 @@
+[
+  {
+    "name": "body-structure-lines-native",
+    "jobs": [
+      {
+        "id": "body/breast",
+        "sample": "raster-layering/step01/workspace/repair-next/body__breast-own-line-clean-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body__breast-own-old-line-selection.png",
+        "issue": "R16",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "size": 3.1,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.3,
+            "selection": "raster-layering/step01/workspace/repair-next/body__breast-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 3.1,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.3,
+            "selection": "raster-layering/step01/workspace/repair-next/body__breast-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "size": 1.25,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "opacity": 0.76,
+            "selection": "raster-layering/step01/workspace/repair-next/body__breast-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 1.25,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "opacity": 0.76,
+            "selection": "raster-layering/step01/workspace/repair-next/body__breast-native-alpha-selection.png"
+          }
+        ]
+      },
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/body__torso-own-line-clean-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body__torso-own-old-line-selection.png",
+        "issue": "R16",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "size": 3.1,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.3,
+            "selection": "raster-layering/step01/workspace/repair-next/body__torso-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 3.1,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.3,
+            "selection": "raster-layering/step01/workspace/repair-next/body__torso-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "size": 1.25,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "opacity": 0.76,
+            "selection": "raster-layering/step01/workspace/repair-next/body__torso-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 1.25,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "opacity": 0.76,
+            "selection": "raster-layering/step01/workspace/repair-next/body__torso-native-alpha-selection.png"
+          }
+        ]
+      },
+      {
+        "id": "pelvis",
+        "sample": "raster-layering/step01/workspace/repair-next/pelvis-own-line-clean-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/pelvis-own-old-line-selection.png",
+        "issue": "R16",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "size": 3.1,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.3,
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 3.1,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.3,
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "size": 1.25,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "opacity": 0.76,
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 1.25,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "opacity": 0.76,
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "structure-line-softness-and-end-join",
+    "jobs": [
+      {
+        "id": "pelvis",
+        "sample": "raster-layering/step01/workspace/repair-next/before/pelvis.png",
+        "selection": "raster-layering/step01/workspace/repair-next/pelvis-restore-own-crotch-band.png",
+        "issue": "R16"
+      },
+      {
+        "id": "pelvis",
+        "sample": "raster-layering/step01/workspace/repair-next/pelvis-own-line-clean-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/pelvis-own-long-line-end-cleanup.png",
+        "issue": "R16"
+      },
+      {
+        "id": "body/breast",
+        "issue": "R16",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ],
+              [
+                "C",
+                517,
+                820.5,
+                516,
+                822,
+                515,
+                823.5
+              ]
+            ],
+            "size": 2.4,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.47,
+            "selection": "raster-layering/step01/workspace/repair-next/body__breast-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 2.4,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.47,
+            "selection": "raster-layering/step01/workspace/repair-next/body__breast-native-alpha-selection.png"
+          }
+        ]
+      },
+      {
+        "id": "body/torso",
+        "issue": "R16",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ],
+              [
+                "C",
+                517,
+                820.5,
+                516,
+                822,
+                515,
+                823.5
+              ]
+            ],
+            "size": 2.4,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.47,
+            "selection": "raster-layering/step01/workspace/repair-next/body__torso-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 2.4,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.47,
+            "selection": "raster-layering/step01/workspace/repair-next/body__torso-native-alpha-selection.png"
+          }
+        ]
+      },
+      {
+        "id": "pelvis",
+        "issue": "R16",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ],
+              [
+                "C",
+                517,
+                820.5,
+                516,
+                822,
+                515,
+                823.5
+              ]
+            ],
+            "size": 2.4,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.47,
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 2.4,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.47,
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "right-old-line-clean-and-crotch-join",
+    "jobs": [
+      {
+        "id": "body/breast",
+        "sample": "raster-layering/step01/workspace/repair-next/body__breast-right-line-clean-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body__breast-right-line-clean-selection.png",
+        "issue": "R17"
+      },
+      {
+        "id": "pelvis",
+        "sample": "raster-layering/step01/workspace/repair-next/pelvis-right-line-clean-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/pelvis-right-line-clean-selection.png",
+        "issue": "R17"
+      },
+      {
+        "id": "body/breast",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 3.1,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.3,
+            "selection": "raster-layering/step01/workspace/repair-next/body__breast-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 1.25,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "opacity": 0.76,
+            "selection": "raster-layering/step01/workspace/repair-next/body__breast-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 2.4,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.47,
+            "selection": "raster-layering/step01/workspace/repair-next/body__breast-native-alpha-selection.png"
+          }
+        ],
+        "issue": "R17"
+      },
+      {
+        "id": "pelvis",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 3.1,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.3,
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 1.25,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "opacity": 0.76,
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                660.2,
+                667
+              ],
+              [
+                "C",
+                657.3,
+                690,
+                654.9,
+                712,
+                655.2,
+                736
+              ],
+              [
+                "C",
+                654.8,
+                761,
+                660.2,
+                789,
+                667.2,
+                820
+              ]
+            ],
+            "size": 2.4,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "preset": "b) Airbrush Soft",
+            "opacity": 0.47,
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          }
+        ],
+        "issue": "R17"
+      },
+      {
+        "id": "pelvis",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                508.8,
+                820.1
+              ],
+              [
+                "C",
+                511.7,
+                822,
+                514.7,
+                824.1,
+                518.2,
+                826.4
+              ]
+            ],
+            "size": 1,
+            "color": [
+              155,
+              166,
+              190
+            ],
+            "opacity": 0.72,
+            "preset": "b) Basic-5 Size",
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          }
+        ],
+        "issue": "R16",
+        "box": [
+          485,
+          798,
+          68,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "name": "right-structure-to-native-band",
+    "jobs": [
+      {
+        "id": "pelvis",
+        "issue": "R17",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                667.2,
+                819.3
+              ],
+              [
+                "C",
+                668,
+                823,
+                668.7,
+                827,
+                669.3,
+                830.6
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 3.1,
+            "opacity": 0.3,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                667.2,
+                819.3
+              ],
+              [
+                "C",
+                668,
+                823,
+                668.7,
+                827,
+                669.3,
+                830.6
+              ]
+            ],
+            "preset": "b) Basic-5 Size",
+            "size": 1.25,
+            "opacity": 0.76,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                667.2,
+                819.3
+              ],
+              [
+                "C",
+                668,
+                823,
+                668.7,
+                827,
+                669.3,
+                830.6
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 2.4,
+            "opacity": 0.47,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next/pelvis-native-alpha-selection.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "body-own-reference-edge-calibration",
+    "jobs": [
+      {
+        "id": "body/breast",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-clear.png",
+        "issue": "R14"
+      },
+      {
+        "id": "body/breast",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-selection.png",
+        "issue": "R14"
+      },
+      {
+        "id": "body/torso",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-clear.png",
+        "issue": "R14"
+      },
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-selection.png",
+        "issue": "R14"
+      },
+      {
+        "id": "pelvis",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-clear.png",
+        "issue": "R14"
+      },
+      {
+        "id": "pelvis",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-selection.png",
+        "issue": "R14"
+      }
+    ]
+  },
+  {
+    "name": "body-reference-edge-continuity",
+    "jobs": [
+      {
+        "id": "body/breast",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-wide-clear.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/breast",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-wide-selection.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/torso",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-wide-clear.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-wide-selection.png",
+        "issue": "R15"
+      },
+      {
+        "id": "pelvis",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-wide-clear.png",
+        "issue": "R15"
+      },
+      {
+        "id": "pelvis",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-wide-selection.png",
+        "issue": "R15"
+      }
+    ]
+  },
+  {
+    "name": "body-calibration-preserve-native-roots",
+    "jobs": [
+      {
+        "id": "body/breast",
+        "import": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-rollback.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/breast",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-root-preserving-clear.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/breast",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-root-preserving-selection.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/torso",
+        "import": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-rollback.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/torso",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-root-preserving-clear.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-root-preserving-selection.png",
+        "issue": "R15"
+      },
+      {
+        "id": "pelvis",
+        "import": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-rollback.png",
+        "issue": "R15"
+      },
+      {
+        "id": "pelvis",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-root-preserving-clear.png",
+        "issue": "R15"
+      },
+      {
+        "id": "pelvis",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-root-preserving-selection.png",
+        "issue": "R15"
+      }
+    ]
+  },
+  {
+    "name": "body-calibration-native-roots-and-hip-continuity",
+    "jobs": [
+      {
+        "id": "body/breast",
+        "import": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-rollback.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/breast",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-root-preserving-clear.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/breast",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source-extended.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__breast-root-preserving-selection.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/torso",
+        "import": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-rollback.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/torso",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-root-preserving-clear.png",
+        "issue": "R15"
+      },
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source-extended.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body__torso-root-preserving-selection.png",
+        "issue": "R15"
+      },
+      {
+        "id": "pelvis",
+        "import": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-rollback.png",
+        "issue": "R15"
+      },
+      {
+        "id": "pelvis",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-root-preserving-clear.png",
+        "issue": "R15"
+      },
+      {
+        "id": "pelvis",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source-extended.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-root-preserving-selection.png",
+        "issue": "R15"
+      }
+    ],
+    "recovery": "doc.save returned false once; setModified(True) and saveAs same current KRA succeeded"
+  },
+  {
+    "name": "native-body-root-bridge-and-own-lower-border",
+    "jobs": [
+      {
+        "id": "body/torso",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-strap-bridge-clear.png",
+        "issue": "R14"
+      },
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/body-cloth-only-source-extended.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-strap-bridge-selection.png",
+        "issue": "R14"
+      },
+      {
+        "id": "pelvis",
+        "clearSelection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-lower-left-clear-foreign.png",
+        "issue": "R14"
+      },
+      {
+        "id": "pelvis",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-rollback.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/pelvis-lower-left-own-selection.png",
+        "issue": "R14"
+      }
+    ]
+  },
+  {
+    "name": "neck-body-own-texture-and-soft-volume",
+    "jobs": [
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/neck-body-inputs/torso-own-lower-chest-up20.png",
+        "selection": "raster-layering/step01/workspace/repair-next/neck-body-inputs/skin-root-selection.png",
+        "issue": "R18"
+      },
+      {
+        "id": "body/torso",
+        "issue": "R18",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                516,
+                574
+              ],
+              [
+                "C",
+                532,
+                578,
+                548,
+                582,
+                568,
+                584
+              ],
+              [
+                "C",
+                586,
+                583,
+                604,
+                579,
+                621,
+                577
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 32,
+            "color": [
+              237,
+              164,
+              146
+            ],
+            "opacity": 0.64,
+            "selection": "raster-layering/step01/workspace/repair-next/neck-body-inputs/skin-brush-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                516,
+                574
+              ],
+              [
+                "C",
+                532,
+                578,
+                548,
+                582,
+                568,
+                584
+              ],
+              [
+                "C",
+                586,
+                583,
+                604,
+                579,
+                621,
+                577
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 19,
+            "color": [
+              237,
+              164,
+              146
+            ],
+            "opacity": 0.23,
+            "selection": "raster-layering/step01/workspace/repair-next/neck-body-inputs/skin-brush-selection.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "neck-body-edge-line-and-warm-root-blend",
+    "jobs": [
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/neck-body-inputs/torso-own-lower-chest-up20.png",
+        "selection": "raster-layering/step01/workspace/repair-next/neck-body-inputs/skin-full-root-selection.png",
+        "issue": "R18"
+      },
+      {
+        "id": "body/torso",
+        "issue": "R18",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                512,
+                566
+              ],
+              [
+                "C",
+                531,
+                570,
+                548,
+                575,
+                568,
+                578
+              ],
+              [
+                "C",
+                586,
+                576,
+                604,
+                569,
+                626,
+                566
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 42,
+            "color": [
+              239,
+              165,
+              148
+            ],
+            "opacity": 0.94,
+            "selection": "raster-layering/step01/workspace/repair-next/neck-body-inputs/skin-full-root-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                512,
+                566
+              ],
+              [
+                "C",
+                531,
+                570,
+                548,
+                575,
+                568,
+                578
+              ],
+              [
+                "C",
+                586,
+                576,
+                604,
+                569,
+                626,
+                566
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 29,
+            "color": [
+              239,
+              165,
+              148
+            ],
+            "opacity": 0.64,
+            "selection": "raster-layering/step01/workspace/repair-next/neck-body-inputs/skin-full-root-selection.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "actual-neck-chest-root-soft-paint",
+    "jobs": [
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/neck-body-inputs/torso-own-central-chest-up20.png",
+        "selection": "raster-layering/step01/workspace/repair-next/neck-body-inputs/actual-root-selection.png",
+        "issue": "R18"
+      },
+      {
+        "id": "body/torso",
+        "issue": "R18",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                518,
+                577
+              ],
+              [
+                "C",
+                540,
+                580,
+                558,
+                589,
+                577,
+                592
+              ],
+              [
+                "C",
+                593,
+                592,
+                608,
+                582,
+                623,
+                588
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 32,
+            "color": [
+              242,
+              180,
+              161
+            ],
+            "opacity": 0.87,
+            "selection": "raster-layering/step01/workspace/repair-next/neck-body-inputs/actual-root-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                518,
+                577
+              ],
+              [
+                "C",
+                540,
+                580,
+                558,
+                589,
+                577,
+                592
+              ],
+              [
+                "C",
+                593,
+                592,
+                608,
+                582,
+                623,
+                588
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 24,
+            "color": [
+              242,
+              180,
+              161
+            ],
+            "opacity": 0.64,
+            "selection": "raster-layering/step01/workspace/repair-next/neck-body-inputs/actual-root-selection.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "restore-neck-experiment-and-native-body-line-cleanup",
+    "jobs": [
+      {
+        "id": "body/torso",
+        "import": "raster-layering/step01/workspace/repair-next/neck-body-inputs/torso-rollback.png",
+        "issue": "R18"
+      },
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-own-ghost-clean-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-ghost-clean-selection.png",
+        "issue": "R16"
+      },
+      {
+        "id": "body/torso",
+        "issue": "R16",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "preset": "b) Basic-5 Size",
+            "size": 1.25,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "opacity": 0.76,
+            "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-ghost-clean-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 2.4,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "opacity": 0.47,
+            "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-ghost-clean-selection.png"
+          }
+        ]
+      },
+      {
+        "id": "body/torso",
+        "issue": "R14",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                497.4,
+                618.2
+              ],
+              [
+                "C",
+                497.4,
+                620.4,
+                498.5,
+                622.1,
+                499.5,
+                624.3
+              ]
+            ],
+            "preset": "b) Basic-5 Size",
+            "size": 1.7,
+            "color": [
+              91,
+              86,
+              109
+            ],
+            "opacity": 0.88
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "torso-hidden-old-branch-local-removal",
+    "jobs": [
+      {
+        "id": "body/torso",
+        "sample": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-own-right-texture-to-branch.png",
+        "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-old-branch-selection.png",
+        "issue": "R16"
+      },
+      {
+        "id": "body/torso",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 3.1,
+            "opacity": 0.3,
+            "color": [
+              185,
+              193,
+              209
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-old-branch-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "preset": "b) Basic-5 Size",
+            "size": 1.25,
+            "opacity": 0.76,
+            "color": [
+              188,
+              195,
+              212
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-old-branch-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                529.2,
+                665
+              ],
+              [
+                "C",
+                536.8,
+                686,
+                540.5,
+                713,
+                540.2,
+                737
+              ],
+              [
+                "C",
+                540.1,
+                764,
+                531.5,
+                791,
+                518,
+                819
+              ]
+            ],
+            "preset": "b) Airbrush Soft",
+            "size": 2.4,
+            "opacity": 0.47,
+            "color": [
+              184,
+              192,
+              209
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next/body-contour-inputs/torso-old-branch-selection.png"
+          }
+        ],
+        "issue": "R16"
+      }
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-source-sha256="be10c9adbe626ff52de3175cc244f682547e95fe6c6b348a7b580a365a79052b" data-parent-region="300 395 115 115"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 342,463 C 338,453 327,450 322,440 C 315,429 314,416 321,408 C 327,402 337,407 347,417 C 360,432 378,440 391,452 C 403,465 404,480 391,490 C 388,493 384,495 381,494 C 374,492 357,482 350,473 C 348,469 344,466 342,463 Z" fill-rule="nonzero"/></g>
+  <g fill="#efb39c" stroke="none" data-group-path="face/ears/ear_right" id="ear-right-outline">
+    
+    <path id="ear-right-visible" d="M 342,463 C 354,469 368,474 382,470.5 C 378,477 379,486 381,494 C 365,492 350,482 342,463 Z"/>
+  </g>
+</svg>

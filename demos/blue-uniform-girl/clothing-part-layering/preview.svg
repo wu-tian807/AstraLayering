@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1115" height="1410" viewBox="0 0 1115 1410" data-part-preview="1">
+<metadata id="part-preview-groups">{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;id&quot;:&quot;outer_jacket&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_body&quot;,&quot;parent&quot;:&quot;outer_jacket&quot;,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_body/left_front&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_body&quot;,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_body/left_front/front_panel&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_body/left_front&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_body/left_front/lapel&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_body/left_front&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_body/right_front&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_body&quot;,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_body/right_front/front_panel&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_body/right_front&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_body/right_front/lapel&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_body/right_front&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_body/back_panel&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_body&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_collar&quot;,&quot;parent&quot;:&quot;outer_jacket&quot;,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_collar/collar_root&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_collar&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_collar/left_collar_flap&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_collar&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;outer_jacket/jacket_collar/right_collar_flap&quot;,&quot;parent&quot;:&quot;outer_jacket/jacket_collar&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;outer_jacket/left_sleeve&quot;,&quot;parent&quot;:&quot;outer_jacket&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;outer_jacket/right_sleeve&quot;,&quot;parent&quot;:&quot;outer_jacket&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;inner_shirt&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;inner_shirt/shirt_body&quot;,&quot;parent&quot;:&quot;inner_shirt&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;inner_shirt/shirt_collar&quot;,&quot;parent&quot;:&quot;inner_shirt&quot;,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;inner_shirt/shirt_collar/collar_base&quot;,&quot;parent&quot;:&quot;inner_shirt/shirt_collar&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;inner_shirt/shirt_collar/left_collar_leaf&quot;,&quot;parent&quot;:&quot;inner_shirt/shirt_collar&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;inner_shirt/shirt_collar/right_collar_leaf&quot;,&quot;parent&quot;:&quot;inner_shirt/shirt_collar&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;inner_shirt/left_sleeve&quot;,&quot;parent&quot;:&quot;inner_shirt&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;inner_shirt/right_sleeve&quot;,&quot;parent&quot;:&quot;inner_shirt&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;short_necktie&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;short_necktie/knot_and_attachment&quot;,&quot;parent&quot;:&quot;short_necktie&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;short_necktie/hanging_blade&quot;,&quot;parent&quot;:&quot;short_necktie&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;jacket_front_clasp&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;jacket_front_clasp/left_clasp_wing&quot;,&quot;parent&quot;:&quot;jacket_front_clasp&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;jacket_front_clasp/right_clasp_wing&quot;,&quot;parent&quot;:&quot;jacket_front_clasp&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;jacket_front_clasp/center_buckle&quot;,&quot;parent&quot;:&quot;jacket_front_clasp&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;pleated_skirt&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;pleated_skirt/waistband&quot;,&quot;parent&quot;:&quot;pleated_skirt&quot;,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;pleated_skirt/skirt_body&quot;,&quot;parent&quot;:&quot;pleated_skirt&quot;,&quot;kind&quot;:&quot;part&quot;}]}</metadata>
+<g id="node-0" data-group-path="outer_jacket" data-node-kind="group" data-name="outer_jacket">
+<g id="node-1" data-group-path="outer_jacket/jacket_body" data-node-kind="group" data-name="jacket_body">
+<g id="node-2" data-group-path="outer_jacket/jacket_body/left_front" data-node-kind="group" data-name="left_front">
+<g id="node-3" data-group-path="outer_jacket/jacket_body/left_front/front_panel" data-node-kind="part" data-name="front_panel">
+<g id="part-source-0"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+<g data-group-path="outer_jacket/jacket_body/left_front/front_panel" fill="#e96aac" stroke="none" id="part-source-0-outer_jacket_jacket_body_left_front_front_panel">
+<path d="M 650 299 C 670 306 686 317 700 321 C 729 332 765 337 783 350 C 790 379 793 429 789 467 C 792 478 795 489 798 500 C 808 524 809 546 806 572 C 804 591 801 608 805 624 C 813 658 833 694 847 718 C 853 730 782 755 749 763 C 739 766 735 760 732 748 C 715 685 704 622 697 575 C 692 545 684 516 679 501 C 676 495 678 483 679 468 C 681 439 682 409 679 381 L 677 384 C 673 356 661 324 650 299 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-4" data-group-path="outer_jacket/jacket_body/left_front/lapel" data-node-kind="part" data-name="lapel">
+<g id="part-source-1"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 679 381 C 679 377.5 679.5 374 682 374.5 C 689 376.5 698 383 704 389 C 708 392.5 710 396 710 398 C 709 400 707 401 705 400 C 697 394 688 386 679 381 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="outer_jacket/jacket_body/left_front/lapel" fill="#e96aac" stroke="none" id="part-source-1-outer_jacket_jacket_body_left_front_lapel">
+    <path d="M 679 381 C 690 385 703 395 713 403 C 725 411 741 422 749 427 C 754 430 754 434 749 439 C 730 458 704 480 685 498 C 682 501 680 503 679 501 C 676 495 678 483 679 468 C 681 439 682 409 679 381 Z"/>
+  </g>
+</svg></g>
+</g>
+</g>
+<g id="node-5" data-group-path="outer_jacket/jacket_body/right_front" data-node-kind="group" data-name="right_front">
+<g id="node-6" data-group-path="outer_jacket/jacket_body/right_front/front_panel" data-node-kind="part" data-name="front_panel">
+<g id="part-source-2"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="outer_jacket/jacket_body/right_front/front_panel" fill="#e96aac" stroke="none" id="part-source-2-outer_jacket_jacket_body_right_front_front_panel">
+    <path d="M 365 337 C 389 327 423 324 449 314 C 460 310 477 306 491 298 C 495 325 511 360 534 382 C 557 420 582 470 592 499 C 595 504 594 514 592 524 C 583 601 554 696 529 754 C 525 764 522 769 511 766 C 480 761 436 748 401 734 C 370 723 345 713 351 701 C 371 672 391 640 398 608 C 410 581 420 552 424 522 C 427 493 424 456 418 429 C 411 388 390 350 365 337 Z"/>
+  </g>
+</svg>
+</g>
+</g>
+<g id="node-7" data-group-path="outer_jacket/jacket_body/right_front/lapel" data-node-kind="part" data-name="lapel">
+<g id="part-source-3"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 505 405 C 510 396 516 386 521 379 C 523 376 525 375 527 377 C 529 379 532 382 534 382 L 536 387 C 527 392 519 399 510 407 C 507 409 503 410 505 405 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="outer_jacket/jacket_body/right_front/lapel" fill="#ef729c" stroke="none" id="part-source-3-outer_jacket_jacket_body_right_front_lapel">
+    <path d="M 534 382 C 557 420 582 470 592 499 C 593.65 501.75 594.0925 506.0125 593.773375 510.956875 C 560 491 518 468 479 449 C 472 445 472 441 476 435 L 505 405 C 516 395 525 387 534 382 Z"/>
+  </g>
+</svg></g>
+</g>
+</g>
+<g id="node-8" data-group-path="outer_jacket/jacket_body/back_panel" data-node-kind="part" data-name="back_panel">
+<g id="part-source-4"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 365 337 C 389 327 423 324 449 314 C 465 308 480 300 493 292 C 497 306 502 315 516 318 C 555 322 601 322 636 318 C 645 317 649 306 650 296 C 667 303 683 312 700 321 C 729 332 765 337 783 350 C 790 379 793 429 789 467 C 792 478 795 489 798 500 C 808 524 809 546 806 572 C 804 591 801 608 805 624 C 810 646 818 669 823 684 C 826 691 823 696 817 698 C 755 693 700 691 644 691 C 561 691 476 694 394 687 C 384 686 379 681 383 672 C 389 651 395 629 398 608 C 410 581 420 552 424 522 C 427 493 424 456 418 429 C 411 388 390 350 365 337 Z" fill-rule="nonzero"/></g><g data-group-path="outer_jacket/jacket_body/back_panel" id="part-source-4-source"/></svg>
+</g>
+</g>
+</g>
+<g id="node-9" data-group-path="outer_jacket/jacket_collar" data-node-kind="group" data-name="jacket_collar">
+<g id="node-10" data-group-path="outer_jacket/jacket_collar/collar_root" data-node-kind="part" data-name="collar_root">
+<g id="part-source-5"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 493 284 C 494 277 498 274 506 274 C 548 273 591 274 635 276 C 642 277 646 281 649 287 C 652.1 293.2 655.2 300.3 658.3 306.8 C 659 308.3 659.2 310.3 657.2 310 C 650.1 308.6 642.5 308 634 308 C 595 307 553 307 516 308 C 509 308 505.3 311.5 505.7 316.8 C 505.8 317.5 505.2 318.2 504.4 318 C 499.4 315.9 495.8 312.4 494 307 C 491 297 491 290 493 284 Z" fill-rule="nonzero"/></g><g data-group-path="outer_jacket/jacket_collar/collar_root" id="part-source-5-source"/></svg>
+</g>
+</g>
+<g id="node-11" data-group-path="outer_jacket/jacket_collar/left_collar_flap" data-node-kind="part" data-name="left_collar_flap">
+<g id="part-source-6"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 638.2 278 C 635.2 277.9 632.7 279.8 632.4 283 C 632 288.8 635.4 296.5 640.1 303.1 C 642.5 306.4 646.4 307.8 650.7 307.5 C 653.4 307.3 655.7 306.4 657.7 304.9 C 653.3 294.8 646.6 283.8 638.2 278 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="outer_jacket/jacket_collar/left_collar_flap" fill="#e78b55" stroke="none" id="part-source-6-left_collar_flap">
+    <path d="M 638 276 C 660 279 678 300 700 321 C 718 344 743 373 757 391 C 761 397 757 400 749 401 L 711 406 C 700 398 687 386 678.366984 383.176896 C 673.4612 342.6076 659.34 303.34 643 287 Z"/>
+  </g>
+</svg>
+</g>
+</g>
+<g id="node-12" data-group-path="outer_jacket/jacket_collar/right_collar_flap" data-node-kind="part" data-name="right_collar_flap">
+<g id="part-source-7"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 498 281 C 498 278 501 276 505 276 C 508 276 510 278 510 281 C 505 288 504 299 508 308 C 508 309 505 310 504 313 C 504 315 502 313 501 309 C 499 301 497 290 498 281 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="outer_jacket/jacket_collar/right_collar_flap" fill="#e78b55" stroke="none" id="part-source-7-right_collar_flap">
+    <path d="M 499 274 C 480 276 465 297 449 312 C 446 333 444 367 443 393 C 442 401 446 407 456 407 L 504 407 L 534 382 C 516 348 501 309 499 288 Z"/>
+  </g>
+</svg>
+</g>
+</g>
+</g>
+<g id="node-13" data-group-path="outer_jacket/left_sleeve" data-node-kind="part" data-name="left_sleeve">
+<g id="part-source-8"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 783 350 C 790 385 790 433 787 464 C 797 484 804 506 805 532 C 806 554 797 589 799 607 C 801 622 809 641 817 657 C 814 657 813 655 812 652 C 804 637 796 621 794 607 C 792 588 800 554 799 532 C 798 507 791 485 782 464 C 785 432 785 389 779 359 C 778 354 780 351 783 350 Z" fill-rule="nonzero"/><path d="M 817 657 C 809 641 818 623 841 608 C 872 588 910 571 930 571 C 934 571 936 572 937 574 C 936 578 934 581 930 584 C 913 580 885 594 853 615 C 838 627 826 640 820 652 C 819 655 818 657 817 657 Z" fill-rule="nonzero"/></g>
+<g data-group-path="outer_jacket/left_sleeve" fill="#e866ae" stroke="none" id="part-source-8-outer_jacket_left_sleeve">
+<path d="M 783 350 C 810 373 831 416 852 447 C 874 469 901 488 919 511 C 927 522 921 533 916 541 C 923 552 931 562 937 574 C 942 587 894 629 817 657 C 809 641 801 622 799 607 C 797 589 806 554 805 532 C 804 506 797 484 787 464 C 790 433 790 385 783 350 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-14" data-group-path="outer_jacket/right_sleeve" data-node-kind="part" data-name="right_sleeve">
+<g id="part-source-9"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 361 338 C 368 339 374 342 380 347 C 411 365 433 430 433 488 C 433 513 426 538 418 558 C 413 576 410 592 403 604 C 401 608 398 609 396 607 C 402 591 404 573 409 554 C 418 535 424 510 424 488 C 424 430 400 350 361 338 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="outer_jacket/right_sleeve" fill="#58b8a9" stroke="none" id="part-source-9-outer_jacket_right_sleeve">
+    <path d="M 361 336 C 331 353 301 408 281 439 C 257 460 229 480 211 500 C 205 508 208 520 213 526 L 197 550 C 186 575 235 609 278 633 C 312 651 340 662 358 659 C 371 654 384 627 398 608 C 404 593 406 573 411 555 C 420 536 426 511 426 488 C 426 429 401 349 361 336 Z"/>
+  </g>
+</svg></g>
+</g>
+</g>
+<g id="node-15" data-group-path="inner_shirt" data-node-kind="group" data-name="inner_shirt">
+<g id="node-16" data-group-path="inner_shirt/shirt_body" data-node-kind="part" data-name="shirt_body">
+<g id="part-source-10"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 469,311 C 482,306 491,298 498,293 C 500,291 503,292 504,298 C 509,312 520,324 538,335 C 559,350 581,356 596,357 C 601,360 605,364 609,368 C 613,362 617,359 624,355 C 641,342 653,326 665,312 C 669,308 672,307 676,311 C 679,312 681,314 683,315 L 685,342 C 682,359 682,375 676,389 C 669,407 660,412 652,402 L 623,369 C 617,364 613,367 609,374 C 603,366 599,365 594,371 L 569,397 C 558,411 548,411 541,399 C 528,378 516,356 504,343 C 492,332 480,321 469,311 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="inner_shirt/shirt_body" fill="#9b59b6" stroke="none" id="part-source-10-inner_shirt_shirt_body_outline">
+    <path d="M 380,343 C 399,331 440,322 469,311 C 486,318 503,332 518,346 C 532,370 544,387 553,396 C 557,399 562,394 568,386 L 587,362 C 593,353 599,351 609,364 C 617,353 622,351 630,361 L 657,391 C 665,401 672,397 677,386 C 678,363 681,337 683,315 C 706,326 734,335 752,347 C 745,376 749,420 761,458 C 770,482 780,505 773,534 C 768,555 758,575 753,590 C 750,611 745,631 748,646 C 752,663 765,674 759,689 C 758,700 760,707 758,714 C 744,718 725,719 713,716 C 660,717 600,716 548,714 C 503,712 468,707 449,698 C 454,687 447,676 446,659 C 445,646 463,633 459,617 C 453,588 442,550 440,518 C 447,498 442,477 435,451 C 423,402 402,357 380,343 Z"/>
+    <path d="M 452,681 C 469,698 508,703 547,690 C 591,695 672,695 719,690 C 733,690 747,688 758,687 C 761,697 761,709 758,716 C 722,724 680,725 629,724 C 560,724 493,723 449,714 C 445,706 446,695 452,681 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-17" data-group-path="inner_shirt/shirt_collar" data-node-kind="group" data-name="shirt_collar">
+<g id="node-18" data-group-path="inner_shirt/shirt_collar/collar_base" data-node-kind="part" data-name="collar_base">
+<g id="part-source-11"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 500,281 C 495,285 494,292 496,301 C 499,317 506,334 514,350 C 515,353 520,356 522,353 C 526,348 529,346 532,346 C 546,346 559,352 570,355 C 577,357 582,357 586,356 L 590,348 C 573,338 553,327 539,316 L 539,314 L 500,281 Z" fill-rule="nonzero"/><path d="M 641,282 C 647,285 652,292 657,302 C 669,329 678,358 680,374 C 681,378 678,383 675,381 C 671,373 664,363 658,358 C 648,351 637,348 626,354 C 621,356 616,354 612,358 L 605,363 C 618,351 633,332 638,316 L 638,314 L 641,282 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="inner_shirt/shirt_collar/collar_base" fill="#58b8a9" stroke="none" id="part-source-11-inner_shirt_shirt_collar_collar_base_outline">
+    <path d="M 501,277 C 526,275 599,276 633,277 C 641,278 648,283 653,296 L 638,316 C 610,308 564,308 539,316 L 499,299 C 497,291 498,283 501,277 Z"/>
+    <path d="M 539,314 L 539,316 C 553,327 573,338 590,348 C 597,353 602,357 605,363 C 618,351 633,332 638,316 L 638,314 L 643,318 C 636,333 624,347 612,358 C 608,361 606,365 604,371 C 602,373 599,371 598,366 C 596,359 591,354 586,356 C 574,347 552,335 536,322 Z"/>
+    <path d="M 500,281 C 495,285 494,292 496,301 C 499,317 506,334 514,350 C 515,353 520,356 522,353 C 518,340 510,322 506,307 C 503,295 502,287 502,282 C 502,281 501,280 500,281 Z"/>
+    <path d="M 641,282 C 647,285 652,292 657,302 C 669,329 678,358 680,374 C 681,378 678,383 675,381 C 673,366 670,348 663,329 C 657,315 653,301 648,291 C 645,286 641,284 641,282 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-19" data-group-path="inner_shirt/shirt_collar/left_collar_leaf" data-node-kind="part" data-name="left_collar_leaf">
+<g id="part-source-12"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 641.7,285 C 644.55,294.5 641.985,304 639.14925,314.357375 L 638.44925,314.357375 C 641.285,304 641.85,294.5 639.7,286 C 639.4,284.2 641.3,283.8 641.7,285 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="inner_shirt/shirt_collar/left_collar_leaf" fill="#e28b45" stroke="none" id="part-source-12-inner_shirt_shirt_collar_left_collar_leaf_outline">
+    <path d="M 641,285 L 644.125,282 C 647.5,285 650.5,289.5 653,296 C 665,322 674,351 677,377 C 675,386 671,394 667,397 C 664,399 661,396 657,392 L 629,364 C 624,359 618,354 612,358 C 609,360 607,362 605,363 C 618,351 633,332 638,316 C 641,305 644,295 641,285 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-20" data-group-path="inner_shirt/shirt_collar/right_collar_leaf" data-node-kind="part" data-name="right_collar_leaf">
+<g id="part-source-13"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 500,285 C 509,298 524,308 537,315 C 537.5,314.5 537.2,313.8 536,313 C 523,305 511,296 504,286 C 503,284 502,282 501,282 C 499,282 497,285 496.5,289 C 496,293 496.7,297 498,302 C 500,309 503,317 506,324 C 507,327 509,329 511,330 C 512,330 512,328 510,325 C 506,316 502,309 500,302 C 498.5,296 498,289 500,285 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="inner_shirt/shirt_collar/right_collar_leaf" fill="#e28b45" stroke="none" id="part-source-13-inner_shirt_shirt_collar_right_collar_leaf_outline">
+    <path d="M 500,285 C 509,298 524,308 539,316 C 553,327 573,338 590,348 C 597,353 602,357 605,363 L 602,366 C 601,368 599,368 598,366 C 596,359 591,354 586,356 C 580,358 573,370 566,381 L 560,393 C 557,399 554,401 550,398 C 539,389 528,369 518,346 C 510,328 501,309 498,295 C 497,291 498,287 500,285 Z"/>
+  </g>
+</svg></g>
+</g>
+</g>
+<g id="node-21" data-group-path="inner_shirt/left_sleeve" data-node-kind="part" data-name="left_sleeve">
+<g id="part-source-14"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 752,347 C 770,361 788,397 808,429 C 823,453 846,478 863,500 C 875,518 848,549 826,565 C 806,581 786,591 772,587 C 765,585 761,576 757,567 C 760,547 768,528 765,508 C 762,487 753,466 747,443 C 739,409 740,376 752,347 Z M 782,574 C 785,555 813,526 841,515 C 848,512 854,510 858,511 C 858,524 840,546 822,560 C 805,573 791,579 782,574 Z" fill-rule="evenodd"/></g><g data-group-path="inner_shirt/left_sleeve" id="part-source-14-source"/></svg>
+</g>
+</g>
+<g id="node-22" data-group-path="inner_shirt/right_sleeve" data-node-kind="part" data-name="right_sleeve">
+<g id="part-source-15"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 380,343 C 362,360 341,401 319,438 C 306,457 289,480 271,504 C 261,519 286,546 310,563 C 334,580 366,594 392,595 C 400,596 404,584 411,574 C 421,559 432,542 447,522 C 454,498 453,473 445,447 C 433,400 410,353 380,343 Z M 282,518 C 294,511 332,532 356,550 C 374,563 385,576 389,582 C 376,585 346,568 322,551 C 301,536 285,526 282,518 Z" fill-rule="evenodd"/></g><g data-group-path="inner_shirt/right_sleeve" id="part-source-15-source"/></svg>
+</g>
+</g>
+</g>
+<g id="node-23" data-group-path="short_necktie" data-node-kind="group" data-name="short_necktie">
+<g id="node-24" data-group-path="short_necktie/knot_and_attachment" data-node-kind="part" data-name="knot_and_attachment">
+<g id="part-source-16"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="short_necktie/knot_and_attachment" fill="#e67594" stroke="none" id="part-source-16-short_necktie_knot_and_attachment_outline">
+    <path d="M 603,356.5 C 601,356.5 600,357.5 600,359.5 L 600.3,366.5 C 600.2,369 598.5,370.5 597,372 L 599,378 C 604,381 612,381 618,376.5 L 619,373 C 616.5,370 615,368.5 615,366 L 615,359.5 Q 615,356.5 612,356.5 Z"/>
+    <path d="M 609,364.5 C 602,364.5 596,369.5 591.5,376 Q 589.5,378.5 592,381 L 603,391.5 Q 614,389.5 625.5,391 L 628.5,380 Q 629.5,376 624,372 L 616,366.5 Q 612.5,364.5 609,364.5 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-25" data-group-path="short_necktie/hanging_blade" data-node-kind="part" data-name="hanging_blade">
+<g id="part-source-17"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 603.3,392.5 C 604.3,390.8 604.8,387.5 606.2,386.5 Q 614.8,385.5 623.2,386.4 Q 624.9,386.7 625.1,388.5 L 625.7,392.5 Q 615,394 603.3,392.5 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="short_necktie/hanging_blade" fill="#e67594" stroke="none" id="part-source-17-short_necktie_hanging_blade_outline">
+    <path d="M 604.5,389.5 Q 615,388.8 625.8,389.6 L 625.5,391 L 638,401 Q 642,405 641.5,409 C 641,417.5 637.5,428 633,435.5 Q 629,443 623.5,439 C 614,434 600,421.5 593.5,415 Q 589.5,411 592.5,407 C 595.5,402 600,395.5 603,391.5 Z"/>
+  </g>
+</svg></g>
+</g>
+</g>
+<g id="node-26" data-group-path="jacket_front_clasp" data-node-kind="group" data-name="jacket_front_clasp">
+<g id="node-27" data-group-path="jacket_front_clasp/left_clasp_wing" data-node-kind="part" data-name="left_clasp_wing">
+<g id="part-source-18"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="jacket_front_clasp/left_clasp_wing" fill="#e67eaa" stroke="none" id="part-source-18-jacket_front_clasp_left_clasp_wing">
+    <path d="M 639,506.5 C 646,496 663,485 675,479 C 675,491 676,501 680,508 C 688,532 696,561 701,584 C 679,570 653,550 641,535 L 640,522 Z"/>
+    <path d="M 677,496 C 682,496 688,492 691,495 C 694,499 697,512 701,525 C 705,535 709,541 712.5,545 C 715,550 713,552 708,550 L 689,548 C 685,534 678,513 677,496 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-28" data-group-path="jacket_front_clasp/right_clasp_wing" data-node-kind="part" data-name="right_clasp_wing">
+<g id="part-source-19"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="jacket_front_clasp/right_clasp_wing" fill="#e67eaa" stroke="none" id="part-source-19-right_clasp_wing">
+    <path d="M 585,476 C 604,483 625,492 635,501 Q 638,504 639,506.5 L 641,535 C 627,551 603,571 580,584 C 585,561 589,537 591,516 C 593,503 588,489 585,476 Z"/>
+    <path d="M 589,495 C 584,495 578,491 575,494 C 572,497 575,509 574,519 C 573,527 570.5,535 568.5,541 C 567,546 569,550 574,548 L 589,547 C 591,533 594,514 589,495 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-29" data-group-path="jacket_front_clasp/center_buckle" data-node-kind="part" data-name="center_buckle">
+<g id="part-source-20"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="jacket_front_clasp/center_buckle" fill="#e67eaa" stroke="none" id="part-source-20-jacket_front_clasp_center_buckle">
+    <path d="M 625.4,507.1 C 629.6,506.5 634.4,506.5 639,506.6 C 643.1,506.3 647.4,505.7 651.1,506 C 655.3,506.2 658.4,509 659.1,513.1 C 659.9,518.1 660,523.6 659.8,527.9 C 659.6,532.1 657.2,534.2 653.4,534.6 C 646.7,535 637.1,535.3 629.1,535.2 C 624.5,535.2 622,533.1 621.3,529 C 620.6,524.3 620.2,518.1 620.4,513.8 C 620.6,510.2 622.4,507.9 625.4,507.1 Z"/>
+  </g>
+</svg></g>
+</g>
+</g>
+<g id="node-30" data-group-path="pleated_skirt" data-node-kind="group" data-name="pleated_skirt">
+<g id="node-31" data-group-path="pleated_skirt/waistband" data-node-kind="part" data-name="waistband">
+<g id="part-source-21"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="pleated_skirt/waistband" fill="#e85c91" stroke="none" id="part-source-21-pleated_skirt_waistband_outline">
+    <path d="M 380,723 C 400,702 420,682 438,668 C 472,678 510,683 549,686 Q 632,695 715,686 C 730,683 744,676 756,666 C 772,690 791,724 808,748 C 779,745 754,739 730,736 C 674,746 596,748 532,737 C 478,730 427,741 380,723 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-32" data-group-path="pleated_skirt/skirt_body" data-node-kind="part" data-name="skirt_body">
+<g id="part-source-22"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 399.9259259,702.5185185 C 406,702.7 412,704.1 421,707.2 C 458,720 496,727.2 534,730.5 Q 632,748.5 730,730.5 C 752,727.9 771,724.8 787,725 Q 792,725 794.953125,728.4375 C 790,732 779,733 730,738 Q 632,756 534,738 C 490,734 444,725 405,708 Q 401.5,706 399.9259259,702.5185185 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="pleated_skirt/skirt_body" fill="#e85c91" stroke="none" id="part-source-22-pleated_skirt_skirt_body_outline">
+    <path d="M 399.9259259,702.5185185 C 444,721 490,730 534,734 Q 632,752 730,734 C 755,731 777,727 794.953125,728.4375 C 799.375,735.375 803.75,742 808,748 C 869,834 926,922 976,1021 Q 985,1032 976,1040 C 956,1059 913,1082 856,1100 L 851,1088 C 811,1102 764,1112 720,1117 Q 711,1118 711,1103 Q 667,1106 630,1106 L 628,1111 Q 626,1117 620,1117 Q 599,1118 580,1115 Q 578,1115 576,1118 Q 574,1120 568,1119 C 527,1120 481,1113 447,1103 L 449,1092 C 410,1086 373,1077 337,1067 L 329,1089 Q 323,1096 314,1091 L 267,1071 Q 263,1077 258,1072 C 221,1052 190,1036 170,1018 Q 163,1013 169,1002 C 227,907 296,811 380,723 C 386.6666667,716 393.3333333,709.1111111 399.9259259,702.5185185 Z"/>
+  </g>
+</svg></g>
+</g>
+</g>
+</svg>

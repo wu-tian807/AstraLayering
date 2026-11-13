@@ -1,0 +1,2939 @@
+{
+  "parts": [
+    {
+      "id": "hair/back_hair",
+      "name": "01 | hair/back_hair",
+      "uuid": "{4089d0f0-6f23-4ca6-ba99-9ff0762dda2c}",
+      "level": 1,
+      "levels": [
+        1
+      ],
+      "pixelHash": "512d8a0485e1eb936703431d910c764033050e9e016f9afd93c20009c1cf6f19",
+      "single": "raster-layering/step01/repair-evidence-01/single/hair__back_hair.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/hair__back_hair.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/hair__back_hair.png",
+      "fragments": [
+        {
+          "id": "hair/back_hair",
+          "fragment": "full",
+          "layerName": "01 | hair/back_hair",
+          "layerUUID": "{4089d0f0-6f23-4ca6-ba99-9ff0762dda2c}",
+          "level": 1,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "512d8a0485e1eb936703431d910c764033050e9e016f9afd93c20009c1cf6f19",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "legs/leg_left/shoes/cuff_back",
+      "name": "02 | legs/leg_left/shoes/cuff_back",
+      "uuid": "{c7e21fcd-d954-4109-acf1-63cabfccac75}",
+      "level": 2,
+      "levels": [
+        2
+      ],
+      "pixelHash": "5235cfa46ba23b6510c319d188eed26c12e1261c170a9eba8aa502dad5d02f58",
+      "single": "raster-layering/step01/repair-evidence-01/single/legs__leg_left__shoes__cuff_back.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/legs__leg_left__shoes__cuff_back.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/legs__leg_left__shoes__cuff_back.png",
+      "fragments": [
+        {
+          "id": "legs/leg_left/shoes/cuff_back",
+          "fragment": "full",
+          "layerName": "02 | legs/leg_left/shoes/cuff_back",
+          "layerUUID": "{c7e21fcd-d954-4109-acf1-63cabfccac75}",
+          "level": 2,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "5235cfa46ba23b6510c319d188eed26c12e1261c170a9eba8aa502dad5d02f58",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "name": "03 | legs/leg_right/shoes/cuff_back",
+      "uuid": "{69d40173-b7bc-41ff-b092-8bb57526da61}",
+      "level": 3,
+      "levels": [
+        3
+      ],
+      "pixelHash": "843336ab6f910d44cb7fb0faaaf607b7c77da89e89e51bf3462d8efff5827f0f",
+      "single": "raster-layering/step01/repair-evidence-01/single/legs__leg_right__shoes__cuff_back.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/legs__leg_right__shoes__cuff_back.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/legs__leg_right__shoes__cuff_back.png",
+      "fragments": [
+        {
+          "id": "legs/leg_right/shoes/cuff_back",
+          "fragment": "full",
+          "layerName": "03 | legs/leg_right/shoes/cuff_back",
+          "layerUUID": "{69d40173-b7bc-41ff-b092-8bb57526da61}",
+          "level": 3,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "843336ab6f910d44cb7fb0faaaf607b7c77da89e89e51bf3462d8efff5827f0f",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "name": "04 | legs/leg_left/leg",
+      "uuid": "{874466af-a8fd-455a-aa1a-4394f2c00e6a}",
+      "level": 4,
+      "levels": [
+        4
+      ],
+      "pixelHash": "98a535d42aaf7f205ac592ee37a30360960a767d3d2141cc881475ec085b2e27",
+      "single": "raster-layering/step01/repair-evidence-01/single/legs__leg_left__leg.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/legs__leg_left__leg.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/legs__leg_left__leg.png",
+      "fragments": [
+        {
+          "id": "legs/leg_left/leg",
+          "fragment": "full",
+          "layerName": "04 | legs/leg_left/leg",
+          "layerUUID": "{874466af-a8fd-455a-aa1a-4394f2c00e6a}",
+          "level": 4,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "98a535d42aaf7f205ac592ee37a30360960a767d3d2141cc881475ec085b2e27",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "name": "05 | legs/leg_right/leg",
+      "uuid": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}",
+      "level": 5,
+      "levels": [
+        5
+      ],
+      "pixelHash": "d738c2e6a588cdf832a6cfd755b617d9e8fadc057ca2c8849f68fd0a896fd700",
+      "single": "raster-layering/step01/repair-evidence-01/single/legs__leg_right__leg.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/legs__leg_right__leg.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/legs__leg_right__leg.png",
+      "fragments": [
+        {
+          "id": "legs/leg_right/leg",
+          "fragment": "full",
+          "layerName": "05 | legs/leg_right/leg",
+          "layerUUID": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}",
+          "level": 5,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "d738c2e6a588cdf832a6cfd755b617d9e8fadc057ca2c8849f68fd0a896fd700",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "legs/leg_left/shoes/shoe_front",
+      "name": "06 | legs/leg_left/shoes/shoe_front",
+      "uuid": "{3b0f36c9-3065-485d-918d-394523b87ff3}",
+      "level": 6,
+      "levels": [
+        6
+      ],
+      "pixelHash": "8bd86545d4659fc652ff519777df65f526c49ef154c4e8a7d5afd62b68a1cd9d",
+      "single": "raster-layering/step01/repair-evidence-01/single/legs__leg_left__shoes__shoe_front.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/legs__leg_left__shoes__shoe_front.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/legs__leg_left__shoes__shoe_front.png",
+      "fragments": [
+        {
+          "id": "legs/leg_left/shoes/shoe_front",
+          "fragment": "full",
+          "layerName": "06 | legs/leg_left/shoes/shoe_front",
+          "layerUUID": "{3b0f36c9-3065-485d-918d-394523b87ff3}",
+          "level": 6,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "8bd86545d4659fc652ff519777df65f526c49ef154c4e8a7d5afd62b68a1cd9d",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "name": "07 | legs/leg_right/shoes/shoe_front",
+      "uuid": "{68bc7cc0-95b4-498a-8685-4acfe0ee4380}",
+      "level": 7,
+      "levels": [
+        7
+      ],
+      "pixelHash": "0af6affa8fd21b6b41406f33d9de9f9f796b92661f6ca639339fa5dce375c9e2",
+      "single": "raster-layering/step01/repair-evidence-01/single/legs__leg_right__shoes__shoe_front.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/legs__leg_right__shoes__shoe_front.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/legs__leg_right__shoes__shoe_front.png",
+      "fragments": [
+        {
+          "id": "legs/leg_right/shoes/shoe_front",
+          "fragment": "full",
+          "layerName": "07 | legs/leg_right/shoes/shoe_front",
+          "layerUUID": "{68bc7cc0-95b4-498a-8685-4acfe0ee4380}",
+          "level": 7,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "0af6affa8fd21b6b41406f33d9de9f9f796b92661f6ca639339fa5dce375c9e2",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/bracelet_back",
+      "name": "08 | arms/arm_left/bracelet_back",
+      "uuid": "{23b0c987-5944-4ca2-b0f7-d97e3248db0b}",
+      "level": 8,
+      "levels": [
+        8
+      ],
+      "pixelHash": "20a6fb2d222cb44c3ca737f64c162d8a9b3d4995e25ba7ed572c34b64174357c",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__bracelet_back.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__bracelet_back.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__bracelet_back.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/bracelet_back",
+          "fragment": "full",
+          "layerName": "08 | arms/arm_left/bracelet_back",
+          "layerUUID": "{23b0c987-5944-4ca2-b0f7-d97e3248db0b}",
+          "level": 8,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "20a6fb2d222cb44c3ca737f64c162d8a9b3d4995e25ba7ed572c34b64174357c",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/bracelet_back",
+      "name": "09 | arms/arm_right/bracelet_back",
+      "uuid": "{04a63182-d2f1-40e5-b8cd-ecdd6a2cbb8b}",
+      "level": 9,
+      "levels": [
+        9
+      ],
+      "pixelHash": "56bd6194c04a72e48ee61ac56180d846ce2ca86a3f996e7471ca90fdab0e64fc",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__bracelet_back.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__bracelet_back.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__bracelet_back.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/bracelet_back",
+          "fragment": "full",
+          "layerName": "09 | arms/arm_right/bracelet_back",
+          "layerUUID": "{04a63182-d2f1-40e5-b8cd-ecdd6a2cbb8b}",
+          "level": 9,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "56bd6194c04a72e48ee61ac56180d846ce2ca86a3f996e7471ca90fdab0e64fc",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/hand/little_finger",
+      "name": "10 | arms/arm_left/hand/little_finger",
+      "uuid": "{e24c2a96-a10f-4610-bc8c-d41e53f31f45}",
+      "level": 10,
+      "levels": [
+        10
+      ],
+      "pixelHash": "85173a664ce56e615069ea429db38d459224bb5bf2da7b59016517a5151bae51",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__hand__little_finger.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__hand__little_finger.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__hand__little_finger.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/hand/little_finger",
+          "fragment": "full",
+          "layerName": "10 | arms/arm_left/hand/little_finger",
+          "layerUUID": "{e24c2a96-a10f-4610-bc8c-d41e53f31f45}",
+          "level": 10,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "85173a664ce56e615069ea429db38d459224bb5bf2da7b59016517a5151bae51",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "后方手指默认遮挡",
+              "maskUUID": "{06c0d344-178f-4185-b953-a9ed4cc37ebc}",
+              "ownerName": "10 | arms/arm_left/hand/little_finger",
+              "ownerUUID": "{e24c2a96-a10f-4610-bc8c-d41e53f31f45}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/hand/little_finger",
+      "name": "11 | arms/arm_right/hand/little_finger",
+      "uuid": "{49267e18-4add-4309-8aa9-e030f5b6be36}",
+      "level": 11,
+      "levels": [
+        11
+      ],
+      "pixelHash": "8030e9ad94d63216e2f418c2a1c99252df651a3ceaa0b443cdceb4f26fcdb83c",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__hand__little_finger.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__hand__little_finger.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__hand__little_finger.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/hand/little_finger",
+          "fragment": "full",
+          "layerName": "11 | arms/arm_right/hand/little_finger",
+          "layerUUID": "{49267e18-4add-4309-8aa9-e030f5b6be36}",
+          "level": 11,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "8030e9ad94d63216e2f418c2a1c99252df651a3ceaa0b443cdceb4f26fcdb83c",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "后方手指默认遮挡",
+              "maskUUID": "{a557dafb-b0ff-46c4-88dd-a390e968eea9}",
+              "ownerName": "11 | arms/arm_right/hand/little_finger",
+              "ownerUUID": "{49267e18-4add-4309-8aa9-e030f5b6be36}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/hand/ring_finger",
+      "name": "12 | arms/arm_left/hand/ring_finger",
+      "uuid": "{3b283a3e-8e41-4af0-bcaa-8f6e57dfc86a}",
+      "level": 12,
+      "levels": [
+        12
+      ],
+      "pixelHash": "0d74eaf9c2323ced797afd615adda2c6e5ffb3059622e7fc95bcd7ef7a493098",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__hand__ring_finger.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__hand__ring_finger.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__hand__ring_finger.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/hand/ring_finger",
+          "fragment": "full",
+          "layerName": "12 | arms/arm_left/hand/ring_finger",
+          "layerUUID": "{3b283a3e-8e41-4af0-bcaa-8f6e57dfc86a}",
+          "level": 12,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "0d74eaf9c2323ced797afd615adda2c6e5ffb3059622e7fc95bcd7ef7a493098",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "后方手指默认遮挡",
+              "maskUUID": "{83eb02f1-3940-4058-bacf-aeaac4af2b78}",
+              "ownerName": "12 | arms/arm_left/hand/ring_finger",
+              "ownerUUID": "{3b283a3e-8e41-4af0-bcaa-8f6e57dfc86a}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/hand/ring_finger",
+      "name": "13 | arms/arm_right/hand/ring_finger",
+      "uuid": "{4510cb4e-68bb-41e1-b8f5-f8f0f0ce8c2f}",
+      "level": 13,
+      "levels": [
+        13
+      ],
+      "pixelHash": "6aee58a00b2a9b4786e40a150dc6e65db9cd04e4db4df170ee6ff697fa6ec21b",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__hand__ring_finger.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__hand__ring_finger.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__hand__ring_finger.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/hand/ring_finger",
+          "fragment": "full",
+          "layerName": "13 | arms/arm_right/hand/ring_finger",
+          "layerUUID": "{4510cb4e-68bb-41e1-b8f5-f8f0f0ce8c2f}",
+          "level": 13,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "6aee58a00b2a9b4786e40a150dc6e65db9cd04e4db4df170ee6ff697fa6ec21b",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "name": "14 | arms/arm_left/hand/middle_finger",
+      "uuid": "{77dd7450-bfed-474a-9430-874a4e35f190}",
+      "level": 14,
+      "levels": [
+        14
+      ],
+      "pixelHash": "3d795cd36aa6a4c6e38d00aa6016a3342dec9d609dede1cfddbafcd9f75000fe",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__hand__middle_finger.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__hand__middle_finger.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__hand__middle_finger.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/hand/middle_finger",
+          "fragment": "full",
+          "layerName": "14 | arms/arm_left/hand/middle_finger",
+          "layerUUID": "{77dd7450-bfed-474a-9430-874a4e35f190}",
+          "level": 14,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "3d795cd36aa6a4c6e38d00aa6016a3342dec9d609dede1cfddbafcd9f75000fe",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/hand/middle_finger",
+      "name": "15 | arms/arm_right/hand/middle_finger",
+      "uuid": "{0c6436cb-0783-44e4-915e-43662c767392}",
+      "level": 15,
+      "levels": [
+        15
+      ],
+      "pixelHash": "e3555dd1e44cb4207fc154231f3db5bc4da4a10129433264e6817d0726cc9c25",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__hand__middle_finger.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__hand__middle_finger.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__hand__middle_finger.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/hand/middle_finger",
+          "fragment": "full",
+          "layerName": "15 | arms/arm_right/hand/middle_finger",
+          "layerUUID": "{0c6436cb-0783-44e4-915e-43662c767392}",
+          "level": 15,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "e3555dd1e44cb4207fc154231f3db5bc4da4a10129433264e6817d0726cc9c25",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "name": "16 | arms/arm_left/hand/thumb",
+      "uuid": "{bf191541-773a-4056-9e34-01cc88e4ca22}",
+      "level": 16,
+      "levels": [
+        16
+      ],
+      "pixelHash": "e2685abb25d38a34499bade7283206b0459ed2f46752e8e62cec511d26f2e806",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__hand__thumb.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__hand__thumb.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__hand__thumb.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/hand/thumb",
+          "fragment": "full",
+          "layerName": "16 | arms/arm_left/hand/thumb",
+          "layerUUID": "{bf191541-773a-4056-9e34-01cc88e4ca22}",
+          "level": 16,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "e2685abb25d38a34499bade7283206b0459ed2f46752e8e62cec511d26f2e806",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "name": "17 | arms/arm_right/hand/thumb",
+      "uuid": "{21d7568a-f9c4-416d-937a-1c663eb52b68}",
+      "level": 17,
+      "levels": [
+        17
+      ],
+      "pixelHash": "489afa22408ae301456877e1344a888d6cae3e4a3d58055ebee0c9856bde5b93",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__hand__thumb.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__hand__thumb.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__hand__thumb.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/hand/thumb",
+          "fragment": "full",
+          "layerName": "17 | arms/arm_right/hand/thumb",
+          "layerUUID": "{21d7568a-f9c4-416d-937a-1c663eb52b68}",
+          "level": 17,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "489afa22408ae301456877e1344a888d6cae3e4a3d58055ebee0c9856bde5b93",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "name": "18 | arms/arm_left/hand/index_finger",
+      "uuid": "{36299159-6089-4cfe-ba16-b3c65ec98710}",
+      "level": 18,
+      "levels": [
+        18
+      ],
+      "pixelHash": "33a86e6190968fc9b2c2c28890336ef09c2fca62fdac8bd6f7ed8e1ff30ae936",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__hand__index_finger.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__hand__index_finger.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__hand__index_finger.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/hand/index_finger",
+          "fragment": "full",
+          "layerName": "18 | arms/arm_left/hand/index_finger",
+          "layerUUID": "{36299159-6089-4cfe-ba16-b3c65ec98710}",
+          "level": 18,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "33a86e6190968fc9b2c2c28890336ef09c2fca62fdac8bd6f7ed8e1ff30ae936",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "name": "19 | arms/arm_right/hand/index_finger",
+      "uuid": "{cee017cc-0abc-4690-a295-6ee7d8f12b4c}",
+      "level": 19,
+      "levels": [
+        19
+      ],
+      "pixelHash": "9bba4d3c0f541db1f632817d22fe5ab026644a2a507731c918f00238b00e3572",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__hand__index_finger.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__hand__index_finger.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__hand__index_finger.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/hand/index_finger",
+          "fragment": "full",
+          "layerName": "19 | arms/arm_right/hand/index_finger",
+          "layerUUID": "{cee017cc-0abc-4690-a295-6ee7d8f12b4c}",
+          "level": 19,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "9bba4d3c0f541db1f632817d22fe5ab026644a2a507731c918f00238b00e3572",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "name": "20 | arms/arm_left/hand/palm",
+      "uuid": "{a3cf3b02-afd4-4e7d-ac0e-6b3c6a9bdf1c}",
+      "level": 20,
+      "levels": [
+        20
+      ],
+      "pixelHash": "194de93f5711613a75d6384bade24414563a2f73fe439cf8e09df478cbaf91b5",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__hand__palm.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__hand__palm.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__hand__palm.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/hand/palm",
+          "fragment": "full",
+          "layerName": "20 | arms/arm_left/hand/palm",
+          "layerUUID": "{a3cf3b02-afd4-4e7d-ac0e-6b3c6a9bdf1c}",
+          "level": 20,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "194de93f5711613a75d6384bade24414563a2f73fe439cf8e09df478cbaf91b5",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "name": "21 | arms/arm_right/hand/palm",
+      "uuid": "{8dfddf91-2cc2-4ccc-a0e3-84812b3478bc}",
+      "level": 21,
+      "levels": [
+        21
+      ],
+      "pixelHash": "488dcc2be47a336189bc6441737f5c68a33c9058eb77646348b76d1abcfcf3d5",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__hand__palm.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__hand__palm.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__hand__palm.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/hand/palm",
+          "fragment": "full",
+          "layerName": "21 | arms/arm_right/hand/palm",
+          "layerUUID": "{8dfddf91-2cc2-4ccc-a0e3-84812b3478bc}",
+          "level": 21,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "488dcc2be47a336189bc6441737f5c68a33c9058eb77646348b76d1abcfcf3d5",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "name": "22 | arms/arm_left/forearm",
+      "uuid": "{29bb2c4d-bdae-4cb3-b603-14ee0741e6dd}",
+      "level": 22,
+      "levels": [
+        22
+      ],
+      "pixelHash": "e9b1877209f91c2e76c450b9b1aa9ca7877afb0042113a6b23802be73a7046f3",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__forearm.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__forearm.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__forearm.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/forearm",
+          "fragment": "full",
+          "layerName": "22 | arms/arm_left/forearm",
+          "layerUUID": "{29bb2c4d-bdae-4cb3-b603-14ee0741e6dd}",
+          "level": 22,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "e9b1877209f91c2e76c450b9b1aa9ca7877afb0042113a6b23802be73a7046f3",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "name": "23 | arms/arm_right/forearm",
+      "uuid": "{3beed03f-949d-4f3a-9353-13e87e8989bd}",
+      "level": 23,
+      "levels": [
+        23
+      ],
+      "pixelHash": "409612efd3c1e88be439cbfd6e405fdfcd4ff4c797bac807eef22c7b90584514",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__forearm.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__forearm.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__forearm.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/forearm",
+          "fragment": "full",
+          "layerName": "23 | arms/arm_right/forearm",
+          "layerUUID": "{3beed03f-949d-4f3a-9353-13e87e8989bd}",
+          "level": 23,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "409612efd3c1e88be439cbfd6e405fdfcd4ff4c797bac807eef22c7b90584514",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "name": "24 | arms/arm_left/upper_arm",
+      "uuid": "{ac87d5b7-6c85-46bf-a23b-33a6b18b22aa}",
+      "level": 24,
+      "levels": [
+        24
+      ],
+      "pixelHash": "04318d5c6a2896ae045a539c0a4eb3abb290bf6db85534c6202234b52b12d170",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__upper_arm.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__upper_arm.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__upper_arm.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/upper_arm",
+          "fragment": "full",
+          "layerName": "24 | arms/arm_left/upper_arm",
+          "layerUUID": "{ac87d5b7-6c85-46bf-a23b-33a6b18b22aa}",
+          "level": 24,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "04318d5c6a2896ae045a539c0a4eb3abb290bf6db85534c6202234b52b12d170",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "name": "25 | arms/arm_right/upper_arm",
+      "uuid": "{decfd947-28d2-4860-8930-4dfed8188037}",
+      "level": 25,
+      "levels": [
+        25
+      ],
+      "pixelHash": "bafe7b01c432505b8df817e280ad434830fceaa6dbbf7702d60f052981e31ac0",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__upper_arm.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__upper_arm.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__upper_arm.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/upper_arm",
+          "fragment": "full",
+          "layerName": "25 | arms/arm_right/upper_arm",
+          "layerUUID": "{decfd947-28d2-4860-8930-4dfed8188037}",
+          "level": 25,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "bafe7b01c432505b8df817e280ad434830fceaa6dbbf7702d60f052981e31ac0",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "neck",
+      "name": "26 | neck",
+      "uuid": "{68b98b37-a38c-4a70-8a26-fb87bb0cbe33}",
+      "level": 26,
+      "levels": [
+        26
+      ],
+      "pixelHash": "93747f002b74b0a4525a080cbc6c830fcd30321496b90a19ac89bdb9c13b2c99",
+      "single": "raster-layering/step01/repair-evidence-01/single/neck.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/neck.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/neck.png",
+      "fragments": [
+        {
+          "id": "neck",
+          "fragment": "full",
+          "layerName": "26 | neck",
+          "layerUUID": "{68b98b37-a38c-4a70-8a26-fb87bb0cbe33}",
+          "level": 26,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "93747f002b74b0a4525a080cbc6c830fcd30321496b90a19ac89bdb9c13b2c99",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "body/torso",
+      "name": "27 | body/torso",
+      "uuid": "{1630b7d7-6097-4334-84b5-2a48b92064d4}",
+      "level": 27,
+      "levels": [
+        27
+      ],
+      "pixelHash": "18b7b40143886eea8a726d5feaae7410eb67997441e83bfb51656a639848cad0",
+      "single": "raster-layering/step01/repair-evidence-01/single/body__torso.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/body__torso.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/body__torso.png",
+      "fragments": [
+        {
+          "id": "body/torso",
+          "fragment": "full",
+          "layerName": "27 | body/torso",
+          "layerUUID": "{1630b7d7-6097-4334-84b5-2a48b92064d4}",
+          "level": 27,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "18b7b40143886eea8a726d5feaae7410eb67997441e83bfb51656a639848cad0",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "body/breast",
+      "name": "28 | body/breast",
+      "uuid": "{337c5213-e37a-4929-8120-79f04a3a5aa1}",
+      "level": 28,
+      "levels": [
+        28
+      ],
+      "pixelHash": "9313fc2bd48235eae8542e8ab79953b0c8ae37591fd5eb7cc9f1f52e60ea5bcf",
+      "single": "raster-layering/step01/repair-evidence-01/single/body__breast.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/body__breast.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/body__breast.png",
+      "fragments": [
+        {
+          "id": "body/breast",
+          "fragment": "full",
+          "layerName": "28 | body/breast",
+          "layerUUID": "{337c5213-e37a-4929-8120-79f04a3a5aa1}",
+          "level": 28,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "9313fc2bd48235eae8542e8ab79953b0c8ae37591fd5eb7cc9f1f52e60ea5bcf",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "pelvis",
+      "name": "29 | pelvis",
+      "uuid": "{8077f372-abff-4fe4-99dd-2f7ab598740c}",
+      "level": 29,
+      "levels": [
+        29
+      ],
+      "pixelHash": "110daabf3da6bd64d48ffea6177306f274b6d04448485b25c394291458d9dc08",
+      "single": "raster-layering/step01/repair-evidence-01/single/pelvis.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/pelvis.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/pelvis.png",
+      "fragments": [
+        {
+          "id": "pelvis",
+          "fragment": "full",
+          "layerName": "29 | pelvis",
+          "layerUUID": "{8077f372-abff-4fe4-99dd-2f7ab598740c}",
+          "level": 29,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "110daabf3da6bd64d48ffea6177306f274b6d04448485b25c394291458d9dc08",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "name": "30 | arms/arm_left/bracelet_front",
+      "uuid": "{7f3567bd-d211-4b7a-bb5f-818ad5d3bb05}",
+      "level": 30,
+      "levels": [
+        30
+      ],
+      "pixelHash": "47cb9f9c3113e14afc08fc9324372c406446e8527640cc24fc0d1491d0cd760a",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_left__bracelet_front.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_left__bracelet_front.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_left__bracelet_front.png",
+      "fragments": [
+        {
+          "id": "arms/arm_left/bracelet_front",
+          "fragment": "full",
+          "layerName": "30 | arms/arm_left/bracelet_front",
+          "layerUUID": "{7f3567bd-d211-4b7a-bb5f-818ad5d3bb05}",
+          "level": 30,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "47cb9f9c3113e14afc08fc9324372c406446e8527640cc24fc0d1491d0cd760a",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/bracelet_front",
+      "name": "31 | arms/arm_right/bracelet_front",
+      "uuid": "{96cddaae-29c8-45df-b682-87d65a38d5d3}",
+      "level": 31,
+      "levels": [
+        31
+      ],
+      "pixelHash": "4cdd0b06aefe9e5931f2d7c2affead841f0fd90b19e06ddfac44c75c14ea0115",
+      "single": "raster-layering/step01/repair-evidence-01/single/arms__arm_right__bracelet_front.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/arms__arm_right__bracelet_front.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/arms__arm_right__bracelet_front.png",
+      "fragments": [
+        {
+          "id": "arms/arm_right/bracelet_front",
+          "fragment": "full",
+          "layerName": "31 | arms/arm_right/bracelet_front",
+          "layerUUID": "{96cddaae-29c8-45df-b682-87d65a38d5d3}",
+          "level": 31,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "4cdd0b06aefe9e5931f2d7c2affead841f0fd90b19e06ddfac44c75c14ea0115",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/ears/ear_left",
+      "name": "32 | face/ears/ear_left",
+      "uuid": "{2b674aab-ffe3-41d3-a0fa-55462a22040a}",
+      "level": 32,
+      "levels": [
+        32
+      ],
+      "pixelHash": "a866083b0d0228c87c305c1fd478c136d2c7b7abbf4a8836ed040290514c8a53",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__ears__ear_left.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__ears__ear_left.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__ears__ear_left.png",
+      "fragments": [
+        {
+          "id": "face/ears/ear_left",
+          "fragment": "full",
+          "layerName": "32 | face/ears/ear_left",
+          "layerUUID": "{2b674aab-ffe3-41d3-a0fa-55462a22040a}",
+          "level": 32,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "a866083b0d0228c87c305c1fd478c136d2c7b7abbf4a8836ed040290514c8a53",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/ears/ear_right",
+      "name": "33 | face/ears/ear_right",
+      "uuid": "{e6e34b95-dec1-4923-bb8e-2d2eb4ac4a1f}",
+      "level": 33,
+      "levels": [
+        33
+      ],
+      "pixelHash": "1a43260522e5779db1b31248d796ee50b0e74e8bbb7750cda38f926a94a43d8a",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__ears__ear_right.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__ears__ear_right.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__ears__ear_right.png",
+      "fragments": [
+        {
+          "id": "face/ears/ear_right",
+          "fragment": "full",
+          "layerName": "33 | face/ears/ear_right",
+          "layerUUID": "{e6e34b95-dec1-4923-bb8e-2d2eb4ac4a1f}",
+          "level": 33,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "1a43260522e5779db1b31248d796ee50b0e74e8bbb7750cda38f926a94a43d8a",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/face_base",
+      "name": "34 | face/face_base",
+      "uuid": "{c3f39273-f952-456f-aa58-4cfd3ee4b101}",
+      "level": 34,
+      "levels": [
+        34
+      ],
+      "pixelHash": "761e33c7821e1874d15a3305c73b412d11096923655c58acccddcdef6c45ee08",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__face_base.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__face_base.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__face_base.png",
+      "fragments": [
+        {
+          "id": "face/face_base",
+          "fragment": "full",
+          "layerName": "34 | face/face_base",
+          "layerUUID": "{c3f39273-f952-456f-aa58-4cfd3ee4b101}",
+          "level": 34,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "761e33c7821e1874d15a3305c73b412d11096923655c58acccddcdef6c45ee08",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/blush_left",
+      "name": "35 | face/blush_left",
+      "uuid": "{c1f6358e-afa3-4af4-bbc0-07432ad35e95}",
+      "level": 35,
+      "levels": [
+        35
+      ],
+      "pixelHash": "1771bf355116b618ef7c00530a8eeb3556879e66654c382959684559893af93c",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__blush_left.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__blush_left.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__blush_left.png",
+      "fragments": [
+        {
+          "id": "face/blush_left",
+          "fragment": "full",
+          "layerName": "35 | face/blush_left",
+          "layerUUID": "{c1f6358e-afa3-4af4-bbc0-07432ad35e95}",
+          "level": 35,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "1771bf355116b618ef7c00530a8eeb3556879e66654c382959684559893af93c",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 180,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/blush_right",
+      "name": "36 | face/blush_right",
+      "uuid": "{e2db8f94-dac4-49a0-9f58-e447b3960664}",
+      "level": 36,
+      "levels": [
+        36
+      ],
+      "pixelHash": "4a3f541de5e1a4e461b4d02700136b37caa247824ef3a4b487ab6af40c8620e7",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__blush_right.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__blush_right.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__blush_right.png",
+      "fragments": [
+        {
+          "id": "face/blush_right",
+          "fragment": "full",
+          "layerName": "36 | face/blush_right",
+          "layerUUID": "{e2db8f94-dac4-49a0-9f58-e447b3960664}",
+          "level": 36,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "4a3f541de5e1a4e461b4d02700136b37caa247824ef3a4b487ab6af40c8620e7",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "name": "37 | face/eyes/eye_left/sclera",
+      "uuid": "{0d6b92bf-92d0-494b-acf9-c7a6d133c5c0}",
+      "level": 37,
+      "levels": [
+        37
+      ],
+      "pixelHash": "bf02cca98dd5374c7880c3c738e83b5a3869d8f0743194982140668e3bf437bf",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_left__sclera.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_left__sclera.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_left__sclera.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_left/sclera",
+          "fragment": "full",
+          "layerName": "37 | face/eyes/eye_left/sclera",
+          "layerUUID": "{0d6b92bf-92d0-494b-acf9-c7a6d133c5c0}",
+          "level": 37,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "bf02cca98dd5374c7880c3c738e83b5a3869d8f0743194982140668e3bf437bf",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "眼睛开口 left",
+              "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+              "ownerName": "眼内开合 left",
+              "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "name": "38 | face/eyes/eye_left/iris",
+      "uuid": "{79ed3649-fddc-4bf8-b9fc-0267f7e9d4c1}",
+      "level": 38,
+      "levels": [
+        38
+      ],
+      "pixelHash": "a6cc8c0f961a6eb5f7e0f2292ca1db712cf464c2188eb0fa1cfa2371a58c6cea",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_left__iris.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_left__iris.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_left__iris.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_left/iris",
+          "fragment": "full",
+          "layerName": "38 | face/eyes/eye_left/iris",
+          "layerUUID": "{79ed3649-fddc-4bf8-b9fc-0267f7e9d4c1}",
+          "level": 38,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "a6cc8c0f961a6eb5f7e0f2292ca1db712cf464c2188eb0fa1cfa2371a58c6cea",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "眼睛开口 left",
+              "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+              "ownerName": "眼内开合 left",
+              "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "name": "39 | face/eyes/eye_left/highlight",
+      "uuid": "{38d785a0-2b85-4126-a5d4-2d995993c0cb}",
+      "level": 39,
+      "levels": [
+        39
+      ],
+      "pixelHash": "c666d0c4f54e4b356134e47101e235a48a41c41e3c4e2844782eee2b081c5a42",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_left__highlight.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_left__highlight.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_left__highlight.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_left/highlight",
+          "fragment": "full",
+          "layerName": "39 | face/eyes/eye_left/highlight",
+          "layerUUID": "{38d785a0-2b85-4126-a5d4-2d995993c0cb}",
+          "level": 39,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "c666d0c4f54e4b356134e47101e235a48a41c41e3c4e2844782eee2b081c5a42",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "高光虹膜范围 left",
+              "maskUUID": "{4ea9dc55-ede2-48ce-9270-2f1eaacb036f}",
+              "ownerName": "39 | face/eyes/eye_left/highlight",
+              "ownerUUID": "{38d785a0-2b85-4126-a5d4-2d995993c0cb}"
+            },
+            {
+              "maskName": "眼睛开口 left",
+              "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+              "ownerName": "眼内开合 left",
+              "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "name": "40 | face/eyes/eye_left/upper_eyelid",
+      "uuid": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+      "level": 57.5,
+      "levels": [
+        40,
+        57.5
+      ],
+      "pixelHash": "4882eae94b167651e879196bed100469c3a3c1a469ad037f03766b54f2e65a4b",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_left__upper_eyelid.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_left__upper_eyelid.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_left__upper_eyelid.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_left/upper_eyelid",
+          "fragment": "main",
+          "layerName": "40 | face/eyes/eye_left/upper_eyelid",
+          "layerUUID": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+          "level": 40,
+          "region": "完整上睑、连体睫毛主体及向下眼尾，扣除外侧短尖分片；主体覆盖同眼眼白、虹膜、高光，仍在57侧发后。",
+          "pixelHash": "af5222ebce90d6236811f79312a092c236b634ac45827d8d80a820b5bddab419",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "fullPaintEvidence": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__main-raw.png",
+          "single": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__main-single.png",
+          "hideAbove": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__main-hide-above.png"
+        },
+        {
+          "id": "face/eyes/eye_left/upper_eyelid",
+          "fragment": "outer_spike",
+          "layerName": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+          "layerUUID": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+          "level": 57.5,
+          "region": "外侧第三睫毛短尖及其连续根段，原画布x669–685、y346–359内的本件像素；位于57侧发前、58侧发与59头饰后，与40主体共同运动。",
+          "pixelHash": "3ec1a5cd2e9fe95dbc05c2b8dd621a378f44cd974de3a96672cf4983b17750d6",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "fullPaintEvidence": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__outer_spike-raw.png",
+          "single": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__outer_spike-single.png",
+          "hideAbove": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__outer_spike-hide-above.png"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "name": "41 | face/eyes/eye_left/eyelid_crease",
+      "uuid": "{2de44cab-5ac3-49c4-a5a0-b84429a0818c}",
+      "level": 41,
+      "levels": [
+        41
+      ],
+      "pixelHash": "9a6f65df654e362d7a7208ff27ec0a44d1acec460c4fcc72472036dd200c5061",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_left__eyelid_crease.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_left__eyelid_crease.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_left__eyelid_crease.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_left/eyelid_crease",
+          "fragment": "full",
+          "layerName": "41 | face/eyes/eye_left/eyelid_crease",
+          "layerUUID": "{2de44cab-5ac3-49c4-a5a0-b84429a0818c}",
+          "level": 41,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "9a6f65df654e362d7a7208ff27ec0a44d1acec460c4fcc72472036dd200c5061",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "name": "42 | face/eyes/eye_right/sclera",
+      "uuid": "{14a479b6-89ad-4a9f-ad72-d21873a39134}",
+      "level": 42,
+      "levels": [
+        42
+      ],
+      "pixelHash": "ed41cab5de81c79687d78d7b1d45e249a7d500c7220bb3d0a4dfe563c8c183d8",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_right__sclera.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_right__sclera.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_right__sclera.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_right/sclera",
+          "fragment": "full",
+          "layerName": "42 | face/eyes/eye_right/sclera",
+          "layerUUID": "{14a479b6-89ad-4a9f-ad72-d21873a39134}",
+          "level": 42,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "ed41cab5de81c79687d78d7b1d45e249a7d500c7220bb3d0a4dfe563c8c183d8",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "眼睛开口 right",
+              "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+              "ownerName": "眼内开合 right",
+              "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "name": "43 | face/eyes/eye_right/iris",
+      "uuid": "{58cb7d99-1303-47b8-8317-5b18387cf4e3}",
+      "level": 43,
+      "levels": [
+        43
+      ],
+      "pixelHash": "96612f74e630b679696cf22bdc36e5464fc22120ffb578f89493a25885e297d4",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_right__iris.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_right__iris.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_right__iris.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_right/iris",
+          "fragment": "full",
+          "layerName": "43 | face/eyes/eye_right/iris",
+          "layerUUID": "{58cb7d99-1303-47b8-8317-5b18387cf4e3}",
+          "level": 43,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "96612f74e630b679696cf22bdc36e5464fc22120ffb578f89493a25885e297d4",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "眼睛开口 right",
+              "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+              "ownerName": "眼内开合 right",
+              "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "name": "44 | face/eyes/eye_right/highlight",
+      "uuid": "{5b2f210f-f4fd-4df9-b302-1c9cd63f747e}",
+      "level": 44,
+      "levels": [
+        44
+      ],
+      "pixelHash": "ec30746e42004bcc6fdd98cf3884bbd7b648bd2e3ad1c60debc37fb3f4aa60ca",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_right__highlight.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_right__highlight.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_right__highlight.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_right/highlight",
+          "fragment": "full",
+          "layerName": "44 | face/eyes/eye_right/highlight",
+          "layerUUID": "{5b2f210f-f4fd-4df9-b302-1c9cd63f747e}",
+          "level": 44,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "ec30746e42004bcc6fdd98cf3884bbd7b648bd2e3ad1c60debc37fb3f4aa60ca",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "高光虹膜范围 right",
+              "maskUUID": "{ab4087a9-f7c6-4c0e-9b31-a7e58be174df}",
+              "ownerName": "44 | face/eyes/eye_right/highlight",
+              "ownerUUID": "{5b2f210f-f4fd-4df9-b302-1c9cd63f747e}"
+            },
+            {
+              "maskName": "眼睛开口 right",
+              "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+              "ownerName": "眼内开合 right",
+              "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "name": "45 | face/eyes/eye_right/upper_eyelid",
+      "uuid": "{2397666a-3d0c-482b-bd9f-4e48785e77ae}",
+      "level": 45,
+      "levels": [
+        45
+      ],
+      "pixelHash": "cd58fa64212355f819c0286e2d2994d8b9692b9f8dba531d38609bb8d7ba313a",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_right__upper_eyelid.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_right__upper_eyelid.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_right__upper_eyelid.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_right/upper_eyelid",
+          "fragment": "full",
+          "layerName": "45 | face/eyes/eye_right/upper_eyelid",
+          "layerUUID": "{2397666a-3d0c-482b-bd9f-4e48785e77ae}",
+          "level": 45,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "cd58fa64212355f819c0286e2d2994d8b9692b9f8dba531d38609bb8d7ba313a",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "name": "46 | face/eyes/eye_right/eyelid_crease",
+      "uuid": "{4ca54efb-c6fb-451f-a1ac-b29fb3ce1de7}",
+      "level": 46,
+      "levels": [
+        46
+      ],
+      "pixelHash": "444947b2fbbcfd8e3d3e6e49658e27d3b8de1197c179d241508f81a38b5010cd",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyes__eye_right__eyelid_crease.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyes__eye_right__eyelid_crease.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyes__eye_right__eyelid_crease.png",
+      "fragments": [
+        {
+          "id": "face/eyes/eye_right/eyelid_crease",
+          "fragment": "full",
+          "layerName": "46 | face/eyes/eye_right/eyelid_crease",
+          "layerUUID": "{4ca54efb-c6fb-451f-a1ac-b29fb3ce1de7}",
+          "level": 46,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "444947b2fbbcfd8e3d3e6e49658e27d3b8de1197c179d241508f81a38b5010cd",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/nose",
+      "name": "47 | face/nose",
+      "uuid": "{701f1a49-8a4c-497e-8bb8-710deea1d56e}",
+      "level": 47,
+      "levels": [
+        47
+      ],
+      "pixelHash": "4c2b313e9fba089d766f3a06db16ebfec3ca54bcfb0cb5574159ba721264fa1b",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__nose.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__nose.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__nose.png",
+      "fragments": [
+        {
+          "id": "face/nose",
+          "fragment": "full",
+          "layerName": "47 | face/nose",
+          "layerUUID": "{701f1a49-8a4c-497e-8bb8-710deea1d56e}",
+          "level": 47,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "4c2b313e9fba089d766f3a06db16ebfec3ca54bcfb0cb5574159ba721264fa1b",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 190,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "name": "48 | face/mouth/mouth_interior",
+      "uuid": "{2835ab5e-38b6-44ab-a436-6010fcfa217f}",
+      "level": 48,
+      "levels": [
+        48
+      ],
+      "pixelHash": "b24aa0cfadac8d748375678e5b6e672c0557dd79ab6b840ce0ae71611aea4a19",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__mouth__mouth_interior.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__mouth__mouth_interior.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__mouth__mouth_interior.png",
+      "fragments": [
+        {
+          "id": "face/mouth/mouth_interior",
+          "fragment": "full",
+          "layerName": "48 | face/mouth/mouth_interior",
+          "layerUUID": "{2835ab5e-38b6-44ab-a436-6010fcfa217f}",
+          "level": 48,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "b24aa0cfadac8d748375678e5b6e672c0557dd79ab6b840ce0ae71611aea4a19",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "上下唇开口",
+              "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+              "ownerName": "口内开合",
+              "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "name": "49 | face/mouth/lower_teeth",
+      "uuid": "{cfd92245-2bed-4dd6-8962-aa81b90e43c8}",
+      "level": 49,
+      "levels": [
+        49
+      ],
+      "pixelHash": "f7bfa8576172b7def91aab8ba492f7cc452b962323dbf46d69de34984f59697b",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__mouth__lower_teeth.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__mouth__lower_teeth.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__mouth__lower_teeth.png",
+      "fragments": [
+        {
+          "id": "face/mouth/lower_teeth",
+          "fragment": "full",
+          "layerName": "49 | face/mouth/lower_teeth",
+          "layerUUID": "{cfd92245-2bed-4dd6-8962-aa81b90e43c8}",
+          "level": 49,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "f7bfa8576172b7def91aab8ba492f7cc452b962323dbf46d69de34984f59697b",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "下牙默认遮挡",
+              "maskUUID": "{4ef4f667-6607-458d-ab72-855884296f24}",
+              "ownerName": "49 | face/mouth/lower_teeth",
+              "ownerUUID": "{cfd92245-2bed-4dd6-8962-aa81b90e43c8}"
+            },
+            {
+              "maskName": "上下唇开口",
+              "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+              "ownerName": "口内开合",
+              "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/tongue",
+      "name": "50 | face/mouth/tongue",
+      "uuid": "{3befd481-21d8-44a8-96bc-a4ab7e95a6d0}",
+      "level": 50,
+      "levels": [
+        50
+      ],
+      "pixelHash": "9454b516e2c7a98e7d5b0b6aed453f0ba34e69cd95d1fc9726722f11b275e0e5",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__mouth__tongue.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__mouth__tongue.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__mouth__tongue.png",
+      "fragments": [
+        {
+          "id": "face/mouth/tongue",
+          "fragment": "full",
+          "layerName": "50 | face/mouth/tongue",
+          "layerUUID": "{3befd481-21d8-44a8-96bc-a4ab7e95a6d0}",
+          "level": 50,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "9454b516e2c7a98e7d5b0b6aed453f0ba34e69cd95d1fc9726722f11b275e0e5",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "上下唇开口",
+              "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+              "ownerName": "口内开合",
+              "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "name": "51 | face/mouth/upper_teeth",
+      "uuid": "{076da129-6653-41b1-89ac-b83043cdb5a1}",
+      "level": 51,
+      "levels": [
+        51
+      ],
+      "pixelHash": "d41d886eac65d0b6bf7f0cc9f3a322a5902d2c6f66921493e5e295e06493d8c8",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__mouth__upper_teeth.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__mouth__upper_teeth.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__mouth__upper_teeth.png",
+      "fragments": [
+        {
+          "id": "face/mouth/upper_teeth",
+          "fragment": "full",
+          "layerName": "51 | face/mouth/upper_teeth",
+          "layerUUID": "{076da129-6653-41b1-89ac-b83043cdb5a1}",
+          "level": 51,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "d41d886eac65d0b6bf7f0cc9f3a322a5902d2c6f66921493e5e295e06493d8c8",
+          "position": [
+            0,
+            5
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "上牙露出带",
+              "maskUUID": "{582994c8-f7c8-49a0-994c-c1a1924ede30}",
+              "ownerName": "51 | face/mouth/upper_teeth",
+              "ownerUUID": "{076da129-6653-41b1-89ac-b83043cdb5a1}"
+            },
+            {
+              "maskName": "上下唇开口",
+              "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+              "ownerName": "口内开合",
+              "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "name": "52 | face/mouth/lower_lip",
+      "uuid": "{49667a5f-c28a-4103-89b3-a8bd132ee9e5}",
+      "level": 52,
+      "levels": [
+        52
+      ],
+      "pixelHash": "b00dd1208425dd2877e5eeff1b2393e761ee2f8b0efca00412868d9e4c4adec0",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__mouth__lower_lip.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__mouth__lower_lip.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__mouth__lower_lip.png",
+      "fragments": [
+        {
+          "id": "face/mouth/lower_lip",
+          "fragment": "full",
+          "layerName": "52 | face/mouth/lower_lip",
+          "layerUUID": "{49667a5f-c28a-4103-89b3-a8bd132ee9e5}",
+          "level": 52,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "b00dd1208425dd2877e5eeff1b2393e761ee2f8b0efca00412868d9e4c4adec0",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "name": "53 | face/mouth/upper_lip",
+      "uuid": "{3c5522af-747a-4063-92cd-1d5098b84d6d}",
+      "level": 53,
+      "levels": [
+        53
+      ],
+      "pixelHash": "e80f2a84bcb83e093fc7cedaa602a9b1179818c26f1cd5b5114e5bd21a8512f9",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__mouth__upper_lip.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__mouth__upper_lip.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__mouth__upper_lip.png",
+      "fragments": [
+        {
+          "id": "face/mouth/upper_lip",
+          "fragment": "full",
+          "layerName": "53 | face/mouth/upper_lip",
+          "layerUUID": "{3c5522af-747a-4063-92cd-1d5098b84d6d}",
+          "level": 53,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "e80f2a84bcb83e093fc7cedaa602a9b1179818c26f1cd5b5114e5bd21a8512f9",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left",
+      "name": "54 | face/eyebrows/eyebrow_left",
+      "uuid": "{29fe8dcd-4637-48dc-b6d6-873445abd084}",
+      "level": 54,
+      "levels": [
+        54
+      ],
+      "pixelHash": "df7e3b3bd9a3d7b66e39cfa91a3733aff3f3d70976b01901176d6e27bf26154f",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyebrows__eyebrow_left.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyebrows__eyebrow_left.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyebrows__eyebrow_left.png",
+      "fragments": [
+        {
+          "id": "face/eyebrows/eyebrow_left",
+          "fragment": "full",
+          "layerName": "54 | face/eyebrows/eyebrow_left",
+          "layerUUID": "{29fe8dcd-4637-48dc-b6d6-873445abd084}",
+          "level": 54,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "df7e3b3bd9a3d7b66e39cfa91a3733aff3f3d70976b01901176d6e27bf26154f",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right",
+      "name": "55 | face/eyebrows/eyebrow_right",
+      "uuid": "{fcd3d071-f0f5-4ba1-b691-ddf2eec5ccf1}",
+      "level": 55,
+      "levels": [
+        55
+      ],
+      "pixelHash": "320c6de83b1760d4c93a4b3fce0ef56729b07f0bd2f4ea345d98d0de4448f429",
+      "single": "raster-layering/step01/repair-evidence-01/single/face__eyebrows__eyebrow_right.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/face__eyebrows__eyebrow_right.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/face__eyebrows__eyebrow_right.png",
+      "fragments": [
+        {
+          "id": "face/eyebrows/eyebrow_right",
+          "fragment": "full",
+          "layerName": "55 | face/eyebrows/eyebrow_right",
+          "layerUUID": "{fcd3d071-f0f5-4ba1-b691-ddf2eec5ccf1}",
+          "level": 55,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "320c6de83b1760d4c93a4b3fce0ef56729b07f0bd2f4ea345d98d0de4448f429",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "hair/bangs",
+      "name": "56 | hair/bangs",
+      "uuid": "{d8460341-1a17-4ea7-85e2-55efc4e6b0b3}",
+      "level": 56,
+      "levels": [
+        56
+      ],
+      "pixelHash": "e4fecdb4118f9a2b344e465d18422d116de31febf85ef85d9988688e5f53f281",
+      "single": "raster-layering/step01/repair-evidence-01/single/hair__bangs.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/hair__bangs.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/hair__bangs.png",
+      "fragments": [
+        {
+          "id": "hair/bangs",
+          "fragment": "full",
+          "layerName": "56 | hair/bangs",
+          "layerUUID": "{d8460341-1a17-4ea7-85e2-55efc4e6b0b3}",
+          "level": 56,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "e4fecdb4118f9a2b344e465d18422d116de31febf85ef85d9988688e5f53f281",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "name": "57 | hair/side_hair/side_hair_left",
+      "uuid": "{d0910d01-e059-41dd-a4f6-0e1eef1138bd}",
+      "level": 57,
+      "levels": [
+        57
+      ],
+      "pixelHash": "d12a15ea84bd64578fa66d8fb9e2509e69193ee44c26295f5e9005bf24526d8b",
+      "single": "raster-layering/step01/repair-evidence-01/single/hair__side_hair__side_hair_left.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/hair__side_hair__side_hair_left.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/hair__side_hair__side_hair_left.png",
+      "fragments": [
+        {
+          "id": "hair/side_hair/side_hair_left",
+          "fragment": "full",
+          "layerName": "57 | hair/side_hair/side_hair_left",
+          "layerUUID": "{d0910d01-e059-41dd-a4f6-0e1eef1138bd}",
+          "level": 57,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "d12a15ea84bd64578fa66d8fb9e2509e69193ee44c26295f5e9005bf24526d8b",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "name": "58 | hair/side_hair/side_hair_right",
+      "uuid": "{78ad74b6-ab8f-4b6a-a7e9-7b4d20188fbf}",
+      "level": 58,
+      "levels": [
+        58
+      ],
+      "pixelHash": "7437d5bbe88cf97fe8054466e4d95add069b6b9b220dda48cb811db96a7820ea",
+      "single": "raster-layering/step01/repair-evidence-01/single/hair__side_hair__side_hair_right.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/hair__side_hair__side_hair_right.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/hair__side_hair__side_hair_right.png",
+      "fragments": [
+        {
+          "id": "hair/side_hair/side_hair_right",
+          "fragment": "full",
+          "layerName": "58 | hair/side_hair/side_hair_right",
+          "layerUUID": "{78ad74b6-ab8f-4b6a-a7e9-7b4d20188fbf}",
+          "level": 58,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "7437d5bbe88cf97fe8054466e4d95add069b6b9b220dda48cb811db96a7820ea",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    },
+    {
+      "id": "head_accessories",
+      "name": "59 | head_accessories",
+      "uuid": "{f9d0168b-70a0-4328-ae5e-3a1f137a6579}",
+      "level": 59,
+      "levels": [
+        59
+      ],
+      "pixelHash": "31cba6172853459d19dc31890b3fdd391c2580686914989d1110e6413234ea58",
+      "single": "raster-layering/step01/repair-evidence-01/single/head_accessories.png",
+      "singleDefault": "raster-layering/step01/repair-evidence-01/single-default/head_accessories.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/hide-above/head_accessories.png",
+      "fragments": [
+        {
+          "id": "head_accessories",
+          "fragment": "full",
+          "layerName": "59 | head_accessories",
+          "layerUUID": "{f9d0168b-70a0-4328-ae5e-3a1f137a6579}",
+          "level": 59,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "31cba6172853459d19dc31890b3fdd391c2580686914989d1110e6413234ea58",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": []
+        }
+      ]
+    }
+  ],
+  "actualPaintLayers": [
+    {
+      "id": "hair/back_hair",
+      "fragment": "full",
+      "layerName": "01 | hair/back_hair",
+      "layerUUID": "{4089d0f0-6f23-4ca6-ba99-9ff0762dda2c}",
+      "level": 1,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "512d8a0485e1eb936703431d910c764033050e9e016f9afd93c20009c1cf6f19",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_left/shoes/cuff_back",
+      "fragment": "full",
+      "layerName": "02 | legs/leg_left/shoes/cuff_back",
+      "layerUUID": "{c7e21fcd-d954-4109-acf1-63cabfccac75}",
+      "level": 2,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "5235cfa46ba23b6510c319d188eed26c12e1261c170a9eba8aa502dad5d02f58",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "fragment": "full",
+      "layerName": "03 | legs/leg_right/shoes/cuff_back",
+      "layerUUID": "{69d40173-b7bc-41ff-b092-8bb57526da61}",
+      "level": 3,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "843336ab6f910d44cb7fb0faaaf607b7c77da89e89e51bf3462d8efff5827f0f",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "fragment": "full",
+      "layerName": "04 | legs/leg_left/leg",
+      "layerUUID": "{874466af-a8fd-455a-aa1a-4394f2c00e6a}",
+      "level": 4,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "98a535d42aaf7f205ac592ee37a30360960a767d3d2141cc881475ec085b2e27",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "fragment": "full",
+      "layerName": "05 | legs/leg_right/leg",
+      "layerUUID": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}",
+      "level": 5,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "d738c2e6a588cdf832a6cfd755b617d9e8fadc057ca2c8849f68fd0a896fd700",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_left/shoes/shoe_front",
+      "fragment": "full",
+      "layerName": "06 | legs/leg_left/shoes/shoe_front",
+      "layerUUID": "{3b0f36c9-3065-485d-918d-394523b87ff3}",
+      "level": 6,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "8bd86545d4659fc652ff519777df65f526c49ef154c4e8a7d5afd62b68a1cd9d",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "fragment": "full",
+      "layerName": "07 | legs/leg_right/shoes/shoe_front",
+      "layerUUID": "{68bc7cc0-95b4-498a-8685-4acfe0ee4380}",
+      "level": 7,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "0af6affa8fd21b6b41406f33d9de9f9f796b92661f6ca639339fa5dce375c9e2",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/bracelet_back",
+      "fragment": "full",
+      "layerName": "08 | arms/arm_left/bracelet_back",
+      "layerUUID": "{23b0c987-5944-4ca2-b0f7-d97e3248db0b}",
+      "level": 8,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "20a6fb2d222cb44c3ca737f64c162d8a9b3d4995e25ba7ed572c34b64174357c",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/bracelet_back",
+      "fragment": "full",
+      "layerName": "09 | arms/arm_right/bracelet_back",
+      "layerUUID": "{04a63182-d2f1-40e5-b8cd-ecdd6a2cbb8b}",
+      "level": 9,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "56bd6194c04a72e48ee61ac56180d846ce2ca86a3f996e7471ca90fdab0e64fc",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/hand/little_finger",
+      "fragment": "full",
+      "layerName": "10 | arms/arm_left/hand/little_finger",
+      "layerUUID": "{e24c2a96-a10f-4610-bc8c-d41e53f31f45}",
+      "level": 10,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "85173a664ce56e615069ea429db38d459224bb5bf2da7b59016517a5151bae51",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "后方手指默认遮挡",
+          "maskUUID": "{06c0d344-178f-4185-b953-a9ed4cc37ebc}",
+          "ownerName": "10 | arms/arm_left/hand/little_finger",
+          "ownerUUID": "{e24c2a96-a10f-4610-bc8c-d41e53f31f45}"
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/hand/little_finger",
+      "fragment": "full",
+      "layerName": "11 | arms/arm_right/hand/little_finger",
+      "layerUUID": "{49267e18-4add-4309-8aa9-e030f5b6be36}",
+      "level": 11,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "8030e9ad94d63216e2f418c2a1c99252df651a3ceaa0b443cdceb4f26fcdb83c",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "后方手指默认遮挡",
+          "maskUUID": "{a557dafb-b0ff-46c4-88dd-a390e968eea9}",
+          "ownerName": "11 | arms/arm_right/hand/little_finger",
+          "ownerUUID": "{49267e18-4add-4309-8aa9-e030f5b6be36}"
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_left/hand/ring_finger",
+      "fragment": "full",
+      "layerName": "12 | arms/arm_left/hand/ring_finger",
+      "layerUUID": "{3b283a3e-8e41-4af0-bcaa-8f6e57dfc86a}",
+      "level": 12,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "0d74eaf9c2323ced797afd615adda2c6e5ffb3059622e7fc95bcd7ef7a493098",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "后方手指默认遮挡",
+          "maskUUID": "{83eb02f1-3940-4058-bacf-aeaac4af2b78}",
+          "ownerName": "12 | arms/arm_left/hand/ring_finger",
+          "ownerUUID": "{3b283a3e-8e41-4af0-bcaa-8f6e57dfc86a}"
+        }
+      ]
+    },
+    {
+      "id": "arms/arm_right/hand/ring_finger",
+      "fragment": "full",
+      "layerName": "13 | arms/arm_right/hand/ring_finger",
+      "layerUUID": "{4510cb4e-68bb-41e1-b8f5-f8f0f0ce8c2f}",
+      "level": 13,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "6aee58a00b2a9b4786e40a150dc6e65db9cd04e4db4df170ee6ff697fa6ec21b",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "fragment": "full",
+      "layerName": "14 | arms/arm_left/hand/middle_finger",
+      "layerUUID": "{77dd7450-bfed-474a-9430-874a4e35f190}",
+      "level": 14,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "3d795cd36aa6a4c6e38d00aa6016a3342dec9d609dede1cfddbafcd9f75000fe",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/middle_finger",
+      "fragment": "full",
+      "layerName": "15 | arms/arm_right/hand/middle_finger",
+      "layerUUID": "{0c6436cb-0783-44e4-915e-43662c767392}",
+      "level": 15,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "e3555dd1e44cb4207fc154231f3db5bc4da4a10129433264e6817d0726cc9c25",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "fragment": "full",
+      "layerName": "16 | arms/arm_left/hand/thumb",
+      "layerUUID": "{bf191541-773a-4056-9e34-01cc88e4ca22}",
+      "level": 16,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "e2685abb25d38a34499bade7283206b0459ed2f46752e8e62cec511d26f2e806",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "fragment": "full",
+      "layerName": "17 | arms/arm_right/hand/thumb",
+      "layerUUID": "{21d7568a-f9c4-416d-937a-1c663eb52b68}",
+      "level": 17,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "489afa22408ae301456877e1344a888d6cae3e4a3d58055ebee0c9856bde5b93",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "fragment": "full",
+      "layerName": "18 | arms/arm_left/hand/index_finger",
+      "layerUUID": "{36299159-6089-4cfe-ba16-b3c65ec98710}",
+      "level": 18,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "33a86e6190968fc9b2c2c28890336ef09c2fca62fdac8bd6f7ed8e1ff30ae936",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "fragment": "full",
+      "layerName": "19 | arms/arm_right/hand/index_finger",
+      "layerUUID": "{cee017cc-0abc-4690-a295-6ee7d8f12b4c}",
+      "level": 19,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "9bba4d3c0f541db1f632817d22fe5ab026644a2a507731c918f00238b00e3572",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "fragment": "full",
+      "layerName": "20 | arms/arm_left/hand/palm",
+      "layerUUID": "{a3cf3b02-afd4-4e7d-ac0e-6b3c6a9bdf1c}",
+      "level": 20,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "194de93f5711613a75d6384bade24414563a2f73fe439cf8e09df478cbaf91b5",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "fragment": "full",
+      "layerName": "21 | arms/arm_right/hand/palm",
+      "layerUUID": "{8dfddf91-2cc2-4ccc-a0e3-84812b3478bc}",
+      "level": 21,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "488dcc2be47a336189bc6441737f5c68a33c9058eb77646348b76d1abcfcf3d5",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "fragment": "full",
+      "layerName": "22 | arms/arm_left/forearm",
+      "layerUUID": "{29bb2c4d-bdae-4cb3-b603-14ee0741e6dd}",
+      "level": 22,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "e9b1877209f91c2e76c450b9b1aa9ca7877afb0042113a6b23802be73a7046f3",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "fragment": "full",
+      "layerName": "23 | arms/arm_right/forearm",
+      "layerUUID": "{3beed03f-949d-4f3a-9353-13e87e8989bd}",
+      "level": 23,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "409612efd3c1e88be439cbfd6e405fdfcd4ff4c797bac807eef22c7b90584514",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "fragment": "full",
+      "layerName": "24 | arms/arm_left/upper_arm",
+      "layerUUID": "{ac87d5b7-6c85-46bf-a23b-33a6b18b22aa}",
+      "level": 24,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "04318d5c6a2896ae045a539c0a4eb3abb290bf6db85534c6202234b52b12d170",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "fragment": "full",
+      "layerName": "25 | arms/arm_right/upper_arm",
+      "layerUUID": "{decfd947-28d2-4860-8930-4dfed8188037}",
+      "level": 25,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "bafe7b01c432505b8df817e280ad434830fceaa6dbbf7702d60f052981e31ac0",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "neck",
+      "fragment": "full",
+      "layerName": "26 | neck",
+      "layerUUID": "{68b98b37-a38c-4a70-8a26-fb87bb0cbe33}",
+      "level": 26,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "93747f002b74b0a4525a080cbc6c830fcd30321496b90a19ac89bdb9c13b2c99",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "body/torso",
+      "fragment": "full",
+      "layerName": "27 | body/torso",
+      "layerUUID": "{1630b7d7-6097-4334-84b5-2a48b92064d4}",
+      "level": 27,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "18b7b40143886eea8a726d5feaae7410eb67997441e83bfb51656a639848cad0",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "body/breast",
+      "fragment": "full",
+      "layerName": "28 | body/breast",
+      "layerUUID": "{337c5213-e37a-4929-8120-79f04a3a5aa1}",
+      "level": 28,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "9313fc2bd48235eae8542e8ab79953b0c8ae37591fd5eb7cc9f1f52e60ea5bcf",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "pelvis",
+      "fragment": "full",
+      "layerName": "29 | pelvis",
+      "layerUUID": "{8077f372-abff-4fe4-99dd-2f7ab598740c}",
+      "level": 29,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "110daabf3da6bd64d48ffea6177306f274b6d04448485b25c394291458d9dc08",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "fragment": "full",
+      "layerName": "30 | arms/arm_left/bracelet_front",
+      "layerUUID": "{7f3567bd-d211-4b7a-bb5f-818ad5d3bb05}",
+      "level": 30,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "47cb9f9c3113e14afc08fc9324372c406446e8527640cc24fc0d1491d0cd760a",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/bracelet_front",
+      "fragment": "full",
+      "layerName": "31 | arms/arm_right/bracelet_front",
+      "layerUUID": "{96cddaae-29c8-45df-b682-87d65a38d5d3}",
+      "level": 31,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "4cdd0b06aefe9e5931f2d7c2affead841f0fd90b19e06ddfac44c75c14ea0115",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/ears/ear_left",
+      "fragment": "full",
+      "layerName": "32 | face/ears/ear_left",
+      "layerUUID": "{2b674aab-ffe3-41d3-a0fa-55462a22040a}",
+      "level": 32,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "a866083b0d0228c87c305c1fd478c136d2c7b7abbf4a8836ed040290514c8a53",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/ears/ear_right",
+      "fragment": "full",
+      "layerName": "33 | face/ears/ear_right",
+      "layerUUID": "{e6e34b95-dec1-4923-bb8e-2d2eb4ac4a1f}",
+      "level": 33,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "1a43260522e5779db1b31248d796ee50b0e74e8bbb7750cda38f926a94a43d8a",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/face_base",
+      "fragment": "full",
+      "layerName": "34 | face/face_base",
+      "layerUUID": "{c3f39273-f952-456f-aa58-4cfd3ee4b101}",
+      "level": 34,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "761e33c7821e1874d15a3305c73b412d11096923655c58acccddcdef6c45ee08",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/blush_left",
+      "fragment": "full",
+      "layerName": "35 | face/blush_left",
+      "layerUUID": "{c1f6358e-afa3-4af4-bbc0-07432ad35e95}",
+      "level": 35,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "1771bf355116b618ef7c00530a8eeb3556879e66654c382959684559893af93c",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 180,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/blush_right",
+      "fragment": "full",
+      "layerName": "36 | face/blush_right",
+      "layerUUID": "{e2db8f94-dac4-49a0-9f58-e447b3960664}",
+      "level": 36,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "4a3f541de5e1a4e461b4d02700136b37caa247824ef3a4b487ab6af40c8620e7",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "fragment": "full",
+      "layerName": "37 | face/eyes/eye_left/sclera",
+      "layerUUID": "{0d6b92bf-92d0-494b-acf9-c7a6d133c5c0}",
+      "level": 37,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "bf02cca98dd5374c7880c3c738e83b5a3869d8f0743194982140668e3bf437bf",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "眼睛开口 left",
+          "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+          "ownerName": "眼内开合 left",
+          "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "fragment": "full",
+      "layerName": "38 | face/eyes/eye_left/iris",
+      "layerUUID": "{79ed3649-fddc-4bf8-b9fc-0267f7e9d4c1}",
+      "level": 38,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "a6cc8c0f961a6eb5f7e0f2292ca1db712cf464c2188eb0fa1cfa2371a58c6cea",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "眼睛开口 left",
+          "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+          "ownerName": "眼内开合 left",
+          "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "fragment": "full",
+      "layerName": "39 | face/eyes/eye_left/highlight",
+      "layerUUID": "{38d785a0-2b85-4126-a5d4-2d995993c0cb}",
+      "level": 39,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "c666d0c4f54e4b356134e47101e235a48a41c41e3c4e2844782eee2b081c5a42",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "高光虹膜范围 left",
+          "maskUUID": "{4ea9dc55-ede2-48ce-9270-2f1eaacb036f}",
+          "ownerName": "39 | face/eyes/eye_left/highlight",
+          "ownerUUID": "{38d785a0-2b85-4126-a5d4-2d995993c0cb}"
+        },
+        {
+          "maskName": "眼睛开口 left",
+          "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+          "ownerName": "眼内开合 left",
+          "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "fragment": "main",
+      "layerName": "40 | face/eyes/eye_left/upper_eyelid",
+      "layerUUID": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+      "level": 40,
+      "region": "完整上睑、连体睫毛主体及向下眼尾，扣除外侧短尖分片；主体覆盖同眼眼白、虹膜、高光，仍在57侧发后。",
+      "pixelHash": "af5222ebce90d6236811f79312a092c236b634ac45827d8d80a820b5bddab419",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [],
+      "fullPaintEvidence": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__main-raw.png",
+      "single": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__main-single.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__main-hide-above.png"
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "fragment": "outer_spike",
+      "layerName": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+      "layerUUID": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+      "level": 57.5,
+      "region": "外侧第三睫毛短尖及其连续根段，原画布x669–685、y346–359内的本件像素；位于57侧发前、58侧发与59头饰后，与40主体共同运动。",
+      "pixelHash": "3ec1a5cd2e9fe95dbc05c2b8dd621a378f44cd974de3a96672cf4983b17750d6",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [],
+      "fullPaintEvidence": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__outer_spike-raw.png",
+      "single": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__outer_spike-single.png",
+      "hideAbove": "raster-layering/step01/repair-evidence-01/fragments/face__eyes__eye_left__upper_eyelid__outer_spike-hide-above.png"
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "fragment": "full",
+      "layerName": "41 | face/eyes/eye_left/eyelid_crease",
+      "layerUUID": "{2de44cab-5ac3-49c4-a5a0-b84429a0818c}",
+      "level": 41,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "9a6f65df654e362d7a7208ff27ec0a44d1acec460c4fcc72472036dd200c5061",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "fragment": "full",
+      "layerName": "42 | face/eyes/eye_right/sclera",
+      "layerUUID": "{14a479b6-89ad-4a9f-ad72-d21873a39134}",
+      "level": 42,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "ed41cab5de81c79687d78d7b1d45e249a7d500c7220bb3d0a4dfe563c8c183d8",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "眼睛开口 right",
+          "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+          "ownerName": "眼内开合 right",
+          "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "fragment": "full",
+      "layerName": "43 | face/eyes/eye_right/iris",
+      "layerUUID": "{58cb7d99-1303-47b8-8317-5b18387cf4e3}",
+      "level": 43,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "96612f74e630b679696cf22bdc36e5464fc22120ffb578f89493a25885e297d4",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "眼睛开口 right",
+          "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+          "ownerName": "眼内开合 right",
+          "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "fragment": "full",
+      "layerName": "44 | face/eyes/eye_right/highlight",
+      "layerUUID": "{5b2f210f-f4fd-4df9-b302-1c9cd63f747e}",
+      "level": 44,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "ec30746e42004bcc6fdd98cf3884bbd7b648bd2e3ad1c60debc37fb3f4aa60ca",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "高光虹膜范围 right",
+          "maskUUID": "{ab4087a9-f7c6-4c0e-9b31-a7e58be174df}",
+          "ownerName": "44 | face/eyes/eye_right/highlight",
+          "ownerUUID": "{5b2f210f-f4fd-4df9-b302-1c9cd63f747e}"
+        },
+        {
+          "maskName": "眼睛开口 right",
+          "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+          "ownerName": "眼内开合 right",
+          "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "fragment": "full",
+      "layerName": "45 | face/eyes/eye_right/upper_eyelid",
+      "layerUUID": "{2397666a-3d0c-482b-bd9f-4e48785e77ae}",
+      "level": 45,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "cd58fa64212355f819c0286e2d2994d8b9692b9f8dba531d38609bb8d7ba313a",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "fragment": "full",
+      "layerName": "46 | face/eyes/eye_right/eyelid_crease",
+      "layerUUID": "{4ca54efb-c6fb-451f-a1ac-b29fb3ce1de7}",
+      "level": 46,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "444947b2fbbcfd8e3d3e6e49658e27d3b8de1197c179d241508f81a38b5010cd",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/nose",
+      "fragment": "full",
+      "layerName": "47 | face/nose",
+      "layerUUID": "{701f1a49-8a4c-497e-8bb8-710deea1d56e}",
+      "level": 47,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "4c2b313e9fba089d766f3a06db16ebfec3ca54bcfb0cb5574159ba721264fa1b",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 190,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "fragment": "full",
+      "layerName": "48 | face/mouth/mouth_interior",
+      "layerUUID": "{2835ab5e-38b6-44ab-a436-6010fcfa217f}",
+      "level": 48,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "b24aa0cfadac8d748375678e5b6e672c0557dd79ab6b840ce0ae71611aea4a19",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "上下唇开口",
+          "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+          "ownerName": "口内开合",
+          "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "fragment": "full",
+      "layerName": "49 | face/mouth/lower_teeth",
+      "layerUUID": "{cfd92245-2bed-4dd6-8962-aa81b90e43c8}",
+      "level": 49,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "f7bfa8576172b7def91aab8ba492f7cc452b962323dbf46d69de34984f59697b",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "下牙默认遮挡",
+          "maskUUID": "{4ef4f667-6607-458d-ab72-855884296f24}",
+          "ownerName": "49 | face/mouth/lower_teeth",
+          "ownerUUID": "{cfd92245-2bed-4dd6-8962-aa81b90e43c8}"
+        },
+        {
+          "maskName": "上下唇开口",
+          "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+          "ownerName": "口内开合",
+          "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/tongue",
+      "fragment": "full",
+      "layerName": "50 | face/mouth/tongue",
+      "layerUUID": "{3befd481-21d8-44a8-96bc-a4ab7e95a6d0}",
+      "level": 50,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "9454b516e2c7a98e7d5b0b6aed453f0ba34e69cd95d1fc9726722f11b275e0e5",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "上下唇开口",
+          "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+          "ownerName": "口内开合",
+          "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "fragment": "full",
+      "layerName": "51 | face/mouth/upper_teeth",
+      "layerUUID": "{076da129-6653-41b1-89ac-b83043cdb5a1}",
+      "level": 51,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "d41d886eac65d0b6bf7f0cc9f3a322a5902d2c6f66921493e5e295e06493d8c8",
+      "position": [
+        0,
+        5
+      ],
+      "opacity": 255,
+      "nativeMasks": [
+        {
+          "maskName": "上牙露出带",
+          "maskUUID": "{582994c8-f7c8-49a0-994c-c1a1924ede30}",
+          "ownerName": "51 | face/mouth/upper_teeth",
+          "ownerUUID": "{076da129-6653-41b1-89ac-b83043cdb5a1}"
+        },
+        {
+          "maskName": "上下唇开口",
+          "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+          "ownerName": "口内开合",
+          "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "fragment": "full",
+      "layerName": "52 | face/mouth/lower_lip",
+      "layerUUID": "{49667a5f-c28a-4103-89b3-a8bd132ee9e5}",
+      "level": 52,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "b00dd1208425dd2877e5eeff1b2393e761ee2f8b0efca00412868d9e4c4adec0",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "fragment": "full",
+      "layerName": "53 | face/mouth/upper_lip",
+      "layerUUID": "{3c5522af-747a-4063-92cd-1d5098b84d6d}",
+      "level": 53,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "e80f2a84bcb83e093fc7cedaa602a9b1179818c26f1cd5b5114e5bd21a8512f9",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left",
+      "fragment": "full",
+      "layerName": "54 | face/eyebrows/eyebrow_left",
+      "layerUUID": "{29fe8dcd-4637-48dc-b6d6-873445abd084}",
+      "level": 54,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "df7e3b3bd9a3d7b66e39cfa91a3733aff3f3d70976b01901176d6e27bf26154f",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right",
+      "fragment": "full",
+      "layerName": "55 | face/eyebrows/eyebrow_right",
+      "layerUUID": "{fcd3d071-f0f5-4ba1-b691-ddf2eec5ccf1}",
+      "level": 55,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "320c6de83b1760d4c93a4b3fce0ef56729b07f0bd2f4ea345d98d0de4448f429",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "hair/bangs",
+      "fragment": "full",
+      "layerName": "56 | hair/bangs",
+      "layerUUID": "{d8460341-1a17-4ea7-85e2-55efc4e6b0b3}",
+      "level": 56,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "e4fecdb4118f9a2b344e465d18422d116de31febf85ef85d9988688e5f53f281",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "fragment": "full",
+      "layerName": "57 | hair/side_hair/side_hair_left",
+      "layerUUID": "{d0910d01-e059-41dd-a4f6-0e1eef1138bd}",
+      "level": 57,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "d12a15ea84bd64578fa66d8fb9e2509e69193ee44c26295f5e9005bf24526d8b",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "fragment": "full",
+      "layerName": "58 | hair/side_hair/side_hair_right",
+      "layerUUID": "{78ad74b6-ab8f-4b6a-a7e9-7b4d20188fbf}",
+      "level": 58,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "7437d5bbe88cf97fe8054466e4d95add069b6b9b220dda48cb811db96a7820ea",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    },
+    {
+      "id": "head_accessories",
+      "fragment": "full",
+      "layerName": "59 | head_accessories",
+      "layerUUID": "{f9d0168b-70a0-4328-ae5e-3a1f137a6579}",
+      "level": 59,
+      "region": "完整部件；单绘画深度",
+      "pixelHash": "31cba6172853459d19dc31890b3fdd391c2580686914989d1110e6413234ea58",
+      "position": [
+        0,
+        0
+      ],
+      "opacity": 255,
+      "nativeMasks": []
+    }
+  ],
+  "paintLayers": 60,
+  "logicalParts": 59,
+  "masks": 10,
+  "nativeGroups": 3,
+  "visibilityRestored": true
+}

@@ -1,0 +1,20 @@
+{
+  "kra": "clothing-raster-layering/step01/clothing-depth.kra",
+  "savedAndReopened": true,
+  "passed": true,
+  "counts": {
+    "paintlayer": 32,
+    "transparencymask": 7,
+    "grouplayer": 5
+  },
+  "logicalParts": 23,
+  "treeOrderNamesUUIDsParentsVisibilityOpacityAndBlendingUnchanged": true,
+  "allPaintingsRetainNonemptyRawPixels": true,
+  "rawLayerPixelsMasksAndDefaultCompositeUnchanged": true,
+  "defaultMasksEnabled": true,
+  "differences": [],
+  "before": "clothing-raster-layering/step01/repair-02-evidence/reopen-before.json",
+  "after": "clothing-raster-layering/step01/repair-02-evidence/reopen-after.json",
+  "reopenedPNG": "clothing-raster-layering/step01/repair-02-evidence/clothing-composite-reopened.png",
+  "note": "Pixel hashes verify persistence only. Visual acceptance uses the solo, continuity, mask, seam-detail and final reference comparisons."
+}

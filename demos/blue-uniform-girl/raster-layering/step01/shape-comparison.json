@@ -1,0 +1,1690 @@
+[
+  {
+    "id": "hair/back_hair",
+    "SVGBox": [
+      172,
+      8,
+      914,
+      584
+    ],
+    "paintBox": [
+      173,
+      11,
+      914,
+      582
+    ],
+    "outsideBeyond2pxBox": [
+      201,
+      415,
+      895,
+      580
+    ],
+    "insideBeyond2pxBox": [
+      173,
+      8,
+      886,
+      584
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "legs/leg_left/shoes/cuff_back",
+    "SVGBox": [
+      585,
+      1171,
+      714,
+      1199
+    ],
+    "paintBox": [
+      584,
+      1172,
+      716,
+      1198
+    ],
+    "outsideBeyond2pxBox": [
+      680,
+      1184,
+      716,
+      1198
+    ],
+    "insideBeyond2pxBox": [
+      591,
+      1176,
+      713,
+      1199
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "legs/leg_right/shoes/cuff_back",
+    "SVGBox": [
+      350,
+      1156,
+      471,
+      1212
+    ],
+    "paintBox": [
+      350,
+      1157,
+      471,
+      1209
+    ],
+    "outsideBeyond2pxBox": [
+      459,
+      1192,
+      471,
+      1206
+    ],
+    "insideBeyond2pxBox": [
+      350,
+      1168,
+      470,
+      1212
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "legs/leg_left/leg",
+    "SVGBox": [
+      581,
+      779,
+      707,
+      1341
+    ],
+    "paintBox": [
+      582,
+      796,
+      706,
+      1326
+    ],
+    "outsideBeyond2pxBox": [
+      582,
+      1107,
+      701,
+      1322
+    ],
+    "insideBeyond2pxBox": [
+      581,
+      779,
+      705,
+      1341
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "legs/leg_right/leg",
+    "SVGBox": [
+      340,
+      777,
+      572,
+      1339
+    ],
+    "paintBox": [
+      341,
+      777,
+      570,
+      1338
+    ],
+    "outsideBeyond2pxBox": [
+      342,
+      778,
+      485,
+      1332
+    ],
+    "insideBeyond2pxBox": [
+      342,
+      778,
+      571,
+      1339
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "legs/leg_left/shoes/shoe_front",
+    "SVGBox": [
+      574,
+      1187,
+      714,
+      1372
+    ],
+    "paintBox": [
+      574,
+      1186,
+      713,
+      1372
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "legs/leg_right/shoes/shoe_front",
+    "SVGBox": [
+      323,
+      1166,
+      470,
+      1371
+    ],
+    "paintBox": [
+      323,
+      1166,
+      469,
+      1372
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/bracelet_back",
+    "SVGBox": [
+      724,
+      804,
+      815,
+      879
+    ],
+    "paintBox": [
+      723,
+      805,
+      815,
+      877
+    ],
+    "outsideBeyond2pxBox": [
+      725,
+      817,
+      806,
+      876
+    ],
+    "insideBeyond2pxBox": [
+      726,
+      811,
+      773,
+      879
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/bracelet_back",
+    "SVGBox": [
+      294,
+      802,
+      379,
+      878
+    ],
+    "paintBox": [
+      294,
+      802,
+      379,
+      878
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      344,
+      811,
+      370,
+      829
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/hand/little_finger",
+    "SVGBox": [
+      827,
+      904,
+      857,
+      960
+    ],
+    "paintBox": [
+      826,
+      904,
+      858,
+      961
+    ],
+    "outsideBeyond2pxBox": [
+      854,
+      958,
+      857,
+      961
+    ],
+    "insideBeyond2pxBox": [
+      841,
+      906,
+      845,
+      912
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/hand/little_finger",
+    "SVGBox": [
+      269,
+      917,
+      288,
+      954
+    ],
+    "paintBox": [
+      268,
+      917,
+      288,
+      954
+    ],
+    "outsideBeyond2pxBox": [
+      268,
+      918,
+      288,
+      948
+    ],
+    "insideBeyond2pxBox": [
+      281,
+      918,
+      288,
+      936
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/hand/ring_finger",
+    "SVGBox": [
+      813,
+      903,
+      846,
+      971
+    ],
+    "paintBox": [
+      812,
+      903,
+      847,
+      971
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/hand/ring_finger",
+    "SVGBox": [
+      274,
+      904,
+      303,
+      962
+    ],
+    "paintBox": [
+      272,
+      903,
+      303,
+      962
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/hand/middle_finger",
+    "SVGBox": [
+      807,
+      902,
+      844,
+      984
+    ],
+    "paintBox": [
+      807,
+      903,
+      845,
+      984
+    ],
+    "outsideBeyond2pxBox": [
+      812,
+      925,
+      815,
+      928
+    ],
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "SVGBox": [
+      266,
+      910,
+      299,
+      976
+    ],
+    "paintBox": [
+      266,
+      910,
+      299,
+      977
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "SVGBox": [
+      773,
+      906,
+      821,
+      967
+    ],
+    "paintBox": [
+      775,
+      907,
+      826,
+      968
+    ],
+    "outsideBeyond2pxBox": [
+      817,
+      916,
+      826,
+      967
+    ],
+    "insideBeyond2pxBox": [
+      780,
+      924,
+      803,
+      965
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/hand/thumb",
+    "SVGBox": [
+      304,
+      878,
+      346,
+      956
+    ],
+    "paintBox": [
+      305,
+      878,
+      346,
+      957
+    ],
+    "outsideBeyond2pxBox": [
+      323,
+      917,
+      342,
+      955
+    ],
+    "insideBeyond2pxBox": [
+      304,
+      884,
+      310,
+      930
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "SVGBox": [
+      815,
+      901,
+      866,
+      976
+    ],
+    "paintBox": [
+      815,
+      903,
+      866,
+      975
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      815,
+      901,
+      852,
+      975
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "SVGBox": [
+      254,
+      891,
+      306,
+      969
+    ],
+    "paintBox": [
+      253,
+      890,
+      305,
+      970
+    ],
+    "outsideBeyond2pxBox": [
+      264,
+      891,
+      273,
+      899
+    ],
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/hand/palm",
+    "SVGBox": [
+      749,
+      826,
+      852,
+      938
+    ],
+    "paintBox": [
+      749,
+      827,
+      853,
+      928
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      787,
+      839,
+      830,
+      938
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/hand/palm",
+    "SVGBox": [
+      254,
+      812,
+      368,
+      932
+    ],
+    "paintBox": [
+      252,
+      813,
+      369,
+      933
+    ],
+    "outsideBeyond2pxBox": [
+      339,
+      894,
+      351,
+      920
+    ],
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/forearm",
+    "SVGBox": [
+      670,
+      719,
+      806,
+      880
+    ],
+    "paintBox": [
+      670,
+      718,
+      807,
+      881
+    ],
+    "outsideBeyond2pxBox": [
+      774,
+      859,
+      807,
+      881
+    ],
+    "insideBeyond2pxBox": [
+      776,
+      807,
+      781,
+      814
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/forearm",
+    "SVGBox": [
+      316,
+      704,
+      439,
+      871
+    ],
+    "paintBox": [
+      318,
+      704,
+      437,
+      871
+    ],
+    "outsideBeyond2pxBox": [
+      321,
+      853,
+      351,
+      871
+    ],
+    "insideBeyond2pxBox": [
+      316,
+      706,
+      439,
+      871
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/upper_arm",
+    "SVGBox": [
+      604,
+      572,
+      735,
+      762
+    ],
+    "paintBox": [
+      605,
+      571,
+      735,
+      765
+    ],
+    "outsideBeyond2pxBox": [
+      673,
+      671,
+      688,
+      765
+    ],
+    "insideBeyond2pxBox": [
+      610,
+      583,
+      713,
+      753
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/upper_arm",
+    "SVGBox": [
+      375,
+      562,
+      534,
+      757
+    ],
+    "paintBox": [
+      375,
+      561,
+      535,
+      764
+    ],
+    "outsideBeyond2pxBox": [
+      381,
+      746,
+      427,
+      764
+    ],
+    "insideBeyond2pxBox": [
+      447,
+      579,
+      527,
+      726
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "neck",
+    "SVGBox": [
+      506,
+      507,
+      628,
+      604
+    ],
+    "paintBox": [
+      506,
+      509,
+      629,
+      603
+    ],
+    "outsideBeyond2pxBox": [
+      506,
+      573,
+      629,
+      588
+    ],
+    "insideBeyond2pxBox": [
+      506,
+      533,
+      619,
+      571
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "body/torso",
+    "SVGBox": [
+      465,
+      562,
+      685,
+      845
+    ],
+    "paintBox": [
+      473,
+      562,
+      678,
+      845
+    ],
+    "outsideBeyond2pxBox": [
+      477,
+      562,
+      617,
+      803
+    ],
+    "insideBeyond2pxBox": [
+      465,
+      565,
+      685,
+      841
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "body/breast",
+    "SVGBox": [
+      478,
+      626,
+      681,
+      715
+    ],
+    "paintBox": [
+      478,
+      627,
+      682,
+      716
+    ],
+    "outsideBeyond2pxBox": [
+      643,
+      714,
+      650,
+      716
+    ],
+    "insideBeyond2pxBox": [
+      538,
+      707,
+      614,
+      715
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "pelvis",
+    "SVGBox": [
+      454,
+      702,
+      692,
+      920
+    ],
+    "paintBox": [
+      454,
+      701,
+      692,
+      921
+    ],
+    "outsideBeyond2pxBox": [
+      455,
+      702,
+      554,
+      894
+    ],
+    "insideBeyond2pxBox": [
+      500,
+      740,
+      685,
+      895
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_left/bracelet_front",
+    "SVGBox": [
+      724,
+      813,
+      821,
+      893
+    ],
+    "paintBox": [
+      724,
+      815,
+      822,
+      891
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      726,
+      813,
+      798,
+      893
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "arms/arm_right/bracelet_front",
+    "SVGBox": [
+      288,
+      807,
+      386,
+      889
+    ],
+    "paintBox": [
+      287,
+      807,
+      387,
+      890
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/ears/ear_left",
+    "SVGBox": [
+      679,
+      350,
+      770,
+      462
+    ],
+    "paintBox": [
+      683,
+      349,
+      766,
+      462
+    ],
+    "outsideBeyond2pxBox": [
+      698,
+      349,
+      735,
+      462
+    ],
+    "insideBeyond2pxBox": [
+      679,
+      351,
+      770,
+      462
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/ears/ear_right",
+    "SVGBox": [
+      316,
+      405,
+      400,
+      494
+    ],
+    "paintBox": [
+      317,
+      405,
+      399,
+      495
+    ],
+    "outsideBeyond2pxBox": [
+      336,
+      406,
+      354,
+      422
+    ],
+    "insideBeyond2pxBox": [
+      359,
+      485,
+      360,
+      486
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/face_base",
+    "SVGBox": [
+      332,
+      174,
+      701,
+      548
+    ],
+    "paintBox": [
+      332,
+      175,
+      700,
+      547
+    ],
+    "outsideBeyond2pxBox": [
+      595,
+      479,
+      667,
+      529
+    ],
+    "insideBeyond2pxBox": [
+      332,
+      180,
+      701,
+      547
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/blush_left",
+    "SVGBox": [
+      575,
+      411,
+      659,
+      473
+    ],
+    "paintBox": [
+      603,
+      430,
+      644,
+      456
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      575,
+      411,
+      659,
+      473
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/blush_right",
+    "SVGBox": [
+      383,
+      458,
+      464,
+      510
+    ],
+    "paintBox": [
+      395,
+      471,
+      433,
+      498
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      383,
+      458,
+      464,
+      510
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_left/sclera",
+    "SVGBox": [
+      558,
+      335,
+      658,
+      427
+    ],
+    "paintBox": [
+      558,
+      335,
+      659,
+      429
+    ],
+    "outsideBeyond2pxBox": [
+      640,
+      393,
+      656,
+      416
+    ],
+    "insideBeyond2pxBox": [
+      560,
+      361,
+      561,
+      362
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_left/iris",
+    "SVGBox": [
+      570,
+      336,
+      642,
+      427
+    ],
+    "paintBox": [
+      570,
+      335,
+      642,
+      428
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_left/highlight",
+    "SVGBox": [
+      595,
+      350,
+      608,
+      377
+    ],
+    "paintBox": [
+      596,
+      351,
+      609,
+      377
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      605,
+      372,
+      606,
+      373
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "SVGBox": [
+      551,
+      315,
+      682,
+      392
+    ],
+    "paintBox": [
+      554,
+      315,
+      679,
+      392
+    ],
+    "outsideBeyond2pxBox": [
+      555,
+      315,
+      676,
+      392
+    ],
+    "insideBeyond2pxBox": [
+      551,
+      316,
+      682,
+      392
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_left/eyelid_crease",
+    "SVGBox": [
+      549,
+      311,
+      597,
+      338
+    ],
+    "paintBox": [
+      549,
+      311,
+      597,
+      338
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_right/sclera",
+    "SVGBox": [
+      365,
+      374,
+      454,
+      460
+    ],
+    "paintBox": [
+      366,
+      372,
+      454,
+      461
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      435,
+      382,
+      453,
+      410
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_right/iris",
+    "SVGBox": [
+      388,
+      372,
+      453,
+      458
+    ],
+    "paintBox": [
+      386,
+      372,
+      453,
+      458
+    ],
+    "outsideBeyond2pxBox": [
+      388,
+      374,
+      397,
+      386
+    ],
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_right/highlight",
+    "SVGBox": [
+      401,
+      385,
+      428,
+      432
+    ],
+    "paintBox": [
+      401,
+      386,
+      428,
+      432
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      416,
+      387,
+      417,
+      388
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_right/upper_eyelid",
+    "SVGBox": [
+      337,
+      361,
+      444,
+      435
+    ],
+    "paintBox": [
+      336,
+      362,
+      444,
+      438
+    ],
+    "outsideBeyond2pxBox": [
+      375,
+      435,
+      377,
+      438
+    ],
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyes/eye_right/eyelid_crease",
+    "SVGBox": [
+      385,
+      350,
+      439,
+      368
+    ],
+    "paintBox": [
+      385,
+      349,
+      440,
+      369
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/nose",
+    "SVGBox": [
+      488,
+      443,
+      493,
+      450
+    ],
+    "paintBox": [
+      488,
+      443,
+      493,
+      449
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/mouth/mouth_interior",
+    "SVGBox": [
+      485,
+      458,
+      565,
+      526
+    ],
+    "paintBox": [
+      484,
+      460,
+      567,
+      524
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      504,
+      458,
+      543,
+      468
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/mouth/lower_teeth",
+    "SVGBox": [
+      504,
+      496,
+      554,
+      528
+    ],
+    "paintBox": [
+      502,
+      498,
+      555,
+      524
+    ],
+    "outsideBeyond2pxBox": [
+      504,
+      514,
+      505,
+      515
+    ],
+    "insideBeyond2pxBox": [
+      524,
+      496,
+      553,
+      528
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/mouth/tongue",
+    "SVGBox": [
+      504,
+      468,
+      554,
+      515
+    ],
+    "paintBox": [
+      504,
+      471,
+      556,
+      518
+    ],
+    "outsideBeyond2pxBox": [
+      516,
+      494,
+      556,
+      518
+    ],
+    "insideBeyond2pxBox": [
+      532,
+      468,
+      547,
+      472
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/mouth/upper_teeth",
+    "SVGBox": [
+      496,
+      455,
+      548,
+      475
+    ],
+    "paintBox": [
+      495,
+      461,
+      550,
+      479
+    ],
+    "outsideBeyond2pxBox": [
+      495,
+      463,
+      550,
+      479
+    ],
+    "insideBeyond2pxBox": [
+      496,
+      455,
+      548,
+      471
+    ],
+    "paintPosition": [
+      0,
+      5
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Krita pixelData already in canvas coordinates; position not applied twice. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/mouth/lower_lip",
+    "SVGBox": [
+      484,
+      458,
+      568,
+      528
+    ],
+    "paintBox": [
+      483,
+      460,
+      568,
+      527
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      484,
+      459,
+      561,
+      528
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/mouth/upper_lip",
+    "SVGBox": [
+      479,
+      445,
+      571,
+      501
+    ],
+    "paintBox": [
+      479,
+      455,
+      571,
+      492
+    ],
+    "outsideBeyond2pxBox": [
+      495,
+      468,
+      550,
+      482
+    ],
+    "insideBeyond2pxBox": [
+      479,
+      445,
+      570,
+      501
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "SVGBox": [
+      539,
+      258,
+      648,
+      282
+    ],
+    "paintBox": [
+      540,
+      258,
+      647,
+      283
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "SVGBox": [
+      342,
+      295,
+      428,
+      319
+    ],
+    "paintBox": [
+      340,
+      295,
+      430,
+      320
+    ],
+    "outsideBeyond2pxBox": [
+      340,
+      314,
+      430,
+      320
+    ],
+    "insideBeyond2pxBox": null,
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "hair/bangs",
+    "SVGBox": [
+      320,
+      60,
+      542,
+      380
+    ],
+    "paintBox": [
+      321,
+      65,
+      540,
+      375
+    ],
+    "outsideBeyond2pxBox": [
+      452,
+      336,
+      529,
+      359
+    ],
+    "insideBeyond2pxBox": [
+      323,
+      60,
+      542,
+      380
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "hair/side_hair/side_hair_left",
+    "SVGBox": [
+      469,
+      51,
+      730,
+      575
+    ],
+    "paintBox": [
+      469,
+      61,
+      730,
+      565
+    ],
+    "outsideBeyond2pxBox": [
+      523,
+      64,
+      671,
+      565
+    ],
+    "insideBeyond2pxBox": [
+      469,
+      51,
+      729,
+      575
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "hair/side_hair/side_hair_right",
+    "SVGBox": [
+      255,
+      63,
+      465,
+      606
+    ],
+    "paintBox": [
+      255,
+      74,
+      462,
+      595
+    ],
+    "outsideBeyond2pxBox": [
+      283,
+      77,
+      417,
+      595
+    ],
+    "insideBeyond2pxBox": [
+      257,
+      63,
+      465,
+      606
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  },
+  {
+    "id": "head_accessories",
+    "SVGBox": [
+      647,
+      147,
+      768,
+      275
+    ],
+    "paintBox": [
+      647,
+      147,
+      769,
+      276
+    ],
+    "outsideBeyond2pxBox": null,
+    "insideBeyond2pxBox": [
+      745,
+      163,
+      751,
+      166
+    ],
+    "paintPosition": [
+      0,
+      0
+    ],
+    "method": "SVG alpha >128; paint alpha >64; >2px support difference. Coordinate bookkeeping only; no quality score."
+  }
+]

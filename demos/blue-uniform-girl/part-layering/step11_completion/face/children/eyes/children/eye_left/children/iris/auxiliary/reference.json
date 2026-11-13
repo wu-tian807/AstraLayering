@@ -1,0 +1,26 @@
+{
+  "mode": "built-in image_gen",
+  "pose": "same-pose, both eyes fully open",
+  "sourceCrop": [
+    270,
+    185,
+    525,
+    385
+  ],
+  "sourceCropScale": 2,
+  "generatedDimensions": [
+    1464,
+    1074
+  ],
+  "referenceRegion": [
+    835,
+    408,
+    209,
+    260
+  ],
+  "referenceOffset": [
+    0,
+    0
+  ],
+  "prompt": "Use case: precise-object-edit. Asset type: anatomical structure reference for an anime character iris, same-pose face illustration. Edit the supplied complete-face crop of this specific character. Keep identical head orientation, face proportions, eye centers, iris scale and positions, lower and lateral eye edges, smile, hairstyle, ears, colors, and illustration style. Change only the eye opening state: BOTH eyes are naturally fully and comfortably open, raising the upper eyelids just sufficiently to reveal the full smooth rounded upper poles of BOTH blue-cyan oval irises, with a fine strip of sclera above each iris. Preserve the original iris aspect ratio, dark border, dark oval pupil, blue-cyan internal shading and highlights. Show the irises naturally combined with their full eyes within the full face, not isolated eyeballs or diagrams. The target is the character's LEFT iris on the VIEWER'S RIGHT. The existing iris stays at its original size and location; do not enlarge the iris to fill the newly opened eyelid gap. No head rotation, no side view, no new accessories, no text, no arrows, no panel layout. Output a single face crop matching the supplied composition."
+}

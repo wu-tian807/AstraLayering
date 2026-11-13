@@ -1,0 +1,35 @@
+[
+  {
+    "label": "composite",
+    "tool_original_manifest": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/regions.json",
+    "copied_manifest": "clothing-raster-layering/step01/review-01-evidence/regions/composite/regions.json",
+    "marked": "clothing-raster-layering/step01/review-01-evidence/regions/composite/marked.png",
+    "region_ids": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R7",
+      "R8"
+    ]
+  },
+  {
+    "label": "collar-seat-solo",
+    "tool_original_manifest": "clothing-raster-layering/step01/workspace/review-regions/dd1d22db-8999-4aa8-b213-9804127bb902/regions.json",
+    "copied_manifest": "clothing-raster-layering/step01/review-01-evidence/regions/collar-seat-solo/regions.json",
+    "marked": "clothing-raster-layering/step01/review-01-evidence/regions/collar-seat-solo/marked.png",
+    "region_ids": [
+      "R6"
+    ]
+  },
+  {
+    "label": "skirt-front-solo",
+    "tool_original_manifest": "clothing-raster-layering/step01/workspace/review-regions/664319f7-f3c0-43ee-afcf-71e55fa9b8ab/regions.json",
+    "copied_manifest": "clothing-raster-layering/step01/review-01-evidence/regions/skirt-front-solo/regions.json",
+    "marked": "clothing-raster-layering/step01/review-01-evidence/regions/skirt-front-solo/marked.png",
+    "region_ids": [
+      "R9"
+    ]
+  }
+]

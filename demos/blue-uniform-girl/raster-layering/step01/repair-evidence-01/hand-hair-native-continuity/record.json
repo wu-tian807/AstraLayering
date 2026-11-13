@@ -1,0 +1,242 @@
+{
+  "newPassedIssues": [
+    "R6",
+    "R7",
+    "R24",
+    "R25"
+  ],
+  "passedIssues": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8",
+    "R9",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35"
+  ],
+  "pendingIssues": [
+    "R21"
+  ],
+  "conclusion": "仍有问题",
+  "changedLogicalParts": [
+    "hair/back_hair",
+    "arms/arm_left/hand/thumb",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "hair/side_hair/side_hair_left",
+    "hair/side_hair/side_hair_right"
+  ],
+  "unchangedLogicalPaints": 50,
+  "uuidChangedParts": [
+    "hair/back_hair",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_right/hand/palm",
+    "hair/side_hair/side_hair_right"
+  ],
+  "alphaChangedParts": [
+    "hair/back_hair",
+    "arms/arm_left/hand/thumb",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "hair/side_hair/side_hair_left",
+    "hair/side_hair/side_hair_right"
+  ],
+  "logicalParts": 59,
+  "paintLayers": 60,
+  "nativeMasks": 10,
+  "nativeGroups": 3,
+  "maskUUIDAndOwnershipAndSelectionsUnchanged": true,
+  "acceptedOperations": [
+    "left-hand-own-native-seam-and-root-ink",
+    "left-palm-own-tiger-root-continuity",
+    "left-index-own-outline-density",
+    "right-hand-own-native-root-transition",
+    "right-thumb-native-smooth-own-root-contour",
+    "left-side-hair-own-actual-contour-and-volume",
+    "left-side-and-back-own-native-continuation-registration [side only]",
+    "back-own-gap-material-native-only",
+    "back-own-obsolete-cut-rim-material-removal",
+    "back-own-completed-outer-edge-native-ink",
+    "back-right-own-generated-tip-local-registration",
+    "right-side-own-native-upper-and-tip-continuity",
+    "right-side-own-native-inner-contour-registration"
+  ],
+  "rejectedTrials": [
+    "整件掌生成：新增浅边/弧形暗带；完全撤回。",
+    "较宽掌指原图取样：接色块和接线问题；三件恢复本批初始后另做局部原生修画。",
+    "右食指原图根面取样：亮色接带；完全撤回。",
+    "右拇指折线裁边：线宽/转接不足；撤回后改连续曲线。",
+    "前侧发假设发流线和较宽原图取样：并行鬼线/邻件颜色风险；全部撤回。",
+    "后发整段覆盖、软边、并行新发流线试画：全部撤回。",
+    "右后发末次较大末端配准：小折角；已恢复较小连续配准版本。"
+  ],
+  "generation": {
+    "generatedSource": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_ZsRJVwDqCMp2ohUU0QaS3Ojb.png",
+    "copiedSource": "raster-layering/step01/workspace/repair-next11/generation/palm-left-generated.png",
+    "originalSize": [
+      1254,
+      1254
+    ],
+    "registration": "full canvas uniformly downsampled to171x171, placed at230,780, no alpha/ink clipping",
+    "registered": "raster-layering/step01/workspace/repair-next11/generation/palm-left-registered.png",
+    "recoveredToolError": "unknown field `size`, expected one of `prompt`, `transparent_background`, `referenced_image_paths`, `num_last_images_to_include` at line 1 column 7",
+    "recovery": "Removed unsupported size/n fields and retried successfully with native tool schema",
+    "accepted": false,
+    "inputRecord": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/generation/palm-left-input.json",
+    "reason": "指根浅边及腕根弧形暗带，原生三视图后撤回，不列作有效绘画"
+  },
+  "changedParts": [
+    {
+      "id": "hair/back_hair",
+      "layerName": "01 | hair/back_hair",
+      "layerUUID": "{361b34f7-bcda-4b9d-9945-0c90f51599c5}",
+      "level": 1,
+      "region": "左侧自身青蓝承接及旧裁边清理；右侧本件末端小范围配准，R21仍待修",
+      "reuseSource": "本件已有生成画面局部配准、Krita原生自身笔触；后发补画只从它自己的生成画面原生取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "layerName": "16 | arms/arm_left/hand/thumb",
+      "layerUUID": "{bf191541-773a-4056-9e34-01cc88e4ca22}",
+      "level": 16,
+      "region": "自己虎口外缘连续曲线收边约1–2px、原生外线接续",
+      "reuseSource": "本件已有生成画面局部配准、Krita原生自身笔触；后发补画只从它自己的生成画面原生取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "layerName": "17 | arms/arm_right/hand/thumb",
+      "layerUUID": "{21d7568a-f9c4-416d-937a-1c663eb52b68}",
+      "level": 17,
+      "region": "自己的上根面局部接色，完整生成根部保留",
+      "reuseSource": "本件已有生成画面局部配准、Krita原生自身笔触；后发补画只从它自己的生成画面原生取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "layerName": "18 | arms/arm_left/hand/index_finger",
+      "layerUUID": "{36299159-6089-4cfe-ba16-b3c65ec98710}",
+      "level": 18,
+      "region": "自己的根面体积融色及根缘外线",
+      "reuseSource": "本件已有生成画面局部配准、Krita原生自身笔触；后发补画只从它自己的生成画面原生取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "layerName": "19 | arms/arm_right/hand/index_finger",
+      "layerUUID": "{cee017cc-0abc-4690-a295-6ee7d8f12b4c}",
+      "level": 19,
+      "region": "本件根面接色与自身内缘外线浓淡",
+      "reuseSource": "本件已有生成画面局部配准、Krita原生自身笔触；后发补画只从它自己的生成画面原生取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "layerName": "20 | arms/arm_left/hand/palm",
+      "layerUUID": "{a3cf3b02-afd4-4e7d-ac0e-6b3c6a9bdf1c}",
+      "level": 20,
+      "region": "掌指斜向接色及外缘接点小凸点收顺",
+      "reuseSource": "本件已有生成画面局部配准、Krita原生自身笔触；后发补画只从它自己的生成画面原生取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "layerName": "21 | arms/arm_right/hand/palm",
+      "layerUUID": "{8dfddf91-2cc2-4ccc-a0e3-84812b3478bc}",
+      "level": 21,
+      "region": "掌指根面局部融色及虎口上接点自己的连续结构线",
+      "reuseSource": "本件已有生成画面局部配准、Krita原生自身笔触；后发补画只从它自己的生成画面原生取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "layerName": "57 | hair/side_hair/side_hair_left",
+      "layerUUID": "{d0910d01-e059-41dd-a4f6-0e1eef1138bd}",
+      "level": 57,
+      "region": "完整外上缘收顺、长束内缘按原图收边及自身轮廓续线",
+      "reuseSource": "本件已有生成画面局部配准、Krita原生自身笔触；后发补画只从它自己的生成画面原生取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "layerName": "58 | hair/side_hair/side_hair_right",
+      "layerUUID": "{78ad74b6-ab8f-4b6a-a7e9-7b4d20188fbf}",
+      "level": 58,
+      "region": "中段到末端的自身弯曲内缘收边、自身体积接色和外线接续",
+      "reuseSource": "本件已有生成画面局部配准、Krita原生自身笔触；后发补画只从它自己的生成画面原生取样",
+      "nativeMasks": []
+    }
+  ],
+  "method": "已有生成绘画上局部原生修画、自己的生成材质原生取样与局部配准；不整形体填色，不跨part复制，不烘焙他件投影。",
+  "checks": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks",
+  "currentThreeViews": "raster-layering/step01/repair-evidence-01/index.json",
+  "upstreamChanges": [],
+  "thisBatchSplits": [],
+  "preAnnotatedSplits": [],
+  "priorAssemblyDiscoveredSplits": [
+    {
+      "logicalID": "face/eyes/eye_left/upper_eyelid",
+      "fragments": [
+        {
+          "name": "40 | face/eyes/eye_left/upper_eyelid",
+          "uuid": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+          "level": 40
+        },
+        {
+          "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+          "uuid": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+          "level": 57.5
+        }
+      ],
+      "region": [
+        669,
+        346,
+        17,
+        14
+      ],
+      "paintCount": 60,
+      "logicalCount": 59,
+      "unionRawExact": true,
+      "reason": "原图外侧短睫毛尖跨在57侧发前，主体仍在侧发后；同一上睑共同运动的两个深度分片，未新增控制身份。"
+    }
+  ],
+  "freshDiskOpen": true,
+  "reopenVerification": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/reopen-verification.json",
+  "maskVerification": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/mask-verification.json",
+  "reopenPassed": true,
+  "defaultPNGMatchesReopen": true,
+  "remaining": "此前对两侧回弯束及外围发尖的有效描边继续保留。本批完整检查左右回弯真实空隙及隐藏后发，并补左侧前发下方的本件承接：从本件已有生成蓝面局部原生取样，补自身欠缺区域，去掉旧裁切边形成的暗线，沿完成后的本件外缘逐笔接描边。整段覆盖旧画、软色边以及新增并行发流线的后发试稿均撤回，最终只保留明确记录的自身补画与原有有效线条。右侧青蓝末端还尝试了局部同件材质配准；末次偏大的发尖配准出现小折角，已完全撤回到较小、连续的配准版本。当前后发右侧青蓝束末端仍比原图短，和已收顺的前侧发组装后，真实空隙仍偏宽；左侧新补承接的完整轮廓及融色也须继续精修到最终标准。所以R21仍需修复，不能把当前整图或本条判为通过。"
+}

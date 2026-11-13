@@ -1,0 +1,20 @@
+{
+  "authoritativeState": "raster-layering/step01/character-depth.kra",
+  "operationsAreChronologicalTrialsNotAllFinalAccepted": true,
+  "withdrawn": [
+    "R3扩大局部注册引入上方尖点和横线，恢复有效R2来源后改为完整本腿自身切向注册。",
+    "R4初始边界清理未去净；后一次选区误清出内部矩形透明洞，恢复初始本件后只清轮廓外灰枝并原生续线。",
+    "R12两次三色生成改变线形，撤回；取样横线与自动拟合错误S支线也撤回。"
+  ],
+  "final": [
+    "R3 complete-leg-inner-tangent-no-spike-finish",
+    "R4 elbow-own-boundary-and-cyan-tip-native-finish",
+    "R12 hair-single-flow-native-curve-correction",
+    "R8/R9 shared-eye-upper-inner-opening-aa-underlap + complete-iris-native-upper-cap-linehead-cleanup"
+  ],
+  "additionalSelfChecksRepaired": [
+    "SELF-1 完整腿尖点/横线",
+    "SELF-2 双虹膜完整上弧轮廓外线头"
+  ],
+  "reportEvidenceUsesLatestExport": true
+}

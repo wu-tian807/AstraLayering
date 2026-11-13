@@ -1,0 +1,11 @@
+{
+  "id": "arms/arm_right/forearm",
+  "box": [
+    295,
+    685,
+    465,
+    890
+  ],
+  "scale": 4,
+  "method": "red exact own visible forearm, yellow complete root and wrist, green excluded; base non-own neutralized"
+}

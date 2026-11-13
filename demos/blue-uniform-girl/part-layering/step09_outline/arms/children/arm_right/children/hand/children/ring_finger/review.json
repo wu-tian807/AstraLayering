@@ -1,0 +1,58 @@
+{
+  "groupId": "arms/arm_right/hand/ring_finger",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取当前组及父手组说明、原图、候选与父完成 SVG。整图叠加定位后，检查完整短指段选框 [276,920,35,49]，并以相互重叠的指根/上段 [279,925,29,22]、下段/指端 [284,940,25,27] 在 8 倍 blend 与 edge 中逐块核对全部可见区域。候选归属正确：覆盖中指右上侧、真实指缝下方的无名指短段，未把拇指、最低的中指指端或指缝并入。指根连接、前侧手指遮挡接缝、右侧外缘及圆钝指端与参考相符；没有可见组件遗漏、真实孔洞填平、无依据碎片或噪点。近端不可见结构无需本轮恢复。独显轮廓连续干净。group 未设置 allowOutsideParent，四倍采样父范围检查 outsidePixels=0，候选满足父范围约束。未发现确定需要修改的问题。\n\n图像证据：\n\n\n\n\n",
+      "candidateHash": "525d63b9cefed1c3381e64579fe682c2ea3792eda524926bfe4948233e5bccb0",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-10T18-29-13-085Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-10T18-29-13-085Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-10T18-29-13-085Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-10T18-29-13-085Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-10T18-29-13-085Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-10T18-29-13-085Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-10T18-29-13-085Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-10T18-29-13-085Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-10T18-29-13-085Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T18:57:04.926Z"
+    }
+  ]
+}

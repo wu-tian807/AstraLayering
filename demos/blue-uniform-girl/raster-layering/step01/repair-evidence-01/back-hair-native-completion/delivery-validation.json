@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "conclusion": "已修复",
+  "passedIssues": 35,
+  "pendingIssues": [],
+  "newPassedIssues": [
+    "R21"
+  ],
+  "logicalParts": 59,
+  "paintLayers": 60,
+  "nativeGroups": 3,
+  "nativeMasks": 10,
+  "changedLogicalPaints": [
+    "hair/back_hair"
+  ],
+  "other58LogicalRGBAUnchanged": true,
+  "alphaChangedParts": [
+    "hair/back_hair"
+  ],
+  "maskUUIDOwnershipAndSelectionUnchanged": true,
+  "upstreamDepthTableUnchanged": true,
+  "reopenTreeAndPixelsAndProjectionIdentical": true,
+  "PNGMatchesReopenAndKRAMergedImage": true,
+  "KRAZipCRCValid": true,
+  "allReportLinksExist": true,
+  "all35ResultsWritten": true,
+  "kraPath": "raster-layering/step01/character-depth.kra",
+  "kraBytes": 11303579,
+  "kraSHA256": "92d45646603dec4b823f90b9274af31a17cbb81d54051b2e77b6253820714acd",
+  "repairReport": "raster-layering/step01/repair-01.md.tmp"
+}

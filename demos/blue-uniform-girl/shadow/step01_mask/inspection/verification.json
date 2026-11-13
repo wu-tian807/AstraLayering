@@ -1,0 +1,1048 @@
+{
+  "allOriginalPixelsEqual": true,
+  "originalPaintAndMaskNodes": 105,
+  "originalMaskUuidsParentsAndStatesPreserved": true,
+  "originalMasks": [
+    {
+      "uuid": "a90bf089-aedc-43b1-a9db-510c0c9a81c0",
+      "parentUuid": "4b5de309-10dc-49fb-9181-ba86e9be1623",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "8c84d8b7-88f9-45be-ad7a-e0149f506d12",
+      "parentUuid": "91a6b1b2-c541-4104-b495-9d1096613b07",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "4b8c0a4b-7bb6-4223-b633-c7beb7c8d413",
+      "parentUuid": "8c06f0ac-2ad6-413e-8bd2-8e8399d75cb9",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "8f3c9ea1-8234-420d-8a13-d34f1dcaa49d",
+      "parentUuid": "f6461cd3-3153-44e7-9eca-2188784b66f2",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "9815ecc7-867e-4918-830f-72d46810c6e1",
+      "parentUuid": "20854dd9-9a54-4d09-810d-f73fdb4294c3",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "0c19922c-7cb4-485f-a9dc-d3228609d759",
+      "parentUuid": "8b31f427-7e70-4b1c-b24d-248918adf3d6",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "dcf8dd4c-0b3b-4e7d-8752-ad9c4796f852",
+      "parentUuid": "57da0322-4808-46bb-b90c-4d0bd17e46b4",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "a8ff37b1-e2bc-43e8-b6c0-016e9233c1bb",
+      "parentUuid": "1390da01-feec-4ff4-8882-3cf97a52cfb4",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "25291685-78c9-4cf4-9635-18996103442a",
+      "parentUuid": "9bd9a224-fddf-4cca-8f06-96ad066188b8",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "bc8256da-f7bb-4f09-b07a-b111055a818b",
+      "parentUuid": "33cfbdfa-7fba-48ba-baad-f04de2b467a0",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "c1f98a56-bbfa-42ac-ae6e-674923ac9acb",
+      "parentUuid": "bb7c743c-e15a-4255-9a36-0ac491adaa08",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "686f19b5-0735-4a8d-947b-8c7e54afef0e",
+      "parentUuid": "a13475d1-c8d9-4075-ae99-3cdae0460c78",
+      "visible": true,
+      "passed": true
+    },
+    {
+      "uuid": "d080af82-1b40-4320-94a6-bea6d7751c11",
+      "parentUuid": "abb757e8-bde9-48e0-b008-a5907a018bea",
+      "visible": true,
+      "passed": true
+    }
+  ],
+  "pixelChecks": [
+    {
+      "uuid": "88395705-5ccc-4fd3-b818-d0555a9d7415",
+      "name": "01 | hair/back_hair",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "e13d77c1df965df1be9d805844fe33413c3d20c7af690f305ce4b473c05f2a6e",
+      "newHash": "e13d77c1df965df1be9d805844fe33413c3d20c7af690f305ce4b473c05f2a6e",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "7facef81-f0c3-44a6-a90e-64b207e3ebb3",
+      "name": "outer_jacket/jacket_body/back_panel | complete | d1",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "1ebf5574765d8ff6a4df71f47c220e8bab4a844192bd5e4e6228a8b977c7d199",
+      "newHash": "1ebf5574765d8ff6a4df71f47c220e8bab4a844192bd5e4e6228a8b977c7d199",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "78339a9e-dde0-4596-b3a5-304bdd237838",
+      "name": "inner_shirt/shirt_body | far | d2",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "4f4e5739d19474a714f285ea5365e1563ed5921dfcd0c9f6005dabcee676bd53",
+      "newHash": "4f4e5739d19474a714f285ea5365e1563ed5921dfcd0c9f6005dabcee676bd53",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "0042d7df-7fdb-4a21-9c22-5533a793c6d5",
+      "name": "outer_jacket/jacket_collar/collar_root | complete | d3",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "d879e73bffbf6970a69838a50799e994b6e4c113c0d2051076709ec4e6fa5065",
+      "newHash": "d879e73bffbf6970a69838a50799e994b6e4c113c0d2051076709ec4e6fa5065",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "8bb1dc8a-2775-4bca-b024-13e7b9fcebd9",
+      "name": "outer_jacket/jacket_collar/left_collar_flap | far | d4",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "20a40fe0cef47c586e6c01ec1a97b565fb5e9fa87c2e1de0a46792234dd79466",
+      "newHash": "20a40fe0cef47c586e6c01ec1a97b565fb5e9fa87c2e1de0a46792234dd79466",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "b87c60fd-5652-4980-a727-d27446bb2488",
+      "name": "outer_jacket/jacket_collar/right_collar_flap | far | d5",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "57614cb3d095de74f98103029127ab7c46fd717667c7ab7fc6918b54c7956030",
+      "newHash": "57614cb3d095de74f98103029127ab7c46fd717667c7ab7fc6918b54c7956030",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "c4d70009-badd-4b39-aaa0-94fbebcaa3ae",
+      "name": "outer_jacket/left_sleeve | far | d6",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "a39fa5e9d65be11d0283aa4dbdc8f5fa57aeff36ac8498219b0234fc1f5cce55",
+      "newHash": "a39fa5e9d65be11d0283aa4dbdc8f5fa57aeff36ac8498219b0234fc1f5cce55",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "4f3c39d1-fdc4-4ced-9a23-fc7437644b6c",
+      "name": "outer_jacket/right_sleeve | far | d7",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "3dbc6c6ac1bb3ff4bd065c4bb933a959cfb72630a6dee46ed4dc2b14fe9ad598",
+      "newHash": "3dbc6c6ac1bb3ff4bd065c4bb933a959cfb72630a6dee46ed4dc2b14fe9ad598",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "d2e68c07-34c4-4948-ae87-ba9cd43e58cc",
+      "name": "inner_shirt/left_sleeve | far | d8",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "014d51abb7276d2608ee89e954452ec5b606c818d4c6ae39325c5f64cb5914dc",
+      "newHash": "014d51abb7276d2608ee89e954452ec5b606c818d4c6ae39325c5f64cb5914dc",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "306c0196-74a6-432d-86d5-caefcd621e68",
+      "name": "inner_shirt/right_sleeve | far | d9",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "858e9c162ac0cfbefa7898e1e2a73d56ec119843f68f2ed6fb1b3d27012c6f1e",
+      "newHash": "858e9c162ac0cfbefa7898e1e2a73d56ec119843f68f2ed6fb1b3d27012c6f1e",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "8318d279-c093-4cfa-b777-5816371f28fb",
+      "name": "inner_shirt/shirt_collar/collar_base | far | d10",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "70880021a325988ac67839e9c8cfdbd450158b7f71d93e82a9f9222835b7057e",
+      "newHash": "70880021a325988ac67839e9c8cfdbd450158b7f71d93e82a9f9222835b7057e",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "36df3695-7c5d-4d2e-a452-ebf7d58c8e6c",
+      "name": "pleated_skirt/skirt_body | far | d11",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "b474a971a57973643b58f797258a86b125094d449c343718f9dbc73865760617",
+      "newHash": "b474a971a57973643b58f797258a86b125094d449c343718f9dbc73865760617",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "78bd7d4f-c5d4-4d8f-bcf8-9c56c65ad5ad",
+      "name": "02 | legs/leg_left/shoes/cuff_back",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "2925d854ecc00ea52c2d8b0beda3e5234c423ba692b9f6d65a38074e8c5bde2f",
+      "newHash": "2925d854ecc00ea52c2d8b0beda3e5234c423ba692b9f6d65a38074e8c5bde2f",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "cd5215a8-984c-4b09-a861-7563fc550b16",
+      "name": "03 | legs/leg_right/shoes/cuff_back",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "dedc98d036a28f930a49c972f6ae867259ab44933eeed83ff17325dda577a524",
+      "newHash": "dedc98d036a28f930a49c972f6ae867259ab44933eeed83ff17325dda577a524",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "fb691d00-d997-406e-9f0d-3d96b9580da3",
+      "name": "04 | legs/leg_left/leg",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "f72c949797fe9cc4007993e46f94c630a9aec09dac0c9c8f97602bbcee975f03",
+      "newHash": "f72c949797fe9cc4007993e46f94c630a9aec09dac0c9c8f97602bbcee975f03",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "bdb81813-db29-49d9-bdae-283029d4278e",
+      "name": "05 | legs/leg_right/leg",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "cc36dd40cc149a3790268eb421a828ba63f8302bbc5569cceae340f77c62e3fd",
+      "newHash": "cc36dd40cc149a3790268eb421a828ba63f8302bbc5569cceae340f77c62e3fd",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "92b49aee-93dc-4669-8f87-76088c152d75",
+      "name": "06 | legs/leg_left/shoes/shoe_front",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "41da9798e41cd2bf45a26c78b6a459e2f74fdab1f620547720fd386af65ed472",
+      "newHash": "41da9798e41cd2bf45a26c78b6a459e2f74fdab1f620547720fd386af65ed472",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "74af0164-64d0-405b-9ee4-ad7dd729010f",
+      "name": "07 | legs/leg_right/shoes/shoe_front",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "10d93001d6b9396cfc93ab6713db692eb4e2fde611eca0e7f40aaf83db620a75",
+      "newHash": "10d93001d6b9396cfc93ab6713db692eb4e2fde611eca0e7f40aaf83db620a75",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "d51223e1-088d-4866-b863-7509f9f97398",
+      "name": "08 | arms/arm_left/bracelet_back",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "29eb964e1fe31f4ed2c7290820355a14d943a702c93e97211aebfcd14fb625d7",
+      "newHash": "29eb964e1fe31f4ed2c7290820355a14d943a702c93e97211aebfcd14fb625d7",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "480b992b-cec4-4f12-ad29-88df80aa7f00",
+      "name": "09 | arms/arm_right/bracelet_back",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "b844ca55f77a4b7ef919fee5df9094b221cfb083116bf52a17c7c770593a4584",
+      "newHash": "b844ca55f77a4b7ef919fee5df9094b221cfb083116bf52a17c7c770593a4584",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "4b5de309-10dc-49fb-9181-ba86e9be1623",
+      "name": "10 | arms/arm_left/hand/little_finger",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "7df5bc815011010bab0a3c3764f3b7bc831f0bdb28d1c637e0e145b2e2cd0365",
+      "newHash": "7df5bc815011010bab0a3c3764f3b7bc831f0bdb28d1c637e0e145b2e2cd0365",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "a90bf089-aedc-43b1-a9db-510c0c9a81c0",
+      "name": "后方手指默认遮挡",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "2c2bc349e0bcde11b38485c903432d1ddaaf0b4a89fa70444a3a3da1e85d5db0",
+      "newHash": "2c2bc349e0bcde11b38485c903432d1ddaaf0b4a89fa70444a3a3da1e85d5db0",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "91a6b1b2-c541-4104-b495-9d1096613b07",
+      "name": "11 | arms/arm_right/hand/little_finger",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "a80a5a5cf198a3617e078c91d90223847b0fffa8d10ae3bdec49a822936a8aec",
+      "newHash": "a80a5a5cf198a3617e078c91d90223847b0fffa8d10ae3bdec49a822936a8aec",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "8c84d8b7-88f9-45be-ad7a-e0149f506d12",
+      "name": "后方手指默认遮挡",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "4f969244f420a506355a2c1e81bdd9841f1263818b9189ac31c5c5e14ea41acc",
+      "newHash": "4f969244f420a506355a2c1e81bdd9841f1263818b9189ac31c5c5e14ea41acc",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "8c06f0ac-2ad6-413e-8bd2-8e8399d75cb9",
+      "name": "12 | arms/arm_left/hand/ring_finger",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "a927702dcd26e4b18a76a673229529970e066703b8b2971426cb50de7f0d1f1b",
+      "newHash": "a927702dcd26e4b18a76a673229529970e066703b8b2971426cb50de7f0d1f1b",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "4b8c0a4b-7bb6-4223-b633-c7beb7c8d413",
+      "name": "后方手指默认遮挡",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "b2069f33fd956c79679b2e5a25c60cd0eab63b023d12111ff0242ae50896e9e1",
+      "newHash": "b2069f33fd956c79679b2e5a25c60cd0eab63b023d12111ff0242ae50896e9e1",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "0d825d48-d586-4d0e-84d8-8154e8f32e8a",
+      "name": "13 | arms/arm_right/hand/ring_finger",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "83a5f63a533b93c951e099657cb2504470c812c9438acbaa1bdaa38ec75f547d",
+      "newHash": "83a5f63a533b93c951e099657cb2504470c812c9438acbaa1bdaa38ec75f547d",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "af9eecea-dd32-46cc-9bfc-3f122bccaa02",
+      "name": "14 | arms/arm_left/hand/middle_finger",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "72f2b7176091389deda82a507412b5c08ce37714b872fc7c1c2e6ab6a723b68c",
+      "newHash": "72f2b7176091389deda82a507412b5c08ce37714b872fc7c1c2e6ab6a723b68c",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "331bd1b8-2d6b-484c-b8f2-825c0d5cad70",
+      "name": "15 | arms/arm_right/hand/middle_finger",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "acc187b7c5e41d0395361d247e4b5b3819a86267d9ae68b4d8814b010f36b509",
+      "newHash": "acc187b7c5e41d0395361d247e4b5b3819a86267d9ae68b4d8814b010f36b509",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "857c3ac8-f3c9-4240-b9cd-231db25d8013",
+      "name": "16 | arms/arm_left/hand/thumb",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "6c272a0cf44acd47dfaabda0abc9c08f9e865e7519eb86dc0b16f904654d6255",
+      "newHash": "6c272a0cf44acd47dfaabda0abc9c08f9e865e7519eb86dc0b16f904654d6255",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "04e539e1-8769-4947-88c7-0b3415e4ddcf",
+      "name": "17 | arms/arm_right/hand/thumb",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "147ec2147c2d62160a1637d26d123f20064e1694b32f7d139f66100c6dc7e57f",
+      "newHash": "147ec2147c2d62160a1637d26d123f20064e1694b32f7d139f66100c6dc7e57f",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "79c03107-a95b-4a32-88c5-f369e887baf4",
+      "name": "18 | arms/arm_left/hand/index_finger",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "3cc8de5e4b108bd673413712739cb75d35d167a83ae67bc119ae2e386cda4b4d",
+      "newHash": "3cc8de5e4b108bd673413712739cb75d35d167a83ae67bc119ae2e386cda4b4d",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "f6f64c6a-39dc-45b0-a233-ff5e7817e11f",
+      "name": "19 | arms/arm_right/hand/index_finger",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "c8531b20cde33388d162f3394454894cc89c568a6cc8af486fcc836c1fa5f9fb",
+      "newHash": "c8531b20cde33388d162f3394454894cc89c568a6cc8af486fcc836c1fa5f9fb",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "13bd73b8-d416-4dc0-8722-2dfc58677532",
+      "name": "20 | arms/arm_left/hand/palm",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "43eca2ac4ca721d64a20d1ec260d9bcf635735085e2c8d93fd85333a2ad252df",
+      "newHash": "43eca2ac4ca721d64a20d1ec260d9bcf635735085e2c8d93fd85333a2ad252df",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "16ebd86d-f395-4f4e-8be6-f77e7907c99a",
+      "name": "21 | arms/arm_right/hand/palm",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "a36a9211b7edfa229fef34106b6f5b410a0944cf8671cc501e7582eff344470c",
+      "newHash": "a36a9211b7edfa229fef34106b6f5b410a0944cf8671cc501e7582eff344470c",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "01a6bda0-15e5-42cd-ae0f-3b0ee5291c71",
+      "name": "22 | arms/arm_left/forearm",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "c9d0ffbad80815340c00e2f1180f78c78ea7a64e30dee309746d3ab15144ce98",
+      "newHash": "c9d0ffbad80815340c00e2f1180f78c78ea7a64e30dee309746d3ab15144ce98",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "29d7afe3-172b-4665-ae86-e9119b3a4901",
+      "name": "23 | arms/arm_right/forearm",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "2592d4c4c0cfb4fe9e31cb65533eee64a078e8e1fdb698da88e1f42527c9728f",
+      "newHash": "2592d4c4c0cfb4fe9e31cb65533eee64a078e8e1fdb698da88e1f42527c9728f",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "f6461cd3-3153-44e7-9eca-2188784b66f2",
+      "name": "24 | arms/arm_left/upper_arm",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "58dee8119640ae3617e0d58f2df2738db04d6b33befb25dc6c0bf06c7f351a78",
+      "newHash": "58dee8119640ae3617e0d58f2df2738db04d6b33befb25dc6c0bf06c7f351a78",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "8f3c9ea1-8234-420d-8a13-d34f1dcaa49d",
+      "name": "穿衣收肩 | 仅隐藏袖内多余皮肤 | 可关闭",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "7cdc9176d6b95efa0335fc8f0dd0f6da14bbe59b10de58509d2952adfc20a6d3",
+      "newHash": "7cdc9176d6b95efa0335fc8f0dd0f6da14bbe59b10de58509d2952adfc20a6d3",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "20854dd9-9a54-4d09-810d-f73fdb4294c3",
+      "name": "25 | arms/arm_right/upper_arm",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "c8754c677a74703d78c7627349641d8b9101500e60f1360eb2398851defede60",
+      "newHash": "c8754c677a74703d78c7627349641d8b9101500e60f1360eb2398851defede60",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "9815ecc7-867e-4918-830f-72d46810c6e1",
+      "name": "穿衣收肩 | 仅隐藏袖内多余皮肤 | 可关闭",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "a0e18e3aefd1f2426609a1564e1a7cdd4672b8f3b5c62ebe44c8a14172226416",
+      "newHash": "a0e18e3aefd1f2426609a1564e1a7cdd4672b8f3b5c62ebe44c8a14172226416",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "efab8122-af45-44b6-b946-3e0b33149785",
+      "name": "26 | neck",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "5c55e98711db2a0b3a2a2696cef43021ee60630056f8fbf46d692987b8f45e19",
+      "newHash": "5c55e98711db2a0b3a2a2696cef43021ee60630056f8fbf46d692987b8f45e19",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "6213a048-0d85-4d88-91e4-db46877485da",
+      "name": "27 | body/torso",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "d5f7f9423c0cc66e26f941df85203a1f70c677a5364863bd1b3930d60d93426d",
+      "newHash": "d5f7f9423c0cc66e26f941df85203a1f70c677a5364863bd1b3930d60d93426d",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "c111ba98-e236-4e52-9e40-596e200ef8c4",
+      "name": "28 | body/breast",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "54a9f5357f1ba9db2a23a7e4d3d7d01ce671c299ab59fde8244320560fd5d239",
+      "newHash": "54a9f5357f1ba9db2a23a7e4d3d7d01ce671c299ab59fde8244320560fd5d239",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "8b31f427-7e70-4b1c-b24d-248918adf3d6",
+      "name": "29 | pelvis",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "bc0dd1b255f1796eaa3454d22fd5e3a01f046ad45ffbac86ae97642e5eff072f",
+      "newHash": "bc0dd1b255f1796eaa3454d22fd5e3a01f046ad45ffbac86ae97642e5eff072f",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "0c19922c-7cb4-485f-a9dc-d3228609d759",
+      "name": "穿衣收腰 | 仅收右腰侧多余皮肤 | 可关闭",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "24744d7d8de31a9967e846ba07715cb32339b6ec89a58978b1047d61d480a847",
+      "newHash": "24744d7d8de31a9967e846ba07715cb32339b6ec89a58978b1047d61d480a847",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "0bcdac41-38a0-4533-98a2-01bc5eb90a9e",
+      "name": "inner_shirt/left_sleeve | near | d20",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "8c86dd5215113d36581d561d72c30f927aaab999f35bbdad97dbe33fa773a516",
+      "newHash": "8c86dd5215113d36581d561d72c30f927aaab999f35bbdad97dbe33fa773a516",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "554e002c-a453-423f-87e8-899128feae10",
+      "name": "inner_shirt/right_sleeve | near | d21",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "2f673886523d8278c8975719767abcf2397c05fe895bfe5a2e8c5104eae211a8",
+      "newHash": "2f673886523d8278c8975719767abcf2397c05fe895bfe5a2e8c5104eae211a8",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "b3861d63-d201-4bb7-bc1c-7ca39b37ea1e",
+      "name": "inner_shirt/shirt_body | near | d22",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "823ae8c1bdf82f2bcb65316e142c7cbc325286899c130724532b7b8bb3e607c5",
+      "newHash": "823ae8c1bdf82f2bcb65316e142c7cbc325286899c130724532b7b8bb3e607c5",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "30291ae3-688c-43c0-824a-098a913159f4",
+      "name": "inner_shirt/shirt_collar/collar_base | near | d23",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "557f44cf7615c08dd92758acae95d14aa1da74c7e366a3056f203eec6b3d4d05",
+      "newHash": "557f44cf7615c08dd92758acae95d14aa1da74c7e366a3056f203eec6b3d4d05",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "779411f9-98f9-4943-bc50-cd610d9079ae",
+      "name": "pleated_skirt/skirt_body | near | d24",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "d459b58d797732e0c5141ab0d96220d4f1bbbe31249ac1a67e28f3c95cf2e0d6",
+      "newHash": "d459b58d797732e0c5141ab0d96220d4f1bbbe31249ac1a67e28f3c95cf2e0d6",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "dff7a885-3da9-4373-8f97-58af94725c19",
+      "name": "pleated_skirt/waistband | complete | d25",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "ecba04280be1e336eb4e8c24874aa119f16d4f8662027e4bf34507e8ce018865",
+      "newHash": "ecba04280be1e336eb4e8c24874aa119f16d4f8662027e4bf34507e8ce018865",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "1ae9ef72-c783-4da0-8937-ae63d08f1583",
+      "name": "short_necktie/hanging_blade | complete | d26",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "47c554d44778f62b9214a001928854f77e0e98ad3fddf9f871ab021b068ce994",
+      "newHash": "47c554d44778f62b9214a001928854f77e0e98ad3fddf9f871ab021b068ce994",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "267f96bd-0e4f-4157-ac91-1fd2ca8b6194",
+      "name": "short_necktie/knot_and_attachment | complete | d27",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "7dae6175fc0a1645b60917d0b74c9ca98d9d9aa15e2f307174c4d404519d06fb",
+      "newHash": "7dae6175fc0a1645b60917d0b74c9ca98d9d9aa15e2f307174c4d404519d06fb",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "0c395f60-06e6-45f4-8aed-3e48387875c0",
+      "name": "inner_shirt/shirt_collar/left_collar_leaf | complete | d28",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "3204efb7218210c4cf82a1d54df6f5e7c49ce1c6e25f241fba8ce8aa7245c985",
+      "newHash": "3204efb7218210c4cf82a1d54df6f5e7c49ce1c6e25f241fba8ce8aa7245c985",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "e8a405ca-e1a9-4e79-a9c9-677fdc9dc4fc",
+      "name": "inner_shirt/shirt_collar/right_collar_leaf | complete | d29",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "073e33890f04d18997ef1cfc62a133d39ccb862bf0441ca2f9cfd30e8873757c",
+      "newHash": "073e33890f04d18997ef1cfc62a133d39ccb862bf0441ca2f9cfd30e8873757c",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "79715123-2649-42fd-9925-3d57d62cb00d",
+      "name": "jacket_front_clasp/left_clasp_wing | complete | d30",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "9e9a402a2f186ca2ef3f942f5f34fae34a9f89479f246f9dd280b4f81708a269",
+      "newHash": "9e9a402a2f186ca2ef3f942f5f34fae34a9f89479f246f9dd280b4f81708a269",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "9e11a417-c657-4650-890a-8988749d1c1b",
+      "name": "jacket_front_clasp/right_clasp_wing | complete | d31",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "695be04189748c11afa1474558db1611de40fc4d0181853ce879ec40bae2ca81",
+      "newHash": "695be04189748c11afa1474558db1611de40fc4d0181853ce879ec40bae2ca81",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "4092243e-c176-4e24-a654-58c30c3058c9",
+      "name": "outer_jacket/left_sleeve | near | d32",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "7e588ff0a137a34b7eb072ebe7fca4ecfee28c1ccc39099b2b03abc4132a5ef0",
+      "newHash": "7e588ff0a137a34b7eb072ebe7fca4ecfee28c1ccc39099b2b03abc4132a5ef0",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "97897870-95a7-4831-bbf4-e97426acf028",
+      "name": "outer_jacket/right_sleeve | near | d33",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "c93194a4274c0ac557fcddd1424d6dad17bd4e616336ae919cf5c5dd73b80d2b",
+      "newHash": "c93194a4274c0ac557fcddd1424d6dad17bd4e616336ae919cf5c5dd73b80d2b",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "e1c82743-8141-4685-b510-9a26fbdc0081",
+      "name": "outer_jacket/jacket_body/left_front/front_panel | complete | d34",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "0802a7482b8210f380c7b4d65fc83e75e567055b48b2e729a8691c7e9b75ad2d",
+      "newHash": "0802a7482b8210f380c7b4d65fc83e75e567055b48b2e729a8691c7e9b75ad2d",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "0384cb66-3883-4e7d-9dea-408055fcdcdc",
+      "name": "outer_jacket/jacket_body/right_front/front_panel | complete | d35",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "a8c252516117c1de68dd2f1e18a4e0261286246679bf3ba8d97a8570e6be9e76",
+      "newHash": "a8c252516117c1de68dd2f1e18a4e0261286246679bf3ba8d97a8570e6be9e76",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "d1a509f2-8430-4e26-86dc-53546128c18a",
+      "name": "outer_jacket/jacket_body/left_front/lapel | complete | d36",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "45a78bd7faa79b62a87440aaa7d21b098149cd7e9bc2b55ae534ed91b199b73c",
+      "newHash": "45a78bd7faa79b62a87440aaa7d21b098149cd7e9bc2b55ae534ed91b199b73c",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "354ce8dd-5895-4b98-93fa-0a446c1c1f72",
+      "name": "outer_jacket/jacket_body/right_front/lapel | complete | d37",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "e09ea136ae87d1f5dfdb3dd302f30029cd8748bdb54c373192b75161be17e178",
+      "newHash": "e09ea136ae87d1f5dfdb3dd302f30029cd8748bdb54c373192b75161be17e178",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "0e5024ce-ff03-4238-a530-9facf83ac3c3",
+      "name": "outer_jacket/jacket_collar/left_collar_flap | near | d38",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "dca815f8523bfa1c5519bf3154c6a08a371b8e6837a88795e5fc323be0395ddb",
+      "newHash": "dca815f8523bfa1c5519bf3154c6a08a371b8e6837a88795e5fc323be0395ddb",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "2acf6b48-e244-484b-ac1c-6645b54979a5",
+      "name": "outer_jacket/jacket_collar/right_collar_flap | near | d39",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "3ad46e5292bc8afdd2133c4b8ac44ca0e1c2d2e3c23c21b1241bfff9a737c1e0",
+      "newHash": "3ad46e5292bc8afdd2133c4b8ac44ca0e1c2d2e3c23c21b1241bfff9a737c1e0",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "2a4bb78c-548a-48d6-9bea-25c76cf34996",
+      "name": "jacket_front_clasp/center_buckle | complete | d40",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "95c5ee34b9333626c10bc58acc1e230ceba59c4563e01f5b8b82458a983087f9",
+      "newHash": "95c5ee34b9333626c10bc58acc1e230ceba59c4563e01f5b8b82458a983087f9",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "55b11d62-ad5e-40b1-9bf0-2abc90e93fb7",
+      "name": "30 | arms/arm_left/bracelet_front",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "576f1ad03af3a44a4cf5cc2e8aae2250bff2aa0b24d907cfdb15a63cea066be6",
+      "newHash": "576f1ad03af3a44a4cf5cc2e8aae2250bff2aa0b24d907cfdb15a63cea066be6",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "33bd6c41-f1b0-4157-a3a2-4ef257ab7d50",
+      "name": "31 | arms/arm_right/bracelet_front",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "41fe4c43be8e38bc2b53b7e6d2308e6c208568f0dba75773154877af684aa28c",
+      "newHash": "41fe4c43be8e38bc2b53b7e6d2308e6c208568f0dba75773154877af684aa28c",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "225ad60a-fdc3-4370-bf22-46d33c3e6425",
+      "name": "32 | face/ears/ear_left",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "5eb22cfeb2c3fae357c6da2fcf5375a53ceed11f123acb305021a63ef9240dbc",
+      "newHash": "5eb22cfeb2c3fae357c6da2fcf5375a53ceed11f123acb305021a63ef9240dbc",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "0c2e4cd1-d066-49f2-9737-60ac6e2d7f75",
+      "name": "33 | face/ears/ear_right",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "b6df76f6c8c6ec36375f286d3040cca2b2457fb77c2b8ab0b203c1104daed725",
+      "newHash": "b6df76f6c8c6ec36375f286d3040cca2b2457fb77c2b8ab0b203c1104daed725",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "53f4f4cd-2538-413b-890f-7c17d2eafb7d",
+      "name": "34 | face/face_base",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "b2c4030dbdec0d21dbe0c7d95c4ba182b7a3cc2632c1f7ddef2725c4b0d4a259",
+      "newHash": "b2c4030dbdec0d21dbe0c7d95c4ba182b7a3cc2632c1f7ddef2725c4b0d4a259",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "3976fd10-81c3-4ba4-bb38-aa5fe830e0d7",
+      "name": "35 | face/blush_left",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "b1e8e28889df8732b460382b88fab6d4b96f8503f4aefc430795a8f810d24332",
+      "newHash": "b1e8e28889df8732b460382b88fab6d4b96f8503f4aefc430795a8f810d24332",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "d27f6c2a-e6ba-4c14-960c-411e2c17ca64",
+      "name": "36 | face/blush_right",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "bf9f9beadb99c79e63a643259fed47fa440de8c2880c008dd4e398d80e4b0938",
+      "newHash": "bf9f9beadb99c79e63a643259fed47fa440de8c2880c008dd4e398d80e4b0938",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "d85354b8-c65b-4dae-9ea5-0374a5c689ef",
+      "name": "37 | face/eyes/eye_left/sclera",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "ee694ed0ee308df2a403db195aeacb623b536fa4bb3497f18861e8d610586720",
+      "newHash": "ee694ed0ee308df2a403db195aeacb623b536fa4bb3497f18861e8d610586720",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "5a3a97ba-b623-4bd0-a870-3e797f9a2609",
+      "name": "38 | face/eyes/eye_left/iris",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "8cd32ba947e24213607c54dd8941dcabeb399888974e80895a2d45c0c497d1e5",
+      "newHash": "8cd32ba947e24213607c54dd8941dcabeb399888974e80895a2d45c0c497d1e5",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "57da0322-4808-46bb-b90c-4d0bd17e46b4",
+      "name": "39 | face/eyes/eye_left/highlight",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "7668488f90db54bdce4bc0d09b7955bfd4956928cd3919af2813528711dc7c6c",
+      "newHash": "7668488f90db54bdce4bc0d09b7955bfd4956928cd3919af2813528711dc7c6c",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "dcf8dd4c-0b3b-4e7d-8752-ad9c4796f852",
+      "name": "高光虹膜范围 left",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "9022bdd06c8eb4395f9b070b3b1d9e3c4d0e737da54c52267a846aa92eacf847",
+      "newHash": "9022bdd06c8eb4395f9b070b3b1d9e3c4d0e737da54c52267a846aa92eacf847",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "a8ff37b1-e2bc-43e8-b6c0-016e9233c1bb",
+      "name": "眼睛开口 left",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "ef3e110cd02d879b70858bf3dbb4fa32ea0422893277c203d7521e2593d13c2f",
+      "newHash": "ef3e110cd02d879b70858bf3dbb4fa32ea0422893277c203d7521e2593d13c2f",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "e2b0bf58-49fb-4b56-a7a9-9e14d4c39b17",
+      "name": "40 | face/eyes/eye_left/upper_eyelid",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "5b965a20065953bc45a4f127dd18f69835bf1f55d0443a0be22510ecda8a2d9d",
+      "newHash": "5b965a20065953bc45a4f127dd18f69835bf1f55d0443a0be22510ecda8a2d9d",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "a74f3e07-611b-4fe6-9f4a-6422f18268d2",
+      "name": "41 | face/eyes/eye_left/eyelid_crease",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "c052ad17a0a5ae1b64b4238b644c15cb48087893ee32226893f211e3923b0bf7",
+      "newHash": "c052ad17a0a5ae1b64b4238b644c15cb48087893ee32226893f211e3923b0bf7",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "5923ece3-7589-4b93-9bac-67ffad35c669",
+      "name": "42 | face/eyes/eye_right/sclera",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "306e27b015a13ad37f4bd1cfe0fbdbaa5493e011d981fe7c677faa7ecffd5b3b",
+      "newHash": "306e27b015a13ad37f4bd1cfe0fbdbaa5493e011d981fe7c677faa7ecffd5b3b",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "63d8e836-07cc-4b6e-af2b-079ebfa2df7f",
+      "name": "43 | face/eyes/eye_right/iris",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "000c0be68e0517af7641d6c4a55426690c1ec0c46bb6f71b5beb1d205c9a9c62",
+      "newHash": "000c0be68e0517af7641d6c4a55426690c1ec0c46bb6f71b5beb1d205c9a9c62",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "9bd9a224-fddf-4cca-8f06-96ad066188b8",
+      "name": "44 | face/eyes/eye_right/highlight",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "1e60a220ee045309edef48931499f3ecbffceff3e74c68327e1e6743625cdf1b",
+      "newHash": "1e60a220ee045309edef48931499f3ecbffceff3e74c68327e1e6743625cdf1b",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "25291685-78c9-4cf4-9635-18996103442a",
+      "name": "高光虹膜范围 right",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "f5462f6df06a890256c84eb69491556cf20587aa8553397861465bafce18c6a2",
+      "newHash": "f5462f6df06a890256c84eb69491556cf20587aa8553397861465bafce18c6a2",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "bc8256da-f7bb-4f09-b07a-b111055a818b",
+      "name": "眼睛开口 right",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "4e049a77e324343662790cae9db7b4214a61cbba4b080be106bb0f1b82f8b203",
+      "newHash": "4e049a77e324343662790cae9db7b4214a61cbba4b080be106bb0f1b82f8b203",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "1b506109-ad84-4eaf-9cb8-9811e6fbd50d",
+      "name": "45 | face/eyes/eye_right/upper_eyelid",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "df22dfbc6144bb16135c5ba64646a3dfc90d603e5873cdc47007d9baabfb18e4",
+      "newHash": "df22dfbc6144bb16135c5ba64646a3dfc90d603e5873cdc47007d9baabfb18e4",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "c4437834-c301-4649-93c0-f1694f8a5d4a",
+      "name": "46 | face/eyes/eye_right/eyelid_crease",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "425416a7631fe409dfb47794cd91b8dc8a16ea1d88b5802de44bda5d7c9565e6",
+      "newHash": "425416a7631fe409dfb47794cd91b8dc8a16ea1d88b5802de44bda5d7c9565e6",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "19dcb086-2093-4459-a905-0e9735e2f2f9",
+      "name": "47 | face/nose",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "94aa4a94c38b5d767f367fc8e11a7e90f85d36bbe798bfb81553d6d3409b4435",
+      "newHash": "94aa4a94c38b5d767f367fc8e11a7e90f85d36bbe798bfb81553d6d3409b4435",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "58b7b000-f805-4e80-9bda-417f8828f3c8",
+      "name": "48 | face/mouth/mouth_interior",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "0cc8fc16b655f3cc05516a364aabd13c02e74382c2ed7cf1b5e5b116bcea622b",
+      "newHash": "0cc8fc16b655f3cc05516a364aabd13c02e74382c2ed7cf1b5e5b116bcea622b",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "bb7c743c-e15a-4255-9a36-0ac491adaa08",
+      "name": "49 | face/mouth/lower_teeth",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "68b31d5bed5ba95dca2445bd69fcf222a9d79b6d09c9547166f458dbd7511e03",
+      "newHash": "68b31d5bed5ba95dca2445bd69fcf222a9d79b6d09c9547166f458dbd7511e03",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "c1f98a56-bbfa-42ac-ae6e-674923ac9acb",
+      "name": "下牙默认遮挡",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "d8df7f73014cae455bacad3e4442f1e3d3ca1f1faaa4b4a8f08e961f0e476ff0",
+      "newHash": "d8df7f73014cae455bacad3e4442f1e3d3ca1f1faaa4b4a8f08e961f0e476ff0",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "4a3a7885-64a2-4f65-9278-ece7250c7901",
+      "name": "50 | face/mouth/tongue",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "6424bb0e6390ab979c651ea5b0b22f36ff786d8aca9c1656d96c869aa52ee8dd",
+      "newHash": "6424bb0e6390ab979c651ea5b0b22f36ff786d8aca9c1656d96c869aa52ee8dd",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "a13475d1-c8d9-4075-ae99-3cdae0460c78",
+      "name": "51 | face/mouth/upper_teeth",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "a6107d47e9e1288d3a3a837c0751e40d29fbe0fb5061dd9da4485c72297acd7d",
+      "newHash": "a6107d47e9e1288d3a3a837c0751e40d29fbe0fb5061dd9da4485c72297acd7d",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "686f19b5-0735-4a8d-947b-8c7e54afef0e",
+      "name": "上牙露出带",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "6979f65bbb823552e1b414ba595567bd7b6e664bce4cb3f7b261c4bfd8228aea",
+      "newHash": "6979f65bbb823552e1b414ba595567bd7b6e664bce4cb3f7b261c4bfd8228aea",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "d080af82-1b40-4320-94a6-bea6d7751c11",
+      "name": "上下唇开口",
+      "type": "transparencymask",
+      "pixelsEqual": true,
+      "oldHash": "0f108df280fc111b595ffa8128637411a3c3a368735fb84ded42c4cea3a66623",
+      "newHash": "0f108df280fc111b595ffa8128637411a3c3a368735fb84ded42c4cea3a66623",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "2f546deb-86d3-452b-a8b9-23b7d5b1945e",
+      "name": "52 | face/mouth/lower_lip",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "de68dea678c58956ad03d43eb93a47c7788912dd23290d89c630e817490d1e90",
+      "newHash": "de68dea678c58956ad03d43eb93a47c7788912dd23290d89c630e817490d1e90",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "930b9d59-1268-4f86-8c75-1cd0dfa4b664",
+      "name": "53 | face/mouth/upper_lip",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "0c4dbe89bc071e309ebe2402153c230e24a3567f36617ac4a12ffa8f5b63f78c",
+      "newHash": "0c4dbe89bc071e309ebe2402153c230e24a3567f36617ac4a12ffa8f5b63f78c",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "b432adfc-fdf1-47f2-a3f1-f4852b48d7e7",
+      "name": "54 | face/eyebrows/eyebrow_left",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "5af403c65fc46fc1842e3893357774265834583a4dba8989f952513cec3db9c7",
+      "newHash": "5af403c65fc46fc1842e3893357774265834583a4dba8989f952513cec3db9c7",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "972c98a1-7d13-43e6-886a-8266db2700bf",
+      "name": "55 | face/eyebrows/eyebrow_right",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "cf6228e933c25ce4be5e31f2d55d5015bce6dd2ce1d97b1ce179988016346e2e",
+      "newHash": "cf6228e933c25ce4be5e31f2d55d5015bce6dd2ce1d97b1ce179988016346e2e",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "bce1f56f-7ba5-49d2-b216-0b1e887f2b7e",
+      "name": "56 | hair/bangs",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "d2c77adcc2e13f327d0e46ae4e70cb70aec247763a74558c89349a9b2147a722",
+      "newHash": "d2c77adcc2e13f327d0e46ae4e70cb70aec247763a74558c89349a9b2147a722",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "c04d7b9d-a4b7-4563-b2ca-0af9b34b3f3f",
+      "name": "57 | hair/side_hair/side_hair_left",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "bf1a83c9ad5d0a45d0dc2d5c24e51f6c3253da1e50303f0ff4ea364761f3c092",
+      "newHash": "bf1a83c9ad5d0a45d0dc2d5c24e51f6c3253da1e50303f0ff4ea364761f3c092",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "93d863c1-fa77-4241-8b3b-236d80bef13a",
+      "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "a5d4af66bf6a4706b8af55cab77a4e49feecb6c08f677ca4799c4e31043fc0e2",
+      "newHash": "a5d4af66bf6a4706b8af55cab77a4e49feecb6c08f677ca4799c4e31043fc0e2",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "82350634-8458-4126-8bc1-b65f0c641051",
+      "name": "58 | hair/side_hair/side_hair_right",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "9793837ce7a144e234c31d8204d52937c67ade73a87710b8100c5d1d3d6eee0f",
+      "newHash": "9793837ce7a144e234c31d8204d52937c67ade73a87710b8100c5d1d3d6eee0f",
+      "boundsEqual": true
+    },
+    {
+      "uuid": "a4e7b202-d125-49d1-bcc6-634a23d6230b",
+      "name": "59 | head_accessories",
+      "type": "paintlayer",
+      "pixelsEqual": true,
+      "oldHash": "077419633e46a6d52f211aaed569812e403e5c860804930408d7bc621e476aa8",
+      "newHash": "077419633e46a6d52f211aaed569812e403e5c860804930408d7bc621e476aa8",
+      "boundsEqual": true
+    }
+  ],
+  "pngMatchesSavedKraNativeComposite": true,
+  "dimensions": [
+    1115,
+    1410
+  ],
+  "withoutShadowsVsOriginalAssembly": {
+    "differentPixels": 110,
+    "maxChannelDifference": 1
+  },
+  "inspectionPassed": true,
+  "problems": [],
+  "warnings": [],
+  "pngMatchesSavedKraEmbeddedMergedImage": true,
+  "embeddedMergedVsPngDifferentPixels": 0,
+  "validateDeliveryPassed": true,
+  "repairRound": 1
+}

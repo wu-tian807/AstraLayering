@@ -1,0 +1,58 @@
+{
+  "groupId": "face/blush_left",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组及父组说明、候选和父完成 SVG，并完成整图定位、父稿叠加、全区域 [555,395,125,95] 六倍参考/blend/edge 对照，以及互相重叠的内侧 [560,415,70,70]、外侧 [610,400,70,85] 八倍 blend/edge 核对和 SVG 独显。\n归属确认：本组是画面右侧眼下的粉红弥散红晕及短斜线，非眼白、侧发或普通脸底。候选连续覆盖红晕主体及两条短斜线；短斜线处于联合色块内部，无需独立 path。内侧和下方为逐渐淡入肤色的区域，没有可据以要求额外组件或硬边延伸的独立结构；上缘沿眼下走向，外侧保留肤色向侧发过渡的区域，未误包眼睛与头发。全周形体位置及比例合理，无孔洞、无可见组件遗漏、无碎片或孤点。弥散强弱与短斜线最终着色留给后续阶段。\n父范围检查通过：四倍采样 outsidePixels=0，候选完全容纳于 face 完成轮廓内，未发现上游范围冲突。无需返修或重画。\n图像证据（覆盖全组）：\n\n\n",
+      "candidateHash": "478e4c520c0930b2037a70e239bb3be725a8217dbbcf7efe76ca78c6a3f91c63",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-10T11-51-37-607Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-10T11-51-37-607Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-10T11-51-37-607Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-10T11-51-37-607Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-10T11-51-37-607Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-10T11-51-37-607Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-10T11-51-37-607Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-10T11-51-37-607Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-10T11-51-37-607Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T12:43:44.388Z"
+    }
+  ]
+}

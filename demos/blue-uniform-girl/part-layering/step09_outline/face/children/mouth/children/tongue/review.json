@@ -1,0 +1,58 @@
+{
+  "groupId": "face/mouth/tongue",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已独立读取 face/mouth/tongue 的说明、参考、候选和父组完成 SVG，并完成整图定位及全部可见区域的放大核对。参考中属于本件的是开口下部连续粉红舌面；上牙、左上深红口腔和外围口缘不属于舌头。候选覆盖这一可见实体，没有误包邻接结构、可见组件遗漏或需要重画的主要形体错误。\n\n检查覆盖：整嘴选框 [490,466,72,57]，随后以重叠选框 [499,469,35,49] 与 [526,470,34,51] 在 8 倍 blend、edge 中逐段核对上缘、左右侧缘、左下转向、下缘和右下收束。舌面与口腔的上侧交界、两侧及下口缘的邻接均贴合参考可辨的可见边界；舌面内部浅红色差属于普通明暗，不另作轮廓。未发现孔洞、无依据挖缝、碎片或孤点。独显色块连续、干净，位置与比例合理。后段遮挡部分不要求本轮恢复。\n\n父范围：本件未设置 allowOutsideParent，按父范围约束检查。父稿局部叠加已查看；候选四倍采样越界面积为 0，当前可见舌面可在父范围内覆盖，未发现需要单列的上游范围限制。\n\n图像证据：[整图叠加](review-evidence/whole-blend.png)、[参考嘴部](review-evidence/reference-mouth.png)、[父组局部叠加](review-evidence/parent-blend.png)、[左侧叠加](review-evidence/left-blend.png)、[左侧边缘](review-evidence/left-edge.png)、[右侧叠加](review-evidence/right-blend.png)、[右侧边缘](review-evidence/right-edge.png)、[候选独显](review-evidence/outline.png)。",
+      "candidateHash": "07d92be56f70d60c1ffefeba722fb7de250934aac5bbaed4b25fc851665cc326",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-10T15-38-44-020Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-10T15-38-44-020Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-10T15-38-44-020Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-10T15-38-44-020Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-10T15-38-44-020Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-10T15-38-44-020Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-10T15-38-44-020Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-10T15-38-44-020Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-10T15-38-44-020Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T16:05:27.470Z"
+    }
+  ]
+}

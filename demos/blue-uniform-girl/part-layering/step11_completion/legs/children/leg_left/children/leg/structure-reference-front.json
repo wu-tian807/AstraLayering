@@ -1,0 +1,24 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "same-pose occluder removal",
+  "reference": "part-layering/references/base-subject.png",
+  "inputCrop": [
+    420,
+    730,
+    315,
+    665
+  ],
+  "inputImage": "part-layering/step11_completion/legs/children/leg_left/children/leg/workspace/bitmaps/ca33f8f3-91b5-4ccc-bcf5-6b8777e0367c.png",
+  "generatedImage": "part-layering/step11_completion/legs/children/leg_left/children/leg/structure-reference-front.png",
+  "prompt": "Use case: precise-object-edit. Asset type: anatomical structure reference for editable character layering. Edit this cropped lower-body reference of the same stylized chibi character. Keep the identical front-facing view, identical crop, scale, leg position, knee and calf contours, and anime illustration style. Target is the character's own LEFT leg, on the RIGHT side of the image. Show that leg naturally without its high-top boot: remove only the RIGHT-side boot, including tongue, straps and sole, and reveal the complete continuous foot and ankle that fit INSIDE that boot. Keep the dark close-fitting thigh-high stocking covering this leg, ankle and foot as one socked silhouette; show a natural smooth instep, narrow ankle, rounded toe forefoot pointed forward and very slightly to the image left, proportionate to the original boot interior. The socked foot is smaller than the boot, toes remain within the original toe-box outline, heel and ankle within the original shaft. Do not turn the foot sideways, do not change pose, do not add a shoe or sole to the revealed foot. Keep the other leg and its boot unchanged. At the upper end of the target leg, replace only the blocking diagonal edge of the white bodysuit with a simple modest opaque neutral-gray pelvis garment whose hem is slightly higher, so the natural continuous upper thigh into hip can be understood; no nudity, no anatomical intimate detail. Preserve the existing visible outer thigh contour and body proportions. Plain white background, no text, no diagram labels. This is a same-pose occluder-removal reference, not a redesign.",
+  "edgeReferenceRegion": [
+    432,
+    60,
+    356,
+    1700
+  ],
+  "referenceOffset": [
+    0,
+    0
+  ]
+}

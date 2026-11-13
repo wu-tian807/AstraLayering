@@ -1,0 +1,1454 @@
+{
+  "reopened": true,
+  "canvas": [
+    1115,
+    1410
+  ],
+  "paint_layers": 92,
+  "original_body_paint_layers": 60,
+  "original_clothing_paint_layers": 32,
+  "body_raw_pixels_identical": 60,
+  "clothing_transparency_masks": [],
+  "new_body_transparency_masks": 3,
+  "all_original_component_layers_preserved": true,
+  "reference_copied_into_parts": false,
+  "registration": {
+    "uniform_scale": 0.52,
+    "translation": [
+      259,
+      405
+    ]
+  },
+  "inputs": [
+    {
+      "path": "raster-layering/step03/character-dressup-base.kra",
+      "sha256": "13465023456b6c1491d368882fb6506f8e834530dcb44e47aa36eaeb688e28ad",
+      "size": 11627641
+    },
+    {
+      "path": "clothing-raster-layering/step02/clothing-soft-edges.kra",
+      "sha256": "a7d8597ddb302975f2c7061f2deae4a9ecb8ea4771257c517741aebb049ba6b7",
+      "size": 8418360
+    }
+  ],
+  "layers": [
+    {
+      "name": "01 | hair/back_hair",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        172,
+        10,
+        746,
+        573
+      ]
+    },
+    {
+      "name": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "type": "grouplayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        344,
+        547,
+        426,
+        441
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_body/back_panel | complete | d1",
+      "type": "paintlayer",
+      "visible": false,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        448,
+        556,
+        241,
+        213
+      ]
+    },
+    {
+      "name": "inner_shirt/shirt_body | visibility control | d2",
+      "type": "grouplayer",
+      "visible": false,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        456,
+        556,
+        208,
+        227
+      ]
+    },
+    {
+      "name": "inner_shirt/shirt_body | far | d2",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "inner_shirt/shirt_body | visibility control | d2",
+      "bounds": [
+        456,
+        556,
+        208,
+        227
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_collar/collar_root | complete | d3",
+      "type": "paintlayer",
+      "visible": false,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        513,
+        546,
+        90,
+        26
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_collar/left_collar_flap | far | d4",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        587,
+        547,
+        16,
+        23
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_collar/right_collar_flap | far | d5",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        517,
+        548,
+        8,
+        25
+      ]
+    },
+    {
+      "name": "outer_jacket/left_sleeve | far | d6",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        682,
+        694,
+        67,
+        52
+      ]
+    },
+    {
+      "name": "outer_jacket/right_sleeve | far | d7",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        368,
+        691,
+        87,
+        53
+      ]
+    },
+    {
+      "name": "inner_shirt/left_sleeve | visibility control | d8",
+      "type": "grouplayer",
+      "visible": false,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        664,
+        672,
+        43,
+        35
+      ]
+    },
+    {
+      "name": "inner_shirt/left_sleeve | far | d8",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "inner_shirt/left_sleeve | visibility control | d8",
+      "bounds": [
+        664,
+        672,
+        43,
+        35
+      ]
+    },
+    {
+      "name": "inner_shirt/right_sleeve | visibility control | d9",
+      "type": "grouplayer",
+      "visible": false,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        399,
+        672,
+        60,
+        40
+      ]
+    },
+    {
+      "name": "inner_shirt/right_sleeve | far | d9",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "inner_shirt/right_sleeve | visibility control | d9",
+      "bounds": [
+        399,
+        672,
+        60,
+        40
+      ]
+    },
+    {
+      "name": "inner_shirt/shirt_collar/collar_base | far | d10",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        515,
+        547,
+        84,
+        29
+      ]
+    },
+    {
+      "name": "pleated_skirt/skirt_body | far | d11",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装后侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        344,
+        770,
+        426,
+        218
+      ]
+    },
+    {
+      "name": "02 | legs/leg_left/shoes/cuff_back",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        588,
+        1169,
+        126,
+        31
+      ]
+    },
+    {
+      "name": "03 | legs/leg_right/shoes/cuff_back",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        351,
+        1149,
+        121,
+        63
+      ]
+    },
+    {
+      "name": "04 | legs/leg_left/leg",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        583,
+        796,
+        124,
+        530
+      ]
+    },
+    {
+      "name": "05 | legs/leg_right/leg",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        340,
+        777,
+        230,
+        561
+      ]
+    },
+    {
+      "name": "06 | legs/leg_left/shoes/shoe_front",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        576,
+        1184,
+        140,
+        195
+      ]
+    },
+    {
+      "name": "07 | legs/leg_right/shoes/shoe_front",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        323,
+        1163,
+        149,
+        222
+      ]
+    },
+    {
+      "name": "08 | arms/arm_left/bracelet_back",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        721,
+        803,
+        96,
+        76
+      ]
+    },
+    {
+      "name": "09 | arms/arm_right/bracelet_back",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        292,
+        800,
+        90,
+        80
+      ]
+    },
+    {
+      "name": "10 | arms/arm_left/hand/little_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        825,
+        902,
+        34,
+        60
+      ]
+    },
+    {
+      "name": "后方手指默认遮挡",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "10 | arms/arm_left/hand/little_finger",
+      "bounds": [
+        825,
+        902,
+        34,
+        60
+      ]
+    },
+    {
+      "name": "11 | arms/arm_right/hand/little_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        268,
+        916,
+        21,
+        39
+      ]
+    },
+    {
+      "name": "后方手指默认遮挡",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "11 | arms/arm_right/hand/little_finger",
+      "bounds": [
+        268,
+        916,
+        21,
+        39
+      ]
+    },
+    {
+      "name": "12 | arms/arm_left/hand/ring_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        812,
+        901,
+        36,
+        72
+      ]
+    },
+    {
+      "name": "后方手指默认遮挡",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "12 | arms/arm_left/hand/ring_finger",
+      "bounds": [
+        812,
+        901,
+        36,
+        72
+      ]
+    },
+    {
+      "name": "13 | arms/arm_right/hand/ring_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        272,
+        902,
+        32,
+        61
+      ]
+    },
+    {
+      "name": "14 | arms/arm_left/hand/middle_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        805,
+        900,
+        44,
+        87
+      ]
+    },
+    {
+      "name": "15 | arms/arm_right/hand/middle_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        263,
+        908,
+        39,
+        72
+      ]
+    },
+    {
+      "name": "16 | arms/arm_left/hand/thumb",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        773,
+        905,
+        53,
+        63
+      ]
+    },
+    {
+      "name": "17 | arms/arm_right/hand/thumb",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        302,
+        878,
+        45,
+        80
+      ]
+    },
+    {
+      "name": "18 | arms/arm_left/hand/index_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        812,
+        900,
+        57,
+        78
+      ]
+    },
+    {
+      "name": "19 | arms/arm_right/hand/index_finger",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        250,
+        887,
+        62,
+        85
+      ]
+    },
+    {
+      "name": "20 | arms/arm_left/hand/palm",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        746,
+        825,
+        107,
+        106
+      ]
+    },
+    {
+      "name": "21 | arms/arm_right/hand/palm",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        250,
+        811,
+        121,
+        123
+      ]
+    },
+    {
+      "name": "22 | arms/arm_left/forearm",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        670,
+        716,
+        140,
+        168
+      ]
+    },
+    {
+      "name": "23 | arms/arm_right/forearm",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        311,
+        702,
+        141,
+        171
+      ]
+    },
+    {
+      "name": "24 | arms/arm_left/upper_arm",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        602,
+        569,
+        141,
+        200
+      ]
+    },
+    {
+      "name": "穿衣收肩 | 仅隐藏袖内多余皮肤 | 可关闭",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "24 | arms/arm_left/upper_arm",
+      "bounds": [
+        602,
+        569,
+        141,
+        200
+      ]
+    },
+    {
+      "name": "25 | arms/arm_right/upper_arm",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        363,
+        559,
+        174,
+        214
+      ]
+    },
+    {
+      "name": "穿衣收肩 | 仅隐藏袖内多余皮肤 | 可关闭",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "25 | arms/arm_right/upper_arm",
+      "bounds": [
+        363,
+        559,
+        174,
+        214
+      ]
+    },
+    {
+      "name": "26 | neck",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        503,
+        506,
+        129,
+        99
+      ]
+    },
+    {
+      "name": "27 | body/torso",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        465,
+        562,
+        221,
+        235
+      ]
+    },
+    {
+      "name": "28 | body/breast",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        495,
+        583,
+        177,
+        127
+      ]
+    },
+    {
+      "name": "29 | pelvis",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        457,
+        698,
+        236,
+        200
+      ]
+    },
+    {
+      "name": "穿衣收腰 | 仅收右腰侧多余皮肤 | 可关闭",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "29 | pelvis",
+      "bounds": [
+        457,
+        698,
+        236,
+        200
+      ]
+    },
+    {
+      "name": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "type": "grouplayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        345,
+        547,
+        425,
+        432
+      ]
+    },
+    {
+      "name": "inner_shirt/left_sleeve | visibility control | d20",
+      "type": "grouplayer",
+      "visible": false,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        643,
+        584,
+        67,
+        128
+      ]
+    },
+    {
+      "name": "inner_shirt/left_sleeve | near | d20",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "inner_shirt/left_sleeve | visibility control | d20",
+      "bounds": [
+        643,
+        584,
+        67,
+        128
+      ]
+    },
+    {
+      "name": "inner_shirt/right_sleeve | visibility control | d21",
+      "type": "grouplayer",
+      "visible": false,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        397,
+        582,
+        98,
+        134
+      ]
+    },
+    {
+      "name": "inner_shirt/right_sleeve | near | d21",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "inner_shirt/right_sleeve | visibility control | d21",
+      "bounds": [
+        397,
+        582,
+        98,
+        134
+      ]
+    },
+    {
+      "name": "inner_shirt/shirt_body | near | d22",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        456,
+        556,
+        208,
+        227
+      ]
+    },
+    {
+      "name": "inner_shirt/shirt_collar/collar_base | near | d23",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        515,
+        555,
+        99,
+        50
+      ]
+    },
+    {
+      "name": "pleated_skirt/skirt_body | near | d24",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        345,
+        769,
+        425,
+        210
+      ]
+    },
+    {
+      "name": "pleated_skirt/waistband | complete | d25",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        456,
+        750,
+        224,
+        45
+      ]
+    },
+    {
+      "name": "short_necktie/hanging_blade | complete | d26",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        565,
+        604,
+        29,
+        31
+      ]
+    },
+    {
+      "name": "short_necktie/knot_and_attachment | complete | d27",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        565,
+        589,
+        22,
+        21
+      ]
+    },
+    {
+      "name": "inner_shirt/shirt_collar/left_collar_leaf | complete | d28",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        571,
+        552,
+        38,
+        62
+      ]
+    },
+    {
+      "name": "inner_shirt/shirt_collar/right_collar_leaf | complete | d29",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        516,
+        551,
+        59,
+        63
+      ]
+    },
+    {
+      "name": "jacket_front_clasp/left_clasp_wing | complete | d30",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        587,
+        652,
+        40,
+        58
+      ]
+    },
+    {
+      "name": "jacket_front_clasp/right_clasp_wing | complete | d31",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        553,
+        651,
+        40,
+        59
+      ]
+    },
+    {
+      "name": "outer_jacket/left_sleeve | near | d32",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        663,
+        590,
+        85,
+        151
+      ]
+    },
+    {
+      "name": "outer_jacket/right_sleeve | near | d33",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        365,
+        579,
+        115,
+        166
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_body/left_front/front_panel | complete | d34",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        596,
+        559,
+        104,
+        244
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_body/right_front/front_panel | complete | d35",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        440,
+        558,
+        129,
+        247
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_body/left_front/lapel | complete | d36",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        609,
+        602,
+        42,
+        65
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_body/right_front/lapel | complete | d37",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        504,
+        599,
+        65,
+        73
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_collar/left_collar_flap | near | d38",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        591,
+        547,
+        64,
+        70
+      ]
+    },
+    {
+      "name": "outer_jacket/jacket_collar/right_collar_flap | near | d39",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        488,
+        548,
+        50,
+        70
+      ]
+    },
+    {
+      "name": "jacket_front_clasp/center_buckle | complete | d40",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "衣装前侧 | 统一缩放 52% · 平移 (259,405)",
+      "bounds": [
+        581,
+        668,
+        21,
+        16
+      ]
+    },
+    {
+      "name": "30 | arms/arm_left/bracelet_front",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        721,
+        806,
+        104,
+        88
+      ]
+    },
+    {
+      "name": "31 | arms/arm_right/bracelet_front",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        284,
+        805,
+        105,
+        87
+      ]
+    },
+    {
+      "name": "32 | face/ears/ear_left",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        682,
+        348,
+        84,
+        114
+      ]
+    },
+    {
+      "name": "33 | face/ears/ear_right",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        315,
+        402,
+        87,
+        95
+      ]
+    },
+    {
+      "name": "34 | face/face_base",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        331,
+        173,
+        383,
+        377
+      ]
+    },
+    {
+      "name": "35 | face/blush_left",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        577,
+        416,
+        80,
+        55
+      ]
+    },
+    {
+      "name": "36 | face/blush_right",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        397,
+        464,
+        64,
+        45
+      ]
+    },
+    {
+      "name": "眼内开合 left",
+      "type": "grouplayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        556,
+        330,
+        105,
+        101
+      ]
+    },
+    {
+      "name": "37 | face/eyes/eye_left/sclera",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "眼内开合 left",
+      "bounds": [
+        556,
+        333,
+        105,
+        98
+      ]
+    },
+    {
+      "name": "38 | face/eyes/eye_left/iris",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "眼内开合 left",
+      "bounds": [
+        570,
+        330,
+        77,
+        100
+      ]
+    },
+    {
+      "name": "39 | face/eyes/eye_left/highlight",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "眼内开合 left",
+      "bounds": [
+        597,
+        352,
+        14,
+        26
+      ]
+    },
+    {
+      "name": "高光虹膜范围 left",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "39 | face/eyes/eye_left/highlight",
+      "bounds": [
+        597,
+        352,
+        14,
+        26
+      ]
+    },
+    {
+      "name": "眼睛开口 left",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "眼内开合 left",
+      "bounds": [
+        556,
+        330,
+        105,
+        101
+      ]
+    },
+    {
+      "name": "40 | face/eyes/eye_left/upper_eyelid",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        552,
+        313,
+        124,
+        87
+      ]
+    },
+    {
+      "name": "41 | face/eyes/eye_left/eyelid_crease",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        546,
+        308,
+        56,
+        32
+      ]
+    },
+    {
+      "name": "眼内开合 right",
+      "type": "grouplayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        364,
+        370,
+        95,
+        93
+      ]
+    },
+    {
+      "name": "42 | face/eyes/eye_right/sclera",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "眼内开合 right",
+      "bounds": [
+        364,
+        370,
+        95,
+        93
+      ]
+    },
+    {
+      "name": "43 | face/eyes/eye_right/iris",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "眼内开合 right",
+      "bounds": [
+        387,
+        372,
+        71,
+        87
+      ]
+    },
+    {
+      "name": "44 | face/eyes/eye_right/highlight",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "眼内开合 right",
+      "bounds": [
+        401,
+        388,
+        29,
+        44
+      ]
+    },
+    {
+      "name": "高光虹膜范围 right",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "44 | face/eyes/eye_right/highlight",
+      "bounds": [
+        401,
+        388,
+        29,
+        44
+      ]
+    },
+    {
+      "name": "眼睛开口 right",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "眼内开合 right",
+      "bounds": [
+        364,
+        370,
+        95,
+        93
+      ]
+    },
+    {
+      "name": "45 | face/eyes/eye_right/upper_eyelid",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        333,
+        360,
+        113,
+        82
+      ]
+    },
+    {
+      "name": "46 | face/eyes/eye_right/eyelid_crease",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        383,
+        346,
+        60,
+        26
+      ]
+    },
+    {
+      "name": "47 | face/nose",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        489,
+        444,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "口内开合",
+      "type": "grouplayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        489,
+        457,
+        80,
+        70
+      ]
+    },
+    {
+      "name": "48 | face/mouth/mouth_interior",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "口内开合",
+      "bounds": [
+        489,
+        457,
+        80,
+        70
+      ]
+    },
+    {
+      "name": "49 | face/mouth/lower_teeth",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "口内开合",
+      "bounds": [
+        500,
+        496,
+        57,
+        31
+      ]
+    },
+    {
+      "name": "下牙默认遮挡",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "49 | face/mouth/lower_teeth",
+      "bounds": [
+        500,
+        496,
+        57,
+        31
+      ]
+    },
+    {
+      "name": "50 | face/mouth/tongue",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "口内开合",
+      "bounds": [
+        502,
+        466,
+        60,
+        56
+      ]
+    },
+    {
+      "name": "51 | face/mouth/upper_teeth",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "口内开合",
+      "bounds": [
+        493,
+        459,
+        59,
+        22
+      ]
+    },
+    {
+      "name": "上牙露出带",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "51 | face/mouth/upper_teeth",
+      "bounds": [
+        493,
+        459,
+        59,
+        22
+      ]
+    },
+    {
+      "name": "上下唇开口",
+      "type": "transparencymask",
+      "visible": true,
+      "parent": "口内开合",
+      "bounds": [
+        489,
+        457,
+        80,
+        70
+      ]
+    },
+    {
+      "name": "52 | face/mouth/lower_lip",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        488,
+        473,
+        80,
+        55
+      ]
+    },
+    {
+      "name": "53 | face/mouth/upper_lip",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        484,
+        454,
+        88,
+        39
+      ]
+    },
+    {
+      "name": "54 | face/eyebrows/eyebrow_left",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        537,
+        255,
+        113,
+        30
+      ]
+    },
+    {
+      "name": "55 | face/eyebrows/eyebrow_right",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        337,
+        292,
+        96,
+        30
+      ]
+    },
+    {
+      "name": "56 | hair/bangs",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        320,
+        62,
+        226,
+        322
+      ]
+    },
+    {
+      "name": "57 | hair/side_hair/side_hair_left",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        468,
+        60,
+        268,
+        517
+      ]
+    },
+    {
+      "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        669,
+        346,
+        15,
+        14
+      ]
+    },
+    {
+      "name": "58 | hair/side_hair/side_hair_right",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        254,
+        73,
+        209,
+        536
+      ]
+    },
+    {
+      "name": "59 | head_accessories",
+      "type": "paintlayer",
+      "visible": true,
+      "parent": "root",
+      "bounds": [
+        645,
+        145,
+        126,
+        133
+      ]
+    }
+  ],
+  "transparent_background_verified": true,
+  "png_rgba_size": [
+    1115,
+    1410
+  ],
+  "visual_review_images": [
+    "character-assembly/step01/review/boots.png",
+    "character-assembly/step01/review/collar-shoulders.png",
+    "character-assembly/step01/review/cuff-layers.png",
+    "character-assembly/step01/review/left-cuff.png",
+    "character-assembly/step01/review/left-wrist.png",
+    "character-assembly/step01/review/limb-joints.png",
+    "character-assembly/step01/review/overall.png",
+    "character-assembly/step01/review/right-cuff.png",
+    "character-assembly/step01/review/right-wrist.png",
+    "character-assembly/step01/review/shoulder-masks.png",
+    "character-assembly/step01/review/skirt-hem.png",
+    "character-assembly/step01/review/waist-mask.png",
+    "character-assembly/step01/review/waist-sides.png"
+  ],
+  "visual_self_check_completed": true,
+  "visually_checked_joins": [
+    "collar/neck",
+    "shoulders",
+    "right cuff/inner wall/underarm",
+    "left cuff/inner wall/underarm",
+    "bodice sides",
+    "waist",
+    "skirt hem/legs",
+    "right wrist",
+    "left wrist",
+    "boots/ankles"
+  ],
+  "delivery_files": [
+    "character-assembly/step01/character-assembled.kra",
+    "character-assembly/step01/character-assembled.png",
+    "character-assembly/step01/report.md"
+  ]
+}

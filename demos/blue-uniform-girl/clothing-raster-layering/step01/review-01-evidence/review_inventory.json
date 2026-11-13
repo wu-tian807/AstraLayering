@@ -1,0 +1,618 @@
+[
+  {
+    "name": "outer_jacket/jacket_body/back_panel | complete | d1",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{d65980d6-ab8f-494f-bd94-680b5b363881}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      363,
+      290,
+      464,
+      410
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_body/back_panel | default hidden",
+    "type": "transparencymask",
+    "uuid": "PyQt5.QtCore.QUuid('{1114f839-db15-40dd-a7e3-1b52d083e245}')",
+    "parent": "outer_jacket/jacket_body/back_panel | complete | d1",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      363,
+      290,
+      464,
+      410
+    ]
+  },
+  {
+    "name": "inner_shirt/shirt_body | visibility control | d2",
+    "type": "grouplayer",
+    "uuid": "PyQt5.QtCore.QUuid('{8fc6e546-e307-4676-9453-0ded6ec52c07}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      378,
+      290,
+      400,
+      437
+    ]
+  },
+  {
+    "name": "inner_shirt/shirt_body | far | d2",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{64476358-6b22-4371-8a2d-680990fe8c4a}')",
+    "parent": "inner_shirt/shirt_body | visibility control | d2",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      378,
+      290,
+      400,
+      437
+    ]
+  },
+  {
+    "name": "inner_shirt/shirt_body | default concealed | d2",
+    "type": "transparencymask",
+    "uuid": "PyQt5.QtCore.QUuid('{e3788cde-d110-4303-8428-6bb36de5c26f}')",
+    "parent": "inner_shirt/shirt_body | visibility control | d2",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      378,
+      290,
+      400,
+      437
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_collar/collar_root | complete | d3",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{d5126161-e3cf-4e12-a122-dda79e6651af}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      489,
+      271,
+      172,
+      50
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_collar/collar_root | default hidden",
+    "type": "transparencymask",
+    "uuid": "PyQt5.QtCore.QUuid('{020b5612-5197-41af-8e41-016116b0089e}')",
+    "parent": "outer_jacket/jacket_collar/collar_root | complete | d3",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      489,
+      271,
+      172,
+      50
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_collar/left_collar_flap | far | d4",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{f34263dd-950b-43de-8415-2f96af713392}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      630,
+      274,
+      32,
+      43
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_collar/right_collar_flap | far | d5",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{46380345-5435-4995-bea2-a1c17edf3ba2}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      496,
+      272,
+      17,
+      52
+    ]
+  },
+  {
+    "name": "outer_jacket/left_sleeve | far | d6",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{7af74231-3b67-4500-8a6f-9b9a7d8791f6}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      816,
+      573,
+      120,
+      79
+    ]
+  },
+  {
+    "name": "outer_jacket/right_sleeve | far | d7",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{16be55fe-78c2-4e58-a605-4bf1eaa070e1}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      205,
+      560,
+      134,
+      91
+    ]
+  },
+  {
+    "name": "inner_shirt/left_sleeve | visibility control | d8",
+    "type": "grouplayer",
+    "uuid": "PyQt5.QtCore.QUuid('{39bed1a5-07a1-48a4-8e3b-cc10483b51a3}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      779,
+      513,
+      82,
+      68
+    ]
+  },
+  {
+    "name": "inner_shirt/left_sleeve | far | d8",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{6b8f1300-71be-4b40-9564-07941030af7e}')",
+    "parent": "inner_shirt/left_sleeve | visibility control | d8",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      779,
+      513,
+      82,
+      68
+    ]
+  },
+  {
+    "name": "inner_shirt/left_sleeve | default concealed | d8",
+    "type": "transparencymask",
+    "uuid": "PyQt5.QtCore.QUuid('{73139073-0388-49fc-9523-c45480c8bca8}')",
+    "parent": "inner_shirt/left_sleeve | visibility control | d8",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      779,
+      513,
+      82,
+      68
+    ]
+  },
+  {
+    "name": "inner_shirt/right_sleeve | visibility control | d9",
+    "type": "grouplayer",
+    "uuid": "PyQt5.QtCore.QUuid('{dc42b4f3-eb54-4ab0-aa2e-59a7cc800302}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      269,
+      514,
+      116,
+      76
+    ]
+  },
+  {
+    "name": "inner_shirt/right_sleeve | far | d9",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{927e01f3-f285-44fa-9aa0-91cb5cb985e9}')",
+    "parent": "inner_shirt/right_sleeve | visibility control | d9",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      269,
+      514,
+      116,
+      76
+    ]
+  },
+  {
+    "name": "inner_shirt/right_sleeve | default concealed | d9",
+    "type": "transparencymask",
+    "uuid": "PyQt5.QtCore.QUuid('{c9fa2eb0-a701-4ab0-9111-1d3063c0c0e8}')",
+    "parent": "inner_shirt/right_sleeve | visibility control | d9",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      269,
+      514,
+      116,
+      76
+    ]
+  },
+  {
+    "name": "inner_shirt/shirt_collar/collar_base | far | d10",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{3e8eed0d-000f-48d0-9f64-932f9083755f}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      493,
+      273,
+      160,
+      56
+    ]
+  },
+  {
+    "name": "pleated_skirt/skirt_body | far | d11",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{e90f4e77-c691-49b3-9de0-783cb7723a76}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      164,
+      700,
+      819,
+      422
+    ]
+  },
+  {
+    "name": "inner_shirt/left_sleeve | visibility control | d20",
+    "type": "grouplayer",
+    "uuid": "PyQt5.QtCore.QUuid('{73eb42ba-5a77-4d33-a876-bc00c38e46f3}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      739,
+      345,
+      129,
+      245
+    ]
+  },
+  {
+    "name": "inner_shirt/left_sleeve | near | d20",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{1bd5ddc5-1e9d-44a6-99c9-3ad3150c3bfb}')",
+    "parent": "inner_shirt/left_sleeve | visibility control | d20",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      739,
+      345,
+      129,
+      245
+    ]
+  },
+  {
+    "name": "inner_shirt/left_sleeve | default concealed | d20",
+    "type": "transparencymask",
+    "uuid": "PyQt5.QtCore.QUuid('{7c4217ee-4f04-41c9-b1e6-7ddfd9e8d2fc}')",
+    "parent": "inner_shirt/left_sleeve | visibility control | d20",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      739,
+      345,
+      129,
+      245
+    ]
+  },
+  {
+    "name": "inner_shirt/right_sleeve | visibility control | d21",
+    "type": "grouplayer",
+    "uuid": "PyQt5.QtCore.QUuid('{3872ef39-e996-49f5-a3cb-46e881306d54}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      266,
+      341,
+      188,
+      257
+    ]
+  },
+  {
+    "name": "inner_shirt/right_sleeve | near | d21",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{9ac3a3a0-8e69-465d-9931-1a8897e2c9b3}')",
+    "parent": "inner_shirt/right_sleeve | visibility control | d21",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      266,
+      341,
+      188,
+      257
+    ]
+  },
+  {
+    "name": "inner_shirt/right_sleeve | default concealed | d21",
+    "type": "transparencymask",
+    "uuid": "PyQt5.QtCore.QUuid('{a93743a6-fc70-4142-8b46-3626dd4e6344}')",
+    "parent": "inner_shirt/right_sleeve | visibility control | d21",
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      266,
+      341,
+      188,
+      257
+    ]
+  },
+  {
+    "name": "inner_shirt/shirt_body | near | d22",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{24e553aa-8e8f-47a0-94a1-189cf19dec73}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      378,
+      290,
+      400,
+      437
+    ]
+  },
+  {
+    "name": "inner_shirt/shirt_collar/collar_base | near | d23",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{c4121cb2-56f5-4874-817b-0ea842a813da}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      493,
+      289,
+      190,
+      95
+    ]
+  },
+  {
+    "name": "pleated_skirt/skirt_body | near | d24",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{18ec5e0c-cd44-45ce-978a-6634cfc49573}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      164,
+      700,
+      819,
+      406
+    ]
+  },
+  {
+    "name": "pleated_skirt/waistband | complete | d25",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{cfa95e5e-7469-41fb-b5ec-6870974b8938}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      378,
+      664,
+      432,
+      86
+    ]
+  },
+  {
+    "name": "short_necktie/hanging_blade | complete | d26",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{ef80ec8a-8ce4-441f-bc3a-d6816614a33b}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      589,
+      383,
+      55,
+      60
+    ]
+  },
+  {
+    "name": "short_necktie/knot_and_attachment | complete | d27",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{04553e19-559a-40a3-bbc3-846b4f0868e2}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      588,
+      354,
+      43,
+      40
+    ]
+  },
+  {
+    "name": "inner_shirt/shirt_collar/left_collar_leaf | complete | d28",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{522a2d60-6d6d-4bee-9809-49ce8868ca81}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      599,
+      282,
+      74,
+      120
+    ]
+  },
+  {
+    "name": "inner_shirt/shirt_collar/right_collar_leaf | complete | d29",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{1afc9ee8-5750-4582-9e9d-71f84760b426}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      494,
+      280,
+      113,
+      122
+    ]
+  },
+  {
+    "name": "jacket_front_clasp/left_clasp_wing | complete | d30",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{133a0d6a-be41-4624-8034-39bdb9156a95}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      631,
+      475,
+      76,
+      112
+    ]
+  },
+  {
+    "name": "jacket_front_clasp/right_clasp_wing | complete | d31",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{b10fddaf-f4a0-46f8-9bd8-710375924ec0}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      566,
+      474,
+      77,
+      112
+    ]
+  },
+  {
+    "name": "outer_jacket/left_sleeve | near | d32",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{e0618e79-79f0-45f8-ac87-9aadedf30c56}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      776,
+      354,
+      164,
+      305
+    ]
+  },
+  {
+    "name": "outer_jacket/right_sleeve | near | d33",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{4bcf3d6d-8dea-42e8-a918-c7356dbde499}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      193,
+      334,
+      242,
+      328
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_body/left_front/front_panel | complete | d34",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{838bed12-b27f-4bba-b1b0-ee5c41e79040}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      648,
+      297,
+      202,
+      469
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_body/right_front/front_panel | complete | d35",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{bfeacc22-e802-47b1-a478-7416d33cf579}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      348,
+      296,
+      248,
+      473
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_body/left_front/lapel | complete | d36",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{d0d277c3-7639-458a-bebe-d8a0d2f667ae}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      671,
+      378,
+      84,
+      125
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_body/right_front/lapel | complete | d37",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{99ac81ac-c0e8-4df6-ab82-13c61e836b72}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      471,
+      373,
+      125,
+      140
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_collar/left_collar_flap | near | d38",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{4359e5cc-efc4-42b6-b83c-a7dbaf7a6cfd}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      639,
+      274,
+      122,
+      134
+    ]
+  },
+  {
+    "name": "outer_jacket/jacket_collar/right_collar_flap | near | d39",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{7b756c44-b916-4ef0-a702-9b3d63594036}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      440,
+      272,
+      96,
+      137
+    ]
+  },
+  {
+    "name": "jacket_front_clasp/center_buckle | complete | d40",
+    "type": "paintlayer",
+    "uuid": "PyQt5.QtCore.QUuid('{4e99de2a-7162-4a78-be49-f72b4c1f8258}')",
+    "parent": null,
+    "visible": true,
+    "opacity": 255,
+    "bounds": [
+      618,
+      503,
+      44,
+      35
+    ]
+  }
+]

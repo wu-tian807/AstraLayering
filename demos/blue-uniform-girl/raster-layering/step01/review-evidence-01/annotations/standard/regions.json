@@ -1,0 +1,517 @@
+{
+  "image": "raster-layering/step01/review-evidence-01/inspection/actual-default.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-01/annotations/standard/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/6a7ad4fd-80e0-43f4-9f79-4d66c5b6c108/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        365,
+        875,
+        205,
+        325
+      ],
+      "layers": [
+        "05 | legs/leg_right/leg"
+      ],
+      "description": "画面左长袜的两侧轮廓呈连续啃口、台阶，深色描边缺失；原图为平顺、连贯的深色轮廓。",
+      "crop": [
+        353,
+        863,
+        229,
+        349
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R1-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R1-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R1-comparison.png"
+      }
+    },
+    {
+      "id": "R2",
+      "bounds": [
+        600,
+        925,
+        108,
+        275
+      ],
+      "layers": [
+        "04 | legs/leg_left/leg"
+      ],
+      "description": "画面右长袜两侧同样出现波浪状碎边、断续轮廓，原有深色外线没有延续完整。",
+      "crop": [
+        588,
+        913,
+        132,
+        299
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R2-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R2-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R2-comparison.png"
+      }
+    },
+    {
+      "id": "R6",
+      "bounds": [
+        249,
+        905,
+        95,
+        38
+      ],
+      "layers": [
+        "21 | arms/arm_right/hand/palm",
+        "19 | arms/arm_right/hand/index_finger",
+        "17 | arms/arm_right/hand/thumb"
+      ],
+      "description": "画面左手掌指搭接出现横向浅色硬带，虎口上端结构线有断点、粗细突变，原图同处连续。",
+      "crop": [
+        237,
+        893,
+        119,
+        62
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R6-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R6-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R6-comparison.png"
+      }
+    },
+    {
+      "id": "R7",
+      "bounds": [
+        811,
+        893,
+        50,
+        43
+      ],
+      "layers": [
+        "20 | arms/arm_left/hand/palm",
+        "18 | arms/arm_left/hand/index_finger",
+        "16 | arms/arm_left/hand/thumb"
+      ],
+      "description": "画面右手掌与食指根部有斜向色差硬边，轮廓在搭接末端形成台阶；虎口根部线条叠加发乱。",
+      "crop": [
+        799,
+        881,
+        74,
+        67
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R7-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R7-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R7-comparison.png"
+      }
+    },
+    {
+      "id": "R8",
+      "bounds": [
+        808,
+        934,
+        53,
+        53
+      ],
+      "layers": [
+        "14 | arms/arm_left/hand/middle_finger",
+        "18 | arms/arm_left/hand/index_finger"
+      ],
+      "description": "画面右手中指与食指间新增细长透明裂缝；中指末端向下延长。原图两指此段紧接，只保留连续分界线。",
+      "crop": [
+        796,
+        922,
+        77,
+        77
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R8-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R8-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R8-comparison.png"
+      }
+    },
+    {
+      "id": "R19",
+      "bounds": [
+        319,
+        1147,
+        157,
+        240
+      ],
+      "layers": [
+        "07 | legs/leg_right/shoes/shoe_front",
+        "03 | legs/leg_right/shoes/cuff_back"
+      ],
+      "description": "画面左鞋外侧留有细白边，鞋口前后段出现双层错开的暗弧和接点台阶，原图是单一连续鞋口。",
+      "crop": [
+        307,
+        1135,
+        181,
+        264
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R19-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R19-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R19-comparison.png"
+      }
+    },
+    {
+      "id": "R20",
+      "bounds": [
+        570,
+        1167,
+        151,
+        216
+      ],
+      "layers": [
+        "06 | legs/leg_left/shoes/shoe_front",
+        "02 | legs/leg_left/shoes/cuff_back"
+      ],
+      "description": "画面右鞋左外缘有白色残边；后口弧线在前鞋口外另露一圈，两端接合不顺。",
+      "crop": [
+        558,
+        1155,
+        175,
+        240
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R20-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R20-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R20-comparison.png"
+      }
+    },
+    {
+      "id": "R21",
+      "bounds": [
+        170,
+        203,
+        746,
+        391
+      ],
+      "layers": [
+        "01 | hair/back_hair"
+      ],
+      "description": "后发两侧回弯束及外围发尖的深色外线变薄、局部消失，边缘呈细碎锯齿，和原图连续深色轮廓不符。",
+      "crop": [
+        158,
+        191,
+        770,
+        415
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R21-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R21-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R21-comparison.png"
+      }
+    },
+    {
+      "id": "R22",
+      "bounds": [
+        714,
+        267,
+        51,
+        67
+      ],
+      "layers": [
+        "01 | hair/back_hair",
+        "57 | hair/side_hair/side_hair_left"
+      ],
+      "description": "三角头饰下方原有醒目的青蓝发面亮带遗漏，当前此处全为深蓝。",
+      "crop": [
+        702,
+        255,
+        75,
+        91
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R22-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R22-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R22-comparison.png"
+      }
+    },
+    {
+      "id": "R23",
+      "bounds": [
+        331,
+        229,
+        212,
+        155
+      ],
+      "layers": [
+        "56 | hair/bangs"
+      ],
+      "description": "刘海可见发尖缩短、中央弧底变平，外缘深线未完整保留，尖端有碎边。",
+      "crop": [
+        319,
+        217,
+        236,
+        179
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R23-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R23-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R23-comparison.png"
+      }
+    },
+    {
+      "id": "R24",
+      "bounds": [
+        529,
+        197,
+        205,
+        367
+      ],
+      "layers": [
+        "57 | hair/side_hair/side_hair_left"
+      ],
+      "description": "画面右侧斜扫额角的边界抬高，贴脸短尖提前结束；完整层外上缘转接有明显折角，原图发面轮廓及发流更连贯。",
+      "crop": [
+        517,
+        185,
+        229,
+        391
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R24-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R24-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R24-comparison.png"
+      }
+    },
+    {
+      "id": "R25",
+      "bounds": [
+        320,
+        433,
+        70,
+        160
+      ],
+      "layers": [
+        "58 | hair/side_hair/side_hair_right"
+      ],
+      "description": "画面左侧短尖向长末端连接处有直切的深蓝色块边界，原图是随发束弯转的色阶与线条。",
+      "crop": [
+        308,
+        421,
+        94,
+        184
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R25-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R25-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R25-comparison.png"
+      }
+    },
+    {
+      "id": "R27",
+      "bounds": [
+        713,
+        347,
+        62,
+        112
+      ],
+      "layers": [
+        "32 | face/ears/ear_left"
+      ],
+      "description": "画面右耳可见外缘仅剩极细浅棕线，原有深色外轮廓没有完整保留。",
+      "crop": [
+        701,
+        335,
+        86,
+        136
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R27-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R27-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R27-comparison.png"
+      }
+    },
+    {
+      "id": "R28",
+      "bounds": [
+        386,
+        459,
+        78,
+        49
+      ],
+      "layers": [
+        "36 | face/blush_right"
+      ],
+      "description": "画面左颊红晕变成可辨认的横椭圆粉色斑，外沿和肤色过渡与原图散开的红底不同。",
+      "crop": [
+        374,
+        447,
+        102,
+        73
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R28-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R28-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R28-comparison.png"
+      }
+    },
+    {
+      "id": "R29",
+      "bounds": [
+        546,
+        310,
+        141,
+        128
+      ],
+      "layers": [
+        "37 | face/eyes/eye_left/sclera",
+        "38 | face/eyes/eye_left/iris",
+        "39 | face/eyes/eye_left/highlight",
+        "40 | face/eyes/eye_left/upper_eyelid",
+        "眼睛开口 left"
+      ],
+      "description": "画面右眼睫毛下与虹膜顶端多出细白缝；主白高光缩小，瞳孔内浅蓝反光变成亮白点，虹膜青色亮面层次与原图有偏差。",
+      "crop": [
+        534,
+        298,
+        165,
+        152
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R29-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R29-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R29-comparison.png"
+      }
+    },
+    {
+      "id": "R30",
+      "bounds": [
+        329,
+        355,
+        137,
+        113
+      ],
+      "layers": [
+        "42 | face/eyes/eye_right/sclera",
+        "43 | face/eyes/eye_right/iris",
+        "44 | face/eyes/eye_right/highlight",
+        "45 | face/eyes/eye_right/upper_eyelid",
+        "眼睛开口 right"
+      ],
+      "description": "画面左眼虹膜向左扩宽，底部亮面更圆更大；主白高光变小，虹膜上缘与睫毛下缘之间出现细白边。",
+      "crop": [
+        317,
+        343,
+        161,
+        137
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R30-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R30-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R30-comparison.png"
+      }
+    },
+    {
+      "id": "R31",
+      "bounds": [
+        492,
+        462,
+        62,
+        19
+      ],
+      "layers": [
+        "51 | face/mouth/upper_teeth",
+        "上牙露出带",
+        "上下唇开口"
+      ],
+      "description": "上牙当前露出带上下边缘呈齿状台阶、粗细不匀，原图是连贯平滑的白色弧带。",
+      "crop": [
+        480,
+        450,
+        86,
+        43
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R31-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R31-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R31-comparison.png"
+      }
+    },
+    {
+      "id": "R32",
+      "bounds": [
+        483,
+        463,
+        83,
+        64
+      ],
+      "layers": [
+        "52 | face/mouth/lower_lip",
+        "53 | face/mouth/upper_lip",
+        "48 | face/mouth/mouth_interior",
+        "50 | face/mouth/tongue",
+        "上下唇开口"
+      ],
+      "description": "口部右上缘有并行重复红边，下唇左下段描边弱化或中断；嘴边和内部接合粗细跳变、局部呈锯齿。",
+      "crop": [
+        471,
+        451,
+        107,
+        88
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R32-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R32-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R32-comparison.png"
+      }
+    },
+    {
+      "id": "R34",
+      "bounds": [
+        481,
+        439,
+        18,
+        17
+      ],
+      "layers": [
+        "47 | face/nose"
+      ],
+      "description": "鼻部由原图小圆点变成更大、偏左上方的斜长红斑。",
+      "crop": [
+        469,
+        427,
+        42,
+        41
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R34-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R34-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R34-comparison.png"
+      }
+    },
+    {
+      "id": "R35",
+      "bounds": [
+        780,
+        800,
+        39,
+        43
+      ],
+      "layers": [
+        "08 | arms/arm_left/bracelet_back",
+        "30 | arms/arm_left/bracelet_front"
+      ],
+      "description": "画面右腕环前后段接合处新增折线状内部边界，并有外缘接点台阶；原图为连续的圆弧环面。",
+      "crop": [
+        768,
+        788,
+        63,
+        67
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/standard/R35-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/standard/R35-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/standard/R35-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。",
+  "source_tool_manifest": "raster-layering/step01/workspace/review-regions/6a7ad4fd-80e0-43f4-9f79-4d66c5b6c108/regions.json"
+}

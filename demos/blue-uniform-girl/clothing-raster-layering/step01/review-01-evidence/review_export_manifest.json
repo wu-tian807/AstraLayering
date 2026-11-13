@@ -1,0 +1,973 @@
+{
+  "solo": [
+    {
+      "name": "outer_jacket/jacket_body/back_panel | complete | d1",
+      "part": "outer_jacket/jacket_body/back_panel",
+      "depth": 1,
+      "bounds": [
+        363,
+        290,
+        464,
+        410
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d01.png"
+    },
+    {
+      "name": "inner_shirt/shirt_body | far | d2",
+      "part": "inner_shirt/shirt_body",
+      "depth": 2,
+      "bounds": [
+        378,
+        290,
+        400,
+        437
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d02.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/collar_root | complete | d3",
+      "part": "outer_jacket/jacket_collar/collar_root",
+      "depth": 3,
+      "bounds": [
+        489,
+        271,
+        172,
+        50
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d03.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/left_collar_flap | far | d4",
+      "part": "outer_jacket/jacket_collar/left_collar_flap",
+      "depth": 4,
+      "bounds": [
+        630,
+        274,
+        32,
+        43
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d04.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/right_collar_flap | far | d5",
+      "part": "outer_jacket/jacket_collar/right_collar_flap",
+      "depth": 5,
+      "bounds": [
+        496,
+        272,
+        17,
+        52
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d05.png"
+    },
+    {
+      "name": "outer_jacket/left_sleeve | far | d6",
+      "part": "outer_jacket/left_sleeve",
+      "depth": 6,
+      "bounds": [
+        816,
+        573,
+        120,
+        79
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d06.png"
+    },
+    {
+      "name": "outer_jacket/right_sleeve | far | d7",
+      "part": "outer_jacket/right_sleeve",
+      "depth": 7,
+      "bounds": [
+        205,
+        560,
+        134,
+        91
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d07.png"
+    },
+    {
+      "name": "inner_shirt/left_sleeve | far | d8",
+      "part": "inner_shirt/left_sleeve",
+      "depth": 8,
+      "bounds": [
+        779,
+        513,
+        82,
+        68
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d08.png"
+    },
+    {
+      "name": "inner_shirt/right_sleeve | far | d9",
+      "part": "inner_shirt/right_sleeve",
+      "depth": 9,
+      "bounds": [
+        269,
+        514,
+        116,
+        76
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d09.png"
+    },
+    {
+      "name": "inner_shirt/shirt_collar/collar_base | far | d10",
+      "part": "inner_shirt/shirt_collar/collar_base",
+      "depth": 10,
+      "bounds": [
+        493,
+        273,
+        160,
+        56
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d10.png"
+    },
+    {
+      "name": "pleated_skirt/skirt_body | far | d11",
+      "part": "pleated_skirt/skirt_body",
+      "depth": 11,
+      "bounds": [
+        164,
+        700,
+        819,
+        422
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d11.png"
+    },
+    {
+      "name": "inner_shirt/left_sleeve | near | d20",
+      "part": "inner_shirt/left_sleeve",
+      "depth": 20,
+      "bounds": [
+        739,
+        345,
+        129,
+        245
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d20.png"
+    },
+    {
+      "name": "inner_shirt/right_sleeve | near | d21",
+      "part": "inner_shirt/right_sleeve",
+      "depth": 21,
+      "bounds": [
+        266,
+        341,
+        188,
+        257
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d21.png"
+    },
+    {
+      "name": "inner_shirt/shirt_body | near | d22",
+      "part": "inner_shirt/shirt_body",
+      "depth": 22,
+      "bounds": [
+        378,
+        290,
+        400,
+        437
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d22.png"
+    },
+    {
+      "name": "inner_shirt/shirt_collar/collar_base | near | d23",
+      "part": "inner_shirt/shirt_collar/collar_base",
+      "depth": 23,
+      "bounds": [
+        493,
+        289,
+        190,
+        95
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d23.png"
+    },
+    {
+      "name": "pleated_skirt/skirt_body | near | d24",
+      "part": "pleated_skirt/skirt_body",
+      "depth": 24,
+      "bounds": [
+        164,
+        700,
+        819,
+        406
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d24.png"
+    },
+    {
+      "name": "pleated_skirt/waistband | complete | d25",
+      "part": "pleated_skirt/waistband",
+      "depth": 25,
+      "bounds": [
+        378,
+        664,
+        432,
+        86
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d25.png"
+    },
+    {
+      "name": "short_necktie/hanging_blade | complete | d26",
+      "part": "short_necktie/hanging_blade",
+      "depth": 26,
+      "bounds": [
+        589,
+        383,
+        55,
+        60
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d26.png"
+    },
+    {
+      "name": "short_necktie/knot_and_attachment | complete | d27",
+      "part": "short_necktie/knot_and_attachment",
+      "depth": 27,
+      "bounds": [
+        588,
+        354,
+        43,
+        40
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d27.png"
+    },
+    {
+      "name": "inner_shirt/shirt_collar/left_collar_leaf | complete | d28",
+      "part": "inner_shirt/shirt_collar/left_collar_leaf",
+      "depth": 28,
+      "bounds": [
+        599,
+        282,
+        74,
+        120
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d28.png"
+    },
+    {
+      "name": "inner_shirt/shirt_collar/right_collar_leaf | complete | d29",
+      "part": "inner_shirt/shirt_collar/right_collar_leaf",
+      "depth": 29,
+      "bounds": [
+        494,
+        280,
+        113,
+        122
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d29.png"
+    },
+    {
+      "name": "jacket_front_clasp/left_clasp_wing | complete | d30",
+      "part": "jacket_front_clasp/left_clasp_wing",
+      "depth": 30,
+      "bounds": [
+        631,
+        475,
+        76,
+        112
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d30.png"
+    },
+    {
+      "name": "jacket_front_clasp/right_clasp_wing | complete | d31",
+      "part": "jacket_front_clasp/right_clasp_wing",
+      "depth": 31,
+      "bounds": [
+        566,
+        474,
+        77,
+        112
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d31.png"
+    },
+    {
+      "name": "outer_jacket/left_sleeve | near | d32",
+      "part": "outer_jacket/left_sleeve",
+      "depth": 32,
+      "bounds": [
+        776,
+        354,
+        164,
+        305
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d32.png"
+    },
+    {
+      "name": "outer_jacket/right_sleeve | near | d33",
+      "part": "outer_jacket/right_sleeve",
+      "depth": 33,
+      "bounds": [
+        193,
+        334,
+        242,
+        328
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d33.png"
+    },
+    {
+      "name": "outer_jacket/jacket_body/left_front/front_panel | complete | d34",
+      "part": "outer_jacket/jacket_body/left_front/front_panel",
+      "depth": 34,
+      "bounds": [
+        648,
+        297,
+        202,
+        469
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d34.png"
+    },
+    {
+      "name": "outer_jacket/jacket_body/right_front/front_panel | complete | d35",
+      "part": "outer_jacket/jacket_body/right_front/front_panel",
+      "depth": 35,
+      "bounds": [
+        348,
+        296,
+        248,
+        473
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d35.png"
+    },
+    {
+      "name": "outer_jacket/jacket_body/left_front/lapel | complete | d36",
+      "part": "outer_jacket/jacket_body/left_front/lapel",
+      "depth": 36,
+      "bounds": [
+        671,
+        378,
+        84,
+        125
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d36.png"
+    },
+    {
+      "name": "outer_jacket/jacket_body/right_front/lapel | complete | d37",
+      "part": "outer_jacket/jacket_body/right_front/lapel",
+      "depth": 37,
+      "bounds": [
+        471,
+        373,
+        125,
+        140
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d37.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/left_collar_flap | near | d38",
+      "part": "outer_jacket/jacket_collar/left_collar_flap",
+      "depth": 38,
+      "bounds": [
+        639,
+        274,
+        122,
+        134
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d38.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/right_collar_flap | near | d39",
+      "part": "outer_jacket/jacket_collar/right_collar_flap",
+      "depth": 39,
+      "bounds": [
+        440,
+        272,
+        96,
+        137
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d39.png"
+    },
+    {
+      "name": "jacket_front_clasp/center_buckle | complete | d40",
+      "part": "jacket_front_clasp/center_buckle",
+      "depth": 40,
+      "bounds": [
+        618,
+        503,
+        44,
+        35
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d40.png"
+    }
+  ],
+  "parts": [
+    {
+      "part": "outer_jacket/jacket_body/back_panel",
+      "depths": [
+        1
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__jacket_body__back_panel.png"
+    },
+    {
+      "part": "inner_shirt/shirt_body",
+      "depths": [
+        2,
+        22
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_inner_shirt__shirt_body.png"
+    },
+    {
+      "part": "outer_jacket/jacket_collar/collar_root",
+      "depths": [
+        3
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__jacket_collar__collar_root.png"
+    },
+    {
+      "part": "outer_jacket/jacket_collar/left_collar_flap",
+      "depths": [
+        4,
+        38
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__jacket_collar__left_collar_flap.png"
+    },
+    {
+      "part": "outer_jacket/jacket_collar/right_collar_flap",
+      "depths": [
+        5,
+        39
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__jacket_collar__right_collar_flap.png"
+    },
+    {
+      "part": "outer_jacket/left_sleeve",
+      "depths": [
+        6,
+        32
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__left_sleeve.png"
+    },
+    {
+      "part": "outer_jacket/right_sleeve",
+      "depths": [
+        7,
+        33
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__right_sleeve.png"
+    },
+    {
+      "part": "inner_shirt/left_sleeve",
+      "depths": [
+        8,
+        20
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_inner_shirt__left_sleeve.png"
+    },
+    {
+      "part": "inner_shirt/right_sleeve",
+      "depths": [
+        9,
+        21
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_inner_shirt__right_sleeve.png"
+    },
+    {
+      "part": "inner_shirt/shirt_collar/collar_base",
+      "depths": [
+        10,
+        23
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_inner_shirt__shirt_collar__collar_base.png"
+    },
+    {
+      "part": "pleated_skirt/skirt_body",
+      "depths": [
+        11,
+        24
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_pleated_skirt__skirt_body.png"
+    },
+    {
+      "part": "pleated_skirt/waistband",
+      "depths": [
+        25
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_pleated_skirt__waistband.png"
+    },
+    {
+      "part": "short_necktie/hanging_blade",
+      "depths": [
+        26
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_short_necktie__hanging_blade.png"
+    },
+    {
+      "part": "short_necktie/knot_and_attachment",
+      "depths": [
+        27
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_short_necktie__knot_and_attachment.png"
+    },
+    {
+      "part": "inner_shirt/shirt_collar/left_collar_leaf",
+      "depths": [
+        28
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_inner_shirt__shirt_collar__left_collar_leaf.png"
+    },
+    {
+      "part": "inner_shirt/shirt_collar/right_collar_leaf",
+      "depths": [
+        29
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_inner_shirt__shirt_collar__right_collar_leaf.png"
+    },
+    {
+      "part": "jacket_front_clasp/left_clasp_wing",
+      "depths": [
+        30
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_jacket_front_clasp__left_clasp_wing.png"
+    },
+    {
+      "part": "jacket_front_clasp/right_clasp_wing",
+      "depths": [
+        31
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_jacket_front_clasp__right_clasp_wing.png"
+    },
+    {
+      "part": "outer_jacket/jacket_body/left_front/front_panel",
+      "depths": [
+        34
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__jacket_body__left_front__front_panel.png"
+    },
+    {
+      "part": "outer_jacket/jacket_body/right_front/front_panel",
+      "depths": [
+        35
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__jacket_body__right_front__front_panel.png"
+    },
+    {
+      "part": "outer_jacket/jacket_body/left_front/lapel",
+      "depths": [
+        36
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__jacket_body__left_front__lapel.png"
+    },
+    {
+      "part": "outer_jacket/jacket_body/right_front/lapel",
+      "depths": [
+        37
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_outer_jacket__jacket_body__right_front__lapel.png"
+    },
+    {
+      "part": "jacket_front_clasp/center_buckle",
+      "depths": [
+        40
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/part_jacket_front_clasp__center_buckle.png"
+    }
+  ],
+  "uncover": [
+    {
+      "name": "outer_jacket/jacket_body/back_panel | complete | d1",
+      "depth": 1,
+      "bounds": [
+        363,
+        290,
+        464,
+        410
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d01.png"
+    },
+    {
+      "name": "inner_shirt/shirt_body | far | d2",
+      "depth": 2,
+      "bounds": [
+        378,
+        290,
+        400,
+        437
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d02.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/collar_root | complete | d3",
+      "depth": 3,
+      "bounds": [
+        489,
+        271,
+        172,
+        50
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d03.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/left_collar_flap | far | d4",
+      "depth": 4,
+      "bounds": [
+        630,
+        274,
+        32,
+        43
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d04.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/right_collar_flap | far | d5",
+      "depth": 5,
+      "bounds": [
+        496,
+        272,
+        17,
+        52
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d05.png"
+    },
+    {
+      "name": "outer_jacket/left_sleeve | far | d6",
+      "depth": 6,
+      "bounds": [
+        816,
+        573,
+        120,
+        79
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d06.png"
+    },
+    {
+      "name": "outer_jacket/right_sleeve | far | d7",
+      "depth": 7,
+      "bounds": [
+        205,
+        560,
+        134,
+        91
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d07.png"
+    },
+    {
+      "name": "inner_shirt/left_sleeve | far | d8",
+      "depth": 8,
+      "bounds": [
+        779,
+        513,
+        82,
+        68
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d08.png"
+    },
+    {
+      "name": "inner_shirt/right_sleeve | far | d9",
+      "depth": 9,
+      "bounds": [
+        269,
+        514,
+        116,
+        76
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d09.png"
+    },
+    {
+      "name": "inner_shirt/shirt_collar/collar_base | far | d10",
+      "depth": 10,
+      "bounds": [
+        493,
+        273,
+        160,
+        56
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d10.png"
+    },
+    {
+      "name": "pleated_skirt/skirt_body | far | d11",
+      "depth": 11,
+      "bounds": [
+        164,
+        700,
+        819,
+        422
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d11.png"
+    },
+    {
+      "name": "inner_shirt/left_sleeve | near | d20",
+      "depth": 20,
+      "bounds": [
+        739,
+        345,
+        129,
+        245
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d20.png"
+    },
+    {
+      "name": "inner_shirt/right_sleeve | near | d21",
+      "depth": 21,
+      "bounds": [
+        266,
+        341,
+        188,
+        257
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d21.png"
+    },
+    {
+      "name": "inner_shirt/shirt_body | near | d22",
+      "depth": 22,
+      "bounds": [
+        378,
+        290,
+        400,
+        437
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d22.png"
+    },
+    {
+      "name": "inner_shirt/shirt_collar/collar_base | near | d23",
+      "depth": 23,
+      "bounds": [
+        493,
+        289,
+        190,
+        95
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d23.png"
+    },
+    {
+      "name": "pleated_skirt/skirt_body | near | d24",
+      "depth": 24,
+      "bounds": [
+        164,
+        700,
+        819,
+        406
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d24.png"
+    },
+    {
+      "name": "pleated_skirt/waistband | complete | d25",
+      "depth": 25,
+      "bounds": [
+        378,
+        664,
+        432,
+        86
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d25.png"
+    },
+    {
+      "name": "short_necktie/hanging_blade | complete | d26",
+      "depth": 26,
+      "bounds": [
+        589,
+        383,
+        55,
+        60
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d26.png"
+    },
+    {
+      "name": "short_necktie/knot_and_attachment | complete | d27",
+      "depth": 27,
+      "bounds": [
+        588,
+        354,
+        43,
+        40
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d27.png"
+    },
+    {
+      "name": "inner_shirt/shirt_collar/left_collar_leaf | complete | d28",
+      "depth": 28,
+      "bounds": [
+        599,
+        282,
+        74,
+        120
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d28.png"
+    },
+    {
+      "name": "inner_shirt/shirt_collar/right_collar_leaf | complete | d29",
+      "depth": 29,
+      "bounds": [
+        494,
+        280,
+        113,
+        122
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d29.png"
+    },
+    {
+      "name": "jacket_front_clasp/left_clasp_wing | complete | d30",
+      "depth": 30,
+      "bounds": [
+        631,
+        475,
+        76,
+        112
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d30.png"
+    },
+    {
+      "name": "jacket_front_clasp/right_clasp_wing | complete | d31",
+      "depth": 31,
+      "bounds": [
+        566,
+        474,
+        77,
+        112
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d31.png"
+    },
+    {
+      "name": "outer_jacket/left_sleeve | near | d32",
+      "depth": 32,
+      "bounds": [
+        776,
+        354,
+        164,
+        305
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d32.png"
+    },
+    {
+      "name": "outer_jacket/right_sleeve | near | d33",
+      "depth": 33,
+      "bounds": [
+        193,
+        334,
+        242,
+        328
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d33.png"
+    },
+    {
+      "name": "outer_jacket/jacket_body/left_front/front_panel | complete | d34",
+      "depth": 34,
+      "bounds": [
+        648,
+        297,
+        202,
+        469
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d34.png"
+    },
+    {
+      "name": "outer_jacket/jacket_body/right_front/front_panel | complete | d35",
+      "depth": 35,
+      "bounds": [
+        348,
+        296,
+        248,
+        473
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d35.png"
+    },
+    {
+      "name": "outer_jacket/jacket_body/left_front/lapel | complete | d36",
+      "depth": 36,
+      "bounds": [
+        671,
+        378,
+        84,
+        125
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d36.png"
+    },
+    {
+      "name": "outer_jacket/jacket_body/right_front/lapel | complete | d37",
+      "depth": 37,
+      "bounds": [
+        471,
+        373,
+        125,
+        140
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d37.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/left_collar_flap | near | d38",
+      "depth": 38,
+      "bounds": [
+        639,
+        274,
+        122,
+        134
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d38.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/right_collar_flap | near | d39",
+      "depth": 39,
+      "bounds": [
+        440,
+        272,
+        96,
+        137
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d39.png"
+    },
+    {
+      "name": "jacket_front_clasp/center_buckle | complete | d40",
+      "depth": 40,
+      "bounds": [
+        618,
+        503,
+        44,
+        35
+      ],
+      "path": "clothing-raster-layering/step01/review-01-evidence/review_exports/uncover_d40.png"
+    }
+  ],
+  "mask_checks": [
+    {
+      "name": "outer_jacket/jacket_body/back_panel | complete | d1",
+      "masks": [
+        "outer_jacket/jacket_body/back_panel | default hidden"
+      ],
+      "off": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d01.png",
+      "on": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d01_masks_on.png"
+    },
+    {
+      "name": "inner_shirt/shirt_body | far | d2",
+      "masks": [
+        "inner_shirt/shirt_body | default concealed | d2"
+      ],
+      "off": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d02.png",
+      "on": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d02_masks_on.png"
+    },
+    {
+      "name": "outer_jacket/jacket_collar/collar_root | complete | d3",
+      "masks": [
+        "outer_jacket/jacket_collar/collar_root | default hidden"
+      ],
+      "off": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d03.png",
+      "on": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d03_masks_on.png"
+    },
+    {
+      "name": "inner_shirt/left_sleeve | far | d8",
+      "masks": [
+        "inner_shirt/left_sleeve | default concealed | d8"
+      ],
+      "off": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d08.png",
+      "on": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d08_masks_on.png"
+    },
+    {
+      "name": "inner_shirt/right_sleeve | far | d9",
+      "masks": [
+        "inner_shirt/right_sleeve | default concealed | d9"
+      ],
+      "off": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d09.png",
+      "on": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d09_masks_on.png"
+    },
+    {
+      "name": "inner_shirt/left_sleeve | near | d20",
+      "masks": [
+        "inner_shirt/left_sleeve | default concealed | d20"
+      ],
+      "off": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d20.png",
+      "on": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d20_masks_on.png"
+    },
+    {
+      "name": "inner_shirt/right_sleeve | near | d21",
+      "masks": [
+        "inner_shirt/right_sleeve | default concealed | d21"
+      ],
+      "off": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d21.png",
+      "on": "clothing-raster-layering/step01/review-01-evidence/review_exports/solo_d21_masks_on.png"
+    }
+  ],
+  "all_masks_off": "clothing-raster-layering/step01/review-01-evidence/review_exports/all_masks_off.png"
+}

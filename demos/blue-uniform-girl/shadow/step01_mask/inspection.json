@@ -1,0 +1,1215 @@
+{
+  "version": 2,
+  "signature": "172bd4c81f69f767b5ceadcd8759f815d0b21f19d3334d1c3de18326307985be",
+  "passed": true,
+  "nativeVersion": "5.3.4.1 (git bd6e8d0)",
+  "width": 1115,
+  "height": 1410,
+  "relations": [
+    {
+      "id": "bangs-to-face",
+      "bounds": [
+        312,
+        108,
+        454,
+        442
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -7,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            7,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 42820,
+      "receiverIntersectionPixels": 24407,
+      "outsideReceiverPixels": 18413,
+      "review": "shadow/step01_mask/inspection/relation-000-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "left-sidehair-to-face",
+      "bounds": [
+        315,
+        173,
+        451,
+        377
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -6,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            6,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 21043,
+      "receiverIntersectionPixels": 15338,
+      "outsideReceiverPixels": 5705,
+      "review": "shadow/step01_mask/inspection/relation-001-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "right-sidehair-to-face",
+      "bounds": [
+        263,
+        173,
+        503,
+        377
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -6,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            6,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 14192,
+      "receiverIntersectionPixels": 3828,
+      "outsideReceiverPixels": 10364,
+      "review": "shadow/step01_mask/inspection/relation-002-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "left-upperlid-to-eye",
+      "bounds": [
+        526,
+        314,
+        166,
+        117
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            7
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 6786,
+      "receiverIntersectionPixels": 2159,
+      "outsideReceiverPixels": 4627,
+      "review": "shadow/step01_mask/inspection/relation-003-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "right-upperlid-to-eye",
+      "bounds": [
+        330,
+        355,
+        153,
+        108
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            7
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 6783,
+      "receiverIntersectionPixels": 2896,
+      "outsideReceiverPixels": 3887,
+      "review": "shadow/step01_mask/inspection/relation-004-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "chin-to-neck",
+      "bounds": [
+        476,
+        484,
+        158,
+        121
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -6,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            6,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            8
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 9612,
+      "receiverIntersectionPixels": 3300,
+      "outsideReceiverPixels": 6312,
+      "review": "shadow/step01_mask/inspection/relation-005-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "head-accessory-to-hair",
+      "bounds": [
+        468,
+        60,
+        301,
+        517
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 8228,
+      "receiverIntersectionPixels": 2327,
+      "outsideReceiverPixels": 5901,
+      "review": "shadow/step01_mask/inspection/relation-006-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "left-sidehair-to-backhair",
+      "bounds": [
+        172,
+        10,
+        746,
+        573
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -7,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            7,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            8
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 13032,
+      "receiverIntersectionPixels": 12006,
+      "outsideReceiverPixels": 1026,
+      "review": "shadow/step01_mask/inspection/relation-007-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "right-sidehair-to-backhair",
+      "bounds": [
+        172,
+        10,
+        746,
+        585
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -7,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            7,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            8
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 11989,
+      "receiverIntersectionPixels": 11034,
+      "outsideReceiverPixels": 955,
+      "review": "shadow/step01_mask/inspection/relation-008-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "face-to-backhair",
+      "bounds": [
+        172,
+        10,
+        746,
+        573
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -6,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            6,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            8
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 29416,
+      "receiverIntersectionPixels": 29411,
+      "outsideReceiverPixels": 5,
+      "review": "shadow/step01_mask/inspection/relation-009-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "left-sleeve-to-arm",
+      "bounds": [
+        602,
+        602,
+        208,
+        282
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            7
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 8470,
+      "receiverIntersectionPixels": 3502,
+      "outsideReceiverPixels": 4968,
+      "review": "shadow/step01_mask/inspection/relation-010-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "right-sleeve-to-arm",
+      "bounds": [
+        311,
+        602,
+        226,
+        271
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            7
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 9463,
+      "receiverIntersectionPixels": 4231,
+      "outsideReceiverPixels": 5232,
+      "review": "shadow/step01_mask/inspection/relation-011-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "left-bracelet-to-palm",
+      "bounds": [
+        711,
+        813,
+        142,
+        118
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 5539,
+      "receiverIntersectionPixels": 2222,
+      "outsideReceiverPixels": 3317,
+      "review": "shadow/step01_mask/inspection/relation-012-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "right-bracelet-to-palm",
+      "bounds": [
+        250,
+        811,
+        151,
+        123
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 5563,
+      "receiverIntersectionPixels": 2571,
+      "outsideReceiverPixels": 2992,
+      "review": "shadow/step01_mask/inspection/relation-013-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "skirt-to-legs",
+      "bounds": [
+        285,
+        777,
+        547,
+        561
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -10,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            10,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            12
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 82659,
+      "receiverIntersectionPixels": 37391,
+      "outsideReceiverPixels": 45268,
+      "review": "shadow/step01_mask/inspection/relation-014-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "left-shirtcollar-to-shirt",
+      "bounds": [
+        456,
+        537,
+        208,
+        246
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            5
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 2018,
+      "receiverIntersectionPixels": 1136,
+      "outsideReceiverPixels": 882,
+      "review": "shadow/step01_mask/inspection/relation-015-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "right-shirtcollar-to-shirt",
+      "bounds": [
+        456,
+        539,
+        208,
+        244
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            5
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 2504,
+      "receiverIntersectionPixels": 1297,
+      "outsideReceiverPixels": 1207,
+      "review": "shadow/step01_mask/inspection/relation-016-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "left-jacket-to-skirt",
+      "bounds": [
+        345,
+        710,
+        425,
+        269
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 4672,
+      "receiverIntersectionPixels": 2275,
+      "outsideReceiverPixels": 2397,
+      "review": "shadow/step01_mask/inspection/relation-017-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    },
+    {
+      "id": "right-jacket-to-skirt",
+      "bounds": [
+        345,
+        710,
+        425,
+        269
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 5281,
+      "receiverIntersectionPixels": 3145,
+      "outsideReceiverPixels": 2136,
+      "review": "shadow/step01_mask/inspection/relation-018-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae"
+    }
+  ],
+  "problems": [],
+  "warnings": [],
+  "fileHashes": {
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/without-shadows.png": "164f88f6980d068ebcd78614ec6d99c5452e4c14e1941effa081fc8e66c591d7",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/native-final.png": "85dd1ac14897b7519b696ac2d637fe11f53a11f219ee832fa662866f3619bfb4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/full-paint.png": "d0b1dcb2a63af64809b23cdff89524435a091fd552f487eccecf98060dc2a30b",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/receiver.png": "1defff1fd292cd97c5a43be2c6e3e86632c6ed7a0a6a30a6a040e5c8a6c84bde",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-base.png": "1defff1fd292cd97c5a43be2c6e3e86632c6ed7a0a6a30a6a040e5c8a6c84bde",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/offset-00.png": "85dd1ac14897b7519b696ac2d637fe11f53a11f219ee832fa662866f3619bfb4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-offset-00.png": "202baa4503d34564b494fa8d7e399e943b5fec9b0a5c2f586139dbc7750371b9",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/offset-01.png": "1a1677a2629729d26713caf529219de4a94dfda804e54312b8892e560202ec9d",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-offset-01.png": "b7adbdbbf1dbc32a93fa7b1d7e38de29f3d762579a26c29fb363d19a75b90121",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/offset-02.png": "4fcc8454f90dd7270cfa3cef485c5171cdccd3bfd3ebb3d4e6dd400112185388",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-offset-02.png": "4f2b8d7b46934110e8222979df97905a906b4548ed4a68754c3ae83862798d72",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/offset-03.png": "cfdec54a20207ae960524a5150f21b1eb3a886a4f3344038208ed73fd7af1ab7",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-000/clip-offset-03.png": "44870bd7de44b89da27de6434dee1acec61353540515dbc7a629c31234c6bc3b",
+    "shadow/step01_mask/inspection/relation-000-review.png": "4b0e46e2fe2fd48d46e65c644e73b107c559d5817083973ee3a89f63dfa9160e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/full-paint.png": "4734f3dcddcccfdc60cba710a54b78186ea0c824f47a403f9fb3f25d96d329b2",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/receiver.png": "9a32d8f44112ec6c02c5987ce574d2fd8ee4b6060ddf24557f07e5d1655ca7d9",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-base.png": "9a32d8f44112ec6c02c5987ce574d2fd8ee4b6060ddf24557f07e5d1655ca7d9",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/offset-00.png": "397dab0f23cc1c6eeda9ff0ea91970b607c1c13a134d4591e5694275e9dd0a2f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-offset-00.png": "d5d113e68c0dda23a9ab4675b975453af3505f07f28334488adbf41d5f15bd61",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/offset-01.png": "ef8dd11f958369defc265374ae696ebaa1f26ab700f3bc5958ae9d4b7ff73e5d",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-offset-01.png": "2473f97870a454e8a3d43464eebe888e7017b62dbdd06ab1cb01572ca4bccf10",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/offset-02.png": "c63ae81983300887fb08a9d16dee4e0727d9a13e85a7ac9f3e615cbf1c596e16",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-offset-02.png": "e76ee1a2fd7f1f5231fa5ba11d6fe71eaed9b44604b5f586ee521c4c4d843c80",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/offset-03.png": "706c023414797afc87fc016e78dca6b0a651637d01e333e8d6137ad1cc01568c",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-001/clip-offset-03.png": "94955493d638e2ccbc137b560baaf40517f5e96b2f1d2f1d328c64942a94981b",
+    "shadow/step01_mask/inspection/relation-001-review.png": "12187944c6a3af654da463310c079bfc92572f6c6e258fd962950ccc7151a0ff",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/full-paint.png": "135d3debc6d326503b13610137c614d3cd8bab0dbe7fd29e536093e6d3dac954",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/receiver.png": "d7053deb21df900b2f5a431fe05329ff18a9daefa2ff06284273bb1eb857a51e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-base.png": "d7053deb21df900b2f5a431fe05329ff18a9daefa2ff06284273bb1eb857a51e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/offset-00.png": "469bead4857047f80eba042c0475c559fca7474be4e423b83d4dcf0dd8dccfff",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-offset-00.png": "b3fcb013f2932f83d53a3efce455accd3496fe1fa7a056e1dbfd6d24775399c2",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/offset-01.png": "60e5f695c57220955f65d48b3399b09a17293dc8d35462f9ff2d7a488c5e105d",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-offset-01.png": "f11ed8aa218ee9899e78b1a5fd9a4f28272c444ef3747d44683ad83b9eab840e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/offset-02.png": "7b095aa40b5e5ada824dfaf7fc6eb9cc24c2157778dc1550e04b2091171f9b78",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-offset-02.png": "c4dd7e3f310ff3d2c9c0a53e54249535f1452cae428f5eb8f7b10de200834796",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/offset-03.png": "844ae7c71666cdca4fddb588302bf436265b48d18239d7a14e686ba3a24a013c",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-002/clip-offset-03.png": "750cc9489c0f5c1ba46720946f69b5b62770657acb616b46aaab1b013676bbf0",
+    "shadow/step01_mask/inspection/relation-002-review.png": "79dbdc9b2b4f96e7671bd7005c1e707d2e50a5df752ab38f832c4dde5d0da611",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/full-paint.png": "3ff430b1e27fdf1180f113c25bf36be3c04c5191c531c5b32149243758888422",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/receiver.png": "478a37e4c48740852c29d44c2daf961ca02e39603ec27a0e71c122ece903ad8f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-base.png": "478a37e4c48740852c29d44c2daf961ca02e39603ec27a0e71c122ece903ad8f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/offset-00.png": "1b63f3977a2cfef2395e1909d4ab1da9c4596166eb7911632a81e214536efc13",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-offset-00.png": "f8d5d5440abc29dd6152f408d51582b4119222faa5bd438758500a3e930944f3",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/offset-01.png": "07e6ee0499c852f4215a2ffe735cec978ae90457a5ee05e4b0122f1499f9468b",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-offset-01.png": "c932c8a8138476e31b5be435c4cf48e05bf32c86a7237222331bd28e514dd85a",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/offset-02.png": "e223a1db6b12dd7ca60f858572109e334ac6a3321feefb54244b693fea386cd7",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-offset-02.png": "3244d3b795cc723d28bbbf2ac576ff8ed4f5b368a05c04c9faf036eaaaa7ba54",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/offset-03.png": "1fd1a0125e6f9ebf310467e9ee4d5691855116c143667eeffd5e1e88b34e04b1",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-003/clip-offset-03.png": "7b1e9d37c6e4ebf68e9f05a70257afaaa0c25cccc104c740f90bcd955000c142",
+    "shadow/step01_mask/inspection/relation-003-review.png": "62f314bc03fe3da0bd8f98d766837b57ba6a0aecf99951e7aead1a04f9b7640e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/full-paint.png": "fb5b0095d392ce1439a86f6854e3c5190abf6783271c32c7e0af8162c440a77a",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/receiver.png": "9b62296ee567b7c13762d215698dadaa23c6c9ac4ab96e0e34a11fb3b5200f69",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-base.png": "9b62296ee567b7c13762d215698dadaa23c6c9ac4ab96e0e34a11fb3b5200f69",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/offset-00.png": "b0867f2e0dffbc778f29ab062b06fe1e4bd312ebc740169f78ed42464f529ac8",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-offset-00.png": "d857bd0a09bcbac8c3abc575ce209589cf3acffa4bcaa90d4bad7bbb906a5b7e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/offset-01.png": "27cade6638257f459b3cd52c666a6f7b657425d6c289b559ff340e5e3567d3a7",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-offset-01.png": "88307917893538c868c7940fd30c622bbf66373eaec031c3bd7e0fa0766d54d9",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/offset-02.png": "65386281107e8078a7fdc34e674394dd2adb22a7fe7307472fb41e14c4acdfbd",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-offset-02.png": "c78723cc59a3a7316672a592ad0659b18656b53e828b311060006196080e66c3",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/offset-03.png": "111670608072ae9d65c75fa7e7655192b7c8d29a48157acf7b47a0a03b21f4cc",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-004/clip-offset-03.png": "1952aec0086e7b7bf6170fcbb386b2e10e7e6217a3ad9b1ff9eabe782a90ba41",
+    "shadow/step01_mask/inspection/relation-004-review.png": "50bd06d51baebd17aa130e53d745fac8dcac321256ab88a64269809c1621db9b",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/full-paint.png": "c2ab8c2806b2758b611c643effded19c775e1c5d47a74a9b7f896cae7c87f733",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/receiver.png": "be66a96f0bd76b70fca1b4efb75c42b06c1782e864bfb15ee835703dca713601",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-base.png": "be66a96f0bd76b70fca1b4efb75c42b06c1782e864bfb15ee835703dca713601",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/offset-00.png": "a49397348f5aab4896111279a8df827870dd8cdfcbd2a88c790d37244070df2e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-offset-00.png": "76edaaf7f2877b45efdd6c69b2e77ea8cf800b836b4f0ffa607036844f0308fc",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/offset-01.png": "7cac88a3c583ae74dfbeda2623cdadeaead5da11e3bb439fb6c6b9bd812518f2",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-offset-01.png": "3e9f94814a504d1150add67402e9405d21e519b6034bc5422bcebafda45face5",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/offset-02.png": "1404665ee1d909148c8772fda045d2885c7738e9db8b0eb26c94794c57f76092",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-offset-02.png": "024b4295021ce90490dc6a13a0a60425833983c55cc5e04a3f8bfeade76dd592",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/offset-03.png": "0ed92d422f71fa6b906efe4f3fa87f856e7d59d7836b51bedf6e7ca932f37349",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-005/clip-offset-03.png": "549afd7c85c2e50cbb1e2c627472156c806a9882772e175f2b506acdf2b9a526",
+    "shadow/step01_mask/inspection/relation-005-review.png": "1c2a67351f8925ea8dbffd4af742aa6796fe76644e2796ec7cf2bc602f6221d7",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/full-paint.png": "5b48d05c3295407aeccea3031c2a5edca054a71832d1e3be3ac3ac7302c98de4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/receiver.png": "621a8a6d7ed5aaa29695b423f6acf962c47467fe5315794d748d74b9b6efc818",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-base.png": "246a2072dac0cfa1f94715b8d030c9bbf8e4fbd5f3abbbcedbad30dddd50eca6",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/offset-00.png": "990fb74fbfc6ac8eafe6d2f46a9ad19c4afc8d2569c5ba4799ad96bda50ca29f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-offset-00.png": "c5bdbc2a6e8edaf58bf528d473a4c76feeee8fc538bf50a214e75ce420c29e8d",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/offset-01.png": "a700116808a47a33294265a08a2b1ce71a77c14ebbd6e2dcaba75575c9db53ab",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-offset-01.png": "030440f43c27e1f14ebef1ca25afdc5b074d0ca974cb3d56c61f06a1137abc8b",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/offset-02.png": "bb33e13e660d63e2eff146b720958dd15b987e8faf00dc7ff5e977d2a31b598e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-offset-02.png": "d7feb7f37fa36c9bde2b4c980defa9867c0021150264f08d451d139874a5fa58",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/offset-03.png": "71c7b9779e804c1f52656be4b3feb613b9958e5a76e731f202653f020e901126",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-006/clip-offset-03.png": "e2df792813d3e1f17bd494c0ac256ca1a15cfde91c8560d4097fa02e791978bb",
+    "shadow/step01_mask/inspection/relation-006-review.png": "191232f763d13d21cacb091c7a09039ea50ac460b16a4b91965bc33182bef052",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/full-paint.png": "fa7d1d4e3c294bba2cf61ddcea5715508418b3b462a697140bf2c051ce385053",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/receiver.png": "24e2e6c2d3a6ca0c81f797c6344a55b7c7391f65b596e1da7767f8cb83f3490f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-base.png": "1d4f2a018f368483fbb8e37ced3f2494e4f1228b31ae63f28d43e8d52017f145",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/offset-00.png": "a7c1b7d247a401cd9f4283e1ab983a75aa881de57a2b25fff3235bf5382067c4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-offset-00.png": "09ccbddb8a4b2860e8dbeb1263170c931632db4fb9c87d434e605260ee335511",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/offset-01.png": "e4babbdcb933d47d2ac18d45bd2502b1ff5fecec9dac3c613015f7d6763ac0a7",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-offset-01.png": "6e458c99a4ebd4e98b2329c2ae5cdc737e304eff76298265bc3cbb555722738d",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/offset-02.png": "9dce966a51d8413f09c25c3d14e19ec052ae14d8d2fad96b5c9577dd15cea6c7",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-offset-02.png": "d538293ffbbf749b959eeca9b0178f7a50eab5070f683e0664d8ab9ebbaf3f00",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/offset-03.png": "40f2a1b7dc430c14f3ea18f967899a472911357fbeef920aa53d1e90b6fba5c5",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-007/clip-offset-03.png": "d9f7a67982842736437b0584557ae7ebbb5645956c37c85ff759fb3a1d9609c3",
+    "shadow/step01_mask/inspection/relation-007-review.png": "0bc9304fc19fdfc6f98d4abd19c4d56fb2e630287b3c05cede276c90546a816f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/full-paint.png": "457b5349cb6d1180149dcfbac7ca0dfd9421a7894ba8a7f85d517081ccf8a1f0",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/receiver.png": "ef36f4a1d12328aeffda17f951dbcb92458188cd0bf88a4dbdb66b5ba721abb3",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-base.png": "1b995d3c7c9761909960c268c6dcc435b470cf159b8a3cb008662689742ff875",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/offset-00.png": "e1b874a25311f59a9fbbafe6da0a7a9f8db48ce4f8ec30149bd1ad32920af781",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-offset-00.png": "bc628632b7eb20c7193a4b163eedf6f6edbdb0db9b4f26ae136e19f97c3216f6",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/offset-01.png": "d72de0f7c6d897629c2d6d5587a1fddc74f4171d581d8b769c142e709bf6a5c5",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-offset-01.png": "5e639e09dafbe1a7cd115f135eb8cc7f868e587b9bbdcfd2a8d8d83b40bea180",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/offset-02.png": "64f22dbcc260b64be04cb1cb3a639d418ac9642a929c676fa5b9b94adc455d39",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-offset-02.png": "359baad8a429b5e23239d02b172f7d522f6016dcaeb66792e3c9b9f099814a3a",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/offset-03.png": "90eb30a983a34faccf331aa3ce68f1c163607556ff9fe399e807b1d41efeb4a0",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-008/clip-offset-03.png": "9f740d59185d0c198b3c59630bc3de47a606a3a40db16094eb52cd63c175e633",
+    "shadow/step01_mask/inspection/relation-008-review.png": "dcddc1d4c891245e494c7757bf6f9fc11e4ec812adba854f3df7e920b6ea049f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/full-paint.png": "c49118b4dd31af3123ace966eb66dac0eb36aaaee94dce0f90aec19647893f22",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/receiver.png": "24e2e6c2d3a6ca0c81f797c6344a55b7c7391f65b596e1da7767f8cb83f3490f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-base.png": "1d4f2a018f368483fbb8e37ced3f2494e4f1228b31ae63f28d43e8d52017f145",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/offset-00.png": "6d4fcc6ce75e0c2807db2e4bf657b96a2615d1047006f1f4774e985f40fbcb9c",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-offset-00.png": "afb0d5ca8ecc35d46984e1e85d7b7f336b4ea6410df18abffaea0021c945a2f2",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/offset-01.png": "684920c6b970d14111c303f43c40e1ca2fd4592a957212f008e237ea8304fd4a",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-offset-01.png": "e2b4fc9d78dc07f8f31ce44ea040e7f88bd132a55441657f9ffd6eb10d8a4b2f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/offset-02.png": "8299e27bf93a86280b1a23bf16abb3937499afc80f3a6d29893b04b4569508e4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-offset-02.png": "1fcf41031aa8c76918a94818da8b133f9571da03b01883e2e0579171167429f2",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/offset-03.png": "e1bfc418fa384a482e8f4aa28770ddf3a9c4f22abc5ae2c174ea1f6c32a02c21",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-009/clip-offset-03.png": "d9c21599ea8f468c56e4e5e21207c5c0d7bf7e89e857b286203016a976fe60f8",
+    "shadow/step01_mask/inspection/relation-009-review.png": "585ce9aca842bfebc2652e575026a12f5f92e52fc0af9f552e4235458f5b9b60",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/full-paint.png": "237d9e01299fe1c2bbc84767926207f6b7996406ef889d6fef49a7b0f53320ed",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/receiver.png": "8b3c927eae3f94d62bbe651640b78958bfeb3469a3a3479cb1343e3b5a77857e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-base.png": "8b3c927eae3f94d62bbe651640b78958bfeb3469a3a3479cb1343e3b5a77857e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/offset-00.png": "9aa24aa27896cb931e6db68f9e91a2abc0ba97f154d60ad4dc2d3efa6cf532c7",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-offset-00.png": "d381f6c60ad759f4de5a2bc1ffa289ee0fb9f1d0ed5cc403ed456a53caf55a91",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/offset-01.png": "dcbc20fd80795641cf553f7f5777bc121236d82a8602084d188354e0ec036aa6",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-offset-01.png": "2030be708e2d81b3f7ace40eaea45d1b43d96bb75e372451c2f34ad18d38b168",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/offset-02.png": "11c8d67393f3741cbc0771c9e28bc97aa97e9b3959755905ebbbaba53e51c4da",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-offset-02.png": "b3de39711caf826ebdd9eba8e300b14b3e5fa9fbbd6634b4b0321f5eceaca12c",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/offset-03.png": "c7fffb494b4e222de0da6bf5ff09e05a5282181146bb307b3d570ed315d3094f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-010/clip-offset-03.png": "2f3ce91b6cdc0b294cf59010ecf524f671140efafd068d7816d7887426dae35b",
+    "shadow/step01_mask/inspection/relation-010-review.png": "b285de83039613d99cd1b5613ab98869e06d31abd2ddf093c1b49a5653f9c7f3",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/full-paint.png": "bf3ab36730d376a383c933c56ee857c19da659859a7c7a3bc7ab59df0bfc307a",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/receiver.png": "64e1ce423b88d1dd10d8cb44eb9c61f28ff1a5869a30b41ae58532bbf4ea4a89",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-base.png": "64e1ce423b88d1dd10d8cb44eb9c61f28ff1a5869a30b41ae58532bbf4ea4a89",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/offset-00.png": "112cde8810c4d816c713ca4b53c87afd72ac0581ca8a9d840c3cd4ba3244a5ae",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-offset-00.png": "d451759e8dd3824d4ca9509f905dddc4c7de5a5c3b35b31bda3ad8780da4bf35",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/offset-01.png": "0be3817d35f2767a45f4aa17d3bec318726bcf55dc739b60fe37abd71a9e9cf0",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-offset-01.png": "08e2b5f6a3e5eadf3f0adaf52f9c96fedfec08ff2e3a4ba48f472579dbdd7f4e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/offset-02.png": "b251fbfe1d43b04c2dc1c85e82ee0c7225ff9466a08c6167642c26cfb4ac599c",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-offset-02.png": "afc93dcb5921e551cc86cc0a29e7d2cb00dee56e6840d233440d5524477d931e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/offset-03.png": "e012d7aeefeede1f2e07d875f1abb870dc5fed8448bb14821e713f58e1561af9",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-011/clip-offset-03.png": "fbfccb89ab722786b25374630dd57c2fc76ecc8292f44c9c360a4cd89d4020f5",
+    "shadow/step01_mask/inspection/relation-011-review.png": "f7ae9ca1a85e154d3e47611e9f5b1b218d47390a97937c2a9e0abbbfb99b1750",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/full-paint.png": "56d02842f415064241b3ccd27e6365bc61c77074c00683c9ea8202b29dab7df2",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/receiver.png": "d149eac682704f3703143e5d5d76f15e8fe58db5a1ffb5cd9c50b3772df47627",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-base.png": "0d145be91a1bc5238798553f130bf5b186958ff1ae071ea7344f0ae68d667695",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/offset-00.png": "ca0dcf1cb0bab294df20853f507622e713da5716250076f2496be0da52091801",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-offset-00.png": "14217c5d496f290aeae3a54586161685ae845e1f92d3ccc05750a8808e41fd19",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/offset-01.png": "20dd12e92ee24c77078cf2469c77089e0c99af1395a874bd1f98f12bb014975e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-offset-01.png": "0b74e487821aeb7665081ba5e925d5ef8a4e0367ec64668856040995980fd049",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/offset-02.png": "801192d72a404e6582d9a554e2c166469481e1f6d177715b1c31754164a74baf",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-offset-02.png": "0ebac3cd62dcbb3bbc2957c44e2a88430e11a28018d1dd01a40a9fa0ae3f01ae",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/offset-03.png": "88a293928d8ec1df057d33c5e8814120f330b5580f47292992edb7a2571b54b4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-012/clip-offset-03.png": "577aef636ef77ef58439c1e20c667e816a36d83e313b64c831ad6e289500cb0d",
+    "shadow/step01_mask/inspection/relation-012-review.png": "507b76072e89a36f22f73158103a8275787175d1392e88f886f461b6bb0664f1",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/full-paint.png": "3131d51c2fc158582c72007d44ca3d5487d6a5a448c05d8ade0f7fc69e37bb53",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/receiver.png": "8eb31b72cc3a62966720624159101e4784e146f9b92e402a571f86fc5490ff6e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-base.png": "5f0683023dc3a1c5c6ab3171c7d044df219628b560e224b48d1f864f5f61d35a",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/offset-00.png": "65f94c3cc351bc6b3845b4ee176e1320ab36317aa857a1e5ccd08be8a02c4b64",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-offset-00.png": "0b2120d7cfca7ad855e8581d5160934fafefcade4e2f8a37c82a33dd95ba0f2d",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/offset-01.png": "e3273a44db0ec72ebccafe0aa054af57ee912b4a8f53ba6edbdb101923ac2578",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-offset-01.png": "c3622d77fa7415491c0c581d9baf7265a0e2091a14aa2df26861e7b708ee5b57",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/offset-02.png": "135fb9b4b0b61ef2ae10da219b76e79a56b79f2e51f8940a26dedfa3a827bcb4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-offset-02.png": "d1d5975e35414acf07711c6171ffd9c81e937c5b27dc24ae24cf65cfe6c20ef2",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/offset-03.png": "c60f0c2a6f35b304003325907446efadd34ea1300403f900bb91d27f98afb0a3",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-013/clip-offset-03.png": "0fa5edf02e353918614f39165fb954cb9edf7ebc6c0d38ee710a4590e129ad9e",
+    "shadow/step01_mask/inspection/relation-013-review.png": "c3f5257239fb2437216546c226e61dbae35faa6f58e1e39c7eed4ba89756cddc",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/full-paint.png": "b72a91177f963435cb4624320e4ef32db0914aaeda544d727db1b38e905f8e3c",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/receiver.png": "73606de71a29277618cf724b2f414a116b78c32865664179504a823e98ed4fca",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-base.png": "73606de71a29277618cf724b2f414a116b78c32865664179504a823e98ed4fca",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/offset-00.png": "6ec7ada8799141762ad94ef35ad4f8a73b6aea686cd994de4fcb2cab18b204e9",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-offset-00.png": "74445beffa03c6f71da97709b05a8e91417af4e1eaca4f1a523ddd72a1d42b8d",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/offset-01.png": "25611dbe209685297a3bbb320ed2a6304330f3b920d42679e5c912fdad2d83f3",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-offset-01.png": "e03d6e913b64b4aaee00199a790f4256c23b97c78e10baea4b98418671ae13cc",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/offset-02.png": "19d970aec22d2fad496fe4ef99c3779bc809aff1b1711fea561885067544805f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-offset-02.png": "4f1d006abeb88e1c411a9fa9a531e15e6add3f3685570f071c5a22796ba4b8ee",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/offset-03.png": "0e1c37a48b5a9be89fd3d8c4a3726d6ccb46d01e32a6e030669146b9cd1ecdfb",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-014/clip-offset-03.png": "9adfdcca1f99c3f39c5aaa65de5441edad7e4176d2fac6e9100c67ff9d89a68d",
+    "shadow/step01_mask/inspection/relation-014-review.png": "064b3c2c3805a83aa3ef8dc41234d4e53f6d6795197340f7f194d1a754c644fe",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/full-paint.png": "bda99fd974d896bbf6a9c979de9216aec6b6bf7193e64e77cd94eb7824bfe89e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/receiver.png": "72660fc0a3958d0fe2c4cce0cd8cc8450dc5519243e3f1e22b0b925553537d8f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-base.png": "72660fc0a3958d0fe2c4cce0cd8cc8450dc5519243e3f1e22b0b925553537d8f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/offset-00.png": "4d92fe00c1bb5f2100eb8a3f34dcb206ad06fb882b8916bb7d6bc0019f9f4ca1",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-offset-00.png": "0e49ff5bf04e249a8dda4b08ac4d911f2dec1c5b1ddcabea90b8476cd4d11001",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/offset-01.png": "d7a8644c7eef10fd7851d11b1690386bc61ff172e6dfbeca9dec2ee699c861f4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-offset-01.png": "89d3a562376ddf5460ee64f89da34e427e58592f2d65bf1f3126e43d51391985",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/offset-02.png": "205bfe94bb78751acb7ba198f7a165699695097b7eeac124a15e06955374f3bc",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-offset-02.png": "43a8283169cdcce71fb407c9c492f9df6207f706f28bde88b5b86ac7b1962a0e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/offset-03.png": "8597bdd45b56f80ed2b5b4f710eabf4fc53100694d8c01dec89e1b52c67ab900",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-015/clip-offset-03.png": "2aee43e8b519694a48416bb60d8cdba6bea6d3b61f0fb3545093b2be995e14ed",
+    "shadow/step01_mask/inspection/relation-015-review.png": "56404e45124291b8598e537adce7c73dd696ec8c5832b348d974c405c3b590ae",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/full-paint.png": "be094ea213ecb012ebe3d10d0c8e9fca46b129f19daff2981967219ae33a3730",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/receiver.png": "89b4ac61c8cea8bc60c72625898ef99cfbf95a03baaf1971ebe60540fe9c9046",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-base.png": "89b4ac61c8cea8bc60c72625898ef99cfbf95a03baaf1971ebe60540fe9c9046",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/offset-00.png": "a9fd92dad8d9410f86796dc383ea7b34b0dc3256b2b7ffa392f8428e99805558",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-offset-00.png": "db67edbd773697f18ead3bbe3f008b6758bc76df2e6f6ec6b38417c99a7f88c7",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/offset-01.png": "a869c8908436f88457f9ad005039273eecd9f8ce85a6e1c02793281328141942",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-offset-01.png": "cd12f6b75d840d7f7e4b59369da12acf90d803b34e8045dd6179597273c2ec4d",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/offset-02.png": "2b992428025552fd85c6da80f426e03f5879ac97c14b60b3a2da96660dc22b53",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-offset-02.png": "84a06db9fd0bc22f932ee05be7da3e0a2e9aee080161e87ffeb095dcf8a80927",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/offset-03.png": "cbc4c29f6f4432637a1ecbe46fa485e241fe2b69e3ed86d43ae3bdeb05663423",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-016/clip-offset-03.png": "4cad10c4efab2ea99b04a585d892f5c5436248324985fdce50afc48411d7667e",
+    "shadow/step01_mask/inspection/relation-016-review.png": "903441890a2afc1dbc62b2fb379b65da19870fcb21ea37028d09a973c3e16a73",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/full-paint.png": "8758a4af8021fa3da6efa3d1ee60fdaf0696acdc9467e894441ca822d795d32f",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/receiver.png": "0181b29fdab424c28b492beeb4d2ac2178b53a10a80edb5a9ff7d729ee0bd3fd",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-base.png": "0181b29fdab424c28b492beeb4d2ac2178b53a10a80edb5a9ff7d729ee0bd3fd",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/offset-00.png": "9f7887126e305a1b1e22519f77aa8e5cbab1f995507016c8d9eae94963a686c1",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-offset-00.png": "2ee77456116ef0341a857588fcb455120e84e4a2dc6a150b73fb4d564c9e86e4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/offset-01.png": "53a0dc01109d221ca2d654e4aa05a06f32aced818b74f58936ee8747b834f5be",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-offset-01.png": "c2bd2a4d4c907ae42d7b39c891768e785322dff04f909b70de1da6d0feeca303",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/offset-02.png": "fd34bbb3cc37eea558b1fdd17662a6baedee86e6c93574742797a62b62587812",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-offset-02.png": "79388b8431007c0add9f692992f58423b0dc5ecd3c854a96c75b5676af34ba92",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/offset-03.png": "73cabb8c0730f8160b35e3cab6b06ecf5c21df7ed6b2ff1ab6a46893c521cf0e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-017/clip-offset-03.png": "8cb7056e0a15363450dee6494c648fc48a3b674359dd93336aa43c2d694b1e38",
+    "shadow/step01_mask/inspection/relation-017-review.png": "2e38fba41d0495e7a744039246869333112a0b39351574288ca00bccf3c282af",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/full-paint.png": "dcd9ea3ff8552e4f027e15391e6b9be01efe3f9bf5a0564e5444180b04074ebb",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/receiver.png": "0181b29fdab424c28b492beeb4d2ac2178b53a10a80edb5a9ff7d729ee0bd3fd",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-base.png": "0181b29fdab424c28b492beeb4d2ac2178b53a10a80edb5a9ff7d729ee0bd3fd",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/offset-00.png": "53d9f1d3db37e54fa8306e38c6b2d64474fc2fd5e3b53cf60a2157c7b8d57e42",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-offset-00.png": "5fb1ff4482289cee43e98980fd036f44e47372cf734aac63c8b2aa27174edcfe",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/offset-01.png": "e937d77edfa26ee2ba74ac95a834a11e00488c892840a96b9e98126adac180d5",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-offset-01.png": "40aee30fca8e982de2e7c9886b080e2388ad10e113f24f8ac4a025c88ef0e56e",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/offset-02.png": "25d83d2e4f03df090e4e7d4882be33d580542bc2cf1dea850b68082cffa72433",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-offset-02.png": "c576903c662baf6e4eb371792972d083f04e5dbe10e8fa4e66522adc312a91b3",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/offset-03.png": "026a52fc843d97312f3aa75d06849ce68fda9fdbc420fd9cca2cb8e213cd0aa4",
+    "shadow/step01_mask/workspace/inspection/native-f567964f-13cb-404b-b194-04fb193b72ae/relation-018/clip-offset-03.png": "0b1a659bc8499a12f6496c75e00aacfe1f7192dde3c156be45b02c05159b5305",
+    "shadow/step01_mask/inspection/relation-018-review.png": "7f843f8b9eb78128f1eb9871d4c6e1577b85ea26808602ecc6d9a2bcfc9591ba",
+    "shadow/step01_mask/inspection/overview.png": "784d17f88c0b687982e67a354c02e1df5bfc577ae192e96da3407b9d1ec074eb"
+  },
+  "scope": "Native clipping and declared relative offsets; not physics or deformer animation. Raw intersection is before ancestor masks and final occluders."
+}

@@ -1,0 +1,38 @@
+{
+  "image": "raster-layering/step01/review-evidence-01/inspection/isolated-disabled/legs__leg_left__leg.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-01/annotations/R2-H/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/88de1200-3a1f-4c4e-a4f3-60b6aa0d81ac/regions.json",
+  "regions": [
+    {
+      "id": "R2-H",
+      "bounds": [
+        578,
+        1190,
+        130,
+        145
+      ],
+      "layers": [
+        "04 | legs/leg_left/leg"
+      ],
+      "description": "R2 的补全区补充框：隐藏前鞋体后，完整足底留有多个向外凸出的毛刺和不平整波齿，袜缘深色轮廓未连至完整足部。参考同坐标足部被鞋遮住，此框判定的是补全轮廓本身的干净、连续程度。",
+      "crop": [
+        566,
+        1178,
+        154,
+        169
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/R2-H/R2-H-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/R2-H/R2-H-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/R2-H/R2-H-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。",
+  "source_tool_manifest": "raster-layering/step01/workspace/review-regions/88de1200-3a1f-4c4e-a4f3-60b6aa0d81ac/regions.json"
+}

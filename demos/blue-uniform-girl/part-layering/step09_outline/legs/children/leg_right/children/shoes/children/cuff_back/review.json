@@ -1,0 +1,63 @@
+{
+  "groupId": "legs/leg_right/shoes/cuff_back",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已依据原图确认：本组属于画面左侧右靴的后口缘及相连口内侧壁；两端局部可见，中央被小腿遮挡。已先看整图 blend，再以左框 [344,1148,65,55]、右框 [398,1150,85,65] 的 8 倍 blend/edge 覆盖全部候选及两端可见区域，重叠核对中央连续性，并查看父稿局部、候选独显及父子同图叠加。两端可见组件均已覆盖，接前侧鞋体处没有需要当前修复的遗漏；中央沿用父稿已有连续遮挡补形，不要求贴合小腿或前侧鞋舌边界。联合轮廓连续干净，无孤点、碎片或误认独立组件，无需重画。候选范围检查 outsidePixels=0，满足未设置 allowOutsideParent 时的父范围约束。\n\n已确认的上游范围限制：左端约 x=350–365、y=1159–1177 的外缘，原图深色鞋口实线的外侧比父稿边界略向左、向上伸出；右端约 x=462–472、y=1184–1201 的深色外口缘也略伸出父稿右侧边界。父子同局部叠加中，候选红线与父稿蓝线在这些外缘重合，剩余外侧实线位于父范围之外，不能由当前子组在不越界的前提下恢复。这些位置并未补齐，记录为上游限制，不要求本组扩大。当前父内允许范围其余核对通过。\n\n图像证据：[原图鞋口](review-evidence/reference-cuff.png)、[左端叠加](review-evidence/left-blend.png)、[左端边缘](review-evidence/left-edge.png)、[右端叠加](review-evidence/right-blend.png)、[右端边缘](review-evidence/right-edge.png)、[父子同图叠加：父蓝/候选红](review-evidence/parent-candidate.png)、[候选独显](review-evidence/candidate.png)。父子比较图为只读输入派生的描边示意，其描边越界不代表候选填色越界；候选本身的范围检查通过。",
+      "candidateHash": "2d7a87245a8a19c372de44cd7e2947bc387dfa5191a29531f3e946e554d6244e",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right/shoes.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right/shoes.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_right/shoes.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/workspace/parent-candidate-comparison.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_right/children/shoes/children/cuff_back/previews/2026-11-10T18-31-14-969Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T19:00:06.572Z"
+    }
+  ]
+}

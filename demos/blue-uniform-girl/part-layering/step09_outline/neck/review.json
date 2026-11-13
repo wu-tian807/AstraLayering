@@ -1,0 +1,53 @@
+{
+  "groupId": "neck",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取 neck 组说明、素体参考与候选 SVG，并完成整图 blend 定位及覆盖全部可见颈部的分块放大检查。neck 为顶层组，无父范围约束。\n核对范围：左侧 [500,519,83,82] 与右侧 [565,514,76,89] 均使用 6 倍 blend、edge，选框重叠覆盖中央和下端接缝；下颌接缝另以 [518,526,86,35]、右侧发梢交界以 [596,555,40,38] 作 8 倍 edge 对照，并查看原图局部和 SVG 独显。\n参考中属于本组的可见形体是下颌下方、两侧头发之间的连续颈部。候选覆盖完整；上缘沿下颌下缘衔接，左侧内收后向颈根展开，右侧近竖直颈缘向颈根转弯，主要位置、宽度、弧度及转向与参考相符。右侧发梢交界处的少量覆盖属于连续颈部在遮挡处的合理重叠，不构成额外头发组件。下端为颈部与锁骨躯干的连续分组接缝，未把领口内全部皮肤误归颈部；内部阴影不作为独立组件要求。未发现可见组件遗漏、无依据孔洞、孤点、碎片或需要修正的轮廓问题。",
+      "candidateHash": "341d80a38de28b43432d6d7421759e6ffe2c2d279044ad8bf4a165e52aa8b187",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-10T09-33-36-054Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-10T09-33-36-054Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-10T09-33-36-054Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-10T09-33-36-054Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-10T09-33-36-054Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-10T09-33-36-054Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-10T09-33-36-054Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-10T09-33-36-054Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T09:52:51.589Z"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "input": "clothing-part-layering/references/clothing.png",
+  "image": "clothing-part-layering/step11_completion/jacket_front_clasp/children/left_clasp_wing/structure-reference.png",
+  "prompt": "Use case: precise-object-edit. Asset type: garment structural reference for hidden completion, same frontal pose. Edit the supplied complete outfit image, retaining the full outfit and its proportions, placement, anime drawing style, navy shirt/skirt, white cyan-trim jacket, details and real openings. The target is the wearer's LEFT white butterfly-shaped flexible clasp wing, on the viewer's RIGHT, around original coordinates x639–714, y479–584 on the 1115x1410 canvas. This wing is a broad triangular white fabric surface narrowing at the small central square clasp near x640 y522, and widening to the right jacket inner edge; it also has a short rounded fabric attachment tongue tucked behind that right jacket inner edge near x677–714,y494–552. Reveal the entire single right-image wing in its current frontal position: remove the small central square clasp from in front of its central gathered end and locally lift aside ONLY the narrow section of the right jacket's inner edging that conceals its short attachment tongue. Keep the triangular wing's known upper/lower edges, width and size anchored to the input. Show a modest rounded narrow attachment tongue, not a giant continuation or extra bow lobe. Retain the rest of the jacket including lapels, pocket, chest emblem and sleeve; do not remove a whole jacket panel. Keep the other white wing on the left distinct with a central seam, no new cross-body sheet. Keep all unaffected outfit elements and full image framing. No body, skin, dummy, text, diagram markings, extra accessories or additional views. Transparent background. The garment remains in precisely the original frontal orientation; changes only expose this wing's two concealed ends.",
+  "pose": "same frontal pose",
+  "referenceRegion": [
+    637,
+    460,
+    119,
+    160
+  ],
+  "findings": "整体图确认中央收束、右向展开的单侧三角带面；外端出现原参考不存在的矩形硬边且局部比例漂移，不采纳该硬边或改变可见轮廓。已登记隐藏端沿用只读父稿的圆滑连接段。",
+  "additions": 0
+}

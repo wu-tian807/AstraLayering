@@ -1,0 +1,14 @@
+{
+  "report": "raster-layering/step01/review-01.md.tmp",
+  "report_sha256": "c2dce5afd8a5b34020d89c2467768a48884925f27185d30e1263e34af2ad2382",
+  "reviewed_kra": "raster-layering/step01/character-depth.kra",
+  "kra_sha256_at_review_end": "aed8b31e5c29bbe2b4f65bcc17a7cbdcec1cd553b877c81323268a848023070c",
+  "covered_parts": 59,
+  "covered_masks": 10,
+  "main_findings": 35,
+  "annotation_regions": 37,
+  "markdown_links_checked": 588,
+  "missing_links": [],
+  "source_references_preserved": true,
+  "note": "哈希仅记录交付身份，不用于质量判定；未保存或修改工程/上游输入。显隐恢复另见 inspection/review-session-verification.json。"
+}

@@ -1,0 +1,38 @@
+{
+  "groupId": "outer_jacket/right_sleeve",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。已只读核对纯衣服参考、groups.json 中 outer_jacket/right_sleeve 与父组 note、候选源码及父完成 SVG，并以全图 blend、全袖 3 倍 blend/edge/独显和袖口原参考 4 倍放大覆盖全部可见区域。\n\n1. 实体归属与完整性：原参考独立确定本片为画面左侧、角色右侧短袖。肩端约 (361,336)，袖窿沿肩端至约 (426,488)、(411,555)、(398,608)，缝线右侧肩胸衣料归衣身。候选沿此分界覆盖袖身、缝连袖口及口内可见远侧衣料，没有把肩胸、内搭或人体归入本袖。袖上椭圆固定标识位于联合实体范围内，无须为内部图案另建路径；未见本片另有分离附件或薄纱遗漏。证据： \n\n2. 轮廓、位置与接缝：已逐段检查肩部、向左下延伸的袖外缘、约 (211,500) 的外侧折转、(213,526) 至袖口左端的连接、袖口下弧及右端 (358,659) 至腋下 (398,608)、袖窿回接。主要形状与比例符合纯衣服图，边缘沿实际衣料和轮廓描线覆盖，无确定需要返修的局部偏差。证据： \n\n3. 袖口与深度职责：约 x210–358、y561–649 的椭圆区域在原参考中有可见的远侧内壁衣料，并非透明空白；候选以整袖联合范围覆盖它不构成填皮肤或漏挖真实透明开口。note 已明确近侧宽带在右上臂前、远侧内壁及回转后缘在右上臂后，沿两端回转相连并共同随动，后续分绘画深度且不造封口面；本轮无需在纯色图恢复内部明暗或人为挖掉可见内壁。证据：\n\n4. 父范围与说明：allowOutsideParent 省略，按包含关系检查；工具四倍采样 outsideSamples=0、outsidePixels=0，候选完全在父 SVG 内，且画布为 1115×1410。父稿保持只读。note 已传递相邻袖窿分界、根部隐藏搭接、上臂前后连续区域及与袖身/衣身连接和随动职责，无已确认的说明错误或上游范围限制。证据：\n\n没有确定需要修改的问题；不需要重画当前 part。",
+      "candidateHash": "35bd3fa8d9bbe4e97a7fc5e234c06cbab3ad8d7a5c17fa6f217fa89b92a50698",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/right_sleeve/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/right_sleeve/previews/2026-11-10T10-57-35-313Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/outer_jacket.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/right_sleeve/previews/2026-11-10T10-57-35-313Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/right_sleeve/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/right_sleeve/previews/2026-11-10T10-57-35-313Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/right_sleeve/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/right_sleeve/previews/2026-11-10T10-57-35-313Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/right_sleeve/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/right_sleeve/previews/2026-11-10T10-57-35-313Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:28:20.554Z"
+    }
+  ]
+}

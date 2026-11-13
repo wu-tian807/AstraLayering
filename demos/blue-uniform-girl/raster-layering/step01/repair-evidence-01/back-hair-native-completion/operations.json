@@ -1,0 +1,478 @@
+[
+  {
+    "name": "left-own-generated-rim-material-repair",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "sample": "raster-layering/step01/workspace/repair-next12/generation/left-own-blue-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next12/selections/left-obsolete-own-rim.png"
+      }
+    ]
+  },
+  {
+    "name": "left-generation-trial-restored",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "import": "raster-layering/step01/workspace/repair-next12/before/hair__back_hair.png"
+      }
+    ]
+  },
+  {
+    "name": "left-own-blue-native-obsolete-rim-cleanup",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "sample": "raster-layering/step01/workspace/repair-next12/left-own-existing-blue-material.png",
+        "selection": "raster-layering/step01/workspace/repair-next12/selections/left-precise-obsolete-rim.png"
+      }
+    ]
+  },
+  {
+    "name": "left-native-material-trial-restored",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "import": "raster-layering/step01/workspace/repair-next12/before/hair__back_hair.png"
+      }
+    ]
+  },
+  {
+    "name": "left-own-reference-flow-and-native-rim-cleanup",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next12/selections/left-own-reference-curve.png",
+        "strokes": [
+          {
+            "size": 6.5,
+            "color": [
+              20,
+              100,
+              175
+            ],
+            "path": [
+              [
+                "M",
+                333,
+                480
+              ],
+              [
+                "C",
+                333,
+                491,
+                334,
+                504,
+                335,
+                518
+              ]
+            ]
+          },
+          {
+            "size": 5,
+            "color": [
+              24,
+              101,
+              170
+            ],
+            "opacity": 0.6,
+            "preset": "b) Airbrush Soft",
+            "path": [
+              [
+                "M",
+                334,
+                480
+              ],
+              [
+                "C",
+                334,
+                494,
+                335,
+                507,
+                336,
+                522
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "left-own-native-single-flow-finish",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next12/selections/left-own-lower-blue-blend.png",
+        "preserveAlpha": true,
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "size": 3.4,
+            "color": [
+              22,
+              103,
+              177
+            ],
+            "path": [
+              [
+                "M",
+                337.3,
+                505.2
+              ],
+              [
+                "C",
+                337.2,
+                509,
+                338.5,
+                515,
+                339.3,
+                517.8
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "right-own-native-blue-tip-completion",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "sample": "raster-layering/step01/workspace/repair-next12/back-own-blue-right-tip-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next12/selections/right-own-new-tip-volume.png",
+        "clearAfterStroke": "raster-layering/step01/workspace/repair-next12/selections/right-own-old-tip-outside.png",
+        "strokes": []
+      }
+    ]
+  },
+  {
+    "name": "right-tip-source-trial-restored",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "import": "raster-layering/step01/workspace/repair-next12/left-own-native-single-flow-finish/hair__back_hair-after.png"
+      }
+    ]
+  },
+  {
+    "name": "right-own-native-clean-volume-and-local-tip-outline",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "sample": "raster-layering/step01/workspace/repair-next12/back-own-clean-blue-right-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next12/selections/right-tip-clean-own-volume.png",
+        "clearAfterStroke": "raster-layering/step01/workspace/repair-next12/selections/right-tip-local-outside.png",
+        "strokes": []
+      }
+    ]
+  },
+  {
+    "name": "right-own-native-continuous-tip-ink",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "alphaLocked": true,
+        "preserveAlpha": true,
+        "strokes": [
+          {
+            "size": 2,
+            "color": [
+              7,
+              24,
+              49
+            ],
+            "path": [
+              [
+                "M",
+                601.5,
+                559.7
+              ],
+              [
+                "C",
+                610,
+                561,
+                615,
+                559.5,
+                620,
+                556.5
+              ],
+              [
+                "C",
+                627,
+                551.5,
+                634,
+                542.8,
+                639.4,
+                533.2
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "left-reference-trials-restored-keep-right",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "import": "raster-layering/step01/workspace/repair-next12/back-restored-own-left-keep-right.png"
+      }
+    ]
+  },
+  {
+    "name": "left-own-generated-volume-native-single-flow",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "sample": "raster-layering/step01/workspace/repair-next12/left-own-clean-volume-source.png",
+        "selection": "raster-layering/step01/workspace/repair-next12/selections/left-own-clean-flow.png",
+        "strokes": [
+          {
+            "size": 2.4,
+            "color": [
+              7,
+              30,
+              58
+            ],
+            "path": [
+              [
+                "M",
+                337,
+                483
+              ],
+              [
+                "C",
+                337,
+                500,
+                341,
+                510,
+                348,
+                519
+              ],
+              [
+                "C",
+                350.5,
+                522,
+                354,
+                525,
+                356.8,
+                527
+              ]
+            ]
+          },
+          {
+            "size": 1.3,
+            "color": [
+              7,
+              30,
+              58
+            ],
+            "path": [
+              [
+                "M",
+                352,
+                524
+              ],
+              [
+                "C",
+                354,
+                526,
+                357,
+                528,
+                359,
+                529
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "left-own-flow-taper-and-root-native-ink",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "alphaLocked": true,
+        "preserveAlpha": true,
+        "strokes": [
+          {
+            "size": 2.5,
+            "color": [
+              7,
+              30,
+              58
+            ],
+            "path": [
+              [
+                "M",
+                336.4,
+                477
+              ],
+              [
+                "C",
+                337,
+                479,
+                337,
+                481,
+                337,
+                483
+              ]
+            ]
+          },
+          {
+            "size": 3.5,
+            "opacity": 0.9,
+            "color": [
+              7,
+              30,
+              58
+            ],
+            "path": [
+              [
+                "M",
+                337.6,
+                494
+              ],
+              [
+                "C",
+                338.3,
+                504,
+                343,
+                514,
+                348,
+                519
+              ]
+            ]
+          },
+          {
+            "size": 2.4,
+            "opacity": 0.9,
+            "color": [
+              7,
+              30,
+              58
+            ],
+            "path": [
+              [
+                "M",
+                345,
+                515
+              ],
+              [
+                "C",
+                348,
+                520,
+                352,
+                523.5,
+                355,
+                526
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "right-own-native-volume-flow-and-contour-density",
+    "jobs": [
+      {
+        "id": "hair/back_hair",
+        "alphaLocked": true,
+        "preserveAlpha": true,
+        "strokes": [
+          {
+            "size": 4,
+            "opacity": 0.3,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              9,
+              74,
+              139
+            ],
+            "path": [
+              [
+                "M",
+                611,
+                531
+              ],
+              [
+                "C",
+                611.5,
+                539,
+                614,
+                546,
+                616,
+                551
+              ]
+            ]
+          },
+          {
+            "size": 2,
+            "opacity": 0.25,
+            "color": [
+              9,
+              74,
+              139
+            ],
+            "path": [
+              [
+                "M",
+                612,
+                537
+              ],
+              [
+                "C",
+                613,
+                543,
+                614,
+                547,
+                616,
+                551
+              ]
+            ]
+          },
+          {
+            "size": 3.2,
+            "color": [
+              7,
+              24,
+              49
+            ],
+            "path": [
+              [
+                "M",
+                604,
+                559.3
+              ],
+              [
+                "C",
+                612,
+                560,
+                616,
+                558.5,
+                620,
+                556.3
+              ],
+              [
+                "C",
+                627,
+                551,
+                633.3,
+                542.5,
+                639.2,
+                533.2
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

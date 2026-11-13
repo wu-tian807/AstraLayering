@@ -1,0 +1,21 @@
+{
+  "tool": "image_gen.imagegen",
+  "type": "same-pose occlusion removal",
+  "image": "part-layering/step11_completion/legs/children/leg_right/children/leg/structural-reference.png",
+  "input": "part-layering/step11_completion/legs/children/leg_right/children/leg/workspace/bitmaps/c82c622b-abc5-471e-829e-849eb0f64cc0.png",
+  "sourceCrop": [
+    302,
+    745,
+    414,
+    650
+  ],
+  "inputScale": 1.5,
+  "prompt": "Remove only the character right boot on the image left to reveal the continuous dark stocking-covered lower leg, ankle, heel and complete compact foot. Keep frontal camera, original pose, leg lean, body proportions, visible thigh/calf contours, white bodysuit and other boot unchanged. Sock-covered foot remains naturally planted in the original boot position, narrower and shorter than boot; no shoe panels, buckles, cuff, sole, extra accessories or diagram lines. Preserve drawing style and transparency.",
+  "edgeRegion": [
+    91,
+    77,
+    544,
+    1442
+  ],
+  "interpretation": "Ankle narrowing, heel and rounded forefoot are structural evidence. Preserve source visible contours and original leg coordinates; final toe shortened to fit inside original shoe upper and above outsole."
+}

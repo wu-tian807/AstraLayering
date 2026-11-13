@@ -1,0 +1,12 @@
+[
+  {
+    "tool_output": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3",
+    "evidence_copy": "clothing-raster-layering/step01/review-02-evidence/regions/composite",
+    "source_manifest_preserved": true
+  },
+  {
+    "tool_output": "clothing-raster-layering/step01/workspace/review-regions/d38ecde7-ca28-4960-91b3-967668759b4a",
+    "evidence_copy": "clothing-raster-layering/step01/review-02-evidence/regions/cuff-solo",
+    "source_manifest_preserved": true
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "groupId": "outer_jacket/jacket_body/left_front/lapel",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，检查对象 outer_jacket/jacket_body/left_front/lapel（part）。已只读核对纯衣服参考、groups.json 当前及父级 note、候选和父完成 SVG；先由参考独立识别画面右侧缺口下方驳头，再检查候选。未发现确定需要修改的问题，无需重画。\n\n1. 归属及完整覆盖：本片可见实体为约 (679,381)–(713,403)–(749,432)–(679,501) 的胸前翻出驳头及其固定边饰。上方翻领归 jacket_collar；右邻小圆记号与三角标识归 front_panel；下端外的连接带和方扣不归本片。整体叠加及纯参考局部显示候选覆盖完整驳头，未误包上述邻片、内搭、人体或中央开襟，没有可见组件遗漏。证据： 。\n\n2. 全部边界：在原图窗口 [640,350,150,180] 四倍放大，以 blend、edge 和独显逐段核对上端连接至缺口、缺口至自由尖角、尖角至下端的整条斜边，以及下端至上端的翻折根。主要形状、位置、比例及圆转边界与参考一致；固定滚边随实体纳入，不要求其内部配色或阴影。上端保留位于独立翻领后的局部连接搭接合理，下端与前片内边连续。证据：  。\n\n3. 父范围及 note：候选采用 1115×1410 原画布坐标；四倍采样父范围检查 outsidePixels=0、outsideSamples=0，无上游范围限制。note 已在当前终止 part 明确实体范围、与上方翻领和 front_panel 的分界、翻领后的上端搭接、驳头在承载前片及内搭之前、折根共同随动与翻出面独立翻折，并排除颈后衣料、开襟封口及连接带。本片无独立真实开口、薄纱或分离附件需要另补。证据：。",
+      "candidateHash": "e410712597eef3dc8c96e964f201ac37c3cd0c154929e9cf80ebf51dc9443bbf",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/left_front/children/lapel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/left_front/children/lapel/previews/2026-11-10T14-41-57-932Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/left_front/children/lapel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/left_front/children/lapel/previews/2026-11-10T14-41-57-932Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/outer_jacket/jacket_body/left_front.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/left_front/children/lapel/previews/2026-11-10T14-41-57-932Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/left_front/children/lapel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/left_front/children/lapel/previews/2026-11-10T14-41-57-932Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/left_front/children/lapel/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/left_front/children/lapel/previews/2026-11-10T14-41-57-932Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T14:56:44.121Z"
+    }
+  ]
+}

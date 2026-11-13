@@ -1,0 +1,43 @@
+{
+  "groupId": "pleated_skirt",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第1轮：pleated_skirt（kind=group）通过。已只读检查纯衣服参考、groups.json 中本组 note、当前候选 SVG 源码及渲染。本节点无父组，因此无父范围包含检查。未发现确定需要修改的问题，无须重画当前组。\n\n核对依据：\n1. 独立从纯衣服参考确认本组可见归属：中央腰带、两侧展开的裙身、正面下摆和下缘蓝色内侧/后侧回转衣料均属于同一裙体；不含上方衬衫与两片白色外套衣摆。全裙原图2倍放大及整体叠加显示候选覆盖这些可见实体，无可见组件遗漏、人体误包或其他衣片误包。证据：[纯衣服裙体2倍](review_evidence/round01/reference_skirt_2x.png)、[整体叠加](review_evidence/round01/overall_blend.png)。\n2. 腰带及相邻交界约 x380–808、y685–765：候选中央上沿对应衬衫下端/裙腰交界，两侧沿外套衣摆下缘延伸；可见腰带宽度、位置及裙身接续正确。note 已明确裙腰覆盖衬衫下端、两侧隐藏搭接于外套下。隐藏形状留给补全，不将可见轮廓阶段的遮挡边裁切判为缺漏。证据：[腰部4倍叠加](review_evidence/round01/waist_blend_4x.png)。\n3. 两侧裙身约 x167–981、y723–1040：全裙2倍边缘覆盖核对了左上斜边、右上斜边、两侧张开曲线和侧向回转，主要形状、位置与比例一致。内部褶线及条带均在联合覆盖内，无须在group轮廓中逐条设路径。证据：[全裙2倍边缘](review_evidence/round01/all_skirt_edge_2x.png)。\n4. 下摆约 x170–976、y1010–1119：左右侧回转、左侧蓝色露出片阶梯、中央低垂边缘及右侧后缘凹凸已逐处4倍检查，候选保留了原图可见外轮廓和蓝色回转衣料。未见真实空白开口被填；裙身内部是衣料覆盖，不能按裙底在三维空间中开放而挖掉正面衣料。note 已描述相对腿部的前后区域、两侧连续回转、共同随动与不绘制封口面。证据：[左下摆4倍边缘](review_evidence/round01/left_hem_edge_4x.png)、[中央及右下摆4倍边缘](review_evidence/round01/right_hem_edge_4x.png)。\n5. 右侧大三角标识约 x738–877、y870–1030 和下摆青色条带均固定附于裙料，其可见范围在候选联合覆盖内。三角中央可见深色裙料，并非透穿整裙的真实开口；不因候选没有标识内部路径、纹样或明暗而判附件遗漏。本组无可见薄纱或分离悬空附件。独显检查未见额外孤立实体或错误孔洞。证据：[中央及右下摆4倍边缘](review_evidence/round01/right_hem_edge_4x.png)、[SVG独显](review_evidence/round01/svg_only.png)。\n\n当前 note 已说明实体范围、相邻分界、裙腰与衬衫/外套关系、前后裙缘相对腿部的深度、连续回转、共同随动及必要隐藏搭接，符合本组阶段职责。纯色填充不作配色、纹样、材质或透明度评价。",
+      "candidateHash": "6e447dbdf66f231296e7656676af3c5a54aae10d1d50a3005e5f923ba61ab0d3",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-10T09-51-41-281Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-10T09-51-41-281Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-10T09-51-41-281Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-10T09-51-41-281Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-10T09-51-41-281Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-10T09-51-41-281Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T10:00:42.416Z"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "groupId": "inner_shirt/shirt_collar/right_collar_leaf",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。已只读核对纯衣服参考、groups.json 中本 part 与父组 note、当前候选及父完成 SVG，并完成全图 blend、覆盖本片全部可见区域的 6 倍局部 edge/blend 和 SVG 独显。\n\n归属与主要形状：先从原参考确认本片为角色右侧、画面左侧的前折领片，约 x498–605、y285–401；斜向颈口内缘、向左下伸出的领尖和向中央折起的自由边均有原图依据。候选没有误包上方弧形后领、画面右侧领片、外套白翻领、短领带或领下胸前衣身，没有确定的可见组件遗漏。整体位置与比例一致，无需重画。\n\n逐处边缘核对：颈侧根部约 (500,285) 至 (539,316) 连续承接；内缘经 (590,348) 至中央约 (605,363) 保留颈口，不填充开口；左外缘约 x498–550、y285–398 与原参考领片外轮廓相符；领尖约 (554,399) 及自由边经 (566,381)、(586,356) 至中央折起处与参考相符，中央小接段没有吞入领带可见下垂实体。原图深色描边带内的细小差异不构成确定轮廓缺陷。本片无独立薄纱、真实内部孔洞或分离附件需要另补。\n\n职责说明：note 已明确领根与领座连接、必要隐藏搭接、相对颈前/衣身/领带接段/外套的前后关系，以及与领座、衣身共同定位和本片独立翻折控制；未发现需要修改的说明。保留合理根部搭接，不按可见像素截断。父范围四倍采样检查通过，outsideSamples=0、outsidePixels=0，无上游范围限制。\n\n图像证据（相对报告文件）：\n\n\n\n\n\n\n\n没有已核实且需要修改的问题；候选与父 SVG 均未改动。",
+      "candidateHash": "d3a2f39a697880545537101d04fd87c7d7aac8df8f5b225863c06714943b5ea0",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/right_collar_leaf/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/right_collar_leaf/previews/2026-11-10T13-19-19-786Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/inner_shirt/shirt_collar.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/right_collar_leaf/previews/2026-11-10T13-19-19-786Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/right_collar_leaf/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/right_collar_leaf/previews/2026-11-10T13-19-19-786Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/right_collar_leaf/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/right_collar_leaf/previews/2026-11-10T13-19-19-786Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/right_collar_leaf/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/right_collar_leaf/previews/2026-11-10T13-19-19-786Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T13:34:59.242Z"
+    }
+  ]
+}

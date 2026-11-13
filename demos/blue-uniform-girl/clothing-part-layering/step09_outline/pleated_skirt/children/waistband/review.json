@@ -1,0 +1,38 @@
+{
+  "groupId": "pleated_skirt/waistband",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，pleated_skirt/waistband（part）通过。已只读检查纯衣服参考、groups.json 中当前及父 note、候选全文与父完成 SVG，并完成整图 blend、覆盖候选全部范围的局部 3 倍参考、blend、edge、独显及父稿叠加检查。\n\n归属：由原参考独立确认，中央约 x549–715、y686–743 是衬衫下端与褶裙裙身之间的连续腰带带面；两侧被外套前衣摆遮住。候选中央带面覆盖完整，上缘沿衬衫下端接缝、下缘沿裙身承接弧线，位置、宽高比例与边缘吻合；没有把可见衬衫或裙身误包进腰带。约 x380–549 与 x715–808 的侧向延续是 note 指定、位于外套之后的合理隐藏衣料，不以叠加到外套上的候选色块判为外套归属。左右侧上界沿父稿已补腰侧曲线，下界在遮挡区连续接中央腰带下边，未发现需修正的可见遗漏。\n\n结构及说明：参考没有本片所属的独立扣带、垂挂附件、薄纱或真实敞开腰口；保持完整贴腰带面合理。note 已明确实体范围、衬衫／裙身相邻分界、外套之后与腰腹之前及背侧回转的相对深度、隐藏搭接、腰胯随动和裙身缝合连接，无需修改说明或重画当前 part。\n\n范围：画布 1115×1410 正确；allowOutsideParent 省略，按父包含关系检查，4 倍采样 outsidePixels=0、outsideSamples=0，无上游父范围限制。\n\n证据：\n\n\n\n\n\n\n\n没有已核实、需要修改的问题。候选与父 SVG 均未改动。",
+      "candidateHash": "a3f69ca0213c1a14a8100637dd19b741452c8865d8f0b0bd7af40cec5f58ea51",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-10T10-48-22-551Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-10T10-48-22-551Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/pleated_skirt.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-10T10-48-22-551Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-10T10-48-22-551Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-10T10-48-22-551Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:08:32.535Z"
+    }
+  ]
+}

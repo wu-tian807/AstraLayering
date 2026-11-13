@@ -1,0 +1,23 @@
+{
+  "reportConclusion": "已修复",
+  "reviewItems": 16,
+  "allReviewItemsPassed": true,
+  "additionalSelfRepairs": 2,
+  "mappingMatchesReopenedNativeLayers": true,
+  "reports": [
+    {
+      "path": "raster-layering/step01/report.md",
+      "sha256": "234a5bd709cdc961bbd9768625d7ecea870fd94bc11d93671394e20b06635fc6",
+      "linkCount": 124,
+      "missingLinks": []
+    },
+    {
+      "path": "raster-layering/step01/repair-02.md.tmp",
+      "sha256": "9b67e2b01bb12f5c62732e12fb4879de78f1e6e38d0d480757d8e7e7377fb40e",
+      "linkCount": 68,
+      "missingLinks": []
+    }
+  ],
+  "reopenPassed": true,
+  "exactRGBAConsistency": true
+}

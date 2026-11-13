@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "repairConclusion": "仍有问题",
+  "reviewIssues": 35,
+  "passedIssues": 25,
+  "pendingIssues": 10,
+  "newPassedIssues": [
+    "R30",
+    "R32"
+  ],
+  "changedPaintParts": 9,
+  "unchangedPaintParts": 50,
+  "modifiedNativeMasks": [
+    "眼睛开口 right",
+    "上下唇开口"
+  ],
+  "saveReopenPassed": true,
+  "PNGMatchesReopen": true,
+  "KRAZipPassed": true,
+  "reportLinksExist": true,
+  "all37IssueRegionsPresent": true,
+  "all59PartViewsPresent": true,
+  "kraSHA256": "95a1bbe5827fbb5796d30cd125f72e0c798d3ff11e9dcda740cfbb4e9ac09a1a",
+  "kraBytes": 11168044,
+  "report": "raster-layering/step01/repair-01.md.tmp"
+}

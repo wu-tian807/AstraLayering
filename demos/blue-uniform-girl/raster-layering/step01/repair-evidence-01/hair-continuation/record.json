@@ -1,0 +1,107 @@
+{
+  "newPassedIssues": [
+    "R22",
+    "R23"
+  ],
+  "pendingRelatedIssues": [
+    "R21",
+    "R24",
+    "R25"
+  ],
+  "changedParts": [
+    {
+      "id": "hair/back_hair",
+      "layerName": "01 | hair/back_hair",
+      "layerUUID": "{4b2fea23-4cde-4f9b-9224-2cdb83cdaa5e}",
+      "level": 1,
+      "region": "自身青蓝亮带、回弯束局部发面与变化粗细外圈；完整隐藏发面承接仍待修",
+      "reuseSource": "本件已有生成材质、Krita原生笔触及原图自身局部取样；无跨part复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "hair/bangs",
+      "layerName": "56 | hair/bangs",
+      "layerUUID": "{d8460341-1a17-4ea7-85e2-55efc4e6b0b3}",
+      "level": 56,
+      "region": "y235–395 的发梢/中央下弧局部材质配准与原图自身下缘窄带",
+      "reuseSource": "本件已有生成材质、Krita原生笔触及原图自身局部取样；无跨part复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "layerName": "57 | hair/side_hair/side_hair_left",
+      "layerUUID": "{d0910d01-e059-41dd-a4f6-0e1eef1138bd}",
+      "level": 57,
+      "region": "斜额缘、面侧短尖、长尖及自身长尖内缘残色/局部收顺；高位根保留",
+      "reuseSource": "本件已有生成材质、Krita原生笔触及原图自身局部取样；无跨part复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "layerName": "58 | hair/side_hair/side_hair_right",
+      "layerUUID": "{0c3ad932-f415-4070-b55e-173db3af8341}",
+      "level": 58,
+      "region": "短/长尖位置与本件内部的弯曲发流色阶；整体长弯承接试验撤回",
+      "reuseSource": "本件已有生成材质、Krita原生笔触及原图自身局部取样；无跨part复用",
+      "nativeMasks": []
+    }
+  ],
+  "unchangedPaintParts": 55,
+  "uuidChangedParts": [
+    "hair/back_hair",
+    "hair/bangs",
+    "hair/side_hair/side_hair_right"
+  ],
+  "nativeMaskSelectionsAndOwnershipUnchanged": true,
+  "acceptedOperations": [
+    "back-hair-own-cyan-highlight",
+    "back-hair-loop-form-native-restoration",
+    "bangs-local-tip-material-register",
+    "bangs-own-native-lower-ink",
+    "bangs-own-lower-ink-upper-transition-clean",
+    "side-left-own-diagonal-tip-register",
+    "side-left-own-tip-pigment-clean",
+    "side-left-tip-own-color-residue-only",
+    "side-left-own-material-inner-edge-smooth",
+    "side-right-own-lock-tip-register",
+    "side-right-own-clipped-interior-junction-flow",
+    "hair-assembly-trials-restored-accepted"
+  ],
+  "generationTrials": [
+    {
+      "issue": "R22",
+      "control": "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R22-control.png",
+      "neutralizedSource": "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R22-neutral-reference.png",
+      "generated": "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R22-generated.png",
+      "accepted": false,
+      "reason": "带宽/位置与alpha漂移，改用Krita原图同件局部取样"
+    },
+    {
+      "issue": "R25",
+      "control": "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R25-control.png",
+      "neutralizedSource": "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R25-neutral-reference.png",
+      "generated": "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R25-generated.png",
+      "accepted": false,
+      "reason": "偏直深蓝楔块仍保留，改用局部配准与Krita同件内部取样"
+    }
+  ],
+  "method": "完整生成绘画上局部配准、原图本件窄/局部原生取样、Krita原生逐笔与原生选区收边；原图白底边缘只分离alpha。未沿完整形体整块填色。",
+  "rejectedTrials": [
+    "后发矢量描边与生成边缘不一致，出现双线，撤回。",
+    "Krita白转透明试验出现灰晕，撤回；原图白底的alpha分离只用于本件局部边缘。",
+    "窄边取样曾越入前侧发邻边或留下残线，撤回，重新加前侧发/刘海/发饰保护距离。",
+    "侧发另画新曲线造成独显分离双边，撤回到已有材质自身配准。",
+    "侧发原图取样外圈在生成部件之外产生灰青鬼影，撤回并同时限制在当前本件内部。",
+    "长发进一步按原色块曲线配准露出组装承接空带；后发青蓝承接试画在完整后发中出现局部斜向硬接。两项全部恢复到明确记录的有效画面，不保留新空带或鬼影。"
+  ],
+  "baseline": "raster-layering/step01/workspace/repair-next6/before",
+  "freshDiskDocumentOpen": true,
+  "duplicateTaskDocuments": false,
+  "upstreamChanges": [],
+  "preAnnotatedSplits": [],
+  "assemblyDiscoveredSplits": [],
+  "reopen": "raster-layering/step01/repair-evidence-01/hair-continuation/reopen-verification.json",
+  "checkEvidence": "raster-layering/step01/repair-evidence-01/issue-index.json",
+  "shapeRecord": "raster-layering/step01/repair-evidence-01/shape-records.json",
+  "generationPromptSet": "raster-layering/step01/repair-evidence-01/hair-continuation/generation-prompts.json"
+}

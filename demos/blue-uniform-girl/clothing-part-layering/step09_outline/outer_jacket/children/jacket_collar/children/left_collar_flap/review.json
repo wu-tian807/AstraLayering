@@ -1,0 +1,38 @@
+{
+  "groupId": "outer_jacket/jacket_collar/left_collar_flap",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过。先独立查看纯衣服全图及 x615–785、y260–430 放大参考，确认本 part 为画面右侧缺口上方的完整翻领，包含颈侧短折根、领面及固定滚边；下方驳头、肩部衣身及中央深色内搭领均不归本片。随后完成候选整图 blend、覆盖全部可见区域的 x625–775、y265–420 五倍 edge / blend / SVG 独显，以及父完成 SVG 的领部放大叠加。\n\n逐处核对：上端约 (638,276) 至 (660,311) 的折根位置和短隐藏搭接合理；外弧经 (700,321) 至 (757,391) 与参考翻领外缘相符，无误包肩部衣片；右端圆转及下边至 (711,406) 覆盖领尖与固定滚边，未遗漏可见实体；缺口内侧分界由 (678,383) 连至 (711,406)，没有吞并缺口下的胸前驳头；颈侧内弧沿内搭领边回收，未填入内搭或颈部开口。主体形状、画布位置和比例均正确。本片无独立薄纱或分离附件、无另需表达的真实内部开口。note 已明确实体归属、接缝、前后深度区域、共同随动及隐藏搭接，无需修订。候选沿用父稿对应衣片曲线；四倍采样父范围检查 outsideSamples=0、outsidePixels=0，无上游范围限制。未发现需要修改的、有图像依据的问题，不需重画。\n\n图像证据：\n\n\n\n\n\n",
+      "candidateHash": "cb9fa43310983439169a9c80815df580ef6bb2f4630003a8e89b554260bfa136",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/left_collar_flap/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/left_collar_flap/previews/2026-11-10T13-15-14-650Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/outer_jacket/jacket_collar.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/left_collar_flap/previews/2026-11-10T13-15-14-650Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/left_collar_flap/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/left_collar_flap/previews/2026-11-10T13-15-14-650Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/left_collar_flap/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/left_collar_flap/previews/2026-11-10T13-15-14-650Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/left_collar_flap/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/left_collar_flap/previews/2026-11-10T13-15-14-650Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T13:30:50.683Z"
+    }
+  ]
+}

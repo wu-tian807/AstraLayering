@@ -1,0 +1,53 @@
+{
+  "groupId": "body/breast",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮已完整核对 body/breast：读取本组与 body 的说明、原始参考、候选及父完成 SVG，先查看整图 blend，再以左区 [465,615,125,115]、右区 [570,615,125,115] 两个重叠选框进行 5 倍 blend/edge 对照，覆盖候选全部可见区域，并检查原图胸部周边和父组同局部边缘及候选独显。\n归属与形体：参考领口下方确有两侧胸部体积，右侧外缘隆起明显；候选为连续联合色块，未误包相邻手臂、锁骨皮肤或腰腹主体，未漏掉本组伸出联合色块的独立可见组件。左右透视与外缘转向分别对照通过。上、下附着边界位于连续胸廓内部，参考没有相应的独立分离边缘，当前合理承接范围可保留；不要求按材质、缝线或普通明暗拆分。\n外缘与接缝：左侧约 (500,628) 至 (478,677) 的腋侧收束及至 (484,702) 的接续、右侧约 (665,629) 经 (680,669) 至 (675,704) 的隆起与向腰部转折，均与参考及父组允许范围吻合。没有孔洞、无依据挖缝、孤点或碎片。父范围检查四倍采样 outsideSamples=0，未发现需单列的上游范围冲突。无需重画或局部返修。\n图像证据：\n\n\n",
+      "candidateHash": "02bef1fdf0b203380bd4e130ab59f9ac5f1ba85ddbbe2e82dbf1fb7ce858c5d2",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-10T12-24-31-862Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/body.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-10T12-24-31-862Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-10T12-24-31-862Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-10T12-24-31-862Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-10T12-24-31-862Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-10T12-24-31-862Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/body.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-10T12-24-31-862Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-10T12-24-31-862Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T13:06:26.341Z"
+    }
+  ]
+}

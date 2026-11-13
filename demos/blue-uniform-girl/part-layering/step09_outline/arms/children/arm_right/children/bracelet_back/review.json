@@ -1,0 +1,68 @@
+{
+  "groupId": "arms/arm_right/bracelet_back",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组及父组说明、候选 SVG、父完成 SVG，并完成整图 blend 定位及重叠局部核对：入环后缘 [292,796,51,39]（8 倍 blend/edge）、左侧衔接 [285,816,55,53]（8 倍 blend/edge）、前臂入环另一侧 [324,801,67,61]（6 倍 blend/edge）、下缘 [283,850,109,48]（6 倍 blend/edge），另检查了 SVG 独显。参考可确认的本组区域为画面左侧右腕入环处约 x299–332、y802–826 的后侧弧形环缘，候选完整覆盖该处，外弧及前臂遮挡端的位置、转向吻合；内侧为与前段合理搭接的连续局部形体。其余手环主体、青蓝装饰及手侧下缘属于前段，没有发现本组遗漏的独立可见组件。色块连续、无孤点或碎片，不存在需重画的归属或主要形体错误。group.allowOutsideParent 未开启，四倍采样父范围检查 outsidePixels=0，满足父范围约束，无已确认的上游范围冲突。图像证据：；；；；。",
+      "candidateHash": "25b3b46d09ff4f846602c2767db64d2f4675d8cf3f41268f224f61dde79d136c",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/bracelet_back/previews/2026-11-10T16-13-20-805Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T16:16:18.413Z"
+    }
+  ]
+}

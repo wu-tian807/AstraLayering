@@ -1,0 +1,105 @@
+{
+  "newPassedIssues": [
+    "R3",
+    "R4"
+  ],
+  "pendingRelatedIssues": [
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "changedParts": [
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "layerName": "19 | arms/arm_right/hand/index_finger",
+      "layerUUID": "{5b01cb38-d6a2-4d0f-9635-4ef89eafc824}",
+      "level": 19,
+      "region": "左食指完整根头紧凑配准；指身y944以下不变",
+      "reuseSource": "本件已有生成画面、Krita原生逐笔、本臂原图窄轮廓取样；无跨part复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "layerName": "21 | arms/arm_right/hand/palm",
+      "layerUUID": "{9ec08565-60a6-44ed-aed5-16474f9adc09}",
+      "level": 21,
+      "region": "左手虎口自身短结构线，alpha锁定",
+      "reuseSource": "本件已有生成画面、Krita原生逐笔、本臂原图窄轮廓取样；无跨part复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "layerName": "22 | arms/arm_left/forearm",
+      "layerUUID": "{cfe8d6a5-190b-408b-8f72-57c6289254bd}",
+      "level": 22,
+      "region": "本件轮廓及完整根端；右前臂内缘局部2.6px配准与最多1.08px收顺",
+      "reuseSource": "本件已有生成画面、Krita原生逐笔、本臂原图窄轮廓取样；无跨part复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "layerName": "23 | arms/arm_right/forearm",
+      "layerUUID": "{3beed03f-949d-4f3a-9353-13e87e8989bd}",
+      "level": 23,
+      "region": "本件轮廓及完整根端；右前臂内缘局部2.6px配准与最多1.08px收顺",
+      "reuseSource": "本件已有生成画面、Krita原生逐笔、本臂原图窄轮廓取样；无跨part复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "layerName": "24 | arms/arm_left/upper_arm",
+      "layerUUID": "{b50818a7-47e8-4228-a8fa-87e5309ac7a6}",
+      "level": 24,
+      "region": "本件外缘/肘端窄带；右上臂另有补全端半透明肤色边清理",
+      "reuseSource": "本件已有生成画面、Krita原生逐笔、本臂原图窄轮廓取样；无跨part复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "layerName": "25 | arms/arm_right/upper_arm",
+      "layerUUID": "{decfd947-28d2-4860-8930-4dfed8188037}",
+      "level": 25,
+      "region": "本件外缘/肘端窄带；右上臂另有补全端半透明肤色边清理",
+      "reuseSource": "本件已有生成画面、Krita原生逐笔、本臂原图窄轮廓取样；无跨part复用",
+      "nativeMasks": []
+    }
+  ],
+  "unchangedPaintParts": 53,
+  "uuidChangedParts": [
+    "arms/arm_left/hand/thumb",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/forearm",
+    "arms/arm_right/forearm",
+    "arms/arm_left/upper_arm",
+    "arms/arm_right/upper_arm"
+  ],
+  "restoredHandPaints": [
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/hand/palm",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_left/hand/thumb"
+  ],
+  "nativeMaskSelectionsAndOwnershipUnchanged": true,
+  "palmAlphaUnchanged": true,
+  "leftIndexMainBodyUnchangedBelowY": 944,
+  "thisBatchGeneration": null,
+  "method": "已有绘画上的窄轮廓原生取样、同件邻近肤色原生笔触、局部配准和原生控制选区清边；没有沿完整形体整块填色。",
+  "rejectedTrials": [
+    "right-elbow-own-inner-edge 的补全端取样/末端棕笔触产生突点，恢复 arm-own-original-edge-local 上臂。",
+    "right-elbow-own-native-continuity 的上臂小扩边使接点变浅，恢复 right-elbow-cap-own-color-clean；只保留后续前臂自身曲线收顺。",
+    "手部 hand-joint-own-visible-reference-local 的原图白底边缘混色产生新空点，撤回。",
+    "hand-owned-interior-joint-local / hand-owned-joint-soft-transition 虽收紧/融接选区，仍加重原有掌指接边，全部恢复手部批前生成画面；不计通过。"
+  ],
+  "baseline": "raster-layering/step01/workspace/repair-next5/before",
+  "freshDiskDocumentOpen": true,
+  "duplicateTaskDocuments": false,
+  "upstreamChanges": [],
+  "preAnnotatedSplits": [],
+  "assemblyDiscoveredSplits": [],
+  "reopen": "raster-layering/step01/repair-evidence-01/elbow-hand-continuation/reopen-verification.json",
+  "checkEvidence": "raster-layering/step01/repair-evidence-01/issue-index.json"
+}

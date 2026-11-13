@@ -1,0 +1,53 @@
+{
+  "groupId": "inner_shirt/shirt_body",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，inner_shirt/shirt_body（part）通过。已只读核对纯衣服参考、groups.json 中本片与父组 note、候选源码与父完成 SVG，并完成整体 blend、分区 2–4 倍放大、edge 覆盖和 SVG 独显。\n\n1. 独立归属与可见覆盖：原图约 x553–680、y395–500 的上胸衣料，以及约 x552–716、y540–692 的腹部衣料，均为折领下方的衬衫本体；门襟和固定纽扣属于同一衣身。候选完整覆盖这些可见区域。短领带、白色蝶形连接带、外套和裙腰具有独立归属；候选在它们之后的连续覆盖符合 note 的隐藏搭接，不构成误包附件。未见本片可见组件遗漏或人体填入。\n2. 领根分界：约 (518,346) 经 (553,396)、(587,362)、(609,364) 至 (677,386) 的上缘沿两片折领下缘及中央承接区延续；4 倍 edge 核对显示可见衣身没有缺口，少量领下缝合搭接合理。领口上方后领和折领主体没有并入本片，不需为衣身另造颈口或封口面。\n3. 肩侧、袖根与腰侧：约 (380,343)–(440,518) 及 (752,347)–(753,590) 的两侧轮廓对应父稿躯干部，与隐藏短袖的袖根保持连接分界；候选未吞入父稿两侧袖身或椭圆袖口。外套下肩腰连续衣料保留，未按原图外套遮挡边裁断衣身。\n4. 下端与比例：约 x449–759、y681–725 的下端保留父稿已有连续延伸，位于裙腰带之后；不是新增腰带。整体画布、位置和躯干部比例与父稿吻合。allowOutsideParent 省略，四倍采样范围检查 outsideSamples=0、outsidePixels=0，无父范围限制。\n5. note 已明确前胸腹、背侧及侧向连续区域相对身体和其他衣片的前后关系、共同随动、领袖连接和腰带下搭接，符合当前终止 part 职责。未发现需要修改 note 或重画当前组的问题。本片没有独立薄纱或分离附件；纯色未表达纽扣纹样、衣料明暗等不属于轮廓缺陷。\n\n图像证据：\n\n\n\n\n\n\n",
+      "candidateHash": "d4bd3dbba3e1b19076478c908711cb71688f0e8607ed6d97cb9937381daae49e",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/previews/2026-11-10T11-03-04-614Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/inner_shirt.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/previews/2026-11-10T11-03-04-614Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/previews/2026-11-10T11-03-04-614Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/previews/2026-11-10T11-03-04-614Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/previews/2026-11-10T11-03-04-614Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/previews/2026-11-10T11-03-04-614Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/previews/2026-11-10T11-03-04-614Z-7.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/inner_shirt.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_body/previews/2026-11-10T11-03-04-614Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:31:51.534Z"
+    }
+  ]
+}

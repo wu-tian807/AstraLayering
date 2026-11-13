@@ -1,0 +1,736 @@
+{
+  "R1": {
+    "bounds": [
+      365,
+      875,
+      205,
+      325
+    ],
+    "crop": [
+      353,
+      863,
+      229,
+      349
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "legs/leg_right/leg"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R1.png"
+  },
+  "R2": {
+    "bounds": [
+      600,
+      925,
+      108,
+      275
+    ],
+    "crop": [
+      588,
+      913,
+      132,
+      299
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "legs/leg_left/leg"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R2.png"
+  },
+  "R6": {
+    "bounds": [
+      249,
+      905,
+      95,
+      38
+    ],
+    "crop": [
+      237,
+      893,
+      119,
+      62
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "arms/arm_right/hand/palm",
+      "arms/arm_right/hand/index_finger",
+      "arms/arm_right/hand/thumb"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R6.png"
+  },
+  "R7": {
+    "bounds": [
+      811,
+      893,
+      50,
+      43
+    ],
+    "crop": [
+      799,
+      881,
+      74,
+      67
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "arms/arm_left/hand/palm",
+      "arms/arm_left/hand/index_finger",
+      "arms/arm_left/hand/thumb"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R7.png"
+  },
+  "R8": {
+    "bounds": [
+      808,
+      934,
+      53,
+      53
+    ],
+    "crop": [
+      796,
+      922,
+      77,
+      77
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "arms/arm_left/hand/middle_finger",
+      "arms/arm_left/hand/index_finger"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R8.png"
+  },
+  "R19": {
+    "bounds": [
+      319,
+      1147,
+      157,
+      240
+    ],
+    "crop": [
+      307,
+      1135,
+      181,
+      264
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "legs/leg_right/shoes/shoe_front",
+      "legs/leg_right/shoes/cuff_back"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R19.png"
+  },
+  "R20": {
+    "bounds": [
+      570,
+      1167,
+      151,
+      216
+    ],
+    "crop": [
+      558,
+      1155,
+      175,
+      240
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "legs/leg_left/shoes/shoe_front",
+      "legs/leg_left/shoes/cuff_back"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R20.png"
+  },
+  "R21": {
+    "bounds": [
+      170,
+      203,
+      746,
+      391
+    ],
+    "crop": [
+      158,
+      191,
+      770,
+      415
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "hair/back_hair"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R21.png"
+  },
+  "R22": {
+    "bounds": [
+      714,
+      267,
+      51,
+      67
+    ],
+    "crop": [
+      702,
+      255,
+      75,
+      91
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "hair/back_hair",
+      "hair/side_hair/side_hair_left"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R22.png"
+  },
+  "R23": {
+    "bounds": [
+      331,
+      229,
+      212,
+      155
+    ],
+    "crop": [
+      319,
+      217,
+      236,
+      179
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "hair/bangs"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R23.png"
+  },
+  "R24": {
+    "bounds": [
+      529,
+      197,
+      205,
+      367
+    ],
+    "crop": [
+      517,
+      185,
+      229,
+      391
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "hair/side_hair/side_hair_left"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R24.png"
+  },
+  "R25": {
+    "bounds": [
+      320,
+      433,
+      70,
+      160
+    ],
+    "crop": [
+      308,
+      421,
+      94,
+      184
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "hair/side_hair/side_hair_right"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R25.png"
+  },
+  "R27": {
+    "bounds": [
+      713,
+      347,
+      62,
+      112
+    ],
+    "crop": [
+      701,
+      335,
+      86,
+      136
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "face/ears/ear_left"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R27.png"
+  },
+  "R28": {
+    "bounds": [
+      386,
+      459,
+      78,
+      49
+    ],
+    "crop": [
+      374,
+      447,
+      102,
+      73
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "face/blush_right"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R28.png"
+  },
+  "R29": {
+    "bounds": [
+      546,
+      310,
+      141,
+      128
+    ],
+    "crop": [
+      534,
+      298,
+      165,
+      152
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "face/eyes/eye_left/sclera",
+      "face/eyes/eye_left/iris",
+      "face/eyes/eye_left/highlight",
+      "face/eyes/eye_left/upper_eyelid"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R29.png"
+  },
+  "R30": {
+    "bounds": [
+      329,
+      355,
+      137,
+      113
+    ],
+    "crop": [
+      317,
+      343,
+      161,
+      137
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "face/eyes/eye_right/sclera",
+      "face/eyes/eye_right/iris",
+      "face/eyes/eye_right/highlight",
+      "face/eyes/eye_right/upper_eyelid"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R30.png"
+  },
+  "R31": {
+    "bounds": [
+      492,
+      462,
+      62,
+      19
+    ],
+    "crop": [
+      480,
+      450,
+      86,
+      43
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "face/mouth/upper_teeth"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R31.png"
+  },
+  "R32": {
+    "bounds": [
+      483,
+      463,
+      83,
+      64
+    ],
+    "crop": [
+      471,
+      451,
+      107,
+      88
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "face/mouth/lower_lip",
+      "face/mouth/upper_lip",
+      "face/mouth/mouth_interior",
+      "face/mouth/tongue"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R32.png"
+  },
+  "R34": {
+    "bounds": [
+      481,
+      439,
+      18,
+      17
+    ],
+    "crop": [
+      469,
+      427,
+      42,
+      41
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "face/nose"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R34.png"
+  },
+  "R35": {
+    "bounds": [
+      780,
+      800,
+      39,
+      43
+    ],
+    "crop": [
+      768,
+      788,
+      63,
+      67
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "arms/arm_left/bracelet_back",
+      "arms/arm_left/bracelet_front"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R35.png"
+  },
+  "R3": {
+    "bounds": [
+      610,
+      571,
+      205,
+      315
+    ],
+    "crop": [
+      598,
+      559,
+      229,
+      339
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "parts": [
+      "arms/arm_left/forearm",
+      "arms/arm_left/upper_arm"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R3.png"
+  },
+  "R4": {
+    "bounds": [
+      370,
+      715,
+      69,
+      52
+    ],
+    "crop": [
+      358,
+      703,
+      93,
+      76
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "parts": [
+      "arms/arm_right/upper_arm",
+      "arms/arm_right/forearm"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R4.png"
+  },
+  "R5": {
+    "bounds": [
+      666,
+      727,
+      80,
+      55
+    ],
+    "crop": [
+      654,
+      715,
+      104,
+      79
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "parts": [
+      "arms/arm_left/upper_arm",
+      "arms/arm_left/forearm"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R5.png"
+  },
+  "R14": {
+    "bounds": [
+      473,
+      621,
+      53,
+      140
+    ],
+    "crop": [
+      461,
+      609,
+      77,
+      164
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "parts": [
+      "body/torso",
+      "body/breast",
+      "pelvis",
+      "arms/arm_right/upper_arm"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R14.png"
+  },
+  "R15": {
+    "bounds": [
+      648,
+      608,
+      43,
+      161
+    ],
+    "crop": [
+      636,
+      596,
+      67,
+      185
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "parts": [
+      "body/torso",
+      "body/breast",
+      "pelvis"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R15.png"
+  },
+  "R16": {
+    "bounds": [
+      506,
+      664,
+      44,
+      145
+    ],
+    "crop": [
+      494,
+      652,
+      68,
+      169
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "parts": [
+      "body/breast",
+      "pelvis",
+      "body/torso"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R16.png"
+  },
+  "R17": {
+    "bounds": [
+      646,
+      663,
+      28,
+      151
+    ],
+    "crop": [
+      634,
+      651,
+      52,
+      175
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "parts": [
+      "body/breast",
+      "pelvis",
+      "body/torso"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R17.png"
+  },
+  "R18": {
+    "bounds": [
+      507,
+      557,
+      122,
+      44
+    ],
+    "crop": [
+      495,
+      545,
+      146,
+      68
+    ],
+    "reference": "part-layering/references/base-subject.png",
+    "parts": [
+      "neck",
+      "body/torso"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R18.png"
+  },
+  "R9": {
+    "bounds": [
+      821,
+      898,
+      44,
+      69
+    ],
+    "crop": [
+      807,
+      884,
+      72,
+      97
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "arms/arm_left/hand/little_finger"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R9.png"
+  },
+  "R10": {
+    "bounds": [
+      263,
+      912,
+      30,
+      49
+    ],
+    "crop": [
+      249,
+      898,
+      58,
+      77
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "arms/arm_right/hand/little_finger"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R10.png"
+  },
+  "R11": {
+    "bounds": [
+      807,
+      898,
+      46,
+      78
+    ],
+    "crop": [
+      793,
+      884,
+      74,
+      106
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "arms/arm_left/hand/ring_finger"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R11.png"
+  },
+  "R12": {
+    "bounds": [
+      267,
+      897,
+      41,
+      70
+    ],
+    "crop": [
+      253,
+      883,
+      69,
+      98
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "arms/arm_right/hand/ring_finger"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R12.png"
+  },
+  "R13": {
+    "bounds": [
+      301,
+      895,
+      48,
+      31
+    ],
+    "crop": [
+      287,
+      881,
+      76,
+      59
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "arms/arm_right/hand/thumb"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R13.png"
+  },
+  "R26": {
+    "bounds": [
+      645,
+      455,
+      34,
+      58
+    ],
+    "crop": [
+      629,
+      439,
+      66,
+      90
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "face/face_base"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R26.png"
+  },
+  "R33": {
+    "bounds": [
+      501,
+      469,
+      60,
+      54
+    ],
+    "crop": [
+      487,
+      455,
+      88,
+      82
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "face/mouth/tongue"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R33.png"
+  },
+  "R1-H": {
+    "bounds": [
+      335,
+      1190,
+      151,
+      155
+    ],
+    "crop": [
+      323,
+      1178,
+      175,
+      179
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "legs/leg_right/leg"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R1-H.png"
+  },
+  "R2-H": {
+    "bounds": [
+      578,
+      1190,
+      130,
+      145
+    ],
+    "crop": [
+      566,
+      1178,
+      154,
+      169
+    ],
+    "reference": "part-layering/references/standard.png",
+    "parts": [
+      "legs/leg_left/leg"
+    ],
+    "threeViewEvidence": "raster-layering/step01/repair-evidence-01/issues/R2-H.png"
+  }
+}

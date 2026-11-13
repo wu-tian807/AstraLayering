@@ -1,0 +1,185 @@
+{
+  "image": "clothing-raster-layering/step01/workspace/review_exports/default_restored.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/marked.png",
+  "manifest": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        194,
+        503,
+        206,
+        159
+      ],
+      "layers": [
+        "outer_jacket/right_sleeve | near | d33"
+      ],
+      "description": "画面左袖口：青色袖带多出不规则深浅青斑块，白袖身在袖带上沿多出密集尖角褶皱；参考两图的袖带为连续平顺色面。重画袖带过渡及白布褶皱，保留袖口收拢、开口和完整内壁。",
+      "crop": [
+        182,
+        491,
+        230,
+        183
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R1-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R1-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R1-comparison.png"
+      }
+    },
+    {
+      "id": "R2",
+      "bounds": [
+        354,
+        330,
+        89,
+        284
+      ],
+      "layers": [
+        "outer_jacket/right_sleeve | near | d33",
+        "outer_jacket/jacket_body/right_front/front_panel | complete | d35"
+      ],
+      "description": "画面左袖窿：袖片和前片各有黑色边线，合看形成额外平行线及粗黑缝；参考上段为单条浅蓝细线。统一搭接与缝线，接顺肩端至腋下，保留各片完整布面。",
+      "crop": [
+        342,
+        318,
+        113,
+        308
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R2-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R2-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R2-comparison.png"
+      }
+    },
+    {
+      "id": "R3",
+      "bounds": [
+        767,
+        344,
+        55,
+        276
+      ],
+      "layers": [
+        "outer_jacket/left_sleeve | near | d32",
+        "outer_jacket/jacket_body/left_front/front_panel | complete | d34"
+      ],
+      "description": "画面右袖窿：两片叠加后内侧接缝变为粗黑双边，肩端线宽突变；参考为较细的蓝色缝线。修整根部搭接和线宽，不改变袖口结构。",
+      "crop": [
+        755,
+        332,
+        79,
+        300
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R3-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R3-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R3-comparison.png"
+      }
+    },
+    {
+      "id": "R4",
+      "bounds": [
+        721,
+        431,
+        61,
+        88
+      ],
+      "layers": [
+        "outer_jacket/jacket_body/left_front/front_panel | complete | d34",
+        "outer_jacket/jacket_body/left_front/lapel | complete | d36"
+      ],
+      "description": "画面右胸三角标与小圆点上移、缩小，三角标上角被驳头自由边盖住；参考标识完整且与驳头有白布间隔。按参考在前片上重画标识位置与比例，保持驳头层级。",
+      "crop": [
+        709,
+        419,
+        85,
+        112
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R4-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R4-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R4-comparison.png"
+      }
+    },
+    {
+      "id": "R5",
+      "bounds": [
+        545,
+        563,
+        182,
+        132
+      ],
+      "layers": [
+        "inner_shirt/shirt_body | near | d22"
+      ],
+      "description": "扣带下方可见衬衫门襟：参考有三粒纽扣，当前只画两粒；门襟下端由弯曲变直，布面新增锐利斜三角色块。补齐三粒纽扣并重画可见门襟与圆润布面过渡。",
+      "crop": [
+        533,
+        551,
+        206,
+        156
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R5-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R5-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R5-comparison.png"
+      }
+    },
+    {
+      "id": "R7",
+      "bounds": [
+        491,
+        266,
+        26,
+        66
+      ],
+      "layers": [
+        "outer_jacket/jacket_collar/right_collar_flap | far | d5",
+        "outer_jacket/jacket_collar/right_collar_flap | near | d39"
+      ],
+      "description": "画面左白翻领颈根：near分片粗黑线以方形端头高出far分片，合看出现台阶与线宽突变；参考上缘平顺回转。重画两分片搭接处轮廓，保持连续内缘和前后领料。",
+      "crop": [
+        479,
+        254,
+        50,
+        90
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R7-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R7-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R7-comparison.png"
+      }
+    },
+    {
+      "id": "R8",
+      "bounds": [
+        613,
+        498,
+        54,
+        45
+      ],
+      "layers": [
+        "jacket_front_clasp/center_buckle | complete | d40"
+      ],
+      "description": "中央方扣比参考明显放大，外缘更宽且四角变硬，改变两翼中央收束比例。按参考约x622–659、y507–536的圆角方扣范围重画尺寸、圆角及边框，并复查两翼连接。",
+      "crop": [
+        601,
+        486,
+        78,
+        69
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R8-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R8-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/5da86394-a219-4a60-9249-b74e39026061/R8-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

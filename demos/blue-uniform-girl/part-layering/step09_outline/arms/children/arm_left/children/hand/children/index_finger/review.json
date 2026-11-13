@@ -1,0 +1,48 @@
+{
+  "groupId": "arms/arm_left/hand/index_finger",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取当前食指及父手组说明、候选和父完成 SVG，并先完成全画布 blend 定位。依据参考右侧指身、右侧圆钝指端及与中央中指的接触边界确认实体归属，未发现误包中指或遗漏可见食指区域。以 [805,892,65,57] 和 [820,932,55,55] 两个重叠选框分别作 8 倍 blend、edge 核查，覆盖指根、虎口侧接缝、斜向内缘转折、外侧指身、下段内缘及完整指端；另查看原图手部 6 倍放大、父稿局部 blend 及候选独显。可见边缘与参考吻合，内侧折向保留，指根圆弧为掌部下方合理局部搭接，无不当孔洞、碎片或孤点。父范围约束适用，四倍采样范围检查 outsideSamples=0；未发现需单列的上游范围冲突。本轮通过。",
+      "candidateHash": "a62ffd507d5dc9633ec75367e96f1ca7922d7361175788cd9cf8c15d11d7bcae",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/previews/2026-11-10T18-33-24-725Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/previews/2026-11-10T18-33-24-725Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/previews/2026-11-10T18-33-24-725Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/previews/2026-11-10T18-33-24-725Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/previews/2026-11-10T18-33-24-725Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/previews/2026-11-10T18-33-24-725Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/index_finger/previews/2026-11-10T18-33-24-725Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T19:02:13.873Z"
+    }
+  ]
+}

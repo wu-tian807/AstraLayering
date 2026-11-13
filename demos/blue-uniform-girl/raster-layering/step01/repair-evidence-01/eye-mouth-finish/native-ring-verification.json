@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "rightLowerIrisRingNotClipped": true,
+  "region": [
+    416,
+    420,
+    43,
+    42
+  ],
+  "basis": "当前实际虹膜完整alpha及原生开口覆盖；默认/停用蒙版目视另存。",
+  "nativeMaskName": "眼睛开口 right",
+  "nativeMaskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+  "ownerName": "眼内开合 right",
+  "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+  "paintHash": "96612f74e630b679696cf22bdc36e5464fc22120ffb578f89493a25885e297d4",
+  "maskHash": "0d2ea17bf6b6456e7acd8d477e3b206ea61bb0342f4af79b023cc2a9c8af3a89"
+}
