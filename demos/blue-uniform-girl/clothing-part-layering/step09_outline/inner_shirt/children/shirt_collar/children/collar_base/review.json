@@ -1,0 +1,38 @@
+{
+  "groupId": "inner_shirt/shirt_collar/collar_base",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，collar_base（part）审查通过。先独立查看纯衣服原参考及领部四倍局部，再读取当前节点与父节点 note、候选和父完成 SVG，并完成全图 blend、覆盖全部本片范围的四倍 blend / edge / SVG 独显检查。\n\n归属与覆盖：参考上方约 x500–641、y277–316 的连续后领衣料属于本片；候选保留该范围，并保留左右颈侧回转连接及两领片根部之间的窄承接段。两片向胸前伸出的领尖不计入本片可见职责，当前未发现其被误包；短领带、白色外套翻领及领下胸腹衣身亦未误包。父完成稿两侧连接衣料均被候选保留，未发现本片实际可见组件遗漏。\n\n轮廓、位置与开口：上缘约 y277、左右回转区约 x495–522 与 x641–681，以及中央约 x590–612、y348–372 的连接定位与参考和职责相符。后领下缘由约 (539,316) 经浅弧至 (638,316)，其下至前折领内缘间的颈口保持开放，未整块挖掉上方后领，也未填入人体或封口面。领根与折领根部的合理隐藏搭接予以保留；没有将折领下方胸前衣料作为本片实体加入。局部边缘检查未发现确定需要返修的偏移或接缝问题。本片没有另属其职责的可见薄纱或分离附件。\n\n父范围：allowOutsideParent 省略，工具按四倍采样检查直接父稿包含关系，outsideSamples=0、outsidePixels=0。无父范围上游限制。\n\n说明：当前 note 已传递颈后后领、颈前领座、颈侧连续回转、相对折领及短领带的层序、共同随动和必要隐藏搭接职责，未发现需要修改的说明错误。不要求重画或微调。\n\n图像证据：\n\n\n\n\n\n",
+      "candidateHash": "41acad14314998e30eb30ade8665156f2bafe3a1d971747052620cc13636b829",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/collar_base/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/collar_base/previews/2026-11-10T13-22-41-761Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/inner_shirt/shirt_collar.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/collar_base/previews/2026-11-10T13-22-41-761Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/collar_base/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/collar_base/previews/2026-11-10T13-22-41-761Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/collar_base/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/collar_base/previews/2026-11-10T13-22-41-761Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/collar_base/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/children/collar_base/previews/2026-11-10T13-22-41-761Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T13:36:56.153Z"
+    }
+  ]
+}

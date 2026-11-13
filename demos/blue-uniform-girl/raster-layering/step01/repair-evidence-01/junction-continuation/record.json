@@ -1,0 +1,91 @@
+{
+  "newPassedIssues": [
+    "R14",
+    "R18"
+  ],
+  "pendingRelatedIssues": [
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "changedParts": [
+    {
+      "id": "arms/arm_left/forearm",
+      "layerName": "22 | arms/arm_left/forearm",
+      "layerUUID": "{fff1016d-550b-486c-9ec4-4b25c59cab27}",
+      "level": 22,
+      "region": "原生成前臂的局部宽度配准、轮廓和自身皮肤明暗",
+      "reuseSource": "本件原生成画面、原图本件取样、原生笔触；无跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "layerName": "23 | arms/arm_right/forearm",
+      "layerUUID": "{77482744-c301-450d-9850-f5dbef3d8c64}",
+      "level": 23,
+      "region": "原生成前臂的局部宽度配准、轮廓和自身皮肤明暗",
+      "reuseSource": "本件原生成画面、原图本件取样、原生笔触；无跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "layerName": "24 | arms/arm_left/upper_arm",
+      "layerUUID": "{a040f52c-f6ad-4a6a-8608-fbddc57b02e7}",
+      "level": 24,
+      "region": "肘部承接、根部微小散色；画面左上臂另校准胸侧内缘",
+      "reuseSource": "本件原生成画面、原图本件取样、原生笔触；无跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "layerName": "25 | arms/arm_right/upper_arm",
+      "layerUUID": "{231d1f5f-d07d-45c2-98ed-4db68eea4d5a}",
+      "level": 25,
+      "region": "肘部承接、根部微小散色；画面左上臂另校准胸侧内缘",
+      "reuseSource": "本件原生成画面、原图本件取样、原生笔触；无跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "body/torso",
+      "layerName": "27 | body/torso",
+      "layerUUID": "{1630b7d7-6097-4334-84b5-2a48b92064d4}",
+      "level": 27,
+      "region": "左侧上接点与锁骨/胸口肤色根部",
+      "reuseSource": "本件原生成画面、原图本件取样、原生笔触；无跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "body/breast",
+      "layerName": "28 | body/breast",
+      "layerUUID": "{337c5213-e37a-4929-8120-79f04a3a5aa1}",
+      "level": 28,
+      "region": "左上根段布面及轮廓",
+      "reuseSource": "本件原生成画面、原图本件取样、原生笔触；无跨 part 复用",
+      "nativeMasks": []
+    }
+  ],
+  "paintLayers": 59,
+  "unchangedParts": 53,
+  "generationThisBatch": null,
+  "previousRejectedBreastGeneration": "raster-layering/step01/repair-evidence-01/body-continuation/record.json",
+  "method": "细小轮廓、原生接点和锁骨取样校准；前臂为已有生成画面的局部配准及 Krita 原生完整线条。未用整块填色代替绘画。",
+  "rejectedTrials": [
+    "第一次肘部取样带入相邻连体服蓝边，四件恢复后以自身皮肤/棕线范围重新制作。",
+    "前臂沿参考不精确取样带出错位双线和腕环边，已用本件原生成画面重新配准及原生轮廓替代。",
+    "根部上移取样形成更明显色带，以及共用内缘加粗试笔产生参考没有的棕线，全部撤回到指定前一版本。"
+  ],
+  "recoveredPreparationErrors": [
+    {
+      "error": "ModuleNotFoundError: No module named cv2",
+      "recovery": "未改工程；改用已有 NumPy/SciPy 连续样条生成笔触路径，Krita 原生绘制成功。"
+    }
+  ],
+  "documentRecovery": {
+    "reason": "本轮 init 误选另一个同名旧文档；在最终看图时发现 prior R15–R17 回退",
+    "recovery": "另一份仍打开的文档完整保留上一批 13 项；59 件恢复检查点已导出，胸腰三件与上一批 final PNG 一致。切回该文档，仅合入本轮 6 件有效局部修改。其余 53 件与恢复检查点像素一致；关闭旧文档后仅保留一份。",
+    "authoritativeBefore": "raster-layering/step01/workspace/repair-next2/recovered-checkpoint",
+    "saved": true
+  },
+  "upstreamChanges": [],
+  "reopen": "raster-layering/step01/repair-evidence-01/reopen-verification.json"
+}

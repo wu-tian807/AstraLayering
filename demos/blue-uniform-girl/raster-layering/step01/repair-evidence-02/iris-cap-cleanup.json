@@ -1,0 +1,26 @@
+[
+  {
+    "id": "face/eyes/eye_left/iris",
+    "sourceOfBoundary": "raster-layering/step01/workspace/repair02/before/face__eyes__eye_left__iris.png",
+    "currentPaint": "raster-layering/step01/workspace/repair02/complete-iris-native-upper-cap-linehead-cleanup/face__eyes__eye_left__iris-before.png",
+    "operation": "native selection erase only surplus alpha at own upper cap; preserve generated body and native dark edge color",
+    "selection": "raster-layering/step01/workspace/repair02/selections/iris-left-outer-linehead-cleanup.png",
+    "topBand": [
+      330,
+      362
+    ],
+    "nonzeroSelectionPixels": 181
+  },
+  {
+    "id": "face/eyes/eye_right/iris",
+    "sourceOfBoundary": "raster-layering/step01/workspace/repair02/before/face__eyes__eye_right__iris.png",
+    "currentPaint": "raster-layering/step01/workspace/repair02/complete-iris-native-upper-cap-linehead-cleanup/face__eyes__eye_right__iris-before.png",
+    "operation": "native selection erase only surplus alpha at own upper cap; preserve generated body and native dark edge color",
+    "selection": "raster-layering/step01/workspace/repair02/selections/iris-right-outer-linehead-cleanup.png",
+    "topBand": [
+      372,
+      404
+    ],
+    "nonzeroSelectionPixels": 143
+  }
+]

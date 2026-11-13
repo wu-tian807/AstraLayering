@@ -1,0 +1,63 @@
+{
+  "groupId": "arms/arm_left/forearm",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已核对 groups.json 中 arms/arm_left/forearm 的职责、素体参考、当前候选及父完成 SVG。整图定位后，以 [657,710,108,95] 和 [680,775,118,91] 两个重叠选框作 6 倍 blend/edge 检查，覆盖肘端、臂身两侧、腕端及入环接缝，并检查独显。候选是连续的肘至腕前臂，未误包手、手环或躯干；肘端圆弧属于上臂下方的合理局部搭接，腕端在手环下的延伸合理。父内可见范围覆盖完整，没有孔洞、无依据缺口、孤点或碎片；无需重画当前组。候选原稿父范围检查 outsidePixels=0。\n\n上游范围限制（不作为当前子组返修要求）：前臂靠躯干侧约 (677,765) 至 (725,834)，及画面右侧约 (733,740) 至 (778,808)，参考中的棕色外描边在父边界外仍有窄条可见。父稿与候选同一局部叠加显示这两段边界重合，候选已覆盖到父范围上限，父内没有留下可补条带；覆盖参考的完整外描边需要上游扩大父轮廓。本轮未补齐该父外范围，也未放宽父约束或修改父稿。\n\n图像证据：   ",
+      "candidateHash": "e981ddfa539e9d1493551e6e830fa963116d644b4308608a6a91b7715074bf2b",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/forearm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/forearm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/forearm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/forearm/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/forearm/workspace/parent-candidate-overlay.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/forearm/previews/2026-11-10T15-25-48-592Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T15:51:36.358Z"
+    }
+  ]
+}

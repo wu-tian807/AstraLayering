@@ -1,0 +1,70 @@
+{
+  "newPassedIssues": [
+    "R15",
+    "R16",
+    "R17"
+  ],
+  "pendingRelatedIssues": [
+    "R14",
+    "R18"
+  ],
+  "changedParts": [
+    {
+      "id": "body/torso",
+      "layerName": "27 | body/torso",
+      "layerUUID": "{0fbed979-6ac4-44ac-94a1-1c894cc4e9a8}",
+      "level": 27,
+      "region": "本件侧线、纵向结构线及局部接点",
+      "reuseSource": "本件生成画面及本件原图取样；无跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "body/breast",
+      "layerName": "28 | body/breast",
+      "layerUUID": "{ac554ad1-2221-466b-b3a6-aa661eec98f8}",
+      "level": 28,
+      "region": "本件侧线、纵向结构线及局部接点",
+      "reuseSource": "本件生成画面及本件原图取样；无跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "pelvis",
+      "layerName": "29 | pelvis",
+      "layerUUID": "{8077f372-abff-4fe4-99dd-2f7ab598740c}",
+      "level": 29,
+      "region": "本件侧线、纵向结构线及局部接点",
+      "reuseSource": "本件生成画面及本件原图取样；无跨 part 复用",
+      "nativeMasks": []
+    }
+  ],
+  "neckExperimentReverted": true,
+  "neckRegion": [
+    509,
+    548,
+    630,
+    616
+  ],
+  "neckPixelsMatchBeforeExperiment": true,
+  "generation": {
+    "tool": "built-in image_gen",
+    "reference": "raster-layering/step01/repair-evidence-01/body-continuation/breast-reference.png",
+    "control": "raster-layering/step01/repair-evidence-01/body-continuation/breast-control.png",
+    "result": "raster-layering/step01/repair-evidence-01/body-continuation/breast-generated-rejected.png",
+    "accepted": false,
+    "reason": "生成侧线过粗、形体改变且外缘有碎片；保留原生成主体，转原生局部修画"
+  },
+  "otherPaintPartsUnchangedFromBatchStart": 56,
+  "upstreamChanges": [],
+  "reopen": "raster-layering/step01/repair-evidence-01/reopen-verification.json",
+  "recoveredErrors": [
+    {
+      "error": "AssertionError at assert doc.save()",
+      "context": "body-calibration-native-roots-and-hip-continuity",
+      "recovery": "setModified(True) 后 saveAs 同一指定 KRA 成功；重新导出全部证据并重开核对通过"
+    },
+    {
+      "error": "PNG 导出中一批末尾的 pelvis-hide-above/composite 文件未产生",
+      "recovery": "随后全部 59 层以检查返回值、最多 3 次原生导出重试的脚本重导；最终文件与索引核对通过"
+    }
+  ]
+}

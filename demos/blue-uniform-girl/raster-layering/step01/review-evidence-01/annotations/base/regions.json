@@ -1,0 +1,218 @@
+{
+  "image": "raster-layering/step01/review-evidence-01/inspection/actual-default.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-01/annotations/base/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/d744d8f5-59ae-45c3-911d-c50f7de56abb/regions.json",
+  "regions": [
+    {
+      "id": "R3",
+      "bounds": [
+        610,
+        571,
+        205,
+        315
+      ],
+      "layers": [
+        "22 | arms/arm_left/forearm",
+        "24 | arms/arm_left/upper_arm"
+      ],
+      "description": "画面右臂、尤其前臂，两侧原有粗暖棕描边变成极细线；肘接点描边粗细突变。",
+      "crop": [
+        598,
+        559,
+        229,
+        339
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/base/R3-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/base/R3-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/base/R3-comparison.png"
+      }
+    },
+    {
+      "id": "R4",
+      "bounds": [
+        370,
+        715,
+        69,
+        52
+      ],
+      "layers": [
+        "25 | arms/arm_right/upper_arm",
+        "23 | arms/arm_right/forearm"
+      ],
+      "description": "画面左肘上臂与前臂搭接处的外轮廓有缺口、台阶，皮肤出现横向淡色接边，原参考连接平顺。",
+      "crop": [
+        358,
+        703,
+        93,
+        76
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/base/R4-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/base/R4-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/base/R4-comparison.png"
+      }
+    },
+    {
+      "id": "R5",
+      "bounds": [
+        666,
+        727,
+        80,
+        55
+      ],
+      "layers": [
+        "24 | arms/arm_left/upper_arm",
+        "22 | arms/arm_left/forearm"
+      ],
+      "description": "画面右肘接合处形成清楚的弧形浅色带和内缘小台阶，原参考没有此拼接带。",
+      "crop": [
+        654,
+        715,
+        104,
+        79
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/base/R5-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/base/R5-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/base/R5-comparison.png"
+      }
+    },
+    {
+      "id": "R14",
+      "bounds": [
+        473,
+        621,
+        53,
+        140
+      ],
+      "layers": [
+        "27 | body/torso",
+        "28 | body/breast",
+        "29 | pelvis"
+      ],
+      "description": "胸部画面左侧线在上接点分成多条，胸下末端和腰侧出现断线、硬接边及尖角，原图同一条外线连续。",
+      "crop": [
+        461,
+        609,
+        77,
+        164
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/base/R14-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/base/R14-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/base/R14-comparison.png"
+      }
+    },
+    {
+      "id": "R15",
+      "bounds": [
+        648,
+        608,
+        43,
+        161
+      ],
+      "layers": [
+        "27 | body/torso",
+        "28 | body/breast",
+        "29 | pelvis"
+      ],
+      "description": "胸部画面右侧线在胸下和腰侧断接、错位，局部露出并行双边与白色缺口，原参考外轮廓连续。",
+      "crop": [
+        636,
+        596,
+        67,
+        185
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/base/R15-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/base/R15-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/base/R15-comparison.png"
+      }
+    },
+    {
+      "id": "R16",
+      "bounds": [
+        506,
+        664,
+        44,
+        145
+      ],
+      "layers": [
+        "28 | body/breast",
+        "29 | pelvis",
+        "27 | body/torso"
+      ],
+      "description": "画面左侧纵向结构线在胸下断开，骨盆段线条变成逐级抖动的折线，未平滑接上原图长弧线。",
+      "crop": [
+        494,
+        652,
+        68,
+        169
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/base/R16-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/base/R16-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/base/R16-comparison.png"
+      }
+    },
+    {
+      "id": "R17",
+      "bounds": [
+        646,
+        663,
+        28,
+        151
+      ],
+      "layers": [
+        "28 | body/breast",
+        "29 | pelvis",
+        "27 | body/torso"
+      ],
+      "description": "画面右侧纵向结构线在胸下结束后留长段空白，再从骨盆重起，位置和曲率不连续。",
+      "crop": [
+        634,
+        651,
+        52,
+        175
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/base/R17-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/base/R17-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/base/R17-comparison.png"
+      }
+    },
+    {
+      "id": "R18",
+      "bounds": [
+        507,
+        557,
+        122,
+        44
+      ],
+      "layers": [
+        "26 | neck",
+        "27 | body/torso"
+      ],
+      "description": "颈部与胸口出现清楚的红色颈块边界和细描线，色阶沿部件边界硬接；原图锁骨区域皮肤连续。",
+      "crop": [
+        495,
+        545,
+        146,
+        68
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/base/R18-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/base/R18-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/base/R18-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。",
+  "source_tool_manifest": "raster-layering/step01/workspace/review-regions/d744d8f5-59ae-45c3-911d-c50f7de56abb/regions.json"
+}

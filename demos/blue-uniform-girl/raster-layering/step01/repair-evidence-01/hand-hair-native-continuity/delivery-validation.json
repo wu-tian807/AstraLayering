@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "conclusion": "仍有问题",
+  "passedIssues": 34,
+  "pendingIssues": [
+    "R21"
+  ],
+  "newPassedIssues": [
+    "R6",
+    "R7",
+    "R24",
+    "R25"
+  ],
+  "logicalParts": 59,
+  "paintLayers": 60,
+  "nativeGroups": 3,
+  "nativeMasks": 10,
+  "changedLogicalPaints": [
+    "hair/back_hair",
+    "arms/arm_left/hand/thumb",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "hair/side_hair/side_hair_left",
+    "hair/side_hair/side_hair_right"
+  ],
+  "other50LogicalRGBAUnchanged": true,
+  "alphaChangedParts": [
+    "hair/back_hair",
+    "arms/arm_left/hand/thumb",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "hair/side_hair/side_hair_left",
+    "hair/side_hair/side_hair_right"
+  ],
+  "maskUUIDOwnershipAndSelectionUnchanged": true,
+  "upstreamDepthTableUnchanged": true,
+  "reopenTreeAndPixelsAndProjectionIdentical": true,
+  "PNGMatchesReopenAndKRAMergedImage": true,
+  "KRAZipCRCValid": true,
+  "allReportLinksExist": true,
+  "all35ResultsWritten": true,
+  "kraPath": "raster-layering/step01/character-depth.kra",
+  "kraBytes": 11304708,
+  "kraSHA256": "543fd6f312fc9d128e916c7d4a23273fa4bd8ee502e53309dbed62ff4a5f0a66",
+  "repairReport": "raster-layering/step01/repair-01.md.tmp"
+}

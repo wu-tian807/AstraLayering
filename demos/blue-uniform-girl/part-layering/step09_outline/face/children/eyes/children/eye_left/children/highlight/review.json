@@ -1,0 +1,53 @@
+{
+  "groupId": "face/eyes/eye_left/highlight",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组与父组说明、候选及父完成 SVG，并先整图 blend 定位，再查看原图整只虹膜局部 [565,334,79,91]，核对本组全部可见组件。以 [587,343,29,43] 的 8 倍 blend/edge 覆盖两处高光，再用相互重叠的 [590,346,23,24]、[598,365,15,18] 逐件核对全部周缘。\n白色反光约位于 x595–609、y350–365，椭圆的位置、宽高、弧度及上下左右边缘与参考一致。瞳孔内浅蓝反光约位于 x604–606、y372–377，参考确有此独立反光，候选覆盖其可辨认主体，位置与纵向比例一致，无碎片或孤立噪点。已遍查虹膜其余区域，未发现本组组件遗漏；虹膜下部大片青色亮面属于 iris，候选未误包。两处高光之间真实间隔保留，无孔洞或接缝问题。独显轮廓干净。\n父完成稿已局部叠加查看；候选位于整眼父轮廓内部，四倍采样父范围检查 outsidePixels=0，无上游范围冲突。本轮通过，无需修改。\n图像证据：  ",
+      "candidateHash": "b7e315412fb9a18b18c70e52aaa76bf2c505ad189d4a291098a6eac316bd33a4",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-10T18-17-36-731Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-10T18-17-36-731Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-10T18-17-36-731Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-10T18-17-36-731Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-10T18-17-36-731Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-10T18-17-36-731Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-10T18-17-36-731Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-10T18-17-36-731Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T18:43:20.234Z"
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "upstreamGroups": "part-layering/groups.json",
+  "upstreamOcclusion": "part-layering/occlusion.json",
+  "previousShapeRecords": "raster-layering/step01/repair-evidence-01/shape-records.json",
+  "structureChanged": false,
+  "partIDs": 59,
+  "paintLayers": 60,
+  "preservedSplit": {
+    "partID": "face/eyes/eye_left/upper_eyelid",
+    "depths": [
+      40,
+      57.5
+    ]
+  },
+  "records": [
+    {
+      "id": "hair/back_hair",
+      "svg": "part-layering/parts/hair/back_hair.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/hair__back_hair.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/hair__back_hair.png",
+      "beforePaintBounds": [
+        172,
+        10,
+        918,
+        583
+      ],
+      "currentPaintBounds": [
+        172,
+        10,
+        918,
+        583
+      ],
+      "alphaDifferenceBoundsXYXY": null,
+      "alphaDifferencePixelCount": 0,
+      "review02Issues": [
+        "R12",
+        "R13",
+        "R14"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "svg": "part-layering/parts/legs/leg_left/leg.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/legs__leg_left__leg.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/legs__leg_left__leg.png",
+      "beforePaintBounds": [
+        583,
+        796,
+        707,
+        1326
+      ],
+      "currentPaintBounds": [
+        583,
+        796,
+        707,
+        1326
+      ],
+      "alphaDifferenceBoundsXYXY": [
+        583,
+        993,
+        612,
+        1079
+      ],
+      "alphaDifferencePixelCount": 393,
+      "review02Issues": [
+        "R1"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "svg": "part-layering/parts/legs/leg_right/leg.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/legs__leg_right__leg.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/legs__leg_right__leg.png",
+      "beforePaintBounds": [
+        340,
+        777,
+        570,
+        1338
+      ],
+      "currentPaintBounds": [
+        340,
+        777,
+        570,
+        1338
+      ],
+      "alphaDifferenceBoundsXYXY": [
+        405,
+        963,
+        546,
+        1063
+      ],
+      "alphaDifferencePixelCount": 597,
+      "review02Issues": [
+        "R2",
+        "R3"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "svg": "part-layering/parts/arms/arm_left/hand/middle_finger.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/arms__arm_left__hand__middle_finger.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/arms__arm_left__hand__middle_finger.png",
+      "beforePaintBounds": [
+        805,
+        900,
+        847,
+        987
+      ],
+      "currentPaintBounds": [
+        805,
+        900,
+        849,
+        987
+      ],
+      "alphaDifferenceBoundsXYXY": [
+        830,
+        930,
+        849,
+        969
+      ],
+      "alphaDifferencePixelCount": 255,
+      "review02Issues": [
+        "R5"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "svg": "part-layering/parts/arms/arm_right/upper_arm.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/arms__arm_right__upper_arm.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/arms__arm_right__upper_arm.png",
+      "beforePaintBounds": [
+        363,
+        559,
+        537,
+        773
+      ],
+      "currentPaintBounds": [
+        363,
+        559,
+        537,
+        773
+      ],
+      "alphaDifferenceBoundsXYXY": [
+        444,
+        704,
+        464,
+        744
+      ],
+      "alphaDifferencePixelCount": 76,
+      "review02Issues": [
+        "R4"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "pelvis",
+      "svg": "part-layering/parts/pelvis.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/pelvis.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/pelvis.png",
+      "beforePaintBounds": [
+        452,
+        698,
+        695,
+        924
+      ],
+      "currentPaintBounds": [
+        452,
+        698,
+        695,
+        924
+      ],
+      "alphaDifferenceBoundsXYXY": [
+        453,
+        770,
+        488,
+        808
+      ],
+      "alphaDifferencePixelCount": 212,
+      "review02Issues": [
+        "R15"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "face/ears/ear_left",
+      "svg": "part-layering/parts/face/ears/ear_left.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/face__ears__ear_left.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__ears__ear_left.png",
+      "beforePaintBounds": [
+        682,
+        348,
+        766,
+        462
+      ],
+      "currentPaintBounds": [
+        682,
+        348,
+        766,
+        462
+      ],
+      "alphaDifferenceBoundsXYXY": null,
+      "alphaDifferencePixelCount": 0,
+      "review02Issues": [
+        "R7"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "face/face_base",
+      "svg": "part-layering/parts/face/face_base.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/face__face_base.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__face_base.png",
+      "beforePaintBounds": [
+        331,
+        173,
+        714,
+        550
+      ],
+      "currentPaintBounds": [
+        331,
+        173,
+        714,
+        550
+      ],
+      "alphaDifferenceBoundsXYXY": [
+        646,
+        439,
+        675,
+        499
+      ],
+      "alphaDifferencePixelCount": 403,
+      "review02Issues": [
+        "R6"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "svg": "part-layering/parts/face/eyes/eye_left/iris.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/face__eyes__eye_left__iris.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_left__iris.png",
+      "beforePaintBounds": [
+        570,
+        330,
+        647,
+        430
+      ],
+      "currentPaintBounds": [
+        570,
+        330,
+        647,
+        430
+      ],
+      "alphaDifferenceBoundsXYXY": null,
+      "alphaDifferencePixelCount": 0,
+      "review02Issues": [
+        "R8"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "svg": "part-layering/parts/face/eyes/eye_left/eyelid_crease.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/face__eyes__eye_left__eyelid_crease.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_left__eyelid_crease.png",
+      "beforePaintBounds": [
+        546,
+        309,
+        599,
+        341
+      ],
+      "currentPaintBounds": [
+        546,
+        308,
+        602,
+        340
+      ],
+      "alphaDifferenceBoundsXYXY": [
+        546,
+        308,
+        602,
+        341
+      ],
+      "alphaDifferencePixelCount": 438,
+      "review02Issues": [
+        "R10"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "svg": "part-layering/parts/face/eyes/eye_right/iris.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/face__eyes__eye_right__iris.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_right__iris.png",
+      "beforePaintBounds": [
+        387,
+        372,
+        458,
+        459
+      ],
+      "currentPaintBounds": [
+        387,
+        372,
+        458,
+        459
+      ],
+      "alphaDifferenceBoundsXYXY": null,
+      "alphaDifferencePixelCount": 0,
+      "review02Issues": [
+        "R9"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "svg": "part-layering/parts/face/eyes/eye_right/eyelid_crease.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/face__eyes__eye_right__eyelid_crease.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_right__eyelid_crease.png",
+      "beforePaintBounds": [
+        381,
+        347,
+        443,
+        372
+      ],
+      "currentPaintBounds": [
+        383,
+        346,
+        443,
+        372
+      ],
+      "alphaDifferenceBoundsXYXY": [
+        381,
+        346,
+        442,
+        372
+      ],
+      "alphaDifferencePixelCount": 458,
+      "review02Issues": [
+        "R11"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    },
+    {
+      "id": "face/mouth/tongue",
+      "svg": "part-layering/parts/face/mouth/tongue.svg",
+      "beforePaint": "raster-layering/step01/workspace/repair02/before/face__mouth__tongue.png",
+      "currentPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__mouth__tongue.png",
+      "beforePaintBounds": [
+        504,
+        472,
+        557,
+        519
+      ],
+      "currentPaintBounds": [
+        502,
+        466,
+        562,
+        522
+      ],
+      "alphaDifferenceBoundsXYXY": [
+        502,
+        466,
+        562,
+        522
+      ],
+      "alphaDifferencePixelCount": 2617,
+      "review02Issues": [
+        "R16"
+      ],
+      "logicalIdentityChanged": false,
+      "depthChanged": false,
+      "basis": "局部raster细轮廓、描边或融色修复；上游SVG仍定义本件整体范围与归属，无新增独立控制件或穿插拆片。"
+    }
+  ],
+  "sharedEyeMaskChanges": [
+    {
+      "side": "left",
+      "region": [
+        581,
+        329,
+        624,
+        352
+      ],
+      "changedPixels": 92,
+      "basis": "上睑自己的抗锯齿内缘下方预留1px共同开口承接，避免眼内共享蒙版再次截掉虹膜自身已修暗边；下沿、整体眼形、睫毛与虹膜绘画像素不改"
+    },
+    {
+      "side": "right",
+      "region": [
+        397,
+        369,
+        439,
+        392
+      ],
+      "changedPixels": 93,
+      "basis": "上睑自己的抗锯齿内缘下方预留1px共同开口承接，避免眼内共享蒙版再次截掉虹膜自身已修暗边；下沿、整体眼形、睫毛与虹膜绘画像素不改"
+    }
+  ]
+}

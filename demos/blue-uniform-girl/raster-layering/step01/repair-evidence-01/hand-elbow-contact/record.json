@@ -1,0 +1,180 @@
+{
+  "newPassedIssues": [
+    "R5",
+    "R13"
+  ],
+  "passedIssues": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R8",
+    "R9",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R20",
+    "R22",
+    "R23",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34"
+  ],
+  "pendingIssues": [
+    "R6",
+    "R7",
+    "R19",
+    "R21",
+    "R24",
+    "R25",
+    "R35"
+  ],
+  "changedLogicalParts": [
+    "arms/arm_right/hand/thumb",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/forearm",
+    "arms/arm_left/upper_arm",
+    "arms/arm_left/bracelet_front"
+  ],
+  "unchangedLogicalPaints": 53,
+  "uuidChangedParts": [
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/forearm",
+    "arms/arm_left/upper_arm"
+  ],
+  "logicalParts": 59,
+  "paintLayers": 60,
+  "nativeMasks": 10,
+  "nativeGroups": 3,
+  "modifiedNativeMasks": [],
+  "all59LogicalAlphaUnchanged": true,
+  "maskUUIDAndOwnershipAndSelectionsUnchanged": true,
+  "changedParts": [
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "layerName": "17 | arms/arm_right/hand/thumb",
+      "layerUUID": "{90606b7a-2e18-4831-b676-c21e7c2035e2}",
+      "level": 17,
+      "region": "根部实际外缘y898–924原生暖棕描边延续，alpha保持",
+      "reuseSource": "本件已有生成绘画、Krita原生自身笔触或原图本件局部皮肤取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "layerName": "19 | arms/arm_right/hand/index_finger",
+      "layerUUID": "{53e7f8e1-ab0e-4bb0-9a7b-81ff56c4c84c}",
+      "level": 19,
+      "region": "指根自身肤色软接，完整头端/指身/alpha与线条保持；R6仍待修",
+      "reuseSource": "本件已有生成绘画、Krita原生自身笔触或原图本件局部皮肤取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "layerName": "21 | arms/arm_right/hand/palm",
+      "layerUUID": "{42ffac49-97db-4328-b0d6-ac35898914bd}",
+      "level": 21,
+      "region": "掌指接点自身肤色局部软笔融色，alpha与结构线保持；R6仍待修",
+      "reuseSource": "本件已有生成绘画、Krita原生自身笔触或原图本件局部皮肤取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "layerName": "22 | arms/arm_left/forearm",
+      "layerUUID": "{29bb2c4d-bdae-4cb3-b603-14ee0741e6dd}",
+      "level": 22,
+      "region": "内肘自身体积皮肤色块x678–704/y763–790软接；完整根、原外线与alpha保持",
+      "reuseSource": "本件已有生成绘画、Krita原生自身笔触或原图本件局部皮肤取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "layerName": "24 | arms/arm_left/upper_arm",
+      "layerUUID": "{ac87d5b7-6c85-46bf-a23b-33a6b18b22aa}",
+      "level": 24,
+      "region": "内肘末端自身皮肤x677–697/y758–771软接；完整上臂端与alpha保持",
+      "reuseSource": "本件已有生成绘画、Krita原生自身笔触或原图本件局部皮肤取样",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "layerName": "30 | arms/arm_left/bracelet_front",
+      "layerUUID": "{bb507ac4-597b-4816-a13c-6799c5365bc4}",
+      "level": 30,
+      "region": "自身根面x785–789/y813–823窄笔触清掉切分线，alpha/宝石保持；R35仍待修",
+      "reuseSource": "本件已有生成绘画、Krita原生自身笔触或原图本件局部皮肤取样",
+      "nativeMasks": []
+    }
+  ],
+  "method": "保持既有生成绘画，在本件内部原生窄笔触/软笔融色或原图同件皮肤原生取样；取样后只恢复原alpha，不计算或覆盖绘画RGB。没有整部件填色或其他部件像素。",
+  "rejectedTrials": [
+    {
+      "name": "left-hand-own-visible-joint-material-soft-sample",
+      "reason": "试取样带出与生成原结构线错位的旧笔触，掌/食指全部恢复批前像素后另用自身肤色原生软笔局部修；当前结果不含试取样内容。"
+    }
+  ],
+  "operations": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/operations.json",
+  "checks": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/checks",
+  "currentThreeViews": "raster-layering/step01/repair-evidence-01/index.json",
+  "shapeRecords": "raster-layering/step01/repair-evidence-01/shape-records.json",
+  "upstreamChanges": [],
+  "thisBatchSplits": [],
+  "preAnnotatedSplits": [],
+  "priorAssemblyDiscoveredSplits": [
+    {
+      "logicalID": "face/eyes/eye_left/upper_eyelid",
+      "fragments": [
+        {
+          "name": "40 | face/eyes/eye_left/upper_eyelid",
+          "uuid": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+          "level": 40
+        },
+        {
+          "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+          "uuid": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+          "level": 57.5
+        }
+      ],
+      "region": [
+        669,
+        346,
+        17,
+        14
+      ],
+      "paintCount": 60,
+      "logicalCount": 59,
+      "unionRawExact": true,
+      "reason": "原图外侧短睫毛尖跨在57侧发前，主体仍在侧发后；同一上睑共同运动的两个深度分片，未新增控制身份。"
+    }
+  ],
+  "freshDiskOpen": true,
+  "reopenVerification": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/reopen-verification.json",
+  "maskVerification": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/mask-verification.json",
+  "reopenPassed": true,
+  "defaultPNGMatchesReopen": true,
+  "finalVisualChecks": {
+    "viewed": true,
+    "issuePages": [
+      "raster-layering/step01/repair-evidence-01/issues/R5.png",
+      "raster-layering/step01/repair-evidence-01/issues/R6.png",
+      "raster-layering/step01/repair-evidence-01/issues/R13.png",
+      "raster-layering/step01/repair-evidence-01/issues/R35.png"
+    ],
+    "wholeOnBlack": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/final-on-black.png",
+    "eyePaintsAndLashFragmentsProtected": true
+  }
+}

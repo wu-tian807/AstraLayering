@@ -1,0 +1,38 @@
+{
+  "groupId": "face/nose",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过。已读取 face/nose 的 part 职责、候选及父完成 SVG，先核对整图叠加，再检查鼻部上下文 [435,365,130,110]，并在 [480,436,23,22] 以 8 倍 blend、edge 和独显覆盖鼻点全部外缘。\n\n参考中本件为约 x488–493、y443–450 的单一浅红鼻点，向右上倾斜；周围没有可确认的独立鼻梁线、鼻影或其他属于本件的分离组件。候选覆盖此鼻点，位置、宽高比例、上端转弯、两侧弧线和下端收束与参考吻合；参考边缘的柔化属于后续着色，不构成本轮额外结构。没有误包相邻眼部、红晕或嘴部，没有孔洞、接缝缺漏、孤立碎片或噪音。候选为连续干净的单一形体，无需重画。\n\nallowOutsideParent 省略，按父范围约束检查；父图叠加确认鼻点位于脸部内部，工具四倍采样 outsidePixels=0，画布坐标正确，无上游范围限制。\n\n图像证据：\n\n\n\n\n\n",
+      "candidateHash": "b9a2a57432a9c3bd17758e5fe52af2ed929248015837c60d9dbfbb754f32c083",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-10T11-53-25-269Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-10T11-53-25-269Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-10T11-53-25-269Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-10T11-53-25-269Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-10T11-53-25-269Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T12:45:51.151Z"
+    }
+  ]
+}

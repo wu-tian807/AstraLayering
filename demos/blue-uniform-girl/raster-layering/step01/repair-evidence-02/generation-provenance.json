@@ -1,0 +1,198 @@
+{
+  "review": "raster-layering/step01/review-02.md",
+  "generationAttempts": [
+    {
+      "review02Issue": "R10",
+      "partID": "face/eyes/eye_left/eyelid_crease",
+      "tool": "built-in image_gen.imagegen",
+      "maskedReference": "raster-layering/step01/repair-evidence-02/generation/crease-left-source.png",
+      "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/crease-left-control.png",
+      "inputRecord": "raster-layering/step01/repair-evidence-02/generation/crease-left-input.json",
+      "generatedImage": "raster-layering/step01/repair-evidence-02/generation/crease-left-generated.png",
+      "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_AJpXeB4qwqfufa1bO7FTHDDu.png",
+      "disposition": "accepted",
+      "result": "独立重生完整双眼皮；保留红褐暗中心、软边与两端收细，后续原生低不透明度融色。",
+      "registration": {
+        "wholeGeneratedCanvasUsed": true,
+        "generatedSize": [
+          1254,
+          1254
+        ],
+        "targetCanvasSize": [
+          120,
+          120
+        ],
+        "uniformScale": 0.09569377990430622,
+        "translation": [
+          530,
+          280
+        ],
+        "outerCanvasNotCropped": true
+      },
+      "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+      "promptRecordType": "生成约束摘要"
+    },
+    {
+      "review02Issue": "R11",
+      "partID": "face/eyes/eye_right/eyelid_crease",
+      "tool": "built-in image_gen.imagegen",
+      "maskedReference": "raster-layering/step01/repair-evidence-02/generation/crease-right-source.png",
+      "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/crease-right-control.png",
+      "inputRecord": "raster-layering/step01/repair-evidence-02/generation/crease-right-input.json",
+      "generatedImage": "raster-layering/step01/repair-evidence-02/generation/crease-right-generated.png",
+      "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_ME4i2p9q9aeCEzNGLVVnlSF3.png",
+      "disposition": "accepted",
+      "result": "按本眼独立重生完整双眼皮，未镜像另一眼；后续原生暖红融色。",
+      "registration": {
+        "wholeGeneratedCanvasUsed": true,
+        "generatedSize": [
+          1254,
+          1254
+        ],
+        "targetCanvasSize": [
+          120,
+          120
+        ],
+        "uniformScale": 0.09569377990430622,
+        "translation": [
+          340,
+          325
+        ],
+        "outerCanvasNotCropped": true
+      },
+      "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+      "promptRecordType": "生成约束摘要"
+    },
+    {
+      "review02Issue": "R12",
+      "partID": "hair/back_hair",
+      "tool": "built-in image_gen.imagegen",
+      "maskedReference": "raster-layering/step01/repair-evidence-02/generation/hair-left-source.png",
+      "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/hair-left-control.png",
+      "inputRecord": "raster-layering/step01/repair-evidence-02/generation/hair-left-input.json",
+      "generatedImage": "raster-layering/step01/repair-evidence-02/generation/hair-left-generated.png",
+      "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_6GaEO0LZpaHFgihMjgn1S1aJ.png",
+      "disposition": "withdrawn",
+      "result": "生成改变本件发流线并增加额外内线，最终撤回；回到既有本件蓝面取样与原生单曲线。",
+      "registration": {
+        "wholeGeneratedCanvasUsed": true,
+        "generatedSize": [
+          1254,
+          1254
+        ],
+        "targetCanvasSize": [
+          120,
+          120
+        ],
+        "uniformScale": 0.09569377990430622,
+        "translation": [
+          300,
+          440
+        ],
+        "outerCanvasNotCropped": true
+      },
+      "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+      "promptRecordType": "生成约束摘要"
+    },
+    {
+      "review02Issue": "R12",
+      "partID": "hair/back_hair",
+      "tool": "built-in image_gen.imagegen",
+      "maskedReference": "raster-layering/step01/repair-evidence-02/generation/hair-left-v2-source.png",
+      "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/hair-left-v2-control.png",
+      "inputRecord": "raster-layering/step01/repair-evidence-02/generation/hair-left-input.json",
+      "generatedImage": "raster-layering/step01/repair-evidence-02/generation/hair-left-v2-generated-rejected.png",
+      "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_RZxfL6o2ZCr20UEHYT6oNTDd.png",
+      "disposition": "withdrawn",
+      "result": "第二次生成仍改变线形和细轮廓，最终撤回，未留在工程。",
+      "registration": {
+        "wholeGeneratedCanvasUsed": true,
+        "generatedSize": [
+          1254,
+          1254
+        ],
+        "targetCanvasSize": [
+          120,
+          120
+        ],
+        "uniformScale": 0.09569377990430622,
+        "translation": [
+          300,
+          440
+        ],
+        "outerCanvasNotCropped": true
+      },
+      "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+      "promptRecordType": "生成约束摘要"
+    },
+    {
+      "review02Issue": "R14",
+      "partID": "hair/back_hair",
+      "tool": "built-in image_gen.imagegen",
+      "maskedReference": "raster-layering/step01/repair-evidence-02/generation/hair-wedge-source.png",
+      "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/hair-wedge-control.png",
+      "inputRecord": "raster-layering/step01/repair-evidence-02/generation/hair-wedge-input.json",
+      "generatedImage": "raster-layering/step01/repair-evidence-02/generation/hair-wedge-generated.png",
+      "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_h3kn2r7IPQfEpR0WC4xAL4Sb.png",
+      "disposition": "locally_accepted",
+      "result": "只取本件耳顶补形局部接回后发；保留青蓝楔形与原alpha，再原生续接自身发流线。",
+      "registration": {
+        "wholeGeneratedCanvasUsed": true,
+        "generatedSize": [
+          1254,
+          1254
+        ],
+        "targetCanvasSize": [
+          120,
+          120
+        ],
+        "uniformScale": 0.09569377990430622,
+        "translation": [
+          694,
+          305
+        ],
+        "outerCanvasNotCropped": true
+      },
+      "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+      "promptRecordType": "生成约束摘要"
+    },
+    {
+      "review02Issue": "R16",
+      "partID": "face/mouth/tongue",
+      "tool": "built-in image_gen.imagegen",
+      "maskedReference": "raster-layering/step01/repair-evidence-02/generation/tongue-source.png",
+      "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/tongue-control.png",
+      "inputRecord": "raster-layering/step01/repair-evidence-02/generation/tongue-input.json",
+      "generatedImage": "raster-layering/step01/repair-evidence-02/generation/tongue-generated.png",
+      "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_jCPg4iYPOMEV9q1t9Uv9wxVG.png",
+      "disposition": "accepted_with_local_finish",
+      "result": "生成完整粉红舌面；仅自身上弧局部注册，再原生局部软化与玫红体积笔触。",
+      "registration": {
+        "wholeGeneratedCanvasUsed": true,
+        "generatedSize": [
+          1254,
+          1254
+        ],
+        "targetCanvasSize": [
+          96,
+          96
+        ],
+        "uniformScale": 0.07655502392344497,
+        "translation": [
+          484,
+          450
+        ],
+        "outerCanvasNotCropped": true
+      },
+      "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+      "promptRecordType": "生成约束摘要"
+    }
+  ],
+  "nativeOperations": "raster-layering/step01/repair-evidence-02/operations.json",
+  "nativeFinalStateNotes": "raster-layering/step01/repair-evidence-02/operation-dispositions.json",
+  "shapeRecords": "raster-layering/step01/repair-evidence-02/shape-records.json",
+  "finalPaintEvidence": "raster-layering/step01/repair-evidence-02/full-paint",
+  "paintLayerCount": 60,
+  "logicalPartCount": 59,
+  "protection": "每层仅本件画面；保留生成主体；不整块纯色填形；无外来部件投影；生成失败后用本件取样和Krita原生逐笔修画。"
+}

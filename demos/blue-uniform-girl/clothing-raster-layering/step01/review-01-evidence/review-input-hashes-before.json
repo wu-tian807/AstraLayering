@@ -1,0 +1,146 @@
+{
+  "clothing-raster-layering/step01/clothing-depth.kra": {
+    "sha256": "a6ddfe3e248515737b4649ff1e2cc1d10418267e5a2e93156277ce54f4156c59",
+    "size": 8421473
+  },
+  "clothing-part-layering/groups.json": {
+    "sha256": "b59df5859b7ab8c4d940dcc0499719e60c7918707f4dbfc44191a2a05bfe94fd",
+    "size": 51058
+  },
+  "clothing-part-layering/occlusion.json": {
+    "sha256": "f434844a48de673baf8c55e8bbbb7e5fef9b75278c1539f693a745540da13ed3",
+    "size": 26203
+  },
+  "clothing-part-layering/parts/outer_jacket.svg": {
+    "sha256": "436c6f245af4d06d388ecbe043f72f27f73255b9f49f6d6fd08788bd3497fb60",
+    "size": 1367
+  },
+  "clothing-part-layering/parts/inner_shirt.svg": {
+    "sha256": "95f526c49db2946c841c1429383e18fd60b75a19551d789abf185484e8b9aec1",
+    "size": 2369
+  },
+  "clothing-part-layering/parts/pleated_skirt.svg": {
+    "sha256": "9dc6e380126092ce9a535ead0a8189ef42353e3ce5b95b6eadb787da89e65389",
+    "size": 1201
+  },
+  "clothing-part-layering/parts/jacket_front_clasp.svg": {
+    "sha256": "de7fa220ca116b9f4427b86893d8e1b9f62a6675eac432ca67a83fde89fea650",
+    "size": 896
+  },
+  "clothing-part-layering/parts/short_necktie.svg": {
+    "sha256": "2d9d5bbe542a5002ae175e2363b58175dc906204195624607d7db9ae509efb3e",
+    "size": 831
+  },
+  "clothing-part-layering/parts/inner_shirt/shirt_collar.svg": {
+    "sha256": "241e3781e49f2e5f1f389a85f9d2fcb46ed2a9d288edc53d751a6f8d35b5f724",
+    "size": 1208
+  },
+  "clothing-part-layering/parts/inner_shirt/left_sleeve.svg": {
+    "sha256": "149e3195e75907ed5cc88e4a25df4be69b3ba6012e11245bbe0bcb8505f361f8",
+    "size": 622
+  },
+  "clothing-part-layering/parts/inner_shirt/right_sleeve.svg": {
+    "sha256": "bd5f24fb8a754a8a967613f6e40befcbe9db4a81c3e4d367268efafae216490a",
+    "size": 623
+  },
+  "clothing-part-layering/parts/inner_shirt/shirt_body.svg": {
+    "sha256": "2913be91f6811e1d6149660bef3e44c45852bff96d9f3bd88fb4b233592e7d34",
+    "size": 1629
+  },
+  "clothing-part-layering/parts/inner_shirt/shirt_collar/collar_base.svg": {
+    "sha256": "bfd7bd85063b0dfe9cd054cb016e2edc51954b35d75adc937c58ee3fc92d640c",
+    "size": 1608
+  },
+  "clothing-part-layering/parts/inner_shirt/shirt_collar/left_collar_leaf.svg": {
+    "sha256": "9152b86b0e3b14e092cb02771aabb5e70b32c428499491d432cd37034b010fe2",
+    "size": 777
+  },
+  "clothing-part-layering/parts/inner_shirt/shirt_collar/right_collar_leaf.svg": {
+    "sha256": "a97c6bc24e430bfd7c72416689968122f0df4a04f32f9cac1723ae3859f3b2e6",
+    "size": 975
+  },
+  "clothing-part-layering/parts/short_necktie/hanging_blade.svg": {
+    "sha256": "ecfee52866654d08b61a460af64fc43247661c7c7acb308da20dc1f7695a0c66",
+    "size": 701
+  },
+  "clothing-part-layering/parts/short_necktie/knot_and_attachment.svg": {
+    "sha256": "efb19565af1715b0670d95255e3cbe5bd9ebc02a65ff22255d4852314b1c94a1",
+    "size": 645
+  },
+  "clothing-part-layering/parts/pleated_skirt/waistband.svg": {
+    "sha256": "a3f69ca0213c1a14a8100637dd19b741452c8865d8f0b0bd7af40cec5f58ea51",
+    "size": 447
+  },
+  "clothing-part-layering/parts/pleated_skirt/skirt_body.svg": {
+    "sha256": "90115eacbd362463ef94ed8267906c765843f79bafc8c6b9253cdc649f5ecb03",
+    "size": 1279
+  },
+  "clothing-part-layering/parts/jacket_front_clasp/center_buckle.svg": {
+    "sha256": "5710d36a1cfd99f682fba0cefb0373de3189f5e2bebec8ea30f3eaaae2dfe37a",
+    "size": 589
+  },
+  "clothing-part-layering/parts/jacket_front_clasp/right_clasp_wing.svg": {
+    "sha256": "a7f32c9ad99a7a531bb99093ce50a25e1beda836f38247007bffbb21495ffcb2",
+    "size": 550
+  },
+  "clothing-part-layering/parts/jacket_front_clasp/left_clasp_wing.svg": {
+    "sha256": "2ffdf48d40b63e50ce380ed6e65b3ea455c8c0870aad47d8203352151a61c970",
+    "size": 547
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_body.svg": {
+    "sha256": "5afbc80b7a87082fc0186536da29b4ff3cdc5ef4d84118c2df0f55cd75e1a1d6",
+    "size": 2059
+  },
+  "clothing-part-layering/parts/outer_jacket/left_sleeve.svg": {
+    "sha256": "cbf988657591866321d6b85c7c00ac2233cd5db055815447db056184d7a9a442",
+    "size": 1062
+  },
+  "clothing-part-layering/parts/outer_jacket/right_sleeve.svg": {
+    "sha256": "5a7d21d57dcb6047043be3b2daab4e9dbbc3b69110b42abf43d0e501f1e0de33",
+    "size": 805
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_collar.svg": {
+    "sha256": "44e0308fae3939fa28af766b7c2cd0f8f7ce5a68ef019d4ca0819362c41eb4f9",
+    "size": 800
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_collar/collar_root.svg": {
+    "sha256": "2682b9058b033f0eba30d83aea4899d78b9a58b5d8e2c5c201ce5a3a64d16bbf",
+    "size": 651
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_collar/right_collar_flap.svg": {
+    "sha256": "b6a8b38893ee43ff4e140bba59c816fd23b9ca2b92ea5d106f686a2fc2cee754",
+    "size": 645
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_collar/left_collar_flap.svg": {
+    "sha256": "6684b2230386a2f184ef683d7ff7194d1c18ed2e6160ec54427e5be38814e058",
+    "size": 719
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_body/back_panel.svg": {
+    "sha256": "9ac64171a5b6ad7788a703a9be0f3d563a837fdf97ee3ac46fe493f857f425e0",
+    "size": 830
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_body/left_front.svg": {
+    "sha256": "e3f5c396ac087402378569d09e51a1bf34230f7f209f42bbd81a2dafcdc9334d",
+    "size": 629
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_body/right_front.svg": {
+    "sha256": "956b3238a7b2c0ce5fbe5d464a90e67cc0c91b77dd44f4e0d416d73e55d262d1",
+    "size": 595
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_body/left_front/front_panel.svg": {
+    "sha256": "9402e1ec3ee28d977a516ed3d9a4abb6ce07e5de59ecd49d7b92f8577919bae5",
+    "size": 653
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_body/left_front/lapel.svg": {
+    "sha256": "f32b09db33918a3b61e60b556b5e6258f72227df7625a2a9add71f6e673bb991",
+    "size": 707
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_body/right_front/front_panel.svg": {
+    "sha256": "8f5d55e7bb46bb2d71205af6ad0f1871c7e35f157f1871158b47ab46952280ec",
+    "size": 628
+  },
+  "clothing-part-layering/parts/outer_jacket/jacket_body/right_front/lapel.svg": {
+    "sha256": "e28d8904674c8c49117d2c20b2eb8316ed4a4cb099eb45a589309f0991a19b7a",
+    "size": 697
+  }
+}

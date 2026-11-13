@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "reportFirstLine": "结论：仍有问题",
+  "reportComplete": true,
+  "reviewIssues": 35,
+  "issueRegionPages": 37,
+  "passedIssues": 30,
+  "pendingIssues": [
+    "R6",
+    "R7",
+    "R21",
+    "R24",
+    "R25"
+  ],
+  "logicalParts": 59,
+  "ordinaryPaintLayers": 60,
+  "nativeGroups": 3,
+  "nativeMasks": 10,
+  "treeAndPixelReopenExact": true,
+  "mainPNGEqualsReopenedPNG": true,
+  "nativeMaskOwnershipUUIDAndSelectionsUnchanged": true,
+  "allTrialPartsFullyRestored": true,
+  "currentManifestNamesUUIDsAndPixelHashesMatchReopenedKRA": true,
+  "depthsMatchUpstream": true,
+  "upstreamOcclusionUnchangedThisBatch": true,
+  "changedLogicalParts": [
+    "legs/leg_right/shoes/cuff_back",
+    "legs/leg_right/shoes/shoe_front",
+    "arms/arm_left/bracelet_back",
+    "arms/arm_left/bracelet_front"
+  ],
+  "otherLogicalPaintsUnchanged": 55,
+  "alphaChangedParts": [
+    "legs/leg_right/shoes/cuff_back"
+  ],
+  "kraZipValid": true,
+  "kraBytes": 11308720,
+  "kraSHA256": "eb5e09da0d50e92a5044be642ddce80e4156735db1651342e18d4251466ee0b3",
+  "report": "raster-layering/step01/repair-01.md.tmp",
+  "paintingConclusionIsNotAllFixed": true
+}

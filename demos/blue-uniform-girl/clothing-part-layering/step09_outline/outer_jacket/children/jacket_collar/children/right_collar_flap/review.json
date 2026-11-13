@@ -1,0 +1,38 @@
+{
+  "groupId": "outer_jacket/jacket_collar/right_collar_flap",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过，无确定需修改的问题。先独立查看纯衣服参考，再核对 groups.json 中当前 part 及祖先 note、候选源码和父完成 SVG；候选及父稿均未修改。\n\n归属与整体：本片为角色右侧、画面左侧上方翻领，约 x443–534、y274–407。参考可见领面、固定滚边和领尖已完整覆盖；下方胸前驳头、肩前承载衣料、中央深色衬衫领及短领带未误并入。整图叠加确认画布坐标、位置和比例正确，没有分离可见附件遗漏。\n\n逐边检查：以 [425,260,130,165]、4 倍放大覆盖本片全部可见区域，分别核对上端约 (499,274) 的颈侧折根、经 (449,312) 至 (443,393) 的外侧边、圆转至 (456,407) 的下角、至 (504,407) 的下缘，以及通向 (534,382) 的缺口斜边与回转内缘；边缘落在参考相应衣片边界，固定滚边实体被保留，没有将浅色领面删成开口或填入其他实体。本片没有需另表达的真实孔洞、薄纱或分离附件。\n\n连接与父范围：当前路径与父完成 SVG 中本侧翻领路径一致；四倍采样范围检查 outsidePixels=0。颈侧与 collar_root 的连接及肩领根处必要重叠合理，中央开口保持。note 已传承本片实体范围、与驳头的缺口分界、颈侧后根至前领面的连续过渡、相对脖子及内搭的前后位置和随动职责；无需重画、边缘返修或 note 修正，也无上游范围限制。\n\n图像证据：\n\n\n\n\n\n",
+      "candidateHash": "e617ce2f5edf35e3a33832273233cd4f1c079c8270616e6090e916d763404fcc",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/right_collar_flap/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/right_collar_flap/previews/2026-11-10T13-13-16-441Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/right_collar_flap/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/right_collar_flap/previews/2026-11-10T13-13-16-441Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/right_collar_flap/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/right_collar_flap/previews/2026-11-10T13-13-16-441Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/outer_jacket/jacket_collar.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/right_collar_flap/previews/2026-11-10T13-13-16-441Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/right_collar_flap/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/children/right_collar_flap/previews/2026-11-10T13-13-16-441Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T13:28:01.334Z"
+    }
+  ]
+}

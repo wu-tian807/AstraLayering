@@ -1,0 +1,38 @@
+{
+  "groupId": "face/eyes/eye_right/highlight",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组 note、候选及父完成 SVG，先检查整图 blend，再核对整眼参考选框 [335,355,125,110] 与覆盖全部高光的 [385,375,65,75] 八倍参考、blend、edge，并检查 SVG 独显。上部约 x414–428、y385–401 的白色椭圆高光，及外侧偏下约 x401–403、y428–432 的独立小亮点，均有明确参考依据；候选的位置、大小、弧度和小亮点收尖与参考吻合。两处真实分离，未见额外碎片、误包眼白或虹膜下部浅青色、可见高光缺漏。整眼扫描未发现其他属于本件的独立高光。父范围检查通过（四倍采样 outsideSamples=0），无上游范围冲突。当前组无需修改。\n\n图像证据：\n\n",
+      "candidateHash": "d085c0b5819d813345e238db2f0d85087da706625d4b30f7a7fa168e55762eb3",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-10T18-22-20-927Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-10T18-22-20-927Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-10T18-22-20-927Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-10T18-22-20-927Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-10T18-22-20-927Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T18:47:43.580Z"
+    }
+  ]
+}

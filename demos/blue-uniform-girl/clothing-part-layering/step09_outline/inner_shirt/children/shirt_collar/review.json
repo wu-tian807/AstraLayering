@@ -1,0 +1,82 @@
+{
+  "groupId": "inner_shirt/shirt_collar",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "第 1 轮：返修。已独立查看纯衣服整图、领部 4×/6×局部、候选整图 blend、覆盖本组全部可见区域的 4× blend/edge/独显，以及父完成 SVG；原穿衣图仅辅助核对颈部穿插。\n\n1. 可见后领衣料遗漏，需重新定形后领覆盖与内孔，不能仅微调外边缘。位置：上方内侧约 x520–635、y285–315，尤其 x550–620、y289–308。纯衣服参考在领口顶部内侧显示连续的深色弧形后领衣料，该实体亦明确登记在本组 note；它不是人体，也不是透明背景。候选 evenodd 内孔从 (511,285) 沿顶部横向至 (628,285)，再向 (605,363) 收尖，使这段可见后领衣料落入整块空洞；blend 中该衣料完全没有候选覆盖，独显与 edge 可对应确认。现有约 y277–285 的窄顶边不足以承担参考中的后领实体。请依据纯衣服图恢复可见后领衣料及两侧连续回转承接，重新界定真正颈口与后领覆盖的关系；在 note 中保留其位于颈后、两侧连续转至颈前折领的职责。不能把缺失区域填成皮肤或新增封口面，也不要为恢复后领而并入短领带、领下门襟或外套。左右折领总体形状和位置可保留，无需整组推倒重画，但后领及内孔是组件覆盖问题，不能只作数像素边缘修饰。\n\n证据（同一局部窗口 x480、y263、212×151，4×）：\n\n\n\n\n\n其余检查：未见误包白色外套翻领、短领带或胸腹门襟；两片折领及领尖已覆盖，未发现本组独立可见附件或薄纱遗漏。画布为 1115×1410，候选位置正确；父范围检查 outsidePixels=0，上述遗漏位于父范围内，当前候选可修，不属于上游限制。填充色、衣料纹样、褶皱明暗和材质表现不作为本轮缺陷。候选与父稿均未修改。",
+      "candidateHash": "6162fa1219cdf7bfca5bad9ae8ba00ecbf3874782640c1527fed6a4bb815cc08",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-04-16-377Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/inner_shirt.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-04-16-377Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-04-16-377Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-04-16-377Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-04-16-377Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:35:33.953Z",
+      "repairedCandidateHash": "9792f9777ce340ccb161be6418a6419e0b3058578e6c6758752dc36c1eb714e5"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮独立审查通过。已只读核对纯衣服参考、groups.json 中 inner_shirt/shirt_collar 的 note、当前 outline.svg 和父完成 parts/inner_shirt.svg；未修改候选或父稿。\n\n归属与整体：先从纯衣服参考确认约 x498–680、y277–401 的顶部后领衣料、颈侧回转承接区和两片深色前折领，白色外套翻领、领下胸腹衣身及浅色短领带不归本组。整体 blend 与完整领部四倍原图、blend、edge 对照覆盖全部候选可见区域；两片领尖、左右外缘和顶部后领的位置、比例及联合覆盖符合参考，未发现须重画的误包或实际可见组件遗漏。本组无参考可见薄纱或分离附件需要另补。\n\n开口与接缝：顶部约 y277–315 的后领衣料保留，开口位于后领下缘浅弧与前折领内缘之间，未将整个内侧三角区域清空，也未填入人体。两侧下缘沿参考折领轮廓回到中央领根。对 x575–635、y340–385 的领带交接处另作八倍 edge 复核：中央领根与领带顶部少量相交属于 note 所述承接领根及合理隐藏搭接，不据像素交集删掉连接衣料；候选没有包入领带主体。\n\n范围及说明：父范围四倍采样检查 outsidePixels=0。note 已明确与衣身的领根分界、外套下隐藏搭接、后领位于颈后、前折领及前侧领座位于颈前、领带根部位于领尖之后和衣身之前，以及领根共同随动、两片折领可分别变形的 group 职责。未发现当前范围内确定需要修改的轮廓或说明问题，无上游范围限制需单列。\n\n图像证据（相对本报告）：\n\n\n\n\n\n",
+      "candidateHash": "9792f9777ce340ccb161be6418a6419e0b3058578e6c6758752dc36c1eb714e5",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-41-35-271Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-41-35-271Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-41-35-271Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-41-35-271Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/inner_shirt.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-41-35-271Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-41-35-271Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/inner_shirt.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/children/shirt_collar/previews/2026-11-10T11-41-35-271Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:45:33.488Z"
+    }
+  ]
+}

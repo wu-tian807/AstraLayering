@@ -1,0 +1,431 @@
+[
+  {
+    "name": "bracelet-own-original-round-root-material",
+    "jobs": [
+      {
+        "id": "arms/arm_left/bracelet_back",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/bracelet-back-own-original-root-selection.png",
+        "preserveAlpha": true
+      },
+      {
+        "id": "arms/arm_left/bracelet_front",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/bracelet-front-own-original-root-selection.png",
+        "preserveAlpha": true
+      }
+    ]
+  },
+  {
+    "name": "bracelet-back-exposed-own-root-only",
+    "jobs": [
+      {
+        "id": "arms/arm_left/bracelet_back",
+        "import": "raster-layering/step01/workspace/repair-next10/before/arms__arm_left__bracelet_back.png",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/bracelet-back-own-exposed-root-only-selection.png",
+        "preserveAlpha": true
+      }
+    ]
+  },
+  {
+    "name": "bracelet-back-own-hidden-material-transition",
+    "jobs": [
+      {
+        "id": "arms/arm_left/bracelet_back",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Airbrush Soft",
+            "size": 7,
+            "opacity": 0.5,
+            "color": [
+              39,
+              47,
+              72
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next10/bracelet-back-own-hidden-material-fade-selection.png",
+            "path": [
+              [
+                "M",
+                788.5,
+                810
+              ],
+              [
+                "C",
+                788.5,
+                816,
+                789,
+                824,
+                790,
+                831
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "shoe-back-own-original-upper-ring-register",
+    "jobs": [
+      {
+        "id": "legs/leg_right/shoes/cuff_back",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next10/shoe-back-old-upper-arc-clear.png",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/shoe-back-own-original-upper-arc-selection.png",
+        "sourceColorToAlpha": [
+          255,
+          255,
+          255
+        ],
+        "sourceThreshold": 70
+      }
+    ]
+  },
+  {
+    "name": "shoe-back-smooth-own-arc-register-and-sample",
+    "jobs": [
+      {
+        "id": "legs/leg_right/shoes/cuff_back",
+        "import": "raster-layering/step01/workspace/repair-next10/shoe-back-generated-own-arc-local-registration.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next10/shoe-back-old-upper-arc-clear.png",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/shoe-back-own-original-upper-arc-selection.png",
+        "sourceColorToAlpha": [
+          255,
+          255,
+          255
+        ],
+        "sourceThreshold": 70
+      }
+    ]
+  },
+  {
+    "name": "shoe-back-own-arc-clean-source-domain",
+    "jobs": [
+      {
+        "id": "legs/leg_right/shoes/cuff_back",
+        "import": "raster-layering/step01/workspace/repair-next10/shoe-back-generated-own-arc-local-registration.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next10/shoe-back-old-upper-arc-clear.png",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/shoe-back-own-arc-no-leg-edge-selection.png",
+        "sourceColorToAlpha": [
+          255,
+          255,
+          255
+        ],
+        "sourceThreshold": 70
+      }
+    ]
+  },
+  {
+    "name": "shoe-back-own-junction-native-contour-finish",
+    "jobs": [
+      {
+        "id": "legs/leg_right/shoes/cuff_back",
+        "clearSelection": "raster-layering/step01/workspace/repair-next10/shoe-back-own-upper-junction-anti-bump-clear.png",
+        "strokes": [
+          {
+            "color": [
+              95,
+              113,
+              142
+            ],
+            "size": 1.5,
+            "opacity": 0.6,
+            "path": [
+              [
+                "M",
+                369.5,
+                1165.2
+              ],
+              [
+                "C",
+                372,
+                1165.2,
+                374.5,
+                1166.1,
+                377,
+                1165.9
+              ],
+              [
+                "C",
+                379,
+                1165.8,
+                381,
+                1165.2,
+                383,
+                1165.2
+              ]
+            ]
+          },
+          {
+            "color": [
+              12,
+              19,
+              42
+            ],
+            "size": 1,
+            "opacity": 0.55,
+            "path": [
+              [
+                "M",
+                370,
+                1159.2
+              ],
+              [
+                "C",
+                373,
+                1159.3,
+                375,
+                1159.2,
+                378,
+                1158.6
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "shoe-front-own-inner-lip-material-clean",
+    "jobs": [
+      {
+        "id": "legs/leg_right/shoes/shoe_front",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/shoe-front-own-inner-lip-original-selection.png",
+        "preserveAlpha": true
+      }
+    ]
+  },
+  {
+    "name": "palm-left-own-tiger-root-crease-restore",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/palm-left-own-crease-source-only-selection.png",
+        "preserveAlpha": true
+      }
+    ]
+  },
+  {
+    "name": "thumb-left-own-tiger-inner-edge-linewidth-contact",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "color": [
+              145,
+              63,
+              48
+            ],
+            "size": 2.5,
+            "opacity": 0.9,
+            "selection": "raster-layering/step01/workspace/repair-next10/thumb-left-own-tiger-edge-width-selection.png",
+            "path": [
+              [
+                "M",
+                310.6,
+                914.5
+              ],
+              [
+                "C",
+                310.7,
+                917,
+                310.3,
+                919,
+                309.8,
+                921.5
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "right-hand-own-palm-crease-index-visible-border",
+    "jobs": [
+      {
+        "id": "arms/arm_left/hand/palm",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/palm-right-own-upper-tiger-crease-selection.png",
+        "preserveAlpha": true
+      },
+      {
+        "id": "arms/arm_left/hand/index_finger",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/index-right-own-inner-border-visible-selection.png",
+        "preserveAlpha": true
+      }
+    ]
+  },
+  {
+    "name": "restore-rejected-hand-reference-crease-trials",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "import": "raster-layering/step01/workspace/repair-next10/before/arms__arm_right__hand__palm.png"
+      },
+      {
+        "id": "arms/arm_left/hand/palm",
+        "import": "raster-layering/step01/workspace/repair-next10/before/arms__arm_left__hand__palm.png"
+      },
+      {
+        "id": "arms/arm_left/hand/index_finger",
+        "import": "raster-layering/step01/workspace/repair-next10/before/arms__arm_left__hand__index_finger.png"
+      }
+    ]
+  },
+  {
+    "name": "sidehair-right-own-visible-long-bend-native-source-material",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "import": "raster-layering/step01/workspace/repair-next10/before/arms__arm_right__hand__thumb.png"
+      },
+      {
+        "id": "hair/side_hair/side_hair_right",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/sidehair-right-own-long-bend-original-material-selection.png",
+        "preserveAlpha": true
+      }
+    ]
+  },
+  {
+    "name": "sidehair-right-own-inner-contour-and-bend-material",
+    "jobs": [
+      {
+        "id": "hair/side_hair/side_hair_right",
+        "import": "raster-layering/step01/workspace/repair-next10/before/hair__side_hair__side_hair_right.png",
+        "clearSelection": "raster-layering/step01/workspace/repair-next10/sidehair-own-inner-alpha-original-contour-trim.png"
+      },
+      {
+        "id": "hair/side_hair/side_hair_right",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/sidehair-right-own-dark-plane-source-only-selection.png",
+        "preserveAlpha": true
+      }
+    ]
+  },
+  {
+    "name": "sidehair-right-own-bend-interior-material-only",
+    "jobs": [
+      {
+        "id": "hair/side_hair/side_hair_right",
+        "import": "raster-layering/step01/workspace/repair-next10/before/hair__side_hair__side_hair_right.png",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/sidehair-right-own-bend-interior-only-source-selection.png",
+        "preserveAlpha": true
+      }
+    ]
+  },
+  {
+    "name": "sidehair-right-own-bend-interior-on-restored-full-alpha",
+    "jobs": [
+      {
+        "id": "hair/side_hair/side_hair_right",
+        "import": "raster-layering/step01/workspace/repair-next10/before/hair__side_hair__side_hair_right.png"
+      },
+      {
+        "id": "hair/side_hair/side_hair_right",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next10/sidehair-right-own-bend-interior-only-source-selection.png",
+        "preserveAlpha": true
+      }
+    ]
+  },
+  {
+    "name": "restore-all-rejected-sidehair-trials-full-paint",
+    "jobs": [
+      {
+        "id": "hair/side_hair/side_hair_right",
+        "import": "raster-layering/step01/workspace/repair-next10/before/hair__side_hair__side_hair_right.png"
+      }
+    ]
+  },
+  {
+    "name": "shoe-back-own-full-inner-rim-native-continuity",
+    "jobs": [
+      {
+        "id": "legs/leg_right/shoes/cuff_back",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Airbrush Soft",
+            "size": 4,
+            "opacity": 0.55,
+            "color": [
+              52,
+              68,
+              98
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next10/shoe-back-own-inner-junction-pigment-selection.png",
+            "path": [
+              [
+                "M",
+                369,
+                1164.5
+              ],
+              [
+                "C",
+                373,
+                1164.5,
+                378,
+                1164.7,
+                386,
+                1164.1
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "legs/leg_right/shoes/cuff_back",
+        "strokes": [
+          {
+            "color": [
+              86,
+              106,
+              137
+            ],
+            "size": 1.8,
+            "opacity": 0.95,
+            "selection": "raster-layering/step01/workspace/repair-next10/shoe-back-own-inner-junction-pigment-selection.png",
+            "path": [
+              [
+                "M",
+                369,
+                1165.5
+              ],
+              [
+                "C",
+                372,
+                1165.5,
+                376,
+                1166.1,
+                380,
+                1165.55
+              ],
+              [
+                "C",
+                382,
+                1165.35,
+                384,
+                1165.2,
+                386,
+                1165.05
+              ]
+            ]
+          }
+        ],
+        "clearAfterStroke": "raster-layering/step01/workspace/repair-next10/shoe-back-own-inner-junction-lower-trim.png"
+      }
+    ]
+  }
+]

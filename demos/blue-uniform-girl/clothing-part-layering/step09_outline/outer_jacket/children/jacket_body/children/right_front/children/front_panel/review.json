@@ -1,0 +1,43 @@
+{
+  "groupId": "outer_jacket/jacket_body/right_front/front_panel",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过。已只读检查纯衣服参考、当前 part 及其父组 note、候选源码和父完成 SVG，并完成整体 blend、上下两区 3 倍 edge、全片 2 倍 blend 及 SVG 独显，覆盖全部可见区域。无确定需修改问题，无需重画。\n\n独立归属核对：本片为角色右侧／画面左侧承载前衣料。肩前约 (365,337)–(449,314)、袖窿经 (418,429)、(424,522) 至 (398,608)，以及胸腹、口袋所在衣面和下摆均属本片；独立翻领、翻出驳头、短袖、蝶形连接带、方扣及内搭不归本片。候选在上方翻领与驳头投影下保留的连续衣料符合 note 的后方承载及隐藏搭接职责，不按像素重叠判误包。未发现人体、内搭、袖子或连接带被并入；本片未见需单独扣除的薄纱开口或分离附件，固定口袋口及小圆标记的实体覆盖已包含，不要求内部纹样路径。\n\n位置与轮廓核对：肩前及袖窿 x365–449、y314–608 的边缘顺应参考接缝；中央内边约 (592,508) 经胸腹向 (529,754)、(519,766) 回收，保留开襟并与连接带端部形成正常相邻遮挡；腋下至外摆 (398,608)–(351,701) 和下摆经 (401,734) 至 (511,766) 均贴合参考实体外缘，未发现实际可见衣料遗漏或主要比例偏差。肩领根约 (491,298) 至 (534,382) 为 note 登记的局部隐藏覆盖。note 已传递前片位于躯干、内搭和裙腰之前、位于翻领与驳头之后，以及袖根／背片连接与共同随动职责。\n\n父范围：候选路径与父完成稿对应承载轮廓一致；四倍采样包含检查 outsideSamples=0、outsidePixels=0，且画布为 1115×1410，无父范围限制。\n\n图像证据：\n\n\n\n\n",
+      "candidateHash": "8f5d55e7bb46bb2d71205af6ad0f1871c7e35f157f1871158b47ab46952280ec",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/previews/2026-11-10T14-40-27-331Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/outer_jacket/jacket_body/right_front.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/previews/2026-11-10T14-40-27-331Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/previews/2026-11-10T14-40-27-331Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/previews/2026-11-10T14-40-27-331Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/previews/2026-11-10T14-40-27-331Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_body/children/right_front/children/front_panel/previews/2026-11-10T14-40-27-331Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T14:50:57.872Z"
+    }
+  ]
+}

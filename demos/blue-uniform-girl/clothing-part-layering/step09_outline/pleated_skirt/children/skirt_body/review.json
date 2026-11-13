@@ -1,0 +1,48 @@
+{
+  "groupId": "pleated_skirt/skirt_body",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立检查完成，当前候选通过，无已确认需修改的问题，无需重画。\n\n先独立查看纯衣服参考，确认本 part 的可见职责为腰带下缘以下的展开裙身及下缘露出的内侧、后侧回转裙缘；腰带、外套、衬衫不属于本片。右侧三角标识为固定裙面装饰，其内三角仍有裙料承载，不是贯穿裙身的真实开口；本片没有可见薄纱或独立悬挂附件。\n\n整体 blend 与 SVG 独显核对了全部覆盖范围及位置比例。上缘局部以 3 倍 edge 检查 x340–840、y675–800：中央约 x534–730 的弧线贴合腰带下边，未吞并中央可见腰带；两侧伸入外套衣摆下的区域符合 note 的隐藏连接职责，不作为误包外套。note 已具体传递裙身与腰带的接缝、外套下搭接、相对腰胯及腿部的前后区域、左右侧向回转、前后裙缘共同随动与后续多深度绘画职责。\n\n左右下部以 2.5 倍 edge 分别检查 x150–580、y780–1125 和 x560–995、y780–1130，两区重叠覆盖中部：两侧展开斜缘、左右裙角、全部下缘弧线及阶梯状回转转折与参考外轮廓一致；露出的后侧衣料没有遗漏。前后裙缘联合覆盖可以由一个纯色路径表达，不因缺少内部路径判后缘或固定标识缺失。当前覆盖没有将可见背景开口填入，也没有额外裙底封口面的图像依据。\n\n父完成 SVG 已只读查看；候选的画布为 1115×1410，四倍采样父范围检查 outsideSamples=0、outsidePixels=0，通过包含检查，无上游范围限制需报告。纯色仅检查实体覆盖，未把衣料配色、条带纹样、褶皱明暗或材质表现列为缺陷。\n\n图像证据：\n\n\n\n",
+      "candidateHash": "dd7989edc98d35f08df7226e8a2227650b8edd9a407969fb51bdb670d5d49302",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-10T10-47-22-605Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/pleated_skirt.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-10T10-47-22-605Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-10T10-47-22-605Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-10T10-47-22-605Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-10T10-47-22-605Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-10T10-47-22-605Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-10T10-47-22-605Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:03:47.957Z"
+    }
+  ]
+}

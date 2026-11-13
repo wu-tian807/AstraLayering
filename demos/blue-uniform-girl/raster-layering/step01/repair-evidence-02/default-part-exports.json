@@ -1,0 +1,303 @@
+{
+  "count": 59,
+  "paintAndMaskPixelsUnchanged": true,
+  "visibilityRestored": true,
+  "compositeUnchanged": true,
+  "records": [
+    {
+      "id": "hair/back_hair",
+      "file": "raster-layering/step01/parts/hair__back_hair.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "legs/leg_left/shoes/cuff_back",
+      "file": "raster-layering/step01/parts/legs__leg_left__shoes__cuff_back.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "file": "raster-layering/step01/parts/legs__leg_right__shoes__cuff_back.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "file": "raster-layering/step01/parts/legs__leg_left__leg.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "file": "raster-layering/step01/parts/legs__leg_right__leg.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "legs/leg_left/shoes/shoe_front",
+      "file": "raster-layering/step01/parts/legs__leg_left__shoes__shoe_front.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "file": "raster-layering/step01/parts/legs__leg_right__shoes__shoe_front.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/bracelet_back",
+      "file": "raster-layering/step01/parts/arms__arm_left__bracelet_back.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/bracelet_back",
+      "file": "raster-layering/step01/parts/arms__arm_right__bracelet_back.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/hand/little_finger",
+      "file": "raster-layering/step01/parts/arms__arm_left__hand__little_finger.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/hand/little_finger",
+      "file": "raster-layering/step01/parts/arms__arm_right__hand__little_finger.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/hand/ring_finger",
+      "file": "raster-layering/step01/parts/arms__arm_left__hand__ring_finger.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/hand/ring_finger",
+      "file": "raster-layering/step01/parts/arms__arm_right__hand__ring_finger.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "file": "raster-layering/step01/parts/arms__arm_left__hand__middle_finger.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/hand/middle_finger",
+      "file": "raster-layering/step01/parts/arms__arm_right__hand__middle_finger.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "file": "raster-layering/step01/parts/arms__arm_left__hand__thumb.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "file": "raster-layering/step01/parts/arms__arm_right__hand__thumb.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "file": "raster-layering/step01/parts/arms__arm_left__hand__index_finger.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "file": "raster-layering/step01/parts/arms__arm_right__hand__index_finger.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "file": "raster-layering/step01/parts/arms__arm_left__hand__palm.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "file": "raster-layering/step01/parts/arms__arm_right__hand__palm.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "file": "raster-layering/step01/parts/arms__arm_left__forearm.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "file": "raster-layering/step01/parts/arms__arm_right__forearm.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "file": "raster-layering/step01/parts/arms__arm_left__upper_arm.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "file": "raster-layering/step01/parts/arms__arm_right__upper_arm.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "neck",
+      "file": "raster-layering/step01/parts/neck.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "body/torso",
+      "file": "raster-layering/step01/parts/body__torso.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "body/breast",
+      "file": "raster-layering/step01/parts/body__breast.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "pelvis",
+      "file": "raster-layering/step01/parts/pelvis.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "file": "raster-layering/step01/parts/arms__arm_left__bracelet_front.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "arms/arm_right/bracelet_front",
+      "file": "raster-layering/step01/parts/arms__arm_right__bracelet_front.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/ears/ear_left",
+      "file": "raster-layering/step01/parts/face__ears__ear_left.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/ears/ear_right",
+      "file": "raster-layering/step01/parts/face__ears__ear_right.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/face_base",
+      "file": "raster-layering/step01/parts/face__face_base.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/blush_left",
+      "file": "raster-layering/step01/parts/face__blush_left.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/blush_right",
+      "file": "raster-layering/step01/parts/face__blush_right.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "file": "raster-layering/step01/parts/face__eyes__eye_left__sclera.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "file": "raster-layering/step01/parts/face__eyes__eye_left__iris.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "file": "raster-layering/step01/parts/face__eyes__eye_left__highlight.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "file": "raster-layering/step01/parts/face__eyes__eye_left__upper_eyelid.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "file": "raster-layering/step01/parts/face__eyes__eye_left__eyelid_crease.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "file": "raster-layering/step01/parts/face__eyes__eye_right__sclera.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "file": "raster-layering/step01/parts/face__eyes__eye_right__iris.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "file": "raster-layering/step01/parts/face__eyes__eye_right__highlight.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "file": "raster-layering/step01/parts/face__eyes__eye_right__upper_eyelid.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "file": "raster-layering/step01/parts/face__eyes__eye_right__eyelid_crease.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/nose",
+      "file": "raster-layering/step01/parts/face__nose.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "file": "raster-layering/step01/parts/face__mouth__mouth_interior.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "file": "raster-layering/step01/parts/face__mouth__lower_teeth.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/mouth/tongue",
+      "file": "raster-layering/step01/parts/face__mouth__tongue.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "file": "raster-layering/step01/parts/face__mouth__upper_teeth.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "file": "raster-layering/step01/parts/face__mouth__lower_lip.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "file": "raster-layering/step01/parts/face__mouth__upper_lip.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left",
+      "file": "raster-layering/step01/parts/face__eyebrows__eyebrow_left.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right",
+      "file": "raster-layering/step01/parts/face__eyebrows__eyebrow_right.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "hair/bangs",
+      "file": "raster-layering/step01/parts/hair__bangs.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "file": "raster-layering/step01/parts/hair__side_hair__side_hair_left.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "file": "raster-layering/step01/parts/hair__side_hair__side_hair_right.png",
+      "maskEnabled": true
+    },
+    {
+      "id": "head_accessories",
+      "file": "raster-layering/step01/parts/head_accessories.png",
+      "maskEnabled": true
+    }
+  ]
+}

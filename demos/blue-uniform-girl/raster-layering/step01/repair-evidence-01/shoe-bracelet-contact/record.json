@@ -1,0 +1,248 @@
+{
+  "newPassedIssues": [
+    "R19",
+    "R35"
+  ],
+  "passedIssues": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R8",
+    "R9",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R22",
+    "R23",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35"
+  ],
+  "pendingIssues": [
+    "R6",
+    "R7",
+    "R21",
+    "R24",
+    "R25"
+  ],
+  "changedLogicalParts": [
+    "legs/leg_right/shoes/cuff_back",
+    "legs/leg_right/shoes/shoe_front",
+    "arms/arm_left/bracelet_back",
+    "arms/arm_left/bracelet_front"
+  ],
+  "unchangedLogicalPaints": 55,
+  "uuidChangedParts": [
+    "legs/leg_right/shoes/cuff_back",
+    "legs/leg_right/shoes/shoe_front",
+    "arms/arm_left/bracelet_back",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/bracelet_front",
+    "hair/side_hair/side_hair_right"
+  ],
+  "logicalParts": 59,
+  "paintLayers": 60,
+  "nativeMasks": 10,
+  "nativeGroups": 3,
+  "alphaChangedParts": [
+    "legs/leg_right/shoes/cuff_back"
+  ],
+  "other58LogicalAlphaUnchanged": true,
+  "restoredTrialPartRGBAExact": [
+    "arms/arm_right/hand/palm",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/hand/palm",
+    "arms/arm_left/hand/index_finger",
+    "hair/side_hair/side_hair_right"
+  ],
+  "maskUUIDAndOwnershipAndSelectionsUnchanged": true,
+  "acceptedOperations": [
+    {
+      "name": "bracelet-own-original-round-root-material",
+      "acceptedParts": [
+        "arms/arm_left/bracelet_front"
+      ]
+    },
+    {
+      "name": "bracelet-back-exposed-own-root-only",
+      "acceptedParts": [
+        "arms/arm_left/bracelet_back"
+      ]
+    },
+    {
+      "name": "bracelet-back-own-hidden-material-transition",
+      "acceptedParts": [
+        "arms/arm_left/bracelet_back"
+      ]
+    },
+    {
+      "name": "shoe-back-smooth-own-arc-register-and-sample",
+      "acceptedParts": [
+        "legs/leg_right/shoes/cuff_back"
+      ],
+      "refinedBy": "shoe-back-own-arc-clean-source-domain"
+    },
+    {
+      "name": "shoe-back-own-arc-clean-source-domain",
+      "acceptedParts": [
+        "legs/leg_right/shoes/cuff_back"
+      ]
+    },
+    {
+      "name": "shoe-back-own-junction-native-contour-finish",
+      "acceptedParts": [
+        "legs/leg_right/shoes/cuff_back"
+      ]
+    },
+    {
+      "name": "shoe-back-own-full-inner-rim-native-continuity",
+      "acceptedParts": [
+        "legs/leg_right/shoes/cuff_back"
+      ]
+    },
+    {
+      "name": "shoe-front-own-inner-lip-material-clean",
+      "acceptedParts": [
+        "legs/leg_right/shoes/shoe_front"
+      ]
+    }
+  ],
+  "rejectedTrials": [
+    {
+      "name": "bracelet-own-original-round-root-material",
+      "parts": [
+        "arms/arm_left/bracelet_back"
+      ],
+      "reason": "后段过宽范围带入前段饰块，后段全部恢复后重新缩小取样；前段操作保留。"
+    },
+    {
+      "name": "shoe-back-own-original-upper-ring-register",
+      "reason": "旧隐藏弧与原图上弧出现高度硬接；恢复原生成后口并先做连续配准。"
+    },
+    {
+      "name": "palm-left-own-tiger-root-crease-restore / thumb-left-own-tiger-inner-edge-linewidth-contact",
+      "reason": "虎口接点仍有错位。掌和拇指RGBA均恢复批前，未保留试画。"
+    },
+    {
+      "name": "right-hand-own-palm-crease-index-visible-border",
+      "reason": "重复掌褶和指根硬带；掌与食指RGBA均恢复批前。"
+    },
+    {
+      "name": "all sidehair-right own bend trials",
+      "reason": "邻发青色、额外内线或接色仍有问题；含alpha在内的全部RGBA已恢复批前。"
+    }
+  ],
+  "changedParts": [
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "layerName": "03 | legs/leg_right/shoes/cuff_back",
+      "layerUUID": "{69d40173-b7bc-41ff-b092-8bb57526da61}",
+      "level": 3,
+      "region": "后口上弧x约359–373/y1158–1170及自身接段连续配准；最大向下3px",
+      "reuseSource": "本件已有生成绘画、原图本件Krita原生选区取样和自身原生笔触",
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "layerName": "07 | legs/leg_right/shoes/shoe_front",
+      "layerUUID": "{68bc7cc0-95b4-498a-8685-4acfe0ee4380}",
+      "level": 7,
+      "region": "本件上唇x约359–375/y1166–1178的白蓝材料取样，alpha保持",
+      "reuseSource": "本件已有生成绘画、原图本件Krita原生选区取样和自身原生笔触",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/bracelet_back",
+      "layerName": "08 | arms/arm_left/bracelet_back",
+      "layerUUID": "{23b0c987-5944-4ca2-b0f7-d97e3248db0b}",
+      "level": 8,
+      "region": "自己露出的后环根面x約777–788和隐藏材料过渡，alpha保持",
+      "reuseSource": "本件已有生成绘画、原图本件Krita原生选区取样和自身原生笔触",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "layerName": "30 | arms/arm_left/bracelet_front",
+      "layerUUID": "{7f3567bd-d211-4b7a-bb5f-818ad5d3bb05}",
+      "level": 30,
+      "region": "自己前环根面x約777–803/y805–832的本件蓝面局部取样，alpha保持",
+      "reuseSource": "本件已有生成绘画、原图本件Krita原生选区取样和自身原生笔触",
+      "nativeMasks": []
+    }
+  ],
+  "method": "保留已有生成绘画，后鞋口连续配准、各自本件原图原生取样与窄笔触/软笔接色；没有整形体平涂。",
+  "operations": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/operations.json",
+  "checks": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/checks",
+  "currentThreeViews": "raster-layering/step01/repair-evidence-01/index.json",
+  "shapeRecords": "raster-layering/step01/repair-evidence-01/shape-records.json",
+  "upstreamChanges": [],
+  "thisBatchSplits": [],
+  "preAnnotatedSplits": [],
+  "priorAssemblyDiscoveredSplits": [
+    {
+      "logicalID": "face/eyes/eye_left/upper_eyelid",
+      "fragments": [
+        {
+          "name": "40 | face/eyes/eye_left/upper_eyelid",
+          "uuid": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+          "level": 40
+        },
+        {
+          "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+          "uuid": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+          "level": 57.5
+        }
+      ],
+      "region": [
+        669,
+        346,
+        17,
+        14
+      ],
+      "paintCount": 60,
+      "logicalCount": 59,
+      "unionRawExact": true,
+      "reason": "原图外侧短睫毛尖跨在57侧发前，主体仍在侧发后；同一上睑共同运动的两个深度分片，未新增控制身份。"
+    }
+  ],
+  "freshDiskOpen": true,
+  "reopenVerification": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/reopen-verification.json",
+  "maskVerification": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/mask-verification.json",
+  "reopenPassed": true,
+  "defaultPNGMatchesReopen": true,
+  "finalVisualChecks": {
+    "viewed": true,
+    "changedPartThreeViews": [
+      "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/legs__leg_right__shoes__cuff_back-final-three-views.png",
+      "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/legs__leg_right__shoes__shoe_front-final-three-views.png",
+      "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/arms__arm_left__bracelet_back-final-three-views.png",
+      "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/arms__arm_left__bracelet_front-final-three-views.png"
+    ],
+    "whole": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/whole-preview.png",
+    "newPassedIssuePages": [
+      "raster-layering/step01/repair-evidence-01/issues/R19.png",
+      "raster-layering/step01/repair-evidence-01/issues/R35.png"
+    ],
+    "eyePaintsAndLashFragmentsProtected": true
+  },
+  "deliveryValidation": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/delivery-validation.json"
+}

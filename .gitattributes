@@ -44,6 +44,11 @@ demos/tanuki-girl/** -text
 # Closed-face archive and its SHA-256 manifest preserve exported bytes.
 demos/closed-face-full-20261026/** -text
 
+# Blue Uniform Girl archive and its SHA-256 manifest preserve exported bytes.
+demos/blue-uniform-girl/** -text
+# Keep the whitespace already present in the exported SVG artwork.
+demos/blue-uniform-girl/**/*.svg whitespace=-blank-at-eol
+
 # Preserve SAM verification artifacts and their recorded file hashes.
 sam_veirfy/outputs/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 

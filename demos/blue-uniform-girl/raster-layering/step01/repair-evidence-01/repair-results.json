@@ -1,0 +1,243 @@
+{
+  "conclusion": "已修复",
+  "reviewIssues": 35,
+  "passedIssues": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8",
+    "R9",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35"
+  ],
+  "pendingIssues": [],
+  "newPassedIssues": [
+    "R21"
+  ],
+  "junctionBatchChangedParts": [
+    "arms/arm_left/forearm",
+    "arms/arm_right/forearm",
+    "arms/arm_left/upper_arm",
+    "arms/arm_right/upper_arm",
+    "body/torso",
+    "body/breast"
+  ],
+  "otherPaintPartsUnchangedFromBatchStart": 58,
+  "changedPaintParts": [
+    "hair/back_hair",
+    "legs/leg_left/shoes/cuff_back",
+    "legs/leg_right/shoes/cuff_back",
+    "legs/leg_left/leg",
+    "legs/leg_right/leg",
+    "legs/leg_left/shoes/shoe_front",
+    "legs/leg_right/shoes/shoe_front",
+    "arms/arm_left/hand/little_finger",
+    "arms/arm_right/hand/little_finger",
+    "arms/arm_left/hand/ring_finger",
+    "arms/arm_right/hand/ring_finger",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/forearm",
+    "arms/arm_right/forearm",
+    "arms/arm_left/upper_arm",
+    "arms/arm_right/upper_arm",
+    "body/torso",
+    "body/breast",
+    "pelvis",
+    "arms/arm_left/bracelet_front",
+    "face/ears/ear_left",
+    "face/blush_right",
+    "face/eyes/eye_left/sclera",
+    "face/eyes/eye_left/iris",
+    "face/eyes/eye_left/highlight",
+    "face/eyes/eye_left/upper_eyelid",
+    "face/eyes/eye_right/sclera",
+    "face/eyes/eye_right/iris",
+    "face/eyes/eye_right/highlight",
+    "face/eyes/eye_right/upper_eyelid",
+    "face/nose",
+    "face/mouth/mouth_interior",
+    "face/mouth/tongue",
+    "face/mouth/lower_lip",
+    "face/mouth/upper_lip",
+    "hair/bangs",
+    "hair/side_hair/side_hair_left",
+    "hair/side_hair/side_hair_right"
+  ],
+  "nativePaintLayers": 60,
+  "nativeMasks": 10,
+  "nativeGroups": 3,
+  "depthChanges": [
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "before": [
+        40
+      ],
+      "after": [
+        40,
+        57.5
+      ]
+    }
+  ],
+  "logicalIDChanges": [],
+  "reopenPassed": true,
+  "pngMatchesReopen": true,
+  "eyeMouthBatchChangedParts": [
+    "face/eyes/eye_left/iris",
+    "face/eyes/eye_left/upper_eyelid",
+    "face/eyes/eye_right/iris",
+    "face/eyes/eye_right/upper_eyelid",
+    "face/mouth/mouth_interior",
+    "face/mouth/lower_lip",
+    "face/mouth/upper_lip"
+  ],
+  "modifiedNativeMasks": [],
+  "sockShoeBraceletBatchChangedParts": [
+    "legs/leg_left/shoes/cuff_back",
+    "legs/leg_right/shoes/cuff_back",
+    "legs/leg_left/leg",
+    "legs/leg_right/leg",
+    "legs/leg_left/shoes/shoe_front",
+    "legs/leg_right/shoes/shoe_front",
+    "arms/arm_left/bracelet_front"
+  ],
+  "elbowHandBatchChangedParts": [
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/forearm",
+    "arms/arm_right/forearm",
+    "arms/arm_left/upper_arm",
+    "arms/arm_right/upper_arm"
+  ],
+  "elbowHandBatchUUIDChangedParts": [
+    "arms/arm_left/hand/thumb",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/forearm",
+    "arms/arm_right/forearm",
+    "arms/arm_left/upper_arm",
+    "arms/arm_right/upper_arm"
+  ],
+  "hairBatchChangedParts": [
+    "hair/back_hair",
+    "hair/bangs",
+    "hair/side_hair/side_hair_left",
+    "hair/side_hair/side_hair_right"
+  ],
+  "hairBatchUUIDChangedParts": [
+    "hair/back_hair",
+    "hair/bangs",
+    "hair/side_hair/side_hair_right"
+  ],
+  "eyeMouthFinishChangedParts": [
+    "face/eyes/eye_left/sclera",
+    "face/eyes/eye_left/iris",
+    "face/eyes/eye_left/highlight",
+    "face/eyes/eye_left/upper_eyelid",
+    "face/eyes/eye_right/sclera",
+    "face/eyes/eye_right/iris",
+    "face/eyes/eye_right/highlight",
+    "face/mouth/mouth_interior",
+    "face/mouth/lower_lip"
+  ],
+  "eyeMouthFinishUUIDChangedParts": [
+    "face/eyes/eye_left/iris",
+    "face/eyes/eye_right/iris",
+    "face/mouth/lower_lip"
+  ],
+  "outerLashDepthChangedParts": [
+    "face/eyes/eye_left/upper_eyelid"
+  ],
+  "handElbowContactChangedParts": [
+    "arms/arm_right/hand/thumb",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/forearm",
+    "arms/arm_left/upper_arm",
+    "arms/arm_left/bracelet_front"
+  ],
+  "handElbowContactUUIDChangedParts": [
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/forearm",
+    "arms/arm_left/upper_arm"
+  ],
+  "thisBatchDepthChanges": [],
+  "thisBatchLogicalIDChanges": [],
+  "shoeBraceletContactChangedParts": [
+    "legs/leg_right/shoes/cuff_back",
+    "legs/leg_right/shoes/shoe_front",
+    "arms/arm_left/bracelet_back",
+    "arms/arm_left/bracelet_front"
+  ],
+  "shoeBraceletContactUUIDChangedParts": [
+    "legs/leg_right/shoes/cuff_back",
+    "legs/leg_right/shoes/shoe_front",
+    "arms/arm_left/bracelet_back",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/bracelet_front",
+    "hair/side_hair/side_hair_right"
+  ],
+  "thisBatchAlphaChangedParts": [
+    "hair/back_hair"
+  ],
+  "handHairContinuityChangedParts": [
+    "hair/back_hair",
+    "arms/arm_left/hand/thumb",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "hair/side_hair/side_hair_left",
+    "hair/side_hair/side_hair_right"
+  ],
+  "handHairContinuityUUIDChangedParts": [
+    "hair/back_hair",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_right/hand/palm",
+    "hair/side_hair/side_hair_right"
+  ],
+  "backHairCompletionChangedParts": [
+    "hair/back_hair"
+  ],
+  "backHairCompletionUUIDChangedParts": [
+    "hair/back_hair"
+  ]
+}

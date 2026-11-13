@@ -1,0 +1,384 @@
+[
+  {
+    "type": "combination",
+    "name": "eye_left",
+    "levels": [
+      37,
+      38,
+      39,
+      40,
+      41,
+      57.5
+    ],
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/groups/eye_left-on.png"
+  },
+  {
+    "type": "combination",
+    "name": "eye_left",
+    "levels": [
+      37,
+      38,
+      39,
+      40,
+      41,
+      57.5
+    ],
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/groups/eye_left-off.png"
+  },
+  {
+    "type": "combination",
+    "name": "eye_right",
+    "levels": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/groups/eye_right-on.png"
+  },
+  {
+    "type": "combination",
+    "name": "eye_right",
+    "levels": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/groups/eye_right-off.png"
+  },
+  {
+    "type": "combination",
+    "name": "mouth",
+    "levels": [
+      48,
+      49,
+      50,
+      51,
+      52,
+      53
+    ],
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/groups/mouth-on.png"
+  },
+  {
+    "type": "combination",
+    "name": "mouth",
+    "levels": [
+      48,
+      49,
+      50,
+      51,
+      52,
+      53
+    ],
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/groups/mouth-off.png"
+  },
+  {
+    "type": "combination",
+    "name": "left_lid_fragments",
+    "levels": [
+      40,
+      57.5
+    ],
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/groups/left_lid_fragments-on.png"
+  },
+  {
+    "type": "combination",
+    "name": "left_lid_fragments",
+    "levels": [
+      40,
+      57.5
+    ],
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/groups/left_lid_fragments-off.png"
+  },
+  {
+    "type": "single-mask",
+    "name": "后方手指默认遮挡",
+    "parent": "10 | arms/arm_left/hand/little_finger",
+    "uuid": "{06c0d344-178f-4185-b953-a9ed4cc37ebc}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/01-on.png",
+    "bounds": [
+      825,
+      902,
+      34,
+      60
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "后方手指默认遮挡",
+    "parent": "10 | arms/arm_left/hand/little_finger",
+    "uuid": "{06c0d344-178f-4185-b953-a9ed4cc37ebc}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/01-off.png",
+    "bounds": [
+      825,
+      902,
+      34,
+      60
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "后方手指默认遮挡",
+    "parent": "11 | arms/arm_right/hand/little_finger",
+    "uuid": "{a557dafb-b0ff-46c4-88dd-a390e968eea9}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/02-on.png",
+    "bounds": [
+      268,
+      916,
+      21,
+      39
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "后方手指默认遮挡",
+    "parent": "11 | arms/arm_right/hand/little_finger",
+    "uuid": "{a557dafb-b0ff-46c4-88dd-a390e968eea9}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/02-off.png",
+    "bounds": [
+      268,
+      916,
+      21,
+      39
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "后方手指默认遮挡",
+    "parent": "12 | arms/arm_left/hand/ring_finger",
+    "uuid": "{83eb02f1-3940-4058-bacf-aeaac4af2b78}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/03-on.png",
+    "bounds": [
+      812,
+      901,
+      36,
+      72
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "后方手指默认遮挡",
+    "parent": "12 | arms/arm_left/hand/ring_finger",
+    "uuid": "{83eb02f1-3940-4058-bacf-aeaac4af2b78}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/03-off.png",
+    "bounds": [
+      812,
+      901,
+      36,
+      72
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "高光虹膜范围 left",
+    "parent": "39 | face/eyes/eye_left/highlight",
+    "uuid": "{4ea9dc55-ede2-48ce-9270-2f1eaacb036f}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/04-on.png",
+    "bounds": [
+      597,
+      351,
+      14,
+      27
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "高光虹膜范围 left",
+    "parent": "39 | face/eyes/eye_left/highlight",
+    "uuid": "{4ea9dc55-ede2-48ce-9270-2f1eaacb036f}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/04-off.png",
+    "bounds": [
+      597,
+      351,
+      14,
+      27
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "眼睛开口 left",
+    "parent": "眼内开合 left",
+    "uuid": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/05-on.png",
+    "bounds": [
+      556,
+      330,
+      105,
+      101
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "眼睛开口 left",
+    "parent": "眼内开合 left",
+    "uuid": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/05-off.png",
+    "bounds": [
+      556,
+      330,
+      105,
+      101
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "高光虹膜范围 right",
+    "parent": "44 | face/eyes/eye_right/highlight",
+    "uuid": "{ab4087a9-f7c6-4c0e-9b31-a7e58be174df}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/06-on.png",
+    "bounds": [
+      401,
+      387,
+      28,
+      45
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "高光虹膜范围 right",
+    "parent": "44 | face/eyes/eye_right/highlight",
+    "uuid": "{ab4087a9-f7c6-4c0e-9b31-a7e58be174df}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/06-off.png",
+    "bounds": [
+      401,
+      387,
+      28,
+      45
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "眼睛开口 right",
+    "parent": "眼内开合 right",
+    "uuid": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/07-on.png",
+    "bounds": [
+      364,
+      370,
+      95,
+      93
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "眼睛开口 right",
+    "parent": "眼内开合 right",
+    "uuid": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/07-off.png",
+    "bounds": [
+      364,
+      370,
+      95,
+      93
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "下牙默认遮挡",
+    "parent": "49 | face/mouth/lower_teeth",
+    "uuid": "{4ef4f667-6607-458d-ab72-855884296f24}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/08-on.png",
+    "bounds": [
+      500,
+      496,
+      57,
+      31
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "下牙默认遮挡",
+    "parent": "49 | face/mouth/lower_teeth",
+    "uuid": "{4ef4f667-6607-458d-ab72-855884296f24}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/08-off.png",
+    "bounds": [
+      500,
+      496,
+      57,
+      31
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "上牙露出带",
+    "parent": "51 | face/mouth/upper_teeth",
+    "uuid": "{582994c8-f7c8-49a0-994c-c1a1924ede30}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/09-on.png",
+    "bounds": [
+      493,
+      459,
+      59,
+      22
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "上牙露出带",
+    "parent": "51 | face/mouth/upper_teeth",
+    "uuid": "{582994c8-f7c8-49a0-994c-c1a1924ede30}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/09-off.png",
+    "bounds": [
+      493,
+      459,
+      59,
+      22
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "上下唇开口",
+    "parent": "口内开合",
+    "uuid": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+    "state": "on",
+    "path": "raster-layering/step01/review-evidence-02/masks/10-on.png",
+    "bounds": [
+      489,
+      457,
+      80,
+      70
+    ]
+  },
+  {
+    "type": "single-mask",
+    "name": "上下唇开口",
+    "parent": "口内开合",
+    "uuid": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+    "state": "off",
+    "path": "raster-layering/step01/review-evidence-02/masks/10-off.png",
+    "bounds": [
+      489,
+      457,
+      80,
+      70
+    ]
+  }
+]

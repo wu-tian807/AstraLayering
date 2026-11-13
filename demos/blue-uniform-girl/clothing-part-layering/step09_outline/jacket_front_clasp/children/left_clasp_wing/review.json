@@ -1,0 +1,43 @@
+{
+  "groupId": "jacket_front_clasp/left_clasp_wing",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过，无确定需要修改的问题；不需重画。\n\n先独立查看纯衣服参考整图及 x565–720、y465–595 放大：本片归属是中央方扣画面右侧的白色柔性蝶形带翼，上边连接约 (639,506.5) 至 (675,479)，下边由扣下约 (641,535) 向外套内边约 (701,584) 展开。参考中灰色折痕为带面内部表现，不是真实开口；本片无薄纱或独立分离附件。证据：\n\n整体定位、全可见区域放大 blend 与 edge 核对完成：候选上、下边轮廓、展开比例及外套内边位置与参考吻合；内端 x639–641、y506.5–535 位于方扣覆盖区，保留合理扣下搭接，没有吞并画面左侧带翼或把方扣作为本片实体。没有发现可见带面遗漏、误包内搭或人体。证据：   \n\nx677–714、y494–552 的外端延伸与父完成 SVG 的隐藏连接段一致，处于外套中央内边之后，不能依据参考中被前衣片覆盖而删除。候选两条路径联合连续覆盖带面及隐藏连接；独显未见不应存在的孔洞或分离碎片。父范围四倍采样检查 outsidePixels=0，包含关系通过，没有上游范围限制。证据： \n\nnote 已落实本片实体范围、扣下相邻分界、外套后方隐藏搭接、带面在躯干/内搭之前及方扣之后的深度关系，以及与相应前衣片、另一带翼和方扣的连接随动；同一带翼的可见及隐藏区域保留一个逻辑 part 合理。候选和父稿均未修改。",
+      "candidateHash": "2ffdf48d40b63e50ce380ed6e65b3ea455c8c0870aad47d8203352151a61c970",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/previews/2026-11-10T10-39-15-036Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/jacket_front_clasp.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/previews/2026-11-10T10-39-15-036Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/previews/2026-11-10T10-39-15-036Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/previews/2026-11-10T10-39-15-036Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/previews/2026-11-10T10-39-15-036Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/left_clasp_wing/previews/2026-11-10T10-39-15-036Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T10:58:16.723Z"
+    }
+  ]
+}

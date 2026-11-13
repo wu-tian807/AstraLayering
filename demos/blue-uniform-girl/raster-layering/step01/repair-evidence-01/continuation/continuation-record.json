@@ -1,0 +1,3021 @@
+{
+  "newlyPassed": [
+    "R8",
+    "R26"
+  ],
+  "cumulativePassed": 10,
+  "pending": 25,
+  "acceptedChanges": [
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "changedSinceContinuationStart": true,
+      "before": "raster-layering/step01/repair-evidence-01/continuation/before/arms__arm_left__hand__middle_finger.png",
+      "final": "raster-layering/step01/repair-evidence-01/parts-full/arms__arm_left__hand__middle_finger.png",
+      "layerName": "14 | arms/arm_left/hand/middle_finger",
+      "layerUUID": "{35724532-6f9d-4c82-b10e-e3b0bc4872ef}",
+      "depth": 14,
+      "shapeAndOwnership": "本指原生成纹理整体向上配准 2 px，接触侧再用本指自身纹理向右续接约 2 px（区域 y933–969）。根部仍被掌面覆盖。实际形状相对旧 SVG 在根部向上及接触侧向右有局部扩展；未增减节点、深度或改变独立控制。"
+    },
+    {
+      "id": "face/face_base",
+      "changedSinceContinuationStart": true,
+      "before": "raster-layering/step01/repair-evidence-01/continuation/before/face__face_base.png",
+      "final": "raster-layering/step01/repair-evidence-01/parts-full/face__face_base.png",
+      "layerName": "34 | face/face_base",
+      "layerUUID": "{c3f39273-f952-456f-aa58-4cfd3ee4b101}",
+      "depth": 34,
+      "shapeAndOwnership": "隐藏右颊在 y425–492 的旧凹折口改为连续圆弧，最大向外约 7 px；本脸底肤色与暖棕轮廓逐笔接续。实际補全轮廓与旧 SVG 的局部凹侧不同，修改被侧发遮住，不取用侧发像素。"
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "changedSinceContinuationStart": true,
+      "before": "raster-layering/step01/repair-evidence-01/continuation/before/face__eyes__eye_left__iris.png",
+      "final": "raster-layering/step01/repair-evidence-01/parts-full/face__eyes__eye_left__iris.png",
+      "layerName": "38 | face/eyes/eye_left/iris",
+      "layerUUID": "{e7c1299e-b429-41c5-9e46-1a65de3bfb0a}",
+      "depth": 38,
+      "shapeAndOwnership": "仅用本虹膜自身已有生成纹理，对上缘区域作 1.045 倍均匀局部配准并向上 2 px，下面用不清除底层的选区逐渐融合；上缘相对旧 SVG/纹理略扩。整眼位置、开合蒙版、睫毛层和独立高光未移动；R29 仍未全项通过。"
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "changedSinceContinuationStart": true,
+      "before": "raster-layering/step01/repair-evidence-01/continuation/before/face__eyes__eye_right__iris.png",
+      "final": "raster-layering/step01/repair-evidence-01/parts-full/face__eyes__eye_right__iris.png",
+      "layerName": "43 | face/eyes/eye_right/iris",
+      "layerUUID": "{d3412b57-daf9-4395-83bb-6c2055811481}",
+      "depth": 43,
+      "shapeAndOwnership": "仅用本虹膜自身纹理，对上缘区域作 1.045 倍均匀局部配准并向上 2 px、逐渐融接；上缘相对旧范围略扩。保持本眼独立形体，未镜像复用、未移动整眼或参考；R30 仍未全项通过。"
+    }
+  ],
+  "revertedToStart": [
+    "arms/arm_right/upper_arm",
+    "arms/arm_right/forearm",
+    "arms/arm_left/upper_arm",
+    "arms/arm_left/forearm",
+    "arms/arm_left/bracelet_front",
+    "arms/arm_left/bracelet_back"
+  ],
+  "trialLogs": [
+    {
+      "name": "arm-own-reference-joints",
+      "jobs": [
+        {
+          "id": "arms/arm_right/upper_arm",
+          "clearSelection": "raster-layering/step01/workspace/repair-cont/arms__arm_right__upper_arm-clear.png",
+          "issue": "R4"
+        },
+        {
+          "id": "arms/arm_right/upper_arm",
+          "sample": "part-layering/references/base-subject.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/arms__arm_right__upper_arm-sample-selection.png",
+          "issue": "R4"
+        },
+        {
+          "id": "arms/arm_right/forearm",
+          "clearSelection": "raster-layering/step01/workspace/repair-cont/arms__arm_right__forearm-clear.png",
+          "issue": "R4"
+        },
+        {
+          "id": "arms/arm_right/forearm",
+          "sample": "part-layering/references/base-subject.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/arms__arm_right__forearm-sample-selection.png",
+          "issue": "R4"
+        },
+        {
+          "id": "arms/arm_left/upper_arm",
+          "clearSelection": "raster-layering/step01/workspace/repair-cont/arms__arm_left__upper_arm-clear.png",
+          "issue": "R5"
+        },
+        {
+          "id": "arms/arm_left/upper_arm",
+          "sample": "part-layering/references/base-subject.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/arms__arm_left__upper_arm-sample-selection.png",
+          "issue": "R5"
+        },
+        {
+          "id": "arms/arm_left/forearm",
+          "clearSelection": "raster-layering/step01/workspace/repair-cont/arms__arm_left__forearm-clear.png",
+          "issue": "R5"
+        },
+        {
+          "id": "arms/arm_left/forearm",
+          "sample": "part-layering/references/base-subject.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/arms__arm_left__forearm-sample-selection.png",
+          "issue": "R5"
+        }
+      ]
+    },
+    {
+      "name": "rollback-joint-sample-trial",
+      "jobs": [
+        {
+          "id": "arms/arm_right/upper_arm",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_right__upper_arm.png"
+        },
+        {
+          "id": "arms/arm_right/forearm",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_right__forearm.png"
+        },
+        {
+          "id": "arms/arm_left/upper_arm",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_left__upper_arm.png"
+        },
+        {
+          "id": "arms/arm_left/forearm",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_left__forearm.png"
+        }
+      ]
+    },
+    {
+      "name": "cheek-and-iris-cap-native",
+      "jobs": [
+        {
+          "id": "face/face_base",
+          "issue": "R26",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  679,
+                  426
+                ],
+                [
+                  "C",
+                  672,
+                  439,
+                  672,
+                  460,
+                  668,
+                  474
+                ],
+                [
+                  "C",
+                  666,
+                  481,
+                  661,
+                  486,
+                  654,
+                  491
+                ]
+              ],
+              "size": 12,
+              "color": [
+                251,
+                221,
+                205
+              ],
+              "selection": "raster-layering/step01/workspace/repair-cont/face-cheek-own-support.png"
+            },
+            {
+              "path": [
+                [
+                  "M",
+                  668,
+                  470
+                ],
+                [
+                  "C",
+                  667,
+                  481,
+                  660,
+                  487,
+                  654,
+                  491
+                ]
+              ],
+              "size": 10,
+              "color": [
+                251,
+                224,
+                209
+              ],
+              "selection": "raster-layering/step01/workspace/repair-cont/face-cheek-own-support.png",
+              "preset": "b) Airbrush Soft",
+              "opacity": 0.6
+            },
+            {
+              "path": [
+                [
+                  "M",
+                  681,
+                  425
+                ],
+                [
+                  "C",
+                  675,
+                  438,
+                  675,
+                  461,
+                  671,
+                  474
+                ],
+                [
+                  "C",
+                  669,
+                  481,
+                  663,
+                  487,
+                  656,
+                  492
+                ]
+              ],
+              "size": 1.6,
+              "color": [
+                158,
+                78,
+                61
+              ]
+            }
+          ],
+          "import": "raster-layering/step01/workspace/repair-cont/before/face__face_base.png"
+        },
+        {
+          "id": "face/eyes/eye_left/iris",
+          "issue": "R29",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  579,
+                  355
+                ],
+                [
+                  "C",
+                  583,
+                  339,
+                  592,
+                  333,
+                  605,
+                  333
+                ],
+                [
+                  "C",
+                  622,
+                  333,
+                  632,
+                  343,
+                  636,
+                  356
+                ]
+              ],
+              "size": 2.6,
+              "color": [
+                17,
+                40,
+                65
+              ]
+            }
+          ]
+        },
+        {
+          "id": "face/eyes/eye_right/iris",
+          "issue": "R30",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  389,
+                  391
+                ],
+                [
+                  "C",
+                  392,
+                  379,
+                  399,
+                  371,
+                  409,
+                  370
+                ],
+                [
+                  "C",
+                  423,
+                  369,
+                  435,
+                  380,
+                  441,
+                  393
+                ]
+              ],
+              "size": 2.6,
+              "color": [
+                15,
+                37,
+                59
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "continuous-cheek-and-iris-caps",
+      "jobs": [
+        {
+          "id": "face/face_base",
+          "issue": "R26",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  673,
+                  434
+                ],
+                [
+                  "C",
+                  668,
+                  444,
+                  665,
+                  457,
+                  665,
+                  471
+                ],
+                [
+                  "C",
+                  665,
+                  480,
+                  658,
+                  487,
+                  653,
+                  492
+                ]
+              ],
+              "size": 10,
+              "color": [
+                251,
+                221,
+                205
+              ],
+              "selection": "raster-layering/step01/workspace/repair-cont/face-cheek-own-support.png"
+            },
+            {
+              "path": [
+                [
+                  "M",
+                  682,
+                  423
+                ],
+                [
+                  "C",
+                  675,
+                  438,
+                  675,
+                  461,
+                  671,
+                  474
+                ],
+                [
+                  "C",
+                  669,
+                  481,
+                  663,
+                  487,
+                  656,
+                  492
+                ],
+                [
+                  "C",
+                  648,
+                  500,
+                  639,
+                  506,
+                  630,
+                  513
+                ]
+              ],
+              "size": 2.3,
+              "color": [
+                158,
+                78,
+                61
+              ]
+            }
+          ]
+        },
+        {
+          "id": "face/eyes/eye_left/iris",
+          "issue": "R29",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  579,
+                  355
+                ],
+                [
+                  "C",
+                  583,
+                  339,
+                  592,
+                  333,
+                  605,
+                  333
+                ],
+                [
+                  "C",
+                  622,
+                  333,
+                  632,
+                  343,
+                  636,
+                  356
+                ]
+              ],
+              "size": 8,
+              "color": [
+                17,
+                40,
+                65
+              ]
+            }
+          ]
+        },
+        {
+          "id": "face/eyes/eye_right/iris",
+          "issue": "R30",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  389,
+                  391
+                ],
+                [
+                  "C",
+                  392,
+                  379,
+                  399,
+                  371,
+                  409,
+                  370
+                ],
+                [
+                  "C",
+                  423,
+                  369,
+                  435,
+                  380,
+                  441,
+                  393
+                ]
+              ],
+              "size": 8,
+              "color": [
+                15,
+                37,
+                59
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "iris-own-texture-upper-registration",
+      "jobs": [
+        {
+          "id": "face/eyes/eye_left/iris",
+          "import": "raster-layering/step01/workspace/repair-cont/before/face__eyes__eye_left__iris.png",
+          "issue": "R29"
+        },
+        {
+          "id": "face/eyes/eye_left/iris",
+          "clearSelection": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_left__iris-cap-selection.png",
+          "issue": "R29"
+        },
+        {
+          "id": "face/eyes/eye_left/iris",
+          "sample": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_left__iris-cap-own-source.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_left__iris-cap-selection.png",
+          "issue": "R29"
+        },
+        {
+          "id": "face/eyes/eye_right/iris",
+          "import": "raster-layering/step01/workspace/repair-cont/before/face__eyes__eye_right__iris.png",
+          "issue": "R30"
+        },
+        {
+          "id": "face/eyes/eye_right/iris",
+          "clearSelection": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_right__iris-cap-selection.png",
+          "issue": "R30"
+        },
+        {
+          "id": "face/eyes/eye_right/iris",
+          "sample": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_right__iris-cap-own-source.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_right__iris-cap-selection.png",
+          "issue": "R30"
+        }
+      ]
+    },
+    {
+      "name": "iris-own-texture-opaque-transition",
+      "jobs": [
+        {
+          "id": "face/eyes/eye_left/iris",
+          "import": "raster-layering/step01/workspace/repair-cont/before/face__eyes__eye_left__iris.png",
+          "issue": "R29"
+        },
+        {
+          "id": "face/eyes/eye_left/iris",
+          "sample": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_left__iris-cap-own-source.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_left__iris-cap-selection.png",
+          "issue": "R29"
+        },
+        {
+          "id": "face/eyes/eye_right/iris",
+          "import": "raster-layering/step01/workspace/repair-cont/before/face__eyes__eye_right__iris.png",
+          "issue": "R30"
+        },
+        {
+          "id": "face/eyes/eye_right/iris",
+          "sample": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_right__iris-cap-own-source.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/face__eyes__eye_right__iris-cap-selection.png",
+          "issue": "R30"
+        }
+      ]
+    },
+    {
+      "name": "iris-original-visible-calibration",
+      "jobs": [
+        {
+          "id": "face/eyes/eye_left/iris",
+          "issue": "R29",
+          "sample": "part-layering/references/standard.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/iris-left-original-own-selection.png",
+          "trimPath": [
+            [
+              "M",
+              603.6556757677442,
+              330.8350040083168
+            ],
+            [
+              "C",
+              601.3537130697955,
+              330.9307794626212,
+              599.2266969425283,
+              331.24772308270843,
+              597.149763426372,
+              331.79667364706546
+            ],
+            [
+              "C",
+              595.0728299102158,
+              332.3456242114225,
+              593.0459790051707,
+              333.12658172004944,
+              590.9443467516671,
+              334.15038495143375
+            ],
+            [
+              "C",
+              588.8427144981636,
+              335.17418818281806,
+              586.5322720228588,
+              336.4763360977536,
+              584.405701867723,
+              337.9305898248976
+            ],
+            [
+              "C",
+              582.2791317125872,
+              339.3848435520416,
+              580.4815968125662,
+              340.97846299465,
+              580.088609159827,
+              342.31685445103346
+            ],
+            [
+              "C",
+              579.6956215070878,
+              343.65524590741694,
+              581.6640084348942,
+              344.30475310545506,
+              581.9599285879452,
+              345.5289284761053
+            ],
+            [
+              "C",
+              582.2558487409963,
+              346.75310384675555,
+              580.8545152690633,
+              348.5863458044644,
+              579.7009982875031,
+              350.49167477628055
+            ],
+            [
+              "C",
+              578.5474813059429,
+              352.3970037480967,
+              577.7447865914959,
+              354.3506465609096,
+              577.054981390528,
+              356.3194488324271
+            ],
+            [
+              "C",
+              576.3651761895602,
+              358.2882511039446,
+              575.74455702601,
+              360.26746148531436,
+              575.1760304835253,
+              362.2658403481314
+            ],
+            [
+              "C",
+              574.6075039410406,
+              364.26421921094845,
+              574.1027396738813,
+              366.28362492827006,
+              573.6832330114075,
+              368.3389630653489
+            ],
+            [
+              "C",
+              573.2637263489338,
+              370.3943012024277,
+              572.9294772911455,
+              372.4855717592636,
+              572.7019811674032,
+              374.6276803011094
+            ],
+            [
+              "C",
+              572.4744850436609,
+              376.7697888429552,
+              572.3543042026329,
+              378.96443387821495,
+              572.3491210358915,
+              381.1848006085161
+            ],
+            [
+              "C",
+              572.3439378691501,
+              383.4051673388173,
+              572.453726297292,
+              385.6511769943709,
+              572.6860892642248,
+              387.89577481442024
+            ],
+            [
+              "C",
+              572.9184522311577,
+              390.14037263446954,
+              573.2733897368817,
+              392.3835586190147,
+              573.7585047253042,
+              394.59827800729903
+            ],
+            [
+              "C",
+              574.2436197137267,
+              396.81299739558335,
+              574.8589121848479,
+              398.9992501876068,
+              575.6119850825753,
+              401.12998162261295
+            ],
+            [
+              "C",
+              576.3650579803027,
+              403.26071305761906,
+              577.2559113046362,
+              405.3359231356078,
+              578.2921479994837,
+              407.3285570958226
+            ],
+            [
+              "C",
+              579.3283846943312,
+              409.3211910560374,
+              580.5131029671152,
+              411.23250814336706,
+              581.8410054269258,
+              413.0302103455658
+            ],
+            [
+              "C",
+              583.1689078867364,
+              414.8279125477646,
+              584.6373323997791,
+              416.51091785904123,
+              586.2307077360998,
+              418.04275253662587
+            ],
+            [
+              "C",
+              587.8240830724205,
+              419.5745872142105,
+              589.5424092320189,
+              420.95525125810303,
+              591.3701149849406,
+              422.1482709255338
+            ],
+            [
+              "C",
+              593.1978207378623,
+              423.3412905929645,
+              595.1349060841071,
+              424.3466658839333,
+              597.1657997937208,
+              425.12792305567035
+            ],
+            [
+              "C",
+              599.1966935033345,
+              425.9091802274074,
+              601.3213955763171,
+              426.46631927991257,
+              603.5243347827138,
+              426.7628664704161
+            ],
+            [
+              "C",
+              605.7272739891106,
+              427.05941366091963,
+              608.0197495278084,
+              427.0852634576406,
+              610.3289800910477,
+              426.85510842306957
+            ],
+            [
+              "C",
+              612.638210654287,
+              426.6249533884985,
+              614.9587196952048,
+              426.1436915175223,
+              617.1986418679288,
+              425.44308333962476
+            ],
+            [
+              "C",
+              619.4385640406529,
+              424.7424751617272,
+              621.5978993451832,
+              423.82252067690854,
+              623.5847824356476,
+              422.71498041465236
+            ],
+            [
+              "C",
+              625.571665526112,
+              421.6074401523962,
+              627.3772886090028,
+              420.3121590097149,
+              629.0196869815069,
+              418.8628328382693
+            ],
+            [
+              "C",
+              630.662085354011,
+              417.41350666682376,
+              632.1421883377678,
+              415.81015183173,
+              633.4809172488063,
+              414.08651500670186
+            ],
+            [
+              "C",
+              634.8196461598449,
+              412.3628781816737,
+              636.020173618203,
+              410.52015901388205,
+              637.0894996750188,
+              408.5868401977921
+            ],
+            [
+              "C",
+              638.1588257318347,
+              406.6535213817022,
+              639.0946645382212,
+              404.6287385805456,
+              639.8955116617167,
+              402.5377587303386
+            ],
+            [
+              "C",
+              640.6963587852122,
+              400.44677888013166,
+              641.3622142258168,
+              398.28960198087424,
+              641.891573551069,
+              396.09149496858294
+            ],
+            [
+              "C",
+              642.4209328763211,
+              393.89338795629163,
+              642.8137960862207,
+              391.6543508309663,
+              643.0686587483062,
+              389.39965052862334
+            ],
+            [
+              "C",
+              643.3235214103918,
+              387.1449502262804,
+              643.4403835246632,
+              384.8745867469198,
+              643.417740658659,
+              382.61382702655794
+            ],
+            [
+              "C",
+              643.3950977926548,
+              380.35306730619607,
+              643.2327518694511,
+              378.10206364778287,
+              642.9298118518626,
+              375.8856113427419
+            ],
+            [
+              "C",
+              642.6268718342741,
+              373.669159037701,
+              642.1853849689355,
+              371.48568394152284,
+              641.6317615096312,
+              369.3389891620096
+            ],
+            [
+              "C",
+              641.078138050327,
+              367.1922943824964,
+              640.4123779970571,
+              365.08237991964825,
+              639.6608916036057,
+              363.013048881267
+            ],
+            [
+              "C",
+              638.9094052101543,
+              360.9437178428858,
+              638.0721924765215,
+              358.91497022897147,
+              637.1756636564918,
+              356.9306091473264
+            ],
+            [
+              "C",
+              636.279134836462,
+              354.9462480656813,
+              635.3232899300355,
+              353.0062735163054,
+              634.3345391909961,
+              351.1144886070007
+            ],
+            [
+              "C",
+              633.3457884519568,
+              349.222703697696,
+              632.3241318803049,
+              347.37910842846253,
+              631.2959797298247,
+              345.58750590710235
+            ],
+            [
+              "C",
+              630.2678275793445,
+              343.7959033857422,
+              629.240741573351,
+              342.05303964833206,
+              628.0603432799685,
+              340.44051486511137
+            ],
+            [
+              "C",
+              626.879944986586,
+              338.8279900818907,
+              625.5458727461814,
+              337.34595988238317,
+              623.9026458506406,
+              336.0764987687977
+            ],
+            [
+              "C",
+              622.2594189550998,
+              334.80703765521224,
+              620.2569772358432,
+              333.7626600687475,
+              618.0257557713168,
+              332.95396499724154
+            ],
+            [
+              "C",
+              615.7945343067903,
+              332.1452699257356,
+              613.3529956548715,
+              331.5676419513522,
+              610.8937716945973,
+              331.2161316084214
+            ],
+            [
+              "C",
+              608.434547734323,
+              330.8646212654906,
+              605.9576384656932,
+              330.7392285540124,
+              603.6556757677445,
+              330.83500400831684
+            ],
+            [
+              "Z"
+            ]
+          ],
+          "trimExpansion": 0.65
+        },
+        {
+          "id": "face/eyes/eye_right/iris",
+          "issue": "R30",
+          "sample": "part-layering/references/standard.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/iris-right-original-own-selection.png",
+          "trimPath": [
+            [
+              "M",
+              398.189663926541,
+              369.1455703017245
+            ],
+            [
+              "C",
+              395.94075330939626,
+              369.65295016688935,
+              393.7128195352879,
+              370.4658896081917,
+              391.9267369742544,
+              372.0767199600147
+            ],
+            [
+              "C",
+              390.14065441322094,
+              373.68755031183775,
+              388.6973215707483,
+              376.3507789299406,
+              389.01732437799313,
+              377.991329389728
+            ],
+            [
+              "C",
+              389.337327185238,
+              379.63187984951537,
+              392.46075477428485,
+              379.3957337506083,
+              393.8981425318291,
+              379.8394153899013
+            ],
+            [
+              "C",
+              395.3355302893733,
+              380.2830970291943,
+              394.9850587305213,
+              381.6687363660358,
+              394.3149622981539,
+              383.52287748421406
+            ],
+            [
+              "C",
+              393.64486586578647,
+              385.37701860239235,
+              392.6429481177436,
+              387.5949921089933,
+              391.9749517780488,
+              389.746562732303
+            ],
+            [
+              "C",
+              391.30695543835407,
+              391.8981333556127,
+              390.8215942058804,
+              394.0755253330276,
+              390.49909585822303,
+              396.2663937945903
+            ],
+            [
+              "C",
+              390.17659751056567,
+              398.45726225615294,
+              390.0169620477245,
+              400.66160720186326,
+              390.0004172472945,
+              402.86708376176375
+            ],
+            [
+              "C",
+              389.98387244686444,
+              405.07256032166424,
+              390.11041830884557,
+              407.2791684957548,
+              390.3602826108328,
+              409.47456341407803
+            ],
+            [
+              "C",
+              390.6101469128201,
+              411.6699583324013,
+              390.9833296548134,
+              413.85413999495705,
+              391.4600586144079,
+              416.0147635317879
+            ],
+            [
+              "C",
+              391.9367875740024,
+              418.1753870686187,
+              392.5158982801188,
+              420.31212377819475,
+              393.1814659973414,
+              422.4137148414548
+            ],
+            [
+              "C",
+              393.84703371456396,
+              424.51530590471486,
+              394.60288813342277,
+              426.5828323490527,
+              395.45718860410335,
+              428.61183370009996
+            ],
+            [
+              "C",
+              396.31148907478394,
+              430.64083505114723,
+              397.26423559728624,
+              432.63131130890383,
+              398.32358752179573,
+              434.5788019990014
+            ],
+            [
+              "C",
+              399.3829394463052,
+              436.526292689099,
+              400.548896772822,
+              438.43079781153773,
+              401.8296188515314,
+              440.2878568919489
+            ],
+            [
+              "C",
+              403.1103409302408,
+              442.14491597236,
+              404.5058277611429,
+              443.95452901074367,
+              406.0242386944231,
+              445.7122355327315
+            ],
+            [
+              "C",
+              407.5426496277033,
+              447.4699420547193,
+              409.18975339096147,
+              449.195420180727,
+              410.93894749306213,
+              450.76563082653536
+            ],
+            [
+              "C",
+              412.6881415951628,
+              452.3358414723437,
+              414.5375195930991,
+              453.7442814334923,
+              416.4541296274423,
+              454.84625284023633
+            ],
+            [
+              "C",
+              418.3707396617855,
+              455.9482242469804,
+              420.349475346933,
+              456.71269369684745,
+              422.3808875944824,
+              457.1377983915552
+            ],
+            [
+              "C",
+              424.41229984203176,
+              457.5629030862629,
+              426.4995749182496,
+              457.66800714970105,
+              428.6448106898367,
+              457.52142291976634
+            ],
+            [
+              "C",
+              430.79004646142374,
+              457.3748386898316,
+              432.99975620059985,
+              456.9797482728752,
+              435.25479631726546,
+              456.39408633911637
+            ],
+            [
+              "C",
+              437.50983643393107,
+              455.8084244053575,
+              439.78527644249647,
+              455.02001098536533,
+              441.89175627917774,
+              454.0036202574143
+            ],
+            [
+              "C",
+              443.998236115859,
+              452.98722952946326,
+              445.93575578065605,
+              451.74286149355305,
+              447.5149552097849,
+              450.24529032795766
+            ],
+            [
+              "C",
+              449.0941546389137,
+              448.7477191623623,
+              450.28194193701984,
+              446.9831730443751,
+              451.1678031328899,
+              445.042473266169
+            ],
+            [
+              "C",
+              452.05366432875996,
+              443.10177348796293,
+              452.6436977186525,
+              440.9874579717084,
+              453.04680803660665,
+              438.79842947372754
+            ],
+            [
+              "C",
+              453.4499183545608,
+              436.60940097574667,
+              453.6779614894903,
+              434.3551751231947,
+              453.7939920618058,
+              432.0978550203821
+            ],
+            [
+              "C",
+              453.9100226341213,
+              429.84053491756947,
+              453.90037054141624,
+              427.56914883571073,
+              453.77131816615054,
+              425.30023404655594
+            ],
+            [
+              "C",
+              453.64226579088484,
+              423.03131925740115,
+              453.39381313305853,
+              420.76487576095036,
+              453.032242575132,
+              418.51744082895385
+            ],
+            [
+              "C",
+              452.67067201720545,
+              416.27000589695734,
+              452.1959835591787,
+              414.0415795294152,
+              451.61445958351175,
+              411.84869899807745
+            ],
+            [
+              "C",
+              451.03293560784476,
+              409.65581846673973,
+              450.34457611453774,
+              407.4984837716065,
+              449.5556634860508,
+              405.39323218442803
+            ],
+            [
+              "C",
+              448.7667508575638,
+              403.28798059724954,
+              447.8781175884268,
+              401.235986192953,
+              446.8929928578095,
+              399.24948028174526
+            ],
+            [
+              "C",
+              445.90786812719216,
+              397.2629743705375,
+              444.82500481871205,
+              395.3401981323626,
+              443.6420225227645,
+              393.4854716212033
+            ],
+            [
+              "C",
+              442.4590402268169,
+              391.630745110044,
+              441.1759389434019,
+              389.84406832590037,
+              439.79033826291436,
+              388.12976132275503
+            ],
+            [
+              "C",
+              438.40473758242683,
+              386.4154543196097,
+              436.9166375048668,
+              384.7735170974627,
+              435.32365762062966,
+              383.20826971029675
+            ],
+            [
+              "C",
+              433.7306777363925,
+              381.6430223231308,
+              432.0328180454781,
+              380.1544647709459,
+              430.22769813828165,
+              378.74691710772476
+            ],
+            [
+              "C",
+              428.4225782310852,
+              377.33936944450363,
+              426.5081040944129,
+              376.0097991209069,
+              424.5097989459864,
+              374.8029362164463
+            ],
+            [
+              "C",
+              422.5114937975599,
+              373.5960733119857,
+              420.4295604389176,
+              372.51221152379406,
+              418.2901501333723,
+              371.5969904668385
+            ],
+            [
+              "C",
+              416.15073982782707,
+              370.681769409883,
+              413.95385257537885,
+              369.93518908416337,
+              411.725639639341,
+              369.4028891046471
+            ],
+            [
+              "C",
+              409.4974267033032,
+              368.87058912513083,
+              407.23788808367556,
+              368.55256949181774,
+              404.9731750437712,
+              368.4944698196749
+            ],
+            [
+              "C",
+              402.7084620038668,
+              368.4363701475321,
+              400.4385745436858,
+              368.6381904365597,
+              398.189663926541,
+              369.14557030172455
+            ],
+            [
+              "Z"
+            ]
+          ],
+          "trimExpansion": 0.65
+        }
+      ]
+    },
+    {
+      "name": "retain-clean-iris-cap-calibration",
+      "jobs": [
+        {
+          "id": "face/eyes/eye_left/iris",
+          "import": "raster-layering/step01/workspace/repair-cont/iris-own-texture-opaque-transition/face__eyes__eye_left__iris-after.png"
+        },
+        {
+          "id": "face/eyes/eye_right/iris",
+          "import": "raster-layering/step01/workspace/repair-cont/iris-own-texture-opaque-transition/face__eyes__eye_right__iris-after.png"
+        }
+      ]
+    },
+    {
+      "name": "bracelet-own-top-seam-calibration",
+      "jobs": [
+        {
+          "id": "arms/arm_left/bracelet_front",
+          "sample": "part-layering/references/standard.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/arms__arm_left__bracelet_front-top-own-selection.png",
+          "issue": "R35"
+        },
+        {
+          "id": "arms/arm_left/bracelet_back",
+          "sample": "part-layering/references/standard.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/arms__arm_left__bracelet_back-top-own-selection.png",
+          "issue": "R35"
+        }
+      ]
+    },
+    {
+      "name": "bracelet-native-root-and-contour",
+      "jobs": [
+        {
+          "id": "arms/arm_left/bracelet_front",
+          "issue": "R35",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  782,
+                  828
+                ],
+                [
+                  "C",
+                  788,
+                  821,
+                  793,
+                  816,
+                  800,
+                  817
+                ]
+              ],
+              "size": 5,
+              "color": [
+                30,
+                44,
+                68
+              ],
+              "selection": "raster-layering/step01/workspace/repair-cont/bracelet-front-native-alpha-selection.png"
+            },
+            {
+              "path": [
+                [
+                  "M",
+                  785,
+                  831
+                ],
+                [
+                  "C",
+                  790,
+                  824,
+                  794,
+                  820,
+                  800,
+                  821
+                ]
+              ],
+              "size": 10,
+              "color": [
+                31,
+                46,
+                70
+              ],
+              "selection": "raster-layering/step01/workspace/repair-cont/bracelet-front-native-alpha-selection.png",
+              "preset": "b) Airbrush Soft",
+              "opacity": 0.65
+            }
+          ]
+        },
+        {
+          "id": "arms/arm_left/bracelet_back",
+          "issue": "R35",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  779,
+                  809
+                ],
+                [
+                  "C",
+                  784,
+                  804,
+                  790,
+                  803,
+                  796,
+                  805
+                ],
+                [
+                  "C",
+                  801,
+                  808,
+                  804,
+                  811,
+                  806,
+                  816
+                ]
+              ],
+              "size": 2.6,
+              "color": [
+                10,
+                18,
+                31
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "bracelet-back-own-registration",
+      "jobs": [
+        {
+          "id": "arms/arm_left/bracelet_back",
+          "issue": "R35",
+          "import": "raster-layering/step01/workspace/repair-cont/bracelet-back-register-up2.png",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  783.8745000444246,
+                  803.8497095315477
+                ],
+                [
+                  "C",
+                  781.6449119338864,
+                  804.3815232510692,
+                  779.6490619950861,
+                  805.4081253053033,
+                  777.7375267560939,
+                  806.6501185417397
+                ],
+                [
+                  "C",
+                  775.8259915171017,
+                  807.8921117781762,
+                  773.998770977918,
+                  809.3494961968149,
+                  772.1064416666129,
+                  810.742874645146
+                ],
+                [
+                  "C",
+                  770.2141123553079,
+                  812.1362530934771,
+                  768.2207441577904,
+                  813.4062397203588,
+                  766.1444873278922,
+                  814.550405832332
+                ],
+                [
+                  "C",
+                  764.068230497994,
+                  815.6945719443052,
+                  761.9306792149547,
+                  816.7486087365216,
+                  759.8277444806306,
+                  817.8386116887333
+                ],
+                [
+                  "C",
+                  757.7248097463065,
+                  818.9286146409449,
+                  755.6661951555465,
+                  820.0664242785579,
+                  753.7135537044946,
+                  821.3363337602938
+                ],
+                [
+                  "C",
+                  751.7609122534428,
+                  822.6062432420297,
+                  749.8959506242255,
+                  823.9859306863141,
+                  748.0909551063561,
+                  825.4506421639722
+                ],
+                [
+                  "C",
+                  746.2859595884867,
+                  826.9153536416304,
+                  744.5409301819649,
+                  828.4650891526624,
+                  742.8281531763045,
+                  830.0750947678936
+                ],
+                [
+                  "C",
+                  741.115376170644,
+                  831.6851003831248,
+                  739.4348515658446,
+                  833.355376102555,
+                  737.7588656514198,
+                  835.0611679970101
+                ],
+                [
+                  "C",
+                  736.082879736995,
+                  836.7669598914651,
+                  734.4114325129447,
+                  838.508267960945,
+                  732.7168102687823,
+                  840.2603382762748
+                ],
+                [
+                  "C",
+                  731.0221880246199,
+                  842.0124085916045,
+                  729.2663396331536,
+                  843.7668150815933,
+                  727.7450859876742,
+                  845.5704475712829
+                ],
+                [
+                  "C",
+                  726.2238323421948,
+                  847.3740800609725,
+                  724.9440885245102,
+                  849.2284698314552,
+                  724.2236773603229,
+                  851.1853788327932
+                ],
+                [
+                  "C",
+                  723.5032661961355,
+                  853.1422878341311,
+                  723.421720040562,
+                  855.2228197175446,
+                  723.9580743065669,
+                  857.3888402972932
+                ],
+                [
+                  "C",
+                  724.4944285725718,
+                  859.5548608770418,
+                  725.5855494785553,
+                  861.7896178099422,
+                  726.9709547045396,
+                  863.9914216604476
+                ],
+                [
+                  "C",
+                  728.3563599305239,
+                  866.193225510953,
+                  730.0349370685936,
+                  868.3927284900027,
+                  731.7497590976259,
+                  870.3902755066873
+                ],
+                [
+                  "C",
+                  733.4645811266581,
+                  872.3878225233719,
+                  735.2187468615901,
+                  874.0006985093021,
+                  736.8093209935818,
+                  873.844690607212
+                ],
+                [
+                  "C",
+                  738.3998951255734,
+                  873.6886827051219,
+                  739.8492767996306,
+                  871.9930095810403,
+                  741.2165251882063,
+                  870.0545439947272
+                ],
+                [
+                  "C",
+                  742.583773576782,
+                  868.1160784084141,
+                  743.8659359463289,
+                  866.0455159941266,
+                  745.1525995905848,
+                  863.9952545044234
+                ],
+                [
+                  "C",
+                  746.4392632348407,
+                  861.9449930147202,
+                  747.7308304919381,
+                  859.8999491127371,
+                  749.118150492424,
+                  857.9652152918073
+                ],
+                [
+                  "C",
+                  750.5054704929098,
+                  856.0304814708776,
+                  752.00410745467,
+                  854.2231877493235,
+                  753.6311668913534,
+                  852.567264205646
+                ],
+                [
+                  "C",
+                  755.2582263280367,
+                  850.9113406619684,
+                  757.0047531101616,
+                  849.3969312575779,
+                  758.8558348814772,
+                  848.0127271208374
+                ],
+                [
+                  "C",
+                  760.7069166527929,
+                  846.628522984097,
+                  762.662553413299,
+                  845.3745241150062,
+                  764.7078328067446,
+                  844.2394216419282
+                ],
+                [
+                  "C",
+                  766.7531122001902,
+                  843.1043191688501,
+                  768.8880342265754,
+                  842.0881130917846,
+                  771.0976865296487,
+                  841.1794945390941
+                ],
+                [
+                  "C",
+                  773.307338832722,
+                  840.2708759864036,
+                  775.5917214124836,
+                  839.4698449580882,
+                  777.9359219126824,
+                  838.7650925825105
+                ],
+                [
+                  "C",
+                  780.2801224128812,
+                  838.0603402069329,
+                  782.6861578186915,
+                  837.4466214268211,
+                  785.0541124131375,
+                  837.1336738615636
+                ],
+                [
+                  "C",
+                  787.4220670075836,
+                  836.820726296306,
+                  789.7518892630494,
+                  836.8086839405889,
+                  791.9435075633434,
+                  837.3076898210011
+                ],
+                [
+                  "C",
+                  794.1351258636373,
+                  837.8066957014132,
+                  796.178156847179,
+                  838.8576098093937,
+                  798.0067237448174,
+                  840.536013628384
+                ],
+                [
+                  "C",
+                  799.8352906424557,
+                  842.2144174473743,
+                  801.4848031798547,
+                  844.3809687156008,
+                  803.1163693276669,
+                  846.2180319700403
+                ],
+                [
+                  "C",
+                  804.7479354754792,
+                  848.0550952244798,
+                  806.3615552337045,
+                  849.5626704651326,
+                  808.1183365729963,
+                  849.9231222289754
+                ],
+                [
+                  "C",
+                  809.8751179122881,
+                  850.2835739928183,
+                  811.8107445987459,
+                  849.4511000262183,
+                  813.0660754079784,
+                  847.9176158891446
+                ],
+                [
+                  "C",
+                  814.3214062172108,
+                  846.3841317520709,
+                  814.682504559148,
+                  844.1458335389163,
+                  814.1805404520989,
+                  841.7236186097555
+                ],
+                [
+                  "C",
+                  813.6785763450497,
+                  839.3014036805946,
+                  812.5147908357629,
+                  836.731703281641,
+                  811.307944052107,
+                  834.4463086219124
+                ],
+                [
+                  "C",
+                  810.1010972684511,
+                  832.1609139621838,
+                  808.7803241480426,
+                  830.0711378884386,
+                  807.5541775016646,
+                  828.0953998864807
+                ],
+                [
+                  "C",
+                  806.3280308552867,
+                  826.1196618845228,
+                  805.1965106829392,
+                  824.2579619543524,
+                  804.3681697954049,
+                  822.4287195817733
+                ],
+                [
+                  "C",
+                  803.5398289078706,
+                  820.5994772091942,
+                  803.2362050058009,
+                  818.8993337742719,
+                  803.2761360371962,
+                  817.1693104944382
+                ],
+                [
+                  "C",
+                  803.3160670685916,
+                  815.4392872146044,
+                  802.9871137613785,
+                  813.2728026518414,
+                  802.0577478777315,
+                  811.265992573414
+                ],
+                [
+                  "C",
+                  801.1283819940844,
+                  809.2591824949867,
+                  799.5758002885228,
+                  807.5355446353968,
+                  797.6264685835248,
+                  806.2575657543684
+                ],
+                [
+                  "C",
+                  795.6771368785268,
+                  804.97958687334,
+                  793.3539387990209,
+                  804.1117159578743,
+                  790.9606766181299,
+                  803.6962931925458
+                ],
+                [
+                  "C",
+                  788.5674144372389,
+                  803.2808704272173,
+                  786.104088154963,
+                  803.3178958120263,
+                  783.8745000444248,
+                  803.8497095315479
+                ],
+                [
+                  "Z"
+                ]
+              ],
+              "size": 1.7,
+              "color": [
+                11,
+                19,
+                34
+              ]
+            }
+          ],
+          "trimPath": [
+            [
+              "M",
+              783.8745000444246,
+              803.8497095315477
+            ],
+            [
+              "C",
+              781.6449119338864,
+              804.3815232510692,
+              779.6490619950861,
+              805.4081253053033,
+              777.7375267560939,
+              806.6501185417397
+            ],
+            [
+              "C",
+              775.8259915171017,
+              807.8921117781762,
+              773.998770977918,
+              809.3494961968149,
+              772.1064416666129,
+              810.742874645146
+            ],
+            [
+              "C",
+              770.2141123553079,
+              812.1362530934771,
+              768.2207441577904,
+              813.4062397203588,
+              766.1444873278922,
+              814.550405832332
+            ],
+            [
+              "C",
+              764.068230497994,
+              815.6945719443052,
+              761.9306792149547,
+              816.7486087365216,
+              759.8277444806306,
+              817.8386116887333
+            ],
+            [
+              "C",
+              757.7248097463065,
+              818.9286146409449,
+              755.6661951555465,
+              820.0664242785579,
+              753.7135537044946,
+              821.3363337602938
+            ],
+            [
+              "C",
+              751.7609122534428,
+              822.6062432420297,
+              749.8959506242255,
+              823.9859306863141,
+              748.0909551063561,
+              825.4506421639722
+            ],
+            [
+              "C",
+              746.2859595884867,
+              826.9153536416304,
+              744.5409301819649,
+              828.4650891526624,
+              742.8281531763045,
+              830.0750947678936
+            ],
+            [
+              "C",
+              741.115376170644,
+              831.6851003831248,
+              739.4348515658446,
+              833.355376102555,
+              737.7588656514198,
+              835.0611679970101
+            ],
+            [
+              "C",
+              736.082879736995,
+              836.7669598914651,
+              734.4114325129447,
+              838.508267960945,
+              732.7168102687823,
+              840.2603382762748
+            ],
+            [
+              "C",
+              731.0221880246199,
+              842.0124085916045,
+              729.2663396331536,
+              843.7668150815933,
+              727.7450859876742,
+              845.5704475712829
+            ],
+            [
+              "C",
+              726.2238323421948,
+              847.3740800609725,
+              724.9440885245102,
+              849.2284698314552,
+              724.2236773603229,
+              851.1853788327932
+            ],
+            [
+              "C",
+              723.5032661961355,
+              853.1422878341311,
+              723.421720040562,
+              855.2228197175446,
+              723.9580743065669,
+              857.3888402972932
+            ],
+            [
+              "C",
+              724.4944285725718,
+              859.5548608770418,
+              725.5855494785553,
+              861.7896178099422,
+              726.9709547045396,
+              863.9914216604476
+            ],
+            [
+              "C",
+              728.3563599305239,
+              866.193225510953,
+              730.0349370685936,
+              868.3927284900027,
+              731.7497590976259,
+              870.3902755066873
+            ],
+            [
+              "C",
+              733.4645811266581,
+              872.3878225233719,
+              735.2187468615901,
+              874.0006985093021,
+              736.8093209935818,
+              873.844690607212
+            ],
+            [
+              "C",
+              738.3998951255734,
+              873.6886827051219,
+              739.8492767996306,
+              871.9930095810403,
+              741.2165251882063,
+              870.0545439947272
+            ],
+            [
+              "C",
+              742.583773576782,
+              868.1160784084141,
+              743.8659359463289,
+              866.0455159941266,
+              745.1525995905848,
+              863.9952545044234
+            ],
+            [
+              "C",
+              746.4392632348407,
+              861.9449930147202,
+              747.7308304919381,
+              859.8999491127371,
+              749.118150492424,
+              857.9652152918073
+            ],
+            [
+              "C",
+              750.5054704929098,
+              856.0304814708776,
+              752.00410745467,
+              854.2231877493235,
+              753.6311668913534,
+              852.567264205646
+            ],
+            [
+              "C",
+              755.2582263280367,
+              850.9113406619684,
+              757.0047531101616,
+              849.3969312575779,
+              758.8558348814772,
+              848.0127271208374
+            ],
+            [
+              "C",
+              760.7069166527929,
+              846.628522984097,
+              762.662553413299,
+              845.3745241150062,
+              764.7078328067446,
+              844.2394216419282
+            ],
+            [
+              "C",
+              766.7531122001902,
+              843.1043191688501,
+              768.8880342265754,
+              842.0881130917846,
+              771.0976865296487,
+              841.1794945390941
+            ],
+            [
+              "C",
+              773.307338832722,
+              840.2708759864036,
+              775.5917214124836,
+              839.4698449580882,
+              777.9359219126824,
+              838.7650925825105
+            ],
+            [
+              "C",
+              780.2801224128812,
+              838.0603402069329,
+              782.6861578186915,
+              837.4466214268211,
+              785.0541124131375,
+              837.1336738615636
+            ],
+            [
+              "C",
+              787.4220670075836,
+              836.820726296306,
+              789.7518892630494,
+              836.8086839405889,
+              791.9435075633434,
+              837.3076898210011
+            ],
+            [
+              "C",
+              794.1351258636373,
+              837.8066957014132,
+              796.178156847179,
+              838.8576098093937,
+              798.0067237448174,
+              840.536013628384
+            ],
+            [
+              "C",
+              799.8352906424557,
+              842.2144174473743,
+              801.4848031798547,
+              844.3809687156008,
+              803.1163693276669,
+              846.2180319700403
+            ],
+            [
+              "C",
+              804.7479354754792,
+              848.0550952244798,
+              806.3615552337045,
+              849.5626704651326,
+              808.1183365729963,
+              849.9231222289754
+            ],
+            [
+              "C",
+              809.8751179122881,
+              850.2835739928183,
+              811.8107445987459,
+              849.4511000262183,
+              813.0660754079784,
+              847.9176158891446
+            ],
+            [
+              "C",
+              814.3214062172108,
+              846.3841317520709,
+              814.682504559148,
+              844.1458335389163,
+              814.1805404520989,
+              841.7236186097555
+            ],
+            [
+              "C",
+              813.6785763450497,
+              839.3014036805946,
+              812.5147908357629,
+              836.731703281641,
+              811.307944052107,
+              834.4463086219124
+            ],
+            [
+              "C",
+              810.1010972684511,
+              832.1609139621838,
+              808.7803241480426,
+              830.0711378884386,
+              807.5541775016646,
+              828.0953998864807
+            ],
+            [
+              "C",
+              806.3280308552867,
+              826.1196618845228,
+              805.1965106829392,
+              824.2579619543524,
+              804.3681697954049,
+              822.4287195817733
+            ],
+            [
+              "C",
+              803.5398289078706,
+              820.5994772091942,
+              803.2362050058009,
+              818.8993337742719,
+              803.2761360371962,
+              817.1693104944382
+            ],
+            [
+              "C",
+              803.3160670685916,
+              815.4392872146044,
+              802.9871137613785,
+              813.2728026518414,
+              802.0577478777315,
+              811.265992573414
+            ],
+            [
+              "C",
+              801.1283819940844,
+              809.2591824949867,
+              799.5758002885228,
+              807.5355446353968,
+              797.6264685835248,
+              806.2575657543684
+            ],
+            [
+              "C",
+              795.6771368785268,
+              804.97958687334,
+              793.3539387990209,
+              804.1117159578743,
+              790.9606766181299,
+              803.6962931925458
+            ],
+            [
+              "C",
+              788.5674144372389,
+              803.2808704272173,
+              786.104088154963,
+              803.3178958120263,
+              783.8745000444248,
+              803.8497095315479
+            ],
+            [
+              "Z"
+            ]
+          ],
+          "trimExpansion": 1
+        }
+      ]
+    },
+    {
+      "name": "bracelet-back-rim-cleanup",
+      "jobs": [
+        {
+          "id": "arms/arm_left/bracelet_back",
+          "issue": "R35",
+          "import": "raster-layering/step01/workspace/repair-cont/bracelet-back-register-up2.png",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  783.8745000444246,
+                  803.8497095315477
+                ],
+                [
+                  "C",
+                  781.6449119338864,
+                  804.3815232510692,
+                  779.6490619950861,
+                  805.4081253053033,
+                  777.7375267560939,
+                  806.6501185417397
+                ],
+                [
+                  "C",
+                  775.8259915171017,
+                  807.8921117781762,
+                  773.998770977918,
+                  809.3494961968149,
+                  772.1064416666129,
+                  810.742874645146
+                ],
+                [
+                  "C",
+                  770.2141123553079,
+                  812.1362530934771,
+                  768.2207441577904,
+                  813.4062397203588,
+                  766.1444873278922,
+                  814.550405832332
+                ],
+                [
+                  "C",
+                  764.068230497994,
+                  815.6945719443052,
+                  761.9306792149547,
+                  816.7486087365216,
+                  759.8277444806306,
+                  817.8386116887333
+                ],
+                [
+                  "C",
+                  757.7248097463065,
+                  818.9286146409449,
+                  755.6661951555465,
+                  820.0664242785579,
+                  753.7135537044946,
+                  821.3363337602938
+                ],
+                [
+                  "C",
+                  751.7609122534428,
+                  822.6062432420297,
+                  749.8959506242255,
+                  823.9859306863141,
+                  748.0909551063561,
+                  825.4506421639722
+                ],
+                [
+                  "C",
+                  746.2859595884867,
+                  826.9153536416304,
+                  744.5409301819649,
+                  828.4650891526624,
+                  742.8281531763045,
+                  830.0750947678936
+                ],
+                [
+                  "C",
+                  741.115376170644,
+                  831.6851003831248,
+                  739.4348515658446,
+                  833.355376102555,
+                  737.7588656514198,
+                  835.0611679970101
+                ],
+                [
+                  "C",
+                  736.082879736995,
+                  836.7669598914651,
+                  734.4114325129447,
+                  838.508267960945,
+                  732.7168102687823,
+                  840.2603382762748
+                ],
+                [
+                  "C",
+                  731.0221880246199,
+                  842.0124085916045,
+                  729.2663396331536,
+                  843.7668150815933,
+                  727.7450859876742,
+                  845.5704475712829
+                ],
+                [
+                  "C",
+                  726.2238323421948,
+                  847.3740800609725,
+                  724.9440885245102,
+                  849.2284698314552,
+                  724.2236773603229,
+                  851.1853788327932
+                ],
+                [
+                  "C",
+                  723.5032661961355,
+                  853.1422878341311,
+                  723.421720040562,
+                  855.2228197175446,
+                  723.9580743065669,
+                  857.3888402972932
+                ],
+                [
+                  "C",
+                  724.4944285725718,
+                  859.5548608770418,
+                  725.5855494785553,
+                  861.7896178099422,
+                  726.9709547045396,
+                  863.9914216604476
+                ],
+                [
+                  "C",
+                  728.3563599305239,
+                  866.193225510953,
+                  730.0349370685936,
+                  868.3927284900027,
+                  731.7497590976259,
+                  870.3902755066873
+                ],
+                [
+                  "C",
+                  733.4645811266581,
+                  872.3878225233719,
+                  735.2187468615901,
+                  874.0006985093021,
+                  736.8093209935818,
+                  873.844690607212
+                ],
+                [
+                  "C",
+                  738.3998951255734,
+                  873.6886827051219,
+                  739.8492767996306,
+                  871.9930095810403,
+                  741.2165251882063,
+                  870.0545439947272
+                ],
+                [
+                  "C",
+                  742.583773576782,
+                  868.1160784084141,
+                  743.8659359463289,
+                  866.0455159941266,
+                  745.1525995905848,
+                  863.9952545044234
+                ],
+                [
+                  "C",
+                  746.4392632348407,
+                  861.9449930147202,
+                  747.7308304919381,
+                  859.8999491127371,
+                  749.118150492424,
+                  857.9652152918073
+                ],
+                [
+                  "C",
+                  750.5054704929098,
+                  856.0304814708776,
+                  752.00410745467,
+                  854.2231877493235,
+                  753.6311668913534,
+                  852.567264205646
+                ],
+                [
+                  "C",
+                  755.2582263280367,
+                  850.9113406619684,
+                  757.0047531101616,
+                  849.3969312575779,
+                  758.8558348814772,
+                  848.0127271208374
+                ],
+                [
+                  "C",
+                  760.7069166527929,
+                  846.628522984097,
+                  762.662553413299,
+                  845.3745241150062,
+                  764.7078328067446,
+                  844.2394216419282
+                ],
+                [
+                  "C",
+                  766.7531122001902,
+                  843.1043191688501,
+                  768.8880342265754,
+                  842.0881130917846,
+                  771.0976865296487,
+                  841.1794945390941
+                ],
+                [
+                  "C",
+                  773.307338832722,
+                  840.2708759864036,
+                  775.5917214124836,
+                  839.4698449580882,
+                  777.9359219126824,
+                  838.7650925825105
+                ],
+                [
+                  "C",
+                  780.2801224128812,
+                  838.0603402069329,
+                  782.6861578186915,
+                  837.4466214268211,
+                  785.0541124131375,
+                  837.1336738615636
+                ],
+                [
+                  "C",
+                  787.4220670075836,
+                  836.820726296306,
+                  789.7518892630494,
+                  836.8086839405889,
+                  791.9435075633434,
+                  837.3076898210011
+                ],
+                [
+                  "C",
+                  794.1351258636373,
+                  837.8066957014132,
+                  796.178156847179,
+                  838.8576098093937,
+                  798.0067237448174,
+                  840.536013628384
+                ],
+                [
+                  "C",
+                  799.8352906424557,
+                  842.2144174473743,
+                  801.4848031798547,
+                  844.3809687156008,
+                  803.1163693276669,
+                  846.2180319700403
+                ],
+                [
+                  "C",
+                  804.7479354754792,
+                  848.0550952244798,
+                  806.3615552337045,
+                  849.5626704651326,
+                  808.1183365729963,
+                  849.9231222289754
+                ],
+                [
+                  "C",
+                  809.8751179122881,
+                  850.2835739928183,
+                  811.8107445987459,
+                  849.4511000262183,
+                  813.0660754079784,
+                  847.9176158891446
+                ],
+                [
+                  "C",
+                  814.3214062172108,
+                  846.3841317520709,
+                  814.682504559148,
+                  844.1458335389163,
+                  814.1805404520989,
+                  841.7236186097555
+                ],
+                [
+                  "C",
+                  813.6785763450497,
+                  839.3014036805946,
+                  812.5147908357629,
+                  836.731703281641,
+                  811.307944052107,
+                  834.4463086219124
+                ],
+                [
+                  "C",
+                  810.1010972684511,
+                  832.1609139621838,
+                  808.7803241480426,
+                  830.0711378884386,
+                  807.5541775016646,
+                  828.0953998864807
+                ],
+                [
+                  "C",
+                  806.3280308552867,
+                  826.1196618845228,
+                  805.1965106829392,
+                  824.2579619543524,
+                  804.3681697954049,
+                  822.4287195817733
+                ],
+                [
+                  "C",
+                  803.5398289078706,
+                  820.5994772091942,
+                  803.2362050058009,
+                  818.8993337742719,
+                  803.2761360371962,
+                  817.1693104944382
+                ],
+                [
+                  "C",
+                  803.3160670685916,
+                  815.4392872146044,
+                  802.9871137613785,
+                  813.2728026518414,
+                  802.0577478777315,
+                  811.265992573414
+                ],
+                [
+                  "C",
+                  801.1283819940844,
+                  809.2591824949867,
+                  799.5758002885228,
+                  807.5355446353968,
+                  797.6264685835248,
+                  806.2575657543684
+                ],
+                [
+                  "C",
+                  795.6771368785268,
+                  804.97958687334,
+                  793.3539387990209,
+                  804.1117159578743,
+                  790.9606766181299,
+                  803.6962931925458
+                ],
+                [
+                  "C",
+                  788.5674144372389,
+                  803.2808704272173,
+                  786.104088154963,
+                  803.3178958120263,
+                  783.8745000444248,
+                  803.8497095315479
+                ],
+                [
+                  "Z"
+                ]
+              ],
+              "size": 4.2,
+              "color": [
+                11,
+                19,
+                34
+              ]
+            }
+          ],
+          "trimPath": [
+            [
+              "M",
+              783.8745000444246,
+              803.8497095315477
+            ],
+            [
+              "C",
+              781.6449119338864,
+              804.3815232510692,
+              779.6490619950861,
+              805.4081253053033,
+              777.7375267560939,
+              806.6501185417397
+            ],
+            [
+              "C",
+              775.8259915171017,
+              807.8921117781762,
+              773.998770977918,
+              809.3494961968149,
+              772.1064416666129,
+              810.742874645146
+            ],
+            [
+              "C",
+              770.2141123553079,
+              812.1362530934771,
+              768.2207441577904,
+              813.4062397203588,
+              766.1444873278922,
+              814.550405832332
+            ],
+            [
+              "C",
+              764.068230497994,
+              815.6945719443052,
+              761.9306792149547,
+              816.7486087365216,
+              759.8277444806306,
+              817.8386116887333
+            ],
+            [
+              "C",
+              757.7248097463065,
+              818.9286146409449,
+              755.6661951555465,
+              820.0664242785579,
+              753.7135537044946,
+              821.3363337602938
+            ],
+            [
+              "C",
+              751.7609122534428,
+              822.6062432420297,
+              749.8959506242255,
+              823.9859306863141,
+              748.0909551063561,
+              825.4506421639722
+            ],
+            [
+              "C",
+              746.2859595884867,
+              826.9153536416304,
+              744.5409301819649,
+              828.4650891526624,
+              742.8281531763045,
+              830.0750947678936
+            ],
+            [
+              "C",
+              741.115376170644,
+              831.6851003831248,
+              739.4348515658446,
+              833.355376102555,
+              737.7588656514198,
+              835.0611679970101
+            ],
+            [
+              "C",
+              736.082879736995,
+              836.7669598914651,
+              734.4114325129447,
+              838.508267960945,
+              732.7168102687823,
+              840.2603382762748
+            ],
+            [
+              "C",
+              731.0221880246199,
+              842.0124085916045,
+              729.2663396331536,
+              843.7668150815933,
+              727.7450859876742,
+              845.5704475712829
+            ],
+            [
+              "C",
+              726.2238323421948,
+              847.3740800609725,
+              724.9440885245102,
+              849.2284698314552,
+              724.2236773603229,
+              851.1853788327932
+            ],
+            [
+              "C",
+              723.5032661961355,
+              853.1422878341311,
+              723.421720040562,
+              855.2228197175446,
+              723.9580743065669,
+              857.3888402972932
+            ],
+            [
+              "C",
+              724.4944285725718,
+              859.5548608770418,
+              725.5855494785553,
+              861.7896178099422,
+              726.9709547045396,
+              863.9914216604476
+            ],
+            [
+              "C",
+              728.3563599305239,
+              866.193225510953,
+              730.0349370685936,
+              868.3927284900027,
+              731.7497590976259,
+              870.3902755066873
+            ],
+            [
+              "C",
+              733.4645811266581,
+              872.3878225233719,
+              735.2187468615901,
+              874.0006985093021,
+              736.8093209935818,
+              873.844690607212
+            ],
+            [
+              "C",
+              738.3998951255734,
+              873.6886827051219,
+              739.8492767996306,
+              871.9930095810403,
+              741.2165251882063,
+              870.0545439947272
+            ],
+            [
+              "C",
+              742.583773576782,
+              868.1160784084141,
+              743.8659359463289,
+              866.0455159941266,
+              745.1525995905848,
+              863.9952545044234
+            ],
+            [
+              "C",
+              746.4392632348407,
+              861.9449930147202,
+              747.7308304919381,
+              859.8999491127371,
+              749.118150492424,
+              857.9652152918073
+            ],
+            [
+              "C",
+              750.5054704929098,
+              856.0304814708776,
+              752.00410745467,
+              854.2231877493235,
+              753.6311668913534,
+              852.567264205646
+            ],
+            [
+              "C",
+              755.2582263280367,
+              850.9113406619684,
+              757.0047531101616,
+              849.3969312575779,
+              758.8558348814772,
+              848.0127271208374
+            ],
+            [
+              "C",
+              760.7069166527929,
+              846.628522984097,
+              762.662553413299,
+              845.3745241150062,
+              764.7078328067446,
+              844.2394216419282
+            ],
+            [
+              "C",
+              766.7531122001902,
+              843.1043191688501,
+              768.8880342265754,
+              842.0881130917846,
+              771.0976865296487,
+              841.1794945390941
+            ],
+            [
+              "C",
+              773.307338832722,
+              840.2708759864036,
+              775.5917214124836,
+              839.4698449580882,
+              777.9359219126824,
+              838.7650925825105
+            ],
+            [
+              "C",
+              780.2801224128812,
+              838.0603402069329,
+              782.6861578186915,
+              837.4466214268211,
+              785.0541124131375,
+              837.1336738615636
+            ],
+            [
+              "C",
+              787.4220670075836,
+              836.820726296306,
+              789.7518892630494,
+              836.8086839405889,
+              791.9435075633434,
+              837.3076898210011
+            ],
+            [
+              "C",
+              794.1351258636373,
+              837.8066957014132,
+              796.178156847179,
+              838.8576098093937,
+              798.0067237448174,
+              840.536013628384
+            ],
+            [
+              "C",
+              799.8352906424557,
+              842.2144174473743,
+              801.4848031798547,
+              844.3809687156008,
+              803.1163693276669,
+              846.2180319700403
+            ],
+            [
+              "C",
+              804.7479354754792,
+              848.0550952244798,
+              806.3615552337045,
+              849.5626704651326,
+              808.1183365729963,
+              849.9231222289754
+            ],
+            [
+              "C",
+              809.8751179122881,
+              850.2835739928183,
+              811.8107445987459,
+              849.4511000262183,
+              813.0660754079784,
+              847.9176158891446
+            ],
+            [
+              "C",
+              814.3214062172108,
+              846.3841317520709,
+              814.682504559148,
+              844.1458335389163,
+              814.1805404520989,
+              841.7236186097555
+            ],
+            [
+              "C",
+              813.6785763450497,
+              839.3014036805946,
+              812.5147908357629,
+              836.731703281641,
+              811.307944052107,
+              834.4463086219124
+            ],
+            [
+              "C",
+              810.1010972684511,
+              832.1609139621838,
+              808.7803241480426,
+              830.0711378884386,
+              807.5541775016646,
+              828.0953998864807
+            ],
+            [
+              "C",
+              806.3280308552867,
+              826.1196618845228,
+              805.1965106829392,
+              824.2579619543524,
+              804.3681697954049,
+              822.4287195817733
+            ],
+            [
+              "C",
+              803.5398289078706,
+              820.5994772091942,
+              803.2362050058009,
+              818.8993337742719,
+              803.2761360371962,
+              817.1693104944382
+            ],
+            [
+              "C",
+              803.3160670685916,
+              815.4392872146044,
+              802.9871137613785,
+              813.2728026518414,
+              802.0577478777315,
+              811.265992573414
+            ],
+            [
+              "C",
+              801.1283819940844,
+              809.2591824949867,
+              799.5758002885228,
+              807.5355446353968,
+              797.6264685835248,
+              806.2575657543684
+            ],
+            [
+              "C",
+              795.6771368785268,
+              804.97958687334,
+              793.3539387990209,
+              804.1117159578743,
+              790.9606766181299,
+              803.6962931925458
+            ],
+            [
+              "C",
+              788.5674144372389,
+              803.2808704272173,
+              786.104088154963,
+              803.3178958120263,
+              783.8745000444248,
+              803.8497095315479
+            ],
+            [
+              "Z"
+            ]
+          ],
+          "trimExpansion": 0.65
+        }
+      ]
+    },
+    {
+      "name": "bracelet-back-own-cap-interior",
+      "jobs": [
+        {
+          "id": "arms/arm_left/bracelet_back",
+          "issue": "R35",
+          "sample": "part-layering/references/standard.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/bracelet-back-original-cap-interior-selection.png"
+        }
+      ]
+    },
+    {
+      "name": "bracelet-front-native-edge-transition",
+      "jobs": [
+        {
+          "id": "arms/arm_left/bracelet_front",
+          "issue": "R35",
+          "strokes": [
+            {
+              "path": [
+                [
+                  "M",
+                  778,
+                  830
+                ],
+                [
+                  "C",
+                  783,
+                  825,
+                  789,
+                  819,
+                  795,
+                  816
+                ],
+                [
+                  "C",
+                  798,
+                  814,
+                  801,
+                  814,
+                  803,
+                  817
+                ]
+              ],
+              "size": 3.1,
+              "color": [
+                30,
+                44,
+                68
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "middle-finger-length-and-contact",
+      "jobs": [
+        {
+          "id": "arms/arm_left/hand/middle_finger",
+          "import": "raster-layering/step01/workspace/repair-cont/middle-own-up2.png",
+          "sample": "raster-layering/step01/workspace/repair-cont/middle-own-contact-source.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/middle-own-contact-selection.png",
+          "issue": "R8",
+          "registration": {
+            "fullTranslation": [
+              0,
+              -2
+            ],
+            "contactTranslation": [
+              2,
+              -2
+            ],
+            "rootCoveredBy": "arms/arm_left/hand/palm"
+          }
+        }
+      ]
+    },
+    {
+      "name": "left-elbow-own-paint-registration",
+      "jobs": [
+        {
+          "id": "arms/arm_right/upper_arm",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_right__upper_arm.png",
+          "sample": "raster-layering/step01/workspace/repair-cont/arms__arm_right__upper_arm-own-root-registered.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/arms__arm_right__upper_arm-own-root-selection.png",
+          "issue": "R4",
+          "registration": {
+            "localUniformScale": 1.3,
+            "pivot": [
+              410,
+              745
+            ],
+            "translation": [
+              -1,
+              0
+            ]
+          }
+        },
+        {
+          "id": "arms/arm_right/forearm",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_right__forearm.png",
+          "sample": "raster-layering/step01/workspace/repair-cont/arms__arm_right__forearm-own-root-registered.png",
+          "selection": "raster-layering/step01/workspace/repair-cont/arms__arm_right__forearm-own-root-selection.png",
+          "issue": "R4",
+          "registration": {
+            "localUniformScale": 1.35,
+            "pivot": [
+              400,
+              755
+            ],
+            "translation": [
+              -2,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "revert-unaccepted-seam-experiments",
+      "jobs": [
+        {
+          "id": "arms/arm_right/upper_arm",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_right__upper_arm.png"
+        },
+        {
+          "id": "arms/arm_right/forearm",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_right__forearm.png"
+        },
+        {
+          "id": "arms/arm_left/bracelet_front",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_left__bracelet_front.png"
+        },
+        {
+          "id": "arms/arm_left/bracelet_back",
+          "import": "raster-layering/step01/workspace/repair-cont/before/arms__arm_left__bracelet_back.png"
+        }
+      ]
+    }
+  ],
+  "generatorTrial": {
+    "inputDirectory": "raster-layering/step01/repair-evidence-01/continuation/regen-forearm-right",
+    "selectedForKRA": false,
+    "reason": "根部仍偏窄，配准后不能与上臂无缝承接；生成画面保留但未替换有效工程。"
+  },
+  "recoveredError": "KeyError: 'a) Airbrush Soft'; 已改用实际存在的 'b) Airbrush Soft'，恢复脸底后重画并检查。"
+}

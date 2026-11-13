@@ -1,0 +1,45 @@
+{
+  "source": "raster-layering/step01/workspace/repair-next11/back-own-completed-outer-edge-native-ink/hair__back_hair-after.png",
+  "registered": "raster-layering/step01/workspace/repair-next11/back-right-own-local-registered.png",
+  "region": [
+    598,
+    499,
+    678,
+    576
+  ],
+  "rowOffsets": [
+    [
+      499,
+      0
+    ],
+    [
+      520,
+      0
+    ],
+    [
+      535,
+      3
+    ],
+    [
+      550,
+      3.5
+    ],
+    [
+      560,
+      6
+    ],
+    [
+      566,
+      3
+    ],
+    [
+      575,
+      0
+    ]
+  ],
+  "xPlateau": [
+    620,
+    658
+  ],
+  "method": "premultiplied RGBA uniform edge translation with smooth interior registration field; same generated own part only"
+}

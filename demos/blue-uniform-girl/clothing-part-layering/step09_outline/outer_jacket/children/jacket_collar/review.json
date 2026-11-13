@@ -1,0 +1,48 @@
+{
+  "groupId": "outer_jacket/jacket_collar",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。先查看纯衣服整图及领部四倍局部，再读取当前节点与父节点 note、候选和父完成 SVG；完成整图 blend、领部四倍 blend/edge/SVG 独显，以及两侧六倍 edge，已覆盖本组全部可见区域。未发现确定需要修改的轮廓、归属、可见遗漏或说明问题。\n\n1. 可见归属：纯衣服参考中的画面左侧上方翻领约 x443–534、y274–407，画面右侧上方翻领约 x638–759、y276–406。候选覆盖两片领面及固定滚边的实体外缘；两侧领尖缺口以下胸前驳头留给 jacket_body，中央深色衬衫领与短领带未并入本组。依据为原参考局部与整图叠加，不以候选填充色判断归属。\n2. 画面左领：核对 (449,312) 附近肩侧领根、x443–449 的外侧下行边、(443,393) 附近圆角、y407 下缘，以及从约 (504,407) 向 (534,382) 的领尖/驳头相邻分界；六倍 edge 显示主要轮廓、位置比例与分界吻合，无可见衣料遗漏或明显误包衣身。\n3. 画面右领：核对 (638,276) 至 (700,321) 的上方斜边、外侧向 (757,391) 的领面边缘、圆转领尖及约 (749,401)–(711,406) 下缘、向 (678.37,383.18) 回转的相邻分界；六倍 edge 显示与参考领面和滚边覆盖一致，未吞并下方驳头或肩部衣身。\n4. 颈后连接与开口：约 x493–660、y273–319 的连接段逐字曲线继承父完成 SVG，符合 note 明确登记的已补全隐藏领根职责；它不作为原图中中央深色衬衫的可见归属证据。独显确认后段与两侧翻领连续，中央向下敞开，未造皮肤占位或整块封口面。note 已传递颈后段在脖子及内搭之后、前翻领面在上胸及内搭之前、颈侧回转连续和共同随动/分别翻折职责。\n5. 父范围与其他组件：allowOutsideParent 省略，按包含关系检查；四倍采样 outsideSamples=0、outsidePixels=0，候选完全在父完成范围内。当前组没有参考支持的独立薄纱或分离附件遗漏；固定滚边已由联合覆盖表达，不要求内部装饰路径、纹样、明暗或衣料透明度。无需重画或返修，无上游父范围限制。\n\n图像证据：\n\n\n\n\n\n\n\n",
+      "candidateHash": "44e0308fae3939fa28af766b7c2cd0f8f7ce5a68ef019d4ca0819362c41eb4f9",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/previews/2026-11-10T10-55-13-870Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/outer_jacket.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/previews/2026-11-10T10-55-13-870Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/previews/2026-11-10T10-55-13-870Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/previews/2026-11-10T10-55-13-870Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/previews/2026-11-10T10-55-13-870Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/previews/2026-11-10T10-55-13-870Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/outer_jacket/children/jacket_collar/previews/2026-11-10T10-55-13-870Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:17:54.695Z"
+    }
+  ]
+}

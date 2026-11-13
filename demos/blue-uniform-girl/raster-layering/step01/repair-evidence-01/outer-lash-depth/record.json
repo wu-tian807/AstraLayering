@@ -1,0 +1,140 @@
+{
+  "newPassedIssues": [
+    "R29"
+  ],
+  "passedIssues": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R8",
+    "R9",
+    "R10",
+    "R11",
+    "R12",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R20",
+    "R22",
+    "R23",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34"
+  ],
+  "pendingIssues": [
+    "R5",
+    "R6",
+    "R7",
+    "R13",
+    "R19",
+    "R21",
+    "R24",
+    "R25",
+    "R35"
+  ],
+  "changedLogicalParts": [
+    "face/eyes/eye_left/upper_eyelid"
+  ],
+  "unchangedLogicalPaints": 58,
+  "logicalParts": 59,
+  "paintLayers": 60,
+  "nativeGroups": 3,
+  "nativeMasks": 10,
+  "modifiedNativeMasks": [],
+  "maskUUIDAndOwnershipAndSelectionsUnchanged": true,
+  "paintFragments": [
+    {
+      "name": "40 | face/eyes/eye_left/upper_eyelid",
+      "uuid": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+      "level": 40
+    },
+    {
+      "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+      "uuid": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+      "level": 57.5
+    }
+  ],
+  "region": [
+    669,
+    346,
+    17,
+    14
+  ],
+  "method": "已有生成完整上睑上局部Krita原生窄笔触与原图同件墨色核心取样；不取蓝色侧发或肤色。互斥像素分片及普通绘画层组装。",
+  "preAnnotatedSplits": [],
+  "assemblyDiscoveredSplits": [
+    {
+      "logicalID": "face/eyes/eye_left/upper_eyelid",
+      "fragments": [
+        {
+          "name": "40 | face/eyes/eye_left/upper_eyelid",
+          "uuid": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+          "level": 40
+        },
+        {
+          "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+          "uuid": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+          "level": 57.5
+        }
+      ],
+      "region": [
+        669,
+        346,
+        17,
+        14
+      ],
+      "paintCount": 60,
+      "logicalCount": 59,
+      "unionRawExact": true,
+      "reason": "原图外侧短睫毛尖跨在57侧发前，主体仍在侧发后；同一上睑共同运动的两个深度分片，未新增控制身份。"
+    }
+  ],
+  "upstreamChanges": [
+    "part-layering/parts/face/eyes/eye_left/upper_eyelid.svg",
+    "part-layering/occlusion.json"
+  ],
+  "groupsChanged": false,
+  "reuseSource": "同一逻辑上睑拆前完整绘画；不复用其他part",
+  "rejectedTrials": [
+    {
+      "name": "upper-lash-own-outer-spike-native",
+      "reason": "取样边界有竖向硬接，已撤回到批前完整上睑重做。"
+    },
+    {
+      "name": "thumb-own-root-contour-and-material-transition",
+      "reason": "根部新线偏入内部形成双线，已完整恢复批前拇指；R13仍待修。"
+    }
+  ],
+  "operations": "raster-layering/step01/repair-evidence-01/outer-lash-depth/operations.json",
+  "freshDiskOpen": true,
+  "reopenVerification": "raster-layering/step01/repair-evidence-01/outer-lash-depth/reopen-verification.json",
+  "maskVerification": "raster-layering/step01/repair-evidence-01/outer-lash-depth/mask-verification.json",
+  "currentThreeViews": "raster-layering/step01/repair-evidence-01/index.json",
+  "shapeRecords": "raster-layering/step01/repair-evidence-01/shape-records.json",
+  "unionRawExactBeforeAfterSplit": true,
+  "reopenPassed": true,
+  "defaultPNGMatchesReopen": true,
+  "finalVisualChecks": {
+    "eyeAtNativeSize": "raster-layering/step01/repair-evidence-01/eye-left-native.png",
+    "eyeAt3x": "raster-layering/step01/repair-evidence-01/eye-left-3x.png",
+    "compositeOnBlack": "raster-layering/step01/repair-evidence-01/outer-lash-depth/final-on-black.png",
+    "compositeOnGray": "raster-layering/step01/repair-evidence-01/outer-lash-depth/final-on-gray.png",
+    "thumbRestoredThreeViews": "raster-layering/step01/repair-evidence-01/issues/R13.png",
+    "svgSupportBox": [
+      550,
+      315,
+      682,
+      395
+    ],
+    "viewed": true
+  }
+}

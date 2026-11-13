@@ -1,0 +1,38 @@
+{
+  "image": "raster-layering/step01/review-evidence-01/inspection/isolated-disabled/arms__arm_right__hand__thumb.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-01/annotations/R13/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/3b7aab26-34d2-4f7a-a05b-5986ed6fb76c/regions.json",
+  "regions": [
+    {
+      "id": "R13",
+      "bounds": [
+        301,
+        895,
+        48,
+        31
+      ],
+      "layers": [
+        "17 | arms/arm_right/hand/thumb"
+      ],
+      "description": "画面左拇指隐藏根部与可见指身之间有斜向硬色边，外侧深描边在补全边界突然停止；根部暗橙圆块没有和指身自然融接。",
+      "crop": [
+        287,
+        881,
+        76,
+        59
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/R13/R13-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/R13/R13-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/R13/R13-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。",
+  "source_tool_manifest": "raster-layering/step01/workspace/review-regions/3b7aab26-34d2-4f7a-a05b-5986ed6fb76c/regions.json"
+}

@@ -1,0 +1,380 @@
+<svg data-depth-plan-sha256="f0f779d2a663445a627544cec9b73aa1ffc7d110a499044cb3abaf196bb08729" data-depth-preview="whole-parts" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1115" height="1410" viewBox="0 0 1115 1410" data-part-preview="1">
+<metadata id="part-preview-groups">{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;id&quot;:&quot;hair/back_hair&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_left/shoes/cuff_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_right/shoes/cuff_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_left/leg&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_right/leg&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_left/shoes/shoe_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;legs/leg_right/shoes/shoe_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/bracelet_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/bracelet_back&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/little_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/little_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/ring_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/ring_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/middle_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/middle_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/thumb&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/thumb&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/index_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/index_finger&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/hand/palm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/hand/palm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/forearm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/forearm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_left/upper_arm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/upper_arm&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;neck&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;body/torso&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;body/breast&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;pelvis&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;},{&quot;id&quot;:&quot;arms/arm_left/bracelet_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;arms/arm_right/bracelet_front&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/ears/ear_left&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/ears/ear_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/face_base&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/blush_left&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/blush_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/sclera&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/iris&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/highlight&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/upper_eyelid&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_left/eyelid_crease&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/sclera&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/iris&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/highlight&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/upper_eyelid&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyes/eye_right/eyelid_crease&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/nose&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/mouth_interior&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/lower_teeth&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/tongue&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/upper_teeth&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/lower_lip&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/mouth/upper_lip&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyebrows/eyebrow_left&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;face/eyebrows/eyebrow_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;hair/bangs&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;hair/side_hair/side_hair_left&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;hair/side_hair/side_hair_right&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;head_accessories&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;group&quot;}]}</metadata>
+<g id="node-0" data-group-path="hair/back_hair" data-node-kind="part" data-name="back_hair">
+<g id="part-source-0"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 465,55 C 481,35 519,30 557,38 C 597,47 627,65 653,91 C 668,108 684,132 694,143 C 716,146 743,152 758,162 C 775,172 779,188 773,208 C 766,231 747,255 729,274 C 736,299 764,334 777,361 C 790,383 785,405 775,421 C 764,438 751,447 735,453 C 728,478 713,503 698,524 C 682,533 665,529 654,520 C 641,530 624,540 605,545 C 598,547 594,552 594,558 C 593,566 585,573 573,577 C 575,573 572,570 567,571 C 558,575 549,578 539,579 C 543,574 540,571 535,570 C 523,569 514,566 502,556 C 479,551 455,547 432,539 C 409,532 391,521 378,507 C 361,501 348,501 340,512 C 337,525 335,538 327,545 C 309,550 284,540 265,521 C 256,495 252,452 256,410 C 250,385 249,364 249,338 C 248,303 254,273 263,243 C 275,205 291,174 313,143 C 327,121 339,89 356,75 C 376,57 408,41 431,46 C 445,44 457,48 465,55 Z" fill-rule="nonzero"/></g>
+<g data-group-path="hair/back_hair" fill="#42567d" stroke="none" id="part-source-0-back-hair-outline">
+<path fill-rule="evenodd" d="M494,20 C523,4 561,6 595,13 C651,23 696,51 733,90 C769,128 790,168 808,213 C821,244 850,269 878,297 C902,321 914,347 914,372 C915,391 905,405 890,415 C897,442 894,464 879,480 C869,491 855,498 842,502 C859,485 865,461 861,439 C857,430 851,424 847,419 C851,448 846,474 832,496 C816,520 795,535 773,541 C788,524 793,501 791,476 C782,508 765,532 746,543 C732,551 720,555 710,556 C708,556 706.5,554.5 707.5,553 C717,542 723,526 724,511 C711,535 690,554 672,560 C669,562 666,563 664,563 C686,542 705,513 717,477 C720,470 723,462 724,453 C745,444 760,428 767,406 C771,393 770,377 763,365 C755,351 742,345 730,354 C731,324 727,295 720,270 L730,254 C743,239 758,217 764,198 C768,183 762,171 747,165 C729,158 703,151 682,148 C671,132 655,110 640,96 C615,74 592,59 554,45 C518,35 487,44 466,66 C454,54 442,50 430,52 C411,48 390,60 380,63 C354,76 342,108 332,130 C319,150 307,166 298,180 C277,217 265,256 260,289 C255,308 255,326 257,340 C255,366 260,390 267,410 C257,450 260,492 268,527 C272,551 282,571 295,580 C270,582 244,565 228,540 C221,522 214,500 214,480 C213,470 213,464 213,459 C205,478 199,491 199,503 C199,526 208,542 225,550 C211,557 190,545 181,530 C170,513 171,490 176,468 C180,449 188,431 196,415 C184,406 177,391 176,373 C175,341 190,311 208,279 C222,257 240,233 253,211 C287,137 332,80 391,45 C425,25 461,16 494,20 Z
+M198,396 C187,377 191,355 199,334 C210,307 227,280 241,259 C229,313 217,357 198,396 Z
+M884,381 C890,357 882,334 869,315 C858,300 845,286 834,279 C852,313 872,347 884,381 Z"/>
+<path d="M336,465 C348,479 363,490 381,494 C388,517 410,530 438,537 C465,544 492,547 525,548 C530,558 523,562 511,563 C492,562 475,560 464,564 C456,568 451,575 446,582 C421,580 402,569 391,550 C393,565 400,577 412,583 C401,588 371,578 353,566 C349,561 346,555 344,550 C337,539 334,523 333,508 C333,490 334,478 336,465 Z"/>
+<path fill-rule="evenodd" d="M591,530 C620,518 649,499 665,481 C659,510 650,529 642,534 L640,526 C640,532 640,536 638.5,540.5 C634,548 627,557 617,562 C611,565 606,566 601,564 C597,563 594,561 592,559 C589,551 590,540 591,530 Z"/>
+</g></svg></g>
+</g>
+<g id="node-1" data-group-path="legs/leg_left/shoes/cuff_back" data-node-kind="part" data-name="cuff_back">
+<g id="part-source-1"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 603,1181 C 604,1180 605,1179.4 606,1179 C 620,1177 630,1171 648,1171 C 666,1171 683,1176 695,1176 C 698,1177.2 701,1179.5 700,1183 C 699.5,1186 696.8,1188 694,1186.7 C 670,1176.5 632,1177.8 608,1189 C 605,1190.4 602,1189 601.5,1186.2 C 601.2,1184.2 601.8,1182.4 603,1181 Z" fill-rule="nonzero"/><path d="M 596,1189.5 C 599.87,1189.5 603,1191.74 603,1194.5 C 603,1197.26 599.87,1199.5 596,1199.5 C 592.13,1199.5 589,1197.26 589,1194.5 C 589,1191.74 592.13,1189.5 596,1189.5 Z" fill-rule="nonzero"/><path d="M 704,1185 C 707.59,1185 710.5,1187.46 710.5,1190.5 C 710.5,1193.54 707.59,1196 704,1196 C 700.41,1196 697.5,1193.54 697.5,1190.5 C 697.5,1187.46 700.41,1185 704,1185 Z" fill-rule="nonzero"/></g><g data-group-path="legs/leg_left/shoes/cuff_back" fill="#7284bc" stroke="none" id="part-source-1-leg-left-shoes-cuff-back-outline"><path d="M 606,1179 C 593,1181 584,1187 585,1198 C 587,1195 591,1193 594,1192 C 600,1193 608,1194 616,1195 C 613,1191 610,1190 607,1189 Z"/><path d="M 695,1176 C 705,1176 716,1182 714,1194 C 712,1191 709,1189.5 706,1189 C 697,1189.5 679,1191 665,1193 C 672,1187 684,1189 694,1187 Z"/></g></svg></g>
+</g>
+<g id="node-2" data-group-path="legs/leg_right/shoes/cuff_back" data-node-kind="part" data-name="cuff_back">
+<g id="part-source-2"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 354,1170.8 C 357,1168.6 361.1,1169.8 363.2,1172.8 C 365.3,1175.9 364.9,1181.6 363.7,1185.5 C 362.6,1189.2 359.7,1191.1 356.4,1190.6 C 352.6,1190.2 350.1,1187.8 350.3,1184.5 C 350.4,1182.3 350.6,1179.3 351,1177 C 351.4,1174.5 352.2,1172.1 354,1170.8 Z" fill-rule="nonzero"/><path d="M 465.1,1192.3 C 467.2,1191.8 469.8,1194.9 470,1198 C 470.1,1199.3 470.1,1200.1 470,1201 C 469.3,1203.2 468.4,1205.7 467.5,1208.3 C 466.4,1211.2 463.9,1212.5 461.4,1211.5 C 458.5,1210.4 457.8,1207.4 458.5,1204.9 C 459.3,1202.2 460.2,1199.6 461.6,1197.1 C 463,1194.6 463.4,1192.7 465.1,1192.3 Z" fill-rule="nonzero"/></g><g data-group-path="legs/leg_right/shoes/cuff_back" fill="#58b8a9" stroke="none" id="part-source-2-right-shoe-cuff-back"><path d="M 367,1160 C 388,1150 433,1157 457,1180 C 461,1183 463,1188 459,1191 C 455,1194 451,1191 448,1188 C 431,1172 395,1163 374,1173 C 369,1177 364,1176 361,1172 C 358,1168 361,1162 367,1160 Z"/><path d="M 372,1158 L 371,1173 C 365,1172 359,1173 356,1178 L 351,1177 C 353,1164 363,1159 372,1158 Z"/><path d="M 456,1179 C 467,1184 473,1191 470,1201 L 465,1197 C 466,1192 459,1187 452,1185 Z"/></g></svg></g>
+</g>
+<g id="node-3" data-group-path="legs/leg_left/leg" data-node-kind="part" data-name="leg">
+<g id="part-source-3"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 691,819 C 681,793 661,779 638,779 C 607,779 585,802 583,831 C 581,851 584,871 585,891 C 587,901 587,907 585,914 C 582,919 581,927 581,937 L 594,937 C 594,913 614,895 637,873 C 654,855 675,838 689,832 Z" fill-rule="nonzero"/><path d="M 607,1188 C 609,1206 612,1223 614,1238 C 616,1255 613,1271 608,1285 C 604,1295 597,1305 593,1315 C 589,1322 586,1327 590,1334 C 594,1340 606,1341 622,1341 C 638,1342 658,1341 670,1338 C 681,1335 687,1329 688,1320 C 689,1308 685,1297 683,1284 C 681,1270 679,1259 680,1246 C 681,1228 689,1204 693,1186 L 692,1170 C 665,1166 634,1166 608,1170 Z" fill-rule="nonzero"/></g><g data-group-path="legs/leg_left/leg" fill="#7284bc" stroke="none" id="part-source-3-leg-left-leg-outline"><path d="M 691,819 C 678,827 658,845 641,862 C 619,884 600,906 585,914 C 581,920 581,928 581,939 C 580,975 584,1021 587,1049 C 589,1070 595,1090 598,1111 C 602,1134 604,1158 606,1179 L 607,1189 C 610,1190 613,1191 616,1194 C 619,1188 651,1187 660,1194 C 665,1189 680,1190 693,1186 C 697,1152 700,1122 693,1095 C 689,1079 683,1065 682,1051 C 681,1029 690,997 695,970 C 700,947 705,927 706.5,907 C 709,878 702,845 691,819 Z"/></g></svg></g>
+</g>
+<g id="node-4" data-group-path="legs/leg_right/leg" data-node-kind="part" data-name="leg">
+<g id="part-source-4"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 456.5,810 C 466,788 483,777 504,777 C 539,777 564,801 569,830 C 575,857 570,887 564,910 C 564,918 562,927 558,936 L 548,931 C 552,916 550,900 543,885 C 524,857 488,829 458,822 Z" fill-rule="nonzero"/><path d="M 373,1164 C 372,1176 371,1191 370,1207 C 369,1220 367,1231 363,1241 C 358,1253 356,1260 357,1271 C 358,1285 349,1297 343,1310 C 337,1323 341,1331 356,1335 C 377,1340 407,1340 423,1334 C 434,1330 438,1320 436,1309 C 433,1298 425,1286 422,1275 C 418,1261 422,1245 429,1229 C 435,1215 443,1201 449,1192 L 449,1188 C 428,1174 400,1165 373,1164 Z" fill-rule="nonzero"/></g><g data-group-path="legs/leg_right/leg" fill="#7284bc" stroke="none" id="part-source-4-leg-right-leg-outline"><path d="M 456.5,810 C 475,807 496,818 516,836 C 541,858 561,887 564,910 C 565,918 561,928 558,940 C 547,979 530,1027 511,1068 C 492,1100 474,1142 456,1179 L 449,1192 C 447,1195 446,1197 442,1194 C 432,1188 415,1184 406,1184 C 402,1184 400,1185 397,1186 C 395,1180 393,1177 384,1174 L 372,1170 C 373,1130 387,1092 407,1058 C 415,1046 420,1036 421,1025 C 425,993 427,951 431,917 C 430,893 434,863 444,838 C 448,826 453,816 456.5,810 Z"/></g></svg></g>
+</g>
+<g id="node-5" data-group-path="legs/leg_left/shoes/shoe_front" data-node-kind="part" data-name="shoe_front">
+<g id="part-source-5"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-group-path="legs/leg_left/shoes/shoe_front" fill="#7284bc" stroke="none" id="part-source-5-leg-left-shoe-front-outline"><path d="M 585,1198 C 585,1192 596,1187.5 607,1189 C 610,1190 613,1191 616,1195 C 617,1191 620,1189 625,1189 C 631,1188 640,1188 648,1189 C 655,1189 660,1191 662,1197 L 665,1193 C 672,1187 684,1189 694,1187 C 703,1186 711,1188 714,1194 C 713,1209 707,1231 701,1252 L 705,1277 C 707,1299 709,1325 706,1349 C 703,1360 691,1364 679,1368 C 660,1373 624,1372.5 600,1369 C 583,1367 574,1363 574,1351 L 574,1338 C 574,1324 578,1313 587,1297 C 592,1286 594,1274 592,1261 C 591,1242 586,1219 585,1198 Z"/></g></svg></g>
+</g>
+<g id="node-6" data-group-path="legs/leg_right/shoes/shoe_front" data-node-kind="part" data-name="shoe_front">
+<g id="part-source-6"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-group-path="legs/leg_right/shoes/shoe_front" fill="#58b8a9" stroke="none" id="part-source-6-right-shoe-front-outline"><path d="M 351,1177 C 354,1170 361,1166 371,1166 L 371,1173 C 375,1177 389,1176 396,1186 C 401,1178 414,1182 428,1185 C 437,1187 442,1190 443,1194 L 451,1190 L 454,1184 C 461,1188 467,1194 470,1201 C 464,1220 450,1241 444.5,1264 C 443,1279 440,1286 440,1294 C 445,1310 449,1330 448,1349 C 448,1360 443,1366 432,1368.8 C 405,1373 365,1372 343,1364.7 C 330,1360 323,1354 323,1338 C 321,1310 332,1271 341,1242 L 346,1232 C 347,1209 349,1188 351,1177 Z"/></g></svg></g>
+</g>
+<g id="node-7" data-group-path="arms/arm_left/bracelet_back" data-node-kind="part" data-name="bracelet_back">
+<g id="part-source-7"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 732.4,843 C 738,829 758,815 779,809 C 784,807 790,807.5 794,811 C 800,818 807,830 812,840 C 815,845 816,851 812,853 C 808,855 804,851 802,847 C 797,837 784,837 772,844 C 760,851 751,861 747,872 C 745,878 742,881 738.5,877.5 C 733,872 729,865 727,859 C 725.5,853 727,848 732.4,843 Z" fill-rule="nonzero"/></g>
+<g data-group-path="arms/arm_left/bracelet_back" fill="#52659b" stroke="none" id="part-source-7-left-bracelet-back-outline">
+<path d="M 778,808 C 785,802 792,802 798,808 C 800,811 802,814 804,818 C 799,814 796,813 793,814 C 789,815 787,821 783,824 Z"/>
+<path d="M 732,842 L 736,846 C 732,849 729,853 729,857 L 727,862 C 726,861 726,859 725,858 C 723,852 726,846 732,842 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-8" data-group-path="arms/arm_right/bracelet_back" data-node-kind="part" data-name="bracelet_back">
+<g id="part-source-8"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 311.5,807.2 C 318.6,803.6 329.8,805.9 341.4,810.2 C 356.5,815.8 370.4,825.8 378,837.8 C 380.7,842.3 377.3,849.7 373.1,856.9 C 368.9,864 363.7,871.7 358.7,876.2 C 355.2,879.5 351.1,877.6 347.9,875.5 C 333.6,866.2 319.2,857.7 305.9,854.6 C 301.5,853.5 297,856.5 295.4,852.3 C 292.8,846.1 296.1,831.1 299.4,823 C 302.8,816.1 307.7,810 311.5,807.2 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_right/bracelet_back" fill="#425b9b" stroke="none" id="part-source-8-bracelet-back-right-outline">
+    <path d="M 332,806 C 324,801 315,800 310,805 C 306.7,808.8 302.7,815.1 299.2,822.2 L 299.8,826 C 305.1,820.8 309.3,814.5 315.2,812 C 319.3,809.6 324.1,810.4 329.2,813.2 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-9" data-group-path="arms/arm_left/hand/little_finger" data-node-kind="part" data-name="little_finger">
+<g id="part-source-9"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 829,920 C 826.5,915.5 825.5,911.5 828,907.5 C 830.5,903.5 836.5,902.5 840.5,905.5 C 843,907.3 844.5,910 846,914 C 850,923 854,933.5 856,942 C 857.3,947 858,951.5 856.3,955.5 C 854.8,959 851.4,960.9 848.3,959.8 C 844.8,958.6 843,955.5 842.7,951.5 C 842.1,944 840.3,936.8 837.2,930.3 C 834.8,925.6 831.5,924 829,920 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_left/hand/little_finger" id="part-source-9-source"/></svg>
+</g>
+</g>
+<g id="node-10" data-group-path="arms/arm_right/hand/little_finger" data-node-kind="part" data-name="little_finger">
+<g id="part-source-10"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 271.5,926 C 271.5,920.5 275,917 279.5,917 C 284.8,917 289,921 288.3,926 C 287.5,931 282.5,935 282.5,939 C 282.5,943 286,947 285.7,950 C 285.3,953.5 281.5,955 278,953 C 274,950.7 272.5,947 270.5,942 C 268.5,937 268.5,934.5 269.5,931.5 C 270,929.7 271,928 271.5,926 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_right/hand/little_finger" id="part-source-10-source"/></svg>
+</g>
+</g>
+<g id="node-11" data-group-path="arms/arm_left/hand/ring_finger" data-node-kind="part" data-name="ring_finger">
+<g id="part-source-11"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 814.2,916.7 C 810.8,910.8 814.2,903.5 820.3,902.8 C 825.9,901.8 829.3,905.7 830.8,911.1 C 832.1,916.6 835.4,921.7 838.5,927.1 C 840.3,930.2 842.3,934.1 843.9,937.5 C 844.9,939.5 844.9,942.9 845.3,947.4 C 845.7,951.7 846.2,956.1 846.5,959.4 C 845.9,964.4 844.4,969.4 841.1,970.8 C 837.8,972.2 834.0,970.2 832.6,966.5 C 830.5,961.2 830.6,953.7 830.5,947.1 C 830.5,944.3 830.3,941.5 828.9,939.3 C 824.5,933.1 818.5,923.7 814.2,916.7 Z" fill-rule="nonzero"/></g><g data-group-path="arms/arm_left/hand/ring_finger" id="part-source-11-source"/></svg>
+</g>
+</g>
+<g id="node-12" data-group-path="arms/arm_right/hand/ring_finger" data-node-kind="part" data-name="ring_finger">
+<g id="part-source-12"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 283.8,937.9 C 279.7,934.4 277.2,931.2 274.8,927.5 C 272.8,924.2 273.3,920.8 275.6,917.8 C 279,913.3 283.4,908.8 287.6,905.6 C 291.4,902.5 296.8,903.2 299.4,906.9 C 302,910.7 300.8,914.9 297.2,918.6 C 295.3,921.8 295.8,925.3 296.2,928.1 C 296,928.8 296,929.8 296.8,931 C 298,933 299,935 300,938 L 289.7,944 C 287.8,941.5 285.9,939.4 283.8,937.9 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_right/hand/ring_finger" fill="#e5a17f" stroke="none" id="part-source-12-arm-right-ring-finger-outline">
+    <path d="M 290.2,932.1 C 292.2,930.5 294.3,929.2 296.2,928.1 C 296,928.8 296,929.8 296.8,931 C 299.9,936 302.8,942 303,948 C 303,952 303,958 299,962 C 296.8,962 295.5,960.5 294.6,957.8 C 292.6,951.4 288.3,941.7 283.8,937.9 C 285.8,935.8 288,933.7 290.2,932.1 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-13" data-group-path="arms/arm_left/hand/middle_finger" data-node-kind="part" data-name="middle_finger">
+<g id="part-source-13"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 818,931 C 817,926 812,923 809,918 C 805,912 808,905 814,903 C 820,901 825,904 829,912 C 832,919 835.5,932 841,943 L 833,945 L 820,940 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_left/hand/middle_finger" fill="#e5a17f" stroke="none" id="part-source-13-arm-left-middle-finger-outline">
+    <path d="M 816,921 C 820,922 825,924 829,926 C 832,931 838,937 841,943 C 842,951 842.5,960 844,968 C 841,979.4 836,985.3 830,983.3 C 823,983.3 819,977 820,962 C 823,953 820,941 818,931 C 817,927 816.5,924 816,921 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-14" data-group-path="arms/arm_right/hand/middle_finger" data-node-kind="part" data-name="middle_finger">
+<g id="part-source-14"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 276,965 C 272,956 268,949 267,941 C 265,933 267,925 270,918 C 273,912 278,909 284,911 C 290,913 292,919 290,925 C 288,930 282,931 282,933 C 282,934 282.6667,936 284,938 C 286,944 290,953 293,959 C 290,963 284,967 278,965 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_right/hand/middle_finger" fill="#e5a17f" stroke="none" id="part-source-14-arm-right-middle-finger-outline">
+    <path d="M 284,938 C 288,944 291.5,951 294.5,958 C 296,960 297.5,961.5 299,962 C 298,968 295,974 289,976 C 284,978 280,974 276,965 C 280,959 283,949 284,938 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-15" data-group-path="arms/arm_left/hand/thumb" data-node-kind="part" data-name="thumb">
+<g id="part-source-15"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+<g data-group-path="arms/arm_left/hand/thumb" fill="#e5a17f" stroke="none" id="part-source-15-arm-left-hand-thumb-outline">
+<path d="M 773,912 C 784,906 807,903 819,911 C 815,915 814.5,921 817,931 C 819,941 824,953 820,962 C 812,970 802,968 798,959 C 795,952 792,943 787,934 C 783,927 776,920 773,912 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-16" data-group-path="arms/arm_right/hand/thumb" data-node-kind="part" data-name="thumb">
+<g id="part-source-16"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 307,904 C 305.6,899.3 304.7,894.3 306.5,889.4 C 309.1,882.1 316.6,877.8 325.1,878.5 C 333.5,879.1 341.1,883.8 344.4,891.0 C 346.5,895.6 346.5,900.4 344.93,904.52 C 342.78,910.09 340.15,915.6 337,921 C 328,918.6 316.8,916.6 306,921 C 308,915 308.5,909 307,904 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_right/hand/thumb" fill="#e5a17f" stroke="none" id="part-source-16-arm-right-hand-thumb-outline">
+    <path d="M 307,904 C 320,901 334,899 344.93,904.52 C 342.78,910.09 340.15,915.6 337,921 C 332,930 331,941 326,949 C 322,956 315,958 310,952 C 303,945 303,933 306,921 C 308,915 308.5,909 307,904 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-17" data-group-path="arms/arm_left/hand/index_finger" data-node-kind="part" data-name="index_finger">
+<g id="part-source-17"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+<g data-group-path="arms/arm_left/hand/index_finger" fill="#e5a17f" stroke="none" id="part-source-17-arm-left-index-finger-outline">
+<path d="M 815,921 C 815.2,914 821,907 829,903 C 836,900 844,900 850,905 C 860,924 866.5,944 865.5,960 C 866.2,968.5 864,974.5 859,975.3 C 852.7,977 848,973 844,968 C 842.2,961.5 841.8,950 839,943 C 834.9,936.8 830.5,932.5 827.8,928.2 C 822.7,926.2 818.5,924.1 815,923.3 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-18" data-group-path="arms/arm_right/hand/index_finger" data-node-kind="part" data-name="index_finger">
+<g id="part-source-18"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 259,909 C 266,896 276,889 286,891 C 296,893 290.316,907.657 299.196,914.367 C 287,918 277,926 265,933 C 260,929 257,920 259,909 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_right/hand/index_finger" fill="#e5a17f" stroke="none" id="part-source-18-right-index-finger-outline">
+    <path d="M 259,909 C 266,905 271,901 278,904 C 288,907 300,913 306,921 C 299,925 291,931 284,938 C 282,948 280,958 276,965 C 272,968 267,970 262,968.5 C 258,967 256,959 255,949 C 253,934 252,922 259,909 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-19" data-group-path="arms/arm_left/hand/palm" data-node-kind="part" data-name="palm">
+<g id="part-source-19"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 766,891 C 763,880 760,870 755,861 C 748,851 747,840 754,833 C 762,825 775,824 785,831 C 796,839 809,855 811,859 C 812,861 813,863 814,864 L 807,872 C 795,883 781,893 770,899 L 766,891 Z" fill-rule="nonzero"/></g>
+<g data-group-path="arms/arm_left/hand/palm" fill="#e5a17f" stroke="none" id="part-source-19-arm-left-hand-palm-outline">
+<path d="M 811,859 C 812,861 813,863 814,864 C 827,877 843,891 850,905 C 850.8,906.5 851.5,908 852.2,909.5 C 843,914.5 831,921.5 819,924 C 808,926 799,932 791.2,938.5 C 790.4,937 789.7,935.5 789,934 C 785,927 776,920 773,912 C 769,905 768,898 766,891 C 784,883 799,871 811,859 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-20" data-group-path="arms/arm_right/hand/palm" data-node-kind="part" data-name="palm">
+<g id="part-source-20"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="arms/arm_right/hand/palm" fill="#e5a17f" stroke="none" id="part-source-20-arm-right-hand-palm-outline">
+    <path d="M 294,860 C 303,849 309,836 317,825 C 325,813 338,809 351,815 C 364,821 371,835 367,847 C 363,859 351,869 350,879 L 349,885 C 350,896 344,909 338.5,918.5 C 330,916 319,914 309,916 C 302,915 292,921 284,927 C 275,932 265,934 253.9,930 C 253.6,922 255.2,916 259,909 C 266,893 280,875 294,860 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-21" data-group-path="arms/arm_left/forearm" data-node-kind="part" data-name="forearm">
+<g id="part-source-21"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 732,842 L 775,815 L 778,808 C 780,812 782,817 783,821 C 786,832 795,845 805,854 C 807,856 807,857 804,860 C 794,870 780,877 769,880 C 767,880.5 766,879 764,876 C 758,868 750,860 741,851 C 738,848 735,845 732,842 Z" fill-rule="nonzero"/></g>
+<g data-group-path="arms/arm_left/forearm" fill="#e5a17f" stroke="none" id="part-source-21-left-forearm-outline">
+<path d="M 670,747 C 671,734 678,721 693,719 C 708,717 723,721 730,734 C 736,746 747,758 754,772 C 763,787 770,801 778,808 C 780,812 782,817 783,821 C 774,835 756,846 741,851 C 738,848 735,845 732,842 C 716,825 701,809 691,792 C 683,779 677,763 670,747 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-22" data-group-path="arms/arm_right/forearm" data-node-kind="part" data-name="forearm">
+<g id="part-source-22"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 382,719 C 391,704 411,700 424,709 C 439,718 443,737 435,751 L 430,760 C 413,749 396,736 380,728 Z" fill-rule="nonzero"/><path d="M 333,808 L 331,814 C 326,826 320,838 316,848 C 328,856 345,865 356,871 C 360,860 368,850 375,841 L 379,835 C 365,824 349,815 333,808 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="arms/arm_right/forearm" fill="#e5a17f" stroke="none" id="part-source-22-arm-right-forearm-outline">
+    <path d="M 382,719 C 394,718 418,734 435,751 C 431,761 427,774 420,784 C 409,802 393,820 378,837 C 377,838 376,840 375,841 C 362,829 347,821 331,814 C 331,811 332,808 332,806 C 341,787 348,768 359,750 C 366,738 377,729 382,719 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-23" data-group-path="arms/arm_left/upper_arm" data-node-kind="part" data-name="upper_arm">
+<g id="part-source-23"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="arms/arm_left/upper_arm" fill="#e5a17f" stroke="none" id="part-source-23-arm-left-upper-arm-outline">
+    <path fill-rule="nonzero" d="M 635,572 C 657,571 673,584 682,604 C 689,620 694,638 701,657 C 711,686 720,714 730,734 C 731.5,737 733.3125,740 735.296875,743.03125 C 725,757 696,767 675.109375,758.953125 C 673.4375,755 671.75,751 670,747 C 671,726 674,704 678,685 C 680,670 676,652 668,638 C 659,621 648,591 635,572 Z M 635,572 C 650,596 670,632 683,660 L 680,678 C 673,661 646,659 626,645 C 609,631 600,613 606,596 C 610,581 622,571 635,572 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-24" data-group-path="arms/arm_right/upper_arm" data-node-kind="part" data-name="upper_arm">
+<g id="part-source-24"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+<g data-group-path="arms/arm_right/upper_arm" fill="#e5a17f" stroke="none" id="part-source-24-arm-right-upper-arm-outline">
+<path d="M 494,563 C 475,559 455,567 445,583 C 435,596 432,612 425,628 C 412,658 398,691 382,719 C 380.2,722.6 378,726.1 375.3,729.6 C 376,741 388,752 401,755 C 414,759 426,757 435,751 C 448,729 462,704 474,681 C 486,669 494,650 498,632 C 502,610 502,588 494,563 Z"/>
+<path d="M 494,563 C 509,562 522,573 530,590 C 538,608 532,625 519,638 C 507,649 495,651 484,667 L 479,649 C 491,624 502,595 494,563 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-25" data-group-path="neck" data-node-kind="group" data-name="neck">
+<g id="part-source-25"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 527.7,549 C 523.7,536.5 526.7,523.5 537.1,515.4 C 548.3,506.7 568.3,504.9 581.9,511.2 C 592,515.9 593.8,521.9 592.8,529 L 590.4,534 C 568,544 547,550.7 529.2,552.9 Z" fill-rule="nonzero"/><path d="M 515.6,563.6 C 512.2,564.5 508.8,565.3 506.9,567.5 C 505.6,569 505.9,571.1 507.8,572.2 C 510,573.5 513.9,574 518.2,574.6 L 519.1,571.6 L 516.8,564.3 Z" fill-rule="nonzero"/><path d="M 617.6,569.8 C 622.1,571.5 626,573.7 627.8,576.8 C 628.6,578.2 628.7,578.8 628,579.1 C 626.4,579.4 624.1,579.1 621.8,579.1 L 619.2,576.5 L 617,572 Z" fill-rule="nonzero"/><path d="M 539.2,578.9 C 551.7,581.7 558,598.9 576.6,603.3 C 596,607.9 602.4,579.3 618.1,579.2 L 618.1,575.9 C 604.2,576.4 595.6,578.7 585.4,583.2 C 581.6,584.8 579,585.6 576.8,585.2 C 565.7,583.4 551.9,579 541.5,576 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="neck" fill="#E6A38F" stroke="none" id="part-source-25-neck-outline">
+    <path d="M 527.7,549 C 546,546.3 570.2,539 592.8,529 C 592.1,538.4 592.1,548.2 594,554.7 C 595.8,560.9 608.7,566.3 618.8,570.3 L 621.8,579.1 C 606.7,579.1 596,581.8 586.4,586.2 C 582.8,587.9 579.8,589 576.2,588.4 C 565.4,586.6 551.7,581.7 539.2,578.9 C 531.5,577.3 524,576.3 517.5,574.4 L 513.8,564.2 C 520.7,562.1 526.7,559.8 528.2,555.7 C 528.9,553.4 528.4,551 527.7,549 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-26" data-group-path="body/torso" data-node-kind="part" data-name="torso">
+<g id="part-source-26"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="body/torso" fill="#E8A884" stroke="none" id="part-source-26-torso-outline">
+    <path fill-rule="nonzero" d="M 494 562 L 513 564 L 518 576 C 533 580 550 581 565 588 C 578 594 589 594 600 586 C 607 582 615 582 620 579 L 618 574 L 637 574 C 644 586 653 606 665 629 C 673 643 679 655 680 669 C 683 680 677 692 675 704 C 674 720 672 735 672 748 C 673 760 680 777 685 790 C 620 799 533 799 465 790 C 474 774 481 763 487.5 752 C 490 749 492.2 747 492.5 744 L 492.5 740 C 492.7 738 494.2 735 493.6 733 C 491.3 725 488.5 714 484 702 L 478 677 C 487 665 493 650 497 633 C 502 611 502 588 494 562 Z M 504 783 C 511 749 540 721 578 721 C 616 721 645 749 652 783 L 653 792 C 643 794 638 800 634 812 C 625 832 604 845 580 845 C 555 845 535 832 526 812 C 522 800 517 794 504 793 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-27" data-group-path="body/breast" data-node-kind="part" data-name="breast">
+<g id="part-source-27"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="body/breast" fill="#E8A884" stroke="none" id="part-source-27-body-breast-outline">
+    <path d="M 580 643 C 547 643 519 637 500 628 C 495 649 489 663 478 677 L 484 702 C 504 715 543 716 564 712 C 573 710 583 710 593 712 C 622 718 653 715 675 704 C 677 692 683 680 680 669 C 679 655 673 643 665 629 L 658 626 C 645 638 620 644 580 643 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-28" data-group-path="pelvis" data-node-kind="group" data-name="pelvis">
+<g id="part-source-28"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 479.9,765 C 488.3,751.4 496,739 509,727 C 527,710 551,702 576.5,702 C 603,702 628,711 647,729 C 660,741.3 668.4,747 674.2,765 C 675.3,768.4 676.4,771.8 677.5,775.2 L 475.5,777 C 477,772 478,768.1 479.9,765 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="pelvis" fill="#E9AF94" stroke="none" id="part-source-28-pelvis-outline">
+    <path d="M 479.9,765 C 524,767 626,767 674.2,765 C 680,783 686.8,802 692.3,819.9 C 674.6,831.5 652.3,855.4 628,880.9 C 611.9,897.6 599.3,911.8 584.9,917.9 C 578.5,920.5 569.8,921 561.3,919 C 560.5,899 549.3,875.3 534.3,856.7 C 513.1,831.2 483.5,810 461,810.5 C 458,810.4 455.5,811.5 453.9,812.5 C 460.7,796.7 471.5,778.6 479.9,765 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-29" data-group-path="arms/arm_left/bracelet_front" data-node-kind="part" data-name="bracelet_front">
+<g id="part-source-29"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-group-path="arms/arm_left/bracelet_front" fill="#35405e" stroke="none" id="part-source-29-bracelet-front-outline"><path d="M 726.85,846.75 C 730,846.9 734.5,849.4 737.5,850.1 C 752,845.1 769.8,833.2 779.7,823.6 C 783.3,820.1 785.2,817.3 785.5,815.4 C 789.1,813.9 800.5,811.8 802.941499921875,815.60923365625 C 809.480975,825.95198125 816.0125,837.43 820,847 C 822.4,851.8 820.32,857.24 816.832,861.272 L 814.6,862.2 L 809.8,861.1 C 800,874 783,885.8 766,891 C 756,896 748,893 743,886 C 736,878 729,867 725,858 C 723.72,854.1 724.54,850.2 726.85,846.75 Z"/></g></svg></g>
+</g>
+<g id="node-30" data-group-path="arms/arm_right/bracelet_front" data-node-kind="part" data-name="bracelet_front">
+<g id="part-source-30"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="arms/arm_right/bracelet_front" fill="#34405f" stroke="none" id="part-source-30-bracelet-front-outline">
+    <path d="M 311,808 C 317,806 323,809 331,813 C 348,820 363,826 377.7,839.2 Q 378.5,838.8 379.2,837.9 L 382.046875,840.265625 C 385.3,843.7 387.1,848.1 386.3,852 C 384.3,861 375.8,872 368.5,880.5 C 363.5,888.5 356,893 349,885 C 349,881 347,879 343,877 C 329,868 313,860 300,856 L 294,860 C 288,856 286,850 290,842 C 295,831 304,813 311,808 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-31" data-group-path="face/ears/ear_left" data-node-kind="part" data-name="ear_left">
+<g id="part-source-31"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-source-sha256="be10c9adbe626ff52de3175cc244f682547e95fe6c6b348a7b580a365a79052b" data-parent-region="665 335 120 145" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 731,354 C 722,362 714,370 706,377 C 695,386 679,404 679,422 C 679,444 696,466 718,461 C 724,443 733,412 735,384 C 736,370 735,359 731,354 Z" fill-rule="nonzero"/></g>
+  <g fill="#efb39c" stroke="none" data-group-path="face/ears/ear_left" id="part-source-31-ear-left-outline">
+    <path d="M 731,354 C 746,342 760,358 767,378 C 775,401 766,423 750,439 C 740,449 729,456 718,461 C 727,427 733,390 731,354 Z" id="part-source-31-ear-left-visible"/>
+    
+  </g>
+</svg></g>
+</g>
+<g id="node-32" data-group-path="face/ears/ear_right" data-node-kind="part" data-name="ear_right">
+<g id="part-source-32"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-source-sha256="be10c9adbe626ff52de3175cc244f682547e95fe6c6b348a7b580a365a79052b" data-parent-region="300 395 115 115" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 342,463 C 338,453 327,450 322,440 C 315,429 314,416 321,408 C 327,402 337,407 347,417 C 360,432 378,440 391,452 C 403,465 404,480 391,490 C 388,493 384,495 381,494 C 374,492 357,482 350,473 C 348,469 344,466 342,463 Z" fill-rule="nonzero"/></g>
+  <g fill="#efb39c" stroke="none" data-group-path="face/ears/ear_right" id="part-source-32-ear-right-outline">
+    
+    <path d="M 342,463 C 354,469 368,474 382,470.5 C 378,477 379,486 381,494 C 365,492 350,482 342,463 Z" id="part-source-32-ear-right-visible"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-33" data-group-path="face/face_base" data-node-kind="part" data-name="face_base">
+<g id="part-source-33"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 336,401 C 331,375 330,341 338,309 C 349,259 376,221 421,199 C 451,183 480,175 510,174 C 564,173 610,193 648,236 C 679,272 695,315 700,357 C 704,399 693,447 666,478 L 647,472 L 633,450 L 651,392 L 620,380 L 410,396 L 355,405 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/face_base" fill="#efb39c" stroke="none" id="part-source-33-face-base-outline">
+    <path d="M 393,250 C 396,292 410,341 443,359 C 453,365 463,367 473,363 C 461,354 450,340 444,325 C 466,354 492,366 531,354 C 518,345 509,329 503,311 C 515,334 530,352 543,350 C 532,342 530,330 533,308 C 539,271 538,237 532,204 C 561,257 605,302 666,330 L 669,345 L 671,358 C 672,402 666,441 643,461 C 653,460 663,454 670.3,446.8 C 670,457 668,469 666,478 C 635,509 584,537 534,548 C 490,550 434,539 405,526 C 391,520 384,508 381,494 C 378,482 375,470 370,459 C 357,437 344,416 336,401 C 333,385 335,361 339,344 C 341,359 348,377 356,382 C 368,336 380,289 393,250 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-34" data-group-path="face/blush_left" data-node-kind="part" data-name="blush_left">
+<g id="part-source-34"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/blush_left" fill="#f3ad9d" stroke="none" id="part-source-34-face-blush-left-outline">
+    <path d="M 575,443 C 575,434 589,428 604,427 C 623,426 640,419 650,413 C 661,405 661,422 656,434 C 652,444 647,451 639,459 C 628,469 611,475 597,472 C 583,469 575,457 575,443 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-35" data-group-path="face/blush_right" data-node-kind="part" data-name="blush_right">
+<g id="part-source-35"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/blush_right" fill="#f5b5a4" stroke="none" id="part-source-35-blush-right-outline">
+    <path d="M 390,466 C 395,461 402,458 409,460 C 413,461 415,463 418,461 C 427,457 440,457 449,462 C 459,467 466,477 464,487 C 461,499 449,506 436,509 C 423,512 407,509 397,504 C 389,499 385,489 383,478 C 382,472 384,469 390,466 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-36" data-group-path="face/eyes/eye_left/sclera" data-node-kind="part" data-name="sclera">
+<g id="part-source-36"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/eyes/eye_left/sclera" fill="#fff9f5" stroke="none" id="part-source-36-eye-left-sclera">
+    <path d="M 559.6,362.2 C 569.4,350.1 581,342.1 592.5,338.5 C 602.9,334.4 615.2,334.4 625.1,338.7 C 639.9,344.1 650.1,351.6 654.5,362.3 C 660,375.1 657.2,386.4 653,394.1 C 648.3,407.9 635.2,421.7 619.1,425.9 C 604,429.6 590.4,426.1 580,419.4 C 565.3,409.8 558.1,394.1 558,375.7 C 557.9,371.1 558.3,367.2 559.6,362.2 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-37" data-group-path="face/eyes/eye_left/iris" data-node-kind="part" data-name="iris">
+<g id="part-source-37"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/eyes/eye_left/iris" fill="#207e9b" stroke="none" id="part-source-37-iris-left-outline">
+    <path d="M 587.8,342.1 C 595.8,335.8 608.2,333.8 619.7,336.9 C 627.45,341.35 632.175,347.325 635.425,354.2 C 638.675,361.075 639.85,368.85 641.1,376.9 C 643.8,393.7 640.1,408.4 630.7,417.4 C 622.9,424.4 611.3,427.4 600.5,426.4 C 588.1,425.5 578.7,416.7 573.8,403.1 C 568.2,387.9 568.2,369.7 574,355.9 C 577.2,349.6 581.8,345.2 587.8,342.1 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-38" data-group-path="face/eyes/eye_left/highlight" data-node-kind="part" data-name="highlight">
+<g id="part-source-38"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/eyes/eye_left/highlight" fill="#f8f8fc" stroke="none" id="part-source-38-eye-left-highlight-outline">
+    <path d="M 601.0,350.0 C 605.0,349.8 608.0,352.8 608.4,357.0 C 608.9,361.1 606.1,364.3 602.4,364.5 C 598.5,364.8 595.3,362.3 595.0,358.2 C 594.6,354.3 597.3,350.4 601.0,350.0 Z"/>
+    <path d="M 604.6,372.0 C 605.5,371.8 606.1,373.0 606.3,374.5 C 606.5,376.0 606.0,377.2 605.3,377.3 C 604.4,377.4 603.7,376.2 603.6,374.8 C 603.5,373.4 603.9,372.2 604.6,372.0 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-39" data-group-path="face/eyes/eye_left/upper_eyelid" data-node-kind="part" data-name="upper_eyelid">
+<g id="part-source-39"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/eyes/eye_left/upper_eyelid" data-depth-regions="40:main;57.5:outer_spike" fill="#302536" stroke="none" id="part-source-39-upper-eyelid-left-outline">
+    <path d="M 550.5,357.3 C 561,331.8 589.3,314 625.1,319.4 L 633,315.7 Q 636.3,313.7 634.8,319.3 L 633,323.5 C 640,325.3 649,328.1 654.8,331 L 666.9,330.1 L 666.8,330.8 Q 660.6,331.7 656.2,334 L 669,348 L 682,347.5 L 670.1,358 C 666.4,371.3 658.4,385.8 653,394.1 C 660.5,376.4 661,360.3 645.9,350.4 C 631.6,339.8 617.9,335.6 603.8,336.7 C 582.7,337.6 566.4,352.8 551.4,369.3 C 552.6,361.8 556,354.3 560.2,349.2 C 556.4,351.4 553.1,354.4 550.5,357.3 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-40" data-group-path="face/eyes/eye_left/eyelid_crease" data-node-kind="part" data-name="eyelid_crease">
+<g id="part-source-40"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/eyes/eye_left/eyelid_crease" fill="#df927d" stroke="none" id="part-source-40-eye-left-eyelid-crease">
+    <path d="M 548.4,339.5 C 555.8,319.2 575.7,309.9 599,311.4 C 578.8,315.2 564,322.7 548.4,339.5 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-41" data-group-path="face/eyes/eye_right/sclera" data-node-kind="part" data-name="sclera">
+<g id="part-source-41"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/eyes/eye_right/sclera" fill="#f7f2ee" stroke="none" id="part-source-41-eye-right-sclera-outline">
+    <path d="M 398.8,375.2 C 413.7,369.9 433.5,379.4 444.8,388.8 C 445.8,389.6 446.7,389.7 447.2,390.8 C 454,405.7 455,425.5 451.8,440.2 C 449.3,451.4 438.4,456.5 423.2,458.8 C 416.2,460 410.6,459.4 408.1,459.4 L 407.2,460.6 L 405.4,459.1 C 396.3,457.2 389,450.2 382.8,444.6 C 380.9,442.9 379.1,441.1 377.4,438.8 C 370.6,429.9 365.3,420.2 365.3,408.2 C 364.7,394.3 378.4,380.8 398.8,375.2 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-42" data-group-path="face/eyes/eye_right/iris" data-node-kind="part" data-name="iris">
+<g id="part-source-42"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 395.8,377.8 C 400.0,373.0 404.5,371.8 409.3,372.6 C 419.8,374.3 431.1,381.5 439.9,390.8 L 435.0,394.2 C 423.5,383.5 410.0,378.0 398.0,382.3 L 394.9,380.2 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/eyes/eye_right/iris" fill="#247d99" stroke="none" id="part-source-42-iris-right-outline">
+    <path d="M 398.7,375.4 C 412.7,373.2 429.8,380.1 439.9,390.8 C 448.1,401.3 452.9,416.1 452.8,430.1 C 452.7,433.5 452.4,437.1 451.8,440.2 C 449.455,450.706 439.719,455.844 425.977,458.339 C 416.6,455.9 408.0,450.0 401.7,442.3 C 394.4,432.2 389.5,418.1 388.0,404.1 C 387.5,392.4 390.4,381.0 398.7,375.4 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-43" data-group-path="face/eyes/eye_right/highlight" data-node-kind="part" data-name="highlight">
+<g id="part-source-43"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/eyes/eye_right/highlight" fill="#e4a64b" stroke="none" id="part-source-43-eye-right-highlight-outline">
+    <path d="M 420.1,385.5 C 423.5,385.1 426.4,387.8 427.3,391.1 C 428.6,395.1 426.9,398.9 424.2,400.1 C 421.4,401.5 417.8,400.5 415.9,398 C 414.1,395.6 414,392 415.2,389.3 C 416.2,387.2 417.9,385.7 420.1,385.5 Z"/>
+    <path d="M 403.1,427.8 C 403.4,428.8 403.1,430.3 402.6,431.4 L 402.1,432.5 C 401.1,431.9 400.6,430.9 400.6,430 C 400.6,429.1 401.6,428.2 403.1,427.8 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-44" data-group-path="face/eyes/eye_right/upper_eyelid" data-node-kind="part" data-name="upper_eyelid">
+<g id="part-source-44"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/eyes/eye_right/upper_eyelid" fill="#302433" stroke="none" id="part-source-44-right-upper-eyelid">
+    <path d="M 338.1,404.4 C 342.4,404.1 347,403.4 350,403 C 349.9,399 351.2,394.5 353.8,391.4 L 349.1,390 L 348.3,388.8 L 353.5,388.6 C 357.3,379.3 365.4,371.5 373.5,366.8 L 369.7,365.1 L 369.7,364 L 375,365 C 390,359.8 406,360.1 420,365 C 430.7,369.2 439.7,377.2 444.7,388.5 C 436.8,380.3 426.2,375 414.6,374.2 C 408.9,373.7 402.8,374 398,375.2 C 385.9,378 373.6,385.8 367.9,397.2 C 365.15,402.7 365.2,412.4 367.2,421.2 C 368.7,427.8 372.2,433.9 377.1,438.3 C 366.3,430.3 356.6,421.1 351.4,412 C 347.7,411.6 343.3,411.2 339.5,410.6 C 338.9,408.6 338.4,406.5 338.1,404.4 Z"/>
+    <path d="M 344,403.6 C 340.2,404.2 338,404.5 336.55,402.6 C 337,405.8 338.1,408.6 340.3,410.7 C 342,410.9 343.6,411.1 345,411.2 L 345.4,403.6 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-45" data-group-path="face/eyes/eye_right/eyelid_crease" data-node-kind="part" data-name="eyelid_crease">
+<g id="part-source-45"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/eyes/eye_right/eyelid_crease" fill="#b96e59" stroke="none" id="part-source-45-eyelid-crease-right-outline">
+    <path d="M 383.7,355.2 C 394.5,348.8 408.4,348.3 418.2,352.4 C 428.5,356.7 435.6,363.2 440.3,369.1 C 427.7,361 414.3,355 401.4,353.6 C 394.7,352.7 388.9,354.1 383.7,355.2 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-46" data-group-path="face/nose" data-node-kind="part" data-name="nose">
+<g id="part-source-46"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="face/nose" fill="#eda58f" stroke="none" id="part-source-46-nose-outline">
+    <path d="M 491.4,443.3 C 492.9,443.3 493.6,444.5 493.3,446.0 C 493.0,447.6 491.9,449.2 490.6,449.6 C 489.2,450.0 488.1,449.2 488.0,447.8 C 487.9,446.2 489.1,443.6 491.4,443.3 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-47" data-group-path="face/mouth/mouth_interior" data-node-kind="part" data-name="mouth_interior">
+<g id="part-source-47"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 484.5,478.0 C 484.4,473.4 497.0,466.8 509.8,462.6 C 523.5,458.0 538.7,456.3 551.0,458.5 C 560.6,460.2 565.1,473.8 565.3,485.2 C 565.8,498.5 559.7,511.0 549.6,519.0 C 542.9,524.3 533.8,526.4 524.4,525.3 C 510.0,523.5 497.2,514.3 490.1,501.8 C 486.0,494.8 484.4,486.2 484.5,478.0 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/mouth/mouth_interior" fill="#b8453e" stroke="none" id="part-source-47-face-mouth-mouth-interior-outline">
+    <path d="M 491.1,478.9 C 502.2,471.9 514.5,466.5 527.7,464.5 C 534.4,463.5 541.2,464.0 546.3,464.4 C 547.1,463.6 548.7,463.5 550.2,464.4 C 555.2,467.1 558.5,477.0 558.5,485.3 C 558.7,496.1 553.8,506.1 545.1,512.5 C 539.4,516.7 532.2,518.4 525.0,517.7 C 513.1,516.7 503.0,509.1 497.2,498.9 C 493.8,493.0 492.0,486.4 491.1,478.9 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-48" data-group-path="face/mouth/lower_teeth" data-node-kind="part" data-name="lower_teeth">
+<g id="part-source-48"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-hidden-in-reference="true" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 506.8,505.8 C 508.0,504.9 509.5,505.3 510.6,506.7 C 515.0,511.7 521.9,513.9 528.9,513.3 C 538.0,512.5 546.1,506.4 549.1,497.7 C 549.6,496.2 550.6,495.4 551.9,495.8 C 554.0,496.4 554.5,498.3 553.9,501.1 C 552.8,506.8 549.9,512.1 545.8,516.7 C 543.1,519.6 540.5,521.5 537.3,523.0 C 535.0,524.1 534.1,526.5 531.2,527.3 C 528.2,528.1 524.9,527.4 522.9,525.4 C 521.8,524.3 521.0,523.7 519.7,523.3 C 513.0,521.2 507.2,516.5 504.2,511.3 C 502.8,508.9 505.6,506.7 506.8,505.8 Z" fill-rule="nonzero"/></g><g data-group-path="face/mouth/lower_teeth" id="part-source-48-source"/></svg>
+</g>
+</g>
+<g id="node-49" data-group-path="face/mouth/tongue" data-node-kind="part" data-name="tongue">
+<g id="part-source-49"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 512.4,481.7 C 516.5,475.1 522.8,470.4 529.6,468.9 C 536.1,467.5 543.5,469.0 549.1,472.9 C 552.5,475.3 554.0,479.3 554.3,484.0 C 550.1,485.0 545.9,482.8 541.3,481.2 C 531.9,477.6 520.9,477.4 512.4,481.7 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/mouth/tongue" fill="#f5938b" stroke="none" id="part-source-49-face-mouth-tongue-outline">
+    <path d="M 529.0,473.0 C 537.7,473.4 546.9,475.8 551.8,479.1 C 553.8,480.4 554.2,482.1 554.3,484.4 C 554.6,489.2 553.8,494.2 551.9,498.7 C 548.8,506.2 542.5,512.2 535.2,514.6 C 528.2,516.7 520.3,515.1 514.0,511.1 C 509.3,508.1 505.6,504.2 504.1,499.8 C 503.7,493.6 507.7,486.1 513.0,480.8 C 517.3,476.5 523.0,473.6 529.0,473.0 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-50" data-group-path="face/mouth/upper_teeth" data-node-kind="part" data-name="upper_teeth">
+<g id="part-source-50"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 507.3,473.7 C 503.7,472.5 499.0,473.6 496.9,471.8 C 494.5,469.7 495.4,466.0 498.7,463.4 C 505.5,458.8 515.3,456.6 524.8,455.3 C 533.8,454.1 542.4,454.7 546.6,457.5 C 549.0,459.1 549.0,461.2 546.7,463.1 C 545.0,464.5 542.5,463.9 540.4,466.7 C 537.9,470.0 531.8,472.1 525.6,473.8 C 518.6,475.7 513.0,475.6 507.3,473.7 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/mouth/upper_teeth" fill="#fffdf9" stroke="none" id="part-source-50-face-mouth-upper-teeth-outline">
+    <path d="M 507.3,473.7 C 514.7,470.0 524.0,467.2 533.7,467.0 C 536.1,466.9 538.3,466.9 540.4,466.7 C 537.9,470.0 531.8,472.1 525.6,473.8 C 518.6,475.7 513.0,475.6 507.3,473.7 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-51" data-group-path="face/mouth/lower_lip" data-node-kind="part" data-name="lower_lip">
+<g id="part-source-51"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 487.6,474.0 C 489.9,473.2 492.0,472.5 493.4,474.0 C 494.8,475.5 493.05,477.5 493.3,479.5 L 493.8,483.0 C 490.7,481.5 486.8,479.0 485.8,476.0 C 486.3,475.0 486.8,474.4 487.6,474.0 Z" fill-rule="nonzero"/><path d="M 549.4,466.2 C 547.5,464.775 547.5,462.8 548.4,460.9 C 549.2,459.2 550.4,458.817 552.3,458.5 C 553.2,458.3 554.1,458.6 555.1,459.1 C 555.3,462.9 553.7,466.1 552.0,469.0 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/mouth/lower_lip" fill="#c85a50" stroke="none" id="part-source-51-face-mouth-lower-lip-outline">
+    <path d="M 493.3,479.5 C 494.2,486.7 496.1,492.9 499.3,498.5 C 505.0,508.4 514.1,515.0 525.2,515.7 C 532.1,516.3 538.6,514.6 543.9,510.7 C 552.1,504.6 556.6,495.1 556.4,485.3 C 556.4,477.8 553.8,469.5 549.4,466.2 L 552.3,458.5 C 557.1,457.7 561.1,462.6 564.1,469.4 C 567.1,476.2 568.1,483.6 567.7,490.2 C 567.0,504.4 560.2,516.6 549.8,523.1 C 542.6,527.6 533.3,529.2 524.5,528.2 C 511.1,526.9 499.8,519.6 492.2,507.8 C 486.2,498.4 483.8,488.1 483.6,479.4 C 483.6,477.1 485.3,474.8 487.6,474.0 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-52" data-group-path="face/mouth/upper_lip" data-node-kind="part" data-name="upper_lip">
+<g id="part-source-52"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 482.0,470.5 C 494.8,459.2 510.0,450.3 525.7,446.8 C 537.0,444.3 549.7,444.8 557.4,451.1 C 567.1,459.1 572.5,477.5 570.6,489.9 C 570.0,494.3 567.5,498.2 563.4,499.0 C 559.7,499.7 557.5,497.2 558.1,494.0 C 558.6,491.4 559.3,488.8 559.0,485.5 C 558.6,475.2 555.4,465.3 550.6,462.7 C 548.6,461.7 547.1,461.7 546.0,462.2 C 539.8,461.7 533.3,461.4 527.2,462.6 C 512.8,465.4 500.4,471.5 489.8,478.7 C 490.6,483.1 492.0,487.6 494.2,492.1 C 495.5,494.9 497.4,497.8 495.0,500.0 C 492.4,502.4 488.6,500.9 486.5,497.8 C 483.9,493.9 482.0,487.9 480.5,482.0 C 479.0,476.5 478.4,473.7 482.0,470.5 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="face/mouth/upper_lip" fill="#c85a50" stroke="none" id="part-source-52-face-mouth-upper-lip-outline">
+    <path d="M 486.0,477.0 C 496.7,469.1 511.8,461.9 525.8,458.8 C 533.1,457.2 540.5,457.6 546.0,458.2 C 549.2,457.2 552.6,458.0 555.3,460.5 C 561.0,465.7 563.6,477.2 563.0,487.6 C 562.9,490.1 560.7,491.1 558.3,489.3 C 556.3,487.7 555.8,485.8 555.6,482.7 C 555.2,475.9 553.0,469.5 549.2,467.0 C 548.0,466.2 547.1,466.1 546.0,466.5 C 540.6,466.0 534.1,465.5 527.9,466.5 C 515.2,468.4 503.5,473.8 493.2,480.0 C 493.5,483.0 494.2,486.0 495.1,488.7 C 495.7,490.5 494.7,491.9 492.9,491.7 C 490.8,491.5 489.4,489.8 488.7,487.6 C 487.6,484.4 486.6,480.7 486.0,477.0 Z"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-53" data-group-path="face/eyebrows/eyebrow_left" data-node-kind="part" data-name="eyebrow_left">
+<g id="part-source-53"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-source-sha256="a6fc8cd590f22f085a9b50b2f1763c9a4dfa07e904aadd0c7c76f71c2fd09560" data-parent-region="525 245 140 50" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 565.8,259.35 L 568.0,258.8 C 595.6,255.3 627.0,264.9 650.8,283.8 C 626.2,270.2 599.4,263.55 572.0,263.3 L 565.9,262.5 Z" fill-rule="nonzero"/></g>
+  <g fill="#a8645b" stroke="none" data-group-path="face/eyebrows/eyebrow_left" id="part-source-53-eyebrow-left-outline">
+    <path d="M 537.8,275.7 C 545.0,266.0 555.4,260.4 568.0,258.8 L 572.0,263.3 C 560.6,263.2 548.1,269.1 537.8,275.7 Z" id="part-source-53-eyebrow-left-visible"/>
+    
+  </g>
+</svg></g>
+</g>
+<g id="node-54" data-group-path="face/eyebrows/eyebrow_right" data-node-kind="part" data-name="eyebrow_right">
+<g id="part-source-54"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-source-sha256="a6fc8cd590f22f085a9b50b2f1763c9a4dfa07e904aadd0c7c76f71c2fd09560" data-parent-region="330 285 115 45" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 381.0,295.9 L 378.8,296.3 C 366.5,300.3 351.0,308.0 340.0,320.7 C 351.8,311.2 366.8,304.0 377.7,300.1 L 380.3,299.2 Z" fill-rule="nonzero"/><path d="M 399.4,297.1 L 401.8,298.2 C 412.8,303.9 423.2,308.7 432.0,315.4 C 422.0,310.0 412.0,304.0 402.7,300.7 L 399.6,299.1 Z" fill-rule="nonzero"/></g>
+  <g fill="#a8645b" stroke="none" data-group-path="face/eyebrows/eyebrow_right" id="part-source-54-eyebrow-right-outline">
+    
+    <path d="M 402.7,300.7 C 395.4,298.1 386.9,296.8 377.7,300.1 L 378.8,296.3 C 387.4,293.5 395.2,294.8 401.8,298.2 Z" id="part-source-54-eyebrow-right-visible"/>
+  </g>
+</svg></g>
+</g>
+<g id="node-55" data-group-path="hair/bangs" data-node-kind="part" data-name="bangs">
+<g id="part-source-55"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 402.203,92.281 C 413.219,81.875 430,60 450,60 C 471,60 484.588,90.3 498.688,111.75 C 488,130 438,136 411,117 C 406,110 403,101 402.203,92.281 Z" fill-rule="nonzero"/></g>
+<g data-group-path="hair/bangs" fill="#42567d" stroke="none" id="part-source-55-hair-bangs-outline">
+<path d="M 450,94 C 438,82 424,81 414,85 C 397,90 386,116 370,137 C 342,173 325,218 321,265 C 318,299 325,327 340,343 C 342,359 348,375 357.5,380.5 C 360,378 361.5,372 363,366 C 370,337 378,294 393,252 C 397,283 406,312 418,333 C 431,354 451,368 473,363 C 461,357 451,344 442,325 C 462,354 492,365.5 532,353.4 C 519,344 509,330 502.5,311.5 C 512,326 526,346 543,350 C 532,340 532,325 535,302 C 538,270 536,235 533,204 C 526,163 508,115 479,88 C 470,91 460,94 450,94 Z"/>
+</g>
+</svg></g>
+</g>
+<g id="node-56" data-group-path="hair/side_hair/side_hair_left" data-node-kind="part" data-name="side_hair_left">
+<g id="part-source-56"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-source-sha256="842ce1344c28634a20993d7abb7164f378ce879e0cd96bc8f1191aa27b0ed49e" data-parent-region="467 35 280 555" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 647,156 C 670,172 700,215 717,266 C 718,270 719,274 720,278 L 704,284 C 681,280 664,251 650,215 C 642,194 638,174 640,158 Z" fill-rule="nonzero"/><path d="M 485.831,98.413 C 477.437,88.612 460,78 474,63 C 484,46 504,48 516,59 C 528,70 522,75 542.139,84.125 L 535,105 L 502,114 Z" fill-rule="nonzero"/></g><g fill="#a56cc4" stroke="none" data-group-path="hair/side_hair/side_hair_left" id="part-source-56-side-hair-left-outline"><path d="M 477,89 C 490,72 511,71 535,81 C 583,101 622,138 647,156 C 646,160 647,164 649,169 C 652,185 661,213 669,235 C 675,251 681,265 691,270 C 699,274 707,273 717,266 C 726,296 730,325 730,354 C 731,388 726,423 719,455 C 712,498 692,532 674,550 C 660,562 643,570 630,573 C 624,574 619,574 614.5,575.5 L 624,565 C 633,563 639,554 638.5,540.5 C 657,524 667,490 670,447 C 660,455 651,460 642,462 C 663,447 670,419 672,388 C 674,371 672,350 668,330 C 623,311 586,285 562,248 C 549,231 539,212 533,204 C 523,163 508,119 477,89 Z"/></g></svg></g>
+</g>
+<g id="node-57" data-group-path="hair/side_hair/side_hair_right" data-node-kind="part" data-name="side_hair_right">
+<g id="part-source-57"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" data-source-sha256="842ce1344c28634a20993d7abb7164f378ce879e0cd96bc8f1191aa27b0ed49e" data-parent-region="240 40 227 580" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 406.864,85.552 C 422,80.1 428,63 443,63 C 456,63 465,75 465,87 C 465,99 440,93.6 420.75,101.375 L 407,106 L 400,96 Z" fill-rule="nonzero"/></g><g fill="#a56cc4" stroke="none" data-group-path="hair/side_hair/side_hair_right" id="part-source-57-side-hair-right-outline"><path d="M 450,94 C 434,78 415,80 395,91 C 342,110 296,165 274,230 C 252,291 251,350 263,392 C 269,416 259,437 259,458 C 258,504 277,554 311,585 C 334,605 362,611 379,602 C 355,595 343,571 337,550 C 330,527 331,496 334,456 C 350,467 367,474 381,471 C 355,454 339,431 336,403 C 336,385 337,366 341.5,344 C 323,317 315,286 323,254 C 330,197 353,145 393,117 C 411,104 430,96 450,94 Z"/></g></svg></g>
+</g>
+<g id="node-58" data-group-path="head_accessories" data-node-kind="group" data-name="head_accessories">
+<g id="part-source-58"><svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410" x="0" y="0">
+  <g data-group-path="head_accessories" fill="#FFB43B" stroke="none" id="part-source-58-head_accessories_outline">
+    <path d="M 667,146.5 C 681,146.5 722,155.6 744.7,163.1 C 759.4,167.9 766.8,175.6 767.7,186.9 C 768.7,196.2 762.7,208.4 755.5,220.1 C 745.5,236.7 731.3,256.3 718.7,267.9 C 712.4,273.9 706.2,276.8 699.1,274.4 C 691.4,272.2 686.5,265.7 682.4,257.6 C 671.9,236.1 659.3,208.2 651.2,185.3 C 647.5,175.3 645.8,166.7 649,158.7 C 652.1,150.6 658.3,146.3 667,146.5 Z"/>
+  </g>
+</svg></g>
+</g>
+</svg>

@@ -1,0 +1,381 @@
+[
+  {
+    "name": "upper-lash-own-outer-spike-native",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/upper_eyelid",
+        "strokes": [
+          {
+            "color": [
+              39,
+              27,
+              33
+            ],
+            "size": 2.5,
+            "path": [
+              [
+                "M",
+                668.5,
+                349.5
+              ],
+              [
+                "C",
+                672,
+                349,
+                677,
+                348.5,
+                680.2,
+                348
+              ]
+            ]
+          },
+          {
+            "color": [
+              37,
+              27,
+              33
+            ],
+            "size": 1.1,
+            "path": [
+              [
+                "M",
+                677,
+                348.5
+              ],
+              [
+                "C",
+                679,
+                348,
+                680.8,
+                347.6,
+                682,
+                347.5
+              ]
+            ]
+          },
+          {
+            "color": [
+              44,
+              27,
+              33
+            ],
+            "size": 3,
+            "path": [
+              [
+                "M",
+                668.5,
+                352.5
+              ],
+              [
+                "C",
+                672,
+                351.5,
+                675,
+                350.5,
+                678,
+                349
+              ]
+            ]
+          }
+        ],
+        "alphaLocked": false
+      },
+      {
+        "id": "face/eyes/eye_left/upper_eyelid",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next8/own-outer-spike-core-selection.png",
+        "clear": false,
+        "alphaLocked": false
+      }
+    ]
+  },
+  {
+    "name": "upper-lash-own-outer-spike-continuous",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/upper_eyelid",
+        "import": "raster-layering/step01/workspace/repair-next8/before/face__eyes__eye_left__upper_eyelid.png",
+        "strokes": [
+          {
+            "color": [
+              39,
+              27,
+              33
+            ],
+            "size": 2.1,
+            "path": [
+              [
+                "M",
+                670,
+                349.5
+              ],
+              [
+                "C",
+                674,
+                349.5,
+                677,
+                348.5,
+                679.4,
+                348.2
+              ]
+            ]
+          },
+          {
+            "color": [
+              37,
+              27,
+              33
+            ],
+            "size": 0.7,
+            "path": [
+              [
+                "M",
+                678.5,
+                348.3
+              ],
+              [
+                "L",
+                681.5,
+                347.5
+              ]
+            ]
+          },
+          {
+            "color": [
+              44,
+              27,
+              33
+            ],
+            "size": 2.2,
+            "path": [
+              [
+                "M",
+                668.5,
+                352.5
+              ],
+              [
+                "C",
+                672,
+                351.5,
+                675,
+                350.5,
+                678,
+                349.2
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "face/eyes/eye_left/upper_eyelid",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next8/own-outer-spike-core-selection-v2.png",
+        "clear": false
+      }
+    ]
+  },
+  {
+    "name": "thumb-own-root-contour-and-material-transition",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              238,
+              173,
+              146
+            ],
+            "size": 6,
+            "opacity": 0.45,
+            "selection": "raster-layering/step01/workspace/repair-next8/thumb-own-root-refine-selection.png",
+            "path": [
+              [
+                "M",
+                337,
+                911
+              ],
+              [
+                "C",
+                336,
+                913,
+                334,
+                915,
+                332.5,
+                918
+              ]
+            ]
+          },
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              247,
+              194,
+              165
+            ],
+            "size": 5,
+            "opacity": 0.35,
+            "selection": "raster-layering/step01/workspace/repair-next8/thumb-own-root-refine-selection.png",
+            "path": [
+              [
+                "M",
+                309.5,
+                913
+              ],
+              [
+                "C",
+                310,
+                916,
+                310,
+                919,
+                309.5,
+                921
+              ]
+            ]
+          },
+          {
+            "color": [
+              153,
+              78,
+              60
+            ],
+            "size": 1.1,
+            "opacity": 0.75,
+            "selection": "raster-layering/step01/workspace/repair-next8/thumb-own-root-refine-selection.png",
+            "path": [
+              [
+                "M",
+                341.1,
+                902
+              ],
+              [
+                "C",
+                341,
+                906,
+                339,
+                910,
+                336.8,
+                913
+              ]
+            ]
+          },
+          {
+            "color": [
+              153,
+              78,
+              60
+            ],
+            "size": 1.65,
+            "opacity": 0.8,
+            "selection": "raster-layering/step01/workspace/repair-next8/thumb-own-root-refine-selection.png",
+            "path": [
+              [
+                "M",
+                337,
+                912.5
+              ],
+              [
+                "C",
+                336,
+                914,
+                334.5,
+                916,
+                333,
+                917.8
+              ]
+            ]
+          },
+          {
+            "color": [
+              149,
+              72,
+              54
+            ],
+            "size": 2.1,
+            "opacity": 0.8,
+            "selection": "raster-layering/step01/workspace/repair-next8/thumb-own-root-refine-selection.png",
+            "path": [
+              [
+                "M",
+                333,
+                917.8
+              ],
+              [
+                "C",
+                332,
+                919,
+                331,
+                920.2,
+                330.2,
+                921.5
+              ]
+            ]
+          },
+          {
+            "color": [
+              156,
+              83,
+              65
+            ],
+            "size": 1.5,
+            "opacity": 0.85,
+            "selection": "raster-layering/step01/workspace/repair-next8/thumb-own-root-refine-selection.png",
+            "path": [
+              [
+                "M",
+                307.7,
+                907.2
+              ],
+              [
+                "C",
+                308.8,
+                910,
+                309.2,
+                914,
+                308.9,
+                917.2
+              ]
+            ]
+          },
+          {
+            "color": [
+              151,
+              77,
+              59
+            ],
+            "size": 1.9,
+            "opacity": 0.85,
+            "selection": "raster-layering/step01/workspace/repair-next8/thumb-own-root-refine-selection.png",
+            "path": [
+              [
+                "M",
+                308.9,
+                917
+              ],
+              [
+                "C",
+                308.8,
+                918.5,
+                308.2,
+                920,
+                307.8,
+                921.5
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "thumb-rejected-double-line-restored",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "import": "raster-layering/step01/workspace/repair-next8/before/arms__arm_right__hand__thumb.png"
+      }
+    ]
+  }
+]

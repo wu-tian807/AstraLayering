@@ -1,0 +1,1593 @@
+{
+  "purpose": "支持范围与局部形状变更记录，非质量评分；实际形体以独显与参考目视对照为准",
+  "parts": [
+    {
+      "id": "hair/back_hair",
+      "svgBox": [
+        172,
+        7,
+        915,
+        585
+      ],
+      "paintBox": [
+        172,
+        11,
+        917,
+        582
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "legs/leg_left/shoes/cuff_back",
+      "svgBox": [
+        584,
+        1171,
+        715,
+        1200
+      ],
+      "paintBox": [
+        590,
+        1172,
+        712,
+        1198
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "svgBox": [
+        350,
+        1155,
+        471,
+        1212
+      ],
+      "paintBox": [
+        354,
+        1157,
+        469,
+        1209
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "svgBox": [
+        580,
+        779,
+        707,
+        1342
+      ],
+      "paintBox": [
+        583,
+        796,
+        706,
+        1326
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "svgBox": [
+        340,
+        777,
+        572,
+        1339
+      ],
+      "paintBox": [
+        340,
+        777,
+        570,
+        1338
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "legs/leg_left/shoes/shoe_front",
+      "svgBox": [
+        574,
+        1186,
+        714,
+        1372
+      ],
+      "paintBox": [
+        576,
+        1186,
+        713,
+        1372
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "svgBox": [
+        322,
+        1166,
+        470,
+        1372
+      ],
+      "paintBox": [
+        323,
+        1165,
+        470,
+        1372
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/bracelet_back",
+      "svgBox": [
+        724,
+        803,
+        815,
+        879
+      ],
+      "paintBox": [
+        723,
+        805,
+        815,
+        877
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/bracelet_back",
+      "svgBox": [
+        294,
+        801,
+        379,
+        878
+      ],
+      "paintBox": [
+        294,
+        802,
+        380,
+        878
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/hand/little_finger",
+      "svgBox": [
+        826,
+        903,
+        858,
+        961
+      ],
+      "paintBox": [
+        826,
+        903,
+        858,
+        961
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/hand/little_finger",
+      "svgBox": [
+        268,
+        917,
+        289,
+        954
+      ],
+      "paintBox": [
+        268,
+        916,
+        289,
+        955
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/hand/ring_finger",
+      "svgBox": [
+        812,
+        902,
+        847,
+        972
+      ],
+      "paintBox": [
+        812,
+        902,
+        847,
+        972
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/hand/ring_finger",
+      "svgBox": [
+        273,
+        903,
+        303,
+        962
+      ],
+      "paintBox": [
+        272,
+        903,
+        304,
+        963
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "svgBox": [
+        807,
+        902,
+        844,
+        984
+      ],
+      "paintBox": [
+        807,
+        903,
+        845,
+        984
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/hand/middle_finger",
+      "svgBox": [
+        266,
+        910,
+        299,
+        977
+      ],
+      "paintBox": [
+        265,
+        910,
+        299,
+        977
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "svgBox": [
+        773,
+        906,
+        822,
+        968
+      ],
+      "paintBox": [
+        775,
+        907,
+        824,
+        968
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "svgBox": [
+        304,
+        878,
+        347,
+        956
+      ],
+      "paintBox": [
+        304,
+        880,
+        345,
+        956
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "svgBox": [
+        815,
+        901,
+        866,
+        976
+      ],
+      "paintBox": [
+        815,
+        902,
+        866,
+        975
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "svgBox": [
+        253,
+        890,
+        306,
+        970
+      ],
+      "paintBox": [
+        252,
+        889,
+        309,
+        970
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "svgBox": [
+        749,
+        826,
+        853,
+        939
+      ],
+      "paintBox": [
+        748,
+        827,
+        852,
+        928
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "svgBox": [
+        253,
+        812,
+        369,
+        933
+      ],
+      "paintBox": [
+        252,
+        813,
+        369,
+        933
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "svgBox": [
+        670,
+        718,
+        807,
+        881
+      ],
+      "paintBox": [
+        670,
+        718,
+        807,
+        882
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "svgBox": [
+        316,
+        704,
+        440,
+        871
+      ],
+      "paintBox": [
+        314,
+        704,
+        451,
+        871
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "svgBox": [
+        604,
+        571,
+        736,
+        762
+      ],
+      "paintBox": [
+        604,
+        571,
+        742,
+        767
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "svgBox": [
+        375,
+        561,
+        534,
+        758
+      ],
+      "paintBox": [
+        363,
+        561,
+        535,
+        772
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "neck",
+      "svgBox": [
+        506,
+        507,
+        629,
+        604
+      ],
+      "paintBox": [
+        506,
+        509,
+        629,
+        603
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "body/torso",
+      "svgBox": [
+        465,
+        562,
+        685,
+        845
+      ],
+      "paintBox": [
+        467,
+        562,
+        686,
+        845
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "body/breast",
+      "svgBox": [
+        478,
+        626,
+        681,
+        716
+      ],
+      "paintBox": [
+        479,
+        626,
+        681,
+        718
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "pelvis",
+      "svgBox": [
+        453,
+        702,
+        693,
+        921
+      ],
+      "paintBox": [
+        454,
+        700,
+        692,
+        921
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "svgBox": [
+        724,
+        813,
+        822,
+        894
+      ],
+      "paintBox": [
+        724,
+        808,
+        823,
+        891
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "arms/arm_right/bracelet_front",
+      "svgBox": [
+        287,
+        807,
+        387,
+        890
+      ],
+      "paintBox": [
+        286,
+        807,
+        387,
+        890
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/ears/ear_left",
+      "svgBox": [
+        679,
+        349,
+        770,
+        462
+      ],
+      "paintBox": [
+        682,
+        348,
+        766,
+        462
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/ears/ear_right",
+      "svgBox": [
+        316,
+        405,
+        401,
+        495
+      ],
+      "paintBox": [
+        317,
+        404,
+        400,
+        495
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/face_base",
+      "svgBox": [
+        332,
+        174,
+        701,
+        549
+      ],
+      "paintBox": [
+        331,
+        175,
+        700,
+        548
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/blush_left",
+      "svgBox": [
+        575,
+        410,
+        660,
+        473
+      ],
+      "paintBox": [
+        592,
+        424,
+        649,
+        461
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/blush_right",
+      "svgBox": [
+        382,
+        458,
+        465,
+        511
+      ],
+      "paintBox": [
+        401,
+        471,
+        427,
+        495
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "svgBox": [
+        558,
+        335,
+        658,
+        428
+      ],
+      "paintBox": [
+        558,
+        335,
+        659,
+        429
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "svgBox": [
+        569,
+        335,
+        642,
+        427
+      ],
+      "paintBox": [
+        572,
+        333,
+        645,
+        428
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "svgBox": [
+        594,
+        350,
+        609,
+        378
+      ],
+      "paintBox": [
+        597,
+        351,
+        611,
+        378
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "svgBox": [
+        550,
+        315,
+        682,
+        395
+      ],
+      "paintBox": [
+        554,
+        317,
+        684,
+        396
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "svgBox": [
+        548,
+        311,
+        599,
+        340
+      ],
+      "paintBox": [
+        548,
+        311,
+        598,
+        339
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "svgBox": [
+        365,
+        373,
+        454,
+        461
+      ],
+      "paintBox": [
+        366,
+        372,
+        457,
+        461
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "svgBox": [
+        387,
+        372,
+        453,
+        459
+      ],
+      "paintBox": [
+        390,
+        375,
+        456,
+        458
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "svgBox": [
+        400,
+        385,
+        428,
+        433
+      ],
+      "paintBox": [
+        401,
+        387,
+        429,
+        432
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "svgBox": [
+        336,
+        361,
+        445,
+        439
+      ],
+      "paintBox": [
+        336,
+        362,
+        444,
+        440
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "svgBox": [
+        383,
+        349,
+        441,
+        370
+      ],
+      "paintBox": [
+        384,
+        349,
+        441,
+        369
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/nose",
+      "svgBox": [
+        488,
+        443,
+        494,
+        450
+      ],
+      "paintBox": [
+        490,
+        444,
+        495,
+        450
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "svgBox": [
+        484,
+        457,
+        566,
+        526
+      ],
+      "paintBox": [
+        491,
+        459,
+        567,
+        525
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "svgBox": [
+        503,
+        495,
+        555,
+        528
+      ],
+      "paintBox": [
+        502,
+        498,
+        555,
+        525
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/mouth/tongue",
+      "svgBox": [
+        504,
+        468,
+        555,
+        516
+      ],
+      "paintBox": [
+        504,
+        473,
+        557,
+        519
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "svgBox": [
+        495,
+        454,
+        549,
+        476
+      ],
+      "paintBox": [
+        495,
+        461,
+        550,
+        479
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "svgBox": [
+        483,
+        458,
+        568,
+        529
+      ],
+      "paintBox": [
+        489,
+        473,
+        568,
+        527
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "svgBox": [
+        479,
+        445,
+        571,
+        502
+      ],
+      "paintBox": [
+        485,
+        454,
+        571,
+        492
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left",
+      "svgBox": [
+        537,
+        258,
+        651,
+        284
+      ],
+      "paintBox": [
+        539,
+        257,
+        648,
+        283
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right",
+      "svgBox": [
+        340,
+        294,
+        432,
+        321
+      ],
+      "paintBox": [
+        340,
+        294,
+        431,
+        320
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    },
+    {
+      "id": "hair/bangs",
+      "svgBox": [
+        320,
+        60,
+        543,
+        381
+      ],
+      "paintBox": [
+        321,
+        65,
+        545,
+        383
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "svgBox": [
+        468,
+        50,
+        731,
+        576
+      ],
+      "paintBox": [
+        469,
+        61,
+        736,
+        577
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "svgBox": [
+        255,
+        63,
+        465,
+        607
+      ],
+      "paintBox": [
+        255,
+        74,
+        462,
+        608
+      ],
+      "paintChanged": true,
+      "pendingIssues": []
+    },
+    {
+      "id": "head_accessories",
+      "svgBox": [
+        647,
+        146,
+        768,
+        276
+      ],
+      "paintBox": [
+        647,
+        147,
+        769,
+        276
+      ],
+      "paintChanged": false,
+      "pendingIssues": []
+    }
+  ],
+  "bodyBatchChanges": [
+    {
+      "id": "body/torso",
+      "region": "两侧窄幅外轮廓及本件纵向蓝灰结构线；完整隐藏根段保留",
+      "basis": "base-subject 原坐标；外缘局部随原图轮廓修正，局部位移最多约十余 px；未改整体摆放、比例、控制职责或深度",
+      "svgMismatch": "沿用旧 SVG 支持范围，实际局部侧线不完全重合；此前 R14 上接点未通过，本续修已校准，见 junctionBatchChanges。",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "body/breast",
+      "region": "两侧窄幅外轮廓及本件纵向蓝灰结构线；完整隐藏根段保留",
+      "basis": "base-subject 原坐标；外缘局部随原图轮廓修正，局部位移最多约十余 px；未改整体摆放、比例、控制职责或深度",
+      "svgMismatch": "沿用旧 SVG 支持范围，实际局部侧线不完全重合；此前 R14 上接点未通过，本续修已校准，见 junctionBatchChanges。",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "pelvis",
+      "region": "两侧窄幅外轮廓及本件纵向蓝灰结构线；完整隐藏根段保留",
+      "basis": "base-subject 原坐标；外缘局部随原图轮廓修正，局部位移最多约十余 px；未改整体摆放、比例、控制职责或深度",
+      "svgMismatch": "沿用旧 SVG 支持范围，实际局部侧线不完全重合；此前 R14 上接点未通过，本续修已校准，见 junctionBatchChanges。",
+      "partIdentityChanged": false
+    }
+  ],
+  "junctionBatchChanges": [
+    {
+      "id": "arms/arm_left/forearm",
+      "region": "原生成前臂的局部宽度配准、轮廓和自身皮肤明暗",
+      "basis": "base-subject 原坐标；没有移动参考或整体平移肢体",
+      "svgMismatch": "逐行横向配准保留原生成材质；画面左前臂外侧约 13 px、内侧约 13 px 内校正，画面右前臂约 6 px 内校正；完整根部保留。精确接线仍待修",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "region": "原生成前臂的局部宽度配准、轮廓和自身皮肤明暗",
+      "basis": "base-subject 原坐标；没有移动参考或整体平移肢体",
+      "svgMismatch": "逐行横向配准保留原生成材质；画面左前臂外侧约 13 px、内侧约 13 px 内校正，画面右前臂约 6 px 内校正；完整根部保留。精确接线仍待修",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "region": "肘部承接、根部微小散色；画面左上臂另校准胸侧内缘",
+      "basis": "base-subject 原坐标；没有移动参考或整体平移肢体",
+      "svgMismatch": "肘端局部支持范围与旧色块 SVG 不重合；画面左上臂胸侧内缘作最大约 7 px 的局部校准，消除 R14 灰隙；肘部接缝仍待修",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "region": "肘部承接、根部微小散色；画面左上臂另校准胸侧内缘",
+      "basis": "base-subject 原坐标；没有移动参考或整体平移肢体",
+      "svgMismatch": "肘端局部支持范围与旧色块 SVG 不重合；画面左上臂胸侧内缘作最大约 7 px 的局部校准，消除 R14 灰隙；肘部接缝仍待修",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "body/torso",
+      "region": "左侧上接点与锁骨/胸口肤色根部",
+      "basis": "base-subject 原坐标；没有移动参考或整体平移肢体",
+      "svgMismatch": "肤色根部延续约 2–4 px，左领带外缘局部改到原轮廓；旧 SVG 未反映该窄幅校准",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "body/breast",
+      "region": "左上根段布面及轮廓",
+      "basis": "base-subject 原坐标；没有移动参考或整体平移肢体",
+      "svgMismatch": "完整隐藏根形和单深度保留；实际根段轮廓与旧色块图可能有微小偏差",
+      "partIdentityChanged": false
+    }
+  ],
+  "eyeMouthBatchChanges": [
+    {
+      "id": "face/eyes/eye_left/iris",
+      "region": "本眼虹膜自身边缘及旧蓝色圆斑",
+      "basis": "standard 1115×1410 原坐标；参考没有移动/缩放",
+      "svgMismatch": "本件虹膜边缘小幅配准，画布位置不整体平移；原暗圈没有裁掉",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "region": "本件睫毛外/内缘及完整端点",
+      "basis": "standard 1115×1410 原坐标；参考没有移动/缩放",
+      "svgMismatch": "睫毛局部垂直约 0–4 px；保留完整隐藏内容",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "region": "本眼虹膜自身边缘及旧蓝色圆斑",
+      "basis": "standard 1115×1410 原坐标；参考没有移动/缩放",
+      "svgMismatch": "本件虹膜边缘小幅配准，画布位置不整体平移；原暗圈没有裁掉",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "region": "本件睫毛外/内缘及完整端点",
+      "basis": "standard 1115×1410 原坐标；参考没有移动/缩放",
+      "svgMismatch": "睫毛局部垂直约 0–4 px；保留完整隐藏内容",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "region": "完整唇缘、口腔与嘴角接合",
+      "basis": "standard 1115×1410 原坐标；参考没有移动/缩放",
+      "svgMismatch": "嘴角左侧局部收窄约 6–7 px，完整唇/口腔形体保留；原 SVG 的窄部轮廓并未随此局部像素修画改变",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "region": "完整唇缘、口腔与嘴角接合",
+      "basis": "standard 1115×1410 原坐标；参考没有移动/缩放",
+      "svgMismatch": "嘴角左侧局部收窄约 6–7 px，完整唇/口腔形体保留；原 SVG 的窄部轮廓并未随此局部像素修画改变",
+      "partIdentityChanged": false
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "region": "完整唇缘、口腔与嘴角接合",
+      "basis": "standard 1115×1410 原坐标；参考没有移动/缩放",
+      "svgMismatch": "嘴角左侧局部收窄约 6–7 px，完整唇/口腔形体保留；原 SVG 的窄部轮廓并未随此局部像素修画改变",
+      "partIdentityChanged": false
+    }
+  ],
+  "eyeMouthMaskChanges": [
+    {
+      "name": "上下唇开口",
+      "region": "原图嘴角及上下唇内缘围成的共享口内区域"
+    },
+    {
+      "name": "上牙露出带",
+      "region": "原图上唇内侧窄白弧"
+    }
+  ],
+  "sockShoeBraceletBatchChanges": [
+    {
+      "id": "legs/leg_left/shoes/cuff_back",
+      "region": "本件完整后鞋口端点及前后口缘衔接",
+      "basis": "standard 1115×1410 原坐标；没有平移或缩放参考",
+      "svgMismatch": "完整后口轻微横向配准；逻辑右左/右端 +4/−2 px、纵向 −3 px；逻辑左 +6/−4 px，未改变后方职责",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "region": "本件完整后鞋口端点及前后口缘衔接",
+      "basis": "standard 1115×1410 原坐标；没有平移或缩放参考",
+      "svgMismatch": "完整后口轻微横向配准；逻辑右左/右端 +4/−2 px、纵向 −3 px；逻辑左 +6/−4 px，未改变后方职责",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "region": "本件完整袜腿/补全足部，侧缘局部配准及整圈描边",
+      "basis": "standard 1115×1410 原坐标；没有平移或缩放参考",
+      "svgMismatch": "袜侧局部配准；逻辑右最大约 6.94/16.21 px、逻辑左约 26.94/6.20 px；全件 alpha 清理及连续描边会改变原色块边缘，裸腿 alpha 也可能微调",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "region": "本件完整袜腿/补全足部，侧缘局部配准及整圈描边",
+      "basis": "standard 1115×1410 原坐标；没有平移或缩放参考",
+      "svgMismatch": "袜侧局部配准；逻辑右最大约 6.94/16.21 px、逻辑左约 26.94/6.20 px；全件 alpha 清理及连续描边会改变原色块边缘，裸腿 alpha 也可能微调",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "legs/leg_left/shoes/shoe_front",
+      "region": "本件前鞋体外墨线之外的残边和墨线衔接",
+      "basis": "standard 1115×1410 原坐标；没有平移或缩放参考",
+      "svgMismatch": "清理原色块边缘之外的非本件白灰残边，保留真实不透明外墨线",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "region": "本件前鞋体外墨线之外的残边和墨线衔接",
+      "basis": "standard 1115×1410 原坐标；没有平移或缩放参考",
+      "svgMismatch": "清理原色块边缘之外的非本件白灰残边，保留真实不透明外墨线",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "region": "前腕带蓝色根部 y809–822；y823 以下及宝石不变",
+      "basis": "standard 1115×1410 原坐标；没有平移或缩放参考",
+      "svgMismatch": "前根局部向上 7 px、向左 3 px，原 SVG 未随窄部绘画配准更新；y823 后纹理不变",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    }
+  ],
+  "elbowHandBatchChanges": [
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "region": "左食指完整根头紧凑配准；指身y944以下不变",
+      "basis": "base-subject 用于裸臂/肘，standard 用于虎口；均1115×1410原坐标",
+      "svgMismatch": "暖棕轮廓局部修回参考位置并清理多余外像素；右前臂内缘最大2.6px局部配准、最多约1.08px收边；左食指根尖峰值+4/−3px，半径24px外为零。旧SVG未随这些局部绘画轮廓微调改写，差异保留记录。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "region": "左手虎口自身短结构线，alpha锁定",
+      "basis": "base-subject 用于裸臂/肘，standard 用于虎口；均1115×1410原坐标",
+      "svgMismatch": "暖棕轮廓局部修回参考位置并清理多余外像素；右前臂内缘最大2.6px局部配准、最多约1.08px收边；左食指根尖峰值+4/−3px，半径24px外为零。旧SVG未随这些局部绘画轮廓微调改写，差异保留记录。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "region": "本件轮廓及完整根端；右前臂内缘局部2.6px配准与最多1.08px收顺",
+      "basis": "base-subject 用于裸臂/肘，standard 用于虎口；均1115×1410原坐标",
+      "svgMismatch": "暖棕轮廓局部修回参考位置并清理多余外像素；右前臂内缘最大2.6px局部配准、最多约1.08px收边；左食指根尖峰值+4/−3px，半径24px外为零。旧SVG未随这些局部绘画轮廓微调改写，差异保留记录。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "region": "本件轮廓及完整根端；右前臂内缘局部2.6px配准与最多1.08px收顺",
+      "basis": "base-subject 用于裸臂/肘，standard 用于虎口；均1115×1410原坐标",
+      "svgMismatch": "暖棕轮廓局部修回参考位置并清理多余外像素；右前臂内缘最大2.6px局部配准、最多约1.08px收边；左食指根尖峰值+4/−3px，半径24px外为零。旧SVG未随这些局部绘画轮廓微调改写，差异保留记录。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "region": "本件外缘/肘端窄带；右上臂另有补全端半透明肤色边清理",
+      "basis": "base-subject 用于裸臂/肘，standard 用于虎口；均1115×1410原坐标",
+      "svgMismatch": "暖棕轮廓局部修回参考位置并清理多余外像素；右前臂内缘最大2.6px局部配准、最多约1.08px收边；左食指根尖峰值+4/−3px，半径24px外为零。旧SVG未随这些局部绘画轮廓微调改写，差异保留记录。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "region": "本件外缘/肘端窄带；右上臂另有补全端半透明肤色边清理",
+      "basis": "base-subject 用于裸臂/肘，standard 用于虎口；均1115×1410原坐标",
+      "svgMismatch": "暖棕轮廓局部修回参考位置并清理多余外像素；右前臂内缘最大2.6px局部配准、最多约1.08px收边；左食指根尖峰值+4/−3px，半径24px外为零。旧SVG未随这些局部绘画轮廓微调改写，差异保留记录。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    }
+  ],
+  "hairBatchChanges": [
+    {
+      "id": "hair/back_hair",
+      "region": "自身青蓝亮带、回弯束局部发面与变化粗细外圈；完整隐藏发面承接仍待修",
+      "basis": "standard 1115×1410 原坐标；三色控制、原图同件取样、已有生成材质局部配准、Krita自身笔触。",
+      "svgMismatch": "原轮廓色块仍作范围与归属参考：后发回弯的原图外缘与生成/SVG细轮廓有局部约十像素偏移，实际发面和笔触恢复到原图；刘海尖约8px、侧发斜额缘10–15px/短尖17px/长尖12px、另一侧短长尖约10–11px局部配准。侧发下缘局部自身材质最大3.06px收顺。实际支持框另列；未改 part 身份、控制或深度，旧SVG未逐笔改写，非完全同色块轮廓的区域在此明列。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "hair/bangs",
+      "region": "y235–395 的发梢/中央下弧局部材质配准与原图自身下缘窄带",
+      "basis": "standard 1115×1410 原坐标；三色控制、原图同件取样、已有生成材质局部配准、Krita自身笔触。",
+      "svgMismatch": "原轮廓色块仍作范围与归属参考：后发回弯的原图外缘与生成/SVG细轮廓有局部约十像素偏移，实际发面和笔触恢复到原图；刘海尖约8px、侧发斜额缘10–15px/短尖17px/长尖12px、另一侧短长尖约10–11px局部配准。侧发下缘局部自身材质最大3.06px收顺。实际支持框另列；未改 part 身份、控制或深度，旧SVG未逐笔改写，非完全同色块轮廓的区域在此明列。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "region": "斜额缘、面侧短尖、长尖及自身长尖内缘残色/局部收顺；高位根保留",
+      "basis": "standard 1115×1410 原坐标；三色控制、原图同件取样、已有生成材质局部配准、Krita自身笔触。",
+      "svgMismatch": "原轮廓色块仍作范围与归属参考：后发回弯的原图外缘与生成/SVG细轮廓有局部约十像素偏移，实际发面和笔触恢复到原图；刘海尖约8px、侧发斜额缘10–15px/短尖17px/长尖12px、另一侧短长尖约10–11px局部配准。侧发下缘局部自身材质最大3.06px收顺。实际支持框另列；未改 part 身份、控制或深度，旧SVG未逐笔改写，非完全同色块轮廓的区域在此明列。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "region": "短/长尖位置与本件内部的弯曲发流色阶；整体长弯承接试验撤回",
+      "basis": "standard 1115×1410 原坐标；三色控制、原图同件取样、已有生成材质局部配准、Krita自身笔触。",
+      "svgMismatch": "原轮廓色块仍作范围与归属参考：后发回弯的原图外缘与生成/SVG细轮廓有局部约十像素偏移，实际发面和笔触恢复到原图；刘海尖约8px、侧发斜额缘10–15px/短尖17px/长尖12px、另一侧短长尖约10–11px局部配准。侧发下缘局部自身材质最大3.06px收顺。实际支持框另列；未改 part 身份、控制或深度，旧SVG未逐笔改写，非完全同色块轮廓的区域在此明列。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    }
+  ],
+  "eyeMouthFinishChanges": [
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "region": "完整眼白保留；自身左/下外缘亮白碎线局部融色",
+      "basis": "standard 1115×1410 原坐标；三色试稿、原生同件局部取样/笔触、已有生成材质配准。",
+      "svgMismatch": "原色块作为范围与身份参考，实际按原图细轮廓局部0–2.4px、右眼白自身右下缘0–2.8px配准及唇U内缘清理；主高光放大试验已恢复，口内开口蒙版右缘接合0–1.6px；实际支持框逐件列出。颜色/边缘微调未逐笔重写旧SVG，无part归属、运动或深度改变。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "region": "局部行轮廓0–2px、原图自身下部色块及瞳孔过亮小点清理；完整帽沿/暗边保留",
+      "basis": "standard 1115×1410 原坐标；三色试稿、原生同件局部取样/笔触、已有生成材质配准。",
+      "svgMismatch": "原色块作为范围与身份参考，实际按原图细轮廓局部0–2.4px、右眼白自身右下缘0–2.8px配准及唇U内缘清理；主高光放大试验已恢复，口内开口蒙版右缘接合0–1.6px；实际支持框逐件列出。颜色/边缘微调未逐笔重写旧SVG，无part归属、运动或深度改变。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "region": "主高光放大试验撤回；独立低亮蓝色瞳孔反光",
+      "basis": "standard 1115×1410 原坐标；三色试稿、原生同件局部取样/笔触、已有生成材质配准。",
+      "svgMismatch": "原色块作为范围与身份参考，实际按原图细轮廓局部0–2.4px、右眼白自身右下缘0–2.8px配准及唇U内缘清理；主高光放大试验已恢复，口内开口蒙版右缘接合0–1.6px；实际支持框逐件列出。颜色/边缘微调未逐笔重写旧SVG，无part归属、运动或深度改变。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "region": "自身内缘0–1.4px，末尾0–2.4px局部材质配准",
+      "basis": "standard 1115×1410 原坐标；三色试稿、原生同件局部取样/笔触、已有生成材质配准。",
+      "svgMismatch": "原色块作为范围与身份参考，实际按原图细轮廓局部0–2.4px、右眼白自身右下缘0–2.8px配准及唇U内缘清理；主高光放大试验已恢复，口内开口蒙版右缘接合0–1.6px；实际支持框逐件列出。颜色/边缘微调未逐笔重写旧SVG，无part归属、运动或深度改变。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "region": "自身左/下缘碎亮线融色、上睫毛形状斜灰投影去掉；完整眼白右下缘0–2.8px配准并修共用开口保留暗边",
+      "basis": "standard 1115×1410 原坐标；三色试稿、原生同件局部取样/笔触、已有生成材质配准。",
+      "svgMismatch": "原色块作为范围与身份参考，实际按原图细轮廓局部0–2.4px、右眼白自身右下缘0–2.8px配准及唇U内缘清理；主高光放大试验已恢复，口内开口蒙版右缘接合0–1.6px；实际支持框逐件列出。颜色/边缘微调未逐笔重写旧SVG，无part归属、运动或深度改变。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "region": "本眼行轮廓0–2px、内部下部青蓝面，右上完整帽沿0–2.2px接触和原生细暗边",
+      "basis": "standard 1115×1410 原坐标；三色试稿、原生同件局部取样/笔触、已有生成材质配准。",
+      "svgMismatch": "原色块作为范围与身份参考，实际按原图细轮廓局部0–2.4px、右眼白自身右下缘0–2.8px配准及唇U内缘清理；主高光放大试验已恢复，口内开口蒙版右缘接合0–1.6px；实际支持框逐件列出。颜色/边缘微调未逐笔重写旧SVG，无part归属、运动或深度改变。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "region": "主高光试验撤回；自身左下小青蓝反光独立原生绘画",
+      "basis": "standard 1115×1410 原坐标；三色试稿、原生同件局部取样/笔触、已有生成材质配准。",
+      "svgMismatch": "原色块作为范围与身份参考，实际按原图细轮廓局部0–2.4px、右眼白自身右下缘0–2.8px配准及唇U内缘清理；主高光放大试验已恢复，口内开口蒙版右缘接合0–1.6px；实际支持框逐件列出。颜色/边缘微调未逐笔重写旧SVG，无part归属、运动或深度改变。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "region": "生成完整口腔上右亮红边原生笔触去掉；共用开口右缘0–1.6px接到实际唇内缘",
+      "basis": "standard 1115×1410 原坐标；三色试稿、原生同件局部取样/笔触、已有生成材质配准。",
+      "svgMismatch": "原色块作为范围与身份参考，实际按原图细轮廓局部0–2.4px、右眼白自身右下缘0–2.8px配准及唇U内缘清理；主高光放大试验已恢复，口内开口蒙版右缘接合0–1.6px；实际支持框逐件列出。颜色/边缘微调未逐笔重写旧SVG，无part归属、运动或深度改变。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "region": "下唇旧内红边清理、自身1.8px窄描边原图取样及完整U连续轮廓",
+      "basis": "standard 1115×1410 原坐标；三色试稿、原生同件局部取样/笔触、已有生成材质配准。",
+      "svgMismatch": "原色块作为范围与身份参考，实际按原图细轮廓局部0–2.4px、右眼白自身右下缘0–2.8px配准及唇U内缘清理；主高光放大试验已恢复，口内开口蒙版右缘接合0–1.6px；实际支持框逐件列出。颜色/边缘微调未逐笔重写旧SVG，无part归属、运动或深度改变。",
+      "partIdentityChanged": false,
+      "depthChanged": false
+    }
+  ],
+  "outerLashDepthChanges": [
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "region": [
+        665,
+        346,
+        19,
+        14
+      ],
+      "svgMismatch": "原完整SVG的外尖683/344.9按实际原图短尖修为682/347.5，主体不变；保存SVG后用edit_occlusion把40改为40+57.5。同part像素支持与SVG仍存在笔触级差异，实际以原图轮廓为准。",
+      "identityChanged": false,
+      "depthChanged": true,
+      "levels": [
+        40,
+        57.5
+      ],
+      "basis": "raster-layering/step01/repair-evidence-01/outer-lash-depth/fragments/three-views-detail.png",
+      "svgBefore": "raster-layering/step01/repair-evidence-01/outer-lash-depth/upper_eyelid-svg-before.svg",
+      "svgAfter": "raster-layering/step01/repair-evidence-01/outer-lash-depth/upper_eyelid-svg-after.svg"
+    }
+  ],
+  "handElbowContactChanges": [
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "region": "根部实际外缘y898–924原生暖棕描边延续，alpha保持",
+      "alphaChanged": false,
+      "shapeChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见皮肤/暖棕与深蓝自身材质，完整生成独显、隐藏上层和整图三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/checks"
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "region": "指根自身肤色软接，完整头端/指身/alpha与线条保持；R6仍待修",
+      "alphaChanged": false,
+      "shapeChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见皮肤/暖棕与深蓝自身材质，完整生成独显、隐藏上层和整图三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/checks"
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "region": "掌指接点自身肤色局部软笔融色，alpha与结构线保持；R6仍待修",
+      "alphaChanged": false,
+      "shapeChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见皮肤/暖棕与深蓝自身材质，完整生成独显、隐藏上层和整图三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/checks"
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "region": "内肘自身体积皮肤色块x678–704/y763–790软接；完整根、原外线与alpha保持",
+      "alphaChanged": false,
+      "shapeChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见皮肤/暖棕与深蓝自身材质，完整生成独显、隐藏上层和整图三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/checks"
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "region": "内肘末端自身皮肤x677–697/y758–771软接；完整上臂端与alpha保持",
+      "alphaChanged": false,
+      "shapeChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见皮肤/暖棕与深蓝自身材质，完整生成独显、隐藏上层和整图三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/checks"
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "region": "自身根面x785–789/y813–823窄笔触清掉切分线，alpha/宝石保持；R35仍待修",
+      "alphaChanged": false,
+      "shapeChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见皮肤/暖棕与深蓝自身材质，完整生成独显、隐藏上层和整图三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/checks"
+    }
+  ],
+  "shoeBraceletContactChanges": [
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "region": "后口上弧x约359–373/y1158–1170及自身接段连续配准；最大向下3px",
+      "alphaChanged": true,
+      "shapeChanged": true,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件鞋口和腕环可见材料，以及完整生成部件三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/checks"
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "region": "本件上唇x约359–375/y1166–1178的白蓝材料取样，alpha保持",
+      "alphaChanged": false,
+      "shapeChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件鞋口和腕环可见材料，以及完整生成部件三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/checks"
+    },
+    {
+      "id": "arms/arm_left/bracelet_back",
+      "region": "自己露出的后环根面x約777–788和隐藏材料过渡，alpha保持",
+      "alphaChanged": false,
+      "shapeChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件鞋口和腕环可见材料，以及完整生成部件三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/checks"
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "region": "自己前环根面x約777–803/y805–832的本件蓝面局部取样，alpha保持",
+      "alphaChanged": false,
+      "shapeChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件鞋口和腕环可见材料，以及完整生成部件三视图",
+      "evidence": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/checks"
+    }
+  ],
+  "handHairContinuityChanges": [
+    {
+      "id": "hair/back_hair",
+      "region": "左侧自身青蓝承接及旧裁边清理；右侧本件末端小范围配准，R21仍待修",
+      "alphaChanged": true,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见形体与实际独显/隐藏上层/整图核对",
+      "svgFineContourDifference": true,
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks"
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "region": "自己虎口外缘连续曲线收边约1–2px、原生外线接续",
+      "alphaChanged": true,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见形体与实际独显/隐藏上层/整图核对",
+      "svgFineContourDifference": true,
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks"
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "region": "自己的上根面局部接色，完整生成根部保留",
+      "alphaChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见形体与实际独显/隐藏上层/整图核对",
+      "svgFineContourDifference": false,
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks"
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "region": "自己的根面体积融色及根缘外线",
+      "alphaChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见形体与实际独显/隐藏上层/整图核对",
+      "svgFineContourDifference": false,
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks"
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "region": "本件根面接色与自身内缘外线浓淡",
+      "alphaChanged": false,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见形体与实际独显/隐藏上层/整图核对",
+      "svgFineContourDifference": false,
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks"
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "region": "掌指斜向接色及外缘接点小凸点收顺",
+      "alphaChanged": true,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见形体与实际独显/隐藏上层/整图核对",
+      "svgFineContourDifference": true,
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks"
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "region": "掌指根面局部融色及虎口上接点自己的连续结构线",
+      "alphaChanged": true,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见形体与实际独显/隐藏上层/整图核对",
+      "svgFineContourDifference": true,
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks"
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "region": "完整外上缘收顺、长束内缘按原图收边及自身轮廓续线",
+      "alphaChanged": true,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见形体与实际独显/隐藏上层/整图核对",
+      "svgFineContourDifference": true,
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks"
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "region": "中段到末端的自身弯曲内缘收边、自身体积接色和外线接续",
+      "alphaChanged": true,
+      "identityChanged": false,
+      "depthChanged": false,
+      "basis": "原图本件可见形体与实际独显/隐藏上层/整图核对",
+      "svgFineContourDifference": true,
+      "evidence": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/checks"
+    }
+  ],
+  "backHairCompletionChanges": [
+    {
+      "id": "hair/back_hair",
+      "alphaChanged": true,
+      "identityChanged": false,
+      "depthChanged": false,
+      "regions": [
+        [
+          328,
+          477,
+          370,
+          540
+        ],
+        [
+          600,
+          531,
+          645,
+          578
+        ]
+      ],
+      "basis": "原图可见本件结构、完整本件独显及原坐标组装；上游SVG只作身份/范围依据，raster补全和精修细轮廓有局部出入",
+      "evidence": "raster-layering/step01/repair-evidence-01/back-hair-native-completion/record.json"
+    }
+  ]
+}

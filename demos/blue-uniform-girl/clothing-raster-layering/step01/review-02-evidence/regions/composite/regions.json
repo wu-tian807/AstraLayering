@@ -1,0 +1,159 @@
+{
+  "image": "clothing-raster-layering/step01/review-02-evidence/exports/default.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/marked.png",
+  "manifest": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        548,
+        570,
+        174,
+        121
+      ],
+      "layers": [
+        "inner_shirt/shirt_body | near | d22"
+      ],
+      "description": "衬衫下半可见布面比参考偏暗，参考门襟两侧宽而圆润的蓝灰亮褶面未恢复，当前仍为尖斜三角折面。按参考重画两侧明暗与圆润褶面，接入本片隐藏布面；保留已恢复的三扣与弯曲门襟。",
+      "crop": [
+        532,
+        554,
+        206,
+        153
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R1-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R1-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R1-comparison.png"
+      }
+    },
+    {
+      "id": "R2",
+      "bounds": [
+        205,
+        515,
+        184,
+        111
+      ],
+      "layers": [
+        "outer_jacket/right_sleeve | near | d33"
+      ],
+      "description": "画面左袖带白布与青带接边出现断续黑色像素串、锯齿和小凸点，参考为平顺连续的蓝色接边。重画本片上缘连续线条及自然接色，保留收拢袖口与内壁。",
+      "crop": [
+        189,
+        499,
+        216,
+        143
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R2-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R2-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R2-comparison.png"
+      }
+    },
+    {
+      "id": "R3",
+      "bounds": [
+        306,
+        627,
+        51,
+        34
+      ],
+      "layers": [
+        "outer_jacket/right_sleeve | near | d33",
+        "outer_jacket/right_sleeve | far | d7"
+      ],
+      "description": "画面左袖口内缘回转端有突兀台阶和朝青色布面伸出的短暗尾，near 独显和 far/near 合看均可见。修顺本片 alpha 内缘及边线末端，保持窄开口、完整内壁和两分片的自然回转。",
+      "crop": [
+        290,
+        611,
+        83,
+        66
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R3-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R3-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R3-comparison.png"
+      }
+    },
+    {
+      "id": "R4",
+      "bounds": [
+        357,
+        329,
+        81,
+        227
+      ],
+      "layers": [
+        "outer_jacket/right_sleeve | near | d33",
+        "outer_jacket/jacket_body/right_front/front_panel | complete | d35"
+      ],
+      "description": "画面左袖窿上段蓝缝边仍露出细黑残线，下段有白色及黑色断续小点；参考为连续自然的单条蓝色缝。整理两片搭接及各自边缘，消除残线、小点，保留各片完整布面。",
+      "crop": [
+        341,
+        313,
+        113,
+        259
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R4-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R4-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R4-comparison.png"
+      }
+    },
+    {
+      "id": "R5",
+      "bounds": [
+        667,
+        302,
+        99,
+        111
+      ],
+      "layers": [
+        "outer_jacket/jacket_collar/left_collar_flap | near | d38"
+      ],
+      "description": "画面右白翻领斜自由边的青色包边上半缺失，仅到下段才突然变宽；参考该边为连续较宽青色包边。沿参考恢复宽度、颜色和连续轮廓，与领尖下缘自然接通。",
+      "crop": [
+        651,
+        286,
+        131,
+        143
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R5-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R5-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R5-comparison.png"
+      }
+    },
+    {
+      "id": "R6",
+      "bounds": [
+        674,
+        498,
+        181,
+        275
+      ],
+      "layers": [
+        "outer_jacket/jacket_body/left_front/front_panel | complete | d34"
+      ],
+      "description": "画面右前衣片开襟边及下摆新增贯通的高饱和亮青细带，参考为深蓝黑轮廓与白布自然接边。局部恢复参考外缘，去掉新增亮青条，保留真正的口袋青包边、胸标和驳头包边。",
+      "crop": [
+        658,
+        482,
+        213,
+        307
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R6-current.png",
+        "reference": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R6-reference.png",
+        "comparison": "clothing-raster-layering/step01/workspace/review-regions/587cde1a-8350-4075-98e1-f8a4315859f3/R6-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

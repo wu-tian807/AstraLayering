@@ -1,0 +1,21 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "pose": "same-pose frontal, upper lip raised",
+  "input": "part-layering/step11_completion/face/children/mouth/children/upper_teeth/workspace/bitmaps/73a4caed-5e7f-4ac5-8e5b-9be24ceec1a6.png",
+  "inputCrop": [
+    285,
+    155,
+    505,
+    445
+  ],
+  "inputScale": 2,
+  "finalReference": "part-layering/step11_completion/face/children/mouth/children/upper_teeth/structure-reference-open-mouth-02.png",
+  "referenceRegion": [
+    557,
+    802,
+    148,
+    45
+  ],
+  "prompt": "Use case: precise-object-edit. Structural reference of the same complete anime face, same frontal pose and tilt. Preserve this entire image and all face proportions. The one local edit is to raise the upper lip of the existing open mouth to reveal the hidden upper teeth above the currently visible narrow white crescent. IMPORTANT: retain the existing white crescent's lower biting boundary exactly in place, retaining its small size, curved edge, diagonal tilt, and the unchanged tongue and dark opening below it. Reveal only the upper continuation that was covered by the lip. The exposed upper dental shape must be a single smooth unsegmented ivory plate, gently rounded at both ends and with a smooth broad round upper crown/root attachment arch behind the raised upper lip, no individual tooth lines, no scalloped teeth, no added fangs, no realistic tooth anatomy. Keep the existing mouth corners and mouth width unchanged. The upper lip lifts naturally for a fully open smile, showing the upper dental plate and its attachment in a normal full-face context. The original lower teeth remain obscured by the tongue. Do not lower or widen the upper biting edge and do not replace it with a big rectangular tooth strip. No text, no labels, no isolated diagram, no camera or head rotation. Preserve hair, eyes, nose, cheeks, face outline, accessories, illustration style and scale.",
+  "ignoredArtifacts": "First image individual tooth segmentation; second image floating white shape below upper tooth plate. Neither added to this group."
+}

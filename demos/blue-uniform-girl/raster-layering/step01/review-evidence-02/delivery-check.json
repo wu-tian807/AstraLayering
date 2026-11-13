@@ -1,0 +1,11 @@
+{
+  "report": "raster-layering/step01/review-02.md.tmp",
+  "conclusion": "结论：需要修复",
+  "findings": 16,
+  "distinct_logical_parts": 59,
+  "inspected_paint_fragments": 60,
+  "masks": 10,
+  "valid_links": 157,
+  "all_problem_layers_exist": true,
+  "all_input_hashes_unchanged": true
+}

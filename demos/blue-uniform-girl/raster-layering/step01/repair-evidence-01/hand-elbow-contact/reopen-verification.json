@@ -1,0 +1,1044 @@
+{
+  "passed": true,
+  "treeUnchanged": true,
+  "pixelsUnchanged": true,
+  "maskSelectionsUnchanged": true,
+  "compositeUnchanged": true,
+  "paintLayers": 60,
+  "logicalParts": 59,
+  "nativeMasks": 10,
+  "groups": 3,
+  "file": "raster-layering/step01/character-depth.kra",
+  "after": {
+    "width": 1115,
+    "height": 1410,
+    "colorModel": "RGBA",
+    "colorDepth": "U8",
+    "colorProfile": "sRGB-elle-V2-srgbtrc.icc",
+    "tree": [
+      {
+        "name": "01 | hair/back_hair",
+        "uuid": "{4b2fea23-4cde-4f9b-9224-2cdb83cdaa5e}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "4c25f2dabfe67bd6ffb89a2c35035cbf33171d01d449169d12eaf06945c848a3"
+      },
+      {
+        "name": "02 | legs/leg_left/shoes/cuff_back",
+        "uuid": "{c7e21fcd-d954-4109-acf1-63cabfccac75}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "5235cfa46ba23b6510c319d188eed26c12e1261c170a9eba8aa502dad5d02f58"
+      },
+      {
+        "name": "03 | legs/leg_right/shoes/cuff_back",
+        "uuid": "{bdfed0ea-bffa-4cfd-9160-86a499193bd1}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "cb6406f1c321758439882e4d454cee50f3c28a902bc887f7ccb899639451cbe9"
+      },
+      {
+        "name": "04 | legs/leg_left/leg",
+        "uuid": "{874466af-a8fd-455a-aa1a-4394f2c00e6a}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "98a535d42aaf7f205ac592ee37a30360960a767d3d2141cc881475ec085b2e27"
+      },
+      {
+        "name": "05 | legs/leg_right/leg",
+        "uuid": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "d738c2e6a588cdf832a6cfd755b617d9e8fadc057ca2c8849f68fd0a896fd700"
+      },
+      {
+        "name": "06 | legs/leg_left/shoes/shoe_front",
+        "uuid": "{3b0f36c9-3065-485d-918d-394523b87ff3}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "8bd86545d4659fc652ff519777df65f526c49ef154c4e8a7d5afd62b68a1cd9d"
+      },
+      {
+        "name": "07 | legs/leg_right/shoes/shoe_front",
+        "uuid": "{a5d03af1-05f9-43ff-a031-8a1f7e439fed}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "ecfff291041aaee3db5a30dc44b7bab474c8e0daddd3efe40decd94409d9795d"
+      },
+      {
+        "name": "08 | arms/arm_left/bracelet_back",
+        "uuid": "{1411fc3e-398b-40ce-8d5d-41fd7e71f8b9}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "dd60054e9b4cdbb4cedf84dcf6274b99ae08211ceac3bce77f1d37916550a633"
+      },
+      {
+        "name": "09 | arms/arm_right/bracelet_back",
+        "uuid": "{04a63182-d2f1-40e5-b8cd-ecdd6a2cbb8b}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "56bd6194c04a72e48ee61ac56180d846ce2ca86a3f996e7471ca90fdab0e64fc"
+      },
+      {
+        "name": "10 | arms/arm_left/hand/little_finger",
+        "uuid": "{e24c2a96-a10f-4610-bc8c-d41e53f31f45}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "85173a664ce56e615069ea429db38d459224bb5bf2da7b59016517a5151bae51"
+      },
+      {
+        "name": "后方手指默认遮挡",
+        "uuid": "{06c0d344-178f-4185-b953-a9ed4cc37ebc}",
+        "type": "transparencymask",
+        "parent": "{e24c2a96-a10f-4610-bc8c-d41e53f31f45}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "f8f140251e616b3855b34e8305108e9c130423d6c6b349ae09ccc98be7897103"
+      },
+      {
+        "name": "11 | arms/arm_right/hand/little_finger",
+        "uuid": "{49267e18-4add-4309-8aa9-e030f5b6be36}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "8030e9ad94d63216e2f418c2a1c99252df651a3ceaa0b443cdceb4f26fcdb83c"
+      },
+      {
+        "name": "后方手指默认遮挡",
+        "uuid": "{a557dafb-b0ff-46c4-88dd-a390e968eea9}",
+        "type": "transparencymask",
+        "parent": "{49267e18-4add-4309-8aa9-e030f5b6be36}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "f8f140251e616b3855b34e8305108e9c130423d6c6b349ae09ccc98be7897103"
+      },
+      {
+        "name": "12 | arms/arm_left/hand/ring_finger",
+        "uuid": "{3b283a3e-8e41-4af0-bcaa-8f6e57dfc86a}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "0d74eaf9c2323ced797afd615adda2c6e5ffb3059622e7fc95bcd7ef7a493098"
+      },
+      {
+        "name": "后方手指默认遮挡",
+        "uuid": "{83eb02f1-3940-4058-bacf-aeaac4af2b78}",
+        "type": "transparencymask",
+        "parent": "{3b283a3e-8e41-4af0-bcaa-8f6e57dfc86a}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "f8f140251e616b3855b34e8305108e9c130423d6c6b349ae09ccc98be7897103"
+      },
+      {
+        "name": "13 | arms/arm_right/hand/ring_finger",
+        "uuid": "{4510cb4e-68bb-41e1-b8f5-f8f0f0ce8c2f}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "6aee58a00b2a9b4786e40a150dc6e65db9cd04e4db4df170ee6ff697fa6ec21b"
+      },
+      {
+        "name": "14 | arms/arm_left/hand/middle_finger",
+        "uuid": "{77dd7450-bfed-474a-9430-874a4e35f190}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "3d795cd36aa6a4c6e38d00aa6016a3342dec9d609dede1cfddbafcd9f75000fe"
+      },
+      {
+        "name": "15 | arms/arm_right/hand/middle_finger",
+        "uuid": "{0c6436cb-0783-44e4-915e-43662c767392}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "e3555dd1e44cb4207fc154231f3db5bc4da4a10129433264e6817d0726cc9c25"
+      },
+      {
+        "name": "16 | arms/arm_left/hand/thumb",
+        "uuid": "{bf191541-773a-4056-9e34-01cc88e4ca22}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "3ed0e07f7dc82e6345a39fb1b887d1a3a815f540f60d045916a1505ae4dfbc8a"
+      },
+      {
+        "name": "17 | arms/arm_right/hand/thumb",
+        "uuid": "{90606b7a-2e18-4831-b676-c21e7c2035e2}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "1fc59e0665be46e5b99005f994157ec24831adfd1ac2bd3096254cc958f445b6"
+      },
+      {
+        "name": "18 | arms/arm_left/hand/index_finger",
+        "uuid": "{7f6b3f3c-ef59-4ca1-8f2b-71fa16aa2041}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "b3e9b73bf2c7bd3e0ba7205a2c0ec8055e95790bee0fe3a17f80bc4420e48853"
+      },
+      {
+        "name": "19 | arms/arm_right/hand/index_finger",
+        "uuid": "{53e7f8e1-ab0e-4bb0-9a7b-81ff56c4c84c}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "478f2d8f2e9c4c5de7ba67f1a7e84c4f6b3804d899dc97d68d2bb8d897a492c4"
+      },
+      {
+        "name": "20 | arms/arm_left/hand/palm",
+        "uuid": "{440fb58a-df71-4dd5-b0bd-987480678545}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "53c490ca37ee82fbb2f16f9b4966b7dc7a8aff144b4ef63dd940b9f227ac5666"
+      },
+      {
+        "name": "21 | arms/arm_right/hand/palm",
+        "uuid": "{42ffac49-97db-4328-b0d6-ac35898914bd}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "7468f56d50f1bb47eb86074d346f75a373d3d19abbec07887f7b97b4af150f1c"
+      },
+      {
+        "name": "22 | arms/arm_left/forearm",
+        "uuid": "{29bb2c4d-bdae-4cb3-b603-14ee0741e6dd}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "e9b1877209f91c2e76c450b9b1aa9ca7877afb0042113a6b23802be73a7046f3"
+      },
+      {
+        "name": "23 | arms/arm_right/forearm",
+        "uuid": "{3beed03f-949d-4f3a-9353-13e87e8989bd}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "409612efd3c1e88be439cbfd6e405fdfcd4ff4c797bac807eef22c7b90584514"
+      },
+      {
+        "name": "24 | arms/arm_left/upper_arm",
+        "uuid": "{ac87d5b7-6c85-46bf-a23b-33a6b18b22aa}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "04318d5c6a2896ae045a539c0a4eb3abb290bf6db85534c6202234b52b12d170"
+      },
+      {
+        "name": "25 | arms/arm_right/upper_arm",
+        "uuid": "{decfd947-28d2-4860-8930-4dfed8188037}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "bafe7b01c432505b8df817e280ad434830fceaa6dbbf7702d60f052981e31ac0"
+      },
+      {
+        "name": "26 | neck",
+        "uuid": "{68b98b37-a38c-4a70-8a26-fb87bb0cbe33}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "93747f002b74b0a4525a080cbc6c830fcd30321496b90a19ac89bdb9c13b2c99"
+      },
+      {
+        "name": "27 | body/torso",
+        "uuid": "{1630b7d7-6097-4334-84b5-2a48b92064d4}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "18b7b40143886eea8a726d5feaae7410eb67997441e83bfb51656a639848cad0"
+      },
+      {
+        "name": "28 | body/breast",
+        "uuid": "{337c5213-e37a-4929-8120-79f04a3a5aa1}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "9313fc2bd48235eae8542e8ab79953b0c8ae37591fd5eb7cc9f1f52e60ea5bcf"
+      },
+      {
+        "name": "29 | pelvis",
+        "uuid": "{8077f372-abff-4fe4-99dd-2f7ab598740c}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "110daabf3da6bd64d48ffea6177306f274b6d04448485b25c394291458d9dc08"
+      },
+      {
+        "name": "30 | arms/arm_left/bracelet_front",
+        "uuid": "{bb507ac4-597b-4816-a13c-6799c5365bc4}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "2b61bf2e206ccbe5bb91d783f344ae980120ecb56d8f45f05c2dd1084f50e9df"
+      },
+      {
+        "name": "31 | arms/arm_right/bracelet_front",
+        "uuid": "{96cddaae-29c8-45df-b682-87d65a38d5d3}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "4cdd0b06aefe9e5931f2d7c2affead841f0fd90b19e06ddfac44c75c14ea0115"
+      },
+      {
+        "name": "32 | face/ears/ear_left",
+        "uuid": "{2b674aab-ffe3-41d3-a0fa-55462a22040a}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "a866083b0d0228c87c305c1fd478c136d2c7b7abbf4a8836ed040290514c8a53"
+      },
+      {
+        "name": "33 | face/ears/ear_right",
+        "uuid": "{e6e34b95-dec1-4923-bb8e-2d2eb4ac4a1f}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "1a43260522e5779db1b31248d796ee50b0e74e8bbb7750cda38f926a94a43d8a"
+      },
+      {
+        "name": "34 | face/face_base",
+        "uuid": "{c3f39273-f952-456f-aa58-4cfd3ee4b101}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "761e33c7821e1874d15a3305c73b412d11096923655c58acccddcdef6c45ee08"
+      },
+      {
+        "name": "35 | face/blush_left",
+        "uuid": "{c1f6358e-afa3-4af4-bbc0-07432ad35e95}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 180,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "1771bf355116b618ef7c00530a8eeb3556879e66654c382959684559893af93c"
+      },
+      {
+        "name": "36 | face/blush_right",
+        "uuid": "{e2db8f94-dac4-49a0-9f58-e447b3960664}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "4a3f541de5e1a4e461b4d02700136b37caa247824ef3a4b487ab6af40c8620e7"
+      },
+      {
+        "name": "眼内开合 left",
+        "uuid": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}",
+        "type": "grouplayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "passThrough": false
+      },
+      {
+        "name": "37 | face/eyes/eye_left/sclera",
+        "uuid": "{0d6b92bf-92d0-494b-acf9-c7a6d133c5c0}",
+        "type": "paintlayer",
+        "parent": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "bf02cca98dd5374c7880c3c738e83b5a3869d8f0743194982140668e3bf437bf"
+      },
+      {
+        "name": "38 | face/eyes/eye_left/iris",
+        "uuid": "{79ed3649-fddc-4bf8-b9fc-0267f7e9d4c1}",
+        "type": "paintlayer",
+        "parent": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "a6cc8c0f961a6eb5f7e0f2292ca1db712cf464c2188eb0fa1cfa2371a58c6cea"
+      },
+      {
+        "name": "39 | face/eyes/eye_left/highlight",
+        "uuid": "{38d785a0-2b85-4126-a5d4-2d995993c0cb}",
+        "type": "paintlayer",
+        "parent": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "c666d0c4f54e4b356134e47101e235a48a41c41e3c4e2844782eee2b081c5a42"
+      },
+      {
+        "name": "高光虹膜范围 left",
+        "uuid": "{4ea9dc55-ede2-48ce-9270-2f1eaacb036f}",
+        "type": "transparencymask",
+        "parent": "{38d785a0-2b85-4126-a5d4-2d995993c0cb}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "104ee6bbb2cb773a648b05ace22d5d240bab5868800a201001ef5d26f2db202e"
+      },
+      {
+        "name": "眼睛开口 left",
+        "uuid": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+        "type": "transparencymask",
+        "parent": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "c3f5325eb2a5f491e941d1226278c91b86c35aa7b7cad477584aa521bc65d89b"
+      },
+      {
+        "name": "40 | face/eyes/eye_left/upper_eyelid",
+        "uuid": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "af5222ebce90d6236811f79312a092c236b634ac45827d8d80a820b5bddab419"
+      },
+      {
+        "name": "41 | face/eyes/eye_left/eyelid_crease",
+        "uuid": "{2de44cab-5ac3-49c4-a5a0-b84429a0818c}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "9a6f65df654e362d7a7208ff27ec0a44d1acec460c4fcc72472036dd200c5061"
+      },
+      {
+        "name": "眼内开合 right",
+        "uuid": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+        "type": "grouplayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "passThrough": false
+      },
+      {
+        "name": "42 | face/eyes/eye_right/sclera",
+        "uuid": "{14a479b6-89ad-4a9f-ad72-d21873a39134}",
+        "type": "paintlayer",
+        "parent": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "ed41cab5de81c79687d78d7b1d45e249a7d500c7220bb3d0a4dfe563c8c183d8"
+      },
+      {
+        "name": "43 | face/eyes/eye_right/iris",
+        "uuid": "{58cb7d99-1303-47b8-8317-5b18387cf4e3}",
+        "type": "paintlayer",
+        "parent": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "96612f74e630b679696cf22bdc36e5464fc22120ffb578f89493a25885e297d4"
+      },
+      {
+        "name": "44 | face/eyes/eye_right/highlight",
+        "uuid": "{5b2f210f-f4fd-4df9-b302-1c9cd63f747e}",
+        "type": "paintlayer",
+        "parent": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "ec30746e42004bcc6fdd98cf3884bbd7b648bd2e3ad1c60debc37fb3f4aa60ca"
+      },
+      {
+        "name": "高光虹膜范围 right",
+        "uuid": "{ab4087a9-f7c6-4c0e-9b31-a7e58be174df}",
+        "type": "transparencymask",
+        "parent": "{5b2f210f-f4fd-4df9-b302-1c9cd63f747e}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "5cd29dd494aea22f5ea1a7b06578debfb51777e901bae181380f89ad5ef7bbbb"
+      },
+      {
+        "name": "眼睛开口 right",
+        "uuid": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+        "type": "transparencymask",
+        "parent": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "0d2ea17bf6b6456e7acd8d477e3b206ea61bb0342f4af79b023cc2a9c8af3a89"
+      },
+      {
+        "name": "45 | face/eyes/eye_right/upper_eyelid",
+        "uuid": "{2397666a-3d0c-482b-bd9f-4e48785e77ae}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "cd58fa64212355f819c0286e2d2994d8b9692b9f8dba531d38609bb8d7ba313a"
+      },
+      {
+        "name": "46 | face/eyes/eye_right/eyelid_crease",
+        "uuid": "{4ca54efb-c6fb-451f-a1ac-b29fb3ce1de7}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "444947b2fbbcfd8e3d3e6e49658e27d3b8de1197c179d241508f81a38b5010cd"
+      },
+      {
+        "name": "47 | face/nose",
+        "uuid": "{701f1a49-8a4c-497e-8bb8-710deea1d56e}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 190,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "4c2b313e9fba089d766f3a06db16ebfec3ca54bcfb0cb5574159ba721264fa1b"
+      },
+      {
+        "name": "口内开合",
+        "uuid": "{6cda5519-1733-4803-91f3-f8015f0a8d67}",
+        "type": "grouplayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "passThrough": false
+      },
+      {
+        "name": "48 | face/mouth/mouth_interior",
+        "uuid": "{2835ab5e-38b6-44ab-a436-6010fcfa217f}",
+        "type": "paintlayer",
+        "parent": "{6cda5519-1733-4803-91f3-f8015f0a8d67}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "b24aa0cfadac8d748375678e5b6e672c0557dd79ab6b840ce0ae71611aea4a19"
+      },
+      {
+        "name": "49 | face/mouth/lower_teeth",
+        "uuid": "{cfd92245-2bed-4dd6-8962-aa81b90e43c8}",
+        "type": "paintlayer",
+        "parent": "{6cda5519-1733-4803-91f3-f8015f0a8d67}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "f7bfa8576172b7def91aab8ba492f7cc452b962323dbf46d69de34984f59697b"
+      },
+      {
+        "name": "下牙默认遮挡",
+        "uuid": "{4ef4f667-6607-458d-ab72-855884296f24}",
+        "type": "transparencymask",
+        "parent": "{cfd92245-2bed-4dd6-8962-aa81b90e43c8}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "f8f140251e616b3855b34e8305108e9c130423d6c6b349ae09ccc98be7897103"
+      },
+      {
+        "name": "50 | face/mouth/tongue",
+        "uuid": "{3befd481-21d8-44a8-96bc-a4ab7e95a6d0}",
+        "type": "paintlayer",
+        "parent": "{6cda5519-1733-4803-91f3-f8015f0a8d67}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "9454b516e2c7a98e7d5b0b6aed453f0ba34e69cd95d1fc9726722f11b275e0e5"
+      },
+      {
+        "name": "51 | face/mouth/upper_teeth",
+        "uuid": "{076da129-6653-41b1-89ac-b83043cdb5a1}",
+        "type": "paintlayer",
+        "parent": "{6cda5519-1733-4803-91f3-f8015f0a8d67}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          5
+        ],
+        "pixelHash": "d41d886eac65d0b6bf7f0cc9f3a322a5902d2c6f66921493e5e295e06493d8c8"
+      },
+      {
+        "name": "上牙露出带",
+        "uuid": "{582994c8-f7c8-49a0-994c-c1a1924ede30}",
+        "type": "transparencymask",
+        "parent": "{076da129-6653-41b1-89ac-b83043cdb5a1}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "591dd783e08ecdf28fb59b9cfac01773143246ebeba2f498d72a4c2a1e5e7290"
+      },
+      {
+        "name": "上下唇开口",
+        "uuid": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+        "type": "transparencymask",
+        "parent": "{6cda5519-1733-4803-91f3-f8015f0a8d67}",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "selectionHash": "b9c9e6686113c80c5a8b301d2cd472549d5fc5099b72c816a1b1abbde962db08"
+      },
+      {
+        "name": "52 | face/mouth/lower_lip",
+        "uuid": "{49667a5f-c28a-4103-89b3-a8bd132ee9e5}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "b00dd1208425dd2877e5eeff1b2393e761ee2f8b0efca00412868d9e4c4adec0"
+      },
+      {
+        "name": "53 | face/mouth/upper_lip",
+        "uuid": "{3c5522af-747a-4063-92cd-1d5098b84d6d}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "e80f2a84bcb83e093fc7cedaa602a9b1179818c26f1cd5b5114e5bd21a8512f9"
+      },
+      {
+        "name": "54 | face/eyebrows/eyebrow_left",
+        "uuid": "{29fe8dcd-4637-48dc-b6d6-873445abd084}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "df7e3b3bd9a3d7b66e39cfa91a3733aff3f3d70976b01901176d6e27bf26154f"
+      },
+      {
+        "name": "55 | face/eyebrows/eyebrow_right",
+        "uuid": "{fcd3d071-f0f5-4ba1-b691-ddf2eec5ccf1}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "320c6de83b1760d4c93a4b3fce0ef56729b07f0bd2f4ea345d98d0de4448f429"
+      },
+      {
+        "name": "56 | hair/bangs",
+        "uuid": "{d8460341-1a17-4ea7-85e2-55efc4e6b0b3}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "e4fecdb4118f9a2b344e465d18422d116de31febf85ef85d9988688e5f53f281"
+      },
+      {
+        "name": "57 | hair/side_hair/side_hair_left",
+        "uuid": "{d0910d01-e059-41dd-a4f6-0e1eef1138bd}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "8fcdc327243e421b8960bd6a974c386ff06369b92b68f5bd2cb563f76dfe10eb"
+      },
+      {
+        "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+        "uuid": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "3ec1a5cd2e9fe95dbc05c2b8dd621a378f44cd974de3a96672cf4983b17750d6"
+      },
+      {
+        "name": "58 | hair/side_hair/side_hair_right",
+        "uuid": "{0c3ad932-f415-4070-b55e-173db3af8341}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "156c4b94461e4a0cef7c9b741ebada786219ed33a44254dabb90e9f927ebc692"
+      },
+      {
+        "name": "59 | head_accessories",
+        "uuid": "{f9d0168b-70a0-4328-ae5e-3a1f137a6579}",
+        "type": "paintlayer",
+        "parent": "root",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "position": [
+          0,
+          0
+        ],
+        "pixelHash": "31cba6172853459d19dc31890b3fdd391c2580686914989d1110e6413234ea58"
+      }
+    ],
+    "compositeHash": "05bff8a686d85aadf1a315863c75a2d0f48fed7c0644b98b7bbc1006dc5f6411"
+  }
+}

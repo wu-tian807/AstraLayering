@@ -1,0 +1,557 @@
+{
+  "version": 3,
+  "direction": "back-to-front",
+  "sourceHash": "cf2449fafcc2122be84bbb37e51e8b8b64fbefc34ffdcdb968e72effa2aaaa1a",
+  "layers": [
+    {
+      "id": "hair/back_hair",
+      "level": 1,
+      "note": "完整后发外壳、两侧回弯束及颈后青蓝发面作为一件，位于 face/face_base、face/ears/ear_left、face/ears/ear_right、neck、body/torso、arms/arm_left/upper_arm、arms/arm_right/upper_arm 及全部前发之后；hair/bangs、hair/side_hair/side_hair_left、hair/side_hair/side_hair_right 覆盖根部。默认开启，遮挡内完整形体保留，靠上述实体自然遮挡；不裁到脸轮廓。",
+      "check": {
+        "passed": true,
+        "note": "已对照当前候选整图与后发完整 SVG blend：完整补形横跨头顶内侧、脸后与颈后，外侧回弯束和下颌后的蓝色短梢对应原画。原图脸、双耳、下颌与前颈压在后发内侧上，肩部覆盖邻接下缘，候选按后发最底层承接，前发遮住前上面，关系相容。完整后发在单件叠加中透过脸露出是补形证据，实际默认由前方实体覆盖，无需额外脸形剪贴。"
+      }
+    },
+    {
+      "id": "legs/leg_left/shoes/cuff_back",
+      "level": 2,
+      "note": "画面右靴完整后口缘及口内后壁，在 legs/leg_left/leg 后、legs/leg_left/shoes/shoe_front 后；中央后段由小腿遮住，两端在靴口可见。默认开启，后口与前口连续衔接；鞋组不得整体置于 leg 前方。",
+      "check": {
+        "passed": true,
+        "note": "当前候选下肢局部和完整后口 SVG blend 显示：画面右靴后口是一条从两侧绕过小腿后方的弧带，单件叠加中央跨在袜面上，原图此处中央被小腿遮住，仅两侧口缘可见。因此 cuff_back < leg < shoe_front 正确；默认开启由腿覆盖中央，无需把鞋组整体前置，前后口两端连续接合待 KRA 校准。"
+      }
+    },
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "level": 3,
+      "note": "画面左靴完整后口缘及口内后壁，在 legs/leg_right/leg 后、legs/leg_right/shoes/shoe_front 后。默认开启，仅两侧后口缘可见，中央由小腿自然遮挡；与另一靴空间分离，唯一数值不表示左右靴必须有交叠。",
+      "check": {
+        "passed": true,
+        "note": "对照当前候选与画面左靴完整后口 blend，后口弧带随倾斜小腿斜绕，中央完整延续在单件叠加中横跨袜面，两端贴浅色靴口。原图中央不可见而侧缘显露，支持本件在 leg 后、shoe_front 后，默认开启靠小腿遮挡；与另一靴空间分离，左右唯一数值不引入交叉。"
+      }
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "level": 4,
+      "note": "画面右侧完整腿、长袜、足踝与脚一件，位于 pelvis 后、legs/leg_left/shoes/cuff_back 前及 legs/leg_left/shoes/shoe_front 后；髋根与足部完整保留。默认开启，大腿和靴口上方小腿可见，髋根由 pelvis、脚由前鞋体遮住，不按当前可见段裁断。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 确认画面右腿上端延入连体服髋部下方、下端足部连续延入封闭鞋体，靴口中央小腿露在后口前；当前候选已显示骨盆覆盖腿根、前鞋口覆盖小腿下端。单一 leg 深度夹在本侧 cuff_back 与 shoe_front 间且在 pelvis 后即可，默认腿层开启，完整脚靠鞋体遮住，无遮罩需要裁断腿脚。"
+      }
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "level": 5,
+      "note": "画面左侧完整腿脚及贴合长袜，位于 pelvis 后、legs/leg_right/shoes/cuff_back 前及 legs/leg_right/shoes/shoe_front 后；腿根和脚保留在遮挡内。默认开启；双腿在当前姿势各占一侧，无交叉，唯一深度用于统一排序。",
+      "check": {
+        "passed": true,
+        "note": "完整画面左腿 SVG blend 覆盖从髋根到足部的连续形体，髋根上延进入连体服、脚形进入鞋头；原图左腿斜向左下，不与右腿交叉。当前候选 pelvis 在腿根前，腿在后口前、前鞋口后吻合，默认全件开启靠骨盆与鞋体遮挡隐藏延续，不需多深度。"
+      }
+    },
+    {
+      "id": "legs/leg_left/shoes/shoe_front",
+      "level": 6,
+      "note": "画面右靴前鞋口、鞋舌、筒面、鞋头、侧壁及相连鞋底作为连续完整前鞋体，在 legs/leg_left/leg 与 legs/leg_left/shoes/cuff_back 前。默认开启，封闭鞋面遮住完整脚及足踝，鞋底在当前投影中与鞋体连续，无需单列后深度；扣带和装饰随本件。",
+      "check": {
+        "passed": true,
+        "note": "完整右侧前鞋体 blend 从前鞋口和鞋舌连到鞋头、侧壁、鞋底，封闭覆盖足背，后鞋口在其上沿后侧露窄边；当前候选前鞋体压在小腿下端前方，与原图一致。单一深度在 leg、cuff_back 前，默认开启，不用脚的轮廓剪贴鞋体；鞋底与侧壁是连续可见表面，当前投影没有要求穿到 leg 后的区域。"
+      }
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "level": 7,
+      "note": "画面左靴完整前鞋体及连续鞋底，在 legs/leg_right/leg 和 legs/leg_right/shoes/cuff_back 前；默认开启，鞋舌及前鞋口盖住小腿下端，鞋身遮住脚。两侧前后口缘接缝在 raster step01 校准；固定扣带及鞋底不另分深度。",
+      "check": {
+        "passed": true,
+        "note": "画面左完整前鞋体 blend 的斜向前口、鞋舌、鞋头和青蓝底缘连续，原图小腿下端藏在前口与鞋舌后方，后口窄边在两侧露出；候选对应。默认前鞋体开启且在 leg 与 cuff_back 前即可，封闭鞋体遮足部，固定扣带与相连鞋底无独立夹层需求。"
+      }
+    },
+    {
+      "id": "arms/arm_left/bracelet_back",
+      "level": 8,
+      "note": "画面右腕环完整后段，在 arms/arm_left/forearm、arms/arm_left/hand/palm、arms/arm_left/bracelet_front 后；默认开启，入环处两侧后环缘可见，中央被腕部及前环覆盖。手臂组与手环不可整组叠在腕部前。",
+      "check": {
+        "passed": true,
+        "note": "完整画面右后环 blend 显示完整弧带绕过腕端，中央补形投在前臂皮肤上，两侧延续贴环缘；原图中央由腕部遮住。候选后环在 forearm、palm、bracelet_front 后吻合，只在入环两侧露边，默认开启，靠实体遮挡与前后环端连续衔接。"
+      }
+    },
+    {
+      "id": "arms/arm_right/bracelet_back",
+      "level": 9,
+      "note": "画面左腕环完整后段，在 arms/arm_right/forearm、arms/arm_right/hand/palm、arms/arm_right/bracelet_front 后；默认开启，后侧中央遮住、两侧环缘局部显露，完整形体保留。",
+      "check": {
+        "passed": true,
+        "note": "画面左后环完整 SVG blend 的弧带横过前臂腕端并接两侧，原图中央后段被腕端与前环挡住，入环处可辨后缘。候选排序在 forearm、palm、bracelet_front 后，默认仅边缘自然显露，完整后环保留，与本侧前环夹住腕部，不需要新逻辑部件。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/little_finger",
+      "level": 10,
+      "note": "画面右手完整小指在 arms/arm_left/hand/ring_finger、arms/arm_left/hand/middle_finger、arms/arm_left/hand/index_finger、arms/arm_left/hand/thumb、arms/arm_left/hand/palm 后。hiddenInReference=true，保留绘画层及完整手指；默认绘画层开启但整指可见性为零。由所列前方掌指在重叠处自然遮挡，并在本层附当前手姿透明度蒙版补足整体遮挡；控制范围为整指，随掌指姿势更新，展开手指时解除或调整，禁止删除本指。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 将画面右手小指定位在掌远端尺侧、食指外侧投影以内，原图该区只有前侧食指连续外缘，没有独立小指端。当前候选前掌指盖住此补形，支持小指位于全部前指与掌后。默认整指不可见与层序相容，保留开启绘画层；按提案由本侧掌、无名指、中指、食指及拇指控制当前手姿透明度蒙版，任何补形露出的余量须隐藏，后续展开时更新。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/little_finger",
+      "level": 11,
+      "note": "画面左手完整小指在 arms/arm_right/hand/ring_finger、arms/arm_right/hand/middle_finger、arms/arm_right/hand/index_finger、arms/arm_right/hand/thumb、arms/arm_right/hand/palm 后。hiddenInReference=true，绘画层保留且开启，默认整指不可见；上述前方掌指自然遮挡，若完整补形超出遮挡投影，在本层用当前姿势透明度蒙版隐藏整指露出的余量，控制整指并随所列掌指姿势更新，未来显露时调整。",
+      "check": {
+        "passed": true,
+        "note": "画面左小指完整 blend 位于前侧食指和弯曲中、无名指重叠后的区域，原图无独立小指指身或端点；当前候选并未要求显露它。放在本侧无名指、中指、食指、拇指和掌后，默认整指零可见正确；所列前掌指控制本层当前姿势蒙版补足隐蔽，绘画形体保留，不以 hidden 标志丢弃。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/ring_finger",
+      "level": 12,
+      "note": "画面右手完整无名指，在 arms/arm_left/hand/little_finger 前，arms/arm_left/hand/middle_finger、arms/arm_left/hand/index_finger、arms/arm_left/hand/thumb、arms/arm_left/hand/palm 后。hiddenInReference=true，完整绘画层开启但默认整指不可见；以上前方掌指自然遮挡并控制本层当前手姿透明度蒙版，覆盖整指可能露出的补形余量，随姿势调整以允许以后显露。",
+      "check": {
+        "passed": true,
+        "note": "完整画面右无名指 blend 从掌远端向中央指区下弯，参考这段由中指、食指和掌覆盖，没有单独端点。候选把本件放在小指前、前掌指后符合结构，默认整指隐藏由本侧 palm、middle_finger、index_finger、thumb 控制的本层当前姿势透明度蒙版保障，完整根到端保留，蒙版与前后深度相容。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/ring_finger",
+      "level": 13,
+      "note": "画面左手完整无名指，在 arms/arm_right/hand/little_finger 前，在 arms/arm_right/hand/middle_finger、arms/arm_right/hand/index_finger、arms/arm_right/hand/palm 后，拇指处于其前侧。默认开启，保留拇指食指开口下方、中央指右上侧的小段，根部由掌和前指遮挡；真实指缝不得被连接余量填满。",
+      "check": {
+        "passed": true,
+        "note": "完整画面左无名指 blend 显示根段被掌和食指覆盖的余量、以及中指右上侧露出的短弯曲指段；原图暗边和短端支持中指在本件前、小指在本件后。当前候选保留短露出且虎口开口未填，本层默认开启、根段自然遮挡，单深度与掌和前指关系相容。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "level": 14,
+      "note": "画面右手完整中指，在 arms/arm_left/hand/ring_finger、arms/arm_left/hand/little_finger 前，在 arms/arm_left/hand/thumb、arms/arm_left/hand/index_finger、arms/arm_left/hand/palm 后。默认开启，中下方圆钝指端可见，上段由拇指、食指及掌覆盖；深线随指保留，不据此另造指端。",
+      "check": {
+        "passed": true,
+        "note": "完整画面右中指 blend 的中央最低圆钝指端和带阴影指面对应原图，根部补形伸入掌内，可见段左上被拇指、右上被食指覆盖。当前候选中指在无名指小指前、拇指食指掌后保留正确露出，默认开启靠前掌指自然遮挡；中央短暗线留作本指明暗，无新增手指。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/middle_finger",
+      "level": 15,
+      "note": "画面左手完整中指，在 arms/arm_right/hand/ring_finger、arms/arm_right/hand/little_finger 前，在 arms/arm_right/hand/index_finger、arms/arm_right/hand/palm 后。默认开启，最低圆钝指端及局部指面显露，根部与侧缘由掌和食指遮挡，保留完整根段。",
+      "check": {
+        "passed": true,
+        "note": "画面左中指完整 blend 从掌下根部到最低端连续，前侧食指覆盖根部与左侧，右上无名指短段在后方。当前候选最低圆钝端可见吻合原图，中指在 ring/little 前、index/palm 后正确，默认开启无额外整指隐藏，指缝保留。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "level": 16,
+      "note": "画面右手完整拇指，在 arms/arm_left/hand/middle_finger、arms/arm_left/hand/ring_finger、arms/arm_left/hand/little_finger 前、arms/arm_left/hand/palm 后；与 arms/arm_left/hand/index_finger 分处虎口两侧，局部排序不填虎口。默认开启，内侧较短指端可见，指根局部搭接藏于掌下。",
+      "check": {
+        "passed": true,
+        "note": "完整画面右拇指 blend 覆盖靠身体侧短端，根部向掌内延伸，原图它的内缘压在中央中指左上侧且与食指围虎口。候选拇指在后方指群前、掌后，露出短端吻合，默认开启近端自然藏掌下；与食指唯一数值仅为排序，不应把真实虎口填实。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "level": 17,
+      "note": "画面左手完整拇指，在后方指群前、arms/arm_right/hand/palm 后，与 arms/arm_right/hand/index_finger 间为真实开口。默认开启，右侧圆钝指端和指身可见，仅近端藏在掌下；开口无绘画内容，不用手组外轮廓整体填实。",
+      "check": {
+        "passed": true,
+        "note": "完整画面左拇指 blend 的右侧长身、圆钝指端对应参考，根端补形向掌内延续；其左内缘与食指间有清晰空白开口。当前候选根部由掌覆盖、游离身可见，本件在后指群前而掌后可行，默认开启，不使用手组包围轮廓整体填补虎口。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "level": 18,
+      "note": "画面右手完整食指在 arms/arm_left/hand/middle_finger、arms/arm_left/hand/ring_finger、arms/arm_left/hand/little_finger 前、arms/arm_left/hand/palm 后；默认开启，外侧长指及指端可见，近端由掌覆盖，与拇指共同围成真实虎口。",
+      "check": {
+        "passed": true,
+        "note": "画面右食指完整 blend 的外侧长缘与指端覆盖原图右侧指形，根部圆弧延入掌下，内缘沿虎口向中指右上方形成覆盖。候选食指在 middle/ring/little 前、palm 后正确，默认开启外缘可见，近端自然遮住；不需跨掌前后的多深度，连接余量仅藏掌下。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "level": 19,
+      "note": "画面左手完整食指在 arms/arm_right/hand/middle_finger、arms/arm_right/hand/ring_finger、arms/arm_right/hand/little_finger 前、arms/arm_right/hand/palm 后。默认开启，左下方长指前缘可见，近端覆盖后指而被掌覆盖，拇指间空隙保留。",
+      "check": {
+        "passed": true,
+        "note": "画面左完整食指 blend 覆盖前侧左下长指轮廓，其近根完整圆弧伸入掌下，内侧边压中指与无名指，右侧与拇指间留真实开口。当前候选 index 在 middle/ring/little 前、palm 后保留原图层次，默认开启，指根搭接靠掌自然覆盖。"
+      }
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "level": 20,
+      "note": "画面右手完整掌及腕根在 arms/arm_left/bracelet_back 与本侧五指根前，在 arms/arm_left/forearm 和 arms/arm_left/bracelet_front 后。默认开启，掌面显露、指根局部搭接由掌覆盖，腕根藏于前臂腕端和前环；不能扩掌把游离指身纳入。",
+      "check": {
+        "passed": true,
+        "note": "完整画面右掌 blend 确认腕根延到腕环内、掌远端止于各指连接区，未吞游离指身；原图掌面在前，指根连接藏在其下。候选 palm 在五指根和 bracelet_back 前、forearm 与 bracelet_front 后正确，默认掌面可见，腕根和圆弧搭接由前臂及前环覆盖；蒙版隐藏后指不改变掌归属。"
+      }
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "level": 21,
+      "note": "画面左手完整掌及腕根在 arms/arm_right/bracelet_back、本侧五指根前，在 arms/arm_right/forearm、arms/arm_right/bracelet_front 后。默认开启，掌覆盖各指近端，完整腕根藏入前臂及腕环；保持真实指缝。",
+      "check": {
+        "passed": true,
+        "note": "完整画面左掌 blend 的腕根进入前环内，远端弧线盖各指根，拇指食指游离端留在掌外，原图吻合。候选 palm 在各指和后环前、前臂与前环后相容，默认开启掌面显露，腕根藏环下；不能扩掌填虎口，当前手姿隐藏小指蒙版附小指层。"
+      }
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "level": 22,
+      "note": "画面右前臂完整肘至腕，在 arms/arm_left/bracelet_back、arms/arm_left/hand/palm 前，在 arms/arm_left/upper_arm、arms/arm_left/bracelet_front 后。默认开启，肘端伸入上臂圆弧覆盖侧，腕端覆盖掌腕根；连接搭接与露缝待 raster step01 校准，不改变归属。",
+      "check": {
+        "passed": true,
+        "note": "完整画面右前臂 blend 放大确认肘端圆弧延入上臂、腕端完整皮肤延入腕环，腕端覆盖掌根；当前候选连接平顺、环前段压在腕端前。forearm 在 upper_arm 与 bracelet_front 后、palm 与 bracelet_back 前支持全部连接职责，默认开启，搭接形状校准交给 raster step01。"
+      }
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "level": 23,
+      "note": "画面左前臂在 arms/arm_right/bracelet_back、arms/arm_right/hand/palm 前，在 arms/arm_right/upper_arm、arms/arm_right/bracelet_front 后。默认开启，肘近端被上臂覆盖，腕端覆盖掌根且被前环覆盖；完整前臂保留。",
+      "check": {
+        "passed": true,
+        "note": "画面左前臂完整 blend 的肘端圆弧伸入上臂、腕端皮肤延入前环遮挡范围，原图肘处臂线连续。候选 forearm 在 upper_arm 与 bracelet_front 后，palm 与 bracelet_back 前，能让肘伸入、腕覆盖掌根；默认开启，连接余量及接缝由 raster step01 保持平滑。"
+      }
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "level": 24,
+      "note": "画面右上臂完整肩至肘，在 hair/back_hair 与 arms/arm_left/forearm 前，在 body/torso、body/breast 后。默认开启，肩端伸入躯干及所属肩带下方，肘远端覆盖前臂近端，沿实际连接圆弧局部搭接。",
+      "check": {
+        "passed": true,
+        "note": "画面右上臂完整 blend 的肩端圆弧延到躯干肩带内侧，肘远端覆盖前臂近端；原图肩带线压住肩根，外臂主体可见。候选 upper_arm 在 torso/breast 后、forearm 前相容，默认开启肩根由躯干自然覆盖，局部肩弧搭接不可按组边界硬裁。"
+      }
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "level": 25,
+      "note": "画面左上臂完整肩至肘，在 hair/back_hair 与 arms/arm_right/forearm 前，在 body/torso、body/breast 后。默认开启，肩内侧被躯干肩带覆盖，上臂远端覆盖前臂肘端；不把肩带归入本件。",
+      "check": {
+        "passed": true,
+        "note": "完整画面左上臂 blend 上端圆弧伸入肩带与躯干下，远端肘圆弧盖前臂近端，原图相同，后发在肩后。候选 upper_arm 在 torso/breast 后、forearm 与 back_hair 前吻合；默认臂身可见、肩根由 torso 遮住，连接余量保持局部搭接即可。"
+      }
+    },
+    {
+      "id": "neck",
+      "level": 26,
+      "note": "空组叶节点按实际颈部绘画 part 纳入统一深度：在 hair/back_hair 前，在 body/torso 及 face/face_base 后。默认开启，前颈可见，上端由下颌遮挡，下端伸入锁骨躯干覆盖侧；不剪贴到原空组轮廓以消除必要搭接。",
+      "check": {
+        "passed": true,
+        "note": "完整 neck blend 的上端圆弧延入下颌后，下端弧形延入锁骨躯干，两側后发在颈后；候选下颌覆盖上端、torso 覆盖下端，前颈保持显露。作为空组叶节点单深度在 back_hair 前、face_base 和 torso 后正确，默认开启，连接搭接不剪掉，KRA 校准颈胸接缝。"
+      }
+    },
+    {
+      "id": "body/torso",
+      "level": 27,
+      "note": "连续完整胸廓至腰腹底形，在 neck、arms/arm_left/upper_arm、arms/arm_right/upper_arm 前，在 body/breast 和 pelvis 后。默认开启，承接胸部且不挖空，肩带随所属材质保留并遮住肩根，腰腹下端藏于骨盆覆盖侧。",
+      "check": {
+        "passed": true,
+        "note": "完整 torso blend 确认肩带锁骨到腰腹连续不挖胸洞，下端有伸入 pelvis 后方的圆弧承接；原图肩带压臂根。候选 torso 在 neck 和双上臂前，在 breast、pelvis 后相容；默认完整躯干开启，乳房后的底形保留，腰下延续靠骨盆覆盖，普通临时服装随区域保留。"
+      }
+    },
+    {
+      "id": "body/breast",
+      "level": 28,
+      "note": "两侧乳房及其连续前表面为单一完整部件，在 body/torso 前，pelvis 后。默认开启，普通覆盖材质随件；现有完整 SVG 与原画胸廓隆起范围的差异记录为 raster step01 的形体待修，不因当前线稿偏差改变前后职责，也不剪贴缩成无体积的 torso 内部色块。",
+      "check": {
+        "passed": true,
+        "note": "完整 breast blend 确认它是领口下方到胸下缘的连续前表面，原图两侧胸廓隆起在此范围，支持在完整 torso 前；候选腹部青绿色弧块实为 pelvis 的上接补形，并非乳房移位。默认 breast 开启、体积职责独立，不挖 torso 或按其原轮廓缩掉；现有胸下弧线与覆盖材质细微差异按提案待 raster step01 校准，pelvis 的高位补形与 breast 下缘搭接也需复核。"
+      }
+    },
+    {
+      "id": "pelvis",
+      "level": 29,
+      "note": "空组叶节点按骨盆绘画 part 纳入：在 body/torso 下端、body/breast 下缘搭接、legs/leg_left/leg 与 legs/leg_right/leg 髋根前。默认开启，下腹髋部及裆部覆盖腿根，临时连体服随所属身体区域保留；完整骨盆不按腿根可见边挖洞。",
+      "check": {
+        "passed": true,
+        "note": "已对照候选、完整 pelvis blend 及 depth01/pelvis 的 outline-reduce：原轮廓从 y≈765 下腹到髋裆，完整稿新增上接圆弧最高 y≈702，原图该区材质与躯干连续，候选青色弧块是补形标记。骨盆应在 torso 下端与双腿髋根前，默认开启支持职责；高位圆弧跨到 torso/breast 下缘的余量与直边需在 raster step01 作肤色材质连续化及局部连接形状待修，不通过错误前后层序掩盖。空组叶节点已完整覆盖，无需多深度。"
+      }
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "level": 30,
+      "note": "画面右腕环完整前段及贴附装饰，在 arms/arm_left/bracelet_back、arms/arm_left/forearm、arms/arm_left/hand/palm 前。默认开启，覆盖腕部接缝，与后环两端连续，不另建装饰深度或将后环移到前侧。",
+      "check": {
+        "passed": true,
+        "note": "画面右前环完整 blend 横盖前臂腕端和手腕根，贴附青色装饰在连续环面上，原图前环面显露且腕部入环。候选本件在 bracelet_back、forearm、palm 前正确，默认开启，完整前后环两侧相接，装饰无需额外深度或蒙版。"
+      }
+    },
+    {
+      "id": "arms/arm_right/bracelet_front",
+      "level": 31,
+      "note": "画面左腕环完整前段及固定装饰，在 arms/arm_right/bracelet_back、arms/arm_right/forearm、arms/arm_right/hand/palm 前。默认开启，前环横盖腕部，前后环夹住腕；左右手环互不重叠。",
+      "check": {
+        "passed": true,
+        "note": "完整画面左前环 blend 的宽前环面和固定青蓝装饰贴合原图，前缘覆盖掌腕根、上缘覆盖前臂腕端。候选本件位于后环、前臂、掌前符合夹层，默认开启，前后环两端连续接缝 KRA 校准，无跨深度装饰。"
+      }
+    },
+    {
+      "id": "face/ears/ear_left",
+      "level": 32,
+      "note": "画面右完整普通耳及耳根，在 hair/back_hair 前、face/face_base 与 hair/side_hair/side_hair_left 后。默认开启，耳外缘和耳内显露，靠脸耳根由脸底和侧发覆盖；完整耳形保留。",
+      "check": {
+        "passed": true,
+        "note": "画面右完整耳 blend 的耳根延入侧发后，可见外缘与耳内对应原图；后发位于耳后。候选 ear_left 在 back_hair 前、face_base 与 side_hair_left 后，保留外耳而藏耳根，默认开启自然遮挡，完整耳廓不按当前露出月牙裁断。"
+      }
+    },
+    {
+      "id": "face/ears/ear_right",
+      "level": 33,
+      "note": "画面左完整耳及耳根，在 hair/back_hair 前、face/face_base 与 hair/side_hair/side_hair_right 后。默认开启，仅下方耳缘局部显露，上部由侧发、根部由脸侧与侧发遮住；不按当前可见段裁断。",
+      "check": {
+        "passed": true,
+        "note": "完整画面左耳 blend 由侧发后的上耳延到可见下方耳缘，并向脸侧补足根部；原图只有下部耳缘显露。候选 back_hair < ear_right < face_base、side_hair_right，脸侧盖根、侧发盖上部正确，默认完整耳开启靠自然遮挡，不需要整体隐藏蒙版。"
+      }
+    },
+    {
+      "id": "face/face_base",
+      "level": 34,
+      "note": "完整脸底在 neck、hair/back_hair、face/ears/ear_left、face/ears/ear_right 前，在全部五官、红晕、hair/bangs、hair/side_hair/side_hair_left、hair/side_hair/side_hair_right 后。默认开启，额头到下巴连续完整，眼口不挖洞；可在 face 表面内容层附脸底范围剪贴以限制表面色彩，但耳、头发、唇的必要外扩搭接不按此剪掉。",
+      "check": {
+        "passed": true,
+        "note": "完整脸底 blend 显示额头完整圆弧补形藏刘海后、双颊下颌到下巴连续，眼口未挖洞；侧缘补形藏侧发与耳根邻接。当前候选脸底在 ears、neck、back_hair 前、五官红晕前发后正确，默认开启。脸表面剪贴只约束红晕鼻眉等表面内容，眼口集合仍需自己的开口蒙版；外扩唇肤色与耳前发不按脸底机械剪掉。"
+      }
+    },
+    {
+      "id": "face/blush_left",
+      "level": 35,
+      "note": "画面右脸颊红晕在 face/face_base 前、hair/side_hair/side_hair_left 后。默认开启且允许独立调节浓淡；本层剪贴于 face/face_base 的脸颊范围，外侧由侧发自然遮挡，不控制眼睛开口。",
+      "check": {
+        "passed": true,
+        "note": "完整画面右红晕 blend 位于眼下脸颊至侧发内侧，参考粉红区及斜线均贴脸，不参与眼口开口。候选在 face_base 前、side_hair_left 后正确，默认开启并剪贴脸底限制面部表面，外侧靠侧发自然挡，独立浓淡控制与眼内蒙版分开。"
+      }
+    },
+    {
+      "id": "face/blush_right",
+      "level": 36,
+      "note": "画面左脸颊红晕在 face/face_base 前、hair/side_hair/side_hair_right 后。默认开启，可独立显隐及调节浓淡，本层剪贴于 face/face_base 的脸颊表面，侧发覆盖外缘，不填虎口或口眼开口。",
+      "check": {
+        "passed": true,
+        "note": "完整画面左红晕 blend 对应眼下、嘴旁脸颊粉红表面，靠外侧邻接侧发和下耳缘，无独立立体穿插。当前候选在 face_base 前、side_hair_right 后正确；默认开启并剪贴 face_base 脸颊表面，可独立浓淡显隐，不纳入眼口开口控制。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "level": 37,
+      "note": "画面右完整眼白在 face/face_base 前、face/eyes/eye_left/iris、face/eyes/eye_left/highlight、face/eyes/eye_left/upper_eyelid 后。将 sclera、iris、highlight 作为眼内可见性集合，透明度开口蒙版附于集合或分别共享给三层：控制部件为 face/eyes/eye_left/upper_eyelid 内缘及本件下缘，范围只限两缘与内外眼角围成的开口；默认睁眼显示开口内、开口外隐藏，闭眼归零。不得仅用上眼睑细线遮住整个眼白；本件仍保留完整底形。",
+      "check": {
+        "passed": true,
+        "note": "完整画面右眼白 blend 显示虹膜后仍是连续底形，下沿直接贴肤色，原图无下眼睑线；候选 eye_left 眼白在虹膜高光上睑后，开口两侧白区对应。默认仅上睑内缘与本件下缘、两眼角围出的开口内显示，三层共享开口蒙版不能包含眼褶；闭眼全隐，单靠上睑细带遮挡不足，规划蒙版与层序相容。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "level": 38,
+      "note": "画面右完整虹膜及同动瞳孔，在 face/eyes/eye_left/sclera 前、face/eyes/eye_left/highlight 和 face/eyes/eye_left/upper_eyelid 后。本层剪贴到 face/eyes/eye_left/sclera，并共享由 face/eyes/eye_left/upper_eyelid 内缘与 face/eyes/eye_left/sclera 下缘限定的眼内开口蒙版；默认开口内可见，上睑后补形与开口外隐藏，闭眼全隐藏，完整椭圆不裁毁。",
+      "check": {
+        "passed": true,
+        "note": "画面右完整 iris blend 是含同动瞳孔的完整椭圆，顶端伸至上睑后，原图蓝青主体及下部亮面属于虹膜。候选 sclera < iris < highlight < upper_eyelid 正确；默认仅在 sclera 范围与上睑内缘/眼白下缘开口交集内显示，闭眼隐藏，完整上部不裁毁。剪贴与共享开口蒙版均在眼内集合，上睑仍在前方。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "level": 39,
+      "note": "画面右独立高光在 face/eyes/eye_left/iris 前、face/eyes/eye_left/upper_eyelid 后，默认开启并跟随虹膜，可独立调显隐。本层剪贴至 face/eyes/eye_left/iris 的虹膜范围，并受 face/eyes/eye_left/sclera 范围及 face/eyes/eye_left/upper_eyelid 内缘与 sclera 下缘的同一眼内开口蒙版限制；开口外和闭眼时隐藏，不能浮在眼睑前。",
+      "check": {
+        "passed": true,
+        "note": "已对照当前候选脸部 blend 和完整高光 SVG blend：角色左眼（画面右侧）的白色圆高光及瞳孔小亮点落在虹膜内部，位于 face/eyes/eye_left/iris 前、face/eyes/eye_left/upper_eyelid 后。高光剪贴到虹膜，并与眼白、虹膜共享由上眼睑内缘及眼白下沿围成的开口控制；默认睁眼仅开口内可见，闭眼及开口外隐藏，控制与本层序相容。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "levels": [
+        {
+          "level": 40,
+          "region": "完整上睑、连体睫毛主体及向下眼尾，扣除外侧短尖分片；主体覆盖同眼眼白、虹膜、高光，仍在57侧发后。"
+        },
+        {
+          "level": 57.5,
+          "region": "外侧第三睫毛短尖及其连续根段，原画布x669–685、y346–359内的本件像素；位于57侧发前、58侧发与59头饰后，与40主体共同运动。"
+        }
+      ],
+      "note": "画面右完整上睑、连体上睫毛及眼尾保持一个逻辑part，实际以40主体与57.5外尖两个普通绘画分片表达。默认两片开启，合并保持完整自身绘画；本件内缘与face/eyes/eye_left/sclera下缘共同控制眼内三件开口，开闭形变共同更新，两片均不受眼内开口裁切。主体和向下眼尾在侧发后，原图外侧第三短尖局部压在侧发前；不新增独立运动节点，不向侧发画入睫毛。",
+      "check": {
+        "passed": true,
+        "note": "返修中在standard1115×1410原坐标逐眼并排及放大核实：原图第三外尖到约x682/y348，全部40层会被57侧发裁短。Krita局部修自身尖后以同件两片组装；40主体保留原层序，57.5仅短尖越过57侧发。已看主体/外尖独显、同件合并、各自隐藏上层和最终眼部，分片像素互斥且并集等于拆前完整纹理，接点连续；共同控制及10原生蒙版保持。证据位于raster-layering/step01/repair-evidence-01/outer-lash-depth/。",
+        "regions": [
+          {
+            "level": 40,
+            "note": "主体在同眼眼白/虹膜/高光前、57侧发后；隐藏上层能见完整上睑和眼尾补形，默认侧发遮住对应眼尾，开口上边界保持。"
+          },
+          {
+            "level": 57.5,
+            "note": "外尖在57侧发前、58与59后，恢复原图外角可见尖；仅取本件互斥像素，整图中根段与40主体相连，未包含侧发颜色或其他部件描线。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "level": 41,
+      "note": "画面右浅暖眼褶在 face/face_base 前、hair/bangs 与 hair/side_hair/side_hair_left 后；与 face/eyes/eye_left/upper_eyelid 间保持肤色间隙。默认开启可独立显隐，本层不进入眼内蒙版集合，不作为开口边界。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 中浅棕细弧位于角色左眼上睫毛上方的皮肤，候选与原图在该弧处吻合，不进入眼内开口。安排在 face/face_base 和同眼上眼睑前、hair/bangs 与 hair/side_hair/side_hair_left 后，默认可见，发丝遮挡处由前发自然覆盖；不加入眼白/虹膜的开口蒙版，显隐控制与层序相容。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "level": 42,
+      "note": "画面左完整眼白在 face/face_base 前，face/eyes/eye_right/iris、face/eyes/eye_right/highlight、face/eyes/eye_right/upper_eyelid 后。眼内集合 sclera、iris、highlight 共享开口透明度蒙版，附集合或三层；控制部件为 face/eyes/eye_right/upper_eyelid 内缘和本件下缘，范围是内外眼角间封闭眼开口。默认开口内显示、外部隐藏，闭眼归零；眼白下缘直接接肤色，不另造下眼睑层。",
+      "check": {
+        "passed": true,
+        "note": "完整眼白 blend 覆盖角色右眼（画面左侧）整块眼球区域，完整上部形体延伸到粗上睫毛后，下沿贴合原图眼睛下缘；候选中虹膜处于其前，上睫毛在眼内内容前。face/eyes/eye_right/sclera 与 iris、highlight 共享由 face/eyes/eye_right/upper_eyelid 内缘、本眼白下沿和眼角围成的开口蒙版，默认只显示睁眼开口内部；眼白完整形体保留，层序可容纳该控制。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "level": 43,
+      "note": "画面左完整虹膜及同动瞳孔在 face/eyes/eye_right/sclera 前、face/eyes/eye_right/highlight 和 face/eyes/eye_right/upper_eyelid 后。本层剪贴至 face/eyes/eye_right/sclera 并共享由 face/eyes/eye_right/upper_eyelid 内缘及 sclera 下缘限定的开口蒙版；默认仅眼内显示，闭眼隐藏，保留上睑后完整椭圆。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 可见完整蓝青椭圆虹膜含瞳孔，上端补全小弧延伸到上眼睑后，候选中位于 face/eyes/eye_right/sclera 前、highlight 和 upper_eyelid 后。虹膜剪贴到 face/eyes/eye_right/sclera，并与眼白/高光共享上眼睑内缘、眼白下沿和眼角组成的开口蒙版；默认睁眼只显示开口内部分，上端补全余量与闭眼时内容被遮住，层序与控制相容。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "level": 44,
+      "note": "画面左同动高光在 face/eyes/eye_right/iris 前、face/eyes/eye_right/upper_eyelid 后。默认开启且可独立调显隐；本层剪贴至 face/eyes/eye_right/iris，进一步受 face/eyes/eye_right/sclera 范围和 face/eyes/eye_right/upper_eyelid 内缘与 sclera 下缘的共享眼开口蒙版控制，开口外及闭眼隐藏。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 显示虹膜上部椭圆反光和外侧偏下的小亮点，均落在 face/eyes/eye_right/iris 内；候选中高光在虹膜前、上眼睑后。高光剪贴到完整虹膜，且共享本眼上眼睑内缘及眼白下沿定义的开口限制，默认睁眼开口内可见、开口外及闭眼时隐藏；与深度相容。当前草稿反光呈黄暖色，原图为白色，记录 raster step01 材质校正，不据此改变层序或形体。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "level": 45,
+      "note": "画面左完整上睑、连体睫毛和向下眼尾，在 face/eyes/eye_right/sclera、face/eyes/eye_right/iris、face/eyes/eye_right/highlight 前，hair/side_hair/side_hair_right 后。默认开启；本件内缘与 face/eyes/eye_right/sclera 下缘共同控制上述三件开口蒙版，仅作用眼内；闭合时全隐，眼尾补形由侧发遮挡。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 的深色弧带、睫毛尖与外眼角向下眼尾连续，候选中覆盖完整眼白和虹膜的上端；外侧补全被 hair/side_hair/side_hair_right 前侧发束遮挡。face/eyes/eye_right/upper_eyelid 内缘与 face/eyes/eye_right/sclera 下沿及眼角共同控制眼内内容开口，默认睁眼；本睑默认可见且不加入眼内蒙版，位于同眼内容前、前发后，遮挡控制与层序相容。"
+      }
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "level": 46,
+      "note": "画面左浅色眼褶在 face/face_base 前、hair/bangs、hair/side_hair/side_hair_right 后。默认开启，可随眼睑变形或独立显隐，与 face/eyes/eye_right/upper_eyelid 保持真实肤色间隙；不纳入眼内开口蒙版。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 中暖褐眼褶是上眼睑上方独立弧线，与睫毛间保有真实肤色间隙，候选保持该分离关系。位于脸底及眼睑前、hair/bangs 与 hair/side_hair/side_hair_right 后，默认显露弧段，不参与眼内开口围界或眼内共享蒙版；闭眼时可随眼睑变形独立调节，其显隐与统一深度相容。"
+      }
+    },
+    {
+      "id": "face/nose",
+      "level": 47,
+      "note": "浅红鼻点在 face/face_base 前，位于双眼之间偏下、嘴上方，默认开启，剪贴于 face/face_base 表面；与双眼和口部无实际重叠，唯一深度满足统一排序。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG 与原图 blend 显示双眼下方、笑嘴左上侧的单一浅红鼻点，当前候选与原图位置一致，未发现可分辨的鼻梁或跨层结构。位于 face/face_base 前，默认可见，不纳入眼部或嘴部开口蒙版；与嘴部延伸肤色范围不发生实际交叠，本单深度和相关显隐控制相容。"
+      }
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "level": 48,
+      "note": "完整口腔底形在 face/face_base 前、face/mouth/lower_teeth、face/mouth/tongue、face/mouth/upper_teeth、face/mouth/lower_lip、face/mouth/upper_lip 后。mouth_interior、lower_teeth、tongue、upper_teeth 建口内可见性集合，在集合或四层共享开口透明度蒙版：控制部件 face/mouth/upper_lip、face/mouth/lower_lip 的内缘及两嘴角，范围为唇开口，默认张嘴仅开口内显露、外部隐藏，闭嘴全隐。allowOutsideParent=true 的完整底形和根部不裁毁。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 的深红底形填满张开笑嘴，并有超出原开口的青绿色补全环；候选中其前方为牙齿、舌头和上下嘴。口腔底形保留完整且位于所有嘴内前景结构后，与 face/mouth/upper_teeth、face/mouth/lower_teeth、face/mouth/tongue 共享附着于嘴内内容集合的开口蒙版，由 face/mouth/upper_lip、face/mouth/lower_lip 的内缘及两嘴角闭合控制。默认参考为张嘴，只显开口内深红区域；开口外与闭嘴时内容隐藏。allowOutsideParent 的完整底形不裁到父轮廓，控制与层序相容，补全色后续改为口腔材质。"
+      }
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "level": 49,
+      "note": "完整下牙在 face/mouth/mouth_interior 前，在 face/mouth/tongue、face/mouth/lower_lip、face/mouth/upper_lip 后。hiddenInReference=true，完整绘画层开启但默认整片不可见；共享由 face/mouth/upper_lip、face/mouth/lower_lip 控制的口内开口蒙版，并以 face/mouth/tongue 的前侧实体遮挡下牙，必要时本层附由舌面及下唇当前覆盖关系控制的透明度蒙版补足整片隐藏。范围为整片下牙及根部，开合或舌位改变时调整；不以父开口永久截断完整牙列。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 显示弧形完整下牙补全在笑嘴下半及下嘴覆盖范围，原图该处仅见舌面和下唇，无独立牙面；候选中其前方为 face/mouth/tongue 和 face/mouth/lower_lip。保留 hiddenInReference=true 的完整牙列及独立深度，在口腔前、舌头后；与其余嘴内内容共享由 face/mouth/upper_lip、face/mouth/lower_lip 内缘和嘴角定义的开口蒙版，并由 face/mouth/tongue、face/mouth/lower_lip 遮挡，必要时在本牙层附默认姿势透明度蒙版，保证参考姿势零可见面积。闭嘴随嘴内集合隐藏，控制与层序相容。"
+      }
+    },
+    {
+      "id": "face/mouth/tongue",
+      "level": 50,
+      "note": "完整舌面在 face/mouth/mouth_interior 和 face/mouth/lower_teeth 前、face/mouth/upper_teeth 及上下唇后；默认开启，下部舌面可见并遮住下牙。共享由 face/mouth/upper_lip、face/mouth/lower_lip 内缘围成的口内开口蒙版，作用整舌但只显示开口内，闭嘴全隐；后部完整结构保留，不按可见舌尖拆分。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 的粉红舌面吻合开口下半，后根补全延伸至上牙附近；候选中舌面覆盖 face/mouth/lower_teeth 及口腔底，face/mouth/upper_teeth 和上下嘴位于其前。完整舌面与其它嘴内层共享由 face/mouth/upper_lip、face/mouth/lower_lip 内缘及嘴角控制的开口蒙版，默认张嘴可见下半舌面，开口外及闭嘴隐藏；后根由前侧上牙和唇覆盖，控制与层序相容。补全根色在 raster step01 与舌面材质连贯校正。"
+      }
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "level": 51,
+      "note": "整片上牙及根部在 face/mouth/mouth_interior、face/mouth/tongue 前、face/mouth/upper_lip 与 face/mouth/lower_lip 后。默认开启，仅上沿窄白带显示；本层共享由 face/mouth/upper_lip、face/mouth/lower_lip 控制的唇开口蒙版，上牙根主要由 upper_lip 肤色实体覆盖，闭嘴全隐。allowOutsideParent=true，完整根部保留在原开口外。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 显示上口缘内侧白色窄牙带，完整上牙根部向唇上方延伸，符合 allowOutsideParent 的归属；候选中白带在口腔及舌面前、face/mouth/upper_lip 后。与 mouth_interior、lower_teeth、tongue 共享由 face/mouth/upper_lip 和 face/mouth/lower_lip 的内缘与嘴角围成的开口蒙版，默认张嘴仅窄牙带可见，根部和开口外隐藏，闭嘴全部隐藏。上嘴单独控制上牙露出且不受眼部蒙版影响，层序相容；牙根补全色后续改为牙材质。"
+      }
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "level": 52,
+      "note": "下缘唇线及两端上翘、下方完整肤色遮挡片，在 face/mouth/mouth_interior、face/mouth/lower_teeth、face/mouth/tongue、face/mouth/upper_teeth 前；嘴角与 face/mouth/upper_lip 搭接，当前下片在上片后以免双线。默认开启；本件内缘与 face/mouth/upper_lip 内缘共同控制所列四件口内开口蒙版。allowOutsideParent=true 的肤色外扩保留，不剪贴到原 mouth 开口；闭嘴两唇合拢使口内全隐。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 显示下唇内缘贴合笑嘴下缘，两侧延伸上翘到嘴角，外侧宽带是应与脸底一致的肤色遮挡片；候选中它位于口腔、下牙、舌头、上牙前，嘴角局部由 face/mouth/upper_lip 覆盖。其内缘与上唇内缘及嘴角控制共享嘴内开口蒙版，本层不纳入嘴内蒙版，默认唇线及相邻肤色可见。allowOutsideParent=true 的延伸形体按完整 SVG 保留，不以父开口裁切；开合时继续遮挡下牙根与口腔外缘，控制相容。当前宽带红褐色需在 raster step01 校正为脸部肤色，仅保留内缘唇线颜色，并核对两嘴角连续性。"
+      }
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "level": 53,
+      "note": "上缘唇线、相邻上方肤色及嘴角完整遮挡片，在 face/mouth/mouth_interior、face/mouth/lower_teeth、face/mouth/tongue、face/mouth/upper_teeth 和嘴角处 face/mouth/lower_lip 前。默认开启，遮上牙根和口腔上沿；本件内缘与 face/mouth/lower_lip 内缘共同控制四件口内共享开口蒙版，闭嘴全隐。allowOutsideParent=true，完整肤色搭接不按父开口裁掉；肤色、唇线接缝在 raster step01 校准。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 中上缘唇线沿笑嘴斜向上弧，两侧肤色遮挡片包住上牙根及嘴角，补全外带伸出父稿开口但仍归同一上嘴实体；候选显示其在嘴内全部内容和 face/mouth/lower_lip 嘴角延伸前。face/mouth/upper_lip 内缘与 face/mouth/lower_lip 内缘、嘴角闭合共同控制嘴内内容集合开口；本层不受该蒙版裁切，默认张嘴唇线及肤色片可见，闭嘴时可与下嘴闭合遮住所有嘴内层。单深度无需分片，控制相容。raster step01 将青绿及宽红色遮挡带校正为脸部肤色，保留窄唇线，并校准两嘴角相接和闭合连续性。"
+      }
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left",
+      "level": 54,
+      "note": "画面右完整眉身在 face/face_base 前，hair/bangs 和 hair/side_hair/side_hair_left 后。默认开启，靠鼻侧眉弧可见，其余眉身由前发自然遮挡；可剪贴至 face/face_base 的额面，保留发下完整眉尾，独立抬压时随遮挡变化。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 显示角色左眉（画面右侧）鼻侧暖褐弧段与原图吻合，完整眉身和尖尾沿斜向刘海下方连续延伸，补全暂在 blend 中透出。当前候选前侧 hair/bangs 覆盖外侧眉身，整眉位于 face/face_base 前、前发后；默认仅发间原图可见弧段显露，遮挡内形体保留，不纳入眼部开口蒙版，无需额外绘画深度，显隐控制相容。"
+      }
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right",
+      "level": 55,
+      "note": "画面左完整眉在 face/face_base 前、hair/bangs 和 hair/side_hair/side_hair_right 后。默认开启，中段从刘海间隙显露、两端由前发遮挡，可剪贴到 face/face_base 额面但不得按可见间隙截断眉身。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 显示角色右眉（画面左侧）中段在刘海间隙可见，左右两端完整细弧伸入侧束和中央刘海遮挡之下，眉尖不属于眼褶。候选中 hair/bangs 和 hair/side_hair/side_hair_right 位于其前，遮住补全眉段；整眉在 face/face_base 前、所有前发后，默认保留中段可见且完整眉形存在，不受眼内开口蒙版裁切，单深度及显隐关系相容。"
+      }
+    },
+    {
+      "id": "hair/bangs",
+      "level": 56,
+      "note": "中央完整刘海在 hair/back_hair、face/face_base、face/eyebrows/eyebrow_left、face/eyebrows/eyebrow_right 及相遇的眼褶前，根部分缝交叠在 hair/side_hair/side_hair_left、hair/side_hair/side_hair_right 后。默认开启，遮额头和眉身，发尖与侧发连续衔接；不按脸底剪贴，根部余量待 raster step01 校准。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 显示中央多尖刘海自分发根垂到额头及双眼上方，根部补全伸入两侧前发接合区；候选中刘海覆盖脸底及左右眉的隐藏延伸，并保留发束间真实额头间隙。统一位于 face/face_base、face/eyebrows/eyebrow_left、face/eyebrows/eyebrow_right 及后发前，hair/side_hair/side_hair_left、hair/side_hair/side_hair_right、head_accessories 后；默认完整刘海可见而根部由侧发搭接覆盖，无眼口开口蒙版，单深度与遮挡相容。分发根补全的色彩和局部接缝留给 raster step01 连贯校正。"
+      }
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "level": 57,
+      "note": "画面右完整侧发从斜扫额角至耳前下颌、颈侧末端，在hair/back_hair、face/face_base、face/ears/ear_left、本侧眉眼主体与红晕前，并局部覆盖hair/bangs根侧，在head_accessories后。默认开启，额角、脸缘、耳根及外眼尾由实体自然遮挡；原图第三外睫毛短尖在本件前，对应同一upper_eyelid的57.5分片，主体仍在40后方深度。短尖长尾为连续发面，不剪贴到脸轮廓，本件自身仍为单深度57。",
+      "check": {
+        "passed": true,
+        "note": "原候选完整SVG与原图支持此侧发在刘海根、脸、耳及外眼尾前，头饰在发前，末端同属连续侧发。返修实际原尺寸并排进一步发现第三睫毛短尖局部跨到本侧发蓝面前；保留本件57层完整纹理和alpha，仅把同一upper_eyelid短尖安排57.5，主体仍40。原图、单层、隐藏上层、最终眼角和共同分片并集均已核对，侧发不含睫毛像素、不受眼口蒙版。其余根部、长尾绘画质量问题另在R24继续处理，层序检查不代替绘画结论。"
+      }
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "level": 58,
+      "note": "画面左完整侧发由分缝沿额角到耳前、颈侧长末端，在 hair/back_hair、face/face_base、face/ears/ear_right、本侧眉眼外缘及红晕前，并在根部局部覆盖 hair/bangs。默认开启，遮耳上部与脸缘，内弯尖、青蓝下段和长末端保持一件；不按脸底裁切，不按颜色另分深度。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 显示角色右侧（画面左侧）长前束从顶部分缝沿脸侧垂至肩上方，内侧短尖遮住右眼外角和右耳上根，外侧长尾落在后发前；候选中其整体处于 hair/bangs、face/face_base、face/ears/ear_right、face/eyes/eye_right/upper_eyelid 与后发前。两侧前束根部仅局部搭接，右束放在左束前可保持连续接合，当前姿势无反向穿插。默认可见并自然遮住脸缘、耳根及眼角，不受眼口蒙版，单深度相容；分缝根部余量和紫色补全材质在 raster step01 连贯校准。"
+      }
+    },
+    {
+      "id": "head_accessories",
+      "level": 59,
+      "note": "空组叶节点按完整三角头饰绘画 part 纳入，位于 hair/side_hair/side_hair_left 和 hair/back_hair 前。默认开启，完整位于画面右上额角发面上；中央深色区及彩色区随饰物，不另造深度或剪贴到发面而截断圆角外轮廓。",
+      "check": {
+        "passed": true,
+        "note": "完整 SVG blend 中圆角三角形外轮廓落在画面右额角发面上，位置和大小对齐原图黄、青绿、蓝及深色中央区域；候选中头饰整体压在 hair/side_hair/side_hair_left、hair/bangs 及后发前，没有发丝反穿。虽节点 kind=group 但为终止叶，按完整单件头饰给最高前侧深度，默认可见，不纳入眼口蒙版。中央深色区随头饰材质保留，现有依据不要求另拆或指定镂空；当前 SVG 为橙色底形，raster step01 按参考校正贴附色区和边缘，无需改变树或深度。"
+      }
+    }
+  ]
+}

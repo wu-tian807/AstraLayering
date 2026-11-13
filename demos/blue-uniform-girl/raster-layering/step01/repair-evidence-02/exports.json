@@ -1,0 +1,184 @@
+{
+  "hair/back_hair": {
+    "id": "hair/back_hair",
+    "layers": [
+      {
+        "name": "01 | hair/back_hair",
+        "uuid": "{fa24462a-dbf9-4a69-b750-3ea97e41153b}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/hair__back_hair.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-hide-above-off.png"
+  },
+  "legs/leg_left/leg": {
+    "id": "legs/leg_left/leg",
+    "layers": [
+      {
+        "name": "04 | legs/leg_left/leg",
+        "uuid": "{874466af-a8fd-455a-aa1a-4394f2c00e6a}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/legs__leg_left__leg.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_left__leg-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_left__leg-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_left__leg-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_left__leg-hide-above-off.png"
+  },
+  "legs/leg_right/leg": {
+    "id": "legs/leg_right/leg",
+    "layers": [
+      {
+        "name": "05 | legs/leg_right/leg",
+        "uuid": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/legs__leg_right__leg.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-hide-above-off.png"
+  },
+  "arms/arm_left/hand/middle_finger": {
+    "id": "arms/arm_left/hand/middle_finger",
+    "layers": [
+      {
+        "name": "14 | arms/arm_left/hand/middle_finger",
+        "uuid": "{77dd7450-bfed-474a-9430-874a4e35f190}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/arms__arm_left__hand__middle_finger.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/arms__arm_left__hand__middle_finger-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/arms__arm_left__hand__middle_finger-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/arms__arm_left__hand__middle_finger-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/arms__arm_left__hand__middle_finger-hide-above-off.png"
+  },
+  "arms/arm_right/upper_arm": {
+    "id": "arms/arm_right/upper_arm",
+    "layers": [
+      {
+        "name": "25 | arms/arm_right/upper_arm",
+        "uuid": "{decfd947-28d2-4860-8930-4dfed8188037}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/arms__arm_right__upper_arm.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/arms__arm_right__upper_arm-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/arms__arm_right__upper_arm-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/arms__arm_right__upper_arm-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/arms__arm_right__upper_arm-hide-above-off.png"
+  },
+  "pelvis": {
+    "id": "pelvis",
+    "layers": [
+      {
+        "name": "29 | pelvis",
+        "uuid": "{8077f372-abff-4fe4-99dd-2f7ab598740c}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/pelvis.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/pelvis-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/pelvis-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/pelvis-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/pelvis-hide-above-off.png"
+  },
+  "face/ears/ear_left": {
+    "id": "face/ears/ear_left",
+    "layers": [
+      {
+        "name": "32 | face/ears/ear_left",
+        "uuid": "{2b674aab-ffe3-41d3-a0fa-55462a22040a}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__ears__ear_left.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/face__ears__ear_left-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__ears__ear_left-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/face__ears__ear_left-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__ears__ear_left-hide-above-off.png"
+  },
+  "face/face_base": {
+    "id": "face/face_base",
+    "layers": [
+      {
+        "name": "34 | face/face_base",
+        "uuid": "{c3f39273-f952-456f-aa58-4cfd3ee4b101}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__face_base.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/face__face_base-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__face_base-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/face__face_base-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__face_base-hide-above-off.png"
+  },
+  "face/eyes/eye_left/iris": {
+    "id": "face/eyes/eye_left/iris",
+    "layers": [
+      {
+        "name": "38 | face/eyes/eye_left/iris",
+        "uuid": "{79ed3649-fddc-4bf8-b9fc-0267f7e9d4c1}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_left__iris.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__iris-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__iris-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__iris-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__iris-hide-above-off.png"
+  },
+  "face/eyes/eye_left/eyelid_crease": {
+    "id": "face/eyes/eye_left/eyelid_crease",
+    "layers": [
+      {
+        "name": "41 | face/eyes/eye_left/eyelid_crease",
+        "uuid": "{2de44cab-5ac3-49c4-a5a0-b84429a0818c}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_left__eyelid_crease.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__eyelid_crease-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__eyelid_crease-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__eyelid_crease-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__eyelid_crease-hide-above-off.png"
+  },
+  "face/eyes/eye_right/iris": {
+    "id": "face/eyes/eye_right/iris",
+    "layers": [
+      {
+        "name": "43 | face/eyes/eye_right/iris",
+        "uuid": "{58cb7d99-1303-47b8-8317-5b18387cf4e3}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_right__iris.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__iris-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__iris-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__iris-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__iris-hide-above-off.png"
+  },
+  "face/eyes/eye_right/eyelid_crease": {
+    "id": "face/eyes/eye_right/eyelid_crease",
+    "layers": [
+      {
+        "name": "46 | face/eyes/eye_right/eyelid_crease",
+        "uuid": "{4ca54efb-c6fb-451f-a1ac-b29fb3ce1de7}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_right__eyelid_crease.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__eyelid_crease-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__eyelid_crease-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__eyelid_crease-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__eyelid_crease-hide-above-off.png"
+  },
+  "face/mouth/tongue": {
+    "id": "face/mouth/tongue",
+    "layers": [
+      {
+        "name": "50 | face/mouth/tongue",
+        "uuid": "{3befd481-21d8-44a8-96bc-a4ab7e95a6d0}"
+      }
+    ],
+    "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__mouth__tongue.png",
+    "single-on": "raster-layering/step01/repair-evidence-02/raw/face__mouth__tongue-single-on.png",
+    "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__mouth__tongue-hide-above-on.png",
+    "single-off": "raster-layering/step01/repair-evidence-02/raw/face__mouth__tongue-single-off.png",
+    "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__mouth__tongue-hide-above-off.png"
+  }
+}

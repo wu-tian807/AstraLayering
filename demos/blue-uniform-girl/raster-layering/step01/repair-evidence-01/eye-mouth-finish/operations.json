@@ -1,0 +1,833 @@
+[
+  {
+    "name": "iris-own-ring-and-main-highlight-register",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/iris",
+        "import": "raster-layering/step01/workspace/repair-next7/face__eyes__eye_left__iris-own-ring-register.png"
+      },
+      {
+        "id": "face/eyes/eye_left/highlight",
+        "import": "raster-layering/step01/workspace/repair-next7/face__eyes__eye_left__highlight-main-highlight-register.png"
+      },
+      {
+        "id": "face/eyes/eye_right/iris",
+        "import": "raster-layering/step01/workspace/repair-next7/face__eyes__eye_right__iris-own-ring-register.png"
+      },
+      {
+        "id": "face/eyes/eye_right/highlight",
+        "import": "raster-layering/step01/workspace/repair-next7/face__eyes__eye_right__highlight-main-highlight-register.png"
+      }
+    ],
+    "reason": "Local original-sized registration of existing generated iris 0–2px and own primary highlight 1.02–1.12 scale. Complete generated outer navy ring, upper hidden cap, independent reflection layers retained."
+  },
+  {
+    "name": "iris-own-original-lower-planes-local",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/iris",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next7/face__eyes__eye_left__iris-own-lower-material-selection.png",
+        "clear": false
+      },
+      {
+        "id": "face/eyes/eye_right/iris",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next7/face__eyes__eye_right__iris-own-lower-material-selection.png",
+        "clear": false
+      }
+    ],
+    "reason": "Native local same-iris original material sampling restricted to current opaque body and original own blue, lower color planes only. Soft 8px upper blend and 1.5–4px inward edge guard keep complete generated rim/cap. No sclera, lash, highlight or skin source pixels."
+  },
+  {
+    "name": "lash-inner-tail-and-right-iris-contact",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_right/iris",
+        "import": "raster-layering/step01/workspace/repair-next7/face__eyes__eye_right__iris-upper-cap-local-register.png"
+      },
+      {
+        "id": "face/eyes/eye_left/upper_eyelid",
+        "import": "raster-layering/step01/workspace/repair-next7/face__eyes__eye_left__upper_eyelid-own-inner-tail-register.png"
+      }
+    ],
+    "reason": "Original own-lash inner curve registered 0–1.4px, taper 0–2.4px left. Right complete iris cap raised locally by at most2.2px where original lashes directly contact iris; no added sclera shadow. Full generated contour textures retained."
+  },
+  {
+    "name": "eye-own-independent-secondary-reflections",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/iris",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "color": [
+              14,
+              45,
+              78
+            ],
+            "opacity": 0.82,
+            "size": 5,
+            "preset": "b) Airbrush Soft",
+            "path": [
+              [
+                "M",
+                605,
+                374.4
+              ],
+              [
+                "L",
+                605,
+                376.7
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "face/eyes/eye_left/highlight",
+        "import": "raster-layering/step01/workspace/repair-next7/before/face__eyes__eye_left__highlight.png",
+        "clearSelection": "raster-layering/step01/workspace/repair-next7/left-secondary-highlight-clear.png",
+        "strokes": [
+          {
+            "color": [
+              35,
+              85,
+              115
+            ],
+            "opacity": 0.55,
+            "size": 2.8,
+            "preset": "b) Airbrush Soft",
+            "path": [
+              [
+                "M",
+                606.4,
+                374.5
+              ],
+              [
+                "L",
+                606,
+                376.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "face/eyes/eye_right/highlight",
+        "import": "raster-layering/step01/workspace/repair-next7/before/face__eyes__eye_right__highlight.png",
+        "clearSelection": "raster-layering/step01/workspace/repair-next7/right-secondary-highlight-clear.png",
+        "strokes": [
+          {
+            "color": [
+              67,
+              158,
+              180
+            ],
+            "opacity": 0.92,
+            "size": 2.2,
+            "preset": "b) Basic-5 Size",
+            "path": [
+              [
+                "M",
+                402.6,
+                429.2
+              ],
+              [
+                "L",
+                402.1,
+                431.7
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "reason": "Restore accepted native-sized primary highlights after enlarged trial exceeded original. Locally remove baked left pupil dot with native own-base brush; separately paint subdued original left pupil reflection and right lower-edge cyan fleck on respective highlight layers only."
+  },
+  {
+    "name": "lower-lip-original-opening-residual-cleanup",
+    "jobs": [
+      {
+        "id": "face/mouth/lower_lip",
+        "clearSelection": "raster-layering/step01/workspace/repair-next7/lower-lip-original-inner-residual-clear.png"
+      }
+    ],
+    "reason": "Native antialiased selection removes leftover generated inner red rim from lower lip, following actual original U opening. Preserves generated outer lip body and own outer source stroke; complete independent tongue underneath retained and not sampled into lip."
+  },
+  {
+    "name": "lower-lip-own-varied-original-outline",
+    "jobs": [
+      {
+        "id": "face/mouth/lower_lip",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next7/lower-lip-own-exact-outline-selection.png",
+        "clear": false
+      }
+    ],
+    "reason": "Krita native original same-lower-lip narrow 1.8px own edge sampling restores continuous variable dark-to-soft-red U outline after residual inner-edge cleanup. Source clipped to original red ink, not tongue area or surrounding face; generated broad lip texture retained."
+  },
+  {
+    "name": "mouth-native-right-opening-contact",
+    "jobs": [
+      {
+        "id": "face/mouth/mouth_interior",
+        "mask": {
+          "name": "上下唇开口",
+          "selection": "raster-layering/step01/workspace/repair-next7/mouth-opening-right-inner-edge-calibrated.png"
+        }
+      }
+    ],
+    "reason": "Native shared mouth-opening mask right edge narrowed locally0–1.5px below y473 to lie inside own lip boundary and remove extra rim at upper/right junction. Upper teeth exposure band and all full hidden mouth textures preserved; no foreign pixels introduced."
+  },
+  {
+    "name": "mouth-native-opening-to-own-lip-contact",
+    "jobs": [
+      {
+        "id": "face/mouth/mouth_interior",
+        "mask": {
+          "name": "上下唇开口",
+          "selection": "raster-layering/step01/workspace/repair-next7/mouth-opening-right-native-contact.png"
+        }
+      }
+    ],
+    "reason": "Rejected inward-clipped mask trial because three-view inspection exposed a pale gap to own lip. Restore baseline and extend shared opening right edge by0–1.6px to actual own-lip inner boundary. Upper teeth strip and full hidden mouth textures unchanged."
+  },
+  {
+    "name": "mouth-interior-own-top-rim-pigment",
+    "jobs": [
+      {
+        "id": "face/mouth/mouth_interior",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              163,
+              43,
+              42
+            ],
+            "opacity": 0.85,
+            "size": 7,
+            "path": [
+              [
+                "M",
+                541.4,
+                463
+              ],
+              [
+                "C",
+                548,
+                457,
+                553.4,
+                457,
+                560,
+                463
+              ],
+              [
+                "C",
+                563,
+                466,
+                565,
+                471,
+                566,
+                477
+              ]
+            ]
+          },
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              178,
+              46,
+              43
+            ],
+            "opacity": 0.65,
+            "size": 5.5,
+            "path": [
+              [
+                "M",
+                562,
+                467
+              ],
+              [
+                "C",
+                566,
+                475,
+                566.5,
+                482.4,
+                565,
+                491
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "reason": "Independent cavity inspection exposed an invented bright upper/right rim. Remove that rim locally with native alpha-locked own-cavity red brush pigment and soft blend along existing actual rim. Complete generated cavity surface, alpha and main gradient retained; lip pixels never copied into cavity."
+  },
+  {
+    "name": "mouth-interior-upper-rim-native-finish",
+    "jobs": [
+      {
+        "id": "face/mouth/mouth_interior",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Basic-5 Size",
+            "color": [
+              164,
+              43,
+              42
+            ],
+            "opacity": 0.97,
+            "size": 4.3,
+            "path": [
+              [
+                "M",
+                541.9,
+                462
+              ],
+              [
+                "C",
+                546,
+                459.1,
+                551,
+                458.9,
+                555.6,
+                460.4
+              ],
+              [
+                "C",
+                561,
+                462.4,
+                564,
+                468.1,
+                565.5,
+                475.7
+              ]
+            ]
+          },
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              161,
+              40,
+              40
+            ],
+            "opacity": 0.58,
+            "size": 7,
+            "path": [
+              [
+                "M",
+                542.8,
+                464
+              ],
+              [
+                "C",
+                548,
+                461.5,
+                553.2,
+                461.7,
+                557.6,
+                464
+              ],
+              [
+                "C",
+                561.2,
+                466.7,
+                562.8,
+                470.8,
+                564.2,
+                476.2
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "reason": "Finish removing bright upper cavity rim using native brush strokes along actual opaque rim and a soft inside blend. Preserves whole generated cavity alpha and downstream original same-part gradient."
+  },
+  {
+    "name": "mouth-interior-rim-follow-existing-band",
+    "jobs": [
+      {
+        "id": "face/mouth/mouth_interior",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Basic-5 Size",
+            "color": [
+              164,
+              42,
+              41
+            ],
+            "opacity": 1,
+            "size": 6.1,
+            "path": [
+              [
+                "M",
+                543,
+                463.4
+              ],
+              [
+                "C",
+                549,
+                461,
+                554.7,
+                462.3,
+                559,
+                466
+              ],
+              [
+                "C",
+                561.7,
+                468.5,
+                563.4,
+                472,
+                564.4,
+                476
+              ]
+            ]
+          },
+          {
+            "preset": "b) Basic-5 Size",
+            "color": [
+              179,
+              47,
+              45
+            ],
+            "opacity": 0.96,
+            "size": 4.6,
+            "path": [
+              [
+                "M",
+                564.6,
+                475.8
+              ],
+              [
+                "C",
+                566.3,
+                481,
+                565.8,
+                486.4,
+                564.8,
+                491
+              ]
+            ]
+          },
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              161,
+              40,
+              40
+            ],
+            "opacity": 0.55,
+            "size": 6.8,
+            "path": [
+              [
+                "M",
+                544,
+                466.4
+              ],
+              [
+                "C",
+                549.5,
+                464,
+                554,
+                464.5,
+                558,
+                467
+              ],
+              [
+                "C",
+                560.9,
+                469.3,
+                561.9,
+                472.8,
+                562.8,
+                477
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "reason": "Native cavity rim repair follows actual bright band2–3px inside upper silhouette, finishing own red continuity without a new contour. Alpha locked; entire cavity and other part pixels retained."
+  },
+  {
+    "name": "right-iris-complete-upper-own-dark-ring",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_right/iris",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Basic-5 Size",
+            "color": [
+              24,
+              44,
+              72
+            ],
+            "opacity": 0.8,
+            "size": 1,
+            "path": [
+              [
+                "M",
+                414,
+                375.5
+              ],
+              [
+                "C",
+                421,
+                375.5,
+                427.4,
+                376.8,
+                434,
+                381.5
+              ],
+              [
+                "C",
+                438.2,
+                384.1,
+                441.7,
+                387.3,
+                443,
+                390.2
+              ],
+              [
+                "C",
+                445.1,
+                394,
+                446.9,
+                398,
+                447.8,
+                401.1
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "reason": "Retain the registered complete iris silhouette and locally restore its own fine navy upper-right ring with a native alpha-locked stroke following the actual existing contour. No new separate line or clipping of outer edge."
+  },
+  {
+    "name": "sclera-own-outer-edge-soft-pigment",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/sclera",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              251,
+              246,
+              237
+            ],
+            "opacity": 0.82,
+            "size": 4.3,
+            "path": [
+              [
+                "M",
+                559,
+                369
+              ],
+              [
+                "C",
+                557.2,
+                382.4,
+                559.7,
+                397.4,
+                568.6,
+                408
+              ],
+              [
+                "C",
+                577,
+                420,
+                590,
+                427,
+                602,
+                427.3
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "face/eyes/eye_right/sclera",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              251,
+              246,
+              237
+            ],
+            "opacity": 0.82,
+            "size": 4.3,
+            "path": [
+              [
+                "M",
+                366.7,
+                405
+              ],
+              [
+                "C",
+                364.5,
+                420,
+                373,
+                436,
+                390,
+                450
+              ],
+              [
+                "C",
+                403,
+                460,
+                422,
+                460,
+                437,
+                455
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "reason": "New final-size inspection found isolated bright white edge fragments on generated sclera. Native alpha-locked soft brush blends only the actual outer-left/lower edge with adjacent own warm-white pigment, keeping all opaque body/alpha and shared opening. No lash shadow, skin or other-part sampling."
+  },
+  {
+    "name": "sclera-own-edge-native-continuous-material",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/sclera",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Basic-5 Size",
+            "color": [
+              251,
+              246,
+              237
+            ],
+            "opacity": 0.9,
+            "size": 3.3,
+            "path": [
+              [
+                "M",
+                559,
+                369
+              ],
+              [
+                "C",
+                557.2,
+                382.4,
+                559.7,
+                397.4,
+                568.6,
+                408
+              ],
+              [
+                "C",
+                577,
+                420,
+                590,
+                427,
+                602,
+                427.3
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "face/eyes/eye_right/sclera",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Basic-5 Size",
+            "color": [
+              251,
+              246,
+              237
+            ],
+            "opacity": 0.9,
+            "size": 3.3,
+            "path": [
+              [
+                "M",
+                366.7,
+                405
+              ],
+              [
+                "C",
+                364.5,
+                420,
+                373,
+                436,
+                390,
+                450
+              ],
+              [
+                "C",
+                403,
+                460,
+                422,
+                460,
+                437,
+                455
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "reason": "Finish only the actual generated bright outer-edge fragments with native alpha-locked adjacent own warm-white pigment strokes, matching the preserved nearby body tone. Complete painting alpha, shared masks and unmodified main sclera gradients retained."
+  },
+  {
+    "name": "right-sclera-remove-lash-shaped-gray",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_right/sclera",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              253,
+              249,
+              242
+            ],
+            "opacity": 0.88,
+            "size": 14,
+            "path": [
+              [
+                "M",
+                393,
+                380
+              ],
+              [
+                "C",
+                383.5,
+                382.8,
+                377.5,
+                391,
+                375.6,
+                400
+              ]
+            ]
+          },
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              253,
+              249,
+              242
+            ],
+            "opacity": 0.66,
+            "size": 10,
+            "path": [
+              [
+                "M",
+                397,
+                379
+              ],
+              [
+                "C",
+                386,
+                382,
+                378,
+                390,
+                375.4,
+                397
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "reason": "Full right-sclera isolation exposed a diagonal gray patch whose wedge follows the upper lash rather than sclera volume. Native soft own-white pigment strokes locally remove this foreign cast-shadow-shaped patch; alpha and remaining complete generated own-volume material preserved."
+  },
+  {
+    "name": "right-sclera-own-diagonal-residual-blend",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_right/sclera",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Basic-5 Size",
+            "color": [
+              251,
+              246,
+              238
+            ],
+            "opacity": 0.82,
+            "size": 6.4,
+            "path": [
+              [
+                "M",
+                391,
+                385
+              ],
+              [
+                "C",
+                387,
+                389,
+                383,
+                396,
+                380,
+                403
+              ]
+            ]
+          },
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              251,
+              246,
+              238
+            ],
+            "opacity": 0.7,
+            "size": 10.8,
+            "path": [
+              [
+                "M",
+                391,
+                385
+              ],
+              [
+                "C",
+                387,
+                389,
+                383,
+                396,
+                380,
+                403
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "reason": "Locally blend remaining inner diagonal lash-shaped gray with adjacent own white through two native strokes; contour alpha and diffuse own edge-volume shading remain intact."
+  },
+  {
+    "name": "right-eye-native-complete-ring-support",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_right/sclera",
+        "import": "raster-layering/step01/workspace/repair-next7/face__eyes__eye_right__sclera-lower-right-own-material-register.png",
+        "mask": {
+          "name": "眼睛开口 right",
+          "selection": "raster-layering/step01/workspace/repair-next7/right-eye-opening-complete-own-ring.png"
+        }
+      }
+    ],
+    "reason": "Native default/full eye comparison exposed right/lower iris ring clipping. Locally register generated sclera lower/right body0–2.8px to surround the original iris contour, retain upper/left body and all own paint. Native shared eye opening lower/right follows that own body and contains the full dark iris edge; upper lash opening unchanged."
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "kraZIPValid": true,
+  "kraBytes": 10865980,
+  "repairFirstLine": "结论：仍有问题",
+  "reviewSections": 35,
+  "passed": 16,
+  "pending": 19,
+  "nativePaintLayers": 59,
+  "nativeMasks": 10,
+  "nativeGroups": 3,
+  "paintChangedThisBatch": 7,
+  "otherPaintUnchangedThisBatch": 52,
+  "reopenPassed": true,
+  "PNGMatchesReopen": true,
+  "linkedPathsChecked": 121,
+  "missingLinks": [],
+  "conclusion": "仍有问题"
+}

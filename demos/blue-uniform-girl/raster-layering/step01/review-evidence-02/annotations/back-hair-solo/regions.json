@@ -1,0 +1,38 @@
+{
+  "image": "raster-layering/step01/review-evidence-02/raw/back-hair-solo-off.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-02/annotations/back-hair-solo/marked.png",
+  "manifest": "raster-layering/step01/review-evidence-02/annotations/back-hair-solo/regions.json",
+  "regions": [
+    {
+      "id": "R14",
+      "bounds": [
+        721,
+        350,
+        36,
+        48
+      ],
+      "layers": [
+        "01 | hair/back_hair"
+      ],
+      "description": "后发独显时，发饰下方已恢复的发缕在原耳顶遮挡边附近留下近水平硬边，下面有窄竖色带，自身暗线在此停顿，形成拼接感。原图这一段部分被耳遮住，仅以原图可见的发缕走向和完整补形连续性为依据。接续自身发缕线及渐变，消除硬接边，保留上方青蓝楔形亮色。",
+      "crop": [
+        709,
+        338,
+        60,
+        72
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/back-hair-solo/R14-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/back-hair-solo/R14-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/back-hair-solo/R14-comparison.png"
+      },
+      "batch": "back-hair-solo"
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

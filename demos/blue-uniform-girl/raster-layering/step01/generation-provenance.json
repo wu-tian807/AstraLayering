@@ -1,0 +1,2013 @@
+{
+  "parts": [
+    {
+      "id": "hair/back_hair",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_W7iNBxbFIwMgyw9iAvncn1ri.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/hair__back_hair/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/hair__back_hair/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/hair__back_hair/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/hair__back_hair/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.5896825396825397,
+        "translation": [
+          116,
+          2
+        ],
+        "generatedAlphaBox": [
+          95,
+          11,
+          1355,
+          985
+        ],
+        "targetSVGBox": [
+          172,
+          7,
+          915,
+          585
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "legs/leg_left/shoes/cuff_back",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_D9gbZgianPG6HntIqOvB4ifo.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/legs__leg_left__shoes__cuff_back/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/legs__leg_left__shoes__cuff_back/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/legs__leg_left__shoes__cuff_back/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/legs__leg_left__shoes__cuff_back/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.0625,
+        "translation": [
+          582,
+          1163
+        ],
+        "generatedAlphaBox": [
+          37,
+          146,
+          2133,
+          559
+        ],
+        "targetSVGBox": [
+          584,
+          1171,
+          715,
+          1200
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_sbJf68OmDe8Ag6lG1uzSRTr8.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/legs__leg_right__shoes__cuff_back/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/legs__leg_right__shoes__cuff_back/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/legs__leg_right__shoes__cuff_back/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/legs__leg_right__shoes__cuff_back/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.08186738836265223,
+        "translation": [
+          341,
+          1147
+        ],
+        "generatedAlphaBox": [
+          109,
+          123,
+          1587,
+          759
+        ],
+        "targetSVGBox": [
+          350,
+          1155,
+          471,
+          1212
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_j2Jf0WnBgHfDBGrqs2V7kUHf.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/legs__leg_left__leg/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/legs__leg_left__leg/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/legs__leg_left__leg/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/legs__leg_left__leg/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.25971370143149286,
+        "translation": [
+          556,
+          777
+        ],
+        "generatedAlphaBox": [
+          92,
+          74,
+          581,
+          2113
+        ],
+        "targetSVGBox": [
+          580,
+          779,
+          707,
+          1342
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_TwBYmHXTHsDvHpFxtMmqoLmA.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/legs__leg_right__leg/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/legs__leg_right__leg/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/legs__leg_right__leg/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/legs__leg_right__leg/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.3581899298916507,
+        "translation": [
+          296,
+          735
+        ],
+        "generatedAlphaBox": [
+          125,
+          116,
+          767,
+          1685
+        ],
+        "targetSVGBox": [
+          340,
+          777,
+          572,
+          1339
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "legs/leg_left/shoes/shoe_front",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_a2EbWg0jJCPFaCACXnZP2ktw.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/legs__leg_left__shoes__shoe_front/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/legs__leg_left__shoes__shoe_front/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/legs__leg_left__shoes__shoe_front/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/legs__leg_left__shoes__shoe_front/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.15296052631578946,
+        "translation": [
+          559,
+          1171
+        ],
+        "generatedAlphaBox": [
+          98,
+          100,
+          1009,
+          1316
+        ],
+        "targetSVGBox": [
+          574,
+          1186,
+          714,
+          1372
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_QTFsTFZHV3EoRHXH0tdTCu4F.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/legs__leg_right__shoes__shoe_front/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/legs__leg_right__shoes__shoe_front/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/legs__leg_right__shoes__shoe_front/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/legs__leg_right__shoes__shoe_front/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.1641434262948207,
+        "translation": [
+          305,
+          1151
+        ],
+        "generatedAlphaBox": [
+          107,
+          90,
+          1000,
+          1345
+        ],
+        "targetSVGBox": [
+          322,
+          1166,
+          470,
+          1372
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/bracelet_back",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_QKwfHgUz29gmrckiRLmbhHmy.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__bracelet_back/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__bracelet_back/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__bracelet_back/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__bracelet_back/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.07374392220421394,
+        "translation": [
+          718,
+          799
+        ],
+        "generatedAlphaBox": [
+          76,
+          90,
+          1310,
+          1053
+        ],
+        "targetSVGBox": [
+          724,
+          803,
+          815,
+          879
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/bracelet_back",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_2ZTakDRw7FrYEQSCJiBrCzEi.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__bracelet_back/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__bracelet_back/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__bracelet_back/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__bracelet_back/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.07582515611061552,
+        "translation": [
+          287,
+          794
+        ],
+        "generatedAlphaBox": [
+          97,
+          108,
+          1218,
+          1104
+        ],
+        "targetSVGBox": [
+          294,
+          801,
+          379,
+          878
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/hand/little_finger",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_1WqgSB2DcY8ncvXjAJKruszC.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__little_finger/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__little_finger/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__little_finger/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__little_finger/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.04539007092198582,
+        "translation": [
+          818,
+          897
+        ],
+        "generatedAlphaBox": [
+          176,
+          152,
+          881,
+          1405
+        ],
+        "targetSVGBox": [
+          826,
+          903,
+          858,
+          961
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/hand/little_finger",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_906R8ExwHDd5ePEQa3MQHbLC.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__little_finger/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__little_finger/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__little_finger/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__little_finger/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.02803030303030303,
+        "translation": [
+          263,
+          915
+        ],
+        "generatedAlphaBox": [
+          195,
+          71,
+          884,
+          1391
+        ],
+        "targetSVGBox": [
+          268,
+          917,
+          289,
+          954
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/hand/ring_finger",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_snIa1tL3NqaLONuaiP0vAteV.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__ring_finger/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__ring_finger/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__ring_finger/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__ring_finger/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.049786628733997154,
+        "translation": [
+          805,
+          896
+        ],
+        "generatedAlphaBox": [
+          146,
+          145,
+          849,
+          1494
+        ],
+        "targetSVGBox": [
+          812,
+          902,
+          847,
+          972
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/hand/ring_finger",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_T7qCSo6Ww4sjDCPhhcc2AELc.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__ring_finger/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__ring_finger/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__ring_finger/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__ring_finger/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.047244094488188976,
+        "translation": [
+          263,
+          895
+        ],
+        "generatedAlphaBox": [
+          204,
+          166,
+          839,
+          1405
+        ],
+        "targetSVGBox": [
+          273,
+          903,
+          303,
+          962
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/hand/middle_finger",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_lRiXXfdikRrIwtvkGoqEnVWh.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__middle_finger/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__middle_finger/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__middle_finger/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__middle_finger/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.05606060606060606,
+        "translation": [
+          800,
+          897
+        ],
+        "generatedAlphaBox": [
+          131,
+          105,
+          791,
+          1547
+        ],
+        "targetSVGBox": [
+          807,
+          902,
+          844,
+          984
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/hand/middle_finger",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_s12Q3F3FW1NNQ2mYoJbe8ZTI.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__middle_finger/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__middle_finger/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__middle_finger/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__middle_finger/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.048316251830161056,
+        "translation": [
+          259,
+          906
+        ],
+        "generatedAlphaBox": [
+          138,
+          85,
+          821,
+          1466
+        ],
+        "targetSVGBox": [
+          266,
+          910,
+          299,
+          977
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/hand/thumb",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_XASifqhAJRNuqteZfIcBX2Bu.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__thumb/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__thumb/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__thumb/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__thumb/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.05493273542600897,
+        "translation": [
+          766,
+          900
+        ],
+        "generatedAlphaBox": [
+          123,
+          131,
+          1015,
+          1215
+        ],
+        "targetSVGBox": [
+          773,
+          906,
+          822,
+          968
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_sUds8iBt5kCwE4ZDMU1h55xg.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__thumb/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__thumb/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__thumb/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__thumb/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.057564575645756455,
+        "translation": [
+          296,
+          873
+        ],
+        "generatedAlphaBox": [
+          159,
+          92,
+          867,
+          1447
+        ],
+        "targetSVGBox": [
+          304,
+          878,
+          347,
+          956
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/hand/index_finger",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_qJil1WihJTnuNzl5L2Qex4wh.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__index_finger/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__index_finger/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__index_finger/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__index_finger/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.06129807692307692,
+        "translation": [
+          807,
+          895
+        ],
+        "generatedAlphaBox": [
+          128,
+          126,
+          960,
+          1301
+        ],
+        "targetSVGBox": [
+          815,
+          901,
+          866,
+          976
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/hand/index_finger",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_fbQxS8dSL41G1W0vW5ZHkKjh.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__index_finger/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__index_finger/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__index_finger/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__index_finger/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.06384676775738228,
+        "translation": [
+          244,
+          884
+        ],
+        "generatedAlphaBox": [
+          138,
+          91,
+          959,
+          1344
+        ],
+        "targetSVGBox": [
+          253,
+          890,
+          306,
+          970
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/hand/palm",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_6tWxT9Ker85K4ZPJKqfaqejr.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__palm/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__palm/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__palm/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__hand__palm/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.09728718428437792,
+        "translation": [
+          742,
+          820
+        ],
+        "generatedAlphaBox": [
+          70,
+          73,
+          1139,
+          1206
+        ],
+        "targetSVGBox": [
+          749,
+          826,
+          853,
+          939
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/hand/palm",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_BGMeLpHsFJKWIkLBC87fItVh.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__palm/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__palm/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__palm/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__hand__palm/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.10861423220973783,
+        "translation": [
+          244,
+          804
+        ],
+        "generatedAlphaBox": [
+          79,
+          84,
+          1147,
+          1185
+        ],
+        "targetSVGBox": [
+          253,
+          812,
+          369,
+          933
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/forearm",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_W5puRUZnHG5ko8ZBrEC0eB6B.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__forearm/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__forearm/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__forearm/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__forearm/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.13907849829351535,
+        "translation": [
+          658,
+          707
+        ],
+        "generatedAlphaBox": [
+          90,
+          80,
+          1072,
+          1252
+        ],
+        "targetSVGBox": [
+          670,
+          718,
+          807,
+          881
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/forearm",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_OrB5ju3fcEHRPBSjyBrdoGWx.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__forearm/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__forearm/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__forearm/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__forearm/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.13026521060842433,
+        "translation": [
+          304,
+          695
+        ],
+        "generatedAlphaBox": [
+          110,
+          70,
+          1021,
+          1352
+        ],
+        "targetSVGBox": [
+          316,
+          704,
+          440,
+          871
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/upper_arm",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_hECxdmrhzNO6aUw1yUxSnTrN.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__upper_arm/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__upper_arm/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__upper_arm/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__upper_arm/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.14794732765298219,
+        "translation": [
+          587,
+          561
+        ],
+        "generatedAlphaBox": [
+          120,
+          69,
+          1002,
+          1360
+        ],
+        "targetSVGBox": [
+          604,
+          571,
+          736,
+          762
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/upper_arm",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_G98bnw1mvJxnwMj17oMJnMNp.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__upper_arm/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__upper_arm/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__upper_arm/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__upper_arm/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.16579770594369134,
+        "translation": [
+          360,
+          547
+        ],
+        "generatedAlphaBox": [
+          93,
+          85,
+          1052,
+          1270
+        ],
+        "targetSVGBox": [
+          375,
+          561,
+          534,
+          758
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "neck",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_Z1iKvXbto7UDfK8bXi223CU2.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/neck/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/neck/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/neck/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/neck/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.1,
+        "translation": [
+          498,
+          499
+        ],
+        "generatedAlphaBox": [
+          78,
+          99,
+          1308,
+          1033
+        ],
+        "targetSVGBox": [
+          506,
+          507,
+          629,
+          604
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "body/torso",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_KLzHLudXPrL4GqmqFgCQRpGe.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/body__torso/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/body__torso/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/body__torso/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/body__torso/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.23544093178036607,
+        "translation": [
+          438,
+          539
+        ],
+        "generatedAlphaBox": [
+          146,
+          98,
+          1018,
+          1300
+        ],
+        "targetSVGBox": [
+          465,
+          562,
+          685,
+          845
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "body/breast",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_nIF1tywFsZIFMSrTw7IskBmd.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/body__breast/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/body__breast/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/body__breast/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/body__breast/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.1336405529953917,
+        "translation": [
+          463,
+          612
+        ],
+        "generatedAlphaBox": [
+          113,
+          111,
+          1632,
+          779
+        ],
+        "targetSVGBox": [
+          478,
+          626,
+          681,
+          716
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "pelvis",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_9TT64c6xn84rBfO25WLyqsdf.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/pelvis/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/pelvis/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/pelvis/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/pelvis/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.19747520288548243,
+        "translation": [
+          443,
+          696
+        ],
+        "generatedAlphaBox": [
+          56,
+          32,
+          1259,
+          1141
+        ],
+        "targetSVGBox": [
+          453,
+          702,
+          693,
+          921
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_7UbA2tQHpfXMTUkRE0gH2Q2Y.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_left__bracelet_front/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_left__bracelet_front/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_left__bracelet_front/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_left__bracelet_front/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.08214585079631181,
+        "translation": [
+          717,
+          805
+        ],
+        "generatedAlphaBox": [
+          85,
+          129,
+          1278,
+          1049
+        ],
+        "targetSVGBox": [
+          724,
+          813,
+          822,
+          894
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "arms/arm_right/bracelet_front",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_Wv3id35xIGv6wnIsiAITdKdJ.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/arms__arm_right__bracelet_front/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/arms__arm_right__bracelet_front/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/arms__arm_right__bracelet_front/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/arms__arm_right__bracelet_front/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.0846740050804403,
+        "translation": [
+          279,
+          800
+        ],
+        "generatedAlphaBox": [
+          91,
+          90,
+          1272,
+          1056
+        ],
+        "targetSVGBox": [
+          287,
+          807,
+          387,
+          890
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/ears/ear_left",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_YGDKX8ZBCXWVX7FaBMbT6JZE.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__ears__ear_left/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__ears__ear_left/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__ears__ear_left/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__ears__ear_left/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.09149797570850203,
+        "translation": [
+          670,
+          344
+        ],
+        "generatedAlphaBox": [
+          142,
+          56,
+          1047,
+          1291
+        ],
+        "targetSVGBox": [
+          679,
+          349,
+          770,
+          462
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/ears/ear_right",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_NXLQwsT0Nh0QUGMkOO7Kp9zG.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__ears__ear_right/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__ears__ear_right/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__ears__ear_right/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__ears__ear_right/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.0812274368231047,
+        "translation": [
+          309,
+          399
+        ],
+        "generatedAlphaBox": [
+          102,
+          70,
+          1116,
+          1178
+        ],
+        "targetSVGBox": [
+          316,
+          405,
+          401,
+          495
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/face_base",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_VsAjaZBFDIK50Dn3BTESlZjo.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__face_base/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__face_base/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__face_base/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__face_base/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.328,
+        "translation": [
+          313,
+          154
+        ],
+        "generatedAlphaBox": [
+          57,
+          65,
+          1182,
+          1199
+        ],
+        "targetSVGBox": [
+          332,
+          174,
+          701,
+          549
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/blush_left",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_Twb8I0nWvoqVhn6mxAfhuLZ0.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__blush_left/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__blush_left/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__blush_left/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__blush_left/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.06990131578947369,
+        "translation": [
+          568,
+          404
+        ],
+        "generatedAlphaBox": [
+          105,
+          97,
+          1321,
+          990
+        ],
+        "targetSVGBox": [
+          575,
+          410,
+          660,
+          473
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/blush_right",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_ja3dyvbi5oWIl0fegfqDlq2n.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__blush_right/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__blush_right/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__blush_right/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__blush_right/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.06655974338412189,
+        "translation": [
+          374,
+          451
+        ],
+        "generatedAlphaBox": [
+          126,
+          111,
+          1373,
+          903
+        ],
+        "targetSVGBox": [
+          382,
+          458,
+          465,
+          511
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_TH0VUlPcUD87c4dk07eDuHdU.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__sclera/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__sclera/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__sclera/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__sclera/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.09009009009009009,
+        "translation": [
+          550,
+          327
+        ],
+        "generatedAlphaBox": [
+          92,
+          93,
+          1202,
+          1123
+        ],
+        "targetSVGBox": [
+          558,
+          335,
+          658,
+          428
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_rLMmDWIpR8ISTjMVvKorw9rD.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__iris/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__iris/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__iris/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__iris/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.07931034482758621,
+        "translation": [
+          560,
+          326
+        ],
+        "generatedAlphaBox": [
+          131,
+          119,
+          1027,
+          1279
+        ],
+        "targetSVGBox": [
+          569,
+          335,
+          642,
+          427
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_tUQmdn29blr424vjFUGd8arH.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__highlight/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__highlight/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__highlight/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__highlight/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.03125,
+        "translation": [
+          584,
+          341
+        ],
+        "generatedAlphaBox": [
+          375,
+          303,
+          772,
+          1199
+        ],
+        "targetSVGBox": [
+          594,
+          350,
+          609,
+          378
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_E5bvrPPzmz3jNPA5sgF9qpaO.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__upper_eyelid/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__upper_eyelid/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__upper_eyelid/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__upper_eyelid/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.09615384615384616,
+        "translation": [
+          544,
+          306
+        ],
+        "generatedAlphaBox": [
+          100,
+          90,
+          1410,
+          922
+        ],
+        "targetSVGBox": [
+          550,
+          315,
+          683,
+          395
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_aqBbSuC6g4yvusd8XuNXzU2j.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__eyelid_crease/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__eyelid_crease/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__eyelid_crease/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_left__eyelid_crease/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.04381443298969072,
+        "translation": [
+          539,
+          303
+        ],
+        "generatedAlphaBox": [
+          209,
+          188,
+          1373,
+          831
+        ],
+        "targetSVGBox": [
+          548,
+          311,
+          599,
+          340
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_ew3KcPf7TFrOv72hloC7fI9r.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__sclera/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__sclera/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__sclera/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__sclera/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.08396946564885496,
+        "translation": [
+          357,
+          364
+        ],
+        "generatedAlphaBox": [
+          109,
+          103,
+          1152,
+          1151
+        ],
+        "targetSVGBox": [
+          365,
+          373,
+          454,
+          461
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_HTj5iwIC6fgHj1NPcnfoEUg0.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__iris/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__iris/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__iris/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__iris/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.075,
+        "translation": [
+          377,
+          362
+        ],
+        "generatedAlphaBox": [
+          129,
+          141,
+          1009,
+          1285
+        ],
+        "targetSVGBox": [
+          387,
+          372,
+          453,
+          459
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_3CzTy9EnU8rfrb9Aqt3ee3PD.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__highlight/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__highlight/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__highlight/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__highlight/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.04314329738058552,
+        "translation": [
+          391,
+          376
+        ],
+        "generatedAlphaBox": [
+          204,
+          229,
+          853,
+          1307
+        ],
+        "targetSVGBox": [
+          400,
+          385,
+          428,
+          433
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_T13yjlJKUnOlW7iwGcVxxypY.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__upper_eyelid/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__upper_eyelid/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__upper_eyelid/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__upper_eyelid/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.08671439936356404,
+        "translation": [
+          328,
+          353
+        ],
+        "generatedAlphaBox": [
+          89,
+          106,
+          1346,
+          976
+        ],
+        "targetSVGBox": [
+          336,
+          361,
+          445,
+          439
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_UVNxHGGXkEq1U8rakdW8Cym8.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__eyelid_crease/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__eyelid_crease/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__eyelid_crease/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyes__eye_right__eyelid_crease/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.04403948367501898,
+        "translation": [
+          373,
+          340
+        ],
+        "generatedAlphaBox": [
+          229,
+          215,
+          1546,
+          670
+        ],
+        "targetSVGBox": [
+          383,
+          349,
+          441,
+          370
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/nose",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_7gENXNbuUV94wmhw7BB1vD3G.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__nose/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__nose/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__nose/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__nose/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.02127659574468085,
+        "translation": [
+          478,
+          432
+        ],
+        "generatedAlphaBox": [
+          468,
+          504,
+          749,
+          833
+        ],
+        "targetSVGBox": [
+          488,
+          443,
+          494,
+          450
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_1NrjUg2USkMhVpB7JERe7kNH.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__mouth__mouth_interior/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__mouth__mouth_interior/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__mouth__mouth_interior/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__mouth__mouth_interior/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.07861936720997123,
+        "translation": [
+          472,
+          446
+        ],
+        "generatedAlphaBox": [
+          158,
+          174,
+          1201,
+          993
+        ],
+        "targetSVGBox": [
+          484,
+          457,
+          566,
+          526
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_9le3IbXlCSMlEGJ7d4aipEHF.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__mouth__lower_teeth/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__mouth__lower_teeth/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__mouth__lower_teeth/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__mouth__lower_teeth/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.03951367781155015,
+        "translation": [
+          499,
+          489
+        ],
+        "generatedAlphaBox": [
+          94,
+          240,
+          1410,
+          891
+        ],
+        "targetSVGBox": [
+          503,
+          495,
+          555,
+          528
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/mouth/tongue",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_bRnoBif31dQpyETnMNzVXLlk.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__mouth__tongue/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__mouth__tongue/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__mouth__tongue/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__mouth__tongue/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.04899135446685879,
+        "translation": [
+          497,
+          461
+        ],
+        "generatedAlphaBox": [
+          138,
+          193,
+          1179,
+          1079
+        ],
+        "targetSVGBox": [
+          504,
+          468,
+          555,
+          516
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_6xAEolNyjV76Sjo2yQr6JzAu.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__mouth__upper_teeth/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__mouth__upper_teeth/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__mouth__upper_teeth/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__mouth__upper_teeth/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.04265402843601896,
+        "translation": [
+          484,
+          445
+        ],
+        "generatedAlphaBox": [
+          267,
+          270,
+          1533,
+          678
+        ],
+        "targetSVGBox": [
+          495,
+          454,
+          549,
+          476
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_qEV46jySYM2Dn7dCArTAUJ9W.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__mouth__lower_lip/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__mouth__lower_lip/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__mouth__lower_lip/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__mouth__lower_lip/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.07535460992907801,
+        "translation": [
+          474,
+          448
+        ],
+        "generatedAlphaBox": [
+          115,
+          154,
+          1243,
+          1049
+        ],
+        "targetSVGBox": [
+          483,
+          458,
+          568,
+          529
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_gYf9HijfksOxlxUZBfQYHC6W.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__mouth__upper_lip/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__mouth__upper_lip/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__mouth__upper_lip/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__mouth__upper_lip/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.0744336569579288,
+        "translation": [
+          467,
+          434
+        ],
+        "generatedAlphaBox": [
+          156,
+          271,
+          1392,
+          785
+        ],
+        "targetSVGBox": [
+          479,
+          445,
+          571,
+          502
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_wzOJN3RLD4rbzz0Y2OjVfgnb.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyebrows__eyebrow_left/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyebrows__eyebrow_left/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyebrows__eyebrow_left/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyebrows__eyebrow_left/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.05855855855855856,
+        "translation": [
+          530,
+          250
+        ],
+        "generatedAlphaBox": [
+          157,
+          132,
+          2020,
+          576
+        ],
+        "targetSVGBox": [
+          537,
+          258,
+          651,
+          284
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_yVAayZInyQnGSE5u2X89U0XQ.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/face__eyebrows__eyebrow_right/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/face__eyebrows__eyebrow_right/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/face__eyebrows__eyebrow_right/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/face__eyebrows__eyebrow_right/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.053927315357561546,
+        "translation": [
+          332,
+          286
+        ],
+        "generatedAlphaBox": [
+          141,
+          162,
+          1847,
+          629
+        ],
+        "targetSVGBox": [
+          340,
+          294,
+          432,
+          321
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "hair/bangs",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_nJGNJHIB0Rk40QKYPyrxQKrh.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/hair__bangs/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/hair__bangs/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/hair__bangs/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/hair__bangs/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.24805339265850945,
+        "translation": [
+          296,
+          39
+        ],
+        "generatedAlphaBox": [
+          97,
+          101,
+          996,
+          1360
+        ],
+        "targetSVGBox": [
+          320,
+          60,
+          543,
+          381
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_TK5zKzqPDYpZUkZlm3c9bcD5.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/hair__side_hair__side_hair_left/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/hair__side_hair__side_hair_left/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/hair__side_hair__side_hair_left/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/hair__side_hair__side_hair_left/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.35636856368563685,
+        "translation": [
+          427,
+          20
+        ],
+        "generatedAlphaBox": [
+          115,
+          113,
+          853,
+          1532
+        ],
+        "targetSVGBox": [
+          468,
+          50,
+          731,
+          576
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_jmQSt7WDi8lHawzFhkQc99H1.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/hair__side_hair__side_hair_right/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/hair__side_hair__side_hair_right/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/hair__side_hair__side_hair_right/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/hair__side_hair__side_hair_right/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.329153605015674,
+        "translation": [
+          220,
+          42
+        ],
+        "generatedAlphaBox": [
+          105,
+          96,
+          743,
+          1683
+        ],
+        "targetSVGBox": [
+          255,
+          63,
+          465,
+          607
+        ]
+      },
+      "reuseSource": null
+    },
+    {
+      "id": "head_accessories",
+      "generatedImage": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_Yj1Zpdyvfj1sIYVT3WklltMr.png",
+      "maskedReference": "raster-layering/step01/workspace/inputs/head_accessories/reference.png",
+      "threeColorControl": "raster-layering/step01/workspace/inputs/head_accessories/control.png",
+      "visibleMask": "raster-layering/step01/workspace/inputs/head_accessories/visible_mask.png",
+      "completionShape": "raster-layering/step01/workspace/inputs/head_accessories/shape_alpha.png",
+      "registration": {
+        "uniformScale": 0.11567877629063097,
+        "translation": [
+          637,
+          137
+        ],
+        "generatedAlphaBox": [
+          87,
+          87,
+          1133,
+          1198
+        ],
+        "targetSVGBox": [
+          647,
+          146,
+          768,
+          276
+        ]
+      },
+      "reuseSource": null
+    }
+  ],
+  "count": 59,
+  "method": "三色控制生成；黄区遮挡物及绿区中性灰；局部原生笔刷/本件取样修画；整体生成保留",
+  "repair01": {
+    "conclusion": "仍有问题",
+    "records": "raster-layering/step01/repair-evidence-01/generation-provenance.json",
+    "bodyBatchRecord": "raster-layering/step01/repair-evidence-01/body-continuation/record.json",
+    "passedIssues": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R8",
+      "R9",
+      "R10",
+      "R11",
+      "R12",
+      "R14",
+      "R15",
+      "R16",
+      "R17",
+      "R18",
+      "R20",
+      "R22",
+      "R23",
+      "R26",
+      "R27",
+      "R28",
+      "R30",
+      "R31",
+      "R32",
+      "R33",
+      "R34"
+    ],
+    "pendingIssues": [
+      "R5",
+      "R6",
+      "R7",
+      "R13",
+      "R19",
+      "R21",
+      "R24",
+      "R25",
+      "R29",
+      "R35"
+    ],
+    "junctionBatchRecord": "raster-layering/step01/repair-evidence-01/junction-continuation/record.json",
+    "eyeMouthBatchRecord": "raster-layering/step01/repair-evidence-01/eye-mouth-continuation/record.json",
+    "sockShoeBraceletBatchRecord": "raster-layering/step01/repair-evidence-01/sock-shoe-bracelet-continuation/record.json",
+    "elbowHandBatchRecord": "raster-layering/step01/repair-evidence-01/elbow-hand-continuation/record.json",
+    "hairBatchRecord": "raster-layering/step01/repair-evidence-01/hair-continuation/record.json",
+    "hairBatchPromptSet": "raster-layering/step01/repair-evidence-01/hair-continuation/generation-prompts.json",
+    "eyeMouthFinishRecord": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/record.json"
+  },
+  "repair01OuterLashDepth": {
+    "record": "raster-layering/step01/repair-evidence-01/outer-lash-depth/record.json",
+    "changedLogicalParts": [
+      "face/eyes/eye_left/upper_eyelid"
+    ],
+    "method": "已有生成完整上睑上局部Krita原生窄笔触与原图同件墨色核心取样；不取蓝色侧发或肤色。互斥像素分片及普通绘画层组装。",
+    "splitSource": "当前完整生成上睑的本件自身像素",
+    "rejectedThumbRestored": true,
+    "newPassedIssues": [
+      "R29"
+    ],
+    "pendingIssues": [
+      "R5",
+      "R6",
+      "R7",
+      "R13",
+      "R19",
+      "R21",
+      "R24",
+      "R25",
+      "R35"
+    ]
+  },
+  "repair01HandElbowContact": {
+    "record": "raster-layering/step01/repair-evidence-01/hand-elbow-contact/record.json",
+    "changedLogicalParts": [
+      "arms/arm_right/hand/thumb",
+      "arms/arm_right/hand/index_finger",
+      "arms/arm_right/hand/palm",
+      "arms/arm_left/forearm",
+      "arms/arm_left/upper_arm",
+      "arms/arm_left/bracelet_front"
+    ],
+    "method": "保持既有生成绘画，在本件内部原生窄笔触/软笔融色或原图同件皮肤原生取样；取样后只恢复原alpha，不计算或覆盖绘画RGB。没有整部件填色或其他部件像素。",
+    "newPassedIssues": [
+      "R5",
+      "R13"
+    ],
+    "pendingIssues": [
+      "R6",
+      "R7",
+      "R19",
+      "R21",
+      "R24",
+      "R25",
+      "R35"
+    ]
+  },
+  "repair01ShoeBraceletContact": {
+    "record": "raster-layering/step01/repair-evidence-01/shoe-bracelet-contact/record.json",
+    "changedLogicalParts": [
+      "legs/leg_right/shoes/cuff_back",
+      "legs/leg_right/shoes/shoe_front",
+      "arms/arm_left/bracelet_back",
+      "arms/arm_left/bracelet_front"
+    ],
+    "method": "保留已有生成绘画，后鞋口连续配准、各自本件原图原生取样与窄笔触/软笔接色；没有整形体平涂。",
+    "newPassedIssues": [
+      "R19",
+      "R35"
+    ],
+    "pendingIssues": [
+      "R6",
+      "R7",
+      "R21",
+      "R24",
+      "R25"
+    ]
+  },
+  "repair01HandHairContinuity": {
+    "record": "raster-layering/step01/repair-evidence-01/hand-hair-native-continuity/record.json",
+    "changedLogicalParts": [
+      "hair/back_hair",
+      "arms/arm_left/hand/thumb",
+      "arms/arm_right/hand/thumb",
+      "arms/arm_left/hand/index_finger",
+      "arms/arm_right/hand/index_finger",
+      "arms/arm_left/hand/palm",
+      "arms/arm_right/hand/palm",
+      "hair/side_hair/side_hair_left",
+      "hair/side_hair/side_hair_right"
+    ],
+    "method": "已有生成绘画上局部原生修画、自己的生成材质原生取样与局部配准；不整形体填色，不跨part复制，不烘焙他件投影。",
+    "newPassedIssues": [
+      "R6",
+      "R7",
+      "R24",
+      "R25"
+    ],
+    "pendingIssues": [
+      "R21"
+    ],
+    "generationTrialRetainedInPainting": false
+  },
+  "repair01BackHairCompletion": {
+    "record": "raster-layering/step01/repair-evidence-01/back-hair-native-completion/record.json",
+    "newPassedIssues": [
+      "R21"
+    ],
+    "pendingIssues": [],
+    "changedLogicalParts": [
+      "hair/back_hair"
+    ],
+    "method": "在已有生成绘画上局部Krita原生同件取样、轮廓清理、画笔接色/描线；不跨part复制、不沿整形体填色、不烘焙投影。",
+    "generationTrialsRetainedInPainting": false
+  },
+  "repair02": {
+    "review": "raster-layering/step01/review-02.md",
+    "generationAttempts": [
+      {
+        "review02Issue": "R10",
+        "partID": "face/eyes/eye_left/eyelid_crease",
+        "tool": "built-in image_gen.imagegen",
+        "maskedReference": "raster-layering/step01/repair-evidence-02/generation/crease-left-source.png",
+        "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/crease-left-control.png",
+        "inputRecord": "raster-layering/step01/repair-evidence-02/generation/crease-left-input.json",
+        "generatedImage": "raster-layering/step01/repair-evidence-02/generation/crease-left-generated.png",
+        "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_AJpXeB4qwqfufa1bO7FTHDDu.png",
+        "disposition": "accepted",
+        "result": "独立重生完整双眼皮；保留红褐暗中心、软边与两端收细，后续原生低不透明度融色。",
+        "registration": {
+          "wholeGeneratedCanvasUsed": true,
+          "generatedSize": [
+            1254,
+            1254
+          ],
+          "targetCanvasSize": [
+            120,
+            120
+          ],
+          "uniformScale": 0.09569377990430622,
+          "translation": [
+            530,
+            280
+          ],
+          "outerCanvasNotCropped": true
+        },
+        "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+        "promptRecordType": "生成约束摘要"
+      },
+      {
+        "review02Issue": "R11",
+        "partID": "face/eyes/eye_right/eyelid_crease",
+        "tool": "built-in image_gen.imagegen",
+        "maskedReference": "raster-layering/step01/repair-evidence-02/generation/crease-right-source.png",
+        "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/crease-right-control.png",
+        "inputRecord": "raster-layering/step01/repair-evidence-02/generation/crease-right-input.json",
+        "generatedImage": "raster-layering/step01/repair-evidence-02/generation/crease-right-generated.png",
+        "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_ME4i2p9q9aeCEzNGLVVnlSF3.png",
+        "disposition": "accepted",
+        "result": "按本眼独立重生完整双眼皮，未镜像另一眼；后续原生暖红融色。",
+        "registration": {
+          "wholeGeneratedCanvasUsed": true,
+          "generatedSize": [
+            1254,
+            1254
+          ],
+          "targetCanvasSize": [
+            120,
+            120
+          ],
+          "uniformScale": 0.09569377990430622,
+          "translation": [
+            340,
+            325
+          ],
+          "outerCanvasNotCropped": true
+        },
+        "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+        "promptRecordType": "生成约束摘要"
+      },
+      {
+        "review02Issue": "R12",
+        "partID": "hair/back_hair",
+        "tool": "built-in image_gen.imagegen",
+        "maskedReference": "raster-layering/step01/repair-evidence-02/generation/hair-left-source.png",
+        "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/hair-left-control.png",
+        "inputRecord": "raster-layering/step01/repair-evidence-02/generation/hair-left-input.json",
+        "generatedImage": "raster-layering/step01/repair-evidence-02/generation/hair-left-generated.png",
+        "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_6GaEO0LZpaHFgihMjgn1S1aJ.png",
+        "disposition": "withdrawn",
+        "result": "生成改变本件发流线并增加额外内线，最终撤回；回到既有本件蓝面取样与原生单曲线。",
+        "registration": {
+          "wholeGeneratedCanvasUsed": true,
+          "generatedSize": [
+            1254,
+            1254
+          ],
+          "targetCanvasSize": [
+            120,
+            120
+          ],
+          "uniformScale": 0.09569377990430622,
+          "translation": [
+            300,
+            440
+          ],
+          "outerCanvasNotCropped": true
+        },
+        "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+        "promptRecordType": "生成约束摘要"
+      },
+      {
+        "review02Issue": "R12",
+        "partID": "hair/back_hair",
+        "tool": "built-in image_gen.imagegen",
+        "maskedReference": "raster-layering/step01/repair-evidence-02/generation/hair-left-v2-source.png",
+        "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/hair-left-v2-control.png",
+        "inputRecord": "raster-layering/step01/repair-evidence-02/generation/hair-left-input.json",
+        "generatedImage": "raster-layering/step01/repair-evidence-02/generation/hair-left-v2-generated-rejected.png",
+        "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_RZxfL6o2ZCr20UEHYT6oNTDd.png",
+        "disposition": "withdrawn",
+        "result": "第二次生成仍改变线形和细轮廓，最终撤回，未留在工程。",
+        "registration": {
+          "wholeGeneratedCanvasUsed": true,
+          "generatedSize": [
+            1254,
+            1254
+          ],
+          "targetCanvasSize": [
+            120,
+            120
+          ],
+          "uniformScale": 0.09569377990430622,
+          "translation": [
+            300,
+            440
+          ],
+          "outerCanvasNotCropped": true
+        },
+        "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+        "promptRecordType": "生成约束摘要"
+      },
+      {
+        "review02Issue": "R14",
+        "partID": "hair/back_hair",
+        "tool": "built-in image_gen.imagegen",
+        "maskedReference": "raster-layering/step01/repair-evidence-02/generation/hair-wedge-source.png",
+        "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/hair-wedge-control.png",
+        "inputRecord": "raster-layering/step01/repair-evidence-02/generation/hair-wedge-input.json",
+        "generatedImage": "raster-layering/step01/repair-evidence-02/generation/hair-wedge-generated.png",
+        "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_h3kn2r7IPQfEpR0WC4xAL4Sb.png",
+        "disposition": "locally_accepted",
+        "result": "只取本件耳顶补形局部接回后发；保留青蓝楔形与原alpha，再原生续接自身发流线。",
+        "registration": {
+          "wholeGeneratedCanvasUsed": true,
+          "generatedSize": [
+            1254,
+            1254
+          ],
+          "targetCanvasSize": [
+            120,
+            120
+          ],
+          "uniformScale": 0.09569377990430622,
+          "translation": [
+            694,
+            305
+          ],
+          "outerCanvasNotCropped": true
+        },
+        "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+        "promptRecordType": "生成约束摘要"
+      },
+      {
+        "review02Issue": "R16",
+        "partID": "face/mouth/tongue",
+        "tool": "built-in image_gen.imagegen",
+        "maskedReference": "raster-layering/step01/repair-evidence-02/generation/tongue-source.png",
+        "threeColorControl": "raster-layering/step01/repair-evidence-02/generation/tongue-control.png",
+        "inputRecord": "raster-layering/step01/repair-evidence-02/generation/tongue-input.json",
+        "generatedImage": "raster-layering/step01/repair-evidence-02/generation/tongue-generated.png",
+        "originalToolOutput": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_jCPg4iYPOMEV9q1t9Uv9wxVG.png",
+        "disposition": "accepted_with_local_finish",
+        "result": "生成完整粉红舌面；仅自身上弧局部注册，再原生局部软化与玫红体积笔触。",
+        "registration": {
+          "wholeGeneratedCanvasUsed": true,
+          "generatedSize": [
+            1254,
+            1254
+          ],
+          "targetCanvasSize": [
+            96,
+            96
+          ],
+          "uniformScale": 0.07655502392344497,
+          "translation": [
+            484,
+            450
+          ],
+          "outerCanvasNotCropped": true
+        },
+        "promptConstraints": "仅绘制当前part；红区为本件可见形体/有效笔触，黄区局部补全与修画，绿区件外透明；同参考线色与明暗，不带其他部件、投影或新纹理；保留未修画内容。",
+        "promptRecordType": "生成约束摘要"
+      }
+    ],
+    "nativeOperations": "raster-layering/step01/repair-evidence-02/operations.json",
+    "nativeFinalStateNotes": "raster-layering/step01/repair-evidence-02/operation-dispositions.json",
+    "shapeRecords": "raster-layering/step01/repair-evidence-02/shape-records.json",
+    "finalPaintEvidence": "raster-layering/step01/repair-evidence-02/full-paint",
+    "paintLayerCount": 60,
+    "logicalPartCount": 59,
+    "protection": "每层仅本件画面；保留生成主体；不整块纯色填形；无外来部件投影；生成失败后用本件取样和Krita原生逐笔修画。"
+  }
+}

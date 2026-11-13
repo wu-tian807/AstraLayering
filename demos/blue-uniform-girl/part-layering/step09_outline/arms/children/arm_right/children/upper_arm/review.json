@@ -1,0 +1,73 @@
+{
+  "groupId": "arms/arm_right/upper_arm",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组及父组说明、参考图、候选和父完成 SVG。先检查整图叠加，再以肩根 [420,550,120,140]、臂身 [385,620,125,115]、肘端 [355,695,115,85] 的重叠选框逐块完成 blend/edge 核对，并检查独显。当前候选属于角色右上臂，未误包前臂、头发或肩带实体；肩根在肩带/躯干下的圆弧为父稿既有合理补形，保留。上臂主要形体、位置、肩部转向及肘端圆弧连接合理，联合填色连续，无可见组件遗漏、孔洞、孤点或碎片；无需重画。allowOutsideParent 省略，按父范围约束检查：四倍采样 outsidePixels=0，父内所属可见范围均已覆盖。\n\n单独记录已确认的上游范围限制：上臂内缘约 (474,681) 至 (435,751)，参考中棕色实体描边的外侧仍在红色轮廓右侧约 1–3 像素。候选与父 SVG 在同一 [418,678,67,82] 选框八倍 edge 对照中，该段边界重合；源码也使用相同的 (435,751)→(474,681) 曲线。此处候选已贴合父边界，剩余描边位于父范围外，只有上游扩大父轮廓才能完整覆盖，不能要求当前子组越界补画，也不声称该部分已补齐。本轮允许范围内无其他确定可修问题，按上游限制规则 pass。\n\n证据：\n\n\n\n\n\n",
+      "candidateHash": "14e9c8a6d7bea483b4bbd37e70566e0f01d56d307d8f9443f49c90d756fd472f",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-10.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/upper_arm/previews/2026-11-10T16-13-20-787Z-12.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T16:16:45.319Z"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 381.0,295.9 L 378.8,296.3 C 366.5,300.3 351.0,308.0 340.0,320.7 C 351.8,311.2 366.8,304.0 377.7,300.1 L 380.3,299.2 Z" fill-rule="nonzero"/><path d="M 399.4,297.1 L 401.8,298.2 C 412.8,303.9 423.2,308.7 432.0,315.4 C 422.0,310.0 412.0,304.0 402.7,300.7 L 399.6,299.1 Z" fill-rule="nonzero"/><path d="M 565.8,259.35 L 568.0,258.8 C 595.6,255.3 627.0,264.9 650.8,283.8 C 626.2,270.2 599.4,263.55 572.0,263.3 L 565.9,262.5 Z" fill-rule="nonzero"/></g>
+  <g id="eyebrows-outline" data-group-path="face/eyebrows" fill="#a8645b" stroke="none">
+    <path id="eyebrow-left-visible" d="M 537.8,275.7 C 545.0,266.0 555.4,260.4 568.0,258.8 L 572.0,263.3 C 560.6,263.2 548.1,269.1 537.8,275.7 Z"/>
+    <path id="eyebrow-right-visible" d="M 402.7,300.7 C 395.4,298.1 386.9,296.8 377.7,300.1 L 378.8,296.3 C 387.4,293.5 395.2,294.8 401.8,298.2 Z"/>
+  </g>
+</svg>

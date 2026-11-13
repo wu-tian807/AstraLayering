@@ -1,0 +1,8 @@
+{
+  "method": "built-in image_gen three-color",
+  "reference": "raster-layering/step01/workspace/inputs/body__breast/reference.png",
+  "control": "raster-layering/step01/workspace/inputs/body__breast/control.png",
+  "generated": "raster-layering/step01/workspace/repair-next/body-contour-inputs/breast-generated-rejected.png",
+  "accepted": false,
+  "reason": "侧线明显加粗、形状变化且外缘带碎片，不能满足原图接缝。"
+}

@@ -1,0 +1,116 @@
+{
+  "partID": "hair/back_hair",
+  "cropBox": [
+    311,
+    441,
+    481,
+    611
+  ],
+  "scale": 6,
+  "targetPolygon": [
+    [
+      332,
+      454
+    ],
+    [
+      363,
+      478
+    ],
+    [
+      400,
+      498
+    ],
+    [
+      451,
+      530
+    ],
+    [
+      475,
+      538
+    ],
+    [
+      471,
+      581
+    ],
+    [
+      443,
+      581
+    ],
+    [
+      411,
+      579
+    ],
+    [
+      397,
+      540
+    ],
+    [
+      394,
+      571
+    ],
+    [
+      423,
+      587
+    ],
+    [
+      386,
+      584
+    ],
+    [
+      355,
+      570
+    ],
+    [
+      335,
+      553
+    ],
+    [
+      326,
+      530
+    ],
+    [
+      326,
+      506
+    ],
+    [
+      329,
+      477
+    ]
+  ],
+  "yellowPolygon": [
+    [
+      327,
+      474
+    ],
+    [
+      341,
+      474
+    ],
+    [
+      345,
+      498
+    ],
+    [
+      345,
+      531
+    ],
+    [
+      329,
+      539
+    ],
+    [
+      324,
+      516
+    ]
+  ],
+  "redMeaning": "本件已有生成笔触，保留蓝色体积和深蓝发流线",
+  "yellowMeaning": "本件旧裁边的多余暗线或欠缺末端，已在输入抹中性灰",
+  "greenMeaning": "本件以外，已抹中性灰并要求输出透明",
+  "generated": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_6vilypxcyCqXT0TraBHFl2Jz.png",
+  "copy": "raster-layering/step01/workspace/repair-next12/generation/left-generated.png",
+  "originalSize": [
+    1254,
+    1254
+  ],
+  "registration": "整张正方形均匀缩小到原坐标范围，无变形、无裁掉描边"
+}

@@ -1,0 +1,513 @@
+{
+  "checkedAtUTC": "2026-11-12T01:14:25.454391+00:00",
+  "allUpstreamInputsUnchanged": true,
+  "count": 84,
+  "partIDsMatch": true,
+  "depthsMatch": true,
+  "files": [
+    {
+      "path": "part-layering/groups.json",
+      "review02Hash": "140329d213646347a8afc61905469cb0140becdf9c43836f6de58dbaa0ad0856",
+      "currentHash": "140329d213646347a8afc61905469cb0140becdf9c43836f6de58dbaa0ad0856",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/occlusion.json",
+      "review02Hash": "a3370ebe3813c06308f8cc43f1783ebe163d4c8c9ffa04d687a759b8b995d703",
+      "currentHash": "a3370ebe3813c06308f8cc43f1783ebe163d4c8c9ffa04d687a759b8b995d703",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/bracelet_back.svg",
+      "review02Hash": "6974fe9bfe69202a5a7163f918fa49afe0df9f268cab28f251a30a67cd9078cd",
+      "currentHash": "6974fe9bfe69202a5a7163f918fa49afe0df9f268cab28f251a30a67cd9078cd",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/bracelet_front.svg",
+      "review02Hash": "3d97e71c5e1992844385cfb508e1f6f3b49ae4f4e726b7d235c20e463e8e81a7",
+      "currentHash": "3d97e71c5e1992844385cfb508e1f6f3b49ae4f4e726b7d235c20e463e8e81a7",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/forearm.svg",
+      "review02Hash": "533d58a1cc09bc97f369e61be3897e39d77ea197775414a4459719d7d2543749",
+      "currentHash": "533d58a1cc09bc97f369e61be3897e39d77ea197775414a4459719d7d2543749",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/hand/index_finger.svg",
+      "review02Hash": "a62ffd507d5dc9633ec75367e96f1ca7922d7361175788cd9cf8c15d11d7bcae",
+      "currentHash": "a62ffd507d5dc9633ec75367e96f1ca7922d7361175788cd9cf8c15d11d7bcae",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/hand/little_finger.svg",
+      "review02Hash": "0412874db46e5f61c816469f48307e747c21ee9e1ff472fdc8d03e0a55480675",
+      "currentHash": "0412874db46e5f61c816469f48307e747c21ee9e1ff472fdc8d03e0a55480675",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/hand/middle_finger.svg",
+      "review02Hash": "936a8703e8798a906ef805fceb1d757c486cf6d25bd234f23a34d88347824c4b",
+      "currentHash": "936a8703e8798a906ef805fceb1d757c486cf6d25bd234f23a34d88347824c4b",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/hand/palm.svg",
+      "review02Hash": "eef72b6519a9b1a55dbde27bd296f31af4173fbea971df371f513feeb60ce84e",
+      "currentHash": "eef72b6519a9b1a55dbde27bd296f31af4173fbea971df371f513feeb60ce84e",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/hand/ring_finger.svg",
+      "review02Hash": "9f4951f763a5b3ffb9183b0df95267437d1b48d5bcbb9314c90b2e8bd18472be",
+      "currentHash": "9f4951f763a5b3ffb9183b0df95267437d1b48d5bcbb9314c90b2e8bd18472be",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/hand/thumb.svg",
+      "review02Hash": "1ad89d9475417146d993954421122fc365d1eeaae5bf8c4163a41ffbaf857e23",
+      "currentHash": "1ad89d9475417146d993954421122fc365d1eeaae5bf8c4163a41ffbaf857e23",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/hand.svg",
+      "review02Hash": "55e0e7f32f8eeef949e5d093453db2bfbf797cedac7a5cb21e24f055c8cab3d6",
+      "currentHash": "55e0e7f32f8eeef949e5d093453db2bfbf797cedac7a5cb21e24f055c8cab3d6",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left/upper_arm.svg",
+      "review02Hash": "b972f656a1615d2328cb9c224ede98292a0fcc42517b8bc81a74345ed9a65fe3",
+      "currentHash": "b972f656a1615d2328cb9c224ede98292a0fcc42517b8bc81a74345ed9a65fe3",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_left.svg",
+      "review02Hash": "29b96df1f99ea509929e5c1c7d26abeaad7c3cf3c7ded2970ef55b16b4ceea8c",
+      "currentHash": "29b96df1f99ea509929e5c1c7d26abeaad7c3cf3c7ded2970ef55b16b4ceea8c",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/bracelet_back.svg",
+      "review02Hash": "83d903fd7ad76431dc707fb3e14e98b9dca8aac49282d3b1459d8555e02694d1",
+      "currentHash": "83d903fd7ad76431dc707fb3e14e98b9dca8aac49282d3b1459d8555e02694d1",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/bracelet_front.svg",
+      "review02Hash": "b19fb30096f9c5bd07548c21cfc24422579d89e586537e6ac82bd2d3b1e754e3",
+      "currentHash": "b19fb30096f9c5bd07548c21cfc24422579d89e586537e6ac82bd2d3b1e754e3",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/forearm.svg",
+      "review02Hash": "086609767e889540260e607236466f2bbacf5f1dcd440ea0aa1884ff3d6a24bd",
+      "currentHash": "086609767e889540260e607236466f2bbacf5f1dcd440ea0aa1884ff3d6a24bd",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/hand/index_finger.svg",
+      "review02Hash": "d06eadf2fb1da4f2c4e0ba0947e3c00e899e52c57d4818fb5397d24c2a8a7472",
+      "currentHash": "d06eadf2fb1da4f2c4e0ba0947e3c00e899e52c57d4818fb5397d24c2a8a7472",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/hand/little_finger.svg",
+      "review02Hash": "b983ffc1d8278b2c18030ba9f855a3245124d1c249e220b4e965c1ff838ce09a",
+      "currentHash": "b983ffc1d8278b2c18030ba9f855a3245124d1c249e220b4e965c1ff838ce09a",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/hand/middle_finger.svg",
+      "review02Hash": "90adace3c2f6dc4da003ef3fc42406df6e82b779da219fbd0f6ae1d28acf507b",
+      "currentHash": "90adace3c2f6dc4da003ef3fc42406df6e82b779da219fbd0f6ae1d28acf507b",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/hand/palm.svg",
+      "review02Hash": "357c78ac4e492870d8544a04ce74d6dfbedf5e7ffcc0594570d09687e1d9aa98",
+      "currentHash": "357c78ac4e492870d8544a04ce74d6dfbedf5e7ffcc0594570d09687e1d9aa98",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/hand/ring_finger.svg",
+      "review02Hash": "44b67b6de15dd9207a472e65487c5b62f592c202896e0a8218c14ec021c6fa25",
+      "currentHash": "44b67b6de15dd9207a472e65487c5b62f592c202896e0a8218c14ec021c6fa25",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/hand/thumb.svg",
+      "review02Hash": "59d4f73ea736ba41ab5d4cdff30254feb290669a36f774e3121347b521a3e8b1",
+      "currentHash": "59d4f73ea736ba41ab5d4cdff30254feb290669a36f774e3121347b521a3e8b1",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/hand.svg",
+      "review02Hash": "8892c3923a4089d4c861d87ee497a860405abc84cbac86d533b6e78259806a6f",
+      "currentHash": "8892c3923a4089d4c861d87ee497a860405abc84cbac86d533b6e78259806a6f",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right/upper_arm.svg",
+      "review02Hash": "14e9c8a6d7bea483b4bbd37e70566e0f01d56d307d8f9443f49c90d756fd472f",
+      "currentHash": "14e9c8a6d7bea483b4bbd37e70566e0f01d56d307d8f9443f49c90d756fd472f",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms/arm_right.svg",
+      "review02Hash": "7903f5d0127fbc1642a0048497d9321b11afa573ce3f66ae4303607b26dd1e35",
+      "currentHash": "7903f5d0127fbc1642a0048497d9321b11afa573ce3f66ae4303607b26dd1e35",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/arms.svg",
+      "review02Hash": "d0df487b27e066600ae070efa1185fc877db03769821e6f34ff2c9af54592df7",
+      "currentHash": "d0df487b27e066600ae070efa1185fc877db03769821e6f34ff2c9af54592df7",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/body/breast.svg",
+      "review02Hash": "02bef1fdf0b203380bd4e130ab59f9ac5f1ba85ddbbe2e82dbf1fb7ce858c5d2",
+      "currentHash": "02bef1fdf0b203380bd4e130ab59f9ac5f1ba85ddbbe2e82dbf1fb7ce858c5d2",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/body/torso.svg",
+      "review02Hash": "2629ec31a45acf9b1cbd8e255c23a94e6cd2d0cfba211b4d00844074d9b8015c",
+      "currentHash": "2629ec31a45acf9b1cbd8e255c23a94e6cd2d0cfba211b4d00844074d9b8015c",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/body.svg",
+      "review02Hash": "10e3b9b131676a12fdc8f1b9f568cf7e37efb1d3534db9287047dfdc486440fb",
+      "currentHash": "10e3b9b131676a12fdc8f1b9f568cf7e37efb1d3534db9287047dfdc486440fb",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/blush_left.svg",
+      "review02Hash": "478e4c520c0930b2037a70e239bb3be725a8217dbbcf7efe76ca78c6a3f91c63",
+      "currentHash": "478e4c520c0930b2037a70e239bb3be725a8217dbbcf7efe76ca78c6a3f91c63",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/blush_right.svg",
+      "review02Hash": "d4b3912a77c42a0bedfc6c9c488f6bcc743bf3ccb0f7bbc561c7c91d06449045",
+      "currentHash": "d4b3912a77c42a0bedfc6c9c488f6bcc743bf3ccb0f7bbc561c7c91d06449045",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/ears/ear_left.svg",
+      "review02Hash": "dd1a981d2707527d934da5b281c3935799cc59bf0b936b859039607e47ff26a0",
+      "currentHash": "dd1a981d2707527d934da5b281c3935799cc59bf0b936b859039607e47ff26a0",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/ears/ear_right.svg",
+      "review02Hash": "4168dd099a6b0da805f3cb2b1a4198c81a5d9708d13d376cb1fb5b7145bffb80",
+      "currentHash": "4168dd099a6b0da805f3cb2b1a4198c81a5d9708d13d376cb1fb5b7145bffb80",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/ears.svg",
+      "review02Hash": "be10c9adbe626ff52de3175cc244f682547e95fe6c6b348a7b580a365a79052b",
+      "currentHash": "be10c9adbe626ff52de3175cc244f682547e95fe6c6b348a7b580a365a79052b",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyebrows/eyebrow_left.svg",
+      "review02Hash": "79cab6164ab26a72ac4fe828eac096f80ccb7c2f77243007229019c842e406fc",
+      "currentHash": "79cab6164ab26a72ac4fe828eac096f80ccb7c2f77243007229019c842e406fc",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyebrows/eyebrow_right.svg",
+      "review02Hash": "3c2e4edd3b074ca83d51446d51ddd02cf7a7a9f8b32d09eaa68b858f9716a557",
+      "currentHash": "3c2e4edd3b074ca83d51446d51ddd02cf7a7a9f8b32d09eaa68b858f9716a557",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyebrows.svg",
+      "review02Hash": "a6fc8cd590f22f085a9b50b2f1763c9a4dfa07e904aadd0c7c76f71c2fd09560",
+      "currentHash": "a6fc8cd590f22f085a9b50b2f1763c9a4dfa07e904aadd0c7c76f71c2fd09560",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_left/eyelid_crease.svg",
+      "review02Hash": "c0f6a0f55315ba12393988ee6a1de5701fc1e9a958b9f1addaccef539798e7cc",
+      "currentHash": "c0f6a0f55315ba12393988ee6a1de5701fc1e9a958b9f1addaccef539798e7cc",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_left/highlight.svg",
+      "review02Hash": "b7e315412fb9a18b18c70e52aaa76bf2c505ad189d4a291098a6eac316bd33a4",
+      "currentHash": "b7e315412fb9a18b18c70e52aaa76bf2c505ad189d4a291098a6eac316bd33a4",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_left/iris.svg",
+      "review02Hash": "591c3e776024332f5a4f004fd70b4049eedff91cc318ef7861dee56aa1bedb71",
+      "currentHash": "591c3e776024332f5a4f004fd70b4049eedff91cc318ef7861dee56aa1bedb71",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_left/sclera.svg",
+      "review02Hash": "4c3701254a1c014be899d64912b0c0ef5c59c5bd5a4b7f3fe1790e9ab5ebbaa2",
+      "currentHash": "4c3701254a1c014be899d64912b0c0ef5c59c5bd5a4b7f3fe1790e9ab5ebbaa2",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_left/upper_eyelid.svg",
+      "review02Hash": "1d868292a6fe9e6bf393913ee91feac5218be65e1be433d3a617e63f9266f77a",
+      "currentHash": "1d868292a6fe9e6bf393913ee91feac5218be65e1be433d3a617e63f9266f77a",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_left.svg",
+      "review02Hash": "08a9db363e127c1e05938c82c6927e3d6e45faf93364702324599bf0c5951756",
+      "currentHash": "08a9db363e127c1e05938c82c6927e3d6e45faf93364702324599bf0c5951756",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_right/eyelid_crease.svg",
+      "review02Hash": "a127ed31f7b1fe422b3ae414b310836f42589b09ffb04e3973435590f9d7116a",
+      "currentHash": "a127ed31f7b1fe422b3ae414b310836f42589b09ffb04e3973435590f9d7116a",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_right/highlight.svg",
+      "review02Hash": "d085c0b5819d813345e238db2f0d85087da706625d4b30f7a7fa168e55762eb3",
+      "currentHash": "d085c0b5819d813345e238db2f0d85087da706625d4b30f7a7fa168e55762eb3",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_right/iris.svg",
+      "review02Hash": "8e89d6aa7e64f0ca5bbb95ab77e18fdf31980e266cb6167aa987b21889cbfbc2",
+      "currentHash": "8e89d6aa7e64f0ca5bbb95ab77e18fdf31980e266cb6167aa987b21889cbfbc2",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_right/sclera.svg",
+      "review02Hash": "cd5794939c3cad6fc9aed33ed2f8d26bc14d027f29e4837491498c02fc21cc20",
+      "currentHash": "cd5794939c3cad6fc9aed33ed2f8d26bc14d027f29e4837491498c02fc21cc20",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_right/upper_eyelid.svg",
+      "review02Hash": "d23dd4510d7bf52c7029ae47694c013f15daf46ae86de265b39e2f272a0eb420",
+      "currentHash": "d23dd4510d7bf52c7029ae47694c013f15daf46ae86de265b39e2f272a0eb420",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes/eye_right.svg",
+      "review02Hash": "a2b9ff7b018b8ce064f15c88e62fa733473d7a2ac891a87f18b8c04062ee68eb",
+      "currentHash": "a2b9ff7b018b8ce064f15c88e62fa733473d7a2ac891a87f18b8c04062ee68eb",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/eyes.svg",
+      "review02Hash": "e5faac4fa9da39982c2e9f2258cf78438fd536b5cbbf85c0b2a77df81ef890f0",
+      "currentHash": "e5faac4fa9da39982c2e9f2258cf78438fd536b5cbbf85c0b2a77df81ef890f0",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/face_base.svg",
+      "review02Hash": "c771f0b5ed7f8117e62348db3e12b0dca665a0913c259cda9e929512e4a23ff4",
+      "currentHash": "c771f0b5ed7f8117e62348db3e12b0dca665a0913c259cda9e929512e4a23ff4",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/mouth/lower_lip.svg",
+      "review02Hash": "b5d0ce6b99ade2699fb5b3e5882c21e37991d288a3ec63348d759ab668acdea7",
+      "currentHash": "b5d0ce6b99ade2699fb5b3e5882c21e37991d288a3ec63348d759ab668acdea7",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/mouth/lower_teeth.svg",
+      "review02Hash": "8185fecd7c375d918ffb69e02888e2fdbad3f3e6006bf7c3ebc542e9d2a51f1a",
+      "currentHash": "8185fecd7c375d918ffb69e02888e2fdbad3f3e6006bf7c3ebc542e9d2a51f1a",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/mouth/mouth_interior.svg",
+      "review02Hash": "84780642e2bd86f09bc5ba31a3e6bb05888ecf1bf0beb33a3f8cc14a7fd543e3",
+      "currentHash": "84780642e2bd86f09bc5ba31a3e6bb05888ecf1bf0beb33a3f8cc14a7fd543e3",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/mouth/tongue.svg",
+      "review02Hash": "ba070bdd814fc6fd79a30798439d27423dec1cc5a0fa3fe5a6aae864d17cfb4d",
+      "currentHash": "ba070bdd814fc6fd79a30798439d27423dec1cc5a0fa3fe5a6aae864d17cfb4d",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/mouth/upper_lip.svg",
+      "review02Hash": "92609d73260c628f1e02e2e68c5eaebf5e8f04b17556e043598f3c467f661b0e",
+      "currentHash": "92609d73260c628f1e02e2e68c5eaebf5e8f04b17556e043598f3c467f661b0e",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/mouth/upper_teeth.svg",
+      "review02Hash": "7024d97f9d61ae5f082ccb4f5b5a2d88224adfe4d9261cd23010d3ad6396c049",
+      "currentHash": "7024d97f9d61ae5f082ccb4f5b5a2d88224adfe4d9261cd23010d3ad6396c049",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/mouth.svg",
+      "review02Hash": "29a0fd1989e7f0f25f075dfde1849a80b1f101e5bfa516676852d571671a1475",
+      "currentHash": "29a0fd1989e7f0f25f075dfde1849a80b1f101e5bfa516676852d571671a1475",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face/nose.svg",
+      "review02Hash": "b9a2a57432a9c3bd17758e5fe52af2ed929248015837c60d9dbfbb754f32c083",
+      "currentHash": "b9a2a57432a9c3bd17758e5fe52af2ed929248015837c60d9dbfbb754f32c083",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/face.svg",
+      "review02Hash": "b78382edd6bb310a658a6d67e481dc4c33e5d983ee02f1466e5f95626f7430c3",
+      "currentHash": "b78382edd6bb310a658a6d67e481dc4c33e5d983ee02f1466e5f95626f7430c3",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/hair/back_hair.svg",
+      "review02Hash": "b942fdae89de3b5947b1f191d8fc9e63d4010f5feb50147528fad74a5b8adf12",
+      "currentHash": "b942fdae89de3b5947b1f191d8fc9e63d4010f5feb50147528fad74a5b8adf12",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/hair/bangs.svg",
+      "review02Hash": "f83ffb1b7ebda3b28a84f97ff8f1a41f916764a2ba091aab99ebb22f2a246fbf",
+      "currentHash": "f83ffb1b7ebda3b28a84f97ff8f1a41f916764a2ba091aab99ebb22f2a246fbf",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/hair/side_hair/side_hair_left.svg",
+      "review02Hash": "9bef1ca2e8b45efa86a43b4d8703cad4a4192b337551ea743297009476bd1d4a",
+      "currentHash": "9bef1ca2e8b45efa86a43b4d8703cad4a4192b337551ea743297009476bd1d4a",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/hair/side_hair/side_hair_right.svg",
+      "review02Hash": "ab15147a039e76e6629d794533864f05a5b70cd8029bf9ef83ba4021c15f956e",
+      "currentHash": "ab15147a039e76e6629d794533864f05a5b70cd8029bf9ef83ba4021c15f956e",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/hair/side_hair.svg",
+      "review02Hash": "842ce1344c28634a20993d7abb7164f378ce879e0cd96bc8f1191aa27b0ed49e",
+      "currentHash": "842ce1344c28634a20993d7abb7164f378ce879e0cd96bc8f1191aa27b0ed49e",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/hair.svg",
+      "review02Hash": "d59d0200f571a419d690394de9765d7ada8baf0d08635bf0fa88aa94cb69312a",
+      "currentHash": "d59d0200f571a419d690394de9765d7ada8baf0d08635bf0fa88aa94cb69312a",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/head_accessories.svg",
+      "review02Hash": "f239928f030311d0f4c521d5f1cc86d4f30c4b1b8e2f13e267a28533dac668e3",
+      "currentHash": "f239928f030311d0f4c521d5f1cc86d4f30c4b1b8e2f13e267a28533dac668e3",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_left/leg.svg",
+      "review02Hash": "fb723122f322f7327cbb06b424f72cd6394752a23705e9a681152cfcbe7c8a53",
+      "currentHash": "fb723122f322f7327cbb06b424f72cd6394752a23705e9a681152cfcbe7c8a53",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_left/shoes/cuff_back.svg",
+      "review02Hash": "0f7483025371e02c454e55916dd2bd322745b753d1e1cea065ed429593aad07b",
+      "currentHash": "0f7483025371e02c454e55916dd2bd322745b753d1e1cea065ed429593aad07b",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_left/shoes/shoe_front.svg",
+      "review02Hash": "770c6452a659a0bcca98ecbe91919fb3c9490f81a35e9bab90dcc770e719d610",
+      "currentHash": "770c6452a659a0bcca98ecbe91919fb3c9490f81a35e9bab90dcc770e719d610",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_left/shoes.svg",
+      "review02Hash": "c933476d1b04d0e27968caa8f1fa901d4aa73b9c794a8c7b4dd8db212eacb354",
+      "currentHash": "c933476d1b04d0e27968caa8f1fa901d4aa73b9c794a8c7b4dd8db212eacb354",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_left.svg",
+      "review02Hash": "3190eb57d42ad8310dac05c77b871320fe1cdb5f3bb6e47c5735c7bc3fb035b5",
+      "currentHash": "3190eb57d42ad8310dac05c77b871320fe1cdb5f3bb6e47c5735c7bc3fb035b5",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_right/leg.svg",
+      "review02Hash": "e4d3ece788227cfd42c0077c22fc7c1957ff6db0be56036a0c76982475987c0e",
+      "currentHash": "e4d3ece788227cfd42c0077c22fc7c1957ff6db0be56036a0c76982475987c0e",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_right/shoes/cuff_back.svg",
+      "review02Hash": "2fc4ff295269b76f2c8dc7e7fbad1518b9f510676dd6da69f1002b28c008cdf5",
+      "currentHash": "2fc4ff295269b76f2c8dc7e7fbad1518b9f510676dd6da69f1002b28c008cdf5",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_right/shoes/shoe_front.svg",
+      "review02Hash": "c6723326633028a764262e7b648db91dcfe8b523a3b0a50431cf72c9ad8aca69",
+      "currentHash": "c6723326633028a764262e7b648db91dcfe8b523a3b0a50431cf72c9ad8aca69",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_right/shoes.svg",
+      "review02Hash": "358057f32c6dbf75638d794b4b2aa1ccfa2be042db563e5c6a8414a51b288b72",
+      "currentHash": "358057f32c6dbf75638d794b4b2aa1ccfa2be042db563e5c6a8414a51b288b72",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs/leg_right.svg",
+      "review02Hash": "796652d0cf0f8e7e937f9c72eb4c9dae62ca2523e782cb1b8e4787866271f113",
+      "currentHash": "796652d0cf0f8e7e937f9c72eb4c9dae62ca2523e782cb1b8e4787866271f113",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/legs.svg",
+      "review02Hash": "2ea5de0d1ff995b29a0a374503115b70b8b00a0e5e570d06aa367ace1a330848",
+      "currentHash": "2ea5de0d1ff995b29a0a374503115b70b8b00a0e5e570d06aa367ace1a330848",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/neck.svg",
+      "review02Hash": "84e2698455c1c9d3c02a82c72b0626d03314da8b727d4a73393d9afbfb3c20e1",
+      "currentHash": "84e2698455c1c9d3c02a82c72b0626d03314da8b727d4a73393d9afbfb3c20e1",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/parts/pelvis.svg",
+      "review02Hash": "d4b3c5c1736107a51ab20c99814aed16beb0799ab2b07a56d1c31f2041fe8e3a",
+      "currentHash": "d4b3c5c1736107a51ab20c99814aed16beb0799ab2b07a56d1c31f2041fe8e3a",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/references/base-subject.png",
+      "review02Hash": "ea1710f8887cf786f84b9e2504ce35aa00a433e6eb12e631aeffede9031236e3",
+      "currentHash": "ea1710f8887cf786f84b9e2504ce35aa00a433e6eb12e631aeffede9031236e3",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/references/simplified-subject.png",
+      "review02Hash": "190ca604130c29caed5679b9a8e960d0ae87800fea624353737cd1a3b12e6670",
+      "currentHash": "190ca604130c29caed5679b9a8e960d0ae87800fea624353737cd1a3b12e6670",
+      "unchanged": true
+    },
+    {
+      "path": "part-layering/references/standard.png",
+      "review02Hash": "190ca604130c29caed5679b9a8e960d0ae87800fea624353737cd1a3b12e6670",
+      "currentHash": "190ca604130c29caed5679b9a8e960d0ae87800fea624353737cd1a3b12e6670",
+      "unchanged": true
+    }
+  ]
+}

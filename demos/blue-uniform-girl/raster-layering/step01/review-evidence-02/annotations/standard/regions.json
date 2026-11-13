@@ -1,0 +1,347 @@
+{
+  "image": "raster-layering/step01/review-evidence-02/raw/actual-default.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-02/annotations/standard/marked.png",
+  "manifest": "raster-layering/step01/review-evidence-02/annotations/standard/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        579,
+        1010,
+        31,
+        51
+      ],
+      "layers": [
+        "04 | legs/leg_left/leg"
+      ],
+      "description": "画面右腿内侧在可见段出现短促鼓点和折线，原图是平顺轮廓。接顺上段补形与下段袜侧，连续重画外线和邻近明暗。",
+      "crop": [
+        567,
+        998,
+        55,
+        75
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R1-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R1-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R1-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R2",
+      "bounds": [
+        414,
+        1009,
+        30,
+        48
+      ],
+      "layers": [
+        "05 | legs/leg_right/leg"
+      ],
+      "description": "画面左腿外侧膝下轮廓出现内凹短口和突出的角，原图为平滑弯线。消除配准过渡折点，保留袜子的深色描边及体积。",
+      "crop": [
+        402,
+        997,
+        54,
+        72
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R2-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R2-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R2-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R3",
+      "bounds": [
+        522,
+        988,
+        25,
+        43
+      ],
+      "layers": [
+        "05 | legs/leg_right/leg"
+      ],
+      "description": "画面左腿内侧在原图可见段有近竖直短段与突然折向，原图为连续斜弧。重接外轮廓与内部明暗，避免台阶。",
+      "crop": [
+        510,
+        976,
+        49,
+        67
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R3-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R3-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R3-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R5",
+      "bounds": [
+        829,
+        929,
+        21,
+        41
+      ],
+      "layers": [
+        "14 | arms/arm_left/hand/middle_finger",
+        "18 | arms/arm_left/hand/index_finger",
+        "20 | arms/arm_left/hand/palm"
+      ],
+      "description": "默认合成中，画面右手食指与中指原本相接处有露出背景的透明/浅灰细缝。停用全部蒙版后，后方手指垫住部分裂缝，接触边仍不顺。食指、中指没有独立指缝蒙版，需在各自绘画层补好自身接触边和皮肤覆盖，接续棕色分界线；保留真实拇指间隙及后方手指默认遮挡。",
+      "crop": [
+        817,
+        917,
+        45,
+        65
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R5-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R5-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R5-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R6",
+      "bounds": [
+        655,
+        448,
+        32,
+        53
+      ],
+      "layers": [
+        "34 | face/face_base"
+      ],
+      "description": "画面右颊外线出现短促S形内凹；独显完整脸底也有相同转折，合成边缘较原图可见颊线不顺。按可见颊线和下颌切向接成平滑弧，被头发遮住的部分以合理补形为准。",
+      "crop": [
+        643,
+        436,
+        56,
+        77
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R6-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R6-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R6-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R7",
+      "bounds": [
+        731,
+        345,
+        43,
+        115
+      ],
+      "layers": [
+        "32 | face/ears/ear_left"
+      ],
+      "description": "画面右耳可见外轮廓变成细而偏暖的线，原图有清晰深蓝黑描边。沿耳本体重画相应深色外线和渐细收口，勿将邻近头发阴影画进耳层。",
+      "crop": [
+        719,
+        333,
+        67,
+        139
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R7-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R7-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R7-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R8",
+      "bounds": [
+        581,
+        330,
+        42,
+        25
+      ],
+      "layers": [
+        "37 | face/eyes/eye_left/sclera",
+        "38 | face/eyes/eye_left/iris",
+        "40 | face/eyes/eye_left/upper_eyelid",
+        "眼睛开口 left"
+      ],
+      "description": "画面右眼虹膜上缘与睫毛接触处有浅灰青色阶梯边，原图是平顺暗蓝衔接；蒙版开关均存在。接好虹膜本体暗边与睫毛轮廓并校核开口边缘。",
+      "crop": [
+        569,
+        318,
+        66,
+        49
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R8-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R8-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R8-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R9",
+      "bounds": [
+        397,
+        370,
+        43,
+        26
+      ],
+      "layers": [
+        "42 | face/eyes/eye_right/sclera",
+        "43 | face/eyes/eye_right/iris",
+        "45 | face/eyes/eye_right/upper_eyelid",
+        "眼睛开口 right"
+      ],
+      "description": "画面左眼虹膜上弧与睫毛间残留浅灰细边和阶梯，原图接触处为连续深蓝暗边。修正本眼虹膜上弧覆盖和边缘融色，保持眼形、虹膜层次与高光位置。",
+      "crop": [
+        385,
+        358,
+        67,
+        50
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R9-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R9-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R9-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R10",
+      "bounds": [
+        548,
+        309,
+        76,
+        40
+      ],
+      "layers": [
+        "41 | face/eyes/eye_left/eyelid_crease"
+      ],
+      "description": "画面右眼双眼皮线过窄、偏浅，原图柔和红褐宽弧的暗中心和软边体积减弱。按本眼原图重画深浅渐变、宽度及两端收细。",
+      "crop": [
+        536,
+        297,
+        100,
+        64
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R10-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R10-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R10-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R11",
+      "bounds": [
+        365,
+        353,
+        77,
+        40
+      ],
+      "layers": [
+        "46 | face/eyes/eye_right/eyelid_crease"
+      ],
+      "description": "画面左眼双眼皮线较原图变细、变平，红褐暗中心与周围柔和晕染不足。按本眼参考恢复宽弧及自然收口，不用等宽线代替。",
+      "crop": [
+        353,
+        341,
+        101,
+        64
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R11-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R11-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R11-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R12",
+      "bounds": [
+        326,
+        477,
+        30,
+        67
+      ],
+      "layers": [
+        "01 | hair/back_hair"
+      ],
+      "description": "画面左侧蓝色后发靠深色竖线处出现突兀亮青条和块状拼接，跨过斜向发缕线后还有硬色阶；原图同处是连续的蓝色渐变。以自身发丝笔触融色接顺，保留结构线。",
+      "crop": [
+        314,
+        465,
+        54,
+        91
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R12-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R12-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R12-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R13",
+      "bounds": [
+        646,
+        535,
+        57,
+        40
+      ],
+      "layers": [
+        "01 | hair/back_hair"
+      ],
+      "description": "画面右侧青蓝发尖可见下缘描边比原图显著细、浅，尖端缺少原图深色收束。补回连续深蓝外线并顺滑收尖，保留真实发缕间空隙。",
+      "crop": [
+        634,
+        523,
+        81,
+        64
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R13-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R13-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R13-comparison.png"
+      },
+      "batch": "standard"
+    },
+    {
+      "id": "R16",
+      "bounds": [
+        520,
+        467,
+        42,
+        22
+      ],
+      "layers": [
+        "48 | face/mouth/mouth_interior",
+        "50 | face/mouth/tongue"
+      ],
+      "description": "舌头右上缘形成折角和硬红/粉色界线，原图为平滑圆弧、柔和体积过渡。重画舌面上缘形体和自身渐变，使口腔与舌头衔接自然，保留原有牙齿与唇开口关系。",
+      "crop": [
+        508,
+        455,
+        66,
+        46
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/standard/R16-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/standard/R16-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/standard/R16-comparison.png"
+      },
+      "batch": "standard"
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}
