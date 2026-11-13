@@ -1,3 +1,5 @@
+import { flowStepHeading } from './flow-step-ui.js';
+
 // Execution keeps its step tree. The canvas presents branches as task rows,
 // so a model -> direction relationship does not create another card or scroller.
 export function nineAxisStepCard(step, { esc, icon, statusMark, statusLabel, content, collapsed, selected }) {
@@ -19,10 +21,8 @@ export function nineAxisStepCard(step, { esc, icon, statusMark, statusLabel, con
   } else if (children.length) {
     branches = `<div class="nine-task-group"><div class="nine-group-heading"><h4>单轴制作</h4><span>三方向并行</span></div>${children.map(task => row(task)).join('')}</div>`;
   }
-  const hasContent = !!(branches || outputs);
-  const number = step.id.match(/^step(\d+)/)?.[1] || '';
-  return `<section class="step-node nine-axis-step ${children.length ? 'nine-axis-branches' : ''} ${closed && hasContent ? 'node-collapsed' : ''} ${step.status} ${selected === step.id ? 'selected' : ''}" data-node="${key}">
-    <div class="step-heading nine-step-heading"><span class="nine-step-number">${number}</span><h3 title="${esc(step.title)}">${esc(step.title)}</h3><span class="nine-step-status">${statusMark(step.status)}${esc(statusLabel(step.status))}</span>${hasContent ? `<button class="icon-button" data-step-toggle="${key}" aria-label="${closed ? '展开' : '收起'}${esc(step.title)}" aria-expanded="${!closed}">${icon(closed ? 'chevron' : 'down')}</button>` : ''}</div>
-    ${hasContent && !closed ? `<div class="step-content nine-step-content">${branches}${outputs ? `<div class="nine-step-outputs">${outputs}</div>` : ''}</div>` : ''}
+  return `<section class="step-node nine-axis-step ${children.length ? 'nine-axis-branches' : ''} ${closed ? 'node-collapsed' : ''} ${step.status} ${selected === step.id ? 'selected' : ''}" data-node="${key}">
+    ${flowStepHeading(step, { index: 6, closed, esc, icon, statusMark, statusLabel })}
+    ${!closed ? `<div class="step-content nine-step-content">${branches}${outputs ? `<div class="nine-step-outputs">${outputs}</div>` : ''}</div>` : ''}
   </section>`;
 }

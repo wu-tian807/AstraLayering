@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 import { chromium } from 'playwright';
 import { createWorkbench } from '../server.ts';
+import { sectionSteps, type ProgressStep } from '../progress.js';
 
 test('flow preview retains the right edge, manual zoom and a middle position across layout changes and polling',
   { timeout: 30_000 }, async t => {
@@ -81,6 +82,24 @@ test('nine-axis branches show flat task rows with one workbench entry and access
   await page.route('**/api/studio/project?*', route => route.fulfill({ json: { nineAxis: { available: false } } }));
   await page.goto(`http://127.0.0.1:${(server.address() as any).port}/?name=case&page=preview&stage=6`);
   const card = page.locator('[data-node="6:step04_angles"]'); await card.waitFor();
+  const section = page.locator('[data-section="6"]');
+  const plan = section.locator('.preview-step-plan');
+  const count = (steps: ProgressStep[]): number => steps.reduce((sum, step) => sum + 1 + count(step.children), 0);
+  assert.equal(await plan.locator('[data-step]').count(), count(sectionSteps[6]), 'the pending group lists the complete execution tree');
+  const sizes = await page.evaluate(() => {
+    const common = document.querySelector('[data-node="0:initial"]') as HTMLElement;
+    const nine = document.querySelector('[data-node="6:step02_video"]') as HTMLElement;
+    return { common: [common.clientWidth, common.clientHeight], nine: [nine.clientWidth, nine.clientHeight] };
+  });
+  assert.deepEqual(sizes.nine, sizes.common, 'pending nine-axis cards use the existing card geometry');
+  assert.equal(await plan.locator('[data-step="6:step01_preparation"]').count(), 1);
+  assert.equal(await plan.locator('[data-step="6:step04_angles/model/left"]').count(), 1);
+  const pendingToggle = section.locator('[data-step-toggle="6:step02_video"]');
+  await pendingToggle.click();
+  assert.equal(await pendingToggle.getAttribute('aria-expanded'), 'false');
+  assert.equal(await plan.locator('[data-step]').count(), count(sectionSteps[6]), 'folding a card does not remove the plan');
+  await pendingToggle.click();
+  assert.equal(await pendingToggle.getAttribute('aria-expanded'), 'true');
   await page.locator('.flow-scroll').evaluate(element => {
     const node = element.querySelector('[data-node="6:step04_angles"]')!;
     element.scrollLeft += node.getBoundingClientRect().left - element.getBoundingClientRect().left - 20;

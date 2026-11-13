@@ -36,9 +36,12 @@ test('only rows with saved output expose disclosures, with independent direction
   assert.doesNotMatch(html, /<details[^>]*\sopen/);
 });
 
-test('empty pending stages have no filler body; collapsing a stage hides the task list', () => {
+test('pending stages keep the common selection and folding controls; collapsing hides only the card body', () => {
   const leaf = nineAxisStepCard(sectionSteps[6][1], context());
-  assert.doesNotMatch(leaf, /step-content|data-step-toggle|尚无|等待/);
+  assert.doesNotMatch(leaf, /尚无|等待/);
+  assert.match(leaf, /class="step-content nine-step-content"/);
+  assert.match(leaf, /data-step="6:step02_video"/);
+  assert.match(leaf, /data-step-toggle="6:step02_video"/);
   const closed = nineAxisStepCard(sectionSteps[6][3], context(new Set(), new Set(['6:step04_angles'])));
   assert.match(closed, /aria-expanded="false"/);
   assert.doesNotMatch(closed, /nine-task-group|step-content/);
