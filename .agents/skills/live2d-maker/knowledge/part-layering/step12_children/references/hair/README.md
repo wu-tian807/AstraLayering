@@ -15,8 +15,10 @@
 | 文件 | 参考价值 |
 | --- | --- |
 | `04-侧发与后发按脸前后深度区分-Hiyori-Mao.png` | 按相对脸的深度区分侧发、鬓发与后发：Mao 宽横髪为侧发，Hiyori 细横髪为鬓发，脸框长发画在脸后属后发。 |
-| `05-前发覆盖额角-后发外壳与呆毛-Ren-Haru-Tsumiki.png` | Ren 前发连额角为一面；Haru / Tsumiki 后发为外壳加内侧面，转头几乎不动；Tsumiki 呆毛单独成件。 |
+| `05-前发覆盖额角-后发外壳与呆毛-Ren-Haru-Tsumiki.png` | Ren 前发与额角的归属；Haru / Tsumiki 后发完整外壳及脸后覆盖范围；Tsumiki 呆毛单独成件。 |
 
 hair 与 back_hair 的拆分正文列出全部五张板，bangs 列 Milly 与 05，均以 `{reference:step12_children/references/hair/<文件>}` 写在 `additionalReferences` 中。如果使用自己的图片，需要同时调整正文中的路径和用途。
 
 模型从 `additionalReferences` 读到图片路径和用途，再按需调用 `view_bitmap`。PNG 图集只提供发片形体先验，不能据其排布推断原 PSD 分组、独立运动或遮挡顺序；当前角色、父完成 SVG 和控制需求优先。
+
+本阶段使用这些图片判断完整形体、发区归属和控制粒度。后发的具体着色、生图提示词及明暗检查由 raster step01 的独立上色先验负责。
