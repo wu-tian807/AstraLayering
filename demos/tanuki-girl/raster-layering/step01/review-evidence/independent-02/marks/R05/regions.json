@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review02/solo/D57.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/1466c5dd-8899-44e4-82ef-88d09249172d/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/1466c5dd-8899-44e4-82ef-88d09249172d/regions.json",
+  "regions": [
+    {
+      "id": "R05",
+      "bounds": [
+        574,
+        684,
+        40,
+        40
+      ],
+      "layers": [
+        "D57 | hair/braid_right | front"
+      ],
+      "description": "辫子独显在发圈遮挡处有直横箍形色边及两侧耳状小突起，发缕在此被横断；应续画收束发面与发缕，环带形状只留在发圈层。",
+      "crop": [
+        558,
+        668,
+        72,
+        72
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/1466c5dd-8899-44e4-82ef-88d09249172d/R05-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/1466c5dd-8899-44e4-82ef-88d09249172d/R05-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/1466c5dd-8899-44e4-82ef-88d09249172d/R05-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "head_accessories/tanuki_ornament/tanuki_body",
+  "layer": "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+  "uuid": "{e31ef44b-9571-464f-a0d6-9ed501711eb0}",
+  "native_reference": "part-layering/references/standard.png",
+  "preserved_generated_source": "raster-layering/step01/repair-evidence/repair-02/current/native-process/N01-before-part.png",
+  "native_sample_mask": "raster-layering/step01/repair-evidence/repair-02/current/native-process/tanuki-leaf-native-selection.png",
+  "tail_registration": {
+    "delta_at_join": -8,
+    "join_y": 174,
+    "return_to_native_y": 250,
+    "source": "start-D12 native generated paint, same logical part",
+    "operation": "Small horizontal row translation with native tone transition; no stroke rescaling."
+  },
+  "ownership": "Only this ornament; original leaf, upper head, ears and upper tail. Pawn pixels excluded; lower generated paint retained.",
+  "default_masks_unchanged": true,
+  "original_generated_source": "raster-layering/step01/workspace/repair03/start-D12.png"
+}

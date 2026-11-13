@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Default closed | legs/leg_left/thigh_band_back",
+    "parent": "D10 | legs/leg_left/thigh_band_back",
+    "bounds": [
+      721,
+      1167,
+      127,
+      36
+    ],
+    "index": 0
+  },
+  {
+    "name": "Default closed | arms/arm_left/hand/little_finger",
+    "parent": "D36 | arms/arm_left/hand/little_finger",
+    "bounds": [
+      1061,
+      1035,
+      35,
+      32
+    ],
+    "index": 1
+  },
+  {
+    "name": "Default closed | arms/arm_right/hand/little_finger",
+    "parent": "D37 | arms/arm_right/hand/little_finger",
+    "bounds": [
+      314,
+      1026,
+      45,
+      29
+    ],
+    "index": 2
+  },
+  {
+    "name": "Default closed | head_accessories/hair_tie_back",
+    "parent": "D56 | head_accessories/hair_tie_back",
+    "bounds": [
+      583,
+      690,
+      24,
+      19
+    ],
+    "index": 3
+  },
+  {
+    "name": "Default closed | shared upper/lower lip inner opening",
+    "parent": "D61-64 | Shared mouth opening",
+    "bounds": [
+      696,
+      495,
+      25,
+      24
+    ],
+    "index": 4
+  }
+]

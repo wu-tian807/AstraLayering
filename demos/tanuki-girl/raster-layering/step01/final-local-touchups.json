@@ -1,0 +1,71 @@
+[
+  {
+    "id": "arms/arm_left/hand/palm",
+    "region": "x1008..1018, y1029..1044",
+    "method": "Own-pigment native soft strokes at a short interior color step; original alpha and exterior ink preserved."
+  },
+  {
+    "id": "face/eyes/eye_left/iris",
+    "region": "Exposed upper iris pigment, y413..430",
+    "method": "Local native reference sampling through the existing iris-only pigment selection; generated hidden cap, pupil, lower pigment, and independent white glints retained."
+  },
+  {
+    "id": "face/eyes/eye_left/iris",
+    "region": [
+      [
+        740,
+        426,
+        748,
+        444
+      ],
+      [
+        775,
+        426,
+        784,
+        449
+      ],
+      [
+        746,
+        450,
+        777,
+        460
+      ]
+    ],
+    "method": "Sampled only the dark red-brown iris rim at the original canvas coordinates; excluded pale sclera, upper eyelashes and independent white glints. No scale or transparency mask used."
+  },
+  {
+    "id": "face/eyes/eye_right/iris",
+    "region": "Exposed upper iris pigment, y413..430",
+    "method": "Local native reference sampling through the existing iris-only pigment selection; generated hidden cap, pupil, lower pigment, and independent white glints retained."
+  },
+  {
+    "id": "face/eyes/eye_right/iris",
+    "region": [
+      [
+        633,
+        426,
+        642,
+        442
+      ],
+      [
+        635,
+        443,
+        645,
+        452
+      ],
+      [
+        671,
+        426,
+        679,
+        449
+      ],
+      [
+        640,
+        450,
+        674,
+        460
+      ]
+    ],
+    "method": "Sampled only the dark red-brown iris rim at the original canvas coordinates; excluded pale sclera, upper eyelashes and independent white glints. No scale or transparency mask used."
+  }
+]

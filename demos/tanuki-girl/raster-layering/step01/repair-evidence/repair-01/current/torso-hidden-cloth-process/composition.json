@@ -1,0 +1,12 @@
+{
+  "part": "body/torso",
+  "region": [
+    572,
+    660,
+    268,
+    156
+  ],
+  "retained": "existing original shoulder roots, clavicle, skin, upper cloth neckline and all painting below y815; D32.5 unchanged",
+  "adopted": "generated local own cloth surface and clean side contour; left internal curve aligned by 0-4 px local translation to existing own curve; alpha and line width retained",
+  "blend": "premultiplied-alpha registration and local integration, not a KRA mask; native seam inspection follows"
+}

@@ -1,0 +1,21 @@
+{
+  "retained": "Continuous local iris pigment bands from final_eye_continuous_native_bands.py; experimental lid sampling withdrawn.",
+  "final": [
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "action": "Withdrew the experimental inner-edge sample and restored the already approved complete own upper lid and connected lash contour."
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "action": "Native soft own-pigment strokes on the narrow upper cap transition; retained the complete original iris alpha and exterior rim."
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "action": "Withdrew the experimental inner-edge sample and restored the already approved complete own upper lid and connected lash contour."
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "action": "Native soft own-pigment strokes on the narrow upper cap transition; retained the complete original iris alpha and exterior rim."
+    }
+  ]
+}

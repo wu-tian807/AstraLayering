@@ -1,0 +1,77 @@
+[
+  {
+    "tag": "braid",
+    "level": 57,
+    "id": "hair/braid_right",
+    "box": [
+      556,
+      660,
+      75,
+      102
+    ],
+    "size": [
+      735,
+      1000
+    ]
+  },
+  {
+    "tag": "ring-right",
+    "level": 39,
+    "id": "arms/arm_right/hand/ring_finger",
+    "box": [
+      293,
+      1024,
+      72,
+      60
+    ],
+    "size": [
+      1000,
+      833
+    ]
+  },
+  {
+    "tag": "little-left",
+    "level": 36,
+    "id": "arms/arm_left/hand/little_finger",
+    "box": [
+      1053,
+      1027,
+      56,
+      52
+    ],
+    "size": [
+      1000,
+      929
+    ]
+  },
+  {
+    "tag": "little-right",
+    "level": 37,
+    "id": "arms/arm_right/hand/little_finger",
+    "box": [
+      307,
+      1019,
+      61,
+      47
+    ],
+    "size": [
+      1000,
+      770
+    ]
+  },
+  {
+    "tag": "pink-back",
+    "level": 28,
+    "id": "arms/arm_left/bracelet_pink_back",
+    "box": [
+      977,
+      965,
+      57,
+      65
+    ],
+    "size": [
+      877,
+      1000
+    ]
+  }
+]

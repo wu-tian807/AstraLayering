@@ -1,0 +1,1856 @@
+{
+  "verification": {
+    "identical": true,
+    "nodes": 92,
+    "structure_identical": true,
+    "pixels_identical": true,
+    "projection_identical": true
+  },
+  "reopened": {
+    "width": 1376,
+    "height": 2048,
+    "nodes": [
+      {
+        "name": "D0 | tail",
+        "type": "paintlayer",
+        "uuid": "{47033051-7e94-4a4f-8c50-9eccbe2c5513}",
+        "parent": "root",
+        "order": 0,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          412,
+          995,
+          481,
+          679
+        ],
+        "pixels": "4dc2dd020b9a831a1400c2f6388e00f04b168f2ca40a1598762937195788487d"
+      },
+      {
+        "name": "D10 | legs/leg_left/thigh_band_back",
+        "type": "paintlayer",
+        "uuid": "{37c84885-94de-4375-b6bc-81bcefb8dec0}",
+        "parent": "root",
+        "order": 1,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          721,
+          1167,
+          127,
+          36
+        ],
+        "pixels": "19341e790accf4a7f63c02ad95128e28e1407c3f3d7274f8a0b9becba59f68fd"
+      },
+      {
+        "name": "Default closed | legs/leg_left/thigh_band_back",
+        "type": "transparencymask",
+        "uuid": "{08259a8e-cd26-487a-9f12-ab9fd99ca69e}",
+        "parent": "{37c84885-94de-4375-b6bc-81bcefb8dec0}",
+        "order": 0,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          721,
+          1167,
+          127,
+          36
+        ],
+        "pixels": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+      },
+      {
+        "name": "D11 | legs/leg_right/anklet_back",
+        "type": "paintlayer",
+        "uuid": "{34898742-3f8e-4a5f-bb07-b06df707a68b}",
+        "parent": "root",
+        "order": 2,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          569,
+          1756,
+          82,
+          57
+        ],
+        "pixels": "a13f0d80dd784dd9e4186a05bb9b838d78a6c19704f724342967f84ef94395e2"
+      },
+      {
+        "name": "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+        "type": "paintlayer",
+        "uuid": "{e31ef44b-9571-464f-a0d6-9ed501711eb0}",
+        "parent": "root",
+        "order": 3,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          596,
+          24,
+          312,
+          219
+        ],
+        "pixels": "a3e5b67378f670a2f1f2dee61f770cd76f1ac81eb3aa9189792e5dc1c1fb8e45"
+      },
+      {
+        "name": "D13 | hair/braid_right | back",
+        "type": "paintlayer",
+        "uuid": "{a0b578fa-3f3d-485b-8068-20008d6a8aa7}",
+        "parent": "root",
+        "order": 4,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          564,
+          459,
+          69,
+          128
+        ],
+        "pixels": "4e3cce6a125ec3853259d4cac2ffcb8e9277a2873d74f9fdb0a056f507f4e88d"
+      },
+      {
+        "name": "D13.5 | headphones/headband",
+        "type": "paintlayer",
+        "uuid": "{700e32b8-c154-4208-b397-8dedd15ac65b}",
+        "parent": "root",
+        "order": 5,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          647,
+          492,
+          150,
+          58
+        ],
+        "pixels": "47cf01ba9d3582a6fd9ef6fbfd2107d62b159dbebc971bf61b674d62527e7109"
+      },
+      {
+        "name": "D14 | hair/back_hair",
+        "type": "paintlayer",
+        "uuid": "{6ef8f6a4-c537-4b73-88c4-5860409f0c7e}",
+        "parent": "root",
+        "order": 6,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          516,
+          195,
+          381,
+          360
+        ],
+        "pixels": "728fb045952413123db64c8a655c3f4f9b2a0e494f2dffb82413df3d5a7c2831"
+      },
+      {
+        "name": "D16 | face/ears/ear_left/ear_interior",
+        "type": "paintlayer",
+        "uuid": "{89e242ab-70e7-49e5-8e34-9a0217ddd7a8}",
+        "parent": "root",
+        "order": 7,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          796,
+          222,
+          82,
+          86
+        ],
+        "pixels": "2376a4c18d422cf356eb0444f4b3f5aafaef2cd0c82cd52408690ca085b235da"
+      },
+      {
+        "name": "D17 | face/ears/ear_right/ear_interior",
+        "type": "paintlayer",
+        "uuid": "{d29c58c9-62d0-4ccd-9424-799489bda31b}",
+        "parent": "root",
+        "order": 8,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          535,
+          221,
+          77,
+          82
+        ],
+        "pixels": "35645fb172c104dabde4e05080caa621b0ab2592ec5c5e51fbb199fc937ef7ca"
+      },
+      {
+        "name": "D18 | face/ears/ear_left/ear_fur",
+        "type": "paintlayer",
+        "uuid": "{d302e191-5c78-4817-845b-37da0de4f9a7}",
+        "parent": "root",
+        "order": 9,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          793,
+          240,
+          60,
+          70
+        ],
+        "pixels": "334ae8504966e9410b662e88bf17b675c1e2bb8a2d1b0d443dbd7c3c28417fa6"
+      },
+      {
+        "name": "D19 | face/ears/ear_right/ear_fur",
+        "type": "paintlayer",
+        "uuid": "{734186c6-cabd-4cfd-b129-63d36fded11b}",
+        "parent": "root",
+        "order": 10,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          559,
+          240,
+          60,
+          65
+        ],
+        "pixels": "6607c093f91fd87f3d35d8bf3aff052f98dec61bbaa3952a3e4274db6e644450"
+      },
+      {
+        "name": "D20 | face/ears/ear_left/ear_shell",
+        "type": "paintlayer",
+        "uuid": "{445a25cf-073d-4062-9cb7-2dc2e5d1dca3}",
+        "parent": "root",
+        "order": 11,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          778,
+          205,
+          113,
+          116
+        ],
+        "pixels": "22594dc2909aafd555509fabd58904072a6bc84a719203d95e5d0cf403c1f0cf"
+      },
+      {
+        "name": "D21 | face/ears/ear_right/ear_shell",
+        "type": "paintlayer",
+        "uuid": "{ed1ff626-4500-4c1f-9bbf-09638b5b3c73}",
+        "parent": "root",
+        "order": 12,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          521,
+          205,
+          108,
+          117
+        ],
+        "pixels": "6a37c42fc73aa34aa8c8f606ac8900ceb513526c08e5822dbd22384ffd2b8682"
+      },
+      {
+        "name": "D22 | neck",
+        "type": "paintlayer",
+        "uuid": "{fbb36e58-b147-450f-ac71-d51de7bd2518}",
+        "parent": "root",
+        "order": 13,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          634,
+          491,
+          150,
+          144
+        ],
+        "pixels": "e21e6995b4a27aa37ddb2a8ca1f4bf93dc8daa8caefa6482c5bebcee66c79378"
+      },
+      {
+        "name": "D22.25 | headphones/headband | terminals",
+        "type": "paintlayer",
+        "uuid": "{736c1a45-8063-4dc1-9e05-fa2cb41eb3b9}",
+        "parent": "root",
+        "order": 14,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          665,
+          539,
+          86,
+          31
+        ],
+        "pixels": "e69c0ef45506b7814d849024b56f7c84b52d6f2119e760820d627b358454b527"
+      },
+      {
+        "name": "D22.5 | pelvis | back",
+        "type": "paintlayer",
+        "uuid": "{5a270326-00bf-4e30-b698-9c48a83f49ca}",
+        "parent": "root",
+        "order": 15,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          546,
+          937,
+          315,
+          161
+        ],
+        "pixels": "5f0ec8e75aaf36c2245263c112605a385dcfd8c0c735a74e938123a889152337"
+      },
+      {
+        "name": "D23 | legs/leg_left/leg",
+        "type": "paintlayer",
+        "uuid": "{b65106a1-85b2-4444-8eb8-11f558cdc1d1}",
+        "parent": "root",
+        "order": 16,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          704,
+          922,
+          163,
+          1082
+        ],
+        "pixels": "170f8f3e1cbeb83373b59a2885e75e833f8fa30f99226097bbf1c23449ce59b5"
+      },
+      {
+        "name": "D24 | legs/leg_right/leg",
+        "type": "paintlayer",
+        "uuid": "{d503c5f0-2c3f-46d4-9c1d-3fa14d1565c5}",
+        "parent": "root",
+        "order": 17,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          539,
+          912,
+          168,
+          1090
+        ],
+        "pixels": "a860922e0fc4e4bd8949f657529cfe3c4987ff331d47599728dfda3a276db718"
+      },
+      {
+        "name": "D24.75 | body/torso | shoulder_mount",
+        "type": "paintlayer",
+        "uuid": "{c18862a8-5a3c-4d52-8367-98b75f37c67a}",
+        "parent": "root",
+        "order": 18,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          791,
+          615,
+          25,
+          75
+        ],
+        "pixels": "21fa628b58cc14113161423a7b091bdafc9289432742da72c16616774127e192"
+      },
+      {
+        "name": "D25 | arms/arm_left/upper_arm",
+        "type": "paintlayer",
+        "uuid": "{760efccd-6eb8-49fc-a996-1e95ce640f55}",
+        "parent": "root",
+        "order": 19,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          767,
+          593,
+          191,
+          274
+        ],
+        "pixels": "8b8345777c2c3935d8900c79636da51103673968f312813fd5fa9d1e154d0cb7"
+      },
+      {
+        "name": "D26 | arms/arm_right/upper_arm",
+        "type": "paintlayer",
+        "uuid": "{b60f5bf9-dc78-43fc-9449-d586fffbb137}",
+        "parent": "root",
+        "order": 20,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          484,
+          592,
+          156,
+          251
+        ],
+        "pixels": "314266819dde53f8e8ae70bd43fff67e8003af0cb1005c5d0573474b2d538de9"
+      },
+      {
+        "name": "D27 | arms/arm_left/bracelet_green_back",
+        "type": "paintlayer",
+        "uuid": "{7634f287-b2f4-43c8-bd81-b678d7c53fa4}",
+        "parent": "root",
+        "order": 21,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          965,
+          950,
+          62,
+          58
+        ],
+        "pixels": "b745dd7cd477cf27b69672d5ec2ea9f79b8cd17818963b0e20fac311f1dc3673"
+      },
+      {
+        "name": "D28 | arms/arm_left/bracelet_pink_back",
+        "type": "paintlayer",
+        "uuid": "{9300b096-f06d-4ca4-b43e-81081a584bce}",
+        "parent": "root",
+        "order": 22,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          990,
+          974,
+          34,
+          43
+        ],
+        "pixels": "3c1fba76976e46f6a433b84709c6a906f3c409ba329db5901bb138f3ee44b161"
+      },
+      {
+        "name": "D29 | arms/arm_right/bracelet_cream_back",
+        "type": "paintlayer",
+        "uuid": "{5d9621c7-801e-4fcb-a821-40d9ccefd060}",
+        "parent": "root",
+        "order": 23,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          375,
+          956,
+          63,
+          46
+        ],
+        "pixels": "92acdfd6189523af44838c56f42b0d624895d612bf3f49e96f5c1016ba039dd1"
+      },
+      {
+        "name": "D30 | arms/arm_right/bracelet_pink_back",
+        "type": "paintlayer",
+        "uuid": "{4b6e20b9-010e-468f-a113-c4fb2a99f661}",
+        "parent": "root",
+        "order": 24,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          372,
+          977,
+          50,
+          58
+        ],
+        "pixels": "1d5bf782ec0b1801a6973f1040df4e7166d6b275d3583ab52a1700d74ad0325b"
+      },
+      {
+        "name": "D31 | arms/arm_left/forearm",
+        "type": "paintlayer",
+        "uuid": "{c57a133b-41ed-4918-80de-a962b23c6b3c}",
+        "parent": "root",
+        "order": 25,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          868,
+          788,
+          165,
+          242
+        ],
+        "pixels": "58dad32bbd2693ddeb21c272ad4479eb75c51276eaec1b563fe336c33edcc11d"
+      },
+      {
+        "name": "D32 | arms/arm_right/forearm",
+        "type": "paintlayer",
+        "uuid": "{1538e529-1abc-46ee-a1d4-8cb195bd6b1f}",
+        "parent": "root",
+        "order": 26,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          366,
+          799,
+          186,
+          231
+        ],
+        "pixels": "3e01de720b85434d694170b58676ac8019958756b60a69b9d423d7a7699bebd5"
+      },
+      {
+        "name": "D32.5 | body/torso | lower_mount",
+        "type": "paintlayer",
+        "uuid": "{46358100-0b1c-433a-a3da-f652464fcffd}",
+        "parent": "root",
+        "order": 27,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          576,
+          904,
+          253,
+          90
+        ],
+        "pixels": "62f324782fdae849b7a1686030081143815041672ea70ae8ab5c4edc3f9626f5"
+      },
+      {
+        "name": "D33 | pelvis | front",
+        "type": "paintlayer",
+        "uuid": "{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}",
+        "parent": "root",
+        "order": 28,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          567,
+          859,
+          276,
+          236
+        ],
+        "pixels": "f40477e171a3d697f1a0eebb708f3fb140fc3d44fe7861f17d757a04ec2effbb"
+      },
+      {
+        "name": "D34 | body/torso",
+        "type": "paintlayer",
+        "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+        "parent": "root",
+        "order": 29,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          580,
+          596,
+          244,
+          309
+        ],
+        "pixels": "8a889d014dc8a3dcbcf01f6ea148465b052b1f419f7b14f3dd5379d8dcdae587"
+      },
+      {
+        "name": "D35 | body/breast",
+        "type": "paintlayer",
+        "uuid": "{1b76e69a-e317-4da3-a0fb-ff17ac74b107}",
+        "parent": "root",
+        "order": 30,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          587,
+          641,
+          237,
+          152
+        ],
+        "pixels": "62a65eb4dee0aee46e3e4c6f9d80f054b0a1d060edf4fade4af81e8e8f6f7184"
+      },
+      {
+        "name": "D36 | arms/arm_left/hand/little_finger",
+        "type": "paintlayer",
+        "uuid": "{ca815547-31cc-4382-9aa8-dd188b37b377}",
+        "parent": "root",
+        "order": 31,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          1060,
+          1035,
+          37,
+          33
+        ],
+        "pixels": "fefe3db60e3808d7f6fa8415bb9412c5d05196883d9a22523dc614df1ce64745"
+      },
+      {
+        "name": "Default closed | arms/arm_left/hand/little_finger",
+        "type": "transparencymask",
+        "uuid": "{5483a5d1-d926-4388-8566-50775fc6d816}",
+        "parent": "{ca815547-31cc-4382-9aa8-dd188b37b377}",
+        "order": 0,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          1060,
+          1035,
+          37,
+          33
+        ],
+        "pixels": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+      },
+      {
+        "name": "D37 | arms/arm_right/hand/little_finger",
+        "type": "paintlayer",
+        "uuid": "{f6a6d2a1-0435-4c58-ab1a-662a1559249c}",
+        "parent": "root",
+        "order": 32,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          316,
+          1027,
+          44,
+          30
+        ],
+        "pixels": "91121b0be306163061af337739e77328bdf7eeef6556b983b36fcd7e308358e0"
+      },
+      {
+        "name": "Default closed | arms/arm_right/hand/little_finger",
+        "type": "transparencymask",
+        "uuid": "{5e4ea0ea-ca7c-4cf9-9529-24de800dd784}",
+        "parent": "{f6a6d2a1-0435-4c58-ab1a-662a1559249c}",
+        "order": 0,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          316,
+          1027,
+          44,
+          30
+        ],
+        "pixels": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+      },
+      {
+        "name": "D38 | arms/arm_left/hand/ring_finger",
+        "type": "paintlayer",
+        "uuid": "{d85bd8b0-a005-4c44-8336-c74b30be64a4}",
+        "parent": "root",
+        "order": 33,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          1058,
+          1039,
+          47,
+          37
+        ],
+        "pixels": "22152cbe0ce16a8b980ae750a9f905f45403d252e4d1e67addc11a1cb9133b45"
+      },
+      {
+        "name": "D39 | arms/arm_right/hand/ring_finger",
+        "type": "paintlayer",
+        "uuid": "{6ea2cb37-c639-4b2a-a4c2-08504d985757}",
+        "parent": "root",
+        "order": 34,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          297,
+          1034,
+          55,
+          40
+        ],
+        "pixels": "ad2e262a630200cfc70ad01cb2e1329492ad07980a05c4abb2853e96ffac4b6d"
+      },
+      {
+        "name": "D40 | arms/arm_left/hand/middle_finger",
+        "type": "paintlayer",
+        "uuid": "{3fd8810e-8dde-4b15-b781-25d1dc9f5978}",
+        "parent": "root",
+        "order": 35,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          1054,
+          1031,
+          93,
+          47
+        ],
+        "pixels": "1dc9e0d05c895ed0d3bc7ed98c3871dfb926f2afe5858d3ace75b2a675a57041"
+      },
+      {
+        "name": "D41 | arms/arm_right/hand/middle_finger",
+        "type": "paintlayer",
+        "uuid": "{0da3ede1-9370-48e6-80a5-69abb2cf3b15}",
+        "parent": "root",
+        "order": 36,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          261,
+          1031,
+          98,
+          46
+        ],
+        "pixels": "96bdd01479d3ea1d2d8a378c5072fe30c44836a1bd61651d791c022d24c90664"
+      },
+      {
+        "name": "D42 | arms/arm_left/hand/thumb",
+        "type": "paintlayer",
+        "uuid": "{aba770e8-b3fe-461b-adae-4ee044d10e1d}",
+        "parent": "root",
+        "order": 37,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          1015,
+          1053,
+          30,
+          60
+        ],
+        "pixels": "07d9f674386c6e580694efdfb6d572cd80a9f6261c0d30a9ed2f21993ca77c1e"
+      },
+      {
+        "name": "D43 | arms/arm_right/hand/thumb",
+        "type": "paintlayer",
+        "uuid": "{00111c35-ef30-4cf9-b1a9-dbf57cc5138f}",
+        "parent": "root",
+        "order": 38,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          358,
+          1036,
+          44,
+          77
+        ],
+        "pixels": "346781815baf24d4303ddc7140215509053c26c22005f030ba372e3ae65fa1a1"
+      },
+      {
+        "name": "D44 | arms/arm_left/hand/index_finger",
+        "type": "paintlayer",
+        "uuid": "{e49a2920-0265-4fec-bcfc-f03c59d3ec1d}",
+        "parent": "root",
+        "order": 39,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          1047,
+          1021,
+          109,
+          47
+        ],
+        "pixels": "634c11ca3ca73d8e7b54076d8ae39b4aa12fd326e734fc9fbcf0bac9e91a7ed5"
+      },
+      {
+        "name": "D45 | arms/arm_right/hand/index_finger",
+        "type": "paintlayer",
+        "uuid": "{3a056be8-c259-483b-ae9a-f71e159baa9b}",
+        "parent": "root",
+        "order": 40,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          252,
+          1014,
+          111,
+          54
+        ],
+        "pixels": "e0d2b3dd57470c6dc9d82e2d4cbd006fb059afd0cbf78eebc34b28df5f720a9e"
+      },
+      {
+        "name": "D46 | arms/arm_left/hand/palm",
+        "type": "paintlayer",
+        "uuid": "{b3f5969e-8be8-4337-909f-e5918a92ff29}",
+        "parent": "root",
+        "order": 41,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          994,
+          983,
+          90,
+          96
+        ],
+        "pixels": "0094f3e49864ba5c94021655d7970646ace216389366132a700946dae74c598c"
+      },
+      {
+        "name": "D47 | arms/arm_right/hand/palm",
+        "type": "paintlayer",
+        "uuid": "{2d70aa71-52e9-4b36-975b-e1b7d74d1d14}",
+        "parent": "root",
+        "order": 42,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          341,
+          967,
+          80,
+          98
+        ],
+        "pixels": "5cb9991d1ff718b348eae2fe281836d571cf26ed9d541d5eb305e7cb3a8125bc"
+      },
+      {
+        "name": "D48 | arms/arm_left/bracelet_pink_front",
+        "type": "paintlayer",
+        "uuid": "{86d58413-581c-45ac-8e80-3881fbd16687}",
+        "parent": "root",
+        "order": 43,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          981,
+          970,
+          47,
+          68
+        ],
+        "pixels": "4fd082cada0dceeb3307d8963190cdc229bd4901f2f2fbcf8ae86474d4478d0c"
+      },
+      {
+        "name": "D49 | arms/arm_right/bracelet_pink_front",
+        "type": "paintlayer",
+        "uuid": "{9afff65b-5f91-4fd3-b9b7-84b246b41711}",
+        "parent": "root",
+        "order": 44,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          366,
+          967,
+          58,
+          69
+        ],
+        "pixels": "860ab3479809481ce8baf15a973fe66461a94cefbd4095b78c29e4944bf26b20"
+      },
+      {
+        "name": "D50 | arms/arm_left/bell",
+        "type": "paintlayer",
+        "uuid": "{48a4f564-4728-4e72-ad73-4957debd0dec}",
+        "parent": "root",
+        "order": 45,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          1011,
+          949,
+          69,
+          63
+        ],
+        "pixels": "186af0951fd53a7ed8837e129fa8c1620df1922bf62764b34a4caff38793b423"
+      },
+      {
+        "name": "D51 | arms/arm_left/bracelet_green_front",
+        "type": "paintlayer",
+        "uuid": "{4690710f-f17c-4f83-a35a-3ec7b467fa60}",
+        "parent": "root",
+        "order": 46,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          965,
+          951,
+          62,
+          58
+        ],
+        "pixels": "ba46ae30e81c68c695680ed5c1a4f5da9168b4fffbc559462dfdc03a8539d318"
+      },
+      {
+        "name": "D52 | arms/arm_right/bracelet_cream_front",
+        "type": "paintlayer",
+        "uuid": "{d0b5b321-2ccd-481a-9fb5-ef30e7b0ad3f}",
+        "parent": "root",
+        "order": 47,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          376,
+          962,
+          63,
+          48
+        ],
+        "pixels": "df430d1a7a6d988c279efb9fe383d95defbbd7744bb015019e57d87f120f45e6"
+      },
+      {
+        "name": "D56 | head_accessories/hair_tie_back",
+        "type": "paintlayer",
+        "uuid": "{7efb0a22-5ffa-40d6-9b14-796254b6ee3f}",
+        "parent": "root",
+        "order": 48,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          583,
+          690,
+          24,
+          19
+        ],
+        "pixels": "18670800d8877dc8d6d94c54f01c17f8951d6bf90b1e5a816ea109d91b2ee996"
+      },
+      {
+        "name": "Default closed | head_accessories/hair_tie_back",
+        "type": "transparencymask",
+        "uuid": "{ce547866-9e77-4d6d-90ea-256eb880f1ce}",
+        "parent": "{7efb0a22-5ffa-40d6-9b14-796254b6ee3f}",
+        "order": 0,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          583,
+          690,
+          24,
+          19
+        ],
+        "pixels": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+      },
+      {
+        "name": "D57 | hair/braid_right | front",
+        "type": "paintlayer",
+        "uuid": "{bf1ac4b1-cfe3-4884-8ec9-f9e0811bc6b5}",
+        "parent": "root",
+        "order": 49,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          529,
+          580,
+          101,
+          207
+        ],
+        "pixels": "964f7c0c9cc3679239a5763a2a15305ffc644467b3ce1fc37252215a895346e7"
+      },
+      {
+        "name": "D58 | headphones/earcups/earcup_left",
+        "type": "paintlayer",
+        "uuid": "{f799ae0d-40fd-4555-a1f2-f25327b3a98f}",
+        "parent": "root",
+        "order": 50,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          741,
+          525,
+          79,
+          103
+        ],
+        "pixels": "2029a8fe93015fdcc3d8af7d77cfa26b944047ccb55efc5b8ee01e0b47b22656"
+      },
+      {
+        "name": "D59 | headphones/earcups/earcup_right",
+        "type": "paintlayer",
+        "uuid": "{8bcb9e3b-93e0-4c43-bff5-d47d4e531fcf}",
+        "parent": "root",
+        "order": 51,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          598,
+          523,
+          75,
+          105
+        ],
+        "pixels": "2d2301d6cc1df3a40e64e66b4bd3ec0948cb619dcb88ca85c7b869173e8ce176"
+      },
+      {
+        "name": "D60 | face/face_base",
+        "type": "paintlayer",
+        "uuid": "{c73e48f3-03a2-4701-8caf-83063974965f}",
+        "parent": "root",
+        "order": 52,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          601,
+          304,
+          214,
+          236
+        ],
+        "pixels": "65558a505f34596d5f7fbb265f15c937f6a22abb649d8ae9ed6d5ab97ab6b15e"
+      },
+      {
+        "name": "D61-64 | Shared mouth opening",
+        "type": "grouplayer",
+        "uuid": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "parent": "root",
+        "order": 53,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          696,
+          495,
+          25,
+          24
+        ],
+        "passThrough": false
+      },
+      {
+        "name": "D61 | face/mouth/mouth_interior",
+        "type": "paintlayer",
+        "uuid": "{a2b1e6d8-0c5e-4ff7-9ca3-094cc209211f}",
+        "parent": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "order": 0,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          696,
+          495,
+          25,
+          23
+        ],
+        "pixels": "20eee503367c3919b1c0761bd2dc0c1d520ac204523d262f6e32f4bf9a81ecf9"
+      },
+      {
+        "name": "D62 | face/mouth/tongue",
+        "type": "paintlayer",
+        "uuid": "{f177c810-bf3d-4225-8478-7cca431e2ae1}",
+        "parent": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "order": 1,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          698,
+          502,
+          21,
+          17
+        ],
+        "pixels": "6ba372fc149d392bf935889f745e149b521d3ddacb094ee783d6a23fddc310ce"
+      },
+      {
+        "name": "D63 | face/mouth/lower_teeth",
+        "type": "paintlayer",
+        "uuid": "{f293a843-0915-4e81-82d8-32a6925c7a46}",
+        "parent": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "order": 2,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          697,
+          510,
+          23,
+          9
+        ],
+        "pixels": "f0f4681949c7f23aa4be543ebf45a5bfec88e2a5c7a0d85be7f0465d3496a8d5"
+      },
+      {
+        "name": "D64 | face/mouth/upper_teeth",
+        "type": "paintlayer",
+        "uuid": "{0f2a79f4-14a7-4e68-aa64-22ca28d0833c}",
+        "parent": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "order": 3,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          697,
+          496,
+          22,
+          9
+        ],
+        "pixels": "66013241445202b4149a4c7377a095e4936bfc2475cb8bf4e63d7afef4efffd6"
+      },
+      {
+        "name": "Default closed | shared upper/lower lip inner opening",
+        "type": "transparencymask",
+        "uuid": "{5e4ab66e-50eb-48c1-ac8e-d840df23395d}",
+        "parent": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "order": 4,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          696,
+          495,
+          25,
+          24
+        ],
+        "pixels": "1f0aae676ce4b4eae9eb1b594c51b0f3cf54765a8c8b11a46371afeb375ed8ab"
+      },
+      {
+        "name": "D65 | face/eyes/eye_left/sclera",
+        "type": "paintlayer",
+        "uuid": "{6b8f98e3-272a-4807-8774-4a219b6812f5}",
+        "parent": "root",
+        "order": 54,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          729,
+          415,
+          64,
+          43
+        ],
+        "pixels": "7becc47d7ae15e653adeda7aec0b4f8da64b716151b217013cf210e8495dad07"
+      },
+      {
+        "name": "D66 | face/eyes/eye_right/sclera",
+        "type": "paintlayer",
+        "uuid": "{eb30337c-5a23-4028-af35-6e96094fabc8}",
+        "parent": "root",
+        "order": 55,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          621,
+          415,
+          64,
+          43
+        ],
+        "pixels": "1e46d2cff1521c9161f89124324f003455f6f4b6d78782aeba7f02735a7c6228"
+      },
+      {
+        "name": "D67 | face/eyes/eye_left/iris",
+        "type": "paintlayer",
+        "uuid": "{eae99bc1-fe42-40d9-8bc1-c077610d6d86}",
+        "parent": "root",
+        "order": 56,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          741,
+          406,
+          41,
+          52
+        ],
+        "pixels": "9c5cbb7b750947e82a7f2fba5dfd604d4639fa1b864e44c8f963252f9c7489dd"
+      },
+      {
+        "name": "D68 | face/eyes/eye_right/iris",
+        "type": "paintlayer",
+        "uuid": "{338fcc39-a964-4c97-a3b3-16b60b7a3024}",
+        "parent": "root",
+        "order": 57,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          635,
+          410,
+          40,
+          48
+        ],
+        "pixels": "b5ac39015cad3b3b666ff69e98fec3c8e825f11f5722b71331fb1eca8d5c27b1"
+      },
+      {
+        "name": "D69 | face/eyes/eye_left/highlight",
+        "type": "paintlayer",
+        "uuid": "{bb67c9fd-f337-4b8d-ad9a-8ab3190c595b}",
+        "parent": "root",
+        "order": 58,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          742,
+          421,
+          39,
+          37
+        ],
+        "pixels": "dc88ca070b957c765379ba0269f949e897f2f22448253e3fb79d717e483742ec"
+      },
+      {
+        "name": "D70 | face/eyes/eye_right/highlight",
+        "type": "paintlayer",
+        "uuid": "{4473535e-3342-4b51-abb9-c2d8f0666128}",
+        "parent": "root",
+        "order": 59,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          635,
+          420,
+          39,
+          38
+        ],
+        "pixels": "25fba4ff338544f75bc77ac1e7747b6c4b0e1342bcc60844ee01da21ff7a43e7"
+      },
+      {
+        "name": "D71 | face/eyes/eye_left/upper_eyelid",
+        "type": "paintlayer",
+        "uuid": "{ae6d9e09-a249-45b6-8e3b-b7db6f39dfe0}",
+        "parent": "root",
+        "order": 60,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          735,
+          404,
+          70,
+          40
+        ],
+        "pixels": "2b3ab0d8012a8dd6d00ffb3540a9cab7dbbf1edbe5f1e2ddf274e627352c3d45"
+      },
+      {
+        "name": "D72 | face/eyes/eye_right/upper_eyelid",
+        "type": "paintlayer",
+        "uuid": "{c9dff7e7-54ed-4e72-9521-c6e675a7ff93}",
+        "parent": "root",
+        "order": 61,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          612,
+          406,
+          63,
+          42
+        ],
+        "pixels": "ba9e647af61565c15ce8145eb3bfe974851a1cdb86082457d3e000b0b3848272"
+      },
+      {
+        "name": "D73 | face/eyes/eye_left/eyelid_crease",
+        "type": "paintlayer",
+        "uuid": "{1af80f46-0541-4e4a-95be-861b54363fc3}",
+        "parent": "root",
+        "order": 62,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          733,
+          400,
+          49,
+          10
+        ],
+        "pixels": "225e02bd5834244922d5ceaefeeeb954d4c8495ba0c2caba829524c3292ef7e3"
+      },
+      {
+        "name": "D74 | face/eyes/eye_right/eyelid_crease",
+        "type": "paintlayer",
+        "uuid": "{fe355f5b-523c-4571-8a0d-db85e0c60423}",
+        "parent": "root",
+        "order": 63,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          631,
+          400,
+          48,
+          12
+        ],
+        "pixels": "c207bafc5a4731eb2d14fb1282e4c49bfe01b0836752f4b70839fc7363a4af05"
+      },
+      {
+        "name": "D75 | face/nose",
+        "type": "paintlayer",
+        "uuid": "{9715a843-db7d-435a-a8e3-b32f2dc56a6f}",
+        "parent": "root",
+        "order": 64,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          699,
+          460,
+          16,
+          18
+        ],
+        "pixels": "4a344454b34f5d1436f2c61d5ca81d9ac3951da8306b1309ebb24491d35f8fd4"
+      },
+      {
+        "name": "D76 | face/blush_left",
+        "type": "paintlayer",
+        "uuid": "{5e74d9a3-a429-4d63-8f05-67f72cf9e047}",
+        "parent": "root",
+        "order": 65,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          741,
+          461,
+          36,
+          29
+        ],
+        "pixels": "a64969a1bba273ac866d7478b8109ec18218049c4c8cf7b139073e322985e62b"
+      },
+      {
+        "name": "D77 | face/blush_right",
+        "type": "paintlayer",
+        "uuid": "{591e43a4-4e29-4e9a-bf37-a56199a73562}",
+        "parent": "root",
+        "order": 66,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          623,
+          464,
+          44,
+          28
+        ],
+        "pixels": "744217b8786fcc2cc4738f8345c3ff5b72be0e176effd6e67511cad72f9f4e04"
+      },
+      {
+        "name": "D78 | face/mouth/lower_lip",
+        "type": "paintlayer",
+        "uuid": "{3c68fb33-ff72-4f7e-967b-5780418a7453}",
+        "parent": "root",
+        "order": 67,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          696,
+          503,
+          25,
+          17
+        ],
+        "pixels": "07687ad00f2299c9854ad51e17817afbbce6bb98b154990d740c1bc3f6e49d0c"
+      },
+      {
+        "name": "D79 | face/mouth/upper_lip",
+        "type": "paintlayer",
+        "uuid": "{94eedc57-8397-46d7-b4df-d7f7d56c87fa}",
+        "parent": "root",
+        "order": 68,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          695,
+          493,
+          27,
+          17
+        ],
+        "pixels": "e07cbf8527b85206e0a15ef50fd1d2ae349b480763a53e0b4124971885fc582e"
+      },
+      {
+        "name": "D80 | face/eyebrows/eyebrow_left | back",
+        "type": "paintlayer",
+        "uuid": "{06085fa6-f39d-49c6-bc1b-505f7840b94f}",
+        "parent": "root",
+        "order": 69,
+        "visible": true,
+        "opacity": 112,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          745,
+          349,
+          6,
+          4
+        ],
+        "pixels": "4657b66e79faa408698a4df8d730ee959a6a948516c2db11d116f7d6a304f00d"
+      },
+      {
+        "name": "D81 | face/eyebrows/eyebrow_right | back",
+        "type": "paintlayer",
+        "uuid": "{739e209d-5633-4105-a477-bb4811a84f3a}",
+        "parent": "root",
+        "order": 70,
+        "visible": true,
+        "opacity": 112,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          617,
+          352,
+          41,
+          15
+        ],
+        "pixels": "2e689f8f4ef257d2226e49d142532ceec767bb5d34e36f2efe485a6ad8ca9b0d"
+      },
+      {
+        "name": "D82 | hair/side_hair/side_hair_left",
+        "type": "paintlayer",
+        "uuid": "{bde7e205-6062-4346-a420-e78844b50ac5}",
+        "parent": "root",
+        "order": 71,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          724,
+          212,
+          205,
+          298
+        ],
+        "pixels": "1e8c58024d53fd2af606722f29affde3cd7947b4f536f027a0d797c35a80f2a5"
+      },
+      {
+        "name": "D83 | hair/side_hair/side_hair_right",
+        "type": "paintlayer",
+        "uuid": "{ccf27b6d-49e0-40a9-9a4d-17c7bc104c41}",
+        "parent": "root",
+        "order": 72,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          489,
+          212,
+          199,
+          291
+        ],
+        "pixels": "7550b9e7ec94b85b722c7fbc806def34a63bc87e5f97ef861b3c5f7801b97596"
+      },
+      {
+        "name": "D84 | hair/bangs",
+        "type": "paintlayer",
+        "uuid": "{e2e38ffb-ec15-4ab7-aebb-fe1b504dbb42}",
+        "parent": "root",
+        "order": 73,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          613,
+          199,
+          189,
+          249
+        ],
+        "pixels": "b04be3941a0023fd2c621be9a3f4b5b7467f1e319845fc2b4fb3a625a72f4621"
+      },
+      {
+        "name": "D84.1 | face/eyebrows/eyebrow_left | front",
+        "type": "paintlayer",
+        "uuid": "{a2acf7ca-a935-4c2d-9e1a-a0bd319d3e41}",
+        "parent": "root",
+        "order": 74,
+        "visible": true,
+        "opacity": 112,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          733,
+          349,
+          81,
+          23
+        ],
+        "pixels": "9d94658af19ea3634af93e2267e61697b7384a7b413bc9438f0a2f76ea8ff8fe"
+      },
+      {
+        "name": "D84.2 | face/eyebrows/eyebrow_right | front",
+        "type": "paintlayer",
+        "uuid": "{882c642c-c4d7-4ecc-b2ec-57e6fae5ed13}",
+        "parent": "root",
+        "order": 75,
+        "visible": true,
+        "opacity": 112,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          602,
+          352,
+          78,
+          20
+        ],
+        "pixels": "88f8d18dce76a60326e39dec21dcdc819d4a9d36fd92aad13fc7a285ec3c6ca5"
+      },
+      {
+        "name": "D85 | head_accessories/hair_bell",
+        "type": "paintlayer",
+        "uuid": "{71a12d72-72ea-4f56-a1b7-546d1cfa2243}",
+        "parent": "root",
+        "order": 76,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          524,
+          319,
+          82,
+          77
+        ],
+        "pixels": "7b3b7354f7336bdcb466606b7d2ea5a412bf3825f475184218246c1365147ee6"
+      },
+      {
+        "name": "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front",
+        "type": "paintlayer",
+        "uuid": "{368765d3-d740-4b55-9b79-0d2ebae08dfa}",
+        "parent": "root",
+        "order": 77,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          652,
+          193,
+          113,
+          25
+        ],
+        "pixels": "907b72802b47c2d9ec2454d7bb0df28a1cc9f9643fb11f70fa953b64d7f6f9c4"
+      },
+      {
+        "name": "D86 | head_accessories/tanuki_ornament/paw/paw_left",
+        "type": "paintlayer",
+        "uuid": "{42f9e26a-5609-4811-aec4-8d5fb453dc34}",
+        "parent": "root",
+        "order": 78,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          726,
+          199,
+          78,
+          57
+        ],
+        "pixels": "4acc2afea588c3ec8f3d1e3d05a34b7e495ad5abe3b99a3c902967d2b18eef90"
+      },
+      {
+        "name": "D87 | head_accessories/tanuki_ornament/paw/paw_right",
+        "type": "paintlayer",
+        "uuid": "{f3526b5b-0fa3-4001-b58c-aa2e624ba04d}",
+        "parent": "root",
+        "order": 79,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          608,
+          199,
+          75,
+          57
+        ],
+        "pixels": "ce62a1e09c6d4cbfb06f37185911d532420224a96658315cefcf64aa821b6884"
+      },
+      {
+        "name": "D88 | head_accessories/hair_tie_front",
+        "type": "paintlayer",
+        "uuid": "{0e2def08-a9b2-4324-9c18-5b658cdfe67c}",
+        "parent": "root",
+        "order": 80,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          584,
+          699,
+          23,
+          14
+        ],
+        "pixels": "e6c49e40e164d0eb6477eaac0b990a9b4f21b7703b6366cfda5b4cb18ab5e19a"
+      },
+      {
+        "name": "D89 | legs/leg_left/thigh_band_front",
+        "type": "paintlayer",
+        "uuid": "{c24706b3-b875-4e98-af67-aab9b5ece139}",
+        "parent": "root",
+        "order": 81,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          719,
+          1112,
+          133,
+          108
+        ],
+        "pixels": "5719c53e40bcdd2be963b93ea4249e3c14b2e6d82781a9874b83a87e7084cf3b"
+      },
+      {
+        "name": "D90 | legs/leg_right/anklet_front",
+        "type": "paintlayer",
+        "uuid": "{bc1a3c77-a9f4-439a-bad8-e69a8709182e}",
+        "parent": "root",
+        "order": 82,
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "inheritAlpha": false,
+        "alphaLocked": false,
+        "locked": false,
+        "bounds": [
+          530,
+          1767,
+          123,
+          78
+        ],
+        "pixels": "ad4e9f1a3b013d892deb01ce561dc214f87997302c21082feac0983268188112"
+      }
+    ],
+    "projection": "0c56a154e771cc889d54fadc6467a69625fd8b0710ef481ab86aae8480e73bfe"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "width": 1376,
+  "height": 2048,
+  "deliveredVsNativeDifferentPixels": 0,
+  "noShadowVsOriginalDifferentPixels": 174,
+  "noShadowVsOriginalMaximumChannelDelta": 1,
+  "alphaSupportAddedToOriginal": 0,
+  "noShadowWhiteCompositeMaxDelta": 1.8117647058823536,
+  "noShadowWhiteCompositePixelsOver1": 7
+}

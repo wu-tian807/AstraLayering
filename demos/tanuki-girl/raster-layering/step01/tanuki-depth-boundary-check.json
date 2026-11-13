@@ -1,0 +1,21 @@
+{
+  "id": "head_accessories/tanuki_ornament/tanuki_body",
+  "old_depths": [
+    12,
+    85.5
+  ],
+  "final_depths": [
+    12,
+    85.5
+  ],
+  "moved_own_pixels": 280,
+  "region": [
+    681,
+    193,
+    737,
+    198
+  ],
+  "reason": "D14 back-hair root ink at y197 was in front of the D12 tanuki rear slice. The already annotated D85.5 tanuki front slice now owns the complete central join band. Original tanuki RGBA bytes moved exactly; no foreign pixels, no painting over hair, no mask.",
+  "logical_union_unchanged": true,
+  "classification": "Assembly-discovered boundary adjustment within an upstream-preannotated multi-depth part."
+}

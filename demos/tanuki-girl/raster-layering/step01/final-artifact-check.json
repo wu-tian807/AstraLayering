@@ -1,0 +1,15 @@
+{
+  "kra_zip_valid": true,
+  "kra_bytes": 25917390,
+  "png_size": [
+    1376,
+    2048
+  ],
+  "png_mode": "RGBA",
+  "png_has_transparent_exterior": true,
+  "png_identical_to_verified_final_assembly": true,
+  "png_identical_to_kra_mergedimage": true,
+  "maindoc_xml_bytes": 31352,
+  "verified_source": "PNG exported from truly reopened KRA with five masks ON",
+  "quality_basis": "All layer, exposed, composite, eye, mask, union and reference views inspected visually; no numeric image score used."
+}

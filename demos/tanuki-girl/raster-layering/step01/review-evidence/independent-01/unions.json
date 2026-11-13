@@ -1,0 +1,42 @@
+[
+  {
+    "id": "head_accessories/tanuki_ornament/tanuki_body",
+    "layers": [
+      "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+      "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front"
+    ],
+    "union": "raster-layering/step01/review-evidence/independent-01/union/head_accessories__tanuki_ornament__tanuki_body.png"
+  },
+  {
+    "id": "hair/braid_right",
+    "layers": [
+      "D13 | hair/braid_right | back",
+      "D57 | hair/braid_right | front"
+    ],
+    "union": "raster-layering/step01/review-evidence/independent-01/union/hair__braid_right.png"
+  },
+  {
+    "id": "pelvis",
+    "layers": [
+      "D22.5 | pelvis | back",
+      "D33 | pelvis | front"
+    ],
+    "union": "raster-layering/step01/review-evidence/independent-01/union/pelvis.png"
+  },
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "layers": [
+      "D80 | face/eyebrows/eyebrow_left | back",
+      "D84.1 | face/eyebrows/eyebrow_left | front"
+    ],
+    "union": "raster-layering/step01/review-evidence/independent-01/union/face__eyebrows__eyebrow_left.png"
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "layers": [
+      "D81 | face/eyebrows/eyebrow_right | back",
+      "D84.2 | face/eyebrows/eyebrow_right | front"
+    ],
+    "union": "raster-layering/step01/review-evidence/independent-01/union/face__eyebrows__eyebrow_right.png"
+  }
+]

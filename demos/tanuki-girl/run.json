@@ -2,21 +2,21 @@
   "version": 1,
   "archive": true,
   "from": "part-layering",
-  "to": "nine-axis",
-  "jobs": 3,
+  "to": "shadow",
+  "jobs": 2,
   "standard": false,
   "shadowMode": "mask",
   "status": "completed",
   "createdAt": "2026-11-03T12:50:11.544Z",
-  "updatedAt": "2026-11-07T12:30:45.322Z",
+  "updatedAt": "2026-11-13T22:10:53.946Z",
   "sections": {
     "part-layering": {
       "status": "completed",
-      "updatedAt": "2026-11-05T15:47:33.808Z"
+      "updatedAt": "2026-11-11T11:40:27.736Z"
     },
     "raster-layering": {
       "status": "completed",
-      "updatedAt": "2026-11-07T11:54:32.873Z"
+      "updatedAt": "2026-11-13T08:18:18.334Z"
     },
     "clothing-part-layering": {
       "status": "completed",
@@ -28,15 +28,11 @@
     },
     "character-assembly": {
       "status": "completed",
-      "updatedAt": "2026-11-07T11:54:33.564Z"
+      "updatedAt": "2026-11-13T21:39:08.690Z"
     },
     "shadow": {
       "status": "completed",
-      "updatedAt": "2026-11-07T12:30:45.321Z"
-    },
-    "nine-axis": {
-      "status": "completed",
-      "updatedAt": "2026-11-10T04:03:20.271Z"
+      "updatedAt": "2026-11-13T22:10:53.945Z"
     }
   }
 }

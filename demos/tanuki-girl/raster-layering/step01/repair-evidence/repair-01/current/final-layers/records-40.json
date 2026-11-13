@@ -1,0 +1,142 @@
+[
+  {
+    "index": 40,
+    "name": "D46 | arms/arm_left/hand/palm",
+    "uuid": "{b3f5969e-8be8-4337-909f-e5918a92ff29}",
+    "level": 46,
+    "parent": "root"
+  },
+  {
+    "index": 41,
+    "name": "D47 | arms/arm_right/hand/palm",
+    "uuid": "{2d70aa71-52e9-4b36-975b-e1b7d74d1d14}",
+    "level": 47,
+    "parent": "root"
+  },
+  {
+    "index": 42,
+    "name": "D48 | arms/arm_left/bracelet_pink_front",
+    "uuid": "{86d58413-581c-45ac-8e80-3881fbd16687}",
+    "level": 48,
+    "parent": "root"
+  },
+  {
+    "index": 43,
+    "name": "D49 | arms/arm_right/bracelet_pink_front",
+    "uuid": "{9afff65b-5f91-4fd3-b9b7-84b246b41711}",
+    "level": 49,
+    "parent": "root"
+  },
+  {
+    "index": 44,
+    "name": "D50 | arms/arm_left/bell",
+    "uuid": "{48a4f564-4728-4e72-ad73-4957debd0dec}",
+    "level": 50,
+    "parent": "root"
+  },
+  {
+    "index": 45,
+    "name": "D51 | arms/arm_left/bracelet_green_front",
+    "uuid": "{4690710f-f17c-4f83-a35a-3ec7b467fa60}",
+    "level": 51,
+    "parent": "root"
+  },
+  {
+    "index": 46,
+    "name": "D52 | arms/arm_right/bracelet_cream_front",
+    "uuid": "{d0b5b321-2ccd-481a-9fb5-ef30e7b0ad3f}",
+    "level": 52,
+    "parent": "root"
+  },
+  {
+    "index": 47,
+    "name": "D56 | head_accessories/hair_tie_back",
+    "uuid": "{7efb0a22-5ffa-40d6-9b14-796254b6ee3f}",
+    "level": 56,
+    "parent": "root"
+  },
+  {
+    "index": 48,
+    "name": "D57 | hair/braid_right | front",
+    "uuid": "{bf1ac4b1-cfe3-4884-8ec9-f9e0811bc6b5}",
+    "level": 57,
+    "parent": "root"
+  },
+  {
+    "index": 49,
+    "name": "D58 | headphones/earcups/earcup_left",
+    "uuid": "{f799ae0d-40fd-4555-a1f2-f25327b3a98f}",
+    "level": 58,
+    "parent": "root"
+  },
+  {
+    "index": 50,
+    "name": "D59 | headphones/earcups/earcup_right",
+    "uuid": "{8bcb9e3b-93e0-4c43-bff5-d47d4e531fcf}",
+    "level": 59,
+    "parent": "root"
+  },
+  {
+    "index": 51,
+    "name": "D60 | face/face_base",
+    "uuid": "{c73e48f3-03a2-4701-8caf-83063974965f}",
+    "level": 60,
+    "parent": "root"
+  },
+  {
+    "index": 52,
+    "name": "D61 | face/mouth/mouth_interior",
+    "uuid": "{a2b1e6d8-0c5e-4ff7-9ca3-094cc209211f}",
+    "level": 61,
+    "parent": "D61-64 | Shared mouth opening"
+  },
+  {
+    "index": 53,
+    "name": "D62 | face/mouth/tongue",
+    "uuid": "{f177c810-bf3d-4225-8478-7cca431e2ae1}",
+    "level": 62,
+    "parent": "D61-64 | Shared mouth opening"
+  },
+  {
+    "index": 54,
+    "name": "D63 | face/mouth/lower_teeth",
+    "uuid": "{f293a843-0915-4e81-82d8-32a6925c7a46}",
+    "level": 63,
+    "parent": "D61-64 | Shared mouth opening"
+  },
+  {
+    "index": 55,
+    "name": "D64 | face/mouth/upper_teeth",
+    "uuid": "{0f2a79f4-14a7-4e68-aa64-22ca28d0833c}",
+    "level": 64,
+    "parent": "D61-64 | Shared mouth opening"
+  },
+  {
+    "index": 56,
+    "name": "D65 | face/eyes/eye_left/sclera",
+    "uuid": "{6b8f98e3-272a-4807-8774-4a219b6812f5}",
+    "level": 65,
+    "parent": "root"
+  },
+  {
+    "index": 57,
+    "name": "D66 | face/eyes/eye_right/sclera",
+    "uuid": "{eb30337c-5a23-4028-af35-6e96094fabc8}",
+    "level": 66,
+    "parent": "root"
+  },
+  {
+    "index": 58,
+    "name": "D67 | face/eyes/eye_left/iris",
+    "uuid": "{eae99bc1-fe42-40d9-8bc1-c077610d6d86}",
+    "level": 67,
+    "parent": "root"
+  },
+  {
+    "index": 59,
+    "name": "D68 | face/eyes/eye_right/iris",
+    "uuid": "{338fcc39-a964-4c97-a3b3-16b60b7a3024}",
+    "level": 68,
+    "parent": "root"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-evidence/independent-01/union/head_accessories__tanuki_ornament__tanuki_body.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/review-evidence/independent-01/marks/tanuki/marked.png",
+  "manifest": "raster-layering/step01/review-evidence/independent-01/marks/tanuki/regions.json",
+  "regions": [
+    {
+      "id": "R21",
+      "bounds": [
+        675,
+        206,
+        72,
+        29
+      ],
+      "layers": [
+        "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front"
+      ],
+      "description": "狸饰前后片合并独显：下颌描边下方约x729、y222存在离散深色点，局部另有短竖线；该处在参考属头发，不属狸饰。只清除本件孤点与杂线，保留完整下颌和后发独立内容。",
+      "crop": [
+        663,
+        194,
+        96,
+        53
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence/independent-01/marks/tanuki/R21-current.png",
+        "reference": "raster-layering/step01/review-evidence/independent-01/marks/tanuki/R21-reference.png",
+        "comparison": "raster-layering/step01/review-evidence/independent-01/marks/tanuki/R21-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "issue": "鬓发尖余白",
+    "layers": "D83",
+    "result": "已修复",
+    "treatment": "奶白条在本件自身alpha内修成粉色发面并续细棕轮廓，尖收笔保留。",
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/last-sidehair-tip/three-views.png"
+  },
+  {
+    "issue": "裸腿根、裸踝及膝侧配准残边",
+    "layers": "D24",
+    "result": "已修复",
+    "treatment": "本件窄生成轮廓与原生轮廓局部配准，杂白块、外碎边和尾巴交接处混入像素清理；完整根与足保留。",
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/last-knee-owned-contour/three-views.png"
+  },
+  {
+    "issue": "裸腿上段横接色",
+    "layers": "D24",
+    "result": "已修复",
+    "treatment": "仅取辅助参考中本腿皮肤，在原坐标局部羽化原生取样，去掉横材料边，不恢复裙子投影。",
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/last-thigh-material-finish/three-views.png"
+  },
+  {
+    "issue": "耳机带隐藏连通",
+    "layers": "D15/D22.25",
+    "result": "已修复",
+    "treatment": "以本带材料、原生明暗和细线补桥，使后U带和两白端完整连通。",
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/last-headband-union/three-views.png"
+  },
+  {
+    "issue": "骨盆顶帽淡矩形边",
+    "layers": "D33",
+    "result": "已修复",
+    "treatment": "在y905本件布面局部柔笔接色，灰条、矩形边和杂线去除。",
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/last-pelvis-cap/three-views.png"
+  },
+  {
+    "issue": "胸片/躯干中央接色",
+    "layers": "D34/D35",
+    "result": "已修复",
+    "treatment": "各自已有画面内仅取自身白布修色，皮肤、粉发和非布面排除，侧线保留。",
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/last-center-cloth-finish/three-views.png"
+  },
+  {
+    "issue": "躯干胸片后旧横纹",
+    "layers": "D34",
+    "result": "已修复",
+    "treatment": "三色局部重生成白布上段；原肩根、锁骨、上缘与下腹保留，内部曲线接回本件可见段。",
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/last-hidden-torso-cloth/three-views.png"
+  },
+  {
+    "issue": "前臂腕端帽盖",
+    "layers": "D32",
+    "result": "已修复",
+    "treatment": "自身粉橙体积明暗用原生柔笔续入帽盖，缺失描边按本件曲线逐笔续接。",
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/last-forearm-wrist-material/three-views.png"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "part": "body/torso",
+  "layer": "D34 | body/torso",
+  "box": [
+    572,
+    644,
+    840,
+    854
+  ],
+  "scale": 4,
+  "red": "own lower visible white cloth color and brushwork from base-subject",
+  "yellow": "own white cloth under the breast, complete within existing silhouette",
+  "green": "all skin, braid, breast exterior and outside region; neutralized input, transparent output",
+  "preserve": "existing shoulder roots, clavicle, upper neckline, D32.5 abdomen and visible lower torso"
+}
