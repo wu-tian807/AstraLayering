@@ -1,0 +1,130 @@
+[
+  {
+    "id": "face/mouth/mouth_interior",
+    "full": "raster-layering/step01/evidence/native-mask-check/face__mouth__mouth_interior--full.png",
+    "default_hidden": "raster-layering/step01/evidence/native-mask-check/face__mouth__mouth_interior--default-hidden.png",
+    "texture_unchanged": true,
+    "masks": [
+      {
+        "name": "Default closed | shared upper/lower lip inner opening",
+        "uuid": "{5e4ab66e-50eb-48c1-ac8e-d840df23395d}",
+        "owner": "D61-64 | Shared mouth opening",
+        "owner_uuid": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "default_visible": true
+      }
+    ],
+    "control_region": "Default empty mouth aperture; upper/lower lip inner opening, designed open content bounds x696..721 y495..519"
+  },
+  {
+    "id": "face/mouth/upper_teeth",
+    "full": "raster-layering/step01/evidence/native-mask-check/face__mouth__upper_teeth--full.png",
+    "default_hidden": "raster-layering/step01/evidence/native-mask-check/face__mouth__upper_teeth--default-hidden.png",
+    "texture_unchanged": true,
+    "masks": [
+      {
+        "name": "Default closed | shared upper/lower lip inner opening",
+        "uuid": "{5e4ab66e-50eb-48c1-ac8e-d840df23395d}",
+        "owner": "D61-64 | Shared mouth opening",
+        "owner_uuid": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "default_visible": true
+      }
+    ],
+    "control_region": "Default empty mouth aperture; upper/lower lip inner opening, designed open content bounds x696..721 y495..519"
+  },
+  {
+    "id": "face/mouth/lower_teeth",
+    "full": "raster-layering/step01/evidence/native-mask-check/face__mouth__lower_teeth--full.png",
+    "default_hidden": "raster-layering/step01/evidence/native-mask-check/face__mouth__lower_teeth--default-hidden.png",
+    "texture_unchanged": true,
+    "masks": [
+      {
+        "name": "Default closed | shared upper/lower lip inner opening",
+        "uuid": "{5e4ab66e-50eb-48c1-ac8e-d840df23395d}",
+        "owner": "D61-64 | Shared mouth opening",
+        "owner_uuid": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "default_visible": true
+      }
+    ],
+    "control_region": "Default empty mouth aperture; upper/lower lip inner opening, designed open content bounds x696..721 y495..519"
+  },
+  {
+    "id": "face/mouth/tongue",
+    "full": "raster-layering/step01/evidence/native-mask-check/face__mouth__tongue--full.png",
+    "default_hidden": "raster-layering/step01/evidence/native-mask-check/face__mouth__tongue--default-hidden.png",
+    "texture_unchanged": true,
+    "masks": [
+      {
+        "name": "Default closed | shared upper/lower lip inner opening",
+        "uuid": "{5e4ab66e-50eb-48c1-ac8e-d840df23395d}",
+        "owner": "D61-64 | Shared mouth opening",
+        "owner_uuid": "{f6622e34-6a3b-4715-971f-0e828dfbd99a}",
+        "default_visible": true
+      }
+    ],
+    "control_region": "Default empty mouth aperture; upper/lower lip inner opening, designed open content bounds x696..721 y495..519"
+  },
+  {
+    "id": "head_accessories/hair_tie_back",
+    "full": "raster-layering/step01/evidence/native-mask-check/head_accessories__hair_tie_back--full.png",
+    "default_hidden": "raster-layering/step01/evidence/native-mask-check/head_accessories__hair_tie_back--default-hidden.png",
+    "texture_unchanged": true,
+    "masks": [
+      {
+        "name": "Default closed | head_accessories/hair_tie_back",
+        "uuid": "{ce547866-9e77-4d6d-90ea-256eb880f1ce}",
+        "owner": "D56 | head_accessories/hair_tie_back",
+        "owner_uuid": "{7efb0a22-5ffa-40d6-9b14-796254b6ee3f}",
+        "default_visible": true
+      }
+    ],
+    "control_region": "Default fully hidden; own completed SVG shape raster-layering/step01/workspace/masks/head_accessories__hair_tie_back__full.png"
+  },
+  {
+    "id": "arms/arm_left/hand/little_finger",
+    "full": "raster-layering/step01/evidence/native-mask-check/arms__arm_left__hand__little_finger--full.png",
+    "default_hidden": "raster-layering/step01/evidence/native-mask-check/arms__arm_left__hand__little_finger--default-hidden.png",
+    "texture_unchanged": true,
+    "masks": [
+      {
+        "name": "Default closed | arms/arm_left/hand/little_finger",
+        "uuid": "{5483a5d1-d926-4388-8566-50775fc6d816}",
+        "owner": "D36 | arms/arm_left/hand/little_finger",
+        "owner_uuid": "{ca815547-31cc-4382-9aa8-dd188b37b377}",
+        "default_visible": true
+      }
+    ],
+    "control_region": "Default fully hidden; own completed SVG shape raster-layering/step01/workspace/masks/arms__arm_left__hand__little_finger__full.png"
+  },
+  {
+    "id": "arms/arm_right/hand/little_finger",
+    "full": "raster-layering/step01/evidence/native-mask-check/arms__arm_right__hand__little_finger--full.png",
+    "default_hidden": "raster-layering/step01/evidence/native-mask-check/arms__arm_right__hand__little_finger--default-hidden.png",
+    "texture_unchanged": true,
+    "masks": [
+      {
+        "name": "Default closed | arms/arm_right/hand/little_finger",
+        "uuid": "{5e4ea0ea-ca7c-4cf9-9529-24de800dd784}",
+        "owner": "D37 | arms/arm_right/hand/little_finger",
+        "owner_uuid": "{f6a6d2a1-0435-4c58-ab1a-662a1559249c}",
+        "default_visible": true
+      }
+    ],
+    "control_region": "Default fully hidden; own completed SVG shape raster-layering/step01/workspace/masks/arms__arm_right__hand__little_finger__full.png"
+  },
+  {
+    "id": "legs/leg_left/thigh_band_back",
+    "full": "raster-layering/step01/evidence/native-mask-check/legs__leg_left__thigh_band_back--full.png",
+    "default_hidden": "raster-layering/step01/evidence/native-mask-check/legs__leg_left__thigh_band_back--default-hidden.png",
+    "texture_unchanged": true,
+    "masks": [
+      {
+        "name": "Default closed | legs/leg_left/thigh_band_back",
+        "uuid": "{08259a8e-cd26-487a-9f12-ab9fd99ca69e}",
+        "owner": "D10 | legs/leg_left/thigh_band_back",
+        "owner_uuid": "{37c84885-94de-4375-b6bc-81bcefb8dec0}",
+        "default_visible": true
+      }
+    ],
+    "control_region": "Default fully hidden; own completed SVG shape raster-layering/step01/workspace/masks/legs__leg_left__thigh_band_back__full.png"
+  }
+]

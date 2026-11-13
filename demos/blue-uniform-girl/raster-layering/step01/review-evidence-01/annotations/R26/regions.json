@@ -1,0 +1,38 @@
+{
+  "image": "raster-layering/step01/review-evidence-01/inspection/isolated-disabled/face__face_base.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-01/annotations/R26/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/7dfc181b-8c43-45dd-a3cf-2b666a706384/regions.json",
+  "regions": [
+    {
+      "id": "R26",
+      "bounds": [
+        645,
+        455,
+        34,
+        58
+      ],
+      "layers": [
+        "34 | face/face_base"
+      ],
+      "description": "隐藏侧发后的画面右脸颊边缘存在短促的内凹折口，保留了遮挡边界形状；完整脸底应从颊侧平顺延续到下颌。",
+      "crop": [
+        629,
+        439,
+        66,
+        90
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/R26/R26-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/R26/R26-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/R26/R26-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。",
+  "source_tool_manifest": "raster-layering/step01/workspace/review-regions/7dfc181b-8c43-45dd-a3cf-2b666a706384/regions.json"
+}

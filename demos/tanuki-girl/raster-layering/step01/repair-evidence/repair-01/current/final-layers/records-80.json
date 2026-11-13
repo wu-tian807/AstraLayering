@@ -1,0 +1,37 @@
+[
+  {
+    "index": 80,
+    "name": "D86 | head_accessories/tanuki_ornament/paw/paw_left",
+    "uuid": "{42f9e26a-5609-4811-aec4-8d5fb453dc34}",
+    "level": 86,
+    "parent": "root"
+  },
+  {
+    "index": 81,
+    "name": "D87 | head_accessories/tanuki_ornament/paw/paw_right",
+    "uuid": "{f3526b5b-0fa3-4001-b58c-aa2e624ba04d}",
+    "level": 87,
+    "parent": "root"
+  },
+  {
+    "index": 82,
+    "name": "D88 | head_accessories/hair_tie_front",
+    "uuid": "{0e2def08-a9b2-4324-9c18-5b658cdfe67c}",
+    "level": 88,
+    "parent": "root"
+  },
+  {
+    "index": 83,
+    "name": "D89 | legs/leg_left/thigh_band_front",
+    "uuid": "{c24706b3-b875-4e98-af67-aab9b5ece139}",
+    "level": 89,
+    "parent": "root"
+  },
+  {
+    "index": 84,
+    "name": "D90 | legs/leg_right/anklet_front",
+    "uuid": "{bc1a3c77-a9f4-439a-bad8-e69a8709182e}",
+    "level": 90,
+    "parent": "root"
+  }
+]

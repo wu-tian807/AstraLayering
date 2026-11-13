@@ -1,0 +1,13 @@
+{
+  "main": {
+    "initial": [
+      "prompts/描边.md",
+      "head-nine-axis/prompts/face-contour.md"
+    ],
+    "tools": [
+      "view_bitmap",
+      "preview_svg",
+      "view_nine_axis"
+    ]
+  }
+}

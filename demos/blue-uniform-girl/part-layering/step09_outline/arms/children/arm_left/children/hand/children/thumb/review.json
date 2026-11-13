@@ -1,0 +1,68 @@
+{
+  "groupId": "arms/arm_left/hand/thumb",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已完成整图定位，并以相互重叠的选框 [770,902,58,41]、[783,931,48,45] 在 8 倍 blend/edge 下核对指根、两侧指身、内缘接缝与完整指端，另检查全拇指独显。候选归属为身体侧短拇指，未误包中央中指或右侧食指；指根的局部掌下搭接合理，指身连续，无遗漏的独立可见组件、无碎片或孔洞错误。当前父允许范围内未发现确定需要修改的问题，无需重画当前组。候选父范围检查 outsidePixels=0。\n\n上游范围限制：指端底部约 x=804–815、y=966–968，参考深色实体外缘较父轮廓向下多出约 1 像素。父稿与候选在同一局部叠加核对，候选底弧与父底弧重合，未留父内可修的空带；恢复这段外缘需要扩大父组 hand 范围，当前子组不能越界补齐。本轮 pass 不表示该上游边缘已补齐。诊断叠加图中蓝线为父稿，红线为候选；诊断图的描边范围不作为候选范围判定。\n\n图像依据：\n\n\n\n",
+      "candidateHash": "1ad89d9475417146d993954421122fc365d1eeaae5bf8c4163a41ffbaf857e23",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/workspace/parent-candidate-check.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-10T18-36-37-972Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T19:07:25.316Z"
+    }
+  ]
+}

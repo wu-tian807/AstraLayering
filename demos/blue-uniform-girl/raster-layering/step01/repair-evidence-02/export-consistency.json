@@ -1,0 +1,43 @@
+{
+  "checkedAtUTC": "2026-11-12T01:14:25.454391+00:00",
+  "exactDecodedRGBA": true,
+  "canvas": [
+    1115,
+    1410
+  ],
+  "images": [
+    {
+      "path": "raster-layering/step01/character-depth.png",
+      "fileHash": "0d60a1128934f226f105e2b7a6dbee5221251c9a8c9867c527a1470579299f61",
+      "decodedRGBAHash": "cbb92f76cbb8dcce251b9beda71ba682b0206f3764365e854a0f355bbb78e9c1",
+      "sameDecodedRGBA": true
+    },
+    {
+      "path": "raster-layering/step01/repair-evidence-02/raw/composite.png",
+      "fileHash": "0d60a1128934f226f105e2b7a6dbee5221251c9a8c9867c527a1470579299f61",
+      "decodedRGBAHash": "cbb92f76cbb8dcce251b9beda71ba682b0206f3764365e854a0f355bbb78e9c1",
+      "sameDecodedRGBA": true
+    },
+    {
+      "path": "raster-layering/step01/repair-evidence-02/raw/masks-restored.png",
+      "fileHash": "0d60a1128934f226f105e2b7a6dbee5221251c9a8c9867c527a1470579299f61",
+      "decodedRGBAHash": "cbb92f76cbb8dcce251b9beda71ba682b0206f3764365e854a0f355bbb78e9c1",
+      "sameDecodedRGBA": true
+    },
+    {
+      "path": "raster-layering/step01/repair-evidence-02/raw/reopened-composite.png",
+      "fileHash": "0d60a1128934f226f105e2b7a6dbee5221251c9a8c9867c527a1470579299f61",
+      "decodedRGBAHash": "cbb92f76cbb8dcce251b9beda71ba682b0206f3764365e854a0f355bbb78e9c1",
+      "sameDecodedRGBA": true
+    },
+    {
+      "container": "raster-layering/step01/character-depth.kra",
+      "entry": "mergedimage.png",
+      "decodedRGBAHash": "cbb92f76cbb8dcce251b9beda71ba682b0206f3764365e854a0f355bbb78e9c1",
+      "sameDecodedRGBA": true
+    }
+  ],
+  "all59DefaultPNGsUpdated": true,
+  "all13ChangedDefaultPNGsMatchSingleOnEvidence": true,
+  "nativePixelsUnchangedByExports": true
+}

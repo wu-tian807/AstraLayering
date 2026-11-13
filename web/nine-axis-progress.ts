@@ -11,6 +11,8 @@ import type { Status } from './snapshot.ts';
 import { executionStatus, aggregateStatus } from './execution-state.js';
 import { modelDocument } from '../.agents/skills/live2d-maker/nine-axis/source.ts';
 import { isStudioPath } from './studio-project.ts';
+import { hairRounds, hairRoundLabel, readHairProgress, type HairProgress, type HairRound } from '../.agents/skills/live2d-maker/nine-axis/hair-progress.ts';
+import { toTaskPathReal } from '../.agents/skills/live2d-maker/shared/task-paths.ts';
 
 type Observation = { active?: boolean; failed?: boolean; archive?: boolean; since?: string; reason?: string };
 
@@ -54,7 +56,7 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
       try {
         const path = await safePath(directory, model), doc = JSON.parse(await readFile(path, 'utf8'));
         const document = await modelDocument(directory, dirname(path), doc);
-        const source = document && relative(directory, document).replaceAll('\\','/');
+        const source = document && await toTaskPathReal(directory, document);
         if (source && isStudioPath(source) && files.has(source) && source.endsWith('.kra')) previews[id] = {
           path: source, savedAt: (await lstat(await safePath(directory,source))).mtime.toISOString(),
         };
@@ -68,9 +70,25 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
     if (status !== 'pending' && status !== 'done') states[parent] = status;
   }
   const mergeComplete = states[model] === 'done';
+  let hair: { rounds: Record<HairRound, Status>; next: HairProgress['next']; awaitingContinue: boolean } | undefined;
+  const hairFile = 'nine-axis/step08_hair/hair-progress.json';
+  if (staged && (files.has(hairFile) || ['running', 'throttled', 'failed', 'interrupted'].includes(states.step08_hair))) {
+    try {
+      // Snapshot reads never migrate progress or change completion markers.
+      const progress: Pick<HairProgress, 'completed' | 'next'> = files.has(hairFile)
+        ? await readHairProgress(dirname(await safePath(directory, hairFile))) : { completed: [], next: hairRounds[0] };
+      const ownCalls = calls.filter(call => call.outputDirectory === 'nine-axis/step08_hair');
+      const call = ownCalls.filter(call => !call.finished).at(-1) ?? ownCalls.at(-1);
+      const currentCall = progress.next !== 'done' && call?.name === `${hairRoundLabel(progress.next)}左右制作`;
+      const rounds = Object.fromEntries(hairRounds.map(round => [round, progress.completed.includes(round) ? 'done'
+        : round === progress.next && currentCall && states.step08_hair !== 'done' ? states.step08_hair : 'pending'])) as Record<HairRound, Status>;
+      hair = { rounds, next: progress.next, awaitingContinue: progress.next !== 'done' && progress.completed.length > 0
+        && ['interrupted', 'done'].includes(states.step08_hair) && rounds[progress.next] === 'pending' };
+    } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') errors.push(hairFile + ': ' + String(error)); }
+  }
   const summary = aggregateStatus(mainSteps.map(id => states[id]));
   const status: Status = summary === 'done' ? 'done' : observation.active ? summary === 'throttled' ? 'throttled' : 'running'
     : observation.failed ? 'failed' : summary;
   return { id: 'nine-axis', layout: staged ? 'staged' : 'nested', status, states, messages, products, steps, groups: [], previews,
-    feedback: {} as Record<string, string>, reports, threadId: [...steps].reverse().find(step => step.threadId)?.threadId ?? null, mergeComplete };
+    feedback: {} as Record<string, string>, reports, hair, threadId: [...steps].reverse().find(step => step.threadId)?.threadId ?? null, mergeComplete };
 }

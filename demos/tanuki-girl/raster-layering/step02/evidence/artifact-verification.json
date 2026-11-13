@@ -1,0 +1,13 @@
+{
+  "canvas": [
+    1376,
+    2048
+  ],
+  "mode": "RGBA",
+  "kra_zip_integrity": true,
+  "png_equals_kra_merged_pixels": true,
+  "png_equals_last_inspected_pixels": true,
+  "transparent_pixels": 2200487,
+  "kra_sha256": "2924404dbd2659b8b8a8c3631976f0d7fcedaeac662d0cac21e33cc072e68837",
+  "png_sha256": "f1fcbdce7daa05c5012d63533a8b0544395a6138871e6119c332077f8ac1fdab"
+}

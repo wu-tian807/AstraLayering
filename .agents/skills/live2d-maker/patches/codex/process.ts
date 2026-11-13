@@ -54,6 +54,6 @@ export function watchOutput(stage: string, progress: (message: string) => void, 
     },
     quiet: { after: quietAfter, notify: silent => progress(`${stage}已 ${duration(silent)}没有新输出（共用时 ${duration(now() - start)}）；`
       + `可能是网络受阻${compiled ? '，也可能在链接大文件' : ''}。可继续等待；或停止任务，设置 HTTPS_PROXY 等代理后续跑；`
-      + `也可在 .env 设置 codex_path 指向已构建好的补丁 Codex 跳过构建${logHint}`) },
+      + `补丁构建会复用已完成的缓存${logHint}`) },
   };
 }

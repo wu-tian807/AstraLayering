@@ -1,0 +1,63 @@
+{
+  "groupId": "head_accessories",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已按本组 note 独立确认归属，并完成整图 blend 定位、原图局部放大、三个重叠选框的 blend/edge 核对及 SVG 独显检查。head_accessories 无父组，不适用父范围约束。\n\n可见区域为画面右额角的圆角三角形头饰（约 x647–768、y146–276）。上缘与左右上角（选框 [638,138,140,65]）、左斜边及下端圆角（[642,181,85,103]）、右斜边及与下方发束相邻处（[700,181,78,104]）均已逐块对照，重叠区域连续，候选覆盖头饰的可见外缘和深色边框，位置、宽度、弧度与转向吻合，未发现确定的越出、缩入或漏画。中央深蓝区域是本组已登记的实体区域，联合色块已覆盖，不应挖孔或要求本轮绘制内部色界；下方青蓝细长区域属于头发，不构成本组遗漏。独显轮廓连续干净，无孤点、碎片或误包相邻结构；无需重画或局部返修。\n\n图像证据：\n\n\n\n\n",
+      "candidateHash": "f239928f030311d0f4c521d5f1cc86d4f30c4b1b8e2f13e267a28533dac668e3",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-10T09-48-27-663Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T10:07:17.119Z"
+    }
+  ]
+}

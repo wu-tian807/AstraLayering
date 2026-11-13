@@ -1,0 +1,385 @@
+{
+  "version": 3,
+  "direction": "back-to-front",
+  "sourceHash": "1b7330b55ac4b2af46cd920ef33e63ccd6c2dd54c76f3ea815cd2066b7291f7c",
+  "layers": [
+    {
+      "id": "outer_jacket/jacket_body/back_panel",
+      "level": 1,
+      "note": "完整肩背至下摆的连续背料，位于 inner_shirt/shirt_body 两个绘画深度及两外套前衣片之后。实际层 outer_jacket/jacket_body/back_panel | complete | d1；原生全黑透明度蒙版附于本绘画层，默认完整投影隐藏，解除时保留全幅白色背料、褶皱和衣摆线。开襟与颈口不会被背料封住。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看完整背料及整圈轮廓，并切换本层原生蒙版：启用为空，关闭后完整衣片可见；默认整图没有开襟或颈口泄漏。深度1在所有衣服层之后。"
+      }
+    },
+    {
+      "id": "inner_shirt/shirt_body",
+      "levels": [
+        {
+          "level": 2,
+          "region": "完整独立生成的衬衫肩背和躯干后侧布面，在现有衣身投影内补足连续深蓝衣料，不带前门襟或纽扣。实际层 inner_shirt/shirt_body | far | d2，在 outer_jacket/jacket_body/back_panel 之前、同 ID 前面 d22 之后；与前面沿肩侧、袖窿和腰侧回转连接，不另造背视轮廓。所属独立深度组的原生全黑透明度蒙版默认整体隐藏，颈口保持真实开口。"
+        },
+        {
+          "level": 22,
+          "region": "完整肩前、胸腹门襟和下端前衣料。实际层 inner_shirt/shirt_body | near | d22；压住 inner_shirt/left_sleeve d20 与 inner_shirt/right_sleeve d21 的袖根，位于 collar_base 前座d23、裙腰d25、领带、折领、扣带与外套前衣片之后。肩侧和腰侧为前后回转分界；默认通过上层衣片的真实像素遮挡肩根、侧边及下端，保留中央门襟。"
+        }
+      ],
+      "note": "同一逻辑 part 保留两个独立普通绘画层。后面完整布面单独生成，前面保留原生成门襟；后面通过原生蒙版控制默认隐藏，前面以实际层序完成局部遮挡。完整布面不混入折领、领带、外套或人体内容。",
+      "check": {
+        "passed": true,
+        "note": "逐层独显和隐藏上层检查了肩背补全、门襟、下端及整圈边；后片无纽扣和门襟鬼影，前片连续。蒙版切换已核对，默认整图开襟只显示前门襟。",
+        "regions": [
+          {
+            "level": 2,
+            "note": "完整后布面独显连续；组上原生蒙版启用时全隐，关闭时完整显示，未填颈口。"
+          },
+          {
+            "level": 22,
+            "note": "前衣面独显保留门襟、纽扣及自身褶皱；裙腰、领座和扣带自然覆盖各自搭接处，未混入覆盖衣片的像素。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "outer_jacket/jacket_collar/collar_root",
+      "level": 3,
+      "note": "完整隐藏后领连接布料，位于 outer_jacket/jacket_body/back_panel、inner_shirt/shirt_body 后面之前，两白翻领的后根和 inner_shirt/shirt_collar/collar_base 后领之后。实际层 outer_jacket/jacket_collar/collar_root | complete | d3，原生全黑透明度蒙版附于本层，默认整体隐藏。解除蒙版可见完整白色折根、内侧曲面和外圈细线。",
+      "check": {
+        "passed": true,
+        "note": "已独显检查全片白色连续折根并切换原生蒙版；默认不封颈口，原始隐藏纹理完整。深度3与两独立前后翻领分片相容。"
+      }
+    },
+    {
+      "id": "outer_jacket/jacket_collar/left_collar_flap",
+      "levels": [
+        {
+          "level": 4,
+          "region": "画面右侧白翻领颈侧卷根及后向回转，实际层 outer_jacket/jacket_collar/left_collar_flap | far | d4。分界沿内缘曲线：起点(638,270)，经(640,280)、(646,290)、(653,301)至(660,315)，曲线内侧为后根；保留约1.5px同片搭接。位于 collar_root d3之前、collar_base 后领d10及同 ID前领d38之后。默认后领和前领的实际层像素遮挡卷根。"
+        },
+        {
+          "level": 38,
+          "region": "由颈侧回转向肩胸翻出的完整白领面和领尖，实际层 outer_jacket/jacket_collar/left_collar_flap | near | d38。位于 inner_shirt/shirt_collar/left_collar_leaf、outer_jacket/jacket_body/left_front/front_panel 和 left_front/lapel 之前；上根与d4沿上述弯曲内缘连接。下方驳头仍归独立 lapel，颈口保持透明。"
+        }
+      ],
+      "note": "同一翻领按颈侧真实回转拆为两个普通绘画层，没有按明暗拆衣片。保留完整生成轮廓与青色包边，修正直切断口和孤立残片；实际局部显隐由后领及前领层序完成。",
+      "check": {
+        "passed": true,
+        "note": "已查看后根、前面独显及同片合看，卷根连续，前面没有直切缺口或残片；默认领口与纯衣服参考和穿衣角色对照通过。",
+        "regions": [
+          {
+            "level": 4,
+            "note": "后根沿实际颈侧弯曲内缘连续，隐藏延伸保留，位于后领d10之后。"
+          },
+          {
+            "level": 38,
+            "note": "前领面、领尖及青色包边完整，与独立驳头自然相接，内缘未填人体或相邻折领。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "outer_jacket/jacket_collar/right_collar_flap",
+      "levels": [
+        {
+          "level": 5,
+          "region": "画面左侧白翻领短后根和颈侧回转，实际层 outer_jacket/jacket_collar/right_collar_flap | far | d5。分界曲线从(500,270)，经(501,277)、(497,287)、(498,298)、(499,309)至(506,322)，其内侧短卷根归后深度；留约1.5px同片搭接。位于 collar_root d3之前、collar_base 后领d10及同 ID前面d39之后。"
+        },
+        {
+          "level": 39,
+          "region": "画面左侧完整白色前翻领、领尖和前折根，实际层 outer_jacket/jacket_collar/right_collar_flap | near | d39。由上述颈侧曲线连续转到前面，压住 inner_shirt/shirt_collar/right_collar_leaf、outer_jacket/jacket_body/right_front/front_panel 和 right_front/lapel 的实际搭接；驳头仍独立，中央颈口不封闭。"
+        }
+      ],
+      "note": "同片两个普通绘画深度，按颈侧折根而非颜色分界。保留白领生成画面、外圈线与青色细包边，默认由实际前后层自然遮挡回转根。",
+      "check": {
+        "passed": true,
+        "note": "已查看后根、前面独显、同片连续性及领口放大，前片连续且没有孤立鬼影；领尖与独立驳头相接。",
+        "regions": [
+          {
+            "level": 5,
+            "note": "后根内壁完整，曲线分界留搭接，处于后领d10之后。"
+          },
+          {
+            "level": 39,
+            "note": "前面外轮廓和包边完整，颈口保持透明；不包含折领或驳头像素。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "outer_jacket/left_sleeve",
+      "levels": [
+        {
+          "level": 6,
+          "region": "画面右袖收拢口内的远侧内壁和后缘，实际层 outer_jacket/left_sleeve | far | d6。分界沿袖口椭圆回转曲线 M818,650 C842,623 913,580 934,575 C935,594 849,654 818,650，保留约1.5px同片搭接。位于 inner_shirt/left_sleeve 远侧d8与本袖近側d32之后；窄真实透明口保留，内壁不是封口平面。"
+        },
+        {
+          "level": 32,
+          "region": "完整肩前袖身、青色宽袖口带及近侧衣缘，实际层 outer_jacket/left_sleeve | near | d32，位于 inner_shirt/left_sleeve 近侧d20之前、outer_jacket/jacket_body/left_front/front_panel d34之后。袖口与d6沿上述椭圆两端回转连续。肩根约x776–817、y354–390已局部修平突出尖角并用原生笔刷接顺外圈线；默认根部由前衣片遮挡。"
+        }
+      ],
+      "note": "袖口按穿衣参考收拢，前后内壁与袖带分层，保留真实窄开口。只含本袖白布、青色条带和自身褶皱，不画手臂或由手臂投下的投影。",
+      "check": {
+        "passed": true,
+        "note": "已独显前后片、同片合看、放大袖口与肩缝，并对照穿衣角色；袖口内壁连续、开口透明，肩缝无突出尖角或空隙。",
+        "regions": [
+          {
+            "level": 6,
+            "note": "远内壁和后缘独显连续，未填口，细边与近片在两端自然衔接。"
+          },
+          {
+            "level": 32,
+            "note": "近袖与青色袖带完整，修后肩根轮廓接顺前衣片；生成白布明暗保留。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "outer_jacket/right_sleeve",
+      "levels": [
+        {
+          "level": 7,
+          "region": "画面左袖收拢口内的远侧内壁和后缘，实际层 outer_jacket/right_sleeve | far | d7。分界为 M207,563 C221,551 327,618 337,647 C324,660 219,599 207,563，留约1.5px同片搭接。位于 inner_shirt/right_sleeve 远側d9与本袖近侧d33之后，真实透明口保持，不补封口平面。"
+        },
+        {
+          "level": 33,
+          "region": "完整肩前白色袖身、固定青色椭圆标识、宽袖口带和近侧衣缘，实际层 outer_jacket/right_sleeve | near | d33。位于 inner_shirt/right_sleeve 近侧d21之前、outer_jacket/jacket_body/right_front/front_panel d35之后；沿上述袖口内缘及两端回转与d7相接。根部由同侧前衣片自然遮挡。"
+        }
+      ],
+      "note": "袖身、袖带及固定标识保持同一逻辑 part，按穿衣时收拢袖口制作远内壁和窄开口；不包含人体、相邻袖或前衣片的像素。",
+      "check": {
+        "passed": true,
+        "note": "前后独显、同片合看及袖口放大均已检查；包边和内壁连续，开口透明，标识与本袖归属一致。",
+        "regions": [
+          {
+            "level": 7,
+            "note": "远側内壁和后缘完整，细边在回转端与近片接顺，无封口或杂色。"
+          },
+          {
+            "level": 33,
+            "note": "近袖、标识和青色带保留完整生成笔触；肩袖根与前衣片相接自然。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inner_shirt/left_sleeve",
+      "levels": [
+        {
+          "level": 8,
+          "region": "完整内搭袖口的远侧内壁与后衣缘，实际层 inner_shirt/left_sleeve | far | d8。分界曲线 M781,579 C792,554 841,513 856,515 C874,521 815,586 781,579，留约1.5px搭接。位于 outer_jacket/left_sleeve 远侧d6之前、本 ID近侧d20之后。独立深度组原生全黑透明度蒙版默认全隐。"
+        },
+        {
+          "level": 20,
+          "region": "完整肩前内搭袖身和近侧袖口，实际层 inner_shirt/left_sleeve | near | d20。位于同 ID远侧d8之前、inner_shirt/shirt_body 前面d22和 outer_jacket/left_sleeve 近侧d32之后，沿上述袖口两端回转连续。独立深度组原生全黑透明度蒙版默认全隐，完整深蓝衣料与真实透明口保留。"
+        }
+      ],
+      "note": "hiddenInReference 袖片保留两个普通绘画分片，各自深度组附原生全黑透明度蒙版，默认整体隐藏。解除蒙版可检查完整袖身、袖口内壁及真实开口；没有外套或手臂像素。",
+      "check": {
+        "passed": true,
+        "note": "两分片逐层独显、合看及原生蒙版切换已检查；完整纹理保留，默认合成不从外套袖口露出内搭封口。",
+        "regions": [
+          {
+            "level": 8,
+            "note": "远内壁独显完整，所属组蒙版启用为空、关闭可见，袖口孔透明。"
+          },
+          {
+            "level": 20,
+            "note": "完整近袖衣料连续，所属组蒙版默认启用；和远片合看没有缺口或异物。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inner_shirt/right_sleeve",
+      "levels": [
+        {
+          "level": 9,
+          "region": "完整内搭袖口远侧内壁、后缘与回转，实际层 inner_shirt/right_sleeve | far | d9。分界 M271,518 C287,507 354,548 383,583 C370,605 282,553 271,518，留约1.5px搭接。位于 outer_jacket/right_sleeve 远側d7之前、本 ID近側d21之后；独立组原生全黑透明度蒙版默认全隐。"
+        },
+        {
+          "level": 21,
+          "region": "完整内搭肩前袖身、近側袖口和衣缘，实际层 inner_shirt/right_sleeve | near | d21。位于同 ID远側d9之前、inner_shirt/shirt_body 前面d22及 outer_jacket/right_sleeve 近側d33之后。与d9沿袖口内缘和两端回转连接；独立组原生全黑透明度蒙版默认全隐。"
+        }
+      ],
+      "note": "hiddenInReference 袖片保留完整生成深蓝袖布，初次生成封口已针对开口重新生成后才拆层。两个普通绘画层各有所属深度组原生隐藏蒙版，默认全隐，原始纹理和透明口可检查。",
+      "check": {
+        "passed": true,
+        "note": "已逐层查看前后布料及同片合看，并切换两组原生蒙版；重新生成后真实透明口完整，无人体填色或外套鬼影。",
+        "regions": [
+          {
+            "level": 9,
+            "note": "远内壁独显连续，组蒙版启用全隐、关闭完整可见，孔仍透明。"
+          },
+          {
+            "level": 21,
+            "note": "近袖布面完整、褶皱连续；和远片自然收拢，默认组蒙版启用。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inner_shirt/shirt_collar/collar_base",
+      "levels": [
+        {
+          "level": 10,
+          "region": "完整后领弧及后侧颈根，实际层 inner_shirt/shirt_collar/collar_base | far | d10。后领分界为 M493,270 L649,270 L649,292 C647,301 646,311 643,318 C608,311 564,310 530,315 L501,292 L493,289 Z；右颈侧回转约x635–656、y295–327局部延续归后层，原生笔刷按同片颜色补足接头。位于 collar_root d3、两白翻领后根d4/d5之前，同 ID前座d23之后；后领下内缘界定真实颈口，不填封口。"
+        },
+        {
+          "level": 23,
+          "region": "两折领根下的完整前领座、中央窄承接及前侧回转，实际层 inner_shirt/shirt_collar/collar_base | near | d23。位于 inner_shirt/shirt_body 前面d22之前，short_necktie/knot_and_attachment d27、两折领d28/d29和外套前翻领d38/d39之后。与d10在两侧颈根回转连接；已清理分片上缘浮线和凸点，完整颈口保持透明，搭接由上层实际衣片自然遮挡。"
+        }
+      ],
+      "note": "同一领座保留两个普通绘画深度，后领和前座共同形成连续领口，未新增独立领座节点。顶缘凸起、前座浮线及局部接头已在已有画面上修整；右回转接头以原生笔刷逐笔补足，保留生成纹理与真实开口。",
+      "check": {
+        "passed": true,
+        "note": "已独显前后片、隐藏折领和外套翻领检查完整领座，并放大同片合看与整图领口。右回转接头连续，前座没有后领浮线，颈口透明。",
+        "regions": [
+          {
+            "level": 10,
+            "note": "完整后弧、细上缘和右侧回转内壁连续，局部补笔颜色接顺，不带人体或他片投影。"
+          },
+          {
+            "level": 23,
+            "note": "前座布面和内缘连续，已去除浮线与凸点；与后座合看没有断口，默认由折领自然覆盖。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pleated_skirt/skirt_body",
+      "levels": [
+        {
+          "level": 11,
+          "region": "在既有裙身投影x164–983、y700–1122内独立生成完整连续后侧内布面及蓝色内后摆。实际层 pleated_skirt/skirt_body | far | d11，在同 ID前裙d24之后；默认只有前裙自由边以下蓝色内后缘露出，其余由前片像素遮挡。自由边分界从(171,1019)经(271,1034)、(371,1055)、(471,1085)、(617,1104)、(771,1094)、(871,1077)至(977,1050)，沿真实褶片台阶与两侧回转，不沿青色条带切。后面无青条、三角标识、腰带或裙底封口。"
+        },
+        {
+          "level": 24,
+          "region": "完整前褶裙面、近侧自由边、青色条带和画面右侧三角标识，实际层 pleated_skirt/skirt_body | near | d24。位于同 ID后裙d11之前、pleated_skirt/waistband d25及两外套前衣摆d34/d35之后。腰根完整补全，前自由边按上述路径拆开，x343–352、447–456、838–849的细尾尖刺已局部去掉，曲线以亚像素边界接顺；与后缘在两侧回转。"
+        }
+      ],
+      "note": "同一裙身两个独立普通绘画深度。后裙补成完整连续内布面，前裙保留原生成主体及全部条带、标识和前侧描边；后料不只是窄边条。通过前裙实际像素遮住后片重叠区域，参考可见蓝后缘默认保留，真实裙口不封底。",
+      "check": {
+        "passed": true,
+        "note": "已逐层查看完整后布面和前裙，隐藏前裙检查后侧补全，并放大同片合看、自由边及裙腰。前片尖刺修整后独显干净，青条和标识仅在前片，后缘接色连续。",
+        "regions": [
+          {
+            "level": 11,
+            "note": "后布面独显连续、褶皱延伸完整，无前面条带或标识鬼影；默认蓝内后摆露出，其余被前片遮挡。"
+          },
+          {
+            "level": 24,
+            "note": "前裙布面、条带、标识和前轮廓连续，拆边保留本片包边且无尾刺；裙腰接缝与外套衣摆自然覆盖。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pleated_skirt/waistband",
+      "level": 25,
+      "note": "完整贴腰带，实际层 pleated_skirt/waistband | complete | d25，覆盖 inner_shirt/shirt_body 前面下端d22和 pleated_skirt/skirt_body 前面根部d24；两侧延伸位于外套两前衣摆d34/d35之后。腰带贴合连续，无需要单独深度的敞开后腰口；默认通过外套前片自然遮住侧端，完整隐藏料保留。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看完整腰带、上下外圈细线和侧端补全，并放大裙腰合成；腰根没有空隙、重复线或硬拼接。单深度25相容。"
+      }
+    },
+    {
+      "id": "short_necktie/hanging_blade",
+      "level": 26,
+      "note": "完整短菱形垂片，实际层 short_necktie/hanging_blade | complete | d26，位于 inner_shirt/shirt_body 前面d22之前、小结short_necktie/knot_and_attachment d27之后。上根完整延伸被小结自然压住，固定银灰色块、细外缘和自身明暗完整，单深度独立控制。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看垂片全轮廓和上根，并放大领带合成；小结与垂片没有缺口，未混入折领或衬衫像素。"
+      }
+    },
+    {
+      "id": "short_necktie/knot_and_attachment",
+      "level": 27,
+      "note": "完整小结及短上接段，实际层 short_necktie/knot_and_attachment | complete | d27，覆盖 hanging_blade d26上根，位于 inner_shirt/shirt_collar/left_collar_leaf d28和 right_collar_leaf d29之后。上接段从两领片中央缺口进入，真实搭接由折领像素遮挡，小结主体显示；不另扩展环颈带。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看完整小结和接段，并放大两折领缺口；结面、上接段及垂片衔接连续，单深度27满足实际覆盖。"
+      }
+    },
+    {
+      "id": "inner_shirt/shirt_collar/left_collar_leaf",
+      "level": 28,
+      "note": "画面右侧完整前折领，实际层 inner_shirt/shirt_collar/left_collar_leaf | complete | d28，由对侧 right_collar_leaf 在 Krita 中镜像并三点配准复用。覆盖 collar_base 前座d23及 knot_and_attachment d27进入段，外侧根在 outer_jacket/jacket_collar/left_collar_flap 前面d38之后；短翻折下表面仍属本片，颈后回转由 collar_base承担。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看领面、内外缘和隐藏根部，并合看两领片；镜像后保持左右比例、材质和颜色协调，中央领口与领带缺口开放，未盖掉整条领带。"
+      }
+    },
+    {
+      "id": "inner_shirt/shirt_collar/right_collar_leaf",
+      "level": 29,
+      "note": "画面左侧完整前折领，实际层 inner_shirt/shirt_collar/right_collar_leaf | complete | d29。覆盖 collar_base 前座d23及 knot_and_attachment d27上接段，外侧根位于 outer_jacket/jacket_collar/right_collar_flap 前面d39之后；前领面和短翻折下表面同层，后领座回转由独立 collar_base深度承担。默认搭接用实际上层像素遮挡。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看全领面、细轮廓和隐藏根，并放大领口；布面连续，领尖保持本片，中央小结和真实颈口仍露出，单深度29相容。"
+      }
+    },
+    {
+      "id": "jacket_front_clasp/left_clasp_wing",
+      "level": 30,
+      "note": "画面右側完整扣带翼，实际层 jacket_front_clasp/left_clasp_wing | complete | d30，在 Krita中镜像 right_clasp_wing并三点配准复用。位于 inner_shirt/shirt_body 前面d22之前、outer_jacket/jacket_body/left_front/front_panel d34和 jacket_front_clasp/center_buckle d40之后。外端与中央收束端完整延伸，由前片和扣件实际像素遮住搭接，带面默认显示。",
+      "check": {
+        "passed": true,
+        "note": "已独显检查完整白色带料、细外缘及两个隐藏端，放大扣带合成；接头无缺口、鬼线或相邻衣片像素，镜像配准后的布面和自身褶皱连续。"
+      }
+    },
+    {
+      "id": "jacket_front_clasp/right_clasp_wing",
+      "level": 31,
+      "note": "画面左側完整扣带翼，实际层 jacket_front_clasp/right_clasp_wing | complete | d31。位于 inner_shirt/shirt_body 前面d22之前、outer_jacket/jacket_body/right_front/front_panel d35及 jacket_front_clasp/center_buckle d40之后；外端、扣下搭接完整补足，生成的扣下缺口已重新生成修复，默认通过前片和扣件像素自然遮挡。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看完整翼片及扣下补全区，并放大扣带合成；缺口已补平，轮廓、颜色和细边连续，单深度31满足实际覆盖。"
+      }
+    },
+    {
+      "id": "outer_jacket/jacket_body/left_front/front_panel",
+      "level": 34,
+      "note": "画面右侧完整外套承载前片，实际层 outer_jacket/jacket_body/left_front/front_panel | complete | d34。覆盖 inner_shirt/shirt_body 前面d22、裙前d24、裙腰d25、left_clasp_wing d30外端及 outer_jacket/left_sleeve d32根部；位于同侧 left_front/lapel d36和 left_collar_flap前面d38之后。固定胸标识、口袋包边和布面褶皱均归本片，后料由独立 back_panel承担。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看完整前片、驳头下补全、肩根与衣摆，并放大肩袖缝、驳头和裙腰合成；错误黄色补全已重新生成去除，布面连续，固定胸标识归属正确。"
+      }
+    },
+    {
+      "id": "outer_jacket/jacket_body/right_front/front_panel",
+      "level": 35,
+      "note": "画面左侧完整外套承载前片，实际层 outer_jacket/jacket_body/right_front/front_panel | complete | d35。覆盖 inner_shirt/shirt_body 前面d22、裙前d24、裙腰d25、right_clasp_wing d31外端及 outer_jacket/right_sleeve d33根部；位于 right_front/lapel d37和 right_collar_flap前面d39之后。肩胸至衣摆及驳头下隐藏料连续，固定青色点与口袋边归本片，中央开襟保留。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看全前片和整圈轮廓，隐藏驳头检查下料，并放大衣身接缝；门襟、衣摆和口袋包边连续，无相邻片或人体像素。"
+      }
+    },
+    {
+      "id": "outer_jacket/jacket_body/left_front/lapel",
+      "level": 36,
+      "note": "画面右侧完整胸前驳头，实际层 outer_jacket/jacket_body/left_front/lapel | complete | d36，由 right_front/lapel在Krita镜像并三点配准复用。位于 left_front/front_panel d34之前、left_collar_flap前面d38之后；完整短折根、白领面、青色自由边和尖角都归本片，上端搭接由白翻领像素自然遮挡。",
+      "check": {
+        "passed": true,
+        "note": "已独显检查驳头全轮廓和隐藏折根，并放大翻领、驳头、前片衔接；包边保留完整，配准没有裁细线或拉坏尖角，单深度36相容。"
+      }
+    },
+    {
+      "id": "outer_jacket/jacket_body/right_front/lapel",
+      "level": 37,
+      "note": "画面左侧完整胸前驳头，实际层 outer_jacket/jacket_body/right_front/lapel | complete | d37。位于 right_front/front_panel d35之前、right_collar_flap前面d39之后；短上接段、完整白色翻出面和青色自由边连续，上端由白翻领自然遮挡，下料仍由独立前片承担。",
+      "check": {
+        "passed": true,
+        "note": "已独显查看完整驳头及细包边，并放大同侧前片和翻领连接；没有多余空隙、断线或他片像素，单深度37满足实际形体。"
+      }
+    },
+    {
+      "id": "jacket_front_clasp/center_buckle",
+      "level": 40,
+      "note": "完整中央圆角方扣，实际层 jacket_front_clasp/center_buckle | complete | d40，覆盖 left_clasp_wing d30与 right_clasp_wing d31的中央收束端，位于 inner_shirt/shirt_body 前面d22之前，当前不与两外套前片交叉。扣面固定纹样、金属边和自身明暗同层；无真实孔洞，不臆造开孔。",
+      "check": {
+        "passed": true,
+        "note": "已放大独显完整扣件、圆角外缘和固定纹样，并查看扣带合成；两翼接在扣下，扣面干净，最高单深度40成立。"
+      }
+    }
+  ]
+}

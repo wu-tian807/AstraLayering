@@ -1,0 +1,15 @@
+{
+  "method": "uniform alpha bounding box registration",
+  "sourceBounds": [
+    155,
+    79,
+    989,
+    1254
+  ],
+  "scale": 0.14297872340425533,
+  "position": [
+    315,
+    704
+  ],
+  "output": "raster-layering/step01/workspace/repair-cont/regen-forearm-right/registered.png"
+}

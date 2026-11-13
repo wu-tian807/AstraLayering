@@ -1,0 +1,38 @@
+{
+  "groupId": "short_necktie/hanging_blade",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过。已先独立查看纯衣服参考整图及 x575–660、y350–455 放大区域，再读取当前 part 与父组 note、候选及父完成 SVG，完成候选整体 blend、全片 8 倍 blend/edge/独显和父稿局部叠加检查。\n\n归属与完整性：参考中的本片是小结下方收窄处连接的短菱形垂片，约 x591–642、y391–441；候选完整覆盖其折弯本体、两侧深色外描边及圆收下端，没有包入衬衫领尖、胸前衬衫、白色连接带或人体，没有遗漏可见分离组件。该片无真实开口、薄纱或独立附件，不需要增加内部绘画路径。\n\n位置与轮廓：上根约 x603–626、y389–392 的少量上伸属于被小结压住的合理隐藏搭接，与 note 的分界和前后关系一致。左边 x591–603、y392–415、右边 x626–642、y391–435 及下端 x623–633、y435–441 均已用 edge 覆盖逐处核对，沿参考实体的外描边，短菱形的宽高、倾斜及下端位置一致。独显为完整闭合单片，没有孔洞或额外孤立块。\n\n父范围与说明：画布为 1115×1410；四倍采样父包含检查 outsidePixels=0。note 已传递实体范围、相邻分界、小结前后关系、胸前覆盖及共同随动和独立摆动职责，无已确认的说明缺陷或上游限制。无需重画或返修。\n\n图像证据（全片窗口 x580、y380、75×70，8 倍）：\n\n\n",
+      "candidateHash": "94044c4c4a3e87cd5a7f50931536a543bee5efe23689c9fda3c87996ea52a896",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/children/hanging_blade/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/hanging_blade/previews/2026-11-10T10-52-21-377Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/short_necktie.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/hanging_blade/previews/2026-11-10T10-52-21-377Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/children/hanging_blade/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/hanging_blade/previews/2026-11-10T10-52-21-377Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/children/hanging_blade/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/hanging_blade/previews/2026-11-10T10-52-21-377Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/children/hanging_blade/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/hanging_blade/previews/2026-11-10T10-52-21-377Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:13:31.403Z"
+    }
+  ]
+}

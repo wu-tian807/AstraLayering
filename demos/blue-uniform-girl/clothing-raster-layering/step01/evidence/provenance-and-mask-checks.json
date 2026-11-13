@@ -1,0 +1,593 @@
+{
+  "tool": "built-in image_gen",
+  "generatedSourceByPart": {
+    "pleated_skirt/skirt_body": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_6s3db6isZLooIQpUuWhUCyBb.png",
+    "outer_jacket/jacket_body/right_front/front_panel": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_vsbau4Ed6ICpb6A6zXAeGWGH.png",
+    "outer_jacket/jacket_body/left_front/front_panel": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_bFhjQUayBWOG7u8ct8iR1Rvb.png",
+    "outer_jacket/jacket_body/right_front/lapel": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_zq0o42wKK30nFAHx71FiFOtU.png",
+    "outer_jacket/jacket_collar/right_collar_flap": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_73ALmOSCXCurkWbyi0LGT7Ya.png",
+    "outer_jacket/jacket_collar/left_collar_flap": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_wdHSNrCtwV322XXdq20tzgy5.png",
+    "outer_jacket/right_sleeve": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_iRSWaBDvDCmN2SaUGEeuM7Y6.png",
+    "outer_jacket/left_sleeve": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_SmgFqTEBFkjQppwWlFpkgUZO.png",
+    "inner_shirt/shirt_body": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_0zQgbtPIHyKRMBkrKJRRObBV.png",
+    "outer_jacket/jacket_body/back_panel": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_DEiiweRWIkZjBhwdpiJgOQZX.png",
+    "outer_jacket/jacket_collar/collar_root": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_ACBAIHBl9VRnoq42cX7eBjqJ.png",
+    "inner_shirt/shirt_collar/right_collar_leaf": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_c8vHahldc43JzxMlK8koV4QW.png",
+    "inner_shirt/shirt_collar/collar_base": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_zpJ1G3OOWRpRDhWhXV0doyUJ.png",
+    "short_necktie/knot_and_attachment": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_M21TPfRsUaOQxjESBn5UUOFF.png",
+    "short_necktie/hanging_blade": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_oudcSddr5eBpqapuTEEpaMtQ.png",
+    "jacket_front_clasp/right_clasp_wing": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_VugoeB3Qdb17ya1GgYeWWjBQ.png",
+    "jacket_front_clasp/center_buckle": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_mRnAr4rIOlAN5F687IwOtBg4.png",
+    "pleated_skirt/waistband": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_2t7YKkx8Z5SfaOA22A7hM6Fj.png",
+    "inner_shirt/left_sleeve": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_kLJq70gEEDyxDeuc4jnqsGjG.png",
+    "inner_shirt/right_sleeve": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_OdN6frluPip7q1iGo35XCsqG.png"
+  },
+  "separatelyGeneratedRearFabric": {
+    "pleated_skirt/skirt_body": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_wn8dNQPfFsaNj7YKMS2nuyYa.png",
+    "inner_shirt/shirt_body": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_QGvcuFTNmCAxXGObvuyv7xqz.png"
+  },
+  "nativeKritaMirrorAndThreeAnchorRegistration": [
+    {
+      "id": "outer_jacket/jacket_body/left_front/lapel",
+      "source": "outer_jacket/jacket_body/right_front/lapel",
+      "sourceAnchors": [
+        [
+          530,
+          376
+        ],
+        [
+          474,
+          432
+        ],
+        [
+          593,
+          510
+        ]
+      ],
+      "targetAnchors": [
+        [
+          679,
+          381
+        ],
+        [
+          749,
+          432
+        ],
+        [
+          679,
+          500
+        ]
+      ]
+    },
+    {
+      "id": "inner_shirt/shirt_collar/left_collar_leaf",
+      "source": "inner_shirt/shirt_collar/right_collar_leaf",
+      "sourceAnchors": [
+        [
+          497,
+          283
+        ],
+        [
+          604,
+          364
+        ],
+        [
+          550,
+          400
+        ]
+      ],
+      "targetAnchors": [
+        [
+          644,
+          285
+        ],
+        [
+          605,
+          362
+        ],
+        [
+          665,
+          399
+        ]
+      ]
+    },
+    {
+      "id": "jacket_front_clasp/left_clasp_wing",
+      "source": "jacket_front_clasp/right_clasp_wing",
+      "sourceAnchors": [
+        [
+          585,
+          478
+        ],
+        [
+          580,
+          584
+        ],
+        [
+          640,
+          534
+        ]
+      ],
+      "targetAnchors": [
+        [
+          675,
+          479
+        ],
+        [
+          701,
+          584
+        ],
+        [
+          640,
+          534
+        ]
+      ]
+    }
+  ],
+  "masks": [
+    {
+      "id": "outer_jacket/jacket_body/back_panel",
+      "depth": 1,
+      "paintingUUID": "{d65980d6-ab8f-494f-bd94-680b5b363881}",
+      "maskUUID": "{1114f839-db15-40dd-a7e3-1b52d083e245}",
+      "maskName": "outer_jacket/jacket_body/back_panel | default hidden",
+      "owner": "outer_jacket/jacket_body/back_panel | complete | d1",
+      "ownerUUID": "{d65980d6-ab8f-494f-bd94-680b5b363881}",
+      "control": "该深度分片完整投影；全黑原生透明度蒙版默认全隐，停用后显示保留的完整衣料。真实开口由绘画 alpha 保持。",
+      "enabledByDefault": true,
+      "defaultExportIsTransparent": true,
+      "maskOffExportContainsRetainedPainting": true,
+      "defaultEvidence": "clothing-raster-layering/step01/evidence/layers/outer_jacket__jacket_body__back_panel__d1__default.png",
+      "maskOffEvidence": "clothing-raster-layering/step01/evidence/layers/outer_jacket__jacket_body__back_panel__d1__mask-off.png",
+      "visuallyCheckedInRepair01": true,
+      "visuallyCheckedInRepair02": true
+    },
+    {
+      "id": "inner_shirt/shirt_body",
+      "depth": 2,
+      "paintingUUID": "{64476358-6b22-4371-8a2d-680990fe8c4a}",
+      "maskUUID": "{e3788cde-d110-4303-8428-6bb36de5c26f}",
+      "maskName": "inner_shirt/shirt_body | default concealed | d2",
+      "owner": "inner_shirt/shirt_body | visibility control | d2",
+      "ownerUUID": "{8fc6e546-e307-4676-9453-0ded6ec52c07}",
+      "control": "该深度分片完整投影；全黑原生透明度蒙版默认全隐，停用后显示保留的完整衣料。真实开口由绘画 alpha 保持。",
+      "enabledByDefault": true,
+      "defaultExportIsTransparent": true,
+      "maskOffExportContainsRetainedPainting": true,
+      "defaultEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__shirt_body__d2__default.png",
+      "maskOffEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__shirt_body__d2__mask-off.png",
+      "visuallyCheckedInRepair01": true,
+      "visuallyCheckedInRepair02": true
+    },
+    {
+      "id": "outer_jacket/jacket_collar/collar_root",
+      "depth": 3,
+      "paintingUUID": "{d5126161-e3cf-4e12-a122-dda79e6651af}",
+      "maskUUID": "{020b5612-5197-41af-8e41-016116b0089e}",
+      "maskName": "outer_jacket/jacket_collar/collar_root | default hidden",
+      "owner": "outer_jacket/jacket_collar/collar_root | complete | d3",
+      "ownerUUID": "{d5126161-e3cf-4e12-a122-dda79e6651af}",
+      "control": "该深度分片完整投影；全黑原生透明度蒙版默认全隐，停用后显示保留的完整衣料。真实开口由绘画 alpha 保持。",
+      "enabledByDefault": true,
+      "defaultExportIsTransparent": true,
+      "maskOffExportContainsRetainedPainting": true,
+      "defaultEvidence": "clothing-raster-layering/step01/evidence/layers/outer_jacket__jacket_collar__collar_root__d3__default.png",
+      "maskOffEvidence": "clothing-raster-layering/step01/evidence/layers/outer_jacket__jacket_collar__collar_root__d3__mask-off.png",
+      "visuallyCheckedInRepair01": true,
+      "visuallyCheckedInRepair02": true
+    },
+    {
+      "id": "inner_shirt/left_sleeve",
+      "depth": 8,
+      "paintingUUID": "{6b8f1300-71be-4b40-9564-07941030af7e}",
+      "maskUUID": "{73139073-0388-49fc-9523-c45480c8bca8}",
+      "maskName": "inner_shirt/left_sleeve | default concealed | d8",
+      "owner": "inner_shirt/left_sleeve | visibility control | d8",
+      "ownerUUID": "{39bed1a5-07a1-48a4-8e3b-cc10483b51a3}",
+      "control": "该深度分片完整投影；全黑原生透明度蒙版默认全隐，停用后显示保留的完整衣料。真实开口由绘画 alpha 保持。",
+      "enabledByDefault": true,
+      "defaultExportIsTransparent": true,
+      "maskOffExportContainsRetainedPainting": true,
+      "defaultEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__left_sleeve__d8__default.png",
+      "maskOffEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__left_sleeve__d8__mask-off.png",
+      "visuallyCheckedInRepair01": true,
+      "visuallyCheckedInRepair02": true
+    },
+    {
+      "id": "inner_shirt/right_sleeve",
+      "depth": 9,
+      "paintingUUID": "{927e01f3-f285-44fa-9aa0-91cb5cb985e9}",
+      "maskUUID": "{c9fa2eb0-a701-4ab0-9111-1d3063c0c0e8}",
+      "maskName": "inner_shirt/right_sleeve | default concealed | d9",
+      "owner": "inner_shirt/right_sleeve | visibility control | d9",
+      "ownerUUID": "{dc42b4f3-eb54-4ab0-aa2e-59a7cc800302}",
+      "control": "该深度分片完整投影；全黑原生透明度蒙版默认全隐，停用后显示保留的完整衣料。真实开口由绘画 alpha 保持。",
+      "enabledByDefault": true,
+      "defaultExportIsTransparent": true,
+      "maskOffExportContainsRetainedPainting": true,
+      "defaultEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__right_sleeve__d9__default.png",
+      "maskOffEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__right_sleeve__d9__mask-off.png",
+      "visuallyCheckedInRepair01": true,
+      "visuallyCheckedInRepair02": true
+    },
+    {
+      "id": "inner_shirt/left_sleeve",
+      "depth": 20,
+      "paintingUUID": "{1bd5ddc5-1e9d-44a6-99c9-3ad3150c3bfb}",
+      "maskUUID": "{7c4217ee-4f04-41c9-b1e6-7ddfd9e8d2fc}",
+      "maskName": "inner_shirt/left_sleeve | default concealed | d20",
+      "owner": "inner_shirt/left_sleeve | visibility control | d20",
+      "ownerUUID": "{73eb42ba-5a77-4d33-a876-bc00c38e46f3}",
+      "control": "该深度分片完整投影；全黑原生透明度蒙版默认全隐，停用后显示保留的完整衣料。真实开口由绘画 alpha 保持。",
+      "enabledByDefault": true,
+      "defaultExportIsTransparent": true,
+      "maskOffExportContainsRetainedPainting": true,
+      "defaultEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__left_sleeve__d20__default.png",
+      "maskOffEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__left_sleeve__d20__mask-off.png",
+      "visuallyCheckedInRepair01": true,
+      "visuallyCheckedInRepair02": true
+    },
+    {
+      "id": "inner_shirt/right_sleeve",
+      "depth": 21,
+      "paintingUUID": "{9ac3a3a0-8e69-465d-9931-1a8897e2c9b3}",
+      "maskUUID": "{a93743a6-fc70-4142-8b46-3626dd4e6344}",
+      "maskName": "inner_shirt/right_sleeve | default concealed | d21",
+      "owner": "inner_shirt/right_sleeve | visibility control | d21",
+      "ownerUUID": "{3872ef39-e996-49f5-a3cb-46e881306d54}",
+      "control": "该深度分片完整投影；全黑原生透明度蒙版默认全隐，停用后显示保留的完整衣料。真实开口由绘画 alpha 保持。",
+      "enabledByDefault": true,
+      "defaultExportIsTransparent": true,
+      "maskOffExportContainsRetainedPainting": true,
+      "defaultEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__right_sleeve__d21__default.png",
+      "maskOffEvidence": "clothing-raster-layering/step01/evidence/layers/inner_shirt__right_sleeve__d21__mask-off.png",
+      "visuallyCheckedInRepair01": true,
+      "visuallyCheckedInRepair02": true
+    }
+  ],
+  "generatedSourceByPartMeaning": "Initial base generation sources; repair-01 historical local sources and repair-02 current local sources are recorded separately.",
+  "repair01SourcesByPart": {
+    "outer_jacket/right_sleeve": {
+      "depth": 33,
+      "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_XlpxzgLT4NeJ7OpE3TKoyCeZ.png",
+      "control": "clothing-raster-layering/step01/repair-01-evidence/final-sources/R1-control.png",
+      "neutralizedReference": "clothing-raster-layering/step01/repair-01-evidence/final-sources/R1-reference.png",
+      "registered": "clothing-raster-layering/step01/repair-01-evidence/final-sources/R1-registered.png",
+      "referenceSampling": "Own cyan cuff only; no body or other clothing pixels."
+    },
+    "inner_shirt/shirt_body": {
+      "depth": 22,
+      "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_84KoETDPYt2RzFjE2dKSRZJC.png",
+      "control": "clothing-raster-layering/step01/repair-01-evidence/final-sources/R5-control.png",
+      "neutralizedReference": "clothing-raster-layering/step01/repair-01-evidence/final-sources/R5-reference.png",
+      "registered": "clothing-raster-layering/step01/repair-01-evidence/final-sources/R5-registered.png",
+      "registration": "clothing-raster-layering/step01/repair-01-evidence/final-sources/R5-registration.json",
+      "nativeBrush": {
+        "preset": "b) Basic-2 Opacity",
+        "size": 4.3,
+        "color": "#101c37",
+        "opacity": 0.98
+      },
+      "referenceSampling": "Only three shirt buttons, followed by native curved placket extension. Failed earlier patch versions were discarded."
+    },
+    "jacket_front_clasp/center_buckle": {
+      "depth": 40,
+      "finalReferenceSource": "clothing-part-layering/references/clothing.png",
+      "ownEdgeSample": "clothing-raster-layering/step01/repair-01-evidence/final-sources/R8-own-bottom-edge.png",
+      "note": "Small buckle reconstructed by own-part reference sampling; no clasp-wing pixels."
+    }
+  },
+  "currentPaintings": [
+    {
+      "id": "outer_jacket/jacket_body/back_panel",
+      "depth": 1,
+      "name": "outer_jacket/jacket_body/back_panel | complete | d1",
+      "uuid": "{d65980d6-ab8f-494f-bd94-680b5b363881}",
+      "containerName": "outer_jacket/jacket_body/back_panel | complete | d1",
+      "containerUUID": "{d65980d6-ab8f-494f-bd94-680b5b363881}"
+    },
+    {
+      "id": "inner_shirt/shirt_body",
+      "depth": 2,
+      "name": "inner_shirt/shirt_body | far | d2",
+      "uuid": "{64476358-6b22-4371-8a2d-680990fe8c4a}",
+      "containerName": "inner_shirt/shirt_body | visibility control | d2",
+      "containerUUID": "{8fc6e546-e307-4676-9453-0ded6ec52c07}"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/collar_root",
+      "depth": 3,
+      "name": "outer_jacket/jacket_collar/collar_root | complete | d3",
+      "uuid": "{d5126161-e3cf-4e12-a122-dda79e6651af}",
+      "containerName": "outer_jacket/jacket_collar/collar_root | complete | d3",
+      "containerUUID": "{d5126161-e3cf-4e12-a122-dda79e6651af}"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/left_collar_flap",
+      "depth": 4,
+      "name": "outer_jacket/jacket_collar/left_collar_flap | far | d4",
+      "uuid": "{f34263dd-950b-43de-8415-2f96af713392}",
+      "containerName": "outer_jacket/jacket_collar/left_collar_flap | far | d4",
+      "containerUUID": "{f34263dd-950b-43de-8415-2f96af713392}"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/right_collar_flap",
+      "depth": 5,
+      "name": "outer_jacket/jacket_collar/right_collar_flap | far | d5",
+      "uuid": "{46380345-5435-4995-bea2-a1c17edf3ba2}",
+      "containerName": "outer_jacket/jacket_collar/right_collar_flap | far | d5",
+      "containerUUID": "{46380345-5435-4995-bea2-a1c17edf3ba2}"
+    },
+    {
+      "id": "outer_jacket/left_sleeve",
+      "depth": 6,
+      "name": "outer_jacket/left_sleeve | far | d6",
+      "uuid": "{7af74231-3b67-4500-8a6f-9b9a7d8791f6}",
+      "containerName": "outer_jacket/left_sleeve | far | d6",
+      "containerUUID": "{7af74231-3b67-4500-8a6f-9b9a7d8791f6}"
+    },
+    {
+      "id": "outer_jacket/right_sleeve",
+      "depth": 7,
+      "name": "outer_jacket/right_sleeve | far | d7",
+      "uuid": "{16be55fe-78c2-4e58-a605-4bf1eaa070e1}",
+      "containerName": "outer_jacket/right_sleeve | far | d7",
+      "containerUUID": "{16be55fe-78c2-4e58-a605-4bf1eaa070e1}"
+    },
+    {
+      "id": "inner_shirt/left_sleeve",
+      "depth": 8,
+      "name": "inner_shirt/left_sleeve | far | d8",
+      "uuid": "{6b8f1300-71be-4b40-9564-07941030af7e}",
+      "containerName": "inner_shirt/left_sleeve | visibility control | d8",
+      "containerUUID": "{39bed1a5-07a1-48a4-8e3b-cc10483b51a3}"
+    },
+    {
+      "id": "inner_shirt/right_sleeve",
+      "depth": 9,
+      "name": "inner_shirt/right_sleeve | far | d9",
+      "uuid": "{927e01f3-f285-44fa-9aa0-91cb5cb985e9}",
+      "containerName": "inner_shirt/right_sleeve | visibility control | d9",
+      "containerUUID": "{dc42b4f3-eb54-4ab0-aa2e-59a7cc800302}"
+    },
+    {
+      "id": "inner_shirt/shirt_collar/collar_base",
+      "depth": 10,
+      "name": "inner_shirt/shirt_collar/collar_base | far | d10",
+      "uuid": "{3e8eed0d-000f-48d0-9f64-932f9083755f}",
+      "containerName": "inner_shirt/shirt_collar/collar_base | far | d10",
+      "containerUUID": "{3e8eed0d-000f-48d0-9f64-932f9083755f}"
+    },
+    {
+      "id": "pleated_skirt/skirt_body",
+      "depth": 11,
+      "name": "pleated_skirt/skirt_body | far | d11",
+      "uuid": "{e90f4e77-c691-49b3-9de0-783cb7723a76}",
+      "containerName": "pleated_skirt/skirt_body | far | d11",
+      "containerUUID": "{e90f4e77-c691-49b3-9de0-783cb7723a76}"
+    },
+    {
+      "id": "inner_shirt/left_sleeve",
+      "depth": 20,
+      "name": "inner_shirt/left_sleeve | near | d20",
+      "uuid": "{1bd5ddc5-1e9d-44a6-99c9-3ad3150c3bfb}",
+      "containerName": "inner_shirt/left_sleeve | visibility control | d20",
+      "containerUUID": "{73eb42ba-5a77-4d33-a876-bc00c38e46f3}"
+    },
+    {
+      "id": "inner_shirt/right_sleeve",
+      "depth": 21,
+      "name": "inner_shirt/right_sleeve | near | d21",
+      "uuid": "{9ac3a3a0-8e69-465d-9931-1a8897e2c9b3}",
+      "containerName": "inner_shirt/right_sleeve | visibility control | d21",
+      "containerUUID": "{3872ef39-e996-49f5-a3cb-46e881306d54}"
+    },
+    {
+      "id": "inner_shirt/shirt_body",
+      "depth": 22,
+      "name": "inner_shirt/shirt_body | near | d22",
+      "uuid": "{e64044de-4dd1-4510-bc38-062edfd5633f}",
+      "containerName": "inner_shirt/shirt_body | near | d22",
+      "containerUUID": "{e64044de-4dd1-4510-bc38-062edfd5633f}"
+    },
+    {
+      "id": "inner_shirt/shirt_collar/collar_base",
+      "depth": 23,
+      "name": "inner_shirt/shirt_collar/collar_base | near | d23",
+      "uuid": "{c4121cb2-56f5-4874-817b-0ea842a813da}",
+      "containerName": "inner_shirt/shirt_collar/collar_base | near | d23",
+      "containerUUID": "{c4121cb2-56f5-4874-817b-0ea842a813da}"
+    },
+    {
+      "id": "pleated_skirt/skirt_body",
+      "depth": 24,
+      "name": "pleated_skirt/skirt_body | near | d24",
+      "uuid": "{18ec5e0c-cd44-45ce-978a-6634cfc49573}",
+      "containerName": "pleated_skirt/skirt_body | near | d24",
+      "containerUUID": "{18ec5e0c-cd44-45ce-978a-6634cfc49573}"
+    },
+    {
+      "id": "pleated_skirt/waistband",
+      "depth": 25,
+      "name": "pleated_skirt/waistband | complete | d25",
+      "uuid": "{cfa95e5e-7469-41fb-b5ec-6870974b8938}",
+      "containerName": "pleated_skirt/waistband | complete | d25",
+      "containerUUID": "{cfa95e5e-7469-41fb-b5ec-6870974b8938}"
+    },
+    {
+      "id": "short_necktie/hanging_blade",
+      "depth": 26,
+      "name": "short_necktie/hanging_blade | complete | d26",
+      "uuid": "{ef80ec8a-8ce4-441f-bc3a-d6816614a33b}",
+      "containerName": "short_necktie/hanging_blade | complete | d26",
+      "containerUUID": "{ef80ec8a-8ce4-441f-bc3a-d6816614a33b}"
+    },
+    {
+      "id": "short_necktie/knot_and_attachment",
+      "depth": 27,
+      "name": "short_necktie/knot_and_attachment | complete | d27",
+      "uuid": "{04553e19-559a-40a3-bbc3-846b4f0868e2}",
+      "containerName": "short_necktie/knot_and_attachment | complete | d27",
+      "containerUUID": "{04553e19-559a-40a3-bbc3-846b4f0868e2}"
+    },
+    {
+      "id": "inner_shirt/shirt_collar/left_collar_leaf",
+      "depth": 28,
+      "name": "inner_shirt/shirt_collar/left_collar_leaf | complete | d28",
+      "uuid": "{522a2d60-6d6d-4bee-9809-49ce8868ca81}",
+      "containerName": "inner_shirt/shirt_collar/left_collar_leaf | complete | d28",
+      "containerUUID": "{522a2d60-6d6d-4bee-9809-49ce8868ca81}"
+    },
+    {
+      "id": "inner_shirt/shirt_collar/right_collar_leaf",
+      "depth": 29,
+      "name": "inner_shirt/shirt_collar/right_collar_leaf | complete | d29",
+      "uuid": "{1afc9ee8-5750-4582-9e9d-71f84760b426}",
+      "containerName": "inner_shirt/shirt_collar/right_collar_leaf | complete | d29",
+      "containerUUID": "{1afc9ee8-5750-4582-9e9d-71f84760b426}"
+    },
+    {
+      "id": "jacket_front_clasp/left_clasp_wing",
+      "depth": 30,
+      "name": "jacket_front_clasp/left_clasp_wing | complete | d30",
+      "uuid": "{133a0d6a-be41-4624-8034-39bdb9156a95}",
+      "containerName": "jacket_front_clasp/left_clasp_wing | complete | d30",
+      "containerUUID": "{133a0d6a-be41-4624-8034-39bdb9156a95}"
+    },
+    {
+      "id": "jacket_front_clasp/right_clasp_wing",
+      "depth": 31,
+      "name": "jacket_front_clasp/right_clasp_wing | complete | d31",
+      "uuid": "{b10fddaf-f4a0-46f8-9bd8-710375924ec0}",
+      "containerName": "jacket_front_clasp/right_clasp_wing | complete | d31",
+      "containerUUID": "{b10fddaf-f4a0-46f8-9bd8-710375924ec0}"
+    },
+    {
+      "id": "outer_jacket/left_sleeve",
+      "depth": 32,
+      "name": "outer_jacket/left_sleeve | near | d32",
+      "uuid": "{975f8a53-72cd-4d9f-a48e-a47f9c946e5e}",
+      "containerName": "outer_jacket/left_sleeve | near | d32",
+      "containerUUID": "{975f8a53-72cd-4d9f-a48e-a47f9c946e5e}"
+    },
+    {
+      "id": "outer_jacket/right_sleeve",
+      "depth": 33,
+      "name": "outer_jacket/right_sleeve | near | d33",
+      "uuid": "{8bd254f1-e3c5-4bda-b5f3-9552c5895ad7}",
+      "containerName": "outer_jacket/right_sleeve | near | d33",
+      "containerUUID": "{8bd254f1-e3c5-4bda-b5f3-9552c5895ad7}"
+    },
+    {
+      "id": "outer_jacket/jacket_body/left_front/front_panel",
+      "depth": 34,
+      "name": "outer_jacket/jacket_body/left_front/front_panel | complete | d34",
+      "uuid": "{b1f01629-aee1-4bd0-bef0-7772313408f7}",
+      "containerName": "outer_jacket/jacket_body/left_front/front_panel | complete | d34",
+      "containerUUID": "{b1f01629-aee1-4bd0-bef0-7772313408f7}"
+    },
+    {
+      "id": "outer_jacket/jacket_body/right_front/front_panel",
+      "depth": 35,
+      "name": "outer_jacket/jacket_body/right_front/front_panel | complete | d35",
+      "uuid": "{53ed8735-9b01-4161-b7cb-8af60f6b775c}",
+      "containerName": "outer_jacket/jacket_body/right_front/front_panel | complete | d35",
+      "containerUUID": "{53ed8735-9b01-4161-b7cb-8af60f6b775c}"
+    },
+    {
+      "id": "outer_jacket/jacket_body/left_front/lapel",
+      "depth": 36,
+      "name": "outer_jacket/jacket_body/left_front/lapel | complete | d36",
+      "uuid": "{d0d277c3-7639-458a-bebe-d8a0d2f667ae}",
+      "containerName": "outer_jacket/jacket_body/left_front/lapel | complete | d36",
+      "containerUUID": "{d0d277c3-7639-458a-bebe-d8a0d2f667ae}"
+    },
+    {
+      "id": "outer_jacket/jacket_body/right_front/lapel",
+      "depth": 37,
+      "name": "outer_jacket/jacket_body/right_front/lapel | complete | d37",
+      "uuid": "{99ac81ac-c0e8-4df6-ab82-13c61e836b72}",
+      "containerName": "outer_jacket/jacket_body/right_front/lapel | complete | d37",
+      "containerUUID": "{99ac81ac-c0e8-4df6-ab82-13c61e836b72}"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/left_collar_flap",
+      "depth": 38,
+      "name": "outer_jacket/jacket_collar/left_collar_flap | near | d38",
+      "uuid": "{c2db0fa9-841c-4447-b555-3691ffe295cd}",
+      "containerName": "outer_jacket/jacket_collar/left_collar_flap | near | d38",
+      "containerUUID": "{c2db0fa9-841c-4447-b555-3691ffe295cd}"
+    },
+    {
+      "id": "outer_jacket/jacket_collar/right_collar_flap",
+      "depth": 39,
+      "name": "outer_jacket/jacket_collar/right_collar_flap | near | d39",
+      "uuid": "{245d9658-a1b2-47aa-84e7-6748f56035ba}",
+      "containerName": "outer_jacket/jacket_collar/right_collar_flap | near | d39",
+      "containerUUID": "{245d9658-a1b2-47aa-84e7-6748f56035ba}"
+    },
+    {
+      "id": "jacket_front_clasp/center_buckle",
+      "depth": 40,
+      "name": "jacket_front_clasp/center_buckle | complete | d40",
+      "uuid": "{4a8d5063-93b1-445d-8da8-877722e35ae0}",
+      "containerName": "jacket_front_clasp/center_buckle | complete | d40",
+      "containerUUID": "{4a8d5063-93b1-445d-8da8-877722e35ae0}"
+    }
+  ],
+  "repair01UpdatedAtUTC": "2026-11-10T21:30:00.028875+00:00",
+  "repair02SourcesByPart": {
+    "inner_shirt/shirt_body": {
+      "depth": 22,
+      "generatedSource": "clothing-raster-layering/step01/workspace/generated/generated_images/01a1c628-8b70-7341-9347-d17b48dc7786/call_e68qvtYCQjZyaCpyvLqjANYX.png",
+      "generatedEvidence": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R1-generated.png",
+      "control": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R1-control.png",
+      "neutralizedReference": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R1-reference.png",
+      "registered": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R1-registered.png",
+      "registration": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R1-registration.json",
+      "materialSelection": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R1-material-mask.png",
+      "uniformScale": 0.19,
+      "finalMethod": "Native paste of registered generated side fabric onto retained painting. Original three buttons, curved placket and perimeter protected.",
+      "discarded": "Reference-overlay side-fabric trial with doubled dark folds; not used in final painting."
+    },
+    "outer_jacket/right_sleeve": {
+      "depth": 33,
+      "nativeBrushPreset": "b) Basic-2 Opacity",
+      "cuffEdge": {
+        "size": 3.8,
+        "color": "#188eb6",
+        "strokeCoordinates": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R2-stroke.json"
+      },
+      "ownCyanSource": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R3-own-cyan.png",
+      "shoulderReference": "clothing-part-layering/references/clothing.png",
+      "referenceSelection": "Only this sleeve side of its shoulder boundary; original shoulder perimeter retained above y344.",
+      "farDepth7Unchanged": true
+    },
+    "outer_jacket/jacket_body/right_front/front_panel": {
+      "depth": 35,
+      "referenceSource": "clothing-part-layering/references/clothing.png",
+      "selection": "Only this front panel side of the left shoulder seam; local opaque fabric restoration and cloth-interior transition."
+    },
+    "outer_jacket/jacket_collar/left_collar_flap": {
+      "depth": 38,
+      "nativeBrushPreset": "b) Basic-2 Opacity",
+      "mainTrimWidth": "2.1–7.1px",
+      "lightTrimWidth": "1.8px",
+      "strokeCoordinates": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R5-stroke.json",
+      "farDepth4Unchanged": true,
+      "discarded": "Reference-trim sample cropped by owner SVG; not used in final painting."
+    },
+    "outer_jacket/jacket_body/left_front/front_panel": {
+      "depth": 34,
+      "referenceSource": "clothing-part-layering/references/clothing.png",
+      "ownTopRestorationSource": "clothing-raster-layering/step01/repair-02-evidence/final-sources/R6-before-d34-own.png",
+      "nativeBrushPreset": "b) Basic-2 Opacity",
+      "lowerOutlineSize": 4.2,
+      "upperTransitionWidth": "3.5–6px",
+      "selection": "Own opening and hem only; upper alpha gap restored from original same-part edge fabric. Avoided grey projected marks farther inside the old source.",
+      "lapelDepth36Unchanged": true
+    }
+  },
+  "repair02UpdatedAtUTC": "2026-11-10T22:55:33.634989+00:00",
+  "repair02ReopenVerification": "clothing-raster-layering/step01/repair-02-evidence/reopen-verification.json"
+}

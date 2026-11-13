@@ -22,8 +22,9 @@ export function toolSchemaNames(): string[] {
 
 // Schemas are code: shared/tools/<name>/schema.json, optionally replaced by a
 // section's tools/<name>/schema.json (`overrides`). Descriptions are prior
-// knowledge: knowledge/shared/tools/<name>/description.md; a step may supply
-// its own (see stepKnowledge().tools). A catalog is a snapshot. Running
+// knowledge: shared descriptions live in knowledge/shared/tools/<name>/;
+// section and step descriptions are applied by stepKnowledge().tools.
+// A catalog is a snapshot. Running
 // sessions keep their registered definitions; editing the files takes effect
 // on the next workflow launch.
 export class ToolCatalog {

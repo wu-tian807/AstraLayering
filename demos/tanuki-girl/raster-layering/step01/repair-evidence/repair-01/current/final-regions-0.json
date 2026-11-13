@@ -1,0 +1,232 @@
+[
+  {
+    "tag": "R1",
+    "levels": [
+      65,
+      67,
+      69,
+      71
+    ],
+    "box": [
+      724,
+      395,
+      87,
+      75
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R1",
+    "names": [
+      "D65 | face/eyes/eye_left/sclera",
+      "D67 | face/eyes/eye_left/iris",
+      "D69 | face/eyes/eye_left/highlight",
+      "D71 | face/eyes/eye_left/upper_eyelid"
+    ]
+  },
+  {
+    "tag": "R2",
+    "levels": [
+      66,
+      68,
+      70,
+      72
+    ],
+    "box": [
+      603,
+      395,
+      87,
+      75
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R2",
+    "names": [
+      "D66 | face/eyes/eye_right/sclera",
+      "D68 | face/eyes/eye_right/iris",
+      "D70 | face/eyes/eye_right/highlight",
+      "D72 | face/eyes/eye_right/upper_eyelid"
+    ]
+  },
+  {
+    "tag": "R3",
+    "levels": [
+      76
+    ],
+    "box": [
+      745,
+      450,
+      61,
+      55
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R3",
+    "names": [
+      "D76 | face/blush_left"
+    ]
+  },
+  {
+    "tag": "R4",
+    "levels": [
+      77
+    ],
+    "box": [
+      614,
+      450,
+      61,
+      55
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R4",
+    "names": [
+      "D77 | face/blush_right"
+    ]
+  },
+  {
+    "tag": "R5",
+    "levels": [
+      75
+    ],
+    "box": [
+      695,
+      452,
+      28,
+      32
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R5",
+    "names": [
+      "D75 | face/nose"
+    ]
+  },
+  {
+    "tag": "R6",
+    "levels": [
+      78,
+      79
+    ],
+    "box": [
+      688,
+      486,
+      40,
+      40
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R6",
+    "names": [
+      "D78 | face/mouth/lower_lip",
+      "D79 | face/mouth/upper_lip"
+    ]
+  },
+  {
+    "tag": "R7-R9",
+    "levels": [
+      38,
+      40,
+      42,
+      44,
+      46
+    ],
+    "box": [
+      992,
+      995,
+      170,
+      128
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R7-R9",
+    "names": [
+      "D38 | arms/arm_left/hand/ring_finger",
+      "D40 | arms/arm_left/hand/middle_finger",
+      "D42 | arms/arm_left/hand/thumb",
+      "D44 | arms/arm_left/hand/index_finger",
+      "D46 | arms/arm_left/hand/palm"
+    ]
+  },
+  {
+    "tag": "R8-R10-R11",
+    "levels": [
+      39,
+      41,
+      43,
+      45,
+      47
+    ],
+    "box": [
+      247,
+      995,
+      166,
+      128
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R8-R10-R11",
+    "names": [
+      "D39 | arms/arm_right/hand/ring_finger",
+      "D41 | arms/arm_right/hand/middle_finger",
+      "D43 | arms/arm_right/hand/thumb",
+      "D45 | arms/arm_right/hand/index_finger",
+      "D47 | arms/arm_right/hand/palm"
+    ]
+  },
+  {
+    "tag": "R12",
+    "levels": [
+      49
+    ],
+    "box": [
+      353,
+      956,
+      110,
+      96
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R12",
+    "names": [
+      "D49 | arms/arm_right/bracelet_pink_front"
+    ]
+  },
+  {
+    "tag": "R13",
+    "levels": [
+      25,
+      31
+    ],
+    "box": [
+      850,
+      775,
+      190,
+      266
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R13",
+    "names": [
+      "D25 | arms/arm_left/upper_arm",
+      "D31 | arms/arm_left/forearm"
+    ]
+  },
+  {
+    "tag": "R14",
+    "levels": [
+      26,
+      32
+    ],
+    "box": [
+      351,
+      776,
+      213,
+      266
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R14",
+    "names": [
+      "D26 | arms/arm_right/upper_arm",
+      "D32 | arms/arm_right/forearm"
+    ]
+  },
+  {
+    "tag": "R15",
+    "levels": [
+      32.5,
+      34,
+      35
+    ],
+    "box": [
+      581,
+      730,
+      80,
+      123
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R15",
+    "names": [
+      "D32.5 | body/torso | lower_mount",
+      "D34 | body/torso",
+      "D35 | body/breast"
+    ]
+  }
+]

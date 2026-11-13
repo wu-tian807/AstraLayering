@@ -1,3 +1,4 @@
+import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -155,13 +156,13 @@ console.log(JSON.stringify(claude?{type:'result',session_id:id,result:'done'}:{e
 test('only selected steps are validated, and all validation finishes before any capability probe or model call', async t => {
   const root = await fixture(t), cli = join(root, 'fixture-cli');
   await writeFile(cli, cliFixture, { mode: 0o700 });
-  const settings = loadWorkflowEnvironment({ claude_path: cli, codex_path: '/nonexistent/codex',
-    part_review_agent_model: 'claude-sonnet-5-5-high', codex_models: 'gpt-6-astra', claude_models: 'claude-sonnet-5-5' }, root);
+  const settings = withCodex(loadWorkflowEnvironment({ claude_path: cli,
+    part_review_agent_model: 'claude-sonnet-5-5-high', codex_models: 'gpt-6-astra', claude_models: 'claude-sonnet-5-5' }, root), '/nonexistent/codex');
   await preflightAgentSteps(settings, ['part_outline_review']);
   assert.throws(() => validateProviderModel(settings.providers, settings.stepModels.part_outline, 'part_outline'), /part_outline.*gpt-6.1-sol/);
   await assert.rejects(preflightAgentSteps(settings, ['part_outline', 'part_outline_review']), /不在 codex_models/);
-  const denied = loadWorkflowEnvironment({ codex_path: '/nonexistent/codex', claude_path: '/nonexistent/claude',
-    codex_models: 'gpt-6.1-sol', part_review_agent_model: 'claude-sonnet-5-5-high', claude_models: 'claude-opus-5-5' }, root);
+  const denied = withCodex(loadWorkflowEnvironment({ claude_path: '/nonexistent/claude',
+    codex_models: 'gpt-6.1-sol', part_review_agent_model: 'claude-sonnet-5-5-high', claude_models: 'claude-opus-5-5' }, root), '/nonexistent/codex');
   // First step passes its model list; second fails before probing the first CLI.
   await assert.rejects(preflightAgentSteps(denied, ['part_outline', 'part_outline_review']), /不在 claude_models/);
   const task = { name: 'denied', prompt: 'fixture', cwd: root };

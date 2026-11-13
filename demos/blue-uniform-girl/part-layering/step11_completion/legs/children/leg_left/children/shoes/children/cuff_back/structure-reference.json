@@ -1,0 +1,14 @@
+{
+  "tool": "image_gen.imagegen",
+  "type": "turn-view",
+  "referenceCrop": [
+    555,
+    1030,
+    180,
+    355
+  ],
+  "cropScale": 2,
+  "inputImage": "part-layering/step11_completion/legs/children/leg_left/children/shoes/children/cuff_back/workspace/bitmaps/7fecbfd6-faeb-4306-ac78-2f307349bb8c.png",
+  "generatedImage": "part-layering/step11_completion/legs/children/leg_left/children/shoes/children/cuff_back/structure-reference.png",
+  "prompt": "Use case: precise-object-edit. Asset type: structural reference for an existing anime character boot. Input image is a cropped reference of the character's LEFT lower calf and entire boot. Show this SAME calf and boot naturally rotated to a side / slightly rearward three-quarter view, only enough to clearly reveal the back half of the boot's opening and its connected inner cuff wall behind the calf. Keep the full boot and sufficient calf in view, same chibi anime drawing style, same proportions, navy stocking calf, white high boot upper panels, navy tongue/toe/sidewall, fixed navy strap with cyan accents, cyan sole edge. The posterior boot-opening rim is a continuous modest-width periwinkle/navy material strip that wraps around the calf, joining the two side opening rims; show its rear curved rim and short connected inward-facing wall as a normal assembled boot, with the calf still in the opening. It is the opening edge of the boot, not a separate bracelet or new accessory. Preserve the actual visible design, no added laces, buckles, flaps, rear pull tabs or decorations, no exploded diagram, no labels. This is a turn-view structural reference, not a new front silhouette. Transparent background."
+}

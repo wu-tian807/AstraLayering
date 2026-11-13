@@ -483,7 +483,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       staticFiles['/nine-axis-flow.js'] = 'nine-axis-flow.js';
       staticFiles['/flow-step-ui.js'] = 'flow-step-ui.js';
       staticFiles['/step-paths.js'] = '../.agents/skills/live2d-maker/shared/step-paths.js';
-      for (const name of ['nine-axis-model.js', 'nine-axis-render.js']) staticFiles['/studio/' + name] = '../.agents/skills/live2d-maker/shared/' + name;
+      for (const name of ['nine-axis-model.js', 'nine-axis-render.js', 'nine-axis-preview.js']) staticFiles['/studio/' + name] = '../.agents/skills/live2d-maker/shared/' + name;
       for (const name of ['document-loader.js', 'document-worker.js', 'layer-panel.js', 'layer-model.js', 'surface-preview.js', 'surface-worker.js', 'surface-coverage.js', 'part-maps.js', 'harmonic-fill.js', 'projection-model.js', 'projection-panel.js', 'physics-model.js', 'physics-panel.js', 'physics-recipe.js', 'physics-renderer.js', 'physics-cases.js', 'nine-axis-panel.js']) staticFiles['/studio/' + name] = 'studio/' + name;
       if (!staticFiles[path]) { json({ error: 'Not found' }, 404); return; }
       const type = path.endsWith('.js') ? 'text/javascript' : path.endsWith('.css') ? 'text/css' : 'text/html';

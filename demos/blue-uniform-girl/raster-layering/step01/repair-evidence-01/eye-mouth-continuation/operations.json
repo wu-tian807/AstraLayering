@@ -1,0 +1,1688 @@
+[
+  {
+    "name": "mouth-geometry-first",
+    "jobs": [
+      {
+        "id": "face/mouth/upper_lip",
+        "import": "raster-layering/step01/workspace/repair-next3/face__mouth__upper_lip-registered.png",
+        "issue": "R32",
+        "box": [
+          480,
+          459,
+          90,
+          71
+        ]
+      },
+      {
+        "id": "face/mouth/lower_lip",
+        "import": "raster-layering/step01/workspace/repair-next3/face__mouth__lower_lip-registered.png",
+        "issue": "R32",
+        "box": [
+          480,
+          459,
+          90,
+          71
+        ],
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                494.4,
+                482.7
+              ],
+              [
+                "C",
+                494.5,
+                495.6,
+                501.2,
+                507.5,
+                514,
+                514.1
+              ]
+            ],
+            "size": 3,
+            "opacity": 0.65,
+            "color": [
+              178,
+              65,
+              60
+            ],
+            "preset": "b) Airbrush Soft"
+          },
+          {
+            "path": [
+              [
+                "M",
+                494.4,
+                482.7
+              ],
+              [
+                "C",
+                494.5,
+                495.6,
+                501.2,
+                507.5,
+                514,
+                514.1
+              ]
+            ],
+            "size": 1.7,
+            "opacity": 0.7,
+            "color": [
+              183,
+              68,
+              62
+            ]
+          },
+          {
+            "path": [
+              [
+                "M",
+                508.4,
+                510.2
+              ],
+              [
+                "C",
+                518.8,
+                518.6,
+                530.1,
+                521,
+                541.1,
+                515.2
+              ]
+            ],
+            "size": 3,
+            "opacity": 0.4,
+            "color": [
+              237,
+              131,
+              117
+            ],
+            "preset": "b) Airbrush Soft"
+          },
+          {
+            "path": [
+              [
+                "M",
+                514,
+                514.1
+              ],
+              [
+                "C",
+                519.2,
+                517.5,
+                523.8,
+                518.1,
+                528.8,
+                518.2
+              ]
+            ],
+            "size": 1.4,
+            "opacity": 0.38,
+            "color": [
+              239,
+              129,
+              115
+            ]
+          },
+          {
+            "path": [
+              [
+                "M",
+                528.8,
+                518.2
+              ],
+              [
+                "C",
+                539.3,
+                518.8,
+                547.7,
+                513.5,
+                552.4,
+                506.6
+              ]
+            ],
+            "size": 1.5,
+            "opacity": 0.45,
+            "color": [
+              225,
+              116,
+              104
+            ]
+          }
+        ]
+      },
+      {
+        "id": "face/mouth/mouth_interior",
+        "import": "raster-layering/step01/workspace/repair-next3/face__mouth__mouth_interior-registered.png",
+        "issue": "R32",
+        "box": [
+          480,
+          459,
+          90,
+          71
+        ],
+        "mask": {
+          "name": "上下唇开口",
+          "selection": "raster-layering/step01/workspace/repair-next3/mouth-opening-calibrated.png"
+        }
+      },
+      {
+        "id": "face/mouth/upper_teeth",
+        "issue": "R31",
+        "box": [
+          480,
+          459,
+          90,
+          71
+        ],
+        "mask": {
+          "name": "上牙露出带",
+          "selection": "raster-layering/step01/workspace/repair-next3/upper-teeth-exposure-calibrated.png"
+        }
+      }
+    ],
+    "reason": "At unchanged reference coordinates, left mouth junction was 6–7 px too broad. Local native pigment registration, native lip-contour strokes, and smooth shared opening/teeth exposure masks."
+  },
+  {
+    "name": "mouth-own-lip-sampling",
+    "jobs": [
+      {
+        "id": "face/mouth/upper_lip",
+        "import": "raster-layering/step01/workspace/repair-next3/face__mouth__upper_lip-registered.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next3/upper-lip-old-line-clear.png",
+        "clearSelection": "raster-layering/step01/workspace/repair-next3/upper-lip-inner-clear.png",
+        "sample": "part-layering/references/standard.png",
+        "sourceColorToAlpha": [
+          255,
+          241,
+          228
+        ],
+        "sourceThreshold": 70,
+        "selection": "raster-layering/step01/workspace/repair-next3/upper-lip-own-line-sample.png",
+        "issue": "R32",
+        "box": [
+          480,
+          459,
+          90,
+          71
+        ]
+      },
+      {
+        "id": "face/mouth/lower_lip",
+        "import": "raster-layering/step01/workspace/repair-next3/face__mouth__lower_lip-registered.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next3/lower-lip-old-line-clear.png",
+        "clearSelection": "raster-layering/step01/workspace/repair-next3/lower-lip-inner-clear.png",
+        "sample": "part-layering/references/standard.png",
+        "sourceColorToAlpha": [
+          255,
+          241,
+          228
+        ],
+        "sourceThreshold": 70,
+        "selection": "raster-layering/step01/workspace/repair-next3/lower-lip-own-line-sample.png",
+        "issue": "R32",
+        "box": [
+          480,
+          459,
+          90,
+          71
+        ]
+      }
+    ],
+    "reason": "Reject separated lip-line experiment. Recalibrate native inner alpha and reference-sample only each lip own narrow contour, excluding tongue and teeth."
+  },
+  {
+    "name": "mouth-exposure-final",
+    "reason": "Align tooth arc to original coordinate/softness and remove detached upper-tip remnant from lower-lip full painting. Mouth pigment, tongue, complete tooth painting retained.",
+    "jobs": [
+      {
+        "id": "face/mouth/upper_teeth",
+        "mask": {
+          "name": "上牙露出带",
+          "selection": "raster-layering/step01/workspace/repair-next3/upper-teeth-exposure-final.png"
+        },
+        "issue": "R31",
+        "box": [
+          480,
+          459,
+          90,
+          71
+        ]
+      },
+      {
+        "id": "face/mouth/lower_lip",
+        "clearSelection": "raster-layering/step01/workspace/repair-next3/lower-lip-dangling-tip-clear.png",
+        "issue": "R32",
+        "box": [
+          480,
+          459,
+          90,
+          71
+        ]
+      }
+    ]
+  },
+  {
+    "name": "mouth-lip-core-color",
+    "jobs": [
+      {
+        "id": "face/mouth/lower_lip",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next3/lower-lip-own-core-sample.png",
+        "issue": "R32",
+        "box": [
+          480,
+          459,
+          90,
+          71
+        ]
+      }
+    ],
+    "reason": "Restore original lip-core intensity over mouth pigment without multiplying the red at the seam. The sampled narrow U contour belongs exclusively to lower lip."
+  },
+  {
+    "name": "eyes-lash-inner-registration",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/upper_eyelid",
+        "import": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__upper_eyelid-registered.png",
+        "issue": "R29",
+        "box": [
+          534,
+          298,
+          165,
+          152
+        ]
+      },
+      {
+        "id": "face/eyes/eye_right/upper_eyelid",
+        "import": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__upper_eyelid-registered.png",
+        "issue": "R30",
+        "box": [
+          323,
+          339,
+          140,
+          137
+        ]
+      }
+    ],
+    "reason": "Locally register existing generated lash pigment 0–4 px to original own upper/inner contours, preserving all lash paint and original canvas coordinates. Sclera cast shadows are not copied."
+  },
+  {
+    "name": "eyes-iris-native-registration",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/iris",
+        "import": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-registered.png",
+        "issue": "R29",
+        "box": [
+          534,
+          298,
+          165,
+          152
+        ]
+      },
+      {
+        "id": "face/eyes/eye_right/iris",
+        "import": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-registered.png",
+        "issue": "R30",
+        "box": [
+          323,
+          339,
+          140,
+          137
+        ]
+      }
+    ],
+    "reason": "Match original iris visible row profiles with local native-pigment registration. Screen-right iris left side narrows 1–3 px; screen-left iris upper portion moves right 3–6 px, correcting tilt/white seam. Full outer dark edge, lower cyan pigment, separate highlights and complete hidden caps retained."
+  },
+  {
+    "name": "eyes-stable-native-pigment",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/iris",
+        "import": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-stable.png",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                599.2,
+                353.6
+              ],
+              [
+                "L",
+                609.2,
+                353.6
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              25,
+              46,
+              80
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                599.2,
+                353.6
+              ],
+              [
+                "L",
+                609.2,
+                353.6
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              25,
+              46,
+              80
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                599.2,
+                356.6
+              ],
+              [
+                "L",
+                609.2,
+                356.6
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              24,
+              50,
+              86
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                599.2,
+                356.6
+              ],
+              [
+                "L",
+                609.2,
+                356.6
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              24,
+              50,
+              86
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                599.2,
+                359.6
+              ],
+              [
+                "L",
+                609.2,
+                359.6
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              22,
+              56,
+              94
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                599.2,
+                359.6
+              ],
+              [
+                "L",
+                609.2,
+                359.6
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              22,
+              56,
+              94
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                599.2,
+                362.6
+              ],
+              [
+                "L",
+                609.2,
+                362.6
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              21,
+              61,
+              101
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                599.2,
+                362.6
+              ],
+              [
+                "L",
+                609.2,
+                362.6
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              21,
+              61,
+              101
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-selection.png"
+          }
+        ],
+        "issue": "R29",
+        "box": [
+          534,
+          298,
+          165,
+          152
+        ]
+      },
+      {
+        "id": "face/eyes/eye_right/iris",
+        "import": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-stable.png",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                424,
+                386.5
+              ],
+              [
+                "L",
+                434,
+                386.5
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              25,
+              46,
+              80
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                424,
+                386.5
+              ],
+              [
+                "L",
+                434,
+                386.5
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              25,
+              46,
+              80
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                424,
+                389.5
+              ],
+              [
+                "L",
+                434,
+                389.5
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              24,
+              50,
+              86
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                424,
+                389.5
+              ],
+              [
+                "L",
+                434,
+                389.5
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              24,
+              50,
+              86
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                424,
+                392.5
+              ],
+              [
+                "L",
+                434,
+                392.5
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              22,
+              56,
+              94
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                424,
+                392.5
+              ],
+              [
+                "L",
+                434,
+                392.5
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              22,
+              56,
+              94
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                424,
+                395.5
+              ],
+              [
+                "L",
+                434,
+                395.5
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              21,
+              61,
+              101
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                424,
+                395.5
+              ],
+              [
+                "L",
+                434,
+                395.5
+              ]
+            ],
+            "size": 9,
+            "opacity": 0.92,
+            "preset": "b) Airbrush Soft",
+            "color": [
+              21,
+              61,
+              101
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-selection.png"
+          }
+        ],
+        "issue": "R30",
+        "box": [
+          323,
+          339,
+          140,
+          137
+        ]
+      }
+    ],
+    "reason": "Reject row-profile experiment because isolated iris contours became scalloped. Revert to saved own paints, use a smooth affine registration preserving dark rims and paint over existing flat blue highlight-removal caps with native same-palette soft-brush strokes. Separate highlights stay at original coordinates."
+  },
+  {
+    "name": "eyes-own-cap-brush-blending",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/iris",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                594.2,
+                351
+              ],
+              [
+                "L",
+                614.2,
+                351
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              25,
+              44,
+              77
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                594.2,
+                353.4
+              ],
+              [
+                "L",
+                614.2,
+                353.4
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              24,
+              49,
+              84
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                594.2,
+                355.8
+              ],
+              [
+                "L",
+                614.2,
+                355.8
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              23,
+              54,
+              91
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                594.2,
+                358.2
+              ],
+              [
+                "L",
+                614.2,
+                358.2
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              22,
+              59,
+              98
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                594.2,
+                360.6
+              ],
+              [
+                "L",
+                614.2,
+                360.6
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              21,
+              63,
+              105
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                594.2,
+                363
+              ],
+              [
+                "L",
+                614.2,
+                363
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              20,
+              66,
+              110
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                594.2,
+                365.4
+              ],
+              [
+                "L",
+                614.2,
+                365.4
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              19,
+              67,
+              112
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          }
+        ],
+        "issue": "R29",
+        "box": [
+          534,
+          298,
+          165,
+          152
+        ]
+      },
+      {
+        "id": "face/eyes/eye_right/iris",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                419,
+                384
+              ],
+              [
+                "L",
+                439,
+                384
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              25,
+              44,
+              77
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                419,
+                386.4
+              ],
+              [
+                "L",
+                439,
+                386.4
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              24,
+              49,
+              84
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                419,
+                388.8
+              ],
+              [
+                "L",
+                439,
+                388.8
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              23,
+              54,
+              91
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                419,
+                391.2
+              ],
+              [
+                "L",
+                439,
+                391.2
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              22,
+              59,
+              98
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                419,
+                393.6
+              ],
+              [
+                "L",
+                439,
+                393.6
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              21,
+              63,
+              105
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                419,
+                396
+              ],
+              [
+                "L",
+                439,
+                396
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              20,
+              66,
+              110
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          },
+          {
+            "path": [
+              [
+                "M",
+                419,
+                398.4
+              ],
+              [
+                "L",
+                439,
+                398.4
+              ]
+            ],
+            "size": 3.6,
+            "opacity": 1,
+            "color": [
+              19,
+              67,
+              112
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-brush-core-selection.png",
+            "preset": "b) Basic-5 Size"
+          }
+        ],
+        "issue": "R30",
+        "box": [
+          323,
+          339,
+          140,
+          137
+        ]
+      }
+    ],
+    "reason": "Native individual blue-gradient strokes replace the exposed rim of the old flat highlight-removal disk, restricted to each iris own region and excluding own pupil. No highlight or neighboring material is transferred."
+  },
+  {
+    "name": "eyes-own-cap-gradient-final",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_left/iris",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                592,
+                350
+              ],
+              [
+                "L",
+                616,
+                350
+              ]
+            ],
+            "color": [
+              25,
+              44,
+              77
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                592,
+                352.5
+              ],
+              [
+                "L",
+                616,
+                352.5
+              ]
+            ],
+            "color": [
+              24,
+              48,
+              82
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                592,
+                355
+              ],
+              [
+                "L",
+                616,
+                355
+              ]
+            ],
+            "color": [
+              23,
+              52,
+              88
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                592,
+                357.5
+              ],
+              [
+                "L",
+                616,
+                357.5
+              ]
+            ],
+            "color": [
+              22,
+              56,
+              94
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                592,
+                360
+              ],
+              [
+                "L",
+                616,
+                360
+              ]
+            ],
+            "color": [
+              21,
+              58,
+              97
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                592,
+                362.5
+              ],
+              [
+                "L",
+                616,
+                362.5
+              ]
+            ],
+            "color": [
+              21,
+              58,
+              98
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                592,
+                365
+              ],
+              [
+                "L",
+                616,
+                365
+              ]
+            ],
+            "color": [
+              21,
+              58,
+              97
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                592,
+                367.5
+              ],
+              [
+                "L",
+                616,
+                367.5
+              ]
+            ],
+            "color": [
+              21,
+              58,
+              96
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_left__iris-cap-gradient-final-selection.png"
+          }
+        ],
+        "issue": "R29",
+        "box": [
+          534,
+          298,
+          165,
+          152
+        ]
+      },
+      {
+        "id": "face/eyes/eye_right/iris",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                417,
+                383
+              ],
+              [
+                "L",
+                441,
+                383
+              ]
+            ],
+            "color": [
+              25,
+              44,
+              77
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                417,
+                385.5
+              ],
+              [
+                "L",
+                441,
+                385.5
+              ]
+            ],
+            "color": [
+              24,
+              48,
+              82
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                417,
+                388
+              ],
+              [
+                "L",
+                441,
+                388
+              ]
+            ],
+            "color": [
+              23,
+              52,
+              88
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                417,
+                390.5
+              ],
+              [
+                "L",
+                441,
+                390.5
+              ]
+            ],
+            "color": [
+              22,
+              56,
+              94
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                417,
+                393
+              ],
+              [
+                "L",
+                441,
+                393
+              ]
+            ],
+            "color": [
+              21,
+              58,
+              97
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                417,
+                395.5
+              ],
+              [
+                "L",
+                441,
+                395.5
+              ]
+            ],
+            "color": [
+              21,
+              58,
+              98
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                417,
+                398
+              ],
+              [
+                "L",
+                441,
+                398
+              ]
+            ],
+            "color": [
+              21,
+              58,
+              97
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-gradient-final-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                417,
+                400.5
+              ],
+              [
+                "L",
+                441,
+                400.5
+              ]
+            ],
+            "color": [
+              21,
+              58,
+              96
+            ],
+            "size": 3.8,
+            "opacity": 1,
+            "selection": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-cap-gradient-final-selection.png"
+          }
+        ],
+        "issue": "R30",
+        "box": [
+          323,
+          339,
+          140,
+          137
+        ]
+      }
+    ],
+    "reason": "Use neighboring native iris gradient intensities at the cap boundary; remove excessive blue rise introduced by initial brush blending while preserving pupil/reflection and separate highlighter."
+  },
+  {
+    "name": "eyes-right-cap-crescent-repair",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_right/iris",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                423,
+                398.5
+              ],
+              [
+                "L",
+                437,
+                398.5
+              ]
+            ],
+            "size": 3.2,
+            "opacity": 1,
+            "color": [
+              21,
+              58,
+              98
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/right-iris-cap-crescent-selection.png"
+          }
+        ],
+        "issue": "R30",
+        "box": [
+          323,
+          339,
+          140,
+          137
+        ]
+      }
+    ],
+    "reason": "Remove the final small crescent of the old muted highlight cap, immediately above the pupil, using a native neighboring-blue brush stroke. Pupil and independent highlight are retained."
+  },
+  {
+    "name": "eyes-right-core-preserving-boundary",
+    "jobs": [
+      {
+        "id": "face/eyes/eye_right/iris",
+        "import": "raster-layering/step01/workspace/repair-next3/face__eyes__eye_right__iris-boundary-only.png",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                411,
+                382
+              ],
+              [
+                "L",
+                437,
+                382
+              ]
+            ],
+            "size": 4,
+            "opacity": 1,
+            "color": [
+              25,
+              46,
+              80
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/right-original-cap-own-gradient-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                411,
+                385
+              ],
+              [
+                "L",
+                437,
+                385
+              ]
+            ],
+            "size": 4,
+            "opacity": 1,
+            "color": [
+              24,
+              49,
+              84
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/right-original-cap-own-gradient-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                411,
+                388
+              ],
+              [
+                "L",
+                437,
+                388
+              ]
+            ],
+            "size": 4,
+            "opacity": 1,
+            "color": [
+              23,
+              54,
+              92
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/right-original-cap-own-gradient-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                411,
+                391
+              ],
+              [
+                "L",
+                437,
+                391
+              ]
+            ],
+            "size": 4,
+            "opacity": 1,
+            "color": [
+              22,
+              58,
+              98
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/right-original-cap-own-gradient-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                411,
+                394
+              ],
+              [
+                "L",
+                437,
+                394
+              ]
+            ],
+            "size": 4,
+            "opacity": 1,
+            "color": [
+              21,
+              61,
+              102
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/right-original-cap-own-gradient-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                411,
+                397
+              ],
+              [
+                "L",
+                437,
+                397
+              ]
+            ],
+            "size": 4,
+            "opacity": 1,
+            "color": [
+              21,
+              61,
+              102
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/right-original-cap-own-gradient-selection.png"
+          },
+          {
+            "path": [
+              [
+                "M",
+                411,
+                400
+              ],
+              [
+                "L",
+                437,
+                400
+              ]
+            ],
+            "size": 4,
+            "opacity": 1,
+            "color": [
+              21,
+              59,
+              99
+            ],
+            "selection": "raster-layering/step01/workspace/repair-next3/right-original-cap-own-gradient-selection.png"
+          }
+        ],
+        "issue": "R30",
+        "box": [
+          323,
+          339,
+          140,
+          137
+        ]
+      }
+    ],
+    "reason": "Reject whole-iris affine placement because the pupil and muted-highlight cap shifted. Restore the original generated iris core; register only a narrow smoothly weighted outer band to correct visible width/contact, keep pupil/reflection coordinates, and brush-blend the own blue cap at its original position."
+  }
+]

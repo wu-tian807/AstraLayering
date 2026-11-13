@@ -1,0 +1,28 @@
+[
+  {
+    "part": "body/torso",
+    "name": "D34 | body/torso",
+    "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+    "region": [
+      629,
+      732,
+      171,
+      108
+    ],
+    "source": "part-layering/references/base-subject.png",
+    "scope": "local own cloth only; source pink braid, skin, outline and noncloth colors excluded; own shape alpha retained"
+  },
+  {
+    "part": "body/breast",
+    "name": "D35 | body/breast",
+    "uuid": "{1b76e69a-e317-4da3-a0fb-ff17ac74b107}",
+    "region": [
+      629,
+      732,
+      171,
+      108
+    ],
+    "source": "part-layering/references/base-subject.png",
+    "scope": "local own cloth only; source pink braid, skin, outline and noncloth colors excluded; own shape alpha retained"
+  }
+]

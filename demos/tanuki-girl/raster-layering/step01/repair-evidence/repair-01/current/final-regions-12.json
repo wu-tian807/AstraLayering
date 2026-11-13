@@ -1,0 +1,236 @@
+[
+  {
+    "tag": "R16",
+    "levels": [
+      32.5,
+      34,
+      35
+    ],
+    "box": [
+      759,
+      730,
+      86,
+      126
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R16",
+    "names": [
+      "D32.5 | body/torso | lower_mount",
+      "D34 | body/torso",
+      "D35 | body/breast"
+    ]
+  },
+  {
+    "tag": "R17-R18",
+    "levels": [
+      22.5,
+      32.5,
+      33,
+      34,
+      35
+    ],
+    "box": [
+      552,
+      855,
+      300,
+      250
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R17-R18",
+    "names": [
+      "D22.5 | pelvis | back",
+      "D32.5 | body/torso | lower_mount",
+      "D33 | pelvis | front",
+      "D34 | body/torso",
+      "D35 | body/breast"
+    ]
+  },
+  {
+    "tag": "R19",
+    "levels": [
+      32.5,
+      34
+    ],
+    "box": [
+      577,
+      580,
+      256,
+      158
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R19",
+    "names": [
+      "D32.5 | body/torso | lower_mount",
+      "D34 | body/torso"
+    ]
+  },
+  {
+    "tag": "R20",
+    "levels": [
+      32.5,
+      34
+    ],
+    "box": [
+      574,
+      891,
+      263,
+      109
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R20",
+    "names": [
+      "D32.5 | body/torso | lower_mount",
+      "D34 | body/torso"
+    ]
+  },
+  {
+    "tag": "R21",
+    "levels": [
+      12,
+      85.5
+    ],
+    "box": [
+      663,
+      195,
+      98,
+      49
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R21",
+    "names": [
+      "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+      "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front"
+    ]
+  },
+  {
+    "tag": "R22",
+    "levels": [
+      22.5,
+      33
+    ],
+    "box": [
+      581,
+      850,
+      274,
+      259
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R22",
+    "names": [
+      "D22.5 | pelvis | back",
+      "D33 | pelvis | front"
+    ]
+  },
+  {
+    "tag": "R23",
+    "levels": [
+      24
+    ],
+    "box": [
+      528,
+      1080,
+      178,
+      932
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R23",
+    "names": [
+      "D24 | legs/leg_right/leg"
+    ]
+  },
+  {
+    "tag": "R24",
+    "levels": [
+      23
+    ],
+    "box": [
+      700,
+      1170,
+      183,
+      842
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R24",
+    "names": [
+      "D23 | legs/leg_left/leg"
+    ]
+  },
+  {
+    "tag": "R25",
+    "levels": [
+      11,
+      90
+    ],
+    "box": [
+      522,
+      1740,
+      180,
+      118
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R25",
+    "names": [
+      "D11 | legs/leg_right/anklet_back",
+      "D90 | legs/leg_right/anklet_front"
+    ]
+  },
+  {
+    "tag": "R26",
+    "levels": [
+      0
+    ],
+    "box": [
+      412,
+      1403,
+      261,
+      280
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R26",
+    "names": [
+      "D0 | tail"
+    ]
+  },
+  {
+    "tag": "R27",
+    "levels": [
+      14
+    ],
+    "box": [
+      509,
+      192,
+      394,
+      369
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R27",
+    "names": [
+      "D14 | hair/back_hair"
+    ]
+  },
+  {
+    "tag": "R28-R29",
+    "levels": [
+      15,
+      22.25
+    ],
+    "box": [
+      643,
+      529,
+      133,
+      66
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R28-R29",
+    "names": [
+      "D15 | headphones/headband",
+      "D22.25 | headphones/headband | terminals"
+    ]
+  },
+  {
+    "tag": "N1",
+    "levels": [
+      13,
+      57
+    ],
+    "box": [
+      516,
+      698,
+      129,
+      109
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-N1",
+    "names": [
+      "D13 | hair/braid_right | back",
+      "D57 | hair/braid_right | front"
+    ]
+  }
+]

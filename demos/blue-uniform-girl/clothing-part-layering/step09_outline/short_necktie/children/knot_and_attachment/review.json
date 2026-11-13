@@ -1,0 +1,38 @@
+{
+  "groupId": "short_necktie/knot_and_attachment",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过，无确定需修改的问题。已只读核对纯衣服参考、groups.json 中当前 part 及父组 note、候选 SVG 和父完成 SVG。\n\n独立归属：参考领口约 x590–629、y365–393 的灰色上方小结属于当前 part；下方短菱形垂片属于 hanging_blade，深色衬衫领尖与胸前白色连接带均不属于本片。候选完整覆盖可见小结，没有误包上述相邻实体，也没有遗漏独立可见附件。参考局部证据：。\n\n位置、比例和轮廓：整体叠加确认位于领口中央；局部 8 倍 blend 与 edge 覆盖本片全部可见边缘，核对顶部圆转、左侧尖转、右侧斜缘以及约 (603,391.5) 至 (625.5,391) 的收窄分界，均贴合参考的小结范围。下缘与垂片接根连续，保留合理隐藏搭接；没有应保留而被填死的真实开口，本片无薄纱。纯色内部未表现高光、阴影或折面不构成缺陷。证据：  。\n\n父稿与隐藏职责：约 x597–619、y356.5–378 的短上接段与父完成稿一致，是 note 已明确登记的隐藏连接，不能因叠加覆盖深色领口就认作衬衫误包。note 已传递其位于领尖之后、衬衫胸前本体之前，可见小结在衬衫及身体之前，下缘压住垂片上根，以及与领口共同随动的职责；无需修改说明或再拆深度组。父范围四倍采样检查 outsidePixels=0，候选画布 1115×1410 正确。证据： 。候选及父 SVG 均未修改。",
+      "candidateHash": "efb19565af1715b0670d95255e3cbe5bd9ebc02a65ff22255d4852314b1c94a1",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/children/knot_and_attachment/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/knot_and_attachment/previews/2026-11-10T10-50-22-592Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/children/knot_and_attachment/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/knot_and_attachment/previews/2026-11-10T10-50-22-592Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/children/knot_and_attachment/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/knot_and_attachment/previews/2026-11-10T10-50-22-592Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/short_necktie.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/knot_and_attachment/previews/2026-11-10T10-50-22-592Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/children/knot_and_attachment/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/children/knot_and_attachment/previews/2026-11-10T10-50-22-592Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:11:00.801Z"
+    }
+  ]
+}

@@ -1,279 +1,313 @@
 结论：已修复
 
-已处理`raster-layering/step01/review-02.md`的全部14项，并清理完整巡检发现的眼角、肘缘、食指根、中指下方和辫缘残笔。以下结论来自逐层独显、隐藏上层、蒙版切换、默认组装及同尺寸参考对照；本轮没有待修的确定问题。
+# repair-02 逐项处理与验收
 
-## 输入、产物与检查约定
+已完成review-02全部24项及最终自查N01，当前78逻辑part、86绘画片、5原生透明度蒙版、1共享口内组。工程和PNG已正式保存、真实关闭重开并核对；最后保存/重开均桥接ok:true。
 
-- 修复工程及默认PNG：`raster-layering/step01/character-depth.kra`、`raster-layering/step01/character-depth.png`。
-- 当前总报告：`raster-layering/step01/report.md`，已更新本轮方法、81层映射、35原生蒙版及结构依据；仅本repair写入暂存文件，未自行写正式review/repair。
-- 可见参考：`part-layering/references/standard.png`；R03–R05上臂参考：`part-layering/references/base-subject.png`。原图未移动或配准，1倍为原尺寸同坐标并排；放大只等比放大同一区域。
-- 上游范围、归属及深度：`part-layering/parts`、`part-layering/groups.json`、`part-layering/occlusion.json`。本轮未改逻辑ID、SVG或深度，沿用有效上游。
-- 局部比较图**左参考／中修前／右当前**；四状态依次为**独显默认／本层蒙版停用完整独显／隐藏上层默认／隐藏上层且本层蒙版停用**。每层原尺寸文件另列，避免组合图掩盖归属。默认整图证据在文末，包含各处实际组装状态。
+## R01 — 狸饰叶片：外形和叶脉改动
 
-每次局部操作后查看该处完整部件与组装；所有修改保留本件生成主体，特殊细处采用原生画笔或本件原图取样。没有取入邻件、遮挡物、外投影，也没有靠蒙版遮住本件残笔宣称修好。所有框为原画布`[x,y,width,height]`；隐藏部分以本件自身体积、材料和上游职责补全，不照抄原遮挡物。
+已修复。按 standard 恢复原叶片的两尖、上侧凹弧、右凹口、较平的下缘及原叶脉交点/分支。最后扩大到同属 tanuki_body 的两耳、上额及尾部上面，修掉旧矩形取样边；下部主体及尾部下段保留生成笔触，尾部下段局部配准接回完整外线。叶片凹口中的原背景为透明，耳心的浅色材料和眼中亮点保持不透明。
 
-## 逐项处理
+实际原/当前part与普通绘画片：
 
-### R01 — 左上睑悬空弧线与外眼角碎线：已修复
+- `head_accessories/tanuki_ornament/tanuki_body` → `D12 | head_accessories/tanuki_ornament/tanuki_body | back`，UUID `{e31ef44b-9571-464f-a0d6-9ed501711eb0}`，最终深度 12；完整后主体、叶片、小耳、尾形与隐藏下颌搭接，位于角色头发及兽耳后；中央下颌前片的上接边界提前到 y193，避免后发根描边穿过分片交界。。
 
-原问题框：`[734, 400, 75, 51]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R01-leaf/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R01-leaf/exposed.png) / [默认整图](repair-evidence/repair-02/current/R01-leaf/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R01-leaf/final-check.png)。原画布框 `[ 590, 18, 340, 250 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| face/eyes/eye_left/upper_eyelid | D071.00 \| face/eyes/eye_left/upper_eyelid | {af09dcce-619b-4835-a143-7993801fb6f2} | D71 / 完整部件 | [独显默认](repair-02-evidence/final-audit/face__eyes__eye_left__upper_eyelid-D71-solo-default.png) / [独显完整](repair-02-evidence/final-audit/face__eyes__eye_left__upper_eyelid-D71-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/face__eyes__eye_left__upper_eyelid-D71-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/face__eyes__eye_left__upper_eyelid-D71-upper-hidden-complete.png) |
+## R02 — 右侧后发：缺口被耳机带填占
 
-处理：在既有生成上睑上用Krita原生Clear清除悬空弧及外角游离短刺。最终眼角巡检又确认x795–802/y440–448有与主睫尖分离的棕束，已在本层实际清除；没有用蒙版遮住残笔。
+已修复。D14 的缺发处用本件红发取样和原生明暗/发流笔触补成连续发面；去掉矩形环带鬼影。后 U 带从15改到13.5，位于辫根13前、后发14后；白接头22.25仍位于颈22前。检查后发、headband 联合和默认合成均没有缺口或穿入发面的带片。
 
-检查结果：上睑只保留连续主睫缘与主睫尖；D073独立眼褶、虹膜和高光保留。整只左眼按同画布坐标1倍并排核对，睫缘直接压在眼白上，外角没有第二束悬线。
+实际原/当前part与普通绘画片：
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R01-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R01-states.png) · [eyes-left-1x](repair-02-evidence/final-audit/eyes-left-1x.png) · [eyes-left-3x](repair-02-evidence/final-audit/eyes-left-3x.png)。
+- `hair/back_hair` → `D14 | hair/back_hair`，UUID `{6ef8f6a4-c537-4b73-88c4-5860409f0c7e}`，最终深度 14；短后发在脸、颈、兽耳、躯干和前发后，覆盖辫根13与耳机后U带13.5；红色内面和原发梢保留。。
 
-### R02 — 左眼白中心补色硬边与浅环带：已修复
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R02-depth-final/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R02-depth-final/exposed.png) / [默认整图](repair-evidence/repair-02/current/R02-depth-final/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R02-depth-final/final-check.png)。原画布框 `[ 729, 488, 85, 77 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-原问题框：`[729, 415, 64, 45]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+## R03 — 侧发翼下：不透明白背景残片
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| face/eyes/eye_left/sclera | D065.00 \| face/eyes/eye_left/sclera | {bae934de-9662-492d-a186-6ba8253b1c68} | D65 / 完整部件 | [独显默认](repair-02-evidence/final-audit/face__eyes__eye_left__sclera-D65-solo-default.png) / [独显完整](repair-02-evidence/final-audit/face__eyes__eye_left__sclera-D65-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/face__eyes__eye_left__sclera-D65-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/face__eyes__eye_left__sclera-D65-upper-hidden-complete.png) |
+已修复。清掉发翼与细发缕间的不透明白楔及件外白边；开口恢复真实透明。保留原下方细粉发缕的尖梢、棕粉细描边及回接主束的连续形体。
 
-处理：在完整生成眼白上使用Krita原生Airbrush，取本侧眼白自身颜色分次融接内角及中央补全，不删除虹膜后的纹理，不整块替换RGB。
+实际原/当前part与普通绘画片：
 
-检查结果：近竖直硬界面消失，旧环带融为浅而连续的明暗变化。完整独显保留眼白连续形体和原开口；没有新增下睑线。默认虹膜覆盖与完整揭露分别检查通过。
+- `hair/side_hair/side_hair_right` → `D83 | hair/side_hair/side_hair_right`，UUID `{ccf27b6d-49e0-40a9-9a4d-17c7bc104c41}`，最终深度 83；完整右侧发在脸与五官前、刘海后，发翼与下方细缕共同归属。。
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R02-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R02-states.png) · [eyes-left-1x](repair-02-evidence/final-audit/eyes-left-1x.png) · [eyes-left-3x](repair-02-evidence/final-audit/eyes-left-3x.png)。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R03-wing/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R03-wing/exposed.png) / [默认整图](repair-evidence/repair-02/current/R03-wing/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R03-wing/final-check.png)。原画布框 `[ 490, 384, 91, 52 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-### R03 — 左上臂肘侧平行碎线：已修复
+## R04 — 刘海右下尖端：破碎回环与碎点
 
-原问题框：`[903, 773, 55, 84]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+已修复。只清理刘海本件末端的 C 回环、离散粉灰点及深碎点，并接回原图细尖走向；原外眼角钩仍保留在 D71 上睑，刘海尖端没有整体削薄或加粗。
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| arms/arm_left/upper_arm | D025.00 \| arms/arm_left/upper_arm | {1af308eb-5bc9-413b-95d7-f542c2c8f4a4} | D25 / 完整部件 | [独显默认](repair-02-evidence/final-audit/arms__arm_left__upper_arm-D25-solo-default.png) / [独显完整](repair-02-evidence/final-audit/arms__arm_left__upper_arm-D25-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/arms__arm_left__upper_arm-D25-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/arms__arm_left__upper_arm-D25-upper-hidden-complete.png) |
+实际原/当前part与普通绘画片：
 
-处理：仅取base-subject.png中本件窄外缘到D025，并用原生Clear清除主轮廓外重复线及完整圆帽多余线；局部续接边线。
+- `hair/bangs` → `D84 | hair/bangs`，UUID `{e2e38ffb-ec15-4ab7-aebb-fe1b504dbb42}`，最终深度 84；完整刘海在侧发、脸和五官前，眉发面分片84.1/84.2后。。
 
-检查结果：肘侧外缘为同宽连续单线，无外侧短刺。完整肘圆帽、桃色自身体积暗部保留；默认前臂覆盖内没有新增横向闭合缝。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R04-tip/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R04-tip/exposed.png) / [默认整图](repair-evidence/repair-02/current/R04-tip/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R04-tip/final-check.png)。原画布框 `[ 769, 407, 53, 58 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R03-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R03-states.png)。
+## R05 — 辫子发圈处：横箍形残边
 
-### R04 — 右上臂肘侧重复描线：已修复
+已修复。以三色控制图重新生成发圈遮挡处的收束发面，连续接回原有纵向发缕和散尾；清除横箍形直边及两侧残耳。D13/D57 联合为同一束发，环带只属于发圈层，原长尖及内钩保留。
 
-原问题框：`[520, 773, 55, 56]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+实际原/当前part与普通绘画片：
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| arms/arm_right/upper_arm | D026.00 \| arms/arm_right/upper_arm | {b79e9664-1b7b-4320-ba2b-1d6e893f245d} | D26 / 完整部件 | [独显默认](repair-02-evidence/final-audit/arms__arm_right__upper_arm-D26-solo-default.png) / [独显完整](repair-02-evidence/final-audit/arms__arm_right__upper_arm-D26-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/arms__arm_right__upper_arm-D26-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/arms__arm_right__upper_arm-D26-upper-hidden-complete.png) |
+- `hair/braid_right` → `D57 | hair/braid_right | front`，UUID `{bf1ac4b1-cfe3-4884-8ec9-f9e0811bc6b5}`，最终深度 57；y580–586 曲面接合区以下的前辫与散尾，位于胸肩前、右耳罩后；与后根共同归属和运动。。
 
-处理：先以本件原图窄外缘取样及原生Clear去重线。完整巡检发现y773–789顶段仍有残外线，进一步Clear、窄肤色笔融接，再用1.7px棕线沿实际外缘续完并局部调浓淡。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R05-braid/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R05-braid/exposed.png) / [默认整图](repair-evidence/repair-02/current/R05-braid/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R05-braid/final-check.png)。原画布框 `[ 566, 665, 60, 83 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-检查结果：原第二串平行线、顶部残线和小刺均清除，肘侧单轮廓连续。自身桃色暗部保留，没有把正常体积整体擦白；隐藏上层和默认接合均复核。
+## R06 — 左上眼睑：含虹膜外缘残线
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R04-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R04-states.png)。
+已修复。从 D71 只去掉伸入眼白的虹膜残边，最后核清 x779–780、y418–423 的两列固定残边。D67 的完整虹膜暗外缘、层次及 D69 高光保持独立。停用左 iris/highlight 后没有固定黑垂边；原尺寸双眼并排确认上睫毛直接压眼白，真实睫毛尖、上睑主弧和外眼尾钩保留。
 
-### R05 — 右上臂隐藏肘圆帽描边未续完：已修复
+实际原/当前part与普通绘画片：
 
-原问题框：`[483, 808, 45, 37]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+- `face/eyes/eye_left/upper_eyelid` → `D71 | face/eyes/eye_left/upper_eyelid`，UUID `{ae6d9e09-a249-45b6-8e3b-b7db6f39dfe0}`，最终深度 71；左连体上睫毛、上睑和真实外眼尾在眼白、虹膜及高光前，前发后；不领取虹膜暗外缘。。
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| arms/arm_right/upper_arm | D026.00 \| arms/arm_right/upper_arm | {b79e9664-1b7b-4320-ba2b-1d6e893f245d} | D26 / 完整部件 | [独显默认](repair-02-evidence/final-audit/arms__arm_right__upper_arm-D26-solo-default.png) / [独显完整](repair-02-evidence/final-audit/arms__arm_right__upper_arm-D26-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/arms__arm_right__upper_arm-D26-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/arms__arm_right__upper_arm-D26-upper-hidden-complete.png) |
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R06-lid/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R06-lid/exposed.png) / [默认整图](repair-evidence/repair-02/current/R06-lid/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R06-lid/final-check.png)。原画布框 `[ 758, 402, 32, 44 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-处理：沿D026既有alpha圆帽逐段画细棕轮廓，使用本件参考颜色和原生画笔接顺两侧可见描边及自身明暗。
+[整只双眼原尺寸对照](repair-evidence/repair-02/current/final/eyes-native.png) / [左iris/highlight停止后检查](repair-evidence/repair-02/current/final/eyes-toggle/checked.png)。
 
-检查结果：完整圆弧收口已有连续细线，保留伸入前臂的搭接范围。默认新闭合线被前臂覆盖，肘接合没有额外横缝。
+## R07 — 左眉：发面段线重明显不足
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R05-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R05-states.png)。
+已修复。按左眉自身参考恢复裸肤段和发面段的棕红线色、线宽、外弧与渐细收笔。D80/D84.1 为互补普通片，联合连续；没有用右眉镜像或透明度蒙版制造透见。
 
-### R06 — 左掌指根平行线、三角刺与取样起点小阶：已修复
+实际原/当前part与普通绘画片：
 
-原问题框：`[1054, 1014, 36, 48]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+- `face/eyebrows/eyebrow_left` → `D80 | face/eyebrows/eyebrow_left | back`，UUID `{06085fa6-f39d-49c6-bc1b-505f7840b94f}`，最终深度 80；左整眉中裸肤区域的普通绘画分片，在脸前、前发后。。
+- `face/eyebrows/eyebrow_left` → `D84.1 | face/eyebrows/eyebrow_left | front`，UUID `{a2acf7ca-a935-4c2d-9e1a-a0bd319d3e41}`，最终深度 84.1；同眉与刘海和左侧发相交的棕红眉线普通分片，在发面前；依本侧原图恢复厚薄和收笔，像素仍归左眉。。
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| arms/arm_left/hand/palm | D046.00 \| arms/arm_left/hand/palm | {c8d1ab7e-a975-46b8-882d-ea33f31cfab0} | D46 / 完整部件 | [独显默认](repair-02-evidence/final-audit/arms__arm_left__hand__palm-D46-solo-default.png) / [独显完整](repair-02-evidence/final-audit/arms__arm_left__hand__palm-D46-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/arms__arm_left__hand__palm-D46-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/arms__arm_left__hand__palm-D46-upper-hidden-complete.png) |
-| arms/arm_left/hand/index_finger | D044.00 \| arms/arm_left/hand/index_finger | {75b7501a-404e-4d69-820c-b19995e3d197} | D44 / 完整部件 | [独显默认](repair-02-evidence/final-audit/arms__arm_left__hand__index_finger-D44-solo-default.png) / [独显完整](repair-02-evidence/final-audit/arms__arm_left__hand__index_finger-D44-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/arms__arm_left__hand__index_finger-D44-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/arms__arm_left__hand__index_finger-D44-upper-hidden-complete.png) |
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R07-brow/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R07-brow/exposed.png) / [默认整图](repair-evidence/repair-02/current/R07-brow/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R07-brow/final-check.png)。原画布框 `[ 717, 343, 104, 37 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-处理：D046原生清掉重复上缘及三角刺，局部只取standard.png本件掌缘；同时修顺D044本件取样起点的小尖阶，以窄肤色笔和细棕线接入完整圆根。
+## R08 — 右眉：细化浅化、斜段力度丢失
 
-检查结果：掌缘到食指的切线、线宽和接色连续。两层各自完整圆根保留，真实指缝和掌部覆盖范围保留，没有在接触内新增横线。
+已修复。按右眉实际斜弧、转平段和尾端渐隐恢复线重与棕红深浅。D81/D84.2 连续且保留本侧弧度差异；未均匀加粗或复制左眉。
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R06-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R06-states.png) · [hand-left-1x](repair-02-evidence/final-audit/hand-left-1x.png) · [hand-left-3x](repair-02-evidence/final-audit/hand-left-3x.png)。
+实际原/当前part与普通绘画片：
 
-### R07 — 右掌外缘碎段与接拇指分叉：已修复
+- `face/eyebrows/eyebrow_right` → `D81 | face/eyebrows/eyebrow_right | back`，UUID `{739e209d-5633-4105-a477-bb4811a84f3a}`，最终深度 81；右整眉中裸肤区域的普通绘画分片，在脸前、前发后。。
+- `face/eyebrows/eyebrow_right` → `D84.2 | face/eyebrows/eyebrow_right | front`，UUID `{882c642c-c4d7-4ecc-b2ec-57e6fae5ed13}`，最终深度 84.2；同眉与刘海和右侧发相交的棕红眉线普通分片，位于发面前，保留本侧原图长度、弧度和渐隐。。
 
-原问题框：`[335, 997, 79, 75]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R08-brow/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R08-brow/exposed.png) / [默认整图](repair-evidence/repair-02/current/R08-brow/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R08-brow/final-check.png)。原画布框 `[ 589, 342, 103, 41 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| arms/arm_right/hand/palm | D047.00 \| arms/arm_right/hand/palm | {7956daa1-c37d-405c-a2f5-a3301d9a40bd} | D47 / 完整部件 | [独显默认](repair-02-evidence/final-audit/arms__arm_right__hand__palm-D47-solo-default.png) / [独显完整](repair-02-evidence/final-audit/arms__arm_right__hand__palm-D47-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/arms__arm_right__hand__palm-D47-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/arms__arm_right__hand__palm-D47-upper-hidden-complete.png) |
-| arms/arm_right/hand/thumb | D043.00 \| arms/arm_right/hand/thumb | {2a0cd4f0-b5a0-402b-bdc4-2e2cc83bb4b4} | D43 / 完整部件 | [独显默认](repair-02-evidence/final-audit/arms__arm_right__hand__thumb-D43-solo-default.png) / [独显完整](repair-02-evidence/final-audit/arms__arm_right__hand__thumb-D43-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/arms__arm_right__hand__thumb-D43-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/arms__arm_right__hand__thumb-D43-upper-hidden-complete.png) |
-| arms/arm_right/hand/index_finger | D045.00 \| arms/arm_right/hand/index_finger | {ebcc56c8-fa53-4b44-87ca-dc93520ae00a} | D45 / 完整部件 | [独显默认](repair-02-evidence/final-audit/arms__arm_right__hand__index_finger-D45-solo-default.png) / [独显完整](repair-02-evidence/final-audit/arms__arm_right__hand__index_finger-D45-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/arms__arm_right__hand__index_finger-D45-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/arms__arm_right__hand__index_finger-D45-upper-hidden-complete.png) |
+## R09 — 左红晕：红底扩浓、细线缩短
 
-处理：在D047清分叉、错开的细线端及上侧碎段，沿实际掌缘续成单一细轮廓，并局部取本件掌缘接色。曾发生的裁边试修已恢复后再修，不以缩小掌形掩盖问题。D043/D045为关联接合检查层。
+已修复。收回左颊红底向眼下的扩散与过浓区；保留真正红色底，用柔笔按本侧长度、斜向和位置重画长短细线及两端收笔。脸底未领取红晕像素。
 
-检查结果：完整掌外缘不再分叉、针刺或线宽突然跳变；默认与拇指和食指接顺。完整指根、自身暗部和真实虎口保留，没有新增横线。
+实际原/当前part与普通绘画片：
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R07-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R07-states.png) · [hand-right-1x](repair-02-evidence/final-audit/hand-right-1x.png) · [hand-right-3x](repair-02-evidence/final-audit/hand-right-3x.png)。
+- `face/blush_left` → `D76 | face/blush_left`，UUID `{5e74d9a3-a429-4d63-8f05-67f72cf9e047}`，最终深度 76；左颊红底与斜线归同一件，在脸前、侧发后。。
 
-### R08 — 左中指下方孤立短划：已修复
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R09-blush/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R09-blush/exposed.png) / [默认整图](repair-evidence/repair-02/current/R09-blush/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R09-blush/final-check.png)。原画布框 `[ 738, 450, 67, 55 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-原问题框：`[1127, 1067, 18, 11]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+## R10 — 右红晕：红云过大、下端线形改变
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| arms/arm_left/hand/middle_finger | D040.00 \| arms/arm_left/hand/middle_finger | {9a262683-d178-410e-a027-de2eb8327641} | D40 / 完整部件 | [独显默认](repair-02-evidence/final-audit/arms__arm_left__hand__middle_finger-D40-solo-default.png) / [独显完整](repair-02-evidence/final-audit/arms__arm_left__hand__middle_finger-D40-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/arms__arm_left__hand__middle_finger-D40-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/arms__arm_left__hand__middle_finger-D40-upper-hidden-complete.png) |
+已修复。收回右颊红云下缘和外扩范围，重新校准细线间距、长短和软收笔。外侧两线比中部线更淡，保留本侧层次；没有仅靠整层降透明度保留错误线形。
 
-处理：仅在D040原生Clear清除孤立短划。最终8倍完整独显又发现x1125–1127/y1073的3像素浅残笔，已对x1118–1148/y1072–1077局部Clear并复查。
+实际原/当前part与普通绘画片：
 
-检查结果：悬空短划及浅残笔均消失，指腹下缘、指尖圆度和自身明暗连续；完整独显及默认整手无游离笔迹。
+- `face/blush_right` → `D77 | face/blush_right`，UUID `{591e43a4-4e29-4e9a-bf37-a56199a73562}`，最终深度 77；右颊红底与斜线归同一件，在脸前、侧发后。。
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R08-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R08-states.png) · [hand-left-1x](repair-02-evidence/final-audit/hand-left-1x.png) · [hand-left-3x](repair-02-evidence/final-audit/hand-left-3x.png)。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R10-blush/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R10-blush/exposed.png) / [默认整图](repair-evidence/repair-02/current/R10-blush/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R10-blush/final-check.png)。原画布框 `[ 613, 452, 67, 56 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-### R09 — 左耳毛隐藏根部尖薄及轮廓未完成：已修复
+## R11 — 颈胸交界：浅白横边与短锁骨线
 
-原问题框：`[793, 280, 40, 32]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+已修复。去掉颈胸搭接处浅白横边及孤立的双短锁骨，按 base-subject 的实际锁骨走向用本件肤色/原生弧接顺；D22 下安装端和 D34 上胸衔接无新增水平结构线，耳罩和白接头仍独立。
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| face/ears/ear_left/ear_fur | D018.00 \| face/ears/ear_left/ear_fur | {6412279f-d25f-41c7-9392-cb48663e8821} | D18 / 完整部件 | [独显默认](repair-02-evidence/final-audit/face__ears__ear_left__ear_fur-D18-solo-default.png) / [独显完整](repair-02-evidence/final-audit/face__ears__ear_left__ear_fur-D18-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/face__ears__ear_left__ear_fur-D18-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/face__ears__ear_left__ear_fur-D18-upper-hidden-complete.png) |
+实际原/当前part与普通绘画片：
 
-处理：重新制作本侧三色控制与中性灰输入，8倍局部生成后缩小配准，仅把y277以下隐藏根替换到既有耳毛；可见毛簇主体整体保留。未镜像另一耳或取入耳壳、头发。
+- `neck` → `D22 | neck`，UUID `{fbb36e58-b147-450f-ac71-d51de7bd2518}`，最终深度 22；完整颈部在后发、后U带13.5前，在颈侧接头22.25、脸、躯干和双耳罩后；顶部圆帽伸入下颌后，底部伸入锁骨承接区。。
+- `body/torso` → `D34 | body/torso`，UUID `{237ddc01-663c-4aeb-b897-3e80874b186e}`，最终深度 34；同件可见肩带、锁骨、胸廓和y905以上腹腰上片，覆盖颈下端与骨盆上接，在胸部、前辫57、耳罩后；右侧完整肩帽已归24.75，在此修接原肩带与领口。。
 
-检查结果：隐藏根改为圆顺、有厚度的连续软毛簇，乳色/浅粉毛色及棕轮廓接到可见毛梢。完整独显轮廓续完，耳壳共享开口蒙版保留，默认可见尖簇不变。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R11-neck/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R11-neck/exposed.png) / [默认整图](repair-evidence/repair-02/current/R11-neck/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R11-neck/final-check.png)。原画布框 `[ 632, 582, 160, 66 ]`，参考 [base-subject.png](part-layering/references/base-subject.png)。
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R09-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R09-states.png)。
+## R12 — 画面左肩带—领口：斜截与台阶
 
-### R10 — 右辫根默认尖束显露与重复外缘：已修复
+已修复。接顺画面左肩带—领口，去掉白台阶及斜截。D35 顶部回到本件圆弧，D34 承担上肩带延续；原生描边粗细按可见段续接，肩根与领口相接无断口。
 
-原问题框：`[564, 482, 70, 112]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+实际原/当前part与普通绘画片：
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| hair/braid_right | D013.00 \| hair/braid_right \| root | {23aa9bc6-b545-4a55-82e2-43e14821b638} | D13 / 完整辫根后片延续到y586，在短后发、脸与颈后；与前片沿原图前景发束轮廓搭接，保留隐藏根部。 | [独显默认](repair-02-evidence/final-audit/hair__braid_right-D13-solo-default.png) / [独显完整](repair-02-evidence/final-audit/hair__braid_right-D13-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/hair__braid_right-D13-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/hair__braid_right-D13-upper-hidden-complete.png) |
-| hair/braid_right | D057.00 \| hair/braid_right \| front | {9cbf362a-bc38-461f-8385-446c0b842245} | D57 / 前辫上界沿原图前景发束曲线，隐藏补全根部仍在D13；y580–586接到完整前辫，胸肩前、右耳罩后，无水平截边。 | [独显默认](repair-02-evidence/final-audit/hair__braid_right-D57-solo-default.png) / [独显完整](repair-02-evidence/final-audit/hair__braid_right-D57-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/hair__braid_right-D57-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/hair__braid_right-D57-upper-hidden-complete.png) |
+- `body/torso` → `D34 | body/torso`，UUID `{237ddc01-663c-4aeb-b897-3e80874b186e}`，最终深度 34；同件可见肩带、锁骨、胸廓和y905以上腹腰上片，覆盖颈下端与骨盆上接，在胸部、前辫57、耳罩后；右侧完整肩帽已归24.75，在此修接原肩带与领口。。
+- `body/breast` → `D35 | body/breast`，UUID `{1b76e69a-e317-4da3-a0fb-ff17ac74b107}`，最终深度 35；完整胸部在躯干前、前辫57和双耳罩后，领口内皮肤及贴合白服体积属于本件；原生修画接合。。
 
-处理：D057新增本件原生透明度蒙版，仅校正前辫根在短后发后的默认显露。D013/D057实际清掉重复外线并按本件发缘取样续接；最终又修清D013 y535–553的小尖端。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R12-strap/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R12-strap/exposed.png) / [默认整图](repair-evidence/repair-02/current/R12-strap/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R12-strap/final-join-local.png)。原画布框 `[ 600, 612, 48, 95 ]`，参考 [base-subject.png](part-layering/references/base-subject.png)。
 
-检查结果：额外向上尖束不再侵占短后发开口，默认根转接更低且平顺，外缘为连续单线。停用蒙版时两片完整根部仍在，联合完整与搭接连续；D13/D57共同hair/braid_right身份和深度保留。
+## R13 — 画面右肩带—领口：断口和肩帽鬼线
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R10-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R10-states.png)。
+已修复。按 base-subject 的真实外缘 x约803–818 接顺画面右肩带，而非旧估计的 x799。D35 只领取白布；D34 的肩安装帽切出为 D24.75，置于上臂25后，默认不露肩帽鬼线。新增片仍同属 body/torso，没有用蒙版消隐可见布片或领取臂肤。
 
-### R11 — 狸饰前下颌轮廓分段过平：已修复
+实际原/当前part与普通绘画片：
 
-原问题框：`[668, 216, 78, 16]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+- `body/torso` → `D24.75 | body/torso | shoulder_mount`，UUID `{c18862a8-5a3c-4d52-8367-98b75f37c67a}`，最终深度 24.75；review-02 R13新发现的画面右侧完整肩安装圆帽普通后分片：原34中约x790..827、y606..685的肩帽皮肤及帽边，移至上臂25后，原肩带可见内容另在34连续修接；只取躯干自身画面。。
+- `body/torso` → `D34 | body/torso`，UUID `{237ddc01-663c-4aeb-b897-3e80874b186e}`，最终深度 34；同件可见肩带、锁骨、胸廓和y905以上腹腰上片，覆盖颈下端与骨盆上接，在胸部、前辫57、耳罩后；右侧完整肩帽已归24.75，在此修接原肩带与领口。。
+- `body/breast` → `D35 | body/breast`，UUID `{1b76e69a-e317-4da3-a0fb-ff17ac74b107}`，最终深度 35；完整胸部在躯干前、前辫57和双耳罩后，领口内皮肤及贴合白服体积属于本件；原生修画接合。。
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| head_accessories/tanuki_ornament/tanuki_body | D012.00 \| head_accessories/tanuki_ornament/tanuki_body | {9aee0d16-dbe7-4cf6-9b3f-0d333c289ae5} | D12 / 狸饰主体后部与完整下颌底形，在后发和前发后；下颌可见前缘另由同件D85.5分片承接。 | [独显默认](repair-02-evidence/final-audit/head_accessories__tanuki_ornament__tanuki_body-D12-solo-default.png) / [独显完整](repair-02-evidence/final-audit/head_accessories__tanuki_ornament__tanuki_body-D12-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/head_accessories__tanuki_ornament__tanuki_body-D12-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/head_accessories__tanuki_ornament__tanuki_body-D12-upper-hidden-complete.png) |
-| head_accessories/tanuki_ornament/tanuki_body | D085.50 \| head_accessories/tanuki_ornament/tanuki_body \| foreground jaw | {81b543f2-3b44-45b5-bffc-95a0a600e5d5} | D85.5 / 同一狸饰的完整下颌前缘与隐藏接合片，在完整前发之后、双爪之前；原生接合蒙版只露出原图下颌范围，补全发根保留在后。 | [独显默认](repair-02-evidence/final-audit/head_accessories__tanuki_ornament__tanuki_body-D85.5-solo-default.png) / [独显完整](repair-02-evidence/final-audit/head_accessories__tanuki_ornament__tanuki_body-D85.5-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/head_accessories__tanuki_ornament__tanuki_body-D85.5-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/head_accessories__tanuki_ornament__tanuki_body-D85.5-upper-hidden-complete.png) |
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R13-strap/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R13-strap/exposed.png) / [默认整图](repair-evidence/repair-02/current/R13-strap/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R13-strap/final-outer-local.png)。原画布框 `[ 772, 591, 82, 124 ]`，参考 [base-subject.png](part-layering/references/base-subject.png)。
 
-处理：只取standard.png中本件下颌缓弧至自身深棕描线止的小段到D085.5，再扩顺该层原生蒙版显露边。没有取入下方粉色头发投影带。
+[肩安装端局部灰度三视图](repair-evidence/repair-02/current/R13-strap/final-shoulder-local-gray.png)；D24.75在上臂25后，以真实深度解决肩帽穿插。
 
-检查结果：双爪之间下颌为连续缓弯的本件深棕轮廓，两端接顺。D12完整后主体与下颌底形、D85.5完整搭接片及发根均保留；沿用repair-01的已有两深度分工。
+## R14 — 躯干下补全：外描边未接入圆帽
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R11-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R11-states.png)。
+已修复。把躯干下安装端的原生棕灰轮廓接入完整圆帽，保持细线与本件布面连续。D32.5/D34 联合完整；默认骨盆遮住安装端，不新增腰封口线。
 
-### R12 — 后粉踝环隐藏回转端急窄成尖片：已修复
+实际原/当前part与普通绘画片：
 
-原问题框：`[571, 1768, 21, 31]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+- `body/torso` → `D32.5 | body/torso | lower_mount`，UUID `{46358100-0b1c-433a-a3da-f652464fcffd}`，最终深度 32.5；同件 y905 以下的完整下腹白布圆帽及外轮廓，位于骨盆白服前片33后。分界处沿原画布保持连续材料，普通绘画分片共同运动，不挂蒙版。。
+- `body/torso` → `D34 | body/torso`，UUID `{237ddc01-663c-4aeb-b897-3e80874b186e}`，最终深度 34；同件可见肩带、锁骨、胸廓和y905以上腹腰上片，覆盖颈下端与骨盆上接，在胸部、前辫57、耳罩后；右侧完整肩帽已归24.75，在此修接原肩带与领口。。
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| legs/leg_right/anklet_back | D011.00 \| legs/leg_right/anklet_back | {983e52d0-a0a3-42ed-8e7e-e40049314823} | D11 / 完整部件 | [独显默认](repair-02-evidence/final-audit/legs__leg_right__anklet_back-D11-solo-default.png) / [独显完整](repair-02-evidence/final-audit/legs__leg_right__anklet_back-D11-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/legs__leg_right__anklet_back-D11-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/legs__leg_right__anklet_back-D11-upper-hidden-complete.png) |
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R14-cap/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R14-cap/exposed.png) / [默认整图](repair-evidence/repair-02/current/R14-cap/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R14-cap/final-check.png)。原画布框 `[ 567, 885, 281, 118 ]`，参考 [base-subject.png](part-layering/references/base-subject.png)。
 
-处理：先尝试复用已成功的三色生成C形粉管并局部配准；默认桥段丢失后恢复原生成接合主体，改在本件既有绘画上用原生笔逐段画连续管厚、粉色明暗、内外缘及圆顺斜回端，再清内缘短叉。不是整体采用该次C形配准。
+## R15 — 骨盆上补全：帽沿缺原外线延续
 
-检查结果：完整粉管回转没有急窄颈口和扁尖片，厚度、内外缘及圆端自然延续。默认前后环接合和腿侧位置保留，同层米弧的保护区像素检查一致；未取入腿、铃、前环或投影。
+已修复。恢复 D33 上安装帽本件生成纹理和原棕灰外线的完整弧。帽沿色面/描边连续，默认上方躯干遮住此端，未新增可见腰线。
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R12-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R12-states.png)。
+实际原/当前part与普通绘画片：
 
-### R13 — 左红晕线心过宽过浓：已修复
+- `pelvis` → `D33 | pelvis | front`，UUID `{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}`，最终深度 33；完整白服前片、腿口描线及上接帽盖，在双腿前、躯干下腹圆帽32.5前、躯干可见上片34后；原生修画接色，不挂接合蒙版。。
 
-原问题框：`[746, 456, 51, 40]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R15-cap/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R15-cap/exposed.png) / [默认整图](repair-evidence/repair-02/current/R15-cap/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R15-cap/final-check.png)。原画布框 `[ 550, 845, 310, 111 ]`，参考 [base-subject.png](part-layering/references/base-subject.png)。
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| face/blush_left | D076.00 \| face/blush_left | {ca37add8-d856-488a-b759-0b232721ea78} | D76 / 完整部件 | [独显默认](repair-02-evidence/final-audit/face__blush_left-D76-solo-default.png) / [独显完整](repair-02-evidence/final-audit/face__blush_left-D76-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/face__blush_left-D76-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/face__blush_left-D76-upper-hidden-complete.png) |
+## R16 — 画面左腿口：白补片截断棕边
 
-处理：保留生成弥散红底，局部清旧宽浓条带；以Krita Basic-2画笔1.5px、0.5浓度按本侧参考逐条画6条不同长短细线并修淡尾，不用整体模糊替代细线。
+已修复。沿完整左裤口而非旧小框检查，清掉截断棕边的白补片、下段白突片和灰短桩；只在本件白布窄走廊内取样接色，再续接原细棕灰外线。保留原内线和纵缝，没有借腿肤或裤口投影补洞。
 
-检查结果：原厚桃色黏连条带消除，细线间隔与不同长短恢复，红底仍在且接色自然。1倍与3倍本侧并排均检查；细线略有浓淡/清晰度差异，不影响已修的宽浓黏连问题。
+实际原/当前part与普通绘画片：
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R13-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R13-states.png) · [blush-left-1x](repair-02-evidence/final-audit/blush-left-1x.png) · [blush-left-3x](repair-02-evidence/final-audit/blush-left-3x.png)。
+- `pelvis` → `D33 | pelvis | front`，UUID `{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}`，最终深度 33；完整白服前片、腿口描线及上接帽盖，在双腿前、躯干下腹圆帽32.5前、躯干可见上片34后；原生修画接色，不挂接合蒙版。。
 
-### R14 — 右红晕宽条带与底色黏连：已修复
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R16-hem/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R16-hem/exposed.png) / [默认整图](repair-evidence/repair-02/current/R16-hem/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R16-hem/final-check.png)。原画布框 `[ 586, 950, 107, 145 ]`，参考 [base-subject.png](part-layering/references/base-subject.png)。
 
-原问题框：`[619, 459, 52, 42]`。最终检查区域及参考见[区域记录](repair-02-evidence/final-audit/final-region-specs.json)。
+## R17 — 画面右腿口：断边与布面残线
 
-| 原part ID | 实际层名 | UUID | 最终深度／区域 | 单层与隐藏上层证据 |
-|---|---|---|---|---|
-| face/blush_right | D077.00 \| face/blush_right | {46a2ebd3-7d04-4147-9e1f-b7e1a632c2a3} | D77 / 完整部件 | [独显默认](repair-02-evidence/final-audit/face__blush_right-D77-solo-default.png) / [独显完整](repair-02-evidence/final-audit/face__blush_right-D77-solo-complete.png) / [隐藏上层默认](repair-02-evidence/final-audit/face__blush_right-D77-upper-hidden-default.png) / [隐藏上层完整](repair-02-evidence/final-audit/face__blush_right-D77-upper-hidden-complete.png) |
+已修复。沿完整右裤口清掉布面残线、白突片和灰短桩，恢复连续原细棕灰边。原有内线/纵缝保留，本件白布接色自然；未采腿肤，未加粗、压平原外缘。
 
-处理：保留本侧生成红底，以同类原生窄笔按右侧自身参考重画6条独立位置/长短的细线及淡尾；没有镜像左侧。
+实际原/当前part与普通绘画片：
 
-检查结果：宽软条带和上半部黏连已消除，线间自然间隔恢复，右侧独立排列及弥散红底保留。完整独显及原尺寸逐侧并排检查通过。
+- `pelvis` → `D33 | pelvis | front`，UUID `{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}`，最终深度 33；完整白服前片、腿口描线及上接帽盖，在双腿前、躯干下腹圆帽32.5前、躯干可见上片34后；原生修画接色，不挂接合蒙版。。
 
-证据：[参考／修前／当前](repair-02-evidence/final-audit/R14-comparison.png) · [局部四状态](repair-02-evidence/final-audit/R14-states.png) · [blush-right-1x](repair-02-evidence/final-audit/blush-right-1x.png) · [blush-right-3x](repair-02-evidence/final-audit/blush-right-3x.png)。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R17-hem/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R17-hem/exposed.png) / [默认整图](repair-evidence/repair-02/current/R17-hem/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R17-hem/final-check.png)。原画布框 `[ 717, 939, 132, 159 ]`，参考 [base-subject.png](part-layering/references/base-subject.png)。
 
-## 生成、取样与原生修画记录
+## R18 — 左上臂隐藏肘帽：外线止于补全端
 
-R09重新生成采用`repair02/R09-root-neutral-source.png`和`repair02/R09-root-three-color-control.png`，生成规格为`raster-layering/step01/workspace/repair02/R09-generation-spec.json`。成功结果：`generated/generated_images/01a1af41-b650-7940-963e-902ed98b7e4e/call_XZVfb9mNUifGbQp9QhWmjHwB.png`。配准结果为`repair02/R09-generated-registered.png`，仅按`repair02/R09-local-completion-selection.png`替换根部；没有裁掉可见毛簇外圈。
+已修复。在左上臂隐藏肘帽续完本件原细棕轮廓，清掉浅白硬沿/新月边；肤色延续本件体积明暗。默认前臂遮住帽端，既无缺口也不露新增肘封口线。
 
-R12尝试的来源为`repair01/ankle-final/generated-pink-return-registered.png`，原锚点561,1746、56×49。本轮C形配准未用于最终默认接合，已恢复并在原生成主体上局部原生笔修。米弧保护依据和结果见`raster-layering/step01/workspace/repair02/cream-protection.json`：保护区域y≥1787及y1783–1786米色像素检查一致，未进行邻件像素恢复。
+实际原/当前part与普通绘画片：
 
-全部14批原生请求、所属part/UUID、取样来源及修前本件字节备份见`raster-layering/step01/workspace/repair02/journal.json`。最后巡检追加批次`R06-root-continuity`、`final-residue-clean`、`R04-last-edge-continuity`、`R04-last-edge-reblend`、`R04-last-edge-tone`、`R01-last-corner-branch`已纳入对应项目，最后一次更新后重新导出全部最终证据并保存重开。
+- `arms/arm_left/upper_arm` → `D25 | arms/arm_left/upper_arm`，UUID `{760efccd-6eb8-49fc-a996-1e95ce640f55}`，最终深度 25；完整左肩根覆盖躯干肩帽后片24.75，在躯干可见肩带34和耳罩后，肘端伸入左前臂后。。
 
-## 层序与拆分依据
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R18-elbow/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R18-elbow/exposed.png) / [默认整图](repair-evidence/repair-02/current/R18-elbow/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R18-elbow/final-check.png)。原画布框 `[ 869, 815, 100, 62 ]`，参考 [base-subject.png](part-layering/references/base-subject.png)。
 
-- **上游预标**：右辫D13/D57保持共同`hair/braid_right`归属。repair-01 R14将旧y502水平界修为沿发流的曲线，后根延至y586，y580–586搭接。本轮repair-02 R10仅新增D57本件接合蒙版和局部轮廓修画，不新增深度；前辫仍在胸肩前、右耳罩后，完整根部保留在两片绘画中。
-- **首轮组装发现**：骨盆D22.5/D33继续沿用。髋肤后片在双腿后，白服前片、腿口线和完整上接帽盖在双腿前、torso后，共同归属`pelvis`；本件材料分界藏在腿口线内，蒙版只控制默认搭接。
-- **repair-01 R13组装发现**：狸饰D12/D85.5继续沿用，共同归属`head_accessories/tanuki_ornament/tanuki_body`。D12为完整后主体及下颌底形，D85.5为完整前下颌和隐藏搭接，位于发铃D85后、双爪D86/D87前。本轮repair-02 R11只修本件弧线及现有蒙版显露边，不再次拆层。
+## R19 — 右上臂隐藏肘帽：浅白硬边无描边
 
-本轮逻辑part ID、SVG、groups和occlusion深度均未改变，实际81层深度与上游一一对应；不需要重复调用edit_groups/edit_occlusion。绘画层树没有另造运动节点。新增D57原生蒙版及D85.5显露边修正的依据、实际UUID和控制区域见下表，作为后续有效工程的控制记录。
+已修复。在右上臂隐藏肘帽续完对应原细棕轮廓，去掉白硬边和孤立浅边；保持本侧形体与肤色连续。默认前臂覆盖帽端，不出现额外封口。
 
-## 与上游色块形状的差异
+实际原/当前part与普通绘画片：
 
-- 左耳毛D18隐藏根由旧尖薄补形修成有厚度的圆顺毛根，仅替换y277以下局部；可见毛簇保留，耳壳开口仍按原生控制，不借入邻件。
-- 后踝环D11隐藏粉管端由急窄尖片修成连续厚度的圆管回转与圆顺斜端，保护同层米弧。沿用既有腿侧约7像素局部生成形差和约1像素隐藏搭接，按真实环位接顺；没有移动腿或参考。
-- D44左食指隐藏根外缘的取样起点小尖阶作细微圆顺修接，完整根和可见长指形保留。repair-01已有D45右食指隐藏根由直阶改圆顺、略宽的延续继续沿用。
-- D57默认显露边按原图前景辫根校正，完整根纹理没有删除。右辫曲线分界及6像素搭接、骨盆两材料分片、狸饰前下颌分片属于既有记录，不是本轮新增逻辑拆分。
-- 耳内面与耳缘沿用约2像素隐藏搭接；左腿既有完整大腿过渡和内侧腿根补全保留，膝足、袜口不移动。颈侧既有约3像素生成轮廓差异继续记录，描边沿本件形体且排除下颌、耳罩投影。
-- 眼白中心以连续浅明暗补全，隐藏中心没有直接可见像素参考；两侧红晕细线仍有轻微浓淡或清晰度差异，保留弥散红底和各侧独立排列。当前不追求逐像素还原，已消除review-02指出的硬补色边及宽浓黏连线带。
+- `arms/arm_right/upper_arm` → `D26 | arms/arm_right/upper_arm`，UUID `{b60f5bf9-dc78-43fc-9449-d586fffbb137}`，最终深度 26；完整右上臂在躯干、胸部、前辫57和右耳罩后；肘端由右前臂覆盖。。
 
-以上调整没有改变部件归属、比例、整件位置或共同运动关系。其他部件投影没有画回皮肤、头发、狸饰或环带。透明度蒙版只负责开口/遮挡关系，不用于隐藏本件尚未修好的笔迹。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R19-elbow/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R19-elbow/exposed.png) / [默认整图](repair-evidence/repair-02/current/R19-elbow/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R19-elbow/final-check.png)。原画布框 `[ 475, 794, 91, 64 ]`，参考 [base-subject.png](part-layering/references/base-subject.png)。
 
-## 原生显隐与完整内容检查
+## R20 — 左无名指：亮暗段硬拼
 
-最终78个逻辑part对应81个普通绘画层、35个原生透明度蒙版。新增蒙版唯一是R10前辫D57接合蒙版：
+已修复。在左无名指本件上接顺亮暗段和原外线，去掉亮色段与暗粉短端间的硬台阶；原短端和渐细轮廓保留，不混入相邻手指的线条。
 
-- 父层：`D057.00 | hair/braid_right | front`，UUID `{9cbf362a-bc38-461f-8385-446c0b842245}`。
-- 蒙版：`Native depth contact | braid front under short back hair`，UUID `{5bae3814-9e0d-4186-8868-3f604bd8ea12}`，默认启用，控制part为`hair/back_hair`、`hair/braid_right`。
-- 区域：前辫根仅显露本侧原图前景发束，完整根部保留，额外抬起尖束在短后发后。开口文件：`repair02/R10-front-opening.png`。
-- 检查：[D57默认](repair-02-evidence/final-audit/hair__braid_right-D57-solo-default.png) / [D57完整](repair-02-evidence/final-audit/hair__braid_right-D57-solo-complete.png)，并联合D13查看根部连续。纹理实际保留，不新增独立运动节点。
+实际原/当前part与普通绘画片：
 
-D85.5既有下颌蒙版UUID `{83b15e97-1f1e-43f0-bf9c-db321934abbd}`已续顺显露边，仍挂在同一狸饰前下颌层。其余蒙版职责保留；全部父层名/UUID、蒙版名/UUID、控制part和默认/完整证据已列于更新的report.md。
+- `arms/arm_left/hand/ring_finger` → `D38 | arms/arm_left/hand/ring_finger`，UUID `{d85bd8b0-a005-4c44-8336-c74b30be64a4}`，最终深度 38；完整左无名指在小指前、中指、食指和掌后；默认短指端和下缘自然露出。。
 
-两眼各自眼白、虹膜和高光共享本侧开口，内缘由上睑及眼白下沿定义，分别执行关闭眼内开口测试后恢复默认睁眼。口腔、舌和上下牙列共用上下唇开口，默认空选区闭嘴；停用蒙版时完整口内材质仍存在，再恢复默认闭合。后大腿带、小指、后发圈及后环的默认遮挡职责保留，完整内容逐层切换查看。证据：[控制检查JSON](repair-02-evidence/final-audit/native-control-check.json) / [眼内关闭近图](repair-02-evidence/final-audit/eyes-native-closed-closeup.png) / [完整口内材质](repair-02-evidence/final-audit/mouth-complete-own-material.png)。所有默认显隐已恢复，PNG使用蒙版启用状态。
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R20-ring/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R20-ring/exposed.png) / [默认整图](repair-evidence/repair-02/current/R20-ring/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R20-ring/final-check.png)。原画布框 `[ 1055, 1028, 62, 57 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-## 看图检查与默认状态
+## R21 — 右无名指：勺形根段与硬切色界
 
-每次局部操作后均看独显、停用本层蒙版的完整独显、隐藏上层及默认组装；单层原尺寸四状态与UUID见[81层索引](repair-02-evidence/final-audit/audit-index.md)和[JSON索引](repair-02-evidence/final-audit/index.json)。四列依次为solo-default、solo-complete、upper-hidden-default、upper-hidden-complete；局部比较图为左参考／中修前／右当前。隐藏区依据本件连续形体和色层，不照抄遮挡物。
+已修复。用三色控制重新生成右无名指窄根，原可见短端仅从本件 start-D39 取样保留。撤回旧勺形根与灰 AA 残边，逐笔接顺根段、亮暗与外线，保留独立原姿态和短端。
 
-最终11页81层图集均实际查看，最后眼角清理后刷新了受影响层、全部图集及14项局部对照，并再次查看受影响第8页；[刷新记录](repair-02-evidence/final-audit/atlas-refresh.json)与当前KRA哈希相同。多深度辫、骨盆、狸饰逐片再联合检查。双眼、双手、双侧红晕另作同坐标1倍及3倍检查，接合处局部放大；[可见参考整图](repair-02-evidence/final-audit/whole-standard-gray.png)、[身体参考整图](repair-02-evidence/final-audit/whole-base-gray.png)也已查看。没有移动或缩放参考来掩盖偏差，未使用PSNR等数值判断绘画质量。
+实际原/当前part与普通绘画片：
 
-35个蒙版均实际为Krita原生透明度蒙版，父绘画层保留完整纹理。两眼各自眼白/虹膜/高光共用本侧上睑内缘与眼白下缘围成的开口，默认睁眼；左右眼分别检查，初始复用历史保留，但本轮没有镜像替代原图的不对称细节。口内四件共用上下唇定义的默认空开口，默认闭嘴；后大腿带、小指和后发圈保持原闭合隐藏职责。测试关闭眼内开口、停用口内蒙版查看完整内容后，全部恢复默认状态。证据：[原生控制检查](repair-02-evidence/final-audit/native-control-check.json) · [眼内关闭近图](repair-02-evidence/final-audit/eyes-native-closed-closeup.png) · [口内完整材质](repair-02-evidence/final-audit/mouth-complete-own-material.png)。默认PNG在所有蒙版恢复启用后导出。
+- `arms/arm_right/hand/ring_finger` → `D39 | arms/arm_right/hand/ring_finger`，UUID `{6ea2cb37-c639-4b2a-a4c2-08504d985757}`，最终深度 39；完整右无名指在小指前、中指、食指和掌后；默认短圆端自然露出。。
 
-## 保存与实际重开
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R21-ring/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R21-ring/exposed.png) / [默认整图](repair-evidence/repair-02/current/R21-ring/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R21-ring/final-check.png)。原画布框 `[ 293, 1022, 77, 61 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-最终修画后保存正式KRA及蒙版启用的默认PNG，然后实际关闭工程并重新打开。81绘画层、35原生蒙版的顺序、名称、UUID、类型、默认显隐、透明度、混合模式、alpha lock等属性一致；全画布原始绘画字节、蒙版选区字节与默认PNG像素均一致，重开未改写KRA。报告整理没有再次改变工程像素。
+## R22 — 左小指：软色棒缺轮廓和指部细节
 
-- KRA SHA256：`0bbc778f0a5a1e0e17e434ec03e5906bb8bf7f13fa3b876234a3b5cd71cc733d`
-- 默认PNG像素SHA256（QImage ARGB32／本机BGRA字节序）：`de97d68d51d058b30d9b63f259b5b21296dd0e4e589f05f7d5a9fb7a7612bf35`
+已修复。用 hiddenInReference 完整形体的黄色控制生成左小指，再在 Krita 逐笔补全本件细深棕整圈轮廓及指节结构线。完整实体独显有明暗/指体结构，默认原生蒙版启用后隐藏；未画相邻指投影。
 
-证据：[重开核对](repair-02-evidence/final-audit/reopen-check.json) · [保存前快照](repair-02-evidence/final-audit/before-reopen-snapshot.json) · [重开后快照](repair-02-evidence/final-audit/after-reopen-snapshot.json) · [重开默认PNG](repair-02-evidence/final-audit/after-reopen.png)。哈希仅证明保存状态，不代替绘画验收。
+实际原/当前part与普通绘画片：
 
-历史Node.clone崩溃路径已停用并从保存点恢复；本轮沿用原生节点编辑，没有克隆重建树。曾被拦截的局部图片不重复原读取方式。本轮眼角改用缩小灰度版本成功读取，随后完成最后棕束清理并检查最终四状态；不存在缺少关键图像导致的持续阻塞。
+- `arms/arm_left/hand/little_finger` → `D36 | arms/arm_left/hand/little_finger`，UUID `{ca815547-31cc-4382-9aa8-dd188b37b377}`，最终深度 36；完整左小指在同手无名指、中指、食指和掌后；hiddenInReference原生叠指蒙版默认全闭，完整纹理保留。。
 
-## 交付核对
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R22-little/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R22-little/exposed.png) / [默认整图](repair-evidence/repair-02/current/R22-little/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R22-little/final-check.png)。原画布框 `[ 1054, 1024, 59, 57 ]`，参考 [standard.png](part-layering/references/standard.png)。
 
-14项最终四状态和局部对照、81层四状态索引、11页完整图集、双眼/双手/双红晕1倍与放大、整图对照及实际重开记录均齐全。[最终看图记录](repair-02-evidence/final-audit/visual-check.json)关联最终KRA哈希，用于定位证据版本，不作为绘画质量数值评分。本次更新正式KRA、PNG、report.md及本暂存repair-02.md.tmp，未自行发布正式repair/review，未改运行标记或会话配置。
+## R23 — 右小指：缺深色轮廓与指体结构
+
+已修复。用本侧完整黄色控制独立生成右小指，再续完其细深棕轮廓、收尖和两处指节结构。与左侧材料协调而姿态独立，没有镜像覆盖本侧实际方向；默认蒙版启用。
+
+实际原/当前part与普通绘画片：
+
+- `arms/arm_right/hand/little_finger` → `D37 | arms/arm_right/hand/little_finger`，UUID `{f6a6d2a1-0435-4c58-ab1a-662a1559249c}`，最终深度 37；完整右小指在同手无名指、中指、食指和掌后；原生叠指蒙版默认全闭。。
+
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R23-little/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R23-little/exposed.png) / [默认整图](repair-evidence/repair-02/current/R23-little/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R23-little/final-check.png)。原画布框 `[ 303, 1016, 69, 55 ]`，参考 [standard.png](part-layering/references/standard.png)。
+
+## R24 — 左腕粉环后段：模糊色棒、缺带边
+
+已修复。用三色控制重画左腕粉环后段为完整 C 弧、粉色条带及内外细暗边。前/后腕环联合连续，后段不再是模糊色棒；本件不带手腕肤色或其他环带投影。联合验收采用三个独立局部灰度视图。
+
+实际原/当前part与普通绘画片：
+
+- `arms/arm_left/bracelet_pink_back` → `D28 | arms/arm_left/bracelet_pink_back`，UUID `{9300b096-f06d-4ca4-b43e-81081a584bce}`，最终深度 28；完整粉后环在左前臂、掌、粉前环和铃后；hiddenInReference为false，以普通层序遮挡。。
+
+验收：本片/同件联合独显、隐藏全部上层、默认整图已看图核对。[独显](repair-evidence/repair-02/current/R24-pink/solo.png) / [隐藏上层](repair-evidence/repair-02/current/R24-pink/exposed.png) / [默认整图](repair-evidence/repair-02/current/R24-pink/assembled.png) / [同坐标对照](repair-evidence/repair-02/current/R24-pink/final-check.png)。原画布框 `[ 956, 936, 77, 118 ]`，参考 [standard.png](part-layering/references/standard.png)。
+
+前后粉环的被拦三联未重复读取，以下三个单独灰度局部均成功看过：[联合独显](repair-evidence/repair-02/current/union-pink-wrist/final-solo-gray-local.png) / [隐藏上层](repair-evidence/repair-02/current/union-pink-wrist/final-exposed-gray-local.png) / [默认组装](repair-evidence/repair-02/current/union-pink-wrist/final-assembled-gray-local.png)。
+
+## N01 — 最终自查的狸饰原生接缝
+
+已修复。彩色原尺寸检查发现旧叶片取样矩形边及两耳局部错位；扩为同属tanuki_body的连续叶片、两耳、上额与尾部上面取样，保留原细线/色面、耳心亮色和眼亮点，件外白底及凹口背景清透。尾部下段从本件生成画面局部配准接回上段外线，保持原笔触与描边宽度；不采爪子、角色耳壳或头发，不添加投影。
+
+[完整狸饰参考/独显/隐藏上层/组装四视图](repair-evidence/repair-02/current/union-tanuki/N01-union-checked.png) / [正式重开彩色原尺寸头部](repair-evidence/repair-02/current/final/reopened-head-color-native.png) / [来源及配准记录](repair-evidence/repair-02/current/native-process/N01-source-and-registration.json) / [只改D12、其余85片及5蒙版不变](repair-evidence/repair-02/current/final/N01-localization-check.json)。
+
+另在R16/R17原小框之外发现的裤口白突片、灰短桩已随完整裤口修复；不是留到下一次的额外项目。
+
+## 层级、归属与色块差异
+
+| 逻辑 part | 普通绘画深度 | 发现阶段与职责 |
+| --- | --- | --- |
+| `hair/braid_right` | 13 / 57 | 上游预标注；后根与前辫/散尾共同运动。 |
+| `head_accessories/tanuki_ornament/tanuki_body` | 12 / 85.5 | 上游预标注；后主体与压发根下颌前缘，共同连续。 |
+| `pelvis` | 22.5 / 33 | 上游预标注；髋肤在腿后，白服腿口在腿前。 |
+| `face/eyebrows/eyebrow_left` | 80 / 84.1 | 初次组装发现；本侧裸肤与发面段为互补普通片。 |
+| `face/eyebrows/eyebrow_right` | 81 / 84.2 | 初次组装发现；同上，保留左右各自眉形。 |
+| `body/torso` | 24.75 / 32.5 / 34 | 32.5/34 为历史组装拆片；repair02 的 R13 新发现肩安装帽须在上臂25后，新增24.75。 |
+| `headphones/headband` | 13.5 / 22.25 | 后 U 带/白接头为历史组装拆片；R02 将原15降至13.5，后发14不再被环带占据。 |
+
+上述R02/R13深度已通过edit_occlusion同步；KRA普通层顺序及86区域全部对应。逻辑ID不变，未改独立运动关系；可见件未挂透明度消隐蒙版。实际UUID和全部片映射见 [完整映射](layer-map.json) 与 [更新后的绘画报告](report.md)。
+
+- 辫尾保留原细尖与向内钩至约y787，超出简化SVG约y777的帽端；原ID与13/57运动关系保持不变。
+- 耳壳保留原真实开口；耳内和耳毛保持独立，不把SVG实心控制范围做成封闭壳。
+- 旧眼部 inner-highlight 色块 x769–775、y446–451 对应金色虹膜材料，归iris；白反光仍归highlight。D67完整外暗边未裁掉。
+- 肩带外缘按辅助参考的真实细线（右侧约x803–818）保留。D35领口附件局部白料略越粗SVG，但均属本件白布，没有领取臂肤。D24.75为从原torso主体切出的安装帽，完整逻辑part身份不变。
+- 狸饰叶片、两耳和上额按standard的实际形体与细线恢复；粗SVG未逐像素描述这些凹口、尖端与原生AA。尾部下段局部配准接回上轮廓，没有给同件新增控制身份。
+- 完整颈肩、指根、辫根、腰帽和肘帽是各件自身的合理延续；细描边/AA在粗SVG旁可有少量范围偏差。没有用整件硬裁切、加粗或压平原形来统一外观。
+
+## 完整验收覆盖与显隐
+
+已逐片检查86个普通绘画片的原生独显和隐藏全部上层视图，检查7个同 part 多深度联合、粉腕环前/后联合、双眼联合、5个蒙版 OFF/ON、整图与原尺寸双眼。所有局部修画都在独显、隐藏上层、默认整图下核对；最后 N01 只改 D12，其余85个绘画片与5个蒙版像素保持此前验收结果。最新完整视图已刷新。未移动参考来掩盖偏差，未用 PSNR 或其他图像分数判定画质。
+
+[双眼原尺寸并排](repair-evidence/repair-02/current/final/eyes-native.png) / [双眼放大](repair-evidence/repair-02/current/final/eyes-enlarged.png) / [停用左虹膜/高光后的归属检查](repair-evidence/repair-02/current/final/eyes-toggle/checked.png) / [整图同尺度对照](repair-evidence/repair-02/current/final/whole-gray-quarter.png) / [从真实重开工程导出的彩色头部原尺寸对照](repair-evidence/repair-02/current/final/reopened-head-color-native.png)。
+
+| 所属层/组与 UUID | 蒙版与 UUID | 控制区域、默认状态与证据 |
+| --- | --- | --- |
+| `D10 \| legs/leg_left/thigh_band_back`<br>`{37c84885-94de-4375-b6bc-81bcefb8dec0}` | `Default closed \| legs/leg_left/thigh_band_back`<br>`{08259a8e-cd26-487a-9f12-ab9fd99ca69e}` | legs/leg_left/thigh_band_back；legs/leg_left/thigh_band_back；ON、opacity255；[独显/整图 OFF–ON](repair-evidence/repair-02/current/final/masks/00/checked.png) |
+| `D36 \| arms/arm_left/hand/little_finger`<br>`{ca815547-31cc-4382-9aa8-dd188b37b377}` | `Default closed \| arms/arm_left/hand/little_finger`<br>`{5483a5d1-d926-4388-8566-50775fc6d816}` | arms/arm_left/hand/little_finger；arms/arm_left/hand/little_finger；ON、opacity255；[独显/整图 OFF–ON](repair-evidence/repair-02/current/final/masks/01/checked.png) |
+| `D37 \| arms/arm_right/hand/little_finger`<br>`{f6a6d2a1-0435-4c58-ab1a-662a1559249c}` | `Default closed \| arms/arm_right/hand/little_finger`<br>`{5e4ea0ea-ca7c-4cf9-9529-24de800dd784}` | arms/arm_right/hand/little_finger；arms/arm_right/hand/little_finger；ON、opacity255；[独显/整图 OFF–ON](repair-evidence/repair-02/current/final/masks/02/checked.png) |
+| `D56 \| head_accessories/hair_tie_back`<br>`{7efb0a22-5ffa-40d6-9b14-796254b6ee3f}` | `Default closed \| head_accessories/hair_tie_back`<br>`{ce547866-9e77-4d6d-90ea-256eb880f1ce}` | head_accessories/hair_tie_back；head_accessories/hair_tie_back；ON、opacity255；[独显/整图 OFF–ON](repair-evidence/repair-02/current/final/masks/03/checked.png) |
+| `D61-64 \| Shared mouth opening`<br>`{f6622e34-6a3b-4715-971f-0e828dfbd99a}` | `Default closed \| shared upper/lower lip inner opening`<br>`{5e4ab66e-50eb-48c1-ac8e-d840df23395d}` | upper/lower lip inner opening；face/mouth/mouth_interior、face/mouth/tongue、face/mouth/lower_teeth、face/mouth/upper_teeth；ON、opacity255；[独显/整图 OFF–ON](repair-evidence/repair-02/current/final/masks/04/checked.png) |
+
+全部5蒙版已启用并保存默认闭合状态。关闭时完整实体/口内结构可见，开启时无缺口透出。7个多深度联合及额外腕环/双眼联合均已检查；完整单层索引见 [86片验收索引](repair-evidence/repair-02/current/final/layer-map.json)。
+
+## 保存、重开、工具恢复与交付
+
+最终正式 saveAs 与真实关闭/重新打开均返回桥接 ok:true。重开后核对92个非根节点（86绘画、5蒙版、1共享组）的类型、名称、UUID、父子和兄弟顺序、显隐、opacity、blend、inheritAlpha、alphaLocked、locked、组 passThrough、bounds，以及86绘画和5蒙版的全画布像素：均未变化，默认投影也一致。5蒙版全部ON。哈希仅用于证明保存稳定，画质结论来自看图。
+
+正式 PNG 从该重新打开的 KRA 导出；1376×2048 RGBA，件外透明。PNG 与最新已验收合成、KRA mergedimage 的解码像素一致，KRA ZIP 可完整读取。[真实重开核对](repair-evidence/repair-02/current/final/reopen-verification.json) / [KRA/PNG核对](repair-evidence/repair-02/current/final/artifact-verification.json)。
+
+导出曾出现 AssertionError，改为 batchmode、InfoObject alpha=True 并重试后恢复；历史/中间 save 的 QProgressDialog 自动取消没有被当成保存成功证据。局部返修中一次选区加载 NameError 后会话重启，从已核验正式工程恢复，不丢失已保存修画；最终保存重開再次通过。被拦截的 R13 和粉腕环检查采用局部/独立灰度视图成功读取，没有重复原拦截方式。当前没有未恢复工具故障或缺失输入。[错误原文与恢复记录](repair-evidence/repair-02/current/tool-recovery.json)。
+
+正式交付：[character-depth.kra](raster-layering/step01/character-depth.kra) / [character-depth.png](raster-layering/step01/character-depth.png) / [report.md](raster-layering/step01/report.md)。本修复报告仅写指定 `repair-02.md.tmp`，第一行结论已修复；未自行发布正式repair/review，也未重启上游或更改运行标记。

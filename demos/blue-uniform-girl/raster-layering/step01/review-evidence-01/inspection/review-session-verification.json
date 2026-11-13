@@ -1,0 +1,16 @@
+{
+  "actual_opened_document": "raster-layering/step01/character-depth.kra",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "paintlayers": 59,
+  "transparency_masks": 10,
+  "visibility_difference_before_final_check": [],
+  "original_visibility_restored": true,
+  "engineering_document_saved_by_review": false,
+  "inspection_only": true,
+  "default_projection_exactly_matches_review_start": true,
+  "default_projection_exactly_matches_delivery_png": true,
+  "note": "精确像素身份核对仅用于确认显隐恢复和工程未改画，不用于质量判断。"
+}

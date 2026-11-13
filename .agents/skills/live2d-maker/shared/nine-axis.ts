@@ -1,6 +1,5 @@
-// Task-relative paths for the four-step nine-axis pipeline. The workbench
-// reads the newest completed deformers.json and, once merged, the KRA copy
-// that step02 made from shadow.
+// Current task-relative paths and compatibility with earlier pipeline layouts.
+// Models name their saved KRA source; PNG snapshots are derived data.
 export const previousNineAxisArtifacts = {
   turnUpperBody: 'nine-axis/step01_video/upper-body.png',
   turnLeft: 'nine-axis/step01_video/left.png',
@@ -37,7 +36,7 @@ export const legacyNineAxisArtifacts = {
   angleXYDeformers: 'nine-axis/step06_angle-xy/deformers.json',
   jawLineDeformers: 'nine-axis/step07_jaw-line/deformers.json',
 } as const;
-export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line', 'step08_hair'] as const;
+export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line', 'step08_hair', 'step09_head-accessories'] as const;
 export const previousNineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line'] as const;
 export const nineAxisGroups = ['left', 'up', 'down'] as const;
 export const nineAxisBranches = ['model', 'video'] as const;
@@ -68,11 +67,15 @@ export const nineAxisArtifacts = {
   hairAuthor: 'nine-axis/step08_hair/hair.json', hairDeformers: 'nine-axis/step08_hair/deformers.json',
   hairDocument: 'nine-axis/step08_hair/character-nine-axis.kra', hairColor: 'nine-axis/step08_hair/character-nine-axis.png',
   hairSource: 'nine-axis/step08_hair/source.json', hairExportRecord: 'nine-axis/step08_hair/export-record.json', hairNotes: 'nine-axis/step08_hair/notes.md',
+  accessoriesAuthor: 'nine-axis/step09_head-accessories/accessories.json', accessoriesDeformers: 'nine-axis/step09_head-accessories/deformers.json',
+  accessoriesDocument: 'nine-axis/step09_head-accessories/character-nine-axis.kra', accessoriesColor: 'nine-axis/step09_head-accessories/character-nine-axis.png',
+  accessoriesSource: 'nine-axis/step09_head-accessories/source.json', accessoriesExportRecord: 'nine-axis/step09_head-accessories/export-record.json', accessoriesNotes: 'nine-axis/step09_head-accessories/notes.md',
 } as const;
 export const nineAxisStages = {
   neutral: nineAxisArtifacts.preparationDeformers,
   x: nineAxisArtifacts.angleXDeformers, up: nineAxisArtifacts.angleUpDeformers, down: nineAxisArtifacts.angleDownDeformers,
   y: nineAxisArtifacts.headDeformers, xy: nineAxisArtifacts.angleXYDeformers, jaw: nineAxisArtifacts.jawLineDeformers, hair: nineAxisArtifacts.hairDeformers,
+  accessories: nineAxisArtifacts.accessoriesDeformers,
 } as const;
 export const previousNineAxisStages = {
   x: previousNineAxisArtifacts.angleXDeformers, up: previousNineAxisArtifacts.angleUpDeformers,

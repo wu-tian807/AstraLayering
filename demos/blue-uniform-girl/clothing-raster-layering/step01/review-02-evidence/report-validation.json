@@ -1,0 +1,24 @@
+{
+  "report": "clothing-raster-layering/step01/review-02.md.tmp",
+  "first_line": "结论：需要修复",
+  "logical_parts": 23,
+  "paint_fragments": 32,
+  "visibility_masks": 7,
+  "issue_ids": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6"
+  ],
+  "linked_files": 190,
+  "all_links_exist": true,
+  "all_linked_pngs_readable": true,
+  "all_solo_uncover_canvas_sizes": [
+    1115,
+    1410
+  ],
+  "readonly": true,
+  "note": "文件与报告完整性检查，不替代看图验收。"
+}

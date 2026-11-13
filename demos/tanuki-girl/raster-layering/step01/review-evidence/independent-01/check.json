@@ -1,0 +1,17 @@
+{
+  "all_parts_viewed": 78,
+  "paint_slices_viewed": 83,
+  "exposed_views": 83,
+  "union_parts_viewed": 5,
+  "transparency_masks_toggled": 5,
+  "controlled_hidden_parts_viewed": 8,
+  "kra_sha256_before": "c6ce19cd0522c47470eb1a0577b14cbb4393eb5ec7db679ac1e3370c142d760c",
+  "kra_sha256_after": "c6ce19cd0522c47470eb1a0577b14cbb4393eb5ec7db679ac1e3370c142d760c",
+  "kra_unchanged": true,
+  "issue_count": 29,
+  "no_image_metric_used_for_review": true,
+  "regions": "raster-layering/step01/review-evidence/independent-01/regions.json",
+  "review_visibility_restored": true,
+  "review_document_closed": true,
+  "review_document_shared_with_existing": false
+}

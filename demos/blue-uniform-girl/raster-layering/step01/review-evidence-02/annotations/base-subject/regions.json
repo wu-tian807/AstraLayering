@@ -1,0 +1,65 @@
+{
+  "image": "raster-layering/step01/review-evidence-02/raw/actual-default.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-02/annotations/base-subject/marked.png",
+  "manifest": "raster-layering/step01/review-evidence-02/annotations/base-subject/regions.json",
+  "regions": [
+    {
+      "id": "R4",
+      "bounds": [
+        435,
+        708,
+        26,
+        36
+      ],
+      "layers": [
+        "23 | arms/arm_right/forearm",
+        "25 | arms/arm_right/upper_arm"
+      ],
+      "description": "画面左肘内侧轮廓有向外伸出的灰色短枝，25上臂独显可定位到同一灰色边缘；base-subject为连续棕色斜弧。清除25边缘的灰色残片，接顺自身描边与23的重叠，保留完整关节补形。",
+      "crop": [
+        423,
+        696,
+        50,
+        60
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/base-subject/R4-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/base-subject/R4-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/base-subject/R4-comparison.png"
+      },
+      "batch": "base-subject"
+    },
+    {
+      "id": "R15",
+      "bounds": [
+        461,
+        781,
+        31,
+        33
+      ],
+      "layers": [
+        "27 | body/torso",
+        "29 | pelvis"
+      ],
+      "description": "连体衣左侧腰胯交界处的29轮廓出现侧向台阶和灰蓝突出边，参考base-subject为顺直连续弧。重接27/29轮廓线与面料渐变，消除错位硬边，保留底边及结构线。",
+      "crop": [
+        449,
+        769,
+        55,
+        57
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-02/annotations/base-subject/R15-current.png",
+        "reference": "raster-layering/step01/review-evidence-02/annotations/base-subject/R15-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-02/annotations/base-subject/R15-comparison.png"
+      },
+      "batch": "base-subject"
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

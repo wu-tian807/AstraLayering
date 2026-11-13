@@ -1,0 +1,102 @@
+{
+  "newPassedIssues": [
+    "R1",
+    "R2",
+    "R20"
+  ],
+  "pendingRelatedIssues": [
+    "R19",
+    "R35"
+  ],
+  "changedParts": [
+    {
+      "id": "legs/leg_left/shoes/cuff_back",
+      "layerName": "02 | legs/leg_left/shoes/cuff_back",
+      "layerUUID": "{c7e21fcd-d954-4109-acf1-63cabfccac75}",
+      "level": 2,
+      "region": "本件完整后鞋口端点及前后口缘衔接",
+      "reuseSource": "本件已有生成材质的局部配准及同件原生墨色笔触；没有跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_right/shoes/cuff_back",
+      "layerName": "03 | legs/leg_right/shoes/cuff_back",
+      "layerUUID": "{bdfed0ea-bffa-4cfd-9160-86a499193bd1}",
+      "level": 3,
+      "region": "本件完整后鞋口端点及前后口缘衔接",
+      "reuseSource": "本件已有生成材质的局部配准及同件原生墨色笔触；没有跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_left/leg",
+      "layerName": "04 | legs/leg_left/leg",
+      "layerUUID": "{874466af-a8fd-455a-aa1a-4394f2c00e6a}",
+      "level": 4,
+      "region": "本件完整袜腿/补全足部，侧缘局部配准及整圈描边",
+      "reuseSource": "本件已有生成材质的局部配准及同件原生墨色笔触；没有跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_right/leg",
+      "layerName": "05 | legs/leg_right/leg",
+      "layerUUID": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}",
+      "level": 5,
+      "region": "本件完整袜腿/补全足部，侧缘局部配准及整圈描边",
+      "reuseSource": "本件已有生成材质的局部配准及同件原生墨色笔触；没有跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_left/shoes/shoe_front",
+      "layerName": "06 | legs/leg_left/shoes/shoe_front",
+      "layerUUID": "{3b0f36c9-3065-485d-918d-394523b87ff3}",
+      "level": 6,
+      "region": "本件前鞋体外墨线之外的残边和墨线衔接",
+      "reuseSource": "本件已有生成材质的局部配准及同件原生墨色笔触；没有跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "legs/leg_right/shoes/shoe_front",
+      "layerName": "07 | legs/leg_right/shoes/shoe_front",
+      "layerUUID": "{a5d03af1-05f9-43ff-a031-8a1f7e439fed}",
+      "level": 7,
+      "region": "本件前鞋体外墨线之外的残边和墨线衔接",
+      "reuseSource": "本件已有生成材质的局部配准及同件原生墨色笔触；没有跨 part 复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "arms/arm_left/bracelet_front",
+      "layerName": "30 | arms/arm_left/bracelet_front",
+      "layerUUID": "{bb507ac4-597b-4816-a13c-6799c5365bc4}",
+      "level": 30,
+      "region": "前腕带蓝色根部 y809–822；y823 以下及宝石不变",
+      "reuseSource": "本件已有生成材质的局部配准及同件原生墨色笔触；没有跨 part 复用",
+      "nativeMasks": []
+    }
+  ],
+  "unchangedPaintParts": 52,
+  "braceletBodyAndGemUnchangedAtAndBelowY": 823,
+  "nativeMaskSelectionsAndOwnershipUnchanged": true,
+  "thisBatchGeneration": null,
+  "method": "保留已有生成画面，Python 只作配准/控制选区，Krita 原生笔触沿本件轮廓逐段接线与窄边清理；没有沿完整形状整块填色，没有裙/鞋线进袜层，没有腕投影进腕带层。",
+  "rejectedTrials": [
+    "shoes-own-white-fringe-clean 的同件色转透明样本仍留白碎行，撤回。",
+    "shoes-native-own-fringe-clean 的初始 opaque ink 检测误计 alpha=0 的暗色，已恢复批前前鞋体；最终要求 dark alpha>120、support alpha>60，清到真正不透明墨线外。",
+    "袜腿首个 2px 线和随后仅 5.2px 外线版本仍留浅灰透明碎点；最终另沿本件内侧窄边用原生笔触接通，保留生成核心。"
+  ],
+  "recoveredPreparationErrors": [
+    {
+      "error": "ValueError: Invalid inputs.",
+      "where": "raster-layering/step01/workspace/repair-next4/prep_stock_legs.py",
+      "mutation": false,
+      "recovery": "marching-squares level .4 改 .4137，去除连续重复点后 splprep 成功；未改文档前已恢复。"
+    }
+  ],
+  "baseline": "raster-layering/step01/workspace/repair-next4/before",
+  "freshDiskDocumentOpen": true,
+  "duplicateTaskDocuments": false,
+  "upstreamChanges": [],
+  "preAnnotatedSplits": [],
+  "assemblyDiscoveredSplits": [],
+  "reopen": "raster-layering/step01/repair-evidence-01/sock-shoe-bracelet-continuation/reopen-verification.json",
+  "checkEvidence": "raster-layering/step01/repair-evidence-01/issue-index.json"
+}

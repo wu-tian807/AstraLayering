@@ -1,0 +1,25 @@
+{
+  "unresolvedFaults": [],
+  "recovered": [
+    {
+      "error": "Krita 弹出了对话框“QProgressDialog”，无人操作的界面会因此卡住，桥接已自动取消它，对应操作没有完成。不要在脚本里打开需要人操作的对话框；导出和保存的参数通过 InfoObject 传入。",
+      "lastRejectedSaveJob": "1794522809692-native_save_final-db1ed274",
+      "recovery": "批处理模式保留活文档；单独重试保存成功，再关闭重开，91节点签名及KRA mergedimage与PNG一致。",
+      "successfulSaveJob": "1794522821736-native_save_final-0ebcc12f",
+      "reopenJob": "1794522875127-after_reopen_final-0c734c40"
+    },
+    {
+      "error": "NameError: name 'QImage' is not defined",
+      "recovery": "诊断脚本补全导入后成功；没有把诊断失败视为修画完成。"
+    },
+    {
+      "error": "/bin/bash: line 1: python: command not found",
+      "recovery": "改用已有 python3 完成脚本。"
+    }
+  ],
+  "imageReadRecovery": {
+    "blockedOriginal": "raster-layering/step01/workspace/repair02/audit-sheet-10.png",
+    "usedInstead": "raster-layering/step01/workspace/repair02/audit-sheet-10-gray.png",
+    "method": "已成功读取缩小灰度版本，未重复被拦截的原查看方式。"
+  }
+}

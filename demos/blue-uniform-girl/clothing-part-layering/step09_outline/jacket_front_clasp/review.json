@@ -1,0 +1,33 @@
+{
+  "groupId": "jacket_front_clasp",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过，无已确认需要修改的问题。已只读核对纯衣服参考、groups.json 中 jacket_front_clasp 的 note 及当前 outline.svg；本节点为顶层 group，parentGroup=null，无父 SVG 包含限制。\n\n归属与主要形状：先从原参考确认本组为外套开襟中央左右白色蝶形带翼及中央方扣。可见范围约 x580–701、y476–584。候选覆盖两翼及方扣所在实体区域，没有误包外套驳头、衬衫或人体，没有遗漏可见附件。中央方扣约 x621–659、y506–535 完全落在联合覆盖内；group 阶段无需额外内部路径或恢复扣件花纹。\n\n逐处边缘：在 crop=[565,465,150,132]、5 倍放大下，核对左上翼从 (585,476) 至中央上收束点约 (639,507)、右上翼至 (675,479)、左右外端接缝及下翼端约 (580,584)/(701,584)、两侧下缘至中央下收束点约 (641,535)，边缘图均与参考实际衣料边界吻合。中央上下 V 形缺口保留衬衫露出区域；参考中无属于本组的薄纱、独立悬挂附件或其他真实开口需要补入。两翼外端接入外套内边的位置合理，未发现需要重画或微调的轮廓缺陷。\n\nnote 已明确两翼外端隐藏连接于外套内边下、白带在衬衫门襟前、方扣在带翼前、左右端随对应前衣片移动以及共同开合/张紧/显隐职责，未发现说明错误。\n\n图像证据：\n\n\n\n\n",
+      "candidateHash": "a3f9558d567c4593a0b8df096451f93d6d3570709ee6c2696dc52ec03a85418c",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/previews/2026-11-10T09-48-14-354Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/previews/2026-11-10T09-48-14-354Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/previews/2026-11-10T09-48-14-354Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/previews/2026-11-10T09-48-14-354Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T09:58:38.325Z"
+    }
+  ]
+}

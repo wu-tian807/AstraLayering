@@ -1,0 +1,142 @@
+[
+  {
+    "index": 20,
+    "name": "D27 | arms/arm_left/bracelet_green_back",
+    "uuid": "{7634f287-b2f4-43c8-bd81-b678d7c53fa4}",
+    "level": 27,
+    "parent": "root"
+  },
+  {
+    "index": 21,
+    "name": "D28 | arms/arm_left/bracelet_pink_back",
+    "uuid": "{9300b096-f06d-4ca4-b43e-81081a584bce}",
+    "level": 28,
+    "parent": "root"
+  },
+  {
+    "index": 22,
+    "name": "D29 | arms/arm_right/bracelet_cream_back",
+    "uuid": "{5d9621c7-801e-4fcb-a821-40d9ccefd060}",
+    "level": 29,
+    "parent": "root"
+  },
+  {
+    "index": 23,
+    "name": "D30 | arms/arm_right/bracelet_pink_back",
+    "uuid": "{4b6e20b9-010e-468f-a113-c4fb2a99f661}",
+    "level": 30,
+    "parent": "root"
+  },
+  {
+    "index": 24,
+    "name": "D31 | arms/arm_left/forearm",
+    "uuid": "{c57a133b-41ed-4918-80de-a962b23c6b3c}",
+    "level": 31,
+    "parent": "root"
+  },
+  {
+    "index": 25,
+    "name": "D32 | arms/arm_right/forearm",
+    "uuid": "{1538e529-1abc-46ee-a1d4-8cb195bd6b1f}",
+    "level": 32,
+    "parent": "root"
+  },
+  {
+    "index": 26,
+    "name": "D32.5 | body/torso | lower_mount",
+    "uuid": "{46358100-0b1c-433a-a3da-f652464fcffd}",
+    "level": 32.5,
+    "parent": "root"
+  },
+  {
+    "index": 27,
+    "name": "D33 | pelvis | front",
+    "uuid": "{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}",
+    "level": 33,
+    "parent": "root"
+  },
+  {
+    "index": 28,
+    "name": "D34 | body/torso",
+    "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+    "level": 34,
+    "parent": "root"
+  },
+  {
+    "index": 29,
+    "name": "D35 | body/breast",
+    "uuid": "{1b76e69a-e317-4da3-a0fb-ff17ac74b107}",
+    "level": 35,
+    "parent": "root"
+  },
+  {
+    "index": 30,
+    "name": "D36 | arms/arm_left/hand/little_finger",
+    "uuid": "{ca815547-31cc-4382-9aa8-dd188b37b377}",
+    "level": 36,
+    "parent": "root"
+  },
+  {
+    "index": 31,
+    "name": "D37 | arms/arm_right/hand/little_finger",
+    "uuid": "{f6a6d2a1-0435-4c58-ab1a-662a1559249c}",
+    "level": 37,
+    "parent": "root"
+  },
+  {
+    "index": 32,
+    "name": "D38 | arms/arm_left/hand/ring_finger",
+    "uuid": "{d85bd8b0-a005-4c44-8336-c74b30be64a4}",
+    "level": 38,
+    "parent": "root"
+  },
+  {
+    "index": 33,
+    "name": "D39 | arms/arm_right/hand/ring_finger",
+    "uuid": "{6ea2cb37-c639-4b2a-a4c2-08504d985757}",
+    "level": 39,
+    "parent": "root"
+  },
+  {
+    "index": 34,
+    "name": "D40 | arms/arm_left/hand/middle_finger",
+    "uuid": "{3fd8810e-8dde-4b15-b781-25d1dc9f5978}",
+    "level": 40,
+    "parent": "root"
+  },
+  {
+    "index": 35,
+    "name": "D41 | arms/arm_right/hand/middle_finger",
+    "uuid": "{0da3ede1-9370-48e6-80a5-69abb2cf3b15}",
+    "level": 41,
+    "parent": "root"
+  },
+  {
+    "index": 36,
+    "name": "D42 | arms/arm_left/hand/thumb",
+    "uuid": "{aba770e8-b3fe-461b-adae-4ee044d10e1d}",
+    "level": 42,
+    "parent": "root"
+  },
+  {
+    "index": 37,
+    "name": "D43 | arms/arm_right/hand/thumb",
+    "uuid": "{00111c35-ef30-4cf9-b1a9-dbf57cc5138f}",
+    "level": 43,
+    "parent": "root"
+  },
+  {
+    "index": 38,
+    "name": "D44 | arms/arm_left/hand/index_finger",
+    "uuid": "{e49a2920-0265-4fec-bcfc-f03c59d3ec1d}",
+    "level": 44,
+    "parent": "root"
+  },
+  {
+    "index": 39,
+    "name": "D45 | arms/arm_right/hand/index_finger",
+    "uuid": "{3a056be8-c259-483b-ae9a-f71e159baa9b}",
+    "level": 45,
+    "parent": "root"
+  }
+]

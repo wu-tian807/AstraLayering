@@ -1,0 +1,38 @@
+{
+  "groupId": "jacket_front_clasp/right_clasp_wing",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：通过，无确定需要修改的问题。已只读核对纯衣服参考、groups.json 中当前 part 与父组 note、当前候选及父完成 SVG，并完成整体 blend、覆盖全部可见带面的局部放大 blend/edge 和 SVG 独显。\n\n原参考独立确认本片为画面左侧蝶形带翼：可见范围约 x580–639、y476–584，上缘从 (585,476) 向中央方扣上方收束，下缘由 (580,584) 向 (641,535) 收束。候选覆盖该侧完整可见带面，上下边缘、位置及展开比例与参考吻合；没有将右侧带翼、内搭门襟或人体误归入本片。中央 x639–641、y506.5–535 的分界处于方扣覆盖区，符合扣下连接搭接职责，不要求在带翼内复画方扣。\n\n外端 x568–594、y493–550 为父完成 SVG 已登记的隐藏连接段，候选原样保留；它位于画面左侧外套内边之后，不能按参考像素交集删去。与可见带面的连续连接及父范围已核对，4 倍采样越界面积为 0。当前 note 已向终止 part 传递相邻分界、扣件前后关系、外套遮挡、对应前衣片随动及共同连接职责。参考中本片没有需另留的真实开孔、薄纱或独立附件，未见实际可见组件遗漏。无需重画或边缘返修。\n\n图像证据：\n\n\n\n\n",
+      "candidateHash": "a7f32c9ad99a7a531bb99093ce50a25e1beda836f38247007bffbb21495ffcb2",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/children/right_clasp_wing/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/right_clasp_wing/previews/2026-11-10T10-43-15-681Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/jacket_front_clasp.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/right_clasp_wing/previews/2026-11-10T10-43-15-681Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/children/right_clasp_wing/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/right_clasp_wing/previews/2026-11-10T10-43-15-681Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/children/right_clasp_wing/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/right_clasp_wing/previews/2026-11-10T10-43-15-681Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/jacket_front_clasp/children/right_clasp_wing/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/jacket_front_clasp/children/right_clasp_wing/previews/2026-11-10T10-43-15-681Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T11:00:35.861Z"
+    }
+  ]
+}

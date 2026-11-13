@@ -5,10 +5,11 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { parseEnv } from 'node:util';
-import { createEnvironmentConfig, EnvironmentConflict, patchEnvironment } from '../environment-config.ts';
+import { createEnvironmentConfig, EnvironmentConflict, patchEnvironment, probeEnvironmentCli } from '../environment-config.ts';
 import { createWorkbench } from '../server.ts';
 import { loadWorkflowEnvironment } from '../../.agents/skills/live2d-maker/shared/codex/environment.ts';
 import { imageSteps, imageModelKey } from '../../.agents/skills/live2d-maker/shared/agents/models.ts';
+import { videoModels } from '../../.agents/skills/live2d-maker/shared/video.ts';
 
 async function fixture(t:any, text?:string, env:NodeJS.ProcessEnv={}) {
  const directory=await realpath(await mkdtemp(join(tmpdir(),'astra-env-')));
@@ -32,6 +33,14 @@ test('preview masks multiline and inherited credentials while exposing resolved 
  assert.equal(claude.overridden,true);assert.equal(claude.sourceKey,'ANTHROPIC_API_KEY');
  assert.equal(data.providers?.claude.baseUrl,'https://gateway.example');
  assert.equal(data.models.find(m=>m.id==='claude-sonnet-5-5')?.available,false);
+});
+test('Codex is managed by the pipeline and no executable-path field can be saved', async t => {
+ const f=await fixture(t,'# keep\n'),data=await f.environment.read();
+ assert.equal(data.fields.some(field=>field.key==='codex_path'),false);
+ await assert.rejects(f.environment.save({revision:data.revision,changes:{codex_path:'/local/codex'}}),/字段无效/);
+ const codex=await probeEnvironmentCli('codex',{codex_path:'/missing/local-codex'},{codex_path:'/missing/env-codex',PATH:''},f.directory);
+ assert.equal(codex.available,true);assert.equal(codex.path,'');assert.match(codex.detail,/管线内置补丁版/);
+ assert.equal(await readFile(join(f.directory,'.env'),'utf8'),'# keep\n');
 });
 test('saves selected keys atomically, preserving comments, CRLF, secrets, unknown multiline records and budgets',async t=>{
  const original="# Local settings\r\npreparation_agent_model=gpt-6.1-sol-low # keep this note\r\ncodex_api_key='unchanged-secret'\r\nCUSTOM='first\r\nsecond # still value'\r\ncodex_request_compact_mib=80\r\n";
@@ -123,4 +132,18 @@ test('web defaults, runtime fallback and generated .env follow the skill templat
  assert.equal(await readFile(join(f.directory,'.env'),'utf8'),template);
  const after=loadWorkflowEnvironment({},f.directory);
  assert.deepEqual(after.stepModels,before.stepModels);assert.deepEqual(after.stepImages,before.stepImages);
+});
+
+test('head configuration names the shared maker role and exposes the actual video fields and supported models', async t => {
+ const f=await fixture(t),data=await f.environment.read();
+ const maker=data.fields.find(field=>field.key==='nine_axis_head_agent_model')!;
+ assert.equal(maker.label,'头部九轴制作');assert.match(maker.hint!,/脸部、头发与头饰/);
+ const fields=data.fields.filter(field=>field.section==='video');
+ assert.deepEqual(fields.map(field=>field.key),['video_base_url','video_api_key','nine_axis_view_video_model']);
+ assert.equal(fields[1].secret,true);assert.equal(fields[2].type,'select');assert.deepEqual(fields[2].options,[...videoModels]);
+ const saved=await f.environment.save({revision:data.revision,changes:{nine_axis_head_agent_model:'gpt-6-astra-high',video_base_url:'https://video.example/v1',video_api_key:'video-test-secret',nine_axis_view_video_model:'seedance-2-fast'}});
+ assert.ok(!JSON.stringify(saved).includes('video-test-secret'));
+ const settings=loadWorkflowEnvironment({},f.directory);
+ for(const step of ['nine_axis_head','nine_axis_head_hair','nine_axis_head_accessories'] as const)assert.equal(settings.stepModels[step].model,'gpt-6-astra');
+ assert.equal(settings.videoApi?.model,'seedance-2-fast');
 });

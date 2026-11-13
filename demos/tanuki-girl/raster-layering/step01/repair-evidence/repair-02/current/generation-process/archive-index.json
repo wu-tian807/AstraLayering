@@ -1,0 +1,147 @@
+[
+  {
+    "tag": "braid",
+    "level": 57,
+    "id": "hair/braid_right",
+    "box": [
+      556,
+      660,
+      75,
+      102
+    ],
+    "size": [
+      735,
+      1000
+    ],
+    "mode": "built-in image_gen",
+    "original_tool_output": "raster-layering/step01/workspace/generated/generated_images/01a1d19a-9f70-76a0-8f73-bdd4d79bac5c/call_TZ6a45NpW7AYhrcvnV1nxNJE.png",
+    "original_tool_output_archive": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/braid-original-generated.png",
+    "original_sha256": "04b6ad80a2717e9be3999cb030dce415465cc67444d947086e63f0bf6fe96fa4",
+    "selected_generated": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/braid-generated.png",
+    "neutralized_input": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/braid-source.png",
+    "three_color_control": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/braid-control.png",
+    "shape": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/braid-shape.png",
+    "region_roles": {
+      "red": "this part visible form/material/brushwork",
+      "yellow": "occluded continuation of this part; hiddenInReference entities use full silhouette",
+      "green": "outside this part, output transparent"
+    },
+    "occluder_input": "Yellow and green input neutral gray. Supporting style references determine material/pose only; no occluder transfer."
+  },
+  {
+    "tag": "ring-right",
+    "level": 39,
+    "id": "arms/arm_right/hand/ring_finger",
+    "box": [
+      293,
+      1024,
+      72,
+      60
+    ],
+    "size": [
+      1000,
+      833
+    ],
+    "mode": "built-in image_gen",
+    "original_tool_output": "raster-layering/step01/workspace/generated/generated_images/01a1d19a-9f70-76a0-8f73-bdd4d79bac5c/call_gCKa5E4AbqDV7XagAGMnHUa2.png",
+    "original_tool_output_archive": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/ring-right-original-generated.png",
+    "original_sha256": "1515efd503243662e8c722df0b1a23f33391247e7be476edf61ea984ae97137c",
+    "selected_generated": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/ring-right-generated.png",
+    "neutralized_input": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/ring-right-source.png",
+    "three_color_control": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/ring-right-control.png",
+    "shape": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/ring-right-shape.png",
+    "region_roles": {
+      "red": "this part visible form/material/brushwork",
+      "yellow": "occluded continuation of this part; hiddenInReference entities use full silhouette",
+      "green": "outside this part, output transparent"
+    },
+    "occluder_input": "Yellow and green input neutral gray. Supporting style references determine material/pose only; no occluder transfer."
+  },
+  {
+    "tag": "little-left",
+    "level": 36,
+    "id": "arms/arm_left/hand/little_finger",
+    "box": [
+      1053,
+      1027,
+      56,
+      52
+    ],
+    "size": [
+      1000,
+      929
+    ],
+    "mode": "built-in image_gen",
+    "original_tool_output": "raster-layering/step01/workspace/generated/generated_images/01a1d19a-9f70-76a0-8f73-bdd4d79bac5c/call_VTYC9GOkNbX5e2g59MFIk7vG.png",
+    "original_tool_output_archive": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-left-original-generated.png",
+    "original_sha256": "bac3e3914da54db096be946e8efb45be9f2950ca6a06aa9bc318c35ba4bb53fc",
+    "selected_generated": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-left-generated.png",
+    "neutralized_input": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-left-source.png",
+    "three_color_control": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-left-control.png",
+    "shape": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-left-shape.png",
+    "region_roles": {
+      "red": "this part visible form/material/brushwork",
+      "yellow": "occluded continuation of this part; hiddenInReference entities use full silhouette",
+      "green": "outside this part, output transparent"
+    },
+    "occluder_input": "Yellow and green input neutral gray. Supporting style references determine material/pose only; no occluder transfer."
+  },
+  {
+    "tag": "little-right",
+    "level": 37,
+    "id": "arms/arm_right/hand/little_finger",
+    "box": [
+      307,
+      1019,
+      61,
+      47
+    ],
+    "size": [
+      1000,
+      770
+    ],
+    "mode": "built-in image_gen",
+    "original_tool_output": "raster-layering/step01/workspace/generated/generated_images/01a1d19a-9f70-76a0-8f73-bdd4d79bac5c/call_xjP0kE3elZDIbtNtQjBKgxti.png",
+    "original_tool_output_archive": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-right-original-generated.png",
+    "original_sha256": "440b94ac18cd111d3bdd5591f1217c32b4999c11ec1913a545d43866be6a5625",
+    "selected_generated": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-right-generated.png",
+    "neutralized_input": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-right-source.png",
+    "three_color_control": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-right-control.png",
+    "shape": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/little-right-shape.png",
+    "region_roles": {
+      "red": "this part visible form/material/brushwork",
+      "yellow": "occluded continuation of this part; hiddenInReference entities use full silhouette",
+      "green": "outside this part, output transparent"
+    },
+    "occluder_input": "Yellow and green input neutral gray. Supporting style references determine material/pose only; no occluder transfer."
+  },
+  {
+    "tag": "pink-back",
+    "level": 28,
+    "id": "arms/arm_left/bracelet_pink_back",
+    "box": [
+      977,
+      965,
+      57,
+      65
+    ],
+    "size": [
+      877,
+      1000
+    ],
+    "mode": "built-in image_gen",
+    "original_tool_output": "raster-layering/step01/workspace/generated/generated_images/01a1d19a-9f70-76a0-8f73-bdd4d79bac5c/call_FAHsh5ffVpgdhOcdGy1gH7QO.png",
+    "original_tool_output_archive": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/pink-back-original-generated.png",
+    "original_sha256": "c734c2db70689d3260aa15b5b92384b1d9545da7d13e29e29c587e1c532f751c",
+    "selected_generated": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/pink-back-generated.png",
+    "neutralized_input": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/pink-back-source.png",
+    "three_color_control": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/pink-back-control.png",
+    "shape": "raster-layering/step01/repair-evidence/repair-02/current/generation-process/pink-back-shape.png",
+    "region_roles": {
+      "red": "this part visible form/material/brushwork",
+      "yellow": "occluded continuation of this part; hiddenInReference entities use full silhouette",
+      "green": "outside this part, output transparent"
+    },
+    "occluder_input": "Yellow and green input neutral gray. Supporting style references determine material/pose only; no occluder transfer."
+  }
+]

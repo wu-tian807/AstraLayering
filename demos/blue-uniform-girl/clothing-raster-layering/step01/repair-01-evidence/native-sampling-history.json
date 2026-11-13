@@ -1,0 +1,386 @@
+[
+  {
+    "depth": 40,
+    "id": "jacket_front_clasp/center_buckle",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{4e99de2a-7162-4a78-be49-f72b4c1f8258}",
+    "newUUID": "{4e99de2a-7162-4a78-be49-f72b4c1f8258}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 40,
+    "id": "jacket_front_clasp/center_buckle",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{4e99de2a-7162-4a78-be49-f72b4c1f8258}",
+    "newUUID": "{631d6980-163b-4008-9ff1-b05cd91edc11}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{838bed12-b27f-4bba-b1b0-ee5c41e79040}",
+    "newUUID": "{642839a3-9e7a-45b1-bedf-d306a61e1f53}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{642839a3-9e7a-45b1-bedf-d306a61e1f53}",
+    "newUUID": "{305a7c12-dde5-448b-974e-164aa87eedbd}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{305a7c12-dde5-448b-974e-164aa87eedbd}",
+    "newUUID": "{1f6ea086-b5dd-4f80-8311-fe6dedaa8105}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{1f6ea086-b5dd-4f80-8311-fe6dedaa8105}",
+    "newUUID": "{81a42369-33f6-45b9-899e-498d4eeae494}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 33,
+    "id": "outer_jacket/right_sleeve",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R1-registered.png",
+    "previousUUID": "{4bcf3d6d-8dea-42e8-a918-c7356dbde499}",
+    "newUUID": "{66c5db1c-9d43-4dba-be82-aec0c187cd5a}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 33,
+    "id": "outer_jacket/right_sleeve",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R1-cuff-reference-registered.png",
+    "previousUUID": "{66c5db1c-9d43-4dba-be82-aec0c187cd5a}",
+    "newUUID": "{d109cb07-d994-450b-9c3f-10c96234fe03}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 33,
+    "id": "outer_jacket/right_sleeve",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R1-cuff-reference-registered.png",
+    "previousUUID": "{d109cb07-d994-450b-9c3f-10c96234fe03}",
+    "newUUID": "{08e4dd95-d738-42e3-b7f8-1ea88c7efd55}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 33,
+    "id": "outer_jacket/right_sleeve",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{08e4dd95-d738-42e3-b7f8-1ea88c7efd55}",
+    "newUUID": "{9a4f33d7-a9b4-48ed-8364-962fc589aae9}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 35,
+    "id": "outer_jacket/jacket_body/right_front/front_panel",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{bfeacc22-e802-47b1-a478-7416d33cf579}",
+    "newUUID": "{877dbbf4-dc9b-42be-93ff-607fd26659bc}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 32,
+    "id": "outer_jacket/left_sleeve",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{e0618e79-79f0-45f8-ac87-9aadedf30c56}",
+    "newUUID": "{c0c788b3-76de-42ca-831d-dec9816773d4}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{81a42369-33f6-45b9-899e-498d4eeae494}",
+    "newUUID": "{6f0f73b0-91cf-4aa6-aead-e5e27869275e}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 39,
+    "id": "outer_jacket/jacket_collar/right_collar_flap",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{7b756c44-b916-4ef0-a702-9b3d63594036}",
+    "newUUID": "{0d5c0041-a1a3-4d06-9c4d-edc521d88945}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 39,
+    "id": "outer_jacket/jacket_collar/right_collar_flap",
+    "source": "clothing-raster-layering/step01/workspace/repair01/before_d39.png",
+    "previousUUID": "{0d5c0041-a1a3-4d06-9c4d-edc521d88945}",
+    "newUUID": "{d013cdbb-7693-473c-916d-b4fb2d3af648}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 39,
+    "id": "outer_jacket/jacket_collar/right_collar_flap",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{d013cdbb-7693-473c-916d-b4fb2d3af648}",
+    "newUUID": "{245d9658-a1b2-47aa-84e7-6748f56035ba}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-registered.png",
+    "previousUUID": "{24e553aa-8e8f-47a0-94a1-189cf19dec73}",
+    "newUUID": "{792c7e65-6e55-412d-8895-75aec237519b}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/before_d22.png",
+    "previousUUID": "{792c7e65-6e55-412d-8895-75aec237519b}",
+    "newUUID": "{d2ae9396-6230-436f-a1fb-d087b9750611}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-rectangle-registered.png",
+    "previousUUID": "{d2ae9396-6230-436f-a1fb-d087b9750611}",
+    "newUUID": "{751e010f-4e01-41ed-925d-769e277db1e5}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/before_d22.png",
+    "previousUUID": "{751e010f-4e01-41ed-925d-769e277db1e5}",
+    "newUUID": "{d122282c-02d8-46aa-8216-99f0d06b3134}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-old-line-clean-source.png",
+    "previousUUID": "{d122282c-02d8-46aa-8216-99f0d06b3134}",
+    "newUUID": "{71c31341-fb39-49aa-83b0-2e54d6ec27ec}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-rectangle-extended.png",
+    "previousUUID": "{71c31341-fb39-49aa-83b0-2e54d6ec27ec}",
+    "newUUID": "{2ba0dd41-ab92-44ba-b662-c22e519d1b76}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-placket-join-source.png",
+    "previousUUID": "{2ba0dd41-ab92-44ba-b662-c22e519d1b76}",
+    "newUUID": "{55fae824-6b4f-41a3-a256-f077c8e87288}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/before_d22.png",
+    "previousUUID": "{55fae824-6b4f-41a3-a256-f077c8e87288}",
+    "newUUID": "{e0d96a29-2b3f-4ffd-b4f3-4fc49ccd84b1}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-final-registered.png",
+    "previousUUID": "{e0d96a29-2b3f-4ffd-b4f3-4fc49ccd84b1}",
+    "newUUID": "{3f40f3ce-b88d-4680-a454-d4f49b9f62d6}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-left-edge-material.png",
+    "previousUUID": "{3f40f3ce-b88d-4680-a454-d4f49b9f62d6}",
+    "newUUID": "{4f89fdc6-97e9-4005-aea0-e707773d851f}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{4f89fdc6-97e9-4005-aea0-e707773d851f}",
+    "newUUID": "{f508f3a0-5f1a-4001-ac12-e240d6be5e5f}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/before_d22.png",
+    "previousUUID": "{f508f3a0-5f1a-4001-ac12-e240d6be5e5f}",
+    "newUUID": "{99d5fd7e-909d-4634-b14a-aea98738bbb7}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-final-registered.png",
+    "previousUUID": "{99d5fd7e-909d-4634-b14a-aea98738bbb7}",
+    "newUUID": "{1cbce437-061b-408f-a1a0-9c8e8ef75146}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-left-edge-material.png",
+    "previousUUID": "{1cbce437-061b-408f-a1a0-9c8e8ef75146}",
+    "newUUID": "{858c4eee-0faf-4c5b-bd35-a25f28c3e7a0}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-left-line-material.png",
+    "previousUUID": "{858c4eee-0faf-4c5b-bd35-a25f28c3e7a0}",
+    "newUUID": "{554d6e02-ef87-4034-ae19-fd0d5f243d2d}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-right-line-material.png",
+    "previousUUID": "{554d6e02-ef87-4034-ae19-fd0d5f243d2d}",
+    "newUUID": "{aab4acff-aba2-45bc-b4d4-cc643d991e99}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{aab4acff-aba2-45bc-b4d4-cc643d991e99}",
+    "newUUID": "{e0d6ec95-e478-409d-a562-c9533739c1b9}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/before_d22.png",
+    "previousUUID": "{e0d6ec95-e478-409d-a562-c9533739c1b9}",
+    "newUUID": "{fa71fd8f-2d8b-445c-bd43-5813d26aad3e}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-final-registered.png",
+    "previousUUID": "{fa71fd8f-2d8b-445c-bd43-5813d26aad3e}",
+    "newUUID": "{891221fc-67ec-44b2-86ef-ef33e0f71071}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-left-edge-material.png",
+    "previousUUID": "{891221fc-67ec-44b2-86ef-ef33e0f71071}",
+    "newUUID": "{d147c37c-4c23-4cd9-8aaf-d1c9bdff213e}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-left-line-material.png",
+    "previousUUID": "{d147c37c-4c23-4cd9-8aaf-d1c9bdff213e}",
+    "newUUID": "{35fcf972-e861-4c06-b668-8b106102edd7}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-right-line-material.png",
+    "previousUUID": "{35fcf972-e861-4c06-b668-8b106102edd7}",
+    "newUUID": "{4ce39cbd-6a7c-4e68-98bc-77e6f6568de0}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{4ce39cbd-6a7c-4e68-98bc-77e6f6568de0}",
+    "newUUID": "{e58561e8-7ccb-4dc1-8a27-3225dbd94385}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/before_d22.png",
+    "previousUUID": "{e58561e8-7ccb-4dc1-8a27-3225dbd94385}",
+    "newUUID": "{92c25b8c-f635-4357-baae-2b75b5e42416}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-final-registered.png",
+    "previousUUID": "{92c25b8c-f635-4357-baae-2b75b5e42416}",
+    "newUUID": "{a165d482-e557-4986-8637-01a2811319d8}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-left-edge-material.png",
+    "previousUUID": "{a165d482-e557-4986-8637-01a2811319d8}",
+    "newUUID": "{d1201d39-0319-4d1b-a402-7162623c4bf0}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-left-line-material.png",
+    "previousUUID": "{d1201d39-0319-4d1b-a402-7162623c4bf0}",
+    "newUUID": "{d674db1b-65fb-4e71-b800-4dd63788bb66}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R5-right-line-material.png",
+    "previousUUID": "{d674db1b-65fb-4e71-b800-4dd63788bb66}",
+    "newUUID": "{20e14806-2c19-48b0-8a94-0e46ae8607a8}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 22,
+    "id": "inner_shirt/shirt_body",
+    "source": "clothing-part-layering/references/clothing.png",
+    "previousUUID": "{20e14806-2c19-48b0-8a94-0e46ae8607a8}",
+    "newUUID": "{dc5f75b1-3c42-4be7-85cf-d19049187fb1}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-raster-layering/step01/workspace/repair01/before_d34.png",
+    "previousUUID": "{6f0f73b0-91cf-4aa6-aead-e5e27869275e}",
+    "newUUID": "{fffcff2e-2fe2-4773-81c6-f4f5eedf83de}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 40,
+    "id": "jacket_front_clasp/center_buckle",
+    "source": "clothing-raster-layering/step01/workspace/repair01/R8-own-bottom-edge.png",
+    "previousUUID": "{631d6980-163b-4008-9ff1-b05cd91edc11}",
+    "newUUID": "{4a8d5063-93b1-445d-8da8-877722e35ae0}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 32,
+    "id": "outer_jacket/left_sleeve",
+    "source": "clothing-raster-layering/step01/repair-01-evidence/R3-sleeve-tip-before.png",
+    "previousUUID": "{c0c788b3-76de-42ca-831d-dec9816773d4}",
+    "newUUID": "{975f8a53-72cd-4d9f-a48e-a47f9c946e5e}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  }
+]

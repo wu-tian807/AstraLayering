@@ -82,6 +82,7 @@ async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
   if (id === 'step06_angle-xy') return [...files(['face-xy.json', 'linear.json', 'deformers.json', ...['left-up', 'left-down'].flatMap(c => [`${c}-face-trace.json`, `${c}-fit-report.json`])]), ...await textureDeliveries(directory)];
   if (id === 'step07_jaw-line') return [...files(['jaw.json', 'deformers.json', 'character-nine-axis.kra', 'character-nine-axis.png', 'export-record.json']), ...await textureDeliveries(directory)];
   if (id === 'step08_hair') return [...files(['hair.json', 'deformers.json', 'character-nine-axis.kra', 'character-nine-axis.png', 'source.json', 'export-record.json', 'notes.md']), ...await textureDeliveries(directory)];
+  if (id === 'step09_head-accessories') return [...files(['accessories.json', 'deformers.json', 'character-nine-axis.kra', 'character-nine-axis.png', 'source.json', 'export-record.json', 'notes.md']), ...await textureDeliveries(directory)];
   return previousNineAxisDeliveries(root, id);
 }
 

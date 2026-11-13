@@ -1,0 +1,63 @@
+{
+  "groupId": "arms/arm_right/hand/middle_finger",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组与父组说明、原图、候选及父完成 SVG；整图 blend 定位后，检查完整可见区域 [265,925,43,57]，并以相互重叠的上段 [269,933,32,31]、下段 [270,952,36,30] 的 8 倍 blend/edge 核对全部接缝与外缘。参考中本组为食指右下侧露出的最低圆钝指端；候选覆盖该可见指段，未误认右上侧的无名指短段为主体。近端与相邻指的重叠范围合理，未见可见肤色漏缝；指端左右外缘及底部圆弧与参考吻合。遮挡内完整指根不属于本轮必须恢复的范围。独显轮廓连续、无孤点碎片或无依据孔洞。allowOutsideParent 未设置，四倍父范围检查 outsidePixels=0；同时查看同一区域父稿 edge，候选符合父范围，无须报告上游限制。当前无确定需要修改的问题。\n证据：[完整可见区叠加](review-evidence/whole-visible-blend.png)、[上段接缝边缘](review-evidence/upper-seams-edge.png)、[下段指端边缘](review-evidence/tip-edge.png)、[同局部父组边缘](review-evidence/parent-edge.png)、[候选独显](review-evidence/standalone.png)。",
+      "candidateHash": "0bba001b7aef09f032828029ce528a49ad33e0841373d470b079cefb638d806c",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_right/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/middle_finger/previews/2026-11-10T18-24-55-587Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T18:50:32.431Z"
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "newPassedIssues": [
+    "R30",
+    "R32"
+  ],
+  "pendingIssues": [
+    "R5",
+    "R6",
+    "R7",
+    "R13",
+    "R19",
+    "R21",
+    "R24",
+    "R25",
+    "R29",
+    "R35"
+  ],
+  "changedParts": [
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "layerName": "37 | face/eyes/eye_left/sclera",
+      "layerUUID": "{0d6b92bf-92d0-494b-acf9-c7a6d133c5c0}",
+      "level": 37,
+      "region": "完整眼白保留；自身左/下外缘亮白碎线局部融色",
+      "reuseSource": "本件完整原生成材质、Krita原生笔触和原图同件窄区取样，无另一侧/其他part复用",
+      "nativeMasks": [
+        {
+          "maskName": "眼睛开口 left",
+          "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+          "ownerName": "眼内开合 left",
+          "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}",
+          "control": "左眼上眼睑内缘—眼白下沿共同开口；裁切眼白、虹膜、高光",
+          "defaultEnabled": true,
+          "defaultEvidence": "raster-layering/step01/evidence/mask-4-default.png",
+          "fullEvidence": "raster-layering/step01/evidence/mask-4-full.png",
+          "selectionHash": "c3f5325eb2a5f491e941d1226278c91b86c35aa7b7cad477584aa521bc65d89b"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "layerName": "38 | face/eyes/eye_left/iris",
+      "layerUUID": "{79ed3649-fddc-4bf8-b9fc-0267f7e9d4c1}",
+      "level": 38,
+      "region": "局部行轮廓0–2px、原图自身下部色块及瞳孔过亮小点清理；完整帽沿/暗边保留",
+      "reuseSource": "本件完整原生成材质、Krita原生笔触和原图同件窄区取样，无另一侧/其他part复用",
+      "nativeMasks": [
+        {
+          "maskName": "眼睛开口 left",
+          "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+          "ownerName": "眼内开合 left",
+          "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}",
+          "control": "左眼上眼睑内缘—眼白下沿共同开口；裁切眼白、虹膜、高光",
+          "defaultEnabled": true,
+          "defaultEvidence": "raster-layering/step01/evidence/mask-4-default.png",
+          "fullEvidence": "raster-layering/step01/evidence/mask-4-full.png",
+          "selectionHash": "c3f5325eb2a5f491e941d1226278c91b86c35aa7b7cad477584aa521bc65d89b"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "layerName": "39 | face/eyes/eye_left/highlight",
+      "layerUUID": "{38d785a0-2b85-4126-a5d4-2d995993c0cb}",
+      "level": 39,
+      "region": "主高光放大试验撤回；独立低亮蓝色瞳孔反光",
+      "reuseSource": "本件完整原生成材质、Krita原生笔触和原图同件窄区取样，无另一侧/其他part复用",
+      "nativeMasks": [
+        {
+          "maskName": "高光虹膜范围 left",
+          "maskUUID": "{4ea9dc55-ede2-48ce-9270-2f1eaacb036f}",
+          "ownerName": "39 | face/eyes/eye_left/highlight",
+          "ownerUUID": "{38d785a0-2b85-4126-a5d4-2d995993c0cb}",
+          "control": "左高光随虹膜并限于虹膜内部",
+          "defaultEnabled": true,
+          "defaultEvidence": "raster-layering/step01/evidence/mask-3-default.png",
+          "fullEvidence": "raster-layering/step01/evidence/mask-3-full.png",
+          "selectionHash": "104ee6bbb2cb773a648b05ace22d5d240bab5868800a201001ef5d26f2db202e"
+        },
+        {
+          "maskName": "眼睛开口 left",
+          "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+          "ownerName": "眼内开合 left",
+          "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}",
+          "control": "左眼上眼睑内缘—眼白下沿共同开口；裁切眼白、虹膜、高光",
+          "defaultEnabled": true,
+          "defaultEvidence": "raster-layering/step01/evidence/mask-4-default.png",
+          "fullEvidence": "raster-layering/step01/evidence/mask-4-full.png",
+          "selectionHash": "c3f5325eb2a5f491e941d1226278c91b86c35aa7b7cad477584aa521bc65d89b"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "layerName": "40 | face/eyes/eye_left/upper_eyelid",
+      "layerUUID": "{978e7f97-4bff-4503-acd6-a782fde2be34}",
+      "level": 40,
+      "region": "自身内缘0–1.4px，末尾0–2.4px局部材质配准",
+      "reuseSource": "本件完整原生成材质、Krita原生笔触和原图同件窄区取样，无另一侧/其他part复用",
+      "nativeMasks": []
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "layerName": "42 | face/eyes/eye_right/sclera",
+      "layerUUID": "{14a479b6-89ad-4a9f-ad72-d21873a39134}",
+      "level": 42,
+      "region": "自身左/下缘碎亮线融色、上睫毛形状斜灰投影去掉；完整眼白右下缘0–2.8px配准并修共用开口保留暗边",
+      "reuseSource": "本件完整原生成材质、Krita原生笔触和原图同件窄区取样，无另一侧/其他part复用",
+      "nativeMasks": [
+        {
+          "maskName": "眼睛开口 right",
+          "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+          "ownerName": "眼内开合 right",
+          "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+          "control": "右眼上眼睑内缘—眼白下沿共同开口；裁切眼白、虹膜、高光",
+          "defaultEnabled": true,
+          "defaultEvidence": "raster-layering/step01/evidence/mask-6-default.png",
+          "fullEvidence": "raster-layering/step01/evidence/mask-6-full.png",
+          "selectionHash": "0d2ea17bf6b6456e7acd8d477e3b206ea61bb0342f4af79b023cc2a9c8af3a89"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "layerName": "43 | face/eyes/eye_right/iris",
+      "layerUUID": "{58cb7d99-1303-47b8-8317-5b18387cf4e3}",
+      "level": 43,
+      "region": "本眼行轮廓0–2px、内部下部青蓝面，右上完整帽沿0–2.2px接触和原生细暗边",
+      "reuseSource": "本件完整原生成材质、Krita原生笔触和原图同件窄区取样，无另一侧/其他part复用",
+      "nativeMasks": [
+        {
+          "maskName": "眼睛开口 right",
+          "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+          "ownerName": "眼内开合 right",
+          "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+          "control": "右眼上眼睑内缘—眼白下沿共同开口；裁切眼白、虹膜、高光",
+          "defaultEnabled": true,
+          "defaultEvidence": "raster-layering/step01/evidence/mask-6-default.png",
+          "fullEvidence": "raster-layering/step01/evidence/mask-6-full.png",
+          "selectionHash": "0d2ea17bf6b6456e7acd8d477e3b206ea61bb0342f4af79b023cc2a9c8af3a89"
+        }
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "layerName": "44 | face/eyes/eye_right/highlight",
+      "layerUUID": "{5b2f210f-f4fd-4df9-b302-1c9cd63f747e}",
+      "level": 44,
+      "region": "主高光试验撤回；自身左下小青蓝反光独立原生绘画",
+      "reuseSource": "本件完整原生成材质、Krita原生笔触和原图同件窄区取样，无另一侧/其他part复用",
+      "nativeMasks": [
+        {
+          "maskName": "高光虹膜范围 right",
+          "maskUUID": "{ab4087a9-f7c6-4c0e-9b31-a7e58be174df}",
+          "ownerName": "44 | face/eyes/eye_right/highlight",
+          "ownerUUID": "{5b2f210f-f4fd-4df9-b302-1c9cd63f747e}",
+          "control": "右高光随虹膜并限于虹膜内部",
+          "defaultEnabled": true,
+          "defaultEvidence": "raster-layering/step01/evidence/mask-5-default.png",
+          "fullEvidence": "raster-layering/step01/evidence/mask-5-full.png",
+          "selectionHash": "5cd29dd494aea22f5ea1a7b06578debfb51777e901bae181380f89ad5ef7bbbb"
+        },
+        {
+          "maskName": "眼睛开口 right",
+          "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+          "ownerName": "眼内开合 right",
+          "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+          "control": "右眼上眼睑内缘—眼白下沿共同开口；裁切眼白、虹膜、高光",
+          "defaultEnabled": true,
+          "defaultEvidence": "raster-layering/step01/evidence/mask-6-default.png",
+          "fullEvidence": "raster-layering/step01/evidence/mask-6-full.png",
+          "selectionHash": "0d2ea17bf6b6456e7acd8d477e3b206ea61bb0342f4af79b023cc2a9c8af3a89"
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "layerName": "48 | face/mouth/mouth_interior",
+      "layerUUID": "{2835ab5e-38b6-44ab-a436-6010fcfa217f}",
+      "level": 48,
+      "region": "生成完整口腔上右亮红边原生笔触去掉；共用开口右缘0–1.6px接到实际唇内缘",
+      "reuseSource": "本件完整原生成材质、Krita原生笔触和原图同件窄区取样，无另一侧/其他part复用",
+      "nativeMasks": [
+        {
+          "maskName": "上下唇开口",
+          "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+          "ownerName": "口内开合",
+          "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}",
+          "control": "上下唇内缘及嘴角共同开口；裁切口腔、上下牙、舌面",
+          "defaultEnabled": true,
+          "defaultEvidence": "raster-layering/step01/evidence/mask-9-default.png",
+          "fullEvidence": "raster-layering/step01/evidence/mask-9-full.png",
+          "selectionHash": "b9c9e6686113c80c5a8b301d2cd472549d5fc5099b72c816a1b1abbde962db08"
+        }
+      ]
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "layerName": "52 | face/mouth/lower_lip",
+      "layerUUID": "{49667a5f-c28a-4103-89b3-a8bd132ee9e5}",
+      "level": 52,
+      "region": "下唇旧内红边清理、自身1.8px窄描边原图取样及完整U连续轮廓",
+      "reuseSource": "本件完整原生成材质、Krita原生笔触和原图同件窄区取样，无另一侧/其他part复用",
+      "nativeMasks": []
+    }
+  ],
+  "unchangedPaintParts": 50,
+  "uuidChangedParts": [
+    "face/eyes/eye_left/iris",
+    "face/eyes/eye_right/iris",
+    "face/mouth/lower_lip"
+  ],
+  "modifiedNativeMasks": [
+    {
+      "name": "上下唇开口",
+      "owner": "口内开合",
+      "region": "y473–513的右唇内边，最大向右1.6px，顶部/上牙露出不动",
+      "basis": "三视图显示内裁产生浅缝，恢复批前后局部接到自身唇内边；完整隐藏纹理未改为蒙版结果",
+      "beforeHash": "b36aacfa88ebb64bd440894b0788fc7cff96ef9ab0754fb4b23d7dd535e8b13a",
+      "afterHash": "b9c9e6686113c80c5a8b301d2cd472549d5fc5099b72c816a1b1abbde962db08",
+      "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}",
+      "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}"
+    },
+    {
+      "name": "眼睛开口 right",
+      "owner": "眼内开合 right",
+      "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}",
+      "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+      "region": "y420–461，右下自身眼白/虹膜外缘，完整暗边全部留在开口内；上眼睑内缘和左边不改",
+      "basis": "原生默认/停用对照发现旧开口裁暗边，局部0–2.8px配准眼白并接合共用开口；实际主体轮廓仍由完整本件alpha决定",
+      "beforeHash": "9d59a4181c32c8d4b64655d84c4ebdba3aac17220cb3d9966f10d43e58c9f0a9",
+      "afterHash": "0d2ea17bf6b6456e7acd8d477e3b206ea61bb0342f4af79b023cc2a9c8af3a89"
+    }
+  ],
+  "other8MasksUnchanged": true,
+  "maskOwnershipUnchanged": true,
+  "protectedUnchangedParts": [
+    "face/mouth/upper_teeth",
+    "face/mouth/tongue",
+    "face/nose",
+    "所有身体/手足/头发纹理"
+  ],
+  "operations": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/operations.json",
+  "generationTrials": [
+    {
+      "issue": "R29",
+      "control": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/trials/R29-control.png",
+      "neutralizedSource": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/trials/R29-neutral-reference.png",
+      "existing": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/trials/R29-existing.png",
+      "generated": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/trials/R29-generated-rejected.png",
+      "accepted": false,
+      "reason": "出现原图没有的斑驳、整体提亮和材质变化；保留此前生成画面，以本件原生局部取样/笔触修正。"
+    }
+  ],
+  "method": "已有完整生成绘画上局部材质配准、Krita原生窄区同件取样与逐笔修画；没有整形体平涂或外来部件像素。",
+  "rejectedTrials": [
+    "新生成虹膜出现斑驳/提亮，未导入最终层。",
+    "主高光放大超过原图大小，全部恢复批前原尺寸；只修改独立次高光。",
+    "口内共用蒙版内裁后出现唇—口内浅缝，撤回并接到实际自身唇内缘。"
+  ],
+  "freshDiskDocumentOpen": true,
+  "baseline": "raster-layering/step01/workspace/repair-next7/before",
+  "upstreamChanges": [],
+  "preAnnotatedSplits": [],
+  "assemblyDiscoveredSplits": [],
+  "maskVerification": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/mask-verification.json",
+  "reopenVerification": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/reopen-verification.json",
+  "currentThreeViews": "raster-layering/step01/repair-evidence-01/index.json",
+  "issueEvidence": "raster-layering/step01/repair-evidence-01/issue-index.json",
+  "shapeRecord": "raster-layering/step01/repair-evidence-01/shape-records.json",
+  "protectedUpperTeethExposureVerification": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/protected-tooth-exposure-verification.json",
+  "recoveredToolErrors": [
+    {
+      "error": "UnicodeEncodeError: 'latin-1' codec can't encode characters in position 1-4: ordinal not in range(256)",
+      "recovery": "上牙默认露出比对断言已通过，写JSON时错误；显隐/蒙版已恢复。明确UTF-8后重跑通过并保存，不改绘画像素。"
+    }
+  ],
+  "nativeRightRingVerification": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/native-ring-verification.json",
+  "assemblyOcclusionIssueFound": [
+    {
+      "issue": "R29",
+      "part": "face/eyes/eye_left/upper_eyelid",
+      "currentDepth": 40,
+      "occluder": "hair/side_hair/side_hair_left",
+      "occluderDepth": 57,
+      "region": [
+        665,
+        343,
+        21,
+        16
+      ],
+      "basis": "原图外侧第三尖可见到约682/348；当前本件自身尖较短且默认组装被侧发压掉。主体仍在侧发下，外尖需要另核实局部前后及轮廓，必要时同逻辑part分片。",
+      "implemented": false,
+      "evidence": "raster-layering/step01/repair-evidence-01/eye-mouth-finish/R29-outer-corner-depth.png"
+    }
+  ]
+}

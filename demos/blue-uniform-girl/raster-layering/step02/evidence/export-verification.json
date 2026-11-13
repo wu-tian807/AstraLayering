@@ -1,0 +1,19 @@
+{
+  "size": [
+    1115,
+    1410
+  ],
+  "alpha_range": [
+    0,
+    255
+  ],
+  "png_matches_kra_merged": true,
+  "png_matches_restored": true,
+  "full_paint_files": 60,
+  "default_files": 60,
+  "paths": {
+    "input_kra": "raster-layering/step01/character-depth.kra",
+    "reference_standard": "part-layering/references/standard.png",
+    "reference_base": "part-layering/references/base-subject.png"
+  }
+}

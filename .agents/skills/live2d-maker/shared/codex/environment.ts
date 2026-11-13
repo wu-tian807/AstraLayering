@@ -70,6 +70,8 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
   const tiers = tierDefaults(roleDefaults);
   const file = withLegacyKeys(parseEnv(source));
   const effective = Object.fromEntries(Object.entries({ ...file, ...env }).filter((entry): entry is [string, string] => entry[1] !== undefined));
+  delete effective.codex_path;
+  delete effective.layering_codex_path;
   const get = (name: string) => effective[name]?.trim();
   const flag = get('custom_provider');
   if (flag && !['true', 'false', '1', '0'].includes(flag)) throw new Error('custom_provider 只能为 true 或 false。');
@@ -92,7 +94,6 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
   const path = (value: string) => isAbsolute(value) ? value : resolve(directory, value);
   const home = get('codex_home');
   if (home) effective.CODEX_HOME = path(home);
-  const executable = get('codex_path');
   const imageUrl = get('image_base_url'), imageKey = get('image_api_key');
   const imageModel = get('image_model') || imageDefaults.legacy;
   if (imageUrl || imageKey) {
@@ -166,14 +167,13 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
     const value = get(`${harness}_path`);
     if (value) cliPaths[harness] = path(value);
   }
-  if (executable) cliPaths.codex = path(executable);
   return {
     stepModels, stepImages, imageApis, cliPaths, imageBudgets, providers, ...(videoApi ? { videoApi } : {}),
     models: {
       medium: parseModel(get('medium_model'), tiers.medium, 'medium_model'),
       high: parseModel(get('high_model'), tiers.high, 'high_model'),
     },
-    codex: { env: effective, config, ...(executable ? { codexPathOverride: path(executable) } : {}) },
+    codex: { env: effective, config },
     ...(threshold === undefined ? {} : { imageCompactThreshold: threshold }),
   };
 }
@@ -186,7 +186,6 @@ export async function checkCodexCapabilities(settings: WorkflowEnvironment, opti
   // Every Codex run needs the patched build: it reads the failure detail LiteLLM
   // sends after an empty response.failed, so blocked input is reported, not retried.
   const executable = options.codexPathOverride ?? settings.codex.codexPathOverride ?? await prepare();
-  const instruction = 'codex_path 显式指定的入口必须具备对应能力；清空此项即自动构建补丁版 Codex。';
   const needsVisualCompaction = settings.imageCompactThreshold !== undefined || needsBytes;
   const cacheKey = `${executable}\0${needs.image ? 'image-provider-v2' : ''}\0${needsVisualCompaction ? 'visual-compaction-v2' : ''}\0${needsBytes ? 'request-compaction-v1' : ''}`;
   let check = checkedCapabilities.get(cacheKey);
@@ -202,7 +201,7 @@ export async function checkCodexCapabilities(settings: WorkflowEnvironment, opti
           throw new Error('visual compaction v2 required');
         }
         if (needsBytes && value.request_compaction_version !== 1) throw new Error('request compaction v1 required');
-      } catch { throw new Error(`配置的 Codex 未通过 Layering 补丁能力检查。${instruction}`); }
+      } catch { throw new Error('管线 Codex 未通过 Layering 补丁能力检查，请检查补丁构建日志。'); }
     })();
     checkedCapabilities.set(cacheKey, check);
     void check.catch(() => checkedCapabilities.delete(cacheKey));

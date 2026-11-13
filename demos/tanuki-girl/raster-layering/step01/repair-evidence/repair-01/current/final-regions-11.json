@@ -1,0 +1,102 @@
+[
+  {
+    "tag": "R15",
+    "levels": [
+      32.5,
+      34,
+      35
+    ],
+    "box": [
+      581,
+      730,
+      80,
+      123
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R15",
+    "names": [
+      "D32.5 | body/torso | lower_mount",
+      "D34 | body/torso",
+      "D35 | body/breast"
+    ]
+  },
+  {
+    "tag": "R16",
+    "levels": [
+      32.5,
+      34,
+      35
+    ],
+    "box": [
+      759,
+      730,
+      86,
+      126
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R16",
+    "names": [
+      "D32.5 | body/torso | lower_mount",
+      "D34 | body/torso",
+      "D35 | body/breast"
+    ]
+  },
+  {
+    "tag": "R17-R18",
+    "levels": [
+      22.5,
+      32.5,
+      33,
+      34,
+      35
+    ],
+    "box": [
+      552,
+      855,
+      300,
+      250
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R17-R18",
+    "names": [
+      "D22.5 | pelvis | back",
+      "D32.5 | body/torso | lower_mount",
+      "D33 | pelvis | front",
+      "D34 | body/torso",
+      "D35 | body/breast"
+    ]
+  },
+  {
+    "tag": "R19",
+    "levels": [
+      32.5,
+      34
+    ],
+    "box": [
+      577,
+      580,
+      256,
+      158
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R19",
+    "names": [
+      "D32.5 | body/torso | lower_mount",
+      "D34 | body/torso"
+    ]
+  },
+  {
+    "tag": "R20",
+    "levels": [
+      32.5,
+      34
+    ],
+    "box": [
+      574,
+      891,
+      263,
+      109
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R20",
+    "names": [
+      "D32.5 | body/torso | lower_mount",
+      "D34 | body/torso"
+    ]
+  }
+]

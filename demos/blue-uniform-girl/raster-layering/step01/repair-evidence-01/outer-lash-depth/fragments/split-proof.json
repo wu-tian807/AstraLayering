@@ -1,0 +1,25 @@
+{
+  "logicalID": "face/eyes/eye_left/upper_eyelid",
+  "fragments": [
+    {
+      "name": "40 | face/eyes/eye_left/upper_eyelid",
+      "uuid": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+      "level": 40
+    },
+    {
+      "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+      "uuid": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+      "level": 57.5
+    }
+  ],
+  "region": [
+    669,
+    346,
+    17,
+    14
+  ],
+  "paintCount": 60,
+  "logicalCount": 59,
+  "unionRawExact": true,
+  "reason": "原图外侧短睫毛尖跨在57侧发前，主体仍在侧发后；同一上睑共同运动的两个深度分片，未新增控制身份。"
+}

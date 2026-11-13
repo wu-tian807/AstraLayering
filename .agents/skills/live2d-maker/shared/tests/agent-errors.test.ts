@@ -1,3 +1,4 @@
+import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
@@ -127,7 +128,7 @@ for (const mode of ['rpc', 'turn', 'eof', 'recovered']) test(`Codex App Server $
 
 test('raster steps keep turn failure details without retrying', async t => {
   const f = await fixture(t);
-  const environment = loadWorkflowEnvironment({ codex_path: await errorServer(f.root, 'turn') }, f.root);
+  const environment = withCodex(loadWorkflowEnvironment({}, f.root), await errorServer(f.root, 'turn'));
   await assert.rejects(runAgent({ prompt: 'same task', directory: f.cwd, model: 'gpt-6.1-sol', effort: 'low', environment, onEvent: async () => {} },
     new AgentRuntime(1, async () => assert.fail('must not retry'))), error => {
     assert.ok(error instanceof AgentCallError);
@@ -174,6 +175,7 @@ test('Codex content filter is recognised only from the structured terminal failu
 test('known errors with a remedy are recovered at once without the retry budget; without one they fail fast', async () => {
   assert.equal(recoverableAgentError(new AgentCallError('content_policy_violation', 'other')), 'blockedImages');
   assert.equal(recoverableAgentError(new AgentCallError('thread not found: 019a', undefined)), 'unavailableSession');
+  assert.equal(recoverableAgentError(new AgentCallError('cannot resume paginated thread 019a with stale path: requested /new/rollout.jsonl, current /old/rollout.jsonl; omit path and resume by thread id')), 'unavailableSession');
   assert.equal(recoverableAgentError(new AgentCallError('原 session 不可用：CLI 未恢复 a，返回了新的会话 ID b')), 'unavailableSession');
   const refused = new AgentCallError("API Error: Opus 5.5's safeguards flagged this message. Try rephrasing the request in a new session or change your model.", { refusal: { category: 'reasoning_extraction' } });
   assert.equal(recoverableAgentError(refused), 'modelRefusal');

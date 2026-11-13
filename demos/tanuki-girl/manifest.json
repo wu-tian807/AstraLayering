@@ -1,25 +1,25 @@
 {
   "version": 1,
   "format": "live2d-export",
-  "name": "tanuki-girl",
+  "name": "tanuki-raster-rerun-20261111",
   "status": "completed",
-  "exportedAt": "2026-11-11T10:24:44.113Z",
+  "exportedAt": "2026-11-13T22:35:13.407Z",
   "files": {
     "character-assembly/step01/.completed": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "character-assembly/step01/character-assembled.kra": {
-      "bytes": 30017081,
-      "sha256": "c0d9866e97261c77e8efe37c2a63b5ee5630941521679f4973428d175657a90d"
+      "bytes": 29470232,
+      "sha256": "312864f402504e05535ddeb9c87d66facfb3b7e6123e01d2b2275132fe0e6e39"
     },
     "character-assembly/step01/character-assembled.png": {
-      "bytes": 1237790,
-      "sha256": "93873dfbe63d76bdbe76ef4b6fdffe129d5859dc082f642190efac1931cea8bd"
+      "bytes": 1326799,
+      "sha256": "87d515cbae6a722be53f72505b1d0695382234b461012fe62db50e8dcfe54413"
     },
     "character-assembly/step01/report.md": {
-      "bytes": 3831,
-      "sha256": "01f84f90afce93fe683cb830cc3bbc6025c327eca49c16f67ece2fbaac2c3924"
+      "bytes": 3666,
+      "sha256": "9efb1784efe56b38f81801128a80bd64807995f0f6ad2663afe1c4a7b828670c"
     },
     "clothing-part-layering/groups.json": {
       "bytes": 23200,
@@ -1065,1589 +1065,13 @@
       "bytes": 2072573,
       "sha256": "7bd8a94260e4d6b27a815214c9d89304956a42589b16fea210b074d8895ac9a3"
     },
-    "nine-axis/step01_preparation/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step01_preparation/character-nine-axis.kra": {
-      "bytes": 30591985,
-      "sha256": "932cfb658b814b21557a555d8ccd0e5a2a1133b616aea0adfd29a6bb9e10f6d6"
-    },
-    "nine-axis/step01_preparation/character-nine-axis.png": {
-      "bytes": 1329140,
-      "sha256": "b26c4f738e3a21a1db07c6c932e485d85fcef5ecfd7212a23c8eaa1dbaf90c99"
-    },
-    "nine-axis/step01_preparation/crop.json": {
-      "bytes": 101,
-      "sha256": "31bbca37c8ec6acdf5e311d04cf5b5222c452c95c198d0947652d9bad57af5a7"
-    },
-    "nine-axis/step01_preparation/deformers.json": {
-      "bytes": 202710,
-      "sha256": "be9a1132ac662439b7f1274d8a0602149d6c9b5c28ec4575a8b6fde44e5542e5"
-    },
-    "nine-axis/step01_preparation/export-record.json": {
-      "bytes": 230163,
-      "sha256": "ccee90bd0cf4c990af86a8974ddb5b42cf66896354cb7006cf1019ae55bbe266"
-    },
-    "nine-axis/step01_preparation/head_parts_manifest.json": {
-      "bytes": 50113,
-      "sha256": "0a621fe08d047229bc63369363e2705e0b57c6bd391d2f614acbd58a422eac72"
-    },
-    "nine-axis/step01_preparation/layers/0013-face__eyebrows__eyebrow_right.png": {
-      "bytes": 1102,
-      "sha256": "462857bf70f581851e76717d960e5857ea8d8f7c8b08546f697632be2369f862"
-    },
-    "nine-axis/step01_preparation/layers/0014-face__eyebrows__eyebrow_left.png": {
-      "bytes": 1286,
-      "sha256": "020cc282de41f71348c65bd6e8da92ad89e25f72bef10676ddc4f25956f44a5a"
-    },
-    "nine-axis/step01_preparation/layers/0015-face__mouth__upper_lip.png": {
-      "bytes": 1152,
-      "sha256": "3bc6ec9187d7fa4c4b2bd8526f89020fc3247248aa4ac501afb1cf29a6e6ea1f"
-    },
-    "nine-axis/step01_preparation/layers/0016-face__mouth__lower_lip.png": {
-      "bytes": 1157,
-      "sha256": "d86db61f50c8e31d1ad1e92938b0892276286639a01bd8aac64244805b6ef3df"
-    },
-    "nine-axis/step01_preparation/layers/0017-face__blush_right.png": {
-      "bytes": 1531,
-      "sha256": "d80ad16ec6ff1b3dbe7b677b6d5c0b867c9db8b5966d35728e165b427788189f"
-    },
-    "nine-axis/step01_preparation/layers/0018-face__blush_left.png": {
-      "bytes": 1279,
-      "sha256": "68ea93c5eaedcbbe0fc2e9d43df3f0eb0024aa7bac5000e9e3b508cd62a65ab8"
-    },
-    "nine-axis/step01_preparation/layers/0019-face__nose.png": {
-      "bytes": 673,
-      "sha256": "e311ffa63acab9edf5988de041e1628de153c717030419c8a236834d06675aad"
-    },
-    "nine-axis/step01_preparation/layers/0020-face__eyes__eye_right__eyelid_crease.png": {
-      "bytes": 596,
-      "sha256": "801f52e1566174f8610fd8f30138387de77237a6eb18564b268d1af06861eeef"
-    },
-    "nine-axis/step01_preparation/layers/0021-face__eyes__eye_left__eyelid_crease.png": {
-      "bytes": 609,
-      "sha256": "92c06177013b827a1d40ff388ac9aef29a8b1cc9eb43b9a4acad329afd73e449"
-    },
-    "nine-axis/step01_preparation/layers/0022-face__eyes__eye_right__upper_eyelid.png": {
-      "bytes": 2711,
-      "sha256": "90cf86ef6b3627820073fa725594be0324edd87de51489b4b3d616771e2f25d3"
-    },
-    "nine-axis/step01_preparation/layers/0023-face__eyes__eye_left__upper_eyelid.png": {
-      "bytes": 2674,
-      "sha256": "59f81b8f004168951e13291634b135dd1909557b8330d9bb33349e9a40ca6ab7"
-    },
-    "nine-axis/step01_preparation/layers/0024-face__eyes__eye_right__highlight.png": {
-      "bytes": 544,
-      "sha256": "86941965ba422aec2ea6f2d5acab869e3e66c0e582af7f9c198e917845d0f1fd"
-    },
-    "nine-axis/step01_preparation/layers/0026-face__eyes__eye_right__iris.png": {
-      "bytes": 4385,
-      "sha256": "69642303907b6e80ad7279f9d319ee652348b5966f0edfa8628374dca5acba67"
-    },
-    "nine-axis/step01_preparation/layers/0027-face__eyes__eye_right__sclera.png": {
-      "bytes": 2291,
-      "sha256": "c2cd1b85bc61249cbeeeff8089294988af936f9c9f3b8b95e02e04c9c235860a"
-    },
-    "nine-axis/step01_preparation/layers/0028-face__eyes__eye_left__highlight.png": {
-      "bytes": 534,
-      "sha256": "58d589ea4b3e3d32e20ac69908059f936f85c4c86dd6e958c7710997145923c7"
-    },
-    "nine-axis/step01_preparation/layers/0030-face__eyes__eye_left__iris.png": {
-      "bytes": 4379,
-      "sha256": "d6a8346f3205b72eca2372598739e792f97adf2f032c954e00b77f97b3ee3f93"
-    },
-    "nine-axis/step01_preparation/layers/0031-face__eyes__eye_left__sclera.png": {
-      "bytes": 2367,
-      "sha256": "734f0570cf48179b92d165066e5580a6cb9dca5475a40290a50db90760e9a775"
-    },
-    "nine-axis/step01_preparation/layers/0032-face__mouth__upper_teeth.png": {
-      "bytes": 101,
-      "sha256": "a3b1b20f6095cf1adef72a0a0210c1784d5f4bb5928f3b9dbd8eeea32801dd20"
-    },
-    "nine-axis/step01_preparation/layers/0033-face__mouth__lower_teeth.png": {
-      "bytes": 99,
-      "sha256": "7f354686d48d3e791609300422ceef8eca9d8624ee9572b644eab85698545af7"
-    },
-    "nine-axis/step01_preparation/layers/0034-face__mouth__tongue.png": {
-      "bytes": 100,
-      "sha256": "41a6700a59be7da5f37d5b35be287631cf7938691965e67b9cfec2ca4f0ad5bd"
-    },
-    "nine-axis/step01_preparation/layers/0035-face__mouth__mouth_interior.png": {
-      "bytes": 103,
-      "sha256": "5401a3271a97c65142497582eba6d9a251e6fd0cc3998d420e9f6104bae32578"
-    },
-    "nine-axis/step01_preparation/layers/0039-face__face_base.png": {
-      "bytes": 33525,
-      "sha256": "e5ac060348a73a0699b460529e06956be7ad9fbe2da565d830f014c803060070"
-    },
-    "nine-axis/step01_preparation/layers/0046-neck.png": {
-      "bytes": 20102,
-      "sha256": "057c44d2ae221c8228e8395cbe330e353824df71391a60a2d40a034a1e275426"
-    },
-    "nine-axis/step01_preparation/layers/0047-face__ears__ear_right__ear_shell.png": {
-      "bytes": 14909,
-      "sha256": "7ea19196812f05a6a47e2d909201db1822d0cad0caf8bc7afde880a65c1be17d"
-    },
-    "nine-axis/step01_preparation/layers/0048-face__ears__ear_left__ear_shell.png": {
-      "bytes": 16595,
-      "sha256": "9855d22482e9d6d59b109cd7c0d00adfd413d82f41b384c3f270b4f3017a2c73"
-    },
-    "nine-axis/step01_preparation/layers/0049-face__ears__ear_right__ear_fur.png": {
-      "bytes": 5274,
-      "sha256": "ed4853ead18365f9c58c2cfcf415c3f26d60ba1cb32e7ed50ee44255220600a3"
-    },
-    "nine-axis/step01_preparation/layers/0050-face__ears__ear_left__ear_fur.png": {
-      "bytes": 5677,
-      "sha256": "9407cb0308adce3dd28ff6179f18483006aa738f8e7c4e796236e0429fdee1d3"
-    },
-    "nine-axis/step01_preparation/layers/0051-face__ears__ear_right__ear_interior.png": {
-      "bytes": 5021,
-      "sha256": "a8ba7c942bab67488bc43544180378cd5b8157590226b26dca886e0f3f50a5bc"
-    },
-    "nine-axis/step01_preparation/layers/0052-face__ears__ear_left__ear_interior.png": {
-      "bytes": 5696,
-      "sha256": "727eb4a7da1fcc663fa0a0d4717ebe5529adb8ddf67e3ab610ec3bd816be1d16"
-    },
-    "nine-axis/step01_preparation/source.json": {
-      "bytes": 168,
-      "sha256": "f117ec983dc9d09ff728010c90ab09b39107e04cc44bb1219fe3e5d4b812df58"
-    },
-    "nine-axis/step02_video/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step02_video/crop.json": {
-      "bytes": 332,
-      "sha256": "b970b3c3cebb135ce513db539e008c7ca60eadcc7e440c18d35cfe37964eba98"
-    },
-    "nine-axis/step02_video/down.mp4": {
-      "bytes": 3106314,
-      "sha256": "2e2bd09479babd7433075ba86746be67573c9cdd4f209275e5de8ff419a717bb"
-    },
-    "nine-axis/step02_video/left.mp4": {
-      "bytes": 3523418,
-      "sha256": "8b001d9e302b8f2e28310ccf01a51665060df60ce42a02be3dbb5d66b49c1d6e"
-    },
-    "nine-axis/step02_video/up.mp4": {
-      "bytes": 2136649,
-      "sha256": "70075ab6afc3286ff8574d9c199d61b8439ac3bb5206cee351e9b9e412da6e89"
-    },
-    "nine-axis/step02_video/videos.json": {
-      "bytes": 5463,
-      "sha256": "a070d9a11536e8b907a55306a6acc81f320f7eeffadeaa510b9610d705d9d5e2"
-    },
-    "nine-axis/step03_frames/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step03_frames/selected-frames.json": {
-      "bytes": 1682,
-      "sha256": "3668b18e5cdbcbd2453d72299ef3a3b39d0f6b39ce3fd49c706e7e45d71ba157"
-    },
-    "nine-axis/step03_frames/views.json": {
-      "bytes": 1812,
-      "sha256": "7f8125bfbac20bd241a90f5566459166b945bd93e03441d385997718976074fd"
-    },
-    "nine-axis/step04_angles/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step04_angles/model/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step04_angles/model/axis-sources.json": {
-      "bytes": 4341,
-      "sha256": "77f17b5ce3778a7234721b45e9908b6fba323b0a205af2872f88cc392e0146ec"
-    },
-    "nine-axis/step04_angles/model/deformers.json": {
-      "bytes": 1568136,
-      "sha256": "6e37934dfb84271d82dee7cf07b16f6e0ee376d043d1c2505a2781615f5b90a0"
-    },
-    "nine-axis/step04_angles/model/down/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step04_angles/model/down/deformers.json": {
-      "bytes": 286294,
-      "sha256": "c59d09b160d967a5bdc8b35a436d8d136522c998799e11baf9372ea770ec5284"
-    },
-    "nine-axis/step04_angles/model/down/face-down.json": {
-      "bytes": 286294,
-      "sha256": "c59d09b160d967a5bdc8b35a436d8d136522c998799e11baf9372ea770ec5284"
-    },
-    "nine-axis/step04_angles/model/down/face-trace.json": {
-      "bytes": 19064,
-      "sha256": "612f48157b8b72e7acf94fc773a09aa2264f0b8b3d145b56f2ab08198d985b5e"
-    },
-    "nine-axis/step04_angles/model/down/fit-report.json": {
-      "bytes": 4718,
-      "sha256": "92dcc5fa7bc84d2d855356919460800199393da832feea60158d1a4cca1f22b4"
-    },
-    "nine-axis/step04_angles/model/down/layers/0013-face__eyebrows__eyebrow_right.png": {
-      "bytes": 1102,
-      "sha256": "462857bf70f581851e76717d960e5857ea8d8f7c8b08546f697632be2369f862"
-    },
-    "nine-axis/step04_angles/model/down/layers/0014-face__eyebrows__eyebrow_left.png": {
-      "bytes": 1286,
-      "sha256": "020cc282de41f71348c65bd6e8da92ad89e25f72bef10676ddc4f25956f44a5a"
-    },
-    "nine-axis/step04_angles/model/down/layers/0015-face__mouth__upper_lip.png": {
-      "bytes": 1152,
-      "sha256": "3bc6ec9187d7fa4c4b2bd8526f89020fc3247248aa4ac501afb1cf29a6e6ea1f"
-    },
-    "nine-axis/step04_angles/model/down/layers/0016-face__mouth__lower_lip.png": {
-      "bytes": 1157,
-      "sha256": "d86db61f50c8e31d1ad1e92938b0892276286639a01bd8aac64244805b6ef3df"
-    },
-    "nine-axis/step04_angles/model/down/layers/0017-face__blush_right.png": {
-      "bytes": 1531,
-      "sha256": "d80ad16ec6ff1b3dbe7b677b6d5c0b867c9db8b5966d35728e165b427788189f"
-    },
-    "nine-axis/step04_angles/model/down/layers/0018-face__blush_left.png": {
-      "bytes": 1279,
-      "sha256": "68ea93c5eaedcbbe0fc2e9d43df3f0eb0024aa7bac5000e9e3b508cd62a65ab8"
-    },
-    "nine-axis/step04_angles/model/down/layers/0019-face__nose.png": {
-      "bytes": 673,
-      "sha256": "e311ffa63acab9edf5988de041e1628de153c717030419c8a236834d06675aad"
-    },
-    "nine-axis/step04_angles/model/down/layers/0020-face__eyes__eye_right__eyelid_crease.png": {
-      "bytes": 596,
-      "sha256": "801f52e1566174f8610fd8f30138387de77237a6eb18564b268d1af06861eeef"
-    },
-    "nine-axis/step04_angles/model/down/layers/0021-face__eyes__eye_left__eyelid_crease.png": {
-      "bytes": 609,
-      "sha256": "92c06177013b827a1d40ff388ac9aef29a8b1cc9eb43b9a4acad329afd73e449"
-    },
-    "nine-axis/step04_angles/model/down/layers/0022-face__eyes__eye_right__upper_eyelid.png": {
-      "bytes": 2711,
-      "sha256": "90cf86ef6b3627820073fa725594be0324edd87de51489b4b3d616771e2f25d3"
-    },
-    "nine-axis/step04_angles/model/down/layers/0023-face__eyes__eye_left__upper_eyelid.png": {
-      "bytes": 2674,
-      "sha256": "59f81b8f004168951e13291634b135dd1909557b8330d9bb33349e9a40ca6ab7"
-    },
-    "nine-axis/step04_angles/model/down/layers/0024-face__eyes__eye_right__highlight.png": {
-      "bytes": 544,
-      "sha256": "86941965ba422aec2ea6f2d5acab869e3e66c0e582af7f9c198e917845d0f1fd"
-    },
-    "nine-axis/step04_angles/model/down/layers/0026-face__eyes__eye_right__iris.png": {
-      "bytes": 4385,
-      "sha256": "69642303907b6e80ad7279f9d319ee652348b5966f0edfa8628374dca5acba67"
-    },
-    "nine-axis/step04_angles/model/down/layers/0027-face__eyes__eye_right__sclera.png": {
-      "bytes": 2291,
-      "sha256": "c2cd1b85bc61249cbeeeff8089294988af936f9c9f3b8b95e02e04c9c235860a"
-    },
-    "nine-axis/step04_angles/model/down/layers/0028-face__eyes__eye_left__highlight.png": {
-      "bytes": 534,
-      "sha256": "58d589ea4b3e3d32e20ac69908059f936f85c4c86dd6e958c7710997145923c7"
-    },
-    "nine-axis/step04_angles/model/down/layers/0030-face__eyes__eye_left__iris.png": {
-      "bytes": 4379,
-      "sha256": "d6a8346f3205b72eca2372598739e792f97adf2f032c954e00b77f97b3ee3f93"
-    },
-    "nine-axis/step04_angles/model/down/layers/0031-face__eyes__eye_left__sclera.png": {
-      "bytes": 2367,
-      "sha256": "734f0570cf48179b92d165066e5580a6cb9dca5475a40290a50db90760e9a775"
-    },
-    "nine-axis/step04_angles/model/down/layers/0032-face__mouth__upper_teeth.png": {
-      "bytes": 101,
-      "sha256": "a3b1b20f6095cf1adef72a0a0210c1784d5f4bb5928f3b9dbd8eeea32801dd20"
-    },
-    "nine-axis/step04_angles/model/down/layers/0033-face__mouth__lower_teeth.png": {
-      "bytes": 99,
-      "sha256": "7f354686d48d3e791609300422ceef8eca9d8624ee9572b644eab85698545af7"
-    },
-    "nine-axis/step04_angles/model/down/layers/0034-face__mouth__tongue.png": {
-      "bytes": 100,
-      "sha256": "41a6700a59be7da5f37d5b35be287631cf7938691965e67b9cfec2ca4f0ad5bd"
-    },
-    "nine-axis/step04_angles/model/down/layers/0035-face__mouth__mouth_interior.png": {
-      "bytes": 103,
-      "sha256": "5401a3271a97c65142497582eba6d9a251e6fd0cc3998d420e9f6104bae32578"
-    },
-    "nine-axis/step04_angles/model/down/layers/0039-face__face_base.png": {
-      "bytes": 33525,
-      "sha256": "e5ac060348a73a0699b460529e06956be7ad9fbe2da565d830f014c803060070"
-    },
-    "nine-axis/step04_angles/model/down/layers/0046-neck.png": {
-      "bytes": 20102,
-      "sha256": "057c44d2ae221c8228e8395cbe330e353824df71391a60a2d40a034a1e275426"
-    },
-    "nine-axis/step04_angles/model/down/layers/0047-face__ears__ear_right__ear_shell.png": {
-      "bytes": 14909,
-      "sha256": "7ea19196812f05a6a47e2d909201db1822d0cad0caf8bc7afde880a65c1be17d"
-    },
-    "nine-axis/step04_angles/model/down/layers/0048-face__ears__ear_left__ear_shell.png": {
-      "bytes": 16595,
-      "sha256": "9855d22482e9d6d59b109cd7c0d00adfd413d82f41b384c3f270b4f3017a2c73"
-    },
-    "nine-axis/step04_angles/model/down/layers/0049-face__ears__ear_right__ear_fur.png": {
-      "bytes": 5274,
-      "sha256": "ed4853ead18365f9c58c2cfcf415c3f26d60ba1cb32e7ed50ee44255220600a3"
-    },
-    "nine-axis/step04_angles/model/down/layers/0050-face__ears__ear_left__ear_fur.png": {
-      "bytes": 5677,
-      "sha256": "9407cb0308adce3dd28ff6179f18483006aa738f8e7c4e796236e0429fdee1d3"
-    },
-    "nine-axis/step04_angles/model/down/layers/0051-face__ears__ear_right__ear_interior.png": {
-      "bytes": 5021,
-      "sha256": "a8ba7c942bab67488bc43544180378cd5b8157590226b26dca886e0f3f50a5bc"
-    },
-    "nine-axis/step04_angles/model/down/layers/0052-face__ears__ear_left__ear_interior.png": {
-      "bytes": 5696,
-      "sha256": "727eb4a7da1fcc663fa0a0d4717ebe5529adb8ddf67e3ab610ec3bd816be1d16"
-    },
-    "nine-axis/step04_angles/model/down/notes.md": {
-      "bytes": 2770,
-      "sha256": "c77c37c9c5bb52ce67c85a1ecb1b4a778c9c7b329516b7e8ad01e2b64521ac77"
-    },
-    "nine-axis/step04_angles/model/down/outline/notes.md": {
-      "bytes": 7461,
-      "sha256": "2ce98a7b5c2e646f599b274bd2d0aa475dc9c93313a6c7ebf2a4ab76f830d44c"
-    },
-    "nine-axis/step04_angles/model/down/outline/source-face.svg": {
-      "bytes": 7091,
-      "sha256": "360ae863bccaba71b7b762fcf6a8863a6ed0231ad28fe3fee772b82de4c9030e"
-    },
-    "nine-axis/step04_angles/model/down/outline/target-face.svg": {
-      "bytes": 1116,
-      "sha256": "c42d71fdbb7a3b921f5c1d0ba6a34429666af2874f35d2dc7cbdae8c984c8d76"
-    },
-    "nine-axis/step04_angles/model/down/source.json": {
-      "bytes": 168,
-      "sha256": "f117ec983dc9d09ff728010c90ab09b39107e04cc44bb1219fe3e5d4b812df58"
-    },
-    "nine-axis/step04_angles/model/layers/0013-face__eyebrows__eyebrow_right.png": {
-      "bytes": 1102,
-      "sha256": "462857bf70f581851e76717d960e5857ea8d8f7c8b08546f697632be2369f862"
-    },
-    "nine-axis/step04_angles/model/layers/0014-face__eyebrows__eyebrow_left.png": {
-      "bytes": 1286,
-      "sha256": "020cc282de41f71348c65bd6e8da92ad89e25f72bef10676ddc4f25956f44a5a"
-    },
-    "nine-axis/step04_angles/model/layers/0015-face__mouth__upper_lip.png": {
-      "bytes": 1152,
-      "sha256": "3bc6ec9187d7fa4c4b2bd8526f89020fc3247248aa4ac501afb1cf29a6e6ea1f"
-    },
-    "nine-axis/step04_angles/model/layers/0016-face__mouth__lower_lip.png": {
-      "bytes": 1157,
-      "sha256": "d86db61f50c8e31d1ad1e92938b0892276286639a01bd8aac64244805b6ef3df"
-    },
-    "nine-axis/step04_angles/model/layers/0017-face__blush_right.png": {
-      "bytes": 1531,
-      "sha256": "d80ad16ec6ff1b3dbe7b677b6d5c0b867c9db8b5966d35728e165b427788189f"
-    },
-    "nine-axis/step04_angles/model/layers/0018-face__blush_left.png": {
-      "bytes": 1279,
-      "sha256": "68ea93c5eaedcbbe0fc2e9d43df3f0eb0024aa7bac5000e9e3b508cd62a65ab8"
-    },
-    "nine-axis/step04_angles/model/layers/0019-face__nose.png": {
-      "bytes": 673,
-      "sha256": "e311ffa63acab9edf5988de041e1628de153c717030419c8a236834d06675aad"
-    },
-    "nine-axis/step04_angles/model/layers/0020-face__eyes__eye_right__eyelid_crease.png": {
-      "bytes": 596,
-      "sha256": "801f52e1566174f8610fd8f30138387de77237a6eb18564b268d1af06861eeef"
-    },
-    "nine-axis/step04_angles/model/layers/0021-face__eyes__eye_left__eyelid_crease.png": {
-      "bytes": 609,
-      "sha256": "92c06177013b827a1d40ff388ac9aef29a8b1cc9eb43b9a4acad329afd73e449"
-    },
-    "nine-axis/step04_angles/model/layers/0022-face__eyes__eye_right__upper_eyelid.png": {
-      "bytes": 2711,
-      "sha256": "90cf86ef6b3627820073fa725594be0324edd87de51489b4b3d616771e2f25d3"
-    },
-    "nine-axis/step04_angles/model/layers/0023-face__eyes__eye_left__upper_eyelid.png": {
-      "bytes": 2674,
-      "sha256": "59f81b8f004168951e13291634b135dd1909557b8330d9bb33349e9a40ca6ab7"
-    },
-    "nine-axis/step04_angles/model/layers/0024-face__eyes__eye_right__highlight.png": {
-      "bytes": 544,
-      "sha256": "86941965ba422aec2ea6f2d5acab869e3e66c0e582af7f9c198e917845d0f1fd"
-    },
-    "nine-axis/step04_angles/model/layers/0026-face__eyes__eye_right__iris.png": {
-      "bytes": 4385,
-      "sha256": "69642303907b6e80ad7279f9d319ee652348b5966f0edfa8628374dca5acba67"
-    },
-    "nine-axis/step04_angles/model/layers/0027-face__eyes__eye_right__sclera.png": {
-      "bytes": 2291,
-      "sha256": "c2cd1b85bc61249cbeeeff8089294988af936f9c9f3b8b95e02e04c9c235860a"
-    },
-    "nine-axis/step04_angles/model/layers/0028-face__eyes__eye_left__highlight.png": {
-      "bytes": 534,
-      "sha256": "58d589ea4b3e3d32e20ac69908059f936f85c4c86dd6e958c7710997145923c7"
-    },
-    "nine-axis/step04_angles/model/layers/0030-face__eyes__eye_left__iris.png": {
-      "bytes": 4379,
-      "sha256": "d6a8346f3205b72eca2372598739e792f97adf2f032c954e00b77f97b3ee3f93"
-    },
-    "nine-axis/step04_angles/model/layers/0031-face__eyes__eye_left__sclera.png": {
-      "bytes": 2367,
-      "sha256": "734f0570cf48179b92d165066e5580a6cb9dca5475a40290a50db90760e9a775"
-    },
-    "nine-axis/step04_angles/model/layers/0032-face__mouth__upper_teeth.png": {
-      "bytes": 101,
-      "sha256": "a3b1b20f6095cf1adef72a0a0210c1784d5f4bb5928f3b9dbd8eeea32801dd20"
-    },
-    "nine-axis/step04_angles/model/layers/0033-face__mouth__lower_teeth.png": {
-      "bytes": 99,
-      "sha256": "7f354686d48d3e791609300422ceef8eca9d8624ee9572b644eab85698545af7"
-    },
-    "nine-axis/step04_angles/model/layers/0034-face__mouth__tongue.png": {
-      "bytes": 100,
-      "sha256": "41a6700a59be7da5f37d5b35be287631cf7938691965e67b9cfec2ca4f0ad5bd"
-    },
-    "nine-axis/step04_angles/model/layers/0035-face__mouth__mouth_interior.png": {
-      "bytes": 103,
-      "sha256": "5401a3271a97c65142497582eba6d9a251e6fd0cc3998d420e9f6104bae32578"
-    },
-    "nine-axis/step04_angles/model/layers/0039-face__face_base.png": {
-      "bytes": 33525,
-      "sha256": "e5ac060348a73a0699b460529e06956be7ad9fbe2da565d830f014c803060070"
-    },
-    "nine-axis/step04_angles/model/layers/0046-neck.png": {
-      "bytes": 20102,
-      "sha256": "057c44d2ae221c8228e8395cbe330e353824df71391a60a2d40a034a1e275426"
-    },
-    "nine-axis/step04_angles/model/layers/0047-face__ears__ear_right__ear_shell.png": {
-      "bytes": 14909,
-      "sha256": "7ea19196812f05a6a47e2d909201db1822d0cad0caf8bc7afde880a65c1be17d"
-    },
-    "nine-axis/step04_angles/model/layers/0048-face__ears__ear_left__ear_shell.png": {
-      "bytes": 16595,
-      "sha256": "9855d22482e9d6d59b109cd7c0d00adfd413d82f41b384c3f270b4f3017a2c73"
-    },
-    "nine-axis/step04_angles/model/layers/0049-face__ears__ear_right__ear_fur.png": {
-      "bytes": 5274,
-      "sha256": "ed4853ead18365f9c58c2cfcf415c3f26d60ba1cb32e7ed50ee44255220600a3"
-    },
-    "nine-axis/step04_angles/model/layers/0050-face__ears__ear_left__ear_fur.png": {
-      "bytes": 5677,
-      "sha256": "9407cb0308adce3dd28ff6179f18483006aa738f8e7c4e796236e0429fdee1d3"
-    },
-    "nine-axis/step04_angles/model/layers/0051-face__ears__ear_right__ear_interior.png": {
-      "bytes": 5021,
-      "sha256": "a8ba7c942bab67488bc43544180378cd5b8157590226b26dca886e0f3f50a5bc"
-    },
-    "nine-axis/step04_angles/model/layers/0052-face__ears__ear_left__ear_interior.png": {
-      "bytes": 5696,
-      "sha256": "727eb4a7da1fcc663fa0a0d4717ebe5529adb8ddf67e3ab610ec3bd816be1d16"
-    },
-    "nine-axis/step04_angles/model/left/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step04_angles/model/left/checks/completed-target-face.svg": {
-      "bytes": 670,
-      "sha256": "493b0352b54ced280648f153a1696628d6dace9059bdf7ebf249196650f80997"
-    },
-    "nine-axis/step04_angles/model/left/checks/final-validation.json": {
-      "bytes": 11659,
-      "sha256": "7fb28a05c162832b6d61581ce05b28a37d80154295904eef74f188e428cd2956"
-    },
-    "nine-axis/step04_angles/model/left/deformers.json": {
-      "bytes": 232246,
-      "sha256": "631b93bca54827a7b0cc5bde5e440bc9abb20bb801ddbeeb29c30647a80a5898"
-    },
-    "nine-axis/step04_angles/model/left/face-left.json": {
-      "bytes": 228758,
-      "sha256": "0e8d86990f335f7d1c0c7a84904c8cc1829303aae41bb0fb32b65ae2adb7c914"
-    },
-    "nine-axis/step04_angles/model/left/face-trace.json": {
-      "bytes": 7757,
-      "sha256": "956be4e85e42f6e4de103c98a63f2e721db5f38b3105a6c90cd6813f85e1ea91"
-    },
-    "nine-axis/step04_angles/model/left/fit-report.json": {
-      "bytes": 5850,
-      "sha256": "17864464bd0f24a1812efab28f5caf0e48b983ef218e754dd56de500fe238cfe"
-    },
-    "nine-axis/step04_angles/model/left/layers/0013-face__eyebrows__eyebrow_right.png": {
-      "bytes": 1102,
-      "sha256": "462857bf70f581851e76717d960e5857ea8d8f7c8b08546f697632be2369f862"
-    },
-    "nine-axis/step04_angles/model/left/layers/0014-face__eyebrows__eyebrow_left.png": {
-      "bytes": 1286,
-      "sha256": "020cc282de41f71348c65bd6e8da92ad89e25f72bef10676ddc4f25956f44a5a"
-    },
-    "nine-axis/step04_angles/model/left/layers/0015-face__mouth__upper_lip.png": {
-      "bytes": 1152,
-      "sha256": "3bc6ec9187d7fa4c4b2bd8526f89020fc3247248aa4ac501afb1cf29a6e6ea1f"
-    },
-    "nine-axis/step04_angles/model/left/layers/0016-face__mouth__lower_lip.png": {
-      "bytes": 1157,
-      "sha256": "d86db61f50c8e31d1ad1e92938b0892276286639a01bd8aac64244805b6ef3df"
-    },
-    "nine-axis/step04_angles/model/left/layers/0017-face__blush_right.png": {
-      "bytes": 1531,
-      "sha256": "d80ad16ec6ff1b3dbe7b677b6d5c0b867c9db8b5966d35728e165b427788189f"
-    },
-    "nine-axis/step04_angles/model/left/layers/0018-face__blush_left.png": {
-      "bytes": 1279,
-      "sha256": "68ea93c5eaedcbbe0fc2e9d43df3f0eb0024aa7bac5000e9e3b508cd62a65ab8"
-    },
-    "nine-axis/step04_angles/model/left/layers/0019-face__nose.png": {
-      "bytes": 673,
-      "sha256": "e311ffa63acab9edf5988de041e1628de153c717030419c8a236834d06675aad"
-    },
-    "nine-axis/step04_angles/model/left/layers/0020-face__eyes__eye_right__eyelid_crease.png": {
-      "bytes": 596,
-      "sha256": "801f52e1566174f8610fd8f30138387de77237a6eb18564b268d1af06861eeef"
-    },
-    "nine-axis/step04_angles/model/left/layers/0021-face__eyes__eye_left__eyelid_crease.png": {
-      "bytes": 609,
-      "sha256": "92c06177013b827a1d40ff388ac9aef29a8b1cc9eb43b9a4acad329afd73e449"
-    },
-    "nine-axis/step04_angles/model/left/layers/0022-face__eyes__eye_right__upper_eyelid.png": {
-      "bytes": 2711,
-      "sha256": "90cf86ef6b3627820073fa725594be0324edd87de51489b4b3d616771e2f25d3"
-    },
-    "nine-axis/step04_angles/model/left/layers/0023-face__eyes__eye_left__upper_eyelid.png": {
-      "bytes": 2674,
-      "sha256": "59f81b8f004168951e13291634b135dd1909557b8330d9bb33349e9a40ca6ab7"
-    },
-    "nine-axis/step04_angles/model/left/layers/0024-face__eyes__eye_right__highlight.png": {
-      "bytes": 544,
-      "sha256": "86941965ba422aec2ea6f2d5acab869e3e66c0e582af7f9c198e917845d0f1fd"
-    },
-    "nine-axis/step04_angles/model/left/layers/0026-face__eyes__eye_right__iris.png": {
-      "bytes": 4385,
-      "sha256": "69642303907b6e80ad7279f9d319ee652348b5966f0edfa8628374dca5acba67"
-    },
-    "nine-axis/step04_angles/model/left/layers/0027-face__eyes__eye_right__sclera.png": {
-      "bytes": 2291,
-      "sha256": "c2cd1b85bc61249cbeeeff8089294988af936f9c9f3b8b95e02e04c9c235860a"
-    },
-    "nine-axis/step04_angles/model/left/layers/0028-face__eyes__eye_left__highlight.png": {
-      "bytes": 534,
-      "sha256": "58d589ea4b3e3d32e20ac69908059f936f85c4c86dd6e958c7710997145923c7"
-    },
-    "nine-axis/step04_angles/model/left/layers/0030-face__eyes__eye_left__iris.png": {
-      "bytes": 4379,
-      "sha256": "d6a8346f3205b72eca2372598739e792f97adf2f032c954e00b77f97b3ee3f93"
-    },
-    "nine-axis/step04_angles/model/left/layers/0031-face__eyes__eye_left__sclera.png": {
-      "bytes": 2367,
-      "sha256": "734f0570cf48179b92d165066e5580a6cb9dca5475a40290a50db90760e9a775"
-    },
-    "nine-axis/step04_angles/model/left/layers/0032-face__mouth__upper_teeth.png": {
-      "bytes": 101,
-      "sha256": "a3b1b20f6095cf1adef72a0a0210c1784d5f4bb5928f3b9dbd8eeea32801dd20"
-    },
-    "nine-axis/step04_angles/model/left/layers/0033-face__mouth__lower_teeth.png": {
-      "bytes": 99,
-      "sha256": "7f354686d48d3e791609300422ceef8eca9d8624ee9572b644eab85698545af7"
-    },
-    "nine-axis/step04_angles/model/left/layers/0034-face__mouth__tongue.png": {
-      "bytes": 100,
-      "sha256": "41a6700a59be7da5f37d5b35be287631cf7938691965e67b9cfec2ca4f0ad5bd"
-    },
-    "nine-axis/step04_angles/model/left/layers/0035-face__mouth__mouth_interior.png": {
-      "bytes": 103,
-      "sha256": "5401a3271a97c65142497582eba6d9a251e6fd0cc3998d420e9f6104bae32578"
-    },
-    "nine-axis/step04_angles/model/left/layers/0039-face__face_base.png": {
-      "bytes": 33525,
-      "sha256": "e5ac060348a73a0699b460529e06956be7ad9fbe2da565d830f014c803060070"
-    },
-    "nine-axis/step04_angles/model/left/layers/0046-neck.png": {
-      "bytes": 20102,
-      "sha256": "057c44d2ae221c8228e8395cbe330e353824df71391a60a2d40a034a1e275426"
-    },
-    "nine-axis/step04_angles/model/left/layers/0047-face__ears__ear_right__ear_shell.png": {
-      "bytes": 14909,
-      "sha256": "7ea19196812f05a6a47e2d909201db1822d0cad0caf8bc7afde880a65c1be17d"
-    },
-    "nine-axis/step04_angles/model/left/layers/0048-face__ears__ear_left__ear_shell.png": {
-      "bytes": 16595,
-      "sha256": "9855d22482e9d6d59b109cd7c0d00adfd413d82f41b384c3f270b4f3017a2c73"
-    },
-    "nine-axis/step04_angles/model/left/layers/0049-face__ears__ear_right__ear_fur.png": {
-      "bytes": 5274,
-      "sha256": "ed4853ead18365f9c58c2cfcf415c3f26d60ba1cb32e7ed50ee44255220600a3"
-    },
-    "nine-axis/step04_angles/model/left/layers/0050-face__ears__ear_left__ear_fur.png": {
-      "bytes": 5677,
-      "sha256": "9407cb0308adce3dd28ff6179f18483006aa738f8e7c4e796236e0429fdee1d3"
-    },
-    "nine-axis/step04_angles/model/left/layers/0051-face__ears__ear_right__ear_interior.png": {
-      "bytes": 5021,
-      "sha256": "a8ba7c942bab67488bc43544180378cd5b8157590226b26dca886e0f3f50a5bc"
-    },
-    "nine-axis/step04_angles/model/left/layers/0052-face__ears__ear_left__ear_interior.png": {
-      "bytes": 5696,
-      "sha256": "727eb4a7da1fcc663fa0a0d4717ebe5529adb8ddf67e3ab610ec3bd816be1d16"
-    },
-    "nine-axis/step04_angles/model/left/notes.md": {
-      "bytes": 2242,
-      "sha256": "6183ee1b79f73d5385b1f51546c65686a1d63da825b03d65184fff473b70143b"
-    },
-    "nine-axis/step04_angles/model/left/outline/notes.md": {
-      "bytes": 9557,
-      "sha256": "9ce49a6efc3c60cb97ec68380863dfd97c00baa9de74f98a684c8b7112f37e79"
-    },
-    "nine-axis/step04_angles/model/left/outline/source-face.svg": {
-      "bytes": 1537,
-      "sha256": "ad81db901511714b7f0efe6867718cc2ea5269cb579ef2e191bf94225af6045f"
-    },
-    "nine-axis/step04_angles/model/left/outline/target-face.svg": {
-      "bytes": 2531,
-      "sha256": "c52c0c9b4538eedb199969fccd8acf884e959674b65f12140c0b7e910d67fec1"
-    },
-    "nine-axis/step04_angles/model/left/source.json": {
-      "bytes": 211,
-      "sha256": "d9a81af356d9f2f1175be432d1d85cc2d0ecfab153f6d9c96ff5269fc0999e05"
-    },
-    "nine-axis/step04_angles/model/merged/axis-sources.json": {
-      "bytes": 4341,
-      "sha256": "77f17b5ce3778a7234721b45e9908b6fba323b0a205af2872f88cc392e0146ec"
-    },
-    "nine-axis/step04_angles/model/merged/deformers.json": {
-      "bytes": 1568136,
-      "sha256": "6e37934dfb84271d82dee7cf07b16f6e0ee376d043d1c2505a2781615f5b90a0"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0013-face__eyebrows__eyebrow_right.png": {
-      "bytes": 1102,
-      "sha256": "462857bf70f581851e76717d960e5857ea8d8f7c8b08546f697632be2369f862"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0014-face__eyebrows__eyebrow_left.png": {
-      "bytes": 1286,
-      "sha256": "020cc282de41f71348c65bd6e8da92ad89e25f72bef10676ddc4f25956f44a5a"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0015-face__mouth__upper_lip.png": {
-      "bytes": 1152,
-      "sha256": "3bc6ec9187d7fa4c4b2bd8526f89020fc3247248aa4ac501afb1cf29a6e6ea1f"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0016-face__mouth__lower_lip.png": {
-      "bytes": 1157,
-      "sha256": "d86db61f50c8e31d1ad1e92938b0892276286639a01bd8aac64244805b6ef3df"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0017-face__blush_right.png": {
-      "bytes": 1531,
-      "sha256": "d80ad16ec6ff1b3dbe7b677b6d5c0b867c9db8b5966d35728e165b427788189f"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0018-face__blush_left.png": {
-      "bytes": 1279,
-      "sha256": "68ea93c5eaedcbbe0fc2e9d43df3f0eb0024aa7bac5000e9e3b508cd62a65ab8"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0019-face__nose.png": {
-      "bytes": 673,
-      "sha256": "e311ffa63acab9edf5988de041e1628de153c717030419c8a236834d06675aad"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0020-face__eyes__eye_right__eyelid_crease.png": {
-      "bytes": 596,
-      "sha256": "801f52e1566174f8610fd8f30138387de77237a6eb18564b268d1af06861eeef"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0021-face__eyes__eye_left__eyelid_crease.png": {
-      "bytes": 609,
-      "sha256": "92c06177013b827a1d40ff388ac9aef29a8b1cc9eb43b9a4acad329afd73e449"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0022-face__eyes__eye_right__upper_eyelid.png": {
-      "bytes": 2711,
-      "sha256": "90cf86ef6b3627820073fa725594be0324edd87de51489b4b3d616771e2f25d3"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0023-face__eyes__eye_left__upper_eyelid.png": {
-      "bytes": 2674,
-      "sha256": "59f81b8f004168951e13291634b135dd1909557b8330d9bb33349e9a40ca6ab7"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0024-face__eyes__eye_right__highlight.png": {
-      "bytes": 544,
-      "sha256": "86941965ba422aec2ea6f2d5acab869e3e66c0e582af7f9c198e917845d0f1fd"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0026-face__eyes__eye_right__iris.png": {
-      "bytes": 4385,
-      "sha256": "69642303907b6e80ad7279f9d319ee652348b5966f0edfa8628374dca5acba67"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0027-face__eyes__eye_right__sclera.png": {
-      "bytes": 2291,
-      "sha256": "c2cd1b85bc61249cbeeeff8089294988af936f9c9f3b8b95e02e04c9c235860a"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0028-face__eyes__eye_left__highlight.png": {
-      "bytes": 534,
-      "sha256": "58d589ea4b3e3d32e20ac69908059f936f85c4c86dd6e958c7710997145923c7"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0030-face__eyes__eye_left__iris.png": {
-      "bytes": 4379,
-      "sha256": "d6a8346f3205b72eca2372598739e792f97adf2f032c954e00b77f97b3ee3f93"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0031-face__eyes__eye_left__sclera.png": {
-      "bytes": 2367,
-      "sha256": "734f0570cf48179b92d165066e5580a6cb9dca5475a40290a50db90760e9a775"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0032-face__mouth__upper_teeth.png": {
-      "bytes": 101,
-      "sha256": "a3b1b20f6095cf1adef72a0a0210c1784d5f4bb5928f3b9dbd8eeea32801dd20"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0033-face__mouth__lower_teeth.png": {
-      "bytes": 99,
-      "sha256": "7f354686d48d3e791609300422ceef8eca9d8624ee9572b644eab85698545af7"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0034-face__mouth__tongue.png": {
-      "bytes": 100,
-      "sha256": "41a6700a59be7da5f37d5b35be287631cf7938691965e67b9cfec2ca4f0ad5bd"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0035-face__mouth__mouth_interior.png": {
-      "bytes": 103,
-      "sha256": "5401a3271a97c65142497582eba6d9a251e6fd0cc3998d420e9f6104bae32578"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0039-face__face_base.png": {
-      "bytes": 33525,
-      "sha256": "e5ac060348a73a0699b460529e06956be7ad9fbe2da565d830f014c803060070"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0046-neck.png": {
-      "bytes": 20102,
-      "sha256": "057c44d2ae221c8228e8395cbe330e353824df71391a60a2d40a034a1e275426"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0047-face__ears__ear_right__ear_shell.png": {
-      "bytes": 14909,
-      "sha256": "7ea19196812f05a6a47e2d909201db1822d0cad0caf8bc7afde880a65c1be17d"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0048-face__ears__ear_left__ear_shell.png": {
-      "bytes": 16595,
-      "sha256": "9855d22482e9d6d59b109cd7c0d00adfd413d82f41b384c3f270b4f3017a2c73"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0049-face__ears__ear_right__ear_fur.png": {
-      "bytes": 5274,
-      "sha256": "ed4853ead18365f9c58c2cfcf415c3f26d60ba1cb32e7ed50ee44255220600a3"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0050-face__ears__ear_left__ear_fur.png": {
-      "bytes": 5677,
-      "sha256": "9407cb0308adce3dd28ff6179f18483006aa738f8e7c4e796236e0429fdee1d3"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0051-face__ears__ear_right__ear_interior.png": {
-      "bytes": 5021,
-      "sha256": "a8ba7c942bab67488bc43544180378cd5b8157590226b26dca886e0f3f50a5bc"
-    },
-    "nine-axis/step04_angles/model/merged/layers/0052-face__ears__ear_left__ear_interior.png": {
-      "bytes": 5696,
-      "sha256": "727eb4a7da1fcc663fa0a0d4717ebe5529adb8ddf67e3ab610ec3bd816be1d16"
-    },
-    "nine-axis/step04_angles/model/source.json": {
-      "bytes": 168,
-      "sha256": "f117ec983dc9d09ff728010c90ab09b39107e04cc44bb1219fe3e5d4b812df58"
-    },
-    "nine-axis/step04_angles/model/up/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step04_angles/model/up/checks/completed-face.svg": {
-      "bytes": 652,
-      "sha256": "268c52837e18196274d690e692c756a9636f3e2670346e9b7644edc92c76063f"
-    },
-    "nine-axis/step04_angles/model/up/checks/delivery-check.json": {
-      "bytes": 241,
-      "sha256": "2b37424a352ef08486d4ef00ce067a7fe334afb390ef8e121debbd0429a0a763"
-    },
-    "nine-axis/step04_angles/model/up/deformers.json": {
-      "bytes": 277578,
-      "sha256": "248bf64fef01653da510d671be5342e1285bba8e8b26344618cb3b4ce438a8e0"
-    },
-    "nine-axis/step04_angles/model/up/face-trace.json": {
-      "bytes": 6685,
-      "sha256": "b5d09e534fda7ed54ac9fbc9cb01b951dc810869752d06daa23cd49f1ab6f204"
-    },
-    "nine-axis/step04_angles/model/up/face-up.json": {
-      "bytes": 277578,
-      "sha256": "248bf64fef01653da510d671be5342e1285bba8e8b26344618cb3b4ce438a8e0"
-    },
-    "nine-axis/step04_angles/model/up/fit-report.json": {
-      "bytes": 5451,
-      "sha256": "bce65a42b1bda84620ec920f7b42b3de4c9041c5a2eb2d1c58a3241aa58de775"
-    },
-    "nine-axis/step04_angles/model/up/layers/0013-face__eyebrows__eyebrow_right.png": {
-      "bytes": 1102,
-      "sha256": "462857bf70f581851e76717d960e5857ea8d8f7c8b08546f697632be2369f862"
-    },
-    "nine-axis/step04_angles/model/up/layers/0014-face__eyebrows__eyebrow_left.png": {
-      "bytes": 1286,
-      "sha256": "020cc282de41f71348c65bd6e8da92ad89e25f72bef10676ddc4f25956f44a5a"
-    },
-    "nine-axis/step04_angles/model/up/layers/0015-face__mouth__upper_lip.png": {
-      "bytes": 1152,
-      "sha256": "3bc6ec9187d7fa4c4b2bd8526f89020fc3247248aa4ac501afb1cf29a6e6ea1f"
-    },
-    "nine-axis/step04_angles/model/up/layers/0016-face__mouth__lower_lip.png": {
-      "bytes": 1157,
-      "sha256": "d86db61f50c8e31d1ad1e92938b0892276286639a01bd8aac64244805b6ef3df"
-    },
-    "nine-axis/step04_angles/model/up/layers/0017-face__blush_right.png": {
-      "bytes": 1531,
-      "sha256": "d80ad16ec6ff1b3dbe7b677b6d5c0b867c9db8b5966d35728e165b427788189f"
-    },
-    "nine-axis/step04_angles/model/up/layers/0018-face__blush_left.png": {
-      "bytes": 1279,
-      "sha256": "68ea93c5eaedcbbe0fc2e9d43df3f0eb0024aa7bac5000e9e3b508cd62a65ab8"
-    },
-    "nine-axis/step04_angles/model/up/layers/0019-face__nose.png": {
-      "bytes": 673,
-      "sha256": "e311ffa63acab9edf5988de041e1628de153c717030419c8a236834d06675aad"
-    },
-    "nine-axis/step04_angles/model/up/layers/0020-face__eyes__eye_right__eyelid_crease.png": {
-      "bytes": 596,
-      "sha256": "801f52e1566174f8610fd8f30138387de77237a6eb18564b268d1af06861eeef"
-    },
-    "nine-axis/step04_angles/model/up/layers/0021-face__eyes__eye_left__eyelid_crease.png": {
-      "bytes": 609,
-      "sha256": "92c06177013b827a1d40ff388ac9aef29a8b1cc9eb43b9a4acad329afd73e449"
-    },
-    "nine-axis/step04_angles/model/up/layers/0022-face__eyes__eye_right__upper_eyelid.png": {
-      "bytes": 2711,
-      "sha256": "90cf86ef6b3627820073fa725594be0324edd87de51489b4b3d616771e2f25d3"
-    },
-    "nine-axis/step04_angles/model/up/layers/0023-face__eyes__eye_left__upper_eyelid.png": {
-      "bytes": 2674,
-      "sha256": "59f81b8f004168951e13291634b135dd1909557b8330d9bb33349e9a40ca6ab7"
-    },
-    "nine-axis/step04_angles/model/up/layers/0024-face__eyes__eye_right__highlight.png": {
-      "bytes": 544,
-      "sha256": "86941965ba422aec2ea6f2d5acab869e3e66c0e582af7f9c198e917845d0f1fd"
-    },
-    "nine-axis/step04_angles/model/up/layers/0026-face__eyes__eye_right__iris.png": {
-      "bytes": 4385,
-      "sha256": "69642303907b6e80ad7279f9d319ee652348b5966f0edfa8628374dca5acba67"
-    },
-    "nine-axis/step04_angles/model/up/layers/0027-face__eyes__eye_right__sclera.png": {
-      "bytes": 2291,
-      "sha256": "c2cd1b85bc61249cbeeeff8089294988af936f9c9f3b8b95e02e04c9c235860a"
-    },
-    "nine-axis/step04_angles/model/up/layers/0028-face__eyes__eye_left__highlight.png": {
-      "bytes": 534,
-      "sha256": "58d589ea4b3e3d32e20ac69908059f936f85c4c86dd6e958c7710997145923c7"
-    },
-    "nine-axis/step04_angles/model/up/layers/0030-face__eyes__eye_left__iris.png": {
-      "bytes": 4379,
-      "sha256": "d6a8346f3205b72eca2372598739e792f97adf2f032c954e00b77f97b3ee3f93"
-    },
-    "nine-axis/step04_angles/model/up/layers/0031-face__eyes__eye_left__sclera.png": {
-      "bytes": 2367,
-      "sha256": "734f0570cf48179b92d165066e5580a6cb9dca5475a40290a50db90760e9a775"
-    },
-    "nine-axis/step04_angles/model/up/layers/0032-face__mouth__upper_teeth.png": {
-      "bytes": 101,
-      "sha256": "a3b1b20f6095cf1adef72a0a0210c1784d5f4bb5928f3b9dbd8eeea32801dd20"
-    },
-    "nine-axis/step04_angles/model/up/layers/0033-face__mouth__lower_teeth.png": {
-      "bytes": 99,
-      "sha256": "7f354686d48d3e791609300422ceef8eca9d8624ee9572b644eab85698545af7"
-    },
-    "nine-axis/step04_angles/model/up/layers/0034-face__mouth__tongue.png": {
-      "bytes": 100,
-      "sha256": "41a6700a59be7da5f37d5b35be287631cf7938691965e67b9cfec2ca4f0ad5bd"
-    },
-    "nine-axis/step04_angles/model/up/layers/0035-face__mouth__mouth_interior.png": {
-      "bytes": 103,
-      "sha256": "5401a3271a97c65142497582eba6d9a251e6fd0cc3998d420e9f6104bae32578"
-    },
-    "nine-axis/step04_angles/model/up/layers/0039-face__face_base.png": {
-      "bytes": 33525,
-      "sha256": "e5ac060348a73a0699b460529e06956be7ad9fbe2da565d830f014c803060070"
-    },
-    "nine-axis/step04_angles/model/up/layers/0046-neck.png": {
-      "bytes": 20102,
-      "sha256": "057c44d2ae221c8228e8395cbe330e353824df71391a60a2d40a034a1e275426"
-    },
-    "nine-axis/step04_angles/model/up/layers/0047-face__ears__ear_right__ear_shell.png": {
-      "bytes": 14909,
-      "sha256": "7ea19196812f05a6a47e2d909201db1822d0cad0caf8bc7afde880a65c1be17d"
-    },
-    "nine-axis/step04_angles/model/up/layers/0048-face__ears__ear_left__ear_shell.png": {
-      "bytes": 16595,
-      "sha256": "9855d22482e9d6d59b109cd7c0d00adfd413d82f41b384c3f270b4f3017a2c73"
-    },
-    "nine-axis/step04_angles/model/up/layers/0049-face__ears__ear_right__ear_fur.png": {
-      "bytes": 5274,
-      "sha256": "ed4853ead18365f9c58c2cfcf415c3f26d60ba1cb32e7ed50ee44255220600a3"
-    },
-    "nine-axis/step04_angles/model/up/layers/0050-face__ears__ear_left__ear_fur.png": {
-      "bytes": 5677,
-      "sha256": "9407cb0308adce3dd28ff6179f18483006aa738f8e7c4e796236e0429fdee1d3"
-    },
-    "nine-axis/step04_angles/model/up/layers/0051-face__ears__ear_right__ear_interior.png": {
-      "bytes": 5021,
-      "sha256": "a8ba7c942bab67488bc43544180378cd5b8157590226b26dca886e0f3f50a5bc"
-    },
-    "nine-axis/step04_angles/model/up/layers/0052-face__ears__ear_left__ear_interior.png": {
-      "bytes": 5696,
-      "sha256": "727eb4a7da1fcc663fa0a0d4717ebe5529adb8ddf67e3ab610ec3bd816be1d16"
-    },
-    "nine-axis/step04_angles/model/up/notes.md": {
-      "bytes": 2032,
-      "sha256": "15978be5f00ebc240dd08d8d2acd2c27fa5e86375de029363887da97eb6a1352"
-    },
-    "nine-axis/step04_angles/model/up/outline/notes.md": {
-      "bytes": 9053,
-      "sha256": "f1f4836f52e68977f560c9ebb53714a4ee017cb90071bd8ecb111c94166940e1"
-    },
-    "nine-axis/step04_angles/model/up/outline/source-face.svg": {
-      "bytes": 1159,
-      "sha256": "0de74fe680a70e9887cc4ad4747cbc446307d86a10421b24dd59298cd61e7630"
-    },
-    "nine-axis/step04_angles/model/up/outline/target-face.svg": {
-      "bytes": 1834,
-      "sha256": "efb8a53f3e1f946b7e0192190a75201bf0401f2b48ab7780c8208740399bde32"
-    },
-    "nine-axis/step04_angles/model/up/source.json": {
-      "bytes": 168,
-      "sha256": "f117ec983dc9d09ff728010c90ab09b39107e04cc44bb1219fe3e5d4b812df58"
-    },
-    "nine-axis/step04_angles/video/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step04_angles/video/left-down.mp4": {
-      "bytes": 3936669,
-      "sha256": "1d2e4b0b22f8f16c041c89a9770f8bed8eaa32e0d183f51a70190fc2327fa666"
-    },
-    "nine-axis/step04_angles/video/left-up.mp4": {
-      "bytes": 4063003,
-      "sha256": "0862fd4eaa414eff32904b6807da31ecb33ea38d532b18fadddda26a2d043dd9"
-    },
-    "nine-axis/step04_angles/video/videos.json": {
-      "bytes": 3729,
-      "sha256": "58c26edf66cdaed77fbc1a87286bf7bcc2b16729630d7cf521ba5a35ad63ebf7"
-    },
-    "nine-axis/step05_frames/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step05_frames/selected-frames.json": {
-      "bytes": 1735,
-      "sha256": "54c54bcbca3a3a6fa00f6e6cba225e7c281abb1a377214896e855b2ca61f8ec1"
-    },
-    "nine-axis/step06_angle-xy/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step06_angle-xy/deformers.json": {
-      "bytes": 1790059,
-      "sha256": "566c2bf614cf201f2764d65739031adb6ae867a109ee5a09dc5bcb633ceb10c3"
-    },
-    "nine-axis/step06_angle-xy/face-xy.json": {
-      "bytes": 1809543,
-      "sha256": "ecc8af287456e1368aa5e5174256c42c95f26965e922e9a7b79132aa7724e371"
-    },
-    "nine-axis/step06_angle-xy/layers/0013-face__eyebrows__eyebrow_right.png": {
-      "bytes": 1102,
-      "sha256": "462857bf70f581851e76717d960e5857ea8d8f7c8b08546f697632be2369f862"
-    },
-    "nine-axis/step06_angle-xy/layers/0014-face__eyebrows__eyebrow_left.png": {
-      "bytes": 1286,
-      "sha256": "020cc282de41f71348c65bd6e8da92ad89e25f72bef10676ddc4f25956f44a5a"
-    },
-    "nine-axis/step06_angle-xy/layers/0015-face__mouth__upper_lip.png": {
-      "bytes": 1152,
-      "sha256": "3bc6ec9187d7fa4c4b2bd8526f89020fc3247248aa4ac501afb1cf29a6e6ea1f"
-    },
-    "nine-axis/step06_angle-xy/layers/0016-face__mouth__lower_lip.png": {
-      "bytes": 1157,
-      "sha256": "d86db61f50c8e31d1ad1e92938b0892276286639a01bd8aac64244805b6ef3df"
-    },
-    "nine-axis/step06_angle-xy/layers/0017-face__blush_right.png": {
-      "bytes": 1531,
-      "sha256": "d80ad16ec6ff1b3dbe7b677b6d5c0b867c9db8b5966d35728e165b427788189f"
-    },
-    "nine-axis/step06_angle-xy/layers/0018-face__blush_left.png": {
-      "bytes": 1279,
-      "sha256": "68ea93c5eaedcbbe0fc2e9d43df3f0eb0024aa7bac5000e9e3b508cd62a65ab8"
-    },
-    "nine-axis/step06_angle-xy/layers/0019-face__nose.png": {
-      "bytes": 673,
-      "sha256": "e311ffa63acab9edf5988de041e1628de153c717030419c8a236834d06675aad"
-    },
-    "nine-axis/step06_angle-xy/layers/0020-face__eyes__eye_right__eyelid_crease.png": {
-      "bytes": 596,
-      "sha256": "801f52e1566174f8610fd8f30138387de77237a6eb18564b268d1af06861eeef"
-    },
-    "nine-axis/step06_angle-xy/layers/0021-face__eyes__eye_left__eyelid_crease.png": {
-      "bytes": 609,
-      "sha256": "92c06177013b827a1d40ff388ac9aef29a8b1cc9eb43b9a4acad329afd73e449"
-    },
-    "nine-axis/step06_angle-xy/layers/0022-face__eyes__eye_right__upper_eyelid.png": {
-      "bytes": 2711,
-      "sha256": "90cf86ef6b3627820073fa725594be0324edd87de51489b4b3d616771e2f25d3"
-    },
-    "nine-axis/step06_angle-xy/layers/0023-face__eyes__eye_left__upper_eyelid.png": {
-      "bytes": 2674,
-      "sha256": "59f81b8f004168951e13291634b135dd1909557b8330d9bb33349e9a40ca6ab7"
-    },
-    "nine-axis/step06_angle-xy/layers/0024-face__eyes__eye_right__highlight.png": {
-      "bytes": 544,
-      "sha256": "86941965ba422aec2ea6f2d5acab869e3e66c0e582af7f9c198e917845d0f1fd"
-    },
-    "nine-axis/step06_angle-xy/layers/0026-face__eyes__eye_right__iris.png": {
-      "bytes": 4385,
-      "sha256": "69642303907b6e80ad7279f9d319ee652348b5966f0edfa8628374dca5acba67"
-    },
-    "nine-axis/step06_angle-xy/layers/0027-face__eyes__eye_right__sclera.png": {
-      "bytes": 2291,
-      "sha256": "c2cd1b85bc61249cbeeeff8089294988af936f9c9f3b8b95e02e04c9c235860a"
-    },
-    "nine-axis/step06_angle-xy/layers/0028-face__eyes__eye_left__highlight.png": {
-      "bytes": 534,
-      "sha256": "58d589ea4b3e3d32e20ac69908059f936f85c4c86dd6e958c7710997145923c7"
-    },
-    "nine-axis/step06_angle-xy/layers/0030-face__eyes__eye_left__iris.png": {
-      "bytes": 4379,
-      "sha256": "d6a8346f3205b72eca2372598739e792f97adf2f032c954e00b77f97b3ee3f93"
-    },
-    "nine-axis/step06_angle-xy/layers/0031-face__eyes__eye_left__sclera.png": {
-      "bytes": 2367,
-      "sha256": "734f0570cf48179b92d165066e5580a6cb9dca5475a40290a50db90760e9a775"
-    },
-    "nine-axis/step06_angle-xy/layers/0032-face__mouth__upper_teeth.png": {
-      "bytes": 101,
-      "sha256": "a3b1b20f6095cf1adef72a0a0210c1784d5f4bb5928f3b9dbd8eeea32801dd20"
-    },
-    "nine-axis/step06_angle-xy/layers/0033-face__mouth__lower_teeth.png": {
-      "bytes": 99,
-      "sha256": "7f354686d48d3e791609300422ceef8eca9d8624ee9572b644eab85698545af7"
-    },
-    "nine-axis/step06_angle-xy/layers/0034-face__mouth__tongue.png": {
-      "bytes": 100,
-      "sha256": "41a6700a59be7da5f37d5b35be287631cf7938691965e67b9cfec2ca4f0ad5bd"
-    },
-    "nine-axis/step06_angle-xy/layers/0035-face__mouth__mouth_interior.png": {
-      "bytes": 103,
-      "sha256": "5401a3271a97c65142497582eba6d9a251e6fd0cc3998d420e9f6104bae32578"
-    },
-    "nine-axis/step06_angle-xy/layers/0039-face__face_base.png": {
-      "bytes": 33525,
-      "sha256": "e5ac060348a73a0699b460529e06956be7ad9fbe2da565d830f014c803060070"
-    },
-    "nine-axis/step06_angle-xy/layers/0046-neck.png": {
-      "bytes": 20102,
-      "sha256": "057c44d2ae221c8228e8395cbe330e353824df71391a60a2d40a034a1e275426"
-    },
-    "nine-axis/step06_angle-xy/layers/0047-face__ears__ear_right__ear_shell.png": {
-      "bytes": 14909,
-      "sha256": "7ea19196812f05a6a47e2d909201db1822d0cad0caf8bc7afde880a65c1be17d"
-    },
-    "nine-axis/step06_angle-xy/layers/0048-face__ears__ear_left__ear_shell.png": {
-      "bytes": 16595,
-      "sha256": "9855d22482e9d6d59b109cd7c0d00adfd413d82f41b384c3f270b4f3017a2c73"
-    },
-    "nine-axis/step06_angle-xy/layers/0049-face__ears__ear_right__ear_fur.png": {
-      "bytes": 5274,
-      "sha256": "ed4853ead18365f9c58c2cfcf415c3f26d60ba1cb32e7ed50ee44255220600a3"
-    },
-    "nine-axis/step06_angle-xy/layers/0050-face__ears__ear_left__ear_fur.png": {
-      "bytes": 5677,
-      "sha256": "9407cb0308adce3dd28ff6179f18483006aa738f8e7c4e796236e0429fdee1d3"
-    },
-    "nine-axis/step06_angle-xy/layers/0051-face__ears__ear_right__ear_interior.png": {
-      "bytes": 5021,
-      "sha256": "a8ba7c942bab67488bc43544180378cd5b8157590226b26dca886e0f3f50a5bc"
-    },
-    "nine-axis/step06_angle-xy/layers/0052-face__ears__ear_left__ear_interior.png": {
-      "bytes": 5696,
-      "sha256": "727eb4a7da1fcc663fa0a0d4717ebe5529adb8ddf67e3ab610ec3bd816be1d16"
-    },
-    "nine-axis/step06_angle-xy/left-down-face-trace.json": {
-      "bytes": 7823,
-      "sha256": "dfae05bf36f0e04e88cff09a88f4bd345df35811b67250b0b18c42ea9b9a9a0d"
-    },
-    "nine-axis/step06_angle-xy/left-down-fit-report.json": {
-      "bytes": 7155,
-      "sha256": "edc913344d5beb64c5e8dc5c658382df64ac6274e9d831a2e48ab439e87fc8d2"
-    },
-    "nine-axis/step06_angle-xy/left-up-face-trace.json": {
-      "bytes": 8087,
-      "sha256": "9299671ed13c3fbad5fe54e9929434e3469381b922d4c4c96c3a0396b56f0049"
-    },
-    "nine-axis/step06_angle-xy/left-up-fit-report.json": {
-      "bytes": 4934,
-      "sha256": "c0941445f046cd641b2e216efee77713ab08816768a2d2ca7fffd31a7d24cbc3"
-    },
-    "nine-axis/step06_angle-xy/linear.json": {
-      "bytes": 1568266,
-      "sha256": "b16facea28a7dde1044fb87723f2dc250f47aa9c8ac08eb402ba91311b02caf2"
-    },
-    "nine-axis/step06_angle-xy/notes.md": {
-      "bytes": 2951,
-      "sha256": "07f3d1276b7d150512193777c9410ea26f53c49143e3278a50db639a2bfd40b7"
-    },
-    "nine-axis/step06_angle-xy/outline/left-down/notes.md": {
-      "bytes": 8376,
-      "sha256": "34ba452b27b66a905cfffdb1a8f58661806a8d9ce5b9fd0f58f76c852f5f4f18"
-    },
-    "nine-axis/step06_angle-xy/outline/left-down/review/checks.json": {
-      "bytes": 5250,
-      "sha256": "8cb188ac89d14317dda92c843aeafe4467b67edec6aab4d33a9e6cf36bfddcab"
-    },
-    "nine-axis/step06_angle-xy/outline/left-down/source-face.svg": {
-      "bytes": 1807,
-      "sha256": "ba3c09d908c601b6266d7df5336b2718106201806d21d2925bf8d2eb5ebc97cf"
-    },
-    "nine-axis/step06_angle-xy/outline/left-down/target-face.svg": {
-      "bytes": 1325,
-      "sha256": "56cbb4621a21630ef5264f5f65fccfd1565ad994531168924634cf3639f095ee"
-    },
-    "nine-axis/step06_angle-xy/outline/left-up/notes.md": {
-      "bytes": 8227,
-      "sha256": "9108adab525f34540a8f2a58b2542e83cd9a2296c8aea03b40a99d403aadb0c3"
-    },
-    "nine-axis/step06_angle-xy/outline/left-up/source-face.svg": {
-      "bytes": 1643,
-      "sha256": "59c4ca066f1dfd4494607ba2e9810529b151b6ec3dd72d954aaa0f863cc03860"
-    },
-    "nine-axis/step06_angle-xy/outline/left-up/target-face.svg": {
-      "bytes": 1565,
-      "sha256": "4ef978c1dd4a485c19ee926ff7b84d79b138649c9b3a0dd370be44d985ffcb91"
-    },
-    "nine-axis/step06_angle-xy/review/contour-check.json": {
-      "bytes": 17186,
-      "sha256": "11cf2bee61c2d5da39033b7d9bd2bee5797347eb561f9a790023f134ca3af03d"
-    },
-    "nine-axis/step06_angle-xy/review/delivery-check.json": {
-      "bytes": 1544,
-      "sha256": "9a0638f53e20d36769dc4e61482e151d552c318ba0d7ab68ff291633f02d1460"
-    },
-    "nine-axis/step06_angle-xy/review/invariants.json": {
-      "bytes": 2711,
-      "sha256": "387b5b1558e956da66abf90b724115f3077ec4511dec4bf532b10b41612458b6"
-    },
-    "nine-axis/step06_angle-xy/review/left-down-actual-contour.svg": {
-      "bytes": 71882,
-      "sha256": "128a83b64433067fbefa7ba487fd47db596a884971aeec1e1c6c6fbe40183f9a"
-    },
-    "nine-axis/step06_angle-xy/review/left-down-completion.svg": {
-      "bytes": 826,
-      "sha256": "db3d225fd6619b5ec91312bf211cd4b7dbbd39d96c9fae6b28df083f3c6d9a5e"
-    },
-    "nine-axis/step06_angle-xy/review/left-up-actual-contour.svg": {
-      "bytes": 71822,
-      "sha256": "dcadccc483b395ef37ad97c9543bf5d4f2c7767b29fee4f3907b0ae60bd438e9"
-    },
-    "nine-axis/step06_angle-xy/review/left-up-completion.svg": {
-      "bytes": 888,
-      "sha256": "382cf856ee47343072a132afedb18425220a704c4f438b42563fd9031424b34e"
-    },
-    "nine-axis/step06_angle-xy/review/mesh-check.json": {
-      "bytes": 643,
-      "sha256": "b64bab3516097bb5f52f7fceb5af5c627f2ce0b0f51cb89b56da387f73a6707f"
-    },
-    "nine-axis/step06_angle-xy/review/render-manifest.json": {
-      "bytes": 4883,
-      "sha256": "f54ed9fc25f6449e430d92c9476cc4d3b76b406b653dccf061c7809d1bfc180e"
-    },
-    "nine-axis/step06_angle-xy/review/texture-check.json": {
-      "bytes": 11309,
-      "sha256": "a149fc21a93698cd1c0afad5b2bf228c427570d1f5eb3d53d0b79976ae74df8e"
-    },
-    "nine-axis/step06_angle-xy/review/trace-inspection.json": {
-      "bytes": 707,
-      "sha256": "e815b5f758c217ba7376f6568b329867259a16376c3fc5520aa598f6aa6f56bb"
-    },
-    "nine-axis/step07_jaw-line/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step07_jaw-line/character-nine-axis.kra": {
-      "bytes": 31210644,
-      "sha256": "ea61fe188edc429ef50b7f8f3bd9955f8edffbc056951ec2636ac4a6b145e461"
-    },
-    "nine-axis/step07_jaw-line/character-nine-axis.png": {
-      "bytes": 1327337,
-      "sha256": "03771d40a366f489e51db8432ec15a6419da28433ea2dce6c5622bcea48db572"
-    },
-    "nine-axis/step07_jaw-line/deformers.json": {
-      "bytes": 10468439,
-      "sha256": "377210a1e388c326a5c9da904c230ba4c2a2cf0055513845a263f39b2e8f2e5d"
-    },
-    "nine-axis/step07_jaw-line/delivery-check.json": {
-      "bytes": 1426,
-      "sha256": "c9231fee7e4870f64ecbd4cb5317ebe274777da8a1885911a9fc8dddd3b58e6c"
-    },
-    "nine-axis/step07_jaw-line/export-record.json": {
-      "bytes": 2133,
-      "sha256": "6159780dba896de7a98e9db0bfe31266a765b320ec8a73858f01118296a548a4"
-    },
-    "nine-axis/step07_jaw-line/jaw.json": {
-      "bytes": 8445942,
-      "sha256": "0eda2075d9d8ca9ae87cf162637b4ecb523c2bd7233e61d93eb9e13c9340e8dc"
-    },
-    "nine-axis/step07_jaw-line/layers/0013-face__eyebrows__eyebrow_right.png": {
-      "bytes": 1102,
-      "sha256": "462857bf70f581851e76717d960e5857ea8d8f7c8b08546f697632be2369f862"
-    },
-    "nine-axis/step07_jaw-line/layers/0014-face__eyebrows__eyebrow_left.png": {
-      "bytes": 1286,
-      "sha256": "020cc282de41f71348c65bd6e8da92ad89e25f72bef10676ddc4f25956f44a5a"
-    },
-    "nine-axis/step07_jaw-line/layers/0015-face__mouth__upper_lip.png": {
-      "bytes": 1152,
-      "sha256": "3bc6ec9187d7fa4c4b2bd8526f89020fc3247248aa4ac501afb1cf29a6e6ea1f"
-    },
-    "nine-axis/step07_jaw-line/layers/0016-face__mouth__lower_lip.png": {
-      "bytes": 1157,
-      "sha256": "d86db61f50c8e31d1ad1e92938b0892276286639a01bd8aac64244805b6ef3df"
-    },
-    "nine-axis/step07_jaw-line/layers/0017-face__blush_right.png": {
-      "bytes": 1531,
-      "sha256": "d80ad16ec6ff1b3dbe7b677b6d5c0b867c9db8b5966d35728e165b427788189f"
-    },
-    "nine-axis/step07_jaw-line/layers/0018-face__blush_left.png": {
-      "bytes": 1279,
-      "sha256": "68ea93c5eaedcbbe0fc2e9d43df3f0eb0024aa7bac5000e9e3b508cd62a65ab8"
-    },
-    "nine-axis/step07_jaw-line/layers/0019-face__nose.png": {
-      "bytes": 673,
-      "sha256": "e311ffa63acab9edf5988de041e1628de153c717030419c8a236834d06675aad"
-    },
-    "nine-axis/step07_jaw-line/layers/0020-face__eyes__eye_right__eyelid_crease.png": {
-      "bytes": 596,
-      "sha256": "801f52e1566174f8610fd8f30138387de77237a6eb18564b268d1af06861eeef"
-    },
-    "nine-axis/step07_jaw-line/layers/0021-face__eyes__eye_left__eyelid_crease.png": {
-      "bytes": 609,
-      "sha256": "92c06177013b827a1d40ff388ac9aef29a8b1cc9eb43b9a4acad329afd73e449"
-    },
-    "nine-axis/step07_jaw-line/layers/0022-face__eyes__eye_right__upper_eyelid.png": {
-      "bytes": 2711,
-      "sha256": "90cf86ef6b3627820073fa725594be0324edd87de51489b4b3d616771e2f25d3"
-    },
-    "nine-axis/step07_jaw-line/layers/0023-face__eyes__eye_left__upper_eyelid.png": {
-      "bytes": 2674,
-      "sha256": "59f81b8f004168951e13291634b135dd1909557b8330d9bb33349e9a40ca6ab7"
-    },
-    "nine-axis/step07_jaw-line/layers/0024-face__eyes__eye_right__highlight.png": {
-      "bytes": 544,
-      "sha256": "86941965ba422aec2ea6f2d5acab869e3e66c0e582af7f9c198e917845d0f1fd"
-    },
-    "nine-axis/step07_jaw-line/layers/0026-face__eyes__eye_right__iris.png": {
-      "bytes": 4385,
-      "sha256": "69642303907b6e80ad7279f9d319ee652348b5966f0edfa8628374dca5acba67"
-    },
-    "nine-axis/step07_jaw-line/layers/0027-face__eyes__eye_right__sclera.png": {
-      "bytes": 2291,
-      "sha256": "c2cd1b85bc61249cbeeeff8089294988af936f9c9f3b8b95e02e04c9c235860a"
-    },
-    "nine-axis/step07_jaw-line/layers/0028-face__eyes__eye_left__highlight.png": {
-      "bytes": 534,
-      "sha256": "58d589ea4b3e3d32e20ac69908059f936f85c4c86dd6e958c7710997145923c7"
-    },
-    "nine-axis/step07_jaw-line/layers/0030-face__eyes__eye_left__iris.png": {
-      "bytes": 4379,
-      "sha256": "d6a8346f3205b72eca2372598739e792f97adf2f032c954e00b77f97b3ee3f93"
-    },
-    "nine-axis/step07_jaw-line/layers/0031-face__eyes__eye_left__sclera.png": {
-      "bytes": 2367,
-      "sha256": "734f0570cf48179b92d165066e5580a6cb9dca5475a40290a50db90760e9a775"
-    },
-    "nine-axis/step07_jaw-line/layers/0032-face__mouth__upper_teeth.png": {
-      "bytes": 101,
-      "sha256": "a3b1b20f6095cf1adef72a0a0210c1784d5f4bb5928f3b9dbd8eeea32801dd20"
-    },
-    "nine-axis/step07_jaw-line/layers/0033-face__mouth__lower_teeth.png": {
-      "bytes": 99,
-      "sha256": "7f354686d48d3e791609300422ceef8eca9d8624ee9572b644eab85698545af7"
-    },
-    "nine-axis/step07_jaw-line/layers/0034-face__mouth__tongue.png": {
-      "bytes": 100,
-      "sha256": "41a6700a59be7da5f37d5b35be287631cf7938691965e67b9cfec2ca4f0ad5bd"
-    },
-    "nine-axis/step07_jaw-line/layers/0035-face__mouth__mouth_interior.png": {
-      "bytes": 103,
-      "sha256": "5401a3271a97c65142497582eba6d9a251e6fd0cc3998d420e9f6104bae32578"
-    },
-    "nine-axis/step07_jaw-line/layers/0039-face__face_base.png": {
-      "bytes": 28791,
-      "sha256": "4606b5583bb2e0ca30b7013f9cf581bdaa699c1048a0dec9f65bffc6b20eaf8f"
-    },
-    "nine-axis/step07_jaw-line/layers/0046-neck.png": {
-      "bytes": 17207,
-      "sha256": "ac8cccc55e98906c12bb1bcf79a9154c8d2fccf05ea0b266da1566e8d59b4132"
-    },
-    "nine-axis/step07_jaw-line/layers/0047-face__ears__ear_right__ear_shell.png": {
-      "bytes": 14909,
-      "sha256": "7ea19196812f05a6a47e2d909201db1822d0cad0caf8bc7afde880a65c1be17d"
-    },
-    "nine-axis/step07_jaw-line/layers/0048-face__ears__ear_left__ear_shell.png": {
-      "bytes": 16595,
-      "sha256": "9855d22482e9d6d59b109cd7c0d00adfd413d82f41b384c3f270b4f3017a2c73"
-    },
-    "nine-axis/step07_jaw-line/layers/0049-face__ears__ear_right__ear_fur.png": {
-      "bytes": 5274,
-      "sha256": "ed4853ead18365f9c58c2cfcf415c3f26d60ba1cb32e7ed50ee44255220600a3"
-    },
-    "nine-axis/step07_jaw-line/layers/0050-face__ears__ear_left__ear_fur.png": {
-      "bytes": 5677,
-      "sha256": "9407cb0308adce3dd28ff6179f18483006aa738f8e7c4e796236e0429fdee1d3"
-    },
-    "nine-axis/step07_jaw-line/layers/0051-face__ears__ear_right__ear_interior.png": {
-      "bytes": 5021,
-      "sha256": "a8ba7c942bab67488bc43544180378cd5b8157590226b26dca886e0f3f50a5bc"
-    },
-    "nine-axis/step07_jaw-line/layers/0052-face__ears__ear_left__ear_interior.png": {
-      "bytes": 5696,
-      "sha256": "727eb4a7da1fcc663fa0a0d4717ebe5529adb8ddf67e3ab610ec3bd816be1d16"
-    },
-    "nine-axis/step07_jaw-line/layers/chin-shadow.png": {
-      "bytes": 9503,
-      "sha256": "53458a488b1bbc77567049af8210f1418538e97410b24ba4cb4b3630bf7c9b5a"
-    },
-    "nine-axis/step07_jaw-line/layers/jaw-erase-mask.png": {
-      "bytes": 2758,
-      "sha256": "537ef04cfc3e8688c02e45382c52c050151b3f9c5defb59accaebbd4da03f9fd"
-    },
-    "nine-axis/step07_jaw-line/layers/jaw-line.png": {
-      "bytes": 3115,
-      "sha256": "8cdd9a8a1e3180963c89711762f336ee5b8917b3b63aa0ca7bc1d0ed292c5382"
-    },
-    "nine-axis/step07_jaw-line/layers/mirror-grid-transparent.png": {
-      "bytes": 70,
-      "sha256": "c2153f77e11087fcb078ae38527fa83bef29791e3700e30cc87fec4405a66d0f"
-    },
-    "nine-axis/step07_jaw-line/layers/neck-top-extension.png": {
-      "bytes": 456,
-      "sha256": "1d51c5734bf351553f51c3b13f3f0478d186d1c12941a446fc4959e4c3ac73ac"
-    },
-    "nine-axis/step07_jaw-line/notes.md": {
-      "bytes": 10599,
-      "sha256": "ac7e19b7fcc32ab4b005161300ac6ca7a2e8632f595fad1aae8fdd012aaefbb8"
-    },
-    "nine-axis/step07_jaw-line/review/continuity-check.json": {
-      "bytes": 114,
-      "sha256": "e9623d9e6c5bbfe2c199c8063531b3ba60d5f00b778078709a42021d9a655a35"
-    },
-    "nine-axis/step07_jaw-line/review/geometry-check.json": {
-      "bytes": 2112,
-      "sha256": "1a4647114e08092a523ad0d748aab2ac85e10dcb7a675f13218075b7687f0493"
-    },
-    "nine-axis/step07_jaw-line/review/review-index.json": {
-      "bytes": 25313,
-      "sha256": "d8f72d5efc294aedb4d46148c12215263d2cd2bea1ec5adc53e1c2d8ad6c8dd4"
-    },
-    "nine-axis/step08_hair/.completed": {
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    "nine-axis/step08_hair/deformers.json": {
-      "bytes": 10558413,
-      "sha256": "620a4099a70fcd5454b6f18ee1ed6db7bc43cd54cf53cc920db18d035665fe3a"
-    },
-    "nine-axis/step08_hair/hair-x.json": {
-      "bytes": 10558413,
-      "sha256": "620a4099a70fcd5454b6f18ee1ed6db7bc43cd54cf53cc920db18d035665fe3a"
-    },
-    "nine-axis/step08_hair/layers/0009-hair__bangs.png": {
-      "bytes": 59234,
-      "sha256": "724b2b4c1b1d6d407e4ef7e16fa58018752b45266bac0661dfbe76b56c4041d8"
-    },
-    "nine-axis/step08_hair/layers/0011-hair__side_hair__side_hair_right.png": {
-      "bytes": 39170,
-      "sha256": "e4ab0e70e1a5098976d8924a36499d45a1c1d6ba32e7b0385bf04c10f3e707de"
-    },
-    "nine-axis/step08_hair/layers/0012-hair__side_hair__side_hair_left.png": {
-      "bytes": 42024,
-      "sha256": "173d993d70785b1d7ef6a66fd38e5ce3761dedb8181fc1c0ce9c3ff60068220e"
-    },
-    "nine-axis/step08_hair/layers/0013-face__eyebrows__eyebrow_right.png": {
-      "bytes": 1102,
-      "sha256": "462857bf70f581851e76717d960e5857ea8d8f7c8b08546f697632be2369f862"
-    },
-    "nine-axis/step08_hair/layers/0014-face__eyebrows__eyebrow_left.png": {
-      "bytes": 1286,
-      "sha256": "020cc282de41f71348c65bd6e8da92ad89e25f72bef10676ddc4f25956f44a5a"
-    },
-    "nine-axis/step08_hair/layers/0015-face__mouth__upper_lip.png": {
-      "bytes": 1152,
-      "sha256": "3bc6ec9187d7fa4c4b2bd8526f89020fc3247248aa4ac501afb1cf29a6e6ea1f"
-    },
-    "nine-axis/step08_hair/layers/0016-face__mouth__lower_lip.png": {
-      "bytes": 1157,
-      "sha256": "d86db61f50c8e31d1ad1e92938b0892276286639a01bd8aac64244805b6ef3df"
-    },
-    "nine-axis/step08_hair/layers/0017-face__blush_right.png": {
-      "bytes": 1531,
-      "sha256": "d80ad16ec6ff1b3dbe7b677b6d5c0b867c9db8b5966d35728e165b427788189f"
-    },
-    "nine-axis/step08_hair/layers/0018-face__blush_left.png": {
-      "bytes": 1279,
-      "sha256": "68ea93c5eaedcbbe0fc2e9d43df3f0eb0024aa7bac5000e9e3b508cd62a65ab8"
-    },
-    "nine-axis/step08_hair/layers/0019-face__nose.png": {
-      "bytes": 673,
-      "sha256": "e311ffa63acab9edf5988de041e1628de153c717030419c8a236834d06675aad"
-    },
-    "nine-axis/step08_hair/layers/0020-face__eyes__eye_right__eyelid_crease.png": {
-      "bytes": 596,
-      "sha256": "801f52e1566174f8610fd8f30138387de77237a6eb18564b268d1af06861eeef"
-    },
-    "nine-axis/step08_hair/layers/0021-face__eyes__eye_left__eyelid_crease.png": {
-      "bytes": 609,
-      "sha256": "92c06177013b827a1d40ff388ac9aef29a8b1cc9eb43b9a4acad329afd73e449"
-    },
-    "nine-axis/step08_hair/layers/0022-face__eyes__eye_right__upper_eyelid.png": {
-      "bytes": 2711,
-      "sha256": "90cf86ef6b3627820073fa725594be0324edd87de51489b4b3d616771e2f25d3"
-    },
-    "nine-axis/step08_hair/layers/0023-face__eyes__eye_left__upper_eyelid.png": {
-      "bytes": 2674,
-      "sha256": "59f81b8f004168951e13291634b135dd1909557b8330d9bb33349e9a40ca6ab7"
-    },
-    "nine-axis/step08_hair/layers/0024-face__eyes__eye_right__highlight.png": {
-      "bytes": 544,
-      "sha256": "86941965ba422aec2ea6f2d5acab869e3e66c0e582af7f9c198e917845d0f1fd"
-    },
-    "nine-axis/step08_hair/layers/0026-face__eyes__eye_right__iris.png": {
-      "bytes": 4385,
-      "sha256": "69642303907b6e80ad7279f9d319ee652348b5966f0edfa8628374dca5acba67"
-    },
-    "nine-axis/step08_hair/layers/0027-face__eyes__eye_right__sclera.png": {
-      "bytes": 2291,
-      "sha256": "c2cd1b85bc61249cbeeeff8089294988af936f9c9f3b8b95e02e04c9c235860a"
-    },
-    "nine-axis/step08_hair/layers/0028-face__eyes__eye_left__highlight.png": {
-      "bytes": 534,
-      "sha256": "58d589ea4b3e3d32e20ac69908059f936f85c4c86dd6e958c7710997145923c7"
-    },
-    "nine-axis/step08_hair/layers/0030-face__eyes__eye_left__iris.png": {
-      "bytes": 4379,
-      "sha256": "d6a8346f3205b72eca2372598739e792f97adf2f032c954e00b77f97b3ee3f93"
-    },
-    "nine-axis/step08_hair/layers/0031-face__eyes__eye_left__sclera.png": {
-      "bytes": 2367,
-      "sha256": "734f0570cf48179b92d165066e5580a6cb9dca5475a40290a50db90760e9a775"
-    },
-    "nine-axis/step08_hair/layers/0032-face__mouth__upper_teeth.png": {
-      "bytes": 101,
-      "sha256": "a3b1b20f6095cf1adef72a0a0210c1784d5f4bb5928f3b9dbd8eeea32801dd20"
-    },
-    "nine-axis/step08_hair/layers/0033-face__mouth__lower_teeth.png": {
-      "bytes": 99,
-      "sha256": "7f354686d48d3e791609300422ceef8eca9d8624ee9572b644eab85698545af7"
-    },
-    "nine-axis/step08_hair/layers/0034-face__mouth__tongue.png": {
-      "bytes": 100,
-      "sha256": "41a6700a59be7da5f37d5b35be287631cf7938691965e67b9cfec2ca4f0ad5bd"
-    },
-    "nine-axis/step08_hair/layers/0035-face__mouth__mouth_interior.png": {
-      "bytes": 103,
-      "sha256": "5401a3271a97c65142497582eba6d9a251e6fd0cc3998d420e9f6104bae32578"
-    },
-    "nine-axis/step08_hair/layers/0039-face__face_base.png": {
-      "bytes": 28791,
-      "sha256": "4606b5583bb2e0ca30b7013f9cf581bdaa699c1048a0dec9f65bffc6b20eaf8f"
-    },
-    "nine-axis/step08_hair/layers/0041-hair__braid_right.png": {
-      "bytes": 35563,
-      "sha256": "1f7cc85a6532dc44ae932a2436ab07458830d56ba0dffc8697241d3957a0511b"
-    },
-    "nine-axis/step08_hair/layers/0046-neck.png": {
-      "bytes": 17207,
-      "sha256": "ac8cccc55e98906c12bb1bcf79a9154c8d2fccf05ea0b266da1566e8d59b4132"
-    },
-    "nine-axis/step08_hair/layers/0047-face__ears__ear_right__ear_shell.png": {
-      "bytes": 14909,
-      "sha256": "7ea19196812f05a6a47e2d909201db1822d0cad0caf8bc7afde880a65c1be17d"
-    },
-    "nine-axis/step08_hair/layers/0048-face__ears__ear_left__ear_shell.png": {
-      "bytes": 16595,
-      "sha256": "9855d22482e9d6d59b109cd7c0d00adfd413d82f41b384c3f270b4f3017a2c73"
-    },
-    "nine-axis/step08_hair/layers/0049-face__ears__ear_right__ear_fur.png": {
-      "bytes": 5274,
-      "sha256": "ed4853ead18365f9c58c2cfcf415c3f26d60ba1cb32e7ed50ee44255220600a3"
-    },
-    "nine-axis/step08_hair/layers/0050-face__ears__ear_left__ear_fur.png": {
-      "bytes": 5677,
-      "sha256": "9407cb0308adce3dd28ff6179f18483006aa738f8e7c4e796236e0429fdee1d3"
-    },
-    "nine-axis/step08_hair/layers/0051-face__ears__ear_right__ear_interior.png": {
-      "bytes": 5021,
-      "sha256": "a8ba7c942bab67488bc43544180378cd5b8157590226b26dca886e0f3f50a5bc"
-    },
-    "nine-axis/step08_hair/layers/0052-face__ears__ear_left__ear_interior.png": {
-      "bytes": 5696,
-      "sha256": "727eb4a7da1fcc663fa0a0d4717ebe5529adb8ddf67e3ab610ec3bd816be1d16"
-    },
-    "nine-axis/step08_hair/layers/0055-hair__back_hair.png": {
-      "bytes": 182060,
-      "sha256": "471600217ea053945ab008f0943695861fd94034dba6b51a6fe5d9a3efebc4b4"
-    },
-    "nine-axis/step08_hair/layers/chin-shadow.png": {
-      "bytes": 9503,
-      "sha256": "53458a488b1bbc77567049af8210f1418538e97410b24ba4cb4b3630bf7c9b5a"
-    },
-    "nine-axis/step08_hair/layers/jaw-erase-mask.png": {
-      "bytes": 2758,
-      "sha256": "537ef04cfc3e8688c02e45382c52c050151b3f9c5defb59accaebbd4da03f9fd"
-    },
-    "nine-axis/step08_hair/layers/jaw-line.png": {
-      "bytes": 3115,
-      "sha256": "8cdd9a8a1e3180963c89711762f336ee5b8917b3b63aa0ca7bc1d0ed292c5382"
-    },
-    "nine-axis/step08_hair/layers/mirror-grid-transparent.png": {
-      "bytes": 70,
-      "sha256": "c2153f77e11087fcb078ae38527fa83bef29791e3700e30cc87fec4405a66d0f"
-    },
-    "nine-axis/step08_hair/layers/neck-top-extension.png": {
-      "bytes": 456,
-      "sha256": "1d51c5734bf351553f51c3b13f3f0478d186d1c12941a446fc4959e4c3ac73ac"
-    },
-    "nine-axis/step08_hair/left-bangs-parent.mp4": {
-      "bytes": 281272,
-      "sha256": "a485d2dea7eb80c444145cda6f94f76525985fdf2944e2a86b7310167f9e66a4"
-    },
-    "nine-axis/step08_hair/left-bangs.mp4": {
-      "bytes": 287440,
-      "sha256": "a1855acac19e0bd5f3696b1055fc4ff467b9eac907315d27e69e99d78f549f9d"
-    },
-    "nine-axis/step08_hair/left-hair-connected.mp4": {
-      "bytes": 272546,
-      "sha256": "deb4942a2cb6c931af8412401955357f36bef68b65cbdeeac6fef6bd5be2a1c8"
-    },
-    "nine-axis/step08_hair/left-side-hair-before.mp4": {
-      "bytes": 233048,
-      "sha256": "8e31cfd43548e92eafa21c862d20c7fa9e8e4d4f93c0e289e02682d9b010e670"
-    },
-    "nine-axis/step08_hair/left-side-hair-parent.mp4": {
-      "bytes": 273601,
-      "sha256": "23e1b9c3e37ea781bf385795e7f17a33ad947917d170f6b5078635392ed66b51"
-    },
-    "nine-axis/step08_hair/references/head-only-input.json": {
-      "bytes": 166,
-      "sha256": "b5360bc222c9e013033f6b33a2ba1958345c49bd82d17c04dc64f5630bf726b7"
-    },
-    "nine-axis/step08_hair/references/left-prompt.md": {
-      "bytes": 893,
-      "sha256": "4c2d93e9fb7272e76262c697cc84759cff53677b5072cd4e56c61607cfdcf76d"
-    },
-    "nine-axis/step08_hair/references/left-reference.json": {
-      "bytes": 157,
-      "sha256": "2994dd5736aaa16365aeb3f3d82d9892bfdfd4725b23580f56824adc4b920ece"
-    },
-    "nine-axis/step08_hair/references/left-video-seedance-2.json": {
-      "bytes": 1170,
-      "sha256": "89c047e0ea707918a8fb8a39f5fbf2c98a9177f6af22b4b5c5fd5757179fc6a3"
-    },
-    "nine-axis/step08_hair/references/left-video-seedance-2.mp4": {
-      "bytes": 2367136,
-      "sha256": "c63bd8478ac692aad629b0dc19629c5328cd4faad07553f173acad5b6a19268e"
-    },
-    "nine-axis/step08_hair/references/left-video.json": {
-      "bytes": 1172,
-      "sha256": "82bf5d9247005d0f7fb1b18327df3540af0c4b473051db0bbc212f096ab0bc25"
-    },
-    "nine-axis/step08_hair/references/left-video.mp4": {
-      "bytes": 3117078,
-      "sha256": "9e2e061b5e28fc7271e1915511b75eff6644edf9f3ff66a1775bd576cfbd5aa7"
-    },
-    "nine-axis/step08_hair/result.json": {
-      "bytes": 218,
-      "sha256": "484d397eb2f229bfb1cb56c05abf4232933307f9f38789b2b542b19ef92e8b6f"
-    },
     "part-layering/groups.json": {
       "bytes": 75544,
       "sha256": "a6f019148c50d307f2a165739dac192ff748d27341b8b5abddae76ce4b8591ac"
     },
     "part-layering/occlusion.json": {
-      "bytes": 46163,
-      "sha256": "462c72ea881c9ca007db335343b06b6b6f488cf6f69ff782661bc6d963c67fcb"
+      "bytes": 29833,
+      "sha256": "b7459fd1da5079675e389fa73100137aa1ecab7c828951ffdde366c4b21e0ece"
     },
     "part-layering/parts/arms.svg": {
       "bytes": 3953,
@@ -6391,7 +4815,7 @@
     },
     "part-layering/step14_occlusion/preview.svg": {
       "bytes": 92934,
-      "sha256": "1c36e646235df5ba0db6a8fd683b5279e2c7f6d92a0429c6a6542d12a63a730e"
+      "sha256": "62b26ec2146cad0ba433770ad351a95528ba897a7c003ccd94cb3b6fcba04548"
     },
     "part-layering/step14_occlusion/review.md": {
       "bytes": 3703,
@@ -6402,772 +4826,644 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "raster-layering/step01/character-depth.kra": {
-      "bytes": 21186812,
-      "sha256": "0bbc778f0a5a1e0e17e434ec03e5906bb8bf7f13fa3b876234a3b5cd71cc733d"
+      "bytes": 25917390,
+      "sha256": "e75f01c7ce244f1b1f4f698cefdc36d8e151b0243f82d72e6d079de16d1b9dd8"
     },
     "raster-layering/step01/composite.png": {
-      "bytes": 1124932,
-      "sha256": "0a32ded59eee50e54fabf4882a8656c20b339ef0713002d8083a5b47f2165072"
-    },
-    "raster-layering/step01/repair-01-evidence/R1-R2-elbows-01/index.json": {
-      "bytes": 3159,
-      "sha256": "5b6f0d8d0bde1e51d35babf4f2c03ca015b9691f1ad8c9ce8ba1dc69c432872a"
-    },
-    "raster-layering/step01/repair-01-evidence/R1-R2-elbows-02/index.json": {
-      "bytes": 3159,
-      "sha256": "11b06dfc68b37e99155e1c9b1226abd0f2f2c3ef36514589927adbb7dacd83e1"
-    },
-    "raster-layering/step01/repair-01-evidence/R12-thigh-01/index.json": {
-      "bytes": 747,
-      "sha256": "c8ac869ca40f3d6f2c3f7eb084bdf0778ac9939dbbbebfa3b78b3f925f841b50"
-    },
-    "raster-layering/step01/repair-01-evidence/R13-R14-root-01/index.json": {
-      "bytes": 5389,
-      "sha256": "0f63b896fcaf30116d32abf76c45c85ed1c30e1d04e1c4e1462651b1cf03f5d5"
-    },
-    "raster-layering/step01/repair-01-evidence/R13-R14-root-02/index.json": {
-      "bytes": 3945,
-      "sha256": "f57546773e2942f33431956f924d17603ef29ab08eb78b1bb60368c83b3325a1"
-    },
-    "raster-layering/step01/repair-01-evidence/R15-R16-eyes-01/index.json": {
-      "bytes": 8281,
-      "sha256": "ba408f1c1785b325eb597bf81c50b132d62305298bc801a3a71c22e5a98d5ebb"
-    },
-    "raster-layering/step01/repair-01-evidence/R15-R16-eyes-02/index.json": {
-      "bytes": 8281,
-      "sha256": "c1790b73570ef579ee67e30bea88cb80bd9be55a16af19fd35a1cbb99ba4b902"
-    },
-    "raster-layering/step01/repair-01-evidence/R17-ring-01/index.json": {
-      "bytes": 1693,
-      "sha256": "58d4dc6db1440f60f4072b630cadf5cc4f29ad6bda0ddeaf71ceb26c6b9bb861"
-    },
-    "raster-layering/step01/repair-01-evidence/R19-R20-blush-01/index.json": {
-      "bytes": 1497,
-      "sha256": "c5b78ba8bd75dc8e8b945d201b18bf92dddb58d53cc0ccc03e10213dbf6bfe8b"
-    },
-    "raster-layering/step01/repair-01-evidence/R3-R5-chest-01/index.json": {
-      "bytes": 2087,
-      "sha256": "fd6188cd35f494bb2d75a1686a4480329cb0598c623b4882ff7bd2e1f58f42c0"
-    },
-    "raster-layering/step01/repair-01-evidence/R3-R5-chest-02/index.json": {
-      "bytes": 2087,
-      "sha256": "10c66803407bf84f0b2340847e1cba3dfaccc25c14a4e3075674b0235e1bac8d"
-    },
-    "raster-layering/step01/repair-01-evidence/R3-R5-chest-03/index.json": {
-      "bytes": 2087,
-      "sha256": "1e037f517b2de9f7f87e84a9891be59620838bded91bbfb9dc839646c2f9de0b"
-    },
-    "raster-layering/step01/repair-01-evidence/R3-R5-chest-04/index.json": {
-      "bytes": 2087,
-      "sha256": "bcaba84952677d92e2cb5a15c0fbfa5a0c53ddd84f9d78573c7473776b1ee2ba"
-    },
-    "raster-layering/step01/repair-01-evidence/R3-R5-chest-05/index.json": {
-      "bytes": 2087,
-      "sha256": "6c2a72186d901894a8c849d6a9313a08e57a659372cf65eb70ef956835c734ec"
-    },
-    "raster-layering/step01/repair-01-evidence/R6-R7-waist-01/index.json": {
-      "bytes": 2582,
-      "sha256": "522f24107c673dfb53e39882e0152be424937fcded4b6191ef1cf25db9cdd978"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-01/index.json": {
-      "bytes": 1653,
-      "sha256": "61ba8e95df350917c25b794dcafe1e3b1f76db2cd0f2a5d1a64e32ad60cb3796"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-02/index.json": {
-      "bytes": 1653,
-      "sha256": "da98f0a0d9b0b461491cc5ccee0aefab9149507bb81c5c80a87149d8e17c2909"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-03/index.json": {
-      "bytes": 1653,
-      "sha256": "0e616465a1150fb94d26cdb9e1d935b978f7983507349f3179399ce7df62d468"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-04/index.json": {
-      "bytes": 1653,
-      "sha256": "801d03f099ca1aab4328dddecf28baa48d6dbb81b418b67b88473df7a5d75caa"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-final-01/index.json": {
-      "bytes": 1701,
-      "sha256": "4d7497e8136e3386841257ee9fbf3266f3556a20c2f09129e7c4bf1fc43c8fdd"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-final-02/index.json": {
-      "bytes": 1701,
-      "sha256": "0df73fc85fc7c6223618ed693e6dd2256167817f6b3589134e70aa894e7b86f3"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-final-03/index.json": {
-      "bytes": 1701,
-      "sha256": "e1cd0d0a4c59549e812a09e089399d466c1825f8d7912b7b33f0fa6d49f85a78"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-final-04/index.json": {
-      "bytes": 1701,
-      "sha256": "eedafe47d73fea44cf54f2e24ec48bac80f5250993505b20bd8a74947ab5028d"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-final-05/index.json": {
-      "bytes": 1701,
-      "sha256": "d7e3f27d726dacc62a68e65727e0817ffe44545b1394f3acb75d8e060ff52376"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-final-06/index.json": {
-      "bytes": 1701,
-      "sha256": "fb21378b8357a39548fcde98e2a91654288194629d9d8a78ecae489b29479d92"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-final-07/index.json": {
-      "bytes": 1701,
-      "sha256": "72286d3803e033479395db7212e1e063cd78a4e5512106cbb2a0482c7355a442"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-ankle-final-08/index.json": {
-      "bytes": 1701,
-      "sha256": "4231c4be968dc760fb99e8405e8f92248ffec35b279b2ff3cee9dfadd180dd03"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-blush-01/index.json": {
-      "bytes": 1513,
-      "sha256": "c021085782393792d38aa5de0cf518cc1052bdbd7a56ddf8c49284fdd641855a"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-blush-02/index.json": {
-      "bytes": 1513,
-      "sha256": "415681baf2548eb94199e9e8ec0dc00158131b5e4454d67afef0ff5418910457"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-blush-03/index.json": {
-      "bytes": 1513,
-      "sha256": "09425abca0052acc3e05520b800f42bbfc4c304c99ab8321f800180e17d3f341"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-blush-04/index.json": {
-      "bytes": 1513,
-      "sha256": "fa6e43fd744f753c534de40ad01306f08778b06b59632aff178784013dcda9db"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-chest-01/index.json": {
-      "bytes": 2135,
-      "sha256": "def73080056dbe3979268bbb544c89303d3cde58c61e0641bc1333044b36ba0a"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-chest-02/index.json": {
-      "bytes": 2135,
-      "sha256": "69e0fa86c2b0442d217d03027ee0bd407294c069a9ccdd49c480e24a029bca97"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-chest-03/index.json": {
-      "bytes": 2135,
-      "sha256": "0c7983fa4759a160878c200326d3a4577c3aa36e77fc81ab96500f314ad2504d"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-chest-04/index.json": {
-      "bytes": 2135,
-      "sha256": "db34d70bc0b6cd416b9b3f568a244d375e6596623f675524097bac3f24c80c0c"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-chest-05/index.json": {
-      "bytes": 2135,
-      "sha256": "998fb01802ef5a5915326fc2aa8874f9fb30bd3307927c2501d0982fbbb03f97"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-chest-06/index.json": {
-      "bytes": 2135,
-      "sha256": "53388a20ad77129178ce8a89f03c25f6a7524cf08704bda865f2ad2be43a378c"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-01/index.json": {
-      "bytes": 3387,
-      "sha256": "6362e5d22e1c5a139b01fa7c4b259b6c9aa77b1cf53457ad59097f6fa6636c39"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-02/index.json": {
-      "bytes": 3387,
-      "sha256": "c43e28bfad008d7c2b25e94fa689e91469ebfe7199ef281ab0f947edeea1abcd"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-03/index.json": {
-      "bytes": 3387,
-      "sha256": "b3e75512a892eac960fd76b27126cc6c1fb3d2f6cd913106393ffb2d32bd1df2"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-04/index.json": {
-      "bytes": 3387,
-      "sha256": "dc464ba66a52d89a76e1b7fed5367317644ed366580ce30c31b5f6296b1881e3"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-05/index.json": {
-      "bytes": 3387,
-      "sha256": "4d5cc028cd4b8ebe277e6f4fa3a62eef250d0e75d52a9671df4c95aa9e665eac"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-06/index.json": {
-      "bytes": 3387,
-      "sha256": "fa24b51bda87ade297505bddae33e2a9b503f08c82f62c395fef327f6da0883b"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-07/index.json": {
-      "bytes": 3387,
-      "sha256": "6dc4b18f98d70c368072cfed6569dabff5511293a306ecc8dabcb65aa5c72d19"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-08/index.json": {
-      "bytes": 3387,
-      "sha256": "9f313e0fe242fe17b2c1f0a563f4f4825e18606f2a2077a4f4d07404baab29e8"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-09/index.json": {
-      "bytes": 1671,
-      "sha256": "11b645234a12fc89b56b8ae11832c5f650a4c825b3877f13f7c021a1826f3319"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-10/index.json": {
-      "bytes": 813,
-      "sha256": "20a5cdaca371ec1bb67f57357e0092866a67ce2f9f81caaca97a3310ce23b86a"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-left-01/index.json": {
-      "bytes": 827,
-      "sha256": "ed3705e7a2ef6560e4fe3dd66eeb519b86c2b3fb0f70b064d65360130f871b3f"
-    },
-    "raster-layering/step01/repair-01-evidence/continued-hand-left-02/index.json": {
-      "bytes": 827,
-      "sha256": "4e669f8f09a4ec9f083ebd921705b5b5831aa71c92a1ec1d625f5a60826c85e4"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/after-reopen-snapshot.json": {
-      "bytes": 40236,
-      "sha256": "ebf966e22ffcb96be5a12b6b3eb97149df382c555ca8b6243b39c7920b9f166d"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/atlas-refresh.json": {
-      "bytes": 635,
-      "sha256": "8681dfbf88d1fe1457b6e2f8e0f84b7fafd5cb68f51988c1a0714e7de871e2eb"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/before-reopen-snapshot.json": {
-      "bytes": 40236,
-      "sha256": "ebf966e22ffcb96be5a12b6b3eb97149df382c555ca8b6243b39c7920b9f166d"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/continued-part-preservation.json": {
-      "bytes": 297,
-      "sha256": "264e11a5ae90fc6e0553a95c37b30b0806f31031ebb2a9d7b2fc9d747aa35e06"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/cream-preservation-check.json": {
-      "bytes": 226,
-      "sha256": "a36de7d29660e82d9c5feee8a1401169eeca297b4bf5a557dfd4ee60ac0bd51d"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/final-delivery-check.json": {
-      "bytes": 2136,
-      "sha256": "8db80b37458e7b58c37fed63f8b4068bacf8dabc9d2291a9ece188648580a7f0"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/index.json": {
-      "bytes": 65223,
-      "sha256": "0b3b1acdbc027fd35526ed2459dc04aacd9ec8e1e515cdb350c97befc2458230"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/native-control-check.json": {
-      "bytes": 42963,
-      "sha256": "64483ef55318d619103d0666461810a2f340991936f1c7e0a7f4bd007f790d8d"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/reopen-check.json": {
-      "bytes": 539,
-      "sha256": "70294a3243419cee6ea53229a2ae36267f409e8c8f5eca274df231a6b296223b"
-    },
-    "raster-layering/step01/repair-01-evidence/final-audit/report-validation.json": {
-      "bytes": 522,
-      "sha256": "2a2b91d04ef99ec325f57513ae8b9de8a088e203c2e89b558e57a2a6434a6c0d"
-    },
-    "raster-layering/step01/repair-01-evidence/final-body-02/index.json": {
-      "bytes": 19338,
-      "sha256": "c5d72f23739aeee1238c8ff573f83986f997c71e622be5fa191b6988ada40c64"
-    },
-    "raster-layering/step01/repair-01-evidence/final-body/index.json": {
-      "bytes": 19050,
-      "sha256": "6a02676d5de03ff447d3c19f0e7c67fd2362d3182248c0e7955d1527f6e98781"
-    },
-    "raster-layering/step01/repair-01-evidence/final-head-02/index.json": {
-      "bytes": 17477,
-      "sha256": "2578c435e5853a57c30409aada274a3ec8b25cf7a91420d10a8670876d1af5fc"
-    },
-    "raster-layering/step01/repair-01-evidence/final-head/index.json": {
-      "bytes": 17225,
-      "sha256": "b6a6c41881f6d5d8b299b7a47e0a918f26fbd616692eef17a603698d18b0807c"
-    },
-    "raster-layering/step01/repair-01-evidence/finish-ankle/index.json": {
-      "bytes": 1605,
-      "sha256": "1383d19d571417a33d3e3e140b8f3d55e18a48d2bf339d33dc0b8978263ed35a"
-    },
-    "raster-layering/step01/repair-01-evidence/finish-ear-ring/index.json": {
-      "bytes": 2539,
-      "sha256": "c1cd8e08db419cd1fbe716464b78e771bad08a1234546b811dae3c698dbacd6d"
-    },
-    "raster-layering/step01/repair-01-evidence/latest-contact/index.json": {
-      "bytes": 10067,
-      "sha256": "da046570a7a8a2a6f8f594ec556adf5503dfab1ca6e8f78876daf6c8b7bc0019"
-    },
-    "raster-layering/step01/repair-01-evidence/remaining-initial/index.json": {
-      "bytes": 9875,
-      "sha256": "e594c805810999e683629bb101490b0ce79dd3082e7725e42815032935ef2125"
+      "bytes": 1116167,
+      "sha256": "35a63612423977ffb305207f8ba9064ba7cd7ae847c816525862b6bb91e4ff7d"
+    },
+    "raster-layering/step01/final-artifact-check.json": {
+      "bytes": 500,
+      "sha256": "7c66d905d200559bce54da1c0ddb41fafd4e47cae828f3f53effa4fc881a9430"
+    },
+    "raster-layering/step01/final-eye-continuous-bands.json": {
+      "bytes": 965,
+      "sha256": "1b006659e8acc0a5125581370ce7f1d4d56d9e585a11ace321e6df2706fc081c"
+    },
+    "raster-layering/step01/final-local-touchups.json": {
+      "bytes": 1786,
+      "sha256": "658ce30ff58ecdbe1245bf169ef241156f043df75b9bb3d43c0c3e9497272a01"
+    },
+    "raster-layering/step01/generation-source-map.json": {
+      "bytes": 14696,
+      "sha256": "82428ff5f79c1892ad2cc43ae8b9d73ecd87c78e87fd5c837f41ed26d4a70c23"
+    },
+    "raster-layering/step01/index-inner-pigment-finish.json": {
+      "bytes": 478,
+      "sha256": "94e510d6bd7553938cc51ed9f4222d5c92043841ca29ce672e5250aea604cde8"
+    },
+    "raster-layering/step01/index-native-stroke-finish.json": {
+      "bytes": 2317,
+      "sha256": "bcb023a3252b7bbf416914ead7cbd09d09800053ec384a156bbf138c03eeaf08"
+    },
+    "raster-layering/step01/index-owned-contour-finish.json": {
+      "bytes": 2756,
+      "sha256": "665161f9beb39ae7cfd1a708dcff07de06b599432d5c0550d744aa3ba6e98de7"
+    },
+    "raster-layering/step01/layer-map.json": {
+      "bytes": 174235,
+      "sha256": "6324fd6625f068226923cdc2be85edcb3f315106fa54208116ad24be45e96b79"
+    },
+    "raster-layering/step01/native-mask-check.json": {
+      "bytes": 6156,
+      "sha256": "e6b3fa2831b176572c34b1ded02246419a1f7bf919d71f7a0eac7faf68150ebe"
     },
     "raster-layering/step01/repair-01.md": {
-      "bytes": 26841,
-      "sha256": "0b9477e91134a6c4eead9ffab1cfeaf3c5af6352fdfac1cdafa687236105372d"
-    },
-    "raster-layering/step01/repair-02-evidence/R01-last-corner-branch/index.json": {
-      "bytes": 875,
-      "sha256": "6da5a5f4c5346e925663a15cbbad733651709343088f3d5327de398b6d7e842c"
-    },
-    "raster-layering/step01/repair-02-evidence/R02-R12-R13-R14-paint-02/index.json": {
-      "bytes": 3251,
-      "sha256": "57e487ae6a5c8a6435b3b5383b95ba4929797d52a559a9bc81ff9cfc6011e19e"
-    },
-    "raster-layering/step01/repair-02-evidence/R02-R13-R14-paint-01/index.json": {
-      "bytes": 2357,
-      "sha256": "400e374e9961f64b17cc0b9ca8811fd852c32e7239969e0e3791f00f05681f37"
-    },
-    "raster-layering/step01/repair-02-evidence/R04-last-edge-continuity/index.json": {
-      "bytes": 837,
-      "sha256": "ff04054a936da0270944c201ee830f45d79b7fbd7d8e476638975162079982c2"
-    },
-    "raster-layering/step01/repair-02-evidence/R04-last-edge-reblend/index.json": {
-      "bytes": 825,
-      "sha256": "89d81bb936a2b6d8929b98b890981051c9c51e888a185b4012f08ebc8d2739ba"
-    },
-    "raster-layering/step01/repair-02-evidence/R04-last-edge-tone/index.json": {
-      "bytes": 813,
-      "sha256": "58d5f3e4a1c892d0092dffb8b0f71f19fdbacc820b6c18fb9ae607c1f3637f61"
-    },
-    "raster-layering/step01/repair-02-evidence/R06-final-own-plane/index.json": {
-      "bytes": 1675,
-      "sha256": "529f4b9bfb460016add7052c3ad4529094241c987f8ee3e70276b5f51ba5ad90"
-    },
-    "raster-layering/step01/repair-02-evidence/R06-root-continuity/index.json": {
-      "bytes": 863,
-      "sha256": "753726655dc080d2f095362434e1ba591e27aa56859dd46ee82723a611c3cbb2"
-    },
-    "raster-layering/step01/repair-02-evidence/R09-generated-root-01/index.json": {
-      "bytes": 841,
-      "sha256": "e6c9e53c27358aa4d473b8079d4a8991496f1742063f4f68178a32413a36306f"
-    },
-    "raster-layering/step01/repair-02-evidence/R10-R11-structure-01/index.json": {
-      "bytes": 4025,
-      "sha256": "300b0597eec40c4e72607cc285a6554509e6c3d5755ff6c82c849295648b67fc"
-    },
-    "raster-layering/step01/repair-02-evidence/R12-generated-return-01/index.json": {
-      "bytes": 845,
-      "sha256": "fdef0e0ed8d1aca9a92a8f8a79e66b1015eb988ef6e64251c889f3035c7cbb25"
-    },
-    "raster-layering/step01/repair-02-evidence/R12-generated-return-02/index.json": {
-      "bytes": 845,
-      "sha256": "8739d2a2e4f16b4fd1abf08e527b2eb783b2505fc244fb638e2ff480696b88e5"
-    },
-    "raster-layering/step01/repair-02-evidence/contour-cleanup-01/index.json": {
-      "bytes": 6740,
-      "sha256": "ecc2d2b84a11ef3e6d4c388540d227ac064f427d27a1cf55101026b2ce9c23f8"
-    },
-    "raster-layering/step01/repair-02-evidence/contour-cleanup-02/index.json": {
-      "bytes": 4095,
-      "sha256": "6deaed07164ced757c6dd192f68ddf4f61dba6b286c7aff952861a47061c7f09"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/after-reopen-snapshot.json": {
-      "bytes": 40582,
-      "sha256": "c26581c8c8c9e7ced6f8b2b288a39736f0f3a2d29686990897e5fc22a0420e13"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/atlas-refresh.json": {
-      "bytes": 567,
-      "sha256": "51cfd5bb409c57763e003ce95b320172d6e917962868f79092ea94ae74c07be0"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/audit-index.md": {
-      "bytes": 34573,
-      "sha256": "2e87bf5dced754eab4b0d24ffa850fedd08518f313d57958984a0bc6a6fabfbc"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/before-reopen-snapshot.json": {
-      "bytes": 40582,
-      "sha256": "c26581c8c8c9e7ced6f8b2b288a39736f0f3a2d29686990897e5fc22a0420e13"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/final-region-specs.json": {
-      "bytes": 3683,
-      "sha256": "28ecd6fa0cb19725af43ffd0cfbe6b3a8b3fe0fef11edf92c5f9fc080f88d8e4"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/index.json": {
-      "bytes": 65223,
-      "sha256": "434fb13eaa18fa2f755c78a618fe2c9879d66f2fc125b777270ad1da3220e30b"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/native-control-check.json": {
-      "bytes": 44286,
-      "sha256": "ecf0e3c2b38dea0690db4454c4da50930325e7483191d16e17941d3e0f8c48b8"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/region-index.json": {
-      "bytes": 5247,
-      "sha256": "0f9f49d9a5972ff2a99f6e34f7d458886d69e9f8b91deb87755d2f6517d396e5"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/reopen-check.json": {
-      "bytes": 539,
-      "sha256": "b703a28486d24d5c04fed191ec4f6b129479cbff264bee8642c53a8f83443081"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/report-delivery-check.json": {
-      "bytes": 916,
-      "sha256": "8d22af3aa9d7dc8f2a6ed2a169b0a982a14b1ae41ab532e2e6cfc4e67d0d3a53"
-    },
-    "raster-layering/step01/repair-02-evidence/final-audit/visual-check.json": {
-      "bytes": 7362,
-      "sha256": "6c7062d907223706a283862ca63081740d3c58526c8eda24be7acbef89efeec4"
-    },
-    "raster-layering/step01/repair-02-evidence/final-fine-strokes/index.json": {
-      "bytes": 2335,
-      "sha256": "a877637e61ef5af58a65f98f7b9ab63e372b5160a50a382d93f24186281b8e72"
-    },
-    "raster-layering/step01/repair-02-evidence/final-residue-clean/index.json": {
-      "bytes": 2660,
-      "sha256": "34463229d26c4a48897e41a3f03350dda01f43db08e9915bb844393b94e9aea2"
-    },
-    "raster-layering/step01/repair-02-evidence/initial-details/index.json": {
-      "bytes": 11305,
-      "sha256": "cc91743b284ff00e01473b18d504b3499d5cad70ddeee181076f0490dc045070"
-    },
-    "raster-layering/step01/repair-02-evidence/initial/index.json": {
-      "bytes": 3817,
-      "sha256": "70af6d4ecf73fcdb6f6b449cb68a31aeb3ca2ab847d191c9140704744b08113e"
+      "bytes": 28930,
+      "sha256": "32f1f2464b13fe1f1662d1d7592deae59ed3684ad50911adcfd4dd198821e4c7"
     },
     "raster-layering/step01/repair-02.md": {
-      "bytes": 36147,
-      "sha256": "dedbad108327919a8b6ede7526d9084cd6faa9ae8c47fc8f335611d3a3911eea"
+      "bytes": 37250,
+      "sha256": "1ef0fb629bc7275a4778e67043d21c3b908e95cd149f5e49f7f9102d2e39eef2"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/additional-results.json": {
+      "bytes": 2704,
+      "sha256": "615b01e50fdde6cd7e406d54cc4980838b7e4a041f0832c0af3742925b531c8c"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/after-reopen-signature.json": {
+      "bytes": 31816,
+      "sha256": "110126754c07a12369945624b89a8cc464c80bb095c7b4d73115e4c954f06440"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/artifact-check.json": {
+      "bytes": 467,
+      "sha256": "6ce95472e53aa9b9d5767233a74b8468e326ade65a8c4dd92648ea29879a8bb7"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/before-reopen-check.json": {
+      "bytes": 675,
+      "sha256": "2e802693c32296db95ae13bdd91fbe13e39be0a383cb93215c83d34fbc2e98e7"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/before-reopen-signature.json": {
+      "bytes": 31816,
+      "sha256": "110126754c07a12369945624b89a8cc464c80bb095c7b4d73115e4c954f06440"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/delivery-check.json": {
+      "bytes": 431,
+      "sha256": "02501c86b16fe94809e08fea726178c5dd4e9dfb1b4747a3a05ab536f84baff7"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layer-map.json": {
+      "bytes": 102486,
+      "sha256": "ad998626bcb4c8b5bdfb9f02556a1a5351f927c62879a43216bc8765af05f044"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layers/index.json": {
+      "bytes": 14264,
+      "sha256": "51f5149ce4298c43aa4a03ef783d6fd793a2dc8bc2eab1a0391c6f64170d8aba"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layers/records-0.json": {
+      "bytes": 3270,
+      "sha256": "f331a58b76455c826c89ebef9dbfac50f4c52fdef1d2ea46bc255aba8f1df98f"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layers/records-20.json": {
+      "bytes": 3344,
+      "sha256": "00d00af730c45e7719e7f8741ac9d7791b57d7816f73d824d92c862f7d00c2fc"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layers/records-28.json": {
+      "bytes": 304,
+      "sha256": "3ed524454e2f5102bb3d6463e06a36a970a2e68ee3cf7d8b73d9ce75fd8807ab"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layers/records-40.json": {
+      "bytes": 3417,
+      "sha256": "a7832c4fc658881b7f3da4637b03cc76b2dbdfad48bfed403b14418181e3e46b"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layers/records-60.json": {
+      "bytes": 4242,
+      "sha256": "96e45d986abf69fab0591c915aa301a5340ed2be1ae3ecf2b869c0933979b6a2"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layers/records-65.json": {
+      "bytes": 1642,
+      "sha256": "32883600d8e5bec73cdb4046e41a54cd6a7019fe7a736d13e6f31fc9455604b0"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layers/records-80.json": {
+      "bytes": 882,
+      "sha256": "769e7206c322af8b10522633e7493136d38fca7dab540f6ad6cd6321d229505e"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-layers/records-final.json": {
+      "bytes": 1417,
+      "sha256": "9cc287fbe7f5ba63a33a9814d5562b900ec052c430f76518ee2a7558a5cdb9c7"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-masks/index.json": {
+      "bytes": 2613,
+      "sha256": "18ebfd0223ac1dff6c46cfbefc5b58e79165c3c852eb44587d1c6e7bd3ff9b1f"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-regions-0.json": {
+      "bytes": 4125,
+      "sha256": "c4cadbb8bb7e196fa1613379de3906e91e3b691f018153c7bf5f586d9aee71c4"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-regions-10.json": {
+      "bytes": 315,
+      "sha256": "1ee434563d8c8e625bd9750d2d9c09e8d98d772dad011235cd22bd730dac86e3"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-regions-11.json": {
+      "bytes": 1723,
+      "sha256": "fb1199b96d714c15e137afadae9c62740eb9e730aa8fb78eab3b40b07088646b"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-regions-12.json": {
+      "bytes": 4025,
+      "sha256": "a10e021236c82672e224259e2d118af190cafac5b5c612d0ae81793390263d8d"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-unions/display-index.json": {
+      "bytes": 2985,
+      "sha256": "51a6962978d8b169f44ff64b96ca04012f42bf50785d0639733102323bb6e9cd"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/final-unions/index.json": {
+      "bytes": 2985,
+      "sha256": "51a6962978d8b169f44ff64b96ca04012f42bf50785d0639733102323bb6e9cd"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/item-results.json": {
+      "bytes": 39807,
+      "sha256": "09cd1ac600b4a3116025b37fcab385c3840379a3cb8b611c5dc55ffb5d57ad8e"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/native-final-process/cloth-center-native-finish.json": {
+      "bytes": 747,
+      "sha256": "9961f45826ea16d717746547a7758493a719a55f6ccc97dc95e8f8397a00a217"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/native-final-process/knee-owned-contour-source.json": {
+      "bytes": 30324,
+      "sha256": "bddb9744c53e0f9547ac10ec105e02aefb595e93542b047374b5172db6d5e1c6"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/native-final-process/thigh-material-native-finish.json": {
+      "bytes": 508,
+      "sha256": "c4c9a67e7f8648e8ecc24eac5f537db5bbf6b29e128c9c8ce63da53b6923a092"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/post-evidence-check.json": {
+      "bytes": 109,
+      "sha256": "6d0e5cbcc0617876965f3d4ca679b0796a095204311e7bf0e6690d6364f5acb5"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/reopen-before-wrist/after-reopen-signature.json": {
+      "bytes": 31816,
+      "sha256": "e702110b1f1bf29d933a9af3710de280b5850a5ba20990c5c499481171eabe15"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/reopen-before-wrist/artifact-check.json": {
+      "bytes": 435,
+      "sha256": "5eb5355ca2bc18bd2f6c522bf910c5ce313a0efcadc845be8b7963c7eac08c62"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/reopen-before-wrist/before-reopen-check.json": {
+      "bytes": 675,
+      "sha256": "4e85dc42cb649988efcc5778c7c4a70d61e9297543bf47aff2c309945c0ac67d"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/reopen-before-wrist/before-reopen-signature.json": {
+      "bytes": 31816,
+      "sha256": "e702110b1f1bf29d933a9af3710de280b5850a5ba20990c5c499481171eabe15"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/reopen-before-wrist/reopen-check.json": {
+      "bytes": 1938,
+      "sha256": "507d46ae972386cf607ea21d5e91fd9190248b8f19bf87cb41c67cb2b85b8e78"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/reopen-check.json": {
+      "bytes": 1938,
+      "sha256": "3d31368fb5b0340f0c1ce1c99f0690e88406aed15226b18acc5e75ca34741a97"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/tool-recovery.json": {
+      "bytes": 1282,
+      "sha256": "32145dbc8a1521896255627b26bdc1ab067365d9c18f0a5fbb7d457f69d3d598"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/torso-hidden-cloth-process/composition.json": {
+      "bytes": 514,
+      "sha256": "fdaf11c154135b8ebdc8eed2ef379f919b3d07c55fc56d50374405499c4995d1"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/torso-hidden-cloth-process/prompt-and-source.json": {
+      "bytes": 3216,
+      "sha256": "bb64c592555a894f18f4fca0bd238a2e7c6c5b28f4af80a204018a84d48daa67"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/torso-hidden-cloth-process/registration-details.json": {
+      "bytes": 29538,
+      "sha256": "85d05c326a6fbe65dc8d4e5b739dbf67d66f82a3631b6fe2c6ea32adde78d633"
+    },
+    "raster-layering/step01/repair-evidence/repair-01/current/torso-hidden-cloth-process/torso-hidden-cloth-registration.json": {
+      "bytes": 499,
+      "sha256": "d6c6a6bc96685465246d92a809153c8e754222b2bc07864709ed217468d5332f"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/effective-upstream/groups.json": {
+      "bytes": 75544,
+      "sha256": "a6f019148c50d307f2a165739dac192ff748d27341b8b5abddae76ce4b8591ac"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/effective-upstream/occlusion.json": {
+      "bytes": 29833,
+      "sha256": "b7459fd1da5079675e389fa73100137aa1ecab7c828951ffdde366c4b21e0ece"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/N01-localization-check.json": {
+      "bytes": 421,
+      "sha256": "bc1212f9b81a088609d3eadbf3e478b182e610d7db515c760e0b0b89d7fd3f23"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/artifact-verification.json": {
+      "bytes": 500,
+      "sha256": "7c66d905d200559bce54da1c0ddb41fafd4e47cae828f3f53effa4fc881a9430"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/delivery-validation.json": {
+      "bytes": 439,
+      "sha256": "170a2438f33ddc107b06cb108a297b86baaf5c14cf0ba8b4dd2145476cd0ee62"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/layer-map.json": {
+      "bytes": 174235,
+      "sha256": "6324fd6625f068226923cdc2be85edcb3f315106fa54208116ad24be45e96b79"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/masks/index.json": {
+      "bytes": 2973,
+      "sha256": "47dae70b4022fccb86366024e3e887275fceb682ddacd402ba2e780e5bb3bc29"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/pre-save-signature.json": {
+      "bytes": 57557,
+      "sha256": "3829d3d493d591b360913291edb749a61b8b6bfefe4bf9d96a6d248fd46dc60a"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/proof-plan.json": {
+      "bytes": 3823,
+      "sha256": "77d9d5fa5dc86e8651581333e3384e9386ef5889b06279c37630169619b237dd"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/reopen-signature.json": {
+      "bytes": 57557,
+      "sha256": "3829d3d493d591b360913291edb749a61b8b6bfefe4bf9d96a6d248fd46dc60a"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/reopen-verification.json": {
+      "bytes": 903,
+      "sha256": "5997d272644e12dffbba7b63e494d03b05efbf9b4afeaf2e1320750ef060789f"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/save-result.json": {
+      "bytes": 345,
+      "sha256": "cc05d01df08027b9e2ead1581ba44e989998dcf92edb10aa83201785c7fd7d3f"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/final/union-plan.json": {
+      "bytes": 1371,
+      "sha256": "771907a2649b1179d4cd1ea631c23aa4c99e97ce0cf58993e8f5e12dc33a6d57"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/generation-process/archive-index.json": {
+      "bytes": 7574,
+      "sha256": "37fb85ad718f90ee69b18dff5a71fc1e71fa008e53229d925236045f7601f30f"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/generation-process/meta.json": {
+      "bytes": 989,
+      "sha256": "bff6645c7dda43e42144dd03751362abff1469b66e4ccba631d0d600bf4f1e6d"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/generation-process/sources.json": {
+      "bytes": 750,
+      "sha256": "de2e03575f6c40ce7abea66bf43a96eb2a2bef7070d740cbacd275143186e7a9"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/item-results.json": {
+      "bytes": 38432,
+      "sha256": "eb67899175e5a7f75706d4b395b2908d54b4293e80fcd78b84d16c74958e2724"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/native-process/N01-source-and-registration.json": {
+      "bytes": 1046,
+      "sha256": "b2577ab058ef8fda2b0990c8715ce9fd8febebe1caf0eb308da7edeaa0cc0aa6"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/native-process/README.md": {
+      "bytes": 205,
+      "sha256": "de05ccd58e467e0e51ce9570a2b94e3750f84b6acb242c3be562a14746dd32be"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/native-process/specification.md": {
+      "bytes": 599,
+      "sha256": "f59a2ff7b3727ca159ce96036dc9d1aedbf76d39daf48326c91e037d75e3809d"
+    },
+    "raster-layering/step01/repair-evidence/repair-02/current/tool-recovery.json": {
+      "bytes": 7114,
+      "sha256": "557c2759ce17502be79ca7df193c44668184207dcdfef37d3ef200682259bb44"
     },
     "raster-layering/step01/report.md": {
-      "bytes": 67224,
-      "sha256": "59dfff4f2bc6a42b00d2f0899ac039fecbc3a1a153528c14ca881b03b0d5d98c"
+      "bytes": 78571,
+      "sha256": "dd48d273b0763ab7dbddb3dc870391fedf2ee769a84e3a48809ae8f270f4e253"
     },
-    "raster-layering/step01/review-01-evidence/actual-kra-inventory.json": {
-      "bytes": 29101,
-      "sha256": "070355805410f195b708982e3cd1fa37820e207137c265f98d9355589796f709"
-    },
-    "raster-layering/step01/review-01-evidence/audit-index.json": {
-      "bytes": 86705,
-      "sha256": "2abc9322c224210a1b7dabaeb8e3a5ef748787b6a52b2379618981cde0dac6d3"
-    },
-    "raster-layering/step01/review-01-evidence/audit-index.md": {
-      "bytes": 25204,
-      "sha256": "4474fc131c319f2ac30f4cd95346610cf930e78e32f6a8226cebbc880f7f833d"
-    },
-    "raster-layering/step01/review-01-evidence/batch-0.json": {
-      "bytes": 1681,
-      "sha256": "60d4b77ec6370d3aa95ecd000ea01c9f3128181f2508789f3378155a5855ef40"
-    },
-    "raster-layering/step01/review-01-evidence/batch-10.json": {
-      "bytes": 1668,
-      "sha256": "cb7195184bebc230efeff054717eeff63a5fc9ad7406e5d162eda6d0fa46bce3"
-    },
-    "raster-layering/step01/review-01-evidence/batch-20.json": {
-      "bytes": 1699,
-      "sha256": "94f6bff53c572ccf174f4c2035660b3bb6cf82525af476c607d7615827401850"
-    },
-    "raster-layering/step01/review-01-evidence/batch-30.json": {
-      "bytes": 1728,
-      "sha256": "96cd1152e15fdf0f69498623fa751a68ecdfa7e9e9569da239dfcd6e75246b4b"
-    },
-    "raster-layering/step01/review-01-evidence/batch-40.json": {
-      "bytes": 1726,
-      "sha256": "1ae0feeebf0f1ed95ec3f8b7aa2b1a04227ba69ee02ef2e05b33639c076763ce"
-    },
-    "raster-layering/step01/review-01-evidence/batch-50.json": {
-      "bytes": 1684,
-      "sha256": "2f5cb5cf2b5f494f14e6b0a23d8878ea2921ec786367a7e1a16286f428413270"
-    },
-    "raster-layering/step01/review-01-evidence/batch-60.json": {
-      "bytes": 1677,
-      "sha256": "9ceb75fb24f15d75ce2cd1f56564f5bf47f031493618b36c4269ff37ebb68d84"
-    },
-    "raster-layering/step01/review-01-evidence/batch-70.json": {
-      "bytes": 1744,
-      "sha256": "dac6a84befed11d6bd0ccf49c94914b6a8b7a2837795b7afc96456745ef86635"
-    },
-    "raster-layering/step01/review-01-evidence/delivery-verification.json": {
-      "bytes": 342,
-      "sha256": "7894caa9c28a3d4fc6e96761bf9e2a7da55552cd3eab50835738682ce06f3d30"
-    },
-    "raster-layering/step01/review-01-evidence/issue-index.json": {
-      "bytes": 19556,
-      "sha256": "9e222df5d9025ddfc6b91bed0ed80cb2c13028b9d02f36df3a70dbabe66e0999"
-    },
-    "raster-layering/step01/review-01-evidence/marked-body/regions.json": {
-      "bytes": 7517,
-      "sha256": "84b407729baf0384d1d4c776dca47c6e9b780afa4edcfe739c0f7660f551956c"
-    },
-    "raster-layering/step01/review-01-evidence/marked-isolated/regions.json": {
-      "bytes": 3845,
-      "sha256": "7d9c329948a1b79fd65e7b6ddcfccc2bbb22d647c1062acf4541d4ac0d103bf2"
-    },
-    "raster-layering/step01/review-01-evidence/marked-standard/regions.json": {
-      "bytes": 12489,
-      "sha256": "5f666f2cd5f2ff365b304d3750059b98664fde98486e0b7f2d5e5d268f08fa42"
-    },
-    "raster-layering/step01/review-01-evidence/readonly-verification.json": {
-      "bytes": 13424,
-      "sha256": "2ef1a0793c594be2861c553cc15627f2e10016076d667a5aaadf69bec2780e68"
+    "raster-layering/step01/reuse-record.json": {
+      "bytes": 216,
+      "sha256": "ab403dcd062d8de57ca3d9bbed18feb547cb5fb52e07a366b6be125869207ba6"
     },
     "raster-layering/step01/review-01.md": {
-      "bytes": 32549,
-      "sha256": "81f2f61ae51fe7cfdb805916e4549e998d37f40762c4b4f28b439132d13faeb0"
-    },
-    "raster-layering/step01/review-02-evidence/annotation-index.json": {
-      "bytes": 14015,
-      "sha256": "fae56e5c691725f176bfdfe9d13fb2d36541dc89e9e58c4d3a340c2887ef5fe8"
-    },
-    "raster-layering/step01/review-02-evidence/audit-index.json": {
-      "bytes": 96700,
-      "sha256": "1268bb21f71a50494492a7f238dfd8c5cd2cfae48853d059b1a288b609dea35f"
-    },
-    "raster-layering/step01/review-02-evidence/audit-index.md": {
-      "bytes": 31098,
-      "sha256": "6ff7d7744703e483ad28c1e3355fed876b2d2927e620ef21da1bdc5fd7e60197"
-    },
-    "raster-layering/step01/review-02-evidence/delivery-check.json": {
-      "bytes": 497,
-      "sha256": "5cdb3417a251df69852a2d77f8fb97f29a1083f8827c1ecf2ce0cacf50e2167b"
-    },
-    "raster-layering/step01/review-02-evidence/group-index.json": {
-      "bytes": 2971,
-      "sha256": "ba02649ef1226460ff11c82b600028dbda2400513983425f57f13d75024aa808"
-    },
-    "raster-layering/step01/review-02-evidence/krita-final-check.json": {
-      "bytes": 242,
-      "sha256": "b48a96289e0bd840531a4d604b7333a1c47e3b3589bec7c22b426c8ceaa88544"
-    },
-    "raster-layering/step01/review-02-evidence/layer-inventory.json": {
-      "bytes": 26079,
-      "sha256": "c204c719b2ee1ea66c32300da6f6d16a30a1995aced583e2a6bfeaed4facc84a"
-    },
-    "raster-layering/step01/review-02-evidence/readonly-check.json": {
-      "bytes": 24124,
-      "sha256": "09b65ec53a142780bf11e43c36873779872c52fe41e88afbb07b398f1784fb28"
-    },
-    "raster-layering/step01/review-02-evidence/regions/anklet-back/regions.json": {
-      "bytes": 1491,
-      "sha256": "25f52652b71172228092d6cad8c9cc4efe1cc0cdcfd520a5cca434f03ad62d4a"
-    },
-    "raster-layering/step01/review-02-evidence/regions/default-body/regions.json": {
-      "bytes": 2250,
-      "sha256": "d7f2a17de9b766773d410ea60003c7d1c3563506c4930d5c27c0d49a9e60d2cd"
-    },
-    "raster-layering/step01/review-02-evidence/regions/default-standard/regions.json": {
-      "bytes": 7645,
-      "sha256": "cad5ec4d06c49c8cd6197dbee3831fd49464fa9f29501b0b9787ceaee267e50b"
-    },
-    "raster-layering/step01/review-02-evidence/regions/ear-fur-left/regions.json": {
-      "bytes": 1483,
-      "sha256": "b4b293b58efda84ee327c5f68d4dcc5989331a528048d8b907ed489a0c20fffe"
-    },
-    "raster-layering/step01/review-02-evidence/regions/palm-left/regions.json": {
-      "bytes": 1421,
-      "sha256": "e82c402666635699ad39aecfb57aa23a2a759d60ff162e6b74fb4b971ab8f956"
-    },
-    "raster-layering/step01/review-02-evidence/regions/palm-right/regions.json": {
-      "bytes": 1481,
-      "sha256": "0226e848baefd86d123b20be96dab1f563da60cfac0c8005b2bd0fdfb10675b7"
-    },
-    "raster-layering/step01/review-02-evidence/regions/sclera-left/regions.json": {
-      "bytes": 1533,
-      "sha256": "ba166517fc1dade2aed4496b048a208b7dbe8edd3b23799b91e04e72273ad1b3"
-    },
-    "raster-layering/step01/review-02-evidence/regions/upper-arm-right/regions.json": {
-      "bytes": 1506,
-      "sha256": "1fa4c1fa2a86a49476cac0f17f11c1a395df408126efb47692f38a0c8e6b3afa"
+      "bytes": 66637,
+      "sha256": "9a9fbd8d64d0b6a2b1b18343afeda0a4db8cb8883b915f764d19e6aa8e1cce83"
     },
     "raster-layering/step01/review-02.md": {
-      "bytes": 28717,
-      "sha256": "7a7575a9ebddb419771845665323d21276924d86e05f5b77761c6f684e6bba97"
+      "bytes": 64829,
+      "sha256": "d872c826996fb0ecbd11449e8e8c8e1adfcb588182d669fd519ee1cc9a12d688"
+    },
+    "raster-layering/step01/review-evidence/independent-01/actual-tree.json": {
+      "bytes": 24130,
+      "sha256": "22a36bfa65373b96bf201166a27875d952cbe6ca9654c6bc4577054e4091db1e"
+    },
+    "raster-layering/step01/review-evidence/independent-01/check.json": {
+      "bytes": 656,
+      "sha256": "9f3e41c47109c86dba8848ece25e068f229438cd1e9ec2eb776d677d2db45447"
+    },
+    "raster-layering/step01/review-evidence/independent-01/exports.json": {
+      "bytes": 36000,
+      "sha256": "a78b56e0f739cdc9b3337e553d7b43b6749e7a27384ab1450e5548fe0358c775"
+    },
+    "raster-layering/step01/review-evidence/independent-01/marks/base/regions.json": {
+      "bytes": 5330,
+      "sha256": "8aa5b7ec8b2363c154bf5e2814a5eee0f3bd23ce55981907426fc3c133b0e9e6"
+    },
+    "raster-layering/step01/review-evidence/independent-01/marks/pelvis/regions.json": {
+      "bytes": 1375,
+      "sha256": "72ba65d38c88a9a75476ed07d5b28ca18df5f366223f3e7be59e523d743c5b23"
+    },
+    "raster-layering/step01/review-evidence/independent-01/marks/standard/regions.json": {
+      "bytes": 16221,
+      "sha256": "6abc872f1fcc9c516ba5745d8d86f58774eb8182b32b7d88898a49158a97d1d0"
+    },
+    "raster-layering/step01/review-evidence/independent-01/marks/tanuki/regions.json": {
+      "bytes": 1451,
+      "sha256": "13d821566771bc6f21f6423f691f42604acdad0d1b133f1d2655651ee287625d"
+    },
+    "raster-layering/step01/review-evidence/independent-01/marks/torso/regions.json": {
+      "bytes": 2213,
+      "sha256": "026512dc449b0abe44ff06dd7ca745ee933e2914fc6d3d050d2ae544fb57e4a8"
+    },
+    "raster-layering/step01/review-evidence/independent-01/regions.json": {
+      "bytes": 33660,
+      "sha256": "66ffa1fad86fa392d9c741cae8584f9b1eebc81ad85df641bf2afb87e3fa8fad"
+    },
+    "raster-layering/step01/review-evidence/independent-01/unions.json": {
+      "bytes": 1354,
+      "sha256": "73e7fbb57989d8f7886d579cdbc9b27084a94a063c33b332dfafadfbed6f8609"
+    },
+    "raster-layering/step01/review-evidence/independent-02/annotation-archive.json": {
+      "bytes": 5743,
+      "sha256": "67713509f6c56c196811e8145c18b6bceec4e52295fd8547f4448ff94d7c67a0"
+    },
+    "raster-layering/step01/review-evidence/independent-02/coverage.json": {
+      "bytes": 42705,
+      "sha256": "bce49582676bc376ff1981f97ee9b64c962c37971081f4988496ecf9a60249a9"
+    },
+    "raster-layering/step01/review-evidence/independent-02/delivery-check.json": {
+      "bytes": 712,
+      "sha256": "14144111c6a5663185d9a800e257a435ec49f5d8b8e0aa41a154eb894f18d4e2"
+    },
+    "raster-layering/step01/review-evidence/independent-02/input-hashes.json": {
+      "bytes": 13111,
+      "sha256": "43265b0a0d90ed2c090ede73ac23fe38c2862cbdcd4f8c0f9d2e46ab29614f81"
+    },
+    "raster-layering/step01/review-evidence/independent-02/issues.json": {
+      "bytes": 59046,
+      "sha256": "4f71169b4c196746ff59b563fe482b9e517075482812499d770ba5bd5166a740"
+    },
+    "raster-layering/step01/review-evidence/independent-02/krita-final-state.json": {
+      "bytes": 11566,
+      "sha256": "c191925fe2cf37b5a75d5c67fba0775057495fc8c4392af96b43c0e9aea12f10"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R05/regions.json": {
+      "bytes": 1396,
+      "sha256": "1b181aad70aadab816a4e962fc7e298e350b148f8cfac8e5f2ed5148b4994a46"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R06/regions.json": {
+      "bytes": 1454,
+      "sha256": "289cab595151335b5397e6b7ddde568cf94c10cc916d0a9dafe702b59bfb0066"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R14/regions.json": {
+      "bytes": 1449,
+      "sha256": "6dd06fed4bb326c82ba8dc337ba9a2035fe40b66616f5107b9bef08b3860067c"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R15/regions.json": {
+      "bytes": 1400,
+      "sha256": "50faf2d9fdf2623f0a37d7ca7e15f9fef060c25ef74914626e31aadcf29d763d"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R18/regions.json": {
+      "bytes": 1391,
+      "sha256": "c5df483bc78568d3daef29dc0cf99cb7b3da246b48aced5f23b98a494e0d850b"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R19/regions.json": {
+      "bytes": 1368,
+      "sha256": "48f07eb9166e8f90ab755e3322058e737b7cc1032afa4192f033d2c3e71ec895"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R20/regions.json": {
+      "bytes": 1391,
+      "sha256": "b2ef486b87a2964028e67d2927e905aafa36330bed18aab43f2b6591f102199a"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R21/regions.json": {
+      "bytes": 1378,
+      "sha256": "c7c22634824adeae6617bf445f143fae05b9f0aec404a99d30e1f0d4ace310a9"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R22/regions.json": {
+      "bytes": 1408,
+      "sha256": "cf59e14e5def4d5d3e8a1478c80640f72f11def7aff98e74f43e7b02ab381fa4"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R23/regions.json": {
+      "bytes": 1395,
+      "sha256": "667cc35496884f227b1232761c0471dc4a43fc53d61baa84e2832ad6c8592d7b"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/R24/regions.json": {
+      "bytes": 1389,
+      "sha256": "1409568cf6b72f9c64a16d795f7d0c1e78cabdeee84a0638a8f056367937f9fe"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/base/regions.json": {
+      "bytes": 4595,
+      "sha256": "7ca48f1cad3864e4a75516c8a0618ba62e217a32e568cea05cf4e7d36c240c53"
+    },
+    "raster-layering/step01/review-evidence/independent-02/marks/standard/regions.json": {
+      "bytes": 7105,
+      "sha256": "07f6fb4355b02915cd03fdb57021581595c9ad006e94a5d0db1c985ae7b35d1d"
+    },
+    "raster-layering/step01/review-evidence/independent-02/masks.json": {
+      "bytes": 1040,
+      "sha256": "b1afed603eec2f2106ba6527cb3c412ed5d09a1057fa11fb37a89259ad216774"
+    },
+    "raster-layering/step01/review-evidence/independent-02/read-only-verification.json": {
+      "bytes": 26871,
+      "sha256": "4eb4e00a1389d9979b22d85ca72eaf8bbd7141510bd0ae26796c65a8bfbcb6b4"
+    },
+    "raster-layering/step01/review-evidence/independent-02/tree.json": {
+      "bytes": 24102,
+      "sha256": "9db4e9534fbd9f790a24b3c4408e7bbb1bfd445bdb07d2fedbf06543e5469df3"
+    },
+    "raster-layering/step01/review-evidence/independent-02/unions.json": {
+      "bytes": 1740,
+      "sha256": "074ff79e0d578f824b58b3d9f3ba6c2050d6a78868fc0e98322b8f6f83d531b8"
+    },
+    "raster-layering/step01/save-before.json": {
+      "bytes": 32515,
+      "sha256": "6b3f7d4770bf37aa3895385a4f117edf2866d73e1a64841a9b3b2bf0fce62098"
+    },
+    "raster-layering/step01/save-reopen-check.json": {
+      "bytes": 903,
+      "sha256": "5997d272644e12dffbba7b63e494d03b05efbf9b4afeaf2e1320750ef060789f"
+    },
+    "raster-layering/step01/tanuki-depth-boundary-check.json": {
+      "bytes": 640,
+      "sha256": "8052cc1c8a0545bfb94455eb0fb62be401cf49e533ba34ed1f327afb73f549a1"
+    },
+    "raster-layering/step01/wrist-cast-cleanup.json": {
+      "bytes": 536,
+      "sha256": "5dc32334918b2a77385ae0ab856c41888731d93071d868d95cfc17f2475ce8e4"
     },
     "raster-layering/step02/.completed": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "raster-layering/step02/character-soft-edges.kra": {
-      "bytes": 22908577,
-      "sha256": "726622bcf332e5668a3cf09c824b6fb13af32660e94fdb06413d0e0ee7c15b83"
+      "bytes": 25891502,
+      "sha256": "2924404dbd2659b8b8a8c3631976f0d7fcedaeac662d0cac21e33cc072e68837"
     },
     "raster-layering/step02/character-soft-edges.png": {
-      "bytes": 1125005,
-      "sha256": "84908017184c05e5f1763cc456e31c5de3c9ea81ccaceaff9100fe1de128a9a8"
+      "bytes": 1104244,
+      "sha256": "f1fcbdce7daa05c5012d63533a8b0544395a6138871e6119c332077f8ac1fdab"
     },
-    "raster-layering/step02/evidence/after-reopen-snapshot.json": {
-      "bytes": 40582,
-      "sha256": "bed50a79bd41665642ab3e057a0e5a5875a1890239cf964dbd672457e9cbfcc5"
+    "raster-layering/step02/evidence/artifact-verification.json": {
+      "bytes": 373,
+      "sha256": "d31249bb7b327174ecba1c63e654e713b9e639c6c79393a443691f9efbb0abcb"
     },
-    "raster-layering/step02/evidence/before-reopen-snapshot.json": {
-      "bytes": 40582,
-      "sha256": "bed50a79bd41665642ab3e057a0e5a5875a1890239cf964dbd672457e9cbfcc5"
+    "raster-layering/step02/evidence/changed-parts.json": {
+      "bytes": 1297,
+      "sha256": "d7b906171680022239fd6fc3bece6d72de0cf8cfa73f36d2c14293850d509ad2"
     },
-    "raster-layering/step02/evidence/delivery-check.json": {
-      "bytes": 617,
-      "sha256": "bdd03820674af5eb16b8a3fe629a4efa825639a78a620f856140ba346e1b2979"
+    "raster-layering/step02/evidence/reopen-verification.json": {
+      "bytes": 50392,
+      "sha256": "c53834db8f3e340f1e08c846868bafb34bcd86543d77ca7a7bcf84d839e65214"
     },
-    "raster-layering/step02/evidence/input-preservation.json": {
-      "bytes": 1002,
-      "sha256": "b3651652be5746f3d114efcefea280803a8eb460d8eb46117c4832f52f6ac257"
-    },
-    "raster-layering/step02/evidence/reopen-check.json": {
-      "bytes": 584,
-      "sha256": "8c232d46eae8ce1090209c8ad6f1ff5f6d0af31d97430aa47807cf7592f13b28"
+    "raster-layering/step02/evidence/upstream-verification.json": {
+      "bytes": 774,
+      "sha256": "32845a5e18ae0a6007c3219a3f5ba64213e4050b7f3e2cd96ae51dba6b45a00a"
     },
     "raster-layering/step02/report.md": {
-      "bytes": 13004,
-      "sha256": "4e067faf391e0784dbde63491904e83990f7e8aef1c0e225ae8981a339833807"
+      "bytes": 10122,
+      "sha256": "8df8dac2f7347af04a09e8783e722915e87e3d294ec71af1711e7fbd1638ccc4"
     },
     "raster-layering/step03/.completed": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "raster-layering/step03/character-dressup-base.kra": {
-      "bytes": 22673510,
-      "sha256": "d87176e22d7238b382414c0bea3a732cb2fee2aefc467040e4f5a705c7a760c2"
+      "bytes": 25776142,
+      "sha256": "4860a1a3a974e3943d25500d4d6a3d769fa7c20f56801e8662068716a115a9c7"
     },
     "raster-layering/step03/character-dressup-base.png": {
-      "bytes": 959500,
-      "sha256": "7ce6e7672474a07e6da3909b15c3c15f5c036f979561d9cd13b0834949eef598"
+      "bytes": 931728,
+      "sha256": "5f4ee38bdfe5f5441dedf852d250ae9baf4f82e71f888f11dc7dbee107fa296e"
     },
     "raster-layering/step03/report.md": {
-      "bytes": 13094,
-      "sha256": "68d45eecf47c35acc8b36f15ac667b5e7347518a44e23ed49142ffa9d84225cd"
+      "bytes": 10106,
+      "sha256": "8e8590865dd612b3cf875b69dc6204bf4523b651f6c53e306b27923ad15eb0b8"
     },
     "run.json": {
-      "bytes": 1026,
-      "sha256": "88bf540bfd5155cac0f7deb67f7bebcccc7a2661505db1b78f421d2e99bd52f0"
+      "bytes": 922,
+      "sha256": "b90ce797bc17b6b9adf10df0a38d00adebdffcf988fb427ec5ec231d7ef59706"
     },
     "shadow/step01_mask/.completed": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "shadow/step01_mask/character-shadowed.kra": {
-      "bytes": 30591985,
-      "sha256": "932cfb658b814b21557a555d8ccd0e5a2a1133b616aea0adfd29a6bb9e10f6d6"
+      "bytes": 29878647,
+      "sha256": "67bc370a31a3ca1ce5172d3146240ec610d1e19a648857e1127fc59b4a04aafb"
     },
     "shadow/step01_mask/character-shadowed.png": {
-      "bytes": 1329140,
-      "sha256": "b26c4f738e3a21a1db07c6c932e485d85fcef5ecfd7212a23c8eaa1dbaf90c99"
+      "bytes": 1329944,
+      "sha256": "4ef24b2b8fe81dd3a63641aa33a246f8f998d623ca170e9003825017d6825c2b"
     },
     "shadow/step01_mask/face-review.png": {
-      "bytes": 1789571,
-      "sha256": "481f05ce27c6b47301827d7a49fae1803e7cdb8bb3c13b15a30563ee3508a9d8"
+      "bytes": 864151,
+      "sha256": "36520d42f538998a7e25d68019bca2fe5bf3440eac5a033db069d137925d709a"
     },
     "shadow/step01_mask/inspection.json": {
-      "bytes": 143838,
-      "sha256": "09389febafe64d785430412b853c5dda4e95cd7136f8409a75f21855964c78aa"
+      "bytes": 99098,
+      "sha256": "7d8658c062f3bc854c2817d60745fa9379ab1b6d34b4ba09d9ff38d8683e1b60"
     },
     "shadow/step01_mask/inspection/overview.png": {
-      "bytes": 173906,
-      "sha256": "ffb7dd808fd1e06d6aacd6477051dee46a1be12c0e2a56352ed855e034d878ff"
+      "bytes": 169411,
+      "sha256": "909bd69a4a792258f81aa0de954bbf5571443dbb4d6ae4ebb6880306339e0b9b"
     },
     "shadow/step01_mask/inspection/relation-000-review.png": {
-      "bytes": 486959,
-      "sha256": "b3ac1bc084c89a1878670e7025d09cd22505091c1f147d713c6fc508a528a6d2"
+      "bytes": 410125,
+      "sha256": "10ce6dcb6340ec184f4eb350f7774bebdb17318b465b65d7155700d83261dec4"
     },
     "shadow/step01_mask/inspection/relation-001-review.png": {
-      "bytes": 443434,
-      "sha256": "750d3c4529d12d9351806ddfa7cb0325ba75b8fd6e4199e1b5998186ddf0f197"
+      "bytes": 406932,
+      "sha256": "ec1c88cfff4456fa0abfdb24b330a8c085a151b9fbe511fbeccabe84a4602bd6"
     },
     "shadow/step01_mask/inspection/relation-002-review.png": {
-      "bytes": 442208,
-      "sha256": "2ab5fc03357d7265ad5e3af50d3321ecffa12d3b54d5f8f29d154806db7d83f4"
+      "bytes": 413155,
+      "sha256": "b722f082ecbd6f07c36f267e764e5f7fbe16bc11caf975b99380cf3af2b1f920"
     },
     "shadow/step01_mask/inspection/relation-003-review.png": {
-      "bytes": 439809,
-      "sha256": "0506c24cd7ef5ce5dba27f2865dd31030f86095e534573890160050e57868e3a"
+      "bytes": 455793,
+      "sha256": "a73c90fe50efaee8992e86aa8bdfb2cadb13d05aa037ab819def6509e97877af"
     },
     "shadow/step01_mask/inspection/relation-004-review.png": {
-      "bytes": 440934,
-      "sha256": "d4a096568e65a83678c7b55eed8482fb297174a754eff3465d0a4f2badb99ced"
+      "bytes": 460383,
+      "sha256": "0f176da187cd2bf1f474aaca0547507380b776c2084e0b8e6426c66382ddf9f4"
     },
     "shadow/step01_mask/inspection/relation-005-review.png": {
-      "bytes": 414511,
-      "sha256": "39e326adccba4436e5ac666e7878cf9cea6c499c2a1e5ba773a51955ef899b90"
+      "bytes": 528257,
+      "sha256": "e758f39c6971914997ef835a2a6b22097d720962845025bcb7954906ee4c7d0a"
     },
     "shadow/step01_mask/inspection/relation-006-review.png": {
-      "bytes": 390091,
-      "sha256": "e8e46ec29b694a3c40da4f6f60f9ba248483914fe8e87d57a3e65a136515a6b6"
+      "bytes": 527543,
+      "sha256": "7be3d931a7072455e43f7d27bf97ed07b83235b5dddaae54223e71286010e595"
     },
     "shadow/step01_mask/inspection/relation-007-review.png": {
-      "bytes": 392826,
-      "sha256": "4844998b76ce68d4814ec7d8832e17259e8e4807c2782d566be55b613e7b3f69"
+      "bytes": 448314,
+      "sha256": "95f02db990ac9de1ff983c82842147cb99183931906ae881dbbaa1d30bf612be"
     },
     "shadow/step01_mask/inspection/relation-008-review.png": {
-      "bytes": 427175,
-      "sha256": "8b1bcebbbedae3645ec3b6d0fe13236e94629720cef4b62812610b3380c36e95"
+      "bytes": 515419,
+      "sha256": "2eed5563c4a922c24c32a3e0aaf1a936dffa516ed98e6f0fa1f60c39770ff4f2"
     },
     "shadow/step01_mask/inspection/relation-009-review.png": {
-      "bytes": 623984,
-      "sha256": "a4d4711b21266e5433d6ec2c7f45107905ce38092c13674f82d01e99d8e00685"
+      "bytes": 387927,
+      "sha256": "99335bc28d9f8929bdd666c5fb9a48817f14abf1312b0db96d66ffb95b8a92bf"
     },
     "shadow/step01_mask/inspection/relation-010-review.png": {
-      "bytes": 481829,
-      "sha256": "b3cf6c3d39a66ce1c2ca327d47255d4af6c36a7e447b7ce3e96940d574352590"
+      "bytes": 437451,
+      "sha256": "69c9863e36083b2d552b62a3edaf790c2c8b38729856ecdcf498be14775cddb4"
     },
     "shadow/step01_mask/inspection/relation-011-review.png": {
-      "bytes": 375248,
-      "sha256": "7b8b0f7c79b82fb26e952bcc6762a48b5529808ddd67291b55f74581f5d4b9be"
+      "bytes": 451489,
+      "sha256": "224b7c0ef6c87003585dfe4bc0a010e7e365210f837ff501cb23076f9eca01ae"
     },
     "shadow/step01_mask/inspection/relation-012-review.png": {
-      "bytes": 411170,
-      "sha256": "51053c7aac75afc4ae5b30614857bef0d48ae8be21ce239f17184988f06d93c6"
+      "bytes": 393420,
+      "sha256": "30b800cfcc9492e3f059b8f4b48b6d17864ae4a4872d7d586ab49b51544c8b26"
     },
     "shadow/step01_mask/inspection/relation-013-review.png": {
-      "bytes": 410833,
-      "sha256": "e26ccb70ffc106d4963b107dd87cf8603d568aff4c7db9796c3e3e43d6e7a515"
+      "bytes": 387825,
+      "sha256": "3f2a053dbdddf87e356457350cb2e52e62964d86260370663a79ecab9261eb56"
     },
     "shadow/step01_mask/inspection/relation-014-review.png": {
-      "bytes": 511720,
-      "sha256": "feb7a57fc464fde6bb9ac7ea025fb57470b0cb467084b86914e707c52a478b99"
+      "bytes": 503852,
+      "sha256": "ee60213e6866e7b653472db153ef4cda49a2604f5d2879c3348aa727df7820ac"
     },
     "shadow/step01_mask/inspection/relation-015-review.png": {
-      "bytes": 511726,
-      "sha256": "e78b5fab61f88d7291e19e2bb4a150a873b5918d06d4443b5991e4495a2de1b9"
+      "bytes": 491823,
+      "sha256": "5977cb53acafb0bb0114ac28376abb4e5cd28648c1a72a48abd1855189d4f652"
     },
     "shadow/step01_mask/inspection/relation-016-review.png": {
-      "bytes": 510131,
-      "sha256": "af68b751603b208ab502c8604a6f1b12b3966999c3600871b638215690f2aa10"
+      "bytes": 417863,
+      "sha256": "9925a5a5b45def679fff294d7459fd635d43a0e7ace15a40c19ad2e9fa79e5fb"
     },
     "shadow/step01_mask/inspection/relation-017-review.png": {
-      "bytes": 512854,
-      "sha256": "55f0c208bec366a23f317e240db16c5d3631ce971360c1ff688a860ee6db8887"
+      "bytes": 417061,
+      "sha256": "45babf9bc79bdd2ebad080bfc02236000fc6b15218afc02bfa91ea20160c3c45"
     },
     "shadow/step01_mask/inspection/relation-018-review.png": {
-      "bytes": 702641,
-      "sha256": "b8596b698db4f57c18d79626d16587f9275d6c4259710f77d69c61bdd1267ee0"
+      "bytes": 395935,
+      "sha256": "1ce30ce90b5cab922fc75614f2a95bfcf4e360b6140645044b939461eb163e8c"
     },
     "shadow/step01_mask/inspection/relation-019-review.png": {
-      "bytes": 701547,
-      "sha256": "c8fa845c6b04ecef435dede0c81dcac95b80ae95bf5b414b15746d3c99eb6159"
+      "bytes": 395601,
+      "sha256": "cab52bc9ab5165085753502b719ba95f5c071da1eef99f66195effbfffe5d923"
     },
     "shadow/step01_mask/inspection/relation-020-review.png": {
-      "bytes": 458546,
-      "sha256": "8bdd65fdcd830734f5bccae0b0c3eb83b3061b846dab2fd84333e2f6250ff754"
+      "bytes": 422528,
+      "sha256": "41d4470b97a34c33c6fdf0b0c919e5e92d51f3847c02fa1c7a2148aaf96bfa81"
     },
     "shadow/step01_mask/inspection/relation-021-review.png": {
-      "bytes": 613081,
-      "sha256": "0284355ea19354bb0b4a0408cb3e452fde5cd92c164a6193f100a8b68fbd6b0b"
-    },
-    "shadow/step01_mask/inspection/relation-022-review.png": {
-      "bytes": 539400,
-      "sha256": "c932e4feca037db044e8b45ad7bff0e84a5e1c45c9677036341ad3ecff5b1dbd"
-    },
-    "shadow/step01_mask/inspection/relation-023-review.png": {
-      "bytes": 617239,
-      "sha256": "9d2832a8b63958b445b9779c8ceb890ebdd1d10ca273caee88261cbad03da166"
-    },
-    "shadow/step01_mask/inspection/relation-024-review.png": {
-      "bytes": 617635,
-      "sha256": "5dc2b5cf64fa0da2fba6f802b7c6ffaaa71fa737e158fc0d52c09c37313de390"
-    },
-    "shadow/step01_mask/inspection/relation-025-review.png": {
-      "bytes": 481341,
-      "sha256": "407a5bc3f66e1b92842b51b68df96b5544a5f8e5172313d6f783e68d50752bea"
-    },
-    "shadow/step01_mask/inspection/relation-026-review.png": {
-      "bytes": 473991,
-      "sha256": "7f93bca4168d5fbd968050a1a22cf1fd66dbea06b858476dd1e0368d2d957bc6"
-    },
-    "shadow/step01_mask/inspection/relation-027-review.png": {
-      "bytes": 423042,
-      "sha256": "b2db413153fb689e8afcbbb842141dc947fad15034f56f1f60c6788590260131"
-    },
-    "shadow/step01_mask/inspection/relation-028-review.png": {
-      "bytes": 421528,
-      "sha256": "6c688537e0cb0fda8fd797cb290b0f9eeb4265af782efa0800d11f4a5cd7d447"
-    },
-    "shadow/step01_mask/inspection/relation-029-review.png": {
-      "bytes": 453407,
-      "sha256": "b00396bd6d674f127ac2ea8db3dc15455386f1147a44ea1d8719de527cb1966d"
-    },
-    "shadow/step01_mask/inspection/relation-030-review.png": {
-      "bytes": 525477,
-      "sha256": "e20f0155f16c8519d5ed5aad64e14a394caae641f484c1e9ad6db9aaabfc689b"
-    },
-    "shadow/step01_mask/inspection/relation-031-review.png": {
-      "bytes": 526472,
-      "sha256": "9bd081b6b8ecc27b8552ff62dcf40115f45e23f2c06b2698432eb71ab62488bc"
+      "bytes": 407114,
+      "sha256": "e60aadef007d03ffbde3e24c5748fe1443635cf9318bce682e8b77c92248a27b"
     },
     "shadow/step01_mask/report.md": {
-      "bytes": 24068,
-      "sha256": "aa4e07ab66b3833a100fe70e2298c54eecdbdb4d28daf60b43b709cdc2a20a1d"
+      "bytes": 13364,
+      "sha256": "e6a15f5f995b4d872435a0b4ba62576a1d224abb33c204f211d54020a9f1ce08"
     },
-    "shadow/step01_mask/review/preservation.json": {
-      "bytes": 6952,
-      "sha256": "efebe3fe53f4101b26194cb75b739ba27cb574fc469e25481ea769ee6a216f2c"
+    "shadow/step01_mask/review/original-layer-check.json": {
+      "bytes": 105,
+      "sha256": "358d66627c5282d6e58b60bf3ba699af1f0d93aa30c814f1df77537858f68291"
+    },
+    "shadow/step01_mask/review/pixel-check.json": {
+      "bytes": 303,
+      "sha256": "98f159a8fa9c80e19d8017101de393f6223ac7defe83cde7d48cc1e22ccefb4b"
     },
     "shadow/step01_mask/shadows.json": {
-      "bytes": 33444,
-      "sha256": "e85e6301058903fd47cc6f6d52bce25390b1946a3c219c6f9a6bdd4a06a7894a"
+      "bytes": 22797,
+      "sha256": "55dd45fac7a9e1e9f1827f408634318d1f2016adeaaefb723f02e445e4c28f9c"
     },
     "shadow/step01_mask/source.json": {
       "bytes": 256,
-      "sha256": "6f13980d10d4d28a335d1618076f2520c9077a60e322dd6df28790e5e92f8f71"
+      "sha256": "87d8a099255c4e9931e6bd5bdb57b92cd6329fffc0f1d94413a1c4279ca1dec9"
     }
   },
   "warnings": []

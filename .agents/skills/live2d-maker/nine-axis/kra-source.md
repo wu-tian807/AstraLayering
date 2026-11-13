@@ -11,7 +11,8 @@
 | step04_angles/model | 合并独立轴，保留三份作者函数，不读取或复制像素 |
 | step06_angle-xy | 继承合并模型，补组合关键形，保护单轴 |
 | step07_jaw-line | 首次建立本步可编辑 KRA；Krita 保存画稿，jaw.json 绑定真实 UUID |
-| step08_hair | left＋right，Y=0；首次复制上游实际 KRA，同一会话按操作依次派发前发、侧发、后发与整体协调 |
+| step08_hair | left＋right，Y=0；首次复制上游实际 KRA，同一会话按操作依次派发前发、侧发、后发、其余头发与整体协调 |
+| step09_head-accessories | left＋right，Y=0；继承头发累计模型和实际 KRA，建立一份本步可编辑工程，保护已有脸发 |
 
 调度绑定当前作者、上游模型、KRA 和编辑/预览范围，不按文件修改时间寻找工程。`source.document` 指定实际 KRA；切换画稿所有权时，`source.geometryDocument` 保留单轴几何的来源，`axisSources` 保留独立作者函数。
 
@@ -21,7 +22,9 @@
 
 `agent.json initial` 只派发前发。检查通过且交付齐全后保存 `hair-progress.json`，本次操作结束；下次继续时，程序读取下一轮提示词，通过同一个通用 session 发送到原 thread。侧发只编辑自己的节点，保留前发与脸部；后发轮可协调前发、侧发、后发及关联阴影，保护脸部和其他内容。所有轮次允许在自己的编辑范围内按需修改 KRA，后发不强制改画稿；后发小幅形变与遮挡显露是拟合参考的优先方法。
 
-前发、侧发完成时不完成整个步骤；最后一轮检查通过且交付齐全后记录 `completed:["front","side","back"], next:"done"`，才标记步骤完成。交付缺失会拦截续轮，中断仍继续尚未通过的轮次。继续保留工程与 thread，恢复换 thread 但保留产物，重试重做本步。
+后发后接一轮其余头发，按当前 KRA 的实际剩余发片统一制作，不枚举发型类别；可协调全部头发并保护非头发内容，没有其余发片时记录检查后完成。前三轮完成时不完成整个步骤；最后一轮检查通过且交付齐全后记录 `version:2, completed:["front","side","back","remaining"], next:"done"`，才标记步骤完成。交付缺失会拦截续轮，中断仍继续尚未通过的轮次。继续保留工程与 thread，恢复换 thread 但保留产物，重试重做本步。
+
+旧 version:1 的三轮成果保留已有 KRA、模型和 thread，由正常继续／恢复入口迁移到 remaining；迁移不丢弃已通过轮次，也不重跑前发、侧发和后发。
 
 ## 绑定与读取
 

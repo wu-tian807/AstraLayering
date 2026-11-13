@@ -1,0 +1,136 @@
+{
+  "errors_raw": [
+    {
+      "job": "1794534184536-tanuki_join_finish-c0dbd704.json",
+      "error": "Traceback (most recent call last):\n  File \"/tmp/astra-krita-uJiB9K/share/krita/pykrita/astra_bridge/__init__.py\", line 187, in run\n    exec(code, scope)\n    ~~~~^^^^^^^^^^^^^\n  File \"/tmp/astra-krita-uJiB9K/bridge/jobs/1794534184536-tanuki_join_finish-c0dbd704.py\", line 3, in <module>\n    s=session['r3'];globals().update(s)\n      ~~~~~~~^^^^^^\nKeyError: 'r3'\n",
+      "hints": [
+        "Krita 弹出了对话框“Recover Files – Krita”，无人操作的界面会因此卡住，桥接已自动取消它，对应操作没有完成。不要在脚本里打开需要人操作的对话框；导出和保存的参数通过 InfoObject 传入。"
+      ],
+      "dialogs": [
+        {
+          "title": "Recover Files – Krita",
+          "class": "QDialog"
+        }
+      ]
+    },
+    {
+      "job": "1794534694062-tanuki_join_finish-a2c7ae4d.json",
+      "error": null,
+      "hints": [
+        "Krita 弹出了对话框“QProgressDialog”，无人操作的界面会因此卡住，桥接已自动取消它，对应操作没有完成。不要在脚本里打开需要人操作的对话框；导出和保存的参数通过 InfoObject 传入。"
+      ],
+      "dialogs": [
+        {
+          "title": "QProgressDialog",
+          "class": "QProgressDialog"
+        }
+      ]
+    },
+    {
+      "job": "1794534879831-tanuki_join_finish-6af8f612.json",
+      "error": null,
+      "hints": [
+        "Krita 弹出了对话框“QProgressDialog”，无人操作的界面会因此卡住，桥接已自动取消它，对应操作没有完成。不要在脚本里打开需要人操作的对话框；导出和保存的参数通过 InfoObject 传入。"
+      ],
+      "dialogs": [
+        {
+          "title": "QProgressDialog",
+          "class": "QProgressDialog"
+        }
+      ]
+    },
+    {
+      "job": "1794535131751-tanuki_join_finish-dc9fe2a9.json",
+      "error": null,
+      "hints": [
+        "Krita 弹出了对话框“QProgressDialog”，无人操作的界面会因此卡住，桥接已自动取消它，对应操作没有完成。不要在脚本里打开需要人操作的对话框；导出和保存的参数通过 InfoObject 传入。"
+      ],
+      "dialogs": [
+        {
+          "title": "QProgressDialog",
+          "class": "QProgressDialog"
+        }
+      ]
+    },
+    {
+      "job": "1794536272917-tanuki_join_finish-9a17aa36.json",
+      "error": null,
+      "hints": [
+        "Krita 弹出了对话框“QProgressDialog”，无人操作的界面会因此卡住，桥接已自动取消它，对应操作没有完成。不要在脚本里打开需要人操作的对话框；导出和保存的参数通过 InfoObject 传入。"
+      ],
+      "dialogs": [
+        {
+          "title": "QProgressDialog",
+          "class": "QProgressDialog"
+        }
+      ]
+    },
+    {
+      "job": "1794536432258-tanuki_join_finish-1f0124b4.json",
+      "error": null,
+      "hints": [
+        "Krita 弹出了对话框“QProgressDialog”，无人操作的界面会因此卡住，桥接已自动取消它，对应操作没有完成。不要在脚本里打开需要人操作的对话框；导出和保存的参数通过 InfoObject 传入。"
+      ],
+      "dialogs": [
+        {
+          "title": "QProgressDialog",
+          "class": "QProgressDialog"
+        }
+      ]
+    },
+    {
+      "job": "1794531361061-final_audit_batch-9688b6d0.json",
+      "error": "Traceback (most recent call last):\n  File \"/tmp/astra-krita-14IEg0/share/krita/pykrita/astra_bridge/__init__.py\", line 187, in run\n    exec(code, scope)\n    ~~~~^^^^^^^^^^^^^\n  File \"/tmp/astra-krita-14IEg0/bridge/jobs/1794531361061-final_audit_batch-9688b6d0.py\", line 10, in <module>\n    export(row['exposed'])\n    ~~~~~~^^^^^^^^^^^^^^^^\n  File \"/tmp/astra-krita-14IEg0/bridge/jobs/1794526157611-init-a063fec9.py\", line 15, in export\nAssertionError\n",
+      "hints": [],
+      "dialogs": [],
+      "evidence_source": "Earlier tool result retained in this task; old bridge directory removed after process replacement."
+    }
+  ],
+  "recoveries": [
+    {
+      "issue": "min() iterable argument is empty",
+      "resolution": "Skip an empty neighboring-pixel sample list; rerun import and local three-view checks."
+    },
+    {
+      "issue": "Krita QMessageBox while sampled patches are pasted",
+      "resolution": "Selection.paste uses the selected patch original canvas position, sel.x(), sel.y(); local ownership and three views were rechecked."
+    },
+    {
+      "issue": "export AssertionError",
+      "resolution": "Keep live progress, set batchmode and InfoObject alpha=True, retry export immediately. All 86 final layer views and final reopened PNG exported successfully."
+    },
+    {
+      "issue": "AttributeError: 'Node' object has no attribute 'x'",
+      "resolution": "Remove unsupported position getter from the verification script; canvas pixel hashes and bounds still verify placement. No save or painting occurred before this failure."
+    },
+    {
+      "issue": "QProgressDialog automatic cancellation during save; saveAs return alone is insufficient",
+      "resolution": "Independent checkpoints completed with bridge ok:true. Earlier saves sometimes reported QProgressDialog; the final latest saveAs and real close/open both returned bridge ok:true and proved exact complete tree/paint/mask/projection equality. Formal PNG exported from that reopened document."
+    },
+    {
+      "issue": "NameError: name 'loadmask' is not defined; then KeyError: 'r3', Recover Files – Krita dialog cancelled, process/session restarted",
+      "resolution": "The failed attempt ended before putting any painting into the document. Reopened the already verified formal KRA in the replacement Krita, rebuilt only session helpers, then completed N01 again. Latest non-D12 paint/mask hashes match all earlier repaired content. Latest formal saveAs and real reopen returned ok:true."
+    }
+  ],
+  "image_fallbacks": [
+    {
+      "original": "raster-layering/step01/workspace/repair02/audit-sheet-10.png",
+      "action": "Previous blocked mode was not repeated; current final layer audit supersedes the former sheet."
+    },
+    {
+      "original": "raster-layering/step01/repair-evidence/repair-02/current/R13-strap/check-sheet.png",
+      "action": "Small local shoulder/outer-strap views, grayscale where required, inspected successfully."
+    },
+    {
+      "original": "raster-layering/step01/workspace/repair03/R13-gray-small.png",
+      "action": "Read only the outer strap and shoulder-specific local crops; no repeated full grayscale sheet."
+    },
+    {
+      "original": "raster-layering/step01/repair-evidence/repair-02/current/union-pink-wrist/final-union-check.png",
+      "action": "Three separate grayscale crops (977,966,55,76), fourfold, inspected successfully. Archived copies final-solo-gray-local.png / final-exposed-gray-local.png / final-assembled-gray-local.png."
+    }
+  ],
+  "unrecovered_faults": [],
+  "final_save_bridge_ok": true,
+  "final_reopen_bridge_ok": true
+}

@@ -1,0 +1,2340 @@
+[
+  {
+    "name": "arm-own-original-edge-local",
+    "jobs": [
+      {
+        "id": "arms/arm_left/upper_arm",
+        "sample": "part-layering/references/base-subject.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__upper_arm-own-edge-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__upper_arm-old-exterior-clear.png",
+        "issue": "R3",
+        "box": [
+          610,
+          571,
+          205,
+          315
+        ]
+      },
+      {
+        "id": "arms/arm_left/forearm",
+        "sample": "part-layering/references/base-subject.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__forearm-own-edge-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__forearm-old-exterior-clear.png",
+        "issue": "R5",
+        "box": [
+          666,
+          720,
+          80,
+          70
+        ]
+      },
+      {
+        "id": "arms/arm_right/upper_arm",
+        "sample": "part-layering/references/base-subject.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__upper_arm-own-edge-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__upper_arm-old-exterior-clear.png",
+        "issue": "R4",
+        "box": [
+          365,
+          705,
+          80,
+          75
+        ]
+      },
+      {
+        "id": "arms/arm_right/forearm",
+        "sample": "part-layering/references/base-subject.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__forearm-own-edge-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__forearm-old-exterior-clear.png",
+        "issue": "R4",
+        "box": [
+          365,
+          705,
+          80,
+          85
+        ]
+      }
+    ],
+    "referenceSelections": [
+      {
+        "id": "arms/arm_left/upper_arm",
+        "windows": [
+          [
+            581,
+            758,
+            "right"
+          ]
+        ],
+        "ownWarmEdgeSelectedPixels": 2453,
+        "oldTrueExteriorPixels": 0,
+        "forearmSelectionExcludesUpperArm": false
+      },
+      {
+        "id": "arms/arm_left/forearm",
+        "windows": [
+          [
+            742,
+            806,
+            "right"
+          ],
+          [
+            755,
+            806,
+            "left"
+          ]
+        ],
+        "ownWarmEdgeSelectedPixels": 1007,
+        "oldTrueExteriorPixels": 71,
+        "forearmSelectionExcludesUpperArm": true
+      },
+      {
+        "id": "arms/arm_right/upper_arm",
+        "windows": [
+          [
+            710,
+            769,
+            "left"
+          ],
+          [
+            718,
+            769,
+            "right"
+          ]
+        ],
+        "ownWarmEdgeSelectedPixels": 1445,
+        "oldTrueExteriorPixels": 2,
+        "forearmSelectionExcludesUpperArm": false
+      },
+      {
+        "id": "arms/arm_right/forearm",
+        "windows": [
+          [
+            725,
+            790,
+            "left"
+          ],
+          [
+            739,
+            790,
+            "right"
+          ]
+        ],
+        "ownWarmEdgeSelectedPixels": 710,
+        "oldTrueExteriorPixels": 174,
+        "forearmSelectionExcludesUpperArm": true
+      }
+    ],
+    "reason": "Original same-part narrow contour sampling in Krita; warm-only own edge windows exclude clothing/background/other upper part. Clear only original transparent exterior. Preserve all existing generated arm interior and complete hidden caps."
+  },
+  {
+    "name": "right-elbow-own-inner-edge",
+    "jobs": [
+      {
+        "id": "arms/arm_left/upper_arm",
+        "sample": "part-layering/references/base-subject.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__upper_arm-inner-edge-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__upper_arm-inner-exterior-clear.png",
+        "issue": "R5",
+        "box": [
+          666,
+          720,
+          80,
+          70
+        ],
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                679,
+                765.9325636461294
+              ],
+              [
+                "L",
+                680,
+                766.1808333202619
+              ],
+              [
+                "L",
+                681,
+                766.3865465642925
+              ],
+              [
+                "L",
+                682,
+                766.385261328576
+              ],
+              [
+                "L",
+                683,
+                766.1648846615581
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              250,
+              200,
+              182
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                683,
+                766.1648846615581
+              ],
+              [
+                "L",
+                684,
+                765.8337171640926
+              ],
+              [
+                "L",
+                685,
+                765.5988464820368
+              ],
+              [
+                "L",
+                686,
+                765.5159486587038
+              ],
+              [
+                "L",
+                687,
+                765.5013417050329
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              250,
+              201,
+              184
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                687,
+                765.5013417050329
+              ],
+              [
+                "L",
+                688,
+                765.5000564693164
+              ],
+              [
+                "L",
+                689,
+                765.5
+              ],
+              [
+                "L",
+                690,
+                765.5
+              ],
+              [
+                "L",
+                691,
+                765.5
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              219,
+              202
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                691,
+                765.5
+              ],
+              [
+                "L",
+                692,
+                765.5
+              ],
+              [
+                "L",
+                693,
+                765.5
+              ],
+              [
+                "L",
+                694,
+                765.5
+              ],
+              [
+                "L",
+                695,
+                765.5
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              226,
+              208
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                695,
+                765.5
+              ],
+              [
+                "L",
+                696,
+                765.5
+              ],
+              [
+                "L",
+                697,
+                765.5
+              ],
+              [
+                "L",
+                698,
+                765.5
+              ],
+              [
+                "L",
+                699,
+                765.4999435306836
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              226,
+              207
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                699,
+                765.4999435306836
+              ],
+              [
+                "L",
+                700,
+                765.498658294967
+              ],
+              [
+                "L",
+                701,
+                765.4840513412962
+              ],
+              [
+                "L",
+                702,
+                765.4011535179632
+              ],
+              [
+                "L",
+                703,
+                765.166226366591
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              224,
+              207
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                703,
+                765.166226366591
+              ],
+              [
+                "L",
+                704,
+                764.833773633409
+              ],
+              [
+                "L",
+                705,
+                764.5987900127204
+              ],
+              [
+                "L",
+                706,
+                764.5146069536708
+              ],
+              [
+                "L",
+                707,
+                764.4853930463292
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              224,
+              208
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                707,
+                764.4853930463292
+              ],
+              [
+                "L",
+                708,
+                764.4012099872796
+              ],
+              [
+                "L",
+                709,
+                764.1661698972747
+              ],
+              [
+                "L",
+                710,
+                763.832431928376
+              ],
+              [
+                "L",
+                711,
+                763.582897823333
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              225,
+              208
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                711,
+                763.582897823333
+              ],
+              [
+                "L",
+                712,
+                763.4170457073507
+              ],
+              [
+                "L",
+                713,
+                763.166226366591
+              ],
+              [
+                "L",
+                714,
+                762.8178249747052
+              ],
+              [
+                "L",
+                715,
+                762.498658294967
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              224,
+              207
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                715,
+                762.498658294967
+              ],
+              [
+                "L",
+                716,
+                762.166226366591
+              ],
+              [
+                "L",
+                717,
+                761.7362688564052
+              ],
+              [
+                "L",
+                718,
+                761.2651293179442
+              ],
+              [
+                "L",
+                719,
+                760.8496658227964
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              224,
+              208
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                719,
+                760.8496658227964
+              ],
+              [
+                "L",
+                720,
+                760.5988464820368
+              ],
+              [
+                "L",
+                721,
+                760.5
+              ],
+              [
+                "L",
+                722,
+                760.4011535179633
+              ],
+              [
+                "L",
+                723,
+                760.1503341772037
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              250,
+              226,
+              209
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                723,
+                760.1503341772037
+              ],
+              [
+                "L",
+                724,
+                759.7348706820558
+              ],
+              [
+                "L",
+                725,
+                759.2637311435947
+              ],
+              [
+                "L",
+                726,
+                758.8337171640925
+              ],
+              [
+                "L",
+                727,
+                758.4999435306836
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              250,
+              225,
+              209
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                727,
+                758.4999435306836
+              ],
+              [
+                "L",
+                728,
+                758.1649411308745
+              ],
+              [
+                "L",
+                729,
+                757.7202637283851
+              ],
+              [
+                "L",
+                730,
+                757.1648846615581
+              ],
+              [
+                "L",
+                731,
+                756.4986582949671
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              250,
+              227,
+              210
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                731,
+                756.4986582949671
+              ],
+              [
+                "L",
+                732,
+                755.8191102104219
+              ],
+              [
+                "L",
+                733,
+                755.1808333202619
+              ],
+              [
+                "L",
+                734,
+                754.4999435306836
+              ],
+              [
+                "L",
+                735,
+                753.8177685053888
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              249,
+              228,
+              210
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                735,
+                753.8177685053888
+              ],
+              [
+                "L",
+                736,
+                753.1635994258414
+              ],
+              [
+                "L",
+                737,
+                752.3866595029253
+              ],
+              [
+                "L",
+                738,
+                751.405291571695
+              ],
+              [
+                "L",
+                739,
+                750.3143734684047
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              190,
+              140,
+              125
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                739,
+                750.3143734684047
+              ],
+              [
+                "L",
+                740,
+                749.498723909718
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              145,
+              70,
+              60
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          }
+        ],
+        "alphaLocked": true
+      }
+    ],
+    "referenceSelections": [
+      {
+        "id": "arms/arm_left/upper_arm",
+        "windows": [
+          [
+            724,
+            778,
+            "left"
+          ]
+        ],
+        "ownWarmEdgeSelectedPixels": 470,
+        "oldTrueExteriorPixels": 0,
+        "forearmSelectionExcludesUpperArm": false
+      }
+    ],
+    "reason": "Original same-part narrow contour sampling in Krita; warm-only own edge windows exclude clothing/background/other upper part. Clear only original transparent exterior. Preserve all existing generated arm interior and complete hidden caps. The upper elbow cap dirty partial-alpha red edge is repainted natively while alpha-locked, using its own adjacent same-column colors, preserving its own volume gradient and all existing cap alpha."
+  },
+  {
+    "name": "right-elbow-cap-own-color-clean",
+    "jobs": [
+      {
+        "id": "arms/arm_left/upper_arm",
+        "import": "raster-layering/step01/workspace/repair-next5/arm-own-original-edge-local/arms__arm_left__upper_arm-after.png",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                687,
+                765.5013417050329
+              ],
+              [
+                "L",
+                688,
+                765.5000564693164
+              ],
+              [
+                "L",
+                689,
+                765.5
+              ],
+              [
+                "L",
+                690,
+                765.5
+              ],
+              [
+                "L",
+                691,
+                765.5
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              219,
+              202
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                691,
+                765.5
+              ],
+              [
+                "L",
+                692,
+                765.5
+              ],
+              [
+                "L",
+                693,
+                765.5
+              ],
+              [
+                "L",
+                694,
+                765.5
+              ],
+              [
+                "L",
+                695,
+                765.5
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              226,
+              208
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                695,
+                765.5
+              ],
+              [
+                "L",
+                696,
+                765.5
+              ],
+              [
+                "L",
+                697,
+                765.5
+              ],
+              [
+                "L",
+                698,
+                765.5
+              ],
+              [
+                "L",
+                699,
+                765.4999435306836
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              226,
+              207
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                699,
+                765.4999435306836
+              ],
+              [
+                "L",
+                700,
+                765.498658294967
+              ],
+              [
+                "L",
+                701,
+                765.4840513412962
+              ],
+              [
+                "L",
+                702,
+                765.4011535179632
+              ],
+              [
+                "L",
+                703,
+                765.166226366591
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              224,
+              207
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                703,
+                765.166226366591
+              ],
+              [
+                "L",
+                704,
+                764.833773633409
+              ],
+              [
+                "L",
+                705,
+                764.5987900127204
+              ],
+              [
+                "L",
+                706,
+                764.5146069536708
+              ],
+              [
+                "L",
+                707,
+                764.4853930463292
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              224,
+              208
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                707,
+                764.4853930463292
+              ],
+              [
+                "L",
+                708,
+                764.4012099872796
+              ],
+              [
+                "L",
+                709,
+                764.1661698972747
+              ],
+              [
+                "L",
+                710,
+                763.832431928376
+              ],
+              [
+                "L",
+                711,
+                763.582897823333
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              225,
+              208
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                711,
+                763.582897823333
+              ],
+              [
+                "L",
+                712,
+                763.4170457073507
+              ],
+              [
+                "L",
+                713,
+                763.166226366591
+              ],
+              [
+                "L",
+                714,
+                762.8178249747052
+              ],
+              [
+                "L",
+                715,
+                762.498658294967
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              224,
+              207
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                715,
+                762.498658294967
+              ],
+              [
+                "L",
+                716,
+                762.166226366591
+              ],
+              [
+                "L",
+                717,
+                761.7362688564052
+              ],
+              [
+                "L",
+                718,
+                761.2651293179442
+              ],
+              [
+                "L",
+                719,
+                760.8496658227964
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              251,
+              224,
+              208
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                719,
+                760.8496658227964
+              ],
+              [
+                "L",
+                720,
+                760.5988464820368
+              ],
+              [
+                "L",
+                721,
+                760.5
+              ],
+              [
+                "L",
+                722,
+                760.4011535179633
+              ],
+              [
+                "L",
+                723,
+                760.1503341772037
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              250,
+              226,
+              209
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                723,
+                760.1503341772037
+              ],
+              [
+                "L",
+                724,
+                759.7348706820558
+              ],
+              [
+                "L",
+                725,
+                759.2637311435947
+              ],
+              [
+                "L",
+                726,
+                758.8337171640925
+              ],
+              [
+                "L",
+                727,
+                758.4999435306836
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              250,
+              225,
+              209
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                727,
+                758.4999435306836
+              ],
+              [
+                "L",
+                728,
+                758.1649411308745
+              ],
+              [
+                "L",
+                729,
+                757.7202637283851
+              ],
+              [
+                "L",
+                730,
+                757.1648846615581
+              ],
+              [
+                "L",
+                731,
+                756.4986582949671
+              ]
+            ],
+            "size": 4.8,
+            "color": [
+              250,
+              227,
+              210
+            ],
+            "preset": "b) Basic-5 Size",
+            "opacity": 1,
+            "flow": 1
+          }
+        ],
+        "alphaLocked": true,
+        "issue": "R5",
+        "box": [
+          666,
+          720,
+          80,
+          70
+        ]
+      }
+    ],
+    "reason": "Restore accepted original own edge local patch. Reject the inner-edge sample and cap-end brown strokes that created protrusions. Repaint only the dirty partial-alpha skin edge x687–731 using adjacent same-part same-column skin colors, alpha locked; preserve volume, cap alpha and outer warm contour."
+  },
+  {
+    "name": "right-forearm-own-junction-register",
+    "jobs": [
+      {
+        "id": "arms/arm_left/forearm",
+        "import": "raster-layering/step01/workspace/repair-next5/arms__arm_left__forearm-inner-junction-register.png",
+        "issue": "R5",
+        "box": [
+          666,
+          720,
+          80,
+          70
+        ]
+      }
+    ],
+    "reason": "Move only the own forearm inner contour outward up to 2.6px at elbow rows759–773, tapering to zero above742/below789; opposite contour fixed, full generated head and material retained. Correct an own narrow root outline under the partial-alpha upper cap, rather than masking it with another part."
+  },
+  {
+    "name": "right-elbow-own-native-continuity",
+    "jobs": [
+      {
+        "id": "arms/arm_left/forearm",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                671.6999999999999,
+                742
+              ],
+              [
+                "L",
+                671.6999999999999,
+                743
+              ],
+              [
+                "L",
+                671.6999707339397,
+                744
+              ],
+              [
+                "L",
+                671.6994865083278,
+                745
+              ],
+              [
+                "L",
+                671.6946764268325,
+                746
+              ],
+              [
+                "L",
+                671.6659898785315,
+                747
+              ],
+              [
+                "L",
+                671.5632768964596,
+                748
+              ],
+              [
+                "L",
+                671.3425089612076,
+                749
+              ],
+              [
+                "L",
+                671.0580337965246,
+                750
+              ],
+              [
+                "L",
+                670.8420466767077,
+                751
+              ],
+              [
+                "L",
+                670.7680202429367,
+                752
+              ],
+              [
+                "L",
+                670.8420466767077,
+                753
+              ],
+              [
+                "L",
+                671.0580337965246,
+                754
+              ],
+              [
+                "L",
+                671.3425382272678,
+                755
+              ],
+              [
+                "L",
+                671.5638196541919,
+                756
+              ],
+              [
+                "L",
+                671.6718269433711,
+                757
+              ],
+              [
+                "L",
+                671.7340101214684,
+                758
+              ],
+              [
+                "L",
+                671.8702197333365,
+                759
+              ],
+              [
+                "L",
+                672.1942434083928,
+                760
+              ],
+              [
+                "L",
+                672.700513491672,
+                761
+              ],
+              [
+                "L",
+                673.2111094308347,
+                762
+              ],
+              [
+                "L",
+                673.5637903881318,
+                763
+              ],
+              [
+                "L",
+                673.8027129820719,
+                764
+              ],
+              [
+                "L",
+                674.0857226275416,
+                765
+              ],
+              [
+                "L",
+                674.4791735326276,
+                766
+              ],
+              [
+                "L",
+                674.9260915084193,
+                767
+              ],
+              [
+                "L",
+                675.3425089612075,
+                768
+              ],
+              [
+                "L",
+                675.6951899185046,
+                769
+              ],
+              [
+                "L",
+                676.0283202648793,
+                770
+              ],
+              [
+                "L",
+                676.3711662434482,
+                771
+              ],
+              [
+                "L",
+                676.7000292660601,
+                772
+              ],
+              [
+                "L",
+                677.0293179821635,
+                773
+              ],
+              [
+                "L",
+                677.3765190826759,
+                774
+              ],
+              [
+                "L",
+                677.7340101214684,
+                775
+              ],
+              [
+                "L",
+                678.1655568600919,
+                776
+              ],
+              [
+                "L",
+                678.729200039973,
+                777
+              ],
+              [
+                "L",
+                679.3473190427028,
+                778
+              ],
+              [
+                "L",
+                679.9213106929843,
+                779
+              ],
+              [
+                "L",
+                680.4457354349516,
+                780
+              ],
+              [
+                "L",
+                680.9548073227805,
+                781
+              ],
+              [
+                "L",
+                681.4839836141228,
+                782
+              ],
+              [
+                "L",
+                682.0862068531534,
+                783
+              ],
+              [
+                "L",
+                682.8027129820719,
+                784
+              ],
+              [
+                "L",
+                683.5632476303994,
+                785
+              ],
+              [
+                "L",
+                684.2052430999349,
+                786
+              ],
+              [
+                "L",
+                684.6606077732438,
+                787
+              ],
+              [
+                "L",
+                685.0171596268724,
+                788
+              ],
+              [
+                "L",
+                685.3312897910803,
+                789
+              ],
+              [
+                "L",
+                685.5286947511987,
+                790
+              ]
+            ],
+            "color": [
+              148,
+              68,
+              53
+            ],
+            "size": 2.8,
+            "opacity": 1
+          }
+        ],
+        "issue": "R5",
+        "box": [
+          666,
+          720,
+          80,
+          70
+        ]
+      },
+      {
+        "id": "arms/arm_left/upper_arm",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                677,
+                765.55
+              ],
+              [
+                "L",
+                678,
+                765.5500145267221
+              ],
+              [
+                "L",
+                679,
+                765.5554091045323
+              ]
+            ],
+            "color": [
+              232,
+              166,
+              151
+            ],
+            "size": 2.6,
+            "opacity": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                679,
+                765.5554091045323
+              ],
+              [
+                "L",
+                680,
+                765.7432678258322
+              ],
+              [
+                "L",
+                681,
+                766.3567176474457
+              ]
+            ],
+            "color": [
+              249,
+              202,
+              181
+            ],
+            "size": 2.6,
+            "opacity": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                681,
+                766.3567176474457
+              ],
+              [
+                "L",
+                682,
+                766.5391817909353
+              ],
+              [
+                "L",
+                683,
+                766.3567176474457
+              ]
+            ],
+            "color": [
+              250,
+              198,
+              180
+            ],
+            "size": 2.6,
+            "opacity": 1
+          },
+          {
+            "path": [
+              [
+                "M",
+                683,
+                766.3567176474457
+              ],
+              [
+                "L",
+                684,
+                765.7432678258322
+              ],
+              [
+                "L",
+                685,
+                765.5554236312544
+              ]
+            ],
+            "color": [
+              250,
+              199,
+              182
+            ],
+            "size": 2.6,
+            "opacity": 1
+          }
+        ],
+        "issue": "R5",
+        "box": [
+          666,
+          720,
+          80,
+          70
+        ]
+      }
+    ],
+    "reason": "Reconnect own forearm inner outline along its registered contour, alpha locked. Extend the upper own cap tangent by a narrow 2.6px same-part skin stroke at x677–685, using its own adjacent skin palette, to cover its proper own joint end and remove a partial-alpha notch. No cross-part copy or cast shadow."
+  },
+  {
+    "name": "right-forearm-own-native-edge-smooth",
+    "jobs": [
+      {
+        "id": "arms/arm_left/forearm",
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                675.516368286444,
+                735
+              ],
+              [
+                "L",
+                674.6849258115813,
+                737
+              ],
+              [
+                "L",
+                673.9923553787755,
+                739
+              ],
+              [
+                "L",
+                673.4333978403096,
+                741
+              ],
+              [
+                "L",
+                673.0027940484644,
+                743
+              ],
+              [
+                "L",
+                672.6952848555225,
+                745
+              ],
+              [
+                "L",
+                672.505611113765,
+                747
+              ],
+              [
+                "L",
+                672.428513675474,
+                749
+              ],
+              [
+                "L",
+                672.4587333929313,
+                751
+              ],
+              [
+                "L",
+                672.5910111184187,
+                753
+              ],
+              [
+                "L",
+                672.8200877042179,
+                755
+              ],
+              [
+                "L",
+                673.1407040026108,
+                757
+              ],
+              [
+                "L",
+                673.5476008658792,
+                759
+              ],
+              [
+                "L",
+                674.0355191463049,
+                761
+              ],
+              [
+                "L",
+                674.5991996961694,
+                763
+              ],
+              [
+                "L",
+                675.233383367755,
+                765
+              ],
+              [
+                "L",
+                675.9328110133429,
+                767
+              ],
+              [
+                "L",
+                676.6922234852153,
+                769
+              ],
+              [
+                "L",
+                677.5063616356541,
+                771
+              ],
+              [
+                "L",
+                678.3699663169406,
+                773
+              ],
+              [
+                "L",
+                679.2777783813569,
+                775
+              ],
+              [
+                "L",
+                680.2245386811849,
+                777
+              ],
+              [
+                "L",
+                681.2049880687061,
+                779
+              ],
+              [
+                "L",
+                682.2138673962025,
+                781
+              ],
+              [
+                "L",
+                683.245917515956,
+                783
+              ],
+              [
+                "L",
+                684.2958792802482,
+                785
+              ],
+              [
+                "L",
+                685.3584935413606,
+                787
+              ],
+              [
+                "L",
+                686.4285011515756,
+                789
+              ],
+              [
+                "L",
+                687.5006429631748,
+                791
+              ],
+              [
+                "L",
+                688.5696598284397,
+                793
+              ],
+              [
+                "L",
+                689.6302925996523,
+                795
+              ],
+              [
+                "L",
+                690.6772821290944,
+                797
+              ],
+              [
+                "L",
+                691.7053692690478,
+                799
+              ]
+            ],
+            "color": [
+              148,
+              68,
+              53
+            ],
+            "size": 5,
+            "opacity": 1
+          }
+        ],
+        "clearAfterStroke": "raster-layering/step01/workspace/repair-next5/forearm-own-smooth-exterior-clear.png",
+        "issue": "R5",
+        "box": [
+          666,
+          720,
+          80,
+          80
+        ]
+      }
+    ],
+    "reason": "Smooth the own inner forearm silhouette by less than about 1px after registration. Draw continuous native own warm ink then clear only its true outer side with an antialiased control selection; no foreign pixels, full cap/material preserved."
+  },
+  {
+    "name": "right-elbow-final-own-cap",
+    "jobs": [
+      {
+        "id": "arms/arm_left/upper_arm",
+        "import": "raster-layering/step01/workspace/repair-next5/right-elbow-cap-own-color-clean/arms__arm_left__upper_arm-after.png",
+        "issue": "R5",
+        "box": [
+          666,
+          720,
+          80,
+          80
+        ]
+      }
+    ],
+    "reason": "Reject the upper cap expansion because it created a pale step. Keep the accepted own-color-clean upper cap and the now corrected own forearm geometry/continuous outline. No cover patch."
+  },
+  {
+    "name": "hand-joint-own-visible-reference-local",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__palm-owned-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__palm-partial-hard-replace.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ]
+      },
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__index_finger-owned-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__index_finger-partial-hard-replace.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ]
+      },
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__thumb-owned-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__thumb-partial-hard-replace.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ]
+      },
+      {
+        "id": "arms/arm_left/hand/palm",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__palm-owned-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__palm-partial-hard-replace.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ]
+      },
+      {
+        "id": "arms/arm_left/hand/index_finger",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__index_finger-owned-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__index_finger-partial-hard-replace.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ]
+      },
+      {
+        "id": "arms/arm_left/hand/thumb",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__thumb-owned-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__thumb-partial-hard-replace.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ]
+      }
+    ],
+    "sourceOwnership": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "ownedSelectedPixels": 1738,
+        "partialAlphaReplacedPixels": 281,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_right__hand__palm_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "ownedSelectedPixels": 1534,
+        "partialAlphaReplacedPixels": 87,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_right__hand__index_finger_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "ownedSelectedPixels": 1275,
+        "partialAlphaReplacedPixels": 110,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_right__hand__thumb_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_left/hand/palm",
+        "ownedSelectedPixels": 1282,
+        "partialAlphaReplacedPixels": 321,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_left__hand__palm_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_left/hand/index_finger",
+        "ownedSelectedPixels": 1261,
+        "partialAlphaReplacedPixels": 176,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_left__hand__index_finger_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_left/hand/thumb",
+        "ownedSelectedPixels": 618,
+        "partialAlphaReplacedPixels": 81,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_left__hand__thumb_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      }
+    ],
+    "reason": "Krita native local sampling only inside each original own visible SVG mask (alpha>.94), warm foreground excludes holes/background. Preserve full generated hidden roots. Hard-replace only selected partial-alpha original own pixels with identical own alpha; paste feather is only on retained opaque interior, never feather-clear and feather-paste the same area."
+  },
+  {
+    "name": "hand-owned-interior-joint-local",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__palm-owned-interior-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__palm-interior-partial-hard-replace.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_right__hand__palm.png"
+      },
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__index_finger-owned-interior-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__index_finger-interior-partial-hard-replace.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_right__hand__index_finger.png"
+      },
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__thumb-owned-interior-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__thumb-interior-partial-hard-replace.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_right__hand__thumb.png"
+      },
+      {
+        "id": "arms/arm_left/hand/palm",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__palm-owned-interior-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__palm-interior-partial-hard-replace.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_left__hand__palm.png"
+      },
+      {
+        "id": "arms/arm_left/hand/index_finger",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__index_finger-owned-interior-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__index_finger-interior-partial-hard-replace.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_left__hand__index_finger.png"
+      },
+      {
+        "id": "arms/arm_left/hand/thumb",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__thumb-owned-interior-joint-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__thumb-interior-partial-hard-replace.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_left__hand__thumb.png"
+      }
+    ],
+    "sourceOwnership": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "ownedSelectedPixels": 1738,
+        "partialAlphaReplacedPixels": 281,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_right__hand__palm_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "ownedSelectedPixels": 1534,
+        "partialAlphaReplacedPixels": 87,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_right__hand__index_finger_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "ownedSelectedPixels": 1275,
+        "partialAlphaReplacedPixels": 110,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_right__hand__thumb_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_left/hand/palm",
+        "ownedSelectedPixels": 1282,
+        "partialAlphaReplacedPixels": 321,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_left__hand__palm_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_left/hand/index_finger",
+        "ownedSelectedPixels": 1261,
+        "partialAlphaReplacedPixels": 176,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_left__hand__index_finger_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_left/hand/thumb",
+        "ownedSelectedPixels": 618,
+        "partialAlphaReplacedPixels": 81,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_left__hand__thumb_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      }
+    ],
+    "reason": "Restore before-batch hand paints, reject the outer-reference-edge trial that copied white-matted edge colors. Copy only warm true original hand interior at least3px from background/holes, and each original own visible mask alpha>.94. Hidden generation, contours and complete roots retained. Partial alpha is hard replaced only where source ownership and true interior are certain."
+  },
+  {
+    "name": "hand-owned-joint-soft-transition",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__palm-owned-joint-soft-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__palm-owned-joint-soft-hard-replace.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_right__hand__palm.png"
+      },
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__index_finger-owned-joint-soft-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__index_finger-owned-joint-soft-hard-replace.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_right__hand__index_finger.png"
+      },
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__thumb-owned-joint-soft-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__thumb-owned-joint-soft-hard-replace.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_right__hand__thumb.png"
+      },
+      {
+        "id": "arms/arm_left/hand/palm",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__palm-owned-joint-soft-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__palm-owned-joint-soft-hard-replace.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_left__hand__palm.png"
+      },
+      {
+        "id": "arms/arm_left/hand/index_finger",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__index_finger-owned-joint-soft-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__index_finger-owned-joint-soft-hard-replace.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_left__hand__index_finger.png"
+      },
+      {
+        "id": "arms/arm_left/hand/thumb",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__thumb-owned-joint-soft-selection.png",
+        "clearBeforeSample": "raster-layering/step01/workspace/repair-next5/arms__arm_left__hand__thumb-owned-joint-soft-hard-replace.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ],
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_left__hand__thumb.png"
+      }
+    ],
+    "sourceOwnership": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "ownedSelectedPixels": 1738,
+        "partialAlphaReplacedPixels": 281,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_right__hand__palm_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "ownedSelectedPixels": 1534,
+        "partialAlphaReplacedPixels": 87,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_right__hand__index_finger_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "ownedSelectedPixels": 1275,
+        "partialAlphaReplacedPixels": 110,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_right__hand__thumb_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_left/hand/palm",
+        "ownedSelectedPixels": 1282,
+        "partialAlphaReplacedPixels": 321,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_left__hand__palm_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_left/hand/index_finger",
+        "ownedSelectedPixels": 1261,
+        "partialAlphaReplacedPixels": 176,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_left__hand__index_finger_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      },
+      {
+        "id": "arms/arm_left/hand/thumb",
+        "ownedSelectedPixels": 618,
+        "partialAlphaReplacedPixels": 81,
+        "originalVisibleMask": "raster-layering/step01/workspace/masks/arms__arm_left__hand__thumb_visible.png",
+        "hiddenGeneratedCompletionUntouched": true
+      }
+    ],
+    "reason": "Restore before-batch hand paints, reject the outer-reference-edge trial that copied white-matted edge colors. Copy only warm true original hand interior at least3px from background/holes, and each original own visible mask alpha>.94. Hidden generation, contours and complete roots retained. Partial alpha is hard replaced only where source ownership and true interior are certain. Add a 5px inward fade inside each own visible SVG mask to prevent an internal hard reference-patch boundary. Partial-alpha edge is left generated unless fully inside the owned mask; hidden completions stay unchanged."
+  },
+  {
+    "name": "hand-original-generated-base-restored",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_right__hand__palm.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ]
+      },
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_right__hand__index_finger.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ]
+      },
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_right__hand__thumb.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          49
+        ]
+      },
+      {
+        "id": "arms/arm_left/hand/palm",
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_left__hand__palm.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ]
+      },
+      {
+        "id": "arms/arm_left/hand/index_finger",
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_left__hand__index_finger.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ]
+      },
+      {
+        "id": "arms/arm_left/hand/thumb",
+        "import": "raster-layering/step01/workspace/repair-next5/before/arms__arm_left__hand__thumb.png",
+        "issue": "R7",
+        "box": [
+          800,
+          889,
+          65,
+          60
+        ]
+      }
+    ],
+    "reason": "Reject all three broad hand reference-patch trials: white-matted edge colors and increased cap color contrast/hard boundaries. Restore the complete before-batch generated palm/index/thumb pixels for both hands, retaining independent nodes and all progress elsewhere."
+  },
+  {
+    "name": "left-hand-own-root-line-register",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "import": "raster-layering/step01/workspace/repair-next5/arms__arm_right__hand__index_finger-own-root-register.png",
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          65
+        ]
+      },
+      {
+        "id": "arms/arm_right/hand/palm",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "path": [
+              [
+                "M",
+                309,
+                911.7
+              ],
+              [
+                "C",
+                309.6,
+                913.2,
+                309.4,
+                914.6,
+                308.7,
+                915.8
+              ]
+            ],
+            "color": [
+              153,
+              63,
+              50
+            ],
+            "size": 2.8,
+            "opacity": 1
+          }
+        ],
+        "issue": "R6",
+        "box": [
+          245,
+          900,
+          107,
+          65
+        ]
+      }
+    ],
+    "reason": "Preserve before-batch generated hand paints. Register only the own index cap tip locally around(302,918), peak movement +4px/−3px, compact radius24px; all own generated gradient and complete cap retained. Reconnect only the palm own short tiger-mouth crease in native warm ink, alpha locked. Other four hand paints restored exactly."
+  }
+]

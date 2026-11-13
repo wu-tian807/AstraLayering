@@ -1,0 +1,38 @@
+{
+  "image": "raster-layering/step01/review-evidence-01/inspection/isolated-disabled/face__mouth__tongue.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-01/annotations/R33/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/61ce7280-697e-4619-897a-1e1ad81cc077/regions.json",
+  "regions": [
+    {
+      "id": "R33",
+      "bounds": [
+        501,
+        469,
+        60,
+        54
+      ],
+      "layers": [
+        "50 | face/mouth/tongue"
+      ],
+      "description": "舌面独显的左右及下缘有多段直切边、角点和碎边，粉红舌面的外形与原图饱满圆弧不一致；需修顺本件色阶及透明边缘，唇线仍归上下唇。",
+      "crop": [
+        487,
+        455,
+        88,
+        82
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/R33/R33-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/R33/R33-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/R33/R33-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。",
+  "source_tool_manifest": "raster-layering/step01/workspace/review-regions/61ce7280-697e-4619-897a-1e1ad81cc077/regions.json"
+}

@@ -1,0 +1,1110 @@
+{
+  "conclusion": "已修复",
+  "review": "raster-layering/step01/review-02.md",
+  "reviewIssueCount": 16,
+  "passedReviewIssueCount": 16,
+  "items": [
+    {
+      "id": "R1",
+      "title": "画面右袜腿内侧折点",
+      "status": "repaired_self_checked",
+      "bounds": [
+        579,
+        1010,
+        31,
+        51
+      ],
+      "actualPartIDs": [
+        "legs/leg_left/leg"
+      ],
+      "actualLayers": [
+        {
+          "id": "legs/leg_left/leg",
+          "fragment": "full",
+          "layerName": "04 | legs/leg_left/leg",
+          "layerUUID": "{874466af-a8fd-455a-aa1a-4394f2c00e6a}",
+          "level": 4,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "1b2e34fec118effa6b3e055487bfd482e4894bf355dba0c691266c292f76d09f",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "按standard裙下可见袜侧及本腿自身上下切向，局部横向配准已有生成袜面与深蓝描边；边缘附近等量移动并渐入渐出，保留体积渐变和完整足形。",
+      "observation": "短鼓点、折线消除；独显连续，正常合成无突点。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R1.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/legs__leg_left__leg-whole.png",
+        "actualExports": {
+          "id": "legs/leg_left/leg",
+          "layers": [
+            {
+              "name": "04 | legs/leg_left/leg",
+              "uuid": "{874466af-a8fd-455a-aa1a-4394f2c00e6a}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/legs__leg_left__leg.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_left__leg-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_left__leg-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_left__leg-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_left__leg-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R2",
+      "title": "画面左袜腿膝下外侧凹口",
+      "status": "repaired_self_checked",
+      "bounds": [
+        414,
+        1009,
+        30,
+        48
+      ],
+      "actualPartIDs": [
+        "legs/leg_right/leg"
+      ],
+      "actualLayers": [
+        {
+          "id": "legs/leg_right/leg",
+          "fragment": "full",
+          "layerName": "05 | legs/leg_right/leg",
+          "layerUUID": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}",
+          "level": 5,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "f9c9b3a2ddbb4453497f195bd3612b2c05df070f1127991a8f22f7e3f73ea8ea",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "只在05本件边缘局部配准，把膝下凹口接成连续转弯；保留原袜面、线宽及隐藏脚形。R3最终返修后另复看此处。",
+      "observation": "膝下外侧凹口和角消除；R3后本段没有回退。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R2.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/legs__leg_right__leg-whole.png",
+        "actualExports": {
+          "id": "legs/leg_right/leg",
+          "layers": [
+            {
+              "name": "05 | legs/leg_right/leg",
+              "uuid": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/legs__leg_right__leg.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R3",
+      "title": "画面左袜腿内侧突变短段",
+      "status": "repaired_self_checked",
+      "bounds": [
+        522,
+        988,
+        25,
+        43
+      ],
+      "actualPartIDs": [
+        "legs/leg_right/leg"
+      ],
+      "actualLayers": [
+        {
+          "id": "legs/leg_right/leg",
+          "fragment": "full",
+          "layerName": "05 | legs/leg_right/leg",
+          "layerUUID": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}",
+          "level": 5,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "f9c9b3a2ddbb4453497f195bd3612b2c05df070f1127991a8f22f7e3f73ea8ea",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "以裙下原图可见弧与完整本腿自身上下切向约束局部连续弧；撤回扩大配准引入的尖点/横线，恢复含有效R2的本件来源再配准，不从裙摆上方参考外推。",
+      "observation": "短竖段、折点消除；完整腿也无上方尖点或横线。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R3.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/legs__leg_right__leg-whole.png",
+        "actualExports": {
+          "id": "legs/leg_right/leg",
+          "layers": [
+            {
+              "name": "05 | legs/leg_right/leg",
+              "uuid": "{5af994ba-f02d-41ea-a44a-f44ddab7d654}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/legs__leg_right__leg.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/legs__leg_right__leg-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R4",
+      "title": "画面左肘灰色短枝",
+      "status": "repaired_self_checked",
+      "bounds": [
+        435,
+        708,
+        26,
+        36
+      ],
+      "actualPartIDs": [
+        "arms/arm_right/upper_arm",
+        "arms/arm_right/forearm"
+      ],
+      "actualLayers": [
+        {
+          "id": "arms/arm_right/forearm",
+          "fragment": "full",
+          "layerName": "23 | arms/arm_right/forearm",
+          "layerUUID": "{3beed03f-949d-4f3a-9353-13e87e8989bd}",
+          "level": 23,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "409612efd3c1e88be439cbfd6e405fdfcd4ff4c797bac807eef22c7b90584514",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": false
+        },
+        {
+          "id": "arms/arm_right/upper_arm",
+          "fragment": "full",
+          "layerName": "25 | arms/arm_right/upper_arm",
+          "layerUUID": "{decfd947-28d2-4860-8930-4dfed8188037}",
+          "level": 25,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "4dfc54ea11fcd11cd759cb7c178d2e47a0cd08ac401feeb2c1a37559dc6d4ee8",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/base-subject.png",
+      "method": "两次失败清理完整撤回；恢复25本件初始皮肤后，原生选区仅清实际外缘外灰片，再用暖棕3.1px笔触顺自身臂弧续线。23前臂未改。",
+      "observation": "灰枝与误清透明洞均消除；合上23后关节接边顺，25不含23像素。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R4.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/arms__arm_right__upper_arm-whole.png",
+        "actualExports": {
+          "id": "arms/arm_right/upper_arm",
+          "layers": [
+            {
+              "name": "25 | arms/arm_right/upper_arm",
+              "uuid": "{decfd947-28d2-4860-8930-4dfed8188037}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/arms__arm_right__upper_arm.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/arms__arm_right__upper_arm-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/arms__arm_right__upper_arm-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/arms__arm_right__upper_arm-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/arms__arm_right__upper_arm-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R5",
+      "title": "食指中指接触裂缝",
+      "status": "repaired_self_checked",
+      "bounds": [
+        829,
+        929,
+        21,
+        41
+      ],
+      "actualPartIDs": [
+        "arms/arm_left/hand/middle_finger",
+        "arms/arm_left/hand/index_finger"
+      ],
+      "actualLayers": [
+        {
+          "id": "arms/arm_left/hand/middle_finger",
+          "fragment": "full",
+          "layerName": "14 | arms/arm_left/hand/middle_finger",
+          "layerUUID": "{77dd7450-bfed-474a-9430-874a4e35f190}",
+          "level": 14,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "37392248a81cdd6fa688ab8c827cf614a98d07c46635fc7b3d7c66d1807d709c",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        },
+        {
+          "id": "arms/arm_left/hand/index_finger",
+          "fragment": "full",
+          "layerName": "18 | arms/arm_left/hand/index_finger",
+          "layerUUID": "{36299159-6089-4cfe-ba16-b3c65ec98710}",
+          "level": 18,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "33a86e6190968fc9b2c2c28890336ef09c2fca62fdac8bd6f7ed8e1ff30ae936",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": false
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "仅把14中指自身接触侧皮肤及暗边向接触方向延续约2px；18食指、20掌面及后方指默认蒙版保留，按三个相关件组合复核。",
+      "observation": "默认状态背景细缝闭合；真实拇指空隙与指端分离保留，不靠后方指垫缝。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R5.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/arms__arm_left__hand__middle_finger-whole.png",
+        "actualExports": {
+          "id": "arms/arm_left/hand/middle_finger",
+          "layers": [
+            {
+              "name": "14 | arms/arm_left/hand/middle_finger",
+              "uuid": "{77dd7450-bfed-474a-9430-874a4e35f190}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/arms__arm_left__hand__middle_finger.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/arms__arm_left__hand__middle_finger-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/arms__arm_left__hand__middle_finger-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/arms__arm_left__hand__middle_finger-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/arms__arm_left__hand__middle_finger-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R6",
+      "title": "完整脸底右颊S形内凹",
+      "status": "repaired_self_checked",
+      "bounds": [
+        655,
+        448,
+        32,
+        53
+      ],
+      "actualPartIDs": [
+        "face/face_base"
+      ],
+      "actualLayers": [
+        {
+          "id": "face/face_base",
+          "fragment": "full",
+          "layerName": "34 | face/face_base",
+          "layerUUID": "{c3f39273-f952-456f-aa58-4cfd3ee4b101}",
+          "level": 34,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "12b211b1a77b8e54ad870e1578a4b4097436e3c670063859a70c1f325272ed1c",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "在34自己的皮肤、暖棕线与颊弧局部配准，依可见下颌与完整脸底切向接顺；隐藏发段依据本脸合理延续。",
+      "observation": "短促内凹回凸消除；完整脸底及默认露出颊弧均连续。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R6.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/face__face_base-whole.png",
+        "actualExports": {
+          "id": "face/face_base",
+          "layers": [
+            {
+              "name": "34 | face/face_base",
+              "uuid": "{c3f39273-f952-456f-aa58-4cfd3ee4b101}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__face_base.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/face__face_base-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__face_base-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/face__face_base-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__face_base-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R7",
+      "title": "耳外轮廓线细浅",
+      "status": "repaired_self_checked",
+      "bounds": [
+        731,
+        345,
+        43,
+        115
+      ],
+      "actualPartIDs": [
+        "face/ears/ear_left"
+      ],
+      "actualLayers": [
+        {
+          "id": "face/ears/ear_left",
+          "fragment": "full",
+          "layerName": "32 | face/ears/ear_left",
+          "layerUUID": "{2b674aab-ffe3-41d3-a0fa-55462a22040a}",
+          "level": 32,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "1ccbe7e4e7c9398696eac53100feb7d0e7d965f75cb1d6163875ea5683c4add0",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "沿32实际耳外弧用Krita原生深蓝黑5.8/4.2/2.8px笔触恢复线重，锁定自身alpha，转弯与下根逐渐收细；保留耳内暖面。",
+      "observation": "耳外弧深色收束恢复；耳形、内红色体积及高光保留，无头发投影。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R7.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/face__ears__ear_left-whole.png",
+        "actualExports": {
+          "id": "face/ears/ear_left",
+          "layers": [
+            {
+              "name": "32 | face/ears/ear_left",
+              "uuid": "{2b674aab-ffe3-41d3-a0fa-55462a22040a}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__ears__ear_left.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/face__ears__ear_left-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__ears__ear_left-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/face__ears__ear_left-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__ears__ear_left-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R8",
+      "title": "画面右虹膜浅色阶梯边",
+      "status": "repaired_self_checked",
+      "bounds": [
+        581,
+        330,
+        42,
+        25
+      ],
+      "actualPartIDs": [
+        "face/eyes/eye_left/iris"
+      ],
+      "actualLayers": [
+        {
+          "id": "face/eyes/eye_left/iris",
+          "fragment": "full",
+          "layerName": "38 | face/eyes/eye_left/iris",
+          "layerUUID": "{79ed3649-fddc-4bf8-b9fc-0267f7e9d4c1}",
+          "level": 38,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "1143405191ffc90ed7b0dce83982ef1badd53178f27bb7dcebb56fc3f44044f7",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "眼睛开口 left",
+              "maskUUID": "{ec448c7c-5c37-470a-b8b5-d3deeb129eea}",
+              "ownerName": "眼内开合 left",
+              "ownerUUID": "{94d3ca79-8e5c-4b9f-98d2-f5aa0b82bd09}"
+            }
+          ],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "38自身上弧原生深蓝笔触及alpha锁定融色；共享眼开口只在40自身抗锯齿内缘下增加约1px承接；最终原生清理完整上弧多余线头，保留虹膜体积。40/57.5均未重画。",
+      "observation": "虹膜与睫毛连续深蓝接触；完整上弧干净，眼内组开关均正常。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R8.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/face__eyes__eye_left__iris-whole.png",
+        "actualExports": {
+          "id": "face/eyes/eye_left/iris",
+          "layers": [
+            {
+              "name": "38 | face/eyes/eye_left/iris",
+              "uuid": "{79ed3649-fddc-4bf8-b9fc-0267f7e9d4c1}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_left__iris.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__iris-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__iris-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__iris-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__iris-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R9",
+      "title": "画面左虹膜浅灰细边",
+      "status": "repaired_self_checked",
+      "bounds": [
+        397,
+        370,
+        43,
+        26
+      ],
+      "actualPartIDs": [
+        "face/eyes/eye_right/iris"
+      ],
+      "actualLayers": [
+        {
+          "id": "face/eyes/eye_right/iris",
+          "fragment": "full",
+          "layerName": "43 | face/eyes/eye_right/iris",
+          "layerUUID": "{58cb7d99-1303-47b8-8317-5b18387cf4e3}",
+          "level": 43,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "27120875f301fd485f3a98c10595cc6e5d48287f774b53aaa4e2f20811e2dd43",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "眼睛开口 right",
+              "maskUUID": "{724c8473-73f7-446c-acd6-6af70e70b7df}",
+              "ownerName": "眼内开合 right",
+              "ownerUUID": "{f4505ea6-0e42-4b78-8c9e-e53184232b3d}"
+            }
+          ],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "43按本眼独立画深蓝上弧，保留独有渐变与青色下部；共享开口只在45自身内缘下增加约1px承接；最终清掉完整上弧外小线头。",
+      "observation": "浅灰接线消除；完整轮廓干净，未镜像另一眼或移动眼组。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R9.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/face__eyes__eye_right__iris-whole.png",
+        "actualExports": {
+          "id": "face/eyes/eye_right/iris",
+          "layers": [
+            {
+              "name": "43 | face/eyes/eye_right/iris",
+              "uuid": "{58cb7d99-1303-47b8-8317-5b18387cf4e3}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_right__iris.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__iris-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__iris-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__iris-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__iris-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R10",
+      "title": "画面右双眼皮体积不足",
+      "status": "repaired_self_checked",
+      "bounds": [
+        548,
+        309,
+        76,
+        40
+      ],
+      "actualPartIDs": [
+        "face/eyes/eye_left/eyelid_crease"
+      ],
+      "actualLayers": [
+        {
+          "id": "face/eyes/eye_left/eyelid_crease",
+          "fragment": "full",
+          "layerName": "41 | face/eyes/eye_left/eyelid_crease",
+          "layerUUID": "{2de44cab-5ac3-49c4-a5a0-b84429a0818c}",
+          "level": 41,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "5f7ff1a2c85ae9e42a9412355a40f8549f79f966d7302e79d1f7b18fd6251e51",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "三色重新生成41完整弧线，整张方图等比回120px原坐标；接受红褐较宽暗中心、柔和透明边与收细两端，再原生低不透明度暖色融接。",
+      "observation": "红褐中心、软边和眼皮体积恢复；原尺寸眼形、睫毛、高光保留。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R10.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/face__eyes__eye_left__eyelid_crease-whole.png",
+        "actualExports": {
+          "id": "face/eyes/eye_left/eyelid_crease",
+          "layers": [
+            {
+              "name": "41 | face/eyes/eye_left/eyelid_crease",
+              "uuid": "{2de44cab-5ac3-49c4-a5a0-b84429a0818c}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_left__eyelid_crease.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__eyelid_crease-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__eyelid_crease-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__eyelid_crease-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_left__eyelid_crease-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R11",
+      "title": "画面左双眼皮过窄过平",
+      "status": "repaired_self_checked",
+      "bounds": [
+        365,
+        353,
+        77,
+        40
+      ],
+      "actualPartIDs": [
+        "face/eyes/eye_right/eyelid_crease"
+      ],
+      "actualLayers": [
+        {
+          "id": "face/eyes/eye_right/eyelid_crease",
+          "fragment": "full",
+          "layerName": "46 | face/eyes/eye_right/eyelid_crease",
+          "layerUUID": "{4ca54efb-c6fb-451f-a1ac-b29fb3ce1de7}",
+          "level": 46,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "2ff2064a67010f8d08fd9234838b13b0f8f7c99193c8d9cc9e6cb0e4d9e52c6b",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "按本眼参考三色重新生成46完整弧线，整张方图等比回120px；原生暖红融色，独立核查弧度、宽度、软边及两端。",
+      "observation": "暖红较宽中心与渐淡收口恢复；未恢复外来睫毛投影。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R11.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/face__eyes__eye_right__eyelid_crease-whole.png",
+        "actualExports": {
+          "id": "face/eyes/eye_right/eyelid_crease",
+          "layers": [
+            {
+              "name": "46 | face/eyes/eye_right/eyelid_crease",
+              "uuid": "{4ca54efb-c6fb-451f-a1ac-b29fb3ce1de7}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__eyes__eye_right__eyelid_crease.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__eyelid_crease-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__eyelid_crease-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__eyelid_crease-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__eyes__eye_right__eyelid_crease-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R12",
+      "title": "左后发条块拼接",
+      "status": "repaired_self_checked",
+      "bounds": [
+        326,
+        477,
+        30,
+        67
+      ],
+      "actualPartIDs": [
+        "hair/back_hair"
+      ],
+      "actualLayers": [
+        {
+          "id": "hair/back_hair",
+          "fragment": "full",
+          "layerName": "01 | hair/back_hair",
+          "layerUUID": "{fa24462a-dbf9-4a69-b750-3ea97e41153b}",
+          "level": 1,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "fffccb4be7390719e350715a499c1434d3e804052bbccc76920151012037d2e3",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "两次三色生成均因新增/改变发流线撤回；恢复本件原画，从同件相邻无其他暗线的蓝面局部取样融接亮条和色阶。撤回错误横线及S支线后，Krita沿明确本件曲线逐笔续单条深蓝线并收细末端。",
+      "observation": "亮条、水平色阶与补丁感消除；蓝面连续，保留单条原发流线，未带侧发/脸/衣领像素。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R12.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/hair__back_hair-whole.png",
+        "actualExports": {
+          "id": "hair/back_hair",
+          "layers": [
+            {
+              "name": "01 | hair/back_hair",
+              "uuid": "{fa24462a-dbf9-4a69-b750-3ea97e41153b}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/hair__back_hair.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R13",
+      "title": "右青蓝发尖下缘线重不足",
+      "status": "repaired_self_checked",
+      "bounds": [
+        646,
+        535,
+        57,
+        40
+      ],
+      "actualPartIDs": [
+        "hair/back_hair"
+      ],
+      "actualLayers": [
+        {
+          "id": "hair/back_hair",
+          "fragment": "full",
+          "layerName": "01 | hair/back_hair",
+          "layerUUID": "{fa24462a-dbf9-4a69-b750-3ea97e41153b}",
+          "level": 1,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "fffccb4be7390719e350715a499c1434d3e804052bbccc76920151012037d2e3",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "针对review02真实右尖束[646,535,57,40]，沿01自己的下缘以4→2.8→1.8px深蓝原生笔触恢复描边并收尖。",
+      "observation": "可见下缘线重和收尖恢复；青蓝体积、根部及真实发缕空隙保留。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R13.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/hair__back_hair-whole.png",
+        "actualExports": {
+          "id": "hair/back_hair",
+          "layers": [
+            {
+              "name": "01 | hair/back_hair",
+              "uuid": "{fa24462a-dbf9-4a69-b750-3ea97e41153b}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/hair__back_hair.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R14",
+      "title": "耳顶后发补形硬接边",
+      "status": "repaired_self_checked",
+      "bounds": [
+        721,
+        350,
+        36,
+        48
+      ],
+      "actualPartIDs": [
+        "hair/back_hair"
+      ],
+      "actualLayers": [
+        {
+          "id": "hair/back_hair",
+          "fragment": "full",
+          "layerName": "01 | hair/back_hair",
+          "layerUUID": "{fa24462a-dbf9-4a69-b750-3ea97e41153b}",
+          "level": 1,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "fffccb4be7390719e350715a499c1434d3e804052bbccc76920151012037d2e3",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "三色重生本件耳顶局部，整张图等比回120px；原生局部取样接回后发并保留自身alpha及青蓝楔形，后续以自身软暗发流线跨接界面。",
+      "observation": "完整后发水平材质缝与窄竖色带融顺；合上耳正常，无耳线、肤色或耳投影。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R14.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/hair__back_hair-whole.png",
+        "actualExports": {
+          "id": "hair/back_hair",
+          "layers": [
+            {
+              "name": "01 | hair/back_hair",
+              "uuid": "{fa24462a-dbf9-4a69-b750-3ea97e41153b}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/hair__back_hair.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/hair__back_hair-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R15",
+      "title": "连体衣左腰胯接边台阶",
+      "status": "repaired_self_checked",
+      "bounds": [
+        461,
+        781,
+        31,
+        33
+      ],
+      "actualPartIDs": [
+        "pelvis",
+        "body/torso"
+      ],
+      "actualLayers": [
+        {
+          "id": "body/torso",
+          "fragment": "full",
+          "layerName": "27 | body/torso",
+          "layerUUID": "{1630b7d7-6097-4334-84b5-2a48b92064d4}",
+          "level": 27,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "18b7b40143886eea8a726d5feaae7410eb67997441e83bfb51656a639848cad0",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": false
+        },
+        {
+          "id": "pelvis",
+          "fragment": "full",
+          "layerName": "29 | pelvis",
+          "layerUUID": "{8077f372-abff-4fe4-99dd-2f7ab598740c}",
+          "level": 29,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "147dee47fb12820cdf4b9fdfb2052f958205fbaef283be9bb058f8d883a769ff",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/base-subject.png",
+      "method": "29本件衣面边缘局部配准去灰蓝凸段，与27自己的外缘接顺；两件各自完整覆盖、面料笔触与结构线保留。",
+      "observation": "躯干—骨盆组合外缘连续，无侧向台阶；没有带入裸腿肤色。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R15.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/pelvis-whole.png",
+        "actualExports": {
+          "id": "pelvis",
+          "layers": [
+            {
+              "name": "29 | pelvis",
+              "uuid": "{8077f372-abff-4fe4-99dd-2f7ab598740c}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/pelvis.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/pelvis-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/pelvis-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/pelvis-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/pelvis-hide-above-off.png"
+        }
+      },
+      "passed": true
+    },
+    {
+      "id": "R16",
+      "title": "舌右上缘折角与硬融色",
+      "status": "repaired_self_checked",
+      "bounds": [
+        520,
+        467,
+        42,
+        22
+      ],
+      "actualPartIDs": [
+        "face/mouth/tongue",
+        "face/mouth/mouth_interior"
+      ],
+      "actualLayers": [
+        {
+          "id": "face/mouth/mouth_interior",
+          "fragment": "full",
+          "layerName": "48 | face/mouth/mouth_interior",
+          "layerUUID": "{2835ab5e-38b6-44ab-a436-6010fcfa217f}",
+          "level": 48,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "b24aa0cfadac8d748375678e5b6e672c0557dd79ab6b840ce0ae71611aea4a19",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "上下唇开口",
+              "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+              "ownerName": "口内开合",
+              "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+            }
+          ],
+          "repair02PaintChanged": false
+        },
+        {
+          "id": "face/mouth/tongue",
+          "fragment": "full",
+          "layerName": "50 | face/mouth/tongue",
+          "layerUUID": "{3befd481-21d8-44a8-96bc-a4ab7e95a6d0}",
+          "level": 50,
+          "region": "完整部件；单绘画深度",
+          "pixelHash": "0fa3678a181a854927ed8b46c8e2c774ae6f5a7de2b0009354ada7a1b7b29dbf",
+          "position": [
+            0,
+            0
+          ],
+          "opacity": 255,
+          "nativeMasks": [
+            {
+              "maskName": "上下唇开口",
+              "maskUUID": "{804808d6-e706-4cdb-80c0-cbd4c3867f2b}",
+              "ownerName": "口内开合",
+              "ownerUUID": "{6cda5519-1733-4803-91f3-f8015f0a8d67}"
+            }
+          ],
+          "repair02PaintChanged": true
+        }
+      ],
+      "reference": "part-layering/references/standard.png",
+      "method": "三色生成完整50粉红舌面，保留生成体积；仅本件上弧局部纵向注册成圆弧，再Krita局部1.5px软化与玫红气笔体积过渡。48口内、牙和唇保持独立。",
+      "observation": "上弧圆顺，口内—舌面过渡柔和；独显无折角，不含牙线、唇线或外来影。",
+      "checkedViews": [
+        "full single/no masks",
+        "single/default masks",
+        "hide higher depths/default masks",
+        "hide higher depths/no masks",
+        "default full composite"
+      ],
+      "evidence": {
+        "sixViews": "raster-layering/step01/repair-evidence-02/issues/R16.png",
+        "fullPart": "raster-layering/step01/repair-evidence-02/issues/face__mouth__tongue-whole.png",
+        "actualExports": {
+          "id": "face/mouth/tongue",
+          "layers": [
+            {
+              "name": "50 | face/mouth/tongue",
+              "uuid": "{3befd481-21d8-44a8-96bc-a4ab7e95a6d0}"
+            }
+          ],
+          "fullPaint": "raster-layering/step01/repair-evidence-02/full-paint/face__mouth__tongue.png",
+          "single-on": "raster-layering/step01/repair-evidence-02/raw/face__mouth__tongue-single-on.png",
+          "hide-above-on": "raster-layering/step01/repair-evidence-02/raw/face__mouth__tongue-hide-above-on.png",
+          "single-off": "raster-layering/step01/repair-evidence-02/raw/face__mouth__tongue-single-off.png",
+          "hide-above-off": "raster-layering/step01/repair-evidence-02/raw/face__mouth__tongue-hide-above-off.png"
+        }
+      },
+      "passed": true
+    }
+  ],
+  "additionalSelfRepairs": [
+    {
+      "id": "SELF-1",
+      "actualPartIDs": [
+        "legs/leg_right/leg"
+      ],
+      "problem": "R3试稿在完整腿内侧上方引入新尖点和横线。",
+      "repair": "恢复有效R2的本腿来源，以完整本腿自身切向重新局部注册，撤回错误外推。",
+      "evidence": "raster-layering/step01/repair-evidence-02/issues/legs__leg_right__leg-whole.png",
+      "passed": true
+    },
+    {
+      "id": "SELF-2",
+      "actualPartIDs": [
+        "face/eyes/eye_left/iris",
+        "face/eyes/eye_right/iris"
+      ],
+      "problem": "上弧原生修边留下完整虹膜外缘小线头，默认蒙版遮住但独显不干净。",
+      "repair": "Krita原生选区只清本件原完整上弧之外多余alpha，保留生成体积与已修深蓝接触边；两眼独显、隐藏上层、合成重新看过。",
+      "evidence": [
+        "raster-layering/step01/repair-evidence-02/issues/face__eyes__eye_left__iris-whole.png",
+        "raster-layering/step01/repair-evidence-02/issues/face__eyes__eye_right__iris-whole.png",
+        "raster-layering/step01/repair-evidence-02/issues/R8.png",
+        "raster-layering/step01/repair-evidence-02/issues/R9.png"
+      ],
+      "passed": true
+    }
+  ],
+  "method": "同尺寸原图目视及各部件三视图；像素哈希仅核对保存/重开/未修改内容，不评定画面相似度。",
+  "reopenPassed": true
+}

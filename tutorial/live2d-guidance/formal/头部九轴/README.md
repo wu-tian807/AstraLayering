@@ -9,6 +9,8 @@
 
 ## 为什么先做九轴
 
+补充研究：[08 成品转头中的脸发协同](08-成品转头中的脸发协同.md)。保存四段完整成品演示、关键帧和来源指纹，重点是大肥鱼片头的大转头、整头包裹关系、后发露出、头饰遮挡与连接保形。它记录可见观察和待验证推论，不推定成品内部的拆件与变形器实现。
+
 物理摆动与九轴运动互相联动：转头本身会带动头发和挂饰摆动，而摆锤的支点、方向和幅度又取决于转头后的透视形状。先做物理会缺少转头提供的参数。因此物理不作为一个独立大类，而是拆进九轴中各部件的制作里。
 
 ## 范围（用户梳理）
@@ -22,7 +24,7 @@
 
 ## 目标与已知问题
 
-- 当前制作刻度：ParamAngleX −30° / +30°，抬头 +25°、低头 −25°，以 [angles.json](../../../../.agents/skills/live2d-maker/knowledge/nine-axis/step01_video/references/angles.json) 为准，`deformers.json` 以度数记录。left 帧在 `step01_video/left.png`，up/down 帧在 `step03_video-y/up.png`、`down.png`；对应 X、up、down、四角和下颌分别为 step02、step04、step05、step06、step07，详见 [七步流程](../../../../.agents/skills/live2d-maker/nine-axis/README.md)。
+- 当前制作刻度：ParamAngleX −30° / +30°，抬头 +25°、低头 −25°，以 [angles.json](../../../../.agents/skills/live2d-maker/knowledge/head-nine-axis/step01_video/references/angles.json) 为准，`deformers.json` 以度数记录。left 帧在 `step01_video/left.png`，up/down 帧在 `step03_video-y/up.png`、`down.png`；对应 X、up、down、四角和下颌分别为 step02、step04、step05、step06、step07，详见 [七步流程](../../../../.agents/skills/live2d-maker/nine-axis/README.md)。
 - AI 自由形变通常只能做到约 15° 而不严重变形。
 - 转角更大时，AI 倾向于扭曲脖子来代替头部本身的透视形变。
 

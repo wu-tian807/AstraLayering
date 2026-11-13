@@ -1,0 +1,172 @@
+[
+  {
+    "part": "outer_jacket/jacket_body/back_panel",
+    "depths": [
+      "d1"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-01.png"
+  },
+  {
+    "part": "inner_shirt/shirt_body",
+    "depths": [
+      "d2",
+      "d22"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-02.png"
+  },
+  {
+    "part": "outer_jacket/jacket_collar/collar_root",
+    "depths": [
+      "d3"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-03.png"
+  },
+  {
+    "part": "outer_jacket/jacket_collar/left_collar_flap",
+    "depths": [
+      "d4",
+      "d38"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-04.png"
+  },
+  {
+    "part": "outer_jacket/jacket_collar/right_collar_flap",
+    "depths": [
+      "d5",
+      "d39"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-05.png"
+  },
+  {
+    "part": "outer_jacket/left_sleeve",
+    "depths": [
+      "d6",
+      "d32"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-06.png"
+  },
+  {
+    "part": "outer_jacket/right_sleeve",
+    "depths": [
+      "d7",
+      "d33"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-07.png"
+  },
+  {
+    "part": "inner_shirt/left_sleeve",
+    "depths": [
+      "d8",
+      "d20"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-08.png"
+  },
+  {
+    "part": "inner_shirt/right_sleeve",
+    "depths": [
+      "d9",
+      "d21"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-09.png"
+  },
+  {
+    "part": "inner_shirt/shirt_collar/collar_base",
+    "depths": [
+      "d10",
+      "d23"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-10.png"
+  },
+  {
+    "part": "pleated_skirt/skirt_body",
+    "depths": [
+      "d11",
+      "d24"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-11.png"
+  },
+  {
+    "part": "pleated_skirt/waistband",
+    "depths": [
+      "d25"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-12.png"
+  },
+  {
+    "part": "short_necktie/hanging_blade",
+    "depths": [
+      "d26"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-13.png"
+  },
+  {
+    "part": "short_necktie/knot_and_attachment",
+    "depths": [
+      "d27"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-14.png"
+  },
+  {
+    "part": "inner_shirt/shirt_collar/left_collar_leaf",
+    "depths": [
+      "d28"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-15.png"
+  },
+  {
+    "part": "inner_shirt/shirt_collar/right_collar_leaf",
+    "depths": [
+      "d29"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-16.png"
+  },
+  {
+    "part": "jacket_front_clasp/left_clasp_wing",
+    "depths": [
+      "d30"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-17.png"
+  },
+  {
+    "part": "jacket_front_clasp/right_clasp_wing",
+    "depths": [
+      "d31"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-18.png"
+  },
+  {
+    "part": "outer_jacket/jacket_body/left_front/front_panel",
+    "depths": [
+      "d34"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-19.png"
+  },
+  {
+    "part": "outer_jacket/jacket_body/right_front/front_panel",
+    "depths": [
+      "d35"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-20.png"
+  },
+  {
+    "part": "outer_jacket/jacket_body/left_front/lapel",
+    "depths": [
+      "d36"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-21.png"
+  },
+  {
+    "part": "outer_jacket/jacket_body/right_front/lapel",
+    "depths": [
+      "d37"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-22.png"
+  },
+  {
+    "part": "jacket_front_clasp/center_buckle",
+    "depths": [
+      "d40"
+    ],
+    "file": "clothing-raster-layering/step02/evidence/logical-parts/part-23.png"
+  }
+]

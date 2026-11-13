@@ -1,0 +1,39 @@
+{
+  "image": "raster-layering/step01/review-evidence-01/inspection/isolated-disabled/arms__arm_left__hand__little_finger.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1115,
+    1410
+  ],
+  "marked": "raster-layering/step01/review-evidence-01/annotations/R9/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/cd3566bb-de5a-4f14-aae7-4ce00c5cb833/regions.json",
+  "regions": [
+    {
+      "id": "R9",
+      "bounds": [
+        821,
+        898,
+        44,
+        69
+      ],
+      "layers": [
+        "10 | arms/arm_left/hand/little_finger",
+        "后方手指默认遮挡"
+      ],
+      "description": "停用蒙版后，画面右小指的侧缘与指端只有浅色细边，没有接续原图同一只手的暖棕外轮廓；默认隐藏掩盖了完整绘画未完成的问题。",
+      "crop": [
+        807,
+        884,
+        72,
+        97
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence-01/annotations/R9/R9-current.png",
+        "reference": "raster-layering/step01/review-evidence-01/annotations/R9/R9-reference.png",
+        "comparison": "raster-layering/step01/review-evidence-01/annotations/R9/R9-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。",
+  "source_tool_manifest": "raster-layering/step01/workspace/review-regions/cd3566bb-de5a-4f14-aae7-4ce00c5cb833/regions.json"
+}

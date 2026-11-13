@@ -1,0 +1,422 @@
+[
+  {
+    "name": "thumb-own-actual-alpha-contour-transition",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "color": [
+              150,
+              74,
+              56
+            ],
+            "size": 1.8,
+            "opacity": 0.8,
+            "selection": "raster-layering/step01/workspace/repair-next9/thumb-root-contour-selection.png",
+            "path": [
+              [
+                "M",
+                342.9621082621082,
+                898.5
+              ],
+              [
+                "L",
+                343.15278087452,
+                899.5
+              ],
+              [
+                "L",
+                343.2542842021103,
+                900.5
+              ],
+              [
+                "L",
+                343.2731270339967,
+                901.5
+              ],
+              [
+                "L",
+                343.21581815929653,
+                902.5
+              ],
+              [
+                "L",
+                343.08886636712737,
+                903.5
+              ],
+              [
+                "L",
+                342.8987804466066,
+                904.5
+              ],
+              [
+                "L",
+                342.652069186852,
+                905.5
+              ],
+              [
+                "L",
+                342.3552413769807,
+                906.5
+              ],
+              [
+                "L",
+                342.0148058061103,
+                907.5
+              ],
+              [
+                "L",
+                341.63727126335846,
+                908.5
+              ],
+              [
+                "L",
+                341.2291465378424,
+                909.5
+              ],
+              [
+                "L",
+                340.79694041867975,
+                910.5
+              ],
+              [
+                "L",
+                340.34716169498796,
+                911.5
+              ],
+              [
+                "L",
+                339.8863191558845,
+                912.5
+              ],
+              [
+                "L",
+                339.42092159048696,
+                913.5
+              ],
+              [
+                "L",
+                338.9574777879127,
+                914.5
+              ],
+              [
+                "L",
+                338.50249653727917,
+                915.5
+              ],
+              [
+                "L",
+                338.06248662770406,
+                916.5
+              ],
+              [
+                "L",
+                337.6439568483047,
+                917.5
+              ],
+              [
+                "L",
+                337.25341598819864,
+                918.5
+              ],
+              [
+                "L",
+                336.8973728365032,
+                919.5
+              ],
+              [
+                "L",
+                336.5823361823361,
+                920.5
+              ],
+              [
+                "L",
+                336.3148148148147,
+                921.5
+              ]
+            ]
+          },
+          {
+            "color": [
+              149,
+              74,
+              56
+            ],
+            "size": 1.6,
+            "opacity": 0.6,
+            "selection": "raster-layering/step01/workspace/repair-next9/thumb-root-contour-selection.png",
+            "path": [
+              [
+                "M",
+                309,
+                908.5
+              ],
+              [
+                "C",
+                309.2,
+                912,
+                309.3,
+                916.5,
+                309.1,
+                920
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "thumb-left-own-root-ink-width-continuation",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/thumb",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "color": [
+              151,
+              76,
+              58
+            ],
+            "size": 2.2,
+            "opacity": 0.8,
+            "selection": "raster-layering/step01/workspace/repair-next9/thumb-root-contour-selection.png",
+            "path": [
+              [
+                "M",
+                309,
+                908.5
+              ],
+              [
+                "C",
+                309.3,
+                912.5,
+                309.8,
+                916.5,
+                309.5,
+                920
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "left-hand-own-visible-joint-material-soft-sample",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next9/arms__arm_right__hand__palm-joint-own-visible-sample.png",
+        "preserveAlpha": true,
+        "clear": false
+      },
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "sample": "part-layering/references/standard.png",
+        "selection": "raster-layering/step01/workspace/repair-next9/arms__arm_right__hand__index_finger-joint-own-visible-sample.png",
+        "preserveAlpha": true,
+        "clear": false
+      }
+    ]
+  },
+  {
+    "name": "left-hand-own-skin-native-soft-joint-refine",
+    "jobs": [
+      {
+        "id": "arms/arm_right/hand/palm",
+        "import": "raster-layering/step01/workspace/repair-next9/before/arms__arm_right__hand__palm.png",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              253,
+              234,
+              216
+            ],
+            "size": 24,
+            "opacity": 0.45,
+            "selection": "raster-layering/step01/workspace/repair-next9/arms__arm_right__hand__palm-skin-only-refine-selection.png",
+            "path": [
+              [
+                "M",
+                266,
+                920
+              ],
+              [
+                "C",
+                275,
+                919,
+                286,
+                918,
+                295,
+                917
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "arms/arm_right/hand/index_finger",
+        "import": "raster-layering/step01/workspace/repair-next9/before/arms__arm_right__hand__index_finger.png",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              253,
+              231,
+              209
+            ],
+            "size": 24,
+            "opacity": 0.45,
+            "selection": "raster-layering/step01/workspace/repair-next9/arms__arm_right__hand__index_finger-skin-only-refine-selection.png",
+            "path": [
+              [
+                "M",
+                262,
+                925
+              ],
+              [
+                "C",
+                273,
+                925,
+                284,
+                923,
+                294,
+                920
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "bracelet-front-own-root-cut-line-material-clean",
+    "jobs": [
+      {
+        "id": "arms/arm_left/bracelet_front",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "color": [
+              35,
+              45,
+              74
+            ],
+            "size": 1.8,
+            "opacity": 0.9,
+            "path": [
+              [
+                "M",
+                786.7,
+                812.6
+              ],
+              [
+                "C",
+                786.6,
+                815,
+                786.6,
+                818.5,
+                786.5,
+                821.8
+              ]
+            ]
+          },
+          {
+            "preset": "b) Airbrush Soft",
+            "color": [
+              38,
+              49,
+              78
+            ],
+            "size": 4,
+            "opacity": 0.4,
+            "path": [
+              [
+                "M",
+                787.2,
+                813.5
+              ],
+              [
+                "C",
+                787.5,
+                816,
+                787.5,
+                819,
+                787,
+                821.5
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "bracelet-front-own-root-seam-pigment-finish",
+    "jobs": [
+      {
+        "id": "arms/arm_left/bracelet_front",
+        "alphaLocked": true,
+        "strokes": [
+          {
+            "color": [
+              36,
+              46,
+              76
+            ],
+            "size": 3,
+            "opacity": 0.9,
+            "path": [
+              [
+                "M",
+                786.7,
+                813.5
+              ],
+              [
+                "C",
+                786.8,
+                816,
+                787,
+                819,
+                786.5,
+                821.5
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "right-forearm-own-inner-elbow-warm-material-continuation",
+    "jobs": [
+      {
+        "id": "arms/arm_left/forearm",
+        "sample": "part-layering/references/base-subject.png",
+        "selection": "raster-layering/step01/workspace/repair-next9/forearm-own-inner-elbow-material-selection.png",
+        "preserveAlpha": true,
+        "clear": false
+      }
+    ]
+  },
+  {
+    "name": "right-upper-arm-own-elbow-end-material-contact",
+    "jobs": [
+      {
+        "id": "arms/arm_left/upper_arm",
+        "sample": "part-layering/references/base-subject.png",
+        "selection": "raster-layering/step01/workspace/repair-next9/upper-arm-own-elbow-end-material-selection.png",
+        "preserveAlpha": true,
+        "clear": false
+      }
+    ]
+  }
+]

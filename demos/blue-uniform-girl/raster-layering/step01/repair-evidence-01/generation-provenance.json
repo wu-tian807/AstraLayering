@@ -1,0 +1,187 @@
+{
+  "records": [
+    {
+      "id": "arms/arm_right/hand/thumb",
+      "method": "built-in image_gen; three-color reference/control; uniform registration; native local repair",
+      "inputs": {
+        "bbox": [
+          295,
+          868,
+          356,
+          965
+        ],
+        "size": [
+          644,
+          1024
+        ],
+        "target": "raster-layering/step01/workspace/repair01/regen/arms__arm_right__hand__thumb-target.png",
+        "reference": "raster-layering/step01/workspace/repair01/regen/arms__arm_right__hand__thumb-reference.png",
+        "control": "raster-layering/step01/workspace/repair01/regen/arms__arm_right__hand__thumb-control.png"
+      },
+      "generated": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_4vvuCJWtSqgIv2uXNvzha4WT.png",
+      "registration": {
+        "scale": 0.055401662049861494,
+        "translation": [
+          297,
+          874
+        ],
+        "alphaBox": [
+          138,
+          113,
+          860,
+          1464
+        ],
+        "targetBox": [
+          305,
+          879,
+          345,
+          956
+        ]
+      },
+      "finalFullPaint": "raster-layering/step01/repair-evidence-01/parts-full/arms__arm_right__hand__thumb.png",
+      "issue": "R13",
+      "generatedEvidence": "raster-layering/step01/repair-evidence-01/generation/arms__arm_right__hand__thumb-generated.png",
+      "targetEvidence": "raster-layering/step01/repair-evidence-01/generation/arms__arm_right__hand__thumb-target.png",
+      "referenceEvidence": "raster-layering/step01/repair-evidence-01/generation/arms__arm_right__hand__thumb-reference.png",
+      "controlEvidence": "raster-layering/step01/repair-evidence-01/generation/arms__arm_right__hand__thumb-control.png"
+    },
+    {
+      "id": "face/mouth/tongue",
+      "method": "built-in image_gen; three-color reference/control; uniform registration; native local repair",
+      "inputs": {
+        "bbox": [
+          496,
+          462,
+          565,
+          527
+        ],
+        "size": [
+          1024,
+          965
+        ],
+        "target": "raster-layering/step01/workspace/repair01/regen/face__mouth__tongue-target.png",
+        "reference": "raster-layering/step01/workspace/repair01/regen/face__mouth__tongue-reference.png",
+        "control": "raster-layering/step01/workspace/repair01/regen/face__mouth__tongue-control.png"
+      },
+      "generated": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_hasvCDRm5um44yD4lIll2Rjl.png",
+      "registration": {
+        "scale": 0.051,
+        "translation": [
+          497,
+          463
+        ],
+        "alphaBox": [
+          148,
+          202,
+          1148,
+          1025
+        ],
+        "targetBox": [
+          505,
+          472,
+          556,
+          517
+        ]
+      },
+      "finalFullPaint": "raster-layering/step01/repair-evidence-01/parts-full/face__mouth__tongue.png",
+      "issue": "R33",
+      "generatedEvidence": "raster-layering/step01/repair-evidence-01/generation/face__mouth__tongue-generated.png",
+      "targetEvidence": "raster-layering/step01/repair-evidence-01/generation/face__mouth__tongue-target.png",
+      "referenceEvidence": "raster-layering/step01/repair-evidence-01/generation/face__mouth__tongue-reference.png",
+      "controlEvidence": "raster-layering/step01/repair-evidence-01/generation/face__mouth__tongue-control.png"
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "method": "built-in image_gen; three-color reference/control; uniform registration; native local repair",
+      "inputs": {
+        "bbox": [
+          560,
+          325,
+          652,
+          438
+        ],
+        "size": [
+          834,
+          1024
+        ],
+        "target": "raster-layering/step01/workspace/repair01/regen/face__eyes__eye_left__iris-target.png",
+        "reference": "raster-layering/step01/workspace/repair01/regen/face__eyes__eye_left__iris-reference.png",
+        "control": "raster-layering/step01/workspace/repair01/regen/face__eyes__eye_left__iris-control.png"
+      },
+      "generated": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_PCDxXnh2yDiPKkDWwehNJpHb.png",
+      "registration": {
+        "scale": 0.07941929974380871,
+        "translation": [
+          562,
+          325
+        ],
+        "alphaBox": [
+          117,
+          112,
+          1009,
+          1283
+        ],
+        "targetBox": [
+          570,
+          334,
+          643,
+          427
+        ]
+      },
+      "finalFullPaint": "raster-layering/step01/repair-evidence-01/parts-full/face__eyes__eye_left__iris.png",
+      "issue": "R29",
+      "generatedEvidence": "raster-layering/step01/repair-evidence-01/generation/face__eyes__eye_left__iris-generated.png",
+      "targetEvidence": "raster-layering/step01/repair-evidence-01/generation/face__eyes__eye_left__iris-target.png",
+      "referenceEvidence": "raster-layering/step01/repair-evidence-01/generation/face__eyes__eye_left__iris-reference.png",
+      "controlEvidence": "raster-layering/step01/repair-evidence-01/generation/face__eyes__eye_left__iris-control.png"
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "method": "built-in image_gen; three-color reference/control; uniform registration; native local repair",
+      "inputs": {
+        "bbox": [
+          376,
+          362,
+          463,
+          469
+        ],
+        "size": [
+          833,
+          1024
+        ],
+        "target": "raster-layering/step01/workspace/repair01/regen/face__eyes__eye_right__iris-target.png",
+        "reference": "raster-layering/step01/workspace/repair01/regen/face__eyes__eye_right__iris-reference.png",
+        "control": "raster-layering/step01/workspace/repair01/regen/face__eyes__eye_right__iris-control.png"
+      },
+      "generated": "raster-layering/step01/workspace/generated/generated_images/01a1c8f8-3fa1-7bd2-8d11-81234a0f62f8/call_10wEOlJ7BcxERnnQPno0U5Ej.png",
+      "registration": {
+        "scale": 0.07549361207897794,
+        "translation": [
+          377,
+          363
+        ],
+        "alphaBox": [
+          143,
+          160,
+          1004,
+          1243
+        ],
+        "targetBox": [
+          388,
+          372,
+          453,
+          459
+        ]
+      },
+      "finalFullPaint": "raster-layering/step01/repair-evidence-01/parts-full/face__eyes__eye_right__iris.png",
+      "issue": "R30",
+      "generatedEvidence": "raster-layering/step01/repair-evidence-01/generation/face__eyes__eye_right__iris-generated.png",
+      "targetEvidence": "raster-layering/step01/repair-evidence-01/generation/face__eyes__eye_right__iris-target.png",
+      "referenceEvidence": "raster-layering/step01/repair-evidence-01/generation/face__eyes__eye_right__iris-reference.png",
+      "controlEvidence": "raster-layering/step01/repair-evidence-01/generation/face__eyes__eye_right__iris-control.png"
+    }
+  ],
+  "promptNotes": "thumb/tongue prompts inherited from prior context: preserve existing painting; red visible, yellow completion, green transparent; neutralized non-part reference; smooth own root/perimeter; no foreign outlines or cast shadows. Iris prompts are retained below.",
+  "irisLeftPrompt": "Use case: precise-object-edit. Asset: isolated anime Live2D iris only. Image 1 is existing painting to locally repair; image 2 is same-size original visible iris reference with non-iris areas neutral gray; image 3 is control: red visible own paint, yellow completion, green outside transparent. Preserve exact tall oval ratio, tilt, blue gradient, dark narrow pupil and cyan bottom shape from original image 2. Repair full outer rim as a clean continuous fine dark navy line, especially lower edge, with no fringes or isolated speckles. Match original layered cyan patches rather than adding a new crescent. Complete the small yellow holes with intrinsic iris painting only. No white highlights, no glow, no reflections baked in, no sclera or eyelash or skin pixels: highlights are a separate Live2D layer. All green region genuinely transparent. Keep existing interior painterly soft shading; preserve composition and proportions, no squashing.",
+  "irisRightPrompt": "Use case: precise-object-edit. Isolated screen-left anime iris for Live2D. Image 1 edit target, preserve painted interior; image 2 original iris only with excluded areas neutral gray; image 3 red visible reference, yellow completion, green transparent. Match image 2 diagonal tall oval tilt and proportion exactly, narrow navy outer rim, small dark narrow tilted pupil. Keep original muted blue upper shading, two cyan layers and mint lower patch, without increasing their size or saturation. Repair continuous outer contour and eliminate fringe/speckles. Complete yellow holes as iris material. Remove tiny dark stray blotch at left-middle if it is a foreign lash. No white reflection, highlighter, glow, sclera, eyelash, skin, or added texture. Genuine transparent background outside own oval, preserving a complete unbroken fine navy edge. Local repair of existing painted asset, no style change."
+}

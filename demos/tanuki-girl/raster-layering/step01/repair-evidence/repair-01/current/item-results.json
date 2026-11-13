@@ -1,0 +1,844 @@
+[
+  {
+    "id": "R1",
+    "title": "左眼（画面右侧）：眼白残线、睫毛收笔与衔接",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "在眼白所属层修净桃色斜痕和折边；上睑采用本眼原生笔触恢复厚薄、外眼角细钩及连体睫毛，清掉额外并线。虹膜、暗外圈、竖瞳、红紫到金橙层次及独立高光保留。",
+    "originalPartIds": [
+      "face/eyes/eye_left/highlight",
+      "face/eyes/eye_left/iris",
+      "face/eyes/eye_left/sclera",
+      "face/eyes/eye_left/upper_eyelid"
+    ],
+    "layers": [
+      {
+        "name": "D65 | face/eyes/eye_left/sclera",
+        "uuid": "{6b8f98e3-272a-4807-8774-4a219b6812f5}",
+        "level": 65,
+        "region": "完整左眼白在脸前、虹膜、高光和上睑后；可见部件不挂蒙版。后续开闭由上睑内缘和眼白下沿围成的同一开口控制。"
+      },
+      {
+        "name": "D67 | face/eyes/eye_left/iris",
+        "uuid": "{eae99bc1-fe42-40d9-8bc1-c077610d6d86}",
+        "level": 67,
+        "region": "完整左虹膜含竖瞳和橙黄层次，在眼白前、高光和上睑后；隐藏上部保留，不挂可见部件蒙版。"
+      },
+      {
+        "name": "D69 | face/eyes/eye_left/highlight",
+        "uuid": "{bb67c9fd-f337-4b8d-ad9a-8ab3190c595b}",
+        "level": 69,
+        "region": "左独立高光在左虹膜前、上睑后，随虹膜运动；可见部件不挂蒙版，黄色亮区属于虹膜。"
+      },
+      {
+        "name": "D71 | face/eyes/eye_left/upper_eyelid",
+        "uuid": "{ae6d9e09-a249-45b6-8e3b-b7db6f39dfe0}",
+        "level": 71,
+        "region": "完整左上睑及连体睫毛在眼内三件前、前发后；内缘是共享开口上界，配眼白下沿，不拆连体睫尖。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R1/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R1/reference-compare.png"
+  },
+  {
+    "id": "R2",
+    "title": "右眼（画面左侧）：眼白残线、内侧双细尾",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "清理本眼眼白浅斜线；恢复上睑内端尖收笔、外眼尾及连体睫毛，撤掉额外双细尾。眼睛位置和尺寸保持原坐标，虹膜与高光完整。",
+    "originalPartIds": [
+      "face/eyes/eye_right/highlight",
+      "face/eyes/eye_right/iris",
+      "face/eyes/eye_right/sclera",
+      "face/eyes/eye_right/upper_eyelid"
+    ],
+    "layers": [
+      {
+        "name": "D66 | face/eyes/eye_right/sclera",
+        "uuid": "{eb30337c-5a23-4028-af35-6e96094fabc8}",
+        "level": 66,
+        "region": "完整右眼白在脸前、虹膜、高光和上睑后；可见部件不挂蒙版，后续共享上睑内缘及眼白下沿开口职责。"
+      },
+      {
+        "name": "D68 | face/eyes/eye_right/iris",
+        "uuid": "{338fcc39-a964-4c97-a3b3-16b60b7a3024}",
+        "level": 68,
+        "region": "完整右虹膜含竖瞳和自身明暗，在眼白前、高光和上睑后；隐藏上部保留，不挂蒙版。"
+      },
+      {
+        "name": "D70 | face/eyes/eye_right/highlight",
+        "uuid": "{4473535e-3342-4b51-abb9-c2d8f0666128}",
+        "level": 70,
+        "region": "右独立高光在右虹膜前、上睑后，随虹膜运动；可见部件不挂蒙版，黄色亮区留在虹膜。"
+      },
+      {
+        "name": "D72 | face/eyes/eye_right/upper_eyelid",
+        "uuid": "{c9dff7e7-54ed-4e72-9521-c6e675a7ff93}",
+        "level": 72,
+        "region": "完整右上睑及连体睫毛、眼尾在眼内三件前、前发后；内缘与眼白下沿控制后续开闭。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R2/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R2/reference-compare.png"
+  },
+  {
+    "id": "R3",
+    "title": "左颊红晕（画面右侧）：红底成块、斜线渐隐改变",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "去掉块状红底，原生柔笔补回弥散红色底；最终在4倍局部画布逐笔续接细斜线，按原尺寸配准，端部渐隐且不变成硬矩形。",
+    "originalPartIds": [
+      "face/blush_left"
+    ],
+    "layers": [
+      {
+        "name": "D76 | face/blush_left",
+        "uuid": "{5e74d9a3-a429-4d63-8f05-67f72cf9e047}",
+        "level": 76,
+        "region": "完整左红晕含红色底和斜线，在脸前、左侧发后；当前形体在脸内，不挂透明度蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R3/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R3/reference-compare.png"
+  },
+  {
+    "id": "R4",
+    "title": "右颊红晕（画面左侧）：浅肤色椭圆罩片",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "去掉浅肤色椭圆罩片；本层只保留弥散红底和原方向、长短的细斜线，4倍原生绘画缩回后接顺渐隐，不把红晕转入脸底。",
+    "originalPartIds": [
+      "face/blush_right"
+    ],
+    "layers": [
+      {
+        "name": "D77 | face/blush_right",
+        "uuid": "{591e43a4-4e29-4e9a-bf37-a56199a73562}",
+        "level": 77,
+        "region": "完整右红晕含红底、斜线和柔边，在脸前、右侧发后；不挂透明度蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R4/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R4/reference-compare.png"
+  },
+  {
+    "id": "R5",
+    "title": "鼻部：鼻底小点过浅",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "补回原位置鼻底深棕小点的尖收笔，接顺鼻头红色至底点的层次；没有添加鼻梁线或橙色短条。",
+    "originalPartIds": [
+      "face/nose"
+    ],
+    "layers": [
+      {
+        "name": "D75 | face/nose",
+        "uuid": "{9715a843-db7d-435a-a8e3-b32f2dc56a6f}",
+        "level": 75,
+        "region": "鼻点及自身柔和鼻影在脸前、刘海后，保持单一部件。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R5/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R5/reference-compare.png"
+  },
+  {
+    "id": "R6",
+    "title": "闭嘴：短唇线被浅化、收笔简化",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "恢复短棕唇线中央深色、两端短钩与细收笔，闭合合成仅有一份唇线；上下唇独立、共享口内组及四件纹理保留。",
+    "originalPartIds": [
+      "face/mouth/lower_lip",
+      "face/mouth/upper_lip"
+    ],
+    "layers": [
+      {
+        "name": "D78 | face/mouth/lower_lip",
+        "uuid": "{3c68fb33-ff72-4f7e-967b-5780418a7453}",
+        "level": 78,
+        "region": "完整下嘴肤色片在四口内件前、上嘴片后；上内缘与上唇下内缘及嘴角控制口内四件共享原生开口蒙版。"
+      },
+      {
+        "name": "D79 | face/mouth/upper_lip",
+        "uuid": "{94eedc57-8397-46d7-b4df-d7f7d56c87fa}",
+        "level": 79,
+        "region": "完整上嘴肤色片在口内四件及下嘴片前；下内缘与下嘴上内缘及嘴角控制共享开口，默认闭合仅一份唇线。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R6/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R6/reference-compare.png"
+  },
+  {
+    "id": "R7",
+    "title": "左手（画面右侧）：连续描边和指甲细节丢失",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "分别恢复左手拇指、食指、中指、掌的连续深棕外线、指尖转角和指甲亮暗边；明暗只取各件自身皮肤，完整隐藏根保留。",
+    "originalPartIds": [
+      "arms/arm_left/hand/index_finger",
+      "arms/arm_left/hand/middle_finger",
+      "arms/arm_left/hand/palm",
+      "arms/arm_left/hand/ring_finger",
+      "arms/arm_left/hand/thumb"
+    ],
+    "layers": [
+      {
+        "name": "D38 | arms/arm_left/hand/ring_finger",
+        "uuid": "{d85bd8b0-a005-4c44-8336-c74b30be64a4}",
+        "level": 38,
+        "region": "完整左无名指在小指前、中指、食指和掌后；默认短指端和下缘自然露出，不挂蒙版。"
+      },
+      {
+        "name": "D40 | arms/arm_left/hand/middle_finger",
+        "uuid": "{3fd8810e-8dde-4b15-b781-25d1dc9f5978}",
+        "level": 40,
+        "region": "完整左中指在无名指、小指前、食指和掌后；根部由掌覆盖，第二长指端保留。"
+      },
+      {
+        "name": "D42 | arms/arm_left/hand/thumb",
+        "uuid": "{aba770e8-b3fe-461b-adae-4ee044d10e1d}",
+        "level": 42,
+        "region": "完整左拇指根在掌后，伸出段和甲面可见，真实虎口保留；不使用根部蒙版。"
+      },
+      {
+        "name": "D44 | arms/arm_left/hand/index_finger",
+        "uuid": "{e49a2920-0265-4fec-bcfc-f03c59d3ec1d}",
+        "level": 44,
+        "region": "完整左食指在中指、无名指和小指前、掌后；指束上层与接触暗线归食指。"
+      },
+      {
+        "name": "D46 | arms/arm_left/hand/palm",
+        "uuid": "{b3f5969e-8be8-4337-909f-e5918a92ff29}",
+        "level": 46,
+        "region": "完整左掌覆盖前臂腕端及同手五指根，位于前腕环及铃后；掌部负责叠指控制，自身不挂接合蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R7-R9/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R7-R9/reference-compare.png"
+  },
+  {
+    "id": "R8",
+    "title": "右手（画面左侧）：点线轮廓、断粗线与指甲浅化",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "分别恢复右手外线和甲面细节，清掉点线及根部断粗；保持手指厚度、原曲率和收笔，不整件裁薄alpha。",
+    "originalPartIds": [
+      "arms/arm_right/hand/index_finger",
+      "arms/arm_right/hand/middle_finger",
+      "arms/arm_right/hand/palm",
+      "arms/arm_right/hand/ring_finger",
+      "arms/arm_right/hand/thumb"
+    ],
+    "layers": [
+      {
+        "name": "D39 | arms/arm_right/hand/ring_finger",
+        "uuid": "{6ea2cb37-c639-4b2a-a4c2-08504d985757}",
+        "level": 39,
+        "region": "完整右无名指在小指前、中指、食指和掌后；默认短圆端自然露出，不挂蒙版。"
+      },
+      {
+        "name": "D41 | arms/arm_right/hand/middle_finger",
+        "uuid": "{0da3ede1-9370-48e6-80a5-69abb2cf3b15}",
+        "level": 41,
+        "region": "完整右中指在无名指、小指前、食指和掌后；根部以掌自然遮挡，不挂蒙版。"
+      },
+      {
+        "name": "D43 | arms/arm_right/hand/thumb",
+        "uuid": "{00111c35-ef30-4cf9-b1a9-dbf57cc5138f}",
+        "level": 43,
+        "region": "完整右拇指根在掌后，伸出段可见；保留与食指之间的真实虎口，不挂蒙版。"
+      },
+      {
+        "name": "D45 | arms/arm_right/hand/index_finger",
+        "uuid": "{3a056be8-c259-483b-ae9a-f71e159baa9b}",
+        "level": 45,
+        "region": "完整右食指在中指、无名指和小指前、掌后；根部由掌自然覆盖，不挂接合蒙版。"
+      },
+      {
+        "name": "D47 | arms/arm_right/hand/palm",
+        "uuid": "{2d70aa71-52e9-4b36-975b-e1b7d74d1d14}",
+        "level": 47,
+        "region": "完整右掌覆盖前臂腕端及同手五指根，位于米色和粉色前环后；虎口开放，不挂接合蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R8-R10-R11/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R8-R10-R11/reference-compare.png"
+  },
+  {
+    "id": "R9",
+    "title": "左手（画面右侧）：掌指接口台阶与杂线",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "掌背至食指和下虎口的搭接轮廓、皮肤明暗接顺，去掉非本件短线与突尖，真实指缝保留，各指与掌仍独立。",
+    "originalPartIds": [
+      "arms/arm_left/hand/index_finger",
+      "arms/arm_left/hand/palm",
+      "arms/arm_left/hand/thumb"
+    ],
+    "layers": [
+      {
+        "name": "D42 | arms/arm_left/hand/thumb",
+        "uuid": "{aba770e8-b3fe-461b-adae-4ee044d10e1d}",
+        "level": 42,
+        "region": "完整左拇指根在掌后，伸出段和甲面可见，真实虎口保留；不使用根部蒙版。"
+      },
+      {
+        "name": "D44 | arms/arm_left/hand/index_finger",
+        "uuid": "{e49a2920-0265-4fec-bcfc-f03c59d3ec1d}",
+        "level": 44,
+        "region": "完整左食指在中指、无名指和小指前、掌后；指束上层与接触暗线归食指。"
+      },
+      {
+        "name": "D46 | arms/arm_left/hand/palm",
+        "uuid": "{b3f5969e-8be8-4337-909f-e5918a92ff29}",
+        "level": 46,
+        "region": "完整左掌覆盖前臂腕端及同手五指根，位于前腕环及铃后；掌部负责叠指控制，自身不挂接合蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R7-R9/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R7-R9/reference-compare.png"
+  },
+  {
+    "id": "R10",
+    "title": "右手（画面左侧）：食指掌根断线、凹口与色阶",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "重接食指掌根、掌背和虎口曲线，消除凹口、重复短线、断线与色块接边；各件完整根部和真实指缝保留。",
+    "originalPartIds": [
+      "arms/arm_right/hand/index_finger",
+      "arms/arm_right/hand/palm",
+      "arms/arm_right/hand/thumb"
+    ],
+    "layers": [
+      {
+        "name": "D43 | arms/arm_right/hand/thumb",
+        "uuid": "{00111c35-ef30-4cf9-b1a9-dbf57cc5138f}",
+        "level": 43,
+        "region": "完整右拇指根在掌后，伸出段可见；保留与食指之间的真实虎口，不挂蒙版。"
+      },
+      {
+        "name": "D45 | arms/arm_right/hand/index_finger",
+        "uuid": "{3a056be8-c259-483b-ae9a-f71e159baa9b}",
+        "level": 45,
+        "region": "完整右食指在中指、无名指和小指前、掌后；根部由掌自然覆盖，不挂接合蒙版。"
+      },
+      {
+        "name": "D47 | arms/arm_right/hand/palm",
+        "uuid": "{2d70aa71-52e9-4b36-975b-e1b7d74d1d14}",
+        "level": 47,
+        "region": "完整右掌覆盖前臂腕端及同手五指根，位于米色和粉色前环后；虎口开放，不挂接合蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R8-R10-R11/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R8-R10-R11/reference-compare.png"
+  },
+  {
+    "id": "R11",
+    "title": "右中指（画面左侧）：白色点状杂质",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "在本中指暗面修掉可见白色杂点，续回粉橙过渡和连续下缘深线；没有采入邻指条带。",
+    "originalPartIds": [
+      "arms/arm_right/hand/middle_finger"
+    ],
+    "layers": [
+      {
+        "name": "D41 | arms/arm_right/hand/middle_finger",
+        "uuid": "{0da3ede1-9370-48e6-80a5-69abb2cf3b15}",
+        "level": 41,
+        "region": "完整右中指在无名指、小指前、食指和掌后；根部以掌自然遮挡，不挂蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R8-R10-R11/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R8-R10-R11/reference-compare.png"
+  },
+  {
+    "id": "R12",
+    "title": "右腕粉环前段（画面左侧）：端头转折被圆化",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "恢复粉环前段下端的斜切转折、厚度边、深浅条带及原外描边，前后粉环仍独立夹腕。",
+    "originalPartIds": [
+      "arms/arm_right/bracelet_pink_front"
+    ],
+    "layers": [
+      {
+        "name": "D49 | arms/arm_right/bracelet_pink_front",
+        "uuid": "{9afff65b-5f91-4fd3-b9b7-84b246b41711}",
+        "level": 49,
+        "region": "完整右粉前环在腕掌和粉后环前、米色前环后。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R12/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R12/reference-compare.png"
+  },
+  {
+    "id": "R13",
+    "title": "左上臂—前臂（画面右侧）：肤色硬接边和肘缘台阶",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "上臂与前臂肘端的帽盖、肤色体积和外线连续，斜硬边和肘缘台阶去除；腕端完整，不贴回外衣或腕饰投影。",
+    "originalPartIds": [
+      "arms/arm_left/forearm",
+      "arms/arm_left/upper_arm"
+    ],
+    "layers": [
+      {
+        "name": "D25 | arms/arm_left/upper_arm",
+        "uuid": "{760efccd-6eb8-49fc-a996-1e95ce640f55}",
+        "level": 25,
+        "region": "完整左肩根在躯干和耳罩后，肘端伸入左前臂后；自身皮肤和体积归本件。"
+      },
+      {
+        "name": "D31 | arms/arm_left/forearm",
+        "uuid": "{c57a133b-41ed-4918-80de-a962b23c6b3c}",
+        "level": 31,
+        "region": "完整左前臂覆盖上臂肘端，腕端在左掌后；位于两后腕环前、两前腕环后。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R13/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R13/reference-compare.png"
+  },
+  {
+    "id": "R14",
+    "title": "右上臂—前臂（画面左侧）：接色与描边突变",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "修顺上臂/前臂接头明暗和外缘，恢复前臂自身描边；最终自查又续接腕端帽盖粉橙明暗和缺失外线，按本件曲线保留原线宽与收笔。",
+    "originalPartIds": [
+      "arms/arm_right/forearm",
+      "arms/arm_right/upper_arm"
+    ],
+    "layers": [
+      {
+        "name": "D26 | arms/arm_right/upper_arm",
+        "uuid": "{b60f5bf9-dc78-43fc-9449-d586fffbb137}",
+        "level": 26,
+        "region": "完整右上臂在躯干、胸部、前辫57和右耳罩后；肘端由右前臂覆盖。"
+      },
+      {
+        "name": "D32 | arms/arm_right/forearm",
+        "uuid": "{1538e529-1abc-46ee-a1d4-8cb195bd6b1f}",
+        "level": 32,
+        "region": "完整右前臂覆盖上臂肘端，腕端在右掌后；后腕环在后，前腕环和前辫57在前。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R14/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R14/reference-compare.png"
+  },
+  {
+    "id": "R15",
+    "title": "胸片—躯干左侧（画面左侧）：外缘台阶、结构双线",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "胸片与躯干左侧的白边台阶、结构双线及接色清理；旧行配准外突局部修正，整条侧线连续，胸与躯干没有合并。",
+    "originalPartIds": [
+      "body/breast",
+      "body/torso"
+    ],
+    "layers": [
+      {
+        "name": "D32.5 | body/torso | lower_mount",
+        "uuid": "{46358100-0b1c-433a-a3da-f652464fcffd}",
+        "level": 32.5,
+        "region": "同件 y905 以下的完整下腹白布圆帽及外轮廓，位于骨盆白服前片33后。分界处沿原画布保持连续材料，普通绘画分片共同运动，不挂蒙版。"
+      },
+      {
+        "name": "D34 | body/torso",
+        "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+        "level": 34,
+        "region": "同件 y905 以上的肩根、锁骨、胸廓和腹腰可见上片，覆盖颈下端、双肩根和骨盆上接，位于胸部、前辫57和双耳罩后。"
+      },
+      {
+        "name": "D35 | body/breast",
+        "uuid": "{1b76e69a-e317-4da3-a0fb-ff17ac74b107}",
+        "level": 35,
+        "region": "完整胸部在躯干前、前辫57和双耳罩后，领口内皮肤及贴合白服体积属于本件；接合处原生修画，不使用透明度蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R15/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R15/reference-compare.png"
+  },
+  {
+    "id": "R16",
+    "title": "胸片—躯干右侧（画面右侧）：外缘台阶、结构断线",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "胸片至躯干右外缘、斜结构线恢复连续；非参考浅虚线清掉，中央白布接色也局部修顺，完整躯干仍在胸片后。",
+    "originalPartIds": [
+      "body/breast",
+      "body/torso"
+    ],
+    "layers": [
+      {
+        "name": "D32.5 | body/torso | lower_mount",
+        "uuid": "{46358100-0b1c-433a-a3da-f652464fcffd}",
+        "level": 32.5,
+        "region": "同件 y905 以下的完整下腹白布圆帽及外轮廓，位于骨盆白服前片33后。分界处沿原画布保持连续材料，普通绘画分片共同运动，不挂蒙版。"
+      },
+      {
+        "name": "D34 | body/torso",
+        "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+        "level": 34,
+        "region": "同件 y905 以上的肩根、锁骨、胸廓和腹腰可见上片，覆盖颈下端、双肩根和骨盆上接，位于胸部、前辫57和双耳罩后。"
+      },
+      {
+        "name": "D35 | body/breast",
+        "uuid": "{1b76e69a-e317-4da3-a0fb-ff17ac74b107}",
+        "level": 35,
+        "region": "完整胸部在躯干前、前辫57和双耳罩后，领口内皮肤及贴合白服体积属于本件；接合处原生修画，不使用透明度蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R16/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R16/reference-compare.png"
+  },
+  {
+    "id": "R17",
+    "title": "躯干—骨盆左腰线（画面左侧）：断线、错接",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "左腰线跨躯干/骨盆的错位端点接回原连续曲线，线周布面自然接色；未新增腰线或接缝蒙版。",
+    "originalPartIds": [
+      "body/torso",
+      "pelvis"
+    ],
+    "layers": [
+      {
+        "name": "D32.5 | body/torso | lower_mount",
+        "uuid": "{46358100-0b1c-433a-a3da-f652464fcffd}",
+        "level": 32.5,
+        "region": "同件 y905 以下的完整下腹白布圆帽及外轮廓，位于骨盆白服前片33后。分界处沿原画布保持连续材料，普通绘画分片共同运动，不挂蒙版。"
+      },
+      {
+        "name": "D33 | pelvis | front",
+        "uuid": "{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}",
+        "level": 33,
+        "region": "完整白服前片、腿口描线及上接帽盖，在双腿前、躯干下腹圆帽32.5前、躯干可见上片34后；通过原生修画接色，不挂接合蒙版。"
+      },
+      {
+        "name": "D34 | body/torso",
+        "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+        "level": 34,
+        "region": "同件 y905 以上的肩根、锁骨、胸廓和腹腰可见上片，覆盖颈下端、双肩根和骨盆上接，位于胸部、前辫57和双耳罩后。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R17-R18/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R17-R18/reference-compare.png"
+  },
+  {
+    "id": "R18",
+    "title": "躯干—骨盆右腰线（画面右侧）：折点、线宽突变",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "右腰线的折点、线宽突变和色阶修顺，按原曲率连接两件；骨盆前后片和完整腿口保留。",
+    "originalPartIds": [
+      "body/torso",
+      "pelvis"
+    ],
+    "layers": [
+      {
+        "name": "D32.5 | body/torso | lower_mount",
+        "uuid": "{46358100-0b1c-433a-a3da-f652464fcffd}",
+        "level": 32.5,
+        "region": "同件 y905 以下的完整下腹白布圆帽及外轮廓，位于骨盆白服前片33后。分界处沿原画布保持连续材料，普通绘画分片共同运动，不挂蒙版。"
+      },
+      {
+        "name": "D33 | pelvis | front",
+        "uuid": "{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}",
+        "level": 33,
+        "region": "完整白服前片、腿口描线及上接帽盖，在双腿前、躯干下腹圆帽32.5前、躯干可见上片34后；通过原生修画接色，不挂接合蒙版。"
+      },
+      {
+        "name": "D34 | body/torso",
+        "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+        "level": 34,
+        "region": "同件 y905 以上的肩根、锁骨、胸廓和腹腰可见上片，覆盖颈下端、双肩根和骨盆上接，位于胸部、前辫57和双耳罩后。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R17-R18/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R17-R18/reference-compare.png"
+  },
+  {
+    "id": "R19",
+    "title": "躯干上补全：矩形截口、肩带断边与短杂线",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "上接肩根、锁骨及肩带用局部生成与本件原生笔触完整续接，去掉矩形截口和横短线；最终完整独显又发现胸片后旧横纹，已用三色图局部重生成白布上段，连续配准、接线和接色后去掉横纹及轮廓毛边。原皮肤、锁骨和上缘保留，不增加颈部横安装线。",
+    "originalPartIds": [
+      "body/torso"
+    ],
+    "layers": [
+      {
+        "name": "D34 | body/torso",
+        "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+        "level": 34,
+        "region": "同件 y905 以上的肩根、锁骨、胸廓和腹腰可见上片，覆盖颈下端、双肩根和骨盆上接，位于胸部、前辫57和双耳罩后。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R19/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R19/reference-compare.png"
+  },
+  {
+    "id": "R20",
+    "title": "躯干下补全：水平截边、白方片与软帽拼接",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "完整下腹帽盖、两侧轮廓和白布明暗接成同件连续延续，白方片及水平材料截边去除；32.5下安装端与34主体合并独显完整，普通深度分片不改变归属。",
+    "originalPartIds": [
+      "body/torso"
+    ],
+    "layers": [
+      {
+        "name": "D32.5 | body/torso | lower_mount",
+        "uuid": "{46358100-0b1c-433a-a3da-f652464fcffd}",
+        "level": 32.5,
+        "region": "同件 y905 以下的完整下腹白布圆帽及外轮廓，位于骨盆白服前片33后。分界处沿原画布保持连续材料，普通绘画分片共同运动，不挂蒙版。"
+      },
+      {
+        "name": "D34 | body/torso",
+        "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+        "level": 34,
+        "region": "同件 y905 以上的肩根、锁骨、胸廓和腹腰可见上片，覆盖颈下端、双肩根和骨盆上接，位于胸部、前辫57和双耳罩后。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R20/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R20/reference-compare.png"
+  },
+  {
+    "id": "R21",
+    "title": "狸饰下颌前片：孤立深色点、短竖线",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "只清掉下颌描边外的孤点和短残线；完整下颌、前后片连续搭接及合理隐藏后主体保留，头发与双爪未写入狸饰。",
+    "originalPartIds": [
+      "head_accessories/tanuki_ornament/tanuki_body"
+    ],
+    "layers": [
+      {
+        "name": "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+        "uuid": "{e31ef44b-9571-464f-a0d6-9ed501711eb0}",
+        "level": 12,
+        "region": "完整后主体、叶片、小耳、尾形与隐藏下颌搭接，位于角色头发及兽耳后；中央下颌前片的上接边界提前到 y193，避免后发根描边穿过分片交界。"
+      },
+      {
+        "name": "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front",
+        "uuid": "{368765d3-d740-4b55-9b79-0d2ebae08dfa}",
+        "level": 85.5,
+        "region": "原图下颌前缘的普通绘画分片，覆盖前发及后发根，位于双爪后；中央 x681..736 的 y193..198 归此前片，与其下方已有前缘连续。仅移动狸饰自身像素，两个深度共同运动，不使用接合蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R21/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R21/reference-compare.png"
+  },
+  {
+    "id": "R22",
+    "title": "骨盆前片上补全：矩形灰短条与色阶",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "圆帽灰短条、矩形色阶与圆弧折口修掉，以本件白布明暗续接；最终再修净y905的淡矩形边，保留肚脐、髋肤和腿口。",
+    "originalPartIds": [
+      "pelvis"
+    ],
+    "layers": [
+      {
+        "name": "D22.5 | pelvis | back",
+        "uuid": "{5a270326-00bf-4e30-b698-9c48a83f49ca}",
+        "level": 22.5,
+        "region": "完整两侧髋部肤色普通后片，在尾巴前、双腿后，材料分界位于本件白服腿口线后。"
+      },
+      {
+        "name": "D33 | pelvis | front",
+        "uuid": "{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}",
+        "level": 33,
+        "region": "完整白服前片、腿口描线及上接帽盖，在双腿前、躯干下腹圆帽32.5前、躯干可见上片34后；通过原生修画接色，不挂接合蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R22/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R22/reference-compare.png"
+  },
+  {
+    "id": "R23",
+    "title": "右腿与裸足（画面左侧）：描边浅化、趾甲方折丢失",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "恢复裸腿深棕轮廓、趾尖、趾缝和方折甲面；保留完整腿根。局部修掉裸踝白块、重复边和隐藏根毛刺，膝侧用本腿原生窄轮廓修净配准碎边，上段横接色用本腿辅助参考皮肤接顺；裙子、踝环及铃的投影/像素不在腿层。",
+    "originalPartIds": [
+      "legs/leg_right/leg"
+    ],
+    "layers": [
+      {
+        "name": "D24 | legs/leg_right/leg",
+        "uuid": "{d503c5f0-2c3f-46d4-9c1d-3fa14d1565c5}",
+        "level": 24,
+        "region": "完整右腿和裸足在尾巴、后踝环、骨盆22.5髋肤前，在骨盆33白服及前踝饰后；圆腿根伸入白服后。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R23/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R23/reference-compare.png"
+  },
+  {
+    "id": "R24",
+    "title": "左袜腿与足部（画面右侧）：外线、袜口和趾部简化",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "恢复袜腿曲线、袜口收笔与外线，露趾、趾缝及各甲面原转角和亮暗边补全；长袜仍归腿本体，完整腿根和足部保留。",
+    "originalPartIds": [
+      "legs/leg_left/leg"
+    ],
+    "layers": [
+      {
+        "name": "D23 | legs/leg_left/leg",
+        "uuid": "{b65106a1-85b2-4444-8eb8-11f558cdc1d1}",
+        "level": 23,
+        "region": "完整左腿、长袜及足趾在尾巴、后腿带及骨盆22.5髋肤前，在骨盆33白服及前腿带后；圆腿根由白服遮挡。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R24/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R24/reference-compare.png"
+  },
+  {
+    "id": "R25",
+    "title": "右踝后环（画面左侧）：过度外露的大后弧",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "后踝环重画为紧贴踝侧的完整回转，消除多余大后弧和奶绿碎段；深度11后环、24腿、90前踝饰保持正常夹踝关系，不新增蒙版。",
+    "originalPartIds": [
+      "legs/leg_right/anklet_back",
+      "legs/leg_right/anklet_front"
+    ],
+    "layers": [
+      {
+        "name": "D11 | legs/leg_right/anklet_back",
+        "uuid": "{34898742-3f8e-4a5f-bb07-b06df707a68b}",
+        "level": 11,
+        "region": "两条完整后踝环位于右腿及前踝饰后，通过普通绘画层序保留腕侧回转，不附可见部件蒙版。"
+      },
+      {
+        "name": "D90 | legs/leg_right/anklet_front",
+        "uuid": "{bc1a3c77-a9f4-439a-bad8-e69a8709182e}",
+        "level": 90,
+        "region": "完整两前踝环及同动铃体在右腿和两后踝环前，保持一个逻辑部件。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R25/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R25/reference-compare.png"
+  },
+  {
+    "id": "R26",
+    "title": "尾巴下部：圆弧、尖梢和明暗块位置变化",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "按原图恢复尾巴下部连贯大弧、底缘尖梢方向和粉色明暗块，去掉额外凹口与扩大奶白条；隐藏尾根和细毛流完整保留。",
+    "originalPartIds": [
+      "tail"
+    ],
+    "layers": [
+      {
+        "name": "D0 | tail",
+        "uuid": "{47033051-7e94-4a4f-8c50-9eccbe2c5513}",
+        "level": 0,
+        "region": "完整尾巴位于骨盆及双腿后，尾根由前景自然遮挡。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R26/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R26/reference-compare.png"
+  },
+  {
+    "id": "R27",
+    "title": "后发左回环：外轮廓外的奶白残边",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "仅清掉左回环外轮廓外的奶白背景残边；内部浅色发丝、深棕真实轮廓及回环空隙保留，灰底检查干净，没有整圈缩小头发。",
+    "originalPartIds": [
+      "hair/back_hair"
+    ],
+    "layers": [
+      {
+        "name": "D14 | hair/back_hair",
+        "uuid": "{6ef8f6a4-c537-4b73-88c4-5860409f0c7e}",
+        "level": 14,
+        "region": "短后发在脸、颈、兽耳、躯干和前发后，覆盖辫根13；外侧回卷、红色内面和短梢保留。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R27/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R27/reference-compare.png"
+  },
+  {
+    "id": "R28",
+    "title": "耳机带画面左接头：白端下移、红带外露",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "左白接头回到原画布位置、范围与厚度，带体材料接回；接头普通前片22.25在neck22前、耳罩58/59后，后U带15在neck22后。",
+    "originalPartIds": [
+      "headphones/headband"
+    ],
+    "layers": [
+      {
+        "name": "D15 | headphones/headband",
+        "uuid": "{700e32b8-c154-4208-b397-8dedd15ac65b}",
+        "level": 15,
+        "region": "同一完整连接带的后方U形带体及近端，在完整颈部22、脸和双耳罩后；原完整后带作为三色红区约束，最终采用同件连续重生成的带体，与原图取样恢复的颈前接头分片连续共同运动。"
+      },
+      {
+        "name": "D22.25 | headphones/headband | terminals",
+        "uuid": "{736c1a45-8063-4dc1-9e05-fa2cb41eb3b9}",
+        "level": 22.25,
+        "region": "同一连接带的颈侧末端连接面和白色接头普通前分片，处于完整颈部22前、双耳罩58/59后；左端自y532及右端自y547附近与后带连接，不挂蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R28-R29/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R28-R29/reference-compare.png"
+  },
+  {
+    "id": "R29",
+    "title": "耳机带画面右接头：白端缺量、接边透空",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "右白接头补回原可见面和连续带体，去掉原位置透空和过窄白条；完整headband union两端连通，层序同R28，颈部/耳罩未改形体。",
+    "originalPartIds": [
+      "headphones/headband"
+    ],
+    "layers": [
+      {
+        "name": "D15 | headphones/headband",
+        "uuid": "{700e32b8-c154-4208-b397-8dedd15ac65b}",
+        "level": 15,
+        "region": "同一完整连接带的后方U形带体及近端，在完整颈部22、脸和双耳罩后；原完整后带作为三色红区约束，最终采用同件连续重生成的带体，与原图取样恢复的颈前接头分片连续共同运动。"
+      },
+      {
+        "name": "D22.25 | headphones/headband | terminals",
+        "uuid": "{736c1a45-8063-4dc1-9e05-fa2cb41eb3b9}",
+        "level": 22.25,
+        "region": "同一连接带的颈侧末端连接面和白色接头普通前分片，处于完整颈部22前、双耳罩58/59后；左端自y532及右端自y547附近与后带连接，不挂蒙版。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-R28-R29/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-R28-R29/reference-compare.png"
+  },
+  {
+    "id": "N1",
+    "title": "新增自查：前辫散尾",
+    "result": "已修复",
+    "passed": true,
+    "treatment": "前辫散尾采用同件三色局部生成，再以自身笔触和原图取样恢复细尖、向内钩、收笔与连续发流；后根13和前段57共同归属，发圈/衣物像素不进入辫层。细尖约至y787，保留原细部。",
+    "originalPartIds": [
+      "hair/braid_right"
+    ],
+    "layers": [
+      {
+        "name": "D13 | hair/braid_right | back",
+        "uuid": "{a0b578fa-3f3d-485b-8068-20008d6a8aa7}",
+        "level": 13,
+        "region": "完整后根至原图 y580–586 的曲面接合区，位于短后发、脸和颈后。"
+      },
+      {
+        "name": "D57 | hair/braid_right | front",
+        "uuid": "{bf1ac4b1-cfe3-4884-8ec9-f9e0811bc6b5}",
+        "level": 57,
+        "region": "y580–586 曲面接合区以下的前辫与散尾，位于胸肩前、右耳罩后；与后根共同归属和运动。"
+      }
+    ],
+    "threeViews": "raster-layering/step01/repair-evidence/repair-01/current/final-N1/three-views.png",
+    "referenceCompare": "raster-layering/step01/repair-evidence/repair-01/current/final-N1/reference-compare.png"
+  }
+]

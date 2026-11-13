@@ -55,6 +55,7 @@ export const stepModelSlots = {
   assembly: 'assembly', shadow_mask: 'shadow', shadow_maps: 'shadow', nine_axis_view_frames: 'nine_axis_head', nine_axis_outline: 'nine_axis_head',
   nine_axis_head: 'nine_axis_head', nine_axis_head_y: 'nine_axis_head', nine_axis_head_down: 'nine_axis_head', nine_axis_frames: 'nine_axis_head', nine_axis_head_xy: 'nine_axis_head', nine_axis_head_jaw: 'nine_axis_head',
   nine_axis_head_hair: 'nine_axis_head',
+  nine_axis_head_accessories: 'nine_axis_head',
 } as const satisfies Record<string, ModelSlot>;
 export type AgentStep = keyof typeof stepModelSlots;
 export const stepDefaults = Object.fromEntries(Object.entries(stepModelSlots)

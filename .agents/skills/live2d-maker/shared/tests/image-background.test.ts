@@ -1,3 +1,4 @@
+import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
 import { createServer } from 'node:http';
@@ -91,9 +92,9 @@ test('both routes recover dual backgrounds over Gemini/OpenAI protocols without 
     first = await solidImage(color);
     for (const native of [false, true]) for (const edit of [false, true]) {
       const directory = join(root, `${protocol}-${color[0]}-${native}-${edit}`);
-      const settings = loadWorkflowEnvironment({ codex_path: executable, PATH: '',
+      const settings = withCodex(loadWorkflowEnvironment({ PATH: '',
         part_simplify_image_model: 'gemini-nano-banana-2.1', google_image_base_url: base + '/v1beta',
-        google_image_api_key: 'fixture', google_image_protocol: protocol }, root);
+        google_image_api_key: 'fixture', google_image_protocol: protocol }, root), executable);
       const prompt = '保留主体和正常开口，输出透明 PNG。';
       let output: Buffer;
       if (native) {

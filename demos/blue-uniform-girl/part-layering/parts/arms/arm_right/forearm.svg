@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1115" height="1410" viewBox="0 0 1115 1410"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 382,719 C 391,704 411,700 424,709 C 439,718 443,737 435,751 L 430,760 C 413,749 396,736 380,728 Z" fill-rule="nonzero"/><path d="M 333,808 L 331,814 C 326,826 320,838 316,848 C 328,856 345,865 356,871 C 360,860 368,850 375,841 L 379,835 C 365,824 349,815 333,808 Z" fill-rule="nonzero"/></g>
+  <g id="arm-right-forearm-outline" data-group-path="arms/arm_right/forearm" fill="#e5a17f" stroke="none">
+    <path d="M 382,719 C 394,718 418,734 435,751 C 431,761 427,774 420,784 C 409,802 393,820 378,837 C 377,838 376,840 375,841 C 362,829 347,821 331,814 C 331,811 332,808 332,806 C 341,787 348,768 359,750 C 366,738 377,729 382,719 Z"/>
+  </g>
+</svg>

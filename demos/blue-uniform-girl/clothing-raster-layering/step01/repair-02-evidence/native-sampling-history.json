@@ -1,0 +1,50 @@
+[
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-raster-layering/step01/evidence/layers/outer_jacket__jacket_body__left_front__front_panel__d34.png",
+    "previousUUID": "{2cbbac64-8b51-4784-825c-bcdfa93a86dc}",
+    "newUUID": "{4d61e1d7-f1c1-4da7-ae46-fd6df7a1434b}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-raster-layering/step01/workspace/repair02/before_d34.png",
+    "previousUUID": "{4d61e1d7-f1c1-4da7-ae46-fd6df7a1434b}",
+    "newUUID": "{0be81c6c-7cc3-44ab-8311-8eeebe3d6a2e}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-raster-layering/step01/evidence/layers/outer_jacket__jacket_body__left_front__front_panel__d34.png",
+    "previousUUID": "{0be81c6c-7cc3-44ab-8311-8eeebe3d6a2e}",
+    "newUUID": "{67a70840-672e-4eb4-8a32-b6060eb6aae9}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-raster-layering/step01/workspace/repair02/before_d34.png",
+    "previousUUID": "{67a70840-672e-4eb4-8a32-b6060eb6aae9}",
+    "newUUID": "{795cda45-8b0b-4e61-9027-d6f9c4ed4d1c}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-raster-layering/step01/evidence/layers/outer_jacket__jacket_body__left_front__front_panel__d34.png",
+    "previousUUID": "{795cda45-8b0b-4e61-9027-d6f9c4ed4d1c}",
+    "newUUID": "{dd819a7a-898f-426b-b327-1ac5827c68e7}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  },
+  {
+    "depth": 34,
+    "id": "outer_jacket/jacket_body/left_front/front_panel",
+    "source": "clothing-raster-layering/step01/workspace/repair02/before_d34.png",
+    "previousUUID": "{dd819a7a-898f-426b-b327-1ac5827c68e7}",
+    "newUUID": "{b1f01629-aee1-4bd0-bef0-7772313408f7}",
+    "method": "Krita edit_copy / edit_paste / native mergeDown; own-part selection"
+  }
+]

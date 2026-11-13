@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "paintLayers": 59,
+  "nativeMasks": 10,
+  "nativeGroups": 3,
+  "reviewIssues": 35,
+  "regions": 37,
+  "passedIssues": 19,
+  "pendingIssues": 16,
+  "newPassedIssues": [
+    "R1",
+    "R2",
+    "R20"
+  ],
+  "batchChangedParts": 7,
+  "otherPaintPartsUnchanged": 52,
+  "kraZIPValid": true,
+  "reportFirstLine": "结论：仍有问题",
+  "reportLinksExist": true,
+  "reopenPassed": true,
+  "pngMatchesReopen": true,
+  "evidenceIndex": "raster-layering/step01/repair-evidence-01/index.json",
+  "repairReport": "raster-layering/step01/repair-01.md.tmp"
+}

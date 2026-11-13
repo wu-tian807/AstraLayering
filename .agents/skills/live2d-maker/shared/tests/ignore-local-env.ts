@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import './codex-runtime-preload.ts';
 import { syncBuiltinESMExports } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';

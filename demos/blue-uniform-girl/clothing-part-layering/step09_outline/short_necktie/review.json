@@ -1,0 +1,33 @@
+{
+  "groupId": "short_necktie",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮：short_necktie 候选通过。已只读核对 clothing-part-layering/references/clothing.png、clothing-part-layering/groups.json 中本节点 note，以及 clothing-part-layering/step09_outline/short_necktie/outline.svg。此节点为顶层 group，parentGroup=null，无父 SVG 或父范围限制。\n\n独立从原参考确认：领口中央约 x589–642、y364–441 的领饰包含上方小结、连接窄部和下垂短菱形端；周围深色衬衫领尖、胸身及下方白色连接带不属于本组。整体叠加确认画布位置、大小及归属正确，无其他衣片或人体误包，也无可见组件遗漏。\n\n局部窗口 [575,350,80,105] 的 6 倍叠加、8 倍边缘覆盖与独显覆盖本组全部可见区域：上结的圆弧顶边、左侧转角及右侧收腰，下端左肩、斜向底边、圆角端点与右弧边均贴合参考实体的深色外轮廓；两段连接连续，参考连接处的暗带为内部表现，不是真实开口，无须切断。没有需要删除的浅淡衣料区域、真实孔洞或额外分离附件。纯色控制图不需要恢复内部明暗。note 已说明实体范围、相邻排除边界、上端隐藏搭接、下端位于衬衫胸前、领口随动与短端摆动职责，与图像一致。未发现有图像依据的返修项，无须重画。\n\n图像证据：\n\n\n\n\n",
+      "candidateHash": "b7a51672a23d1dc101b0e286ed914fe33b422c34364c5e35357cd92e7494c78c",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/previews/2026-11-10T09-39-42-601Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/previews/2026-11-10T09-39-42-601Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/previews/2026-11-10T09-39-42-601Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/short_necktie/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/short_necktie/previews/2026-11-10T09-39-42-601Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T09:50:01.939Z"
+    }
+  ]
+}

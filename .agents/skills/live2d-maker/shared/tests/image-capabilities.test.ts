@@ -1,3 +1,4 @@
+import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile, writeFile } from 'node:fs/promises';
@@ -26,9 +27,9 @@ async function setImages(directory: string, enabled: boolean) {
 test('nine-axis steps use their own agent.json while sharing a model slot', async t => {
   const knowledge = await temporaryKnowledge(t);
   const entries = [['step03_frames', ['nine_axis_view_frames']], ['step04_outline', ['nine_axis_outline']], ['step04_angles', ['nine_axis_head', 'nine_axis_head_y', 'nine_axis_head_down']],
-    ['step05_frames', ['nine_axis_frames']], ['step06_angle-xy', ['nine_axis_head_xy']], ['step07_jaw-line', ['nine_axis_head_jaw']], ['step08_hair',['nine_axis_head_hair']]] as const;
+    ['step05_frames', ['nine_axis_frames']], ['step06_angle-xy', ['nine_axis_head_xy']], ['step07_jaw-line', ['nine_axis_head_jaw']], ['step08_hair',['nine_axis_head_hair']], ['step09_head-accessories',['nine_axis_head_accessories']]] as const;
   for (const [directory, identities] of entries) {
-    const path = join(knowledge, 'nine-axis', directory, 'agent.json');
+    const path = join(knowledge, 'head-nine-axis', directory, 'agent.json');
     const config = JSON.parse(await readFile(path, 'utf8'));
     config.main.tools.push('imagegen');
     await writeFile(path, JSON.stringify(config));
@@ -76,11 +77,11 @@ for (const model of ['codex-native', 'gpt-image-2.5-flare', 'gemini-nano-banana-
     const knowledge = await temporaryKnowledge(t);
     await setImages(knowledge, true);
     const server = await fakeAppServer(knowledge, [], 'completed', [], { finalText: 'done' });
-    const settings = loadWorkflowEnvironment({ layering_codex_path: server.executable,
+    const settings = withCodex(loadWorkflowEnvironment({
       raster_step02_image_model: model,
       layering_openai_image_base_url: 'http://127.0.0.1:1/v1', layering_openai_image_api_key: 'fixture',
       layering_google_image_base_url: 'http://127.0.0.1:1/v1', layering_google_image_api_key: 'fixture',
-    }, knowledge);
+    }, knowledge), server.executable);
     settings.codex.config = { 'features.image_generation': true, features: { image_generation: true } };
     const agents = new CodexAgents({ environment: settings, cwd: knowledge });
     const session = agents.createSession();

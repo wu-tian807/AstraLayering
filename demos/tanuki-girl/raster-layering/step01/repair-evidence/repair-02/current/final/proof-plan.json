@@ -1,0 +1,321 @@
+[
+  {
+    "tag": "R01-leaf",
+    "levels": [
+      12
+    ],
+    "box": [
+      590,
+      18,
+      340,
+      250
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R02-depth-final",
+    "levels": [
+      14
+    ],
+    "box": [
+      729,
+      488,
+      85,
+      77
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R03-wing",
+    "levels": [
+      83
+    ],
+    "box": [
+      490,
+      384,
+      91,
+      52
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R04-tip",
+    "levels": [
+      84
+    ],
+    "box": [
+      769,
+      407,
+      53,
+      58
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R05-braid",
+    "levels": [
+      57
+    ],
+    "box": [
+      566,
+      665,
+      60,
+      83
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R06-lid",
+    "levels": [
+      71
+    ],
+    "box": [
+      758,
+      402,
+      32,
+      44
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R07-brow",
+    "levels": [
+      80,
+      84.1
+    ],
+    "box": [
+      717,
+      343,
+      104,
+      37
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R08-brow",
+    "levels": [
+      81,
+      84.2
+    ],
+    "box": [
+      589,
+      342,
+      103,
+      41
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R09-blush",
+    "levels": [
+      76
+    ],
+    "box": [
+      738,
+      450,
+      67,
+      55
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R10-blush",
+    "levels": [
+      77
+    ],
+    "box": [
+      613,
+      452,
+      67,
+      56
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R11-neck",
+    "levels": [
+      22,
+      34
+    ],
+    "box": [
+      632,
+      582,
+      160,
+      66
+    ],
+    "reference": "base-subject"
+  },
+  {
+    "tag": "R12-strap",
+    "levels": [
+      34,
+      35
+    ],
+    "box": [
+      600,
+      612,
+      48,
+      95
+    ],
+    "reference": "base-subject"
+  },
+  {
+    "tag": "R13-strap",
+    "levels": [
+      24.75,
+      34,
+      35
+    ],
+    "box": [
+      772,
+      591,
+      82,
+      124
+    ],
+    "reference": "base-subject"
+  },
+  {
+    "tag": "R14-cap",
+    "levels": [
+      32.5,
+      34
+    ],
+    "box": [
+      567,
+      885,
+      281,
+      118
+    ],
+    "reference": "base-subject"
+  },
+  {
+    "tag": "R15-cap",
+    "levels": [
+      33
+    ],
+    "box": [
+      550,
+      845,
+      310,
+      111
+    ],
+    "reference": "base-subject"
+  },
+  {
+    "tag": "R16-hem",
+    "levels": [
+      33
+    ],
+    "box": [
+      586,
+      950,
+      107,
+      145
+    ],
+    "reference": "base-subject"
+  },
+  {
+    "tag": "R17-hem",
+    "levels": [
+      33
+    ],
+    "box": [
+      717,
+      939,
+      132,
+      159
+    ],
+    "reference": "base-subject"
+  },
+  {
+    "tag": "R18-elbow",
+    "levels": [
+      25
+    ],
+    "box": [
+      869,
+      815,
+      100,
+      62
+    ],
+    "reference": "base-subject"
+  },
+  {
+    "tag": "R19-elbow",
+    "levels": [
+      26
+    ],
+    "box": [
+      475,
+      794,
+      91,
+      64
+    ],
+    "reference": "base-subject"
+  },
+  {
+    "tag": "R20-ring",
+    "levels": [
+      38
+    ],
+    "box": [
+      1055,
+      1028,
+      62,
+      57
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R21-ring",
+    "levels": [
+      39
+    ],
+    "box": [
+      293,
+      1022,
+      77,
+      61
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R22-little",
+    "levels": [
+      36
+    ],
+    "box": [
+      1054,
+      1024,
+      59,
+      57
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R23-little",
+    "levels": [
+      37
+    ],
+    "box": [
+      303,
+      1016,
+      69,
+      55
+    ],
+    "reference": "standard"
+  },
+  {
+    "tag": "R24-pink",
+    "levels": [
+      28
+    ],
+    "box": [
+      956,
+      936,
+      77,
+      118
+    ],
+    "reference": "standard"
+  }
+]

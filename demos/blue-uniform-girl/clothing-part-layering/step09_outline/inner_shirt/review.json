@@ -1,0 +1,43 @@
+{
+  "groupId": "inner_shirt",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。已先读取纯衣服参考及 groups.json 中 inner_shirt 的 note，再检查当前候选源码、整图 blend/edge、覆盖全部可见区域的局部放大 edge/blend 和 SVG 独显。本节点为顶层 group，parentGroup=null，无父 SVG 包含关系检查。\n\n归属与覆盖：参考中央约 x498–683、y277–500 的后领衣料、左右折领与上胸，以及约 x551–715、y539–691 的胸腹衣身、门襟和固定纽扣均被联合范围覆盖，未发现实际可见组件遗漏。折领内缘、门襟接缝和纽扣属于组内结构，不要求在本阶段另画内部路径。短领带（约 x589–640、y365–439）及白色连接带/方扣（约 x576–707、y476–586）为另列附件；候选在其下连续覆盖，符合 note 的承载衣层与隐藏搭接职责，不能据此判为附件误包。\n\n轮廓与邻接：领顶和两侧领部边界位置、比例与参考吻合；胸腹两侧沿外套开襟保留轻微隐藏搭接。底端约 y696–701 位于参考衬衫下缘 y685–692 之后、裙腰带之下，属于合理隐藏搭接，无须按参考交集裁掉。未发现人体填入、真实可见开口被封闭、薄纱遗漏、分离附件遗漏或越画布问题。纯衣服参考的领口内侧为深色后领衣料，不能按颜色或内部描线挖空；note 已说明颈前后回转、共同随动和相邻衣片的遮挡职责。\n\n无有图像依据的返修问题，无须重画当前组。\n\n图像证据：\n\n\n\n\n\n\n",
+      "candidateHash": "e936c5af74af79205b287df1bdd5312ea592bd3a1fec921f222b035579e076a0",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/previews/2026-11-10T09-42-50-692Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/previews/2026-11-10T09-42-50-692Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/previews/2026-11-10T09-42-50-692Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/previews/2026-11-10T09-42-50-692Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/previews/2026-11-10T09-42-50-692Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/inner_shirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/inner_shirt/previews/2026-11-10T09-42-50-692Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T09:53:36.511Z"
+    }
+  ]
+}

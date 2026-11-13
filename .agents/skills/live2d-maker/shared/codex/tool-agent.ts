@@ -6,9 +6,8 @@ import { workflowsDirectory } from '../paths.ts';
 import { execFile, spawn } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, rename, writeFile } from 'node:fs/promises';
-import { createRequire } from 'node:module';
 import { once } from 'node:events';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
 import { tmpdir } from 'node:os';
 import { promisify } from 'node:util';
@@ -17,19 +16,19 @@ import { AgentCallError } from './agent-runtime.ts';
 import { type AgentOptions, type AgentSession, type AgentTask, type GeneratedImage } from './agents.ts';
 import type { ToolResult } from './function-tools.ts';
 import { validateProviderModel } from '../agents/providers.ts';
-import { prepareWorkspace, workspacePrompt, workspaceTools } from '../agents/workspace.ts';
-import { imagePath } from '../task-paths.ts';
+import { executionPaths, prepareWorkspace, workspacePrompt, workspaceTools } from '../agents/workspace.ts';
+import { fromTaskPath, imagePath, toTaskPath, toTaskPathReal } from '../task-paths.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
+import { readSessions, rememberSession, resolveSession, type StoredSession } from '../agents/session-data.ts';
+import { codexSessionEnvironment, prepareCodexWorkspace, productionCodexConfig } from './session-data.ts';
 
-// Only the protocol subset used here is maintained. The CLI is pinned by codex-sdk.
+// Only the protocol subset used by the managed, pinned Codex build is maintained.
 type Message = { id?: number | string; method?: string; params?: Record<string, any>;
   result?: Record<string, any>; error?: { code: number; message: string; data?: unknown } };
 
 export function appServerCommand(override?: string): { command: string; args: string[] } {
-  if (override) return { command: override, args: ['app-server'] };
-  const sdkRequire = createRequire(import.meta.resolve('@openai/codex-sdk'));
-  const packagePath = sdkRequire.resolve('@openai/codex/package.json');
-  return { command: process.execPath, args: [join(dirname(packagePath), 'bin/codex.js'), 'app-server'] };
+  if (!override) throw new Error('Codex 补丁运行时尚未准备');
+  return { command: override, args: ['app-server'] };
 }
 
 // The model catalog's tool_mode puts every tool behind code mode's exec script, which outranks
@@ -264,9 +263,23 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
 
   async function start(threadOptions: Record<string, unknown>) {
     const executable = appServerCommand(options.codexPathOverride);
-    const env = { ...(options.env ?? process.env) };
+    const paths = executionPaths(current!.task, options.cwd ?? workflowsDirectory);
+    await prepareCodexWorkspace(paths.workspace);
+    const root = resolve(options.logDirectory ?? join(paths.directory, 'agents'));
+    const saved = resumeThreadId ? (await readSessions(root))[resumeThreadId] : undefined;
+    let previous: StoredSession | undefined;
+    if (saved?.harness === 'codex') try { previous = await resolveSession(root, paths.root, saved); }
+    catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+    const directory = previous?.data ?? join(current!.log.directory, 'cli-data');
+    const env = await codexSessionEnvironment(directory, options.env ?? process.env);
     if (options.apiKey) env.CODEX_API_KEY = options.apiKey;
-    const configArgs = ['features.code_mode=false', 'features.code_mode_only=false', ...options.configOverrides ?? []].flatMap(config => ['-c', config]);
+    // Explicit workflow connection settings also apply while loading the model
+    // catalog. The private profile does not inherit a user's config.toml.
+    const connection = Object.entries(flattenConfig(options.config ?? {}))
+      .filter(([key]) => key === 'model_provider' || key === 'openai_base_url' || key.startsWith('model_providers.'))
+      .map(([key, value]) => `${key}=${JSON.stringify(value)}`);
+    const configArgs = ['features.code_mode=false', 'features.code_mode_only=false', ...options.configOverrides ?? [], ...connection,
+      ...Object.entries(productionCodexConfig).map(([key, value]) => `${key}=${JSON.stringify(value)}`)].flatMap(config => ['-c', config]);
     const catalog = await directToolCatalog(executable, configArgs, env);
     const args = [...executable.args, ...configArgs, '-c', `model_catalog_json=${JSON.stringify(catalog)}`];
     child = spawn(executable.command, args, { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] });
@@ -299,10 +312,15 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
     });
     await send({ method: 'initialized', params: {} });
     const started = await request(resumeThreadId ? 'thread/resume' : 'thread/start',
-      resumeThreadId ? { ...threadOptions, threadId: resumeThreadId } : threadOptions);
+      resumeThreadId ? { ...threadOptions, threadId: resumeThreadId, ...(previous?.rollout ? { path: previous.rollout } : {}) } : threadOptions);
     threadId = started.thread?.id;
     if (typeof threadId !== 'string') throw new Error('App Server 未返回会话 ID');
-    threadPath = typeof started.thread?.path === 'string' ? started.thread.path : undefined;
+    threadPath = typeof started.thread?.path === 'string' ? started.thread.path : previous?.rollout;
+    const historyPath = threadPath && await toTaskPathReal(paths.root, threadPath);
+    const rel = historyPath && relative(directory, fromTaskPath(paths.root, historyPath));
+    const rollout = rel && rel !== '..' && !rel.startsWith('../') && !rel.startsWith('..\\') && !isAbsolute(rel) ? historyPath : undefined;
+    await rememberSession(root, threadId, { harness: 'codex', data: toTaskPath(paths.root, directory), workspace: toTaskPath(paths.root, cwd!),
+      ...(rollout ? { rollout } : {}) });
     rememberActiveTurn(started.thread);
     if (resumeThreadId) {
       try { await interruptActiveTurn(current!.signal, !activeTurnId && started.thread?.status?.type === 'active'); }
@@ -346,9 +364,9 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
         model: selectedModel.model, cwd, sandbox: 'danger-full-access', approvalPolicy: 'never',
         // Normalize user dotted/nested keys before applying workflow overrides;
         // otherwise a dotted features.image_generation=true may win by key order.
-        config: flattenConfig({ ...flattenConfig(options.config ?? {}), model_reasoning_effort: selectedModel.effort, web_search: 'disabled',
+        config: flattenConfig({ ...flattenConfig(options.config ?? {}), ...productionCodexConfig, model_reasoning_effort: selectedModel.effort, web_search: 'disabled',
           ...(options.baseUrl ? { openai_base_url: options.baseUrl } : {}),
-          features: { image_generation: imageGeneration, shell_tool: shell, unified_exec: shell, multi_agent: false, memories: false, goals: false } }),
+          features: { image_generation: imageGeneration, shell_tool: shell, unified_exec: shell, multi_agent: false, memories: false, goals: false, apps: false, hooks: false, codex_hooks: false } }),
         dynamicTools: definitions,
       };
       const input: Record<string, unknown>[] = [{ type: 'text', text: workspacePrompt(task.prompt, paths), text_elements: [] }];

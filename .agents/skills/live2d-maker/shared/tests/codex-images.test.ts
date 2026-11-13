@@ -1,3 +1,4 @@
+import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createServer } from 'node:http';
@@ -21,9 +22,9 @@ for (const resumed of [false, true]) test(`Krita-only step03 disables native ima
   const { root } = await fixture(t);
   const server = await fakeAppServer(root, [{ tool: 'krita', arguments: {} }], 'completed', [],
     { finalText: '{"status":"completed","summary":"painted in Krita"}' });
-  const environment = loadWorkflowEnvironment({ layering_codex_path: server.executable,
+  const environment = withCodex(loadWorkflowEnvironment({
     default_image_model: 'gpt-image-2.5-flare', raster_step03_image_model: 'codex-native',
-    layering_raster_step03_image_model: 'gemini-nano-banana-2.1' }, root);
+    layering_raster_step03_image_model: 'gemini-nano-banana-2.1' }, root), server.executable);
   assert.equal(environment.stepImages.raster_step03, undefined);
   assert.equal(imageGenerationTool(environment, 'raster_step03', root), undefined);
   assert.equal(usesPatchedImageTool(environment, 'raster_step03'), false);
@@ -45,7 +46,7 @@ for (const resumed of [false, true]) test(`Krita-only step03 disables native ima
 test('native transport rejects an explicit imagegen opt-in for a manual workflow step', async t => {
   const { root } = await fixture(t);
   const server = await fakeAppServer(root, []);
-  const environment = loadWorkflowEnvironment({ layering_codex_path: server.executable }, root);
+  const environment = withCodex(loadWorkflowEnvironment({}, root), server.executable);
   const session = new CodexAgents({ environment, cwd: root }).createSession('native-thread');
   try {
     await session.run({ step: 'raster_step03', name: 'manual step', prompt: 'fixture', imageGeneration: true });
@@ -62,9 +63,9 @@ test('raster 自定义框选工具与原生生图兼容，保留配置与会话'
     .replace('const calls =', `${fakeDebug(capabilities)}\nconst calls =`)
     .replace('文件已保存，不返回 JSON。', '{"status":"completed","summary":"inspected"}');
   await writeFile(server.executable, source);
-  const environment = loadWorkflowEnvironment({ codex_path: server.executable,
+  const environment = withCodex(loadWorkflowEnvironment({
     raster_step01_image_model: 'gpt-image-2.5-flare',
-    openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'fixture' }, root);
+    openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'fixture' }, root), server.executable);
   let called = 0;
   const result = await runAgent({ directory: root, step: 'raster_step01', model: 'gpt-6-astra', effort: 'xhigh',
     prompt: 'inspect', threadId: 'native-thread', environment, onEvent: async () => {},
@@ -75,7 +76,7 @@ test('raster 自定义框选工具与原生生图兼容，保留配置与会话'
   assert.ok(protocol.some(event => event.method === 'thread/resume'));
   assert.equal(protocol.find(event => event.method === 'thread/resume').params.config['features.image_generation'], true);
   const native = await runAgent({ directory: root, step: 'raster_step01', model: 'gpt-6-astra', effort: 'xhigh',
-    prompt: 'native inspect', environment: loadWorkflowEnvironment({ codex_path: server.executable }, root), onEvent: async () => {},
+    prompt: 'native inspect', environment: withCodex(loadWorkflowEnvironment({}, root), server.executable), onEvent: async () => {},
     tools: [{ name: 'annotate_review_regions', description: 'fixture', inputSchema: { type: 'object' }, execute: async () => textResult('located') }] });
   assert.equal(native.status, 'completed');
   const latest = (await readFile(server.capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
@@ -110,10 +111,10 @@ test('normal/depth use opaque data transport in both tools and native routes wit
   });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => new Promise<void>(done => server.close(() => done())));
-  const settings = loadWorkflowEnvironment({ codex_path: executable,
+  const settings = withCodex(loadWorkflowEnvironment({
     shadow_maps_image_model: 'gemini-nano-banana-2.1',
     google_image_base_url: `http://127.0.0.1:${(server.address() as any).port}/v1`,
-    google_image_api_key: 'fixture', google_image_protocol: 'openai' }, root);
+    google_image_api_key: 'fixture', google_image_protocol: 'openai' }, root), executable);
   const tool = imageGenerationTool(settings, 'shadow_maps', join(root, 'output'))!;
   const result = await tool.execute({ prompt: 'normal data', input_images: [input] }, new AbortController().signal);
   const saved = JSON.parse((result.contentItems[0] as { text: string }).text).savedPath;
@@ -130,14 +131,14 @@ test('normal/depth use opaque data transport in both tools and native routes wit
 
 test('codex-native does not enable image patches; custom Codex models require current image capabilities', async t => {
   const { root, executable } = await fixture(t);
-  const native = loadWorkflowEnvironment({ codex_path: '/missing/codex', LAYERING_IMAGE_BASE_URL: 'https://stale.example',
-    image_base_url: 'https://legacy.example/v1', image_api_key: 'fixture', default_image_model: 'codex-native' }, root);
+  const native = withCodex(loadWorkflowEnvironment({ LAYERING_IMAGE_BASE_URL: 'https://stale.example',
+    image_base_url: 'https://legacy.example/v1', image_api_key: 'fixture', default_image_model: 'codex-native' }, root), '/missing/codex');
   assert.equal(usesPatchedImageTool(native, 'part_simplify'), false);
   assert.equal(native.codex.env!.LAYERING_IMAGE_BASE_URL, undefined);
   await assert.rejects(checkCodexCapabilities(native), /补丁能力检查/);
-  const custom = loadWorkflowEnvironment({ codex_path: executable,
+  const custom = withCodex(loadWorkflowEnvironment({
     part_simplify_image_model: 'gpt-image-2.5-flare', openai_image_base_url: 'https://image.example/v1',
-    openai_image_api_key: 'fixture' }, root);
+    openai_image_api_key: 'fixture' }, root), executable);
   assert.equal(usesPatchedImageTool(custom, 'part_simplify'), true);
   await checkCodexCapabilities(custom, custom.codex, { image: true });
   await assert.rejects(checkCodexCapabilities(custom, { codexPathOverride: '/missing/codex' }, { image: true }), /补丁能力检查/);
@@ -181,11 +182,11 @@ test('native routes share OpenAI/Gemini transports, preserve image bytes/alpha a
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => { server.closeAllConnections(); return new Promise<void>(done => server.close(() => done())); });
   const base = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
-  const settings = loadWorkflowEnvironment({ codex_path: executable,
+  const settings = withCodex(loadWorkflowEnvironment({
     PATH: process.env.PATH,
     part_simplify_image_model: 'gpt-image-2.5-flare', part_base_subject_image_model: 'gemini-nano-banana-2.1',
     openai_image_base_url: base + '/v1', openai_image_api_key: 'openai-secret',
-    google_image_base_url: base + '/v1beta', google_image_api_key: 'google-secret' }, root);
+    google_image_base_url: base + '/v1beta', google_image_api_key: 'google-secret' }, root), executable);
   const openai = await createCodexImageRoute(settings, 'part_simplify', join(root, 'openai'));
   t.after(() => openai.close());
   const google = await createCodexImageRoute(settings, 'part_base_subject', join(root, 'google'), settings.codex, undefined, { runsRoot: root });
@@ -223,9 +224,9 @@ test('Codex completion uses native image events, resumes after changing image mo
   source = source.replace('#!/usr/bin/env node', `#!${process.execPath}`);
   source = source.replace('const calls =', `${fakeDebug(capabilities)}\nconst calls =`);
   await writeFile(server.executable, source);
-  const settings = loadWorkflowEnvironment({ codex_path: server.executable,
+  const settings = withCodex(loadWorkflowEnvironment({
     part_completion_image_model: 'gpt-image-2.5-flare',
-    openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'fixture' }, root);
+    openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'fixture' }, root), server.executable);
   const session = new CodexAgents({ environment: settings, cwd: root, logDirectory: join(root, 'logs') }).createSession();
   try {
     const a = await session.run({ step: 'part_completion', name: 'complete', prompt: '原补全任务' });

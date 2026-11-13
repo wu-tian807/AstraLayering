@@ -1,0 +1,24 @@
+{
+  "structure_preserved": true,
+  "changed_paintlayers": [
+    "D14 | hair/back_hair",
+    "D23 | legs/leg_left/leg",
+    "D24 | legs/leg_right/leg",
+    "D31 | arms/arm_left/forearm",
+    "D32 | arms/arm_right/forearm",
+    "D35 | body/breast",
+    "D40 | arms/arm_left/hand/middle_finger",
+    "D41 | arms/arm_right/hand/middle_finger",
+    "D42 | arms/arm_left/hand/thumb",
+    "D43 | arms/arm_right/hand/thumb",
+    "D44 | arms/arm_left/hand/index_finger",
+    "D45 | arms/arm_right/hand/index_finger",
+    "D67 | face/eyes/eye_left/iris",
+    "D68 | face/eyes/eye_right/iris",
+    "D71 | face/eyes/eye_left/upper_eyelid",
+    "D72 | face/eyes/eye_right/upper_eyelid",
+    "D83 | hair/side_hair/side_hair_right",
+    "D84 | hair/bangs"
+  ],
+  "masks_unchanged": true
+}

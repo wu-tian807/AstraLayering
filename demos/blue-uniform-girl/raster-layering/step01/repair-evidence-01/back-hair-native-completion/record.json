@@ -1,0 +1,373 @@
+{
+  "conclusion": "已修复",
+  "newPassedIssues": [
+    "R21"
+  ],
+  "passedIssues": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8",
+    "R9",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33",
+    "R34",
+    "R35"
+  ],
+  "pendingIssues": [],
+  "changedLogicalParts": [
+    "hair/back_hair"
+  ],
+  "unchangedLogicalPaints": 58,
+  "uuidChangedParts": [
+    "hair/back_hair"
+  ],
+  "alphaChangedParts": [
+    "hair/back_hair"
+  ],
+  "logicalParts": 59,
+  "paintLayers": 60,
+  "nativeMasks": 10,
+  "nativeGroups": 3,
+  "maskUUIDAndOwnershipAndSelectionsUnchanged": true,
+  "changedParts": [
+    {
+      "id": "hair/back_hair",
+      "layerName": "01 | hair/back_hair",
+      "layerUUID": "{4089d0f0-6f23-4ca6-ba99-9ff0762dda2c}",
+      "level": 1,
+      "regions": [
+        [
+          328,
+          477,
+          370,
+          540
+        ],
+        [
+          600,
+          531,
+          645,
+          578
+        ]
+      ],
+      "sourceOwnVolumeBox": [
+        363,
+        513,
+        385,
+        533
+      ],
+      "reuseSource": "本件已有生成画面的蓝色体积笔触；局部配准供Krita原生取样，线条用原生画笔逐笔完成。",
+      "nativeMasks": []
+    }
+  ],
+  "acceptedOperations": [
+    "right-own-native-clean-volume-and-local-tip-outline",
+    "right-own-native-continuous-tip-ink",
+    "left-reference-trials-restored-keep-right [恢复后只承接此前有效右侧]",
+    "left-own-generated-volume-native-single-flow",
+    "left-own-flow-taper-and-root-native-ink",
+    "right-own-native-volume-flow-and-contour-density"
+  ],
+  "rejectedTrials": [
+    "左侧重生成及其局部取样：新增不需要的内线、接色；撤回。",
+    "左侧平移旧材质与原图取样试画：局部残线/接边或边缘归属风险；左区恢复批前全部像素后另用同件生成蓝面与画笔修。",
+    "右侧重生成：实际末端偏高、深蓝外线不足；未导入。",
+    "右侧首个平移同件取样：带入本件其他暗线；右区恢复批前全部像素后另做干净本件体积取样。"
+  ],
+  "generation": [
+    {
+      "partID": "hair/back_hair",
+      "cropBox": [
+        311,
+        441,
+        481,
+        611
+      ],
+      "scale": 6,
+      "targetPolygon": [
+        [
+          332,
+          454
+        ],
+        [
+          363,
+          478
+        ],
+        [
+          400,
+          498
+        ],
+        [
+          451,
+          530
+        ],
+        [
+          475,
+          538
+        ],
+        [
+          471,
+          581
+        ],
+        [
+          443,
+          581
+        ],
+        [
+          411,
+          579
+        ],
+        [
+          397,
+          540
+        ],
+        [
+          394,
+          571
+        ],
+        [
+          423,
+          587
+        ],
+        [
+          386,
+          584
+        ],
+        [
+          355,
+          570
+        ],
+        [
+          335,
+          553
+        ],
+        [
+          326,
+          530
+        ],
+        [
+          326,
+          506
+        ],
+        [
+          329,
+          477
+        ]
+      ],
+      "yellowPolygon": [
+        [
+          327,
+          474
+        ],
+        [
+          341,
+          474
+        ],
+        [
+          345,
+          498
+        ],
+        [
+          345,
+          531
+        ],
+        [
+          329,
+          539
+        ],
+        [
+          324,
+          516
+        ]
+      ],
+      "redMeaning": "本件已有生成笔触，保留蓝色体积和深蓝发流线",
+      "yellowMeaning": "本件旧裁边的多余暗线或欠缺末端，已在输入抹中性灰",
+      "greenMeaning": "本件以外，已抹中性灰并要求输出透明",
+      "generated": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_6vilypxcyCqXT0TraBHFl2Jz.png",
+      "copy": "raster-layering/step01/workspace/repair-next12/generation/left-generated.png",
+      "originalSize": [
+        1254,
+        1254
+      ],
+      "registration": "整张正方形均匀缩小到原坐标范围，无变形、无裁掉描边",
+      "acceptedInFinalPainting": false
+    },
+    {
+      "partID": "hair/back_hair",
+      "cropBox": [
+        569,
+        450,
+        719,
+        600
+      ],
+      "scale": 6,
+      "targetPolygon": [
+        [
+          587,
+          514
+        ],
+        [
+          610,
+          503
+        ],
+        [
+          630,
+          488
+        ],
+        [
+          660,
+          464
+        ],
+        [
+          665,
+          476
+        ],
+        [
+          654,
+          511
+        ],
+        [
+          640,
+          536
+        ],
+        [
+          636,
+          530
+        ],
+        [
+          633,
+          544
+        ],
+        [
+          620,
+          559
+        ],
+        [
+          603,
+          551
+        ],
+        [
+          587,
+          542
+        ]
+      ],
+      "yellowPolygon": [
+        [
+          586,
+          535
+        ],
+        [
+          602,
+          539
+        ],
+        [
+          615,
+          548
+        ],
+        [
+          624,
+          543
+        ],
+        [
+          633,
+          535
+        ],
+        [
+          638,
+          537
+        ],
+        [
+          633,
+          551
+        ],
+        [
+          621,
+          562
+        ],
+        [
+          601,
+          554
+        ],
+        [
+          587,
+          545
+        ]
+      ],
+      "redMeaning": "本件已有生成笔触，保留蓝色体积和深蓝发流线",
+      "yellowMeaning": "本件旧裁边的多余暗线或欠缺末端，已在输入抹中性灰",
+      "greenMeaning": "本件以外，已抹中性灰并要求输出透明",
+      "generated": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_vvtabZdYWn7azJce1Bs6T5cM.png",
+      "copy": "raster-layering/step01/workspace/repair-next12/generation/right-generated.png",
+      "originalSize": [
+        1254,
+        1254
+      ],
+      "registration": "整张正方形均匀缩小到原坐标范围，无变形、无裁掉描边",
+      "acceptedInFinalPainting": false
+    }
+  ],
+  "method": "在已有生成绘画上局部Krita原生同件取样、轮廓清理、画笔接色/描线；不跨part复制、不沿整形体填色、不烘焙投影。",
+  "upstreamChanges": [],
+  "thisBatchSplits": [],
+  "preAnnotatedSplits": [],
+  "priorAssemblyDiscoveredSplits": [
+    {
+      "logicalID": "face/eyes/eye_left/upper_eyelid",
+      "fragments": [
+        {
+          "name": "40 | face/eyes/eye_left/upper_eyelid",
+          "uuid": "{c3ca46a1-bc2b-4c65-ab25-ae532b8e67c1}",
+          "level": 40
+        },
+        {
+          "name": "57.5 | face/eyes/eye_left/upper_eyelid [outer_spike]",
+          "uuid": "{e1477f07-0c7c-4d2b-ac85-5049561f43fe}",
+          "level": 57.5
+        }
+      ],
+      "region": [
+        669,
+        346,
+        17,
+        14
+      ],
+      "paintCount": 60,
+      "logicalCount": 59,
+      "unionRawExact": true,
+      "reason": "原图外侧短睫毛尖跨在57侧发前，主体仍在侧发后；同一上睑共同运动的两个深度分片，未新增控制身份。"
+    }
+  ],
+  "currentThreeViews": "raster-layering/step01/repair-evidence-01/index.json",
+  "checks": "raster-layering/step01/repair-evidence-01/back-hair-native-completion/checks",
+  "reopenPassed": true,
+  "defaultPNGMatchesReopen": true,
+  "reopenVerification": "raster-layering/step01/repair-evidence-01/back-hair-native-completion/reopen-verification.json",
+  "maskVerification": "raster-layering/step01/repair-evidence-01/back-hair-native-completion/mask-verification.json",
+  "visualResult": "此前修好的两侧回弯束、外围尖端深蓝外线及真实空隙保留。本次只修改深度1的hair/back_hair。先分别制作左承接与右末端的三色控制图：红区保留本件原生成笔触，黄区为旧裁边残线/欠缺末端，绿区为件外；黄、绿输入抹中性灰，要求透明输出。两次生图1254方图均以整张画布等比缩回170/150方图，放回原坐标，保留外圈；左图增加内线，右图末端位置和外线不足，均未进入最终绘画。左侧生成取样、旧材质平移及原图小范围取样试稿在三视图中发现接边或残线，全部撤回；最后左侧恢复本批初始绘画后，只用本件已有生成蓝面自身取样修画。最终取本件原生成蓝面[363,513,385,533]的无外线体积笔触，在左侧旧裁边局部补蓝并融接，清掉重复直落暗线；Krita画笔沿本件形体续单条曲线，分段调整浓淡、粗细并自然收尖。右侧同件取样的首次试稿带入本件其他暗线，已完整恢复到右侧批前状态；最终仍取上述本件无外线蓝面，在末端局部补足本件蓝色体积，清掉自身旧末端外侧的多余像素，再沿实际边缘逐笔续深蓝轮廓。保留并接续本件自身微弱发流明暗，没有把衣领、侧发、肤色或其他遮挡物像素带入后发，也未用侧发遮缺口。最终独显、隐藏上层和整头原坐标对照：左侧重复暗线消除、蓝面连续；右侧末端外线完整，真实开口保留，和前侧发的接合自然；外围回弯、发尖和同片实体连接无新增碎边。standard的衣领遮挡部分不作为后发像素来源，完整后发在素体组装中的露出延续以本件形体与base-subject辅助核对。R21自检通过。"
+}

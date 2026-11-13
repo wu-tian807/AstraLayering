@@ -153,6 +153,13 @@ function applySnapshot(next) {
   stage.status=data.sections[index]?.status||'pending';
   const mark=steps=>steps.forEach(step=>{
    step.status=data.sections[index]?.states[step.id]||'pending';
+   if(index===6&&step.id==='step08_hair') {
+    const hair=data.sections[index]?.hair;
+    if(hair) {
+     step.rounds.forEach(round=>round.status=hair.rounds[round.id]||'pending');
+     if(hair.awaitingContinue)step.roundNotice=`继续后制作${step.rounds.find(round=>round.id===hair.next)?.title||'下一轮'}`;
+    } else if(step.status==='done')step.rounds=[];
+   }
    if(index===0&&step.id==='standard')step.note=data.run?.standard===true?'标准化：已开启':data.run?.standard===false?'标准化：未开启':'标准化：未记录';
    mark(step.children);
   });
@@ -390,7 +397,7 @@ function nineAxisContent(step) {
   items=items.filter(item=>item.kind!=='image'||item===image);
  }
  const preview=section?.previews?.[step.id];
- if(['step01_preparation','step07_jaw-line','step08_hair'].includes(step.id)&&preview?.path.endsWith('.kra')) {
+ if(['step01_preparation','step07_jaw-line','step08_hair','step09_head-accessories'].includes(step.id)&&preview?.path.endsWith('.kra')) {
   items=items.filter(item=>item.kind!=='image');
   items.unshift({path:preview.path,label:'最新保存画面',kind:'image'});
   if(!items.some(item=>item.path===preview.path&&item.kind==='file'))items.push({path:preview.path,label:'分层 KRA',kind:'file'});
@@ -398,7 +405,7 @@ function nineAxisContent(step) {
  if(report&&!items.some(item=>item.path===report.path))items.push({path:report.path,label:'阶段报告',kind:'file'});
  const message=section?.messages?.[step.id];
  const notice=!message?'':step.status==='throttled'?waitBox(message):['failed','interrupted'].includes(step.status)?errorBox(message):`<p class="step-activity">${esc(message)}</p>`;
- return artifacts(items,6,step.id,'nine-artifacts')+notice+processArtifacts(6,step);
+ return artifacts(items,6,step.id,'nine-artifacts')+(section?.products?.[step.id]?'<p class="step-activity">已有产物</p>':'')+notice+processArtifacts(6,step);
 }
 function processArtifacts(index, step) {
  const directory=step.processDirectory||(step.id.startsWith('step')?stages[index].id+'/'+step.id:null);
@@ -421,7 +428,7 @@ function processArtifacts(index, step) {
 // A skipped lane (no dress-up, nothing to make) counts as complete.
 const finished=stage=>stage.status==='done'||stage.status==='skipped';
 function headThumbnail() {
- return `<section class="kra-preview-panel head-preview-panel" data-head-preview data-model="${headPreview.folder===data.directory&&headPreview.available?'available':'pending'}" aria-label="头部九轴步骤与预览"><h3>${icon('layers')}九轴步骤</h3><div class="preview-step-plan">${flowStepList(sectionSteps[6],{index:6,esc,icon,statusMark,statusLabel})}</div><canvas aria-label="随鼠标运动的九轴角色头"></canvas><p data-head-status role="status">等待模型保存</p><a href="./studio?${new URLSearchParams({project:state.name,workspace:'nine-axis'})}">${icon('eye')}打开九轴工作台</a></section>`;
+ return `<section class="kra-preview-panel head-preview-panel" data-head-preview data-model="${headPreview.folder===data.directory&&headPreview.available?'available':'pending'}" aria-label="头部九轴步骤与预览"><h3>${icon('layers')}九轴步骤</h3><div class="preview-step-plan">${flowStepList(sectionSteps[6],{index:6,esc,icon,statusMark,statusLabel})}</div><div class="head-preview-levels" role="group" aria-label="预览组合"><button data-head-level="face" aria-label="脸＋五官" disabled>脸＋五官</button><button data-head-level="hair" aria-label="脸＋五官＋头发" disabled>＋头发</button><button data-head-level="accessory" aria-label="脸＋五官＋头发＋头饰" disabled>＋头饰</button></div><canvas aria-label="随鼠标运动的九轴角色头"></canvas><p data-head-status role="status">等待模型保存</p><a href="./studio?${new URLSearchParams({project:state.name,workspace:'nine-axis'})}">${icon('eye')}打开九轴工作台</a></section>`;
 }
 function flowCard(index) {
  const stage=stages[index],status=observedDisplayStatus(index,stage.status),closed=state.collapsedSections.has(index),wide=!closed&&groupViews[index]?.open&&!state.collapsedSteps.has(`${index}:layers`);
@@ -657,7 +664,7 @@ function jsonLines(text) {
 // open by themselves; one the user opened or closed stays so until the page reloads.
 function configTree() {
  const scope=file=>file;
- const families=[['part-layering','人物分块'],['raster-layering','人物绘制'],['clothing-part-layering','衣服分块'],['clothing-raster-layering','衣服绘制'],['character-assembly','穿戴组装'],['shadow','阴影制作'],['nine-axis','头部九轴'],['shared','公共先验'],['','其他文件']];
+ const families=[['part-layering','人物分块'],['raster-layering','人物绘制'],['clothing-part-layering','衣服分块'],['clothing-raster-layering','衣服绘制'],['character-assembly','穿戴组装'],['shadow','阴影制作'],['head-nine-axis','头部九轴'],['shared','公共先验'],['','其他文件']];
  const query=state.configFilter.toLowerCase();
  const owned=file=>families.some(([prefix])=>prefix&&scope(file).startsWith(prefix+'/'));
  const count=node=>node.files.length+[...node.folders.values()].reduce((sum,child)=>sum+count(child),0);
@@ -764,7 +771,7 @@ function bindExecutionFields(form,run) {
   }
   form.elements.standard.disabled=from!=='part-layering';
   form.elements.shadowMode.disabled=stages.findIndex(stage=>stage.id===from)>5||stages.findIndex(stage=>stage.id===to)<5;
-  form.querySelector('.live-detail').textContent=form.elements.from?`${nineAxisConnection({from,to,live:form.elements.live.checked}).detail}。保存参数后，再使用继续、恢复或重试执行。`:form.elements.live.checked?'阴影完成后继续制作七步头部九轴；脸部、五官、双耳与固定脖子。':'本次在阴影完成后结束，头部九轴暂不启动。';
+  form.querySelector('.live-detail').textContent=form.elements.from?`${nineAxisConnection({from,to,live:form.elements.live.checked}).detail}。保存参数后，再使用继续、恢复或重试执行。`:form.elements.live.checked?'阴影完成后继续制作头部九轴，包含脸部、头发与头部饰品。':'本次在阴影完成后结束，头部九轴暂不启动。';
  };
  form.querySelectorAll('[name=from],[name=to]').forEach(select=>select.onchange=()=>{
   rangeEdited=true;

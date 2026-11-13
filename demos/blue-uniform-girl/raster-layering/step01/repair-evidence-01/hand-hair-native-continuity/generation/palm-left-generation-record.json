@@ -1,0 +1,12 @@
+{
+  "generatedSource": "raster-layering/step01/workspace/generated/generated_images/01a1cc74-f259-7361-b1e7-046cf902b1d5/call_ZsRJVwDqCMp2ohUU0QaS3Ojb.png",
+  "copiedSource": "raster-layering/step01/workspace/repair-next11/generation/palm-left-generated.png",
+  "originalSize": [
+    1254,
+    1254
+  ],
+  "registration": "full canvas uniformly downsampled to171x171, placed at230,780, no alpha/ink clipping",
+  "registered": "raster-layering/step01/workspace/repair-next11/generation/palm-left-registered.png",
+  "recoveredToolError": "unknown field `size`, expected one of `prompt`, `transparent_background`, `referenced_image_paths`, `num_last_images_to_include` at line 1 column 7",
+  "recovery": "Removed unsupported size/n fields and retried successfully with native tool schema"
+}

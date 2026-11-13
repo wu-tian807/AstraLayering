@@ -15,7 +15,7 @@ import { processAlive, taskStatus } from '../state.ts';
 import { fakePatchedCodex, patchedCodexCapabilities } from '../../shared/tests/fake-codex.ts';
 
 // Real background workers inherit this and pass the Codex startup check without a build.
-process.env.codex_path = await fakePatchedCodex();
+process.env.ASTRA_TEST_CODEX_EXECUTABLE = await fakePatchedCodex();
 
 const cli = fileURLToPath(new URL('../run.ts', import.meta.url));
 async function fixture(t: TestContext, slow = false) {
@@ -39,9 +39,9 @@ async function fixture(t: TestContext, slow = false) {
       + 'else if (!fs.existsSync(' + JSON.stringify(seen) + ')) { fs.writeFileSync(' + JSON.stringify(seen) + ', ""); '
       + 'console.log(' + JSON.stringify(JSON.stringify(patchedCodexCapabilities)) + '); }\n'
       + 'else { fs.writeFileSync(' + JSON.stringify(join(task, 'probe.pid')) + ', String(process.pid)); setTimeout(() => {}, 60000); }\n', { mode: 0o755 });
-    const previous = process.env.codex_path;
-    process.env.codex_path = codex;
-    t.after(() => { process.env.codex_path = previous; });
+    const previous = process.env.ASTRA_TEST_CODEX_EXECUTABLE;
+    process.env.ASTRA_TEST_CODEX_EXECUTABLE = codex;
+    t.after(() => { process.env.ASTRA_TEST_CODEX_EXECUTABLE = previous; });
   }
   const output = join(task, 'character-assembly');
   await mkdir(output, { recursive: true });
@@ -58,7 +58,7 @@ async function until(check: () => Promise<boolean>, timeout = 10_000) {
 async function startFixtureBackground(f: Awaited<ReturnType<typeof fixture>>, krita?: string) {
   // Give the worker an explicit Qt platform so the light Krita check does not
   // depend on the test host's desktop.
-  return promisify(execFile)(process.execPath, [cli, '--name', f.name, '--dir', f.dir,
+  return promisify(execFile)(process.execPath, ['--import', new URL('../../shared/tests/ignore-local-env.ts', import.meta.url).href, cli, '--name', f.name, '--dir', f.dir,
     '--from', 'character-assembly', '--to', 'character-assembly', '--background',
     ...(krita === undefined ? [] : ['--krita', krita])], {
     timeout: 15_000, env: { ...process.env, QT_QPA_PLATFORM: 'offscreen' },

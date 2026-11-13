@@ -1,0 +1,20 @@
+[
+  {
+    "tag": "R14",
+    "levels": [
+      26,
+      32
+    ],
+    "box": [
+      351,
+      776,
+      213,
+      266
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-R14",
+    "names": [
+      "D26 | arms/arm_right/upper_arm",
+      "D32 | arms/arm_right/forearm"
+    ]
+  }
+]

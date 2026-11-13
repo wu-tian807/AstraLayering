@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review02/solo/D25.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/bc72b74b-fb60-485e-9c17-19fb5b217557/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/bc72b74b-fb60-485e-9c17-19fb5b217557/regions.json",
+  "regions": [
+    {
+      "id": "R18",
+      "bounds": [
+        869,
+        821,
+        94,
+        53
+      ],
+      "layers": [
+        "D25 | arms/arm_left/upper_arm"
+      ],
+      "description": "左上臂隐藏肘帽虽有圆形肤色，两侧棕色外线到帽端停止，圆帽沿缺描边、局部为浅白硬边；应续接本件轮廓到隐藏端。",
+      "crop": [
+        853,
+        805,
+        126,
+        85
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/bc72b74b-fb60-485e-9c17-19fb5b217557/R18-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/bc72b74b-fb60-485e-9c17-19fb5b217557/R18-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/bc72b74b-fb60-485e-9c17-19fb5b217557/R18-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

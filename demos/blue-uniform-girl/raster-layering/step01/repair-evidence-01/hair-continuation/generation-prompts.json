@@ -1,0 +1,28 @@
+[
+  {
+    "issue": "R22",
+    "tool": "image_gen.imagegen",
+    "transparent_background": true,
+    "accepted": false,
+    "prompt": "Use case: precise-object-edit. Asset: local painted back-hair patch for an existing Live2D layer. Image 1 is the existing painted hair to edit; Image 2 is the original hair-only evidence with all occluders neutral gray; Image 3 is the three-color control. Red is exact visible own hair, yellow is complete hidden own hair, green would be transparent outside. This crop is entirely inside the own hair. Restore the missing tapered cyan-blue reflection band shown in Image 2, and its curved dark navy hair-flow lines, in precisely the same relative place and shape. Keep the generated hair material and dark navy/purple palette elsewhere from Image 1. Continue smoothly under the gray occlusion area with the same own hair; no accessory, skin, white background, occluder outlines, new texture, glow, hard glint, cast shadows or new colors. Hair color transitions are soft like Image 2; cyan wedge gradually darkens along its thin lower end. The restored band must be embedded in the existing hair surface. Preserve hair proportion and orientation; no text. Output one registered crop filling the frame at the identical 768 by 976 aspect ratio.",
+    "inputs": [
+      "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R22-existing.png",
+      "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R22-neutral-reference.png",
+      "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R22-control.png"
+    ],
+    "generated": "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R22-generated.png"
+  },
+  {
+    "issue": "R25",
+    "tool": "image_gen.imagegen",
+    "transparent_background": true,
+    "accepted": false,
+    "prompt": "Use case: precise-object-edit. Local painted patch for existing side-hair part. Image 1 is edit target, a navy strand with a short upper lock continuously attached to the long curved lock. Image 2 is original own-hair evidence; gray removes the ear/skin/back hair and all foreign items. Image 3 three-color control: RED use exact own visible form, hair shading and strokes from Image 2; YELLOW complete this same strand, GREEN transparent outside. Correct only the straight vertical dark blue block boundary at the short-to-long junction in Image 1: make the blue-purple shading and hair-flow curve as in Image 2, smoothly flowing down the same connected strand. Preserve the cyan inner face near the lower left and its soft gradients, preserve dark navy outlines and both pointed ends. Preserve complete connected own strand with no holes, foreign pixels, skin/ear red, cast shadows, new colors, texture, gloss, glowing edges, outlines of occluders or background. Keep original relative placement/proportions from Image 2, maintain painterly anime line weights and soft material from both. Do not blur all the intentional hair shade divisions. One transparent crop at the same 585 by 1055 aspect ratio, no text.",
+    "inputs": [
+      "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R25-existing.png",
+      "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R25-neutral-reference.png",
+      "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R25-control.png"
+    ],
+    "generated": "raster-layering/step01/repair-evidence-01/hair-continuation/trials/R25-generated.png"
+  }
+]

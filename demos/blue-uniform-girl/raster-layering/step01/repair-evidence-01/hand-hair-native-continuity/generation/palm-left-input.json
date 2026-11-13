@@ -1,0 +1,19 @@
+{
+  "id": "arms/arm_right/hand/palm",
+  "box": [
+    230,
+    780,
+    401,
+    951
+  ],
+  "source": "part-layering/references/standard.png",
+  "red": "current own palm visible area, y<914, all upper occluders excluded",
+  "yellow": "full generated palm extension including wrist root and native palm-to-finger attachment plane",
+  "green": "outside this part, output transparent",
+  "sourceImage": "raster-layering/step01/workspace/repair-next11/generation/palm-left-neutral-reference.png",
+  "controlImage": "raster-layering/step01/workspace/repair-next11/generation/palm-left-tricolor-control.png",
+  "outputSize": [
+    1024,
+    1024
+  ]
+}

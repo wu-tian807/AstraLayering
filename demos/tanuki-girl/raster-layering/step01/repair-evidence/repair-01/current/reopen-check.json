@@ -1,0 +1,69 @@
+{
+  "savedReopened": true,
+  "signaturesEqual": true,
+  "nodeCount": 91,
+  "paintLayers": 85,
+  "maskCount": 5,
+  "namesUUIDOrderParentsEqual": true,
+  "visibilityOpacityBlendInheritAlphaLocksEqual": true,
+  "allNodePixelHashesEqual": true,
+  "canvas": [
+    1376,
+    2048
+  ],
+  "metadata": {
+    "canvas": [
+      1376,
+      2048
+    ],
+    "colorModel": "RGBA",
+    "colorDepth": "U8",
+    "colorProfile": "sRGB-elle-V2-srgbtrc.icc",
+    "nodes": 91,
+    "paintLayers": 85,
+    "logicalParts": 78,
+    "types": {
+      "paintlayer": 85,
+      "transparencymask": 5,
+      "grouplayer": 1
+    },
+    "depthCoveragePassed": true,
+    "allSVGPresent": true,
+    "groupsSHA256": "a6f019148c50d307f2a165739dac192ff748d27341b8b5abddae76ce4b8591ac",
+    "occlusionSHA256": "bc63646be5e5aa55d72a81a44dc674d34813f7af9f80f412e448f78e64c0b76a",
+    "kraSHA256": "ec8ccc9e6eaeb17fcffffcee67c7c8ee3f8279abf70ced768f558c725fa04ab9",
+    "pngSHA256": "921bf06846cbb298b54bdcc4fe6f98837675aef59b35afa5eb14429109c708a7"
+  },
+  "maskDefaults": [
+    {
+      "name": "Default closed | legs/leg_left/thigh_band_back",
+      "uuid": "{08259a8e-cd26-487a-9f12-ab9fd99ca69e}",
+      "visible": true,
+      "opacity": 255
+    },
+    {
+      "name": "Default closed | arms/arm_left/hand/little_finger",
+      "uuid": "{5483a5d1-d926-4388-8566-50775fc6d816}",
+      "visible": true,
+      "opacity": 255
+    },
+    {
+      "name": "Default closed | arms/arm_right/hand/little_finger",
+      "uuid": "{5e4ea0ea-ca7c-4cf9-9529-24de800dd784}",
+      "visible": true,
+      "opacity": 255
+    },
+    {
+      "name": "Default closed | head_accessories/hair_tie_back",
+      "uuid": "{ce547866-9e77-4d6d-90ea-256eb880f1ce}",
+      "visible": true,
+      "opacity": 255
+    },
+    {
+      "name": "Default closed | shared upper/lower lip inner opening",
+      "uuid": "{5e4ab66e-50eb-48c1-ac8e-d840df23395d}",
+      "visible": true,
+      "opacity": 255
+    }
+  ]
+}

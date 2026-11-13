@@ -1,10 +1,10 @@
 import { knowledgeDirectory } from '../knowledge.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
 import { freshPrompt } from '../codex/fresh-prompt.ts';
-import { access, mkdir, readFile, writeFile, copyFile, rename, chmod, realpath, stat } from 'node:fs/promises';
+import { access, mkdir, readFile, writeFile, realpath, stat } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { homedir } from 'node:os';
-import { join, resolve, delimiter, relative, isAbsolute } from 'node:path';
+import { join, resolve, delimiter } from 'node:path';
 import spawn from 'cross-spawn';
 import { stopCliProcess } from './process.ts';
 import { createInterface } from 'node:readline';
@@ -28,7 +28,8 @@ import { resolveRunsDirectory } from '../paths.ts';
 import { withNodePath } from '../process-environment.ts';
 import { claudeProviderSettings, validateProviderModel } from './providers.ts';
 import { prepareWorkspace, workspacePrompt, workspaceTools } from './workspace.ts';
-import { fromTaskPath, toTaskPath } from '../task-paths.ts';
+import { toTaskPath } from '../task-paths.ts';
+import { readSessions, rememberSession, resolveSession, copyCredential } from './session-data.ts';
 
 // AGV reports its Go transport timeouts only as text; these two exact forms are tagged where the CLI ends.
 const agvTransportTimeout = /net\/http: timeout awaiting response headers|stream idle timeout \(\w+\): context deadline exceeded/;
@@ -62,26 +63,6 @@ export async function cliExecutable(settings: WorkflowEnvironment, harness: Harn
   }
   throw new Error(`所选步骤需要 ${harness} CLI，但没有可用的全局入口${explicit ? `：${explicit}` : ''}。工作流不会自动安装；请安装并登录，或设置 ${harness}_path / 改用已有模型。`);
 }
-type StoredSession = { harness: Harness; data: string; workspace: string };
-async function readSessions(root: string): Promise<Record<string, StoredSession>> {
-  try { return JSON.parse(await readFile(join(root, 'sessions.json'), 'utf8')); }
-  catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return {}; throw error; }
-}
-// Serialize only the registry writes; CLI calls themselves keep the shared concurrency budget.
-const registryWrites = new Map<string, Promise<void>>();
-async function remember(root: string, id: string, session: StoredSession): Promise<void> {
-  const next = (registryWrites.get(root) || Promise.resolve()).catch(() => {}).then(async () => {
-    const records = await readSessions(root); records[id] = session;
-    const file = join(root, 'sessions.json'), temporary = `${file}.${randomUUID()}.tmp`;
-    await writeFile(temporary, JSON.stringify(records, null, 2), { mode: 0o600 }); await rename(temporary, file);
-  });
-  registryWrites.set(root, next); await next;
-}
-async function copyCredential(source: string, target: string) {
-  try { await copyFile(source, target); await chmod(target, 0o600); }
-  catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
-}
-
 export async function runCliTask(task: AgentTask, model: AgentModel, settings: WorkflowEnvironment, options: AgentOptions,
   signal: AbortSignal, resumed?: string): Promise<AgentResult> {
   validateProviderModel(settings.providers, model, task.step ?? task.name);
@@ -107,20 +88,13 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
   try {
     const records = await readSessions(root);
     let previous = resumed ? records[resumed] : undefined;
-    // The registry records task-relative directories; older entries hold absolute ones.
-    if (previous) previous = { ...previous, data: fromTaskPath(paths.root, previous.data) };
     if (resumed && previous?.harness !== model.harness) {
       await options.onThreadReplacement?.(resumed, 'CLI 已改变或原会话记录不可用'); resumed = undefined;
       threadId = undefined;
       previous = undefined;
     }
     if (previous) try {
-      for (const path of [previous.data]) {
-        const lexical = relative(root, resolve(path));
-        if (!lexical || lexical === '..' || lexical.startsWith('../') || isAbsolute(lexical)) throw new Error('CLI 会话目录不在当前任务记录目录内');
-        const rel = relative(await realpath(root), await realpath(path));
-        if (!rel || rel === '..' || rel.startsWith('../') || isAbsolute(rel)) throw new Error('CLI 会话目录不在当前任务记录目录内');
-      }
+      previous = await resolveSession(root, paths.root, previous);
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
       await options.onThreadReplacement?.(resumed!, '原 CLI 会话目录已不存在');
@@ -128,7 +102,7 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
     }
     const workspace = paths.workspace;
     // The CLI works in the step workspace; a resumed session keeps the directory it started in.
-    const cwd = previous?.workspace ? fromTaskPath(paths.root, previous.workspace) : workspace;
+    const cwd = previous?.workspace || workspace;
     const data = previous?.harness === model.harness ? previous.data : join(log.directory, 'cli-data');
     await mkdir(data, { recursive: true, mode: 0o700 });
     // Some CLI releases ignore their config-directory overrides for native history.
@@ -218,7 +192,7 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
       if (!id || id === threadId) return;
       // AGV opens a new conversation when the one asked for is gone, so the old session is unavailable and gets replaced.
       if (threadId) throw new Error(threadId === resumed ? `原 session 不可用：CLI 未恢复 ${resumed}，返回了新的会话 ID ${id}` : 'CLI 返回了不同的原会话 ID');
-      threadId = id; await remember(root, id, { harness: model.harness, data: toTaskPath(paths.root, data), workspace: toTaskPath(paths.root, cwd) });
+      threadId = id; await rememberSession(root, id, { harness: model.harness, data: toTaskPath(paths.root, data), workspace: toTaskPath(paths.root, cwd) });
       await options.onEvent?.({ type: 'thread.started', thread_id: id });
     };
     options.progress?.(`开始：${task.name}；${model.harness} / ${model.model} / ${model.effort}；记录：${log.directory}`);

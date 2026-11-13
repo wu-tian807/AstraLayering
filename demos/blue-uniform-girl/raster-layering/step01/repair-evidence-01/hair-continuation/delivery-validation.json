@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "conclusion": "仍有问题",
+  "paintLayers": 59,
+  "nativeMasks": 10,
+  "nativeGroups": 3,
+  "passedIssues": 23,
+  "pendingIssues": 12,
+  "issues": 35,
+  "issueRegions": 37,
+  "changedPaintPartsThisBatch": 4,
+  "unchangedPaintPartsThisBatch": 55,
+  "depthsAndIDsMatchUpstream": true,
+  "reportLinksValid": true,
+  "reopenIntegrityPassed": true,
+  "mainPNGMatchesReopen": true,
+  "kraZIPValid": true,
+  "temporaryRepairReport": "raster-layering/step01/repair-01.md.tmp",
+  "kraSHA256": "69214994c0a3bc4cc1b598cef21b152e63eb1dd4d7906700d81a1b26966438c8"
+}

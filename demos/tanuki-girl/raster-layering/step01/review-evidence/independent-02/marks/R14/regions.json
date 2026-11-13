@@ -1,0 +1,38 @@
+{
+  "image": "raster-layering/step01/workspace/review02/union/body__torso.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/0e1ca54f-aef8-44ea-a4f0-c46cea07655c/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/0e1ca54f-aef8-44ea-a4f0-c46cea07655c/regions.json",
+  "regions": [
+    {
+      "id": "R14",
+      "bounds": [
+        576,
+        890,
+        260,
+        111
+      ],
+      "layers": [
+        "D32.5 | body/torso | lower_mount",
+        "D34 | body/torso"
+      ],
+      "description": "躯干两片合并独显的下腹圆帽已有布面，侧缘深色外线却在深度接片处停止，整个补全帽沿只剩浅白边；应沿隐藏轮廓续接原线型。",
+      "crop": [
+        560,
+        874,
+        292,
+        143
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0e1ca54f-aef8-44ea-a4f0-c46cea07655c/R14-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0e1ca54f-aef8-44ea-a4f0-c46cea07655c/R14-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0e1ca54f-aef8-44ea-a4f0-c46cea07655c/R14-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

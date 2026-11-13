@@ -1,0 +1,53 @@
+{
+  "groupId": "legs/leg_left/shoes",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮独立审查通过。已读取本组说明、原图、候选及父组完成 SVG；本组为画面右下的整只高帮靴，未发现误包小腿、误认部件或可见组件缺失。靴筒、靴口后缘、前侧鞋舌、鞋身、固定扣带和鞋底均被联合色块覆盖，内部饰件不要求提前拆分。\n覆盖检查：先整图 blend 定位，再以 [578,1170,143,110] 与 [566,1250,151,130] 两个重叠选框进行 5 倍 blend/edge 对照，覆盖靴口、小腿接缝、两侧筒缘、侧面转折、鞋头与整段鞋底；另以 [597,1173,107,34] 8 倍复查靴口及鞋舌两侧转折。可见边缘和接缝贴合参考，未发现需修改的孔洞、缺口、尖端或连续性问题。SVG 独显为连续干净形体，无孤点、碎片或无依据挖缝。\n父范围：allowOutsideParent 未设置，按受限节点核对。局部查看父完成稿与候选，候选外缘承接父鞋体范围，四倍采样 outsidePixels=0；未发现需要单列的上游范围冲突。\n图像证据：[整图叠加](review-evidence/round1-whole-blend.png)、[父组局部叠加](review-evidence/round1-parent-blend.png)、[上半部边缘](review-evidence/round1-upper-edge.png)、[下半部边缘](review-evidence/round1-lower-edge.png)、[靴口放大](review-evidence/round1-opening-edge.png)、[候选独显](review-evidence/round1-svg.png)。",
+      "candidateHash": "3f3c6714750320c544f685558ab1c77df5fe17cba9cfb3c472c737a26e47f1d0",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/previews/2026-11-10T15-33-41-549Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/previews/2026-11-10T15-33-41-549Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/previews/2026-11-10T15-33-41-549Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/previews/2026-11-10T15-33-41-549Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/previews/2026-11-10T15-33-41-549Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/previews/2026-11-10T15-33-41-549Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/previews/2026-11-10T15-33-41-549Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/previews/2026-11-10T15-33-41-549Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-10T15:57:46.323Z"
+    }
+  ]
+}

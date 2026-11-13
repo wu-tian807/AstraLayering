@@ -1,0 +1,100 @@
+{
+  "description": "Each non-hidden logical SVG, ordered by foremost depth; used only to inspect logical coverage, not a raster-depth rendering.",
+  "parts": [
+    {
+      "part": "inner_shirt/shirt_body",
+      "sort_depth": 22,
+      "source": "clothing-part-layering/parts/inner_shirt/shirt_body.svg"
+    },
+    {
+      "part": "inner_shirt/shirt_collar/collar_base",
+      "sort_depth": 23,
+      "source": "clothing-part-layering/parts/inner_shirt/shirt_collar/collar_base.svg"
+    },
+    {
+      "part": "pleated_skirt/skirt_body",
+      "sort_depth": 24,
+      "source": "clothing-part-layering/parts/pleated_skirt/skirt_body.svg"
+    },
+    {
+      "part": "pleated_skirt/waistband",
+      "sort_depth": 25,
+      "source": "clothing-part-layering/parts/pleated_skirt/waistband.svg"
+    },
+    {
+      "part": "short_necktie/hanging_blade",
+      "sort_depth": 26,
+      "source": "clothing-part-layering/parts/short_necktie/hanging_blade.svg"
+    },
+    {
+      "part": "short_necktie/knot_and_attachment",
+      "sort_depth": 27,
+      "source": "clothing-part-layering/parts/short_necktie/knot_and_attachment.svg"
+    },
+    {
+      "part": "inner_shirt/shirt_collar/left_collar_leaf",
+      "sort_depth": 28,
+      "source": "clothing-part-layering/parts/inner_shirt/shirt_collar/left_collar_leaf.svg"
+    },
+    {
+      "part": "inner_shirt/shirt_collar/right_collar_leaf",
+      "sort_depth": 29,
+      "source": "clothing-part-layering/parts/inner_shirt/shirt_collar/right_collar_leaf.svg"
+    },
+    {
+      "part": "jacket_front_clasp/left_clasp_wing",
+      "sort_depth": 30,
+      "source": "clothing-part-layering/parts/jacket_front_clasp/left_clasp_wing.svg"
+    },
+    {
+      "part": "jacket_front_clasp/right_clasp_wing",
+      "sort_depth": 31,
+      "source": "clothing-part-layering/parts/jacket_front_clasp/right_clasp_wing.svg"
+    },
+    {
+      "part": "outer_jacket/left_sleeve",
+      "sort_depth": 32,
+      "source": "clothing-part-layering/parts/outer_jacket/left_sleeve.svg"
+    },
+    {
+      "part": "outer_jacket/right_sleeve",
+      "sort_depth": 33,
+      "source": "clothing-part-layering/parts/outer_jacket/right_sleeve.svg"
+    },
+    {
+      "part": "outer_jacket/jacket_body/left_front/front_panel",
+      "sort_depth": 34,
+      "source": "clothing-part-layering/parts/outer_jacket/jacket_body/left_front/front_panel.svg"
+    },
+    {
+      "part": "outer_jacket/jacket_body/right_front/front_panel",
+      "sort_depth": 35,
+      "source": "clothing-part-layering/parts/outer_jacket/jacket_body/right_front/front_panel.svg"
+    },
+    {
+      "part": "outer_jacket/jacket_body/left_front/lapel",
+      "sort_depth": 36,
+      "source": "clothing-part-layering/parts/outer_jacket/jacket_body/left_front/lapel.svg"
+    },
+    {
+      "part": "outer_jacket/jacket_body/right_front/lapel",
+      "sort_depth": 37,
+      "source": "clothing-part-layering/parts/outer_jacket/jacket_body/right_front/lapel.svg"
+    },
+    {
+      "part": "outer_jacket/jacket_collar/left_collar_flap",
+      "sort_depth": 38,
+      "source": "clothing-part-layering/parts/outer_jacket/jacket_collar/left_collar_flap.svg"
+    },
+    {
+      "part": "outer_jacket/jacket_collar/right_collar_flap",
+      "sort_depth": 39,
+      "source": "clothing-part-layering/parts/outer_jacket/jacket_collar/right_collar_flap.svg"
+    },
+    {
+      "part": "jacket_front_clasp/center_buckle",
+      "sort_depth": 40,
+      "source": "clothing-part-layering/parts/jacket_front_clasp/center_buckle.svg"
+    }
+  ]
+}

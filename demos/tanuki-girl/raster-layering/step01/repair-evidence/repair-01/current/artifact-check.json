@@ -1,0 +1,12 @@
+{
+  "kraZipReadable": true,
+  "defaultPNGEqualsReopenedPNG": true,
+  "kraMergedImageEqualsDeliveryPNG": true,
+  "canvas": [
+    1376,
+    2048
+  ],
+  "method": "Decoded RGBA equality only verifies saving/reopening. Drawing acceptance comes from visual solo, upper-hidden and assembled comparisons.",
+  "kraSHA256": "ec8ccc9e6eaeb17fcffffcee67c7c8ee3f8279abf70ced768f558c725fa04ab9",
+  "pngSHA256": "921bf06846cbb298b54bdcc4fe6f98837675aef59b35afa5eb14429109c708a7"
+}
