@@ -110,6 +110,22 @@ test('管线卡片只保留预览，运行统一由标题栏的继续 / 恢复 /
   assert.equal((html.match(/data-stage="\d+"/g) ?? []).length, 4, 'title and preview keep opening the detailed section');
 });
 
+test('头发与头饰卡片读取最新 KRA，累计成果与制作说明只展示一份', () => {
+  const component = source.slice(source.indexOf('function nineAxisContent('), source.indexOf('function processArtifacts('));
+  for (const id of ['step08_hair', 'step09_head-accessories']) {
+    const path = `nine-axis/${id}/character-nine-axis.kra`, notes = `nine-axis/${id}/notes.md`;
+    const items = runInNewContext(component + '\nnineAxisContent(step);', {
+      step: { id, status: 'interrupted' }, stepArtifacts,
+      data: { sections: Array.from({ length: 7 }, () => ({ previews: { [id]: { path } }, reports: { [id]: { path: notes } } })) },
+      available: (items: unknown) => structuredClone(items),
+      artifacts: (items: unknown) => JSON.stringify(items), processArtifacts: () => '',
+    });
+    const outputs = JSON.parse(items);
+    assert.deepEqual(outputs.filter((item: any) => item.kind === 'image').map((item: any) => item.path), [path]);
+    for (const name of [path, notes, `nine-axis/${id}/deformers.json`]) assert.equal(outputs.filter((item: any) => item.kind === 'file' && item.path === name).length, 1);
+  }
+});
+
 test('人物和衣服跳过的 review/repair 共用紧凑节点，明确为无需执行', () => {
   const node = source.slice(source.indexOf('function stepNode('), source.indexOf('function processArtifacts('));
   for (const index of [1, 3]) {

@@ -22,6 +22,8 @@ export interface ProgressStep {
   note: string;
   childrenMode?: 'alternative' | 'parallel';
   processDirectory?: string;
+  rounds?: { id: string; title: string; status: string }[];
+  roundNotice?: string;
 }
 export const groupPhases: [GroupPhase, string][];
 export const statusNames: Record<ProgressStatus, string>;

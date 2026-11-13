@@ -7,7 +7,7 @@ import { dirname, join } from 'node:path';
 import { strFromU8, strToU8, unzipSync, zipSync } from 'fflate';
 import sharp from 'sharp';
 import { joint } from './axis-fixtures.ts';
-import { prepareHair, buildHair, checkFrontRound, checkHairRound, hairRoundAllows, hairRoundLabel, hairPreviewScope, isFrontHair, isBackHair, readHairProgress, completeHairRound, type HairRound } from '../hair.ts';
+import { prepareHair, buildHair, checkFrontRound, checkHairRound, hairRoundAllows, hairRoundLabel, hairPreviewScope, isFrontHair, isBackHair, isHairId, hairRounds, readHairProgress, completeHairRound, type HairRound } from '../hair.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { KraMaterials, type MaterialLoader } from '../kra-materials.ts';
 import { createHairHead, hairPrompt, runWorkflow } from '../run.ts';
@@ -21,16 +21,16 @@ import { evaluatePoints } from '../../shared/nine-axis-model.js';
 import { createNineAxisViewTool } from '../view-tool.ts';
 import { frontPreviewScope } from '../hair.ts';
 
-const hairIds=['hair/bangs','hair/side_hair/side_hair_left','hair/back_hair'];
+const hairIds=['hair/bangs','hair/side_hair/side_hair_left','hair/back_hair','hair/free_form_bundle'];
 const uuid=(index: number)=>`00000000-0000-0000-0000-${String(index).padStart(12,'0')}`;
-async function fixture(t: TestContext, withShadows = false) {
+async function fixture(t: TestContext, withShadows = false, withRemaining = true) {
   const root=await mkdtemp(join(tmpdir(),'nine-hair-front-')),task=join(root,'case'),nine=join(task,'nine-axis');
   t.after(()=>rm(root,{recursive:true,force:true}));
   const upstream=join(nine,'step07_jaw-line'),output=join(nine,'step08_hair');
   await mkdir(upstream,{recursive:true});
   const doc=joint(); doc.parts.forEach((part,i)=>{part.uuid=uuid(i+1);});
   doc.parameters=[{id:'ParamAngleX',min:-30,max:30,keys:[-30,0,30]},{id:'ParamAngleY',min:-25,max:25,keys:[-25,0,25]}];
-  const layerIds=[...doc.parts.map(p=>p.id),...hairIds,...withShadows?['shadow/bangs-face','shadow/bangs-side','shadow/side-face']:[]];
+  const layerIds=[...doc.parts.map(p=>p.id),...hairIds.filter((_,i)=>withRemaining||i<3),...withShadows?['shadow/bangs-face','shadow/bangs-side','shadow/side-face']:[],'head_accessories/bell'];
   const xml='<DOC><IMAGE><layers>'+layerIds.toReversed().map(id=>`<layer uuid="{${uuid(layerIds.indexOf(id)+1)}}" name="${id}" nodetype="paintlayer" visible="1" opacity="${id.startsWith('shadow/')?41:255}" compositeop="${id.startsWith('shadow/')?'multiply':'normal'}"/>`).join('')+'</layers></IMAGE></DOC>';
   if(withShadows){
     const id=(name:string)=>uuid(layerIds.indexOf(name)+1);
@@ -79,11 +79,14 @@ async function selectSide(f: Awaited<ReturnType<typeof fixture>>){
 async function selectBack(f: Awaited<ReturnType<typeof fixture>>){
   await f.edit('back').execute({operations:[{action:'add_part',before:'hair/bangs',part:{id:hairIds[2],uuid:uuid(f.doc.parts.length+3),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
 }
+async function selectRemaining(f: Awaited<ReturnType<typeof fixture>>){
+  await f.edit('remaining').execute({operations:[{action:'add_part',part:{id:hairIds[3],uuid:uuid(f.doc.parts.length+4),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
+}
 
 const fixtureTools=async():Promise<FunctionTool[]>=>['krita','view_bitmap','edit_nine_axis','view_nine_axis'].map(name=>({name,description:'fixture',inputSchema:{type:'object'},async execute(){throw Error('not used');}}));
-const selectRound=(f:Awaited<ReturnType<typeof fixture>>,round:HairRound)=>round==='front'?selectFront(f):round==='side'?selectSide(f):selectBack(f);
+const selectRound=(f:Awaited<ReturnType<typeof fixture>>,round:HairRound)=>round==='front'?selectFront(f):round==='side'?selectSide(f):round==='back'?selectBack(f):selectRemaining(f);
 async function reachRound(f:Awaited<ReturnType<typeof fixture>>,target:HairRound){
-  for(const round of ['front','side','back'] as const){
+  for(const round of hairRounds){
     if(round===target)break;
     await runWorkflow(f.options,{...f.dependencies,fitHair:async()=>{
       await selectRound(f,round);await writeFile(join(f.output,'notes.md'),`${round} saved`);
@@ -160,7 +163,7 @@ test('front preservation matches exact node IDs before a shared KRA UUID',async 
   await assert.rejects(checkFrontRound(before,after),/neck_top_extension：前发轮次修改了其他图层画稿/);
 });
 
-test('hair dispatch runs front, side and back on separate operations in the same thread, and completes only after back verification',async t=>{
+test('hair dispatch runs four rounds in the same thread and completes only after remaining hair',async t=>{
   const f=await fixture(t),calls:{thread?:string;prompt:string}[]=[],signal=new AbortController().signal;
   let interrupt=true;
   const agents={
@@ -170,10 +173,10 @@ test('hair dispatch runs front, side and back on separate operations in the same
       return {async run(task:AgentTask){
         calls.push({thread:id,prompt:task.prompt}); await callbacks.onSessionStarted?.(thread,'codex');
         assert.equal((await readStepSession(f.nine,'step08_hair'))?.threadId,thread);
-        const round=task.name==='前发左右制作'?'front':task.name==='侧发左右制作'?'side':'back';
+        const round=task.name==='前发左右制作'?'front':task.name==='侧发左右制作'?'side':task.name==='后发左右制作'?'back':'remaining';
         if(interrupt) {interrupt=false;throw Error(`interrupted ${round} turn`);}
-        if(round==='front')await selectFront(f);else if(round==='side')await selectSide(f);else await selectBack(f);
-        await f.edit(round).execute({operations:[{action:'transform',id:round==='front'?'hair/bangs':round==='side'?hairIds[1]:hairIds[2],x:-30,translate:[-2,0]}]},signal);
+        await selectRound(f,round);
+        await f.edit(round).execute({operations:[{action:'transform',id:hairIds[hairRounds.indexOf(round)],x:-30,translate:[-2,0]}]},signal);
         if(round==='back')await f.edit(round).execute({operations:[{action:'transform',id:'hair/bangs',x:-30,translate:[1,0]},{action:'transform',id:hairIds[1],x:-30,translate:[1,0]}]},signal);
         await writeFile(join(f.output,'notes.md'),`${round} 已保存。`);
         return {text:'{"error":null}',images:[],threadId:thread,harness:'codex' as const};
@@ -185,12 +188,12 @@ test('hair dispatch runs front, side and back on separate operations in the same
   await assert.rejects(runWorkflow(f.options,deps),/interrupted front turn/);
   assert.equal((await readStep(f.output)).status,'running');
   assert.equal((await readStepSession(f.nine,'step08_hair'))?.threadId,'hair-thread');
-  assert.deepEqual(await readHairProgress(f.output),{version:1,completed:[],next:'front'});
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:[],next:'front'});
   await applyStepAction({name:'case',dir:f.root,section:'nine-axis',step:'step08_hair',action:'continue'});
   assert.match(await runWorkflow(f.options,deps),/前发轮次已完成/);
   assert.deepEqual(calls.map(call=>call.thread),[undefined,'hair-thread']);
   assert.ok(calls.every(call=>call.prompt.includes('只制作前发')));
-  assert.deepEqual(await readHairProgress(f.output),{version:1,completed:['front'],next:'side'});
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front'],next:'side'});
   assert.equal((await readStep(f.output)).status,'running');
   assert.equal((await readStepSession(f.nine,'step07_jaw-line'))?.threadId,'jaw-thread');
   await assert.rejects(access(join(f.output,'.completed')),{code:'ENOENT'});
@@ -198,26 +201,34 @@ test('hair dispatch runs front, side and back on separate operations in the same
   const front=JSON.parse(await readFile(join(f.output,'hair.json'),'utf8')).parts.find((p:any)=>p.id==='hair/bangs');
   interrupt=true;
   await assert.rejects(runWorkflow(f.options,deps),/interrupted side turn/);
-  assert.deepEqual(await readHairProgress(f.output),{version:1,completed:['front'],next:'side'});
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front'],next:'side'});
   assert.match(await runWorkflow(f.options,deps),/侧发轮次已完成/);
   assert.deepEqual(calls.map(call=>call.thread),[undefined,'hair-thread','hair-thread','hair-thread']);
   assert.ok(calls.slice(2).every(call=>call.prompt.includes('继续制作两片侧发')));
   assert.ok(calls.slice(2).every(call=>!call.prompt.includes('只制作前发')));
   assert.deepEqual(JSON.parse(await readFile(join(f.output,'hair.json'),'utf8')).parts.find((p:any)=>p.id==='hair/bangs'),front);
-  assert.deepEqual(await readHairProgress(f.output),{version:1,completed:['front','side'],next:'back'});
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front','side'],next:'back'});
   await assert.rejects(access(join(f.output,'.completed')),{code:'ENOENT'});
   interrupt=true;
   await assert.rejects(runWorkflow(f.options,deps),/interrupted back turn/);
-  assert.deepEqual(await readHairProgress(f.output),{version:1,completed:['front','side'],next:'back'});
-  assert.match(await runWorkflow(f.options,deps),/后发与整体协调轮次已完成/);
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front','side'],next:'back'});
+  assert.match(await runWorkflow(f.options,deps),/后发轮次已完成/);
   assert.deepEqual(calls.map(call=>call.thread),[undefined,'hair-thread','hair-thread','hair-thread','hair-thread','hair-thread']);
   assert.ok(calls.slice(4).every(call=>call.prompt.includes('继续制作后发')));
   assert.ok(calls.slice(4).every(call=>!call.prompt.includes('只制作前发')&&!call.prompt.includes('继续制作两片侧发')));
   assert.notDeepEqual(JSON.parse(await readFile(join(f.output,'hair.json'),'utf8')).parts.find((p:any)=>p.id==='hair/bangs'),front);
-  assert.deepEqual(await readHairProgress(f.output),{version:1,completed:['front','side','back'],next:'done'});
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front','side','back'],next:'remaining'});
+  assert.equal((await readStep(f.output)).status,'running');
+  interrupt=true;
+  await assert.rejects(runWorkflow(f.options,deps),/interrupted remaining turn/);
+  assert.equal((await readHairProgress(f.output)).next,'remaining');
+  assert.match(await runWorkflow(f.options,deps),/其余头发轮次已完成/);
+  assert.deepEqual(calls.slice(6).map(call=>call.thread),['hair-thread','hair-thread']);
+  assert.ok(calls.slice(6).every(call=>call.prompt.includes('继续制作其余头发')));
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:[...hairRounds],next:'done'});
   assert.equal((await readStep(f.output)).status,'completed');
   await access(join(f.output,'.completed'));
-  await runWorkflow(f.options,deps);assert.equal(calls.length,6,'a completed hair step must not redispatch');
+  await runWorkflow(f.options,deps);assert.equal(calls.length,8,'a completed hair step must not redispatch');
   assert.deepEqual(await readFile(join(f.output,'character-nine-axis.kra')),bytes);
   assert.equal(validStepId('nine-axis','step08_hair/front'),false);
   await assert.rejects(applyStepAction({name:'case',dir:f.root,section:'nine-axis',step:'step08_hair',action:'resume'}),/已完成/);
@@ -230,10 +241,10 @@ test('hair dispatch runs front, side and back on separate operations in the same
   await runWorkflow(f.options,deps);
   assert.equal(calls.at(-1)!.thread,undefined,'retry starts a fresh session');
   assert.match(calls.at(-1)!.prompt,/只制作前发/);
-  assert.deepEqual(await readHairProgress(f.output),{version:1,completed:['front'],next:'side'});
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front'],next:'side'});
 });
 
-for(const round of ['front','side','back'] as const){
+for(const round of hairRounds){
   test(`${round}: missing then empty delivery gets two repairs in the same session before progress advances`,async t=>{
     const f=await fixture(t);await reachRound(f,round);
     const prompts:string[]=[],threads:(string|undefined)[]=[];
@@ -253,7 +264,7 @@ for(const round of ['front','side','back'] as const){
     assert.equal(threads.length,1,'repairs must reuse the already-open session');
     assert.ok(prompts.slice(1).every(prompt=>prompt.includes('notes.md')));
     assert.notEqual((await readHairProgress(f.output)).next,round);
-    assert.equal((await readStep(f.output)).status,round==='back'?'completed':'running');
+    assert.equal((await readStep(f.output)).status,round==='remaining'?'completed':'running');
     for(const n of [1,2])assert.match(await readFile(join(f.output,'checks',String(n),'problems.txt'),'utf8'),/notes.md/);
   });
 
@@ -274,7 +285,7 @@ for(const round of ['front','side','back'] as const){
     const agents={async run(){assert.fail('persistent session required');},createSession(id?:string,callbacks:any={}){
       assert.equal(id,undefined);return {async run(task:AgentTask){
         calls++;await callbacks.onSessionStarted?.('new-thread','codex');
-        assert.match(task.prompt,round==='front'?/只制作前发/:round==='side'?/继续制作两片侧发/:/继续制作后发/);
+        assert.match(task.prompt,round==='front'?/只制作前发/:round==='side'?/继续制作两片侧发/:round==='back'?/继续制作后发/:/继续制作其余头发/);
         await writeFile(join(f.output,'notes.md'),`${round} saved`);
         return {text:'{"error":null}',images:[],threadId:'new-thread',harness:'codex' as const};
       },async close(){}};
@@ -297,7 +308,7 @@ test('exhausted delivery repairs leave back pending and never send another round
   }};
   await assert.rejects(runWorkflow(f.options,{...f.dependencies,fitHair:createHairHead(agents,fixtureTools,undefined,f.nine)}),/已返修 2 次仍未通过/);
   assert.equal(calls,3);
-  assert.deepEqual(await readHairProgress(f.output),{version:1,completed:['front','side'],next:'back'});
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front','side'],next:'back'});
   assert.equal((await readStep(f.output)).status,'running');
   assert.equal((await readStepSession(f.nine,'step08_hair'))?.threadId,'back-thread');
 });
@@ -317,12 +328,102 @@ test('a model removed during the turn is repaired before the round is recorded c
   assert.equal(calls,2);assert.equal((await readHairProgress(f.output)).next,'side');
 });
 
-test('a crash after back progress was saved only repairs the outer marker without redispatching',async t=>{
-  const f=await fixture(t);await reachRound(f,'back');
-  await runWorkflow(f.options,{...f.dependencies,fitHair:async()=>{await selectBack(f);await writeFile(join(f.output,'notes.md'),'saved');}});
+test('a crash after remaining progress was saved only repairs the outer marker without redispatching',async t=>{
+  const f=await fixture(t);await reachRound(f,'remaining');
+  await runWorkflow(f.options,{...f.dependencies,fitHair:async()=>{await selectRemaining(f);await writeFile(join(f.output,'notes.md'),'saved');}});
   await rm(join(f.output,'.completed'));await writeFile(join(f.output,'.running'),'');
   await runWorkflow(f.options,{...f.dependencies,fitHair:async()=>assert.fail('all rounds already delivered')});
   assert.equal((await readStep(f.output)).status,'completed');
+});
+
+test('remaining hair requires explicit coverage of unbound hair and protects non-hair artwork',async t=>{
+  const f=await fixture(t);await reachRound(f,'remaining');const before=await f.build();
+  await assert.rejects(checkHairRound(before,before,'remaining'),/尚未注册剩余 KRA 发片/);
+  await selectRemaining(f);await checkHairRound(before,await f.build(),'remaining');
+  const tool=f.edit('remaining'),signal=new AbortController().signal;
+  for(const id of hairIds)await tool.execute({operations:[{action:'transform',id,x:-30,translate:[1,0]}]},signal);
+  await checkHairRound(before,await f.build(),'remaining');
+  await assert.rejects(tool.execute({operations:[{action:'transform',id:'face/face_base',x:-30,translate:[1,0]}]},signal),/其余头发轮次/);
+  await assert.rejects(tool.execute({operations:[{action:'add_part',part:{id:'head_accessories/bell',uuid:uuid(1),level:'accessory',bbox:[0,0,10,10]}}]},signal),/其余头发轮次/);
+  await writeFile(join(f.output,'character-nine-axis.kra'),await f.makeKra({...f.colors,'head_accessories/bell':'#224466'}));
+  await assert.rejects(checkHairRound(before,await f.build(),'remaining'),/其他图层画稿/);
+});
+
+test('leaving remaining hair as static KRA context consumes the normal repair budget before it can complete',async t=>{
+  const f=await fixture(t);await reachRound(f,'remaining');let calls=0;
+  const agents={async run(){assert.fail('persistent session required');},createSession(_id?:string,callbacks:any={}){
+    return {async run(){
+      calls++;await callbacks.onSessionStarted?.('hair-thread','codex');
+      if(calls===3)await selectRemaining(f);
+      await writeFile(join(f.output,'notes.md'),'checked');
+      return {text:'{"error":null}',images:[],threadId:'hair-thread',harness:'codex' as const};
+    },async close(){}};
+  }};
+  await runWorkflow(f.options,{...f.dependencies,fitHair:createHairHead(agents,fixtureTools,undefined,f.nine)});
+  assert.equal(calls,3);assert.equal((await readHairProgress(f.output)).next,'done');
+});
+
+test('a character without remaining hair completes with a recorded inspection and no invented parts',async t=>{
+  const f=await fixture(t,false,false);await reachRound(f,'remaining');
+  const author=await readFile(join(f.output,'hair.json'));
+  await runWorkflow(f.options,{...f.dependencies,fitHair:async()=>{await writeFile(join(f.output,'notes.md'),'Krita 图层与绑定已核对，没有其余头发。');}});
+  assert.equal((await readHairProgress(f.output)).next,'done');
+  assert.equal((await readStep(f.output)).status,'completed');
+  assert.deepEqual(JSON.parse(await readFile(join(f.output,'hair.json'),'utf8')).parts,JSON.parse(author.toString()).parts);
+});
+
+for(const scope of ['step','task'] as const)for(const action of ['continue','resume'] as const)
+test(`old completed hair: ${scope} ${action} dispatches remaining only and preserves the first three rounds`,async t=>{
+  const f=await fixture(t);await reachRound(f,'remaining');
+  await writeFile(join(f.output,'hair-progress.json'),JSON.stringify({version:1,completed:['front','side','back'],next:'done'}));
+  await rm(join(f.output,'.running'));await writeFile(join(f.output,'.completed'),'');
+  await writeStepSession(f.nine,'step08_hair',{threadId:'accepted-thread',harness:'codex'});
+  const kra=await readFile(join(f.output,'character-nine-axis.kra')),author=await readFile(join(f.output,'hair.json'));
+  if(scope==='step')await applyStepAction({name:'case',dir:f.root,section:'nine-axis',step:'step08_hair',action});
+  else await applyTaskAction({name:'case',dir:f.root,section:'nine-axis',action});
+  assert.equal((await readHairProgress(f.output)).next,'remaining');
+  assert.deepEqual(await readFile(join(f.output,'character-nine-axis.kra')),kra);
+  assert.deepEqual(await readFile(join(f.output,'hair.json')),author);
+  let calls=0;
+  const agents={async run(){assert.fail('persistent session required');},createSession(id?:string,callbacks:any={}){
+    assert.equal(id,action==='continue'?'accepted-thread':undefined);
+    const nextId=id??'fresh-thread';return {async run(task:AgentTask){
+      calls++;assert.match(task.prompt,/继续制作其余头发/);await callbacks.onSessionStarted?.(nextId,'codex');
+      await selectRemaining(f);await writeFile(join(f.output,'notes.md'),'其余头发已完成。');
+      return {text:'{"error":null}',images:[],threadId:nextId,harness:'codex' as const};
+    },async close(){}};
+  }};
+  await runWorkflow(f.options,{...f.dependencies,fitHair:createHairHead(agents,fixtureTools,undefined,f.nine)});
+  assert.equal(calls,1);assert.equal((await readHairProgress(f.output)).next,'done');
+});
+
+test('remaining prompt and scope accept arbitrary hair structures while excluding static context and head accessories',()=>{
+  const prompt=hairPrompt({document:'/task/current.kra',color:''} as any,'/task','remaining');
+  for(const title of ['目标是什么','要保护什么','自检查什么'])assert.ok(prompt.includes(title));
+  assert.match(prompt,/范围由实际发型决定/);assert.match(prompt,/若确实没有其余头发/);
+  assert.match(prompt,/对应独立投影一并制作/);assert.match(prompt,/本轮不使用 fit/);
+  assert.match(prompt,/保留 KRA 原关系/);assert.match(prompt,/不为这类投影越界新增非头发节点/);
+  const scope=hairPreviewScope('remaining');
+  for(const id of ['hair/braid','hair/cowlick','hair/free_form_bundle','hair/custom-uuid/strand','hair/bangs/shadow','hair/side_hair/extra_temples']){
+    assert.ok(scope.includes({id,level:'hair'}));assert.ok(hairRoundAllows('remaining')(id));
+  }
+  assert.ok(isHairId('hair/custom-uuid/strand'));assert.ok(isHairId('hair/back_hair/strand'));
+  assert.ok(!scope.includes({id:'__kra__/unregistered',level:'hair'}));
+  assert.ok(!scope.includes({id:'head_accessories/bell',level:'accessory'}));assert.equal(scope.allowsPose(0,25),false);
+});
+
+test('remaining work is selected by unbound KRA UUID, even when its original name belongs to an earlier region',async t=>{
+  const f=await fixture(t);await reachRound(f,'remaining');const before=await f.build();
+  await f.edit('remaining').execute({operations:[{action:'add_part',part:{id:'hair/side_hair/extra_temples',uuid:uuid(f.doc.parts.length+4),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
+  await checkHairRound(before,await f.build(),'remaining');
+});
+
+test('registering a protected native accessory under hair cannot bypass preservation',async t=>{
+  const f=await fixture(t);await reachRound(f,'remaining');await selectRemaining(f);
+  const before=await f.build(),accessory=before.doc.parts.find(p=>p.level==='accessory')!;
+  assert.ok(accessory.uuid);
+  await f.edit('remaining').execute({operations:[{action:'add_part',part:{id:'hair/misclassified_accessory',uuid:accessory.uuid,level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
+  await assert.rejects(checkHairRound(before,await f.build(),'remaining'),/不能修改其他已有节点/);
 });
 
 test('back round can keep artwork unchanged or coordinate front/side/back KRA paint while protecting the face',async t=>{
@@ -331,7 +432,7 @@ test('back round can keep artwork unchanged or coordinate front/side/back KRA pa
   await assert.rejects(checkHairRound(before,before,'back'),/尚未注册制作发片/);
   await selectBack(f);await checkHairRound(before,await f.build(),'back');
   const tool=f.edit('back'),signal=new AbortController().signal;
-  for(const id of hairIds)await tool.execute({operations:[{action:'transform',id,x:-30,translate:[1,0]}]},signal);
+  for(const id of hairIds.slice(0,3))await tool.execute({operations:[{action:'transform',id,x:-30,translate:[1,0]}]},signal);
   await writeFile(join(f.output,'character-nine-axis.kra'),await f.makeKra({...f.colors,'hair/bangs':'#ffaacc',[hairIds[1]]:'#aaccff','hair/back_hair':'#cc8844'}));
   await checkHairRound(before,await f.build(),'back');
   await assert.rejects(tool.execute({operations:[{action:'transform',id:'face/face_base',x:-30,translate:[1,0]}]},signal),/后发轮次/);
@@ -407,9 +508,12 @@ test('hair progress rejects out-of-order, duplicate and skipped rounds',async t=
   await completeHairRound(f.output,'side');
   await assert.rejects(completeHairRound(f.output,'side'),/不能重复完成或跳过轮次/);
   await completeHairRound(f.output,'back');
-  assert.deepEqual(await readHairProgress(f.output),{version:1,completed:['front','side','back'],next:'done'});
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front','side','back'],next:'remaining'});
   await assert.rejects(completeHairRound(f.output,'back'),/不能重复完成或跳过轮次/);
-  await writeFile(join(f.output,'hair-progress.json'),JSON.stringify({version:1,completed:['side'],next:'back'}));
+  await completeHairRound(f.output,'remaining');
+  assert.deepEqual(await readHairProgress(f.output),{version:2,completed:[...hairRounds],next:'done'});
+  await assert.rejects(completeHairRound(f.output,'remaining'),/不能重复完成或跳过轮次/);
+  await writeFile(join(f.output,'hair-progress.json'),JSON.stringify({version:2,completed:['side'],next:'back'}));
   await assert.rejects(readHairProgress(f.output),/进度无效/);
 });
 
@@ -423,7 +527,7 @@ test('back prompt prioritizes reference motion and conditional KRA edits, with c
   assert.match(prompt,/无翻折只是基本条件/);assert.match(prompt,/连续转头动画或更密的中间角度/);
   assert.match(prompt,/不自行制作 blend 叠图/);
   const scope=hairPreviewScope('back');
-  for(const id of ['face/face_base',...hairIds,'hair/back_hair/shadow','hair/bangs/shadow'])assert.ok(scope.includes({id,level:id.startsWith('face')?'face':'hair'}));
+  for(const id of ['face/face_base',...hairIds.slice(0,3),'hair/back_hair/shadow','hair/bangs/shadow'])assert.ok(scope.includes({id,level:id.startsWith('face')?'face':'hair'}));
   for(const id of ['hair/braid','head_accessories/bell']){assert.ok(!scope.includes({id,level:'hair'}));assert.ok(!hairRoundAllows('back')(id));}
   assert.equal(scope.allowsPose(30,25),false);
   assert.ok(isBackHair('hair/back_hair/shadow'));assert.ok(!isBackHair('hair/back_hair_other'));

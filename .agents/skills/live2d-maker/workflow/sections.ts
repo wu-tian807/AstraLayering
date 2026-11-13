@@ -23,7 +23,7 @@ export async function executeSection(id: SectionId, directory: string, run: Task
   const name = basename(directory), dir = dirname(directory);
   if (id === 'nine-axis') {
     const summary = await nineAxis({ name, dir, krita: run.krita, ffmpeg: run.ffmpeg, progress });
-    return { summary, output: 'nine-axis/step08_hair/deformers.json', completed: (await readStep(join(directory,'nine-axis/step08_hair'))).status==='completed' };
+    return { summary, output: 'nine-axis/step09_head-accessories/deformers.json', completed: (await readStep(join(directory,'nine-axis/step09_head-accessories'))).status==='completed' };
   }
   if (id === 'shadow') {
     const mode = shadowMode(run.shadowMode);

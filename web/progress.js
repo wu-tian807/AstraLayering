@@ -106,7 +106,7 @@ export const sectionSteps = [
       { ...step('normal-depth-maps', '生成与验收贴图', 'pending'), processDirectory: 'shadow/step01_normal-depth' },
     ])],
     '启动时选择其中一种方式执行；另一种方式的已有产物保留。'), childrenMode: 'alternative' }],
-  [step('step01_preparation', '头部素材准备', 'pending', [], '脸、五官、脖子、头发、头饰及独立投影统一提取；保留原图层范围和来源关系。'),
+  [step('step01_preparation', '头部素材准备', 'pending', [], '确认头部图层与来源工程，供后续制作读取。'),
     step('step02_video', '单轴视频生成', 'pending'),
     step('step03_frames', '单轴参考帧', 'pending'),
     { ...step('step04_angles', '单轴模型与斜角视频', 'pending', [
@@ -117,7 +117,9 @@ export const sectionSteps = [
     step('step05_frames', '斜角参考帧', 'pending', [], '使用上一步的视频。'),
     step('step06_angle-xy', '斜角模型', 'pending'),
     step('step07_jaw-line', '下颌与颈部衔接', 'pending'),
-    step('step08_hair', '头发制作', 'pending', [], '使用本步 KRA，首轮只制作前发；保存后等待同一会话的下一轮提示词。')],
+    { ...step('step08_hair', '头发制作', 'pending', [], '制作左右转头，每轮保存后可查看累计效果。'),
+      rounds: ['front', 'side', 'back', 'remaining'].map(id => ({ id, title: { front: '前发', side: '侧发', back: '后发', remaining: '其余头发' }[id], status: 'pending' })) },
+    step('step09_head-accessories', '头部饰品', 'pending', [], '衔接头发与饰品的左右转头，检查佩戴位置、遮挡和投影。')],
 ];
 
 export const previousNineAxisSectionSteps = [step('step01_video', '三向视频与参考帧', 'pending'),
@@ -196,7 +198,7 @@ stepArtifacts.push({
 });
 const nineFrameArtifacts = (stepId, names) => [...names.flatMap(name => [image(`nine-axis/${stepId}/${name}.png`, `${viewName(name)}参考帧`)]), file(`nine-axis/${stepId}/selected-frames.json`, '选帧记录')];
 Object.assign(stepArtifacts[6], {
-  step01_preparation: [image('nine-axis/step01_preparation/original-full-face.png', '固定面部素材'), file('nine-axis/step01_preparation/source.json', '工程来源'), file('nine-axis/step01_preparation/head_parts_manifest.json', '素材清单')],
+  step01_preparation: [image('nine-axis/step01_preparation/original-full-face.png', '正面参考'), file('nine-axis/step01_preparation/source.json', '工程来源'), file('nine-axis/step01_preparation/head_parts_manifest.json', '图层清单')],
   step02_video: ['left', 'up', 'down'].map(name => video(`nine-axis/step02_video/${name}.mp4`, `${viewName(name)}视频`)),
   step03_frames: nineFrameArtifacts('step03_frames', ['left', 'up', 'down']),
   step04_angles: [],
@@ -207,6 +209,7 @@ Object.assign(stepArtifacts[6], {
   'step06_angle-xy': [file('nine-axis/step06_angle-xy/deformers.json', '斜角模型')],
   'step07_jaw-line': [file('nine-axis/step07_jaw-line/deformers.json', '脸部九轴模型'), image('nine-axis/step07_jaw-line/character-nine-axis.png', '合成图'), file('nine-axis/step07_jaw-line/character-nine-axis.kra', '分层 KRA'), file('nine-axis/step07_jaw-line/notes.md', '制作说明')],
   'step08_hair': [file('nine-axis/step08_hair/deformers.json','头发累计模型'),file('nine-axis/step08_hair/character-nine-axis.kra','分层 KRA'),file('nine-axis/step08_hair/notes.md','制作说明')],
+  'step09_head-accessories': [file('nine-axis/step09_head-accessories/deformers.json','头部累计模型'),file('nine-axis/step09_head-accessories/character-nine-axis.kra','分层 KRA'),file('nine-axis/step09_head-accessories/notes.md','制作说明')],
 });
 export function shadowInspectionArtifacts(files) {
   return files.filter(path => /^shadow\/step01_mask\/inspection\/relation-\d{3,}-review\.png$/.test(path)).sort()

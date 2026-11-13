@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
 import { nineAxisProgress } from '../nine-axis-progress.ts';
@@ -14,6 +14,7 @@ import { lstat } from 'node:fs/promises';
 import { applyStepAction, applyTaskAction } from '../../.agents/skills/live2d-maker/workflow/step-actions.ts';
 import { readStepSession, writeStepSession } from '../../.agents/skills/live2d-maker/shared/agents/step-session.ts';
 import { stepDeliveries } from '../../.agents/skills/live2d-maker/shared/step-deliveries.ts';
+import { hairRounds, hairRoundLabel } from '../../.agents/skills/live2d-maker/nine-axis/hair-progress.ts';
 
 async function fixture(t: any) {
   const root = await mkdtemp(join(tmpdir(), 'nine-workbench-'));
@@ -34,14 +35,101 @@ async function fixture(t: any) {
   return { root, put, get, errors, complete };
 }
 
-test('eight steps keep independent face branches and one hair step without per-piece child steps', () => {
-  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line','step08_hair']);
-  const steps = sectionSteps[6]; assert.deepEqual(steps.map(step => step.id), [...nineAxisSteps]);
+test('web presents every current workflow step and keeps hair rounds inside one executable step', () => {
+  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line','step08_hair','step09_head-accessories']);
+  const steps = sectionSteps[6]; assert.deepEqual(steps.map(step => step.id), nineAxisSteps);
   assert.equal(steps[3].childrenMode, 'parallel');
   assert.deepEqual(steps[3].children.map(step => step.id), ['step04_angles/model','step04_angles/video']);
   assert.deepEqual(steps[3].children[0].children.map(step => step.id), stagedGroupSteps);
   for (const id of stagedGroupSteps) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/deformers.json`));
   assert.deepEqual(steps[7].children,[]);
+  assert.deepEqual(steps[7].rounds?.map(round => [round.id, round.title]), hairRounds.map(round => [round, hairRoundLabel(round)]));
+  for (const id of ['step08_hair', 'step09_head-accessories']) {
+    for (const name of ['deformers.json', 'character-nine-axis.kra', 'notes.md']) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/${name}`));
+  }
+});
+
+test('hair round activity follows the current call without assigning the previous round to the next', async t => {
+  const f = await fixture(t), since = new Date(Date.now() - 1000).toISOString();
+  await f.put('step08_hair/.running');
+  await f.put('step08_hair/hair-progress.json', { version: 2, completed: ['front'], next: 'side' });
+  await f.put('agents/00-front/request.json', { task: { name: '前发左右制作', outputDirectory: 'nine-axis/step08_hair' } });
+  await f.put('agents/00-front/result.json', { status: 'completed' });
+  let value = await f.get({ since });
+  assert.deepEqual(value.hair, { rounds: { front: 'done', side: 'pending', back: 'pending', remaining: 'pending' }, next: 'side', awaitingContinue: true });
+  assert.equal(value.states.step08_hair, 'interrupted');
+  await f.put('agents/01-side/request.json', { task: { name: '侧发左右制作', outputDirectory: join(f.root, 'nine-axis/step08_hair') } });
+  value = await f.get({ active: true, since });
+  assert.equal(value.hair!.rounds.side, 'running'); assert.equal(value.hair!.awaitingContinue, false);
+  await f.put('agents/01-side/retry-wait.json', { until: new Date(Date.now() + 60000).toISOString(), error: '429 side only' });
+  value = await f.get({ active: true, since });
+  assert.equal(value.hair!.rounds.side, 'throttled');
+  assert.equal(value.messages.step08_hair, '429 side only');
+  await rm(join(f.root, 'nine-axis/agents/01-side/retry-wait.json'));
+  await f.put('agents/01-side/result.json', { status: 'failed' });
+  value = await f.get({ failed: true, since, reason: 'delivery missing' });
+  assert.deepEqual(value.hair!.rounds, { front: 'done', side: 'failed', back: 'pending', remaining: 'pending' });
+  assert.equal(value.states['step09_head-accessories'], 'pending');
+  assert.deepEqual(f.errors, []);
+});
+
+test('the first active hair round is visible before the first progress file is saved', async t => {
+  const f = await fixture(t), since = new Date(Date.now() - 1000).toISOString();
+  await f.put('step08_hair/.running');
+  await f.put('agents/front/request.json', { task: { name: '前发左右制作', outputDirectory: 'nine-axis/step08_hair' } });
+  const value = await f.get({ active: true, since });
+  assert.deepEqual(value.hair!.rounds, { front: 'running', side: 'pending', back: 'pending', remaining: 'pending' });
+  await assert.rejects(readFile(join(f.root, 'nine-axis/step08_hair/hair-progress.json')), { code: 'ENOENT' });
+  assert.deepEqual(f.errors, []);
+});
+
+test('viewing old three-round progress is read-only and leaves remaining hair pending', async t => {
+  const f = await fixture(t), progress = { version: 1, completed: ['front', 'side', 'back'], next: 'done' };
+  await f.put('step08_hair/hair-progress.json', progress); await f.put('step08_hair/.completed');
+  const value = await f.get();
+  assert.equal(value.states.step08_hair, 'done', 'the snapshot does not replace completion markers');
+  assert.deepEqual(value.hair, { rounds: { front: 'done', side: 'done', back: 'done', remaining: 'pending' }, next: 'remaining', awaitingContinue: true });
+  assert.deepEqual(JSON.parse(await readFile(join(f.root, 'nine-axis/step08_hair/hair-progress.json'), 'utf8')), progress);
+  await readFile(join(f.root, 'nine-axis/step08_hair/.completed'));
+  await assert.rejects(readFile(join(f.root, 'nine-axis/step08_hair/.running')), { code: 'ENOENT' });
+  assert.deepEqual(f.errors, []);
+});
+
+test('round records and saved products never complete a step or its downstream accessories', async t => {
+  const f = await fixture(t);
+  await f.put('step08_hair/.running');
+  await f.put('step08_hair/deformers.json', {});
+  await f.put('step08_hair/hair-progress.json', { version: 2, completed: [...hairRounds], next: 'done' });
+  let value = await f.get();
+  assert.equal(value.states.step08_hair, 'interrupted');
+  assert.equal(value.products.step08_hair, true);
+  assert.deepEqual(Object.values(value.hair!.rounds), Array(4).fill('done'));
+  assert.equal(value.states['step09_head-accessories'], 'pending');
+  await f.put('step08_hair/.completed');
+  await f.put('step08_hair/hair-progress.json', '{unfinished');
+  value = await f.get();
+  assert.equal(value.states.step08_hair, 'done'); assert.equal(value.hair, undefined);
+  assert.match(f.errors.at(-1)!, /hair-progress\.json/);
+});
+
+test('hair and accessories preview the KRA bound by their cumulative model instead of a stale PNG', async t => {
+  const f = await fixture(t);
+  const alias = f.root + '-alias'; await symlink(f.root, alias, 'dir');
+  t.after(() => rm(alias, { force: true }));
+  for (const id of ['step08_hair', 'step09_head-accessories']) {
+    const document = `nine-axis/${id}/character-nine-axis.kra`;
+    await f.put(`${id}/character-nine-axis.kra`, 'saved KRA');
+    await f.put(`${id}/character-nine-axis.png`, 'stale PNG');
+    await f.put(`${id}/deformers.json`, { source: { document } });
+    await f.put(`${id}/notes.md`, 'Saved stage notes');
+    const value = await f.get();
+    assert.equal(value.previews[id].path, document);
+    assert.equal(value.reports[id].path, `nine-axis/${id}/notes.md`);
+    assert.equal(value.states[id], 'pending', 'a saved preview does not imply execution');
+    const aliased = await nineAxisProgress(alias, new Set(await inventory(alias)), f.errors);
+    assert.equal(aliased.previews[id].path, document, 'task root aliases resolve to the same saved KRA');
+  }
+  assert.deepEqual(f.errors, []);
 });
 
 test('independent waits and failures never mark running or completed siblings throttled', async t => {
@@ -274,7 +362,7 @@ test('dynamic studio preview preserves angles and defers refresh during user edi
   await panel.refresh(); assert.equal(installs,2, 'an interrupted model load retries even when its revision is unchanged');
 });
 
-test('empty tasks use seven-step progress and a live section reports startup before the first model call', async t => {
+test('empty tasks use the current staged progress and a live section reports startup before the first model call', async t => {
   const f = await fixture(t);
   const pending = await f.get(); assert.equal(pending.layout, 'staged'); assert.equal(pending.status, 'pending');
   const active = await f.get({ active: true }); assert.equal(active.status, 'running');

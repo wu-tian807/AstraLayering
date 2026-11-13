@@ -21,8 +21,14 @@ export function nineAxisStepCard(step, { esc, icon, statusMark, statusLabel, con
   } else if (children.length) {
     branches = `<div class="nine-task-group"><div class="nine-group-heading"><h4>单轴制作</h4><span>三方向并行</span></div>${children.map(task => row(task)).join('')}</div>`;
   }
+  if (step.rounds?.length) {
+    // Rounds share this step's session, products and recovery controls. These
+    // display rows must not become executable child steps.
+    branches += `<div class="nine-task-group"><div class="nine-group-heading"><h4>分轮制作</h4><span>依次执行</span></div>${step.rounds.map(round =>
+      `<div class="nine-task ${round.status}" data-hair-round="${esc(round.id)}"><div class="nine-task-heading">${statusMark(round.status)}<span class="nine-task-title">${esc(round.title)}</span><span class="nine-task-status">${esc(statusLabel(round.status))}</span></div></div>`).join('')}${step.roundNotice ? `<p class="step-activity">${esc(step.roundNotice)}</p>` : ''}</div>`;
+  }
   return `<section class="step-node nine-axis-step ${children.length ? 'nine-axis-branches' : ''} ${closed ? 'node-collapsed' : ''} ${step.status} ${selected === step.id ? 'selected' : ''}" data-node="${key}">
     ${flowStepHeading(step, { index: 6, closed, esc, icon, statusMark, statusLabel })}
-    ${!closed ? `<div class="step-content nine-step-content">${branches}${outputs ? `<div class="nine-step-outputs">${outputs}</div>` : ''}</div>` : ''}
+    ${!closed ? `<div class="step-content nine-step-content">${step.note ? `<p class="step-summary" title="${esc(step.note)}">${esc(step.note)}</p>` : ''}${branches}${outputs ? `<div class="nine-step-outputs">${outputs}</div>` : ''}</div>` : ''}
   </section>`;
 }

@@ -153,6 +153,13 @@ function applySnapshot(next) {
   stage.status=data.sections[index]?.status||'pending';
   const mark=steps=>steps.forEach(step=>{
    step.status=data.sections[index]?.states[step.id]||'pending';
+   if(index===6&&step.id==='step08_hair') {
+    const hair=data.sections[index]?.hair;
+    if(hair) {
+     step.rounds.forEach(round=>round.status=hair.rounds[round.id]||'pending');
+     if(hair.awaitingContinue)step.roundNotice=`继续后制作${step.rounds.find(round=>round.id===hair.next)?.title||'下一轮'}`;
+    } else if(step.status==='done')step.rounds=[];
+   }
    if(index===0&&step.id==='standard')step.note=data.run?.standard===true?'标准化：已开启':data.run?.standard===false?'标准化：未开启':'标准化：未记录';
    mark(step.children);
   });
@@ -390,7 +397,7 @@ function nineAxisContent(step) {
   items=items.filter(item=>item.kind!=='image'||item===image);
  }
  const preview=section?.previews?.[step.id];
- if(['step01_preparation','step07_jaw-line','step08_hair'].includes(step.id)&&preview?.path.endsWith('.kra')) {
+ if(['step01_preparation','step07_jaw-line','step08_hair','step09_head-accessories'].includes(step.id)&&preview?.path.endsWith('.kra')) {
   items=items.filter(item=>item.kind!=='image');
   items.unshift({path:preview.path,label:'最新保存画面',kind:'image'});
   if(!items.some(item=>item.path===preview.path&&item.kind==='file'))items.push({path:preview.path,label:'分层 KRA',kind:'file'});
@@ -398,7 +405,7 @@ function nineAxisContent(step) {
  if(report&&!items.some(item=>item.path===report.path))items.push({path:report.path,label:'阶段报告',kind:'file'});
  const message=section?.messages?.[step.id];
  const notice=!message?'':step.status==='throttled'?waitBox(message):['failed','interrupted'].includes(step.status)?errorBox(message):`<p class="step-activity">${esc(message)}</p>`;
- return artifacts(items,6,step.id,'nine-artifacts')+notice+processArtifacts(6,step);
+ return artifacts(items,6,step.id,'nine-artifacts')+(section?.products?.[step.id]?'<p class="step-activity">已有产物</p>':'')+notice+processArtifacts(6,step);
 }
 function processArtifacts(index, step) {
  const directory=step.processDirectory||(step.id.startsWith('step')?stages[index].id+'/'+step.id:null);
@@ -764,7 +771,7 @@ function bindExecutionFields(form,run) {
   }
   form.elements.standard.disabled=from!=='part-layering';
   form.elements.shadowMode.disabled=stages.findIndex(stage=>stage.id===from)>5||stages.findIndex(stage=>stage.id===to)<5;
-  form.querySelector('.live-detail').textContent=form.elements.from?`${nineAxisConnection({from,to,live:form.elements.live.checked}).detail}。保存参数后，再使用继续、恢复或重试执行。`:form.elements.live.checked?'阴影完成后继续制作七步头部九轴；脸部、五官、双耳与固定脖子。':'本次在阴影完成后结束，头部九轴暂不启动。';
+  form.querySelector('.live-detail').textContent=form.elements.from?`${nineAxisConnection({from,to,live:form.elements.live.checked}).detail}。保存参数后，再使用继续、恢复或重试执行。`:form.elements.live.checked?'阴影完成后继续制作头部九轴，包含脸部、头发与头部饰品。':'本次在阴影完成后结束，头部九轴暂不启动。';
  };
  form.querySelectorAll('[name=from],[name=to]').forEach(select=>select.onchange=()=>{
   rangeEdited=true;

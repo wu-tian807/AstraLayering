@@ -62,6 +62,8 @@ Krita 和 FFmpeg 使用共享选择与扫描组件。扫描先检查 PATH 和常
 | 九轴单轴模型 | `nine-axis/step04_angles/model/{left,up,down}/deformers.json` 及父合并 |
 | 九轴斜角 | `nine-axis/step06_angle-xy/deformers.json` |
 | 九轴下颌交付 | `nine-axis/step07_jaw-line/deformers.json`、`character-nine-axis.kra`、`.png` |
+| 九轴头发交付及分轮进度 | `nine-axis/step08_hair/deformers.json`、`character-nine-axis.kra`、`notes.md`、`hair-progress.json` |
+| 九轴头部饰品交付 | `nine-axis/step09_head-accessories/deformers.json`、`character-nine-axis.kra`、`notes.md` |
 
 流程预览每 4 秒同步变化。过程文件按文件夹分配展示名额，上限为 1000 个；agent 请求与会话由服务器保留。九轴预览使用共享模型和渲染器，中间成果保存后即可读取。
 
@@ -69,11 +71,13 @@ Krita 和 FFmpeg 使用共享选择与扫描组件。扫描先检查 PATH 和常
 
 `nine-axis-flow.js` 只负责九轴内容中的紧凑任务行，执行树保留真实步骤 ID。阶段报告按需打开，交互预览集中在唯一的九轴工作台入口；当前流程与旧四步目录使用同一展示方式。调整九轴时以其他阶段现有样式为准，保留任务行展开状态与画布滚动位置。
 
+头发四轮是 `step08_hair` 卡片内的展示行，不加入执行子树，也不建立独立恢复入口。`nine-axis-progress.ts` 只读共享的 `hair-progress.json` 契约，将已通过轮次与当前实际调用对应；正常停在两轮之间时，下一轮保持待执行并提示继续。旧版三轮记录只读映射为其余头发待执行，迁移留给制作程序。缺失或无效的轮次记录不推翻步骤标记，完整轮次记录也不代替 `.completed`。下颌、头发和饰品的画面均优先使用累计模型所引用的 KRA，轮次不重复展示同一累计画面。
+
 项目自动加载对应工程和贴图；阴影混合预览要求两种模式的来源与组装结果匹配。图层状态变化时暂停旧法线与深度，还原时恢复对应贴图。
 
 ## 角色工作台
 
-`?project=<name>` 打开运行目录中的任务，`?folder=<绝对路径>` 打开所选文件夹。`nineStage=x|y|xy|jaw` 选择九轴阶段；旧四步成果保留兼容读取。
+`?project=<name>` 打开运行目录中的任务，`?folder=<绝对路径>` 打开所选文件夹。`nineStage=neutral|x|up|down|y|xy|jaw|hair|accessories` 选择九轴阶段，默认读取最新累计阶段；旧四步成果保留兼容读取。
 
 Krita 原生合成支持图层属性与已有蒙版。PSD 导入处理连续剪贴链、组不透明度和蒙版停用状态；高级效果、复合矢量蒙版及智能对象按 Krita 导入能力读取。无法完整映射结构时展示保存合成图，使用者可在 Krita 中另存 KRA 后打开。
 

@@ -11,7 +11,7 @@ import { readUpstream, startContinuation, compileContinuation, authorFile, sha25
 import { checkAxisSource } from './axis-groups.ts';
 import { bindKraDocument, kraCatalog, type MaterialLoader } from './kra-materials.ts';
 
-export type EditScope = { label: string; allows: (id: string) => boolean };
+export type EditScope = { label: string; allows: (id: string) => boolean; allowsParent?:(id:string)=>boolean };
 export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory)), materialize?: MaterialLoader, scope?: EditScope): FunctionTool {
   return { ...toolDefinition('edit_nine_axis'), async execute(value, signal) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('参数须为对象');
@@ -22,18 +22,22 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
     try { text = await readFile(path, 'utf8'); doc = JSON.parse(text); }
     catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; doc = startContinuation(upstream.doc, upstream.hash, stage, scale); }
     if (args.revision !== undefined && args.revision !== sha256(text)) throw Error('九轴数据已变化，请读取最新 revision');
-    if (args.bindings !== undefined && stage !== 'jaw' && stage !== 'hair') throw Error('本阶段使用固定 KRA 导出素材，不能更换图层绑定');
+    if (args.bindings !== undefined && stage !== 'jaw' && stage !== 'hair' && stage !== 'accessories') throw Error('本阶段使用固定 KRA 导出素材，不能更换图层绑定');
     const catalog=materialize?await kraCatalog(taskRoot,directory,doc):undefined;
     if (args.operations) {
       const operations = structuredClone(args.operations);
       if (Array.isArray(operations)) for (const op of operations) {
         if (scope) {
-          const ids = [op.id,op.part?.id,op.parent,...op.targets ?? []].filter((id): id is string => typeof id === 'string');
+          const ids = [op.id,op.part?.id,...op.targets ?? []].filter((id): id is string => typeof id === 'string');
           if (ids.some(id=>!scope.allows(id))) throw Error(`${scope.label}：只能编辑当前轮次的部件和 Warp`);
+          // Attaching a new part to an existing carrier does not edit that
+          // parent's geometry. The caller may expose those read-only mounts.
+          if(typeof op.parent==='string'&&!scope.allows(op.parent)&&!scope.allowsParent?.(op.parent))throw Error(`${scope.label}：只能编辑当前轮次的部件和 Warp`);
         }
         if (['points','drag','transform'].includes(op?.action)) {
           const x = op.x ?? 0, y = op.y ?? 0;
           if (stage === 'hair' && y !== 0) throw Error('头发步骤只制作 left/right，编辑必须使用 Y=0');
+          if (stage === 'accessories' && y !== 0) throw Error('头部饰品步骤只制作 left/right，编辑必须使用 Y=0');
           if ((stage === 'up' || stage === 'down') && (x !== 0 || y !== (stage === 'up' ? scale.y[1] : scale.y[0]))) throw Error(`${stage} 阶段只编辑 X=0、Y=${stage === 'up' ? scale.y[1] : scale.y[0]} 的关键形`);
           if (stage === 'xy' && (x !== scale.x[0] || !scale.y.includes(y))) throw Error('四角阶段只编辑左上、左下；右侧由组合形变镜像');
         }
@@ -53,6 +57,7 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
       for (const binding of args.bindings) {
         if(scope && !scope.allows(binding.id)) throw Error(`${scope.label}：只能绑定当前轮次的图层`);
         if (stage === 'hair' && !/^hair(?:\/|$)/.test(binding.id)) throw Error('头发阶段只能更换 hair/ 的图层绑定');
+        if (stage === 'accessories' && !/^head_accessories(?:\/|::|$)/.test(binding.id)) throw Error('头部饰品阶段只能更换 head_accessories/ 的图层绑定');
         const part = doc.parts.find(p => p.id === binding.id);
         if (!part || (!!binding.uuid === (binding.material === 'transparent'))) throw Error('binding 需要现有部件 id 和 uuid，或 material=transparent');
         if (binding.uuid) { part.uuid = binding.uuid.replace(/[{}]/g, '').toLowerCase(); delete part.material; }
