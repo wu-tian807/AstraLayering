@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import sharp from 'sharp';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
@@ -210,9 +210,15 @@ export async function copyParentRegion(parentPath: string, id: string, region: P
   return { svg, pieces: kept, total: found.length };
 }
 
-// The step12 tool: records name -> region (box or mask) for submit_children to attach.
+// The copy written by copy_parent_region; its presence makes the child's outline step adopt it.
+export function copiedOutlinePath(directory: string, id: string): string | undefined {
+  const cut = id.lastIndexOf('/');
+  return cut < 0 ? undefined : join(directory, 'observations', 'children', id.slice(0, cut), `copy-${id.slice(cut + 1)}.svg`);
+}
+
+// The step12 tool: writes copy-<name>.svg; the region is kept only for overlap checks.
 export function createParentRegionTool(options: { directory: string; parentPath: string; canvas: Canvas; groupId: string;
-  observationDirectory: string; overrides?: string; copies: Map<string, ParentRegion & { pieces: number[] }> }): FunctionTool {
+  overrides?: string; copies: Map<string, ParentRegion & { pieces: number[] }> }): FunctionTool {
   return {
     ...toolDefinition('copy_parent_region', options.overrides),
     async execute(value, signal, context) {
@@ -231,8 +237,8 @@ export function createParentRegionTool(options: { directory: string; parentPath:
       for (const [other, entry] of options.copies) {
         if (other !== name && entry.pieces.some(piece => copy.pieces.includes(piece))) throw new Error(`选框与 ${other} 的复制范围重叠`);
       }
-      await mkdir(options.observationDirectory, { recursive: true });
-      const path = join(options.observationDirectory, `copy-${name}.svg`);
+      const path = copiedOutlinePath(options.directory, `${options.groupId}/${name}`)!;
+      await mkdir(dirname(path), { recursive: true });
       await writeFile(path, copy.svg);
       options.copies.set(name, { ...region, pieces: copy.pieces });
       return textResult({ name, ...('mask' in region ? { maskSvg } : { region }), path: await toAgentPath(root, path), shapes: copy.pieces.length || undefined, parentShapes: copy.total,

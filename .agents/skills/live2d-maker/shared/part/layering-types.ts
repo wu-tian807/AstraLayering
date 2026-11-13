@@ -43,8 +43,6 @@ export type GroupSeed = {
   metadata?: Record<string, unknown>;
   allowOutsideParent?: boolean;
   hiddenInReference?: boolean;
-  // 轮廓取自父组完成稿的选框或遮罩范围，跳过描边与轮廓 review。
-  outlineFromParent?: ParentRegion;
 };
 export type GroupInput = GroupSeed & { groups?: GroupInput[]; steps?: Partial<GroupProgress> };
 export type GroupNode = GroupSeed & { groups: GroupNode[]; steps: GroupProgress };

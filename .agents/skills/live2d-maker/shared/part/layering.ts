@@ -11,7 +11,7 @@ import { type GroupContext, type GroupInput, type GroupNode, type GroupSeed, typ
 import type { PreparationReferences } from './preparation-types.ts';
 import { runWorkflow, validateWorkflowOptions } from './workflow.ts';
 import { parentBoundsSource, validateGroupSvg } from './svg-tools.ts';
-import { copyParentRegion } from './parent-region.ts';
+import { copiedOutlinePath } from './parent-region.ts';
 import { occlusionPath, occlusionSourceHash, validateOcclusionPlan } from './occlusion-plan.ts';
 import { beginStep, checkStep, completeStep, readStep, type ChainStep, type StepAction, type StepStatus } from '../step-chain.ts';
 import { taskRootOf } from '../task-paths.ts';
@@ -153,12 +153,12 @@ export async function runLayering(input: {
       return;
     }
     const { group, parent } = context(id), parentSvg = parent?.steps.completion.output?.path;
-    if (group.outlineFromParent) {
+    const copyPath = copiedOutlinePath(directory, id), copy = copyPath && await readSvg(copyPath);
+    if (copy) {
       if (!parentSvg) throw new Error(`${id}：复制轮廓需要父组完成稿`);
       const meta = await sharp(resolve(directory, input.references.baseSubject)).metadata();
       const canvas = { width: meta.autoOrient.width, height: meta.autoOrient.height };
-      const copy = await copyParentRegion(parentSvg, id, group.outlineFromParent, canvas);
-      await writeAtomic(outline, copy.svg);
+      await writeAtomic(outline, copy);
       await validateGroupSvg(outline, id, canvas, parentBoundsSource(group, parentSvg));
       const output = { path: outline, note: copiedOutlineNote };
       await completed(id, 'outline', output);

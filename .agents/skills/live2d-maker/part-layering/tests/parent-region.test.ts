@@ -8,7 +8,7 @@ import { artifactPath } from '../../shared/part/artifact-facts.ts';
 import { decodeChildren } from '../../shared/part/children-agent.ts';
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { runLayering } from '../../shared/part/layering.ts';
-import { checkParentMask, copyParentRegion } from '../../shared/part/parent-region.ts';
+import { checkParentMask, copiedOutlinePath, copyParentRegion } from '../../shared/part/parent-region.ts';
 import { profile } from '../profile.ts';
 import { promptInput } from '../../shared/tests/prompt-input.ts';
 import { fixture, workingSteps } from './layering-fixture.ts';
@@ -104,6 +104,7 @@ test('遮罩方式沿分界线裁剪相连形状，去掉父稿补全层标记�
   // Marker stripping also applies to box copies.
   const boxed = await copyParentRegion(parent, 'arm/hand', { x: 5, y: 65, width: 40, height: 30 }, canvas);
   assert.doesNotMatch(boxed.svg, /data-completion-additions/);
-  assert.deepEqual(decodeChildren('arm', { children: [{ name: 'upper_arm', kind: 'part', note: 'n' }, { name: 'forearm', kind: 'part', note: 'n' }], note: 'n' },
-    new Map([['upper_arm', upper]])).groups[0].outlineFromParent, upper);
+  assert.throws(() => decodeChildren('arm', { children: [{ name: 'upper_arm', kind: 'part', note: 'n', hiddenInReference: true }, { name: 'forearm', kind: 'part', note: 'n' }], note: 'n' },
+    new Map([['upper_arm', upper]])), /hiddenInReference/);
+  assert.equal(copiedOutlinePath(f.directory, 'arm/upper_arm'), join(f.directory, 'observations', 'children', 'arm', 'copy-upper_arm.svg'));
 });

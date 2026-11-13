@@ -53,7 +53,7 @@ preparation 完成后，总控同时推进人物线（本管线逐层制作 → 
 
 直属节点可分别标记 `allowOutsideParent` 与 `hiddenInReference`，省略均为 false，通常仅写 true。后者表示确实存在、当前画布内仍需制作，且目标结构因遮挡或闭合而整体不可见的节点。局部可见、局部遮挡或仅肤色/材质被覆盖时走正常流程，例如连体服下仍可辨认形体的 torso、breast。标记为 true 时，程序提供空底稿，跳过描边、轮廓 review 和可见轮廓去重，直接由带生图能力的补全 agent 制作非空 SVG，沿用程序检查。闭眼的眼白、虹膜等可以同时标记两项，可见眼睑继续按常规流程处理。note 写明与实际遮挡/裁切部件的显隐关系，供 raster step01 设计完整纹理、复用对称部件并制作原生显隐蒙版；后续阶段保留蒙版与默认闭合状态。
 
-本段的直属拆分另有 `copy_parent_region`（schema 在 `part-layering/tools/`，说明与用法在 `knowledge/part-layering/step12_children/`）：父组完成稿已经完整、子节点只是其中分界明确的一部分时，直接取出作为轮廓，不适用于父组缺失、需要重画形状的情况。范围二选一：`region` 整数选框（独立的一块，框线须全程落在空白处、不切分任何形状）；`maskSvg` 同画布遮罩 SVG（只含封闭形状，父完成稿按其并集用 clipPath 裁剪，分界线可穿过相连形状）。提交后该子节点记为 `outlineFromParent`（选框或规范化后的遮罩），程序据此从父完成稿重建轮廓，父稿的补全层标记不带入子轮廓；跳过描边与轮廓 review，仍做父范围与结构校验，去重和补全照常运行。不能与 `hiddenInReference` 同用。
+本段的直属拆分另有 `copy_parent_region`（schema 在 `part-layering/tools/`，说明与用法在 `knowledge/part-layering/step12_children/`）：父组完成稿已经完整、子节点只是其中分界明确的一部分时，直接取出作为轮廓，不适用于父组缺失、需要重画形状的情况。范围二选一：`region` 整数选框（独立的一块，框线须全程落在空白处、不切分任何形状）；`maskSvg` 同画布遮罩 SVG（只含封闭形状，父完成稿按其并集用 clipPath 裁剪，分界线可穿过相连形状）。工具把裁出的轮廓写到 `observations/children/<父组>/copy-<子名>.svg`（父稿的补全层标记不带入），提交同名子节点后，该子节点的轮廓步骤见到这个文件就直接采用；跳过描边与轮廓 review，仍做父范围与结构校验，去重和补全照常运行。不能与 `hiddenInReference` 同用。
 
 ### 提示词与专项参考
 

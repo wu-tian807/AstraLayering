@@ -3,7 +3,7 @@ import { partStep } from '../agents/models.ts';
 import { checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { toolCatalog, toolDefinition } from '../codex/tool-config.ts';
 import { partProfile } from './profile.ts';
-import { readFile, realpath } from 'node:fs/promises';
+import { readdir, readFile, realpath, rm } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
 import type { CodexAgents } from '../codex/agents.ts';
@@ -17,7 +17,7 @@ import { createSvgPreviewTool, type SvgObservation } from './svg-tools.ts';
 import { taskRootOf } from '../task-paths.ts';
 
 
-export function decodeChildren(parentId: string, value: unknown, copies: ReadonlyMap<string, ParentRegion> = new Map()): ChildrenAnalysis {
+export function decodeChildren(parentId: string, value: unknown, copies: ReadonlyMap<string, unknown> = new Map()): ChildrenAnalysis {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('拆分结果必须是对象');
   const raw = value as Record<string, unknown>;
   if (Object.keys(raw).some(key => !['children', 'note'].includes(key)) || !Array.isArray(raw.children) || raw.children.length > 64 ||
@@ -30,12 +30,10 @@ export function decodeChildren(parentId: string, value: unknown, copies: Readonl
         (child.kind !== 'group' && child.kind !== 'part') || typeof child.note !== 'string' || !child.note.trim()) {
       throw new Error('子节点须包含 snake_case name、group/part kind 和具体范围及独立性 note，不提交子树或进度');
     }
-    const copied = copies.get(child.name);
-    if (copied && child.hiddenInReference === true) throw new Error(`${child.name} 已从父组完成稿复制轮廓，不能同时标记 hiddenInReference`);
+    if (copies.has(child.name) && child.hiddenInReference === true) throw new Error(`${child.name} 已从父组完成稿复制轮廓，不能同时标记 hiddenInReference`);
     return { id: `${parentId}/${child.name}`, name: child.name, kind: child.kind, note: child.note,
       ...(child.allowOutsideParent !== undefined ? { allowOutsideParent: child.allowOutsideParent as boolean } : {}),
-      ...(child.hiddenInReference !== undefined ? { hiddenInReference: child.hiddenInReference as boolean } : {}),
-      ...(copied ? { outlineFromParent: 'mask' in copied ? { mask: copied.mask } : { x: copied.x, y: copied.y, width: copied.width, height: copied.height } } : {}) };
+      ...(child.hiddenInReference !== undefined ? { hiddenInReference: child.hiddenInReference as boolean } : {}) };
   });
   normalizeGroups(groups);
   if (groups.length === 1 && groups[0].kind === 'part') throw new Error('不要用 group 包装唯一 part；当前完整形体已不可再拆时提交空 children，并说明终止依据');
@@ -54,6 +52,8 @@ export async function analyzeChildren(context: GroupContext & { completed: SvgAr
   const directory = join(context.directory, 'observations', 'children', context.group.id);
   let submitted: ChildrenAnalysis | undefined;
   const copies = new Map<string, ParentRegion & { pieces: number[] }>();
+  // A copy file is what makes a child's outline adopt it; a fresh split starts without old ones.
+  for (const name of await readdir(directory).catch(() => [] as string[])) if (/^copy-.*\.svg$/.test(name)) await rm(join(directory, name), { force: true });
   async function verifySource() {
     if (!(await readFile(sourceSvg)).equals(source)) throw new Error('子组分析修改了父组完成 SVG');
   }
@@ -74,7 +74,7 @@ export async function analyzeChildren(context: GroupContext & { completed: SvgAr
   // Only sections whose catalog defines copy_parent_region offer it.
   const copy = toolCatalog(profile.toolsDirectory).names().includes('copy_parent_region')
     ? [createParentRegionTool({ directory: context.directory, parentPath: sourceSvg, canvas, groupId: context.group.id,
-      observationDirectory: directory, overrides: profile.toolsDirectory, copies })] : [];
+      overrides: profile.toolsDirectory, copies })] : [];
   return checkedTurn({ agents, records: join(context.directory, groupStepId(context.group.id, 'children'), 'checks'),
     task: { step: partStep(partProfile(context).id, 'children'), name: `直属结构拆分-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'children')),
       tools: knowledge.tools('main', [createBitmapTool(context.directory, directory), createSvgPreviewTool({ directory: context.directory, reference, canvas,

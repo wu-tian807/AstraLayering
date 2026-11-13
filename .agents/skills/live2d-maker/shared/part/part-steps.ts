@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { readStep, type ChainStep } from '../step-chain.ts';
 import type { GroupProgress, GroupSeed } from './layering-types.ts';
+import { copiedOutlinePath } from './parent-region.ts';
 import { groupDepth, groupStepId, layerStepId, parentGroupId, partSteps } from '../step-paths.js';
 export { groupDepth, groupStepId, layerStepId, parentGroupId } from '../step-paths.js';
 
@@ -62,8 +63,9 @@ export async function readGroupTree(directory: string, seed: GroupSeed, saved: M
   const outline = artifactPath(directory, id, 'outline');
   if (prepared.status === 'completed' && await present(outline)) {
     const path = outline, bytes = await readSvg(path);
+    const copy = copiedOutlinePath(directory, id);
     const skipped = seed.hiddenInReference ? { note: '原图不可见：跳过描边和轮廓 review' }
-      : seed.outlineFromParent ? { note: copiedOutlineNote } : {};
+      : copy && await present(copy) ? { note: copiedOutlineNote } : {};
     steps.outline = { status: 'completed', output: { path, ...skipped } };
     steps.review = { status: 'completed', output: (bytes && reviewedArtifact(bytes, path,
       await readReviewReport(reportPath(directory, id, 'review'), id))) || { path, ...skipped } };

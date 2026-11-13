@@ -28,7 +28,7 @@ export function validateStructureGroups(value: unknown): StructureGroups {
   function visit(values: unknown[], path: string) {
     values.forEach((value, index) => {
       const location = `${path}[${index}]`, node = object(value, location);
-      fields(node, ['id', 'name', 'note', 'kind', 'metadata', 'allowOutsideParent', 'hiddenInReference', 'outlineFromParent', 'groups'], location);
+      fields(node, ['id', 'name', 'note', 'kind', 'metadata', 'allowOutsideParent', 'hiddenInReference', 'groups'], location);
       if (typeof node.id !== 'string' || !/^[\p{L}\p{N}_-]+(?:\/[\p{L}\p{N}_-]+)*$/u.test(node.id)) {
         throw new Error(`${location}.id：必须为安全的部件 ID`);
       }
