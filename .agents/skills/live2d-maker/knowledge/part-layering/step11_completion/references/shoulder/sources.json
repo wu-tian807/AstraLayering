@@ -1,0 +1,7 @@
+{
+  "purpose": "肩部衔接：大臂是顶端圆滑的胶囊，身体自带圆润的肩头残段，腋窝和胸侧由身体的轮廓形成，两者只在肩头附近小块重合；不提供当前角色比例、肤色、坐标或服装。",
+  "file": "arm-body-joint.png",
+  "sha256": "2b6023fb555b55558587c5d015a56aa10a0ffb7cde57b4f9a9a87c8beee6e99f",
+  "render": "用户从视频 01:20 处截屏，只保留肩与胸部，裁去下半截；未重绘。",
+  "source": "Live2D绘制指南 第13讲（手臂拆分细节），见 tutorial/live2d-guidance/formal/sources/arm-video.md。第三方画面仅作结构参考。图中的网格比手臂实际外扩一圈。"
+}

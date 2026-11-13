@@ -1,7 +1,0 @@
-{
-  "purpose": "大臂本体的形状：顶端圆滑的胶囊，肩头饱满，内外两侧各沿自己的轮廓；不提供当前角色比例、肤色、坐标或服装。",
-  "file": "capsule-arm.png",
-  "sha256": "3ef7435bdaf9c77ffa9011069fda80c0fe337c654bb95d5a7881069cae216518",
-  "render": "从视频帧裁切放大（左：整条大臂；右：肩头顶端特写）；未重绘。",
-  "source": "Live2D绘制指南 第13讲（手臂拆分细节），见 tutorial/live2d-guidance/formal/sources/arm-video.md；帧取自 01:14–01:24 的身体层／手臂层展示与 02:09 前后的拆分示意图。第三方画面仅作结构参考。"
-}
