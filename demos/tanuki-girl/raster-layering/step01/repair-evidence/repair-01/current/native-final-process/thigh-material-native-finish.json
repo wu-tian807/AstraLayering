@@ -1,0 +1,14 @@
+{
+  "part": "legs/leg_right/leg",
+  "layer": "D24 | legs/leg_right/leg",
+  "uuid": "{d503c5f0-2c3f-46d4-9c1d-3fa14d1565c5}",
+  "source": "part-layering/references/base-subject.png",
+  "region": [
+    538,
+    1094,
+    168,
+    157
+  ],
+  "method": "Krita Selection.copy/paste, own leg skin only, feathered interior sampling; existing outline and all material outside the local transition retained",
+  "reason": "Remove horizontal registered material edge without restoring the original skirt cast shadow"
+}

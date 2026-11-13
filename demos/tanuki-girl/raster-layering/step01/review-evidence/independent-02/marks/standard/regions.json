@@ -1,0 +1,208 @@
+{
+  "image": "raster-layering/step01/workspace/review02/current.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/regions.json",
+  "regions": [
+    {
+      "id": "R01",
+      "bounds": [
+        640,
+        25,
+        117,
+        88
+      ],
+      "layers": [
+        "D12 | head_accessories/tanuki_ornament/tanuki_body | back"
+      ],
+      "description": "头顶叶片下缘更低更圆，右侧凹口与原图不同，主脉交点和分支走向改变，外线加粗。",
+      "crop": [
+        624,
+        9,
+        149,
+        120
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R01-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R01-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R01-comparison.png"
+      }
+    },
+    {
+      "id": "R02",
+      "bounds": [
+        731,
+        488,
+        80,
+        75
+      ],
+      "layers": [
+        "D14 | hair/back_hair",
+        "D15 | headphones/headband"
+      ],
+      "description": "原图连续红色后发上露出耳机带的矩形块；停用D15后同处是D14未补全的带状透明缺口。需补发面并调整后带深度。",
+      "crop": [
+        715,
+        472,
+        112,
+        107
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R02-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R02-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R02-comparison.png"
+      }
+    },
+    {
+      "id": "R03",
+      "bounds": [
+        498,
+        389,
+        71,
+        35
+      ],
+      "layers": [
+        "D83 | hair/side_hair/side_hair_right"
+      ],
+      "description": "向外翻的发翼和下方细发缕之间保留不透明白色参考背景，灰底下为白楔；保留细发缕而清除背景。",
+      "crop": [
+        482,
+        373,
+        103,
+        67
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R03-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R03-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R03-comparison.png"
+      }
+    },
+    {
+      "id": "R04",
+      "bounds": [
+        774,
+        413,
+        43,
+        45
+      ],
+      "layers": [
+        "D84 | hair/bangs"
+      ],
+      "description": "右下刘海尖端出现断碎像素、C形小回环与深色碎点，原图为连续细尖收笔。",
+      "crop": [
+        758,
+        397,
+        75,
+        77
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R04-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R04-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R04-comparison.png"
+      }
+    },
+    {
+      "id": "R07",
+      "bounds": [
+        727,
+        347,
+        91,
+        30
+      ],
+      "layers": [
+        "D80 | face/eyebrows/eyebrow_left | back",
+        "D84.1 | face/eyebrows/eyebrow_left | front"
+      ],
+      "description": "左眉发面段比原图明显浅细，连续眉弧的笔触厚薄和尾端力度减弱；须对齐原图本侧眉体。",
+      "crop": [
+        711,
+        331,
+        123,
+        62
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R07-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R07-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R07-comparison.png"
+      }
+    },
+    {
+      "id": "R08",
+      "bounds": [
+        599,
+        347,
+        86,
+        31
+      ],
+      "layers": [
+        "D81 | face/eyebrows/eyebrow_right | back",
+        "D84.2 | face/eyebrows/eyebrow_right | front"
+      ],
+      "description": "右眉发面段浅细，外侧斜段与原图相比力度和粗细变化丢失；联合检查两个深度片后仍有此差异。",
+      "crop": [
+        583,
+        331,
+        118,
+        63
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R08-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R08-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R08-comparison.png"
+      }
+    },
+    {
+      "id": "R09",
+      "bounds": [
+        743,
+        451,
+        56,
+        50
+      ],
+      "layers": [
+        "D76 | face/blush_left"
+      ],
+      "description": "左颊红底比原图更浓更宽，斜线长度与渐隐不同，靠内侧长线被缩短。",
+      "crop": [
+        727,
+        435,
+        88,
+        82
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R09-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R09-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R09-comparison.png"
+      }
+    },
+    {
+      "id": "R10",
+      "bounds": [
+        619,
+        454,
+        56,
+        52
+      ],
+      "layers": [
+        "D77 | face/blush_right"
+      ],
+      "description": "右颊红底比原图更浓更大，斜线下伸和密度变化，形成较大红云；应恢复原图红底范围与细线收笔。",
+      "crop": [
+        603,
+        438,
+        88,
+        84
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R10-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R10-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/R10-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

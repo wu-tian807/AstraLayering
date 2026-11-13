@@ -1,0 +1,130 @@
+[
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/0516d431-e612-4160-8646-a48b9368042a/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R24/regions.json",
+    "ids": [
+      "R24"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D28.png",
+    "reference": "part-layering/references/standard.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/0e1ca54f-aef8-44ea-a4f0-c46cea07655c/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R14/regions.json",
+    "ids": [
+      "R14"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/union/body__torso.png",
+    "reference": "part-layering/references/base-subject.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/1466c5dd-8899-44e4-82ef-88d09249172d/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R05/regions.json",
+    "ids": [
+      "R05"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D57.png",
+    "reference": "part-layering/references/standard.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/1a570859-0e0f-4d60-8841-cefa4c117baa/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R22/regions.json",
+    "ids": [
+      "R22"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D36.png",
+    "reference": "part-layering/references/standard.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/25122957-617c-4198-9956-c8079b009255/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/standard/regions.json",
+    "ids": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R07",
+      "R08",
+      "R09",
+      "R10"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/current.png",
+    "reference": "part-layering/references/standard.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/32d1b65b-15b9-4277-bb27-620612ec2685/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/base/regions.json",
+    "ids": [
+      "R11",
+      "R12",
+      "R13",
+      "R16",
+      "R17"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/current.png",
+    "reference": "part-layering/references/base-subject.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/3b66d710-0b2f-4513-8cde-2996dd396553/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R06/regions.json",
+    "ids": [
+      "R06"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D71.png",
+    "reference": "part-layering/references/standard.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/5051a364-689c-4b1f-b423-91d9a06e5f46/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R20/regions.json",
+    "ids": [
+      "R20"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D38.png",
+    "reference": "part-layering/references/standard.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/69b98d2a-5886-4e4e-9c1c-0f04e3f93504/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R21/regions.json",
+    "ids": [
+      "R21"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D39.png",
+    "reference": "part-layering/references/standard.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/9e6cd793-b43e-4a67-aabe-594c6d34f183/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R19/regions.json",
+    "ids": [
+      "R19"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D26.png",
+    "reference": "part-layering/references/base-subject.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/b1c1ac8e-9185-4242-a38c-0e9af88a1613/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R15/regions.json",
+    "ids": [
+      "R15"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D33.png",
+    "reference": "part-layering/references/base-subject.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/bc72b74b-fb60-485e-9c17-19fb5b217557/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R18/regions.json",
+    "ids": [
+      "R18"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D25.png",
+    "reference": "part-layering/references/base-subject.png"
+  },
+  {
+    "original_manifest": "raster-layering/step01/workspace/review-regions/c53078b2-f005-433b-a96f-05979257157e/regions.json",
+    "archived_manifest": "raster-layering/step01/review-evidence/independent-02/marks/R23/regions.json",
+    "ids": [
+      "R23"
+    ],
+    "archived_source_image": "raster-layering/step01/review-evidence/independent-02/solo/D37.png",
+    "reference": "part-layering/references/standard.png"
+  }
+]

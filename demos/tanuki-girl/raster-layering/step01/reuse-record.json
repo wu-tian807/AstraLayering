@@ -1,0 +1,13 @@
+[
+  {
+    "id": "face/ears/ear_left/ear_shell",
+    "source": "face/ears/ear_right/ear_shell",
+    "method": "Krita QImage mirror+registration",
+    "bounds": [
+      778,
+      205,
+      113,
+      116
+    ]
+  }
+]

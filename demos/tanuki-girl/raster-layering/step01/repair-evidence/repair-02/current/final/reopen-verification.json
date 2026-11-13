@@ -1,0 +1,19 @@
+{
+  "path": "raster-layering/step01/character-depth.kra",
+  "actual_close_return": true,
+  "actual_reopened": true,
+  "time_utc": "2026-11-13T02:24:53.787352+00:00",
+  "paint_count": 86,
+  "mask_count": 5,
+  "logical_parts": 78,
+  "identical": true,
+  "differences": [],
+  "compared": "Full non-root tree, child order, UUID/name/parent/type/visibility/opacity/blend/inheritAlpha/alphaLocked/locked/passThrough/bounds, 86 paint + 5 native mask full-canvas pixelData hashes, default root projection, canvas and color profile. Hashes verify reopen stability only.",
+  "default_masks_on": true,
+  "kra_size": 25917390,
+  "kra_sha256": "e75f01c7ce244f1b1f4f698cefdc36d8e151b0243f82d72e6d079de16d1b9dd8",
+  "png_path": "raster-layering/step01/character-depth.png",
+  "png_size": 1116167,
+  "png_sha256": "35a63612423977ffb305207f8ba9064ba7cd7ae847c816525862b6bb91e4ff7d",
+  "png_export_from_reopened": true
+}

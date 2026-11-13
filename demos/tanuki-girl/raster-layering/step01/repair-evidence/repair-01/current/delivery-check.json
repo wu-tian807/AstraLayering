@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "reviewItems": 29,
+  "additionalN1": true,
+  "allReportLinksPresent": true,
+  "paintLayers": 85,
+  "logicalParts": 78,
+  "maskCount": 5,
+  "reportFirstLine": "结论：已修复",
+  "kra": "raster-layering/step01/character-depth.kra",
+  "png": "raster-layering/step01/character-depth.png",
+  "report": "raster-layering/step01/report.md",
+  "repairTemporaryReport": "raster-layering/step01/repair-01.md.tmp"
+}

@@ -1,0 +1,17 @@
+{
+  "completed_report": "raster-layering/step01/repair-02.md.tmp",
+  "first_line": "结论：已修复",
+  "review_items": 24,
+  "additional_items": [
+    "N01"
+  ],
+  "logical_parts": 78,
+  "paint_slices": 86,
+  "native_masks": 5,
+  "layer_group": 1,
+  "depth_table_matches": true,
+  "report_links_checked": 621,
+  "missing_links": [],
+  "final_kra_and_png_match_reopen_verification": true,
+  "formal_repair_report_not_published": true
+}

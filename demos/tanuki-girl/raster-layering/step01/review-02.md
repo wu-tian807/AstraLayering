@@ -1,266 +1,643 @@
 结论：需要修复
 
-本次已查完78个逻辑part、81个实际绘画层及34个原生透明度蒙版，确认14项待修问题。主要涉及左眼额外线条与眼白补色硬边、双臂肘缘、掌指描线、孤立笔迹、耳毛根部、辫根显露形状、狸猫下颌线、后踝环端部及双侧红晕。检查在Krita实际工程中完成；未改写工程或分层输入。
+# 第一步独立 review-02
 
-## 输入及检查方法
+已查完当前 Krita 工程全部 **78 个逻辑 part、85 个绘画深度片**；确认 **24 项需要修复的问题（R01–R24）**。主要问题是后发缺口及层级、发梢和白背景残片、眼睑混入虹膜线、眉/红晕还原偏差、颈胸和肩带接点、腿口断线，以及隐藏补全端和指部细节。
 
-- 工程：`raster-layering/step01/character-depth.kra`，1376×2048，Krita 5.3.4.1。
-- 实际可见参考：依据正式`report.md`确认的`part-layering/references/standard.png`；身体及临时连体服辅助参考为`part-layering/references/base-subject.png`。
-- 部件范围、共同身份及覆盖/伸入规则依据`part-layering/parts/`、`part-layering/groups.json`、`part-layering/occlusion.json`。已阅读正式`review-01.md`与`repair-01.md`了解已知反馈，再以当前KRA看图确认；暂存记录不作为完成证明。
-- 每个实际绘画层均切换并查看四状态：独显/蒙版启用、独显/本层蒙版停用、隐藏上层/蒙版启用、隐藏上层/本层蒙版停用。全部四状态原尺寸PNG、图层UUID、蒙版父层和检查结果见[完整逐层索引](review-02-evidence/audit-index.md)及[机器可读索引](review-02-evidence/audit-index.json)。12页四状态图集全部查看；大面积头发、尾巴、身体和四肢另看原尺寸独显。
-- 三个同part多深度对象分别检查各片，再合起来看：辫子D13/D57、骨盆D22.5/D33、狸猫D12/D85.5。另组合检查双眼、口内、双手、双耳。分片数量不作为重复判据。
-- 已查看[默认整图/可见参考](review-02-evidence/whole-standard.png)、[默认整图/身体参考](review-02-evidence/whole-base-subject.png)、[全部蒙版停用整图](review-02-evidence/all-masks-disabled-white.png)。蒙版默认全遮的后大腿带、后发圈、口内、小指也已停用查看完整本体。
-- 双眼各与参考按同画布坐标、同尺寸1倍并排，另放大检查眼形、轮廓、睫毛、虹膜、高光及睫毛/眼白接合：[左眼1倍](review-02-evidence/eyes-left-1x.png)、[右眼1倍](review-02-evidence/eyes-right-1x.png)、[左眼放大](review-02-evidence/eyes-left-comparison.png)、[右眼放大](review-02-evidence/eyes-right-comparison.png)。肩胸、腰腹、双肘、掌指、发束、头顶及踝环的连接处也逐处放大对照。
+检查工程：`raster-layering/step01/character-depth.kra`，1376×2048。依据 `raster-layering/step01/report.md`，主参考为 `part-layering/references/standard.png`；胸肩、腰髋和临时白色连体服采用 `part-layering/references/base-subject.png`。原外衣与临时白服之间的差异按已确定的素体范围处理。
 
-所有框坐标为原画布`[x,y,width,height]`。左右名称指角色自身左右。工具生成的局部对照均为**左参考、右当前**；独显对照中参考仍保留原遮挡，隐藏区没有直接可见参考时，以下逐项注明以本件连续形体、色层和上游范围为依据。没有移动、配准或缩放参考来消除差异；放大证据仅等比放大同坐标区域。透明图的灰/白底只用于看清边缘。
+已读取 `part-layering/parts/`、`part-layering/groups.json`、`part-layering/occlusion.json`，以及正式 `review-01.md`、`repair-01.md`、`report.md`。本报告所有当前图都从本轮实际打开的 KRA 重新导出；旧报告仅用于了解已知问题。
 
-## 框选总览
+## 检查方法与覆盖
 
-- [默认整图：R01、R06–R08、R10–R11、R13–R14](review-02-evidence/regions/default-standard/marked.png) · [坐标与说明](review-02-evidence/regions/default-standard/regions.json)
-- [默认整图/身体参考：R03–R04](review-02-evidence/regions/default-body/marked.png) · [坐标与说明](review-02-evidence/regions/default-body/regions.json)
-- [左眼白完整独显：R02](review-02-evidence/regions/sclera-left/marked.png)；[右上臂完整独显：R05](review-02-evidence/regions/upper-arm-right/marked.png)；[左耳毛完整独显：R09](review-02-evidence/regions/ear-fur-left/marked.png)；[后踝环完整独显：R12](review-02-evidence/regions/anklet-back/marked.png)。
-- [全部最终问题框及局部路径](review-02-evidence/annotation-index.json)。掌部另有完整独显框选，见R06/R07。
+在独立打开的 Krita 文档中，对85片逐片导出并看过：①停用所有显隐蒙版后的本片独显；②停用蒙版、保留本片及更低深度并隐藏所有上层。另分别看过7个多深度 part 的每片与联合独显，5个蒙版的独显/合成 OFF 与 ON，默认整图与两张实际参考。双眼已按同画布原尺寸并排，并放大检查睫毛、眼轮廓、虹膜、高光及眼白接边；头发、颈肩、领口、胸侧、腰髋、肘腕、手指、腿足、踝饰与尾巴也逐区放大。未用图像评分代替看图。
 
-## 确认要修的问题
+透明图均另放在中灰底观察，尤其白背景残片、浅边与离散像素。局部放大使用同坐标最近邻；未移动、缩放参考以追求匹配。原始1376×2048导出与所有检查视图均归档。工具框选的显示副本仅按alpha合成到中灰底，编号、框坐标与画布内容不变；原始透明工具图和原始记录同时保留，件外全透明RGB不列作瑕疵。
 
-### R01 — 左上睑多余悬空弧线和外眼角碎线
+全画布对照（左 standard、中 base-subject、右当前）；[原尺寸全图](review-evidence/independent-02/whole-native.png)。
 
-**相关图层：** `D071.00 | face/eyes/eye_left/upper_eyelid`。UUID见逐层索引。
 
-**位置与当前表现：** 角色左眼，即画面右眼。框[734,400,75,51]；悬空弧约在x744–767/y403–407，外角碎线约在x798–806/y421–442。 黑睫缘上方另有一条灰棕短弧，和睫毛主体分离；外眼角周围有粉棕色短刺和第二层零碎边。独显可确认它们在上睑层，默认合成及1倍并排也能看到。
 
-**参考依据与影响：** standard.png同侧对应位置是一条连贯上睑，独立眼褶另在D073。当前短弧形成额外第三条线；外角也比参考多出杂线，改变眼形与睫尖。
+双眼原尺寸：左组为 standard 双眼，右组为当前双眼；[放大双眼](review-evidence/independent-02/details/eyes.png)。
 
-**修复方向与保留内容：** 清除D071中的悬空弧和外角额外笔迹，按本侧原图取样或续笔恢复连续睑缘及睫尖；保留D073独立眼褶、虹膜和高光。修后单独检查上睑，并将整只左眼与参考原尺寸并排，确认睫缘直接压住眼白。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-standard/marked.png) · [当前局部](review-02-evidence/regions/default-standard/R01-current.png) · [参考局部](review-02-evidence/regions/default-standard/R01-reference.png) · [同坐标并排](review-02-evidence/regions/default-standard/R01-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-standard/regions.json)。
 
-**补充观察：** [上睑完整独显放大](review-02-evidence/upper-left-eye-solo.png) · [左眼1倍并排](review-02-evidence/eyes-left-1x.png) · [左眼放大对照](review-02-evidence/eyes-left-comparison.png) · [组合四状态](review-02-evidence/eyes-left-states.png)。
+## 确定返修项
 
+坐标均为原1376×2048画布 `[x, y, width, height]`。工具框选使用当前 KRA 的默认、独显或联合独显导出；每项明确说明状态。隐藏部件的同坐标参考可能显示遮挡物，参考用于可见材料、线型与姿态，补全形体还依据本件分组/范围。R14、R15、R18、R19要求续完隐藏轮廓，同时保持默认合成没有新增腰线或肘封口线。
 
+### R01 — 狸饰叶片：外形和叶脉改动
 
-### R02 — 左眼白补全区有硬色块分界
+相关图层：`D12 | head_accessories/tanuki_ornament/tanuki_body | back`。
 
-**相关图层：** `D065.00 | face/eyes/eye_left/sclera`。UUID见逐层索引。
+位置：`[640, 25, 117, 88]`。当前表现：叶片下缘更低、更圆；右边凹口的开口、下唇轮廓与参考不同，上侧中央凹弧及两尖端也改变。叶脉交点下移，分支改道，外围棕线更粗。
 
-**位置与当前表现：** 框[729,415,64,45]；内角白区与中央米色补全的竖向界面约在x735–741/y423–443。 停用本层蒙版后，中央米色区和内眼角较白区域之间呈近乎竖直的硬边；中央补全周围又形成浅色环带，眼白独显呈拼块感。
+参考依据与确认方式：standard.png 同坐标叶片：下缘较平，右侧有较小的折转凹口，原叶脉交叉及各支脉有固定走向。D12 独显和 D12+D85.5 合看都保有当前差异。
 
-**参考依据与影响：** standard.png可见的眼白以连续明暗衔接。虹膜后的中心原图被遮住，不能要求照抄隐藏像素，但补全应与同一眼白的角部自然融色。当前硬边使完整眼白不干净，眨眼或虹膜移动时会露出补色块。这里依据画面表现，不据此推断采用了哪种填色工具。
+影响：头顶识别性形状、尖端与线条层次被重画成另一种轮廓，未还原原图结构。
 
-**修复方向与保留内容：** 从本侧眼白可见区域取色，用本件笔触重融中心补全及角部过渡，消除竖边与环带；保留完整眼白、原眼开口和原生蒙版，不挖掉虹膜后的内容，也不新增参考没有的下睑线。
+修复方向：在 D12 内按原图配准两尖、中央凹弧、右侧凹口和下缘；用本叶片取样或笔触恢复原脉交点、分支与线宽，接顺到狸头接触边。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/sclera-left/marked.png) · [当前局部](review-02-evidence/regions/sclera-left/R02-current.png) · [参考局部](review-02-evidence/regions/sclera-left/R02-reference.png) · [同坐标并排](review-02-evidence/regions/sclera-left/R02-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/sclera-left/regions.json)。
+需要保留：叶片仍归 tanuki_body，狸头与下颌前片的现有连续关系及双爪独立层。
 
-**补充观察：** [左右完整眼白独显放大](review-02-evidence/sclera-solo.png) · [左眼组合四状态](review-02-evidence/eyes-left-states.png)。
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/standard/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/standard/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/standard/R01-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/standard/R01-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/standard/R01-comparison-gray.png)。
 
+1=standard；2=默认合成，5倍最近邻。
 
 
-### R03 — 左上臂肘侧有平行碎线
 
-**相关图层：** `D025.00 | arms/arm_left/upper_arm`。UUID见逐层索引。
+### R02 — 右侧后发：缺口被耳机带填占
 
-**位置与当前表现：** 角色左臂，画面右侧。框[903,773,55,84]，沿肘侧外缘向下的一串短刺。 主外轮廓外侧还有一串平行棕色碎线和小突刺；停用蒙版的完整独显、隐藏上层和默认合成均能定位。
+相关图层：`D14 | hair/back_hair`；`D15 | headphones/headband`。
 
-**参考依据与影响：** base-subject.png同处是单一连续细轮廓。当前重复描线造成毛刺、线宽突增，默认肘接合能看出修接痕迹。
+位置：`[731, 488, 80, 75]`。当前表现：默认合成中，右侧颈后红发露出有深边的粉红/红色矩形带片。隐藏 D15 后同位置变成弧形透明缺口；D14 独显也直接显示这块缺口。
 
-**修复方向与保留内容：** 在D025清掉主轮廓外的重复线段，沿本件实际外缘接成同宽、同色、连续的一条线；保留肘端完整形体和自身桃色暗部。修后合看上臂与前臂，检查默认外缘没有双线或尖刺。
+参考依据与确认方式：standard.png 该区域是完整红色发面和顺向发缕，没有矩形环带。归属通过实际 KRA 的 D14 独显、D15 独显和停用 D15 合成共同确认。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-body/marked.png) · [当前局部](review-02-evidence/regions/default-body/R03-current.png) · [参考局部](review-02-evidence/regions/default-body/R03-reference.png) · [同坐标并排](review-02-evidence/regions/default-body/R03-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-body/regions.json)。
+影响：后发自身不完整，默认层级还让耳机带侵入原图连续发面。仅换层序会留下缺发。
 
-**补充观察：** [肘部放大对照](review-02-evidence/elbow-left-comparison.png) · [双臂完整端部](review-02-evidence/arm-caps.png) · [左上臂原尺寸独显](review-02-evidence/native-17.png)。
+修复方向：先在 D14 补回缺口内的红色发面、明暗和顺向发缕，使发面连为一片；再将这一段 D15 后带置于后发之后。若只需局部深度变化，使用普通深度分片并同步有效 occlusion；完成后复查 D14、headband union 和默认合成。
 
+需要保留：完整耳机U带和 D22.25 接头，耳罩独立内容；保持原颈缘和红色发梢。
 
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/standard/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/standard/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/standard/R02-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/standard/R02-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/standard/R02-comparison-gray.png)。
 
-### R04 — 右上臂肘侧有重复描线
+1=standard；2=D14 独显；3=默认合成；4=只停用 D15，5倍。
 
-**相关图层：** `D026.00 | arms/arm_right/upper_arm`。UUID见逐层索引。
 
-**位置与当前表现：** 角色右臂，画面左侧。框[520,773,55,56]，主要在x538–565/y782–808附近。 肘侧内缘有第二串碎线与主线并行，局部轮廓增粗并伸出毛刺。完整独显说明残线属于D026，不是相邻前臂的一条合法轮廓。
 
-**参考依据与影响：** base-subject.png对应内缘为连贯单线。当前额外线段改变外缘厚度，在辫尾下方的可见接合区暴露。
+### R03 — 侧发翼下：不透明白背景残片
 
-**修复方向与保留内容：** 清除D026平行残线和刺，续顺本件肘侧主轮廓；保留自身体积暗部与前臂的现有覆盖关系。不要把正常桃色暗部整体擦白。
+相关图层：`D83 | hair/side_hair/side_hair_right`。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-body/marked.png) · [当前局部](review-02-evidence/regions/default-body/R04-current.png) · [参考局部](review-02-evidence/regions/default-body/R04-reference.png) · [同坐标并排](review-02-evidence/regions/default-body/R04-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-body/regions.json)。
+位置：`[498, 389, 71, 35]`。当前表现：画面左侧外翻发翼与其下方细发缕之间夹有不透明白楔。D83 独显及灰底默认合成都仍是白色，而周围件外已经透明。
 
-**补充观察：** [右肘放大对照](review-02-evidence/elbow-right-comparison.png) · [完整双臂端部](review-02-evidence/arm-caps.png) · [右上臂原尺寸独显](review-02-evidence/native-18.png)。
+参考依据与确认方式：standard.png 此处白色属于发缕之间的参考背景，细粉发缕沿下缘回接。灰底局部证据确认白楔为实际可见内容，不是透明像素中的RGB。
 
+影响：部件留有件外背景，换底或变形时会出现白色洞盖。
 
+修复方向：在 D83 清掉发翼与细发缕之间的白底和白色毛边，恢复真实透明开口；只沿本件发丝做干净抗锯齿。
 
-### R05 — 右上臂伸入肘端的圆帽描边未续完
+需要保留：下方细发缕的尖端、棕粉描边和与大束的连续接合，不把细发缕一并擦掉。
 
-**相关图层：** `D026.00 | arms/arm_right/upper_arm`。UUID见逐层索引。
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/standard/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/standard/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/standard/R03-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/standard/R03-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/standard/R03-comparison-gray.png)。
 
-**位置与当前表现：** 完整独显框[483,808,45,37]，右上臂下端隐藏圆弧。 肘端补形已连续，但两侧棕色线到下圆弧之前停止；圆弧只剩浅肤色透明度边缘。与左上臂完整圆帽相比，收口描边明显未完成。
+1=standard；2=D83 独显；3=默认合成，透明区域显示中灰，6倍。
 
-**参考依据与影响：** groups.json明确右上臂肘端是伸入侧，保留局部圆弧搭接；base-subject.png可见上臂外缘有棕色描线。隐藏圆帽没有直接可见参考，但应延续本件已有轮廓与体积。当前默认被前臂盖住，独显仍是未画完的部件。
 
-**修复方向与保留内容：** 沿已有圆帽形体续画细棕轮廓，并融接自身肤色与暗部。保留圆弧搭接；合成时检查前臂覆盖仍能隐藏内部闭合线，不把新线暴露成肘部横缝。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/upper-arm-right/marked.png) · [当前局部](review-02-evidence/regions/upper-arm-right/R05-current.png) · [参考局部](review-02-evidence/regions/upper-arm-right/R05-reference.png) · [同坐标并排](review-02-evidence/regions/upper-arm-right/R05-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/upper-arm-right/regions.json)。
+### R04 — 刘海右下尖端：破碎回环与碎点
 
-**补充观察：** [完整双臂端部放大](review-02-evidence/arm-caps.png) · [右上臂原尺寸独显](review-02-evidence/native-18.png)。
+相关图层：`D84 | hair/bangs`。
 
+位置：`[774, 413, 43, 45]`。当前表现：D84 的右下细尖端出现断续粉灰像素、C形小回环和一块深色碎点。默认合成在外眼角旁留下额外的小粉簇。
 
+参考依据与确认方式：standard.png 同处是沿发丝走向的细尖收笔，没有回环。D84 独显把问题与睫毛及侧发区分开。
 
-### R06 — 左掌指根多余平行线和三角刺
+影响：尖端形状特征损坏，眼角与头发接点有毛刺。
 
-**相关图层：** `D046.00 | arms/arm_left/hand/palm`；`D044.00 | arms/arm_left/hand/index_finger`。UUID见逐层索引。
+修复方向：局部重画 D84 此尖端，将细发丝接为连续渐细的原走向，清掉回环及离开主尖端的碎点，按原图保留尖梢位置和线宽变化。
 
-**位置与当前表现：** 框[1054,1014,36,48]；上侧平行短线约x1069–1083/y1025–1037，下侧棕色三角刺约x1077–1083/y1053–1058。 左掌走向食指的上缘有第二条短线，默认形成碎阶；完整掌独显的指根下缘还伸出棕色三角刺。这两处都可定位于D046。
+需要保留：真实外眼角钩线、相邻 D82 侧发和上方主刘海轮廓。
 
-**参考依据与影响：** standard.png掌指上外缘连续，未出现当前的平行杂线。下侧三角刺在完整掌上形成多余尖端，影响指根揭露和部件干净程度；不是要求补回铃铛或腕饰投影。
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/standard/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/standard/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/standard/R04-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/standard/R04-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/standard/R04-comparison-gray.png)。
 
-**修复方向与保留内容：** 在掌层清掉额外平行线和三角刺，沿真实外轮廓修顺切线、线宽和颜色。合看D044及其余各指，保留各指完整根部、掌部覆盖侧范围与真实指缝；接触内不额外画横向闭合线。
+1=standard；2=D84 独显；3=默认合成，7倍。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-standard/marked.png) · [当前局部](review-02-evidence/regions/default-standard/R06-current.png) · [参考局部](review-02-evidence/regions/default-standard/R06-reference.png) · [同坐标并排](review-02-evidence/regions/default-standard/R06-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-standard/regions.json)。
 
-**补充观察：** [掌部完整独显框选](review-02-evidence/regions/palm-left/marked.png) · [掌独显参考/当前](review-02-evidence/regions/palm-left/R06-comparison.png) · [掌部独显放大](review-02-evidence/palms-solo.png) · [左手放大对照](review-02-evidence/hand-left-comparison.png) · [左手四状态](review-02-evidence/hand-left-states.png)。
 
+### R05 — 辫子发圈处：横箍形残边
 
+相关图层：`D57 | hair/braid_right | front`。
 
-### R07 — 右掌外轮廓碎段及接拇指尖刺
+位置：`[574, 684, 40, 40]`。当前表现：D57 独显和辫子 union 在发圈遮挡处出现横向直边/色带，两侧有耳状小突起；纵向发缕在这条横箍处被截断。默认发圈下方仍露出小突起。
 
-**相关图层：** `D047.00 | arms/arm_right/hand/palm`；`D043.00 | arms/arm_right/hand/thumb`；`D045.00 | arms/arm_right/hand/index_finger`。UUID见逐层索引。
+参考依据与确认方式：standard.png 的深色环带另归 hair_tie_front/back；该位置的头发应在收束后连续伸向辫尾。对照 D57 与 D88 独显可确认横箍形留在头发层中。
 
-**位置与当前表现：** 框[335,997,79,75]；掌侧长轮廓约x399–405/y1037–1046，另查掌上缘x338–355/y1001–1025。 右掌上侧外轮廓有碎段；掌侧长线在接拇指附近分成尖刺和错开的细线，默认外缘线宽、深浅突然变化。完整掌独显可看到分叉线端，不能仅用拇指遮住它。
+影响：部件携带邻件形状鬼影，发圈移动或头发变形时会暴露横断发面。
 
-**参考依据与影响：** standard.png这些位置是连续的一条掌部外线。当前分叉及突变使掌指接合显出修接痕迹。腕饰下的大块投影已按分层目标移除，该色差不作为本问题依据。
+修复方向：在 D57 把发圈覆盖的区域重画为同一束收束头发，续接上方亮暗与发缕到下方散尾，清掉横箍形硬边和两侧残耳；环带外形只保留在发圈层。
 
-**修复方向与保留内容：** 清理D047分叉和多余线端，沿本件外缘续成单一轮廓，再接顺D043拇指及D045食指默认交界的线宽和颜色。保留本件暗部、各指完整根部和掌部覆盖范围；不在接触内新增横线。
+需要保留：辫子自然收细的形体、前后两片共同运动身份与辫尾原尖梢，不把收束处画成等宽发棒。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-standard/marked.png) · [当前局部](review-02-evidence/regions/default-standard/R07-current.png) · [参考局部](review-02-evidence/regions/default-standard/R07-reference.png) · [同坐标并排](review-02-evidence/regions/default-standard/R07-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-standard/regions.json)。
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R05/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R05/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R05/R05-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R05/R05-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R05/R05-comparison-gray.png)。
 
-**补充观察：** [右掌独显框选](review-02-evidence/regions/palm-right/marked.png) · [右掌参考/当前](review-02-evidence/regions/palm-right/R07-comparison.png) · [完整掌部放大](review-02-evidence/palms-solo.png) · [右手放大对照](review-02-evidence/hand-right-comparison.png) · [右手四状态](review-02-evidence/hand-right-states.png)。
+1=standard；2=D57 独显；3=D88 独显；4=默认合成，6倍。
 
 
 
-### R08 — 左中指下方孤立短划
+### R06 — 左上眼睑：含虹膜外缘残线
 
-**相关图层：** `D040.00 | arms/arm_left/hand/middle_finger`。UUID见逐层索引。
+相关图层：`D71 | face/eyes/eye_left/upper_eyelid`；`D67 | face/eyes/eye_left/iris`。
 
-**位置与当前表现：** 框[1127,1067,18,11]；指尖下方约x1130–1136/y1072–1073。 左中指下方有一条与指腹轮廓不连接的浅棕短划。完整独显与默认合成都能看到，属于本层游离笔迹。
+位置：`[765, 410, 16, 22]`。当前表现：上眼睑右内侧向眼白内垂下一小段黑色直边。D71 独显仍有它；在默认合成中停用 D67 和 D69 后，这段黑边仍悬在眼白上。
 
-**参考依据与影响：** standard.png同位置为空背景，连续指腹线留在手指边缘；当前短划破坏独显部件的干净程度，并在默认图形成悬空线。
+参考依据与确认方式：standard.png 同坐标这段垂边随橙色虹膜右缘，非上睫毛尖或外眼角钩。groups.json 规定深色虹膜外缘归 iris，上睑只领取连体上睫毛与外眼尾。
 
-**修复方向与保留内容：** 仅清除这条孤立短划，保留指腹连续下缘、指尖圆度和自身明暗。修后同时看D040完整独显及整只左手。
+影响：单层内容归属错误，虹膜移动后会留下固定黑边，破坏眼白与上睑内缘的干净衔接。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-standard/marked.png) · [当前局部](review-02-evidence/regions/default-standard/R08-current.png) · [参考局部](review-02-evidence/regions/default-standard/R08-reference.png) · [同坐标并排](review-02-evidence/regions/default-standard/R08-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-standard/regions.json)。
+修复方向：仅从 D71 清理这段伸入眼白的虹膜残边，并把上睑内缘接成连续弧；核对 D67 本身的完整外缘，必要时在 iris 上补回同件笔触。原尺寸并排复查睫毛、眼白和虹膜，不整体削薄上睑。
 
-**补充观察：** [中指完整独显放大](review-02-evidence/middle-left-solo.png) · [左手放大对照](review-02-evidence/hand-left-comparison.png)。
+需要保留：上睫毛黑色主弧、真实尖睫毛与外眼角勾，虹膜层次及独立白高光。
 
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R06/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R06/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R06/R06-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R06/R06-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R06/R06-comparison-gray.png)。
 
+1=standard；2=默认合成；3=只停用左 iris/highlight，5倍。另见 eye-left-ownership.png 的各层独显。
 
-### R09 — 左耳毛隐藏根部尖薄且描边未续完
 
-**相关图层：** `D018.00 | face/ears/ear_left/ear_fur`。UUID见逐层索引。
 
-**位置与当前表现：** 完整独显框[793,280,40,32]，主要在x795–820/y284–309的下侧斜边和尖端。 可见毛簇的棕线沿毛梢延续，但到隐藏根部停止；下侧根部拉成尖薄三角，斜边只剩浅色透明外缘。尖端与毛簇主体的厚度、色层衔接突兀。
+[各层归属对照：参考、D71、D67、D69、默认](review-evidence/independent-02/details/eye-left-ownership.png)
 
-**参考依据与影响：** groups.json要求同一连续毛簇，根部随本侧耳根及耳内面运动；standard.png可见毛梢有明确棕色轮廓与浅粉/乳色体积。隐藏根部本身被耳壳、头发盖住，应据自身延续，不能把它当作无需完成的裁切残角。
+### R07 — 左眉：发面段线重明显不足
 
-**修复方向与保留内容：** 保留目前可见尖簇，续画根部毛色层次与轮廓，收顺斜边和尖薄端，使根部成为合理连续的软毛簇。保留耳壳开口蒙版；不要镜像另一耳替代本侧形体，也不要借入耳缘或外部头发。
+相关图层：`D80 | face/eyebrows/eyebrow_left | back`；`D84.1 | face/eyebrows/eyebrow_left | front`。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/ear-fur-left/marked.png) · [当前局部](review-02-evidence/regions/ear-fur-left/R09-current.png) · [参考局部](review-02-evidence/regions/ear-fur-left/R09-reference.png) · [同坐标并排](review-02-evidence/regions/ear-fur-left/R09-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/ear-fur-left/regions.json)。
+位置：`[727, 347, 91, 30]`。当前表现：两个深度片合看虽连续，发面上的左眉仍变成很淡很细的线。外侧弧段和眉尾的粗细、力度比原图弱，原画可辨的完整眉弧在默认合成中不够清楚。
 
-**补充观察：** [两侧完整耳毛独显放大](review-02-evidence/ear-fur-solo.png) · [左耳四状态](review-02-evidence/ears-left-states.png) · [左耳可见参考对照](review-02-evidence/ear-left-comparison.png)。
+参考依据与确认方式：standard.png 左眉跨发面仍保有柔棕红线，且有可见的厚薄和尾端收笔；不是整条不可见。按本侧同坐标合成与独显 union 核对。
 
+影响：原图眉形的线条特征与表情力度丢失。
 
+修复方向：按本侧参考在 D80/D84.1 共同眉体上恢复原线宽、深浅和渐细收笔；维持分片接边连续，在发面与裸肤段分别调颜色/深度后用默认合成校准。
 
-### R10 — 辫根默认显露的尖束形状及外缘重复线
+需要保留：两片是同一逻辑眉体，现有连续身份与本侧弧度差异；无需合并成另一侧镜像或加透明度蒙版。
 
-**相关图层：** `D013.00 | hair/braid_right | root`；`D057.00 | hair/braid_right | front`。UUID见逐层索引。
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/standard/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/standard/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/standard/R07-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/standard/R07-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/standard/R07-comparison-gray.png)。
 
-**位置与当前表现：** 框[564,482,70,112]；抬起尖束约x574–590/y487–514，外缘碎线约y536–586。 当前辫根向上额外抬起一个尖束，改变短后发间的白色开口；下方辫外缘仍有平行/断续描线。D013和D057联合完整独显是相连的，本问题不指称两片重复或断开。
+1=standard 双眉；2=默认双眉，4倍。左眉另见 eyebrows-left-own.png。
 
-**参考依据与影响：** standard.png在该白色开口下的辫根转接更低且平顺，没有当前向上突出的尖束；外缘为连续单线。当前差异改变发束轮廓及其与后发的遮挡形状。
 
-**修复方向与保留内容：** 按原图校正两片默认显露的根轮廓，去掉额外尖束显露与重复外线；沿发流修顺分界及搭接，保留两片共同part、完整隐藏辫根和已正确的前后层级。只调整真实需显露的边，不删除隐藏根部来换取合成接近。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-standard/marked.png) · [当前局部](review-02-evidence/regions/default-standard/R10-current.png) · [参考局部](review-02-evidence/regions/default-standard/R10-reference.png) · [同坐标并排](review-02-evidence/regions/default-standard/R10-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-standard/regions.json)。
+### R08 — 右眉：细化浅化、斜段力度丢失
 
-**补充观察：** [辫根放大对照](review-02-evidence/braid-comparison.png) · [同part两片联合四状态](review-02-evidence/braid-states.png)。
+相关图层：`D81 | face/eyebrows/eyebrow_right | back`；`D84.2 | face/eyebrows/eyebrow_right | front`。
 
+位置：`[599, 347, 86, 31]`。当前表现：D81+D84.2 合看连续，但右眉发面外侧斜段变浅变细，原图由斜段到近平段的厚薄过渡被弱化，末端更难辨。
 
+参考依据与确认方式：standard.png 右眉原有明确的柔棕红斜弧及末端渐隐，发面覆盖处仍可见。按右眉实际长度、高度及弧度核对，未用左眉镜像替代。
 
-### R11 — 狸猫前下颌轮廓分段、过平
+影响：眉弧与收笔特征未按原图还原。
 
-**相关图层：** `D012.00 | head_accessories/tanuki_ornament/tanuki_body`；`D085.50 | head_accessories/tanuki_ornament/tanuki_body | foreground jaw`。UUID见逐层索引。
+修复方向：在 D81/D84.2 联合眉体内逐段恢复本侧线宽、棕红深浅和斜段到平段的转弧，校准尾端渐隐；复看 union 和默认发面上的效果。
 
-**位置与当前表现：** 框[668,216,78,16]，双爪之间的下颌底边。 当前棕色下颌线呈数段近水平短划，中间及两端有浅色断段；D085.5启用蒙版独显可看到当前显露边将轮廓收成分段平线。两片完整狸猫联合仍是连续形体。
+需要保留：右眉实际位置和前后片身份，裸肤段与发面段连续。
 
-**参考依据与影响：** standard.png双爪之间保有连贯、缓弯的本件深棕下颌轮廓。当前分段平线丢失下颌弧度与描边连续性。参考中下方投在头发上的粉暗色带是外投影，不要求画回狸猫或头发层。
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/standard/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/standard/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/standard/R08-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/standard/R08-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/standard/R08-comparison-gray.png)。
 
-**修复方向与保留内容：** 在tanuki_body自身续成与参考相符的连续下颌弧线，再修D085.5原生显露边使线条完整露出并接顺两端；保留D12/D85.5共同part及完整后主体、发根和爪的层级，不恢复外投影。
+1=standard 双眉；2=默认双眉，4倍。右眉另见 eyebrows-right-own.png。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-standard/marked.png) · [当前局部](review-02-evidence/regions/default-standard/R11-current.png) · [参考局部](review-02-evidence/regions/default-standard/R11-reference.png) · [同坐标并排](review-02-evidence/regions/default-standard/R11-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-standard/regions.json)。
 
-**补充观察：** [头顶下颌放大对照](review-02-evidence/head-comparison.png) · [狸猫两片联合四状态](review-02-evidence/tanuki-states.png) · [前下颌蒙版启用独显](review-02-evidence/layers/75/solo-default.png)。
 
+### R09 — 左红晕：红底扩浓、细线缩短
 
+相关图层：`D76 | face/blush_left`。
 
-### R12 — 后粉踝环隐藏回转端部急窄成尖片
+位置：`[743, 451, 56, 50]`。当前表现：红色底变得更浓、更宽，尤其向眼下扩散；靠面中线的原长线缩短，多个斜线的长度和柔收笔与原图不同。
 
-**相关图层：** `D011.00 | legs/leg_right/anklet_back`。UUID见逐层索引。
+参考依据与确认方式：standard.png 左颊有浅而局部的红底与纤细渐隐长线。当前 D76 独显确实有红底，问题是红底范围和线形还原不足，不是漏画全部红底。
 
-**位置与当前表现：** 完整独显框[571,1768,21,31]，粉色后弧左端回转和下斜端。 回转后突然收窄成颈口，再伸出扁平尖斜片；该小段的厚度及粉色管状体积未自然延续。它仍连接在后弧上，本问题不指称断开，也不把蒙版裁出的米色弧小片当作外来残色。
+影响：面部色块范围和原斜线形状、长短层次改变。
 
-**参考依据与影响：** standard.png及同part可见粉环都是有厚度的管状环带。隐藏端原图没有直接形态参考，应合理续成同一粉管；当前急窄口与尖片在完整部件上形成不自然端部。
+修复方向：在 D76 保留红底职责，按原尺寸参考收回扩散范围并降低过浓区；逐线还原本侧位置、长度、倾斜和两端软收笔。用柔笔或本红晕取样接色，最后看默认合成。
 
-**修复方向与保留内容：** 局部重画左回转及端部，恢复连续厚度、内外缘和自身粉色明暗，收成圆顺端。保留前后环现有搭接和默认腿侧位置；保护同层米色弧，勿借入腿、铃或前环像素。修后看完整两弧及默认前后粉环接合。
+需要保留：红底与斜线全部归 D76；脸底保持普通肤色，不能以只剩几条线代替红晕。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/anklet-back/marked.png) · [当前局部](review-02-evidence/regions/anklet-back/R12-current.png) · [参考局部](review-02-evidence/regions/anklet-back/R12-reference.png) · [同坐标并排](review-02-evidence/regions/anklet-back/R12-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/anklet-back/regions.json)。
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/standard/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/standard/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/standard/R09-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/standard/R09-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/standard/R09-comparison-gray.png)。
 
-**补充观察：** [完整两弧独显放大](review-02-evidence/ankle-solo.png) · [前后环可见对照](review-02-evidence/ankle-comparison.png) · [后环完整原尺寸](review-02-evidence/layers/02/solo-complete.png)。
+1=standard；2=默认合成；3=D76 独显，5倍。
 
 
 
-### R13 — 左红晕细线过宽过浓
+### R10 — 右红晕：红云过大、下端线形改变
 
-**相关图层：** `D076.00 | face/blush_left`。UUID见逐层索引。
+相关图层：`D77 | face/blush_right`。
 
-**位置与当前表现：** 角色左颊，画面右侧。框[746,456,51,40]。 当前六条细线更宽、更浓，柔化后形成厚桃色条带；中部线间的红色容易黏在一起。1倍同尺寸并排也能看出线群比参考厚重。
+位置：`[619, 454, 56, 52]`。当前表现：右颊形成比原图大且浓的红云，细线整体下伸、分布与渐隐变化，外侧线收笔较长，多个线之间的红底显著加深。
 
-**参考依据与影响：** standard.png本侧为较细、分明且逐渐淡出的线，叠在弥散红底上。这里需修的是线心宽度及红色分布，不是要求删掉红底，也不是仅凭细微像素浓淡差异判错。
+参考依据与确认方式：standard.png 右颊红底较轻，线与底的浓淡和长度关系清楚。D77 独显和原尺寸合成确认该差异属于红晕层。
 
-**修复方向与保留内容：** 按本侧原图收窄线心、降低过浓的条带并修渐细尾端；保留原有不同长短、排列与弥散红底，线和底自然融色。先在原尺寸对照调线宽，再放大查有无硬边，不用整体加模糊代替细线。
+影响：原面颊色块、细线密度与收笔未还原。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-standard/marked.png) · [当前局部](review-02-evidence/regions/default-standard/R13-current.png) · [参考局部](review-02-evidence/regions/default-standard/R13-reference.png) · [同坐标并排](review-02-evidence/regions/default-standard/R13-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-standard/regions.json)。
+修复方向：按本侧参考收回红底下缘和外扩范围，重画对应细线的长度、间距与渐隐；不要整层均匀降透明度后保留错误长度，应同时修红底形状和线形。
 
-**补充观察：** [双颊1倍并排](review-02-evidence/blush-1x.png) · [双颊放大对照](review-02-evidence/blush-comparison.png) · [左红晕完整独显](review-02-evidence/layers/65/solo-complete.png)。
+需要保留：原红晕仍为带红底的一件，当前脸缘、嘴部和侧发保持各自归属。
 
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/standard/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/standard/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/standard/R10-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/standard/R10-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/standard/R10-comparison-gray.png)。
 
+1=standard；2=默认合成；3=D77 独显，5倍。
 
-### R14 — 右红晕线群加宽并与底色黏连
 
-**相关图层：** `D077.00 | face/blush_right`。UUID见逐层索引。
 
-**位置与当前表现：** 角色右颊，画面左侧。框[619,459,52,42]。 当前右侧线群呈较宽的软条带，多条线的上半部和底色黏连；参考可分辨的细线间隔被压弱，整体更浓重。
+### R11 — 颈胸交界：浅白横边与短锁骨线
 
-**参考依据与影响：** standard.png右颊的细线有本侧独立长短、淡尾和间隔，不能用左侧镜像替代。1倍与放大对照均能看到当前线条宽度/红色分布的偏离。
+相关图层：`D22 | neck`；`D34 | body/torso`。
 
-**修复方向与保留内容：** 按右侧自身参考减窄、减浓并修淡尾，保留本侧线群位置和弥散红底，线间留出自然间隔。避免镜像左颊或擦掉红色底；原尺寸逐侧对照后再看本层独显。
+位置：`[632, 587, 156, 56]`。当前表现：两耳罩之间、约 y596 的颈胸交界露出细浅白横边；两条锁骨线比参考短、孤立，上胸不再像参考一样顺接颈部肤色。
 
-**框选和局部证据：** [原画布框选](review-02-evidence/regions/default-standard/marked.png) · [当前局部](review-02-evidence/regions/default-standard/R14-current.png) · [参考局部](review-02-evidence/regions/default-standard/R14-reference.png) · [同坐标并排](review-02-evidence/regions/default-standard/R14-comparison.png) · [框坐标/图层说明](review-02-evidence/regions/default-standard/regions.json)。
+参考依据与确认方式：base-subject.png 此处是连续颈胸肤色与向内延伸的锁骨弧，不含浅白水平边。D22、D34 独显及默认合成确认横边来自躯干上帽沿与颈部搭接。
 
-**补充观察：** [双颊1倍并排](review-02-evidence/blush-1x.png) · [放大对照](review-02-evidence/blush-comparison.png) · [右红晕完整独显](review-02-evidence/layers/66/solo-complete.png)。
+影响：原尺寸可看见拼接线，锁骨结构被简化。
 
+修复方向：在 D22/D34 内校准重叠位置与肤色，消除躯干上帽浅白线并以本件笔触接顺颈胸明暗；按辅助参考续画本侧锁骨弧及收笔。若隐藏帽缘需要换前后关系，用深度处理。
 
+需要保留：颈部完整下安装端、耳罩和耳机接头，白服肩带各归自身；不新增颈胸横结构线。
 
-## 本次检查中已核实的结构与保留要求
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/base/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/base/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/base/R11-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/base/R11-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/base/R11-comparison-gray.png)。
 
-- 辫子、骨盆、狸猫的两深度分片联合完整形体连续；三者共同part归属和现有深度分工有效。辫子与狸猫的待修项仅为R10/R11所述显露轮廓及线条。
-- 当前肩胸和腰腹接合、两腿完整大腿过渡，未确认首轮所述明显断线、矩形补色块或台阶仍存在；不沿用旧报告自动重复列项。[肩胸对照](review-02-evidence/shoulders-comparison.png) · [腰腹对照](review-02-evidence/waist-comparison.png) · [大腿对照](review-02-evidence/thigh-comparison.png)。
-- 右眼原尺寸及放大已查，未确认新增确定待修项；左眼需处理R01/R02。原图不对称的两眼不能互相镜像替代。眼内高光层未确认旧眼白矩形或虹膜鬼影仍存在。
-- 前臂近肘端及掌指接触边属于覆盖侧，不仅凭这些人工接触边没有横向闭合描线就判缺陷；不要求为覆盖侧外扩余量或给默认接合增加横线。R05仅针对上臂伸入圆帽已有外轮廓未续完。R06/R07仅针对看清的多余线刺及外轮廓接合突变。
-- 已去掉的衣物、腕饰/铃铛/耳罩/狸猫等外来投影不要求画回皮肤、头发或邻件。眉线选择性显露、闭嘴口内隐藏和后环带默认遮挡按其实际控制检查，不当作孔洞或部件缺失。
+1=base-subject；2=D22 独显；3=D34 独显；4=默认合成，3倍。
 
-建议先修显露结构与曲线R10/R11，再修各所属层的轮廓、游离笔迹和隐藏收口，最后调整眼白融色与双颊线群。每项修后应同时复核完整独显、隐藏上层、蒙版开关、默认连接；双眼另做原尺寸逐眼对照。不能只用蒙版遮住完整部件瑕疵来宣称修好。
 
-## 只读及检查结束状态
 
-Krita只对本次打开的文档进行显隐切换和PNG导出，没有调用保存或写回KRA。检查结束已恢复81层及34蒙版原默认显隐，恢复后的默认PNG与本次初始导出像素一致：[Krita结束核对](review-02-evidence/krita-final-check.json)。
+### R12 — 画面左肩带—领口：斜截与台阶
 
-KRA、groups.json、occlusion.json检查前后SHA256一致：[只读核对及参考/parts最终快照](review-02-evidence/readonly-check.json)。其中参考和parts哈希是最终快照，未冒充不存在的前后比对；这些输入全程只读。哈希仅核实输入保存状态，不作为绘画质量判断。本次只写暂存review及证据，没有修改正式review/repair报告或运行标记。
+相关图层：`D34 | body/torso`；`D35 | body/breast`。
 
-报告完整，全部部件检查已完成；当前仍有上述14项确定问题，交由绘制会话逐项修复。
+位置：`[600, 615, 45, 90]`。当前表现：D34 细肩带到 D35 胸口上尖端时方向和落点不一致，胸片尖端像被斜切了一刀，线在接点突然重起。
+
+参考依据与确认方式：base-subject.png 同侧肩带与胸口内侧线连续转弯，没有当前截断式尖端；独显与默认合成对照均可辨。
+
+影响：衣料相连处有台阶和断续线，原领口曲线改变。
+
+修复方向：校准 D34 肩带与 D35 领口尖端的接点，将边线、白布厚度、亮暗过渡续成原曲率；补画 D35 被截短的尖端，在默认合成中做到原尺寸无台阶。
+
+需要保留：肩带宽度、原U形领口和胸部体积；辫子仍单独遮挡，不把发缘画进衣料。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/base/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/base/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/base/R12-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/base/R12-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/base/R12-comparison-gray.png)。
+
+1=base-subject；2=D34 独显；3=D35 独显；4=默认合成，4倍。
+
+
+
+### R13 — 画面右肩带—领口：断口和肩帽鬼线
+
+相关图层：`D34 | body/torso`；`D35 | body/breast`；`D25 | arms/arm_left/upper_arm`。
+
+位置：`[772, 593, 74, 117]`。当前表现：肩带下段与胸片领口上端不相接，D35 上端是平截/斜截的短头。肩皮肤内还露出一条原图没有的长圆帽弧线。
+
+参考依据与确认方式：base-subject.png 该侧领口线与肩带连续，肩肤内部没有第二条圆帽轮廓；D34 独显及当前合成显示该弧线为肩帽边。
+
+影响：连续领口被拆成两个错位端头，肩部多出安装轮廓，立体结构与原图不符。
+
+修复方向：在 D34/D35 修齐接点、续画原领口内外边和相同白布过渡；对 D34/D25 的肩安装边调整覆盖深度，使本件完整帽沿藏在另一件之后，不把帽边作为肩肤内部结构暴露。
+
+需要保留：完整上臂肩根、肩带与胸片各自体积及可变形身份；不用可见件透明度蒙版抹掉接边。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/base/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/base/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/base/R13-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/base/R13-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/base/R13-comparison-gray.png)。
+
+1=base-subject；2=D34 独显；3=D35 独显；4=默认合成，4倍。肩帽全区另见 shoulders.png。
+
+
+
+[肩帽全区参考/当前对照](review-evidence/independent-02/details/shoulders.png)
+
+### R14 — 躯干下补全：外描边未接入圆帽
+
+相关图层：`D32.5 | body/torso | lower_mount`；`D34 | body/torso`。
+
+位置：`[576, 890, 260, 111]`。当前表现：D32.5+D34 联合独显已有圆形下腹和连续白布明暗，但两侧深色外线在分片下端突然停止。新圆帽轮廓主要是浅白边，未延续原侧缘描边。
+
+参考依据与确认方式：base-subject.png 提供躯干可见侧缘的深灰棕线型与布面；隐藏帽形以本件上游范围为依据，不把原图腿口当成帽形模板。联合独显证明这不是单片切边误判。
+
+影响：隐藏补全区与可见区的轮廓笔触中断，本件展开后呈现无描边补片。
+
+修复方向：在 D32.5 补完沿隐藏下腹外轮廓的同材质边线，并在两侧与 D34 的原侧线接顺颜色、粗细和转弧；保持圆帽布面和明暗连续。
+
+需要保留：当前圆形下帽和白布纹理、肚脐与前后深度片；轮廓留在骨盆覆盖之后，默认组合保持原腰部连续，不露新腰线。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R14/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R14/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R14/R14-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R14/R14-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R14/R14-comparison-gray.png)。
+
+1=base-subject；2=D32.5+D34 联合独显，3倍；参考用于原侧线笔触，帽区在原图中被遮挡。
+
+
+
+### R15 — 骨盆上补全：帽沿缺原外线延续
+
+相关图层：`D33 | pelvis | front`。
+
+位置：`[558, 849, 298, 100]`。当前表现：D33 上帽已为圆形白布面，但圆弧沿只剩浅白边；左右深色侧线在圆帽两肩处停止，没有接入隐藏弧沿。
+
+参考依据与确认方式：base-subject.png 的可见髋侧边保有深灰棕描边；隐藏上帽依据本件完整范围检查。D33 独显和骨盆 union 均可见断续，非 D22.5/D33 深度片重复。
+
+影响：部件独显的补全轮廓与原线型不连续。
+
+修复方向：在 D33 内按现有圆帽补续本件外描边，重点把左右端接顺到帽弧，恢复原线型和渐变厚薄；白布色与帽面保持自然。
+
+需要保留：完整圆上帽、骨盆前后片与现有髋肤、腿口；新补的隐藏轮廓保持在躯干后，默认不出现原图没有的腰线。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R15/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R15/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R15/R15-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R15/R15-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R15/R15-comparison-gray.png)。
+
+1=base-subject；2=D33 独显，2倍；参考用于可见髋侧原线型，不声称原图有顶帽线。
+
+
+
+### R16 — 画面左腿口：白补片截断棕边
+
+相关图层：`D33 | pelvis | front`。
+
+位置：`[586, 950, 76, 68]`。当前表现：裤口沿线中段出现浅白小补片，把深棕外边截断；其后边线以更细浅的线重新开始。D33 独显已经有这个缺口，默认合成仍可见。
+
+参考依据与确认方式：base-subject.png 同段裤口是连续深灰棕外缘，随弧线有自然厚薄；原图没有白布伸出外边吞掉描边的片段。
+
+影响：可见接边断线、粗细突变，局部有贴补感。
+
+修复方向：在 D33 沿整段腿口接回原深棕外线，去除覆盖线的白色突片，把白布边宽、灰内线和棕外线各自连续接齐；从断口两侧渐接原线宽。
+
+需要保留：原腿口曲率、骨盆髋肤及 D24 腿本体位置，不把腿肤或腿投影画入裤口修补。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/base/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/base/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/base/R16-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/base/R16-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/base/R16-comparison-gray.png)。
+
+1=base-subject；2=D33 独显；3=默认合成，5倍。
+
+
+
+### R17 — 画面右腿口：断边与布面残线
+
+相关图层：`D33 | pelvis | front`。
+
+位置：`[773, 944, 69, 88]`。当前表现：腿口棕色边线在浅白补片下消失一段，下方重起的线变细；断口上方白布还留有参考没有的短灰斜痕和碎灰线。
+
+参考依据与确认方式：base-subject.png 的裤口深色边连续，附近白布干净，只有原纵向结构缝和腿口灰内线。D33 独显能直接看见白片和灰残线。
+
+影响：可见部件不干净，原裤口描边和布面结构被破坏。
+
+修复方向：在 D33 清去原结构线之外的短灰残痕，以本件白布笔触接色；按原图续接完整腿口棕边，修齐白布厚度与灰内线，避免细线重起和白片硬接。
+
+需要保留：真实纵缝、灰内线、髋肤明暗及 D23 腿位置。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/base/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/base/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/base/R17-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/base/R17-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/base/R17-comparison-gray.png)。
+
+1=base-subject；2=D33 独显；3=默认合成，5倍。
+
+
+
+### R18 — 左上臂隐藏肘帽：外线止于补全端
+
+相关图层：`D25 | arms/arm_left/upper_arm`。
+
+位置：`[869, 821, 94, 53]`。当前表现：D25 肘端有圆形肤色帽，但棕色侧轮廓在端部停止，帽沿剩浅白/肤色硬边，局部没有描边延续。
+
+参考依据与确认方式：base-subject.png 可见手臂外线为连续棕边；groups.json 指定 upper_arm 肘端是伸入 forearm 下方的圆弧搭接。此项只针对隐藏伸入帽沿，不判默认肘接缝有裂缝。
+
+影响：本上臂独显时隐藏端的轮廓风格中断，补全只完成了色面。
+
+修复方向：在 D25 的隐藏圆弧端续画本臂棕边和边缘明暗，将两侧线顺势接到帽端；维持端部在前臂之后，复查独显和默认外线仍连续。
+
+需要保留：当前肤色过渡与圆帽范围、默认平顺肘接缝，不在默认肘内露出新封口线。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R18/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R18/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R18/R18-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R18/R18-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R18/R18-comparison-gray.png)。
+
+1=D25 独显；2=D31 独显；3=默认合成，4倍；本项只框 D25 隐藏端。
+
+
+
+### R19 — 右上臂隐藏肘帽：浅白硬边无描边
+
+相关图层：`D26 | arms/arm_right/upper_arm`。
+
+位置：`[481, 799, 80, 52]`。当前表现：D26 棕色侧线在肘帽左端明显停笔，圆帽下弧是较浅、较硬的肤色边，未接回本臂深色外线。
+
+参考依据与确认方式：base-subject.png 同臂可见外线连续；本件是伸入 D32 下方的上臂圆帽，隐藏完整轮廓应延续自身线型。
+
+影响：上臂独显补全端的轮廓线未完成。
+
+修复方向：在 D26 隐藏端接续原棕线沿圆帽弧，保留自然粗细与肤色边明暗；不把帽裁短，用现有前臂深度遮住完整补全。
+
+需要保留：目前默认平顺肘接点、完整肩根和上臂长度。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R19/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R19/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R19/R19-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R19/R19-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R19/R19-comparison-gray.png)。
+
+1=D26 独显；2=D32 独显；3=默认合成，5倍；本项只框 D26 隐藏端。
+
+
+
+### R20 — 左无名指：亮暗段硬拼
+
+相关图层：`D38 | arms/arm_left/hand/ring_finger`。
+
+位置：`[1055, 1036, 53, 43]`。当前表现：隐藏补全的淡黄亮段与可见暗粉指段在指身中途沿一条硬斜切界线拼接，界线旁轮廓也有小台阶；明暗不是围绕指腹的连续过渡。
+
+参考依据与确认方式：standard.png 可见短指端提供本指暗面和轮廓；groups.json 要求整根无名指，不能只有露出指端。D38 独显显示隐藏段与可见段的硬材料接边。
+
+影响：一根手指呈两块色段拼接，遮挡解除后会暴露硬色界。
+
+修复方向：在 D38 本件内按指腹圆体积接续亮面、暗面和棕边，局部重画跨接边的皮肤过渡，修齐轮廓小台阶；复看独显及原默认露出短指端。
+
+需要保留：原短指端位置、长度与指束遮叠，整根隐藏指身保留；不复制邻指轮廓或投影来盖接边。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R20/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R20/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R20/R20-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R20/R20-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R20/R20-comparison-gray.png)。
+
+1=standard；2=D38 独显；3=D36 独显；4=默认合成，5倍。
+
+
+
+### R21 — 右无名指：勺形根段与硬切色界
+
+相关图层：`D39 | arms/arm_right/hand/ring_finger`。
+
+位置：`[296, 1026, 67, 52]`。当前表现：隐藏近掌段膨成很宽的淡色圆勺头，接向窄指身时急缩；淡色与暗粉段间是一条近直线硬界，暗粉段上缘在该处突然换色。
+
+参考依据与确认方式：standard.png 给出本指短圆露出段和同手指束形体。groups.json 要求完整并拢无名指及局部根部搭接，不是增加一个宽圆掌块。D39 独显直接显示扩宽根段和硬界。
+
+影响：隐藏指身比例不合理、颜色拼接明显，独立形变时不能表现同一根指体。
+
+修复方向：在 D39 保留原露出端，依据本手并拢姿势把根部到指身重画为连续合理宽度，接回指腹亮暗和细棕轮廓；根部搭接只留必要局部，消除直切色界。
+
+需要保留：无名指独立身份、原短圆指端和本指与掌/中指/小指的深度关系。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R21/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R21/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R21/R21-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R21/R21-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R21/R21-comparison-gray.png)。
+
+1=standard；2=D39 独显；3=D37 独显；4=默认合成，5倍。
+
+
+
+### R22 — 左小指：软色棒缺轮廓和指部细节
+
+相关图层：`D36 | arms/arm_left/hand/little_finger`。
+
+位置：`[1056, 1030, 46, 43]`。当前表现：停用 D36 的 Default closed 蒙版后，小指是一根柔边肤色棒，只有简单粉色下缘明暗；没有本手的深棕外描边，也缺可辨的指端/指腹/指节细节。
+
+参考依据与确认方式：原图本小指全被遮住，standard.png 此坐标不是其完整外观模板；参考同手可见手指的轮廓、端部与明暗语言，groups.json 明确整根小指及指节、指甲、指腹随本件。
+
+影响：隐藏实体只完成通用色形，不能作为画完整的同一只手的手指。
+
+修复方向：在 D36 按当前叠指姿态补画完整小指体积、指腹与指节，并续上同手深棕外线和指端结构；该姿态可见的甲缘细节随本指处理，不能把指甲强画到不应可见的一面。
+
+需要保留：原小指方向、独立控制与根部局部搭接；Default closed 属全遮挡显隐，本蒙版本身不列问题。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R22/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R22/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R22/R22-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R22/R22-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R22/R22-comparison-gray.png)。
+
+1=standard；2=D38 独显；3=D36 蒙版OFF独显；4=默认合成，5倍。另见 masks-all.png OFF/ON。
+
+
+
+### R23 — 右小指：缺深色轮廓与指体结构
+
+相关图层：`D37 | arms/arm_right/hand/little_finger`。
+
+位置：`[309, 1021, 55, 40]`。当前表现：D37 蒙版 OFF 的小指为柔肤色棒，外轮廓全浅，指端、指腹和关节没有与同手其余手指一致的线形细节；仅有简单渐变。
+
+参考依据与确认方式：原图右小指全遮挡；依据同手原图手指线型和 groups.json 的完整小指、指节与表面细节要求检查，不声称原图显示了本小指指甲。
+
+影响：独显补全细节不完整，形体像通用色棒。
+
+修复方向：在 D37 依当前并拢姿态重画指体圆转、指腹/指节和同手棕色外边，端部收笔与可见面细节合理接续到根部。
+
+需要保留：完整根部与叠指深度，默认全隐藏状态与本件显隐蒙版；不制造替换手势。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R23/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R23/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R23/R23-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R23/R23-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R23/R23-comparison-gray.png)。
+
+1=standard；2=D39 独显；3=D37 蒙版OFF独显；4=默认合成，5倍。
+
+
+
+### R24 — 左腕粉环后段：模糊色棒、缺带边
+
+相关图层：`D28 | arms/arm_left/bracelet_pink_back`。
+
+位置：`[982, 967, 48, 58]`。当前表现：D28 独显为模糊粉色弯棒，深色内外边几乎没有，厚度面和亮暗条带也被软化；与同侧前段及原图环带不是相同笔触语言。
+
+参考依据与确认方式：standard.png 粉环有深色边、清楚亮暗条带与带厚度。后段应是同一粉环绕腕背面的延续，D28 独显、隐藏上层图和同侧 D48 对照确认该差异。
+
+影响：本后段的轮廓与立体结构不完整，转腕后会暴露低细节补全。
+
+修复方向：在 D28 上沿现有后弧补画同环深色内外边、厚度侧面和粉色条带，接顺两端到前段的颜色、线宽与带宽；以本环笔触续画。
+
+需要保留：后段完整弧形、前后夹腕深度及铃铛独立层，不把腕肤或前带投影涂进后环。
+
+证据：[工具整图编号框（灰底）](review-evidence/independent-02/marks/R24/marked-gray.png)；[框坐标与图层记录](review-evidence/independent-02/marks/R24/regions.json)；[同坐标参考局部](review-evidence/independent-02/marks/R24/R24-reference.png)；[当前局部（灰底）](review-evidence/independent-02/marks/R24/R24-current-gray.png)；[工具左参考/右当前（灰底）](review-evidence/independent-02/marks/R24/R24-comparison-gray.png)。
+
+1=standard；2=D28 独显；3=默认合成，5倍。
+
+
+
+## 显隐蒙版 OFF / ON 核查
+
+5个原生透明度蒙版均逐个检查停用/启用状态，并看过独显和全图合成。它们控制的都是上游标明在本参考姿态全遮挡的部件，未发现可见部件挂用于透见、融合或局部消隐的透明度蒙版。D36/D37的绘画缺陷列为R22/R23，蒙版本身不列问题。
+
+| 蒙版父层/组 | OFF检查 | ON检查 | 判断 |
+| --- | --- | --- | --- |
+| `D10 \| legs/leg_left/thigh_band_back` | 后腿带完整可见；[独显](review-evidence/independent-02/masks/mask0-solo-0.png) / [合成](review-evidence/independent-02/masks/mask0-full-0.png) | 默认全隐藏；[独显](review-evidence/independent-02/masks/mask0-solo-1.png) / [合成](review-evidence/independent-02/masks/mask0-full-1.png) | 全遮挡显隐用途，已看OFF/ON |
+| `D36 \| arms/arm_left/hand/little_finger` | 左小指完整底图可见；[独显](review-evidence/independent-02/masks/mask1-solo-0.png) / [合成](review-evidence/independent-02/masks/mask1-full-0.png) | 默认全隐藏；[独显](review-evidence/independent-02/masks/mask1-solo-1.png) / [合成](review-evidence/independent-02/masks/mask1-full-1.png) | 全遮挡显隐用途，已看OFF/ON |
+| `D37 \| arms/arm_right/hand/little_finger` | 右小指完整底图可见；[独显](review-evidence/independent-02/masks/mask2-solo-0.png) / [合成](review-evidence/independent-02/masks/mask2-full-0.png) | 默认全隐藏；[独显](review-evidence/independent-02/masks/mask2-solo-1.png) / [合成](review-evidence/independent-02/masks/mask2-full-1.png) | 全遮挡显隐用途，已看OFF/ON |
+| `D56 \| head_accessories/hair_tie_back` | 后发圈完整可见；[独显](review-evidence/independent-02/masks/mask3-solo-0.png) / [合成](review-evidence/independent-02/masks/mask3-full-0.png) | 默认全隐藏；[独显](review-evidence/independent-02/masks/mask3-solo-1.png) / [合成](review-evidence/independent-02/masks/mask3-full-1.png) | 全遮挡显隐用途，已看OFF/ON |
+| `D61-64 \| Shared mouth opening` | 口腔、舌、上/下牙四片共同可见；[独显](review-evidence/independent-02/masks/mask4-solo-0.png) / [合成](review-evidence/independent-02/masks/mask4-full-0.png) | 默认全隐藏；[独显](review-evidence/independent-02/masks/mask4-solo-1.png) / [合成](review-evidence/independent-02/masks/mask4-full-1.png) | 全遮挡显隐用途，已看OFF/ON |
+
+
+
+上图每行四列依次是：独显OFF、独显ON、合成OFF、合成ON。[蒙版名称与边界](review-evidence/independent-02/masks.json)；[原生图层及UUID](review-evidence/independent-02/tree.json)。
+
+## 多深度同件检查
+
+以下7个 part 已分别看各片，再联合看完整性；多片按既有深度职责检查，不判为重复。
+
+| 逻辑 part | 深度片 | 联合独显与判断 |
+| --- | --- | --- |
+| `head_accessories/tanuki_ornament/tanuki_body` | `D12`, `D85.5` | [联合独显](review-evidence/independent-02/union/head_accessories__tanuki_ornament__tanuki_body.png)；已逐片/联合查看；关联R01 |
+| `hair/braid_right` | `D13`, `D57` | [联合独显](review-evidence/independent-02/union/hair__braid_right.png)；已逐片/联合查看；关联R05 |
+| `headphones/headband` | `D15`, `D22.25` | [联合独显](review-evidence/independent-02/union/headphones__headband.png)；已逐片/联合查看；关联R02 |
+| `pelvis` | `D22.5`, `D33` | [联合独显](review-evidence/independent-02/union/pelvis.png)；已逐片/联合查看；关联R15, R16, R17 |
+| `body/torso` | `D32.5`, `D34` | [联合独显](review-evidence/independent-02/union/body__torso.png)；已逐片/联合查看；关联R11, R12, R13, R14 |
+| `face/eyebrows/eyebrow_left` | `D80`, `D84.1` | [联合独显](review-evidence/independent-02/union/face__eyebrows__eyebrow_left.png)；已逐片/联合查看；关联R07 |
+| `face/eyebrows/eyebrow_right` | `D81`, `D84.2` | [联合独显](review-evidence/independent-02/union/face__eyebrows__eyebrow_right.png)；已逐片/联合查看；关联R08 |
+
+单片切边不作为本件不完整的依据；例如躯干 R14 在联合图里仍缺外线，眉毛 R07/R08 则是联合与合成中的原线型还原差异。
+
+## 全部85绘画片的检查索引
+
+下表每行均已独显及隐藏全部上层查看；灰底联图左为独显、右为隐藏上层。同一联图包含5行部件，按本表顺序排列。无关联编号表示该片本轮未发现确定要修的问题，不代表可以替代返修后的再次自查。[完整覆盖JSON（含UUID）](review-evidence/independent-02/coverage.json)。
+
+| 实际图层（由后向前） | 独显 / 隐藏上层 / 灰底联图 | 关联问题 |
+| --- | --- | --- |
+| `D0 \| tail` | 已看：[独显](review-evidence/independent-02/solo/D0.png) / [隐藏上层](review-evidence/independent-02/below/D0.png) / [联图](review-evidence/independent-02/sheets/layers-00-04.png) | — |
+| `D10 \| legs/leg_left/thigh_band_back` | 已看：[独显](review-evidence/independent-02/solo/D10.png) / [隐藏上层](review-evidence/independent-02/below/D10.png) / [联图](review-evidence/independent-02/sheets/layers-00-04.png) | — |
+| `D11 \| legs/leg_right/anklet_back` | 已看：[独显](review-evidence/independent-02/solo/D11.png) / [隐藏上层](review-evidence/independent-02/below/D11.png) / [联图](review-evidence/independent-02/sheets/layers-00-04.png) | — |
+| `D12 \| head_accessories/tanuki_ornament/tanuki_body \| back` | 已看：[独显](review-evidence/independent-02/solo/D12.png) / [隐藏上层](review-evidence/independent-02/below/D12.png) / [联图](review-evidence/independent-02/sheets/layers-00-04.png) | R01 |
+| `D13 \| hair/braid_right \| back` | 已看：[独显](review-evidence/independent-02/solo/D13.png) / [隐藏上层](review-evidence/independent-02/below/D13.png) / [联图](review-evidence/independent-02/sheets/layers-00-04.png) | — |
+| `D14 \| hair/back_hair` | 已看：[独显](review-evidence/independent-02/solo/D14.png) / [隐藏上层](review-evidence/independent-02/below/D14.png) / [联图](review-evidence/independent-02/sheets/layers-05-09.png) | R02 |
+| `D15 \| headphones/headband` | 已看：[独显](review-evidence/independent-02/solo/D15.png) / [隐藏上层](review-evidence/independent-02/below/D15.png) / [联图](review-evidence/independent-02/sheets/layers-05-09.png) | R02 |
+| `D16 \| face/ears/ear_left/ear_interior` | 已看：[独显](review-evidence/independent-02/solo/D16.png) / [隐藏上层](review-evidence/independent-02/below/D16.png) / [联图](review-evidence/independent-02/sheets/layers-05-09.png) | — |
+| `D17 \| face/ears/ear_right/ear_interior` | 已看：[独显](review-evidence/independent-02/solo/D17.png) / [隐藏上层](review-evidence/independent-02/below/D17.png) / [联图](review-evidence/independent-02/sheets/layers-05-09.png) | — |
+| `D18 \| face/ears/ear_left/ear_fur` | 已看：[独显](review-evidence/independent-02/solo/D18.png) / [隐藏上层](review-evidence/independent-02/below/D18.png) / [联图](review-evidence/independent-02/sheets/layers-05-09.png) | — |
+| `D19 \| face/ears/ear_right/ear_fur` | 已看：[独显](review-evidence/independent-02/solo/D19.png) / [隐藏上层](review-evidence/independent-02/below/D19.png) / [联图](review-evidence/independent-02/sheets/layers-10-14.png) | — |
+| `D20 \| face/ears/ear_left/ear_shell` | 已看：[独显](review-evidence/independent-02/solo/D20.png) / [隐藏上层](review-evidence/independent-02/below/D20.png) / [联图](review-evidence/independent-02/sheets/layers-10-14.png) | — |
+| `D21 \| face/ears/ear_right/ear_shell` | 已看：[独显](review-evidence/independent-02/solo/D21.png) / [隐藏上层](review-evidence/independent-02/below/D21.png) / [联图](review-evidence/independent-02/sheets/layers-10-14.png) | — |
+| `D22 \| neck` | 已看：[独显](review-evidence/independent-02/solo/D22.png) / [隐藏上层](review-evidence/independent-02/below/D22.png) / [联图](review-evidence/independent-02/sheets/layers-10-14.png) | R11 |
+| `D22.25 \| headphones/headband \| terminals` | 已看：[独显](review-evidence/independent-02/solo/D22p25.png) / [隐藏上层](review-evidence/independent-02/below/D22p25.png) / [联图](review-evidence/independent-02/sheets/layers-10-14.png) | — |
+| `D22.5 \| pelvis \| back` | 已看：[独显](review-evidence/independent-02/solo/D22p5.png) / [隐藏上层](review-evidence/independent-02/below/D22p5.png) / [联图](review-evidence/independent-02/sheets/layers-15-19.png) | — |
+| `D23 \| legs/leg_left/leg` | 已看：[独显](review-evidence/independent-02/solo/D23.png) / [隐藏上层](review-evidence/independent-02/below/D23.png) / [联图](review-evidence/independent-02/sheets/layers-15-19.png) | — |
+| `D24 \| legs/leg_right/leg` | 已看：[独显](review-evidence/independent-02/solo/D24.png) / [隐藏上层](review-evidence/independent-02/below/D24.png) / [联图](review-evidence/independent-02/sheets/layers-15-19.png) | — |
+| `D25 \| arms/arm_left/upper_arm` | 已看：[独显](review-evidence/independent-02/solo/D25.png) / [隐藏上层](review-evidence/independent-02/below/D25.png) / [联图](review-evidence/independent-02/sheets/layers-15-19.png) | R13, R18 |
+| `D26 \| arms/arm_right/upper_arm` | 已看：[独显](review-evidence/independent-02/solo/D26.png) / [隐藏上层](review-evidence/independent-02/below/D26.png) / [联图](review-evidence/independent-02/sheets/layers-15-19.png) | R19 |
+| `D27 \| arms/arm_left/bracelet_green_back` | 已看：[独显](review-evidence/independent-02/solo/D27.png) / [隐藏上层](review-evidence/independent-02/below/D27.png) / [联图](review-evidence/independent-02/sheets/layers-20-24.png) | — |
+| `D28 \| arms/arm_left/bracelet_pink_back` | 已看：[独显](review-evidence/independent-02/solo/D28.png) / [隐藏上层](review-evidence/independent-02/below/D28.png) / [联图](review-evidence/independent-02/sheets/layers-20-24.png) | R24 |
+| `D29 \| arms/arm_right/bracelet_cream_back` | 已看：[独显](review-evidence/independent-02/solo/D29.png) / [隐藏上层](review-evidence/independent-02/below/D29.png) / [联图](review-evidence/independent-02/sheets/layers-20-24.png) | — |
+| `D30 \| arms/arm_right/bracelet_pink_back` | 已看：[独显](review-evidence/independent-02/solo/D30.png) / [隐藏上层](review-evidence/independent-02/below/D30.png) / [联图](review-evidence/independent-02/sheets/layers-20-24.png) | — |
+| `D31 \| arms/arm_left/forearm` | 已看：[独显](review-evidence/independent-02/solo/D31.png) / [隐藏上层](review-evidence/independent-02/below/D31.png) / [联图](review-evidence/independent-02/sheets/layers-20-24.png) | — |
+| `D32 \| arms/arm_right/forearm` | 已看：[独显](review-evidence/independent-02/solo/D32.png) / [隐藏上层](review-evidence/independent-02/below/D32.png) / [联图](review-evidence/independent-02/sheets/layers-25-29.png) | — |
+| `D32.5 \| body/torso \| lower_mount` | 已看：[独显](review-evidence/independent-02/solo/D32p5.png) / [隐藏上层](review-evidence/independent-02/below/D32p5.png) / [联图](review-evidence/independent-02/sheets/layers-25-29.png) | R14 |
+| `D33 \| pelvis \| front` | 已看：[独显](review-evidence/independent-02/solo/D33.png) / [隐藏上层](review-evidence/independent-02/below/D33.png) / [联图](review-evidence/independent-02/sheets/layers-25-29.png) | R15, R16, R17 |
+| `D34 \| body/torso` | 已看：[独显](review-evidence/independent-02/solo/D34.png) / [隐藏上层](review-evidence/independent-02/below/D34.png) / [联图](review-evidence/independent-02/sheets/layers-25-29.png) | R11, R12, R13, R14 |
+| `D35 \| body/breast` | 已看：[独显](review-evidence/independent-02/solo/D35.png) / [隐藏上层](review-evidence/independent-02/below/D35.png) / [联图](review-evidence/independent-02/sheets/layers-25-29.png) | R12, R13 |
+| `D36 \| arms/arm_left/hand/little_finger` | 已看：[独显](review-evidence/independent-02/solo/D36.png) / [隐藏上层](review-evidence/independent-02/below/D36.png) / [联图](review-evidence/independent-02/sheets/layers-30-34.png) | R22 |
+| `D37 \| arms/arm_right/hand/little_finger` | 已看：[独显](review-evidence/independent-02/solo/D37.png) / [隐藏上层](review-evidence/independent-02/below/D37.png) / [联图](review-evidence/independent-02/sheets/layers-30-34.png) | R23 |
+| `D38 \| arms/arm_left/hand/ring_finger` | 已看：[独显](review-evidence/independent-02/solo/D38.png) / [隐藏上层](review-evidence/independent-02/below/D38.png) / [联图](review-evidence/independent-02/sheets/layers-30-34.png) | R20 |
+| `D39 \| arms/arm_right/hand/ring_finger` | 已看：[独显](review-evidence/independent-02/solo/D39.png) / [隐藏上层](review-evidence/independent-02/below/D39.png) / [联图](review-evidence/independent-02/sheets/layers-30-34.png) | R21 |
+| `D40 \| arms/arm_left/hand/middle_finger` | 已看：[独显](review-evidence/independent-02/solo/D40.png) / [隐藏上层](review-evidence/independent-02/below/D40.png) / [联图](review-evidence/independent-02/sheets/layers-30-34.png) | — |
+| `D41 \| arms/arm_right/hand/middle_finger` | 已看：[独显](review-evidence/independent-02/solo/D41.png) / [隐藏上层](review-evidence/independent-02/below/D41.png) / [联图](review-evidence/independent-02/sheets/layers-35-39.png) | — |
+| `D42 \| arms/arm_left/hand/thumb` | 已看：[独显](review-evidence/independent-02/solo/D42.png) / [隐藏上层](review-evidence/independent-02/below/D42.png) / [联图](review-evidence/independent-02/sheets/layers-35-39.png) | — |
+| `D43 \| arms/arm_right/hand/thumb` | 已看：[独显](review-evidence/independent-02/solo/D43.png) / [隐藏上层](review-evidence/independent-02/below/D43.png) / [联图](review-evidence/independent-02/sheets/layers-35-39.png) | — |
+| `D44 \| arms/arm_left/hand/index_finger` | 已看：[独显](review-evidence/independent-02/solo/D44.png) / [隐藏上层](review-evidence/independent-02/below/D44.png) / [联图](review-evidence/independent-02/sheets/layers-35-39.png) | — |
+| `D45 \| arms/arm_right/hand/index_finger` | 已看：[独显](review-evidence/independent-02/solo/D45.png) / [隐藏上层](review-evidence/independent-02/below/D45.png) / [联图](review-evidence/independent-02/sheets/layers-35-39.png) | — |
+| `D46 \| arms/arm_left/hand/palm` | 已看：[独显](review-evidence/independent-02/solo/D46.png) / [隐藏上层](review-evidence/independent-02/below/D46.png) / [联图](review-evidence/independent-02/sheets/layers-40-44.png) | — |
+| `D47 \| arms/arm_right/hand/palm` | 已看：[独显](review-evidence/independent-02/solo/D47.png) / [隐藏上层](review-evidence/independent-02/below/D47.png) / [联图](review-evidence/independent-02/sheets/layers-40-44.png) | — |
+| `D48 \| arms/arm_left/bracelet_pink_front` | 已看：[独显](review-evidence/independent-02/solo/D48.png) / [隐藏上层](review-evidence/independent-02/below/D48.png) / [联图](review-evidence/independent-02/sheets/layers-40-44.png) | — |
+| `D49 \| arms/arm_right/bracelet_pink_front` | 已看：[独显](review-evidence/independent-02/solo/D49.png) / [隐藏上层](review-evidence/independent-02/below/D49.png) / [联图](review-evidence/independent-02/sheets/layers-40-44.png) | — |
+| `D50 \| arms/arm_left/bell` | 已看：[独显](review-evidence/independent-02/solo/D50.png) / [隐藏上层](review-evidence/independent-02/below/D50.png) / [联图](review-evidence/independent-02/sheets/layers-40-44.png) | — |
+| `D51 \| arms/arm_left/bracelet_green_front` | 已看：[独显](review-evidence/independent-02/solo/D51.png) / [隐藏上层](review-evidence/independent-02/below/D51.png) / [联图](review-evidence/independent-02/sheets/layers-45-49.png) | — |
+| `D52 \| arms/arm_right/bracelet_cream_front` | 已看：[独显](review-evidence/independent-02/solo/D52.png) / [隐藏上层](review-evidence/independent-02/below/D52.png) / [联图](review-evidence/independent-02/sheets/layers-45-49.png) | — |
+| `D56 \| head_accessories/hair_tie_back` | 已看：[独显](review-evidence/independent-02/solo/D56.png) / [隐藏上层](review-evidence/independent-02/below/D56.png) / [联图](review-evidence/independent-02/sheets/layers-45-49.png) | — |
+| `D57 \| hair/braid_right \| front` | 已看：[独显](review-evidence/independent-02/solo/D57.png) / [隐藏上层](review-evidence/independent-02/below/D57.png) / [联图](review-evidence/independent-02/sheets/layers-45-49.png) | R05 |
+| `D58 \| headphones/earcups/earcup_left` | 已看：[独显](review-evidence/independent-02/solo/D58.png) / [隐藏上层](review-evidence/independent-02/below/D58.png) / [联图](review-evidence/independent-02/sheets/layers-45-49.png) | — |
+| `D59 \| headphones/earcups/earcup_right` | 已看：[独显](review-evidence/independent-02/solo/D59.png) / [隐藏上层](review-evidence/independent-02/below/D59.png) / [联图](review-evidence/independent-02/sheets/layers-50-54.png) | — |
+| `D60 \| face/face_base` | 已看：[独显](review-evidence/independent-02/solo/D60.png) / [隐藏上层](review-evidence/independent-02/below/D60.png) / [联图](review-evidence/independent-02/sheets/layers-50-54.png) | — |
+| `D61 \| face/mouth/mouth_interior` | 已看：[独显](review-evidence/independent-02/solo/D61.png) / [隐藏上层](review-evidence/independent-02/below/D61.png) / [联图](review-evidence/independent-02/sheets/layers-50-54.png) | — |
+| `D62 \| face/mouth/tongue` | 已看：[独显](review-evidence/independent-02/solo/D62.png) / [隐藏上层](review-evidence/independent-02/below/D62.png) / [联图](review-evidence/independent-02/sheets/layers-50-54.png) | — |
+| `D63 \| face/mouth/lower_teeth` | 已看：[独显](review-evidence/independent-02/solo/D63.png) / [隐藏上层](review-evidence/independent-02/below/D63.png) / [联图](review-evidence/independent-02/sheets/layers-50-54.png) | — |
+| `D64 \| face/mouth/upper_teeth` | 已看：[独显](review-evidence/independent-02/solo/D64.png) / [隐藏上层](review-evidence/independent-02/below/D64.png) / [联图](review-evidence/independent-02/sheets/layers-55-59.png) | — |
+| `D65 \| face/eyes/eye_left/sclera` | 已看：[独显](review-evidence/independent-02/solo/D65.png) / [隐藏上层](review-evidence/independent-02/below/D65.png) / [联图](review-evidence/independent-02/sheets/layers-55-59.png) | — |
+| `D66 \| face/eyes/eye_right/sclera` | 已看：[独显](review-evidence/independent-02/solo/D66.png) / [隐藏上层](review-evidence/independent-02/below/D66.png) / [联图](review-evidence/independent-02/sheets/layers-55-59.png) | — |
+| `D67 \| face/eyes/eye_left/iris` | 已看：[独显](review-evidence/independent-02/solo/D67.png) / [隐藏上层](review-evidence/independent-02/below/D67.png) / [联图](review-evidence/independent-02/sheets/layers-55-59.png) | R06 |
+| `D68 \| face/eyes/eye_right/iris` | 已看：[独显](review-evidence/independent-02/solo/D68.png) / [隐藏上层](review-evidence/independent-02/below/D68.png) / [联图](review-evidence/independent-02/sheets/layers-55-59.png) | — |
+| `D69 \| face/eyes/eye_left/highlight` | 已看：[独显](review-evidence/independent-02/solo/D69.png) / [隐藏上层](review-evidence/independent-02/below/D69.png) / [联图](review-evidence/independent-02/sheets/layers-60-64.png) | — |
+| `D70 \| face/eyes/eye_right/highlight` | 已看：[独显](review-evidence/independent-02/solo/D70.png) / [隐藏上层](review-evidence/independent-02/below/D70.png) / [联图](review-evidence/independent-02/sheets/layers-60-64.png) | — |
+| `D71 \| face/eyes/eye_left/upper_eyelid` | 已看：[独显](review-evidence/independent-02/solo/D71.png) / [隐藏上层](review-evidence/independent-02/below/D71.png) / [联图](review-evidence/independent-02/sheets/layers-60-64.png) | R06 |
+| `D72 \| face/eyes/eye_right/upper_eyelid` | 已看：[独显](review-evidence/independent-02/solo/D72.png) / [隐藏上层](review-evidence/independent-02/below/D72.png) / [联图](review-evidence/independent-02/sheets/layers-60-64.png) | — |
+| `D73 \| face/eyes/eye_left/eyelid_crease` | 已看：[独显](review-evidence/independent-02/solo/D73.png) / [隐藏上层](review-evidence/independent-02/below/D73.png) / [联图](review-evidence/independent-02/sheets/layers-60-64.png) | — |
+| `D74 \| face/eyes/eye_right/eyelid_crease` | 已看：[独显](review-evidence/independent-02/solo/D74.png) / [隐藏上层](review-evidence/independent-02/below/D74.png) / [联图](review-evidence/independent-02/sheets/layers-65-69.png) | — |
+| `D75 \| face/nose` | 已看：[独显](review-evidence/independent-02/solo/D75.png) / [隐藏上层](review-evidence/independent-02/below/D75.png) / [联图](review-evidence/independent-02/sheets/layers-65-69.png) | — |
+| `D76 \| face/blush_left` | 已看：[独显](review-evidence/independent-02/solo/D76.png) / [隐藏上层](review-evidence/independent-02/below/D76.png) / [联图](review-evidence/independent-02/sheets/layers-65-69.png) | R09 |
+| `D77 \| face/blush_right` | 已看：[独显](review-evidence/independent-02/solo/D77.png) / [隐藏上层](review-evidence/independent-02/below/D77.png) / [联图](review-evidence/independent-02/sheets/layers-65-69.png) | R10 |
+| `D78 \| face/mouth/lower_lip` | 已看：[独显](review-evidence/independent-02/solo/D78.png) / [隐藏上层](review-evidence/independent-02/below/D78.png) / [联图](review-evidence/independent-02/sheets/layers-65-69.png) | — |
+| `D79 \| face/mouth/upper_lip` | 已看：[独显](review-evidence/independent-02/solo/D79.png) / [隐藏上层](review-evidence/independent-02/below/D79.png) / [联图](review-evidence/independent-02/sheets/layers-70-74.png) | — |
+| `D80 \| face/eyebrows/eyebrow_left \| back` | 已看：[独显](review-evidence/independent-02/solo/D80.png) / [隐藏上层](review-evidence/independent-02/below/D80.png) / [联图](review-evidence/independent-02/sheets/layers-70-74.png) | R07 |
+| `D81 \| face/eyebrows/eyebrow_right \| back` | 已看：[独显](review-evidence/independent-02/solo/D81.png) / [隐藏上层](review-evidence/independent-02/below/D81.png) / [联图](review-evidence/independent-02/sheets/layers-70-74.png) | R08 |
+| `D82 \| hair/side_hair/side_hair_left` | 已看：[独显](review-evidence/independent-02/solo/D82.png) / [隐藏上层](review-evidence/independent-02/below/D82.png) / [联图](review-evidence/independent-02/sheets/layers-70-74.png) | — |
+| `D83 \| hair/side_hair/side_hair_right` | 已看：[独显](review-evidence/independent-02/solo/D83.png) / [隐藏上层](review-evidence/independent-02/below/D83.png) / [联图](review-evidence/independent-02/sheets/layers-70-74.png) | R03 |
+| `D84 \| hair/bangs` | 已看：[独显](review-evidence/independent-02/solo/D84.png) / [隐藏上层](review-evidence/independent-02/below/D84.png) / [联图](review-evidence/independent-02/sheets/layers-75-79.png) | R04 |
+| `D84.1 \| face/eyebrows/eyebrow_left \| front` | 已看：[独显](review-evidence/independent-02/solo/D84p1.png) / [隐藏上层](review-evidence/independent-02/below/D84p1.png) / [联图](review-evidence/independent-02/sheets/layers-75-79.png) | R07 |
+| `D84.2 \| face/eyebrows/eyebrow_right \| front` | 已看：[独显](review-evidence/independent-02/solo/D84p2.png) / [隐藏上层](review-evidence/independent-02/below/D84p2.png) / [联图](review-evidence/independent-02/sheets/layers-75-79.png) | R08 |
+| `D85 \| head_accessories/hair_bell` | 已看：[独显](review-evidence/independent-02/solo/D85.png) / [隐藏上层](review-evidence/independent-02/below/D85.png) / [联图](review-evidence/independent-02/sheets/layers-75-79.png) | — |
+| `D85.5 \| head_accessories/tanuki_ornament/tanuki_body \| front` | 已看：[独显](review-evidence/independent-02/solo/D85p5.png) / [隐藏上层](review-evidence/independent-02/below/D85p5.png) / [联图](review-evidence/independent-02/sheets/layers-75-79.png) | — |
+| `D86 \| head_accessories/tanuki_ornament/paw/paw_left` | 已看：[独显](review-evidence/independent-02/solo/D86.png) / [隐藏上层](review-evidence/independent-02/below/D86.png) / [联图](review-evidence/independent-02/sheets/layers-80-84.png) | — |
+| `D87 \| head_accessories/tanuki_ornament/paw/paw_right` | 已看：[独显](review-evidence/independent-02/solo/D87.png) / [隐藏上层](review-evidence/independent-02/below/D87.png) / [联图](review-evidence/independent-02/sheets/layers-80-84.png) | — |
+| `D88 \| head_accessories/hair_tie_front` | 已看：[独显](review-evidence/independent-02/solo/D88.png) / [隐藏上层](review-evidence/independent-02/below/D88.png) / [联图](review-evidence/independent-02/sheets/layers-80-84.png) | — |
+| `D89 \| legs/leg_left/thigh_band_front` | 已看：[独显](review-evidence/independent-02/solo/D89.png) / [隐藏上层](review-evidence/independent-02/below/D89.png) / [联图](review-evidence/independent-02/sheets/layers-80-84.png) | — |
+| `D90 \| legs/leg_right/anklet_front` | 已看：[独显](review-evidence/independent-02/solo/D90.png) / [隐藏上层](review-evidence/independent-02/below/D90.png) / [联图](review-evidence/independent-02/sheets/layers-80-84.png) | — |
+
+## 完成范围与只读核验
+
+已完成全部部件、所有多深度片、全部显隐蒙版和指定整图/眼睛/接缝检查，无必要输入缺失或工具故障。分组树的78个叶部件ID与KRA实际78个逻辑part/85片对应；检查中没有新增、删改或重排输入文件。
+
+本轮只在独立文档中临时改变显隐以导出；每批及结束均恢复原显隐，未保存 KRA。工程、groups/occlusion、部件SVG及参考PNG的前后SHA256一致。该哈希仅核验输入未修改，未用于质量判断。[只读核验](review-evidence/independent-02/read-only-verification.json)；[Krita结束显隐核验](review-evidence/independent-02/krita-final-state.json)。
+
+正式review/repair文件保持原样。本轮完整报告仅写入 `raster-layering/step01/review-02.md.tmp`，报告引用图全部保存在 `raster-layering/step01/review-evidence/independent-02/`。

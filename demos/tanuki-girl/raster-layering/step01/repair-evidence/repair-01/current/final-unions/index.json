@@ -1,0 +1,114 @@
+[
+  {
+    "part": "head_accessories/tanuki_ornament/tanuki_body",
+    "names": [
+      "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+      "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front"
+    ],
+    "uuids": [
+      "{e31ef44b-9571-464f-a0d6-9ed501711eb0}",
+      "{368765d3-d740-4b55-9b79-0d2ebae08dfa}"
+    ],
+    "levels": [
+      12,
+      85.5
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-unions/head_accessories__tanuki_ornament__tanuki_body"
+  },
+  {
+    "part": "hair/braid_right",
+    "names": [
+      "D13 | hair/braid_right | back",
+      "D57 | hair/braid_right | front"
+    ],
+    "uuids": [
+      "{a0b578fa-3f3d-485b-8068-20008d6a8aa7}",
+      "{bf1ac4b1-cfe3-4884-8ec9-f9e0811bc6b5}"
+    ],
+    "levels": [
+      13,
+      57
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-unions/hair__braid_right"
+  },
+  {
+    "part": "headphones/headband",
+    "names": [
+      "D15 | headphones/headband",
+      "D22.25 | headphones/headband | terminals"
+    ],
+    "uuids": [
+      "{700e32b8-c154-4208-b397-8dedd15ac65b}",
+      "{736c1a45-8063-4dc1-9e05-fa2cb41eb3b9}"
+    ],
+    "levels": [
+      15,
+      22.25
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-unions/headphones__headband"
+  },
+  {
+    "part": "pelvis",
+    "names": [
+      "D22.5 | pelvis | back",
+      "D33 | pelvis | front"
+    ],
+    "uuids": [
+      "{5a270326-00bf-4e30-b698-9c48a83f49ca}",
+      "{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}"
+    ],
+    "levels": [
+      22.5,
+      33
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-unions/pelvis"
+  },
+  {
+    "part": "body/torso",
+    "names": [
+      "D32.5 | body/torso | lower_mount",
+      "D34 | body/torso"
+    ],
+    "uuids": [
+      "{46358100-0b1c-433a-a3da-f652464fcffd}",
+      "{237ddc01-663c-4aeb-b897-3e80874b186e}"
+    ],
+    "levels": [
+      32.5,
+      34
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-unions/body__torso"
+  },
+  {
+    "part": "face/eyebrows/eyebrow_left",
+    "names": [
+      "D80 | face/eyebrows/eyebrow_left | back",
+      "D84.1 | face/eyebrows/eyebrow_left | front"
+    ],
+    "uuids": [
+      "{06085fa6-f39d-49c6-bc1b-505f7840b94f}",
+      "{a2acf7ca-a935-4c2d-9e1a-a0bd319d3e41}"
+    ],
+    "levels": [
+      80,
+      84.1
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-unions/face__eyebrows__eyebrow_left"
+  },
+  {
+    "part": "face/eyebrows/eyebrow_right",
+    "names": [
+      "D81 | face/eyebrows/eyebrow_right | back",
+      "D84.2 | face/eyebrows/eyebrow_right | front"
+    ],
+    "uuids": [
+      "{739e209d-5633-4105-a477-bb4811a84f3a}",
+      "{882c642c-c4d7-4ecc-b2ec-57e6fae5ed13}"
+    ],
+    "levels": [
+      81,
+      84.2
+    ],
+    "path": "raster-layering/step01/repair-evidence/repair-01/current/final-unions/face__eyebrows__eyebrow_right"
+  }
+]

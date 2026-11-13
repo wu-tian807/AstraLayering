@@ -1,0 +1,142 @@
+[
+  {
+    "index": 0,
+    "name": "D0 | tail",
+    "uuid": "{47033051-7e94-4a4f-8c50-9eccbe2c5513}",
+    "level": 0,
+    "parent": "root"
+  },
+  {
+    "index": 1,
+    "name": "D10 | legs/leg_left/thigh_band_back",
+    "uuid": "{37c84885-94de-4375-b6bc-81bcefb8dec0}",
+    "level": 10,
+    "parent": "root"
+  },
+  {
+    "index": 2,
+    "name": "D11 | legs/leg_right/anklet_back",
+    "uuid": "{34898742-3f8e-4a5f-bb07-b06df707a68b}",
+    "level": 11,
+    "parent": "root"
+  },
+  {
+    "index": 3,
+    "name": "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+    "uuid": "{e31ef44b-9571-464f-a0d6-9ed501711eb0}",
+    "level": 12,
+    "parent": "root"
+  },
+  {
+    "index": 4,
+    "name": "D13 | hair/braid_right | back",
+    "uuid": "{a0b578fa-3f3d-485b-8068-20008d6a8aa7}",
+    "level": 13,
+    "parent": "root"
+  },
+  {
+    "index": 5,
+    "name": "D14 | hair/back_hair",
+    "uuid": "{6ef8f6a4-c537-4b73-88c4-5860409f0c7e}",
+    "level": 14,
+    "parent": "root"
+  },
+  {
+    "index": 6,
+    "name": "D15 | headphones/headband",
+    "uuid": "{700e32b8-c154-4208-b397-8dedd15ac65b}",
+    "level": 15,
+    "parent": "root"
+  },
+  {
+    "index": 7,
+    "name": "D16 | face/ears/ear_left/ear_interior",
+    "uuid": "{89e242ab-70e7-49e5-8e34-9a0217ddd7a8}",
+    "level": 16,
+    "parent": "root"
+  },
+  {
+    "index": 8,
+    "name": "D17 | face/ears/ear_right/ear_interior",
+    "uuid": "{d29c58c9-62d0-4ccd-9424-799489bda31b}",
+    "level": 17,
+    "parent": "root"
+  },
+  {
+    "index": 9,
+    "name": "D18 | face/ears/ear_left/ear_fur",
+    "uuid": "{d302e191-5c78-4817-845b-37da0de4f9a7}",
+    "level": 18,
+    "parent": "root"
+  },
+  {
+    "index": 10,
+    "name": "D19 | face/ears/ear_right/ear_fur",
+    "uuid": "{734186c6-cabd-4cfd-b129-63d36fded11b}",
+    "level": 19,
+    "parent": "root"
+  },
+  {
+    "index": 11,
+    "name": "D20 | face/ears/ear_left/ear_shell",
+    "uuid": "{445a25cf-073d-4062-9cb7-2dc2e5d1dca3}",
+    "level": 20,
+    "parent": "root"
+  },
+  {
+    "index": 12,
+    "name": "D21 | face/ears/ear_right/ear_shell",
+    "uuid": "{ed1ff626-4500-4c1f-9bbf-09638b5b3c73}",
+    "level": 21,
+    "parent": "root"
+  },
+  {
+    "index": 13,
+    "name": "D22 | neck",
+    "uuid": "{fbb36e58-b147-450f-ac71-d51de7bd2518}",
+    "level": 22,
+    "parent": "root"
+  },
+  {
+    "index": 14,
+    "name": "D22.25 | headphones/headband | terminals",
+    "uuid": "{736c1a45-8063-4dc1-9e05-fa2cb41eb3b9}",
+    "level": 22.25,
+    "parent": "root"
+  },
+  {
+    "index": 15,
+    "name": "D22.5 | pelvis | back",
+    "uuid": "{5a270326-00bf-4e30-b698-9c48a83f49ca}",
+    "level": 22.5,
+    "parent": "root"
+  },
+  {
+    "index": 16,
+    "name": "D23 | legs/leg_left/leg",
+    "uuid": "{b65106a1-85b2-4444-8eb8-11f558cdc1d1}",
+    "level": 23,
+    "parent": "root"
+  },
+  {
+    "index": 17,
+    "name": "D24 | legs/leg_right/leg",
+    "uuid": "{d503c5f0-2c3f-46d4-9c1d-3fa14d1565c5}",
+    "level": 24,
+    "parent": "root"
+  },
+  {
+    "index": 18,
+    "name": "D25 | arms/arm_left/upper_arm",
+    "uuid": "{760efccd-6eb8-49fc-a996-1e95ce640f55}",
+    "level": 25,
+    "parent": "root"
+  },
+  {
+    "index": 19,
+    "name": "D26 | arms/arm_right/upper_arm",
+    "uuid": "{b60f5bf9-dc78-43fc-9449-d586fffbb137}",
+    "level": 26,
+    "parent": "root"
+  }
+]

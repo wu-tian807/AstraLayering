@@ -1,0 +1,163 @@
+{
+  "image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/review-evidence/independent-01/marks/base/marked.png",
+  "manifest": "raster-layering/step01/review-evidence/independent-01/marks/base/regions.json",
+  "regions": [
+    {
+      "id": "R13",
+      "bounds": [
+        872,
+        786,
+        163,
+        245
+      ],
+      "layers": [
+        "D25 | arms/arm_left/upper_arm",
+        "D31 | arms/arm_left/forearm"
+      ],
+      "description": "画面右臂：前臂帽盖与上臂之间存在斜向硬肤色接边，肘外侧有小台阶和线宽变化，前臂外描边被浅化；重画自身过渡并按原图续接外线。",
+      "crop": [
+        860,
+        774,
+        187,
+        269
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R13-current.png",
+        "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R13-reference.png",
+        "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R13-comparison.png"
+      }
+    },
+    {
+      "id": "R14",
+      "bounds": [
+        365,
+        791,
+        182,
+        243
+      ],
+      "layers": [
+        "D26 | arms/arm_right/upper_arm",
+        "D32 | arms/arm_right/forearm"
+      ],
+      "description": "画面左臂：上臂前臂接边有肤色层次突变和细微外缘折点，前臂外轮廓比参考浅细；恢复同肤色连续体积与连续描边。",
+      "crop": [
+        353,
+        779,
+        206,
+        267
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R14-current.png",
+        "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R14-reference.png",
+        "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R14-comparison.png"
+      }
+    },
+    {
+      "id": "R15",
+      "bounds": [
+        587,
+        744,
+        60,
+        76
+      ],
+      "layers": [
+        "D34 | body/torso",
+        "D35 | body/breast"
+      ],
+      "description": "画面左胸下：胸片外边突向左后突然回收接躯干，形成原图没有的白色台阶；服装结构线局部双线、错接。重接轮廓和同一条侧线。",
+      "crop": [
+        575,
+        732,
+        84,
+        100
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R15-current.png",
+        "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R15-reference.png",
+        "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R15-comparison.png"
+      }
+    },
+    {
+      "id": "R16",
+      "bounds": [
+        774,
+        744,
+        58,
+        91
+      ],
+      "layers": [
+        "D34 | body/torso",
+        "D35 | body/breast"
+      ],
+      "description": "画面右胸下：胸片至躯干外边有明显台阶，斜结构线跨分件后断开并改变走向、粗细；恢复原图连续边线与体积过渡。",
+      "crop": [
+        762,
+        732,
+        82,
+        115
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R16-current.png",
+        "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R16-reference.png",
+        "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R16-comparison.png"
+      }
+    },
+    {
+      "id": "R17",
+      "bounds": [
+        633,
+        876,
+        29,
+        39
+      ],
+      "layers": [
+        "D34 | body/torso",
+        "D33 | pelvis | front"
+      ],
+      "description": "画面左腰髋接线：原图连续白服侧线在分件交界变成两段断线，接头错位；需同材质笔触接线并消除硬边。",
+      "crop": [
+        621,
+        864,
+        53,
+        63
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R17-current.png",
+        "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R17-reference.png",
+        "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R17-comparison.png"
+      }
+    },
+    {
+      "id": "R18",
+      "bounds": [
+        761,
+        877,
+        35,
+        43
+      ],
+      "layers": [
+        "D34 | body/torso",
+        "D33 | pelvis | front"
+      ],
+      "description": "画面右腰髋接线：原图平顺曲线在交界折成台阶，线宽及走向突变；重接原曲线和明暗过渡。",
+      "crop": [
+        749,
+        865,
+        59,
+        67
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R18-current.png",
+        "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R18-reference.png",
+        "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R18-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

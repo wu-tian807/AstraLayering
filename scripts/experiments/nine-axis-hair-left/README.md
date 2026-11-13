@@ -4,7 +4,7 @@
 
 刘海、侧发与后发都可单独优化。原发型、完整头型和转头自然感优先，参考帧只辅助理解转向与空间关系，不要求逐线一致。后发默认保持原形，依靠前侧发相对它的运动与遮挡体现层次；必要时才局部微调。原素材已有的凸台、截断或衔接缺陷应标明，不靠扭曲整片掩盖。
 
-[当前模型](../../../demos/tanuki-girl/nine-axis/step08_hair/hair-x.json)及其贴图从 demo 原样复制到新任务。默认从 `hair-x.json` 开始，`--current` 也表示此行为；只有显式传 `--baseline` 才读取历史 `baseline-hair-x.json`，该文件目前不在仓库中。
+[历史输入模型](https://github.com/wu-tian807/AstraLayering/blob/25cfd46e2bbed0cdc89d9a5c7c68a003823afc13/demos/tanuki-girl/nine-axis/step08_hair/hair-x.json)及其贴图来自旧版 demo。当前 `demos/tanuki-girl` 已替换为完成到阴影的新版本；复现实验时，先在独立检出中恢复上述提交的狸猫女孩归档，再执行下列命令。脚本默认从该归档的 `hair-x.json` 开始，`--current` 也表示此行为；只有显式传 `--baseline` 才读取历史 `baseline-hair-x.json`，该文件目前不在仓库中。
 
 ## 按参考优化刘海或侧发
 

@@ -1,416 +1,84 @@
-# Live2D 投影蒙版制作记录
+# 投影蒙版制作报告
 
-交付 32 个独立投影绘画层。工程与 PNG 均为 1376 × 2048、RGBA U8，透明背景。最终原生检查 passed=true，problems=[]。
+已交付原尺寸 **1376 × 2048、RGBA U8** 的可编辑 KRA 和透明 PNG，以及 22 个影层的 `shadows.json` v2。制作以 simplified 的实际暗面为依据，以已组装 PNG 的位置配准。输入与另一阴影分支均未修改。
 
-## 参考与坐标
+## 参考与画法
 
-投影外观依据 simplified；位置依据原组装 PNG。人物 left/right 为角色左右，衣服 screen_left/screen_right 为画面左右。图层深度仅用于保持遮挡顺序，没有把序号换算成投影距离。
+先查看全身，再逐区对照头脸、颈肩、袖口、手腕、裙下和脚环。主要恢复的是裙下斜向珊瑚色腿影、下颌下方颈影、上睑覆盖眼白和虹膜上部的柔和暗带；发缘、狸饰物、铃铛和耳机接触影较浅，未用同一深浅处理所有部位。
 
-- shadow/step01_mask/workspace/references/inputs.json
-- shadow/step01_mask/workspace/references/production.md
-- references/hair.png
-- references/skirt.png
-- character-assembly/step01/character-assembled.kra
-- character-assembly/step01/character-assembled.png
-- part-layering/references/simplified-subject.png
-- part-layering/groups.json
-- part-layering/occlusion.json
-- clothing-part-layering/groups.json
-- clothing-part-layering/occlusion.json
+全部投影在 Krita 的新绘画层上以 Basic-5 Size 和 Airbrush Soft 原生画笔逐笔绘制。完整轮廓用密排笔触铺出，局部软缘用低不透明度软笔触，眼部渐淡用逐行改变明度的笔触。未使用生图、像素蒙版粘贴、矢量填充或滤镜生成影子。绘制后放大修正了密排横纹、额部过宽影缘、袖口接收面遗漏及裙片搭接重复压暗。
 
-## 工程和运动来源
+所有新影层采用正片叠底与原生透明度继承，隔离组的唯一实色 alpha 来源是声明的接收 base。眼内 base 保留眼白、虹膜和反光原层；袖口 base 保留上臂、前臂及原蒙版；裙影联合裁切到两腿，裙内、腿间、裁切外均有完整笔触。线稿、材质与高光通过影层透出。
 
-每层用 Krita 原生笔刷绘制：Basic-5 Size 的连续密集行笔形成完整影体，Airbrush Soft 绘制眼部渐暗、发缘和接触软边。硬边投影也保留笔刷的边缘过渡。影层采用 multiply 与透明度继承，隔离组中的 clip base 只包含声明的接收面及其原子层／蒙版。未重画部件像素或合并原部件。
 
-上眼睑影联合接收眼白和虹膜，follow=caster；独立高光在影层上方。两侧眼睛各一层，视线移动时不带动投影。刘海投脸、刘海投侧发、两侧发投脸与后发分别保存运动关系。头饰投影联合裁到前发，内层刘海到侧发仍有独立裁切。
 
-裙摆由 clothing:kimono_body 的两个衣片共同提供一个运动来源，一层联合裁到两腿，避免衣片影在腿面接缝处重复变深。两个吊坠各用真实父 part 作为运动来源，casterLayerUuids 包含其绳、珠、穗。
+## 逐处投影
 
-下巴投影跨原脖子／躯干叠放接缝，因此保留两个接收隔离层，分别为 chin-neck 和 chin-torso-continuation。它们颜色、轮廓和声明偏移一致，后续应同步跟随同一 face_base 来源；当前检查工具按单个影层移动，不代表这两层已经制作了同步 deformer。
+下表颜色为影层笔触主色，不是最终皮肤 RGB；“强度”是影层不透明度，正片叠底后深浅还由接收面的原像素决定。眼影渐淡到白色乘数，因此下沿逐渐无变暗作用。每处完整素材与所有相对偏移见对应检查图。左右以真实 part 命名，`screen_left/right` 是画面侧。
 
-所有 follow 只记录运动来源。本步骤没有制作 deformer、物理、九轴或光向关键形。
+| 关系 | 投影部件 → 接收面 | 主色 / 强度 | 范围、深浅依据与运动余量 |
+|---|---|---|---|
+| `bangs-to-face` | `character:hair/bangs` → character:face/face_base | `#d3aaa0` / 18% | 参考额部与中央细发尖下的浅暖灰投影；完整根部覆盖额头，细发尖保留8px平移余量。 偏移：(0,0) / (-8,0) / (8,0) / (0,8)。 |
+| `side-right-to-face` | `character:hair/side_hair/side_hair_right` → character:face/face_base | `#d3aaa0` / 28% | 画面左侧发束在眼外侧和脸颊上形成浅暖色弧影；与中央刘海只在遮挡区相接，避免可见处重复压暗。 偏移：(0,0) / (-8,0) / (8,0) / (0,6)。 |
+| `side-left-to-face` | `character:hair/side_hair/side_hair_left` → character:face/face_base | `#d3aaa0` / 28% | 画面右侧侧发下缘投到脸颊的弯月形浅影；轮廓延伸至完整侧脸外。 偏移：(0,0) / (-8,0) / (8,0) / (0,6)。 |
+| `upper-lid-right-to-eye` | `character:face/eyes/eye_right/upper_eyelid` → character:face/eyes/eye_right/sclera、character:face/eyes/eye_right/iris、character:face/eyes/eye_right/highlight | `#8b817f` / 40% | 上睑投影覆盖眼白、虹膜与反光的上部整片区域；向下27px内渐淡，避免重复压暗原虹膜自身的深色上半部，跟随上睑而非视线。 偏移：(0,0) / (-5,0) / (5,0) / (0,7)。 |
+| `upper-lid-left-to-eye` | `character:face/eyes/eye_left/upper_eyelid` → character:face/eyes/eye_left/sclera、character:face/eyes/eye_left/iris、character:face/eyes/eye_left/highlight | `#8b817f` / 40% | 上睑投影覆盖眼白、虹膜与反光的上部整片区域；向下27px内渐淡，避免重复压暗原虹膜自身的深色上半部，跟随上睑而非视线。 偏移：(0,0) / (-5,0) / (5,0) / (0,7)。 |
+| `paw-left-to-bangs` | `character:head_accessories/tanuki_ornament/paw/paw_left` → character:hair/bangs | `#bc7e87` / 42% | 参考狸爪下粉发根部的接触暗带；上方补至爪后，低缘保留约6px运动余量。 偏移：(0,0) / (-5,0) / (5,0) / (0,6)。 |
+| `paw-right-to-bangs` | `character:head_accessories/tanuki_ornament/paw/paw_right` → character:hair/bangs | `#bc7e87` / 42% | 参考狸爪下粉发根部的接触暗带；上方补至爪后，低缘保留约6px运动余量。 偏移：(0,0) / (-5,0) / (5,0) / (0,6)。 |
+| `bell-to-side-right` | `character:head_accessories/hair_bell` → character:hair/side_hair/side_hair_right | `#b47483` / 32% | 金铃下方侧发的短暖紫接触影；保持发丝底层线稿和亮带。 偏移：(0,0) / (-6,0) / (6,0) / (0,6)。 |
+| `tanuki-body-to-bangs` | `character:head_accessories/tanuki_ornament/tanuki_body` → character:hair/bangs | `#bc7e87` / 30% | 狸形饰物身体下沿投到中央粉发根部的短暗带，和两爪投影分别随动；参考根部中央保留浅色收尖。 偏移：(0,0) / (-5,0) / (5,0) / (0,5)。 |
+| `chin-to-chest` | `character:face/face_base` → character:body/torso、character:body/breast | `#e5adb0` / 40% | 下颌投影在颈下锁骨处向斜下方收尖；与颈影采用同色同强度，保留胸皮肤原 D34–35 遮挡段。上方完整补到头后，支持左右 10px、向下 9px。 偏移：(0,0) / (-10,0) / (10,0) / (0,9)。 |
+| `bangs-to-side-right` | `character:hair/bangs` → character:hair/side_hair/side_hair_right | `#b47789` / 34% | 参考前刘海压住侧发的窄紫粉暗缘；完整影形补至根部，侧发自身高光和发丝线从叠底下透出。 偏移：(0,0) / (-6,0) / (6,0) / (0,5)。 |
+| `bangs-to-side-left` | `character:hair/bangs` → character:hair/side_hair/side_hair_left | `#b47789` / 34% | 参考前刘海压住侧发的窄紫粉暗缘；完整影形补至根部，侧发自身高光和发丝线从叠底下透出。 偏移：(0,0) / (-6,0) / (6,0) / (0,5)。 |
+| `sleeve-left-to-forearm` | `clothing:sleeve_screen_left` → character:arms/arm_right/upper_arm、character:arms/arm_right/forearm | `#f2a99e` / 62% | 参考袖口下裸臂上端的珊瑚色短弧影；底缘较清晰、轻微笔刷过渡，隐藏袖内及两侧补足8px位移。 偏移：(0,0) / (-7,0) / (7,0) / (0,8)。 |
+| `sleeve-right-to-forearm` | `clothing:sleeve_screen_right` → character:arms/arm_left/upper_arm、character:arms/arm_left/forearm | `#f2a99e` / 62% | 参考袖口下裸臂上端的珊瑚色短弧影；底缘较清晰、轻微笔刷过渡，隐藏袖内及两侧补足8px位移。 偏移：(0,0) / (-7,0) / (7,0) / (0,8)。 |
+| `pink-bracelet-right-to-palm` | `character:arms/arm_right/bracelet_pink_front` → character:arms/arm_right/hand/palm | `#d88f7b` / 32% | 参考腕环下缘到手腕的短暖色接触影；保留手掌线稿和原有指根明暗，向环后与腕外延伸。 偏移：(0,0) / (-5,0) / (5,0) / (0,5)。 |
+| `pink-bracelet-left-to-palm` | `character:arms/arm_left/bracelet_pink_front` → character:arms/arm_left/hand/palm | `#d88f7b` / 32% | 参考腕环下缘到手腕的短暖色接触影；保留手掌线稿和原有指根明暗，向环后与腕外延伸。 偏移：(0,0) / (-5,0) / (5,0) / (0,5)。 |
+| `thigh-band-to-leg-left` | `character:legs/leg_left/thigh_band_front` → character:legs/leg_right/leg、character:legs/leg_left/leg | `#bcb0bf` / 30% | 参考腿环下方白袜上沿的很浅紫灰接触影；不重画袜子固有纵向明暗。 偏移：(0,0) / (-4,0) / (4,0) / (0,4)。 |
+| `anklet-to-leg-right` | `character:legs/leg_right/anklet_front` → character:legs/leg_right/leg、character:legs/leg_left/leg | `#dc9680` / 48% | 参考脚环下的短暖影，脚环后完整覆盖并向足踝两侧延伸；只恢复接触带，脚侧与脚趾的固有明暗保留。 偏移：(0,0) / (-4,0) / (4,0) / (0,5)。 |
+| `earcup-right-to-skin` | `character:headphones/earcups/earcup_right` → character:body/torso、character:body/breast | `#d5a294` / 29% | 耳罩下沿到胸肩的浅暖灰接触暗带，保留皮肤亮点和锁骨线；完整补进耳罩后，支持左右及向下 5px。 偏移：(0,0) / (-5,0) / (5,0) / (0,5)。 |
+| `earcup-left-to-skin` | `character:headphones/earcups/earcup_left` → character:body/torso、character:body/breast | `#d5a294` / 29% | 耳罩下沿到胸肩的浅暖灰接触暗带，保留皮肤亮点和锁骨线；完整补进耳罩后，支持左右及向下 5px。 偏移：(0,0) / (-5,0) / (5,0) / (0,5)。 |
+| `kimono-skirt-to-legs` | `clothing:kimono_body` → character:legs/leg_right/leg、character:legs/leg_left/leg | `#f2aeaa` / 60% | 两片前裙属于真实kimono_body组，合并为一个运动来源的连续裙影，避免搭接重复压暗。参考左腿影下沿向内侧斜落至1120px，右腿内侧1125px向外侧1085px收起；裙内、两腿之间及外侧均补全，支持左右14px和向下14px相对偏移。 偏移：(0,0) / (-14,0) / (14,0) / (0,14)。 |
+| `chin-to-neck` | `character:face/face_base` → character:neck | `#e5adb0` / 40% | 下颌投到颈面的暖灰珊瑚影，参考颈中部239/178/162；在原D22隔离组保留耳机终端与肩皮肤的原遮挡。与chin-to-chest同源、同偏移，因接收面处于不同原生叠放段保留两层；此层跟下颌而非耳机。 偏移：(0,0) / (-10,0) / (10,0) / (0,9)。 |
 
-## 每处投影的依据
+颈面、胸面处于不同原生遮挡段，下颌投影在两处隔离组各保留一层，运动来源、颜色与偏移相同；这使耳机终端、肩部与后方衣料的原遮挡保持原样。刘海投到脸与侧发时也按接收材质分别裁切，细发尖直接包含在刘海完整影形中，没有虚构细条 part。两片前裙属于真实 `clothing:kimono_body`，裙影作为一个连续来源只画一遍，两腿之间没有叠底接缝。
 
-颜色为笔刷叠底色；百分比为最终图层不透明度。实际合成深浅还受软笔触 alpha 与接收面原色影响。脖子与腿已有固有肤色明暗，因此使用浅粉叠底色，使最终色接近参考，而非把参考暗色再次直接压暗。
+`follow: caster` 仅声明后续运动来源。当前没有制作 deformer、物理或光向关键形；声明偏移是当前素材的原画像素相对位移检查，不是动画绑定成果。
 
-### 01. bangs-face
+## 颜色和边缘复核
 
-投影部件：`character:hair/bangs`。接收面：`character:face/face_base`。
+参考颈中部约 RGB 239/178/162，裙下腿影约 242/180/163；这些采样用于校正初稿偏深、偏橙的问题。最终肤色影用较浅暖粉乘数，保持原皮肤渐变。眼影仅覆盖上部并在 27px 内渐淡，保留原虹膜深色上半部与黄色下部，避免重复压暗内部色彩。发影是小范围浅暖灰接触影，侧发和头饰压发处偏紫粉；袖口与裙影的下缘较清晰，接触细边有笔刷过渡。
 
-颜色 #d7998b，multiply，图层不透明度 16%。偏移（原画像素）：[0, 0], [-9, 0], [9, 0], [0, 9]。
+已查看全部 22 处复位及非零偏移的区域图，确认仍由接收面裁切，没有影子浮出透明背景。声明范围内细发尖、头饰、袖口和裙影仍有连续素材可用。完整素材的裁切外像素数只是覆盖证据，未以固定面积倍率代替视觉判断。
 
-参考中央刘海尖下浅桃色影缘；沿本工程刘海内缘，隐藏额头补全至y290，细尖允许9px相对摆动。
+## 保留的暗面与未另做的项目
 
-[原生完整影层／覆盖／偏移拼图](inspection/relation-000-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
+- 后发的红色内面、辫子交织处明暗、耳毛及耳内凹面色差：参考中确实可见，现有原层已保留这些固定材质明暗，没有另加整体变暗层。
+- 狸饰物叶片下的内部暗线、铃铛暗面与反光：位于饰物自身，叶片未登记为独立运动 part，保持所属部件原像素，没有虚构投影来源。
+- 衣襟、腰带、系绳、袖褶与后垂片中的窄暗线：原组装已有相应描线或布料固有暗面。仅凭此参考无法稳定区分为额外可随动投影，未重复描一层压暗。
+- 辫子与衣襟相接处、前侧发与后发相接处的极细暗线：参考主要表现为既有线稿和发面深色，未见可明确量出的独立宽投影，因此保留原层。已制作刘海对侧发的可见接触影。
+- 未扩展参考中没有出现的离面长投影；隐藏区按已有投影形状延续，余量按本角色轮廓与声明位移选择。
 
-### 02. side-left-face
+## 原尺寸脸部与偏移
 
-投影部件：`character:hair/side_hair/side_hair_left`。接收面：`character:face/face_base`。
+`face-review.png` 首行分别为原组装、关闭全部新影、最终原生合成与 simplified；每栏裁切为原图 `(490,195)–(905,650)`，**415 × 455px，无缩小**。其下分别展示刘海细发尖及左右侧发在声明偏移下的 245 × 170px 原尺寸脸部裁切。偏移只移动所选影层，接收面保持位置。
 
-颜色 #d99a91，multiply，图层不透明度 22%。偏移（原画像素）：[0, 0], [-8, 0], [8, 0], [0, 7]。
 
-侧发内轮廓下窄暖粉影；用软笔刷接顺脸颊，隐藏边缘和8px横摆余量。
 
-[原生完整影层／覆盖／偏移拼图](inspection/relation-001-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
+全部区域的原尺寸局部偏移拼图：[1](review/offsets-01.png)、[2](review/offsets-02.png)、[3](review/offsets-03.png)、[4](review/offsets-04.png)。连续裙影的宽裁切见下图。
 
-### 03. side-right-face
 
-投影部件：`character:hair/side_hair/side_hair_right`。接收面：`character:face/face_base`。
 
-颜色 #d99a91，multiply，图层不透明度 22%。偏移（原画像素）：[0, 0], [-8, 0], [8, 0], [0, 7]。
+## 检查结果
 
-侧发内轮廓下窄暖粉影；用软笔刷接顺脸颊，隐藏边缘和8px横摆余量。
+最终保存工程已经 `inspect_shadow_mask` 独立重开检查，**passed: true，problems: []，warnings: []**。结果见 [inspection.json](inspection.json) 和 [检查总图](inspection/overview.png)，每处有完整影形、接收覆盖、复位与全部声明偏移的原生 PNG。
 
-[原生完整影层／覆盖／偏移拼图](inspection/relation-002-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
+- 124 个原节点全部保留；111 个原绘画层逐层原始像素完全一致。
+- 9 个原蒙版的 UUID、原所属节点 UUID、启用状态、不透明度、位置与混合方式全部保持原样。移动上臂时使用原蒙版节点，没有创建替代蒙版。
+- 正式 PNG 与独立重开 KRA 的原生最终合成逐像素一致，差异为 0。
+- 关闭所有新影后与原组装有 174 个像素出现最大 1/255 通道差异，来自原生隔离组合成舍入；原层原始像素未改。没有在原图透明范围外增加非零 alpha。
+- 保存期间桥接曾自动取消进度对话框，均以实际落盘文件及独立重开原生合成确认恢复成功，最终工程可正常打开。
 
-### 04. upper-lid-left
+逐层核对记录：[original-layer-check.json](review/original-layer-check.json)。像素合成核对记录：[pixel-check.json](review/pixel-check.json)。
 
-投影部件：`character:face/eyes/eye_left/upper_eyelid`。接收面：`character:face/eyes/eye_left/sclera`, `character:face/eyes/eye_left/iris`。
-
-颜色 #734b4c，multiply，图层不透明度 42%。偏移（原画像素）：[0, 0], [-7, 0], [7, 0], [0, 7]。
-
-上睑下眼白与虹膜上部一整片红褐渐暗，向下渐淡；同一影层跟上睑，独立高光保留。横向超出眼角20px，上部延续至y388。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-003-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 05. upper-lid-right
-
-投影部件：`character:face/eyes/eye_right/upper_eyelid`。接收面：`character:face/eyes/eye_right/sclera`, `character:face/eyes/eye_right/iris`。
-
-颜色 #734b4c，multiply，图层不透明度 42%。偏移（原画像素）：[0, 0], [-7, 0], [7, 0], [0, 7]。
-
-上睑下眼白与虹膜上部一整片红褐渐暗，向下渐淡；同一影层跟上睑，独立高光保留。横向超出眼角20px，上部延续至y388。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-004-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 06. chin-neck
-
-投影部件：`character:face/face_base`。接收面：`character:neck`。
-
-颜色 #fbd0cc，multiply，图层不透明度 95%。偏移（原画像素）：[0, 0], [-10, 0], [10, 0], [0, 12]。
-
-参考下巴下大块暖红投影，底边向画面右上斜收；不是颈部固有结构明暗。上方被脸遮住部分补至y475，左右越过颈缘。 对照接收面既有颈部明暗后，用浅粉叠底色而不是把参考最终暗色直接叠底。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-005-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 07. cuff-left
-
-投影部件：`clothing:sleeve_screen_left`。接收面：`character:arms/arm_left/upper_arm`, `character:arms/arm_right/upper_arm`。
-
-颜色 #f8c4b4，multiply，图层不透明度 85%。偏移（原画像素）：[0, 0], [-8, 0], [8, 0], [0, 10]。
-
-袖口下约16px暖肤色暗带，按本工程袖口斜弧调整；被袖子遮挡处向上延伸40px，下缘微软。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-006-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 08. cuff-right
-
-投影部件：`clothing:sleeve_screen_right`。接收面：`character:arms/arm_left/upper_arm`, `character:arms/arm_right/upper_arm`。
-
-颜色 #f8c4b4，multiply，图层不透明度 85%。偏移（原画像素）：[0, 0], [-8, 0], [8, 0], [0, 10]。
-
-袖口下约16px暖肤色暗带，按本工程袖口斜弧调整；被袖子遮挡处向上延伸40px，下缘微软。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-007-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 09. skirt-main-legs
-
-投影部件：`clothing:kimono_body`。接收面：`character:legs/leg_left/leg`, `character:legs/leg_right/leg`。
-
-颜色 #fac7bf，multiply，图层不透明度 90%。偏移（原画像素）：[0, 0], [-13, 0], [13, 0], [0, 15]。
-
-参考裙下斜影，按本工程裙摆配准：画面左腿影底x535 y1071至x704 y1130，右腿至x866 y1082。两衣片共享kimono_body裙摆运动来源，一个联合完整影层，避免两片影在拼接处重复压暗；顶部补全至y982，横向越过腿缘，检查±13px横移和15px下移。浅桃粉叠底让原腿的肤色和袜面明暗透出。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-008-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 10. waist-skirt
-
-投影部件：`clothing:inner_waist_wrap`。接收面：`clothing:kimono_body/right_underlap_panel`, `clothing:kimono_body/left_overlap_panel`。
-
-颜色 #b7a6b6，multiply，图层不透明度 30%。偏移（原画像素）：[0, 0], [-8, 0], [8, 0], [0, 9]。
-
-腰封下衣料很浅的冷紫搭接暗边，柔和落到已有褶皱上；保留原衣料纹理与高光。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-009-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 11. cord-obi
-
-投影部件：`clothing:front_waist_cord_knot`。接收面：`clothing:outer_waist_band`。
-
-颜色 #a76d6b，multiply，图层不透明度 49%。偏移（原画像素）：[0, 0], [-6, 0], [6, 0], [0, 7]。
-
-参考蝴蝶结和横绳下的偏棕红暗边；同一结绳来源一层，完整画结的内部环及遮挡部分，允许6px横移。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-010-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 12. chin-torso-continuation
-
-投影部件：`character:face/face_base`。接收面：`character:body/torso`。
-
-颜色 #fbd0cc，multiply，图层不透明度 95%。偏移（原画像素）：[0, 0], [-10, 0], [10, 0], [0, 12]。
-
-与chin-neck同一来源及同一笔触边界；因原脖子/躯干叠放接缝另建接收隔离层，延续参考斜影底边，不能改变原层深度。 对照接收面既有颈部明暗后，用浅粉叠底色而不是把参考最终暗色直接叠底。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-011-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 13. earcup-left-skin
-
-投影部件：`character:headphones/earcups/earcup_left`。接收面：`character:body/torso`。
-
-颜色 #df9a91，multiply，图层不透明度 38%。偏移（原画像素）：[0, 0], [-6, 0], [6, 0], [0, 6]。
-
-参考耳机底缘下的粉红接触投影，沿本工程耳罩下弧外扩6-10px；影层延续到遮住的内部，不改耳罩高光。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-012-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 14. earcup-right-skin
-
-投影部件：`character:headphones/earcups/earcup_right`。接收面：`character:body/torso`。
-
-颜色 #df9a91，multiply，图层不透明度 38%。偏移（原画像素）：[0, 0], [-6, 0], [6, 0], [0, 6]。
-
-参考耳机底缘下的粉红接触投影，沿本工程耳罩下弧外扩6-10px；影层延续到遮住的内部，不改耳罩高光。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-013-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 15. paw-left-hair
-
-投影部件：`character:head_accessories/tanuki_ornament/paw/paw_left`。接收面：`character:hair/side_hair/side_hair_left`, `character:hair/side_hair/side_hair_right`, `character:hair/bangs`。
-
-颜色 #bb7186，multiply，图层不透明度 34%。偏移（原画像素）：[0, 0], [-7, 0], [7, 0], [0, 7]。
-
-狸饰爪子下沿的窄玫瑰色投影；一层联合裁到完整刘海和侧发。软边画到爪内部，左右各7px余量。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-014-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 16. paw-right-hair
-
-投影部件：`character:head_accessories/tanuki_ornament/paw/paw_right`。接收面：`character:hair/side_hair/side_hair_left`, `character:hair/side_hair/side_hair_right`, `character:hair/bangs`。
-
-颜色 #bb7186，multiply，图层不透明度 34%。偏移（原画像素）：[0, 0], [-7, 0], [7, 0], [0, 7]。
-
-狸饰爪子下沿的窄玫瑰色投影；一层联合裁到完整刘海和侧发。软边画到爪内部，左右各7px余量。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-015-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 17. tanuki-jaw-hair
-
-投影部件：`character:head_accessories/tanuki_ornament/tanuki_body`。接收面：`character:hair/side_hair/side_hair_left`, `character:hair/side_hair/side_hair_right`, `character:hair/bangs`。
-
-颜色 #bb7186，multiply，图层不透明度 22%。偏移（原画像素）：[0, 0], [-6, 0], [6, 0], [0, 6]。
-
-参考狸饰下颌与发根接触的浅粉暗边；只复原接触投影，不改狸饰自身深浅。两爪之间分开收边以免重叠压暗。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-016-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 18. hair-bell-hair
-
-投影部件：`character:head_accessories/hair_bell`。接收面：`character:hair/side_hair/side_hair_left`, `character:hair/side_hair/side_hair_right`, `character:hair/bangs`。
-
-颜色 #b76980，multiply，图层不透明度 43%。偏移（原画像素）：[0, 0], [-6, 0], [6, 0], [0, 7]。
-
-参考铃铛下缘压在粉发上的窄暗带；内侧画至铃下，顺发丝向下渐淡，不能烘焙铃的金属明暗。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-017-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 19. side-left-backhair
-
-投影部件：`character:hair/side_hair/side_hair_left`。接收面：`character:hair/back_hair`。
-
-颜色 #a95b74，multiply，图层不透明度 34%。偏移（原画像素）：[0, 0], [-9, 0], [9, 0], [0, 8]。
-
-前侧发尖后方的粉红发面投影，按轮廓软笔刷窄带；红色后发固有暗面原样保留。藏在前发后的部分和9px侧摆延伸均保留。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-018-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 20. side-right-backhair
-
-投影部件：`character:hair/side_hair/side_hair_right`。接收面：`character:hair/back_hair`。
-
-颜色 #a95b74，multiply，图层不透明度 34%。偏移（原画像素）：[0, 0], [-9, 0], [9, 0], [0, 8]。
-
-前侧发尖后方的粉红发面投影，按轮廓软笔刷窄带；红色后发固有暗面原样保留。藏在前发后的部分和9px侧摆延伸均保留。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-019-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 21. tie-braid
-
-投影部件：`character:head_accessories/hair_tie_front`。接收面：`character:hair/braid_right`。
-
-颜色 #a65c73，multiply，图层不透明度 38%。偏移（原画像素）：[0, 0], [-4, 0], [4, 0], [0, 5]。
-
-发圈下方辫梢收束处的窄玫红投影；不改变辫子自身交叠明暗，完整笔触越过辫缘。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-020-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 22. braid-collar
-
-投影部件：`character:hair/braid_right`。接收面：`clothing:kimono_body/right_underlap_panel`, `clothing:kimono_body/left_overlap_panel`。
-
-颜色 #aa8295，multiply，图层不透明度 25%。偏移（原画像素）：[0, 0], [-6, 0], [6, 0], [0, 7]。
-
-辫梢压在衣领和白色衣料处的淡紫粉影，和衣料褶皱区分；隐藏部分补全到y715。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-021-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 23. obi-inner-wrap
-
-投影部件：`clothing:outer_waist_band`。接收面：`clothing:inner_waist_wrap`。
-
-颜色 #7b5c76，multiply，图层不透明度 23%。偏移（原画像素）：[0, 0], [-6, 0], [6, 0], [0, 6]。
-
-金色腰带下缘在深色腰封上的窄搭接暗带；较低不透明度让原腰封织物明暗透出。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-022-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 24. pendant-left-cloth
-
-投影部件：`clothing:front_pendant_screen_left`。接收面：`clothing:kimono_body/right_underlap_panel`, `clothing:kimono_body/left_overlap_panel`。
-
-颜色 #ab8192，multiply，图层不透明度 25%。偏移（原画像素）：[0, 0], [-6, 0], [6, 0], [0, 8]。
-
-参考细绳和流苏右下的淡灰粉投影；同一吊坠父part来源一层，包含绳、珠、穗。画到被吊坠遮住处，6px横摆8px下移检查。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-023-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 25. pendant-right-cloth
-
-投影部件：`clothing:front_pendant_screen_right`。接收面：`clothing:kimono_body/right_underlap_panel`, `clothing:kimono_body/left_overlap_panel`。
-
-颜色 #ab8192，multiply，图层不透明度 25%。偏移（原画像素）：[0, 0], [-6, 0], [6, 0], [0, 8]。
-
-参考细绳和流苏右下的淡灰粉投影；同一吊坠父part来源一层，包含绳、珠、穗。画到被吊坠遮住处，6px横摆8px下移检查。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-024-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 26. bracelet-left-hand
-
-投影部件：`character:arms/arm_left/bracelet_pink_front`。接收面：`character:arms/arm_left/hand/palm`。
-
-颜色 #efbbae，multiply，图层不透明度 55%。偏移（原画像素）：[0, 0], [-4, 0], [4, 0], [0, 5]。
-
-参考手环下缘在腕掌处的窄暖色接触影；软笔刷画全遮挡内侧，不改原手掌/手指接触蒙版。 最终按腕环实际斜边重绘，去掉离环的浮影。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-025-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 27. bracelet-right-hand
-
-投影部件：`character:arms/arm_right/bracelet_pink_front`。接收面：`character:arms/arm_right/hand/palm`。
-
-颜色 #efbbae，multiply，图层不透明度 55%。偏移（原画像素）：[0, 0], [-4, 0], [4, 0], [0, 5]。
-
-参考手环下缘在腕掌处的窄暖色接触影；软笔刷画全遮挡内侧，不改原手掌/手指接触蒙版。 最终按腕环实际斜边重绘，去掉离环的浮影。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-026-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 28. thigh-band-leg
-
-投影部件：`character:legs/leg_left/thigh_band_front`。接收面：`character:legs/leg_left/leg`, `character:legs/leg_right/leg`。
-
-颜色 #b4899a，multiply，图层不透明度 32%。偏移（原画像素）：[0, 0], [-5, 0], [5, 0], [0, 5]。
-
-参考腿环下的浅紫接触暗边，投到袜面/腿面；不改变袜子本身的布料明暗。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-027-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 29. anklet-leg
-
-投影部件：`character:legs/leg_right/anklet_front`。接收面：`character:legs/leg_left/leg`, `character:legs/leg_right/leg`。
-
-颜色 #d2998e，multiply，图层不透明度 43%。偏移（原画像素）：[0, 0], [-4, 0], [4, 0], [0, 5]。
-
-脚环下缘的窄肤色投影，保持脚背与腿自身明暗；隐藏到环内部，5px下移余量。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-028-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 30. bangs-sidehair
-
-投影部件：`character:hair/bangs`。接收面：`character:hair/side_hair/side_hair_left`, `character:hair/side_hair/side_hair_right`。
-
-颜色 #b36b81，multiply，图层不透明度 24%。偏移（原画像素）：[0, 0], [-7, 0], [7, 0], [0, 7]。
-
-中央刘海压在两侧发面上的细粉影，左右细轮廓归同一bangs运动来源；隐藏在刘海后，软笔刷沿发丝窄带，原生接收隔离组嵌套于头饰联合接收base。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-029-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 31. leg-right-tail
-
-投影部件：`character:legs/leg_right/leg`。接收面：`character:tail`。
-
-颜色 #c28292，multiply，图层不透明度 25%。偏移（原画像素）：[0, 0], [-10, 0], [10, 0], [0, 12]。
-
-参考腿间尾巴紧邻腿缘的偏紫粉暗带；只加接触投影，尾毛纹理及尾巴固有深粉明暗保留。软笔刷沿腿后延续，上方和侧向隐藏部分均画全，±10px横移检查。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-030-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-### 32. leg-left-tail
-
-投影部件：`character:legs/leg_left/leg`。接收面：`character:tail`。
-
-颜色 #c28292，multiply，图层不透明度 25%。偏移（原画像素）：[0, 0], [-10, 0], [10, 0], [0, 12]。
-
-参考腿间尾巴紧邻腿缘的偏紫粉暗带；只加接触投影，尾毛纹理及尾巴固有深粉明暗保留。软笔刷沿腿后延续，上方和侧向隐藏部分均画全，±10px横移检查。
-
-[原生完整影层／覆盖／偏移拼图](inspection/relation-031-review.png)。真实 UUID 与 clip base 在 shadows.json 中逐层登记。
-
-## 未另建影层的暗面
-
-未发现必须保留遗漏的、能够明确辨认的跨部件投影。鼻部与锁骨的柔肤色、耳内浅黄和粉色渐变、虹膜内部红褐／黄色层次、金属铃和狸饰自身体积明暗、衣服褶皱、辫子内部编织明暗、红色后发及尾毛固有色阶仍属于原部件。它们与 simplified 有画风和局部形状差异，未作为新的跨部件投影覆盖或改画。
-
-## 原生检查与问题修复
-
-最终检查：shadow/step01_mask/inspection.json
-
-- passed=true，problems=[]。全部影层非空，真实 part、UUID、隔离 base 和原生透明度继承检查通过；相对移动没有新增角色裁切外 alpha。
-- 原工程 143 个节点 UUID 全部保留，37 个原蒙版的 UUID、所属部件、启用状态及 x/y 均核对一致。详细记录：shadow/step01_mask/review/preservation.json
-- 关闭所有新投影后，alpha 与原组装完全一致；843 个抗锯齿/半透明像素的 RGB 变化最大为 1/255，来自隔离组原生合成舍入。没有部件内容被涂改。
-- 最终 PNG 与检查工具重新打开保存 KRA 的 native-final.png 逐像素相同。
-
-处理中发现原生 removeChildNode 重归属时会脱离接收层的蒙版。已从只读原工程的内存副本恢复原蒙版对象；后来移动节点时先保留子节点引用，再附回同一 owner。早期检查也发现眼睛高光落在裁切 base 下方，已移回眼影之上。两类问题在最终检查中均已消失。
-
-首批脖子与裙影偏深、裙影范围偏大、硬边主体有行笔间距条纹，已重绘。最终去掉影底的浅色边带，修正腕环浮影，并补平眼睑后隐藏影体。
-
-三条 warnings 已看完整素材和全部声明偏移：
-
-- side-left-backhair：影体是完整的连续软笔刷带，整个带位于更宽的补全后发内。±9px、下移8px没有截断或暴露缺口；不需要为消除数值提示而增加无关发外色块。
-- pendant-left-cloth 与 pendant-right-cloth：细绳、珠、穗投影均已完整画出，所在衣面比投影宽得多。±6px、下移8px仍留在衣面内部，偏移结果线稿连续；无需把吊坠影拉到衣摆外。
-
-上述 warnings 是裁切外像素计数提示，已完成视觉复核；没有剩余 problems。
-
-## 原尺寸复核图
-
-face-review.png 每格是 x=480,y=200 到 x=925,y=650 的 445 × 450 原尺寸裁切，没有缩小。首行依次为原组装、全部新影关闭、最终原生合成、simplified；后四行是中央刘海、两侧发及刘海到侧发的各声明偏移。
-
-
-
-其余逐区复核图每行展示完整影体与全部声明偏移，裁切保持原画像素。完整影层本身的 PNG 是检查工具按记录 bounds 导出的原尺寸局部，偏移图则为完整 1376 × 2048。全尺寸原生文件位置逐项记在 inspection.json。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 保存文件
-
-- shadow/step01_mask/character-shadowed.kra
-- shadow/step01_mask/character-shadowed.png
-- shadow/step01_mask/shadows.json
-- shadow/step01_mask/face-review.png
-- shadow/step01_mask/report.md
-- shadow/step01_mask/inspection.json
-
-原组装 KRA SHA-256：c0d9866e97261c77e8efe37c2a63b5ee5630941521679f4973428d175657a90d
-
-所有上游文件均未写入；另一阴影分支未操作。
+正式交付：[character-shadowed.kra](character-shadowed.kra)、[character-shadowed.png](character-shadowed.png)、[shadows.json](shadows.json)、[face-review.png](face-review.png)。所有脚本与草稿仅位于本步骤 workspace，未修改上游或运行标记。

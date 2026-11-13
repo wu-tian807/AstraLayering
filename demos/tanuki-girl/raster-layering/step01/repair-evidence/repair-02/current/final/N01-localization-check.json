@@ -1,0 +1,13 @@
+{
+  "changed_paint": [
+    "D12 | head_accessories/tanuki_ornament/tanuki_body | back"
+  ],
+  "all_other_85_paint_and_5_masks_identical": true,
+  "tail_registration": {
+    "delta_at_join": -8,
+    "join_y": 174,
+    "return_to_native_y": 250,
+    "source": "start-D12 native generated paint, same logical part",
+    "operation": "Small horizontal row translation with native tone transition; no stroke rescaling."
+  }
+}

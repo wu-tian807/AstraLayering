@@ -1,0 +1,74 @@
+[
+  {
+    "key": "D14",
+    "name": "D14 | hair/back_hair"
+  },
+  {
+    "key": "D23",
+    "name": "D23 | legs/leg_left/leg"
+  },
+  {
+    "key": "D24",
+    "name": "D24 | legs/leg_right/leg"
+  },
+  {
+    "key": "D31",
+    "name": "D31 | arms/arm_left/forearm"
+  },
+  {
+    "key": "D32",
+    "name": "D32 | arms/arm_right/forearm"
+  },
+  {
+    "key": "D35",
+    "name": "D35 | body/breast"
+  },
+  {
+    "key": "D40",
+    "name": "D40 | arms/arm_left/hand/middle_finger"
+  },
+  {
+    "key": "D41",
+    "name": "D41 | arms/arm_right/hand/middle_finger"
+  },
+  {
+    "key": "D42",
+    "name": "D42 | arms/arm_left/hand/thumb"
+  },
+  {
+    "key": "D43",
+    "name": "D43 | arms/arm_right/hand/thumb"
+  },
+  {
+    "key": "D44",
+    "name": "D44 | arms/arm_left/hand/index_finger"
+  },
+  {
+    "key": "D45",
+    "name": "D45 | arms/arm_right/hand/index_finger"
+  },
+  {
+    "key": "D67",
+    "name": "D67 | face/eyes/eye_left/iris"
+  },
+  {
+    "key": "D68",
+    "name": "D68 | face/eyes/eye_right/iris"
+  },
+  {
+    "key": "D71",
+    "name": "D71 | face/eyes/eye_left/upper_eyelid"
+  },
+  {
+    "key": "D72",
+    "name": "D72 | face/eyes/eye_right/upper_eyelid"
+  },
+  {
+    "key": "D83",
+    "name": "D83 | hair/side_hair/side_hair_right"
+  },
+  {
+    "key": "D84",
+    "name": "D84 | hair/bangs"
+  }
+]

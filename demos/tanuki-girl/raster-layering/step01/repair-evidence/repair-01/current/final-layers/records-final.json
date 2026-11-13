@@ -1,0 +1,65 @@
+[
+  {
+    "index": 6,
+    "name": "D15 | headphones/headband",
+    "uuid": "{700e32b8-c154-4208-b397-8dedd15ac65b}",
+    "level": 15,
+    "parent": "root"
+  },
+  {
+    "index": 17,
+    "name": "D24 | legs/leg_right/leg",
+    "uuid": "{d503c5f0-2c3f-46d4-9c1d-3fa14d1565c5}",
+    "level": 24,
+    "parent": "root"
+  },
+  {
+    "index": 25,
+    "name": "D32 | arms/arm_right/forearm",
+    "uuid": "{1538e529-1abc-46ee-a1d4-8cb195bd6b1f}",
+    "level": 32,
+    "parent": "root"
+  },
+  {
+    "index": 27,
+    "name": "D33 | pelvis | front",
+    "uuid": "{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}",
+    "level": 33,
+    "parent": "root"
+  },
+  {
+    "index": 28,
+    "name": "D34 | body/torso",
+    "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+    "level": 34,
+    "parent": "root"
+  },
+  {
+    "index": 29,
+    "name": "D35 | body/breast",
+    "uuid": "{1b76e69a-e317-4da3-a0fb-ff17ac74b107}",
+    "level": 35,
+    "parent": "root"
+  },
+  {
+    "index": 67,
+    "name": "D76 | face/blush_left",
+    "uuid": "{5e74d9a3-a429-4d63-8f05-67f72cf9e047}",
+    "level": 76,
+    "parent": "root"
+  },
+  {
+    "index": 68,
+    "name": "D77 | face/blush_right",
+    "uuid": "{591e43a4-4e29-4e9a-bf37-a56199a73562}",
+    "level": 77,
+    "parent": "root"
+  },
+  {
+    "index": 74,
+    "name": "D83 | hair/side_hair/side_hair_right",
+    "uuid": "{ccf27b6d-49e0-40a9-9a4d-17c7bc104c41}",
+    "level": 83,
+    "parent": "root"
+  }
+]

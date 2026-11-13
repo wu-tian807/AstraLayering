@@ -1,0 +1,465 @@
+{
+  "source_kra": "raster-layering/step01/character-depth.kra",
+  "paint_layers": 85,
+  "masks": 5,
+  "visibility_restored": true,
+  "exported_projection_identical_to_initial_png": true,
+  "saved_kra_during_review": false,
+  "checks": [
+    {
+      "name": "D0 | tail",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D10 | legs/leg_left/thigh_band_back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "Default closed | legs/leg_left/thigh_band_back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D11 | legs/leg_right/anklet_back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D13 | hair/braid_right | back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D14 | hair/back_hair",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D15 | headphones/headband",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D16 | face/ears/ear_left/ear_interior",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D17 | face/ears/ear_right/ear_interior",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D18 | face/ears/ear_left/ear_fur",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D19 | face/ears/ear_right/ear_fur",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D20 | face/ears/ear_left/ear_shell",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D21 | face/ears/ear_right/ear_shell",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D22 | neck",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D22.25 | headphones/headband | terminals",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D22.5 | pelvis | back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D23 | legs/leg_left/leg",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D24 | legs/leg_right/leg",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D25 | arms/arm_left/upper_arm",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D26 | arms/arm_right/upper_arm",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D27 | arms/arm_left/bracelet_green_back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D28 | arms/arm_left/bracelet_pink_back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D29 | arms/arm_right/bracelet_cream_back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D30 | arms/arm_right/bracelet_pink_back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D31 | arms/arm_left/forearm",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D32 | arms/arm_right/forearm",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D32.5 | body/torso | lower_mount",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D33 | pelvis | front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D34 | body/torso",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D35 | body/breast",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D36 | arms/arm_left/hand/little_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "Default closed | arms/arm_left/hand/little_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D37 | arms/arm_right/hand/little_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "Default closed | arms/arm_right/hand/little_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D38 | arms/arm_left/hand/ring_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D39 | arms/arm_right/hand/ring_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D40 | arms/arm_left/hand/middle_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D41 | arms/arm_right/hand/middle_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D42 | arms/arm_left/hand/thumb",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D43 | arms/arm_right/hand/thumb",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D44 | arms/arm_left/hand/index_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D45 | arms/arm_right/hand/index_finger",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D46 | arms/arm_left/hand/palm",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D47 | arms/arm_right/hand/palm",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D48 | arms/arm_left/bracelet_pink_front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D49 | arms/arm_right/bracelet_pink_front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D50 | arms/arm_left/bell",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D51 | arms/arm_left/bracelet_green_front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D52 | arms/arm_right/bracelet_cream_front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D56 | head_accessories/hair_tie_back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "Default closed | head_accessories/hair_tie_back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D57 | hair/braid_right | front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D58 | headphones/earcups/earcup_left",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D59 | headphones/earcups/earcup_right",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D60 | face/face_base",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D61-64 | Shared mouth opening",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D61 | face/mouth/mouth_interior",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D62 | face/mouth/tongue",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D63 | face/mouth/lower_teeth",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D64 | face/mouth/upper_teeth",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "Default closed | shared upper/lower lip inner opening",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D65 | face/eyes/eye_left/sclera",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D66 | face/eyes/eye_right/sclera",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D67 | face/eyes/eye_left/iris",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D68 | face/eyes/eye_right/iris",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D69 | face/eyes/eye_left/highlight",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D70 | face/eyes/eye_right/highlight",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D71 | face/eyes/eye_left/upper_eyelid",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D72 | face/eyes/eye_right/upper_eyelid",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D73 | face/eyes/eye_left/eyelid_crease",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D74 | face/eyes/eye_right/eyelid_crease",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D75 | face/nose",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D76 | face/blush_left",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D77 | face/blush_right",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D78 | face/mouth/lower_lip",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D79 | face/mouth/upper_lip",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D80 | face/eyebrows/eyebrow_left | back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D81 | face/eyebrows/eyebrow_right | back",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D82 | hair/side_hair/side_hair_left",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D83 | hair/side_hair/side_hair_right",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D84 | hair/bangs",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D84.1 | face/eyebrows/eyebrow_left | front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D84.2 | face/eyebrows/eyebrow_right | front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D85 | head_accessories/hair_bell",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D86 | head_accessories/tanuki_ornament/paw/paw_left",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D87 | head_accessories/tanuki_ornament/paw/paw_right",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D88 | head_accessories/hair_tie_front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D89 | legs/leg_left/thigh_band_front",
+      "visible_original": true,
+      "visible_final": true
+    },
+    {
+      "name": "D90 | legs/leg_right/anklet_front",
+      "visible_original": true,
+      "visible_final": true
+    }
+  ]
+}

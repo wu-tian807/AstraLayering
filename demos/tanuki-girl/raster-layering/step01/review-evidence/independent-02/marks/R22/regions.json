@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review02/solo/D36.png",
+  "reference": "part-layering/references/standard.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/1a570859-0e0f-4d60-8841-cefa4c117baa/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/1a570859-0e0f-4d60-8841-cefa4c117baa/regions.json",
+  "regions": [
+    {
+      "id": "R22",
+      "bounds": [
+        1056,
+        1030,
+        46,
+        43
+      ],
+      "layers": [
+        "D36 | arms/arm_left/hand/little_finger"
+      ],
+      "description": "左小指停用显隐蒙版后是软边肤色棒，缺本手原有深色外线、指端与指节细节；按完整小指补画，不能以默认全隐藏视为完成。",
+      "crop": [
+        1040,
+        1014,
+        78,
+        75
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/1a570859-0e0f-4d60-8841-cefa4c117baa/R22-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/1a570859-0e0f-4d60-8841-cefa4c117baa/R22-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/1a570859-0e0f-4d60-8841-cefa4c117baa/R22-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

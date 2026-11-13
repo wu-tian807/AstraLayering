@@ -1,0 +1,863 @@
+[
+  {
+    "id": "R1",
+    "bounds": [
+      726,
+      398,
+      83,
+      68
+    ],
+    "layers": [
+      "D65 | face/eyes/eye_left/sclera",
+      "D71 | face/eyes/eye_left/upper_eyelid"
+    ],
+    "description": "画面右眼：眼白内残留斜向桃色线和硬折边，上睑内弧及眼尾收笔与参考不同，尾部有并行细线；需恢复原眼形及连体睫毛与眼白的干净衔接。",
+    "crop": [
+      714,
+      386,
+      107,
+      92
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R1-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R1-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R1-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R1-display.png"
+  },
+  {
+    "id": "R2",
+    "bounds": [
+      607,
+      398,
+      81,
+      68
+    ],
+    "layers": [
+      "D66 | face/eyes/eye_right/sclera",
+      "D72 | face/eyes/eye_right/upper_eyelid"
+    ],
+    "description": "画面左眼：眼白出现斜向浅色残线，上睑内侧多出双细尾、外眼尾轮廓及粗细变化与参考不符；需原尺寸恢复眼轮廓与连续收笔。",
+    "crop": [
+      595,
+      386,
+      105,
+      92
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R2-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R2-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R2-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R2-display.png"
+  },
+  {
+    "id": "R3",
+    "bounds": [
+      750,
+      458,
+      45,
+      36
+    ],
+    "layers": [
+      "D76 | face/blush_left"
+    ],
+    "description": "画面右颊红晕变成边界可辨的密集红底块，斜线长度和渐隐与原图弥散红晕不同；恢复红底的扩散、渐隐和原斜线。",
+    "crop": [
+      738,
+      446,
+      69,
+      60
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R3-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R3-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R3-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R3-display.png"
+  },
+  {
+    "id": "R4",
+    "bounds": [
+      620,
+      458,
+      48,
+      46
+    ],
+    "layers": [
+      "D77 | face/blush_right"
+    ],
+    "description": "画面左颊红晕带大片浅肤色椭圆底，红色底变弱且外缘成圆斑；去掉肤色罩片，补回原图弥散红底及斜线。",
+    "crop": [
+      608,
+      446,
+      72,
+      70
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R4-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R4-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R4-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R4-display.png"
+  },
+  {
+    "id": "R5",
+    "bounds": [
+      698,
+      458,
+      19,
+      22
+    ],
+    "layers": [
+      "D75 | face/nose"
+    ],
+    "description": "鼻底深棕小点被浅化至近肤色，原图清晰的小点笔触及红色鼻头的层次未保留。",
+    "crop": [
+      686,
+      446,
+      43,
+      46
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R5-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R5-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R5-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R5-display.png"
+  },
+  {
+    "id": "R6",
+    "bounds": [
+      692,
+      489,
+      33,
+      34
+    ],
+    "layers": [
+      "D78 | face/mouth/lower_lip",
+      "D79 | face/mouth/upper_lip"
+    ],
+    "description": "原图短棕唇线的深色中央和两端收笔被简化为浅色等粗小弧；按原尺寸恢复嘴形、深浅和短收笔。",
+    "crop": [
+      680,
+      477,
+      57,
+      58
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R6-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R6-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R6-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R6-display.png"
+  },
+  {
+    "id": "R7",
+    "bounds": [
+      999,
+      1018,
+      155,
+      100
+    ],
+    "layers": [
+      "D42 | arms/arm_left/hand/thumb",
+      "D44 | arms/arm_left/hand/index_finger",
+      "D46 | arms/arm_left/hand/palm",
+      "D40 | arms/arm_left/hand/middle_finger"
+    ],
+    "description": "画面右手外描边尤其拇指由连续深棕线变成断续浅点线，指尖及指甲轮廓被圆化、浅化；应逐件补回原图连续轮廓和细节。",
+    "crop": [
+      987,
+      1006,
+      179,
+      124
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R7-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R7-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R7-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R7-display.png"
+  },
+  {
+    "id": "R8",
+    "bounds": [
+      252,
+      1012,
+      153,
+      106
+    ],
+    "layers": [
+      "D43 | arms/arm_right/hand/thumb",
+      "D45 | arms/arm_right/hand/index_finger",
+      "D47 | arms/arm_right/hand/palm",
+      "D41 | arms/arm_right/hand/middle_finger"
+    ],
+    "description": "画面左手拇指外侧为断续点线，食指外线断粗且指甲、指尖收笔被浅化；恢复原图完整外描边及手部结构笔触。",
+    "crop": [
+      240,
+      1000,
+      177,
+      130
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R8-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R8-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R8-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R8-display.png"
+  },
+  {
+    "id": "R9",
+    "bounds": [
+      1032,
+      1004,
+      53,
+      75
+    ],
+    "layers": [
+      "D42 | arms/arm_left/hand/thumb",
+      "D44 | arms/arm_left/hand/index_finger",
+      "D46 | arms/arm_left/hand/palm"
+    ],
+    "description": "画面右手掌指连接：上侧掌片突尖后突然收断，下侧虎口与指根出现台阶、肤色硬边和多余短线；需各件同部件材料接顺，保持独立归属。",
+    "crop": [
+      1020,
+      992,
+      77,
+      99
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R9-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R9-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R9-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R9-display.png"
+  },
+  {
+    "id": "R10",
+    "bounds": [
+      337,
+      998,
+      45,
+      71
+    ],
+    "layers": [
+      "D43 | arms/arm_right/hand/thumb",
+      "D45 | arms/arm_right/hand/index_finger",
+      "D47 | arms/arm_right/hand/palm"
+    ],
+    "description": "画面左手掌指连接：食指底线在掌根截断，掌片短线和指根轮廓叠出凹口、双线与色块接边；按原图顺滑虎口、掌背线重接。",
+    "crop": [
+      325,
+      986,
+      69,
+      95
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R10-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R10-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R10-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R10-display.png"
+  },
+  {
+    "id": "R11",
+    "bounds": [
+      262,
+      1040,
+      83,
+      37
+    ],
+    "layers": [
+      "D41 | arms/arm_right/hand/middle_finger"
+    ],
+    "description": "画面左侧中指粉橙暗面出现一串原图没有的白色点状杂质；清除杂点并恢复原图平顺暗面和连续下缘线。",
+    "crop": [
+      250,
+      1028,
+      107,
+      61
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R11-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R11-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R11-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R11-display.png"
+  },
+  {
+    "id": "R12",
+    "bounds": [
+      369,
+      968,
+      61,
+      72
+    ],
+    "layers": [
+      "D49 | arms/arm_right/bracelet_pink_front"
+    ],
+    "description": "画面左腕粉环前段下端由原图有斜切转折的带端简化为圆头，深色外描边减弱；恢复原图端头转折、轮廓粗细和亮暗条带。",
+    "crop": [
+      357,
+      956,
+      85,
+      96
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R12-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R12-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R12-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R12-display.png"
+  },
+  {
+    "id": "R13",
+    "bounds": [
+      872,
+      786,
+      163,
+      245
+    ],
+    "layers": [
+      "D25 | arms/arm_left/upper_arm",
+      "D31 | arms/arm_left/forearm"
+    ],
+    "description": "画面右臂：前臂帽盖与上臂之间存在斜向硬肤色接边，肘外侧有小台阶和线宽变化，前臂外描边被浅化；重画自身过渡并按原图续接外线。",
+    "crop": [
+      860,
+      774,
+      187,
+      269
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R13-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R13-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R13-comparison.png"
+    },
+    "mark_group": "base",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/base/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/base-subject.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R13-display.png"
+  },
+  {
+    "id": "R14",
+    "bounds": [
+      365,
+      791,
+      182,
+      243
+    ],
+    "layers": [
+      "D26 | arms/arm_right/upper_arm",
+      "D32 | arms/arm_right/forearm"
+    ],
+    "description": "画面左臂：上臂前臂接边有肤色层次突变和细微外缘折点，前臂外轮廓比参考浅细；恢复同肤色连续体积与连续描边。",
+    "crop": [
+      353,
+      779,
+      206,
+      267
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R14-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R14-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R14-comparison.png"
+    },
+    "mark_group": "base",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/base/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/base-subject.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R14-display.png"
+  },
+  {
+    "id": "R15",
+    "bounds": [
+      587,
+      744,
+      60,
+      76
+    ],
+    "layers": [
+      "D34 | body/torso",
+      "D35 | body/breast"
+    ],
+    "description": "画面左胸下：胸片外边突向左后突然回收接躯干，形成原图没有的白色台阶；服装结构线局部双线、错接。重接轮廓和同一条侧线。",
+    "crop": [
+      575,
+      732,
+      84,
+      100
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R15-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R15-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R15-comparison.png"
+    },
+    "mark_group": "base",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/base/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/base-subject.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R15-display.png"
+  },
+  {
+    "id": "R16",
+    "bounds": [
+      774,
+      744,
+      58,
+      91
+    ],
+    "layers": [
+      "D34 | body/torso",
+      "D35 | body/breast"
+    ],
+    "description": "画面右胸下：胸片至躯干外边有明显台阶，斜结构线跨分件后断开并改变走向、粗细；恢复原图连续边线与体积过渡。",
+    "crop": [
+      762,
+      732,
+      82,
+      115
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R16-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R16-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R16-comparison.png"
+    },
+    "mark_group": "base",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/base/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/base-subject.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R16-display.png"
+  },
+  {
+    "id": "R17",
+    "bounds": [
+      633,
+      876,
+      29,
+      39
+    ],
+    "layers": [
+      "D34 | body/torso",
+      "D33 | pelvis | front"
+    ],
+    "description": "画面左腰髋接线：原图连续白服侧线在分件交界变成两段断线，接头错位；需同材质笔触接线并消除硬边。",
+    "crop": [
+      621,
+      864,
+      53,
+      63
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R17-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R17-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R17-comparison.png"
+    },
+    "mark_group": "base",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/base/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/base-subject.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R17-display.png"
+  },
+  {
+    "id": "R18",
+    "bounds": [
+      761,
+      877,
+      35,
+      43
+    ],
+    "layers": [
+      "D34 | body/torso",
+      "D33 | pelvis | front"
+    ],
+    "description": "画面右腰髋接线：原图平顺曲线在交界折成台阶，线宽及走向突变；重接原曲线和明暗过渡。",
+    "crop": [
+      749,
+      865,
+      59,
+      67
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/base/R18-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/base/R18-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/base/R18-comparison.png"
+    },
+    "mark_group": "base",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/base/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/base-subject.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R18-display.png"
+  },
+  {
+    "id": "R19",
+    "bounds": [
+      612,
+      589,
+      197,
+      68
+    ],
+    "layers": [
+      "D34 | body/torso"
+    ],
+    "description": "躯干上接补全独显：顶部多级矩形截边、肩根两侧垂直切口，肩带描边中断，锁骨下残留零碎水平短线。补成连续合理的上胸肩根与自身明暗，续画完整外边和服装线，清除杂线。",
+    "crop": [
+      600,
+      577,
+      221,
+      92
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/torso/R19-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/torso/R19-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/torso/R19-comparison.png"
+    },
+    "mark_group": "torso",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/torso/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/solo/26-body__torso.png",
+    "source_reference": "part-layering/references/base-subject.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R19-display.png"
+  },
+  {
+    "id": "R20",
+    "bounds": [
+      581,
+      905,
+      250,
+      71
+    ],
+    "layers": [
+      "D34 | body/torso"
+    ],
+    "description": "躯干下接补全独显：两侧以水平矩形断边终止，中间另接无轮廓的软圆帽，局部有白色方片和断线；需重画完整下腹帽盖与连续轮廓、同材质接色，不保留矩形拼接。",
+    "crop": [
+      569,
+      893,
+      274,
+      95
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/torso/R20-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/torso/R20-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/torso/R20-comparison.png"
+    },
+    "mark_group": "torso",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/torso/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/solo/26-body__torso.png",
+    "source_reference": "part-layering/references/base-subject.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R20-display.png"
+  },
+  {
+    "id": "R21",
+    "bounds": [
+      675,
+      206,
+      72,
+      29
+    ],
+    "layers": [
+      "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front"
+    ],
+    "description": "狸饰前后片合并独显：下颌描边下方约x729、y222存在离散深色点，局部另有短竖线；该处在参考属头发，不属狸饰。只清除本件孤点与杂线，保留完整下颌和后发独立内容。",
+    "crop": [
+      663,
+      194,
+      96,
+      53
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/tanuki/R21-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/tanuki/R21-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/tanuki/R21-comparison.png"
+    },
+    "mark_group": "tanuki",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/tanuki/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/union/head_accessories__tanuki_ornament__tanuki_body.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R21-display.png"
+  },
+  {
+    "id": "R22",
+    "bounds": [
+      600,
+      859,
+      75,
+      47
+    ],
+    "layers": [
+      "D33 | pelvis | front"
+    ],
+    "description": "骨盆前片上补全独显：左上圆帽布面留有水平灰色短条和矩形色阶，圆弧边局部折断。修掉采样接边痕迹，沿本件现有圆帽恢复平顺同材质布面，不添加原图没有的腰线。",
+    "crop": [
+      588,
+      847,
+      99,
+      71
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/pelvis/R22-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/pelvis/R22-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/pelvis/R22-comparison.png"
+    },
+    "mark_group": "pelvis",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/pelvis/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/solo/25-pelvis.png",
+    "source_reference": "part-layering/references/base-subject.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R22-display.png"
+  },
+  {
+    "id": "R23",
+    "bounds": [
+      538,
+      1090,
+      158,
+      917
+    ],
+    "layers": [
+      "D24 | legs/leg_right/leg"
+    ],
+    "description": "画面左裸腿、裸足：原图连续深棕外线被整体浅化、变细，足趾末端和方形趾甲被圆化成浅亮小框；恢复原外轮廓粗细、趾形及指甲转角和明暗。",
+    "crop": [
+      526,
+      1078,
+      182,
+      941
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R23-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R23-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R23-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R23-display.png"
+  },
+  {
+    "id": "R24",
+    "bounds": [
+      704,
+      1210,
+      164,
+      797
+    ],
+    "layers": [
+      "D23 | legs/leg_left/leg"
+    ],
+    "description": "画面右袜腿及足部：外描边与袜口收笔变弱，露趾结构和原图趾甲方折改为圆滑亮边；保留袜腿原曲线，恢复脚趾、趾缝、趾甲形状及深色线。",
+    "crop": [
+      692,
+      1198,
+      188,
+      821
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R24-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R24-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R24-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R24-display.png"
+  },
+  {
+    "id": "R25",
+    "bounds": [
+      565,
+      1753,
+      91,
+      64
+    ],
+    "layers": [
+      "D11 | legs/leg_right/anklet_back",
+      "D90 | legs/leg_right/anklet_front"
+    ],
+    "description": "画面左踝新增远伸出的粉色后环大弧及奶绿碎段，原图只露少量紧贴踝侧的回转边；重画后环范围并调整普通深度搭接，恢复原图夹踝关系。",
+    "crop": [
+      553,
+      1741,
+      115,
+      88
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R25-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R25-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R25-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R25-display.png"
+  },
+  {
+    "id": "R26",
+    "bounds": [
+      423,
+      1434,
+      291,
+      241
+    ],
+    "layers": [
+      "D0 | tail"
+    ],
+    "description": "尾巴下部原图连续大圆弧被加上凹口短尖，底缘尖梢走向变化；腿旁原粉色明暗被扩大的奶白尖条取代。恢复可见轮廓、尖端和原粉色明暗块位置。",
+    "crop": [
+      411,
+      1422,
+      315,
+      265
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R26-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R26-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R26-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R26-display.png"
+  },
+  {
+    "id": "R27",
+    "bounds": [
+      516,
+      467,
+      54,
+      69
+    ],
+    "layers": [
+      "D14 | hair/back_hair"
+    ],
+    "description": "画面左后发回环外轮廓外留有不透明奶白宽边，灰底和黑底可见；清理外缘背景残边，保留深棕轮廓和发束内部原浅色笔触。",
+    "crop": [
+      504,
+      455,
+      78,
+      93
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R27-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R27-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R27-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R27-display.png"
+  },
+  {
+    "id": "R28",
+    "bounds": [
+      652,
+      536,
+      35,
+      48
+    ],
+    "layers": [
+      "D15 | headphones/headband"
+    ],
+    "description": "画面左颈侧连接端：原图可见白色接头被下移、缩小，当前位置露出大红色带块；恢复白色端头形状、位置及耳罩后的正确搭接。",
+    "crop": [
+      640,
+      524,
+      59,
+      72
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R28-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R28-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R28-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R28-display.png"
+  },
+  {
+    "id": "R29",
+    "bounds": [
+      737,
+      542,
+      33,
+      44
+    ],
+    "layers": [
+      "D15 | headphones/headband"
+    ],
+    "description": "画面右颈侧连接端：原图白色接头区域变为透空/过窄白条和红粉带面，接头位置及遮挡关系偏离；按原图接头轮廓重新画并以深度接合。",
+    "crop": [
+      725,
+      530,
+      57,
+      68
+    ],
+    "files": {
+      "current": "raster-layering/step01/review-evidence/independent-01/marks/standard/R29-current.png",
+      "reference": "raster-layering/step01/review-evidence/independent-01/marks/standard/R29-reference.png",
+      "comparison": "raster-layering/step01/review-evidence/independent-01/marks/standard/R29-comparison.png"
+    },
+    "mark_group": "standard",
+    "marked": "raster-layering/step01/review-evidence/independent-01/marks/standard/marked.png",
+    "source_image": "raster-layering/step01/review-evidence/independent-01/composite-default.png",
+    "source_reference": "part-layering/references/standard.png",
+    "display": "raster-layering/step01/review-evidence/independent-01/details/R29-display.png"
+  }
+]

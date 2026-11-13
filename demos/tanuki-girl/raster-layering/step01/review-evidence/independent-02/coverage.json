@@ -1,0 +1,996 @@
+[
+  {
+    "name": "D0 | tail",
+    "uuid": "{47033051-7e94-4a4f-8c50-9eccbe2c5513}",
+    "part": "tail",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D0.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D0.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-00-04.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D10 | legs/leg_left/thigh_band_back",
+    "uuid": "{37c84885-94de-4375-b6bc-81bcefb8dec0}",
+    "part": "legs/leg_left/thigh_band_back",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D10.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D10.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-00-04.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D11 | legs/leg_right/anklet_back",
+    "uuid": "{34898742-3f8e-4a5f-bb07-b06df707a68b}",
+    "part": "legs/leg_right/anklet_back",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D11.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D11.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-00-04.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+    "uuid": "{e31ef44b-9571-464f-a0d6-9ed501711eb0}",
+    "part": "head_accessories/tanuki_ornament/tanuki_body",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D12.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D12.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-00-04.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R01"
+    ]
+  },
+  {
+    "name": "D13 | hair/braid_right | back",
+    "uuid": "{a0b578fa-3f3d-485b-8068-20008d6a8aa7}",
+    "part": "hair/braid_right",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D13.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D13.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-00-04.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D14 | hair/back_hair",
+    "uuid": "{6ef8f6a4-c537-4b73-88c4-5860409f0c7e}",
+    "part": "hair/back_hair",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D14.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D14.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-05-09.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R02"
+    ]
+  },
+  {
+    "name": "D15 | headphones/headband",
+    "uuid": "{700e32b8-c154-4208-b397-8dedd15ac65b}",
+    "part": "headphones/headband",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D15.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D15.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-05-09.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R02"
+    ]
+  },
+  {
+    "name": "D16 | face/ears/ear_left/ear_interior",
+    "uuid": "{89e242ab-70e7-49e5-8e34-9a0217ddd7a8}",
+    "part": "face/ears/ear_left/ear_interior",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D16.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D16.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-05-09.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D17 | face/ears/ear_right/ear_interior",
+    "uuid": "{d29c58c9-62d0-4ccd-9424-799489bda31b}",
+    "part": "face/ears/ear_right/ear_interior",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D17.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D17.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-05-09.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D18 | face/ears/ear_left/ear_fur",
+    "uuid": "{d302e191-5c78-4817-845b-37da0de4f9a7}",
+    "part": "face/ears/ear_left/ear_fur",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D18.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D18.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-05-09.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D19 | face/ears/ear_right/ear_fur",
+    "uuid": "{734186c6-cabd-4cfd-b129-63d36fded11b}",
+    "part": "face/ears/ear_right/ear_fur",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D19.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D19.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-10-14.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D20 | face/ears/ear_left/ear_shell",
+    "uuid": "{445a25cf-073d-4062-9cb7-2dc2e5d1dca3}",
+    "part": "face/ears/ear_left/ear_shell",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D20.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D20.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-10-14.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D21 | face/ears/ear_right/ear_shell",
+    "uuid": "{ed1ff626-4500-4c1f-9bbf-09638b5b3c73}",
+    "part": "face/ears/ear_right/ear_shell",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D21.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D21.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-10-14.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D22 | neck",
+    "uuid": "{fbb36e58-b147-450f-ac71-d51de7bd2518}",
+    "part": "neck",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D22.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D22.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-10-14.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R11"
+    ]
+  },
+  {
+    "name": "D22.25 | headphones/headband | terminals",
+    "uuid": "{736c1a45-8063-4dc1-9e05-fa2cb41eb3b9}",
+    "part": "headphones/headband",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D22p25.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D22p25.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-10-14.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D22.5 | pelvis | back",
+    "uuid": "{5a270326-00bf-4e30-b698-9c48a83f49ca}",
+    "part": "pelvis",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D22p5.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D22p5.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-15-19.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D23 | legs/leg_left/leg",
+    "uuid": "{b65106a1-85b2-4444-8eb8-11f558cdc1d1}",
+    "part": "legs/leg_left/leg",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D23.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D23.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-15-19.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D24 | legs/leg_right/leg",
+    "uuid": "{d503c5f0-2c3f-46d4-9c1d-3fa14d1565c5}",
+    "part": "legs/leg_right/leg",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D24.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D24.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-15-19.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D25 | arms/arm_left/upper_arm",
+    "uuid": "{760efccd-6eb8-49fc-a996-1e95ce640f55}",
+    "part": "arms/arm_left/upper_arm",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D25.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D25.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-15-19.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R13",
+      "R18"
+    ]
+  },
+  {
+    "name": "D26 | arms/arm_right/upper_arm",
+    "uuid": "{b60f5bf9-dc78-43fc-9449-d586fffbb137}",
+    "part": "arms/arm_right/upper_arm",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D26.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D26.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-15-19.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R19"
+    ]
+  },
+  {
+    "name": "D27 | arms/arm_left/bracelet_green_back",
+    "uuid": "{7634f287-b2f4-43c8-bd81-b678d7c53fa4}",
+    "part": "arms/arm_left/bracelet_green_back",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D27.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D27.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-20-24.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D28 | arms/arm_left/bracelet_pink_back",
+    "uuid": "{9300b096-f06d-4ca4-b43e-81081a584bce}",
+    "part": "arms/arm_left/bracelet_pink_back",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D28.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D28.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-20-24.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R24"
+    ]
+  },
+  {
+    "name": "D29 | arms/arm_right/bracelet_cream_back",
+    "uuid": "{5d9621c7-801e-4fcb-a821-40d9ccefd060}",
+    "part": "arms/arm_right/bracelet_cream_back",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D29.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D29.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-20-24.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D30 | arms/arm_right/bracelet_pink_back",
+    "uuid": "{4b6e20b9-010e-468f-a113-c4fb2a99f661}",
+    "part": "arms/arm_right/bracelet_pink_back",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D30.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D30.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-20-24.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D31 | arms/arm_left/forearm",
+    "uuid": "{c57a133b-41ed-4918-80de-a962b23c6b3c}",
+    "part": "arms/arm_left/forearm",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D31.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D31.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-20-24.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D32 | arms/arm_right/forearm",
+    "uuid": "{1538e529-1abc-46ee-a1d4-8cb195bd6b1f}",
+    "part": "arms/arm_right/forearm",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D32.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D32.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-25-29.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D32.5 | body/torso | lower_mount",
+    "uuid": "{46358100-0b1c-433a-a3da-f652464fcffd}",
+    "part": "body/torso",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D32p5.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D32p5.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-25-29.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R14"
+    ]
+  },
+  {
+    "name": "D33 | pelvis | front",
+    "uuid": "{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}",
+    "part": "pelvis",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D33.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D33.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-25-29.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R15",
+      "R16",
+      "R17"
+    ]
+  },
+  {
+    "name": "D34 | body/torso",
+    "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+    "part": "body/torso",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D34.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D34.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-25-29.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R11",
+      "R12",
+      "R13",
+      "R14"
+    ]
+  },
+  {
+    "name": "D35 | body/breast",
+    "uuid": "{1b76e69a-e317-4da3-a0fb-ff17ac74b107}",
+    "part": "body/breast",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D35.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D35.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-25-29.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R12",
+      "R13"
+    ]
+  },
+  {
+    "name": "D36 | arms/arm_left/hand/little_finger",
+    "uuid": "{ca815547-31cc-4382-9aa8-dd188b37b377}",
+    "part": "arms/arm_left/hand/little_finger",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D36.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D36.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-30-34.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R22"
+    ]
+  },
+  {
+    "name": "D37 | arms/arm_right/hand/little_finger",
+    "uuid": "{f6a6d2a1-0435-4c58-ab1a-662a1559249c}",
+    "part": "arms/arm_right/hand/little_finger",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D37.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D37.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-30-34.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R23"
+    ]
+  },
+  {
+    "name": "D38 | arms/arm_left/hand/ring_finger",
+    "uuid": "{d85bd8b0-a005-4c44-8336-c74b30be64a4}",
+    "part": "arms/arm_left/hand/ring_finger",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D38.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D38.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-30-34.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R20"
+    ]
+  },
+  {
+    "name": "D39 | arms/arm_right/hand/ring_finger",
+    "uuid": "{6ea2cb37-c639-4b2a-a4c2-08504d985757}",
+    "part": "arms/arm_right/hand/ring_finger",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D39.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D39.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-30-34.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R21"
+    ]
+  },
+  {
+    "name": "D40 | arms/arm_left/hand/middle_finger",
+    "uuid": "{3fd8810e-8dde-4b15-b781-25d1dc9f5978}",
+    "part": "arms/arm_left/hand/middle_finger",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D40.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D40.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-30-34.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D41 | arms/arm_right/hand/middle_finger",
+    "uuid": "{0da3ede1-9370-48e6-80a5-69abb2cf3b15}",
+    "part": "arms/arm_right/hand/middle_finger",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D41.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D41.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-35-39.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D42 | arms/arm_left/hand/thumb",
+    "uuid": "{aba770e8-b3fe-461b-adae-4ee044d10e1d}",
+    "part": "arms/arm_left/hand/thumb",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D42.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D42.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-35-39.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D43 | arms/arm_right/hand/thumb",
+    "uuid": "{00111c35-ef30-4cf9-b1a9-dbf57cc5138f}",
+    "part": "arms/arm_right/hand/thumb",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D43.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D43.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-35-39.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D44 | arms/arm_left/hand/index_finger",
+    "uuid": "{e49a2920-0265-4fec-bcfc-f03c59d3ec1d}",
+    "part": "arms/arm_left/hand/index_finger",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D44.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D44.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-35-39.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D45 | arms/arm_right/hand/index_finger",
+    "uuid": "{3a056be8-c259-483b-ae9a-f71e159baa9b}",
+    "part": "arms/arm_right/hand/index_finger",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D45.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D45.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-35-39.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D46 | arms/arm_left/hand/palm",
+    "uuid": "{b3f5969e-8be8-4337-909f-e5918a92ff29}",
+    "part": "arms/arm_left/hand/palm",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D46.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D46.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-40-44.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D47 | arms/arm_right/hand/palm",
+    "uuid": "{2d70aa71-52e9-4b36-975b-e1b7d74d1d14}",
+    "part": "arms/arm_right/hand/palm",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D47.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D47.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-40-44.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D48 | arms/arm_left/bracelet_pink_front",
+    "uuid": "{86d58413-581c-45ac-8e80-3881fbd16687}",
+    "part": "arms/arm_left/bracelet_pink_front",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D48.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D48.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-40-44.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D49 | arms/arm_right/bracelet_pink_front",
+    "uuid": "{9afff65b-5f91-4fd3-b9b7-84b246b41711}",
+    "part": "arms/arm_right/bracelet_pink_front",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D49.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D49.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-40-44.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D50 | arms/arm_left/bell",
+    "uuid": "{48a4f564-4728-4e72-ad73-4957debd0dec}",
+    "part": "arms/arm_left/bell",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D50.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D50.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-40-44.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D51 | arms/arm_left/bracelet_green_front",
+    "uuid": "{4690710f-f17c-4f83-a35a-3ec7b467fa60}",
+    "part": "arms/arm_left/bracelet_green_front",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D51.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D51.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-45-49.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D52 | arms/arm_right/bracelet_cream_front",
+    "uuid": "{d0b5b321-2ccd-481a-9fb5-ef30e7b0ad3f}",
+    "part": "arms/arm_right/bracelet_cream_front",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D52.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D52.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-45-49.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D56 | head_accessories/hair_tie_back",
+    "uuid": "{7efb0a22-5ffa-40d6-9b14-796254b6ee3f}",
+    "part": "head_accessories/hair_tie_back",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D56.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D56.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-45-49.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D57 | hair/braid_right | front",
+    "uuid": "{bf1ac4b1-cfe3-4884-8ec9-f9e0811bc6b5}",
+    "part": "hair/braid_right",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D57.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D57.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-45-49.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R05"
+    ]
+  },
+  {
+    "name": "D58 | headphones/earcups/earcup_left",
+    "uuid": "{f799ae0d-40fd-4555-a1f2-f25327b3a98f}",
+    "part": "headphones/earcups/earcup_left",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D58.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D58.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-45-49.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D59 | headphones/earcups/earcup_right",
+    "uuid": "{8bcb9e3b-93e0-4c43-bff5-d47d4e531fcf}",
+    "part": "headphones/earcups/earcup_right",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D59.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D59.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-50-54.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D60 | face/face_base",
+    "uuid": "{c73e48f3-03a2-4701-8caf-83063974965f}",
+    "part": "face/face_base",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D60.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D60.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-50-54.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D61 | face/mouth/mouth_interior",
+    "uuid": "{a2b1e6d8-0c5e-4ff7-9ca3-094cc209211f}",
+    "part": "face/mouth/mouth_interior",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D61.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D61.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-50-54.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D62 | face/mouth/tongue",
+    "uuid": "{f177c810-bf3d-4225-8478-7cca431e2ae1}",
+    "part": "face/mouth/tongue",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D62.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D62.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-50-54.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D63 | face/mouth/lower_teeth",
+    "uuid": "{f293a843-0915-4e81-82d8-32a6925c7a46}",
+    "part": "face/mouth/lower_teeth",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D63.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D63.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-50-54.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D64 | face/mouth/upper_teeth",
+    "uuid": "{0f2a79f4-14a7-4e68-aa64-22ca28d0833c}",
+    "part": "face/mouth/upper_teeth",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D64.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D64.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-55-59.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D65 | face/eyes/eye_left/sclera",
+    "uuid": "{6b8f98e3-272a-4807-8774-4a219b6812f5}",
+    "part": "face/eyes/eye_left/sclera",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D65.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D65.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-55-59.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D66 | face/eyes/eye_right/sclera",
+    "uuid": "{eb30337c-5a23-4028-af35-6e96094fabc8}",
+    "part": "face/eyes/eye_right/sclera",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D66.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D66.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-55-59.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D67 | face/eyes/eye_left/iris",
+    "uuid": "{eae99bc1-fe42-40d9-8bc1-c077610d6d86}",
+    "part": "face/eyes/eye_left/iris",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D67.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D67.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-55-59.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R06"
+    ]
+  },
+  {
+    "name": "D68 | face/eyes/eye_right/iris",
+    "uuid": "{338fcc39-a964-4c97-a3b3-16b60b7a3024}",
+    "part": "face/eyes/eye_right/iris",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D68.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D68.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-55-59.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D69 | face/eyes/eye_left/highlight",
+    "uuid": "{bb67c9fd-f337-4b8d-ad9a-8ab3190c595b}",
+    "part": "face/eyes/eye_left/highlight",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D69.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D69.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-60-64.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D70 | face/eyes/eye_right/highlight",
+    "uuid": "{4473535e-3342-4b51-abb9-c2d8f0666128}",
+    "part": "face/eyes/eye_right/highlight",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D70.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D70.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-60-64.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D71 | face/eyes/eye_left/upper_eyelid",
+    "uuid": "{ae6d9e09-a249-45b6-8e3b-b7db6f39dfe0}",
+    "part": "face/eyes/eye_left/upper_eyelid",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D71.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D71.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-60-64.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R06"
+    ]
+  },
+  {
+    "name": "D72 | face/eyes/eye_right/upper_eyelid",
+    "uuid": "{c9dff7e7-54ed-4e72-9521-c6e675a7ff93}",
+    "part": "face/eyes/eye_right/upper_eyelid",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D72.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D72.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-60-64.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D73 | face/eyes/eye_left/eyelid_crease",
+    "uuid": "{1af80f46-0541-4e4a-95be-861b54363fc3}",
+    "part": "face/eyes/eye_left/eyelid_crease",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D73.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D73.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-60-64.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D74 | face/eyes/eye_right/eyelid_crease",
+    "uuid": "{fe355f5b-523c-4571-8a0d-db85e0c60423}",
+    "part": "face/eyes/eye_right/eyelid_crease",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D74.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D74.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-65-69.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D75 | face/nose",
+    "uuid": "{9715a843-db7d-435a-a8e3-b32f2dc56a6f}",
+    "part": "face/nose",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D75.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D75.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-65-69.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D76 | face/blush_left",
+    "uuid": "{5e74d9a3-a429-4d63-8f05-67f72cf9e047}",
+    "part": "face/blush_left",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D76.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D76.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-65-69.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R09"
+    ]
+  },
+  {
+    "name": "D77 | face/blush_right",
+    "uuid": "{591e43a4-4e29-4e9a-bf37-a56199a73562}",
+    "part": "face/blush_right",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D77.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D77.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-65-69.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R10"
+    ]
+  },
+  {
+    "name": "D78 | face/mouth/lower_lip",
+    "uuid": "{3c68fb33-ff72-4f7e-967b-5780418a7453}",
+    "part": "face/mouth/lower_lip",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D78.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D78.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-65-69.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D79 | face/mouth/upper_lip",
+    "uuid": "{94eedc57-8397-46d7-b4df-d7f7d56c87fa}",
+    "part": "face/mouth/upper_lip",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D79.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D79.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-70-74.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D80 | face/eyebrows/eyebrow_left | back",
+    "uuid": "{06085fa6-f39d-49c6-bc1b-505f7840b94f}",
+    "part": "face/eyebrows/eyebrow_left",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D80.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D80.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-70-74.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R07"
+    ]
+  },
+  {
+    "name": "D81 | face/eyebrows/eyebrow_right | back",
+    "uuid": "{739e209d-5633-4105-a477-bb4811a84f3a}",
+    "part": "face/eyebrows/eyebrow_right",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D81.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D81.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-70-74.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R08"
+    ]
+  },
+  {
+    "name": "D82 | hair/side_hair/side_hair_left",
+    "uuid": "{bde7e205-6062-4346-a420-e78844b50ac5}",
+    "part": "hair/side_hair/side_hair_left",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D82.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D82.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-70-74.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D83 | hair/side_hair/side_hair_right",
+    "uuid": "{ccf27b6d-49e0-40a9-9a4d-17c7bc104c41}",
+    "part": "hair/side_hair/side_hair_right",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D83.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D83.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-70-74.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R03"
+    ]
+  },
+  {
+    "name": "D84 | hair/bangs",
+    "uuid": "{e2e38ffb-ec15-4ab7-aebb-fe1b504dbb42}",
+    "part": "hair/bangs",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D84.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D84.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-75-79.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R04"
+    ]
+  },
+  {
+    "name": "D84.1 | face/eyebrows/eyebrow_left | front",
+    "uuid": "{a2acf7ca-a935-4c2d-9e1a-a0bd319d3e41}",
+    "part": "face/eyebrows/eyebrow_left",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D84p1.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D84p1.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-75-79.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R07"
+    ]
+  },
+  {
+    "name": "D84.2 | face/eyebrows/eyebrow_right | front",
+    "uuid": "{882c642c-c4d7-4ecc-b2ec-57e6fae5ed13}",
+    "part": "face/eyebrows/eyebrow_right",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D84p2.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D84p2.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-75-79.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": [
+      "R08"
+    ]
+  },
+  {
+    "name": "D85 | head_accessories/hair_bell",
+    "uuid": "{71a12d72-72ea-4f56-a1b7-546d1cfa2243}",
+    "part": "head_accessories/hair_bell",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D85.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D85.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-75-79.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front",
+    "uuid": "{368765d3-d740-4b55-9b79-0d2ebae08dfa}",
+    "part": "head_accessories/tanuki_ornament/tanuki_body",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D85p5.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D85p5.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-75-79.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D86 | head_accessories/tanuki_ornament/paw/paw_left",
+    "uuid": "{42f9e26a-5609-4811-aec4-8d5fb453dc34}",
+    "part": "head_accessories/tanuki_ornament/paw/paw_left",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D86.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D86.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-80-84.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D87 | head_accessories/tanuki_ornament/paw/paw_right",
+    "uuid": "{f3526b5b-0fa3-4001-b58c-aa2e624ba04d}",
+    "part": "head_accessories/tanuki_ornament/paw/paw_right",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D87.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D87.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-80-84.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D88 | head_accessories/hair_tie_front",
+    "uuid": "{0e2def08-a9b2-4324-9c18-5b658cdfe67c}",
+    "part": "head_accessories/hair_tie_front",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D88.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D88.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-80-84.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D89 | legs/leg_left/thigh_band_front",
+    "uuid": "{c24706b3-b875-4e98-af67-aab9b5ece139}",
+    "part": "legs/leg_left/thigh_band_front",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D89.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D89.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-80-84.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  },
+  {
+    "name": "D90 | legs/leg_right/anklet_front",
+    "uuid": "{bc1a3c77-a9f4-439a-bad8-e69a8709182e}",
+    "part": "legs/leg_right/anklet_front",
+    "solo": "raster-layering/step01/review-evidence/independent-02/solo/D90.png",
+    "upper_hidden": "raster-layering/step01/review-evidence/independent-02/below/D90.png",
+    "gray_sheet": "raster-layering/step01/review-evidence/independent-02/sheets/layers-80-84.png",
+    "solo_seen": true,
+    "upper_hidden_seen": true,
+    "issues": []
+  }
+]

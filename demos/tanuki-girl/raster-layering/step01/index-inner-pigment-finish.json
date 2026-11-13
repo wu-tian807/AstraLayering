@@ -1,0 +1,10 @@
+[
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "method": "A short own-pigment native soft pass just inside the lower edge removes remaining dotted interior color, preserving all original alpha and the two-pixel exterior ink."
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "method": "A short own-pigment native soft pass just inside the lower edge removes remaining dotted interior color, preserving all original alpha and the two-pixel exterior ink."
+  }
+]

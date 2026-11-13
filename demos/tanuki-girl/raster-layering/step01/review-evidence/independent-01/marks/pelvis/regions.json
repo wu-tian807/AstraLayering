@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-evidence/independent-01/solo/25-pelvis.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1376,
+    2048
+  ],
+  "marked": "raster-layering/step01/review-evidence/independent-01/marks/pelvis/marked.png",
+  "manifest": "raster-layering/step01/review-evidence/independent-01/marks/pelvis/regions.json",
+  "regions": [
+    {
+      "id": "R22",
+      "bounds": [
+        600,
+        859,
+        75,
+        47
+      ],
+      "layers": [
+        "D33 | pelvis | front"
+      ],
+      "description": "骨盆前片上补全独显：左上圆帽布面留有水平灰色短条和矩形色阶，圆弧边局部折断。修掉采样接边痕迹，沿本件现有圆帽恢复平顺同材质布面，不添加原图没有的腰线。",
+      "crop": [
+        588,
+        847,
+        99,
+        71
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-evidence/independent-01/marks/pelvis/R22-current.png",
+        "reference": "raster-layering/step01/review-evidence/independent-01/marks/pelvis/R22-reference.png",
+        "comparison": "raster-layering/step01/review-evidence/independent-01/marks/pelvis/R22-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

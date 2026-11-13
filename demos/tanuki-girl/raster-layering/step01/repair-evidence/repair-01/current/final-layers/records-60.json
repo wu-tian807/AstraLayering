@@ -1,0 +1,177 @@
+[
+  {
+    "index": 60,
+    "name": "D69 | face/eyes/eye_left/highlight",
+    "uuid": "{bb67c9fd-f337-4b8d-ad9a-8ab3190c595b}",
+    "level": 69,
+    "parent": "root"
+  },
+  {
+    "index": 61,
+    "name": "D70 | face/eyes/eye_right/highlight",
+    "uuid": "{4473535e-3342-4b51-abb9-c2d8f0666128}",
+    "level": 70,
+    "parent": "root"
+  },
+  {
+    "index": 62,
+    "name": "D71 | face/eyes/eye_left/upper_eyelid",
+    "uuid": "{ae6d9e09-a249-45b6-8e3b-b7db6f39dfe0}",
+    "level": 71,
+    "parent": "root"
+  },
+  {
+    "index": 63,
+    "name": "D72 | face/eyes/eye_right/upper_eyelid",
+    "uuid": "{c9dff7e7-54ed-4e72-9521-c6e675a7ff93}",
+    "level": 72,
+    "parent": "root"
+  },
+  {
+    "index": 64,
+    "name": "D73 | face/eyes/eye_left/eyelid_crease",
+    "uuid": "{1af80f46-0541-4e4a-95be-861b54363fc3}",
+    "level": 73,
+    "parent": "root"
+  },
+  {
+    "index": 65,
+    "name": "D74 | face/eyes/eye_right/eyelid_crease",
+    "uuid": "{fe355f5b-523c-4571-8a0d-db85e0c60423}",
+    "level": 74,
+    "parent": "root"
+  },
+  {
+    "index": 66,
+    "name": "D75 | face/nose",
+    "uuid": "{9715a843-db7d-435a-a8e3-b32f2dc56a6f}",
+    "level": 75,
+    "parent": "root"
+  },
+  {
+    "index": 67,
+    "name": "D76 | face/blush_left",
+    "uuid": "{5e74d9a3-a429-4d63-8f05-67f72cf9e047}",
+    "level": 76,
+    "parent": "root"
+  },
+  {
+    "index": 68,
+    "name": "D77 | face/blush_right",
+    "uuid": "{591e43a4-4e29-4e9a-bf37-a56199a73562}",
+    "level": 77,
+    "parent": "root"
+  },
+  {
+    "index": 69,
+    "name": "D78 | face/mouth/lower_lip",
+    "uuid": "{3c68fb33-ff72-4f7e-967b-5780418a7453}",
+    "level": 78,
+    "parent": "root"
+  },
+  {
+    "index": 70,
+    "name": "D79 | face/mouth/upper_lip",
+    "uuid": "{94eedc57-8397-46d7-b4df-d7f7d56c87fa}",
+    "level": 79,
+    "parent": "root"
+  },
+  {
+    "index": 71,
+    "name": "D80 | face/eyebrows/eyebrow_left | back",
+    "uuid": "{06085fa6-f39d-49c6-bc1b-505f7840b94f}",
+    "level": 80,
+    "parent": "root"
+  },
+  {
+    "index": 72,
+    "name": "D81 | face/eyebrows/eyebrow_right | back",
+    "uuid": "{739e209d-5633-4105-a477-bb4811a84f3a}",
+    "level": 81,
+    "parent": "root"
+  },
+  {
+    "index": 73,
+    "name": "D82 | hair/side_hair/side_hair_left",
+    "uuid": "{bde7e205-6062-4346-a420-e78844b50ac5}",
+    "level": 82,
+    "parent": "root"
+  },
+  {
+    "index": 74,
+    "name": "D83 | hair/side_hair/side_hair_right",
+    "uuid": "{ccf27b6d-49e0-40a9-9a4d-17c7bc104c41}",
+    "level": 83,
+    "parent": "root"
+  },
+  {
+    "index": 75,
+    "name": "D84 | hair/bangs",
+    "uuid": "{e2e38ffb-ec15-4ab7-aebb-fe1b504dbb42}",
+    "level": 84,
+    "parent": "root"
+  },
+  {
+    "index": 76,
+    "name": "D84.1 | face/eyebrows/eyebrow_left | front",
+    "uuid": "{a2acf7ca-a935-4c2d-9e1a-a0bd319d3e41}",
+    "level": 84.1,
+    "parent": "root"
+  },
+  {
+    "index": 77,
+    "name": "D84.2 | face/eyebrows/eyebrow_right | front",
+    "uuid": "{882c642c-c4d7-4ecc-b2ec-57e6fae5ed13}",
+    "level": 84.2,
+    "parent": "root"
+  },
+  {
+    "index": 78,
+    "name": "D85 | head_accessories/hair_bell",
+    "uuid": "{71a12d72-72ea-4f56-a1b7-546d1cfa2243}",
+    "level": 85,
+    "parent": "root"
+  },
+  {
+    "index": 79,
+    "name": "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front",
+    "uuid": "{368765d3-d740-4b55-9b79-0d2ebae08dfa}",
+    "level": 85.5,
+    "parent": "root"
+  },
+  {
+    "index": 80,
+    "name": "D86 | head_accessories/tanuki_ornament/paw/paw_left",
+    "uuid": "{42f9e26a-5609-4811-aec4-8d5fb453dc34}",
+    "level": 86,
+    "parent": "root"
+  },
+  {
+    "index": 81,
+    "name": "D87 | head_accessories/tanuki_ornament/paw/paw_right",
+    "uuid": "{f3526b5b-0fa3-4001-b58c-aa2e624ba04d}",
+    "level": 87,
+    "parent": "root"
+  },
+  {
+    "index": 82,
+    "name": "D88 | head_accessories/hair_tie_front",
+    "uuid": "{0e2def08-a9b2-4324-9c18-5b658cdfe67c}",
+    "level": 88,
+    "parent": "root"
+  },
+  {
+    "index": 83,
+    "name": "D89 | legs/leg_left/thigh_band_front",
+    "uuid": "{c24706b3-b875-4e98-af67-aab9b5ece139}",
+    "level": 89,
+    "parent": "root"
+  },
+  {
+    "index": 84,
+    "name": "D90 | legs/leg_right/anklet_front",
+    "uuid": "{bc1a3c77-a9f4-439a-bad8-e69a8709182e}",
+    "level": 90,
+    "parent": "root"
+  }
+]

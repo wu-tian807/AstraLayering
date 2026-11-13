@@ -1,0 +1,23 @@
+{
+  "canvas": [
+    1376,
+    2048
+  ],
+  "colorModel": "RGBA",
+  "colorDepth": "U8",
+  "colorProfile": "sRGB-elle-V2-srgbtrc.icc",
+  "nodes": 91,
+  "paintLayers": 85,
+  "logicalParts": 78,
+  "types": {
+    "paintlayer": 85,
+    "transparencymask": 5,
+    "grouplayer": 1
+  },
+  "depthCoveragePassed": true,
+  "allSVGPresent": true,
+  "groupsSHA256": "a6f019148c50d307f2a165739dac192ff748d27341b8b5abddae76ce4b8591ac",
+  "occlusionSHA256": "bc63646be5e5aa55d72a81a44dc674d34813f7af9f80f412e448f78e64c0b76a",
+  "kraSHA256": "ea643e5d2207f47b84a6846659cddb4d7960f9b9f87316c2869a0e29694557ff",
+  "pngSHA256": "d6983c11cc2e193a6a6dd3ba63e6ab9d15cc710bcdcba3f7101c91d255857afa"
+}

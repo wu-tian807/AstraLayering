@@ -1,0 +1,597 @@
+[
+  {
+    "index": 0,
+    "name": "D0 | tail",
+    "uuid": "{47033051-7e94-4a4f-8c50-9eccbe2c5513}",
+    "level": 0,
+    "parent": "root"
+  },
+  {
+    "index": 1,
+    "name": "D10 | legs/leg_left/thigh_band_back",
+    "uuid": "{37c84885-94de-4375-b6bc-81bcefb8dec0}",
+    "level": 10,
+    "parent": "root"
+  },
+  {
+    "index": 2,
+    "name": "D11 | legs/leg_right/anklet_back",
+    "uuid": "{34898742-3f8e-4a5f-bb07-b06df707a68b}",
+    "level": 11,
+    "parent": "root"
+  },
+  {
+    "index": 3,
+    "name": "D12 | head_accessories/tanuki_ornament/tanuki_body | back",
+    "uuid": "{e31ef44b-9571-464f-a0d6-9ed501711eb0}",
+    "level": 12,
+    "parent": "root"
+  },
+  {
+    "index": 4,
+    "name": "D13 | hair/braid_right | back",
+    "uuid": "{a0b578fa-3f3d-485b-8068-20008d6a8aa7}",
+    "level": 13,
+    "parent": "root"
+  },
+  {
+    "index": 5,
+    "name": "D14 | hair/back_hair",
+    "uuid": "{6ef8f6a4-c537-4b73-88c4-5860409f0c7e}",
+    "level": 14,
+    "parent": "root"
+  },
+  {
+    "index": 6,
+    "name": "D15 | headphones/headband",
+    "uuid": "{700e32b8-c154-4208-b397-8dedd15ac65b}",
+    "level": 15,
+    "parent": "root"
+  },
+  {
+    "index": 7,
+    "name": "D16 | face/ears/ear_left/ear_interior",
+    "uuid": "{89e242ab-70e7-49e5-8e34-9a0217ddd7a8}",
+    "level": 16,
+    "parent": "root"
+  },
+  {
+    "index": 8,
+    "name": "D17 | face/ears/ear_right/ear_interior",
+    "uuid": "{d29c58c9-62d0-4ccd-9424-799489bda31b}",
+    "level": 17,
+    "parent": "root"
+  },
+  {
+    "index": 9,
+    "name": "D18 | face/ears/ear_left/ear_fur",
+    "uuid": "{d302e191-5c78-4817-845b-37da0de4f9a7}",
+    "level": 18,
+    "parent": "root"
+  },
+  {
+    "index": 10,
+    "name": "D19 | face/ears/ear_right/ear_fur",
+    "uuid": "{734186c6-cabd-4cfd-b129-63d36fded11b}",
+    "level": 19,
+    "parent": "root"
+  },
+  {
+    "index": 11,
+    "name": "D20 | face/ears/ear_left/ear_shell",
+    "uuid": "{445a25cf-073d-4062-9cb7-2dc2e5d1dca3}",
+    "level": 20,
+    "parent": "root"
+  },
+  {
+    "index": 12,
+    "name": "D21 | face/ears/ear_right/ear_shell",
+    "uuid": "{ed1ff626-4500-4c1f-9bbf-09638b5b3c73}",
+    "level": 21,
+    "parent": "root"
+  },
+  {
+    "index": 13,
+    "name": "D22 | neck",
+    "uuid": "{fbb36e58-b147-450f-ac71-d51de7bd2518}",
+    "level": 22,
+    "parent": "root"
+  },
+  {
+    "index": 14,
+    "name": "D22.25 | headphones/headband | terminals",
+    "uuid": "{736c1a45-8063-4dc1-9e05-fa2cb41eb3b9}",
+    "level": 22.25,
+    "parent": "root"
+  },
+  {
+    "index": 15,
+    "name": "D22.5 | pelvis | back",
+    "uuid": "{5a270326-00bf-4e30-b698-9c48a83f49ca}",
+    "level": 22.5,
+    "parent": "root"
+  },
+  {
+    "index": 16,
+    "name": "D23 | legs/leg_left/leg",
+    "uuid": "{b65106a1-85b2-4444-8eb8-11f558cdc1d1}",
+    "level": 23,
+    "parent": "root"
+  },
+  {
+    "index": 17,
+    "name": "D24 | legs/leg_right/leg",
+    "uuid": "{d503c5f0-2c3f-46d4-9c1d-3fa14d1565c5}",
+    "level": 24,
+    "parent": "root"
+  },
+  {
+    "index": 18,
+    "name": "D25 | arms/arm_left/upper_arm",
+    "uuid": "{760efccd-6eb8-49fc-a996-1e95ce640f55}",
+    "level": 25,
+    "parent": "root"
+  },
+  {
+    "index": 19,
+    "name": "D26 | arms/arm_right/upper_arm",
+    "uuid": "{b60f5bf9-dc78-43fc-9449-d586fffbb137}",
+    "level": 26,
+    "parent": "root"
+  },
+  {
+    "index": 20,
+    "name": "D27 | arms/arm_left/bracelet_green_back",
+    "uuid": "{7634f287-b2f4-43c8-bd81-b678d7c53fa4}",
+    "level": 27,
+    "parent": "root"
+  },
+  {
+    "index": 21,
+    "name": "D28 | arms/arm_left/bracelet_pink_back",
+    "uuid": "{9300b096-f06d-4ca4-b43e-81081a584bce}",
+    "level": 28,
+    "parent": "root"
+  },
+  {
+    "index": 22,
+    "name": "D29 | arms/arm_right/bracelet_cream_back",
+    "uuid": "{5d9621c7-801e-4fcb-a821-40d9ccefd060}",
+    "level": 29,
+    "parent": "root"
+  },
+  {
+    "index": 23,
+    "name": "D30 | arms/arm_right/bracelet_pink_back",
+    "uuid": "{4b6e20b9-010e-468f-a113-c4fb2a99f661}",
+    "level": 30,
+    "parent": "root"
+  },
+  {
+    "index": 24,
+    "name": "D31 | arms/arm_left/forearm",
+    "uuid": "{c57a133b-41ed-4918-80de-a962b23c6b3c}",
+    "level": 31,
+    "parent": "root"
+  },
+  {
+    "index": 25,
+    "name": "D32 | arms/arm_right/forearm",
+    "uuid": "{1538e529-1abc-46ee-a1d4-8cb195bd6b1f}",
+    "level": 32,
+    "parent": "root"
+  },
+  {
+    "index": 26,
+    "name": "D32.5 | body/torso | lower_mount",
+    "uuid": "{46358100-0b1c-433a-a3da-f652464fcffd}",
+    "level": 32.5,
+    "parent": "root"
+  },
+  {
+    "index": 27,
+    "name": "D33 | pelvis | front",
+    "uuid": "{2816e084-1186-4a3d-aaa2-8f4be6ad61ae}",
+    "level": 33,
+    "parent": "root"
+  },
+  {
+    "index": 28,
+    "name": "D34 | body/torso",
+    "uuid": "{237ddc01-663c-4aeb-b897-3e80874b186e}",
+    "level": 34,
+    "parent": "root"
+  },
+  {
+    "index": 29,
+    "name": "D35 | body/breast",
+    "uuid": "{1b76e69a-e317-4da3-a0fb-ff17ac74b107}",
+    "level": 35,
+    "parent": "root"
+  },
+  {
+    "index": 30,
+    "name": "D36 | arms/arm_left/hand/little_finger",
+    "uuid": "{ca815547-31cc-4382-9aa8-dd188b37b377}",
+    "level": 36,
+    "parent": "root"
+  },
+  {
+    "index": 31,
+    "name": "D37 | arms/arm_right/hand/little_finger",
+    "uuid": "{f6a6d2a1-0435-4c58-ab1a-662a1559249c}",
+    "level": 37,
+    "parent": "root"
+  },
+  {
+    "index": 32,
+    "name": "D38 | arms/arm_left/hand/ring_finger",
+    "uuid": "{d85bd8b0-a005-4c44-8336-c74b30be64a4}",
+    "level": 38,
+    "parent": "root"
+  },
+  {
+    "index": 33,
+    "name": "D39 | arms/arm_right/hand/ring_finger",
+    "uuid": "{6ea2cb37-c639-4b2a-a4c2-08504d985757}",
+    "level": 39,
+    "parent": "root"
+  },
+  {
+    "index": 34,
+    "name": "D40 | arms/arm_left/hand/middle_finger",
+    "uuid": "{3fd8810e-8dde-4b15-b781-25d1dc9f5978}",
+    "level": 40,
+    "parent": "root"
+  },
+  {
+    "index": 35,
+    "name": "D41 | arms/arm_right/hand/middle_finger",
+    "uuid": "{0da3ede1-9370-48e6-80a5-69abb2cf3b15}",
+    "level": 41,
+    "parent": "root"
+  },
+  {
+    "index": 36,
+    "name": "D42 | arms/arm_left/hand/thumb",
+    "uuid": "{aba770e8-b3fe-461b-adae-4ee044d10e1d}",
+    "level": 42,
+    "parent": "root"
+  },
+  {
+    "index": 37,
+    "name": "D43 | arms/arm_right/hand/thumb",
+    "uuid": "{00111c35-ef30-4cf9-b1a9-dbf57cc5138f}",
+    "level": 43,
+    "parent": "root"
+  },
+  {
+    "index": 38,
+    "name": "D44 | arms/arm_left/hand/index_finger",
+    "uuid": "{e49a2920-0265-4fec-bcfc-f03c59d3ec1d}",
+    "level": 44,
+    "parent": "root"
+  },
+  {
+    "index": 39,
+    "name": "D45 | arms/arm_right/hand/index_finger",
+    "uuid": "{3a056be8-c259-483b-ae9a-f71e159baa9b}",
+    "level": 45,
+    "parent": "root"
+  },
+  {
+    "index": 40,
+    "name": "D46 | arms/arm_left/hand/palm",
+    "uuid": "{b3f5969e-8be8-4337-909f-e5918a92ff29}",
+    "level": 46,
+    "parent": "root"
+  },
+  {
+    "index": 41,
+    "name": "D47 | arms/arm_right/hand/palm",
+    "uuid": "{2d70aa71-52e9-4b36-975b-e1b7d74d1d14}",
+    "level": 47,
+    "parent": "root"
+  },
+  {
+    "index": 42,
+    "name": "D48 | arms/arm_left/bracelet_pink_front",
+    "uuid": "{86d58413-581c-45ac-8e80-3881fbd16687}",
+    "level": 48,
+    "parent": "root"
+  },
+  {
+    "index": 43,
+    "name": "D49 | arms/arm_right/bracelet_pink_front",
+    "uuid": "{9afff65b-5f91-4fd3-b9b7-84b246b41711}",
+    "level": 49,
+    "parent": "root"
+  },
+  {
+    "index": 44,
+    "name": "D50 | arms/arm_left/bell",
+    "uuid": "{48a4f564-4728-4e72-ad73-4957debd0dec}",
+    "level": 50,
+    "parent": "root"
+  },
+  {
+    "index": 45,
+    "name": "D51 | arms/arm_left/bracelet_green_front",
+    "uuid": "{4690710f-f17c-4f83-a35a-3ec7b467fa60}",
+    "level": 51,
+    "parent": "root"
+  },
+  {
+    "index": 46,
+    "name": "D52 | arms/arm_right/bracelet_cream_front",
+    "uuid": "{d0b5b321-2ccd-481a-9fb5-ef30e7b0ad3f}",
+    "level": 52,
+    "parent": "root"
+  },
+  {
+    "index": 47,
+    "name": "D56 | head_accessories/hair_tie_back",
+    "uuid": "{7efb0a22-5ffa-40d6-9b14-796254b6ee3f}",
+    "level": 56,
+    "parent": "root"
+  },
+  {
+    "index": 48,
+    "name": "D57 | hair/braid_right | front",
+    "uuid": "{bf1ac4b1-cfe3-4884-8ec9-f9e0811bc6b5}",
+    "level": 57,
+    "parent": "root"
+  },
+  {
+    "index": 49,
+    "name": "D58 | headphones/earcups/earcup_left",
+    "uuid": "{f799ae0d-40fd-4555-a1f2-f25327b3a98f}",
+    "level": 58,
+    "parent": "root"
+  },
+  {
+    "index": 50,
+    "name": "D59 | headphones/earcups/earcup_right",
+    "uuid": "{8bcb9e3b-93e0-4c43-bff5-d47d4e531fcf}",
+    "level": 59,
+    "parent": "root"
+  },
+  {
+    "index": 51,
+    "name": "D60 | face/face_base",
+    "uuid": "{c73e48f3-03a2-4701-8caf-83063974965f}",
+    "level": 60,
+    "parent": "root"
+  },
+  {
+    "index": 52,
+    "name": "D61 | face/mouth/mouth_interior",
+    "uuid": "{a2b1e6d8-0c5e-4ff7-9ca3-094cc209211f}",
+    "level": 61,
+    "parent": "D61-64 | Shared mouth opening"
+  },
+  {
+    "index": 53,
+    "name": "D62 | face/mouth/tongue",
+    "uuid": "{f177c810-bf3d-4225-8478-7cca431e2ae1}",
+    "level": 62,
+    "parent": "D61-64 | Shared mouth opening"
+  },
+  {
+    "index": 54,
+    "name": "D63 | face/mouth/lower_teeth",
+    "uuid": "{f293a843-0915-4e81-82d8-32a6925c7a46}",
+    "level": 63,
+    "parent": "D61-64 | Shared mouth opening"
+  },
+  {
+    "index": 55,
+    "name": "D64 | face/mouth/upper_teeth",
+    "uuid": "{0f2a79f4-14a7-4e68-aa64-22ca28d0833c}",
+    "level": 64,
+    "parent": "D61-64 | Shared mouth opening"
+  },
+  {
+    "index": 56,
+    "name": "D65 | face/eyes/eye_left/sclera",
+    "uuid": "{6b8f98e3-272a-4807-8774-4a219b6812f5}",
+    "level": 65,
+    "parent": "root"
+  },
+  {
+    "index": 57,
+    "name": "D66 | face/eyes/eye_right/sclera",
+    "uuid": "{eb30337c-5a23-4028-af35-6e96094fabc8}",
+    "level": 66,
+    "parent": "root"
+  },
+  {
+    "index": 58,
+    "name": "D67 | face/eyes/eye_left/iris",
+    "uuid": "{eae99bc1-fe42-40d9-8bc1-c077610d6d86}",
+    "level": 67,
+    "parent": "root"
+  },
+  {
+    "index": 59,
+    "name": "D68 | face/eyes/eye_right/iris",
+    "uuid": "{338fcc39-a964-4c97-a3b3-16b60b7a3024}",
+    "level": 68,
+    "parent": "root"
+  },
+  {
+    "index": 60,
+    "name": "D69 | face/eyes/eye_left/highlight",
+    "uuid": "{bb67c9fd-f337-4b8d-ad9a-8ab3190c595b}",
+    "level": 69,
+    "parent": "root"
+  },
+  {
+    "index": 61,
+    "name": "D70 | face/eyes/eye_right/highlight",
+    "uuid": "{4473535e-3342-4b51-abb9-c2d8f0666128}",
+    "level": 70,
+    "parent": "root"
+  },
+  {
+    "index": 62,
+    "name": "D71 | face/eyes/eye_left/upper_eyelid",
+    "uuid": "{ae6d9e09-a249-45b6-8e3b-b7db6f39dfe0}",
+    "level": 71,
+    "parent": "root"
+  },
+  {
+    "index": 63,
+    "name": "D72 | face/eyes/eye_right/upper_eyelid",
+    "uuid": "{c9dff7e7-54ed-4e72-9521-c6e675a7ff93}",
+    "level": 72,
+    "parent": "root"
+  },
+  {
+    "index": 64,
+    "name": "D73 | face/eyes/eye_left/eyelid_crease",
+    "uuid": "{1af80f46-0541-4e4a-95be-861b54363fc3}",
+    "level": 73,
+    "parent": "root"
+  },
+  {
+    "index": 65,
+    "name": "D74 | face/eyes/eye_right/eyelid_crease",
+    "uuid": "{fe355f5b-523c-4571-8a0d-db85e0c60423}",
+    "level": 74,
+    "parent": "root"
+  },
+  {
+    "index": 66,
+    "name": "D75 | face/nose",
+    "uuid": "{9715a843-db7d-435a-a8e3-b32f2dc56a6f}",
+    "level": 75,
+    "parent": "root"
+  },
+  {
+    "index": 67,
+    "name": "D76 | face/blush_left",
+    "uuid": "{5e74d9a3-a429-4d63-8f05-67f72cf9e047}",
+    "level": 76,
+    "parent": "root"
+  },
+  {
+    "index": 68,
+    "name": "D77 | face/blush_right",
+    "uuid": "{591e43a4-4e29-4e9a-bf37-a56199a73562}",
+    "level": 77,
+    "parent": "root"
+  },
+  {
+    "index": 69,
+    "name": "D78 | face/mouth/lower_lip",
+    "uuid": "{3c68fb33-ff72-4f7e-967b-5780418a7453}",
+    "level": 78,
+    "parent": "root"
+  },
+  {
+    "index": 70,
+    "name": "D79 | face/mouth/upper_lip",
+    "uuid": "{94eedc57-8397-46d7-b4df-d7f7d56c87fa}",
+    "level": 79,
+    "parent": "root"
+  },
+  {
+    "index": 71,
+    "name": "D80 | face/eyebrows/eyebrow_left | back",
+    "uuid": "{06085fa6-f39d-49c6-bc1b-505f7840b94f}",
+    "level": 80,
+    "parent": "root"
+  },
+  {
+    "index": 72,
+    "name": "D81 | face/eyebrows/eyebrow_right | back",
+    "uuid": "{739e209d-5633-4105-a477-bb4811a84f3a}",
+    "level": 81,
+    "parent": "root"
+  },
+  {
+    "index": 73,
+    "name": "D82 | hair/side_hair/side_hair_left",
+    "uuid": "{bde7e205-6062-4346-a420-e78844b50ac5}",
+    "level": 82,
+    "parent": "root"
+  },
+  {
+    "index": 74,
+    "name": "D83 | hair/side_hair/side_hair_right",
+    "uuid": "{ccf27b6d-49e0-40a9-9a4d-17c7bc104c41}",
+    "level": 83,
+    "parent": "root"
+  },
+  {
+    "index": 75,
+    "name": "D84 | hair/bangs",
+    "uuid": "{e2e38ffb-ec15-4ab7-aebb-fe1b504dbb42}",
+    "level": 84,
+    "parent": "root"
+  },
+  {
+    "index": 76,
+    "name": "D84.1 | face/eyebrows/eyebrow_left | front",
+    "uuid": "{a2acf7ca-a935-4c2d-9e1a-a0bd319d3e41}",
+    "level": 84.1,
+    "parent": "root"
+  },
+  {
+    "index": 77,
+    "name": "D84.2 | face/eyebrows/eyebrow_right | front",
+    "uuid": "{882c642c-c4d7-4ecc-b2ec-57e6fae5ed13}",
+    "level": 84.2,
+    "parent": "root"
+  },
+  {
+    "index": 78,
+    "name": "D85 | head_accessories/hair_bell",
+    "uuid": "{71a12d72-72ea-4f56-a1b7-546d1cfa2243}",
+    "level": 85,
+    "parent": "root"
+  },
+  {
+    "index": 79,
+    "name": "D85.5 | head_accessories/tanuki_ornament/tanuki_body | front",
+    "uuid": "{368765d3-d740-4b55-9b79-0d2ebae08dfa}",
+    "level": 85.5,
+    "parent": "root"
+  },
+  {
+    "index": 80,
+    "name": "D86 | head_accessories/tanuki_ornament/paw/paw_left",
+    "uuid": "{42f9e26a-5609-4811-aec4-8d5fb453dc34}",
+    "level": 86,
+    "parent": "root"
+  },
+  {
+    "index": 81,
+    "name": "D87 | head_accessories/tanuki_ornament/paw/paw_right",
+    "uuid": "{f3526b5b-0fa3-4001-b58c-aa2e624ba04d}",
+    "level": 87,
+    "parent": "root"
+  },
+  {
+    "index": 82,
+    "name": "D88 | head_accessories/hair_tie_front",
+    "uuid": "{0e2def08-a9b2-4324-9c18-5b658cdfe67c}",
+    "level": 88,
+    "parent": "root"
+  },
+  {
+    "index": 83,
+    "name": "D89 | legs/leg_left/thigh_band_front",
+    "uuid": "{c24706b3-b875-4e98-af67-aab9b5ece139}",
+    "level": 89,
+    "parent": "root"
+  },
+  {
+    "index": 84,
+    "name": "D90 | legs/leg_right/anklet_front",
+    "uuid": "{bc1a3c77-a9f4-439a-bad8-e69a8709182e}",
+    "level": 90,
+    "parent": "root"
+  }
+]

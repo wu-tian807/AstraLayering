@@ -1,0 +1,392 @@
+[
+  {
+    "id": "face/face_base",
+    "registration": "raster-layering/step01/workspace/generation/face__face_base/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_left__upper_eyelid/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_left/sclera",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_left__sclera/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_left/iris",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_left__iris/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_left/highlight",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_left__highlight/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_left/eyelid_crease",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_left__eyelid_crease/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_right/upper_eyelid",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_right__upper_eyelid/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_right/sclera",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_right__sclera/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_right/iris",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_right__iris/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_right/highlight",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_right__highlight/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyes/eye_right/eyelid_crease",
+    "registration": "raster-layering/step01/workspace/generation/face__eyes__eye_right__eyelid_crease/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "registration": "raster-layering/step01/workspace/generation/face__eyebrows__eyebrow_left/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "registration": "raster-layering/step01/workspace/generation/face__eyebrows__eyebrow_right/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/ears/ear_left/ear_shell",
+    "registration": "raster-layering/step01/workspace/generation/face__ears__ear_left__ear_shell/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/ears/ear_left/ear_interior",
+    "registration": "raster-layering/step01/workspace/generation/face__ears__ear_left__ear_interior/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/ears/ear_left/ear_fur",
+    "registration": "raster-layering/step01/workspace/generation/face__ears__ear_left__ear_fur/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/ears/ear_right/ear_shell",
+    "registration": "raster-layering/step01/workspace/generation/face__ears__ear_right__ear_shell/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/ears/ear_right/ear_interior",
+    "registration": "raster-layering/step01/workspace/generation/face__ears__ear_right__ear_interior/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/ears/ear_right/ear_fur",
+    "registration": "raster-layering/step01/workspace/generation/face__ears__ear_right__ear_fur/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/nose",
+    "registration": "raster-layering/step01/workspace/generation/face__nose/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/mouth/upper_lip",
+    "registration": "raster-layering/step01/workspace/generation/face__mouth__upper_lip/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/mouth/lower_lip",
+    "registration": "raster-layering/step01/workspace/generation/face__mouth__lower_lip/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/mouth/mouth_interior",
+    "registration": "raster-layering/step01/workspace/generation/face__mouth__mouth_interior/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/mouth/upper_teeth",
+    "registration": "raster-layering/step01/workspace/generation/face__mouth__upper_teeth/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/mouth/lower_teeth",
+    "registration": "raster-layering/step01/workspace/generation/face__mouth__lower_teeth/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/mouth/tongue",
+    "registration": "raster-layering/step01/workspace/generation/face__mouth__tongue/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/blush_left",
+    "registration": "raster-layering/step01/workspace/generation/face__blush_left/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "face/blush_right",
+    "registration": "raster-layering/step01/workspace/generation/face__blush_right/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "hair/bangs",
+    "registration": "raster-layering/step01/workspace/generation/hair__bangs/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "hair/side_hair/side_hair_left",
+    "registration": "raster-layering/step01/workspace/generation/hair__side_hair__side_hair_left/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "hair/side_hair/side_hair_right",
+    "registration": "raster-layering/step01/workspace/generation/hair__side_hair__side_hair_right/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "hair/back_hair",
+    "registration": "raster-layering/step01/workspace/generation/hair__back_hair/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "hair/braid_right",
+    "registration": "raster-layering/step01/workspace/generation/hair__braid_right/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "head_accessories/tanuki_ornament/tanuki_body",
+    "registration": "raster-layering/step01/workspace/generation/head_accessories__tanuki_ornament__tanuki_body/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "head_accessories/tanuki_ornament/paw/paw_left",
+    "registration": "raster-layering/step01/workspace/generation/head_accessories__tanuki_ornament__paw__paw_left/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "head_accessories/tanuki_ornament/paw/paw_right",
+    "registration": "raster-layering/step01/workspace/generation/head_accessories__tanuki_ornament__paw__paw_right/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "head_accessories/hair_bell",
+    "registration": "raster-layering/step01/workspace/generation/head_accessories__hair_bell/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "head_accessories/hair_tie_front",
+    "registration": "raster-layering/step01/workspace/generation/head_accessories__hair_tie_front/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "head_accessories/hair_tie_back",
+    "registration": "raster-layering/step01/workspace/generation/head_accessories__hair_tie_back/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "neck",
+    "registration": "raster-layering/step01/workspace/generation/neck/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "body/torso",
+    "registration": "raster-layering/step01/workspace/generation/body__torso/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "body/breast",
+    "registration": "raster-layering/step01/workspace/generation/body__breast/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/upper_arm",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__upper_arm/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/forearm",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__forearm/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/hand/palm",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__hand__palm/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__hand__thumb/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__hand__index_finger/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/hand/middle_finger",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__hand__middle_finger/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/hand/ring_finger",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__hand__ring_finger/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/hand/little_finger",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__hand__little_finger/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/bracelet_green_front",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__bracelet_green_front/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/bracelet_green_back",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__bracelet_green_back/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/bracelet_pink_front",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__bracelet_pink_front/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/bracelet_pink_back",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__bracelet_pink_back/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_left/bell",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_left__bell/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/upper_arm",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__upper_arm/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/forearm",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__forearm/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/hand/palm",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__hand__palm/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/hand/thumb",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__hand__thumb/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__hand__index_finger/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__hand__middle_finger/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/hand/ring_finger",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__hand__ring_finger/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/hand/little_finger",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__hand__little_finger/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/bracelet_cream_front",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__bracelet_cream_front/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/bracelet_cream_back",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__bracelet_cream_back/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/bracelet_pink_front",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__bracelet_pink_front/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "arms/arm_right/bracelet_pink_back",
+    "registration": "raster-layering/step01/workspace/generation/arms__arm_right__bracelet_pink_back/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "pelvis",
+    "registration": "raster-layering/step01/workspace/generation/pelvis/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "legs/leg_left/leg",
+    "registration": "raster-layering/step01/workspace/generation/legs__leg_left__leg/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "legs/leg_left/thigh_band_front",
+    "registration": "raster-layering/step01/workspace/generation/legs__leg_left__thigh_band_front/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "legs/leg_left/thigh_band_back",
+    "registration": "raster-layering/step01/workspace/generation/legs__leg_left__thigh_band_back/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "legs/leg_right/leg",
+    "registration": "raster-layering/step01/workspace/generation/legs__leg_right__leg/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "legs/leg_right/anklet_front",
+    "registration": "raster-layering/step01/workspace/generation/legs__leg_right__anklet_front/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "legs/leg_right/anklet_back",
+    "registration": "raster-layering/step01/workspace/generation/legs__leg_right__anklet_back/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "headphones/earcups/earcup_left",
+    "registration": "raster-layering/step01/workspace/generation/headphones__earcups__earcup_left/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "headphones/earcups/earcup_right",
+    "registration": "raster-layering/step01/workspace/generation/headphones__earcups__earcup_right/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "headphones/headband",
+    "registration": "raster-layering/step01/workspace/generation/headphones__headband/registration.json",
+    "files_present": true
+  },
+  {
+    "id": "tail",
+    "registration": "raster-layering/step01/workspace/generation/tail/registration.json",
+    "files_present": true
+  }
+]
