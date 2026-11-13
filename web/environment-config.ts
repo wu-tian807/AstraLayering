@@ -11,10 +11,12 @@ import { appServerCommand } from '../.agents/skills/live2d-maker/shared/codex/to
 import { validateImageSelection } from '../.agents/skills/live2d-maker/shared/agents/images.ts';
 import { validateProviderModel } from '../.agents/skills/live2d-maker/shared/agents/providers.ts';
 import { legacyPrefix, withLegacyKeys } from '../.agents/skills/live2d-maker/shared/legacy-keys.ts';
+import { videoModels } from '../.agents/skills/live2d-maker/shared/video.ts';
 
 const envValues = (source: string) => parseEnv(source) as Record<string,string>;
-const roles: Record<string,string> = { preparation:'参考准备与姿态判断',part_draw:'轮廓绘制与返修',part_review:'轮廓审核',part_reduce:'同层去重',part_completion:'遮挡补全',part_groups:'部件分组',part_depth:'深度分析',raster_step01:'分层绘制与返修',raster_step01_review:'分层绘制审核',raster_step02:'边缘精修',raster_step03:'人物换装素体',assembly:'穿戴组装',shadow:'阴影制作',nine_axis_head:'九轴脸部与双耳转向' };
+const roles: Record<string,string> = { preparation:'参考准备与姿态判断',part_draw:'轮廓绘制与返修',part_review:'轮廓审核',part_reduce:'同层去重',part_completion:'遮挡补全',part_groups:'部件分组',part_depth:'深度分析',raster_step01:'分层绘制与返修',raster_step01_review:'分层绘制审核',raster_step02:'边缘精修',raster_step03:'人物换装素体',assembly:'穿戴组装',shadow:'阴影制作',nine_axis_head:'头部九轴制作' };
 const images: Record<string,string> = { part_standardize:'人物姿态标准化',part_simplify:'简化穿衣参考',part_base_subject:'人物素体参考',clothing_preparation:'纯衣服参考',part_completion:'人物补全辅助参考',clothing_completion:'衣服补全辅助参考',raster_step01:'人物分层绘制',raster_step01_review:'人物绘制审核',raster_step01_repair:'人物绘制返修',raster_step02:'人物边缘精修',raster_step03:'人物换装素体',clothing_raster_step01:'衣服分层绘制',clothing_raster_step01_review:'衣服绘制审核',clothing_raster_step01_repair:'衣服绘制返修',clothing_raster_step02:'衣服边缘精修',assembly:'穿戴组装',shadow_maps:'阴影法线与深度' };
+const videoFields = ['video_base_url','video_api_key','nine_axis_view_video_model'];
 export const secretKey = (key: string) => /(?:key|token|secret|password|credential|authorization)/i.test(key);
 const digest = (text: string, exists: boolean) => createHash('sha256').update(`${exists}\0${text}`).digest('hex');
 const queues = new Map<string,Promise<unknown>>();
@@ -28,13 +30,16 @@ function scalarFields(defaults: Record<string,string>): Field[] {
   }
   const labels: Record<string,string> = {agv_protocol:'AGV 网关协议',codex_home:'Codex 配置目录',openai_image_base_url:'GPT 生图服务地址',openai_image_api_key:'GPT 生图 API 密钥',google_image_base_url:'Nano 生图服务地址',google_image_api_key:'Nano 生图 API 密钥',google_image_protocol:'Nano 生图协议',agv_unlimited_response_header_timeout:'AGV 响应头期限兼容',agv_minimal_thinking_level:'AGV MINIMAL 兼容',image_compact_threshold:'Codex 图片数量预算（兼容键）',krita_max_instances:'本机 Krita 并发上限',update_check:'检查新版本'};
   const choices: Record<string,string[]> = {agv_protocol:['','genai','openai'],google_image_protocol:['gemini','openai'],agv_minimal_thinking_level:['','LOW','MEDIUM','HIGH']};
+  Object.assign(labels,{video_base_url:'视频服务地址',video_api_key:'视频服务 API 密钥',nine_axis_view_video_model:'头部九轴参考视频模型'});
+  choices.nine_axis_view_video_model=[...videoModels];
   for (const key of Object.keys(defaults)) {
     if (result.some(f=>f.key===key)||isModelSlotKey(key)||key.endsWith('_image_model')||key==='image_model') continue;
     const type = secretKey(key)?'secret':choices[key]?'select':/deduplicate$|unlimited_response_header_timeout$|update_check$/.test(key)?'boolean':/compact_threshold$|compact_mib$|_max_instances$/.test(key)?'number':'text';
-    result.push({ key,label:labels[key]??key.replaceAll('_',' '), section:key==='agv_protocol'?'connection':key.includes('compact')||key.includes('deduplicate')?'budget':key.includes('_image_')?'image-api':'advanced',type,options:choices[key],fallback:defaults[key] });
+    const video=videoFields.includes(key);
+    result.push({ key,label:labels[key]??key.replaceAll('_',' '), section:video?'video':key==='agv_protocol'?'connection':key.includes('compact')||key.includes('deduplicate')?'budget':key.includes('_image_')?'image-api':'advanced',type,options:choices[key],fallback:defaults[key],...(key==='video_api_key'?{hint:'填写视频服务的 API 密钥'}:{}) });
   }
   for(const [key,label] of Object.entries({DISPLAY:'Linux 显示入口 DISPLAY',WAYLAND_DISPLAY:'Wayland 显示入口',QT_QPA_PLATFORM:'Qt 显示方式'})) result.push({key,label,section:'advanced',type:'text'});
-  return result;
+  return [...result.filter(field=>!videoFields.includes(field.key)),...videoFields.flatMap(key=>result.filter(field=>field.key===key))];
 }
 
 // Preserve untouched bytes, including comments, unknown keys, multiline values and CRLF.
@@ -102,7 +107,7 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
   async function schema() {
     const template=await readFile(join(directory,'example.env'),'utf8'), defaults=envValues(template);
     const modelSlotDefaults=resolveModelDefaults(defaults), imageDefaults=resolveImageDefaults(defaults);
-    return {template,fields:[...Object.entries(modelSlotDefaults).map(([slot,fallback])=>({key:modelSlotKey(slot as ModelSlot),label:roles[slot],section:'llm',type:'model',fallback})),{key:defaultImageModelKey,label:'默认生图模型',section:'image',type:'image',fallback:imageDefaults.model},...imageSteps().map(step=>({key:imageModelKey(step),label:images[step]??step,section:'image',type:'image',fallback:defaults[imageModelKey(step)]??''})),...scalarFields(defaults)] as Field[]};
+    return {template,fields:[...Object.entries(modelSlotDefaults).map(([slot,fallback])=>({key:modelSlotKey(slot as ModelSlot),label:roles[slot],section:'llm',type:'model',fallback,...(slot==='nine_axis_head'?{hint:'脸部、头发与头饰步骤共用同一模型配置'}:{})})),{key:defaultImageModelKey,label:'默认生图模型',section:'image',type:'image',fallback:imageDefaults.model},...imageSteps().map(step=>({key:imageModelKey(step),label:images[step]??step,section:'image',type:'image',fallback:defaults[imageModelKey(step)]??''})),...scalarFields(defaults)] as Field[]};
   }
   async function describe(text:string,exists:boolean,revision:string) {
     const {fields}=await schema(),values=withLegacyKeys(envValues(text)), issues:string[]=[];
