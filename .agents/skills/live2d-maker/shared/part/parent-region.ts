@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomInt } from 'node:crypto';
 import { mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import sharp from 'sharp';
@@ -220,6 +220,16 @@ export function isParentCopy(outline: Buffer | string, parent: Buffer): boolean 
     (root.hasAttribute('data-parent-region') || root.hasAttribute('data-parent-mask'));
 }
 
+// Gives every filled shape of a copy one random color, so the copied block reads as its own piece.
+function recolor(svg: string): string {
+  const color = '#' + randomInt(0x1000000).toString(16).padStart(6, '0');
+  for (const entry of [...svgSource(svg).elements].reverse()) {
+    const fill = entry.element.getAttribute('fill');
+    if (fill !== null && fill !== 'none') svg = editXmlAttributes(svg, entry, { fill: color });
+  }
+  return svg;
+}
+
 // The outline tool: writes the copied part of the parent's completion as the group's outline draft.
 export function createParentRegionTool(options: { directory: string; parentPath: string; canvas: Canvas; groupId: string; draft: string;
   overrides?: string }): FunctionTool {
@@ -238,7 +248,7 @@ export function createParentRegionTool(options: { directory: string; parentPath:
       } else region = checkParentRegion(raw, options.canvas);
       const copy = await copyParentRegion(options.parentPath, options.groupId, region, options.canvas);
       await mkdir(dirname(options.draft), { recursive: true });
-      await writeFile(options.draft, copy.svg);
+      await writeFile(options.draft, recolor(copy.svg));
       return textResult({ ...('mask' in region ? { maskSvg } : { region }), path: await toAgentPath(root, options.draft), shapes: copy.pieces.length || undefined, parentShapes: copy.total,
         note: '复制结果已写入轮廓草稿；保持不改即作为本组轮廓，跳过轮廓 review 与补全。请用 preview_svg 的 edge 模式核对范围' });
     },
