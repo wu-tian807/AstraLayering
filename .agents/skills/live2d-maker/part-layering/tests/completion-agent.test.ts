@@ -44,7 +44,7 @@ test('完全遮挡节点可提交空可见轮廓，经独立 review 后补出形
       assert.ok(task.name.startsWith('正面遮挡补全'));
       // face 使用专用正文，通用规则修改不能遗漏它。
       assert.doesNotMatch(task.prompt, /露出双耳的结构参考并查看|本次参考只露耳缘/);
-      assert.match(task.prompt, /部件完全被遮挡.*必须先.*结构辅助图并查看/);
+      assert.match(task.prompt, /部件完全被挡住.*先用 imagegen 生成露出它的结构辅助图并查看/);
       assert.doesNotMatch(task.prompt, /\{runtime_context\}|\{fixed_rules\}/);
       await tool(task, 'set_completion_paths').execute({ paths }, signal);
       await submit(task, input.outputDraft);
@@ -91,9 +91,9 @@ test('补全默认适配器用只读 agent 和新增工具，提交后正式发�
   const adapter = createLayeringSteps(sessioned(async task => {
     calls++;
     assert.ok(task.tools!.some(tool => tool.name === 'view_bitmap'));
-    assert.match(task.prompt, /部件完全被遮挡.*必须先.*结构辅助图并查看/);
-    assert.match(task.prompt, /不画成侧面视角的形状/);
-    assert.match(task.prompt, /以侧面参考露出被遮挡的一面/);
+    assert.match(task.prompt, /部件完全被挡住.*先用 imagegen 生成露出它的结构辅助图并查看/);
+    assert.match(task.prompt, /交付当前姿态的正面形体，不画侧面、背面/);
+    assert.match(task.prompt, /转到刚好露出被遮挡面的侧面或斜侧/);
     const rules = (await readFile(partKnowledge(profile, 'completion').files('main')[1], 'utf8'));
     assert.ok(task.prompt.includes(`【固定范围与操作约定】\n${rules}`));
     assert.doesNotMatch(task.prompt, /提示词来源：/);
@@ -255,7 +255,7 @@ test('续跑补全沿用保留原形的草稿，提示词只给固定的先读�
     await completeGroupOcclusion({ ...f, group, reviewed: { path: source }, outputPath, resumeDraft }, { async run(task) {
       const input = promptInput(task.prompt);
       assert.equal('resumedDraft' in input, false);
-      assert.match(task.prompt, /outputDraft 已含 sourceSvg 之外、上次中断前补上的形状时/);
+      assert.match(task.prompt, /outputDraft 已含上次中断前补上的形状时，先用 read_svg 读取/);
       state = await readFile(outputPath, 'utf8');
       await submit(task, outputPath);
       return { text: 'done', images: [] };
@@ -279,7 +279,7 @@ test('不可见部件直接绘制非空 SVG，完成原图 blend 和独显即可
   await writeFile(source, shape(group.id, 10, 90, true));
   await sharp({ create: { width: 40, height: 20, channels: 4, background: 'blue' } }).png().toFile(generated);
   const result = await completeGroupOcclusion({ ...f, group, reviewed: { path: source }, outputPath }, { async run(task) {
-    assert.match(task.prompt, /referenceRegion.*框选生成图/);
+    assert.match(task.prompt, /reference 指向生成图、referenceRegion 框选对应部件/);
     const input = promptInput(task.prompt);
     assert.equal(input.group.hiddenInReference, true);
     assert.equal(input.group.allowOutsideParent, true);
