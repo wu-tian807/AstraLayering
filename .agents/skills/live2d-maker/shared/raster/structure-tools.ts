@@ -18,17 +18,23 @@ function fields(value: Record<string, unknown>, allowed: readonly string[], path
   const extra = Object.keys(value).find(key => !allowed.includes(key));
   if (extra) throw new Error(`${path}.${extra}：不支持的字段`);
 }
+// Fields a saved document carries beyond these are ignored on read.
+const known = (value: Record<string, unknown>, allowed: readonly string[]) =>
+  Object.fromEntries(Object.entries(value).filter(([key]) => allowed.includes(key)));
+const documentFields = ['version', 'groups'], nodeFields = ['id', 'name', 'note', 'kind', 'metadata', 'allowOutsideParent', 'hiddenInReference', 'groups'];
 
-export function validateStructureGroups(value: unknown): StructureGroups {
-  const document = object(value, 'groups');
-  fields(document, ['version', 'groups'], 'groups');
+// Agent edits are checked strictly; a saved groups.json is read with unknown fields ignored.
+export function validateStructureGroups(value: unknown, strict = true): StructureGroups {
+  let document = object(value, 'groups');
+  if (strict) fields(document, documentFields, 'groups'); else document = known(document, documentFields);
   if (document.version !== undefined && document.version !== 1) throw new Error('groups.version：必须为 1');
   if (!Array.isArray(document.groups) || !document.groups.length) throw new Error('groups.groups：必须为非空数组');
   const ids = new Set<string>();
   function visit(values: unknown[], path: string) {
     values.forEach((value, index) => {
-      const location = `${path}[${index}]`, node = object(value, location);
-      fields(node, ['id', 'name', 'note', 'kind', 'metadata', 'allowOutsideParent', 'hiddenInReference', 'outlineFromParent', 'groups'], location);
+      const location = `${path}[${index}]`;
+      let node = object(value, location);
+      if (strict) fields(node, nodeFields, location); else values[index] = node = known(node, nodeFields);
       if (typeof node.id !== 'string' || !/^[\p{L}\p{N}_-]+(?:\/[\p{L}\p{N}_-]+)*$/u.test(node.id)) {
         throw new Error(`${location}.id：必须为安全的部件 ID`);
       }
@@ -55,9 +61,7 @@ async function readStructureFile(path: string): Promise<string> {
   return readFile(path, 'utf8');
 }
 async function readGroups(input: PartLayeringInput) {
-  // Older runs also saved an unused subject field; it is dropped on read.
-  const { subject: _, ...document } = object(JSON.parse(await readStructureFile(join(input.directory, 'groups.json'))), 'groups');
-  return validateStructureGroups(document);
+  return validateStructureGroups(JSON.parse(await readStructureFile(join(input.directory, 'groups.json'))), false);
 }
 async function readPlan(input: PartLayeringInput): Promise<Record<string, unknown>> {
   return object(JSON.parse(await readStructureFile(join(input.directory, 'occlusion.json'))), 'occlusion');

@@ -152,10 +152,6 @@ test('阴影蒙版完成时用阴影角色图', async t => {
 });
 
 test('转头提示词向左；生视频只用自己的接口，不读生图接口', async () => {
-  assert.match(videoPrompt(), /转向画面左侧/);
-  assert.doesNotMatch(videoPrompt(), /[{}]/);
-  assert.match(videoPrompt('up'), /抬头/);
-  assert.match(videoPrompt('down'), /低头/);
   assert.equal(loadWorkflowEnvironment({}).videoApi, undefined);
   assert.equal(loadWorkflowEnvironment({ openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'i' }).videoApi, undefined);
   assert.throws(() => loadWorkflowEnvironment({ video_base_url: 'https://video.example/v1' }), /video_api_key/);

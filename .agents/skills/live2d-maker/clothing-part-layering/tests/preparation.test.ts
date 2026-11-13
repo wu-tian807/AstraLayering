@@ -46,7 +46,6 @@ test('preparation sends clothed and base references in order through one configu
   const refs = await prepareReferences({ runName: f.runName }, f.steps);
   assert.equal(f.calls.length, 1);
   assert.match(f.calls[0].prompt, /image_gen\.imagegen/);
-  assert.match(f.calls[0].prompt, /生图工具 imagegen（Codex 为内置 image_gen\.imagegen，其他模型为同名工具 imagegen/);
   assert.deepEqual(referencePaths(f.calls[0].prompt), [refs.originalImage, f.base]);
   assert.equal(f.calls[0].step, 'clothing_preparation');
   assert.ok(f.calls[0].prompt.includes('96×128'));

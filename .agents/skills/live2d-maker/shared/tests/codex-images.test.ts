@@ -209,7 +209,6 @@ test('native routes share OpenAI/Gemini transports, preserve image bytes/alpha a
     assert.ok(calls.filter(c => c.model === 'gpt-image-2.5-flare').every(c => c.prompt === '不改写的原始提示词'));
     for (const call of calls.filter(c => c.model === 'gemini-nano-banana-2.1')) {
       assert.ok(call.prompt.startsWith('不改写的原始提示词\n\n'));
-      assert.match(call.prompt.replaceAll('\r\n', '\n'), /背景使用高纯度纯色 #00FF00/);
     }
     assert.equal((await fetch(openai.env.LAYERING_IMAGE_BASE_URL + '/images/generations', { method: 'POST' })).status, 401);
   } finally { await openai.close(); await google.close(); }

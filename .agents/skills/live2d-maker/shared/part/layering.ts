@@ -11,7 +11,7 @@ import { type GroupContext, type GroupInput, type GroupNode, type GroupSeed, typ
 import type { PreparationReferences } from './preparation-types.ts';
 import { runWorkflow, validateWorkflowOptions } from './workflow.ts';
 import { parentBoundsSource, validateGroupSvg } from './svg-tools.ts';
-import { copyParentRegion } from './parent-region.ts';
+import { clearCopyDecision, copyHash, readCopyDecision } from './parent-copy-decision.ts';
 import { occlusionPath, occlusionSourceHash, validateOcclusionPlan } from './occlusion-plan.ts';
 import { beginStep, checkStep, completeStep, readStep, type ChainStep, type StepAction, type StepStatus } from '../step-chain.ts';
 import { taskRootOf } from '../task-paths.ts';
@@ -122,6 +122,7 @@ export async function runLayering(input: {
       const output = artifactPath(directory, id, stage), draft = stepDraftPath(directory, id, stage);
       await mkdir(dirname(draft), { recursive: true });
       const resumeDraft = continued && !!await readSvg(draft);
+      if (stage === 'outline' && !resumeDraft) await clearCopyDecision(directory, id);
       if (!resumeDraft) await rm(draft, { force: true });
       if (resumeDraft) report(`[${id}] ${labels[stage]}：沿用上次的草稿继续`);
       const result = await action(draft, resumeDraft);
@@ -132,6 +133,11 @@ export async function runLayering(input: {
       return { status: 'completed', output: { ...result.output, path: output } };
     });
   }
+  // A verified parent copy skips review; its tool decision controls completion.
+  async function copied(id: string) {
+    const parent = context(id).parent?.steps.completion.output?.path, outline = await readSvg(artifactPath(directory, id, 'outline'));
+    return parent && outline ? readCopyDecision(directory, id, outline, await readFile(resolve(directory, parent))) : undefined;
+  }
   // step01: outline + review.
   async function prepare(id: string, run: boolean) {
     const step = groupStep(directory, id, 'outline');
@@ -141,6 +147,7 @@ export async function runLayering(input: {
     if (check.action === 'keep' || !run) return;
     await begin(step, check);
     if (hidden) {
+      await clearCopyDecision(directory, id);
       const meta = await sharp(resolve(directory, input.references.baseSubject)).metadata();
       const width = meta.autoOrient.width, height = meta.autoOrient.height;
       // This is an empty input for completion, not a fabricated drawing or review.
@@ -152,24 +159,15 @@ export async function runLayering(input: {
       report(`[${id}] 原图不可见：跳过描边和轮廓 review，直接补全`);
       return;
     }
-    const { group, parent } = context(id), parentSvg = parent?.steps.completion.output?.path;
-    if (group.outlineFromParent) {
-      if (!parentSvg) throw new Error(`${id}：复制轮廓需要父组完成稿`);
-      const meta = await sharp(resolve(directory, input.references.baseSubject)).metadata();
-      const canvas = { width: meta.autoOrient.width, height: meta.autoOrient.height };
-      const copy = await copyParentRegion(parentSvg, id, group.outlineFromParent, canvas);
-      await writeAtomic(outline, copy.svg);
-      await validateGroupSvg(outline, id, canvas, parentBoundsSource(group, parentSvg));
-      const output = { path: outline, note: copiedOutlineNote };
-      await completed(id, 'outline', output);
-      await completed(id, 'review', output);
+    if (check.action === 'continue' && await readSvg(outline)) await completed(id, 'outline', { path: outline });
+    else if (!await drawing(id, 'outline', check.action === 'continue',
+      (outputPath, resumeDraft) => input.steps.drawOutline({ ...context(id), outputPath, resumeDraft }))) return;
+    if (await copied(id)) {
+      await completed(id, 'review', { path: outline, note: copiedOutlineNote });
       await completeStep(step.directory);
       report(`[${id}] ${copiedOutlineNote}`);
       return;
     }
-    if (check.action === 'continue' && await readSvg(outline)) await completed(id, 'outline', { path: outline });
-    else if (!await drawing(id, 'outline', check.action === 'continue',
-      (outputPath, resumeDraft) => input.steps.drawOutline({ ...context(id), outputPath, resumeDraft }))) return;
     if (!await execute(id, 'review', async () => {
       const outline = artifact(id, 'outline');
       const path = reportPath(directory, id, 'review');
@@ -240,27 +238,39 @@ export async function runLayering(input: {
     const check = await guard(id, 'completion', () => checkStep(step.directory));
     if (check.action !== 'keep') {
       await begin(step, check);
-      const reduced = artifact(id, 'reduction');
-      const mask = await sharp(await readFile(reduced.path)).ensureAlpha().extractChannel('alpha').raw().toBuffer();
-      // 去重删空的重复节点无需恢复；原本完全遮挡的空轮廓仍须交给补全。
-      const removedByReduction = !mask.some(value => value >= 128) &&
-        (await sharp(await readFile(artifact(id, 'outline').path)).ensureAlpha().extractChannel('alpha').raw().toBuffer()).some(value => value >= 128);
       const completion = artifactPath(directory, id, 'completion');
-      if (check.action === 'continue' && await readSvg(completion)) await completed(id, 'completion', { path: completion });
-      else if (!await drawing(id, 'completion', check.action === 'continue', async (outputPath, resumeDraft) => {
-        if (removedByReduction) { await writeAtomic(outputPath, await readFile(reduced.path)); return { status: 'completed', output: { path: outputPath } }; }
-        return input.steps.completeOcclusion({ ...context(id), outputPath, resumeDraft, reviewed: reduced });
-      })) return;
-      if (!await execute(id, 'completionCheck', async () => {
-        const after = artifact(id, 'completion');
-        const result = removedByReduction ? { status: 'completed' as const, output: { passed: true as const, note: '去重后为空组' } }
-          : await input.steps.checkCompletion({ ...context(id), before: reduced, after });
-        if (result.status === 'completed') {
-          if (result.output.passed !== true) throw new Error(`${id}: completion check did not pass`);
-          await writeAtomic(reportPath(directory, id, 'completion-check'), JSON.stringify({ groupId: id, ...result.output }, null, 2) + '\n');
-        }
-        return result;
-      })) return;
+      const decision = await copied(id);
+      const reduced = artifact(id, 'reduction');
+      // A complete independent copy can pass through unchanged. If reduction
+      // changed it, the old outline decision cannot authorize bypassing completion.
+      if (decision?.needsCompletion === false && copyHash(await readFile(reduced.path)) === decision.outlineSha256) {
+        const note = '工具确认完整取出父稿独立形体：跳过补全与补全检查';
+        await writeAtomic(completion, await readFile(reduced.path));
+        await completed(id, 'completion', { path: completion });
+        await writeAtomic(reportPath(directory, id, 'completion-check'), JSON.stringify({ groupId: id, passed: true, note, reason: decision.reason }, null, 2) + '\n');
+        await completed(id, 'completionCheck', { passed: true, note });
+      } else {
+        if (decision) report(`[${id}] 复制轮廓进入补全：${decision.needsCompletion ? decision.reason : '去重后轮廓已变化'}`);
+        const mask = await sharp(await readFile(reduced.path)).ensureAlpha().extractChannel('alpha').raw().toBuffer();
+        // 去重删空的重复节点无需恢复；原本完全遮挡的空轮廓仍须交给补全。
+        const removedByReduction = !mask.some(value => value >= 128) &&
+          (await sharp(await readFile(artifact(id, 'outline').path)).ensureAlpha().extractChannel('alpha').raw().toBuffer()).some(value => value >= 128);
+        if (check.action === 'continue' && await readSvg(completion)) await completed(id, 'completion', { path: completion });
+        else if (!await drawing(id, 'completion', check.action === 'continue', async (outputPath, resumeDraft) => {
+          if (removedByReduction) { await writeAtomic(outputPath, await readFile(reduced.path)); return { status: 'completed', output: { path: outputPath } }; }
+          return input.steps.completeOcclusion({ ...context(id), outputPath, resumeDraft, reviewed: reduced });
+        })) return;
+        if (!await execute(id, 'completionCheck', async () => {
+          const after = artifact(id, 'completion');
+          const result = removedByReduction ? { status: 'completed' as const, output: { passed: true as const, note: '去重后为空组' } }
+            : await input.steps.checkCompletion({ ...context(id), before: reduced, after });
+          if (result.status === 'completed') {
+            if (result.output.passed !== true) throw new Error(`${id}: completion check did not pass`);
+            await writeAtomic(reportPath(directory, id, 'completion-check'), JSON.stringify({ groupId: id, ...result.output }, null, 2) + '\n');
+          }
+          return result;
+        })) return;
+      }
       await guard(id, 'completionCheck', () => completeStep(step.directory));
     }
     const split = groupStep(directory, id, 'children');

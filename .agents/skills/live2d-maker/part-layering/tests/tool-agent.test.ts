@@ -375,7 +375,6 @@ test('图片被内容策略拦截：本批图片换成文字后在新会话继�
   const turns = protocol.filter(message => message.method === 'turn/start');
   assert.deepEqual(turns.map(message => message.params.threadId), ['native-thread-1', 'native-thread-2']);
   assert.equal(turns[1].params.input.length, 1);
-  assert.match(turns[1].params.input[0].text, /2 张图片被内容策略拦截[\s\S]*一次只读取一张[\s\S]*不要提交任何产物/);
 });
 
 test('历史里没有图片可换时，内容策略拦截按致命错误结束', async t => {

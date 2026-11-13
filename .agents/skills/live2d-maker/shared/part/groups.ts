@@ -3,7 +3,7 @@ import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import {
   groupStages, type GroupInput, type GroupNode, type GroupProgress, type GroupsDocument,
-  type GroupSeed, type GroupStage, type GroupStageOutputs, type ParentRegion, type StepProgress,
+  type GroupSeed, type GroupStage, type GroupStageOutputs, type StepProgress,
 } from './layering-types.ts';
 import { readStepTree } from './part-steps.ts';
 
@@ -62,15 +62,6 @@ export function normalizeGroups(values: unknown, seen = new Set<string>()): Grou
     for (const field of ['allowOutsideParent', 'hiddenInReference']) {
       if (input[field] !== undefined && typeof input[field] !== 'boolean') throw new Error(`group.${field} must be a boolean`);
     }
-    if (input.outlineFromParent !== undefined) {
-      const region = record(input.outlineFromParent, 'group.outlineFromParent');
-      if (Object.keys(region).some(key => !['x', 'y', 'width', 'height'].includes(key)) ||
-          [region.x, region.y].some(v => !Number.isSafeInteger(v) || (v as number) < 0) ||
-          [region.width, region.height].some(v => !Number.isSafeInteger(v) || (v as number) < 1)) {
-        throw new Error('group.outlineFromParent must be an integer {x,y,width,height} box');
-      }
-      if (input.hiddenInReference === true) throw new Error(`${input.id}: outlineFromParent 与 hiddenInReference 不能同时使用`);
-    }
     if (input.kind !== undefined && input.kind !== 'group' && input.kind !== 'part') throw new Error('节点 kind 必须为 group 或 part');
     if (input.kind === 'part' && Array.isArray(input.groups) && input.groups.length) throw new Error('part 不能包含子节点');
     const rawSteps = input.steps === undefined ? {} : record(input.steps, 'group.steps');
@@ -87,7 +78,6 @@ export function normalizeGroups(values: unknown, seen = new Set<string>()): Grou
       ...(input.metadata !== undefined ? { metadata: structuredClone(input.metadata) as Record<string, unknown> } : {}),
       ...(input.allowOutsideParent !== undefined ? { allowOutsideParent: input.allowOutsideParent as boolean } : {}),
       ...(input.hiddenInReference !== undefined ? { hiddenInReference: input.hiddenInReference as boolean } : {}),
-      ...(input.outlineFromParent !== undefined ? { outlineFromParent: structuredClone(input.outlineFromParent) as ParentRegion } : {}),
       groups: normalizeGroups(input.groups ?? [], seen), steps,
     };
     if (group.groups.length && rawSteps.children === undefined) {

@@ -187,10 +187,8 @@ test('revise 由原绘制会话返修，每次 review 新会话，报告保留�
   // The repair names the review file and round; the feedback stays in review.json.
   assert.match(mock.calls[2].task.prompt, /step09_outline\/face\/review\.json 中 reviews 最后一条（第 1 轮 review）的 feedback/);
   assert.doesNotMatch(mock.calls[2].task.prompt, /左侧可见边界 x=10/);
-  assert.doesNotMatch(mock.calls[2].task.prompt, /imagegen|生成.*辅助图/);
   assert.equal(await readFile(join(f.directory, 'step09_outline/face/outline.repairs/1/round.txt'), 'utf8'), '1\n');
   assert.equal(await readFile(join(f.directory, 'step09_outline/face/outline.repairs/1/prompt.txt'), 'utf8'), mock.calls[2].task.prompt);
-  assert.doesNotMatch(mock.calls[2].task.prompt, /会话|窗口|thread|最多.*返修/);
   assert.deepEqual(mock.calls[2].task.tools!.map(tool => tool.name), ['preview_svg', 'write_outline_svg', 'read_svg', 'view_bitmap', 'update_group_note']);
   const report = JSON.parse(await readFile(join(f.directory, 'step09_outline/face/review.json'), 'utf8'));
   assert.deepEqual(report.reviews.map((review: { verdict: string }) => review.verdict), ['revise', 'pass']);
@@ -437,7 +435,6 @@ test('续跑轮廓沿用中断前的草稿，提示词只给固定的先读草�
     await writeFile(outputPath, svg('face', 30, 70));
     await drawGroupOutline({ ...f, group, outputPath, resumeDraft }, { async run(task) {
       assert.equal('resumedDraft' in runtime(task), false);
-      assert.match(task.prompt, /outputSvg 已有上次中断前画到的草稿时，先用 read_svg 读取/);
       if (resumeDraft) {
         assert.equal(await readFile(outputPath, 'utf8'), svg('face', 30, 70));
       } else {

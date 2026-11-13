@@ -6,6 +6,7 @@
     "tools": [
       "preview_svg",
       "write_outline_svg",
+      "copy_parent_region",
       "read_svg",
       "view_bitmap",
       "update_group_note"

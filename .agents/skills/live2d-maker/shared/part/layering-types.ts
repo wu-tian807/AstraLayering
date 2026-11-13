@@ -30,8 +30,9 @@ export type GroupStageOutputs = {
 };
 export type GroupProgress = { [S in GroupStage]: StepProgress<GroupStageOutputs[S]> };
 
-// 父组完成稿原画布坐标中的整数选框（copy_parent_region）。
-export type ParentRegion = { x: number; y: number; width: number; height: number };
+// copy_parent_region 的选取：同画布遮罩 SVG（规范化后的封闭形状）。
+export type ParentMask = { mask: string };
+export type ParentRegion = ParentMask;
 // 初始层仍只识别 group；后续直属节点明确区分可递归的 group 与终止的 part。
 export type GroupSeed = {
   id: string;
@@ -41,8 +42,6 @@ export type GroupSeed = {
   metadata?: Record<string, unknown>;
   allowOutsideParent?: boolean;
   hiddenInReference?: boolean;
-  // 轮廓取自父组完成稿此选框内的独立形状，跳过描边与轮廓 review。
-  outlineFromParent?: ParentRegion;
 };
 export type GroupInput = GroupSeed & { groups?: GroupInput[]; steps?: Partial<GroupProgress> };
 export type GroupNode = GroupSeed & { groups: GroupNode[]; steps: GroupProgress };

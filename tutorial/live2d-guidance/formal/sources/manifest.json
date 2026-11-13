@@ -130,6 +130,43 @@
         ]
       ],
       "reviewedContinuousFrameCount": 630
+    },
+    {
+      "id": "A01",
+      "filename": "1268506471-1-192.mp4",
+      "bytes": 37955619,
+      "sha256": "0e347d02b6eb5fd6529bd8eca075b6291cf5c9918bf5bc6834716038a8aed3bc",
+      "source": "用户提供",
+      "originalIncludedInGit": false,
+      "media": {
+        "size": [
+          1280,
+          720
+        ],
+        "fps": 30,
+        "duration": 580.17
+      },
+      "analysis": "arm-video.md",
+      "originalUrl": null,
+      "author": "Live2D绘制指南 第13讲；讲解 夏卜卜，课程设计／脚本／视频 卡米雷特，策划 Live2D官方",
+      "evidence": "全片每 5 秒抽帧（116 帧）与本地语音识别字幕；01:12–02:24 裸肩段另抽 12 张原分辨率帧，非逐帧",
+      "sampledEverySeconds": 5,
+      "sampledFrameCount": 116,
+      "fullResolutionSeconds": [
+        72,
+        80,
+        88,
+        96,
+        102,
+        108,
+        114,
+        120,
+        126,
+        132,
+        138,
+        144
+      ],
+      "seriesUrl": "https://www.bilibili.com/video/BV1VY41167jz"
     }
   ]
 }
