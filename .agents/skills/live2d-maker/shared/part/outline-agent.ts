@@ -17,6 +17,7 @@ import type { DrawingContext, GroupContext, ReviewContext, ReviewedSvgArtifact, 
 import { createSvgPreviewTool, createSvgReadTool, parentBoundsSource, taskObservation, validateGroupSvg, type Canvas, type SvgObservation } from './svg-tools.ts';
 import { taskRootOf, toAgentPath } from '../task-paths.ts';
 import { createParentRegionTool, withoutCopyAttributes } from './parent-region.ts';
+import { clearCopyDecision } from './parent-copy-decision.ts';
 import { completedReviewCount, draftPath, matchesHash, publishSvg, readReviewReport, svgHash as hash, type Review } from './artifact-facts.ts';
 
 const maxOutlineReviews = 2;
@@ -99,7 +100,10 @@ export async function drawGroupOutline(
   await mkdir(dirname(draft), { recursive: true });
   // A continued step keeps the draft drawn so far; a repair starts from its candidate.
   const resumed = !repair && !!context.resumeDraft;
-  if (!resumed) await rm(draft, { force: true });
+  if (!resumed) {
+    await clearCopyDecision(context.directory, context.group.id);
+    await rm(draft, { force: true });
+  }
   if (repair) await writeAtomic(draft, await readFile(repair.candidate));
   const observations: SvgObservation[] = [];
   // 首次绘制和返修使用同一组工具，均允许修正本组 note。
@@ -114,6 +118,7 @@ export async function drawGroupOutline(
       if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).some(key => key !== 'svg') ||
           typeof (value as { svg?: unknown }).svg !== 'string' || !(value as { svg: string }).svg.trim()) throw new Error('仅提交非空 svg 文本，草稿路径由程序绑定');
       // A drawn outline is no longer a copy of the parent, even when it starts from one.
+      await clearCopyDecision(context.directory, context.group.id);
       await writeAtomic(draft, withoutCopyAttributes((value as { svg: string }).svg));
       const bytes = await validateGroupSvg(draft, context.group.id, input.canvas, parentBoundsSource(context.group, input.parent), true);
       return textResult({ path: await toAgentPath(taskRootOf(context.directory), draft), bytes: bytes.length, note: '草稿结构检查通过，仍须预览和视觉自检' });
@@ -121,7 +126,7 @@ export async function drawGroupOutline(
   };
   // Offered where the section's catalog defines it, only to a first drawing with a parent completion to copy from.
   const copy = toolCatalog(profile.toolsDirectory).names().includes('copy_parent_region')
-    ? [createParentRegionTool({ directory: context.directory, parentPath: input.parent ?? '', canvas: input.canvas, groupId: context.group.id,
+    ? [createParentRegionTool({ directory: context.directory, parentPath: input.parent ?? '', reference: input.reference, canvas: input.canvas, groupId: context.group.id,
       draft, overrides: profile.toolsDirectory })] : [];
   const drawingPrompt = knowledge.render('main', runtime(context, input), { taskRoot: taskRootOf(context.directory), group: context.group.id });
   // 返修是绘制 thread 的下一轮，只给出 review 报告与返修要求；本次输入已在绘制轮给出。

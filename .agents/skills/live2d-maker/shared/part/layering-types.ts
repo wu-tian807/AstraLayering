@@ -30,10 +30,9 @@ export type GroupStageOutputs = {
 };
 export type GroupProgress = { [S in GroupStage]: StepProgress<GroupStageOutputs[S]> };
 
-// copy_parent_region 的两种选取：父组完成稿原画布坐标中的整数选框，或同画布的遮罩 SVG（规范化后的封闭形状）。
-export type ParentBox = { x: number; y: number; width: number; height: number };
+// copy_parent_region 的选取：同画布遮罩 SVG（规范化后的封闭形状）。
 export type ParentMask = { mask: string };
-export type ParentRegion = ParentBox | ParentMask;
+export type ParentRegion = ParentMask;
 // 初始层仍只识别 group；后续直属节点明确区分可递归的 group 与终止的 part。
 export type GroupSeed = {
   id: string;

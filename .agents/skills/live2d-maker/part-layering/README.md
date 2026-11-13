@@ -43,7 +43,11 @@ preparation 完成后，总控同时推进人物线（本管线逐层制作 → 
 
 同组绘制和返修共用会话，每次 reviewer 使用独立只读上下文。最多两轮正式质量审核，提前通过可结束，第二轮反馈修复完成后进入下一步。原 verdict 与 repairedCandidateHash 保留；服务重试和执行受阻单独记录，质量轮数跨启动累计。
 
-本段的子组描边另有 `copy_parent_region`（schema 在 `part-layering/tools/`，说明与用法在 `knowledge/part-layering/step09_outline/`）：父组完成稿已经完整、本组只是其中分界明确的一部分时，描边 agent 可直接取出作为轮廓草稿；父组缺失、需要重画形状时照常描边。范围二选一：`region` 整数选框（独立的一块，框线须全程落在空白处、不切分任何形状）；`maskSvg` 同画布遮罩 SVG（只含封闭形状，父完成稿按其并集用 clipPath 裁剪，分界线可穿过相连形状）。父稿的补全层标记不带入。草稿保持复制原样时，轮廓跳过 review，补全步骤直接把它发布为本组完成稿，不做补全与补全检查；经 `write_outline_svg` 改写后即为普通描边，照常 review 与补全。首轮绘制且有父完成稿时才提供，返修不提供；`hiddenInReference` 节点不描边，也不用此工具。
+本段的子组描边另有 `copy_parent_region`（schema 在 `part-layering/tools/`，说明与用法在 `knowledge/part-layering/step09_outline/`）：父组完成稿已经完整、本组只是其中分界明确的一部分时，描边 agent 可直接取出作为轮廓草稿；父组缺失、需要重画形状时照常描边。范围由 `maskSvg`（同画布遮罩 SVG，只含封闭形状，父完成稿按其并集用 clipPath 裁剪，分界线可穿过相连形状）给出；`mode=preview`（默认）只叠在原图上预览选中与排除的部分，`mode=crop` 才写入草稿。父稿的补全层标记与旧复制属性不带入，已有 clipPath 可以继续复制。
+
+复制判别保存在本组 `step09_outline/<group>/copy-decision.json`，包含本组 ID、轮廓与父完成稿 SHA-256、遮罩 SHA-256、判别版本、`needsCompletion` 和 `reason`；SVG 不承载流程开关。工具以 2 倍分辨率渲染父稿的填色联合形体，按非零 alpha 的八邻域连通区检查裁剪是否完整保留所选形体，保留路径孔洞和原有裁剪。完整取出独立形体时 `needsCompletion=false`；同一连续形体同时有保留与裁掉的实心区域时为 `true`；仅抗锯齿边缘变化、细小选区或超出检测预算等不确定情况也为 `true`。这是几何判别，不判断人体部件语义；agent 只画遮罩，不能指定补全开关。
+
+草稿保持复制原样且记录匹配当前轮廓、父完成稿时，轮廓跳过 review；仅 `needsCompletion=false` 且去重后原字节保留时跳过补全与补全检查，否则照常进入补全与检查。记录缺失、损坏或哈希/组/版本不匹配时不授权跳过；旧 SVG 属性不作判据，已完成的步骤仍按原有 `.completed` 规则保留。`write_outline_svg` 改写（包括相同文本）以及重新绘制或返修清除记录，继续已有草稿和原字节发布保留记录。首轮绘制且有父完成稿时才提供，返修不提供；`hiddenInReference` 节点不描边，也不用此工具。
 
 ## 去重、补全与拆分
 

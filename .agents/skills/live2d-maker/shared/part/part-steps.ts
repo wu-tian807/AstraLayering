@@ -29,7 +29,7 @@ export function layerStep(directory: string, depth: number): ChainStep {
   return { id, directory: join(directory, id) };
 }
 
-export const copiedOutlineNote = '轮廓由描边 agent 从父组完成稿复制：跳过轮廓 review 与补全';
+export const copiedOutlineNote = '轮廓经工具验证来自当前父组完成稿：跳过轮廓 review';
 type ChildrenFile = { groupId: string; groups: GroupSeed[]; note?: string };
 export async function readChildren(directory: string, id: string): Promise<ChildrenFile> {
   const value = JSON.parse(await readFile(join(directory, groupStepId(id, 'children'), 'children.json'), 'utf8')) as ChildrenFile;
