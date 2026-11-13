@@ -20,7 +20,7 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
     const upstream = await readUpstream(upstreamDirectory), path = join(directory, authorFile(stage));
     let text = '', doc: AuthoredHead;
     try { text = await readFile(path, 'utf8'); doc = JSON.parse(text); }
-    catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; doc = startContinuation(upstream.doc, upstream.hash, stage, scale); }
+    catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; doc = startContinuation(upstream.doc, stage, scale); }
     if (args.revision !== undefined && args.revision !== sha256(text)) throw Error('九轴数据已变化，请读取最新 revision');
     if (args.bindings !== undefined && stage !== 'jaw' && stage !== 'hair' && stage !== 'accessories') throw Error('本阶段使用固定 KRA 导出素材，不能更换图层绑定');
     const catalog=materialize?await kraCatalog(taskRoot,directory,doc):undefined;

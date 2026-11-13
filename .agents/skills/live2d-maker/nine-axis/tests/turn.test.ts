@@ -287,7 +287,7 @@ test('完整脸部流程后只制作前发首轮，保留头发步骤等待同�
     }
     if (group !== 'left') {
       assert.deepEqual(seeded.source, neutral.doc.source);
-      assert.equal((seeded as unknown as { authoring: { upstreamSha256: string } }).authoring.upstreamSha256, neutral.hash);
+      assert.deepEqual((seeded as unknown as { authoring: { stage: string } }).authoring, { stage: group });
       assert.equal(seeded.axisSources, undefined);
     }
     entered.add(group);
@@ -309,8 +309,8 @@ test('完整脸部流程后只制作前发首轮，保留头发步骤等待同�
     await createContinuationEditTool(directory, axes, 'xy', undefined, task).execute({}, new AbortController().signal);
     const authored = JSON.parse(await readFile(join(directory, 'face-xy.json'), 'utf8'));
     const linear = JSON.parse(await readFile(join(directory, 'linear.json'), 'utf8'));
-    assert.equal(authored.authoring.upstreamSha256, parent.hash);
-    assert.equal(linear.authoring.upstreamSha256, parent.hash);
+    assert.deepEqual(authored.authoring, { stage: 'xy' });
+    assert.deepEqual(linear.authoring, { stage: 'xy' });
     assert.deepEqual(authored.axisSources, parent.doc.axisSources);
     for (const c of ['left-up','left-down']) {
       await writeFile(join(directory, `${c}-face-trace.json`), '{"fixture":"selected trace"}');
@@ -330,7 +330,7 @@ test('完整脸部流程后只制作前发首轮，保留头发步骤等待同�
   };
   const fitJawLine = async (directory: string) => {
     const upstream = await readUpstream(join(nine, 'step06_angle-xy'));
-    const doc = startContinuation(upstream.doc, upstream.hash, 'jaw');
+    const doc = startContinuation(upstream.doc, 'jaw');
     const base = doc.parts.find(p => p.id === 'face/face_base')!;
     const fresh = (id: string, extra: object) => ({ ...structuredClone(base), id, uuid:'fixture-'+id, group:'jaw', ...extra });
     doc.parts.push(fresh('face/jaw_mask', { role: 'mask' }), fresh('face/jaw_line', { clip: { by: ['face/jaw_mask'], invert: true } }));
@@ -340,7 +340,7 @@ test('完整脸部流程后只制作前发首轮，保留头发步骤等待同�
     prepareHair: async (directory: string, upstream: string) => {
       if(await access(join(directory,'hair.json')).then(()=>true,()=>false)) return;
       await copyFile(join(upstream,'character-nine-axis.kra'),join(directory,'character-nine-axis.kra'));
-      const inherited=await readUpstream(upstream),doc=startContinuation(inherited.doc,inherited.hash,'hair');
+      const inherited=await readUpstream(upstream),doc=startContinuation(inherited.doc,'hair');
       const {withDocument}=await import('../source.ts');
       doc.source=withDocument(doc,task,join(directory,'character-nine-axis.kra')).source;
       const front={...structuredClone(doc.parts.find(p=>p.id==='face/face_base')!),id:'hair/bangs',uuid:'fixture-bangs',level:'hair' as const};

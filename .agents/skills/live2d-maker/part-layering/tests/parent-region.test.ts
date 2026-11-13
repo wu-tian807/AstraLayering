@@ -10,7 +10,7 @@ import { artifactPath, stepDraftPath } from '../../shared/part/artifact-facts.ts
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { runLayering } from '../../shared/part/layering.ts';
 import { checkParentMask, copyParentRegion, createParentRegionTool } from '../../shared/part/parent-region.ts';
-import { copyDecisionPath, copyHash, readCopyDecision } from '../../shared/part/parent-copy-decision.ts';
+import { copyDecisionPath, readCopyDecision } from '../../shared/part/parent-copy-decision.ts';
 import { drawGroupOutline } from '../../shared/part/outline-agent.ts';
 import { profile } from '../profile.ts';
 import { promptInput } from '../../shared/tests/prompt-input.ts';
@@ -88,9 +88,12 @@ test('描边 agent 复制父组完成稿的轮廓跳过 review 与补全，改�
   assert.equal((await raster(outline))[20 * 100 + 70], 0);
   assert.equal(await readFile(artifactPath(f.directory, 'face/eye_left', 'completion'), 'utf8'), outline);
   assert.doesNotMatch(await readFile(artifactPath(f.directory, 'face/rest', 'outline'), 'utf8'), /data-parent-mask/);
-  const decision = await readCopyDecision(f.directory, 'face/eye_left', Buffer.from(outline), await readFile(artifactPath(f.directory, 'face', 'completion')));
+  const decision = await readCopyDecision(f.directory, 'face/eye_left');
   assert.equal(decision?.needsCompletion, false);
-  assert.equal(decision?.outlineSha256, copyHash(outline));
+  assert.deepEqual(JSON.parse(await readFile(copyDecisionPath(f.directory, 'face/eye_left'), 'utf8')), {
+    version: 1, kind: 'parentCopy', groupId: 'face/eye_left', detectorVersion: 1,
+    needsCompletion: false, reason: 'whole-independent-geometry',
+  });
   assert.equal(Object.hasOwn(decision!, 'svg'), false);
   await assert.rejects(readFile(copyDecisionPath(f.directory, 'face/rest')), /ENOENT/);
 });
@@ -194,30 +197,36 @@ test('按填色联合形体判别：跨元素连接、独立子路径、孔洞�
   assert.equal((await raster(selection.mask))[30 * 100 + 30], 0); // preview and crop share the same hole
 });
 
-test('记录绑定本组、当前轮廓与父稿；缺失、损坏、过期和跨组记录不允许跳过', async t => {
+test('信任本组工具记录，不回查上游指纹；兼容旧记录，缺失、损坏和跨组记录不允许跳过', async t => {
   const f = await fixture(t), parent = join(f.directory, 'parent.svg'), id = 'face/child';
   const draft = stepDraftPath(f.directory, id, 'outline'), selection = join(f.directory, 'selection.svg');
   await writeFile(parent, pair('face'));
   await writeFile(selection, maskOf('<rect x="0" y="0" width="50" height="50"/>'));
   const tool = createParentRegionTool({ directory: f.directory, parentPath: parent, reference: f.references.baseSubject, canvas, groupId: id, draft, overrides: profile.toolsDirectory });
   await tool.execute({ maskSvg: selection, mode: 'crop' }, signal);
-  const path = copyDecisionPath(f.directory, id), before = await readFile(path), outline = await readFile(draft), source = await readFile(parent);
-  assert.equal((await readCopyDecision(f.directory, id, outline, source))?.needsCompletion, false);
+  const path = copyDecisionPath(f.directory, id), before = await readFile(path), outline = await readFile(draft);
+  assert.equal((await readCopyDecision(f.directory, id))?.needsCompletion, false);
   // A preview preserves both the existing draft and its decision.
   await tool.execute({ maskSvg: selection }, signal);
   assert.deepEqual(await readFile(path), before);
   assert.deepEqual(await readFile(draft), outline);
-  assert.equal(await readCopyDecision(f.directory, id, Buffer.concat([outline, Buffer.from('\n')]), source), undefined);
-  assert.equal(await readCopyDecision(f.directory, id, outline, Buffer.concat([source, Buffer.from('\n')])), undefined);
-  for (const change of [{ groupId: 'face/other' }, { detectorVersion: 99 }, { version: 2 }, { kind: 'drawing' },
-    { needsCompletion: 'false' }, { reason: 'mask-cuts-parent' }, { maskSha256: '' }]) {
+  // Reading the decision only needs this group's record, not the source files.
+  await rm(parent); await rm(selection);
+  assert.equal((await readCopyDecision(f.directory, id))?.needsCompletion, false);
+  const legacy = { ...JSON.parse(before.toString()), detectorVersion: 99,
+    parentSha256: 'old-parent', outlineSha256: 'old-outline', maskSha256: 'old-mask' };
+  await writeFile(path, JSON.stringify(legacy));
+  assert.equal((await readCopyDecision(f.directory, id))?.needsCompletion, false);
+  assert.equal((await readCopyDecision(f.directory, id))?.detectorVersion, 99);
+  for (const change of [{ groupId: 'face/other' }, { version: 2 }, { kind: 'drawing' },
+    { needsCompletion: 'false' }, { reason: 'mask-cuts-parent' }, { reason: 'unknown' }]) {
     await writeFile(path, JSON.stringify({ ...JSON.parse(before.toString()), ...change }));
-    assert.equal(await readCopyDecision(f.directory, id, outline, source), undefined);
+    assert.equal(await readCopyDecision(f.directory, id), undefined);
   }
   await writeFile(path, '{');
-  assert.equal(await readCopyDecision(f.directory, id, outline, source), undefined);
+  assert.equal(await readCopyDecision(f.directory, id), undefined);
   await rm(path);
-  assert.equal(await readCopyDecision(f.directory, id, outline, source), undefined);
+  assert.equal(await readCopyDecision(f.directory, id), undefined);
 });
 
 test('继续并发布草稿保留决策，重新绘制清除决策', async t => {
@@ -238,7 +247,7 @@ test('继续并发布草稿保留决策，重新绘制清除决策', async t => 
   } });
   assert.deepEqual(await readFile(output), bytes);
   assert.deepEqual(await readFile(copyDecisionPath(f.directory, id)), record);
-  assert.ok(await readCopyDecision(f.directory, id, bytes, await readFile(parentPath)));
+  assert.ok(await readCopyDecision(f.directory, id));
   await drawGroupOutline({ ...f, store, group, parent, outputPath: output }, { async run(task) {
     await assert.rejects(readFile(copyDecisionPath(f.directory, id)), /ENOENT/);
     await task.tools!.find(tool => tool.name === 'write_outline_svg')!.execute({ svg: bytes.toString() }, signal);
@@ -281,8 +290,9 @@ test('裁剪父稿能继续复制；普通子组不继承父组记录，缺失�
     await assert.rejects(readFile(copyDecisionPath(f.directory, id)), /ENOENT/);
   }
   const child = JSON.parse(await readFile(copyDecisionPath(f.directory, 'face/upper/copy'), 'utf8'));
-  assert.equal(child.parentSha256, copyHash(await readFile(artifactPath(f.directory, 'face/upper', 'completion'))));
-  assert.notEqual(child.parentSha256, copyHash(await readFile(artifactPath(f.directory, 'face', 'completion'))));
+  assert.equal(child.groupId, 'face/upper/copy');
+  assert.notEqual(child.groupId, (await readCopyDecision(f.directory, 'face/upper'))?.groupId);
+  assert.equal(child.needsCompletion, false);
 });
 
 test('独立复制经过实际去重修改后，进入补全而不还原被删的轮廓', async t => {

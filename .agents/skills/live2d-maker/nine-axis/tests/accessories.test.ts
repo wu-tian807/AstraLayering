@@ -90,6 +90,20 @@ test('accessories reject unbound static ornaments, nonzero Y, and edits to compl
   await assert.rejects(f.build(),/其他上游画稿/);
 });
 
+test('accessories continue with legacy fingerprints and upstream metadata changes while retaining their owned artwork',async t=>{
+  const f=await fixture(t);await prepareAccessories(f.output,f.upstream,f.task,f.materialize);
+  const path=join(f.output,'accessories.json'),author=JSON.parse(await readFile(path,'utf8'));
+  assert.deepEqual(author.authoring,{stage:'accessories'});
+  author.authoring.upstreamSha256='legacy-fingerprint';
+  await writeFile(path,JSON.stringify(author));
+  const own=await readFile(join(f.output,'character-nine-axis.kra'));
+  await writeFile(join(f.upstream,'deformers.json'),JSON.stringify({...f.doc,notes:'updated explanation'},null,2));
+  await prepareAccessories(f.output,f.upstream,f.task,f.materialize);
+  await f.select();
+  assert.ok((await f.build()).doc.parts.some(p=>p.id==='head_accessories/object'));
+  assert.deepEqual(await readFile(join(f.output,'character-nine-axis.kra')),own);
+});
+
 test('native accessory shadows are required when their actual dependencies exist',async t=>{
   const f=await fixture(t);await prepareAccessories(f.output,f.upstream,f.task,f.materialize);await f.select(false);
   await assert.rejects(checkAccessoryShadows(f.task,(await f.build()).doc),/依赖已齐全/);

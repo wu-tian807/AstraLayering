@@ -33,7 +33,7 @@ export async function prepareAccessories(directory:string,upstreamDirectory:stri
   if(!await access(document).then(()=>true,()=>false))await copyFile(source,document,constants.COPYFILE_EXCL).catch(error=>{if(error.code!=='EEXIST')throw error;});
   signal?.throwIfAborted();
   const inherited=await bindKraDocument(root,upstreamDirectory,upstream.doc);
-  const doc=kraReferences(startContinuation(withDocument(inherited,root,document) as AuthoredHead,upstream.hash,'accessories',scale));
+  const doc=kraReferences(startContinuation(withDocument(inherited,root,document) as AuthoredHead,'accessories',scale));
   validateHeadNineAxis(doc);
   await writeFile(join(directory,'character-nine-axis.png'),kraContents(await readFile(document)).merged);
   await writeFile(join(directory,'source.json'),JSON.stringify({version:1,sourceDocument:toTaskPath(root,document),upstreamDocument:toTaskPath(root,source),upstreamModel:toTaskPath(root,join(upstreamDirectory,'deformers.json'))},null,2)+'\n');

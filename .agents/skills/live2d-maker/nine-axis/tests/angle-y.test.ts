@@ -40,29 +40,44 @@ test('independent pitch rejects changed shared clipping before saving; source co
   }
 });
 test('Y parent movement and local correction preserve X and fixed neck; newly defined warps inherit all keys',()=>{
-  const upstream=fixture(), y=startContinuation(upstream,'hash','up');
+  const upstream=fixture(), y=startContinuation(upstream,'up');
   const doc=editNineAxis(y,[{action:'create_warp',id:'author-group',targets:['a','b']},{action:'create_warp',id:'local',parent:'author-group',targets:['a']},{action:'transform',id:'author-group',y:25,translate:[3,2]},{action:'transform',id:'local',y:25,translate:[1,0]}]);
-  checkContinuation(doc,upstream,'hash','up');
+  checkContinuation(doc,upstream,'up');
   assert.deepEqual([...evaluatePoints(doc,doc.parts[0],0,25)].slice(0,2),[4,2]);
   assert.deepEqual([...evaluatePoints(doc,doc.parts[1],0,25)].slice(0,2),[3,2]);
   for(const p of doc.parts)assert.deepEqual([...evaluatePoints(doc,p,-30,0)],rest.flat());
   assert.deepEqual([...evaluatePoints(doc,doc.parts[2],-30,25)],rest.flat());
   assert.deepEqual(Object.keys(doc.deformers[1].keyformsY!).sort(),['25']);
   const changed=editNineAxis(doc,[{action:'transform',id:'a',x:-30,translate:[1,0]}]);
-  assert.throws(()=>checkContinuation(changed,upstream,'hash','up'),/不能改动已制作的轴/);
-  assert.throws(()=>checkContinuation(doc,upstream,'changed','up'),/上游已变化/);
+  assert.throws(()=>checkContinuation(changed,upstream,'up'),/不能改动已制作的轴/);
+  assert.throws(()=>checkContinuation(doc,upstream,'down'),/阶段记录不匹配/);
 });
 test('corners mirror composed hierarchies with artist-defined node pairs',()=>{
   const upstream=fixture(); upstream.parts=upstream.parts.filter((p:any)=>p.id!=='neck');
-  const up=startContinuation(upstream,'x','up'), y=startContinuation(up,'up','down'), xy=startContinuation(y,'y','xy');
+  const up=startContinuation(upstream,'up'), y=startContinuation(up,'down'), xy=startContinuation(y,'xy');
   const doc=editNineAxis(xy,[{action:'create_warp',id:'custom-far',targets:['a']},{action:'create_warp',id:'custom-near',targets:['b']},{action:'mirror_pair',targets:['custom-far','custom-near']},{action:'mirror_pair',targets:['a','b']},{action:'transform',id:'custom-far',x:-30,y:25,translate:[3,1]},{action:'transform',id:'a',x:-30,y:25,translate:[1,0]},{action:'transform',id:'custom-near',x:-30,y:25,translate:[2,0]}]);
-  checkContinuation(doc,y,'y','xy');
+  checkContinuation(doc,y,'xy');
   assert.deepEqual(Object.keys(doc.deformers[0].keyformsXY!).sort(),['-30,-25','-30,25','30,-25','30,25']);
   const mirrored=mirrorDocument(doc,5,'keyformsXY');
   assert.deepEqual([...evaluatePoints(mirrored,mirrored.parts[1],30,25)].slice(0,2),[-4,1]);
   assert.deepEqual([...evaluatePoints(mirrored,mirrored.parts[0],30,25)].slice(0,2),[-2,0]);
   const removed=editNineAxis(doc,[{action:'remove_warp',id:'custom-near'}]);
   assert.equal(removed.deformers[0].mirror,undefined);
+});
+test('continuation trusts referenced upstream metadata and legacy fingerprints while protecting the current author scope',()=>{
+  const upstream=fixture(), doc=startContinuation(upstream,'up');
+  assert.deepEqual(doc.authoring,{stage:'up'});
+  // Old authors retain their diagnostic field without binding continuation to it.
+  doc.authoring.upstreamSha256='legacy-fingerprint';
+  const referenced=JSON.parse(JSON.stringify({...upstream,notes:'updated explanation'},null,2));
+  assert.equal(checkContinuation(doc,referenced,'up'),doc);
+  for(const field of ['axis','canvas','source'] as const){
+    const changed=structuredClone(doc);
+    changed[field]=field==='axis'?6:field==='canvas'?[30,20]:{document:'other.kra'};
+    assert.throws(()=>checkContinuation(changed,referenced,'up'),/不能替换上游画布、中轴或角色来源/);
+  }
+  const missing=structuredClone(doc);missing.parts.pop();
+  assert.throws(()=>checkContinuation(missing,referenced,'up'),/缺少上游节点/);
 });
 test('continuation tool initializes and writes source atomically, rejects stale revisions and missing completed jaw mask',async t=>{
   const root=await mkdtemp(join(tmpdir(),'astra-continuation-'));t.after(()=>rm(root,{recursive:true,force:true}));
@@ -81,18 +96,21 @@ test('continuation tool initializes and writes source atomically, rejects stale 
   const xybuilt=await buildContinuation(xy,down,'xy');await writeFile(join(xy,'deformers.json'),JSON.stringify(xybuilt.doc));await mkdir(join(xy,'layers'),{recursive:true});await writeFile(join(xy,'layers/a.png'),'png');
   const jaw=join(root,'jaw');await createContinuationEditTool(jaw,xy,'jaw').execute({},signal);
   await assert.rejects(buildContinuation(jaw,xy,'jaw'),/没有蒙版/);
-  await writeFile(join(x,'deformers.json'),JSON.stringify({...fixture(),notes:'new upstream'}));
-  await assert.rejects(tool.execute({},signal),/上游已变化/);
+  await writeFile(join(x,'deformers.json'),JSON.stringify({...fixture(),notes:'new upstream'},null,2));
+  const continued=result(await tool.execute({},signal));
+  assert.equal(continued.revision,result(await tool.execute({},signal)).revision);
+  assert.equal(await readFile(join(y,'face-up.json'),'utf8'),saved);
+  await buildContinuation(y,x,'up');
 });
 
  test('down is independent of up key edits and protects the completed up pose and fixed neck',()=>{
-  const x=fixture(),up=startContinuation(x,'x','up');
+  const x=fixture(),up=startContinuation(x,'up');
   const madeUp=editNineAxis(up,[{action:'create_warp',id:'face-group',targets:['a','b']},{action:'transform',id:'face-group',y:25,translate:[2,-1]}]) as typeof up;
-  checkContinuation(madeUp,x,'x','up');
-  const down=startContinuation(madeUp,'up','down');
+  checkContinuation(madeUp,x,'up');
+  const down=startContinuation(madeUp,'down');
   const madeDown=editNineAxis(down,[{action:'transform',id:'face-group',y:-25,translate:[-1,3]}]) as typeof down;
-  checkContinuation(madeDown,madeUp,'up','down');
+  checkContinuation(madeDown,madeUp,'down');
   for(const p of madeDown.parts)assert.deepEqual([...evaluatePoints(madeDown,p,0,25)],[...evaluatePoints(madeUp,madeUp.parts.find(q=>q.id===p.id)!,0,25)]);
-  assert.throws(()=>checkContinuation(editNineAxis(madeDown,[{action:'transform',id:'a',y:25,translate:[1,0]}]),madeUp,'up','down'),/不能改动已制作的轴/);
-  assert.throws(()=>checkContinuation(editNineAxis(madeDown,[{action:'transform',id:'neck',y:-25,translate:[0,1]}]),madeUp,'up','down'),/脖子不能跟随转头移动/);
+  assert.throws(()=>checkContinuation(editNineAxis(madeDown,[{action:'transform',id:'a',y:25,translate:[1,0]}]),madeUp,'down'),/不能改动已制作的轴/);
+  assert.throws(()=>checkContinuation(editNineAxis(madeDown,[{action:'transform',id:'neck',y:-25,translate:[0,1]}]),madeUp,'down'),/脖子不能跟随转头移动/);
 });

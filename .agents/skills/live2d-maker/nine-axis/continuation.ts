@@ -14,7 +14,7 @@ const geometryOnly=(value: any): any=>JSON.parse(JSON.stringify(value??null,(key
 
 export type PitchStage = 'up' | 'down';
 export type Stage = PitchStage | 'xy' | 'jaw' | 'hair' | 'accessories';
-export type AuthoredHead = HeadNineAxis & { axis: number; authoring: { stage: Stage; upstreamSha256: string } };
+export type AuthoredHead = HeadNineAxis & { axis: number; authoring: { stage: Stage; upstreamSha256?: string } };
 export const authorFile = (stage: Stage) => ({ up: 'face-up.json', down: 'face-down.json', xy: 'face-xy.json', jaw: 'jaw.json', hair: 'hair.json', accessories: 'accessories.json' })[stage];
 export const isHairNode = (node: { id: string; level: string }) => node.level === 'hair' && /^hair(?:\/|$)/.test(node.id);
 export const isAccessoryNode = (node: { id: string; level: string }) => node.level === 'accessory' && /^head_accessories(?:\/|::|$)/.test(node.id);
@@ -26,13 +26,13 @@ export const sha256 = (s: string) => createHash('sha256').update(s).digest('hex'
 export async function readUpstream(directory: string) {
   const text = await readFile(join(directory, 'deformers.json'), 'utf8');
   const doc = validateHeadNineAxis(JSON.parse(text)) as HeadNineAxis & { axis: number };
-  return { doc, hash: sha256(text) };
+  return { doc };
 }
 // The entire author document retains hierarchy and clipping. The edit tool
 // creates it from the current upstream; artists need not expand coordinates.
-export function startContinuation(upstream: HeadNineAxis & { axis: number }, hash: string, stage: Stage, scale: AngleScale = angleScale()): AuthoredHead {
+export function startContinuation(upstream: HeadNineAxis & { axis: number }, stage: Stage, scale: AngleScale = angleScale()): AuthoredHead {
   const doc = structuredClone(upstream) as AuthoredHead;
-  doc.authoring = { stage, upstreamSha256: hash };
+  doc.authoring = { stage };
   if (horizontalStage(stage)) {
     // This step exposes horizontal authoring only. Inherited face geometry,
     // including its completed Y/XY forms, stays intact in the document.
@@ -60,9 +60,9 @@ export function startContinuation(upstream: HeadNineAxis & { axis: number }, has
   return doc;
 }
 
-export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axis: number }, hash: string, stage: Stage, scale: AngleScale = angleScale()): AuthoredHead {
+export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axis: number }, stage: Stage, scale: AngleScale = angleScale()): AuthoredHead {
   const doc = validateHeadNineAxis(value) as AuthoredHead;
-  if (doc.authoring?.stage !== stage || doc.authoring?.upstreamSha256 !== hash) throw Error(`${authorFile(stage)}：上游已变化或来源记录不匹配，请从当前上游重新制作`);
+  if (doc.authoring?.stage !== stage) throw Error(`${authorFile(stage)}：阶段记录不匹配，请使用本阶段的作者模型`);
   const sameSource = JSON.stringify(doc.source) === JSON.stringify(upstream.source);
   const inheritedGeometry = (stage === 'jaw' || horizontalStage(stage)) && doc.source?.geometryDocument === (upstream.source?.geometryDocument ?? upstream.source?.document);
   if (doc.axis !== upstream.axis || JSON.stringify(doc.canvas) !== JSON.stringify(upstream.canvas) || (!sameSource && !inheritedGeometry)) throw Error('不能替换上游画布、中轴或角色来源');
@@ -131,7 +131,7 @@ export async function compileContinuation(directory: string, upstreamDirectory: 
     const root = taskRootOf(dirname(directory)), document = await modelDocument(root, directory, value);
     if (document) author = withDocument(value, root, document) as AuthoredHead;
   }
-  const checked = checkContinuation(author, upstream.doc, upstream.hash, stage, scale);
+  const checked = checkContinuation(author, upstream.doc, stage, scale);
   const mirrored = stage === 'up' || stage === 'down' || horizontalStage(stage) ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY');
   const doc = stage === 'jaw' ? mirrorDocument(mirrored, checked.axis, 'keyforms') : mirrored;
   validateHeadNineAxis(doc); for (const n of nodes(doc)) checkWarpGeometry(n);

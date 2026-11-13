@@ -70,8 +70,8 @@ test('fixed face branches cannot rebind KRA layers while preserving stale PNGs',
   upstream.axis=6;
   for(const part of upstream.parts)part.keyforms={...part.keyforms,'-30':structuredClone(part.keyforms['0']),'30':structuredClone(part.keyforms['0'])};
   upstream.parameters=[{id:'ParamAngleX',min:-30,max:30,keys:[-30,0,30]},{id:'ParamAngleY',keys:[0]}];
-  const author=startContinuation(upstream,'original','up'); author.parts[0].uuid=hairUuid;
-  assert.throws(()=>checkContinuation(author,upstream,'original','up',angleScale()),/不能替换上游 KRA 图层绑定/);
+  const author=startContinuation(upstream,'up'); author.parts[0].uuid=hairUuid;
+  assert.throws(()=>checkContinuation(author,upstream,'up',angleScale()),/不能替换上游 KRA 图层绑定/);
 });
 
 test('existing hair keyforms and parents survive KRA hydration instead of becoming static references', async t => {
