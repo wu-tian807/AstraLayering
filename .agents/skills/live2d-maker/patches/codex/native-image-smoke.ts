@@ -95,11 +95,12 @@ try {
     turn = 0; generation = 0;
     const directory = join(root, protocol), home = join(directory, 'codex-home'); await mkdir(home, { recursive: true });
     const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !Object.hasOwn(configuration, key) && !key.startsWith('layering_') && !key.startsWith('LAYERING_')));
-    const settings = loadWorkflowEnvironment({ ...env, CODEX_HOME: home, codex_path: resolve(values.codex!),
+    const settings = loadWorkflowEnvironment({ ...env, CODEX_HOME: home,
       custom_provider: 'true', provider_base_url: base + '/chat/v1', provider_api_key: 'chat-fixture',
       part_simplify_image_model: protocol === 'openai' ? 'gpt-image-2.5-flare' : 'gemini-nano-banana-2.1',
       [`${protocol === 'openai' ? 'openai' : 'google'}_image_base_url`]: base + (protocol === 'openai' ? '/images/v1' : '/images/v1beta'),
       [`${protocol === 'openai' ? 'openai' : 'google'}_image_api_key`]: 'image-fixture' }, directory);
+    settings.codex.codexPathOverride = resolve(values.codex!);
     if (protocol === 'disabled') settings.codex.config = { ...settings.codex.config, 'features.image_generation': true };
     const session = new CodexAgents({ environment: settings, cwd: directory, logDirectory: join(directory, 'agents') }).createSession();
     try {

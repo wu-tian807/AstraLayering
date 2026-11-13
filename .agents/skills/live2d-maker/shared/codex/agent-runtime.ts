@@ -50,7 +50,7 @@ const fatalText = /exceeded your (?:current )?quota|insufficient[\s_-]*quota|quo
 const errorCode = (info: unknown) => typeof info === 'string' ? info : info && typeof info === 'object' ? Object.keys(info)[0] : undefined;
 const httpStatus = (info: unknown, code: string) => info && typeof info === 'object' ? (info as Record<string, any>)[code]?.httpStatusCode : undefined;
 
-const unavailableSessionText = /(?:thread|session|conversation).{0,80}(?:not found|does not exist|unavailable|invalid|不存在|不可用)|no (?:conversation|session|rollout) found|rollout path.{0,40}not found/i;
+const unavailableSessionText = /(?:thread|session|conversation).{0,80}(?:not found|does not exist|unavailable|invalid|不存在|不可用)|no (?:conversation|session|rollout) found|rollout path.{0,40}not found|cannot resume paginated thread.{0,80}with stale path/i;
 // Gemini reports "The input token count (N) exceeds the maximum number of tokens allowed (M)".
 const contextWindowText = /context.{0,30}(?:length|window)|prompt is too long|maximum context|input token count.{0,40}exceeds|exceeds the maximum number of tokens/i;
 const payloadTooLarge = /(?:request|payload|entity).{0,20}too large/i;

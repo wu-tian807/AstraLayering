@@ -1,15 +1,21 @@
 import { chmod, mkdtemp, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import type { WorkflowEnvironment } from '../codex/environment.ts';
 
 // Every Codex run requires the patched build. Tests that reach the startup check
-// without a fake app server point codex_path here instead of building it.
+// without a fake app server use the test-only runtime preload instead of building it.
 // Every patched build reports the full set patches/codex/build.ts verifies, so the
 // fakes do too: what a run needs must not depend on the local .env.
 export const patchedCodexCapabilities = { version: 1, image_provider: true, image_provider_version: 2, image_compaction: true,
   image_compaction_version: 2, request_compaction_version: 1, failed_error_event_version: 1 };
 // Sessions rewrite the catalog from `debug models` so every model calls tools directly.
 export const fakeModelCatalog = { models: [{ slug: 'fixture-model', tool_mode: 'code_mode_only' }] };
+
+export function withCodex(settings: WorkflowEnvironment, executable: string): WorkflowEnvironment {
+  settings.codex.codexPathOverride = executable;
+  return settings;
+}
 
 // Fake CLI source for `debug models` and `debug layering-capabilities`.
 export function fakeDebug(capabilities: object = patchedCodexCapabilities) {

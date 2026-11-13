@@ -1,3 +1,4 @@
+import { withCodex } from '../../shared/tests/fake-codex.ts';
 // First, so a direct `node --test` of this file also keeps its own Krita slots and
 // ignores the local .env, as `pnpm test` does through --import.
 import '../../shared/tests/ignore-local-env.ts';
@@ -58,7 +59,7 @@ async function fixture(t: TestContext) {
     }
     return {success:true,width:2,height:2,nativeVersion:'fixture',relations:relations.map((r,i)=>({id:r.id,bounds:[0,0,2,2],fullPaint:`paint-${i}.png`,receiver:`receiver-${i}.png`,clipBase:`receiver-${i}.png`,frames:r.testOffsets.map((offset:number[],j:number)=>({offset,file:`offset-${i}-${j}.png`,clipped:`offset-${i}-${j}.png`}))}))};
   };
-  const deps = { environment: loadWorkflowEnvironment({ codex_path: await fakePatchedCodex(root) }, root), preflight: async (executable: string) => ({ executable }) };
+  const deps = { environment: withCodex(loadWorkflowEnvironment({}, root), await fakePatchedCodex(root)), preflight: async (executable: string) => ({ executable }) };
   // A mask agent saves its work, then may inspect it (null: delivers without inspecting).
   const deliver = async (request: AgentRequest, native: NativeInspect | null = inspectNative) => {
     await request.onEvent({ type: 'thread.started', thread_id: request.threadId ?? (request.step + '-thread') });

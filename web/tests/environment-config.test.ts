@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { parseEnv } from 'node:util';
-import { createEnvironmentConfig, EnvironmentConflict, patchEnvironment } from '../environment-config.ts';
+import { createEnvironmentConfig, EnvironmentConflict, patchEnvironment, probeEnvironmentCli } from '../environment-config.ts';
 import { createWorkbench } from '../server.ts';
 import { loadWorkflowEnvironment } from '../../.agents/skills/live2d-maker/shared/codex/environment.ts';
 import { imageSteps, imageModelKey } from '../../.agents/skills/live2d-maker/shared/agents/models.ts';
@@ -33,6 +33,14 @@ test('preview masks multiline and inherited credentials while exposing resolved 
  assert.equal(claude.overridden,true);assert.equal(claude.sourceKey,'ANTHROPIC_API_KEY');
  assert.equal(data.providers?.claude.baseUrl,'https://gateway.example');
  assert.equal(data.models.find(m=>m.id==='claude-sonnet-5-5')?.available,false);
+});
+test('Codex is managed by the pipeline and no executable-path field can be saved', async t => {
+ const f=await fixture(t,'# keep\n'),data=await f.environment.read();
+ assert.equal(data.fields.some(field=>field.key==='codex_path'),false);
+ await assert.rejects(f.environment.save({revision:data.revision,changes:{codex_path:'/local/codex'}}),/字段无效/);
+ const codex=await probeEnvironmentCli('codex',{codex_path:'/missing/local-codex'},{codex_path:'/missing/env-codex',PATH:''},f.directory);
+ assert.equal(codex.available,true);assert.equal(codex.path,'');assert.match(codex.detail,/管线内置补丁版/);
+ assert.equal(await readFile(join(f.directory,'.env'),'utf8'),'# keep\n');
 });
 test('saves selected keys atomically, preserving comments, CRLF, secrets, unknown multiline records and budgets',async t=>{
  const original="# Local settings\r\npreparation_agent_model=gpt-6.1-sol-low # keep this note\r\ncodex_api_key='unchanged-secret'\r\nCUSTOM='first\r\nsecond # still value'\r\ncodex_request_compact_mib=80\r\n";

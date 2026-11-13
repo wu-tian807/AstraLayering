@@ -11,7 +11,7 @@ test('repeated workbench renders keep one preview/save action and enable discard
     hasAttribute(){return false;}
     async click(){await Promise.all([this.onclick?.(),...this.listeners.map(listener=>listener())]);}
   }
-  const input=new Control();input.dataset.envValue='codex_path';
+  const input=new Control();input.dataset.envValue='claude_path';
   const save=new Control(),preview=new Control(),discard=new Control(),count=new Control(),main=new Control();
   save.disabled=preview.disabled=discard.disabled=true;
   const controls:Record<string,Control>={'[data-env-save]':save,'[data-env-preview]':preview,'[data-env-discard]':discard,'[data-env-count]':count,'.env-main':main};
@@ -21,20 +21,20 @@ test('repeated workbench renders keep one preview/save action and enable discard
     querySelectorAll:(selector:string)=>selector==='[data-env-value]'?[input]:selector.includes('[data-env-save],')?[save,preview,discard]:[],
   }});
   t.after(()=>original?Object.defineProperty(globalThis,'document',original):Reflect.deleteProperty(globalThis,'document'));
-  const source={exists:true,revision:'initial',preview:'codex_path=',fields:[{key:'codex_path',value:'',effective:'',type:'text'}],cli:{},models:[],issues:[]};
+  const source={exists:true,revision:'initial',preview:'claude_path=',fields:[{key:'claude_path',value:'',effective:'',type:'text'}],cli:{},models:[],issues:[]};
   const posts:string[]=[],notices:string[]=[];
   let editor:ReturnType<typeof createEnvEditor>;
   editor=createEnvEditor({get:async()=>source,post:async(path:string,body:any)=>{
     posts.push(path);
-    return {...source,revision:path.endsWith('/preview')?'initial':'saved',preview:'codex_path=/local/codex',fields:[{...source.fields[0],value:body.changes.codex_path,effective:body.changes.codex_path}]};
+    return {...source,revision:path.endsWith('/preview')?'initial':'saved',preview:'claude_path=/local/claude',fields:[{...source.fields[0],value:body.changes.claude_path,effective:body.changes.claude_path}]};
   },toast:(message:string)=>notices.push(message),render:()=>editor.bind()});
   await editor.load();editor.bind();editor.bind();
-  input.value='/local/codex';input.oninput?.();
+  input.value='/local/claude';input.oninput?.();
   assert.equal(save.disabled,false);assert.equal(discard.disabled,false);
   await preview.click();editor.bind();editor.bind();
   assert.equal(posts.filter(path=>path.endsWith('/preview')).length,1);
   input.value='';input.oninput?.();assert.equal(save.disabled,true);
-  input.value='/local/codex';input.oninput?.();
+  input.value='/local/claude';input.oninput?.();
   await save.click();
   assert.equal(posts.filter(path=>path==='config/environment').length,1);
   assert.ok(notices.includes('配置已保存，下一次启动任务时生效'));

@@ -46,6 +46,8 @@ step01 绘制与返修对轮廓、隐藏补全、画风和结构负责。读取�
 
 各环节的流程工具见 [raster 工具表](../raster-layering/README.md#三步交付)：结构编辑工具仅提供给两套 raster step01 绘制／返修，reviewer 只用框选工具，step02、step03 只用 Krita；需要 Krita 的步骤中，绘制、review 与返修 agent 都另有 `krita` 工具。各 CLI 沿用共用函数工具通道和原有会话恢复能力。职责约定与受控工具校验之外没有写入沙箱：Codex 使用 `danger-full-access`，Claude／AGV 使用 `--dangerously-skip-permissions`。
 
+三种 harness 使用管线 `agents/` 内的独立配置和会话数据，续跑复用任务记录，认证按需接入。
+
 raster 中断、主动重跑及已进入 raster 的总控续跑保留上游修正。独立重跑 part 会从首次分组与各步骤事实重建树；仅写在根 groups.json 的树结构调整需事先留档核对。历史核查见 [结构写回审计](STRUCTURE-AUDIT-20261026.md)。
 
 reviewer 只提交已经观察确认的问题；blocked 仅用于必要输入／工具等执行障碍，不消耗正式质量审核轮数。文件、像素统计与测试不能代替逐层视觉验收。

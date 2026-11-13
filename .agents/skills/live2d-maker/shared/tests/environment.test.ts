@@ -1,3 +1,4 @@
+import { withCodex } from './fake-codex.ts';
 import { readStepSession } from '../agents/step-session.ts';
 import { rasterAppServer } from './raster-app-server.ts';
 import {deliverRasterStep, isRasterReview} from './raster-delivery.ts';
@@ -13,6 +14,8 @@ import { runWorkflow } from '../raster/workflow.ts';
 import { section as character } from '../../raster-layering/run.ts';
 import { section as clothing } from '../../clothing-raster-layering/run.ts';
 import { seedUpstream } from './upstream-fixture.ts';
+import { fakePatchedCodex } from './fake-codex.ts';
+import { appServerCommand } from '../codex/tool-agent.ts';
 
 async function fixture(t: { after(callback: () => Promise<unknown>): void }) {
   const root = await mkdtemp(join(tmpdir(), 'layering-env-'));
@@ -20,7 +23,7 @@ async function fixture(t: { after(callback: () => Promise<unknown>): void }) {
   return root;
 }
 
-test('默认继承 Codex 配置，.env 模型后缀是力度，shell 优先且不会改写进程环境', async t => {
+test('配置解析保留认证来源，.env 模型后缀是力度，shell 优先且不会改写进程环境', async t => {
   const root = await fixture(t);
   const baseline = loadWorkflowEnvironment({ CODEX_HOME: '/existing/codex' }, root);
   assert.deepEqual(baseline.codex.config, {});
@@ -32,7 +35,9 @@ test('默认继承 Codex 配置，.env 模型后缀是力度，shell 优先且�
   const settings = loadWorkflowEnvironment({ medium_model: 'gpt-6.1-sol-medium' }, root);
   assert.deepEqual(settings.models.medium, { model: 'gpt-6.1-sol', effort: 'medium' });
   assert.deepEqual(settings.models.high, { model: 'gpt-6-astra', effort: 'high' });
-  assert.equal(settings.codex.codexPathOverride, join(root, 'bin/codex'));
+  assert.equal(settings.codex.codexPathOverride, undefined);
+  assert.equal(settings.cliPaths.codex, undefined);
+  assert.equal(settings.codex.env!.codex_path, undefined);
   assert.equal(process.env.high_model, undefined);
 });
 
@@ -44,6 +49,20 @@ test('本机 Krita 并发上限来自 .env，默认取 example.env，非正整�
   assert.equal(loadWorkflowEnvironment({ krita_max_instances: '6' }, root).codex.env!.krita_max_instances, '6');
   await writeFile(join(root, '.env'), 'krita_max_instances=0\n');
   assert.throws(() => loadWorkflowEnvironment({}, root), /krita_max_instances 须为正整数/);
+});
+
+test('Codex ignores executable environment fields and selects only the managed preparation result', async t => {
+  const root = await fixture(t), executable = await fakePatchedCodex(root);
+  const settings = loadWorkflowEnvironment({ codex_path: '/must-not-run', layering_codex_path: '/also-must-not-run' }, root);
+  assert.equal(settings.codex.codexPathOverride, undefined);
+  assert.equal(settings.cliPaths.codex, undefined);
+  assert.equal(settings.codex.env!.codex_path, undefined);
+  assert.equal(settings.codex.env!.layering_codex_path, undefined);
+  let prepared = 0;
+  await checkCodexCapabilities(settings, settings.codex, {}, async () => { prepared++; return executable; });
+  assert.equal(prepared, 1); assert.equal(settings.codex.codexPathOverride, executable);
+  assert.deepEqual(appServerCommand(executable), { command: executable, args: ['app-server'] });
+  assert.throws(() => appServerCommand(), /尚未准备/);
 });
 
 test('主模型与生图分别鉴权；只填生图模型不启用，按需准备补丁失败时保留原因', async t => {
@@ -82,10 +101,10 @@ test('图片压缩拒绝旧去图补丁，生图能力缓存不能绕过 v2 检�
     await chmod(executable, 0o755);
   };
   await install(capabilities);
-  const provider = loadWorkflowEnvironment({ codex_path: executable,
-    image_base_url: 'https://images.example/v1', image_api_key: 'fixture' }, root);
+  const provider = withCodex(loadWorkflowEnvironment({
+    image_base_url: 'https://images.example/v1', image_api_key: 'fixture' }, root), executable);
   await checkCodexCapabilities(provider, provider.codex, { image: true });
-  const compact = loadWorkflowEnvironment({ codex_path: executable, image_compact_threshold: '49' }, root);
+  const compact = withCodex(loadWorkflowEnvironment({ image_compact_threshold: '49' }, root), executable);
   await assert.rejects(checkCodexCapabilities(compact), /补丁能力检查/);
   await install({ ...capabilities, image_compaction_version: 2 });
   await checkCodexCapabilities(compact);
@@ -94,7 +113,7 @@ test('图片压缩拒绝旧去图补丁，生图能力缓存不能绕过 v2 检�
 test('独立字节预算保留 env 控制权，Codex 明确拒绝缺少字节保护能力的旧补丁', { skip: process.platform === 'win32' }, async t => {
   const root = await fixture(t), executable = join(root, 'codex-budget-fixture');
   await writeFile(join(root, '.env'), 'image_compact_threshold=49\nagv_request_compact_mib=80\nclaude_image_compact_threshold=90\n');
-  const settings = loadWorkflowEnvironment({ codex_path: executable, codex_request_compact_mib: '28' }, root);
+  const settings = withCodex(loadWorkflowEnvironment({ codex_request_compact_mib: '28' }, root), executable);
   assert.equal(settings.imageCompactThreshold, 49);
   assert.equal(settings.codex.env!.LAYERING_REQUEST_COMPACT_BYTES, String(28 * 1048576));
   assert.deepEqual(settings.imageBudgets!.agv, { bytes: 80 * 1048576 });
