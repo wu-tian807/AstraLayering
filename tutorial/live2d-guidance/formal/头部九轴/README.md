@@ -24,7 +24,7 @@
 
 ## 目标与已知问题
 
-- 当前制作刻度：ParamAngleX −30° / +30°，抬头 +25°、低头 −25°，以 [angles.json](../../../../.agents/skills/live2d-maker/knowledge/nine-axis/step01_video/references/angles.json) 为准，`deformers.json` 以度数记录。left 帧在 `step01_video/left.png`，up/down 帧在 `step03_video-y/up.png`、`down.png`；对应 X、up、down、四角和下颌分别为 step02、step04、step05、step06、step07，详见 [七步流程](../../../../.agents/skills/live2d-maker/nine-axis/README.md)。
+- 当前制作刻度：ParamAngleX −30° / +30°，抬头 +25°、低头 −25°，以 [angles.json](../../../../.agents/skills/live2d-maker/knowledge/head-nine-axis/step01_video/references/angles.json) 为准，`deformers.json` 以度数记录。left 帧在 `step01_video/left.png`，up/down 帧在 `step03_video-y/up.png`、`down.png`；对应 X、up、down、四角和下颌分别为 step02、step04、step05、step06、step07，详见 [七步流程](../../../../.agents/skills/live2d-maker/nine-axis/README.md)。
 - AI 自由形变通常只能做到约 15° 而不严重变形。
 - 转角更大时，AI 倾向于扭曲脖子来代替头部本身的透视形变。
 

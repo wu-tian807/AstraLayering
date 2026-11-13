@@ -22,6 +22,8 @@ nine_axis_view_video_model=seedance-2.5
 
 ## 独立运行
 
+本管线的先验位于 `knowledge/head-nine-axis/`，前端归为“头部九轴”。头部九轴内部共用提示词和专用工具说明分别在该目录的 `prompts/`、`tools/`；步骤工具说明可再覆盖。自定义 knowledge 也须使用此目录结构，旧 `knowledge/nine-axis/` 不作回退。
+
 ```sh
 pnpm nine-axis --name my-character --dir /绝对路径/运行根目录 --knowledge /绝对路径/knowledge --krita /绝对路径/krita --ffmpeg /绝对路径/ffmpeg
 ```
@@ -44,7 +46,7 @@ pnpm nine-axis --name my-character --dir /绝对路径/运行根目录 --knowled
 | `step08_hair` | left＋right，Y=0；同一 KRA、同一持续会话，按操作依次制作前发、侧发、后发、其余头发与整体协调 |
 | `step09_head-accessories` | 基于已完成脸发制作 head_accessories 的 left＋right，Y=0；检查完整组合遮挡和关联投影 |
 
-素材沿用上游工程的尺寸、图层与投影关系。制作角度见 [angles.json](../knowledge/nine-axis/step02_video/references/angles.json)。
+素材沿用上游工程的尺寸、图层与投影关系。制作角度见 [angles.json](../knowledge/head-nine-axis/step02_video/references/angles.json)。
 
 KRA 是画稿依据，阶段 JSON 是累计变形与图层绑定。`step01_preparation` 只读取上游 shadow（缺省为 assembly）KRA，记录实际来源和 UUID，记录 neutral 几何与原生图层绑定，不预导出像素，不复制未修改的 KRA。left／up／down 各自从 neutral 独立制作，程序合并后供 xy、jaw 继续；每步 JSON 已含上游效果，渲染时只应用一次。
 

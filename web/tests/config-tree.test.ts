@@ -12,6 +12,10 @@ const files = [
   'shared/tools/inspect_layers/description.md',
   'shadow/prompts/mask.md',
   'shadow/tools/inspect_shadow_mask/description.md',
+  'head-nine-axis/prompts/face-contour.md',
+  'head-nine-axis/tools/edit_nine_axis/description.md',
+  'head-nine-axis/tools/view_nine_axis/description.md',
+  'head-nine-axis/step08_hair/prompts/前发制作.md',
   'part-layering/prompts/groups/prompt.md',
   'part-layering/prompts/groups/face/prompt.md',
   'part-layering/prompts/groups/face/eye_left/prompt.md',
@@ -42,6 +46,19 @@ test('tools are folders holding their description', () => {
   // shadow/tools holds one tool, so the two share a row; shared/tools holds two.
   assert.match(html, /<span>tools \/ inspect_shadow_mask<\/span>/);
   assert.match(html, /<span>tools<\/span>[\s\S]*<span>submit_review<\/span>/);
+});
+
+test('head-only prompts and tools belong to the head nine-axis family, distinct from common priors', () => {
+  const selected = 'head-nine-axis/tools/edit_nine_axis/description.md', html = render(selected);
+  const head = html.indexOf('data-config-folder="head-nine-axis"'), shared = html.indexOf('data-config-folder="shared"');
+  assert.ok(head >= 0 && shared > head); assert.match(html, /头部九轴/);
+  for (const file of files.filter(file => file.startsWith('head-nine-axis/'))) {
+    const row = html.indexOf(`data-config-file="${file}"`);
+    assert.ok(row > head && row < shared, file);
+  }
+  assert.match(folder(html, 'head-nine-axis'), / open>$/);
+  const search = render(selected, 'edit_nine_axis');
+  assert.match(search, /头部九轴/); assert.doesNotMatch(search, /公共先验/);
 });
 
 test('same-named prompts sit in their own nested folders; a folder with one folder shares its row', () => {

@@ -68,7 +68,7 @@ step06_angle-xy：基于 step04 单轴模型与 step05 参考帧制作斜角。
 step07_jaw-line：完成下颌与固定脖子连接，交付脸部＋五官九轴的中间成果。
 step08_hair：left/right，Y=0；同一 KRA、同一会话，每次操作派发一轮：前发、侧发、后发、其余头发与整体协调。
 step09_head-accessories：基于已完成脸发制作 head_accessories 的 left/right，Y=0，连同关联投影检查最终遮挡。
-部件与 Warp 组织方式由实际工程决定，角度配置见 knowledge/nine-axis/step02_video/references/angles.json。
+部件与 Warp 组织方式由实际工程决定，角度配置见 knowledge/head-nine-axis/step02_video/references/angles.json。
 `;
 
 // The turns use the step file; up and down replace it through their groups.

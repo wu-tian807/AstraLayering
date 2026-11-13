@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { isAbsolute, join, resolve, win32 } from 'node:path';
+import { basename, isAbsolute, join, resolve, win32 } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import type { FunctionTool } from './codex/function-tools.ts';
@@ -19,6 +19,9 @@ export function selectKnowledge(directory: string): void {
   useKnowledge(path);
 }
 export function knowledgeDirectory(): string { return selected.getStore() ?? defaultKnowledgeDirectory; }
+export function sectionKnowledgeDirectory(section: string, directory = knowledgeDirectory()): string {
+  return join(directory, section === 'nine-axis' ? 'head-nine-axis' : section);
+}
 
 export type KnowledgeValues = Record<string, string>;
 export type KnowledgeRenderOptions = { taskRoot?: string; section?: string; knowledge?: string };
@@ -42,7 +45,7 @@ export function renderKnowledge(template: string, values: KnowledgeValues, optio
     }
     if (prefix === 'reference') {
       if (!options.section) throw new Error(`${match} 需要所属管线`);
-      return join(directory, options.section, relative);
+      return join(sectionKnowledgeDirectory(options.section, directory), relative);
     }
     return join(directory, 'shared', 'references', relative);
   });
@@ -85,7 +88,7 @@ function parseAgent(path: string, reviewDeclared: boolean): AgentConfig {
 const groupId = /^[\p{L}\p{N}_-]+(?:\/[\p{L}\p{N}_-]+)*$/u;
 
 export function stepKnowledge(section: string, step: string) {
-  const root = knowledgeDirectory(), directory = join(root, section, step);
+  const root = knowledgeDirectory(), sectionDirectory = sectionKnowledgeDirectory(section, root), directory = join(sectionDirectory, step);
   const declared = knowledgeSteps.find(item => item.section === section && item.step === step);
   if (!declared) throw new Error(`未登记的先验知识步骤：${section}/${step}`);
   const agent = () => parseAgent(join(directory, 'agent.json'), Boolean(declared.review));
@@ -98,6 +101,7 @@ export function stepKnowledge(section: string, step: string) {
   const filePath = (file: string, group?: string) => {
     if (isAbsolute(file) || win32.isAbsolute(file) || file.split(/[\\/]/).includes('..')) throw new Error(`agent.json 的 initial 必须是知识目录内的相对路径：${file}`);
     if (file.startsWith('shared/')) return join(root, file);
+    if (file.startsWith(basename(sectionDirectory) + '/')) return join(root, file);
     if (group !== undefined && file.startsWith('prompts/')) {
       if (!groupId.test(group)) throw new Error('Invalid group prompt id');
       // A group prior replaces the step file of the same name, nothing else.
@@ -127,7 +131,7 @@ export function stepKnowledge(section: string, step: string) {
       }).join('');
     },
     // agent.json decides which provided tools the agent sees and in what
-    // order; a step may replace a tool description in tools/<name>/.
+    // order. Descriptions resolve step -> section -> shared -> provided tool.
     tools<T extends FunctionTool>(role: KnowledgeRole, provided: readonly T[]): T[] {
       const names = toolNames(role);
       return names.flatMap(name => {
@@ -137,9 +141,10 @@ export function stepKnowledge(section: string, step: string) {
           if (name === 'imagegen') return [];
           throw new Error(`${section}/${step} 的 ${role} 声明了工具 ${name}，但没有提供执行实现`);
         }
-        const own = join(directory, 'tools', name, 'description.md');
-        const description = (existsSync(own) ? read(own) : tool.description).trim();
-        if (!description) throw new Error(`工具 ${name} 缺少说明：${own}`);
+        const paths = [directory, sectionDirectory, join(root, 'shared')].map(base => join(base, 'tools', name, 'description.md'));
+        const own = paths.find(existsSync);
+        const description = (own ? read(own) : tool.description).trim();
+        if (!description) throw new Error(`工具 ${name} 缺少说明：${paths.join('、')}`);
         return [{ ...tool, description }];
       });
     },
@@ -154,7 +159,7 @@ function checkReferences(path: string, section?: string): void {
     const [text, prefix, relative] = match;
     if ((prefix !== 'reference' && prefix !== 'shared_reference') || relative.includes('{')) continue;
     if (prefix === 'reference' && !section) throw new Error(`${text} 需要所属管线：${path}`);
-    const target = prefix === 'reference' ? join(knowledgeDirectory(), section!, relative) : join(knowledgeDirectory(), 'shared', 'references', relative);
+    const target = prefix === 'reference' ? join(sectionKnowledgeDirectory(section!), relative) : join(knowledgeDirectory(), 'shared', 'references', relative);
     if (!existsSync(target)) throw new Error(`先验知识引用的文件不存在：${text}（${path}）`);
   }
 }
@@ -190,10 +195,10 @@ export function checkKnowledge(directory = knowledgeDirectory()): void {
       for (const [role, tools] of [['main', config.main.tools ?? []], ['review', config.review?.tools ?? []]] as const) {
         for (const name of tools) {
           if (!schemas.has(name)) throw new Error(`${declared.section}/${declared.step} 引用了未注册的工具：${name}`);
-          const own = join(step.directory, 'tools', name, 'description.md');
-          const shared = join(directory, 'shared', 'tools', name, 'description.md');
-          const description = existsSync(own) ? read(own) : existsSync(shared) ? read(shared) : '';
-          if (!description.trim()) throw new Error(`工具 ${name} 缺少说明：${own}`);
+          const paths = [step.directory, sectionKnowledgeDirectory(declared.section, directory), join(directory, 'shared')]
+            .map(base => join(base, 'tools', name, 'description.md'));
+          const own = paths.find(existsSync), description = own ? read(own) : '';
+          if (!description.trim()) throw new Error(`工具 ${name} 缺少说明：${paths.join('、')}`);
         }
         const required = role === 'main' ? declared.required ?? [] : declared.review?.required ?? [];
         for (const name of required) if (!tools.includes(name)) throw new Error(`${declared.section}/${declared.step} 的 ${role} 缺少必需工具：${name}`);
