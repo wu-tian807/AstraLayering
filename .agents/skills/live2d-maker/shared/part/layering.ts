@@ -11,7 +11,7 @@ import { type GroupContext, type GroupInput, type GroupNode, type GroupSeed, typ
 import type { PreparationReferences } from './preparation-types.ts';
 import { runWorkflow, validateWorkflowOptions } from './workflow.ts';
 import { parentBoundsSource, validateGroupSvg } from './svg-tools.ts';
-import { clearCopyDecision, copyHash, readCopyDecision } from './parent-copy-decision.ts';
+import { clearCopyDecision, readCopyDecision } from './parent-copy-decision.ts';
 import { occlusionPath, occlusionSourceHash, validateOcclusionPlan } from './occlusion-plan.ts';
 import { beginStep, checkStep, completeStep, readStep, type ChainStep, type StepAction, type StepStatus } from '../step-chain.ts';
 import { taskRootOf } from '../task-paths.ts';
@@ -133,10 +133,9 @@ export async function runLayering(input: {
       return { status: 'completed', output: { ...result.output, path: output } };
     });
   }
-  // A verified parent copy skips review; its tool decision controls completion.
+  // A group-bound parent copy skips review; its tool decision controls completion.
   async function copied(id: string) {
-    const parent = context(id).parent?.steps.completion.output?.path, outline = await readSvg(artifactPath(directory, id, 'outline'));
-    return parent && outline ? readCopyDecision(directory, id, outline, await readFile(resolve(directory, parent))) : undefined;
+    return context(id).parent ? readCopyDecision(directory, id) : undefined;
   }
   // step01: outline + review.
   async function prepare(id: string, run: boolean) {
@@ -243,7 +242,7 @@ export async function runLayering(input: {
       const reduced = artifact(id, 'reduction');
       // A complete independent copy can pass through unchanged. If reduction
       // changed it, the old outline decision cannot authorize bypassing completion.
-      if (decision?.needsCompletion === false && copyHash(await readFile(reduced.path)) === decision.outlineSha256) {
+      if (decision?.needsCompletion === false && (await readFile(reduced.path)).equals(await readFile(artifact(id, 'outline').path))) {
         const note = '工具确认完整取出父稿独立形体：跳过补全与补全检查';
         await writeAtomic(completion, await readFile(reduced.path));
         await completed(id, 'completion', { path: completion });

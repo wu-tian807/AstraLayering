@@ -19,7 +19,7 @@ export async function checkCornerReferences(directory:string,size:number,framesD
   for(const corner of corners)await readFile(join(directory,`${corner}-fit-report.json`));
 }
 export async function writeLinearCorners(directory:string,angleY:string,scale:AngleScale=angleScale()) {
-  const upstream=await readUpstream(angleY),doc=startContinuation(upstream.doc,upstream.hash,'xy',scale);
+  const upstream=await readUpstream(angleY),doc=startContinuation(upstream.doc,'xy',scale);
   await mkdir(directory,{recursive:true});const path=join(directory,'linear.json'),temporary=`${path}.${randomUUID()}.tmp`;
   await writeFile(temporary,JSON.stringify(doc)+'\n');await rename(temporary,path);
 }

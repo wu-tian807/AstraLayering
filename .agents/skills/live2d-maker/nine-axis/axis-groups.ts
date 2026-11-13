@@ -19,7 +19,7 @@ export async function seedAxis(directory: string, neutral: string, group: AxisGr
   const name = `face-${group}.json`;
   const value = group === 'left'
     ? { version: 2, axis: upstream.doc.axis, deformers: [], parts: upstream.doc.parts.toReversed() } as FaceLeft
-    : startContinuation(upstream.doc, upstream.hash, group, scale);
+    : startContinuation(upstream.doc, group, scale);
   await writeFile(join(directory, name), JSON.stringify(value) + '\n', { flag: 'wx' });
   await writeFile(join(directory, 'source.json'), await readFile(join(neutral, 'source.json')));
 }

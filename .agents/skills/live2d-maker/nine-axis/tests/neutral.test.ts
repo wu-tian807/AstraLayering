@@ -10,7 +10,7 @@ import { zipSync, strToU8 } from 'fflate';
 import { SectionKrita } from '../../shared/krita/section-krita.ts';
 import { submitJob, type BridgeResult } from '../../shared/krita/bridge/client.mjs';
 import { evaluatePoints, lattice } from '../../shared/nine-axis-model.js';
-import { compileContinuation, startContinuation, sha256 } from '../continuation.ts';
+import { compileContinuation, startContinuation } from '../continuation.ts';
 import { checkFaceLeft, compileHead, writeBuilt, type HeadInput } from '../head.ts';
 import { prepareNeutral, prepareNeutralBridge } from '../neutral.ts';
 
@@ -208,10 +208,10 @@ test('one original KRA job preserves layers, metadata, identity and the merge ex
 
 test('left/up/down independently clone frozen neutral without changing baseline bytes', async t => {
   const f = await fixture(t), built = await prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root);
-  const text = await readFile(built.path, 'utf8'), hash = sha256(text);
+  const text = await readFile(built.path, 'utf8');
   const left = { version: 2 as const, axis: built.doc.axis, deformers: [], parts: structuredClone(built.doc.parts.toReversed()) };
   checkFaceLeft(left, built.doc.canvas, '-30');
-  const up = startContinuation(built.doc, hash, 'up', scale), down = startContinuation(built.doc, hash, 'down', scale);
+  const up = startContinuation(built.doc, 'up', scale), down = startContinuation(built.doc, 'down', scale);
   up.parts[1].keyformsY!['25'][0][0] += 1;
   left.parts[1].keyforms['-30'][0][0] += 2;
   assert.deepEqual(down.parts[1].keyformsY!['-25'], built.doc.parts[1].keyforms['0']);

@@ -9,7 +9,7 @@ import { editXmlAttributes, svgBody, svgSource, updateSvgRoot, type XmlSourceEle
 import type { ParentMask, ParentRegion } from './layering-types.ts';
 import type { Canvas } from './svg-tools.ts';
 import { writeAtomic } from './groups.ts';
-import { clearCopyDecision, copyHash, saveCopyDecision, type CopyGeometryDecision } from './parent-copy-decision.ts';
+import { clearCopyDecision, saveCopyDecision, type CopyGeometryDecision } from './parent-copy-decision.ts';
 
 // A child whose boundary against its parent is clear takes its outline straight
 // from the parent's completed SVG: an agent-drawn mask SVG on the same canvas
@@ -52,7 +52,7 @@ async function mask(text: string, canvas: Canvas, scale = 1): Promise<Buffer> {
   return data;
 }
 
-export type ParentRegionCopy = CopyGeometryDecision & { svg: string; pieces: number[]; total: number; parentSha256: string; maskSha256: string };
+export type ParentRegionCopy = CopyGeometryDecision & { svg: string; pieces: number[]; total: number };
 
 // Inspect the rendered union, rather than path names: connected geometry can
 // span several elements, and a single path can contain independent islands.
@@ -193,7 +193,7 @@ async function copyParentMask(source: Buffer, id: string, region: ParentMask, ca
   if (remaining === whole) throw new Error('遮罩没有裁掉父组任何部分；子节点须是父组中的一部分');
   // The parent's own copy attributes (e.g. data-parent-region from its copy) must not carry over.
   const svg = rebind(withoutCompletionMarker(withoutCopyAttributes(clipped)), id);
-  return { svg, pieces: kept, total: found.length, parentSha256: copyHash(source), maskSha256: copyHash(region.mask),
+  return { svg, pieces: kept, total: found.length,
     ...await completionDecision(text, clipped, canvas) };
 }
 
@@ -301,7 +301,7 @@ export function createParentRegionTool(options: { directory: string; parentPath:
       const svg = recolor(copy.svg);
       await clearCopyDecision(options.directory, options.groupId);
       await writeAtomic(options.draft, svg);
-      const decision = await saveCopyDecision(options.directory, options.groupId, svg, copy.parentSha256, copy.maskSha256, copy);
+      const decision = await saveCopyDecision(options.directory, options.groupId, copy);
       return textResult({ mode, maskSvg, path: await toAgentPath(root, options.draft), parentShapes: copy.total,
         needsCompletion: decision.needsCompletion, reason: decision.reason,
         note: `复制结果已写入轮廓草稿；保持不改跳过轮廓 review。${decision.needsCompletion ? '工具检测到切穿连续形体或几何不确定，后续进行补全与检查' : '工具确认完整取出独立形体，后续直接发布，跳过补全与检查'}。请用 preview_svg 的 edge 模式核对范围` });

@@ -93,7 +93,7 @@ export async function prepareHair(directory: string, upstreamDirectory: string, 
   // Only native bindings and inherited geometry are prepared. The maker
   // inspects the owned KRA and explicitly registers the parts it will edit.
   const inherited=await bindKraDocument(root,upstreamDirectory,upstream.doc);
-  const doc=kraReferences(startContinuation(withDocument(inherited,root,document) as AuthoredHead,upstream.hash,'hair',scale));
+  const doc=kraReferences(startContinuation(withDocument(inherited,root,document) as AuthoredHead,'hair',scale));
   validateHeadNineAxis(doc);
   await writeFile(join(directory,'character-nine-axis.png'),kraContents(await readFile(document)).merged);
   await writeFile(join(directory,'source.json'),JSON.stringify({version:1,sourceDocument:toTaskPath(root,document),upstreamDocument:toTaskPath(root,source),upstreamModel:toTaskPath(root,join(upstreamDirectory,'deformers.json'))},null,2)+'\n');
