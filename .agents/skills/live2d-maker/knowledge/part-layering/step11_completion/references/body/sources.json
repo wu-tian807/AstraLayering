@@ -1,0 +1,7 @@
+{
+  "purpose": "身体与手臂在肩部的分层：手臂是顶端圆滑的胶囊，身体自带完整肩头与腋下，两者只在肩头附近小块重合。不提供当前角色的比例、肤色、坐标或服装。",
+  "file": "shoulder-armpit.png",
+  "sha256": "c194ba7885e1cbf46c91e2877c8547750877c4892ae7d18d98c1fa5f06fd63dd",
+  "render": "从视频帧裁切后横向拼接，高度等比缩放；未重绘。",
+  "source": "Live2D绘制指南 第13讲（手臂拆分细节），见 tutorial/live2d-guidance/formal/sources/arm-video.md；帧取自 01:14–01:24 的身体层／手臂层展示与 02:09 前后的拆分示意图。第三方画面仅作结构参考。"
+}
