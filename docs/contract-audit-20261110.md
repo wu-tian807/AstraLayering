@@ -157,7 +157,7 @@ P1 表示影响提示词来源、工具权限、任务目录、所选软件或�
 
 ### 17. P1：选中非标准文件名的 FFmpeg，裸命令可能调用另一份软件
 
-**证据：** [检查:12](https://github.com/kubeela/AstraLayering/blob/fc9ee8915249dcdc9da0e461ea57bbbe25040619/.agents/skills/live2d-maker/shared/ffmpeg.ts#L12)、[环境:45](https://github.com/kubeela/AstraLayering/blob/fc9ee8915249dcdc9da0e461ea57bbbe25040619/.agents/skills/live2d-maker/shared/ffmpeg.ts#L45)、[现有选帧提示词](https://github.com/kubeela/AstraLayering/blob/fc9ee8915249dcdc9da0e461ea57bbbe25040619/.agents/skills/live2d-maker/knowledge/nine-axis/step03_frames/prompts/选帧.md)。ffmpeg-custom 能通过版本检查，但其目录加入 PATH 并不会将它命名为 ffmpeg；隔离执行裸 ffmpeg 调用了 PATH 中另一份模拟程序。
+**证据：** [检查:12](https://github.com/kubeela/AstraLayering/blob/fc9ee8915249dcdc9da0e461ea57bbbe25040619/.agents/skills/live2d-maker/shared/ffmpeg.ts#L12)、[环境:45](https://github.com/kubeela/AstraLayering/blob/fc9ee8915249dcdc9da0e461ea57bbbe25040619/.agents/skills/live2d-maker/shared/ffmpeg.ts#L45)、[现有选帧提示词](https://github.com/kubeela/AstraLayering/blob/fc9ee8915249dcdc9da0e461ea57bbbe25040619/.agents/skills/live2d-maker/knowledge/head-nine-axis/step03_frames/prompts/选帧.md)。ffmpeg-custom 能通过版本检查，但其目录加入 PATH 并不会将它命名为 ffmpeg；隔离执行裸 ffmpeg 调用了 PATH 中另一份模拟程序。
 
 **本轮实现：** 将抽帧操作封装到正式声明的工具，执行实现内部消费选定的完整路径；agent 只提供视频、帧号/时间点和输出位置。工具 schema 放代码、说明与调用约定放 knowledge，不向制作提示词动态拼路径，也不自动安装软件。
 

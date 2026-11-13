@@ -69,6 +69,20 @@ test('the unfinished front round previews its own KRA and cumulative model while
   await f.put(paths.hairDocument, 'saved front artwork');
   assert.notEqual((await (await f.get()).json() as any).nineAxis.version, front.nineAxis.version);
 });
+test('accessories preview selects the newest owned KRA and keeps hair available',async t=>{
+  const f=await fixture(t),p=currentNineAxisArtifacts;
+  await f.put(p.neutralDeformers,'{}');await f.put(p.hairDocument,'hair artwork');
+  await f.put(p.hairDeformers,JSON.stringify({source:{document:p.hairDocument}}));
+  await f.put(p.accessoriesDocument,'accessory artwork');
+  await f.put(p.accessoriesDeformers,JSON.stringify({source:{document:p.accessoriesDocument}}));
+  await f.put('nine-axis/step09_head-accessories/.running','');
+  const a=await(await f.get()).json() as any;
+  assert.equal(a.nineAxis.stage,'accessories');assert.equal(a.files.document.path,p.accessoriesDocument);
+  assert.equal(a.files.color.available,false,'KRA selection does not require a PNG');
+  const hair=await(await f.get({nineStage:'hair'})).json() as any;assert.equal(hair.files.document.path,p.hairDocument);
+  await f.put(p.accessoriesDocument,'saved revised accessory artwork');
+  assert.notEqual((await(await f.get()).json() as any).nineAxis.version,a.nineAxis.version);
+});
 test("Project preview reads only the fixed assembly and lighting outputs; absent maps are pending", async (t) => {
   const f = await fixture(t);
   await f.put("backups/character-assembled.kra");
@@ -327,7 +341,7 @@ test('Nine-axis links select independent children; Y selects the parent merge', 
   for (const nineStage of ['invalid', 'toString', '__proto__', 'nine-axis/step04_angle-up/deformers.json']) {
     const response = await f.get({ nineStage });
     assert.equal(response.status, 400);
-    assert.match((await response.json() as any).error, /x、up、down、y、xy、jaw 或 hair/);
+    assert.match((await response.json() as any).error, /x、up、down、y、xy、jaw、hair 或 accessories/);
   }
 });
 

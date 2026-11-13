@@ -25,9 +25,9 @@ import traceback
 
 import krita
 from krita import Extension, Krita
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, Qt
 from PyQt5 import sip
-from PyQt5.QtWidgets import QApplication, QDialog
+from PyQt5.QtWidgets import QApplication, QAbstractButton, QDialog
 
 PROTOCOL = 1
 # A crash prints the Python stack to Krita's stderr, which ends up in the
@@ -95,6 +95,19 @@ def _write_json(path, value):
     os.replace(temporary, path)
 
 
+def _is_progress_dialog(widget):
+    # These dialogs finish automatically. Rejecting them cancels a running
+    # image operation, rather than answering a question. Check C++ inheritance:
+    # PyQt exposes Krita's own dialog classes as plain QDialog wrappers.
+    if widget.inherits('QProgressDialog'):
+        return True
+    # Only the non-interactive ForcedDialog variant; the SaveDialog variant
+    # offers choices that must still be reported and cancelled by the guard.
+    return (widget.inherits('KisDelayedSaveDialog')
+            and not (widget.windowFlags() & Qt.WindowCloseButtonHint)
+            and not any(button.isVisible() for button in widget.findChildren(QAbstractButton)))
+
+
 class Bridge(Extension):
     def __init__(self, parent):
         super().__init__(parent)
@@ -131,13 +144,15 @@ class Bridge(Extension):
         # A modal dialog runs a nested event loop, so this timer still fires
         # while the job that opened it is blocked. Krita's export options
         # dialog is not always reported by activeModalWidget(), so every
-        # visible top-level dialog counts. Each is recorded when first seen
+        # visible top-level interactive dialog counts. Each is recorded when first seen
         # and cancelled once it has been up for DIALOG_GRACE.
         # Python wrappers are recreated per call, so compare the C++ objects.
         now, shown = time.monotonic(), {}
         widgets = [QApplication.activeModalWidget()] + QApplication.topLevelWidgets()
         for widget in widgets:
             if widget is None or not widget.isVisible() or not (isinstance(widget, QDialog) or widget.isModal()):
+                continue
+            if _is_progress_dialog(widget):
                 continue
             key = sip.unwrapinstance(widget)
             if key in shown:

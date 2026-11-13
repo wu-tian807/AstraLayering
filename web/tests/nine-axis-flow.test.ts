@@ -46,3 +46,19 @@ test('pending stages keep the common selection and folding controls; collapsing 
   assert.match(closed, /aria-expanded="false"/);
   assert.doesNotMatch(closed, /nine-task-group|step-content/);
 });
+
+test('hair rounds use sequential display rows, one cumulative output and the parent recovery controls', () => {
+  const step = structuredClone(sectionSteps[6][7]);
+  step.status = 'interrupted'; step.rounds![0].status = 'done'; step.roundNotice = '继续后制作侧发';
+  const html = nineAxisStepCard(step, context(new Set([step.id])));
+  assert.deepEqual([...html.matchAll(/data-hair-round="([^"]+)"/g)].map(match => match[1]), ['front', 'side', 'back', 'remaining']);
+  assert.equal((html.match(/查看产物/g) || []).length, 1);
+  assert.equal((html.match(/data-node=/g) || []).length, 1);
+  assert.equal((html.match(/data-step=/g) || []).length, 1);
+  assert.match(html, /依次执行/); assert.match(html, /继续后制作侧发/);
+  assert.match(html, /class="nine-task done" data-hair-round="front"/);
+  assert.match(html, /class="nine-task pending" data-hair-round="side"/);
+  assert.doesNotMatch(html, /三方向并行|<details|step08_hair\//);
+  const closed = nineAxisStepCard(step, context(new Set([step.id]), new Set([`6:${step.id}`])));
+  assert.doesNotMatch(closed, /data-hair-round|查看产物|继续后制作/);
+});

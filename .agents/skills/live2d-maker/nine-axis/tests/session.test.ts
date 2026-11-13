@@ -31,13 +31,13 @@ async function fixture(t: TestContext) {
   const section = join(root, 'case/nine-axis'), knowledge = join(root, 'knowledge');
   // One shared agent.json, with observable tool ordering and descriptions.
   // No group agent.json exists: a lookup under left/up/down must fail.
-  const configPath = join(knowledge, 'nine-axis/step04_angles/agent.json');
+  const configPath = join(knowledge, 'head-nine-axis/step04_angles/agent.json');
   await put(configPath, JSON.stringify({ main: { initial: ['prompts/main.md'], tools: ['view_bitmap', 'edit_nine_axis'] } }));
-  await put(join(knowledge, 'nine-axis/step04_angles/prompts/main.md'), 'shared nine-axis agent');
+  await put(join(knowledge, 'head-nine-axis/step04_angles/prompts/main.md'), 'shared nine-axis agent');
   await put(join(knowledge, 'shared/prompts/runtime/agent-turn.md'), 'Session task root: {uri:.}');
   for (const name of ['check-repair', 'checks/bad-result']) await put(join(knowledge, `shared/prompts/runtime/${name}.md`), '{problems}{detail}');
-  await put(join(knowledge, 'nine-axis/step04_angles/tools/view_bitmap/description.md'), 'single agent.json bitmap tool');
-  await put(join(knowledge, 'nine-axis/step04_angles/tools/edit_nine_axis/description.md'), 'single agent.json edit tool');
+  await put(join(knowledge, 'head-nine-axis/step04_angles/tools/view_bitmap/description.md'), 'single agent.json bitmap tool');
+  await put(join(knowledge, 'head-nine-axis/step04_angles/tools/edit_nine_axis/description.md'), 'single agent.json edit tool');
   useKnowledge(knowledge);
   const captures: Capture[] = [], toolSteps: string[] = [], plans = new Map<Group, Plan>();
   let fresh = 0;
@@ -212,8 +212,8 @@ test('actual child retry removes only its output and agents/steps/<group>, then 
 
 for (const step of ['step03_frames', 'step05_frames'] as const) test(`${step} 单独选帧的会话归属本步，现有恢复可清除它并保留参考帧`, async t => {
   const f=await fixture(t), knowledge=f.knowledge, output=join(f.section,step); useKnowledge(knowledge);
-  await put(join(knowledge,'nine-axis',step,'agent.json'),JSON.stringify({main:{initial:['prompts/main.md'],tools:[]}}));
-  await put(join(knowledge,'nine-axis',step,'prompts/main.md'),'choose frames');
+  await put(join(knowledge,'head-nine-axis',step,'agent.json'),JSON.stringify({main:{initial:['prompts/main.md'],tools:[]}}));
+  await put(join(knowledge,'head-nine-axis',step,'prompts/main.md'),'choose frames');
   await put(join(output,'.running'),'');
   const { createFramesHead }=await import('../run.ts');
   const names=step==='step03_frames'?['left','up','down']:['left-up','left-down'];

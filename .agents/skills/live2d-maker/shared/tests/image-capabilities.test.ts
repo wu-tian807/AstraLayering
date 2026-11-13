@@ -26,9 +26,9 @@ async function setImages(directory: string, enabled: boolean) {
 test('nine-axis steps use their own agent.json while sharing a model slot', async t => {
   const knowledge = await temporaryKnowledge(t);
   const entries = [['step03_frames', ['nine_axis_view_frames']], ['step04_outline', ['nine_axis_outline']], ['step04_angles', ['nine_axis_head', 'nine_axis_head_y', 'nine_axis_head_down']],
-    ['step05_frames', ['nine_axis_frames']], ['step06_angle-xy', ['nine_axis_head_xy']], ['step07_jaw-line', ['nine_axis_head_jaw']], ['step08_hair',['nine_axis_head_hair']]] as const;
+    ['step05_frames', ['nine_axis_frames']], ['step06_angle-xy', ['nine_axis_head_xy']], ['step07_jaw-line', ['nine_axis_head_jaw']], ['step08_hair',['nine_axis_head_hair']], ['step09_head-accessories',['nine_axis_head_accessories']]] as const;
   for (const [directory, identities] of entries) {
-    const path = join(knowledge, 'nine-axis', directory, 'agent.json');
+    const path = join(knowledge, 'head-nine-axis', directory, 'agent.json');
     const config = JSON.parse(await readFile(path, 'utf8'));
     config.main.tools.push('imagegen');
     await writeFile(path, JSON.stringify(config));

@@ -42,8 +42,8 @@ export type SectionRun = {
   // The work a step still needs, or nothing for a completed step that is kept.
   // A dry run calls the work without touching markers, so it only previews.
   step(step: ChainStep, status: StepStatus, plan: SectionPlan): Promise<(() => Promise<void>) | undefined>;
-  // A targeted child run may finish its own work while its parent still waits
-  // for sibling groups. Keep the parent's running marker in that case.
+  // A round or targeted child may return while the step still waits for more
+  // work. Keep its running marker and stop before any dependent next step.
   finished?(step: ChainStep): Promise<boolean>;
 };
 
@@ -76,7 +76,7 @@ export async function runSection(run: SectionRun): Promise<SectionPlan> {
     run.signal?.throwIfAborted();
     if (run.finished && !await run.finished(step)) {
       plan.statuses.set(step.id, 'running');
-      continue;
+      break;
     }
     await completeStep(step.directory);
     plan.statuses.set(step.id, 'completed');

@@ -9,6 +9,7 @@ import { createEnvironmentConfig, EnvironmentConflict, patchEnvironment } from '
 import { createWorkbench } from '../server.ts';
 import { loadWorkflowEnvironment } from '../../.agents/skills/live2d-maker/shared/codex/environment.ts';
 import { imageSteps, imageModelKey } from '../../.agents/skills/live2d-maker/shared/agents/models.ts';
+import { videoModels } from '../../.agents/skills/live2d-maker/shared/video.ts';
 
 async function fixture(t:any, text?:string, env:NodeJS.ProcessEnv={}) {
  const directory=await realpath(await mkdtemp(join(tmpdir(),'astra-env-')));
@@ -123,4 +124,18 @@ test('web defaults, runtime fallback and generated .env follow the skill templat
  assert.equal(await readFile(join(f.directory,'.env'),'utf8'),template);
  const after=loadWorkflowEnvironment({},f.directory);
  assert.deepEqual(after.stepModels,before.stepModels);assert.deepEqual(after.stepImages,before.stepImages);
+});
+
+test('head configuration names the shared maker role and exposes the actual video fields and supported models', async t => {
+ const f=await fixture(t),data=await f.environment.read();
+ const maker=data.fields.find(field=>field.key==='nine_axis_head_agent_model')!;
+ assert.equal(maker.label,'头部九轴制作');assert.match(maker.hint!,/脸部、头发与头饰/);
+ const fields=data.fields.filter(field=>field.section==='video');
+ assert.deepEqual(fields.map(field=>field.key),['video_base_url','video_api_key','nine_axis_view_video_model']);
+ assert.equal(fields[1].secret,true);assert.equal(fields[2].type,'select');assert.deepEqual(fields[2].options,[...videoModels]);
+ const saved=await f.environment.save({revision:data.revision,changes:{nine_axis_head_agent_model:'gpt-6-astra-high',video_base_url:'https://video.example/v1',video_api_key:'video-test-secret',nine_axis_view_video_model:'seedance-2-fast'}});
+ assert.ok(!JSON.stringify(saved).includes('video-test-secret'));
+ const settings=loadWorkflowEnvironment({},f.directory);
+ for(const step of ['nine_axis_head','nine_axis_head_hair','nine_axis_head_accessories'] as const)assert.equal(settings.stepModels[step].model,'gpt-6-astra');
+ assert.equal(settings.videoApi?.model,'seedance-2-fast');
 });

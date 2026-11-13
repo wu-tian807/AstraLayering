@@ -11,6 +11,7 @@ import { partSteps, stepPattern } from '../shared/step-paths.js';
 import { sectionIds, type SectionId } from '../shared/paths.ts';
 import { nineAxisGroupSteps, nineAxisSteps, nineAxisBranchSteps, previousNineAxisGroupSteps, previousNineAxisSteps } from '../shared/nine-axis.ts';
 import { acquireTaskLock, directoryFor, sectionId, type TaskOptions } from './state.ts';
+import { upgradeHairProgress } from '../nine-axis/hair-progress.ts';
 
 // Step recovery, for one step (CLI --section/--step) or for every step still
 // marked .running (web toolbar and CLI, applyTaskAction); retry also takes the
@@ -94,6 +95,7 @@ export async function applyTaskAction(options: Pick<TaskOptions, 'name' | 'dir'>
     const messages: string[] = [];
     for (const section of options.section ? [sectionId(options.section)] : sectionIds) {
       const root = sectionRoot(directory, section);
+      if(section==='nine-axis'&&action!=='retry')await upgradeHairProgress(join(root,'step08_hair'));
       const steps = await listSteps(root, section);
       const parentRunning = section === 'nine-axis' && steps.some(step => [anglesStep, 'step02_angles'].includes(step.id) && step.status === 'running');
       const selected = steps.filter(step => step.status === 'running' || action === 'retry' && step.missing
@@ -117,6 +119,7 @@ export async function applyTaskAction(options: Pick<TaskOptions, 'name' | 'dir'>
 
 async function actOnStep(root: string, section: SectionId, step: string, action: StepAction): Promise<string> {
   const stepDirectory = join(root, step);
+  if(section==='nine-axis'&&step==='step08_hair'&&action!=='retry')await upgradeHairProgress(stepDirectory);
   const { status } = await readStep(stepDirectory);
   if (status === 'absent') throw new Error(`步骤 ${section}/${step} 不存在，下次运行会直接执行。`);
   const part = partSections.includes(section);

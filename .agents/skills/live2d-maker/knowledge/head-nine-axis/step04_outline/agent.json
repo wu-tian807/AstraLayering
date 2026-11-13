@@ -2,7 +2,7 @@
   "main": {
     "initial": [
       "prompts/描边.md",
-      "shared/prompts/nine-axis-face-contour.md"
+      "head-nine-axis/prompts/face-contour.md"
     ],
     "tools": [
       "view_bitmap",
