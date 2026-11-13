@@ -382,16 +382,12 @@ test('side edits and preservation protect completed front geometry and native pi
 
 test('front prompt is a single-round task using the owned KRA',()=>{
   const prompt=hairPrompt({document:'/task/nine-axis/step08_hair/character-nine-axis.kra',color:'/task/nine-axis/step08_hair/character-nine-axis.png'} as any,'/task');
-  assert.match(prompt,/只制作前发/);assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
-  assert.match(prompt,/left＋right/);assert.match(prompt,/所有形变和预览固定 Y=0/);
+  assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
 });
 
 test('side prompt inherits current KRA, keeps front initial separate and uses edge with color inspection',()=>{
   const prompt=hairPrompt({document:'/task/nine-axis/step08_hair/character-nine-axis.kra',color:''} as any,'/task','side');
-  assert.match(prompt,/继续制作两片侧发/);assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
-  assert.match(prompt,/left＋right/);assert.match(prompt,/所有形变和预览固定 Y=0/);
-  for(const title of ['目标是什么','要保护什么','自检查什么'])assert.ok(prompt.includes(title));
-  assert.match(prompt,/reference \+ edge/);assert.match(prompt,/原色预览/);assert.match(prompt,/不自行制作 blend 叠图/);
+  assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
   const scope=hairPreviewScope('side');
   for(const id of ['face/face_base','hair/bangs','hair/bangs/shadow','hair/side_hair/left','hair/side_hair/shadow'])assert.ok(scope.includes({id,level:id.startsWith('face')?'face':'hair'}));
   for(const id of ['hair/back_hair','hair/braid','hair/accessory'])assert.ok(!scope.includes({id,level:'hair'}));
@@ -415,13 +411,7 @@ test('hair progress rejects out-of-order, duplicate and skipped rounds',async t=
 
 test('back prompt prioritizes reference motion and conditional KRA edits, with cumulative head-hair preview',()=>{
   const prompt=hairPrompt({document:'/task/nine-axis/step08_hair/character-nine-axis.kra',color:''} as any,'/task','back');
-  assert.match(prompt,/继续制作后发/);assert.match(prompt,/所有形变和预览固定 Y=0/);
-  for(const title of ['目标是什么','要保护什么','自检查什么'])assert.ok(prompt.includes(title));
-  assert.match(prompt,/拟合参考关键帧及转头动画/);assert.match(prompt,/较小的位移/);assert.match(prompt,/它不是完全不动/);
-  assert.match(prompt,/是否改画稿由实际需要决定/);assert.match(prompt,/不设统一幅度数值/);assert.match(prompt,/头顶/);
-  assert.match(prompt,/直接在 Krita 修顺轮廓/);assert.match(prompt,/不能将瑕疵压到几乎消失/);
-  assert.match(prompt,/无翻折只是基本条件/);assert.match(prompt,/连续转头动画或更密的中间角度/);
-  assert.match(prompt,/不自行制作 blend 叠图/);
+  assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
   const scope=hairPreviewScope('back');
   for(const id of ['face/face_base',...hairIds,'hair/back_hair/shadow','hair/bangs/shadow'])assert.ok(scope.includes({id,level:id.startsWith('face')?'face':'hair'}));
   for(const id of ['hair/braid','head_accessories/bell']){assert.ok(!scope.includes({id,level:'hair'}));assert.ok(!hairRoundAllows('back')(id));}

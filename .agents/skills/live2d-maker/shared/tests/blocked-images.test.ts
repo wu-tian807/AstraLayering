@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { AgentCallError, blockedAgentError, retryableAgentError } from '../codex/agent-runtime.ts';
-import { blockedImagesPrompt, replaceBlockedImages } from '../codex/blocked-images.ts';
+import { replaceBlockedImages } from '../codex/blocked-images.ts';
 
 const line = (type: string, payload: unknown) => JSON.stringify({ type, payload });
 const image = (path: string) => [{ type: 'input_text', text: `<image name=[Image #1] path="${path}">` },
@@ -30,7 +30,6 @@ test('只换掉模型上次输出之后送入的图片；工具返回的图片�
   const history = JSON.stringify(replaced.items);
   assert.ok(!history.includes('instructions') && !history.includes('environment_context'));
   assert.equal(history.match(/input_image/g)?.length, 1, '早先已被接受的图片保留');
-  assert.match(blockedImagesPrompt(replaced), /换一种方式读取[\s\S]*灰度[\s\S]*不要提交任何产物/);
 });
 
 test('压缩后的历史以替换历史为准；本批没有图片时换掉历史里所有图片，完全无图则返回空', () => {

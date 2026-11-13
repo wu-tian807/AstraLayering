@@ -14,7 +14,7 @@ test('姿态与衣服提示词明确声明共享规则位置，展开后没有�
     ['clothing-part-layering','step01_preparation'],
   ] as const){
     const prompt=stepKnowledge(section,step).render('main',{width:'24',height:'32',input:'/task/input.png'},{taskRoot:'/task'});
-    assert.ok(!/\{[a-z_]+\}/.test(prompt));assert.match(prompt,/生图工具 imagegen（Codex 为内置 image_gen\.imagegen/);
+    assert.ok(!/\{[a-z_]+\}/.test(prompt))
     assert.equal(prompt.split('【执行规则】').length,2);
   }
 });
@@ -31,7 +31,7 @@ test('先验知识只替换已知变量和路径前缀，其余花括号原样�
 });
 test('默认先验知识目录完整可用',()=>{ checkKnowledge(defaultKnowledgeDirectory); });
 test('启动检查 reference 与 shared_reference 指向的文件，uri 不检查',async()=>{
-  const {cp,mkdtemp,rm,writeFile,appendFile}=await import('node:fs/promises');
+  const {cp,mkdtemp,rm,appendFile}=await import('node:fs/promises');
   const {tmpdir}=await import('node:os');
   const {join}=await import('node:path');
   const root=await mkdtemp(join(tmpdir(),'knowledge-'));

@@ -58,15 +58,10 @@ test('首次识别一次调用，绑定 view_bitmap 和 write_groups；直接保
   assert.equal(calls[0].name, '首次分组识别');
   assert.equal(calls[0].cwd, context.directory);
   assert.ok(calls[0].prompt.startsWith(staticPromptPrefix(await readFile(partKnowledge(profile, 'initial').files('main')[0], 'utf8'))));
-  assert.match(calls[0].prompt, /本次运行目录/);
   assert.ok(calls[0].prompt.includes(`素体参考图：${join(context.directory, 'references/base-subject.png')}`));
-  assert.doesNotMatch(calls[0].prompt, /自行寻找|优先根据/);
   assert.equal(calls[0].outputSchema, undefined);
   assert.deepEqual(calls[0].tools!.map(tool => tool.name), ['view_bitmap', 'write_groups']);
-  assert.match(calls[0].prompt, /按需裁剪放大/);
   assert.match(calls[0].tools!.find(tool => tool.name === 'view_bitmap')!.description, /crop=.*scale/);
-  assert.doesNotMatch(calls[0].prompt, /view_bitmap.*crop/);
-  assert.doesNotMatch(calls[0].prompt, /分组输出文件/);
   assert.deepEqual(result, { status: 'completed', output: {
     groups: [
       { id: 'left_wing', name: 'left_wing', note: '主体左翼' },

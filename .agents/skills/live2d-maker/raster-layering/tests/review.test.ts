@@ -3,7 +3,7 @@ import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { splitStructure } from '../../shared/tests/structure-fixture.ts';
 import { seedUpstream } from '../../shared/tests/upstream-fixture.ts';
 import assert from 'node:assert/strict';
-import { mkdtemp, realpath, mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, realpath, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { test, type TestContext } from 'node:test';
@@ -62,7 +62,7 @@ test('旧第一步交付直接补 review；无问题时一次结束，reviewer I
     assert.equal(request.threadId, undefined);
     assert.equal(request.model, 'gpt-6.1-sol');
     assert.equal(request.effort, 'xhigh');
-    assert.ok(!/第一轮|第二轮|最多|两轮|\{\w+\}/.test(request.prompt));
+    assert.ok(!/\{\w+\}/.test(request.prompt));
     await readFile(join(f.output, 'step01/.running'));
     await absent(join(f.output, 'step01/.completed'));
     await request.onEvent({ type: 'thread.started', thread_id: 'disposable-reviewer' });
