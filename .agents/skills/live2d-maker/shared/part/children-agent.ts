@@ -35,7 +35,7 @@ export function decodeChildren(parentId: string, value: unknown, copies: Readonl
     return { id: `${parentId}/${child.name}`, name: child.name, kind: child.kind, note: child.note,
       ...(child.allowOutsideParent !== undefined ? { allowOutsideParent: child.allowOutsideParent as boolean } : {}),
       ...(child.hiddenInReference !== undefined ? { hiddenInReference: child.hiddenInReference as boolean } : {}),
-      ...(copied ? { outlineFromParent: { x: copied.x, y: copied.y, width: copied.width, height: copied.height } } : {}) };
+      ...(copied ? { outlineFromParent: 'mask' in copied ? { mask: copied.mask } : { x: copied.x, y: copied.y, width: copied.width, height: copied.height } } : {}) };
   });
   normalizeGroups(groups);
   if (groups.length === 1 && groups[0].kind === 'part') throw new Error('不要用 group 包装唯一 part；当前完整形体已不可再拆时提交空 children，并说明终止依据');

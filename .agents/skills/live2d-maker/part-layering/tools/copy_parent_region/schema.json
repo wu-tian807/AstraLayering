@@ -2,8 +2,7 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "name",
-    "region"
+    "name"
   ],
   "properties": {
     "name": {
@@ -15,13 +14,17 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["x", "y", "width", "height"],
-      "description": "父组完成稿原画布坐标中的整数选框。框线须落在空白处，框内形状整体复制，框外形状整体排除。",
+      "description": "选框方式：父组完成稿原画布坐标中的整数选框。框线须落在空白处，框内形状整体复制，框外形状整体排除。与 maskSvg 二选一。",
       "properties": {
         "x": { "type": "integer", "minimum": 0 },
         "y": { "type": "integer", "minimum": 0 },
         "width": { "type": "integer", "minimum": 1 },
         "height": { "type": "integer", "minimum": 1 }
       }
+    },
+    "maskSvg": {
+      "type": "string",
+      "description": "遮罩方式：你自己画的同画布 SVG 的路径，其中全部封闭形状（path、rect、circle、ellipse、polygon）的并集是子节点的范围，父组完成稿按此范围裁剪。与 region 二选一。"
     }
   }
 }

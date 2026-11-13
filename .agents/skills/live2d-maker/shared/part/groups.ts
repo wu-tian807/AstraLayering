@@ -64,10 +64,12 @@ export function normalizeGroups(values: unknown, seen = new Set<string>()): Grou
     }
     if (input.outlineFromParent !== undefined) {
       const region = record(input.outlineFromParent, 'group.outlineFromParent');
-      if (Object.keys(region).some(key => !['x', 'y', 'width', 'height'].includes(key)) ||
+      if ('mask' in region) {
+        if (Object.keys(region).length !== 1 || typeof region.mask !== 'string' || !region.mask.trim()) throw new Error('group.outlineFromParent.mask must be an SVG string');
+      } else if (Object.keys(region).some(key => !['x', 'y', 'width', 'height'].includes(key)) ||
           [region.x, region.y].some(v => !Number.isSafeInteger(v) || (v as number) < 0) ||
           [region.width, region.height].some(v => !Number.isSafeInteger(v) || (v as number) < 1)) {
-        throw new Error('group.outlineFromParent must be an integer {x,y,width,height} box');
+        throw new Error('group.outlineFromParent must be an integer {x,y,width,height} box or {mask}');
       }
       if (input.hiddenInReference === true) throw new Error(`${input.id}: outlineFromParent 与 hiddenInReference 不能同时使用`);
     }

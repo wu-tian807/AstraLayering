@@ -8,7 +8,7 @@ import { artifactPath } from '../../shared/part/artifact-facts.ts';
 import { decodeChildren } from '../../shared/part/children-agent.ts';
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { runLayering } from '../../shared/part/layering.ts';
-import { copyParentRegion } from '../../shared/part/parent-region.ts';
+import { checkParentMask, copyParentRegion } from '../../shared/part/parent-region.ts';
 import { profile } from '../profile.ts';
 import { promptInput } from '../../shared/tests/prompt-input.ts';
 import { fixture, workingSteps } from './layering-fixture.ts';
@@ -70,4 +70,40 @@ test('复制的子节点跳过描边与 review，相邻子节点照常描边，�
   const outline = await readFile(artifactPath(f.directory, 'face/eye_left', 'outline'), 'utf8');
   assert.match(outline, /data-group-path="face\/eye_left"/);
   assert.doesNotMatch(outline, /M60|<rect/);
+});
+
+test('遮罩方式沿分界线裁剪相连形状，去掉父稿补全层标记，并拒绝无效遮罩', async t => {
+  const f = await fixture(t), parent = join(f.directory, 'parent-mask.svg');
+  // One connected arm-like block plus a completion layer carrying the parent's marker.
+  await writeFile(parent, '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">' +
+    '<g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M10 70H40V90H10Z" fill-rule="nonzero"/></g>' +
+    '<g id="arm" data-group-path="arm"><path fill="#55b9ad" d="M10 10H40V60H10Z"/><rect fill="#55b9ad" x="60" y="10" width="30" height="30"/></g></svg>');
+  const mask = (shape: string) => `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">${shape}</svg>`;
+  const upper = checkParentMask(mask('<rect x="0" y="0" width="100" height="35"/>'), canvas);
+  const cut = await copyParentRegion(parent, 'arm/upper_arm', upper, canvas);
+  assert.match(cut.svg, /<clipPath id="arm-upper-arm-region"/);
+  assert.match(cut.svg, /data-parent-mask="[0-9a-f]{16}"/);
+  assert.doesNotMatch(cut.svg, /data-completion-additions/);
+  assert.match(cut.svg, /data-group-path="arm\/upper_arm"/);
+  assert.deepEqual([cut.pieces, cut.total], [[], 3]);
+  // The completion layer lies wholly outside the mask and is dropped.
+  assert.doesNotMatch(cut.svg, /M10 70/);
+  // The lower side of the same connected block comes from the complementary mask.
+  const lower = await copyParentRegion(parent, 'arm/forearm', checkParentMask(mask('<path d="M0 35H100V100H0Z"/>'), canvas), canvas);
+  assert.match(lower.svg, /M10 70/);
+  await assert.rejects(copyParentRegion(parent, 'arm/x', checkParentMask(mask('<rect x="0" y="0" width="100" height="100"/>'), canvas), canvas), /没有裁掉/);
+  await assert.rejects(copyParentRegion(parent, 'arm/x', checkParentMask(mask('<rect x="45" y="65" width="10" height="10"/>'), canvas), canvas), /没有/);
+  assert.throws(() => checkParentMask('<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><rect width="5" height="5"/></svg>', canvas), /画布/);
+  assert.throws(() => checkParentMask(mask('<path d="M0 0H10V10"/>'), canvas), /闭合/);
+  assert.throws(() => checkParentMask(mask('<line x1="0" y1="0" x2="5" y2="5"/>'), canvas), /<line>/);
+  assert.throws(() => checkParentMask(mask('<g transform="scale(2)"><rect width="5" height="5"/></g>'), canvas), /transform/);
+  // A clipped outline cannot itself be the parent of another copy.
+  const clipped = join(f.directory, 'clipped.svg');
+  await writeFile(clipped, cut.svg);
+  await assert.rejects(copyParentRegion(clipped, 'arm/y', { x: 0, y: 0, width: 50, height: 50 }, canvas), /defs/);
+  // Marker stripping also applies to box copies.
+  const boxed = await copyParentRegion(parent, 'arm/hand', { x: 5, y: 65, width: 40, height: 30 }, canvas);
+  assert.doesNotMatch(boxed.svg, /data-completion-additions/);
+  assert.deepEqual(decodeChildren('arm', { children: [{ name: 'upper_arm', kind: 'part', note: 'n' }, { name: 'forearm', kind: 'part', note: 'n' }], note: 'n' },
+    new Map([['upper_arm', upper]])).groups[0].outlineFromParent, upper);
 });
