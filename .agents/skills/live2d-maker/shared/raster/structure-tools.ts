@@ -55,9 +55,14 @@ async function readStructureFile(path: string): Promise<string> {
   return readFile(path, 'utf8');
 }
 async function readGroups(input: PartLayeringInput) {
-  // Older runs also saved an unused subject field; it is dropped on read.
+  // Older runs also saved an unused subject field and per-group outlineFromParent; both are dropped on read.
   const { subject: _, ...document } = object(JSON.parse(await readStructureFile(join(input.directory, 'groups.json'))), 'groups');
-  return validateStructureGroups(document);
+  const drop = (values: unknown): unknown => Array.isArray(values) ? values.map(value => {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
+    const { outlineFromParent: _, ...node } = value as Record<string, unknown>;
+    return node.groups === undefined ? node : { ...node, groups: drop(node.groups) };
+  }) : values;
+  return validateStructureGroups({ ...document, groups: drop(document.groups) });
 }
 async function readPlan(input: PartLayeringInput): Promise<Record<string, unknown>> {
   return object(JSON.parse(await readStructureFile(join(input.directory, 'occlusion.json'))), 'occlusion');
