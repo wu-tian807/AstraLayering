@@ -1,8 +1,8 @@
-import { access, chmod, lstat, mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
+import { chmod, lstat, mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { join, relative } from 'node:path';
 import { parse as parseToml, stringify as stringifyToml } from 'smol-toml';
-import { copyCredential } from '../agents/session-data.ts';
+import { credentialRevision, syncCredential } from '../agents/session-data.ts';
 
 // These are runtime defaults, not user-profile imports. Apply the same values
 // at process startup as at thread/start: hooks can run before the first turn.
@@ -46,6 +46,17 @@ async function selectedProviderConfig(home: string): Promise<string> {
   return stringifyToml({ model_provider: selected, model_providers: { [selected]: provider } });
 }
 
+// The app server caches authentication and provider config in memory. A changed
+// source therefore requires a new process, resumed on the same native thread.
+export async function codexAuthenticationSource(source: NodeJS.ProcessEnv): Promise<{ revision: string; dynamic: boolean }> {
+  const home = source.CODEX_HOME || join(homedir(), '.codex');
+  const provider = await selectedProviderConfig(home);
+  const config = provider ? parseToml(provider) as Record<string, any> : {};
+  const selected = typeof config.model_provider === 'string' ? config.model_providers?.[config.model_provider] : undefined;
+  return { revision: JSON.stringify([home, await credentialRevision(join(home, 'auth.json')), provider]),
+    dynamic: typeof selected?.auth?.command === 'string' };
+}
+
 export async function codexSessionEnvironment(data: string, source: NodeJS.ProcessEnv): Promise<NodeJS.ProcessEnv> {
   const directory = join(data, 'codex');
   await mkdir(directory, { recursive: true, mode: 0o700 });
@@ -53,13 +64,8 @@ export async function codexSessionEnvironment(data: string, source: NodeJS.Proce
   for (const name of ['auth.json', 'config.toml']) try {
     if (!(await lstat(join(directory, name))).isFile()) throw Error('Codex 配置和认证必须是会话内的普通文件');
   } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
-  const auth = join(directory, 'auth.json');
-  try { await access(auth); }
-  catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-    await copyCredential(join(source.CODEX_HOME || join(homedir(), '.codex'), 'auth.json'), auth);
-  }
   const sourceHome = source.CODEX_HOME || join(homedir(), '.codex');
+  await syncCredential(data, join(sourceHome, 'auth.json'), join(directory, 'auth.json'));
   const providerConfig = await selectedProviderConfig(sourceHome);
   // Preserve the selected native login/provider route, including auth.command,
   // while keeping the agent's instructions, model defaults, history, hooks,

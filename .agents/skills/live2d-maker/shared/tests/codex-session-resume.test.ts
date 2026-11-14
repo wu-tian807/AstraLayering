@@ -1,6 +1,6 @@
 import { test, type TestContext } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createFunctionToolSession } from '../codex/tool-agent.ts';
@@ -19,16 +19,21 @@ async function fixture(t: TestContext, mode: string) {
   await writeFile(executable, `#!${process.execPath}
 import {createInterface} from 'node:readline';
 import {appendFile, readFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {join} from 'node:path';
 const mode=${JSON.stringify(mode)}, capture=${JSON.stringify(capture)};
 ${fakeDebug()}
 const emit=v=>console.log(JSON.stringify(v)), record=v=>appendFile(capture,JSON.stringify(v)+'\\n');
+let cachedCredential=null;
+if(mode==='auth-file')try{cachedCredential=await readFile(join(process.env.CODEX_HOME,'auth.json'),'utf8');}catch(e){if(e.code!=='ENOENT')throw e;}
+if(mode==='auth-dynamic')cachedCredential=execFileSync(process.env.TEST_AUTH_HELPER,{encoding:'utf8'}).trim();
 let threadId='old-thread', active, ended=false, starts=0, resuming=false;
 const done=(id,status)=>emit({method:'turn/completed',params:{threadId,turn:{id,status}}});
 for await(const line of createInterface({input:process.stdin})) {
  const m=JSON.parse(line);await record(m);
  if(m.method==='initialize')emit({id:m.id,result:{}});
  if(m.method==='thread/resume'||m.method==='thread/start') {
-  resuming=m.method==='thread/resume';threadId=resuming?'old-thread':'new-thread';
+  resuming=m.method==='thread/resume';threadId=resuming?m.params.threadId:'new-thread';
   active=resuming&&(mode==='active'||mode==='stuck')?'old-turn':undefined;
   emit({id:m.id,result:{thread:{id:threadId,status:{type:active?'active':'idle'},turns:active?[{id:active,status:'inProgress'}]:[]}}});
  }
@@ -43,6 +48,7 @@ for await(const line of createInterface({input:process.stdin})) {
   if(mode!=='stuck')setTimeout(async()=>{ended=true;await record({event:'old-turn-ended'});done(active,'interrupted');active=undefined;},40);
  }
  if(m.method==='turn/start') {
+  if(mode==='auth-file'||mode==='auth-dynamic')await record({event:'observed-auth',value:cachedCredential});
   starts++;
   if(resuming&&((mode==='race'&&starts===1)||mode==='repeat'||mode==='unknown')) {
    active='auto-'+starts;emit({method:'turn/started',params:{threadId,turn:{id:active,status:'inProgress'}}});
@@ -81,11 +87,53 @@ for await(const line of createInterface({input:process.stdin})) {
   done('our-turn','completed');
  }
 }
+
 `, { mode: 0o700 });
   const options = { environment: loadWorkflowEnvironment({}, root), codexPathOverride: executable, cwd: root,
     config: { features: { goals: true } }, logDirectory: join(root, 'agents') };
   return { root, options, async messages() { return (await readFile(capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line)); } };
 }
+
+test('Codex reloads changed native credentials on the same thread and preserves local token refresh', { timeout: 10_000 }, async t => {
+  const f = await fixture(t, 'auth-file'), native = join(f.root, 'native');
+  await mkdir(native); await writeFile(join(native, 'auth.json'), 'first-login');
+  const agents = new CodexAgents({ ...f.options, env: { ...process.env, CODEX_HOME: native } });
+  const session = agents.createSession(), task = { name: 'credential', prompt: 'continue', outputSchema: schema };
+  try {
+    const first = await session.run(task);
+    await writeFile(join(native, 'auth.json'), 'second-login');
+    const second = await session.run(task);
+    const registry = JSON.parse(await readFile(join(f.root, 'agents/sessions.json'), 'utf8'));
+    const privateAuth = join(f.root, registry[first.threadId!].data, 'codex/auth.json');
+    await writeFile(privateAuth, 'refreshed-in-session');
+    const third = await session.run(task);
+    assert.equal(await readFile(privateAuth, 'utf8'), 'refreshed-in-session');
+    await rm(join(native, 'auth.json'));
+    const fourth = await session.run(task);
+    assert.ok([second, third, fourth].every(result => result.threadId === first.threadId));
+    const messages = await f.messages();
+    assert.deepEqual(messages.filter(m => m.event === 'observed-auth').map(m => m.value), ['first-login', 'second-login', 'second-login', null]);
+    assert.equal(messages.filter(m => m.method === 'thread/resume').length, 2);
+  } finally { await session.close(); }
+});
+
+test('Codex reruns a dynamic auth command for the next turn of the same thread', { timeout: 10_000 }, async t => {
+  const f = await fixture(t, 'auth-dynamic'), native = join(f.root, 'native'), value = join(f.root, 'value'), helper = join(f.root, 'helper.mjs');
+  await mkdir(native); await writeFile(value, 'first-key');
+  await writeFile(helper, `#!${process.execPath}\nimport {readFileSync} from 'node:fs';\nprocess.stdout.write(readFileSync(process.env.TEST_AUTH_VALUE,'utf8'));\n`, { mode: 0o700 });
+  await writeFile(join(native, 'config.toml'), `model_provider = "fixture"\n[model_providers.fixture]\nname = "Fixture"\nbase_url = "https://fixture.invalid/v1"\n[model_providers.fixture.auth]\ncommand = ${JSON.stringify(helper)}\n`);
+  const agents = new CodexAgents({ ...f.options, env: { ...process.env, CODEX_HOME: native, TEST_AUTH_HELPER: helper, TEST_AUTH_VALUE: value } });
+  const session = agents.createSession(), task = { name: 'dynamic-auth', prompt: 'continue', outputSchema: schema };
+  try {
+    const first = await session.run(task);
+    await writeFile(value, 'second-key');
+    const second = await session.run(task);
+    assert.equal(second.threadId, first.threadId);
+    const messages = await f.messages();
+    assert.deepEqual(messages.filter(m => m.event === 'observed-auth').map(m => m.value), ['first-key', 'second-key']);
+    assert.equal(messages.filter(m => m.method === 'thread/resume').length, 1);
+  } finally { await session.close(); }
+});
 
 for (const mode of ['active', 'race']) test('resume: interrupts and waits for the old turn (' + mode + ')', { timeout: 10_000 }, async t => {
   const f = await fixture(t, mode), progress: string[] = [];

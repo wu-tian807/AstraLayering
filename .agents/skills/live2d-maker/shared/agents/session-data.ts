@@ -1,6 +1,6 @@
-import { chmod, copyFile, readFile, realpath, rename, stat, writeFile } from 'node:fs/promises';
+import { chmod, readFile, realpath, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { isAbsolute, join, relative, resolve } from 'node:path';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import type { Harness } from './models.ts';
 import { fromTaskPath } from '../task-paths.ts';
 
@@ -45,8 +45,40 @@ export async function resolveSession(root: string, taskRoot: string, session: St
   return { ...session, data, workspace, ...(rollout ? { rollout } : {}) };
 }
 
-// Copy only the explicitly named credential, never a user's whole profile.
-export async function copyCredential(source: string, target: string) {
-  try { await copyFile(source, target); await chmod(target, 0o600); }
-  catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+async function credentialBytes(source: string): Promise<Buffer | undefined> {
+  try { return await readFile(source); }
+  catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return undefined; throw error; }
+}
+
+export async function credentialRevision(source: string): Promise<string | null> {
+  const bytes = await credentialBytes(source);
+  return bytes ? createHash('sha256').update(bytes).digest('hex') : null;
+}
+
+// Track only the explicitly named source, so a CLI's own token refresh survives
+// subsequent turns until the user's original login actually changes.
+export async function syncCredential(data: string, source: string, target: string): Promise<void> {
+  const file = join(data, 'credential-sources.json'), key = relative(data, target), sourcePath = resolve(source);
+  let records: Record<string, { source: string; revision: string | null }>;
+  try { records = JSON.parse(await readFile(file, 'utf8')); }
+  catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; records = {}; }
+  const bytes = await credentialBytes(sourcePath);
+  const revision = bytes ? createHash('sha256').update(bytes).digest('hex') : null;
+  const previous = records[key];
+  let targetExists = true;
+  try { await stat(target); } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; targetExists = false; }
+  if (bytes && (!targetExists || !previous || previous.source !== sourcePath || previous.revision !== revision)) {
+    const temporary = `${target}.${randomUUID()}.tmp`;
+    await writeFile(temporary, bytes, { mode: 0o600 }); await rename(temporary, target); await chmod(target, 0o600);
+  } else if (!bytes && (!previous || previous.revision)) {
+    // On upgrade establish the native source as authoritative; later, a known
+    // source disappearing is a logout. If it was absent throughout, retain a
+    // credential created by the private CLI itself.
+    await rm(target, { force: true });
+  }
+  if (!previous || previous.source !== sourcePath || previous.revision !== revision) {
+    records[key] = { source: sourcePath, revision };
+    const temporary = `${file}.${randomUUID()}.tmp`;
+    await writeFile(temporary, JSON.stringify(records), { mode: 0o600 }); await rename(temporary, file);
+  }
 }

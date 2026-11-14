@@ -29,7 +29,7 @@ import { withNodePath } from '../process-environment.ts';
 import { claudeProviderSettings, validateProviderModel } from './providers.ts';
 import { prepareWorkspace, workspacePrompt, workspaceTools } from './workspace.ts';
 import { toTaskPath } from '../task-paths.ts';
-import { readSessions, rememberSession, resolveSession, copyCredential } from './session-data.ts';
+import { readSessions, rememberSession, resolveSession, syncCredential } from './session-data.ts';
 
 // AGV reports its Go transport timeouts only as text; these two exact forms are tagged where the CLI ends.
 const agvTransportTimeout = /net\/http: timeout awaiting response headers|stream idle timeout \(\w+\): context deadline exceeded/;
@@ -116,14 +116,14 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
     };
     if(model.harness==='agv')env.AGY_LLM_GATEWAY_MODELS=[...new Set([...(env.AGY_LLM_GATEWAY_MODELS||'').split(',').filter(Boolean),model.model])].join(',');
     for (const path of [env.TMPDIR, env.CLAUDE_CONFIG_DIR, env.ANTIGRAVITY_APP_DATA_DIR, env.ANTIGRAVITY_GEMINI_DIR]) await mkdir(path, { recursive: true, mode: 0o700 });
-    if (!previous && model.harness === 'claude') {
-      await copyCredential(join(settings.codex.env?.CLAUDE_CONFIG_DIR || join(homedir(), '.claude'), '.credentials.json'), join(env.CLAUDE_CONFIG_DIR, '.credentials.json'));
+    if (model.harness === 'claude') {
+      await syncCredential(data, join(settings.codex.env?.CLAUDE_CONFIG_DIR || join(homedir(), '.claude'), '.credentials.json'), join(env.CLAUDE_CONFIG_DIR, '.credentials.json'));
     }
-    if (!previous && model.harness === 'agv') {
+    if (model.harness === 'agv') {
       const sourceGemini = settings.codex.env?.ANTIGRAVITY_GEMINI_DIR || settings.codex.env?.GEMINI_DIR || join(homedir(), '.gemini');
-      await copyCredential(join(sourceGemini, 'oauth_creds.json'), join(env.ANTIGRAVITY_GEMINI_DIR, 'oauth_creds.json'));
-      await copyCredential(join(sourceGemini, 'google_accounts.json'), join(env.ANTIGRAVITY_GEMINI_DIR, 'google_accounts.json'));
-      await copyCredential(join(settings.codex.env?.ANTIGRAVITY_APP_DATA_DIR || join(sourceGemini, 'antigravity-cli'), 'jetski_state.pbtxt'), join(env.ANTIGRAVITY_APP_DATA_DIR, 'jetski_state.pbtxt'));
+      await syncCredential(data, join(sourceGemini, 'oauth_creds.json'), join(env.ANTIGRAVITY_GEMINI_DIR, 'oauth_creds.json'));
+      await syncCredential(data, join(sourceGemini, 'google_accounts.json'), join(env.ANTIGRAVITY_GEMINI_DIR, 'google_accounts.json'));
+      await syncCredential(data, join(settings.codex.env?.ANTIGRAVITY_APP_DATA_DIR || join(sourceGemini, 'antigravity-cli'), 'jetski_state.pbtxt'), join(env.ANTIGRAVITY_APP_DATA_DIR, 'jetski_state.pbtxt'));
     }
     const authSettings = join(log.directory, 'auth-settings.json');
     let userSettings: any = {};

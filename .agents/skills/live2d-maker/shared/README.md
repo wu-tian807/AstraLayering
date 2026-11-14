@@ -46,7 +46,13 @@ step01 绘制与返修对轮廓、隐藏补全、画风和结构负责。读取�
 
 各环节的流程工具见 [raster 工具表](../raster-layering/README.md#三步交付)：结构编辑工具仅提供给两套 raster step01 绘制／返修，reviewer 只用框选工具，step02、step03 只用 Krita；需要 Krita 的步骤中，绘制、review 与返修 agent 都另有 `krita` 工具。各 CLI 沿用共用函数工具通道和原有会话恢复能力。职责约定与受控工具校验之外没有写入沙箱：Codex 使用 `danger-full-access`，Claude／AGV 使用 `--dangerously-skip-permissions`。
 
-三种 harness 使用管线 `agents/` 内的独立配置和会话数据，续跑复用任务记录，认证按需接入。
+### Harness 登录与会话契约
+
+每种 harness 使用管线 `agents/` 内的独立配置和会话数据；接入新 harness 时必须同时定义原 CLI 登录来源、认证生效时机和原生会话恢复方式，不能只验证首次登录。已有会话在下一次调用前接入原 CLI 更新后的认证，保留原 thread、工作区和产物；运行中的调用不被中断。原 CLI 的认证未变化时，保留会话内 CLI 自行刷新的 token。动态认证命令按 CLI／命令自身的刷新和缓存规则取值，不复制命令结果到任务记录或日志。
+
+当前文件型登录来源为 Codex 的 `CODEX_HOME/auth.json`、Claude Code 的 `CLAUDE_CONFIG_DIR/.credentials.json`，以及 Antigravity 的 Gemini 目录下 `oauth_creds.json`、`google_accounts.json` 和应用数据目录下 `jetski_state.pbtxt`；未指定目录时使用对应 CLI 的本机默认位置。已同步的来源文件被移除时，下一次调用移除其会话内副本。旧会话升级后第一次调用以当前原 CLI 文件为准；此后仅在来源变化时更新副本。Codex 还读取所选 provider 配置；认证变化时重启后台进程并恢复原 thread，动态 `auth.command` 在下一轮重新启动 CLI。Claude 的 `apiKeyHelper` 由 CLI 执行。系统钥匙串等其他登录存储须由对应适配器明确接入，不能假设上述文件同步涵盖它们。
+
+新 harness 的验证必须覆盖：首次登录、同一会话更换和移除原 CLI 凭据、原 CLI 未变化时会话内 token 刷新、动态认证（如适用），并确认仍使用原会话及保留产物。真实服务验证与模拟验证分别记录，凭据不得进入提示词、日志或仓库。
 
 raster 中断、主动重跑及已进入 raster 的总控续跑保留上游修正。独立重跑 part 会从首次分组与各步骤事实重建树；仅写在根 groups.json 的树结构调整需事先留档核对。
 

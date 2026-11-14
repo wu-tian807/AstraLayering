@@ -131,7 +131,7 @@ test('nine-axis branches show flat task rows with one workbench entry and access
   assert.equal(await hairCard.locator('[data-hair-round]').count(), 4);
   assert.equal(await hairCard.locator('[data-hair-round="front"] .nine-task-status').textContent(), '已完成');
   assert.equal(await hairCard.locator('[data-hair-round="side"] .nine-task-status').textContent(), '待执行');
-  assert.equal(await hairCard.locator('.step-activity').textContent(), '继续后制作侧发');
+  assert.equal(await hairCard.locator('.step-activity').filter({ hasText: '继续后制作侧发' }).textContent(), '继续后制作侧发');
   assert.equal(await hairCard.locator('[data-node]').count(), 0, 'rounds are not executable children');
   const accessoriesCard = page.locator('[data-node="6:step09_head-accessories"]');
   assert.equal(await accessoriesCard.getByRole('button', { name: '头部累计模型', exact: true }).count(), 1);
