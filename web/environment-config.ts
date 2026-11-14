@@ -26,7 +26,7 @@ export class EnvironmentConflict extends Error { }
 
 const scalarDescriptions: Record<string,{label?:string;hint:string}> = {
   agv_protocol:{hint:'选择与服务端匹配的接口格式：genai 或 openai。留空使用 genai；图片容量保护需要 genai。'},
-  codex_home:{hint:'供 Codex 读取登录认证的目录；留空使用 CODEX_HOME 或用户目录下的 .codex。'},
+  codex_home:{hint:'Codex 登录 profile 来源；复用 auth.json 和当前 provider（含 auth.command），留空使用 CODEX_HOME 或用户目录下的 .codex。'},
   openai_image_base_url:{hint:'GPT 生图接口的基础地址，通常以 /v1 结尾；与语言模型服务分别配置。'},
   openai_image_api_key:{hint:'调用 GPT 生图服务的密钥，与语言模型密钥分别配置。'},
   google_image_base_url:{hint:'Nano 生图接口的基础地址；Gemini 格式通常以 /v1beta 结尾，OpenAI 格式通常以 /v1 结尾。'},

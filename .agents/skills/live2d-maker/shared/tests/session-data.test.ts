@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, readFile, readdir, realpath, rename, rm, stat, symlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { parse as parseToml } from 'smol-toml';
 import { codexSessionEnvironment, productionCodexConfig } from '../codex/session-data.ts';
 import { readSessions, rememberSession, resolveSession } from '../agents/session-data.ts';
 
@@ -25,6 +26,51 @@ test('Codex profile copies authentication only, keeps refreshed credentials, and
   assert.equal((await codexSessionEnvironment(data, source)).CODEX_HOME, env.CODEX_HOME);
   assert.equal(await readFile(join(env.CODEX_HOME!, 'auth.json'), 'utf8'), 'refreshed');
   assert.equal(await readFile(join(native, 'auth.json'), 'utf8'), '{"token":"fixture"}');
+});
+
+test('Codex private profile reuses only the selected native provider and its dynamic login command', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'codex-auth-command-')); t.after(() => rm(root, { recursive: true, force: true }));
+  const native = join(root, 'native'), data = join(root, 'agents/session/cli-data'); await mkdir(native);
+  await writeFile(join(native, 'auth.json'), '{"fixture":"credential"}');
+  const nativeProfile = [
+    'model = "private-model-default"',
+    'model_provider = "personal_lock"',
+    'developer_instructions = "private instructions"',
+    '[features]',
+    'memories = true',
+    '[model_providers.personal_lock]',
+    'name = "Personal lock"',
+    'base_url = "https://fixture.invalid/v1"',
+    'wire_api = "responses"',
+    '[model_providers.personal_lock.auth]',
+    'command = "read-profile-credential"',
+    'args = ["--json"]',
+    'refresh_interval_ms = 30000',
+    '[model_providers.unused]',
+    'name = "Unused provider"',
+    'base_url = "https://unused.invalid/v1"',
+    '[model_providers.unused.auth]',
+    'command = "unused-credential-command"',
+  ].join('\n');
+  await writeFile(join(native, 'config.toml'), nativeProfile);
+
+  const env = await codexSessionEnvironment(data, { CODEX_HOME: native });
+  const config = parseToml(await readFile(join(env.CODEX_HOME!, 'config.toml'), 'utf8')) as Record<string, unknown>;
+  assert.equal(env.CODEX_HOME, join(data, 'codex'));
+  assert.equal(config.model_provider, 'personal_lock');
+  assert.deepEqual(config.project_root_markers, ['.astra-layering-workspace-root']);
+  assert.equal(config.model, undefined);
+  assert.equal(config.developer_instructions, undefined);
+  assert.equal((config.features as Record<string, unknown>).memories, false);
+  const providers = config.model_providers as Record<string, Record<string, unknown>>;
+  assert.deepEqual(Object.keys(providers), ['personal_lock']);
+  assert.equal(providers.personal_lock.base_url, 'https://fixture.invalid/v1');
+  assert.deepEqual({ ...providers.personal_lock.auth as Record<string, unknown> }, {
+    command: 'read-profile-credential', args: ['--json'], refresh_interval_ms: 30000,
+  });
+  assert.equal(await readFile(join(native, 'config.toml'), 'utf8'), nativeProfile);
+  assert.equal(await readFile(join(env.CODEX_HOME!, 'auth.json'), 'utf8'), '{"fixture":"credential"}');
+  if (process.platform !== 'win32') assert.equal((await stat(join(env.CODEX_HOME!, 'config.toml'))).mode & 0o777, 0o600);
 });
 
 test('all harnesses share a relative session registry that survives moving a task', async t => {
