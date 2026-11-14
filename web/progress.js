@@ -244,3 +244,22 @@ export function groupArtifacts(section, group, depth) {
   children: [file(`${step('children')}/children.json`, '子组分析记录')],
  };
 }
+
+// A step publishes its workspace draft by moving it to its formal output.
+// Find the same group's available drawing when an open draft disappears.
+export function replacementGroupDraft(path, section, groups, files, versions = {}) {
+ for (const [depth, nodes] of groupLayers(groups).entries()) for (const group of nodes) {
+  const artifacts = groupArtifacts(section, group, depth);
+  for (const phase of ['outline', 'reduction', 'completion']) {
+   if (!artifacts[phase].some(item => item.path === path)) continue;
+   const choices = phase === 'completion' ? ['completion', 'reduction', 'outline']
+    : phase === 'reduction' ? ['reduction', 'outline'] : ['outline'];
+   for (const choice of choices) {
+    const [item] = latestSvgArtifacts(artifacts[choice], files, versions);
+    if (item) return item;
+   }
+   return null;
+  }
+ }
+ return undefined;
+}

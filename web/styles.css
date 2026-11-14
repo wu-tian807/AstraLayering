@@ -284,6 +284,9 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 /* Part previews share the live-canvas panel, within the group’s horizontal row. */
 .svg-preview-panel{height:auto;min-height:0;align-self:stretch}
 .svg-preview-panel .live-kra-artifacts .artifact-image img{max-height:none}
+.svg-unavailable,.artifact-image .svg-unavailable{display:flex;align-items:center;justify-content:center;min-height:80px;width:100%;color:var(--muted);font-size:11px}
+.live-kra-artifacts .svg-unavailable{flex:1}
+.output-image .svg-unavailable{height:100%}
 .cycle-phase.skipped-node{flex:0 0 145px;opacity:.65}
 .cycle-phase.skipped-node.collapsed{flex-basis:42px}
 .flow-toolbar{flex-wrap:wrap}.step-toolbar{display:flex;align-items:center;gap:6px;margin-left:auto;flex-shrink:0}.step-toolbar>span{font-weight:600}.step-toolbar select{height:35px;max-width:340px;border:1px solid var(--line);border-radius:7px;padding:0 8px;font-size:12px;background:white}.step-toolbar button:disabled{opacity:.45;cursor:not-allowed}.step-action{position:relative;display:inline-flex}.step-tip{font-weight:400;position:absolute;top:calc(100% + 8px);right:0;z-index:20;width:300px;max-width:min(300px,calc(100vw - 32px));display:flex;flex-direction:column;gap:5px;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:var(--surface);box-shadow:0 6px 20px #29485724;font-size:11px;line-height:1.7;color:var(--ink);white-space:normal;text-align:left;opacity:0;visibility:hidden;transition:opacity .12s;pointer-events:none}.step-tip b{font-size:12px;font-weight:600}.step-tip small{font-size:10px;color:var(--muted);overflow-wrap:anywhere}.step-tip .nowrap{white-space:nowrap}

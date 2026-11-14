@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { displayStatus, groupArtifacts, groupPhases, groupPreviewArtifacts, groupSummary, statusNames, stepArtifacts } from '../progress.js';
+import { displayStatus, groupArtifacts, groupPhases, groupPreviewArtifacts, groupSummary, replacementGroupDraft, statusNames, stepArtifacts } from '../progress.js';
 
 test('normal progress labels keep existing artifacts distinct from running and completion', () => {
   assert.deepEqual(Object.values(statusNames), ['待执行', '进行中', '限流等待', '已有产物', '已完成', '执行失败', '已中断', '待续跑']);
@@ -78,4 +78,19 @@ for (const section of ['part-layering', 'clothing-part-layering']) test(`${secti
 
 test('both part sections expose the formal depth preview outside workspace', () => {
   for (const index of [0, 2]) assert.ok(stepArtifacts[index].occlusion.some(item => item.path.endsWith('/step14_occlusion/preview.svg') && item.kind === 'image'));
+});
+
+for (const section of ['part-layering', 'clothing-part-layering']) test(`${section}: a selected nested draft follows its published drawing or the previous stage`, () => {
+  const group = { id: 'body/arm', groups: [] }, groups = [{ id: 'body', groups: [group] }];
+  const artifacts = groupArtifacts(section, group, 1);
+  const draft = `${section}/step11_completion/body/children/arm/workspace/completion.draft.svg`;
+  const final = `${section}/parts/body/arm.svg`, reduced = `${section}/step10_reduce/depth02/body/arm.svg`;
+  const outline = `${section}/step09_outline/body/children/arm/outline.svg`;
+  const files = new Set([outline, reduced, final]);
+  assert.ok(artifacts.completion.some(item => item.path === draft));
+  assert.equal(replacementGroupDraft(draft, section, groups, files)?.path, final);
+  files.delete(final); assert.equal(replacementGroupDraft(draft, section, groups, files)?.path, reduced);
+  files.delete(reduced); assert.equal(replacementGroupDraft(draft, section, groups, files)?.path, outline);
+  files.delete(outline); assert.equal(replacementGroupDraft(draft, section, groups, files), null);
+  assert.equal(replacementGroupDraft('other.draft.svg', section, groups, files), undefined);
 });

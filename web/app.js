@@ -1,6 +1,6 @@
 import { processFileList } from './process-files.js';
 import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts, groupArtifacts, shadowInspectionArtifacts, previousNineAxisSectionSteps,
- groupSummary, groupPreviewArtifacts, groupStagePreviewArtifacts, groupReviewSteps, reviewReportText,
+ groupSummary, groupPreviewArtifacts, groupStagePreviewArtifacts, groupReviewSteps, reviewReportText, replacementGroupDraft,
  latestKraPreview, statusNames, displayStatus, statusLabel } from './progress.js';
 import { selectedTask, rememberTask } from './task-selection.js';
 import { renderReport } from './report-markdown.js';
@@ -144,8 +144,12 @@ function applySnapshot(next) {
   if(archivedFiles.has(published))state.asset={...state.asset,path:published};
  }
  if(state.asset?.path.endsWith('.draft.svg')&&!archivedFiles.has(state.asset.path)) {
-  const published=state.asset.path.replace(/\.draft\.svg$/,'.svg');
-  if(archivedFiles.has(published))state.asset={...state.asset,path:published,label:state.asset.label.replace(' · 中间产物','图')};
+  const replacement=groupViews[state.stage]?replacementGroupDraft(state.asset.path,stages[state.stage].id,sectionTree(state.stage),archivedFiles,data.fileVersions):undefined;
+  if(replacement!==undefined)state.asset=replacement?{...state.asset,...replacement}:null;
+  else {
+   const published=state.asset.path.replace(/\.draft\.svg$/,'.svg');
+   if(archivedFiles.has(published))state.asset={...state.asset,path:published,label:state.asset.label.replace(' · 中间产物','图')};
+  }
  }
  sectionSteps=structuredClone(stepTemplates);
  if(data.sections[6]?.layout==='nested')sectionSteps[6]=structuredClone(previousNineAxisSectionSteps);
@@ -234,7 +238,7 @@ function artifacts(items, index, stepId, className='') {
    const url=artifact(item.path),cover=videoCover(url);
    return `<figure class="artifact-video"><button class="video-cover" data-asset="${esc(key)}" data-asset-stage="${index}" data-asset-step="${stepId}" aria-label="播放${esc(item.label)}"><img data-video-cover="${esc(url)}" ${cover?`src="${esc(cover)}"`:''} alt=""><span class="video-play">${icon('play')}</span></button><figcaption>${esc(item.label)}${className!=='nine-artifacts'&&data.fileVersions?.[item.path]?` · ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}`:''}</figcaption><a href="${url}" target="_blank" rel="noopener">打开原视频</a></figure>`;
   }
-  return `<button class="${item.kind==='image'?'artifact-image':'artifact-file'} ${item.path.endsWith('.draft.svg')?'draft-artifact':''}" data-asset="${esc(key)}" data-asset-stage="${index}" data-asset-step="${stepId}" title="${esc(item.path)}">${item.kind==='image'?`<img loading="lazy" src="${artifact(item.path,true)}" alt="${esc(item.label)}">`:icon('file')}<span>${esc(item.label)}</span>${item.kind==='image'&&data.fileVersions?.[item.path]?`<small>更新于 ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}</small>`:''}${item.kind==='file'?icon('chevron'):''}</button>`;
+  return `<button class="${item.kind==='image'?'artifact-image':'artifact-file'} ${item.path.endsWith('.draft.svg')?'draft-artifact':''}" data-asset="${esc(key)}" data-asset-stage="${index}" data-asset-step="${stepId}" title="${esc(item.path)}">${item.kind==='image'?`<img loading="lazy" ${/\.svg$/i.test(item.path)?'data-svg-artifact':''} src="${artifact(item.path,true)}" alt="${esc(item.label)}">`:icon('file')}<span>${esc(item.label)}</span>${item.kind==='image'&&data.fileVersions?.[item.path]?`<small>更新于 ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}</small>`:''}${item.kind==='file'?icon('chevron'):''}</button>`;
  };
  const images=list.filter(item=>item.kind==='image'),files=list.filter(item=>item.kind!=='image');
  const fileList=files.map(view).join('');
@@ -443,7 +447,7 @@ function inspector() {
  const image=item?.kind==='image',video=item?.kind==='video';
  const report=item&&Object.values(data.sections[state.stage]?.reports||{}).find(report=>report.path===item.path);
  return `<aside class="output-inspector" aria-label="产物放大查看"><header class="output-heading"><div><small>${esc(stage.name)} · ${esc(step.title)}</small><h2>${esc(item?.label||step.title)}</h2></div><button class="icon-button" data-action="close-inspector" aria-label="关闭产物面板">${icon('close')}</button></header><div class="output-scroll">
- ${video?`<div class="output-video"><video controls autoplay playsinline preload="auto" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video></div>`:image?`<div class="output-caption"><span>当前任务产物</span><label><input type="checkbox" id="compare-reference" ${state.compare?'checked':''}>对照参考</label></div><div class="output-image ${state.compare?'compare':''}">${state.compare&&data.reference?`<figure><img src="${artifact(data.reference)}" alt="简化角色参考"><figcaption>简化角色参考</figcaption></figure>`:''}<figure><a href="${artifact(item.path)}" target="_blank" rel="noopener"><img loading="lazy" src="${artifact(item.path)}" alt="${esc(item.label)}"></a><figcaption>点击打开原尺寸</figcaption></figure></div>`:item?item.reviewIndex!==undefined?`<article class="report-document">${renderReport(reviewReportText(item.text??'正在读取…',item))}</article>`:/\.md(?:\.tmp)?$/.test(item.path)?`<article class="report-document">${renderReport(item.text??'正在读取…',report?.images,path=>artifact(path))}</article>`:`<pre class="artifact-text">${esc(item.text??'正在读取…')}</pre>`:`<p class="step-note">${esc(step.note||'此步骤的过程和已有产物直接展示在画布中。')}</p>`}
+ ${video?`<div class="output-video"><video controls autoplay playsinline preload="auto" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video></div>`:image?`<div class="output-caption"><span>当前任务产物</span><label><input type="checkbox" id="compare-reference" ${state.compare?'checked':''}>对照参考</label></div><div class="output-image ${state.compare?'compare':''}">${state.compare&&data.reference?`<figure><img src="${artifact(data.reference)}" alt="简化角色参考"><figcaption>简化角色参考</figcaption></figure>`:''}<figure><a href="${artifact(item.path)}" target="_blank" rel="noopener"><img loading="lazy" ${/\.svg$/i.test(item.path)?'data-svg-artifact':''} src="${artifact(item.path)}" alt="${esc(item.label)}"></a><figcaption>点击打开原尺寸</figcaption></figure></div>`:item?item.reviewIndex!==undefined?`<article class="report-document">${renderReport(reviewReportText(item.text??'正在读取…',item))}</article>`:/\.md(?:\.tmp)?$/.test(item.path)?`<article class="report-document">${renderReport(item.text??'正在读取…',report?.images,path=>artifact(path))}</article>`:`<pre class="artifact-text">${esc(item.text??'正在读取…')}</pre>`:`<p class="step-note">${esc(step.note||'此步骤的过程和已有产物直接展示在画布中。')}</p>`}
  ${item?`<a class="artifact-source" href="${artifact(item.path)}" target="_blank" rel="noopener">${esc(item.path)} ${icon('arrow')}</a>`:''}</div></aside>`;
 }
 function overviewCard(stage,index) {
@@ -1029,6 +1033,14 @@ function bind() {
  const base=document.querySelector('#config-base');if(base)base.onchange=async()=>{state.base=base.value;if(state.diff){await refreshConfigFile();}};
  const filter=document.querySelector('#config-search');if(filter)filter.oninput=()=>{state.configFilter=filter.value;document.querySelector('.config-tree-scroll').innerHTML=configTree();bindConfigTree();};
 }
+// The file may be published between the snapshot and the image request.
+// Replace a failed SVG image until the next snapshot supplies a usable path.
+document.addEventListener('error',event=>{
+ const image=event.target;
+ if(!(image instanceof HTMLImageElement)||!image.hasAttribute('data-svg-artifact'))return;
+ const message=document.createElement('span');message.className='svg-unavailable';message.setAttribute('role','status');message.textContent='画面暂不可用，等待刷新';
+ image.replaceWith(message);
+},true);
 await refreshTask(true);
 if(state.page==='config')await loadConfig();
 render();

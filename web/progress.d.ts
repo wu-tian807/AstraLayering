@@ -40,6 +40,9 @@ export function groupReviewSteps(group: ProgressGroup, section: string, groupId:
 export function reviewReportText(text: string, item: Artifact): string;
 export function groupLayers<T extends { groups?: T[] }>(groups: T[]): T[][];
 export function groupArtifacts(section: string, group: { id: string }, depth: number): Record<GroupPhase, Artifact[]>;
+export interface ArtifactGroup { id: string; groups?: ArtifactGroup[] }
+export function replacementGroupDraft(path: string, section: string, groups: ArtifactGroup[],
+  files: Set<string>, versions?: Record<string, string>): Artifact | null | undefined;
 export const sectionSteps: ProgressStep[][];
 export const stepArtifacts: Record<string, Artifact[]>[];
 export function shadowInspectionArtifacts(files: string[]): Artifact[];
