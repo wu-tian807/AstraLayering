@@ -17,7 +17,7 @@ import { readStep } from '../../shared/step-chain.ts';
 import { applyStepAction, applyTaskAction, validStepId } from '../../workflow/step-actions.ts';
 import type { CodexAgents, AgentTask } from '../../shared/codex/agents.ts';
 import type { FunctionTool } from '../../shared/codex/function-tools.ts';
-import { evaluatePoints } from '../../shared/nine-axis-model.js';
+import { evaluatePoints, kraReferences } from '../../shared/nine-axis-model.js';
 import { createNineAxisViewTool } from '../view-tool.ts';
 import { frontPreviewScope } from '../hair.ts';
 
@@ -537,6 +537,63 @@ test('hair exposes only X while retaining completed face Y/XY and creates no ver
   }
   for(const node of [...author.parts,...author.deformers].filter((p:any)=>isFrontHair(p.id))){
     assert.equal(node.keyformsY,undefined);assert.equal(node.keyformsXY,undefined);
+  }
+});
+
+test('jaw can register static hair and casts, then hair authors their shared X carrier without placeholder axes',async t=>{
+  const f=await fixture(t,true),count=f.doc.parts.length,xy=join(f.nine,'step06_angle-xy');
+  await mkdir(xy,{recursive:true});
+  const input={...f.doc,source:{document:'nine-axis/step07_jaw-line/character-nine-axis.kra',geometryDocument:'original.kra'}};
+  await writeFile(join(xy,'deformers.json'),JSON.stringify(input));
+  const tool=createContinuationEditTool(f.upstream,xy,'jaw',undefined,f.task,f.materialize),signal=new AbortController().signal;
+  const part={id:'hair/bangs',level:'hair',uuid:uuid(count+1),bbox:[5,5,35,35],cols:2,rows:2};
+  await tool.execute({operations:[
+    {action:'add_part',part},
+    {action:'add_part',part:{...part,id:'hair/bangs/cast_to_face',uuid:uuid(count+hairIds.length+1),
+      shadow:{casters:['hair/bangs'],receivers:['face/face_base']},clip:{by:['face/face_base']}}},
+    {action:'add_part',part:{id:'face/jaw-mask',level:'face',material:'transparent',role:'mask',bbox:[5,5,35,35],cols:2,rows:2}},
+  ]},signal);
+  const original=JSON.parse(await readFile(join(f.upstream,'deformers.json'),'utf8'));
+  for(const part of original.parts.filter((p:any)=>p.id==='face/jaw-mask'||p.level==='hair')){
+    assert.deepEqual(Object.keys(part.keyforms),['0']);
+    assert.equal(part.keyformsY,undefined);assert.equal(part.keyformsXY,undefined);
+  }
+  await prepareHair(f.output,f.upstream,f.task,f.materialize);
+  const built=await buildHair(f.output,f.upstream),author=JSON.parse(await readFile(join(f.output,'hair.json'),'utf8'));
+  for(const part of original.parts){
+    const current=author.parts.find((p:any)=>p.id===part.id);
+    assert.deepEqual(current,kraReferences({parts:[part]}).parts[0]);
+  }
+  await f.edit().execute({operations:[
+    {action:'create_warp',id:'hair/bangs/turn',targets:['hair/bangs','hair/bangs/cast_to_face']},
+    {action:'transform',id:'hair/bangs/turn',x:-30,translate:[-8,0]},
+  ]},signal);
+  const after=await buildHair(f.output,f.upstream);
+  for(const part of after.doc.parts.filter(p=>p.level==='hair')){
+    assert.deepEqual(Object.keys(part.keyforms),['0']);
+    assert.ok(Math.abs(evaluatePoints(after.doc,part,-30)[0]-evaluatePoints(built.doc,built.doc.parts.find(p=>p.id===part.id)!,-30)[0]+8)<.01);
+  }
+  for(const part of original.parts.filter((p:any)=>p.level==='face')) for(const [x,y] of [[-30,0],[0,25],[-30,-25]])
+    assert.deepEqual([...evaluatePoints(after.doc,after.doc.parts.find(p=>p.id===part.id)!,x,y)],[...evaluatePoints(original,part,x,y)]);
+  assert.deepEqual(JSON.parse(await readFile(join(f.upstream,'deformers.json'),'utf8')),original,'preparation must not rewrite the upstream model');
+});
+
+test('horizontal handoff preserves inherited Y/XY data and forbids changing its key set',async t=>{
+  const f=await fixture(t),count=f.doc.parts.length;
+  const hair={...structuredClone(f.doc.parts[0]),id:'hair/bangs',level:'hair' as const,uuid:uuid(count+1)};
+  hair.keyformsY!['25'][0][0]+=2;
+  f.doc.parts.push(hair);await writeFile(join(f.upstream,'deformers.json'),JSON.stringify(f.doc));
+  await prepareHair(f.output,f.upstream,f.task,f.materialize);
+  const path=join(f.output,'hair.json'),author=JSON.parse(await readFile(path,'utf8'));
+  assert.deepEqual(author.parts.find((p:any)=>p.id===hair.id).keyformsY,hair.keyformsY);
+  assert.deepEqual(author.parts.find((p:any)=>p.id===hair.id).keyformsXY,hair.keyformsXY);
+  await buildHair(f.output,f.upstream);
+  for(const change of ['add','delete']){
+    const changed=structuredClone(author),part=changed.parts.find((p:any)=>p.id===hair.id);
+    if(change==='add')part.keyformsY['12.5']=structuredClone(part.keyforms['0']);
+    else delete part.keyformsY['25'];
+    await writeFile(path,JSON.stringify(changed));
+    await assert.rejects(buildHair(f.output,f.upstream),/上下或四角/);
   }
 });
 

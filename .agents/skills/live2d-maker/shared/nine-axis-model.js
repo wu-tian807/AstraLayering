@@ -115,21 +115,33 @@ export const keyValues = (part, axis = 'x') => Object.keys(axisForms(part, axis)
 
 // Readiness follows the delivered main poses. Extra local keys are optional
 // corrections: gridForm composes their X/Y offsets when no XY key was authored.
-// The four main corners still require explicit forms on every node.
+// Static local nodes inherit their ancestors' motion. Each displayed level
+// needs an authored carrier; only contributors to an axis need its forms.
 export function nineAxisCapabilities(doc, allowPlane = true) {
   const all = nodes(doc), form = (n, field, key) => {
     const p = n[field]?.[String(key)];
     return Array.isArray(p) && p.length === (n.cols + 1) * (n.rows + 1) && p.every(q => Array.isArray(q) && q.length === 2 && q.every(Number.isFinite));
   };
+  const byId = new Map(all.map(n => [n.id,n]));
+  const scopes = [...new Set(all.map(n => n.level))].map(level => {
+    const scope = new Set(all.filter(n => n.level === level));
+    for (const n of scope) if (byId.has(n.parent)) scope.add(byId.get(n.parent));
+    return [...scope];
+  });
+  const contributors = (scope, field) => scope.filter(n => Object.keys(n[field] ?? {}).some(key => key !== '0'));
+  const complete = (field, keys) => scopes.length > 0 && scopes.every(scope => {
+    const authored = contributors(scope,field);
+    return authored.length > 0 && authored.every(n => keys.every(key => form(n,field,key)));
+  });
   const axis = (id, field) => {
     const keys = [...new Set([0, ...doc.parameters?.find(p => p.id === id && !p.status)?.keys?.filter(k =>
-      Number.isFinite(k) && (k === 0 || all.every(n => form(n, field, k)))) ?? []])].sort((a, b) => a - b);
+      Number.isFinite(k) && (k === 0 || complete(field,[k]))) ?? []])].sort((a, b) => a - b);
     return { keys, min: keys[0], max: keys.at(-1) };
   };
   const x = axis('ParamAngleX', 'keyforms'), y = axis('ParamAngleY', 'keyformsY');
   const cornerKeys = [x.min, x.max].flatMap(a => [y.min, y.max].map(b => `${a},${b}`));
   const plane = allowPlane && all.length > 0 && x.min < 0 && x.max > 0 && y.min < 0 && y.max > 0
-    && all.every(n => cornerKeys.every(key => form(n, 'keyformsXY', key)));
+    && complete('keyformsXY',cornerKeys);
   const region = plane ? 'plane' : y.min < 0 && y.max > 0 ? 'cross' : y.max > 0 ? 'horizontal-plus-positive-y' : y.min < 0 ? 'horizontal-plus-negative-y' : 'horizontal';
   return { x, y, plane, region, cornerKeys: plane ? cornerKeys : [] };
 }
