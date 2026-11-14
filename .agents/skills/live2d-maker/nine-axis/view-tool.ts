@@ -58,7 +58,7 @@ async function silhouette(png: Buffer, scale: number): Promise<Buffer> {
 }
 
 export type PreviewScope = {
-  includes: (part: HeadDeformer) => boolean;
+  includes: (part: HeadDeformer, doc: Built['doc']) => boolean;
   allowsPose?: (x: number, y: number) => boolean;
   label?: string;
 };
@@ -143,7 +143,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         reference = { path, bounds, bytes };
       }
       const allNodes = nodes(doc), partIds = new Set(allNodes.map(p => p.id)), gridIds = args.grid ?? [];
-      const allowed = doc.parts.filter(part => !scope || scope.includes(part)).map(part => part.id);
+      const allowed = doc.parts.filter(part => !scope || scope.includes(part,doc)).map(part => part.id);
       const available = (id: string) => [...descendants(doc,id)].some(child => allowed.includes(child));
       if (!Array.isArray(gridIds) || gridIds.some(g => !partIds.has(g))) throw new Error('grid 须为部件 id 列表');
       if (scope && (gridIds as string[]).some(id => !available(id))) throw Error('grid 包含当前制作阶段尚未开放预览的部件');

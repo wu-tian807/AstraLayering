@@ -73,5 +73,15 @@ export async function headMaterialSelection(document: string, taskRoot: string) 
     if (scopeOf(name)) partIds.push('character:' + name);
   }
   const shadows = (await optional(join(taskRoot, 'shadow/step01_mask/shadows.json')))?.shadows ?? [];
-  return { selections: selectHeadMaterials(layers, [...new Set(partIds)], shadows), shadowLayerUuids: shadows.map((s: any) => uuid(s.shadowLayerUuid ?? '')) };
+  const selected = new Map(selectHeadMaterials(layers, [...new Set(partIds)], shadows).map(row=>[row.uuid,row]));
+  // Preparation already resolved semantic parts to native UUIDs. That binding
+  // survives later display-name changes and regrouping in editable KRA files.
+  const manifest = await optional(join(taskRoot,'nine-axis/step01_preparation/head_parts_manifest.json'));
+  for(const row of [...manifest?.parts??[],...manifest?.referenceLayers??[],...manifest?.shadowLayers??[]]) {
+    const key=uuid(row.uuid??'');if(!layers.has(key)||!row.partId||!row.scope)continue;
+    const previous=selected.get(key);
+    selected.set(key,{...previous,uuid:key,id:row.id,partId:row.partId,scope:row.scope,
+      ...(row.materialRole==='shadow'?{role:'shadow',casterPartId:row.casterPartId,receiverPartIds:row.receiverPartIds??[],receiverLayerUuids:row.receiverLayerUuids??[],follow:row.follow}:{})});
+  }
+  return { selections: [...selected.values()], shadowLayerUuids: [...new Set([...shadows.map((s: any) => uuid(s.shadowLayerUuid ?? '')),...[...selected.values()].filter(row=>row.role==='shadow').map(row=>row.uuid)])] };
 }

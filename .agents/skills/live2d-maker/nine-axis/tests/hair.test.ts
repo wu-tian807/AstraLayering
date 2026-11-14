@@ -76,6 +76,24 @@ async function selectFront(f: Awaited<ReturnType<typeof fixture>>, shadow=false)
 async function selectSide(f: Awaited<ReturnType<typeof fixture>>){
   await f.edit('side').execute({operations:[{action:'add_part',part:{id:hairIds[1],uuid:uuid(f.doc.parts.length+2),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
 }
+
+test('native UUID ownership accepts arbitrary paint/shadow/carrier IDs and rejects misleading names or rebinding',async t=>{
+  const f=await fixture(t,true);await prepareHair(f.output,f.upstream,f.task,f.materialize);
+  const signal=new AbortController().signal,tool=f.edit();
+  await tool.execute({operations:[
+    {action:'add_part',part:{id:'paint-A',uuid:uuid(f.doc.parts.length+1),level:'hair',bbox:[5,5,35,35]}},
+    {action:'add_part',part:{id:'shadow-B',uuid:uuid(f.doc.parts.length+hairIds.length+1),level:'hair',bbox:[5,5,35,35],shadow:{casters:['paint-A'],receivers:['face/face_base']},clip:{by:['face/face_base']}}},
+    {action:'create_warp',id:'carrier-C',targets:['paint-A','shadow-B']},
+    {action:'transform',id:'carrier-C',x:-30,translate:[-2,0]},
+  ]},signal);
+  const built=await f.build(),part=built.doc.parts.find(p=>p.id==='paint-A')!;
+  assert.equal(part.partId,'character:hair/bangs');
+  assert.equal(hairPreviewScope('front').includes(built.doc.parts.find(p=>p.id==='shadow-B')!,built.doc),true);
+  const bytes=await readFile(join(f.output,'hair.json'));
+  await assert.rejects(tool.execute({bindings:[{id:'paint-A',uuid:uuid(f.doc.parts.length+2)}]},signal),/前发轮次/);
+  await assert.rejects(tool.execute({operations:[{action:'add_part',part:{id:'hair/bangs/fake',uuid:uuid(f.doc.parts.length+2),level:'hair',bbox:[5,5,35,35]}}]},signal),/前发轮次/);
+  assert.deepEqual(await readFile(join(f.output,'hair.json')),bytes);
+});
 async function selectBack(f: Awaited<ReturnType<typeof fixture>>){
   await f.edit('back').execute({operations:[{action:'add_part',before:'hair/bangs',part:{id:hairIds[2],uuid:uuid(f.doc.parts.length+3),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
 }
@@ -136,7 +154,7 @@ test('front edit scope rejects side/back writes; the first-round check also catc
   await selectFront(f);
   const before=await f.build(),tool=f.edit(),signal=new AbortController().signal;
   const prior=await readFile(join(f.output,'hair.json'));
-  await assert.rejects(tool.execute({operations:[{action:'transform',id:hairIds[1],x:-30,translate:[2,0]}]},signal),/前发轮次/);
+  await assert.rejects(tool.execute({operations:[{action:'transform',id:hairIds[1],x:-30,translate:[2,0]}]},signal),/前发轮次|部件或变形器不存在/);
   assert.deepEqual(await readFile(join(f.output,'hair.json')),prior);
   await tool.execute({operations:[{action:'create_warp',id:'hair/bangs/turn',targets:['hair/bangs']},{action:'transform',id:'hair/bangs/turn',x:-30,translate:[-2,0]}]},signal);
   await checkFrontRound(before,await f.build());
@@ -405,7 +423,7 @@ test('remaining prompt and scope accept arbitrary hair structures while excludin
   assert.match(prompt,/保留 KRA 原关系/);assert.match(prompt,/不为这类投影越界新增非头发节点/);
   const scope=hairPreviewScope('remaining');
   for(const id of ['hair/braid','hair/cowlick','hair/free_form_bundle','hair/custom-uuid/strand','hair/bangs/shadow','hair/side_hair/extra_temples']){
-    assert.ok(scope.includes({id,level:'hair'}));assert.ok(hairRoundAllows('remaining')(id));
+    assert.ok(scope.includes({id,partId:id,level:'hair'}));assert.ok(hairRoundAllows('remaining')(id));
   }
   assert.ok(isHairId('hair/custom-uuid/strand'));assert.ok(isHairId('hair/back_hair/strand'));
   assert.ok(!scope.includes({id:'__kra__/unregistered',level:'hair'}));
@@ -422,8 +440,8 @@ test('registering a protected native accessory under hair cannot bypass preserva
   const f=await fixture(t);await reachRound(f,'remaining');await selectRemaining(f);
   const before=await f.build(),accessory=before.doc.parts.find(p=>p.level==='accessory')!;
   assert.ok(accessory.uuid);
-  await f.edit('remaining').execute({operations:[{action:'add_part',part:{id:'hair/misclassified_accessory',uuid:accessory.uuid,level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
-  await assert.rejects(checkHairRound(before,await f.build(),'remaining'),/不能修改其他已有节点/);
+  await assert.rejects(f.edit('remaining').execute({operations:[{action:'add_part',part:{id:'hair/misclassified_accessory',uuid:accessory.uuid,level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal),/其余头发轮次/);
+  await checkHairRound(before,await f.build(),'remaining');
 });
 
 test('back round can keep artwork unchanged or coordinate front/side/back KRA paint while protecting the face',async t=>{
@@ -435,8 +453,8 @@ test('back round can keep artwork unchanged or coordinate front/side/back KRA pa
   for(const id of hairIds.slice(0,3))await tool.execute({operations:[{action:'transform',id,x:-30,translate:[1,0]}]},signal);
   await writeFile(join(f.output,'character-nine-axis.kra'),await f.makeKra({...f.colors,'hair/bangs':'#ffaacc',[hairIds[1]]:'#aaccff','hair/back_hair':'#cc8844'}));
   await checkHairRound(before,await f.build(),'back');
-  await assert.rejects(tool.execute({operations:[{action:'transform',id:'face/face_base',x:-30,translate:[1,0]}]},signal),/后发轮次/);
-  await assert.rejects(tool.execute({operations:[{action:'transform',id:'hair/braid',x:-30,translate:[1,0]}]},signal),/后发轮次/);
+  await assert.rejects(tool.execute({operations:[{action:'transform',id:'face/face_base',x:-30,translate:[1,0]}]},signal),/后发轮次|部件或变形器不存在/);
+  await assert.rejects(tool.execute({operations:[{action:'transform',id:'hair/braid',x:-30,translate:[1,0]}]},signal),/后发轮次|部件或变形器不存在/);
   await writeFile(join(f.output,'character-nine-axis.kra'),await f.makeKra({...f.colors,'face/face_base':'#224466'}));
   await assert.rejects(f.build(),/已有脸部画稿/);
 });
@@ -490,8 +508,8 @@ test('side prompt inherits current KRA, keeps front initial separate and uses ed
   const prompt=hairPrompt({document:'/task/nine-axis/step08_hair/character-nine-axis.kra',color:''} as any,'/task','side');
   assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
   const scope=hairPreviewScope('side');
-  for(const id of ['face/face_base','hair/bangs','hair/bangs/shadow','hair/side_hair/left','hair/side_hair/shadow'])assert.ok(scope.includes({id,level:id.startsWith('face')?'face':'hair'}));
-  for(const id of ['hair/back_hair','hair/braid','hair/accessory'])assert.ok(!scope.includes({id,level:'hair'}));
+  for(const id of ['face/face_base','hair/bangs','hair/bangs/shadow','hair/side_hair/left','hair/side_hair/shadow'])assert.ok(scope.includes({id,partId:id,level:id.startsWith('face')?'face':'hair'}));
+  for(const id of ['hair/back_hair','hair/braid','hair/accessory'])assert.ok(!scope.includes({id,partId:id,level:'hair'}));
   assert.equal(scope.allowsPose(-30,25),false);
 });
 
@@ -517,8 +535,8 @@ test('back prompt prioritizes reference motion and conditional KRA edits, with c
   const prompt=hairPrompt({document:'/task/nine-axis/step08_hair/character-nine-axis.kra',color:''} as any,'/task','back');
   assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
   const scope=hairPreviewScope('back');
-  for(const id of ['face/face_base',...hairIds.slice(0,3),'hair/back_hair/shadow','hair/bangs/shadow'])assert.ok(scope.includes({id,level:id.startsWith('face')?'face':'hair'}));
-  for(const id of ['hair/braid','head_accessories/bell']){assert.ok(!scope.includes({id,level:'hair'}));assert.ok(!hairRoundAllows('back')(id));}
+  for(const id of ['face/face_base',...hairIds.slice(0,3),'hair/back_hair/shadow','hair/bangs/shadow'])assert.ok(scope.includes({id,partId:id,level:id.startsWith('face')?'face':'hair'}));
+  for(const id of ['hair/braid','head_accessories/bell']){assert.ok(!scope.includes({id,partId:id,level:'hair'}));assert.ok(!hairRoundAllows('back')(id));}
   assert.equal(scope.allowsPose(30,25),false);
   assert.ok(isBackHair('hair/back_hair/shadow'));assert.ok(!isBackHair('hair/back_hair_other'));
 });

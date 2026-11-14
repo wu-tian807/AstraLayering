@@ -5,7 +5,7 @@ export const previewLevels = [
   { id: 'hair', title: '脸＋五官＋头发', label: '＋头发' },
   { id: 'accessory', title: '脸＋五官＋头发＋头饰', label: '＋头饰' },
 ];
-export const authoredPreviewPart = part => !/^__(?:kra|shadow)__\//.test(part.id);
+export const authoredPreviewPart = part => !part.context;
 
 // Readiness belongs to the displayed composition, including its actual Warp
 // ancestors and clip sources. Hidden, unmade KRA context is never a preview.
