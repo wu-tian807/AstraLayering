@@ -146,7 +146,7 @@ test('independent waits and failures never mark running or completed siblings th
   await f.put('agents/up/retry-wait.json', { until: new Date(Date.now() + 60000).toISOString(), error: '429 up only' });
   let value = await f.get({ active: true, since });
   assert.deepEqual(nineAxisGroupSteps.map(id => value.states[id]), ['done', 'throttled', 'running']);
-  assert.equal(value.states.step02_angles, 'running');
+  assert.equal(value.states.step02_angles, 'throttled');
   assert.equal(value.messages['step02_angles/up'], '429 up only'); assert.equal(value.messages['step02_angles/down'], undefined);
   await f.put('agents/down/result.json', { status: 'failed' });
   value = await f.get({ active: true, since });
@@ -166,6 +166,22 @@ test('a running axis with saved output and no current call is shown as available
   const value = await f.get({ active: true, since });
   assert.deepEqual(nineAxisGroupSteps.map(id => value.states[id]), ['available', 'running', 'pending']);
   assert.equal(value.products['step02_angles/left'], true);
+  assert.deepEqual(f.errors, []);
+});
+
+test('a model merge call remains active when a child only has saved output', async t => {
+  const f = await fixture(t), since = new Date(Date.now() - 1000).toISOString();
+  const parent = 'step04_angles/model', child = stagedGroupSteps[0];
+  await f.put(`${parent}/.running`);
+  await f.put(`${child}/.running`); await f.put(`${child}/deformers.json`, '{}');
+  await f.put('agents/merge/request.json', { task: { name: '模型合并', outputDirectory: `nine-axis/${parent}` } });
+  let value = await f.get({ active: true, since });
+  assert.equal(value.states[parent], 'running');
+  assert.equal(value.states[child], 'available');
+  await f.put('agents/merge/retry-wait.json', { until: new Date(Date.now() + 60000).toISOString(), error: '429 merge' });
+  value = await f.get({ active: true, since });
+  assert.equal(value.states[parent], 'throttled');
+  assert.equal(value.states[child], 'available');
   assert.deepEqual(f.errors, []);
 });
 

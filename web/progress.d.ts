@@ -5,6 +5,7 @@ export interface ReviewObservation { status: ProgressStatus | 'skipped'; detail:
 export interface PartReviewRound { round: number; review: ReviewObservation; repair: ReviewObservation }
 export interface ProgressGroup {
   webPhases?: Partial<Record<GroupPhase, string>>;
+  groups?: ProgressGroup[];
   webReviewRounds?: PartReviewRound[];
 }
 export interface Artifact {

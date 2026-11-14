@@ -38,7 +38,7 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
       || [...files].some(path => path.startsWith(prefix + '/') && !path.includes('/agents/'));
     products[id] = status === 'running' && hasProducts;
     const ownCalls = calls.filter(call => call.outputDirectory === prefix || call.outputDirectory?.startsWith(prefix + '/'));
-    const call = ownCalls.filter(call => !call.finished).at(-1) ?? ownCalls.at(-1);
+    const call = ownCalls.filter(call => throttled(call)).at(-1) ?? ownCalls.filter(call => !call.finished).at(-1) ?? ownCalls.at(-1);
     states[id] = status === 'completed' ? 'done' : call?.failed ? 'failed' : observation.active && call && !call.finished
       ? throttled(call) ? 'throttled' : 'running'
       : status === 'running' && observation.active ? hasProducts ? 'available' : 'pending'
@@ -71,7 +71,7 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
   for (const [parent, children] of parents) if (states[parent] !== 'done') {
     // Children may explain an in-progress parent, but cannot complete its merge.
     const status = aggregateStatus(children.map(id => states[id]));
-    if (status !== 'pending' && status !== 'done') states[parent] = status;
+    if (status !== 'pending' && status !== 'done') states[parent] = aggregateStatus([states[parent], status]);
   }
   const mergeComplete = states[model] === 'done';
   let hair: { rounds: Record<HairRound, Status>; next: HairProgress['next']; awaitingContinue: boolean } | undefined;

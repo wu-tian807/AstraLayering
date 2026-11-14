@@ -367,6 +367,40 @@ test('raster step output stays available until that step has a current agent cal
   assert.equal(value.sections.find(section => section.id === 'character-assembly')!.states.step01, 'done');
 });
 
+test('raster review shows activity only for its live call, including retry waits', async t => {
+  const f = await fixture(t), task = join(f.dir, 'case');
+  await mkdir(task);
+  const run = await configureRun({ name: 'case', dir: f.dir, from: 'clothing-raster-layering', to: 'clothing-raster-layering' }, task);
+  run.status = 'running'; run.activeSections = ['clothing-raster-layering'];
+  run.runner = { id: 'clothing-runner', pid: process.pid, startedAt: new Date(Date.now() - 1000).toISOString() };
+  await saveRun(task, run);
+  const release = await acquireTaskLock(task); t.after(async () => { await release(); });
+  const section = 'clothing-raster-layering', attempts = `${section}/agents/steps/step01/attempts.jsonl`;
+  await put(task, `${section}/step01/.running`);
+  await put(task, `${section}/step01/report.md`, '绘制完成');
+  const get = async () => (await snapshot(task, 'case', f.dir)).sections.find(item => item.id === section)!;
+  let value = await get();
+  assert.equal(value.states.step01, 'available'); assert.equal(value.states['review-01'], 'pending');
+
+  const attempt = (phase: string) => JSON.stringify({ phase, startedAt: new Date(Date.now() - 100).toISOString() }) + '\n';
+  await put(task, attempts, attempt('repair-check-1'));
+  await put(task, `${section}/agents/check/request.json`, JSON.stringify({ task: { outputDirectory: `${section}/step01` } }));
+  value = await get();
+  assert.equal(value.states.step01, 'running'); assert.equal(value.states['review-01'], 'pending');
+
+  await put(task, `${section}/agents/check/result.json`, '{}');
+  await appendFile(join(task, attempts), attempt('review-01'));
+  await put(task, `${section}/agents/review/request.json`, JSON.stringify({ task: { outputDirectory: `${section}/step01` } }));
+  value = await get();
+  assert.equal(value.states['review-01'], 'running');
+  await put(task, `${section}/agents/review/retry-wait.json`, JSON.stringify({ until: new Date(Date.now() + 60000).toISOString(), error: '429 review' }));
+  value = await get();
+  assert.equal(value.states['review-01'], 'throttled'); assert.equal(value.messages['review-01'], '429 review');
+  await put(task, `${section}/agents/review/result.json`, '{}');
+  value = await get();
+  assert.equal(value.states['review-01'], 'pending');
+});
+
 test('开始、继续、恢复、重试先检查 Krita：不可用则 409 且不改动步骤，填写新路径后按同一操作运行', async t => {
   const started: any[] = [];
   const check = async (path: string) => { if (!path.endsWith('good-krita')) throw new Error('不存在或不可执行'); return { executable: path, version: 'test' }; };

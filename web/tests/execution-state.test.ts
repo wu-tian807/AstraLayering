@@ -22,5 +22,6 @@ test('containers distinguish saved partial work from pending and completed work'
   assert.equal(aggregateStatus(['unconfirmed', 'available']), 'unconfirmed');
   assert.equal(aggregateStatus(['failed', 'interrupted']), 'failed');
   assert.equal(aggregateStatus(['failed', 'throttled']), 'throttled');
-  assert.equal(aggregateStatus(['running', 'throttled', 'failed']), 'running');
+  assert.equal(aggregateStatus(['running', 'failed']), 'running');
+  assert.equal(aggregateStatus(['running', 'throttled', 'failed']), 'throttled');
 });
