@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { checkOwnedEdit, nodeOwners, ownsNode } from '../ownership.ts';
-import { hairPreviewScope, hairRoundAllows } from '../hair.ts';
+import { checkOwnedEdit, nodeOwners, ownsNode, previewAvailability } from '../ownership.ts';
+import { hairPreviewScope } from '../hair.ts';
+import { accessoryPreviewScope } from '../accessories.ts';
 
 const grid = { bbox:[0,0,10,10],cols:1,rows:1,keyforms:{'0':[[0,0],[10,0],[0,10],[10,10]]} };
 function fixture(): any {
@@ -21,9 +22,9 @@ test('part ownership, carrier permissions and preview survive arbitrary node ren
     n.id=names.get(n.id);if(n.parent)n.parent=names.get(n.parent);
     if(n.shadow)for(const key of ['casters','receivers'])n.shadow[key]=n.shadow[key].map((id:string)=>names.get(id));
   }
-  const front={label:'前发',allows:hairRoundAllows('front')};
+  const front=hairPreviewScope('front');
   for(const doc of [original,renamed]) {
-    assert.deepEqual([...nodeOwners(doc,doc.deformers[0])],['hair/bangs']);
+    assert.deepEqual([...nodeOwners(doc,doc.deformers[0])],['hair/bangs','face/face_base']);
     assert.equal(ownsNode(doc,doc.deformers[0],front),true);
     const visible=doc.parts.map((p:any)=>hairPreviewScope('front').includes(p,doc));
     assert.deepEqual(visible,[true,false,true,true,false]);
@@ -34,16 +35,34 @@ test('a carrier containing protected hair cannot acquire permission through its 
   const before=fixture();before.parts[1].parent=before.deformers[0].id;
   before.deformers[0].id='hair/bangs/claim';for(const p of before.parts)if(p.parent)p.parent='hair/bangs/claim';
   const after=structuredClone(before);after.deformers[0].keyforms['0'][0][0]+=1;
-  const front={label:'前发',allows:hairRoundAllows('front')};
+  const front=hairPreviewScope('front');
   assert.equal(ownsNode(before,before.deformers[0],front),false);
   assert.throws(()=>checkOwnedEdit(before,after,front),/范围外/);
 });
 test('side parts can attach to a read-only front carrier without acquiring permission to edit it',()=>{
-  const before=fixture(),after=structuredClone(before),side={label:'侧发',allows:hairRoundAllows('side')};
+  const before=fixture(),after=structuredClone(before),side=hairPreviewScope('side');
   after.parts[1].parent=after.deformers[0].id;
   checkOwnedEdit(before,after,side);
   const changed=structuredClone(after);changed.deformers[0].keyforms['0'][0][0]+=1;
   assert.throws(()=>checkOwnedEdit(after,changed,side),/范围外/);
+});
+test('a projection is deferred until both endpoints are available and belongs to the round making either endpoint',()=>{
+  const doc=fixture(),front=hairPreviewScope('front'),side=hairPreviewScope('side');
+  const toFace=doc.parts[3],toSide=doc.parts[4];
+  assert.equal(ownsNode(doc,toFace,front),true);assert.equal(ownsNode(doc,toFace,side),false);
+  assert.equal(ownsNode(doc,toSide,front),false);assert.equal(ownsNode(doc,toSide,side),true);
+  assert.deepEqual(previewAvailability(doc,toSide,front.includes),{available:false,waitingFor:['paint-B']});
+  assert.deepEqual(previewAvailability(doc,toSide,side.includes),{available:true,waitingFor:[]});
+  assert.equal(ownsNode(doc,doc.parts[0],side),false,'a relation never grants editing its completed caster');
+});
+test('hair-to-accessory projection becomes editable at the accessory endpoint while the hair remains protected',()=>{
+  const doc=fixture(),ornament={...structuredClone(grid),id:'object-X',partId:'character:head_accessories/object',level:'accessory'};
+  const shadow={...structuredClone(grid),id:'projection-Y',partId:'character:hair/bangs',level:'hair',shadow:{casters:['paint-A'],receivers:['object-X']}};
+  doc.parts.push(ornament,shadow);
+  assert.equal(ownsNode(doc,shadow,hairPreviewScope('remaining')),false);
+  assert.equal(ownsNode(doc,shadow,accessoryPreviewScope),true);
+  assert.equal(ownsNode(doc,doc.parts[0],accessoryPreviewScope),false);
+  assert.equal(accessoryPreviewScope.includes(shadow,doc),true);
 });
 test('unregistered context and future receivers stay out of the current round',()=>{
   const doc=fixture();doc.parts[0].context=true;

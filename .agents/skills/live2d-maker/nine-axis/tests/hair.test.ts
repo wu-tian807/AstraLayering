@@ -57,7 +57,7 @@ async function fixture(t: TestContext, withShadows = false, withRemaining = true
     }));
   });
   const materialize: MaterialLoader=(directory,built,signal,context)=>materials.resolve(task,directory,built,signal,context);
-  const edit=(round: HairRound='front')=>createContinuationEditTool(output,upstream,'hair',undefined,task,materialize,{label:hairRoundLabel(round)+'轮次',allows:hairRoundAllows(round)});
+  const edit=(round: HairRound='front')=>createContinuationEditTool(output,upstream,'hair',undefined,task,materialize,hairPreviewScope(round));
   const build=async()=>materialize(output,await buildHair(output,upstream,undefined,materialize));
   const options={name:'case',dir:root,step:'step08_hair'};
   const dependencies={environment:loadWorkflowEnvironment({}),materialize,
@@ -93,6 +93,26 @@ test('native UUID ownership accepts arbitrary paint/shadow/carrier IDs and rejec
   await assert.rejects(tool.execute({bindings:[{id:'paint-A',uuid:uuid(f.doc.parts.length+2)}]},signal),/前发轮次/);
   await assert.rejects(tool.execute({operations:[{action:'add_part',part:{id:'hair/bangs/fake',uuid:uuid(f.doc.parts.length+2),level:'hair',bbox:[5,5,35,35]}}]},signal),/前发轮次/);
   assert.deepEqual(await readFile(join(f.output,'hair.json')),bytes);
+});
+
+test('front-to-side projection is registered when its receiver is made without editing the completed front carrier',async t=>{
+  const f=await fixture(t,true);await prepareHair(f.output,f.upstream,f.task,f.materialize);await selectFront(f,true);
+  const signal=new AbortController().signal;
+  await f.edit().execute({operations:[{action:'create_warp',id:'front-carrier',targets:['hair/bangs','hair/bangs/shadow']},
+    {action:'transform',id:'front-carrier',x:-30,translate:[-2,0]}]},signal);
+  await selectSide(f);
+  const before=await f.build(),projection={id:'arbitrary-relation',uuid:uuid(f.doc.parts.length+hairIds.length+2),level:'hair',
+    bbox:[5,5,35,35],parent:'front-carrier',shadow:{casters:['hair/bangs'],receivers:[hairIds[1]]},clip:{by:[hairIds[1]]}};
+  const bytes=await readFile(join(f.output,'hair.json'));
+  await assert.rejects(f.edit().execute({operations:[{action:'add_part',part:projection}]},signal),/前发轮次/);
+  assert.deepEqual(await readFile(join(f.output,'hair.json')),bytes);
+  const result=await f.edit('side').execute({operations:[{action:'add_part',part:projection}]},signal);
+  const index=JSON.parse((result.contentItems[0] as {text:string}).text).nodes;
+  assert.equal(index.find((n:any)=>n.id===projection.id).editable,true);
+  assert.deepEqual(index.find((n:any)=>n.id===projection.id).preview,{available:true,waitingFor:[]});
+  assert.equal(index.find((n:any)=>n.id==='front-carrier').editable,false);
+  await checkHairRound(before,await f.build(),'side');
+  await assert.rejects(f.edit('side').execute({operations:[{action:'transform',id:'front-carrier',x:-30,translate:[1,0]}]},signal),/范围外/);
 });
 async function selectBack(f: Awaited<ReturnType<typeof fixture>>){
   await f.edit('back').execute({operations:[{action:'add_part',before:'hair/bangs',part:{id:hairIds[2],uuid:uuid(f.doc.parts.length+3),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
@@ -426,7 +446,7 @@ test('remaining prompt and scope accept arbitrary hair structures while excludin
     assert.ok(scope.includes({id,partId:id,level:'hair'}));assert.ok(hairRoundAllows('remaining')(id));
   }
   assert.ok(isHairId('hair/custom-uuid/strand'));assert.ok(isHairId('hair/back_hair/strand'));
-  assert.ok(!scope.includes({id:'__kra__/unregistered',level:'hair'}));
+  assert.ok(!scope.includes({id:'__kra__/unregistered',level:'hair',context:true}));
   assert.ok(!scope.includes({id:'head_accessories/bell',level:'accessory'}));assert.equal(scope.allowsPose(0,25),false);
 });
 

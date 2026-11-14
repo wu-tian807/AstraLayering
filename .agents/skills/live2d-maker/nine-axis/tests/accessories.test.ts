@@ -48,7 +48,7 @@ async function fixture(t:TestContext,withAccessory=true){
     }));
   });
   const materialize:MaterialLoader=(dir,built,signal,context)=>materials.resolve(task,dir,built,signal,context);
-  const edit=()=>createContinuationEditTool(output,upstream,'accessories',undefined,task,materialize,{label:'头部饰品',allows:isAccessoryId});
+  const edit=()=>createContinuationEditTool(output,upstream,'accessories',undefined,task,materialize,accessoryPreviewScope);
   const build=async()=>materialize(output,await buildAccessories(output,upstream,undefined,materialize));
   const select=async(shadow=true)=>{
     const part={id:'head_accessories/object',uuid:uuid(6),level:'accessory',bbox:[10,10,40,40],cols:4,rows:4};

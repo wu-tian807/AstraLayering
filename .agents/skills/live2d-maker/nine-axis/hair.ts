@@ -2,7 +2,7 @@ import { constants } from 'node:fs';
 import { access, copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { join } from 'node:path';
-import { lattice, validateHeadNineAxis, kraReferences, type HeadDeformer } from '../shared/nine-axis-model.js';
+import { lattice, validateHeadNineAxis, kraReferences, type HeadDeformer, type HeadNineAxis } from '../shared/nine-axis-model.js';
 import { toTaskPath } from '../shared/task-paths.ts';
 import { angleScale, type AngleScale } from './angles.ts';
 import { buildContinuation, isHairNode, readUpstream, startContinuation, type AuthoredHead } from './continuation.ts';
@@ -14,7 +14,7 @@ import { kraContents, kraLayers } from '../shadow/delivery.ts';
 import { nodes } from '../shared/nine-axis-model.js';
 import sharp from 'sharp';
 import { completeHairRound, hairRoundLabel, type HairRound } from './hair-progress.ts';
-import { ownsNode, withinPart } from './ownership.ts';
+import { ownsNode, withinPart, partVisible } from './ownership.ts';
 export { hairRounds, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, type HairRound, type HairProgress } from './hair-progress.ts';
 
 export const isFrontHair = (partId: string) => withinPart(partId,'hair/bangs') || withinPart(partId,'hair/front_hair');
@@ -25,21 +25,14 @@ export const isHairId = (partId:string) => withinPart(partId,'hair');
 // Remaining hair is selected from the actual document, not a fixed list of styles.
 export const hairRoundAllows = (round: HairRound) => round === 'front' ? isFrontHair : round === 'side' ? isSideHair : round === 'back' ? isHeadHair : isHairId;
 export const hairPreviewScope = (round: HairRound) => ({
-  includes: (part: { id: string; level: string; partId?: string; context?: boolean; shadow?: HeadDeformer['shadow'] }, doc?: Built['doc']): boolean => {
-    if(part.context)return false;
+  allows:hairRoundAllows(round),
+  includes: (part: { id: string; level: string; partId?: string; context?: boolean; shadow?: HeadDeformer['shadow'] }, doc?: HeadNineAxis): boolean => {
     const visible=(partId:string)=>withinPart(partId,'face')||withinPart(partId,'neck')||isFrontHair(partId)
       ||round!=='front'&&isSideHair(partId)||round==='back'&&isBackHair(partId)||round==='remaining'&&isHairId(partId);
-    if(part.shadow) {
-      if(!doc)return false;
-      return [...part.shadow.casters,...part.shadow.receivers].every(id=>{
-        const node=nodes(doc).find(n=>n.id===id);
-        return !!node&&ownsNode(doc,node,{label:'预览',allows:visible});
-      });
-    }
-    return part.level==='face'||!!part.partId&&visible(part.partId);
+    return partVisible(part,doc,visible);
   },
   allowsPose: (_x: number, y: number) => y === 0,
-  label: `${hairRoundLabel(round)} left/right 预览只允许 Y=0`,
+  label: `${hairRoundLabel(round)}轮次 left/right 预览只允许 Y=0`,
 });
 export const frontPreviewScope = hairPreviewScope('front');
 export const completeFrontRound = (directory: string) => completeHairRound(directory,'front');
@@ -48,7 +41,7 @@ export const completeFrontRound = (directory: string) => completeHairRound(direc
  * regions; remaining may coordinate all hair while protecting non-hair nodes. */
 export async function checkHairRound(before: Built, after: Built, round: HairRound) {
   const allowsPart=hairRoundAllows(round),label=hairRoundLabel(round)+'轮次';
-  const allows=(node: Parameters<typeof ownsNode>[1],doc:Built['doc'])=>ownsNode(doc,node,{label,allows:allowsPart});
+  const allows=(node: Parameters<typeof ownsNode>[1],doc:Built['doc'])=>ownsNode(doc,node,hairPreviewScope(round));
   const current=round==='back'?isBackHair:allowsPart;
   if(round==='remaining') {
     // Static KRA context exposes visible, unbound hair. It must be explicitly

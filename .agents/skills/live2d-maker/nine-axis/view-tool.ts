@@ -10,6 +10,7 @@ import sharp from 'sharp';
 import { validateHeadNineAxis, keyformAt, evaluatePoints, nodes, descendants, type HeadDeformer } from '../shared/nine-axis-model.js';
 import type { Built } from './head.ts';
 import type { MaterialBuilt } from './kra-materials.ts';
+import { previewAvailability } from './ownership.ts';
 
 // view_nine_axis: the step's current delivery, built as the program will build
 // it, drawn by the workbench's own renderer (shared/nine-axis-render.js) in a
@@ -161,7 +162,10 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         return [...new Set(value.flatMap(id => [...descendants(doc, id)]))];
       };
       const only = selection(args.only, 'only'), hidden = selection(args.hidden, 'hidden');
-      if (scope && Array.isArray(args.only) && args.only.some(id => !available(id))) throw Error('only 包含当前制作阶段尚未开放预览的部件');
+      if (scope && Array.isArray(args.only) && args.only.some(id => !available(id))) {
+        const waiting=[...new Set(args.only.flatMap(id=>previewAvailability(doc,allNodes.find(n=>n.id===id)!,scope.includes).waitingFor))];
+        throw Error('only 包含当前制作阶段尚未开放预览的部件'+(waiting.length?'；等待依赖进入预览范围：'+waiting.join('、'):''));
+      }
       const sx = (v: number) => ((v - x0) * scale).toFixed(1), sy = (v: number) => ((v - y0) * scale).toFixed(1);
       const overlay = grids.length ? `<svg width="${width}" height="${height}">${grids.map(({ id, cols, rows, points }) => {
         const curve = curves.get(id)!, c = cols * 5 + 1, at = (i: number) => `${sx(curve[i * 2])},${sy(curve[i * 2 + 1])}`;

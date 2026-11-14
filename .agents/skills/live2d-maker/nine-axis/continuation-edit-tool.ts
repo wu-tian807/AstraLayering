@@ -10,7 +10,7 @@ import { angleScale, type AngleScale } from './angles.ts';
 import { readUpstream, startContinuation, compileContinuation, authorFile, sha256, type AuthoredHead, type Stage } from './continuation.ts';
 import { checkAxisSource } from './axis-groups.ts';
 import { bindKraDocument, kraCatalog, type MaterialLoader } from './kra-materials.ts';
-import { checkOwnedEdit, nodeOwners, ownsNode, type OwnershipScope } from './ownership.ts';
+import { checkOwnedEdit, nodeOwners, ownsNode, previewAvailability, type OwnershipScope } from './ownership.ts';
 
 export type EditScope = OwnershipScope;
 export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory)), materialize?: MaterialLoader, scope?: EditScope): FunctionTool {
@@ -79,7 +79,7 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
     await writeBuilt(directory, built);
     return textResult({ revision: sha256(text), source: path, document: built.doc.source?.document, stage, ...(catalog&&!args.operations&&!args.bindings?{materials:catalog}:{}), nodes: nodes(built.doc as unknown as HeadNineAxis).map(n => ({
       id:n.id, kind:doc.deformers.some(p=>p.id===n.id)?'warp':'part', parent:n.parent??null, mirror:n.mirror??null,
-      bbox:n.bbox, cols:n.cols, rows:n.rows, ...(scope?{owners:[...nodeOwners(built.doc,n)],editable:ownsNode(built.doc,n,scope)}:{}), ...('textureBounds' in n?{textureBounds:n.textureBounds,drawOrder:built.doc.parts.findIndex(p=>p.id===n.id)}:{}), keys:Object.keys(n.keyforms), keysY:Object.keys(n.keyformsY??{}), keysXY:Object.keys(n.keyformsXY??{}),
+      bbox:n.bbox, cols:n.cols, rows:n.rows, ...(scope?{owners:[...nodeOwners(built.doc,n)],editable:ownsNode(built.doc,n,scope),...(scope.includes?{preview:previewAvailability(built.doc,n,scope.includes)}:{})}:{}), ...('textureBounds' in n?{textureBounds:n.textureBounds,drawOrder:built.doc.parts.findIndex(p=>p.id===n.id)}:{}), keys:Object.keys(n.keyforms), keysY:Object.keys(n.keyformsY??{}), keysXY:Object.keys(n.keyformsXY??{}),
       ...built.doc.parts.filter(p => p.id === n.id).map(p => ({ uuid: p.uuid, partId: p.partId, material: p.material, ...(p.shadow?{shadow:p.shadow}:{}) }))[0],
     })) });
   } };

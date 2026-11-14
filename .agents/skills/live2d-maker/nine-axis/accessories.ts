@@ -11,11 +11,14 @@ import { buildContinuation, isAccessoryNode, readUpstream, startContinuation, ty
 import { writeBuilt, type Built } from './head.ts';
 import { bindKraDocument, type MaterialLoader } from './kra-materials.ts';
 import { editableKra, modelDocument, withDocument } from './source.ts';
-import { withinPart, ownsNode } from './ownership.ts';
+import { withinPart, ownsNode, partVisible } from './ownership.ts';
+import type { HeadNineAxis } from '../shared/nine-axis-model.js';
 
 export const isAccessoryId = (partId:string) => withinPart(partId,'head_accessories');
 export const accessoryPreviewScope = {
-  includes:(part:{id:string;level:string;context?:boolean})=>!part.context&&['face','hair','accessory'].includes(part.level),
+  allows:isAccessoryId,
+  includes:(part:Parameters<typeof partVisible>[0],doc?:HeadNineAxis)=>partVisible(part,doc,
+    partId=>['face','neck','hair','head_accessories'].some(root=>withinPart(partId,root))),
   allowsPose:(_x:number,y:number)=>y===0,
   label:'头部饰品 left/right 预览只允许 Y=0',
 };
@@ -48,14 +51,14 @@ export const buildAccessories=(directory:string,upstream:string,scale:AngleScale
 export async function checkAccessories(before:Built,after:Built) {
   for(const part of before.doc.parts.filter(p=>p.level==='accessory'&&p.context&&p.uuid))
     if(!after.doc.parts.some(p=>isAccessoryNode(p)&&!p.shadow&&p.uuid===part.uuid))throw Error(`尚未注册剩余 KRA 头部饰品 ${part.uuid}`);
-  const editable=new Set(after.doc.parts.filter(isAccessoryNode).map(p=>p.uuid));
-  const current=(n:any)=>ownsNode(before.doc,n,{label:'头部饰品',allows:isAccessoryId})||n.level==='accessory'&&n.context&&!!n.uuid&&editable.has(n.uuid);
+  const editable=new Set(after.doc.parts.filter(p=>ownsNode(after.doc,p,accessoryPreviewScope)).map(p=>p.uuid));
+  const current=(n:any)=>ownsNode(before.doc,n,accessoryPreviewScope)||n.level==='accessory'&&n.context&&!!n.uuid&&editable.has(n.uuid);
   const find=(list:any[],n:any)=>list.find(p=>p.id===n.id)??(n.uuid?list.find(p=>p.uuid===n.uuid):undefined);
   for(const node of nodes(before.doc).filter(n=>!current(n))) {
     const next=find(nodes(after.doc),node);
     if(!next||JSON.stringify(kraReferences({parts:[next]}))!==JSON.stringify(kraReferences({parts:[node]})))throw Error(`${node.id}：头部饰品阶段不能修改其他已有节点`);
   }
-  for(const node of nodes(after.doc))if(!nodes(before.doc).some(p=>p.id===node.id)&&!ownsNode(after.doc,node,{label:'头部饰品',allows:isAccessoryId}))throw Error('头部饰品阶段新增节点须属于头饰部件');
+  for(const node of nodes(after.doc))if(!nodes(before.doc).some(p=>p.id===node.id)&&!ownsNode(after.doc,node,accessoryPreviewScope))throw Error('头部饰品阶段新增节点须属于头饰部件');
   await Promise.all(before.doc.parts.filter(p=>!current(p)).map(async p=>{
     const next=find(after.doc.parts,p),rgba=(file:string)=>sharp(file).ensureAlpha().raw().toBuffer();
     const [a,b]=await Promise.all([rgba(before.textures.get(p.texture!)!),rgba(after.textures.get(next.texture!)!)]);
