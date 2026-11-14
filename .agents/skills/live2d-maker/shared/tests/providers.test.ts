@@ -189,7 +189,7 @@ test('Claude private settings apply model lists and explicit credentials, preser
   assert.equal(a.settings.apiKeyHelper, undefined);
   assert.equal(a.settings.env.ANTHROPIC_AUTH_TOKEN, undefined);
   assert.deepEqual(a.settings.modelPicker, { options: [{ model: 'claude-sonnet-5-5', label: 'claude-sonnet-5-5' }, { model: 'claude-opus-5-5', label: 'claude-opus-5-5' }], replaceBuiltInOptions: false });
-  assert.equal((await stat(join(first.logDirectory!, 'auth-settings.json'))).mode & 0o777, 0o600);
+  if (process.platform !== 'win32') assert.equal((await stat(join(first.logDirectory!, 'auth-settings.json'))).mode & 0o777, 0o600);
   await writeFile(join(a.env.CLAUDE_CONFIG_DIR, 'session-sentinel'), 'keep');
   await writeFile(join(cwd, 'keep.kra'), 'existing-artifact');
   const changed = loadWorkflowEnvironment({ ...env, claude_api_key: 'NEXT_FIXTURE_KEY', claude_models: 'claude-opus-5-5' }, root);
