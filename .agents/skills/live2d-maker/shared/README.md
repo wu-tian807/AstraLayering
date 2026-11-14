@@ -2,7 +2,7 @@
 
 默认配置统一维护在 skill 根目录的 [example.env](../example.env)，由 `shared/default-configuration.ts` 读取。模型职责与生图默认值由共享模型模块校验、解析；运行时回退、首次生成 `.env` 与 WebUI 使用同一模板。WebUI 依赖 skill，独立 skill 包含完整配置与解析能力。
 
-只有修改提示词／工具、接入 CLI 或诊断共享行为时读取本页；日常执行见 [SKILL.md](../SKILL.md)。
+日常执行见 [SKILL.md](../SKILL.md)。
 
 ## 工具与模型
 
@@ -48,13 +48,13 @@ step01 绘制与返修对轮廓、隐藏补全、画风和结构负责。读取�
 
 三种 harness 使用管线 `agents/` 内的独立配置和会话数据，续跑复用任务记录，认证按需接入。
 
-raster 中断、主动重跑及已进入 raster 的总控续跑保留上游修正。独立重跑 part 会从首次分组与各步骤事实重建树；仅写在根 groups.json 的树结构调整需事先留档核对。历史核查见 [结构写回审计](STRUCTURE-AUDIT-20261026.md)。
+raster 中断、主动重跑及已进入 raster 的总控续跑保留上游修正。独立重跑 part 会从首次分组与各步骤事实重建树；仅写在根 groups.json 的树结构调整需事先留档核对。
 
-reviewer 只提交已经观察确认的问题；blocked 仅用于必要输入／工具等执行障碍，不消耗正式质量审核轮数。文件、像素统计与测试不能代替逐层视觉验收。
+reviewer 逐层检查视觉效果，只提交观察确认的问题。blocked 用于输入或工具等执行障碍，不消耗正式质量审核轮数。
 
 ## 参考图后处理
 
-新生成的 simplified、base-subject 和纯衣服参考以 `standard.png` 为统一画布。真实 alpha 直接保留，Nano 的透明请求由共享生图通道双背景差分恢复，不额外安装 Python 抠图环境；细节、失败留档与局限见 [生图配置](../references/model-presets.md#生图执行与透明处理)。
+新生成的 simplified、base-subject 和纯衣服参考以 `standard.png` 为统一画布。真实 alpha 直接保留，Nano 的透明请求由共享生图通道双背景差分恢复，不额外安装 Python 抠图环境；处理方式见 [生图配置](../references/model-presets.md#生图执行与透明处理)。
 
 旧式不透明参考只做 Node 颜色键与去溢色，边缘无可靠背景时保留并记录；它不承担语义分割。不同尺寸用 Sharp 等比缩放并居中透明补边，不裁紧角色；已合格且无需缩放时保留原字节。处理前原图与报告追加保存到 `references/archive/`，归档不参与恢复或完成判断，旧任务已有参考仅校验复用，不重新处理。
 
@@ -99,7 +99,7 @@ reviewer 只提交已经观察确认的问题；blocked 仅用于必要输入／
 
 ## 维护检查
 
-修改配置或共享调用层时，运行相关自动检查；接入新模型、CLI 或协议时，按所选路线验证工具调用与会话恢复。命令与覆盖范围见 [验证说明](VALIDATION.md)，历史结构核查见 [结构写回审计](STRUCTURE-AUDIT-20261026.md)。
+修改配置或共享调用层时，运行相关自动检查；接入新模型、CLI 或协议时，按所选路线验证工具调用与会话恢复。命令与覆盖范围见 [验证说明](VALIDATION.md)。
 
 ## 工作区与产物
 

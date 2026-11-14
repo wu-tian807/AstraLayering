@@ -20,11 +20,11 @@ pnpm start --name jianma --from shadow --to shadow --shadow-mode mask
 
 只制作随部件运动的投影，褶皱等固有明暗保留。用 simplified 判断实际投影范围，以组装图的位置和尺寸制作。优先复用分件绘制已经去掉投影的底色；残留旧影时仅局部补画新工程。蒙版直接在 Krita 绘制，完整面积一般远大于静帧可见投影，并包含充分运动延伸，按投影物运动设计形变、由受影面裁切；后续可独立修正阴影形状与相位，不强制同一 deformer；本工作流不制作动作关键形。
 
-Krita 阴影采用隔离组和透明度继承，JSON 保存真实 part ID 与最终图层 UUID、跟随／裁切关系。重叠发束优先正常阴影色层，避免叠底重复压暗。KRA 是可编辑素材，`shadows.json` 是供后续绑定消费的关系；它们不是 cmo3/moc3，也不代表已经绑定 deformer。
+Krita 阴影采用隔离组和透明度继承，JSON 保存真实 part ID 与最终图层 UUID、跟随／裁切关系。重叠发束优先正常阴影色层，避免叠底重复压暗。KRA 是可编辑素材，`shadows.json` 是供后续绑定消费的关系，供后续头部九轴等步骤读取。
 
 复用现有 raster runner 的模型调用、日志、thread 与完成标记。两种模式是同一 section 的两个 step01，启动时选其一：各自在 `shadow/step01_<模式>/` 保存 `.running` / `.completed` 与会话；切换模式只检查所选步骤，另一模式的产物保留。上游 character-assembly 须已完成；它重做后已完成的阴影步骤沿用，不自动重做。需要重做时对所选 step01 重试。
 
-仅文件存在不代表检查通过：检查原尺寸、KRA 合成与 PNG 一致、真实图层与 part 引用、原生裁切和模式；地图检查原尺寸、深度灰度、原画 alpha。原生检查由 agent 通过 `inspect_shadow_mask` 工具在本 section 的 Krita 中运行；交付不核对检查结果。绘制 agent 仍需逐图评估画法和余量，不能用像素计数替代艺术验收。
+检查原尺寸、KRA 合成与 PNG 一致、真实图层与 part 引用、原生裁切和模式；地图检查原尺寸、深度灰度、原画 alpha。原生检查由 agent 通过 `inspect_shadow_mask` 工具在本 section 的 Krita 中运行；交付不核对检查结果。绘制 agent 同时逐图评估画法与覆盖余量。
 
 只有完整交付后更新 `shadow/selection.json`，角色工作台默认载入最近完成的路线。两套产物共存时，可显式选择混合预览：蒙版 KRA 加原组装生成的法线／深度。工作台分别核对两种模式的 `step01_<模式>/source.json` 与当前源工程，不把不匹配的旧结果混合；预览选择不改变制作参数。源输入变化时暂停旧结果，等待对应模式续跑生成。
 

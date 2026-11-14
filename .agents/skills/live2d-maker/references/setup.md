@@ -6,7 +6,7 @@
 | --- | --- |
 | Node.js 24.12+、Git | 工作台和制作管线 |
 | Krita | 人物／衣服绘制、组装、阴影和九轴 |
-| Codex CLI，已登录 | 默认模型方案 |
+| Codex 登录认证或 API 配置 | 默认模型方案；补丁版 CLI 由管线准备 |
 | C/C++ 编译工具 | 构建 Codex 补丁：macOS 用 Xcode Command Line Tools，Windows 用 Visual Studio Build Tools 的 C++ 桌面开发组件，Ubuntu／Debian 用 build-essential |
 | Xvfb | Linux 无桌面环境 |
 | FFmpeg、Seedance 视频服务 | 九轴 |
@@ -15,7 +15,7 @@ Claude、Gemini、GPT Image 和 Nano Banana 的配置见[模型方案](model-pre
 
 ## 安装方式
 
-使用者安装 [Releases](https://github.com/wu-tian807/AstraLayering/releases) 的最新版本；开发者使用 main。用户尚未说明时问一次，后续沿用。
+直接运行使用 [Releases](https://github.com/wu-tian807/AstraLayering/releases) 的最新版本，源码开发使用 main。
 
 完整发布包解压后，双击系统对应的 `start-workbench` 文件。启动器会准备 pnpm 10.33.0、项目依赖和默认 `.env`，打开工作台；已有 `.env` 保留。
 
@@ -44,7 +44,7 @@ pnpm character-assembly --name my-character --dir /绝对路径/运行根目录 
 
 ## 模型 CLI 与生图
 
-默认方案使用 `gpt-6.1-sol` 和 Codex 内置生图。先完成 CLI 登录，再运行 `pnpm env:check` 核对模型、CLI 路径和生图配置。
+默认方案使用 `gpt-6.1-sol` 和 Codex 内置生图。配置已有登录认证或 API，再运行 `pnpm env:check` 核对模型、CLI 路径和生图配置。
 
 ### CLI 准备与补丁构建
 

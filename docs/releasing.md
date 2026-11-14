@@ -1,33 +1,27 @@
 # 版本发布
 
-版本号、Git 标签和 ZIP 使用同一个 `vX.Y.Z`。更新根 `package.json` 与 `CHANGELOG.md`，检查通过并合入 main 后，再创建标签和发布包。
+根 `package.json`、`CHANGELOG.md` 和 Git 标签使用同一版本号。新增功能或配置迁移使用次版本；已有行为的修复使用补丁版本。配置迁移在对应版本的更新记录中说明。
 
-## 打包
+## 准备与合入
 
-获取合入后的 main，在该提交创建标签：
+1. 从最新 main 整理发布 PR，更新根版本号与对应更新记录。
+2. 核对升级操作、README 演示和工作台截图；发布 PR 的 CI 会运行管线、Web、类型和打包检查。
+3. 合入 main 后，现有发布工作流自动为该提交创建 `vX.Y.Z` 标签、打包 ZIP 并发布同名 GitHub Release。相同版本已发布时跳过。
+
+版本 PR 合入即进入自动发布流程，准备阶段只提交 PR。
+
+## 本地打包
+
+已有标签可直接打包：
 
 ```sh
-git fetch upstream main --tags
-git tag vX.Y.Z upstream/main
-git push upstream vX.Y.Z
 pnpm release:pack vX.Y.Z
 ```
 
-生成文件为 `.release/AstraLayering-vX.Y.Z.zip`。打包器读取标签中的 Git tree，并应用 `.gitattributes`：
+输出 `.release/AstraLayering-vX.Y.Z.zip`。打包器读取标签中的 Git tree 和 `.gitattributes`，包含工作台、完整 skill、展示图、许可证，以及映射到 `.run/pink-doll` 的默认案例。其他案例、教程和历史资料保留在仓库。
 
-- 包含工作台、完整 skill、展示图片、许可证与 Pink Doll 示例。
-- 标签中的 `demos/pink-doll` 放入 ZIP 的 `.run/pink-doll`。
-- 其他案例、教程、历史研究资料保留在仓库。
+解压后核对版本、默认案例和启动入口。升级安装保留原目录的 `.run/`、`.web/settings.json` 与 skill `.env`。
 
-本机 `.env`、真实 `.run` 任务与 `.web` 设置保留在原安装目录。
+## 同版本重建
 
-## 检查与上传
-
-```sh
-node --test scripts/tests/release-pack.test.mjs
-sha256sum .release/AstraLayering-vX.Y.Z.zip
-```
-
-解压最终 ZIP 到独立目录，检查版本号、默认 Pink Doll 示例和工作台启动。将该 ZIP 上传到同名 GitHub Release，说明相对上一版本的变化与升级操作。
-
-更新已有工作台时保留制作任务、`.web/settings.json` 和 skill `.env`，复用现有服务入口。
+确需替换已发布安装包时，更新 `.github/release-rebuild.json` 的版本、预期标签提交及 Release／资产 ID，通过发布工作流的重建入口处理。普通版本升级不改此文件。

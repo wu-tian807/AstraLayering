@@ -27,7 +27,7 @@ pnpm check
 | 会话配置隔离 | 三种 harness 共用任务内的会话路径注册；Codex 模型目录探测与 App Server 使用同一私有配置根，只迁入认证文件。新会话隔离，重连复用原数据；任务移动后可解析，数据目录、workspace 与配置文件的路径逃逸被拒绝。管线显式 provider 配置和动态工具保留，宿主个人指令与扩展不自动载入 |
 | 故障与状态 | 只按通道给出的结构化错误码判断临时错误并沿用会话重试，错误文本只能否决、不能触发重试；正常退出却无产物展示最后消息；取消、失败及进程退出的总控状态明确，不把已退出进程展示为运行中 |
 
-这些是配置、传输和恢复的自动回归；它们不能证明上游当前授权、API 完整兼容或绘图质量。
+自动回归覆盖配置、传输与恢复；新服务另按下节检查实际调用和制作效果。
 
 ### 新环境的真实验证
 
@@ -62,4 +62,4 @@ pnpm check
 node --import ./shared/tests/ignore-local-env.ts --test shared/tests/model-patterns.test.ts shared/tests/default-configuration.test.ts nine-axis/tests/video-providers.test.ts workflow/tests/configuration-startup.test.ts
 ```
 
-覆盖同一份浏览器／管线通配语法、追加规则与自定义路由、静态图片参数、三种视频协议、密钥隔离及启动失败日志；模拟接口通过不代表真实服务授权或画面质量通过。
+覆盖同一份浏览器／管线通配语法、追加规则与自定义路由、静态图片参数、三种视频协议、密钥隔离及启动失败日志。
