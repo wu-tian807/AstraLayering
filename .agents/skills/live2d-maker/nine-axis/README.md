@@ -8,15 +8,16 @@
 
 九轴需要 **Krita、FFmpeg 和 Seedance 视频服务**。在全局设置选择已安装或解压的 FFmpeg 可执行文件；Krita 与 FFmpeg 共用浏览、扫描和点选功能。
 
-在“管线配置 → 环境与模型 → 运行环境”填写视频服务地址、密钥和模型，也可以编辑 skill 目录下的 `.env`：
+在“管线配置 → 环境与模型”的“视频模型”和“视频服务”中配置，也可以编辑 skill 目录下的 `.env`：
 
 ```dotenv
+video_provider=volcengine
 video_base_url=https://video.example.com/v1
 video_api_key=<视频服务密钥>
-nine_axis_view_video_model=seedance-2.5
+nine_axis_view_video_model=doubao-seedance-2-5-260628
 ```
 
-支持 Seedance 2.5 和 2.0 系列：2.5 填 `seedance-2.5`；2.0 填 `seedance-2`、`seedance-2-fast` 或 `seedance-2-mini`，也支持对应的 `-las` 型号。视频服务使用 OpenAI Videos API。开启 `--live` 或独立运行九轴时，启动前会检查这些配置。
+支持火山官方（默认）、OpenRouter 和 OpenAI 视频兼容服务（含 LiteLLM），模型可选预设或手动输入。切换服务时同步选择其支持的模型；旧兼容接口配置设置 `video_provider=openai`。配置示例与预设见[模型配置](../references/model-presets.md#九轴视频模型与服务)。开启 `--live` 或独立运行九轴时，启动前会检查这些配置。
 
 只制作到阴影时，按原流程配置 Krita 和绘图模型即可。
 

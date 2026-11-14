@@ -112,8 +112,9 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
       XDG_CONFIG_HOME: join(data, 'config'), XDG_DATA_HOME: join(data, 'data'), XDG_STATE_HOME: join(data, 'state'), XDG_CACHE_HOME: join(data, 'cache'),
       CLAUDE_CONFIG_DIR: join(data, 'claude'), CLAUDE_CODE_TMPDIR: join(log.directory, 'tmp'),
       ANTIGRAVITY_APP_DATA_DIR: join(data, 'home/.gemini/antigravity-cli'), JETSKI_APP_DATA_DIR: join(data, 'home/.gemini/antigravity-cli'),
-      ANTIGRAVITY_GEMINI_DIR: join(data, 'home/.gemini'), GEMINI_DIR: join(data, 'home/.gemini'), AGY_CLI_DISABLE_AUTO_UPDATE: 'true',
+      ANTIGRAVITY_GEMINI_DIR: join(data, 'home/.gemini'), GEMINI_DIR: join(data, 'home/.gemini'), AGY_CLI_DISABLE_AUTO_UPDATE: 'true', AGY_LLM_GATEWAY_MODELS:settings.codex.env?.AGY_LLM_GATEWAY_MODELS||'',
     };
+    if(model.harness==='agv')env.AGY_LLM_GATEWAY_MODELS=[...new Set([...(env.AGY_LLM_GATEWAY_MODELS||'').split(',').filter(Boolean),model.model])].join(',');
     for (const path of [env.TMPDIR, env.CLAUDE_CONFIG_DIR, env.ANTIGRAVITY_APP_DATA_DIR, env.ANTIGRAVITY_GEMINI_DIR]) await mkdir(path, { recursive: true, mode: 0o700 });
     if (!previous && model.harness === 'claude') {
       await copyCredential(join(settings.codex.env?.CLAUDE_CONFIG_DIR || join(homedir(), '.claude'), '.credentials.json'), join(env.CLAUDE_CONFIG_DIR, '.credentials.json'));
@@ -129,7 +130,7 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
     try { if (model.harness === 'claude') userSettings = JSON.parse(await readFile(join(settings.codex.env?.CLAUDE_CONFIG_DIR || join(homedir(), '.claude'), 'settings.json'), 'utf8')); }
     catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
     const inherited = { ...(userSettings.apiKeyHelper ? { apiKeyHelper: userSettings.apiKeyHelper } : {}),
-      ...(model.harness === 'claude' ? claudeProviderSettings(settings.providers?.claude) : {}),
+      ...(model.harness === 'claude' ? claudeProviderSettings(settings.providers?.claude,model.model) : {}),
       env: Object.fromEntries(Object.entries(userSettings.env || {}).filter(([key]) => /^(ANTHROPIC_|CLAUDE_CODE_USE_|AWS_|AZURE_|GOOGLE_|VERTEX_)/.test(key))
         .map(([key, value]) => [key, settings.codex.env?.[key] ?? value])) };
     if (model.harness === 'claude' && settings.providers?.claude.connection === 'unified') {

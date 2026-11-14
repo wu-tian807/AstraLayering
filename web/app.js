@@ -698,7 +698,7 @@ function bindConfigTree() {
 }
 function configPage() {
  const tabs=`<nav class="config-mode-tabs" aria-label="配置内容"><button data-config-mode="env" class="${state.configMode==='env'?'active':''}">环境与模型</button><button data-config-mode="files" class="${state.configMode==='files'?'active':''}">先验知识</button></nav>`;
- return state.configMode==='env'?`<div class="page-heading config-heading"><div><div class="breadcrumb">工作空间 ${icon('chevron')}<span>本地配置</span></div><h1>管线配置</h1><p>选择模型、连接服务，预览并保存这份仓库的运行配置。</p></div></div>${tabs}${envEditor.view()}`:tabs+promptConfigPage();
+ return state.configMode==='env'?`<div class="page-heading config-heading"><div><div class="breadcrumb">工作空间 ${icon('chevron')}<span>本地配置</span></div><h1>管线配置</h1><p>设置模型、服务与制作先验。</p></div></div>${tabs}${envEditor.view()}`:tabs+promptConfigPage();
 }
 function configPreview(currentFile) {
  const kind=mediaKind(state.file),raw='./api/config/raw'+configQuery(state.file);

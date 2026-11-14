@@ -66,7 +66,7 @@ pnpm character-assembly --name my-character --dir /绝对路径/运行根目录 
 
 ## 头部九轴
 
-网页开启“阴影完成后制作头部九轴”，或总入口加 `--live`。准备 Krita、FFmpeg 和 Seedance 视频配置后即可制作；模型默认 `seedance-2.5`。[查看九轴配置](nine-axis/README.md#依赖与视频配置)。
+网页开启“阴影完成后制作头部九轴”，或总入口加 `--live`。准备 Krita、FFmpeg 和 Seedance 视频配置后即可制作；默认使用火山 `doubao-seedance-2-5-260628`。[查看九轴配置](nine-axis/README.md#依赖与视频配置)。
 
 选帧 agent 调用 `extract_video_frame` 工具即可，FFmpeg 路径由工具使用。
 

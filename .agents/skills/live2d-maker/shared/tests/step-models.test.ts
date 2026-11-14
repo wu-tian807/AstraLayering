@@ -8,7 +8,7 @@ import { once } from 'node:events';
 import { parseEnv } from 'node:util';
 import sharp from 'sharp';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
-import { modelHarnesses, modelSlotDefaults, modelSlotKey, type ModelSlot, stepModelSlots, stepDefaults, imageSteps, parseAgentModel } from '../agents/models.ts';
+import { modelHarnesses, resolveModelDefaults, modelSlotKey, type ModelSlot, stepModelSlots, imageSteps, parseAgentModel } from '../agents/models.ts';
 import { imageGenerationTool, validateImageSelection } from '../agents/images.ts';
 import { cliExecutable, runCliTask } from '../agents/cli.ts';
 import { CodexAgents } from '../codex/agents.ts';
@@ -16,6 +16,8 @@ import { AgentCallError, AgentRuntime } from '../codex/agent-runtime.ts';
 import { runAgent } from '../raster/agent.ts';
 import { sectionAgentSteps } from '../agents/preflight.ts';
 
+const modelSlotDefaults=resolveModelDefaults(parseEnv(await readFile(new URL('../../example.env',import.meta.url),'utf8')) as Record<string,string>);
+const stepDefaults=Object.fromEntries(Object.entries(stepModelSlots).map(([step,slot])=>[step,modelSlotDefaults[slot]]));
 async function fixture(t: { after(callback: () => Promise<unknown>): void }) {
   const root = await realpath(await mkdtemp(join(tmpdir(), 'step-models-')));
   t.after(() => rm(root, { recursive: true, force: true })); return root;
@@ -33,7 +35,7 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
   await writeFile(join(root, '.env'), 'part_review_agent_model=gemini-4-argon-high\npart_draw_agent_model=claude-sonnet-5-5-low\npart_groups_agent_model=gemini-4-argon-high\n');
   const settings = loadWorkflowEnvironment({ part_review_agent_model: 'claude-haiku-5-5-medium',
     raster_step01_agent_model: 'claude-opus-5-5-medium', raster_step01_review_agent_model: 'gemini-4-argon-high' }, root);
-  assert.equal(settings.stepModels.part_outline_review.model, 'claude-haiku-5-5');
+  assert.equal(settings.stepModels.part_outline_review.model, 'gemini-4-argon');
   assert.deepEqual(settings.stepModels.clothing_outline_review, settings.stepModels.part_outline_review);
   for (const step of ['part_outline', 'part_outline_repair', 'clothing_outline', 'clothing_outline_repair'] as const) {
     assert.deepEqual(settings.stepModels[step], parseAgentModel('claude-sonnet-5-5-low', 'fixture'));
@@ -141,9 +143,9 @@ test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for sim
   assert.deepEqual(settings.codex.config, {});
   const custom = loadWorkflowEnvironment({ part_review_agent_model: 'claude-sonnet-5-5-xhigh', part_simplify_image_model: 'gpt-image-2.5-flare',
     openai_image_base_url: 'https://images.example/v1', openai_image_api_key: 'fixture' }, root);
-  assert.equal(custom.stepModels.part_outline_review.model, 'claude-sonnet-5-5');
+  assert.equal(custom.stepModels.part_outline_review.model, 'gpt-6.1-sol');
   assert.deepEqual(custom.stepModels.clothing_outline_review, custom.stepModels.part_outline_review);
-  assert.equal(custom.stepImages.part_simplify, 'gpt-image-2.5-flare');
+  assert.equal(custom.stepImages.part_simplify, 'gpt-image-2.5-sunburst');
   assert.equal(custom.stepImages.part_base_subject, 'gemini-nano-banana-2.1');
   assert.deepEqual(custom.stepModels.raster_step02, settings.stepModels.raster_step02);
   for (const step of imageSteps()) validateImageSelection(custom, step);
@@ -165,7 +167,7 @@ test('consistent legacy settings are shared, conflicts require an explicit role,
   assert.equal(await readFile(join(root, '.env'), 'utf8'), oldFile);
 });
 
-test('legacy tier overrides keep their historical roles and explicit role and shell values still win', async t => {
+test('legacy tier overrides keep their historical roles and explicit roles and nonempty local values win', async t => {
   const root = await fixture(t);
   const file = 'medium_model=gpt-6.1-sol-low\nhigh_model=gpt-6-astra-high\n';
   await writeFile(join(root, '.env'), file);
@@ -179,7 +181,7 @@ test('legacy tier overrides keep their historical roles and explicit role and sh
   const explicit = loadWorkflowEnvironment({}, root);
   assert.equal(explicit.stepModels.clothing_raster_step02.harness, 'claude');
   const shell = loadWorkflowEnvironment({ raster_step02_agent_model: 'gemini-4-argon-high' }, root);
-  assert.equal(shell.stepModels.raster_step02.harness, 'agv');
+  assert.equal(shell.stepModels.raster_step02.harness, 'claude');
   assert.deepEqual(shell.stepModels.raster_step02, shell.stepModels.clothing_raster_step02);
   assert.equal(shell.stepModels.raster_step01.model, 'gpt-6-astra');
   assert.equal(await readFile(join(root, '.env'), 'utf8'), file + 'raster_step02_agent_model=claude-sonnet-5-5-medium\n');

@@ -1,4 +1,5 @@
 import type { Harness } from './models.ts';
+import { parseModelPatterns, modelPatternMatches } from './model-patterns.ts';
 
 export type HarnessProvider = {
   connection: 'unified' | 'legacy' | 'inherited';
@@ -27,20 +28,15 @@ export function validateApiUrl(value: string, name: string): void {
 }
 
 export function parseProviderModels(value: string, name: string): string[] {
-  const models = value.split(',').map(model => model.trim());
-  if (models.some(model => !/^[a-zA-Z0-9][a-zA-Z0-9._:/-]*$/.test(model))) {
-    throw new Error(`${name} 须为逗号分隔的模型 ID，例如 gpt-6.1-sol,gpt-6-astra；不使用 JSON 或空项目。`);
-  }
-  return [...new Set(models)];
+  return parseModelPatterns(value,name);
 }
 
-// Shell settings win even when they use an old spelling. Within one source,
-// unified keys win over aliases. An empty shell value disables that file key.
+// Nonempty file settings win even when they use an old spelling. Within one
+// source, unified keys win over aliases. Empty values allow fallback.
 export function resolveHarnessProviders(file: NodeJS.ProcessEnv, shell: NodeJS.ProcessEnv,
-  effective: Record<string, string>, legacyCodex: boolean): HarnessProviders {
-  const remainingFile = Object.fromEntries(Object.entries(file).filter(([key]) => shell[key] === undefined));
+  effective: Record<string, string>, legacyCodex: boolean, defaults:NodeJS.ProcessEnv={}): HarnessProviders {
   const read = (name: string, old: readonly string[]) => {
-    for (const source of [shell, remainingFile]) for (const key of [name, ...old]) {
+    for (const source of [file, shell, defaults]) for (const key of [name, ...old]) {
       const value = source[key]?.trim();
       if (value) return { value, key };
     }
@@ -49,11 +45,13 @@ export function resolveHarnessProviders(file: NodeJS.ProcessEnv, shell: NodeJS.P
   const providers = {} as HarnessProviders;
   for (const harness of ['codex', 'claude', 'agv'] as const) {
     const prefix = `${harness}_`;
-    const unifiedConnection = !!effective[`${prefix}api_key`]?.trim() || !!effective[`${prefix}base_url`]?.trim();
+    const explicitUrl=[file,shell].map(source=>source[`${prefix}base_url`]?.trim()).find(Boolean);
+    const unifiedConnection = !![file,shell].some(source=>source[`${prefix}api_key`]?.trim()) || !!explicitUrl&&explicitUrl!==defaults[`${prefix}base_url`];
     const old = harness === 'codex' && !legacyCodex && !unifiedConnection
       ? { api_key: [], base_url: [], models: [], protocol: [] } : aliases[harness];
-    const key = read(`${prefix}api_key`, old.api_key), url = read(`${prefix}base_url`, old.base_url);
+    const key = read(`${prefix}api_key`, old.api_key), url = key||unifiedConnection?read(`${prefix}base_url`, old.base_url):undefined;
     const models = read(`${prefix}models`, old.models);
+    const modelRules=[...new Set([...parseProviderModels(defaults[`${prefix}models`]||'',`${prefix}models`),...parseProviderModels(models?.value||'',models?.key||`${prefix}models`)])];
     const protocol = harness === 'agv' ? read('agv_protocol', aliases.agv.protocol) : undefined;
     if (url) validateApiUrl(url.value, url.key);
     if (protocol && !(agvProtocols as readonly string[]).includes(protocol.value)) {
@@ -68,14 +66,13 @@ export function resolveHarnessProviders(file: NodeJS.ProcessEnv, shell: NodeJS.P
           : `${harness} 自定义网关缺少鉴权或地址；请填写 ${prefix}api_key${harness === 'agv' ? ` 和 ${prefix}base_url` : ''}，或清空统一连接配置以复用已有登录。`);
       }
     }
-    const baseUrl = url?.value ?? (unifiedConnection && key
-      ? harness === 'codex' ? 'https://api.openai.com/v1' : harness === 'claude' ? 'https://api.anthropic.com' : undefined : undefined);
+    const baseUrl = url?.value;
     const selectedProtocol = protocol?.value ?? (harness === 'codex' ? 'responses'
       : unifiedConnection ? harness === 'claude' ? 'anthropic' : 'genai' : undefined);
     const provider: HarnessProvider = {
       connection: unifiedConnection ? 'unified' : harness === 'codex' && legacyCodex ? 'legacy' : 'inherited',
       ...(key ? { apiKey: key.value } : {}), ...(baseUrl ? { baseUrl } : {}),
-      ...(models ? { models: parseProviderModels(models.value, models.key) } : {}),
+      ...(modelRules.length ? { models:modelRules } : {}),
       ...(selectedProtocol ? { protocol: selectedProtocol as HarnessProvider['protocol'] } : {}),
       sources: { ...(key ? { apiKey: key.key } : {}), ...(url ? { baseUrl: url.key } : {}),
         ...(models ? { models: models.key } : {}), ...(protocol ? { protocol: protocol.key } : {}) },
@@ -90,7 +87,7 @@ export function resolveHarnessProviders(file: NodeJS.ProcessEnv, shell: NodeJS.P
       if (baseUrl) effective[nativeUrl] = baseUrl;
       if (harness === 'claude' && unifiedConnection && key) delete effective.ANTHROPIC_AUTH_TOKEN;
       if (harness === 'agv') {
-        if (provider.models) effective.AGY_LLM_GATEWAY_MODELS = provider.models.join(',');
+        if (provider.models) effective.AGY_LLM_GATEWAY_MODELS = provider.models.filter(model=>!model.includes('*')).join(',');
         if (provider.protocol) effective.AGY_LLM_GATEWAY_WIRE_PROTOCOL = provider.protocol;
       }
     }
@@ -101,13 +98,13 @@ export function resolveHarnessProviders(file: NodeJS.ProcessEnv, shell: NodeJS.P
 export function validateProviderModel(providers: HarnessProviders | undefined,
   model: { model: string; harness: Harness }, step?: string): void {
   const allowed = providers?.[model.harness].models;
-  if (allowed && !allowed.includes(model.model)) {
+  if (allowed && !allowed.some(pattern=>modelPatternMatches(model.model,pattern))) {
     throw new Error(`${step ? `${step}：` : ''}模型 ${model.model} 不在 ${model.harness}_models 的可用列表中；请调整该步骤模型或模型列表。`);
   }
 }
 
-export function claudeProviderSettings(provider?: HarnessProvider) {
+export function claudeProviderSettings(provider?: HarnessProvider, selected?:string) {
   return provider?.models ? { modelPicker: {
-    options: provider.models.map(model => ({ model, label: model })), replaceBuiltInOptions: true,
+    options: [...new Set([...provider.models.filter(model=>!model.includes('*')), ...selected?[selected]:[]])].map(model => ({ model, label: model })), replaceBuiltInOptions: false,
   } } : {};
 }

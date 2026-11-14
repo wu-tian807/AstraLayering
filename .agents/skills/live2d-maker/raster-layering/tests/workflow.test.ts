@@ -18,7 +18,7 @@ import { parseRunArguments } from '../run.ts';
 import { inspectRun } from '../../shared/raster/run-store.ts';
 import { readStepSession } from '../../shared/agents/step-session.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
-import { steps, stepModels, type StepDefinition } from '../steps.ts';
+import { steps, type StepDefinition } from '../steps.ts';
 import { runWorkflow } from '../run.ts';
 import { markBaseStep } from '../../shared/tests/dressup-fixture.ts';
 import { stepKnowledge } from '../../shared/knowledge.ts';
@@ -199,7 +199,7 @@ test('已完成第一步的任务接续后两步，各步新建 thread 并使用
   await runWorkflow(f.resume, { ...f.deps, steps: f.definitions, agent: async request => {
     const step = f.definitions[index++];
     assert.equal(request.threadId, undefined);
-    assert.equal(request.model, step.model);
+    assert.equal(request.model, f.deps.environment.stepModels[step.modelStep!].model);
     assert.equal(request.effort, 'medium');
     assert.ok(request.prompt.includes(join(f.output, 'step01/report.md')));
     return deliver(request, step);
@@ -328,7 +328,7 @@ test('入口不接受额外输入；符号链接步骤不被递归清理', async
 test('raster 使用指定模型与 reasoning；临时 error 等待 CLI 终态，失败流不冒充成功', async t => {
   const server = await rasterAppServer(t, JSON.stringify(complete), { nativeReconnect: true });
   const received: string[] = [];
-  const request: AgentRequest = { prompt: 'test', directory: server.directory, ...stepModels[1], environment: server.environment,
+  const request: AgentRequest = { prompt: 'test', directory: server.directory, ...server.environment.stepModels.raster_step01, environment: server.environment,
     onEvent: async e => { received.push(e.type); } };
   assert.deepEqual(await runAgent(request), complete);
   const protocol = await server.protocol();

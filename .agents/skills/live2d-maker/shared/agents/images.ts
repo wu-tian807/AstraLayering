@@ -4,7 +4,7 @@ import { randomUUID } from 'node:crypto';
 import sharp from 'sharp';
 import type { WorkflowEnvironment } from '../codex/environment.ts';
 import type { FunctionTool } from '../codex/function-tools.ts';
-import { imageModelProviders, type AgentStep, type ImageApi, type ImageModel } from './models.ts';
+import { imageProvider, type AgentStep, type ImageApi, type ImageModel } from './models.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { needsSolidBackground, providerImageArguments, transparentGeneratedImage } from './image-background.ts';
 import type { ImageProcessingOptions } from '../image-processing.ts';
@@ -16,7 +16,7 @@ export function validateImageSelection(settings: WorkflowEnvironment, step: Agen
   if (!agentImageGeneration(step)) return;
   const image = settings.stepImages[step];
   if (!image) return;
-  const provider = imageModelProviders[image], agent = settings.stepModels[step];
+  const provider = imageProvider(image,settings.imageRules), agent = settings.stepModels[step];
   if (provider === 'codex' && agent.harness !== 'codex') {
     throw new Error(`${step}：生图步骤选取 Codex 内置 imagegen，harness 却选择 ${agent.harness}（${agent.model}）。请选择 Codex 模型或自定义生图模型。`);
   }
@@ -31,7 +31,7 @@ export function imageGenerationTool(settings: WorkflowEnvironment, step: AgentSt
   const model = settings.stepImages[step];
   if (!model || model === 'codex-native') return;
   validateImageSelection(settings, step);
-  const provider = imageModelProviders[model] as 'openai' | 'google';
+  const provider = imageProvider(model,settings.imageRules) as 'openai' | 'google';
   const api = settings.imageApis[provider]!;
   return {
     ...toolDefinition('imagegen'),
@@ -69,14 +69,14 @@ export type ImageArguments = { prompt: string; background?: 'transparent' | 'aut
 export async function generateImage(api: ImageApi, model: ImageModel, args: ImageArguments,
   inputs: ImageInput[], signal: AbortSignal, processing?: ImageProcessingOptions & { directory: string }): Promise<Buffer> {
   const original = args;
-  const solidBackground = needsSolidBackground(model, original);
+  const solidBackground = needsSolidBackground(model, original, api.provider);
   let selection: BackgroundRecommendation | undefined;
   if (solidBackground) {
     if (!processing) throw new Error('Nano 透明背景处理缺少本次任务的产物目录。');
     selection = await recommendBackground(inputs);
     processing = { ...processing, directory: join(processing.directory, 'image-processing', randomUUID()) };
   }
-  args = await providerImageArguments(model, original, selection);
+  args = await providerImageArguments(model, original, selection, api.provider);
   if (solidBackground) {
     await mkdir(processing!.directory, { recursive: true });
     await writeFile(join(processing!.directory, 'background-selection.json'), JSON.stringify({ selection,

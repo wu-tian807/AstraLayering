@@ -23,7 +23,7 @@ async function fixture(t: { after(callback: () => Promise<unknown>): void }) {
   return root;
 }
 
-test('配置解析保留认证来源，.env 模型后缀是力度，shell 优先且不会改写进程环境', async t => {
+test('配置解析保留认证来源，.env 模型后缀是力度，.env 优先且不会改写进程环境', async t => {
   const root = await fixture(t);
   const baseline = loadWorkflowEnvironment({ CODEX_HOME: '/existing/codex' }, root);
   assert.deepEqual(baseline.codex.config, {});
@@ -33,7 +33,7 @@ test('配置解析保留认证来源，.env 模型后缀是力度，shell 优先
   assert.equal(baseline.imageCompactThreshold, undefined);
   await writeFile(join(root, '.env'), 'medium_model=gpt-6.1-sol-low\nhigh_model=gpt-6-astra-high\ncodex_path=bin/codex\n');
   const settings = loadWorkflowEnvironment({ medium_model: 'gpt-6.1-sol-medium' }, root);
-  assert.deepEqual(settings.models.medium, { model: 'gpt-6.1-sol', effort: 'medium' });
+  assert.deepEqual(settings.models.medium, { model: 'gpt-6.1-sol', effort: 'low' });
   assert.deepEqual(settings.models.high, { model: 'gpt-6-astra', effort: 'high' });
   assert.equal(settings.codex.codexPathOverride, undefined);
   assert.equal(settings.cliPaths.codex, undefined);
@@ -46,7 +46,7 @@ test('本机 Krita 并发上限来自 .env，默认取 example.env，非正整�
   assert.equal(loadWorkflowEnvironment({}, root).codex.env!.krita_max_instances, '4');
   await writeFile(join(root, '.env'), 'krita_max_instances=2\n');
   assert.equal(loadWorkflowEnvironment({}, root).codex.env!.krita_max_instances, '2');
-  assert.equal(loadWorkflowEnvironment({ krita_max_instances: '6' }, root).codex.env!.krita_max_instances, '6');
+  assert.equal(loadWorkflowEnvironment({ krita_max_instances: '6' }, root).codex.env!.krita_max_instances, '2');
   await writeFile(join(root, '.env'), 'krita_max_instances=0\n');
   assert.throws(() => loadWorkflowEnvironment({}, root), /krita_max_instances 须为正整数/);
 });

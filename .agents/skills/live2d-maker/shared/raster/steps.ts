@@ -8,8 +8,8 @@ import { taskRootOf } from '../task-paths.ts';
 export type StepDefinition = {
   id: string;
   title: string;
-  model: string;
-  effort: ModelSelection['effort'];
+  model?: string;
+  effort?: ModelSelection['effort'];
   modelTier?: ModelTier;
   modelStep?: AgentStep;
   knowledge: { section: string; step: string }; // knowledge/<section>/<step>/agent.json
@@ -17,7 +17,7 @@ export type StepDefinition = {
   requiredFiles: readonly string[];
   previewFiles?: readonly string[]; // Published optional previews; * matches within this step.
   krita?: false; // The step does not operate Krita: it takes no Krita slot and its agents get no krita tool.
-  review?: { model: string; effort: ModelSelection['effort']; modelTier?: ModelTier; modelStep?: AgentStep; repairModelStep?: AgentStep };
+  review?: { model?: string; effort?: ModelSelection['effort']; modelTier?: ModelTier; modelStep?: AgentStep; repairModelStep?: AgentStep };
 };
 
 export async function buildPrompt(step: StepDefinition, _input: PartLayeringInput, output: string, _previous: readonly string[] = []): Promise<string> {

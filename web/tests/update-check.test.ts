@@ -48,13 +48,13 @@ test('the newest tag is looked up at most once a day, failures stay silent, and 
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
-test('the switch lives in the skill .env and the shell overrides it', async () => {
+test('the switch lives in the skill .env and nonempty file values win over startup settings', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'update-switch-')), envFile = join(dir, '.env');
   try {
     assert.equal(await updateCheckEnabled({}, envFile), true, 'on without a .env');
     await writeFile(envFile, 'update_check=false\n');
     assert.equal(await updateCheckEnabled({}, envFile), false);
-    assert.equal(await updateCheckEnabled({ update_check: 'true' }, envFile), true);
+    assert.equal(await updateCheckEnabled({ update_check: 'true' }, envFile), false);
     await writeFile(envFile, 'update_check=\n');
     assert.equal(await updateCheckEnabled({}, envFile), true, 'empty keeps the default');
     assert.equal(await updateCheckEnabled({ update_check: 'off' }, envFile), false);

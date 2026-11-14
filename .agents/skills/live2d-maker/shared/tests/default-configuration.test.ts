@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdtemp, readFile, writeFile, rm, access } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, rm, access, mkdir, copyFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { imageSteps, modelSlotKey, modelSlots, stepModelSlots } from '../agents/models.ts';
 
@@ -33,10 +34,10 @@ test('the skill template drives missing .env, missing role keys, legacy tiers an
   await writeFile(join(root,'.env'),template);
   assert.deepEqual(loadWorkflowEnvironment({},root).stepModels,first.stepModels);
   assert.deepEqual(loadWorkflowEnvironment({},root).stepImages,first.stepImages);
-  // Explicit empty step fields inherit the user's selected global image model.
+  // Blank startup values do not replace nonempty local settings.
   const explicit=loadWorkflowEnvironment({preparation_agent_model:'gpt-6.1-sol-low',part_base_subject_image_model:''},root);
-  assert.equal(explicit.stepModels.part_standardize.model,'gpt-6.1-sol');
-  assert.equal(explicit.stepImages.part_base_subject,'gpt-image-2.5-flare');
+  assert.equal(explicit.stepModels.part_standardize.model,'gpt-6-astra');
+  assert.equal(explicit.stepImages.part_base_subject,'gemini-nano-banana-2.1');
   await writeFile(join(root,'.env'),'# partial config\nshadow_agent_model=gpt-6.1-sol-medium\n');
   template=replace(template,'preparation_agent_model','gpt-6.1-sol-xhigh');
   await writeFile(join(root,'example.env'),template);
@@ -56,4 +57,23 @@ test('invalid or incomplete defaults identify the skill template and preserve th
   await writeFile(join(root,'example.env'),replace(template,'default_image_model','unsupported'));
   assert.throws(()=>loadWorkflowEnvironment({},root),/example.env:default_image_model/);
   assert.equal(await readFile(join(root,'.env'),'utf8'),user);
+});
+
+test('all scalar runtime defaults come from the template and partial local settings retain those defaults',async t=>{
+ const root=await fixture(t);let template=await readFile(templateUrl,'utf8');
+ for(const [key,value] of Object.entries({agv_image_compact_threshold:'12',codex_request_compact_mib:'4',claude_image_deduplicate:'true',agv_unlimited_response_header_timeout:'true',krita_max_instances:'7'}))template=replace(template,key,value);
+ await writeFile(join(root,'example.env'),template);await writeFile(join(root,'.env'),'# partial\n');
+ const actual=loadWorkflowEnvironment({},root);
+ assert.equal(actual.imageBudgets!.agv.images,12);assert.equal(actual.imageBudgets!.codex.bytes,4*1048576);assert.equal(actual.imageBudgets!.claude.deduplicate,true);
+ assert.equal(actual.codex.env!.agv_unlimited_response_header_timeout,'true');assert.equal(actual.codex.env!.krita_max_instances,'7');
+ await writeFile(join(root,'.env'),'agv_image_compact_threshold=8\nclaude_image_deduplicate=false\n');
+ const local=loadWorkflowEnvironment({agv_image_compact_threshold:'9'},root);assert.equal(local.imageBudgets!.agv.images,8);assert.equal(local.imageBudgets!.claude.deduplicate,undefined);
+ await writeFile(join(root,'example.env'),template.replace(/^video_api_key=.*\n/m,''));assert.throws(()=>loadWorkflowEnvironment({},root),/example.env.*video_api_key/);
+});
+
+test('an installed skill without its template fails immediately rather than inventing defaults',async t=>{
+ const root=await fixture(t),shared=join(root,'shared');await mkdir(shared);
+ for(const name of ['default-configuration.ts','configuration-sources.ts','legacy-keys.ts','paths.ts'])await copyFile(new URL('../'+name,import.meta.url),join(shared,name));
+ const installed=await import(pathToFileURL(join(shared,'default-configuration.ts')).href);
+ assert.throws(()=>installed.readDefaultConfiguration(),/example.env/);
 });

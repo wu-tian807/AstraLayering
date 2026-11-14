@@ -5,21 +5,24 @@ import { resolve, join, delimiter } from 'node:path';
 import { parseEnv, promisify } from 'node:util';
 import { execFile } from 'node:child_process';
 import { workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
-import { modelHarnesses, modelSlots, modelSlotKey, isModelSlotKey, defaultImageModelKey, imageModelKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
+import { modelHarness, modelHarnesses, modelSlots, modelSlotKey, legacyModelSlotKey, isModelSlotKey, defaultImageModelKey, legacyDefaultImageModelKey, imageModelKey, legacyImageModelKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
 import { parseWorkflowEnvironment, type WorkflowEnvironment } from '../.agents/skills/live2d-maker/shared/codex/environment.ts';
 import { validateImageSelection } from '../.agents/skills/live2d-maker/shared/agents/images.ts';
 import { validateProviderModel } from '../.agents/skills/live2d-maker/shared/agents/providers.ts';
 import { legacyPrefix, withLegacyKeys } from '../.agents/skills/live2d-maker/shared/legacy-keys.ts';
-import { videoModels } from '../.agents/skills/live2d-maker/shared/video.ts';
+import { videoModels, videoProviders } from '../.agents/skills/live2d-maker/shared/video.ts';
+import { nativeAuthentication } from './environment-auth.ts';
+import { parseModelPatterns, modelPatternMatches } from '../.agents/skills/live2d-maker/shared/model-patterns.js';
+import { configurationSources } from '../.agents/skills/live2d-maker/shared/configuration-sources.ts';
 
 const envValues = (source: string) => parseEnv(source) as Record<string,string>;
 const roles: Record<string,string> = { preparation:'参考准备与姿态判断',part_draw:'轮廓绘制与返修',part_review:'轮廓审核',part_reduce:'同层去重',part_completion:'遮挡补全',part_groups:'部件分组',part_depth:'深度分析',raster_step01:'分层绘制与返修',raster_step01_review:'分层绘制审核',raster_step02:'边缘精修',raster_step03:'人物换装素体',assembly:'穿戴组装',shadow:'阴影制作',nine_axis_head:'头部九轴制作' };
 const images: Record<string,string> = { part_standardize:'人物姿态标准化',part_simplify:'简化穿衣参考',part_base_subject:'人物素体参考',clothing_preparation:'纯衣服参考',part_completion:'人物补全辅助参考',clothing_completion:'衣服补全辅助参考',raster_step01:'人物分层绘制',raster_step01_review:'人物绘制审核',raster_step01_repair:'人物绘制返修',raster_step02:'人物边缘精修',raster_step03:'人物换装素体',clothing_raster_step01:'衣服分层绘制',clothing_raster_step01_review:'衣服绘制审核',clothing_raster_step01_repair:'衣服绘制返修',clothing_raster_step02:'衣服边缘精修',assembly:'穿戴组装',shadow_maps:'阴影法线与深度' };
-const videoFields = ['video_base_url','video_api_key','nine_axis_view_video_model'];
+const videoFields = ['video_provider','video_base_url','video_api_key','nine_axis_view_video_model'];
 export const secretKey = (key: string) => /(?:key|token|secret|password|credential|authorization)/i.test(key);
 const digest = (text: string, exists: boolean) => createHash('sha256').update(`${exists}\0${text}`).digest('hex');
 const queues = new Map<string,Promise<unknown>>();
-type Field = { key:string; label:string; section:string; type:string; options?:string[]; fallback?:string; hint?:string };
+type Field = { key:string; label:string; section:string; type:string; options?:string[]; optionLabels?:Record<string,string>; fallback?:string; hint?:string };
 export class EnvironmentConflict extends Error { }
 
 const scalarDescriptions: Record<string,{label?:string;hint:string}> = {
@@ -34,8 +37,11 @@ const scalarDescriptions: Record<string,{label?:string;hint:string}> = {
   agv_minimal_thinking_level:{label:'Antigravity 最低思考级别兼容',hint:'服务不支持 MINIMAL 时，选择替换级别；仅替换 MINIMAL 请求，留空保持原值。'},
   image_compact_threshold:{label:'Codex 图片张数阈值（旧配置）',hint:'旧版图片张数阈值，Codex 专用阈值优先于此项。单位：张；填正整数，留空不启用此项。'},
   krita_max_instances:{label:'Krita 同时运行上限',hint:'限制本机所有制作任务同时占用的 Krita 名额，满额时排队。填正整数，默认 4。'},
-  update_check:{hint:'定期检查新发布版本并在工作台提示，不自动下载或更新；默认开启。'},
-  video_base_url:{label:'视频服务地址',hint:'头部九轴参考视频服务的基础地址，通常以 /v1 结尾；与生图服务分别配置。'},
+  update_check:{hint:'定期提示新版本，不自动下载或更新。默认开启；保存后工作台即可读取。'},
+  video_provider:{label:'视频服务类型',hint:'选择火山官方、OpenRouter 或 OpenAI 兼容接口（含 LiteLLM）。'},
+  openai_image_models:{label:'GPT 生图模型匹配规则',hint:'逗号分隔，支持 *；追加到默认规则 gpt-*。'},
+  google_image_models:{label:'Nano 生图模型匹配规则',hint:'逗号分隔，支持 *；追加到默认规则 gemini-*、nano-banana-*。'},
+  video_base_url:{label:'视频服务地址',hint:'火山地址通常以 /api/v3 结尾，OpenRouter 和兼容接口通常以 /v1 结尾。'},
   video_api_key:{label:'视频服务 API 密钥',hint:'调用参考视频服务的密钥，需与视频服务地址一起填写。'},
   nine_axis_view_video_model:{label:'头部九轴参考视频模型',hint:'将角色正面图生成为转头参考视频时使用的模型。'},
   DISPLAY:{label:'X11 显示地址',hint:'Linux 下 Krita 连接的 X11 显示服务，例如 :0；通常留空，使用启动环境的设置。'},
@@ -45,7 +51,7 @@ const scalarDescriptions: Record<string,{label?:string;hint:string}> = {
 for (const [harness,label] of Object.entries({codex:'Codex',claude:'Claude Code',agv:'Antigravity'})) {
   scalarDescriptions[`${harness}_api_key`]={label:`${label} API 密钥`,hint:'调用语言模型服务的密钥；留空使用已有登录，填写后使用此密钥。'};
   scalarDescriptions[`${harness}_base_url`]={label:`${label} 服务地址`,hint:harness==='agv'?'语言模型接口的基础地址，自定义连接需同时填写 API 密钥。':'语言模型接口的基础地址；仅填写 API 密钥时使用官方地址，均留空使用已有连接。'};
-  scalarDescriptions[`${harness}_models`]={label:`${label} 可用模型列表`,hint:'此连接允许使用的模型 ID，用逗号分隔，不带思考力度后缀；留空不额外限制模型范围。'};
+  scalarDescriptions[`${harness}_models`]={label:`${label} 可用模型列表`,hint:'逗号分隔的模型 ID 或 * 匹配规则，不带力度后缀；追加到默认规则，留空使用默认。'};
   if(harness!=='codex')scalarDescriptions[`${harness}_path`]={label:`${label} 执行文件路径`,hint:'CLI 可执行文件的位置；留空从系统 PATH 查找，相对路径以 skill 目录为准。'};
   scalarDescriptions[`${harness}_image_compact_threshold`]={label:`${label} 图片张数阈值`,hint:'请求中的图片数达到此值时，先整理视觉上下文以减少图片数量。单位：张；填正整数，留空不按张数触发。'};
   scalarDescriptions[`${harness}_request_compact_mib`]={label:`${label} 请求大小阈值`,hint:'整个请求体（含文字与图片）达到此大小时，先整理上下文。单位：MiB；填正整数，留空不按大小触发。'};
@@ -63,15 +69,15 @@ function scalarFields(defaults: Record<string,string>): Field[] {
   const labels: Record<string,string> = {agv_protocol:'AGV 网关协议',codex_home:'Codex 认证来源目录',openai_image_base_url:'GPT 生图服务地址',openai_image_api_key:'GPT 生图 API 密钥',google_image_base_url:'Nano 生图服务地址',google_image_api_key:'Nano 生图 API 密钥',google_image_protocol:'Nano 生图协议',agv_unlimited_response_header_timeout:'AGV 响应头期限兼容',agv_minimal_thinking_level:'AGV MINIMAL 兼容',image_compact_threshold:'Codex 图片数量预算（兼容键）',krita_max_instances:'本机 Krita 并发上限',update_check:'检查新版本'};
   const choices: Record<string,string[]> = {agv_protocol:['','genai','openai'],google_image_protocol:['gemini','openai'],agv_minimal_thinking_level:['','LOW','MEDIUM','HIGH']};
   Object.assign(labels,{video_base_url:'视频服务地址',video_api_key:'视频服务 API 密钥',nine_axis_view_video_model:'头部九轴参考视频模型'});
-  choices.nine_axis_view_video_model=[...videoModels];
+  choices.video_provider=[...videoProviders];
   for (const key of Object.keys(defaults)) {
     if(key==='codex_path'||key==='layering_codex_path')continue;
     if (result.some(f=>f.key===key)||isModelSlotKey(key)||key.endsWith('_image_model')||key==='image_model') continue;
-    const type = secretKey(key)?'secret':choices[key]?'select':/deduplicate$|unlimited_response_header_timeout$|update_check$/.test(key)?'boolean':/compact_threshold$|compact_mib$|_max_instances$/.test(key)?'number':'text';
+    const type = key==='nine_axis_view_video_model'?'video':secretKey(key)?'secret':choices[key]?'select':/deduplicate$|unlimited_response_header_timeout$|update_check$/.test(key)?'boolean':/compact_threshold$|compact_mib$|_max_instances$/.test(key)?'number':'text';
     const video=videoFields.includes(key);
-    result.push({ key,label:labels[key]??key.replaceAll('_',' '), section:video?(key==='nine_axis_view_video_model'?'video':'video-api'):key==='agv_protocol'?'connection':key.includes('compact')||key.includes('deduplicate')?'budget':key.includes('_image_')?'image-api':'advanced',type,options:choices[key],fallback:defaults[key],...(key==='video_api_key'?{hint:'填写视频服务的 API 密钥'}:{}) });
+    result.push({ key,label:labels[key]??key.replaceAll('_',' '), section:video?(key==='nine_axis_view_video_model'?'video':'video-api'):key==='agv_protocol'?'connection':key.includes('compact')||key.includes('deduplicate')?'budget':key.includes('_image_')?'image-api':'advanced',type,options:choices[key],...(key==='video_provider'?{optionLabels:{volcengine:'火山官方',openrouter:'OpenRouter',openai:'OpenAI 兼容（含 LiteLLM）'}}:{}),fallback:defaults[key],...(key==='video_api_key'?{hint:'填写视频服务的 API 密钥'}:{}) });
   }
-  for(const [key,label] of Object.entries({DISPLAY:'Linux 显示入口 DISPLAY',WAYLAND_DISPLAY:'Wayland 显示入口',QT_QPA_PLATFORM:'Qt 显示方式'})) result.push({key,label,section:'advanced',type:'text'});
+  for(const [key,label] of Object.entries({DISPLAY:'Linux 显示入口 DISPLAY',WAYLAND_DISPLAY:'Wayland 显示入口',QT_QPA_PLATFORM:'Qt 显示方式'})) if(!result.some(field=>field.key===key))result.push({key,label,section:'advanced',type:'text'});
   for(const field of result)Object.assign(field,scalarDescriptions[field.key]);
   return [...result.filter(field=>!videoFields.includes(field.key)),...videoFields.flatMap(key=>result.filter(field=>field.key===key))];
 }
@@ -119,7 +125,7 @@ function redactedPreview(text: string) {
 // Probe executable versions only. Never install CLIs, build Codex, or contact a model.
 export async function probeEnvironmentCli(harness: Harness, values: Record<string,string>, env: NodeJS.ProcessEnv, directory: string) {
   if (harness === 'codex') return {available:true,detail:'使用管线内置补丁版 Codex，任务启动时自动准备',path:''};
-  const explicit=withLegacyKeys(env)[`${harness}_path`]??withLegacyKeys(values)[`${harness}_path`];
+  const explicit=withLegacyKeys(values)[`${harness}_path`]?.trim()||withLegacyKeys(env)[`${harness}_path`]?.trim();
   const names=harness==='agv'?['agy','agv','antigravity']:[harness];
   const paths=explicit?[resolve(directory,explicit)]:(env.PATH??'').split(delimiter).flatMap(p=>names.flatMap(n=>process.platform==='win32'?[join(p,n+'.exe'),join(p,n+'.cmd')]:[join(p,n)]));
   const exec=promisify(execFile);
@@ -133,7 +139,7 @@ export async function probeEnvironmentCli(harness: Harness, values: Record<strin
   }
   return {available:false,detail:`当前服务环境未检测到可用 ${harness} CLI，请安装后登录或填写 CLI 路径`,path:explicit||''};
 }
-export function createEnvironmentConfig({directory=workflowsDirectory, env=process.env, probe=probeEnvironmentCli}:{directory?:string;env?:NodeJS.ProcessEnv;probe?:typeof probeEnvironmentCli}={}) {
+export function createEnvironmentConfig({directory=workflowsDirectory, env=process.env, probe=probeEnvironmentCli, authentication=nativeAuthentication}:{directory?:string;env?:NodeJS.ProcessEnv;probe?:typeof probeEnvironmentCli;authentication?:typeof nativeAuthentication}={}) {
   const file=join(directory,'.env');
   async function source() {try {const info=await lstat(file);if(!info.isFile())throw new Error('.env 需要是当前 skill 内的普通文件');return {text:await readFile(file,'utf8'),exists:true};}catch(error){if((error as NodeJS.ErrnoException).code==='ENOENT')return {text:'',exists:false};throw error;}}
   async function schema() {
@@ -142,27 +148,58 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
     return {template,fields:[...Object.entries(modelSlotDefaults).map(([slot,fallback])=>({key:modelSlotKey(slot as ModelSlot),label:roles[slot],section:'llm',type:'model',fallback,...(slot==='nine_axis_head'?{hint:'脸部、头发与头饰步骤共用同一模型配置'}:{})})),{key:defaultImageModelKey,label:'默认生图模型',section:'image',type:'image',fallback:imageDefaults.model},...imageSteps().map(step=>({key:imageModelKey(step),label:images[step]??step,section:'image',type:'image',fallback:defaults[imageModelKey(step)]??''})),...scalarFields(defaults)] as Field[]};
   }
   async function describe(text:string,exists:boolean,revision:string) {
-    const {fields}=await schema(),values=withLegacyKeys(envValues(text)), issues:string[]=[];
+    const {fields}=await schema(),raw=envValues(text),sources=configurationSources(raw,env),values=sources.file,shell=sources.environment,issues:string[]=[];
+    const originalKey=(key:string|undefined,source:string)=>{if(!key)return key;const original=source==='file'?raw:env;return original[key]?.trim()?key:original[legacyPrefix+key]?.trim()?legacyPrefix+key:key;};
     let settings:WorkflowEnvironment|undefined;
     try { settings=parseWorkflowEnvironment(text,env,directory); }catch(error) { issues.push((error as Error).message); }
-    const cli=Object.fromEntries(await Promise.all((['codex','claude','agv'] as const).map(async h=>[h,await probe(h,values,settings?.codex.env??{...values,...env},directory)])));
-    const effective:Record<string,string>={};
+    const cli=Object.fromEntries(await Promise.all((['codex','claude','agv'] as const).map(async h=>[h,await probe(h,values,settings?.codex.env??sources.effective,directory)])));
+    const connections=Object.fromEntries(await Promise.all((['codex','claude','agv'] as const).map(async harness=>{
+      const provider=settings?.providers?.[harness];
+      if(!provider)return [harness,{mode:'invalid',configured:false}];
+      if(provider.apiKey) {
+        const sourceKey=provider.sources.apiKey!;
+        const source=values[sourceKey]?.trim()?'file':shell[sourceKey]?.trim()?'environment':'default';
+        return [harness,{mode:'api',configured:true,source,sourceKey:originalKey(sourceKey,source)}];
+      }
+      const auth=await authentication(harness,settings!.codex.env??sources.effective);
+      const source=auth.sourceKey&&values[auth.sourceKey]?.trim()?'file':auth.sourceKey&&shell[auth.sourceKey]?.trim()?'environment':'cli';
+      return [harness,{mode:auth.kind==='account'?'account':auth.kind==='api'?'cli-api':'cli',configured:auth.configured,source,sourceKey:auth.sourceKey}];
+    })));
+    const effective:Record<string,string>={},selectedSources:Record<string,string|undefined>={};
+    const configured=(keys:string[])=>sources.select(keys)?.key;
     if(settings) {
-      for(const [step,slot] of Object.entries(stepModelSlots)) {const m=settings.stepModels[step as AgentStep];effective[modelSlotKey(slot)]=`${m.model}-${m.effort}`;}
-      for(const step of imageSteps())effective[imageModelKey(step)]=settings.stepImages[step]!;
+      for(const [step,slot] of Object.entries(stepModelSlots)) {
+        const m=settings.stepModels[step as AgentStep],key=modelSlotKey(slot);effective[key]=`${m.model}-${m.effort}`;
+        selectedSources[key]=configured([key,legacyModelSlotKey(slot),...Object.entries(stepModelSlots).filter(([,role])=>role===slot).map(([id])=>`layering_${id}_model`),['raster_step01','raster_step02','raster_step01_review'].includes(slot)?'high_model':'medium_model']);
+      }
+      const globalImage=configured([defaultImageModelKey,legacyDefaultImageModelKey]),legacyImage=sources.effective.image_base_url?.trim()?configured(['image_model']):undefined;
+      effective[defaultImageModelKey]=(globalImage&&sources.effective[globalImage])||(legacyImage&&sources.effective[legacyImage])||fields.find(field=>field.key===defaultImageModelKey)!.fallback!;
+      selectedSources[defaultImageModelKey]=globalImage||legacyImage;
+      for(const step of imageSteps()) {const key=imageModelKey(step);effective[key]=settings.stepImages[step]!;selectedSources[key]=configured([key,legacyImageModelKey(step)])||globalImage||legacyImage;}
       for(const step of imageSteps())try{validateImageSelection(settings,step);}catch(error){issues.push((error as Error).message);}
       for(const slot of modelSlots){const step=Object.keys(stepModelSlots).find(s=>stepModelSlots[s as AgentStep]===slot)!;try{validateProviderModel(settings.providers,settings.stepModels[step as AgentStep],roles[slot]);}catch(error){issues.push((error as Error).message);}}
     }
-    return {path:file,exists,revision,preview:redactedPreview(text),issues:[...new Set(issues)],cli,
-      models:Object.entries(modelHarnesses).map(([id,harness])=>({id,harness,...cli[harness],allowed:!settings?.providers?.[harness].models||settings.providers[harness].models!.includes(id)})),imageModels:Object.keys(imageModelProviders),efforts:reasoningEfforts,
+    const modelIds=new Set([...Object.keys(modelHarnesses),...Object.values(settings?.providers??{}).flatMap(provider=>(provider.models??[]).filter(model=>!model.includes('*'))),...Object.values(settings?.stepModels??{}).map(selection=>selection.model)]);
+    const models=[...modelIds].flatMap(id=>{try{const harness=modelHarness(id,settings?.providers);return [{id,harness,...cli[harness],allowed:!settings?.providers?.[harness].models||settings.providers[harness].models!.some(pattern=>modelPatternMatches(id,pattern))}];}catch{return [];}});
+    return {path:file,exists,revision,preview:redactedPreview(text),issues:[...new Set(issues)],cli,connections,
+      models,imageModels:[...new Set([...Object.keys(imageModelProviders),...Object.values(settings?.imageRules??{}).flat().filter(rule=>!rule.includes('*')),...Object.values(settings?.stepImages??{})])],videoModels,efforts:reasoningEfforts,
       fields:fields.map(field=> {
         const match=field.key.match(/^(codex|claude|agv)_(api_key|base_url|models|protocol)$/);
         const provider=match?settings?.providers?.[match[1] as Harness]:undefined;
         const property=match?.[2]==='api_key'?'apiKey':match?.[2]==='base_url'?'baseUrl':match?.[2];
-        const sourceKey=provider&&property?provider.sources[property as keyof typeof provider.sources]:field.key;
-        const shell=withLegacyKeys(env), overridden=shell[field.key]!==undefined||!!(sourceKey&&shell[sourceKey]!==undefined);
-        const providerValue=provider&&property?(provider as unknown as Record<string,unknown>)[property]:undefined;
-        return {...field,secret:field.type==='secret',value:field.type==='secret'?'':values[field.key]??'',configured:!!values[field.key],effective:field.type==='secret'?undefined:effective[field.key]??(Array.isArray(providerValue)?providerValue.join(','):typeof providerValue==='string'?providerValue:undefined)??shell[field.key]??values[field.key]??field.fallback??'',source:overridden?'environment':sourceKey&&!!values[sourceKey]?'file':'default',sourceKey,overridden};
+        let sourceKey=provider&&property?provider.sources[property as keyof typeof provider.sources]:Object.hasOwn(selectedSources,field.key)?selectedSources[field.key]:field.key;
+        if(!sourceKey&&(shell[field.key]?.trim()||values[field.key]?.trim()))sourceKey=field.key;
+        let source=sourceKey&&values[sourceKey]?.trim()?'file':sourceKey&&shell[sourceKey]?.trim()?'environment':'default';
+        const imageRules=field.key==='openai_image_models'?settings?.imageRules?.openai:field.key==='google_image_models'?settings?.imageRules?.google:undefined;
+        const providerValue=imageRules??(provider&&property?(provider as unknown as Record<string,unknown>)[property]:undefined);
+        const connection=match?connections[match[1]]:undefined;
+        const inheritedCredential=!!(match?.[2]==='api_key'&&!providerValue&&connection&&['account','cli-api','cli'].includes(connection.mode));
+        if(source==='default'&&match&&connection&&['account','cli-api','cli'].includes(connection.mode)) {
+          if(match[2]==='api_key'){source=connection.source;sourceKey=connection.sourceKey;}
+          if(match[2]==='base_url')source='cli';
+        }
+        const effectiveConfigured=inheritedCredential?!!connection?.configured:typeof providerValue==='string'?!!providerValue.trim():!!(values[field.key]||shell[field.key])?.trim();
+        return {...field,secret:field.type==='secret',value:field.type==='secret'?'':values[field.key]??'',configured:!!values[field.key],effectiveConfigured,effective:field.type==='secret'?undefined:effective[field.key]??(Array.isArray(providerValue)?providerValue.join(','):typeof providerValue==='string'?providerValue:undefined)??(values[field.key]?.trim()||shell[field.key]?.trim()||field.fallback||''),source,sourceKey:originalKey(sourceKey,source),overridden:source==='environment',connectionMode:connection?.mode};
       }),
       providers:settings?.providers&&Object.fromEntries(Object.entries(settings.providers).map(([h,p])=>[h,{...p,apiKey:undefined,configured:!!p.apiKey}])),
     };
@@ -173,9 +210,9 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
     for(const [key,value] of Object.entries(raw)) {
       if(!allowed.has(key)||typeof value!=='string'||value.length>8192||/[\0\r\n]/.test(value))throw new Error(`配置字段无效：${key}`);
       const field=allowed.get(key)!;
-      if(value&&field.type==='model'&&!Object.entries(modelHarnesses).some(([model])=>reasoningEfforts.some(e=>value===`${model}-${e}`)))throw new Error(`${field.label} 需要选择支持的模型与力度`);
-      if(value&&field.type==='image'&&!Object.hasOwn(imageModelProviders,value))throw new Error(`${field.label} 需要选择支持的生图模型`);
-      if(field.options&&!field.options.includes(value))throw new Error(`${field.label} 的选项无效`);
+      if(value&&field.type==='model'&&!reasoningEfforts.some(e=>value.endsWith('-'+e)&&/^[a-zA-Z0-9][a-zA-Z0-9._:/-]*$/.test(value.slice(0,-e.length-1))))throw new Error(`${field.label} 需要填写模型 ID 并选择思考力度`);
+      if(key.endsWith('_models'))parseModelPatterns(value,key);
+      if(value&&field.options&&!field.options.includes(value))throw new Error(`${field.label} 的选项无效`);
       if(value&&field.type==='boolean'&&!['true','false'].includes(value))throw new Error(`${field.label} 需要选择开启或关闭`);
       result[key]=value;
     }
@@ -190,7 +227,7 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
     parseWorkflowEnvironment(text,env,directory);
     const report=await describe(text,true,revision);
     for(const [key,newValue] of Object.entries(edits)) if(isModelSlotKey(key)&&newValue&&newValue!==envValues(current.text)[key]) {
-      const model=report.models.find(m=>newValue.startsWith(m.id+'-'));
+      const model=report.models.find(m=>reasoningEfforts.some(e=>newValue===m.id+'-'+e));
       if(model&&!model.available)throw new Error(model.detail);
       if(model&&!model.allowed)throw new Error(`${model.id} 未包含在该 CLI 的可用模型列表中，请同时调整模型列表。`);
     }

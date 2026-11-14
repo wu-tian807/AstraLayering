@@ -1,6 +1,6 @@
 # 模型方案与配置
 
-配置保存在 skill 根目录 `.env`，对使用该安装的任务生效。第一次使用且 `.env` 不存在时，使用方案 1 默认配置创建；用户已选择方案 2 或自定义时沿用其选择，不重复询问。已有 `.env` 直接复用，用户要求切换或调整时才修改。
+配置保存在 skill 根目录 `.env`，对使用该安装的任务生效。双击启动器在 `.env` 不存在时按 `example.env` 创建；直接启动 Web 时先读取默认值，首次保存再创建。用户已选择方案 2 或自定义时沿用其选择，不重复询问。已有 `.env` 直接复用，用户要求切换或调整时才修改。
 
 完整仓库可在网页 **“管线配置 → 环境与模型”** 中选择模型、预览并保存 `.env`；界面与工作流共用配置解析器。独立 skill 或批量配置可按本页的配置键编辑文件。
 
@@ -16,7 +16,7 @@
 
 ## 方案 1：默认配置
 
-[example.env](../example.env) 是默认配置的唯一来源，维护在 skill 内。启动器以它创建 `.env`，运行时缺省值与 WebUI 默认展示也读取它；修改默认模型或力度时统一更新此文件。已有 `.env` 继续保留用户配置。人物与衣服共用以下语言模型职责；返修沿用对应绘制模型。
+[example.env](../example.env) 是默认配置的唯一来源，维护在 skill 内。启动器以它创建 `.env`，运行时缺省值与 WebUI 默认展示也读取它；修改默认模型或力度时统一更新此文件。安装目录缺少模板、模板缺字段或必要默认值为空时，启动直接报错；不会使用代码内的模型或开关值代替。已有 `.env` 继续保留用户配置。人物与衣服共用以下语言模型职责；返修沿用对应绘制模型。
 
 | 职责 | 模型与力度 | `.env` 配置键 |
 | --- | --- | --- |
@@ -33,11 +33,11 @@
 | raster step03（仅人物） | `gpt-6.1-sol-medium` | `raster_step03_agent_model` |
 | 穿戴组装 | `gpt-6.1-sol-xhigh` | `assembly_agent_model` |
 | 阴影 | `gpt-6.1-sol-medium` | `shadow_agent_model` |
-| 九轴 step04 单轴脸部与双耳建模 | `gpt-6.1-sol-xhigh` | `nine_axis_head_agent_model` |
+| 头部九轴（脸部、头发、头饰共用） | `gpt-6.1-sol-xhigh` | `nine_axis_head_agent_model` |
 
 生图设置为 `default_image_model=codex-native`，全部步骤的生图覆盖键留空，继承宿主 Codex 内置生图工具。具体图像模型版本由宿主决定，复用当前 Codex 登录和 provider。逐步骤键与自定义服务配置见下方[生图表](#生图模型与配置键)。图片数 compact 留空时关闭，已有配置的启停与阈值保持原样。
 
-新安装直接以 `example.env` 创建 `.env`。代码默认值更新不改写已有 `.env`；显式职责配置、兼容旧键和 shell 覆盖继续生效，优先级见[配置覆盖与旧键迁移](#配置覆盖与旧键迁移)。
+新安装直接以 `example.env` 创建 `.env`。模板默认值更新不改写已有 `.env`；显式职责配置、兼容旧键和启动环境回退继续生效，优先级见[配置覆盖与旧键迁移](#配置覆盖与旧键迁移)。
 
 ## 方案 2：混合配置
 
@@ -60,7 +60,7 @@
 | raster step03（仅人物） | `claude-sonnet-5-5-xhigh` | `raster_step03_agent_model` |
 | 穿戴组装 | `claude-sonnet-5-5-xhigh` | `assembly_agent_model` |
 | 阴影 | `claude-sonnet-5-5-xhigh` | `shadow_agent_model` |
-| 九轴 step04 单轴脸部与双耳建模 | `claude-sonnet-5-5-xhigh` | `nine_axis_head_agent_model` |
+| 头部九轴（脸部、头发、头饰共用） | `claude-sonnet-5-5-xhigh` | `nine_axis_head_agent_model` |
 
 SVG 合并由程序执行，不配置 LLM。步骤职责、绘图提示词、review 轮次和会话恢复规则保留原有实现。
 
@@ -72,13 +72,15 @@ SVG 合并由程序执行，不配置 LLM。步骤职责、绘图提示词、rev
 
 ### 可选模型与服务连接
 
-生图模型值直接填写下表中的模型 ID；思考力度后缀仅用于 LLM。自定义生图服务的连接参数也保存在同一份 `.env`，与 LLM 的 provider 分别配置。
+生图模型可选择下表预设或手动输入模型 ID；思考力度后缀仅用于 LLM。自定义生图服务的连接参数也保存在同一份 `.env`，与 LLM 的 provider 分别配置。
 
 | 生图模型 | 配套 `.env` 配置与使用条件 |
 | --- | --- |
 | `codex-native` | 对应步骤的 LLM 使用 Codex harness，复用其登录与宿主生图能力 |
 | `gpt-image-2.5-sunburst` | `openai_image_base_url`、`openai_image_api_key`；协议固定为 OpenAI Images |
+| `gpt-image-2.6-sunburst` | `openai_image_base_url`、`openai_image_api_key`；协议固定为 OpenAI Images |
 | `gpt-image-2.5-flare` | 与 Sunburst 共用上述 OpenAI 生图连接配置 |
+| `gpt-image-2.6-flare` | 与 Sunburst 共用上述 OpenAI 生图连接配置 |
 | `gemini-nano-banana-2.1` | `google_image_base_url`、`google_image_api_key`；`google_image_protocol` 按服务选择 `gemini` 或 `openai` |
 
 OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/generations` 或 `/images/edits`；Gemini 原生服务的 base URL 通常包含 `/v1beta`，程序追加 `/models/<模型>:generateContent`。按服务提供的地址和协议填写，API 密钥在本机保存。
@@ -108,6 +110,8 @@ OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/gener
 
 这些键只选择已声明生图能力的 agent 使用的模型，实际调用按对应步骤的任务要求执行，reviewer 仍只提交反馈。姿态标准化在开启 `standard` 且判断需要调整时执行；阴影 `mask` 分支在 Krita 制作原生蒙版，`shadow_maps_image_model` 用于 `normal-depth` 分支。法线／深度按数据纹理原样返回 RGB，完成时按原画恢复 alpha。
 
+GPT Image 2.6 的 Sunburst／Flare 沿用现有静态 PNG 生成与编辑参数（`background`、`size`、`quality`、`output_format` 和参考图片）；不改变默认模型。[生成接口](https://developers.openai.com/api/reference/resources/images/methods/generate) · [编辑接口](https://developers.openai.com/api/reference/resources/images/methods/edit)。
+
 ### 修改示例
 
 例如，将**人物 raster step01 的绘制与返修**都改用 Flare，填写以下两个步骤键，并按上表准备 OpenAI 生图连接：
@@ -125,13 +129,13 @@ raster_step01_repair_image_model=gpt-image-2.5-flare
 
 生图选 `codex-native` 的步骤必须使用 Codex 模型；换成 Claude Code 或 Antigravity 时，该生图步骤也需要选择自定义生图服务。按最终配置检查实际所需的 CLI、登录和 API；入口或凭据缺失时展示具体问题，并请用户选择安装、登录或调整模型的方案。
 
-新安装复制基础模板；已有配置按方案替换选定键，保持每个键唯一。API URL、协议与密钥使用用户确认的服务，密钥在本地填写，不写进提示词、报告或 Git。shell 同名变量优先于 `.env`，检查生效配置时说明实际覆盖；不修改用户全局 CLI 配置。
+新安装复制基础模板；已有配置按方案替换选定键，保持每个键唯一。API URL、协议与密钥使用用户确认的服务，密钥在本地填写，不写进提示词、报告或 Git。非空 `.env` 配置优先于启动环境中的同名变量；空值表示未单独配置，才回退到启动环境及默认值。检查生效配置时说明实际来源；不修改用户全局 CLI 配置。
 
 切换已有配置的方案时，只替换本次选择的模型与生图差异键；用户只要求调整语言模型时保留全部生图键。图片压缩阈值、CLI 路径、API 和显示环境沿用已有值。修改后执行 `pnpm env:check` 核对[实际生效值](../workflow/README.md#生效配置核对)；套餐调整不撤销用户已开启的图片保护。
 
 ## CLI 与 provider
 
-| CLI | 模型枚举 | 入口 |
+| CLI | 内置模型预设 | 入口 |
 | --- | --- | --- |
 | Codex | `gpt-6.1-sol`、`gpt-6-astra` | 管线自动准备并使用补丁版；`codex_home` 仅指定登录认证 `auth.json` 的来源（留空取 shell 的 `CODEX_HOME`／`~/.codex`）；实际配置和历史保存在本管线 `agents/` 中 |
 | Claude Code | `claude-sonnet-5-5`、`claude-opus-5-5`、`claude-haiku-5-5` | `claude_path`，未填则找全局 `claude` |
@@ -161,11 +165,24 @@ part_review_agent_model=gemini-4-argon-high
 | Claude Code | `anthropic`（Messages） | key 必填；URL 留空为 `https://api.anthropic.com` | 每次请求的私有 settings 中生成 `modelPicker` |
 | AGV | `genai` 或 `openai` | key 与 URL 都必填；协议留空默认 `genai` | 映射到原生 `AGY_LLM_GATEWAY_MODELS` |
 
-`models` 接受逗号分隔的模型 ID，自动去掉两侧空白和重复项，不写力度后缀或 JSON 数组。例如 `codex_models=gpt-6.1-sol,gpt-6-astra`。留空不限制。列表声明可用模型，具体职责仍由 `<职责>_agent_model` 选择，工作流模型枚举保持上表范围。启动前只核对本次所选步骤；模型不在列表时明确报错，不发起模型请求。列表不证明账号拥有该模型权限。
+`models` 是模型归属规则，按逗号分隔；自定义内容**追加到模板默认规则**，不会替换默认列表。默认 Codex 为 `gpt-*`、Claude 为 `claude-*`、AGV 为 `gemini-*`。先按非空 `.env` → 启动环境选择自定义列表，再与默认规则合并。选择模型仍使用职责键，列表不证明账号具有权限。
+
+只有 `*` 是通配符，可匹配零个或多个字符，`-` 按普通字符匹配。例如 `*seedance-*` 同时匹配 `doubao-seedance-2.0` 和 `seedance-2`；`*-seedance-*` 必须包含前一个连字符。允许 `gpt-*-image-*`；拒绝单独 `*`、`-*-*` 等纯符号规则及连续 `**`。Web、保存接口和管线启动共用 skill 的同一份校验。
+
+精确 ID 优先于通配规则；多个通配规则匹配时，固定字符更多的规则优先。同等规则指向不同服务会报错。CLI 只收到实际选择的模型 ID，不将通配规则当作模型运行。
+
+```dotenv
+codex_models=my-gpt-*
+part_draw_agent_model=my-gpt-v2-high
+openai_image_models=my-image-*
+default_image_model=my-image-v3
+```
+
+生图归属同样支持追加规则：`openai_image_models` 默认 `gpt-*`，`google_image_models` 默认 `gemini-*,nano-banana-*`。自定义生图名称必须能确定归属；API 协议、密钥与透明处理随所选 GPT／Nano 服务执行。视频模型直接输入服务支持的 ID，无需归属列表。
 
 Claude 的已有 Bedrock／Vertex／Foundry 路由在统一连接留空时继承；填写统一连接与已启用的云平台路由冲突时明确报错。AGV 的 `openai` 模式可以透传，但本项目的 AGV 工具／原图转发及图片容量保护依赖 `genai`；配置保护却选 `openai` 时不会静默忽略。
 
-每个字段按以下顺序读取：shell 新键 → shell 旧别名 → `.env` 新键 → `.env` 旧别名 → CLI 已有登录。空 shell 值会屏蔽文件中的同名键。
+连接字段按以下顺序读取非空值：`.env` 统一键 → `.env` 旧别名 → 启动环境统一键 → 启动环境旧别名 → CLI 已有认证。留空允许继续回退；CLI 认证可能是账号／订阅登录或其原有 API 配置。
 
 | CLI | 兼容的旧配置 |
 | --- | --- |
@@ -197,21 +214,36 @@ Claude／AGV 注册与 Codex 原生工具同名的共享 `imagegen` 函数工具
 
 Nano 后处理保持第一张生成图的尺寸和比例；工作流仍负责后续等比缩放与配准。原始 RGB `original.png`、换背景图 `counterpart.png`、透明结果 `transparent.png`、alpha 和处理记录保存在本次请求的 `generated/image-processing/<id>/`。第二张分辨率变化或少量画布取整时，Sharp 等比适配到第一张画布，仅用于差分；适配图另存为 `counterpart-aligned.png`，尺寸变换写入 `counterpartAlignment`。第二次请求失败或取消、实际背景不可靠、画布比例明显不同都会明确报错并指出原图路径。两张图与请求记录完整保留，恢复时沿用这套 Node／Sharp 双背景流程。
 
-## 九轴视频服务
+## 九轴视频模型与服务
 
-总入口开启 `--live` 后，阴影完成进入九轴 section；独立九轴使用相同配置。除九轴 agent 的语言模型外，还须配置独立的视频生成模型与服务：
+Web 分别提供“视频模型”和“视频服务”，对应生图的两个分组。模型支持预设和手动输入；服务仅支持以下三种：
 
-| 配置键 | 要求 |
-| --- | --- |
-| `video_base_url` | 视频服务地址，通常包含 `/v1`；支持 OpenAI Videos API 形式的图生视频 |
-| `video_api_key` | 视频服务密钥，账号须有相应模型权限 |
-| `nine_axis_view_video_model` | 支持 Seedance 2.5／2.0 系列（模型 ID 为 `seedance-2.5`／`seedance-2`），默认 `seedance-2.5` |
+| `video_provider` | 地址示例 | 首帧图生视频接口 |
+| --- | --- | --- |
+| `volcengine`（默认） | `https://ark.cn-beijing.volces.com/api/v3` | 火山原生 `/contents/generations/tasks` |
+| `openrouter` | `https://openrouter.ai/api/v1` | OpenRouter `/videos` |
+| `openai` | 服务提供的 `/v1` 地址 | OpenAI 视频兼容接口，包含 LiteLLM |
 
-三个字段可在网页“管线配置 → 环境与模型 → 运行环境”编辑，也可在 skill 的 `.env` 设置。只运行到阴影时不要求视频配置；生图服务不能作为视频服务的后备。视频选帧还需要 ffmpeg，安装与便携路径见[九轴依赖说明](../nine-axis/README.md#依赖与视频配置)。
+同时填写 `video_base_url` 和 `video_api_key`；`nine_axis_view_video_model` 为模型 ID，默认 `doubao-seedance-2-5-260628`。火山预设另含 `doubao-seedance-2-0-260128`、`doubao-seedance-2-0-fast-260128`、`doubao-seedance-2-0-mini-260615`；OpenRouter 可用 `bytedance/seedance-2.0`，其他 ID 以服务实际支持为准。切换服务时同步选择对应模型。
+
+```dotenv
+video_provider=volcengine
+video_base_url=https://ark.cn-beijing.volces.com/api/v3
+video_api_key=
+nine_axis_view_video_model=doubao-seedance-2-5-260628
+```
+
+原 LiteLLM／OpenAI 兼容视频配置须显式设置 `video_provider=openai`，保留其实际模型名。适配器分别处理提交、轮询与下载，九轴统一使用首帧、5 秒参考视频。视频与生图分别鉴权，只有九轴要求视频服务与 FFmpeg，见[依赖说明](../nine-axis/README.md#依赖与视频配置)。
+
+接口依据：[火山视频生成](https://www.volcengine.com/docs/82379/1520757)、[OpenRouter 视频生成](https://openrouter.ai/docs/guides/overview/multimodal/video-generation)。
 
 ## 配置覆盖与旧键迁移
 
-同名 shell 变量优先于 `.env`，优先级按每个键分别计算。LLM 选择顺序为：统一职责键 `<职责>_agent_model`（preparation 为 `preparation_agent_model`）→ 同职责下取值一致的旧小步骤键 → 已填写的旧 medium／high 键 → 代码默认值。生图选择顺序为：步骤生图键 → 全局默认生图键 → 旧生图 API 配置的兼容默认 → `codex-native`。修改全局默认时检查已有步骤覆盖，用 `pnpm env:check` 查看最终结果。
+同名变量按非空 `.env` → 启动环境 → 默认值读取，空值表示未单独配置；此顺序同样用于模型、CLI 路径、服务连接、容量保护和图形环境。LLM 选择顺序为：统一职责键 `<职责>_agent_model`（preparation 为 `preparation_agent_model`）→ 同职责下取值一致的旧小步骤键 → 已填写的旧 medium／high 键 → `example.env` 默认值。生图选择顺序为：步骤生图键 → 全局默认生图键 → 旧生图 API 配置的兼容默认 → `example.env` 的生图默认值。修改全局默认时检查已有步骤覆盖，用 `pnpm env:check` 查看最终结果。
+
+Web 为每个字段显示“本地 .env”“来自启动环境”或“使用默认值”。启动环境指启动工作台进程时继承的变量。密钥仅显示是否配置与来源；未配置 API 时，另外显示已有 CLI 账号认证、CLI API 认证或类型未确认。账号凭据存在不代表订阅有效或具备所选模型权限。
+
+安装模板缺失、字段不全、必要默认值为空或模型规则非法会在发起模型请求前失败，并写入任务 `workflow.log`；恢复／重试先校验，再改动步骤产物。
 
 模型键已去掉 `layering_` 前缀：`layering_agent_<职责>_model` → `<职责>_agent_model`，`layering_<步骤>_image_model` → `<步骤>_image_model`，`layering_default_image_model` → `default_image_model`。过渡期内已有 `.env` 只填旧键时继续读取，两者都填时以新键为准；新建配置只写新键，旧键将在过渡期后移除。
 

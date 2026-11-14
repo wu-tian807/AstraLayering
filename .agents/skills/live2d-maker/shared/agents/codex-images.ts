@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 import type { CodexOptions } from '@openai/codex-sdk';
 import { checkCodexCapabilities, type WorkflowEnvironment } from '../codex/environment.ts';
 import { generateImage, validateImageSelection, type ImageArguments, type ImageInput } from './images.ts';
-import { imageModelProviders, type AgentStep } from './models.ts';
+import { imageProvider, type AgentStep } from './models.ts';
 import type { ImageProcessingOptions } from '../image-processing.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
 
@@ -23,7 +23,7 @@ export async function createCodexImageRoute(settings: WorkflowEnvironment, step:
   if (!usesPatchedImageTool(settings, step)) throw new Error(`${step} 不使用自定义 Codex 生图补丁。`);
   await checkCodexCapabilities(settings, options, { image: true });
   const model = settings.stepImages[step]!;
-  const api = settings.imageApis[imageModelProviders[model] as 'openai' | 'google']!;
+  const api = settings.imageApis[imageProvider(model,settings.imageRules) as 'openai' | 'google']!;
   const processing = { ...normalization, env: normalization.env ?? options.env, directory: outputDirectory };
   const token = randomBytes(32).toString('hex');
   const closing = new AbortController();
