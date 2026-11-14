@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { access, mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { setTimeout as delay } from 'node:timers/promises';
@@ -77,18 +77,54 @@ export async function cropUpperBody(color: string | Buffer, box: Box): Promise<B
 }
 
 const redact = (text: string, api: VideoApi) => text.replaceAll(api.apiKey, '[redacted]').slice(-2000);
+class VideoHTTPError extends Error {
+  readonly status: number;
+  constructor(message: string, status: number) { super(message); this.status = status; }
+}
+class IncompleteVideo extends Error {}
+const transientCodes = new Set(['ENOTFOUND','EAI_AGAIN','ECONNRESET','ECONNREFUSED','ETIMEDOUT','EPIPE',
+  'UND_ERR_CONNECT_TIMEOUT','UND_ERR_HEADERS_TIMEOUT','UND_ERR_BODY_TIMEOUT','UND_ERR_SOCKET']);
+function transientVideoError(error: unknown): boolean {
+  if (error instanceof VideoHTTPError) return [408,429,500,502,503,504].includes(error.status);
+  if (error instanceof IncompleteVideo) return true;
+  if (!error || typeof error !== 'object') return false;
+  const value = error as { code?: string; cause?: unknown };
+  return transientCodes.has(value.code ?? '') || value.cause !== undefined && transientVideoError(value.cause);
+}
+async function retryVideoRead<T>(read: () => Promise<T>, label: string, signal: AbortSignal,
+  progress: ((message: string) => void) | undefined, retryDelay: number): Promise<T> {
+  for (let attempt = 0; ; attempt++) {
+    signal.throwIfAborted();
+    try { return await read(); }
+    catch (error) {
+      if (signal.aborted || attempt >= 2 || !transientVideoError(error)) throw error;
+      progress?.(`${label}暂时失败，重试 ${attempt + 1}/2`);
+      await delay(retryDelay * 2 ** attempt, undefined, { signal });
+    }
+  }
+}
 async function call(api: VideoApi, method: string, path: string, signal: AbortSignal | undefined, body?: unknown) {
   const response = await fetch(api.baseUrl.replace(/\/+$/, '') + path, { method, signal,
     headers: { authorization: `Bearer ${api.apiKey}`, ...(body ? { 'content-type': 'application/json' } : {}) },
     ...(body ? { body: JSON.stringify(body) } : {}) });
-  if (!response.ok) throw new Error(`生视频 ${method} ${path} HTTP ${response.status}：${redact(await response.text(), api)}`);
+  if (!response.ok) throw new VideoHTTPError(`生视频 ${method} ${path} HTTP ${response.status}：${redact(await response.text(), api)}`, response.status);
   return response;
 }
 
 export type VideoResult = { id: string; status: Record<string, unknown>; bytes: Buffer };
+export type VideoJob = { version: 1; id: string; requestHash: string };
+export type VideoJobStore = { read: () => Promise<VideoJob | undefined>; write: (job: VideoJob) => Promise<void> };
+export type VideoGenerationOptions = { signal?: AbortSignal; progress?: (message: string) => void;
+  poll?: number; timeout?: number; retryDelay?: number; checkpoint?: VideoJobStore };
+function checkVideoJob(value: unknown): VideoJob {
+  const job = value as Partial<VideoJob> | undefined;
+  if (job?.version !== 1 || typeof job.id !== 'string' || !job.id.trim() || !/^[a-f0-9]{64}$/.test(job.requestHash ?? ''))
+    throw new Error('生视频任务记录无效，不能自动重新提交');
+  return job as VideoJob;
+}
 // Business inputs are stable; provider adapters own the wire format.
 export async function generateVideo(api: VideoApi, prompt: string, image: Buffer,
-  { signal, progress, poll = 10_000, timeout = 30 * 60_000 }: { signal?: AbortSignal; progress?: (message: string) => void; poll?: number; timeout?: number } = {}): Promise<VideoResult> {
+  { signal, progress, poll = 10_000, timeout = 30 * 60_000, retryDelay = 1000, checkpoint }: VideoGenerationOptions = {}): Promise<VideoResult> {
   signal = AbortSignal.any([AbortSignal.timeout(timeout), ...signal ? [signal] : []]);
   signal.throwIfAborted();
   const dataUrl='data:image/png;base64,'+image.toString('base64');
@@ -99,14 +135,26 @@ export async function generateVideo(api: VideoApi, prompt: string, image: Buffer
     :router?{model:api.model,prompt,duration:Number(turnSeconds),resolution:'720p',aspect_ratio:'1:1',generate_audio:false,
       frame_images:[{type:'image_url',image_url:{url:dataUrl},frame_type:'first_frame'}]}
     :{model:api.model,prompt,seconds:turnSeconds,input_reference:dataUrl};
-  const created=await (await call(api,'POST',path,signal,body)).json() as Record<string,unknown>;
-  const id=String(created.id??'');
-  if(!id)throw new Error(`生视频没有返回任务 id：${redact(JSON.stringify(created),api)}`);
-  progress?.(`已提交生视频 ${id}（${api.model}）`);
-  let status=created;
+  const requestHash=createHash('sha256').update(JSON.stringify({provider:api.provider??'openai',baseUrl:api.baseUrl.replace(/\/+$/,''),body})).digest('hex');
+  const saved=await checkpoint?.read(), job=saved===undefined?undefined:checkVideoJob(saved);
+  if(job && job.requestHash!==requestHash)throw new Error('已有生视频任务与当前服务、模型或输入不一致；请明确重试本步后重新提交');
+  const query=(id:string)=>retryVideoRead(async()=>
+    (await call(api,'GET',`${path}/${encodeURIComponent(id)}`,signal)).json() as Promise<Record<string,unknown>>,
+    '生视频查询',signal!,progress,retryDelay);
+  let id: string, status: Record<string,unknown>;
+  if(job){
+    id=job.id;progress?.(`续接生视频 ${id}（${api.model}）`);status=await query(id);
+  }else{
+    // Submission is not retried: a lost response may still have created a paid job.
+    status=await (await call(api,'POST',path,signal,body)).json() as Record<string,unknown>;
+    id=String(status.id??'');
+    if(!id)throw new Error(`生视频没有返回任务 id：${redact(JSON.stringify(status),api)}`);
+    progress?.(`已提交生视频 ${id}（${api.model}）`);
+    await checkpoint?.write({version:1,id,requestHash});
+  }
   while(!terminal.has(String(status.status))) {
     await delay(poll,undefined,{signal});
-    status=await (await call(api,'GET',`${path}/${encodeURIComponent(id)}`,signal)).json() as Record<string,unknown>;
+    status=await query(id);
   }
   if(status.status!==(volc?'succeeded':'completed'))throw new Error(`生视频失败：${redact(JSON.stringify(status),api)}`);
   const download=async()=>{
@@ -115,18 +163,18 @@ export async function generateVideo(api: VideoApi, prompt: string, image: Buffer
     if(typeof url!=='string'||!/^https?:\/\//.test(url))throw new Error('生视频没有返回可下载的 video_url');
     // Signed CDN URLs carry their own authorization; never forward the API key.
     const response=await fetch(url,{signal});
-    if(!response.ok)throw new Error(`生视频下载 HTTP ${response.status}`);
+    if(!response.ok)throw new VideoHTTPError(`生视频下载 HTTP ${response.status}`,response.status);
     return response;
   };
-  for(let attempt=1;;attempt++)try {
-    const response=await download(),bytes=Buffer.from(await response.arrayBuffer()),length=Number(response.headers.get('content-length'));
-    if(!bytes.length)throw new Error('下载没有产出视频内容');
-    if(length&&bytes.length!==length)throw new Error(`下载不完整（${bytes.length}/${length} 字节）`);
+  try {
+    const bytes=await retryVideoRead(async()=>{
+      const response=await download(),bytes=Buffer.from(await response.arrayBuffer()),length=Number(response.headers.get('content-length'));
+      if(!bytes.length)throw new IncompleteVideo('下载没有产出视频内容');
+      if(length&&bytes.length!==length)throw new IncompleteVideo(`下载不完整（${bytes.length}/${length} 字节）`);
+      return bytes;
+    },'生视频下载',signal,progress,retryDelay);
     return {id,status,bytes};
-  }catch(error) {
-    if(attempt>=3||signal.aborted)throw new Error(`生视频 ${id} 下载失败`,{cause:error});
-    progress?.(`生视频下载中断，重试 ${attempt}`);
-  }
+  }catch(error){throw new Error(`生视频 ${id} 下载失败`,{cause:error});}
 }
 
 function run(ffmpeg: string, args: string[], signal?: AbortSignal): Promise<string> {
@@ -164,7 +212,7 @@ async function atomic(path: string, bytes: Buffer | string) {
   await writeFile(tmp, bytes); await rename(tmp, path);
 }
 
-export type GenerateVideo = (prompt: string, image: Buffer, options: { signal?: AbortSignal; progress?: (message: string) => void }) => Promise<VideoResult>;
+export type GenerateVideo = (prompt: string, image: Buffer, options: VideoGenerationOptions) => Promise<VideoResult>;
 type Run = { signal?: AbortSignal; progress?: (message: string) => void };
 type VideoRecord = { path: string; bytes: number; first?: string; prompt?: string; videoId?: string; status?: Record<string, unknown> };
 
@@ -195,18 +243,34 @@ export async function normalizeView(path: string, size: number): Promise<Buffer>
 // relative to it.
 async function takeVideo(directory: string, video: string, prompt: string, image: Buffer, first: string, generate: GenerateVideo, { signal, progress }: Run, previous?: VideoRecord): Promise<VideoRecord> {
   const mp4 = join(directory, `${video}.mp4`);
+  const checkpointFile = join(directory, `${video}.job.json`);
+  const checkpoint: VideoJobStore = {
+    read: async () => {
+      try { return checkVideoJob(JSON.parse(await readFile(checkpointFile, 'utf8'))); }
+      catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+    },
+    write: job => atomic(checkpointFile, JSON.stringify(job, null, 2) + '\n'),
+  };
   const existing = await stat(mp4).catch(error => { if (error.code !== 'ENOENT') throw error; });
   if (existing?.isFile() && existing.size > 0) {
     progress?.(`${video}：沿用本步已产出的视频`);
-    return { ...previous, path: `${video}.mp4`, bytes: existing.size };
+    const job = await checkpoint.read();
+    return { ...previous, path: `${video}.mp4`, bytes: existing.size, first: previous?.first ?? first,
+      prompt: previous?.prompt ?? prompt, ...(previous?.videoId ? {} : job ? {videoId:job.id} : {}) };
   }
   await rm(mp4, { force: true });
-  const result = await generate(prompt, image, { signal, progress: message => progress?.(`${video}：${message}`) });
+  const result = await generate(prompt, image, { signal, checkpoint, progress: message => progress?.(`${video}：${message}`) });
   if (!result.bytes.length) throw new Error(`${video} 没有产出视频内容`);
   await atomic(mp4, result.bytes);
   const { url: _url, ...status } = result.status;
   progress?.(`${video} 视频已完成`);
   return { path: `${video}.mp4`, bytes: result.bytes.length, first, prompt, videoId: result.id, status };
+}
+
+// Keep each checkpoint until the aggregate metadata is durable. A sibling may
+// fail after this video's MP4 is saved; continue can then recover its job ID.
+async function clearVideoJobs(directory: string, names: readonly string[]) {
+  await Promise.all(names.map(name => rm(join(directory, `${name}.job.json`), { force: true })));
 }
 
 // The frame of a video at a view's angle, brought to the upper body's square
@@ -242,6 +306,7 @@ export async function produceLeftVideo(directory: string, input: TurnInput, gene
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     input: { path: 'upper-body.png' }, ...(cached ? { up: cached.up, down: cached.down } : {}), left,
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
+  await clearVideoJobs(directory, ['left']);
   return box;
 }
 
@@ -257,6 +322,7 @@ export async function producePitchVideos(directory: string, front: string, gener
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     input: { path: relative(directory, upperBody).split(sep).join('/') }, ...(directory === front && cached?.left ? { left: cached.left } : {}), ...Object.fromEntries(records),
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
+  await clearVideoJobs(directory, viewsY);
 }
 
 export async function produceCornerVideos(directory: string, pitch: string, generate: GenerateVideo, prompt: string,
@@ -270,6 +336,7 @@ export async function produceCornerVideos(directory: string, pitch: string, gene
   }));
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     ...Object.fromEntries(records), elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
+  await clearVideoJobs(directory, viewsY.map(view => `left-${view}`));
 }
 
 // The reference frames are chosen by an agent from the left, up and down
