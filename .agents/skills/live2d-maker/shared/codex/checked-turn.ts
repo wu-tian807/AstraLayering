@@ -69,6 +69,7 @@ export async function checkedTurn<T>(turn: CheckedTurn<T>): Promise<T> {
           await writeFile(join(directory, 'prompt.txt'), repair);
         }
         response = await session.run({ ...turn.task, prompt: repair, recoveryPrompt: undefined,
+          ...(response.contentFiltered ? { afterContentFilter: true } : {}),
           resumeContext: turn.task.resumeContext ?? turn.task.recoveryPrompt ?? turn.task.prompt }, turn.signal);
       }
     }

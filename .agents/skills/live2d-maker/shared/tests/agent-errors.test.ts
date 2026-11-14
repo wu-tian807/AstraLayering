@@ -1,6 +1,7 @@
 import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
+import { existsSync } from 'node:fs';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -16,6 +17,7 @@ import {AgentLog} from '../codex/agent-log.ts';
 import {setTimeout as delay} from 'node:timers/promises';
 import { nodeExecutables } from '../../part-layering/tests/node-executables.ts';
 import { fakeDebug } from './fake-codex.ts';
+import { checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 
 const payload = { message: 'Provider rejected this reference', code: 'bad_reference',
   type: 'invalid_request_error', param: 'input[0]', status: 400, request_id: 'provider-request-123' };
@@ -213,4 +215,60 @@ test('known errors with a remedy are recovered at once without the retry budget;
   await assert.rejects(runtime.run(async () => { throw new AgentCallError('x', 'contextWindowExceeded'); },
     { recover: async () => false }), /x/);
   assert.equal(waits.length, 1);
+});
+
+// An app server whose first thread meets a content filter mid-turn (willRetry) and still completes; threads
+// started later are recorded with the image-bearing history they were given.
+async function filterServer(root: string, filtered: boolean) {
+  const executable = join(root, 'codex-filter.mjs'), log = join(root, 'turns.jsonl'), rollout = join(root, 'rollout.jsonl');
+  await writeFile(rollout, [{ type: 'message', role: 'user', content: [{ type: 'input_text', text: 'task' }] },
+    { type: 'message', role: 'user', content: [{ type: 'input_text', text: '<image path="/ref.png">' }, { type: 'input_image', image_url: 'data:image/png;base64,AAAA' }] },
+  ].map(payload => JSON.stringify({ type: 'response_item', payload })).join('\n') + '\n');
+  await writeFile(executable, `#!${process.execPath}
+import { createInterface } from 'node:readline';
+import { appendFileSync, existsSync, readFileSync } from 'node:fs';
+${fakeDebug()}
+const emit=value=>console.log(JSON.stringify(value));
+const filter={message:'stream disconnected',codexErrorInfo:{responseStreamDisconnected:{httpStatusCode:null}},additionalDetails:'reason: content_filter'};
+let thread='', injected=-1, turns=0;
+const counter=${JSON.stringify(log + '.threads')};
+for await (const line of createInterface({input:process.stdin})) {
+ const message=JSON.parse(line);appendFileSync(${JSON.stringify(log + '.methods')},message.method+'\\n');if(message.id!==undefined&&!['initialize','thread/start','thread/inject_items','turn/start'].includes(message.method))emit({id:message.id,result:{thread:{id:message.params?.threadId??thread,turns:[]}}});
+ if(message.method==='initialize')emit({id:message.id,result:{}});
+ if(message.method==='thread/start'){appendFileSync(counter,'x');thread='thread-'+readFileSync(counter,'utf8').length;emit({id:message.id,result:{thread:{id:thread,path:${JSON.stringify(rollout)}}}});}
+ if(message.method==='thread/inject_items'){appendFileSync(${JSON.stringify(log + '.injected')},JSON.stringify({thread,images:message.params.items.filter(item=>JSON.stringify(item).includes('input_image')).length})+'\\n');emit({id:message.id,result:{}});}
+ if(message.method==='turn/start') {
+  thread=message.params.threadId;
+  appendFileSync(${JSON.stringify(log)},JSON.stringify({thread})+'\\n');
+  const turn='turn-'+(++turns);emit({id:message.id,result:{turn:{id:turn}}});
+  if(thread==='thread-1'&&${filtered})emit({method:'error',params:{threadId:thread,turnId:turn,willRetry:true,error:filter}});
+  emit({method:'item/completed',params:{threadId:thread,turnId:turn,item:{type:'agentMessage',text:thread==='thread-1'?"I'm sorry":'done'}}});
+  emit({method:'turn/completed',params:{threadId:thread,turn:{id:turn,status:'completed',error:null}}});
+ }
+}
+`, { mode: 0o700 });
+  const injected = async () => existsSync(log + '.injected') ? (await readFile(log + '.injected', 'utf8')).trim().split('\n').map(line => JSON.parse(line) as { thread: string; images: number }) : [];
+  return { executable, injected, turns: async () => (await readFile(log, 'utf8')).trim().split('\n').map(line => JSON.parse(line) as { thread: string }) };
+}
+
+for (const filtered of [true, false]) test(`checked turn after ${filtered ? 'a content filter' : 'an ordinary miss'}: ${filtered ? 'continues in a new thread with images as text' : 'repairs in the same thread'}`, async t => {
+  const f = await fixture(t);
+  const server = await filterServer(f.root, filtered);
+  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory, });
+  const prompts: string[] = [];
+  const value = await checkedTurn({ agents, task: { name: 'filter', prompt: 'same task', tools: [] },
+    check: response => { prompts.push(response.text); if (response.text !== 'done' && prompts.length === 1) throw missingSubmit('submit_x', '未提交'); return response.text; } });
+  assert.equal(value, filtered ? 'done' : "I'm sorry");
+  assert.deepEqual((await server.turns()).map(turn => turn.thread), filtered ? ['thread-1', 'thread-2'] : ['thread-1', 'thread-1']);
+  // The replacement thread is given the history with its image as text.
+  assert.deepEqual(await server.injected(), filtered ? [{ thread: 'thread-2', images: 0 }] : []);
+});
+
+test('a content filter that Codex retried past does not discard a result that passes its checks', async t => {
+  const f = await fixture(t);
+  const server = await filterServer(f.root, true);
+  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
+  const value = await checkedTurn({ agents, task: { name: 'filter', prompt: 'same task', tools: [] }, check: response => response.text });
+  assert.equal(value, "I'm sorry");
+  assert.deepEqual((await server.turns()).map(turn => turn.thread), ['thread-1']);
 });
