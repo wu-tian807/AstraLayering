@@ -15,6 +15,12 @@ export const statusLabel = status => statusNames[displayStatus(status)];
 
 export function groupSummary(group) {
   const values = groupPhases.map(([id]) => group.webPhases?.[id]);
+  // A collapsed parent represents its whole branch: keep active descendant
+  // calls visible even after the parent's own work has finished.
+  for (const child of group.groups ?? []) {
+    const status = groupSummary(child).status;
+    if (status === 'running' || status === 'throttled') values.push(status);
+  }
   const status = aggregateStatus(values);
   return { status, text: statusNames[status] };
 }

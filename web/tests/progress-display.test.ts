@@ -30,6 +30,19 @@ test('failure is explicit, while interrupted execution keeps its intermediate ar
   assert.equal(displayStatus('unknown', false), 'pending');
 });
 
+test('collapsed group shows active descendants before saved parent progress', () => {
+  const child = { webPhases: { outline: 'available', review: 'running' } };
+  const group = { webPhases: Object.fromEntries(groupPhases.map(([id]) => [id, 'done'])),
+    groups: [{ webPhases: { outline: 'available' }, groups: [child] }] };
+  assert.equal(groupSummary(group).text, '进行中');
+  child.webPhases.review = 'throttled';
+  assert.equal(groupSummary(group).text, '限流等待');
+  child.webPhases.review = 'pending';
+  assert.equal(groupSummary(group).text, '已完成');
+  group.webPhases.children = 'pending';
+  assert.equal(groupSummary(group).text, '已有产物');
+});
+
 for (const section of ['part-layering', 'clothing-part-layering']) test(`${section}: compact previews prefer the current draft over an older final image`, () => {
   const group = { id: 'body', webPhases: { completion: 'running' } };
   const artifacts = groupArtifacts(section, group, 0);
