@@ -72,6 +72,16 @@ test('all named agents read capability from their role; main and repair share to
   assert.throws(() => checkKnowledge(knowledge), /未注册的工具/);
 });
 
+test('new imagegen capabilities inherit global defaults without changing the selected knowledge', async t => {
+  const knowledge=await temporaryKnowledge(t);
+  await setImages(knowledge,true);
+  const native=loadWorkflowEnvironment({},knowledge);
+  assert.equal(native.stepImages.raster_step02,native.stepImages.raster_step01);
+  const custom=loadWorkflowEnvironment({default_image_model:'gpt-image-2.6-flare'},knowledge);
+  assert.equal(custom.stepImages.raster_step02,'gpt-image-2.6-flare');
+  assert.equal(agentImageGeneration('raster_step02'),true);
+});
+
 for (const model of ['codex-native', 'gpt-image-2.5-flare', 'gemini-nano-banana-2.1'] as const) {
   test(`Codex ${model}: agent.json controls start/resume and closes custom image routes`, async t => {
     const knowledge = await temporaryKnowledge(t);

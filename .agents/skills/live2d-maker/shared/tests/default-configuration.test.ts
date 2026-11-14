@@ -56,6 +56,8 @@ test('invalid or incomplete defaults identify the skill template and preserve th
   assert.throws(()=>loadWorkflowEnvironment({},root),/example.env.*preparation_agent_model/);
   await writeFile(join(root,'example.env'),replace(template,'default_image_model','unsupported'));
   assert.throws(()=>loadWorkflowEnvironment({},root),/example.env:default_image_model/);
+  await writeFile(join(root,'example.env'),template.replace(/^raster_step01_image_model=.*\n/m,''));
+  assert.throws(()=>loadWorkflowEnvironment({},root),/example.env.*raster_step01_image_model/);
   assert.equal(await readFile(join(root,'.env'),'utf8'),user);
 });
 

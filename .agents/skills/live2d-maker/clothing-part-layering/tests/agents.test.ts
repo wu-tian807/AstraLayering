@@ -1,3 +1,4 @@
+import {requestLogNames} from '../../shared/tests/request-logs.ts';
 import { executionPaths, workspacePrompt } from '../../shared/agents/workspace.ts';
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, readdir, realpath, rm } from 'node:fs/promises';
@@ -27,7 +28,7 @@ async function fixture(t: TestContext, ...server: Parameters<typeof fakeAppServe
 }
 
 async function readLog(root: string) {
-  const names = await readdir(root);
+  const names = await requestLogNames(root);
   assert.equal(names.length, 1);
   const directory = join(root, names[0]);
   return {
@@ -116,7 +117,7 @@ test('同名并发调用写入不同目录', async t => {
     f.agents.run({ name: '同名', prompt: 'first' }), f.agents.run({ name: '同名', prompt: 'second' }),
   ]);
   assert.notEqual(results[0].logDirectory, results[1].logDirectory);
-  assert.equal((await readdir(f.logDirectory)).length, 2);
+  assert.equal((await requestLogNames(f.logDirectory)).length, 2);
   const prompts = await Promise.all(results.map(async result =>
     JSON.parse(await readFile(join(result.logDirectory!, 'request.json'), 'utf8')).prompt));
   assert.deepEqual(prompts, ['first', 'second'].map(prompt => workspacePrompt(prompt, executionPaths({ cwd: f.directory }, f.directory))));

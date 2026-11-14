@@ -87,8 +87,8 @@ function parseAgent(path: string, reviewDeclared: boolean): AgentConfig {
 
 const groupId = /^[\p{L}\p{N}_-]+(?:\/[\p{L}\p{N}_-]+)*$/u;
 
-export function stepKnowledge(section: string, step: string) {
-  const root = knowledgeDirectory(), sectionDirectory = sectionKnowledgeDirectory(section, root), directory = join(sectionDirectory, step);
+export function stepKnowledge(section: string, step: string, root = knowledgeDirectory()) {
+  const sectionDirectory = sectionKnowledgeDirectory(section, root), directory = join(sectionDirectory, step);
   const declared = knowledgeSteps.find(item => item.section === section && item.step === step);
   if (!declared) throw new Error(`未登记的先验知识步骤：${section}/${step}`);
   const agent = () => parseAgent(join(directory, 'agent.json'), Boolean(declared.review));
