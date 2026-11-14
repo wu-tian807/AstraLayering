@@ -1,6 +1,7 @@
 import { validateHeadNineAxis, nineAxisCapabilities, keyformAt, keyValues, levelParts, nodes, descendants, evaluatePoints, parentPoint, dragKeyform } from './nine-axis-model.js';
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from './nine-axis-render.js';
 import { authoredPreviewPart, nineAxisPreviewModes, nextPreviewSelection } from './nine-axis-preview.js';
+import { constrainHeadPoint, followHeadPointer, headPreviewAngles, headSideLimit } from '../head-motion.js';
 const $ = s => document.querySelector(s);
 const NS = 'http://www.w3.org/2000/svg';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -8,10 +9,15 @@ const sign = k => (k > 0 ? '+' : '') + k;
 const clipLabel = p => p.clip ? `${p.clip.invert ? '反向裁切' : '裁切'} ← ${p.clip.by.map(id => short(id)).join('、')}` : '';
 const short = id => id.replace(/^(face|hair)\//, '').replace(/^features\//, '');
 export { nineAxisCapabilities };
+const normalizedAngles = (axes, x, y) => ({
+  x: x ? x / (x < 0 ? -axes.x.min : axes.x.max) : 0,
+  y: y ? y / (y < 0 ? -axes.y.min : axes.y.max) : 0,
+});
 export function projectNineAxisAngles(axes, x, y, preferredAxis) {
   if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
   const clamp = (v, a) => Math.max(a.min, Math.min(a.max, v)) || 0;
   x = clamp(x, axes.x); y = clamp(y, axes.y);
+  if (axes.plane) return headPreviewAngles(constrainHeadPoint(normalizedAngles(axes, x, y)), axes);
   if (!axes.plane && x && y) {
     const normalized = (v, a) => Math.abs(v / (v < 0 ? a.min : a.max));
     const keep = preferredAxis ?? (normalized(x, axes.x) >= normalized(y, axes.y) ? 'x' : 'y');
@@ -155,6 +161,11 @@ export class HeadNineAxisPanel {
   installPad() {
     const a = this.axes;
     this.pad.dataset.region = a.region;
+    const edge = side => Array.from({ length: 41 }, (_, i) => {
+      const y = side * (i / 20 - 1);
+      return `${50 + side * 40 * headSideLimit(y)},${50 - 40 * y}`;
+    });
+    $('#nine-axis-pad-plane').setAttribute('d', a.plane ? 'M' + [...edge(-1), ...edge(1)].join(' L') + ' Z' : '');
     // CSS shows the plane only after every required corner is authored.
     $('#nine-axis-pad-axis-y').setAttribute('d', `M50 ${a.y.max ? 10 : 50} V${a.y.min ? 90 : 50}`);
     const dots = [];
@@ -164,7 +175,7 @@ export class HeadNineAxisPanel {
       dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y); dot.setAttribute('r', 1); dots.push(dot);
     }
     $('#nine-axis-pad-keys').replaceChildren(...dots);
-    const directions = { horizontal: '沿横线转头', 'horizontal-plus-positive-y': '沿横线转头，沿上半轴抬头', 'horizontal-plus-negative-y': '沿横线转头，沿下半轴低头', cross: '沿横线转头，沿纵线抬头或低头', plane: '在面板内转头和俯仰' };
+    const directions = { horizontal: '沿横线转头', 'horizontal-plus-positive-y': '沿横线转头，沿上半轴抬头', 'horizontal-plus-negative-y': '沿横线转头，沿下半轴低头', cross: '沿横线转头，沿纵线抬头或低头', plane: '在曲线范围内转头和俯仰，触边后沿边界滑动' };
     $('#nine-axis-pad-hint').textContent = directions[a.region] + '；方向键调整，Shift 加快，Home 回到正面';
     this.pad.setAttribute('aria-label', '头部角度：' + directions[a.region]);
   }
@@ -186,6 +197,14 @@ export class HeadNineAxisPanel {
   padPointerMove(e) {
     if (!this.padDrag || this.padDrag.id !== e.pointerId) return;
     const p = this.padCoordinates(e), drag = this.padDrag;
+    if (this.axes.plane) {
+      const pointer = normalizedAngles(this.axes, p.x, p.y);
+      const point = followHeadPointer(pointer, normalizedAngles(this.axes, this.value, this.valueY), drag.previous);
+      drag.previous = pointer;
+      const angles = headPreviewAngles(point, this.axes);
+      this.setValue(angles.x, angles.y);
+      return;
+    }
     if (!this.axes.plane && !drag.axis) {
       const point = projectNineAxisAngles(this.axes, p.x, p.y);
       if (point.x || point.y) drag.axis = point.y ? 'y' : 'x';

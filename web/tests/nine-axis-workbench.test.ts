@@ -15,6 +15,7 @@ import { applyStepAction, applyTaskAction } from '../../.agents/skills/live2d-ma
 import { readStepSession, writeStepSession } from '../../.agents/skills/live2d-maker/shared/agents/step-session.ts';
 import { stepDeliveries } from '../../.agents/skills/live2d-maker/shared/step-deliveries.ts';
 import { hairRounds, hairRoundLabel } from '../../.agents/skills/live2d-maker/nine-axis/hair-progress.ts';
+import { headSideLimit } from '../head-motion.js';
 
 async function fixture(t: any) {
   const root = await mkdtemp(join(tmpdir(), 'nine-workbench-'));
@@ -261,9 +262,52 @@ async function panelModule() {
   const source = (await readFile(new URL('../studio/nine-axis-panel.js', import.meta.url), 'utf8'))
     .replace("'./nine-axis-model.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-model.js', import.meta.url).href))
     .replace("'./nine-axis-preview.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-preview.js', import.meta.url).href))
+    .replace("'../head-motion.js'", JSON.stringify(new URL('../head-motion.js', import.meta.url).href))
     .replace("'./nine-axis-render.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-render.js', import.meta.url).href));
   return import('data:text/javascript,' + encodeURIComponent(source));
 }
+
+test('workbench angle inputs exclude side lobes while preserving all main poses and available axes', async () => {
+  const { projectNineAxisAngles } = await panelModule(), axes = nineAxisCapabilities(composed());
+  for (const x of [-30, 0, 30]) for (const y of [-25, 0, 25]) {
+    assert.deepEqual(projectNineAxisAngles(axes, x, y), { x, y });
+  }
+  for (const side of [-1, 1]) for (const pitch of [-1, 1]) {
+    assert.deepEqual(projectNineAxisAngles(axes, side * 30, pitch * 12.5), { x: side * 15, y: pitch * 12.5 });
+  }
+  const asymmetric = { ...axes, x: { min: -20, max: 40 }, y: { min: -10, max: 30 } };
+  assert.deepEqual(projectNineAxisAngles(asymmetric, -20, -5), { x: -10, y: -5 });
+  assert.deepEqual(projectNineAxisAngles(asymmetric, 40, 15), { x: 20, y: 15 });
+  assert.deepEqual(projectNineAxisAngles({ ...axes, plane: false }, 30, 12.5, 'x'), { x: 30, y: 0 });
+  assert.deepEqual(projectNineAxisAngles({ ...axes, plane: false }, 30, 12.5, 'y'), { x: 0, y: 12.5 });
+  assert.deepEqual(projectNineAxisAngles({ ...axes, plane: false, y: { min: 0, max: 0 } }, -30, 25), { x: -30, y: 0 });
+  assert.equal(projectNineAxisAngles(axes, NaN, 0), null);
+});
+
+test('workbench dragging inside excluded lobes follows the boundary tangent in all four quadrants', async () => {
+  const { HeadNineAxisPanel } = await panelModule();
+  for (const side of [-1, 1]) for (const pitch of [-1, 1]) {
+    const panel = Object.create(HeadNineAxisPanel.prototype), doc = composed(), before = JSON.stringify(doc);
+    Object.assign(panel, { doc, axes: nineAxisCapabilities(doc), value: 0, valueY: 0, padDrag: { id: 1, axis: null },
+      padCoordinates(event: any) { return { x: event.x, y: event.y }; }, stopSwing() {}, sync() {} });
+    const move = (x: number, y: number) => panel.padPointerMove({ pointerId: 1, x, y });
+    const onBoundary = () => assert.ok(Math.abs(Math.abs(panel.value / 30) - headSideLimit(panel.valueY / 25)) < 1e-12);
+    move(side * 27, pitch * 5);
+    onBoundary();
+    const start = { x: panel.value, y: panel.valueY };
+    move(side * 27, pitch * 5.5);
+    onBoundary();
+    assert.ok(pitch * (panel.valueY - start.y) > 0, 'vertical pointer travel advances along the boundary');
+    const vertical = { x: panel.value, y: panel.valueY };
+    move(side * 27.3, pitch * 5.5);
+    onBoundary();
+    assert.ok(pitch * (panel.valueY - vertical.y) < 0, 'horizontal outward travel slides toward the cardinal pose');
+    assert.ok(side * (panel.value - vertical.x) > 0);
+    move(0, 0);
+    assert.deepEqual([panel.value, panel.valueY], [0, 0]);
+    assert.equal(JSON.stringify(doc), before, 'preview controls never edit the model');
+  }
+});
 
 test('main corners enable the plane with sparse auxiliary keys; missing main corners and merged-only stages stay restricted', async () => {
   const panel = await panelModule(), doc = composed(), part = doc.parts[0];
