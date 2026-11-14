@@ -5,6 +5,7 @@ import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts,
 import { selectedTask, rememberTask } from './task-selection.js';
 import { renderReport } from './report-markdown.js';
 import { morph } from './dom-morph.js';
+import { loadVideoCovers, videoCover } from './video-preview.js';
 import { createEnvEditor } from './env-editor.js';
 import { createSettings } from './settings-dialog.js';
 import { HeadPreview } from './head-preview.js';
@@ -226,10 +227,13 @@ function artifacts(items, index, stepId, className='') {
  const list=available(items);
  if(!list.length)return '';
  const view=item=>{
-  if(item.kind==='video')return `<figure class="artifact-video"><video controls preload="metadata" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video><figcaption>${esc(item.label)}${className!=='nine-artifacts'&&data.fileVersions?.[item.path]?` · ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}`:''}</figcaption>${className==='nine-artifacts'?'':`<a href="${artifact(item.path)}" target="_blank" rel="noopener">打开视频</a>`}</figure>`;
   if(item.path.endsWith('.kra')&&item.kind!=='image')return `<a class="artifact-file" href="${artifact(item.path).replace('&preview=kra','')}" target="_blank" rel="noopener">${icon('layers')}${esc(item.label)} ${icon('arrow')}</a>`;
   const key=item.reviewIndex===undefined?item.path:`${item.path}#${item.reviewMode}-${item.reviewIndex}`;
   assetLookup.set(key,item);
+  if(item.kind==='video'){
+   const url=artifact(item.path),cover=videoCover(url);
+   return `<figure class="artifact-video"><button class="video-cover" data-asset="${esc(key)}" data-asset-stage="${index}" data-asset-step="${stepId}" aria-label="播放${esc(item.label)}"><img data-video-cover="${esc(url)}" ${cover?`src="${esc(cover)}"`:''} alt=""><span class="video-play">${icon('play')}</span></button><figcaption>${esc(item.label)}${className!=='nine-artifacts'&&data.fileVersions?.[item.path]?` · ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}`:''}</figcaption><a href="${url}" target="_blank" rel="noopener">打开原视频</a></figure>`;
+  }
   return `<button class="${item.kind==='image'?'artifact-image':'artifact-file'} ${item.path.endsWith('.draft.svg')?'draft-artifact':''}" data-asset="${esc(key)}" data-asset-stage="${index}" data-asset-step="${stepId}" title="${esc(item.path)}">${item.kind==='image'?`<img loading="lazy" src="${artifact(item.path,true)}" alt="${esc(item.label)}">`:icon('file')}<span>${esc(item.label)}</span>${item.kind==='image'&&data.fileVersions?.[item.path]?`<small>更新于 ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}</small>`:''}${item.kind==='file'?icon('chevron'):''}</button>`;
  };
  const images=list.filter(item=>item.kind==='image'),files=list.filter(item=>item.kind!=='image');
@@ -436,10 +440,10 @@ function flowCard(index) {
 }
 function inspector() {
  const stage=stages[state.stage],step=selectedStep(),item=state.asset;
- const image=item?.kind==='image';
+ const image=item?.kind==='image',video=item?.kind==='video';
  const report=item&&Object.values(data.sections[state.stage]?.reports||{}).find(report=>report.path===item.path);
  return `<aside class="output-inspector" aria-label="产物放大查看"><header class="output-heading"><div><small>${esc(stage.name)} · ${esc(step.title)}</small><h2>${esc(item?.label||step.title)}</h2></div><button class="icon-button" data-action="close-inspector" aria-label="关闭产物面板">${icon('close')}</button></header><div class="output-scroll">
- ${image?`<div class="output-caption"><span>当前任务产物</span><label><input type="checkbox" id="compare-reference" ${state.compare?'checked':''}>对照参考</label></div><div class="output-image ${state.compare?'compare':''}">${state.compare&&data.reference?`<figure><img src="${artifact(data.reference)}" alt="简化角色参考"><figcaption>简化角色参考</figcaption></figure>`:''}<figure><a href="${artifact(item.path)}" target="_blank" rel="noopener"><img loading="lazy" src="${artifact(item.path)}" alt="${esc(item.label)}"></a><figcaption>点击打开原尺寸</figcaption></figure></div>`:item?item.reviewIndex!==undefined?`<article class="report-document">${renderReport(reviewReportText(item.text??'正在读取…',item))}</article>`:/\.md(?:\.tmp)?$/.test(item.path)?`<article class="report-document">${renderReport(item.text??'正在读取…',report?.images,path=>artifact(path))}</article>`:`<pre class="artifact-text">${esc(item.text??'正在读取…')}</pre>`:`<p class="step-note">${esc(step.note||'此步骤的过程和已有产物直接展示在画布中。')}</p>`}
+ ${video?`<div class="output-video"><video controls autoplay playsinline preload="auto" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video></div>`:image?`<div class="output-caption"><span>当前任务产物</span><label><input type="checkbox" id="compare-reference" ${state.compare?'checked':''}>对照参考</label></div><div class="output-image ${state.compare?'compare':''}">${state.compare&&data.reference?`<figure><img src="${artifact(data.reference)}" alt="简化角色参考"><figcaption>简化角色参考</figcaption></figure>`:''}<figure><a href="${artifact(item.path)}" target="_blank" rel="noopener"><img loading="lazy" src="${artifact(item.path)}" alt="${esc(item.label)}"></a><figcaption>点击打开原尺寸</figcaption></figure></div>`:item?item.reviewIndex!==undefined?`<article class="report-document">${renderReport(reviewReportText(item.text??'正在读取…',item))}</article>`:/\.md(?:\.tmp)?$/.test(item.path)?`<article class="report-document">${renderReport(item.text??'正在读取…',report?.images,path=>artifact(path))}</article>`:`<pre class="artifact-text">${esc(item.text??'正在读取…')}</pre>`:`<p class="step-note">${esc(step.note||'此步骤的过程和已有产物直接展示在画布中。')}</p>`}
  ${item?`<a class="artifact-source" href="${artifact(item.path)}" target="_blank" rel="noopener">${esc(item.path)} ${icon('arrow')}</a>`:''}</div></aside>`;
 }
 function overviewCard(stage,index) {
@@ -735,6 +739,7 @@ function render() {
  flowObserver?.disconnect();
  morph(document.querySelector('#app'),header()+`<main class="main ${state.page==='config'?'config-page':state.page==='preview'?'preview-main':'project-main'}">${state.page==='config'?configPage():state.loading||state.loadError?taskLoading():state.page==='preview'?graph():projectPage()}</main>`);
  bind();setConfigBusy(configBusy);
+ loadVideoCovers(document.querySelector('#app'));
  void headPreview.update(document.querySelector('[data-head-preview]'),data.directory);
  if(state.page==='config'&&state.configMode==='env')envEditor.bind();
  document.querySelectorAll('[data-details]').forEach(node=>{if(state.details.has(node.dataset.details))node.open=state.details.get(node.dataset.details);});
