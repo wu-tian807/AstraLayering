@@ -32,6 +32,21 @@ test('static unmade context cannot unlock a combination or restrict authored fac
   assert.equal(hair.scope.has('__kra__/unmade-hair'), false);
 });
 
+test('static face masks preserve readiness; a registered hair layer unlocks only when its own carrier is authored',()=>{
+  const doc=fixture();
+  doc.parts=doc.parts.slice(0,2);
+  const hair=doc.parts[1];hair.keyforms={'0':rest};
+  doc.parts.push({...doc.parts[0],id:'face/static-mask',material:'transparent',role:'mask',keyforms:{'0':rest},keyformsY:undefined,keyformsXY:undefined});
+  let [face,mode]=nineAxisPreviewModes(doc);
+  assert.equal(face.axes.plane,true);assert.equal(mode.available,false);
+  doc.deformers=[{...hair,id:'hair/carrier',keyforms:{'-30':rest,'0':rest,'30':rest}}];
+  hair.parent='hair/carrier';
+  [face,mode]=nineAxisPreviewModes(doc);
+  assert.equal(face.axes.plane,true);assert.equal(mode.available,true);
+  assert.deepEqual(mode.axes.x.keys,[-30,0,30]);assert.deepEqual(mode.axes.y.keys,[0]);
+  assert.deepEqual(Object.keys(hair.keyforms),['0'],'readiness follows the parent without copying its poses into the child');
+});
+
 test('capabilities include actual Warp ancestors and clip sources but not unrelated nodes', () => {
   const doc = fixture();
   doc.deformers = [{ ...doc.parts[1], id: 'shared-carrier' }];

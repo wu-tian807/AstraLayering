@@ -3,7 +3,8 @@ import { access, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { mirrorDocument, type Built } from './head.ts';
-import { nodes, validateHeadNineAxis, checkWarpGeometry, evaluatePoints, kraReferences, type HeadNineAxis } from '../shared/nine-axis-model.js';
+import { nodes, validateHeadNineAxis, checkWarpGeometry, evaluatePoints, type HeadNineAxis } from '../shared/nine-axis-model.js';
+import { initializeKeyforms } from '../shared/nine-axis-edit.js';
 import { modelDocument, withDocument } from './source.ts';
 import { taskRootOf } from '../shared/task-paths.ts';
 import { dirname } from 'node:path';
@@ -11,6 +12,7 @@ import type { MaterialLoader } from './kra-materials.ts';
 import sharp from 'sharp';
 
 const geometryOnly=(value: any): any=>JSON.parse(JSON.stringify(value??null,(key,value)=>['texture','uuid','material'].includes(key)?undefined:value));
+const hasKeys = (node: any, field: string) => Object.keys(node?.[field] ?? {}).some(key => key !== '0');
 
 export type PitchStage = 'up' | 'down';
 export type Stage = PitchStage | 'xy' | 'jaw' | 'hair' | 'accessories';
@@ -42,21 +44,14 @@ export function startContinuation(upstream: HeadNineAxis & { axis: number }, sta
     if(stage==='accessories'&&!doc.levels.some(level=>level.id==='accessory'))doc.levels.push({id:'accessory',includes:['face','hair','accessory']});
   }
   if (stage === 'up' || stage === 'down') {
-    const keys = pitchKeys(stage, scale);
     const existingUp = upstream.parameters?.find(p => p.id === 'ParamAngleY')?.keys?.includes(scale.y[1]);
     const range: [number, number] = stage === 'up' ? [0, scale.y[1]] : [scale.y[0], existingUp ? scale.y[1] : 0];
     doc.parameters = doc.parameters!.map(p => p.id === 'ParamAngleY' ? { ...angleParameter('ParamAngleY', '角度 Y', range), keys: [...new Set([range[0], 0, range[1]])] } : p);
-    for (const n of nodes(doc)) {
-      n.keyformsY ??= {};
-      for (const y of keys) n.keyformsY[angleKey(y)] ??= structuredClone(n.keyforms['0']);
-    }
   }
-  if (stage === 'xy') for (const n of nodes(doc)) {
-    n.keyformsXY = {};
-    for (const x of scale.x) for (const y of scale.y) n.keyformsXY[`${angleKey(x)},${angleKey(y)}`] =
-      n.keyforms['0'].map(([rx, ry], i) => [n.keyforms[angleKey(x)][i][0] + n.keyformsY![angleKey(y)][i][0] - rx,
-        n.keyforms[angleKey(x)][i][1] + n.keyformsY![angleKey(y)][i][1] - ry]);
-  }
+  const poses = stage === 'up' || stage === 'down' ? pitchKeys(stage,scale).map(y => [0,y] as const)
+    : stage === 'xy' ? scale.x.flatMap(x => scale.y.map(y => [x,y] as const)) : [];
+  for (const node of nodes(doc))
+    if (node.level === 'face' && (hasKeys(node,'keyforms') || hasKeys(node,'keyformsY'))) initializeKeyforms(node,poses);
   return doc;
 }
 
@@ -68,6 +63,7 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
   if (doc.axis !== upstream.axis || JSON.stringify(doc.canvas) !== JSON.stringify(upstream.canvas) || (!sameSource && !inheritedGeometry)) throw Error('不能替换上游画布、中轴或角色来源');
   if (JSON.stringify(geometryOnly(doc.axisSources)) !== JSON.stringify(geometryOnly(upstream.axisSources))) throw Error('不能替换已完成单轴的形变来源；本阶段只编辑当前方向');
   const ids = new Map(nodes(doc).map(n => [n.id, n]));
+  const original = new Map(nodes(upstream).map(node => [node.id,node]));
   for (const n of upstream.parts) if (!ids.has(n.id)) throw Error(`${authorFile(stage)}：缺少上游节点 ${n.id}`);
   if (stage !== 'jaw' && !horizontalStage(stage)) for (const part of upstream.parts) {
     const current = doc.parts.find(p => p.id === part.id)!;
@@ -86,13 +82,12 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
   }
   const fields: [string, string[]][] = [['keyforms', ['0', ...scale.x.map(angleKey)]]];
   fields.push(['keyformsY', (stage === 'up' || stage === 'down' ? pitchKeys(stage, scale) : scale.y).map(angleKey)]);
-  if (stage === 'xy' || stage === 'jaw' || stage === 'hair') fields.push(['keyformsXY', scale.x.flatMap(x => scale.y.map(y => `${angleKey(x)},${angleKey(y)}`))]);
+  if (stage === 'xy' || stage === 'jaw') fields.push(['keyformsXY', scale.x.flatMap(x => scale.y.map(y => `${angleKey(x)},${angleKey(y)}`))]);
   if (horizontalStage(stage)) {
     const label=stage==='hair'?'头发':'头部饰品',prefix=stage==='hair'?'hair/':'head_accessories/';
     const vertical = doc.parameters?.find(p => p.id === 'ParamAngleY');
     if (vertical?.min !== 0 || vertical.max !== 0 || JSON.stringify(vertical.keys) !== '[0]')
       throw Error(`${label}步骤只制作 left/right，ParamAngleY 必须固定为 0`);
-    const original = new Map(nodes(upstream).map(node => [node.id,node]));
     for (const [id,before] of original) if (!horizontalNode(stage,before)) {
       const current = structuredClone(ids.get(id));
       if (!current) throw Error(`${label}阶段缺少上游节点 ${id}`);
@@ -112,11 +107,21 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
   }
   for (const n of nodes(doc)) {
     const horizontalHair = horizontalStage(stage) && horizontalNode(stage,n);
-    if (horizontalHair && (Object.keys(n.keyformsY ?? {}).length || Object.keys(n.keyformsXY ?? {}).length))
-      throw Error(`${n.id}：${stage==='hair'?'头发':'头部饰品'}步骤只制作 left/right，不能新增上下或四角关键形`);
-    for (const [field, keys] of fields) {
-      if (horizontalStage(stage) && field !== 'keyforms') continue;
-      for (const key of keys) if (!(n as any)[field]?.[key]) throw Error(`${n.id}：缺少 ${field} 关键形 ${key}`);
+    // Horizontal authoring retains upstream axes, including parent-space
+    // compensation, but cannot add or delete vertical/diagonal pose keys.
+    if (horizontalHair) for (const field of ['keyformsY','keyformsXY'] as const)
+      if (JSON.stringify(Object.keys(n[field] ?? {}).sort()) !== JSON.stringify(Object.keys(original.get(n.id)?.[field] ?? {}).sort()))
+        throw Error(`${n.id}：${stage==='hair'?'头发':'头部饰品'}步骤只制作 left/right，不能新增或删除上下或四角关键形`);
+    // Full face stages verify the face nodes they inherit. New registrations
+    // may remain static or follow an authored Warp; they need no duplicate rig.
+    if (!horizontalStage(stage) && n.level === 'face' && original.has(n.id))
+      for (const [field, keys] of fields.filter(([field]) => hasKeys(n,field) || hasKeys(original.get(n.id),field)))
+        for (const key of keys) if (!(n as any)[field]?.[key]) throw Error(`${n.id}：缺少 ${field} 关键形 ${key}`);
+    if (stage === 'jaw' && n.level !== 'face') {
+      const before = original.get(n.id);
+      if (before ? JSON.stringify(geometryOnly(n)) !== JSON.stringify(geometryOnly(before))
+        : [n.keyforms,n.keyformsY ?? {},n.keyformsXY ?? {}].some(forms => Object.values(forms).some(points => JSON.stringify(points) !== JSON.stringify(n.keyforms['0']))))
+        throw Error(`${n.id}：下颌步骤只制作脸部衔接，其他部件保留为静态参照`);
     }
     if ('opacity' in n) throw Error(`${n.id}：使用覆盖与裁切，不用透明度隐藏部件`);
     checkWarpGeometry(n);

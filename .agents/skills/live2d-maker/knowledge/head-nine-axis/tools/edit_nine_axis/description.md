@@ -1,6 +1,6 @@
 编辑当前工程的图层绑定、Warp 层级和九轴关键形。作者文件、KRA 来源、可编辑节点和角度由运行环境绑定。调用 {} 返回 revision、作者路径、节点索引；有 KRA 时另返回已保存图层目录、UUID 和已有关系。目录中的关系供检查，不会自动选中或修改关联节点。
 
-画稿用 KRA 图层 UUID 引用，不需要提供或维护 PNG。节点 id 标识独立几何，同一 UUID 可以供多个不同取样范围的部件使用。新部件通过 add_part 注册：part 包含 id、uuid、bbox=[x0,y0,x1,y1]，可选 level、group、cols、rows、parent；工具初始化当前参数范围内的静止网格。bbox 是原画布上的网格范围，textureBounds=[x,y,width,height] 可指定读取区域，默认 bbox 对应区域。已有部件通过 bindings:[{id,uuid}] 重绑；纯构造部件用 material="transparent"。像素修改在 Krita 保存后生效。
+画稿用 KRA 图层 UUID 引用，不需要提供或维护 PNG。节点 id 标识独立几何，同一 UUID 可以供多个不同取样范围的部件使用。新部件通过 add_part 注册：part 包含 id、uuid、bbox=[x0,y0,x1,y1]，可选 level、group、cols、rows、parent；默认只建立静止网格。bbox 是原画布上的网格范围，textureBounds=[x,y,width,height] 可指定读取区域，默认 bbox 对应区域。已有部件通过 bindings:[{id,uuid}] 重绑；纯构造部件用 material="transparent"。像素修改在 Krita 保存后生效。
 
 operations 接受一批操作，按顺序执行：
 - create_warp：id、targets、可选 name、parent、bbox、cols/rows。建立父 Warp 并挂入明确列出的对象，默认网格 2×2，范围包住这些对象已有关键形。
@@ -15,4 +15,4 @@ operations 接受一批操作，按顺序执行：
 
 独立投影部件可在 part 中声明 shadow:{casters:[部件id],receivers:[部件id]}，并用 clip.by 明确接收部件。混合方式和不透明度读取所绑定的 KRA 图层。关系不会扩展 targets，也不会自动复制其他部件的局部网格修正。
 
-x/y 是参数角度；位移、范围与控制点坐标使用原画布像素。新 Warp 继承当前工程已有参数关键形。传 revision 可防止覆盖新改动；整批通过引用、层级、网格和绑定校验后才保存，失败不写作者数据。返回新 revision 和节点索引。notes 可记录编辑理由，图像检查使用 view_nine_axis。
+x/y 是参数角度；位移、范围与控制点坐标使用原画布像素。新 Warp 默认也只有静止形；子节点通过父级随动，无须复制父级的关键形。transform、drag、points 自动补齐目标节点在当前方向所需的插值键，保留已有关键形；辅助修正只增加当前所需的键。传 revision 可防止覆盖新改动；整批通过引用、层级、网格和绑定校验后才保存，失败不写作者数据。返回新 revision 和节点索引。notes 可记录编辑理由，图像检查使用 view_nine_axis。

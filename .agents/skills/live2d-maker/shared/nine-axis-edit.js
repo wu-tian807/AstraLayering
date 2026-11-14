@@ -9,26 +9,37 @@ function grid(id, bbox, cols = 2, rows = 2) {
   const n = { id, bbox, cols, rows }, rest = pairs(lattice(n));
   return { ...n, interpolation: 'smooth', keyforms: { '0': rest } };
 }
-function initialForms(doc, n) {
-  const rest = n.keyforms['0'];
-  for (const key of doc.parameters?.find(p=>p.id==='ParamAngleX')?.keys ?? [0]) n.keyforms[String(key)] ??= structuredClone(rest);
-  const Y=doc.parameters?.find(p=>p.id==='ParamAngleY')?.keys?.filter(k=>k!==0) ?? [];
-  if (Y.length) n.keyformsY ??= {};
-  for (const key of Y) n.keyformsY[String(key)] ??= structuredClone(rest);
-  const corners=new Set(nodes(doc).flatMap(p=>Object.keys(p.keyformsXY??{})));
-  if (Y.length && corners.size) {
-    n.keyformsXY ??= {};
-    for (const key of corners) n.keyformsXY[key] ??= structuredClone(rest);
+const formKey = (x, y) => !y ? ['keyforms', String(x)] : !x ? ['keyformsY', String(y)] : ['keyformsXY', `${x},${y}`];
+
+// Both stage setup and interactive edits sample one unchanged input. Fill only
+// missing forms, so initialization order cannot overwrite an authored pose.
+export function initializeKeyforms(node, poses) {
+  const missing = [];
+  for (const [x,y] of poses) {
+    const [field,key] = formKey(x,y);
+    if (!node[field]?.[key]) missing.push([field,key,pairs(keyformAt(node,x,y))]);
+  }
+  for (const [field,key,points] of missing) {
+    node[field] ??= {};
+    node[field][key] = points;
   }
 }
 
-function ensureKey(n, x = 0, y = 0) {
+// Registration and parenting do not author poses. Seed an interpolation range
+// only when an operation actually edits that axis on this node.
+function ensureKey(doc, n, x = 0, y = 0) {
   number(x, 'x'); number(y, 'y');
-  const field = !y ? 'keyforms' : !x ? 'keyformsY' : 'keyformsXY', key = !y ? String(x) : !x ? String(y) : `${x},${y}`;
-  const sample = pairs(keyformAt(n, x, y));
-  if (field === 'keyforms' && n.parameterInterpolation?.x === 'ellipse' && !n.keyforms[key]) n.parameterInterpolation.x = 'linear';
-  n[field] ??= {}; n[field][key] ??= sample;
-  return [field, key];
+  const ends = (parameter, value) => {
+    if (!value) return [];
+    const keys = [0, value, ...(doc.parameters?.find(p => p.id === parameter)?.keys ?? [])];
+    return [...new Set([Math.min(...keys), Math.max(...keys)])].filter(key => key !== 0);
+  };
+  const X = ends('ParamAngleX',x), Y = ends('ParamAngleY',y);
+  const newX = x && !n.keyforms[String(x)];
+  initializeKeyforms(n,[...X.map(a => [a,0]), ...Y.map(b => [0,b]), [x,0], [0,y],
+    ...(x && y ? X.flatMap(a => Y.map(b => [a,b])) : []), [x,y]]);
+  if (newX && n.parameterInterpolation?.x === 'ellipse') n.parameterInterpolation.x = 'linear';
+  return formKey(x,y);
 }
 
 // The author chooses all targets and hierarchy. No anatomical group is inferred.
@@ -42,7 +53,6 @@ export function editNineAxis(document, operations) {
       const p = op.part;
       if (!p || typeof p.id !== 'string' || !p.id || nodes(doc).some(n => n.id === p.id)) throw Error('新部件 id 无效或重复');
       const n = { ...grid(p.id, p.bbox, p.cols ?? 4, p.rows ?? 4), textureBounds: [p.bbox[0],p.bbox[1],p.bbox[2]-p.bbox[0],p.bbox[3]-p.bbox[1]], ...p, level: p.level ?? 'face' };
-      initialForms(doc,n);
       if (op.before !== undefined && op.after !== undefined) throw Error('before 与 after 只能指定一个');
       const anchor = op.before ?? op.after;
       const at = anchor === undefined ? doc.parts.length : doc.parts.findIndex(q => q.id === anchor);
@@ -59,7 +69,6 @@ export function editNineAxis(document, operations) {
       });
       const bbox = op.bbox ?? (all.length ? [Math.min(...all.map(q => q[0])) - 8, Math.min(...all.map(q => q[1])) - 8, Math.max(...all.map(q => q[0])) + 8, Math.max(...all.map(q => q[1])) + 8] : undefined);
       const n = { ...grid(op.id, bbox, op.cols, op.rows), level: op.level ?? children[0]?.level ?? 'face', ...(op.name ? { name: op.name } : {}) };
-      initialForms(doc,n);
       if (op.parent) n.parent = op.parent;
       doc.deformers.push(n); reparent(doc, targets, n.id);
     } else if (op.action === 'reparent') {
@@ -81,7 +90,7 @@ export function editNineAxis(document, operations) {
       const n = doc.parts.find(p => p.id === op.id); if (!n) throw Error('裁切对象须为贴图部件');
       if (op.by === null) delete n.clip; else n.clip = { by: op.by, ...(op.invert ? { invert: true } : {}) };
     } else if (['points', 'drag', 'transform'].includes(op.action)) {
-      const n = get(op.id), x = op.x ?? 0, y = op.y ?? 0, [field, key] = ensureKey(n, x, y);
+      const n = get(op.id), x = op.x ?? 0, y = op.y ?? 0, [field, key] = ensureKey(doc, n, x, y);
       let points = pairs(evaluatePoints(doc, n, x, y));
       if (op.action === 'points') {
         if (!Array.isArray(op.points) || !op.points.length) throw Error('points 须为非空的 {row,col,to} 数组');

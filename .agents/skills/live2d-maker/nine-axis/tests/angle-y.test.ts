@@ -39,7 +39,7 @@ test('independent pitch rejects changed shared clipping before saving; source co
     await checkAxisSource(neutral, await buildContinuation(output, neutral, stage));
   }
 });
-test('Y parent movement and local correction preserve X and fixed neck; newly defined warps inherit all keys',()=>{
+test('Y parent movement and local correction preserve X and fixed neck; new warps author only the edited axis',()=>{
   const upstream=fixture(), y=startContinuation(upstream,'up');
   const doc=editNineAxis(y,[{action:'create_warp',id:'author-group',targets:['a','b']},{action:'create_warp',id:'local',parent:'author-group',targets:['a']},{action:'transform',id:'author-group',y:25,translate:[3,2]},{action:'transform',id:'local',y:25,translate:[1,0]}]);
   checkContinuation(doc,upstream,'up');
@@ -48,9 +48,43 @@ test('Y parent movement and local correction preserve X and fixed neck; newly de
   for(const p of doc.parts)assert.deepEqual([...evaluatePoints(doc,p,-30,0)],rest.flat());
   assert.deepEqual([...evaluatePoints(doc,doc.parts[2],-30,25)],rest.flat());
   assert.deepEqual(Object.keys(doc.deformers[1].keyformsY!).sort(),['25']);
+  assert.deepEqual(Object.keys(doc.deformers[1].keyforms),['0']);
   const changed=editNineAxis(doc,[{action:'transform',id:'a',x:-30,translate:[1,0]}]);
   assert.throws(()=>checkContinuation(changed,upstream,'up'),/不能改动已制作的轴/);
   assert.throws(()=>checkContinuation(doc,upstream,'down'),/阶段记录不匹配/);
+});
+test('sparse Y warps and static registrations survive down and corner continuation without requiring unrelated axes',()=>{
+  const original=fixture(),author=startContinuation(original,'up');
+  const up=editNineAxis(author,[
+    {action:'create_warp',id:'pitch-carrier',targets:['a']},
+    {action:'transform',id:'pitch-carrier',y:25,translate:[2,1]},
+    {action:'add_part',part:{id:'face/static-mask',level:'face',material:'transparent',role:'mask',bbox:box,cols:1,rows:1}},
+  ]) as typeof author;
+  const down=startContinuation(up,'down');checkContinuation(down,up,'down');
+  const xy=startContinuation(down,'xy');checkContinuation(xy,down,'xy');
+  const mask=xy.parts.find(p=>p.id==='face/static-mask')!;
+  assert.deepEqual(Object.keys(mask.keyforms),['0']);
+  assert.equal(mask.keyformsY,undefined);assert.equal(mask.keyformsXY,undefined);
+  for(const x of [-30,0,30])assert.deepEqual([...evaluatePoints(xy,xy.parts[0],x,25)],[...evaluatePoints(up,up.parts[0],x,25)]);
+  const damaged=structuredClone(xy);delete damaged.parts[0].keyformsXY!['-30,25'];
+  assert.throws(()=>checkContinuation(damaged,down,'xy'),/缺少.*关键形/);
+});
+test('corner initialization fills missing main poses and preserves inherited main and auxiliary forms',()=>{
+  const up=startContinuation(fixture(),'up'),upstream=startContinuation(up,'down');
+  const part=upstream.parts[0];
+  part.keyforms['-30']=rest.map(([x,y])=>[x+3,y]);
+  part.keyformsY!['25']=rest.map(([x,y])=>[x,y+2]);
+  part.keyformsXY={
+    '-30,25':rest.map(([x,y])=>[x+4,y+3]),
+    '-15,12.5':rest.map(([x,y])=>[x+1,y+1]),
+  };
+  const before=structuredClone(upstream),xy=startContinuation(upstream,'xy');
+  checkContinuation(xy,upstream,'xy');
+  assert.deepEqual(xy.parts[0].keyformsXY!['-30,25'],part.keyformsXY['-30,25']);
+  assert.deepEqual(xy.parts[0].keyformsXY!['-15,12.5'],part.keyformsXY['-15,12.5']);
+  assert.deepEqual(xy.parts[0].keyformsXY!['-30,-25'],part.keyforms['-30']);
+  assert.deepEqual(xy.parts[0].keyformsXY!['30,25'],part.keyformsY!['25']);
+  assert.deepEqual(upstream,before,'initializing a stage never rewrites the upstream document');
 });
 test('corners mirror composed hierarchies with artist-defined node pairs',()=>{
   const upstream=fixture(); upstream.parts=upstream.parts.filter((p:any)=>p.id!=='neck');

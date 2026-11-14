@@ -11,15 +11,24 @@ export const authoredPreviewPart = part => !/^__(?:kra|shadow)__\//.test(part.id
 // ancestors and clip sources. Hidden, unmade KRA context is never a preview.
 export function nineAxisPreviewModes(doc, allowPlane = true) {
   const all = nodes(doc), byId = new Map(all.map(node => [node.id, node]));
-  return previewLevels.map(level => {
-    const declared = doc.levels.some(item => item.id === level.id);
-    const parts = declared ? levelParts(doc, level.id).filter(authoredPreviewPart) : [];
-    const available = parts.some(part => part.level === level.id && part.role !== 'mask' && !part.shadow && part.material !== 'transparent');
+  const scopeOf = parts => {
     const scope = new Set(parts.map(part => part.id)), queue = [...scope];
     while (queue.length) {
       const node = byId.get(queue.pop());
       for (const id of [node?.parent, ...(node?.clip?.by ?? [])].filter(Boolean)) if (!scope.has(id)) { scope.add(id); queue.push(id); }
     }
+    return scope;
+  };
+  const scopedDocument = (scope, parameters = doc.parameters) => ({ ...doc, parameters,
+    parts: doc.parts.filter(part => scope.has(part.id)), deformers: doc.deformers.filter(node => scope.has(node.id)) });
+  return previewLevels.map(level => {
+    const declared = doc.levels.some(item => item.id === level.id);
+    const parts = declared ? levelParts(doc, level.id).filter(authoredPreviewPart) : [];
+    const own = parts.filter(part => part.level === level.id);
+    const ownAxes = nineAxisCapabilities(scopedDocument(scopeOf(own)), false);
+    const available = own.some(part => part.role !== 'mask' && !part.shadow && part.material !== 'transparent')
+      && (level.id === 'face' || ownAxes.x.min < 0 && ownAxes.x.max > 0);
+    const scope = scopeOf(parts);
     const scoped = all.filter(node => scope.has(node.id));
     const parameters = (doc.parameters ?? []).map(parameter => {
       // Horizontal continuation deliberately restricts authoring to Y=0.
@@ -28,8 +37,7 @@ export function nineAxisPreviewModes(doc, allowPlane = true) {
         return { ...parameter, status: undefined, keys: [...new Set([0, ...scoped.flatMap(node => Object.keys(node.keyformsY ?? {}).map(Number))])] };
       return parameter;
     });
-    const axes = nineAxisCapabilities({ ...doc, parameters: available ? parameters : [],
-      parts: doc.parts.filter(part => scope.has(part.id)), deformers: doc.deformers.filter(node => scope.has(node.id)) }, allowPlane);
+    const axes = nineAxisCapabilities(scopedDocument(scope, available ? parameters : []), allowPlane);
     return { ...level, available, axes, scope };
   });
 }
