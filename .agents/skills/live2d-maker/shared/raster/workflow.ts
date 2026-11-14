@@ -12,13 +12,14 @@ import { randomUUID } from 'node:crypto';
 import { runAgent, type Agent, type AgentRequest } from './agent.ts';
 import { checkKrita, type KritaInstallation } from './krita.ts';
 import type { StepDefinition } from './steps.ts';
+type ResolvedStep = StepDefinition & {model:string;effort:NonNullable<StepDefinition['effort']>;review?:NonNullable<StepDefinition['review']> & {model:string;effort:NonNullable<StepDefinition['effort']>}};
 import { readStep, type ChainStep, type StepStatus } from '../step-chain.ts';
 import { runSection } from '../step-section.ts';
 import { clearStepSession, readStepSession, writeStepSession, type StepSession } from '../agents/step-session.ts';
 import { canonicalPath, fileInfo, rasterSteps, within } from './run-store.ts';
 import { taskRootOf } from '../task-paths.ts';
 import { buildReviewPrompt, discardReviewReports, nextReviewTask, runReviews } from './review.ts';
-import { modelHarnesses } from '../agents/models.ts';
+import { modelHarness } from '../agents/models.ts';
 import { requireCurrentLayout } from '../../workflow/layout.ts';
 import { cliExecutable } from '../agents/cli.ts';
 import { validateImageSelection } from '../agents/images.ts';
@@ -86,10 +87,13 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
   if (info && (!info.isDirectory() || info.isSymbolicLink())) throw new Error(`管线目录必须是普通目录：${requested}`);
   const directory = await canonicalPath(requested);
   const environment = dependencies.environment ?? loadWorkflowEnvironment();
-  const definitions: readonly StepDefinition[] = (dependencies.steps ?? section.steps).map(step => ({ ...step,
+  const definitions = (dependencies.steps ?? section.steps).map(step => ({ ...step,
     ...(step.modelStep ? environment.stepModels[step.modelStep] : step.modelTier ? environment.models[step.modelTier] : {}),
     ...(step.review ? { review: { ...step.review, ...(step.review.modelStep ? environment.stepModels[step.review.modelStep] : step.review.modelTier ? environment.models[step.review.modelTier] : {}) } } : {}),
-  }));
+  })).map(step => {
+    if (!step.model || !step.effort || step.review && (!step.review.model || !step.review.effort)) throw new Error(`${step.id} 缺少模型配置`);
+    return step as ResolvedStep;
+  });
   if (!dependencies.agent) for (const step of definitions) {
     for (const key of [step.modelStep, step.review?.modelStep, step.review?.repairModelStep]) if (key) {
       validateImageSelection(environment, key);
@@ -142,7 +146,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
     }
   }
 
-  async function stepWork(step: StepDefinition, status: StepStatus): Promise<(() => Promise<void>) | undefined> {
+  async function stepWork(step: ResolvedStep, status: StepStatus): Promise<(() => Promise<void>) | undefined> {
     const output = join(directory, step.id);
     const records = join(directory, 'agents', 'steps', step.id);
     if (!options.dryRun) await mkdir(records, { recursive: true });
@@ -192,7 +196,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
       lastAttempt = attempt;
       const key = fresh ? step.review?.modelStep : phase.startsWith('repair') ? step.review?.repairModelStep : step.modelStep;
       const selected = key ? environment.stepModels[key] : fresh ? step.review! : model;
-      const harness = 'harness' in selected ? selected.harness : modelHarnesses[selected.model as keyof typeof modelHarnesses] || 'codex';
+      const harness = 'harness' in selected ? selected.harness : modelHarness(selected.model,environment.providers);
       // Each step draws in its own thread; its draw and repairs share it. A thread
       // keeps the tools it started with (Codex ignores tools sent on resume).
       if (!fresh && session.threadId && (session.harness || 'codex') !== harness) {

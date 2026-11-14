@@ -1,3 +1,4 @@
+import { mkdir } from 'node:fs/promises';
 import { resolveInput } from '../shared/paths.ts';
 import { checkKnowledge, defaultKnowledgeDirectory } from '../shared/knowledge.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
@@ -13,10 +14,12 @@ export async function preflightTaskInputs(options: TaskOptions, environment?: Wo
     : options.knowledge ? resolveInput(options.name, options.knowledge, options.dir) : defaultKnowledgeDirectory;
   try {
     checkKnowledge(knowledge);
+    const configuration=environment??loadWorkflowEnvironment();
     const route = taskRoute(options, saved);
-    if (video && selectedSections(route.from, route.to).includes('nine-axis')) requireVideoApi(environment ?? loadWorkflowEnvironment());
+    if (video && selectedSections(route.from, route.to).includes('nine-axis')) requireVideoApi(configuration);
   } catch (error) {
-    if (saved) { const log = createTaskLog(directory); log.write((error as Error).message); await log.flush(); }
+    await mkdir(directory,{recursive:true});
+    const log = createTaskLog(directory); log.write((error as Error).message); await log.flush();
     throw error;
   }
 }

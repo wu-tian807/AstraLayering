@@ -478,6 +478,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       };
       if (vendor[path]) { response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8' }); response.end(await readFile(join(root, vendor[path]))); return; }
       const staticFiles: Record<string, string> = { '/': 'index.html', '/app.js': 'app.js', '/process-files.js': 'process-files.js', '/progress.js': 'progress.js', '/head-preview.js': 'head-preview.js', '/head-motion.js': 'head-motion.js', '/report-markdown.js': 'report-markdown.js', '/task-selection.js': 'task-selection.js', '/dom-morph.js': 'dom-morph.js', '/env-editor.js': 'env-editor.js', '/settings-dialog.js': 'settings-dialog.js', '/server-picker.js': 'server-picker.js', '/styles.css': 'styles.css', '/studio': 'studio/index.html', '/studio/app.js': 'studio/app.js', '/studio/styles.css': 'studio/styles.css', '/studio/renderer.js': 'studio/renderer.js', '/studio/lighting-model.js': 'studio/lighting-model.js' };
+      staticFiles['/model-patterns.js'] = '../.agents/skills/live2d-maker/shared/model-patterns.js';
       staticFiles['/report-links.js'] = '../.agents/skills/live2d-maker/shared/report-links.js';
       staticFiles['/execution-state.js'] = 'execution-state.js';
       staticFiles['/nine-axis-flow.js'] = 'nine-axis-flow.js';

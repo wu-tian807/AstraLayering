@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {test} from 'node:test';
+import {mkdtemp,readFile,rm,writeFile,mkdir} from 'node:fs/promises';
+import {realpathSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {execFile} from 'node:child_process';
+import {promisify} from 'node:util';
+import {fileURLToPath} from 'node:url';
+const execute=promisify(execFile);
+for(const kind of ['template','pattern'] as const)test(`startup ${kind} failure reaches new task workflow.log before model launch`,async t=>{
+ const root=await mkdtemp(join(realpathSync(tmpdir()),'astra-config-startup-'));
+ t.after(()=>rm(root,{recursive:true,force:true}));
+ const task=join(root,'case');await mkdir(task);await writeFile(join(task,'original.png'),'fixture');
+ const installed=fileURLToPath(new URL('../../example.env',import.meta.url));
+ const script=`import fs from 'node:fs';import {syncBuiltinESMExports} from 'node:module';
+ const original=fs.readFileSync;
+ fs.readFileSync=(path,...args)=>{if(path===${JSON.stringify(installed)}){${kind==='template'?"throw Object.assign(new Error('missing template'),{code:'ENOENT'});":"return original(path,...args).replace(/^codex_models=.*$/m,'codex_models=**');"}}return original(path,...args);};
+ syncBuiltinESMExports();
+ const {main}=await import(${JSON.stringify(new URL('../run.ts',import.meta.url).href)});
+ try{await main(['--name','case','--dir',${JSON.stringify(root)},'--from','part-layering','--to','part-layering']);process.exitCode=3;}catch(error){console.error(error.message);process.exitCode=1;}`;
+ await assert.rejects(execute(process.execPath,['--input-type=module','--eval',script],{env:{...process.env,ASTRA_TEST_CODEX_EXECUTABLE:''},timeout:20000}),{code:1});
+ const log=await readFile(join(task,'workflow.log'),'utf8');assert.match(log,kind==='template'?/example.env/:/codex_models/);
+ assert.doesNotMatch(log,/已提交|CLI 启动检查通过/);
+});

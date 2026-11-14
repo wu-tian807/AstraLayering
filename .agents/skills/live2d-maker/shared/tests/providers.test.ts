@@ -37,11 +37,11 @@ test('blank uniform connections preserve native login, cloud routing and code de
   assert.equal(settings.codex.env!.CLAUDE_CODE_USE_BEDROCK, '1');
   for (const provider of Object.values(settings.providers!)) {
     assert.equal(provider.connection, 'inherited');
-    assert.equal(provider.models, undefined);
+    assert.ok(provider.models?.length);
     assert.equal(provider.apiKey, undefined);
   }
   assert.equal(settings.providers!.claude.protocol, undefined);
-  assert.equal(settings.providers!.agv.protocol, undefined);
+  assert.equal(settings.providers!.agv.protocol, 'genai');
 });
 
 test('uniform fields map to each CLI without modifying the caller or embedding keys in Codex config', async t => {
@@ -57,7 +57,7 @@ test('uniform fields map to each CLI without modifying the caller or embedding k
   };
   const before = { ...shell }, hostToken = process.env.ANTHROPIC_AUTH_TOKEN;
   const settings = loadWorkflowEnvironment(shell, root), env = settings.codex.env!;
-  assert.deepEqual(settings.providers!.codex.models, ['gpt-6.1-sol', 'gpt-6-astra']);
+  assert.deepEqual(settings.providers!.codex.models, ['gpt-*', 'gpt-6.1-sol', 'gpt-6-astra']);
   assert.equal(settings.codex.config!.model_provider, 'custom');
   assert.equal(settings.providers!.codex.protocol, 'responses');
   assert.equal(settings.providers!.claude.protocol, 'anthropic');
@@ -79,39 +79,30 @@ test('uniform fields map to each CLI without modifying the caller or embedding k
   assert.equal(official.providers!.claude.protocol, 'anthropic');
 });
 
-test('source precedence is shell unified, shell alias, file unified, file alias, including legacy Codex flag=false', async t => {
+test('connection precedence is nonempty file unified, file alias, startup unified, startup alias', async t => {
   const aliases: Record<Harness, [string, string]> = {
-    codex: ['provider_api_key', 'provider_base_url'],
-    claude: ['ANTHROPIC_API_KEY', 'ANTHROPIC_BASE_URL'],
-    agv: ['AGY_LLM_GATEWAY_API_KEY', 'AGY_LLM_GATEWAY_URL'],
+    codex: ['provider_api_key', 'provider_base_url'],claude: ['ANTHROPIC_API_KEY', 'ANTHROPIC_BASE_URL'],agv: ['AGY_LLM_GATEWAY_API_KEY', 'AGY_LLM_GATEWAY_URL'],
   };
   for (const harness of ['codex', 'claude', 'agv'] as const) {
-    const root = await fixture(t), prefix = `${harness}_`, [aliasKey, aliasUrl] = aliases[harness];
-    const source = `custom_provider=false\n${prefix}api_key=FILE_UNIFIED\n${prefix}base_url=https://file-unified.test/v1\n${aliasKey}=FILE_ALIAS\n${aliasUrl}=https://file-alias.test/v1\n`;
-    await writeFile(join(root, '.env'), source);
-    const load = (shell: NodeJS.ProcessEnv) => loadWorkflowEnvironment(shell, root);
-    assert.equal(load({}).providers![harness].apiKey, 'FILE_UNIFIED');
-    const shellAlias = load({ [aliasKey]: 'SHELL_ALIAS', [aliasUrl]: 'https://shell-alias.test/v1' });
-    assert.equal(shellAlias.providers![harness].apiKey, 'SHELL_ALIAS');
-    assert.equal(shellAlias.providers![harness].baseUrl, 'https://shell-alias.test/v1');
-    assert.equal(shellAlias.providers![harness].sources.apiKey, aliasKey);
-    assert.equal(shellAlias.providers![harness].connection, 'unified');
-    if (harness === 'codex') {
-      assert.equal(shellAlias.codex.config!.model_provider, 'custom');
-      assert.equal(shellAlias.codex.env!.codex_api_key, 'SHELL_ALIAS');
-    }
-    const unified = load({ [prefix + 'api_key']: 'SHELL_UNIFIED', [aliasKey]: 'SHELL_ALIAS' });
-    assert.equal(unified.providers![harness].apiKey, 'SHELL_UNIFIED');
-    assert.equal(load({ [prefix + 'api_key']: '' }).providers![harness].apiKey, 'FILE_ALIAS');
-    assert.equal(await readFile(join(root, '.env'), 'utf8'), source);
+    const root=await fixture(t),prefix=`${harness}_`,[aliasKey,aliasUrl]=aliases[harness];
+    const source=`custom_provider=${harness==='codex'?'true':'false'}\n${prefix}api_key=FILE_UNIFIED\n${prefix}base_url=https://file-unified.test/v1\n${aliasKey}=FILE_ALIAS\n${aliasUrl}=https://file-alias.test/v1\n`;
+    const startup:NodeJS.ProcessEnv={custom_provider:harness==='codex'?'true':'false',[prefix+'api_key']:'STARTUP_UNIFIED',[prefix+'base_url']:'https://startup.test/v1',[aliasKey]:'STARTUP_ALIAS',[aliasUrl]:'https://startup-alias.test/v1'};
+    await writeFile(join(root,'.env'),source);
+    let settings=loadWorkflowEnvironment(startup,root);
+    assert.equal(settings.providers![harness].apiKey,'FILE_UNIFIED');assert.equal(settings.providers![harness].sources.apiKey,prefix+'api_key');
+    assert.equal(settings.providers![harness].baseUrl,'https://file-unified.test/v1');
+    await writeFile(join(root,'.env'),source.replace('FILE_UNIFIED','').replace('https://file-unified.test/v1',''));
+    settings=loadWorkflowEnvironment(startup,root);assert.equal(settings.providers![harness].apiKey,'FILE_ALIAS');assert.equal(settings.providers![harness].sources.apiKey,aliasKey);
+    await writeFile(join(root,'.env'),`${prefix}api_key=\n${prefix}base_url=\n`);
+    settings=loadWorkflowEnvironment(startup,root);assert.equal(settings.providers![harness].apiKey,'STARTUP_UNIFIED');
+    delete startup[prefix+'api_key'];delete startup[prefix+'base_url'];
+    settings=loadWorkflowEnvironment(startup,root);assert.equal(settings.providers![harness].apiKey,'STARTUP_ALIAS');assert.equal(settings.providers![harness].sources.apiKey,aliasKey);
   }
-  const root = await fixture(t);
-  const disabled = loadWorkflowEnvironment({ custom_provider: 'false', provider_api_key: 'unused', provider_base_url: 'https://unused.test/v1' }, root);
-  assert.deepEqual(disabled.codex.config, {});
-  assert.equal(disabled.providers!.codex.apiKey, undefined);
-  const legacy = loadWorkflowEnvironment({ custom_provider: 'true', provider_api_key: 'fixture', provider_base_url: 'https://legacy.test/v1' }, root);
-  assert.equal(legacy.providers!.codex.connection, 'legacy');
-  assert.equal((legacy.codex.config!.model_providers as any).custom.env_key, 'provider_api_key');
+  const root=await fixture(t);
+  const disabled=loadWorkflowEnvironment({custom_provider:'false',provider_api_key:'unused',provider_base_url:'https://unused.test/v1'},root);
+  assert.deepEqual(disabled.codex.config,{});assert.equal(disabled.providers!.codex.apiKey,undefined);
+  const legacy=loadWorkflowEnvironment({custom_provider:'true',provider_api_key:'fixture',provider_base_url:'https://legacy.test/v1'},root);
+  assert.equal(legacy.providers!.codex.connection,'legacy');assert.equal((legacy.codex.config!.model_providers as any).custom.env_key,'provider_api_key');
 });
 
 test('reject unsupported protocols, malformed lists and unusable explicit connections before requests', async t => {
@@ -158,11 +149,13 @@ test('only selected steps are validated, and all validation finishes before any 
   await writeFile(cli, cliFixture, { mode: 0o700 });
   const settings = withCodex(loadWorkflowEnvironment({ claude_path: cli,
     part_review_agent_model: 'claude-sonnet-5-5-high', codex_models: 'gpt-6-astra', claude_models: 'claude-sonnet-5-5' }, root), '/nonexistent/codex');
+  settings.providers!.codex.models=['gpt-6-astra'];
   await preflightAgentSteps(settings, ['part_outline_review']);
   assert.throws(() => validateProviderModel(settings.providers, settings.stepModels.part_outline, 'part_outline'), /part_outline.*gpt-6.1-sol/);
   await assert.rejects(preflightAgentSteps(settings, ['part_outline', 'part_outline_review']), /不在 codex_models/);
   const denied = withCodex(loadWorkflowEnvironment({ claude_path: '/nonexistent/claude',
     codex_models: 'gpt-6.1-sol', part_review_agent_model: 'claude-sonnet-5-5-high', claude_models: 'claude-opus-5-5' }, root), '/nonexistent/codex');
+  denied.providers!.claude.models=['claude-opus-5-5'];
   // First step passes its model list; second fails before probing the first CLI.
   await assert.rejects(preflightAgentSteps(denied, ['part_outline', 'part_outline_review']), /不在 claude_models/);
   const task = { name: 'denied', prompt: 'fixture', cwd: root };
@@ -195,7 +188,7 @@ test('Claude private settings apply model lists and explicit credentials, preser
   assert.equal(a.env.ANTHROPIC_AUTH_TOKEN, undefined);
   assert.equal(a.settings.apiKeyHelper, undefined);
   assert.equal(a.settings.env.ANTHROPIC_AUTH_TOKEN, undefined);
-  assert.deepEqual(a.settings.modelPicker, { options: [{ model: 'claude-sonnet-5-5', label: 'claude-sonnet-5-5' }, { model: 'claude-opus-5-5', label: 'claude-opus-5-5' }], replaceBuiltInOptions: true });
+  assert.deepEqual(a.settings.modelPicker, { options: [{ model: 'claude-sonnet-5-5', label: 'claude-sonnet-5-5' }, { model: 'claude-opus-5-5', label: 'claude-opus-5-5' }], replaceBuiltInOptions: false });
   assert.equal((await stat(join(first.logDirectory!, 'auth-settings.json'))).mode & 0o777, 0o600);
   await writeFile(join(a.env.CLAUDE_CONFIG_DIR, 'session-sentinel'), 'keep');
   await writeFile(join(cwd, 'keep.kra'), 'existing-artifact');
@@ -256,7 +249,7 @@ test('configuration report shows unified sources, model lists and credential pre
     agv_models: 'gemini-4-argon', ANTHROPIC_AUTH_TOKEN: 'TOKEN_SECRET' }, root);
   assert.equal(report.providers.codex.credentialsConfigured, true);
   assert.equal(report.providers.codex.sources.apiKey, 'codex_api_key');
-  assert.deepEqual(report.providers.codex.models, ['gpt-6.1-sol']);
+  assert.deepEqual(report.providers.codex.models, ['gpt-*','gpt-6.1-sol']);
   assert.equal(report.providers.agv.protocol, 'genai');
   assert.equal(report.providers.agv.baseUrl, 'https://agv.test/v1beta');
   assert.doesNotMatch(JSON.stringify(report), /CODEX_SECRET|CLAUDE_SECRET|AGV_SECRET|TOKEN_SECRET/);

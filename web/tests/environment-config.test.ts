@@ -17,7 +17,7 @@ async function fixture(t:any, text?:string, env:NodeJS.ProcessEnv={}) {
  const template=await readFile(new URL('../../.agents/skills/live2d-maker/example.env',import.meta.url),'utf8');
  await writeFile(join(directory,'example.env'),template);
  if(text!==undefined)await writeFile(join(directory,'.env'),text);
- const environment=createEnvironmentConfig({directory,env,probe:async(h)=>({available:h==='codex',detail:h==='codex'?'CLI 1.2.3':'请安装 '+h+' CLI',path:h})});
+ const environment=createEnvironmentConfig({directory,env,authentication:async()=>({kind:'unknown',configured:false}),probe:async(h)=>({available:h==='codex',detail:h==='codex'?'CLI 1.2.3':'请安装 '+h+' CLI',path:h})});
  return {directory,template,environment};
 }
 test('preview masks multiline and inherited credentials while exposing resolved roles and unified provider sources',async t=>{
@@ -30,7 +30,7 @@ test('preview masks multiline and inherited credentials while exposing resolved 
  assert.deepEqual(data.fields.filter(f=>f.section==='image').map(f=>f.key), ['default_image_model', ...imageSteps().map(imageModelKey)]);
  assert.ok(!data.fields.some(f=>f.key==='raster_step03_image_model'));
  const claude=data.fields.find(f=>f.key==='claude_api_key')!;
- assert.equal(claude.overridden,true);assert.equal(claude.sourceKey,'ANTHROPIC_API_KEY');
+ assert.equal(claude.overridden,false);assert.equal(claude.sourceKey,'claude_api_key');assert.equal(claude.effectiveConfigured,true);
  assert.equal(data.providers?.claude.baseUrl,'https://gateway.example');
  assert.equal(data.models.find(m=>m.id==='claude-sonnet-5-5')?.available,false);
 });
@@ -137,13 +137,80 @@ test('web defaults, runtime fallback and generated .env follow the skill templat
 test('head configuration names the shared maker role and exposes the actual video fields and supported models', async t => {
  const f=await fixture(t),data=await f.environment.read();
  const maker=data.fields.find(field=>field.key==='nine_axis_head_agent_model')!;
- assert.equal(maker.label,'头部九轴制作');assert.match(maker.hint!,/脸部、头发与头饰/);
- const fields=data.fields.filter(field=>field.section==='video');
- assert.deepEqual(fields.map(field=>field.key),['video_base_url','video_api_key','nine_axis_view_video_model']);
- assert.equal(fields[1].secret,true);assert.equal(fields[2].type,'select');assert.deepEqual(fields[2].options,[...videoModels]);
+
+ const services=data.fields.filter(field=>field.section==='video-api'),models=data.fields.filter(field=>field.section==='video');
+ assert.deepEqual(services.map(field=>field.key),['video_provider','video_base_url','video_api_key']);
+ assert.deepEqual(models.map(field=>field.key),['nine_axis_view_video_model']);
+ assert.equal(services[2].secret,true);assert.equal(models[0].type,'video');assert.deepEqual(data.videoModels,[...videoModels]);
+ assert.ok(!data.fields.some(field=>field.section==='advanced'&&['video_base_url','video_api_key','nine_axis_view_video_model'].includes(field.key)));
  const saved=await f.environment.save({revision:data.revision,changes:{nine_axis_head_agent_model:'gpt-6-astra-high',video_base_url:'https://video.example/v1',video_api_key:'video-test-secret',nine_axis_view_video_model:'seedance-2-fast'}});
  assert.ok(!JSON.stringify(saved).includes('video-test-secret'));
  const settings=loadWorkflowEnvironment({},f.directory);
  for(const step of ['nine_axis_head','nine_axis_head_hair','nine_axis_head_accessories'] as const)assert.equal(settings.stepModels[step].model,'gpt-6-astra');
  assert.equal(settings.videoApi?.model,'seedance-2-fast');
+});
+
+test('every editable field exists once in the initialization template and default creation preserves all bytes',async t=>{
+ const f=await fixture(t),data=await f.environment.read(),template=parseEnv(f.template),keys=data.fields.map(field=>field.key);
+ assert.equal(new Set(keys).size,keys.length);for(const key of keys)assert.ok(Object.hasOwn(template,key),key);
+ await f.environment.save({revision:data.revision,changes:{}});assert.equal(await readFile(join(f.directory,'.env'),'utf8'),f.template);
+ const actual=loadWorkflowEnvironment({},f.directory);assert.equal(actual.stepModels.nine_axis_head_hair.model,actual.stepModels.nine_axis_head.model);assert.equal(actual.videoApi,undefined);
+});
+
+test('local values win across field families; clearing falls back to startup and saving changes actual runtime settings',async t=>{
+ const local={preparation_agent_model:'gpt-6.1-sol-low',default_image_model:'codex-native',agv_request_compact_mib:'80',claude_image_deduplicate:'false',krita_max_instances:'2',update_check:'false',DISPLAY:':local',nine_axis_view_video_model:'seedance-2-fast'};
+ const startup={preparation_agent_model:'gpt-6-astra-high',default_image_model:'gpt-image-2.5-flare',agv_request_compact_mib:'90',claude_image_deduplicate:'true',krita_max_instances:'6',update_check:'true',DISPLAY:':startup',nine_axis_view_video_model:'seedance-2.5'};
+ const f=await fixture(t,Object.entries(local).map(([k,v])=>`${k}=${v}`).join('\n')+'\n',startup),data=await f.environment.read();
+ for(const [key,value] of Object.entries(local)){const field=data.fields.find(field=>field.key===key)!;assert.equal(field.source,'file',key);assert.equal(field.effective,value,key);}
+ const saved=await f.environment.save({revision:data.revision,changes:{preparation_agent_model:'gpt-6.1-sol-high',agv_request_compact_mib:'',krita_max_instances:'3'}});
+ assert.equal(saved.fields.find(field=>field.key==='agv_request_compact_mib')?.source,'environment');
+ const actual=loadWorkflowEnvironment(startup,f.directory);assert.equal(actual.stepModels.part_pose_judgment.effort,'high');assert.equal(actual.imageBudgets?.agv.bytes,90*1048576);assert.equal(actual.codex.env!.krita_max_instances,'3');assert.equal(actual.codex.env!.DISPLAY,':local');
+});
+
+test('all three connections report effective key and URL sources including aliases without returning secrets',async t=>{
+ const f=await fixture(t,'codex_api_key=LOCAL_CODEX\nclaude_api_key=LOCAL_CLAUDE\nclaude_base_url=https://local.test\n',{codex_api_key:'STARTUP_CODEX',ANTHROPIC_API_KEY:'STARTUP_CLAUDE',ANTHROPIC_BASE_URL:'https://startup.test',AGY_LLM_GATEWAY_API_KEY:'STARTUP_AGV',AGY_LLM_GATEWAY_URL:'https://agv.test'});
+ const data=await f.environment.read();
+ for(const h of ['codex','claude','agv']){const field=data.fields.find(field=>field.key===h+'_api_key')!;assert.equal(field.source,h==='agv'?'environment':'file');assert.equal(field.effectiveConfigured,true);assert.equal(field.value,'');assert.equal(field.effective,undefined);assert.equal(data.connections[h].mode,'api');}
+ assert.equal(data.fields.find(field=>field.key==='agv_base_url')?.sourceKey,'AGY_LLM_GATEWAY_URL');assert.equal(data.fields.find(field=>field.key==='claude_base_url')?.effective,'https://local.test');
+ for(const secret of ['LOCAL_CODEX','LOCAL_CLAUDE','STARTUP_CODEX','STARTUP_CLAUDE','STARTUP_AGV'])assert.ok(!JSON.stringify(data).includes(secret));
+});
+
+test('account and unknown CLI modes stay distinct; explicit API credentials avoid native-auth probing',async t=>{
+ const f=await fixture(t),calls:string[]=[];
+ const config=createEnvironmentConfig({directory:f.directory,env:{},probe:async()=>({available:true,detail:'fixture',path:''}),authentication:async h=>{calls.push(h);return {kind:h==='agv'?'unknown':'account',configured:h!=='agv'};}});
+ const data=await config.read();assert.equal(data.connections.codex.mode,'account');assert.equal(data.connections.claude.mode,'account');assert.equal(data.connections.agv.mode,'cli');
+ assert.equal(data.fields.find(field=>field.key==='codex_api_key')?.source,'cli');assert.equal(data.fields.find(field=>field.key==='codex_api_key')?.effectiveConfigured,true);
+ calls.length=0;const preview=await config.preview({revision:data.revision,changes:{codex_api_key:'API_SECRET'}});
+ assert.equal(preview.connections.codex.mode,'api');assert.ok(!calls.includes('codex'));assert.ok(!JSON.stringify(preview).includes('API_SECRET'));
+});
+
+test('custom model IDs are offered and saved through the declared harness; unknown or ambiguous IDs cannot silently route',async t=>{
+ const f=await fixture(t,'codex_models=gpt-6.1-sol,gpt-6-astra,custom/router-model\n');
+ let data=await f.environment.read();assert.equal(data.models.find(model=>model.id==='custom/router-model')?.harness,'codex');
+ const saved=await f.environment.save({revision:data.revision,changes:{preparation_agent_model:'custom/router-model-high'}});
+ const model=loadWorkflowEnvironment({},f.directory).stepModels.part_pose_judgment;
+ assert.deepEqual(model,{model:'custom/router-model',effort:'high',harness:'codex'});
+ await assert.rejects(f.environment.save({revision:saved.revision,changes:{preparation_agent_model:'undeclared-model-high'}}),/codex_models/);
+ await assert.rejects(f.environment.save({revision:saved.revision,changes:{claude_models:'custom/router-model'}}),/多个服务/);
+ assert.deepEqual(loadWorkflowEnvironment({},f.directory).stepModels.part_pose_judgment,model);
+ data=await f.environment.read();assert.equal(data.fields.find(field=>field.key==='preparation_agent_model')?.effective,'custom/router-model-high');
+});
+
+test('shared model-rule validation blocks malformed drafts, extends defaults and routes free-form image/video IDs',async t=>{
+ const f=await fixture(t),initial=await f.environment.read();
+ for(const key of ['codex_models','claude_models','agv_models','openai_image_models','google_image_models'])for(const rule of ['*','**-**','-*-*','model-**']) {
+  await assert.rejects(f.environment.preview({revision:initial.revision,changes:{[key]:rule}}));
+  await assert.rejects(f.environment.save({revision:initial.revision,changes:{[key]:rule}}));
+ }
+ const saved=await f.environment.save({revision:initial.revision,changes:{codex_models:'custom-*',part_draw_agent_model:'custom-v3-high',
+  openai_image_models:'custom-image-*',default_image_model:'custom-image-v4',openai_image_base_url:'https://images.test/v1',openai_image_api_key:'image-secret-fixture',
+  video_provider:'openrouter',nine_axis_view_video_model:'custom-seedance-v5',video_base_url:'https://video.test/v1',video_api_key:'video-secret-fixture'}});
+ assert.ok(!saved.models.some(model=>model.id.includes('*')));
+ assert.ok(saved.models.some(model=>model.id==='custom-v3'&&model.harness==='codex'));
+ const settings=loadWorkflowEnvironment({},f.directory);
+ assert.deepEqual(settings.providers!.codex.models,['gpt-*','custom-*']);
+ assert.deepEqual(settings.imageRules!.openai,['gpt-*','custom-image-*']);
+ assert.equal(settings.videoApi!.provider,'openrouter');assert.equal(settings.videoApi!.model,'custom-seedance-v5');
+ assert.equal(settings.stepImages.raster_step01,'custom-image-v4');
+ assert.doesNotMatch(JSON.stringify(saved),/image-secret-fixture|video-secret-fixture/);
 });

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
 import { preparePrivateKrita } from './private-environment.ts';
 import { ensureWindowsKritaPlugin, prepareWindowsKritaApplication, windowsKritaConfigDirectory } from './windows-launch.ts';
-import { readDefaultConfiguration } from '../default-configuration.ts';
+import { readDefaultConfiguration, requiredDefault } from '../default-configuration.ts';
 
 // One private Krita per section. A section that needs Krita first reserves a
 // machine-wide slot (queueing while all are taken) and holds it until it ends;
@@ -139,7 +139,7 @@ export const kritaLimitKey = 'krita_max_instances';
 const defaultSlotsDirectory = () => process.env.ASTRA_STUDIO_KRITA_SLOTS || join(tmpdir(), 'astra-krita.slots');
 
 export function kritaLimit(env: NodeJS.ProcessEnv, defaults: Readonly<Record<string, string>> = readDefaultConfiguration()): number {
-  const value = env[kritaLimitKey]?.trim() || defaults[kritaLimitKey]?.trim() || '';
+  const value = env[kritaLimitKey]?.trim() || requiredDefault(defaults,kritaLimitKey);
   const limit = Number(value);
   if (!/^\d+$/.test(value) || !Number.isSafeInteger(limit) || limit < 1) throw new Error(`${kritaLimitKey} 须为正整数：${value || '（空）'}`);
   return limit;

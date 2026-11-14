@@ -3,18 +3,18 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import sharp from 'sharp';
 import type { ImageProcessingOptions } from '../image-processing.ts';
-import { imageModelProviders, type ImageModel } from './models.ts';
+import { imageProvider, type ImageProvider, type ImageModel } from './models.ts';
 import type { ImageArguments } from './images.ts';
 import { recommendBackground, type BackgroundRecommendation } from './background-selection.ts';
 import { counterpartBackground, recoverDualBackground } from './dual-background.ts';
 
-export function needsSolidBackground(model: ImageModel, args: ImageArguments): boolean {
-  return imageModelProviders[model] === 'google' && (args.background ?? 'transparent') === 'transparent';
+export function needsSolidBackground(model: ImageModel, args: ImageArguments, provider?: ImageProvider): boolean {
+  return (provider ?? imageProvider(model)) === 'google' && (args.background ?? 'transparent') === 'transparent';
 }
 
 // Keep the caller's task verbatim; only the provider's output-background contract changes.
-export async function providerImageArguments(model: ImageModel, args: ImageArguments, selection?: BackgroundRecommendation): Promise<ImageArguments> {
-  if (!needsSolidBackground(model, args)) return args;
+export async function providerImageArguments(model: ImageModel, args: ImageArguments, selection?: BackgroundRecommendation, provider?: ImageProvider): Promise<ImageArguments> {
+  if (!needsSolidBackground(model, args, provider)) return args;
   const background = selection ?? await recommendBackground([]);
   return { ...args, prompt: renderPromptFile(new URL('../prompts/image-request.md', import.meta.url), { drawing_prompt: args.prompt,
     background_instructions: renderPromptFile(new URL('../prompts/nano-solid-background.md', import.meta.url), { background_hex: background.hex }).trim() }).trimEnd(), background: 'opaque' };

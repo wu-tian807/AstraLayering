@@ -15,7 +15,7 @@ import type { VideoApi } from '../shared/codex/environment.ts';
 // the front once; pitch and corners reuse that registration without recropping.
 export const profileAngle = 90, turnSeconds = '5';
 const background = 128, margin = 0.06, neckFaces = 0.5;
-const terminal = new Set(['completed', 'failed', 'cancelled', 'expired']);
+const terminal = new Set(['completed','succeeded','failed','cancelled','expired']);
 
 export type TurnInput = { color: string; document?: string; source: ChainStep; parts: string[] };
 export type Box = { x: number; y: number; size: number };
@@ -86,35 +86,46 @@ async function call(api: VideoApi, method: string, path: string, signal: AbortSi
 }
 
 export type VideoResult = { id: string; status: Record<string, unknown>; bytes: Buffer };
-// OpenAI Videos API: the first frame goes as a data URL in JSON (the proxy
-// ignores multipart files); the result is polled, then downloaded.
+// Business inputs are stable; provider adapters own the wire format.
 export async function generateVideo(api: VideoApi, prompt: string, image: Buffer,
   { signal, progress, poll = 10_000, timeout = 30 * 60_000 }: { signal?: AbortSignal; progress?: (message: string) => void; poll?: number; timeout?: number } = {}): Promise<VideoResult> {
   signal = AbortSignal.any([AbortSignal.timeout(timeout), ...signal ? [signal] : []]);
   signal.throwIfAborted();
-  const created = await (await call(api, 'POST', '/videos', signal,
-    { model: api.model, prompt, seconds: turnSeconds, input_reference: 'data:image/png;base64,' + image.toString('base64') })).json() as Record<string, unknown>;
-  const id = String(created.id ?? '');
-  if (!id) throw new Error(`生视频没有返回任务 id：${redact(JSON.stringify(created), api)}`);
+  const dataUrl='data:image/png;base64,'+image.toString('base64');
+  const volc=api.provider==='volcengine', router=api.provider==='openrouter';
+  const path=volc?'/contents/generations/tasks':'/videos';
+  const body=volc?{model:api.model,content:[{type:'text',text:prompt},
+    {type:'image_url',image_url:{url:dataUrl},role:'first_frame'}],duration:Number(turnSeconds),resolution:'720p',ratio:'1:1',generate_audio:false}
+    :router?{model:api.model,prompt,duration:Number(turnSeconds),resolution:'720p',aspect_ratio:'1:1',generate_audio:false,
+      frame_images:[{type:'image_url',image_url:{url:dataUrl},frame_type:'first_frame'}]}
+    :{model:api.model,prompt,seconds:turnSeconds,input_reference:dataUrl};
+  const created=await (await call(api,'POST',path,signal,body)).json() as Record<string,unknown>;
+  const id=String(created.id??'');
+  if(!id)throw new Error(`生视频没有返回任务 id：${redact(JSON.stringify(created),api)}`);
   progress?.(`已提交生视频 ${id}（${api.model}）`);
-  let status = created;
-  while (!terminal.has(String(status.status))) {
-    await delay(poll, undefined, { signal });
-    status = await (await call(api, 'GET', `/videos/${encodeURIComponent(id)}`, signal)).json() as Record<string, unknown>;
+  let status=created;
+  while(!terminal.has(String(status.status))) {
+    await delay(poll,undefined,{signal});
+    status=await (await call(api,'GET',`${path}/${encodeURIComponent(id)}`,signal)).json() as Record<string,unknown>;
   }
-  if (status.status !== 'completed') throw new Error(`生视频失败：${redact(JSON.stringify(status), api)}`);
-  // The proxy sometimes cuts a download short.
-  for (let attempt = 1; ; attempt++) {
-    try {
-      const response = await call(api, 'GET', `/videos/${encodeURIComponent(id)}/content`, signal);
-      const bytes = Buffer.from(await response.arrayBuffer()), length = Number(response.headers.get('content-length'));
-      if (!bytes.length) throw new Error('下载没有产出视频内容');
-      if (length && bytes.length !== length) throw new Error(`下载不完整（${bytes.length}/${length} 字节）`);
-      return { id, status, bytes };
-    } catch (error) {
-      if (attempt >= 3 || signal?.aborted) throw new Error(`生视频 ${id} 下载失败`, { cause: error });
-      progress?.(`生视频下载中断，重试 ${attempt}`);
-    }
+  if(status.status!==(volc?'succeeded':'completed'))throw new Error(`生视频失败：${redact(JSON.stringify(status),api)}`);
+  const download=async()=>{
+    if(!volc)return call(api,'GET',`/videos/${encodeURIComponent(id)}/content${router?'?index=0':''}`,signal);
+    const url=(status.content as Record<string,unknown>|undefined)?.video_url;
+    if(typeof url!=='string'||!/^https?:\/\//.test(url))throw new Error('生视频没有返回可下载的 video_url');
+    // Signed CDN URLs carry their own authorization; never forward the API key.
+    const response=await fetch(url,{signal});
+    if(!response.ok)throw new Error(`生视频下载 HTTP ${response.status}`);
+    return response;
+  };
+  for(let attempt=1;;attempt++)try {
+    const response=await download(),bytes=Buffer.from(await response.arrayBuffer()),length=Number(response.headers.get('content-length'));
+    if(!bytes.length)throw new Error('下载没有产出视频内容');
+    if(length&&bytes.length!==length)throw new Error(`下载不完整（${bytes.length}/${length} 字节）`);
+    return {id,status,bytes};
+  }catch(error) {
+    if(attempt>=3||signal.aborted)throw new Error(`生视频 ${id} 下载失败`,{cause:error});
+    progress?.(`生视频下载中断，重试 ${attempt}`);
   }
 }
 

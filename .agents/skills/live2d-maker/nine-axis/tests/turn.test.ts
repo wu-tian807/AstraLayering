@@ -156,10 +156,10 @@ test('转头提示词向左；生视频只用自己的接口，不读生图接�
   assert.equal(loadWorkflowEnvironment({ openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'i' }).videoApi, undefined);
   assert.throws(() => loadWorkflowEnvironment({ video_base_url: 'https://video.example/v1' }), /video_api_key/);
   assert.deepEqual(loadWorkflowEnvironment({ layering_video_base_url: 'https://video.example/v1', layering_video_api_key: 'k' }).videoApi,
-    { baseUrl: 'https://video.example/v1', apiKey: 'k', model: 'seedance-2.5' });
+    { provider:'volcengine',baseUrl: 'https://video.example/v1', apiKey: 'k', model: 'doubao-seedance-2-5-260628' });
   assert.deepEqual(loadWorkflowEnvironment({ openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'i',
     video_base_url: 'https://video.example/v1', video_api_key: 'k', nine_axis_view_video_model: 'seedance-2-fast' }).videoApi,
-    { baseUrl: 'https://video.example/v1', apiKey: 'k', model: 'seedance-2-fast' });
+    { provider:'volcengine',baseUrl: 'https://video.example/v1', apiKey: 'k', model: 'seedance-2-fast' });
   await assert.rejects(ffmpegPath({ PATH: '' }), (error: unknown) => error instanceof MissingDependencyError);
 });
 
@@ -182,11 +182,11 @@ test('生视频提交、轮询并下载，错误中不含密钥', async t => {
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(() => server.close());
   const base = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
-  const api = { baseUrl: base, apiKey: 'secret-key', model: 'seedance-test' };
+  const api = { provider:'openai' as const, baseUrl: base, apiKey: 'secret-key', model: 'seedance-test' };
   const video = await generateVideo(api, 'turn', Buffer.from('png'), { poll: 1 });
   assert.equal(video.bytes.toString(), 'mp4');
   assert.equal(requests[0], 'POST /videos Bearer secret-key');
-  await assert.rejects(generateVideo({ ...api, baseUrl: base + '/x' }, 'turn', Buffer.from('png'), { poll: 1 }),
+  await assert.rejects(generateVideo({ provider:'openai', ...api, baseUrl: base + '/x' }, 'turn', Buffer.from('png'), { poll: 1 }),
     (error: Error) => !error.message.includes('secret-key') && error.message.includes('[redacted]'));
 });
 

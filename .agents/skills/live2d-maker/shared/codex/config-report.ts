@@ -4,6 +4,8 @@ import { parseEnv } from 'node:util';
 import { workflowsDirectory } from '../paths.ts';
 import { stepModelSlots, type AgentStep } from '../agents/models.ts';
 import { loadWorkflowEnvironment } from './environment.ts';
+import { configurationSources } from '../configuration-sources.ts';
+import { readDefaultConfiguration } from '../default-configuration.ts';
 
 // Read the same configuration as a worker, but never start a model or expose credentials.
 export function configurationReport(env: NodeJS.ProcessEnv = process.env, directory = workflowsDirectory) {
@@ -12,11 +14,12 @@ export function configurationReport(env: NodeJS.ProcessEnv = process.env, direct
   const path = join(directory, '.env');
   try { file = parseEnv(readFileSync(path, 'utf8')); }
   catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+  const sources=configurationSources(file,env),keys=new Set([...Object.keys(readDefaultConfiguration(directory)),...Object.keys(file)]);
   return {
     verification: 'configuration-only',
     skill: directory,
     configuration: path,
-    shellOverrides: Object.keys(file).filter(key => env[key] !== undefined).sort(),
+    environmentFallbacks: Object.keys(sources.environment).filter(key=>keys.has(key)&&sources.environment[key]?.trim()&&!sources.file[key]?.trim()).sort(),
     codex: {
       executable: 'managed patched Codex (prepared at startup)',
       patchAutoBuild: true,

@@ -1,4 +1,4 @@
-import { checkCodexCapabilities, defaultModels, loadWorkflowEnvironment, workflowCodexOptions, type WorkflowEnvironment } from './environment.ts';
+import { checkCodexCapabilities, loadWorkflowEnvironment, workflowCodexOptions, type WorkflowEnvironment } from './environment.ts';
 import { toolDefinition } from './tool-config.ts';
 import { workflowsDirectory } from '../paths.ts';
 import type { CodexOptions } from '@openai/codex-sdk';
@@ -20,7 +20,6 @@ import { executionPaths } from '../agents/workspace.ts';
 import { freshPrompt } from './fresh-prompt.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
 
-export const agentDefaults = defaultModels.medium;
 
 export type AgentTask = {
   step?: AgentStep;

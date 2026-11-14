@@ -42,15 +42,16 @@ pnpm web --port 4387
 
 九轴需要 FFmpeg 和独立的 Seedance 视频服务。在“全局设置”中浏览或扫描 FFmpeg，可选择系统安装或手动解压的可执行文件；agent 用 `extract_video_frame` 工具抽帧，路径由工具内部处理。
 
-在“管线配置 → 环境与模型 → 运行环境”填写：
+在“管线配置 → 环境与模型 → 视频服务”填写地址和密钥，在“视频模型”选择模型：
 
 ```ini
-video_base_url=https://你的视频服务地址/v1
+video_provider=volcengine
+video_base_url=https://ark.cn-beijing.volces.com/api/v3
 video_api_key=你的视频服务密钥
-nine_axis_view_video_model=seedance-2.5
+nine_axis_view_video_model=doubao-seedance-2-5-260628
 ```
 
-支持 Seedance 2.5 和 2.0 系列：`seedance-2.5`、`seedance-2`、`seedance-2-fast`、`seedance-2-mini`，以及对应的 `-las` 型号。默认 `seedance-2.5`。仅制作到阴影时，按普通绘制依赖配置即可。[九轴步骤与依赖](../.agents/skills/live2d-maker/nine-axis/README.md)。
+支持火山官方（默认）、OpenRouter 和 OpenAI 兼容视频服务（含 LiteLLM），模型可选预设或输入。旧兼容配置填写 `video_provider=openai`。仅制作到阴影时无需视频服务。[九轴步骤与依赖](../.agents/skills/live2d-maker/nine-axis/README.md)。
 
 ## 任务执行与流程预览
 
@@ -76,8 +77,10 @@ nine_axis_view_video_model=seedance-2.5
 
 “管线配置”包含两个页签：
 
-- **环境与模型**：选择语言模型、生图模型，配置服务连接和运行环境。修改后先点“预览生效配置”，再点“保存配置”。密钥框留空保留已有值，清除使用“清除已存值”。
+- **环境与模型**：从预设选择或输入语言模型 ID，自定义 ID 需加入对应服务的可用模型列表；选择生图和视频模型，配置服务连接和运行环境。修改后先点“预览生效配置”，再点“保存配置”。密钥框留空保留已有值，清除使用“清除已存值”。
 - **先验知识**：浏览提示词、参考资料和工具说明，支持搜索、媒体预览以及 Git 版本对照。
+
+配置按非空 `.env` → 启动环境 → 默认值读取，留空允许回退。字段显示实际来源；三种 CLI 的 API 连接、账号登录／订阅和未确认类型分别标识，凭据只显示是否存在，不显示内容。
 
 模型与服务配置保存在当前安装的 skill `.env`，在下一次启动或续跑时生效。运行中的请求沿用启动时配置。多个窗口同时修改时，按提示重新读取后再保存。
 

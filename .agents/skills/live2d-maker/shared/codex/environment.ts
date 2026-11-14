@@ -5,26 +5,26 @@ import { promisify } from 'node:util';
 import { execFile } from 'node:child_process';
 import type { CodexOptions, ThreadOptions } from '@openai/codex-sdk';
 import { workflowsDirectory } from '../paths.ts';
-import { readDefaultConfiguration, requiredDefault } from '../default-configuration.ts';
+import { readDefaultConfiguration } from '../default-configuration.ts';
 import { kritaLimit, kritaLimitKey } from '../krita/section-krita.ts';
 import { withNodePath } from '../process-environment.ts';
 import { imageBudget, type ImageBudget } from '../../patches/shared/visual-context.ts';
-import { withLegacyKeys } from '../legacy-keys.ts';
-import { resolveModelDefaults, modelSlotKey, legacyModelSlotKey, defaultImageModelKey, legacyDefaultImageModelKey, imageModelKey, legacyImageModelKey, resolveImageDefaults, stepModelSlots, imageSteps, imageModelProviders, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
+import { configurationSources } from '../configuration-sources.ts';
+import { resolveModelDefaults, modelSlotKey, legacyModelSlotKey, defaultImageModelKey, legacyDefaultImageModelKey, imageModelKey, legacyImageModelKey, resolveImageDefaults, stepModelSlots, imageSteps, imageProvider, imageModelRules, type ImageModelRules, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
 import { resolveHarnessProviders, validateApiUrl, type HarnessProviders } from '../agents/providers.ts';
-import { videoModel } from '../video.ts';
+import { videoModel, videoProvider, type VideoApi } from '../video.ts';
+export type { VideoApi } from '../video.ts';
 export { validateApiUrl } from '../agents/providers.ts';
 
 export type ModelTier = 'medium' | 'high';
 export type ModelSelection = { model: string; effort: NonNullable<ThreadOptions['modelReasoningEffort']> };
 function tierDefaults(roles: ReturnType<typeof resolveModelDefaults>): Record<ModelTier, ModelSelection> {
   const selection = (value: string): ModelSelection => {
-    const { model, effort } = parseAgentModel(value, 'example.env');
-    return { model, effort };
+    const index=value.lastIndexOf('-');
+    return {model:value.slice(0,index),effort:value.slice(index+1) as ModelSelection['effort']};
   };
   return { medium: selection(roles.part_draw), high: selection(roles.raster_step01) };
 }
-export const defaultModels = tierDefaults(resolveModelDefaults(readDefaultConfiguration()));
 
 // Legacy tier overrides retain their historical roles when the default model changes.
 const legacyHighModelSlots: readonly ModelSlot[] = ['raster_step01', 'raster_step02', 'raster_step01_review'];
@@ -34,6 +34,7 @@ export type WorkflowEnvironment = {
   stepModels: Record<AgentStep, AgentModel>;
   stepImages: Partial<Record<AgentStep, ImageModel>>;
   imageApis: Partial<Record<'openai' | 'google', ImageApi>>;
+  imageRules?: ImageModelRules;
   // The video API of the nine-axis turn; without it that step cannot run.
   videoApi?: VideoApi;
   cliPaths: Partial<Record<Harness, string>>;
@@ -43,7 +44,6 @@ export type WorkflowEnvironment = {
   providers?: HarnessProviders;
 };
 
-export type VideoApi = { baseUrl: string; apiKey: string; model: string };
 
 export function parseModel(value: string | undefined, fallback: ModelSelection, name: string): ModelSelection {
   if (!value?.trim()) return { ...fallback };
@@ -53,7 +53,7 @@ export function parseModel(value: string | undefined, fallback: ModelSelection, 
 }
 
 // Never change process.env or ~/.codex. The captured environment belongs to this invocation.
-// Shell variables override .env; relative configuration paths are based on live2d-maker.
+// Nonempty .env values override the startup environment; relative paths are based on live2d-maker.
 export function loadWorkflowEnvironment(env: NodeJS.ProcessEnv = process.env, directory = workflowsDirectory): WorkflowEnvironment {
   let source = '';
   try { source = readFileSync(join(directory, '.env'), 'utf8'); }
@@ -64,15 +64,17 @@ export function loadWorkflowEnvironment(env: NodeJS.ProcessEnv = process.env, di
 // The workbench validates drafts with exactly the same resolver as new workers.
 export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEnv = process.env,
   directory = workflowsDirectory): WorkflowEnvironment {
-  const env = withLegacyKeys(shell);
+  const sources = configurationSources(parseEnv(source),shell),env=sources.environment;
   const defaults = readDefaultConfiguration(directory);
   const roleDefaults = resolveModelDefaults(defaults), imageDefaults = resolveImageDefaults(defaults);
   const tiers = tierDefaults(roleDefaults);
-  const file = withLegacyKeys(parseEnv(source));
-  const effective = Object.fromEntries(Object.entries({ ...file, ...env }).filter((entry): entry is [string, string] => entry[1] !== undefined));
+  const file = sources.file;
+  const runtimeDefaults=Object.fromEntries(Object.entries(defaults).filter(([key])=>!key.endsWith('_agent_model')&&!key.endsWith('_image_model')&&key!=='image_model'));
+  const effective = Object.fromEntries(Object.entries(configurationSources(file,env,runtimeDefaults).effective).filter((entry): entry is [string, string] => entry[1] !== undefined));
   delete effective.codex_path;
   delete effective.layering_codex_path;
   const get = (name: string) => effective[name]?.trim();
+  const selected=(name:string)=>sources.effective[name]?.trim();
   const flag = get('custom_provider');
   if (flag && !['true', 'false', '1', '0'].includes(flag)) throw new Error('custom_provider 只能为 true 或 false。');
   if (get('agv_patch')) throw new Error('agv_patch 已改名为 agv_unlimited_response_header_timeout，请在 .env 中改用新名称。');
@@ -82,7 +84,7 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
   // Normalized here so a bad value fails before any section starts.
   effective[kritaLimitKey] = String(kritaLimit(effective, defaults));
   const config: NonNullable<CodexOptions['config']> = {};
-  const providers = resolveHarnessProviders(file, env, effective, flag === 'true' || flag === '1');
+  const providers = resolveHarnessProviders(file, env, effective, flag === 'true' || flag === '1',runtimeDefaults);
   const unifiedCodex = providers.codex.connection === 'unified';
   if (unifiedCodex || flag === 'true' || flag === '1') {
     config.model_provider = 'custom';
@@ -112,24 +114,25 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
   const slotModels = {} as Record<ModelSlot, AgentModel>;
   for (const [slot, fallback] of Object.entries(roleDefaults) as [ModelSlot, string][]) {
     const key = modelSlotKey(slot);
-    let selection: string | undefined = get(key) || get(legacyModelSlotKey(slot));
+    let selection: string | undefined = sources.select([key,legacyModelSlotKey(slot)])?.value;
     if (!selection) {
       // An old per-step file can be reused when its values agree for this role.
       // Never silently choose between differing character/clothing or draw/repair settings.
       const previous = Object.entries(stepModelSlots).filter(([, role]) => role === slot)
-        .map(([step]) => `layering_${step}_model`).filter(name => get(name));
+        .map(([step]) => `layering_${step}_model`).filter(name => selected(name));
       const values = new Set(previous.map(name => {
-        const parsed = parseAgentModel(get(name)!, name);
+        const parsed = parseAgentModel(selected(name)!, name,providers);
         return `${parsed.model}-${parsed.effort}`;
       }));
       if (values.size > 1) throw new Error(`旧模型配置 ${previous.join('、')} 不一致；请设置统一的 ${key}。原 .env 不会自动改写。`);
       selection = values.values().next().value;
     }
-    const tier = get(legacyHighModelSlots.includes(slot) ? 'high_model' : 'medium_model');
-    slotModels[slot] = parseAgentModel(selection || tier || fallback, key);
+    const tier = selected(legacyHighModelSlots.includes(slot) ? 'high_model' : 'medium_model');
+    slotModels[slot] = parseAgentModel(selection || tier || fallback, key,providers);
   }
   const stepModels = Object.fromEntries(Object.entries(stepModelSlots)
     .map(([step, slot]) => [step, { ...slotModels[slot] }])) as WorkflowEnvironment['stepModels'];
+  const imageRules=imageModelRules(defaults,sources.effective);
   const imageApis: WorkflowEnvironment['imageApis'] = {};
   for (const provider of ['openai', 'google'] as const) {
     const baseUrl = get(`${provider}_image_base_url`) || (provider === 'openai' ? imageUrl : undefined);
@@ -139,27 +142,27 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
     if (baseUrl || apiKey) {
       if (!baseUrl || !apiKey) throw new Error(`${provider} 生图需要同时填写 ${provider}_image_base_url 和 ${provider}_image_api_key。`);
       validateApiUrl(baseUrl, `${provider}_image_base_url`);
-      imageApis[provider] = { baseUrl, apiKey, protocol: protocol as ImageApi['protocol'] };
+      imageApis[provider] = { baseUrl, apiKey, provider, protocol: protocol as ImageApi['protocol'] };
     }
   }
   // The video service has its own keys; the image services are never used for it.
+  const selectedVideoProvider=videoProvider(get('video_provider')!), selectedVideoModel=videoModel(get('nine_axis_view_video_model')!);
   const videoUrl = get('video_base_url'), videoKey = get('video_api_key');
   let videoApi: VideoApi | undefined;
   if (videoUrl || videoKey) {
     if (!videoUrl || !videoKey) throw new Error('生视频需要同时填写 video_base_url 和 video_api_key。');
     validateApiUrl(videoUrl, 'video_base_url');
-    videoApi = { baseUrl: videoUrl, apiKey: videoKey, model: videoModel(get('nine_axis_view_video_model') || requiredDefault(defaults, 'nine_axis_view_video_model')) };
+    videoApi = { provider:selectedVideoProvider,baseUrl: videoUrl, apiKey: videoKey, model:selectedVideoModel };
   }
   const stepImages: WorkflowEnvironment['stepImages'] = {};
-  const defaultImage = get(defaultImageModelKey) || get(legacyDefaultImageModelKey);
+  const defaultImage = sources.select([defaultImageModelKey,legacyDefaultImageModelKey])?.value;
   const fallbackImage = defaultImage || (imageUrl ? imageModel : imageDefaults.model);
   for (const step of imageSteps()) {
     const key = imageModelKey(step), legacy = legacyImageModelKey(step);
-    // Explicit blank means inherit the chosen global model. Missing keys may
-    // inherit a step-specific template default, while legacy image routes stay intact.
-    const value = get(key) || get(legacy) || (Object.hasOwn(effective, key) || Object.hasOwn(effective, legacy) || defaultImage || imageUrl
+    // Empty values allow fallback. A configured global model overrides template step defaults.
+    const value = sources.select([key,legacy])?.value || (defaultImage || imageUrl
       ? fallbackImage : imageDefaults.steps[step]);
-    if (!Object.hasOwn(imageModelProviders, value)) throw new Error(`${key} 必须为 ${Object.keys(imageModelProviders).join(', ')}。`);
+    imageProvider(value,imageRules);
     stepImages[step] = value as ImageModel;
   }
   const cliPaths: WorkflowEnvironment['cliPaths'] = {};
@@ -168,7 +171,7 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
     if (value) cliPaths[harness] = path(value);
   }
   return {
-    stepModels, stepImages, imageApis, cliPaths, imageBudgets, providers, ...(videoApi ? { videoApi } : {}),
+    stepModels, stepImages, imageApis, imageRules, cliPaths, imageBudgets, providers, ...(videoApi ? { videoApi } : {}),
     models: {
       medium: parseModel(get('medium_model'), tiers.medium, 'medium_model'),
       high: parseModel(get('high_model'), tiers.high, 'high_model'),

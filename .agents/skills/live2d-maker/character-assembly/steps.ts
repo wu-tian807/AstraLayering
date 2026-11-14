@@ -1,12 +1,11 @@
 import { stepKnowledge } from '../shared/knowledge.ts';
 import { dirname } from 'node:path';
-import { defaultModels } from '../shared/codex/environment.ts';
 import type { StepDefinition } from '../shared/raster/steps.ts';
 import type { AssemblyInput } from './input.ts';
 import { taskRootOf } from '../shared/task-paths.ts';
 
 export const steps = [{
-  id: 'step01', title: '人物与衣服 KRA 组装', ...defaultModels.high, modelStep: 'assembly',
+  id: 'step01', title: '人物与衣服 KRA 组装', modelStep: 'assembly',
   knowledge: { section: 'character-assembly', step: 'step01' },
   requiredFiles: ['character-assembled.kra', 'character-assembled.png', 'report.md'],
   previewFiles: ['final-overall-comparison.jpg'],
