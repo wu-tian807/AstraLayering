@@ -47,8 +47,8 @@ const agents: Record<AgentStep, { section: string; step: string; role?: Knowledg
   nine_axis_head_accessories: { section: 'nine-axis', step: 'step09_head-accessories' },
 };
 
-export function agentImageGeneration(step: AgentStep): boolean {
+export function agentImageGeneration(step: AgentStep, directory?:string): boolean {
   const agent = agents[step];
   if (!agent) throw new Error(`未登记 agent 的先验知识：${step}`);
-  return stepKnowledge(agent.section, agent.step).imageGeneration(agent.role ?? 'main');
+  return stepKnowledge(agent.section, agent.step, directory).imageGeneration(agent.role ?? 'main');
 }

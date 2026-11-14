@@ -1,3 +1,4 @@
+import {requestLogNames} from '../../shared/tests/request-logs.ts';
 import {checkCodexCapabilities, loadWorkflowEnvironment} from '../../shared/codex/environment.ts';
 import { profile } from '../profile.ts';
 import assert from 'node:assert/strict';
@@ -22,7 +23,7 @@ async function fixture(t: TestContext) {
   return { directory, logDirectory: join(directory, 'part-layering/agents') };
 }
 async function log(root: string) {
-  const names = await readdir(root);
+  const names = await requestLogNames(root);
   const directory = join(root, names[0]);
   return {
     request: JSON.parse(await readFile(join(directory, 'request.json'), 'utf8')),
@@ -117,7 +118,7 @@ test('原生初始分组可裁剪放大回传图片、保存正式分组，开�
     assert.doesNotMatch(value, /test-secret-must-not-log/);
   }
   await runLayering({ profile, directory, references, groups: null, steps });
-  assert.equal((await readdir(f.logDirectory)).length, 1);
+  assert.equal((await requestLogNames(f.logDirectory)).length, 1);
 });
 
 test('函数异常回传 success=false，保留参数与错误，回合失败不记成功', async t => {
@@ -150,7 +151,7 @@ test('绘制会话多轮沿用一个 thread，回调按当前回合绑定；关�
     const turns = protocol.filter(message => message.method === 'turn/start');
     assert.equal(turns.length, 2);
     assert.ok(turns.every(message => message.params.threadId === first.threadId));
-    const names = await readdir(f.logDirectory);
+    const names = await requestLogNames(f.logDirectory);
     assert.equal(names.length, 2);
     const results = await Promise.all(names.map(name => readFile(join(f.logDirectory, name, 'result.json'), 'utf8')));
     assert.ok(results.every(value => JSON.parse(value).threadId === first.threadId));
@@ -305,9 +306,9 @@ test('原生容量失败恢复同一 thread，续接只发固定的中断继续�
   assert.ok(turns.slice(1).every(message => message.params.input[0].text.startsWith(interruptedTaskPrompt())));
   assert.ok(turns.slice(1).every(message => !message.params.input[0].text.includes(originalPrompt)));
   assert.ok(turns.slice(1).every(message => !message.params.input[0].text.includes('existing-image.png')));
-  assert.equal((await readdir(f.logDirectory)).length, 3);
+  assert.equal((await requestLogNames(f.logDirectory)).length, 3);
   assert.equal(messages.filter(message => message.includes('限流等待（临时错误）')).length, 2);
-  const names = await readdir(f.logDirectory);
+  const names = await requestLogNames(f.logDirectory);
   const statuses = await Promise.all(names.map(async name => JSON.parse(await readFile(join(f.logDirectory,name,'result.json'),'utf8')).status));
   assert.deepEqual(statuses.sort(), ['completed','failed','failed']);
 });
@@ -344,10 +345,10 @@ test('无工具一次性回合、原生任务和保留会话共享同一个并�
     const plain = agents.run({name:'无工具排队',prompt:'test'});
     const native = agents.run({name:'原生排队',prompt:'test',tools:[tool(async () => textResult('ok'))]});
     await new Promise(setImmediate);
-    assert.equal((await readdir(f.logDirectory)).length, 1);
+    assert.equal((await requestLogNames(f.logDirectory)).length, 1);
     release.resolve();
     await Promise.all([first,plain,native]);
-    assert.equal((await readdir(f.logDirectory)).length, 3);
+    assert.equal((await requestLogNames(f.logDirectory)).length, 3);
   } finally {release.resolve();await session.close();}
 });
 

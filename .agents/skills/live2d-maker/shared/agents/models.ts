@@ -1,5 +1,6 @@
 import { requiredDefault, type DefaultConfiguration } from '../default-configuration.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
+import { defaultKnowledgeDirectory } from '../knowledge.ts';
 import { matchModelService, parseModelPatterns } from './model-patterns.ts';
 
 export const modelHarnesses = {
@@ -66,7 +67,7 @@ export const stepModelSlots = {
   nine_axis_head_accessories: 'nine_axis_head',
 } as const satisfies Record<string, ModelSlot>;
 export type AgentStep = keyof typeof stepModelSlots;
-export const imageSteps = (): AgentStep[] => (Object.keys(stepModelSlots) as AgentStep[]).filter(agentImageGeneration);
+export const imageSteps = (): AgentStep[] => (Object.keys(stepModelSlots) as AgentStep[]).filter(step => agentImageGeneration(step));
 export function parseAgentModel(value: string, key: string, catalog:ModelCatalog={}): AgentModel {
   const match = value.trim().match(/^(.+)-(low|medium|high|xhigh)$/);
   if (!match || !/^[a-zA-Z0-9][a-zA-Z0-9._:/-]*$/.test(match[1])) {
@@ -112,9 +113,12 @@ export function resolveImageDefaults(configuration: DefaultConfiguration) {
   };
   const model = parse(requiredDefault(configuration, defaultImageModelKey), defaultImageModelKey);
   const legacy = parse(requiredDefault(configuration, 'image_model'), 'image_model');
+  for(const step of Object.keys(stepModelSlots) as AgentStep[]) {
+    const key=imageModelKey(step);
+    if(agentImageGeneration(step,defaultKnowledgeDirectory)&&!Object.hasOwn(configuration,key))throw new Error(`live2d-maker/example.env 缺少配置字段：${key}`);
+  }
   const steps = Object.fromEntries(imageSteps().map(step => {
     const key = imageModelKey(step);
-    if(!Object.hasOwn(configuration,key))throw new Error(`live2d-maker/example.env 缺少配置字段：${key}`);
     const value = configuration[key]?.trim();
     return [step, value ? parse(value, key) : model];
   })) as Record<AgentStep, ImageModel>;
