@@ -10,7 +10,7 @@ export function executionStatus(marker, { active = false, failed = false, waitin
 // Containers summarize their children. Saved partial work remains visible,
 // while active or failed states take precedence over sibling artifacts.
 export function aggregateStatus(values) {
-  for (const status of ['running', 'throttled', 'failed', 'interrupted', 'unconfirmed']) {
+  for (const status of ['throttled', 'running', 'failed', 'interrupted', 'unconfirmed']) {
     if (values.includes(status)) return status;
   }
   if (values.length && values.every(value => value === 'done' || value === 'skipped')) return 'done';

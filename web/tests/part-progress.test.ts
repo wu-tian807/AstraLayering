@@ -400,7 +400,7 @@ test('a call waiting to retry shows 限流等待 with the logged error verbatim 
   let value = await f.get();
   assert.deepEqual(value.part.groups.map(node => node.webPhases.outline), ['throttled', 'running']);
   assert.equal(value.part.groups[0].webMessages.outline, '限流等待');
-  assert.equal(value.part.states.outline, 'running');
+  assert.equal(value.part.states.outline, 'throttled', 'a waiting call takes precedence in the aggregate');
   await f.put('agents/hair/result.json', { status: 'completed' });
   assert.equal((await f.get()).part.states.outline, 'throttled', 'the finished call is no longer reported as running');
   await f.put('agents/review/request.json', { task: { name: '组轮廓review-hair' } });

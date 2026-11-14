@@ -14,7 +14,7 @@ import { steps as assemblySteps } from '../.agents/skills/live2d-maker/character
 import { nextReviewTask } from '../.agents/skills/live2d-maker/shared/raster/review.ts';
 import { agentRecord, inventory, jsonFile, safePath } from './files.ts';
 import { partProgress, phases } from './part-progress.ts';
-import { currentAgentCalls, throttled } from './agent-progress.ts';
+import { currentAgentCalls, throttled, type AgentCall } from './agent-progress.ts';
 import { readTaskLog } from '../.agents/skills/live2d-maker/workflow/log.ts';
 import { projectDisplayName } from './project-metadata.ts';
 import { reportPreview, type ReportPreview } from './report.ts';
@@ -35,6 +35,19 @@ export const rasterDefinitions = { 'raster-layering': personSteps, 'clothing-ras
 export type Status = ExecutionStatus;
 export const statusOf = (value?: string): Status => value === 'completed' ? 'done' : value === 'ready' ? 'pending' : ['running', 'failed', 'interrupted'].includes(value ?? '') ? value as Status : 'pending';
 const flatten = (nodes: any[]): any[] => nodes.flatMap(node => [node, ...flatten(node.groups ?? [])]);
+// A raster step uses the same output directory for draw, review and repair.
+// Match the live call to the last phase started before its request was written.
+async function rasterCallPhase(directory: string, path: string, call: AgentCall, errors: string[]) {
+  try {
+    const lines = (await readFile(await safePath(directory, path), 'utf8')).trim().split('\n').reverse();
+    for (const line of lines) {
+      try {
+        const entry = JSON.parse(line);
+        if (typeof entry.phase === 'string' && typeof entry.startedAt === 'string' && Date.parse(entry.startedAt) <= call.mtime) return entry.phase;
+      } catch { /* The writer may still be appending the last line. */ }
+    }
+  } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') errors.push(path + ': ' + String(error)); }
+}
 function validateGroups(nodes: any[], depth = 0) {
   if (depth > 40 || !Array.isArray(nodes)) throw new Error('groups 层级无效');
   for (const node of nodes) {
@@ -157,6 +170,8 @@ export async function snapshot(directory: string, name: string, dir: string) {
               errors.push(prefix + ': ' + String(error));
             }
           }
+          const livePhase = active && call && !call.finished && next
+            ? await rasterCallPhase(directory, `${id}/agents/steps/${step.id}/attempts.jsonl`, call, errors) : undefined;
           for (const phase of sequence) {
             const report = prefix + '/' + phase + '.md';
             await loadReport(phase, report);
@@ -166,8 +181,10 @@ export async function snapshot(directory: string, name: string, dir: string) {
                 + (await readFile(await safePath(directory, report + (draft ? '.tmp' : '')), 'utf8')).trim().slice(0, 600);
             }
             states[phase] = completed ? fileSet.has(report) ? 'done' : 'skipped' : !running ? 'pending' : fileSet.has(report) ? 'done'
-              : next?.filename === phase + '.md' && states.draw === 'done' && running ? observed('running')
+              : next?.filename === phase + '.md' && states.draw === 'done' && running
+                ? !active ? observed('running') : livePhase === phase && call ? throttled(call) ? 'throttled' : 'running' : 'pending'
               : !next && fileSet.has(prefix + '/review-01.md') ? 'skipped' : !active ? states[step.id] : 'pending';
+            if (states[phase] === 'throttled') messages[phase] = call!.retryError!;
           }
         }
         if (reason && running && !completed) {

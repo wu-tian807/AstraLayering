@@ -8,7 +8,7 @@ test('normal progress labels keep existing artifacts distinct from running and c
   assert.equal(groupSummary(group).text, '待执行');
   group.webPhases.outline = 'done'; assert.equal(groupSummary(group).text, '已有产物');
   group.webPhases.review = 'throttled'; assert.equal(groupSummary(group).text, '限流等待');
-  group.webPhases.completion = 'running'; assert.equal(groupSummary(group).text, '进行中');
+  group.webPhases.completion = 'running'; assert.equal(groupSummary(group).text, '限流等待');
   group.webPhases = Object.fromEntries(groupPhases.map(([id]) => [id, 'done']));
   assert.equal(groupSummary(group).text, '已完成');
   // A failure shows once nothing in the group runs or waits any more.
@@ -37,6 +37,8 @@ test('collapsed group shows active descendants before saved parent progress', ()
   assert.equal(groupSummary(group).text, '进行中');
   child.webPhases.review = 'throttled';
   assert.equal(groupSummary(group).text, '限流等待');
+  child.webPhases.review = 'failed';
+  assert.equal(groupSummary(group).text, '执行失败');
   child.webPhases.review = 'pending';
   assert.equal(groupSummary(group).text, '已完成');
   group.webPhases.children = 'pending';
