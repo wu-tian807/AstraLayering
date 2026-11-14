@@ -34,6 +34,16 @@ test('preview masks multiline and inherited credentials while exposing resolved 
  assert.equal(data.providers?.claude.baseUrl,'https://gateway.example');
  assert.equal(data.models.find(m=>m.id==='claude-sonnet-5-5')?.available,false);
 });
+test('the workbench ignores prefixed aliases and saves the visible Codex budget independently', async t => {
+ const original='layering_image_compact_threshold=49\nlayering_codex_api_key=old-secret\n';
+ const f=await fixture(t,original),before=await f.environment.read();
+ assert.equal(before.fields.find(field=>field.key==='codex_image_compact_threshold')?.effective,'');
+ assert.equal(before.connections.codex.mode,'cli');
+ const saved=await f.environment.save({revision:before.revision,changes:{codex_image_compact_threshold:'49'}});
+ assert.equal(saved.fields.find(field=>field.key==='codex_image_compact_threshold')?.effective,'49');
+ assert.equal(loadWorkflowEnvironment({},f.directory).codex.env!.LAYERING_IMAGE_COMPACT_THRESHOLD,'49');
+ assert.ok((await readFile(join(f.directory,'.env'),'utf8')).startsWith(original));
+});
 test('Codex is managed by the pipeline and no executable-path field can be saved', async t => {
  const f=await fixture(t,'# keep\n'),data=await f.environment.read();
  assert.equal(data.fields.some(field=>field.key==='codex_path'),false);

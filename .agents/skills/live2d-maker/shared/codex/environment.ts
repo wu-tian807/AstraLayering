@@ -10,7 +10,7 @@ import { kritaLimit, kritaLimitKey } from '../krita/section-krita.ts';
 import { withNodePath } from '../process-environment.ts';
 import { imageBudget, type ImageBudget } from '../../patches/shared/visual-context.ts';
 import { configurationSources } from '../configuration-sources.ts';
-import { resolveModelDefaults, modelSlotKey, legacyModelSlotKey, defaultImageModelKey, legacyDefaultImageModelKey, imageModelKey, legacyImageModelKey, resolveImageDefaults, stepModelSlots, imageSteps, imageProvider, imageModelRules, type ImageModelRules, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
+import { resolveModelDefaults, modelSlotKey, defaultImageModelKey, imageModelKey, resolveImageDefaults, stepModelSlots, imageSteps, imageProvider, imageModelRules, type ImageModelRules, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
 import { resolveHarnessProviders, validateApiUrl, type HarnessProviders } from '../agents/providers.ts';
 import { videoModel, videoProvider, type VideoApi } from '../video.ts';
 export type { VideoApi } from '../video.ts';
@@ -114,19 +114,7 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
   const slotModels = {} as Record<ModelSlot, AgentModel>;
   for (const [slot, fallback] of Object.entries(roleDefaults) as [ModelSlot, string][]) {
     const key = modelSlotKey(slot);
-    let selection: string | undefined = sources.select([key,legacyModelSlotKey(slot)])?.value;
-    if (!selection) {
-      // An old per-step file can be reused when its values agree for this role.
-      // Never silently choose between differing character/clothing or draw/repair settings.
-      const previous = Object.entries(stepModelSlots).filter(([, role]) => role === slot)
-        .map(([step]) => `layering_${step}_model`).filter(name => selected(name));
-      const values = new Set(previous.map(name => {
-        const parsed = parseAgentModel(selected(name)!, name,providers);
-        return `${parsed.model}-${parsed.effort}`;
-      }));
-      if (values.size > 1) throw new Error(`旧模型配置 ${previous.join('、')} 不一致；请设置统一的 ${key}。原 .env 不会自动改写。`);
-      selection = values.values().next().value;
-    }
+    const selection = sources.select([key])?.value;
     const tier = selected(legacyHighModelSlots.includes(slot) ? 'high_model' : 'medium_model');
     slotModels[slot] = parseAgentModel(selection || tier || fallback, key,providers);
   }
@@ -155,12 +143,12 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
     videoApi = { provider:selectedVideoProvider,baseUrl: videoUrl, apiKey: videoKey, model:selectedVideoModel };
   }
   const stepImages: WorkflowEnvironment['stepImages'] = {};
-  const defaultImage = sources.select([defaultImageModelKey,legacyDefaultImageModelKey])?.value;
+  const defaultImage = sources.select([defaultImageModelKey])?.value;
   const fallbackImage = defaultImage || (imageUrl ? imageModel : imageDefaults.model);
   for (const step of imageSteps()) {
-    const key = imageModelKey(step), legacy = legacyImageModelKey(step);
+    const key = imageModelKey(step);
     // Empty values allow fallback. A configured global model overrides template step defaults.
-    const value = sources.select([key,legacy])?.value || (defaultImage || imageUrl
+    const value = sources.select([key])?.value || (defaultImage || imageUrl
       ? fallbackImage : imageDefaults.steps[step]);
     imageProvider(value,imageRules);
     stepImages[step] = value as ImageModel;

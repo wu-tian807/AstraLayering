@@ -5,11 +5,10 @@ import { resolve, join, delimiter } from 'node:path';
 import { parseEnv, promisify } from 'node:util';
 import { execFile } from 'node:child_process';
 import { workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
-import { modelHarness, modelHarnesses, modelSlots, modelSlotKey, legacyModelSlotKey, isModelSlotKey, defaultImageModelKey, legacyDefaultImageModelKey, imageModelKey, legacyImageModelKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
+import { modelHarness, modelHarnesses, modelSlots, modelSlotKey, isModelSlotKey, defaultImageModelKey, imageModelKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
 import { parseWorkflowEnvironment, type WorkflowEnvironment } from '../.agents/skills/live2d-maker/shared/codex/environment.ts';
 import { validateImageSelection } from '../.agents/skills/live2d-maker/shared/agents/images.ts';
 import { validateProviderModel } from '../.agents/skills/live2d-maker/shared/agents/providers.ts';
-import { legacyPrefix, withLegacyKeys } from '../.agents/skills/live2d-maker/shared/legacy-keys.ts';
 import { videoModels, videoProviders } from '../.agents/skills/live2d-maker/shared/video.ts';
 import { nativeAuthentication } from './environment-auth.ts';
 import { parseModelPatterns, modelPatternMatches } from '../.agents/skills/live2d-maker/shared/model-patterns.js';
@@ -103,8 +102,6 @@ function quoted(value: string) {
 export function patchEnvironment(text: string, changes: Record<string,string>) {
   const eol=text.includes('\r\n')?'\r\n':'\n', emitted=new Set<string>();
   let result=records(text).map(record=> {
-    // An edited key replaces its old layering_ spelling in place.
-    if(record.key?.startsWith(legacyPrefix)&&Object.hasOwn(changes,record.key.slice(legacyPrefix.length))) record={...record,key:record.key.slice(legacyPrefix.length)};
     if(!record.key||!Object.hasOwn(changes,record.key)) return record.text;
     if(emitted.has(record.key)) return '';
     emitted.add(record.key);
@@ -125,7 +122,7 @@ function redactedPreview(text: string) {
 // Probe executable versions only. Never install CLIs, build Codex, or contact a model.
 export async function probeEnvironmentCli(harness: Harness, values: Record<string,string>, env: NodeJS.ProcessEnv, directory: string) {
   if (harness === 'codex') return {available:true,detail:'使用管线内置补丁版 Codex，任务启动时自动准备',path:''};
-  const explicit=withLegacyKeys(values)[`${harness}_path`]?.trim()||withLegacyKeys(env)[`${harness}_path`]?.trim();
+  const explicit=values[`${harness}_path`]?.trim()||env[`${harness}_path`]?.trim();
   const names=harness==='agv'?['agy','agv','antigravity']:[harness];
   const paths=explicit?[resolve(directory,explicit)]:(env.PATH??'').split(delimiter).flatMap(p=>names.flatMap(n=>process.platform==='win32'?[join(p,n+'.exe'),join(p,n+'.cmd')]:[join(p,n)]));
   const exec=promisify(execFile);
@@ -149,7 +146,6 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
   }
   async function describe(text:string,exists:boolean,revision:string) {
     const {fields}=await schema(),raw=envValues(text),sources=configurationSources(raw,env),values=sources.file,shell=sources.environment,issues:string[]=[];
-    const originalKey=(key:string|undefined,source:string)=>{if(!key)return key;const original=source==='file'?raw:env;return original[key]?.trim()?key:original[legacyPrefix+key]?.trim()?legacyPrefix+key:key;};
     let settings:WorkflowEnvironment|undefined;
     try { settings=parseWorkflowEnvironment(text,env,directory); }catch(error) { issues.push((error as Error).message); }
     const cli=Object.fromEntries(await Promise.all((['codex','claude','agv'] as const).map(async h=>[h,await probe(h,values,settings?.codex.env??sources.effective,directory)])));
@@ -159,7 +155,7 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
       if(provider.apiKey) {
         const sourceKey=provider.sources.apiKey!;
         const source=values[sourceKey]?.trim()?'file':shell[sourceKey]?.trim()?'environment':'default';
-        return [harness,{mode:'api',configured:true,source,sourceKey:originalKey(sourceKey,source)}];
+        return [harness,{mode:'api',configured:true,source,sourceKey}];
       }
       const auth=await authentication(harness,settings!.codex.env??sources.effective);
       const source=auth.sourceKey&&values[auth.sourceKey]?.trim()?'file':auth.sourceKey&&shell[auth.sourceKey]?.trim()?'environment':'cli';
@@ -170,12 +166,12 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
     if(settings) {
       for(const [step,slot] of Object.entries(stepModelSlots)) {
         const m=settings.stepModels[step as AgentStep],key=modelSlotKey(slot);effective[key]=`${m.model}-${m.effort}`;
-        selectedSources[key]=configured([key,legacyModelSlotKey(slot),...Object.entries(stepModelSlots).filter(([,role])=>role===slot).map(([id])=>`layering_${id}_model`),['raster_step01','raster_step02','raster_step01_review'].includes(slot)?'high_model':'medium_model']);
+        selectedSources[key]=configured([key,['raster_step01','raster_step02','raster_step01_review'].includes(slot)?'high_model':'medium_model']);
       }
-      const globalImage=configured([defaultImageModelKey,legacyDefaultImageModelKey]),legacyImage=sources.effective.image_base_url?.trim()?configured(['image_model']):undefined;
+      const globalImage=configured([defaultImageModelKey]),legacyImage=sources.effective.image_base_url?.trim()?configured(['image_model']):undefined;
       effective[defaultImageModelKey]=(globalImage&&sources.effective[globalImage])||(legacyImage&&sources.effective[legacyImage])||fields.find(field=>field.key===defaultImageModelKey)!.fallback!;
       selectedSources[defaultImageModelKey]=globalImage||legacyImage;
-      for(const step of imageSteps()) {const key=imageModelKey(step);effective[key]=settings.stepImages[step]!;selectedSources[key]=configured([key,legacyImageModelKey(step)])||globalImage||legacyImage;}
+      for(const step of imageSteps()) {const key=imageModelKey(step);effective[key]=settings.stepImages[step]!;selectedSources[key]=configured([key])||globalImage||legacyImage;}
       for(const step of imageSteps())try{validateImageSelection(settings,step);}catch(error){issues.push((error as Error).message);}
       for(const slot of modelSlots){const step=Object.keys(stepModelSlots).find(s=>stepModelSlots[s as AgentStep]===slot)!;try{validateProviderModel(settings.providers,settings.stepModels[step as AgentStep],roles[slot]);}catch(error){issues.push((error as Error).message);}}
     }
@@ -199,7 +195,7 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
           if(match[2]==='base_url')source='cli';
         }
         const effectiveConfigured=inheritedCredential?!!connection?.configured:typeof providerValue==='string'?!!providerValue.trim():!!(values[field.key]||shell[field.key])?.trim();
-        return {...field,secret:field.type==='secret',value:field.type==='secret'?'':values[field.key]??'',configured:!!values[field.key],effectiveConfigured,effective:field.type==='secret'?undefined:effective[field.key]??(Array.isArray(providerValue)?providerValue.join(','):typeof providerValue==='string'?providerValue:undefined)??(values[field.key]?.trim()||shell[field.key]?.trim()||field.fallback||''),source,sourceKey:originalKey(sourceKey,source),overridden:source==='environment',connectionMode:connection?.mode};
+        return {...field,secret:field.type==='secret',value:field.type==='secret'?'':values[field.key]??'',configured:!!values[field.key],effectiveConfigured,effective:field.type==='secret'?undefined:effective[field.key]??(Array.isArray(providerValue)?providerValue.join(','):typeof providerValue==='string'?providerValue:undefined)??(values[field.key]?.trim()||shell[field.key]?.trim()||field.fallback||''),source,sourceKey,overridden:source==='environment',connectionMode:connection?.mode};
       }),
       providers:settings?.providers&&Object.fromEntries(Object.entries(settings.providers).map(([h,p])=>[h,{...p,apiKey:undefined,configured:!!p.apiKey}])),
     };

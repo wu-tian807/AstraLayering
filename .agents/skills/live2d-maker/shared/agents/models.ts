@@ -31,13 +31,10 @@ export const modelSlots = [
   'raster_step03', 'assembly', 'shadow', 'nine_axis_head',
 ] as const;
 export type ModelSlot = typeof modelSlots[number];
-// 模型键不带 layering 前缀；带前缀的旧键仅在已有 .env 中兼容读取，过渡期后移除。
 export const modelSlotKey = (slot: ModelSlot) => `${slot}_agent_model`;
-export const legacyModelSlotKey = (slot: ModelSlot) => `layering_agent_${slot}_model`;
 export const isModelSlotKey = (key: string) => modelSlots.some(slot => modelSlotKey(slot) === key);
-export const defaultImageModelKey = 'default_image_model', legacyDefaultImageModelKey = 'layering_default_image_model';
+export const defaultImageModelKey = 'default_image_model';
 export const imageModelKey = (step: string) => `${step}_image_model`;
-export const legacyImageModelKey = (step: string) => `layering_${step}_image_model`;
 export function resolveModelDefaults(configuration: DefaultConfiguration): Readonly<Record<ModelSlot, string>> {
   const catalog=Object.fromEntries((['codex','claude','agv'] as const).map(h=>[h,{models:parseModelPatterns(configuration[`${h}_models`]||'',`example.env:${h}_models`)}]));
   return Object.freeze(Object.fromEntries(modelSlots.map(slot => {

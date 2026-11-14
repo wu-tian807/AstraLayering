@@ -155,7 +155,8 @@ test('转头提示词向左；生视频只用自己的接口，不读生图接�
   assert.equal(loadWorkflowEnvironment({}).videoApi, undefined);
   assert.equal(loadWorkflowEnvironment({ openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'i' }).videoApi, undefined);
   assert.throws(() => loadWorkflowEnvironment({ video_base_url: 'https://video.example/v1' }), /video_api_key/);
-  assert.deepEqual(loadWorkflowEnvironment({ layering_video_base_url: 'https://video.example/v1', layering_video_api_key: 'k' }).videoApi,
+  assert.equal(loadWorkflowEnvironment({ layering_video_base_url: 'https://video.example/v1', layering_video_api_key: 'k' }).videoApi, undefined);
+  assert.deepEqual(loadWorkflowEnvironment({ video_base_url: 'https://video.example/v1', video_api_key: 'k' }).videoApi,
     { provider:'volcengine',baseUrl: 'https://video.example/v1', apiKey: 'k', model: 'doubao-seedance-2-5-260628' });
   assert.deepEqual(loadWorkflowEnvironment({ openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'i',
     video_base_url: 'https://video.example/v1', video_api_key: 'k', nine_axis_view_video_model: 'seedance-2-fast' }).videoApi,

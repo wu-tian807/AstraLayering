@@ -245,9 +245,9 @@ Web 为每个字段显示“本地 .env”“来自启动环境”或“使用�
 
 安装模板缺失、字段不全、必要默认值为空或模型规则非法会在发起模型请求前失败，并写入任务 `workflow.log`；恢复／重试先校验，再改动步骤产物。
 
-模型键已去掉 `layering_` 前缀：`layering_agent_<职责>_model` → `<职责>_agent_model`，`layering_<步骤>_image_model` → `<步骤>_image_model`，`layering_default_image_model` → `default_image_model`。过渡期内已有 `.env` 只填旧键时继续读取，两者都填时以新键为准；新建配置只写新键，旧键将在过渡期后移除。
+配置不再读取旧 `layering_` 前缀：将 `layering_codex_api_key` 等字段改为去掉前缀的当前名称，`layering_agent_<职责>_model` 改为 `<职责>_agent_model`，`layering_<步骤>_image_model` 改为 `<步骤>_image_model`，`layering_default_image_model` 改为 `default_image_model`。旧 `layering_<小步骤>_model` 需按职责迁移到 `<职责>_agent_model`。已有旧值请在更新前迁移。
 
-旧 `layering_<小步骤>_model` 在同一职责的已填写值一致时继续读取；取值冲突时，明确填写对应的统一职责键。旧 `high_model` 对应两套 raster 的 step01、review／返修与 step02，`medium_model` 对应其余职责，这一兼容映射保持原有含义。
+旧 `high_model` 对应两套 raster 的 step01、review／返修与 step02，`medium_model` 对应其余职责，这一兼容映射保持原有含义。
 
 part 遮挡补全分别使用 `part_completion_image_model` 和 `clothing_completion_image_model`。已有配置从 `layering_part_outline_image_model`／`layering_part_outline_repair_image_model` 迁到人物补全键，衣服的对应旧键迁到衣服补全键，保留原选择的生图模型并删除旧键。旧绘制与返修值不一致时先确认补全使用哪一个，不自动替用户选择。
 

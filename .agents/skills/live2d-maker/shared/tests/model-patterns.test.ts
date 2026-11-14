@@ -21,8 +21,6 @@ test('custom model declarations extend template rules, local declarations win an
    {codex_models:'ignored-*'});
  assert.deepEqual(config.providers!.codex.models,['gpt-*','custom-*']);
  assert.equal(config.stepModels.part_outline.harness,'codex');
- const aliases=parseWorkflowEnvironment('layering_agent_part_draw_model=claude-sonnet-5-5-low\nlayering_default_image_model=gemini-nano-banana-2.1', {part_draw_agent_model:'gpt-6.1-sol-high',default_image_model:'gpt-image-2.5-flare'});
- assert.equal(aliases.stepModels.part_outline.harness,'claude');assert.equal(aliases.stepImages.raster_step01,'gemini-nano-banana-2.1');
  assert.ok(!config.providers!.codex.models!.includes('ignored-*'));
  assert.equal(imageProvider('gpt-image-2.6-sunburst',config.imageRules),'openai');
  assert.equal(imageProvider('custom-image-v2',config.imageRules),'openai');
