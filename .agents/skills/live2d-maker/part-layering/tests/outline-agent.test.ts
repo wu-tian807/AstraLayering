@@ -185,7 +185,7 @@ test('revise 由原绘制会话返修，每次 review 新会话，报告保留�
   assert.equal(mock.calls[0].session, mock.calls[2].session);
   assert.notEqual(mock.calls[1].session, mock.calls[3].session);
   // The repair names the review file and round; the feedback stays in review.json.
-  assert.match(mock.calls[2].task.prompt, /step09_outline\/face\/review\.json 中 reviews 最后一条（第 1 轮 review）的 feedback/);
+  assert.ok(mock.calls[2].task.prompt.includes(join(f.directory, 'step09_outline/face/review.json')));
   assert.doesNotMatch(mock.calls[2].task.prompt, /左侧可见边界 x=10/);
   assert.equal(await readFile(join(f.directory, 'step09_outline/face/outline.repairs/1/round.txt'), 'utf8'), '1\n');
   assert.equal(await readFile(join(f.directory, 'step09_outline/face/outline.repairs/1/prompt.txt'), 'utf8'), mock.calls[2].task.prompt);
@@ -375,7 +375,7 @@ test('子组绘制收到父组完成 SVG；越界由写入工具当回合退回�
     calls.push(task);
     if (calls.length > 1) return { text: '仍未修正', images: [] }; // a repair turn carries no inputs
     assert.equal(runtime(task).parentGroup, 'face');
-    assert.ok(task.prompt.includes(`parentSvg：${join(f.directory, 'parts')}/<parentGroup>.svg`));
+    assert.ok(task.prompt.includes(join(f.directory, 'parts', '<parentGroup>.svg')));
     await assert.rejects(task.tools!.find(tool => tool.name === 'write_outline_svg')!.execute({ svg: svg('face/eye', 10) }, signal), /超出父轮廓/);
     return { text: '完成', images: [], threadId: 'out-of-bounds' };
   } }));

@@ -7,6 +7,7 @@ import type { GroupInput } from '../part/layering-types.ts';
 // named file (or the file of the named field) as the agent would, and the
 // parentGroup rule becomes the parent's ID.
 export function promptInput(prompt: string): Record<string, any> {
+  prompt = prompt.replace(/\r\n/g, '\n');
   const start = prompt.indexOf('【本次输入】\n');
   if (start < 0) throw new Error('提示词缺少【本次输入】');
   const body = prompt.slice(start + '【本次输入】\n'.length).split('\n\n')[0];
