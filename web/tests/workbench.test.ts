@@ -175,11 +175,12 @@ test('web forwards shadow mode to the existing coordinator and shows artifacts o
   assert.equal(received.shadowMode, 'normal-depth'); assert.equal(received.from, 'shadow');
   assert.equal((await f.post('start', { name: 'shadow-case', shadowMode: '../mask' })).status, 400);
   const root = join(f.dir, 'shadow-case');
+  const run = (await readRun(root))!; run.shadowMode = 'normal-depth'; await saveRun(root, run);
   await put(root, 'shadow/step01_mask/character-shadowed.png');
   assert.equal((await snapshot(root, 'shadow-case', f.dir)).sections.find(stage => stage.id === 'shadow')!.states.mask, 'pending', 'an unmarked step is a leftover');
   await put(root, 'shadow/step01_mask/.running');
   const value = await snapshot(root, 'shadow-case', f.dir), stage = value.sections.find(stage => stage.id === 'shadow')!;
-  assert.equal(stage.states.mask, 'interrupted'); assert.equal(stage.states['normal-depth'], 'pending');
+  assert.equal(stage.states.mask, 'unconfirmed'); assert.equal(stage.states['normal-depth'], 'pending');
   for (const path of ['normal.png', 'depth.png', 'report.md', '.completed']) await put(root, 'shadow/step01_normal-depth/' + path);
   const finished = (await snapshot(root, 'shadow-case', f.dir)).sections.find(stage => stage.id === 'shadow')!;
   assert.equal(finished.states['normal-depth'], 'done');
@@ -344,6 +345,26 @@ test('shadow reference routes serve only bundled guides, and inspection previews
   const {shadowInspectionArtifacts}=await import(new URL('../progress.js',import.meta.url).href);
   const path='shadow/step01_mask/inspection/relation-001-review.png';
   assert.deepEqual(shadowInspectionArtifacts([path,'shadow/step01_mask/inspection/native-123/offset.png','shadow/step01_normal-depth/inspection/relation-000-review.png']).map((a:any)=>a.path),[path]);
+});
+
+test('raster step output stays available until that step has a current agent call', async t => {
+  const f = await fixture(t), task = join(f.dir, 'case');
+  await mkdir(task);
+  const run = await configureRun({ name: 'case', dir: f.dir, from: 'character-assembly', to: 'character-assembly' }, task);
+  run.status = 'running'; run.activeSections = ['character-assembly'];
+  run.runner = { id: 'assembly-runner', pid: process.pid, startedAt: new Date(Date.now() - 1000).toISOString() };
+  await saveRun(task, run);
+  const release = await acquireTaskLock(task); t.after(async () => { await release(); });
+  await put(task, 'character-assembly/step01/.running');
+  await put(task, 'character-assembly/step01/character-assembled.kra');
+  let value = await snapshot(task, 'case', f.dir);
+  assert.equal(value.sections.find(section => section.id === 'character-assembly')!.states.step01, 'available');
+  await put(task, 'character-assembly/agents/steps/step01/request.json', JSON.stringify({ task: { step: 'step01', name: 'assembly' } }));
+  value = await snapshot(task, 'case', f.dir);
+  assert.equal(value.sections.find(section => section.id === 'character-assembly')!.states.step01, 'running');
+  await put(task, 'character-assembly/step01/.completed');
+  value = await snapshot(task, 'case', f.dir);
+  assert.equal(value.sections.find(section => section.id === 'character-assembly')!.states.step01, 'done');
 });
 
 test('开始、继续、恢复、重试先检查 Krita：不可用则 409 且不改动步骤，填写新路径后按同一操作运行', async t => {

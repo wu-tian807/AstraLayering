@@ -7,11 +7,12 @@ export function executionStatus(marker, { active = false, failed = false, waitin
   return active ? waiting ? 'throttled' : 'running' : 'interrupted';
 }
 
-// Containers summarize their children. Partial completion is still pending,
-// while an active child takes precedence over stopped siblings.
+// Containers summarize their children. Saved partial work remains visible,
+// while active or failed states take precedence over sibling artifacts.
 export function aggregateStatus(values) {
-  for (const status of ['running', 'throttled', 'failed', 'interrupted']) {
+  for (const status of ['running', 'throttled', 'failed', 'interrupted', 'unconfirmed']) {
     if (values.includes(status)) return status;
   }
-  return values.length && values.every(value => value === 'done' || value === 'skipped') ? 'done' : 'pending';
+  if (values.length && values.every(value => value === 'done' || value === 'skipped')) return 'done';
+  return values.some(value => value === 'available' || value === 'done') ? 'available' : 'pending';
 }

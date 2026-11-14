@@ -105,6 +105,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
     // Why the lane failed, for the step it left mid-way.
     const reason = !active && saved?.status === 'failed' && saved.summary ? saved.summary.split('\n')[0].slice(0, 400) : undefined;
     let groups: any[] = [];
+    let stepCalls: Awaited<ReturnType<typeof currentAgentCalls>> = [];
     if (id === 'part-layering' || id === 'clothing-part-layering') {
       const document = await optional(id + '/groups.json');
       try { validateGroups(document?.groups ?? []); groups = document?.groups ?? []; }
@@ -116,6 +117,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
       for (const phase of phases) states[phase] = aggregateStatus(all.map(node => node.webPhases[phase]));
       states.layers = aggregateStatus(phases.map(phase => states[phase]));
     } else {
+      stepCalls = active ? await currentAgentCalls(directory, id, fileSet, errors, record.run?.runner?.startedAt) : [];
       for (const step of id === 'shadow' ? stepsFor(mode) : rasterDefinitions[id]) {
         const prefix = id + '/' + step.id;
         await loadReport(step.id, prefix + '/report.md');
@@ -134,8 +136,16 @@ export async function snapshot(directory: string, name: string, dir: string) {
         const completed = await exists(prefix + '/.completed');
         const running = await exists(prefix + '/.running');
         const marker = completed ? 'completed' : running ? 'running' : 'unmarked';
-        states[step.id] = executionStatus(marker, { active, failed: !active && failed });
-        products[step.id] = running && !completed && step.requiredFiles.some(path => fileSet.has(prefix + '/' + path));
+        const hasProducts = running && !completed && (step.requiredFiles.some(path => fileSet.has(prefix + '/' + path))
+          || files.some(path => path.startsWith(prefix + '/') && !path.includes('/agents/')));
+        const call = stepCalls.filter(call => call.outputDirectory === prefix || call.outputDirectory?.startsWith(prefix + '/')
+          || call.step === step.id || call.request.startsWith(`${id}/agents/steps/${step.id}/`)).at(-1);
+        states[step.id] = completed ? 'done' : call?.failed ? 'failed' : active && call && !call.finished
+          ? throttled(call) ? 'throttled' : 'running'
+          : running && active ? hasProducts ? 'available' : 'pending'
+            : executionStatus(marker, { failed: !active && failed });
+        products[step.id] = hasProducts;
+        if (states[step.id] === 'throttled') messages[step.id] = call!.retryError!;
         if ('review' in step && step.review) {
           if (reports[step.id]) reports.draw = reports[step.id];
           states.draw = completed ? 'done' : running && fileSet.has(prefix + '/report.md') ? 'done' : states[step.id];
@@ -174,9 +184,15 @@ export async function snapshot(directory: string, name: string, dir: string) {
           const prefix = id + '/' + step.id;
           const complete = await exists(prefix + '/.completed');
           const running = await exists(prefix + '/.running');
-          const state = executionStatus(complete ? 'completed' : running ? 'running' : 'unmarked',
-            { active: variant === mode && active, failed: variant === mode && !active && failed });
-          products[variant] = running && !complete && step.requiredFiles.some(path => fileSet.has(prefix + '/' + path));
+          const hasProducts = running && !complete && (step.requiredFiles.some(path => fileSet.has(prefix + '/' + path))
+            || files.some(path => path.startsWith(prefix + '/') && !path.includes('/agents/')));
+          const call = stepCalls.filter(call => call.outputDirectory === prefix || call.outputDirectory?.startsWith(prefix + '/')
+            || call.step === step.id || call.request.startsWith(`${id}/agents/steps/${step.id}/`)).at(-1);
+          const state = complete ? 'done' : variant !== mode && running ? 'unconfirmed' : call?.failed ? 'failed'
+            : active && variant === mode && call && !call.finished ? throttled(call) ? 'throttled' : 'running'
+              : running && variant === mode && active ? hasProducts ? 'available' : 'pending'
+                : executionStatus(complete ? 'completed' : running ? 'running' : 'unmarked', { failed: variant === mode && !active && failed });
+          products[variant] = hasProducts;
           modeStates.push(state);
           if (variant === 'normal-depth') states['normal-depth-maps'] = state;
         }
@@ -192,7 +208,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
     }
     // One agent runs a raster or shadow section at a time: while it waits out a 429, its running steps wait too.
     const waiting = active && id !== 'part-layering' && id !== 'clothing-part-layering'
-      ? (await currentAgentCalls(directory, id, fileSet, errors, record.run?.runner?.startedAt)).find(call => throttled(call)) : undefined;
+      ? stepCalls.find(call => throttled(call)) : undefined;
     if (waiting) for (const key of Object.keys(states)) if (states[key] === 'running') { states[key] = 'throttled'; messages[key] = waiting.retryError!; }
     const sectionSteps = id === 'shadow' ? [states.step01] : id in rasterDefinitions
       ? rasterDefinitions[id as keyof typeof rasterDefinitions].map(step => states[step.id])

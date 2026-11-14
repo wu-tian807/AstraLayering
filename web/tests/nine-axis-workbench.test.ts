@@ -155,6 +155,20 @@ test('independent waits and failures never mark running or completed siblings th
   assert.deepEqual(f.errors, []);
 });
 
+test('a running axis with saved output and no current call is shown as available', async t => {
+  const f = await fixture(t), since = new Date(Date.now() - 1000).toISOString();
+  await f.put('step02_angles/.running');
+  await f.put('step02_angles/left/.running');
+  await f.put('step02_angles/left/deformers.json', '{}');
+  await f.put('step02_angles/up/.running');
+  await f.put('step02_angles/up/deformers.json', '{}');
+  await f.put('agents/up/request.json', { task: { step: 'nine_axis_head', name: '单轴 up', outputDirectory: 'nine-axis/step02_angles/up' } });
+  const value = await f.get({ active: true, since });
+  assert.deepEqual(nineAxisGroupSteps.map(id => value.states[id]), ['available', 'running', 'pending']);
+  assert.equal(value.products['step02_angles/left'], true);
+  assert.deepEqual(f.errors, []);
+});
+
 test('child retry marker layout keeps completed siblings; retained XY keeps its own completed result', async t => {
   const f = await fixture(t);
   for (const id of [...nineAxisGroupSteps, 'step02_angles', 'step03_angle-xy']) {
@@ -375,8 +389,8 @@ test('staged progress shows draft model and generated video before branches comp
   await f.complete('step04_angles/video');
   value = await f.get({ active: true });
   assert.equal(value.states['step04_angles/video'], 'done');
-  assert.equal(value.states['step04_angles/model/up'], 'running');
-  assert.equal(value.states.step04_angles, 'running');
+  assert.equal(value.states['step04_angles/model/up'], 'available');
+  assert.equal(value.states.step04_angles, 'available');
 });
 
 test('dynamic studio preview preserves angles and defers refresh during user edits or swing', async t => {
