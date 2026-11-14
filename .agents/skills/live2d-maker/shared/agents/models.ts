@@ -5,6 +5,7 @@ import { matchModelService, parseModelPatterns } from './model-patterns.ts';
 
 export const modelHarnesses = {
   'gpt-6.1-sol': 'codex',
+  'gpt-6.1-terra': 'codex',
   'gpt-6-astra': 'codex',
   'claude-sonnet-5-5': 'claude',
   'claude-opus-5-5': 'claude',
