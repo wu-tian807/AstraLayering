@@ -4,6 +4,7 @@ import { dirname, join } from 'node:path';
 import { fromTaskPath } from '../shared/task-paths.ts';
 import sharp from 'sharp';
 import { kraContents, kraLayers } from '../shadow/delivery.ts';
+import { layerPartName } from '../shared/layer-names.ts';
 import { submitJob } from '../shared/krita/bridge/client.mjs';
 import type { SectionKrita } from '../shared/krita/section-krita.ts';
 import { lattice, validateHeadNineAxis, type HeadDeformer } from '../shared/nine-axis-model.js';
@@ -39,7 +40,7 @@ export async function bindKraDocument(root: string, directory: string, input: Bu
       if(!id&&part.material!=='transparent'){
         const candidates=selection.selections.filter(row=>row.id===part.id&&row.role!=='shadow');
         if(candidates.length===1)id=candidates[0].uuid;
-        else{const candidates=[...layers].filter(([,layer])=>(layer.name??'').split(' | ').at(-1)===part.id);if(candidates.length===1)id=candidates[0][0];}
+        else{const candidates=[...layers].filter(([,layer])=>layerPartName(layer.name??'').name===part.id);if(candidates.length===1)id=candidates[0][0];}
       }
       if(part.material==='transparent'||!id&&part.texture==='layers/mirror-grid-transparent.png'){part.material='transparent';delete part.uuid;}
       else{
