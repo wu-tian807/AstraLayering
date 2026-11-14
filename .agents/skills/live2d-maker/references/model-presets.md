@@ -137,7 +137,7 @@ raster_step01_repair_image_model=gpt-image-2.5-flare
 
 | CLI | 内置模型预设 | 入口 |
 | --- | --- | --- |
-| Codex | `gpt-6.1-sol`、`gpt-6-astra` | 管线自动准备并使用补丁版；`codex_home` 仅指定登录认证 `auth.json` 的来源（留空取 shell 的 `CODEX_HOME`／`~/.codex`）；实际配置和历史保存在本管线 `agents/` 中 |
+| Codex | `gpt-6.1-sol`、`gpt-6-astra` | 管线自动准备并使用补丁版；`codex_home` 指定登录 profile 来源（留空取 shell 的 `CODEX_HOME`／`~/.codex`），复用 `auth.json` 与当前选中的 provider（含 `auth.command`）；会话历史和工作流配置保存在本管线 `agents/` 中 |
 | Claude Code | `claude-sonnet-5-5`、`claude-opus-5-5`、`claude-haiku-5-5` | `claude_path`，未填则找全局 `claude` |
 | Antigravity（agv） | `gemini-4-argon` | `agv_path`，未填则找全局 `agy`／`agv`／`antigravity` |
 
