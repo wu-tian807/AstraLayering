@@ -16,8 +16,8 @@ import { toTaskPathReal } from '../.agents/skills/live2d-maker/shared/task-paths
 
 type Observation = { active?: boolean; failed?: boolean; archive?: boolean; since?: string; reason?: string };
 
-// Project the existing step/group facts. Partial products are available without
-// announcing completion; siblings keep their own activity and failure evidence.
+// Project the existing step/group facts. Only a current agent call is running;
+// saved partial products remain available without implying completion.
 export async function nineAxisProgress(directory: string, files: Set<string>, errors: string[], observation: Observation = {}) {
   const root = join(directory, 'nine-axis'), states: Record<string, Status> = {}, messages: Record<string, string> = {};
   const previous = [...files].some(path => previousNineAxisSteps.some(id => path.startsWith(`nine-axis/${id}/`)));
@@ -34,11 +34,15 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
     try { status = (await readStep(await safePath(directory, prefix))).status; }
     catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') errors.push(prefix + ': ' + String(error)); }
     const deliveries = await stepDeliveries(root, 'nine-axis', id);
-    products[id] = status === 'running' && deliveries.some(path => files.has('nine-axis/' + relative(root, path).replaceAll('\\', '/')));
+    const hasProducts = deliveries.some(path => files.has('nine-axis/' + relative(root, path).replaceAll('\\', '/')))
+      || [...files].some(path => path.startsWith(prefix + '/') && !path.includes('/agents/'));
+    products[id] = status === 'running' && hasProducts;
     const ownCalls = calls.filter(call => call.outputDirectory === prefix || call.outputDirectory?.startsWith(prefix + '/'));
     const call = ownCalls.filter(call => !call.finished).at(-1) ?? ownCalls.at(-1);
-    states[id] = executionStatus(status, { active: observation.active, failed: !!call?.failed || !observation.active && observation.failed,
-      waiting: !!call && throttled(call) });
+    states[id] = status === 'completed' ? 'done' : call?.failed ? 'failed' : observation.active && call && !call.finished
+      ? throttled(call) ? 'throttled' : 'running'
+      : status === 'running' && observation.active ? hasProducts ? 'available' : 'pending'
+        : executionStatus(status, { failed: !observation.active && observation.failed });
     if (states[id] === 'throttled') messages[id] = call!.retryError!;
     else if (['failed', 'interrupted'].includes(states[id]) && observation.reason) messages[id] = observation.reason;
     if (status !== 'absent') {
@@ -64,7 +68,7 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
     }
   }
   const parents = staged ? [[model, groups], ['step04_angles', [model, 'step04_angles/video']]] as const : [[model, groups]] as const;
-  for (const [parent, children] of parents) if (states[parent] !== 'done' && states[parent] !== 'pending') {
+  for (const [parent, children] of parents) if (states[parent] !== 'done') {
     // Children may explain an in-progress parent, but cannot complete its merge.
     const status = aggregateStatus(children.map(id => states[id]));
     if (status !== 'pending' && status !== 'done') states[parent] = status;

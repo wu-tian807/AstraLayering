@@ -186,7 +186,7 @@ test('parent-copied arms finish without review reports and show the completed tr
   assert.equal(value.webReviewSkip.reason, value.webDetails.review);
   assert.ok(value.webReviewRounds.every((round: any) => round.review.status === 'skipped' && round.repair.status === 'skipped'));
   assert.ok(value.webReviewRounds.every((round: any) => /父组.*复制/.test(round.review.detail)));
-  assert.equal(groupSummary(value).status, 'pending', 'completion and child analysis still need to finish');
+  assert.equal(groupSummary(value).status, 'available', 'saved stages stay visible while completion and child analysis remain');
   await f.put(`step10_reduce/depth02/${id}.svg`, svg);
   await f.put(`parts/${id}.svg`, svg);
   await f.put(`step11_completion/${step}/check.json`, { groupId: id, passed: true });
@@ -249,10 +249,10 @@ for (const section of ['part-layering', 'clothing-part-layering']) test(`${secti
   assert.equal(value.part.states.occlusion, 'running');
   assert.ok(value.files.includes(section + '/step14_occlusion/workspace/candidate.svg'));
   await f.put('agents/depth/result.json', { status: 'completed' });
-  assert.equal((await f.get()).part.states.occlusion, 'running');
+  assert.equal((await f.get()).part.states.occlusion, 'available');
   await f.put('occlusion.json', { version: 3, direction: 'back-to-front', sourceHash: 'input',
     layers: [{ id: 'body', level: 0, note: 'body', check: { passed: true, note: 'checked' } }] });
-  assert.equal((await f.get()).part.states.occlusion, 'running', 'the table counts once its step is completed');
+  assert.equal((await f.get()).part.states.occlusion, 'available', 'the saved table stays visible before its completion marker');
   await f.mark('step14_occlusion');
   assert.equal((await f.get()).part.states.occlusion, 'done');
   await rm(join(f.task, section, 'occlusion.json'));
@@ -287,7 +287,25 @@ test('preparation activity is visible before an image, and matching published re
   await rm(join(f.task, 'part-layering/step06_base/.completed'));
   await rm(join(f.task, 'part-layering/step06_base/.running'));
   value = await f.get();
-  assert.equal(value.part.states.base, 'pending'); assert.equal(value.part.states.preparation, 'pending');
+  assert.equal(value.part.states.base, 'pending'); assert.equal(value.part.states.preparation, 'available');
+});
+
+test('a saved preparation reference stays available until its own agent call starts', async t => {
+  const f = await fixture(t);
+  const run = await configureRun({ name: 'test', dir: f.dir, from: 'part-layering', to: 'part-layering' }, f.task);
+  run.status = 'running'; run.activeSections = ['part-layering'];
+  run.runner = { id: 'test-runner', pid: process.pid, startedAt: new Date(Date.now() - 1000).toISOString() };
+  await saveRun(f.task, run);
+  const release = await acquireTaskLock(f.task); t.after(async () => { await release(); });
+  await f.mark('step04_standard', 'running');
+  await f.put('references/standard.png', svg);
+  let value = await f.get();
+  assert.equal(value.part.states.standard, 'available');
+  assert.equal(value.part.states.preparation, 'available');
+  await f.put('agents/standard/request.json', { task: { name: '标准姿态' } });
+  value = await f.get();
+  assert.equal(value.part.states.standard, 'running');
+  assert.equal(value.part.states.preparation, 'running');
 });
 
 test('人物参考以完成标记判定成功，缺少展示图不会改变执行状态', async t => {
@@ -331,9 +349,9 @@ test('a completed merge step is complete before the whole part section finishes'
   assert.equal((await f.get()).part.states.merge, 'interrupted');
 });
 
-test('running markers establish activity; calls refine phases and dead runners interrupt them', async t => {
+test('only current calls show as running; marked siblings with saved products remain available', async t => {
   const f = await fixture(t);
-  await f.put('groups.json', { groups: ['body', 'hair', 'neck'].map(id => ({ id, groups: [] })) });
+  await f.put('groups.json', { groups: ['body', 'hair', 'neck', 'arm'].map(id => ({ id, groups: [] })) });
   const run = await configureRun({ name: 'test', dir: f.dir, from: 'part-layering', to: 'part-layering' }, f.task);
   run.status = 'running'; run.activeSections = ['part-layering'];
   run.runner = { id: 'test-runner', pid: process.pid, startedAt: new Date(Date.now() - 1000).toISOString() };
@@ -341,26 +359,30 @@ test('running markers establish activity; calls refine phases and dead runners i
   await saveRun(f.task, run);
   const release = await acquireTaskLock(f.task); t.after(async () => { await release(); });
   await f.put('agents/current/request.json', { task: { name: '组轮廓绘制-body' } });
-  await f.put('agents/old/request.json', { task: { name: '组轮廓绘制-hair' } });
+  await f.put('agents/hair-current/request.json', { task: { name: '组轮廓绘制-hair' } });
+  await f.put('agents/neck-current/request.json', { task: { name: '组轮廓绘制-neck' } });
+  await f.put('agents/old/request.json', { task: { name: '组轮廓绘制-arm' } });
   await utimes(join(f.task, 'part-layering/agents/old/request.json'), 1, 1);
-  await f.mark('step09_outline/body', 'running');
-  await f.mark('step09_outline/hair', 'running');
-  await f.put('step09_outline/hair/outline.draft.svg', svg);
+  for (const id of ['body', 'hair', 'neck', 'arm']) await f.mark(`step09_outline/${id}`, 'running');
+  await f.put('step09_outline/arm/outline.draft.svg', svg);
   let value = await f.get();
-  assert.deepEqual(value.part.groups.map(node => node.webPhases.outline), ['running', 'running', 'pending']);
+  assert.deepEqual(value.part.groups.map(node => node.webPhases.outline), ['running', 'running', 'running', 'available']);
+  assert.equal(groupSummary(value.part.groups[3]).text, '已有产物');
   await f.put('step09_outline/body/outline.svg', svg);
   assert.equal((await f.get()).part.groups[0].webPhases.outline, 'running');
   await f.put('agents/current/result.json', { status: 'completed' });
   await f.put('agents/review/request.json', { task: { name: '组轮廓review-body' } });
   value = await f.get();
-  assert.equal(value.part.groups[0].webPhases.outline, 'running');
+  assert.equal(value.part.groups[0].webPhases.outline, 'available');
   assert.equal(value.part.groups[0].webPhases.review, 'running');
   assert.equal(value.part.groups[0].webReviewRounds[0].review.status, 'running');
+  await f.put('agents/arm-current/request.json', { task: { name: '组轮廓绘制-arm' } });
+  assert.equal((await f.get()).part.groups[3].webPhases.outline, 'running', 'a real call takes precedence over saved partial products');
   run.runner.finishedAt = new Date().toISOString(); await saveRun(f.task, run);
   assert.equal((await f.get()).part.groups[0].webPhases.review, 'interrupted');
 });
 
-test('a call waiting to retry shows 限流等待 with the logged error verbatim until its wait ends, apart from running and pending', async t => {
+test('a call waiting to retry shows 限流等待 with the logged error verbatim until its wait ends', async t => {
   const f = await fixture(t);
   await f.put('groups.json', { groups: ['body', 'hair'].map(id => ({ id, groups: [] })) });
   const run = await configureRun({ name: 'test', dir: f.dir, from: 'part-layering', to: 'part-layering' }, f.task);
@@ -380,7 +402,7 @@ test('a call waiting to retry shows 限流等待 with the logged error verbatim 
   assert.equal(value.part.groups[0].webMessages.outline, '限流等待');
   assert.equal(value.part.states.outline, 'running');
   await f.put('agents/hair/result.json', { status: 'completed' });
-  assert.equal((await f.get()).part.states.outline, 'running', 'the other marked step is still running');
+  assert.equal((await f.get()).part.states.outline, 'throttled', 'the finished call is no longer reported as running');
   await f.put('agents/review/request.json', { task: { name: '组轮廓review-hair' } });
   await f.put('agents/review/retry-wait.json', { reason: 'transient', error: 'stream disconnected before completion', until: new Date(Date.now() + 60_000).toISOString() });
   value = await f.get();
@@ -395,7 +417,7 @@ test('a call waiting to retry shows 限流等待 with the logged error verbatim 
   assert.ok(!value.files.some(path => path.endsWith('retry-wait.json')));
 });
 
-test('a CLI attempt that failed and scheduled a retry stays 限流等待; a result after the wait ends the call', async t => {
+test('a CLI attempt that failed and scheduled a retry stays 限流等待; a result ends the call', async t => {
   const f = await fixture(t);
   await f.put('groups.json', { groups: [{ id: 'body', groups: [] }] });
   const run = await configureRun({ name: 'test', dir: f.dir, from: 'part-layering', to: 'part-layering' }, f.task);
@@ -418,7 +440,7 @@ test('a CLI attempt that failed and scheduled a retry stays 限流等待; a resu
   await f.put('agents/body/result.json', { status: 'completed' });
   value = await f.get();
   assert.notEqual(value.part.groups[0].webPhases.outline, 'throttled');
-  assert.equal(value.part.groups[0].webPhases.outline, 'running', 'the step remains running until its completion marker is written');
+  assert.equal(value.part.groups[0].webPhases.outline, 'pending', 'without a live call or saved output, the phase is not running');
 });
 
 test('a failed current group and initial request are marked failed while their drafts remain visible; recovery clears old failures', async t => {
@@ -443,7 +465,7 @@ test('a failed current group and initial request are marked failed while their d
   run.runner = { id: 'new-runner', pid: process.pid, startedAt: new Date().toISOString() }; await saveRun(f.task, run);
   const release = await acquireTaskLock(f.task); t.after(async () => { await release(); });
   value = await f.get();
-  assert.equal(value.part.groups[0].webPhases.outline, 'running');
+  assert.equal(value.part.groups[0].webPhases.outline, 'available');
   assert.equal(value.part.states.initial, 'done');
 });
 

@@ -13,11 +13,13 @@ test('completion markers win over liveness, errors and retry waits; files do not
   assert.equal(executionStatus('running', { active: true, waiting: true }), 'throttled');
 });
 
-test('containers retain unfinished work, active siblings and stopped outcomes without an artifact state', () => {
+test('containers distinguish saved partial work from pending and completed work', () => {
   assert.equal(aggregateStatus([]), 'pending');
-  assert.equal(aggregateStatus(['done', 'pending']), 'pending');
+  assert.equal(aggregateStatus(['done', 'pending']), 'available');
+  assert.equal(aggregateStatus(['available', 'pending']), 'available');
   assert.equal(aggregateStatus(['done', 'skipped']), 'done');
   assert.equal(aggregateStatus(['interrupted', 'pending']), 'interrupted');
+  assert.equal(aggregateStatus(['unconfirmed', 'available']), 'unconfirmed');
   assert.equal(aggregateStatus(['failed', 'interrupted']), 'failed');
   assert.equal(aggregateStatus(['failed', 'throttled']), 'throttled');
   assert.equal(aggregateStatus(['running', 'throttled', 'failed']), 'running');

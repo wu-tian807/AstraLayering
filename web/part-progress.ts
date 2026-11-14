@@ -48,7 +48,9 @@ export async function partProgress(directory: string, section: string, groups: a
     node.webDetails = {};
     node.webHasProducts = {};
     const mark = (phase: Phase, marker: StepStatus, present: boolean, message: string) => {
-      node.webPhases[phase] = executionStatus(marker, { active: !!activeSince, failed });
+      node.webPhases[phase] = marker === 'running' && activeSince
+        ? present ? 'available' : 'pending'
+        : executionStatus(marker, { failed });
       node.webMessages[phase] = statusLabel(node.webPhases[phase]);
       node.webHasProducts[phase] = marker === 'running' && present;
       if (marker === 'completed' || present) node.webDetails[phase] = message;
@@ -93,10 +95,6 @@ export async function partProgress(directory: string, section: string, groups: a
   // request.json is created only after the agent obtains a concurrency slot.
   // A leftover draft or a queued group is not evidence that an agent is drawing.
   const calls = await currentAgentCalls(directory, section, files, errors, activeSince ?? failedSince, !!failedSince);
-  for (const { node } of entries) {
-    const { report, outline } = reviewInputs.get(node)!;
-    node.webReviewRounds = partReviewRounds(node.id, report, outline, calls, !!activeSince, node.webReviewSkip, node.webPhases.review);
-  }
   const latest = new Map<string, { call: AgentCall; phase: Phase; targets: any[] }>();
   for (const call of calls) {
     const match = /^(组轮廓绘制|组轮廓返修|组轮廓review|正面遮挡补全|直属结构拆分|同层轮廓去重)-(.+)$/.exec(call.name);
@@ -105,7 +103,7 @@ export async function partProgress(directory: string, section: string, groups: a
       '正面遮挡补全': 'completion', '直属结构拆分': 'children', '同层轮廓去重': 'reduction' } as const)[match[1]]!;
     const targets = entries.filter(({ node, depth }) => phase === 'reduction' ? String(depth) === match[2] : node.id === match[2]).map(entry => entry.node);
     for (const node of targets) {
-      if (node.webPhases[phase] === 'done' || node.webPhases[phase] === 'pending') continue;
+      if (node.webPhases[phase] === 'done') continue;
       if (node.webReviewSkip.skip && (phase === 'outline' || phase === 'review')) continue;
       const id = `${node.id}:${phase}`;
       latest.set(id, { call, phase, targets: [node] });
@@ -135,5 +133,9 @@ export async function partProgress(directory: string, section: string, groups: a
         : ({ outline: '正在绘制 / 自检', review: '正在复核', reduction: '正在同层去重', completion: '正在补全 / 自检', children: '正在分析直属结构' } as any)[phase];
     }
   }
-  return partStages(section, calls, !!activeSince, step, failed);
+  for (const { node } of entries) {
+    const { report, outline } = reviewInputs.get(node)!;
+    node.webReviewRounds = partReviewRounds(node.id, report, outline, calls, !!activeSince, node.webReviewSkip, node.webPhases.review);
+  }
+  return partStages(section, calls, !!activeSince, step, failed, files, groups);
 }

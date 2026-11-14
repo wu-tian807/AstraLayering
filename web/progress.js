@@ -8,9 +8,9 @@ export const groupPhases = [
 ];
 // throttled: waiting to retry after a 429 or other temporary error; the agent keeps its slot and resumes on its own.
 // A summary stays running or throttled while any part still is, and only then shows a failure.
-export const statusNames = {pending:'待执行', running:'进行中', throttled:'限流等待', done:'已完成', failed:'执行失败', interrupted:'已中断'};
+export const statusNames = {pending:'待执行', running:'进行中', throttled:'限流等待', available:'已有产物', done:'已完成', failed:'执行失败', interrupted:'已中断', unconfirmed:'待续跑'};
 export const displayStatus = (status, hasArtifacts = false) => status === 'skipped' ? 'done'
-  : status === 'unconfirmed' ? 'interrupted' : Object.hasOwn(statusNames, status) ? status : 'pending';
+  : Object.hasOwn(statusNames, status) ? status : hasArtifacts ? 'available' : 'pending';
 export const statusLabel = status => statusNames[displayStatus(status)];
 
 export function groupSummary(group) {

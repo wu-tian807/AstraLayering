@@ -15,28 +15,42 @@ const namePhases: Record<string, string> = {
   '素体换装': 'base', '纯衣服参考准备': 'clothing', '首次分组识别': 'initial', '最终遮挡层级规划': 'occlusion',
 };
 
-// Observe published files and existing receipts. This function never restores or writes scheduler state.
+// Observe published files and current calls. This function never restores or writes scheduler state.
 export async function partStages(section: string, calls: AgentCall[], active: boolean,
-  step: (id: string) => Promise<StepStatus> = async () => 'absent', failed = false) {
+  step: (id: string) => Promise<StepStatus> = async () => 'absent', failed = false,
+  files: Set<string> = new Set(), groups: any[] = []) {
   const states: Record<string, Status> = {}, messages: Record<string, string> = {};
-  const stage = async (id: string) => executionStatus(await step(id), { active, failed });
-  states.initial = await stage(partSteps.initial);
-  if (section === 'part-layering') {
-    for (const phase of ['standard', 'simplified', 'base'] as const) states[phase] = await stage(partSteps[phase]);
-    states.preparation = aggregateStatus(['standard', 'simplified', 'base'].map(phase => states[phase]));
-  } else {
-    states.clothing = await stage(clothingPreparationStep);
-    states.preparation = states.clothing;
-  }
-  states.merge = await stage(partSteps.merge);
-  states.occlusion = await stage(partSteps.occlusion);
+  const present = (path: string) => files.has(`${section}/${path}`);
   const latest = new Map<string, AgentCall>();
   for (const call of calls) {
     const phase = stepPhases[call.step] ?? namePhases[call.name];
     if (phase) latest.set(phase, call);
   }
+  const stage = async (phase: string, id: string, hasProducts: boolean) => {
+    const marker = await step(id);
+    if (marker === 'completed') return 'done' as const;
+    if (marker !== 'running') return executionStatus(marker, { failed });
+    if (!active) return executionStatus(marker, { failed });
+    const call = latest.get(phase);
+    if (call?.failed) return 'failed' as const;
+    if (call && !call.finished) return throttled(call) ? 'throttled' as const : 'running' as const;
+    return hasProducts ? 'available' as const : 'pending' as const;
+  };
+  states.initial = await stage('initial', partSteps.initial, groups.length > 0);
+  if (section === 'part-layering') {
+    states.standard = await stage('standard', partSteps.standard, present('references/standard.png'));
+    states.simplified = await stage('simplified', partSteps.simplified, present('references/simplified-subject.png'));
+    states.base = await stage('base', partSteps.base, present('references/base-subject.png'));
+    states.preparation = aggregateStatus(['standard', 'simplified', 'base'].map(phase => states[phase]));
+  } else {
+    states.clothing = await stage('clothing', clothingPreparationStep, present('references/clothing.png'));
+    states.preparation = states.clothing;
+  }
+  states.merge = await stage('merge', partSteps.merge, present('preview.svg') || present('preview.draft.svg'));
+  states.occlusion = await stage('occlusion', partSteps.occlusion, present('occlusion.json')
+    || present(`${partSteps.occlusion}/preview.svg`) || present(`${partSteps.occlusion}/workspace/candidate.svg`));
   for (const [phase, call] of latest) {
-    if (states[phase] === 'done' || states[phase] === 'pending') continue;
+    if (states[phase] === 'done') continue;
     if (call.failed) {
       states[phase] = 'failed'; messages[phase] = '调用失败，请查看运行记录：' + call.name;
       if (['standard', 'simplified', 'base', 'clothing'].includes(phase)) states.preparation = 'failed';
