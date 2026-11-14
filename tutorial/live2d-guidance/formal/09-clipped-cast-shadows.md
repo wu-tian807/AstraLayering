@@ -171,9 +171,9 @@ Jianma 的一次返修将左右外弯细发向脸内描成窄弧，并为提高�
 
 下面两张图是依据上述 Milly 图层与运行 mask 关系绘制的原创结构示意，不是模型原图，也不作为新角色的形状模板：
 
-![裙影完整素材、双腿联合裁切与相对偏移](../../../.agents/skills/live2d-maker/shadow/references/skirt.png)
+![裙影完整素材、双腿联合裁切与相对偏移](../../../.agents/skills/live2d-maker/knowledge/shadow/step01_mask/references/skirt.png)
 
-![发影重叠、正常不透明颜色与独立偏移](../../../.agents/skills/live2d-maker/shadow/references/hair.png)
+![发影重叠、正常不透明颜色与独立偏移](../../../.agents/skills/live2d-maker/knowledge/shadow/step01_mask/references/hair.png)
 
 [制作工作流](../../../.agents/skills/live2d-maker/shadow/README.md)已加入真实 part／深度／UUID 索引和固定 Krita 检查。每处影层记录原像素偏移；保存工程在独立进程中只读打开，输出完整影层、接收面、去影对照及偏移图。量化记录用于发现空层、错裁切或预裁死风险，未规定素材面积倍率，也不能代替画法复核或实际 Cubism 动态验收。
 

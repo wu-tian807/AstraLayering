@@ -23,7 +23,7 @@ pnpm clothing-raster-layering --name jianma --krita /path/to/krita --knowledge /
 
 `--krita` 必须显式指定可执行文件，脚本只校验它，不下载安装或搜索路径。`--check-krita` 仅检查安装；`--dry-run` 检查路径和 Krita 并打印待执行提示词，不调用模型、不创建或重置任务文件。本 section 不保存配置，每次启动都要传 `--krita` 与 `--knowledge`；总入口由任务根 `run.json` 记录并传入。换输入应使用新名字。
 
-生图按 [模型与通道](../references/model-presets.md) 选择宿主原生能力或自定义接口。订阅或 API、provider 与鉴权由所选 harness 的 CLI 配置，Claude／AGV 使用共享生图工具 `imagegen`。Krita 可执行文件由外部提供；工作流不启动 Krita，只准备私有配置、桥接插件与（Linux 无显示时）共享 Xvfb 并占用名额，agent 通过 `krita` 工具自行启动并以 Python 操作，section 结束时由工作流关闭，详见 [Krita 与显示环境](../references/setup.md#krita-与显示环境)。启用工具的配置项不保证服务端实际提供该工具；不可用时应明确受阻，不能生成完成标记。
+生图按 [模型与通道](../references/model-presets.md) 选择宿主原生能力或自定义接口。订阅或 API、provider 与鉴权由所选 harness 的 CLI 配置，Claude／AGV 使用共享生图工具 `imagegen`。Krita 可执行文件由外部提供；工作流不启动 Krita，只准备私有配置、桥接插件与（Linux 无显示时）共享 Xvfb 并占用名额，agent 通过 `krita` 工具自行启动并以 Python 操作，section 结束时由工作流关闭，详见 [Krita 与显示环境](../references/setup.md#krita-与显示环境)。
 
 ## 两步制作
 
@@ -54,7 +54,7 @@ reviewer 每次新建上下文，读取当前 KRA、参考及已有正式 Markdo
     report.md
 ```
 
-各步还会保存实际提示词、请求事件、结果、错误及绘制中间文件。本 section 没有自己的 `run.json`，配置由每次启动参数或总控传入；各步绘制 threadId 与 harness 记在 `agents/steps/<stepNN>/session.json`。模型配置从 `.env`、环境变量及代码默认值读取；旧任务残留的 `clothing-raster-layering/run.json` 不再读取或改写。每步新建自己的绘制 thread，本步的绘制与所有修复在同一 harness 中持续使用它。
+各步还会保存实际提示词、请求事件、结果、错误及绘制中间文件。本 section 没有自己的 `run.json`，配置由每次启动参数或总控传入；各步绘制 threadId 与 harness 记在 `agents/steps/<stepNN>/session.json`。模型配置按非空 `.env`、启动环境、`example.env` 的顺序读取；旧任务残留的 `clothing-raster-layering/run.json` 不再读取或改写。每步新建自己的绘制 thread，本步的绘制与所有修复在同一 harness 中持续使用它。
 
 | 文件情况 | 下次同名启动 |
 | --- | --- |
