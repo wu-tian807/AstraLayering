@@ -20,3 +20,5 @@ node scripts/build-demo-showcase.mjs
 - `web/demo-screenshots/`：当前流程、九轴工作台、模型服务配置与头部先验截图。
 
 从现有 KRA 和累计模型读取素材，用工作台共享渲染器导出；保持实际制作方向，不混入手动姿态覆盖。更新后检查循环、端点、连接遮挡和页面尺寸，清理临时逐帧图。
+
+全向 GIF 的每帧角度复用 [head-motion.js](../web/head-motion.js) 的 `constrainHeadPoint`：斜角与正角之间沿向内收窄的边界过渡，保留九个关键姿态，避免直线经过侧边禁区。
