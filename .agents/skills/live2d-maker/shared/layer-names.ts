@@ -1,13 +1,13 @@
 // Raster stages name layers with a depth number; assembly may add a namespace.
-// `::region` denotes another depth region of the same movable part.
+// `::region` and trailing ` | region` denote depth regions of one movable part.
 export function layerPartName(label: string) {
   let name = label.trim();
-  const stripDepth = () => { name = name.replace(/^\d+(?:\s*\|\s*|\s+)/, ''); };
+  const stripDepth = () => { name = name.replace(/^[Dd]?\d+(?:\.\d+)?(?:\s*\|\s*|\s+)/, ''); };
   stripDepth();
   const prefix = name.match(/^(人物|衣服|衣装)\s*\|\s*/);
   const namespace = prefix ? prefix[1] === '人物' ? 'character:' : 'clothing:' : undefined;
   if (prefix) { name = name.slice(prefix[0].length); stripDepth(); }
-  return { namespace, name: name.trim().replace(/\s+L\d+$/, '') };
+  return { namespace, name: name.trim().replace(/\s+L\d+$/, '').split(/\s*\|\s*/).join('::') };
 }
 export function matchLayerPart(label: string, partIds: readonly string[]): string | null {
   const { namespace, name } = layerPartName(label);

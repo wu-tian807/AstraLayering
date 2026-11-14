@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { kraContents, kraLayers } from '../shadow/delivery.ts';
-import { matchLayerPart } from '../shared/layer-names.ts';
+import { layerPartName, matchLayerPart } from '../shared/layer-names.ts';
 
 type Scope = 'face' | 'hair' | 'accessory';
 export type MaterialSelection = {
@@ -33,7 +33,7 @@ export function selectHeadMaterials(layers: Map<string, Record<string, string>>,
   }
   for (const [layerId, layer] of layers) {
     if (selected.has(layerId) || shadowIds.has(layerId) || layer.nodetype.endsWith('mask')) continue;
-    const name = (layer.name ?? '').split(' | ').at(-1)!, partId = matchLayerPart(name, partIds);
+    const name = layerPartName(layer.name ?? '').name, partId = matchLayerPart(layer.name ?? '', partIds);
     const scope = partId ? scopeOf(partId) : undefined;
     if (partId && scope) selected.set(layerId, { uuid: layerId, id: name, partId, scope });
   }
@@ -69,7 +69,7 @@ export async function headMaterialSelection(document: string, taskRoot: string) 
   walk((await optional(join(taskRoot, 'part-layering/groups.json')))?.groups ?? []);
   // Old materials still have semantic layer names, even without a groups file.
   if (!partIds.length) for (const layer of layers.values()) {
-    const name = (layer.name ?? '').split(' | ').at(-1)!;
+    const name = layerPartName(layer.name ?? '').name;
     if (scopeOf(name)) partIds.push('character:' + name);
   }
   const shadows = (await optional(join(taskRoot, 'shadow/step01_mask/shadows.json')))?.shadows ?? [];
