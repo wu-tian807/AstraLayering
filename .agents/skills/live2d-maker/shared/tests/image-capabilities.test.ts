@@ -89,8 +89,8 @@ for (const model of ['codex-native', 'gpt-image-2.5-flare', 'gemini-nano-banana-
     const server = await fakeAppServer(knowledge, [], 'completed', [], { finalText: 'done' });
     const settings = withCodex(loadWorkflowEnvironment({
       raster_step02_image_model: model,
-      layering_openai_image_base_url: 'http://127.0.0.1:1/v1', layering_openai_image_api_key: 'fixture',
-      layering_google_image_base_url: 'http://127.0.0.1:1/v1', layering_google_image_api_key: 'fixture',
+      openai_image_base_url: 'http://127.0.0.1:1/v1', openai_image_api_key: 'fixture',
+      google_image_base_url: 'http://127.0.0.1:1/v1', google_image_api_key: 'fixture',
     }, knowledge), server.executable);
     settings.codex.config = { 'features.image_generation': true, features: { image_generation: true } };
     const agents = new CodexAgents({ environment: settings, cwd: knowledge });
@@ -137,9 +137,9 @@ for (const harness of ['claude', 'agv'] as const) test(`${harness}: only declare
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => { server.closeAllConnections(); return new Promise<void>(done => server.close(() => done())); });
   await setImages(knowledge, true);
-  const settings = loadWorkflowEnvironment({ [`layering_${harness}_path`]: executable,
+  const settings = loadWorkflowEnvironment({ [`${harness}_path`]: executable,
     raster_step02_agent_model: harness === 'claude' ? 'claude-sonnet-5-5-medium' : 'gemini-4-argon-medium',
-    raster_step02_image_model: 'gpt-image-2.5-flare', layering_openai_image_base_url: `http://127.0.0.1:${(server.address() as any).port}/v1`, layering_openai_image_api_key: 'fixture', EXPECT_IMAGEGEN: 'true',
+    raster_step02_image_model: 'gpt-image-2.5-flare', openai_image_base_url: `http://127.0.0.1:${(server.address() as any).port}/v1`, openai_image_api_key: 'fixture', EXPECT_IMAGEGEN: 'true',
   }, knowledge);
   const session = new CodexAgents({ environment: settings, cwd: knowledge }).createSession();
   try {

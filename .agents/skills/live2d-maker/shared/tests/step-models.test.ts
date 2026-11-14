@@ -44,14 +44,6 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
     assert.equal(settings.stepModels[step].model, 'gemini-4-argon');
   }
   assert.equal(settings.stepModels.part_occlusion.model, 'gpt-6.1-sol');
-  // 带 layering 前缀的旧键在已有 .env 中仍生效，新键优先。
-  assert.equal(loadWorkflowEnvironment({ layering_agent_preparation_model: 'claude-haiku-5-5-low' }, root).stepModels.part_standardize.model, 'claude-haiku-5-5');
-  assert.equal(loadWorkflowEnvironment({ layering_agent_preparation_model: 'claude-haiku-5-5-low', preparation_agent_model: 'gpt-6.1-sol-high' }, root).stepModels.part_standardize.effort, 'high');
-  assert.equal(loadWorkflowEnvironment({ layering_agent_part_depth_model: 'claude-haiku-5-5-low' }, root).stepModels.part_occlusion.model, 'claude-haiku-5-5');
-  assert.equal(loadWorkflowEnvironment({ layering_agent_part_depth_model: 'claude-haiku-5-5-low', part_depth_agent_model: 'gpt-6.1-sol-high' }, root).stepModels.part_occlusion.effort, 'high');
-  assert.equal(loadWorkflowEnvironment({ layering_default_image_model: 'gemini-nano-banana-2.1' }, root).stepImages.raster_step01, 'gemini-nano-banana-2.1');
-  assert.equal(loadWorkflowEnvironment({ layering_raster_step01_image_model: 'gemini-nano-banana-2.1' }, root).stepImages.raster_step01, 'gemini-nano-banana-2.1');
-  assert.equal(loadWorkflowEnvironment({ layering_raster_step01_image_model: 'gemini-nano-banana-2.1', raster_step01_image_model: 'codex-native' }, root).stepImages.raster_step01, 'codex-native');
   assert.deepEqual(settings.stepModels.clothing_occlusion, settings.stepModels.part_occlusion);
   for (const step of ['raster_step01', 'raster_step01_repair', 'clothing_raster_step01', 'clothing_raster_step01_repair'] as const) {
     assert.deepEqual(settings.stepModels[step], parseAgentModel('claude-opus-5-5-medium', 'fixture'));
@@ -149,22 +141,6 @@ test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for sim
   assert.equal(custom.stepImages.part_base_subject, 'gemini-nano-banana-2.1');
   assert.deepEqual(custom.stepModels.raster_step02, settings.stepModels.raster_step02);
   for (const step of imageSteps()) validateImageSelection(custom, step);
-});
-
-test('consistent legacy settings are shared, conflicts require an explicit role, and new configuration wins', async t => {
-  const root = await fixture(t);
-  const consistent = loadWorkflowEnvironment({ layering_part_outline_model: 'claude-sonnet-5-5-high', layering_clothing_outline_model: 'claude-sonnet-5-5-high' }, root);
-  assert.deepEqual(consistent.stepModels.part_outline_repair, consistent.stepModels.clothing_outline);
-  const conflict = { layering_part_outline_model: 'claude-sonnet-5-5-high', layering_clothing_outline_model: 'gemini-4-argon-high' };
-  assert.throws(() => loadWorkflowEnvironment(conflict, root), /不一致.*part_draw_agent_model/);
-  assert.throws(() => loadWorkflowEnvironment({ layering_raster_step01_model: 'gpt-6-astra-high', layering_raster_step01_repair_model: 'gpt-6-astra-low' }, root), /不一致.*raster_step01_agent_model/);
-  const unified = loadWorkflowEnvironment({ ...conflict, part_draw_agent_model: 'gpt-6.1-sol-xhigh' }, root);
-  assert.deepEqual(unified.stepModels.part_outline, unified.stepModels.clothing_outline);
-  assert.equal(unified.stepModels.part_outline.model, 'gpt-6.1-sol');
-  const oldFile = Object.entries(stepDefaults).map(([step, value]) => `layering_${step}_model=${stepModelSlots[step as keyof typeof stepModelSlots] === 'preparation' ? 'gpt-6.1-sol-xhigh' : value}\n`).join('');
-  await writeFile(join(root, '.env'), oldFile);
-  assert.equal(loadWorkflowEnvironment({}, root).stepModels.part_simplify.effort, 'xhigh');
-  assert.equal(await readFile(join(root, '.env'), 'utf8'), oldFile);
 });
 
 test('legacy tier overrides keep their historical roles and explicit roles and nonempty local values win', async t => {

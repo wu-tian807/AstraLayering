@@ -75,7 +75,7 @@ test('all scalar runtime defaults come from the template and partial local setti
 
 test('an installed skill without its template fails immediately rather than inventing defaults',async t=>{
  const root=await fixture(t),shared=join(root,'shared');await mkdir(shared);
- for(const name of ['default-configuration.ts','configuration-sources.ts','legacy-keys.ts','paths.ts'])await copyFile(new URL('../'+name,import.meta.url),join(shared,name));
+ for(const name of ['default-configuration.ts','configuration-sources.ts','paths.ts'])await copyFile(new URL('../'+name,import.meta.url),join(shared,name));
  const installed=await import(pathToFileURL(join(shared,'default-configuration.ts')).href);
  assert.throws(()=>installed.readDefaultConfiguration(),/example.env/);
 });

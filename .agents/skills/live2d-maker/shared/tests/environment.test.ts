@@ -41,6 +41,31 @@ test('配置解析保留认证来源，.env 模型后缀是力度，.env 优先�
   assert.equal(process.env.high_model, undefined);
 });
 
+test('removed layering_ configuration aliases cannot override current runtime settings', async t => {
+  const root = await fixture(t);
+  await writeFile(join(root, '.env'), [
+    'layering_image_compact_threshold=49',
+    'layering_codex_api_key=old-secret',
+    'layering_codex_base_url=https://old.example/v1',
+    'layering_agent_preparation_model=claude-haiku-5-5-low',
+    'layering_part_pose_judgment_model=claude-haiku-5-5-low',
+    'layering_default_image_model=gemini-nano-banana-2.1',
+    'layering_part_standardize_image_model=gemini-nano-banana-2.1',
+  ].join('\n'));
+  const ignored = loadWorkflowEnvironment({layering_codex_image_compact_threshold:'12'}, root);
+  assert.equal(ignored.imageCompactThreshold, undefined);
+  assert.equal(ignored.codex.env!.LAYERING_IMAGE_COMPACT_THRESHOLD, undefined);
+  assert.equal(ignored.providers!.codex.connection, 'inherited');
+  assert.equal(ignored.stepModels.part_pose_judgment.model, 'gpt-6.1-sol');
+  assert.equal(ignored.stepImages.part_standardize, 'codex-native');
+  const configured = loadWorkflowEnvironment({codex_image_compact_threshold:'49', codex_api_key:'new-secret', codex_base_url:'https://new.example/v1',
+    preparation_agent_model:'claude-haiku-5-5-low', default_image_model:'gpt-image-2.5-flare'}, root);
+  assert.equal(configured.codex.env!.LAYERING_IMAGE_COMPACT_THRESHOLD, '49');
+  assert.equal(configured.providers!.codex.baseUrl, 'https://new.example/v1');
+  assert.equal(configured.stepModels.part_pose_judgment.model, 'claude-haiku-5-5');
+  assert.equal(configured.stepImages.part_standardize, 'gpt-image-2.5-flare');
+});
+
 test('本机 Krita 并发上限来自 .env，默认取 example.env，非正整数直接报错', async t => {
   const root = await fixture(t);
   assert.equal(loadWorkflowEnvironment({}, root).codex.env!.krita_max_instances, '4');
