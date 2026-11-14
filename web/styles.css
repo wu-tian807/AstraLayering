@@ -194,7 +194,7 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 .group-detail{width:max-content;display:flex;flex-direction:column;min-height:0}
 .group-detail>.group-note{max-width:1190px;max-height:42px;flex-shrink:0;margin-bottom:8px}
 .cycle-phases{flex:1;min-height:0}
-.cycle-phase{flex:0 0 195px;overflow:auto;scrollbar-width:thin}
+.cycle-phase{flex:0 0 195px;align-self:flex-start;max-height:100%;overflow:auto;scrollbar-width:thin}
 .cycle-phase.collapsed{flex-basis:42px}
 .phase-state{font-size:10px;max-height:48px;overflow:auto}
 .phase-artifacts .artifact-image img{height:clamp(100px,calc(100dvh - 600px),180px)}

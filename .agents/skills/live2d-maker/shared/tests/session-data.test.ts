@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { parse as parseToml } from 'smol-toml';
 import { codexSessionEnvironment, productionCodexConfig } from '../codex/session-data.ts';
-import { readSessions, rememberSession, resolveSession } from '../agents/session-data.ts';
+import { readSessions, rememberSession, resolveSession, syncCredential } from '../agents/session-data.ts';
 
 test('Codex profile copies authentication only, keeps refreshed credentials, and never mutates the caller environment', async t => {
   const root = await mkdtemp(join(tmpdir(), 'codex-profile-')); t.after(() => rm(root, { recursive: true, force: true }));
@@ -26,6 +26,39 @@ test('Codex profile copies authentication only, keeps refreshed credentials, and
   assert.equal((await codexSessionEnvironment(data, source)).CODEX_HOME, env.CODEX_HOME);
   assert.equal(await readFile(join(env.CODEX_HOME!, 'auth.json'), 'utf8'), 'refreshed');
   assert.equal(await readFile(join(native, 'auth.json'), 'utf8'), '{"token":"fixture"}');
+  await writeFile(join(native, 'auth.json'), '{"token":"new-login"}');
+  await codexSessionEnvironment(data, source);
+  assert.equal(await readFile(join(env.CODEX_HOME!, 'auth.json'), 'utf8'), '{"token":"new-login"}');
+});
+
+test('existing session adopts the native credential once and follows subsequent login and logout', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'credentials-upgrade-')); t.after(() => rm(root, { recursive: true, force: true }));
+  const source = join(root, 'native'), data = join(root, 'data'), target = join(data, 'credential');
+  await mkdir(data); await writeFile(source, 'native-login'); await writeFile(target, 'old-session-login');
+  await syncCredential(data, source, target);
+  assert.equal(await readFile(target, 'utf8'), 'native-login');
+  await writeFile(target, 'local-token-refresh');
+  await syncCredential(data, source, target);
+  assert.equal(await readFile(target, 'utf8'), 'local-token-refresh');
+  await writeFile(source, 'new-native-login');
+  await syncCredential(data, source, target);
+  assert.equal(await readFile(target, 'utf8'), 'new-native-login');
+  await rm(source);
+  await syncCredential(data, source, target);
+  await assert.rejects(readFile(target), { code: 'ENOENT' });
+  const metadata = await readFile(join(data, 'credential-sources.json'), 'utf8');
+  assert.doesNotMatch(metadata, /native-login|local-token-refresh/);
+});
+
+test('upgrade clears a logged-out source once, but retains a later private login', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'credentials-missing-')); t.after(() => rm(root, { recursive: true, force: true }));
+  const source = join(root, 'missing'), target = join(root, 'credential');
+  await writeFile(target, 'old-session-login');
+  await syncCredential(root, source, target);
+  await assert.rejects(readFile(target), { code: 'ENOENT' });
+  await writeFile(target, 'private-login');
+  await syncCredential(root, source, target);
+  assert.equal(await readFile(target, 'utf8'), 'private-login');
 });
 
 test('Codex private profile reuses only the selected native provider and its dynamic login command', async t => {

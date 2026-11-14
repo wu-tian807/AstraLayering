@@ -141,7 +141,7 @@ raster_step01_repair_image_model=gpt-image-2.5-flare
 | Claude Code | `claude-sonnet-5-5`、`claude-opus-5-5`、`claude-haiku-5-5` | `claude_path`，未填则找全局 `claude` |
 | Antigravity（agv） | `gemini-4-argon` | `agv_path`，未填则找全局 `agy`／`agv`／`antigravity` |
 
-支持力度 `low`、`medium`、`high`、`xhigh`。配置路径相对于 skill 根目录；模型是否获授权仍由用户的 CLI 登录或 provider 决定。Claude Code／Antigravity 复用本机入口与登录；启动会报告缺失条件，由 agent 与用户确认安装、登录或改选模型的方案。
+支持力度 `low`、`medium`、`high`、`xhigh`。配置路径相对于 skill 根目录；模型是否获授权仍由用户的 CLI 登录或 provider 决定。三种 CLI 复用支持的本机登录；文件型登录改变后下一次调用同步，继续原会话。动态认证由 CLI 和认证命令自身取值，支持范围与升级行为见 [Harness 登录与会话契约](../shared/README.md#harness-登录与会话契约)。启动会报告缺失条件，由 agent 与用户确认安装、登录或改选模型的方案。
 
 例如，将两套 part 的 review 改为 Argon：
 

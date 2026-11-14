@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
 import { join } from 'node:path';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { runAgent, type AgentRequest } from '../raster/agent.ts';
 import { AgentCallError, AgentRuntime, retryableAgentError } from '../codex/agent-runtime.ts';
 import { executionPaths, workspacePrompt } from '../agents/workspace.ts';
@@ -32,6 +33,18 @@ test('raster 等待 CLI 终态后在原 thread 继续并记录退避', async t =
   assert.equal(prompts[0], workspacePrompt(f.request().prompt, executionPaths({ cwd: f.directory }, f.directory)));
   assert.equal(prompts[1].includes(f.request().prompt), false);
   assert.ok(events.includes('thread.started'));
+});
+
+test('dynamic Codex authentication does not restart the process during one retried turn', async t => {
+  const f = await fixture(t, { failedTurns: 1, nativeReconnect: true });
+  const native = join(f.directory, 'native'); await mkdir(native);
+  await writeFile(join(native, 'config.toml'), 'model_provider = "fixture"\n[model_providers.fixture]\nname = "Fixture"\n[model_providers.fixture.auth]\ncommand = "fixture-helper"\n');
+  f.environment.codex.env = { ...f.environment.codex.env, CODEX_HOME: native };
+  const result = await runAgent(f.request(), new AgentRuntime(1, async () => {}, () => 1));
+  assert.equal(result.status, 'completed');
+  const protocol = await f.protocol();
+  assert.equal(protocol.filter(message => message.method === 'thread/start').length, 1);
+  assert.equal(protocol.filter(message => message.method === 'turn/start').length, 2);
 });
 
 test('额度、输入图数和上下文上限不会被结构化 429 误判为临时故障', () => {

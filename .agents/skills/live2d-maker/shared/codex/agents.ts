@@ -19,6 +19,7 @@ import type { ImageProcessingOptions } from '../image-processing.ts';
 import { executionPaths } from '../agents/workspace.ts';
 import { freshPrompt } from './fresh-prompt.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
+import { codexAuthenticationSource } from './session-data.ts';
 
 
 export type AgentTask = {
@@ -126,6 +127,7 @@ export class CodexAgents {
     let route: Awaited<ReturnType<typeof createCodexImageRoute>> | undefined;
     let imageModel: string | undefined;
     let transportKey: string | undefined;
+    let authenticationRevision: string | undefined;
     let id = resumeThreadId;
     const functionOptions = () => ({ ...sessionOptions,
       // Startup may select the cached patch after this session was constructed.
@@ -160,10 +162,16 @@ export class CodexAgents {
               join(paths.workspace, 'generated'), this.options, closing.signal, this.options.imageNormalization);
             imageModel = routeKey;
           }
-          session ||= createFunctionToolSession(functionOptions(), id);
-          let blocked: BlockedImages | undefined, fresh = false;
+          let blocked: BlockedImages | undefined, fresh = false, refreshDynamic = true;
           const replace = this.replacement(task);
           return await this.invoke(task, signal, async () => {
+            const auth = await codexAuthenticationSource(functionOptions().env ?? process.env);
+            if (session && ((auth.dynamic && refreshDynamic) || authenticationRevision !== auth.revision)) {
+              await session.close(); session = undefined;
+            }
+            refreshDynamic = false;
+            authenticationRevision = auth.revision;
+            session ||= createFunctionToolSession(functionOptions(), id);
             try {
               const result = await session!.run(blocked ? { ...task, prompt: blockedImagesPrompt(blocked) }
                 : interrupted ? { ...task, prompt: interruptedTaskPrompt() }
