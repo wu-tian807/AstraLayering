@@ -1,6 +1,6 @@
 import { processFileList } from './process-files.js';
 import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts, groupArtifacts, shadowInspectionArtifacts, previousNineAxisSectionSteps,
- groupSummary, groupPreviewArtifacts, groupStagePreviewArtifacts, groupReviewSteps, reviewReportText, replacementGroupDraft,
+ groupSummary, groupPreviewArtifacts, groupStagePreviewArtifacts, groupReviewSteps, groupStageNodes, reviewReportText, replacementGroupDraft,
  latestKraPreview, statusNames, displayStatus, statusLabel } from './progress.js';
 import { selectedTask, rememberTask } from './task-selection.js';
 import { renderReport } from './report-markdown.js';
@@ -291,10 +291,8 @@ function groupPhaseNode(index,id,label,status,detail,items,number,hasPreview=fal
  return `<section class="cycle-phase ${status==='skipped'?'skipped-node':''} ${closed?'collapsed':''}" data-phase="${key}"><button data-phase-toggle="${key}" aria-expanded="${!closed}" aria-label="${closed?'展开':'收起'}${label}"><span class="cycle-number">${number}</span><b>${esc(label)}</b>${statusMark(status)}${icon(closed?'chevron':'down')}</button>${closed?'':`<p class="phase-state ${displayStatus(status)}" title="${esc(detail)}">${status==='skipped'?'无需执行':esc(statusLabel(status))}</p>${status==='throttled'?waitBox(detail):''}${artifacts(items,index,id,'phase-artifacts')}${status==='skipped'?'':hasPreview?'<span class="phase-explanation">SVG 见左侧预览</span>':!available(items).length?'<span class="phase-explanation">尚无本步骤产物</span>':''}`}</section>`;
 }
 function groupDetailPhases(index,group,phaseFiles) {
- const steps=groupPhases.flatMap(([id,label])=>id==='review'
-  ?groupReviewSteps(group,stages[index].id,group.id)
-  :[{id,title:label,status:group.webPhases?.[id]||'pending',detail:group.webDetails?.[id]||'',
-    artifacts:['outline','completion'].includes(id)?phaseFiles[id].filter(item=>item.kind==='file'):phaseFiles[id]}]);
+ const steps=groupStageNodes(group,stages[index].id,group.id).map(step=>step.id==='review-1'||step.id==='review-2'||step.id==='repair-1'||step.id==='repair-2'?step
+  :{...step,artifacts:['outline','completion'].includes(step.id)?phaseFiles[step.id].filter(item=>item.kind==='file'):phaseFiles[step.id]});
  return steps.map((step,i)=>{
   return (['outline','completion'].includes(step.id)?svgPreviewPanel(index,group,step.id,phaseFiles):'')
    +groupPhaseNode(index,step.id,step.title,step.status,step.detail,step.artifacts,i+1,
@@ -319,7 +317,7 @@ function groupCycle(index) {
  <p class="tree-note">点击部件切换预览；详情由“横向展开”控制。</p>
  ${artifacts([{path:`${prefix}/groups.json`,label:'完整 groups.json',kind:'file'}],index,'layers')}
  </div>
- ${view.open?`<div class="group-detail"><p class="group-note">${esc(group.note||'')}</p><div class="cycle-phases">${groupDetailPhases(index,group,phaseFiles)}</div></div>`:`<div class="group-compact"><p>${statusMark(groupSummary(group).status)}${esc(groupSummary(group).text)}</p><div class="compact-phases">${groupPhases.map(([id,label])=>`<button data-group-toggle="${index}" aria-label="展开 ${esc(group.id)} 的${label}">${statusMark(group.webPhases?.[id]||'pending')}${label}</button>`).join('')}</div>${artifacts(groupPreviewArtifacts(group,phaseFiles,archivedFiles,data.fileVersions),index,'layers')}</div>`}
+ ${view.open?`<div class="group-detail"><p class="group-note">${esc(group.note||'')}</p><div class="cycle-phases">${groupDetailPhases(index,group,phaseFiles)}</div></div>`:`<div class="group-compact"><p>${statusMark(groupSummary(group).status)}${esc(groupSummary(group).text)}</p><div class="compact-phases">${groupStageNodes(group,stages[index].id,group.id).map(({title,status})=>`<button data-group-toggle="${index}" aria-label="展开 ${esc(group.id)} 的${title}">${statusMark(status)}${title}</button>`).join('')}</div>${artifacts(groupPreviewArtifacts(group,phaseFiles,archivedFiles,data.fileVersions),index,'layers')}</div>`}
  </div></div>`;
 }
 function statusMark(status) {

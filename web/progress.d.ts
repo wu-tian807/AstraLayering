@@ -37,6 +37,8 @@ export function groupStagePreviewArtifacts(phase: 'outline' | 'completion', phas
   files: Set<string>, versions?: Record<string, string>): Artifact[];
 export function groupReviewSteps(group: ProgressGroup, section: string, groupId: string):
   { id: ReviewPhase; title: string; status: string; detail: string; artifacts: Artifact[] }[];
+export function groupStageNodes(group: ProgressGroup, section: string, groupId: string):
+  { id: string; title: string; status: string; detail: string; artifacts: Artifact[] }[];
 export function reviewReportText(text: string, item: Artifact): string;
 export function groupLayers<T extends { groups?: T[] }>(groups: T[]): T[][];
 export function groupArtifacts(section: string, group: { id: string }, depth: number): Record<GroupPhase, Artifact[]>;

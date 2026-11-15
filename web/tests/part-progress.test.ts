@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { snapshot } from '../snapshot.ts';
 import { acquireTaskLock, configureRun, saveRun } from '../../.agents/skills/live2d-maker/workflow/state.ts';
 import { svgHash } from '../../.agents/skills/live2d-maker/shared/part/artifact-facts.ts';
-import { groupSummary } from '../progress.js';
+import { groupSummary, groupStageNodes } from '../progress.js';
 
 const svg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"><path d="M0 0L10 10Z"/></svg>');
 async function fixture(t: any, section = 'part-layering') {
@@ -540,4 +540,48 @@ test('after a run fails, a step another lane left running is not shown as failed
   assert.equal(interrupted.states.step01, 'interrupted');
   assert.notEqual(interrupted.status, 'failed');
   assert.ok(!Object.values(interrupted.messages).includes('ENAMETOOLONG'), 'another lane does not inherit the failure');
+});
+
+async function failedRun(f: Awaited<ReturnType<typeof fixture>>) {
+  const run = await configureRun({ name: 'test', dir: f.dir, from: 'part-layering', to: 'part-layering' }, f.task);
+  run.status = 'failed'; run.activeSections = ['part-layering'];
+  run.runner = { id: 'failed-runner', pid: process.pid, startedAt: new Date(Date.now() - 1000).toISOString(), finishedAt: new Date().toISOString() };
+  run.sections['part-layering']!.status = 'failed'; await saveRun(f.task, run);
+  await f.put('groups.json', { groups: [{ id: 'body', groups: [] }] });
+  await f.mark('step08_initial');
+  await f.mark('step09_outline/body', 'running');
+}
+
+test('a failed first drawing leaves every review and repair round pending', async t => {
+  const f = await fixture(t); await failedRun(f);
+  await f.put('agents/draw/request.json', { task: { name: '组轮廓绘制-body' } });
+  await f.put('agents/draw/result.json', { status: 'failed' });
+  const node = (await f.get()).part.groups[0];
+  assert.equal(node.webPhases.outline, 'failed');
+  assert.equal(node.webPhases.review, 'pending');
+  assert.deepEqual(node.webReviewRounds.flatMap((round: any) => [round.review.status, round.repair.status]), Array(4).fill('pending'));
+});
+
+test('a failed second review fails only that round after drawing and the first round finished', async t => {
+  const f = await fixture(t); await failedRun(f);
+  await f.put('step09_outline/body/outline.svg', svg);
+  await f.put('step09_outline/body/review.json', { groupId: 'body', reviews: [
+    { verdict: 'revise', candidateHash: 'older', repairedCandidateHash: svgHash(svg), feedback: 'fix', updatedAt: new Date(Date.now() - 5000).toISOString(), observations: [] }] });
+  await f.put('agents/review2/request.json', { task: { name: '组轮廓review-body' } });
+  await f.put('agents/review2/result.json', { status: 'failed' });
+  const node = (await f.get()).part.groups[0];
+  assert.notEqual(node.webPhases.outline, 'failed');
+  assert.equal(node.webPhases.review, 'failed');
+  const [first, second] = node.webReviewRounds;
+  assert.notEqual(first.review.status, 'failed');
+  assert.equal(second.review.status, 'failed');
+  assert.equal(second.repair.status, 'pending');
+});
+
+test('collapsed and expanded groups list the same stage nodes', async t => {
+  const f = await fixture(t);
+  await f.put('groups.json', { groups: [{ id: 'body', groups: [] }] });
+  const node = (await f.get()).part.groups[0];
+  const nodes = groupStageNodes(node, 'part-layering', 'body');
+  assert.deepEqual(nodes.map(item => item.id), ['outline', 'review-1', 'repair-1', 'review-2', 'repair-2', 'reduction', 'completion', 'completionCheck', 'children']);
 });
