@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { zipSync, strToU8 } from 'fflate';
 import sharp from 'sharp';
-import { KraMaterials, type MaterialExport } from '../kra-materials.ts';
+import { bindKraDocument, KraMaterials, type MaterialExport } from '../kra-materials.ts';
 import { kraContents } from '../../shadow/delivery.ts';
 import { modelVersion } from '../source.ts';
 import type { Built } from '../head.ts';
@@ -26,6 +26,24 @@ export const fixtureExport: MaterialExport = async (document, directory, rows) =
     return { ...row, bounds };
   }));
 };
+
+test('preparation UUID identities survive arbitrary native layer names and model aliases',async t=>{
+  const root=await mkdtemp(join(tmpdir(),'nine-native-identity-'));t.after(()=>rm(root,{recursive:true,force:true}));
+  const directory=join(root,'nine-axis/step08_hair'),kra=join(root,'shadow/step01_mask/character-shadowed.kra');
+  await mkdir(directory,{recursive:true});await mkdir(join(kra,'..'),{recursive:true});
+  await mkdir(join(root,'nine-axis/step01_preparation'),{recursive:true});
+  await writeFile(join(root,'nine-axis/step01_preparation/head_parts_manifest.json'),JSON.stringify({
+    parts:[{uuid:faceUuid,id:'face/face_base',partId:'character:face/face_base',scope:'face'}],
+    referenceLayers:[{uuid:hairUuid,id:'hair/bangs',partId:'character:hair/bangs',scope:'hair'}],
+  }));
+  await writeFile(kra,zipSync({'maindoc.xml':strToU8(xml.replace('hair/bangs','renamed in Krita').replace('face/face_base','another display label')),'mergedimage.png':await sharp({create:{width:12,height:12,channels:4,background:'#f00'}}).png().toBuffer()}));
+  const input=materialFixture().doc,part={...structuredClone(input.parts[0]),id:'arbitrary paint alias',uuid:hairUuid,level:'accessory' as const,partId:'character:head_accessories/fake'};
+  input.parts.push(part);
+  const bound=await bindKraDocument(root,directory,input);
+  assert.equal(bound.parts[1].partId,'character:hair/bangs');assert.equal(bound.parts[1].level,'hair');
+  assert.equal(bound.parts[0].partId,'character:face/face_base');
+  assert.equal(input.parts[1].partId,'character:head_accessories/fake','binding normalizes a clone');
+});
 
 test('KRA is authoritative: stale PNG is ignored, saved KRA invalidates the shared cache with unchanged JSON', async t => {
   const root=await mkdtemp(join(tmpdir(),'nine-kra-materials-')); t.after(()=>rm(root,{recursive:true,force:true}));

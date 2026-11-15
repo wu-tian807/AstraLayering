@@ -48,7 +48,7 @@ async function fixture(t:TestContext,withAccessory=true){
     }));
   });
   const materialize:MaterialLoader=(dir,built,signal,context)=>materials.resolve(task,dir,built,signal,context);
-  const edit=()=>createContinuationEditTool(output,upstream,'accessories',undefined,task,materialize,{label:'头部饰品',allows:isAccessoryId,allowsParent:id=>doc.deformers.some(n=>n.id===id)});
+  const edit=()=>createContinuationEditTool(output,upstream,'accessories',undefined,task,materialize,accessoryPreviewScope);
   const build=async()=>materialize(output,await buildAccessories(output,upstream,undefined,materialize));
   const select=async(shadow=true)=>{
     const part={id:'head_accessories/object',uuid:uuid(6),level:'accessory',bbox:[10,10,40,40],cols:4,rows:4};
@@ -85,7 +85,7 @@ test('accessories reject unbound static ornaments, nonzero Y, and edits to compl
   await assert.rejects(checkAccessories(before,before),/尚未注册剩余 KRA 头部饰品/);await f.select();
   const signal=new AbortController().signal;
   await assert.rejects(f.edit().execute({operations:[{action:'transform',id:'head_accessories/object',x:-30,y:5,translate:[1,0]}]},signal),/Y=0/);
-  await assert.rejects(f.edit().execute({operations:[{action:'transform',id:'hair/bangs',x:-30,translate:[1,0]}]},signal),/只能编辑/);
+  await assert.rejects(f.edit().execute({operations:[{action:'transform',id:'hair/bangs',x:-30,translate:[1,0]}]},signal),/范围外/);
   await writeFile(join(f.output,'character-nine-axis.kra'),await f.makeKra({...f.colors,'hair/bangs':'#ff0000'}));
   await assert.rejects(f.build(),/其他上游画稿/);
 });
@@ -111,7 +111,7 @@ test('native accessory shadows are required when their actual dependencies exist
 
 test('preview includes completed face/hair and registered accessories, with no static placeholders or Y poses',async()=>{
   for(const p of [{id:'face/face_base',level:'face'},{id:'hair/braid',level:'hair'},{id:'head_accessories/object',level:'accessory'}])assert.ok(accessoryPreviewScope.includes(p));
-  assert.equal(accessoryPreviewScope.includes({id:'__kra__/unknown',level:'accessory'}),false);
+  assert.equal(accessoryPreviewScope.includes({id:'__kra__/unknown',level:'accessory',context:true}),false);
   const tool=createNineAxisViewTool('/task/nine-axis','/task/out',async()=>assert.fail('pose rejected before KRA load'),undefined,accessoryPreviewScope);
   await assert.rejects(tool.execute({x:0,y:5},new AbortController().signal),/只允许 Y=0/);
   const prompt=accessoriesPrompt({document:'/task/owned.kra',color:''} as any,'/task');assert.ok(prompt.includes('持续被遮挡'));assert.ok(prompt.includes('head_accessories'));

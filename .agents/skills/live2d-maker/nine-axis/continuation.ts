@@ -8,20 +8,24 @@ import { initializeKeyforms } from '../shared/nine-axis-edit.js';
 import { modelDocument, withDocument } from './source.ts';
 import { taskRootOf } from '../shared/task-paths.ts';
 import { dirname } from 'node:path';
-import type { MaterialLoader } from './kra-materials.ts';
+import { bindKraDocument, type MaterialLoader } from './kra-materials.ts';
 import sharp from 'sharp';
+import { ownsNode, withinPart, partVisible, type OwnershipScope } from './ownership.ts';
 
-const geometryOnly=(value: any): any=>JSON.parse(JSON.stringify(value??null,(key,value)=>['texture','uuid','material'].includes(key)?undefined:value));
+const geometryOnly=(value: any): any=>JSON.parse(JSON.stringify(value??null,(key,value)=>['texture','uuid','material','partId'].includes(key)?undefined:value));
 const hasKeys = (node: any, field: string) => Object.keys(node?.[field] ?? {}).some(key => key !== '0');
 
 export type PitchStage = 'up' | 'down';
 export type Stage = PitchStage | 'xy' | 'jaw' | 'hair' | 'accessories';
 export type AuthoredHead = HeadNineAxis & { axis: number; authoring: { stage: Stage; upstreamSha256?: string } };
 export const authorFile = (stage: Stage) => ({ up: 'face-up.json', down: 'face-down.json', xy: 'face-xy.json', jaw: 'jaw.json', hair: 'hair.json', accessories: 'accessories.json' })[stage];
-export const isHairNode = (node: { id: string; level: string }) => node.level === 'hair' && /^hair(?:\/|$)/.test(node.id);
-export const isAccessoryNode = (node: { id: string; level: string }) => node.level === 'accessory' && /^head_accessories(?:\/|::|$)/.test(node.id);
+export const isHairNode = (node: { id: string; level: string; context?: boolean }) => !node.context && node.level === 'hair';
+export const isAccessoryNode = (node: { id: string; level: string; context?: boolean }) => !node.context && node.level === 'accessory';
 const horizontalStage = (stage:Stage) => stage==='hair'||stage==='accessories';
-const horizontalNode = (stage:Stage,node:{id:string;level:string}) => stage==='hair'?isHairNode(node):isAccessoryNode(node);
+const horizontalScope = (stage:Stage):OwnershipScope => ({label:stage==='hair'?'头发':'头部饰品',
+  allows:partId=>withinPart(partId,stage==='hair'?'hair':'head_accessories'),
+  includes:(part,doc)=>partVisible(part,doc,partId=>['face','neck','hair',...(stage==='accessories'?['head_accessories']:[])].some(root=>withinPart(partId,root)))});
+const horizontalNode = (stage:Stage,node: Parameters<typeof ownsNode>[1],doc:HeadNineAxis) => ownsNode(doc,node,horizontalScope(stage));
 export const pitchKeys = (stage: PitchStage, scale: AngleScale) => [stage === 'up' ? scale.y[1] : scale.y[0]];
 export const sha256 = (s: string) => createHash('sha256').update(s).digest('hex');
 
@@ -84,11 +88,11 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
   fields.push(['keyformsY', (stage === 'up' || stage === 'down' ? pitchKeys(stage, scale) : scale.y).map(angleKey)]);
   if (stage === 'xy' || stage === 'jaw') fields.push(['keyformsXY', scale.x.flatMap(x => scale.y.map(y => `${angleKey(x)},${angleKey(y)}`))]);
   if (horizontalStage(stage)) {
-    const label=stage==='hair'?'头发':'头部饰品',prefix=stage==='hair'?'hair/':'head_accessories/';
+    const label=stage==='hair'?'头发':'头部饰品';
     const vertical = doc.parameters?.find(p => p.id === 'ParamAngleY');
     if (vertical?.min !== 0 || vertical.max !== 0 || JSON.stringify(vertical.keys) !== '[0]')
       throw Error(`${label}步骤只制作 left/right，ParamAngleY 必须固定为 0`);
-    for (const [id,before] of original) if (!horizontalNode(stage,before)) {
+    for (const [id,before] of original) if (!horizontalNode(stage,before,upstream)) {
       const current = structuredClone(ids.get(id));
       if (!current) throw Error(`${label}阶段缺少上游节点 ${id}`);
       if(stage==='accessories') {
@@ -101,12 +105,12 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
       if ('texture' in before && before.texture === 'layers/mirror-grid-transparent.png' && !('material' in before)) delete (current as any).material;
       if (JSON.stringify(geometryOnly(current)) !== JSON.stringify(geometryOnly(before))) throw Error(`${id}：${label}阶段不能改动已完成的脸部、五官、下颌、脖子或其他上游节点`);
     }
-    for (const node of nodes(doc)) if (!original.has(node.id) && !horizontalNode(stage,node)) throw Error(`${node.id}：${label}阶段新增节点须属于 ${prefix}`);
-    const inheritedOrder = upstream.parts.filter(part => !horizontalNode(stage,part)).map(part => part.id);
+    for (const node of nodes(doc)) if (!original.has(node.id) && !horizontalNode(stage,node,doc)) throw Error(`${node.id}：新增节点不属于当前${label}部件`);
+    const inheritedOrder = upstream.parts.filter(part => !horizontalNode(stage,part,upstream)).map(part => part.id);
     if (JSON.stringify(doc.parts.filter(part => inheritedOrder.includes(part.id)).map(part => part.id)) !== JSON.stringify(inheritedOrder)) throw Error(`${label}阶段不能改动已有脸部图层及其他上游节点的相对绘制顺序`);
   }
   for (const n of nodes(doc)) {
-    const horizontalHair = horizontalStage(stage) && horizontalNode(stage,n);
+    const horizontalHair = horizontalStage(stage) && horizontalNode(stage,n,doc);
     // Horizontal authoring retains upstream axes, including parent-space
     // compensation, but cannot add or delete vertical/diagonal pose keys.
     if (horizontalHair) for (const field of ['keyformsY','keyformsXY'] as const)
@@ -135,6 +139,7 @@ export async function compileContinuation(directory: string, upstreamDirectory: 
   if (stage === 'jaw' || horizontalStage(stage)) {
     const root = taskRootOf(dirname(directory)), document = await modelDocument(root, directory, value);
     if (document) author = withDocument(value, root, document) as AuthoredHead;
+    if (document && materialize) author = await bindKraDocument(root,directory,author) as AuthoredHead;
   }
   const checked = checkContinuation(author, upstream.doc, stage, scale);
   const mirrored = stage === 'up' || stage === 'down' || horizontalStage(stage) ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY');
@@ -144,7 +149,7 @@ export async function compileContinuation(directory: string, upstreamDirectory: 
     const built = await materialize(directory, { doc, textures: new Map() }, signal, false);
     if (horizontalStage(stage)) {
       const baseline = await materialize(upstreamDirectory, { doc: upstream.doc, textures: new Map() }, signal, false);
-      await Promise.all(upstream.doc.parts.filter(part => !horizontalNode(stage,part)).map(async part => {
+      await Promise.all(upstream.doc.parts.filter(part => !horizontalNode(stage,part,upstream.doc)).map(async part => {
         const current = built.doc.parts.find(p => p.id === part.id)!;
         const rgba = (file: string) => sharp(file).ensureAlpha().raw().toBuffer();
         const [a,b] = await Promise.all([rgba(baseline.textures.get(baseline.doc.parts.find(p => p.id === part.id)!.texture!)!),rgba(built.textures.get(current.texture!)!)]);

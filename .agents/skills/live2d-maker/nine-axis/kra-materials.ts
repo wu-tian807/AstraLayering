@@ -14,7 +14,7 @@ import { prepareNeutralBridge } from './neutral.ts';
 import type { Built } from './head.ts';
 
 type Bounds = [number, number, number, number];
-export type MaterialRow = { id: string; uuid?: string; bounds?: Bounds; transparent?: boolean; raw?: boolean; texture: string; scope?: 'face' | 'hair' | 'accessory'; shadowSource?: MaterialSelection };
+export type MaterialRow = { id: string; uuid?: string; partId?: string; bounds?: Bounds; transparent?: boolean; raw?: boolean; texture: string; scope?: 'face' | 'hair' | 'accessory'; shadowSource?: MaterialSelection };
 export type ShadowContextPart = HeadDeformer & { shadowSource?: MaterialSelection };
 type Exported = MaterialRow & { bounds: Bounds };
 export type MaterialExport = (document: string, directory: string, rows: MaterialRow[], shadows: string[], signal?: AbortSignal) => Promise<Exported[]>;
@@ -46,6 +46,12 @@ export async function bindKraDocument(root: string, directory: string, input: Bu
       else{
         if(!id||!layers.has(uuid(id)))throw Error(`${part.id}：没有有效的 KRA 图层 UUID；请绑定保存后的图层`);
         part.uuid=uuid(id);
+        const native = selection.selections.find(row => row.uuid === part.uuid);
+        if (native) { part.partId = native.partId; part.level = native.scope; }
+        else if (part.level !== 'face' && !part.partId) throw Error(`${part.id}：新画层须指定原部件 partId`);
+        if (part.partId && !selection.selections.some(row => row.partId === part.partId))
+          throw Error(`${part.id}：partId 不属于当前 KRA 部件目录`);
+        if (!native && part.partId) part.level = selection.selections.find(row => row.partId === part.partId)!.scope;
         if(part.shadow){const layer=layers.get(part.uuid)!,blendMode=layer.compositeop??'normal';
           if(blendMode!=='normal'&&blendMode!=='multiply')throw Error(`${part.id}：暂不支持 ${blendMode} 混合模式`);
           part.shadow={...part.shadow,blendMode,opacity:Number(layer.opacity??255)/255};}
@@ -71,7 +77,7 @@ export async function bindKraDocument(root: string, directory: string, input: Bu
 export async function kraCatalog(root: string,directory: string,doc: Built['doc']){
   const document=await modelDocument(root,directory,doc);if(!document)throw Error('缺少 KRA 来源');
   const bytes=await readFile(document),layers=kraLayers(kraContents(bytes).xml),selection=await headMaterialSelection(document,root);
-  return {document,revision:hash(bytes),layers:[...layers].map(([uuid,layer])=>({uuid,name:layer.name,type:layer.nodetype,parent:layer.parent??null,visible:layer.visible!=='0',opacity:Number(layer.opacity??255)/255,blendMode:layer.compositeop??'normal',binding:doc.parts.filter(p=>p.uuid===uuid).map(p=>p.id)})),relations:selection.selections.filter(row=>row.role==='shadow')};
+  return {document,revision:hash(bytes),layers:[...layers].map(([uuid,layer])=>({uuid,name:layer.name,type:layer.nodetype,parent:layer.parent??null,visible:layer.visible!=='0',opacity:Number(layer.opacity??255)/255,blendMode:layer.compositeop??'normal',partId:selection.selections.find(row=>row.uuid===uuid)?.partId,binding:doc.parts.filter(p=>p.uuid===uuid).map(p=>p.id)})),relations:selection.selections.filter(row=>row.role==='shadow')};
 }
 
 /** Native export is read-only. Never reuse a user's open, possibly unsaved,
@@ -177,7 +183,7 @@ export class KraMaterials {
       // Honour saved visibility through all ancestors, including hidden backups.
       let visible = true;
       for (let at: string = material.uuid; at; at = layers.get(at)?.parent ?? '') if (layers.get(at)?.visible === '0') visible = false;
-      if (visible) rows.push({ id: `__kra__/${material.uuid}`, uuid: material.uuid, scope: material.scope, texture: `${rows.length}.png` });
+      if (visible) rows.push({ id: `__kra__/${material.uuid}`, uuid: material.uuid, partId: material.partId, scope: material.scope, texture: `${rows.length}.png` });
     }
     if(hash(await readFile(document))!==revision)throw Error('KRA 在解析期间已变化，请重试');
     const key = hash(JSON.stringify({ version: 1, revision, rows, shadows: selection.shadowLayerUuids }));
@@ -220,7 +226,7 @@ export class KraMaterials {
         const [x,y,w,h] = row.bounds, bbox = [x,y,x+w,y+h];
         const base = { id: row.id, level: row.scope!, texture: `layers/context-${row.uuid}.png`, textureBounds: row.bounds, bbox, cols: 1, rows: 1, keyforms: {} };
         const points = lattice(base), rest = Array.from({ length: 4 }, (_, i) => [points[i*2], points[i*2+1]]);
-        part = { ...base, uuid: row.uuid, keyforms: { '0': rest }, ...(row.shadowSource?{shadowSource:row.shadowSource}:{}) } as ShadowContextPart;
+        part = { ...base, uuid: row.uuid, partId: row.partId, context: true, keyforms: { '0': rest }, ...(row.shadowSource?{shadowSource:row.shadowSource}:{}) } as ShadowContextPart;
         // Insert static artwork around the KRA-backed parts without changing
         // the author's explicit face/jaw draw order.
         const order = Number(layers.get(row.uuid!)?.order);

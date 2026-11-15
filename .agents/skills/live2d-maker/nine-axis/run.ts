@@ -23,8 +23,8 @@ import { buildHead, finishHead, stepDocument, type Built, type HeadInput } from 
 import { buildAngleY, finishAngleY } from './angle-y.ts';
 import { buildAngleXY, checkCornerReferences, cornerAngleValues, corners, finishAngleXY, writeLinearCorners, type Corner } from './angle-xy.ts';
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
-import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundAllows, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, checkHairRound, type HairRound } from './hair.ts';
-import { prepareAccessories, buildAccessories, finishAccessories, checkAccessories, checkAccessoryShadows, accessoryPreviewScope, isAccessoryId } from './accessories.ts';
+import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, checkHairRound, type HairRound } from './hair.ts';
+import { prepareAccessories, buildAccessories, finishAccessories, checkAccessories, checkAccessoryShadows, accessoryPreviewScope } from './accessories.ts';
 import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
 import { createNineAxisFitTool } from './fit-tool.ts';
@@ -271,11 +271,11 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     const stage = axis === 'up' || axis === 'down' ? axis : undefined;
     const upstream = axis ? preparation : stepId === 'step06_angle-xy' ? modelDirectory : xyDirectory;
     if (stepId === 'step08_hair') return [createKritaTool(await krita(),task),bitmap,view,
-      createContinuationEditTool(output,join(directory,'step07_jaw-line'),'hair',scale,task,materialize,{label:`${hairRoundLabel(hairRound!)}轮次`,allows:hairRoundAllows(hairRound!)})];
+      createContinuationEditTool(output,join(directory,'step07_jaw-line'),'hair',scale,task,materialize,hairPreviewScope(hairRound!))];
     if(stepId==='step09_head-accessories') {
-      const upstream=join(directory,'step08_hair'),parents=new Set((await readUpstream(upstream)).doc.deformers.map(p=>p.id));
+      const upstream=join(directory,'step08_hair');
       return [createKritaTool(await krita(),task),bitmap,view,
-        createContinuationEditTool(output,upstream,'accessories',scale,task,materialize,{label:'头部饰品',allows:isAccessoryId,allowsParent:id=>parents.has(id)})];
+        createContinuationEditTool(output,upstream,'accessories',scale,task,materialize,accessoryPreviewScope)];
     }
     if (stepId === 'step07_jaw-line') return [createKritaTool(await krita(), task), bitmap, view, createContinuationEditTool(output, upstream, 'jaw', scale, task, materialize)];
     const box=await crop();

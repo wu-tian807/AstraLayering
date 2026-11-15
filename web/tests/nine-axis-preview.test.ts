@@ -26,7 +26,7 @@ test('face retains its full authored plane while cumulative hair and accessories
 
 test('static unmade context cannot unlock a combination or restrict authored face motion', () => {
   const doc = fixture();
-  doc.parts = [doc.parts[0], { ...doc.parts[1], id: '__kra__/unmade-hair', keyforms: { '0': rest } }];
+  doc.parts = [doc.parts[0], { ...doc.parts[1], id: '__kra__/unmade-hair', context: true, keyforms: { '0': rest } }];
   const [face, hair, accessory] = nineAxisPreviewModes(doc);
   assert.equal(face.axes.plane, true); assert.equal(hair.available, false); assert.equal(accessory.available, false);
   assert.equal(hair.scope.has('__kra__/unmade-hair'), false);

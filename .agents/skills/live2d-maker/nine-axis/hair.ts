@@ -2,7 +2,7 @@ import { constants } from 'node:fs';
 import { access, copyFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { join } from 'node:path';
-import { lattice, validateHeadNineAxis, kraReferences, type HeadDeformer } from '../shared/nine-axis-model.js';
+import { lattice, validateHeadNineAxis, kraReferences, type HeadDeformer, type HeadNineAxis } from '../shared/nine-axis-model.js';
 import { toTaskPath } from '../shared/task-paths.ts';
 import { angleScale, type AngleScale } from './angles.ts';
 import { buildContinuation, isHairNode, readUpstream, startContinuation, type AuthoredHead } from './continuation.ts';
@@ -14,19 +14,25 @@ import { kraContents, kraLayers } from '../shadow/delivery.ts';
 import { nodes } from '../shared/nine-axis-model.js';
 import sharp from 'sharp';
 import { completeHairRound, hairRoundLabel, type HairRound } from './hair-progress.ts';
+import { ownsNode, withinPart, partVisible } from './ownership.ts';
 export { hairRounds, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, type HairRound, type HairProgress } from './hair-progress.ts';
 
-export const isFrontHair = (id: string) => /^hair\/(?:bangs|front_hair)(?:\/|::|$)/.test(id);
-export const isSideHair = (id: string) => /^hair\/side_hair(?:\/|::|$)/.test(id);
-export const isBackHair = (id: string) => /^hair\/back_hair(?:\/|::|$)/.test(id);
+export const isFrontHair = (partId: string) => withinPart(partId,'hair/bangs') || withinPart(partId,'hair/front_hair');
+export const isSideHair = (partId: string) => withinPart(partId,'hair/side_hair');
+export const isBackHair = (partId: string) => withinPart(partId,'hair/back_hair');
 export const isHeadHair = (id: string) => isFrontHair(id) || isSideHair(id) || isBackHair(id);
-export const isHairId = (id:string) => /^hair(?:\/|$)/.test(id);
+export const isHairId = (partId:string) => withinPart(partId,'hair');
 // Remaining hair is selected from the actual document, not a fixed list of styles.
 export const hairRoundAllows = (round: HairRound) => round === 'front' ? isFrontHair : round === 'side' ? isSideHair : round === 'back' ? isHeadHair : isHairId;
 export const hairPreviewScope = (round: HairRound) => ({
-  includes: (part: { id: string; level: string }) => part.level === 'face' || (round === 'remaining' ? part.level==='hair' && isHairId(part.id) : isFrontHair(part.id) || round !== 'front' && isSideHair(part.id) || round === 'back' && isBackHair(part.id)),
+  allows:hairRoundAllows(round),
+  includes: (part: { id: string; level: string; partId?: string; context?: boolean; shadow?: HeadDeformer['shadow'] }, doc?: HeadNineAxis): boolean => {
+    const visible=(partId:string)=>withinPart(partId,'face')||withinPart(partId,'neck')||isFrontHair(partId)
+      ||round!=='front'&&isSideHair(partId)||round==='back'&&isBackHair(partId)||round==='remaining'&&isHairId(partId);
+    return partVisible(part,doc,visible);
+  },
   allowsPose: (_x: number, y: number) => y === 0,
-  label: `${hairRoundLabel(round)} left/right 预览只允许 Y=0`,
+  label: `${hairRoundLabel(round)}轮次 left/right 预览只允许 Y=0`,
 });
 export const frontPreviewScope = hairPreviewScope('front');
 export const completeFrontRound = (directory: string) => completeHairRound(directory,'front');
@@ -34,16 +40,17 @@ export const completeFrontRound = (directory: string) => completeHairRound(direc
 /** Front/side preserve earlier rounds. Back coordinates the three head-hair
  * regions; remaining may coordinate all hair while protecting non-hair nodes. */
 export async function checkHairRound(before: Built, after: Built, round: HairRound) {
-  const allows=hairRoundAllows(round),label=hairRoundLabel(round)+'轮次';
-  const current=round==='back'?isBackHair:allows;
+  const allowsPart=hairRoundAllows(round),label=hairRoundLabel(round)+'轮次';
+  const allows=(node: Parameters<typeof ownsNode>[1],doc:Built['doc'])=>ownsNode(doc,node,hairPreviewScope(round));
+  const current=round==='back'?isBackHair:allowsPart;
   if(round==='remaining') {
     // Static KRA context exposes visible, unbound hair. It must be explicitly
     // registered rather than silently left unmoving or omitted from previews.
-    for(const part of before.doc.parts.filter(p=>p.level==='hair'&&p.id.startsWith('__kra__/')&&p.uuid))
-      if(!after.doc.parts.some(p=>isHairId(p.id)&&!p.shadow&&p.uuid===part.uuid))throw Error(`${label}尚未注册剩余 KRA 发片 ${part.uuid}`);
-  } else if(!after.doc.parts.some(part=>current(part.id)&&!part.shadow))throw Error(`${label}尚未注册制作发片`);
-  const editableUuids=new Set(after.doc.parts.filter(part=>allows(part.id)).map(part=>part.uuid));
-  const isCurrent=(node: any)=>allows(node.id)||node.id.startsWith('__kra__/')&&node.level==='hair'&&!!node.uuid&&editableUuids.has(node.uuid);
+    for(const part of before.doc.parts.filter(p=>p.level==='hair'&&p.context&&p.uuid))
+      if(!after.doc.parts.some(p=>!p.context&&p.partId&&isHairId(p.partId)&&!p.shadow&&p.uuid===part.uuid))throw Error(`${label}尚未注册剩余 KRA 发片 ${part.uuid}`);
+  } else if(!after.doc.parts.some(part=>!part.context&&!!part.partId&&current(part.partId)&&!part.shadow))throw Error(`${label}尚未注册制作发片`);
+  const editableUuids=new Set(after.doc.parts.filter(part=>!part.context&&allows(part,after.doc)).map(part=>part.uuid));
+  const isCurrent=(node: any)=>!node.context&&allows(node,before.doc)||node.context&&node.level==='hair'&&!!node.uuid&&editableUuids.has(node.uuid);
   // A single KRA layer can supply several independently cropped model parts.
   // Preserve each exact node identity before falling back to a layer binding.
   const samePart=<T extends {id:string;uuid?:string}>(candidates:T[],node:{id:string;uuid?:string})=>
@@ -53,7 +60,7 @@ export async function checkHairRound(before: Built, after: Built, round: HairRou
     const next=samePart(nodes(after.doc),node);
     if(!next || JSON.stringify(kraReferences({parts:[next]}))!==JSON.stringify(kraReferences({parts:[node]}))) throw Error(`${node.id}：${label}不能修改其他已有节点`);
   }
-  for(const node of nodes(after.doc)) if(!nodes(before.doc).some(previous=>previous.id===node.id) && !allows(node.id)) throw Error(`${label}新增节点须属于当前发片`);
+  for(const node of nodes(after.doc)) if(!nodes(before.doc).some(previous=>previous.id===node.id) && !allows(node,after.doc)) throw Error(`${label}新增节点须属于当前发片`);
   await Promise.all(before.doc.parts.filter(part=>!isCurrent(part)).map(async part=>{
     const next=samePart(after.doc.parts,part)!;
     const pixels=(file: string)=>sharp(file).ensureAlpha().raw().toBuffer();
@@ -99,7 +106,7 @@ export async function finishHair(directory: string, upstream: string, scale: Ang
   await writeBuilt(directory,built);
   const path=join(directory,'hair.json'), author=JSON.parse(await readFile(path,'utf8'));
   author.source=built.doc.source;
-  for(const part of author.parts) { const bound=built.doc.parts.find(p=>p.id===part.id)!; if(bound.uuid)part.uuid=bound.uuid; if(bound.material)part.material=bound.material; if(bound.shadow)part.shadow=bound.shadow; }
+  for(const part of author.parts) { const bound=built.doc.parts.find(p=>p.id===part.id)!; if(bound.uuid)part.uuid=bound.uuid; if(bound.partId)part.partId=bound.partId; part.level=bound.level; if(bound.material)part.material=bound.material; if(bound.shadow)part.shadow=bound.shadow; }
   await writeFile(path,JSON.stringify(kraReferences(author))+'\n');
   await writeFile(join(directory,'export-record.json'),JSON.stringify({version:2,document:built.doc.source?.document,parts:built.doc.parts.map(({id,uuid,material,texture,textureBounds,shadow})=>({id,uuid,material,textureBounds,...(shadow?{shadow}:{})}))},null,2)+'\n');
   return built.doc.parts.filter(isHairNode).length;

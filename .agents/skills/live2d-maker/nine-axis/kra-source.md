@@ -28,7 +28,7 @@
 
 ## 绑定与读取
 
-`edit_nine_axis {}` 返回模型索引和已保存 KRA 目录/关系。目录提供候选，不自动挑选制作对象。`add_part` 接受 UUID 与网格范围，不要求 PNG；`bindings` 重绑已有节点。纯构造节点使用 `material="transparent"`。关联节点的分组、重挂、显示/隐藏均由明确的 targets、only、hidden 或现有父子关系决定，不自动捎带投影。
+`edit_nine_axis {}` 返回模型索引和已保存 KRA 目录/关系。目录提供候选，不自动挑选制作对象。原生 UUID 绑定准备阶段记录中的 partId，节点 id 和 KRA 显示名称不决定后续权限。投影是投射与接收部件的关系：两端均进入本轮预览范围，且至少一端正在制作时，才接入该关系；未就绪依赖通过 preview.waitingFor 交接。Warp 按实际承载叶节点判断权限，全部后代均可编辑时才能修改。编辑、保护检查与分轮预览共用这份判定。`add_part` 接受 UUID 与网格范围，不要求 PNG；`bindings` 重绑已有节点。纯构造节点使用 `material="transparent"`。关联节点的分组、重挂、显示/隐藏均由明确的 targets、only、hidden 或现有父子关系决定，不自动捎带投影。
 
 独立投影通过 `shadow.casters`、`shadow.receivers` 和 `clip.by` 关联已有部件。它读取 KRA 的原始投影像素、混合模式与不透明度，在渲染时按变形后的接收部件裁切。投影可以共享父 Warp，也可独立修正；不会复制投射部件的局部网格。
 

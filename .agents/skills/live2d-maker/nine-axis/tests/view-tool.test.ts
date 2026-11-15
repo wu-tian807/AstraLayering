@@ -38,7 +38,7 @@ test('a multiply cast shadow keeps KRA opacity, moves with hair and clips agains
 test('front-stage previews retain the completed face and front hair but exclude unmade hair in every frame', async t => {
   const directory=await mkdtemp(join(tmpdir(),'nine-front-scope-'));t.after(()=>rm(directory,{recursive:true,force:true}));
   const rows=[['face/face_base','face','#0f0'],['hair/bangs','hair','#f00'],['hair/back_hair','hair','#00f']] as const;
-  const parts=rows.map(([id,level],i)=>({id,level,texture:`layers/${i}.png`,textureBounds:[i*40,0,40,40],bbox:[i*40,0,i*40+40,40],cols:1,rows:1,keyforms:{'0':grid(i*40,0,i*40+40,40)}}));
+  const parts=rows.map(([id,level],i)=>({id,partId:id,level,texture:`layers/${i}.png`,textureBounds:[i*40,0,40,40],bbox:[i*40,0,i*40+40,40],cols:1,rows:1,keyforms:{'0':grid(i*40,0,i*40+40,40)}}));
   const textures=new Map<string,string>();
   for(const [i,row] of rows.entries()) {const file=join(directory,`${i}.png`);await sharp({create:{width:40,height:40,channels:4,background:row[2]}}).png().toFile(file);textures.set(parts[i].texture,file);}
   const doc:Built['doc']={version:2,kind:'head-nine-axis',canvas:[120,40],deformers:[],levels:[{id:'hair',includes:['face','hair']}],parts};
