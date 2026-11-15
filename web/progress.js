@@ -61,6 +61,12 @@ export function groupReviewSteps(group, section, groupId) {
   }));
 }
 
+// One list of real stage nodes for both the collapsed and expanded group views.
+export function groupStageNodes(group, section, groupId) {
+  return groupPhases.flatMap(([id, title]) => id === 'review' ? groupReviewSteps(group, section, groupId)
+    : [{ id, title, status: group.webPhases?.[id] || 'pending', detail: group.webDetails?.[id] || '', artifacts: [] }]);
+}
+
 export function reviewReportText(text, item) {
   try {
     const review = JSON.parse(text).reviews?.[item.reviewIndex];
