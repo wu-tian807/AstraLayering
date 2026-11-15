@@ -61,6 +61,12 @@ export function groupReviewSteps(group, section, groupId) {
   }));
 }
 
+// One list of real stage nodes for both the collapsed and expanded group views.
+export function groupStageNodes(group, section, groupId) {
+  return groupPhases.flatMap(([id, title]) => id === 'review' ? groupReviewSteps(group, section, groupId)
+    : [{ id, title, status: group.webPhases?.[id] || 'pending', detail: group.webDetails?.[id] || '', artifacts: [] }]);
+}
+
 export function reviewReportText(text, item) {
   try {
     const review = JSON.parse(text).reviews?.[item.reviewIndex];
@@ -243,4 +249,23 @@ export function groupArtifacts(section, group, depth) {
   completionCheck: [file(`${step('completion')}/check.json`, '补全检查记录')],
   children: [file(`${step('children')}/children.json`, '子组分析记录')],
  };
+}
+
+// A step publishes its workspace draft by moving it to its formal output.
+// Find the same group's available drawing when an open draft disappears.
+export function replacementGroupDraft(path, section, groups, files, versions = {}) {
+ for (const [depth, nodes] of groupLayers(groups).entries()) for (const group of nodes) {
+  const artifacts = groupArtifacts(section, group, depth);
+  for (const phase of ['outline', 'reduction', 'completion']) {
+   if (!artifacts[phase].some(item => item.path === path)) continue;
+   const choices = phase === 'completion' ? ['completion', 'reduction', 'outline']
+    : phase === 'reduction' ? ['reduction', 'outline'] : ['outline'];
+   for (const choice of choices) {
+    const [item] = latestSvgArtifacts(artifacts[choice], files, versions);
+    if (item) return item;
+   }
+   return null;
+  }
+ }
+ return undefined;
 }

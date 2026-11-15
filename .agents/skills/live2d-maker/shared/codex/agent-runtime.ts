@@ -67,6 +67,8 @@ function imageCountLimit(message: string): boolean {
 export type RecoverableAgentError = 'blockedImages' | 'modelRefusal' | 'unavailableSession' | 'contextWindow' | 'imageOverflow' | 'sessionProtocol';
 export function recoverableAgentError(error: unknown): RecoverableAgentError | undefined {
   if (blockedAgentError(error)) return 'blockedImages';
+  if (error instanceof AgentCallError && error.info && typeof error.info === 'object' &&
+      (error.info as { refusal?: { category?: string } }).refusal?.category === 'content_filter') return 'blockedImages';
   if (error instanceof AgentCallError && errorCode(error.info) === 'refusal') return 'modelRefusal';
   if (unavailableSessionText.test(String(error instanceof Error ? error.message : error))) return 'unavailableSession';
   if (!(error instanceof AgentCallError)) return undefined;

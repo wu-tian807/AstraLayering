@@ -164,6 +164,18 @@ export class CodexAgents {
           }
           let blocked: BlockedImages | undefined, fresh = false, refreshDynamic = true;
           const replace = this.replacement(task);
+          // Images become text in a new session, keeping the old records and files; false when the history holds none.
+          const replaceImages = async (threadPath: string | undefined, old: string | null | undefined, paths: string[]) => {
+            const replaced = threadPath ? await readBlockedImages(threadPath) : undefined;
+            if (!replaced) return false;
+            for (const path of paths) savedImages.add(path);
+            await session!.close();
+            if (old) await this.options.onThreadReplacement?.(old, '图片被内容策略拦截，历史图片已换成文字');
+            this.options.progress?.(`[${task.name}] 图片被内容策略拦截；${replaced.origins.length} 张图片已换成文字，新会话继续。`);
+            session = createFunctionToolSession(functionOptions(), undefined, replaced.items);
+            id = undefined; blocked = replaced; interrupted = false;
+            return true;
+          };
           return await this.invoke(task, signal, async () => {
             const auth = await codexAuthenticationSource(functionOptions().env ?? process.env);
             if (session && ((auth.dynamic && refreshDynamic) || authenticationRevision !== auth.revision)) {
@@ -203,16 +215,7 @@ export class CodexAgents {
             if (recoverableAgentError(error) === 'blockedImages') {
               // 每次拦截都把本批图片换成文字，在新会话里引导 agent 换法读取；
               // 没有图片可换时拦截与图片无关，按致命错误结束。
-              const replaced = failure.threadPath ? await readBlockedImages(failure.threadPath) : undefined;
-              if (!replaced) return false;
-              for (const path of failure.savedImagePaths) savedImages.add(path);
-              await session!.close();
-              const old = failure.threadId || id;
-              if (old) await this.options.onThreadReplacement?.(old, '图片被内容策略拦截，历史图片已换成文字');
-              this.options.progress?.(`[${task.name}] 图片被内容策略拦截；${replaced.origins.length} 张图片已换成文字，新会话继续。`);
-              session = createFunctionToolSession(functionOptions(), undefined, replaced.items);
-              id = undefined; blocked = replaced; interrupted = false;
-              return true;
+              return await replaceImages(failure.threadPath, failure.threadId || id, failure.savedImagePaths);
             }
             return false;
           });

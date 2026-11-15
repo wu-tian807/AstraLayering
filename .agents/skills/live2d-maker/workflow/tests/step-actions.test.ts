@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { chmod, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { test, type TestContext } from 'node:test';
@@ -21,6 +21,23 @@ async function put(path: string, value: string) { await mkdir(dirname(path), { r
 const text = (path: string) => readFile(path, 'utf8');
 const gone = (path: string) => assert.rejects(readFile(path), { code: 'ENOENT' }, path);
 const completed = (outputs: Record<string, string>) => JSON.stringify({ stamp: 's', inputs: {}, outputs });
+
+for (const section of ['part-layering', 'clothing-part-layering']) {
+  test(`${section} enumerates nested steps without reading agent data or drawing workspaces`, async t => {
+    const f = await fixture(t), root = join(f.task, section);
+    const parent = groupStepId('body', 'completion'), child = groupStepId('body/arm/hand', 'completion');
+    const reduce = 'step10_reduce/depth03';
+    for (const id of [parent, child, reduce]) await put(join(root, id, '.running'), '');
+    const ignored = [join(root, 'agents/attempt/cli-data'), join(root, parent, 'workspace')];
+    for (const path of ignored) { await mkdir(path, { recursive: true }); await chmod(path, 0); }
+    try {
+      assert.deepEqual((await listSteps(root, section as any)).map(step => step.id),
+        [reduce, parent, groupStepId('body/arm', 'completion'), child].sort());
+    } finally {
+      for (const path of ignored) await chmod(path, 0o700);
+    }
+  });
+}
 
 for (const section of ['part-layering', 'clothing-part-layering']) {
   test(`${section} 补全步骤：继续不动，恢复只清会话，重试删除本步产物与草稿且不碰别组`, async t => {

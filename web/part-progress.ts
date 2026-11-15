@@ -6,7 +6,7 @@ import { safePath, webFilePath } from './files.ts';
 import { currentAgentCalls, throttled, type AgentCall } from './agent-progress.ts';
 import { partStages } from './part-stages.ts';
 import { partReviewRounds, partReviewSkip } from './part-review.ts';
-import { executionStatus } from './execution-state.js';
+import { executionStatus, type ExecutionStatus } from './execution-state.js';
 import { statusLabel } from './progress.js';
 
 export const phases = ['outline', 'review', 'reduction', 'completion', 'completionCheck', 'children'] as const;
@@ -63,6 +63,7 @@ export async function partProgress(directory: string, section: string, groups: a
     node.webReviewSkip = partReviewSkip(node, prepared, !!outline);
     const { skip: skipped, reason: skipDetail } = node.webReviewSkip;
     mark('outline', prepared, !!outline || draft('outline'), skipped ? skipDetail : outline ? '已落稿' : '草稿 · 未落稿');
+    node.webSharedStop = node.webPhases.outline === 'failed' ? 'failed' : undefined;
 
     const report = await json(webFilePath(reportPath(section, node.id, 'review')));
     const validReport = report?.groupId === node.id && Array.isArray(report.reviews);
@@ -135,7 +136,22 @@ export async function partProgress(directory: string, section: string, groups: a
   }
   for (const { node } of entries) {
     const { report, outline } = reviewInputs.get(node)!;
-    node.webReviewRounds = partReviewRounds(node.id, report, outline, calls, !!activeSince, node.webReviewSkip, node.webPhases.review);
+    // Drawing and the review rounds share one step marker, so a stop on it names
+    // no stage. Attribute it by the calls that really started: once a review or
+    // repair call exists drawing is over, and only that call (or the review
+    // stage after an interruption) carries the stop; otherwise drawing does.
+    const stop: ExecutionStatus | undefined = node.webSharedStop;
+    const reviewed = calls.some(call => call.name === `组轮廓review-${node.id}` || call.name === `组轮廓返修-${node.id}`);
+    const shared = !!stop && !node.webReviewSkip.skip;
+    if (shared && reviewed && node.webPhases.outline === stop) node.webPhases.outline = outline ? 'available' : 'pending';
+    if (shared && !reviewed && node.webPhases.review === stop) { node.webPhases.review = 'pending'; node.webMessages.review = statusLabel('pending'); }
+    node.webReviewRounds = partReviewRounds(node.id, report, outline, calls, !!activeSince, node.webReviewSkip,
+      node.webPhases.review);
+    if (shared && reviewed && node.webPhases.review === stop) {
+      const items = node.webReviewRounds.flatMap((round: any) => [round.review, round.repair]);
+      const hit = items.find((item: any) => item.status === 'failed') ?? items.find((item: any) => item.status === stop);
+      if (hit) { node.webPhases.review = hit.status; node.webMessages.review = statusLabel(hit.status); }
+    }
   }
   return partStages(section, calls, !!activeSince, step, failed, files, groups);
 }

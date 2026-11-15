@@ -1,6 +1,6 @@
 import { processFileList } from './process-files.js';
 import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts, groupArtifacts, shadowInspectionArtifacts, previousNineAxisSectionSteps,
- groupSummary, groupPreviewArtifacts, groupStagePreviewArtifacts, groupReviewSteps, reviewReportText,
+ groupSummary, groupPreviewArtifacts, groupStagePreviewArtifacts, groupReviewSteps, groupStageNodes, reviewReportText, replacementGroupDraft,
  latestKraPreview, statusNames, displayStatus, statusLabel } from './progress.js';
 import { selectedTask, rememberTask } from './task-selection.js';
 import { renderReport } from './report-markdown.js';
@@ -44,7 +44,7 @@ async function get(path) { const response = await fetch(path); const value = awa
 const initial = await get('./api/tasks');
 let tasks = initial.tasks, data = { files:[], sections:[] }, sectionSteps = structuredClone(stepTemplates);
 const state = {
- page:new URLSearchParams(location.search).get('page')||'project', name:selectedTask(initial.directory,tasks,new URLSearchParams(location.search).get('name')),
+ page:new URLSearchParams(location.search).get('page')||'project', name:selectedTask(initial.directory,tasks,new URLSearchParams(location.search).get('name')), loading:true,
  stage:0, selectedStep:'preparation', inspect:false, compare:false, asset:null, zoom:null, autoHeight:true, canvasLeft:0, canvasTop:0, lane:0, mergeShift:0,
  directory:initial.directory, ref:new URLSearchParams(location.search).get('ref')||'worktree', file:new URLSearchParams(location.search).get('file')||'', diff:false, configFilter:'', configFolders:new Map(), uploaded:null, configMode:new URLSearchParams(location.search).get('file')?'files':'env',
  collapsedSections:new Set(), collapsedSteps:new Set(), collapsedPhases:new Set(),
@@ -144,8 +144,12 @@ function applySnapshot(next) {
   if(archivedFiles.has(published))state.asset={...state.asset,path:published};
  }
  if(state.asset?.path.endsWith('.draft.svg')&&!archivedFiles.has(state.asset.path)) {
-  const published=state.asset.path.replace(/\.draft\.svg$/,'.svg');
-  if(archivedFiles.has(published))state.asset={...state.asset,path:published,label:state.asset.label.replace(' · 中间产物','图')};
+  const replacement=groupViews[state.stage]?replacementGroupDraft(state.asset.path,stages[state.stage].id,sectionTree(state.stage),archivedFiles,data.fileVersions):undefined;
+  if(replacement!==undefined)state.asset=replacement?{...state.asset,...replacement}:null;
+  else {
+   const published=state.asset.path.replace(/\.draft\.svg$/,'.svg');
+   if(archivedFiles.has(published))state.asset={...state.asset,path:published,label:state.asset.label.replace(' · 中间产物','图')};
+  }
  }
  sectionSteps=structuredClone(stepTemplates);
  if(data.sections[6]?.layout==='nested')sectionSteps[6]=structuredClone(previousNineAxisSectionSteps);
@@ -234,7 +238,7 @@ function artifacts(items, index, stepId, className='') {
    const url=artifact(item.path),cover=videoCover(url);
    return `<figure class="artifact-video"><button class="video-cover" data-asset="${esc(key)}" data-asset-stage="${index}" data-asset-step="${stepId}" aria-label="播放${esc(item.label)}"><img data-video-cover="${esc(url)}" ${cover?`src="${esc(cover)}"`:''} alt=""><span class="video-play">${icon('play')}</span></button><figcaption>${esc(item.label)}${className!=='nine-artifacts'&&data.fileVersions?.[item.path]?` · ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}`:''}</figcaption><a href="${url}" target="_blank" rel="noopener">打开原视频</a></figure>`;
   }
-  return `<button class="${item.kind==='image'?'artifact-image':'artifact-file'} ${item.path.endsWith('.draft.svg')?'draft-artifact':''}" data-asset="${esc(key)}" data-asset-stage="${index}" data-asset-step="${stepId}" title="${esc(item.path)}">${item.kind==='image'?`<img loading="lazy" src="${artifact(item.path,true)}" alt="${esc(item.label)}">`:icon('file')}<span>${esc(item.label)}</span>${item.kind==='image'&&data.fileVersions?.[item.path]?`<small>更新于 ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}</small>`:''}${item.kind==='file'?icon('chevron'):''}</button>`;
+  return `<button class="${item.kind==='image'?'artifact-image':'artifact-file'} ${item.path.endsWith('.draft.svg')?'draft-artifact':''}" data-asset="${esc(key)}" data-asset-stage="${index}" data-asset-step="${stepId}" title="${esc(item.path)}">${item.kind==='image'?`<img loading="lazy" ${/\.svg$/i.test(item.path)?'data-svg-artifact':''} src="${artifact(item.path,true)}" alt="${esc(item.label)}">`:icon('file')}<span>${esc(item.label)}</span>${item.kind==='image'&&data.fileVersions?.[item.path]?`<small>更新于 ${esc(new Date(Number(data.fileVersions[item.path].split(':')[0])).toLocaleTimeString())}</small>`:''}${item.kind==='file'?icon('chevron'):''}</button>`;
  };
  const images=list.filter(item=>item.kind==='image'),files=list.filter(item=>item.kind!=='image');
  const fileList=files.map(view).join('');
@@ -287,10 +291,8 @@ function groupPhaseNode(index,id,label,status,detail,items,number,hasPreview=fal
  return `<section class="cycle-phase ${status==='skipped'?'skipped-node':''} ${closed?'collapsed':''}" data-phase="${key}"><button data-phase-toggle="${key}" aria-expanded="${!closed}" aria-label="${closed?'展开':'收起'}${label}"><span class="cycle-number">${number}</span><b>${esc(label)}</b>${statusMark(status)}${icon(closed?'chevron':'down')}</button>${closed?'':`<p class="phase-state ${displayStatus(status)}" title="${esc(detail)}">${status==='skipped'?'无需执行':esc(statusLabel(status))}</p>${status==='throttled'?waitBox(detail):''}${artifacts(items,index,id,'phase-artifacts')}${status==='skipped'?'':hasPreview?'<span class="phase-explanation">SVG 见左侧预览</span>':!available(items).length?'<span class="phase-explanation">尚无本步骤产物</span>':''}`}</section>`;
 }
 function groupDetailPhases(index,group,phaseFiles) {
- const steps=groupPhases.flatMap(([id,label])=>id==='review'
-  ?groupReviewSteps(group,stages[index].id,group.id)
-  :[{id,title:label,status:group.webPhases?.[id]||'pending',detail:group.webDetails?.[id]||'',
-    artifacts:['outline','completion'].includes(id)?phaseFiles[id].filter(item=>item.kind==='file'):phaseFiles[id]}]);
+ const steps=groupStageNodes(group,stages[index].id,group.id).map(step=>step.id==='review-1'||step.id==='review-2'||step.id==='repair-1'||step.id==='repair-2'?step
+  :{...step,artifacts:['outline','completion'].includes(step.id)?phaseFiles[step.id].filter(item=>item.kind==='file'):phaseFiles[step.id]});
  return steps.map((step,i)=>{
   return (['outline','completion'].includes(step.id)?svgPreviewPanel(index,group,step.id,phaseFiles):'')
    +groupPhaseNode(index,step.id,step.title,step.status,step.detail,step.artifacts,i+1,
@@ -315,7 +317,7 @@ function groupCycle(index) {
  <p class="tree-note">点击部件切换预览；详情由“横向展开”控制。</p>
  ${artifacts([{path:`${prefix}/groups.json`,label:'完整 groups.json',kind:'file'}],index,'layers')}
  </div>
- ${view.open?`<div class="group-detail"><p class="group-note">${esc(group.note||'')}</p><div class="cycle-phases">${groupDetailPhases(index,group,phaseFiles)}</div></div>`:`<div class="group-compact"><p>${statusMark(groupSummary(group).status)}${esc(groupSummary(group).text)}</p><div class="compact-phases">${groupPhases.map(([id,label])=>`<button data-group-toggle="${index}" aria-label="展开 ${esc(group.id)} 的${label}">${statusMark(group.webPhases?.[id]||'pending')}${label}</button>`).join('')}</div>${artifacts(groupPreviewArtifacts(group,phaseFiles,archivedFiles,data.fileVersions),index,'layers')}</div>`}
+ ${view.open?`<div class="group-detail"><p class="group-note">${esc(group.note||'')}</p><div class="cycle-phases">${groupDetailPhases(index,group,phaseFiles)}</div></div>`:`<div class="group-compact"><p>${statusMark(groupSummary(group).status)}${esc(groupSummary(group).text)}</p><div class="compact-phases">${groupStageNodes(group,stages[index].id,group.id).map(({title,status})=>`<button data-group-toggle="${index}" aria-label="展开 ${esc(group.id)} 的${title}">${statusMark(status)}${title}</button>`).join('')}</div>${artifacts(groupPreviewArtifacts(group,phaseFiles,archivedFiles,data.fileVersions),index,'layers')}</div>`}
  </div></div>`;
 }
 function statusMark(status) {
@@ -443,7 +445,7 @@ function inspector() {
  const image=item?.kind==='image',video=item?.kind==='video';
  const report=item&&Object.values(data.sections[state.stage]?.reports||{}).find(report=>report.path===item.path);
  return `<aside class="output-inspector" aria-label="产物放大查看"><header class="output-heading"><div><small>${esc(stage.name)} · ${esc(step.title)}</small><h2>${esc(item?.label||step.title)}</h2></div><button class="icon-button" data-action="close-inspector" aria-label="关闭产物面板">${icon('close')}</button></header><div class="output-scroll">
- ${video?`<div class="output-video"><video controls autoplay playsinline preload="auto" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video></div>`:image?`<div class="output-caption"><span>当前任务产物</span><label><input type="checkbox" id="compare-reference" ${state.compare?'checked':''}>对照参考</label></div><div class="output-image ${state.compare?'compare':''}">${state.compare&&data.reference?`<figure><img src="${artifact(data.reference)}" alt="简化角色参考"><figcaption>简化角色参考</figcaption></figure>`:''}<figure><a href="${artifact(item.path)}" target="_blank" rel="noopener"><img loading="lazy" src="${artifact(item.path)}" alt="${esc(item.label)}"></a><figcaption>点击打开原尺寸</figcaption></figure></div>`:item?item.reviewIndex!==undefined?`<article class="report-document">${renderReport(reviewReportText(item.text??'正在读取…',item))}</article>`:/\.md(?:\.tmp)?$/.test(item.path)?`<article class="report-document">${renderReport(item.text??'正在读取…',report?.images,path=>artifact(path))}</article>`:`<pre class="artifact-text">${esc(item.text??'正在读取…')}</pre>`:`<p class="step-note">${esc(step.note||'此步骤的过程和已有产物直接展示在画布中。')}</p>`}
+ ${video?`<div class="output-video"><video controls autoplay playsinline preload="auto" src="${artifact(item.path)}" aria-label="${esc(item.label)}"></video></div>`:image?`<div class="output-caption"><span>当前任务产物</span><label><input type="checkbox" id="compare-reference" ${state.compare?'checked':''}>对照参考</label></div><div class="output-image ${state.compare?'compare':''}">${state.compare&&data.reference?`<figure><img src="${artifact(data.reference)}" alt="简化角色参考"><figcaption>简化角色参考</figcaption></figure>`:''}<figure><a href="${artifact(item.path)}" target="_blank" rel="noopener"><img loading="lazy" ${/\.svg$/i.test(item.path)?'data-svg-artifact':''} src="${artifact(item.path)}" alt="${esc(item.label)}"></a><figcaption>点击打开原尺寸</figcaption></figure></div>`:item?item.reviewIndex!==undefined?`<article class="report-document">${renderReport(reviewReportText(item.text??'正在读取…',item))}</article>`:/\.md(?:\.tmp)?$/.test(item.path)?`<article class="report-document">${renderReport(item.text??'正在读取…',report?.images,path=>artifact(path))}</article>`:`<pre class="artifact-text">${esc(item.text??'正在读取…')}</pre>`:`<p class="step-note">${esc(step.note||'此步骤的过程和已有产物直接展示在画布中。')}</p>`}
  ${item?`<a class="artifact-source" href="${artifact(item.path)}" target="_blank" rel="noopener">${esc(item.path)} ${icon('arrow')}</a>`:''}</div></aside>`;
 }
 function overviewCard(stage,index) {
@@ -1029,7 +1031,15 @@ function bind() {
  const base=document.querySelector('#config-base');if(base)base.onchange=async()=>{state.base=base.value;if(state.diff){await refreshConfigFile();}};
  const filter=document.querySelector('#config-search');if(filter)filter.oninput=()=>{state.configFilter=filter.value;document.querySelector('.config-tree-scroll').innerHTML=configTree();bindConfigTree();};
 }
-await refreshTask(true);
+// The file may be published between the snapshot and the image request.
+// Replace a failed SVG image until the next snapshot supplies a usable path.
+document.addEventListener('error',event=>{
+ const image=event.target;
+ if(!(image instanceof HTMLImageElement)||!image.hasAttribute('data-svg-artifact'))return;
+ const message=document.createElement('span');message.className='svg-unavailable';message.setAttribute('role','status');message.textContent='画面暂不可用，等待刷新';
+ image.replaceWith(message);
+},true);
+await refreshTask(true).catch(()=>{});
 if(state.page==='config')await loadConfig();
 render();
 if(state.page==='preview')focusPreviewStep();

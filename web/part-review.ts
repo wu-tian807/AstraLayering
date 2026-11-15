@@ -41,17 +41,18 @@ export function partReviewRounds(groupId: string, report: ReviewReport | undefin
     if (matches(review.repairedCandidateHash)) repaired.add(index);
     downstream = review.candidateHash;
   }
+  const carried: ExecutionStatus = markerStatus && !['failed', 'interrupted'].includes(markerStatus) ? markerStatus : 'pending';
   let count = 0;
   for (const { review, index } of reviews) {
     if (count >= 2) break;
     const round = rounds[count];
-    round.review = { status: confirmed.has(index) ? 'done' : markerStatus ?? 'pending', reportIndex: index,
+    round.review = { status: confirmed.has(index) ? 'done' : carried, reportIndex: index,
       detail: review.verdict === 'blocked' ? '复核受阻，本次不消耗质量轮次' : review.verdict === 'pass' ? '复核通过' : '已提交返修意见' };
     if (!confirmed.has(index) && review.verdict !== 'blocked') round.review.detail += ' · 与当前稿未匹配';
     if (review.verdict === 'blocked') continue;
     round.repair = review.verdict === 'pass' && confirmed.has(index)
       ? { status: 'skipped', detail: '本轮通过，无需返修' }
-      : { status: repaired.has(index) ? 'done' : review.repairedCandidateHash ? markerStatus ?? 'pending' : 'pending',
+      : { status: repaired.has(index) ? 'done' : review.repairedCandidateHash ? carried : 'pending',
         reportIndex: index, detail: repaired.has(index) ? '已按本轮意见返修并自检'
           : review.repairedCandidateHash ? '已记录返修 · 与当前稿未匹配' : '等待返修并自检' };
     count++;
@@ -88,12 +89,13 @@ export function partReviewRounds(groupId: string, report: ReviewReport | undefin
   }
   // These rounds share the outline step's marker. An old or omitted report
   // cannot reopen a completed step or leave an unfinished round running forever.
+  // A stop on the shared marker names no round: only a call that really failed
+  // (or was interrupted) above carries it, and unstarted rounds stay pending.
   if (markerStatus) for (const round of rounds) for (const mode of ['review', 'repair'] as const) {
     const observation = round[mode];
     if (markerStatus === 'done') {
       if (observation.status !== 'skipped') observation.status = observation.reportIndex === undefined ? 'skipped' : 'done';
     } else if (markerStatus === 'pending') observation.status = 'pending';
-    else if (['running', 'pending'].includes(observation.status) && ['failed', 'interrupted'].includes(markerStatus)) observation.status = markerStatus;
   }
   return rounds;
 }

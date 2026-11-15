@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdtemp,realpath,readFile,writeFile,rm,stat,symlink } from 'node:fs/promises';
+import { mkdtemp,realpath,readFile,writeFile,rm,stat,symlink,mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
@@ -99,9 +99,24 @@ test('ordinary values round-trip quotes and Windows paths; unrelated records sta
  assert.equal(parseEnv(patched).C,'both " quotes');
  assert.equal(patched.match(/^A=/gm)?.length,1);
 });
+test('refuses directory-linked .env before reads or writes and keeps its target untouched',async t=>{
+ const f=await fixture(t);const target=join(f.directory,'external');await mkdir(target);
+ const sentinel=join(target,'keep.env');await writeFile(sentinel,'KEEP=yes');
+ await symlink(target,join(f.directory,'.env'),process.platform==='win32'?'junction':'dir');
+ await assert.rejects(f.environment.read(),/普通文件/);
+ await assert.rejects(f.environment.save({revision:'unread',changes:{preparation_agent_model:'gpt-6.1-sol-medium'}}),/普通文件/);
+ assert.equal(await readFile(sentinel,'utf8'),'KEEP=yes');
+});
+
 test('refuses symlinked .env and keeps its external target untouched',async t=>{
  const f=await fixture(t);const target=join(f.directory,'external');await writeFile(target,'KEEP=yes');
- await symlink(target,join(f.directory,'.env'));
+ try {await symlink(target,join(f.directory,'.env'),'file');}
+ catch(error) {
+  if(process.platform==='win32'&&(error as NodeJS.ErrnoException).code==='EPERM') {
+   t.skip('Windows file symlink creation is not permitted; directory-link rejection is tested separately');return;
+  }
+  throw error;
+ }
  await assert.rejects(f.environment.read(),/普通文件/);
  assert.equal(await readFile(target,'utf8'),'KEEP=yes');
 });
