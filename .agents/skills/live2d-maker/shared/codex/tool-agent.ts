@@ -258,6 +258,10 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
       else { current.done = true; current.completion.resolve(); }
     } else if (message.method === 'error' && current && ownTurn) {
       current.errors.push(errorDetails(message.params));
+      // Treat structured content_filter as terminal for this turn even when willRetry is true.
+      // The retry would resend the same image, so let the caller replace it before any retry continues.
+      const filtered = codexContentFilterInfo(message.params?.error);
+      if (filtered) failTurn(agentCallError(message.params.error, '图片被内容策略拦截', filtered));
     }
   }
 
