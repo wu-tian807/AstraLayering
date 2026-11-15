@@ -1,7 +1,7 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
-import { access, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { strFromU8, strToU8, unzipSync, zipSync } from 'fflate';
@@ -20,6 +20,7 @@ import type { FunctionTool } from '../../shared/codex/function-tools.ts';
 import { evaluatePoints, kraReferences } from '../../shared/nine-axis-model.js';
 import { createNineAxisViewTool } from '../view-tool.ts';
 import { frontPreviewScope } from '../hair.ts';
+import { defaultKnowledgeDirectory, useKnowledge } from '../../shared/knowledge.ts';
 
 const hairIds=['hair/bangs','hair/side_hair/side_hair_left','hair/back_hair','hair/free_form_bundle'];
 const uuid=(index: number)=>`00000000-0000-0000-0000-${String(index).padStart(12,'0')}`;
@@ -132,6 +133,18 @@ async function reachRound(f:Awaited<ReturnType<typeof fixture>>,target:HairRound
   }
 }
 
+async function fixtureRoundPrompts(f:Awaited<ReturnType<typeof fixture>>) {
+  const knowledge=join(f.root,'knowledge'),head=join(knowledge,'head-nine-axis'),step=join(head,'step08_hair');
+  await mkdir(join(step,'prompts'),{recursive:true});
+  await symlink(join(defaultKnowledgeDirectory,'shared'),join(knowledge,'shared'),'junction');
+  await symlink(join(defaultKnowledgeDirectory,'head-nine-axis/step02_video'),join(head,'step02_video'),'junction');
+  await writeFile(join(step,'agent.json'),await readFile(join(defaultKnowledgeDirectory,'head-nine-axis/step08_hair/agent.json')));
+  const markers=Object.fromEntries(hairRounds.map(round=>[round,`fixture-hair-round:${round}`])) as Record<HairRound,string>;
+  for(const round of hairRounds)await writeFile(join(step,'prompts',`${hairRoundLabel(round)}制作.md`),
+    `${markers[round]}\n{document}\n{uri:nine-axis/step08_hair/hair.json}\n`);
+  return {knowledge,markers};
+}
+
 test('preparation retains UUID references only; maker explicitly selects a part and shadow and controls their grouping',async t=>{
   const f=await fixture(t,true);await prepareHair(f.output,f.upstream,f.task,f.materialize);
   const initial=JSON.parse(await readFile(join(f.output,'hair.json'),'utf8'));
@@ -203,6 +216,7 @@ test('front preservation matches exact node IDs before a shared KRA UUID',async 
 
 test('hair dispatch runs four rounds in the same thread and completes only after remaining hair',async t=>{
   const f=await fixture(t),calls:{thread?:string;prompt:string}[]=[],signal=new AbortController().signal;
+  const {knowledge,markers:prompts}=await fixtureRoundPrompts(f);useKnowledge(knowledge);
   let interrupt=true;
   const agents={
     async run(){assert.fail('front uses the common persistent step session');},
@@ -230,7 +244,7 @@ test('hair dispatch runs four rounds in the same thread and completes only after
   await applyStepAction({name:'case',dir:f.root,section:'nine-axis',step:'step08_hair',action:'continue'});
   assert.match(await runWorkflow(f.options,deps),/前发轮次已完成/);
   assert.deepEqual(calls.map(call=>call.thread),[undefined,'hair-thread']);
-  assert.ok(calls.every(call=>call.prompt.includes('只制作前发')));
+  assert.ok(calls.every(call=>call.prompt.includes(prompts.front)));
   assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front'],next:'side'});
   assert.equal((await readStep(f.output)).status,'running');
   assert.equal((await readStepSession(f.nine,'step07_jaw-line'))?.threadId,'jaw-thread');
@@ -242,8 +256,8 @@ test('hair dispatch runs four rounds in the same thread and completes only after
   assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front'],next:'side'});
   assert.match(await runWorkflow(f.options,deps),/侧发轮次已完成/);
   assert.deepEqual(calls.map(call=>call.thread),[undefined,'hair-thread','hair-thread','hair-thread']);
-  assert.ok(calls.slice(2).every(call=>call.prompt.includes('继续制作两片侧发')));
-  assert.ok(calls.slice(2).every(call=>!call.prompt.includes('只制作前发')));
+  assert.ok(calls.slice(2).every(call=>call.prompt.includes(prompts.side)));
+  assert.ok(calls.slice(2).every(call=>!call.prompt.includes(prompts.front)));
   assert.deepEqual(JSON.parse(await readFile(join(f.output,'hair.json'),'utf8')).parts.find((p:any)=>p.id==='hair/bangs'),front);
   assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front','side'],next:'back'});
   await assert.rejects(access(join(f.output,'.completed')),{code:'ENOENT'});
@@ -252,8 +266,8 @@ test('hair dispatch runs four rounds in the same thread and completes only after
   assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front','side'],next:'back'});
   assert.match(await runWorkflow(f.options,deps),/后发轮次已完成/);
   assert.deepEqual(calls.map(call=>call.thread),[undefined,'hair-thread','hair-thread','hair-thread','hair-thread','hair-thread']);
-  assert.ok(calls.slice(4).every(call=>call.prompt.includes('继续制作后发')));
-  assert.ok(calls.slice(4).every(call=>!call.prompt.includes('只制作前发')&&!call.prompt.includes('继续制作两片侧发')));
+  assert.ok(calls.slice(4).every(call=>call.prompt.includes(prompts.back)));
+  assert.ok(calls.slice(4).every(call=>!call.prompt.includes(prompts.front)&&!call.prompt.includes(prompts.side)));
   assert.notDeepEqual(JSON.parse(await readFile(join(f.output,'hair.json'),'utf8')).parts.find((p:any)=>p.id==='hair/bangs'),front);
   assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front','side','back'],next:'remaining'});
   assert.equal((await readStep(f.output)).status,'running');
@@ -262,7 +276,7 @@ test('hair dispatch runs four rounds in the same thread and completes only after
   assert.equal((await readHairProgress(f.output)).next,'remaining');
   assert.match(await runWorkflow(f.options,deps),/其余头发轮次已完成/);
   assert.deepEqual(calls.slice(6).map(call=>call.thread),['hair-thread','hair-thread']);
-  assert.ok(calls.slice(6).every(call=>call.prompt.includes('继续制作其余头发')));
+  assert.ok(calls.slice(6).every(call=>call.prompt.includes(prompts.remaining)));
   assert.deepEqual(await readHairProgress(f.output),{version:2,completed:[...hairRounds],next:'done'});
   assert.equal((await readStep(f.output)).status,'completed');
   await access(join(f.output,'.completed'));
@@ -278,7 +292,7 @@ test('hair dispatch runs four rounds in the same thread and completes only after
   assert.equal(await readStepSession(f.nine,'step08_hair'),undefined);
   await runWorkflow(f.options,deps);
   assert.equal(calls.at(-1)!.thread,undefined,'retry starts a fresh session');
-  assert.match(calls.at(-1)!.prompt,/只制作前发/);
+  assert.ok(calls.at(-1)!.prompt.includes(prompts.front));
   assert.deepEqual(await readHairProgress(f.output),{version:2,completed:['front'],next:'side'});
 });
 
@@ -307,7 +321,7 @@ for(const round of hairRounds){
   });
 
   test(`${round}: task resume keeps partial products and dispatches the pending prompt in a fresh session`,async t=>{
-    const f=await fixture(t);await reachRound(f,round);
+    const f=await fixture(t),{knowledge,markers:prompts}=await fixtureRoundPrompts(f);useKnowledge(knowledge);await reachRound(f,round);
     const pending=await readHairProgress(f.output);
     await assert.rejects(runWorkflow(f.options,{...f.dependencies,fitHair:async()=>{
       await selectRound(f,round);await writeStepSession(f.nine,'step08_hair',{threadId:'old-thread',harness:'codex'});
@@ -323,7 +337,7 @@ for(const round of hairRounds){
     const agents={async run(){assert.fail('persistent session required');},createSession(id?:string,callbacks:any={}){
       assert.equal(id,undefined);return {async run(task:AgentTask){
         calls++;await callbacks.onSessionStarted?.('new-thread','codex');
-        assert.match(task.prompt,round==='front'?/只制作前发/:round==='side'?/继续制作两片侧发/:round==='back'?/继续制作后发/:/继续制作其余头发/);
+        assert.ok(task.prompt.includes(prompts[round]));
         await writeFile(join(f.output,'notes.md'),`${round} saved`);
         return {text:'{"error":null}',images:[],threadId:'new-thread',harness:'codex' as const};
       },async close(){}};
@@ -435,12 +449,10 @@ test(`old completed hair: ${scope} ${action} dispatches remaining only and prese
   assert.equal(calls,1);assert.equal((await readHairProgress(f.output)).next,'done');
 });
 
-test('remaining prompt and scope accept arbitrary hair structures while excluding static context and head accessories',()=>{
+test('remaining prompt receives current inputs and scope accepts arbitrary hair structures while excluding context and accessories',()=>{
   const prompt=hairPrompt({document:'/task/current.kra',color:''} as any,'/task','remaining');
-  for(const title of ['目标是什么','要保护什么','自检查什么'])assert.ok(prompt.includes(title));
-  assert.match(prompt,/范围由实际发型决定/);assert.match(prompt,/若确实没有其余头发/);
-  assert.match(prompt,/对应独立投影一并制作/);assert.match(prompt,/本轮不使用 fit/);
-  assert.match(prompt,/保留 KRA 原关系/);assert.match(prompt,/不为这类投影越界新增非头发节点/);
+  for(const path of ['/task/current.kra','/task/nine-axis/step08_hair/hair.json','/task/nine-axis/step03_frames/left.png'])assert.ok(prompt.includes(path));
+  assert.doesNotMatch(prompt,/\{uri:|\{document\}/);
   const scope=hairPreviewScope('remaining');
   for(const id of ['hair/braid','hair/cowlick','hair/free_form_bundle','hair/custom-uuid/strand','hair/bangs/shadow','hair/side_hair/extra_temples']){
     assert.ok(scope.includes({id,partId:id,level:'hair'}));assert.ok(hairRoundAllows('remaining')(id));
