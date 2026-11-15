@@ -51,12 +51,35 @@ export function validStepId(section: SectionId, id: string): boolean {
 
 export const sectionRoot = (directory: string, section: SectionId): string => join(directory, section);
 
+// Only descend through directories that can contain a valid step ID. In
+// particular, agent CLI data and step workspaces are not step directories.
+function containsStep(section: SectionId, path: string): boolean {
+  if (section === 'nine-axis') {
+    return [...nineAxisSteps, ...nineAxisBranchSteps, ...nineAxisGroupSteps, ...previousNineAxisSteps, ...previousNineAxisGroupSteps]
+      .some(id => id.startsWith(path + '/'));
+  }
+  if (!partSections.includes(section)) return false;
+  const [step, ...items] = path.split('/');
+  if (step === partSteps.reduce) return !items.length;
+  if (!itemSteps.includes(step)) return false;
+  if (!items.length || validStepId(section, path)) return true;
+  return path.endsWith('/children') && validStepId(section, path.slice(0, -'/children'.length));
+}
+
 // Every marked or unmarked step directory of a section, in path order.
 export async function listSteps(root: string, section: SectionId): Promise<StepEntry[]> {
-  let names: string[];
-  try { names = await readdir(root, { recursive: true }); }
-  catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return []; throw error; }
-  const ids = new Set(names.map(name => name.split(/[\\/]/).join('/')).filter(name => validStepId(section, name)));
+  const ids = new Set<string>(), pending = [''];
+  while (pending.length) {
+    const parent = pending.pop()!;
+    let entries;
+    try { entries = await readdir(join(root, parent), { withFileTypes: true }); }
+    catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') continue; throw error; }
+    for (const entry of entries) {
+      const id = parent ? `${parent}/${entry.name}` : entry.name;
+      if (validStepId(section, id)) ids.add(id);
+      if (entry.isDirectory() && containsStep(section, id)) pending.push(id);
+    }
+  }
   const steps: StepEntry[] = [];
   for (const id of [...ids].sort()) {
     const { status } = await readStep(join(root, id));

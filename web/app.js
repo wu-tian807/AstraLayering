@@ -44,7 +44,7 @@ async function get(path) { const response = await fetch(path); const value = awa
 const initial = await get('./api/tasks');
 let tasks = initial.tasks, data = { files:[], sections:[] }, sectionSteps = structuredClone(stepTemplates);
 const state = {
- page:new URLSearchParams(location.search).get('page')||'project', name:selectedTask(initial.directory,tasks,new URLSearchParams(location.search).get('name')),
+ page:new URLSearchParams(location.search).get('page')||'project', name:selectedTask(initial.directory,tasks,new URLSearchParams(location.search).get('name')), loading:true,
  stage:0, selectedStep:'preparation', inspect:false, compare:false, asset:null, zoom:null, autoHeight:true, canvasLeft:0, canvasTop:0, lane:0, mergeShift:0,
  directory:initial.directory, ref:new URLSearchParams(location.search).get('ref')||'worktree', file:new URLSearchParams(location.search).get('file')||'', diff:false, configFilter:'', configFolders:new Map(), uploaded:null, configMode:new URLSearchParams(location.search).get('file')?'files':'env',
  collapsedSections:new Set(), collapsedSteps:new Set(), collapsedPhases:new Set(),
@@ -1041,7 +1041,7 @@ document.addEventListener('error',event=>{
  const message=document.createElement('span');message.className='svg-unavailable';message.setAttribute('role','status');message.textContent='画面暂不可用，等待刷新';
  image.replaceWith(message);
 },true);
-await refreshTask(true);
+await refreshTask(true).catch(()=>{});
 if(state.page==='config')await loadConfig();
 render();
 if(state.page==='preview')focusPreviewStep();
