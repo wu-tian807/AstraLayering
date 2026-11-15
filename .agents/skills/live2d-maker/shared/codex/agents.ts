@@ -37,9 +37,6 @@ export type AgentTask = {
   tools?: FunctionTool[];
   // Off keeps a tool-less turn to the model and its image tool.
   shell?: boolean;
-  // Set by checkedTurn when the previous turn met a content filter and still failed its checks:
-  // the session continues in a new thread with the filtered images replaced by text.
-  afterContentFilter?: boolean;
   // Checked by the Codex app-server turn before it counts as completed, so a
   // rejected reply is logged as failed; returns the turn's images.
   checkResult?: (text: string, images: GeneratedImage[]) => GeneratedImage[];
@@ -48,8 +45,6 @@ export type AgentTask = {
 export type GeneratedImage = { savedPath: string };
 export type AgentResult = {
   text: string; images: GeneratedImage[]; threadId?: string | null; logDirectory?: string; harness?: AgentModel['harness'];
-  // The turn met a content filter (and Codex may have retried past it); threadPath is its history.
-  contentFiltered?: boolean; threadPath?: string;
 };
 export type AgentSession = {
   run(task: AgentTask, signal?: AbortSignal): Promise<AgentResult>;
@@ -134,7 +129,6 @@ export class CodexAgents {
     let transportKey: string | undefined;
     let authenticationRevision: string | undefined;
     let id = resumeThreadId;
-    let filtered: { threadPath?: string; threadId?: string | null } | undefined;
     const functionOptions = () => ({ ...sessionOptions,
       // Startup may select the cached patch after this session was constructed.
       codexPathOverride: this.options.codexPathOverride ?? this.options.environment?.codex.codexPathOverride,
@@ -182,21 +176,6 @@ export class CodexAgents {
             id = undefined; blocked = replaced; interrupted = false;
             return true;
           };
-          const previous = filtered; filtered = undefined;
-          if (task.afterContentFilter && previous && session) {
-            // The replacement session carries injected history that a credential-driven restart would drop.
-            refreshDynamic = false;
-            authenticationRevision = (await codexAuthenticationSource(functionOptions().env ?? process.env)).revision;
-            // The turn ended after a content filter without passing its checks: do not repair inside the filtered thread.
-            if (!await replaceImages(previous.threadPath, previous.threadId || id, [...savedImages])) {
-              const old = previous.threadId || id;
-              await session.close();
-              if (old) await this.options.onThreadReplacement?.(old, '模型安全过滤拒绝了本会话');
-              this.options.progress?.(`[${task.name}] 模型安全过滤拒绝了本会话（常为误判）；保留旧记录与产物并新建会话。`);
-              session = createFunctionToolSession(functionOptions(), undefined);
-              id = undefined; interrupted = false; fresh = true;
-            }
-          }
           return await this.invoke(task, signal, async () => {
             const auth = await codexAuthenticationSource(functionOptions().env ?? process.env);
             if (session && ((auth.dynamic && refreshDynamic) || authenticationRevision !== auth.revision)) {
@@ -210,7 +189,6 @@ export class CodexAgents {
                 : interrupted ? { ...task, prompt: interruptedTaskPrompt() }
                 : fresh ? { ...task, prompt: freshPrompt(task) } : task, signal);
               id = result.threadId || id;
-              if (result.contentFiltered) filtered = { threadPath: result.threadPath, threadId: result.threadId };
               for (const image of result.images) savedImages.add(image.savedPath);
               return { ...result, images: [...savedImages].map(savedPath => ({ savedPath })) };
             } catch (error) {

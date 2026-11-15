@@ -168,7 +168,7 @@ process.exit(3);
 test('Codex content filter is recognised only from the structured terminal failure', () => {
   const failure = { message: 'stream disconnected', codexErrorInfo: { responseStreamDisconnected: { httpStatusCode: null } }, additionalDetails: 'reason: content_filter' };
   const info = codexContentFilterInfo(failure);
-  assert.equal(recoverableAgentError(new AgentCallError('x', info)), 'modelRefusal');
+  assert.equal(recoverableAgentError(new AgentCallError('x', info)), 'blockedImages');
   assert.equal(codexContentFilterInfo({ ...failure, additionalDetails: 'network reset' }), undefined);
   assert.equal(codexContentFilterInfo({ ...failure, codexErrorInfo: 'other' }), undefined);
   assert.equal(codexContentFilterInfo({ message: 'reason: content_filter' }), undefined);
@@ -251,24 +251,31 @@ for await (const line of createInterface({input:process.stdin})) {
   return { executable, injected, turns: async () => (await readFile(log, 'utf8')).trim().split('\n').map(line => JSON.parse(line) as { thread: string }) };
 }
 
-for (const filtered of [true, false]) test(`checked turn after ${filtered ? 'a content filter' : 'an ordinary miss'}: ${filtered ? 'continues in a new thread with images as text' : 'repairs in the same thread'}`, async t => {
-  const f = await fixture(t);
-  const server = await filterServer(f.root, filtered);
-  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory, });
-  const prompts: string[] = [];
-  const value = await checkedTurn({ agents, task: { name: 'filter', prompt: 'same task', tools: [] },
-    check: response => { prompts.push(response.text); if (response.text !== 'done' && prompts.length === 1) throw missingSubmit('submit_x', '未提交'); return response.text; } });
-  assert.equal(value, filtered ? 'done' : "I'm sorry");
-  assert.deepEqual((await server.turns()).map(turn => turn.thread), filtered ? ['thread-1', 'thread-2'] : ['thread-1', 'thread-1']);
-  // The replacement thread is given the history with its image as text.
-  assert.deepEqual(await server.injected(), filtered ? [{ thread: 'thread-2', images: 0 }] : []);
-});
-
-test('a content filter that Codex retried past does not discard a result that passes its checks', async t => {
+test('a mid-turn content_filter stops the turn immediately and starts image-to-text recovery', async t => {
   const f = await fixture(t);
   const server = await filterServer(f.root, true);
+  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
+  const result = await agents.run({ name: 'filter', prompt: 'same task', tools: [] });
+  assert.equal(result.text, 'done');
+  assert.deepEqual((await server.turns()).map(turn => turn.thread), ['thread-1', 'thread-2']);
+  assert.deepEqual(await server.injected(), [{ thread: 'thread-2', images: 0 }]);
+});
+
+test('an ordinary incomplete response is not treated as a content filter', async t => {
+  const f = await fixture(t);
+  const server = await filterServer(f.root, false);
   const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
   const value = await checkedTurn({ agents, task: { name: 'filter', prompt: 'same task', tools: [] }, check: response => response.text });
   assert.equal(value, "I'm sorry");
   assert.deepEqual((await server.turns()).map(turn => turn.thread), ['thread-1']);
+});
+
+test('a content_filter notification switches threads before accepting any result', async t => {
+  const f = await fixture(t);
+  const server = await filterServer(f.root, true);
+  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
+  const value = await checkedTurn({ agents, task: { name: 'filter', prompt: 'same task', tools: [] }, check: response => response.text });
+  assert.equal(value, 'done');
+  assert.deepEqual((await server.turns()).map(turn => turn.thread), ['thread-1', 'thread-2']);
+  assert.deepEqual(await server.injected(), [{ thread: 'thread-2', images: 0 }]);
 });

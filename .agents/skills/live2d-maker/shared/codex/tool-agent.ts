@@ -95,7 +95,7 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
     task: AgentTask; log: AgentLog; signal: AbortSignal; turnId?: string;
     completion: ReturnType<typeof Promise.withResolvers<void>>;
     tools: Map<string, NonNullable<AgentTask['tools']>[number]>;
-    done: boolean; finalResponse: string; usage: unknown; images: GeneratedImage[]; errors: unknown[]; contentFiltered: boolean;
+    done: boolean; finalResponse: string; usage: unknown; images: GeneratedImage[]; errors: unknown[];
     // Tool calls and other work items this turn completed; messages and reasoning are not work.
     progress: number;
   } | undefined;
@@ -258,8 +258,10 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
       else { current.done = true; current.completion.resolve(); }
     } else if (message.method === 'error' && current && ownTurn) {
       current.errors.push(errorDetails(message.params));
-      // Codex may retry a filtered stream and finish the turn anyway; the evidence stays with the turn.
-      if (codexContentFilterInfo(message.params?.error)) current.contentFiltered = true;
+      // Treat structured content_filter as terminal for this turn even when willRetry is true.
+      // The retry would resend the same image, so let the caller replace it before any retry continues.
+      const filtered = codexContentFilterInfo(message.params?.error);
+      if (filtered) failTurn(agentCallError(message.params.error, '图片被内容策略拦截', filtered));
     }
   }
 
@@ -381,7 +383,7 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
       }, paths.root);
       const completion = Promise.withResolvers<void>();
       void completion.promise.catch(() => {});
-      current = { task, log, signal, completion, tools: byName, done: false, finalResponse: '', usage: null, images: [], errors: [], contentFiltered: false, progress: 0 };
+      current = { task, log, signal, completion, tools: byName, done: false, finalResponse: '', usage: null, images: [], errors: [], progress: 0 };
       const state = current;
       options.progress?.(`开始：${task.name}；原生 function tools${threadId ? `；沿用会话 ${threadId}` : ''}；记录：${log.directory}`);
       const abort = () => {
@@ -412,8 +414,7 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
         if (task.checkResult) state.images = task.checkResult(state.finalResponse, state.images);
         await log.finish({ status: 'completed', threadId, usage: state.usage, finalResponse: state.finalResponse, images: state.images });
         options.progress?.(`agent 回合结束：${task.name}`);
-        return { text: state.finalResponse, images: state.images, threadId, logDirectory: log.directory,
-          ...(state.contentFiltered ? { contentFiltered: true, threadPath } : {}) };
+        return { text: state.finalResponse, images: state.images, threadId, logDirectory: log.directory };
       } catch (error) {
         const message = errorMessage(error, String(error));
         const reported = error instanceof AgentCallError ? error : new AgentCallError(message, undefined, { cause: error });
