@@ -20,13 +20,15 @@ import { MissingDependencyError } from '../shared/missing-dependency.ts';
 import { readDressup } from '../shared/part/dressup.ts';
 import { AgentSlotPool, agentSlotsVariable } from './agent-slots.ts';
 import { requireVideoApi } from '../shared/video.ts';
+import { prepareRunCatalog, sharedCatalogVariable, type SharedCatalog } from '../shared/codex/catalog.ts';
+import { appServerCommand } from '../shared/codex/tool-agent.ts';
 
 export type SectionExecution = (id: SectionId, run: TaskRun, context: {
   // The task directory, <runs root>/<task name>.
   directory: string;
   signal: AbortSignal; progress(message: string): void; started(pid: number): Promise<void>;
   // The task's agent slots, shared by every section worker it starts.
-  slots?: AgentSlotPool;
+  slots?: AgentSlotPool; catalog?: SharedCatalog;
   // part-layering has its references: the sections waiting for them may start.
   prepared?(): void;
 }) => Promise<SectionResult>;
@@ -61,7 +63,8 @@ export const executeChild: SectionExecution = async (id, run, context) => {
   return new Promise<SectionResult>((resolve, reject) => {
     const child = fork(fileURLToPath(new URL('./section-worker.ts', import.meta.url)), [directory, id, run.runner!.id], {
       cwd: directory, detached: process.platform !== 'win32', stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
-      env: context.slots ? { ...process.env, [agentSlotsVariable]: 'ipc' } : process.env,
+      env: { ...process.env, ...(context.slots ? { [agentSlotsVariable]: 'ipc' } : {}),
+        [sharedCatalogVariable]: context.catalog ? JSON.stringify(context.catalog) : undefined },
     });
     context.slots?.attach(child);
     let result: SectionResult | undefined, failure = '', output = '', killTimer: NodeJS.Timeout | undefined;
@@ -109,6 +112,8 @@ export async function runTask(options: TaskOptions, dependencies: {
   preparing?: (run: TaskRun) => void;
   environment?: WorkflowEnvironment;
   preflight?: (path: string) => Promise<KritaInstallation>;
+  preflightAgents?: typeof preflightAgentSteps;
+  prepareCatalog?: typeof prepareRunCatalog;
   ffmpegCheck?: FFmpegCheck;
   save?: typeof saveRun;
 } = {}): Promise<TaskRun> {
@@ -150,12 +155,16 @@ export async function runTask(options: TaskOptions, dependencies: {
     stopWatching = watchTaskStop(directory, run.runner.id, stopController,
       error => log.write('停止请求读取失败：' + formatAgentError(error)));
     const selected = selectedSections(run.from, run.to);
+    const steps = selected.flatMap(id => id === 'nine-axis'
+      ? ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw', 'nine_axis_head_hair', 'nine_axis_head_accessories', 'nine_axis_head_pitch', 'nine_axis_head_corners'] as const
+      : sectionAgentSteps(id, run!.standard, run!.shadowMode));
     if (environment) {
-      const standard = run.standard;
-      await preflightAgentSteps(environment, selected.flatMap(id => id === 'nine-axis'
-        ? ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw', 'nine_axis_head_hair', 'nine_axis_head_accessories', 'nine_axis_head_pitch', 'nine_axis_head_corners'] as const
-        : sectionAgentSteps(id, standard, run!.shadowMode)), { runsRoot: dirname(directory), progress,
+      await (dependencies.preflightAgents ?? preflightAgentSteps)(environment, steps, { runsRoot: dirname(directory), progress,
         building: () => { progress('准备中：构建补丁版 Codex，完成后自动开始；构建期间的停止请求在构建结束后生效。'); dependencies.preparing?.(run!); } });
+    }
+    let catalog: SharedCatalog | undefined;
+    if (environment && (!dependencies.execute || dependencies.prepareCatalog) && steps.some(step => environment.stepModels[step].harness === 'codex') && environment.codex.codexPathOverride) {
+      catalog = await (dependencies.prepareCatalog ?? prepareRunCatalog)(appServerCommand(environment.codex.codexPathOverride), environment.codex, directory);
     }
     signal.throwIfAborted();
     dependencies.ready?.(run);
@@ -191,7 +200,7 @@ export async function runTask(options: TaskOptions, dependencies: {
       progress('启动或恢复：' + id + '；由该管线校验已有产物和完成标记。');
       try {
         const result = await (dependencies.execute ?? executeChild)(id, run!, {
-          directory, signal, progress, slots,
+          directory, signal, progress, slots, catalog,
           started: async pid => { (run!.runner!.childPids ??= {})[id] = pid; await persist(); },
           prepared: () => { if (!prepared.has(id)) { prepared.add(id); schedule(); } },
         });

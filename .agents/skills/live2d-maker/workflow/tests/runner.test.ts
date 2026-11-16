@@ -13,6 +13,7 @@ import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selected
 import { sessionPath } from '../../shared/agents/step-session.ts';
 import { main, parseArguments, startBackground } from '../run.ts';
 import { fakePatchedCodex } from '../../shared/tests/fake-codex.ts';
+import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { defaultKnowledgeDirectory, knowledgeDirectory, selectKnowledge } from '../../shared/knowledge.ts';
 import { markBaseStep } from '../../shared/tests/dressup-fixture.ts';
 
@@ -34,6 +35,23 @@ async function fixture(t: TestContext) {
   return { options, directory };
 }
 const preflight = async (executable: string) => ({ executable, version: 'test' });
+
+test('startup prepares one catalog before dispatch and shares it with sections', async t => {
+  const f = await fixture(t); const order: string[] = [];
+  const environment = loadWorkflowEnvironment({}, join(f.directory, 'no-env'));
+  environment.codex.codexPathOverride = process.execPath;
+  const shared = { path: join(f.directory, 'agents', 'runtime', 'catalog.json'), signature: 'fixture' };
+  await runTask({ ...f.options, from: 'part-layering', to: 'clothing-part-layering', image: 'reference.png' }, {
+    environment, preflight,
+    preflightAgents: async () => { order.push('preflight'); },
+    prepareCatalog: async () => { order.push('catalog'); return shared; },
+    execute: async (id, _run, context) => { order.push(id); assert.deepEqual(context.catalog, shared); context.prepared?.(); return { summary: 'done' }; },
+  });
+  assert.deepEqual(order.slice(0, 2), ['preflight', 'catalog']);
+  assert.equal(order.filter(value => value === 'catalog').length, 1);
+  assert.ok(order.includes('part-layering')); assert.ok(order.includes('clothing-part-layering'));
+});
+
 
 test('agent 进度只写入日志，不改写状态记录', async t => {
   const f = await fixture(t);
