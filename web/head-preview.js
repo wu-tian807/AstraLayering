@@ -53,7 +53,6 @@ export class HeadPreview {
       this.renderer ??= new HeadNineAxisRenderer(this.canvas);
       this.renderer.clear(); this.images?.forEach(image => image.close()); this.images = images;
       this.renderer.install(doc, images); this.doc = doc; this.version = `${entry.path}:${material.version}`;
-      this.allowPlane = !['neutral', 'x', 'up', 'down', 'y'].includes(entry.stage);
       const pitchUnlocked=entry.stage==='headPitch'&&this.stage!==entry.stage;
       this.stage = entry.stage; this.configureMode();
       if(pitchUnlocked)this.selectLevel('accessory');
@@ -63,7 +62,7 @@ export class HeadPreview {
   }
   configureMode() {
     if (!this.doc) return;
-    this.modes = nineAxisPreviewModes(this.doc, this.allowPlane);
+    this.modes = nineAxisPreviewModes(this.doc);
     this.selection = nextPreviewSelection(this.selection, this.modes);
     this.level = this.selection.level;
     const mode = this.modes.find(mode => mode.id === this.level);

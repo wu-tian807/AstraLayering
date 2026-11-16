@@ -21,7 +21,7 @@ test('face retains its full authored plane while cumulative hair and accessories
   for (const mode of [hair, accessory]) { assert.equal(mode.axes.region, 'horizontal'); assert.deepEqual(mode.axes.y.keys, [0]); }
   assert.equal(nineAxisCapabilities(doc).region, 'horizontal', 'the production authoring scope stays unchanged');
   assert.equal(JSON.stringify(doc), before, 'preview never rewrites model parameters or forms');
-  assert.equal(nineAxisPreviewModes(doc, false)[0].axes.region, 'cross', 'an unfinished merge cannot announce corners');
+  assert.equal(nineAxisPreviewModes(doc, false)[0].axes.region, 'cross', 'callers can explicitly restrict preview to the single axes');
 });
 
 test('static unmade context cannot unlock a combination or restrict authored face motion', () => {
@@ -32,11 +32,35 @@ test('static unmade context cannot unlock a combination or restrict authored fac
   assert.equal(hair.scope.has('__kra__/unmade-hair'), false);
 });
 
-test('merged whole-head pitch opens Y for hair and accessories without announcing their corners',()=>{
+test('complete single axes unlock composed diagonals independently for face, hair and accessories',()=>{
   const doc=fixture();doc.authoring.stage='head-pitch';doc.parameters[1]={id:'ParamAngleY',keys:[-25,0,25]};
-  for(const part of doc.parts.slice(1)){part.keyformsY={'-25':rest,'25':rest};part.keyformsXY=structuredClone(doc.parts[0].keyformsXY);}
-  const modes=nineAxisPreviewModes(doc);assert.equal(modes[0].axes.plane,true);
-  for(const mode of modes.slice(1)){assert.equal(mode.available,true);assert.equal(mode.axes.region,'cross');assert.deepEqual(mode.axes.y.keys,[-25,0,25]);}
+  for(const part of doc.parts){
+    part.keyformsY={'-25':rest,'25':rest};delete part.keyformsXY;
+  }
+  const before=JSON.stringify(doc),modes=nineAxisPreviewModes(doc);
+  for(const mode of modes){
+    assert.equal(mode.available,true);assert.equal(mode.axes.region,'plane');assert.deepEqual(mode.axes.y.keys,[-25,0,25]);
+    assert.deepEqual(mode.axes.cornerKeys,['-30,-25','-30,25','30,-25','30,25']);
+  }
+  assert.equal(JSON.stringify(doc),before,'unlocking preview does not author diagonal forms');
+  delete doc.parts[2].keyformsY['25'];
+  const [face,hair,accessory]=nineAxisPreviewModes(doc);
+  assert.equal(face.axes.plane,true);assert.equal(hair.axes.plane,true);assert.equal(accessory.axes.plane,false);
+});
+
+test('unmade diagonals compose X and Y; a later corner refines them without changing single axes',()=>{
+  const doc=fixture(),part=doc.parts[0];doc.parts=[part];
+  doc.authoring.stage='y';doc.parameters[1]={id:'ParamAngleY',keys:[-25,0,25]};
+  part.keyforms['-30']=rest.map(([x,y])=>[x-2,y]);
+  part.keyformsY['25']=rest.map(([x,y])=>[x,y-3]);delete part.keyformsXY;
+  assert.equal(nineAxisPreviewModes(doc)[0].axes.plane,true);
+  assert.deepEqual([...evaluatePoints(doc,part,-30,25)].slice(0,2),[-2,-3]);
+  assert.deepEqual([...evaluatePoints(doc,part,-15,12.5)].slice(0,2),[-1,-1.5]);
+  part.keyformsXY={'-30,25':rest.map(([x,y])=>[x-4,y-5])};
+  assert.equal(nineAxisPreviewModes(doc)[0].axes.plane,true);
+  assert.deepEqual([...evaluatePoints(doc,part,-30,25)].slice(0,2),[-4,-5]);
+  assert.deepEqual([...evaluatePoints(doc,part,-30,0)].slice(0,2),[-2,0]);
+  assert.deepEqual([...evaluatePoints(doc,part,0,25)].slice(0,2),[0,-3]);
 });
 
 test('static face masks preserve readiness; a registered hair layer unlocks only when its own carrier is authored',()=>{
@@ -94,7 +118,7 @@ test('a sparse correction inherits completed carrier directions without relockin
 
 test('an incomplete root carrier cannot inherit readiness from its descendants', () => {
   const doc = sparseCorrection();
-  delete doc.deformers[0].keyformsXY['-30,25'];
+  delete doc.deformers[0].keyformsY['25'];
   assert.equal(nineAxisPreviewModes(doc)[0].axes.plane, false);
 });
 

@@ -32,7 +32,7 @@ AstraLayering 是一个由 AI agent 驱动的角色分层工具。从一张角�
 | --- | --- |
 | ![脸部与五官九轴](showcase/tanuki-face-nine-axis.gif) | ![完整头部左右转动](showcase/tanuki-whole-head-left-right.gif) |
 
-制作工作台和角色工作台都能切换“脸＋五官”“＋头发”“＋头饰”，各自按已完成的方向开放预览。完整头部上下完成后，带头发和头饰的组合开放左右／上下十字范围，斜向仍待后续制作。[使用头部九轴](.agents/skills/live2d-maker/nine-axis/README.md)。
+制作工作台和角色工作台都能切换“脸＋五官”“＋头发”“＋头饰”，各自按已完成的方向开放预览。左右、上下单轴齐备后，即可预览叠加形成的斜角；后续斜角制作在此基础上修正。[使用头部九轴](.agents/skills/live2d-maker/nine-axis/README.md)。
 
 ## 布料与光照
 

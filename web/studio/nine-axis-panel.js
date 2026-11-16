@@ -75,9 +75,8 @@ export class HeadNineAxisPanel {
       const material = await r.json(), doc = validateHeadNineAxis(material.doc);
       const images = await Promise.all(doc.parts.map(async (p, index) => { const b = await fetch(material.textures[index]); if (!b.ok) throw Error(p.id + '：贴图读取失败'); return createNineAxisBitmap(await b.blob()); }));
       if (epoch !== this.epoch) return;
-      // Source composition belongs to the shared model/renderer. The merge's
-      // neutral XY correction grids do not announce a completed corner stage.
-      this.install(doc, images, !['neutral', 'x', 'up', 'down', 'y'].includes(entry.stage));
+      // Preview availability follows each composition's delivered axes.
+      this.install(doc, images);
       if(pitchUnlocked&&!new URLSearchParams(location.search).has('nineLevel'))this.selectLevel('accessory');
       this.author = material.author; this.version = material.version;
     } catch (e) { if (epoch === this.epoch) { this.status(e.message); this.error(e.message); } }
@@ -168,7 +167,7 @@ export class HeadNineAxisPanel {
       return `${50 + side * 40 * headSideLimit(y)},${50 - 40 * y}`;
     });
     $('#nine-axis-pad-plane').setAttribute('d', a.plane ? 'M' + [...edge(-1), ...edge(1)].join(' L') + ' Z' : '');
-    // CSS shows the plane only after every required corner is authored.
+    // CSS shows the plane once this composition has both complete single axes.
     $('#nine-axis-pad-axis-y').setAttribute('d', `M50 ${a.y.max ? 10 : 50} V${a.y.min ? 90 : 50}`);
     const dots = [];
     const positions = [...a.x.keys.map(x => [x, 0]), ...a.y.keys.filter(Boolean).map(y => [0, y]), ...a.cornerKeys.map(k => k.split(',').map(Number))];

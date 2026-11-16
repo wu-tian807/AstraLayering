@@ -37,7 +37,7 @@ export function nineAxisPreviewModes(doc, allowPlane = true) {
         return { ...parameter, status: undefined, keys: [...new Set([0, ...scoped.flatMap(node => Object.keys(node.keyformsY ?? {}).map(Number))])] };
       return parameter;
     });
-    const axes = nineAxisCapabilities(scopedDocument(scope, available ? parameters : []), allowPlane && (doc.authoring?.stage !== 'head-pitch' || level.id === 'face'));
+    const axes = nineAxisCapabilities(scopedDocument(scope, available ? parameters : []), allowPlane);
     return { ...level, available, axes, scope };
   });
 }
