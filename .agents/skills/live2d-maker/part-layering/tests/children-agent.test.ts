@@ -12,6 +12,8 @@ import { groupStepId } from '../../shared/part/part-steps.ts';
 import { parseRunArguments } from '../run.ts';
 import { fixture, publishGroups, shape, workingMerger, workingSteps } from './layering-fixture.ts';
 import { defaultKnowledgeDirectory } from '../../shared/knowledge.ts';
+import { partKnowledge } from '../../shared/part/group-prompts.ts';
+import { profile } from '../profile.ts';
 import { promptInput } from '../../shared/tests/prompt-input.ts';
 
 const signal = new AbortController().signal;
@@ -147,4 +149,15 @@ test('父完成稿改变后旧分析不能放行下一层，CLI 深度输入有�
   assert.equal(parseRunArguments(['--max-depth', '2']).maxDepth, 2);
   for (const value of ['0', '-1', '1.5', 'NaN', '9007199254740992']) assert.throws(() => parseRunArguments([`--max-depth=${value}`]), /正整数/);
   assert.ok(await readFile(artifactPath(f.directory, 'a', 'completion')));
+});
+
+
+test('通用拆分操作约定同时装配到特化发区和普通马尾后代', () => {
+  const knowledge = partKnowledge(profile, 'children');
+  const common = join(defaultKnowledgeDirectory, 'part-layering/step12_children/prompts/10-拆分操作约定.md');
+  for (const id of ['hair', 'hair/bangs', 'hair/ponytail', 'hair/ponytail/ponytail_left']) {
+    const files = knowledge.files('main', id);
+    assert.equal(files.filter(file => file === common).length, 1);
+    assert.equal(new Set(files).size, files.length);
+  }
 });
