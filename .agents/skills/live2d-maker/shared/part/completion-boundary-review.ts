@@ -1,5 +1,4 @@
-import { createHash } from 'node:crypto';
-import { readFile, realpath } from 'node:fs/promises';
+import { mkdir, mkdtemp, realpath } from 'node:fs/promises';
 import { join } from 'node:path';
 import sharp from 'sharp';
 import type { AgentDispatcher } from '../agents/dispatcher.ts';
@@ -13,7 +12,6 @@ import { createBitmapTool } from './bitmap-tool.ts';
 import { partKnowledge } from './group-prompts.ts';
 import { nodeSeed, writeAtomic } from './groups.ts';
 import type { GroupContext } from './layering-types.ts';
-import { groupStepId } from './part-steps.ts';
 import { partProfile } from './profile.ts';
 import { createSvgPreviewTool, createSvgReadTool, observedPath, type SvgObservation } from './svg-tools.ts';
 
@@ -25,7 +23,6 @@ export type BoundaryReview = {
   bounds: { outsidePixels: number; outsideBox: number[] | null };
   reason: string;
 };
-const hash = (bytes: Buffer | string) => createHash('sha256').update(bytes).digest('hex');
 function decision(value: unknown): BoundaryDecision | undefined {
   if (!value || typeof value !== 'object') return;
   const raw = value as Record<string, unknown>;
@@ -33,23 +30,16 @@ function decision(value: unknown): BoundaryDecision | undefined {
   return { allow: raw.allow, note: raw.note };
 }
 
-// A review is tied to immutable snapshots. Neither approval nor rejection grants
-// a node-wide permission; identical inputs reuse the recorded one-shot decision.
+// A one-shot tool subcall. Keep ordinary process artifacts; return the submitted
+// decision directly from memory, without a persistent authorization cache.
 export async function reviewCompletionBoundary(input: BoundaryReview, agents: Pick<AgentDispatcher, 'run'>, signal?: AbortSignal): Promise<BoundaryDecision> {
   const { context, canvas } = input, profile = partProfile(context);
   const knowledge = partKnowledge(profile, 'completion_boundary_review');
   const snapshots = { candidate: input.candidate, source: input.source, parent: input.parent, reference: input.reference };
-  const hashes = Object.fromEntries(Object.entries(snapshots).map(([key, bytes]) => [key, hash(bytes)]));
-  const key = hash(JSON.stringify({ version: 1, group: nodeSeed(context.group), parent: context.parent && nodeSeed(context.parent), hashes,
-    prompts: await Promise.all(knowledge.files('main').map(async path => hash(await readFile(path)))) }));
-  const directory = join(context.directory, groupStepId(context.group.id, 'completion'), 'boundary-reviews', key);
-  const record = join(directory, 'decision.json');
-  try {
-    const cached = JSON.parse(await readFile(record, 'utf8'));
-    const value = cached.key === key && cached.version === 1 ? decision(cached.decision) : undefined;
-    if (value) return value;
-  } catch (error) { if (!(error instanceof SyntaxError) && (error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
   signal?.throwIfAborted();
+  const processDirectory = join(context.directory, 'step11_completion');
+  await mkdir(processDirectory, { recursive: true });
+  const directory = await mkdtemp(join(processDirectory, 'boundary-review-'));
   const paths = { candidate: join(directory, 'candidate.svg'), source: join(directory, 'source.svg'), parent: join(directory, 'parent.svg'), reference: join(directory, 'reference.png') };
   for (const name of Object.keys(snapshots) as (keyof typeof snapshots)[]) await writeAtomic(paths[name], snapshots[name]);
   const [candidateAlpha, parentAlpha] = await Promise.all([input.candidate, input.parent].map(bytes =>
@@ -76,12 +66,6 @@ export async function reviewCompletionBoundary(input: BoundaryReview, agents: Pi
     }
     return result;
   } };
-  async function verify() {
-    if (!(await readFile(outsideReference)).equals(marked)) throw new Error('评审快照发生变化，请重新评审');
-    for (const name of Object.keys(paths) as (keyof typeof paths)[]) {
-      if (hash(await readFile(paths[name])) !== hashes[name]) throw new Error('评审快照发生变化，请重新评审');
-    }
-  }
   const submit: FunctionTool = { ...toolDefinition('submit_completion_boundary_review'), async execute(value, signal) {
     signal.throwIfAborted();
     if (submitted) throw new Error('越界评审已提交');
@@ -90,7 +74,7 @@ export async function reviewCompletionBoundary(input: BoundaryReview, agents: Pi
     if (!outsideSeen || !observations.some(o => o.source === candidatePath && o.mode === 'svg') ||
         !observations.some(o => o.source === candidatePath && o.mode === 'blend') ||
         !observations.some(o => o.source === parentPath)) throw new Error('须查看候选独显、默认 blend、父稿和越界标示图');
-    await verify(); submitted = parsed;
+    submitted = parsed;
     return textResult(parsed);
   } };
   const reviewInput = { group: nodeSeed(context.group), parentGroup: context.parent && nodeSeed(context.parent),
@@ -98,15 +82,12 @@ export async function reviewCompletionBoundary(input: BoundaryReview, agents: Pi
   await writeAtomic(join(directory, 'input.json'), JSON.stringify(reviewInput, null, 2) + '\n');
   const result = await withAgentSlotReleased(signal => checkedTurn({ agents, signal, records: join(directory, 'checks'),
     task: { step: partStep(profile.id, 'completion_boundary_review'), name: `补全越界评审-${context.group.id}`,
-      // Keep CLI cwd independent of group depth: CreateProcess rejects long
-      // working directories on Windows even when Node can read the snapshots.
-      cwd: context.directory, outputDirectory: join(context.directory, 'step11_completion', 'boundary-review', key), shell: false,
+      cwd: context.directory, outputDirectory: directory, shell: false,
       tools: knowledge.tools('main', [createSvgPreviewTool({ directory: context.directory, reference: paths.reference, parent: paths.parent, canvas,
         observationDirectory: join(directory, 'observations'), observed: entry => observations.push(entry) }),
         createSvgReadTool(context.directory), view, submit]),
       prompt: knowledge.render('main', { review_input: JSON.stringify(reviewInput, null, 2) }, { taskRoot: taskRootOf(context.directory) }) },
-    check: async () => { await verify(); if (!submitted) throw missingSubmit('submit_completion_boundary_review', '未提交越界评审结论'); return submitted; } }), signal);
+    check: async () => { if (!submitted) throw missingSubmit('submit_completion_boundary_review', '未提交越界评审结论'); return submitted; } }), signal);
   signal?.throwIfAborted();
-  await writeAtomic(record, JSON.stringify({ version: 1, key, hashes, decision: result }, null, 2) + '\n');
   return result;
 }

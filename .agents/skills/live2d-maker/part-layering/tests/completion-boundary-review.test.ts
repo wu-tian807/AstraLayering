@@ -47,8 +47,8 @@ for (const section of ['character', 'clothing'] as const) {
       await tool(task, 'set_completion_paths').execute({ paths: additions }, signal);
       await view(task, c.outputPath); await submit(task, 'Hidden continuous structure.'); return { text: '', images: [] };
     } }, { async run(task) {
-      assert.equal(dirname(task.outputDirectory!), join(c.directory, 'step11_completion', 'boundary-review'));
-      assert.equal(basename(task.outputDirectory!).length, 64);
+      assert.equal(dirname(task.outputDirectory!), join(c.directory, 'step11_completion'));
+      assert.ok(basename(task.outputDirectory!).length < 30);
       await review(task); return { text: '', images: [] };
     } });
   });
@@ -94,19 +94,22 @@ for (const section of ['character', 'clothing'] as const) {
   test(`${section}: requested exception invokes an independent reviewer and can be published`, async t => {
     const c = await context(t); let reviews = 0;
     const result = await completeGroupOcclusion(c, { async run(task) {
-      await tool(task, 'set_completion_paths').execute({ paths: additions }, signal); await view(task, c.outputPath); await submit(task, '连接被主体遮住的两端'); return { text: '', images: [] };
+      await tool(task, 'set_completion_paths').execute({ paths: additions }, signal); await view(task, c.outputPath); const feedback = await submit(task, '连接被主体遮住的两端');
+      const payload = JSON.parse(feedback.contentItems.find(x => x.type === 'inputText')!.text);
+      assert.equal(payload.boundaryReview.allow, true);
+      assert.ok(payload.boundaryReview.note); return { text: '', images: [] };
     } }, { async run(task) { reviews++; assert.equal(task.step, section === 'character' ? 'part_completion_boundary_review' : 'clothing_completion_boundary_review'); await review(task); return { text: '', images: [] }; } });
     assert.equal(reviews, 1);
     assert.equal(assertCompletionPreserves(await readFile(c.reviewed.path, 'utf8'), await readFile(result.path, 'utf8')), 1);
     assert.equal((await checkGroupCompletion({ ...c, before: c.reviewed, after: result })).passed, true);
-    const dir = join(c.directory, groupStepId(c.group.id, 'completion'), 'boundary-reviews');
-    const keys = await readdir(dir); assert.equal(keys.length, 1);
-    const record = JSON.parse(await readFile(join(dir, keys[0], 'decision.json'), 'utf8'));
-    assert.equal(record.decision.allow, true);
-    assert.equal(record.hashes.candidate.length, 64);
+    const dirs = await readdir(join(c.directory, 'step11_completion'));
+    assert.equal(dirs.length, 1);
+    const directory = join(c.directory, 'step11_completion', dirs[0]);
+    assert.equal(JSON.parse(await readFile(join(directory, 'input.json'), 'utf8')).group.id, c.group.id);
+    await assert.rejects(readFile(join(directory, 'decision.json')), { code: 'ENOENT' });
   });
 
-  test(`${section}: a refusal returns to the drawing turn, identical resubmission reuses it, repair can succeed`, async t => {
+  test(`${section}: a refusal returns to the drawing turn; each tool call reviews its own candidate and repair can succeed`, async t => {
     const c = await context(t); let reviews = 0;
     await completeGroupOcclusion(c, { async run(task) {
       await tool(task, 'set_completion_paths').execute({ paths: additions }, signal); await view(task, c.outputPath);
@@ -115,10 +118,10 @@ for (const section of ['character', 'clothing'] as const) {
       await tool(task, 'set_completion_paths').execute({ paths: [] }, signal); await view(task, c.outputPath); await submit(task);
       return { text: '', images: [] };
     } }, { async run(task) { reviews++; await review(task, false); return { text: '', images: [] }; } });
-    assert.equal(reviews, 1);
+    assert.equal(reviews, 2);
   });
 
-  test(`${section}: interruption preserves the draft and approval; continuation does not review the same draft again`, async t => {
+  test(`${section}: interruption preserves the draft; continuation makes a fresh review without persisted authorization`, async t => {
     const c = await context(t); let reviews = 0;
     const reviewer = { async run(task: AgentTask) { reviews++; await review(task); return { text: '', images: [] }; } };
     await assert.rejects(completeGroupOcclusion(c, { async run(task) {
@@ -128,11 +131,11 @@ for (const section of ['character', 'clothing'] as const) {
     await completeGroupOcclusion({ ...c, resumeDraft: true }, { async run(task) {
       assert.equal(await readFile(c.outputPath, 'utf8'), draft); await view(task, c.outputPath); await submit(task, 'hidden continuity'); return { text: '', images: [] };
     } }, reviewer);
-    assert.equal(reviews, 1);
+    assert.equal(reviews, 2);
     await completeGroupOcclusion(c, { async run(task) {
       await tool(task, 'set_completion_paths').execute({ paths: [{ d: 'M4 40H25V60H4Z' }] }, signal); await view(task, c.outputPath); await submit(task, 'changed shape'); return { text: '', images: [] };
     } }, reviewer);
-    assert.equal(reviews, 2);
+    assert.equal(reviews, 3);
   });
 
   test(`${section}: changes to original inputs during review cannot authorize the draft`, async t => {

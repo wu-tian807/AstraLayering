@@ -1,6 +1,6 @@
 import { groupStepId } from './part-steps.ts';
 import { partStep } from '../agents/models.ts';
-import { reviewCompletionBoundary } from './completion-boundary-review.ts';
+import { reviewCompletionBoundary, type BoundaryDecision } from './completion-boundary-review.ts';
 import { checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { partProfile } from './profile.ts';
@@ -74,6 +74,7 @@ export async function completeGroupOcclusion(context: DrawingContext & { reviewe
       if (!raw || typeof raw.note !== 'string' || !raw.note.trim() ||
           (raw.outsideParentReason !== undefined && (typeof raw.outsideParentReason !== 'string' || !raw.outsideParentReason.trim())) ||
           Object.keys(raw).some(key => key !== 'note' && key !== 'outsideParentReason')) throw new Error('须提交补全依据，越界申请理由须为非空文字');
+      let boundaryReview: BoundaryDecision | undefined;
       submitting = true;
       try {
         await verifySource();
@@ -104,7 +105,7 @@ export async function completeGroupOcclusion(context: DrawingContext & { reviewe
             if (!raw.outsideParentReason) throw new Error(`子组超出父轮廓，默认不允许提交；确有完整形体依据时填写 outsideParentReason 申请独立评审：${JSON.stringify(bounds)}`);
             // Only this exceptional tool branch releases its model slot. The
             // independent reviewer runs through the ordinary shared dispatcher.
-            const decision = await reviewCompletionBoundary({ context, source, candidate: bytes, parent: parentBytes,
+            const decision = boundaryReview = await reviewCompletionBoundary({ context, source, candidate: bytes, parent: parentBytes,
               reference: referenceBytes, canvas, bounds, reason: raw.outsideParentReason as string }, reviewAgents, signal);
             signal.throwIfAborted();
             await verifySource();
@@ -115,7 +116,7 @@ export async function completeGroupOcclusion(context: DrawingContext & { reviewe
         }
         submitted = { path: draft, note: raw.note };
         submittedBytes = bytes;
-        return textResult({ ...submitted, path: await task(draft) });
+        return textResult({ ...submitted, path: await task(draft), ...(boundaryReview ? { boundaryReview } : {}) });
       } finally { submitting = false; }
     },
   };
