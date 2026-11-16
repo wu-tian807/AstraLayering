@@ -1,0 +1,6 @@
+{
+  "main": {
+    "initial": ["prompts/斜角制作.md"],
+    "tools": ["view_bitmap", "preview_svg", "edit_nine_axis", "view_nine_axis"]
+  }
+}

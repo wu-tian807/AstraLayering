@@ -26,6 +26,7 @@ import { buildJawLine, finishJawLine } from './jaw-line.ts';
 import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, checkHairRound, type HairRound } from './hair.ts';
 import { prepareAccessories, buildAccessories, finishAccessories, checkAccessories, checkAccessoryShadows, accessoryPreviewScope } from './accessories.ts';
 import { headPitchDirections, headPitchStage, headPitchAngle, headPitchScope, headPitchPreviewScope, seedHeadPitch, buildHeadPitch, mergeHeadPitch, checkHeadPitchDelivery, type HeadPitchDirection } from './head-pitch.ts';
+import { headCornerScope, seedHeadCorners, buildHeadCorners, finishHeadCorners } from './head-corners.ts';
 import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
 import { createNineAxisFitTool } from './fit-tool.ts';
@@ -70,6 +71,7 @@ step07_jaw-line：完成下颌与固定脖子连接，交付脸部＋五官九�
 step08_hair：left/right，Y=0；同一 KRA、同一会话，每次操作派发一轮：前发、侧发、后发、其余头发与整体协调。
 step09_head-accessories：基于已完成脸发制作 head_accessories 的 left/right，Y=0，连同关联投影检查最终遮挡。
 step10_head-pitch：从完整左右结果并发制作整个头部的 up/down；两个独立上下文，完成后由程序合并。可用 --step step10_head-pitch/up 或 down 选择分支。
+step11_head-angle-xy：在已有完整左右、上下的基础上，一个持续会话统一调整整个头部四角。
 部件与 Warp 组织方式由实际工程决定，角度配置见 knowledge/head-nine-axis/step02_video/references/angles.json。
 `;
 
@@ -122,6 +124,8 @@ export const headPitchPrompt=(document:string,taskRoot:string,direction:HeadPitc
   .render('main',{document,direction_name:direction==='up'?'抬头':'低头',target_angle:String(headPitchAngle(direction,angleScale())),
     author:join(taskRoot,'nine-axis/step10_head-pitch',direction,`head-${direction}.json`),
     reference:join(taskRoot,'nine-axis/step03_frames',`${direction}.png`),video:join(taskRoot,'nine-axis/step02_video',`${direction}.mp4`)},{taskRoot}).trim();
+export const headCornersPrompt = (document: string, taskRoot: string) => stepKnowledge('nine-axis', 'step11_head-angle-xy')
+  .render('main', { document, ...angleValues() }, { taskRoot }).trim();
 
 type Agents = Pick<AgentDispatcher, 'run'> & Partial<Pick<AgentDispatcher, 'createSession'>>;
 // One agent turn. With `session` the turn continues that step's saved thread;
@@ -172,7 +176,7 @@ export function createFitHead(agents: Agents, tools: (step: string) => Promise<F
   return async (directory, prompt, verify) => {
     const group = step.split('/').length > 2 ? step.split('/').at(-1) : undefined;
     const pitch=step.startsWith('step10_head-pitch/');
-    const agentStep = pitch?'nine_axis_head_pitch':group || step === 'step04_angles' ? 'nine_axis_head' : step === 'step06_angle-xy' ? 'nine_axis_head_xy' : step==='step09_head-accessories'?'nine_axis_head_accessories':'nine_axis_head_jaw';
+    const agentStep = pitch?'nine_axis_head_pitch':step==='step11_head-angle-xy'?'nine_axis_head_corners':group || step === 'step04_angles' ? 'nine_axis_head' : step === 'step06_angle-xy' ? 'nine_axis_head_xy' : step==='step09_head-accessories'?'nine_axis_head_accessories':'nine_axis_head_jaw';
     await runAgentTurn(agents, sectionDirectory ?? join(directory, '..'), directory, { step: agentStep, knowledge: pitch?'step10_head-pitch':group ? 'step04_angles' : step,
       role: 'main', session: step, name, tools: await tools(step), prompt, verify }, signal);
   };
@@ -216,6 +220,7 @@ export type NineAxisDependencies = { environment?: WorkflowEnvironment; ffmpegCh
   prepareHair?: typeof prepareHair; fitHair?: FitHead;
   prepareAccessories?:typeof prepareAccessories;fitAccessories?:FitHead;
   fitHeadPitch?:Partial<Record<HeadPitchDirection,FitHead>>;
+  fitHeadCorners?: FitHead;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
   if (options.step && options.step.split('/').length > 3) throw Error('--step 须为已定义的九轴步骤或分支');
@@ -230,7 +235,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const angles = join(directory, 'step04_angles'), modelDirectory = join(angles, 'model'), cornerVideos = join(angles, 'video');
   const cornerFrames = join(directory, 'step05_frames'), xyDirectory = join(directory, 'step06_angle-xy');
   const baseEnvironment = dependencies.environment ?? loadWorkflowEnvironment(), scale = angleScale();
-  const artworkOnly=requested==='step08_hair'||requested==='step09_head-accessories'||requested==='step10_head-pitch';
+  const artworkOnly=requested==='step08_hair'||requested==='step09_head-accessories'||requested==='step10_head-pitch'||requested==='step11_head-angle-xy';
   if (!options.dryRun && !dependencies.generate && !artworkOnly) requireVideoApi(baseEnvironment);
   const requestedFFmpeg = options.ffmpeg || baseEnvironment.codex.env?.ASTRA_STUDIO_FFMPEG;
   const ffmpeg = options.dryRun || artworkOnly ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
@@ -253,7 +258,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     return { run: pool.run.bind(pool), createSession: pool.createSession.bind(pool) };
   };
   let preflightPromise: Promise<unknown> | undefined;
-  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw', 'nine_axis_head_hair', 'nine_axis_head_accessories', 'nine_axis_head_pitch'], { runsRoot: root, progress, env: environment.codex.env });
+  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw', 'nine_axis_head_hair', 'nine_axis_head_accessories', 'nine_axis_head_pitch', 'nine_axis_head_corners'], { runsRoot: root, progress, env: environment.codex.env });
   const video = () => {
     const api = dependencies.generate ? undefined : requireVideoApi(environment);
     return { model: api?.model ?? 'injected', generate: dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o)) as GenerateVideo };
@@ -276,8 +281,19 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     if(hairRound==='done')throw Error('头发轮次已全部完成');
     const pitch=stepId.startsWith('step10_head-pitch/')?stepId.split('/')[1] as HeadPitchDirection:undefined;
     const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations,
-      async () => materialize(output, await builds[stepId](), options.signal), undefined, pitch?headPitchPreviewScope(pitch):hairRound ? hairPreviewScope(hairRound) : stepId==='step09_head-accessories'?accessoryPreviewScope:undefined);
+      async () => materialize(output, await builds[stepId](), options.signal), undefined, stepId==='step11_head-angle-xy'?{includes:headCornerScope.includes!,label:headCornerScope.label}:pitch?headPitchPreviewScope(pitch):hairRound ? hairPreviewScope(hairRound) : stepId==='step09_head-accessories'?accessoryPreviewScope:undefined);
     if(pitch)return [bitmap,view,createContinuationEditTool(output,join(directory,'step09_head-accessories'),headPitchStage(pitch),scale,task,materialize,headPitchScope)];
+    if (stepId === 'step11_head-angle-xy') {
+      const box = await crop();
+      const svg = createSvgPreviewTool({ directory: output, reference: join(cornerFrames, 'left-up.png'),
+        canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas', comparisonModes: ['edge'] });
+      return [bitmap, view, createContinuationEditTool(output, join(directory, 'step10_head-pitch'), 'head-xy', scale, task, materialize, headCornerScope),
+        { ...svg, async execute(value, signal, context) {
+          const args = value as { mode?: string; reference?: string };
+          if (args?.mode === 'edge' && !args.reference) throw Error('斜角 edge 比较须指定实际参考帧');
+          return svg.execute(value, signal, context);
+        } }];
+    }
     const axis = stepId.startsWith('step04_angles/model/') ? stepId.split('/').at(-1) as AxisGroup : undefined;
     const stage = axis === 'up' || axis === 'down' ? axis : undefined;
     const upstream = axis ? preparation : stepId === 'step06_angle-xy' ? modelDirectory : xyDirectory;
@@ -325,10 +341,14 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     if((await readStep(join(directory,'step09_head-accessories'))).status!=='completed')throw Error('请先完成头部饰品左右，再制作头部上下');
     await checkDelivery('step09_head-accessories');
   };
+  const headCornersUpstreamReady = async () => {
+    if ((await readStep(join(directory, 'step10_head-pitch'))).status !== 'completed') throw Error('请先完成完整头部上下，再制作斜角');
+    await checkDelivery('step10_head-pitch');
+  };
   try {
     if(!options.dryRun&&steps.some(step=>step.number===8))await upgradeHairProgress(join(directory,'step08_hair'));
     await runSection({ directory, steps, dryRun: options.dryRun, signal: options.signal, progress,
-      async check(){if(!options.dryRun){if(requested==='step09_head-accessories')await accessoriesUpstreamReady();if(requested==='step10_head-pitch')await headPitchUpstreamReady();}},
+      async check(){if(!options.dryRun){if(requested==='step09_head-accessories')await accessoriesUpstreamReady();if(requested==='step10_head-pitch')await headPitchUpstreamReady();if(requested==='step11_head-angle-xy')await headCornersUpstreamReady();}},
       async keep(step) {
         await checkDelivery(step.id);
         if(step.id==='step08_hair'&&(await readHairProgress(step.directory)).next!=='done')throw Error('头发轮次尚未全部完成，不能沿用整个步骤的完成标记');
@@ -341,6 +361,23 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       },
       async step(step, status) {
         if (status === 'completed') return;
+        if (step.id === 'step11_head-angle-xy') return async () => {
+          const upstream = join(directory, 'step10_head-pitch');
+          if (options.dryRun) return preview(headCornersPrompt(join(directory, 'step09_head-accessories/character-nine-axis.kra'), task));
+          await headCornersUpstreamReady();
+          const { doc } = await readUpstream(upstream), document = await modelDocument(task, upstream, doc);
+          if (!document) throw Error('完整头部斜角缺少最新 KRA 来源');
+          await seedHeadCorners(step.directory, upstream, task, scale);
+          builds[step.id] = () => buildHeadCorners(step.directory, upstream, scale, materialize);
+          const fit = dependencies.fitHeadCorners ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '完整头部四角', options.signal, directory));
+          const verify = async () => {
+            await finishHeadCorners(step.directory, upstream, scale, materialize);
+            await checkDelivery(step.id);
+          };
+          await fit(step.directory, headCornersPrompt(document, task), verify);
+          await verify();
+          summary = 'nine-axis/step11_head-angle-xy：完整头部四角已完成';
+        };
         if(step.id==='step10_head-pitch')return async()=>{
           const upstream=join(directory,'step09_head-accessories');
           if(options.dryRun)return preview(headPitchDirections.filter(d=>!branch||d===branch).map(d=>headPitchPrompt(join(upstream,'character-nine-axis.kra'),task,d)).join('\n\n'));
@@ -554,7 +591,7 @@ if (import.meta.main) {
     if (args.help) { console.log(help); return; }
     selectKnowledge(resolveInput(args.name!, args.knowledge!, args.dir));
     const action = args.retry ? 'retry' : args.resume ? 'resume' : args.continue ? 'continue' : undefined;
-    const artworkOnly=['step08_hair','step09_head-accessories','step10_head-pitch'].includes(args.step?.split('/')[0]??'');
+    const artworkOnly=['step08_hair','step09_head-accessories','step10_head-pitch','step11_head-angle-xy'].includes(args.step?.split('/')[0]??'');
     const startupFFmpeg = args['dry-run'] || artworkOnly ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
       ffmpeg: args.ffmpeg ? resolveInput(args.name!, args.ffmpeg, args.dir) : loadWorkflowEnvironment().codex.env?.ASTRA_STUDIO_FFMPEG });
     if (action) {

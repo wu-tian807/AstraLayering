@@ -64,6 +64,7 @@ export const stepModelSlots = {
   nine_axis_head_hair: 'nine_axis_head',
   nine_axis_head_accessories: 'nine_axis_head',
   nine_axis_head_pitch: 'nine_axis_head',
+  nine_axis_head_corners: 'nine_axis_head',
 } as const satisfies Record<string, ModelSlot>;
 export type AgentStep = keyof typeof stepModelSlots;
 export const imageSteps = (): AgentStep[] => (Object.keys(stepModelSlots) as AgentStep[]).filter(step => agentImageGeneration(step));

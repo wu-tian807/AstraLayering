@@ -46,6 +46,7 @@ const agents: Record<AgentStep, { section: string; step: string; role?: Knowledg
   nine_axis_head_hair: { section: 'nine-axis', step: 'step08_hair' },
   nine_axis_head_accessories: { section: 'nine-axis', step: 'step09_head-accessories' },
   nine_axis_head_pitch: { section: 'nine-axis', step: 'step10_head-pitch' },
+  nine_axis_head_corners: { section: 'nine-axis', step: 'step11_head-angle-xy' },
 };
 
 export function agentImageGeneration(step: AgentStep, directory?:string): boolean {

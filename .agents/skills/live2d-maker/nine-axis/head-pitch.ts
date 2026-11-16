@@ -5,8 +5,9 @@ import { angleParameter, angleScale, type AngleScale } from './angles.ts';
 import { authorFile, buildContinuation, readUpstream, type AuthoredHead } from './continuation.ts';
 import { writeBuilt, type Built } from './head.ts';
 import { modelDocument } from './source.ts';
-import { partVisible, withinPart, ownsNode, type OwnershipScope } from './ownership.ts';
-import { editNineAxis, initializeKeyforms } from '../shared/nine-axis-edit.js';
+import { ownsNode, type OwnershipScope } from './ownership.ts';
+import { initializeKeyforms } from '../shared/nine-axis-edit.js';
+import { prepareHeadControls, wholeHeadPart, wholeHeadScope } from './head-controls.ts';
 import { nodes, validateHeadNineAxis, checkWarpGeometry, kraReferences, type HeadNineAxis } from '../shared/nine-axis-model.js';
 import { toTaskPath } from '../shared/task-paths.ts';
 import type { MaterialLoader } from './kra-materials.ts';
@@ -17,11 +18,7 @@ export type HeadPitchStage = 'head-up' | 'head-down';
 export const isHeadPitchStage = (stage: string): stage is HeadPitchStage => stage === 'head-up' || stage === 'head-down';
 export const headPitchStage = (direction: HeadPitchDirection): HeadPitchStage => direction === 'up' ? 'head-up' : 'head-down';
 export const headPitchAngle = (direction: HeadPitchDirection, scale: AngleScale) => scale.y[direction === 'up' ? 1 : 0];
-const headPart = (id: string) => ['face', 'hair', 'head_accessories'].some(root => withinPart(id, root));
-export const headPitchScope: OwnershipScope = {
-  label: '头部上下', allows: headPart,
-  includes: (part, doc) => partVisible(part, doc, id => headPart(id) || withinPart(id, 'neck')),
-};
+export const headPitchScope: OwnershipScope = { ...wholeHeadScope, label: '头部上下' };
 export const headPitchPreviewScope = (direction: HeadPitchDirection) => ({
   includes: headPitchScope.includes!, label: `${direction}：预览本方向上下或已有左右`,
   allowsPose: (x: number, y: number) => y === 0 || x === 0 && (direction === 'up' ? y >= 0 : y <= 0),
@@ -30,26 +27,11 @@ export const headPitchPreviewScope = (direction: HeadPitchDirection) => ({
 /** Both authors get the same topology. Identity carriers follow native parents,
  * separating editable head leaves from fixed neck/body leaves when necessary. */
 export function initializeHeadPitch(upstream: HeadNineAxis & { axis: number }, stage: HeadPitchStage, scale = angleScale()): AuthoredHead {
-  let doc = structuredClone(upstream) as AuthoredHead;
+  const doc = structuredClone(upstream) as AuthoredHead;
   doc.authoring = { stage };
   const range: [number, number] = stage === 'head-up' ? [0, scale.y[1]] : [scale.y[0], 0];
   doc.parameters = doc.parameters!.map(p => p.id === 'ParamAngleY' ? { ...angleParameter('ParamAngleY', '角度 Y', range), keys: [...new Set([range[0], 0, range[1]])] } : p);
-  const groups = new Map<string, string[]>(), byId = new Map(nodes(doc).map(n => [n.id, n]));
-  for (const part of doc.parts.filter(p => !p.context && ownsNode(doc, p, headPitchScope))) {
-    const key = part.parent ?? '';
-    groups.set(key, [...(groups.get(key) ?? []), part.id]);
-  }
-  let serial = 0;
-  for (const [parentId, targets] of groups) {
-    let id: string; do { id = `pitch/${serial++}`; } while (byId.has(id));
-    const parent = byId.get(parentId), parts = targets.map(id => doc.parts.find(p => p.id === id)!);
-    const bbox = parent?.bbox ?? [Math.min(...parts.map(p => p.bbox[0])), Math.min(...parts.map(p => p.bbox[1])), Math.max(...parts.map(p => p.bbox[2])), Math.max(...parts.map(p => p.bbox[3]))];
-    doc = editNineAxis(doc, [{ action: 'create_warp', id, name: '头部上下承载', level: parts[0].level,
-      bbox, cols: parent?.cols ?? 4, rows: parent?.rows ?? 4, parent: parentId || undefined, targets: [] }]) as AuthoredHead;
-    // An identity inserted below the same parent needs no coordinate inversion.
-    for (const part of doc.parts) if (targets.includes(part.id)) part.parent = id;
-  }
-  return doc;
+  return prepareHeadControls(doc, 'pitch', '头部上下承载') as AuthoredHead;
 }
 
 /** Direction authors change only their Y half-axis on the prepared graph.
@@ -82,7 +64,7 @@ export function checkHeadPitch(value: unknown, upstream: HeadNineAxis & { axis: 
 
 export function checkHeadPitchDelivery(doc: HeadNineAxis, direction: HeadPitchDirection, scale = angleScale()) {
   const byId = new Map(nodes(doc).map(n => [n.id, n])), angle = String(headPitchAngle(direction, scale));
-  for (const part of doc.parts.filter(p => !p.context && !p.shadow && p.role !== 'mask' && p.material !== 'transparent' && p.partId && headPart(p.partId))) {
+  for (const part of doc.parts.filter(p => !p.context && !p.shadow && p.role !== 'mask' && p.material !== 'transparent' && p.partId && wholeHeadPart(p.partId))) {
     let node = byId.get(part.id), ready = false;
     while (node) {
       if (node.keyformsY?.[angle]) { ready = true; break; }

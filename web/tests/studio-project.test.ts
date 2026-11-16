@@ -81,6 +81,21 @@ test('complete head pitch selects the merged model while keeping the latest upst
   assert.equal(value.nineAxis.stage,'headPitch');assert.equal(value.nineAxis.path,p.headPitchDeformers);assert.equal(value.files.document.path,p.accessoriesDocument);
 });
 
+test('whole-head corner drafts become the latest model using the declared KRA and leave pitch selectable', async t => {
+  const f = await fixture(t), p = currentNineAxisArtifacts;
+  await f.put(p.neutralDeformers, '{}'); await f.put(p.accessoriesDocument, 'latest saved artwork');
+  const model = JSON.stringify({ source: { document: p.accessoriesDocument } });
+  await f.put(p.headPitchDeformers, model); await f.put('nine-axis/step10_head-pitch/.completed', '');
+  await f.put(p.headCornersDeformers, model); await f.put('nine-axis/step11_head-angle-xy/.running', '');
+  const latest = await (await f.get()).json() as any;
+  assert.equal(latest.nineAxis.stage, 'headCorners'); assert.equal(latest.nineAxis.path, p.headCornersDeformers);
+  assert.equal(latest.files.document.path, p.accessoriesDocument); assert.equal(latest.files.color.available, false);
+  const pitch = await (await f.get({ nineStage: 'headPitch' })).json() as any;
+  assert.equal(pitch.nineAxis.path, p.headPitchDeformers); assert.equal(pitch.files.document.path, p.accessoriesDocument);
+  await f.put(p.accessoriesDocument, 'new saved KRA revision');
+  assert.notEqual((await (await f.get()).json() as any).nineAxis.version, latest.nineAxis.version);
+});
+
 test('accessories preview selects the newest owned KRA and keeps hair available',async t=>{
   const f=await fixture(t),p=currentNineAxisArtifacts;
   await f.put(p.neutralDeformers,'{}');await f.put(p.hairDocument,'hair artwork');
