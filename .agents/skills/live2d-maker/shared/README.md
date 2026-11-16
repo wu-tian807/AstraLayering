@@ -4,6 +4,8 @@
 
 日常执行见 [SKILL.md](../SKILL.md)。
 
+跨 CLI 的任务分派和通用重试分别位于 `shared/agents/dispatcher.ts` 与 `shared/agents/runtime.ts`；`shared/codex/` 保存 Codex 专用的 App Server 与会话适配。
+
 ## 工具与模型
 
 每个步骤的 `agent.json` 声明工具，启动时一次注册。工具参数、说明和实现分别维护：

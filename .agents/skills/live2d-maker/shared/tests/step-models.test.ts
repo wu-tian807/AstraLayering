@@ -11,8 +11,8 @@ import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { modelHarnesses, resolveModelDefaults, modelSlotKey, type ModelSlot, stepModelSlots, imageSteps, parseAgentModel } from '../agents/models.ts';
 import { imageGenerationTool, validateImageSelection } from '../agents/images.ts';
 import { cliExecutable, runCliTask } from '../agents/cli.ts';
-import { CodexAgents } from '../codex/agents.ts';
-import { AgentCallError, AgentRuntime } from '../codex/agent-runtime.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
+import { AgentCallError, AgentRuntime } from '../agents/runtime.ts';
 import { runAgent } from '../raster/agent.ts';
 import { sectionAgentSteps } from '../agents/preflight.ts';
 
@@ -323,7 +323,7 @@ test('unavailable CLI sessions are replaced once without deleting existing deliv
   await mkdir(join(cwd, 'agents/old-workspace'), { recursive: true });
   await writeFile(join(cwd, 'agents/sessions.json'), JSON.stringify({ missing: { harness: 'claude', data: join(cwd, 'agents/old-data'), workspace: join(cwd, 'agents/old-workspace') } }));
   let replacements = 0;
-  const agents = new CodexAgents({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
+  const agents = new AgentDispatcher({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
     onThreadReplacement: async () => { replacements++; } });
   const session = agents.createSession('missing');
   try {
@@ -341,7 +341,7 @@ test('a CLI session over its context window is replaced once from the recovery p
   await mkdir(join(cwd, 'agents/old-workspace'), { recursive: true });
   await writeFile(join(cwd, 'agents/sessions.json'), JSON.stringify({ full: { harness: 'claude', data: join(cwd, 'agents/old-data'), workspace: join(cwd, 'agents/old-workspace') } }));
   const reasons: string[] = [];
-  const agents = new CodexAgents({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
+  const agents = new AgentDispatcher({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
     runtime: new AgentRuntime(1, async () => assert.fail('a known error must not wait')),
     onThreadReplacement: async (_id, reason) => { reasons.push(reason); } });
   const session = agents.createSession('full');
@@ -362,7 +362,7 @@ test(`a new ${harness} session over its context window on its first turn fails; 
   await mkdir(join(cwd, 'agents/old-workspace'), { recursive: true });
   await writeFile(join(cwd, 'agents/sessions.json'), JSON.stringify({ full: { harness, data: join(cwd, 'agents/old-data'), workspace: join(cwd, 'agents/old-workspace') } }));
   const reasons: string[] = [];
-  const agents = new CodexAgents({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
+  const agents = new AgentDispatcher({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
     runtime: new AgentRuntime(1, async () => assert.fail('a known error must not wait')),
     onThreadReplacement: async (_id, reason) => { reasons.push(reason); } });
   // The original session is replaced; the new one overflows before any tool call, so the call fails.
@@ -391,7 +391,7 @@ test('a CLI session refused by model safeguards is replaced once from the recove
   await mkdir(join(cwd, 'agents/old-workspace'), { recursive: true });
   await writeFile(join(cwd, 'agents/sessions.json'), JSON.stringify({ refused: { harness: 'claude', data: join(cwd, 'agents/old-data'), workspace: join(cwd, 'agents/old-workspace') } }));
   const reasons: string[] = [];
-  const agents = new CodexAgents({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
+  const agents = new AgentDispatcher({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
     runtime: new AgentRuntime(1, async () => assert.fail('a refusal must not wait')),
     onThreadReplacement: async (_id, reason) => { reasons.push(reason); } });
   const session = agents.createSession('refused');
@@ -405,7 +405,7 @@ test('a CLI session refused by model safeguards is replaced once from the recove
 
   // The new session is refused on its first turn: the recovery prompt itself is refused, so it fails at once with the CLI's own text.
   const again: string[] = [];
-  const retrying = new CodexAgents({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
+  const retrying = new AgentDispatcher({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
     runtime: new AgentRuntime(1, async () => assert.fail('a refusal must not wait')),
     onThreadReplacement: async (_id, reason) => { again.push(reason); } }).createSession('refused');
   try {
@@ -420,7 +420,7 @@ test('a new session refused after working for a while is replaced again', async 
   await mkdir(cwd, { recursive: true }); await writeFile(cli, fakeCli, { mode: 0o700 });
   const settings = loadWorkflowEnvironment({ claude_path: cli, part_review_agent_model: 'claude-sonnet-5-5-high' }, root);
   const reasons: string[] = [];
-  const agents = new CodexAgents({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
+  const agents = new AgentDispatcher({ environment: settings, cwd, logDirectory: join(cwd, 'agents'),
     runtime: new AgentRuntime(1, async () => assert.fail('a refusal must not wait')),
     onThreadReplacement: async (_id, reason) => { reasons.push(reason); } });
   const session = agents.createSession();
@@ -441,7 +441,7 @@ test('model/effort changes resume within a harness, switching harness creates a 
     part_review_agent_model: 'gemini-4-argon-high', default_image_model: 'gemini-nano-banana-2.1',
     google_image_base_url: 'https://image.example/v1beta', google_image_api_key: 'fixture' }, root);
   const replaced: string[] = [];
-  const agent = new CodexAgents({ environment: settings, cwd, logDirectory: join(cwd, 'agents'), onThreadReplacement: async id => { replaced.push(id); } });
+  const agent = new AgentDispatcher({ environment: settings, cwd, logDirectory: join(cwd, 'agents'), onThreadReplacement: async id => { replaced.push(id); } });
   const session = agent.createSession();
   try {
     const first = await session.run({ step: 'part_outline', name: 'drawing', cwd, prompt: 'draw' });

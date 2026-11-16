@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { stepKnowledge } from '../../shared/knowledge.ts';
 import { test, type TestContext } from 'node:test';
-import type { AgentTask } from '../../shared/codex/agents.ts';
+import type { AgentTask } from '../../shared/agents/dispatcher.ts';
 import { getPreparationDirectory, loadPreparedReferences, prepareReferences, type PreparationReferences } from '../preparation.ts';
 import { createPreparationSteps } from '../run.ts';
 import { taskDirectory } from '../../shared/paths.ts';

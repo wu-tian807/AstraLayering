@@ -6,7 +6,7 @@ import { partProfile } from './profile.ts';
 import { readFile, realpath } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
-import type { CodexAgents } from '../codex/agents.ts';
+import type { AgentDispatcher } from '../agents/dispatcher.ts';
 import { createBitmapTool } from './bitmap-tool.ts';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import { groupValues, partKnowledge } from './group-prompts.ts';
@@ -38,7 +38,7 @@ export function decodeChildren(parentId: string, value: unknown): ChildrenAnalys
   return { groups, note: raw.note };
 }
 
-export async function analyzeChildren(context: GroupContext & { completed: SvgArtifact }, agents: Pick<CodexAgents, 'run'>): Promise<ChildrenAnalysis> {
+export async function analyzeChildren(context: GroupContext & { completed: SvgArtifact }, agents: Pick<AgentDispatcher, 'run'>): Promise<ChildrenAnalysis> {
   const profile = partProfile(context);
   if (context.group.kind === 'part') throw new Error('part 不调用子组分析');
   const reference = resolve(context.directory, context.references.baseSubject);

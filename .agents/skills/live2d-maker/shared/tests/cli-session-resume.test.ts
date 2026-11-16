@@ -5,7 +5,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { runCliTask } from '../agents/cli.ts';
 import { parseAgentModel } from '../agents/models.ts';
-import { recoverableAgentError } from '../codex/agent-runtime.ts';
+import { AgentRuntime, recoverableAgentError } from '../agents/runtime.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { nodeExecutables } from '../../part-layering/tests/node-executables.ts';
 
@@ -85,4 +86,39 @@ console.log(JSON.stringify(${harness === 'claude' ? "{type:'result',session_id:i
   assert.deepEqual(records[2].values, names.map(name => 'refreshed:' + name));
   assert.deepEqual(records[3].values, names.map((name, i) => i ? 'refreshed:' + name : null));
   assert.equal(fourth.threadId, first.threadId);
+});
+
+for (const harness of ['claude', 'agv'] as const) test(harness + ': unknown failure backs off and resumes the saved session', { timeout: 10_000 }, async t => {
+  nodeExecutables(t);
+  const root = await mkdtemp(join(tmpdir(), 'cli-unknown-retry-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const executable = join(root, 'cli.mjs'), capture = join(root, 'capture.jsonl'), artifact = join(root, 'keep.kra');
+  await writeFile(artifact, 'saved artifact');
+  await writeFile(executable, `#!${process.execPath}
+import {appendFile,readFile} from 'node:fs/promises';
+const args=process.argv.slice(2), flag=${JSON.stringify(harness === 'claude' ? '--resume' : '--conversation')};
+const at=args.indexOf(flag), id=at<0?'saved-session':args[at+1];
+let input='';for await(const chunk of process.stdin)input+=chunk;
+let first=false;try{await readFile(${JSON.stringify(capture)});}catch(e){if(e.code==='ENOENT')first=true;else throw e;}
+await appendFile(${JSON.stringify(capture)},JSON.stringify({args,input,id})+'\\n');
+console.log(JSON.stringify(${harness === 'claude'
+    ? "first?{type:'result',session_id:id,is_error:true,subtype:'error_during_execution',result:'opaque provider failure'}:{type:'result',session_id:id,result:'done'}"
+    : "{event:'result',result:{conversation_id:id,status:first?'ERROR':'SUCCESS',...(first?{error:'opaque provider failure'}:{response:'done'})}}"}));
+if(first)process.exitCode=1;
+`, { mode: 0o700 });
+  const settings = loadWorkflowEnvironment({ [`${harness}_path`]: executable, CLAUDE_CONFIG_DIR: join(root, 'empty-user') }, root);
+  const selectedModel = parseAgentModel(harness === 'claude' ? 'claude-sonnet-5-5-high' : 'gemini-4-argon-high', 'test');
+  const waits: number[] = [];
+  const agents = new AgentDispatcher({ environment: settings, selectedModel, cwd: root, logDirectory: join(root, 'agents'), runtime: new AgentRuntime(1, async ms => { waits.push(ms); }, () => 1) });
+  const session = agents.createSession();
+  try {
+    const result = await session.run({ name: 'unknown', prompt: 'continue saved work', cwd: root });
+    assert.equal(result.text, 'done'); assert.equal(result.threadId, 'saved-session');
+    assert.deepEqual(waits, [5000]);
+    const records = (await readFile(capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
+    assert.equal(records.length, 2);
+    const flag = harness === 'claude' ? '--resume' : '--conversation';
+    assert.equal(records[1].args[records[1].args.indexOf(flag) + 1], 'saved-session');
+    assert.equal(await readFile(artifact, 'utf8'), 'saved artifact');
+  } finally { await session.close(); }
 });

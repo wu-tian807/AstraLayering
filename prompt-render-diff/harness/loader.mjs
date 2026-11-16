@@ -5,7 +5,7 @@ export async function load(url, context, next) {
   let source = String(result.source);
   const before = source;
   // Step-level dispatch.
-  if (!url.endsWith('/shared/codex/agents.ts'))
+  if (!url.endsWith('/shared/agents/dispatcher.ts'))
     source = source.replace(/(?<![.\w])(agents|inner|session)(!?)\.run\(/g, (m, name, bang) => `globalThis.__capRun(${name}${bang}, `);
   // Transport-level input (after workspacePrompt / continuation wrapping).
   if (url.endsWith('/shared/codex/tool-agent.ts'))

@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { executionPaths, prepareWorkspace, workspacePrompt } from '../agents/workspace.ts';
 import { prepareFileInputs, referencesDirectory } from '../agents/inputs.ts';
-import { CodexAgents } from '../codex/agents.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { textResult } from '../codex/function-tools.ts';
 import { publishReportAssets } from '../report-assets.ts';
@@ -43,7 +43,7 @@ test('native Codex executes and resumes in the step workspace; tools keep their 
       await writeFile(join(context!.workspace, 'arbitrary/01/draft.py'), 'intermediate');
       return textResult({ ok: true });
     } };
-  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, root), cwd: root,
+  const agents = new AgentDispatcher({ environment: loadWorkflowEnvironment({}, root), cwd: root,
     logDirectory: join(root, 'agents'), codexPathOverride: server.executable });
   const task = { name: 'probe', prompt: 'draw', cwd: root, outputDirectory: output, tools: [tool] };
   const session = agents.createSession();
@@ -108,7 +108,7 @@ test('report publication rewrites the link target even when the label repeats it
 
 test('Codex changes tools by reconnecting to the same thread and keeps formal write access', async t => {
   const root = await fixture(t), server = await fakeAppServer(root, [{ tool: 'deliver', arguments: {} }]);
-  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, root), cwd: root,
+  const agents = new AgentDispatcher({ environment: loadWorkflowEnvironment({}, root), cwd: root,
     logDirectory: join(root, 'agents'), codexPathOverride: server.executable });
   const session = agents.createSession();
   try {

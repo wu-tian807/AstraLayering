@@ -6,7 +6,7 @@ import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promis
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test, type TestContext } from 'node:test';
-import type { AgentTask } from '../../shared/codex/agents.ts';
+import type { AgentTask } from '../../shared/agents/dispatcher.ts';
 import { formatAgentError } from '../../shared/codex/diagnostics.ts';
 import { GroupStore } from '../../shared/part/groups.ts';
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';

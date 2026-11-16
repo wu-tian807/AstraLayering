@@ -13,7 +13,7 @@ import { imageSteps, stepModelSlots } from '../agents/models.ts';
 import { imageGenerationTool } from '../agents/images.ts';
 import { createCodexImageRoute, usesPatchedImageTool } from '../agents/codex-images.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
-import { CodexAgents } from '../codex/agents.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
 
 async function setImages(directory: string, enabled: boolean) {
@@ -93,7 +93,7 @@ for (const model of ['codex-native', 'gpt-image-2.5-flare', 'gemini-nano-banana-
       google_image_base_url: 'http://127.0.0.1:1/v1', google_image_api_key: 'fixture',
     }, knowledge), server.executable);
     settings.codex.config = { 'features.image_generation': true, features: { image_generation: true } };
-    const agents = new CodexAgents({ environment: settings, cwd: knowledge });
+    const agents = new AgentDispatcher({ environment: settings, cwd: knowledge });
     const session = agents.createSession();
     try {
       await session.run({ step: 'raster_step02', name: 'declared', prompt: 'done' });
@@ -141,7 +141,7 @@ for (const harness of ['claude', 'agv'] as const) test(`${harness}: only declare
     raster_step02_agent_model: harness === 'claude' ? 'claude-sonnet-5-5-medium' : 'gemini-4-argon-medium',
     raster_step02_image_model: 'gpt-image-2.5-flare', openai_image_base_url: `http://127.0.0.1:${(server.address() as any).port}/v1`, openai_image_api_key: 'fixture', EXPECT_IMAGEGEN: 'true',
   }, knowledge);
-  const session = new CodexAgents({ environment: settings, cwd: knowledge }).createSession();
+  const session = new AgentDispatcher({ environment: settings, cwd: knowledge }).createSession();
   try {
     await session.run({ step: 'raster_step02', name: 'declared', prompt: 'fixture' });
     assert.equal(requests, 1);

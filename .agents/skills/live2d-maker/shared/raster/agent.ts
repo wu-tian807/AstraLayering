@@ -2,10 +2,10 @@ import { loadWorkflowEnvironment, type WorkflowEnvironment, type ModelSelection 
 import { CheckFailure, checkedTurn } from '../codex/checked-turn.ts';
 import type { ThreadEvent } from '@openai/codex-sdk';
 import type { FunctionTool } from '../codex/function-tools.ts';
-import { CodexAgents } from '../codex/agents.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { parseAgentModel, type AgentStep } from '../agents/models.ts';
 import { join } from 'node:path';
-import { AgentRuntime, type AgentRetry } from '../codex/agent-runtime.ts';
+import { AgentRuntime, type AgentRetry } from '../agents/runtime.ts';
 import type { ImageProcessingOptions } from '../image-processing.ts';
 import { validateProviderModel } from '../agents/providers.ts';
 import { executionPaths, prepareWorkspace } from '../agents/workspace.ts';
@@ -42,7 +42,7 @@ export async function runAgent(request: AgentRequest, runtime = new AgentRuntime
   validateProviderModel(environment.providers, selected, request.step);
   // A rejected model leaves no directories behind.
   await prepareWorkspace(task, request.directory);
-  const agents = new CodexAgents({ environment, selectedModel: selected, cwd: request.directory, imageNormalization: request.imageNormalization,
+  const agents = new AgentDispatcher({ environment, selectedModel: selected, cwd: request.directory, imageNormalization: request.imageNormalization,
     logDirectory: join(request.directory, 'agents'), runtime, onRetry: request.onRetry,
     onEvent: request.onEvent, onThreadReplacement: request.onThreadReplacement });
   const session = agents.createSession(request.threadId);

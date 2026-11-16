@@ -4,7 +4,7 @@ import { runtimePrompt, stepKnowledge } from '../knowledge.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../codex/environment.ts';
 import { formatAgentError, agentOutcomeError } from '../codex/diagnostics.ts';
 import { CheckFailure, maxRepairs } from '../codex/checked-turn.ts';
-import { retryDelays } from '../codex/agent-runtime.ts';
+import { retryDelays } from '../agents/runtime.ts';
 import { sectionDirectory, resolveInput, resolveRunsDirectory, type SectionId } from '../paths.ts';
 import { appendFile, mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';

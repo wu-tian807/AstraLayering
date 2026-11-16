@@ -1,4 +1,4 @@
-import { AgentCallError } from './agent-runtime.ts';
+import { AgentCallError } from '../agents/runtime.ts';
 import { errorDetails, errorMessage } from '../agents/errors.ts';
 
 export function agentCallError(payload: unknown, fallback: string, info?: unknown): AgentCallError {

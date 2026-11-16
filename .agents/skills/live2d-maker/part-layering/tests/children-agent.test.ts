@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import type { AgentTask } from '../../shared/codex/agents.ts';
+import type { AgentTask } from '../../shared/agents/dispatcher.ts';
 import { artifactPath, readJson, reportPath } from '../../shared/part/artifact-facts.ts';
 import { analyzeChildren, decodeChildren } from '../../shared/part/children-agent.ts';
 import { GroupStore, nodeKind, normalizeGroups, walkGroups, writeAtomic } from '../../shared/part/groups.ts';

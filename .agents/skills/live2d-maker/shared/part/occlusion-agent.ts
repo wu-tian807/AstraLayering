@@ -7,7 +7,7 @@ import { partKnowledge } from './group-prompts.ts';
 import { readFile, realpath } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
-import type { CodexAgents } from '../codex/agents.ts';
+import type { AgentDispatcher } from '../agents/dispatcher.ts';
 import { artifactPath } from './artifact-facts.ts';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import { nodeSeed } from './groups.ts';
@@ -17,7 +17,7 @@ import { depthRegions, occlusionSourceHash, terminalParts, validateOcclusionPlan
 import { createSvgPreviewTool, type SvgObservation } from './svg-tools.ts';
 import { taskRootOf, toAgentPath } from '../task-paths.ts';
 
-export async function planPartOcclusion(context: OcclusionContext, agents: Pick<CodexAgents, 'run'>): Promise<StepResult<OcclusionPlan>> {
+export async function planPartOcclusion(context: OcclusionContext, agents: Pick<AgentDispatcher, 'run'>): Promise<StepResult<OcclusionPlan>> {
   const profile = partProfile(context);
   const knowledge = partKnowledge(profile, 'occlusion');
   const sourceHash = await occlusionSourceHash(context);

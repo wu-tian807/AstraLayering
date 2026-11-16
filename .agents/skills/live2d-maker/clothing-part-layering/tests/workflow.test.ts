@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { runWorkflow, type ReadyGroup } from '../../shared/part/workflow.ts';
-import { AgentRuntime } from '../../shared/codex/agent-runtime.ts';
+import { AgentRuntime } from '../../shared/agents/runtime.ts';
 
 test('null 输入按前置、初始化、扫描的顺序交给钩子', async () => {
   const events: unknown[] = [];

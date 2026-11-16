@@ -34,7 +34,7 @@ pnpm check
 
 在实际 `.env`、任务目录及隔离请求环境中执行最小验证，记录哪些是实测，哪些仍是模拟覆盖。测试文件和请求记录放在 `<dir>/<name>/runtime/`，不写入用户全局配置。已通过的同版本、同配置检查不反复执行。
 
-1. **带真实工具测试所选 harness。** 用现有 `CodexAgents`／`runCliTask` 调用路径，载入 `ToolCatalog` 的实际共享及管线覆盖定义。请求必须携带真实 schema，尤其包含 write_groups 的可空 note 和 propose_occlusion 的单／多深度 oneOf；只询问模型是否能回复不算通过。工具回调使用测试数据，不能修改正式成果。
+1. **带真实工具测试所选 harness。** 用现有 `AgentDispatcher`／`runCliTask` 调用路径，载入 `ToolCatalog` 的实际共享及管线覆盖定义。请求必须携带真实 schema，尤其包含 write_groups 的可空 note 和 propose_occlusion 的单／多深度 oneOf；只询问模型是否能回复不算通过。工具回调使用测试数据，不能修改正式成果。
 2. **验证调用和续会话。** 让模型实际调用一个无副作用测试工具，核对参数与返回值，再以该 session/threadId 发第二回合。测试工具也包含可空字段，并返回小型测试图片，确认下一回合能读取。纯连通、注册、执行、带图返回、恢复是不同验证项，不能相互替代。
 3. **按所选生图方式验证。** 原生 Codex 要确认实际注册 imagegen；自定义服务要使用本次配置的协议、模型与输入图片。首次正式准备步骤产出合格图片后可作为该生图组合的实测证据，记录尺寸／透明通道与实际产物；不能据此宣称另外的模型或协议也通过。无必要不额外生图。
 4. **验证所需软件。** 每次启动都对显式 Krita 入口做不启动 Krita 的轻量检查；真实验证由 agent 经本 section 私有 Krita 的 `krita` 工具完成保存 KRA、重新打开和查看／导出图像，脚本运行在 Krita 自带的 Python 中。Linux 无显示时框架启动共享 Xvfb（`-noreset`），已设 `QT_QPA_PLATFORM` 时沿用该设置；使用 Xvfb 时验证它能从工作流环境启动。Nano 双背景处理用已有 Node／Sharp，无抠图模型推理步骤；版本命令不是全部验收。

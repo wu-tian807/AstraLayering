@@ -8,7 +8,7 @@ import { partProfile } from './profile.ts';
 import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
-import type { CodexAgents } from '../codex/agents.ts';
+import type { AgentDispatcher } from '../agents/dispatcher.ts';
 import { writeAtomic } from './groups.ts';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import type { OutlineReduction, OutlineReductionContext } from './layering-types.ts';
@@ -16,7 +16,7 @@ import { createSvgPreviewTool, createSvgReadTool, observedPath, parentBoundsSour
 import { fromTaskPath, taskRootOf, toAgentPath } from '../task-paths.ts';
 import { editXmlAttributes, svgBody, svgSource } from '../xml.ts';
 
-export async function reduceGroupOutlines(context: OutlineReductionContext, agents: Pick<CodexAgents, 'run'>): Promise<OutlineReduction> {
+export async function reduceGroupOutlines(context: OutlineReductionContext, agents: Pick<AgentDispatcher, 'run'>): Promise<OutlineReduction> {
   const reference = resolve(context.directory, context.references.baseSubject);
   const metadata = await sharp(reference).metadata();
   const canvas = { width: metadata.autoOrient.width, height: metadata.autoOrient.height };

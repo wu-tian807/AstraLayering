@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { chmod, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { test, type TestContext } from 'node:test';
-import { CodexAgents, type AgentTask } from '../../shared/codex/agents.ts';
+import { AgentDispatcher, type AgentTask } from '../../shared/agents/dispatcher.ts';
 import { findGroup, GroupStore, writeAtomic } from '../../shared/part/groups.ts';
 import { drawGroupOutline, reviewGroupOutline } from '../../shared/part/outline-agent.ts';
 import { fixture, seedInitialGroups, shape } from './layering-fixture.ts';
@@ -119,7 +119,7 @@ for await (const line of createInterface({ input: process.stdin })) {
 }
 `, 'utf8');
   await chmod(executable, 0o755);
-  const session = new CodexAgents({ codexPathOverride: executable, cwd: f.directory }).createSession();
+  const session = new AgentDispatcher({ codexPathOverride: executable, cwd: f.directory }).createSession();
   t.after(() => session.close());
   const threads: (string | null | undefined)[] = [];
   const drawing = { async run(task: AgentTask) {

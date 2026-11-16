@@ -7,8 +7,8 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { errorDetails, errorMessage } from '../agents/errors.ts';
 import { agentCallError, codexContentFilterInfo, agentOutcomeError, formatAgentError } from '../codex/diagnostics.ts';
-import { AgentCallError, AgentRuntime, recoverableAgentError, retryableAgentError } from '../codex/agent-runtime.ts';
-import { CodexAgents } from '../codex/agents.ts';
+import { AgentCallError, AgentRuntime, recoverableAgentError, retryableAgentError } from '../agents/runtime.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { runCliTask } from '../agents/cli.ts';
 import { parseAgentModel } from '../agents/models.ts';
@@ -102,7 +102,7 @@ for (const mode of ['rpc', 'turn', 'eof', 'recovered']) test(`Codex App Server $
   }
   const f = await fixture(t);
   const executable = await errorServer(f.root, mode);
-  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: executable, cwd: f.cwd, logDirectory: f.logDirectory, runtime: new AgentRuntime(1, async () => {}) });
+  const agents = new AgentDispatcher({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: executable, cwd: f.cwd, logDirectory: f.logDirectory, runtime: new AgentRuntime(1, async () => {}) });
   const session = agents.createSession();
   try {
     if (mode === 'recovered') {
@@ -283,7 +283,7 @@ for await (const line of createInterface({input:process.stdin})) {
 test('a mid-turn content_filter stops the turn immediately and starts image-to-text recovery', async t => {
   const f = await fixture(t);
   const server = await filterServer(f.root, true);
-  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
+  const agents = new AgentDispatcher({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
   const result = await agents.run({ name: 'filter', prompt: 'same task', tools: [] });
   assert.equal(result.text, 'done');
   assert.deepEqual((await server.turns()).map(turn => turn.thread), ['thread-1', 'thread-2']);
@@ -293,7 +293,7 @@ test('a mid-turn content_filter stops the turn immediately and starts image-to-t
 test('an ordinary incomplete response is not treated as a content filter', async t => {
   const f = await fixture(t);
   const server = await filterServer(f.root, false);
-  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
+  const agents = new AgentDispatcher({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
   const value = await checkedTurn({ agents, task: { name: 'filter', prompt: 'same task', tools: [] }, check: response => response.text });
   assert.equal(value, "I'm sorry");
   assert.deepEqual((await server.turns()).map(turn => turn.thread), ['thread-1']);
@@ -302,7 +302,7 @@ test('an ordinary incomplete response is not treated as a content filter', async
 test('a content_filter notification switches threads before accepting any result', async t => {
   const f = await fixture(t);
   const server = await filterServer(f.root, true);
-  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
+  const agents = new AgentDispatcher({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: server.executable, cwd: f.cwd, logDirectory: f.logDirectory });
   const value = await checkedTurn({ agents, task: { name: 'filter', prompt: 'same task', tools: [] }, check: response => response.text });
   assert.equal(value, 'done');
   assert.deepEqual((await server.turns()).map(turn => turn.thread), ['thread-1', 'thread-2']);

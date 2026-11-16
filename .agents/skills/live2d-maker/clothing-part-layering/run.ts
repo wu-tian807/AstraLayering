@@ -1,5 +1,5 @@
 import { runCli, runPartSection, type PartSection, type PartInput, type PartAdapters } from '../shared/part/run.ts';
-import type { AgentOptions } from '../shared/codex/agents.ts';
+import type { AgentOptions } from '../shared/agents/dispatcher.ts';
 import { profile } from './profile.ts';
 import { getPreparationDirectory, loadPreparedReferences, prepareReferences, createPreparationSteps } from './preparation.ts';
 export { parseRunArguments, readGroupInput, formatLayeringSummary } from '../shared/part/run.ts';

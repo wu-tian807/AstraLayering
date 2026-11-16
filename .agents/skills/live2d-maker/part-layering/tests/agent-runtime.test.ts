@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { AgentCallError, AgentRuntime, defaultAgentConcurrency, retryableAgentError } from '../../shared/codex/agent-runtime.ts';
+import { AgentCallError, AgentRuntime, defaultAgentConcurrency, retryableAgentError } from '../../shared/agents/runtime.ts';
 
 test('独立运行层默认限制 3 个调用，失败也释放位置', async () => {
   assert.equal(defaultAgentConcurrency, 3);
@@ -86,17 +86,17 @@ test('未知通道错误退避重试；本地错误、认证、额度、参数�
     { cliFailed: { subtype: 'error_during_execution', cliStatus: null, exitCode: 1 } }]) {
     assert.equal(retryableAgentError(new AgentCallError('test', info)), true);
   }
-  // Without a structured code the text never triggers a retry, whatever it says.
+  // An unclassified agent error also receives bounded backoff.
   for (const message of ['Selected model is at capacity. Please try a different model.', 'server overloaded', '503 service unavailable'])
-    assert.equal(retryableAgentError(new AgentCallError(message)), false, message);
-  for (const info of ['usageLimitExceeded', 'contextWindowExceeded', 'badRequest', 'localError', 'sandboxError', 'other',
+    assert.equal(retryableAgentError(new AgentCallError(message)), true, message);
+  for (const info of ['usageLimitExceeded', 'contextWindowExceeded', 'badRequest', 'localError', 'sandboxError',
     { httpConnectionFailed: { httpStatusCode: 401 } }, { httpConnectionFailed: { httpStatusCode: 400 } },
     { apiError: { httpStatusCode: 400 } }, { apiError: { httpStatusCode: 413 } },
     { cliFailed: { subtype: 'error_max_turns', cliStatus: null, exitCode: 1 } }]) {
     assert.equal(retryableAgentError(new AgentCallError('test', info)), false);
   }
   assert.equal(retryableAgentError(new AgentCallError('quota exceeded 503')), false);
-  // Codex's "other" mixes local failures with its stream and timeout failures; only those wait.
+  // Unclassified Codex failures also wait unless a known fatal condition applies.
   assert.equal(retryableAgentError(new AgentCallError('stream disconnected before completion: eof', 'other')), true);
   assert.equal(retryableAgentError(new AgentCallError('request timed out', 'other')), true);
   assert.equal(retryableAgentError(new Error('server overloaded')), false);

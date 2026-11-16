@@ -7,7 +7,7 @@ import { dirname, isAbsolute, join } from 'node:path';
 import { artifactPath } from '../../shared/part/artifact-facts.ts';
 import { test, type TestContext } from 'node:test';
 import sharp from 'sharp';
-import type { AgentResult, AgentSession, AgentTask } from '../../shared/codex/agents.ts';
+import type { AgentResult, AgentSession, AgentTask } from '../../shared/agents/dispatcher.ts';
 import { GroupStore, normalizeGroups } from '../../shared/part/groups.ts';
 import { createLayeringSteps as createDefaultLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { runLayering } from '../../shared/part/layering.ts';

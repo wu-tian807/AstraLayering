@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 import sharp from 'sharp';
 import { profile as clothing } from '../../clothing-part-layering/profile.ts';
-import type { AgentTask } from '../../shared/codex/agents.ts';
+import type { AgentTask } from '../../shared/agents/dispatcher.ts';
 import { toolCatalog } from '../../shared/codex/tool-config.ts';
 import { artifactPath, stepDraftPath } from '../../shared/part/artifact-facts.ts';
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';

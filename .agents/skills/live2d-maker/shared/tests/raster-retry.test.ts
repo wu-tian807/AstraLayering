@@ -3,7 +3,7 @@ import { test, type TestContext } from 'node:test';
 import { join } from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { runAgent, type AgentRequest } from '../raster/agent.ts';
-import { AgentCallError, AgentRuntime, retryableAgentError } from '../codex/agent-runtime.ts';
+import { AgentCallError, AgentRuntime, retryableAgentError } from '../agents/runtime.ts';
 import { executionPaths, workspacePrompt } from '../agents/workspace.ts';
 import { rasterAppServer } from './raster-app-server.ts';
 

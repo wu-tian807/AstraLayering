@@ -6,7 +6,7 @@ import { partProfile } from './profile.ts';
 import { readFile, realpath } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
-import type { CodexAgents } from '../codex/agents.ts';
+import type { AgentDispatcher } from '../agents/dispatcher.ts';
 import { createBitmapTool } from './bitmap-tool.ts';
 import { assertCompletionPreserves, composeCompletion, completionPaths } from './completion-svg.ts';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
@@ -18,7 +18,7 @@ import { taskRootOf, toAgentPath } from '../task-paths.ts';
 import { createSvgPreviewTool, createSvgReadTool, observedPath, parentBoundsSource, validateGroupSvg, type SvgObservation } from './svg-tools.ts';
 
 
-export async function completeGroupOcclusion(context: DrawingContext & { reviewed: SvgArtifact }, agents: Pick<CodexAgents, 'run'>): Promise<SvgArtifact> {
+export async function completeGroupOcclusion(context: DrawingContext & { reviewed: SvgArtifact }, agents: Pick<AgentDispatcher, 'run'>): Promise<SvgArtifact> {
   const profile = partProfile(context);
   const reference = resolve(context.directory, context.references.baseSubject);
   const meta = await sharp(reference).metadata();

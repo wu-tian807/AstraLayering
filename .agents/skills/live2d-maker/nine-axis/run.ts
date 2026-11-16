@@ -8,7 +8,7 @@ import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/pat
 import { renderKnowledge, selectKnowledge, stepKnowledge, type KnowledgeRole } from '../shared/knowledge.ts';
 import { runSection, stepName } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
-import { CodexAgents, type AgentResult, type AgentTask } from '../shared/codex/agents.ts';
+import { AgentDispatcher, type AgentResult, type AgentTask } from '../shared/agents/dispatcher.ts';
 import { CheckFailure, asCheck, checkedTurn } from '../shared/codex/checked-turn.ts';
 import { preflightAgentSteps } from '../shared/agents/preflight.ts';
 import { prepareWorkspace, workspacePrompt } from '../shared/agents/workspace.ts';
@@ -117,7 +117,7 @@ export const hairPrompt = (input: HeadInput, taskRoot: string, round: HairRound 
 export const accessoriesPrompt=(input:HeadInput,taskRoot:string)=>stepKnowledge('nine-axis','step09_head-accessories')
   .render('main',{document:input.document,color:input.color,...angleValues()},{taskRoot}).trim();
 
-type Agents = Pick<CodexAgents, 'run'> & Partial<Pick<CodexAgents, 'createSession'>>;
+type Agents = Pick<AgentDispatcher, 'run'> & Partial<Pick<AgentDispatcher, 'createSession'>>;
 // One agent turn. With `session` the turn continues that step's saved thread;
 // without it the turn is a fresh session that is never saved (a reviewer).
 // `recoveryPrompt` replaces the prompt when the saved thread is gone.
@@ -238,9 +238,9 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     if (neutral.source?.document) head.document = fromTaskPath(task, neutral.source.document);
   }
   if (input.document && await exists(join(preparation, 'source-composite.png'))) head.color = join(preparation, 'source-composite.png');
-  let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined, agentPool: CodexAgents | undefined;
+  let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined, agentPool: AgentDispatcher | undefined;
   const agents = (): Agents => {
-    const pool = agentPool ??= new CodexAgents({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress, agentConcurrency: 3 });
+    const pool = agentPool ??= new AgentDispatcher({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress, agentConcurrency: 3 });
     return { run: pool.run.bind(pool), createSession: pool.createSession.bind(pool) };
   };
   let preflightPromise: Promise<unknown> | undefined;

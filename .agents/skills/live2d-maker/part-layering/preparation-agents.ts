@@ -5,7 +5,7 @@ import { stepKnowledge } from '../shared/knowledge.ts';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { taskRootOf, toAgentPath } from '../shared/task-paths.ts';
-import type { AgentTask, CodexAgents, GeneratedImage } from '../shared/codex/agents.ts';
+import type { AgentTask, AgentDispatcher, GeneratedImage } from '../shared/agents/dispatcher.ts';
 import { textResult } from '../shared/codex/function-tools.ts';
 import { toolDefinition } from '../shared/codex/tool-config.ts';
 import type { PreparationSteps, ProcessGenerated, ReferenceChoice } from './preparation.ts';
@@ -33,7 +33,7 @@ async function saveImage(image: GeneratedImage | undefined, output: string): Pro
   }
 }
 
-async function prepareImage(agents: Pick<CodexAgents, 'run'>, knowledge: ReturnType<typeof stepKnowledge>, task: AgentTask, input: string, output: string, processGenerated?: ProcessGenerated): Promise<ReferenceChoice> {
+async function prepareImage(agents: Pick<AgentDispatcher, 'run'>, knowledge: ReturnType<typeof stepKnowledge>, task: AgentTask, input: string, output: string, processGenerated?: ProcessGenerated): Promise<ReferenceChoice> {
   let reusedReason: string | undefined;
   const checked = await checkedTurn({ agents, task: { ...task, tools: knowledge.tools('main', [{
     ...toolDefinition('reuse_reference', fileURLToPath(new URL('./tools/', import.meta.url))),
@@ -65,7 +65,7 @@ async function prepareImage(agents: Pick<CodexAgents, 'run'>, knowledge: ReturnT
   return { generated: checked.image !== undefined, reason: checked.reason };
 }
 
-export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): PreparationSteps {
+export function createPreparationSteps(agents: Pick<AgentDispatcher, 'run'>): PreparationSteps {
   const imageOutputSchema = {
     type: 'object', properties: { error: { type: ['string', 'null'] } }, required: ['error'], additionalProperties: false,
   };

@@ -8,7 +8,7 @@ import { partProfile } from './profile.ts';
 import { mkdir, readFile, readdir, realpath, rm } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import sharp from 'sharp';
-import type { CodexAgents } from '../codex/agents.ts';
+import type { AgentDispatcher } from '../agents/dispatcher.ts';
 import { createBitmapTool } from './bitmap-tool.ts';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import { groupValues, partKnowledge } from './group-prompts.ts';
@@ -88,7 +88,7 @@ function groupNoteTool(context: GroupContext): FunctionTool {
 }
 
 export async function drawGroupOutline(
-  context: DrawingContext, agents: Pick<CodexAgents, 'run'>,
+  context: DrawingContext, agents: Pick<AgentDispatcher, 'run'>,
   repair?: { candidate: string; round: number },
 ): Promise<SvgArtifact> {
   const profile = partProfile(context);
@@ -154,7 +154,7 @@ export async function drawGroupOutline(
 }
 
 async function reviewOnce(
-  context: GroupContext, candidate: string, reportPath: string, agents: Pick<CodexAgents, 'run'>,
+  context: GroupContext, candidate: string, reportPath: string, agents: Pick<AgentDispatcher, 'run'>,
 ): Promise<Review> {
   const profile = partProfile(context);
   const input = await inputs(context);
@@ -207,8 +207,8 @@ async function reviewOnce(
 }
 
 export async function reviewGroupOutline(
-  context: ReviewContext, agents: Pick<CodexAgents, 'run'>,
-  drawing: Pick<CodexAgents, 'run'> = agents,
+  context: ReviewContext, agents: Pick<AgentDispatcher, 'run'>,
+  drawing: Pick<AgentDispatcher, 'run'> = agents,
 ): Promise<StepResult<ReviewedSvgArtifact>> {
   const candidate = await realpath(resolve(context.directory, context.outline.path));
   const reportPath = context.reportPath;

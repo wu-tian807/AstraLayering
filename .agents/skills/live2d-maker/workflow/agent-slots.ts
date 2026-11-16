@@ -1,5 +1,5 @@
 import type { ChildProcess } from 'node:child_process';
-import type { AgentSlots } from '../shared/codex/agent-runtime.ts';
+import type { AgentSlots } from '../shared/agents/runtime.ts';
 
 // Concurrent sections run in separate worker processes; the scheduler holds
 // one pool of agent slots and grants them over IPC, so the task as a whole runs

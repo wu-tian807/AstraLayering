@@ -12,7 +12,7 @@ import { seedUpstream } from './upstream-fixture.ts';
 import { deliverRasterStep } from './raster-delivery.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { buildReviewPrompt } from '../raster/review.ts';
-import { CodexAgents } from '../codex/agents.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
 import { nodeExecutables } from '../../part-layering/tests/node-executables.ts';
 import { createMcpBridge } from '../agents/mcp.ts';
@@ -190,7 +190,7 @@ test('编辑工具真实注册到 Codex App Server 并执行校验写入', async
   nodeExecutables(t);
   const f = await fixture(t);
   const server = await fakeAppServer(f.root, [{ tool: 'edit_occlusion', arguments: { layers: [row('fixture', 0.75)] } }]);
-  const agents = new CodexAgents({ cwd: f.root, codexPathOverride: server.executable, logDirectory: join(f.root, 'logs') });
+  const agents = new AgentDispatcher({ cwd: f.root, codexPathOverride: server.executable, logDirectory: join(f.root, 'logs') });
   await agents.run({ name: 'controlled edit', prompt: '保存深度', tools: f.tools });
   const protocol = (await readFile(server.capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
   assert.deepEqual(protocol.find(message => message.method === 'thread/start').params.dynamicTools.map((tool: any) => tool.name), ['edit_groups', 'edit_occlusion']);

@@ -9,7 +9,7 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 import { createCodexImageRoute, usesPatchedImageTool } from '../agents/codex-images.ts';
 import { loadWorkflowEnvironment, checkCodexCapabilities } from '../codex/environment.ts';
-import { CodexAgents } from '../codex/agents.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
 import { fakeDebug } from './fake-codex.ts';
 import { imageGenerationTool } from '../agents/images.ts';
@@ -47,7 +47,7 @@ test('native transport rejects an explicit imagegen opt-in for a manual workflow
   const { root } = await fixture(t);
   const server = await fakeAppServer(root, []);
   const environment = withCodex(loadWorkflowEnvironment({}, root), server.executable);
-  const session = new CodexAgents({ environment, cwd: root }).createSession('native-thread');
+  const session = new AgentDispatcher({ environment, cwd: root }).createSession('native-thread');
   try {
     await session.run({ step: 'raster_step03', name: 'manual step', prompt: 'fixture', imageGeneration: true });
   } finally { await session.close(); }
@@ -227,7 +227,7 @@ test('Codex completion uses native image events, resumes after changing image mo
   const settings = withCodex(loadWorkflowEnvironment({
     part_completion_image_model: 'gpt-image-2.5-flare',
     openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'fixture' }, root), server.executable);
-  const session = new CodexAgents({ environment: settings, cwd: root, logDirectory: join(root, 'logs') }).createSession();
+  const session = new AgentDispatcher({ environment: settings, cwd: root, logDirectory: join(root, 'logs') }).createSession();
   try {
     const a = await session.run({ step: 'part_completion', name: 'complete', prompt: '原补全任务' });
     settings.stepImages.part_completion = 'gpt-image-2.5-sunburst';
@@ -250,7 +250,7 @@ test('构造会话后才解析的补丁路径传给实际 App Server，不沿用
     .replace('const calls =', `${fakeDebug(capabilities)}\nconst calls =`);
   await writeFile(server.executable,source);
   const environment = loadWorkflowEnvironment({image_compact_threshold:'49'},root);
-  const session = new CodexAgents({environment,cwd:root,logDirectory:join(root,'logs')}).createSession();
+  const session = new AgentDispatcher({environment,cwd:root,logDirectory:join(root,'logs')}).createSession();
   environment.codex.codexPathOverride = server.executable;
   try {
     await session.run({name:'late-patch',prompt:'fixture',tools:[]},AbortSignal.timeout(5000));
