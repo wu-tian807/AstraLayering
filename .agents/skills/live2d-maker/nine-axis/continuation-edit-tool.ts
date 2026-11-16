@@ -11,6 +11,7 @@ import { readUpstream, startContinuation, compileContinuation, authorFile, sha25
 import { checkAxisSource } from './axis-groups.ts';
 import { bindKraDocument, kraCatalog, type MaterialLoader } from './kra-materials.ts';
 import { checkOwnedEdit, nodeOwners, ownsNode, previewAvailability, type OwnershipScope } from './ownership.ts';
+import { isHeadPitchStage } from './head-pitch.ts';
 
 export type EditScope = OwnershipScope;
 export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory)), materialize?: MaterialLoader, scope?: EditScope): FunctionTool {
@@ -30,8 +31,10 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
     if (args.operations) {
       const operations = structuredClone(args.operations);
       if (Array.isArray(operations)) for (const op of operations) {
+        if (isHeadPitchStage(stage) && !['points', 'drag', 'transform'].includes(op?.action)) throw Error('本阶段已准备头部承载，请编辑节点的本方向关键形');
         if (['points','drag','transform'].includes(op?.action)) {
           const x = op.x ?? 0, y = op.y ?? 0;
+          if (isHeadPitchStage(stage) && (x !== 0 || !Number.isFinite(y) || (stage === 'head-up' ? y <= 0 || y > scale.y[1] : y >= 0 || y < scale.y[0]))) throw Error('头部上下只编辑 X=0 的本方向 Y 关键形及中间姿态');
           if (stage === 'hair' && y !== 0) throw Error('头发步骤只制作 left/right，编辑必须使用 Y=0');
           if (stage === 'accessories' && y !== 0) throw Error('头部饰品步骤只制作 left/right，编辑必须使用 Y=0');
           if ((stage === 'up' || stage === 'down') && (x !== 0 || y !== (stage === 'up' ? scale.y[1] : scale.y[0]))) throw Error(`${stage} 阶段只编辑 X=0、Y=${stage === 'up' ? scale.y[1] : scale.y[0]} 的关键形`);
@@ -77,7 +80,9 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
       text = JSON.stringify(kraReferences(doc)) + '\n'; await writeFile(temporary, text); await rename(temporary, path);
     }
     await writeBuilt(directory, built);
-    return textResult({ revision: sha256(text), source: path, document: built.doc.source?.document, stage, ...(catalog&&!args.operations&&!args.bindings?{materials:catalog}:{}), nodes: nodes(built.doc as unknown as HeadNineAxis).map(n => ({
+    return textResult({ revision: sha256(text), source: path, document: built.doc.source?.document, stage,
+      ...(isHeadPitchStage(stage)?{operations:['points','drag','transform'],editableAxis:'Y',editableRange:stage==='head-up'?[0,scale.y[1]]:[scale.y[0],0]}:{}),
+      ...(catalog&&!args.operations&&!args.bindings?{materials:catalog}:{}), nodes: nodes(built.doc as unknown as HeadNineAxis).map(n => ({
       id:n.id, kind:doc.deformers.some(p=>p.id===n.id)?'warp':'part', parent:n.parent??null, mirror:n.mirror??null,
       bbox:n.bbox, cols:n.cols, rows:n.rows, ...(scope?{owners:[...nodeOwners(built.doc,n)],editable:ownsNode(built.doc,n,scope),...(scope.includes?{preview:previewAvailability(built.doc,n,scope.includes)}:{})}:{}), ...('textureBounds' in n?{textureBounds:n.textureBounds,drawOrder:built.doc.parts.findIndex(p=>p.id===n.id)}:{}), keys:Object.keys(n.keyforms), keysY:Object.keys(n.keyformsY??{}), keysXY:Object.keys(n.keyformsXY??{}),
       ...built.doc.parts.filter(p => p.id === n.id).map(p => ({ uuid: p.uuid, partId: p.partId, material: p.material, ...(p.shadow?{shadow:p.shadow}:{}) }))[0],

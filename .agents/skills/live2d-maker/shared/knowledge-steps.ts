@@ -36,6 +36,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'nine-axis', step: 'step07_jaw-line', required: ['krita'] },
   { section: 'nine-axis', step: 'step08_hair', required: ['krita', 'edit_nine_axis', 'view_nine_axis'] },
   { section: 'nine-axis', step: 'step09_head-accessories', required: ['krita', 'edit_nine_axis', 'view_nine_axis'] },
+  { section: 'nine-axis', step: 'step10_head-pitch', required: ['edit_nine_axis', 'view_nine_axis'] },
   { section: 'part-layering', step: 'step03_pose' },
   { section: 'part-layering', step: 'step04_standard' },
   { section: 'part-layering', step: 'step05_simplified' },

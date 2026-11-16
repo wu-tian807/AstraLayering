@@ -33,7 +33,7 @@
 | raster step03（仅人物） | `gpt-6.1-sol-medium` | `raster_step03_agent_model` |
 | 穿戴组装 | `gpt-6.1-sol-xhigh` | `assembly_agent_model` |
 | 阴影 | `gpt-6.1-sol-medium` | `shadow_agent_model` |
-| 头部九轴（脸部、头发、头饰共用） | `gpt-6.1-sol-xhigh` | `nine_axis_head_agent_model` |
+| 头部九轴（脸部、头发、头饰、上下共用） | `gpt-6.1-sol-xhigh` | `nine_axis_head_agent_model` |
 
 生图设置为 `default_image_model=codex-native`，全部步骤的生图覆盖键留空，继承宿主 Codex 内置生图工具。具体图像模型版本由宿主决定，复用当前 Codex 登录和 provider。逐步骤键与自定义服务配置见下方[生图表](#生图模型与配置键)。图片数 compact 留空时关闭，已有配置的启停与阈值保持原样。
 
@@ -60,7 +60,7 @@
 | raster step03（仅人物） | `claude-sonnet-5-5-xhigh` | `raster_step03_agent_model` |
 | 穿戴组装 | `claude-sonnet-5-5-xhigh` | `assembly_agent_model` |
 | 阴影 | `claude-sonnet-5-5-xhigh` | `shadow_agent_model` |
-| 头部九轴（脸部、头发、头饰共用） | `claude-sonnet-5-5-xhigh` | `nine_axis_head_agent_model` |
+| 头部九轴（脸部、头发、头饰、上下共用） | `claude-sonnet-5-5-xhigh` | `nine_axis_head_agent_model` |
 
 SVG 合并由程序执行，不配置 LLM。步骤职责、绘图提示词、review 轮次和会话恢复规则保留原有实现。
 

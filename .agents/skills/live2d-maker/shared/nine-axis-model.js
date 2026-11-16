@@ -113,8 +113,8 @@ export function validateHeadNineAxis(doc) {
 export const axisForms = (part, axis = 'x') => axis === 'x' ? part.keyforms : { '0': part.keyforms['0'], ...part.keyformsY };
 export const keyValues = (part, axis = 'x') => Object.keys(axisForms(part, axis)).map(Number).sort((a, b) => a - b);
 
-// Readiness follows the delivered main poses. Extra local keys are optional
-// corrections: gridForm composes their X/Y offsets when no XY key was authored.
+// Preview readiness follows the delivered single axes. Diagonal keyforms are
+// optional refinements: gridForm composes X/Y offsets where no XY form exists.
 // Static local nodes inherit their ancestors' motion. Each displayed level
 // needs an authored carrier; only contributors to an axis need its forms.
 export function nineAxisCapabilities(doc, allowPlane = true) {
@@ -151,7 +151,7 @@ export function nineAxisCapabilities(doc, allowPlane = true) {
   const x = axis('ParamAngleX', 'keyforms'), y = axis('ParamAngleY', 'keyformsY');
   const cornerKeys = [x.min, x.max].flatMap(a => [y.min, y.max].map(b => `${a},${b}`));
   const plane = allowPlane && all.length > 0 && x.min < 0 && x.max > 0 && y.min < 0 && y.max > 0
-    && complete('keyformsXY',cornerKeys);
+    && all.every(n => Object.keys(n.keyformsXY ?? {}).every(key => form(n, 'keyformsXY', key)));
   const region = plane ? 'plane' : y.min < 0 && y.max > 0 ? 'cross' : y.max > 0 ? 'horizontal-plus-positive-y' : y.min < 0 ? 'horizontal-plus-negative-y' : 'horizontal';
   return { x, y, plane, region, cornerKeys: plane ? cornerKeys : [] };
 }

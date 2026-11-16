@@ -131,7 +131,10 @@ export const sectionSteps = [
     step('step07_jaw-line', '下颌与颈部衔接', 'pending'),
     { ...step('step08_hair', '头发制作', 'pending', [], '制作左右转头，每轮保存后可查看累计效果。'),
       rounds: ['front', 'side', 'back', 'remaining'].map(id => ({ id, title: { front: '前发', side: '侧发', back: '后发', remaining: '其余头发' }[id], status: 'pending' })) },
-    step('step09_head-accessories', '头部饰品', 'pending', [], '衔接头发与饰品的左右转头，检查佩戴位置、遮挡和投影。')],
+    step('step09_head-accessories', '头部饰品', 'pending', [], '衔接头发与饰品的左右转头，检查佩戴位置、遮挡和投影。'),
+    { ...step('step10_head-pitch', '头部上下', 'pending', ['up', 'down'].map(direction =>
+      step(`step10_head-pitch/${direction}`, direction === 'up' ? '完整头部抬头' : '完整头部低头', 'pending')),
+      '抬头与低头独立并发，完成后合并；保留已有左右成果。'), childrenMode: 'parallel' }],
 ];
 
 export const previousNineAxisSectionSteps = [step('step01_video', '三向视频与参考帧', 'pending'),
@@ -222,6 +225,8 @@ Object.assign(stepArtifacts[6], {
   'step07_jaw-line': [file('nine-axis/step07_jaw-line/deformers.json', '脸部九轴模型'), image('nine-axis/step07_jaw-line/character-nine-axis.png', '合成图'), file('nine-axis/step07_jaw-line/character-nine-axis.kra', '分层 KRA'), file('nine-axis/step07_jaw-line/notes.md', '制作说明')],
   'step08_hair': [file('nine-axis/step08_hair/deformers.json','头发累计模型'),file('nine-axis/step08_hair/character-nine-axis.kra','分层 KRA'),file('nine-axis/step08_hair/notes.md','制作说明')],
   'step09_head-accessories': [file('nine-axis/step09_head-accessories/deformers.json','头部累计模型'),file('nine-axis/step09_head-accessories/character-nine-axis.kra','分层 KRA'),file('nine-axis/step09_head-accessories/notes.md','制作说明')],
+  'step10_head-pitch': [file('nine-axis/step10_head-pitch/deformers.json','完整头部上下模型'),file('nine-axis/step10_head-pitch/notes.md','制作说明')],
+  ...Object.fromEntries(['up','down'].map(direction=>[`step10_head-pitch/${direction}`,[file(`nine-axis/step10_head-pitch/${direction}/deformers.json`,'本方向累计模型'),file(`nine-axis/step10_head-pitch/${direction}/notes.md`,'制作说明')]])),
 });
 export function shadowInspectionArtifacts(files) {
   return files.filter(path => /^shadow\/step01_mask\/inspection\/relation-\d{3,}-review\.png$/.test(path)).sort()

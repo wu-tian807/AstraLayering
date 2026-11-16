@@ -7,7 +7,7 @@ import { nineAxisProgress } from '../nine-axis-progress.ts';
 import { inventory } from '../files.ts';
 import { snapshot } from '../snapshot.ts';
 import { sectionSteps, stepArtifacts } from '../progress.js';
-import { nineAxisSteps, nineAxisGroupSteps as stagedGroupSteps, previousNineAxisGroupSteps as nineAxisGroupSteps, previousNineAxisArtifacts as nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisSteps, nineAxisGroupSteps as stagedGroupSteps, nineAxisPitchSteps, previousNineAxisGroupSteps as nineAxisGroupSteps, previousNineAxisArtifacts as nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import { evaluatePoints, validateHeadNineAxis, nineAxisCapabilities, keyformAt } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 import { saveNineAxis } from '../nine-axis-save.ts';
 import { lstat } from 'node:fs/promises';
@@ -37,7 +37,7 @@ async function fixture(t: any) {
 }
 
 test('web presents every current workflow step and keeps hair rounds inside one executable step', () => {
-  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line','step08_hair','step09_head-accessories']);
+  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line','step08_hair','step09_head-accessories','step10_head-pitch']);
   const steps = sectionSteps[6]; assert.deepEqual(steps.map(step => step.id), nineAxisSteps);
   assert.equal(steps[3].childrenMode, 'parallel');
   assert.deepEqual(steps[3].children.map(step => step.id), ['step04_angles/model','step04_angles/video']);
@@ -45,9 +45,21 @@ test('web presents every current workflow step and keeps hair rounds inside one 
   for (const id of stagedGroupSteps) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/deformers.json`));
   assert.deepEqual(steps[7].children,[]);
   assert.deepEqual(steps[7].rounds?.map(round => [round.id, round.title]), hairRounds.map(round => [round, hairRoundLabel(round)]));
+  assert.equal(steps[9].childrenMode,'parallel');assert.deepEqual(steps[9].children.map(step=>step.id),nineAxisPitchSteps);
+  assert.equal(steps[9].rounds,undefined);
   for (const id of ['step08_hair', 'step09_head-accessories']) {
     for (const name of ['deformers.json', 'character-nine-axis.kra', 'notes.md']) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/${name}`));
   }
+});
+
+test('head-pitch shows independent parallel children without completing the unmerged parent',async t=>{
+  const f=await fixture(t);await f.put('step10_head-pitch/.running');await f.complete('step10_head-pitch/up');
+  await f.put('step10_head-pitch/down/.running');
+  let value=await f.get();
+  assert.equal(value.states['step10_head-pitch/up'],'done');assert.notEqual(value.states['step10_head-pitch'],'done');
+  await f.complete('step10_head-pitch/down');value=await f.get();
+  assert.notEqual(value.states['step10_head-pitch'],'done');
+  await f.complete('step10_head-pitch');value=await f.get();assert.equal(value.states['step10_head-pitch'],'done');
 });
 
 test('hair round activity follows the current call without assigning the previous round to the next', async t => {
@@ -339,16 +351,16 @@ test('workbench dragging inside excluded lobes follows the boundary tangent in a
   }
 });
 
-test('main corners enable the plane with sparse auxiliary keys; missing main corners and merged-only stages stay restricted', async () => {
+test('single axes enable diagonal preview with sparse auxiliary keys; malformed authored corners remain blocked', async () => {
   const panel = await panelModule(), doc = composed(), part = doc.parts[0];
   part.keyforms['-15'] = rest.map(([x, y]) => [x + 2, y]);
   part.keyformsY['12.5'] = rest.map(([x, y]) => [x, y + 3]);
   assert.equal(panel.nineAxisCapabilities, nineAxisCapabilities, 'workbench uses the model module for preview directions');
   assert.equal(nineAxisCapabilities(doc).region, 'plane');
   assert.deepEqual([...keyformAt(part, -15, 12.5)].slice(0, 2), [2, 3], 'unmade auxiliary intersections use the renderer composition');
-  assert.equal(nineAxisCapabilities(doc, false).region, 'cross', 'a merged single-axis phase cannot claim authored corners');
+  assert.equal(nineAxisCapabilities(doc, false).region, 'cross', 'an explicit single-axis preview restriction is respected');
   delete part.keyformsXY['-30,25'];
-  assert.equal(nineAxisCapabilities(doc).region, 'cross');
+  assert.equal(nineAxisCapabilities(doc).region, 'plane');
   part.keyformsXY['-30,25'] = [[NaN, 0]];
   assert.equal(nineAxisCapabilities(doc).plane, false);
 });
@@ -369,7 +381,7 @@ test('workbench loads the embedded source composition unchanged and reloads same
   assert.deepEqual(installed[0].doc, doc);
   assert.deepEqual([...evaluatePoints(panel.doc, panel.doc.parts[0], -15, 0)].slice(0, 2), [-1, 0]);
   assert.deepEqual([...evaluatePoints(panel.doc, panel.doc.parts[0], 0, 12.5)].slice(0, 2), [0, -1]);
-  assert.equal(nineAxisCapabilities(panel.doc, installed[0].allowPlane).region, 'cross');
+  assert.equal(nineAxisCapabilities(panel.doc, installed[0].allowPlane).region, 'plane');
   assert.equal(requested[1], 'nine-axis/step02_angles/layers/face.png');
   await panel.load({ folder: '/fixture', nineAxis: { available: true, path: nineAxisArtifacts.angleUpDeformers, version: '1', stage: 'up' } });
   assert.equal(installed.length, 2, 'switching source paths reloads even if revisions match');

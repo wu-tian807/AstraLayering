@@ -27,6 +27,7 @@ test('preview masks multiline and inherited credentials while exposing resolved 
  for(const secret of ['test-secret-value','file-claude-secret','shell-secret-value','first\\nsecond'])assert.ok(!serialized.includes(secret));
  assert.match(data.preview,/CUSTOM_TOKEN=\[已隐藏\]/);
  assert.equal(data.fields.filter(f=>f.section==='llm').length,14);
+ assert.deepEqual(data.fields.filter(f=>f.section==='llm'&&f.key.startsWith('nine_axis_')).map(f=>f.key),['nine_axis_head_agent_model']);
  assert.deepEqual(data.fields.filter(f=>f.section==='image').map(f=>f.key), ['default_image_model', ...imageSteps().map(imageModelKey)]);
  assert.ok(!data.fields.some(f=>f.key==='raster_step03_image_model'));
  const claude=data.fields.find(f=>f.key==='claude_api_key')!;

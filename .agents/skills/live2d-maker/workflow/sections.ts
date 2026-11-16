@@ -13,6 +13,7 @@ import { runWorkflow as nineAxis } from '../nine-axis/run.ts';
 import type { SectionId } from '../shared/paths.ts';
 import { taskOriginal, type TaskRun } from './state.ts';
 import { readStep } from '../shared/step-chain.ts';
+import { nineAxisSteps } from '../shared/nine-axis.ts';
 
 // output is the delivered file relative to the task root.
 export type SectionResult = { summary: string; output?: string; completed?: boolean };
@@ -23,7 +24,8 @@ export async function executeSection(id: SectionId, directory: string, run: Task
   const name = basename(directory), dir = dirname(directory);
   if (id === 'nine-axis') {
     const summary = await nineAxis({ name, dir, krita: run.krita, ffmpeg: run.ffmpeg, progress });
-    return { summary, output: 'nine-axis/step09_head-accessories/deformers.json', completed: (await readStep(join(directory,'nine-axis/step09_head-accessories'))).status==='completed' };
+    const last=nineAxisSteps.at(-1)!;
+    return { summary, output: `nine-axis/${last}/deformers.json`, completed: (await readStep(join(directory,'nine-axis',last))).status==='completed' };
   }
   if (id === 'shadow') {
     const mode = shadowMode(run.shadowMode);

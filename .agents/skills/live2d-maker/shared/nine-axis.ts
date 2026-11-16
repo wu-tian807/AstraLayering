@@ -36,16 +36,17 @@ export const legacyNineAxisArtifacts = {
   angleXYDeformers: 'nine-axis/step06_angle-xy/deformers.json',
   jawLineDeformers: 'nine-axis/step07_jaw-line/deformers.json',
 } as const;
-export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line', 'step08_hair', 'step09_head-accessories'] as const;
+export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line', 'step08_hair', 'step09_head-accessories', 'step10_head-pitch'] as const;
 export const previousNineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line'] as const;
 export const nineAxisGroups = ['left', 'up', 'down'] as const;
 export const nineAxisBranches = ['model', 'video'] as const;
 export const nineAxisGroupSteps = nineAxisGroups.map(group => `step04_angles/model/${group}`);
 export const nineAxisBranchSteps = nineAxisBranches.map(branch => `step04_angles/${branch}`);
-export const nineAxisChildSteps = [...nineAxisBranchSteps, ...nineAxisGroupSteps];
+export const nineAxisPitchSteps = ['up', 'down'].map(direction => `step10_head-pitch/${direction}`);
+export const nineAxisChildSteps = [...nineAxisBranchSteps, ...nineAxisGroupSteps, ...nineAxisPitchSteps];
 export const previousNineAxisGroupSteps = nineAxisGroups.map(group => `step02_angles/${group}`);
 export const nineAxisProgressSteps = [...nineAxisSteps.slice(0, 4), ...nineAxisBranchSteps.slice(0, 1), ...nineAxisGroupSteps,
-  ...nineAxisBranchSteps.slice(1), ...nineAxisSteps.slice(4)];
+  ...nineAxisBranchSteps.slice(1), ...nineAxisSteps.slice(4), ...nineAxisPitchSteps];
 export const nineAxisArtifacts = {
   preparationDeformers: 'nine-axis/step01_preparation/deformers.json',
   preparationManifest: 'nine-axis/step01_preparation/head_parts_manifest.json',
@@ -70,12 +71,16 @@ export const nineAxisArtifacts = {
   accessoriesAuthor: 'nine-axis/step09_head-accessories/accessories.json', accessoriesDeformers: 'nine-axis/step09_head-accessories/deformers.json',
   accessoriesDocument: 'nine-axis/step09_head-accessories/character-nine-axis.kra', accessoriesColor: 'nine-axis/step09_head-accessories/character-nine-axis.png',
   accessoriesSource: 'nine-axis/step09_head-accessories/source.json', accessoriesExportRecord: 'nine-axis/step09_head-accessories/export-record.json', accessoriesNotes: 'nine-axis/step09_head-accessories/notes.md',
+  headPitchDeformers: 'nine-axis/step10_head-pitch/deformers.json', headPitchSource: 'nine-axis/step10_head-pitch/source.json', headPitchNotes: 'nine-axis/step10_head-pitch/notes.md',
+  headUpAuthor: 'nine-axis/step10_head-pitch/up/head-up.json', headUpDeformers: 'nine-axis/step10_head-pitch/up/deformers.json', headUpNotes: 'nine-axis/step10_head-pitch/up/notes.md',
+  headDownAuthor: 'nine-axis/step10_head-pitch/down/head-down.json', headDownDeformers: 'nine-axis/step10_head-pitch/down/deformers.json', headDownNotes: 'nine-axis/step10_head-pitch/down/notes.md',
 } as const;
 export const nineAxisStages = {
   neutral: nineAxisArtifacts.preparationDeformers,
   x: nineAxisArtifacts.angleXDeformers, up: nineAxisArtifacts.angleUpDeformers, down: nineAxisArtifacts.angleDownDeformers,
   y: nineAxisArtifacts.headDeformers, xy: nineAxisArtifacts.angleXYDeformers, jaw: nineAxisArtifacts.jawLineDeformers, hair: nineAxisArtifacts.hairDeformers,
   accessories: nineAxisArtifacts.accessoriesDeformers,
+  headPitch: nineAxisArtifacts.headPitchDeformers,
 } as const;
 export const previousNineAxisStages = {
   x: previousNineAxisArtifacts.angleXDeformers, up: previousNineAxisArtifacts.angleUpDeformers,
@@ -83,5 +88,5 @@ export const previousNineAxisStages = {
   xy: previousNineAxisArtifacts.angleXYDeformers, jaw: previousNineAxisArtifacts.jawLineDeformers,
 } as const;
 export type NineAxisStage = keyof typeof nineAxisStages;
-export const nineAxisDeformerPaths = new Set<string>([...Object.values(nineAxisStages), ...Object.values(previousNineAxisStages),
+export const nineAxisDeformerPaths = new Set<string>([...Object.values(nineAxisStages), ...nineAxisPitchSteps.map(step => `nine-axis/${step}/deformers.json`), ...Object.values(previousNineAxisStages),
   ...Object.values(legacyNineAxisArtifacts).filter(path => path.endsWith('/deformers.json'))]);

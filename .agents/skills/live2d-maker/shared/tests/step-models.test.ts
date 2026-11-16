@@ -54,6 +54,7 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
     assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel('gpt-6.1-sol-low', 'fixture'));
   }
   assert.deepEqual(settings.stepModels.raster_step02, parseAgentModel('gpt-6.1-sol-medium', 'fixture'));
+  assert.deepEqual(settings.stepModels.nine_axis_head_pitch, settings.stepModels.nine_axis_head);
   assert.equal(Object.keys(settings.stepModels).length, Object.keys(stepDefaults).length);
   assert.ok(!sectionAgentSteps('clothing-part-layering').some(step => step.startsWith('clothing_raster_')));
   assert.ok(!sectionAgentSteps('part-layering').includes('part_standardize'));

@@ -1,0 +1,6 @@
+{
+  "main": {
+    "initial": ["prompts/上下制作.md"],
+    "tools": ["view_bitmap", "edit_nine_axis", "view_nine_axis"]
+  }
+}
