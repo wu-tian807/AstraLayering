@@ -3,14 +3,10 @@ import { loadWorkflowEnvironment, workflowCodexOptions } from './environment.ts'
 import { agentCallError, codexContentFilterInfo, formatAgentError } from './diagnostics.ts';
 import { errorDetails, errorMessage } from '../agents/errors.ts';
 import { workflowsDirectory } from '../paths.ts';
-import { execFile, spawn } from 'node:child_process';
-import { createHash, randomUUID } from 'node:crypto';
-import { mkdir, rename, writeFile } from 'node:fs/promises';
+import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
-import { tmpdir } from 'node:os';
-import { promisify } from 'node:util';
 import { AgentLog } from './agent-log.ts';
 import { AgentCallError } from '../agents/runtime.ts';
 import { type AgentOptions, type AgentSession, type AgentTask, type GeneratedImage } from '../agents/dispatcher.ts';
@@ -21,6 +17,7 @@ import { fromTaskPath, imagePath, toTaskPath, toTaskPathReal } from '../task-pat
 import { agentImageGeneration } from '../agent-knowledge.ts';
 import { readSessions, rememberSession, resolveSession, type StoredSession } from '../agents/session-data.ts';
 import { codexSessionEnvironment, prepareCodexWorkspace, productionCodexConfig } from './session-data.ts';
+import { catalogConfigArgs, resolveCatalog, flattenConfig } from './catalog.ts';
 
 // Only the protocol subset used by the managed, pinned Codex build is maintained.
 type Message = { id?: number | string; method?: string; params?: Record<string, any>;
@@ -29,35 +26,6 @@ type Message = { id?: number | string; method?: string; params?: Record<string, 
 export function appServerCommand(override?: string): { command: string; args: string[] } {
   if (!override) throw new Error('Codex 补丁运行时尚未准备');
   return { command: override, args: ['app-server'] };
-}
-
-// The model catalog's tool_mode puts every tool behind code mode's exec script, which outranks
-// features.code_mode. That script receives a dynamic tool result as one string of JSON plus a data
-// URL, so the model misses images and paths. Run every model with direct tool calls instead.
-async function directToolCatalog(executable: { command: string; args: string[] }, configArgs: string[], env: NodeJS.ProcessEnv) {
-  const { stdout } = await promisify(execFile)(executable.command, [...executable.args.slice(0, -1), 'debug', 'models', ...configArgs],
-    { env, timeout: 60_000, maxBuffer: 64 * 1024 * 1024 });
-  const catalog = JSON.parse(stdout);
-  if (!Array.isArray(catalog?.models)) throw new Error('Codex debug models 未返回模型目录');
-  for (const model of catalog.models) model.tool_mode = null;
-  const text = JSON.stringify(catalog);
-  const directory = join(tmpdir(), 'astra-layering-codex-catalogs');
-  const file = join(directory, `${createHash('sha256').update(text).digest('hex').slice(0, 16)}.json`);
-  await mkdir(directory, { recursive: true });
-  const temporary = `${file}.${randomUUID()}.tmp`;
-  await writeFile(temporary, text);
-  await rename(temporary, file);
-  return file;
-}
-
-function flattenConfig(value: Record<string, unknown>, prefix = '', result: Record<string, unknown> = {}) {
-  for (const [key, child] of Object.entries(value)) {
-    const path = prefix ? `${prefix}.${key}` : key;
-    if (child && typeof child === 'object' && !Array.isArray(child) && Object.keys(child).length) {
-      flattenConfig(child as Record<string, unknown>, path, result);
-    } else if (child !== undefined) result[path] = child;
-  }
-  return result;
 }
 
 async function abortable<T>(operation: Promise<T>, signal: AbortSignal): Promise<T> {
@@ -280,14 +248,8 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
     const directory = previous?.data ?? join(current!.log.directory, 'cli-data');
     const env = await codexSessionEnvironment(directory, options.env ?? process.env);
     if (options.apiKey) env.CODEX_API_KEY = options.apiKey;
-    // Explicit workflow connection settings also apply while loading the model
-    // catalog. The private profile does not inherit a user's config.toml.
-    const connection = Object.entries(flattenConfig(options.config ?? {}))
-      .filter(([key]) => key === 'model_provider' || key === 'openai_base_url' || key.startsWith('model_providers.'))
-      .map(([key, value]) => `${key}=${JSON.stringify(value)}`);
-    const configArgs = ['features.code_mode=false', 'features.code_mode_only=false', ...options.configOverrides ?? [], ...connection,
-      ...Object.entries(productionCodexConfig).map(([key, value]) => `${key}=${JSON.stringify(value)}`)].flatMap(config => ['-c', config]);
-    const catalog = await directToolCatalog(executable, configArgs, env);
+    const configArgs = catalogConfigArgs(options);
+    const catalog = await resolveCatalog(executable, options, env, paths.root, current!.log.directory);
     const args = [...executable.args, ...configArgs, '-c', `model_catalog_json=${JSON.stringify(catalog)}`];
     child = spawn(executable.command, args, { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] });
     child.once('error', fail);

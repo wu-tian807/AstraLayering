@@ -1,6 +1,6 @@
 import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
+import { test, type TestContext } from 'node:test';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
@@ -11,6 +11,7 @@ import { createCodexImageRoute, usesPatchedImageTool } from '../agents/codex-ima
 import { loadWorkflowEnvironment, checkCodexCapabilities } from '../codex/environment.ts';
 import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
+import { nodeExecutables } from '../../part-layering/tests/node-executables.ts';
 import { fakeDebug } from './fake-codex.ts';
 import { imageGenerationTool } from '../agents/images.ts';
 import { runAgent } from '../raster/agent.ts';
@@ -88,7 +89,8 @@ test('raster 自定义框选工具与原生生图兼容，保留配置与会话'
   const models = JSON.parse(await readFile(JSON.parse(catalog.slice('model_catalog_json='.length)), 'utf8')).models;
   assert.deepEqual(models.map((model: { tool_mode: unknown }) => model.tool_mode), [null]);
 });
-async function fixture(t: { after(fn: () => Promise<unknown>): void }) {
+async function fixture(t: TestContext) {
+  nodeExecutables(t);
   const root = await mkdtemp(join(tmpdir(), 'codex-native-images-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const executable = join(root, 'codex.mjs');
@@ -209,7 +211,7 @@ test('native routes share OpenAI/Gemini transports, preserve image bytes/alpha a
     assert.equal(calls.length, 4);
     assert.ok(calls.filter(c => c.model === 'gpt-image-2.5-flare').every(c => c.prompt === '不改写的原始提示词'));
     for (const call of calls.filter(c => c.model === 'gemini-nano-banana-2.1')) {
-      assert.ok(call.prompt.startsWith('不改写的原始提示词\n\n'));
+      assert.ok(call.prompt.replaceAll('\r\n', '\n').startsWith('不改写的原始提示词\n\n'));
     }
     assert.equal((await fetch(openai.env.LAYERING_IMAGE_BASE_URL + '/images/generations', { method: 'POST' })).status, 401);
   } finally { await openai.close(); await google.close(); }

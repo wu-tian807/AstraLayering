@@ -28,6 +28,8 @@ review 使用独立 thread 和自己的工具；repair 续接 main 的绘制 thr
 
 Krita 的操作由 [krita 工具说明](../knowledge/shared/tools/krita/description.md) 提供，软件路径由工具内部使用。FFmpeg 同样通过 `extract_video_frame` 工具调用。私有进程、并发名额与显示环境见 [Krita 与显示环境](../references/setup.md#krita-与显示环境)。
 
+总调度完成预检后为本次任务生成一份直接工具调用模型目录，各 section 进程只读复用。独立 section 在进程内按配置共享；连接或认证配置变更时重新准备，动态认证保留逐次加载。配置缓存放在任务目录，运行中不覆盖。
+
 Codex 的每个回合都经 App Server（`codex app-server`）执行；延续已有 thread 时不能改变工作目录、工具定义、shell 或生图开关，需要改变时新建 thread。Claude／AGV 的工具活动按长度截断后镜像到 `workflow.log`，完整记录在请求目录的 `events.jsonl`。总控并发运行的管线各在独立 worker 进程中，agent 名额由总调度统一按 `--jobs` 分配，跨进程共享。
 
 会话恢复由 CLI 适配层处理。Codex 的 `shared/codex/tool-agent.ts` 为工作流子会话关闭 `features.goals`，防止原生 goal 自动续跑抢先启动回合；恢复时若仍有活动回合，先请求 `turn/interrupt` 并等待该回合的 `turn/completed`（最多 30 秒），再提交原始输入和 outputSchema。
