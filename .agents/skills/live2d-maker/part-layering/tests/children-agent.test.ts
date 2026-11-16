@@ -152,12 +152,19 @@ test('父完成稿改变后旧分析不能放行下一层，CLI 深度输入有�
 });
 
 
-test('通用拆分操作约定同时装配到特化发区和普通马尾后代', () => {
+test('统一拆分约定装配到全部特化部件和通用后代，专项正文仅按完整 ID 替换', async () => {
   const knowledge = partKnowledge(profile, 'children');
-  const common = join(defaultKnowledgeDirectory, 'part-layering/step12_children/prompts/10-拆分操作约定.md');
-  for (const id of ['hair', 'hair/bangs', 'hair/ponytail', 'hair/ponytail/ponytail_left']) {
-    const files = knowledge.files('main', id);
-    assert.equal(files.filter(file => file === common).length, 1);
-    assert.equal(new Set(files).size, files.length);
+  const directory = join(defaultKnowledgeDirectory, 'part-layering/step12_children/prompts');
+  const priors = join(directory, 'groups');
+  const main = '10-直属结构拆分.md';
+  const specialized = new Map((await readdir(priors, { recursive: true }))
+    .filter(file => file.endsWith(main))
+    .map(file => [file.replaceAll('\\', '/').slice(0, -(main.length + 1)), join(priors, file)]));
+  for (const id of [...specialized.keys(), 'hair/ponytail', 'hair/ponytail/ponytail_left', 'head_accessories']) {
+    assert.deepEqual(knowledge.files('main', id), [
+      specialized.get(id) ?? join(directory, main),
+      join(directory, '10-拆分操作约定.md'),
+      join(directory, '参考图片.md'),
+    ]);
   }
 });
