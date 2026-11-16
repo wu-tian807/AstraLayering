@@ -65,6 +65,7 @@ Krita 和 FFmpeg 使用共享选择与扫描组件。扫描先检查 PATH 和常
 | 九轴下颌交付 | `nine-axis/step07_jaw-line/deformers.json`、`character-nine-axis.kra`、`.png` |
 | 九轴头发交付及分轮进度 | `nine-axis/step08_hair/deformers.json`、`character-nine-axis.kra`、`notes.md`、`hair-progress.json` |
 | 九轴头部饰品交付 | `nine-axis/step09_head-accessories/deformers.json`、`character-nine-axis.kra`、`notes.md` |
+| 完整头部上下 | `nine-axis/step10_head-pitch/{up,down}/head-{up,down}.json`、`deformers.json`、`notes.md`，父级 `deformers.json` 为合并结果 |
 
 流程预览每 4 秒同步变化。过程文件按文件夹分配展示名额，上限为 1000 个；agent 请求与会话由服务器保留。九轴预览使用共享模型和渲染器，中间成果保存后即可读取。
 
@@ -75,6 +76,8 @@ Krita 和 FFmpeg 使用共享选择与扫描组件。扫描先检查 PATH 和常
 头发四轮是 `step08_hair` 卡片内的展示行，不加入执行子树，也不建立独立恢复入口。`nine-axis-progress.ts` 只读共享的 `hair-progress.json` 契约，将已通过轮次与当前实际调用对应；正常停在两轮之间时，下一轮保持待执行并提示继续。旧版三轮记录只读映射为其余头发待执行，迁移留给制作程序。缺失或无效的轮次记录不推翻步骤标记，完整轮次记录也不代替 `.completed`。下颌、头发和饰品的画面均优先使用累计模型所引用的 KRA，轮次不重复展示同一累计画面。
 
 缩略头与角色工作台共用 `shared/nine-axis-preview.js`：按显示组合及真实父 Warp／裁切依赖分别计算角度，不把静态 KRA 上下文当作已制作部件。水平续作只限制本轮制作，预览脸部时从保留的已制作 Y／XY 形中恢复其独立范围，不改写作者参数。新组合首次可用时自动切换；普通文件更新保留手动选择，当前组合消失时回落到已有组合。工作台链接的 `nineLevel=face|hair|accessory` 可指定首次显示的组合。
+
+`step10_head-pitch` 用现有并发子步骤展示 up／down，分别显示状态、会话和恢复入口，不使用头发分轮状态。最新画面与工作台在父级 `.completed` 后切到合并模型，画稿仍来自 step09 KRA。完成时默认选择完整头部组合，带头发和头饰均开放左右／上下十字，普通保存保留手动选择。
 
 知识目录树按实际归属展示：`head-nine-axis/` 是“头部九轴”，其中 `prompts/` 和 `tools/` 是头部九轴内部共用先验；`shared/` 才归“公共先验”。运行管线标识 `nine-axis` 在知识读取层直接映射至 `head-nine-axis`，不回退旧知识目录。
 

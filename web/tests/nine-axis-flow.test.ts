@@ -11,7 +11,7 @@ const context = (products = new Set<string>(), collapsed = new Set<string>()) =>
 });
 
 test('new and previous nine-axis layouts retain real step IDs in flat rows with no nested cards or repeated preview links', () => {
-  for (const step of [sectionSteps[6][3], previousNineAxisSectionSteps[1]]) {
+  for (const step of [sectionSteps[6][3], sectionSteps[6][9], previousNineAxisSectionSteps[1]]) {
     const before = JSON.stringify(step), html = nineAxisStepCard(step, context());
     assert.equal((html.match(/class="step-node /g) || []).length, 1);
     const children = step.children.flatMap(child => [child, ...child.children]);

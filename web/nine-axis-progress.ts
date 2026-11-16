@@ -3,7 +3,7 @@ import { dirname, join, relative } from 'node:path';
 import { readStep } from '../.agents/skills/live2d-maker/shared/step-chain.ts';
 import { stepDeliveries } from '../.agents/skills/live2d-maker/shared/step-deliveries.ts';
 import { readStepSession } from '../.agents/skills/live2d-maker/shared/agents/step-session.ts';
-import { nineAxisSteps, nineAxisProgressSteps, nineAxisGroupSteps, previousNineAxisSteps, previousNineAxisGroupSteps } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisSteps, nineAxisProgressSteps, nineAxisGroupSteps, nineAxisPitchSteps, previousNineAxisSteps, previousNineAxisGroupSteps } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import { safePath } from './files.ts';
 import { currentAgentCalls, throttled } from './agent-progress.ts';
 import { reportPreview, type ReportPreview } from './report.ts';
@@ -67,7 +67,7 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
       } catch (error) { if (!(error instanceof SyntaxError) && (error as NodeJS.ErrnoException).code !== 'ENOENT') errors.push(model + ': ' + String(error)); }
     }
   }
-  const parents = staged ? [[model, groups], ['step04_angles', [model, 'step04_angles/video']]] as const : [[model, groups]] as const;
+  const parents = staged ? [[model, groups], ['step04_angles', [model, 'step04_angles/video']], ['step10_head-pitch', nineAxisPitchSteps]] as const : [[model, groups]] as const;
   for (const [parent, children] of parents) if (states[parent] !== 'done') {
     // Children may explain an in-progress parent, but cannot complete its merge.
     const status = aggregateStatus(children.map(id => states[id]));

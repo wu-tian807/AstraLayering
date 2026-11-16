@@ -32,6 +32,13 @@ test('static unmade context cannot unlock a combination or restrict authored fac
   assert.equal(hair.scope.has('__kra__/unmade-hair'), false);
 });
 
+test('merged whole-head pitch opens Y for hair and accessories without announcing their corners',()=>{
+  const doc=fixture();doc.authoring.stage='head-pitch';doc.parameters[1]={id:'ParamAngleY',keys:[-25,0,25]};
+  for(const part of doc.parts.slice(1)){part.keyformsY={'-25':rest,'25':rest};part.keyformsXY=structuredClone(doc.parts[0].keyformsXY);}
+  const modes=nineAxisPreviewModes(doc);assert.equal(modes[0].axes.plane,true);
+  for(const mode of modes.slice(1)){assert.equal(mode.available,true);assert.equal(mode.axes.region,'cross');assert.deepEqual(mode.axes.y.keys,[-25,0,25]);}
+});
+
 test('static face masks preserve readiness; a registered hair layer unlocks only when its own carrier is authored',()=>{
   const doc=fixture();
   doc.parts=doc.parts.slice(0,2);

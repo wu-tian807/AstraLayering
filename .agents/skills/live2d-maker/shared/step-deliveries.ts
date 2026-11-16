@@ -83,6 +83,8 @@ async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
   if (id === 'step07_jaw-line') return [...files(['jaw.json', 'deformers.json', 'character-nine-axis.kra', 'character-nine-axis.png', 'export-record.json']), ...await textureDeliveries(directory)];
   if (id === 'step08_hair') return [...files(['hair.json', 'deformers.json', 'character-nine-axis.kra', 'character-nine-axis.png', 'source.json', 'export-record.json', 'notes.md']), ...await textureDeliveries(directory)];
   if (id === 'step09_head-accessories') return [...files(['accessories.json', 'deformers.json', 'character-nine-axis.kra', 'character-nine-axis.png', 'source.json', 'export-record.json', 'notes.md']), ...await textureDeliveries(directory)];
+  if (id === 'step10_head-pitch/up' || id === 'step10_head-pitch/down') return [...files([`head-${id.split('/')[1]}.json`, 'deformers.json', 'source.json', 'notes.md']), ...await textureDeliveries(directory)];
+  if (id === 'step10_head-pitch') return [...files(['deformers.json', 'source.json', 'notes.md']), ...await nineAxisDeliveries(root, id + '/up'), ...await nineAxisDeliveries(root, id + '/down')];
   return previousNineAxisDeliveries(root, id);
 }
 

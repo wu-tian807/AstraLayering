@@ -7,7 +7,9 @@ export const withinPart = (partId: string, root: string) => {
   const path = partPath(partId);
   return path === root || path.startsWith(root + '/') || path.startsWith(root + '::');
 };
-const bodyOwner=(part:{partId?:string;level:string})=>part.partId?partPath(part.partId)
+// neck/* is a reserved fixed-node contract in the shared model, including
+// jaw-created native layers that have no upstream semantic binding yet.
+const bodyOwner=(part:{id:string;partId?:string;level:string})=>/^neck(?:\/|$)/.test(part.id)?'neck':part.partId?partPath(part.partId)
   :part.level==='face'?'face':part.level==='hair'?'hair':part.level==='accessory'?'head_accessories':undefined;
 
 export function partVisible(part:Pick<HeadDeformer,'id'|'partId'|'context'|'shadow'>&{level:string},doc:HeadNineAxis|undefined,allows:(partId:string)=>boolean,seen=new Set<string>()):boolean {
@@ -33,7 +35,7 @@ export function nodeOwners(doc: HeadNineAxis, node: WarpGrid): Set<string> {
       if (part.shadow) return [...part.shadow.casters,...part.shadow.receivers].flatMap(id => {
         const caster = byId.get(id); return caster ? visit(caster, next) : [];
       });
-      if (part.partId) return [partPath(part.partId)];
+      if (part.partId) return [bodyOwner(part)!];
       // Procedural drivers have a domain but no native paint identity. A hair
       // domain alone cannot grant a narrower front/side/back round.
       const owner=bodyOwner(part);return owner?[owner]:[];

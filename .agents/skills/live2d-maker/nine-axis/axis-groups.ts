@@ -29,8 +29,10 @@ export async function runAxisGroups(directory: string, hooks: {
   run(group: AxisGroup, directory: string): Promise<void>;
   seed?(group: AxisGroup, directory: string): Promise<void>;
   keep?(group: AxisGroup, directory: string): Promise<void>;
-}, options: { group?: AxisGroup; signal?: AbortSignal } = {}) {
-  const selected = options.group ? [options.group] : axisGroups;
+}, options: { group?: AxisGroup; groups?: readonly AxisGroup[]; signal?: AbortSignal } = {}) {
+  const groups = options.groups ?? axisGroups;
+  const selected = options.group ? [options.group] : groups;
+  if (selected.some(group => !groups.includes(group))) throw Error('未定义的单轴分支');
   await runGroups([...selected], {
     preparation: hooks.prepare,
     async initialize() {},
@@ -53,7 +55,7 @@ export async function runAxisGroups(directory: string, hooks: {
       await completeStep(output);
     },
   });
-  return (await Promise.all(axisGroups.map(async group => (await readStep(join(directory, group))).status === 'completed'))).every(Boolean);
+  return (await Promise.all(groups.map(async group => (await readStep(join(directory, group))).status === 'completed'))).every(Boolean);
 }
 
 // Source layer geometry and pixels are shared; fitting may freely choose

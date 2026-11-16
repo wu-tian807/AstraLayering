@@ -54,7 +54,10 @@ export class HeadPreview {
       this.renderer.clear(); this.images?.forEach(image => image.close()); this.images = images;
       this.renderer.install(doc, images); this.doc = doc; this.version = `${entry.path}:${material.version}`;
       this.allowPlane = !['neutral', 'x', 'up', 'down', 'y'].includes(entry.stage);
-      this.stage = entry.stage; this.configureMode(); this.draw();
+      const pitchUnlocked=entry.stage==='headPitch'&&this.stage!==entry.stage;
+      this.stage = entry.stage; this.configureMode();
+      if(pitchUnlocked)this.selectLevel('accessory');
+      this.draw();
     } catch (error) { if (epoch === this.epoch && error.name !== 'AbortError') this.label.textContent = error.message; }
     finally { if (this.loading === controller) this.loading = null; }
   }

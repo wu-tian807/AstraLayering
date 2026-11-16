@@ -66,6 +66,7 @@ export class HeadNineAxisPanel {
     this.stopSwing();
     if (!force && entry?.available && this.doc && this.project?.folder === project?.folder && this.project?.nineAxis?.path === entry?.path && this.version === entry?.version) return;
     if (this.project?.folder !== project?.folder) this.levelSelection = null;
+    const pitchUnlocked=entry?.stage==='headPitch'&&this.project?.nineAxis?.stage!==entry.stage;
     this.project = project; this.version = entry?.version; this.clear();
     if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step01_preparation/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
     this.status('正在读取头部九轴…');
@@ -77,6 +78,7 @@ export class HeadNineAxisPanel {
       // Source composition belongs to the shared model/renderer. The merge's
       // neutral XY correction grids do not announce a completed corner stage.
       this.install(doc, images, !['neutral', 'x', 'up', 'down', 'y'].includes(entry.stage));
+      if(pitchUnlocked&&!new URLSearchParams(location.search).has('nineLevel'))this.selectLevel('accessory');
       this.author = material.author; this.version = material.version;
     } catch (e) { if (epoch === this.epoch) { this.status(e.message); this.error(e.message); } }
   }

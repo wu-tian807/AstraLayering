@@ -19,7 +19,7 @@ export function nineAxisStepCard(step, { esc, icon, statusMark, statusLabel, con
     branches = `<div class="nine-task-group"><div class="nine-group-heading"><h4>单轴模型</h4><span>三方向并行 · 完成后合并</span></div>${model.children.map(task => row(task)).join('')}${row(model, '模型合并')}</div>
       <div class="nine-task-group">${children.filter(child => child !== model).map(task => row(task)).join('')}</div>`;
   } else if (children.length) {
-    branches = `<div class="nine-task-group"><div class="nine-group-heading"><h4>单轴制作</h4><span>三方向并行</span></div>${children.map(task => row(task)).join('')}</div>`;
+    branches = `<div class="nine-task-group"><div class="nine-group-heading"><h4>单轴制作</h4><span>${children.length===2?'双方向并行':`${children.length} 方向并行`} · 完成后合并</span></div>${children.map(task => row(task)).join('')}</div>`;
   }
   if (step.rounds?.length) {
     // Rounds share this step's session, products and recovery controls. These

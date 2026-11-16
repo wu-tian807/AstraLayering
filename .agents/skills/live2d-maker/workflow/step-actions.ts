@@ -9,7 +9,7 @@ import { occlusionPath } from '../shared/part/occlusion-plan.ts';
 import { artifactPath, draftPath } from '../shared/part/artifact-facts.ts';
 import { partSteps, stepPattern } from '../shared/step-paths.js';
 import { sectionIds, type SectionId } from '../shared/paths.ts';
-import { nineAxisGroupSteps, nineAxisSteps, nineAxisBranchSteps, previousNineAxisGroupSteps, previousNineAxisSteps } from '../shared/nine-axis.ts';
+import { nineAxisGroupSteps, nineAxisSteps, nineAxisBranchSteps, nineAxisPitchSteps, previousNineAxisGroupSteps, previousNineAxisSteps } from '../shared/nine-axis.ts';
 import { acquireTaskLock, directoryFor, sectionId, type TaskOptions } from './state.ts';
 import { upgradeHairProgress } from '../nine-axis/hair-progress.ts';
 
@@ -37,10 +37,11 @@ const safeSegment = (segment: string) => !!segment && segment !== '.' && segment
 // Step ids are the step directories relative to the section (see part-steps.ts and step-section.ts).
 const itemSteps: readonly string[] = [partSteps.outline, partSteps.completion, partSteps.children];
 const anglesStep = 'step04_angles/model';
+const headPitchStep = 'step10_head-pitch';
 const axisChild = (step: string) => nineAxisGroupSteps.includes(step) || previousNineAxisGroupSteps.includes(step);
 export function validStepId(section: SectionId, id: string): boolean {
   if (typeof id !== 'string' || !id.split('/').every(safeSegment)) return false;
-  if (section === 'nine-axis') return (nineAxisSteps as readonly string[]).includes(id) || nineAxisBranchSteps.includes(id) || axisChild(id) || (previousNineAxisSteps as readonly string[]).includes(id) || previousNineAxisGroupSteps.includes(id);
+  if (section === 'nine-axis') return (nineAxisSteps as readonly string[]).includes(id) || nineAxisBranchSteps.includes(id) || nineAxisPitchSteps.includes(id) || axisChild(id) || (previousNineAxisSteps as readonly string[]).includes(id) || previousNineAxisGroupSteps.includes(id);
   const [step, ...items] = id.split('/'), item = items.join('/');
   if (!stepPattern.test(step)) return false;
   if (!partSections.includes(section)) return !items.length;
@@ -55,7 +56,7 @@ export const sectionRoot = (directory: string, section: SectionId): string => jo
 // particular, agent CLI data and step workspaces are not step directories.
 function containsStep(section: SectionId, path: string): boolean {
   if (section === 'nine-axis') {
-    return [...nineAxisSteps, ...nineAxisBranchSteps, ...nineAxisGroupSteps, ...previousNineAxisSteps, ...previousNineAxisGroupSteps]
+    return [...nineAxisSteps, ...nineAxisBranchSteps, ...nineAxisGroupSteps, ...nineAxisPitchSteps, ...previousNineAxisSteps, ...previousNineAxisGroupSteps]
       .some(id => id.startsWith(path + '/'));
   }
   if (!partSections.includes(section)) return false;
@@ -121,14 +122,16 @@ export async function applyTaskAction(options: Pick<TaskOptions, 'name' | 'dir'>
       if(section==='nine-axis'&&action!=='retry')await upgradeHairProgress(join(root,'step08_hair'));
       const steps = await listSteps(root, section);
       const parentRunning = section === 'nine-axis' && steps.some(step => [anglesStep, 'step02_angles'].includes(step.id) && step.status === 'running');
+      const pitchRunning = section === 'nine-axis' && steps.some(step => step.id === headPitchStep && step.status === 'running');
       const selected = steps.filter(step => step.status === 'running' || action === 'retry' && step.missing
-        || parentRunning && axisChild(step.id) && step.status !== 'completed');
+        || parentRunning && axisChild(step.id) && step.status !== 'completed' || pitchRunning && nineAxisPitchSteps.includes(step.id) && step.status !== 'completed');
       const hasChild = section === 'nine-axis' && selected.some(step => axisChild(step.id));
       for (const step of selected) {
         // The parent contains neutral and completed siblings. Recover the
         // selected children independently; they reopen the merge on retry.
         if (hasChild && [anglesStep, 'step04_angles', 'step02_angles'].includes(step.id)) continue;
         if (section === 'nine-axis' && step.id === 'step04_angles' && selected.some(child => child.id.startsWith(step.id + '/'))) continue;
+        if (section === 'nine-axis' && step.id === headPitchStep && selected.some(child => nineAxisPitchSteps.includes(child.id))) continue;
         messages.push(`${section}/` + await actOnStep(root, section, step.id, action));
       }
     }
@@ -152,9 +155,22 @@ async function actOnStep(root: string, section: SectionId, step: string, action:
   }
   if (action === 'resume') {
     if (status === 'completed') throw new Error(`步骤 ${step} 已完成；只能对中断或失败的步骤恢复。`);
+    if (section === 'nine-axis' && step === headPitchStep) {
+      const children = (await listSteps(root, section)).filter(child => nineAxisPitchSteps.includes(child.id) && child.status === 'running');
+      const messages = [];
+      for (const child of children) messages.push(await actOnStep(root, section, child.id, action));
+      return messages.join('\n') || `${step}：保留产物，下次运行继续未完成分支。`;
+    }
     const dropped = await clearStepSession(root, step, '网页恢复：清除会话，保留产物');
     if (!dropped) return `${step} 没有保存的会话，恢复等同继续：下次运行沿用产物。`;
     return `${step}：已清除会话${dropped.threadId ? ' ' + dropped.threadId : ''}，保留产物；下次运行在新会话中继续。`;
+  }
+  if (section === 'nine-axis' && step === headPitchStep) {
+    const children = (await listSteps(root, section)).filter(child => nineAxisPitchSteps.includes(child.id) && (child.status !== 'completed' || child.missing));
+    const messages = [];
+    for (const child of children) messages.push(await actOnStep(root, section, child.id, action));
+    await reopenHeadPitch(root);
+    return [...messages, `${step}：保留已完成方向，下次继续未完成方向并重新合并。`].join('\n');
   }
   if (section === 'nine-axis' && step === 'step04_angles') {
     const branches = (await listSteps(root, section)).filter(child => nineAxisBranchSteps.includes(child.id) && (child.status !== 'completed' || child.missing));
@@ -185,9 +201,18 @@ async function actOnStep(root: string, section: SectionId, step: string, action:
   await rm(stepDirectory, { recursive: true, force: true });
   await rm(join(root, 'agents', 'steps', step), { recursive: true, force: true });
   const attempts = await clearAgentAttempts(root, stepDirectory);
-  if (section === 'nine-axis' && axisChild(step)) await reopenAngles(root, step.startsWith('step02_angles') ? 'step02_angles' : anglesStep);
+  if (section === 'nine-axis' && nineAxisPitchSteps.includes(step)) await reopenHeadPitch(root);
+  else if (section === 'nine-axis' && axisChild(step)) await reopenAngles(root, step.startsWith('step02_angles') ? 'step02_angles' : anglesStep);
   else if (section === 'nine-axis' && nineAxisBranchSteps.includes(step)) await reopenStage(root);
   return `${step}：已删除步骤产物、会话${attempts ? `和 ${attempts} 次 agent 尝试记录` : ''}；下次运行重做该步骤。`;
+}
+
+async function reopenHeadPitch(root: string): Promise<void> {
+  const parent = join(root, headPitchStep);
+  await mkdir(parent, { recursive: true });
+  await rm(join(parent, '.completed'), { force: true });
+  await writeFile(join(parent, '.running'), '', { flag: 'wx' }).catch(error => { if (error.code !== 'EEXIST') throw error; });
+  for (const file of ['deformers.json', 'source.json', 'notes.md']) await rm(join(parent, file), { force: true });
 }
 
 async function reopenAngles(root: string, modelStep = anglesStep): Promise<void> {
