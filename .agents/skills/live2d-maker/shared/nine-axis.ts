@@ -36,7 +36,7 @@ export const legacyNineAxisArtifacts = {
   angleXYDeformers: 'nine-axis/step06_angle-xy/deformers.json',
   jawLineDeformers: 'nine-axis/step07_jaw-line/deformers.json',
 } as const;
-export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line', 'step08_hair', 'step09_head-accessories', 'step10_head-pitch'] as const;
+export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line', 'step08_hair', 'step09_head-accessories', 'step10_head-pitch', 'step11_head-angle-xy'] as const;
 export const previousNineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line'] as const;
 export const nineAxisGroups = ['left', 'up', 'down'] as const;
 export const nineAxisBranches = ['model', 'video'] as const;
@@ -45,8 +45,9 @@ export const nineAxisBranchSteps = nineAxisBranches.map(branch => `step04_angles
 export const nineAxisPitchSteps = ['up', 'down'].map(direction => `step10_head-pitch/${direction}`);
 export const nineAxisChildSteps = [...nineAxisBranchSteps, ...nineAxisGroupSteps, ...nineAxisPitchSteps];
 export const previousNineAxisGroupSteps = nineAxisGroups.map(group => `step02_angles/${group}`);
-export const nineAxisProgressSteps = [...nineAxisSteps.slice(0, 4), ...nineAxisBranchSteps.slice(0, 1), ...nineAxisGroupSteps,
-  ...nineAxisBranchSteps.slice(1), ...nineAxisSteps.slice(4), ...nineAxisPitchSteps];
+export const nineAxisProgressSteps = nineAxisSteps.flatMap(id => id === 'step04_angles'
+  ? [id, nineAxisBranchSteps[0], ...nineAxisGroupSteps, nineAxisBranchSteps[1]]
+  : id === 'step10_head-pitch' ? [id, ...nineAxisPitchSteps] : [id]);
 export const nineAxisArtifacts = {
   preparationDeformers: 'nine-axis/step01_preparation/deformers.json',
   preparationManifest: 'nine-axis/step01_preparation/head_parts_manifest.json',
@@ -74,6 +75,8 @@ export const nineAxisArtifacts = {
   headPitchDeformers: 'nine-axis/step10_head-pitch/deformers.json', headPitchSource: 'nine-axis/step10_head-pitch/source.json', headPitchNotes: 'nine-axis/step10_head-pitch/notes.md',
   headUpAuthor: 'nine-axis/step10_head-pitch/up/head-up.json', headUpDeformers: 'nine-axis/step10_head-pitch/up/deformers.json', headUpNotes: 'nine-axis/step10_head-pitch/up/notes.md',
   headDownAuthor: 'nine-axis/step10_head-pitch/down/head-down.json', headDownDeformers: 'nine-axis/step10_head-pitch/down/deformers.json', headDownNotes: 'nine-axis/step10_head-pitch/down/notes.md',
+  headCornersAuthor: 'nine-axis/step11_head-angle-xy/head-xy.json', headCornersDeformers: 'nine-axis/step11_head-angle-xy/deformers.json',
+  headCornersSource: 'nine-axis/step11_head-angle-xy/source.json', headCornersNotes: 'nine-axis/step11_head-angle-xy/notes.md',
 } as const;
 export const nineAxisStages = {
   neutral: nineAxisArtifacts.preparationDeformers,
@@ -81,6 +84,7 @@ export const nineAxisStages = {
   y: nineAxisArtifacts.headDeformers, xy: nineAxisArtifacts.angleXYDeformers, jaw: nineAxisArtifacts.jawLineDeformers, hair: nineAxisArtifacts.hairDeformers,
   accessories: nineAxisArtifacts.accessoriesDeformers,
   headPitch: nineAxisArtifacts.headPitchDeformers,
+  headCorners: nineAxisArtifacts.headCornersDeformers,
 } as const;
 export const previousNineAxisStages = {
   x: previousNineAxisArtifacts.angleXDeformers, up: previousNineAxisArtifacts.angleUpDeformers,

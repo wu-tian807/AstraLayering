@@ -12,6 +12,7 @@ import { checkAxisSource } from './axis-groups.ts';
 import { bindKraDocument, kraCatalog, type MaterialLoader } from './kra-materials.ts';
 import { checkOwnedEdit, nodeOwners, ownsNode, previewAvailability, type OwnershipScope } from './ownership.ts';
 import { isHeadPitchStage } from './head-pitch.ts';
+import { headCornerControlIds, headCornerPoses } from './head-corners.ts';
 
 export type EditScope = OwnershipScope;
 export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory)), materialize?: MaterialLoader, scope?: EditScope): FunctionTool {
@@ -28,13 +29,16 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
     const catalog=materialize?await kraCatalog(taskRoot,directory,doc):undefined;
     if (materialize) doc = kraReferences(await bindKraDocument(taskRoot,directory,doc)) as AuthoredHead;
     const before = structuredClone(doc);
+    const cornerControls = stage === 'head-xy' ? headCornerControlIds(upstream.doc, doc) : undefined;
     if (args.operations) {
       const operations = structuredClone(args.operations);
       if (Array.isArray(operations)) for (const op of operations) {
         if (isHeadPitchStage(stage) && !['points', 'drag', 'transform'].includes(op?.action)) throw Error('本阶段已准备头部承载，请编辑节点的本方向关键形');
+        if (cornerControls && (!['points', 'drag', 'transform'].includes(op?.action) || !cornerControls.has(op?.id))) throw Error('请编辑程序准备的斜角修正承载');
         if (['points','drag','transform'].includes(op?.action)) {
           const x = op.x ?? 0, y = op.y ?? 0;
           if (isHeadPitchStage(stage) && (x !== 0 || !Number.isFinite(y) || (stage === 'head-up' ? y <= 0 || y > scale.y[1] : y >= 0 || y < scale.y[0]))) throw Error('头部上下只编辑 X=0 的本方向 Y 关键形及中间姿态');
+          if (cornerControls && (!Number.isFinite(x) || !Number.isFinite(y) || !x || !y || x < scale.x[0] || x > scale.x[1] || y < scale.y[0] || y > scale.y[1])) throw Error('完整头部斜角只编辑四角及中间组合，保留单轴');
           if (stage === 'hair' && y !== 0) throw Error('头发步骤只制作 left/right，编辑必须使用 Y=0');
           if (stage === 'accessories' && y !== 0) throw Error('头部饰品步骤只制作 left/right，编辑必须使用 Y=0');
           if ((stage === 'up' || stage === 'down') && (x !== 0 || y !== (stage === 'up' ? scale.y[1] : scale.y[0]))) throw Error(`${stage} 阶段只编辑 X=0、Y=${stage === 'up' ? scale.y[1] : scale.y[0]} 的关键形`);
@@ -82,9 +86,10 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
     await writeBuilt(directory, built);
     return textResult({ revision: sha256(text), source: path, document: built.doc.source?.document, stage,
       ...(isHeadPitchStage(stage)?{operations:['points','drag','transform'],editableAxis:'Y',editableRange:stage==='head-up'?[0,scale.y[1]]:[scale.y[0],0]}:{}),
+      ...(cornerControls?{operations:['points','drag','transform'],editableAxis:'XY',corners:headCornerPoses(scale)}:{}),
       ...(catalog&&!args.operations&&!args.bindings?{materials:catalog}:{}), nodes: nodes(built.doc as unknown as HeadNineAxis).map(n => ({
       id:n.id, kind:doc.deformers.some(p=>p.id===n.id)?'warp':'part', parent:n.parent??null, mirror:n.mirror??null,
-      bbox:n.bbox, cols:n.cols, rows:n.rows, ...(scope?{owners:[...nodeOwners(built.doc,n)],editable:ownsNode(built.doc,n,scope),...(scope.includes?{preview:previewAvailability(built.doc,n,scope.includes)}:{})}:{}), ...('textureBounds' in n?{textureBounds:n.textureBounds,drawOrder:built.doc.parts.findIndex(p=>p.id===n.id)}:{}), keys:Object.keys(n.keyforms), keysY:Object.keys(n.keyformsY??{}), keysXY:Object.keys(n.keyformsXY??{}),
+      bbox:n.bbox, cols:n.cols, rows:n.rows, ...(scope?{owners:[...nodeOwners(built.doc,n)],editable:cornerControls?cornerControls.has(n.id):ownsNode(built.doc,n,scope),...(scope.includes?{preview:previewAvailability(built.doc,n,scope.includes)}:{})}:{}), ...('textureBounds' in n?{textureBounds:n.textureBounds,drawOrder:built.doc.parts.findIndex(p=>p.id===n.id)}:{}), keys:Object.keys(n.keyforms), keysY:Object.keys(n.keyformsY??{}), keysXY:Object.keys(n.keyformsXY??{}),
       ...built.doc.parts.filter(p => p.id === n.id).map(p => ({ uuid: p.uuid, partId: p.partId, material: p.material, ...(p.shadow?{shadow:p.shadow}:{}) }))[0],
     })) });
   } };

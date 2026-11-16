@@ -47,6 +47,7 @@ pnpm nine-axis --name my-character --dir /绝对路径/运行根目录 --knowled
 | `step08_hair` | left＋right，Y=0；同一 KRA、同一持续会话，按操作依次制作前发、侧发、后发、其余头发与整体协调 |
 | `step09_head-accessories` | 基于已完成脸发制作 head_accessories 的 left＋right，Y=0；检查完整组合遮挡和关联投影 |
 | `step10_head-pitch` | 继承完整左右成果；up／down 两个独立分支并发制作整个头部，程序合并上下 |
+| `step11_head-angle-xy` | 继承完整左右、上下；一个新会话统一协调脸、头发、头饰与投影的四角 |
 
 素材沿用上游工程的尺寸、图层与投影关系。制作角度见 [angles.json](../knowledge/head-nine-axis/step02_video/references/angles.json)。
 
@@ -105,6 +106,14 @@ KRA 是画稿依据，阶段 JSON 是累计变形与图层绑定。`step01_prepa
 continue 保留分支产物和 thread，resume 为未完成分支换 thread。对 `step10_head-pitch/up` 或 `down` retry 只重做所选方向，并清理父级合并产物；父级 retry 保留已通过的方向，续做未完成方向并重新合并。每个 agent 沿用首次加最多两次交付修正，另一方向失败不清除已通过的成果。单独制作一个方向时，父级保持未完成。
 
 分支预览显示完整脸发饰品组合，允许本方向上下和已完成左右；端点与中间过程均需对照 edge 和原色。两个分支都通过且合并完成后，工作台与最新画面使用父级累计模型。脸、头发、头饰三个组合各自按有效单轴判断：左右、上下齐备即可预览 X＋Y 叠加的斜角，后续斜角制作在此基础上修正；预览继续遵守曲线禁区。步骤卡片沿用现有并发子项展示与恢复入口。
+
+### 完整头部斜角
+
+`step11_head-angle-xy` 从 step10 的合并模型和其声明的最新 KRA 开始。使用一个新的通用 step session，一次完成左上、左下、右上、右下；模型沿用 `nine_axis_head_agent_model`。工具读取保存的 KRA，不另存画稿副本。
+
+程序按头部叶节点的原有父级准备静止修正承载。`head-xy.json` 只编辑这些承载的 XY 关键形及中间组合；原有网格、正面、左右、上下、绑定、顺序和脖子身体保持不变。左上、左下对照已有关键帧和视频；右侧沿用本侧的形变与不对称结构制作，不对整个头部自动镜像。检查 edge、原色、投影及连续运动后交付 `head-xy.json`、累计 `deformers.json`、`source.json` 和 `notes.md`。
+
+continue 保留本步产物和 thread，resume 保留产物并换新 thread，retry 仅清理本步后重做，保留所有上游。交付检查沿用首次加最多两次修正。工作台和最新画面可读取本步保存的累计草稿；这一步细化已有斜角，不改变单轴齐备即解锁组合预览及曲线禁区的规则。
 
 在流程预览中播放视频、查看选帧和模型；进入角色工作台可以调整角度和关键形。完成后通过“导出成果”保存模型、贴图、工程和说明。
 

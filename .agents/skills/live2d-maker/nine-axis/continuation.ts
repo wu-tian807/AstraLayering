@@ -12,14 +12,15 @@ import { bindKraDocument, type MaterialLoader } from './kra-materials.ts';
 import sharp from 'sharp';
 import { ownsNode, withinPart, partVisible, type OwnershipScope } from './ownership.ts';
 import { isHeadPitchStage, initializeHeadPitch, checkHeadPitch } from './head-pitch.ts';
+import { initializeHeadCorners, checkHeadCorners } from './head-corners.ts';
 
 const geometryOnly=(value: any): any=>JSON.parse(JSON.stringify(value??null,(key,value)=>['texture','uuid','material','partId'].includes(key)?undefined:value));
 const hasKeys = (node: any, field: string) => Object.keys(node?.[field] ?? {}).some(key => key !== '0');
 
 export type PitchStage = 'up' | 'down';
-export type Stage = PitchStage | 'xy' | 'jaw' | 'hair' | 'accessories' | 'head-up' | 'head-down' | 'head-pitch';
+export type Stage = PitchStage | 'xy' | 'jaw' | 'hair' | 'accessories' | 'head-up' | 'head-down' | 'head-pitch' | 'head-xy';
 export type AuthoredHead = HeadNineAxis & { axis: number; authoring: { stage: Stage; upstreamSha256?: string } };
-export const authorFile = (stage: Stage) => ({ up: 'face-up.json', down: 'face-down.json', xy: 'face-xy.json', jaw: 'jaw.json', hair: 'hair.json', accessories: 'accessories.json', 'head-up': 'head-up.json', 'head-down': 'head-down.json', 'head-pitch': 'deformers.json' })[stage];
+export const authorFile = (stage: Stage) => ({ up: 'face-up.json', down: 'face-down.json', xy: 'face-xy.json', jaw: 'jaw.json', hair: 'hair.json', accessories: 'accessories.json', 'head-up': 'head-up.json', 'head-down': 'head-down.json', 'head-pitch': 'deformers.json', 'head-xy': 'head-xy.json' })[stage];
 export const isHairNode = (node: { id: string; level: string; context?: boolean }) => !node.context && node.level === 'hair';
 export const isAccessoryNode = (node: { id: string; level: string; context?: boolean }) => !node.context && node.level === 'accessory';
 const horizontalStage = (stage:Stage) => stage==='hair'||stage==='accessories';
@@ -39,6 +40,7 @@ export async function readUpstream(directory: string) {
 // creates it from the current upstream; artists need not expand coordinates.
 export function startContinuation(upstream: HeadNineAxis & { axis: number }, stage: Stage, scale: AngleScale = angleScale()): AuthoredHead {
   if (isHeadPitchStage(stage)) return initializeHeadPitch(upstream, stage, scale);
+  if (stage === 'head-xy') return initializeHeadCorners(upstream, scale);
   const doc = structuredClone(upstream) as AuthoredHead;
   doc.authoring = { stage };
   if (horizontalStage(stage)) {
@@ -63,6 +65,7 @@ export function startContinuation(upstream: HeadNineAxis & { axis: number }, sta
 
 export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axis: number }, stage: Stage, scale: AngleScale = angleScale()): AuthoredHead {
   if (isHeadPitchStage(stage)) return checkHeadPitch(value, upstream, stage, scale);
+  if (stage === 'head-xy') return checkHeadCorners(value, upstream, scale);
   const doc = validateHeadNineAxis(value) as AuthoredHead;
   if (doc.authoring?.stage !== stage) throw Error(`${authorFile(stage)}：阶段记录不匹配，请使用本阶段的作者模型`);
   const sameSource = JSON.stringify(doc.source) === JSON.stringify(upstream.source);
@@ -145,7 +148,7 @@ export async function compileContinuation(directory: string, upstreamDirectory: 
     if (document && materialize) author = await bindKraDocument(root,directory,author) as AuthoredHead;
   }
   const checked = checkContinuation(author, upstream.doc, stage, scale);
-  const mirrored = stage === 'up' || stage === 'down' || horizontalStage(stage) || isHeadPitchStage(stage) ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY');
+  const mirrored = stage === 'up' || stage === 'down' || horizontalStage(stage) || isHeadPitchStage(stage) || stage === 'head-xy' ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY');
   const doc = stage === 'jaw' ? mirrorDocument(mirrored, checked.axis, 'keyforms') : mirrored;
   validateHeadNineAxis(doc); for (const n of nodes(doc)) checkWarpGeometry(n);
   if (materialize) {

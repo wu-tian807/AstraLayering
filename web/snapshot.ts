@@ -252,7 +252,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
   if (!record.run?.archive || nineSaved) sections.push({ ...await nineAxisProgress(directory, fileSet, errors, {
     active: record.runnerAlive && record.lockHeld && record.run?.activeSections?.includes('nine-axis') && nineSaved?.status !== 'failed',
     failed: nineSaved?.status === 'failed', archive: !!record.run?.archive,
-    since: record.run?.runner?.startedAt, reason: nineSaved?.summary,
+    since: record.run?.runner?.startedAt, reason: nineSaved?.status === 'failed' ? nineSaved.summary : undefined,
   }), summary: nineSaved?.summary, ...(nineSaved?.skipped ? { skipped: true } : {}) });
   // Every section, including nine-axis, reads the existing machine-wide slot
   // record. Artifacts and runner history cannot establish a Krita reservation.

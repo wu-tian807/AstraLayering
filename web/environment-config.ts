@@ -142,7 +142,7 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
   async function schema() {
     const template=await readFile(join(directory,'example.env'),'utf8'), defaults=envValues(template);
     const modelSlotDefaults=resolveModelDefaults(defaults), imageDefaults=resolveImageDefaults(defaults);
-    return {template,fields:[...Object.entries(modelSlotDefaults).map(([slot,fallback])=>({key:modelSlotKey(slot as ModelSlot),label:roles[slot],section:'llm',type:'model',fallback,...(slot==='nine_axis_head'?{hint:'脸部、头发、头饰与完整头部上下共用同一模型配置'}:{})})),{key:defaultImageModelKey,label:'默认生图模型',section:'image',type:'image',fallback:imageDefaults.model},...imageSteps().map(step=>({key:imageModelKey(step),label:images[step]??step,section:'image',type:'image',fallback:defaults[imageModelKey(step)]??''})),...scalarFields(defaults)] as Field[]};
+    return {template,fields:[...Object.entries(modelSlotDefaults).map(([slot,fallback])=>({key:modelSlotKey(slot as ModelSlot),label:roles[slot],section:'llm',type:'model',fallback,...(slot==='nine_axis_head'?{hint:'脸部、头发、头饰与完整头部上下、斜角共用同一模型配置'}:{})})),{key:defaultImageModelKey,label:'默认生图模型',section:'image',type:'image',fallback:imageDefaults.model},...imageSteps().map(step=>({key:imageModelKey(step),label:images[step]??step,section:'image',type:'image',fallback:defaults[imageModelKey(step)]??''})),...scalarFields(defaults)] as Field[]};
   }
   async function describe(text:string,exists:boolean,revision:string) {
     const {fields}=await schema(),raw=envValues(text),sources=configurationSources(raw,env),values=sources.file,shell=sources.environment,issues:string[]=[];

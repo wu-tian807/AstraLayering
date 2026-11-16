@@ -37,7 +37,7 @@ async function fixture(t: any) {
 }
 
 test('web presents every current workflow step and keeps hair rounds inside one executable step', () => {
-  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line','step08_hair','step09_head-accessories','step10_head-pitch']);
+  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line','step08_hair','step09_head-accessories','step10_head-pitch','step11_head-angle-xy']);
   const steps = sectionSteps[6]; assert.deepEqual(steps.map(step => step.id), nineAxisSteps);
   assert.equal(steps[3].childrenMode, 'parallel');
   assert.deepEqual(steps[3].children.map(step => step.id), ['step04_angles/model','step04_angles/video']);
@@ -47,6 +47,9 @@ test('web presents every current workflow step and keeps hair rounds inside one 
   assert.deepEqual(steps[7].rounds?.map(round => [round.id, round.title]), hairRounds.map(round => [round, hairRoundLabel(round)]));
   assert.equal(steps[9].childrenMode,'parallel');assert.deepEqual(steps[9].children.map(step=>step.id),nineAxisPitchSteps);
   assert.equal(steps[9].rounds,undefined);
+  assert.deepEqual(steps[10].children, []); assert.equal(steps[10].rounds, undefined);
+  for (const name of ['head-xy.json', 'deformers.json', 'notes.md'])
+    assert.ok(stepArtifacts[6]['step11_head-angle-xy'].some(item => item.path === `nine-axis/step11_head-angle-xy/${name}`));
   for (const id of ['step08_hair', 'step09_head-accessories']) {
     for (const name of ['deformers.json', 'character-nine-axis.kra', 'notes.md']) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/${name}`));
   }
@@ -60,6 +63,24 @@ test('head-pitch shows independent parallel children without completing the unme
   await f.complete('step10_head-pitch/down');value=await f.get();
   assert.notEqual(value.states['step10_head-pitch'],'done');
   await f.complete('step10_head-pitch');value=await f.get();assert.equal(value.states['step10_head-pitch'],'done');
+});
+
+test('whole-head corners expose one step session, current KRA preview and an independent completion marker', async t => {
+  const f = await fixture(t), step = 'step11_head-angle-xy';
+  await f.complete('step10_head-pitch'); await f.put(step + '/.running');
+  const document = 'nine-axis/step09_head-accessories/character-nine-axis.kra';
+  await f.put('step09_head-accessories/character-nine-axis.kra', 'saved KRA');
+  await f.put(step + '/deformers.json', { source: { document } });
+  for (const direction of ['up', 'down'])
+    await writeStepSession(join(f.root, 'nine-axis'), `step10_head-pitch/${direction}`, { threadId: direction + '-thread', harness: 'codex' });
+  await writeStepSession(join(f.root, 'nine-axis'), step, { threadId: 'four-corner-thread', harness: 'codex' });
+  let value = await f.get();
+  assert.equal(value.states['step10_head-pitch'], 'done'); assert.equal(value.states[step], 'interrupted');
+  assert.equal(value.steps.find(entry => entry.id === step)!.threadId, 'four-corner-thread');
+  assert.equal(value.threadId, 'four-corner-thread');
+  assert.equal(value.previews[step].path, document);
+  await f.complete(step); value = await f.get(); assert.equal(value.states[step], 'done');
+  assert.deepEqual(f.errors, []);
 });
 
 test('hair round activity follows the current call without assigning the previous round to the next', async t => {
@@ -453,6 +474,19 @@ test('empty tasks use the current staged progress and a live section reports sta
   const f = await fixture(t);
   const pending = await f.get(); assert.equal(pending.layout, 'staged'); assert.equal(pending.status, 'pending');
   const active = await f.get({ active: true }); assert.equal(active.status, 'running');
+});
+
+test('a previous section success cannot become a later standalone step error, while actual failures retain their reason', async t => {
+  const f = await fixture(t), time = new Date().toISOString(), step = 'step11_head-angle-xy';
+  await f.put(step + '/.running');
+  for (const status of ['completed', 'failed']) {
+    const summary = status === 'completed' ? 'previous operation succeeded' : 'current operation failed';
+    await writeFile(join(f.root, 'run.json'), JSON.stringify({ version: 1, from: 'nine-axis', to: 'nine-axis', jobs: 1,
+      status, createdAt: time, updatedAt: time, sections: { 'nine-axis': { status, updatedAt: time, summary } } }));
+    const value = (await snapshot(f.root, basename(f.root), dirname(f.root))).sections.find(section => section.id === 'nine-axis')!;
+    assert.equal(value.states[step], status === 'failed' ? 'failed' : 'interrupted');
+    assert.deepEqual(value.messages, status === 'failed' ? { [step]: summary } : {});
+  }
 });
 
 test('nine-axis shows actual Krita queue/reservation/use and discards a dead owner record', async t => {
