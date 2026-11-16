@@ -59,7 +59,7 @@ export function normalizeGroups(values: unknown, seen = new Set<string>()): Grou
       if (input[field] !== undefined && typeof input[field] !== 'string') throw new Error(`group.${field} must be a string`);
     }
     if (input.metadata !== undefined) record(input.metadata, 'group.metadata');
-    for (const field of ['allowOutsideParent', 'hiddenInReference']) {
+    for (const field of ['hiddenInReference']) {
       if (input[field] !== undefined && typeof input[field] !== 'boolean') throw new Error(`group.${field} must be a boolean`);
     }
     if (input.kind !== undefined && input.kind !== 'group' && input.kind !== 'part') throw new Error('节点 kind 必须为 group 或 part');
@@ -71,12 +71,13 @@ export function normalizeGroups(values: unknown, seen = new Set<string>()): Grou
       return [stage, progress];
     })) as GroupProgress;
     const group: GroupNode = {
+      // Preserve opaque historical fields without assigning them workflow meaning.
+      ...input,
       id: input.id,
       ...(input.kind !== undefined ? { kind: input.kind as 'group' | 'part' } : {}),
       ...(input.name !== undefined ? { name: input.name as string } : {}),
       ...(input.note !== undefined ? { note: input.note as string } : {}),
       ...(input.metadata !== undefined ? { metadata: structuredClone(input.metadata) as Record<string, unknown> } : {}),
-      ...(input.allowOutsideParent !== undefined ? { allowOutsideParent: input.allowOutsideParent as boolean } : {}),
       ...(input.hiddenInReference !== undefined ? { hiddenInReference: input.hiddenInReference as boolean } : {}),
       groups: normalizeGroups(input.groups ?? [], seen), steps,
     };
@@ -118,8 +119,9 @@ export function nodeKind(group: GroupNode): 'group' | 'part' {
 }
 
 export function nodeSeed(group: GroupNode) {
-  const { groups, steps, ...seed } = group;
-  return { ...seed, kind: seed.kind ?? 'group' };
+  const { id, kind, name, note, metadata, hiddenInReference } = group;
+  return { id, kind: kind ?? 'group', ...(name === undefined ? {} : { name }), ...(note === undefined ? {} : { note }),
+    ...(metadata === undefined ? {} : { metadata }), ...(hiddenInReference === undefined ? {} : { hiddenInReference }) };
 }
 
 export function setGroupProgress<S extends GroupStage>(

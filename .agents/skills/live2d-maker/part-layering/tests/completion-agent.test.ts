@@ -1,7 +1,7 @@
 import { profile } from '../profile.ts';
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { dirname, join, relative } from 'node:path';
 import { test } from 'node:test';
 import sharp from 'sharp';
 import type { AgentResult, AgentSession, AgentTask } from '../../shared/agents/dispatcher.ts';
@@ -13,7 +13,7 @@ import { partKnowledge } from '../../shared/part/group-prompts.ts';
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { runLayering } from '../../shared/part/layering.ts';
 import { groupStepId } from '../../shared/part/part-steps.ts';
-import { fixture, linkedFixture, publishGroups, shape, workingSteps } from './layering-fixture.ts';
+import { fixture, publishGroups, shape, workingSteps } from './layering-fixture.ts';
 import { promptInput } from '../../shared/tests/prompt-input.ts';
 
 const signal = new AbortController().signal;
@@ -89,8 +89,8 @@ test('补全默认适配器用只读 agent 和新增工具，提交后正式发�
   const adapter = createLayeringSteps(sessioned(async task => {
     calls++;
     assert.ok(task.tools!.some(tool => tool.name === 'view_bitmap'));
-    const rules = (await readFile(partKnowledge(profile, 'completion').files('main')[1], 'utf8'));
-    assert.ok(task.prompt.includes(`【固定范围与操作约定】\n${rules}`));
+    const rules = (await readFile(partKnowledge(profile, 'completion').files('main')[1], 'utf8')).replace(/\r\n/g, '\n');
+    assert.ok(task.prompt.replace(/\r\n/g, '\n').includes(`【固定范围与操作约定】\n${rules}`));
     const input = promptInput(task.prompt);
     await tool(task, 'preview_svg').execute({ path: input.sourceSvg, mode: 'blend' }, signal);
     await tool(task, 'set_completion_paths').execute({ paths }, signal);
@@ -108,11 +108,12 @@ test('补全默认适配器用只读 agent 和新增工具，提交后正式发�
   assert.equal(calls, 1);
 });
 
-test('任务根经软链接打开时，预览记录的真实路径仍认作当前补全草稿', async t => {
-  const f = await linkedFixture(t, await fixture(t)), events: string[] = [];
+test('任务根相对路径与绝对路径预览均认作当前补全草稿', async t => {
+  const f = await fixture(t), events: string[] = [];
   const adapter = createLayeringSteps(sessioned(async task => {
     const input = promptInput(task.prompt);
     await tool(task, 'set_completion_paths').execute({ paths }, signal);
+    await tool(task, 'preview_svg').execute({ path: relative(dirname(f.directory), input.outputDraft), mode: 'blend' }, signal);
     await submit(task, input.outputDraft);
     return { text: 'done', images: [] };
   }));
@@ -124,7 +125,7 @@ test('face 特化按完整 ID 独立读取，未特化的子组沿用通用正�
   const completion = partKnowledge(profile, 'completion');
   const face = completion.render('main', {}, { taskRoot: '/task', group: 'face' });
   assert.ok(face.includes('【本次输入】') && face.includes('【固定范围与操作约定】'));
-  assert.ok(completion.files('main', 'face/eye')[0].endsWith('step11_completion/prompts/9-正面遮挡补全.md'));
+  assert.ok(completion.files('main', 'face/eye')[0].endsWith(join('step11_completion', 'prompts', '9-正面遮挡补全.md')));
 });
 
 test('正式调度中左右十指附加实际掌片与完整指体图片，part 不再分析子组', async t => {
@@ -163,7 +164,7 @@ test('正式调度中左右十指附加实际掌片与完整指体图片，part 
     assert.ok(!events.includes(`${group.id}:children`));
   }
   for (const id of ['arms/arm_left/hand', 'arms/arm_left/hand/palm', 'arms/arm_right/hand', 'arms/arm_right/hand/palm']) {
-    assert.ok(partKnowledge(profile, 'completion').files('main', id)[0].endsWith('step11_completion/prompts/9-正面遮挡补全.md'));
+    assert.ok(partKnowledge(profile, 'completion').files('main', id)[0].endsWith(join('step11_completion', 'prompts', '9-正面遮挡补全.md')));
   }
 });
 
@@ -190,7 +191,7 @@ test('新增路径修正后必须重看当前候选；没有工具提交不能�
   assert.equal((await checkGroupCompletion({ ...f, group, before: { path: source }, after: { path: final } })).passed, true);
 });
 
-test('补全子组必须在父完成范围内，即使原形保留也不能越界', async t => {
+test('补全子组的越界草稿可观察，默认正式提交仍受父范围约束', async t => {
   const f = await fixture(t), group = normalizeGroups([{ id: 'head/child' }])[0];
   const parentPath = join(f.directory, 'parent.svg'), source = join(f.directory, 'source.svg');
   await writeFile(parentPath, shape('head', 10, 90));
@@ -199,6 +200,9 @@ test('补全子组必须在父完成范围内，即使原形保留也不能越�
   await assert.rejects(completeGroupOcclusion({ ...f, group, parent, reviewed: { path: source }, outputPath: join(f.directory, 'child.draft.svg') }, {
     async run(task) {
       await tool(task, 'set_completion_paths').execute({ paths }, signal);
+      await tool(task, 'preview_svg').execute({ path: join(f.directory, 'child.draft.svg'), mode: 'blend' }, signal);
+      await tool(task, 'preview_svg').execute({ path: join(f.directory, 'child.draft.svg'), mode: 'svg' }, signal);
+      await tool(task, 'submit_completion').execute({ note: '未申请越界评审' }, signal);
       return { text: '', images: [] };
     },
   }), /超出父轮廓/);
@@ -256,8 +260,8 @@ test('续跑补全沿用保留原形的草稿，提示词只给固定的先读�
 
 test('不可见部件直接绘制非空 SVG，完成原图 blend 和独显即可提交；生成图怎样对照由提示词决定', async t => {
   const f = await fixture(t), group = normalizeGroups([{ id: 'face/eye_left/iris', kind: 'part',
-    allowOutsideParent: true, hiddenInReference: true }])[0];
-  await publishGroups(f.directory, [{ id: group.id, kind: 'part', allowOutsideParent: true, hiddenInReference: true }]);
+    hiddenInReference: true }])[0];
+  await publishGroups(f.directory, [{ id: group.id, kind: 'part', hiddenInReference: true }]);
   const source = join(f.directory, 'source.svg'), outputPath = join(f.directory, 'iris.draft.svg');
   const generated = join(f.directory, 'generated.png');
   await writeFile(source, shape(group.id, 10, 90, true));
@@ -265,7 +269,6 @@ test('不可见部件直接绘制非空 SVG，完成原图 blend 和独显即可
   const result = await completeGroupOcclusion({ ...f, group, reviewed: { path: source }, outputPath }, { async run(task) {
     const input = promptInput(task.prompt);
     assert.equal(input.group.hiddenInReference, true);
-    assert.equal(input.group.allowOutsideParent, true);
     await assert.rejects(tool(task, 'set_completion_paths').execute({ paths: [] }, signal), /没有可见/);
     await tool(task, 'set_completion_paths').execute({ paths }, signal);
     const preview = tool(task, 'preview_svg');

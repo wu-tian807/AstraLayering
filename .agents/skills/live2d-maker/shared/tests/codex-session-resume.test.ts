@@ -1,3 +1,5 @@
+import childProcess from 'node:child_process';
+import { syncBuiltinESMExports } from 'node:module';
 import { test, type TestContext } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
@@ -268,4 +270,26 @@ test('events with another turn ID cannot execute tools or complete the current t
       tools: [{ name: 'probe', description: 'probe', inputSchema: { type: 'object' }, execute: async () => { calls++; return { success:true, contentItems:[] }; } }] });
     assert.equal(result.text, '{"status":"completed"}'); assert.equal(calls, 0);
   } finally { await session.close(); }
+});
+
+for (const pipe of ['stdout', 'stderr'] as const) test(pipe + ' startup pipe error retries without crashing or leaking a model slot', { timeout: 10000 }, async t => {
+  const f = await fixture(t, 'normal'), spawn = childProcess.spawn;
+  let starts = 0, waits = 0;
+  const children: ReturnType<typeof spawn>[] = [];
+  t.mock.method(childProcess, 'spawn', ((file: string, args: string[], options: any) => {
+    const child = spawn(file, args, options);
+    if (args.includes('app-server')) {
+      children.push(child);
+      if (starts++ === 0) queueMicrotask(() => child[pipe]!.emit('error', Object.assign(new Error('read ENOTCONN'), { code: 'ENOTCONN' })));
+    }
+    return child;
+  }) as typeof spawn);
+  syncBuiltinESMExports();
+  const agents = new AgentDispatcher({ ...f.options, runtime: new AgentRuntime(1, async () => { waits++; }) });
+  const result = await agents.run({ name: 'startup-pipe', prompt: 'continue', outputSchema: schema }, t.signal);
+  assert.equal(result.text, '{"status":"completed"}');
+  assert.equal(starts, 2); assert.equal(waits, 1);
+  assert.ok(children.every(child => child.exitCode !== null || child.signalCode !== null));
+  const following = await agents.run({ name: 'following', prompt: 'continue', outputSchema: schema }, t.signal);
+  assert.equal(following.text, '{"status":"completed"}');
 });

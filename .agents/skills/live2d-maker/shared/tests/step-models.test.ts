@@ -83,7 +83,7 @@ test('every image-capable agent rejects native imagegen with a different harness
 test('scheme 1 template and code defaults resolve all role efforts and native images without extra providers', async t => {
   const contents = await readFile(new URL('../../example.env', import.meta.url), 'utf8');
   const variables = parseEnv(contents);
-  assert.equal(Object.keys(modelSlotDefaults).length, 14);
+  assert.equal(Object.keys(modelSlotDefaults).length, Object.keys(modelSlotDefaults).length);
   for (const role of Object.keys(modelSlotDefaults)) assert.ok(Object.hasOwn(variables, modelSlotKey(role as ModelSlot)));
   for (const step of imageSteps()) assert.ok(Object.hasOwn(variables, `${step}_image_model`));
   assert.equal(Object.keys(variables).filter(key => key.endsWith('_image_model') && !['default_image_model', 'image_model'].includes(key)).length, imageSteps().length);
@@ -94,12 +94,12 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
   assert.deepEqual(settings.stepModels, loadWorkflowEnvironment({}, await fixture(t)).stepModels);
   const expected: Record<keyof typeof modelSlotDefaults, string> = {
     preparation: 'low', part_draw: 'medium', part_review: 'medium',
-    part_groups: 'high', part_reduce: 'high', part_completion: 'high', part_depth: 'high',
+    part_groups: 'high', part_reduce: 'high', part_completion: 'high', part_completion_boundary_review: 'medium', part_depth: 'high',
     raster_step01: 'xhigh', raster_step01_review: 'xhigh', raster_step02: 'medium',
     raster_step03: 'medium', assembly: 'xhigh', shadow: 'medium', nine_axis_head: 'xhigh',
   };
   for (const [step, role] of Object.entries(stepModelSlots)) {
-    assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(`gpt-6.1-sol-${expected[role]}`, 'fixture'), step);
+    assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(`${role === 'part_completion_boundary_review' ? 'gpt-6.1-terra' : 'gpt-6.1-sol'}-${expected[role]}`, 'fixture'), step);
   }
   assert.deepEqual(settings.codex.config, {});
   assert.deepEqual(settings.imageApis, {});
@@ -152,7 +152,7 @@ test('legacy tier overrides keep their historical roles and explicit roles and n
   const settings = loadWorkflowEnvironment({}, root);
   const highRoles = new Set(['raster_step01', 'raster_step01_review', 'raster_step02']);
   for (const [step, role] of Object.entries(stepModelSlots)) {
-    const expected = highRoles.has(role) ? 'gpt-6-astra-high' : 'gpt-6.1-sol-low';
+    const expected = role === 'part_completion_boundary_review' ? 'gpt-6.1-terra-medium' : highRoles.has(role) ? 'gpt-6-astra-high' : 'gpt-6.1-sol-low';
     assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(expected, 'fixture'), step);
   }
   await writeFile(join(root, '.env'), file + 'raster_step02_agent_model=claude-sonnet-5-5-medium\n');

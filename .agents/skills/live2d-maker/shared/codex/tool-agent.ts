@@ -261,7 +261,11 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
       // Drain its notifications before rejecting the turn and clearing state.
       void (reader ?? Promise.resolve()).then(() => { if (!closed) fail(error); });
     });
-    child.stdin!.on('error', error => { if (!closed) fail(error); });
+    // Windows can report ENOTCONN on any pipe while spawning. Route stream
+    // errors through session recovery instead of an unhandled process error.
+    for (const stream of [child.stdin, child.stdout, child.stderr]) {
+      stream?.on('error', error => { if (!closed) fail(error); });
+    }
     child.stderr!.on('data', (chunk: Buffer) => { stderr = (stderr + chunk.toString('utf8')).slice(-16_000); });
     lines = createInterface({ input: child.stdout!, crlfDelay: Infinity });
     reader = (async () => {

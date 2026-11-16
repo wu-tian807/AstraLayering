@@ -112,12 +112,12 @@ test('分组工具保留 metadata 和未调整节点，旧记录中的 subject �
 
 test('raster 结构写回保留可选显隐标签，错误类型返回当前 agent 且原文件保持完整', async t => {
   const f = await fixture(t);
-  const group = { id: 'fixture', kind: 'part', hiddenInReference: true, allowOutsideParent: true, groups: [] };
+  const group = { id: 'fixture', kind: 'part', hiddenInReference: true, groups: [] };
   await f.tool('edit_groups').execute({ groups: [group] }, signal);
   assert.deepEqual((await f.json('groups.json')).groups, [group]);
   await validateRasterStructure(f.input);
   const before = await f.snapshot();
-  for (const field of ['hiddenInReference', 'allowOutsideParent']) {
+  for (const field of ['hiddenInReference']) {
     await assert.rejects(f.tool('edit_groups').execute({ groups: [{ ...group, [field]: 'true' }] }, signal), /must be a boolean/);
     assert.deepEqual(await f.snapshot(), before);
   }

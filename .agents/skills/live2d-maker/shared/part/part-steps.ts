@@ -79,7 +79,7 @@ export async function readGroupTree(directory: string, seed: GroupSeed, saved: M
     groups = await Promise.all((await readChildren(directory, id)).groups.map(child => readGroupTree(directory, child, saved, layers)));
     if (steps.completion) steps.children = { status: 'completed', output: { ids: groups.map(child => (child as GroupSeed).id) } };
   }
-  const edited = kept ? Object.fromEntries((['name', 'note', 'metadata', 'allowOutsideParent', 'hiddenInReference'] as const).filter(key => key in kept).map(key => [key, kept[key]])) : {};
+  const { id: _id, kind: _kind, ...edited } = kept ?? {};
   return { ...seed, ...edited, groups, steps };
 }
 

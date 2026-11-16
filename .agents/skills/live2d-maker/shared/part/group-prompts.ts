@@ -4,7 +4,7 @@ import type { PartProfile } from './profile.ts';
 
 // Prior knowledge of each part stage: knowledge/<section>/<step>/.
 const knowledgeSteps = { initial: 'step08_initial', outline: 'step09_outline', reduction: 'step10_reduce',
-  completion: 'step11_completion', children: 'step12_children', occlusion: 'step14_occlusion' } as const;
+  completion: 'step11_completion', completion_boundary_review: 'step11_completion/boundary-review', children: 'step12_children', occlusion: 'step14_occlusion' } as const;
 export type PartStage = keyof typeof knowledgeSteps;
 export function partKnowledge(profile: Pick<PartProfile, 'id'>, stage: PartStage) {
   return stepKnowledge(profile.id, knowledgeSteps[stage]);

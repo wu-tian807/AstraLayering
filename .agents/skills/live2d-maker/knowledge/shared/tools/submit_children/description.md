@@ -1,3 +1,3 @@
 提交当前节点的全部直属子节点，程序生成完整 ID 并保存。group 还需递归，part 完成制作后终止。当前节点本身已是最终单元时 children 为空并说明依据。note 简述实体范围、可见或遮挡依据、邻接及控制关系；外观只记录参考中可确认的事实，未知颜色、纹样、比例与细节设计留给后续补全和绘制。
 
-提交 children 数组和整体 note；每项包含 snake_case name、kind（group 或 part）、具体 note。可选 allowOutsideParent=true 表示完整结构可超出直接父轮廓；hiddenInReference=true 表示确实存在且需在当前画布内制作的目标结构，因遮挡或闭合而整体不可见，直接补全。局部可见、局部遮挡或仅肤色/材质被覆盖时，省略 hiddenInReference 或填 false；例如连体服下仍可辨认形体的 torso、breast。整体位于画外且无需画内补全的部件省略；当前节点只剩一个完整制作单元时提交空 children。两者独立判断，省略均为 false；在 note 写明依据和预期遮挡关系。程序生成完整 ID，不提交完整 ID、子树、路径、进度、绘制顺序或深度。同级名称唯一，只提交直属层，一次成功提交后结束。
+提交 children 数组和整体 note；每项包含 snake_case name、kind（group 或 part）、具体 note。可选 hiddenInReference=true 表示确实存在且需在当前画布内制作的目标结构，因遮挡或闭合而整体不可见，直接补全。局部可见、局部遮挡或仅肤色/材质被覆盖时，省略 hiddenInReference 或填 false；例如连体服下仍可辨认形体的 torso、breast。整体位于画外且无需画内补全的部件省略；当前节点只剩一个完整制作单元时提交空 children。该标签省略为 false；在 note 写明依据和预期遮挡关系。程序生成完整 ID，不提交完整 ID、子树、路径、进度、绘制顺序或深度。同级名称唯一，只提交直属层，一次成功提交后结束。

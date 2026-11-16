@@ -40,7 +40,6 @@ export type GroupSeed = {
   name?: string;
   note?: string;
   metadata?: Record<string, unknown>;
-  allowOutsideParent?: boolean;
   hiddenInReference?: boolean;
 };
 export type GroupInput = GroupSeed & { groups?: GroupInput[]; steps?: Partial<GroupProgress> };

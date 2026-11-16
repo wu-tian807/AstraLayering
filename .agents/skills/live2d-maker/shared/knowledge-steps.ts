@@ -14,6 +14,7 @@ const part = (section: string): KnowledgeStep[] => [
   { section, step: 'step09_outline', required: ['write_outline_svg'], review: { required: ['submit_review'] } },
   { section, step: 'step10_reduce', required: ['list_reduction_groups', 'write_reduction_svg', 'submit_reduction'] },
   { section, step: 'step11_completion', required: ['set_completion_paths', 'submit_completion'] },
+  { section, step: 'step11_completion/boundary-review', required: ['submit_completion_boundary_review'] },
   { section, step: 'step12_children', required: ['submit_children'] },
   { section, step: 'step14_occlusion', required: ['submit_occlusion'] },
 ];

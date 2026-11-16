@@ -71,7 +71,7 @@ export function createLayeringSteps(agents: Pick<AgentDispatcher, 'run'> & Parti
     },
     reduceOutlines: async context => ({ status: 'completed', output: await reduceGroupOutlines(context, agents) }),
     completeOcclusion: async context => {
-      try { return { status: 'completed', output: await completeGroupOcclusion(context, await stepSession(context, 'completion')) }; }
+      try { return { status: 'completed', output: await completeGroupOcclusion(context, await stepSession(context, 'completion'), agents) }; }
       catch (error) { throw error; }
       finally { await closeSession(context, 'completion'); }
     },

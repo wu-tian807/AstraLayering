@@ -8,45 +8,56 @@ import { checkGroupCompletion } from '../../shared/part/completion-agent.ts';
 import { artifactPath, reportPath } from '../../shared/part/artifact-facts.ts';
 import { GroupStore, nodeSeed, normalizeGroups, walkGroups, writeAtomic } from '../../shared/part/groups.ts';
 import { runLayering } from '../../shared/part/layering.ts';
-import { parentBoundsSource, validateGroupSvg } from '../../shared/part/svg-tools.ts';
+import { validateGroupSvg } from '../../shared/part/svg-tools.ts';
 import { groupStep } from '../../shared/part/part-steps.ts';
 import { beginStep, readStep } from '../../shared/step-chain.ts';
 import { fixture, seedInitialGroups, shape, workingSteps } from './layering-fixture.ts';
 
-test('两个标签独立且可选，省略保持旧格式，true/false 原样保留，错误类型返回具体字段', () => {
+test('hidden 标签可选，类型验证保留；历史未知字段不参与语义', () => {
   const ordinary = nodeSeed(normalizeGroups([{ id: 'face' }])[0]);
   assert.equal('hiddenInReference' in ordinary, false);
-  assert.equal('allowOutsideParent' in ordinary, false);
   const result = decodeChildren('face', { children: [
-    { name: 'iris', kind: 'part', note: '闭眼内侧，配合眼睑开口蒙版', hiddenInReference: true, allowOutsideParent: true },
+    { name: 'iris', kind: 'part', note: '闭眼内侧', hiddenInReference: true },
     { name: 'eyelid', kind: 'part', note: '可见闭合眼睑', hiddenInReference: false },
   ], note: '按显隐职责拆分' });
-  assert.deepEqual(result.groups.map(({ hiddenInReference, allowOutsideParent }) => [hiddenInReference, allowOutsideParent]), [[true, true], [false, undefined]]);
-  for (const field of ['hiddenInReference', 'allowOutsideParent']) {
-    for (const value of ['true', 1, null]) {
-      assert.throws(() => decodeChildren('face', { children: [
-        { name: 'iris', kind: 'part', note: 'test', [field]: value },
-        { name: 'eyelid', kind: 'part', note: 'test' },
-      ], note: 'test' }), new RegExp(`group.${field} must be a boolean`));
-    }
-  }
+  assert.deepEqual(result.groups.map(g => g.hiddenInReference), [true, false]);
+  for (const value of ['true', 1, null]) assert.throws(() => decodeChildren('face', { children: [
+    { name: 'iris', kind: 'part', note: 'test', hiddenInReference: value },
+    { name: 'eyelid', kind: 'part', note: 'test' },
+  ], note: 'test' }), /hiddenInReference must be a boolean/);
+  const legacy = { id: 'face/iris', allowOutsideParent: 'obsolete unvalidated metadata' };
+  const saved = normalizeGroups([legacy])[0];
+  assert.equal((saved as unknown as Record<string, unknown>).allowOutsideParent, legacy.allowOutsideParent);
+  assert.equal('allowOutsideParent' in nodeSeed(saved), false);
 });
 
-test('越出父轮廓标签仅豁免父包含检查，格式、画布、归属和非空检查继续执行', async t => {
+test('历史字段在续跑和保存中原样保留，但不进入 agent 输入', async t => {
+  const f = await fixture(t);
+  await seedInitialGroups(f.directory, [{ id: 'face', kind: 'part' }]);
+  await writeAtomic(join(f.directory, 'groups.json'), JSON.stringify({ groups: [{ id: 'face', kind: 'part',
+    allowOutsideParent: 'legacy value', customHistorical: { kept: true } }] }));
+  const store = await GroupStore.open(f.directory);
+  const node = store.snapshot().groups[0];
+  assert.equal((node as unknown as Record<string, unknown>).allowOutsideParent, 'legacy value');
+  assert.equal('allowOutsideParent' in nodeSeed(node), false);
+  assert.equal('customHistorical' in nodeSeed(node), false);
+  await store.update(document => { document.groups[0].note = 'edited'; });
+  const saved = JSON.parse(await readFile(join(f.directory, 'groups.json'), 'utf8')).groups[0];
+  assert.equal(saved.allowOutsideParent, 'legacy value');
+  assert.deepEqual(saved.customHistorical, { kept: true });
+  assert.equal(saved.note, 'edited');
+});
+
+test('描边父边界始终生效，格式、画布、归属和非空检查保留', async t => {
   const f = await fixture(t), parent = join(f.directory, 'parent.svg'), child = join(f.directory, 'child.svg');
-  const canvas = { width: 100, height: 100 }, ordinary = { id: 'face/iris' }, allowed = { ...ordinary, allowOutsideParent: true };
-  await writeAtomic(parent, shape('face', 40, 60));
-  await writeAtomic(child, shape(ordinary.id));
-  await assert.rejects(validateGroupSvg(child, ordinary.id, canvas, parentBoundsSource(ordinary, parent)), /超出父轮廓/);
-  await validateGroupSvg(child, ordinary.id, canvas, parentBoundsSource(allowed, parent));
+  const canvas = { width: 100, height: 100 }, id = 'face/iris';
+  await writeAtomic(parent, shape('face', 40, 60)); await writeAtomic(child, shape(id));
+  await assert.rejects(validateGroupSvg(child, id, canvas, parent), /超出父轮廓/);
   for (const [content, error] of [
-    [shape('other'), /仅绑定当前组/], [shape(ordinary.id, 10, 90, true), /没有可见/],
-    [shape(ordinary.id).replace('0 0 100 100', '0 0 50 50'), /viewBox/],
-    [shape(ordinary.id).replace('</g>', '<image href="reference.png"/></g>'), /可编辑矢量/],
-  ] as const) {
-    await writeAtomic(child, content);
-    await assert.rejects(validateGroupSvg(child, ordinary.id, canvas, parentBoundsSource(allowed, parent)), error);
-  }
+    [shape('other'), /仅绑定当前组/], [shape(id, 10, 90, true), /没有可见/],
+    [shape(id).replace('0 0 100 100', '0 0 50 50'), /viewBox/],
+    [shape(id).replace('</g>', '<image href="reference.png"/></g>'), /可编辑矢量/],
+  ] as const) { await writeAtomic(child, content); await assert.rejects(validateGroupSvg(child, id, canvas, parent), error); }
 });
 
 test('不可见子部件跳过描边、review 和同层去重，仍补出非空 SVG；结构及续跑事实保持完整', async t => {
@@ -54,8 +65,8 @@ test('不可见子部件跳过描边、review 和同层去重，仍补出非空 
   const iris = 'face/iris', mouth = 'face/mouth_inside';
   const steps = workingSteps(events, [{ id: 'face' }], { face: [
     { id: 'face/eyelid', kind: 'part' },
-    { id: iris, kind: 'part', hiddenInReference: true, allowOutsideParent: true },
-    { id: mouth, kind: 'part', hiddenInReference: true, allowOutsideParent: true },
+    { id: iris, kind: 'part', hiddenInReference: true },
+    { id: mouth, kind: 'part', hiddenInReference: true },
     { id: 'face/nose', kind: 'part' },
   ] });
   const reduced: string[][] = [];
@@ -89,7 +100,6 @@ test('不可见子部件跳过描边、review 和同层去重，仍补出非空 
   const restored = walkGroups((await GroupStore.open(f.directory)).snapshot().groups);
   const hidden = restored.find(entry => entry.group.id === iris)!.group;
   assert.equal(hidden.hiddenInReference, true);
-  assert.equal(hidden.allowOutsideParent, true);
   assert.equal(hidden.steps.completionCheck.status, 'completed');
   assert.equal(hidden.steps.review.output?.reviewOutcome, undefined);
   assert.match(hidden.steps.review.output?.note ?? '', /跳过/);
