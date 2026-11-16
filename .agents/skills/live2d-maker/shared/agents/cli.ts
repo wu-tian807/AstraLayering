@@ -286,7 +286,7 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
       return { text, images: [], threadId, logDirectory: log.directory };
     } finally { signal.removeEventListener('abort', abort); abort(); await close; if (killTimer) clearTimeout(killTimer); await nativeLog?.close(); }
   } catch (error) {
-    const reported = error instanceof AgentCallError ? error : new AgentCallError(errorMessage(error, String(error)), undefined, { cause: error });
+    const reported = error instanceof AgentCallError ? error : new AgentCallError(errorMessage(error, String(error)), 'localError', { cause: error });
     reported.details ??= errorDetails(error);
     await log.finish({ status: 'failed', threadId: threadId || null, finalResponse: text, error: reported.message,
       errorDetails: reported.details, stderr, processExitCode, cliStatus: final?.status });

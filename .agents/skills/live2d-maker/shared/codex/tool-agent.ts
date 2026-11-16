@@ -107,7 +107,10 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
     current?.completion.reject(error);
   };
   const checkFailure = () => { if (failure) throw failure.error; };
-  const emit = async (event: Parameters<NonNullable<AgentOptions['onEvent']>>[0]) => { await options.onEvent?.(event); };
+  const emit = async (event: Parameters<NonNullable<AgentOptions['onEvent']>>[0]) => {
+    try { await options.onEvent?.(event); }
+    catch (error) { throw new AgentCallError(errorMessage(error, String(error)), 'localError', { cause: error }); }
+  };
   const failTurn = (error: unknown) => {
     for (const waiter of pending.values()) waiter.reject(error);
     pending.clear();

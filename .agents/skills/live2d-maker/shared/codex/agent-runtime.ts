@@ -38,9 +38,6 @@ export function blockedAgentError(error: unknown): boolean {
 // Structured codes that no reconnect fixes: quota, auth, a bad request, policy or a local sandbox failure.
 const fatalCodes = new Set(['usageLimitExceeded', 'sessionBudgetExceeded', 'unauthorized', 'badRequest', 'invalidPrompt', 'cyberPolicy',
   'bioPolicy', 'misalignmentPolicyViolation', 'tooManyDenials', 'sandboxError', 'threadRollbackFailed', 'activeTurnNotSteerable']);
-// Codex files most local and invalid-request failures (spawn, tool collision, bad image, IO) under "other" too; only
-// its stream and timeout failures there are the channel's, and they keep Codex's fixed texts.
-const otherChannelText = /stream disconnected|request timed out|timed? ?out|connection (?:reset|closed|refused|error)/i;
 // Claude result subtypes for limits this call set itself (turns, budget, structured output retries).
 const fatalCliSubtype = /^error_max_/;
 // Gemini throttles with "Resource has been exhausted (e.g. check quota)" or a per-minute "Quota exceeded … retry in";
@@ -79,18 +76,36 @@ export function recoverableAgentError(error: unknown): RecoverableAgentError | u
   return undefined;
 }
 
-// Unknown channel failures wait and retry. Local errors (no channel code) and known errors without a remedy fail at once;
-// known errors with a remedy are left to recoverableAgentError.
+// Look only at terminal details, never older transient notifications from the same turn.
+function explicitFatalDetails(details: unknown): boolean {
+  const seen = new Set<unknown>();
+  const inspect = (value: unknown): boolean => {
+    if (!value || typeof value !== 'object' || seen.has(value)) return false;
+    seen.add(value);
+    if (Array.isArray(value)) return value.some(inspect);
+    const data = value as Record<string, unknown>;
+    if (data.type === 'invalid_request_error') return true;
+    for (const key of ['status', 'statusCode', 'httpStatusCode']) {
+      const status = data[key];
+      if (typeof status === 'number' && status >= 400 && status < 500 && ![408, 409, 429].includes(status)) return true;
+    }
+    return ['error', 'errors', 'data', 'cause'].some(key => inspect(data[key]));
+  };
+  const record = details && typeof details === 'object' ? details as Record<string, unknown> : undefined;
+  return inspect(record && 'notifications' in record ? record.terminal : details);
+}
+
+// Unknown agent errors use bounded backoff; known local and fatal errors fail at once.
+// Known errors with a remedy are left to recoverableAgentError.
 export function retryableAgentError(error: unknown): boolean {
   if (!(error instanceof AgentCallError) || recoverableAgentError(error)) return false;
   const info = error.info;
   const code = errorCode(info);
-  if (!code || code === 'localError' || fatalCodes.has(code)) return false;
-  if (code === 'other' && !otherChannelText.test(error.message)) return false;
+  if (code === 'localError' || (code && fatalCodes.has(code))) return false;
   if (code === 'cliFailed' && fatalCliSubtype.test((info as { cliFailed: { subtype?: string } }).cliFailed?.subtype ?? '')) return false;
   // 文本只能否决重试：结构化 429 也可能是额度耗尽，重试要等很久。
-  if (fatalText.test(error.message)) return false;
-  const status = httpStatus(info, code);
+  if (fatalText.test(error.message) || explicitFatalDetails(error.details)) return false;
+  const status = code ? httpStatus(info, code) : undefined;
   // 400/401/403 等 4xx 不是重连能解决的；408、409、429、5xx 和没有 HTTP 状态的失败都重试。
   return typeof status !== 'number' || status < 400 || status > 499 || status === 408 || status === 409 || status === 429;
 }

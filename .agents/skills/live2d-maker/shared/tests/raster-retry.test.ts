@@ -35,6 +35,17 @@ test('raster 等待 CLI 终态后在原 thread 继续并记录退避', async t =
   assert.ok(events.includes('thread.started'));
 });
 
+test('opaque Bad Request retries on the same thread after a disconnect', async t => {
+  const f = await fixture(t, { failedTurns: 1, nativeReconnect: true, errorInfo: 'other', errorMessage: '{"detail":"Bad Request"}' });
+  const waits: number[] = [];
+  const result = await runAgent(f.request(), new AgentRuntime(1, async ms => { waits.push(ms); }, () => 1));
+  assert.equal(result.status, 'completed');
+  assert.deepEqual(waits, [5_000]);
+  const protocol = await f.protocol();
+  assert.equal(protocol.filter(message => message.method === 'thread/start').length, 1);
+  assert.equal(protocol.filter(message => message.method === 'turn/start').length, 2);
+});
+
 test('dynamic Codex authentication does not restart the process during one retried turn', async t => {
   const f = await fixture(t, { failedTurns: 1, nativeReconnect: true });
   const native = join(f.directory, 'native'); await mkdir(native);
@@ -56,9 +67,9 @@ test('额度、输入图数和上下文上限不会被结构化 429 误判为临
 
 test('AGV response-header timeouts retry in the same runtime; a recovered response ends retries', async () => {
   const timeout = 'API error (attempt 1): request failed: net/http: timeout awaiting response headers';
-  // The AGV CLI tags the timeout at its source; the same text without that code is not retried.
+  // Untyped agent failures also retry; unwrapped local errors remain outside the agent retry policy.
   assert.equal(retryableAgentError(new AgentCallError(timeout, 'transportTimeout')), true);
-  assert.equal(retryableAgentError(new AgentCallError(timeout)), false);
+  assert.equal(retryableAgentError(new AgentCallError(timeout)), true);
   assert.equal(retryableAgentError(new Error(timeout)), false);
   assert.equal(retryableAgentError(new AgentCallError('authentication failed; ' + timeout, 'transportTimeout')), false);
   const waits: number[] = [], errors: string[] = [];
