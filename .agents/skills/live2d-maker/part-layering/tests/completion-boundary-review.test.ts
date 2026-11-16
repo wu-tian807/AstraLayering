@@ -53,6 +53,21 @@ for (const section of ['character', 'clothing'] as const) {
     } });
   });
 
+  test(`${section}: edits after submission must be observed and reviewed again before publication`, async t => {
+    const c = await context(t); let turns = 0, reviews = 0;
+    const result = await completeGroupOcclusion(c, { async run(task) {
+      turns++;
+      if (turns === 1) await tool(task, 'set_completion_paths').execute({ paths: additions }, signal);
+      await view(task, c.outputPath); await submit(task, 'Hidden continuous structure.');
+      if (turns === 1) {
+        const bytes = await readFile(c.outputPath, 'utf8');
+        await writeFile(c.outputPath, bytes.replace('M5 40H25V60H5Z', 'M4 40H25V60H4Z'));
+      }
+      return { text: '', images: [] };
+    } }, { async run(task) { reviews++; await review(task); return { text: '', images: [] }; } });
+    assert.equal(result.path, c.outputPath); assert.equal(turns, 2); assert.equal(reviews, 2);
+  });
+
   test(`${section}: in-parent submission does not invoke the reviewer`, async t => {
     const c = await context(t); let reviews = 0;
     await completeGroupOcclusion(c, { async run(task) { await view(task, c.outputPath); await submit(task, 'unneeded request'); return { text: '', images: [] }; } },

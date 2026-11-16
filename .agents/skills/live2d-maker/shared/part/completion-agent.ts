@@ -35,6 +35,7 @@ export async function completeGroupOcclusion(context: DrawingContext & { reviewe
   const dependencies = [await fileDependency(root, reference)];
   const observations: SvgObservation[] = [];
   let submitted: SvgArtifact | undefined;
+  let submittedBytes: Buffer | undefined;
   let submitting = false;
   // A continued step keeps the additions drawn so far when they still sit on the
   // unchanged source; otherwise the draft starts as the source itself.
@@ -113,6 +114,7 @@ export async function completeGroupOcclusion(context: DrawingContext & { reviewe
           }
         }
         submitted = { path: draft, note: raw.note };
+        submittedBytes = bytes;
         return textResult({ ...submitted, path: await task(draft) });
       } finally { submitting = false; }
     },
@@ -123,9 +125,14 @@ export async function completeGroupOcclusion(context: DrawingContext & { reviewe
         createBitmapTool(context.directory, join(context.directory, 'observations', 'completion', context.group.id, 'bitmaps'))]), prompt: knowledge.render('main', {
         ...groupValues(context.group.id, canvas),
       }, { taskRoot: root, group: context.group.id }) },
-    // Everything about the draft was checked by submit_completion; later edits are blocked by the tools.
-    check: () => {
+    // Shell-capable drawing agents must not change the approved candidate after submission.
+    check: async () => {
       if (!submitted) throw missingSubmit('submit_completion', '补全未通过 submit_completion 提交');
+      await verifySource();
+      if (!(await readFile(draft)).equals(submittedBytes!)) {
+        submitted = undefined; submittedBytes = undefined; observations.length = 0;
+        throw missingSubmit('submit_completion', '已提交的补全草稿发生变化，请查看当前稿后重新提交');
+      }
       return { ...submitted, dependencies };
     } });
 }
