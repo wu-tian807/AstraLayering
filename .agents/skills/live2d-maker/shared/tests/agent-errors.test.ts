@@ -56,7 +56,7 @@ const emit=value=>console.log(JSON.stringify(value));
 for await (const line of createInterface({input:process.stdin})) {
  const message=JSON.parse(line);
  if(message.method==='initialize')emit({id:message.id,result:{}});
- if(message.method==='thread/start')emit({id:message.id,result:{thread:{id:'app-server-thread'}}});
+ if(message.method==='thread/start'||message.method==='thread/resume')emit({id:message.id,result:{thread:{id:'app-server-thread',turns:[]}}});
  if(message.method==='turn/start') {
   if(mode==='rpc'){emit({id:message.id,error:{code:-32603,message:'RPC failed',data:{error:payload}}});continue;}
   emit({id:message.id,result:{turn:{id:'turn'}}});
@@ -102,7 +102,7 @@ for (const mode of ['rpc', 'turn', 'eof', 'recovered']) test(`Codex App Server $
   }
   const f = await fixture(t);
   const executable = await errorServer(f.root, mode);
-  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: executable, cwd: f.cwd, logDirectory: f.logDirectory });
+  const agents = new CodexAgents({ environment: loadWorkflowEnvironment({}, f.root), codexPathOverride: executable, cwd: f.cwd, logDirectory: f.logDirectory, runtime: new AgentRuntime(1, async () => {}) });
   const session = agents.createSession();
   try {
     if (mode === 'recovered') {
@@ -191,7 +191,7 @@ test('known errors with a remedy are recovered at once without the retry budget;
   for (const kind of ['contextWindowExceeded', { apiError: { httpStatusCode: 413 } }])
     assert.equal(retryableAgentError(new AgentCallError('x', kind)), false);
   // Local failures have nothing to do with the channel.
-  assert.equal(retryableAgentError(new AgentCallError('App Server RPC 调用失败')), false);
+  assert.equal(retryableAgentError(new AgentCallError('local filesystem failure', 'localError')), false);
   assert.equal(retryableAgentError(new AgentCallError('invalid api key · please run /login', { cliFailed: {} })), false);
   // A failed turn without a code came from the channel; Gemini's throttle mentions quota but waits.
   assert.equal(retryableAgentError(new AgentCallError('回合状态：failed', 'turnFailed')), true);
@@ -215,6 +215,35 @@ test('known errors with a remedy are recovered at once without the retry budget;
   await assert.rejects(runtime.run(async () => { throw new AgentCallError('x', 'contextWindowExceeded'); },
     { recover: async () => false }), /x/);
   assert.equal(waits.length, 1);
+});
+
+test('unknown agent failures use bounded backoff while explicit fatal errors fail', async () => {
+  const disconnected = { willRetry: true, error: { codexErrorInfo: { responseStreamDisconnected: { httpStatusCode: null } } } };
+  const failure = (message = '{"detail":"Bad Request"}', info: unknown = 'other', notifications: unknown[] = [disconnected]) => {
+    const error = new AgentCallError(message, info);
+    error.details = { terminal: { message }, notifications };
+    return error;
+  };
+  const waits: number[] = [], attempts: number[] = [];
+  const runtime = new AgentRuntime(1, async ms => { waits.push(ms); }, () => 0);
+  assert.equal(await runtime.run(async attempt => {
+    attempts.push(attempt);
+    if (attempt < 3) throw failure();
+    return 'resumed';
+  }), 'resumed');
+  assert.deepEqual(attempts, [1, 2, 3]);
+  assert.deepEqual(waits, [2_500, 5_000]);
+  let count = 0; const bounded: number[] = [];
+  await assert.rejects(new AgentRuntime(1, async ms => { bounded.push(ms); }, () => 0).run(async () => { count++; throw failure(); }), /Bad Request/);
+  assert.equal(count, 11); assert.equal(bounded.length, 10); assert.equal(bounded.at(-1), 60_000);
+  assert.equal(retryableAgentError(failure('{"detail":"Bad Request"}', 'other', [])), true);
+  assert.equal(retryableAgentError(new AgentCallError('unclassified failure')), true);
+  assert.equal(retryableAgentError(failure('invalid request: bad input')), false);
+  const explicit = failure(); explicit.details = { terminal: { error: { type: 'invalid_request_error', status: 400 } }, notifications: [disconnected] };
+  assert.equal(retryableAgentError(explicit), false);
+  const oldFatal = failure(); oldFatal.details = { terminal: { message: 'unknown' }, notifications: [{ error: { status: 400 } }] };
+  assert.equal(retryableAgentError(oldFatal), true);
+  assert.equal(retryableAgentError(failure('{"detail":"Bad Request"}', 'badRequest')), false);
 });
 
 // An app server whose first thread meets a content filter mid-turn (willRetry) and still completes; threads

@@ -5,7 +5,7 @@ import { fakeDebug } from '../../shared/tests/fake-codex.ts';
 export type FakeToolCall = { tool: string; arguments: unknown; threadId?: string; namespace?: string | null };
 
 export async function fakeAppServer(directory: string, calls: FakeToolCall[], mode = 'completed', completedItems: unknown[] = [],
-  behavior: { failedTurns?: number; blockedTurns?: number; errorInfo?: unknown; nativeReconnect?: boolean; skipCallsAfterFailure?: boolean; finalText?: string } = {}) {
+  behavior: { failedTurns?: number; blockedTurns?: number; errorInfo?: unknown; errorMessage?: string; nativeReconnect?: boolean; skipCallsAfterFailure?: boolean; finalText?: string } = {}) {
   const executable = join(directory, 'fake-app-server.mjs');
   const capture = join(directory, 'protocol.jsonl'), argv = join(directory, 'argv.json');
   await writeFile(executable, `#!${process.execPath}
@@ -49,7 +49,7 @@ async function advance() {
     const blocked = turns === 1 && threads > 0 && threads <= (behavior.blockedTurns ?? 0);
     const failed = blocked || mode === 'failed' || turns <= (behavior.failedTurns ?? 0);
     const error = blocked ? {message:'Image processing blocked due to content policy violation.',codexErrorInfo:'other'}
-      : mode === 'failed' ? {message:'测试回合失败',codexErrorInfo:'badRequest'} : {message:'Selected model is at capacity. Please try a different model.',codexErrorInfo:behavior.errorInfo ?? 'serverOverloaded'};
+      : mode === 'failed' ? {message:'测试回合失败',codexErrorInfo:'badRequest'} : {message:behavior.errorMessage ?? 'Selected model is at capacity. Please try a different model.',codexErrorInfo:behavior.errorInfo ?? 'serverOverloaded'};
     if (!blocked) await record([{ type: 'message', role: 'assistant', content: [{ type: 'output_text', text: finalText }] }]);
     if (failed) write({method:'error',params:{threadId,turnId:'native-turn',error,willRetry:false}});
     write({ method: 'turn/completed', params: { threadId, turn: {
