@@ -7,7 +7,7 @@ import { normalizeGroups } from '../part/groups.ts';
 import { createSvgPreviewTool, type SvgObservation } from '../part/svg-tools.ts';
 import { reviewGroupOutline } from '../part/outline-agent.ts';
 import { runAgent } from '../raster/agent.ts';
-import { AgentRuntime } from '../codex/agent-runtime.ts';
+import { AgentRuntime } from '../agents/runtime.ts';
 import { profile as character } from '../../part-layering/profile.ts';
 import { profile as clothing } from '../../clothing-part-layering/profile.ts';
 import { fixture, shape } from '../../part-layering/tests/layering-fixture.ts';

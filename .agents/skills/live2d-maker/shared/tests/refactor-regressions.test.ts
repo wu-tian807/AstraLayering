@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { sectionDirectory, sectionIds } from '../paths.ts';
-import { AgentCallError, AgentRuntime, rateLimitedAgentError, retryableAgentError, type AgentRetry } from '../codex/agent-runtime.ts';
+import { AgentCallError, AgentRuntime, rateLimitedAgentError, retryableAgentError, type AgentRetry } from '../agents/runtime.ts';
 import { AgentLog, retryWaitFile } from '../codex/agent-log.ts';
 import { recognizeInitialGroups } from '../part/initial-groups.ts';
 import { runWorkflow as runRaster } from '../../raster-layering/run.ts';

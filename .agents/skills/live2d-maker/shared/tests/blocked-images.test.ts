@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { AgentCallError, blockedAgentError, retryableAgentError } from '../codex/agent-runtime.ts';
+import { AgentCallError, blockedAgentError, retryableAgentError } from '../agents/runtime.ts';
 import { replaceBlockedImages } from '../codex/blocked-images.ts';
 
 const line = (type: string, payload: unknown) => JSON.stringify({ type, payload });

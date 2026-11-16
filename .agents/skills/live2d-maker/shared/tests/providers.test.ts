@@ -11,7 +11,7 @@ import { parseProviderModels, validateProviderModel } from '../agents/providers.
 import { parseAgentModel, type Harness } from '../agents/models.ts';
 import { preflightAgentSteps } from '../agents/preflight.ts';
 import { runCliTask } from '../agents/cli.ts';
-import { CodexAgents } from '../codex/agents.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { createFunctionToolSession } from '../codex/tool-agent.ts';
 import { runAgent } from '../raster/agent.ts';
 
@@ -159,7 +159,7 @@ test('only selected steps are validated, and all validation finishes before any 
   // First step passes its model list; second fails before probing the first CLI.
   await assert.rejects(preflightAgentSteps(denied, ['part_outline', 'part_outline_review']), /不在 claude_models/);
   const task = { name: 'denied', prompt: 'fixture', cwd: root };
-  const agents = new CodexAgents({ environment: settings, cwd: root });
+  const agents = new AgentDispatcher({ environment: settings, cwd: root });
   await assert.rejects(agents.run(task), /不在 codex_models/);
   const session = agents.createSession();
   try { await assert.rejects(session.run(task), /不在 codex_models/); } finally { await session.close(); }

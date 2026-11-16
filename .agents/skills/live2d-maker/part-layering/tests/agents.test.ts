@@ -5,9 +5,9 @@ import { mkdtemp, readFile, readdir, realpath, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test, type TestContext } from 'node:test';
-import { CodexAgents } from '../../shared/codex/agents.ts';
+import { AgentDispatcher } from '../../shared/agents/dispatcher.ts';
 import { workflowLogPath } from '../../shared/codex/agent-log.ts';
-import { AgentCallError, AgentRuntime } from '../../shared/codex/agent-runtime.ts';
+import { AgentCallError, AgentRuntime } from '../../shared/agents/runtime.ts';
 import { fakeAppServer } from './fake-app-server.ts';
 import { nodeExecutables } from './node-executables.ts';
 
@@ -21,7 +21,7 @@ async function fixture(t: TestContext, ...server: Parameters<typeof fakeAppServe
   const { executable, capture } = await fakeAppServer(directory, ...server);
   const logDirectory = join(directory, `${section}/agents`);
   const messages: string[] = [];
-  const agents = new CodexAgents({ codexPathOverride: executable, cwd: directory, logDirectory,
+  const agents = new AgentDispatcher({ codexPathOverride: executable, cwd: directory, logDirectory,
     runtime: new AgentRuntime(3, async () => {}), progress: message => messages.push(message) });
   const protocol = async () => (await readFile(capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
   return { agents, directory, logDirectory, messages, protocol };

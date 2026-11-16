@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
 import { test, type TestContext } from 'node:test';
 import sharp from 'sharp';
-import type { AgentResult, AgentTask, CodexAgents } from '../../shared/codex/agents.ts';
+import type { AgentResult, AgentTask, AgentDispatcher } from '../../shared/agents/dispatcher.ts';
 import type { FunctionTool } from '../../shared/codex/function-tools.ts';
 import type { Harness } from '../../shared/agents/models.ts';
 import { clearStepSession, readStepSession, sessionPath } from '../../shared/agents/step-session.ts';
@@ -16,7 +16,7 @@ import { createFitHead } from '../run.ts';
 
 const groups = ['left', 'up', 'down'] as const;
 type Group = typeof groups[number];
-type Callbacks = NonNullable<Parameters<CodexAgents['createSession']>[1]>;
+type Callbacks = NonNullable<Parameters<AgentDispatcher['createSession']>[1]>;
 type Capture = { resumeThreadId?: string; options: Callbacks; threadId: string; task?: AgentTask; closed: number; events: string[] };
 type Plan = { started?: boolean; harness?: Harness; result?: Partial<AgentResult>; error?: Error & { threadId?: string };
   afterStarted?: (call: Capture) => Promise<void> };

@@ -4,8 +4,8 @@ import { mkdir, mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createFunctionToolSession } from '../codex/tool-agent.ts';
-import { CodexAgents } from '../codex/agents.ts';
-import { AgentRuntime, AgentCallError, recoverableAgentError, retryableAgentError } from '../codex/agent-runtime.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
+import { AgentRuntime, AgentCallError, recoverableAgentError, retryableAgentError } from '../agents/runtime.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { nodeExecutables } from '../../part-layering/tests/node-executables.ts';
 import { fakeDebug } from './fake-codex.ts';
@@ -97,7 +97,7 @@ for await(const line of createInterface({input:process.stdin})) {
 test('Codex reloads changed native credentials on the same thread and preserves local token refresh', { timeout: 10_000 }, async t => {
   const f = await fixture(t, 'auth-file'), native = join(f.root, 'native');
   await mkdir(native); await writeFile(join(native, 'auth.json'), 'first-login');
-  const agents = new CodexAgents({ ...f.options, env: { ...process.env, CODEX_HOME: native } });
+  const agents = new AgentDispatcher({ ...f.options, env: { ...process.env, CODEX_HOME: native } });
   const session = agents.createSession(), task = { name: 'credential', prompt: 'continue', outputSchema: schema };
   try {
     const first = await session.run(task);
@@ -122,7 +122,7 @@ test('Codex reruns a dynamic auth command for the next turn of the same thread',
   await mkdir(native); await writeFile(value, 'first-key');
   await writeFile(helper, `#!${process.execPath}\nimport {readFileSync} from 'node:fs';\nprocess.stdout.write(readFileSync(process.env.TEST_AUTH_VALUE,'utf8'));\n`, { mode: 0o700 });
   await writeFile(join(native, 'config.toml'), `model_provider = "fixture"\n[model_providers.fixture]\nname = "Fixture"\nbase_url = "https://fixture.invalid/v1"\n[model_providers.fixture.auth]\ncommand = ${JSON.stringify(helper)}\n`);
-  const agents = new CodexAgents({ ...f.options, env: { ...process.env, CODEX_HOME: native, TEST_AUTH_HELPER: helper, TEST_AUTH_VALUE: value } });
+  const agents = new AgentDispatcher({ ...f.options, env: { ...process.env, CODEX_HOME: native, TEST_AUTH_HELPER: helper, TEST_AUTH_VALUE: value } });
   const session = agents.createSession(), task = { name: 'dynamic-auth', prompt: 'continue', outputSchema: schema };
   try {
     const first = await session.run(task);
@@ -161,7 +161,7 @@ for (const mode of ['active', 'race']) test('resume: interrupts and waits for th
 
 test('a repeated conflict replaces the session once without backoff or deleting artifacts', { timeout: 10_000 }, async t => {
   const f = await fixture(t, 'repeat'), replacements: string[] = [], waits: number[] = [];
-  const agents = new CodexAgents({ ...f.options, onThreadReplacement: async id => { replacements.push(id); },
+  const agents = new AgentDispatcher({ ...f.options, onThreadReplacement: async id => { replacements.push(id); },
     runtime: new AgentRuntime(1, async delay => { waits.push(delay); }) });
   const session = agents.createSession('old-thread');
   await writeFile(join(f.root, 'keep.png'), 'saved image');
@@ -182,7 +182,7 @@ test('a new session over its context window fails unless it did work first, up t
   // Sessions that always work and then overflow stop at the retry limit.
   for (const [mode, starts, replaced] of [['overflow', 2, 1], ['overflow-work', 3, 2], ['overflow-always', 11, 10]] as const) {
     const f = await fixture(t, mode), replacements: string[] = [];
-    const agents = new CodexAgents({ ...f.options, onThreadReplacement: async id => { replacements.push(id); },
+    const agents = new AgentDispatcher({ ...f.options, onThreadReplacement: async id => { replacements.push(id); },
       runtime: new AgentRuntime(1, async () => assert.fail('a known error must not wait')) });
     const session = agents.createSession('old-thread');
     try {

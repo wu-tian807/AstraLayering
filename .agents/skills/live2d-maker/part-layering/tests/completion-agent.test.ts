@@ -4,7 +4,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import sharp from 'sharp';
-import type { AgentResult, AgentSession, AgentTask } from '../../shared/codex/agents.ts';
+import type { AgentResult, AgentSession, AgentTask } from '../../shared/agents/dispatcher.ts';
 import { artifactPath, publishSvg } from '../../shared/part/artifact-facts.ts';
 import { completeGroupOcclusion, checkGroupCompletion } from '../../shared/part/completion-agent.ts';
 import { assertCompletionPreserves, composeCompletion } from '../../shared/part/completion-svg.ts';

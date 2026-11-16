@@ -7,7 +7,7 @@ import { test } from 'node:test';
 import { ToolCatalog, toolsDirectory } from '../codex/tool-config.ts';
 import { profile as clothing } from '../../clothing-part-layering/profile.ts';
 const characterTools = fileURLToPath(new URL('../../part-layering/tools/', import.meta.url));
-import { CodexAgents } from '../codex/agents.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { stepKnowledge } from '../knowledge.ts';
 import { textResult } from '../codex/function-tools.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
@@ -69,7 +69,7 @@ test('本地工具定义实际注册到 App Server，续轮保留定义并使用
   await writeFile(join(dir, 'schema.json'), JSON.stringify(schema));
   const catalog = new ToolCatalog(toolsDirectory, overrides, knowledge);
   const server = await fakeAppServer(root, [{ tool: 'update_group_note', arguments: { oldText: 'before', newText: 'after' } }]);
-  const agents = new CodexAgents({ cwd: root, codexPathOverride: server.executable, logDirectory: join(root, 'logs') });
+  const agents = new AgentDispatcher({ cwd: root, codexPathOverride: server.executable, logDirectory: join(root, 'logs') });
   const session = agents.createSession(), calls: string[] = [];
   try {
     for (const phase of ['draw', 'repair']) {
@@ -95,7 +95,7 @@ test('阶段限制随工具定义注册，普通预览只注册原图参数', as
   const server = await fakeAppServer(root, []);
   const tool = createSvgPreviewTool({ directory: root, reference: join(root, 'reference.png'),
     canvas: { width: 100, height: 100 }, observationDirectory: join(root, 'observations') });
-  const agents = new CodexAgents({ cwd: root,
+  const agents = new AgentDispatcher({ cwd: root,
     codexPathOverride: server.executable, logDirectory: join(root, 'logs') });
   await agents.run({ name: 'ordinary-preview', prompt: 'fixture', tools: [tool] });
   const protocol = (await readFile(server.capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line));

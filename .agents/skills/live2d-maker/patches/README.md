@@ -41,7 +41,7 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 - **再次拒绝：** 与其他换会话错误同一条规则：被替换的必须是原会话，或已有进展（调用过工具，或 `num_turns > 1`）的新会话。替代会话没做任何事就又被拒时，停止并报告 CLI 原始错误；已有进展后才被拒，允许再次替换；一次调用最多换的会话数与网络重试上限相同（10）。
 - **适用边界：** 明确的图片内容策略拦截在 Claude／AGV CLI 路径中直接失败，不套用 Codex 专用的历史图片替换逻辑；鉴权、额度及其他明确不可重试错误也分别处理。恢复不关闭 CLI 安全检查，不自动改写请求来规避拒绝。无法恢复时，查看 `workflow.log` 中的原始原因，再核对请求或服务配置后从原入口继续。
 
-步骤会话的替换历史追加到 `session.json.history.jsonl`，已有文件保留；记录位置见 [shared · 工作区与产物](../shared/README.md#工作区与产物)。事件读取见 [shared/agents/cli.ts](../shared/agents/cli.ts)，恢复与边界见 [shared/codex/agents.ts](../shared/codex/agents.ts) 和 [agent-runtime.ts](../shared/codex/agent-runtime.ts)。[step-models.test.ts](../shared/tests/step-models.test.ts) 用模拟 CLI 覆盖首次替换、首轮再次拒绝后停止、多轮执行后再次替换和产物保留；不调用真实模型。
+步骤会话的替换历史追加到 `session.json.history.jsonl`，已有文件保留；记录位置见 [shared · 工作区与产物](../shared/README.md#工作区与产物)。事件读取见 [shared/agents/cli.ts](../shared/agents/cli.ts)，恢复与边界见 [shared/agents/dispatcher.ts](../shared/agents/dispatcher.ts) 和 [agent-runtime.ts](../shared/agents/runtime.ts)。[step-models.test.ts](../shared/tests/step-models.test.ts) 用模拟 CLI 覆盖首次替换、首轮再次拒绝后停止、多轮执行后再次替换和产物保留；不调用真实模型。
 
 ## 原生 Codex 补丁
 

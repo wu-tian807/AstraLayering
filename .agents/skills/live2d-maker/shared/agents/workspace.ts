@@ -1,6 +1,6 @@
 import { mkdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
-import type { AgentTask } from '../codex/agents.ts';
+import type { AgentTask } from './dispatcher.ts';
 import type { FunctionTool } from '../codex/function-tools.ts';
 import { runtimePrompt } from '../knowledge.ts';
 import { stageStep, type PreparationStage } from '../part/preparation-steps.ts';

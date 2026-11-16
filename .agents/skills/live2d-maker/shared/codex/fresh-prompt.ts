@@ -1,4 +1,4 @@
-import type { AgentTask } from './agents.ts';
+import type { AgentTask } from '../agents/dispatcher.ts';
 
 // What a turn sends when its thread is new. A step's own recovery text replaces the
 // prompt; a follow-up turn (e.g. a repair) keeps its prompt and gets the original

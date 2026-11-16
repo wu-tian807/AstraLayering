@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import sharp from 'sharp';
-import { CodexAgents } from '../../shared/codex/agents.ts';
+import { AgentDispatcher } from '../../shared/agents/dispatcher.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { stepKnowledge } from '../../shared/knowledge.ts';
 import { textResult } from '../../shared/codex/function-tools.ts';
@@ -102,7 +102,7 @@ try {
       [`${protocol === 'openai' ? 'openai' : 'google'}_image_api_key`]: 'image-fixture' }, directory);
     settings.codex.codexPathOverride = resolve(values.codex!);
     if (protocol === 'disabled') settings.codex.config = { ...settings.codex.config, 'features.image_generation': true };
-    const session = new CodexAgents({ environment: settings, cwd: directory, logDirectory: join(directory, 'agents') }).createSession();
+    const session = new AgentDispatcher({ environment: settings, cwd: directory, logDirectory: join(directory, 'agents') }).createSession();
     try {
       if (protocol === 'repair') {
         let painted = 0;
@@ -115,7 +115,7 @@ try {
         const repair = { ...task, step: 'raster_step01_repair' as const, tools: knowledge.tools('repair', tools) };
         const second = await session.run(repair);
         await session.close();
-        const continuation = new CodexAgents({ environment: settings, cwd: directory, logDirectory: join(directory, 'agents') }).createSession(first.threadId);
+        const continuation = new AgentDispatcher({ environment: settings, cwd: directory, logDirectory: join(directory, 'agents') }).createSession(first.threadId);
         let third;
         try { third = await continuation.run(repair); } finally { await continuation.close(); }
         assert.equal(second.threadId, first.threadId); assert.equal(third.threadId, first.threadId);
@@ -128,7 +128,7 @@ try {
         const first = await session.run(task);
         assert.ok(first.threadId);
         await session.close();
-        const continuation = new CodexAgents({ environment: settings, cwd: directory, logDirectory: join(directory, 'agents') }).createSession(first.threadId);
+        const continuation = new AgentDispatcher({ environment: settings, cwd: directory, logDirectory: join(directory, 'agents') }).createSession(first.threadId);
         let second;
         try { second = await continuation.run(task); } finally { await continuation.close(); }
         assert.equal(first.threadId, second.threadId);

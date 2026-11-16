@@ -1,4 +1,4 @@
-import type { AgentSession, CodexAgents } from '../codex/agents.ts';
+import type { AgentSession, AgentDispatcher } from '../agents/dispatcher.ts';
 import { recognizeInitialGroups } from './initial-groups.ts';
 import { drawGroupOutline, reviewGroupOutline } from './outline-agent.ts';
 import { reduceGroupOutlines } from './outline-reduce.ts';
@@ -12,7 +12,7 @@ import type { Harness } from '../agents/models.ts';
 import { groupStepId } from './part-steps.ts';
 
 // 补形与子组分析使用只读 agent，经工具提交后由程序验证并发布事实。
-export function createLayeringSteps(agents: Pick<CodexAgents, 'run'> & Partial<Pick<CodexAgents, 'createSession'>>): LayeringSteps {
+export function createLayeringSteps(agents: Pick<AgentDispatcher, 'run'> & Partial<Pick<AgentDispatcher, 'createSession'>>): LayeringSteps {
   // Request/session data is separate from artwork. Resetting a step clears
   // its saved session too; continuation retains both session and workspace.
   const sessions = new Map<string, AgentSession>();

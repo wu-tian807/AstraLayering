@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { test, type TestContext } from 'node:test';
 import sharp from 'sharp';
-import type { AgentTask } from '../../shared/codex/agents.ts';
+import type { AgentTask } from '../../shared/agents/dispatcher.ts';
 import { createPreparationSteps, getPreparationDirectory, loadPreparedReferences, prepareReferences } from '../preparation.ts';
 import { taskDirectory, sectionDirectory } from '../../shared/paths.ts';
 import { clothingPreparationStep, partSteps } from '../../shared/step-paths.js';

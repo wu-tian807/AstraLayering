@@ -7,8 +7,8 @@ import { AgvTurn } from '../agents/agv-turn.ts';
 import { runCliTask } from '../agents/cli.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { parseAgentModel } from '../agents/models.ts';
-import { CodexAgents } from '../codex/agents.ts';
-import { AgentCallError, AgentRuntime, retryableAgentError } from '../codex/agent-runtime.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
+import { AgentCallError, AgentRuntime, retryableAgentError } from '../agents/runtime.ts';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 
@@ -159,7 +159,7 @@ for (const failure of ['retry-header-timeout', 'retry-idle-timeout']) test(`${fa
   await writeFile(join(cwd, 'keep.svg'), 'existing draft');
   const settings = loadWorkflowEnvironment({ agv_path: executable }, root);
   const waits: number[] = [], ids: string[] = [], retries: string[] = [];
-  const agents = new CodexAgents({ environment: settings, selectedModel: parseAgentModel('gemini-4-argon-high', 'test'),
+  const agents = new AgentDispatcher({ environment: settings, selectedModel: parseAgentModel('gemini-4-argon-high', 'test'),
     cwd, logDirectory: join(cwd, 'agents'), runtime: new AgentRuntime(1, async ms => { waits.push(ms); }, () => 1),
     onSessionStarted: async id => { ids.push(id); }, onRetry: retry => { retries.push(String(retry.error)); },
     onThreadReplacement: async () => assert.fail('a network timeout must not replace the session') });

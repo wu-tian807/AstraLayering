@@ -15,7 +15,7 @@ import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { readStepSession, sessionPath, writeStepSession } from '../../shared/agents/step-session.ts';
 import { readStep } from '../../shared/step-chain.ts';
 import { applyStepAction, applyTaskAction, validStepId } from '../../workflow/step-actions.ts';
-import type { CodexAgents, AgentTask } from '../../shared/codex/agents.ts';
+import type { AgentDispatcher, AgentTask } from '../../shared/agents/dispatcher.ts';
 import type { FunctionTool } from '../../shared/codex/function-tools.ts';
 import { evaluatePoints, kraReferences } from '../../shared/nine-axis-model.js';
 import { createNineAxisViewTool } from '../view-tool.ts';
@@ -220,7 +220,7 @@ test('hair dispatch runs four rounds in the same thread and completes only after
   let interrupt=true;
   const agents={
     async run(){assert.fail('front uses the common persistent step session');},
-    createSession(id?:string,callbacks:NonNullable<Parameters<CodexAgents['createSession']>[1]>={}){
+    createSession(id?:string,callbacks:NonNullable<Parameters<AgentDispatcher['createSession']>[1]>={}){
       const thread=id??'hair-thread';
       return {async run(task:AgentTask){
         calls.push({thread:id,prompt:task.prompt}); await callbacks.onSessionStarted?.(thread,'codex');

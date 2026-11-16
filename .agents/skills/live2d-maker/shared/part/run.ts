@@ -2,8 +2,8 @@ import { formatAgentError } from '../codex/diagnostics.ts';
 import { readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { CodexAgents, type AgentOptions } from '../codex/agents.ts';
-import { defaultAgentConcurrency } from '../codex/agent-runtime.ts';
+import { AgentDispatcher, type AgentOptions } from '../agents/dispatcher.ts';
+import { defaultAgentConcurrency } from '../agents/runtime.ts';
 import { nodeKind, normalizeGroups, walkGroups } from './groups.ts';
 import { GroupExecutionError, runLayering } from './layering.ts';
 import { createLayeringSteps } from './layering-steps.ts';
@@ -22,7 +22,7 @@ export type PartSection = {
   profile: PartProfile; imageHelp: string; preparationHelp: string;
   getPreparationDirectory(name: string, root?: string): string;
   loadPreparedReferences(name: string, root?: string, standard?: boolean): Promise<PreparationReferences>;
-  prepare(input: PreparationInput, agents: Pick<CodexAgents, 'run'>, progress?: (message: string) => void, normalization?: ImageProcessingOptions): Promise<PreparationReferences>;
+  prepare(input: PreparationInput, agents: Pick<AgentDispatcher, 'run'>, progress?: (message: string) => void, normalization?: ImageProcessingOptions): Promise<PreparationReferences>;
 };
 export type PartInput = { reference: PreparationInput; groups: GroupInput | GroupInput[] | null; maxDepth?: number };
 // prepared() is called once the references are ready, before layering starts.
@@ -47,7 +47,7 @@ export async function runPartSection(
   if (!adapters.steps) {
     await preflightAgentSteps(environment, sectionAgentSteps(section.profile.id, input.reference.standard), normalization);
   }
-  const agents = new CodexAgents({
+  const agents = new AgentDispatcher({
     ...agentOptions, environment, imageNormalization: normalization, cwd: dirname(directory), logDirectory: agentOptions.logDirectory ?? join(dirname(directory), 'agents'),
   });
   const references = input.groups === null

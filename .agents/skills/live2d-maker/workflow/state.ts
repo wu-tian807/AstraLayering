@@ -6,7 +6,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { join } from 'node:path';
 import lockfile from 'proper-lockfile';
 import { sectionIds, resolveInput, resolveRunsDirectory, taskDirectory, type SectionId } from '../shared/paths.ts';
-import { defaultAgentConcurrency } from '../shared/codex/agent-runtime.ts';
+import { defaultAgentConcurrency } from '../shared/agents/runtime.ts';
 import { readTaskLog } from './log.ts';
 import { requireCurrentLayout } from './layout.ts';
 import { currentSession, readStepSession } from '../shared/agents/step-session.ts';

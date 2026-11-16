@@ -1,7 +1,7 @@
 import { appendFile, mkdir, mkdtemp, writeFile } from 'node:fs/promises';
 import { basename, dirname, join, resolve } from 'node:path';
 import { sectionIds } from '../paths.ts';
-import { retryDelays } from './agent-runtime.ts';
+import { retryDelays } from '../agents/runtime.ts';
 import { toTaskPath, toTaskPaths } from '../task-paths.ts';
 import type { ThreadEvent } from '@openai/codex-sdk';
 

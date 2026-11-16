@@ -2,7 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { runtimePrompt, type KnowledgeValues } from '../knowledge.ts';
 import { agentOutcomeError } from './diagnostics.ts';
-import type { AgentResult, AgentSession, AgentTask, CodexAgents } from './agents.ts';
+import type { AgentResult, AgentSession, AgentTask, AgentDispatcher } from '../agents/dispatcher.ts';
 
 // Program checks after an agent turn. A check that finds something the agent can
 // fix throws CheckFailure; the same thread then gets the problem as its next turn
@@ -34,9 +34,9 @@ export async function asCheck<T>(code: CheckCode, check: () => T | Promise<T>): 
 export const missingSubmit = (tool: string, message: string, detail = '') =>
   new CheckFailure('missing-submit', message, { tool, detail });
 
-type Runner = { run: AgentSession['run'] } & Partial<Pick<CodexAgents, 'createSession'>>;
+type Runner = { run: AgentSession['run'] } & Partial<Pick<AgentDispatcher, 'createSession'>>;
 export type CheckedTurn<T> = {
-  // A real CodexAgents opens one session for the turn and its repairs. A caller that
+  // A real AgentDispatcher opens one session for the turn and its repairs. A caller that
   // keeps its own session (saved thread) passes that session's `run` here, and every
   // repair then continues it.
   agents: Runner;

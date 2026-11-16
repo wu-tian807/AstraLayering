@@ -12,7 +12,7 @@ import { lstat, mkdir, readFile, rename, rm } from 'node:fs/promises';
 import { copyAsPng } from '../shared/png.ts';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
-import type { CodexAgents } from '../shared/codex/agents.ts';
+import type { AgentDispatcher } from '../shared/agents/dispatcher.ts';
 import type { PreparationInput, PreparationReferences as ImageReferences } from '../shared/part/preparation-types.ts';
 
 export type { PreparationInput };
@@ -38,7 +38,7 @@ async function checkImage(image: string, input: string): Promise<void> {
   }
 }
 
-export function createPreparationSteps(agents: Pick<CodexAgents, 'run'>): PreparationSteps {
+export function createPreparationSteps(agents: Pick<AgentDispatcher, 'run'>): PreparationSteps {
   return { async extract(image, baseImage, output, prompt) {
     const imagePath = await checkedTurn({ agents, task: {
       step: 'clothing_preparation', name: '纯衣服参考准备',

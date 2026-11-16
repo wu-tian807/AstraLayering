@@ -1,25 +1,25 @@
-import { checkCodexCapabilities, loadWorkflowEnvironment, workflowCodexOptions, type WorkflowEnvironment } from './environment.ts';
-import { toolDefinition } from './tool-config.ts';
+import { checkCodexCapabilities, loadWorkflowEnvironment, workflowCodexOptions, type WorkflowEnvironment } from '../codex/environment.ts';
+import { toolDefinition } from '../codex/tool-config.ts';
 import { workflowsDirectory } from '../paths.ts';
 import type { CodexOptions } from '@openai/codex-sdk';
 import { join } from 'node:path';
-import { AgentLog } from './agent-log.ts';
-import { AgentCallError, AgentRuntime, retryDelays, interruptedTaskPrompt, recoverableAgentError, retryableAgentError, type AgentRetry, type RecoverableAgentError } from './agent-runtime.ts';
-import { blockedImagesPrompt, readBlockedImages, type BlockedImages } from './blocked-images.ts';
-import { createFunctionToolSession } from './tool-agent.ts';
-import type { FunctionTool } from './function-tools.ts';
-import { parseAgentModel, type AgentStep, type AgentModel } from '../agents/models.ts';
-import { validateProviderModel } from '../agents/providers.ts';
-import { runCliTask } from '../agents/cli.ts';
-import { imageGenerationTool, validateImageSelection } from '../agents/images.ts';
-import { createCodexImageRoute, usesPatchedImageTool } from '../agents/codex-images.ts';
+import { AgentLog } from '../codex/agent-log.ts';
+import { AgentCallError, AgentRuntime, retryDelays, interruptedTaskPrompt, recoverableAgentError, retryableAgentError, type AgentRetry, type RecoverableAgentError } from './runtime.ts';
+import { blockedImagesPrompt, readBlockedImages, type BlockedImages } from '../codex/blocked-images.ts';
+import { createFunctionToolSession } from '../codex/tool-agent.ts';
+import type { FunctionTool } from '../codex/function-tools.ts';
+import { parseAgentModel, type AgentStep, type AgentModel } from './models.ts';
+import { validateProviderModel } from './providers.ts';
+import { runCliTask } from './cli.ts';
+import { imageGenerationTool, validateImageSelection } from './images.ts';
+import { createCodexImageRoute, usesPatchedImageTool } from './codex-images.ts';
 import { randomUUID } from 'node:crypto';
 import type { ThreadEvent } from '@openai/codex-sdk';
 import type { ImageProcessingOptions } from '../image-processing.ts';
-import { executionPaths } from '../agents/workspace.ts';
-import { freshPrompt } from './fresh-prompt.ts';
+import { executionPaths } from './workspace.ts';
+import { freshPrompt } from '../codex/fresh-prompt.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
-import { codexAuthenticationSource } from './session-data.ts';
+import { codexAuthenticationSource } from '../codex/session-data.ts';
 
 
 export type AgentTask = {
@@ -75,7 +75,7 @@ const sessionReplacements: Partial<Record<RecoverableAgentError, { reason: strin
   imageOverflow: { reason: '单次请求的图片数量或体积超限', progress: '单次请求的图片数量或体积超限' },
 };
 
-export class CodexAgents {
+export class AgentDispatcher {
   private options: AgentOptions;
   private runtime: AgentRuntime;
 
@@ -230,7 +230,7 @@ export class CodexAgents {
   }
 
   createSession(resumeThreadId?: string, callbacks?: Pick<AgentOptions, 'resumeHarness' | 'onEvent' | 'onSessionStarted' | 'onThreadReplacement'>): AgentSession {
-    if (callbacks) return new CodexAgents({ ...this.options, ...callbacks, runtime: this.runtime }).createSession(resumeThreadId);
+    if (callbacks) return new AgentDispatcher({ ...this.options, ...callbacks, runtime: this.runtime }).createSession(resumeThreadId);
     let inner: AgentSession | undefined, selection: AgentModel | undefined, id = resumeThreadId, closed = false;
     let busy = false;
     const closing = new AbortController();

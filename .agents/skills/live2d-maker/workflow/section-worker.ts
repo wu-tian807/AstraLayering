@@ -4,7 +4,7 @@ import { defaultKnowledgeDirectory, selectKnowledge } from '../shared/knowledge.
 import { formatAgentError } from '../shared/codex/diagnostics.ts';
 import { GroupExecutionError } from '../shared/part/layering.ts';
 import { formatLayeringSummary } from '../shared/part/run.ts';
-import { shareAgentSlots } from '../shared/codex/agent-runtime.ts';
+import { shareAgentSlots } from '../shared/agents/runtime.ts';
 import { agentSlotsVariable, ipcAgentSlots } from './agent-slots.ts';
 import { releaseAllSectionKrita } from '../shared/krita/section-krita.ts';
 import { signalAgentProcesses } from '../shared/agents/cli.ts';

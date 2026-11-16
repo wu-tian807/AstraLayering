@@ -5,7 +5,7 @@ import { once } from 'node:events';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import sharp from 'sharp';
-import { CodexAgents } from '../codex/agents.ts';
+import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { drawGroupOutline } from '../part/outline-agent.ts';
 import { completeGroupOcclusion } from '../part/completion-agent.ts';
@@ -82,7 +82,7 @@ for (const harness of ['claude', 'agv'] as const) for (const section of ['charac
       part_completion_image_model: 'gemini-nano-banana-2.1', clothing_completion_image_model: 'gemini-nano-banana-2.1',
       google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`,
       google_image_api_key: 'fixture', google_image_protocol: 'openai' }, f.directory);
-    const agents = new CodexAgents({ environment: settings, cwd: f.directory, logDirectory: join(f.directory, 'agents') });
+    const agents = new AgentDispatcher({ environment: settings, cwd: f.directory, logDirectory: join(f.directory, 'agents') });
     // face deliberately uses a specialized completion prompt; clothing uses its
     // own generic prompt. Both must receive the shared per-section reference rule.
     const id = section === 'character' ? 'face' : 'outerwear';

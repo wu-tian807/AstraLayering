@@ -3,7 +3,7 @@ import { checkedTurn, missingSubmit } from '../codex/checked-turn.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { partProfile } from './profile.ts';
 import { join } from 'node:path';
-import type { CodexAgents } from '../codex/agents.ts';
+import type { AgentDispatcher } from '../agents/dispatcher.ts';
 import { createBitmapTool } from './bitmap-tool.ts';
 import { partKnowledge } from './group-prompts.ts';
 import { normalizeGroups, writeAtomic } from './groups.ts';
@@ -34,7 +34,7 @@ function decodeInitialGrouping(value: unknown): InitialGrouping {
 }
 
 export async function recognizeInitialGroups(
-  context: InitialContext, agents: Pick<CodexAgents, 'run'>,
+  context: InitialContext, agents: Pick<AgentDispatcher, 'run'>,
 ): Promise<InitialGrouping> {
   const profile = partProfile(context);
   const knowledge = partKnowledge(profile, 'initial');

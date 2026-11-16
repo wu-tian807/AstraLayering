@@ -128,7 +128,7 @@ if (mode === 'render') {
   process.exit(0);
 }
 if (mode !== 'run') throw new Error('Unknown mode: ' + mode);
-const { CodexAgents } = await load('shared/codex/agents.ts');
+const { AgentDispatcher } = await load('shared/agents/dispatcher.ts');
 const { loadWorkflowEnvironment } = await load('shared/codex/environment.ts');
 const { readStepSession, writeStepSession } = await load('shared/agents/step-session.ts');
 const environment = loadWorkflowEnvironment(process.env, skill);
@@ -139,7 +139,7 @@ const prompt = leftOnly ? taskPrompt + '\n\n' + await readFile(join(workspace, '
 if (leftOnly) await writeFile(join(workspace, 'effective-task.md'), prompt + '\n');
 await access(join(output, 'references/left.png'));
 const saved = await readStepSession(nine, 'step08_hair') ?? {};
-const agents = new CodexAgents({ environment, selectedModel: environment.stepModels.nine_axis_head,
+const agents = new AgentDispatcher({ environment, selectedModel: environment.stepModels.nine_axis_head,
   cwd: nine, logDirectory: join(nine, 'agents'), progress: text => console.log(text) });
 const session = agents.createSession(saved.threadId, {
   resumeHarness: saved.harness,
