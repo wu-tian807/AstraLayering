@@ -12,6 +12,8 @@ import { groupStepId } from '../../shared/part/part-steps.ts';
 import { parseRunArguments } from '../run.ts';
 import { fixture, publishGroups, shape, workingMerger, workingSteps } from './layering-fixture.ts';
 import { defaultKnowledgeDirectory } from '../../shared/knowledge.ts';
+import { partKnowledge } from '../../shared/part/group-prompts.ts';
+import { profile } from '../profile.ts';
 import { promptInput } from '../../shared/tests/prompt-input.ts';
 
 const signal = new AbortController().signal;
@@ -147,4 +149,22 @@ test('父完成稿改变后旧分析不能放行下一层，CLI 深度输入有�
   assert.equal(parseRunArguments(['--max-depth', '2']).maxDepth, 2);
   for (const value of ['0', '-1', '1.5', 'NaN', '9007199254740992']) assert.throws(() => parseRunArguments([`--max-depth=${value}`]), /正整数/);
   assert.ok(await readFile(artifactPath(f.directory, 'a', 'completion')));
+});
+
+
+test('统一拆分约定装配到全部特化部件和通用后代，专项正文仅按完整 ID 替换', async () => {
+  const knowledge = partKnowledge(profile, 'children');
+  const directory = join(defaultKnowledgeDirectory, 'part-layering/step12_children/prompts');
+  const priors = join(directory, 'groups');
+  const main = '10-直属结构拆分.md';
+  const specialized = new Map((await readdir(priors, { recursive: true }))
+    .filter(file => file.endsWith(main))
+    .map(file => [file.replaceAll('\\', '/').slice(0, -(main.length + 1)), join(priors, file)]));
+  for (const id of [...specialized.keys(), 'hair/ponytail', 'hair/ponytail/ponytail_left', 'head_accessories']) {
+    assert.deepEqual(knowledge.files('main', id), [
+      specialized.get(id) ?? join(directory, main),
+      join(directory, '10-拆分操作约定.md'),
+      join(directory, '参考图片.md'),
+    ]);
+  }
 });
