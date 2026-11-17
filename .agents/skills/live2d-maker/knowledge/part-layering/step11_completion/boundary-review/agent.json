@@ -1,0 +1,13 @@
+{
+  "main": {
+    "initial": [
+      "shared/prompts/completion-boundary-review.md"
+    ],
+    "tools": [
+      "preview_svg",
+      "read_svg",
+      "view_bitmap",
+      "submit_completion_boundary_review"
+    ]
+  }
+}

@@ -10,7 +10,7 @@ import { publishDepthPreview } from './depth-preview.ts';
 import { type GroupContext, type GroupInput, type GroupNode, type GroupSeed, type GroupStage, type GroupStageOutputs, type LayeringResult, type LayeringSteps, type StepResult, type SvgArtifact, type SvgMerger } from './layering-types.ts';
 import type { PreparationReferences } from './preparation-types.ts';
 import { runWorkflow, validateWorkflowOptions } from './workflow.ts';
-import { parentBoundsSource, validateGroupSvg } from './svg-tools.ts';
+import { validateGroupSvg } from './svg-tools.ts';
 import { clearCopyDecision, readCopyDecision } from './parent-copy-decision.ts';
 import { occlusionPath, occlusionSourceHash, validateOcclusionPlan } from './occlusion-plan.ts';
 import { beginStep, checkStep, completeStep, readStep, type ChainStep, type StepAction, type StepStatus } from '../step-chain.ts';

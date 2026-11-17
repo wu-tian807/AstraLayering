@@ -9,6 +9,7 @@ const part = (section: string) => ({
   outline_repair: { section, step: 'step09_outline', role: 'repair' as const },
   reduce: { section, step: 'step10_reduce' },
   completion: { section, step: 'step11_completion' },
+  completion_boundary_review: { section, step: 'step11_completion/boundary-review' },
   children: { section, step: 'step12_children' },
   occlusion: { section, step: 'step14_occlusion' },
 });

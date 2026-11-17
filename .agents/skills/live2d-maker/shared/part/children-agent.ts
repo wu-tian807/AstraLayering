@@ -24,13 +24,12 @@ export function decodeChildren(parentId: string, value: unknown): ChildrenAnalys
   const groups: GroupSeed[] = raw.children.map((item: unknown) => {
     if (!item || typeof item !== 'object' || Array.isArray(item)) throw new Error('子节点必须是对象');
     const child = item as Record<string, unknown>;
-    if (Object.keys(child).some(key => !['name', 'kind', 'note', 'allowOutsideParent', 'hiddenInReference'].includes(key)) ||
+    if (Object.keys(child).some(key => !['name', 'kind', 'note', 'hiddenInReference'].includes(key)) ||
         typeof child.name !== 'string' || !/^[a-z][a-z0-9_]*$/.test(child.name) ||
         (child.kind !== 'group' && child.kind !== 'part') || typeof child.note !== 'string' || !child.note.trim()) {
       throw new Error('子节点须包含 snake_case name、group/part kind 和具体范围及独立性 note，不提交子树或进度');
     }
     return { id: `${parentId}/${child.name}`, name: child.name, kind: child.kind, note: child.note,
-      ...(child.allowOutsideParent !== undefined ? { allowOutsideParent: child.allowOutsideParent as boolean } : {}),
       ...(child.hiddenInReference !== undefined ? { hiddenInReference: child.hiddenInReference as boolean } : {}) };
   });
   normalizeGroups(groups);

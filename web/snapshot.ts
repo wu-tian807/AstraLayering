@@ -153,11 +153,13 @@ export async function snapshot(directory: string, name: string, dir: string) {
           || files.some(path => path.startsWith(prefix + '/') && !path.includes('/agents/')));
         const call = stepCalls.filter(call => call.outputDirectory === prefix || call.outputDirectory?.startsWith(prefix + '/')
           || call.step === step.id || call.request.startsWith(`${id}/agents/steps/${step.id}/`)).at(-1);
+        const settling = active && running && !completed && call?.finished && call === stepCalls.at(-1);
         states[step.id] = completed ? 'done' : call?.failed ? 'failed' : active && call && !call.finished
           ? throttled(call) ? 'throttled' : 'running'
-          : running && active ? hasProducts ? 'available' : 'pending'
+          : settling ? 'running' : running && active ? hasProducts ? 'available' : 'pending'
             : executionStatus(marker, { failed: !active && failed });
         products[step.id] = hasProducts;
+        if (settling) messages[step.id] = '模型回合已结束，正在收尾和校验产物。';
         if (states[step.id] === 'throttled') messages[step.id] = call!.retryError!;
         if ('review' in step && step.review) {
           if (reports[step.id]) reports.draw = reports[step.id];
@@ -170,7 +172,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
               errors.push(prefix + ': ' + String(error));
             }
           }
-          const livePhase = active && call && !call.finished && next
+          const livePhase = active && call && (!call.finished || settling) && next
             ? await rasterCallPhase(directory, `${id}/agents/steps/${step.id}/attempts.jsonl`, call, errors) : undefined;
           for (const phase of sequence) {
             const report = prefix + '/' + phase + '.md';
@@ -185,6 +187,7 @@ export async function snapshot(directory: string, name: string, dir: string) {
                 ? !active ? observed('running') : livePhase === phase && call ? throttled(call) ? 'throttled' : 'running' : 'pending'
               : !next && fileSet.has(prefix + '/review-01.md') ? 'skipped' : !active ? states[step.id] : 'pending';
             if (states[phase] === 'throttled') messages[phase] = call!.retryError!;
+            else if (settling && states[phase] === 'running') messages[phase] = messages[step.id];
           }
         }
         if (reason && running && !completed) {
@@ -205,9 +208,11 @@ export async function snapshot(directory: string, name: string, dir: string) {
             || files.some(path => path.startsWith(prefix + '/') && !path.includes('/agents/')));
           const call = stepCalls.filter(call => call.outputDirectory === prefix || call.outputDirectory?.startsWith(prefix + '/')
             || call.step === step.id || call.request.startsWith(`${id}/agents/steps/${step.id}/`)).at(-1);
+          const settling = active && variant === mode && running && !complete && call?.finished && call === stepCalls.at(-1);
+          if (settling) messages[step.id] = '模型回合已结束，正在收尾和校验产物。';
           const state = complete ? 'done' : variant !== mode && running ? 'unconfirmed' : call?.failed ? 'failed'
             : active && variant === mode && call && !call.finished ? throttled(call) ? 'throttled' : 'running'
-              : running && variant === mode && active ? hasProducts ? 'available' : 'pending'
+              : settling ? 'running' : running && variant === mode && active ? hasProducts ? 'available' : 'pending'
                 : executionStatus(complete ? 'completed' : running ? 'running' : 'unmarked', { failed: variant === mode && !active && failed });
           products[variant] = hasProducts;
           modeStates.push(state);

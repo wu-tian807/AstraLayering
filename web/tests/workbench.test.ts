@@ -362,9 +362,28 @@ test('raster step output stays available until that step has a current agent cal
   await put(task, 'character-assembly/agents/steps/step01/request.json', JSON.stringify({ task: { step: 'step01', name: 'assembly' } }));
   value = await snapshot(task, 'case', f.dir);
   assert.equal(value.sections.find(section => section.id === 'character-assembly')!.states.step01, 'running');
+  await put(task, 'character-assembly/agents/steps/step01/result.json', JSON.stringify({ status: 'completed' }));
+  value = await snapshot(task, 'case', f.dir);
+  const settling = value.sections.find(section => section.id === 'character-assembly')!;
+  assert.equal(settling.states.step01, 'running');
+  assert.ok(settling.messages.step01);
   await put(task, 'character-assembly/step01/.completed');
   value = await snapshot(task, 'case', f.dir);
   assert.equal(value.sections.find(section => section.id === 'character-assembly')!.states.step01, 'done');
+});
+
+
+test('shadow keeps a finished current call running until its step delivery is committed', async t => {
+  const f = await fixture(t), task = join(f.dir, 'case'); await mkdir(task);
+  const run = await configureRun({ name: 'case', dir: f.dir, from: 'shadow', to: 'shadow' }, task);
+  run.status = 'running'; run.activeSections = ['shadow'];
+  run.runner = { id: 'shadow-runner', pid: process.pid, startedAt: new Date(Date.now() - 1000).toISOString() };
+  await saveRun(task, run); const release = await acquireTaskLock(task); t.after(async () => { await release(); });
+  await put(task, 'shadow/step01_mask/.running'); await put(task, 'shadow/step01_mask/report.md.tmp', 'draft');
+  await put(task, 'shadow/agents/draw/request.json', JSON.stringify({ task: { outputDirectory: 'shadow/step01_mask' } }));
+  await put(task, 'shadow/agents/draw/result.json', JSON.stringify({ status: 'completed' }));
+  const value = (await snapshot(task, 'case', f.dir)).sections.find(section => section.id === 'shadow')!;
+  assert.equal(value.states.step01, 'running'); assert.ok(value.messages.step01);
 });
 
 test('raster review shows activity only for its live call, including retry waits', async t => {
@@ -398,7 +417,8 @@ test('raster review shows activity only for its live call, including retry waits
   assert.equal(value.states['review-01'], 'throttled'); assert.equal(value.messages['review-01'], '429 review');
   await put(task, `${section}/agents/review/result.json`, '{}');
   value = await get();
-  assert.equal(value.states['review-01'], 'pending');
+  assert.equal(value.states['review-01'], 'running');
+  assert.ok(value.messages['review-01']);
 });
 
 test('开始、继续、恢复、重试先检查 Krita：不可用则 409 且不改动步骤，填写新路径后按同一操作运行', async t => {

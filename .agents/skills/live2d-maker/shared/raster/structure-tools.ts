@@ -21,7 +21,7 @@ function fields(value: Record<string, unknown>, allowed: readonly string[], path
 // Fields a saved document carries beyond these are ignored on read.
 const known = (value: Record<string, unknown>, allowed: readonly string[]) =>
   Object.fromEntries(Object.entries(value).filter(([key]) => allowed.includes(key)));
-const documentFields = ['version', 'groups'], nodeFields = ['id', 'name', 'note', 'kind', 'metadata', 'allowOutsideParent', 'hiddenInReference', 'groups'];
+const documentFields = ['version', 'groups'], nodeFields = ['id', 'name', 'note', 'kind', 'metadata', 'hiddenInReference', 'groups'];
 
 // Agent edits are checked strictly; a saved groups.json is read with unknown fields ignored.
 export function validateStructureGroups(value: unknown, strict = true): StructureGroups {

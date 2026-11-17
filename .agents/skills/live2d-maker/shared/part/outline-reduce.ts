@@ -12,7 +12,7 @@ import type { AgentDispatcher } from '../agents/dispatcher.ts';
 import { writeAtomic } from './groups.ts';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import type { OutlineReduction, OutlineReductionContext } from './layering-types.ts';
-import { createSvgPreviewTool, createSvgReadTool, observedPath, parentBoundsSource, validateGroupSvg, type SvgObservation } from './svg-tools.ts';
+import { createSvgPreviewTool, createSvgReadTool, observedPath, validateGroupSvg, type SvgObservation } from './svg-tools.ts';
 import { fromTaskPath, taskRootOf, toAgentPath } from '../task-paths.ts';
 import { editXmlAttributes, svgBody, svgSource } from '../xml.ts';
 
@@ -46,7 +46,6 @@ export async function reduceGroupOutlines(context: OutlineReductionContext, agen
         const parent = entry.parent?.id ?? null, parentSvg = entry.parent?.steps.completion.output?.path;
         if (!families.has(parent)) families.set(parent, []);
         families.get(parent)!.push({ id: entry.group.id, kind: entry.group.kind ?? 'group', note: entry.group.note,
-          ...(entry.group.allowOutsideParent ? { allowOutsideParent: true } : {}),
           sourceSvg: await task(entry.outline.path), outputDraft: await task(entry.outputPath),
           parentSvg: parentSvg ? await task(parentSvg) : null });
       }
@@ -72,7 +71,7 @@ export async function reduceGroupOutlines(context: OutlineReductionContext, agen
         if (observations[i].source === observedOutput) observations.splice(i, 1);
       }
       await writeAtomic(entry.outputPath, raw.svg);
-      const bytes = await validateGroupSvg(entry.outputPath, entry.group.id, canvas, parentBoundsSource(entry.group, entry.parent?.steps.completion.output?.path), true);
+      const bytes = await validateGroupSvg(entry.outputPath, entry.group.id, canvas, entry.parent?.steps.completion.output?.path, true);
       return textResult({ path: await task(entry.outputPath), bytes: bytes.length, note: '草稿检查通过，仍须预览自检' });
     },
   };
@@ -92,7 +91,7 @@ export async function reduceGroupOutlines(context: OutlineReductionContext, agen
           throw new Error('去重须提交本层组及对应 SVG，同一组提交一次');
         }
         seen.add(change.groupId);
-        const parent = parentBoundsSource(entry.group, entry.parent?.steps.completion.output?.path);
+        const parent = entry.parent?.steps.completion.output?.path;
         const path = fromTaskPath(root, change.path);
         await validateGroupSvg(path, change.groupId, canvas, parent, true);
         const observed = await observedPath(path);

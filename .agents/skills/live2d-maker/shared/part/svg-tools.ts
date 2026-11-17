@@ -5,7 +5,6 @@ import { basename, dirname, join, resolve } from 'node:path';
 import sharp from 'sharp';
 import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import { svgSource, updateSvgRoot } from '../xml.ts';
-import type { GroupSeed } from './layering-types.ts';
 import { fromTaskPath, taskRootOf, toAgentPath, toTaskPathReal } from '../task-paths.ts';
 
 export type Canvas = { width: number; height: number };
@@ -23,7 +22,6 @@ export async function observedPath(path: string): Promise<string> {
   try { return await realpath(absolute); }
   catch { return join(await realpath(dirname(absolute)).catch(() => dirname(absolute)), basename(absolute)); }
 }
-export const parentBoundsSource = (group: GroupSeed, parent?: string): string | undefined => group.allowOutsideParent ? undefined : parent;
 const boundsScale = 4;
 const alphaThreshold = 128;
 
@@ -232,7 +230,7 @@ export function createSvgPreviewTool(options: {
           reference = await sharp(Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${outWidth}" height="${outHeight}" viewBox="${crop.join(' ')}"><image x="${x}" y="${y}" width="${rw * alignment.scale}" height="${rh * alignment.scale}" href="data:image/png;base64,${region.toString('base64')}"/></svg>`))
             .flatten({ background: 'white' }).png().toBuffer();
         } else {
-          reference = await sharp(referenceBytes ?? referencePath).autoOrient().extract({ left, top, width, height })
+          reference = await sharp(referenceBytes ?? await readFile(referencePath)).autoOrient().extract({ left, top, width, height })
             .resize(outWidth, outHeight).png().toBuffer();
         }
         data = await sharp(reference).composite([{ input: overlay, raw: { width: outWidth, height: outHeight, channels: 4 } }])

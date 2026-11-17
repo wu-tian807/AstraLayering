@@ -14,7 +14,7 @@ import { textResult, type FunctionTool } from '../codex/function-tools.ts';
 import { groupValues, partKnowledge } from './group-prompts.ts';
 import { findGroup, writeAtomic } from './groups.ts';
 import type { DrawingContext, GroupContext, ReviewContext, ReviewedSvgArtifact, StepResult, SvgArtifact } from './layering-types.ts';
-import { createSvgPreviewTool, createSvgReadTool, parentBoundsSource, taskObservation, validateGroupSvg, type Canvas, type SvgObservation } from './svg-tools.ts';
+import { createSvgPreviewTool, createSvgReadTool, taskObservation, validateGroupSvg, type Canvas, type SvgObservation } from './svg-tools.ts';
 import { taskRootOf, toAgentPath } from '../task-paths.ts';
 import { createParentRegionTool, withoutCopyAttributes } from './parent-region.ts';
 import { clearCopyDecision } from './parent-copy-decision.ts';
@@ -108,7 +108,7 @@ export async function drawGroupOutline(
   const observations: SvgObservation[] = [];
   // 首次绘制和返修使用同一组工具，均允许修正本组 note。
   const noteRepair = groupNoteTool(context);
-  const preview = createSvgPreviewTool({ ...input, parent: parentBoundsSource(context.group, input.parent), directory: context.directory,
+  const preview = createSvgPreviewTool({ ...input, parent: input.parent, directory: context.directory,
     observationDirectory: join(context.directory, 'observations', 'outline', context.group.id),
     observed: entry => observations.push(entry) });
   const write: FunctionTool = {
@@ -120,7 +120,7 @@ export async function drawGroupOutline(
       // A drawn outline is no longer a copy of the parent, even when it starts from one.
       await clearCopyDecision(context.directory, context.group.id);
       await writeAtomic(draft, withoutCopyAttributes((value as { svg: string }).svg));
-      const bytes = await validateGroupSvg(draft, context.group.id, input.canvas, parentBoundsSource(context.group, input.parent), true);
+      const bytes = await validateGroupSvg(draft, context.group.id, input.canvas, input.parent, true);
       return textResult({ path: await toAgentPath(taskRootOf(context.directory), draft), bytes: bytes.length, note: '草稿结构检查通过，仍须预览和视觉自检' });
     },
   };
@@ -147,7 +147,7 @@ export async function drawGroupOutline(
       await asCheck('missing-file', () => realpath(draft).catch(error => {
         throw new Error(`模型回合已结束，但没有生成轮廓文件：${draft}`, { cause: error });
       }));
-      await asCheck('invalid-output', () => validateGroupSvg(draft, context.group.id, input.canvas, parentBoundsSource(context.group, input.parent), true));
+      await asCheck('invalid-output', () => validateGroupSvg(draft, context.group.id, input.canvas, input.parent, true));
     } });
   if (draft !== output) await publishSvg(draft, output);
   return { path: output };
@@ -163,7 +163,7 @@ async function reviewOnce(
   const candidateHash = hash(bytes);
   const round = completedReviewCount(await readReviewReport(reportPath, context.group.id)) + 1;
   const observations: SvgObservation[] = [];
-  const preview = createSvgPreviewTool({ ...input, parent: parentBoundsSource(context.group, input.parent), directory: context.directory,
+  const preview = createSvgPreviewTool({ ...input, parent: input.parent, directory: context.directory,
     observationDirectory: join(context.directory, 'observations', 'review', context.group.id),
     observed: entry => observations.push(entry) });
   let submitted: Review | undefined;

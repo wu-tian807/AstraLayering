@@ -1,5 +1,5 @@
 import { toolDefinition } from '../codex/tool-config.ts';
-import { mkdir, realpath, writeFile } from 'node:fs/promises';
+import { mkdir, realpath, readFile, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { join } from 'node:path';
 import sharp from 'sharp';
@@ -17,7 +17,8 @@ export function createBitmapTool(directory: string, observationDirectory: string
       if (typeof scale !== 'number' || !Number.isFinite(scale) || scale < 1 || scale > 8) throw new Error('scale 须为 1 至 8');
       const root = context?.root ?? taskRootOf(directory);
       const source = await realpath(fromTaskPath(root, args.path));
-      const meta = await sharp(source, { limitInputPixels: 100_000_000 }).metadata();
+      const bytes = await readFile(source);
+      const meta = await sharp(bytes, { limitInputPixels: 100_000_000 }).metadata();
       const width = meta.autoOrient.width, height = meta.autoOrient.height;
       const crop = args.crop ?? [0, 0, width, height];
       if (!Array.isArray(crop) || crop.length !== 4 || crop.some(v => !Number.isSafeInteger(v) || v < 0) || !crop[2] || !crop[3]) {
@@ -28,7 +29,7 @@ export function createBitmapTool(directory: string, observationDirectory: string
       const outputWidth = Math.round(cropWidth * scale), outputHeight = Math.round(cropHeight * scale);
       if (outputWidth * outputHeight > 16_000_000) throw new Error('预览过大，请缩小选框或 scale');
       signal.throwIfAborted();
-      const normalized = await sharp(source, { limitInputPixels: 100_000_000 }).autoOrient().png().toBuffer();
+      const normalized = await sharp(bytes, { limitInputPixels: 100_000_000 }).autoOrient().png().toBuffer();
       const data = await sharp(normalized).extract({ left, top, width: cropWidth, height: cropHeight })
         .resize(outputWidth, outputHeight, { fit: 'fill', kernel: 'lanczos3' }).png().toBuffer();
       if (data.length > 10 * 1024 * 1024) throw new Error('预览文件过大，请缩小选框或 scale');

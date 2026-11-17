@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "allow",
+    "note"
+  ],
+  "properties": {
+    "allow": {
+      "type": "boolean"
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

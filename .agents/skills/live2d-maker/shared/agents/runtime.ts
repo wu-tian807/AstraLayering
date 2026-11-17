@@ -1,3 +1,5 @@
+import { AsyncLocalStorage } from 'node:async_hooks';
+import type { FunctionTool } from '../codex/function-tools.ts';
 import { runtimePrompt } from '../knowledge.ts';
 import { setTimeout as delay } from 'node:timers/promises';
 
@@ -128,6 +130,62 @@ export type AgentSlots = (signal?: AbortSignal) => Promise<() => void>;
 let sharedSlots: AgentSlots | undefined;
 export function shareAgentSlots(slots: AgentSlots | undefined) { sharedSlots = slots; }
 
+// A tool callback can arrive from an app-server socket or an MCP request whose
+// async context predates the turn. Bind the turn explicitly, above all harnesses.
+type ToolScope = { active: boolean; lease?: AgentSlotLease };
+const toolScopes = new AsyncLocalStorage<ToolScope>();
+export async function withAgentToolScope<T extends { tools?: FunctionTool[] }, R>(task: T, run: (task: T) => Promise<R>): Promise<R> {
+  const scope: ToolScope = { active: true };
+  const tools = task.tools?.map(tool => ({ ...tool, execute: (...args: Parameters<FunctionTool['execute']>) => {
+    if (!scope.active) throw new Error('工具所属的 agent 回合已结束');
+    return toolScopes.run(scope, () => tool.execute(...args));
+  } }));
+  try { return await toolScopes.run(scope, () => run({ ...task, tools })); }
+  finally { scope.active = false; }
+}
+
+class AgentSlotLease {
+  private held: (() => void) | undefined;
+  private active = true;
+  private transfers: Promise<void> = Promise.resolve();
+  private acquire: (signal?: AbortSignal) => Promise<() => void>;
+  private signal?: AbortSignal;
+  constructor(release: () => void, acquire: (signal?: AbortSignal) => Promise<() => void>, signal?: AbortSignal) {
+    this.held = release; this.acquire = acquire; this.signal = signal;
+  }
+  close() { this.active = false; const release = this.held; this.held = undefined; release?.(); }
+  without<T>(operation: (signal?: AbortSignal) => Promise<T>, signal?: AbortSignal): Promise<T> {
+    // Several tool calls from one turn must not transfer its one lease twice.
+    const result = this.transfers.then(async () => {
+      if (!this.active || !this.held) throw new Error('agent 并发名额已结束');
+      const signals = [this.signal, signal].filter((value): value is AbortSignal => !!value);
+      const nestedSignal = signals.length ? AbortSignal.any(signals) : undefined;
+      nestedSignal?.throwIfAborted();
+      const release = this.held; this.held = undefined; release();
+      try { return await operation(nestedSignal); }
+      finally {
+        // Tool cancellation still lets a live parent receive its error. A stopped
+        // parent must never wait to reacquire a slot just to finish cancelling.
+        if (this.active && !this.signal?.aborted) {
+          const release = await this.acquire(this.signal);
+          if (this.active) this.held = release; else release();
+        }
+      }
+    });
+    this.transfers = result.then(() => {}, () => {});
+    return result;
+  }
+}
+
+// Only a tool branch that awaits another model calls this. Normal tools and
+// service backoff retain their slots. Both local and scheduler slots transfer.
+export function withAgentSlotReleased<T>(operation: (signal?: AbortSignal) => Promise<T>, signal?: AbortSignal): Promise<T> {
+  signal?.throwIfAborted();
+  const scope = toolScopes.getStore();
+  if (scope && !scope.active) throw new Error('工具所属的 agent 回合已结束');
+  return scope?.lease ? scope.lease.without(operation, signal) : operation(signal);
+}
+
 // 只管理 agent 调用与临时错误，不依赖 group、步骤、树或 progress.json。
 export class AgentRuntime {
   private active = 0;
@@ -185,14 +243,21 @@ export class AgentRuntime {
       recover?(error: unknown): Promise<boolean>;
     } = {},
   ): Promise<T> {
-    const local = await this.acquire(options.signal);
-    let shared: (() => void) | undefined;
-    // Without a shared pool the operation starts in the same turn as before.
-    try { if (sharedSlots) shared = await sharedSlots(options.signal); }
-    catch (error) { local(); throw error; }
+    const pool = sharedSlots;
+    const acquire = async (signal?: AbortSignal) => {
+      const local = await this.acquire(signal);
+      let shared: (() => void) | undefined;
+      try { if (pool) shared = await pool(signal); }
+      catch (error) { local(); throw error; }
+      return () => { shared?.(); local(); };
+    };
+    const lease = new AgentSlotLease(await acquire(options.signal), acquire, options.signal);
+    const owner = toolScopes.getStore();
+    if (owner && !owner.lease) owner.lease = lease;
+    const scope: ToolScope = { active: true, lease };
     // The slots stay held through backoff until the call succeeds, fails or is cancelled. Handing them back let a queued call start in the gap, so
     // under 429 the groups of one layer took turns instead of finishing one by one.
-    try {
+    try { return await toolScopes.run(scope, async () => {
       for (let attempt = 1; ; attempt++) {
         let error: unknown;
         try {
@@ -211,7 +276,7 @@ export class AgentRuntime {
         await options.onRetry?.({ attempt, nextAttempt: attempt + 1, delayMs, error, rateLimited: rateLimitedAgentError(error) });
         await this.wait(delayMs, options.signal);
       }
-    } finally { shared?.(); local(); }
+    }); } finally { scope.active = false; lease.close(); }
   }
 }
 

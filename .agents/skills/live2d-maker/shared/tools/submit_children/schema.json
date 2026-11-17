@@ -34,10 +34,6 @@
             "minLength": 1,
             "description": "简述实体范围、可见或遮挡依据、邻接及控制关系。外观只记录参考中可确认的事实，未知外观设计留给后续补全与绘制。"
           },
-          "allowOutsideParent": {
-            "type": "boolean",
-            "description": "本节点的完整结构需要超出直接父组完成轮廓时为 true；仅跳过父轮廓包含检查。省略为 false。"
-          },
           "hiddenInReference": {
             "type": "boolean",
             "description": "本节点确实存在且需在当前画布内制作，目标结构因遮挡或闭合完全不可见时为 true，跳过描边和轮廓 review、直接补全。局部可见、局部遮挡或仅肤色/材质被覆盖时为 false；例如连体服下仍可辨认形体的 torso、breast。整体画外且无需画内制作的实体省略。字段省略为 false。"

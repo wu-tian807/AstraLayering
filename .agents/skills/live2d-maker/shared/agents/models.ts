@@ -27,7 +27,7 @@ export function modelHarness(model:string,catalog:ModelCatalog={},key='模型'):
 
 // Roles and model capabilities are structural; values come from the skill template.
 export const modelSlots = [
-  'preparation', 'part_draw', 'part_review', 'part_reduce', 'part_completion',
+  'preparation', 'part_draw', 'part_review', 'part_reduce', 'part_completion', 'part_completion_boundary_review',
   'part_groups', 'part_depth', 'raster_step01', 'raster_step02', 'raster_step01_review',
   'raster_step03', 'assembly', 'shadow', 'nine_axis_head',
 ] as const;
@@ -51,10 +51,11 @@ export const stepModelSlots = {
   part_simplify: 'preparation', part_base_subject: 'preparation',
   part_initial_groups: 'part_groups', part_outline: 'part_draw', part_outline_review: 'part_review',
   part_outline_repair: 'part_draw', part_reduce: 'part_reduce', part_completion: 'part_completion',
+  part_completion_boundary_review: 'part_completion_boundary_review',
   part_children: 'part_groups', part_occlusion: 'part_depth',
   clothing_preparation: 'preparation', clothing_initial_groups: 'part_groups',
   clothing_outline: 'part_draw', clothing_outline_review: 'part_review', clothing_outline_repair: 'part_draw',
-  clothing_reduce: 'part_reduce', clothing_completion: 'part_completion', clothing_children: 'part_groups', clothing_occlusion: 'part_depth',
+  clothing_reduce: 'part_reduce', clothing_completion: 'part_completion', clothing_completion_boundary_review: 'part_completion_boundary_review', clothing_children: 'part_groups', clothing_occlusion: 'part_depth',
   raster_step01: 'raster_step01', raster_step02: 'raster_step02', raster_step01_review: 'raster_step01_review', raster_step01_repair: 'raster_step01',
   raster_step03: 'raster_step03',
   clothing_raster_step01: 'raster_step01', clothing_raster_step02: 'raster_step02',

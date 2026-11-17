@@ -5,6 +5,7 @@ import { once } from 'node:events';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import sharp from 'sharp';
+import { nodeExecutables } from '../../part-layering/tests/node-executables.ts';
 import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { drawGroupOutline } from '../part/outline-agent.ts';
@@ -24,7 +25,7 @@ import {randomUUID} from 'node:crypto';
 import {join} from 'node:path';
 const args=process.argv.slice(2),claude=args.includes('--mcp-config');
 let raw='';for await(const chunk of process.stdin)raw+=chunk;
-const prompt=JSON.parse(raw).message.content[0].text;
+const prompt=JSON.parse(raw).message.content[0].text.replace(/\\r\\n/g,'\\n');
 const body=prompt.split('【本次输入】\\n')[1].split('\\n\\n')[0],json=/^\\{[\\s\\S]*?\\n\\}(?=\\n|$)/.exec(body)?.[0];
 const input=json?JSON.parse(json):{};
 for(const line of body.slice(json?.length??0).split('\\n')){const field=/^([A-Za-z]+)：(.+)$/.exec(line);if(field)input[field[1]]=field[2];}
@@ -59,7 +60,8 @@ console.log(JSON.stringify(claude?{type:'result',session_id:id,result:'完成'}:
 `;
 
 for (const harness of ['claude', 'agv'] as const) for (const section of ['character', 'clothing'] as const) {
-  test(`${harness} ${section}: only completion can generate and view references, original SVG remains intact`, async t => {
+  test(`${harness} ${section}: only completion can generate and view references, original SVG remains intact`, { timeout: 15000 }, async t => {
+    nodeExecutables(t);
     const f = await (section === 'character' ? characterFixture : clothingFixture)(t), executable = join(f.directory, 'fixture-cli.mjs');
     await writeFile(executable, cli, { mode: 0o700 });
     const png = await sharp({ create: { width: 40, height: 40, channels: 4, background: '#ffccaa' } }).png().toBuffer();

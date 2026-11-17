@@ -4,7 +4,7 @@ import { workflowsDirectory } from '../paths.ts';
 import type { CodexOptions } from '@openai/codex-sdk';
 import { join } from 'node:path';
 import { AgentLog } from '../codex/agent-log.ts';
-import { AgentCallError, AgentRuntime, retryDelays, interruptedTaskPrompt, recoverableAgentError, retryableAgentError, type AgentRetry, type RecoverableAgentError } from './runtime.ts';
+import { AgentCallError, AgentRuntime, withAgentToolScope, retryDelays, interruptedTaskPrompt, recoverableAgentError, retryableAgentError, type AgentRetry, type RecoverableAgentError } from './runtime.ts';
 import { blockedImagesPrompt, readBlockedImages, type BlockedImages } from '../codex/blocked-images.ts';
 import { createFunctionToolSession } from '../codex/tool-agent.ts';
 import type { FunctionTool } from '../codex/function-tools.ts';
@@ -239,7 +239,7 @@ export class AgentDispatcher {
         if (closed) throw new Error('会话已关闭');
         if (busy) throw new Error('同一会话不能并发运行');
         busy = true;
-        try {
+        try { return await withAgentToolScope(original, async original => {
           // agent.json is the capability source for every harness and image
           // provider. Model selection and old caller flags cannot grant access.
           if (original.step) {
@@ -307,7 +307,7 @@ export class AgentDispatcher {
           }
           id = result.threadId || id;
           return { ...result, harness: selected.harness, images: [...result.images, ...generated] };
-        } finally { busy = false; }
+        }); } finally { busy = false; }
       },
       close: async () => { closed = true; closing.abort(new Error('会话已结束')); await inner?.close(); },
     };
@@ -315,12 +315,12 @@ export class AgentDispatcher {
 
   // One-shot turns share the app-server session path. A turn without function
   // tools stays shell-free unless the task asks otherwise.
-  async run(task: AgentTask): Promise<AgentResult> {
+  async run(task: AgentTask, signal?: AbortSignal): Promise<AgentResult> {
     if (task.step) task = { ...task, imageGeneration: agentImageGeneration(task.step) };
     const plain = !task.tools?.length;
     const session = this.createSession();
     let result: AgentResult;
-    try { return await session.run(plain ? { ...task, shell: task.shell ?? false, ...(task.imageGeneration ? { checkResult: nativeImageResult(task.name) } : {}) } : task); }
+    try { return await session.run(plain ? { ...task, shell: task.shell ?? false, ...(task.imageGeneration ? { checkResult: nativeImageResult(task.name) } : {}) } : task, signal); }
     finally { await session.close(); }
   }
 }

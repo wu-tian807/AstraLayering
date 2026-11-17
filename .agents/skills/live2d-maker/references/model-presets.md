@@ -25,6 +25,7 @@
 | part 轮廓 review | `gpt-6.1-sol-medium` | `part_review_agent_model` |
 | 同层去重／重叠分析 | `gpt-6.1-sol-high` | `part_reduce_agent_model` |
 | SVG 遮挡补全 | `gpt-6.1-sol-high` | `part_completion_agent_model` |
+| 补全越界独立评审（按需） | `gpt-6.1-terra-medium` | `part_completion_boundary_review_agent_model` |
 | 首次分组与后续细分组 | `gpt-6.1-sol-high` | `part_groups_agent_model` |
 | 最终深度分析 | `gpt-6.1-sol-high` | `part_depth_agent_model` |
 | raster step01 绘制与返修 | `gpt-6.1-sol-xhigh` | `raster_step01_agent_model` |

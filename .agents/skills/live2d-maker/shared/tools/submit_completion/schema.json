@@ -8,6 +8,11 @@
     "note": {
       "type": "string",
       "minLength": 1
+    },
+    "outsideParentReason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "主动申请保留当前候选越出父轮廓的理由；有实际越界时才调用独立评审，未申请或未获准不能提交越界结果。"
     }
   }
 }

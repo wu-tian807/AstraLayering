@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, readFile, readdir, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { dirname, isAbsolute, join, relative } from 'node:path';
+import { dirname, isAbsolute, join, relative, sep } from 'node:path';
 import { test, type TestContext } from 'node:test';
 import sharp from 'sharp';
 import { checkParentBounds, createSvgPreviewTool, createSvgReadTool, taskObservation, validateGroupSvg, type SvgObservation } from '../../shared/part/svg-tools.ts';
@@ -127,7 +127,7 @@ test('SVG 裁剪直接放大矢量，混合和边缘叠加与参考共用坐标�
     const image = result.contentItems[1];
     assert.equal(image.type, 'inputImage');
     assert.equal(metadata.source, f.path);
-    assert.ok(metadata.savedPath.startsWith(join(f.directory, 'observations') + '/'));
+    assert.ok(metadata.savedPath.startsWith(join(f.directory, 'observations') + sep));
     assert.deepEqual(await readFile(metadata.savedPath), Buffer.from(image.imageUrl.split(',')[1], 'base64'));
     const raw = await sharp(metadata.savedPath).ensureAlpha().raw().toBuffer();
     const center = [...raw.subarray((80 * 160 + 80) * 4, (80 * 160 + 80) * 4 + 4)];
@@ -327,14 +327,14 @@ test('工具相对参数以任务根目录为基准、结果为绝对路径、�
   const tool = createSvgPreviewTool({ directory, reference, canvas, observationDirectory: join(directory, 'observations'), observed: entry => observed.push(entry) });
   const preview = info(await tool.execute({ path: 'part-layering/groups/face/outline.svg', mode: 'blend' }, signal));
   assert.equal(preview.source, join(groupDirectory, 'outline.svg'));
-  assert.ok(preview.savedPath.startsWith(join(directory, 'observations') + '/'));
+  assert.ok(preview.savedPath.startsWith(join(directory, 'observations') + sep));
   assert.ok(isAbsolute(observed[0].source), '内部观察记录保持绝对路径供比对');
-  assert.deepEqual(await taskObservation(root, observed[0]), { ...observed[0], source: 'part-layering/groups/face/outline.svg', savedPath: relative(root, preview.savedPath) });
+  assert.deepEqual(await taskObservation(root, observed[0]), { ...observed[0], source: 'part-layering/groups/face/outline.svg', savedPath: relative(root, preview.savedPath).split(sep).join('/') });
   await assert.rejects(tool.execute({ path: 'groups/face/outline.svg' }, signal), /ENOENT/);
   await assert.rejects(tool.execute({ path: '../outside.svg' }, signal), /任务根/);
   const read = info(await createSvgReadTool(directory).execute({ path: 'part-layering/groups/face/outline.svg' }, signal));
   assert.equal(read.source, join(groupDirectory, 'outline.svg'));
   const viewed = info(await createBitmapTool(directory, join(directory, 'bitmaps')).execute({ path: 'part-layering/references/base.png' }, signal));
   assert.equal(viewed.path, reference);
-  assert.ok(viewed.savedPath.startsWith(join(directory, 'bitmaps') + '/'));
+  assert.ok(viewed.savedPath.startsWith(join(directory, 'bitmaps') + sep));
 });

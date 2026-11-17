@@ -115,7 +115,7 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
   for (const [slot, fallback] of Object.entries(roleDefaults) as [ModelSlot, string][]) {
     const key = modelSlotKey(slot);
     const selection = sources.select([key])?.value;
-    const tier = selected(legacyHighModelSlots.includes(slot) ? 'high_model' : 'medium_model');
+    const tier = slot === 'part_completion_boundary_review' ? undefined : selected(legacyHighModelSlots.includes(slot) ? 'high_model' : 'medium_model');
     slotModels[slot] = parseAgentModel(selection || tier || fallback, key,providers);
   }
   const stepModels = Object.fromEntries(Object.entries(stepModelSlots)

@@ -56,7 +56,7 @@ test('invalid or incomplete defaults identify the skill template and preserve th
   assert.throws(()=>loadWorkflowEnvironment({},root),/example.env.*preparation_agent_model/);
   await writeFile(join(root,'example.env'),replace(template,'default_image_model','unsupported'));
   assert.throws(()=>loadWorkflowEnvironment({},root),/example.env:default_image_model/);
-  await writeFile(join(root,'example.env'),template.replace(/^raster_step01_image_model=.*\n/m,''));
+  await writeFile(join(root,'example.env'),template.replace(/^raster_step01_image_model=[^\r\n]*\r?\n/m,''));
   assert.throws(()=>loadWorkflowEnvironment({},root),/example.env.*raster_step01_image_model/);
   assert.equal(await readFile(join(root,'.env'),'utf8'),user);
 });
@@ -70,7 +70,7 @@ test('all scalar runtime defaults come from the template and partial local setti
  assert.equal(actual.codex.env!.agv_unlimited_response_header_timeout,'true');assert.equal(actual.codex.env!.krita_max_instances,'7');
  await writeFile(join(root,'.env'),'agv_image_compact_threshold=8\nclaude_image_deduplicate=false\n');
  const local=loadWorkflowEnvironment({agv_image_compact_threshold:'9'},root);assert.equal(local.imageBudgets!.agv.images,8);assert.equal(local.imageBudgets!.claude.deduplicate,undefined);
- await writeFile(join(root,'example.env'),template.replace(/^video_api_key=.*\n/m,''));assert.throws(()=>loadWorkflowEnvironment({},root),/example.env.*video_api_key/);
+ await writeFile(join(root,'example.env'),template.replace(/^video_api_key=[^\r\n]*\r?\n/m,''));assert.throws(()=>loadWorkflowEnvironment({},root),/example.env.*video_api_key/);
 });
 
 test('an installed skill without its template fails immediately rather than inventing defaults',async t=>{
