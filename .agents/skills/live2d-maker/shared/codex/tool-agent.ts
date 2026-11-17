@@ -253,6 +253,8 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
     const args = [...executable.args, ...configArgs, '-c', `model_catalog_json=${JSON.stringify(catalog)}`];
     child = spawn(executable.command, args, { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] });
     child.once('error', fail);
+    // Process exit does not require inherited stdout/stderr handles to close.
+    child.once('exit', () => exited.resolve());
     child.once('close', (code, exitSignal) => {
       exited.resolve();
       const error = new Error(`Codex App Server 提前退出（${exitSignal ?? code}）：${stderr}`);
@@ -415,13 +417,19 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
       fail(new Error('会话已结束'));
       closing.abort(new Error('会话已结束'));
       if (!child) return;
+      // EOF lets Codex finish its background bookkeeping before the existing
+      // forced-exit deadline. Killing it immediately can orphan a Windows child
+      // between CREATE_SUSPENDED and assignment/resume.
       child.stdin!.end();
-      child.kill();
       const killTimer = setTimeout(() => child?.kill('SIGKILL'), 1500);
       killTimer.unref();
       await exited.promise;
       clearTimeout(killTimer);
       lines?.close();
+      // A descendant can retain pipe handles after Codex exits. They must not
+      // hold up the completed turn or the next workflow phase.
+      child.stdout?.destroy();
+      child.stderr?.destroy();
       await reader;
     },
   };

@@ -28,7 +28,7 @@ ${fakeDebug()}
 const emit=v=>console.log(JSON.stringify(v)), record=v=>appendFile(capture,JSON.stringify(v)+'\\n');
 let cachedCredential=null;
 if(mode==='auth-file')try{cachedCredential=await readFile(join(process.env.CODEX_HOME,'auth.json'),'utf8');}catch(e){if(e.code!=='ENOENT')throw e;}
-if(mode==='auth-dynamic')cachedCredential=execFileSync(process.env.TEST_AUTH_HELPER,{encoding:'utf8'}).trim();
+if(mode==='auth-dynamic')cachedCredential=execFileSync(process.execPath,[process.env.TEST_AUTH_HELPER],{encoding:'utf8'}).trim();
 let threadId='old-thread', active, ended=false, starts=0, resuming=false;
 const done=(id,status)=>emit({method:'turn/completed',params:{threadId,turn:{id,status}}});
 for await(const line of createInterface({input:process.stdin})) {
@@ -89,12 +89,48 @@ for await(const line of createInterface({input:process.stdin})) {
   done('our-turn','completed');
  }
 }
+if(mode==='teardown-pipes')await record({event:'stdin-eof'});
 
 `, { mode: 0o700 });
   const options = { environment: loadWorkflowEnvironment({}, root), codexPathOverride: executable, cwd: root,
     config: { features: { goals: true } }, logDirectory: join(root, 'agents') };
   return { root, options, async messages() { return (await readFile(capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line)); } };
 }
+
+
+test('Codex teardown follows process exit when output-pipe closure is delayed', { timeout: 10000 }, async t => {
+  const f = await fixture(t, 'teardown-pipes'), spawn = childProcess.spawn;
+  const releaseClose: (() => void)[] = [];
+  t.mock.method(childProcess, 'spawn', ((...args: Parameters<typeof spawn>) => {
+    const child = Reflect.apply(spawn, childProcess, args);
+    if (Array.isArray(args[1]) && args[1].includes('app-server')) {
+      const emit = child.emit; let deferred = true, held: unknown[] | undefined;
+      // A real process exits, but pipe inheritance can postpone its close event.
+      t.mock.method(child, 'emit', ((event: string | symbol, ...values: unknown[]) => {
+        if (event === 'close' && deferred) { held = values; return true; }
+        return Reflect.apply(emit, child, [event, ...values]);
+      }) as typeof child.emit);
+      releaseClose.push(() => { deferred = false; if (held) Reflect.apply(emit, child, ['close', ...held]); });
+    }
+    return child;
+  }) as typeof spawn);
+  syncBuiltinESMExports();
+  const session = createFunctionToolSession(f.options);
+  let closing: Promise<void> | undefined, timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    const result = await session.run({ name: 'teardown', prompt: 'finish', outputSchema: schema });
+    assert.equal(result.text, '{"status":"completed"}');
+    closing = session.close();
+    await Promise.race([closing, new Promise<never>((_, reject) => {
+      timer = setTimeout(() => reject(new Error('Closing is waiting for descendant output pipes')), 2500);
+    })]);
+    assert.ok((await f.messages()).some(message => message.event === 'stdin-eof'));
+    assert.equal(JSON.parse(await readFile(join(result.logDirectory!, 'result.json'), 'utf8')).status, 'completed');
+  } finally {
+    clearTimeout(timer); releaseClose.forEach(release => release());
+    await (closing ?? session.close());
+  }
+});
 
 test('Codex reloads changed native credentials on the same thread and preserves local token refresh', { timeout: 10_000 }, async t => {
   const f = await fixture(t, 'auth-file'), native = join(f.root, 'native');
