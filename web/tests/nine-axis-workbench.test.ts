@@ -379,16 +379,17 @@ test('Z shortcuts use the authored roll limits and preserve the X and Y pose', a
   assert.deepEqual(keys.children, []);
 });
 
-test('mouse follow respects available poses; keyboard roll is scoped to the active preview', async t => {
+test('mouse follow respects available poses and held roll keys move continuously within the active preview', async t => {
   const { HeadNineAxisPanel } = await panelModule();
   const doc = composed(), panel = Object.create(HeadNineAxisPanel.prototype);
   doc.headRoll = { pivot: [0, 0], parts: [doc.parts[0].id] };
   doc.parameters!.push({ id: 'ParamAngleZ', min: -12, max: 12, keys: [-12, 0, 12] });
-  let frame: (() => void) | undefined;
+  let frame: ((time: number) => void) | undefined;
   let renders = 0;
+  const display = { activeElement: null as { isContentEditable: boolean } | null, querySelector: () => null };
   for (const [key, value] of Object.entries({
-    document: { querySelector: () => null },
-    requestAnimationFrame: (callback: () => void) => { frame = callback; return 1; },
+    document: display,
+    requestAnimationFrame: (callback: (time: number) => void) => { frame = callback; return 1; },
     cancelAnimationFrame: () => { frame = undefined; },
   })) {
     const previous = Object.getOwnPropertyDescriptor(globalThis, key);
@@ -399,10 +400,16 @@ test('mouse follow respects available poses; keyboard roll is scoped to the acti
     });
   }
   Object.assign(panel, {
-    doc, axes: nineAxisCapabilities(doc), active: true, following: false, value: 0, valueY: 0, valueZ: 0,
+    doc, axes: nineAxisCapabilities(doc), active: true, following: false, value: 0, valueY: 0, valueZ: 0, rollKeys: new Set(),
     view: { getBoundingClientRect: () => ({ left: 50, top: 30, width: 320, height: 320 }) },
     sync() { renders++; },
   });
+  const advance = (time: number) => {
+    const callback = frame;
+    frame = undefined;
+    assert.ok(callback);
+    callback(time);
+  };
   const pointer = { pointerType: 'mouse', clientX: 368, clientY: 126, buttons: 0 };
   panel.trackPointer(pointer);
   assert.deepEqual([panel.value, panel.valueY], [0, 0]);
@@ -410,26 +417,43 @@ test('mouse follow respects available poses; keyboard roll is scoped to the acti
   panel.trackPointer(pointer);
   panel.trackPointer({ ...pointer, clientX: 352 });
   assert.equal(renders, 0);
-  frame!();
+  advance(0);
   assert.equal(renders, 1);
   assert.ok(panel.value > 0 && panel.valueY > 0);
   assert.ok(Math.abs(panel.value / 30) <= headSideLimit(panel.valueY / 25));
   const xy = [panel.value, panel.valueY];
   let consumed = 0;
   const press = (key: string, extra = {}) => panel.rollKeyDown({ key, preventDefault() { consumed++; }, ...extra });
+  const release = (key: string) => panel.rollKeyUp({ key });
   press('a');
   assert.deepEqual([panel.value, panel.valueY, panel.valueZ], [...xy, -1]);
+  advance(16); advance(32);
+  assert.ok(panel.valueZ < -1 && panel.valueZ > -2);
+  const held = panel.valueZ;
+  press('a', { repeat: true });
+  assert.equal(panel.valueZ, held);
+  release('a');
+  assert.equal(frame, undefined);
   press('D', { shiftKey: true });
-  assert.equal(panel.valueZ, 4);
+  assert.equal(panel.valueZ, held + 5);
+  advance(48); advance(64);
+  assert.ok(panel.valueZ > held + 6);
+  display.activeElement = { isContentEditable: true };
+  const beforeFocus = panel.valueZ;
+  advance(80);
+  assert.equal(panel.valueZ, beforeFocus);
+  assert.equal(frame, undefined);
+  display.activeElement = null;
   press('d', { target: { isContentEditable: true } });
   press('a', { ctrlKey: true });
   panel.viewDrag = () => {};
   press('d');
-  assert.equal(consumed, 2);
+  assert.equal(consumed, 3);
   panel.viewDrag = null;
   panel.valueZ = 11;
   press('D', { shiftKey: true });
   assert.equal(panel.valueZ, 12);
+  release('D');
   panel.active = false;
   press('a');
   assert.equal(panel.valueZ, 12);

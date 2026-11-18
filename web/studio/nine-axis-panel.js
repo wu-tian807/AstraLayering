@@ -29,6 +29,7 @@ export class HeadNineAxisPanel {
   constructor({ error }) {
     Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.valueY = 0; this.valueZ = 0; this.level = 'face'; this.selected = null; this.hidden = new Set(); this.shownMasks = new Set();
     this.radius = 40; this.showGrid = true; this.dirty = new Set(); this.active = false;
+    this.rollKeys = new Set();
     this.canvas = $('#nine-axis-canvas'); this.overlay = $('#nine-axis-overlay'); this.view = $('#nine-axis-view');
     $('#nine-axis-angle-number').onchange = e => this.setValue(e.target.valueAsNumber, this.valueY, 'x');
     $('#nine-axis-angle-y-number').onchange = e => this.setValue(this.value, e.target.valueAsNumber, 'y');
@@ -61,6 +62,9 @@ export class HeadNineAxisPanel {
       this.setValue(0, 0);
     });
     document.addEventListener('keydown', e => this.rollKeyDown(e));
+    document.addEventListener('keyup', e => this.rollKeyUp(e));
+    window.addEventListener('blur', () => this.stopKeyboardRoll());
+    document.addEventListener('visibilitychange', () => { if (document.hidden) this.stopKeyboardRoll(); });
     new ResizeObserver(() => this.resize()).observe(this.view);
   }
   diagnostics() { return { loaded: !!this.doc, value: this.value, valueY: this.valueY, level: this.level, selected: this.selected, edited: [...this.dirty],
@@ -88,6 +92,7 @@ export class HeadNineAxisPanel {
   clear() {
     this.author = null;
     this.resetPointerFollow();
+    this.stopKeyboardRoll();
     this.viewDrag?.();
     this.endPadDrag();
     this.view3?.clear(); this.doc = null; this.original = new Map(); this.dirty.clear(); this.selected = null; this.hidden.clear(); this.shownMasks.clear();
@@ -158,7 +163,12 @@ export class HeadNineAxisPanel {
     $('#nine-axis-tree').replaceChildren(...all.filter(n => !n.parent).map(make));
   }
   select(id) { this.selected = this.selected === id ? null : id; this.sync(); }
-  setRoll(value) { this.valueZ = value; this.sync(); }
+  setRoll(value) {
+    const limit = headRollLimit(this.doc);
+    const next = Math.max(-limit, Math.min(limit, value));
+    if (next === this.valueZ) return;
+    this.valueZ = next; this.sync();
+  }
   setValue(x, y = this.valueY, preferredAxis) {
     if (!this.doc) return;
     const point = projectNineAxisAngles(this.axes, x, y, preferredAxis);
@@ -182,16 +192,40 @@ export class HeadNineAxisPanel {
     if (this.followFrame !== undefined) cancelAnimationFrame(this.followFrame);
     this.followFrame = undefined; this.followPrevious = undefined;
   }
+  rollInputBlocked(target) {
+    return !this.active || this.viewDrag || this.padDrag || target?.isContentEditable ||
+      target?.closest?.('textarea, select, input:not([type="checkbox"]):not([type="radio"])') || $('dialog[open]');
+  }
   rollKeyDown(e) {
     const key = e.key.toLowerCase();
+    if (key === 'shift') this.rollFast = true;
     if ((key !== 'a' && key !== 'd') || e.defaultPrevented || e.isComposing || e.ctrlKey || e.metaKey || e.altKey ||
-        !this.active || this.viewDrag || this.padDrag) return;
-    const limit = headRollLimit(this.doc);
-    if (!limit || e.target?.isContentEditable || e.target?.closest?.('textarea, select, input:not([type="checkbox"]):not([type="radio"])') ||
-        $('dialog[open]')) return;
+        this.rollInputBlocked(e.target) || !headRollLimit(this.doc)) return;
     e.preventDefault();
-    const step = e.shiftKey ? 5 : 1;
-    this.setRoll(Math.max(-limit, Math.min(limit, this.valueZ + (key === 'a' ? -step : step))));
+    if (e.repeat) return;
+    this.rollKeys.add(key);
+    this.rollFast = e.shiftKey;
+    if (this.rollKeys.size === 1) this.setRoll(this.valueZ + (key === 'a' ? -1 : 1) * (this.rollFast ? 5 : 1));
+    this.rollFrame ??= requestAnimationFrame(time => this.updateKeyboardRoll(time));
+  }
+  rollKeyUp(e) {
+    const key = e.key.toLowerCase();
+    if (key === 'shift') this.rollFast = false;
+    if (this.rollKeys.delete(key) && !this.rollKeys.size) this.stopKeyboardRoll();
+  }
+  updateKeyboardRoll(time) {
+    this.rollFrame = undefined;
+    if (this.rollInputBlocked(document.activeElement) || !headRollLimit(this.doc)) { this.stopKeyboardRoll(); return; }
+    const seconds = Math.min(time - (this.rollTime ?? time), 50) / 1000;
+    this.rollTime = time;
+    const direction = Number(this.rollKeys.has('d')) - Number(this.rollKeys.has('a'));
+    this.setRoll(this.valueZ + direction * seconds * (this.rollFast ? 72 : 36));
+    this.rollFrame = requestAnimationFrame(time => this.updateKeyboardRoll(time));
+  }
+  stopKeyboardRoll() {
+    this.rollKeys.clear();
+    if (this.rollFrame !== undefined) cancelAnimationFrame(this.rollFrame);
+    this.rollFrame = undefined; this.rollTime = undefined;
   }
   installPad() {
     const a = this.axes;
@@ -278,7 +312,7 @@ export class HeadNineAxisPanel {
     $('#nine-axis-angle-number').value = this.value;
     $('#nine-axis-angle-y-number').value = this.valueY;
     $('#nine-axis-angle-z').value = this.valueZ;
-    $('#nine-axis-angle-z-value').value = sign(this.valueZ) + '°';
+    $('#nine-axis-angle-z-value').value = sign(Number(this.valueZ.toFixed(1))) + '°';
     const handle = this.padPosition(this.value, this.valueY);
     $('#nine-axis-pad-handle').style.left = handle.x + '%'; $('#nine-axis-pad-handle').style.top = handle.y + '%';
     this.pad.setAttribute('aria-label', `头部角度：X ${this.value}，Y ${this.valueY}`);
@@ -425,7 +459,7 @@ export class HeadNineAxisPanel {
     if (on === this.active) return;
     this.active = on; this.view.hidden = !on;
     clearInterval(this.refreshTimer);
-    if (!on) { this.resetPointerFollow(); this.viewDrag?.(); this.endPadDrag(); }
+    if (!on) { this.resetPointerFollow(); this.stopKeyboardRoll(); this.viewDrag?.(); this.endPadDrag(); }
     else { requestAnimationFrame(() => this.resize()); this.refreshTimer = setInterval(() => void this.refresh(), 4000); }
   }
 }
